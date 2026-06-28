@@ -158,12 +158,207 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: oklch(from var(--ring) l c h / 0.5);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-sans);
   }
+}
+
+/* React Flow Edge Styling - Match original LibTV */
+.react-flow__edge-path {
+  stroke: #86909c;
+  stroke-width: 2;
+  transition: stroke 0.15s ease, stroke-width 0.15s ease;
+}
+
+/* Edge hover - wider hit area */
+.react-flow__edge-interaction {
+  stroke-width: 20;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: #09caf5;
+  stroke-width: 2.5;
+}
+
+/* Edge hover indicator */
+.react-flow__edge:hover .react-flow__edge-interaction + .react-flow__edge-path {
+  stroke: #09caf5;
+  stroke-width: 2.5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #09caf5;
+  stroke-width: 2.5;
+}
+
+/* Edge animation on connection */
+@keyframes edge-dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.react-flow__edge--animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: edge-dash 0.5s linear infinite;
+}
+
+/* Node Handle Styling - Match original LibTV behavior */
+/* Handles are positioned at left/right middle edges */
+.react-flow__handle {
+  width: 20px;
+  height: 20px;
+  background: #09caf5;
+  border: 2px solid #171717;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: auto;
+  z-index: 10;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: scale(0.5);
+}
+
+/* Show handles when hovering over the node */
+.react-flow__node:hover .react-flow__handle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Handle hover effect */
+.react-flow__handle:hover {
+  background: #5ddcff;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(9, 202, 245, 0.5);
+}
+
+/* Show a visual indicator when connecting */
+.react-flow__handle.connecting {
+  opacity: 1;
+  transform: scale(1);
+  background: #5ddcff;
+}
+
+/* Show a visual indicator for valid connection target */
+.react-flow__handle.valid {
+  opacity: 1;
+  transform: scale(1);
+  background: #64d959;
+}
+
+/* Connection line style */
+.react-flow__connection-path {
+  stroke: #09caf5;
+  stroke-width: 2;
+}
+
+/* Handle "+" icon via pseudo-element */
+.react-flow__handle::before {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #171717;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Hide the "+" when connecting */
+.react-flow__handle.connecting::before,
+.react-flow__handle.valid::before {
+  content: none;
+}
+
+/* Connection Line */
+.react-flow__connection-path {
+  stroke: #09caf5;
+  stroke-width: 2;
+}
+
+/* Controls Panel Styling */
+.react-flow__controls {
+  background: #1f1f1f !important;
+  border: 1px solid #363636 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: #1f1f1f !important;
+  border-bottom: 1px solid #363636 !important;
+  color: #f7f7f7 !important;
+  fill: #f7f7f7 !important;
+  width: 28px;
+  height: 28px;
+}
+
+.react-flow__controls-button:hover {
+  background: #353639 !important;
+}
+
+.react-flow__controls-button svg {
+  fill: #f7f7f7 !important;
+  max-width: 14px;
+  max-height: 14px;
+}
+
+/* Minimap Styling */
+.react-flow__minimap {
+  background: #1f1f1f !important;
+  border: 1px solid #363636 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(0, 0, 0, 0.5) !important;
+}
+
+.react-flow__minimap-node {
+  fill: #363636 !important;
+  stroke: none !important;
+}
+
+/* Canvas cursor states */
+.react-flow {
+  cursor: grab;
+}
+
+.react-flow:active {
+  cursor: grabbing;
+}
+
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__node.dragging {
+  cursor: grabbing;
+}
+
+/* Selection box */
+.react-flow__selection {
+  background: rgba(9, 202, 245, 0.1) !important;
+  border: 1px solid #09caf5 !important;
+  border-radius: 4px;
+}
+
+/* Attribution Link */
+.react-flow__attribution {
+  background: transparent !important;
+}
+
+.react-flow__attribution a {
+  color: #525252 !important;
 }

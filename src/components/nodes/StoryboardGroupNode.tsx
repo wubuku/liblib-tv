@@ -1,47 +1,18 @@
-import { memo, useState, useCallback, useRef, useEffect } from "react";
+"use client";
+
+import { memo, useState, useRef } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 
-interface ScriptNodeData extends Record<string, unknown> {
+export interface StoryboardGroupData extends Record<string, unknown> {
   title?: string;
-  content?: string;
+  images?: Array<{
+    url: string;
+    label?: string;
+  }>;
 }
 
-type ScriptNodeType = Node<ScriptNodeData, "script">;
-
-const defaultContent = `第一集：咖啡馆对峙
-角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁)
-场景1：咖啡馆
-陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。
-林小婉提高音量说："你到底还要躲我到什么时候？"
-陈默不正眼看她，声音低沉："我没有躲你。"
-林小婉眼眶红了，说："你知道我有多担心吗？"
-陈默转过头，无声地冷笑了一下，说："当初你离开的时候，怎么没想过我会担心？"`;
-
-function ScriptIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <path
-        d="M4 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <path
-        d="M6 5h4M6 8h4M6 11h2"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+export type StoryboardGroupType = Node<StoryboardGroupData, "storyboard-group">;
 
 function PlusIcon() {
   return (
@@ -51,38 +22,37 @@ function PlusIcon() {
   );
 }
 
-export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
-  const { title = "剧本", content = defaultContent } = data;
+function StoryboardGroupNodeComponent({ id, data, selected }: NodeProps<StoryboardGroupType>) {
   const { deleteElements } = useReactFlow();
   const nodeRef = useRef<HTMLDivElement>(null);
   const [showLeftHandle, setShowLeftHandle] = useState(false);
   const [showRightHandle, setShowRightHandle] = useState(false);
+
+  const title = data.title || "分镜图 · 第一集：咖啡馆对峙-图片组";
+  const images = data.images || [
+    { url: "/images/scene-coffee-1.png", label: "img1" },
+  ];
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     deleteElements({ nodes: [{ id }] });
   };
 
-  // Show handles when hovering over the node
-  const handleMouseEnter = () => {
-    setShowLeftHandle(true);
-    setShowRightHandle(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowLeftHandle(false);
-    setShowRightHandle(false);
-  };
-
   return (
     <div
       ref={nodeRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => {
+        setShowLeftHandle(true);
+        setShowRightHandle(true);
+      }}
+      onMouseLeave={() => {
+        setShowLeftHandle(false);
+        setShowRightHandle(false);
+      }}
       className={cn(
-        "w-[320px] overflow-visible rounded-xl border bg-[#212121] flex flex-col transition-shadow group",
+        "w-[320px] overflow-visible rounded-xl bg-[#1f1f1f] border flex flex-col group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
-        !selected && "hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+        "shadow-xl"
       )}
     >
       {/* Delete button - visible when selected */}
@@ -105,7 +75,6 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
         id="target"
         className="!opacity-0 !pointer-events-auto"
       />
-      {/* Left "+" indicator */}
       <div
         className={cn(
           "absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50",
@@ -126,7 +95,6 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
         id="source"
         className="!opacity-0 !pointer-events-auto"
       />
-      {/* Right "+" indicator */}
       <div
         className={cn(
           "absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-50",
@@ -140,25 +108,34 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
         <PlusIcon />
       </div>
 
-      {/* Header */}
-      <div className="flex items-center gap-2 border-b border-[#363636] px-4 py-3">
-        <ScriptIcon className="text-[#f7f7f7]" />
-        <span className="text-sm font-semibold text-[#f7f7f7]">{title}</span>
+      {/* Title */}
+      <div className="px-4 py-2 text-xs text-[#919191] truncate" title={title}>
+        {title}
       </div>
 
-      {/* Content */}
-      <div className="max-h-[300px] overflow-y-auto p-4">
-        <p className="whitespace-pre-wrap text-sm font-normal leading-[1.6] text-[#f7f7f7]">
-          {content}
-        </p>
-      </div>
-
-      {/* Footer */}
-      <div className="flex justify-end gap-2 border-t border-[#363636] px-4 py-2">
-        {/* Footer actions can be added here */}
+      {/* Image grid */}
+      <div className="grid grid-cols-1 gap-2 p-3 pt-0">
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className="relative aspect-video rounded-lg overflow-hidden bg-[#171717] border border-[#363636]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={img.url}
+              alt={img.label || `image-${idx}`}
+              className="w-full h-full object-cover"
+            />
+            {img.label && (
+              <div className="absolute top-1 left-1 text-[10px] px-1.5 py-0.5 bg-black/60 text-white rounded">
+                {img.label}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-export default memo(ScriptNode);
+export const StoryboardGroupNode = memo(StoryboardGroupNodeComponent);

@@ -133,6 +133,10 @@
 - `--color-brand-500`: `#3d9bff`
 - `--color-brand-600`: `#05a3c5`
 
+### Canvas-Specific Accent
+- `--canvas-accent`: `#05dff6` (cyan highlight for VIP/credits)
+- `--canvas-gold`: `#FFDBA4` (lightning/credit icon color)
+
 ### Mantine Primary (Blue)
 - `--mantine-primary-color-0`: `#e7f5ff`
 - `--mantine-primary-color-1`: `#d0ebff`
@@ -195,6 +199,21 @@
 - `--mantine-breakpoint-b1920`: 1920px
 - `--mantine-breakpoint-b2240`: 2240px
 
+## Z-Index Layers
+| Layer | z-index | Element |
+|-------|---------|---------|
+| Watermark | 10 | Watermark overlay on images |
+| App | 100 | `--mantine-z-index-app` |
+| Popover | 300 | `--mantine-z-index-popover` |
+| Modal | 500 | `--mantine-z-index-modal` |
+| Overlay | 600 | `--mantine-z-index-overlay` |
+| Max | 9999 | `--mantine-z-index-max` |
+
+## Transitions
+- **Default button transition:** `0.15s cubic-bezier(0.4, 0, 0.2, 1)`
+- **Duration classes:** `duration-200`, `duration-300`
+- **Transform transitions:** `transition-transform`
+
 ## Canvas-Specific
 - `--bg-topbar-btn`: `#2c2c2d`
 - `--bg-topbar-btn-hover`: `#1b1b20`
@@ -202,10 +221,22 @@
 - `--bg-topbar-msg-hover`: `#2a2d3d`
 - `--input-bg`: `#171717`
 - `--input-placeholder`: `#86909c`
+- `--canvas-controls-icon`: icon color for control buttons
+- `--canvas-primary-btn-icon`: icon color for primary action button
 
 ## Component Dimensions
 - **Nav height:** 48px
 - **Nav padding:** 0px 16px
+- **Sidebar container:** width 298px, padding 8px, border-radius 12px, bg #262626
 - **Sidebar button:** 32px × 32px, border-radius: 8px
 - **Toolbar button:** 28px × 28px, border-radius: 8px
-- **Primary button:** height 40px, border-radius: 8px/12px
+- **Primary button:** height 40px, border-radius: 12px
+- **Bottom toolbar:** bg rgba(20,20,20,0.7), padding 6px, border-radius 12px
+
+## Tech Stack Detected
+- **UI Framework:** Mantine (CSS variables with `--mantine-*` prefix)
+- **CSS:** Tailwind CSS (utility classes observed)
+- **Icons:** Iconify (`iconify--libtv` custom icon set)
+- **Node Editor:** React Flow / XY Flow (canvas with nodes and edges)
+- **Chat Support:** 网易七鱼 (qiyukf.net customer service)
+- **Analytics:** Bing tracking pixel

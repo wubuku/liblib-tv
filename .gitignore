@@ -47,3 +47,17 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Playwright MCP test artifacts
+.playwright-mcp/
+
+# Verification/test screenshots (not source assets)
+verify-*.png
+test-*.png
+final-*.png
+clone-current-*.png
+libtv-*.png
+camera-button-test.png
+
+# Agent worktree scratch dirs (deleted leftovers)
+.claude/worktrees/agent-*
