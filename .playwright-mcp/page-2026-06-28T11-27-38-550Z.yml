@@ -1,0 +1,10 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - navigation:
+      - generic [ref=e4]:
+        - textbox "项目名称" [ref=e6]: 未命名工作区
+        - button "未命名" [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: 未命名
+  - generic [ref=e12]:
+    - img [ref=e13]
+    - generic [ref=e16]: 项目加载中...

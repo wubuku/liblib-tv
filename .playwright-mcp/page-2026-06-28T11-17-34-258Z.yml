@@ -1,0 +1,450 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4] [cursor=pointer]:
+        - button "✕" [ref=e5]
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - img [ref=e9]
+            - generic [ref=e11]: 活动剩余
+            - generic [ref=e12]:
+              - text: 2天
+              - generic [ref=e13]: 04时 42分 25秒
+          - generic [ref=e14]:
+            - text: 🎉Seedance 2.5 即将上线，抢先锁定 |
+            - generic [ref=e15]: 季卡会员限时55折 ，比月卡立省37%；年卡限时37折 ，最高再赠 160 条 Seedance2.0 🎁
+          - generic [ref=e16]: 限时抢购
+      - banner [ref=e17]:
+        - generic [ref=e18]:
+          - img [ref=e20]
+          - generic [ref=e24]:
+            - button "创作者挑战赛" [ref=e26] [cursor=pointer]:
+              - img
+              - text: 创作者挑战赛
+              - img
+            - link "回到主站" [ref=e27] [cursor=pointer]:
+              - /url: https://www.liblib.art
+              - img
+            - button "帮助信息" [ref=e29] [cursor=pointer]:
+              - img
+            - generic [ref=e32]:
+              - button "会员超市" [ref=e34] [cursor=pointer]:
+                - img
+                - generic [ref=e35]: 会员超市
+              - generic [ref=e37]:
+                - generic [ref=e38]: 限时 37 折
+                - generic [ref=e39] [cursor=pointer]:
+                  - img [ref=e40]
+                  - text: 开通会员
+              - generic [ref=e42] [cursor=pointer]: 注册/登录
+    - main [ref=e43]:
+      - generic [ref=e45]:
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - button "上一张" [ref=e50] [cursor=pointer]:
+              - img [ref=e51]
+            - button "下一张" [ref=e53] [cursor=pointer]:
+              - img [ref=e54]
+          - generic [ref=e100]:
+            - button "第 1 张" [ref=e101] [cursor=pointer]
+            - button "第 2 张" [ref=e102] [cursor=pointer]
+            - button "第 3 张" [ref=e103] [cursor=pointer]
+            - button "第 4 张" [ref=e104] [cursor=pointer]
+            - button "第 5 张" [ref=e105] [cursor=pointer]
+            - button "第 6 张" [ref=e106] [cursor=pointer]
+            - button "第 7 张" [ref=e107] [cursor=pointer]
+        - generic [ref=e108]:
+          - button "开始创作" [ref=e109] [cursor=pointer]:
+            - img
+            - generic [ref=e110]: 开始创作
+          - button "快速体验 Seedance 2.0" [ref=e111] [cursor=pointer]:
+            - generic [ref=e112]: 快速体验
+            - generic [ref=e115]: Seedance 2.0
+        - generic [ref=e116]:
+          - generic [ref=e117]: TV Show
+          - generic [ref=e118]:
+            - generic [ref=e120] [cursor=pointer]:
+              - button "向左滚动":
+                - img
+              - generic [ref=e121]:
+                - generic [ref=e122]: 全部
+                - generic [ref=e123]: AI漫剧精卫计划
+                - generic [ref=e124]: 广告导演请就位
+                - generic [ref=e125]: 精选画布
+                - generic [ref=e126]: 专业影视
+                - generic [ref=e127]: 短剧漫剧
+                - generic [ref=e128]: 商业广告
+                - generic [ref=e129]: 动漫游戏
+                - generic [ref=e130]: 教育生活
+                - generic [ref=e131]: TV工具箱
+              - button "向右滚动" [ref=e132]:
+                - img [ref=e133]
+            - generic [ref=e136]:
+              - textbox "请输入搜索内容" [ref=e137]
+              - button [ref=e138] [cursor=pointer]:
+                - img
+          - grid [ref=e140]:
+            - gridcell "《翻译官》 170 简恩 简恩 先锋 《翻译官》 查看创作过程" [ref=e141]:
+              - generic [ref=e142] [cursor=pointer]:
+                - img "《翻译官》" [ref=e145]
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - img
+                  - generic [ref=e150]: "170"
+                - generic [ref=e152]:
+                  - generic [ref=e153]:
+                    - generic [ref=e154]:
+                      - img "简恩" [ref=e156]
+                      - generic [ref=e157]: 简恩
+                      - img "先锋" [ref=e159]
+                    - paragraph [ref=e160]: 《翻译官》
+                  - button "查看创作过程" [ref=e161]:
+                    - generic [ref=e162]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "世界杯球鞋风格化TVC（含预设包） 132 油条 油条 专业 世界杯球鞋风格化TVC（含预设包） 查看创作过程" [ref=e163]:
+              - generic [ref=e164] [cursor=pointer]:
+                - img "世界杯球鞋风格化TVC（含预设包）" [ref=e167]
+                - generic [ref=e170]:
+                  - generic [ref=e171]:
+                    - img
+                  - generic [ref=e172]: "132"
+                - generic [ref=e174]:
+                  - generic [ref=e175]:
+                    - generic [ref=e176]:
+                      - img "油条" [ref=e178]
+                      - generic [ref=e179]: 油条
+                      - img "专业" [ref=e181]
+                    - paragraph [ref=e182]: 世界杯球鞋风格化TVC（含预设包）
+                  - button "查看创作过程" [ref=e183]:
+                    - generic [ref=e184]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "< UNISEE > 先锋视觉品宣片 20 SUNLee SUNLee 先锋 < UNISEE > 先锋视觉品宣片 查看创作过程" [ref=e185]:
+              - generic [ref=e186] [cursor=pointer]:
+                - img "< UNISEE > 先锋视觉品宣片" [ref=e189]
+                - generic [ref=e192]:
+                  - generic [ref=e193]:
+                    - img
+                  - generic [ref=e194]: "20"
+                - generic [ref=e196]:
+                  - generic [ref=e197]:
+                    - generic [ref=e198]:
+                      - img "SUNLee" [ref=e200]
+                      - generic [ref=e201]: SUNLee
+                      - img "先锋" [ref=e203]
+                    - paragraph [ref=e204]: < UNISEE > 先锋视觉品宣片
+                  - button "查看创作过程" [ref=e205]:
+                    - generic [ref=e206]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "超级末日女友 哐哐哐就是咔咔咔咔 305 咕噜咕噜大王 咕噜咕噜大王 专业 超级末日女友 哐哐哐就是咔咔咔咔 查看创作过程" [ref=e207]:
+              - generic [ref=e208] [cursor=pointer]:
+                - img "超级末日女友 哐哐哐就是咔咔咔咔" [ref=e211]
+                - generic [ref=e214]:
+                  - generic [ref=e215]:
+                    - img
+                  - generic [ref=e216]: "305"
+                - generic [ref=e218]:
+                  - generic [ref=e219]:
+                    - generic [ref=e220]:
+                      - img "咕噜咕噜大王" [ref=e222]
+                      - generic [ref=e223]: 咕噜咕噜大王
+                      - img "专业" [ref=e225]
+                    - paragraph [ref=e226]: 超级末日女友 哐哐哐就是咔咔咔咔
+                  - button "查看创作过程" [ref=e227]:
+                    - generic [ref=e228]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "公升之下 64 ZZAi ZZAi 公升之下 查看创作过程" [ref=e229]:
+              - generic [ref=e230] [cursor=pointer]:
+                - img "公升之下" [ref=e233]
+                - generic [ref=e236]:
+                  - generic [ref=e237]:
+                    - img
+                  - generic [ref=e238]: "64"
+                - generic [ref=e240]:
+                  - generic [ref=e241]:
+                    - generic [ref=e242]:
+                      - img "ZZAi" [ref=e244]
+                      - generic [ref=e245]: ZZAi
+                    - paragraph [ref=e246]: 公升之下
+                  - button "查看创作过程" [ref=e247]:
+                    - generic [ref=e248]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "老大来了！！！AIGC这样玩怕是要疯 102 有無劇院 有無劇院 专业 老大来了！！！AIGC这样玩怕是要疯 查看创作过程" [ref=e249]:
+              - generic [ref=e250] [cursor=pointer]:
+                - img "老大来了！！！AIGC这样玩怕是要疯" [ref=e253]
+                - generic [ref=e256]:
+                  - generic [ref=e257]:
+                    - img
+                  - generic [ref=e258]: "102"
+                - generic [ref=e260]:
+                  - generic [ref=e261]:
+                    - generic [ref=e262]:
+                      - img "有無劇院" [ref=e264]
+                      - generic [ref=e265]: 有無劇院
+                      - img "专业" [ref=e267]
+                    - paragraph [ref=e268]: 老大来了！！！AIGC这样玩怕是要疯
+                  - button "查看创作过程" [ref=e269]:
+                    - generic [ref=e270]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "呱比的悲催时刻 666 Muertu木二土 Muertu木二土 专业 呱比的悲催时刻 查看创作过程" [ref=e271]:
+              - generic [ref=e272] [cursor=pointer]:
+                - img "呱比的悲催时刻" [ref=e275]
+                - generic [ref=e278]:
+                  - generic [ref=e279]:
+                    - img
+                  - generic [ref=e280]: "666"
+                - generic [ref=e282]:
+                  - generic [ref=e283]:
+                    - generic [ref=e284]:
+                      - img "Muertu木二土" [ref=e286]
+                      - generic [ref=e287]: Muertu木二土
+                      - img "专业" [ref=e289]
+                    - paragraph [ref=e290]: 呱比的悲催时刻
+                  - button "查看创作过程" [ref=e291]:
+                    - generic [ref=e292]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "三姐反诈 19 那边的蛋仔 那边的蛋仔 先锋 三姐反诈 查看创作过程" [ref=e293]:
+              - generic [ref=e294] [cursor=pointer]:
+                - img "三姐反诈" [ref=e297]
+                - generic [ref=e300]:
+                  - generic [ref=e301]:
+                    - img
+                  - generic [ref=e302]: "19"
+                - generic [ref=e304]:
+                  - generic [ref=e305]:
+                    - generic [ref=e306]:
+                      - img "那边的蛋仔" [ref=e308]
+                      - generic [ref=e309]: 那边的蛋仔
+                      - img "先锋" [ref=e311]
+                    - paragraph [ref=e312]: 三姐反诈
+                  - button "查看创作过程" [ref=e313]:
+                    - generic [ref=e314]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "世界杯主题TVC-流动狂欢城 293 油条 油条 专业 世界杯主题TVC-流动狂欢城 查看创作过程" [ref=e315]:
+              - generic [ref=e316] [cursor=pointer]:
+                - img "世界杯主题TVC-流动狂欢城" [ref=e319]
+                - generic [ref=e322]:
+                  - generic [ref=e323]:
+                    - img
+                  - generic [ref=e324]: "293"
+                - generic [ref=e326]:
+                  - generic [ref=e327]:
+                    - generic [ref=e328]:
+                      - img "油条" [ref=e330]
+                      - generic [ref=e331]: 油条
+                      - img "专业" [ref=e333]
+                    - paragraph [ref=e334]: 世界杯主题TVC-流动狂欢城
+                  - button "查看创作过程" [ref=e335]:
+                    - generic [ref=e336]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "神女 26 AILi小劼哥 AILi小劼哥 先锋 神女 查看创作过程" [ref=e337]:
+              - generic [ref=e338] [cursor=pointer]:
+                - img "神女" [ref=e341]
+                - generic [ref=e344]:
+                  - generic [ref=e345]:
+                    - img
+                  - generic [ref=e346]: "26"
+                - generic [ref=e348]:
+                  - generic [ref=e349]:
+                    - generic [ref=e350]:
+                      - img "AILi小劼哥" [ref=e352]
+                      - generic [ref=e353]: AILi小劼哥
+                      - img "先锋" [ref=e355]
+                    - paragraph [ref=e356]: 神女
+                  - button "查看创作过程" [ref=e357]:
+                    - generic [ref=e358]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "【特斯拉Cybertruck】AI TVC 38 Zeno Zeno 先锋 【特斯拉Cybertruck】AI TVC 查看创作过程" [ref=e359]:
+              - generic [ref=e360] [cursor=pointer]:
+                - img "【特斯拉Cybertruck】AI TVC" [ref=e363]
+                - generic [ref=e366]:
+                  - generic [ref=e367]:
+                    - img
+                  - generic [ref=e368]: "38"
+                - generic [ref=e370]:
+                  - generic [ref=e371]:
+                    - generic [ref=e372]:
+                      - img "Zeno" [ref=e374]
+                      - generic [ref=e375]: Zeno
+                      - img "先锋" [ref=e377]
+                    - paragraph [ref=e378]: 【特斯拉Cybertruck】AI TVC
+                  - button "查看创作过程" [ref=e379]:
+                    - generic [ref=e380]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "温情短片《几楼了》 691 胜意CXH 胜意CXH 先锋 温情短片《几楼了》 查看创作过程" [ref=e381]:
+              - generic [ref=e382] [cursor=pointer]:
+                - img "温情短片《几楼了》" [ref=e385]
+                - generic [ref=e388]:
+                  - generic [ref=e389]:
+                    - img
+                  - generic [ref=e390]: "691"
+                - generic [ref=e392]:
+                  - generic [ref=e393]:
+                    - generic [ref=e394]:
+                      - img "胜意CXH" [ref=e396]
+                      - generic [ref=e397]: 胜意CXH
+                      - img "先锋" [ref=e399]
+                    - paragraph [ref=e400]: 温情短片《几楼了》
+                  - button "查看创作过程" [ref=e401]:
+                    - generic [ref=e402]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "《铁兵小队》一键出片工作流+角色裂变 1.4k YOUNG YOUNG 先锋 《铁兵小队》一键出片工作流+角色裂变 查看创作过程" [ref=e403]:
+              - generic [ref=e404] [cursor=pointer]:
+                - img "《铁兵小队》一键出片工作流+角色裂变" [ref=e407]
+                - generic [ref=e410]:
+                  - generic [ref=e411]:
+                    - img
+                  - generic [ref=e412]: 1.4k
+                - generic [ref=e414]:
+                  - generic [ref=e415]:
+                    - generic [ref=e416]:
+                      - img "YOUNG" [ref=e418]
+                      - generic [ref=e419]: YOUNG
+                      - img "先锋" [ref=e421]
+                    - paragraph [ref=e422]: 《铁兵小队》一键出片工作流+角色裂变
+                  - button "查看创作过程" [ref=e423]:
+                    - generic [ref=e424]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "《神都异闻录》先导预告片，马上上线，欢迎收看 134 简恩 简恩 先锋 《神都异闻录》先导预告片，马上上线，欢迎收看 查看创作过程" [ref=e425]:
+              - generic [ref=e426] [cursor=pointer]:
+                - img "《神都异闻录》先导预告片，马上上线，欢迎收看" [ref=e429]
+                - generic [ref=e432]:
+                  - generic [ref=e433]:
+                    - img
+                  - generic [ref=e434]: "134"
+                - generic [ref=e436]:
+                  - generic [ref=e437]:
+                    - generic [ref=e438]:
+                      - img "简恩" [ref=e440]
+                      - generic [ref=e441]: 简恩
+                      - img "先锋" [ref=e443]
+                    - paragraph [ref=e444]: 《神都异闻录》先导预告片，马上上线，欢迎收看
+                  - button "查看创作过程" [ref=e445]:
+                    - generic [ref=e446]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "照夜客栈 | 请君饮汤，入梦见真 18 骨头先生的喵呜时刻 骨头先生的喵呜时刻 照夜客栈 | 请君饮汤，入梦见真 查看创作过程" [ref=e447]:
+              - generic [ref=e448] [cursor=pointer]:
+                - img "照夜客栈 | 请君饮汤，入梦见真" [ref=e451]
+                - generic [ref=e454]:
+                  - generic [ref=e455]:
+                    - img
+                  - generic [ref=e456]: "18"
+                - generic [ref=e458]:
+                  - generic [ref=e459]:
+                    - generic [ref=e460]:
+                      - img "骨头先生的喵呜时刻" [ref=e462]
+                      - generic [ref=e463]: 骨头先生的喵呜时刻
+                    - paragraph [ref=e464]: 照夜客栈 | 请君饮汤，入梦见真
+                  - button "查看创作过程" [ref=e465]:
+                    - generic [ref=e466]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "雨中陪一根🚬【在超市后门吞云吐雾的二人-真人版】 526 大大大大大 大大大大大 专业 雨中陪一根🚬【在超市后门吞云吐雾的二人-真人版】 查看创作过程" [ref=e467]:
+              - generic [ref=e468] [cursor=pointer]:
+                - img "雨中陪一根🚬【在超市后门吞云吐雾的二人-真人版】" [ref=e471]
+                - generic [ref=e474]:
+                  - generic [ref=e475]:
+                    - img
+                  - generic [ref=e476]: "526"
+                - generic [ref=e478]:
+                  - generic [ref=e479]:
+                    - generic [ref=e480]:
+                      - img "大大大大大" [ref=e482]
+                      - generic [ref=e483]: 大大大大大
+                      - img "专业" [ref=e485]
+                    - paragraph [ref=e486]: 雨中陪一根🚬【在超市后门吞云吐雾的二人-真人版】
+                  - button "查看创作过程" [ref=e487]:
+                    - generic [ref=e488]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "《赛博废土武侠录》你还记得手中的剑吗？ 248 阿浪Alang 阿浪Alang 荣誉 《赛博废土武侠录》你还记得手中的剑吗？ 查看创作过程" [ref=e489]:
+              - generic [ref=e490] [cursor=pointer]:
+                - img "《赛博废土武侠录》你还记得手中的剑吗？" [ref=e493]
+                - generic [ref=e496]:
+                  - generic [ref=e497]:
+                    - img
+                  - generic [ref=e498]: "248"
+                - generic [ref=e500]:
+                  - generic [ref=e501]:
+                    - generic [ref=e502]:
+                      - img "阿浪Alang" [ref=e504]
+                      - generic [ref=e505]: 阿浪Alang
+                      - img "荣誉" [ref=e507]
+                    - paragraph [ref=e508]: 《赛博废土武侠录》你还记得手中的剑吗？
+                  - button "查看创作过程" [ref=e509]:
+                    - generic [ref=e510]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "弑龙者 243 造梦国度 造梦国度 先锋 弑龙者 查看创作过程" [ref=e511]:
+              - generic [ref=e512] [cursor=pointer]:
+                - img "弑龙者" [ref=e515]
+                - generic [ref=e518]:
+                  - generic [ref=e519]:
+                    - img
+                  - generic [ref=e520]: "243"
+                - generic [ref=e522]:
+                  - generic [ref=e523]:
+                    - generic [ref=e524]:
+                      - img "造梦国度" [ref=e526]
+                      - generic [ref=e527]: 造梦国度
+                      - img "先锋" [ref=e529]
+                    - paragraph [ref=e530]: 弑龙者
+                  - button "查看创作过程" [ref=e531]:
+                    - generic [ref=e532]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "【镇关】| AIGC非遗特别短片 425 JIOJIO焦焦 JIOJIO焦焦 专业 【镇关】| AIGC非遗特别短片 查看创作过程" [ref=e533]:
+              - generic [ref=e534] [cursor=pointer]:
+                - img "【镇关】| AIGC非遗特别短片" [ref=e537]
+                - generic [ref=e540]:
+                  - generic [ref=e541]:
+                    - img
+                  - generic [ref=e542]: "425"
+                - generic [ref=e544]:
+                  - generic [ref=e545]:
+                    - generic [ref=e546]:
+                      - img "JIOJIO焦焦" [ref=e548]
+                      - generic [ref=e549]: JIOJIO焦焦
+                      - img "专业" [ref=e551]
+                    - paragraph [ref=e552]: 【镇关】| AIGC非遗特别短片
+                  - button "查看创作过程" [ref=e553]:
+                    - generic [ref=e554]:
+                      - text: 查看创作过程
+                      - img
+            - gridcell "《铁兵小队》V2-子弹时间风格片头（快速出片流+视频分镜法） 214 YOUNG YOUNG 先锋 《铁兵小队》V2-子弹时间风格片头（快速出片流+视频分镜法） 查看创作过程" [ref=e555]:
+              - generic [ref=e556] [cursor=pointer]:
+                - img "《铁兵小队》V2-子弹时间风格片头（快速出片流+视频分镜法）" [ref=e559]
+                - generic [ref=e562]:
+                  - generic [ref=e563]:
+                    - img
+                  - generic [ref=e564]: "214"
+                - generic [ref=e566]:
+                  - generic [ref=e567]:
+                    - generic [ref=e568]:
+                      - img "YOUNG" [ref=e570]
+                      - generic [ref=e571]: YOUNG
+                      - img "先锋" [ref=e573]
+                    - paragraph [ref=e574]: 《铁兵小队》V2-子弹时间风格片头（快速出片流+视频分镜法）
+                  - button "查看创作过程" [ref=e575]:
+                    - generic [ref=e576]:
+                      - text: 查看创作过程
+                      - img
+        - button "滚动到 TV Show":
+          - generic:
+            - img
+  - iframe [ref=e581]:
+    
+  - alert [ref=e582]
