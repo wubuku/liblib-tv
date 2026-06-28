@@ -200,10 +200,43 @@
   stroke-width: 2.5;
 }
 
+/* Show the delete button when the edge is selected or hovered */
+.react-flow__edge:hover [data-edge-delete],
+.react-flow__edge.selected [data-edge-delete] {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  pointer-events: auto !important;
+}
+
+/* Edge hover: thicker + cyan glow */
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: #09caf5 !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 4px rgba(9, 202, 245, 0.6));
+}
+
+/* Pulse animation on the underlying path during hover/select */
+.react-flow__edge:hover .react-flow__edge-path,
+.react-flow__edge.selected .react-flow__edge-path {
+  animation: edge-pulse 1.2s ease-in-out infinite;
+}
+
 /* Edge animation on connection */
 @keyframes edge-dash {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+/* Edge selected pulse animation */
+@keyframes edge-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    stroke-width: 3;
+  }
+  50% {
+    opacity: 0.15;
+    stroke-width: 5;
   }
 }
 

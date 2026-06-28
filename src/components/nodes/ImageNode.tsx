@@ -58,7 +58,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       <div
         ref={nodeRef}
         className={cn(
-          "rounded-xl border border-[#363636] bg-[#171717] overflow-visible group",
+          "w-[360px] rounded-xl border border-[#363636] bg-[#171717] overflow-visible group",
           "transition-shadow duration-150",
           selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
           hovered && !selected && "shadow-[0_2px_12px_rgba(0,0,0,0.4)]"

@@ -31,6 +31,7 @@ import { TextNode } from "@/components/nodes/TextNode";
 import { VideoNode } from "@/components/nodes/VideoNode";
 import { ScriptExecutionNode } from "@/components/nodes/ScriptExecutionNode";
 import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
+import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { ScriptHeader } from "@/components/ScriptHeader";
 
 const nodeTypes = {
@@ -42,12 +43,17 @@ const nodeTypes = {
   "storyboard-group": StoryboardGroupNode,
 };
 
+const edgeTypes = {
+  default: DeletableEdge,
+};
+
 export default function Home() {
   const {
     getActiveCanvas,
     setNodes: setStoreNodes,
     setEdges: setStoreEdges,
     addEdge: addStoreEdge,
+    removeEdge,
     selectNode,
     setViewport,
     activeCanvasId,
@@ -168,6 +174,18 @@ export default function Home() {
     [nodes, setStoreNodes]
   );
 
+  // Listen for delete-edge custom events from DeletableEdge component
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ id: string }>).detail;
+      if (detail?.id) {
+        removeEdge(detail.id);
+      }
+    };
+    window.addEventListener("delete-edge", handler);
+    return () => window.removeEventListener("delete-edge", handler);
+  }, [removeEdge]);
+
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-[#141414]">
       {/* Top Navigation Bar */}
@@ -193,6 +211,7 @@ export default function Home() {
             onPaneClick={onPaneClick}
             onNodeDragStop={onNodeDragStop}
             nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
             fitView
             className="bg-[#171717]"
             defaultEdgeOptions={{
