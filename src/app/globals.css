@@ -247,6 +247,19 @@
   }
 }
 
+/* Edge flowing pulse keyframes — used by PulsePath components.
+   pathLength is normalized to 100, so visible 20 + gap 80 = 100 total.
+   strokeDashoffset goes from 100 (segment off-screen left) to 0
+   (segment fully at start) and wraps, so animation moves it across the path. */
+@keyframes edge-pulse-flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .react-flow__edge--animated .react-flow__edge-path {
   stroke-dasharray: 5;
   animation: edge-dash 0.5s linear infinite;

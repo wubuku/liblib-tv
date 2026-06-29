@@ -6,15 +6,44 @@ import {
   getBezierPath,
   type EdgeProps,
 } from "@xyflow/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+
+/**
+ * Inject a unique @keyframes + className rule into document.head for a given
+ * edge/phase. The animation moves stroke-dashoffset from 100 -> 0, so a
+ * 20/80 dasharray segment travels along the normalized (pathLength=100) path.
+ */
+function useEdgePulseKeyframe(edgeId: string, phase: number) {
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const styleId = `edge-flow-kf-${edgeId}-${phase}`;
+    if (document.getElementById(styleId)) return;
+    const style = document.createElement("style");
+    style.id = styleId;
+    const className = `edge-flow-kf-${edgeId}-${phase}`;
+    style.textContent = `
+      @keyframes ${className} {
+        from { stroke-dashoffset: 100; }
+        to { stroke-dashoffset: 0; }
+      }
+      .${className} {
+        animation: ${className} 1.6s linear infinite;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      const el = document.getElementById(styleId);
+      if (el) el.remove();
+    };
+  }, [edgeId, phase]);
+}
 
 /**
  * Replicates LibTV's edge hover/select effect:
  * - Hovered/selected edge has thicker stroke (4) with light gray-blue color
- * - A "flowing pulse" effect: multiple light segments animate along the path,
- *   each using a transparent-to-blue linear gradient + a Gaussian-blur filter
- *   for a glowing effect
+ * - A "flowing pulse" effect: 3 light segments animate along the path using
+ *   stroke-dasharray + stroke-dashoffset CSS animation (per-segment phase offset)
  * - A scissors delete button appears at the midpoint
  */
 export function DeletableEdge({
@@ -30,7 +59,6 @@ export function DeletableEdge({
   selected,
 }: EdgeProps) {
   const [hovered, setHovered] = useState(false);
-  const animRef = useRef<number | null>(null);
 
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
@@ -61,53 +89,27 @@ export function DeletableEdge({
 
   const isActive = hovered || selected;
 
-  // Generate 3 flow segments that travel along the path
-  const flowSegments = [];
-  if (isActive) {
-    const numSegments = 3;
-    const segmentLength = 0.18; // 18% of path
-    const cycleDuration = 1800; // ms
-    for (let i = 0; i < numSegments; i++) {
-      const delay = (i * cycleDuration) / numSegments;
-      flowSegments.push(
-        <FlowSegment
-          key={i}
-          edgePath={edgePath}
-          edgeId={id}
-          delay={delay}
-          duration={cycleDuration}
-          segmentLength={segmentLength}
-        />
-      );
-    }
-  }
-
   return (
     <>
       <defs>
+        {/* Strong glow filter for the flowing pulse segments */}
         <filter
           id={`edge-flow-filter-${id}`}
-          filterUnits="userSpaceOnUse"
-          x={Math.min(sourceX, targetX) - 20}
-          y={Math.min(sourceY, targetY) - 20}
-          width={Math.abs(targetX - sourceX) + 40}
-          height={Math.abs(targetY - sourceY) + 40}
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
           colorInterpolationFilters="sRGB"
         >
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blurOuter" />
-          <feFlood floodColor="rgba(100, 180, 255, 0.45)" result="floodOuter" />
-          <feComposite in="blurOuter" in2="floodOuter" operator="in" result="glowOuter" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blurInner" />
-          <feFlood floodColor="rgba(150, 210, 255, 0.7)" result="floodInner" />
-          <feComposite in="blurInner" in2="floodInner" operator="in" result="glowInner" />
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
           <feMerge>
-            <feMergeNode in="glowOuter" />
-            <feMergeNode in="glowInner" />
+            <feMergeNode in="coloredBlur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
       </defs>
 
+      {/* Background base path - dimmed when active so the flow stands out */}
       <BaseEdge
         id={id}
         path={edgePath}
@@ -117,8 +119,8 @@ export function DeletableEdge({
           ...style,
           strokeWidth: isActive ? 4 : 2,
           stroke: isActive ? "#c0c8d0" : "#86909c",
-          filter: isActive ? `drop-shadow(0 0 4px rgba(100,180,255,0.5))` : undefined,
-          transition: "stroke 200ms, stroke-width 200ms",
+          opacity: isActive ? 0.45 : 1,
+          transition: "stroke 200ms, stroke-width 200ms, opacity 200ms",
           pointerEvents: "none",
         }}
       />
@@ -134,9 +136,13 @@ export function DeletableEdge({
         onMouseLeave={() => setHovered(false)}
       />
 
-      {/* Flowing pulse segments */}
+      {/* Flowing pulse: 3 segments with CSS keyframe animation, different phase */}
       {isActive && (
-        <g style={{ pointerEvents: "none" }}>{flowSegments}</g>
+        <g style={{ pointerEvents: "none" }} filter={`url(#edge-flow-filter-${id})`}>
+          <PulsePath d={edgePath} edgeId={id} phase={0} />
+          <PulsePath d={edgePath} edgeId={id} phase={1} />
+          <PulsePath d={edgePath} edgeId={id} phase={2} />
+        </g>
       )}
 
       <EdgeLabelRenderer>
@@ -188,82 +194,45 @@ export function DeletableEdge({
 }
 
 /**
- * A light segment that travels along the bezier path.
- * Uses a transparent-to-blue gradient with the edge-flow-filter for a glowing effect.
+ * A pulse segment using a CSS keyframe injected via useEdgePulseKeyframe.
+ * The animation moves stroke-dashoffset 100 -> 0, so a 20/80 dasharray
+ * travels along the pathLength=100 normalized path. Each phase is offset
+ * by animation-delay so 3 segments appear evenly spaced.
  */
-function FlowSegment({
-  edgePath,
+function PulsePath({
+  d,
   edgeId,
-  delay,
-  duration,
-  segmentLength,
+  phase,
 }: {
-  edgePath: string;
+  d: string;
   edgeId: string;
-  delay: number;
-  duration: number;
-  segmentLength: number;
+  phase: number;
 }) {
-  const pathRef = useRef<SVGPathElement>(null);
-  const offsetRef = useRef(0);
+  useEdgePulseKeyframe(edgeId, phase);
+  const animName = `edge-flow-kf-${edgeId}-${phase}`;
 
-  // Use SVG `pathLength` to normalize, then animate stroke-dashoffset
-  // by manipulating the dash array to create the "traveling segment" effect
-  useEffect(() => {
-    let raf: number;
-    const start = performance.now();
-
-    const animate = (now: number) => {
-      const elapsed = ((now - start) % duration) / duration; // 0..1
-      offsetRef.current = elapsed;
-      if (pathRef.current) {
-        // We use dash array trick: long gap + short visible segment
-        const pathLength = pathRef.current.getTotalLength();
-        const visibleLen = pathLength * segmentLength;
-        const gapLen = pathLength - visibleLen;
-        // The visible segment starts at offset = -visibleLen + (pathLength * elapsed)
-        // but easier: dashoffset = pathLength * elapsed
-        const offset = pathLength * elapsed;
-        pathRef.current.setAttribute(
-          "stroke-dasharray",
-          `${visibleLen} ${gapLen}`
-        );
-        pathRef.current.setAttribute("stroke-dashoffset", `${-offset}`);
-      }
-      raf = requestAnimationFrame(animate);
-    };
-    raf = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf);
-  }, [duration, segmentLength]);
-
-  // Initial visible/dash values; updated in animation loop
   return (
     <>
       <defs>
-        <linearGradient
-          id={`edge-flow-grad-${edgeId}-${delay}`}
-          x1="0"
-          y1="0"
-          x2="1"
-          y2="0"
-        >
-          <stop offset="0%" stopColor="rgba(100, 180, 255, 0)" />
-          <stop offset="100%" stopColor="rgba(100, 180, 255, 0.9)" />
+        <linearGradient id={`edge-flow-grad-${edgeId}-${phase}`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="rgba(180, 220, 255, 0)" />
+          <stop offset="50%" stopColor="rgba(200, 235, 255, 1)" />
+          <stop offset="100%" stopColor="rgba(180, 220, 255, 0)" />
         </linearGradient>
       </defs>
       <path
-        ref={pathRef}
-        d={edgePath}
+        d={d}
         fill="none"
-        stroke={`url(#edge-flow-grad-${edgeId}-${delay})`}
-        strokeWidth={4}
+        stroke={`url(#edge-flow-grad-${edgeId}-${phase})`}
+        strokeWidth={6}
         strokeLinecap="round"
         strokeLinejoin="round"
-        filter={`url(#edge-flow-filter-${edgeId})`}
+        className={animName}
         style={{
-          strokeDasharray: "0 1000",
-          strokeDashoffset: 0,
-        }}
+          pathLength: 100,
+          strokeDasharray: "20 80",
+          animationDelay: `${-phase * 0.53}s`,
+        } as React.CSSProperties}
       />
     </>
   );
