@@ -3,6 +3,7 @@
 import { memo, useState, useRef } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
+import { PlusIndicator } from "../PlusIndicator";
 import { CameraMovementDialog } from "../CameraMovementDialog";
 
 export interface VideoNodeData extends Record<string, unknown> {
@@ -19,11 +20,7 @@ export interface VideoNodeData extends Record<string, unknown> {
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function PlusIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-      <path d="M6 1V11M1 6H11" stroke="white" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
+  return null;
 }
 
 function VideoIcon({ className }: { className?: string }) {
@@ -119,15 +116,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       />
       <div
         className={cn(
-          "absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50",
-          "w-5 h-5 rounded-full bg-[#09caf5] border-2 border-[#171717]",
-          "flex items-center justify-center",
-          "transition-all duration-150 ease-in-out",
-          "pointer-events-none",
-          showLeftHandle ? "opacity-100 scale-100" : "opacity-0 scale-50"
+          "transition-opacity duration-150",
+          showLeftHandle ? "opacity-100" : "opacity-0"
         )}
       >
-        <PlusIcon />
+        <PlusIndicator side="left" />
       </div>
 
       {/* Right Handle - Source */}
@@ -139,15 +132,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       />
       <div
         className={cn(
-          "absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-50",
-          "w-5 h-5 rounded-full bg-[#09caf5] border-2 border-[#171717]",
-          "flex items-center justify-center",
-          "transition-all duration-150 ease-in-out",
-          "pointer-events-none",
-          showRightHandle ? "opacity-100 scale-100" : "opacity-0 scale-50"
+          "transition-opacity duration-150",
+          showRightHandle ? "opacity-100" : "opacity-0"
         )}
       >
-        <PlusIcon />
+        <PlusIndicator side="right" />
       </div>
 
       {/* Header */}

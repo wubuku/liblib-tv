@@ -240,6 +240,13 @@
   }
 }
 
+/* Edge flow animation (dashed stroke scrolling) */
+@keyframes edge-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
 .react-flow__edge--animated .react-flow__edge-path {
   stroke-dasharray: 5;
   animation: edge-dash 0.5s linear infinite;
