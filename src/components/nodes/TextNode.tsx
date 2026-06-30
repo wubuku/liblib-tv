@@ -1,9 +1,8 @@
 "use client";
 
-import { memo, useState, useEffect, useRef } from "react";
+import { memo, useRef, useState } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { PlusIndicator } from "../PlusIndicator";
 
 export interface TextNodeData extends Record<string, unknown> {
   content: string;
@@ -11,39 +10,20 @@ export interface TextNodeData extends Record<string, unknown> {
 
 export type TextNodeType = Node<TextNodeData>;
 
-function PlusIcon() {
-  return null;
-}
-
 function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(data.content);
   const { deleteElements } = useReactFlow();
   const nodeRef = useRef<HTMLDivElement>(null);
-  const [showLeftHandle, setShowLeftHandle] = useState(false);
-  const [showRightHandle, setShowRightHandle] = useState(false);
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     deleteElements({ nodes: [{ id }] });
   };
 
-  // Show handles when hovering over the node
-  const handleMouseEnter = () => {
-    setShowLeftHandle(true);
-    setShowRightHandle(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowLeftHandle(false);
-    setShowRightHandle(false);
-  };
-
   return (
     <div
       ref={nodeRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className={cn(
         "bg-[#212121] rounded-xl border min-w-[200px] max-w-[300px] overflow-visible flex flex-col group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
@@ -63,41 +43,9 @@ function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
         </button>
       )}
 
-      {/* Left Handle - Target */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="target"
-        className="!opacity-0 !pointer-events-auto"
-      />
-      {/* Left "+" indicator (42x42 transparent circle) */}
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showLeftHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="left" />
-      </div>
+      <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
+      <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
-      {/* Right Handle - Source */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="source"
-        className="!opacity-0 !pointer-events-auto"
-      />
-      {/* Right "+" indicator (42x42 transparent circle) */}
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showRightHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="right" />
-      </div>
-
-      {/* Header */}
       <div className="flex items-center gap-2 px-3 py-2 border-b border-[#363636]">
         <svg
           className="w-4 h-4 text-[#919191]"
@@ -115,7 +63,6 @@ function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
         <span className="text-sm font-medium text-[#f7f7f7]">文本</span>
       </div>
 
-      {/* Content */}
       <div className="p-3">
         {isEditing ? (
           <textarea

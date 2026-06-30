@@ -1,9 +1,8 @@
 "use client";
 
-import { memo, useState, useRef } from "react";
+import { memo, useState } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { PlusIndicator } from "../PlusIndicator";
 import { CameraMovementDialog } from "../CameraMovementDialog";
 
 export interface VideoNodeData extends Record<string, unknown> {
@@ -18,10 +17,6 @@ export interface VideoNodeData extends Record<string, unknown> {
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
-
-function PlusIcon() {
-  return null;
-}
 
 function VideoIcon({ className }: { className?: string }) {
   return (
@@ -67,9 +62,6 @@ function CameraIcon() {
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const { filename = "分镜视频", duration = 5, cameraMovement } = data;
   const { deleteElements } = useReactFlow();
-  const nodeRef = useRef<HTMLDivElement>(null);
-  const [showLeftHandle, setShowLeftHandle] = useState(false);
-  const [showRightHandle, setShowRightHandle] = useState(false);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
   const handleDelete = (e: React.MouseEvent) => {
@@ -79,15 +71,6 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
 
   return (
     <div
-      ref={nodeRef}
-      onMouseEnter={() => {
-        setShowLeftHandle(true);
-        setShowRightHandle(true);
-      }}
-      onMouseLeave={() => {
-        setShowLeftHandle(false);
-        setShowRightHandle(false);
-      }}
       className={cn(
         "w-[320px] overflow-visible rounded-xl border bg-[#212121] flex flex-col transition-shadow group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
@@ -107,37 +90,21 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         </button>
       )}
 
-      {/* Left Handle - Target */}
+      {/* Left Handle - Target — single source of truth */}
       <Handle
         type="target"
         position={Position.Left}
         id="target"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showLeftHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="left" />
-      </div>
 
       {/* Right Handle - Source */}
       <Handle
         type="source"
         position={Position.Right}
         id="source"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showRightHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="right" />
-      </div>
 
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-[#363636] px-4 py-3">

@@ -1,7 +1,6 @@
-import { memo, useState, useRef } from "react";
+import { memo, useRef } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { PlusIndicator } from "../PlusIndicator";
 
 interface ScriptNodeData extends Record<string, unknown> {
   title?: string;
@@ -44,40 +43,19 @@ function ScriptIcon({ className }: { className?: string }) {
   );
 }
 
-function PlusIcon() {
-  return null;
-}
-
 export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
   const { title = "剧本", content = defaultContent } = data;
   const { deleteElements } = useReactFlow();
-  const nodeRef = useRef<HTMLDivElement>(null);
-  const [showLeftHandle, setShowLeftHandle] = useState(false);
-  const [showRightHandle, setShowRightHandle] = useState(false);
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     deleteElements({ nodes: [{ id }] });
   };
 
-  // Show handles when hovering over the node
-  const handleMouseEnter = () => {
-    setShowLeftHandle(true);
-    setShowRightHandle(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowLeftHandle(false);
-    setShowRightHandle(false);
-  };
-
   return (
     <div
-      ref={nodeRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className={cn(
-        "w-[320px] overflow-visible rounded-xl border bg-[#212121] flex flex-col transition-shadow group",
+        "w-[320px] overflow-visible rounded-xl border bg-[#212121] flex flex-col transition-shadow group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
         !selected && "hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
       )}
@@ -95,39 +73,22 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
         </button>
       )}
 
-      {/* Left Handle - Target */}
+      {/* Left Handle (target) — positioned on left edge by React Flow,
+          shown as a "+" circle via globals.css when node is hovered */}
       <Handle
         type="target"
         position={Position.Left}
         id="target"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      {/* Left "+" indicator (42x42 transparent circle) */}
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showLeftHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="left" />
-      </div>
 
-      {/* Right Handle - Source */}
+      {/* Right Handle (source) */}
       <Handle
         type="source"
         position={Position.Right}
         id="source"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      {/* Right "+" indicator (42x42 transparent circle) */}
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showRightHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="right" />
-      </div>
 
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-[#363636] px-4 py-3">
@@ -143,9 +104,7 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-end gap-2 border-t border-[#363636] px-4 py-2">
-        {/* Footer actions can be added here */}
-      </div>
+      <div className="flex justify-end gap-2 border-t border-[#363636] px-4 py-2" />
     </div>
   );
 }

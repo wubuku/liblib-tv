@@ -1,9 +1,8 @@
 "use client";
 
-import { memo, useState, useRef } from "react";
+import { memo } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { PlusIndicator } from "../PlusIndicator";
 
 export interface StoryboardGroupData extends Record<string, unknown> {
   title?: string;
@@ -15,15 +14,8 @@ export interface StoryboardGroupData extends Record<string, unknown> {
 
 export type StoryboardGroupType = Node<StoryboardGroupData, "storyboard-group">;
 
-function PlusIcon() {
-  return null;
-}
-
 function StoryboardGroupNodeComponent({ id, data, selected }: NodeProps<StoryboardGroupType>) {
   const { deleteElements } = useReactFlow();
-  const nodeRef = useRef<HTMLDivElement>(null);
-  const [showLeftHandle, setShowLeftHandle] = useState(false);
-  const [showRightHandle, setShowRightHandle] = useState(false);
 
   const title = data.title || "分镜图 · 第一集：咖啡馆对峙-图片组";
   const images = data.images || [
@@ -37,15 +29,6 @@ function StoryboardGroupNodeComponent({ id, data, selected }: NodeProps<Storyboa
 
   return (
     <div
-      ref={nodeRef}
-      onMouseEnter={() => {
-        setShowLeftHandle(true);
-        setShowRightHandle(true);
-      }}
-      onMouseLeave={() => {
-        setShowLeftHandle(false);
-        setShowRightHandle(false);
-      }}
       className={cn(
         "w-[320px] overflow-visible rounded-xl bg-[#1f1f1f] border flex flex-col group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
@@ -65,37 +48,21 @@ function StoryboardGroupNodeComponent({ id, data, selected }: NodeProps<Storyboa
         </button>
       )}
 
-      {/* Left Handle - Target */}
+      {/* Left Handle (target) */}
       <Handle
         type="target"
         position={Position.Left}
         id="target"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showLeftHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="left" />
-      </div>
 
-      {/* Right Handle - Source */}
+      {/* Right Handle (source) */}
       <Handle
         type="source"
         position={Position.Right}
         id="source"
-        className="!opacity-0 !pointer-events-auto"
+        style={{ width: 20, height: 20 }}
       />
-      <div
-        className={cn(
-          "transition-opacity duration-150",
-          showRightHandle ? "opacity-100" : "opacity-0"
-        )}
-      >
-        <PlusIndicator side="right" />
-      </div>
 
       {/* Title */}
       <div className="px-4 py-2 text-xs text-[#919191] truncate" title={title}>

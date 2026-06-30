@@ -80,7 +80,7 @@
   --sidebar-primary-foreground: #fff;
   --sidebar-accent: #353639;
   --sidebar-accent-foreground: #f7f7f7;
-  --sidebar-border: #525252;
+  --sidebar-border: #363636;
   --sidebar-ring: #09caf5;
 
   /* LibTV Custom Tokens */
@@ -108,6 +108,7 @@
   --color-neutral-200: #e5e6ec;
   --color-neutral-300: #e3e3e3;
   --color-neutral-400: #c4c4c4;
+  --color-neutral-400: #c4c4c4;
   --color-neutral-500: #919191;
   --color-neutral-600: #86909c;
   --color-neutral-700: #525252;
@@ -131,12 +132,17 @@
   --color-danger: #ff6a6f;
   --color-red-400: #f76560;
   --color-red-500: #f53f3f;
+  --color-red-700: #cb272d;
   --color-blue-400: #3d9bff;
   --color-blue-500: #147dff;
+  --color-blue-600: #206ccf;
   --color-green-400: #85ff75;
   --color-green-500: #64d959;
+  --color-green-600: #4ec740;
   --color-yellow-400: #ff9a2d;
   --color-yellow-500: #ff7d00;
+  --color-amber-400: lab(80.16% 16.60 99.21);
+  --color-amber-500: lab(72.72% 31.87 97.94);
   --color-brand-300: #5ddcff;
   --color-brand-400: #09caf5;
   --color-brand-500: #3d9bff;
@@ -185,14 +191,9 @@
 }
 
 .react-flow__edge:hover .react-flow__edge-path {
-  stroke: #09caf5;
-  stroke-width: 2.5;
-}
-
-/* Edge hover indicator */
-.react-flow__edge:hover .react-flow__edge-interaction + .react-flow__edge-path {
-  stroke: #09caf5;
-  stroke-width: 2.5;
+  stroke: #09caf5 !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 4px rgba(9, 202, 245, 0.6));
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
@@ -208,17 +209,9 @@
   pointer-events: auto !important;
 }
 
-/* Edge hover: thicker + cyan glow */
-.react-flow__edge:hover .react-flow__edge-path {
-  stroke: #09caf5 !important;
-  stroke-width: 2.5 !important;
-  filter: drop-shadow(0 0 4px rgba(9, 202, 245, 0.6));
-}
-
-/* Pulse animation on the underlying path during hover/select */
-.react-flow__edge:hover .react-flow__edge-path,
 .react-flow__edge.selected .react-flow__edge-path {
-  animation: edge-pulse 1.2s ease-in-out infinite;
+  stroke: #09caf5;
+  stroke-width: 2.5;
 }
 
 /* Edge animation on connection */
@@ -247,10 +240,7 @@
   }
 }
 
-/* Edge flowing pulse keyframes — used by PulsePath components.
-   pathLength is normalized to 100, so visible 20 + gap 80 = 100 total.
-   strokeDashoffset goes from 100 (segment off-screen left) to 0
-   (segment fully at start) and wraps, so animation moves it across the path. */
+/* Edge flowing pulse keyframes */
 @keyframes edge-pulse-flow {
   from {
     stroke-dashoffset: 100;
@@ -265,46 +255,57 @@
   animation: edge-dash 0.5s linear infinite;
 }
 
-/* Node Handle Styling - Match original LibTV behavior */
-/* Handles are positioned at left/right middle edges */
+/* ============================================ */
+/* Node Handle — single source of truth for "+" */
+/* ============================================ */
+/*
+ * The handle IS the connection point. React Flow handles dragging,
+ * snap-to-target behavior, hover state, and the connection line preview.
+ *
+ * Visual design (matching original LibTV):
+ * - 20×20 circle
+ * - When idle: opacity 0 (hidden)
+ * - When node hovered: opacity 1, fully visible
+ * - When handle hovered / connecting / valid: cyan with glow
+ * - "+" rendered inside as SVG via ::before content
+ */
+
 .react-flow__handle {
   width: 20px;
   height: 20px;
-  background: #09caf5;
-  border: 2px solid #171717;
+  background: #1f1f1f;
+  border: 1.2px solid #86909c;
   border-radius: 50%;
   opacity: 0;
-  pointer-events: auto;
-  z-index: 10;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  transform: scale(0.5);
+  pointer-events: auto !important;
+  z-index: 20;
+  transition: opacity 0.15s ease, background 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+  /* Make the hit area larger than the visual circle */
+  /* The handle's visible center is at node border; we don't move it
+     because React Flow uses the handle position for connection logic. */
 }
 
-/* Show handles when hovering over the node */
-.react-flow__node:hover .react-flow__handle {
+/* Show handle when the node is hovered */
+.react-flow__node:hover .react-flow__handle,
+.react-flow__node.selected .react-flow__handle {
   opacity: 1;
-  transform: scale(1);
 }
 
-/* Handle hover effect */
-.react-flow__handle:hover {
-  background: #5ddcff;
-  transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(9, 202, 245, 0.5);
-}
-
-/* Show a visual indicator when connecting */
+/* Handle hover / connecting state — turn cyan */
+.react-flow__handle:hover,
 .react-flow__handle.connecting {
-  opacity: 1;
-  transform: scale(1);
-  background: #5ddcff;
+  background: #09caf5;
+  border-color: #09caf5;
+  box-shadow: 0 0 8px rgba(9, 202, 245, 0.6);
 }
 
-/* Show a visual indicator for valid connection target */
+/* Valid drop target — green */
 .react-flow__handle.valid {
-  opacity: 1;
-  transform: scale(1);
   background: #64d959;
+  border-color: #64d959;
+  box-shadow: 0 0 8px rgba(100, 217, 89, 0.6);
 }
 
 /* Connection line style */
@@ -313,91 +314,33 @@
   stroke-width: 2;
 }
 
-/* Handle "+" icon via pseudo-element */
+/* "+" icon rendered inside the handle via ::before pseudo-element */
 .react-flow__handle::before {
-  content: '+';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 8px;
+  height: 8px;
+  /* Two perpendicular lines forming a "+" */
+  background:
+    linear-gradient(to bottom, transparent 3px, currentColor 3px, currentColor 5px, transparent 5px),
+    linear-gradient(to right, transparent 3px, currentColor 3px, currentColor 5px, transparent 5px);
+  background-size: 100% 100%, 100% 100%;
   transform: translate(-50%, -50%);
-  color: #171717;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1;
+  color: #86909c;
 }
 
-/* Hide the "+" when connecting */
+/* "+" turns cyan on hover/connecting */
+.react-flow__handle:hover::before,
+.react-flow__handle.connecting::before {
+  color: #171717;
+}
+
+/* Hide the "+" decoration when actively connecting (the line itself shows) */
 .react-flow__handle.connecting::before,
 .react-flow__handle.valid::before {
-  content: none;
-}
-
-/* Connection Line */
-.react-flow__connection-path {
-  stroke: #09caf5;
-  stroke-width: 2;
-}
-
-/* Controls Panel Styling */
-.react-flow__controls {
-  background: #1f1f1f !important;
-  border: 1px solid #363636 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  overflow: hidden;
-}
-
-.react-flow__controls-button {
-  background: #1f1f1f !important;
-  border-bottom: 1px solid #363636 !important;
-  color: #f7f7f7 !important;
-  fill: #f7f7f7 !important;
-  width: 28px;
-  height: 28px;
-}
-
-.react-flow__controls-button:hover {
-  background: #353639 !important;
-}
-
-.react-flow__controls-button svg {
-  fill: #f7f7f7 !important;
-  max-width: 14px;
-  max-height: 14px;
-}
-
-/* Minimap Styling */
-.react-flow__minimap {
-  background: #1f1f1f !important;
-  border: 1px solid #363636 !important;
-  border-radius: 8px !important;
-  overflow: hidden;
-}
-
-.react-flow__minimap-mask {
-  fill: rgba(0, 0, 0, 0.5) !important;
-}
-
-.react-flow__minimap-node {
-  fill: #363636 !important;
-  stroke: none !important;
-}
-
-/* Canvas cursor states */
-.react-flow {
-  cursor: grab;
-}
-
-.react-flow:active {
-  cursor: grabbing;
-}
-
-.react-flow__node {
-  cursor: pointer;
-}
-
-.react-flow__node.dragging {
-  cursor: grabbing;
+  opacity: 0;
 }
 
 /* Selection box */
