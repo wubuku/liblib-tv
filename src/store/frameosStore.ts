@@ -326,3 +326,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   toggleHelp: () => set((state) => ({ isHelpOpen: !state.isHelpOpen })),
   closeHelp: () => set({ isHelpOpen: false }),
 }));
+
+// 暴露到 window 用于 e2e 测试
+if (typeof window !== "undefined") {
+  (window as unknown as { __frameos_store: typeof useFrameosStore }).__frameos_store = useFrameosStore;
+}
