@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 
@@ -103,6 +104,26 @@ export function TopNavBar() {
             <span className="text-sm text-[#f7f7f7]">64</span>
           </button>
         </div>
+
+        {/* FrameOS 画布入口 */}
+        <Link
+          href="/frameos/canvas/demo"
+          className="flex items-center gap-1.5 h-9 px-3 rounded-xl bg-[rgba(38,38,38,0.8)] border border-[#363636] hover:bg-[#353639] hover:border-[#525252] transition-colors text-sm text-[#f7f7f7]"
+          title="进入 FrameOS 画布"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.6" />
+            <circle cx="9" cy="10" r="1.5" fill="#60A5FA" />
+            <path d="M5 16l3-3 4 4 3-3 4 4" stroke="#60A5FA" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span>FrameOS</span>
+        </Link>
 
         {/* User Avatar */}
         <button className="w-8 h-8 rounded-full overflow-hidden hover:ring-2 hover:ring-[#525252] transition-all">

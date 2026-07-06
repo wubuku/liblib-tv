@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>带边金币</title>
+    <defs>
+        <linearGradient x1="18.999429%" y1="13.3201125%" x2="81.4383805%" y2="86.4255128%" id="linearGradient-1">
+            <stop stop-color="#FFDB83" offset="0%"></stop>
+            <stop stop-color="#FFAE3F" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="13.9508672%" y1="17.8136483%" x2="81.8224538%" y2="87.3549649%" id="linearGradient-2">
+            <stop stop-color="#FFF0B3" offset="0%"></stop>
+            <stop stop-color="#FECC9B" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="83.3778084%" y1="83.8683528%" x2="11.0153604%" y2="19.3445264%" id="linearGradient-3">
+            <stop stop-color="#FFFDE5" offset="0%"></stop>
+            <stop stop-color="#DC9342" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-4" cx="19" cy="19" r="19"></circle>
+        <filter x="-2.1%" y="-6.7%" width="116.7%" height="127.8%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.93406821   0 0 0 0 0.621844142   0 0 0 0 0.244510164  0 0 0 1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="18.999429%" y1="46.2735221%" x2="81.4383805%" y2="53.7006348%" id="linearGradient-6">
+            <stop stop-color="#FFF7CD" offset="0%"></stop>
+            <stop stop-color="#FFE693" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="27.0236158%" y1="47.36892%" x2="50%" y2="52.4490774%" id="linearGradient-7">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="18.999429%" y1="45.3334783%" x2="81.4383805%" y2="54.6341595%" id="linearGradient-8">
+            <stop stop-color="#FFF7CD" offset="0%"></stop>
+            <stop stop-color="#FFE693" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="27.0236158%" y1="46.705202%" x2="50%" y2="53.0668833%" id="linearGradient-9">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="18.999429%" y1="43.6275022%" x2="81.4383805%" y2="56.3283046%" id="linearGradient-10">
+            <stop stop-color="#FFF7CD" offset="0%"></stop>
+            <stop stop-color="#FFE693" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="27.0236158%" y1="45.5006974%" x2="50%" y2="54.1880672%" id="linearGradient-11">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="带边金币" transform="translate(2, 2)">
+            <g id="椭圆形">
+                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                <circle stroke="url(#linearGradient-2)" stroke-width="2" cx="19" cy="19" r="20"></circle>
+                <circle stroke="url(#linearGradient-3)" stroke-width="1" stroke-linejoin="square" cx="19" cy="19" r="18.5"></circle>
+            </g>
+            <g id="编组-2备份-3" filter="url(#filter-5)" transform="translate(7, 8)" stroke-width="2">
+                <g id="编组-10">
+                    <path d="M6.35667922,14.4337311 L11.2304055,16.4676052 C11.7225329,16.6729769 12.2762981,16.6733113 12.7686732,16.4685341 L17.6522723,14.4374613 L21.4002916,15.9993417 L12,19.9166456 L2.59970836,15.9993417 L6.35667922,14.4337311 Z" id="路径" stroke="url(#linearGradient-7)" fill="url(#linearGradient-6)"></path>
+                    <path d="M21.977272,8.10838028 L21.9932833,8.86609577 L12.1960074,13.2345149 L2.00029763,8.85794199 L11.8036118,12.4686847 L21.977272,8.10838028 Z" id="路径" stroke="url(#linearGradient-9)" fill="url(#linearGradient-8)"></path>
+                    <path d="M12,1.08338947 L21.4007757,5.00175131 L12,8.92011315 L2.59922433,5.00175131 L12,1.08338947 Z" id="路径" stroke="url(#linearGradient-11)" fill="url(#linearGradient-10)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="336px" height="264px" viewBox="0 0 336 264" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 2备份</title>
+    <defs>
+        <linearGradient x1="83.3513643%" y1="43.5368754%" x2="32.2149142%" y2="54.7902494%" id="linearGradient-1">
+            <stop stop-color="#3B33FE" offset="0%"></stop>
+            <stop stop-color="#7629F7" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="168 32.0157338 247.137142 0.0544200337 336 36.0148597 168 104 0 36.0148597 88.9973368 -5.77315973e-15"></polygon>
+        <filter x="-11.5%" y="-25.7%" width="123.0%" height="151.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="12" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="0%" y1="46.9183755%" x2="100%" y2="46.9181632%" id="linearGradient-5">
+            <stop stop-color="#00FFE8" offset="0%"></stop>
+            <stop stop-color="#11B2E6" offset="23.8110574%"></stop>
+            <stop stop-color="#1A85E6" offset="49.0925558%"></stop>
+            <stop stop-color="#1E74E5" offset="50.3938053%"></stop>
+            <stop stop-color="#2165E5" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="-13.4936742%" cy="68.5784025%" fx="-13.4936742%" fy="68.5784025%" r="281.898168%" gradientTransform="translate(-0.1349, 0.6858), scale(0.4048, 1), rotate(-5.9173), translate(0.1349, -0.6858)" id="radialGradient-6">
+            <stop stop-color="#00FFE8" offset="0%"></stop>
+            <stop stop-color="#11B2E6" offset="38.5820008%"></stop>
+            <stop stop-color="#1A85E6" offset="57.9163762%"></stop>
+            <stop stop-color="#2165E5" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组">
+            <g id="矩形备份-4" transform="translate(0, 160)">
+                <mask id="mask-3" fill="white">
+                    <use xlink:href="#path-2"></use>
+                </mask>
+                <use id="蒙版" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                <polygon fill-opacity="0.55" fill="#010035" filter="url(#filter-4)" mask="url(#mask-3)" points="218.834272 3.47191127 375.668544 -59.9947554 375.668544 16.5385779 218.834272 80.0052446 62 16.5385779 62 -59.9947554"></polygon>
+            </g>
+            <polygon id="矩形备份-8" fill="url(#linearGradient-5)" points="168 156 336 88 336 128 168 196 0 128 0 88"></polygon>
+            <polygon id="矩形" fill="url(#radialGradient-6)" points="168 0 336 68 168 136 0 68"></polygon>
+        </g>
+    </g>
+</svg>

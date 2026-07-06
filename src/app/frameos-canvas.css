@@ -1,0 +1,230 @@
+/* FrameOS 画布全局样式 - 注入到 frameos 路由的 layout */
+
+.frameos-canvas {
+  background: #0D0D0D;
+  color: #FFFFFF;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* ---- node-card-wrap 外壳 ---- */
+.frameos-canvas .node-card-wrap {
+  position: relative;
+  font-size: 1px;
+  transition: box-shadow 0.15s;
+}
+.frameos-canvas .node-card-wrap.is-selected .node-card {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(96, 165, 250, 0.6) !important;
+}
+.frameos-canvas .node-card-wrap:hover .resize-handle {
+  opacity: 0.9 !important;
+}
+/* 视频节点不显示 resize handle */
+.frameos-canvas .node-card-wrap.is-video .resize-handle {
+  display: none;
+}
+/* handle hover 时变粗 */
+.frameos-canvas .frameos-handle:hover {
+  width: 18px !important;
+  height: 18px !important;
+  background: #60A5FA !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+}
+
+/* ---- floating title ---- */
+.frameos-canvas .node-floating-title {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  height: 20px;
+  pointer-events: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #A3A3A3;
+  z-index: 6;
+}
+.frameos-canvas .node-floating-title__left {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+.frameos-canvas .node-floating-title__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 20px;
+  flex-shrink: 0;
+  color: inherit;
+}
+.frameos-canvas .node-floating-title__name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+.frameos-canvas .node-floating-title__right {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+/* ---- node-card 内部 ---- */
+.frameos-canvas .node-card {
+  background: #1C1C1C;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ---- placeholder for contenteditable prompt ---- */
+.frameos-canvas .tb-mention-input.has-placeholder::before {
+  content: attr(data-placeholder);
+  color: #6B6B6B;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ---- XYFlow handle 调整 ---- */
+.frameos-canvas .react-flow__handle {
+  width: 8px !important;
+  height: 8px !important;
+  background: #3B82F6 !important;
+  border: none !important;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.frameos-canvas .node-card-wrap:hover .react-flow__handle,
+.frameos-canvas .react-flow__node-selected .react-flow__handle {
+  opacity: 1;
+}
+.frameos-canvas .react-flow__handle:hover {
+  transform: scale(1.4);
+  background: #60A5FA !important;
+}
+
+/* ---- 边 ---- */
+.frameos-canvas .react-flow__edge-path {
+  stroke: #86909c;
+  stroke-width: 2;
+}
+.frameos-canvas .react-flow__edge.selected .react-flow__edge-path,
+.frameos-canvas .react-flow__edge:hover .react-flow__edge-path {
+  stroke: #c0c8d0;
+  stroke-width: 4;
+}
+
+/* ---- XYFlow 背景透明，避免覆盖深色 ---- */
+.frameos-canvas .react-flow__background {
+  background-color: #0D0D0D;
+}
+.frameos-canvas .react-flow__attribution {
+  display: none;
+}
+.frameos-canvas .react-flow__controls,
+.frameos-canvas .react-flow__minimap {
+  display: none;
+}
+
+/* ---- 滚动条 (深色) ---- */
+.frameos-canvas *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.frameos-canvas *::-webkit-scrollbar-track {
+  background: transparent;
+}
+.frameos-canvas *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+.frameos-canvas *::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---- 全局动画 ---- */
+@keyframes frameos-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes frameos-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes frameos-slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes frameos-slide-up {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes frameos-pop-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 节点出现动画 */
+.frameos-canvas .react-flow__node {
+  animation: frameos-pop-in 0.2s ease-out;
+}
+.frameos-canvas .node-edit-panel {
+  animation: frameos-slide-in-right 0.2s ease-out;
+}
+.frameos-canvas .canvas-footer-prompt:not(.is-fullscreen) {
+  animation: frameos-slide-up 0.2s ease-out;
+}
+.frameos-canvas .canvas-tool-rail-root {
+  animation: frameos-slide-in-left 0.3s ease-out;
+}
+
+/* ---- 拖拽视觉 ---- */
+.frameos-canvas .react-flow__node.dragging {
+  z-index: 9999 !important;
+  cursor: grabbing !important;
+}
+.frameos-canvas .react-flow__node.dragging .node-card {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(96, 165, 250, 0.5) !important;
+  transform: scale(1.02);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.frameos-canvas .react-flow__pane {
+  cursor: default;
+}
+/* 节点 hover 时显示 cursor: grab */
+.frameos-canvas .react-flow__node:not(.dragging) {
+  cursor: grab;
+}
+
+/* 边 hover/connecting 视觉 */
+.frameos-canvas .react-flow__edge.connecting .react-flow__edge-path,
+.frameos-canvas .react-flow__connectionline path {
+  stroke: #3B82F6 !important;
+  stroke-width: 3 !important;
+  stroke-dasharray: 6 4;
+  animation: dash-flow 0.5s linear infinite;
+}
+@keyframes dash-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -10; }
+}
+.frameos-canvas .react-flow__handle.connectingfrom,
+.frameos-canvas .react-flow__handle.connectingto {
+  background: #60A5FA !important;
+  box-shadow: 0 0 0 6px rgba(96, 165, 250, 0.3);
+  width: 18px !important;
+  height: 18px !important;
+}
