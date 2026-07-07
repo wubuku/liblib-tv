@@ -16,6 +16,15 @@ const MODELS = [
 const SIZES = ["1K", "2K", "4K"];
 const RATIOS = ["16:9", "1:1", "9:16", "4:3", "3:4"];
 
+// @ 引用素材的 mock 列表
+const MENTION_ASSETS = [
+  { id: "a1", name: "咖啡馆背景", kind: "image", emoji: "🖼️" },
+  { id: "a2", name: "对白人物-陈默", kind: "character", emoji: "👤" },
+  { id: "a3", name: "对白人物-林小婉", kind: "character", emoji: "👤" },
+  { id: "a4", name: "咖啡特写镜头", kind: "video", emoji: "🎬" },
+  { id: "a5", name: "背景音乐-钢琴", kind: "audio", emoji: "🎵" },
+];
+
 /**
  * FrameOS 底部 prompt 输入栏 + 模型选择栏
  * 浮动条，仅在节点被选中时显示，定位在选中节点下方
@@ -37,6 +46,7 @@ export function FrameosPromptBar() {
   const [sizeOpen, setSizeOpen] = useState(false);
   const [ratioOpen, setRatioOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [mentionOpen, setMentionOpen] = useState(false);
 
   const selectedNode = useMemo(
     () => nodes.find((n) => n.id === selectedNodeId),
@@ -137,27 +147,116 @@ export function FrameosPromptBar() {
             </div>
           )}
 
-          <div
-            ref={inputRef}
-            contentEditable
-            suppressContentEditableWarning
-            data-placeholder="描述你想要的图像，@引用素材"
-            className={`tb-mention-input ${promptValue ? "" : "has-placeholder"}`}
-            onInput={(e) => setPromptValue((e.target as HTMLDivElement).textContent ?? "")}
-            style={{
-              flex: 1,
-              minHeight: isFullscreen ? 200 : 48,
-              color: "#FFFFFF",
-              fontSize: isFullscreen ? 16 : 14,
-              outline: "none",
-              background: "transparent",
-              border: "none",
-              padding: "4px 0",
-              cursor: "text",
-              lineHeight: isFullscreen ? "28px" : "22px",
-              transition: "all 0.2s",
-            }}
-          />
+          <div style={{ position: "relative", flex: 1 }}>
+            <div
+              ref={inputRef}
+              contentEditable
+              suppressContentEditableWarning
+              data-placeholder="描述你想要的图像，@引用素材"
+              className={`tb-mention-input ${promptValue ? "" : "has-placeholder"}`}
+              onInput={(e) => {
+                const text = (e.target as HTMLDivElement).textContent ?? "";
+                setPromptValue(text);
+                // 检测是否正在 @ 引用
+                const lastAt = text.lastIndexOf("@");
+                if (lastAt >= 0 && !text.slice(lastAt).includes(" ")) {
+                  setMentionOpen(true);
+                } else {
+                  setMentionOpen(false);
+                }
+              }}
+              onBlur={() => setTimeout(() => setMentionOpen(false), 200)}
+              style={{
+                flex: 1,
+                minHeight: isFullscreen ? 200 : 48,
+                color: "#FFFFFF",
+                fontSize: isFullscreen ? 16 : 14,
+                outline: "none",
+                background: "transparent",
+                border: "none",
+                padding: "4px 0",
+                cursor: "text",
+                lineHeight: isFullscreen ? "28px" : "22px",
+                transition: "all 0.2s",
+                width: "100%",
+              }}
+            />
+
+            {/* @ 引用素材面板 */}
+            {mentionOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "calc(100% + 8px)",
+                  left: 0,
+                  background: "#1C1C1C",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: 10,
+                  padding: 6,
+                  boxShadow: "0 -4px 16px rgba(0,0,0,0.4)",
+                  width: 280,
+                  zIndex: 2702,
+                }}
+              >
+                <div
+                  style={{
+                    color: "#7A7A7A",
+                    fontSize: 11,
+                    padding: "6px 10px",
+                    textTransform: "uppercase",
+                    letterSpacing: 0.5,
+                  }}
+                >
+                  引用素材
+                </div>
+                {MENTION_ASSETS.map((a) => (
+                  <div
+                    key={a.id}
+                    onClick={() => {
+                      setPromptValue(
+                        promptValue.replace(/@\S*$/, `@${a.name} `)
+                      );
+                      setMentionOpen(false);
+                    }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "8px 10px",
+                      borderRadius: 6,
+                      cursor: "pointer",
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: 6,
+                        background: "rgba(255,255,255,0.05)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 14,
+                      }}
+                    >
+                      {a.emoji}
+                    </span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ color: "#FFFFFF", fontSize: 13 }}>{a.name}</div>
+                      <div style={{ color: "#7A7A7A", fontSize: 11 }}>{a.kind}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           <button
             type="button"
