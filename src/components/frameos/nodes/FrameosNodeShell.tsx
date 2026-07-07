@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Handle, Position, type NodeProps } from "@xyflow/react";
+import { Handle, Position, NodeResizer, type NodeProps } from "@xyflow/react";
+import { useFrameosStore } from "@/store/frameosStore";
 
 /**
  * Frameos 节点统一外壳（参考原站 frameos.cn 的精确 DOM）
@@ -94,6 +95,45 @@ export function FrameosNodeShell({
             position={Position.Right}
             id="right"
             className="frameos-handle"
+          />
+        )}
+
+        {/* XYFlow NodeResizer (右下角缩放手柄) - 仅图片/文本节点有 */}
+        {showResizeHandle && selected && (
+          <NodeResizer
+            color="#60A5FA"
+            isVisible={selected}
+            minWidth={150}
+            minHeight={100}
+            maxWidth={800}
+            maxHeight={600}
+            lineClassName="frameos-resize-line"
+            handleClassName="frameos-resize-handle"
+            onResize={(_, params) => {
+              // 实时同步尺寸到 store
+              const setNodes = useFrameosStore.getState().setNodes;
+              const { nodes } = useFrameosStore.getState();
+              setNodes(
+                nodes.map((n) =>
+                  n.id === nodeProps.id
+                    ? { ...n, style: { ...n.style, width: params.width, height: params.height } }
+                    : n
+                )
+              );
+            }}
+            onResizeEnd={(_, params) => {
+              // 持久化尺寸到 store (带 history)
+              const updateNodeData = useFrameosStore.getState().updateNodeData;
+              const { past, nodes, edges } = useFrameosStore.getState();
+              useFrameosStore.setState({
+                past: [...past.slice(-19), { nodes, edges }],
+                future: [],
+              });
+              updateNodeData(nodeProps.id, {
+                width: params.width,
+                height: params.height,
+              });
+            }}
           />
         )}
 
