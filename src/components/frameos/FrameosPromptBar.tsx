@@ -74,8 +74,8 @@ export function FrameosPromptBar() {
   const viewportH = typeof window !== "undefined" ? window.innerHeight : 900;
   const viewportW = typeof window !== "undefined" ? window.innerWidth : 1440;
   let left = nodeLeft + nodeWidth / 2;
-  // 紧贴节点底部 (0 gap) — 视觉上直接接触
-  let top = nodeTop + nodeHeight;
+  // 12px gap (与 floating-toolbar 对称)
+  let top = nodeTop + nodeHeight + 12;
 
   // 边界碰撞：右出
   if (left + panelWidth / 2 > viewportW - 24) {
@@ -85,9 +85,9 @@ export function FrameosPromptBar() {
   if (left - panelWidth / 2 < 24) {
     left = panelWidth / 2 + 24;
   }
-  // 边界碰撞：下出 — 仅在 PromptBar 完全超出 viewport 底部时才上移
+  // 边界碰撞：下出 (节点靠下时面板移到节点上方)
   if (top + panelHeight > viewportH) {
-    top = nodeTop - panelHeight;
+    top = nodeTop - panelHeight - 12;
   }
 
   return (
