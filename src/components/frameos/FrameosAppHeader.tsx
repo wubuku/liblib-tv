@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { DownloadIcon } from "./icons";
 
 /**
@@ -64,6 +65,39 @@ export function FrameosAppHeader() {
           pointerEvents: "auto",
         }}
       >
+        {/* 返回 LibTV 画布 */}
+        <Link
+          href="/"
+          aria-label="返回 LibTV 画布"
+          title="返回 LibTV 画布"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            height: 36,
+            padding: "0 12px",
+            borderRadius: 8,
+            background: "rgba(20,20,20,0.6)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            color: "#E0E0E0",
+            fontSize: 13,
+            textDecoration: "none",
+            transition: "background 0.15s, border-color 0.15s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(20,20,20,0.9)";
+            e.currentTarget.style.borderColor = "rgba(96,165,250,0.4)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(20,20,20,0.6)";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span>LibTV</span>
+        </Link>
         {/* 下载桌面端 */}
         <button
           type="button"
