@@ -38,6 +38,7 @@ import {
   openContextMenu,
 } from "@/components/frameos/FrameosContextMenu";
 import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
+import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -358,6 +359,9 @@ function FrameosCanvasInner() {
 
       {/* Toast 通知 */}
       <FrameosToast />
+
+      {/* 节点 hover tooltip */}
+      <FrameosNodeTooltip />
     </div>
   );
 }
