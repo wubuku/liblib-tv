@@ -15,6 +15,17 @@ interface AddNodeOpts {
   viewportHeight?: number;
 }
 
+interface Generation {
+  id: string;
+  startedAt: number;
+  durationMs: number;
+  edgeIds: string[];
+  nodeIds: string[];
+  status: "running" | "done" | "error";
+  progress: number; // 0-100
+  prompt: string;
+}
+
 interface FrameosCanvasState {
   // 画布名（顶部 breadcrumb 显示）
   breadcrumb: { project: string; scene: string; canvas: string };
@@ -65,6 +76,10 @@ interface FrameosCanvasState {
   // 调试模式（开启后节点点击会弹出右侧"节点详情"面板）
   isDebugMode: boolean;
 
+  // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
+  generations: Generation[];
+  currentGeneration: Generation | null;
+
   // ───── Actions ─────
   setBreadcrumb: (b: Partial<FrameosCanvasState["breadcrumb"]>) => void;
   setNodes: (nodes: FrameosNode[]) => void;
@@ -93,6 +108,13 @@ interface FrameosCanvasState {
   toggleHelp: () => void;
   closeHelp: () => void;
   toggleDebugMode: () => void;
+
+  startGeneration: (opts: {
+    prompt: string;
+    edgeIds: string[];
+    nodeIds: string[];
+  }) => string;
+  cancelGeneration: () => void;
 }
 
 const initialNodes: FrameosNode[] = [
@@ -268,6 +290,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   past: [],
   future: [],
   canvasData: MOCK_CANVASES,
+  generations: [],
+  currentGeneration: null,
 
   setBreadcrumb: (b) => {
     const newBreadcrumb = { ...get().breadcrumb, ...b };
@@ -470,6 +494,24 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   closeHelp: () => set({ isHelpOpen: false }),
 
   toggleDebugMode: () => set((state) => ({ isDebugMode: !state.isDebugMode })),
+
+  startGeneration: (opts) => {
+    const id = `gen-${Date.now()}`;
+    const durationMs = 30000; // 30 秒 mock
+    const gen: Generation = {
+      id,
+      startedAt: Date.now(),
+      durationMs,
+      edgeIds: opts.edgeIds,
+      nodeIds: opts.nodeIds,
+      status: "running",
+      progress: 0,
+      prompt: opts.prompt,
+    };
+    set({ currentGeneration: gen });
+    return id;
+  },
+  cancelGeneration: () => set({ currentGeneration: null }),
 }));
 
 // 暴露到 window 用于 e2e 测试

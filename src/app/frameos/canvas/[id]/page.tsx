@@ -40,6 +40,7 @@ import {
 } from "@/components/frameos/FrameosContextMenu";
 import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
+import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -371,6 +372,9 @@ function FrameosCanvasInner() {
 
       {/* 节点 hover tooltip */}
       <FrameosNodeTooltip />
+
+      {/* 生成动画覆盖层 */}
+      <FrameosGenerationOverlay />
     </div>
   );
 }

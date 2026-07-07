@@ -4,6 +4,7 @@ import { useRef, useState, useMemo } from "react";
 import { useViewport } from "@xyflow/react";
 import { ScissorsIcon, FullscreenIcon, FullscreenExitIcon, ArrowDownIcon, AddLineIcon } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
+import { showToast } from "./FrameosToast";
 
 const MODELS = [
   { id: "O2", name: "帧界 O2", icon: "🔷" },
@@ -421,6 +422,23 @@ export function FrameosPromptBar() {
               type="button"
               disabled={!promptValue}
               aria-label="提交"
+              onClick={() => {
+                if (!promptValue || !selectedNodeId) return;
+                // 找到选中节点 + 它的入边/出边
+                const state = useFrameosStore.getState();
+                const connectedEdgeIds = state.edges
+                  .filter((e) => e.source === selectedNodeId || e.target === selectedNodeId)
+                  .map((e) => e.id);
+                state.startGeneration({
+                  prompt: promptValue,
+                  nodeIds: [selectedNodeId],
+                  edgeIds: connectedEdgeIds,
+                });
+                showToast("开始生成...", "info");
+                // 清空输入
+                if (inputRef.current) inputRef.current.textContent = "";
+                setPromptValue("");
+              }}
               style={{
                 width: 32,
                 height: 32,
