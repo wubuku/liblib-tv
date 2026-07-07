@@ -1,128 +1,71 @@
 # TopNavBar Specification
 
 ## Overview
-- **Target file:** `src/components/TopNavBar.tsx`
-- **Screenshot:** `docs/design-references/canvas-desktop-full.png`
-- **Interaction model:** Static (no scroll behavior)
 
-## DOM Structure
+- **Target file:** `src/components/TopNavBar.tsx`
+- **Position:** Top of viewport (above canvas). Height 48px.
+- **Interaction model:** Mixed — inline-editable input, dropdown trigger, link, etc.
+
+## DOM Structure (left → right)
+
 ```
-<nav>
-  <div> <!-- left section -->
-    <div> <!-- logo area -->
-      <img /> <!-- logo image 1 -->
-      <img /> <!-- logo image 2 (toggle?) -->
+<nav className="h-12 px-4 flex items-center justify-between bg-[#141414] border-b border-[#262626]">
+  <div className="flex items-center gap-3">          ← Left section
+    <div className="cursor-pointer hover:opacity-80"> ← Logo (24×24 SVG film glyph)
+      <svg .../>
     </div>
-    <input /> <!-- project name: "未命名项目" -->
-    <button> <!-- canvas tab selector -->
-      <span>画布 2</span>
-      <svg /> <!-- dropdown chevron -->
-    </button>
+    <div className="w-px h-5 bg-[#363636]" />          ← Separator
+
+    {isEditing ? (
+      <input className="bg-[#363636] ... w-40" autoFocus />  ← Project name input
+    ) : (
+      <span onClick={() => setIsEditing(true)} className="cursor-text hover:bg-[#353639] px-2 py-1 rounded">
+        {projectName}                                    ← "未命名项目"
+      </span>
+    )}
+
+    <CanvasTabDropdown />                              ← "画布 2 ▾"
   </div>
-  <div> <!-- right section -->
-    <img /> <!-- notification icon -->
-    <div> <!-- VIP section -->
-      <button> <!-- VIP button -->
-        <svg />
-        <span>会员超市</span>
+
+  <div className="flex items-center gap-2">            ← Right section
+    <button className="p-2 hover:bg-[#353639] rounded-lg"> ... </button>  ← Notification bell
+
+    <div className="relative flex items-center">     ← VIP + credits combo
+      <span className="absolute -top-2 right-3 z-10 text-[10px] px-1.5 py-0.5 bg-[#ff7d00] text-white rounded-md font-medium">
+        限时 37 折                                       ← orange badge above
+      </span>
+      <button className="flex items-center gap-1.5 pl-3 pr-1 h-10 rounded-xl bg-[rgba(38,38,38,0.8)] border border-[#363636] hover:bg-[#353639]">
+        <svg className="w-4 h-4 text-[#FFDBA4]" />      ← Lightning icon
+        <span className="text-sm text-[#FFDBA4]">会员特惠37折</span>
+        <span className="text-[#363636]">|</span>
+        <svg className="w-4 h-4 text-[#FFDBA4]" />      ← Lightning icon
+        <span className="text-sm text-[#f7f7f7]">64</span>
       </button>
-      <div> <!-- VIP promo badge -->
-        <span>限时 37 折</span>
-        <div>
-          <svg />
-          <div>
-            <span>会员特惠</span>
-            <span>37折</span>
-          </div>
-        </div>
-      </div>
     </div>
-    <button> <!-- credits button -->
-      <svg />
-      <span>64</span>
+
+    <Link href="/frameos/canvas/demo" className="..."> ... </Link>  ← FrameOS link
+
+    <button className="w-8 h-8 rounded-full overflow-hidden hover:ring-2 hover:ring-[#525252]">
+      <Image src="/images/avatar.png" alt="用户头像" width={32} height={32} className="w-full h-full object-cover" />
     </button>
-    <img /> <!-- user avatar -->
   </div>
 </nav>
 ```
 
-## Computed Styles (exact values from getComputedStyle)
+## Interactions
 
-### Container (nav)
-- height: 48px
-- padding: 0px 16px
-- backgroundColor: transparent
-- border: 0px solid #525252
-- display: flex
-- justifyContent: space-between
-- alignItems: center
+| Element | Click Effect |
+|---------|-------------|
+| Logo | Hover: `opacity-80`. Click: no-op (could navigate home). |
+| Project name | Click → toggle to input mode. Press `Enter` / click outside → save & exit edit mode. |
+| Canvas tab dropdown | Click → toggles dropdown. See `CanvasTabDropdown.spec.md`. |
+| Notification bell | Hover bg changes. Click: no-op. |
+| VIP + credits button | Hover bg changes. Click: no-op (would open membership modal). |
+| FrameOS link | Click → navigate to `/frameos/canvas/demo`. Hover bg + border color change. |
+| User avatar | Hover: `ring-2 ring-[#525252]`. Click: no-op (would open user menu). |
 
-### Project Name Input
-- fontSize: 16px
-- fontWeight: 400
-- color: #f7f7f7
-- backgroundColor: transparent
-- border: none
+## Files Referenced
 
-### Canvas Tab Button
-- fontSize: 16px
-- fontWeight: 400
-- color: #f7f7f7
-- backgroundColor: transparent
-- borderRadius: 8px
-- padding: 0px 8px
-- height: 32px
-- cursor: pointer
-
-### VIP Button
-- fontSize: 13px
-- fontWeight: 400
-- color: #05dff6 (cyan)
-- backgroundColor: rgba(38, 38, 38, 0.8)
-- borderRadius: 12px
-- padding: 6px 12px
-- border: 0.5px solid #363636
-- height: 40px
-- cursor: pointer
-
-### Credits Button ("64")
-- fontSize: 13px
-- fontWeight: 400
-- color: #f7f7f7
-- backgroundColor: rgba(38, 38, 38, 0.8)
-- borderRadius: 12px
-- padding: 0px 12px
-- border: 0.5px solid #363636
-- height: 40px
-- cursor: pointer
-
-### User Avatar
-- size: 32px × 32px (estimated)
-- borderRadius: 50% (circle)
-- objectFit: cover
-
-## States & Behaviors
-
-### Hover States
-- **Canvas Tab Button:** backgroundColor changes on hover
-- **VIP Button:** backgroundColor changes on hover
-- **Credits Button:** backgroundColor changes on hover
-- **Notification Icon:** backgroundColor changes on hover
-
-## Text Content (verbatim)
-- Project name: "未命名项目"
-- Canvas tab: "画布 2"
-- VIP button: "会员超市"
-- VIP promo: "限时 37 折"
-- VIP detail: "会员特惠" "37折"
-- Credits: "64"
-
-## Assets
-- Logo images: inline SVGs
-- User avatar: `public/images/avatar.png`
-- Icons: inline SVGs (notification, chevron, VIP, credits)
-
-## Responsive Behavior
-- **Desktop (1440px):** Full layout with all elements visible
-- **Tablet (768px):** Some elements may collapse or hide
-- **Mobile (390px):** Minimal layout, most elements hidden or in menu
+- `src/components/TopNavBar.tsx`
+- `src/components/CanvasTabDropdown.tsx`
+- `public/images/avatar.png`

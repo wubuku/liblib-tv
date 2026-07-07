@@ -1,113 +1,62 @@
 # BottomToolbar Specification
 
 ## Overview
-- **Target file:** `src/components/BottomToolbar.tsx`
-- **Screenshot:** `docs/design-references/canvas-desktop-full.png`
-- **Interaction model:** Static (no scroll behavior)
 
-## DOM Structure
+- **Target file:** `src/components/BottomToolbar.tsx`
+- **Position:** Fixed at `bottom-4` centered horizontally (`left-1/2 -translate-x-1/2`).
+- **Background:** `rgba(20,20,20,0.7)` + `backdrop-blur-md` + border `border-[#363636]` + `rounded-xl`.
+- **Padding:** `p-1.5`.
+- **z-index:** 40.
+
+## DOM Structure (left → right)
+
 ```
-<div> <!-- toolbar container -->
-  <button> <!-- 资产管理 -->
-    <div>
-      <svg />
-    </div>
-    <div>资产管理</div>
+<div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 p-1.5 bg-[rgba(20,20,20,0.7)] backdrop-blur-md border border-[#363636] rounded-xl z-40"
+     style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}>
+
+  <ToolbarButton className="h-7 w-auto gap-1.5 px-3 text-sm font-normal" onClick={toggleAssetPanel}>
+    <AssetIcon />
+    <span>资产管理</span>
+  </ToolbarButton>
+
+  <ToolbarButton className="h-7 w-7" tooltip="整理画布，Option+Shift+F"><ArrangeIcon /></ToolbarButton>
+  <ToolbarButton className="h-7 w-7" tooltip="角色"><CharacterIcon /></ToolbarButton>
+
+  <button className="h-10 w-10 rounded-full bg-[#09caf5] text-[#171717] hover:bg-[#5ddcff] transition-colors mx-1"
+          aria-label="添加节点">
+    <AddIcon />
   </button>
-  <button> <!-- 整理画布 -->
-    <div>
-      <svg />
-    </div>
-  </button>
-  <button> <!-- 切换小地图 -->
-    <div>
-      <svg />
-    </div>
-  </button>
-  <button> <!-- 网格吸附 -->
-    <div>
-      <svg />
-    </div>
-  </button>
-  <button> <!-- 缩放选项 -->
-    54%
-  </button>
+
+  <ToolbarButton className="h-7 w-7" tooltip="整理节点"><ArrangeNodesIcon /></ToolbarButton>
+  <ToolbarButton className="h-7 w-7" tooltip="收藏"><StarIcon /></ToolbarButton>
+  <ToolbarButton className="h-7 w-7" tooltip="历史记录"><HistoryIcon /></ToolbarButton>
+  <ToolbarButton className="h-7 w-7" tooltip="分镜"><ImageIcon /></ToolbarButton>
+  <ToolbarButton className="h-7 w-7" tooltip="帮助" onClick={toggleShortcutsPanel}><HelpIcon /></ToolbarButton>
+
+  <ToolbarButton className="h-7 w-auto px-3"><span className="text-xs">{zoomLevel}%</span></ToolbarButton>
 </div>
 ```
 
-## Computed Styles (exact values from getComputedStyle)
+## Components Used
 
-### Container
-- display: flex
-- flexDirection: row
-- gap: 4px (estimated)
-- padding: 8px (estimated)
-- backgroundColor: transparent
-- position: fixed
-- bottom: 0
-- left: 0
-- right: 0
+- **`ToolbarButton`** (private inner component) — icon button wrapper that uses `@base-ui/react/tooltip` for the hover tooltip with 300ms delay.
 
-### Asset Management Button (text button)
-- fontSize: 16px
-- fontWeight: 400
-- color: #f7f7f7
-- backgroundColor: transparent
-- borderRadius: 8px
-- padding: 0px 12px
-- height: 28px
-- cursor: pointer
-- display: flex
-- alignItems: center
-- gap: 4px
+## Interactions
 
-### Icon Buttons (arrange, minimap, grid)
-- width: 28px
-- height: 28px
-- borderRadius: 8px
-- backgroundColor: transparent
-- border: 0px solid #525252
-- cursor: pointer
-- display: flex
-- alignItems: center
-- justifyContent: center
+| Element | Click Effect |
+|---------|-------------|
+| 资产管理 | `toggleAssetPanel` in `useUIStore` (panel not implemented; currently no-op). |
+| 整理画布 icon | No-op (reserved for auto-arrange). |
+| 人物 icon | No-op. |
+| **`+` (large cyan)** | Opens `AddNodePanel` (`toggleAddNodePanel`). The button is `h-10 w-10`, larger than the rest (`h-7`), drawn in primary cyan. |
+| 整理节点 icon | No-op. |
+| ⭐ icon | No-op (favorite feature). |
+| ⏰ icon | No-op (history). |
+| 📷 icon | No-op (image-related action). |
+| ? icon | Opens `KeyboardShortcutsDialog` (`toggleShortcutsPanel`). |
+| 54% zoom | No-op (could open a percentage menu). |
 
-### Zoom Button
-- fontSize: 16px
-- fontWeight: 400
-- color: #f7f7f7
-- backgroundColor: transparent
-- borderRadius: 8px
-- width: 28px
-- height: 28px
-- cursor: pointer
+## Files Referenced
 
-## States & Behaviors
-
-### Hover State
-- **Trigger:** Mouse hover on button
-- **backgroundColor:** changes to #353639
-- **transition:** background-color 0.15s ease
-
-### Active State (toggle buttons)
-- **Grid Snap / Minimap:** May show active indicator
-- **backgroundColor:** different shade when active
-
-## Text Content (verbatim)
-- 资产管理
-- 整理画布，Option+Shift+F (tooltip)
-- 切换小地图 (tooltip)
-- 网格吸附 (tooltip)
-- 54% (zoom level)
-
-## Keyboard Shortcuts
-- **Option+Shift+F:** 整理画布 (Arrange Canvas)
-
-## Assets
-- Icons: 4 inline SVGs (arrange, minimap, grid, zoom)
-- Icon viewBoxes: 16×16, 17×17 (varies)
-
-## Responsive Behavior
-- **Desktop (1440px):** Full toolbar visible at bottom
-- **Tablet (768px):** Toolbar adapts, some items may hide
-- **Mobile (390px):** Toolbar becomes more compact
+- `src/components/BottomToolbar.tsx`
+- `@base-ui/react/tooltip`

@@ -1,94 +1,62 @@
 # LeftSidebar Specification
 
 ## Overview
+
 - **Target file:** `src/components/LeftSidebar.tsx`
-- **Screenshot:** `docs/design-references/canvas-desktop-full.png`
-- **Interaction model:** Static (no scroll behavior)
+- **Position:** Absolutely positioned at left center (`absolute left-0 top-1/2 -translate-y-1/2`).
+- **Layout:** Vertical column of 7 icon-only buttons.
+- **z-index:** 40.
 
 ## DOM Structure
+
 ```
-<div> <!-- sidebar container -->
-  <button> <!-- 添加节点 -->
-    <div>
-      <svg />
-    </div>
-  </button>
-  <button> <!-- 打开工具箱 -->
-    <svg />
-  </button>
-  <button> <!-- 素材库 -->
-    <svg />
-  </button>
-  <button> <!-- 角色库 -->
-    <svg />
-  </button>
-  <button> <!-- 历史记录 -->
-    <svg />
-  </button>
-  <button> <!-- 快捷键 -->
-    <svg />
-  </button>
-  <button> <!-- 教程 -->
-    <svg />
-  </button>
+<div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1 p-1 bg-[#171717] border-r border-[#363636]"
+     style={{ zIndex: 40 }}>
+  <SidebarButton icon={<AddNodeIcon />}     isActive={isAddNodePanelOpen} onClick={toggleAddNodePanel} title="添加节点" />
+  <SidebarButton icon={<ToolboxIcon />}     isActive={activePanel === "toolbox"} onClick={...}       title="打开工具箱" />
+  <SidebarButton icon={<MaterialIcon />}    isActive={activePanel === "material"} onClick={...}      title="素材库" />
+  <SidebarButton icon={<CharacterIcon />}   isActive={activePanel === "character"} onClick={...}     title="角色库" />
+  <SidebarButton icon={<HistoryIcon />}     isActive={activePanel === "history"} onClick={...}       title="历史记录" />
+  <SidebarButton icon={<KeyboardIcon />}    onClick={toggleShortcutsPanel}                            title="快捷键" />
+  <SidebarButton icon={<TutorialIcon />}    isActive={activePanel === "tutorial"} onClick={...}      title="教程" />
 </div>
+
+{/* Panels render conditionally */}
+{isAddNodePanelOpen && <AddNodePanel />}
+{activePanel === "toolbox" && <ToolboxPanel ... />}
+{activePanel === "material" && <MaterialLibraryPanel />}
+{activePanel === "character" && <CharacterLibraryPanel ... />}
+{activePanel === "history" && <HistoryPanel ... />}
 ```
 
-## Computed Styles (exact values from getComputedStyle)
+## Button Style
 
-### Container
-- display: flex
-- flexDirection: column
-- gap: 4px (estimated)
-- padding: 8px (estimated)
-- backgroundColor: transparent
+```
+className="relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 cursor-pointer"
+         + hover:bg-[rgba(255,255,255,0.08)]
+         + isActive ? "bg-[rgba(255,255,255,0.15)]" : ""
+```
 
-### Sidebar Buttons (default state)
-- width: 32px
-- height: 32px
-- borderRadius: 8px
-- backgroundColor: transparent
-- border: 0px solid #525252
-- cursor: pointer
-- display: flex
-- alignItems: center
-- justifyContent: center
+Optional badge slot (unused currently).
 
-### Sidebar Button Icons
-- width: 16px
-- height: 16px
-- color: #f7f7f7
+## Interactions
 
-## States & Behaviors
+| Button | Click Effect |
+|--------|-------------|
+| 添加节点 | Toggles `useUIStore.isAddNodePanelOpen`. When true, opens `AddNodePanel` (a panel at `left-14 top-0`). |
+| 工具箱 | Toggles local `activePanel === "toolbox"`. Opens `ToolboxPanel` on the left. Click X or sidebar button again to close. |
+| 素材库 | Opens `MaterialLibraryPanel` on the right. |
+| 角色库 | Opens `CharacterLibraryPanel` on the right. |
+| 历史记录 | Opens `HistoryPanel` on the right. |
+| 快捷键 | Opens `KeyboardShortcutsDialog` modal. |
+| 教程 | Toggles `activePanel === "tutorial"` (no panel implemented). |
 
-### Hover State
-- **Trigger:** Mouse hover on button
-- **backgroundColor:** changes to #353639 (--color-background-hover)
-- **transition:** background-color 0.15s ease
+## Files Referenced
 
-### Active/Selected State
-- **backgroundColor:** different shade (possibly more opaque)
-- **Icon color:** may change to accent color
-
-### Tooltip
-- Shows on hover after delay
-- Contains button label text
-- Position: right of button
-
-## Text Content
-- 添加节点 (Add Node)
-- 打开工具箱 (Open Toolbox)
-- 素材库 (Material Library)
-- 角色库 (Character Library)
-- 历史记录 (History)
-- 快捷键 (Shortcuts)
-- 教程 (Tutorial)
-
-## Assets
-- Icons: 7 inline SVGs (one per button)
-- Icon viewBoxes: 16×16, 17×17 (varies)
-
-## Responsive Behavior
-- **Desktop (1440px):** Full sidebar visible
-- **Tablet (768px):** Sidebar may collapse to icons only
-- **Mobile (390px):** Sidebar hidden or becomes bottom menu
+- `src/components/LeftSidebar.tsx`
+- `src/components/AddNodePanel.tsx`
+- `src/components/ToolboxPanel.tsx`
+- `src/components/MaterialLibraryPanel.tsx`
+- `src/components/CharacterLibraryPanel.tsx`
+- `src/components/HistoryPanel.tsx`
+- `src/components/KeyboardShortcutsDialog.tsx`
