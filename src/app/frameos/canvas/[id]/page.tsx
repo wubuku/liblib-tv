@@ -37,6 +37,7 @@ import {
   FrameosContextMenu,
   openContextMenu,
 } from "@/components/frameos/FrameosContextMenu";
+import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -354,6 +355,9 @@ function FrameosCanvasInner() {
 
       {/* 全局右键菜单 */}
       <FrameosContextMenu />
+
+      {/* Toast 通知 */}
+      <FrameosToast />
     </div>
   );
 }
