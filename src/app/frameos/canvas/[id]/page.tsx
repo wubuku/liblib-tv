@@ -22,6 +22,7 @@ import { FrameosTextNode } from "@/components/frameos/nodes/FrameosTextNode";
 import { FrameosImageNode } from "@/components/frameos/nodes/FrameosImageNode";
 import { FrameosVideoNode } from "@/components/frameos/nodes/FrameosVideoNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
+import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosHistoryDock } from "@/components/frameos/FrameosHistoryDock";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
@@ -40,7 +41,7 @@ const nodeTypes = {
 };
 
 const edgeTypes = {
-  default: DeletableEdge,
+  default: FrameosEdge,
 };
 
 function FrameosCanvasInner() {
@@ -202,15 +203,9 @@ function FrameosCanvasInner() {
     return () => window.removeEventListener("keydown", handler);
   }, [removeNode, duplicateNode, selectNode, undo, redo, toggleHelp, zoomIn, zoomOut, fitView]);
 
-  // 给边一个默认样式（与 frameos 一致：深灰 2px）
-  const styledEdges = useMemo<Edge[]>(
-    () =>
-      edges.map((e) => ({
-        ...e,
-        style: { stroke: "#86909c", strokeWidth: 2 },
-      })),
-    [edges]
-  );
+  // 给边一个默认样式（与 frameos 一致：蓝色虚线 2px，dasharray 7,5）
+  // 注意：实际样式在 FrameosEdge 组件中按 hover/selected 切换
+  const styledEdges = useMemo<Edge[]>(() => edges, [edges]);
 
   return (
     <div className="frameos-canvas" style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
