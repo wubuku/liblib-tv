@@ -8,7 +8,11 @@ interface FrameosCanvasState {
   // 画布名（顶部 breadcrumb 显示）
   breadcrumb: { project: string; scene: string; canvas: string };
 
-  // 节点 + 边
+  // 多画布场景数据（key: project/scene/canvas）
+  // 每个 canvas 包含自己的 nodes/edges
+  canvasData: Record<string, { nodes: FrameosNode[]; edges: Edge[] }>;
+
+  // 当前激活的 canvas 数据（nodes/edges 派生自 canvasData[breadcrumbKey]）
   nodes: FrameosNode[];
   edges: Edge[];
 
@@ -196,6 +200,38 @@ const initialEdges: Edge[] = [
   },
 ];
 
+// 几个 mock canvas 用于 breadcrumb 切换演示
+const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
+  "默认作品/咖啡馆对峙/画布 1": {
+    nodes: initialNodes,
+    edges: initialEdges,
+  },
+  "默认作品/咖啡馆对峙/画布 2": {
+    nodes: [
+      {
+        id: "demo-text-1",
+        type: "text",
+        position: { x: 200, y: 200 },
+        style: { width: 300, height: 200 },
+        data: { title: "文本节点1（画布 2）", content: "画布 2 的文本节点" },
+      },
+    ],
+    edges: [],
+  },
+  "默认作品/海边告白/画布 1": {
+    nodes: [
+      {
+        id: "demo-image-1",
+        type: "image",
+        position: { x: 300, y: 200 },
+        style: { width: 300, height: 169 },
+        data: { title: "海边场景", imageUrl: "/images/frameos/node-image-1.png" },
+      },
+    ],
+    edges: [],
+  },
+};
+
 export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   breadcrumb: { project: "默认作品", scene: "咖啡馆对峙", canvas: "画布 1" },
   nodes: initialNodes,
@@ -214,9 +250,21 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isDebugMode: false,
   past: [],
   future: [],
+  canvasData: MOCK_CANVASES,
 
-  setBreadcrumb: (b) =>
-    set((state) => ({ breadcrumb: { ...state.breadcrumb, ...b } })),
+  setBreadcrumb: (b) => {
+    const newBreadcrumb = { ...get().breadcrumb, ...b };
+    const key = `${newBreadcrumb.project}/${newBreadcrumb.scene}/${newBreadcrumb.canvas}`;
+    const data = MOCK_CANVASES[key] ?? { nodes: [], edges: [] };
+    set((state) => ({
+      breadcrumb: newBreadcrumb,
+      canvasData: { ...state.canvasData, [key]: data },
+      // 切换画布时清除选中
+      selectedNodeId: null,
+      nodes: data.nodes,
+      edges: data.edges,
+    }));
+  },
 
   setNodes: (nodes) => set({ nodes }),
   setEdges: (edges) => set({ edges }),
