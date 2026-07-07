@@ -58,6 +58,7 @@ interface FrameosCanvasState {
   addEdge: (edge: Edge) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
+  updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   duplicateNode: (id: string) => void;
   setZoomPercent: (v: number) => void;
   toggleMinimap: () => void;
@@ -265,6 +266,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     const newNode: FrameosNode = {
       ...node,
       id: newId,
+      selected: false,
       position: { x: node.position.x + 40, y: node.position.y + 40 },
       data: {
         ...node.data,
@@ -274,8 +276,18 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set((state) => ({
       past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
       future: [],
-      nodes: [...state.nodes, newNode],
+      nodes: state.nodes.map((n) => ({ ...n, selected: n.id === newId })),
       selectedNodeId: newId,
+    }));
+  },
+
+  updateNodeData: (id, patch) => {
+    set((state) => ({
+      nodes: state.nodes.map((n) =>
+        n.id === id
+          ? { ...n, data: { ...n.data, ...patch } }
+          : n
+      ),
     }));
   },
 
