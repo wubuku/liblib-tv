@@ -78,3 +78,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/JCodesMore/ai-website-cloner-template/releases/tag/v0.1.0
+
+## 2026-07-07 — FrameOS 复刻 / 打磨阶段
+
+### Added
+- **`FrameosNodeTooltip`** — hover 节点时显示节点标题 + 缩略图
+- **`FrameosToast`** — 操作反馈 (撤销/重做/复制/删除时显示)
+- **`FrameosContextMenu`** — 节点 / 画布右键菜单 (复制节点 / 删除节点 / 添加 3 种节点 / 适应画布)
+- **`FrameosNodeEditPanel` (DEBUG-only)** — 节点详情面板，仅 DEBUG 模式可见（原站没有，是我加的开发者便利）
+- **`FrameosDebugToggle`** — 右下角 DEBUG 开关
+- **`FrameosEdge`** — FrameOS 专用边：蓝色虚线 (`rgba(59,130,246,0.42)`, 7,5 dasharray) + hover 变实线 + flowing pulse 复用 liblib 的 `DeletableEdge` 行为
+- **@-mention asset picker** — PromptBar 输入 @ 弹出素材列表
+- **E2E 测试** (`e2e/frameos.spec.ts`) — 6 个 Playwright 测试用例
+- **完整 keyboard shortcuts** — Esc / Delete / Cmd+Z / Cmd+Shift+Z / Cmd+D / ? / + / - / 0
+- **History stack (undo/redo)** — `past` + `future` 数组，最多 20 步
+- **`updateNodeData` action** — 节点数据更新
+- **`isDebugMode` toggle** — 隔离开发者便利功能
+
+### Fixed
+- **PromptBar / EditPanel / NodeToolbar 距离 bug** — 用 `useViewport()` 拿 pan + zoom，用 `position: fixed` 定位 + `transition: left 0.15s` 平滑跟随
+- **节点选中态 handle 显示** — `selectNode` 同步 `selected: true` 到 nodes array
+- **节点选中态视觉** — 移除错误的 box-shadow，handle 用 16×16 深底白边圆形 + `translate(8px, -8px)` 偏移
+- **node-card 背景** — 从错误的 #1C1C1C 改为 transparent
+- **边样式** — 从灰色实线改为蓝色虚线
+
+### Documentation
+- `docs/README.md` — 顶层入口，更新 FrameOS Canvas 表格 + Known Limitations
+- `docs/research/frameos/IMPLEMENTATION.md` (new) — 设计决策 + 状态机 + 共享组件说明
+- `docs/research/frameos/COMPONENT_INVENTORY.md` — 重写
+- `docs/research/frameos/BEHAVIORS.md` — 重写
+- `docs/research/frameos/RUNBOOK.md` (new) — 开发者操作手册
+- `AGENTS.md` — 项目 red lines + 文档入口
