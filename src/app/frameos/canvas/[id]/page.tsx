@@ -41,6 +41,7 @@ import {
 import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
 import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
+import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -391,6 +392,9 @@ function FrameosCanvasInner() {
 
       {/* 生成动画覆盖层 */}
       <FrameosGenerationOverlay />
+
+      {/* 节点拖动时的对齐辅助线 */}
+      <FrameosAlignmentGuides />
     </div>
   );
 }
