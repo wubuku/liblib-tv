@@ -75,8 +75,12 @@ function FrameosCanvasInner() {
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
       isLocalChange.current = true;
-      const updated = applyNodeChanges(changes, nodes);
-      setNodes(updated as typeof nodes);
+      const updated = applyNodeChanges(changes, nodes) as typeof nodes;
+      // 重新应用 store 的 selected 状态 (xyflow 的 applyNodeChanges 会清掉 selected)
+      const selectedId = useFrameosStore.getState().selectedNodeId;
+      setNodes(
+        updated.map((n) => (n.id === selectedId ? { ...n, selected: true } : n))
+      );
     },
     [nodes, setNodes]
   );
