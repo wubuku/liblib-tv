@@ -33,6 +33,10 @@ import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel"
 import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
+import {
+  FrameosContextMenu,
+  openContextMenu,
+} from "@/components/frameos/FrameosContextMenu";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -207,6 +211,65 @@ function FrameosCanvasInner() {
   // 注意：实际样式在 FrameosEdge 组件中按 hover/selected 切换
   const styledEdges = useMemo<Edge[]>(() => edges, [edges]);
 
+  // 右键菜单：节点 / 画布空白处
+  const onNodeContextMenu = useCallback(
+    (event: React.MouseEvent, node: { id: string }) => {
+      event.preventDefault();
+      const n = nodes.find((x) => x.id === node.id);
+      if (!n) return;
+      openContextMenu({
+        x: event.clientX,
+        y: event.clientY,
+        items: [
+          {
+            label: "复制节点",
+            shortcut: "⌘D",
+            onClick: () => duplicateNode(node.id),
+          },
+          { separator: true, label: "" },
+          {
+            label: "删除节点",
+            danger: true,
+            shortcut: "Del",
+            onClick: () => removeNode(node.id),
+          },
+        ],
+      });
+    },
+    [nodes, duplicateNode, removeNode]
+  );
+
+  const onPaneContextMenu = useCallback(
+    (event: React.MouseEvent | MouseEvent) => {
+      event.preventDefault();
+      openContextMenu({
+        x: (event as React.MouseEvent).clientX,
+        y: (event as React.MouseEvent).clientY,
+        items: [
+          {
+            label: "添加文本节点",
+            onClick: () => useFrameosStore.getState().addNode("text"),
+          },
+          {
+            label: "添加图片节点",
+            onClick: () => useFrameosStore.getState().addNode("image"),
+          },
+          {
+            label: "添加视频节点",
+            onClick: () => useFrameosStore.getState().addNode("video"),
+          },
+          { separator: true, label: "" },
+          {
+            label: "适应画布",
+            shortcut: "0",
+            onClick: () => fitView({ duration: 200, padding: 0.15 }),
+          },
+        ],
+      });
+    },
+    [fitView]
+  );
+
   return (
     <div className="frameos-canvas" style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
       <ReactFlow
@@ -217,6 +280,8 @@ function FrameosCanvasInner() {
         onConnect={onConnect}
         onNodeClick={onNodeClick}
         onPaneClick={onPaneClick}
+        onNodeContextMenu={onNodeContextMenu}
+        onPaneContextMenu={onPaneContextMenu}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
@@ -286,6 +351,9 @@ function FrameosCanvasInner() {
 
       {/* 调试模式开关 */}
       <FrameosDebugToggle />
+
+      {/* 全局右键菜单 */}
+      <FrameosContextMenu />
     </div>
   );
 }
