@@ -39,6 +39,7 @@ export function FrameosNodeEditPanel() {
   const nodes = useFrameosStore((s) => s.nodes);
   const setNodes = useFrameosStore((s) => s.setNodes);
   const selectNode = useFrameosStore((s) => s.selectNode);
+  const isDebugMode = useFrameosStore((s) => s.isDebugMode);
   const { x: panX, y: panY, zoom } = useViewport();
 
   const selectedNode = useMemo(
@@ -46,7 +47,8 @@ export function FrameosNodeEditPanel() {
     [nodes, selectedNodeId]
   );
 
-  if (!selectedNode) return null;
+  // 仅在调试模式下显示节点详情面板
+  if (!isDebugMode || !selectedNode) return null;
 
   // 把节点的内部坐标转换为视口坐标（考虑 pan + zoom）
   const viewportLeft = selectedNode.position.x * zoom + panX;

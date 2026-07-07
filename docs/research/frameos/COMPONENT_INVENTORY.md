@@ -1,77 +1,72 @@
-# FrameOS Component Inventory
+# FrameOS 画布 — 组件清单
 
-Catalog of FrameOS route components (`src/components/frameos/`). For page-level topology, see [`PAGE_TOPOLOGY.md`](./PAGE_TOPOLOGY.md). For interactions, see [`BEHAVIORS.md`](./BEHAVIORS.md). For the design tokens (palette, etc.), see [`DESIGN_TOKENS.md`](./DESIGN_TOKENS.md).
+> 实施时文档，**对照 `src/components/frameos/`** 的实际文件结构。
+> 数据来源：`find src/components/frameos -type f` + 逐文件审阅。
+> 顶层入口见 [`IMPLEMENTATION.md`](./IMPLEMENTATION.md)，拓扑见 [`PAGE_TOPOLOGY.md`](./PAGE_TOPOLOGY.md)，交互见 [`BEHAVIORS.md`](./BEHAVIORS.md)，设计令牌见 [`DESIGN_TOKENS.md`](./DESIGN_TOKENS.md)。
 
-> FrameOS is a separate route from the liblib-tv clone — different layout, different palette (blue primary `#2563EB`, deeper bg `#0D0D0D`). They share React Flow primitives and the `DeletableEdge` custom edge.
+> FrameOS 是与 liblib-tv clone **平行的另一条路由** — 不同布局、不同色板（蓝主色 `#2563EB`、更深背景 `#0D0D0D`）。两者共享 React Flow 库和 `DeletableEdge` 自定义边。
 
----
+## 顶层组件
 
-## Shell & Docks
+| 组件 | 文件 | 角色 | 关键依赖 |
+|---|---|---|---|
+| `FrameosAppHeader` | `FrameosAppHeader.tsx` | 顶部 60px 浮动条：logo + 下载桌面端 + 金币/积分 | — |
+| `FrameosBreadcrumb` | `FrameosBreadcrumb.tsx` | 项目/场景/画布 三级下拉 | `setBreadcrumb` |
+| `FrameosHistoryDock` | `FrameosHistoryDock.tsx` | 撤销/重做（接入 history stack） | `undo`, `redo`, `past.length`, `future.length` |
+| `FrameosToolRail` | `FrameosToolRail.tsx` | 左侧浮动工具栏 + 添加节点菜单 | `isAddNodeMenuOpen`, `addNode` |
+| `FrameosMapDock` | `FrameosMapDock.tsx` | 左下 minimap + 缩放控件 + 整理方式菜单 | `zoomIn/Out/fitView` (useReactFlow), `setOrganizeMode`, `setNodes` |
+| `FrameosPromptBar` | `FrameosPromptBar.tsx` | 选中节点下方 AI prompt 栏 | `useViewport()` (跟随 pan+zoom), `isPromptFullscreen` |
+| `FrameosNodeToolbar` | `FrameosNodeToolbar.tsx` | 选中节点上方浮动工具条 | `useViewport()` |
+| `FrameosNodeEditPanel` | `FrameosNodeEditPanel.tsx` | **调试模式可见**的节点详情面板 | `isDebugMode`, `useViewport()` |
+| `FrameosHelpPanel` | `FrameosHelpPanel.tsx` | 快捷键 + 操作指南弹层 | `isHelpOpen` |
+| `FrameosDebugToggle` | `FrameosDebugToggle.tsx` | 右下角 DEBUG 开关 | `isDebugMode`, `toggleDebugMode` |
+| `icons` | `icons.tsx` | 18+ 内联 SVG 图标 | — |
 
-| Component | File | Purpose |
-|-----------|------|---------|
-| `FrameosAppHeader` | `src/components/frameos/FrameosAppHeader.tsx` | Floating top header — "帧界 FrameOS" logo + 金币/积分 counters + 下载桌面端 |
-| `FrameosBreadcrumb` | `src/components/frameos/FrameosBreadcrumb.tsx` | "默认作品 / 咖啡馆对峙 / 画布 1" breadcrumb (static, no dropdown) |
-| `FrameosToolRail` | `src/components/frameos/FrameosToolRail.tsx` | Left vertical rail — 添加节点 pill + 从素材库选择 + 本地上传 + 帮助 |
-| `FrameosHistoryDock` | `src/components/frameos/FrameosHistoryDock.tsx` | Top-right 撤销/重做 buttons |
-| `FrameosMapDock` | `src/components/frameos/FrameosMapDock.tsx` | Bottom-left minimap + zoom/fit/arrange dock |
-| `FrameosPromptBar` | `src/components/frameos/FrameosPromptBar.tsx` | Bottom-center AI prompt input + 模型 selector + 积分 display |
-| `FrameosHelpPanel` | `src/components/frameos/FrameosHelpPanel.tsx` | Help side panel |
-| `FrameosNodeEditPanel` | `src/components/frameos/FrameosNodeEditPanel.tsx` | Per-node editing side panel |
-| `FrameosNodeToolbar` | `src/components/frameos/FrameosNodeToolbar.tsx` | Floating toolbar that follows the selected node |
-| `FrameosIcon` (registry) | `src/components/frameos/icons.tsx` | SVG icon registry used by FrameOS components |
+## 节点组件
 
-## Nodes
+| 组件 | 文件 | 节点类型 | 复用 `FrameosNodeShell` | 特性 |
+|---|---|---|---|---|
+| `FrameosTextNode` | `nodes/FrameosTextNode.tsx` | `text` | ✅ | contenteditable 文本 |
+| `FrameosImageNode` | `nodes/FrameosImageNode.tsx` | `image` | ✅ | hover 蒙层 + 预览/编辑按钮 + replace 按钮 |
+| `FrameosVideoNode` | `nodes/FrameosVideoNode.tsx` | `video` | ✅ | 中心播放按钮 + hover 时长徽章 + 顶部进度条 + 内嵌 video |
+| `FrameosNodeShell` | `nodes/FrameosNodeShell.tsx` | 通用外壳 | — | floating title + 左右 handle + resize handle |
 
-All FrameOS nodes extend `FrameosNodeShell` (shared card chrome with `node-floating-title` header and resize-handle).
+## 共享资源
 
-| Type ID | File | Notes |
-|---------|------|-------|
-| `text` | `src/components/frameos/nodes/FrameosTextNode.tsx` | 300×200 paragraph-style text block, double-click to edit |
-| `image` | `src/components/frameos/nodes/FrameosImageNode.tsx` | 300×169 or 225×300 portrait, 替换 button in top-right |
-| `video` | `src/components/frameos/nodes/FrameosVideoNode.tsx` | 300×169 video cover + play button + review-failed badge |
+| 资源 | 文件 | 说明 |
+|---|---|---|
+| `frameosStore` | `src/store/frameosStore.ts` | 全部 frameos 状态的来源 (Zustand) |
+| `FrameosNode` 类型 | `src/types/frameos.ts` | `Node<FrameosNodeData, "text" | "image" | "video">` |
+| `frameos-canvas.css` | `src/app/frameos-canvas.css` | 全局动画 keyframes + 拖拽视觉 + handle 样式 |
 
-## Edge
+## 与 liblib-tv 画布共用
 
-| Type ID | File | Notes |
-|---------|------|-------|
-| `default` | `DeletableEdge` (from liblib-tv `src/components/nodes/DeletableEdge.tsx`) | Same flowing-pulse + scissors-delete pattern. FrameOS reuses it as-is. |
+| 共享 | 文件 | 说明 |
+|---|---|---|
+| `@xyflow/react` 库 | `package.json` | 所有节点/边/handle/react flow 基础 |
+| `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | 边 hover 流动脉冲 + 剪刀删除按钮（frameos 复用 liblib 已实现的） |
+| `cn()` utility | `src/lib/utils.ts` | shadcn cn (目前未使用，但保留) |
 
-## Routes
+## 文件树
 
-| Path | File |
-|------|------|
-| `/frameos` | `src/app/frameos/page.tsx` (landing redirect) |
-| `/frameos/canvas/[id]` | `src/app/frameos/canvas/[id]/page.tsx` (canvas demo) |
-| Layout | `src/app/frameos/layout.tsx` |
+```
+src/components/frameos/
+├── FrameosAppHeader.tsx        (180 行)
+├── FrameosBreadcrumb.tsx       (190 行)  含三级下拉
+├── FrameosDebugToggle.tsx      ( 40 行)  新增
+├── FrameosHelpPanel.tsx        (175 行)
+├── FrameosHistoryDock.tsx      (105 行)  接入 history
+├── FrameosMapDock.tsx          (270 行)  含整理方式菜单
+├── FrameosNodeEditPanel.tsx    (270 行)  调试模式
+├── FrameosNodeToolbar.tsx      (170 行)  跟随节点
+├── FrameosPromptBar.tsx        (340 行)  跟随节点 + 全屏
+├── FrameosToolRail.tsx         (180 行)  含添加节点菜单
+├── icons.tsx                   (310 行)  18+ SVG
+└── nodes/
+    ├── FrameosImageNode.tsx    (140 行)
+    ├── FrameosNodeShell.tsx    (170 行)  通用外壳
+    ├── FrameosTextNode.tsx     ( 65 行)
+    └── FrameosVideoNode.tsx    (190 行)  含内嵌 video
+```
 
-## State
-
-| Store | File | Responsibility |
-|-------|------|----------------|
-| `useFrameosStore` | `src/store/frameosStore.ts` | FrameOS nodes, edges, breadcrumb, prompt-bar state, selection |
-
-## Assets
-
-| File | Purpose |
-|------|---------|
-| `docs/research/frameos/assets.json` | Images/colors extracted from the live FrameOS site |
-| `docs/research/frameos/buttons.json` | Computed styles for every button type |
-| `docs/research/frameos/node-cards.json` | Per-node-card DOM extraction |
-| `docs/research/frameos/node-styles.json` | Computed node card styles |
-| `docs/research/frameos/nodes.json` | Node inventory snapshot |
-| `docs/research/frameos/panel-styles.json` | Panel computed styles |
-| `docs/research/frameos/prompt-bar.json` | Prompt bar DOM |
-| `docs/research/frameos/region-styles.json` | Region (rail/dock/header) styles |
-| `docs/research/frameos/svgs.json` | SVG icon registry extracted from FrameOS |
-| `docs/research/frameos/global-styles.json` | Global CSS variables / tokens |
-| `docs/research/frameos/header-and-prompt.json` | Header + prompt bar combined extraction |
-| `docs/research/frameos/components/` | Per-component raw extraction (mirrors `docs/research/components/`) |
-| `docs/research/frameos/*.png` | Original site screenshots |
-
-## Removed / Planned
-
-- **Backend integration**: prompt bar is contenteditable but does nothing on submit.
-- **History (undo/redo)**: buttons log to console only.
-- **Auto-arrange ("一键整理")**: no-op.
-- **素材库 / 本地上载 / 帮助**: placeholders.
+总行数：约 **2525 行**（不含 CSS / store / types）。

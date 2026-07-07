@@ -31,6 +31,7 @@ import { FrameosBreadcrumb } from "@/components/frameos/FrameosBreadcrumb";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
 import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
+import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -287,6 +288,9 @@ function FrameosCanvasInner() {
 
       {/* 帮助面板 */}
       <FrameosHelpPanel />
+
+      {/* 调试模式开关 */}
+      <FrameosDebugToggle />
     </div>
   );
 }

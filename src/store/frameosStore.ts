@@ -47,6 +47,9 @@ interface FrameosCanvasState {
   // 帮助面板
   isHelpOpen: boolean;
 
+  // 调试模式（开启后节点点击会弹出右侧"节点详情"面板）
+  isDebugMode: boolean;
+
   // ───── Actions ─────
   setBreadcrumb: (b: Partial<FrameosCanvasState["breadcrumb"]>) => void;
   setNodes: (nodes: FrameosNode[]) => void;
@@ -72,6 +75,7 @@ interface FrameosCanvasState {
   redo: () => void;
   toggleHelp: () => void;
   closeHelp: () => void;
+  toggleDebugMode: () => void;
 }
 
 const initialNodes: FrameosNode[] = [
@@ -206,6 +210,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   selectedModel: "帧界 O2",
   isPromptFullscreen: false,
   isHelpOpen: false,
+  isDebugMode: false,
   past: [],
   future: [],
 
@@ -325,6 +330,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
 
   toggleHelp: () => set((state) => ({ isHelpOpen: !state.isHelpOpen })),
   closeHelp: () => set({ isHelpOpen: false }),
+
+  toggleDebugMode: () => set((state) => ({ isDebugMode: !state.isDebugMode })),
 }));
 
 // 暴露到 window 用于 e2e 测试

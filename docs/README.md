@@ -135,18 +135,32 @@ A separate canvas route cloned from `frameos.cn`. Lives under `src/app/frameos/`
 
 | Element | File | Notes |
 |---------|------|-------|
-| Route | [`src/app/frameos/page.tsx`](../src/app/frameos/page.tsx), [`src/app/frameos/canvas/[id]/page.tsx`](../src/app/frameos/canvas/[id]/page.tsx) | `[id]` is the demo canvas ID |
+| Route | [`src/app/frameos/page.tsx`](../src/app/frameos/page.tsx), [`src/app/frameos/canvas/[id]/page.tsx`](../src/app/frameos/canvas/[id]/page.tsx) | `[id]` is the demo canvas ID; root `/frameos` redirects here |
 | Layout | [`src/app/frameos/layout.tsx`](../src/app/frameos/layout.tsx) | Inherits globals but adds frameos-specific wrapper |
 | AppHeader | [`src/components/frameos/FrameosAppHeader.tsx`](../src/components/frameos/FrameosAppHeader.tsx) | "帧界 FrameOS" logo + 金币/积分 counters |
-| ToolRail | [`src/components/frameos/FrameosToolRail.tsx`](../src/components/frameos/FrameosToolRail.tsx) | Left "添加节点" pill button |
-| HistoryDock | [`src/components/frameos/FrameosHistoryDock.tsx`](../src/components/frameos/FrameosHistoryDock.tsx) | Top-right 撤销/重做 |
-| MapDock | [`src/components/frameos/FrameosMapDock.tsx`](../src/components/frameos/FrameosMapDock.tsx) | Bottom-left minimap + zoom dock |
-| PromptBar | [`src/components/frameos/FrameosPromptBar.tsx`](../src/components/frameos/FrameosPromptBar.tsx) | Bottom-center AI prompt input |
-| Breadcrumb | [`src/components/frameos/FrameosBreadcrumb.tsx`](../src/components/frameos/FrameosBreadcrumb.tsx) | Top "默认作品 / 咖啡馆对峙 / 画布 1" |
-| HelpPanel | [`src/components/frameos/FrameosHelpPanel.tsx`](../src/components/frameos/FrameosHelpPanel.tsx) | Help side panel |
-| NodeEditPanel | [`src/components/frameos/FrameosNodeEditPanel.tsx`](../src/components/frameos/FrameosNodeEditPanel.tsx) | Per-node editing panel |
-| NodeToolbar | [`src/components/frameos/FrameosNodeToolbar.tsx`](../src/components/frameos/FrameosNodeToolbar.tsx) | Floating toolbar that follows the selected node |
-| Nodes | [`src/components/frameos/nodes/`](../src/components/frameos/nodes/) | `FrameosTextNode`, `FrameosImageNode`, `FrameosVideoNode`, `FrameosNodeShell` |
+| ToolRail | [`src/components/frameos/FrameosToolRail.tsx`](../src/components/frameos/FrameosToolRail.tsx) | Left floating tool rail: 添加节点 (含节点类型菜单) / 素材库 / 上传 / 帮助 |
+| HistoryDock | [`src/components/frameos/FrameosHistoryDock.tsx`](../src/components/frameos/FrameosHistoryDock.tsx) | Top-center 撤销/重做（接入 store 的 history stack） |
+| MapDock | [`src/components/frameos/FrameosMapDock.tsx`](../src/components/frameos/FrameosMapDock.tsx) | Bottom-left minimap + zoom + 整理方式菜单（横向/纵向/网格） |
+| Breadcrumb | [`src/components/frameos/FrameosBreadcrumb.tsx`](../src/components/frameos/FrameosBreadcrumb.tsx) | Top-left "默认作品 / 咖啡馆对峙 / 画布 1"，每级支持下拉 |
+| NodeToolbar | [`src/components/frameos/FrameosNodeToolbar.tsx`](../src/components/frameos/FrameosNodeToolbar.tsx) | 选中节点上方浮动工具条（下载/收藏/超清/720/改图/宫格切分），**跟随节点 + 画布缩放** |
+| PromptBar | [`src/components/frameos/FrameosPromptBar.tsx`](../src/components/frameos/FrameosPromptBar.tsx) | 选中节点下方 AI prompt 栏，**跟随节点**，含节点缩略图 + 模型/1K/16:9 下拉 + 全屏编辑模式 |
+| NodeEditPanel | [`src/components/frameos/FrameosNodeEditPanel.tsx`](../src/components/frameos/FrameosNodeEditPanel.tsx) | **仅调试模式可见**（默认隐藏）— 节点 ID / 坐标 / 各类参数表单 / 快捷操作 |
+| HelpPanel | [`src/components/frameos/FrameosHelpPanel.tsx`](../src/components/frameos/FrameosHelpPanel.tsx) | 快捷键 + 操作指南弹层（按 `?` 触发） |
+| DebugToggle | [`src/components/frameos/FrameosDebugToggle.tsx`](../src/components/frameos/FrameosDebugToggle.tsx) | 右下角 DEBUG 开关，激活后显示 NodeEditPanel |
+| Nodes | [`src/components/frameos/nodes/`](../src/components/frameos/nodes/) | `FrameosTextNode`、`FrameosImageNode`、`FrameosVideoNode`、`FrameosNodeShell` |
+| CSS | [`src/app/frameos-canvas.css`](../src/app/frameos-canvas.css) | 动画 keyframes + 拖拽视觉 + handle 样式 |
+| Store | [`src/store/frameosStore.ts`](../src/store/frameosStore.ts) | 含 history stack (undo/redo)、selectedNodeId、isPromptFullscreen、isDebugMode 等 |
+| Types | [`src/types/frameos.ts`](../src/types/frameos.ts) | FrameosNode / FrameosNodeData |
+| Icons | [`src/components/frameos/icons.tsx`](../src/components/frameos/icons.tsx) | 18+ 内联 SVG（替代 Remix Icon） |
+
+### FrameOS 关键 UX 行为
+
+- **节点选中 → 出现 floating-toolbar (顶部) + PromptBar (底部) + 蓝边 handle** — 三个面板都**跟随节点 + 画布缩放**（用 `useViewport()` 计算视口坐标）
+- **节点拖动** → floating-toolbar / PromptBar 用 `transition: left 0.15s ease` 平滑跟随
+- **添加节点菜单**（左侧蓝色 + 按钮）→ 弹出 文本/图片/视频 类型选择
+- **整理方式菜单**（左下整理按钮的下拉）→ 3 种整理模式 + 实际重排节点
+- **全屏 Prompt 编辑**（点击 PromptBar 右上全屏按钮）→ 居中放大 + 背景蒙层
+- **键盘快捷键**：`Esc`（多级退出）/ `Delete` / `Cmd+Z` / `Cmd+Shift+Z` / `Cmd+D` / `?` / `+` / `-` / `0`
 
 For FrameOS-specific topology / behaviors / tokens, see [`research/frameos/`](research/frameos/).
 
@@ -218,12 +232,24 @@ Create `docs/research/components/MyComponent.spec.md` matching the structure of 
 
 ## Known Limitations & Future Work
 
+### Both routes
 - **No backend**: all state is in-memory (Zustand). Refresh = data lost.
+- **No real file upload / API integration**: prompts and replace-content buttons are wired to trigger `<input type="file">` but no upload backend.
+- **No mention system**: `@` reference in PromptBar is placeholder text only.
+
+### liblib-tv route (`/`)
 - **Camera/Camera-movement dialogs**: UI only — selection is logged but doesn't generate anything.
 - **ImageEditPanel**: prompt + camera + model selector is layout-only, no API integration.
 - **ToolboxPanel / MaterialLibraryPanel / CharacterLibraryPanel / HistoryPanel**: empty placeholders ready for content.
 - **Zoom gesture on canvas dots**: the React Flow default works; we tuned `minZoom=0.1, maxZoom=2`.
-- **FrameOS**: most sidebar/dock buttons are no-op (mock console-only).
+
+### FrameOS route (`/frameos/*`)
+- **NodeEditPanel is debug-only** (toggled via the `DEBUG` button bottom-right). The original `frameos.cn` does NOT have such a panel — it was a developer convenience. If you don't see the panel, click the orange `DEBUG` pill at bottom-right.
+- **Mock data only**: 7 demo nodes (2 text + 3 video + 2 image) with real downloaded images. No persistent storage.
+- **Model / size / ratio dropdowns**: pickable but submit button is `disabled` until text is entered.
+- **"帮助" / "下载桌面端" / "金币 积分" / "添加节点"** buttons: no-op console handlers (mocked).
+- **Video playback**: tries to use the actual mp4 URL derived from the cover image URL; falls back to the cover image on error.
+- **PromptBar fullscreen mode**: real, but submitting the prompt does nothing (no backend).
 
 ---
 
