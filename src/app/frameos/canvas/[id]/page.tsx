@@ -9,6 +9,7 @@ import {
   applyEdgeChanges,
   SelectionMode,
   useReactFlow,
+  useViewport,
   type Connection,
   type Edge,
   type EdgeChange,
@@ -64,6 +65,7 @@ function FrameosCanvasInner() {
   const undo = useFrameosStore((s) => s.undo);
   const redo = useFrameosStore((s) => s.redo);
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
+  const { x: panX, y: panY, zoom } = useViewport();
   const { zoomIn, zoomOut, fitView } = useReactFlow();
 
   // 防止 store <-> flow 同步循环
@@ -244,21 +246,28 @@ function FrameosCanvasInner() {
   const onPaneContextMenu = useCallback(
     (event: React.MouseEvent | MouseEvent) => {
       event.preventDefault();
+      const opts = {
+        panX,
+        panY,
+        zoom,
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+      };
       openContextMenu({
         x: (event as React.MouseEvent).clientX,
         y: (event as React.MouseEvent).clientY,
         items: [
           {
             label: "添加文本节点",
-            onClick: () => useFrameosStore.getState().addNode("text"),
+            onClick: () => useFrameosStore.getState().addNode("text", opts),
           },
           {
             label: "添加图片节点",
-            onClick: () => useFrameosStore.getState().addNode("image"),
+            onClick: () => useFrameosStore.getState().addNode("image", opts),
           },
           {
             label: "添加视频节点",
-            onClick: () => useFrameosStore.getState().addNode("video"),
+            onClick: () => useFrameosStore.getState().addNode("video", opts),
           },
           { separator: true, label: "" },
           {
@@ -269,7 +278,7 @@ function FrameosCanvasInner() {
         ],
       });
     },
-    [fitView]
+    [fitView, panX, panY, zoom]
   );
 
   return (

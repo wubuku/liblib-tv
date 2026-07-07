@@ -4,6 +4,17 @@ import { create } from "zustand";
 import type { Edge } from "@xyflow/react";
 import type { FrameosNode } from "@/types/frameos";
 
+// 外部传入的 viewport 信息 (避免在 store 内直接调用 useReactFlow hook)
+interface AddNodeOpts {
+  // 视口 (来自 ReactFlow)，用于把节点放到画布中央
+  panX?: number;
+  panY?: number;
+  zoom?: number;
+  // 视口尺寸 (window innerWidth/Height)
+  viewportWidth?: number;
+  viewportHeight?: number;
+}
+
 interface FrameosCanvasState {
   // 画布名（顶部 breadcrumb 显示）
   breadcrumb: { project: string; scene: string; canvas: string };
@@ -58,7 +69,7 @@ interface FrameosCanvasState {
   setBreadcrumb: (b: Partial<FrameosCanvasState["breadcrumb"]>) => void;
   setNodes: (nodes: FrameosNode[]) => void;
   setEdges: (edges: Edge[]) => void;
-  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch") => void;
+  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
@@ -269,7 +280,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   setNodes: (nodes) => set({ nodes }),
   setEdges: (edges) => set({ edges }),
 
-  addNode: (type) => {
+  addNode: (type, opts) => {
     const id = `${type}-${Date.now()}`;
     const typeMeta: Record<string, { title: string; w: number; h: number; emoji: string; imageUrl?: string }> = {
       text: { title: "文本", w: 300, h: 200, emoji: "T" },
@@ -283,10 +294,31 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     };
     const meta = typeMeta[type] ?? typeMeta.text;
     const count = get().nodes.filter((n) => n.type === type).length + 1;
+
+    // 计算位置：画布中央（如果提供了 viewport），否则随机
+    let position: { x: number; y: number };
+    if (opts && opts.viewportWidth && opts.zoom) {
+      // 视口中央在画布坐标系 = (viewportCenter - pan) / zoom
+      const vw = opts.viewportWidth;
+      const vh = opts.viewportHeight ?? 900;
+      const z = opts.zoom;
+      const px = opts.panX ?? 0;
+      const py = opts.panY ?? 0;
+      const centerX = (vw / 2 - px) / z;
+      const centerY = (vh / 2 - py) / z;
+      // 节点左上角 = 中央 - 节点尺寸的一半
+      position = {
+        x: Math.round(centerX - meta.w / 2),
+        y: Math.round(centerY - meta.h / 2),
+      };
+    } else {
+      position = { x: 400 + Math.random() * 200, y: 300 + Math.random() * 200 };
+    }
+
     const newNode: FrameosNode = {
       id,
       type,
-      position: { x: 400 + Math.random() * 200, y: 300 + Math.random() * 200 },
+      position,
       style: { width: meta.w, height: meta.h },
       data: {
         title: `${meta.title}节点${count}`,

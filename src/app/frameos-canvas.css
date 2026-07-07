@@ -224,6 +224,11 @@
 .frameos-canvas .react-flow__node:not(.dragging) {
   cursor: grab;
 }
+/* 选中节点 z-index 提升，避免被其他节点遮挡 */
+.frameos-canvas .react-flow__node.selected,
+.frameos-canvas .react-flow__node:has(.is-selected) {
+  z-index: 100 !important;
+}
 
 /* 边 hover/connecting 视觉 */
 .frameos-canvas .react-flow__edge.connecting .react-flow__edge-path,

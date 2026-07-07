@@ -14,6 +14,7 @@ import {
   CharacterIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
+import { useViewport } from "@xyflow/react";
 
 const NODE_TYPES = [
   { type: "text" as const, title: "文本节点", desc: "纯文本描述，可连接到任意节点", icon: "T" },
@@ -101,6 +102,15 @@ export function FrameosToolRail() {
   const closeAddNodeMenu = useFrameosStore((s) => s.closeAddNodeMenu);
   const addNode = useFrameosStore((s) => s.addNode);
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
+  const { x: panX, y: panY, zoom } = useViewport();
+
+  const addNodeOpts = {
+    panX,
+    panY,
+    zoom,
+    viewportWidth: typeof window !== "undefined" ? window.innerWidth : 1440,
+    viewportHeight: typeof window !== "undefined" ? window.innerHeight : 900,
+  };
 
   return (
     <div
@@ -176,7 +186,7 @@ export function FrameosToolRail() {
                     icon={<span style={{ fontSize: 16 }}>{nt.icon}</span>}
                     title={nt.title}
                     desc={nt.desc}
-                    onClick={() => addNode(nt.type)}
+                    onClick={() => addNode(nt.type, addNodeOpts)}
                   />
                 ))}
               </div>
