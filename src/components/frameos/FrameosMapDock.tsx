@@ -10,7 +10,20 @@ import {
   ArrowDownIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
-import { useReactFlow } from "@xyflow/react";
+import { useReactFlow, useViewport } from "@xyflow/react";
+
+// 节点类型对应的 minimap 颜色
+const NODE_TYPE_COLORS: Record<string, string> = {
+  text: "rgba(96,165,250,0.65)",      // 蓝
+  image: "rgba(34,197,94,0.65)",      // 绿
+  video: "rgba(239,68,68,0.65)",      // 红
+  character: "rgba(168,85,247,0.65)", // 紫
+  scene: "rgba(245,158,11,0.65)",     // 黄
+  audio: "rgba(236,72,153,0.65)",     // 粉
+  style: "rgba(20,184,166,0.65)",     // 青
+  batch: "rgba(251,191,36,0.65)",     // 琥珀
+};
+const DEFAULT_NODE_COLOR = "rgba(255,255,255,0.18)";
 
 interface DockBtnProps {
   label: string;
@@ -88,6 +101,8 @@ export function FrameosMapDock() {
   const setOrganizeMode = useFrameosStore((s) => s.setOrganizeMode);
   const nodes = useFrameosStore((s) => s.nodes);
   const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
+  // 画布视口 (用于 minimap viewport 框)
+  const { x: vpX, y: vpY, zoom: vpZoom } = useViewport();
   const setNodes = useFrameosStore((s) => s.setNodes);
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const organizeRef = useRef<HTMLDivElement>(null);
@@ -170,7 +185,7 @@ export function FrameosMapDock() {
                 backgroundSize: "12px 12px",
               }}
             />
-            {/* 节点缩略 - 根据真实 nodes 数据计算位置和大小 */}
+            {/* 节点缩略 - 根据真实 nodes 数据计算位置和大小 + 按类型着色 */}
             {nodes.map((n) => {
               const w = (n.style?.width as number) ?? 300;
               const h = (n.style?.height as number) ?? 169;
@@ -179,6 +194,7 @@ export function FrameosMapDock() {
               const width = w * 0.06;
               const height = h * 0.06;
               const isSelected = n.id === selectedNodeId;
+              const typeColor = NODE_TYPE_COLORS[n.type] ?? DEFAULT_NODE_COLOR;
               return (
                 <div
                   key={n.id}
@@ -192,16 +208,34 @@ export function FrameosMapDock() {
                     height: `${height}px`,
                     borderRadius: 2,
                     background: isSelected
-                      ? "rgba(59,130,246,0.5)"
-                      : "rgba(255,255,255,0.18)",
+                      ? "rgba(96,165,250,0.85)"
+                      : typeColor,
                     border: isSelected
-                      ? "1px solid rgba(96,165,250,0.8)"
-                      : "1px solid rgba(255,255,255,0.06)",
+                      ? "1px solid rgba(96,165,250,1)"
+                      : "1px solid rgba(255,255,255,0.12)",
                     transition: "all 0.15s",
                   }}
                 />
               );
             })}
+
+            {/* 视口框 (跟随画布 zoom/pan 实时更新) */}
+            <div
+              className="viewport-rect"
+              style={{
+                position: "absolute",
+                // 视口中心 = (-vpX, -vpY) / vpZoom, 视口尺寸 = (160/vpZoom, 100/vpZoom)
+                left: `${-vpX / vpZoom * 0.06}px`,
+                top: `${-vpY / vpZoom * 0.06}px`,
+                width: `${(160 / vpZoom) * 0.06}px`,
+                height: `${(100 / vpZoom) * 0.06}px`,
+                border: "1px solid rgba(96,165,250,0.8)",
+                background: "rgba(96,165,250,0.1)",
+                borderRadius: 2,
+                pointerEvents: "none",
+                transition: "all 0.15s",
+              }}
+            />
           </div>
         </div>
       )}
