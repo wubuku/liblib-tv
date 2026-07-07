@@ -4,62 +4,40 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-# Website Reverse-Engineer Template
+# LibTV Canvas Clone
 
-## What This Is
-A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. The Next.js + shadcn/ui + Tailwind v4 base is pre-scaffolded — just run `/clone-website <url1> [<url2> ...]`.
+Reverse-engineered clone of `liblib.tv/canvas` (a node-based video storyboarding editor) plus a parallel FrameOS canvas route. Built on the `clone-website` template scaffold.
 
-## Tech Stack
-- **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
-- **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
-- **Icons:** Lucide React (default — will be replaced/supplemented by extracted SVGs)
-- **Styling:** Tailwind CSS v4 with oklch design tokens
-- **Deployment:** Vercel
+> **Start here**: [`docs/README.md`](docs/README.md) — the discovery hub. It indexes every important doc so you can navigate progressively (elevator pitch → tech stack → behaviors → per-component specs).
+
+---
+
+## Red Lines — read before touching code
+
+These are rules that have caused real bugs in this project. They are short on purpose; the "why" lives in the docs they point to.
+
+1. **The `<Handle>` IS the "+" icon.** Never decorate a separate "+" overlay near a handle — it blocks the drag and breaks connection creation. The handle renders the "+" via CSS `::before` in `src/app/globals.css` `/* Node Handle */`. See [`docs/README.md` § "Key Design Decisions" § 1](docs/README.md#key-design-decisions).
+2. **Edge hover flow is analysis-driven, not guessed.** The 3-segment flowing pulse + glow filter was extracted from the live original site via Playwright. If you "improve" it without re-extracting, you will regress. See [`docs/research/components/DeletableEdge.spec.md`](docs/research/components/DeletableEdge.spec.md).
+3. **Pixel-perfect matching comes from DOM extraction, not visual guessing.** Use Playwright to query computed styles / DOM from the live target site. Save raw output into spec files rather than reconstructed summaries.
+4. **Worktree isolation for parallel agents.** When launching agent teams, each teammate works in its own worktree branch. Merge at the end, resolving conflicts with full project context.
+5. **No `any`. TypeScript strict. Tailwind utility classes, no inline styles** (the rare inline `style` exception is documented inline where it occurs).
+6. **Sync scripts after editing shared rules.** After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh`. After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs`.
+
+---
 
 ## Commands
-- `npm run dev` — Start dev server
-- `npm run build` — Production build
-- `npm run lint` — ESLint check
-- `npm run typecheck` — TypeScript check
-- `npm run check` — Run lint + typecheck + build
 
-## Code Style
-- TypeScript strict mode, no `any`
-- Named exports, PascalCase components, camelCase utils
-- Tailwind utility classes, no inline styles
-- 2-space indentation
-- Responsive: mobile-first
-
-## Design Principles
-- **Pixel-perfect emulation** — match the target's spacing, colors, typography exactly
-- **No personal aesthetic changes during emulation phase** — match 1:1 first, customize later
-- **Real content** — use actual text and assets from the target site, not placeholders
-- **Beauty-first** — every pixel matters
-
-## Project Structure
-```
-src/
-  app/              # Next.js routes
-  components/       # React components
-    ui/             # shadcn/ui primitives
-    icons.tsx       # Extracted SVG icons as React components
-  lib/
-    utils.ts        # cn() utility (shadcn)
-  types/            # TypeScript interfaces
-  hooks/            # Custom React hooks
-public/
-  images/           # Downloaded images from target site
-  videos/           # Downloaded videos from target site
-  seo/              # Favicons, OG images, webmanifest
-docs/
-  research/         # Inspection output (design tokens, components, layout)
-  design-references/ # Screenshots and visual references
-scripts/            # Asset download scripts
+```bash
+npm run dev        # localhost:3000 — main canvas editor (liblib-tv clone)
+npm run build      # production build
+npm run check      # lint + typecheck + build
+# FrameOS canvas: localhost:3000/frameos/canvas/demo
 ```
 
-## MOST IMPORTANT NOTES
-- When launching Claude Code agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end, resolving any merge conflicts smartly since you are basically serving the orchestrator role and have full context to our goals, work given, work achieved, and desired outcomes.
-- After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh` to regenerate platform-specific instruction files.
-- After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs` to regenerate the skill for all platforms.
+## Stack (one-line)
+
+Next.js 16 (App Router, React 19, TS strict) · Tailwind v4 (`@theme inline`) · React Flow (`@xyflow/react`) · Zustand (`canvasStore`, `uiStore`, `frameosStore`) · `@base-ui/react/tooltip` · inline SVG (no icon library).
+
+---
 
 @docs/research/INSPECTION_GUIDE.md
