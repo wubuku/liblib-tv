@@ -69,20 +69,23 @@ export function FrameosPromptBar() {
   // PromptBar 位置：节点正下方，居中
   // 边界检测：节点靠右边时面板左偏，靠下面板位置上移
   const panelWidth = 760;
-  const panelHeight = 100; // 估算
+  // 实际 panel 高度根据全屏/非全屏不同
+  const panelHeight = isFullscreen ? 300 : 130;
+  const viewportH = typeof window !== "undefined" ? window.innerHeight : 900;
+  const viewportW = typeof window !== "undefined" ? window.innerWidth : 1440;
   let left = nodeLeft + nodeWidth / 2;
   let top = nodeTop + nodeHeight + 12;
 
   // 边界碰撞：右出
-  if (left + panelWidth / 2 > window.innerWidth - 24) {
-    left = window.innerWidth - panelWidth / 2 - 24;
+  if (left + panelWidth / 2 > viewportW - 24) {
+    left = viewportW - panelWidth / 2 - 24;
   }
   // 边界碰撞：左出
   if (left - panelWidth / 2 < 24) {
     left = panelWidth / 2 + 24;
   }
   // 边界碰撞：下出 (节点靠下，面板显示在节点上方)
-  if (top + panelHeight > window.innerHeight - 24) {
+  if (top + panelHeight > viewportH - 24) {
     top = nodeTop - panelHeight - 12;
   }
 
