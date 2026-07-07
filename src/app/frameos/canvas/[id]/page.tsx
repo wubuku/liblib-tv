@@ -175,26 +175,32 @@ function FrameosCanvasInner() {
       if ((e.metaKey || e.ctrlKey) && e.key === "z" && !e.shiftKey) {
         e.preventDefault();
         undo();
+        showToast("已撤销", "info");
         return;
       }
       // Cmd/Ctrl + Shift + Z - 重做
       if ((e.metaKey || e.ctrlKey) && (e.key === "Z" || (e.key === "z" && e.shiftKey))) {
         e.preventDefault();
         redo();
+        showToast("已重做", "info");
         return;
       }
 
       // Cmd/Ctrl + D - 复制
       if ((e.metaKey || e.ctrlKey) && e.key === "d" && state.selectedNodeId) {
         e.preventDefault();
+        const node = state.nodes.find((n) => n.id === state.selectedNodeId);
         duplicateNode(state.selectedNodeId);
+        if (node) showToast(`已复制「${node.data.title}」`, "success");
         return;
       }
 
       // Delete / Backspace - 删除
       if ((e.key === "Delete" || e.key === "Backspace") && state.selectedNodeId) {
         e.preventDefault();
+        const node = state.nodes.find((n) => n.id === state.selectedNodeId);
         removeNode(state.selectedNodeId);
+        if (node) showToast(`已删除「${node.data.title}」`, "warning");
         return;
       }
 
@@ -233,14 +239,20 @@ function FrameosCanvasInner() {
           {
             label: "复制节点",
             shortcut: "⌘D",
-            onClick: () => duplicateNode(node.id),
+            onClick: () => {
+              duplicateNode(node.id);
+              showToast(`已复制「${n.data.title}」`, "success");
+            },
           },
           { separator: true, label: "" },
           {
             label: "删除节点",
             danger: true,
             shortcut: "Del",
-            onClick: () => removeNode(node.id),
+            onClick: () => {
+              removeNode(node.id);
+              showToast(`已删除「${n.data.title}」`, "warning");
+            },
           },
         ],
       });
