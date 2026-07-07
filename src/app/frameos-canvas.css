@@ -34,6 +34,36 @@
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
 }
 
+/* 正在拖 handle 创建连接时: 画布整体变暗 (聚焦提示) */
+.frameos-canvas.is-connecting .frameos-canvas-content {
+  /* xyflow pane 自身透明, 通过 cursor 实现聚焦 */
+}
+.frameos-canvas.is-connecting,
+.frameos-canvas.is-connecting * {
+  cursor: crosshair !important;
+}
+
+/* 正在拖连接时, 所有可连接节点 (hover 上去的) 高亮 */
+.frameos-canvas.is-connecting .react-flow__node.is-valid-target .node-card {
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.6), 0 0 16px rgba(34,197,94,0.4) !important;
+  transition: box-shadow 0.15s;
+}
+.frameos-canvas.is-connecting .react-flow__node.is-valid-target:hover .node-card {
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.9), 0 0 24px rgba(34,197,94,0.6) !important;
+}
+
+/* 不可连接的节点变暗 */
+.frameos-canvas.is-connecting .react-flow__node.is-invalid-target .node-card {
+  opacity: 0.35;
+  filter: grayscale(0.6);
+  transition: opacity 0.15s, filter 0.15s;
+}
+
+/* 正在拖的源节点突出 */
+.frameos-canvas.is-connecting .react-flow__node.is-connecting-source .node-card {
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.6), 0 0 16px rgba(59,130,246,0.4) !important;
+}
+
 /* ---- floating title ---- */
 .frameos-canvas .node-floating-title {
   position: absolute;

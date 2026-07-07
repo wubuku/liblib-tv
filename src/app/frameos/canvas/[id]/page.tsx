@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useEffect } from "react";
+import { useCallback, useMemo, useRef, useEffect, useState } from "react";
 import {
   ReactFlow,
   Background,
@@ -63,12 +63,15 @@ function FrameosCanvasInner() {
   const removeNode = useFrameosStore((s) => s.removeNode);
   const duplicateNode = useFrameosStore((s) => s.duplicateNode);
   const selectNode = useFrameosStore((s) => s.selectNode);
+  const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
   const isPromptFullscreen = useFrameosStore((s) => s.isPromptFullscreen);
   const undo = useFrameosStore((s) => s.undo);
   const redo = useFrameosStore((s) => s.redo);
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
   const { x: panX, y: panY, zoom } = useViewport();
   const { zoomIn, zoomOut, fitView } = useReactFlow();
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [hoveredTargetId, setHoveredTargetId] = useState<string | null>(null);
 
   // 防止 store <-> flow 同步循环
   const isLocalChange = useRef(false);
@@ -300,14 +303,43 @@ function FrameosCanvasInner() {
   );
 
   return (
-    <div className="frameos-canvas" style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
+    <div
+      className={`frameos-canvas${isConnecting ? " is-connecting" : ""}`}
+      style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}
+    >
       <ReactFlow
-        nodes={nodes}
+        nodes={nodes.map((n) => {
+          // 连接拖拽时: 当前 hover 的目标 = 有效目标, 其他 = 无效目标
+          let cls = "";
+          if (isConnecting) {
+            if (hoveredTargetId && n.id === hoveredTargetId) {
+              cls = "is-valid-target";
+            } else if (hoveredTargetId) {
+              cls = "is-invalid-target";
+            }
+            // 源节点 (selectedNodeId) 标 connecting-source
+            if (selectedNodeId && n.id === selectedNodeId) {
+              cls = (cls + " is-connecting-source").trim();
+            }
+          }
+          return { ...n, className: cls };
+        })}
         edges={styledEdges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onConnectStart={() => setIsConnecting(true)}
+        onConnectEnd={() => {
+          setIsConnecting(false);
+          setHoveredTargetId(null);
+        }}
         onNodeClick={onNodeClick}
+        onNodeMouseEnter={(_, n) => {
+          if (isConnecting) setHoveredTargetId(n.id);
+        }}
+        onNodeMouseLeave={() => {
+          if (isConnecting) setHoveredTargetId(null);
+        }}
         onPaneClick={onPaneClick}
         onNodeContextMenu={onNodeContextMenu}
         onPaneContextMenu={onPaneContextMenu}
