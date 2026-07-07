@@ -54,7 +54,7 @@ interface FrameosCanvasState {
   setBreadcrumb: (b: Partial<FrameosCanvasState["breadcrumb"]>) => void;
   setNodes: (nodes: FrameosNode[]) => void;
   setEdges: (edges: Edge[]) => void;
-  addNode: (type: "text" | "image" | "video") => void;
+  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch") => void;
   addEdge: (edge: Edge) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
@@ -223,16 +223,37 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
 
   addNode: (type) => {
     const id = `${type}-${Date.now()}`;
-    const titlePrefix = type === "text" ? "文本" : type === "image" ? "图片" : "视频";
+    const typeMeta: Record<string, { title: string; w: number; h: number; emoji: string; imageUrl?: string }> = {
+      text: { title: "文本", w: 300, h: 200, emoji: "T" },
+      image: { title: "图片", w: 300, h: 169, emoji: "🖼", imageUrl: "/images/frameos/node-image-1.png" },
+      video: { title: "视频", w: 300, h: 169, emoji: "🎬", imageUrl: "/images/frameos/node-vid-cover-1.jpg" },
+      character: { title: "角色", w: 200, h: 240, emoji: "👤" },
+      scene: { title: "场景", w: 300, h: 200, emoji: "🎬" },
+      audio: { title: "音频", w: 300, h: 80, emoji: "🎵" },
+      style: { title: "风格", w: 200, h: 200, emoji: "🎨" },
+      batch: { title: "批量", w: 240, h: 160, emoji: "📦" },
+    };
+    const meta = typeMeta[type] ?? typeMeta.text;
+    const count = get().nodes.filter((n) => n.type === type).length + 1;
     const newNode: FrameosNode = {
       id,
       type,
       position: { x: 400 + Math.random() * 200, y: 300 + Math.random() * 200 },
-      style: type === "text" ? { width: 300, height: 200 } : { width: 300, height: 169 },
+      style: { width: meta.w, height: meta.h },
       data: {
-        title: `${titlePrefix}节点${get().nodes.filter((n) => n.type === type).length + 1}`,
+        title: `${meta.title}节点${count}`,
         content: type === "text" ? "（双击编辑文本）" : undefined,
-        imageUrl: type === "text" ? undefined : "/images/frameos/node-image-1.png",
+        imageUrl: meta.imageUrl,
+        description:
+          type === "character" ? "角色描述" :
+          type === "scene" ? "场景描述" :
+          type === "style" ? "风格描述" :
+          type === "audio" ? "音频描述" :
+          type === "batch" ? "批量任务" :
+          undefined,
+        duration: type === "audio" ? 30 : undefined,
+        age: type === "character" ? 25 : undefined,
+        batchSize: type === "batch" ? 5 : undefined,
       },
     };
     set((state) => ({

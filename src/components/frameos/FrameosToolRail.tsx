@@ -8,8 +8,23 @@ import {
   TextNodeIcon,
   ImageNodeIcon,
   FilmNodeIcon,
+  AudioIcon,
+  BrushIcon,
+  GridIcon,
+  CharacterIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
+
+const NODE_TYPES = [
+  { type: "text" as const, title: "文本节点", desc: "纯文本描述，可连接到任意节点", icon: "T" },
+  { type: "image" as const, title: "图片节点", desc: "输入图片，可用作参考或输出", icon: "🖼" },
+  { type: "video" as const, title: "视频节点", desc: "视频素材或生成的视频", icon: "🎬" },
+  { type: "character" as const, title: "角色节点", desc: "人物角色，含形象 + 描述", icon: "👤" },
+  { type: "scene" as const, title: "场景节点", desc: "剧本/分镜的场景描述", icon: "🎬" },
+  { type: "audio" as const, title: "音频节点", desc: "背景音乐 / 配音 / 音效", icon: "🎵" },
+  { type: "style" as const, title: "风格节点", desc: "画面风格参数 (色调/光影/笔触)", icon: "🎨" },
+  { type: "batch" as const, title: "批量节点", desc: "批量生成多个相似内容", icon: "📦" },
+];
 
 interface RailButtonProps {
   label: string;
@@ -155,24 +170,15 @@ export function FrameosToolRail() {
                 >
                   选择节点类型
                 </div>
-                <NodeTypeItem
-                  icon={<TextNodeIcon size={16} />}
-                  title="文本节点"
-                  desc="纯文本描述，可连接到任意节点"
-                  onClick={() => addNode("text")}
-                />
-                <NodeTypeItem
-                  icon={<ImageNodeIcon size={16} />}
-                  title="图片节点"
-                  desc="输入图片，可用作参考或输出"
-                  onClick={() => addNode("image")}
-                />
-                <NodeTypeItem
-                  icon={<FilmNodeIcon size={16} />}
-                  title="视频节点"
-                  desc="视频素材或生成的视频"
-                  onClick={() => addNode("video")}
-                />
+                {NODE_TYPES.map((nt) => (
+                  <NodeTypeItem
+                    key={nt.type}
+                    icon={<span style={{ fontSize: 16 }}>{nt.icon}</span>}
+                    title={nt.title}
+                    desc={nt.desc}
+                    onClick={() => addNode(nt.type)}
+                  />
+                ))}
               </div>
             </>
           )}
