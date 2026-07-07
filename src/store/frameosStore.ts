@@ -71,6 +71,7 @@ interface FrameosCanvasState {
   setEdges: (edges: Edge[]) => void;
   addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
+  updateEdgeData: (id: string, patch: Record<string, unknown>) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
@@ -176,6 +177,7 @@ const initialEdges: Edge[] = [
     type: "default",
     sourceHandle: "right",
     targetHandle: "left",
+    data: { label: "作为 prompt", kind: "default" },
   },
   {
     id: "e-video1-image1",
@@ -184,6 +186,7 @@ const initialEdges: Edge[] = [
     type: "default",
     sourceHandle: "right",
     targetHandle: "left",
+    data: { label: "参考视频", kind: "generating" },
   },
   {
     id: "e-video1-text1",
@@ -192,6 +195,7 @@ const initialEdges: Edge[] = [
     type: "default",
     sourceHandle: "right",
     targetHandle: "left",
+    data: { label: "提取文本", kind: "default" },
   },
   {
     id: "e-text2-image1",
@@ -200,6 +204,7 @@ const initialEdges: Edge[] = [
     type: "default",
     sourceHandle: "right",
     targetHandle: "left",
+    data: { label: "改图 prompt", kind: "error" },
   },
   {
     id: "e-video1-video3",
@@ -208,6 +213,7 @@ const initialEdges: Edge[] = [
     type: "default",
     sourceHandle: "right",
     targetHandle: "left",
+    data: { label: "参考镜头", kind: "default" },
   },
 ];
 
@@ -388,6 +394,16 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
         n.id === id
           ? { ...n, data: { ...n.data, ...patch } }
           : n
+      ),
+    }));
+  },
+
+  updateEdgeData: (id, patch) => {
+    set((state) => ({
+      edges: state.edges.map((e) =>
+        e.id === id
+          ? { ...e, data: { ...(e.data ?? {}), ...patch } }
+          : e
       ),
     }));
   },
