@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
+import { useViewport } from "@xyflow/react";
 import { ScissorsIcon, FullscreenIcon, FullscreenExitIcon, ArrowDownIcon, AddLineIcon } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
 
@@ -29,6 +30,7 @@ export function FrameosPromptBar() {
   const setSelectedModel = useFrameosStore((s) => s.setSelectedModel);
   const isFullscreen = useFrameosStore((s) => s.isPromptFullscreen);
   const toggleFullscreen = useFrameosStore((s) => s.togglePromptFullscreen);
+  const { x: panX, y: panY, zoom } = useViewport();
   const inputRef = useRef<HTMLDivElement>(null);
 
   const [modelOpen, setModelOpen] = useState(false);
@@ -46,18 +48,42 @@ export function FrameosPromptBar() {
   const pos = selectedNode.position;
   const nodeW = (selectedNode.style?.width as number) ?? 300;
   const nodeH = (selectedNode.style?.height as number) ?? 169;
-  const left = pos.x + nodeW / 2;
-  const top = pos.y + nodeH + 12;
+
+  // 计算节点在视口中的精确位置 (考虑画布 pan + zoom)
+  const nodeLeft = pos.x * zoom + panX;
+  const nodeTop = pos.y * zoom + panY;
+  const nodeWidth = nodeW * zoom;
+  const nodeHeight = nodeH * zoom;
+
+  // PromptBar 位置：节点正下方，居中
+  // 边界检测：节点靠右边时面板左偏，靠下面板位置上移
+  const panelWidth = 760;
+  const panelHeight = 100; // 估算
+  let left = nodeLeft + nodeWidth / 2;
+  let top = nodeTop + nodeHeight + 12;
+
+  // 边界碰撞：右出
+  if (left + panelWidth / 2 > window.innerWidth - 24) {
+    left = window.innerWidth - panelWidth / 2 - 24;
+  }
+  // 边界碰撞：左出
+  if (left - panelWidth / 2 < 24) {
+    left = panelWidth / 2 + 24;
+  }
+  // 边界碰撞：下出 (节点靠下，面板显示在节点上方)
+  if (top + panelHeight > window.innerHeight - 24) {
+    top = nodeTop - panelHeight - 12;
+  }
 
   return (
     <div
       className={`canvas-footer-prompt ${isFullscreen ? "is-fullscreen" : ""}`}
       style={{
-        position: "absolute",
-        left: isFullscreen ? "50%" : left,
-        top: isFullscreen ? 80 : top,
+        position: "fixed",
+        left: isFullscreen ? "50%" : `${left}px`,
+        top: isFullscreen ? 80 : `${top}px`,
         transform: isFullscreen ? "translate(-50%, 0)" : "translateX(-50%)",
-        zIndex: isFullscreen ? 3000 : 2700,
+        zIndex: isFullscreen ? 3000 : 2701,
         width: isFullscreen ? "min(900px, calc(100vw - 48px))" : 760,
         maxWidth: "calc(100vw - 48px)",
         transition: "all 0.2s ease",

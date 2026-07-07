@@ -1,6 +1,7 @@
 "use client";
 
 import { useFrameosStore } from "@/store/frameosStore";
+import { useViewport } from "@xyflow/react";
 import { useMemo, useState } from "react";
 import {
   TextNodeIcon,
@@ -38,6 +39,7 @@ export function FrameosNodeEditPanel() {
   const nodes = useFrameosStore((s) => s.nodes);
   const setNodes = useFrameosStore((s) => s.setNodes);
   const selectNode = useFrameosStore((s) => s.selectNode);
+  const { x: panX, y: panY, zoom } = useViewport();
 
   const selectedNode = useMemo(
     () => nodes.find((n) => n.id === selectedNodeId),
@@ -45,6 +47,18 @@ export function FrameosNodeEditPanel() {
   );
 
   if (!selectedNode) return null;
+
+  // 把节点的内部坐标转换为视口坐标（考虑 pan + zoom）
+  const viewportLeft = selectedNode.position.x * zoom + panX;
+  const viewportTop = selectedNode.position.y * zoom + panY;
+
+  // 节点面板显示在节点右侧；如右侧空间不够则放到左边
+  const panelWidth = 320;
+  const margin = 24;
+  const left = (viewportLeft + (selectedNode.style?.width as number ?? 300) * zoom + 12) > window.innerWidth - panelWidth - margin
+    ? Math.max(margin, viewportLeft - panelWidth - 12)
+    : viewportLeft + (selectedNode.style?.width as number ?? 300) * zoom + 12;
+  const top = viewportTop;
 
   const updateField = (key: string, value: unknown) => {
     setNodes(
@@ -62,9 +76,9 @@ export function FrameosNodeEditPanel() {
     <div
       className="node-edit-panel"
       style={{
-        position: "absolute",
-        top: 80,
-        right: 12,
+        position: "fixed",
+        top: `${top}px`,
+        left: `${left}px`,
         width: 320,
         maxHeight: "calc(100vh - 200px)",
         background: "#1C1C1C",

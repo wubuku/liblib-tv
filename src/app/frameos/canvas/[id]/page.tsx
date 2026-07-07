@@ -29,6 +29,7 @@ import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
 import { FrameosBreadcrumb } from "@/components/frameos/FrameosBreadcrumb";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
+import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 
 const nodeTypes = {
@@ -263,6 +264,9 @@ function FrameosCanvasInner() {
 
       {/* 右侧节点编辑面板 */}
       <FrameosNodeEditPanel />
+
+      {/* 选中节点的浮动工具条 (跟随节点位置 + 画布缩放) */}
+      <FrameosNodeToolbar />
 
       {/* 底部 prompt */}
       <FrameosPromptBar />

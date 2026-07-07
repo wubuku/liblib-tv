@@ -31,7 +31,7 @@ export function FrameosNodeToolbar() {
 
   // toolbar 居中于节点顶部上方
   const left = nodeX + (nodeW * zoom) / 2;
-  const top = nodeY - 50;
+  const top = Math.max(80, nodeY - 50); // 不超过顶部
 
   // 根据节点类型显示不同的按钮
   const isImage = node.type === "image";
