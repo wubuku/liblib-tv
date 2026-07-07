@@ -48,6 +48,7 @@ export function FrameosPromptBar() {
   const [ratioOpen, setRatioOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [mentionOpen, setMentionOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);  // 收起时只显示一行输入
 
   const selectedNode = useMemo(
     () => nodes.find((n) => n.id === selectedNodeId),
@@ -73,8 +74,8 @@ export function FrameosPromptBar() {
   const viewportH = typeof window !== "undefined" ? window.innerHeight : 900;
   const viewportW = typeof window !== "undefined" ? window.innerWidth : 1440;
   let left = nodeLeft + nodeWidth / 2;
-  // 默认：节点下方，12px gap
-  let top = nodeTop + nodeHeight + 12;
+  // 紧贴节点底部 (0 gap) — 视觉上直接接触
+  let top = nodeTop + nodeHeight;
 
   // 边界碰撞：右出
   if (left + panelWidth / 2 > viewportW - 24) {
@@ -85,9 +86,8 @@ export function FrameosPromptBar() {
     left = panelWidth / 2 + 24;
   }
   // 边界碰撞：下出 — 仅在 PromptBar 完全超出 viewport 底部时才上移
-  // (不要过早触发，避免遮挡节点内容)
   if (top + panelHeight > viewportH) {
-    top = nodeTop - panelHeight - 12;
+    top = nodeTop - panelHeight;
   }
 
   return (
@@ -104,6 +104,25 @@ export function FrameosPromptBar() {
         transition: "all 0.2s ease",
       }}
     >
+      {/* 连接器：上方小三角形指向节点 (当 PromptBar 紧贴节点下方时显示) */}
+      {!isFullscreen && (
+        <div
+          style={{
+            position: "absolute",
+            top: -7,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 0,
+            height: 0,
+            borderLeft: "7px solid transparent",
+            borderRight: "7px solid transparent",
+            borderBottom: "7px solid rgba(255,255,255,0.12)",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
+      )}
+
       <div
         className="prompt-shell"
         style={{
