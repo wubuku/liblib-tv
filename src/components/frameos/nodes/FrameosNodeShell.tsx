@@ -78,23 +78,14 @@ export function FrameosNodeShell({
           overflow: "visible",
         }}
       >
-        {/* XYFlow handles - 原站：默认 opacity 0, 选中时 1 + transform 偏移 + 深底白边 */}
+        {/* XYFlow handles - 默认 opacity 0 (在 CSS .frameos-canvas .react-flow__handle 中),
+           选中/hover 时 CSS 改 opacity 1 + transform 偏移 */}
         {showLeftHandle && (
           <Handle
             type="target"
             position={Position.Left}
             id="left"
-            className={`frameos-handle ${selected ? "is-visible" : ""}`}
-            style={{
-              width: 16,
-              height: 16,
-              background: "rgba(30, 30, 30, 0.9)",
-              border: "1px solid rgba(255, 255, 255, 0.7)",
-              opacity: selected ? 1 : 0,
-              transform: selected ? "translate(8px, -8px)" : "translate(0, 0)",
-              transition: "opacity 0.15s, transform 0.15s",
-              cursor: "crosshair",
-            }}
+            className="frameos-handle"
           />
         )}
         {showRightHandle && (
@@ -102,17 +93,7 @@ export function FrameosNodeShell({
             type="source"
             position={Position.Right}
             id="right"
-            className={`frameos-handle ${selected ? "is-visible" : ""}`}
-            style={{
-              width: 16,
-              height: 16,
-              background: "rgba(30, 30, 30, 0.9)",
-              border: "1px solid rgba(255, 255, 255, 0.7)",
-              opacity: selected ? 1 : 0,
-              transform: selected ? "translate(8px, -8px)" : "translate(0, 0)",
-              transition: "opacity 0.15s, transform 0.15s",
-              cursor: "crosshair",
-            }}
+            className="frameos-handle"
           />
         )}
 

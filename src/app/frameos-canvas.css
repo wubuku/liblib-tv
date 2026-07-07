@@ -97,22 +97,30 @@
   position: absolute;
 }
 
-/* ---- XYFlow handle 调整 ---- */
-.frameos-canvas .react-flow__handle {
-  width: 8px !important;
-  height: 8px !important;
-  background: #3B82F6 !important;
-  border: none !important;
+/* ---- XYFlow handle 调整 (匹配原站 frameos.cn 的精确样式) ---- */
+.frameos-canvas .react-flow__handle.frameos-handle {
+  width: 16px !important;
+  height: 16px !important;
+  background: rgba(30, 30, 30, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
   opacity: 0;
-  transition: opacity 0.15s, transform 0.15s;
+  transform: translate(0, 0);
+  transition: opacity 0.15s, transform 0.15s, background 0.15s;
+  cursor: crosshair;
 }
-.frameos-canvas .node-card-wrap:hover .react-flow__handle,
-.frameos-canvas .react-flow__node-selected .react-flow__handle {
+/* 选中或 hover 整个 node-wrap 时显示 */
+.frameos-canvas .node-card-wrap:hover .frameos-handle,
+.frameos-canvas .node-card-wrap.is-selected .frameos-handle {
   opacity: 1;
 }
-.frameos-canvas .react-flow__handle:hover {
-  transform: scale(1.4);
-  background: #60A5FA !important;
+/* 选中时 handle 偏移到节点外侧 */
+.frameos-canvas .node-card-wrap.is-selected .frameos-handle {
+  transform: translate(8px, -8px);
+}
+/* hover handle 时变蓝 */
+.frameos-canvas .frameos-handle:hover {
+  background: rgba(96, 165, 250, 0.95) !important;
+  border-color: rgba(96, 165, 250, 0.95) !important;
 }
 
 /* ---- 边 ---- */

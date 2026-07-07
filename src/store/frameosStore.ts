@@ -284,7 +284,16 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set((state) => ({ showMinimap: !state.showMinimap })),
   setPromptValue: (v) => set({ promptValue: v }),
 
-  selectNode: (id) => set({ selectedNodeId: id }),
+  selectNode: (id) => {
+    set((state) => ({
+      selectedNodeId: id,
+      // 同步给 xyflow 的 selected 字段 (让 xyflow 的 selected prop 传到节点组件)
+      nodes: state.nodes.map((n) => ({
+        ...n,
+        selected: n.id === id,
+      })),
+    }));
+  },
 
   toggleAddNodeMenu: () =>
     set((state) => ({ isAddNodeMenuOpen: !state.isAddNodeMenuOpen })),
