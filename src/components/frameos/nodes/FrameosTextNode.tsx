@@ -63,6 +63,8 @@ export function FrameosTextNode({ id, data, selected }: NodeProps<FrameosNode>) 
           padding: 12,
           display: "flex",
           cursor: isEditing ? "text" : "pointer",
+          background: "#1C1C1C",
+          borderRadius: 10,
         }}
         onDoubleClick={onDoubleClick}
       >

@@ -56,8 +56,8 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
         style={{
           flex: 1,
           position: "relative",
-          background: "rgba(0,0,0,0.4)",
-          borderRadius: 9,
+          background: "#1C1C1C",
+          borderRadius: 10,
           overflow: "hidden",
         }}
         onMouseEnter={() => setIsHovered(true)}

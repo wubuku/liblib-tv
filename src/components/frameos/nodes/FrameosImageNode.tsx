@@ -28,8 +28,8 @@ export function FrameosImageNode({ id, data, selected }: NodeProps<FrameosNode>)
         style={{
           flex: 1,
           position: "relative",
-          background: "rgba(0,0,0,0.3)",
-          borderRadius: 9,
+          background: "#1C1C1C",
+          borderRadius: 10,
           overflow: "hidden",
           minHeight: 0,
         }}
