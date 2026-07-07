@@ -4,11 +4,11 @@ import type { ReactNode } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 
 /**
- * Frameos 节点统一外壳：
- * - node-card-wrap (相对定位 容器)
+ * Frameos 节点统一外壳（参考原站 frameos.cn 的精确 DOM）
+ * - node-card-wrap (相对定位, 容器 class `is-{kind} is-embedded` + 可选 `is-selected`)
  *   - node-floating-title (绝对 top:-22px, color #A3A3A3, font 500 12px)
- *   - node-card (bg #1C1C1C, radius 10px, column flex)
- *     - 左右 handle
+ *   - node-card (透明 background, 由子内容决定颜色)
+ *     - 左右 handle (默认 opacity 0, 选中时 1 + transform 偏移)
  *     - card-body (children)
  *     - resize-handle (右下角 18×18, opacity 0 → hover 1)
  */
@@ -46,7 +46,7 @@ export function FrameosNodeShell({
   const { id } = nodeProps;
   return (
     <div
-      className={`node-card-wrap is-${kind}${selected ? " is-selected" : ""}`}
+      className={`node-card-wrap is-${kind} is-embedded${selected ? " is-selected" : ""}`}
       style={{
         width: width ?? undefined,
         height: height ?? undefined,
@@ -64,11 +64,11 @@ export function FrameosNodeShell({
         )}
       </div>
 
-      {/* 节点卡片 */}
+      {/* 节点卡片 - 原站是 transparent background，颜色由 card-body 决定 */}
       <div
         className={`node-card ${selected ? "is-selected" : ""}`}
         style={{
-          backgroundColor: "#1C1C1C",
+          backgroundColor: "transparent",
           borderRadius: "10px",
           width: width ?? "100%",
           height: height ?? "100%",
@@ -76,29 +76,23 @@ export function FrameosNodeShell({
           flexDirection: "column",
           position: "relative",
           overflow: "visible",
-          transition: "box-shadow 0.15s, border-color 0.15s",
-          border: selected
-            ? "1px solid rgba(96,165,250,0.6)"
-            : "1px solid transparent",
-          boxShadow: selected
-            ? "0 0 0 4px rgba(59,130,246,0.18), 0 8px 24px rgba(0,0,0,0.4)"
-            : "0 2px 8px rgba(0,0,0,0.2)",
         }}
       >
-        {/* XYFlow handles - 单边连接端口 (选中时显示为白色圆形 + 蓝边) */}
+        {/* XYFlow handles - 原站：默认 opacity 0, 选中时 1 + transform 偏移 + 深底白边 */}
         {showLeftHandle && (
           <Handle
             type="target"
             position={Position.Left}
             id="left"
-            className="frameos-handle"
+            className={`frameos-handle ${selected ? "is-visible" : ""}`}
             style={{
-              width: selected ? 16 : 8,
-              height: selected ? 16 : 8,
-              background: selected ? "#FFFFFF" : "#3B82F6",
-              border: selected ? "2px solid #3B82F6" : "none",
+              width: 16,
+              height: 16,
+              background: "rgba(30, 30, 30, 0.9)",
+              border: "1px solid rgba(255, 255, 255, 0.7)",
               opacity: selected ? 1 : 0,
-              transition: "all 0.15s",
+              transform: selected ? "translate(8px, -8px)" : "translate(0, 0)",
+              transition: "opacity 0.15s, transform 0.15s",
               cursor: "crosshair",
             }}
           />
@@ -108,14 +102,15 @@ export function FrameosNodeShell({
             type="source"
             position={Position.Right}
             id="right"
-            className="frameos-handle"
+            className={`frameos-handle ${selected ? "is-visible" : ""}`}
             style={{
-              width: selected ? 16 : 8,
-              height: selected ? 16 : 8,
-              background: selected ? "#FFFFFF" : "#3B82F6",
-              border: selected ? "2px solid #3B82F6" : "none",
+              width: 16,
+              height: 16,
+              background: "rgba(30, 30, 30, 0.9)",
+              border: "1px solid rgba(255, 255, 255, 0.7)",
               opacity: selected ? 1 : 0,
-              transition: "all 0.15s",
+              transform: selected ? "translate(8px, -8px)" : "translate(0, 0)",
+              transition: "opacity 0.15s, transform 0.15s",
               cursor: "crosshair",
             }}
           />
