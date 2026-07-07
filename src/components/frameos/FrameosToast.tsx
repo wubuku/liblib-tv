@@ -29,9 +29,9 @@ export function showToast(
 export function FrameosToast() {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setter = setToasts;
-    setToasts([...currentToasts]);
     return () => {
       setter = null;
     };

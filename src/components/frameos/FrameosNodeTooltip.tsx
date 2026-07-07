@@ -2,7 +2,7 @@
 
 import { useFrameosStore } from "@/store/frameosStore";
 import { useViewport } from "@xyflow/react";
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * FrameOS 节点 hover tooltip
@@ -10,20 +10,75 @@ import { useState, useRef } from "react";
  * - 跟随节点位置 + 画布缩放
  * - 仅在 hover 时显示，未选中节点
  */
+interface HoverInfo {
+  x: number;
+  y: number;
+  node: { id: string; title: string; imageUrl?: string };
+}
+
 export function FrameosNodeTooltip() {
-  const [hoverInfo, setHoverInfo] = useState<{
-    x: number;
-    y: number;
-    node: { id: string; title: string; imageUrl?: string };
-  } | null>(null);
+  const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
   const nodes = useFrameosStore((s) => s.nodes);
   const { x: panX, y: panY, zoom } = useViewport();
 
-  // 监听节点 hover 状态 - 通过 event delegation
-  if (typeof window !== "undefined" && !tooltipHookInstalled) {
-    installTooltipHook(setHoverInfo, nodes, panX, panY, zoom);
-    tooltipHookInstalled = true;
-  }
+  useEffect(() => {
+    let currentHoverId: string | null = null;
+    let hideTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const showFor = (id: string) => {
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+      const node = nodes.find((n) => n.id === id);
+      if (!node) return;
+      const nodeX = node.position.x * zoom + panX;
+      const nodeY = node.position.y * zoom + panY;
+      const nodeW = (node.style?.width as number) ?? 300;
+      const x = nodeX + (nodeW * zoom) / 2;
+      const y = nodeY - 8;
+      setHoverInfo({
+        x,
+        y,
+        node: {
+          id: node.id,
+          title: node.data?.title as string,
+          imageUrl: node.data?.imageUrl as string | undefined,
+        },
+      });
+    };
+
+    const hide = () => {
+      hideTimer = setTimeout(() => setHoverInfo(null), 100);
+    };
+
+    const onMouseOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest("[data-id]");
+      if (!target) return;
+      const id = target.getAttribute("data-id");
+      if (!id) return;
+      if (id !== currentHoverId) {
+        currentHoverId = id;
+        showFor(id);
+      }
+    };
+
+    const onMouseOut = (e: MouseEvent) => {
+      const related = e.relatedTarget as HTMLElement | null;
+      if (related?.closest("[data-id]") === e.target) return;
+      currentHoverId = null;
+      hide();
+    };
+
+    document.addEventListener("mouseover", onMouseOver, true);
+    document.addEventListener("mouseout", onMouseOut, true);
+
+    return () => {
+      document.removeEventListener("mouseover", onMouseOver, true);
+      document.removeEventListener("mouseout", onMouseOut, true);
+      if (hideTimer) clearTimeout(hideTimer);
+    };
+  }, [nodes, panX, panY, zoom]);
 
   if (!hoverInfo) return null;
 
@@ -46,6 +101,7 @@ export function FrameosNodeTooltip() {
         pointerEvents: "none",
         maxWidth: 280,
         animation: "frameos-pop-in 0.1s ease-out",
+        transform: "translate(-50%, -100%)",
       }}
     >
       {hoverInfo.node.imageUrl && (
@@ -83,78 +139,4 @@ export function FrameosNodeTooltip() {
       </div>
     </div>
   );
-}
-
-let tooltipHookInstalled = false;
-let cleanupFn: (() => void) | null = null;
-
-function installTooltipHook(
-  setHoverInfo: (info: any) => void,
-  nodes: any[],
-  initialPanX: number,
-  initialPanY: number,
-  initialZoom: number
-) {
-  if (typeof window === "undefined") return;
-  if (cleanupFn) cleanupFn();
-
-  let currentHoverId: string | null = null;
-  let hideTimer: ReturnType<typeof setTimeout> | null = null;
-
-  const showFor = (id: string, clientX: number, clientY: number) => {
-    if (hideTimer) {
-      clearTimeout(hideTimer);
-      hideTimer = null;
-    }
-    const node = nodes.find((n) => n.id === id);
-    if (!node) return;
-    // 计算节点在视口中的位置
-    const nodeX = node.position.x * initialZoom + initialPanX;
-    const nodeY = node.position.y * initialZoom + initialPanY;
-    const nodeW = (node.style?.width as number) ?? 300;
-    // tooltip 放在节点顶部上方
-    const x = nodeX + (nodeW * initialZoom) / 2;
-    const y = nodeY - 8;
-    setHoverInfo({
-      x,
-      y,
-      node: {
-        id: node.id,
-        title: node.data?.title as string,
-        imageUrl: node.data?.imageUrl as string | undefined,
-      },
-    });
-  };
-
-  const hide = () => {
-    hideTimer = setTimeout(() => setHoverInfo(null), 100);
-  };
-
-  const onMouseOver = (e: MouseEvent) => {
-    const target = (e.target as HTMLElement)?.closest('[data-id]');
-    if (!target) return;
-    const id = target.getAttribute('data-id');
-    if (!id) return;
-    if (id !== currentHoverId) {
-      currentHoverId = id;
-      showFor(id, e.clientX, e.clientY);
-    }
-  };
-
-  const onMouseOut = (e: MouseEvent) => {
-    const target = e.relatedTarget as HTMLElement | null;
-    if (target?.closest('[data-id]') === e.target) return;
-    currentHoverId = null;
-    hide();
-  };
-
-  // 使用 capture 以便在 ReactFlow 拦截前拿到事件
-  document.addEventListener('mouseover', onMouseOver, true);
-  document.addEventListener('mouseout', onMouseOut, true);
-
-  cleanupFn = () => {
-    document.removeEventListener('mouseover', onMouseOver, true);
-    document.removeEventListener('mouseout', onMouseOut, true);
-    if (hideTimer) clearTimeout(hideTimer);
-  };
 }

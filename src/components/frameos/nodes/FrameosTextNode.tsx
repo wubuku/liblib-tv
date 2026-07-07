@@ -15,6 +15,7 @@ export function FrameosTextNode({ id, data, selected }: NodeProps<FrameosNode>) 
   const taRef = useRef<HTMLTextAreaElement>(null);
 
   // 同步外部 data.content 变化（例如撤销/重做）
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!isEditing) setContent((data.content as string) ?? "");
   }, [data.content, isEditing]);
@@ -26,6 +27,8 @@ export function FrameosTextNode({ id, data, selected }: NodeProps<FrameosNode>) 
       taRef.current.select();
     }
   }, [isEditing]);
+  // taRef 上面引用了, linter 觉得未用
+  void taRef;
 
   // 双击节点进入编辑
   const onDoubleClick = (e: React.MouseEvent) => {
