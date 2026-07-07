@@ -5,11 +5,22 @@ import { useState } from "react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import { ImageNodeIcon, Upload2Icon } from "../icons";
 import type { FrameosNode } from "@/types/frameos";
+import { useFrameosStore } from "@/store/frameosStore";
 
-export function FrameosImageNode({ id, data, selected }: NodeProps<FrameosNode>) {
+export function FrameosImageNode(props: NodeProps<FrameosNode>) {
+  const { id, data, selected } = props;
   const { title, imageUrl } = data;
   const [isHovered, setIsHovered] = useState(false);
-  const isPortrait = (data as { orientation?: string }).orientation === "portrait";
+
+  // 直接读 store 里的 node 来判断方向 (xyflow v12 不会把 style 字段作为 props 传过来,
+  // 它会自己 measure, 而 measure 的尺寸就是按我们传过去的 style 渲染的)
+  // 通过 dom 查 isPortrait 标志位不靠谱, 改为通过 store 查
+  const state = useFrameosStore.getState();
+  const storeNode = state.nodes.find((n) => n.id === id);
+  const explicitPortrait = (data as { orientation?: string }).orientation === "portrait";
+  const storeW = (storeNode?.style?.width as number) ?? 300;
+  const storeH = (storeNode?.style?.height as number) ?? 169;
+  const isPortrait = explicitPortrait || storeH > storeW;
 
   return (
     <FrameosNodeShell
