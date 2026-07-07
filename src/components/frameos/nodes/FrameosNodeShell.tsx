@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { Handle, Position, NodeResizer, type NodeProps } from "@xyflow/react";
 import { useFrameosStore } from "@/store/frameosStore";
@@ -7,7 +8,7 @@ import { useFrameosStore } from "@/store/frameosStore";
 /**
  * Frameos 节点统一外壳（参考原站 frameos.cn 的精确 DOM）
  * - node-card-wrap (相对定位, 容器 class `is-{kind} is-embedded` + 可选 `is-selected`)
- *   - node-floating-title (绝对 top:-22px, color #A3A3A3, font 500 12px)
+ *   - node-floating-title (绝对 top:-22px, color #A3A3A3, font 500 12px) — 双击可重命名
  *   - node-card (透明 background, 由子内容决定颜色)
  *     - 左右 handle (默认 opacity 0, 选中时 1 + transform 偏移)
  *     - card-body (children)
@@ -45,6 +46,34 @@ export function FrameosNodeShell({
   nodeProps,
 }: FrameosNodeShellProps) {
   const { id } = nodeProps;
+  const updateNodeData = useFrameosStore((s) => s.updateNodeData);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(title);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // 外部 title 变化 (例如 undo/redo) 同步
+  useEffect(() => {
+    if (!editing) setDraft(title);
+  }, [title, editing]);
+
+  // 进入编辑模式时 focus
+  useEffect(() => {
+    if (editing) {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    }
+  }, [editing]);
+
+  const commit = () => {
+    setEditing(false);
+    const next = draft.trim();
+    if (next && next !== title) {
+      updateNodeData(id, { title: next });
+    } else {
+      setDraft(title);
+    }
+  };
+
   return (
     <div
       className={`node-card-wrap is-${kind} is-embedded${selected ? " is-selected" : ""}`}
@@ -54,11 +83,53 @@ export function FrameosNodeShell({
         position: "relative",
       }}
     >
-      {/* Floating title - 绝对定位到节点顶部上方 */}
+      {/* Floating title - 绝对定位到节点顶部上方 — 双击可重命名 */}
       <div className="node-floating-title">
         <div className="node-floating-title__left">
           <i className="node-floating-title__icon">{titleIcon}</i>
-          <span className="node-floating-title__name">{title}</span>
+          {editing ? (
+            <input
+              ref={inputRef}
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              onBlur={commit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                if (e.key === "Escape") {
+                  setDraft(title);
+                  setEditing(false);
+                }
+              }}
+              onClick={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
+              className="node-floating-title__input"
+              style={{
+                background: "rgba(0,0,0,0.6)",
+                border: "1px solid rgba(96,165,250,0.5)",
+                borderRadius: 3,
+                color: "#FFFFFF",
+                fontSize: 12,
+                fontWeight: 500,
+                fontFamily: "inherit",
+                padding: "0 4px",
+                outline: "none",
+                minWidth: 80,
+                width: `${Math.max(80, draft.length * 8)}px`,
+              }}
+            />
+          ) : (
+            <span
+              className="node-floating-title__name"
+              onDoubleClick={(e) => {
+                e.stopPropagation();
+                setEditing(true);
+              }}
+              style={{ cursor: "text" }}
+              title="双击重命名"
+            >
+              {title}
+            </span>
+          )}
         </div>
         {titleRight && (
           <div className="node-floating-title__right">{titleRight}</div>
@@ -95,45 +166,6 @@ export function FrameosNodeShell({
             position={Position.Right}
             id="right"
             className="frameos-handle"
-          />
-        )}
-
-        {/* XYFlow NodeResizer (右下角缩放手柄) - 仅图片/文本节点有 */}
-        {showResizeHandle && selected && (
-          <NodeResizer
-            color="#60A5FA"
-            isVisible={selected}
-            minWidth={150}
-            minHeight={100}
-            maxWidth={800}
-            maxHeight={600}
-            lineClassName="frameos-resize-line"
-            handleClassName="frameos-resize-handle"
-            onResize={(_, params) => {
-              // 实时同步尺寸到 store
-              const setNodes = useFrameosStore.getState().setNodes;
-              const { nodes } = useFrameosStore.getState();
-              setNodes(
-                nodes.map((n) =>
-                  n.id === nodeProps.id
-                    ? { ...n, style: { ...n.style, width: params.width, height: params.height } }
-                    : n
-                )
-              );
-            }}
-            onResizeEnd={(_, params) => {
-              // 持久化尺寸到 store (带 history)
-              const updateNodeData = useFrameosStore.getState().updateNodeData;
-              const { past, nodes, edges } = useFrameosStore.getState();
-              useFrameosStore.setState({
-                past: [...past.slice(-19), { nodes, edges }],
-                future: [],
-              });
-              updateNodeData(nodeProps.id, {
-                width: params.width,
-                height: params.height,
-              });
-            }}
           />
         )}
 
