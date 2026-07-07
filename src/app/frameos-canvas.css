@@ -187,6 +187,10 @@
   from { opacity: 0; transform: translate(-50%, -10px); }
   to { opacity: 1; transform: translate(-50%, 0); }
 }
+@keyframes frameos-edge-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -208; }  /* 8 + 200 完整周期 */
+}
 
 /* 节点出现动画 */
 .frameos-canvas .react-flow__node {

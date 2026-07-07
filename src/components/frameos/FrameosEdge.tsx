@@ -89,6 +89,24 @@ export function FrameosEdge({
         onMouseLeave={() => setHovered(false)}
       />
 
+      {/* Flowing pulse overlay (仅 hover/selected 时显示) */}
+      {isActive && (
+        <path
+          d={edgePath}
+          fill="none"
+          stroke="rgba(150, 200, 255, 0.9)"
+          strokeWidth={3}
+          strokeDasharray="8 200"
+          strokeLinecap="round"
+          pathLength={100}
+          style={{
+            pointerEvents: "none",
+            animation: `frameos-edge-flow 1.5s linear infinite`,
+            filter: "drop-shadow(0 0 4px rgba(150, 200, 255, 0.6))",
+          }}
+        />
+      )}
+
       <EdgeLabelRenderer>
         <div
           className="nodrag nopan"
