@@ -87,6 +87,7 @@ export function FrameosMapDock() {
   const organizeMode = useFrameosStore((s) => s.organizeMode);
   const setOrganizeMode = useFrameosStore((s) => s.setOrganizeMode);
   const nodes = useFrameosStore((s) => s.nodes);
+  const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
   const setNodes = useFrameosStore((s) => s.setNodes);
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const organizeRef = useRef<HTMLDivElement>(null);
@@ -158,7 +159,7 @@ export function FrameosMapDock() {
               overflow: "hidden",
             }}
           >
-            {/* 装饰性 minimap - 显示节点缩略 */}
+            {/* 装饰性背景点阵 */}
             <div
               className="minimap-bg"
               style={{
@@ -169,25 +170,38 @@ export function FrameosMapDock() {
                 backgroundSize: "12px 12px",
               }}
             />
-            {/* 节点缩略 */}
-            <div
-              className="mini-node"
-              style={{ position: "absolute", left: 16, top: 14, width: 130, height: 82, border: "1px solid rgba(59,130,246,0.4)", borderRadius: 2 }}
-            />
-            <div
-              className="viewport-rect"
-              style={{
-                position: "absolute",
-                left: 16,
-                top: 14,
-                width: 130,
-                height: 82,
-                border: "1px solid rgba(96,165,250,0.7)",
-                background: "rgba(96,165,250,0.08)",
-                borderRadius: 2,
-                pointerEvents: "none",
-              }}
-            />
+            {/* 节点缩略 - 根据真实 nodes 数据计算位置和大小 */}
+            {nodes.map((n) => {
+              const w = (n.style?.width as number) ?? 300;
+              const h = (n.style?.height as number) ?? 169;
+              const left = n.position.x * 0.06;
+              const top = n.position.y * 0.06;
+              const width = w * 0.06;
+              const height = h * 0.06;
+              const isSelected = n.id === selectedNodeId;
+              return (
+                <div
+                  key={n.id}
+                  className="mini-node"
+                  title={n.data.title}
+                  style={{
+                    position: "absolute",
+                    left: `${left}px`,
+                    top: `${top}px`,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: 2,
+                    background: isSelected
+                      ? "rgba(59,130,246,0.5)"
+                      : "rgba(255,255,255,0.18)",
+                    border: isSelected
+                      ? "1px solid rgba(96,165,250,0.8)"
+                      : "1px solid rgba(255,255,255,0.06)",
+                    transition: "all 0.15s",
+                  }}
+                />
+              );
+            })}
           </div>
         </div>
       )}
