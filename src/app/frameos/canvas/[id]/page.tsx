@@ -219,7 +219,7 @@ function FrameosCanvasInner() {
         return;
       }
       if (e.key === "0") {
-        fitView({ duration: 200, padding: 0.15 });
+        fitView({ duration: 200, padding: 0.2 });
         return;
       }
     };
@@ -295,7 +295,7 @@ function FrameosCanvasInner() {
           {
             label: "适应画布",
             shortcut: "0",
-            onClick: () => fitView({ duration: 200, padding: 0.15 }),
+            onClick: () => fitView({ duration: 200, padding: 0.2 }),
           },
         ],
       });
