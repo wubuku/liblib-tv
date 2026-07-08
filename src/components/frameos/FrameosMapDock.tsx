@@ -200,6 +200,23 @@ export function FrameosMapDock() {
                 />
               );
             })}
+
+            {/* viewport 框 - 反映当前画布可见区域 (跟随 pan/zoom) */}
+            <div
+              className="viewport-rect"
+              style={{
+                position: "absolute",
+                left: `${(-vpX / vpZoom) * 0.06}px`,
+                top: `${(-vpY / vpZoom) * 0.06}px`,
+                width: `${(window.innerWidth / vpZoom) * 0.06}px`,
+                height: `${(window.innerHeight / vpZoom) * 0.06}px`,
+                background: "rgba(96,165,250,0.1)",
+                border: "1px solid rgba(96,165,250,0.5)",
+                borderRadius: 2,
+                pointerEvents: "none",
+                transition: "all 0.15s",
+              }}
+            />
           </div>
         </div>
       )}
