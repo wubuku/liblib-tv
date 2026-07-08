@@ -330,10 +330,6 @@ function FrameosCanvasInner() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onConnectStart={() => setIsConnecting(true)}
-        onInit={() => {
-          // 首次初始化时: 自动 fitView 让所有节点居中 (解决节点偏向右上问题)
-          setTimeout(() => fitView({ duration: 0, padding: 0.15 }), 50);
-        }}
         onConnectEnd={() => {
           setIsConnecting(false);
           setHoveredTargetId(null);
@@ -351,7 +347,7 @@ function FrameosCanvasInner() {
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
-        fitViewOptions={{ padding: 0.15, includeHiddenNodes: false, minZoom: 0.5, maxZoom: 1 }}
+        fitViewOptions={{ padding: 0.15, includeHiddenNodes: false, minZoom: 1, maxZoom: 1 }}
         minZoom={0.1}
         maxZoom={2}
         panOnScroll
