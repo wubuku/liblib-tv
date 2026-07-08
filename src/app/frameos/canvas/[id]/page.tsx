@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useRef, useEffect, useState } from "react";
 import {
-  ReactFlow,
+  ReactFlow as ReactFlowAny,
   Background,
   BackgroundVariant,
   applyNodeChanges,
@@ -308,7 +308,7 @@ function FrameosCanvasInner() {
       className={`frameos-canvas${isConnecting ? " is-connecting" : ""}`}
       style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}
     >
-      <ReactFlow
+      <ReactFlowAny
         nodes={nodes.map((n) => {
           // 连接拖拽时: 当前 hover 的目标 = 有效目标, 其他 = 无效目标
           let cls = "";
@@ -333,6 +333,21 @@ function FrameosCanvasInner() {
         onConnectEnd={() => {
           setIsConnecting(false);
           setHoveredTargetId(null);
+        }}
+        // @ts-expect-error xyflow v12 缺失此 prop 类型但运行时支持
+        onMinimapNodeClick={(_e, node) => {
+          // 点击 minimap 节点 → 选中 + fitView 跳到该节点
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const n = node as any;
+          selectNode(n.id);
+          setTimeout(() => {
+            fitView({
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              nodes: [{ id: n.id, position: n.position, width: n.measured?.width ?? n.style?.width ?? 300, height: n.measured?.height ?? n.style?.height ?? 169 }] as any,
+              duration: 400,
+              padding: 0.2,
+            });
+          }, 50);
         }}
         onNodeClick={onNodeClick}
         onNodeMouseEnter={(_, n) => {
@@ -372,7 +387,7 @@ function FrameosCanvasInner() {
           size={1}
           color="#222222"
         />
-      </ReactFlow>
+      </ReactFlowAny>
 
       {/* 顶部浮动元素 */}
       <FrameosAppHeader />
