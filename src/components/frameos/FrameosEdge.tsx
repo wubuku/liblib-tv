@@ -239,50 +239,6 @@ export function FrameosEdge({
               />
             </svg>
           </button>
-
-          {/* 边颜色选择器 - 3 种 (default/generating/error) */}
-          <div
-            data-edge-color
-            className={cn(
-              "flex gap-1",
-              isActive
-                ? "opacity-100 pointer-events-auto"
-                : "opacity-0 pointer-events-none"
-            )}
-            style={{
-              position: "absolute",
-              transform: `translate(-50%, -50%) translate(${labelX - 80}px, ${labelY}px)`,
-              pointerEvents: "none",
-            }}
-          >
-            {(["default", "generating", "error"] as const).map((k) => (
-              <button
-                key={k}
-                type="button"
-                aria-label={`边颜色 ${k}`}
-                onClick={() => updateEdgeData(id, { kind: k })}
-                style={{
-                  width: 18,
-                  height: 18,
-                  borderRadius: 9,
-                  border: kind === k ? "2px solid #fff" : "1px solid rgba(255,255,255,0.2)",
-                  background:
-                    k === "default" ? "rgba(59,130,246,0.6)" :
-                    k === "generating" ? "rgba(34,197,94,0.6)" :
-                    "rgba(239,68,68,0.6)",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "transform 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.15)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              />
-            ))}
-          </div>
         </div>
       </EdgeLabelRenderer>
     </>
