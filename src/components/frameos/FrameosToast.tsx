@@ -26,6 +26,17 @@ export function showToast(
   }, 3000);
 }
 
+// 全局事件: 允许跨组件触发 toast
+if (typeof window !== "undefined" && !(window as any).__frameosToastListenerInstalled) {
+  window.addEventListener("frameos-toast", (e: Event) => {
+    const detail = (e as CustomEvent).detail;
+    if (detail?.message) {
+      showToast(detail.message, detail.variant);
+    }
+  });
+  (window as any).__frameosToastListenerInstalled = true;
+}
+
 export function FrameosToast() {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
