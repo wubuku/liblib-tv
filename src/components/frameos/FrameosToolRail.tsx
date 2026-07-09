@@ -198,10 +198,34 @@ export function FrameosToolRail() {
         <RailButton
           label="从素材库选择"
           icon={<FolderImageIcon size={18} />}
+          onClick={() => {
+            const btn = document.getElementById("frameos-material-library-trigger");
+            if (btn) (btn as HTMLButtonElement).click();
+          }}
         />
         <RailButton
           label="本地上传"
           icon={<UploadCloudIcon size={18} />}
+          onClick={() => {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*,video/*";
+            input.multiple = true;
+            input.onchange = () => {
+              for (let i = 0; i < input.files!.length; i++) {
+                const file = input.files![i];
+                const type = file.type.startsWith("image/")
+                  ? "image"
+                  : file.type.startsWith("video/")
+                  ? "video"
+                  : null;
+                if (type) {
+                  useFrameosStore.getState().addNode(type);
+                }
+              }
+            };
+            input.click();
+          }}
         />
         <Divider />
         <RailButton

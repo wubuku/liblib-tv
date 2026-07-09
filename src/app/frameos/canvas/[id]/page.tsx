@@ -33,9 +33,9 @@ import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
 import { FrameosBreadcrumb } from "@/components/frameos/FrameosBreadcrumb";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
-import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
+import { FrameosMaterialLibrary } from "@/components/frameos/FrameosMaterialLibrary";
 import { FrameosSidePanel } from "@/components/frameos/FrameosSidePanel";
 import { FrameosConfirmDialog } from "@/components/frameos/FrameosConfirmDialog";
 import {
@@ -434,7 +434,6 @@ function FrameosCanvasInner() {
       <FrameosNodeEditPanel />
 
       {/* 选中节点的浮动工具条 (跟随节点位置 + 画布缩放) */}
-      <FrameosNodeToolbar />
 
       {/* 底部 prompt */}
       <FrameosPromptBar />
@@ -461,6 +460,9 @@ function FrameosCanvasInner() {
 
       {/* 调试模式开关 */}
       <FrameosDebugToggle />
+
+      {/* 素材库面板 (从 FrameosToolRail 触发) */}
+      <FrameosMaterialLibrary />
 
       {/* 侧边面板 (展开菜单按钮控制) */}
       <FrameosSidePanel />

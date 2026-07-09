@@ -11,6 +11,7 @@ import {
   ErrorWarningIcon,
 } from "../icons";
 import type { FrameosNode } from "@/types/frameos";
+import { useFrameosStore } from "@/store/frameosStore";
 
 export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>) {
   const { title, imageUrl, reviewFailed } = data;
@@ -199,10 +200,18 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
             className="node-content-replace"
             onClick={(e) => {
               e.stopPropagation();
-              // 触发文件选择
               const input = document.createElement("input");
               input.type = "file";
               input.accept = "video/*,image/*";
+              input.onchange = () => {
+                const file = input.files?.[0];
+                if (!file) return;
+                const url = URL.createObjectURL(file);
+                useFrameosStore.getState().updateNodeData(id, {
+                  imageUrl: url,
+                  ...(file.type.startsWith("video/") ? {} : { reviewFailed: false }),
+                });
+              };
               input.click();
             }}
             style={{
