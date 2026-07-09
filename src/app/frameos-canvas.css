@@ -283,3 +283,26 @@
   width: 18px !important;
   height: 18px !important;
 }
+
+/* 全局按钮 :active 按下状态 */
+.frameos-canvas button:not(:disabled):active,
+.frameos-canvas [role="button"]:not(:disabled):active {
+  transform: scale(0.95);
+  filter: brightness(0.85);
+  transition: transform 0.05s, filter 0.05s;
+}
+.frameos-canvas button:not(:disabled) {
+  transition: transform 0.15s, filter 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* 通用 :active 状态 (仅对纯 icon button, 不影响 inline-style 的复杂按钮) */
+.frameos-canvas > main button,
+.frameos-canvas [class*="dock"] button,
+.frameos-canvas [class*="header"] button {
+  transition: background 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s, transform 0.1s;
+}
+.frameos-canvas > main button:not(:disabled):active,
+.frameos-canvas [class*="dock"] button:not(:disabled):active,
+.frameos-canvas [class*="header"] button:not(:disabled):active {
+  transform: scale(0.92);
+}
