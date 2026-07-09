@@ -73,8 +73,7 @@ function FrameosCanvasInner() {
   const redo = useFrameosStore((s) => s.redo);
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
   const { x: panX, y: panY, zoom } = useViewport();
-  const { zoomIn, zoomOut, fitView, setViewport, getViewport } = useReactFlow();
-  const rf = useReactFlow();
+  const { zoomIn, zoomOut, fitView } = useReactFlow();
   const [isConnecting, setIsConnecting] = useState(false);
   const [hoveredTargetId, setHoveredTargetId] = useState<string | null>(null);
 
@@ -129,35 +128,6 @@ function FrameosCanvasInner() {
   const onPaneClick = useCallback(() => {
     selectNode(null);
   }, [selectNode]);
-
-  // 拖动节点到 viewport 边缘时, 自动 pan 画布
-  useEffect(() => {
-    let raf = 0;
-    const tick = () => {
-      const pane = document.querySelector(".react-flow__pane") as HTMLElement | null;
-      if (pane && (pane as any).__draggingNodeId) {
-        const rect = pane.getBoundingClientRect();
-        // 鼠标位置 (用最近 mousemove 记录)
-        const mouse = (window as any).__lastMousePos || { x: 0, y: 0 };
-        const EDGE = 60; // 离边缘 60px 触发 pan
-        const SPEED = 8; // 每次 pan 像素
-        const vp = useFrameosStore.getState();
-        const { setViewport, getViewport } = rf;
-        const cur = getViewport();
-        let dx = 0, dy = 0;
-        if (mouse.x < rect.left + EDGE) dx = -SPEED;
-        if (mouse.x > rect.right - EDGE) dx = SPEED;
-        if (mouse.y < rect.top + EDGE) dy = -SPEED;
-        if (mouse.y > rect.bottom - EDGE) dy = SPEED;
-        if (dx || dy) {
-          setViewport({ x: cur.x + dx / cur.zoom, y: cur.y + dy / cur.zoom, zoom: cur.zoom }, { duration: 0 });
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
 
   // 监听 DeletableEdge 的删除事件
   useEffect(() => {
