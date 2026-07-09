@@ -1,14 +1,14 @@
 "use client";
 
 import { useFrameosStore } from "@/store/frameosStore";
-import { useViewport, useReactFlow } from "@xyflow/react";
+import { useReactFlow } from "@xyflow/react";
 import { useEffect, useState } from "react";
 
 /**
  * FrameOS 节点对齐辅助线
- * - 拖节点时检测该节点与其他节点中心点
- * - 当 x 或 y 与其他节点中心/边 < 8px (画布坐标系) 时显示蓝色虚线
- * - 颜色 rgba(59,130,246,0.6) 蓝色
+ * - 通过 rAF tick 监听 xyflow 内部 nodes 的 internals.dragging 状态
+ * - 当被拖动节点与其他节点中心/边 < 8px (画布坐标系) 时显示蓝色虚线
+ * - 与原站 frameos.cn 拖动时显示对齐线一致
  */
 const SNAP_THRESHOLD = 8;
 
@@ -19,34 +19,25 @@ interface Guide {
 
 export function FrameosAlignmentGuides() {
   const nodes = useFrameosStore((s) => s.nodes);
-  const { x: panX, y: panY, zoom } = useViewport();
-  const rf = useReactFlow();
   const [guides, setGuides] = useState<Guide[]>([]);
+  const rf = useReactFlow();
 
   useEffect(() => {
     let raf = 0;
-    let prevDraggingIds = "";
     const tick = () => {
-      // 拿到 xyflow 内部 nodes (含 internals.dragging)
-      const internalNodes = rf.getNodes() as Array<{
+      const internal = rf.getNodes() as Array<{
         id: string;
         internals?: { dragging?: boolean };
       }>;
       const draggingIds: string[] = [];
-      for (const n of internalNodes) {
+      for (const n of internal) {
         if (n.internals?.dragging) draggingIds.push(n.id);
       }
-      const draggingKey = draggingIds.sort().join(",");
-      // 没人在拖 → 清空 guides (避免重叠 trigger)
       if (draggingIds.length === 0) {
-        if (prevDraggingIds !== "") {
-          prevDraggingIds = "";
-          setGuides([]);
-        }
+        setGuides((prev) => (prev.length === 0 ? prev : []));
         raf = requestAnimationFrame(tick);
         return;
       }
-      prevDraggingIds = draggingKey;
       const newGuides: Guide[] = [];
       for (const dragged of nodes) {
         if (!draggingIds.includes(dragged.id)) continue;
@@ -68,7 +59,6 @@ export function FrameosAlignmentGuides() {
           const oRight = other.position.x + ow;
           const oTop = other.position.y;
           const oBottom = other.position.y + oh;
-          // 水平辅助线: 中心, top, bottom 任一 y 匹配
           for (const yc of [draggedCy, draggedTop, draggedBottom]) {
             for (const oc of [oCy, oTop, oBottom]) {
               if (Math.abs(yc - oc) < SNAP_THRESHOLD) {
@@ -76,7 +66,6 @@ export function FrameosAlignmentGuides() {
               }
             }
           }
-          // 垂直辅助线: 中心, left, right 任一 x 匹配
           for (const xc of [draggedCx, draggedLeft, draggedRight]) {
             for (const oc of [oCx, oLeft, oRight]) {
               if (Math.abs(xc - oc) < SNAP_THRESHOLD) {
@@ -97,7 +86,6 @@ export function FrameosAlignmentGuides() {
     <>
       {guides.map((g, i) => {
         if (g.orientation === "horizontal") {
-          const top = g.position * zoom + panY;
           return (
             <div
               key={`h-${i}-${g.position}`}
@@ -105,7 +93,7 @@ export function FrameosAlignmentGuides() {
                 position: "fixed",
                 left: 0,
                 right: 0,
-                top,
+                top: g.position,
                 height: 0,
                 borderTop: "1px dashed rgba(59,130,246,0.7)",
                 pointerEvents: "none",
@@ -114,7 +102,6 @@ export function FrameosAlignmentGuides() {
             />
           );
         } else {
-          const left = g.position * zoom + panX;
           return (
             <div
               key={`v-${i}-${g.position}`}
@@ -122,7 +109,7 @@ export function FrameosAlignmentGuides() {
                 position: "fixed",
                 top: 0,
                 bottom: 0,
-                left,
+                left: g.position,
                 width: 0,
                 borderLeft: "1px dashed rgba(59,130,246,0.7)",
                 pointerEvents: "none",

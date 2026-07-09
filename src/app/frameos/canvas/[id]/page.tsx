@@ -36,6 +36,7 @@ import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel"
 import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
+import { FrameosSidePanel } from "@/components/frameos/FrameosSidePanel";
 import { FrameosConfirmDialog } from "@/components/frameos/FrameosConfirmDialog";
 import {
   FrameosContextMenu,
@@ -460,6 +461,9 @@ function FrameosCanvasInner() {
 
       {/* 调试模式开关 */}
       <FrameosDebugToggle />
+
+      {/* 侧边面板 (展开菜单按钮控制) */}
+      <FrameosSidePanel />
 
       {/* 历史记录面板 */}
       <FrameosHistoryPanel />

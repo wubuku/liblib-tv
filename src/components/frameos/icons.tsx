@@ -30,6 +30,14 @@ export function ArrowLeftIcon({ size = 16, className, color }: IconProps) {
   );
 }
 
+export function ArrowRightIcon({ size = 16, className, color }: IconProps) {
+  return (
+    <svg {...baseProps(size, color, className)}>
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  );
+}
+
 export function ArrowDownIcon({ size = 14, className, color }: IconProps) {
   return (
     <svg {...baseProps(size, color, className)}>
