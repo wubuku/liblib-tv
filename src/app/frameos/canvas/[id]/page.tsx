@@ -426,6 +426,7 @@ function FrameosCanvasInner() {
         panOnDrag={[1, 2]}
         selectionOnDrag
         selectionMode={SelectionMode.Partial}
+        multiSelectionKeyCode={["Shift", "Meta", "Control"]}
         nodesDraggable
         nodesConnectable
         elementsSelectable
