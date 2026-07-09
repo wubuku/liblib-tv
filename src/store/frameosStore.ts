@@ -26,7 +26,16 @@ interface Generation {
   prompt: string;
 }
 
+interface PendingConfirm {
+  kind: "node" | "edge";
+  id: string;
+  name: string;
+}
+
 interface FrameosCanvasState {
+  // 待确认操作 (删除节点/边时弹窗)
+  pendingConfirm: PendingConfirm | null;
+
   // 画布名（顶部 breadcrumb 显示）
   breadcrumb: { project: string; scene: string; canvas: string };
 
@@ -108,6 +117,7 @@ interface FrameosCanvasState {
   toggleHelp: () => void;
   closeHelp: () => void;
   toggleDebugMode: () => void;
+  requestConfirm: (c: PendingConfirm | null) => void;
 
   startGeneration: (opts: {
     prompt: string;
@@ -287,6 +297,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isPromptFullscreen: false,
   isHelpOpen: false,
   isDebugMode: false,
+  pendingConfirm: null,
   past: [],
   future: [],
   canvasData: MOCK_CANVASES,
@@ -494,6 +505,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   closeHelp: () => set({ isHelpOpen: false }),
 
   toggleDebugMode: () => set((state) => ({ isDebugMode: !state.isDebugMode })),
+
+  requestConfirm: (c: PendingConfirm | null) => set({ pendingConfirm: c }),
 
   startGeneration: (opts) => {
     const id = `gen-${Date.now()}`;

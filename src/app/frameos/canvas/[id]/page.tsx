@@ -34,6 +34,7 @@ import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel"
 import { FrameosNodeToolbar } from "@/components/frameos/FrameosNodeToolbar";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
+import { FrameosConfirmDialog } from "@/components/frameos/FrameosConfirmDialog";
 import {
   FrameosContextMenu,
   openContextMenu,
@@ -255,12 +256,13 @@ function FrameosCanvasInner() {
         return;
       }
 
-      // Delete / Backspace - 删除
+      // Delete / Backspace - 弹确认对话框
       if ((e.key === "Delete" || e.key === "Backspace") && state.selectedNodeId) {
         e.preventDefault();
         const node = state.nodes.find((n) => n.id === state.selectedNodeId);
-        removeNode(state.selectedNodeId);
-        if (node) showToast(`已删除「${node.data.title}」`, "warning");
+        if (node) {
+          state.requestConfirm({ kind: "node", id: node.id, name: node.data.title as string });
+        }
         return;
       }
 
@@ -310,8 +312,7 @@ function FrameosCanvasInner() {
             danger: true,
             shortcut: "Del",
             onClick: () => {
-              removeNode(node.id);
-              showToast(`已删除「${n.data.title}」`, "warning");
+              useFrameosStore.getState().requestConfirm({ kind: "node", id: node.id, name: n.data.title as string });
             },
           },
         ],
@@ -481,6 +482,9 @@ function FrameosCanvasInner() {
       {/* 帮助面板 */}
       <FrameosHelpPanel />
 
+      {/* 确认对话框 (删除节点/边) */}
+      <FrameosConfirmDialogShell />
+
       {/* 调试模式开关 */}
       <FrameosDebugToggle />
 
@@ -502,6 +506,50 @@ function FrameosCanvasInner() {
       {/* 导入/导出按钮 */}
       <FrameosImportExport />
     </div>
+  );
+}
+
+function FrameosConfirmDialogShell() {
+  const pendingConfirm = useFrameosStore((s) => s.pendingConfirm);
+  const requestConfirm = useFrameosStore((s) => s.requestConfirm);
+  const removeNode = useFrameosStore((s) => s.removeNode);
+  const removeEdge = useFrameosStore((s) => s.removeEdge);
+
+  if (!pendingConfirm) return null;
+
+  const handleConfirm = () => {
+    if (pendingConfirm.kind === "node") {
+      removeNode(pendingConfirm.id);
+      window.dispatchEvent(
+        new CustomEvent("frameos-toast", {
+          detail: { message: `已删除「${pendingConfirm.name}」`, variant: "warning" },
+        })
+      );
+    } else {
+      removeEdge(pendingConfirm.id);
+      window.dispatchEvent(
+        new CustomEvent("frameos-toast", {
+          detail: { message: "已删除连线", variant: "warning" },
+        })
+      );
+    }
+    requestConfirm(null);
+  };
+
+  return (
+    <FrameosConfirmDialog
+      open={!!pendingConfirm}
+      title={pendingConfirm.kind === "node" ? "删除节点" : "删除连线"}
+      message={
+        pendingConfirm.kind === "node"
+          ? `确认删除「${pendingConfirm.name}」？此操作可通过 Ctrl+Z 撤销。`
+          : "确认删除这条连线？此操作可通过 Ctrl+Z 撤销。"
+      }
+      confirmLabel="删除"
+      danger
+      onConfirm={handleConfirm}
+      onCancel={() => requestConfirm(null)}
+    />
   );
 }
 
