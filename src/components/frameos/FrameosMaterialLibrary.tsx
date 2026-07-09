@@ -37,35 +37,6 @@ export function FrameosMaterialLibrary() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="打开素材库"
-        title="从素材库选择"
-        style={{
-          position: "absolute",
-          top: 50,
-          left: 50,
-          width: 40,
-          height: 40,
-          borderRadius: 8,
-          background: "rgba(20,20,20,0.9)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(96,165,250,0.4)",
-          color: "#60A5FA",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 11,
-          fontWeight: 500,
-          cursor: "pointer",
-          zIndex: 100,
-          boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-        }}
-      >
-        素材库
-      </button>
-
       {open && (
         <>
           <div
