@@ -103,7 +103,7 @@ export function FrameosEdge({
           ...style,
           stroke: isActive ? colors.active : colors.stroke,
           strokeWidth: isActive ? 3 : 2,
-          strokeDasharray: isActive ? "none" : "7,5",
+          strokeDasharray: isActive ? "8 4" : "7 5",
           transition: "stroke 200ms, stroke-width 200ms, stroke-dasharray 200ms",
           pointerEvents: "none",
         }}
