@@ -271,6 +271,15 @@ export function ScissorsIcon({ size = 14, className, color }: IconProps) {
   );
 }
 
+export function SearchIcon({ size = 16, className, color }: IconProps) {
+  return (
+    <svg {...baseProps(size, color, className)}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="M21 21l-4.3-4.3" />
+    </svg>
+  );
+}
+
 export function HistoryIcon({ size = 16, className, color }: IconProps) {
   return (
     <svg
