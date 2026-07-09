@@ -153,8 +153,16 @@
   border-color: rgba(96, 165, 250, 0.95) !important;
 }
 
-/* ---- 边 (基色 + 选中/hover 加重, 流动由下方 edge-flow 规则管) ---- */
-/* (颜色与 FrameosEdge inline style 协调: 默认灰白) */
+/* ---- 边 ---- */
+.frameos-canvas .react-flow__edge-path {
+  stroke: #86909c;
+  stroke-width: 2;
+}
+.frameos-canvas .react-flow__edge.selected .react-flow__edge-path,
+.frameos-canvas .react-flow__edge:hover .react-flow__edge-path {
+  stroke: #c0c8d0;
+  stroke-width: 4;
+}
 
 /* ---- XYFlow 背景透明，避免覆盖深色 ---- */
 .frameos-canvas .react-flow__background {
@@ -213,20 +221,6 @@
   from { stroke-dashoffset: 0; }
   to { stroke-dashoffset: -208; }  /* 8 + 200 完整周期 */
 }
-/* 边流动动画: 虚线沿 path 方向持续移动 */
-@keyframes frameos-edge-flow-anim {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: -24; }
-}
-.frameos-canvas .react-flow__edge-path {
-  animation: frameos-edge-flow-anim 1.5s linear infinite;
-}
-.frameos-canvas .react-flow__edge.selected .react-flow__edge-path,
-.frameos-canvas .react-flow__edge:hover .react-flow__edge-path {
-  /* 选中时停动画 (与原站一致: 选中边停止流动) */
-  animation: none;
-}
-
 @keyframes frameos-gen-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.8); }
