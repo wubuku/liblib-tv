@@ -26,6 +26,7 @@ import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosHistoryDock } from "@/components/frameos/FrameosHistoryDock";
+import { FrameosHistoryPanel } from "@/components/frameos/FrameosHistoryPanel";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
 import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
@@ -488,6 +489,9 @@ function FrameosCanvasInner() {
 
       {/* 调试模式开关 */}
       <FrameosDebugToggle />
+
+      {/* 历史记录面板 */}
+      <FrameosHistoryPanel />
 
       {/* 全局右键菜单 */}
       <FrameosContextMenu />

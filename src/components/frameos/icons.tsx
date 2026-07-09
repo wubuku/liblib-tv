@@ -271,6 +271,27 @@ export function ScissorsIcon({ size = 14, className, color }: IconProps) {
   );
 }
 
+export function HistoryIcon({ size = 16, className, color }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color ?? "currentColor"}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+      <path d="M3 3v5h5" />
+      <path d="M12 7v5l3 3" />
+    </svg>
+  );
+}
+
 export function CloseIcon({ size = 14, className, color }: IconProps) {
   return (
     <svg
