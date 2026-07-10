@@ -1,19 +1,37 @@
 "use client";
 
-import { useFrameosStore } from "@/store/frameosStore";
 import { useEffect, useState } from "react";
-import { CloseIcon } from "./icons";
+import { ArrowLeftIcon } from "./icons";
 
 /**
- * FrameOS 侧边面板 — 由 AppHeader 的"展开菜单" 按钮 (dispatchEvent frameos:toggle-side) 控制
- * 显示项目/场景/画布列表. 默认收起, canvas 占满整个视口.
+ * FrameOS 产品级左侧导航 (点击 AppHeader 的"展开菜单"按钮 toggle)
+ * 与原站 frameos.cn 一致: 全屏左侧栏, 列出"我的作品/任务/报表/..."
+ * 等模块导航项. 复刻真实行为而非臆造内容.
  */
+
+interface NavItem {
+  label: string;
+  badge?: string; // 例如 "HOT" 角标
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { label: "我的作品" },
+  { label: "我的任务" },
+  { label: "我的报表" },
+  { label: "编剧工作台" },
+  { label: "工具箱" },
+  { label: "Seedance 2.0", badge: "HOT" },
+  { label: "无限画布" },
+  { label: "资产库" },
+  { label: "素材库" },
+  { label: "团队管理" },
+  { label: "服务记录" },
+  { label: "问题反馈" },
+];
+
 export function FrameosSidePanel() {
   const [open, setOpen] = useState(false);
-  const breadcrumb = useFrameosStore((s) => s.breadcrumb);
-  const setBreadcrumb = useFrameosStore((s) => s.setBreadcrumb);
-  const canvasData = useFrameosStore((s) => s.canvasData);
-  const nodes = useFrameosStore((s) => s.nodes);
+  const [active, setActive] = useState("我的作品");
 
   useEffect(() => {
     const toggle = () => setOpen((o) => !o);
@@ -21,57 +39,62 @@ export function FrameosSidePanel() {
     return () => window.removeEventListener("frameos:toggle-side", toggle);
   }, []);
 
-  const currentKey = `${breadcrumb.project}/${breadcrumb.scene}/${breadcrumb.canvas}`;
-
   if (!open) return null;
 
   return (
     <>
+      {/* 仅关闭面板用的遮罩 (不拦截动画外的视觉) */}
       <div
         style={{
           position: "fixed",
           inset: 0,
-          background: "rgba(0,0,0,0.4)",
           zIndex: 2680,
+          pointerEvents: "none",
         }}
-        onClick={() => setOpen(false)}
       />
-      <div
+      <aside
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           bottom: 0,
-          width: 280,
-          background: "#1C1C1C",
-          borderRight: "1px solid rgba(255,255,255,0.12)",
+          width: 220,
+          background: "rgba(16,16,16,0.92)",
+          backdropFilter: "blur(16px)",
+          borderRight: "1px solid rgba(255,255,255,0.06)",
           zIndex: 2690,
           display: "flex",
           flexDirection: "column",
           animation: "frameos-slide-in-left 0.2s ease-out",
+          paddingTop: 12,
         }}
+        aria-label="产品导航"
       >
+        {/* 顶部收起按钮 */}
         <div
           style={{
+            padding: "4px 12px 12px",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "12px 16px",
-            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            justifyContent: "flex-end",
           }}
         >
-          <h2 style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 600, margin: 0 }}>
-            项目
-          </h2>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            aria-label="关闭侧栏"
+            aria-label="收起菜单"
+            title="收起菜单"
             style={{
-              width: 24, height: 24, borderRadius: 6, border: "none",
-              background: "transparent", color: "#A3A3A3",
-              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 28,
+              height: 28,
+              borderRadius: 6,
+              background: "transparent",
+              border: "none",
+              color: "#C2C2C2",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
               cursor: "pointer",
+              transition: "background 0.15s",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255,255,255,0.05)";
@@ -79,69 +102,83 @@ export function FrameosSidePanel() {
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "#A3A3A3";
+              e.currentTarget.style.color = "#C2C2C2";
             }}
           >
-            <CloseIcon size={14} />
+            <ArrowLeftIcon size={14} />
           </button>
         </div>
-        <div style={{ flex: 1, overflowY: "auto" }}>
-          {Object.entries(canvasData).map(([key, data]) => {
-            const [project, scene, canvas] = key.split("/");
-            const isActive = key === currentKey;
+
+        {/* 主体导航 */}
+        <nav
+          style={{
+            flex: 1,
+            overflowY: "auto",
+            padding: "4px 8px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+          aria-label="主导航"
+        >
+          {NAV_ITEMS.map((item) => {
+            const isActive = item.label === active;
             return (
-              <div
-                key={key}
-                role="button"
-                tabIndex={0}
-                onClick={() => {
-                  setBreadcrumb({ project, scene, canvas });
-                  setOpen(false);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    setBreadcrumb({ project, scene, canvas });
-                    setOpen(false);
-                  }
-                }}
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => setActive(item.label)}
+                aria-current={isActive ? "page" : undefined}
                 style={{
-                  padding: "10px 16px",
-                  borderBottom: "1px solid rgba(255,255,255,0.04)",
-                  background: isActive ? "rgba(59,130,246,0.12)" : "transparent",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 8,
+                  padding: "8px 12px",
+                  borderRadius: 8,
+                  background: isActive ? "rgba(59,130,246,0.16)" : "transparent",
+                  color: isActive ? "#60A5FA" : "#C2C2C2",
+                  border: "none",
+                  fontSize: 13,
                   cursor: "pointer",
-                  transition: "background 0.15s",
+                  textAlign: "left",
+                  width: "100%",
+                  transition: "background 0.15s, color 0.15s",
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                  if (!isActive) {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                    e.currentTarget.style.color = "#FFFFFF";
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.background = "transparent";
+                  if (!isActive) {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#C2C2C2";
+                  }
                 }}
               >
-                <div style={{ color: isActive ? "#FFFFFF" : "#C2C2C2", fontSize: 13, fontWeight: 500 }}>
-                  {project}
-                </div>
-                <div style={{ color: "#A3A3A3", fontSize: 12, marginTop: 2 }}>
-                  {scene} / {canvas}
-                </div>
-                <div style={{ marginTop: 6, color: "#7A7A7A", fontSize: 11 }}>
-                  {data.nodes.length} 节点 · {data.edges.length} 边
-                </div>
-              </div>
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span
+                    style={{
+                      padding: "2px 6px",
+                      borderRadius: 4,
+                      background: "rgba(245,158,11,0.18)",
+                      color: "#F59E0B",
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
             );
           })}
-        </div>
-        <div
-          style={{
-            padding: "12px 16px",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            color: "#7A7A7A",
-            fontSize: 11,
-          }}
-        >
-          {nodes.length} 当前节点 · 共 {Object.keys(canvasData).length} 个画布
-        </div>
-      </div>
+        </nav>
+      </aside>
     </>
   );
 }
