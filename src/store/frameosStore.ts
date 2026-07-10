@@ -76,9 +76,6 @@ interface FrameosCanvasState {
   // 模型下拉
   selectedModel: string;
 
-  // PromptBar 全屏编辑
-  isPromptFullscreen: boolean;
-
   // 帮助面板
   isHelpOpen: boolean;
 
@@ -110,8 +107,6 @@ interface FrameosCanvasState {
   closeOrganizeMenu: () => void;
   setOrganizeMode: (mode: FrameosCanvasState["organizeMode"]) => void;
   setSelectedModel: (model: string) => void;
-  togglePromptFullscreen: () => void;
-  setPromptFullscreen: (v: boolean) => void;
   undo: () => void;
   redo: () => void;
   toggleHelp: () => void;
@@ -294,7 +289,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isOrganizeMenuOpen: false,
   organizeMode: "grid",
   selectedModel: "帧界 O2",
-  isPromptFullscreen: false,
   isHelpOpen: false,
   isDebugMode: false,
   pendingConfirm: null,
@@ -471,10 +465,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set({ organizeMode: mode, isOrganizeMenuOpen: false }),
 
   setSelectedModel: (model) => set({ selectedModel: model }),
-
-  togglePromptFullscreen: () =>
-    set((state) => ({ isPromptFullscreen: !state.isPromptFullscreen })),
-  setPromptFullscreen: (v) => set({ isPromptFullscreen: v }),
 
   undo: () => {
     const { past, nodes, edges, future } = get();

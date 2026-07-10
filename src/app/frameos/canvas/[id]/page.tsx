@@ -27,7 +27,6 @@ import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
 import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
-import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosMaterialLibrary } from "@/components/frameos/FrameosMaterialLibrary";
@@ -64,7 +63,6 @@ function FrameosCanvasInner() {
   const duplicateNode = useFrameosStore((s) => s.duplicateNode);
   const selectNode = useFrameosStore((s) => s.selectNode);
   const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
-  const isPromptFullscreen = useFrameosStore((s) => s.isPromptFullscreen);
   const undo = useFrameosStore((s) => s.undo);
   const redo = useFrameosStore((s) => s.redo);
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
@@ -150,10 +148,6 @@ function FrameosCanvasInner() {
       if (e.key === "Escape") {
         if (state.isHelpOpen) {
           state.closeHelp();
-          return;
-        }
-        if (state.isPromptFullscreen) {
-          state.setPromptFullscreen(false);
           return;
         }
         if (state.isAddNodeMenuOpen) {
@@ -467,23 +461,7 @@ function FrameosCanvasInner() {
 
       {/* 选中节点的浮动工具条 (跟随节点位置 + 画布缩放) */}
 
-      {/* 底部 prompt */}
-      <FrameosPromptBar />
-
-      {/* 全屏编辑时的背景遮罩 */}
-      {isPromptFullscreen && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(2px)",
-            zIndex: 2999,
-          }}
-          onClick={() => useFrameosStore.getState().setPromptFullscreen(false)}
-        />
-      )}
-
+      {/* 节点拖动时的对齐辅助线 (原 470 行被删除, 改放在 500 行) */}
       {/* 帮助面板 */}
       <FrameosHelpPanel />
 
