@@ -43,7 +43,6 @@ import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
 import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
 import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
-import { FrameosImportExport } from "@/components/frameos/FrameosImportExport";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -486,8 +485,6 @@ function FrameosCanvasInner() {
       {/* 节点拖动时的对齐辅助线 */}
       <FrameosAlignmentGuides />
 
-      {/* 导入/导出按钮 */}
-      <FrameosImportExport />
     </div>
   );
 }
