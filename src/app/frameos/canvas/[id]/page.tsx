@@ -30,7 +30,6 @@ import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
-import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
 import { FrameosMaterialLibrary } from "@/components/frameos/FrameosMaterialLibrary";
 import { FrameosSidePanel } from "@/components/frameos/FrameosSidePanel";
 import { FrameosConfirmDialog } from "@/components/frameos/FrameosConfirmDialog";
@@ -455,9 +454,6 @@ function FrameosCanvasInner() {
 
       {/* 确认对话框 (删除节点/边) */}
       <FrameosConfirmDialogShell />
-
-      {/* 调试模式开关 */}
-      <FrameosDebugToggle />
 
       {/* 素材库面板 (从 FrameosToolRail 触发) */}
       <FrameosMaterialLibrary />
