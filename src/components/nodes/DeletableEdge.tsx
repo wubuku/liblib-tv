@@ -109,7 +109,7 @@ export function DeletableEdge({
         </filter>
       </defs>
 
-      {/* Background base path - dimmed when active so the flow stands out */}
+      {/* Background base path - blue tinted dashed for always-on flow */}
       <BaseEdge
         id={id}
         path={edgePath}
@@ -117,9 +117,13 @@ export function DeletableEdge({
         interactionWidth={20}
         style={{
           ...style,
-          strokeWidth: isActive ? 4 : 2,
-          stroke: isActive ? "#c0c8d0" : "#86909c",
-          opacity: isActive ? 0.45 : 1,
+          strokeWidth: isActive ? 3 : 2,
+          stroke: "rgba(59, 130, 246, 0.42)",
+          strokeDasharray: "7 5",
+          animation: isActive
+            ? "frameos-edge-flow 0.6s linear infinite"
+            : "frameos-edge-flow 0.6s linear infinite",
+          opacity: isActive ? 0.7 : 1,
           transition: "stroke 200ms, stroke-width 200ms, opacity 200ms",
           pointerEvents: "none",
         }}
