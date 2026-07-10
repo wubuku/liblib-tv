@@ -140,6 +140,7 @@ export function FrameosAppHeader() {
         {/* 金币 + 积分 */}
         <div
           className="credits-wrap"
+          onClick={() => window.alert("余额详情 (mock)")}
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -148,6 +149,7 @@ export function FrameosAppHeader() {
             borderRadius: 8,
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.08)",
+            cursor: "pointer",
           }}
         >
           {/* 金币 */}
