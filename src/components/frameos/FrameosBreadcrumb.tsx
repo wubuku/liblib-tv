@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
-import { ArrowLeftIcon, ArrowDownIcon } from "./icons";
+import { ArrowDownIcon } from "./icons";
 
 const MOCK_PROJECTS = [
   { id: "p1", name: "默认作品", scenes: ["咖啡馆对峙", "海边告白", "办公室对话"] },
@@ -42,34 +42,6 @@ export function FrameosBreadcrumb() {
       }}
     >
       {/* 展开菜单 */}
-      <button
-        type="button"
-        aria-label="展开菜单"
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: 8,
-          border: "none",
-          background: "transparent",
-          color: "#C2C2C2",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          transition: "background 0.15s, color 0.15s",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-          e.currentTarget.style.color = "#FFFFFF";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "transparent";
-          e.currentTarget.style.color = "#C2C2C2";
-        }}
-      >
-        <ArrowLeftIcon size={16} />
-      </button>
-
       <Crumb
         label={breadcrumb.project}
         open={projectOpen}
