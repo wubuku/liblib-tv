@@ -174,7 +174,8 @@ export function FrameosNodeShell({
           {children}
         </div>
 
-        {/* resize handle - 右下角 (hover 节点时显示) */}
+        {/* resize handle - 右下角 18x18 (原站 frameos.cn 是透明区域, 靠 cursor 提示;
+            hover 节点时由 CSS .frameos-canvas .node-card-wrap:hover .resize-handle 显示) */}
         {showResizeHandle && (
           <div
             className="resize-handle"
@@ -189,8 +190,7 @@ export function FrameosNodeShell({
               cursor: "nwse-resize",
               opacity: 0,
               transition: "opacity 0.15s",
-              backgroundImage:
-                "linear-gradient(135deg, transparent 0%, transparent 50%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5) 55%, transparent 55%, transparent 65%, rgba(255,255,255,0.5) 65%, rgba(255,255,255,0.5) 70%, transparent 70%, transparent 80%, rgba(255,255,255,0.5) 80%, rgba(255,255,255,0.5) 85%, transparent 85%)",
+              background: "transparent",
               pointerEvents: "all",
             }}
           />
