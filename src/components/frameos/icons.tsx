@@ -64,6 +64,10 @@ export function ArrowGoForwardIcon({ size = 16, className, color }: IconProps) {
   );
 }
 
+// undo / redo (alias: 与 frameos.cn 头部使用一致)
+export const UndoIcon = ArrowGoBackIcon;
+export const RedoIcon = ArrowGoForwardIcon;
+
 export function AddLineIcon({ size = 16, className, color }: IconProps) {
   return (
     <svg {...baseProps(size, color, className)}>

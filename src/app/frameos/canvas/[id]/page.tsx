@@ -25,7 +25,6 @@ import { FrameosVideoNode } from "@/components/frameos/nodes/FrameosVideoNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
-import { FrameosHistoryDock } from "@/components/frameos/FrameosHistoryDock";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
 import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
@@ -406,7 +405,6 @@ function FrameosCanvasInner() {
 
       {/* 顶部浮动元素 */}
       <FrameosAppHeader />
-      <FrameosHistoryDock />
       <FrameosBreadcrumb />
 
       {/* 左侧浮动 rail */}
