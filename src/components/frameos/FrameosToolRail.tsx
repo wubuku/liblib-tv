@@ -43,34 +43,41 @@ function RailButton({ label, icon, primary, onClick, active }: RailButtonProps) 
       className={`rail-btn${primary ? " rail-btn--primary" : ""}${active ? " is-active" : ""}`}
       onClick={onClick}
       style={{
-        width: 36,
-        height: 36,
-        borderRadius: 9999,
+        // frameos.cn: primary 添加节点 36px 圆 + 蓝色渐变; 其他 32px 方角 (8px) + 透明
+        width: primary ? 36 : 32,
+        height: primary ? 36 : 32,
+        borderRadius: primary ? 9999 : 8,
         border: "none",
         background: active
-          ? "#3B82F6"
+          ? "rgba(59,130,246,0.16)"
           : primary
-          ? "linear-gradient(135deg, #2563EB, #1D4ED8)"
-          : "#1A1A1A",
+          ? "linear-gradient(135deg, rgb(37,99,235), rgb(29,78,216))"
+          : "transparent",
         boxShadow: active
           ? "0 0 0 3px rgba(59,130,246,0.3)"
           : primary
           ? "rgba(59,130,246,0.35) 0 2px 8px 0"
           : "none",
-        color: "#FFFFFF",
+        color: active ? "#60A5FA" : "#C2C2C2",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
-        transition: "background 0.15s, transform 0.15s, box-shadow 0.15s",
+        transition: "background 0.15s, transform 0.15s, box-shadow 0.15s, color 0.15s",
       }}
       onMouseEnter={(e) => {
-        if (!active && !primary) e.currentTarget.style.background = "#2A2A2A";
-        e.currentTarget.style.transform = "scale(1.05)";
+        if (!active) {
+          if (!primary) {
+            e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+            e.currentTarget.style.color = "#FFFFFF";
+          }
+        }
       }}
       onMouseLeave={(e) => {
-        if (!active && !primary) e.currentTarget.style.background = "#1A1A1A";
-        e.currentTarget.style.transform = "scale(1)";
+        if (!active && !primary) {
+          e.currentTarget.style.background = "transparent";
+          e.currentTarget.style.color = "#C2C2C2";
+        }
       }}
     >
       {icon}
@@ -127,15 +134,16 @@ export function FrameosToolRail() {
       <div
         className="tool-rail"
         style={{
+          // frameos.cn 工具栏无独立容器背景, 按钮各自独立浮动
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 10,
-          padding: 8,
-          background: "rgba(20,20,20,0.85)",
-          backdropFilter: "blur(12px)",
-          borderRadius: 12,
-          border: "1px solid rgba(255,255,255,0.06)",
+          gap: 8,
+          padding: 0,
+          background: "transparent",
+          backdropFilter: "none",
+          borderRadius: 0,
+          border: "none",
           pointerEvents: "auto",
         }}
       >
