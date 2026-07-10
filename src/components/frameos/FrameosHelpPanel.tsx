@@ -3,27 +3,65 @@
 import { useFrameosStore } from "@/store/frameosStore";
 import { CloseIcon } from "./icons";
 
-const SHORTCUTS = [
-  { keys: ["⌘", "Z"], desc: "撤销上一步" },
-  { keys: ["⌘", "⇧", "Z"], desc: "重做" },
-  { keys: ["⌘", "D"], desc: "复制选中节点" },
-  { keys: ["Delete"], desc: "删除选中节点" },
-  { keys: ["Esc"], desc: "取消选中 / 退出全屏编辑" },
-  { keys: ["?"], desc: "打开/关闭此帮助面板" },
-  { keys: ["+"], desc: "放大画布" },
-  { keys: ["-"], desc: "缩小画布" },
-  { keys: ["0"], desc: "适应画布" },
-  { keys: ["Space", "拖动"], desc: "平移画布" },
-];
+/**
+ * FrameOS 快捷键参考面板 (frameos.cn "?" 触发)
+ * - 4 个 section: 创作 / 缩放 / 移动画布 / 其他
+ * - 每行 label + key chips (kbd 风格)
+ */
 
-const ACTIONS = [
-  { title: "添加节点", desc: "点击左侧蓝色 + 按钮，选择文本/图片/视频类型" },
-  { title: "选中节点", desc: "点击节点卡片即可选中，节点显示连接端口和编辑面板" },
-  { title: "连接节点", desc: "从节点的右侧蓝色圆点拖动到另一节点的左侧端口" },
-  { title: "删除连线", desc: "hover 边线时出现剪刀按钮，点击删除" },
-  { title: "整理节点", desc: "点击左下角一键整理按钮，支持横向/纵向/网格三种模式" },
-  { title: "全屏编辑", desc: "选中节点后，点击 PromptBar 右上角全屏图标" },
-  { title: "替换素材", desc: "hover 图片/视频节点时显示上传图标，点击可替换内容" },
+interface Shortcut {
+  label: string;
+  keys: string[];
+}
+
+interface Section {
+  title: string;
+  rows: Shortcut[];
+}
+
+const SECTIONS: Section[] = [
+  {
+    title: "创作",
+    rows: [
+      { label: "复制", keys: ["⌘", "C"] },
+      { label: "剪切", keys: ["⌘", "X"] },
+      { label: "粘贴", keys: ["⌘", "V"] },
+      { label: "原地复制", keys: ["⌘", "D"] },
+      { label: "拖拽复制", keys: ["⌥"] },
+      { label: "全选", keys: ["⌘", "A"] },
+      { label: "保存", keys: ["⌘", "S"] },
+    ],
+  },
+  {
+    title: "缩放",
+    rows: [
+      { label: "放大", keys: ["⌘", "+"] },
+      { label: "缩小", keys: ["⌘", "−"] },
+      { label: "重置视图", keys: ["⌘", "0"] },
+      { label: "触控板", keys: [] },
+      { label: "鼠标滚轮", keys: ["⌘"] },
+    ],
+  },
+  {
+    title: "移动画布",
+    rows: [
+      { label: "空格拖动", keys: ["Space"] },
+      { label: "触控板", keys: [] },
+      { label: "鼠标", keys: [] },
+      { label: "滚轮", keys: [] },
+    ],
+  },
+  {
+    title: "其他",
+    rows: [
+      { label: "撤销", keys: ["⌘", "Z"] },
+      { label: "重做", keys: ["⌘", "⇧", "Z"] },
+      { label: "删除", keys: ["⌫"] },
+      { label: "小地图", keys: ["M"] },
+      { label: "帮助", keys: ["?"] },
+      { label: "取消选中", keys: ["Esc"] },
+    ],
+  },
 ];
 
 export function FrameosHelpPanel() {
@@ -37,8 +75,12 @@ export function FrameosHelpPanel() {
       <div
         style={{ position: "fixed", inset: 0, zIndex: 4000, background: "rgba(0,0,0,0.5)" }}
         onClick={closeHelp}
+        aria-hidden
       />
-      <div
+      <aside
+        role="dialog"
+        aria-label="快捷键参考"
+        className="frameos-shortcuts-panel"
         style={{
           position: "fixed",
           top: "50%",
@@ -52,10 +94,10 @@ export function FrameosHelpPanel() {
           borderRadius: 16,
           boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
           zIndex: 4001,
-          overflow: "hidden",
           display: "flex",
           flexDirection: "column",
           animation: "frameos-pop-in 0.2s ease-out",
+          overflow: "hidden",
         }}
       >
         {/* Header */}
@@ -68,26 +110,44 @@ export function FrameosHelpPanel() {
             borderBottom: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          <div>
-            <h2 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 600, margin: 0 }}>
-              快捷键 & 操作指南
-            </h2>
-            <p style={{ color: "#A3A3A3", fontSize: 12, margin: "4px 0 0" }}>
-              帮助你更快地上手帧界 FrameOS 画布
-            </p>
-          </div>
+          <h2
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              color: "#FFFFFF",
+              fontSize: 16,
+              fontWeight: 600,
+              margin: 0,
+            }}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#60A5FA"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="6" width="20" height="14" rx="2" />
+              <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h12" />
+            </svg>
+            快捷键
+          </h2>
           <button
             type="button"
-            aria-label="关闭帮助"
+            aria-label="关闭"
             onClick={closeHelp}
             style={{
-              width: 32,
-              height: 32,
-              borderRadius: 8,
+              width: 28,
+              height: 28,
+              borderRadius: 6,
               border: "none",
               background: "transparent",
               color: "#A3A3A3",
-              display: "flex",
+              display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
@@ -101,11 +161,11 @@ export function FrameosHelpPanel() {
               e.currentTarget.style.color = "#A3A3A3";
             }}
           >
-            <CloseIcon size={16} />
+            <CloseIcon size={14} />
           </button>
         </div>
 
-        {/* 内容 */}
+        {/* Body: 2-column grid 4 sections */}
         <div
           style={{
             flex: 1,
@@ -113,114 +173,116 @@ export function FrameosHelpPanel() {
             padding: "20px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 24,
+            gap: 20,
           }}
         >
-          {/* 键盘快捷键 */}
-          <section>
-            <h3
+          {SECTIONS.map((section) => (
+            <section
+              key={section.title}
               style={{
-                color: "#60A5FA",
-                fontSize: 12,
-                fontWeight: 600,
-                margin: "0 0 12px",
-                textTransform: "uppercase",
-                letterSpacing: 0.5,
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.04)",
+                borderRadius: 10,
+                padding: 12,
               }}
             >
-              键盘快捷键
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {SHORTCUTS.map((s, i) => (
-                <div
-                  key={i}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  marginBottom: 10,
+                }}
+              >
+                <span
+                  aria-hidden
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "8px 10px",
-                    background: "#0D0D0D",
+                    width: 22,
+                    height: 22,
                     borderRadius: 6,
-                    border: "1px solid rgba(255,255,255,0.04)",
+                    background: "rgba(59,130,246,0.18)",
+                    color: "#60A5FA",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 12,
                   }}
                 >
-                  <span style={{ color: "#E0E0E0", fontSize: 13 }}>{s.desc}</span>
-                  <div style={{ display: "flex", gap: 4 }}>
-                    {s.keys.map((k, j) => (
-                      <kbd
-                        key={j}
-                        style={{
-                          minWidth: 22,
-                          height: 22,
-                          padding: "0 6px",
-                          display: "inline-flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          background: "rgba(255,255,255,0.08)",
-                          border: "1px solid rgba(255,255,255,0.12)",
-                          borderBottom: "2px solid rgba(255,255,255,0.18)",
-                          borderRadius: 4,
-                          color: "#FFFFFF",
-                          fontSize: 11,
-                          fontFamily: "monospace",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {k}
-                      </kbd>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 操作指南 */}
-          <section>
-            <h3
-              style={{
-                color: "#60A5FA",
-                fontSize: 12,
-                fontWeight: 600,
-                margin: "0 0 12px",
-                textTransform: "uppercase",
-                letterSpacing: 0.5,
-              }}
-            >
-              操作指南
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {ACTIONS.map((a, i) => (
-                <div
-                  key={i}
+                  ✎
+                </span>
+                <span
                   style={{
-                    padding: "10px 12px",
-                    background: "#0D0D0D",
-                    borderRadius: 8,
-                    border: "1px solid rgba(255,255,255,0.04)",
+                    color: "#FFFFFF",
+                    fontSize: 13,
+                    fontWeight: 600,
                   }}
                 >
-                  <div style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 500 }}>{a.title}</div>
-                  <div style={{ color: "#A3A3A3", fontSize: 12, marginTop: 4 }}>{a.desc}</div>
-                </div>
-              ))}
-            </div>
-          </section>
+                  {section.title}
+                </span>
+              </div>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                }}
+              >
+                {section.rows.map((row) => (
+                  <li
+                    key={row.label}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                      padding: "5px 8px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <span style={{ color: "#C2C2C2", fontSize: 13 }}>{row.label}</span>
+                    <span
+                      aria-label={row.keys.join(" ")}
+                      style={{ display: "inline-flex", gap: 4 }}
+                    >
+                      {row.keys.length === 0 ? (
+                        <span style={{ color: "#5A5A5A", fontSize: 11 }}>—</span>
+                      ) : (
+                        row.keys.map((k, i) => (
+                          <kbd
+                            key={i}
+                            style={{
+                              minWidth: 22,
+                              height: 22,
+                              padding: "0 6px",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              background: "rgba(255,255,255,0.08)",
+                              border: "1px solid rgba(255,255,255,0.12)",
+                              borderBottom: "2px solid rgba(255,255,255,0.2)",
+                              borderRadius: 4,
+                              color: "#FFFFFF",
+                              fontSize: 11,
+                              fontFamily:
+                                "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {k}
+                          </kbd>
+                        ))
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </div>
-
-        {/* Footer */}
-        <div
-          style={{
-            padding: "12px 20px",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            color: "#7A7A7A",
-            fontSize: 12,
-            textAlign: "center",
-          }}
-        >
-          按 <kbd style={{ padding: "1px 6px", background: "rgba(255,255,255,0.08)", borderRadius: 3, fontFamily: "monospace" }}>Esc</kbd> 或点击空白处关闭
-        </div>
-      </div>
+      </aside>
     </>
   );
 }
