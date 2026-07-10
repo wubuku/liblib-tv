@@ -37,7 +37,6 @@ import {
   openContextMenu,
 } from "@/components/frameos/FrameosContextMenu";
 import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
-import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
 import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
 import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
 import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloatingToolbar";
@@ -519,9 +518,6 @@ function FrameosCanvasInner() {
 
       {/* Toast 通知 */}
       <FrameosToast />
-
-      {/* 节点 hover tooltip */}
-      <FrameosNodeTooltip />
 
       {/* 生成动画覆盖层 */}
       <FrameosGenerationOverlay />
