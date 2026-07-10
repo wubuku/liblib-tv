@@ -51,9 +51,6 @@ interface FrameosCanvasState {
   past: { nodes: FrameosNode[]; edges: Edge[] }[];
   future: { nodes: FrameosNode[]; edges: Edge[] }[];
 
-  // 缩放 (dock-bar 中间显示)
-  zoomPercent: number;
-
   // minimap 是否显示 (canvas-map-dock 第一个按钮的 is-active 切换)
   showMinimap: boolean;
 
@@ -97,7 +94,6 @@ interface FrameosCanvasState {
   removeNode: (id: string) => void;
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   duplicateNode: (id: string) => void;
-  setZoomPercent: (v: number) => void;
   toggleMinimap: () => void;
   setPromptValue: (v: string) => void;
   selectNode: (id: string | null) => void;
@@ -280,7 +276,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   breadcrumb: { project: "默认作品", scene: "咖啡馆对峙", canvas: "画布 1" },
   nodes: initialNodes,
   edges: initialEdges,
-  zoomPercent: 100,
   showMinimap: true,
   minimapPinActive: true,
   promptValue: "",
@@ -437,7 +432,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     }));
   },
 
-  setZoomPercent: (v) => set({ zoomPercent: v }),
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),
   setPromptValue: (v) => set({ promptValue: v }),

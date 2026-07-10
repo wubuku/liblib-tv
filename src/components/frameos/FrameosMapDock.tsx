@@ -81,8 +81,6 @@ export function FrameosMapDock() {
   const showMinimap = useFrameosStore((s) => s.showMinimap);
   const minimapPinActive = useFrameosStore((s) => s.minimapPinActive);
   const toggleMinimap = useFrameosStore((s) => s.toggleMinimap);
-  const zoomPercent = useFrameosStore((s) => s.zoomPercent);
-  const setZoomPercent = useFrameosStore((s) => s.setZoomPercent);
   const isOrganizeMenuOpen = useFrameosStore((s) => s.isOrganizeMenuOpen);
   const toggleOrganizeMenu = useFrameosStore((s) => s.toggleOrganizeMenu);
   const closeOrganizeMenu = useFrameosStore((s) => s.closeOrganizeMenu);
@@ -282,27 +280,25 @@ export function FrameosMapDock() {
           icon={<SubtractIcon size={16} />}
           onClick={() => {
             zoomOut({ duration: 200 });
-            setZoomPercent(Math.max(10, zoomPercent - 10));
           }}
         />
         <span
           className="dock-scale"
           style={{
-            color: "#C2C2C2",
+            color: "#A3A3A3",
             fontSize: 12,
             minWidth: 40,
             textAlign: "center",
             userSelect: "none",
           }}
         >
-          {zoomPercent}%
+          {Math.round(vpZoom * 100)}%
         </span>
         <DockBtn
           label="放大"
           icon={<AddLineIcon size={16} />}
           onClick={() => {
             zoomIn({ duration: 200 });
-            setZoomPercent(Math.min(200, zoomPercent + 10));
           }}
         />
         <DockBtn
@@ -310,7 +306,6 @@ export function FrameosMapDock() {
           icon={<FullscreenExitIcon size={16} />}
           onClick={() => {
             fitView({ duration: 200, padding: 0.1 });
-            setZoomPercent(100);
           }}
         />
         <Divider />
