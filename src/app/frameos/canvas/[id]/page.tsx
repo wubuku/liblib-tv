@@ -193,6 +193,42 @@ function FrameosCanvasInner() {
         return;
       }
 
+      // Cmd/Ctrl + C - 复制选中节点到剪贴板
+      if ((e.metaKey || e.ctrlKey) && e.key === "c" && state.selectedNodeId) {
+        const node = state.nodes.find((n) => n.id === state.selectedNodeId);
+        if (node) {
+          try {
+            navigator.clipboard.writeText(
+              JSON.stringify({ kind: "frameos-node", node })
+            );
+          } catch {
+            /* mock */
+          }
+          showToast(`已复制「${node.data.title}」`, "success");
+        }
+        return;
+      }
+
+      // Cmd/Ctrl + X - 剪切 (mock: 等同复制+删除)
+      if ((e.metaKey || e.ctrlKey) && e.key === "x" && state.selectedNodeId) {
+        const node = state.nodes.find((n) => n.id === state.selectedNodeId);
+        if (node) {
+          try {
+            navigator.clipboard.writeText(
+              JSON.stringify({ kind: "frameos-node", node })
+            );
+          } catch {
+            /* mock */
+          }
+          useFrameosStore.getState().requestConfirm({
+            kind: "node",
+            id: state.selectedNodeId,
+            name: (node.data.title as string) || "",
+          });
+        }
+        return;
+      }
+
       // Cmd/Ctrl + S - 保存 (mock)
       if ((e.metaKey || e.ctrlKey) && e.key === "s") {
         e.preventDefault();
