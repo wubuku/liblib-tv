@@ -199,6 +199,20 @@ function FrameosCanvasInner() {
         return;
       }
 
+      // Cmd/Ctrl + S - 保存 (mock)
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+        e.preventDefault();
+        showToast("已保存当前画布", "success");
+        return;
+      }
+
+      // Cmd/Ctrl + A - 全选 (mock, 留接口)
+      if ((e.metaKey || e.ctrlKey) && e.key === "a") {
+        // 阻止浏览器原生 select-all (画布不要求节点全选, 这是编辑器入口)
+        // 这里直接 return 让浏览器原生效, 不开启节点全选
+        return;
+      }
+
       // 方向键 - 移动选中节点 (Shift = 10px, 默认 1px)
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key) && state.selectedNodeId) {
         e.preventDefault();
@@ -245,6 +259,12 @@ function FrameosCanvasInner() {
       }
       if (e.key === "0") {
         fitView({ duration: 200, padding: 0.15 });
+        return;
+      }
+      // M - 切换小地图 (frameos.cn 快捷键)
+      if (e.key === "m" || e.key === "M") {
+        e.preventDefault();
+        useFrameosStore.getState().toggleMinimap();
         return;
       }
     };
