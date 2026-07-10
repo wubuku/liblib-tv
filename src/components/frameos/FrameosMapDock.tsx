@@ -155,11 +155,11 @@ export function FrameosMapDock() {
           className="minimap-panel"
           style={{
             marginBottom: 8,
-            background: "rgba(20,20,20,0.85)",
-            backdropFilter: "blur(12px)",
-            borderRadius: 10,
-            border: "1px solid rgba(255,255,255,0.06)",
-            padding: 8,
+            background: "transparent",
+            backdropFilter: "none",
+            borderRadius: 12,
+            border: "1px solid rgba(255,255,255,0.04)",
+            padding: 0,
           }}
         >
           <div
@@ -256,18 +256,18 @@ export function FrameosMapDock() {
         </div>
       )}
 
-      {/* 工具栏 */}
+      {/* 工具栏 - 原站: 透明背景 + 仅 1px hairline 边框 */}
       <div
         className="dock-bar"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 2,
-          padding: 3,
-          background: "rgba(20,20,20,0.85)",
-          backdropFilter: "blur(12px)",
-          borderRadius: 10,
-          border: "1px solid rgba(255,255,255,0.06)",
+          gap: 4,
+          padding: 4,
+          background: "transparent",
+          backdropFilter: "none",
+          borderRadius: 12,
+          border: "1px solid rgba(255,255,255,0.04)",
         }}
       >
         <DockBtn
