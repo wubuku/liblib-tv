@@ -75,56 +75,7 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
           </div>
         )}
 
-        {/* hover 时的暗罩 + 编辑提示 */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(0,0,0,0.4)",
-            opacity: isHovered && !selected ? 1 : 0,
-            transition: "opacity 0.15s",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            pointerEvents: isHovered ? "auto" : "none",
-          }}
-        >
-          <button
-            type="button"
-            style={{
-              padding: "6px 12px",
-              background: "rgba(0,0,0,0.7)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              borderRadius: 8,
-              color: "#FFFFFF",
-              fontSize: 12,
-              cursor: "pointer",
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            预览
-          </button>
-          <button
-            type="button"
-            style={{
-              padding: "6px 12px",
-              background: "rgba(59,130,246,0.9)",
-              border: "1px solid rgba(96,165,250,0.5)",
-              borderRadius: 8,
-              color: "#FFFFFF",
-              fontSize: 12,
-              cursor: "pointer",
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            编辑
-          </button>
-        </div>
-
-        {/* 右上角替换内容按钮 - 仅 hover 或选中时显示 */}
+        {/* 右上角替换内容按钮 - 始终可见 (与原站 frameos.cn 一致) */}
         <div
           className="card-body-actions"
           style={{
@@ -132,8 +83,6 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
             top: 6,
             right: 6,
             zIndex: 2,
-            opacity: isHovered || selected ? 1 : 0,
-            transition: "opacity 0.15s",
           }}
         >
           <button

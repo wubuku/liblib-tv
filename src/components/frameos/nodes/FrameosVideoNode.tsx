@@ -141,7 +141,7 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
             justifyContent: "center",
             color: "#FFFFFF",
             cursor: "pointer",
-            opacity: isHovered || isPlaying ? 1 : 0.85,
+            opacity: 1,
             transition: "all 0.15s",
             boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
           }}
@@ -182,7 +182,7 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
           </div>
         )}
 
-        {/* 右上角替换内容按钮 - 仅 hover 或选中时显示 */}
+        {/* 右上角替换内容按钮 - 始终可见 (与原站 frameos.cn 一致) */}
         <div
           className="card-body-actions"
           style={{
@@ -190,8 +190,6 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
             top: 6,
             right: 6,
             zIndex: 1,
-            opacity: isHovered || selected ? 1 : 0,
-            transition: "opacity 0.15s",
           }}
         >
           <button
