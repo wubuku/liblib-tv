@@ -10,7 +10,6 @@ import { useFrameosStore } from "@/store/frameosStore";
 export function FrameosImageNode(props: NodeProps<FrameosNode>) {
   const { id, data, selected } = props;
   const { title, imageUrl } = data;
-  const [isHovered, setIsHovered] = useState(false);
 
   // 直接读 store 里的 node 来判断方向 (xyflow v12 不会把 style 字段作为 props 传过来,
   // 它会自己 measure, 而 measure 的尺寸就是按我们传过去的 style 渲染的)
@@ -44,8 +43,6 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
           overflow: "hidden",
           minHeight: 0,
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         {imageUrl ? (
           <img
@@ -56,8 +53,6 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
               height: "100%",
               objectFit: "contain",
               display: "block",
-              transition: "transform 0.3s",
-              transform: isHovered ? "scale(1.02)" : "scale(1)",
             }}
           />
         ) : (
