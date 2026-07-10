@@ -12,12 +12,11 @@
 .frameos-canvas .node-card-wrap {
   position: relative;
   font-size: 1px;
-  transition: box-shadow 0.15s;
 }
+/* frameos.cn 选中态不加 box-shadow — 只靠 handle 偏移 + selected class 区分.
+   此处保留 border-color 微亮以提示选中 (细弱 1px). */
 .frameos-canvas .node-card-wrap.is-selected .node-card {
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18),
-    0 8px 24px rgba(0, 0, 0, 0.4);
-  border-color: rgba(96, 165, 250, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
 }
 .frameos-canvas .node-card-wrap:hover .resize-handle {
   opacity: 0.9 !important;
