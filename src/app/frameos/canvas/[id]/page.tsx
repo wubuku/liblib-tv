@@ -27,7 +27,6 @@ import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosHistoryDock } from "@/components/frameos/FrameosHistoryDock";
 import { FrameosHistoryPanel } from "@/components/frameos/FrameosHistoryPanel";
-import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
 import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
@@ -471,7 +470,6 @@ function FrameosCanvasInner() {
       <FrameosHistoryPanel />
 
       {/* 节点搜索面板 (Cmd+K) */}
-      <FrameosNodeSearch />
 
       {/* 全局右键菜单 */}
       <FrameosContextMenu />
