@@ -68,10 +68,10 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#5A5A5A",
+              color: "#8C8C8C",
             }}
           >
-            <ImageNodeIcon size={32} />
+            <ImageNodeIcon size={24} />
           </div>
         )}
 

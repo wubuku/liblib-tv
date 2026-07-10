@@ -107,10 +107,10 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#5A5A5A",
+              color: "#8C8C8C",
             }}
           >
-            <FilmNodeIcon size={32} />
+            <FilmNodeIcon size={24} />
           </div>
         )}
 
