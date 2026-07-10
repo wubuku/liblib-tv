@@ -42,6 +42,7 @@ import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 import { FrameosNodeTooltip } from "@/components/frameos/FrameosNodeTooltip";
 import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
 import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
+import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloatingToolbar";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -482,6 +483,9 @@ function FrameosCanvasInner() {
 
       {/* 节点拖动时的对齐辅助线 */}
       <FrameosAlignmentGuides />
+
+      {/* 选中节点时的浮动工具条 (原站: 下载按钮) */}
+      <FrameosNodeFloatingToolbar />
 
     </div>
   );
