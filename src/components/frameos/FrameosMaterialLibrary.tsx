@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
 import { CloseIcon } from "./icons";
 
@@ -32,6 +32,17 @@ export function FrameosMaterialLibrary() {
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<"all" | "image" | "video" | "character">("all");
   const addNode = useFrameosStore((s) => s.addNode);
+
+  useEffect(() => {
+    const open = () => setOpen(true);
+    const close = () => setOpen(false);
+    window.addEventListener("frameos:open-material-library", open);
+    window.addEventListener("frameos:close-material-library", close);
+    return () => {
+      window.removeEventListener("frameos:open-material-library", open);
+      window.removeEventListener("frameos:close-material-library", close);
+    };
+  }, []);
 
   const list = filter === "all" ? MOCK_ASSETS : MOCK_ASSETS.filter((a) => a.kind === filter);
 

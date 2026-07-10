@@ -207,8 +207,7 @@ export function FrameosToolRail() {
           label="从素材库选择"
           icon={<FolderImageIcon size={18} />}
           onClick={() => {
-            const btn = document.getElementById("frameos-material-library-trigger");
-            if (btn) (btn as HTMLButtonElement).click();
+            window.dispatchEvent(new CustomEvent("frameos:open-material-library"));
           }}
         />
         <RailButton
