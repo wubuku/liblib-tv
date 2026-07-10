@@ -159,29 +159,6 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
           {isPlaying ? <PauseFillIcon size={20} /> : <PlayFillIcon size={20} />}
         </button>
 
-        {/* 顶部进度条 (播放时显示) */}
-        {isPlaying && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 3,
-              background: "rgba(0,0,0,0.4)",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: "35%",
-                background: "#3B82F6",
-                transition: "width 0.3s",
-              }}
-            />
-          </div>
-        )}
-
         {/* 右上角替换内容按钮 - 始终可见 (与原站 frameos.cn 一致) */}
         <div
           className="card-body-actions"
@@ -240,25 +217,6 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
             <Upload2Icon size={12} />
           </button>
         </div>
-
-        {/* 视频时长（仅未播放时显示） */}
-        {!isPlaying && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: 6,
-              right: 6,
-              padding: "2px 6px",
-              background: "rgba(0,0,0,0.7)",
-              borderRadius: 4,
-              color: "#FFFFFF",
-              fontSize: 11,
-              fontFamily: "monospace",
-            }}
-          >
-            00:05
-          </div>
-        )}
       </div>
     </FrameosNodeShell>
   );
