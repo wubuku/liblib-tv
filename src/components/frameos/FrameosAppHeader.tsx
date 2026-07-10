@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useFrameosStore } from "@/store/frameosStore";
 import { DownloadIcon, UndoIcon, RedoIcon } from "./icons";
+import { FrameosBreadcrumb } from "./FrameosBreadcrumb";
 
 /**
  * FrameOS 顶部 AppHeader (共 100px 高, 浮动, z=2000)
@@ -303,6 +304,7 @@ export function FrameosAppHeader() {
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+        <FrameosBreadcrumb />
       </div>
     </header>
   );

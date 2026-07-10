@@ -28,7 +28,6 @@ import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
 import { FrameosMapDock } from "@/components/frameos/FrameosMapDock";
 import { FrameosPromptBar } from "@/components/frameos/FrameosPromptBar";
-import { FrameosBreadcrumb } from "@/components/frameos/FrameosBreadcrumb";
 import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel";
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosDebugToggle } from "@/components/frameos/FrameosDebugToggle";
@@ -421,7 +420,6 @@ function FrameosCanvasInner() {
 
       {/* 顶部浮动元素 */}
       <FrameosAppHeader />
-      <FrameosBreadcrumb />
 
       {/* 左侧浮动 rail */}
       <FrameosToolRail />

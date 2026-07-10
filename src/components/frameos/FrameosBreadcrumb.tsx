@@ -29,18 +29,16 @@ export function FrameosBreadcrumb() {
     <div
       className="canvas-breadcrumb-bar"
       style={{
-        position: "absolute",
-        top: 70,
-        left: 12,
-        zIndex: 2700,
+        // 嵌入 AppHeader 第二条 (60px logo + 40px 面包屑); 该 div 现在在 AppHeader 内部渲染
         display: "flex",
         alignItems: "center",
         gap: 2,
         padding: "4px 6px",
-        background: "rgba(20,20,20,0.85)",
-        backdropFilter: "blur(12px)",
-        borderRadius: 10,
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: "transparent",
+        backdropFilter: "none",
+        borderRadius: 0,
+        border: "none",
+        pointerEvents: "auto",
       }}
     >
       {/* 展开菜单 */}
