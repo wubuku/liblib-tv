@@ -395,11 +395,28 @@ function FrameosCanvasInner() {
         }}
         connectionLineStyle={{ stroke: "#3B82F6", strokeWidth: 2 }}
       >
+        {/* 画布底纹 (复刻原站 frameos.cn 双层点阵 + 暗角) */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: "none",
+            backgroundImage:
+              "radial-gradient(rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.26) 100%)," +
+              "radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, rgba(0, 0, 0, 0) 1.5px)," +
+              "radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, rgba(0, 0, 0, 0) 1.5px)",
+            backgroundSize: "cover, 16px 16px, 32px 32px",
+            backgroundPosition: "center, center, center",
+            backgroundRepeat: "no-repeat, repeat, repeat",
+          }}
+        />
         <Background
           variant={BackgroundVariant.Dots}
-          gap={20}
+          gap={32}
           size={1}
-          color="#222222"
+          color="rgba(255,255,255,0.07)"
         />
       </ReactFlowAny>
 
