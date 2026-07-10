@@ -267,18 +267,33 @@ function FrameosCanvasInner() {
         y: event.clientY,
         items: [
           {
-            label: "复制节点",
+            label: "复制",
+            shortcut: "⌘C",
+            onClick: () => {
+              // mock 复制到剪贴板 (原站真实复用 ipc+navigator.clipboard)
+              try {
+                navigator.clipboard.writeText(
+                  JSON.stringify({ kind: "frameos-node", node: n })
+                );
+              } catch {
+                /* mock */
+              }
+              showToast(`已复制「${n.data.title}」`, "success");
+            },
+          },
+          {
+            label: "创建副本",
             shortcut: "⌘D",
             onClick: () => {
               duplicateNode(node.id);
-              showToast(`已复制「${n.data.title}」`, "success");
+              showToast(`已创建「${n.data.title}」副本`, "success");
             },
           },
           { separator: true, label: "" },
           {
-            label: "删除节点",
+            label: "删除",
             danger: true,
-            shortcut: "Del",
+            shortcut: "⌫",
             onClick: () => {
               useFrameosStore.getState().requestConfirm({ kind: "node", id: node.id, name: n.data.title as string });
             },
