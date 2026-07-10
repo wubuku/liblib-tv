@@ -361,21 +361,8 @@ function FrameosCanvasInner() {
           setIsConnecting(false);
           setHoveredTargetId(null);
         }}
-        // @ts-expect-error xyflow v12 缺失此 prop 类型但运行时支持
-        onMinimapNodeClick={(_e, node) => {
-          // 点击 minimap 节点 → 选中 + fitView 跳到该节点
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const n = node as any;
-          selectNode(n.id);
-          setTimeout(() => {
-            fitView({
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              nodes: [{ id: n.id, position: n.position, width: n.measured?.width ?? n.style?.width ?? 300, height: n.measured?.height ?? n.style?.height ?? 169 }] as any,
-              duration: 400,
-              padding: 0.2,
-            });
-          }, 50);
-        }}
+        // 自绘 minimap (FrameosMapDock) 处理节点点击, ReactFlow 内置 minimap 已禁用.
+        // v12 的 onMinimapNodeClick 既未定义又不支持, 删除避免 React 警告.
         onNodeClick={onNodeClick}
         onNodeMouseEnter={(_, n) => {
           if (isConnecting) setHoveredTargetId(n.id);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MapPinIcon,
   SubtractIcon,
@@ -90,11 +90,21 @@ export function FrameosMapDock() {
   const setOrganizeMode = useFrameosStore((s) => s.setOrganizeMode);
   const nodes = useFrameosStore((s) => s.nodes);
   const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
+  const selectNode = useFrameosStore((s) => s.selectNode);
   // 画布视口 (用于 minimap viewport 框)
   const { x: vpX, y: vpY, zoom: vpZoom } = useViewport();
   const setNodes = useFrameosStore((s) => s.setNodes);
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const organizeRef = useRef<HTMLDivElement>(null);
+
+  // 视口尺寸 (浏览器 only; SSR 时为 0, 客户端 mount 后由 effect 更新)
+  const [viewportSize, setViewportSize] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const measure = () => setViewportSize({ w: window.innerWidth, h: window.innerHeight });
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   // 实际执行节点整理
   const runOrganize = (mode: typeof organizeMode) => {
@@ -185,8 +195,26 @@ export function FrameosMapDock() {
               return (
                 <div
                   key={n.id}
-                  className="mini-node"
+                  className={`mini-node${selectedNodeId === n.id ? " is-selected" : ""}`}
                   title={n.data.title}
+                  aria-label={n.data.title}
+                  onClick={() => {
+                    selectNode(n.id);
+                    setTimeout(() => {
+                      fitView({
+                        nodes: [
+                          {
+                            id: n.id,
+                            position: n.position,
+                            width: w,
+                            height: h,
+                          },
+                        ],
+                        duration: 400,
+                        padding: 0.2,
+                      } as unknown as Parameters<typeof fitView>[0]);
+                    }, 50);
+                  }}
                   style={{
                     position: "absolute",
                     left: `${left}px`,
@@ -194,8 +222,15 @@ export function FrameosMapDock() {
                     width: `${width}px`,
                     height: `${height}px`,
                     borderRadius: 2,
-                    background: "rgba(255,255,255,0.18)",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    background:
+                      selectedNodeId === n.id
+                        ? "rgba(96,165,250,0.45)"
+                        : "rgba(255,255,255,0.18)",
+                    border:
+                      selectedNodeId === n.id
+                        ? "1px solid rgba(96,165,250,0.8)"
+                        : "1px solid rgba(255,255,255,0.06)",
+                    cursor: "pointer",
                   }}
                 />
               );
@@ -208,8 +243,8 @@ export function FrameosMapDock() {
                 position: "absolute",
                 left: `${(-vpX / vpZoom) * 0.06}px`,
                 top: `${(-vpY / vpZoom) * 0.06}px`,
-                width: `${(window.innerWidth / vpZoom) * 0.06}px`,
-                height: `${(window.innerHeight / vpZoom) * 0.06}px`,
+                width: `${(viewportSize.w / vpZoom) * 0.06}px`,
+                height: `${(viewportSize.h / vpZoom) * 0.06}px`,
                 background: "rgba(96,165,250,0.1)",
                 border: "1px solid rgba(96,165,250,0.5)",
                 borderRadius: 2,
