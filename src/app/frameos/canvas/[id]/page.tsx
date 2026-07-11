@@ -40,6 +40,7 @@ import { FrameosToast, showToast } from "@/components/frameos/FrameosToast";
 import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGenerationOverlay";
 import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
 import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloatingToolbar";
+import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -525,8 +526,11 @@ function FrameosCanvasInner() {
       {/* 节点拖动时的对齐辅助线 */}
       <FrameosAlignmentGuides />
 
-      {/* 选中节点时的浮动工具条 (原站: 下载按钮) */}
+      {/* 选中节点时的浮动工具条 (原站: 节点上方水平 AI 操作 + 下载) */}
       <FrameosNodeFloatingToolbar />
+
+      {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
+      <FrameosPromptEditor />
 
     </div>
   );
