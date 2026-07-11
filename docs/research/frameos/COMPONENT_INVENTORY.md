@@ -10,16 +10,21 @@
 
 | 组件 | 文件 | 角色 | 关键依赖 |
 |---|---|---|---|
-| `FrameosAppHeader` | `FrameosAppHeader.tsx` | 顶部 60px 浮动条：logo + 下载桌面端 + 金币/积分 | — |
+| `FrameosAppHeader` | `FrameosAppHeader.tsx` | 顶部 100px 浮动条：logo + 撤销/重做 + 下载桌面端 + 金币/积分 | `undo`, `redo`, `past`, `future` |
 | `FrameosBreadcrumb` | `FrameosBreadcrumb.tsx` | 项目/场景/画布 三级下拉 | `setBreadcrumb` |
-| `FrameosHistoryDock` | `FrameosHistoryDock.tsx` | 撤销/重做（接入 history stack） | `undo`, `redo`, `past.length`, `future.length` |
 | `FrameosToolRail` | `FrameosToolRail.tsx` | 左侧浮动工具栏 + 添加节点菜单 | `isAddNodeMenuOpen`, `addNode` |
 | `FrameosMapDock` | `FrameosMapDock.tsx` | 左下 minimap + 缩放控件 + 整理方式菜单 | `zoomIn/Out/fitView` (useReactFlow), `setOrganizeMode`, `setNodes` |
-| `FrameosPromptBar` | `FrameosPromptBar.tsx` | 选中节点下方 AI prompt 栏 | `useViewport()` (跟随 pan+zoom), `isPromptFullscreen` |
-| `FrameosNodeToolbar` | `FrameosNodeToolbar.tsx` | 选中节点上方浮动工具条 | `useViewport()` |
+| `FrameosSidePanel` | `FrameosSidePanel.tsx` | 左侧汉堡菜单触发的抽屉（项目/场景/画布列表） | — |
+| `FrameosMaterialLibrary` | `FrameosMaterialLibrary.tsx` | 右侧抽屉：素材库（图片/视频） | — |
+| `FrameosPromptEditor` | `FrameosPromptEditor.tsx` | 选中节点下方 AI prompt 栏 | `useViewport()` (跟随 pan+zoom), `isPromptFullscreen` |
+| `FrameosNodeFloatingToolbar` | `FrameosNodeFloatingToolbar.tsx` | 选中节点上方浮动工具条（57px above） | `useViewport()` |
 | `FrameosNodeEditPanel` | `FrameosNodeEditPanel.tsx` | **调试模式可见**的节点详情面板 | `isDebugMode`, `useViewport()` |
 | `FrameosHelpPanel` | `FrameosHelpPanel.tsx` | 快捷键 + 操作指南弹层 | `isHelpOpen` |
-| `FrameosDebugToggle` | `FrameosDebugToggle.tsx` | 右下角 DEBUG 开关 | `isDebugMode`, `toggleDebugMode` |
+| `FrameosContextMenu` | `FrameosContextMenu.tsx` | 全局右键菜单（节点 / 画布空白处） | `openContextMenu()` |
+| `FrameosToast` | `FrameosToast.tsx` | 全局通知（撤销/复制/删除 等） | `showToast()` |
+| `FrameosConfirmDialog` | `FrameosConfirmDialog.tsx` | 删除节点/边的确认弹窗 | `pendingConfirm`, `requestConfirm()` |
+| `FrameosGenerationOverlay` | `FrameosGenerationOverlay.tsx` | 全屏生成中遮罩 | — |
+| `FrameosAlignmentGuides` | `FrameosAlignmentGuides.tsx` | 节点拖动时的对齐辅助线 | — |
 | `icons` | `icons.tsx` | 18+ 内联 SVG 图标 | — |
 
 ## 节点组件
@@ -51,22 +56,28 @@
 
 ```
 src/components/frameos/
-├── FrameosAppHeader.tsx        (180 行)
-├── FrameosBreadcrumb.tsx       (190 行)  含三级下拉
-├── FrameosDebugToggle.tsx      ( 40 行)  新增
-├── FrameosHelpPanel.tsx        (175 行)
-├── FrameosHistoryDock.tsx      (105 行)  接入 history
-├── FrameosMapDock.tsx          (270 行)  含整理方式菜单
-├── FrameosNodeEditPanel.tsx    (270 行)  调试模式
-├── FrameosNodeToolbar.tsx      (170 行)  跟随节点
-├── FrameosPromptBar.tsx        (340 行)  跟随节点 + 全屏
-├── FrameosToolRail.tsx         (180 行)  含添加节点菜单
-├── icons.tsx                   (310 行)  18+ SVG
+├── FrameosAppHeader.tsx              (355 行)  logo + undo/redo + 金币积分
+├── FrameosAlignmentGuides.tsx        ( 50 行)  拖动对齐线
+├── FrameosBreadcrumb.tsx             (190 行)  含三级下拉
+├── FrameosConfirmDialog.tsx          ( 50 行)  删除确认
+├── FrameosContextMenu.tsx            ( 80 行)  全局右键菜单
+├── FrameosEdge.tsx                   ( 60 行)  蓝虚线边
+├── FrameosGenerationOverlay.tsx      ( 40 行)  全屏生成遮罩
+├── FrameosHelpPanel.tsx              (175 行)
+├── FrameosMapDock.tsx                (270 行)  含整理方式菜单
+├── FrameosMaterialLibrary.tsx        (110 行)  素材库抽屉
+├── FrameosNodeEditPanel.tsx          (270 行)  调试模式
+├── FrameosNodeFloatingToolbar.tsx    (170 行)  跟随节点
+├── FrameosPromptEditor.tsx           (340 行)  跟随节点 + 全屏
+├── FrameosSidePanel.tsx              ( 90 行)  汉堡菜单抽屉
+├── FrameosToast.tsx                  ( 70 行)  全局通知
+├── FrameosToolRail.tsx               (300 行)  含添加节点菜单（8 类型）
+├── icons.tsx                         (310 行)  18+ SVG
 └── nodes/
-    ├── FrameosImageNode.tsx    (140 行)
-    ├── FrameosNodeShell.tsx    (170 行)  通用外壳
-    ├── FrameosTextNode.tsx     ( 65 行)
-    └── FrameosVideoNode.tsx    (190 行)  含内嵌 video
+    ├── FrameosImageNode.tsx          (140 行)
+    ├── FrameosNodeShell.tsx          (170 行)  通用外壳
+    ├── FrameosTextNode.tsx           ( 65 行)
+    └── FrameosVideoNode.tsx          (190 行)  含内嵌 video
 ```
 
-总行数：约 **2525 行**（不含 CSS / store / types）。
+总行数：约 **3535 行**（不含 CSS / store / types）。

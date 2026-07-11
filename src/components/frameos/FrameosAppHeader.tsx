@@ -73,6 +73,7 @@ export function FrameosAppHeader() {
               height={32}
               style={{ height: 32, width: "auto" }}
               unoptimized
+              priority
             />
           </div>
         </div>

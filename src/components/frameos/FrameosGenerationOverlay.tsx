@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrameosStore } from "@/store/frameosStore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * FrameOS 生成动画覆盖层
@@ -14,11 +14,23 @@ export function FrameosGenerationOverlay() {
   const currentGeneration = useFrameosStore((s) => s.currentGeneration);
   const cancelGeneration = useFrameosStore((s) => s.cancelGeneration);
   const [progress, setProgress] = useState(0);
+  const [now, setNow] = useState<number | null>(null);
+
+  // currentGeneration 变化时重置 progress/now — 文档推荐的"派生 state 而非 effect"模式
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  // eslint-disable-next-line react-hooks/refs
+  const prevGenRef = useRef(currentGeneration);
+  // eslint-disable-next-line react-hooks/refs
+  if (prevGenRef.current !== currentGeneration) {
+    // eslint-disable-next-line react-hooks/refs
+    prevGenRef.current = currentGeneration;
+    setProgress(0);
+    setNow(null);
+  }
 
   useEffect(() => {
     if (!currentGeneration) {
-      setProgress(0);
-      return;
+      return undefined;
     }
     const startedAt = currentGeneration.startedAt;
     const durationMs = currentGeneration.durationMs;
@@ -26,6 +38,7 @@ export function FrameosGenerationOverlay() {
       const elapsed = Date.now() - startedAt;
       const p = Math.min(100, (elapsed / durationMs) * 100);
       setProgress(p);
+      setNow(Date.now());
       if (p >= 100) {
         // 完成
         setTimeout(() => {
@@ -45,7 +58,7 @@ export function FrameosGenerationOverlay() {
 
   if (!currentGeneration) return null;
 
-  const elapsedSec = Math.floor((Date.now() - currentGeneration.startedAt) / 1000);
+  const elapsedSec = Math.floor(((now ?? currentGeneration.startedAt) - currentGeneration.startedAt) / 1000);
   const totalSec = Math.floor(currentGeneration.durationMs / 1000);
   const remaining = Math.max(0, totalSec - elapsedSec);
 

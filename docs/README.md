@@ -137,16 +137,21 @@ A separate canvas route cloned from `frameos.cn`. Lives under `src/app/frameos/`
 |---------|------|-------|
 | Route | [`src/app/frameos/page.tsx`](../src/app/frameos/page.tsx), [`src/app/frameos/canvas/[id]/page.tsx`](../src/app/frameos/canvas/[id]/page.tsx) | `[id]` is the demo canvas ID; root `/frameos` redirects here |
 | Layout | [`src/app/frameos/layout.tsx`](../src/app/frameos/layout.tsx) | Inherits globals but adds frameos-specific wrapper |
-| AppHeader | [`src/components/frameos/FrameosAppHeader.tsx`](../src/components/frameos/FrameosAppHeader.tsx) | "帧界 FrameOS" logo + 金币/积分 counters |
+| AppHeader | [`src/components/frameos/FrameosAppHeader.tsx`](../src/components/frameos/FrameosAppHeader.tsx) | "帧界 FrameOS" logo + 撤销/重做 + 下载桌面端 + 金币/积分 counters |
 | ToolRail | [`src/components/frameos/FrameosToolRail.tsx`](../src/components/frameos/FrameosToolRail.tsx) | Left floating tool rail: 添加节点 (含节点类型菜单) / 素材库 / 上传 / 帮助 |
-| HistoryDock | [`src/components/frameos/FrameosHistoryDock.tsx`](../src/components/frameos/FrameosHistoryDock.tsx) | Top-center 撤销/重做（接入 store 的 history stack） |
 | MapDock | [`src/components/frameos/FrameosMapDock.tsx`](../src/components/frameos/FrameosMapDock.tsx) | Bottom-left minimap + zoom + 整理方式菜单（横向/纵向/网格） |
 | Breadcrumb | [`src/components/frameos/FrameosBreadcrumb.tsx`](../src/components/frameos/FrameosBreadcrumb.tsx) | Top-left "默认作品 / 咖啡馆对峙 / 画布 1"，每级支持下拉 |
-| NodeToolbar | [`src/components/frameos/FrameosNodeToolbar.tsx`](../src/components/frameos/FrameosNodeToolbar.tsx) | 选中节点上方浮动工具条（下载/收藏/超清/720/改图/宫格切分），**跟随节点 + 画布缩放** |
-| PromptBar | [`src/components/frameos/FrameosPromptBar.tsx`](../src/components/frameos/FrameosPromptBar.tsx) | 选中节点下方 AI prompt 栏，**跟随节点**，含节点缩略图 + 模型/1K/16:9 下拉 + 全屏编辑模式 |
+| NodeFloatingToolbar | [`src/components/frameos/FrameosNodeFloatingToolbar.tsx`](../src/components/frameos/FrameosNodeFloatingToolbar.tsx) | 选中节点上方浮动工具条（下载/收藏/超清/720/改图/宫格切分），**跟随节点 + 画布缩放**（57px above） |
+| PromptEditor | [`src/components/frameos/FrameosPromptEditor.tsx`](../src/components/frameos/FrameosPromptEditor.tsx) | 选中节点下方 AI prompt 栏，**跟随节点**，含节点缩略图 + 模型/1K/16:9 下拉 + 全屏编辑模式 |
 | NodeEditPanel | [`src/components/frameos/FrameosNodeEditPanel.tsx`](../src/components/frameos/FrameosNodeEditPanel.tsx) | **仅调试模式可见**（默认隐藏）— 节点 ID / 坐标 / 各类参数表单 / 快捷操作 |
 | HelpPanel | [`src/components/frameos/FrameosHelpPanel.tsx`](../src/components/frameos/FrameosHelpPanel.tsx) | 快捷键 + 操作指南弹层（按 `?` 触发） |
-| DebugToggle | [`src/components/frameos/FrameosDebugToggle.tsx`](../src/components/frameos/FrameosDebugToggle.tsx) | 右下角 DEBUG 开关，激活后显示 NodeEditPanel |
+| SidePanel | [`src/components/frameos/FrameosSidePanel.tsx`](../src/components/frameos/FrameosSidePanel.tsx) | 左侧展开菜单（汉堡按钮触发）— 项目列表 / 场景 / 画布 |
+| MaterialLibrary | [`src/components/frameos/FrameosMaterialLibrary.tsx`](../src/components/frameos/FrameosMaterialLibrary.tsx) | 右侧抽屉：素材库（图片/视频筛选） |
+| ContextMenu | [`src/components/frameos/FrameosContextMenu.tsx`](../src/components/frameos/FrameosContextMenu.tsx) | 全局右键菜单（节点 / 画布空白处） |
+| Toast | [`src/components/frameos/FrameosToast.tsx`](../src/components/frameos/FrameosToast.tsx) | 全局通知（撤销/复制/删除 等） |
+| ConfirmDialog | [`src/components/frameos/FrameosConfirmDialog.tsx`](../src/components/frameos/FrameosConfirmDialog.tsx) | 删除节点/边的确认弹窗 |
+| GenerationOverlay | [`src/components/frameos/FrameosGenerationOverlay.tsx`](../src/components/frameos/FrameosGenerationOverlay.tsx) | 全屏生成中遮罩 |
+| AlignmentGuides | [`src/components/frameos/FrameosAlignmentGuides.tsx`](../src/components/frameos/FrameosAlignmentGuides.tsx) | 节点拖动时的对齐辅助线 |
 | Nodes | [`src/components/frameos/nodes/`](../src/components/frameos/nodes/) | `FrameosTextNode`、`FrameosImageNode`、`FrameosVideoNode`、`FrameosNodeShell` |
 | CSS | [`src/app/frameos-canvas.css`](../src/app/frameos-canvas.css) | 动画 keyframes + 拖拽视觉 + handle 样式 |
 | Store | [`src/store/frameosStore.ts`](../src/store/frameosStore.ts) | 含 history stack (undo/redo)、selectedNodeId、isPromptFullscreen、isDebugMode 等 |
@@ -155,12 +160,13 @@ A separate canvas route cloned from `frameos.cn`. Lives under `src/app/frameos/`
 
 ### FrameOS 关键 UX 行为
 
-- **节点选中 → 出现 floating-toolbar (顶部) + PromptBar (底部) + 蓝边 handle** — 三个面板都**跟随节点 + 画布缩放**（用 `useViewport()` 计算视口坐标）
-- **节点拖动** → floating-toolbar / PromptBar 用 `transition: left 0.15s ease` 平滑跟随
-- **添加节点菜单**（左侧蓝色 + 按钮）→ 弹出 文本/图片/视频 类型选择
+- **节点选中 → 出现 floating-toolbar (顶部 57px above) + PromptEditor (底部) + 蓝边 handle** — 三个面板都**跟随节点 + 画布缩放**（用 `useViewport()` 计算视口坐标）
+- **节点拖动** → floating-toolbar / PromptEditor 用 `transition: left 0.15s ease` 平滑跟随
+- **添加节点菜单**（左侧蓝色 + 按钮）→ 弹出 文本/图片/视频/角色/场景/音频/风格/批量 类型选择
 - **整理方式菜单**（左下整理按钮的下拉）→ 3 种整理模式 + 实际重排节点
-- **全屏 Prompt 编辑**（点击 PromptBar 右上全屏按钮）→ 居中放大 + 背景蒙层
-- **键盘快捷键**：`Esc`（多级退出）/ `Delete` / `Cmd+Z` / `Cmd+Shift+Z` / `Cmd+D` / `?` / `+` / `-` / `0`
+- **全屏 Prompt 编辑**（点击 PromptEditor 右上全屏按钮）→ 居中放大 + 背景蒙层
+- **右键菜单**：节点上 `复制 / 创建副本 / 删除`；画布空白处 `添加文本/图片/视频节点 / 适应画布`
+- **键盘快捷键**：`Esc`（多级退出）/ `Delete` / `Backspace` / `Cmd+Z` / `Cmd+Shift+Z` / `Cmd+D` / `Cmd+C` / `Cmd+X` / `Cmd+S` / `方向键（移动节点，Shift=10px）` / `Tab（切换节点）` / `M（minimap）` / `?` / `+` / `-` / `0`
 
 For FrameOS-specific topology / behaviors / tokens, see [`research/frameos/`](research/frameos/).
 

@@ -24,7 +24,6 @@ export function FrameosPromptEditor() {
   const setSelectedModel = useFrameosStore((s) => s.setSelectedModel);
   const currentGeneration = useFrameosStore((s) => s.currentGeneration);
   const startGeneration = useFrameosStore((s) => s.startGeneration);
-  const removeEdge = useFrameosStore((s) => s.removeEdge);
   const removeNode = useFrameosStore((s) => s.removeNode);
 
   if (!selectedNodeId) return null;
@@ -43,7 +42,6 @@ export function FrameosPromptEditor() {
   const modelOptions = ["帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
   const resolutionOptions = ["512", "1K", "2K", "4K"];
   const ratioOptions = ["1:1", "4:3", "3:2", "16:9", "9:16", "21:9"];
-  const stepsOptions = ["20", "40", "60", "80"];
 
   return (
     <div

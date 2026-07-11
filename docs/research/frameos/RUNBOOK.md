@@ -69,7 +69,7 @@ __frameos_store.getState().addNode('image')
 3. 在 `src/components/frameos/nodes/FrameosMyNode.tsx` 创建组件
 4. 在 `src/app/frameos/canvas/[id]/page.tsx` 的 `nodeTypes` map 注册
 5. 在 `FrameosToolRail.tsx` 添加节点菜单加选项
-6. 在 `FrameosNodeToolbar.tsx` 加节点类型对应的工具按钮
+6. 在 `FrameosNodeFloatingToolbar.tsx` 加节点类型对应的工具按钮
 
 ## 常见问题
 
@@ -77,7 +77,7 @@ __frameos_store.getState().addNode('image')
 A: Next.js dev server 应该自动热重载。如果不行，按 `Ctrl+R` 刷新，或在终端按 `Ctrl+C` 重启 `npm run dev`。
 
 ### Q: 节点拖动时 panel 不跟随？
-A: 检查 `FrameosPromptBar.tsx` / `FrameosNodeToolbar.tsx` / `FrameosNodeEditPanel.tsx` —— 它们必须用 `useViewport()` 拿 pan+zoom，并用 `position: fixed` 定位。
+A: 检查 `FrameosPromptEditor.tsx` / `FrameosNodeFloatingToolbar.tsx` / `FrameosNodeEditPanel.tsx` —— 它们必须用 `useViewport()` 拿 pan+zoom，并用 `position: fixed` 定位。
 
 ### Q: 选中节点但 handle 不显示？
 A: 检查 `selectNode` action 是否有同步 `selected: true` 到 nodes array。xyflow v12 不会自动同步，需要在 selectNode 中写回。

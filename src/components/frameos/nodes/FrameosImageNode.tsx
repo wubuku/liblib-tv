@@ -1,7 +1,6 @@
 "use client";
 
 import type { NodeProps } from "@xyflow/react";
-import { useState } from "react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import { ImageNodeIcon, Upload2Icon } from "../icons";
 import type { FrameosNode } from "@/types/frameos";

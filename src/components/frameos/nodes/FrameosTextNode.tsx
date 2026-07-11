@@ -14,11 +14,13 @@ export function FrameosTextNode({ id, data, selected }: NodeProps<FrameosNode>) 
   const updateNodeData = useFrameosStore((s) => s.updateNodeData);
   const taRef = useRef<HTMLTextAreaElement>(null);
 
-  // 同步外部 data.content 变化（例如撤销/重做）
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    if (!isEditing) setContent((data.content as string) ?? "");
-  }, [data.content, isEditing]);
+  // 同步外部 data.content 变化 (例如撤销/重做) — React 文档推荐写法
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [prevContent, setPrevContent] = useState(data.content as string);
+  if (!isEditing && (data.content as string) !== prevContent) {
+    setPrevContent(data.content as string);
+    setContent((data.content as string) ?? "");
+  }
 
   // 进入编辑模式时自动 focus
   useEffect(() => {
@@ -27,8 +29,6 @@ export function FrameosTextNode({ id, data, selected }: NodeProps<FrameosNode>) 
       taRef.current.select();
     }
   }, [isEditing]);
-  // taRef 上面引用了, linter 觉得未用
-  void taRef;
 
   // 双击节点进入编辑
   const onDoubleClick = (e: React.MouseEvent) => {

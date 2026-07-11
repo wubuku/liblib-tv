@@ -5,13 +5,6 @@ import {
   FolderImageIcon,
   UploadCloudIcon,
   QuestionIcon,
-  TextNodeIcon,
-  ImageNodeIcon,
-  FilmNodeIcon,
-  AudioIcon,
-  BrushIcon,
-  GridIcon,
-  CharacterIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
 import { useViewport } from "@xyflow/react";

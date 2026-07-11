@@ -27,20 +27,23 @@ export function showToast(
 }
 
 // 全局事件: 允许跨组件触发 toast
-if (typeof window !== "undefined" && !(window as any).__frameosToastListenerInstalled) {
+type FrameosToastFlag = { __frameosToastListenerInstalled?: boolean };
+const winFlag = (typeof window !== "undefined"
+  ? (window as unknown as FrameosToastFlag)
+  : null);
+if (typeof window !== "undefined" && !winFlag?.__frameosToastListenerInstalled) {
   window.addEventListener("frameos-toast", (e: Event) => {
     const detail = (e as CustomEvent).detail;
     if (detail?.message) {
       showToast(detail.message, detail.variant);
     }
   });
-  (window as any).__frameosToastListenerInstalled = true;
+  if (winFlag) winFlag.__frameosToastListenerInstalled = true;
 }
 
 export function FrameosToast() {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setter = setToasts;
     return () => {

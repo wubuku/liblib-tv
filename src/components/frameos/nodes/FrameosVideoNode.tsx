@@ -16,7 +16,7 @@ import { useFrameosStore } from "@/store/frameosStore";
 export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>) {
   const { title, imageUrl, reviewFailed } = data;
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [, setIsHovered] = useState(false); // 占位, 保留 onMouseEnter/Leave 用于未来 hover-only UI
   const [videoError, setVideoError] = useState(false);
   const videoUrl = imageUrl ? imageUrl.replace(/\?x-oss-process=.*$/, "") : undefined;
 

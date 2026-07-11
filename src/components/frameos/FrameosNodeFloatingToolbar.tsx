@@ -60,10 +60,16 @@ export function FrameosNodeFloatingToolbar() {
     ? nodes.find((n) => n.id === selectedNodeId)
     : undefined;
 
+  // 选中变化时立即重置 pos, 避免旧节点位置短暂闪到新节点
+  const [prevSelectedId, setPrevSelectedId] = useState<string | null>(selectedNodeId);
+  if (selectedNodeId !== prevSelectedId) {
+    setPrevSelectedId(selectedNodeId);
+    setPos(null);
+  }
+
   useEffect(() => {
     if (!selectedNodeId) {
-      setPos(null);
-      return;
+      return undefined;
     }
     let raf = 0;
     const tick = () => {

@@ -88,8 +88,8 @@
 |---|---|---|---|
 | 顶部布局 | AppHeader 浮动（60px, z=2000）| TopNavBar + ScriptHeader + 工具区 | **重写** — frameos 风格 |
 | 左侧 | CanvasToolRail（绝对定位, 浮动） | LeftSidebar (固定 280px) | **新写** FrameosToolRail |
-| 右侧 | HistoryDock（撤销/重做） | 在 TopNavBar 内部 | **新写** FrameosHistoryDock |
-| 底部工具 | PromptBar + CanvasMapDock | BottomToolbar（固定底栏） | **新写** FrameosPromptBar + FrameosMapDock |
+| 右侧 | undo/redo（顶部 header 集成） | 在 TopNavBar 内部 | **集成** FrameosAppHeader |
+| 底部工具 | PromptEditor + CanvasMapDock | BottomToolbar（固定底栏） | **新写** FrameosPromptEditor + FrameosMapDock |
 | 节点 header | node-floating-title（绝对 top:-22px） | header 在卡片顶部 border-b | **新写** FrameosNodeTitle |
 | 节点卡 | node-card (bg #1C1C1C, radius 10px) | bg #212121/#171717, radius xl | **样式重写** |
 | 文本节点 | 300×200, paragraph 居中 | border-b header + 内容 | **新写** FrameosTextNode |

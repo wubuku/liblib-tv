@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
-import { Handle, Position, NodeResizer, type NodeProps } from "@xyflow/react";
+import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { useFrameosStore } from "@/store/frameosStore";
 
 /**
@@ -48,13 +48,17 @@ export function FrameosNodeShell({
   const { id } = nodeProps;
   const updateNodeData = useFrameosStore((s) => s.updateNodeData);
   const [editing, setEditing] = useState(false);
-  const [draft, setDraft] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 外部 title 变化 (例如 undo/redo) 同步
-  useEffect(() => {
-    if (!editing) setDraft(title);
-  }, [title, editing]);
+  // 使用 React 文档推荐的 "保存到 state 的 prop 变化时更新" 模式
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [prevTitle, setPrevTitle] = useState(title);
+  const [draft, setDraft] = useState(title);
+  if (!editing && title !== prevTitle) {
+    setPrevTitle(title);
+    setDraft(title);
+  }
 
   // 进入编辑模式时 focus
   useEffect(() => {

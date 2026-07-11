@@ -34,7 +34,7 @@
 
 **所有节点必须用这个 shell**。如果你要加新节点类型，先继承这个 shell。
 
-### 2.3 浮动面板（floating-toolbar / PromptBar / EditPanel）**跟随节点 + 画布缩放**
+### 2.3 浮动面板（floating-toolbar / PromptEditor / EditPanel）**跟随节点 + 画布缩放**
 
 这是用户提的"节点拖动时 panel 跟随" UX。实现方式：
 
@@ -48,7 +48,7 @@ const nodeY = node.position.y * zoom + panY;
 
 **绝对不要** 用 `position: absolute` + 节点 position 算 — React Flow 用 `transform: translate(x, y)` 渲染节点，absolute 定位会无视画布的 pan/zoom，导致 panel 漂在视口中央。
 
-### 2.4 PromptBar 是**条件渲染**（仅在节点选中时显示）
+### 2.4 PromptEditor 是**条件渲染**（仅在节点选中时显示）
 
 不要让它一直固定在屏幕底部。原站的行为：
 - 无选中 → 不显示
@@ -61,7 +61,6 @@ const nodeY = node.position.y * zoom + panY;
 
 **未来如果要删掉调试代码**：
 - 删 `isDebugMode` / `toggleDebugMode` 字段
-- 删 `FrameosDebugToggle.tsx`
 - 删 `<FrameosNodeEditPanel />` 挂载
 - 删 `FrameosNodeEditPanel.tsx`
 
@@ -71,7 +70,7 @@ const nodeY = node.position.y * zoom + panY;
 - 视频节点：下载、收藏、超清、改图
 - 图片节点：下载、收藏、超清、720全景、改图、宫格切分
 
-按钮目前是 no-op（console.log），需要接入时改 `FrameosNodeToolbar.tsx` 里的 `onClick`。
+按钮目前是 no-op（console.log），需要接入时改 `FrameosNodeFloatingToolbar.tsx` 里的 `onClick`。
 
 ---
 
@@ -85,13 +84,13 @@ const nodeY = node.position.y * zoom + panY;
 | `zoomPercent` | `number` | dock-bar 中间显示 |
 | `showMinimap` | `boolean` | minimap 显隐 |
 | `minimapPinActive` | `boolean` | 小地图钉按钮 active |
-| `promptValue` | `string` | PromptBar 输入（受控） |
+| `promptValue` | `string` | PromptEditor 输入（受控） |
 | `selectedNodeId` | `string | null` | 当前选中节点 |
 | `isAddNodeMenuOpen` | `boolean` | 左侧 + 号菜单 |
 | `isOrganizeMenuOpen` | `boolean` | 整理方式菜单 |
 | `organizeMode` | `'horizontal' | 'vertical' | 'grid'` | 当前整理方式 |
 | `selectedModel` | `string` | "帧界 O2" / "帧界 G2" 等 |
-| `isPromptFullscreen` | `boolean` | PromptBar 全屏模式 |
+| `isPromptFullscreen` | `boolean` | PromptEditor 全屏模式 |
 | `isHelpOpen` | `boolean` | 快捷键帮助面板 |
 | `isDebugMode` | `boolean` | 调试模式（**默认 false**） |
 
@@ -139,10 +138,10 @@ const nodeY = node.position.y * zoom + panY;
 3. 创建 `src/components/frameos/nodes/FrameosMyNode.tsx`，用 `FrameosNodeShell` 包
 4. 在 `src/app/frameos/canvas/[id]/page.tsx` 的 `nodeTypes` map 注册
 5. 在 `FrameosToolRail.tsx` 的添加节点菜单里加选项
-6. 在 `FrameosNodeToolbar.tsx` 添加该类型对应的工具按钮
+6. 在 `FrameosNodeFloatingToolbar.tsx` 添加该类型对应的工具按钮
 
-### 修复 PromptBar 跟丢节点
-检查 `FrameosPromptBar.tsx`：
+### 修复 PromptEditor 跟丢节点
+检查 `FrameosPromptEditor.tsx`：
 - 必须用 `useViewport()` 拿 pan + zoom
 - 必须用 `position: fixed` 而非 `absolute`
 - 边界碰撞检测（左右下三向）必须用 `window.innerWidth/Height`
@@ -161,7 +160,7 @@ const nodeY = node.position.y * zoom + panY;
 | 方面 | 原站 | 我做的 |
 |---|---|---|
 | 节点详情面板 | ❌ 没有 | ✅ 有，但**默认隐藏**，需开 DEBUG |
-| PromptBar | 条件显示在节点下方 | ✅ 一致 |
+| PromptEditor | 条件显示在节点下方 | ✅ 一致 |
 | 节点 hover 时显示工具条 | ❌ 不显示（只有选中才显示 floating-toolbar） | ✅ 一致 |
 | 视频内嵌播放 | ✅ | ✅（用 mp4 URL 推导出，可能因 cors 失败而 fallback） |
 | 整理节点（网格/横向/纵向） | ✅ | ✅ |
