@@ -79,7 +79,10 @@ export function FrameosNodeFloatingToolbar() {
       const actions = getActionsForNode(selectedNode);
       const w = Math.max(38, actions.length * 76);
       const left = r.left + r.width / 2 - w / 2;
-      const top = r.top - 47;
+      // frameos.cn 测得 toolbar 高度 38 + 与节点垂直 gap 19 = 节点上方 57px
+      const TOOLBAR_HEIGHT = 38;
+      const VERTICAL_GAP = 19;
+      const top = r.top - (TOOLBAR_HEIGHT + VERTICAL_GAP);
       setPos((prev) => {
         if (prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5 && Math.abs(prev.width - w) < 0.5) {
           return prev;
