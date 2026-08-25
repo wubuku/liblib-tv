@@ -23,6 +23,7 @@ interface CanvasState {
 
   // Node actions
   addNode: (type: string, data?: Record<string, unknown>) => void;
+  addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => void;
   removeNode: (nodeId: string) => void;
   updateNodeData: (nodeId: string, data: Record<string, unknown>) => void;
   setNodes: (nodes: Node[]) => void;
@@ -102,6 +103,8 @@ const initialCanvas2: CanvasData = {
         height: 1024,
         imageUrl: "/images/scene-coffee-1.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "empty",
+        generationSettings: "16:9 · 标准画质 · 2K · 1张",
       },
     },
     {
@@ -117,6 +120,8 @@ const initialCanvas2: CanvasData = {
         height: 1024,
         imageUrl: "/images/scene-coffee-3.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "empty",
+        generationSettings: "16:9 · 标准画质 · 2K · 1张",
       },
     },
     {
@@ -132,6 +137,10 @@ const initialCanvas2: CanvasData = {
         height: 576,
         imageUrl: "/images/scene-coffee-2.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "prompt",
+        prompt:
+          "道具名称：冷掉的黑咖啡；外观特征：一杯装在白色粗陶马克杯中的美式咖啡，杯口无任何热气，深黑色的咖啡液面平静无波，马克杯底部垫着一个同材质的白色粗陶托盘；材质细节：粗糙的哑光陶瓷质感，表面有微小的窑变颗粒；关键细节：杯子边缘有一道极其细微的缺口，暗示使用的年头。高质量写实道具多角度展示图，横向构图，以 2 行 3 列的干净网格整齐排版，展示道具的六个极正视角。纯白色纯净背景，专业产品影棚摄影。",
+        generationSettings: "2:1 · 低画质 · 1K · 1张",
       },
     },
     {
@@ -147,6 +156,9 @@ const initialCanvas2: CanvasData = {
         height: 576,
         imageUrl: "/images/scene-coffee-4.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "prompt",
+        prompt: "咖啡馆室内场景",
+        generationSettings: "2:1 · 低画质 · 1K · 1张",
       },
     },
     {
@@ -178,6 +190,11 @@ const initialCanvas2: CanvasData = {
         height: 720,
         imageUrl: "/images/storyboard-2.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "referenced",
+        prompt:
+          "近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
+        references: ["/images/scene-coffee-1.png", "/images/scene-coffee-2.png"],
+        generationSettings: "16:9 · 低画质 · 1K · 1张",
       },
     },
     {
@@ -191,6 +208,8 @@ const initialCanvas2: CanvasData = {
         filename: "分镜视频-#9",
         model: "vip专属模型-会员",
         status: "failed",
+        durationSeconds: 30,
+        resolution: "1280 × 720",
       },
     },
   ],
@@ -327,15 +346,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
   addNode: (type: string, data?: Record<string, unknown>) => {
     const { activeCanvasId } = get();
+    const activeCanvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
     const dimensions = getDefaultNodeDimensions(type);
+    const position = getViewportCenterPosition(activeCanvas, dimensions);
     const newNode: Node = {
       id: `node-${Date.now()}`,
       type,
-      position: { x: Math.random() * 400 + 200, y: Math.random() * 400 + 100 },
+      position,
       width: dimensions.width,
       height: dimensions.height,
       style: dimensions,
-      data: data || getDefaultNodeData(type),
+      data: { ...getDefaultNodeData(type), ...data },
     };
     set((state) => ({
       canvases: state.canvases.map((c) =>
@@ -344,6 +365,41 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           : c
       ),
       selectedNodeId: newNode.id,
+    }));
+  },
+
+  addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return;
+
+    const dimensions = getDefaultNodeDimensions(type);
+    const sourceWidth = source.width ?? (Number(source.style?.width) || 350);
+    const nodeId = `${type}-${Date.now()}`;
+    const newNode: Node = {
+      id: nodeId,
+      type,
+      position: { x: source.position.x + sourceWidth + 120, y: source.position.y },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: { ...getDefaultNodeData(type), ...data },
+    };
+    const newEdge: Edge = {
+      id: `e-${sourceId}-${nodeId}`,
+      source: sourceId,
+      target: nodeId,
+      type: "default",
+    };
+
+    set((state) => ({
+      canvases: state.canvases.map((item) =>
+        item.id === activeCanvasId
+          ? { ...item, nodes: [...item.nodes, newNode], edges: [...item.edges, newEdge] }
+          : item,
+      ),
+      selectedNodeId: nodeId,
     }));
   },
 
@@ -451,6 +507,10 @@ function getDefaultNodeDimensions(type: string) {
       return { width: 350, height: 200 };
     case "storyboard-group":
       return { width: 430, height: 452 };
+    case "shot-breakdown":
+      return { width: 320, height: 389 };
+    case "video-clip":
+      return { width: 350, height: 350 };
     default:
       return { width: 350, height: 180 };
   }
@@ -467,9 +527,26 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
         height: 512,
         imageUrl: "/images/scene-coffee-1.png",
         watermarkUrl: "/images/watermark.png",
+        editorVariant: "empty",
+        generationSettings: "1:1 · 标准画质 · 2K · 1张",
       };
     case "video":
-      return { filename: "新视频", duration: "00:00" };
+      return {
+        filename: "视频节点 5-片段重拍",
+        durationSeconds: 30,
+        resolution: "1280 × 720",
+        posterUrl: "/images/scene-coffee-4.png",
+        model: "Seedance 2.5",
+        status: "ready",
+      };
+    case "shot-breakdown":
+      return {
+        title: "逐帧拉片",
+        status: "empty",
+        dimensions: ["storyboard", "motion", "music"],
+      };
+    case "video-clip":
+      return { title: "智能剪辑 1", status: "empty" };
     case "script":
       return { title: "新剧本", content: "在此输入剧本内容..." };
     case "audio":
@@ -481,4 +558,17 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
     default:
       return {};
   }
+}
+
+function getViewportCenterPosition(
+  canvas: CanvasData | undefined,
+  dimensions: { width: number; height: number },
+) {
+  const viewport = canvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
+  const viewportWidth = typeof window === "undefined" ? 929 : window.innerWidth;
+  const viewportHeight = typeof window === "undefined" ? 874 : window.innerHeight;
+  return {
+    x: (viewportWidth / 2 - viewport.x) / viewport.zoom - dimensions.width / 2,
+    y: (viewportHeight / 2 - viewport.y) / viewport.zoom - dimensions.height / 2,
+  };
 }

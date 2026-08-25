@@ -33,6 +33,8 @@ import { TextNode } from "@/components/nodes/TextNode";
 import { VideoNode } from "@/components/nodes/VideoNode";
 import { ScriptExecutionNode } from "@/components/nodes/ScriptExecutionNode";
 import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
+import { ShotBreakdownNode } from "@/components/nodes/ShotBreakdownNode";
+import { VideoClipNode } from "@/components/nodes/VideoClipNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 
 const nodeTypes = {
@@ -42,6 +44,8 @@ const nodeTypes = {
   video: VideoNode,
   "script-execution": ScriptExecutionNode,
   "storyboard-group": StoryboardGroupNode,
+  "shot-breakdown": ShotBreakdownNode,
+  "video-clip": VideoClipNode,
 };
 
 const edgeTypes = { default: DeletableEdge };
@@ -97,9 +101,10 @@ export default function Home() {
     (changes: NodeChange[]) => {
       const selectedChange = changes.find((change) => change.type === "select" && change.selected);
       if (selectedChange?.type === "select") selectNode(selectedChange.id);
-      setStoreNodes(applyNodeChanges(changes, nodes));
+      const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
+      setStoreNodes(applyNodeChanges(changes, currentNodes));
     },
-    [nodes, selectNode, setStoreNodes],
+    [selectNode, setStoreNodes],
   );
 
   const onEdgesChange = useCallback(
@@ -263,7 +268,8 @@ export default function Home() {
             onNodeClick={(_, node) => selectNode(node.id)}
             onPaneClick={() => selectNode(null)}
             onNodeDragStop={(_, node) => {
-              setStoreNodes(nodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)));
+              const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
+              setStoreNodes(currentNodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)));
             }}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}

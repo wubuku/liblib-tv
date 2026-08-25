@@ -23,14 +23,33 @@ const actions = [
   { label: "宫格切分", icon: ScanLine },
 ];
 
-export function ImageToolbar() {
+export type ImageToolbarAction = (typeof actions)[number]["label"];
+
+interface ImageToolbarProps {
+  portraitEnhanced: boolean;
+  onAction: (action: ImageToolbarAction) => void;
+}
+
+export function ImageToolbar({ portraitEnhanced, onAction }: ImageToolbarProps) {
   return (
     <NodeToolbar position={Position.Top} offset={16} align="center" className="nodrag nopan z-[1001]">
-      <div className="flex h-[49px] w-[900px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]">
+      <div
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
+        className="flex h-[49px] w-[900px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]"
+      >
         {actions.map((action) => {
           const Icon = action.icon;
           return (
-            <button key={action.label} className="relative flex h-8 shrink-0 items-center gap-2 rounded-lg px-2.5 text-sm text-[#e5e5e5] hover:bg-white/[0.07]">
+            <button
+              key={action.label}
+              type="button"
+              onClick={() => onAction(action.label)}
+              aria-pressed={action.label === "人像质感调节" ? portraitEnhanced : undefined}
+              className={`relative flex h-8 shrink-0 items-center gap-2 rounded-lg px-2.5 text-sm hover:bg-white/[0.07] ${
+                action.label === "人像质感调节" && portraitEnhanced ? "bg-[#09caf5]/10 text-[#09caf5]" : "text-[#e5e5e5]"
+              }`}
+            >
               <Icon size={16} />
               <span>{action.label}</span>
               {action.badge && <span className="rounded bg-[#0d5964] px-1 py-0.5 text-[9px] text-[#4de1f4]">{action.badge}</span>}
@@ -39,10 +58,10 @@ export function ImageToolbar() {
         })}
         <span className="min-w-3 flex-1" />
         <span className="h-5 w-px shrink-0 bg-white/10" />
-        <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="撤销" aria-label="撤销">
+        <button type="button" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="撤销" aria-label="撤销">
           <Undo2 size={15} />
         </button>
-        <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="重做" aria-label="重做">
+        <button type="button" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="重做" aria-label="重做">
           <Redo2 size={15} />
         </button>
       </div>
