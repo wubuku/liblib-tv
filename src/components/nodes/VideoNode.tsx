@@ -159,6 +159,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           <div
             data-subtitle-erase-target
             data-subtitle-erase-target-mode={subtitleErase?.mode}
+            data-subtitle-erase-request-mode={subtitleErase?.requestMode}
+            data-subtitle-erase-model={subtitleErase?.model}
             className="flex flex-col items-center gap-2 px-6 text-center"
           >
             <CaptionsOff size={28} strokeWidth={1.4} className="text-[#777]" />

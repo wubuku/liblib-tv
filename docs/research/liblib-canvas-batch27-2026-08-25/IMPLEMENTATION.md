@@ -1,6 +1,6 @@
 # Batch 27 Implementation Log
 
-> 状态：核心实现与浏览器 smoke check 完成，专项验证待开始。
+> 状态：核心实现、专项 Playwright 和截图分析完成；跨批回归待开始。
 
 ## 1. Core Implementation
 
@@ -66,16 +66,34 @@ React 19 ESLint 还拒绝了失焦时同步 `setState` 的 effect；该非源站
 - 定向 ESLint：通过。
 - `git diff --check`：通过。
 
-## 4. Planned Protection Points
+## 4. Focused Playwright
+
+新增 `scripts/verify-liblib-batch27.py`，实际覆盖并通过：
+
+- subtitle tooltip、dropdown 与 smart / region handoff；
+- smart panel 的 `48px` 高度、控制尺寸和 node-relative inverse-scale anchor；
+- close、capture-phase Escape、zoom、drag、pan 和 multi-selection hiding；
+- region 进入时从 `50%` 聚焦到节点宽 `512px` 并居中；
+- 多矩形 create / select / move / four-corner resize；
+- atomic undo / redo / reset 和空区域 submit guard；
+- smart / region target、edge、copy、model 与 request-mode metadata；
+- graph undo / redo；
+- `929x874` 桌面和 `390x844` 移动端自然裁切；
+- 页面级横向 overflow、console error 和 page error 均为 `0`。
+
+专项脚本生成四张状态截图和一张 contact sheet。一次性视觉识别结论已写入 [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：桌面上下层锚定正确，region overlay 与 help 层级清楚，pending graph 无重叠，移动端保留画布内自然裁切且不产生页面横向滚动。
+
+## 5. Protection Points
 
 1. source evidence、plan 和 specs；
 2. core UI/store implementation；
 3. focused Playwright + screenshot ledger；
 4. cross-batch regression + final handoff。
 
-## 5. Verification Pending
+前三个保护点已完成；第四个保护点待跨批回归后提交。
 
-- focused Batch 27 Playwright
+## 6. Verification Pending
+
 - Batch 9、21、23、25、26、27 regression
 - `npm run check`
 - `npm run docs:check`
