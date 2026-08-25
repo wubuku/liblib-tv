@@ -35,11 +35,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 13 | storyboard mode key-elements rail, canvas data binding and card selection |
 | Batch 14 | Agent drawer Skill cards, notification/composer states and share feedback |
 | Batch 15 | add-node entry semantics, audio node creation and material submenu |
+| Batch 16 | project metadata, canvas CRUD lifecycle, menu cleanup and active-canvas check |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..15}.py; do
+for script in scripts/verify-liblib-batch{4..16}.py; do
   python3 "$script" || exit 1
 done
 ```

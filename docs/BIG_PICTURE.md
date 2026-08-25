@@ -158,7 +158,7 @@ React Flow change
 
 页面还负责：
 
-- 注册 8 个节点组件和 `DeletableEdge`
+- 注册 9 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
 - 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
@@ -175,7 +175,7 @@ React Flow change
 
 `canvasStore` 管：
 
-- 画布列表、当前画布
+- 项目级名称，以及画布列表和当前画布
 - 每个画布的 nodes、edges、viewport
 - group hierarchy；当前原站视频组通过 `parentId` 包含相对 `(62,62)` 的失败视频
 - 当前选中节点 ID 集合，以及用于兼容单节点浮层的主选中节点 ID
@@ -189,7 +189,7 @@ React Flow change
 - 分享弹层、Agent 抽屉；Agent 内容包含 source-shaped Skill 推荐、通知提示和本地 composer 状态
 - 与 React Flow viewport 同步的 zoom 百分比
 
-顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享和 Agent。部分短生命周期 UI 仍保留在组件本地状态中，例如缩放菜单、顶部项目名和面板内部的筛选/使用态。这意味着 LibTV 当前不是单一、完整的编辑器状态机，而是 **画布数据 store + UI store + 局部组件状态** 的组合，但页面级 overlay 生命周期已经有明确的 store 边界。
+顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享和 Agent。项目名与画布 CRUD 进入 `canvasStore`，画布下拉只保留编辑草稿和行级更多菜单等短生命周期局部状态。缩放菜单和面板内部筛选/使用态仍在组件本地，因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
 整理预览快照也属于页面局部状态。节点位置变化进入 `canvasStore` 的 graph history，viewport 只随预览快照恢复，不进入通用 undo/redo。
 

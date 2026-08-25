@@ -57,8 +57,6 @@ function SharePanel() {
 }
 
 export function TopNavBar() {
-  const [projectName, setProjectName] = useState("未命名项目");
-  const [isEditing, setIsEditing] = useState(false);
   const {
     editorMode,
     setEditorMode,
@@ -78,22 +76,6 @@ export function TopNavBar() {
         >
           <LibTvMark />
         </Link>
-        <div className="hidden h-8 items-center rounded-lg bg-[#262626] px-2 lg:flex">
-          {isEditing ? (
-            <input
-              autoFocus
-              value={projectName}
-              onChange={(event) => setProjectName(event.target.value)}
-              onBlur={() => setIsEditing(false)}
-              onKeyDown={(event) => event.key === "Enter" && setIsEditing(false)}
-              className="w-28 bg-transparent text-xs outline-none"
-            />
-          ) : (
-            <button className="max-w-28 truncate text-xs text-[#bcbcbc]" onClick={() => setIsEditing(true)}>
-              {projectName}
-            </button>
-          )}
-        </div>
         <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
           <CanvasTabDropdown />
         </div>

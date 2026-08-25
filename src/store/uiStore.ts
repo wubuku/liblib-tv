@@ -37,6 +37,7 @@ interface UIState {
   // Actions
   toggleAddNodePanel: () => void;
   toggleCanvasDropdown: () => void;
+  closeCanvasDropdown: () => void;
   toggleAssetPanel: () => void;
   toggleToolboxPanel: () => void;
   toggleMaterialPanel: () => void;
@@ -132,6 +133,8 @@ export const useUIStore = create<UIState>((set) => ({
       ...closedOverlayState,
       isCanvasDropdownOpen: !state.isCanvasDropdownOpen,
     })),
+
+  closeCanvasDropdown: () => set({ isCanvasDropdownOpen: false }),
 
   toggleAssetPanel: () =>
     set((state) => ({

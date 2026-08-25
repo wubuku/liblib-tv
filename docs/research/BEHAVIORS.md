@@ -117,16 +117,13 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 
 ## TopNavBar
 
-### Project Name Inline Edit
-- **Trigger:** Click the project name text (`未命名项目`)
-- **Effect:** Input field appears with current value. Press `Enter` or click outside to commit.
-- **Current implementation:** Local component state only; not persisted to `canvasStore`.
-
 ### Canvas Tab Dropdown
 - **Trigger:** Click "画布 2 ▾"
-- **Effect:** Dropdown opens showing all canvases. Selecting a canvas calls `useCanvasStore.setActiveCanvas(id)`.
-- **Per-canvas actions:** "重命名" (rename — inline edit), "复制" (duplicate — `duplicateCanvas`), "删除" (delete — `removeCanvas`, only if > 1 canvas exists).
-- **"新建画布" button:** Creates a new canvas via `addCanvas(name?)`.
+- **Structure:** `当前项目` and editable project name, followed by `画布`, a plus command and the canvas list. The active canvas is ordered first and has a right-side check.
+- **Project metadata:** The project name is stored in `canvasStore.projectName`, separate from each canvas name; this remains in-memory prototype state.
+- **Canvas actions:** Selecting, creating, renaming, copying or deleting a canvas performs the existing store action and closes the dropdown.
+- **Cleanup:** Outside click and Escape close the dropdown and clear local edit/menu state.
+- **Evidence and verification:** `docs/research/liblib-canvas-batch16-2026-08-25/` and `scripts/verify-liblib-batch16.py`.
 
 ### VIP + Credits Button
 - Click → opens membership store (not implemented in clone).

@@ -10,7 +10,7 @@ This is the authoritative catalog of components in this clone. For each, file pa
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| `TopNavBar` | `src/components/TopNavBar.tsx` | Top navigation: logo, project name, canvas dropdown, notification, VIP+credits, FrameOS link, user avatar. Height 48px, bg `#141414`. |
+| `TopNavBar` | `src/components/TopNavBar.tsx` | Floating top controls: route mark, canvas/project navigation, workbench/storyboard mode, share, credits and Agent. |
 | `LeftSidebar` | `src/components/LeftSidebar.tsx` | Compatibility name for the centered primary bottom toolbar with 8 icon buttons and mutually exclusive entry panels. |
 | `BottomToolbar` | `src/components/BottomToolbar.tsx` | Centered floating toolbar at bottom: 资产管理 text button, icon buttons, large cyan "+" (add node), zoom %. |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | Compact "正在跟随" + 取消ESC banner above canvas + script title node. |
@@ -44,7 +44,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | Component | File | Purpose |
 |-----------|------|---------|
 | `AddNodePanel` | `src/components/AddNodePanel.tsx` | 9-entry source-shaped node list, material submenu, upload/history local feedback. |
-| `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | Multi-canvas switcher dropdown with 新建/重命名/复制/删除. |
+| `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | Source-shaped project context and multi-canvas lifecycle with active check, edit/new/switch/rename/copy/delete and explicit close cleanup. |
 | `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Bottom-toolbar-anchored 480x460 panel with 25 source-derived presets. |
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |
@@ -72,7 +72,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 
 | Store | File | Responsibility |
 |------|------|--------|
-| `useCanvasStore` | `src/store/canvasStore.ts` | All canvas data: canvii list, active canvas ID, multi-selection with a primary selected node, nodes, edges, viewport, and per-canvas in-memory history. Includes `addNode`, `duplicateNode`, `groupSelectedNodes`, `ungroupSelectedNodes`, `removeSelectedNodes`, `removeNode`, `addEdge`, `removeEdge`, `undo`, `redo`, `setViewport`, `setActiveCanvas`, `addCanvas`, `removeCanvas`, `duplicateCanvas`, etc. |
+| `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, graph commands and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Panel visibility (add node, shortcuts, asset panel, etc.), grid/minimap/snap toggles, zoom level. `toggleAddNodePanel`, `closeAllPanels`, etc. |
 
 ---

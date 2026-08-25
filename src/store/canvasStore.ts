@@ -25,6 +25,7 @@ export interface CanvasData {
 }
 
 interface CanvasState {
+  projectName: string;
   canvases: CanvasData[];
   activeCanvasId: string;
   selectedNodeIds: string[];
@@ -32,6 +33,7 @@ interface CanvasState {
   historyByCanvas: Record<string, HistoryStack>;
 
   // Canvas actions
+  setProjectName: (name: string) => void;
   addCanvas: (name?: string) => void;
   removeCanvas: (id: string) => void;
   renameCanvas: (id: string, name: string) => void;
@@ -493,11 +495,18 @@ const initialCanvas2: CanvasData = {
 let canvasCounter = 2;
 
 export const useCanvasStore = create<CanvasState>((set, get) => ({
+  projectName: "未命名项目",
   canvases: [defaultCanvas("canvas-1", "画布 1"), initialCanvas2],
   activeCanvasId: "canvas-2",
   selectedNodeIds: [],
   selectedNodeId: null,
   historyByCanvas: {},
+
+  setProjectName: (name: string) => {
+    const trimmedName = name.trim();
+    if (!trimmedName) return;
+    set({ projectName: trimmedName });
+  },
 
   addCanvas: (name?: string) => {
     canvasCounter++;
