@@ -1,6 +1,6 @@
 # Batch 29 Implementation Log
 
-> 状态：核心实现完成；专项 Playwright、截图台账和跨批回归待完成。
+> 状态：核心实现和专项 Playwright 完成；跨批回归待完成。
 
 ## Planned Protection Points
 
@@ -55,6 +55,28 @@
 - camera click 在 `12.5s` playhead 创建 current result；
 - source 始终是唯一 selected；
 - console/page error 为 `0`。
+
+## Focused Playwright
+
+新增 `scripts/verify-liblib-batch29.py`，实际通过：
+
+- top frame group source order 和画面编辑/download 相对位置；
+- `991x49` toolbar、`160px` dropdown、trigger-relative center/gap；
+- first/last/current 的 time、name、alt 和 image alt；
+- source-to-image direct edge 和 metadata edge ID；
+- first output `100` world-unit gap、同 Y；
+- repeated output deterministic non-overlap；
+- source selection preservation 和连续 capture；
+- local `12.5s` playhead；
+- player camera direct-current shortcut 和 hover 三项 menu；
+- one-step undo/redo；
+- output 重新选择后的普通 ImageToolbar/ImageEditPanel；
+- multi-selection hiding；
+- `390x844` natural clipping 和 no document overflow；
+- 五张 state screenshot、一次性 contact sheet 和 zero browser errors。
+
+一次性视觉识别已写入 [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)。
+未发现工具条换行、dropdown 脱锚、player menu 遮挡、output 重叠或浮层错位。
 
 ## Implementation History
 
