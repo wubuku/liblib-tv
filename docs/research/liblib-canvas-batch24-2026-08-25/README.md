@@ -1,6 +1,6 @@
 # Batch 24：逐帧拉片持久化结果组
 
-> 状态：已实施；Batch 24 专项 Playwright、类型检查和 lint 已通过，跨批回归待最终门禁阶段记录。
+> 状态：已完成；Batch 24 专项 Playwright、Batch 9-24 跨批回归和完整工程/文档门禁均通过。
 
 ## 批次前缺口
 
@@ -46,6 +46,7 @@
 - 维度决定创建哪些结果类别。
 - source 状态、结果节点和五条派生边作为一次 history transaction 写入；单次 undo/redo 整体回退/恢复。
 - 旧 `ShotBreakdownResultsPanel`、tabs、check 和 aggregate footer 已删除。
+- Batch 9-24 全量浏览器回归通过，未破坏既有画布、浮层、资产、Seedance 和移动端合同。
 
 ## 原型边界
 

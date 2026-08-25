@@ -1,6 +1,6 @@
 # Batch 24 Implementation Log
 
-> 状态：实现与专项验证已完成；跨批回归和完整工程门禁待最终阶段补录。
+> 状态：实现、专项验证、跨批回归和完整工程门禁均已完成。
 
 ## 1. 实施内容
 
@@ -60,7 +60,30 @@
 - `npm run typecheck`：通过。
 - `npm run lint`：0 errors；保留 9 条既有 FrameOS warnings。
 
-## 3. 截图
+## 3. 跨批回归与最终门禁
+
+### Playwright
+
+按顺序运行 `scripts/verify-liblib-batch9.py` 到 `scripts/verify-liblib-batch24.py`，16 个批次全部通过：
+
+- Batch 9-12：节点浮层锚定、图片五态、overlay 生命周期、资产 tabs；
+- Batch 13-17：分镜模式、Agent/share、添加节点、画布 CRUD、资产层级；
+- Batch 18-20：缩放菜单、minimap、720° 全景派生节点；
+- Batch 21-24：Seedance 参数、模型菜单、片段重拍、逐帧拉片。
+
+### Engineering
+
+- `npm run check`：通过。
+  - ESLint：0 errors，9 条既有 FrameOS warnings；
+  - TypeScript strict check：通过；
+  - Next.js 16.2.1 production build：通过；
+  - 路由：`/`、`/_not-found`、`/frameos`、`/frameos/canvas/[id]`。
+- `npm run docs:check`：通过，186 个 Markdown，443 个本地目标。
+- `git diff --check`：通过。
+
+构建仍提示仓库上层存在另一个 `package-lock.json`，Next 自动推断 workspace root；该警告在本批前已存在，不影响构建产物。
+
+## 4. 截图
 
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-ready-929-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-results-overview-929-2026-08-25.png`
@@ -68,7 +91,13 @@
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-mobile-390-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png`
 
-## 4. 剩余边界
+## 5. Git 保护点
+
+- `5a0648f`：Batch 24 原站证据、计划、识图台账和工作流规格。
+- `3a15fd2`：持久结果节点实现、专项 Playwright、截图和实现台账。
+- 最终回归结果随本文档提交并推送。
+
+## 6. 剩余边界
 
 - 没有真实媒体上传、逐帧分析、动态视频、BGM 提取、会员或积分服务。
 - source output screenshot 没有 React Flow DOM，因此结果组 type、精确尺寸、edge 数量仍是 source-shaped inference。
