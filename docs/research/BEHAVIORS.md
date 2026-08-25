@@ -22,6 +22,8 @@
 - `Cmd/Ctrl+0` — Fit the canvas
 - `Cmd/Ctrl++` / `Cmd/Ctrl+-` — Zoom in/out
 - `V` / `H` — Select/move tool and hand tool
+- `G` — Group at least two selected ordinary nodes
+- `Shift+G` — Ungroup the selected group or one of its children
 
 ## Edge (Connection Line)
 
