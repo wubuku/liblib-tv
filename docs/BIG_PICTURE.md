@@ -177,6 +177,7 @@ React Flow change
 
 - 画布列表、当前画布
 - 每个画布的 nodes、edges、viewport
+- group hierarchy；当前原站视频组通过 `parentId` 包含相对 `(62,62)` 的失败视频
 - 当前选中节点 ID 集合，以及用于兼容单节点浮层的主选中节点 ID
 - 增删改节点、边和画布
 
@@ -201,11 +202,13 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `TextNode`：文本
 - `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍和智能续写
 - `ScriptExecutionNode`：步骤状态
-- `StoryboardGroupNode`：图片组/视频组背景容器
+- `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地结果卡
 - `VideoClipNode`：智能剪辑 Beta 四模式空态
 
 当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片与视频编辑已有专用 renderer，导演台、音频等尚未专门实现的类别仍映射到最接近的原型节点。
+
+视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 
 图片节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。
 
@@ -395,11 +398,12 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ## 12. 本轮验证基线
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
-- `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch7.py`：多选/成组、移动/复制、导航手势和整理预览全部通过
+- `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch8.py`：多选/成组、移动/复制、导航手势、整理预览和视频组 hierarchy 全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`
 - 整理预览 `929x874`：28% 视口；关键节点位置在 `3px` 容差内，左下确认卡约 `168x88`
 - 整理预览 `1440x900` / `390x844`：约 46% / 10%，无页面横向溢出
+- 视频组：原站 `.parent` class 与相对 `(62,62)` 已复刻；parent/child drag、group/child copy、级联删除和 history 通过
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
 - minimap：开关后渲染 `150x110`；zoom 菜单、吸附和点阵开关可操作
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`，列出 10 个节点

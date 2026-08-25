@@ -71,6 +71,17 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 - **Effect:** Standard React Flow drag. `onNodeDragStop` saves the final position to `useCanvasStore` via `setNodes`.
 - **History:** The graph from drag start is recorded once when the drag ends, so one drag is one undo step.
 
+### Group Hierarchy
+
+- The source video group is a real React Flow parent; the failed video is its child at relative `(62,62)`.
+- Dragging the video group moves the failed video by the same screen delta while the child relative position stays unchanged.
+- Dragging the child changes only its relative position; the parent does not move.
+- Copying a group includes descendants and remaps child `parentId`.
+- Copying only a child creates a top-level copy at its absolute position plus `(40,40)`.
+- Deleting a group cascades to descendants and edges touching any removed node.
+- The source image group is empty and does not have `.parent`.
+- See [`liblib-canvas-batch8-2026-08-25/`](./liblib-canvas-batch8-2026-08-25/) for the original DOM/xyflow evidence chain.
+
 ### Handle Drag to Connect
 - **Trigger:** Mouse down on `<Handle>`, drag to another `<Handle>`
 - **Effect:** Creates a connection edge. See "Edge → Connection Drag" above.

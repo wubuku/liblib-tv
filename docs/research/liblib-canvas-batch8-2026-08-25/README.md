@@ -1,7 +1,7 @@
 # LibTV 画布 Batch 8：视频组父子语义
 
 > 建档日期：2026-08-25
-> 状态：计划与规格已落档，实施中
+> 状态：计划、实施、专项验证、跨批回归和完整工程检查已完成
 > 目标：把原站视频组与失败视频从“视觉重叠”修正为 React Flow 的真实 parent-child 关系，并补齐受影响的图编辑事务。
 
 ## 为什么做这一批
@@ -33,4 +33,15 @@
 ## 证据边界
 
 原站 `.parent` class、组/视频绝对坐标和尺寸是直接证据；child 的相对 `(62,62)` 由两个直接坐标相减得到。级联删除、把已 parented child 重新成组、派生节点使用绝对坐标属于保持当前 clone 图模型一致性的实现决策，不描述为原站内部命令实现。
+
+## 本批结果
+
+- 初始失败视频改为视频组的真实 child，绝对画面位置不变；
+- 视频组获得与原站一致的 `.parent` class，图片组保持空组；
+- parent drag、child drag 和各自 undo/redo 均闭环；
+- 复制 group 会带 child 并重映射 parentId；
+- 单独复制 child 会得到可独立移动的顶层副本；
+- parented child 仍可参与 Batch4 的重新成组；
+- 删除 group 会级联 descendants 和相关 edges；
+- Batch4-Batch8 与 `npm run check` 全部通过。
 

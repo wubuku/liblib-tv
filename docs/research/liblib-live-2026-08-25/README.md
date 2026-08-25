@@ -47,8 +47,8 @@
 | 剧本执行 | `(1068, -187)` | `350x350` | 四步执行卡 |
 | 分镜 #2 | `(1580, -300)` | `622x350` | 本地已有 `storyboard-2` |
 | 图片组 | `(2112, 656)` | `430x452` | 半透明圆角组 |
-| 视频组 | `(2374, -12)` | `722x460` | `#212121` 分镜组 |
-| 失败视频 | `(2436, 50)` | `622x350` | 视频组内视觉内容 |
+| 视频组 | `(2374, -12)` | `722x460` | `#212121` 分镜组；DOM 有 `.parent` |
+| 失败视频 | `(2436, 50)` | `622x350` | 视频组 child，相对位置 `(62,62)` |
 
 ### 图片节点选中态定位
 
@@ -64,6 +64,14 @@
 
 - [`../../design-references/liblib-clone-after-2026-08-25-image-selected.png`](../../design-references/liblib-clone-after-2026-08-25-image-selected.png)
 - [`../../design-references/liblib-clone-after-2026-08-25-image-selected-mobile-390.png`](../../design-references/liblib-clone-after-2026-08-25-image-selected-mobile-390.png)
+
+### 视频组父子关系
+
+原站视频组 class 包含 `.parent`，图片组不包含。当前 xyflow v12 只在 `parentLookup` 存在 child 时添加该 class；失败视频绝对坐标减去视频组绝对坐标又正好是 `(62,62)`。因此这不是视觉重叠，而是真实 parent-child。
+
+详细证据、实现与回归见
+[`../liblib-canvas-batch8-2026-08-25/README.md`](../liblib-canvas-batch8-2026-08-25/README.md)。
+
 
 ## 3. 缺口清单
 

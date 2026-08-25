@@ -37,7 +37,7 @@
 | 分镜图 | `i-YDfWhFlthe` | `(820, 1040)` |
 | 图片组 | `g-245IDFh8sB` | `(1640, 370)` |
 | 视频组 | `g-EFbbHpwq5w` | `(1640, 940)` |
-| 失败视频 | `v-UGQZzZOpbv` | `(1710, 1010)` |
+| 失败视频 | `v-UGQZzZOpbv` | 视频组 child，相对 `(62, 62)`；绝对位置由 parent 推导 |
 | 剧本 | `t-9j2MoccxBj` | `(2500, 0)` |
 
 对应的已知边界约为：
@@ -48,6 +48,8 @@ maxX = 2850
 minY = 0
 maxY = 1700
 ```
+
+Batch8 已用原站 `.parent` class 和 xyflow 源码确认失败视频是真实 child。上表不再把它作为独立顶层坐标写入；`src/lib/liblibOrganize.ts` 只排列视频组，video 保留相对位置。
 
 ## 4. Viewport 算法
 

@@ -26,7 +26,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
 | `video` | `src/components/nodes/VideoNode.tsx` | Video preview + "运镜" button → CameraMovementDialog. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
-| `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image group with title + thumbnail grid. |
+| `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 
 ## Edge Components
 
