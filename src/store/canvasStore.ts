@@ -118,6 +118,41 @@ function nodeHeight(node: Node): number {
   return (node.height ?? Number(node.style?.height)) || 180;
 }
 
+function getAbsoluteNodePosition(node: Node, nodesById: Map<string, Node>): { x: number; y: number } {
+  let x = node.position.x;
+  let y = node.position.y;
+  let parentId = node.parentId;
+  const visited = new Set<string>([node.id]);
+
+  while (parentId && !visited.has(parentId)) {
+    visited.add(parentId);
+    const parent = nodesById.get(parentId);
+    if (!parent) break;
+    x += parent.position.x;
+    y += parent.position.y;
+    parentId = parent.parentId;
+  }
+
+  return { x, y };
+}
+
+function withDescendantIds(nodes: Node[], requestedIds: Iterable<string>): Set<string> {
+  const result = new Set(requestedIds);
+  let expanded = true;
+
+  while (expanded) {
+    expanded = false;
+    for (const node of nodes) {
+      if (node.parentId && result.has(node.parentId) && !result.has(node.id)) {
+        result.add(node.id);
+        expanded = true;
+      }
+    }
+  }
+
+  return result;
+}
+
 function withoutParent(node: Node, position: { x: number; y: number }): Node {
   const nextNode = { ...node, position };
   delete nextNode.parentId;
@@ -179,13 +214,11 @@ function duplicateGraphSelection(
         copiedNode.parentId = copiedParentId;
         copiedNode.position = { ...node.position };
       } else if (node.parentId) {
-        const parent = nodesById.get(node.parentId);
-        copiedNode.position = parent
-          ? {
-              x: parent.position.x + node.position.x + 40,
-              y: parent.position.y + node.position.y + 40,
-            }
-          : { x: node.position.x + 40, y: node.position.y + 40 };
+        const absolutePosition = getAbsoluteNodePosition(node, nodesById);
+        copiedNode.position = {
+          x: absolutePosition.x + 40,
+          y: absolutePosition.y + 40,
+        };
         delete copiedNode.parentId;
         delete copiedNode.extent;
       }
@@ -367,7 +400,8 @@ const initialCanvas2: CanvasData = {
     {
       id: "v-UGQZzZOpbv",
       type: "video",
-      position: { x: 2436, y: 50 },
+      parentId: "g-EFbbHpwq5w",
+      position: { x: 62, y: 62 },
       width: 622,
       height: 350,
       style: { width: 622, height: 350 },
@@ -586,11 +620,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
     const dimensions = getDefaultNodeDimensions(type);
     const sourceWidth = source.width ?? (Number(source.style?.width) || 350);
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const sourcePosition = getAbsoluteNodePosition(source, nodesById);
     const nodeId = `${type}-${Date.now()}`;
     const newNode: Node = {
       id: nodeId,
       type,
-      position: { x: source.position.x + sourceWidth + 120, y: source.position.y },
+      position: { x: sourcePosition.x + sourceWidth + 120, y: sourcePosition.y },
       width: dimensions.width,
       height: dimensions.height,
       style: dimensions,
@@ -703,14 +739,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas || !currentCanvas.nodes.some((node) => node.id === nodeId)) return state;
-      const nextSelectedNodeIds = state.selectedNodeIds.filter((id) => id !== nodeId);
+      const removedIds = withDescendantIds(currentCanvas.nodes, [nodeId]);
+      const nextSelectedNodeIds = state.selectedNodeIds.filter((id) => !removedIds.has(id));
       return {
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: canvas.nodes.filter((node) => node.id !== nodeId),
-                edges: canvas.edges.filter((edge) => edge.source !== nodeId && edge.target !== nodeId),
+                nodes: canvas.nodes.filter((node) => !removedIds.has(node.id)),
+                edges: canvas.edges.filter(
+                  (edge) => !removedIds.has(edge.source) && !removedIds.has(edge.target),
+                ),
               }
             : canvas,
         ),
@@ -725,24 +764,25 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const { activeCanvasId } = get();
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
-      const selectedIds = new Set(
+      const requestedIds = new Set(
         state.selectedNodeIds.length > 0
           ? state.selectedNodeIds
           : state.selectedNodeId
             ? [state.selectedNodeId]
             : [],
       );
-      if (!currentCanvas || selectedIds.size === 0) return state;
-      const hasSelectedNode = currentCanvas.nodes.some((node) => selectedIds.has(node.id));
+      if (!currentCanvas || requestedIds.size === 0) return state;
+      const hasSelectedNode = currentCanvas.nodes.some((node) => requestedIds.has(node.id));
       if (!hasSelectedNode) return state;
+      const removedIds = withDescendantIds(currentCanvas.nodes, requestedIds);
       return {
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: canvas.nodes.filter((node) => !selectedIds.has(node.id)),
+                nodes: canvas.nodes.filter((node) => !removedIds.has(node.id)),
                 edges: canvas.edges.filter(
-                  (edge) => !selectedIds.has(edge.source) && !selectedIds.has(edge.target),
+                  (edge) => !removedIds.has(edge.source) && !removedIds.has(edge.target),
                 ),
               }
             : canvas,
@@ -760,15 +800,23 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas) return state;
       const selectedIds = new Set(state.selectedNodeIds);
+      const nodesById = new Map(currentCanvas.nodes.map((node) => [node.id, node]));
       const children = currentCanvas.nodes.filter(
-        (node) => selectedIds.has(node.id) && node.type !== "storyboard-group" && !node.parentId,
+        (node) => selectedIds.has(node.id) && node.type !== "storyboard-group",
       );
       if (children.length < 2) return state;
 
-      const minX = Math.min(...children.map((node) => node.position.x));
-      const minY = Math.min(...children.map((node) => node.position.y));
-      const maxX = Math.max(...children.map((node) => node.position.x + nodeWidth(node)));
-      const maxY = Math.max(...children.map((node) => node.position.y + nodeHeight(node)));
+      const absolutePositions = new Map(
+        children.map((node) => [node.id, getAbsoluteNodePosition(node, nodesById)]),
+      );
+      const minX = Math.min(...children.map((node) => absolutePositions.get(node.id)?.x ?? node.position.x));
+      const minY = Math.min(...children.map((node) => absolutePositions.get(node.id)?.y ?? node.position.y));
+      const maxX = Math.max(
+        ...children.map((node) => (absolutePositions.get(node.id)?.x ?? node.position.x) + nodeWidth(node)),
+      );
+      const maxY = Math.max(
+        ...children.map((node) => (absolutePositions.get(node.id)?.y ?? node.position.y) + nodeHeight(node)),
+      );
       const groupId = createNodeId("group");
       const groupNode: Node = {
         id: groupId,
@@ -789,13 +837,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         },
       };
       const nextNodes = currentCanvas.nodes.map((node) =>
-        selectedIds.has(node.id)
+        absolutePositions.has(node.id)
           ? {
               ...node,
               parentId: groupId,
               position: {
-                x: node.position.x - groupNode.position.x,
-                y: node.position.y - groupNode.position.y,
+                x: (absolutePositions.get(node.id)?.x ?? node.position.x) - groupNode.position.x,
+                y: (absolutePositions.get(node.id)?.y ?? node.position.y) - groupNode.position.y,
               },
             }
           : node,

@@ -9,7 +9,6 @@ const SOURCE_ORGANIZE_POSITIONS: Record<string, { x: number; y: number }> = {
   "i-YDfWhFlthe": { x: 820, y: 1040 },
   "g-245IDFh8sB": { x: 1640, y: 370 },
   "g-EFbbHpwq5w": { x: 1640, y: 940 },
-  "v-UGQZzZOpbv": { x: 1710, y: 1010 },
   "t-9j2MoccxBj": { x: 2500, y: 0 },
 };
 
@@ -111,4 +110,3 @@ export function getLiblibOrganizeViewport(nodes: Node[], viewportWidth: number):
     zoom,
   };
 }
-
