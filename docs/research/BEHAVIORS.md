@@ -206,11 +206,12 @@ The five source image states use explicit panel heights rather than a generic Pr
 ### Select VideoNode
 - **Failed video:** Shows the `660×274` Seedance generation panel below the child node.
 - **Ready video:** Also shows the top processing toolbar. Generator and segment reshoot use full lower editors; smart continuation first uses a separate `660x56` range selector, then creates a connected empty target whose generation panel owns the continuation Prompt.
+- **Subtitle erase:** `智能去字幕` opens a `48px` compact lower bar. `框选去字幕` also overlays a normalized multi-rectangle editor with move, corner resize and local undo/redo/reset. Submit creates one connected pending target in a single graph transaction.
 - **Anchor:** The lower panel center equals the video child center, remains screen-sized through zoom, and uses a `16 * zoom` gap.
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` and `scripts/verify-liblib-batch27.py`.
 
 ## KeyboardShortcutsDialog
 

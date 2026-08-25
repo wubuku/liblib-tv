@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch26.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch27.py` | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -46,11 +46,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 24 | shot-breakdown result graph transaction, dimension filtering, output groups and responsive bounds |
 | Batch 25 | video-clip empty node, single-column modes, node-anchored editor and responsive clipping |
 | Batch 26 | smart-continuation selector, range manipulation, target/edge lifecycle, clear and undo/redo |
+| Batch 27 | smart/region subtitle erase, rectangle history, request metadata and pending target graph |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..26}.py; do
+for script in scripts/verify-liblib-batch{4..27}.py; do
   python3 "$script" || exit 1
 done
 ```

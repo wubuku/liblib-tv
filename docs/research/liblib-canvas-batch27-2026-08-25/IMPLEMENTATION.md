@@ -1,6 +1,6 @@
 # Batch 27 Implementation Log
 
-> 状态：核心实现、专项 Playwright 和截图分析完成；跨批回归待开始。
+> 状态：已完成；实现、专项 Playwright、截图分析、跨批回归和工程门禁均已落档。
 
 ## 1. Core Implementation
 
@@ -90,13 +90,63 @@ React 19 ESLint 还拒绝了失焦时同步 `setState` 的 effect；该非源站
 3. focused Playwright + screenshot ledger；
 4. cross-batch regression + final handoff。
 
-前三个保护点已完成；第四个保护点待跨批回归后提交。
+四个保护点均已完成。
 
-## 6. Verification Pending
+## 6. Commits
 
-- Batch 9、21、23、25、26、27 regression
-- `npm run check`
-- `npm run docs:check`
-- `git diff --check`
+- `281f6e8 docs: plan subtitle erase workflow`
+- `c2fdd9a feat(liblib): add subtitle erase workflow`
+- `445e703 test(liblib): verify subtitle erase workflow`
+- final documentation and regression record: this commit
 
-完成后必须把实际结果、修复过程、截图结论和 commit IDs 写回本文件。
+## 7. Cross-Batch Regression
+
+串行运行：
+
+```bash
+for script in \
+  scripts/verify-liblib-batch9.py \
+  scripts/verify-liblib-batch21.py \
+  scripts/verify-liblib-batch23.py \
+  scripts/verify-liblib-batch25.py \
+  scripts/verify-liblib-batch26.py \
+  scripts/verify-liblib-batch27.py
+do
+  python3 "$script" || exit 1
+done
+```
+
+结果：全部通过。
+
+- Batch 9：image/video floating anchor、parent/child follow、pan/zoom、多选。
+- Batch 21：normal/long parameters、mode matrix、`300s / 14700`。
+- Batch 23：reshoot layers、五段上限、tokens、whole rerun。
+- Batch 25：video-clip editor、zoom/drag/pan、多选、mobile。
+- Batch 26：continuation range、target/edge、clear 和 undo/redo。
+- Batch 27：subtitle 两模式、region history、target/edge 和 metadata。
+
+## 8. Engineering Gates
+
+- `npm run check`：通过。
+  - ESLint：`0 error`，保留 9 条既有 FrameOS warnings。
+  - TypeScript：通过。
+  - Next.js production build：通过。
+- `npm run docs:check`：通过，205 个 Markdown、485 个本地目标。
+- `git diff --check`：通过。
+
+跨批脚本重写的既有/已提交 PNG 有非确定性压缩或动画采样差异；这些测试产物已恢复到审核过的提交版本，没有把无关二进制 churn 带入最终文档提交。
+
+## 9. Final State
+
+Batch 27 已完成：
+
+- source evidence；
+- implementation plan；
+- code implementation；
+- focused Playwright and screenshots；
+- screenshot recognition ledger；
+- cross-batch regression；
+- production/docs gates；
+- agent-facing behavior、component、harness 和 Big Picture updates。
+
+最终文档提交后，Batch 27 可以独立由 `README.md -> IMPLEMENTATION.md -> component specs -> verify script` 接力。

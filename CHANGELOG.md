@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced the guessed four-item Seedance model menu with the seven source-visible rows and selected-only descriptions
 - Replaced the guessed segment-reshoot title panel with a source-shaped filmstrip and tokenized Prompt editor
 - Replaced the guessed smart-continuation reshoot branch with the source-backed two-stage range-selector and target-node workflow
+- Replaced the subtitle dropdown's temporary feedback with source-backed smart/region panels, multi-rectangle editing and a pending target graph transaction
 
 ### Changed
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation
@@ -43,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Aligned the Seedance model popover to `380x410`, added premium/estimate hierarchy and Batch 22 model-menu coverage
 - Added Batch 23 coverage for 4-second range selection, five-range cap, prompt tokens and empty-intent whole-video rerun
 - Added Batch 26 coverage for continuation range constraints, graph transactions, target Prompt state, clear behavior and responsive anchoring
+- Added Batch 27 coverage for subtitle mode handoff, rectangle history, request metadata, target/edge lifecycle and responsive anchoring
 
 > Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 

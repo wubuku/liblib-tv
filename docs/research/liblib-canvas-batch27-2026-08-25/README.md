@@ -1,6 +1,6 @@
 # Batch 27：智能去字幕两模式工作流
 
-> 状态：计划、源证据、核心实现、专项 Playwright 和截图分析已落档；跨批回归待完成。
+> 状态：已完成；证据、计划、实现、专项截图、跨批回归和工程门禁均已落档。
 
 ## 批次前缺口
 
@@ -44,3 +44,13 @@
 ## 原型边界
 
 本批不识别真实字幕，不擦除视频像素，不计算真实积分，不上传媒体，不提交模型任务，也不轮询生成结果。目标是忠实复刻可确认的画布入口、区域编辑、下方控制条、图事务与 pending 状态。
+
+## 结果摘要
+
+- 两模式入口：`智能去字幕` / `框选去字幕`。
+- 紧凑 panel：`48px` 高、node-relative inverse-scale anchor。
+- region editor：多框、选择、移动、四角 resize、undo、redo、reset。
+- graph handoff：pending target、source edge 和 metadata 单事务创建。
+- 专项验证：`scripts/verify-liblib-batch27.py`。
+- 回归：Batch 9、21、23、25、26、27，`npm run check`，`npm run docs:check`。
+- Git 保护点：`281f6e8`、`c2fdd9a`、`445e703`。

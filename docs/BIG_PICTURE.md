@@ -202,7 +202,7 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `ScriptNode`：剧本文本
 - `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel
 - `TextNode`：文本
-- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍和智能续写
+- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写和智能/框选去字幕
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
@@ -224,6 +224,8 @@ Seedance 模型菜单当前只表达截图可见集合，不表达完整模型�
 片段重拍不能被实现成一个带自创标题栏的普通表单。文章流程图和当前 bundle 共同支持“独立 4 秒时间带 + 生成器式 Prompt editor”的结构、最多五段、视频/range token，以及未选区间时“留空 = 原样重跑一次”。clone 使用 `660x56` filmstrip 和 `660x252` editor，并继续遵守节点锚定、反缩放与自然裁切合同；缩略帧和提交结果仍是本地 mock。
 
 智能续写不是片段重拍的单选分支。当前线上 bundle 支持“先截取 `4-30s` 前置视频，再创建右侧续写目标”的两阶段模型：第一阶段是节点下方 `660x56` 连续 timeline，使用 `8 * zoom` gap，支持 start/end/region drag；确认后以一次 history transaction 创建 empty video target 和 source edge。目标节点显示来源/range 前缀、专用 Prompt placeholder，并锁定 `Seedance 2.5 / 全能参考`；退出续写只清 metadata 和声明 edge，不删除目标。真实裁剪、上传、合规、模型调用和持久化仍不在原型范围内。
+
+智能去字幕也不是工具条中的临时反馈。当前线上 bundle 支持 `智能去字幕` 和 `框选去字幕` 两种模式：两者都打开节点下方 `48px` 紧凑生成条；region 模式还会把 source 聚焦到至少 `zoom:1`，在视频画面内建立多矩形选择层，并提供 move、corner resize、undo、redo 和 reset。确认后 clone 用一次 history transaction 创建 `视频一键去字幕-{sourceLabel}` pending target 与 source edge，并记录 mode、normalized regions、model 和 request mode。真实字幕检测、像素擦除、积分、上传、任务提交和轮询不在原型范围内。
 
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
 
