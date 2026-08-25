@@ -95,8 +95,8 @@ src/
 │   ├── StoryboardBoard.tsx       # Storyboard-mode column view
 │   ├── AddNodePanel.tsx          # Current one-column 9-entry node/resource selector
 │   ├── CanvasTabDropdown.tsx     # Multi-canvas switcher (rename/duplicate/delete)
-│   ├── ImageToolbar.tsx          # Page-level horizontal toolbar for a selected image
-│   ├── ImageEditPanel.tsx        # Page-level 660×274 image prompt editor
+│   ├── ImageToolbar.tsx          # NodeToolbar-anchored horizontal toolbar for a selected image
+│   ├── ImageEditPanel.tsx        # Node-anchored, inverse-zoom 660×274 image prompt editor
 │   ├── CameraConfigDialog.tsx    # 9 cameras × 10 lenses × 7 focal lengths × 3 apertures
 │   ├── CameraMovementDialog.tsx  # 10 movement types + speed + duration + amplitude
 │   ├── ToolboxPanel.tsx          # Preset animation templates (placeholder)

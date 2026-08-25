@@ -190,13 +190,15 @@ React Flow change
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；选中后的工具条与编辑面板由页面级 viewport overlay 渲染，避免随画布缩放
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放
 - `TextNode`：文本
 - `VideoNode`：当前项目中的失败视频状态
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器
 
 当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；在没有专用 renderer 的类别上，它会映射到最接近的已注册原型节点。这个映射只用于验证添加流程，不表示导演台、音频、逐帧拉片等业务已经实现。
+
+图片节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。
 
 ## 6. FrameOS 运行模型
 

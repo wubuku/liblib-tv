@@ -123,9 +123,9 @@ Buttons (left to right):
 ### Select Image Node
 - **Trigger:** Click an ImageNode
 - **Effect:** Shows:
-  - `ImageEditPanel` (below the node) — bottom panel with style/mark tabs, prompt textarea, model selector, 摄像机 + 运镜 buttons, generate button
-  - `ImageToolbar` (right of the node) — vertical icon toolbar with 7 features (人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分)
-  - The X (close) button on the image header becomes visible
+  - `ImageToolbar` above the node — horizontal `900×49` toolbar, node-centered with a `16px` screen-space offset and constant screen size
+  - `ImageEditPanel` below the node — `660×274` populated prompt state, node-centered and counter-scaled by `1 / zoom`
+  - Both overlays follow node drag, pan, and zoom; neither is clamped or recentered to the browser viewport
 
 ### Click 摄像机 (Camera) Button in ImageEditPanel
 - Opens `CameraConfigDialog`.

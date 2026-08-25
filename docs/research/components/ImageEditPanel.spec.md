@@ -1,89 +1,70 @@
 # ImageEditPanel Specification
 
-## Overview
+## Evidence
 
 - **Target file:** `src/components/ImageEditPanel.tsx`
-- **Trigger:** ImageNode is selected (`selected === true`).
-- **Position:** Absolutely positioned below the image node (`absolute left-0 right-0 top-full mt-2`).
-- **z-index:** 50.
+- **Live sample:** LibTV canvas, measured 2026-08-25
+- **Trigger:** an `ImageNode` is selected
+- **Reference:** `docs/design-references/liblib-original-image-selected-2026-08-25.png`
 
-## DOM Structure
+## Positioning Contract
 
-```
-<div className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#1f1f1f] border border-[#363636] rounded-xl shadow-xl overflow-hidden">
+The editor is not a page-level fixed overlay. It is mounted inside the selected image node so it follows node movement, viewport pan, and viewport zoom.
 
-  <!-- Tabs -->
-  <div className="flex items-center gap-2 px-4 py-2 border-b border-[#363636]">
-    <button onClick={() => setActiveTab("style")}>风格</button>
-    <button onClick={() => setActiveTab("mark")}>标记</button>
-  </div>
-
-  <!-- Prompt -->
-  <div className="px-4 py-3">
-    <p>可直接文字生图，或上传图片输入文字指令...</p>
-    <textarea placeholder="输入提示词..." />
-  </div>
-
-  <!-- Bottom controls -->
-  <div className="px-4 py-3 border-t border-[#363636]">
-    <div className="flex items-center justify-between">
-      <!-- Left: model selectors -->
-      <div>
-        <button>Lib Image ▾</button>
-        <button>自适应 · 标准画质 · 2K ▾</button>
-        <button>预设 ▾</button>
-        <button onClick={() => setIsCameraConfigOpen(true)}>
-          <CameraIcon /> 摄像机
-        </button>
-        <button onClick={() => setIsCameraMovementOpen(true)}>
-          <CameraMoveIcon /> 运镜
-        </button>
-      </div>
-
-      <!-- Right: quantity + generate -->
-      <div>
-        <div>− 1张 +</div>
-        <div>ⓘ 18</div>
-        <button className="bg-[#09caf5]">→</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<CameraConfigDialog isOpen={isCameraConfigOpen} ... />
-<CameraMovementDialog isOpen={isCameraMovementOpen} ... />
+```text
+selected node
+└── node shell (position: relative)
+    └── ImageEditPanel wrapper
+        position: absolute
+        left: 50%
+        bottom: -16 flow units
+        translate: -50% 100%
+        width: 660px
+        transform: scale(1 / viewportZoom)
+        transform-origin: top center
 ```
 
-## Computed Styles
+This produces two intentional behaviors:
 
-| Element | Styles |
-|---------|--------|
-| Wrapper | `bg-[#1f1f1f] border border-[#363636] rounded-xl shadow-xl overflow-hidden` |
-| Active tab | `bg-[#363636] text-[#f7f7f7]` |
-| Inactive tab | `text-[#919191] hover:text-[#f7f7f7] hover:bg-[#353639]` |
-| Prompt | `w-full bg-[#363636] text-[#f7f7f7] text-sm p-2.5 rounded-lg border border-[#525252] focus:border-[#09caf5] outline-none resize-none h-16` |
-| Selector button | `flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] hover:bg-[#525252]` |
-| Generate button | `w-8 h-8 rounded-lg bg-[#09caf5] text-white hover:bg-[#5ddcff]` |
+1. The panel center always equals the selected node's screen-space center.
+2. The panel remains `660px` wide on screen. Its gap below the node is `16 * zoom` screen pixels because `bottom: -16px` is evaluated in flow coordinates before the inverse scale.
 
-## Interactions
+The original does not clamp the panel to the viewport. Near an edge, it is clipped by the React Flow container.
 
-| Action | Effect |
-|--------|--------|
-| Click 风格 / 标记 tab | Switch active tab. |
-| Type in prompt textarea | Updates `prompt` local state. |
-| Click 摄像机 button | Opens `CameraConfigDialog`. On apply, currently `console.log` only. |
-| Click 运镜 button | Opens `CameraMovementDialog`. On apply, currently `console.log` only. |
-| Click + / − | Adjust quantity (1 by default). |
-| Click → generate button | No-op (would call generation API). |
+## Live Measurements
 
-## Notes
+At `zoom = 0.282798`, with `分镜 #2` selected:
 
-- This panel is a UI scaffold; no actual generation happens.
-- The prompt, camera config, and camera movement are held in component state only.
-- On apply events fire `console.log` rather than persisting to the store.
+| Element | Screen rect |
+|---|---|
+| Selected node | `x=537.278, y=232.188, w=175.900, h=98.979` |
+| Edit panel | `x=295.229, y=335.692, w=660.000, h=273.797` |
+
+Both centers are `x=625.23`. The vertical gap is `4.525px`, equal to `16 * 0.282798` within sub-pixel rounding.
+
+With the lower `咖啡` node selected, the panel starts at `x=-24.616`; this confirms that horizontal viewport clamping is not part of the original behavior.
+
+## Visual Structure
+
+- `660x274` for the populated `分镜 #2` prompt state
+- `16px` corner radius
+- `#262626` panel surface with a subtle border and shadow
+- reference, mark, and style controls
+- two image references
+- prompt editor
+- model and output controls
+- translation, undo, and generate actions
+
+Panel height can vary with image state and content. The current clone implements the populated `274px` state used by `分镜 #2`; backend generation and per-node editor content remain outside the prototype boundary.
+
+## Interaction Rules
+
+- `nodrag nowheel nopan` prevents editor gestures from moving the React Flow node or viewport.
+- Pan, zoom, and node drag must move the panel without a one-frame page-level positioning lag.
+- The panel's buttons and textarea remain at normal screen scale at every canvas zoom.
 
 ## Files Referenced
 
 - `src/components/ImageEditPanel.tsx`
-- `src/components/CameraConfigDialog.tsx`
-- `src/components/CameraMovementDialog.tsx`
+- `src/components/nodes/ImageNode.tsx`
+- `src/components/ImageToolbar.tsx`

@@ -1,109 +1,62 @@
 # ImageNode Specification
 
 ## Overview
+
 - **Target file:** `src/components/nodes/ImageNode.tsx`
-- **Screenshot:** `docs/design-references/canvas-desktop-full.png`
-- **Interaction model:** Draggable (React Flow node)
+- **Interaction model:** React Flow draggable/connectable node
+- **Current source baseline:** four reference images plus `分镜 #2`
 
-## DOM Structure
-```
-<div> <!-- node container -->
-  <div> <!-- header -->
-    <div> <!-- icon container -->
-      <svg /> <!-- image icon -->
-    </div>
-    <div> <!-- filename -->
-      <div>image_2026-06-15T11-22-00</div>
-      <div>
-        <svg /> <!-- expand icon -->
-      </div>
-    </div>
-    <div>1808 × 1024</div> <!-- dimensions -->
-  </div>
-  <div> <!-- image container -->
-    <div> <!-- image wrapper -->
-      <div> <!-- inner container -->
-        <div></div>
-      </div>
-      <div> <!-- image display -->
-        <img /> <!-- main image -->
-        <img /> <!-- watermark overlay -->
-      </div>
-      <img /> <!-- close/settings button -->
-    </div>
-  </div>
-</div>
+## Structure
+
+```text
+ImageNode
+├── ImageToolbar via React Flow NodeToolbar (selected only)
+├── target/source Handle
+├── floating filename + dimensions
+├── full-node image and optional watermark
+└── ImageEditPanel inside the node shell (selected only)
 ```
 
-## Computed Styles (exact values from getComputedStyle)
+Node width and height come from the Zustand canvas data and React Flow's outer transform layer. Do not read `props.style`: xyflow v12 does not pass `node.style` to custom node components.
 
-### Container
-- backgroundColor: #1f1f1f (mantine dark-8)
-- borderRadius: 8px
-- border: 1px solid #363636
-- boxShadow: 0 1px 3px rgba(0,0,0,0.3)
-- minWidth: 240px
+## Default State
 
-### Header
-- display: flex
-- alignItems: center
-- gap: 8px
-- padding: 8px 12px
-- borderBottom: 1px solid #363636
+- `4px` corner radius
+- subtle border on `#202020`
+- image fills the full node with `object-fit: cover`
+- filename and source dimensions float above the node
+- target/source handles sit at the horizontal midpoint
+- optional LibTV watermark is rendered at the image's top-left
 
-### Filename
-- fontSize: 12px
-- fontWeight: 400
-- color: #f7f7f7
-- overflow: hidden
-- textOverflow: ellipsis
-- whiteSpace: nowrap
+## Selected State
 
-### Dimensions
-- fontSize: 12px
-- fontWeight: 400
-- color: #919191 (--color-fg-muted)
+- cyan border and low-opacity cyan focus ring
+- top horizontal `ImageToolbar`
+- bottom `ImageEditPanel`
 
-### Image Container
-- position: relative
-- overflow: hidden
+### Top toolbar
 
-### Main Image
-- width: 100%
-- height: auto
-- objectFit: cover
-- display: block
+The toolbar uses React Flow `NodeToolbar` with `position=Top`, `align=center`, and `offset=16`. React Flow renders it outside the scaled viewport, so it stays approximately `900x49` screen pixels at every zoom.
 
-### Watermark Overlay
-- position: absolute
-- top: auto
-- bottom: auto
-- right: auto
-- left: auto
-- width: 210px
-- height: 102px
-- pointerEvents: none
-- zIndex: 10
-- userSelect: none
+Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
-## States & Behaviors
+### Bottom editor
 
-### Selection State
-- **border:** changes to accent color (#09caf5)
+The editor is a child of `ImageNode`, centered on the node and counter-scaled by `1 / zoom`. See `ImageEditPanel.spec.md` for the exact formula and measurements.
 
-### Hover State
-- **boxShadow:** increases slightly
-- **Close button:** becomes visible
+## Required Regressions
 
-### Image Loading
-- Shows skeleton/placeholder while loading
-- Transitions to full image on load
+- selecting any image shows exactly one top toolbar and one bottom panel
+- clicking empty canvas removes both overlays
+- switching selected image moves both overlays to the new node
+- node drag and viewport pan keep both overlays attached
+- 28%, 53%, and 100% zoom preserve toolbar/panel screen size
+- mobile clipping follows the original; do not move the overlays to page center to keep them visible
 
 ## Assets
-- Main image: `public/images/scene-coffee-1.png` (example)
-- Watermark: `public/images/watermark.png`
-- Icons: inline SVGs (image, expand, close)
 
-## Responsive Behavior
-- **Desktop (1440px):** Full node with image preview
-- **Canvas zoom:** Node scales with canvas zoom level
+- `public/images/scene-coffee-1.png`
+- `public/images/scene-coffee-2.png`
+- `public/images/scene-coffee-3.png`
+- `public/images/scene-coffee-4.png`
+- `public/images/storyboard-2.png`

@@ -44,8 +44,8 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Material library side panel (placeholder). |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Character library side panel (placeholder). |
 | `HistoryPanel` | `src/components/HistoryPanel.tsx` | History panel (placeholder). |
-| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Vertical icon toolbar for selected image node: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
-| `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | Bottom panel for selected image node: style/mark tabs, prompt, model selector, 摄像机 + 运镜 buttons, 生成 button. |
+| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Horizontal `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
+| `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored panel below the selected image; inverse-scales with viewport zoom. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |
 | `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Modal listing keyboard shortcuts. |
