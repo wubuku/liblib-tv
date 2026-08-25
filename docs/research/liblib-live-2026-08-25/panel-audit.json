@@ -1,0 +1,1816 @@
+{
+  "sampledAt": "2026-08-25",
+  "viewport": {
+    "width": 929,
+    "height": 874
+  },
+  "toolbox": {
+    "font": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "images": [
+      {
+        "alt": "【预设】左弧滑行",
+        "nh": 420,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 410.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】电商手机弹出效果",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 410.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/4205e8f1b9d5449c9c134a55ab23e475/3f86729b953d5e3f78cf314a20541ef7195786072400aa6af9d33a2dc2405cf6.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】咖啡杯出场",
+        "nh": 280,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 410.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/c8c9444584348de6209bee45d9f95a0c2c69932f.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】360旋转展示",
+        "nh": 375,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 600.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/498ebfb6bbf47d17fb8d5449b8eb8029df39cc9f.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】机械臂视角",
+        "nh": 375,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 600.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/4d251222f8ebdc2cf634cc589fc909c8e69b5185.jpg?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】Live 2D",
+        "nh": 498,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 600.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/882cc4bc76db85989fa961fed616cb3ebe201a0c.jpg?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】瞳孔拉近",
+        "nh": 420,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 774
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/59a02980eda985744952c15bcfd8697bffab14aa.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】飞鸟解体",
+        "nh": 211,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 774
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/6676b12a15100018ca7648c85287e007ceb9f9f2.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】破盒而出",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 774
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/84979fa89cac130f874f49e7286a51e13fbccc95a19657ba13fcd7287fedb50a.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】商品震撼登场",
+        "nh": 373,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 947.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/b43d4ec927a2766382d82e95c4020a5e7c3b08aa.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】右弧滑行",
+        "nh": 420,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 947.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】左弧滑行",
+        "nh": 420,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 947.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】颠倒空间",
+        "nh": 375,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 1121
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/8852de28b54eb90134a11fa526426babdd85b1d3.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】反重力漂浮",
+        "nh": 280,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 1121
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/abc353b7b28311027d4bf4427531f3025cb1a5161f929b7d414e44ebb9c3d9b8.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】粒子融解",
+        "nh": 375,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 1121
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/95be6a97f91ab6c16081f260cbaaa1df3d823a5ec037b8cc6a970ef05cbe4001.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】旅拍转场 zoom in",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 1294.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/71e6713e72ade5531b4eb131e1faf18b1cf27737e9a5fed18378a429503b8034.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】旅拍转场 zoom out",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 1294.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/29c1f23b7d8bfa35267e3ddc11f094e63a1c6d5089f883e1b2c9134dd36ef10a.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】旅拍转场 向右旋转",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 1294.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/b49297c4637a024c010501407619e90e5d2c08c9c6600fb2ce52878e1daf71f0.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】旅拍转场 向左旋转",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 1484.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/005550129798804a81e92fa8382cdb4f0e77615dc64491358ae166380dc8839e.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】旅拍转场 生长",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 1484.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/8ad3b1b28b7406aadcfbacf827b7b1ce6b5570ee1434c187091db52b1ff78dd8.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】英雄视角",
+        "nh": 373,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 1484.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/9cf12958ec85cc870011c017834fe894c13932ad.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】AI模特服饰动态展示",
+        "nh": 417,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 1674.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/9c9ca63a3fd948e8abb9ab96ade97321/a676b7a777d24d0b2bbdc7509109546c9ae3d2d7.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】机械臂视角",
+        "nh": 375,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 329.5,
+          "y": 1674.5
+        },
+        "src": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/bf72676a252b5397d06fd6b6734f3ede26a1d121.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】大师分镜九宫格-经典暗调",
+        "nh": 156,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 482.5,
+          "y": 1674.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/9c9ca63a3fd948e8abb9ab96ade97321/082931e3f634ac1b7e90f79fa9d8e66b12a596d0fbe7d1d4ce9ff04acdba8203.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "【预设】AI室内装修效果预览",
+        "nh": 209,
+        "nw": 280,
+        "parent": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 0,
+          "overflow": "visible",
+          "padding": "0px",
+          "position": "static",
+          "w": 0,
+          "x": 0,
+          "y": 0
+        },
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 141,
+          "overflow": "clip",
+          "padding": "0px",
+          "position": "static",
+          "w": 141,
+          "x": 176.5,
+          "y": 1864.5
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/9c9ca63a3fd948e8abb9ab96ade97321/fba8fa5f7e53e796c26216a91601bca675051c01b554dc0c8b0dfa25ea94d3da.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1"
+      }
+    ],
+    "panel": {
+      "bg": "rgb(38, 38, 38)",
+      "borderRadius": "12px",
+      "cls": "rounded-xl flex size-full flex-col pb-3",
+      "gap": "normal",
+      "h": 460,
+      "overflow": "hidden",
+      "padding": "0px 0px 12px",
+      "position": "static",
+      "w": 480,
+      "x": 160,
+      "y": 341
+    },
+    "viewport": {
+      "h": 874,
+      "w": 929
+    }
+  },
+  "material": {
+    "buttons": [
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "12px",
+          "gap": "8px",
+          "h": 52,
+          "padding": "0px 8px",
+          "position": "static",
+          "w": 223,
+          "x": 328.5,
+          "y": 684.5,
+          "z": "auto"
+        },
+        "text": "风格库\n新增风格节点\nNEW"
+      },
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "12px",
+          "gap": "8px",
+          "h": 52,
+          "padding": "0px 8px",
+          "position": "static",
+          "w": 223,
+          "x": 328.5,
+          "y": 740.5,
+          "z": "auto"
+        },
+        "text": "特效库\n新增特效节点\nNEW"
+      }
+    ],
+    "candidates": [
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "text-fg-muted px-2 py-1 text-[14px] font-medium",
+        "gap": "normal",
+        "h": 29.6953125,
+        "padding": "4px 8px",
+        "position": "static",
+        "w": 223,
+        "x": 328.5,
+        "y": 646.8046875,
+        "z": "auto"
+      },
+      {
+        "bg": "rgb(38, 38, 38)",
+        "border": "0.5px solid rgb(54, 54, 54)",
+        "borderRadius": "12px",
+        "cls": "rounded-xl flex flex-col gap-2 p-2",
+        "gap": "8px",
+        "h": 162.6953125,
+        "padding": "8px",
+        "position": "static",
+        "w": 240,
+        "x": 320,
+        "y": 638.3046875,
+        "z": "auto"
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "fixed z-20",
+        "gap": "normal",
+        "h": 162.6953125,
+        "padding": "0px",
+        "position": "fixed",
+        "w": 240,
+        "x": 320,
+        "y": 638.3046875,
+        "z": "20"
+      },
+      {
+        "bg": "rgb(20, 20, 20)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "relative h-screen w-screen",
+        "gap": "normal",
+        "h": 874,
+        "padding": "0px",
+        "position": "relative",
+        "w": 929,
+        "x": 0,
+        "y": 0,
+        "z": "auto"
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "relative h-screen w-screen",
+        "gap": "normal",
+        "h": 874,
+        "padding": "0px",
+        "position": "relative",
+        "w": 929,
+        "x": 0,
+        "y": 0,
+        "z": "auto"
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "h-screen w-screen",
+        "gap": "normal",
+        "h": 874,
+        "padding": "0px",
+        "position": "static",
+        "w": 929,
+        "x": 0,
+        "y": 0,
+        "z": "auto"
+      }
+    ],
+    "panel": "[Circular]"
+  },
+  "character": {
+    "ancestors": [
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "flex h-14 shrink-0 items-center justify-between px-4",
+        "h": 56,
+        "overflow": "visible",
+        "padding": "0px 16px",
+        "pos": "static",
+        "tag": "DIV",
+        "w": 791,
+        "x": 69,
+        "y": 83,
+        "z": "auto"
+      },
+      {
+        "bg": "rgb(34, 34, 34)",
+        "border": "1px solid rgba(255, 255, 255, 0.08)",
+        "borderRadius": "16px",
+        "cls": "rounded-xl fixed left-1/2 top-1/2 z-[calc(var(--z-overlay)+1)] flex -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden !rounded-2xl",
+        "h": 710,
+        "overflow": "hidden",
+        "padding": "0px",
+        "pos": "fixed",
+        "tag": "DIV",
+        "w": 793,
+        "x": 68,
+        "y": 82,
+        "z": "601"
+      },
+      {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "",
+        "h": 0,
+        "overflow": "visible",
+        "padding": "0px",
+        "pos": "static",
+        "tag": "DIV",
+        "w": 929,
+        "x": 0,
+        "y": 874,
+        "z": "auto"
+      },
+      {
+        "bg": "rgb(20, 20, 20)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "antialiased",
+        "h": 874,
+        "overflow": "visible",
+        "padding": "0px",
+        "pos": "static",
+        "tag": "BODY",
+        "w": 929,
+        "x": 0,
+        "y": 0,
+        "z": "auto"
+      },
+      {
+        "bg": "color(srgb 0.19451 0.19451 0.196078)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "cls": "dark",
+        "h": 874,
+        "overflow": "visible",
+        "padding": "0px",
+        "pos": "static",
+        "tag": "HTML",
+        "w": 929,
+        "x": 0,
+        "y": 0,
+        "z": "auto"
+      }
+    ],
+    "images": [
+      {
+        "alt": "角色立绘",
+        "nh": 2048,
+        "nw": 1536,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "h-full w-full object-cover object-top",
+          "h": 174.53125,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 130.8984375,
+          "x": 101.0078125,
+          "y": 247.734375,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/003_full_body_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "脸部近景",
+        "nh": 2400,
+        "nw": 1792,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "h-full w-full object-cover object-top",
+          "h": 174.53125,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 130.8984375,
+          "x": 239.90625,
+          "y": 247.734375,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/003_face_closeup_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "表情参考",
+        "nh": 2048,
+        "nw": 1536,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "h-full w-full object-cover object-top",
+          "h": 174.53125,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 130.8984375,
+          "x": 378.8046875,
+          "y": 247.734375,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/003_expression_grid_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "三视图",
+        "nh": 1080,
+        "nw": 1920,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "h-full w-full object-cover object-top",
+          "h": 174.53125,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 310.2890625,
+          "x": 517.703125,
+          "y": 247.734375,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/003_character_sheet_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "甜妹/清新少女",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 134,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 100,
+          "x": 127,
+          "y": 618,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/003_face_closeup_1.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "霸总/精英大佬",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 246.5,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/001_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "温柔熟男/理想男友",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 365.5,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/002_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "清冷千金/白切黑女主",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 490.328125,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/004_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "古风男主",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 615.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/005_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "古风女主",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 734.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/006_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "恶毒女配/白莲花",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 853.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/007_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "正派长辈/父",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 972.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/010_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "正派长辈/母",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1091.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/011_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "反派长辈/势利亲戚",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1210.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/012_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "反派长辈/势利亲戚",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1329.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/013_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "生活方式普通人",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1448.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/014_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "生活方式普通人",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1567.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/015_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感亚洲男生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1686.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/016_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感亚洲女生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1805.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/018_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感欧美男生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 1924.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/022_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感欧美女生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2043.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/021_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "小男孩",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2162.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/008_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "小女孩",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2281.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/009_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感亚洲女生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2400.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/019_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感亚洲女生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2519.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/020_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感亚洲男生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2638.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/017_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "时尚感欧美女生",
+        "nh": 761,
+        "nw": 568,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "cls": "size-full object-cover object-top",
+          "h": 133,
+          "overflow": "clip",
+          "padding": "0px",
+          "pos": "static",
+          "tag": "IMG",
+          "w": 99,
+          "x": 2757.15625,
+          "y": 618.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/tool/character/023_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1"
+      }
+    ]
+  },
+  "history": {
+    "images": [
+      {
+        "alt": "",
+        "nh": 225,
+        "nw": 400,
+        "rect": {
+          "bg": "rgb(54, 54, 54)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 144,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 144,
+          "x": 66.953125,
+          "y": 238.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "",
+        "nh": 102,
+        "nw": 210,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 17,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 35,
+          "x": 72.953125,
+          "y": 244.5,
+          "z": "10"
+        },
+        "src": "https://libtv-res.liblib.art/watermark.png"
+      },
+      {
+        "alt": "",
+        "nh": 200,
+        "nw": 400,
+        "rect": {
+          "bg": "rgb(54, 54, 54)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 144,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 144,
+          "x": 222.953125,
+          "y": 238.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765914494_3ae42ea368754adc929c201fd6315626.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "",
+        "nh": 102,
+        "nw": 210,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 17,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 35,
+          "x": 228.953125,
+          "y": 244.5,
+          "z": "10"
+        },
+        "src": "https://libtv-res.liblib.art/watermark.png"
+      },
+      {
+        "alt": "",
+        "nh": 200,
+        "nw": 400,
+        "rect": {
+          "bg": "rgb(54, 54, 54)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 144,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 144,
+          "x": 378.953125,
+          "y": 238.5,
+          "z": "auto"
+        },
+        "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1"
+      },
+      {
+        "alt": "",
+        "nh": 102,
+        "nw": 210,
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 17,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 35,
+          "x": 384.953125,
+          "y": 244.5,
+          "z": "10"
+        },
+        "src": "https://libtv-res.liblib.art/watermark.png"
+      }
+    ],
+    "modal": {
+      "bg": "rgb(38, 38, 38)",
+      "border": "0.5px solid rgb(54, 54, 54)",
+      "borderRadius": "16px",
+      "cls": "pointer-events-auto flex h-[calc(100vh-160px)] w-[min(90vw,1600px)] max-w-[min(90vw,1600px)] flex-col overflow-hidden rounded-2xl",
+      "gap": "normal",
+      "h": 714,
+      "padding": "0px",
+      "position": "static",
+      "w": 836.09375,
+      "x": 46.453125,
+      "y": 80,
+      "z": "auto"
+    },
+    "text": "历史资产\n100%\n图片历史(3)\n视频历史(0)\n音频历史(0)\n时间降序\n批量操作\n2026-06-15\n查看\n使用\n下载\n查看\n使用\n下载\n查看\n使用\n下载\n没有更多了"
+  },
+  "shortcuts": {
+    "panel": {
+      "bg": "oklab(0.268617 0.000012286 0.00000536442 / 0.95)",
+      "border": "0.5px solid rgb(54, 54, 54)",
+      "borderRadius": "16px",
+      "cls": "bg-panel-background/95 border-canvas-controls-border border-hair relative box-border rounded-2xl p-4 backdrop-blur-lg md:p-6",
+      "gap": "normal",
+      "h": 446.5,
+      "padding": "24px",
+      "position": "relative",
+      "w": 905,
+      "x": 12,
+      "y": 354.5,
+      "z": "auto"
+    },
+    "sections": [
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "gap": "normal",
+          "h": 28,
+          "padding": "0px",
+          "position": "absolute",
+          "w": 28,
+          "x": 876.5,
+          "y": 367,
+          "z": "auto"
+        },
+        "text": ""
+      },
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "0px",
+          "gap": "20px",
+          "h": 397.5,
+          "padding": "0px",
+          "position": "static",
+          "w": 856,
+          "x": 36.5,
+          "y": 379,
+          "z": "auto"
+        },
+        "text": "创作成组G合并分镜组⌥G解组⇧G连线L复制节点和连线D生成Enter新建节点Tab节点复制Option+拖动节点创建副本Option+拖动缩放放大缩小适应画布0触控板鼠标移动画布键盘Space触控板鼠标移动V抓手工具H整理画布⌥⇧F其他撤销"
+      }
+    ],
+    "text": "创作\n成组\nG\n合并分镜组\n⌥\nG\n解组\n⇧\nG\n连线\nL\n复制节点和连线\nD\n生成\nEnter\n新建节点\nTab\n节点复制\nOption\n+拖动节点\n创建副本\nOption\n+拖动\n缩放\n放大\n缩小\n适应画布\n0\n触控板\n鼠标\n移动画布\n键盘\nSpace\n触控板\n鼠标\n移动\nV\n抓手工具\nH\n整理画布\n⌥\n⇧\nF\n其他\n撤销\nZ\n重做\n⇧\nZ\n删除"
+  },
+  "tutorial": {
+    "items": [
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 36.1484375,
+          "padding": "8px 12px",
+          "position": "static",
+          "w": 95,
+          "x": 561.5,
+          "y": 651.90625,
+          "z": "auto"
+        },
+        "text": "使用教程"
+      },
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 36.1484375,
+          "padding": "8px 12px",
+          "position": "static",
+          "w": 95,
+          "x": 561.5,
+          "y": 688.0546875,
+          "z": "auto"
+        },
+        "text": "联系客服"
+      },
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 36.1484375,
+          "padding": "8px 12px",
+          "position": "static",
+          "w": 95,
+          "x": 561.5,
+          "y": 724.203125,
+          "z": "auto"
+        },
+        "text": "联系销售"
+      },
+      {
+        "rect": {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "borderRadius": "8px",
+          "gap": "normal",
+          "h": 36.1484375,
+          "padding": "8px 12px",
+          "position": "static",
+          "w": 95,
+          "x": 561.5,
+          "y": 760.3515625,
+          "z": "auto"
+        },
+        "text": "关注公众号"
+      }
+    ],
+    "panel": {
+      "bg": "rgb(38, 38, 38)",
+      "border": "0.5px solid rgb(54, 54, 54)",
+      "borderRadius": "12px",
+      "cls": "relative flex min-w-[104px] flex-col rounded-xl p-1",
+      "gap": "normal",
+      "h": 153.59375,
+      "padding": "4px",
+      "position": "relative",
+      "w": 104,
+      "x": 557,
+      "y": 647.40625,
+      "z": "auto"
+    }
+  }
+}

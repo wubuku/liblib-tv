@@ -99,11 +99,11 @@ src/
 │   ├── ImageEditPanel.tsx        # Node-anchored, inverse-zoom 660×274 image prompt editor
 │   ├── CameraConfigDialog.tsx    # 9 cameras × 10 lenses × 7 focal lengths × 3 apertures
 │   ├── CameraMovementDialog.tsx  # 10 movement types + speed + duration + amplitude
-│   ├── ToolboxPanel.tsx          # Preset animation templates (placeholder)
-│   ├── MaterialLibraryPanel.tsx  # Material library (placeholder)
-│   ├── CharacterLibraryPanel.tsx # Character library (placeholder)
-│   ├── HistoryPanel.tsx          # History (placeholder)
-│   ├── KeyboardShortcutsDialog.tsx # Keyboard shortcuts modal
+│   ├── ToolboxPanel.tsx          # 25-preset anchored toolbox cloned from live evidence
+│   ├── MaterialLibraryPanel.tsx  # Two-command anchored material menu
+│   ├── CharacterLibraryPanel.tsx # Character detail + asset carousel modal
+│   ├── HistoryPanel.tsx          # Filterable local history asset modal
+│   ├── KeyboardShortcutsDialog.tsx # Four-column anchored shortcuts panel
 │   ├── PlusIndicator.tsx         # NO-OP stub — see "Key Design Decisions" §1
 │   ├── CustomHandle.tsx          # Legacy handle prototype (unused)
 │   ├── nodes/                    # All node types — see "Node System" below
@@ -254,7 +254,7 @@ Create `docs/research/components/MyComponent.spec.md` matching the structure of 
 ### liblib-tv route (`/`)
 - **Camera/Camera-movement dialogs**: UI only — selection is logged but doesn't generate anything.
 - **ImageEditPanel**: prompt + camera + model selector is layout-only, no API integration.
-- **ToolboxPanel / MaterialLibraryPanel / CharacterLibraryPanel / HistoryPanel**: empty placeholders ready for content.
+- **ToolboxPanel / MaterialLibraryPanel / CharacterLibraryPanel / HistoryPanel**: evidence-backed local prototypes with source-derived geometry and assets; account data and backend commands remain mocked.
 - **Zoom gesture on canvas dots**: the React Flow default works; we tuned `minZoom=0.1, maxZoom=2`.
 
 ### FrameOS route (`/frameos/*`)

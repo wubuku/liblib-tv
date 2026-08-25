@@ -72,9 +72,9 @@ function MoveMenu({ onSelect }: { onSelect: (tool: "select" | "pan") => void }) 
 
 function TutorialMenu() {
   return (
-    <div className="fixed bottom-[68px] left-[calc(50%+90px)] z-[61] w-[104px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[108px] max-sm:left-auto max-sm:right-6">
+    <div className="fixed bottom-[73px] left-[calc(50%+92px)] z-[61] w-[104px] rounded-xl border border-[#363636] bg-[#262626] p-1 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[109px] max-sm:left-auto max-sm:right-3">
       {["使用教程", "联系客服", "联系销售", "关注公众号"].map((label) => (
-        <button key={label} className="h-9 w-full rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]">
+        <button key={label} className="h-9 w-full rounded-lg px-3 text-left text-sm text-[#d8d8d8] hover:bg-white/[0.07]">
           {label}
         </button>
       ))}
@@ -88,12 +88,27 @@ export function LeftSidebar() {
     toggleShortcutsPanel,
     toggleAddNodePanel,
     isAddNodePanelOpen,
+    isShortcutsPanelOpen,
     canvasTool,
     setCanvasTool,
   } = useUIStore();
 
   const togglePanel = (panel: PanelName) => {
+    if (isAddNodePanelOpen) toggleAddNodePanel();
+    if (isShortcutsPanelOpen) toggleShortcutsPanel();
     setActivePanel((current) => (current === panel ? null : panel));
+  };
+
+  const toggleAddPanel = () => {
+    setActivePanel(null);
+    if (isShortcutsPanelOpen) toggleShortcutsPanel();
+    toggleAddNodePanel();
+  };
+
+  const toggleShortcuts = () => {
+    setActivePanel(null);
+    if (isAddNodePanelOpen) toggleAddNodePanel();
+    toggleShortcutsPanel();
   };
 
   const selectTool = (tool: "select" | "pan") => {
@@ -104,7 +119,7 @@ export function LeftSidebar() {
   return (
     <>
       <div className="fixed bottom-3 left-1/2 z-[60] flex h-[49px] -translate-x-1/2 items-center gap-2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.4)] max-sm:bottom-[52px]">
-        <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddNodePanel}>
+        <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddPanel}>
           <Plus size={22} />
         </ToolButton>
         <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePanel === "move"} onClick={() => togglePanel("move")}>
@@ -122,7 +137,7 @@ export function LeftSidebar() {
         <ToolButton label="历史记录" active={activePanel === "history"} onClick={() => togglePanel("history")}>
           <History size={17} />
         </ToolButton>
-        <ToolButton label="快捷键" onClick={toggleShortcutsPanel}>
+        <ToolButton label="快捷键" active={isShortcutsPanelOpen} onClick={toggleShortcuts}>
           <Keyboard size={17} />
         </ToolButton>
         <ToolButton label="教程与帮助" active={activePanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
@@ -133,7 +148,7 @@ export function LeftSidebar() {
       {isAddNodePanelOpen && <AddNodePanel />}
       {activePanel === "move" && <MoveMenu onSelect={selectTool} />}
       {activePanel === "toolbox" && <ToolboxPanel onClose={() => setActivePanel(null)} />}
-      {activePanel === "material" && <MaterialLibraryPanel />}
+      {activePanel === "material" && <MaterialLibraryPanel onClose={() => setActivePanel(null)} />}
       {activePanel === "character" && <CharacterLibraryPanel onClose={() => setActivePanel(null)} />}
       {activePanel === "history" && <HistoryPanel onClose={() => setActivePanel(null)} />}
       {activePanel === "tutorial" && <TutorialMenu />}

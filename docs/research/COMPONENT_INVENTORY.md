@@ -11,7 +11,7 @@ This is the authoritative catalog of components in this clone. For each, file pa
 | Component | File | Purpose |
 |-----------|------|---------|
 | `TopNavBar` | `src/components/TopNavBar.tsx` | Top navigation: logo, project name, canvas dropdown, notification, VIP+credits, FrameOS link, user avatar. Height 48px, bg `#141414`. |
-| `LeftSidebar` | `src/components/LeftSidebar.tsx` | Left tool palette with 7 icon buttons (添加节点, 工具箱, 素材库, 角色库, 历史, 快捷键, 教程). Absolutely positioned at left center. |
+| `LeftSidebar` | `src/components/LeftSidebar.tsx` | Compatibility name for the centered primary bottom toolbar with 8 icon buttons and mutually exclusive entry panels. |
 | `BottomToolbar` | `src/components/BottomToolbar.tsx` | Centered floating toolbar at bottom: 资产管理 text button, icon buttons, large cyan "+" (add node), zoom %. |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | Compact "正在跟随" + 取消ESC banner above canvas + script title node. |
 
@@ -40,15 +40,15 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |-----------|------|---------|
 | `AddNodePanel` | `src/components/AddNodePanel.tsx` | 8 node types grid + 上传/历史选择. Click outside to close. |
 | `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | Multi-canvas switcher dropdown with 新建/重命名/复制/删除. |
-| `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Preset animation templates (周星驰经典名场面 etc.). |
-| `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Material library side panel (placeholder). |
-| `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Character library side panel (placeholder). |
-| `HistoryPanel` | `src/components/HistoryPanel.tsx` | History panel (placeholder). |
+| `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Bottom-toolbar-anchored 480x460 panel with 25 source-derived presets. |
+| `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
+| `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |
+| `HistoryPanel` | `src/components/HistoryPanel.tsx` | Responsive asset history modal with filters, zoom, batch selection and local result images. |
 | `ImageToolbar` | `src/components/ImageToolbar.tsx` | Horizontal `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored panel below the selected image; inverse-scales with viewport zoom. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |
-| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Modal listing keyboard shortcuts. |
+| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Four-column, bottom-toolbar-anchored shortcuts panel without a backdrop. |
 
 ## Utilities
 

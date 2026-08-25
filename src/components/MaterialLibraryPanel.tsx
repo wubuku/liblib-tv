@@ -1,103 +1,45 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { useCanvasStore } from "@/store/canvasStore";
-import { useUIStore } from "@/store/uiStore";
+import { Aperture, Box } from "lucide-react";
 
-interface MaterialItemProps {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  badge?: string;
-  onClick?: () => void;
+interface MaterialLibraryPanelProps {
+  onClose: () => void;
 }
 
-function MaterialItem({ icon, title, subtitle, badge, onClick }: MaterialItemProps) {
+const entries = [
+  { label: "风格库", description: "新增风格节点", icon: Box },
+  { label: "特效库", description: "新增特效节点", icon: Aperture },
+] as const;
+
+export function MaterialLibraryPanel({ onClose }: MaterialLibraryPanelProps) {
   return (
-    <button
-      onClick={onClick}
-      className="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-[#353639] transition-colors group"
+    <section
+      aria-label="素材库"
+      className="fixed bottom-[73px] left-[calc(50%-24px)] z-[62] h-[163px] w-[240px] -translate-x-1/2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:bottom-[109px] max-sm:left-1/2"
     >
-      <div className="w-10 h-10 rounded-lg bg-[#363636] flex items-center justify-center text-[#919191] group-hover:text-[#f7f7f7] transition-colors">
-        {icon}
+      <h2 className="px-2 py-1 text-sm font-medium text-[#929292]">素材库</h2>
+      <div className="mt-[9px] space-y-1">
+        {entries.map((entry) => {
+          const Icon = entry.icon;
+          return (
+            <button
+              key={entry.label}
+              type="button"
+              onClick={onClose}
+              className="flex h-[52px] w-full items-center gap-2 rounded-xl px-2 text-left hover:bg-white/[0.06]"
+            >
+              <span className="flex size-8 shrink-0 items-center justify-center text-[#ededed]">
+                <Icon size={20} strokeWidth={1.6} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm text-[#eeeeee]">{entry.label}</span>
+                <span className="block text-[11px] text-[#777]">{entry.description}</span>
+              </span>
+              <span className="rounded-full bg-white/[0.06] px-2 py-1 text-[10px] text-[#777]">NEW</span>
+            </button>
+          );
+        })}
       </div>
-      <div className="flex-1 text-left">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-[#f7f7f7]">{title}</span>
-          {badge && (
-            <span className="text-[10px] px-1.5 py-0.5 bg-[#f53f3f] text-white rounded">
-              {badge}
-            </span>
-          )}
-        </div>
-        <span className="text-xs text-[#919191]">{subtitle}</span>
-      </div>
-    </button>
-  );
-}
-
-export function MaterialLibraryPanel() {
-  const { addNode } = useCanvasStore();
-  const { toggleMaterialPanel } = useUIStore();
-
-  const handleAddStyleNode = () => {
-    addNode("style", {
-      title: "风格节点",
-      content: "自定义风格设置",
-    });
-    toggleMaterialPanel();
-  };
-
-  const handleAddEffectNode = () => {
-    addNode("effect", {
-      title: "特效节点",
-      content: "自定义特效设置",
-    });
-    toggleMaterialPanel();
-  };
-
-  return (
-    <div className="absolute left-14 top-0 w-72 bg-[#1f1f1f] border border-[#363636] rounded-xl shadow-xl z-50 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#363636]">
-        <h3 className="text-sm font-semibold text-[#f7f7f7]">素材库</h3>
-        <button
-          onClick={toggleMaterialPanel}
-          className="w-6 h-6 flex items-center justify-center rounded hover:bg-[#353639] transition-colors"
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 2L10 10M10 2L2 10" stroke="#919191" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Material Items */}
-      <div className="p-2 space-y-1">
-        <MaterialItem
-          icon={
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M7 10L10 13L13 10M10 7V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          }
-          title="风格库"
-          subtitle="新增风格节点"
-          badge="NEW"
-          onClick={handleAddStyleNode}
-        />
-
-        <MaterialItem
-          icon={
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2L12 8H18L13 12L15 18L10 14L5 18L7 12L2 8H8L10 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-            </svg>
-          }
-          title="特效库"
-          subtitle="新增特效节点"
-          badge="NEW"
-          onClick={handleAddEffectNode}
-        />
-      </div>
-    </div>
+    </section>
   );
 }

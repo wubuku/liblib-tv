@@ -1,0 +1,445 @@
+{
+  "generatedFrom": "docs/research/liblib-live-2026-08-25/panel-audit.json",
+  "assets": [
+    {
+      "group": "toolbox",
+      "title": "【预设】左弧滑行",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-01.webp",
+      "bytes": 17584,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】电商手机弹出效果",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/4205e8f1b9d5449c9c134a55ab23e475/3f86729b953d5e3f78cf314a20541ef7195786072400aa6af9d33a2dc2405cf6.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-02.webp",
+      "bytes": 6120,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】咖啡杯出场",
+      "url": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/c8c9444584348de6209bee45d9f95a0c2c69932f.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-03.webp",
+      "bytes": 6458,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】360旋转展示",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/498ebfb6bbf47d17fb8d5449b8eb8029df39cc9f.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-04.webp",
+      "bytes": 9040,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】机械臂视角",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/4d251222f8ebdc2cf634cc589fc909c8e69b5185.jpg?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-05.webp",
+      "bytes": 27024,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】Live 2D",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/882cc4bc76db85989fa961fed616cb3ebe201a0c.jpg?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-06.webp",
+      "bytes": 18370,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】瞳孔拉近",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/59a02980eda985744952c15bcfd8697bffab14aa.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-07.webp",
+      "bytes": 6628,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】飞鸟解体",
+      "url": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/6676b12a15100018ca7648c85287e007ceb9f9f2.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-08.webp",
+      "bytes": 5616,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】破盒而出",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/84979fa89cac130f874f49e7286a51e13fbccc95a19657ba13fcd7287fedb50a.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-09.webp",
+      "bytes": 4964,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】商品震撼登场",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/b43d4ec927a2766382d82e95c4020a5e7c3b08aa.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-10.webp",
+      "bytes": 12050,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】右弧滑行",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-11.webp",
+      "bytes": 17584,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】左弧滑行",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/794154946370bcfd0574b5beb68c95f4d4d57c88.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-12.webp",
+      "bytes": 17584,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】颠倒空间",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/8852de28b54eb90134a11fa526426babdd85b1d3.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-13.webp",
+      "bytes": 48560,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】反重力漂浮",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/abc353b7b28311027d4bf4427531f3025cb1a5161f929b7d414e44ebb9c3d9b8.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-14.webp",
+      "bytes": 7370,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】粒子融解",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/95be6a97f91ab6c16081f260cbaaa1df3d823a5ec037b8cc6a970ef05cbe4001.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-15.webp",
+      "bytes": 8048,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】旅拍转场 zoom in",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/71e6713e72ade5531b4eb131e1faf18b1cf27737e9a5fed18378a429503b8034.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-16.webp",
+      "bytes": 9252,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】旅拍转场 zoom out",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/29c1f23b7d8bfa35267e3ddc11f094e63a1c6d5089f883e1b2c9134dd36ef10a.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-17.webp",
+      "bytes": 10970,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】旅拍转场 向右旋转",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/b49297c4637a024c010501407619e90e5d2c08c9c6600fb2ce52878e1daf71f0.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-18.webp",
+      "bytes": 6444,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】旅拍转场 向左旋转",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/005550129798804a81e92fa8382cdb4f0e77615dc64491358ae166380dc8839e.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-19.webp",
+      "bytes": 6620,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】旅拍转场 生长",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/beda8103d1a8414aa15aa0eb1db95a07/8ad3b1b28b7406aadcfbacf827b7b1ce6b5570ee1434c187091db52b1ff78dd8.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-20.webp",
+      "bytes": 6356,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】英雄视角",
+      "url": "https://libtv-res.liblib.art/upload-images/be52904b1a974e01af26ccd4fe36b4c0/9cf12958ec85cc870011c017834fe894c13932ad.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-21.webp",
+      "bytes": 11318,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】AI模特服饰动态展示",
+      "url": "https://libtv-res.liblib.art/upload-images/9c9ca63a3fd948e8abb9ab96ade97321/a676b7a777d24d0b2bbdc7509109546c9ae3d2d7.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-22.webp",
+      "bytes": 4910,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】机械臂视角",
+      "url": "https://libtv-res.liblib.art/upload-images/beda8103d1a8414aa15aa0eb1db95a07/bf72676a252b5397d06fd6b6734f3ede26a1d121.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-23.webp",
+      "bytes": 10030,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】大师分镜九宫格-经典暗调",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/9c9ca63a3fd948e8abb9ab96ade97321/082931e3f634ac1b7e90f79fa9d8e66b12a596d0fbe7d1d4ce9ff04acdba8203.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-24.webp",
+      "bytes": 10090,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "toolbox",
+      "title": "【预设】AI室内装修效果预览",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/9c9ca63a3fd948e8abb9ab96ade97321/fba8fa5f7e53e796c26216a91601bca675051c01b554dc0c8b0dfa25ea94d3da.png?x-oss-process=image/resize,w_280,m_lfit/format,webp/ignore-error,1",
+      "file": "toolbox-25.webp",
+      "bytes": 8974,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-detail",
+      "title": "角色立绘",
+      "url": "https://libtv-res.liblib.art/tool/character/003_full_body_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1",
+      "file": "character-detail-1.webp",
+      "bytes": 39062,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-detail",
+      "title": "脸部近景",
+      "url": "https://libtv-res.liblib.art/tool/character/003_face_closeup_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1",
+      "file": "character-detail-2.webp",
+      "bytes": 256182,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-detail",
+      "title": "表情参考",
+      "url": "https://libtv-res.liblib.art/tool/character/003_expression_grid_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1",
+      "file": "character-detail-3.webp",
+      "bytes": 226186,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-detail",
+      "title": "三视图",
+      "url": "https://libtv-res.liblib.art/tool/character/003_character_sheet_1.png?x-oss-process=image/resize,w_1920,m_lfit/format,webp/ignore-error,1",
+      "file": "character-detail-4.webp",
+      "bytes": 96922,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "甜妹/清新少女",
+      "url": "https://libtv-res.liblib.art/tool/character/003_face_closeup_1.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-01.webp",
+      "bytes": 26952,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "霸总/精英大佬",
+      "url": "https://libtv-res.liblib.art/tool/character/001_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-02.webp",
+      "bytes": 27250,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "温柔熟男/理想男友",
+      "url": "https://libtv-res.liblib.art/tool/character/002_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-03.webp",
+      "bytes": 26140,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "清冷千金/白切黑女主",
+      "url": "https://libtv-res.liblib.art/tool/character/004_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-04.webp",
+      "bytes": 22262,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "古风男主",
+      "url": "https://libtv-res.liblib.art/tool/character/005_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-05.webp",
+      "bytes": 23878,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "古风女主",
+      "url": "https://libtv-res.liblib.art/tool/character/006_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-06.webp",
+      "bytes": 24316,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "恶毒女配/白莲花",
+      "url": "https://libtv-res.liblib.art/tool/character/007_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-07.webp",
+      "bytes": 20896,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "正派长辈/父",
+      "url": "https://libtv-res.liblib.art/tool/character/010_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-08.webp",
+      "bytes": 34086,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "正派长辈/母",
+      "url": "https://libtv-res.liblib.art/tool/character/011_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-09.webp",
+      "bytes": 33798,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "反派长辈/势利亲戚",
+      "url": "https://libtv-res.liblib.art/tool/character/012_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-10.webp",
+      "bytes": 36484,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "反派长辈/势利亲戚",
+      "url": "https://libtv-res.liblib.art/tool/character/013_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-11.webp",
+      "bytes": 37208,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "生活方式普通人",
+      "url": "https://libtv-res.liblib.art/tool/character/014_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-12.webp",
+      "bytes": 24194,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "生活方式普通人",
+      "url": "https://libtv-res.liblib.art/tool/character/015_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-13.webp",
+      "bytes": 27080,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感亚洲男生",
+      "url": "https://libtv-res.liblib.art/tool/character/016_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-14.webp",
+      "bytes": 33490,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感亚洲女生",
+      "url": "https://libtv-res.liblib.art/tool/character/018_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-15.webp",
+      "bytes": 20422,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感欧美男生",
+      "url": "https://libtv-res.liblib.art/tool/character/022_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-16.webp",
+      "bytes": 24746,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感欧美女生",
+      "url": "https://libtv-res.liblib.art/tool/character/021_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-17.webp",
+      "bytes": 41216,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "小男孩",
+      "url": "https://libtv-res.liblib.art/tool/character/008_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-18.webp",
+      "bytes": 21230,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "小女孩",
+      "url": "https://libtv-res.liblib.art/tool/character/009_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-19.webp",
+      "bytes": 22462,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感亚洲女生",
+      "url": "https://libtv-res.liblib.art/tool/character/019_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-20.webp",
+      "bytes": 29376,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感亚洲女生",
+      "url": "https://libtv-res.liblib.art/tool/character/020_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-21.webp",
+      "bytes": 18416,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感亚洲男生",
+      "url": "https://libtv-res.liblib.art/tool/character/017_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-22.webp",
+      "bytes": 24760,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "character-thumb",
+      "title": "时尚感欧美女生",
+      "url": "https://libtv-res.liblib.art/tool/character/023_face_closeup.png?x-oss-process=image/resize,w_568,m_lfit/format,webp/ignore-error,1",
+      "file": "character-thumb-23.webp",
+      "bytes": 57602,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "history",
+      "title": "历史图片 1",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1",
+      "file": "history-01.webp",
+      "bytes": 7778,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "history",
+      "title": "历史图片 2",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765914494_3ae42ea368754adc929c201fd6315626.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1",
+      "file": "history-02.webp",
+      "bytes": 16040,
+      "contentType": "image/webp"
+    },
+    {
+      "group": "history",
+      "title": "历史图片 3",
+      "url": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1",
+      "file": "history-03.webp",
+      "bytes": 4010,
+      "contentType": "image/webp"
+    }
+  ]
+}

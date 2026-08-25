@@ -84,7 +84,7 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 ### FrameOS Link (NEW)
 - Click → navigates to `/frameos/canvas/demo` (added to test navigation).
 
-## LeftSidebar (7 buttons)
+## LeftSidebar (primary bottom toolbar, 8 buttons)
 
 Each button has identical styling: `h-8 w-8 rounded-lg`, hover `bg-[rgba(255,255,255,0.08)]`, active `bg-[rgba(255,255,255,0.15)]`.
 
@@ -96,7 +96,7 @@ Each button has identical styling: `h-8 w-8 rounded-lg`, hover `bg-[rgba(255,255
 | 角色库 | Toggles `activePanel === "character"` → opens `CharacterLibraryPanel` |
 | 历史记录 | Toggles `activePanel === "history"` → opens `HistoryPanel` |
 | 快捷键 | Calls `useUIStore.toggleShortcutsPanel` → opens `KeyboardShortcutsDialog` modal |
-| 教程 | Toggles `activePanel === "tutorial"` (no-op — no panel implemented) |
+| 教程 | Toggles the anchored four-command tutorial/help menu |
 
 ## AddNodePanel (8 node types)
 
@@ -144,7 +144,7 @@ Buttons (left to right):
 
 ## KeyboardShortcutsDialog
 
-Opened via LeftSidebar "快捷键" button or BottomToolbar `?` button. Modal lists keyboard shortcuts.
+Opened via the primary toolbar "快捷键" button. The no-backdrop panel is anchored above the toolbar and lists four columns of shortcuts.
 
 ## Following Status Banner
 
@@ -152,16 +152,18 @@ Opened via LeftSidebar "快捷键" button or BottomToolbar `?` button. Modal lis
 - **Trigger:** Display only (always visible in current clone).
 - **Click "取消ESC"** or press `Escape` → closes banner (no-op other than closing panels).
 
-## Panels (open from sidebar)
+## Panels (open from primary toolbar)
 
-| Panel | Side | Trigger |
+| Panel | Presentation | Trigger |
 |-------|------|---------|
-| `ToolboxPanel` | Left | 工具箱 button |
-| `MaterialLibraryPanel` | Right | 素材库 button |
-| `CharacterLibraryPanel` | Right | 角色库 button |
-| `HistoryPanel` | Right | 历史记录 button |
+| `ToolboxPanel` | 480x460 anchored floating panel | 工具箱 button |
+| `MaterialLibraryPanel` | 240x163 anchored floating menu | 素材库 button |
+| `CharacterLibraryPanel` | Centered responsive modal | 角色库 button |
+| `HistoryPanel` | 90vw responsive modal | 历史记录 button |
+| `KeyboardShortcutsDialog` | Wide anchored panel without backdrop | 快捷键 button |
+| Tutorial menu | Compact anchored menu | 教程 button |
 
-Each panel renders a fixed-position sidebar with grid of items. Click "X" (close button) to dismiss.
+Primary entry states are mutually exclusive. Character and history use modal backdrops; the other panels preserve canvas context and stay anchored to their toolbar buttons.
 
 ## State management notes
 

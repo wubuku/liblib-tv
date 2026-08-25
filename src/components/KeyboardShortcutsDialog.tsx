@@ -1,241 +1,106 @@
-"use client"
+"use client";
 
-import { cn } from "@/lib/utils"
+import { Command, Hand, Mouse, MousePointer2, X } from "lucide-react";
 
 interface KeyboardShortcutsDialogProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 interface ShortcutItem {
-  label: string
-  keys: string
+  label: string;
+  keys: string[];
+  suffix?: string;
+  visual?: "mouse" | "hand";
 }
 
-interface ShortcutSection {
-  title: string
-  items: ShortcutItem[]
-}
-
-const shortcutSections: ShortcutSection[] = [
+const sections: Array<{ title: string; items: ShortcutItem[] }> = [
   {
     title: "创作",
     items: [
-      { label: "成组", keys: "G" },
-      { label: "合并分镜组", keys: "⌥G" },
-      { label: "解组", keys: "⇧G" },
-      { label: "连线", keys: "L" },
-      { label: "复制节点和连线", keys: "D" },
-      { label: "生成", keys: "Enter" },
-      { label: "新建节点", keys: "Tab" },
-      { label: "节点复制", keys: "Option+拖动节点" },
-      { label: "创建副本", keys: "Option+拖动" },
+      { label: "成组", keys: ["cmd", "G"] },
+      { label: "合并分镜组", keys: ["cmd", "⌥", "G"] },
+      { label: "解组", keys: ["cmd", "⇧", "G"] },
+      { label: "连线", keys: ["cmd", "L"] },
+      { label: "复制节点和连线", keys: ["cmd", "D"] },
+      { label: "生成", keys: ["cmd", "Enter"] },
+      { label: "新建节点", keys: ["Tab"] },
+      { label: "节点复制", keys: ["Option"], suffix: "+拖动节点" },
+      { label: "创建副本", keys: ["cmd", "Option"], suffix: "+拖动" },
     ],
   },
   {
     title: "缩放",
     items: [
-      { label: "放大", keys: "⌘+=" },
-      { label: "缩小", keys: "⌘+-" },
-      { label: "适应画布", keys: "0" },
-      { label: "触控板", keys: "pinch" },
-      { label: "鼠标", keys: "⌘+scroll" },
+      { label: "放大", keys: ["cmd", "+"] },
+      { label: "缩小", keys: ["cmd", "−"] },
+      { label: "适应画布", keys: ["cmd", "0"] },
+      { label: "触控板", keys: [], visual: "hand" },
+      { label: "鼠标", keys: ["cmd"], visual: "mouse" },
     ],
   },
   {
     title: "移动画布",
     items: [
-      { label: "键盘", keys: "Space+拖动" },
-      { label: "触控板", keys: "two-finger" },
-      { label: "鼠标", keys: "middle-click" },
-      { label: "整理画布", keys: "⌥⇧F" },
+      { label: "键盘", keys: ["Space"], visual: "mouse" },
+      { label: "触控板", keys: [], visual: "hand" },
+      { label: "鼠标", keys: [], visual: "mouse" },
+      { label: "移动", keys: ["V"] },
+      { label: "抓手工具", keys: ["H"] },
+      { label: "整理画布", keys: ["⌥", "⇧", "F"] },
     ],
   },
   {
     title: "其他",
     items: [
-      { label: "撤销", keys: "⌘Z" },
-      { label: "重做", keys: "⇧⌘Z" },
-      { label: "删除", keys: "Backspace/Delete" },
+      { label: "撤销", keys: ["cmd", "Z"] },
+      { label: "重做", keys: ["cmd", "⇧", "Z"] },
+      { label: "删除", keys: ["Delete"] },
     ],
   },
-]
+];
 
-function KeyBadge({ children }: { children: React.ReactNode }) {
+function Key({ value }: { value: string }) {
   return (
-    <span className="inline-flex items-center justify-center rounded-md bg-[#09caf5]/20 px-1.5 py-0.5 text-xs font-medium text-[#09caf5]">
-      {children}
-    </span>
-  )
-}
-
-function PinchIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={cn("size-4", className)}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M8 2v12M4 6l4-4 4 4M4 10l4 4 4-4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function ScrollIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={cn("size-4", className)}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="4" y="2" width="8" height="12" rx="4" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="8" cy="6" r="1" fill="currentColor" />
-    </svg>
-  )
-}
-
-function TwoFingerIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={cn("size-4", className)}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M5 8V4a1 1 0 012 0v4M9 8V3a1 1 0 012 0v5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M5 8a2 2 0 004 0"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
-function MiddleClickIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={cn("size-4", className)}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="2" y="4" width="12" height="9" rx="3" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="8" y1="4" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  )
-}
-
-function getKeysDisplay(keys: string) {
-  switch (keys) {
-    case "pinch":
-      return (
-        <KeyBadge>
-          <PinchIcon className="text-[#09caf5]" />
-        </KeyBadge>
-      )
-    case "⌘+scroll":
-      return (
-        <span className="inline-flex items-center gap-1">
-          <KeyBadge>⌘</KeyBadge>
-          <span className="text-xs text-[#999]">+</span>
-          <KeyBadge>
-            <ScrollIcon className="text-[#09caf5]" />
-          </KeyBadge>
-        </span>
-      )
-    case "two-finger":
-      return (
-        <KeyBadge>
-          <TwoFingerIcon className="text-[#09caf5]" />
-        </KeyBadge>
-      )
-    case "middle-click":
-      return (
-        <KeyBadge>
-          <MiddleClickIcon className="text-[#09caf5]" />
-        </KeyBadge>
-      )
-    default:
-      return keys.split("+").map((part, i) => (
-        <span key={i} className="inline-flex items-center gap-1">
-          {i > 0 && <span className="text-xs text-[#999]">+</span>}
-          <KeyBadge>{part.trim()}</KeyBadge>
-        </span>
-      ))
-  }
+    <kbd className="flex min-h-7 min-w-7 items-center justify-center rounded-lg border border-white/[0.06] bg-[#1d1d1d] px-1.5 text-sm font-normal text-[#dedede] shadow-[inset_0_-1px_rgba(255,255,255,0.04)]">
+      {value === "cmd" ? <Command size={15} /> : value}
+    </kbd>
+  );
 }
 
 export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDialogProps) {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+    <section
+      aria-label="快捷键面板"
+      className="fixed bottom-[73px] left-1/2 z-[62] h-[447px] w-[905px] max-w-[calc(100vw-24px)] -translate-x-1/2 rounded-2xl border border-[#363636] bg-[#262626]/95 p-6 shadow-[0_20px_54px_rgba(0,0,0,0.55)] backdrop-blur-lg max-md:max-h-[calc(100vh-130px)] max-md:overflow-y-auto max-md:p-4 max-sm:bottom-[109px]"
     >
-      <div
-        className="relative w-[480px] max-h-[80vh] overflow-y-auto rounded-xl bg-[#1f1f1f] p-6 shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-white">键盘快捷键</h2>
-          <button
-            onClick={onClose}
-            className="flex size-8 items-center justify-center rounded-lg text-[#999] transition-colors hover:bg-white/10 hover:text-white"
-            aria-label="关闭"
-          >
-            <svg
-              className="size-5"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 5L5 15M5 5l10 10"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </div>
+      <button type="button" onClick={onClose} aria-label="关闭快捷键面板" className="absolute right-3 top-3 z-10 flex size-7 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.07] hover:text-white">
+        <X size={20} />
+      </button>
+      <span className="absolute -bottom-1.5 left-[calc(50%+104px)] size-3 rotate-45 border-b border-r border-[#363636] bg-[#262626]" />
 
-        {/* Sections */}
-        <div className="space-y-6">
-          {shortcutSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="mb-3 text-sm font-medium text-[#666]">{section.title}</h3>
-              <div className="space-y-2">
-                {section.items.map((item) => (
-                  <div
-                    key={item.label}
-                    className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-white/5"
-                  >
-                    <span className="text-sm text-[#ccc]">{item.label}</span>
-                    <div className="inline-flex items-center gap-1">{getKeysDisplay(item.keys)}</div>
-                  </div>
-                ))}
-              </div>
+      <div className="grid h-full grid-cols-[229px_230px_228px_minmax(0,1fr)] gap-5 max-md:grid-cols-2 max-md:gap-y-8 max-sm:grid-cols-1">
+        {sections.map((section, sectionIndex) => (
+          <div key={section.title} className={sectionIndex < sections.length - 1 ? "border-r border-white/[0.07] pr-5 max-sm:border-r-0 max-sm:pr-0" : ""}>
+            <h2 className="mb-3 text-sm font-medium text-[#12cce8]">{section.title}</h2>
+            <div className="space-y-1.5">
+              {section.items.map((item) => (
+                <div key={item.label} className="flex min-h-8 items-center gap-2 text-sm">
+                  <span className="min-w-0 flex-1 whitespace-nowrap text-[#8f8f8f]">{item.label}</span>
+                  <span className="flex shrink-0 items-center gap-1">
+                    {item.keys.map((key, index) => <Key key={`${item.label}-${key}-${index}`} value={key} />)}
+                    {item.visual === "hand" && <span className="flex size-7 items-center justify-center text-[#31c8df]"><Hand size={18} /></span>}
+                    {item.visual === "mouse" && <span className="flex size-7 items-center justify-center text-[#31c8df]">{item.label === "键盘" ? <MousePointer2 size={17} /> : <Mouse size={18} />}</span>}
+                    {item.suffix && <span className="text-xs text-[#c7c7c7]">{item.suffix}</span>}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </div>
-  )
+    </section>
+  );
 }

@@ -117,7 +117,7 @@ Next.js App Router
 │           ├── floating editor UI
 │           └── frameosStore           画布、UI、history、generation mock
 │
-├── public/images                      两条路线的本地 mock 素材
+├── public/images                      两条路线的本地 mock 素材；liblib-panels 可由审计脚本重建
 └── docs
     ├── research                       原站观察、提取数据、组件规格
     └── design-references              原站与克隆迭代截图
@@ -137,7 +137,7 @@ Next.js App Router
 | 边 renderer | `DeletableEdge` | `FrameosEdge` |
 | 主题 | 深灰 + 青色强调 | 更深黑底 + 蓝色强调 |
 | 多画布模型 | `canvases[]` + `activeCanvasId` | breadcrumb key + mock `canvasData` |
-| 交互成熟度 | 壳层、主控制、模式与关键抽屉已闭环；内容库和后端仍是 mock | 编辑器命令和浮层较多，但不少仍是 mock 或未闭环 |
+| 交互成熟度 | 壳层、主控制、模式、关键抽屉和一级内容面板已闭环；后端仍是 mock | 编辑器命令和浮层较多，但不少仍是 mock 或未闭环 |
 
 `/frameos/canvas/[id]` 的 `[id]` 当前只是路由占位符。页面没有用它加载不同数据，任意 ID 都进入同一组前端 mock 状态。
 
@@ -164,6 +164,7 @@ React Flow change
 - 同步 React Flow viewport 与实际缩放百分比
 - 在 `929px+` 使用原站 53% 构图，在 `768px-` 使用原站 28% 紧凑构图
 - 组合顶部浮动导航、底部主工具条、底部画布控制、资产/Agent 抽屉和快捷键弹窗
+- 编排六个不同拓扑的一级入口面板，并保持入口互斥
 - 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent
 
 ### 5.2 状态边界
@@ -286,6 +287,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ### LibTV
 
 - `docs/research/liblib-live-2026-08-25/README.md`：当前事实基线、缺口审计、价值排序和本轮范围
+- `docs/research/liblib-live-2026-08-25/BATCH_1_PANELS.md`：六个主工具栏入口面板的差距、优先级和验证
 - `docs/research/liblib-live-2026-08-25/*.json`：10 节点、11 边与首屏 DOM 的结构化抽取
 - `docs/research/PAGE_TOPOLOGY.md`：页面区域与层级
 - `docs/research/BEHAVIORS.md`：交互目录
@@ -317,7 +319,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 视觉研究 | 资料丰富，包含原站截图、计算样式、原始 JSON 和大量迭代图 |
 | 画布基础 | Pan/zoom/drag/connect 已由 React Flow 支撑 |
 | 节点交互 | 两条路线都有可操作节点；LibTV 新增入口对未实现类型使用显式原型映射 |
-| 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 和分镜模式已闭环 |
+| 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent、分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
 | 自动化验证 | `npm run check` 可用；现有 FrameOS E2E 尚未接入依赖且选择器已漂移 |
@@ -326,7 +328,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 当前快照中仍存在的主要原型边界：
 
 - 根 `README.md` 和 `package.json` 仍保留通用 website-cloner 模板身份
-- LibTV 工具箱、素材库、角色库和历史记录仍主要是占位内容；原站对应的是大型真实素材面板
+- LibTV 内容库已具备原站拓扑和本地真实样例素材，但账户数据、下载和生成调用仍是 mock
 - LibTV 分镜模式和 Agent 是可验证的前端原型，没有接入真实任务、模型或历史数据
 - LibTV 未实现后端生成、上传、分享链接、项目持久化和协作权限
 - FrameOS `duplicateNode` 已构造副本对象但没有把它加入 nodes，复制快捷键当前不会新增节点
@@ -381,7 +383,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 ## 12. 本轮验证基线
 
-- `npm run check`：lint、typecheck、production build 通过；lint 有 10 个既有 warning，集中在 FrameOS、`CustomHandle` 和 `MaterialLibraryPanel`
+- `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
@@ -389,6 +391,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`，列出 10 个节点
 - Agent：`340px` 右抽屉；分镜模式自动打开并渲染故事板列
 - 图片选中态：页面级 `900x49` 工具条和 `660x274` 编辑面板，包含原站提示词与生成参数
+- 六个主入口面板：桌面锚点与原站一致；角色应用可创建可见节点；`390x844` 无检测到的标签溢出
 - 添加、分享、整理保留/还原、工作台/分镜切换均完成浏览器交互验证
 - `/frameos/canvas/demo` 运行态：7 节点、5 边
 - FrameOS 选中节点后浮动工具条与 PromptEditor 可见

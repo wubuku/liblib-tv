@@ -327,10 +327,14 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
   addNode: (type: string, data?: Record<string, unknown>) => {
     const { activeCanvasId } = get();
+    const dimensions = getDefaultNodeDimensions(type);
     const newNode: Node = {
       id: `node-${Date.now()}`,
       type,
       position: { x: Math.random() * 400 + 200, y: Math.random() * 400 + 100 },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
       data: data || getDefaultNodeData(type),
     };
     set((state) => ({
@@ -339,6 +343,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           ? { ...c, nodes: [...c.nodes, newNode] }
           : c
       ),
+      selectedNodeId: newNode.id,
     }));
   },
 
@@ -434,6 +439,22 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return canvases.find((c) => c.id === activeCanvasId);
   },
 }));
+
+function getDefaultNodeDimensions(type: string) {
+  switch (type) {
+    case "image":
+    case "video":
+      return { width: 512, height: 288 };
+    case "script-execution":
+      return { width: 350, height: 350 };
+    case "script":
+      return { width: 350, height: 200 };
+    case "storyboard-group":
+      return { width: 430, height: 452 };
+    default:
+      return { width: 350, height: 180 };
+  }
+}
 
 function getDefaultNodeData(type: string): Record<string, unknown> {
   switch (type) {
