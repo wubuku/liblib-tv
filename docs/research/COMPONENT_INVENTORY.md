@@ -63,7 +63,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 
 | Store | File | Responsibility |
 |------|------|--------|
-| `useCanvasStore` | `src/store/canvasStore.ts` | All canvas data: canvii list, active canvas ID, nodes, edges, selection, viewport. `addNode`, `removeNode`, `addEdge`, `removeEdge`, `setViewport`, `setActiveCanvas`, `addCanvas`, `removeCanvas`, `duplicateCanvas`, etc. |
+| `useCanvasStore` | `src/store/canvasStore.ts` | All canvas data: canvii list, active canvas ID, nodes, edges, selection, viewport, and per-canvas in-memory history. Includes `addNode`, `duplicateNode`, `removeNode`, `addEdge`, `removeEdge`, `undo`, `redo`, `setViewport`, `setActiveCanvas`, `addCanvas`, `removeCanvas`, `duplicateCanvas`, etc. |
 | `useUIStore` | `src/store/uiStore.ts` | Panel visibility (add node, shortcuts, asset panel, etc.), grid/minimap/snap toggles, zoom level. `toggleAddNodePanel`, `closeAllPanels`, etc. |
 
 ---

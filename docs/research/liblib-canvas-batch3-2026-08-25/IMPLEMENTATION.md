@@ -1,6 +1,6 @@
 # LibTV 画布 Batch 3 实施记录
 
-> 状态：实现中（源码第一轮完成，待浏览器回归和最终 `npm run check`）  
+> 状态：已完成（源码、构建、浏览器回归和文档已完成）  
 > 日期：2026-08-25
 
 ## 1. 本轮实际实施
@@ -55,17 +55,29 @@
 
 - `npx tsc --noEmit --pretty false`
 - `npm run lint -- --quiet`
+- `npm run check`
+- Playwright Chromium：桌面 `1440x900` 与移动 `390x844`
+- 桌面初始节点数 `10`
+- `Cmd+D` 节点数 `10 -> 11`
+- 对带 3 条关联边的图片节点执行 `Cmd+D`，连线数 `11 -> 14`；撤销恢复为 `11`
+- `Cmd+Z` / `Cmd+Shift+Z` 恢复复制前后状态
+- `Option/Alt+Shift+F` 显示“是否保留此次整理结果？”确认浮层
+- 文本节点编辑写回并可撤销
+- 移动端页面无横向溢出
+- 移动端快捷键面板无横向溢出
+- 浏览器控制台错误数 `0`
 
-两项均通过。Lint 的完整输出仍有仓库既有 warning，但本轮没有新增 error。
+所有检查均通过。Lint 的完整输出仍有仓库既有 9 个 warning，但本轮没有新增 error。
 
-待完成：
+验证截图：
 
-- `npm run check`；
-- 启动本地 Dev Server；
-- Playwright 桌面/`390px` 回归；
-- 实测添加、复制、撤销、重做、整理和文本编辑撤销；
-- 更新本目录最终验证证据和仓库索引；
-- 提交并推送最终实施批次。
+- `docs/design-references/liblib-clone-batch3-desktop-baseline-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-shortcuts-desktop-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-add-node-desktop-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-duplicate-redo-desktop-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-organize-preview-desktop-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-mobile-390-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch3-shortcuts-mobile-390-2026-08-25.png`
 
 ## 4. 已知边界
 
@@ -73,4 +85,3 @@
 - 尚未实现真实系统剪贴板；
 - 尚未实现原站快捷键中的成组、解组、连线、生成、Option+拖动；
 - 这些未实现项不再出现在快捷键面板中，避免克隆行为与文案不一致。
-

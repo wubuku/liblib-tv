@@ -12,10 +12,16 @@
 - **Grid snap:** Toggle via `useUIStore.toggleGrid`; `snapGrid: [20, 20]`
 
 ### Keyboard Shortcuts
-- `Option+Shift+F` — Arrange canvas (no-op in clone; reserved for future)
+- `Cmd/Ctrl+Z` — Undo the active canvas graph
+- `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph
+- `Cmd/Ctrl+D` — Duplicate the selected node and its connected edges
+- `Tab` — Open the add-node panel
+- `Option/Alt+Shift+F` — Arrange canvas
 - `Escape` — Deselect selection + close panels (`useUIStore.closeAllPanels` + `selectNode(null)`)
 - `Delete` / `Backspace` — Delete selected node (calls `useCanvasStore.removeNode`)
-- `Cmd+A` — not implemented
+- `Cmd/Ctrl+0` — Fit the canvas
+- `Cmd/Ctrl++` / `Cmd/Ctrl+-` — Zoom in/out
+- `V` / `H` — Select/move tool and hand tool
 
 ## Edge (Connection Line)
 
@@ -58,6 +64,7 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 ### Drag to Move
 - **Trigger:** Mouse down on node body (not handle)
 - **Effect:** Standard React Flow drag. `onNodeDragStop` saves the final position to `useCanvasStore` via `setNodes`.
+- **History:** The graph from drag start is recorded once when the drag ends, so one drag is one undo step.
 
 ### Handle Drag to Connect
 - **Trigger:** Mouse down on `<Handle>`, drag to another `<Handle>`
@@ -108,7 +115,7 @@ Node types: text, image, video, composition (Beta), director (NEW), audio, scrip
 
 Buttons (left to right):
 - **资产管理 (text):** Toggles `useUIStore.toggleAssetPanel` (panel not implemented yet)
-- **整理画布 (icon, ⌘+Shift+F):** No-op (reserved for auto-arrange)
+- **整理画布 (icon, ⌥+Shift+F):** Reorganizes nodes and presents the existing keep/restore prompt
 - **人物 icon:** No-op
 - **`+` large cyan button:** Opens `AddNodePanel`
 - **整理节点 (icon):** No-op
@@ -168,5 +175,6 @@ Primary entry states are mutually exclusive. Character and history use modal bac
 ## State management notes
 
 - All pan/zoom, edges, node positions live in `useCanvasStore`.
+- Graph editing commands use a per-canvas in-memory `past` / `future` history stack; selection, viewport, and panel visibility do not enter the stack.
 - All panel visibility lives in `useUIStore`.
 - Refresh / new tab = state lost (no backend).
