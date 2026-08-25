@@ -133,7 +133,7 @@ Next.js App Router
 | 入口 | `/` | `/frameos` 重定向到 `/frameos/canvas/demo` |
 | 页面控制器 | `src/app/page.tsx` | `src/app/frameos/canvas/[id]/page.tsx` |
 | Store | `canvasStore` + `uiStore` | `frameosStore` |
-| 已注册节点 renderer | 8 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip | 3 种：text/image/video |
+| 已注册节点 renderer | 9 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip/audio | 3 种：text/image/video |
 | 初始运行态 | 10 节点、11 边；桌面 53%、紧凑视口 28% | 7 节点、5 边 |
 | 边 renderer | `DeletableEdge` | `FrameosEdge` |
 | 主题 | 深灰 + 青色强调 | 更深黑底 + 蓝色强调 |
@@ -206,7 +206,7 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地结果卡
 - `VideoClipNode`：智能剪辑 Beta 四模式空态
 
-当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片与视频编辑已有专用 renderer，导演台、音频等尚未专门实现的类别仍映射到最接近的原型节点。
+当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer，导演台仍保留为专用执行节点原型。音频 renderer 只提供本地预览卡片，不解析真实音频。
 
 视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 

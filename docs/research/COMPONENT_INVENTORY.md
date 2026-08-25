@@ -31,6 +31,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 | `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state and local storyboard/motion/music result cards. |
 | `video-clip` | `src/components/nodes/VideoClipNode.tsx` | 智能剪辑 Beta four-mode prompt empty state. |
+| `audio` | `src/components/nodes/AudioNode.tsx` | Local audio preview card with handles, filename, waveform placeholder and duration. |
 
 ## Edge Components
 
@@ -42,7 +43,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| `AddNodePanel` | `src/components/AddNodePanel.tsx` | 8 node types grid + 上传/历史选择. Click outside to close. |
+| `AddNodePanel` | `src/components/AddNodePanel.tsx` | 9-entry source-shaped node list, material submenu, upload/history local feedback. |
 | `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | Multi-canvas switcher dropdown with 新建/重命名/复制/删除. |
 | `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Bottom-toolbar-anchored 480x460 panel with 25 source-derived presets. |
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |

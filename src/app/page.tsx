@@ -35,6 +35,7 @@ import { ScriptExecutionNode } from "@/components/nodes/ScriptExecutionNode";
 import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
 import { ShotBreakdownNode } from "@/components/nodes/ShotBreakdownNode";
 import { VideoClipNode } from "@/components/nodes/VideoClipNode";
+import { AudioNode } from "@/components/nodes/AudioNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { getLiblibOrganizeViewport, organizeLiblibNodes } from "@/lib/liblibOrganize";
 
@@ -47,6 +48,7 @@ const nodeTypes = {
   "storyboard-group": StoryboardGroupNode,
   "shot-breakdown": ShotBreakdownNode,
   "video-clip": VideoClipNode,
+  audio: AudioNode,
 };
 
 const edgeTypes = { default: DeletableEdge };

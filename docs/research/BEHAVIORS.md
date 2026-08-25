@@ -149,11 +149,15 @@ Each button has identical styling: `h-8 w-8 rounded-lg`, hover `bg-[rgba(255,255
 | 快捷键 | Calls `useUIStore.toggleShortcutsPanel` → opens `KeyboardShortcutsDialog` modal |
 | 教程 | Toggles the anchored four-command tutorial/help menu |
 
-## AddNodePanel (8 node types)
+## AddNodePanel (9 source-shaped entries)
 
 Opens when clicking the `+` sidebar button. Click outside to close. Clicking a node type calls `useCanvasStore.addNode(type)` which spawns a new node at a default position with default data, then closes the panel.
 
-Node types: text, image, video, composition (Beta), director (NEW), audio, script, library (NEW).
+Node entries: text, image, video, video-clip (Beta), script-execution (NEW), shot-breakdown (SD 2.5), audio, script, material.
+
+- `音频` creates a dedicated local `audio` node rather than a text node.
+- `素材库` opens a two-item local submenu; selecting either item opens the existing MaterialLibraryPanel.
+- `上传` and `从生成历史选择` show explicit local prototype status and do not create a node.
 
 ## BottomToolbar (bottom-left canvas controls)
 

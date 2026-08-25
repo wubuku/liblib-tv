@@ -1107,6 +1107,8 @@ function getDefaultNodeDimensions(type: string) {
       return { width: 320, height: 389 };
     case "video-clip":
       return { width: 350, height: 350 };
+    case "audio":
+      return { width: 350, height: 140 };
     default:
       return { width: 350, height: 180 };
   }

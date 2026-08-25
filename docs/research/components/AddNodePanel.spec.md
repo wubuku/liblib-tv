@@ -4,57 +4,47 @@
 
 - **Target file:** `src/components/AddNodePanel.tsx`
 - **Trigger:** LeftSidebar "+" button (添加节点)
-- **Position:** `absolute left-14 top-0` — appears right next to the sidebar.
+- **Position:** Bottom-primary-toolbar anchored floating panel; on desktop approximately `196x481`, matching the current source screenshot's single-column menu.
 
 ## DOM Structure
 
 ```
-<div ref={panelRef} className="absolute left-14 top-0 w-64 bg-[#1f1f1f] border border-[#363636] rounded-lg shadow-xl z-50 overflow-hidden">
-  <div className="p-3 border-b border-[#363636]">
-    <h4>添加节点</h4>
-    <div className="grid grid-cols-2 gap-2">
-      {nodeTypes.map(nodeType => (
-        <button key={nodeType.type} onClick={...} className="relative ... hover:bg-[#353639]">
-          <div>{nodeType.icon}</div>
-          <span>{nodeType.label}</span>
-          {nodeType.badge && <span className="absolute top-1 right-1 badge">{nodeType.badge}</span>}
-        </button>
-      ))}
-    </div>
+<div ref={panelRef} className="fixed ... w-[196px] ...">
+  <h4>添加节点</h4>
+  <div>
+    {nodeEntries.map(nodeType => <button data-add-node-entry={nodeType.type}>...</button>)}
   </div>
-
-  <div className="p-3">
-    <h4>添加资源</h4>
-    <div className="space-y-2">
-      <button>↑ 上传</button>
-      <button>⏱ 从生成历史选择</button>
-    </div>
-  </div>
+  <h4>添加资源</h4>
+  <button data-add-node-resource="upload">上传</button>
+  <button data-add-node-resource="history">从生成历史选择</button>
 </div>
 ```
 
-## Node Type Grid (8 types)
+## Node Type List (9 entries)
 
 | Type | Label | Icon | Badge |
 |------|-------|------|-------|
 | `text` | 文本 | text lines | — |
 | `image` | 图片 | image | — |
 | `video` | 视频 | camera | — |
-| `composition` | 视频合成 | stack | "Beta" |
-| `director` | 导演台 | eye | "NEW" |
+| `video-clip` | 视频编辑 | scissors | "Beta" |
+| `script-execution` | 导演台 | clapperboard | "NEW" |
+| `shot-breakdown` | 逐帧拉片 | scan | "SD 2.5" |
 | `audio` | 音频 | music note | — |
 | `script` | 脚本 | document | — |
-| `library` | 素材库 | stack of cards | "NEW" |
+| `material` | 素材库 | library | arrow |
 
 ## Interactions
 
 | Action | Effect |
 |--------|--------|
-| Click node type button | `useCanvasStore.addNode(type)`, then `toggleAddNodePanel` to close. |
+| Click create entry | `useCanvasStore.addNode(type)`, then `toggleAddNodePanel` to close. |
+| Click 素材库 | Opens a local two-item submenu; selecting either item closes AddNodePanel and opens the existing MaterialLibraryPanel. |
 | Click outside panel | Closes panel. |
-| Click 上传 / 从生成历史选择 | No-op (placeholder buttons). |
+| Click 上传 / 从生成历史选择 | Shows local prototype status; does not create a fake node. |
 
 ## Files Referenced
 
 - `src/components/AddNodePanel.tsx`
 - `src/store/canvasStore.ts` (`addNode`)
+- `src/components/nodes/AudioNode.tsx`
