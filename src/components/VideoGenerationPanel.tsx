@@ -22,6 +22,7 @@ import {
   Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { VideoContinuationMetadata } from "@/store/canvasStore";
 
 type MenuName = "model" | "mode" | "params" | "advanced" | null;
 type VideoMode = "omnireference" | "image-reference" | "long-video";
@@ -30,6 +31,8 @@ interface VideoGenerationPanelProps {
   zoom: number;
   initialModel?: string;
   initialPrompt?: string;
+  continuation?: VideoContinuationMetadata;
+  onClearContinuation?: () => void;
 }
 
 const defaultPrompt = "起始状态：@陈默（图片 1）充满杀伤力的眼神锁定镜头。动作过程：镜头平滑而缓慢地向他冷厉的双眼推移。他在第1秒开始说出如刀刃般的台词。对白（@陈默，冷酷且有力）：‘当初你离开的时候，怎么没想过我会担心？’结束状态：镜头停止在他充满恨意的双眸。音效：环境音完全静默，只余沉重的台词回响。";
@@ -104,9 +107,22 @@ const modeItems = [
   { id: "long-video", label: "超长视频", disabled: false, badge: "Beta" },
 ] as const;
 
-export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: VideoGenerationPanelProps) {
+export function VideoGenerationPanel({
+  zoom,
+  initialModel,
+  initialPrompt,
+  continuation,
+  onClearContinuation,
+}: VideoGenerationPanelProps) {
+  const isContinuation = Boolean(continuation);
   const [menu, setMenu] = useState<MenuName>(null);
-  const [model, setModel] = useState(initialModel?.includes("2.0") ? "2.0 VIP" : "2.5");
+  const [model, setModel] = useState(
+    isContinuation
+      ? "2.5"
+      : initialModel?.includes("2.0")
+        ? "2.0 VIP"
+        : "2.5",
+  );
   const [mode, setMode] = useState<VideoMode>("omnireference");
   const [ratio, setRatio] = useState("16:9");
   const [resolution, setResolution] = useState("720P");
@@ -116,7 +132,9 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
   const [autoLink, setAutoLink] = useState(true);
   const [networkSearch, setNetworkSearch] = useState(true);
   const [materialCheck, setMaterialCheck] = useState(true);
-  const [prompt, setPrompt] = useState(initialPrompt ?? defaultPrompt);
+  const [prompt, setPrompt] = useState(
+    initialPrompt ?? (isContinuation ? "" : defaultPrompt),
+  );
   const [showProcess, setShowProcess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const isLongVideo = mode === "long-video";
@@ -128,6 +146,7 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 
   const selectMode = (nextMode: VideoMode) => {
+    if (isContinuation) return;
     setMode(nextMode);
     setDuration(nextMode === "long-video" ? 30 : Math.min(30, Math.max(4, duration)));
     setShowProcess(false);
@@ -147,40 +166,95 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
             const Icon = item.icon;
             return <button key={item.label} type="button" className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><Icon size={12} />{item.label}</button>;
           })}
-          {autoLink && <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]"><Link2 size={12} />3 个匹配</button>}
+          {isContinuation && onClearContinuation && (
+            <button
+              data-video-continuation-exit
+              type="button"
+              onClick={onClearContinuation}
+              className="ml-auto h-7 rounded-lg px-2.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+            >
+              退出续写模式
+            </button>
+          )}
+          {!isContinuation && autoLink && <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]"><Link2 size={12} />3 个匹配</button>}
         </div>
 
         {showProcess ? (
           <LongVideoProcess onBack={() => setShowProcess(false)} />
         ) : (
           <>
-            <div className="mt-1 flex h-12 shrink-0 items-center gap-2">
-              {references.map((reference) => (
-                <div key={reference.id} className="relative size-12 overflow-hidden rounded-lg border border-white/10">
-                  <Image src={reference.image} alt={`${reference.name}参考`} fill sizes="48px" className="object-cover" unoptimized />
-                  <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">{reference.id}</span>
+            {continuation ? (
+              <>
+                <div
+                  data-video-continuation-source
+                  className="mt-1 flex h-12 shrink-0 items-center gap-2"
+                >
+                  <div className="relative size-12 overflow-hidden rounded-lg border border-white/10">
+                    <Image
+                      src={continuation.sourcePosterUrl ?? "/images/scene-coffee-4.png"}
+                      alt={continuation.sourceLabel}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                      unoptimized
+                    />
+                    <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">1</span>
+                  </div>
+                  <p className="min-w-0 truncate text-xs text-[#757575]">
+                    智能续写仅支持 Seedance 2.5 的全能参考模式
+                  </p>
                 </div>
-              ))}
-              <p className="ml-1 truncate text-xs text-[#757575]">Auto Link：{referenceSummary}</p>
-            </div>
-            <textarea
-              value={prompt}
-              onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
-              aria-label="视频生成提示词"
-              className="mt-1 min-h-0 flex-1 resize-none rounded-xl bg-black/10 p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
-            />
+                <div
+                  data-video-continuation-context
+                  className="mt-1 flex min-h-0 flex-1 flex-col rounded-xl bg-black/10 px-2 py-1.5"
+                >
+                  <p className="shrink-0 truncate text-xs leading-5 text-[#d8d8d8]">
+                    对 <span className="text-white">{continuation.sourceLabel}</span> 的{" "}
+                    <span data-video-continuation-range className="tabular-nums text-[#09caf5]">
+                      {continuation.startSeconds.toFixed(2)}s-{continuation.endSeconds.toFixed(2)}s
+                    </span>{" "}
+                    片段进行续写：
+                  </p>
+                  <textarea
+                    value={prompt}
+                    onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
+                    placeholder="请输入需要续写的内容"
+                    aria-label="视频生成提示词"
+                    className="min-h-0 flex-1 resize-none bg-transparent text-sm leading-6 text-[#ededed] outline-none placeholder:text-[#595959] selection:bg-[#09caf5]/30"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="mt-1 flex h-12 shrink-0 items-center gap-2">
+                  {references.map((reference) => (
+                    <div key={reference.id} className="relative size-12 overflow-hidden rounded-lg border border-white/10">
+                      <Image src={reference.image} alt={`${reference.name}参考`} fill sizes="48px" className="object-cover" unoptimized />
+                      <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">{reference.id}</span>
+                    </div>
+                  ))}
+                  <p className="ml-1 truncate text-xs text-[#757575]">Auto Link：{referenceSummary}</p>
+                </div>
+                <textarea
+                  value={prompt}
+                  onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
+                  aria-label="视频生成提示词"
+                  className="mt-1 min-h-0 flex-1 resize-none rounded-xl bg-black/10 p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
+                />
+              </>
+            )}
           </>
         )}
 
         <footer className="mt-1 flex h-9 shrink-0 items-center gap-1 border-t border-white/[0.07] pt-1 text-xs text-[#dfdfdf]">
           <div className="relative">
-            <button data-video-model-trigger type="button" onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06]">
+            <button data-video-model-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">
               <span className="font-semibold">{model === "2.5" ? "2.5" : model}</span><ChevronDown size={12} className="text-[#777]" />
             </button>
             {menu === "model" && <ModelMenu model={model} onSelect={(value) => { setModel(value); setMenu(null); }} />}
           </div>
           <div className="relative">
-            <button data-video-mode-trigger type="button" onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
+            <button data-video-mode-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
             {menu === "mode" && <ModeMenu mode={mode} onSelect={selectMode} />}
           </div>
           <div className="relative min-w-0">

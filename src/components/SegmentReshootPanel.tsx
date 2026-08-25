@@ -19,7 +19,6 @@ import { cn } from "@/lib/utils";
 
 interface SegmentReshootPanelProps {
   zoom: number;
-  mode: "reshoot" | "continue";
 }
 
 const segments = [
@@ -37,32 +36,25 @@ function time(value: number) {
   return `00:${String(value).padStart(2, "0")}`;
 }
 
-export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
-  const [selected, setSelected] = useState<string[]>(mode === "continue" ? ["24-28"] : []);
+export function SegmentReshootPanel({ zoom }: SegmentReshootPanelProps) {
+  const [selected, setSelected] = useState<string[]>([]);
   const [intent, setIntent] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const isContinue = mode === "continue";
   const selectedSegments = useMemo(() => segments.filter((segment) => selected.includes(segment.id)), [selected]);
-  const status = isContinue
-    ? "已创建本地续写任务"
-    : selectedSegments.length === 0
-      ? "已创建本地整段重跑任务"
-      : "已创建本地片段重拍任务";
+  const status = selectedSegments.length === 0
+    ? "已创建本地整段重跑任务"
+    : "已创建本地片段重拍任务";
 
   const toggle = (id: string) => {
     setSubmitted(false);
-    if (isContinue) {
-      setSelected([id]);
-      return;
-    }
     setSelected((items) => items.includes(id) ? items.filter((item) => item !== id) : items.length >= 5 ? items : [...items, id]);
   };
 
   return (
     <div
       data-segment-reshoot-panel
-      data-segment-mode={mode}
+      data-segment-mode="reshoot"
       className="nodrag nowheel nopan absolute -bottom-[17px] left-1/2 z-20 flex w-[660px] -translate-x-1/2 translate-y-full origin-top flex-col gap-2"
       // The bordered node is the containing block, so 17 flow units produce the source's 16-unit outer gap.
       style={{ transform: `scale(${1 / zoom})` }}
@@ -115,7 +107,7 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
           })}
         </div>
         <span data-segment-count className="w-[92px] shrink-0 text-center text-xs text-[#858585]">
-          {isContinue ? "选择前置片段" : `${selected.length}/5 个片段`}
+          {selected.length}/5 个片段
         </span>
       </section>
 
@@ -180,7 +172,7 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
         <div className="mt-1 flex min-h-0 flex-1 flex-col rounded-xl bg-black/10 px-2.5 py-2">
           {selectedSegments.length > 0 ? (
             <div className="flex flex-wrap items-center gap-1 text-xs text-[#d8d8d8]">
-              <span>{isContinue ? "对" : "把"}</span>
+              <span>把</span>
               <span
                 data-segment-video-token
                 className="inline-flex h-6 items-center gap-1 rounded-md bg-white/[0.09] px-1.5 text-[#ededed]"
@@ -190,7 +182,7 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
                 </span>
                 视频 1
               </span>
-              <span>{isContinue ? "的" : "中"}</span>
+              <span>中</span>
               {selectedSegments.map((segment) => (
                 <span
                   key={segment.id}
@@ -200,7 +192,6 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
                   {time(segment.start)}-{time(segment.end)}
                 </span>
               ))}
-              <span>{isContinue ? "进行续写：" : ""}</span>
             </div>
           ) : (
             <p className="text-xs leading-5 text-[#777]">
@@ -214,7 +205,7 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
               setIntent(event.target.value);
               setSubmitted(false);
             }}
-            placeholder={isContinue ? "请输入需要续写的内容" : "描述这段视频要如何修改"}
+            placeholder="描述这段视频要如何修改"
             className="mt-1 min-h-0 flex-1 resize-none bg-transparent text-sm leading-6 text-white outline-none placeholder:text-[#595959]"
           />
         </div>
@@ -252,8 +243,7 @@ export function SegmentReshootPanel({ zoom, mode }: SegmentReshootPanelProps) {
             data-segment-submit
             type="button"
             onClick={() => setSubmitted(true)}
-            disabled={isContinue && !intent.trim()}
-            aria-label={isContinue ? "提交智能续写" : "提交片段重拍"}
+            aria-label="提交片段重拍"
             className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-[#202020] disabled:bg-white/[0.08] disabled:text-[#555]"
           >
             {submitted ? <Check size={15} /> : <ArrowUp size={15} />}

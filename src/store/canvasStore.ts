@@ -15,6 +15,15 @@ export interface DerivedNodeOptions {
   offset?: { x: number; y: number };
 }
 
+export interface VideoContinuationMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  sourcePosterUrl?: string;
+  startSeconds: number;
+  endSeconds: number;
+  edgeId: string;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -58,6 +67,12 @@ interface CanvasState {
     data?: Record<string, unknown>,
     options?: DerivedNodeOptions,
   ) => void;
+  createVideoContinuation: (
+    sourceId: string,
+    startSeconds: number,
+    endSeconds: number,
+  ) => string | null;
+  clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
     sourceId: string,
     dimensions: ShotBreakdownDimension[],
@@ -128,6 +143,24 @@ function pushHistory(
 
 function createNodeId(prefix: string): string {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function isVideoContinuationMetadata(
+  value: unknown,
+): value is VideoContinuationMetadata {
+  if (!value || typeof value !== "object") return false;
+  return (
+    "sourceNodeId" in value &&
+    typeof value.sourceNodeId === "string" &&
+    "sourceLabel" in value &&
+    typeof value.sourceLabel === "string" &&
+    "startSeconds" in value &&
+    typeof value.startSeconds === "number" &&
+    "endSeconds" in value &&
+    typeof value.endSeconds === "number" &&
+    "edgeId" in value &&
+    typeof value.edgeId === "string"
+  );
 }
 
 function nodeWidth(node: Node): number {
@@ -691,6 +724,146 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ),
         selectedNodeIds: [nodeId],
         selectedNodeId: nodeId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  createVideoContinuation: (
+    sourceId: string,
+    startSeconds: number,
+    endSeconds: number,
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceDuration =
+      typeof source.data.durationSeconds === "number"
+        ? source.data.durationSeconds
+        : 30;
+    const normalizedStart = clampNumber(
+      startSeconds,
+      0,
+      Math.max(0, sourceDuration - 4),
+    );
+    const normalizedEnd = clampNumber(
+      endSeconds,
+      normalizedStart + 4,
+      Math.min(sourceDuration, normalizedStart + 30),
+    );
+    if (normalizedEnd - normalizedStart < 4) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourcePosterUrl =
+      typeof source.data.posterUrl === "string"
+        ? source.data.posterUrl
+        : undefined;
+    const dimensions = getDefaultNodeDimensions("video");
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+    const targetId = createNodeId("video-continuation");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const continuation: VideoContinuationMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      sourcePosterUrl,
+      startSeconds: normalizedStart,
+      endSeconds: normalizedEnd,
+      edgeId,
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position: {
+        x: sourcePosition.x + nodeWidth(source) + 120,
+        y: sourcePosition.y,
+      },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `续写 ${sourceLabel}`,
+        model: "Seedance 2.5",
+        status: "empty",
+        durationSeconds: 6,
+        resolution: "1280 × 720",
+        prompt: "",
+        generationMode: "omnireference",
+        generationCount: 1,
+        continuation,
+      },
+    };
+    const continuationEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, continuationEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [targetId],
+        selectedNodeId: targetId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  clearVideoContinuation: (targetId: string) => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (canvas) => canvas.id === activeCanvasId,
+      );
+      const target = currentCanvas?.nodes.find((node) => node.id === targetId);
+      const continuation = target?.data.continuation;
+      if (
+        !currentCanvas ||
+        !target ||
+        !isVideoContinuationMetadata(continuation)
+      ) {
+        return state;
+      }
+
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: canvas.nodes.map((node) => {
+                  if (node.id !== targetId) return node;
+                  const nextData = { ...node.data };
+                  delete nextData.continuation;
+                  return { ...node, data: nextData };
+                }),
+                edges: canvas.edges.filter(
+                  (edge) => edge.id !== continuation.edgeId,
+                ),
+              }
+            : canvas,
+        ),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
@@ -1286,6 +1459,10 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
     default:
       return {};
   }
+}
+
+function clampNumber(value: number, minimum: number, maximum: number) {
+  return Math.min(maximum, Math.max(minimum, value));
 }
 
 function getViewportCenterPosition(

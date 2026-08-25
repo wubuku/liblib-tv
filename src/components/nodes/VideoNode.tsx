@@ -5,27 +5,34 @@ import { memo, useState } from "react";
 import { AlertTriangle, Play, Volume2 } from "lucide-react";
 import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { useCanvasStore } from "@/store/canvasStore";
+import {
+  useCanvasStore,
+  type VideoContinuationMetadata,
+} from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
+import { VideoContinuationSelector } from "@/components/VideoContinuationSelector";
 import { VideoGenerationPanel } from "@/components/VideoGenerationPanel";
 import { VideoProcessingToolbar } from "@/components/VideoProcessingToolbar";
 
 export interface VideoNodeData extends Record<string, unknown> {
   filename?: string;
   model?: string;
-  status?: "failed" | "ready";
+  status?: "empty" | "failed" | "ready";
   durationSeconds?: number;
   resolution?: string;
   posterUrl?: string;
   prompt?: string;
+  continuation?: VideoContinuationMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
-  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt } = data;
+  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation } = data;
   const { zoom } = useViewport();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
+  const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
+  const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
   const [activeTool, setActiveTool] = useState<"generator" | "reshoot" | "continue">("generator");
@@ -40,6 +47,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       sourcePosterUrl: posterUrl ?? "/images/scene-coffee-4.png",
       dimensions: ["storyboard", "motion", "music"],
     });
+  };
+
+  const confirmContinuation = (startSeconds: number, endSeconds: number) => {
+    setActiveTool("generator");
+    createVideoContinuation(id, startSeconds, endSeconds);
   };
 
   return (
@@ -74,7 +86,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             <span className="text-xs text-[#e65d67]">生成失败</span>
             <span className="text-[10px] text-[#626262]">{model}</span>
           </div>
-        ) : (
+        ) : status === "ready" ? (
           <>
             <Image src={posterUrl ?? "/images/scene-coffee-4.png"} alt={filename} fill sizes="700px" className={cn("object-cover", enhanced && "contrast-110 saturate-110")} unoptimized />
             <span className="absolute inset-0 bg-black/10" />
@@ -87,11 +99,38 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Volume2 size={13} />
             </div>
           </>
+        ) : (
+          <div data-video-continuation-empty className="flex flex-col items-center gap-2 text-center">
+            <span className="flex size-14 items-center justify-center rounded-full bg-white/[0.05] text-[#777]">
+              <Play size={22} fill="currentColor" className="ml-1" />
+            </span>
+            <span className="text-xs text-[#777]">等待续写内容</span>
+          </div>
         )}
       </div>
 
-      {showSingleNodeEditor && activeTool === "generator" && <VideoGenerationPanel zoom={zoom} initialModel={model} initialPrompt={prompt} />}
-      {showSingleNodeEditor && activeTool !== "generator" && <SegmentReshootPanel zoom={zoom} mode={activeTool} />}
+      {showSingleNodeEditor && activeTool === "generator" && (
+        <VideoGenerationPanel
+          zoom={zoom}
+          initialModel={model}
+          initialPrompt={prompt}
+          continuation={continuation}
+          onClearContinuation={
+            continuation ? () => clearVideoContinuation(id) : undefined
+          }
+        />
+      )}
+      {showSingleNodeEditor && activeTool === "reshoot" && (
+        <SegmentReshootPanel zoom={zoom} />
+      )}
+      {showSingleNodeEditor && status === "ready" && activeTool === "continue" && (
+        <VideoContinuationSelector
+          zoom={zoom}
+          durationSeconds={durationSeconds}
+          onCancel={() => setActiveTool("generator")}
+          onConfirm={confirmContinuation}
+        />
+      )}
     </div>
   );
 }
