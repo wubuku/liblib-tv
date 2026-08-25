@@ -36,6 +36,7 @@ import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
 import { ShotBreakdownNode } from "@/components/nodes/ShotBreakdownNode";
 import { VideoClipNode } from "@/components/nodes/VideoClipNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
+import { getLiblibOrganizeViewport, organizeLiblibNodes } from "@/lib/liblibOrganize";
 
 const nodeTypes = {
   script: ScriptNode,
@@ -94,6 +95,7 @@ export default function Home() {
   const nodes = activeCanvas?.nodes ?? emptyNodes;
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
+  const flowContainerRef = useRef<HTMLElement | null>(null);
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
@@ -177,22 +179,20 @@ export default function Home() {
   }, []);
 
   const organize = useCallback(() => {
-    setOrganizeSnapshot({ nodes, viewport: flowRef.current?.getViewport() ?? flowViewport });
-    const regularNodes = nodes.filter((node) => node.type !== "storyboard-group");
-    const groupNodes = nodes.filter((node) => node.type === "storyboard-group");
-    const organized = [
-      ...regularNodes.map((node, index) => ({
-        ...node,
-        position: { x: (index % 3) * 760, y: Math.floor(index / 3) * 460 },
-      })),
-      ...groupNodes.map((node, index) => ({
-        ...node,
-        position: { x: 2280 + index * 760, y: index * 40 },
-      })),
-    ];
+    const currentViewport = flowRef.current?.getViewport() ?? flowViewport;
+    const organized = organizeLiblibNodes(nodes);
+    const organizedViewport = getLiblibOrganizeViewport(
+      organized,
+      flowContainerRef.current?.clientWidth ?? window.innerWidth,
+    );
+
+    setOrganizeSnapshot({ nodes, viewport: currentViewport });
+    selectNode(null);
     setStoreNodes(organized, { recordHistory: true });
-    window.setTimeout(fitView, 40);
-  }, [fitView, flowViewport, nodes, setStoreNodes]);
+    setFlowViewport(organizedViewport);
+    setStoreViewport(organizedViewport);
+    setZoomLevel(Math.round(organizedViewport.zoom * 100));
+  }, [flowViewport, nodes, selectNode, setStoreNodes, setStoreViewport, setZoomLevel]);
 
   const restoreOrganize = () => {
     if (organizeSnapshot) {
@@ -351,7 +351,7 @@ export default function Home() {
       <TopNavBar />
       {isAssetPanelOpen && <AssetManagerPanel />}
 
-      <main className="relative min-w-0 flex-1 overflow-hidden">
+      <main ref={flowContainerRef} className="relative min-w-0 flex-1 overflow-hidden">
         {editorMode === "storyboard" ? (
           <StoryboardBoard />
         ) : (
@@ -460,10 +460,15 @@ export default function Home() {
       />
 
       {organizeSnapshot && (
-        <div className="fixed bottom-[70px] left-1/2 z-[72] flex -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-[#262626] p-2 pl-3 text-xs text-[#dedede] shadow-[0_14px_40px_rgba(0,0,0,0.5)] max-sm:bottom-[110px]">
-          <span>是否保留此次整理结果？</span>
-          <button onClick={restoreOrganize} className="h-7 rounded-lg px-3 text-[#aaa] hover:bg-white/[0.07] hover:text-white">还原</button>
-          <button onClick={() => setOrganizeSnapshot(null)} className="h-7 rounded-lg bg-[#eceff3] px-3 text-[#202020] hover:bg-white">保留</button>
+        <div
+          data-organize-confirmation
+          className="fixed bottom-[53px] left-[49px] z-[72] flex min-h-[88px] w-[168px] flex-col rounded-[10px] border border-white/[0.08] bg-[#262626] p-3 text-xs text-[#dedede] shadow-[0_14px_40px_rgba(0,0,0,0.5)] max-sm:bottom-[106px] max-sm:left-3"
+        >
+          <span className="leading-5">是否保留此次整理结果？</span>
+          <div className="mt-2 flex items-center justify-end gap-1">
+            <button type="button" onClick={restoreOrganize} className="h-8 min-w-12 rounded-lg px-2 text-[#b7b7b7] hover:bg-white/[0.07] hover:text-white">还原</button>
+            <button type="button" onClick={() => setOrganizeSnapshot(null)} className="h-8 min-w-12 rounded-lg bg-[#e5e5e7] px-2 text-[#202020] hover:bg-white">保留</button>
+          </div>
         </div>
       )}
 
