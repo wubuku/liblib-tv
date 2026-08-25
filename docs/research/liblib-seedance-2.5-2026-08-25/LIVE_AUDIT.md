@@ -1,0 +1,155 @@
+# LibTV Seedance 2.5 原站复核
+
+> 复核日期：2026-08-25  
+> 登录项目：`spaceId=670983` / `projectId=5f2550d0036944e2b618f494276fa1dd`  
+> 视口：`929x874`  
+> 结构化数据：[`live-audit.json`](live-audit.json)  
+> 前端静态字符串：[`live-script-string-evidence.json`](live-script-string-evidence.json)
+
+## 1. 结论
+
+第三方文章列出的五项能力在当前产品中仍能得到不同等级的支持：
+
+| 能力 | 当前证据 | 判断 |
+|---|---|---|
+| Seedance 2.5 最长 30 秒 | 登录原站模型菜单、参数菜单 | 当前事实 |
+| Auto Link | 当前视频生成面板中的开关、3 份参考图和 Prompt 引用 token | 当前事实 |
+| 超长视频 300 秒 | 当前模式菜单、`30-300s` 滑块、`300s / 14700` 实测状态 | 当前事实 |
+| 逐帧拉片 | 当前添加节点入口和独立 `shot-breakdown` 节点空态 | 当前事实；结果态来自文章截图 |
+| 片段重拍 | 文章流程截图 + 当前线上 bundle 的完整文案键 | 功能仍在代码中；本项目没有可用视频，未执行结果任务 |
+
+最重要的结构修正是：**逐帧拉片是独立节点类型，视频生成参数是视频节点下方的编辑面板，二者不能合并成通用视频侧栏。**
+
+## 2. Seedance 2.5 生成面板
+
+选择当前失败视频 `v-UGQZzZOpbv` 后，原站仍展示节点下方的生成面板：
+
+- 面板 `660x273.8`，与图片编辑面板使用相同的节点内绝对定位和 `1 / zoom` 反缩放策略。
+- 当前面板有 3 张参考图，以及“参考 / 标记 / 特效 / 角色库 / 运镜”五个输入命令。
+- Prompt 中的引用是结构化可视 token，例如 `@陈默 (图片 1)`、`镜头右摇`、`@咖啡 (图片 2)`。
+- 高级设置包含“联网搜索”“自动校验素材”“智能引用 AutoLink”，采样时三者均开启。
+
+模型菜单当前可直接验证：
+
+```text
+Seedance 2.5
+预计 2min
+最强视频模型，全能参考，30s音画同步
+```
+
+证据截图：
+
+- `docs/design-references/liblib-original-seedance-video-selected-2026-08-25.png`
+- `docs/design-references/liblib-original-seedance-model-menu-2026-08-25.png`
+
+## 3. 模式与参数
+
+选择 Seedance 2.5 后，模式菜单显示：
+
+| 模式 | 当前状态 |
+|---|---|
+| 文生视频 | disabled |
+| 全能参考 | enabled |
+| 图生视频 | disabled |
+| 首尾帧 | disabled |
+| 图片参考 | enabled |
+| 视频编辑 | disabled |
+| 超长视频 Beta | enabled |
+
+普通模式参数：
+
+- 比例：`Auto / 16:9 / 4:3 / 1:1 / 3:4 / 9:16 / 21:9`
+- 清晰度：`480P / 720P / 1080P`
+- 时长：`4-30s`，采样值 `6s`
+- 生成音频：开启/关闭
+- 数量：1/2/4 个
+
+超长视频模式把时长范围切换为 `30-300s`。拖到 `300s` 后，底栏显示：
+
+```text
+2.5 · 超长视频 · 16:9 · 720P · 300s · 1个 · 14700
+```
+
+这与文章截图一致，说明 `300s / 14700` 不是仅存于旧宣传材料的数字。
+
+证据截图：
+
+- `docs/design-references/liblib-original-seedance-mode-menu-2026-08-25.png`
+- `docs/design-references/liblib-original-seedance-params-menu-2026-08-25.png`
+- `docs/design-references/liblib-original-seedance-long-params-2026-08-25.png`
+- `docs/design-references/liblib-original-seedance-long-video-300s-current-2026-08-25.png`
+
+## 4. 逐帧拉片节点
+
+“添加节点”中的入口名称为“逐帧拉片”，徽标为 `SD 2.5`。点击后创建专用 React Flow 类型：
+
+```text
+react-flow__node-shot-breakdown
+```
+
+空态世界尺寸约 `320x389`，屏幕尺寸约 `90.5x110`（当前 zoom 约 28%）。节点包含：
+
+- 标题“逐帧拉片”和 `SD 2.5` 标记；
+- “视频素材”上传区，文案“上传视频后开始”；
+- “拆解维度”的“分镜 / 动态 / 音乐”三个按钮，默认均为选中视觉；
+- disabled 的“开始拉片”按钮。
+
+线上 bundle 还明确列出状态：“拉片中”“拉片失败，请重试”“上游视频未就绪”，并提供“从画布选择”“画布上暂无可用视频”“替换素材”。这说明节点同时支持上传与连接/选择画布视频。
+
+文章结果截图显示结果不是长篇报告，而是三类媒体卡：
+
+- `S01...S08` 分镜关键帧，带景别、机位、运镜或内容描述；
+- `M01...M03` 动态视频片段，带时长和运动摘要；
+- BGM 波形卡，带时长和播放控制。
+
+证据：
+
+- `docs/design-references/liblib-original-seedance-frame-analysis-node-2026-08-25.png`
+- [`evidence/frame-analysis-entry.png`](evidence/frame-analysis-entry.png)
+- [`evidence/frame-analysis-output.png`](evidence/frame-analysis-output.png)
+
+## 5. 片段重拍与就绪视频工具栏
+
+当前项目只有生成失败的视频，没有可播放源视频，因此不能安全走完片段重拍和逐帧分析任务。以下内容按证据等级保留：
+
+### 当前 bundle 可确认
+
+- 入口文案“片段重拍”。
+- 源视频时长至少 4 秒。
+- 选片提示“点击可截取新片段”，剩余区间不足 4 秒时提示不可选。
+- 修改输入提示“描述这段视频要如何修改”。
+- 未选区间时编辑整段视频。
+- Prompt 投影支持“把 {video} 中 {start}-{end}”和“将 {video} 的第 {start} 秒到第 {end} 秒：{intent}”。
+- Seedance 2.5 不可用、源视频丢失、片段处理失败和真人校验失败均有独立状态。
+
+### 文章截图可确认
+
+- 横向缩略时间带以 `4.0s` 为可选片段。
+- 选择计数为 `0/5`、`1/5`，截图上限为 5。
+- 选择后 Prompt 自动插入 `视频 1` 与 `00:00-00:04`，用户继续填写局部修改。
+- 就绪视频的顶部工具栏包含高清、逐帧拉片、智能续写、智能去字幕、音频分离、画面编辑、下载和展开。
+
+这些是实现前端交互的充分证据，但不能声称本轮真实提交过重拍或拉片任务。
+
+## 6. 智能剪辑节点
+
+“视频编辑 Beta”当前创建另一个专用类型 `react-flow__node-video-clip`，世界尺寸约 `350x350`。空态标题为“智能剪辑 1”，包含：
+
+- 讲解视频 / 批量广告 / 口播视频 / 素材混剪四个模式；
+- 参考入口；
+- Prompt 空态“描述想剪成什么效果”；
+- 默认模式和 `16:9 · 720P · 30s`；
+- 无输入时 disabled 的发送按钮。
+
+它说明 LibTV 把“通用智能剪辑”和“逐帧拉片”作为不同节点类型。本轮复刻 Seedance 主推能力时不应把两者混在一起。
+
+证据：`docs/design-references/liblib-original-seedance-video-edit-node-2026-08-25.png`。
+
+## 7. 对实现计划的修订
+
+1. 新增专用 `ShotBreakdownNode`，并让 AddNode 的入口创建该类型；这是最高置信度改动。
+2. 为视频节点补 `660px` 生成编辑面板，复用图片面板的反缩放定位合同，但使用视频专属命令、模型、模式和参数。
+3. Seedance 参数菜单按当前原站实现普通 `4-30s` 与超长 `30-300s` 两套范围，`300s` 显示 `14700` 本地预计积分。
+4. 片段重拍作为就绪视频工具栏动作和节点下方面板实现；由于没有当前项目结果态，只实现截图与 bundle 能确认的选择/Prompt 闭环。
+5. 拉片结果用结构化媒体卡展示，并明确为本地示例结果；不伪造真实分析任务。
+6. `VideoClipNode` 只在不拖慢上述主线时实现基本空态，优先级低于逐帧拉片和 Seedance 生成面板。

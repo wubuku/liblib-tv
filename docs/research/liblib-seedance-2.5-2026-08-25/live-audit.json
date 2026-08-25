@@ -1,0 +1,464 @@
+{
+  "sampledAt": "2026-08-25",
+  "viewport": {
+    "width": 929,
+    "height": 874
+  },
+  "currentLive": {
+    "model": {
+      "name": "Seedance 2.5",
+      "menuDescription": "最强视频模型，全能参考，30s音画同步",
+      "estimate": "2min"
+    },
+    "normalParameters": {
+      "duration": {
+        "min": 4,
+        "max": 30,
+        "currentAtCapture": 6
+      },
+      "ratios": [
+        "Auto",
+        "16:9",
+        "4:3",
+        "1:1",
+        "3:4",
+        "9:16",
+        "21:9"
+      ],
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ],
+      "audio": [
+        "开启",
+        "关闭"
+      ],
+      "counts": [
+        1,
+        2,
+        4
+      ],
+      "dialogRect": {
+        "h": 445,
+        "w": 341,
+        "x": 541.3203125,
+        "y": 90.9609375
+      }
+    },
+    "longVideo": {
+      "mode": "超长视频",
+      "badge": "Beta",
+      "duration": {
+        "min": 30,
+        "max": 300
+      },
+      "example": {
+        "ratio": "16:9",
+        "resolution": "720P",
+        "duration": 300,
+        "count": 1,
+        "credits": 14700
+      },
+      "dialogRect": {
+        "h": 397,
+        "w": 341,
+        "x": 549.3046875,
+        "y": 138.9609375
+      }
+    },
+    "generationModes": [
+      {
+        "name": "文生视频",
+        "disabled": true
+      },
+      {
+        "name": "全能参考",
+        "disabled": false
+      },
+      {
+        "name": "图生视频",
+        "disabled": true
+      },
+      {
+        "name": "首尾帧",
+        "disabled": true
+      },
+      {
+        "name": "图片参考",
+        "disabled": false
+      },
+      {
+        "name": "视频编辑",
+        "disabled": true
+      },
+      {
+        "name": "超长视频",
+        "badge": "Beta",
+        "disabled": false
+      }
+    ],
+    "videoGenerator": {
+      "node": {
+        "box": {
+          "bottom": 298.146,
+          "h": 98.979,
+          "right": 877.254,
+          "w": 175.9,
+          "x": 701.353,
+          "y": 199.167
+        },
+        "id": "v-UGQZzZOpbv"
+      },
+      "panel": {
+        "box": {
+          "bottom": 576.468,
+          "h": 273.797,
+          "right": 1119.303,
+          "w": 660,
+          "x": 459.304,
+          "y": 302.671
+        },
+        "buttons": [
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "参考"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "特效"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "角色库"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "运镜"
+          },
+          {
+            "aria": "@",
+            "disabled": false,
+            "text": "@"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": "@",
+            "disabled": false,
+            "text": "@"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": "@",
+            "disabled": false,
+            "text": "@"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "2.5"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "超长视频"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": "16:9 · 720P · 300s · 1个 ·"
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "prompt": "起始状态：@陈默( 图片 1 )充满杀伤力的眼神锁定 镜头右摇 。动作过程：镜头平滑而缓慢地向他冷厉的双眼推移。他在第1秒开始说出如刀刃般的台词。对白（@陈默( 图片 1 )，冷酷且有力）：“当初你离开的时候，怎么没想过我会担心？” 结束状态：镜头停止在他充满恨意的双眸。音效：环境音完全静默，只余沉重的台词回响。 [视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色@咖啡( 图片 2 )馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
+        "references": [
+          {
+            "alt": "",
+            "box": {
+              "bottom": 396.671,
+              "h": 47,
+              "right": 519.304,
+              "w": 47,
+              "x": 472.304,
+              "y": 349.671
+            },
+            "src": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/ee677b5998d05633d14b0aafe879148d2683be66.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1"
+          },
+          {
+            "alt": "",
+            "box": {
+              "bottom": 396.671,
+              "h": 47,
+              "right": 575.304,
+              "w": 47,
+              "x": 528.304,
+              "y": 349.671
+            },
+            "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1"
+          },
+          {
+            "alt": "",
+            "box": {
+              "bottom": 396.671,
+              "h": 47,
+              "right": 631.303,
+              "w": 47,
+              "x": 584.304,
+              "y": 349.671
+            },
+            "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1"
+          }
+        ],
+        "switches": [
+          {
+            "checked": true,
+            "label": null
+          },
+          {
+            "checked": true,
+            "label": null
+          },
+          {
+            "checked": true,
+            "label": "智能引用 AutoLink"
+          }
+        ],
+        "text": "参考标记特效角色库运镜1@2@3@起始状态：@陈默( 图片 1 )充满杀伤力的眼神锁定 镜头右摇 。动作过程：镜头平滑而缓慢地向他冷厉的双眼推移。他在第1秒开始说出如刀刃般的台词。对白（@陈默( 图片 1 )，冷酷且有力）：“当初你离开的时候，怎么没想过我会担心？” 结束状态：镜头停止在他充满恨意的双眸。音效：环境音完全静默，只余沉重的台词回响。 [视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色@咖啡( 图片 2 )馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]2.5超长视频16:9 · 720P · 300s · 1个 ·高级设置联网搜索自动校验素材智能引用 AutoLink"
+      }
+    },
+    "shotBreakdown": {
+      "box": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "cls": "react-flow__node react-flow__node-shot-breakdown nopan selected selectable draggable",
+        "color": "rgb(247, 247, 247)",
+        "h": 110.00836181640624,
+        "tag": "div",
+        "text": "逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片",
+        "w": 90.49526977539062,
+        "x": 463.8031921386719,
+        "y": 436.151611328125
+      },
+      "buttons": [
+        {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "1px dashed rgb(54, 54, 54)",
+          "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-[var(--canvas-node-border)] transition-colors canvas-light:hover:bg-[rgba(0,0,0,0.03)] hover:bg-[rgba(255,255,255,0.04)]",
+          "color": "rgb(247, 247, 247)",
+          "disabled": false,
+          "h": 46.66162109375,
+          "pressed": null,
+          "tag": "button",
+          "text": "上传视频后开始",
+          "w": 83.142578125,
+          "x": 467.47955322265625,
+          "y": 459.6238403320313
+        },
+        {
+          "bg": "rgba(9, 202, 245, 0.12)",
+          "border": "1px solid rgba(93, 220, 255, 0.12)",
+          "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 rounded-full border px-2.5 text-[13px] leading-5 transition-colors border-nt-border-brand bg-nt-brand-surface-l1 text-nt-text-brand",
+          "color": "rgb(4, 202, 246)",
+          "disabled": false,
+          "h": 9.049560546875,
+          "pressed": null,
+          "tag": "button",
+          "text": "分镜",
+          "w": 26.2052001953125,
+          "x": 467.47955322265625,
+          "y": 517.5973510742188
+        },
+        {
+          "bg": "rgba(9, 202, 245, 0.12)",
+          "border": "1px solid rgba(93, 220, 255, 0.12)",
+          "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 rounded-full border px-2.5 text-[13px] leading-5 transition-colors border-nt-border-brand bg-nt-brand-surface-l1 text-nt-text-brand",
+          "color": "rgb(4, 202, 246)",
+          "disabled": false,
+          "h": 9.049560546875,
+          "pressed": null,
+          "tag": "button",
+          "text": "动态",
+          "w": 26.2073974609375,
+          "x": 495.9471435546875,
+          "y": 517.5973510742188
+        },
+        {
+          "bg": "rgba(9, 202, 245, 0.12)",
+          "border": "1px solid rgba(93, 220, 255, 0.12)",
+          "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 rounded-full border px-2.5 text-[13px] leading-5 transition-colors border-nt-border-brand bg-nt-brand-surface-l1 text-nt-text-brand",
+          "color": "rgb(4, 202, 246)",
+          "disabled": false,
+          "h": 9.049560546875,
+          "pressed": null,
+          "tag": "button",
+          "text": "音乐",
+          "w": 26.2052001953125,
+          "x": 524.4169311523438,
+          "y": 517.5973510742188
+        },
+        {
+          "bg": "rgba(255, 255, 255, 0.08)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leading-[22px] transition-colors text-fg-disabled canvas-light:bg-[rgba(0,0,0,0.06)] cursor-not-allowed bg-[rgba(255,255,255,0.08)]",
+          "color": "rgb(82, 82, 82)",
+          "disabled": true,
+          "h": 10.18072509765625,
+          "pressed": null,
+          "tag": "button",
+          "text": "开始拉片",
+          "w": 83.142578125,
+          "x": 467.47955322265625,
+          "y": 532.3028564453125
+        }
+      ],
+      "children": [
+        {
+          "bg": "rgba(0, 0, 0, 0)",
+          "border": "0px solid rgb(82, 82, 82)",
+          "cls": "node-shell relative",
+          "color": "rgb(247, 247, 247)",
+          "h": 110.00836181640624,
+          "tag": "div",
+          "text": "逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片",
+          "w": 90.49526977539062,
+          "x": 463.8031921386719,
+          "y": 436.151611328125
+        }
+      ],
+      "id": "b-JUz8iSDm2u",
+      "style": "z-index: 1000; transform: translate(1596px, 888px); pointer-events: all; visibility: visible;",
+      "type": "react-flow__node react-flow__node-shot-breakdown nopan selected selectable draggable"
+    },
+    "videoClip": {
+      "box": {
+        "h": 98.979248046875,
+        "w": 98.97921752929688,
+        "x": 463.8031921386719,
+        "y": 436.151611328125
+      },
+      "buttons": [
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "讲解视频"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "批量广告"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "口播视频"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "素材混剪"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "参考"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "默认模式"
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": "16:9 · 720P · 30s"
+        },
+        {
+          "aria": "发送",
+          "disabled": true,
+          "text": ""
+        },
+        {
+          "aria": null,
+          "disabled": false,
+          "text": ""
+        }
+      ],
+      "class": "react-flow__node react-flow__node-video-clip nopan selected selectable draggable",
+      "count": 13,
+      "id": "v-ga698MDAMn",
+      "style": "z-index: 1000; transform: translate(1596px, 888px); pointer-events: all; visibility: visible;",
+      "text": "智能剪辑 1空空如也，请连接视频节点后操作尝试：讲解视频批量广告口播视频素材混剪参考描述想剪成什么效果默认模式16:9 · 720P · 30s"
+    }
+  },
+  "bundleEvidence": {
+    "file": "live-script-string-evidence.json",
+    "segmentRemake": {
+      "durationMinimumSeconds": 4,
+      "maxRangesFromArticleScreenshot": 5,
+      "promptPlaceholder": "描述这段视频要如何修改",
+      "wholePromptPlaceholder": "留空＝原样重跑一次；也可以写要改什么，例如：把黄色台灯换成白色台灯"
+    },
+    "shotBreakdown": {
+      "description": "拆解视频的风格、运镜与音频",
+      "states": [
+        "上传视频后开始",
+        "开始拉片",
+        "拉片中",
+        "拉片失败，请重试",
+        "上游视频未就绪"
+      ],
+      "dimensions": [
+        "分镜",
+        "动态",
+        "音乐"
+      ]
+    }
+  }
+}

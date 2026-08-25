@@ -5,9 +5,10 @@
 ## 阅读顺序
 
 1. [`PLAN.md`](PLAN.md)：实施前的能力清单、缺口、价值排序、范围与验收标准。
-2. `LIVE_AUDIT.md`：登录原站后的逐项验证记录，实施前补齐。
+2. [`LIVE_AUDIT.md`](LIVE_AUDIT.md)：登录原站后的逐项验证记录和证据等级。
 3. `IMPLEMENTATION.md`：实现完成后的文件、状态机、交互与验证记录，实施后补齐。
-4. [`evidence/`](evidence/)：第三方文章中的 LibTV UI 截图，只作为功能线索和视觉证据。
+4. [`live-audit.json`](live-audit.json) 与 [`live-script-string-evidence.json`](live-script-string-evidence.json)：当前原站结构化数据和静态字符串证据。
+5. [`evidence/`](evidence/)：第三方文章中的 LibTV UI 截图，只作为功能线索和视觉证据。
 
 同日的当前项目原站复核仍在 [`../liblib-live-2026-08-25/`](../liblib-live-2026-08-25/)；图片节点逐状态审计属于两组研究的交叉证据。
 
