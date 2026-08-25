@@ -38,7 +38,7 @@ graph TD
 
 | Route | Controller | Store | Registered node renderers | Main boundary |
 |---|---|---|---|---|
-| `/` | `src/app/page.tsx` | `canvasStore` + `uiStore` | 8 LibTV types | in-memory LibTV prototype |
+| `/` | `src/app/page.tsx` | `canvasStore` + `uiStore` | 10 LibTV types | in-memory LibTV prototype |
 | `/frameos` | `src/app/frameos/page.tsx` | `frameosStore` | redirect entry | route entry only |
 | `/frameos/canvas/[id]` | `src/app/frameos/canvas/[id]/page.tsx` | `frameosStore` | text/image/video | `[id]` is currently a demo placeholder |
 
@@ -48,7 +48,7 @@ graph TD
 |---|---|---|
 | Route orchestration | `src/app/` | React Flow setup, route layout, keyboard and overlay composition |
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
-| LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown, clip |
+| LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
 | State | `src/store/` | graph, selection, viewport, history and UI mock state; LibTV top-level overlay lifecycle is in `uiStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
@@ -69,6 +69,11 @@ React Flow event
 ```
 
 `canvasStore` owns graph data and per-canvas in-memory history. `uiStore` owns global UI modes, page-level overlay visibility and LibTV's mutually exclusive `activePrimaryPanel`. Short-lived menu state may remain local to a component.
+
+Derived media workflows use store-owned graph transactions. Continuation and subtitle
+erase create one target + one source edge; audio split creates audio + silent-video
+targets and two direct source edges. Each workflow records one pre-change snapshot so
+one undo/redo operates on the whole result set.
 
 ### FrameOS
 

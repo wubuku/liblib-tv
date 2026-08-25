@@ -1,6 +1,6 @@
 # Batch 28 Implementation Log
 
-> 状态：核心实现与专项 Playwright 完成；完整回归待执行。
+> 状态：已完成。
 
 ## Planned Protection Points
 
@@ -71,7 +71,51 @@
 首轮脚本失败来自动态 `.selected` locator 在 graph transaction 后解析到
 silent-video；改为固定 source ID locator 后，产品行为无需修改。
 
-## Pending
+## Cross-Batch Regression
 
-- 运行跨批回归与完整门禁；
-- 更新 Big Picture、component specs 和 HARNESS。
+串行通过：
+
+- Batch 9：image/video floating anchor、pan/zoom、多选；
+- Batch 15：add-node 与 AudioNode；
+- Batch 26：continuation range、target/edge 和 history；
+- Batch 27：subtitle modes、rectangle history 和 pending target；
+- Batch 28：audio menu/busy/dual outputs。
+
+这些脚本共享 `http://localhost:3000`，因此没有并行运行。回归重写的旧批次
+PNG 属于动态渲染差异，已恢复到审核过的提交版本，未带入无关 binary churn。
+
+## Engineering Gates
+
+- `npm run check`：通过。
+  - ESLint：`0 error`，保留 9 条既有 FrameOS/共享代码 warning；
+  - TypeScript：通过；
+  - Next.js production build：通过。
+- `npm run docs:check`：通过，212 个 Markdown、500 个本地目标。
+- `git diff --check`：通过。
+
+## Implementation History
+
+| Commit | Protection point |
+|---|---|
+| `be5e0d9` | source evidence、gap ranking、plan、workflow spec |
+| `26af8d2` | toolbar/store/node implementation and component specs |
+| `6ab9de0` | focused Playwright、screenshots、one-time recognition ledger |
+| final docs commit | cross-batch regression、gates、Big Picture and handoff |
+
+## Final State
+
+Batch 28 已形成可独立接力的闭环：
+
+```text
+README
+  -> SOURCE_EVIDENCE
+  -> PLAN / AUDIO_SPLIT_WORKFLOW.spec
+  -> IMPLEMENTATION
+  -> component specs
+  -> SCREENSHOT_ANALYSIS
+  -> scripts/verify-liblib-batch28.py
+```
+
+本批没有声称实现真实媒体处理。下一批高价值候选仍是 `画面编辑`、视频
+首/尾帧提取和深度动作捕捉；必须重新遵循 source evidence -> spec ->
+implementation -> focused Playwright 的顺序。
