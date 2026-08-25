@@ -79,3 +79,49 @@
 
 本批实现前不再打开这四张原站截图。后续优先使用本文和 `live-audit.json`；只有 glyph path、动画或模型/模式精确 rect 成为新范围时才重新采样。
 
+## 3. Clone verification
+
+### 文件
+
+- `docs/design-references/liblib-clone-batch21-video-params-normal-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch21-video-params-long-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch21-video-params-mobile-390-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch21-video-params-contact-sheet-2026-08-25.png`
+- 生成日期：2026-08-25
+- 识图方式：normal、long、mobile 合并为一次性 contact sheet
+- 识图次数：1
+
+### Verified clone fact
+
+- normal 与 long dialog 都从 footer trigger 向上展开，footer model/mode/settings 仍可见。
+- 两种 dialog 的 ratio cards 都保持 5+2 排列，active `16:9` 使用更亮 border。
+- resolution 是整宽三段 control，active `720P` 清晰可辨。
+- duration label、value box、slider 和 min/max 没有相互遮挡。
+- normal 的 audio/count controls 都落在固定 `445px` 高度内。
+- long 的 helper 与 audio control 都落在固定 `397px` 高度内，count 不存在。
+- 390px 下 dialog 与 generation panel 按节点上下文自然裁切；底部两条画布工具条仍在页面层可见。
+- 页面没有横向滚动，也没有 console/page error。
+
+### DOM-backed geometry
+
+| State | Dialog | Relative to generation panel |
+|---|---:|---:|
+| normal | `x=535.767, y=93.397, w=341, h=445` | `left +81.828, top -211.500` |
+| long | `x=543.767, y=141.397, w=341, h=397` | `left +89.828, top -163.500` |
+
+Source target：
+
+| State | Source relative geometry |
+|---|---:|
+| normal | `left +82.016, top -211.710` |
+| long | `left +90.000, top -163.710` |
+
+### Clone-only detail
+
+- ratio glyph 使用 CSS outline，不声称复用了原站 SVG path。
+- long helper `围绕视频画面设计，支持更长时长的连续场景` 是对截图可见语义的保守改写，不是逐字 DOM extraction。
+- 参数和积分继续是本地 state，不发送模型任务或计费请求。
+
+### Re-inspection rule
+
+除非 Batch 21 实现或截图发生变化，不再打开本批 clone 截图；几何和行为问题优先运行 `scripts/verify-liblib-batch21.py`。

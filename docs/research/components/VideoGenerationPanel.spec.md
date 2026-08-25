@@ -23,6 +23,38 @@
 - Long-video estimated points: `duration * 49`, therefore `300s = 14700`
 - Advanced switches: network search, material check, AutoLink
 
+### Parameter dialogs
+
+The normal and long-video parameter states use source-measured fixed screen geometry:
+
+| State | Size | Relative to generation panel |
+|---|---:|---:|
+| normal | `341x445` | `left +82`, `top -211.7` |
+| long video | `341x397` | `left +90`, `top -163.7` |
+
+Normal includes:
+
+- seven ratio glyph cards in a 5+2 grid;
+- `480P / 720P / 1080P` segmented resolution;
+- `4-30s` duration with current-value box and slider;
+- full-width audio and count segmented controls.
+
+Long video keeps ratio/resolution/audio, switches duration to `30-300s`, adds helper copy and removes count.
+
+Stable selectors:
+
+- `[data-video-params-trigger]`
+- `[data-video-params-menu]`
+- `[data-video-ratio-option]`
+- `[data-video-resolution-option]`
+- `[data-video-duration]`
+- `[data-video-audio-option]`
+- `[data-video-count-option]`
+- `[data-video-long-hint]`
+- `[data-video-credits]`
+
+Ratio glyphs are clone CSS outlines because the exact source SVG paths were not extracted. The long helper is a conservative paraphrase rather than a verbatim DOM claim.
+
 ## State
 
 `model`, `mode`, `ratio`, `resolution`, `duration`, `audio`, `count`, advanced switches, prompt, process view, and local submission state are component-local prototype state. The range uses `onInput` so drag, keyboard, and automation update the same React state path.
@@ -58,6 +90,8 @@ Verified on desktop local clone:
 - prompt submission state
 - child drag, parent move/reselect, pan and zoom anchor geometry
 - multi-selection overlay lifecycle
+- normal/long parameter dialog geometry and control hierarchy
+- mode disabled matrix and `300s / 14700`
 
 Evidence includes:
 
@@ -65,3 +99,4 @@ Evidence includes:
 - `docs/design-references/liblib-clone-seedance-long-video-process-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch9-video-anchor-929-2026-08-25.png`
 - `scripts/verify-liblib-batch9.py`
+- `scripts/verify-liblib-batch21.py`

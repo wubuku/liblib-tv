@@ -1,6 +1,6 @@
 # Batch 21：Seedance 视频参数 Dialog
 
-> 状态：原站结构化证据与四状态截图已审计；计划和组件合同已落档，实施待开始。
+> 状态：已实施；专项 Playwright、Batch 9-21 跨批回归和完整工程门禁均通过。
 
 ## 当前缺口
 
@@ -30,4 +30,17 @@
 - [long params](../../design-references/liblib-original-seedance-long-params-2026-08-25.png)
 - [mode menu](../../design-references/liblib-original-seedance-mode-menu-2026-08-25.png)
 - [model menu](../../design-references/liblib-original-seedance-model-menu-2026-08-25.png)
+- [clone normal](../../design-references/liblib-clone-batch21-video-params-normal-929-2026-08-25.png)
+- [clone long](../../design-references/liblib-clone-batch21-video-params-long-929-2026-08-25.png)
+- [clone mobile](../../design-references/liblib-clone-batch21-video-params-mobile-390-2026-08-25.png)
+- [clone contact sheet](../../design-references/liblib-clone-batch21-video-params-contact-sheet-2026-08-25.png)
+- 可执行验证：[`scripts/verify-liblib-batch21.py`](../../../scripts/verify-liblib-batch21.py)
 
+## 完成结果
+
+- normal dialog 从约 `341x299` 修正为 `341x445`。
+- long dialog 从约 `341x267` 修正为 `341x397`。
+- 相对 generation panel 的位置分别校准到约 `+82/-211.7` 和 `+90/-163.7`。
+- ratio cards、resolution、duration value/slider、audio/count 与 long helper 形成可操作闭环。
+- 模式 disabled 状态和 `300s / 14700` 本地反馈继续受自动化保护。
+- 模型菜单完整清单仍未纳入本批，不把截图可见部分误写成完整原站模型库。
