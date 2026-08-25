@@ -12,9 +12,10 @@ export interface ImageNodeData extends Record<string, unknown> {
   filename: string;
   width: number;
   height: number;
-  imageUrl: string;
+  imageUrl: string | null;
   watermarkUrl?: string;
-  editorVariant?: "empty" | "prompt" | "referenced" | "tool";
+  placeholderKind?: "panorama";
+  editorVariant?: "empty" | "prompt" | "referenced" | "tool" | "panorama";
   editorHeight?: ImageEditorHeight;
   prompt?: string;
   references?: string[];
@@ -24,8 +25,7 @@ export interface ImageNodeData extends Record<string, unknown> {
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
 
-const derivedImageActions: Record<Exclude<ImageToolbarAction, "人像质感调节">, { filename: string; prompt: string }> = {
-  "全景": { filename: "720°全景图", prompt: "以当前画面为中心，向左右自然延展为 720° 全景图，保持人物、光线和空间结构连续。" },
+const derivedImageActions: Record<Exclude<ImageToolbarAction, "人像质感调节" | "全景">, { filename: string; prompt: string }> = {
   "多角度": { filename: "多角度展示图", prompt: "保持主体造型一致，生成正面、侧面、背面和三分之二视角的多角度展示。" },
   "打光": { filename: "智能打光", prompt: "保持主体与构图不变，增强电影级侧逆光、轮廓光与自然环境反射。" },
   "九宫格": { filename: "九宫格分镜", prompt: "保持角色和场景连续，生成九宫格镜头探索图，覆盖景别与机位变化。" },
@@ -44,6 +44,32 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const runAction = (action: ImageToolbarAction) => {
     if (action === "人像质感调节") {
       updateNodeData(id, { portraitEnhanced: !data.portraitEnhanced });
+      return;
+    }
+
+    if (!imageUrl) return;
+
+    if (action === "全景") {
+      addDerivedNode(
+        id,
+        "image",
+        {
+          filename: "720°全景图",
+          width: 700,
+          height: 350,
+          imageUrl: null,
+          watermarkUrl: undefined,
+          placeholderKind: "panorama",
+          editorVariant: "panorama",
+          editorHeight: 252,
+          references: [imageUrl],
+          generationSettings: "2:1 · 标准画质 · 2K · 1张",
+        },
+        {
+          dimensions: { width: 700, height: 350 },
+          offset: { x: 120, y: -110 },
+        },
+      );
       return;
     }
 
@@ -80,16 +106,25 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       </div>
 
       <div className="relative h-full w-full overflow-hidden rounded-[3px]">
-        <Image
-          src={imageUrl}
-          alt={filename}
-          fill
-          sizes="700px"
-          className={cn("object-cover transition-[filter] duration-300", data.portraitEnhanced && "contrast-[1.06] saturate-[1.08] brightness-[1.03]")}
-          loading="eager"
-          unoptimized
-        />
-        {watermarkUrl && (
+        {data.placeholderKind === "panorama" || !imageUrl ? (
+          <div
+            data-image-placeholder={data.placeholderKind ?? "empty"}
+            className="flex h-full w-full items-center justify-center bg-[#212121] text-[#666]"
+          >
+            <ImageIcon size={38} strokeWidth={1.2} />
+          </div>
+        ) : (
+          <Image
+            src={imageUrl}
+            alt={filename}
+            fill
+            sizes="700px"
+            className={cn("object-cover transition-[filter] duration-300", data.portraitEnhanced && "contrast-[1.06] saturate-[1.08] brightness-[1.03]")}
+            loading="eager"
+            unoptimized
+          />
+        )}
+        {imageUrl && watermarkUrl && (
           <Image
             src={watermarkUrl}
             alt=""

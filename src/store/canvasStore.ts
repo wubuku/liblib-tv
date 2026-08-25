@@ -6,6 +6,11 @@ export interface GraphSnapshot {
   edges: Edge[];
 }
 
+export interface DerivedNodeOptions {
+  dimensions?: { width: number; height: number };
+  offset?: { x: number; y: number };
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -43,7 +48,12 @@ interface CanvasState {
   // Node actions
   addNode: (type: string, data?: Record<string, unknown>) => void;
   addNodeAtPosition: (type: string, position: { x: number; y: number }, data?: Record<string, unknown>) => void;
-  addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => void;
+  addDerivedNode: (
+    sourceId: string,
+    type: string,
+    data?: Record<string, unknown>,
+    options?: DerivedNodeOptions,
+  ) => void;
   duplicateNode: (nodeId: string, includeEdges?: boolean) => void;
   duplicateSelectedNodes: () => void;
   removeNode: (nodeId: string) => void;
@@ -626,13 +636,19 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => {
+  addDerivedNode: (
+    sourceId: string,
+    type: string,
+    data?: Record<string, unknown>,
+    options?: DerivedNodeOptions,
+  ) => {
     const { activeCanvasId } = get();
     const canvas = get().canvases.find((item) => item.id === activeCanvasId);
     const source = canvas?.nodes.find((node) => node.id === sourceId);
     if (!canvas || !source) return;
 
-    const dimensions = getDefaultNodeDimensions(type);
+    const dimensions = options?.dimensions ?? getDefaultNodeDimensions(type);
+    const offset = options?.offset ?? { x: 120, y: 0 };
     const sourceWidth = source.width ?? (Number(source.style?.width) || 350);
     const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
     const sourcePosition = getAbsoluteNodePosition(source, nodesById);
@@ -640,7 +656,10 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const newNode: Node = {
       id: nodeId,
       type,
-      position: { x: sourcePosition.x + sourceWidth + 120, y: sourcePosition.y },
+      position: {
+        x: sourcePosition.x + sourceWidth + offset.x,
+        y: sourcePosition.y + offset.y,
+      },
       width: dimensions.width,
       height: dimensions.height,
       style: dimensions,

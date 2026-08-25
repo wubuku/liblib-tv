@@ -19,8 +19,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type ImageEditorVariant = "empty" | "prompt" | "referenced" | "tool";
-export type ImageEditorHeight = 191 | 211 | 274;
+type ImageEditorVariant = "empty" | "prompt" | "referenced" | "tool" | "panorama";
+export type ImageEditorHeight = 191 | 211 | 252 | 274;
 
 interface ImageEditPanelProps {
   zoom: number;
@@ -37,6 +37,37 @@ const autoLinkCandidates = [
 ];
 
 export function ImageEditPanel({
+  zoom,
+  variant,
+  panelHeight,
+  initialPrompt,
+  initialReferences,
+  generationSettings,
+}: ImageEditPanelProps) {
+  if (variant === "panorama") {
+    return (
+      <PanoramaEditPanel
+        zoom={zoom}
+        panelHeight={panelHeight}
+        initialReferences={initialReferences}
+        generationSettings={generationSettings}
+      />
+    );
+  }
+
+  return (
+    <StandardImageEditPanel
+      zoom={zoom}
+      variant={variant}
+      panelHeight={panelHeight}
+      initialPrompt={initialPrompt}
+      initialReferences={initialReferences}
+      generationSettings={generationSettings}
+    />
+  );
+}
+
+function StandardImageEditPanel({
   zoom,
   variant,
   panelHeight,
@@ -166,6 +197,101 @@ export function ImageEditPanel({
           <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#b5b5b5] hover:bg-white/[0.06]" title="翻译" aria-label="翻译"><Languages size={15} /></button>
           <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.06]" title="撤销" aria-label="撤销"><Undo2 size={14} /></button>
           <button data-image-editor-footer-icon type="button" onClick={() => setSubmitted(true)} disabled={!prompt.trim()} className="flex size-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef] disabled:bg-white/[0.08] disabled:text-[#555]" aria-label="生成图片"><ArrowUp size={17} /></button>
+        </footer>
+      </section>
+    </div>
+  );
+}
+
+interface PanoramaEditPanelProps {
+  zoom: number;
+  panelHeight?: ImageEditorHeight;
+  initialReferences?: string[];
+  generationSettings?: string;
+}
+
+function PanoramaEditPanel({
+  zoom,
+  panelHeight = 252,
+  initialReferences = [],
+  generationSettings = "2:1 · 标准画质 · 2K · 1张",
+}: PanoramaEditPanelProps) {
+  const [submitted, setSubmitted] = useState(false);
+  const reference = initialReferences[0];
+
+  return (
+    <div
+      data-image-edit-panel
+      data-panorama-edit-panel
+      className="nodrag nowheel nopan absolute -bottom-[17px] left-1/2 z-20 w-[660px] -translate-x-1/2 translate-y-full origin-top"
+      // The panorama editor follows the same source-observed node anchor and inverse zoom model.
+      style={{ transform: `scale(${1 / zoom})` }}
+    >
+      <section
+        className="relative flex w-full flex-col rounded-2xl border border-[#363636] bg-[#262626] p-3 shadow-[0_22px_60px_rgba(0,0,0,0.5)]"
+        style={{ height: panelHeight }}
+      >
+        <button type="button" className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white" aria-label="展开全景编辑器">
+          <Expand size={15} />
+        </button>
+
+        <div className="flex h-[55px] shrink-0 items-start gap-2 pr-9">
+          <button
+            type="button"
+            data-panorama-add-reference
+            className="flex h-[26px] items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white"
+          >
+            <Images size={13} />
+            +参考
+          </button>
+          {reference && (
+            <div
+              data-panorama-reference
+              className="relative size-[47px] overflow-hidden rounded-lg border border-white/10"
+            >
+              <Image src={reference} alt="全景参考图" fill sizes="47px" className="object-cover" unoptimized />
+              <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-[#202020]/90 text-[9px] text-white">1</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex min-h-0 flex-1 items-start gap-3 rounded-lg bg-[#202020]/55 px-3 py-2.5">
+          <span className="flex h-6 min-w-9 items-center justify-center rounded-md bg-[#6652d9]/20 px-1.5 text-[11px] font-medium text-[#a999ff]">
+            720
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex h-6 items-center gap-2 text-sm text-[#ededed]">
+              <span>720全景</span>
+              <SlidersHorizontal size={13} className="text-[#777]" />
+            </div>
+            <p data-panorama-prompt className="mt-1 text-xs leading-5 text-[#858585]">
+              点击生成，直接将场景图像转为720全景图，支持文生/参考图
+            </p>
+          </div>
+        </div>
+
+        <footer className="mt-2 flex h-[41px] shrink-0 items-end gap-1 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
+          <button data-image-editor-model type="button" className="flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <Link2 size={14} className="text-[#9a9a9a]" /><span>Lib Image</span><ChevronDown size={12} className="text-[#777]" />
+          </button>
+          <span className="h-4 w-px bg-white/10" />
+          <button data-image-editor-settings type="button" className="flex h-8 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <RectangleHorizontal size={14} className="text-[#9a9a9a]" />
+            <span>{generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
+          </button>
+          <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
+          <span className="ml-auto" />
+          {submitted && <span className="text-[#09caf5]">已创建本地全景任务</span>}
+          <button
+            data-panorama-submit
+            data-image-editor-footer-icon
+            type="button"
+            onClick={() => setSubmitted(true)}
+            className="flex size-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef]"
+            aria-label="生成720全景图"
+          >
+            <ArrowUp size={17} />
+          </button>
         </footer>
       </section>
     </div>
