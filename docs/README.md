@@ -97,7 +97,11 @@ src/
 │   ├── AddNodePanel.tsx          # Current one-column 9-entry node/resource selector
 │   ├── CanvasTabDropdown.tsx     # Multi-canvas switcher (rename/duplicate/delete)
 │   ├── ImageToolbar.tsx          # NodeToolbar-anchored horizontal toolbar for a selected image
-│   ├── ImageEditPanel.tsx        # Node-anchored, inverse-zoom 660×274 image prompt editor
+│   ├── ImageEditPanel.tsx        # Node-anchored, inverse-zoom 660px image prompt editor; 3 source-observed heights
+│   ├── VideoGenerationPanel.tsx  # Seedance model/mode/parameter prompt editor
+│   ├── VideoProcessingToolbar.tsx # Ready-video top processing toolbar
+│   ├── SegmentReshootPanel.tsx   # Segment reshoot / smart continuation editor
+│   ├── ShotBreakdownResultsPanel.tsx # Local frame-analysis media results
 │   ├── CameraConfigDialog.tsx    # 9 cameras × 10 lenses × 7 focal lengths × 3 apertures
 │   ├── CameraMovementDialog.tsx  # 10 movement types + speed + duration + amplitude
 │   ├── ToolboxPanel.tsx          # 25-preset anchored toolbox cloned from live evidence
@@ -121,7 +125,7 @@ src/
 
 ## Node System (liblib-tv route)
 
-Six React Flow node types are implemented. Each has its own spec.
+Eight React Flow node types are implemented. Each has its own spec.
 
 | Type ID | File | Spec |
 |---------|------|------|
@@ -131,6 +135,8 @@ Six React Flow node types are implemented. Each has its own spec.
 | `video` (分镜视频) | [`src/components/nodes/VideoNode.tsx`](../src/components/nodes/VideoNode.tsx) | [`VideoNode.spec.md`](research/components/VideoNode.spec.md) |
 | `script-execution` (剧本执行) | [`src/components/nodes/ScriptExecutionNode.tsx`](../src/components/nodes/ScriptExecutionNode.tsx) | [`ScriptExecutionNode.spec.md`](research/components/ScriptExecutionNode.spec.md) |
 | `storyboard-group` (分镜图组合) | [`src/components/nodes/StoryboardGroupNode.tsx`](../src/components/nodes/StoryboardGroupNode.tsx) | [`StoryboardGroupNode.spec.md`](research/components/StoryboardGroupNode.spec.md) |
+| `shot-breakdown` (逐帧拉片) | [`src/components/nodes/ShotBreakdownNode.tsx`](../src/components/nodes/ShotBreakdownNode.tsx) | [`ShotBreakdownNode.spec.md`](research/components/ShotBreakdownNode.spec.md) |
+| `video-clip` (智能剪辑) | [`src/components/nodes/VideoClipNode.tsx`](../src/components/nodes/VideoClipNode.tsx) | [`VideoClipNode.spec.md`](research/components/VideoClipNode.spec.md) |
 
 ### Edge: `DeletableEdge`
 

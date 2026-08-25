@@ -132,7 +132,7 @@ Next.js App Router
 | 入口 | `/` | `/frameos` 重定向到 `/frameos/canvas/demo` |
 | 页面控制器 | `src/app/page.tsx` | `src/app/frameos/canvas/[id]/page.tsx` |
 | Store | `canvasStore` + `uiStore` | `frameosStore` |
-| 已注册节点 renderer | 6 种：script/image/text/video/script-execution/storyboard-group | 3 种：text/image/video |
+| 已注册节点 renderer | 8 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip | 3 种：text/image/video |
 | 初始运行态 | 10 节点、11 边；桌面 53%、紧凑视口 28% | 7 节点、5 边 |
 | 边 renderer | `DeletableEdge` | `FrameosEdge` |
 | 主题 | 深灰 + 青色强调 | 更深黑底 + 蓝色强调 |
@@ -191,13 +191,15 @@ React Flow change
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。编辑面板按空白、提示词、带参考图三种源站状态呈现，高价值工具会创建连接到源图片的派生节点
 - `TextNode`：文本
-- `VideoNode`：当前项目中的失败视频状态
+- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍和智能续写
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器
+- `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地结果卡
+- `VideoClipNode`：智能剪辑 Beta 四模式空态
 
-当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；在没有专用 renderer 的类别上，它会映射到最接近的已注册原型节点。这个映射只用于验证添加流程，不表示导演台、音频、逐帧拉片等业务已经实现。
+当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片与视频编辑已有专用 renderer，导演台、音频等尚未专门实现的类别仍映射到最接近的原型节点。
 
 图片节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。
 
@@ -319,7 +321,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 |---|---|
 | 视觉研究 | 资料丰富，包含原站截图、计算样式、原始 JSON 和大量迭代图 |
 | 画布基础 | Pan/zoom/drag/connect 已由 React Flow 支撑 |
-| 节点交互 | 两条路线都有可操作节点；LibTV 新增入口对未实现类型使用显式原型映射 |
+| 节点交互 | 两条路线都有可操作节点；LibTV 的逐帧拉片/智能剪辑已有专用节点，其余未实现入口使用显式原型映射 |
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent、分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
