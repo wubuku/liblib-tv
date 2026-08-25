@@ -170,7 +170,7 @@ Node entries: text, image, video, video-clip (Beta), script-execution (NEW), sho
 Buttons (left to right):
 - **资产管理:** Toggles the `240px` asset drawer.
 - **整理画布 (`Option/Alt+Shift+F`):** Applies the source-like semantic topology and opens the keep/restore confirmation.
-- **缩略图:** Toggles the React Flow minimap.
+- **缩略图:** Toggles a `150x110px` React Flow minimap anchored above the trigger rather than at the default bottom-right. It follows the canvas when the asset drawer opens; compact viewports raise it above both bottom toolbars. Minimap-internal pan/zoom/click remain disabled pending source evidence.
 - **节点连线:** Shows or hides all edges.
 - **吸附:** Toggles `20x20` grid snapping; hidden in the compact middle-width range.
 - **缩放百分比:** Opens the source-shaped current-percent, zoom in/out, fit-view and 50/100/800 menu. Zoom actions keep it open; Escape, outside pointerdown or another top-level overlay closes it. The menu no longer includes the unsupported grid item.

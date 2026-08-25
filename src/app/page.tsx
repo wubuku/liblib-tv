@@ -440,11 +440,19 @@ export default function Home() {
             {showGrid && <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#303030" />}
             {showMinimap && (
               <MiniMap
-                position="bottom-right"
-                style={{ width: 150, height: 110, background: "#202020", borderRadius: 12 }}
-                maskColor="rgba(10,10,10,0.48)"
-                nodeColor="#666"
-                nodeStrokeColor="#8d8d8d"
+                position="bottom-left"
+                className="liblib-minimap"
+                // xyflow reads style width/height to calculate the minimap viewBox.
+                style={{ width: 150, height: 110 }}
+                ariaLabel="画布缩略图"
+                bgColor="#262626"
+                maskColor="rgba(20,20,20,0.56)"
+                maskStrokeColor="#747474"
+                maskStrokeWidth={0.75}
+                nodeColor="#626262"
+                nodeStrokeColor="#707070"
+                nodeStrokeWidth={1}
+                nodeBorderRadius={3}
               />
             )}
           </ReactFlow>

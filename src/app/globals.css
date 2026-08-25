@@ -358,3 +358,22 @@
 .react-flow__attribution a {
   color: #525252 !important;
 }
+
+/* LibTV minimap is anchored above the secondary canvas toolbar's minimap trigger. */
+.react-flow__panel.react-flow__minimap.liblib-minimap {
+  right: auto;
+  bottom: 54px;
+  left: 152px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+}
+
+@media (max-width: 639px) {
+  .react-flow__panel.react-flow__minimap.liblib-minimap {
+    bottom: 107px;
+    left: 128px;
+  }
+}

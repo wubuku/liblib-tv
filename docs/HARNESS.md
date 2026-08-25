@@ -38,11 +38,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 16 | project metadata, canvas CRUD lifecycle, menu cleanup and active-canvas check |
 | Batch 17 | asset drawer context, source-order node tree, browse controls and active-canvas empty states |
 | Batch 18 | source-shaped zoom menu, viewport commands, Escape/outside cleanup and overlay mutual exclusion |
+| Batch 19 | minimap source anchor, fit-view outline update, asset-drawer follow and mobile toolbar avoidance |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..18}.py; do
+for script in scripts/verify-liblib-batch{4..19}.py; do
   python3 "$script" || exit 1
 done
 ```

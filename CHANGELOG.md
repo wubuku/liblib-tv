@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Closed the LibTV canvas dropdown after project/canvas navigation actions and made Escape/outside-click cleanup deterministic
 - Removed the hard-coded asset drawer canvas label and fixed canvas/assets empty-state semantics
 - Moved the LibTV zoom menu into the unified overlay lifecycle so Escape, outside clicks and other panels clean it up
+- Moved the LibTV minimap from React Flow's default bottom-right to the source toolbar-anchored position
 
 ### Changed
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved the LibTV project name into `canvasStore` and rebuilt the canvas dropdown around the source project/canvas hierarchy
 - Rebuilt the LibTV asset drawer around source project/canvas context, node hierarchy and local sort/filter/search controls
 - Rebuilt the LibTV zoom menu around the source percent row and six viewport commands, removing the unsupported grid entry
+- Calibrated the LibTV minimap panel, node blocks, viewport outline, asset-drawer follow and compact-toolbar avoidance
 
 > Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 

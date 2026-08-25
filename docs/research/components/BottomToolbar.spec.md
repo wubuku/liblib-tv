@@ -20,6 +20,17 @@
 
 The snap and zoom controls are hidden only in the middle compact range (`640-850px`) to protect layout; they remain available at the 390px mobile viewport.
 
+## Minimap
+
+- The trigger toggles `uiStore.showMinimap` and exposes `aria-pressed`.
+- The `150x110px` minimap is not placed at React Flow's default bottom-right.
+- At `929x874`, it is anchored at `left: 152px; bottom: 54px`, approximately aligning its left edge with the minimap trigger.
+- Because the offset is relative to the React Flow canvas, opening the 240px asset drawer moves the minimap and trigger right by the same amount.
+- At `390x844`, `bottom: 107px` keeps it above the two bottom toolbars.
+- The clone does not enable minimap click, pan or zoom without source interaction evidence.
+
+Evidence and verification: [`../liblib-canvas-batch19-2026-08-25/`](../liblib-canvas-batch19-2026-08-25/).
+
 ## Zoom menu
 
 The source-shaped menu contains:

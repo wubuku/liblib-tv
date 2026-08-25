@@ -35,12 +35,12 @@
 
 - 原站截图 viewport 为 `929x874`，当前 zoom 文案为 `28%`。
 - minimap 可见框约为 `x=151, y=711, w=151, h=109`。
-- minimap 位于底部画布工具条正上方，靠近“缩略图”触发按钮。
+- minimap 位于底部画布工具条正上方，左边缘与“缩略图”触发按钮左边缘近似对齐。
 - 面板为深灰圆角矩形；内部只显示灰色节点块和浅灰 viewport outline，不显示边或文字。
 
 ### Inference
 
-- minimap 是相对底部画布工具条按钮定位的局部画布控件，而不是右下角全局 dock。
+- minimap 是相对底部画布工具条按钮左边缘定位的局部画布控件，而不是右下角全局 dock。
 - 资产抽屉打开后，minimap 应与 React Flow canvas 区域和底部工具条一起右移。
 
 ### Clone-only decision
@@ -51,9 +51,8 @@
 ## 4. 验收标准
 
 - `929x874` 下 minimap 为 `150x110px`，左边约 `152px`，底部约 `54px`。
-- minimap 水平中心与缩略图按钮中心误差不超过 `12px`。
+- minimap 左边缘与缩略图按钮左边缘误差不超过 `12px`。
 - viewport outline、节点块、背景和圆角与保存的原站截图同一视觉层级。
-- 打开资产抽屉后，minimap 与触发按钮都右移约 `240px`，相对中心误差保持稳定。
+- 打开资产抽屉后，minimap 与触发按钮都右移约 `240px`，相对左边缘误差保持稳定。
 - `390x844` 下 minimap 不覆盖两条底部工具条，不产生页面级横向溢出。
 - toggle、console、Batch 18 zoom menu 和 Batch 17 asset drawer 不回归。
-

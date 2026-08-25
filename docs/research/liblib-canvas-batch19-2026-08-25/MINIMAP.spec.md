@@ -18,7 +18,7 @@ width: 150px
 height: 110px
 ```
 
-The React Flow canvas begins after the 240px asset drawer. Keeping the minimap's left offset relative to that canvas makes it follow the bottom toolbar when the drawer opens.
+The left edge is approximately aligned with the minimap trigger's left edge. The React Flow canvas begins after the 240px asset drawer, so keeping the minimap's left offset relative to that canvas makes it follow the bottom toolbar when the drawer opens.
 
 Compact `390x844`:
 
@@ -55,8 +55,7 @@ Compact `390x844`:
 
 ## Stable selectors
 
-- `[data-liblib-minimap]`
+- `.liblib-minimap`
 - `[data-testid="rf__minimap"]`
 - `button[aria-label="显示缩略图"]`
 - `button[aria-label="隐藏缩略图"]`
-
