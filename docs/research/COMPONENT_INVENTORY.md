@@ -45,6 +45,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |-----------|------|---------|
 | `AddNodePanel` | `src/components/AddNodePanel.tsx` | 9-entry source-shaped node list, material submenu, upload/history local feedback. |
 | `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | Source-shaped project context and multi-canvas lifecycle with active check, edit/new/switch/rename/copy/delete and explicit close cleanup. |
+| `AssetManagerPanel` | `src/components/AssetManagerPanel.tsx` | 240px source-shaped project/canvas drawer with one-level node tree, canvas/assets tabs, local sort/filter/search and active-canvas empty states. |
 | `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Bottom-toolbar-anchored 480x460 panel with 25 source-derived presets. |
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |

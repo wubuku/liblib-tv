@@ -125,6 +125,15 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 - **Cleanup:** Outside click and Escape close the dropdown and clear local edit/menu state.
 - **Evidence and verification:** `docs/research/liblib-canvas-batch16-2026-08-25/` and `scripts/verify-liblib-batch16.py`.
 
+### Asset Manager Context
+
+- Opening the 240px drawer moves the workbench/storyboard controls to its right and hides the duplicate top canvas trigger.
+- The drawer context row shows the current project and active canvas; clicking the canvas name closes the drawer and opens the top canvas dropdown.
+- `画布` uses a one-level `parentId` tree. `资产` remains a current-canvas image/video projection.
+- Sort, type filter and search operate only on local active-canvas data.
+- Empty copy distinguishes no graph nodes from no media assets.
+- Evidence and verification: `docs/research/liblib-canvas-batch17-2026-08-25/` and `scripts/verify-liblib-batch17.py`.
+
 ### VIP + Credits Button
 - Click → opens membership store (not implemented in clone).
 - The button shows "⚡ 会员特惠37折 | ⚡ 64" with an orange "限时 37 折" badge above.

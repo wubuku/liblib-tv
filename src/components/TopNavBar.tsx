@@ -64,6 +64,7 @@ export function TopNavBar() {
     toggleSharePanel,
     isAgentOpen,
     toggleAgent,
+    isAssetPanelOpen,
   } = useUIStore();
 
   return (
@@ -76,10 +77,15 @@ export function TopNavBar() {
         >
           <LibTvMark />
         </Link>
-        <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
-          <CanvasTabDropdown />
-        </div>
-        <div className="hidden h-8 items-center rounded-lg bg-[#262626] p-0.5 shadow-[0_4px_16px_rgba(0,0,0,0.25)] sm:flex">
+        {!isAssetPanelOpen && (
+          <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
+            <CanvasTabDropdown />
+          </div>
+        )}
+        <div className={cn(
+          "hidden h-8 items-center rounded-lg bg-[#262626] p-0.5 shadow-[0_4px_16px_rgba(0,0,0,0.25)] sm:flex",
+          isAssetPanelOpen && "ml-[204px]",
+        )}>
           <button
             title="工作台"
             aria-label="工作台"

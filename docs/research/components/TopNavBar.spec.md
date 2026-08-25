@@ -21,6 +21,7 @@ right:
 ```
 
 - The project name is not a separate top-nav pill. It lives inside `CanvasTabDropdown`, matching the saved source screenshot.
+- When AssetManagerPanel is open, the duplicate canvas button is hidden and the mode controls move to the right edge of the 240px drawer; the drawer itself shows project/canvas context.
 - The right command cluster is hidden on compact viewports.
 - Opening Agent causes the floating nav to avoid the right drawer.
 
@@ -41,6 +42,7 @@ right:
 - [`../liblib-live-2026-08-25/README.md`](../liblib-live-2026-08-25/README.md)
 - [`../liblib-canvas-batch14-2026-08-25/`](../liblib-canvas-batch14-2026-08-25/)
 - [`../liblib-canvas-batch16-2026-08-25/`](../liblib-canvas-batch16-2026-08-25/)
+- [`../liblib-canvas-batch17-2026-08-25/`](../liblib-canvas-batch17-2026-08-25/)
 
 ## Files referenced
 
