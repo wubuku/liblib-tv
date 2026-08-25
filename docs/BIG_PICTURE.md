@@ -207,7 +207,7 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
 - `ShotBreakdownResultNode`：完成后持久存在的三组分镜、动态和音乐结果组；维度决定创建范围，整批节点/边可一次撤销
-- `VideoClipNode`：智能剪辑 Beta 四模式空态
+- `VideoClipNode`：智能剪辑未连接视频空态和四个单列尝试命令；单选时挂载 `660x191` 节点下方 Prompt panel
 
 当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer，导演台仍保留为专用执行节点原型。音频 renderer 只提供本地预览卡片，不解析真实音频。
 
@@ -224,6 +224,8 @@ Seedance 模型菜单当前只表达截图可见集合，不表达完整模型�
 片段重拍不能被实现成一个带自创标题栏的普通表单。文章流程图和当前 bundle 共同支持“独立 4 秒时间带 + 生成器式 Prompt editor”的结构、最多五段、视频/range token，以及未选区间时“留空 = 原样重跑一次”。clone 使用 `660x56` filmstrip 和 `660x252` editor，并继续遵守节点锚定、反缩放与自然裁切合同；缩略帧和提交结果仍是本地 mock。
 
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
+
+通用“视频编辑 Beta”同样不能把全部交互塞进节点本体。原站 `350x350` `video-clip` 节点只显示未连接视频提示和四个单列尝试命令；选中态的 `+参考`、Prompt、默认模式、输出参数和发送位于节点下方约 `660x191` 的独立 panel。clone 复用既有反缩放锚定合同，并保持 multi-selection hide 和 viewport 自然裁切。
 
 截图识别结果必须及时文本化。先搜索 batch 的 `SCREENSHOT_ANALYSIS.md` 和组件规格，已有记录能回答时不得重复打开整张截图；新识图需记录路径、viewport/state、结构、几何、证据等级和未确认区域。
 

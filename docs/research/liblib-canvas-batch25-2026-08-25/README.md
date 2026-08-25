@@ -1,6 +1,6 @@
 # Batch 25：智能剪辑空态与节点下方 Prompt 面板
 
-> 状态：计划已落档，待实施与验证。
+> 状态：已实施；Batch 25 专项 Playwright、类型检查和 lint 已通过，跨批回归待最终门禁阶段记录。
 
 ## 批次前缺口
 
@@ -31,6 +31,19 @@
 - [`live-audit.json`](../liblib-seedance-2.5-2026-08-25/live-audit.json)
 - [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)
 - 当前组件规格：[`../components/VideoClipNode.spec.md`](../components/VideoClipNode.spec.md)
+- [clone 28% source context](../../design-references/liblib-clone-batch25-video-clip-source-context-929-2026-08-25.png)
+- [clone 100% detail](../../design-references/liblib-clone-batch25-video-clip-detail-929-2026-08-25.png)
+- [clone mobile](../../design-references/liblib-clone-batch25-video-clip-mobile-390-2026-08-25.png)
+- [clone contact sheet](../../design-references/liblib-clone-batch25-video-clip-contact-sheet-2026-08-25.png)
+- 可执行验证：[`scripts/verify-liblib-batch25.py`](../../../scripts/verify-liblib-batch25.py)
+
+## 完成结果
+
+- `VideoClipNode` 本体只保留 source-confirmed 未连接空态和单列四模式。
+- 新增 `VideoClipEditPanel`，把 `+参考`、Prompt、模式/输出 footer 和发送移到节点下方。
+- panel 保持 `660x191` 屏幕尺寸、节点中心锚定和 `16 * zoom` gap。
+- mode、reference、Prompt、submit 和 expand 均有本地反馈。
+- 50% zoom、drag、pan、multi-selection hide 和 390px 自然裁切受专项自动化保护。
 
 ## 原型边界
 

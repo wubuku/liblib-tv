@@ -66,8 +66,51 @@ panel 数值是像素估计；节点 rect 是 live DOM fact。
 - 没有独立、反缩放、节点锚定的下方 panel。
 - 节点选中和 multi-selection 不控制独立 editor 生命周期。
 
-## 3. Re-inspection rule
+## 3. Clone verification
+
+### 文件
+
+- `liblib-clone-batch25-video-clip-source-context-929-2026-08-25.png`
+- `liblib-clone-batch25-video-clip-detail-929-2026-08-25.png`
+- `liblib-clone-batch25-video-clip-mobile-390-2026-08-25.png`
+- `liblib-clone-batch25-video-clip-contact-sheet-2026-08-25.png`
+- 最终 contact sheet 识图次数：1。
+
+### Source context
+
+- `929x874`、原始 `画布 2`、fit-view `28%`。
+- 新节点位于已有工作流中部，screen width 约 `98px`，与 source screenshot 的 `98.979px` 同量级。
+- `660px` panel 以节点中心为锚，位于节点下方；没有缩放成约 `185px` 宽。
+- panel 与 source screenshot 相同地覆盖部分画布内容，但不覆盖底部主工具条。
+- node internal empty content 与 panel content 清晰分层。
+
+### Isolated detail
+
+- `929x874`、空白 `画布 1`、zoom `100%`。
+- `350x350` node 完整显示剪刀、连接提示、“尝试：”和四个单列命令。
+- 四行 icon、label 和 row spacing 稳定，没有文本截断。
+- panel 为独立 `660x191` surface；`+参考`、placeholder、footer 和 submit 没有重叠。
+- panel center 与 node center 一致，node/panel 之间有清晰间距。
+
+### Mobile
+
+- `390x844`、空白 `画布 1`、zoom `100%`。
+- `350px` node 在 viewport 内完整显示。
+- `660px` panel 按节点中心自然超出左右 viewport，并在底部继续裁切。
+- 页面没有横向滚动；两个底部工具条仍可操作。
+
+### DOM-backed contract
+
+- node：`350x350` at `100%`。
+- panel：`660x191` at `100%` and `50%`。
+- gap：`16 * zoom`。
+- mode count：4，单列 y 递增。
+- prompt empty：submit disabled；输入后 enabled。
+- drag/pan：node 与 panel screen delta 一致。
+- selected count 2：panel count 0；恢复单选：panel count 1。
+
+## 4. Re-inspection rule
 
 除非需要确认 connected-video 状态、mode command 的真实副作用、精确 SVG 或 panel computed style，不再打开原始整图。实现几何优先使用本文、`live-audit.json` 和 Batch 9 已验证的 floating-anchor 合同。
 
-本批 clone 截图完成后在本文追加一次性 contact sheet 结论。
+除非实现或截图发生变化，后续不再打开本批 clone 整图；行为与几何优先运行 `scripts/verify-liblib-batch25.py`。

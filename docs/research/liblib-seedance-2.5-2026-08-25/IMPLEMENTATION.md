@@ -27,7 +27,7 @@
 
 - `shot-breakdown`：视频素材、拆解维度和本地完成命令；Batch 24 将结果改为持久画布节点。
 - `shot-breakdown-result`：三个分镜组、一个动态组和一个音乐节点，作为单事务派生产物。
-- `video-clip`：智能剪辑 Beta 四模式、参考入口、Prompt 和发送禁用态。
+- `video-clip`：Batch 25 对齐为未连接视频空态、单列四模式和独立节点下方 Prompt panel。
 
 ## 2. 关键工程修复
 
@@ -57,6 +57,7 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - `docs/design-references/liblib-clone-seedance-segment-reshoot-2026-08-25.png`
 - `docs/design-references/liblib-clone-seedance-shot-breakdown-complete-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch25-video-clip-contact-sheet-2026-08-25.png`
 
 ### 移动端边界
 
@@ -85,5 +86,5 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - Store 与页面：`src/store/canvasStore.ts`, `src/app/page.tsx`
 - 图片：`src/components/nodes/ImageNode.tsx`, `src/components/ImageToolbar.tsx`, `src/components/ImageEditPanel.tsx`
 - 视频：`src/components/nodes/VideoNode.tsx`, `src/components/VideoProcessingToolbar.tsx`, `src/components/VideoGenerationPanel.tsx`, `src/components/SegmentReshootPanel.tsx`
-- 专用节点：`src/components/nodes/ShotBreakdownNode.tsx`, `src/components/nodes/ShotBreakdownResultNode.tsx`, `src/components/nodes/VideoClipNode.tsx`
+- 专用节点：`src/components/nodes/ShotBreakdownNode.tsx`, `src/components/nodes/ShotBreakdownResultNode.tsx`, `src/components/nodes/VideoClipNode.tsx`, `src/components/VideoClipEditPanel.tsx`
 - 对应组件规格：`docs/research/components/`
