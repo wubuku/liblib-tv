@@ -2,14 +2,26 @@
 
 import Image from "next/image";
 import { memo, useState } from "react";
-import { AlertTriangle, Play, Volume2 } from "lucide-react";
-import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
+import { AlertTriangle, CaptionsOff, Play, Volume2 } from "lucide-react";
+import {
+  Handle,
+  Position,
+  useInternalNode,
+  useReactFlow,
+  useViewport,
+  type Node,
+  type NodeProps,
+} from "@xyflow/react";
 import { cn } from "@/lib/utils";
 import {
   useCanvasStore,
+  type SubtitleEraseMetadata,
+  type SubtitleEraseMode,
+  type SubtitleEraseRegion,
   type VideoContinuationMetadata,
 } from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
+import { SubtitleErasePanel } from "@/components/SubtitleErasePanel";
 import { VideoContinuationSelector } from "@/components/VideoContinuationSelector";
 import { VideoGenerationPanel } from "@/components/VideoGenerationPanel";
 import { VideoProcessingToolbar } from "@/components/VideoProcessingToolbar";
@@ -17,26 +29,38 @@ import { VideoProcessingToolbar } from "@/components/VideoProcessingToolbar";
 export interface VideoNodeData extends Record<string, unknown> {
   filename?: string;
   model?: string;
-  status?: "empty" | "failed" | "ready";
+  status?: "empty" | "failed" | "ready" | "pending";
   durationSeconds?: number;
   resolution?: string;
   posterUrl?: string;
   prompt?: string;
   continuation?: VideoContinuationMetadata;
+  subtitleErase?: SubtitleEraseMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
-  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation } = data;
+  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase } = data;
   const { zoom } = useViewport();
+  const internalNode = useInternalNode(id);
+  const { setCenter } = useReactFlow();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
+  const createSubtitleErase = useCanvasStore((state) => state.createSubtitleErase);
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
-  const [activeTool, setActiveTool] = useState<"generator" | "reshoot" | "continue">("generator");
+  const [activeTool, setActiveTool] = useState<
+    "generator" | "reshoot" | "continue" | "subtitle-smart" | "subtitle-region"
+  >("generator");
   const [enhanced, setEnhanced] = useState(false);
+  const subtitleMode: SubtitleEraseMode | null =
+    activeTool === "subtitle-smart"
+      ? "smart"
+      : activeTool === "subtitle-region"
+        ? "region"
+        : null;
 
   const createBreakdown = () => {
     addDerivedNode(id, "shot-breakdown", {
@@ -54,6 +78,26 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     createVideoContinuation(id, startSeconds, endSeconds);
   };
 
+  const confirmSubtitleErase = (
+    mode: SubtitleEraseMode,
+    regions: SubtitleEraseRegion[],
+  ) => {
+    setActiveTool("generator");
+    createSubtitleErase(id, mode, regions);
+  };
+
+  const selectSubtitleMode = (mode: SubtitleEraseMode) => {
+    setActiveTool(mode === "smart" ? "subtitle-smart" : "subtitle-region");
+    if (mode !== "region" || !internalNode) return;
+    const position = internalNode.internals.positionAbsolute;
+    const width = internalNode.measured.width ?? internalNode.width ?? 512;
+    const height = internalNode.measured.height ?? internalNode.height ?? 288;
+    void setCenter(position.x + width / 2, position.y + height / 2, {
+      zoom: Math.max(zoom, 1),
+      duration: 220,
+    });
+  };
+
   return (
     <div
       className={cn(
@@ -61,14 +105,19 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/[0.07]",
       )}
     >
-      {showSingleNodeEditor && status === "ready" && (
+      {showSingleNodeEditor && status === "ready" && !subtitleMode && (
         <VideoProcessingToolbar
-          activeTool={activeTool}
+          activeTool={
+            activeTool === "reshoot" || activeTool === "continue"
+              ? activeTool
+              : "generator"
+          }
           enhanced={enhanced}
           posterUrl={posterUrl}
           onSelectTool={setActiveTool}
           onToggleEnhanced={() => setEnhanced((value) => !value)}
           onCreateBreakdown={createBreakdown}
+          onSelectSubtitleMode={selectSubtitleMode}
         />
       )}
       <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
@@ -99,17 +148,33 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Volume2 size={13} />
             </div>
           </>
-        ) : (
+        ) : status === "empty" ? (
           <div data-video-continuation-empty className="flex flex-col items-center gap-2 text-center">
             <span className="flex size-14 items-center justify-center rounded-full bg-white/[0.05] text-[#777]">
               <Play size={22} fill="currentColor" className="ml-1" />
             </span>
             <span className="text-xs text-[#777]">等待续写内容</span>
           </div>
+        ) : (
+          <div
+            data-subtitle-erase-target
+            data-subtitle-erase-target-mode={subtitleErase?.mode}
+            className="flex flex-col items-center gap-2 px-6 text-center"
+          >
+            <CaptionsOff size={28} strokeWidth={1.4} className="text-[#777]" />
+            <span
+              data-subtitle-erase-pending-copy
+              className="text-xs leading-5 text-[#777]"
+            >
+              {subtitleErase?.mode === "region"
+                ? "框选区域生成去字幕视频"
+                : "点击生成自动去除字幕"}
+            </span>
+          </div>
         )}
       </div>
 
-      {showSingleNodeEditor && activeTool === "generator" && (
+      {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
         <VideoGenerationPanel
           zoom={zoom}
           initialModel={model}
@@ -129,6 +194,14 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           durationSeconds={durationSeconds}
           onCancel={() => setActiveTool("generator")}
           onConfirm={confirmContinuation}
+        />
+      )}
+      {showSingleNodeEditor && status === "ready" && subtitleMode && (
+        <SubtitleErasePanel
+          zoom={zoom}
+          mode={subtitleMode}
+          onCancel={() => setActiveTool("generator")}
+          onConfirm={confirmSubtitleErase}
         />
       )}
     </div>

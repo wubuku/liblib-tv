@@ -24,6 +24,27 @@ export interface VideoContinuationMetadata {
   edgeId: string;
 }
 
+export type SubtitleEraseMode = "smart" | "region";
+
+export interface SubtitleEraseRegion {
+  id: string;
+  relX: number;
+  relY: number;
+  width: number;
+  height: number;
+}
+
+export interface SubtitleEraseMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  sourcePosterUrl?: string;
+  mode: SubtitleEraseMode;
+  regions: SubtitleEraseRegion[];
+  edgeId: string;
+  model: "volcano-subtitle-eraser";
+  requestMode: "Subtitle" | "Text";
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -71,6 +92,11 @@ interface CanvasState {
     sourceId: string,
     startSeconds: number,
     endSeconds: number,
+  ) => string | null;
+  createSubtitleErase: (
+    sourceId: string,
+    mode: SubtitleEraseMode,
+    regions: SubtitleEraseRegion[],
   ) => string | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
@@ -819,6 +845,112 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
                 ...item,
                 nodes: [...item.nodes, targetNode],
                 edges: [...item.edges, continuationEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [targetId],
+        selectedNodeId: targetId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  createSubtitleErase: (
+    sourceId: string,
+    mode: SubtitleEraseMode,
+    regions: SubtitleEraseRegion[],
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source || (mode === "region" && regions.length === 0)) {
+      return null;
+    }
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourcePosterUrl =
+      typeof source.data.posterUrl === "string"
+        ? source.data.posterUrl
+        : undefined;
+    const sourceDuration =
+      typeof source.data.durationSeconds === "number"
+        ? source.data.durationSeconds
+        : 30;
+    const dimensions = getDefaultNodeDimensions("video");
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+    const targetId = createNodeId("subtitle-erase");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const normalizedRegions = regions.map((region) => {
+      const relX = clampNumber(region.relX, 0, 1);
+      const relY = clampNumber(region.relY, 0, 1);
+      return {
+        id: region.id,
+        relX,
+        relY,
+        width: clampNumber(region.width, 0, 1 - relX),
+        height: clampNumber(region.height, 0, 1 - relY),
+      };
+    });
+    const subtitleErase: SubtitleEraseMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      sourcePosterUrl,
+      mode,
+      regions: normalizedRegions,
+      edgeId,
+      model: "volcano-subtitle-eraser",
+      requestMode: mode === "smart" ? "Subtitle" : "Text",
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position: {
+        x: sourcePosition.x + nodeWidth(source) + 120,
+        y: sourcePosition.y,
+      },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `视频一键去字幕-${sourceLabel}`,
+        model: "volcano-subtitle-eraser",
+        status: "pending",
+        durationSeconds: sourceDuration,
+        resolution:
+          typeof source.data.resolution === "string"
+            ? source.data.resolution
+            : "1280 × 720",
+        generatorType: "SUBTITLE_ERASE",
+        subtitleErase,
+      },
+    };
+    const subtitleEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, subtitleEdge],
               }
             : item,
         ),

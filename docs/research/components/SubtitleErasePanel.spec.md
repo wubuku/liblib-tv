@@ -16,6 +16,7 @@
 - power cost display
 - `28x28` submit
 - region submit disabled without rectangles
+- entering region mode centers the source and raises zoom to at least `1`
 
 ## Region Contract
 

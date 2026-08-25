@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 import { cn } from "@/lib/utils";
+import type { SubtitleEraseMode } from "@/store/canvasStore";
 
 type ToolbarMenu = "subtitle" | "audio" | "edit" | null;
 
@@ -27,15 +28,22 @@ interface VideoProcessingToolbarProps {
   onSelectTool: (tool: "generator" | "reshoot" | "continue") => void;
   onToggleEnhanced: () => void;
   onCreateBreakdown: () => void;
+  onSelectSubtitleMode: (mode: SubtitleEraseMode) => void;
 }
 
-export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown }: VideoProcessingToolbarProps) {
+export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown, onSelectSubtitleMode }: VideoProcessingToolbarProps) {
   const [menu, setMenu] = useState<ToolbarMenu>(null);
   const [lastAction, setLastAction] = useState<string | null>(null);
 
   const selectMenuAction = (label: string) => {
     setLastAction(label);
     setMenu(null);
+  };
+
+  const selectSubtitleMode = (mode: SubtitleEraseMode) => {
+    setMenu(null);
+    setLastAction(null);
+    onSelectSubtitleMode(mode);
   };
 
   return (
@@ -49,7 +57,7 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
         <ToolbarButton label="片段重拍" active={activeTool === "reshoot"} onClick={() => onSelectTool(activeTool === "reshoot" ? "generator" : "reshoot")}><Scissors size={16} /></ToolbarButton>
         <ToolbarButton label="逐帧拉片" onClick={onCreateBreakdown}><Film size={16} /></ToolbarButton>
         <ToolbarButton label="智能续写" active={activeTool === "continue"} onClick={() => onSelectTool(activeTool === "continue" ? "generator" : "continue")}><TimerReset size={16} /></ToolbarButton>
-        <ToolbarButton label="智能去字幕" active={menu === "subtitle"} onClick={() => setMenu(menu === "subtitle" ? null : "subtitle")}><CaptionsOff size={16} /></ToolbarButton>
+        <ToolbarButton label="智能去字幕" title="AI一键去除视频字幕，仅支持中英文字幕" active={menu === "subtitle"} onClick={() => setMenu(menu === "subtitle" ? null : "subtitle")}><CaptionsOff size={16} /></ToolbarButton>
         <ToolbarButton label="音频分离" active={menu === "audio"} onClick={() => setMenu(menu === "audio" ? null : "audio")}><AudioLines size={16} /></ToolbarButton>
         <ToolbarButton label="画面编辑" active={menu === "edit"} onClick={() => setMenu(menu === "edit" ? null : "edit")}><Crop size={16} /></ToolbarButton>
 
@@ -63,9 +71,9 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
 
         {menu && (
           <div className="absolute right-24 top-[55px] z-40 w-44 rounded-xl border border-white/10 bg-[#292929] p-1.5 text-xs shadow-2xl">
-            {menu === "subtitle" && <><MenuItem label="智能去字幕" icon={<Sparkles size={14} />} onClick={selectMenuAction} /><MenuItem label="框选去字幕" icon={<Crop size={14} />} onClick={selectMenuAction} /></>}
-            {menu === "audio" && <><MenuItem label="人声提取" icon={<AudioLines size={14} />} onClick={selectMenuAction} /><MenuItem label="背景音提取" icon={<AudioLines size={14} />} onClick={selectMenuAction} /><MenuItem label="音效提取" icon={<AudioLines size={14} />} onClick={selectMenuAction} /></>}
-            {menu === "edit" && <><MenuItem label="片段截取" icon={<Scissors size={14} />} onClick={selectMenuAction} /><MenuItem label="画面裁切" icon={<Crop size={14} />} onClick={selectMenuAction} /></>}
+            {menu === "subtitle" && <><MenuItem label="智能去字幕" icon={<Sparkles size={14} />} onClick={() => selectSubtitleMode("smart")} /><MenuItem label="框选去字幕" icon={<Crop size={14} />} onClick={() => selectSubtitleMode("region")} /></>}
+            {menu === "audio" && <><MenuItem label="人声提取" icon={<AudioLines size={14} />} onClick={() => selectMenuAction("人声提取")} /><MenuItem label="背景音提取" icon={<AudioLines size={14} />} onClick={() => selectMenuAction("背景音提取")} /><MenuItem label="音效提取" icon={<AudioLines size={14} />} onClick={() => selectMenuAction("音效提取")} /></>}
+            {menu === "edit" && <><MenuItem label="片段截取" icon={<Scissors size={14} />} onClick={() => selectMenuAction("片段截取")} /><MenuItem label="画面裁切" icon={<Crop size={14} />} onClick={() => selectMenuAction("画面裁切")} /></>}
           </div>
         )}
       </div>
@@ -73,10 +81,10 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
   );
 }
 
-function ToolbarButton({ label, active = false, onClick, children }: { label: string; active?: boolean; onClick: () => void; children: React.ReactNode }) {
-  return <button type="button" onClick={onClick} className={cn("flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-2 text-sm text-[#e5e5e5] hover:bg-white/[0.07]", active && "bg-white/[0.1] text-white")}>{children}<span>{label}</span></button>;
+function ToolbarButton({ label, title, active = false, onClick, children }: { label: string; title?: string; active?: boolean; onClick: () => void; children: React.ReactNode }) {
+  return <button type="button" title={title} onClick={onClick} className={cn("flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-2 text-sm text-[#e5e5e5] hover:bg-white/[0.07]", active && "bg-white/[0.1] text-white")}>{children}<span>{label}</span></button>;
 }
 
-function MenuItem({ label, icon, onClick }: { label: string; icon: React.ReactNode; onClick: (label: string) => void }) {
-  return <button type="button" onClick={() => onClick(label)} className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-[#ddd] hover:bg-white/[0.07]">{icon}{label}</button>;
+function MenuItem({ label, icon, onClick }: { label: string; icon: React.ReactNode; onClick: () => void }) {
+  return <button type="button" onClick={onClick} className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-[#ddd] hover:bg-white/[0.07]">{icon}{label}</button>;
 }
