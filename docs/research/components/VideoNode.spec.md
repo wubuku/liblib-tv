@@ -56,6 +56,7 @@ VideoNode
 - single selection shows `VideoProcessingToolbar`
 - lower editor defaults to `VideoGenerationPanel`
 - toolbar can switch the lower editor to `片段重拍` or `智能续写`
+- `片段重拍` uses a separate filmstrip + Prompt editor stack; the active toolbar command switches back to the generator
 - `逐帧拉片` creates a connected top-level `shot-breakdown` node
 
 ### Selection
@@ -87,3 +88,4 @@ See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, and the Batch
 - `src/components/SegmentReshootPanel.tsx`
 - `src/store/canvasStore.ts`
 - `scripts/verify-liblib-batch9.py`
+- `scripts/verify-liblib-batch23.py`

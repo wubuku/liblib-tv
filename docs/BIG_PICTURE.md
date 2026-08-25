@@ -220,6 +220,8 @@ Seedance 视频参数不能压缩成普通下拉列表。原站普通和超长�
 
 Seedance 模型菜单当前只表达截图可见集合，不表达完整模型库。原站证据支持七项顺序、estimate、前五项 premium 和 selected-only description；clone 使用 `380x410` 菜单并复现 2.5/Fast 两个已确认展开态。其他模型说明、真实可用性、计费和原始 SVG logo 都不在证据范围内。
 
+片段重拍不能被实现成一个带自创标题栏的普通表单。文章流程图和当前 bundle 共同支持“独立 4 秒时间带 + 生成器式 Prompt editor”的结构、最多五段、视频/range token，以及未选区间时“留空 = 原样重跑一次”。clone 使用 `660x56` filmstrip 和 `660x252` editor，并继续遵守节点锚定、反缩放与自然裁切合同；缩略帧和提交结果仍是本地 mock。
+
 截图识别结果必须及时文本化。先搜索 batch 的 `SCREENSHOT_ANALYSIS.md` 和组件规格，已有记录能回答时不得重复打开整张截图；新识图需记录路径、viewport/state、结构、几何、证据等级和未确认区域。
 
 ## 6. FrameOS 运行模型

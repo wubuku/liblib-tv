@@ -1,6 +1,6 @@
 # Batch 23：片段重拍时间带与 Prompt 编辑器
 
-> 状态：原站文章流程图与当前线上 bundle 证据已完成专项审计；计划和规格已落档，实施结果待补录。
+> 状态：已实施；专项 Playwright、Batch 9-23 跨批回归和完整工程门禁均通过。
 
 ## 当前缺口
 
@@ -28,4 +28,17 @@
 - [`live-script-string-evidence.json`](../liblib-seedance-2.5-2026-08-25/live-script-string-evidence.json)
 - [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)
 - 当前组件规格：[`../components/SegmentReshootPanel.spec.md`](../components/SegmentReshootPanel.spec.md)
+- [clone whole rerun](../../design-references/liblib-clone-batch23-segment-reshoot-default-929-2026-08-25.png)
+- [clone five ranges + intent](../../design-references/liblib-clone-batch23-segment-reshoot-selected-929-2026-08-25.png)
+- [clone mobile](../../design-references/liblib-clone-batch23-segment-reshoot-mobile-390-2026-08-25.png)
+- [clone contact sheet](../../design-references/liblib-clone-batch23-segment-reshoot-contact-sheet-2026-08-25.png)
+- 可执行验证：[`scripts/verify-liblib-batch23.py`](../../../scripts/verify-liblib-batch23.py)
 
+## 完成结果
+
+- 时间带从 editor 内部拆成独立 `660x56` surface；下方 editor 为 `660x252`。
+- 移除自创标题栏，补齐生成器命令、源视频缩略项、视频 token 和 range chips。
+- 7 个 `4.0s` 区间、disabled `2.0s` remainder 和五段上限受自动化保护。
+- 空意图现在可以创建本地整段重跑任务，不再违背线上 bundle 语义。
+- 390px 下保持节点锚定与自然裁切，不引入 document overflow。
+- 所有提交和结果仍是本地原型，不声称真实模型或视频处理已经发生。
