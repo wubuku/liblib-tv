@@ -6,7 +6,7 @@
 
 | Area | Specs |
 |---|---|
-| Shell and navigation | `TopNavBar`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel` |
+| Shell and navigation | `TopNavBar`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel`, `StoryboardBoard` |
 | Panels and dialogs | `AddNodePanel`, `MainEntryPanels`, `CameraConfigDialog`, `CameraMovementDialog`, `KeyboardShortcutsDialog` |
 | Image workflow | `ImageNode`, `ImageEditPanel` |
 | Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel` |

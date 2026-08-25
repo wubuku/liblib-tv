@@ -97,9 +97,9 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="分镜").click()
     page.wait_for_timeout(150)
     assert_only_overlay(page, "agent")
-    assert page.get_by_text("角色与物件", exact=True).is_visible()
+    assert page.get_by_text("关键元素 · 全部", exact=True).is_visible()
 
-    page.get_by_role("button", name="工作台").click()
+    page.get_by_role("button", name="工作台", exact=True).click()
     page.wait_for_timeout(150)
     assert not overlay(page, "agent").is_visible()
     assert page.locator(".react-flow__node").count() == 10

@@ -14,6 +14,7 @@ This is the authoritative catalog of components in this clone. For each, file pa
 | `LeftSidebar` | `src/components/LeftSidebar.tsx` | Compatibility name for the centered primary bottom toolbar with 8 icon buttons and mutually exclusive entry panels. |
 | `BottomToolbar` | `src/components/BottomToolbar.tsx` | Centered floating toolbar at bottom: 资产管理 text button, icon buttons, large cyan "+" (add node), zoom %. |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | Compact "正在跟随" + 取消ESC banner above canvas + script title node. |
+| `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | Data-driven storyboard mode: current-canvas key elements rail plus image/video columns; card selection stays in `canvasStore`. |
 
 ## Node Components
 

@@ -22,6 +22,15 @@
 - **Escape:** `Escape` invokes `closeAllPanels`, which now also clears the primary bottom-toolbar panel.
 - **Verification:** `scripts/verify-liblib-batch11.py`.
 
+### Storyboard Mode
+
+- **Structure:** The current canvas is projected into a left key-elements rail and two story-board columns, `图片` and `视频`; Agent remains a sibling right drawer.
+- **Key elements:** Image and script nodes appear in the `图片` and `文本` groups.
+- **Selection:** Clicking a storyboard or key-element card calls `useCanvasStore.selectNode`; the selected card exposes `aria-pressed="true"`.
+- **Return:** `返回工作台` switches `editorMode` to `workbench` while retaining the selected node.
+- **Empty states:** Empty canvases and empty media groups show explicit local prototype empty states.
+- **Evidence and verification:** `docs/research/liblib-canvas-batch13-2026-08-25/` and `scripts/verify-liblib-batch13.py`.
+
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
 - `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph
