@@ -188,7 +188,7 @@ def run_primary_flow(page: Page):
 
     _, menu = open_top_frame_menu(page)
     toolbar_box = box(page.locator(".react-flow__node-toolbar"))
-    assert_close(toolbar_box["width"], 991)
+    assert_close(toolbar_box["width"], 1009)
     page.screenshot(path=str(MENU_SCREENSHOT))
     menu.locator('[data-video-frame-kind="first"]').click()
     page.wait_for_timeout(100)
@@ -329,7 +329,7 @@ def run_mobile(page: Page):
     add_ready_video(page)
     toolbar = page.locator(".react-flow__node-toolbar")
     toolbar_box = box(toolbar)
-    assert_close(toolbar_box["width"], 991)
+    assert_close(toolbar_box["width"], 1009)
     assert toolbar_box["x"] < 0
     assert toolbar_box["x"] + toolbar_box["width"] > 390
     trigger = page.locator("[data-video-frame-menu-trigger]")

@@ -1,6 +1,7 @@
 # Batch 30: Subject Edit Menu And Smart Matting
 
-> 状态：核心实现与专项 Playwright 已完成，等待跨批回归与工程门禁。
+> 状态：已完成。原站证据、菜单纠正、智能抠像 graph workflow、专项
+> Playwright、跨批回归、工程门禁和最终接力记录均已落档。
 
 本批纠正 ready-video 顶部工具条中无源站依据的 `画面编辑` 菜单，并复刻
 当前线上已有完整闭环证据的 `智能抠像`：

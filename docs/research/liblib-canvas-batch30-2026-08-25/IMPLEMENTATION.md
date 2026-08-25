@@ -1,6 +1,6 @@
 # Batch 30 Implementation Log
 
-> 状态：核心实现与专项 Playwright 完成，等待跨批回归。
+> 状态：已完成。
 
 ## Planned Protection Points
 
@@ -14,9 +14,9 @@
 | Commit | Protection point |
 |---|---|
 | `ad09f9d` | source evidence、plan、workflow spec |
-| pending | core implementation |
-| pending | focused Playwright and screenshot ledger |
-| pending | regression, gates and final handoff |
+| `707cec2` | core implementation |
+| `65fb88b` | focused Playwright and screenshot ledger |
+| closing docs commit | regression, gates and final handoff |
 
 ## Core Implementation
 
@@ -103,8 +103,50 @@
 [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)。未发现 menu 脱锚、
 上下浮层错位、output 重叠或移动端 document overflow。
 
-## Handoff
+## Cross-Batch Regression
 
-若会话在专项验证前中断，新增 `scripts/verify-liblib-batch30.py` 并从
-[`PLAN.md`](PLAN.md) 第 2 节第 6 项继续；不要重新识别旧截图，也不要恢复
-`画面编辑/片段截取/画面裁切` 的无证据菜单。
+串行通过：
+
+- Batch 9：image/video floating anchor、pan/zoom、多选；
+- Batch 15：add-node 与 AudioNode；
+- Batch 26：continuation range、target/edge 和 history；
+- Batch 27：subtitle modes、rectangle history 和 pending target；
+- Batch 28：audio menu/busy/dual outputs；
+- Batch 29：frame capture 双入口、三类 metadata、graph 和 history；
+- Batch 30：subject menu、duration guard、matting panel、pending graph 和
+  history。
+
+Batch 30 增加 subject trigger 和 chevron 后，ready-video toolbar 的当前实测
+宽度从 Batch 29 的旧基线 `991px` 变为 `1009px`。因此
+`scripts/verify-liblib-batch29.py` 的 desktop/mobile 两处固定宽度断言同步
+更新为 `1009px`；其余 Batch 29 几何和行为断言未放宽。回归重写的旧批次
+PNG 已恢复到已审核提交版本，没有带入无关 binary churn。
+
+## Engineering Gates
+
+- `npm run check`：通过。
+  - ESLint：`0 error`，保留 9 条既有 FrameOS/共享代码 warning；
+  - TypeScript：通过；
+  - Next.js production build：通过。
+- `npm run docs:check`：通过，224 个 Markdown、524 个本地目标。
+- `git diff --check`：通过。
+
+## Final State
+
+Batch 30 已形成可独立接力的闭环：
+
+```text
+README
+  -> SOURCE_EVIDENCE
+  -> PLAN / SMART_MATTING_WORKFLOW.spec
+  -> IMPLEMENTATION
+  -> component specs
+  -> SCREENSHOT_ANALYSIS
+  -> scripts/verify-liblib-batch30.py
+```
+
+继续探索时先读 [`PLAN.md`](PLAN.md)、本目录和 component specs，不要重新
+识别本批 contact sheet，也不要恢复 `画面编辑/片段截取/画面裁切` 的无证据
+菜单。下一批可从 `主体消除/修改/替换` 的全屏标注器开始，但必须重新提取
+工具模式、标注 geometry、候选对象、描述/替换图和提交状态，不能从当前
+duration guard 推导完整工作流。

@@ -202,7 +202,7 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `ScriptNode`：剧本文本
 - `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
-- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离和首/尾/当前帧截取
+- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取和智能抠像
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
@@ -240,6 +240,16 @@ selection 以连续截取。重复结果的 `288 + 48` 纵向 slot、local range
 playhead、`1400ms` feedback 和 source poster bitmap 都是 clone
 approximation；真实 video seek、canvas PNG、CORS、上传和 resource
 replacement 不在原型范围内。
+
+ready-video 工具条原先的 `画面编辑 / 片段截取 / 画面裁切` 没有当前原站
+证据，现已按 bundle 纠正为 `主体消除 / 主体修改 / 主体替换 / 智能抠像`。
+默认 `30s` fixture 上前三项复刻原站 `>15s` 限制且不修改 graph；智能抠像
+打开节点下方 `512x48` 紧凑 panel，并用一次 history transaction 创建
+`512x288` pending video 和 direct source edge。source 继续保持 selected，
+重复结果纵向避让。provider/model/task/WEBM/source dimensions/duration 等
+字段是 request-shaped metadata；`--` power、pending body 和 spinner 明确
+表达前端原型边界，不声称真实抠像、透明视频、计费、上传或任务轮询。主体
+消除/修改/替换的完整标注器仍需后续重新提取，不能从当前 guard 脑补。
 
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
 
@@ -370,7 +380,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-28 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-30 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -434,13 +444,17 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch26.py` 到
-  `batch29.py` 串行通过：浮层、Add Node、续写、去字幕、音视频分离和
-  视频帧截取没有跨批回归
+  `batch30.py` 串行通过：浮层、Add Node、续写、去字幕、音视频分离、
+  视频帧截取和智能抠像没有跨批回归
+- Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
+  `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
+  selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前宽
+  `1009px`
 - Batch 29：顶部 frame menu `160px` 且 trigger center delta `0px`；
   player camera `28x28`；首个 output gap `100` world units、同 Y；
   first/last/current metadata、direct edge、重复避让、source selection、
   单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
-- `npm run docs:check`：218 个 Markdown、514 个本地目标通过
+- `npm run docs:check`：224 个 Markdown、524 个本地目标通过
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

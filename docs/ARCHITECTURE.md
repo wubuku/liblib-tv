@@ -73,8 +73,10 @@ React Flow event
 Derived media workflows use store-owned graph transactions. Continuation and subtitle
 erase create one target + one source edge; audio split creates audio + silent-video
 targets and two direct source edges; video frame capture creates one image + one direct
-source edge while preserving source selection. Each workflow records one pre-change
-snapshot so one undo/redo operates on the whole result set.
+source edge; smart matting creates one pending video + one direct source edge. Frame
+capture and smart matting preserve source selection for repeated commands. Each
+workflow records one pre-change snapshot so one undo/redo operates on the whole result
+set.
 
 ### FrameOS
 
