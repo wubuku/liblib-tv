@@ -22,7 +22,7 @@
   - editable intent
   - source-shaped footer hierarchy
 - 未选择区间时显示整段编辑 helper，并允许空意图提交。
-- submit 只产生本地整段重跑、片段重拍或续写状态。
+- submit 只产生本地整段重跑或片段重拍状态。
 
 ### `src/components/nodes/VideoNode.tsx`
 
@@ -56,7 +56,7 @@
 - 连续 filmstrip 使用本地静态素材，不是视频逐帧提取。
 - editor expand 只调整本地可编辑高度。
 - 不执行视频裁剪、真人校验、模型调用、积分扣除或结果节点创建。
-- `智能续写` 继续共享组件，但不属于本批 source fidelity 结论。
+- 本批不声明 `智能续写` fidelity；Batch 26 已将旧共享分支替换为独立两阶段 workflow。
 
 ## 3. 专项验证
 

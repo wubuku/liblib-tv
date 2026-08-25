@@ -20,7 +20,8 @@
 - 下方生成面板复刻模型菜单、模式菜单、普通/超长参数、音频、数量、高级设置和 AutoLink 视觉。
 - 超长视频范围为 `30-300s`，`300s` 显示 `14700` 本地预计积分。
 - `查看过程` 显示四阶段本地生成过程图。
-- 片段重拍/智能续写支持时间片选择、最多五段、Prompt 投影和本地提交状态。
+- 片段重拍支持最多五个预切 range、Prompt 投影和本地提交状态。
+- 智能续写使用独立 `4-30s` 连续 selector；确认后创建连接的 empty video target，由目标节点承载续写 Prompt 和退出模式事务。
 - 逐帧拉片由就绪视频工具条创建独立的 `shot-breakdown` 节点。
 
 ### 专用节点
@@ -58,10 +59,11 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - `docs/design-references/liblib-clone-seedance-shot-breakdown-complete-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch25-video-clip-contact-sheet-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch26-continuation-contact-sheet-2026-08-25.png`
 
 ### 移动端边界
 
-本轮此前已保存 `390px` 图片选中态截图，证明图片工具条/编辑面板会随节点锚定并自然被视口裁切，而不是强行居中到屏幕。续接本轮时应用内浏览器连接不可用，因此没有把新的 Seedance 移动截图写成“实测”；移动端新增组件只通过源码断点、固定尺寸和既有 390px 截图做静态回归审查。
+图片、片段重拍、智能剪辑和智能续写均已有 `390px` Playwright 实测。固定屏幕宽度的节点浮层保持节点锚定并自然被视口裁切，document 不产生横向 overflow；它们不会强行重排为移动端卡片。
 
 ### Batch 9 浮层锚定加固
 
@@ -85,6 +87,6 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 
 - Store 与页面：`src/store/canvasStore.ts`, `src/app/page.tsx`
 - 图片：`src/components/nodes/ImageNode.tsx`, `src/components/ImageToolbar.tsx`, `src/components/ImageEditPanel.tsx`
-- 视频：`src/components/nodes/VideoNode.tsx`, `src/components/VideoProcessingToolbar.tsx`, `src/components/VideoGenerationPanel.tsx`, `src/components/SegmentReshootPanel.tsx`
+- 视频：`src/components/nodes/VideoNode.tsx`, `src/components/VideoProcessingToolbar.tsx`, `src/components/VideoGenerationPanel.tsx`, `src/components/SegmentReshootPanel.tsx`, `src/components/VideoContinuationSelector.tsx`
 - 专用节点：`src/components/nodes/ShotBreakdownNode.tsx`, `src/components/nodes/ShotBreakdownResultNode.tsx`, `src/components/nodes/VideoClipNode.tsx`, `src/components/VideoClipEditPanel.tsx`
 - 对应组件规格：`docs/research/components/`

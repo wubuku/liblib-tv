@@ -2,7 +2,9 @@
 
 ## Purpose
 
-`src/components/SegmentReshootPanel.tsx` is the selected-ready-video lower editor for `片段重拍` and `智能续写`.
+`src/components/SegmentReshootPanel.tsx` is the selected-ready-video lower editor for `片段重拍`.
+
+`智能续写` is a separate two-stage workflow owned by `VideoContinuationSelector` and the target `VideoGenerationPanel`. Do not add a continuation mode back to this component.
 
 ## Contract
 
@@ -12,11 +14,9 @@
 - Prompt editor: separate `660x252` surface with an `8px` gap
 - Filmstrip contains seven selectable 4-second ranges plus a disabled final 2-second remainder
 - Reshoot allows at most five selected chunks
-- Continue selects one chunk
 - Prompt projection uses a `视频 1` token and exact `00:00-00:04`-style range chips
 - No-range reshoot permits empty-intent submission because the source bundle defines it as a whole-video rerun
-- Continue still requires intent in the local prototype
-- Submit produces local whole-rerun, segment-remake or continuation confirmation only
+- Submit produces local whole-rerun or segment-remake confirmation only
 
 ## Structure
 

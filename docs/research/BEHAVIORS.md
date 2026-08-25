@@ -205,7 +205,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 
 ### Select VideoNode
 - **Failed video:** Shows the `660×274` Seedance generation panel below the child node.
-- **Ready video:** Also shows the top processing toolbar; its lower panel can switch among generator, segment reshoot and continuation.
+- **Ready video:** Also shows the top processing toolbar. Generator and segment reshoot use full lower editors; smart continuation first uses a separate `660x56` range selector, then creates a connected empty target whose generation panel owns the continuation Prompt.
 - **Anchor:** The lower panel center equals the video child center, remains screen-sized through zoom, and uses a `16 * zoom` gap.
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.

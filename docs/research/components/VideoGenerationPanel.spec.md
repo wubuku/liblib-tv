@@ -111,6 +111,26 @@ The video is a child of `g-EFbbHpwq5w`. Child drag, pan, and zoom keep the panel
 
 Stable test selector: `data-video-generation-panel`.
 
+## Continuation Target State
+
+When `VideoNodeData.continuation` exists, the same `660x274` panel becomes the second stage of smart continuation:
+
+- source tile and capability text are visible;
+- visible prefix is `对 {sourceLabel} 的 {range} 片段进行续写：`;
+- Prompt placeholder is `请输入需要续写的内容`;
+- model and mode are disabled at `2.5 / 全能参考`;
+- `退出续写模式` calls one store transaction that removes metadata and the declared source edge while preserving the target node.
+
+Stable selectors:
+
+- `[data-video-continuation-source]`
+- `[data-video-continuation-context]`
+- `[data-video-continuation-range]`
+- `[data-video-continuation-exit]`
+- `[data-video-continuation-locked]`
+
+The source tile uses metadata copied at target creation because this prototype has no service-backed media reference object. Prompt submission remains local feedback.
+
 ## Verification
 
 Verified on desktop local clone:
@@ -126,6 +146,8 @@ Verified on desktop local clone:
 - normal/long parameter dialog geometry and control hierarchy
 - mode disabled matrix and `300s / 14700`
 - source-visible seven-model menu, premium/estimate hierarchy and selected-only descriptions
+- continuation source/range prefix, dedicated placeholder and fixed model/mode
+- continuation clear transaction, target preservation and undo/redo
 
 Evidence includes:
 
@@ -135,3 +157,4 @@ Evidence includes:
 - `scripts/verify-liblib-batch9.py`
 - `scripts/verify-liblib-batch21.py`
 - `scripts/verify-liblib-batch22.py`
+- `scripts/verify-liblib-batch26.py`

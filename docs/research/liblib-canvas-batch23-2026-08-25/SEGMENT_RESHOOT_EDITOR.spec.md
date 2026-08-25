@@ -62,5 +62,4 @@ Stable selectors:
 
 ## Fidelity boundary
 
-The source evidence is an article composite plus current bundle strings, not a live DOM rect. Exact panel height, original media and source SVG icons remain clone-only approximations. `智能续写` may continue sharing implementation primitives but is not covered by this source fidelity contract.
-
+The source evidence is an article composite plus current bundle strings, not a live DOM rect. Exact panel height, original media and source SVG icons remain clone-only approximations. `智能续写` is not covered by this contract and is implemented separately by Batch 26.

@@ -55,7 +55,8 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Ready-video top toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit and download actions. |
-| `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video lower editor for 片段重拍 and 智能续写. |
+| `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video `片段重拍` filmstrip + Prompt editor; no continuation branch. |
+| `VideoContinuationSelector` | `src/components/VideoContinuationSelector.tsx` | `660x56` smart-continuation range selector with handle/region drag and target-node handoff. |
 | `VideoClipEditPanel` | `src/components/VideoClipEditPanel.tsx` | `660x191` node-anchored 智能剪辑 Prompt editor with local-only mode/reference/submit feedback. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |

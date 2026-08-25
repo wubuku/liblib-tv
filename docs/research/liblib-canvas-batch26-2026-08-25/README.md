@@ -1,6 +1,6 @@
 # Batch 26：智能续写两阶段工作流
 
-> 状态：证据与实施计划已落档，代码实施待本批后续提交。
+> 状态：已完成；证据、计划、实现、专项截图、跨批回归和工程门禁均已落档。
 
 ## 批次前缺口
 
@@ -46,3 +46,13 @@
 ## 原型边界
 
 本批不裁剪或上传真实视频，不执行合规校验、Seedance 调用、积分扣除、任务轮询或跨会话保存。目标是忠实复刻当前原站可确认的画布拓扑、阶段切换、控件层级和本地交互合同。
+
+## 结果摘要
+
+- 独立 selector：`660x56`，`8 * zoom` node gap，`4-30s` range。
+- graph handoff：确认后创建 empty video target 和 source-to-target edge。
+- target Prompt：来源/range 前缀、专用 placeholder、固定 `2.5 / 全能参考`。
+- clear：保留 target，移除 continuation metadata 和声明 edge。
+- 专项验证：`scripts/verify-liblib-batch26.py`。
+- 回归：Batch 9、21、23、25、26，`npm run check`，`npm run docs:check`。
+- Git 保护点：`1b601d2`、`d598f2d`、`ecde7ea`。

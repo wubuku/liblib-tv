@@ -87,9 +87,55 @@
 
 - `1b601d2 docs: plan smart continuation workflow`
 - `d598f2d feat(liblib): add smart continuation workflow`
+- `ecde7ea test(liblib): verify smart continuation workflow`
+- final documentation and regression record: this commit
 
-## 7. Pending
+## 7. Cross-Batch Regression
 
-- 运行 Batch 9、21、23、25、26 跨批回归。
-- 运行 `npm run check`、`npm run docs:check`、`git diff --check`。
-- 更新 component specs、inventory、HARNESS 和最终结果。
+串行运行：
+
+```bash
+for script in \
+  scripts/verify-liblib-batch9.py \
+  scripts/verify-liblib-batch21.py \
+  scripts/verify-liblib-batch23.py \
+  scripts/verify-liblib-batch25.py \
+  scripts/verify-liblib-batch26.py
+do
+  python3 "$script" || exit 1
+done
+```
+
+结果：全部通过。
+
+- Batch 9：image/video floating anchor、parent/child follow、pan/zoom、多选。
+- Batch 21：normal/long parameters、mode matrix、`300s / 14700`。
+- Batch 23：reshoot layers、五段上限、tokens、whole rerun。
+- Batch 25：video-clip editor、zoom/drag/pan、多选、mobile。
+- Batch 26：continuation 全合同。
+
+## 8. Engineering Gates
+
+- `npm run check`：通过。
+  - ESLint：`0 error`，保留 9 条既有 FrameOS warnings。
+  - TypeScript：通过。
+  - Next.js production build：通过。
+- `npm run docs:check`：通过，198 个 Markdown、468 个本地目标。
+- `git diff --check`：通过。
+
+跨批脚本重写的既有/已提交 PNG 有非确定性压缩或动画采样差异；这些测试产物已恢复到审核过的提交版本，没有把无关二进制 churn 带入最终文档提交。
+
+## 9. Final State
+
+Batch 26 已完成：
+
+- source evidence；
+- implementation plan；
+- code implementation；
+- focused Playwright and screenshots；
+- screenshot recognition ledger；
+- cross-batch regression；
+- production/docs gates；
+- agent-facing component and Big Picture updates。
+
+待最终文档提交后，Batch 26 可以独立由 `README.md -> IMPLEMENTATION.md -> component specs -> verify script` 接力。

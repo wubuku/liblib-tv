@@ -223,6 +223,8 @@ Seedance 模型菜单当前只表达截图可见集合，不表达完整模型�
 
 片段重拍不能被实现成一个带自创标题栏的普通表单。文章流程图和当前 bundle 共同支持“独立 4 秒时间带 + 生成器式 Prompt editor”的结构、最多五段、视频/range token，以及未选区间时“留空 = 原样重跑一次”。clone 使用 `660x56` filmstrip 和 `660x252` editor，并继续遵守节点锚定、反缩放与自然裁切合同；缩略帧和提交结果仍是本地 mock。
 
+智能续写不是片段重拍的单选分支。当前线上 bundle 支持“先截取 `4-30s` 前置视频，再创建右侧续写目标”的两阶段模型：第一阶段是节点下方 `660x56` 连续 timeline，使用 `8 * zoom` gap，支持 start/end/region drag；确认后以一次 history transaction 创建 empty video target 和 source edge。目标节点显示来源/range 前缀、专用 Prompt placeholder，并锁定 `Seedance 2.5 / 全能参考`；退出续写只清 metadata 和声明 edge，不删除目标。真实裁剪、上传、合规、模型调用和持久化仍不在原型范围内。
+
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
 
 通用“视频编辑 Beta”同样不能把全部交互塞进节点本体。原站 `350x350` `video-clip` 节点只显示未连接视频提示和四个单列尝试命令；选中态的 `+参考`、Prompt、默认模式、输出参数和发送位于节点下方约 `660x191` 的独立 panel。clone 复用既有反缩放锚定合同，并保持 multi-selection hide 和 viewport 自然裁切。
