@@ -1,7 +1,7 @@
 # LibTV 画布 Batch 10：图片编辑器五节点状态矩阵
 
 > 建档日期：2026-08-25
-> 状态：已完成规划，等待实施与验证
+> 状态：计划、实施、专项验证、跨批回归和完整工程检查已完成
 > 目标：用同一登录态原站审计中的五个图片节点逐一校准 clone，消除按粗粒度 `editorVariant` 猜测面板高度、入口和内容的偏差。
 
 ## 为什么做这一批
@@ -20,6 +20,7 @@ Batch 9 已证明图片上下浮层的锚点、反缩放和裁切行为正确，
 
 - [`PLAN.md`](PLAN.md)：缺口、优先级、范围和验收标准
 - [`IMAGE_EDITOR_STATE_MATRIX.spec.md`](IMAGE_EDITOR_STATE_MATRIX.spec.md)：五节点原站事实、证据边界和 clone 合同
+- [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：本批 clone 截图的一次性识图记录和复用边界
 - [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实施、测试、截图和提交记录
 
 ## 证据入口
@@ -39,3 +40,19 @@ Batch 9 已证明图片上下浮层的锚点、反缩放和裁切行为正确，
 - **证据反推**：面板高度必须由具体节点状态显式表达，而不能仅由“是否有 Prompt”推断。
 - **clone 决策**：保留本地 AutoLink 交互闭环，但把入口收敛为 footer 图标按钮；具体图标采用 Lucide 近似，不声称是原站 SVG 的逐路径复制。
 
+## 本批结果
+
+- 五个初始图片节点显式携带 `191/191/211/191/274` 面板高度；
+- `咖啡` 使用原站完整 602 字 Prompt，`分镜 #2` 使用原站 204 字 Prompt；
+- “参考”入口改为仅在当前 references 非空时显示；
+- placeholder、`54x26` 顶部入口、`47x47` 参考图和 `32px` footer 控件与审计矩形对齐；
+- 去掉 `⌘` / `▭` 脑补字符，改为图标控件；
+- AutoLink 不再显示为顶部文字 pill，改为 footer 图标入口，并保留建议、确认和写入引用的本地闭环；
+- Batch 4-Batch 10 和 `npm run check` 全部通过。
+
+关键提交：
+
+```text
+8c54e98 docs: plan LibTV image editor state matrix
+23fbe80 fix: align LibTV image editor states
+```

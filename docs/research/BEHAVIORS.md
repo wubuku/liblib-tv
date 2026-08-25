@@ -161,6 +161,8 @@ Buttons (left to right):
 
 Image prompt, reference, AutoLink and derived-node behaviors are documented in `ImageNode.spec.md` and `ImageEditPanel.spec.md`.
 
+The five source image states use explicit panel heights rather than a generic Prompt-derived rule: `191/191/211/191/274`. In particular, `咖啡馆` has a 7-character Prompt but remains `191px`. Only nodes with current references show the “参考” top control. AutoLink is a footer icon in the clone; its local suggestion flow is retained as prototype behavior, not claimed as a fully extracted original interaction. See [`liblib-canvas-batch10-2026-08-25/`](./liblib-canvas-batch10-2026-08-25/).
+
 ## Video-Specific Behaviors
 
 ### Select VideoNode

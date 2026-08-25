@@ -53,6 +53,8 @@ The editor is a child of `ImageNode`, centered on the node and counter-scaled by
 - 28%, 53%, and 100% zoom preserve toolbar/panel screen size
 - mobile clipping follows the original; do not move the overlays to page center to keep them visible
 - `scripts/verify-liblib-batch9.py` remains green
+- the five initial image nodes preserve their explicit editor height, Prompt, references, top controls and settings matrix
+- `scripts/verify-liblib-batch10.py` remains green
 
 ## Assets
 

@@ -56,16 +56,31 @@ Batch 9 clone measurement at inferred `zoom = 0.283816`:
 
 ## Visual Structure
 
-- `660x274` for the populated `分镜 #2` prompt state
+- `660px` fixed screen width
 - `16px` corner radius
 - `#262626` panel surface with a subtle border and shadow
-- reference, mark, and style controls
-- two image references
+- source placeholder: `可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜`
+- `54x26` reference, mark, and style controls
+- optional `47x47` image references
 - prompt editor
-- model and output controls
+- `32px` model, output and icon controls
 - translation, undo, and generate actions
 
-Panel height varies with the source-observed node state. The current clone implements `191px` empty, `211px` prompt, and `274px` referenced/tool states. Backend generation remains outside the prototype boundary.
+Panel height is explicit per known source node and must not be inferred only from Prompt presence:
+
+| Source node | Height | Prompt | References | Top controls |
+|---|---:|---:|---:|---|
+| male | 191 | 0 | 0 | mark / style |
+| female | 191 | 0 | 0 | mark / style |
+| coffee | 211 | 602 | 0 | mark / style |
+| cafe | 191 | 7 | 0 | mark / style |
+| storyboard | 274 | 204 | 2 | reference / mark / style |
+
+The `咖啡馆` state directly disproves `hasPrompt => 211px`. Known nodes carry `editorHeight`; only compatibility data falls back to the older variant mapping.
+
+AutoLink is not a visible top-row text pill. The clone exposes it as a footer icon when a Prompt exists without references, then keeps its local suggest/confirm/write workflow. That workflow remains a prototype decision because the original popover was not fully extracted.
+
+The footer uses icon components instead of the old guessed `⌘` and `▭` text characters. Exact original SVG paths remain unconfirmed. Backend generation remains outside the prototype boundary.
 
 ## Interaction Rules
 
@@ -74,6 +89,7 @@ Panel height varies with the source-observed node state. The current clone imple
 - The panel's buttons and textarea remain at normal screen scale at every canvas zoom.
 - Multi-selection hides all single-node editing overlays.
 - Stable test selector: `data-image-edit-panel`.
+- Five-state regression: `scripts/verify-liblib-batch10.py`.
 
 ## Files Referenced
 
@@ -81,3 +97,5 @@ Panel height varies with the source-observed node state. The current clone imple
 - `src/components/nodes/ImageNode.tsx`
 - `src/components/ImageToolbar.tsx`
 - `scripts/verify-liblib-batch9.py`
+- `scripts/verify-liblib-batch10.py`
+- `docs/research/liblib-canvas-batch10-2026-08-25/`
