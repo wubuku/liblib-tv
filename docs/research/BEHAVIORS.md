@@ -5,16 +5,18 @@
 ## Page-Level
 
 ### Canvas Interaction Model
-- **Type:** Pan + Zoom + Drag (React Flow)
-- **Pan:** Click + drag on empty canvas area
+- **Type:** Select/marquee + temporary/persistent pan + zoom + node drag (React Flow)
+- **Select mode:** Empty-area left drag creates a partial-intersection marquee selection.
+- **Persistent pan:** Press `H`, then left drag the pane. Press `V` to return to select mode.
+- **Temporary pan:** Hold `Space` while left dragging the pane; release returns to the persistent tool.
 - **Zoom:** Scroll wheel or pinch gesture (configured via `zoomOnScroll`)
-- **Initial zoom:** 54% (`x: 0, y: 0, zoom: 0.54` in `canvasStore.ts`)
-- **Grid snap:** Toggle via `useUIStore.toggleGrid`; `snapGrid: [20, 20]`
+- **Initial zoom:** About 53% on desktop and 28% on compact viewports for the source-derived project baseline.
+- **Grid snap:** Toggle via `useUIStore.toggleSnapToGrid`; `snapGrid: [20, 20]`
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
 - `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph
-- `Cmd/Ctrl+D` — Duplicate the selected node and its connected edges
+- `Cmd/Ctrl+D` — Duplicate the current selection; a single ordinary node keeps connected-edge compatibility, while multi-selection copies internal edges
 - `Tab` — Open the add-node panel
 - `Option/Alt+Shift+F` — Arrange canvas
 - `Escape` — Deselect selection + close panels (`useUIStore.closeAllPanels` + `selectNode(null)`)
@@ -22,6 +24,7 @@
 - `Cmd/Ctrl+0` — Fit the canvas
 - `Cmd/Ctrl++` / `Cmd/Ctrl+-` — Zoom in/out
 - `V` / `H` — Select/move tool and hand tool
+- Hold `Space` — Temporary hand tool; keyup/blur restores the persistent tool
 - `G` — Group at least two selected ordinary nodes
 - `Shift+G` — Ungroup the selected group or one of its children
 

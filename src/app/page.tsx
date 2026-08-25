@@ -95,6 +95,7 @@ export default function Home() {
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
+  const [isSpacePressed, setIsSpacePressed] = useState(false);
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
   const [flowViewport, setFlowViewport] = useState(() => {
     if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
@@ -108,6 +109,7 @@ export default function Home() {
     },
     [nodes, selectedNodeIds],
   );
+  const effectivePan = canvasTool === "pan" || isSpacePressed;
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
@@ -227,10 +229,18 @@ export default function Home() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
-      if (target?.matches("input, textarea, [contenteditable='true']")) return;
+      const isEditableTarget = Boolean(
+        target?.closest("input, textarea, [contenteditable='true'], [contenteditable='plaintext-only']"),
+      );
+      if (isEditableTarget) return;
 
       const modifier = event.metaKey || event.ctrlKey;
 
+      if (event.code === "Space") {
+        event.preventDefault();
+        if (!event.repeat) setIsSpacePressed(true);
+        return;
+      }
       if (event.key === "Delete" || event.key === "Backspace") {
         const { selectedNodeIds: nodeIds, selectedNodeId: nodeId } = useCanvasStore.getState();
         if (nodeIds.length > 0 || nodeId) {
@@ -271,8 +281,8 @@ export default function Home() {
         event.preventDefault();
         organize();
       }
-      if (event.key.toLowerCase() === "v") setCanvasTool("select");
-      if (event.key.toLowerCase() === "h") setCanvasTool("pan");
+      if (!modifier && !event.altKey && event.key.toLowerCase() === "v") setCanvasTool("select");
+      if (!modifier && !event.altKey && event.key.toLowerCase() === "h") setCanvasTool("pan");
       if (modifier && event.key === "0") {
         event.preventDefault();
         fitView();
@@ -286,9 +296,24 @@ export default function Home() {
         zoomBy(-0.1);
       }
     };
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === "Space") setIsSpacePressed(false);
+    };
+    const resetTemporaryPan = () => setIsSpacePressed(false);
+    const handleVisibilityChange = () => {
+      if (document.hidden) resetTemporaryPan();
+    };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("blur", resetTemporaryPan);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("blur", resetTemporaryPan);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, [
     closeAllPanels,
     duplicateSelectedNodes,
@@ -388,17 +413,20 @@ export default function Home() {
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
             viewport={flowViewport}
-            className={canvasTool === "pan" ? "cursor-grab bg-[#141414]" : "bg-[#141414]"}
+            className={effectivePan ? "cursor-grab bg-[#141414]" : "bg-[#141414]"}
+            data-canvas-tool={canvasTool}
+            data-temporary-pan={isSpacePressed}
             defaultEdgeOptions={{ type: "default", animated: false, style: { stroke: "#7a8090", strokeWidth: 1.5 } }}
             snapToGrid={snapToGrid}
             snapGrid={[20, 20]}
             onViewportChange={onViewportChange}
             panOnScroll
             zoomOnScroll
-            panOnDrag
-            selectionOnDrag={canvasTool === "select"}
+            panOnDrag={effectivePan}
+            panActivationKeyCode={null}
+            selectionOnDrag={canvasTool === "select" && !effectivePan}
             connectionLineStyle={{ stroke: "#09caf5", strokeWidth: 1.5 }}
-            nodesDraggable={canvasTool === "select"}
+            nodesDraggable={canvasTool === "select" && !effectivePan}
             nodesConnectable
             elementsSelectable
             selectNodesOnDrag={false}
