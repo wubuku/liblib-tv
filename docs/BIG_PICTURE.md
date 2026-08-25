@@ -218,6 +218,8 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 
 Seedance 视频参数不能压缩成普通下拉列表。原站普通和超长参数分别是 `341x445`、`341x397` 的高 dialog；比例使用 5+2 glyph cards，清晰度、音频和数量使用整宽 segmented controls，时长带当前值框。超长模式切换到 `30-300s`、移除数量并保留时长说明；`300s` 对应的 `14700` 只是本地原型中的 source-shaped 积分显示。
 
+Seedance 模型菜单当前只表达截图可见集合，不表达完整模型库。原站证据支持七项顺序、estimate、前五项 premium 和 selected-only description；clone 使用 `380x410` 菜单并复现 2.5/Fast 两个已确认展开态。其他模型说明、真实可用性、计费和原始 SVG logo 都不在证据范围内。
+
 截图识别结果必须及时文本化。先搜索 batch 的 `SCREENSHOT_ANALYSIS.md` 和组件规格，已有记录能回答时不得重复打开整张截图；新识图需记录路径、viewport/state、结构、几何、证据等级和未确认区域。
 
 ## 6. FrameOS 运行模型

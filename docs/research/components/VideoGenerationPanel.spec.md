@@ -8,7 +8,14 @@
 
 - Five input commands: `参考`, `标记`, `特效`, `角色库`, `运镜`
 - Reference strip with three local mock assets and Auto Link summary
-- Model menu: Seedance 2.5, Seedance 2.0 VIP, Minimax H3, Kling O3
+- Source-visible model menu:
+  - Seedance 2.5 — `2min`
+  - Seedance 2.0 VIP — `2min`
+  - Minimax H3 — `2min`
+  - Seedance 2.0 Fast VIP — `2min`
+  - Seedance 2.0 Mini — `2min`
+  - Wan 3.0 Prime — `1min`
+  - Wan 3.0 — `3min`
 - Mode menu keeps source-disabled modes disabled:
   - `文生视频`
   - `全能参考`
@@ -55,6 +62,32 @@ Stable selectors:
 
 Ratio glyphs are clone CSS outlines because the exact source SVG paths were not extracted. The long helper is a conservative paraphrase rather than a verbatim DOM claim.
 
+### Model menu
+
+The model popover uses the source screenshot-backed geometry:
+
+```text
+size = 380x410
+relative to generation panel = left 0, top -176.7
+selected row = 58px
+compact row = 48px
+```
+
+The first five source-visible items show a premium icon; the two Wan items do not. Only the selected row expands its confirmed description. Known descriptions are limited to:
+
+- Seedance 2.5: `最强视频模型，全能参考，30s音画同步`
+- Seedance 2.0 Fast VIP: `最强视频模型快速版，会员专属通道，15s音画同步`
+
+Other model descriptions remain absent until directly extracted. The seven rows are not documented as a complete model library, and the clone icons do not claim the source SVG paths.
+
+Stable selectors:
+
+- `[data-video-model-trigger]`
+- `[data-video-model-menu]`
+- `[data-video-model-option]`
+- `[data-video-model-premium]`
+- `[data-video-model-description]`
+
 ## State
 
 `model`, `mode`, `ratio`, `resolution`, `duration`, `audio`, `count`, advanced switches, prompt, process view, and local submission state are component-local prototype state. The range uses `onInput` so drag, keyboard, and automation update the same React state path.
@@ -92,6 +125,7 @@ Verified on desktop local clone:
 - multi-selection overlay lifecycle
 - normal/long parameter dialog geometry and control hierarchy
 - mode disabled matrix and `300s / 14700`
+- source-visible seven-model menu, premium/estimate hierarchy and selected-only descriptions
 
 Evidence includes:
 
@@ -100,3 +134,4 @@ Evidence includes:
 - `docs/design-references/liblib-clone-batch9-video-anchor-929-2026-08-25.png`
 - `scripts/verify-liblib-batch9.py`
 - `scripts/verify-liblib-batch21.py`
+- `scripts/verify-liblib-batch22.py`

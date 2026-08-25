@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch21.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch22.py` | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -41,11 +41,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 19 | minimap source anchor, fit-view outline update, asset-drawer follow and mobile toolbar avoidance |
 | Batch 20 | 720° panorama node/edge transaction, placeholder, specialized panel, geometry and responsive clipping |
 | Batch 21 | Seedance normal/long parameter dialog geometry, controls, mode matrix and `300s / 14700` |
+| Batch 22 | Seedance source-visible model menu geometry, seven-row matrix, premium hierarchy and selected descriptions |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..21}.py; do
+for script in scripts/verify-liblib-batch{4..22}.py; do
   python3 "$script" || exit 1
 done
 ```
