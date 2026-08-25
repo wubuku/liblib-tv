@@ -57,3 +57,46 @@
 
 除非需要确认 panorama 提交后的状态、被裁切的右侧控件或其他图片动作，不再重新打开此截图。后续先读本文件。
 
+## 2. Clone verification
+
+### 文件
+
+- `docs/design-references/liblib-clone-batch20-panorama-desktop-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch20-panorama-mobile-390-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch20-panorama-contact-sheet-2026-08-25.png`
+- 生成日期：2026-08-25
+- 最终状态识图次数：1
+- 同路径预检次数：1；预检发现 screenshot 中残留了无关的整理确认卡，随后把准备步骤从 `Alt+Shift+f` 改为 `Meta+0` 并重新生成最终证据
+
+### Verified clone fact
+
+- Desktop 使用 `929x874` viewport 和原生 fit-view `28%`，没有整理确认或其他无关 overlay。
+- 新节点为深灰空媒体面，居中显示 muted image icon；源图片只出现在 panel 的编号 `1` reference 中。
+- source-to-derived edge、cyan selected border、顶部图片工具条和底部专用 panel 同时可见。
+- panel 沿新节点中心锚定，右侧超出 viewport 后自然裁切；没有移动到页面中心。
+- Mobile 使用初始 `28%` viewport。`900.5px` 工具条和 `660px` panel 都按节点中心自然裁切，页面本身没有横向滚动。
+- 最终截图中没有真实生成结果、上传态、后端任务 ID、账户资产或持久化反馈。
+
+### DOM-backed geometry
+
+| Item | Desktop `929x874` |
+|---|---:|
+| source node | `x=459.382, y=105.768, w=172.986, h=97.339` |
+| panorama node | `x=665.741, y=75.176, w=194.679, h=97.339` |
+| panorama panel | `x=433.080, y=176.965, w=660, h=252` |
+| node/panel center | `763.080 / 763.080` |
+| node-to-panel gap | `4.450px`, equal to `16 * zoom` within sub-pixel rounding |
+
+Mobile assertions：
+
+- panorama node: `x≈260.6, w=196`，右侧自然越过 `390px` viewport；
+- panorama panel: `x≈28.6, w=660`，右侧自然裁切；
+- `documentElement` 和 `body` 的 `scrollWidth == clientWidth == 390`。
+
+### Visual conclusion
+
+clone 已消除原先“立即复制一张完成图片”的错误模型，并复现原站证据支持的局部层级：source image、连接线、空 panorama 节点、单参考图专用 panel。`700x350`、`+120/-110` 和 `660x252` 仍属于截图反推后的 clone 参数，不应改写为原站 DOM fact。
+
+### Re-inspection rule
+
+除非实现或截图文件发生变化，后续不再打开这三张 clone 图；几何与行为问题优先运行 `scripts/verify-liblib-batch20.py`。

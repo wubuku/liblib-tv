@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch11.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch20.py` | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -39,11 +39,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 17 | asset drawer context, source-order node tree, browse controls and active-canvas empty states |
 | Batch 18 | source-shaped zoom menu, viewport commands, Escape/outside cleanup and overlay mutual exclusion |
 | Batch 19 | minimap source anchor, fit-view outline update, asset-drawer follow and mobile toolbar avoidance |
+| Batch 20 | 720° panorama node/edge transaction, placeholder, specialized panel, geometry and responsive clipping |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..19}.py; do
+for script in scripts/verify-liblib-batch{4..20}.py; do
   python3 "$script" || exit 1
 done
 ```

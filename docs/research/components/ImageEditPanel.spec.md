@@ -82,6 +82,28 @@ AutoLink is not a visible top-row text pill. The clone exposes it as a footer ic
 
 The footer uses icon components instead of the old guessed `⌘` and `▭` text characters. Exact original SVG paths remain unconfirmed. Backend generation remains outside the prototype boundary.
 
+## Panorama Variant
+
+The source-backed `panorama` variant is separate from the five initial image-editor states:
+
+- explicit `252px` screen height;
+- one `47x47` source-image reference and numbered badge;
+- `+参考`, purple `720` marker and `720全景`;
+- helper copy `点击生成，直接将场景图像转为720全景图，支持文生/参考图`;
+- `Lib Image` and `2:1 · 标准画质 · 2K · 1张`;
+- local-only submit feedback with no generated media.
+
+It uses the same `660px` node-centered inverse-scale wrapper and `16 * zoom` outer gap. It is allowed to clip at desktop and mobile viewport edges.
+
+Stable selectors:
+
+- `[data-panorama-edit-panel]`
+- `[data-panorama-reference]`
+- `[data-panorama-prompt]`
+- `[data-panorama-submit]`
+
+The geometry values are screenshot-derived inference, while the empty node, single reference and visible copy are direct source observations. See [`../liblib-canvas-batch20-2026-08-25/`](../liblib-canvas-batch20-2026-08-25/).
+
 ## Interaction Rules
 
 - `nodrag nowheel nopan` prevents editor gestures from moving the React Flow node or viewport.
@@ -90,6 +112,7 @@ The footer uses icon components instead of the old guessed `⌘` and `▭` text 
 - Multi-selection hides all single-node editing overlays.
 - Stable test selector: `data-image-edit-panel`.
 - Five-state regression: `scripts/verify-liblib-batch10.py`.
+- Panorama regression: `scripts/verify-liblib-batch20.py`.
 
 ## Files Referenced
 

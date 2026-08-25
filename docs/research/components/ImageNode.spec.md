@@ -13,7 +13,7 @@ ImageNode
 ├── ImageToolbar via React Flow NodeToolbar (selected only)
 ├── target/source Handle
 ├── floating filename + dimensions
-├── full-node image and optional watermark
+├── full-node image and optional watermark, or a typed empty placeholder
 └── ImageEditPanel inside the node shell (selected only)
 ```
 
@@ -44,6 +44,26 @@ Its horizontal center equals the selected node center. It is not centered in the
 
 The editor is a child of `ImageNode`, centered on the node and counter-scaled by `1 / zoom`. See `ImageEditPanel.spec.md` for the exact formula and measurements.
 
+## Panorama Derived State
+
+Batch 20 replaces the previous clone-only behavior that copied source media immediately after `全景`.
+
+```text
+source image
+  └── edge
+      └── selected 720°全景图
+          ├── 700x350 dark panorama placeholder
+          └── specialized 660x252 panel
+```
+
+- `imageUrl` is `null`; the source image appears only as the panel's single reference.
+- world position uses the screenshot-derived offset `source right + 120`, `source y - 110`.
+- node and edge insertion are one undo/redo transaction.
+- stable placeholder selector: `[data-image-placeholder="panorama"]`.
+- exact contract: [`../liblib-canvas-batch20-2026-08-25/PANORAMA_DERIVATION.spec.md`](../liblib-canvas-batch20-2026-08-25/PANORAMA_DERIVATION.spec.md).
+
+Only `全景` has this source-backed derived-node contract. `多角度`, `打光`, `九宫格`, `高清` and `宫格切分` still use older clone prototype behavior and must not be described as faithful until each action is sampled on the source.
+
 ## Required Regressions
 
 - selecting any image shows exactly one top toolbar and one bottom panel
@@ -55,6 +75,8 @@ The editor is a child of `ImageNode`, centered on the node and counter-scaled by
 - `scripts/verify-liblib-batch9.py` remains green
 - the five initial image nodes preserve their explicit editor height, Prompt, references, top controls and settings matrix
 - `scripts/verify-liblib-batch10.py` remains green
+- panorama creation preserves placeholder, edge, panel anchor and single-transaction history
+- `scripts/verify-liblib-batch20.py` remains green
 
 ## Assets
 
