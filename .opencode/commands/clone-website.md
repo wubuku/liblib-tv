@@ -126,6 +126,30 @@ Navigate to the target URL with browser MCP.
 - Save to `docs/design-references/` with descriptive names
 - These are your master reference — builders will receive section-specific crops/screenshots later
 
+### Screenshot Recognition Ledger
+
+Screenshot recognition is expensive. Treat the first visual inspection as an extraction step that must produce durable text, not as disposable working memory.
+
+Before opening or visually re-inspecting a screenshot:
+
+1. Search `docs/research/` for the screenshot filename and the component/state it represents.
+2. Reuse an existing written analysis when it already answers the current question.
+3. Re-inspect only when the question is new, the image changed, or the prior record marks the relevant area as uncertain.
+
+Immediately after the first visual inspection, write the result into the relevant batch document or component spec. Include:
+
+- screenshot path, source site, capture date, viewport, zoom, and interaction state;
+- visible regions and their layer/order relationships;
+- exact text, controls, icons, media, and empty/loading/error states;
+- measured or estimated geometry, spacing, alignment, clipping, and colors;
+- behavior inferred from comparison with adjacent states;
+- which observations are direct screenshot facts, which are DOM-backed, and which remain hypotheses;
+- unresolved or illegible areas that would justify another crop or inspection.
+
+Prefer one discoverable `SCREENSHOT_ANALYSIS.md` per research batch when several screenshots belong to the same workflow. Component-specific findings should also be summarized in `docs/research/components/<Name>.spec.md`. Link the screenshot and the analysis record both ways where practical.
+
+Do not repeatedly spend visual-analysis budget on the same full screenshot merely to recover forgotten details. Read the ledger first, then inspect only the smallest missing crop or state.
+
 ### Global Extraction
 Extract these from the page before doing anything else:
 
