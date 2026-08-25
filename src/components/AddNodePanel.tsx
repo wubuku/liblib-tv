@@ -63,6 +63,7 @@ export function AddNodePanel() {
   return (
     <div
       ref={panelRef}
+      data-liblib-overlay="add-node"
       className="fixed bottom-[69px] left-[calc(50%-242px)] z-[62] h-[481px] w-[196px] rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:bottom-[109px] max-sm:left-3"
     >
       <h3 className="px-2 pb-1.5 pt-1 text-xs font-medium text-[#9a9a9a]">添加节点</h3>

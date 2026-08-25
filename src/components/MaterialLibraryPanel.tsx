@@ -15,6 +15,7 @@ export function MaterialLibraryPanel({ onClose }: MaterialLibraryPanelProps) {
   return (
     <section
       aria-label="素材库"
+      data-liblib-overlay="primary:material"
       className="fixed bottom-[73px] left-[calc(50%-24px)] z-[62] h-[163px] w-[240px] -translate-x-1/2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:bottom-[109px] max-sm:left-1/2"
     >
       <h2 className="px-2 py-1 text-sm font-medium text-[#929292]">素材库</h2>

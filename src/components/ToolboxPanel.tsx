@@ -49,6 +49,7 @@ export function ToolboxPanel({ onClose }: ToolboxPanelProps) {
   return (
     <section
       aria-label="我的工具箱"
+      data-liblib-overlay="primary:toolbox"
       className="fixed bottom-[73px] left-[calc(50%-64px)] z-[62] flex h-[460px] w-[480px] max-w-[calc(100vw-24px)] -translate-x-1/2 flex-col overflow-hidden rounded-xl border border-[#363636] bg-[#262626] pb-3 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:bottom-[109px] max-sm:left-1/2 max-sm:max-h-[calc(100vh-130px)]"
     >
       <header className="flex h-[52px] shrink-0 items-center gap-2 px-4">

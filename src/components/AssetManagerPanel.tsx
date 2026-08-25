@@ -27,7 +27,7 @@ export function AssetManagerPanel() {
   const nodes = getActiveCanvas()?.nodes ?? [];
 
   return (
-    <aside className="relative z-50 flex h-screen w-60 shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-14 text-[#e7e7e7]">
+    <aside data-liblib-overlay="asset" className="relative z-50 flex h-screen w-60 shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-14 text-[#e7e7e7]">
       <div className="flex h-10 items-center border-b border-white/[0.07] px-3">
         <button className="h-7 flex-1 rounded-md bg-white/[0.08] text-xs text-white">画布</button>
         <button className="h-7 flex-1 rounded-md text-xs text-[#777] hover:text-[#bbb]">资产</button>

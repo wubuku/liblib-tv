@@ -50,7 +50,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown, clip |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| State | `src/store/` | graph, selection, viewport, history and UI mock state |
+| State | `src/store/` | graph, selection, viewport, history and UI mock state; LibTV top-level overlay lifecycle is in `uiStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
 | Evidence | `docs/research/` | source observations, specs, raw JSON and batch history |
@@ -68,7 +68,7 @@ React Flow event
   -> selected-node overlays and UI store panels
 ```
 
-`canvasStore` owns graph data and per-canvas in-memory history. `uiStore` owns global UI modes and panel visibility. Short-lived menu state may remain local to a component.
+`canvasStore` owns graph data and per-canvas in-memory history. `uiStore` owns global UI modes, page-level overlay visibility and LibTV's mutually exclusive `activePrimaryPanel`. Short-lived menu state may remain local to a component.
 
 ### FrameOS
 

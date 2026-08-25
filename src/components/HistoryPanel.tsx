@@ -35,6 +35,7 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
     <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 backdrop-blur-[4px]" onMouseDown={onClose}>
       <section
         aria-label="历史资产"
+        data-liblib-overlay="primary:history"
         className="pointer-events-auto flex h-[calc(100vh-160px)] min-h-[520px] max-h-[calc(100vh-24px)] w-[90vw] max-w-[1600px] flex-col overflow-hidden rounded-2xl border border-[#363636] bg-[#262626] shadow-[0_28px_90px_rgba(0,0,0,0.65)]"
         onMouseDown={(event) => event.stopPropagation()}
       >

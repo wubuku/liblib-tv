@@ -76,7 +76,7 @@ export function CanvasTabDropdown() {
 
       {/* Dropdown */}
       {isCanvasDropdownOpen && (
-        <div className="absolute top-full left-0 mt-1 w-64 bg-[#1f1f1f] border border-[#363636] rounded-lg shadow-lg z-50 overflow-hidden">
+        <div data-liblib-overlay="canvas-dropdown" className="absolute top-full left-0 mt-1 w-64 bg-[#1f1f1f] border border-[#363636] rounded-lg shadow-lg z-50 overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-3 py-2 border-b border-[#363636]">
             <span className="text-sm font-medium text-[#f7f7f7]">画布</span>

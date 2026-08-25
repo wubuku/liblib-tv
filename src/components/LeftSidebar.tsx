@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   CircleHelp,
   Hand,
@@ -13,14 +12,12 @@ import {
   WandSparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useUIStore } from "@/store/uiStore";
+import { type PrimaryPanel, useUIStore } from "@/store/uiStore";
 import { AddNodePanel } from "./AddNodePanel";
 import { MaterialLibraryPanel } from "./MaterialLibraryPanel";
 import { ToolboxPanel } from "./ToolboxPanel";
 import { CharacterLibraryPanel } from "./CharacterLibraryPanel";
 import { HistoryPanel } from "./HistoryPanel";
-
-type PanelName = "move" | "toolbox" | "material" | "character" | "history" | "tutorial";
 
 interface ToolButtonProps {
   label: string;
@@ -53,7 +50,7 @@ function MoveMenu({ onSelect }: { onSelect: (tool: "select" | "pan") => void }) 
   const canvasTool = useUIStore((state) => state.canvasTool);
 
   return (
-    <div className="fixed bottom-[68px] left-1/2 z-[61] w-40 -translate-x-[126px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[108px]">
+    <div data-liblib-overlay="primary:move" className="fixed bottom-[68px] left-1/2 z-[61] w-40 -translate-x-[126px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[108px]">
       <button onClick={() => onSelect("select")} className="flex h-9 w-full items-center gap-3 rounded-lg px-3 text-sm text-[#ededed] hover:bg-white/[0.07]">
         <MousePointer2 size={16} />
         <span className="flex-1 text-left">移动</span>
@@ -72,7 +69,7 @@ function MoveMenu({ onSelect }: { onSelect: (tool: "select" | "pan") => void }) 
 
 function TutorialMenu() {
   return (
-    <div className="fixed bottom-[73px] left-[calc(50%+92px)] z-[61] w-[104px] rounded-xl border border-[#363636] bg-[#262626] p-1 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[109px] max-sm:left-auto max-sm:right-3">
+    <div data-liblib-overlay="primary:tutorial" className="fixed bottom-[73px] left-[calc(50%+92px)] z-[61] w-[104px] rounded-xl border border-[#363636] bg-[#262626] p-1 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[109px] max-sm:left-auto max-sm:right-3">
       {["使用教程", "联系客服", "联系销售", "关注公众号"].map((label) => (
         <button key={label} className="h-9 w-full rounded-lg px-3 text-left text-sm text-[#d8d8d8] hover:bg-white/[0.07]">
           {label}
@@ -83,7 +80,6 @@ function TutorialMenu() {
 }
 
 export function LeftSidebar() {
-  const [activePanel, setActivePanel] = useState<PanelName | null>(null);
   const {
     toggleShortcutsPanel,
     toggleAddNodePanel,
@@ -91,29 +87,24 @@ export function LeftSidebar() {
     isShortcutsPanelOpen,
     canvasTool,
     setCanvasTool,
+    activePrimaryPanel,
+    togglePrimaryPanel,
+    setPrimaryPanel,
   } = useUIStore();
 
-  const togglePanel = (panel: PanelName) => {
-    if (isAddNodePanelOpen) toggleAddNodePanel();
-    if (isShortcutsPanelOpen) toggleShortcutsPanel();
-    setActivePanel((current) => (current === panel ? null : panel));
-  };
+  const togglePanel = (panel: PrimaryPanel) => togglePrimaryPanel(panel);
 
   const toggleAddPanel = () => {
-    setActivePanel(null);
-    if (isShortcutsPanelOpen) toggleShortcutsPanel();
     toggleAddNodePanel();
   };
 
   const toggleShortcuts = () => {
-    setActivePanel(null);
-    if (isAddNodePanelOpen) toggleAddNodePanel();
     toggleShortcutsPanel();
   };
 
   const selectTool = (tool: "select" | "pan") => {
     setCanvasTool(tool);
-    setActivePanel(null);
+    setPrimaryPanel(null);
   };
 
   return (
@@ -122,36 +113,36 @@ export function LeftSidebar() {
         <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddPanel}>
           <Plus size={22} />
         </ToolButton>
-        <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePanel === "move"} onClick={() => togglePanel("move")}>
+        <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePrimaryPanel === "move"} onClick={() => togglePanel("move")}>
           {canvasTool === "pan" ? <Hand size={17} /> : <MousePointer2 size={17} />}
         </ToolButton>
-        <ToolButton label="打开工具箱" active={activePanel === "toolbox"} onClick={() => togglePanel("toolbox")}>
+        <ToolButton label="打开工具箱" active={activePrimaryPanel === "toolbox"} onClick={() => togglePanel("toolbox")}>
           <WandSparkles size={17} />
         </ToolButton>
-        <ToolButton label="素材库" active={activePanel === "material"} onClick={() => togglePanel("material")}>
+        <ToolButton label="素材库" active={activePrimaryPanel === "material"} onClick={() => togglePanel("material")}>
           <Shapes size={17} />
         </ToolButton>
-        <ToolButton label="角色库" active={activePanel === "character"} onClick={() => togglePanel("character")}>
+        <ToolButton label="角色库" active={activePrimaryPanel === "character"} onClick={() => togglePanel("character")}>
           <UserRound size={17} />
         </ToolButton>
-        <ToolButton label="历史记录" active={activePanel === "history"} onClick={() => togglePanel("history")}>
+        <ToolButton label="历史记录" active={activePrimaryPanel === "history"} onClick={() => togglePanel("history")}>
           <History size={17} />
         </ToolButton>
         <ToolButton label="快捷键" active={isShortcutsPanelOpen} onClick={toggleShortcuts}>
           <Keyboard size={17} />
         </ToolButton>
-        <ToolButton label="教程与帮助" active={activePanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
+        <ToolButton label="教程与帮助" active={activePrimaryPanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
           <CircleHelp size={17} />
         </ToolButton>
       </div>
 
       {isAddNodePanelOpen && <AddNodePanel />}
-      {activePanel === "move" && <MoveMenu onSelect={selectTool} />}
-      {activePanel === "toolbox" && <ToolboxPanel onClose={() => setActivePanel(null)} />}
-      {activePanel === "material" && <MaterialLibraryPanel onClose={() => setActivePanel(null)} />}
-      {activePanel === "character" && <CharacterLibraryPanel onClose={() => setActivePanel(null)} />}
-      {activePanel === "history" && <HistoryPanel onClose={() => setActivePanel(null)} />}
-      {activePanel === "tutorial" && <TutorialMenu />}
+      {activePrimaryPanel === "move" && <MoveMenu onSelect={selectTool} />}
+      {activePrimaryPanel === "toolbox" && <ToolboxPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "material" && <MaterialLibraryPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "character" && <CharacterLibraryPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "history" && <HistoryPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "tutorial" && <TutorialMenu />}
     </>
   );
 }

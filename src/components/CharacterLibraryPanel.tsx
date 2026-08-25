@@ -79,6 +79,7 @@ export function CharacterLibraryPanel({ onClose }: CharacterLibraryPanelProps) {
     <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-3 backdrop-blur-[3px]" onMouseDown={onClose}>
       <section
         aria-label="角色库"
+        data-liblib-overlay="primary:character"
         className="flex h-[710px] max-h-[calc(100vh-24px)] w-[793px] max-w-[calc(100vw-24px)] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
         onMouseDown={(event) => event.stopPropagation()}
       >

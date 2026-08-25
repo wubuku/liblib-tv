@@ -17,7 +17,7 @@ function LibTvMark() {
 
 function SharePanel() {
   return (
-    <div className="absolute right-[164px] top-10 h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
+    <div data-liblib-overlay="share" className="absolute right-[164px] top-10 h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
       <button className="flex h-[75px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]">
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
           <Sparkles size={17} />

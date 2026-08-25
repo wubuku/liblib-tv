@@ -13,6 +13,15 @@
 - **Initial zoom:** About 53% on desktop and 28% on compact viewports for the source-derived project baseline.
 - **Grid snap:** Toggle via `useUIStore.toggleSnapToGrid`; `snapGrid: [20, 20]`
 
+### Top-Level Overlay Lifecycle
+
+- **Primary panel state:** `move`, `toolbox`, `material`, `character`, `history` and `tutorial` are selected by `useUIStore.activePrimaryPanel`, not component-local state.
+- **Mutual exclusion:** Opening a top-level surface closes the other primary panel, add-node panel, shortcuts, canvas dropdown, asset drawer, share menu and Agent.
+- **Modal boundary:** Character and history modals still use their own backdrop; the backdrop blocks clicks to the canvas and bottom toolbar until the modal is closed.
+- **Mode lifecycle:** Entering storyboard mode opens Agent after clearing other top-level surfaces; returning to workbench closes Agent.
+- **Escape:** `Escape` invokes `closeAllPanels`, which now also clears the primary bottom-toolbar panel.
+- **Verification:** `scripts/verify-liblib-batch11.py`.
+
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
 - `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph

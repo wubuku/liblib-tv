@@ -189,7 +189,7 @@ React Flow change
 - 分享弹层、Agent 抽屉
 - 与 React Flow viewport 同步的 zoom 百分比
 
-部分短生命周期 UI 仍保留在组件本地状态中，例如主工具条的当前内容面板、缩放菜单和顶部项目名。这意味着 LibTV 当前不是单一、完整的编辑器状态机，而是 **画布数据 store + UI store + 局部组件状态** 的组合。
+顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享和 Agent。部分短生命周期 UI 仍保留在组件本地状态中，例如缩放菜单、顶部项目名和面板内部的筛选/使用态。这意味着 LibTV 当前不是单一、完整的编辑器状态机，而是 **画布数据 store + UI store + 局部组件状态** 的组合，但页面级 overlay 生命周期已经有明确的 store 边界。
 
 整理预览快照也属于页面局部状态。节点位置变化进入 `canvasStore` 的 graph history，viewport 只随预览快照恢复，不进入通用 undo/redo。
 

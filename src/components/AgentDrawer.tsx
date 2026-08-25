@@ -13,7 +13,7 @@ export function AgentDrawer() {
   const toggleAgent = useUIStore((state) => state.toggleAgent);
 
   return (
-    <aside className="relative z-50 hidden h-screen w-[340px] shrink-0 flex-col border-l border-white/[0.08] bg-[#1b1b1b] text-[#ededed] sm:flex">
+    <aside data-liblib-overlay="agent" className="relative z-50 hidden h-screen w-[340px] shrink-0 flex-col border-l border-white/[0.08] bg-[#1b1b1b] text-[#ededed] sm:flex">
       <header className="flex h-14 items-center border-b border-white/[0.08] px-4">
         <Bot size={17} />
         <span className="ml-2 text-sm font-medium">Agent</span>

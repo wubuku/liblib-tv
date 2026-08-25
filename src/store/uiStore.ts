@@ -1,5 +1,13 @@
 import { create } from "zustand";
 
+export type PrimaryPanel =
+  | "move"
+  | "toolbox"
+  | "material"
+  | "character"
+  | "history"
+  | "tutorial";
+
 interface UIState {
   // Panel visibility
   isAddNodePanelOpen: boolean;
@@ -15,6 +23,7 @@ interface UIState {
   isUserMenuOpen: boolean;
   isSharePanelOpen: boolean;
   isAgentOpen: boolean;
+  activePrimaryPanel: PrimaryPanel | null;
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
 
@@ -39,6 +48,8 @@ interface UIState {
   toggleUserMenu: () => void;
   toggleSharePanel: () => void;
   toggleAgent: () => void;
+  togglePrimaryPanel: (panel: PrimaryPanel) => void;
+  setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
   setCanvasTool: (tool: "select" | "pan") => void;
   toggleMinimap: () => void;
@@ -50,6 +61,41 @@ interface UIState {
   // Close all panels
   closeAllPanels: () => void;
 }
+
+type OverlayState = Pick<
+  UIState,
+  | "isAddNodePanelOpen"
+  | "isCanvasDropdownOpen"
+  | "isAssetPanelOpen"
+  | "isToolboxPanelOpen"
+  | "isMaterialPanelOpen"
+  | "isCharacterPanelOpen"
+  | "isHistoryPanelOpen"
+  | "isShortcutsPanelOpen"
+  | "isTutorialPanelOpen"
+  | "isNotificationOpen"
+  | "isUserMenuOpen"
+  | "isSharePanelOpen"
+  | "isAgentOpen"
+  | "activePrimaryPanel"
+>;
+
+const closedOverlayState: OverlayState = {
+  isAddNodePanelOpen: false,
+  isCanvasDropdownOpen: false,
+  isAssetPanelOpen: false,
+  isToolboxPanelOpen: false,
+  isMaterialPanelOpen: false,
+  isCharacterPanelOpen: false,
+  isHistoryPanelOpen: false,
+  isShortcutsPanelOpen: false,
+  isTutorialPanelOpen: false,
+  isNotificationOpen: false,
+  isUserMenuOpen: false,
+  isSharePanelOpen: false,
+  isAgentOpen: false,
+  activePrimaryPanel: null,
+};
 
 export const useUIStore = create<UIState>((set) => ({
   isAddNodePanelOpen: false,
@@ -65,6 +111,7 @@ export const useUIStore = create<UIState>((set) => ({
   isUserMenuOpen: false,
   isSharePanelOpen: false,
   isAgentOpen: false,
+  activePrimaryPanel: null,
   editorMode: "workbench",
   canvasTool: "select",
 
@@ -76,57 +123,104 @@ export const useUIStore = create<UIState>((set) => ({
 
   toggleAddNodePanel: () =>
     set((state) => ({
+      ...closedOverlayState,
       isAddNodePanelOpen: !state.isAddNodePanelOpen,
-      isCanvasDropdownOpen: false,
     })),
 
   toggleCanvasDropdown: () =>
     set((state) => ({
+      ...closedOverlayState,
       isCanvasDropdownOpen: !state.isCanvasDropdownOpen,
-      isAddNodePanelOpen: false,
     })),
 
   toggleAssetPanel: () =>
-    set((state) => ({ isAssetPanelOpen: !state.isAssetPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isAssetPanelOpen: !state.isAssetPanelOpen,
+    })),
 
   toggleToolboxPanel: () =>
-    set((state) => ({ isToolboxPanelOpen: !state.isToolboxPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isToolboxPanelOpen: !state.isToolboxPanelOpen,
+      activePrimaryPanel: state.activePrimaryPanel === "toolbox" ? null : "toolbox",
+    })),
 
   toggleMaterialPanel: () =>
-    set((state) => ({ isMaterialPanelOpen: !state.isMaterialPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isMaterialPanelOpen: !state.isMaterialPanelOpen,
+      activePrimaryPanel: state.activePrimaryPanel === "material" ? null : "material",
+    })),
 
   toggleCharacterPanel: () =>
-    set((state) => ({ isCharacterPanelOpen: !state.isCharacterPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isCharacterPanelOpen: !state.isCharacterPanelOpen,
+      activePrimaryPanel: state.activePrimaryPanel === "character" ? null : "character",
+    })),
 
   toggleHistoryPanel: () =>
-    set((state) => ({ isHistoryPanelOpen: !state.isHistoryPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isHistoryPanelOpen: !state.isHistoryPanelOpen,
+      activePrimaryPanel: state.activePrimaryPanel === "history" ? null : "history",
+    })),
 
   toggleShortcutsPanel: () =>
-    set((state) => ({ isShortcutsPanelOpen: !state.isShortcutsPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isShortcutsPanelOpen: !state.isShortcutsPanelOpen,
+    })),
 
   toggleTutorialPanel: () =>
-    set((state) => ({ isTutorialPanelOpen: !state.isTutorialPanelOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isTutorialPanelOpen: !state.isTutorialPanelOpen,
+      activePrimaryPanel: state.activePrimaryPanel === "tutorial" ? null : "tutorial",
+    })),
 
   toggleNotification: () =>
-    set((state) => ({ isNotificationOpen: !state.isNotificationOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isNotificationOpen: !state.isNotificationOpen,
+    })),
 
   toggleUserMenu: () =>
-    set((state) => ({ isUserMenuOpen: !state.isUserMenuOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isUserMenuOpen: !state.isUserMenuOpen,
+    })),
 
   toggleSharePanel: () =>
     set((state) => ({
+      ...closedOverlayState,
       isSharePanelOpen: !state.isSharePanelOpen,
-      isCanvasDropdownOpen: false,
     })),
 
   toggleAgent: () =>
-    set((state) => ({ isAgentOpen: !state.isAgentOpen })),
+    set((state) => ({
+      ...closedOverlayState,
+      isAgentOpen: !state.isAgentOpen,
+    })),
+
+  togglePrimaryPanel: (panel) =>
+    set((state) => ({
+      ...closedOverlayState,
+      activePrimaryPanel: state.activePrimaryPanel === panel ? null : panel,
+    })),
+
+  setPrimaryPanel: (panel) =>
+    set({
+      ...closedOverlayState,
+      activePrimaryPanel: panel,
+    }),
 
   setEditorMode: (mode) =>
     set({
+      ...closedOverlayState,
       editorMode: mode,
       isAgentOpen: mode === "storyboard",
-      isSharePanelOpen: false,
     }),
 
   setCanvasTool: (tool) => set({ canvasTool: tool }),
@@ -146,18 +240,5 @@ export const useUIStore = create<UIState>((set) => ({
   setZoomLevel: (zoom: number) => set({ zoomLevel: zoom }),
 
   closeAllPanels: () =>
-    set({
-      isAddNodePanelOpen: false,
-      isCanvasDropdownOpen: false,
-      isAssetPanelOpen: false,
-      isToolboxPanelOpen: false,
-      isMaterialPanelOpen: false,
-      isCharacterPanelOpen: false,
-      isHistoryPanelOpen: false,
-      isShortcutsPanelOpen: false,
-      isTutorialPanelOpen: false,
-      isNotificationOpen: false,
-      isUserMenuOpen: false,
-      isSharePanelOpen: false,
-    }),
+    set(closedOverlayState),
 }));

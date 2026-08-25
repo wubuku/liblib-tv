@@ -70,6 +70,7 @@ export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDi
   return (
     <section
       aria-label="快捷键面板"
+      data-liblib-overlay="shortcuts"
       className="fixed bottom-[73px] left-1/2 z-[62] h-[447px] w-[905px] max-w-[calc(100vw-24px)] -translate-x-1/2 rounded-2xl border border-[#363636] bg-[#262626]/95 p-6 shadow-[0_20px_54px_rgba(0,0,0,0.55)] backdrop-blur-lg max-md:max-h-[calc(100vh-130px)] max-md:overflow-y-auto max-md:p-4 max-sm:bottom-[109px]"
     >
       <button type="button" onClick={onClose} aria-label="关闭快捷键面板" className="absolute right-3 top-3 z-10 flex size-7 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.07] hover:text-white">
