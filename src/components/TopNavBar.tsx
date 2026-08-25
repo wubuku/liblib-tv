@@ -1,141 +1,146 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { Bot, ChevronRight, LayoutPanelTop, Share2, Sparkles, Workflow, Zap } from "lucide-react";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
+import { useUIStore } from "@/store/uiStore";
+import { cn } from "@/lib/utils";
+
+function LibTvMark() {
+  return (
+    <svg width="25" height="18" viewBox="0 0 25 18" fill="none" aria-hidden="true">
+      <path d="M2.4 2h20.2L18 16H1L5.4 4.6h10.7l-1.3 3.2H7.7l-1.9 5h9.9l3-7.7H1.5L2.4 2Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+function SharePanel() {
+  return (
+    <div className="absolute right-[164px] top-10 h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
+      <button className="flex h-[75px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]">
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
+          <Sparkles size={17} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm text-[#f7f7f7]">发布作品</span>
+          <span className="mt-0.5 block text-xs text-[#8c8c8c]">发布到 LibLib 创作社区</span>
+        </span>
+        <ChevronRight size={16} className="text-[#737373]" />
+      </button>
+      <button className="flex h-[75px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]">
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
+          <Share2 size={17} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm text-[#f7f7f7]">分享链接</span>
+          <span className="mt-0.5 block text-xs text-[#8c8c8c]">邀请其他人查看当前画布</span>
+        </span>
+        <ChevronRight size={16} className="text-[#737373]" />
+      </button>
+    </div>
+  );
+}
 
 export function TopNavBar() {
   const [projectName, setProjectName] = useState("未命名项目");
   const [isEditing, setIsEditing] = useState(false);
+  const {
+    editorMode,
+    setEditorMode,
+    isSharePanelOpen,
+    toggleSharePanel,
+    isAgentOpen,
+    toggleAgent,
+  } = useUIStore();
 
   return (
-    <nav className="h-12 px-4 flex items-center justify-between bg-[#141414] border-b border-[#262626]">
-      {/* Left Section */}
-      <div className="flex items-center gap-3">
-        {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-          <div className="w-6 h-6 flex items-center justify-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 5h16v14H4V5zm2 2v10h12V7H6zm2 2h2v6H8V9zm4 0h2v6h-2V9zm4 0h2v6h-2V9z"
-                fill="#f7f7f7"
-              />
-            </svg>
-          </div>
-        </div>
-
-        {/* Separator */}
-        <div className="w-px h-5 bg-[#363636]" />
-
-        {/* Project Name */}
-        {isEditing ? (
-          <input
-            type="text"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            onBlur={() => setIsEditing(false)}
-            onKeyDown={(e) => e.key === "Enter" && setIsEditing(false)}
-            className="bg-[#363636] text-[#f7f7f7] text-sm px-2 py-1 rounded border border-[#525252] focus:border-[#09caf5] outline-none w-40"
-            autoFocus
-          />
-        ) : (
-          <span
-            onClick={() => setIsEditing(true)}
-            className="text-sm text-[#f7f7f7] cursor-text hover:bg-[#353639] px-2 py-1 rounded transition-colors"
-          >
-            {projectName}
-          </span>
-        )}
-
-        {/* Canvas Tab Dropdown */}
-        <CanvasTabDropdown />
-      </div>
-
-      {/* Right Section */}
-      <div className="flex items-center gap-2">
-        {/* Notification */}
-        <button className="p-2 hover:bg-[#353639] rounded-lg transition-colors">
-          <svg
-            className="w-5 h-5 text-[#919191]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-          </svg>
-        </button>
-
-        {/* VIP + Credits combined button (matches original) */}
-        <div className="relative flex items-center">
-          {/* Orange "限时37折" badge above */}
-          <span className="absolute -top-2 right-3 z-10 text-[10px] px-1.5 py-0.5 bg-[#ff7d00] text-white rounded-md font-medium">
-            限时 37 折
-          </span>
-          <button className="flex items-center gap-1.5 pl-3 pr-1 h-10 rounded-xl bg-[rgba(38,38,38,0.8)] border border-[#363636] hover:bg-[#353639] transition-colors">
-            <svg
-              className="w-4 h-4 text-[#FFDBA4]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
-            </svg>
-            <span className="text-sm text-[#FFDBA4]">会员特惠37折</span>
-            <span className="text-[#363636]">|</span>
-            <svg
-              className="w-4 h-4 text-[#FFDBA4]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
-            </svg>
-            <span className="text-sm text-[#f7f7f7]">64</span>
-          </button>
-        </div>
-
-        {/* FrameOS 画布入口 */}
+    <nav className="pointer-events-none fixed inset-x-4 top-4 z-[70] flex h-8 items-center justify-between text-[#f7f7f7]">
+      <div className="pointer-events-auto flex h-8 items-center gap-1">
         <Link
           href="/frameos/canvas/demo"
-          className="flex items-center gap-1.5 h-9 px-3 rounded-xl bg-[rgba(38,38,38,0.8)] border border-[#363636] hover:bg-[#353639] hover:border-[#525252] transition-colors text-sm text-[#f7f7f7]"
+          className="flex h-8 w-10 items-center justify-center rounded-lg bg-[#262626] text-white shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:bg-[#303030]"
           title="进入 FrameOS 画布"
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect x="3" y="4" width="18" height="14" rx="2" stroke="#60A5FA" strokeWidth="1.6" />
-            <circle cx="9" cy="10" r="1.5" fill="#60A5FA" />
-            <path d="M5 16l3-3 4 4 3-3 4 4" stroke="#60A5FA" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span>FrameOS</span>
+          <LibTvMark />
         </Link>
+        <div className="hidden h-8 items-center rounded-lg bg-[#262626] px-2 lg:flex">
+          {isEditing ? (
+            <input
+              autoFocus
+              value={projectName}
+              onChange={(event) => setProjectName(event.target.value)}
+              onBlur={() => setIsEditing(false)}
+              onKeyDown={(event) => event.key === "Enter" && setIsEditing(false)}
+              className="w-28 bg-transparent text-xs outline-none"
+            />
+          ) : (
+            <button className="max-w-28 truncate text-xs text-[#bcbcbc]" onClick={() => setIsEditing(true)}>
+              {projectName}
+            </button>
+          )}
+        </div>
+        <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
+          <CanvasTabDropdown />
+        </div>
+        <div className="hidden h-8 items-center rounded-lg bg-[#262626] p-0.5 shadow-[0_4px_16px_rgba(0,0,0,0.25)] sm:flex">
+          <button
+            title="工作台"
+            aria-label="工作台"
+            aria-pressed={editorMode === "workbench"}
+            onClick={() => setEditorMode("workbench")}
+            className={cn(
+              "flex h-7 w-7 items-center justify-center rounded-md text-[#8c8c8c] transition-colors",
+              editorMode === "workbench" && "bg-[#404040] text-white",
+            )}
+          >
+            <Workflow size={14} />
+          </button>
+          <button
+            title="分镜"
+            aria-label="分镜"
+            aria-pressed={editorMode === "storyboard"}
+            onClick={() => setEditorMode("storyboard")}
+            className={cn(
+              "flex h-7 w-7 items-center justify-center rounded-md text-[#8c8c8c] transition-colors",
+              editorMode === "storyboard" && "bg-[#404040] text-white",
+            )}
+          >
+            <LayoutPanelTop size={14} />
+          </button>
+        </div>
+      </div>
 
-        {/* User Avatar */}
-        <button className="w-8 h-8 rounded-full overflow-hidden hover:ring-2 hover:ring-[#525252] transition-all">
-          <Image
-            src="/images/avatar.png"
-            alt="用户头像"
-            width={32}
-            height={32}
-            className="w-full h-full object-cover"
-          />
+      <div className="pointer-events-auto hidden h-8 items-center gap-2 sm:flex">
+        <button
+          aria-label="分享"
+          aria-expanded={isSharePanelOpen}
+          onClick={toggleSharePanel}
+          className={cn(
+            "flex h-8 w-8 items-center justify-center rounded-lg bg-[#262626] hover:bg-[#333]",
+            isSharePanelOpen && "bg-[#3b3b3b]",
+          )}
+        >
+          <Share2 size={15} />
+        </button>
+        <button className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]">
+          <Zap size={14} className="fill-white" />
+          <span>20</span>
+        </button>
+        <button
+          aria-expanded={isAgentOpen}
+          onClick={toggleAgent}
+          className={cn(
+            "flex h-8 items-center gap-2 rounded-lg bg-[#262626] px-3 text-sm hover:bg-[#333]",
+            isAgentOpen && "bg-[#3b3b3b]",
+          )}
+        >
+          <Bot size={16} />
+          <span>Agent</span>
         </button>
       </div>
+
+      {isSharePanelOpen && <SharePanel />}
     </nav>
   );
 }

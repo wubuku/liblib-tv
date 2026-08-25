@@ -1,0 +1,919 @@
+{
+  "capturedAt": "2026-08-24T22:02:41.448Z",
+  "edges": [
+    {
+      "aria": "Edge from i-1FQ9tErTcC to b-bTLLuU4w5q",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-8IgMkf6Vbj",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C909.0004914924253,448.00027950744663 909.0004914924253,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C909.0004914924253,448.00027950744663 909.0004914924253,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-1FQ9tErTcC to i-YDfWhFlthe",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-abKze5c8Ug",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C1165.0004914924252,448.00027950744663 1165.0004914924252,-125.00002879016805 1580,-125.00002879016805",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C1165.0004914924252,448.00027950744663 1165.0004914924252,-125.00002879016805 1580,-125.00002879016805",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from b-bTLLuU4w5q to g-245IDFh8sB",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-AQmdIgKtl2",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1765.5000453181294,-12.000028790168045 1765.5000453181294,882.0002932440437 2113.000090636259,882.0002932440437",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1765.5000453181294,-12.000028790168045 1765.5000453181294,882.0002932440437 2113.000090636259,882.0002932440437",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to b-bTLLuU4w5q",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-m2wWA2wIBA",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1150.50628650294,1507.0002795074465 1027.4948315268466,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1150.50628650294,1507.0002795074465 1027.4948315268466,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-vxeeCnxySa to b-bTLLuU4w5q",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-nlMX3rEjwN",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1907.0002795074465 C1150.50628650294,1907.0002795074465 1027.4948315268466,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1907.0002795074465 C1150.50628650294,1907.0002795074465 1027.4948315268466,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-1FQ9tErTcC to v-UGQZzZOpbv",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-OwhsBRzrTz",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C1593.5004270793024,448.00027950744663 1593.5004270793024,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M750.0009829848507,448.00027950744663 C1593.5004270793024,448.00027950744663 1593.5004270793024,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-lBzmo67AHv to b-bTLLuU4w5q",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-QzX895ot0u",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1028.0010378504771,1107.0002795074465 C1048.0005189252386,1107.0002795074465 1048.0005189252386,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1028.0010378504771,1107.0002795074465 C1048.0005189252386,1107.0002795074465 1048.0005189252386,-12.000028790168045 1068,-12.000028790168045",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to v-UGQZzZOpbv",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-VQACH36eJC",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1773.5004946017702,1507.0002795074465 1773.5004946017702,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1773.5004946017702,1507.0002795074465 1773.5004946017702,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-YDfWhFlthe to v-UGQZzZOpbv",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-XmiJkHfFAL",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M2201.9999493293044,-125.00002879016805 C2319.4999102515294,-125.00002879016805 2319.4999102515294,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M2201.9999493293044,-125.00002879016805 C2319.4999102515294,-125.00002879016805 2319.4999102515294,225.00027950744663 2436.999871173754,225.00027950744663",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to i-YDfWhFlthe",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-xNVTHNFZZl",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1345.0005590148933,1507.0002795074465 1345.0005590148933,-125.00002879016805 1580,-125.00002879016805",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1110.0011180297865,1507.0002795074465 C1345.0005590148933,1507.0002795074465 1345.0005590148933,-125.00002879016805 1580,-125.00002879016805",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from b-bTLLuU4w5q to g-EFbbHpwq5w",
+      "classes": "react-flow__edge react-flow__edge-default nopan selectable",
+      "id": "e-yEqrTOR2Ya",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1896.499935586877,-12.000028790168045 1896.499935586877,218.00038146094803 2374.999871173754,218.00038146094803",
+          "fill": "none",
+          "stroke": "transparent",
+          "style": "cursor: pointer;"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1896.499935586877,-12.000028790168045 1896.499935586877,218.00038146094803 2374.999871173754,218.00038146094803",
+          "fill": "none",
+          "stroke": "var(--canvas-edge)",
+          "style": "transition: stroke 200ms, stroke-width 200ms; pointer-events: none;"
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "buttons": [],
+      "classes": "react-flow__node react-flow__node-group nopan selectable draggable",
+      "computed": {
+        "background": "rgba(255, 255, 255, 0.1)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "20px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "height": "452px",
+        "lineHeight": "18.6px",
+        "opacity": "1",
+        "padding": "10px",
+        "transform": "matrix(1, 0, 0, 1, 2112, 656)",
+        "width": "430px"
+      },
+      "handles": [
+        {
+          "classes": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "12px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "18.6px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% auto auto 0px; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        },
+        {
+          "classes": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "12px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "18.6px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% 0px auto auto; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        }
+      ],
+      "id": "g-245IDFh8sB",
+      "images": [],
+      "inlineStyle": "z-index: -1001; transform: translate(2112px, 656px); pointer-events: all; visibility: visible; background: var(--canvas-group-bg); border: 1px solid var(--canvas-group-border); width: 430px; height: 452px;",
+      "text": "分镜图 · 第一集：咖啡馆对峙-图片组"
+    },
+    {
+      "buttons": [],
+      "classes": "react-flow__node react-flow__node-group nopan selectable parent draggable",
+      "computed": {
+        "background": "rgb(33, 33, 33)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "4px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "height": "460px",
+        "lineHeight": "18.6px",
+        "opacity": "1",
+        "padding": "10px",
+        "transform": "matrix(1, 0, 0, 1, 2374, -12)",
+        "width": "722px"
+      },
+      "handles": [
+        {
+          "classes": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "12px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "18.6px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% auto auto 0px; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        },
+        {
+          "classes": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "12px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "18.6px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% 0px auto auto; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        }
+      ],
+      "id": "g-EFbbHpwq5w",
+      "images": [],
+      "inlineStyle": "z-index: -1001; transform: translate(2374px, -12px); pointer-events: all; visibility: visible; background: var(--storyboard-group-shell-bg, #212121); border: 1px solid var(--canvas-group-border); width: 722px; height: 460px;",
+      "text": "视频组 · 第一集：咖啡馆对峙-视频组"
+    },
+    {
+      "buttons": [
+        {
+          "aria": null,
+          "classes": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm font-semibold transition-colors bg-white/10 text-white hover:bg-white/15",
+          "text": "打开脚本节点 →"
+        }
+      ],
+      "classes": "react-flow__node react-flow__node-script-v2 nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "opacity": "1",
+        "padding": "0px",
+        "transform": "matrix(1, 0, 0, 1, 1068, -187)",
+        "width": "350px"
+      },
+      "handles": [
+        {
+          "classes": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% auto auto 0px; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        },
+        {
+          "classes": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% 0px auto auto; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        }
+      ],
+      "id": "b-bTLLuU4w5q",
+      "images": [],
+      "inlineStyle": "z-index: 0; transform: translate(1068px, -187px); pointer-events: all; visibility: visible;",
+      "text": "第一集：咖啡馆对峙 确认镜头 准备资产 合成提示词 打开脚本节点 →"
+    },
+    {
+      "buttons": [],
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "opacity": "1",
+        "padding": "0px",
+        "transform": "matrix(1, 0, 0, 1, 1580, -300)",
+        "width": "622px"
+      },
+      "handles": [
+        {
+          "classes": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% auto auto 0px; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        },
+        {
+          "classes": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% 0px auto auto; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        }
+      ],
+      "id": "i-YDfWhFlthe",
+      "images": [
+        {
+          "alt": "分镜 #2",
+          "classes": "h-full w-full object-cover",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "620px"
+          },
+          "naturalHeight": 225,
+          "naturalWidth": 400,
+          "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "classes": "pointer-events-none absolute z-10 h-auto select-none ",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "none",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(1580px, -300px); pointer-events: all; visibility: visible;",
+      "text": "分镜 #2 1280 × 720"
+    },
+    {
+      "buttons": [],
+      "classes": "react-flow__node react-flow__node-video nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "opacity": "1",
+        "padding": "0px",
+        "transform": "matrix(1, 0, 0, 1, 2436, 50)",
+        "width": "622px"
+      },
+      "handles": [
+        {
+          "classes": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% auto auto 0px; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        },
+        {
+          "classes": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable connectablestart connectableend connectionindicator",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(247, 247, 247)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "0px",
+            "lineHeight": "24.8px",
+            "opacity": "1",
+            "padding": "0px",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "width": "0px"
+          },
+          "inlineStyle": "width: 0px; height: 0px; min-width: 0px; min-height: 0px; padding: 0px; background: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 0px; overflow: visible; inset: 50% 0px auto auto; transform: translateY(-50%); pointer-events: auto; z-index: 20;"
+        }
+      ],
+      "id": "v-UGQZzZOpbv",
+      "images": [],
+      "inlineStyle": "z-index: 0; transform: translate(2436px, 50px); pointer-events: all; visibility: visible;",
+      "text": "分镜视频-#9 生成失败 vip专属模型-会员"
+    }
+  ],
+  "url": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "viewport": {
+    "dpr": 2,
+    "height": 874,
+    "transform": "transform: translate(-583.466px, 260.681px) scale(0.53);",
+    "width": 929
+  }
+}

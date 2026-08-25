@@ -1,185 +1,78 @@
 "use client";
 
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { CameraConfigDialog } from "./CameraConfigDialog";
-import { CameraMovementDialog } from "./CameraMovementDialog";
+import Image from "next/image";
+import { ArrowUp, AtSign, Box, ChevronDown, Expand, Languages, SlidersHorizontal, Undo2 } from "lucide-react";
+
+const prompt = "近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]";
 
 interface ImageEditPanelProps {
-  onClose: () => void;
+  zoom: number;
 }
 
-export function ImageEditPanel({ onClose }: ImageEditPanelProps) {
-  const [activeTab, setActiveTab] = useState<"style" | "mark">("style");
-  const [prompt, setPrompt] = useState("");
-  const [isCameraConfigOpen, setIsCameraConfigOpen] = useState(false);
-  const [isCameraMovementOpen, setIsCameraMovementOpen] = useState(false);
-
+export function ImageEditPanel({ zoom }: ImageEditPanelProps) {
   return (
-    <>
-      <div className="absolute left-0 right-0 top-full mt-2 z-50 bg-[#1f1f1f] border border-[#363636] rounded-xl shadow-xl overflow-hidden">
-        {/* Top tabs */}
-        <div className="flex items-center gap-2 px-4 py-2 border-b border-[#363636]">
-          <button
-            onClick={() => setActiveTab("style")}
-            className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors",
-              activeTab === "style"
-                ? "bg-[#363636] text-[#f7f7f7]"
-                : "text-[#919191] hover:text-[#f7f7f7] hover:bg-[#353639]"
-            )}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1L13 7L7 13L1 7L7 1Z" stroke="currentColor" strokeWidth="1.2" />
-            </svg>
-            风格
-          </button>
-          <button
-            onClick={() => setActiveTab("mark")}
-            className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors",
-              activeTab === "mark"
-                ? "bg-[#363636] text-[#f7f7f7]"
-                : "text-[#919191] hover:text-[#f7f7f7] hover:bg-[#353639]"
-            )}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M4 7H10M7 4V10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-            标记
-          </button>
+    <div
+      className="nodrag nowheel nopan absolute -bottom-4 left-1/2 z-20 w-[660px] -translate-x-1/2 translate-y-full origin-top"
+      // The original keeps the editor at a constant screen size inside the zoomed node layer.
+      style={{ transform: `scale(${1 / zoom})` }}
+    >
+      <div className="flex h-[274px] w-full flex-col rounded-2xl border border-[#363636] bg-[#262626] p-3 shadow-[0_22px_60px_rgba(0,0,0,0.5)]">
+        <button className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white" aria-label="展开编辑器">
+          <Expand size={15} />
+        </button>
+
+        <div className="flex h-8 items-center gap-1.5 pr-9">
+          {["参考", "标记", "风格"].map((label, index) => (
+            <button key={label} className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white">
+              {index === 0 ? <span className="text-lg leading-none">＋</span> : index === 1 ? <AtSign size={13} /> : <Box size={13} />}
+              {label}
+            </button>
+          ))}
         </div>
 
-        {/* Prompt section */}
-        <div className="px-4 py-3">
-          <p className="text-xs text-[#919191] mb-2">
-            可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜
-          </p>
-          <textarea
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="输入提示词..."
-            className="w-full bg-[#363636] text-[#f7f7f7] text-sm p-2.5 rounded-lg border border-[#525252] focus:border-[#09caf5] outline-none resize-none h-16 placeholder:text-[#86909c]"
-          />
-        </div>
-
-        {/* Bottom controls */}
-        <div className="px-4 py-3 border-t border-[#363636]">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {/* Model selector */}
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M7 4V10M4 7H10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-                Lib Image
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                  <path d="M3 4L5 6L7 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-
-              {/* Quality selector */}
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors">
-                自适应 · 标准画质 · 2K
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                  <path d="M3 4L5 6L7 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-
-              {/* Preset button */}
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect x="2" y="2" width="4" height="4" rx="1" stroke="currentColor" strokeWidth="1.2" />
-                  <rect x="8" y="2" width="4" height="4" rx="1" stroke="currentColor" strokeWidth="1.2" />
-                  <rect x="2" y="8" width="4" height="4" rx="1" stroke="currentColor" strokeWidth="1.2" />
-                  <rect x="8" y="8" width="4" height="4" rx="1" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
-                预设
-              </button>
-
-              {/* Camera button */}
-              <button
-                onClick={() => setIsCameraConfigOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 4H12V11H2V4Z" stroke="currentColor" strokeWidth="1.2" />
-                  <circle cx="7" cy="7.5" r="2" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M5 4V3H9V4" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
-                摄像机
-              </button>
-
-              {/* Camera Movement button */}
-              <button
-                onClick={() => setIsCameraMovementOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#363636] text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect x="2" y="4" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M12 7H13M1 7H2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-                运镜
-              </button>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* Quantity selector */}
-              <div className="flex items-center gap-1.5">
-                <button className="w-6 h-6 flex items-center justify-center rounded bg-[#363636] text-[#f7f7f7] hover:bg-[#525252] transition-colors">
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2 5H8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                  </svg>
-                </button>
-                <span className="text-sm text-[#f7f7f7] min-w-[24px] text-center">1张</span>
-                <button className="w-6 h-6 flex items-center justify-center rounded bg-[#363636] text-[#f7f7f7] hover:bg-[#525252] transition-colors">
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M5 2V8M2 5H8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Credits display */}
-              <div className="flex items-center gap-1 text-sm text-[#919191]">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <circle cx="6" cy="6" r="4" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M6 3V9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-                <span>18</span>
-              </div>
-
-              {/* Generate button */}
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#09caf5] text-white hover:bg-[#5ddcff] transition-colors">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7H11M8 4L11 7L8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
+        <div className="mt-2 flex h-14 items-center gap-2">
+          <div className="relative h-12 w-12 overflow-hidden rounded-lg border border-white/10">
+            <Image src="/images/scene-coffee-1.png" alt="陈默参考" fill sizes="48px" className="object-cover" unoptimized />
+            <span className="absolute left-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#202020] text-[9px] text-white">1</span>
+          </div>
+          <div className="relative h-12 w-12 overflow-hidden rounded-lg border border-white/10">
+            <Image src="/images/scene-coffee-2.png" alt="咖啡参考" fill sizes="48px" className="object-cover" unoptimized />
+            <span className="absolute left-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#202020] text-[9px] text-white">2</span>
           </div>
         </div>
+
+        <textarea
+          defaultValue={prompt}
+          aria-label="图片生成提示词"
+          className="mt-2 min-h-0 flex-1 resize-none bg-transparent text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
+        />
+
+        <footer className="mt-2 flex h-9 shrink-0 items-center gap-2 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
+          <button className="flex h-7 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <span className="text-base">⌘</span>
+            <span>Lib Image</span>
+            <ChevronDown size={12} className="text-[#777]" />
+          </button>
+          <span className="h-4 w-px bg-white/10" />
+          <button className="flex h-7 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <span>▭ 16:9 · 低画质 · 1K · 1张</span>
+            <ChevronDown size={12} className="text-[#777]" />
+          </button>
+          <button className="flex h-7 w-7 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置">
+            <SlidersHorizontal size={14} />
+          </button>
+          <span className="ml-auto" />
+          <button className="flex h-7 w-7 items-center justify-center rounded-md text-[#b5b5b5] hover:bg-white/[0.06]" title="翻译" aria-label="翻译">
+            <Languages size={15} />
+          </button>
+          <button className="flex h-7 w-7 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.06]" title="撤销" aria-label="撤销">
+            <Undo2 size={14} />
+          </button>
+          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef]" aria-label="生成图片">
+            <ArrowUp size={17} />
+          </button>
+        </footer>
       </div>
-
-      {/* Camera Config Dialog */}
-      <CameraConfigDialog
-        isOpen={isCameraConfigOpen}
-        onClose={() => setIsCameraConfigOpen(false)}
-        onApply={(config) => {
-          console.log("Camera config applied:", config);
-          // TODO: Apply camera config to the image generation
-        }}
-      />
-
-      {/* Camera Movement Dialog */}
-      <CameraMovementDialog
-        isOpen={isCameraMovementOpen}
-        onClose={() => setIsCameraMovementOpen(false)}
-        onApply={(config) => {
-          console.log("Camera movement applied:", config);
-          // TODO: Apply camera movement to the video generation
-        }}
-      />
-    </>
+    </div>
   );
 }

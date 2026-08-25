@@ -1,226 +1,129 @@
 "use client";
 
-import { Tooltip } from "@base-ui/react/tooltip";
+import { useState } from "react";
+import { LayoutGrid, Link2, Magnet, Map, PanelLeft, Scan, ZoomIn, ZoomOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
 
-// SVG Icons matching original LibTV bottom toolbar
-function AssetIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
+interface BottomToolbarProps {
+  onOrganize: () => void;
+  onFitView: () => void;
+  onZoomBy: (delta: number) => void;
+  onZoomTo: (zoom: number) => void;
 }
 
-function ArrangeIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="5" cy="5" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="11" cy="11" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M5 7v3a2 2 0 002 2h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function CharacterIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function AddIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ArrangeNodesIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <circle cx="5" cy="5" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="15" cy="5" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="5" cy="15" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="15" cy="15" r="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M7 5h6M5 7v6M15 7v6M7 15h6" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
-  );
-}
-
-function StarIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path
-        d="M10 2l2.5 5.5L18 8l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L10 2z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function HistoryIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ImageIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <rect x="2.5" y="3.5" width="15" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="7" cy="8" r="1.5" fill="currentColor" />
-      <path d="M2.5 14L6 10.5L9 13.5L12.5 11L17.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function HelpIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M8 7.5a2 2 0 114 0c0 1.5-2 1.5-2 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="10" cy="14" r="0.75" fill="currentColor" />
-    </svg>
-  );
-}
-
-interface ToolbarButtonProps {
+interface IconButtonProps {
+  label: string;
+  active?: boolean;
+  onClick: () => void;
   children: React.ReactNode;
-  tooltip?: string;
-  className?: string;
-  onClick?: () => void;
-  isActive?: boolean;
 }
 
-function ToolbarButton({
-  children,
-  tooltip,
-  className,
-  onClick,
-  isActive,
-}: ToolbarButtonProps) {
-  const button = (
+function IconButton({ label, active, onClick, children }: IconButtonProps) {
+  return (
     <button
       type="button"
+      title={label}
+      aria-label={label}
+      aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center justify-center rounded-lg text-[#f7f7f7] transition-colors duration-150 ease-in-out hover:bg-[#353639]",
-        isActive ? "bg-[#353639]" : "bg-transparent",
-        className
+        "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[#bdbdbd] transition-colors hover:bg-white/[0.08] hover:text-white",
+        active && "bg-white/10 text-[#f7f7f7]",
       )}
     >
       {children}
     </button>
   );
-
-  if (!tooltip) {
-    return button;
-  }
-
-  return (
-    <Tooltip.Provider delay={300}>
-      <Tooltip.Root>
-        <Tooltip.Trigger render={button} />
-        <Tooltip.Portal>
-          <Tooltip.Positioner side="top" sideOffset={8}>
-            <Tooltip.Popup className="rounded-lg bg-[#1c1d29] px-3 py-1.5 text-xs text-[#f7f7f7] shadow-lg border border-[#525252]">
-              {tooltip}
-            </Tooltip.Popup>
-          </Tooltip.Positioner>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  );
 }
 
-export function BottomToolbar() {
+export function BottomToolbar({ onOrganize, onFitView, onZoomBy, onZoomTo }: BottomToolbarProps) {
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
   const {
+    isAssetPanelOpen,
     toggleAssetPanel,
-    toggleGrid,
-    toggleMinimap,
-    showGrid,
     showMinimap,
+    toggleMinimap,
+    showEdges,
+    toggleEdges,
+    showGrid,
+    toggleGrid,
+    snapToGrid,
+    toggleSnapToGrid,
     zoomLevel,
-    toggleShortcutsPanel,
   } = useUIStore();
 
   return (
     <div
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 flex flex-row items-center gap-1 p-1.5 bg-[rgba(20,20,20,0.7)] backdrop-blur-md border border-[#363636] rounded-xl z-40"
-      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}
+      className={cn(
+        "fixed bottom-3 z-[60] flex h-10 items-center gap-1 p-1.5 transition-[left]",
+        isAssetPanelOpen ? "left-64 max-sm:left-4" : "left-4",
+      )}
     >
-      {/* Asset Management - text button on the far left */}
-      <ToolbarButton
-        className="h-8 w-auto gap-1.5 px-3 text-sm font-normal"
-        onClick={toggleAssetPanel}
-      >
-        <AssetIcon />
-        <span>资产管理</span>
-      </ToolbarButton>
-
-      <div className="w-px h-5 bg-[#363636] mx-1" />
-
-      {/* Arrange Canvas icon button */}
-      <ToolbarButton className="h-8 w-8" tooltip="整理画布，Option+Shift+F">
-        <ArrangeIcon />
-      </ToolbarButton>
-
-      {/* Character icon button */}
-      <ToolbarButton className="h-8 w-8" tooltip="角色">
-        <CharacterIcon />
-      </ToolbarButton>
-
-      {/* Main Big "+" button - highlighted (large, cyan) */}
       <button
         type="button"
-        className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-[#09caf5] text-[#171717] hover:bg-[#5ddcff] transition-colors mx-1"
-        aria-label="添加节点"
+        aria-pressed={isAssetPanelOpen}
+        onClick={toggleAssetPanel}
+        className={cn(
+          "flex h-7 items-center gap-2 rounded-md px-2 text-xs text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
+          isAssetPanelOpen && "bg-white/10 text-white",
+        )}
       >
-        <AddIcon />
+        <PanelLeft size={15} />
+        <span>资产管理</span>
       </button>
-
-      {/* Three round action icons */}
-      <ToolbarButton className="h-8 w-8" tooltip="整理节点">
-        <ArrangeNodesIcon />
-      </ToolbarButton>
-
-      <ToolbarButton className="h-8 w-8" tooltip="收藏">
-        <StarIcon />
-      </ToolbarButton>
-
-      <ToolbarButton className="h-8 w-8" tooltip="历史记录">
-        <HistoryIcon />
-      </ToolbarButton>
-
-      {/* Image/Storyboard icon */}
-      <ToolbarButton className="h-8 w-8" tooltip="分镜">
-        <ImageIcon />
-      </ToolbarButton>
-
-      {/* Help icon */}
-      <ToolbarButton className="h-8 w-8" tooltip="帮助" onClick={toggleShortcutsPanel}>
-        <HelpIcon />
-      </ToolbarButton>
-
-      <div className="w-px h-5 bg-[#363636] mx-1" />
-
-      {/* Zoom percentage */}
-      <ToolbarButton className="h-8 w-auto px-3">
-        <span className="text-xs text-[#f7f7f7]">{zoomLevel}%</span>
-      </ToolbarButton>
+      <IconButton label="整理画布，Option+Shift+F" onClick={onOrganize}>
+        <LayoutGrid size={15} />
+      </IconButton>
+      <IconButton label="显示缩略图" active={showMinimap} onClick={toggleMinimap}>
+        <Map size={15} />
+      </IconButton>
+      <IconButton label={showEdges ? "隐藏节点连线" : "显示节点连线"} active={showEdges} onClick={toggleEdges}>
+        <Link2 size={15} />
+      </IconButton>
+      <span className="contents sm:max-[850px]:hidden">
+        <IconButton label="吸附到网格" active={snapToGrid} onClick={toggleSnapToGrid}>
+          <Magnet size={15} />
+        </IconButton>
+      </span>
+      <div className="relative sm:max-[850px]:hidden">
+        <button
+          type="button"
+          aria-label="缩放选项"
+          aria-expanded={isZoomOpen}
+          onClick={() => setIsZoomOpen((open) => !open)}
+          className="flex h-7 min-w-10 items-center justify-center rounded-md px-1.5 text-xs tabular-nums text-[#d7d7d7] hover:bg-white/[0.08]"
+        >
+          {zoomLevel}%
+        </button>
+        {isZoomOpen && (
+          <div className="absolute bottom-9 right-0 w-[196px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_18px_44px_rgba(0,0,0,0.5)]">
+            <div className="mb-1 flex items-center gap-1 rounded-lg bg-[#1b1b1b] p-1">
+              <button onClick={() => onZoomBy(-0.1)} className="flex h-7 w-7 items-center justify-center rounded-md text-[#bcbcbc] hover:bg-white/10" aria-label="缩小">
+                <ZoomOut size={14} />
+              </button>
+              <span className="flex-1 text-center text-xs tabular-nums text-white">{zoomLevel}%</span>
+              <button onClick={() => onZoomBy(0.1)} className="flex h-7 w-7 items-center justify-center rounded-md text-[#bcbcbc] hover:bg-white/10" aria-label="放大">
+                <ZoomIn size={14} />
+              </button>
+            </div>
+            <button onClick={onFitView} className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+              <Scan size={14} />
+              <span className="flex-1 text-left">适合屏幕</span>
+              <span className="text-[#777]">⌘0</span>
+            </button>
+            {[0.5, 1, 8].map((zoom) => (
+              <button key={zoom} onClick={() => onZoomTo(zoom)} className="h-8 w-full rounded-lg px-2 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+                缩放至 {Math.round(zoom * 100)}%
+              </button>
+            ))}
+            <button onClick={toggleGrid} className="flex h-8 w-full items-center justify-between rounded-lg px-2 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+              <span>点阵网格</span>
+              <span className={showGrid ? "text-[#09caf5]" : "text-[#777]"}>{showGrid ? "开启" : "关闭"}</span>
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

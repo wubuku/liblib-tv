@@ -109,7 +109,7 @@ export function DeletableEdge({
         </filter>
       </defs>
 
-      {/* Background base path - blue tinted dashed for always-on flow */}
+      {/* Live LibTV renders a quiet solid base path; pulses only appear on hover/selection. */}
       <BaseEdge
         id={id}
         path={edgePath}
@@ -117,13 +117,11 @@ export function DeletableEdge({
         interactionWidth={20}
         style={{
           ...style,
-          strokeWidth: isActive ? 3 : 2,
-          stroke: "rgba(59, 130, 246, 0.42)",
-          strokeDasharray: "7 5",
-          animation: isActive
-            ? "frameos-edge-flow 0.6s linear infinite"
-            : "frameos-edge-flow 0.6s linear infinite",
-          opacity: isActive ? 0.7 : 1,
+          strokeWidth: isActive ? 2 : 1.25,
+          stroke: isActive ? "rgba(190, 201, 216, 0.9)" : "rgba(137, 143, 158, 0.82)",
+          strokeDasharray: "none",
+          animation: "none",
+          opacity: 1,
           transition: "stroke 200ms, stroke-width 200ms, opacity 200ms",
           pointerEvents: "none",
         }}

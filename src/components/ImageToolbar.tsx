@@ -1,116 +1,51 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import {
+  Box,
+  GalleryHorizontalEnd,
+  Grid3X3,
+  Lightbulb,
+  Redo2,
+  ScanLine,
+  SlidersHorizontal,
+  Sparkles,
+  Undo2,
+} from "lucide-react";
+import { NodeToolbar, Position } from "@xyflow/react";
 
-interface ToolbarButtonProps {
-  icon: React.ReactNode;
-  label: string;
-  badge?: string;
-  onClick?: () => void;
-}
-
-function ToolbarButton({ icon, label, badge, onClick }: ToolbarButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-[#353639] transition-colors group"
-    >
-      <div className="text-[#919191] group-hover:text-[#f7f7f7] transition-colors">
-        {icon}
-      </div>
-      <span className="text-[10px] text-[#919191] group-hover:text-[#f7f7f7] transition-colors">
-        {label}
-      </span>
-      {badge && (
-        <span className="absolute -top-1 -right-1 text-[8px] px-1 py-0.5 bg-[#f53f3f] text-white rounded">
-          {badge}
-        </span>
-      )}
-    </button>
-  );
-}
+const actions = [
+  { label: "人像质感调节", icon: SlidersHorizontal, badge: "NEW" },
+  { label: "全景", icon: GalleryHorizontalEnd },
+  { label: "多角度", icon: Box },
+  { label: "打光", icon: Lightbulb },
+  { label: "九宫格", icon: Grid3X3 },
+  { label: "高清", icon: Sparkles },
+  { label: "宫格切分", icon: ScanLine },
+];
 
 export function ImageToolbar() {
   return (
-    <div className="absolute right-[-60px] top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1">
-      {/* Portrait texture adjustment */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="6" r="3" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M4 14C4 11 5.5 9 8 9C10.5 9 12 11 12 14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-          </svg>
-        }
-        label="人像质感"
-        badge="NEW"
-      />
-
-      {/* Panorama */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2 4C2 4 4 2 8 2C12 2 14 4 14 4V12C14 12 12 10 8 10C4 10 2 12 2 12V4Z" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-        }
-        label="全景"
-      />
-
-      {/* Multi-angle */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-        }
-        label="多角度"
-      />
-
-      {/* Lighting */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="6" r="3" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M8 9V14M6 12H10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-          </svg>
-        }
-        label="打光"
-      />
-
-      {/* Grid */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M6 2V14M10 2V14M2 6H14M2 10H14" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        }
-        label="九宫格"
-      />
-
-      {/* HD */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="4" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M5 7V9M8 6V10M11 7V9M5 8H8M8 8H11" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-          </svg>
-        }
-        label="高清"
-      />
-
-      {/* Grid split */}
-      <ToolbarButton
-        icon={
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M8 2V14M2 8H14" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-        }
-        label="宫格切分"
-      />
-    </div>
+    <NodeToolbar position={Position.Top} offset={16} align="center" className="nodrag nopan z-[1001]">
+      <div className="flex h-[49px] w-[900px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]">
+        {actions.map((action) => {
+          const Icon = action.icon;
+          return (
+            <button key={action.label} className="relative flex h-8 shrink-0 items-center gap-2 rounded-lg px-2.5 text-sm text-[#e5e5e5] hover:bg-white/[0.07]">
+              <Icon size={16} />
+              <span>{action.label}</span>
+              {action.badge && <span className="rounded bg-[#0d5964] px-1 py-0.5 text-[9px] text-[#4de1f4]">{action.badge}</span>}
+            </button>
+          );
+        })}
+        <span className="min-w-3 flex-1" />
+        <span className="h-5 w-px shrink-0 bg-white/10" />
+        <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="撤销" aria-label="撤销">
+          <Undo2 size={15} />
+        </button>
+        <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" title="重做" aria-label="重做">
+          <Redo2 size={15} />
+        </button>
+      </div>
+    </NodeToolbar>
   );
 }

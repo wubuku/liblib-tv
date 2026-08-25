@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 
@@ -55,7 +55,7 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
   return (
     <div
       className={cn(
-        "w-[320px] overflow-visible rounded-xl border bg-[#212121] flex flex-col transition-shadow group relative",
+        "h-full w-full overflow-visible rounded-[4px] border bg-[#212121] flex flex-col transition-shadow group relative",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
         !selected && "hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
       )}
@@ -91,20 +91,18 @@ export function ScriptNode({ id, data, selected }: NodeProps<ScriptNodeType>) {
       />
 
       {/* Header */}
-      <div className="flex items-center gap-2 border-b border-[#363636] px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-[#363636] px-3 py-2">
         <ScriptIcon className="text-[#f7f7f7]" />
         <span className="text-sm font-semibold text-[#f7f7f7]">{title}</span>
       </div>
 
       {/* Content */}
-      <div className="max-h-[300px] overflow-y-auto p-4">
-        <p className="whitespace-pre-wrap text-sm font-normal leading-[1.6] text-[#f7f7f7]">
+      <div className="min-h-0 flex-1 overflow-hidden p-3">
+        <p className="whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]">
           {content}
         </p>
       </div>
 
-      {/* Footer */}
-      <div className="flex justify-end gap-2 border-t border-[#363636] px-4 py-2" />
     </div>
   );
 }

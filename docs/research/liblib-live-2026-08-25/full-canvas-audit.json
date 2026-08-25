@@ -1,0 +1,846 @@
+{
+  "edges": [
+    {
+      "aria": "Edge from i-1FQ9tErTcC to b-bTLLuU4w5q",
+      "id": "e-8IgMkf6Vbj",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C908.9996649354,447.99979368579886 908.9996649354,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C908.9996649354,447.99979368579886 908.9996649354,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-1FQ9tErTcC to i-YDfWhFlthe",
+      "id": "e-abKze5c8Ug",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C1164.9996649354,447.99979368579886 1164.9996649354,-125.00002879016805 1580,-125.00002879016805",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C1164.9996649354,447.99979368579886 1164.9996649354,-125.00002879016805 1580,-125.00002879016805",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from b-bTLLuU4w5q to g-245IDFh8sB",
+      "id": "e-AQmdIgKtl2",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1765.5000453181294,-12.000028790168045 1765.5000453181294,882.0002932440437 2113.000090636259,882.0002932440437",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1765.5000453181294,-12.000028790168045 1765.5000453181294,882.0002932440437 2113.000090636259,882.0002932440437",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to b-bTLLuU4w5q",
+      "id": "e-m2wWA2wIBA",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1150.505733491245,1507.0002601328854 1027.4950114347446,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1150.505733491245,1507.0002601328854 1027.4950114347446,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-vxeeCnxySa to b-bTLLuU4w5q",
+      "id": "e-nlMX3rEjwN",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1109.9992196097144,1906.9998834188368 C1150.503472670405,1906.9998834188368 1027.4957469393094,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1109.9992196097144,1906.9998834188368 C1150.503472670405,1906.9998834188368 1027.4957469393094,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-1FQ9tErTcC to v-UGQZzZOpbv",
+      "id": "e-OwhsBRzrTz",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C1593.499600522277,447.99979368579886 1593.499600522277,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M749.9993298708001,447.99979368579886 C1593.499600522277,447.99979368579886 1593.499600522277,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-lBzmo67AHv to b-bTLLuU4w5q",
+      "id": "e-QzX895ot0u",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1028.0003507715905,1107.0001074471106 C1048.0001753857953,1107.0001074471106 1048.0001753857953,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1028.0003507715905,1107.0001074471106 C1048.0001753857953,1107.0001074471106 1048.0001753857953,-12.000028790168045 1068,-12.000028790168045",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to v-UGQZzZOpbv",
+      "id": "e-VQACH36eJC",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1773.5003080498718,1507.0002601328854 1773.5003080498718,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1773.5003080498718,1507.0002601328854 1773.5003080498718,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-YDfWhFlthe to v-UGQZzZOpbv",
+      "id": "e-XmiJkHfFAL",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M2201.9999493293044,-125.00002879016805 C2319.4999102515294,-125.00002879016805 2319.4999102515294,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M2201.9999493293044,-125.00002879016805 C2319.4999102515294,-125.00002879016805 2319.4999102515294,225.00027950744663 2436.999871173754,225.00027950744663",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from i-dnwoZQ7jsG to i-YDfWhFlthe",
+      "id": "e-xNVTHNFZZl",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1345.0003724629948,1507.0002601328854 1345.0003724629948,-125.00002879016805 1580,-125.00002879016805",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1110.0007449259897,1507.0002601328854 C1345.0003724629948,1507.0002601328854 1345.0003724629948,-125.00002879016805 1580,-125.00002879016805",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    },
+    {
+      "aria": "Edge from b-bTLLuU4w5q to g-EFbbHpwq5w",
+      "id": "e-yEqrTOR2Ya",
+      "paths": [
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1896.499935586877,-12.000028790168045 1896.499935586877,218.00038146094803 2374.999871173754,218.00038146094803",
+          "stroke": "transparent"
+        },
+        {
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px solid rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "auto",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "auto"
+          },
+          "d": "M1418,-12.000028790168045 C1896.499935586877,-12.000028790168045 1896.499935586877,218.00038146094803 2374.999871173754,218.00038146094803",
+          "stroke": "var(--canvas-edge)"
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "classes": "react-flow__node react-flow__node-group nopan selectable draggable",
+      "computed": {
+        "background": "rgba(255, 255, 255, 0.1)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "20px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "height": "452px",
+        "lineHeight": "18.6px",
+        "padding": "10px",
+        "width": "430px"
+      },
+      "id": "g-245IDFh8sB",
+      "images": [],
+      "inlineStyle": "z-index: -1001; transform: translate(2112px, 656px); pointer-events: all; visibility: visible; background: var(--canvas-group-bg); border: 1px solid var(--canvas-group-border); width: 430px; height: 452px;",
+      "text": "分镜图 · 第一集：咖啡馆对峙-图片组"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-group nopan selectable parent draggable",
+      "computed": {
+        "background": "rgb(33, 33, 33)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "4px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "height": "460px",
+        "lineHeight": "18.6px",
+        "padding": "10px",
+        "width": "722px"
+      },
+      "id": "g-EFbbHpwq5w",
+      "images": [],
+      "inlineStyle": "z-index: -1001; transform: translate(2374px, -12px); pointer-events: all; visibility: visible; background: var(--storyboard-group-shell-bg, #212121); border: 1px solid var(--canvas-group-border); width: 722px; height: 460px;",
+      "text": "视频组 · 第一集：咖啡馆对峙-视频组"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-script-v2 nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "350px"
+      },
+      "id": "b-bTLLuU4w5q",
+      "images": [],
+      "inlineStyle": "z-index: 0; transform: translate(1068px, -187px); pointer-events: all; visibility: visible;",
+      "text": "第一集：咖啡馆对峙 确认镜头 准备资产 合成提示词 打开脚本节点 →"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "618px"
+      },
+      "id": "i-1FQ9tErTcC",
+      "images": [
+        {
+          "alt": "image_2026-06-15T11-22-00.png",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "616px"
+          },
+          "naturalHeight": 113,
+          "naturalWidth": 200,
+          "src": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/ee677b5998d05633d14b0aafe879148d2683be66.png?x-oss-process=image/resize,w_1600,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(132px, 273px); pointer-events: all; visibility: visible; width: 618px; height: 350px;",
+      "text": "image_2026-06-15T11-22-00 1808 × 1024"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "700px"
+      },
+      "id": "i-dnwoZQ7jsG",
+      "images": [
+        {
+          "alt": "咖啡",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "698px"
+          },
+          "naturalHeight": 100,
+          "naturalWidth": 200,
+          "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(410px, 1332px); pointer-events: all; visibility: visible; width: 700px; height: 350px;",
+      "text": "咖啡 1152 × 576"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "618px"
+      },
+      "id": "i-lBzmo67AHv",
+      "images": [
+        {
+          "alt": "image_2026-06-15T11-22-15.png",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "616px"
+          },
+          "naturalHeight": 113,
+          "naturalWidth": 200,
+          "src": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/148d3bd30096c0d041ccb2f950c7ba151c9bd215.png?x-oss-process=image/resize,w_1600,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(410px, 932px); pointer-events: all; visibility: visible; width: 618px; height: 350px;",
+      "text": "image_2026-06-15T11-22-15 1808 × 1024"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "700px"
+      },
+      "id": "i-vxeeCnxySa",
+      "images": [
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "698px"
+          },
+          "naturalHeight": 100,
+          "naturalWidth": 200,
+          "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765914494_3ae42ea368754adc929c201fd6315626.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(410px, 1732px); pointer-events: all; visibility: visible; width: 700px; height: 350px;",
+      "text": "图片4 1152 × 576"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-image nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "622px"
+      },
+      "id": "i-YDfWhFlthe",
+      "images": [
+        {
+          "alt": "分镜 #2",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "348px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "620px"
+          },
+          "naturalHeight": 112,
+          "naturalWidth": 200,
+          "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1"
+        },
+        {
+          "alt": "",
+          "computed": {
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "0px none rgb(82, 82, 82)",
+            "borderRadius": "0px",
+            "boxShadow": "none",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "height": "23.3125px",
+            "lineHeight": "24.8px",
+            "padding": "0px",
+            "width": "48px"
+          },
+          "naturalHeight": 102,
+          "naturalWidth": 210,
+          "src": "https://libtv-res.liblib.art/watermark.png"
+        }
+      ],
+      "inlineStyle": "z-index: 0; transform: translate(1580px, -300px); pointer-events: all; visibility: visible;",
+      "text": "分镜 #2 1280 × 720"
+    },
+    {
+      "classes": "react-flow__node react-flow__node-text nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "200px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "350px"
+      },
+      "id": "t-9j2MoccxBj",
+      "images": [],
+      "inlineStyle": "z-index: 0; transform: translate(108px, -125px); pointer-events: all; visibility: visible;",
+      "text": "剧本 第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁) 场景1：咖啡馆 陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。 林小婉提高音量说：\"你到底还要躲我到什么时候？\" 陈默不正眼看她，声音低沉：\"我没有躲你。\" 林小婉眼眶红了，说：\"你知道我有多担心吗？\" 陈默转过头，无声地冷笑了一下，说：\"当初你离开的时候，怎么没想过我会担心？\""
+    },
+    {
+      "classes": "react-flow__node react-flow__node-video nopan selectable draggable",
+      "computed": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px solid rgb(82, 82, 82)",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "height": "350px",
+        "lineHeight": "24.8px",
+        "padding": "0px",
+        "width": "622px"
+      },
+      "id": "v-UGQZzZOpbv",
+      "images": [],
+      "inlineStyle": "z-index: 0; transform: translate(2436px, 50px); pointer-events: all; visibility: visible;",
+      "text": "分镜视频-#9 生成失败 vip专属模型-会员"
+    }
+  ],
+  "viewport": {
+    "height": 874,
+    "transform": "transform: translate(12.4578px, 185.027px) scale(0.282798);",
+    "width": 929
+  }
+}

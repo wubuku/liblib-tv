@@ -1,148 +1,55 @@
 "use client";
 
-import { memo, useState } from "react";
-import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
+import { memo } from "react";
+import { Check, Menu } from "lucide-react";
+import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 
 export interface ScriptExecutionData extends Record<string, unknown> {
-  steps?: Array<{
-    label: string;
-    completed?: boolean;
-  }>;
+  title?: string;
+  steps?: Array<{ label: string; completed?: boolean }>;
 }
 
 export type ScriptExecutionType = Node<ScriptExecutionData, "script-execution">;
 
-function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      className={className}
-    >
-      <path
-        d="M3 5h14M3 10h14M3 15h14"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <path
-        d="M2 5L4 7L8 3"
-        stroke="#171717"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptExecutionType>) {
-  const { deleteElements } = useReactFlow();
-
+function ScriptExecutionNodeComponent({ data, selected }: NodeProps<ScriptExecutionType>) {
+  const title = data.title || "第一集：咖啡馆对峙";
   const steps = data.steps || [
     { label: "确认镜头", completed: true },
     { label: "准备资产", completed: true },
-    { label: "合成提示词", completed: false },
+    { label: "合成提示词", completed: true },
   ];
-
-  const handleDelete = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    deleteElements({ nodes: [{ id }] });
-  };
 
   return (
     <div
       className={cn(
-        "w-[260px] overflow-visible rounded-xl bg-[#2a2d3d] border flex flex-col group relative",
-        selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
-        "shadow-xl"
+        "group relative flex h-full w-full flex-col overflow-visible rounded-[4px] border bg-[#252525]",
+        selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/10",
       )}
     >
-      {/* Delete button - visible when selected */}
-      {selected && (
-        <button
-          onClick={handleDelete}
-          className="absolute -top-2 -right-2 z-10 w-5 h-5 bg-[#f53f3f] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#ff6a6f]"
-          aria-label="Delete node"
-        >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M2 2L8 8M8 2L2 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
-      )}
+      <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
+      <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
-      {/* Left Handle (target) */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="target"
-        style={{ width: 20, height: 20 }}
-      />
-
-      {/* Right Handle (source) */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="source"
-        style={{ width: 20, height: 20 }}
-      />
-
-      {/* Header - drag handle area */}
-      <div className="flex items-center justify-center py-4 border-b border-[#363636] cursor-grab active:cursor-grabbing">
-        <MenuIcon className="text-[#919191]" />
+      <div className="pointer-events-none absolute -top-8 left-0 truncate text-sm text-[#7f7f7f]">{title}</div>
+      <div className="flex flex-1 items-center justify-center border-b border-white/[0.06]">
+        <Menu size={34} strokeWidth={1.2} className="text-[#6d6d6d]" />
       </div>
-
-      {/* Steps */}
-      <div className="flex items-center justify-between px-3 py-4">
+      <div className="flex h-[105px] items-center justify-center px-4">
         {steps.map((step, index) => (
           <div key={step.label} className="flex items-center">
-            {/* Circle with check or number */}
-            <div className="flex flex-col items-center gap-1.5">
-              <div
-                className={cn(
-                  "w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-colors",
-                  step.completed
-                    ? "bg-[#09caf5] text-[#171717]"
-                    : "bg-[#363636] text-[#919191] border border-[#525252]"
-                )}
-              >
-                {step.completed ? <CheckIcon /> : index + 1}
-              </div>
-              <span className="text-[10px] text-[#f7f7f7] whitespace-nowrap">
-                {step.label}
+            <div className="flex flex-col items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4f4f4] text-[#202020]">
+                {step.completed ? <Check size={12} strokeWidth={2.5} /> : index + 1}
               </span>
+              <span className="whitespace-nowrap text-[10px] text-[#d3d3d3]">{step.label}</span>
             </div>
-
-            {/* Connector line between circles (except after last) */}
-            {index < steps.length - 1 && (
-              <div
-                className={cn(
-                  "w-6 h-px mx-1 mb-4",
-                  step.completed && steps[index + 1]?.completed
-                    ? "bg-[#09caf5]"
-                    : "bg-[#525252]"
-                )}
-              />
-            )}
+            {index < steps.length - 1 && <span className="mb-5 h-px w-9 bg-[#838383]" />}
           </div>
         ))}
       </div>
-
-      {/* Action button */}
-      <div className="px-3 pb-3">
-        <button className="w-full py-2 rounded-lg bg-[#363636] hover:bg-[#525252] transition-colors text-sm text-[#f7f7f7] flex items-center justify-center gap-1">
-          打开脚本节点
-          <span>→</span>
+      <div className="p-4 pt-0">
+        <button className="flex h-9 w-full items-center justify-center gap-1 rounded bg-white/[0.08] text-xs text-[#f1f1f1] hover:bg-white/[0.12]">
+          打开脚本节点 <span>→</span>
         </button>
       </div>
     </div>

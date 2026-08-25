@@ -2,12 +2,14 @@
 
 This is a reverse-engineered clone of [`liblib.tv/canvas`](https://www.liblib.tv/canvas) — a node-based video-storyboarding editor — plus a parallel [`frameos.cn`](https://www.frameos.cn) canvas route. Built with **Next.js 16**, **React Flow**, and **Zustand** on the `clone-website` template scaffold.
 
+> **Current architecture and implementation status:** read [`BIG_PICTURE.md`](BIG_PICTURE.md). Research docs preserve original-site observations and earlier implementation stages, so they can be stale relative to `src/`.
+>
 > **Pick your starting point based on what you're doing:**
 >
 > | You want to … | Go to |
 > |---|---|
 > | Run the app | [§ Quick Start](#quick-start) |
-> | Understand the high-level picture | [§ Documentation Map](#documentation-map) |
+> | Understand the high-level picture | [`BIG_PICTURE.md`](BIG_PICTURE.md) |
 > | Find a specific component | [§ Source Tree](#source-tree-annotated) or [`docs/research/COMPONENT_INVENTORY.md`](research/COMPONENT_INVENTORY.md) |
 > | Understand a specific interaction | [§ Behaviors](research/BEHAVIORS.md) or [§ Per-component specs](research/components/) |
 > | Understand a design decision (e.g. "why does the handle look like a +?") | [§ Key Design Decisions](#key-design-decisions) |
@@ -26,7 +28,7 @@ npm run build    # production build
 npm run check    # lint + typecheck + build
 ```
 
-On first load the canvas renders with sample nodes (script, images, video, script-execution, storyboard-group) for project "未命名项目" → "画布 2".
+On first load the LibTV canvas renders the current reverse-engineered project baseline: 10 nodes, 11 edges, and responsive 53%/28% viewports for project "未命名项目" → "画布 2".
 
 ---
 
@@ -37,9 +39,10 @@ On first load the canvas renders with sample nodes (script, images, video, scrip
 
 Both routes share:
 - React Flow (`@xyflow/react`) node/edge primitives
-- The `DeletableEdge` custom edge (hover flow + scissors delete)
 - Zustand store pattern (separate stores per route: `canvasStore`, `frameosStore`)
-- The handle-is-the-"+" approach
+- The reverse-engineering workflow and local asset/document structure
+
+Their current edge renderers are route-specific: LibTV uses `DeletableEdge`; FrameOS uses `FrameosEdge`.
 
 ---
 
@@ -47,6 +50,9 @@ Both routes share:
 
 ### Hub
 - [`AGENTS.md`](../AGENTS.md) — agent red-lines (read first if you're an AI agent)
+- [`BIG_PICTURE.md`](BIG_PICTURE.md) — current architecture, route boundaries, state flow, research workflow, and prototype limits
+- [`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) — current live-site evidence, gap audit, value ranking, and implementation scope
+- [`.claude/skills/clone-website/SKILL.md`](../.claude/skills/clone-website/SKILL.md) — source-of-truth workflow for browser extraction, specs, parallel building, and visual QA
 - [`docs/research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md) — how to extract info from a live target site
 
 ### Whole-app behavior & layout
@@ -81,14 +87,16 @@ src/
 │   ├── globals.css               # Design tokens + React Flow styling (handles, edges)
 │   └── frameos/                  # FrameOS canvas route — see "FrameOS Canvas" below
 ├── components/
-│   ├── TopNavBar.tsx             # Top nav: logo, project name, canvas dropdown, VIP, FrameOS link
-│   ├── BottomToolbar.tsx         # Centered floating bottom toolbar (large cyan "+", zoom %, etc.)
-│   ├── LeftSidebar.tsx           # 7-icon left tool palette
-│   ├── ScriptHeader.tsx          # Compact "正在跟随" + script title chip
-│   ├── AddNodePanel.tsx          # 8-node-type selector
+│   ├── TopNavBar.tsx             # Floating nav: logo/canvas, workbench/storyboard, share, credits, Agent
+│   ├── LeftSidebar.tsx           # Compatibility name: the centered 8-command primary bottom toolbar
+│   ├── BottomToolbar.tsx         # Bottom-left canvas controls: assets, organize, minimap, edges, snap, zoom
+│   ├── AssetManagerPanel.tsx     # 240px node/asset drawer
+│   ├── AgentDrawer.tsx           # 340px Agent drawer and local prompt prototype
+│   ├── StoryboardBoard.tsx       # Storyboard-mode column view
+│   ├── AddNodePanel.tsx          # Current one-column 9-entry node/resource selector
 │   ├── CanvasTabDropdown.tsx     # Multi-canvas switcher (rename/duplicate/delete)
-│   ├── ImageToolbar.tsx          # Vertical icon toolbar attached to selected image
-│   ├── ImageEditPanel.tsx        # Bottom panel for image style/mark editing
+│   ├── ImageToolbar.tsx          # Page-level horizontal toolbar for a selected image
+│   ├── ImageEditPanel.tsx        # Page-level 660×274 image prompt editor
 │   ├── CameraConfigDialog.tsx    # 9 cameras × 10 lenses × 7 focal lengths × 3 apertures
 │   ├── CameraMovementDialog.tsx  # 10 movement types + speed + duration + amplitude
 │   ├── ToolboxPanel.tsx          # Preset animation templates (placeholder)
@@ -142,8 +150,8 @@ A separate canvas route cloned from `frameos.cn`. Lives under `src/app/frameos/`
 | MapDock | [`src/components/frameos/FrameosMapDock.tsx`](../src/components/frameos/FrameosMapDock.tsx) | Bottom-left minimap + zoom + 整理方式菜单（横向/纵向/网格） |
 | Breadcrumb | [`src/components/frameos/FrameosBreadcrumb.tsx`](../src/components/frameos/FrameosBreadcrumb.tsx) | Top-left "默认作品 / 咖啡馆对峙 / 画布 1"，每级支持下拉 |
 | NodeFloatingToolbar | [`src/components/frameos/FrameosNodeFloatingToolbar.tsx`](../src/components/frameos/FrameosNodeFloatingToolbar.tsx) | 选中节点上方浮动工具条（下载/收藏/超清/720/改图/宫格切分），**跟随节点 + 画布缩放**（57px above） |
-| PromptEditor | [`src/components/frameos/FrameosPromptEditor.tsx`](../src/components/frameos/FrameosPromptEditor.tsx) | 选中节点下方 AI prompt 栏，**跟随节点**，含节点缩略图 + 模型/1K/16:9 下拉 + 全屏编辑模式 |
-| NodeEditPanel | [`src/components/frameos/FrameosNodeEditPanel.tsx`](../src/components/frameos/FrameosNodeEditPanel.tsx) | **仅调试模式可见**（默认隐藏）— 节点 ID / 坐标 / 各类参数表单 / 快捷操作 |
+| PromptEditor | [`src/components/frameos/FrameosPromptEditor.tsx`](../src/components/frameos/FrameosPromptEditor.tsx) | 选中节点时显示的 AI prompt 面板；当前固定在视口右下，含节点缩略图 + 模型/1K/16:9 下拉 |
+| NodeEditPanel | [`src/components/frameos/FrameosNodeEditPanel.tsx`](../src/components/frameos/FrameosNodeEditPanel.tsx) | **仅调试模式可见**（默认隐藏）— 当前无可见开关，可通过 `window.__frameos_store` 触发 |
 | HelpPanel | [`src/components/frameos/FrameosHelpPanel.tsx`](../src/components/frameos/FrameosHelpPanel.tsx) | 快捷键 + 操作指南弹层（按 `?` 触发） |
 | SidePanel | [`src/components/frameos/FrameosSidePanel.tsx`](../src/components/frameos/FrameosSidePanel.tsx) | 左侧展开菜单（汉堡按钮触发）— 项目列表 / 场景 / 画布 |
 | MaterialLibrary | [`src/components/frameos/FrameosMaterialLibrary.tsx`](../src/components/frameos/FrameosMaterialLibrary.tsx) | 右侧抽屉：素材库（图片/视频筛选） |
@@ -160,11 +168,11 @@ A separate canvas route cloned from `frameos.cn`. Lives under `src/app/frameos/`
 
 ### FrameOS 关键 UX 行为
 
-- **节点选中 → 出现 floating-toolbar (顶部 57px above) + PromptEditor (底部) + 蓝边 handle** — 三个面板都**跟随节点 + 画布缩放**（用 `useViewport()` 计算视口坐标）
-- **节点拖动** → floating-toolbar / PromptEditor 用 `transition: left 0.15s ease` 平滑跟随
+- **节点选中 → 出现 floating-toolbar (顶部 57px above) + 右下 PromptEditor + 蓝边 handle**
+- **节点拖动** → floating-toolbar 通过节点 DOM 的视口坐标持续跟随；PromptEditor 保持固定
 - **添加节点菜单**（左侧蓝色 + 按钮）→ 弹出 文本/图片/视频/角色/场景/音频/风格/批量 类型选择
 - **整理方式菜单**（左下整理按钮的下拉）→ 3 种整理模式 + 实际重排节点
-- **全屏 Prompt 编辑**（点击 PromptEditor 右上全屏按钮）→ 居中放大 + 背景蒙层
+- **Prompt 全屏按钮** → 当前为 mock alert，尚未实现全屏编辑
 - **右键菜单**：节点上 `复制 / 创建副本 / 删除`；画布空白处 `添加文本/图片/视频节点 / 适应画布`
 - **键盘快捷键**：`Esc`（多级退出）/ `Delete` / `Backspace` / `Cmd+Z` / `Cmd+Shift+Z` / `Cmd+D` / `Cmd+C` / `Cmd+X` / `Cmd+S` / `方向键（移动节点，Shift=10px）` / `Tab（切换节点）` / `M（minimap）` / `?` / `+` / `-` / `0`
 
@@ -250,12 +258,12 @@ Create `docs/research/components/MyComponent.spec.md` matching the structure of 
 - **Zoom gesture on canvas dots**: the React Flow default works; we tuned `minZoom=0.1, maxZoom=2`.
 
 ### FrameOS route (`/frameos/*`)
-- **NodeEditPanel is debug-only** (toggled via the `DEBUG` button bottom-right). The original `frameos.cn` does NOT have such a panel — it was a developer convenience. If you don't see the panel, click the orange `DEBUG` pill at bottom-right.
+- **NodeEditPanel is debug-only**. The original `frameos.cn` does NOT have it. Current UI has no visible DEBUG toggle; use `window.__frameos_store.getState().toggleDebugMode()` when developing.
 - **Mock data only**: 7 demo nodes (2 text + 3 video + 2 image) with real downloaded images. No persistent storage.
-- **Model / size / ratio dropdowns**: pickable but submit button is `disabled` until text is entered.
-- **"帮助" / "下载桌面端" / "金币 积分" / "添加节点"** buttons: no-op console handlers (mocked).
+- **Model / size / ratio dropdowns**: pickable；生成按钮触发 30 秒前端 generation mock。
+- **"下载桌面端" / "金币 积分"**: mock alerts. "添加节点" and "帮助" are wired to frontend state.
 - **Video playback**: tries to use the actual mp4 URL derived from the cover image URL; falls back to the cover image on error.
-- **PromptBar fullscreen mode**: real, but submitting the prompt does nothing (no backend).
+- **Prompt 全屏模式**: 当前未实现；提交只启动前端计时 mock，没有后端。
 
 ---
 

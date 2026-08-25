@@ -1,17 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ReactFlow,
   Background,
-  Controls,
   MiniMap,
-  addEdge,
   type Connection,
   type Edge,
   type Node,
   type NodeChange,
   type EdgeChange,
+  type ReactFlowInstance,
   BackgroundVariant,
   applyNodeChanges,
   applyEdgeChanges,
@@ -25,6 +24,9 @@ import { TopNavBar } from "@/components/TopNavBar";
 import { LeftSidebar } from "@/components/LeftSidebar";
 import { BottomToolbar } from "@/components/BottomToolbar";
 import { KeyboardShortcutsDialog } from "@/components/KeyboardShortcutsDialog";
+import { AssetManagerPanel } from "@/components/AssetManagerPanel";
+import { AgentDrawer } from "@/components/AgentDrawer";
+import { StoryboardBoard } from "@/components/StoryboardBoard";
 import { ScriptNode } from "@/components/nodes/ScriptNode";
 import { ImageNode } from "@/components/nodes/ImageNode";
 import { TextNode } from "@/components/nodes/TextNode";
@@ -32,7 +34,6 @@ import { VideoNode } from "@/components/nodes/VideoNode";
 import { ScriptExecutionNode } from "@/components/nodes/ScriptExecutionNode";
 import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
-import { ScriptHeader } from "@/components/ScriptHeader";
 
 const nodeTypes = {
   script: ScriptNode,
@@ -43,9 +44,11 @@ const nodeTypes = {
   "storyboard-group": StoryboardGroupNode,
 };
 
-const edgeTypes = {
-  default: DeletableEdge,
-};
+const edgeTypes = { default: DeletableEdge };
+const emptyNodes: Node[] = [];
+const emptyEdges: Edge[] = [];
+const desktopViewport = { x: -583.8, y: 260.8, zoom: 0.526 };
+const compactViewport = { x: 17, y: 128, zoom: 0.28 };
 
 export default function Home() {
   const {
@@ -55,221 +58,263 @@ export default function Home() {
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
-    setViewport,
+    selectedNodeId,
+    setViewport: setStoreViewport,
     activeCanvasId,
   } = useCanvasStore();
   const {
     showMinimap,
     showGrid,
+    showEdges,
     snapToGrid,
+    canvasTool,
+    editorMode,
+    isAssetPanelOpen,
+    isAgentOpen,
     closeAllPanels,
     isShortcutsPanelOpen,
     toggleShortcutsPanel,
+    setCanvasTool,
+    setZoomLevel,
   } = useUIStore();
 
   const activeCanvas = getActiveCanvas();
-  const nodes = activeCanvas?.nodes || [];
-  const edges = activeCanvas?.edges || [];
+  const nodes = activeCanvas?.nodes ?? emptyNodes;
+  const edges = activeCanvas?.edges ?? emptyEdges;
+  const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
+  const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
+  const [flowViewport, setFlowViewport] = useState(() => {
+    if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
+    return typeof window !== "undefined" && window.innerWidth <= 768 ? compactViewport : desktopViewport;
+  });
 
-  // Keyboard shortcuts
+  const flowNodes = useMemo<Node[]>(
+    () => nodes.map((node) => ({ ...node, selected: node.id === selectedNodeId })),
+    [nodes, selectedNodeId],
+  );
+
+  const onNodesChange = useCallback(
+    (changes: NodeChange[]) => {
+      const selectedChange = changes.find((change) => change.type === "select" && change.selected);
+      if (selectedChange?.type === "select") selectNode(selectedChange.id);
+      setStoreNodes(applyNodeChanges(changes, nodes));
+    },
+    [nodes, selectNode, setStoreNodes],
+  );
+
+  const onEdgesChange = useCallback(
+    (changes: EdgeChange[]) => setStoreEdges(applyEdgeChanges(changes, edges)),
+    [edges, setStoreEdges],
+  );
+
+  const onConnect = useCallback(
+    (params: Connection) => {
+      if (!params.source || !params.target) return;
+      addStoreEdge({
+        ...params,
+        id: `e-${params.source}-${params.target}-${Date.now()}`,
+        source: params.source,
+        target: params.target,
+        type: "default",
+      });
+    },
+    [addStoreEdge],
+  );
+
+  const onViewportChange = useCallback(
+    (viewport: { x: number; y: number; zoom: number }) => {
+      setFlowViewport(viewport);
+      setStoreViewport(viewport);
+      setZoomLevel(Math.round(viewport.zoom * 100));
+    },
+    [setStoreViewport, setZoomLevel],
+  );
+
+  const fitView = useCallback(() => {
+    void flowRef.current?.fitView({ padding: 0.12, duration: 260 });
+  }, []);
+
+  const zoomBy = useCallback((delta: number) => {
+    const instance = flowRef.current;
+    if (!instance) return;
+    const viewport = instance.getViewport();
+    void instance.setViewport({ ...viewport, zoom: Math.min(8, Math.max(0.1, viewport.zoom + delta)) }, { duration: 160 });
+  }, []);
+
+  const zoomTo = useCallback((zoom: number) => {
+    void flowRef.current?.zoomTo(zoom, { duration: 180 });
+  }, []);
+
+  const organize = useCallback(() => {
+    setOrganizeSnapshot({ nodes, viewport: flowRef.current?.getViewport() ?? flowViewport });
+    const regularNodes = nodes.filter((node) => node.type !== "storyboard-group");
+    const groupNodes = nodes.filter((node) => node.type === "storyboard-group");
+    const organized = [
+      ...regularNodes.map((node, index) => ({
+        ...node,
+        position: { x: (index % 3) * 760, y: Math.floor(index / 3) * 460 },
+      })),
+      ...groupNodes.map((node, index) => ({
+        ...node,
+        position: { x: 2280 + index * 760, y: index * 40 },
+      })),
+    ];
+    setStoreNodes(organized);
+    window.setTimeout(fitView, 40);
+  }, [fitView, flowViewport, nodes, setStoreNodes]);
+
+  const restoreOrganize = () => {
+    if (organizeSnapshot) {
+      setStoreNodes(organizeSnapshot.nodes);
+      setFlowViewport(organizeSnapshot.viewport);
+      setStoreViewport(organizeSnapshot.viewport);
+      setZoomLevel(Math.round(organizeSnapshot.viewport.zoom * 100));
+    }
+    setOrganizeSnapshot(null);
+  };
+
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Delete selected node/edge
-      if (e.key === 'Delete' || e.key === 'Backspace') {
-        const { selectedNodeId, removeNode } = useCanvasStore.getState();
-        if (selectedNodeId) {
-          e.preventDefault();
-          removeNode(selectedNodeId);
+    const media = window.matchMedia("(max-width: 768px)");
+    let frame = 0;
+    const applyResponsiveViewport = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const viewport = activeCanvasId === "canvas-2"
+          ? media.matches ? compactViewport : desktopViewport
+          : useCanvasStore.getState().getActiveCanvas()?.viewport ?? { x: 0, y: 0, zoom: 1 };
+        setFlowViewport(viewport);
+        setStoreViewport(viewport);
+        setZoomLevel(Math.round(viewport.zoom * 100));
+      });
+    };
+    applyResponsiveViewport();
+    media.addEventListener("change", applyResponsiveViewport);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      media.removeEventListener("change", applyResponsiveViewport);
+    };
+  }, [activeCanvasId, setStoreViewport, setZoomLevel]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.matches("input, textarea, [contenteditable='true']")) return;
+
+      if (event.key === "Delete" || event.key === "Backspace") {
+        const { selectedNodeId: nodeId, removeNode } = useCanvasStore.getState();
+        if (nodeId) {
+          event.preventDefault();
+          removeNode(nodeId);
         }
       }
-      // Escape - deselect and close panels
-      if (e.key === 'Escape') {
+      if (event.key === "Escape") {
         selectNode(null);
         closeAllPanels();
       }
+      if (event.key.toLowerCase() === "v") setCanvasTool("select");
+      if (event.key.toLowerCase() === "h") setCanvasTool("pan");
+      if ((event.metaKey || event.ctrlKey) && event.key === "0") {
+        event.preventDefault();
+        fitView();
+      }
+      if ((event.metaKey || event.ctrlKey) && (event.key === "+" || event.key === "=")) {
+        event.preventDefault();
+        zoomBy(0.1);
+      }
+      if ((event.metaKey || event.ctrlKey) && event.key === "-") {
+        event.preventDefault();
+        zoomBy(-0.1);
+      }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectNode, closeAllPanels]);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [closeAllPanels, fitView, selectNode, setCanvasTool, zoomBy]);
 
-  // Use ref to track local changes and avoid store->flow sync loops
-  const isLocalChange = useRef(false);
-  const prevCanvasId = useRef(activeCanvasId);
-
-  // Reset local change flag when canvas changes
   useEffect(() => {
-    if (prevCanvasId.current !== activeCanvasId) {
-      prevCanvasId.current = activeCanvasId;
-      isLocalChange.current = false;
-    }
-  }, [activeCanvasId]);
-
-  // Handle node changes (drag, select, etc.)
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) => {
-      isLocalChange.current = true;
-      const updatedNodes = applyNodeChanges(changes, nodes);
-      setStoreNodes(updatedNodes);
-    },
-    [nodes, setStoreNodes]
-  );
-
-  // Handle edge changes
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange[]) => {
-      isLocalChange.current = true;
-      const updatedEdges = applyEdgeChanges(changes, edges);
-      setStoreEdges(updatedEdges);
-    },
-    [edges, setStoreEdges]
-  );
-
-  // Handle new connections
-  const onConnect = useCallback(
-    (params: Connection) => {
-      const newEdge: Edge = {
-        ...params,
-        type: "default",
-        animated: false,
-        id: `e-${params.source}-${params.target}-${Date.now()}`,
-        source: params.source || "",
-        target: params.target || "",
-        style: { stroke: "#86909c", strokeWidth: 2 },
-      };
-      addStoreEdge(newEdge);
-    },
-    [addStoreEdge]
-  );
-
-  // Handle node click
-  const onNodeClick = useCallback(
-    (_: React.MouseEvent, node: Node) => {
-      selectNode(node.id);
-    },
-    [selectNode]
-  );
-
-  // Handle pane click (deselect)
-  const onPaneClick = useCallback(() => {
-    selectNode(null);
-  }, [selectNode]);
-
-  // Handle viewport changes
-  const onViewportChange = useCallback(
-    (viewport: { x: number; y: number; zoom: number }) => {
-      setViewport(viewport);
-    },
-    [setViewport]
-  );
-
-  // Handle node drag end - save final position
-  const onNodeDragStop = useCallback(
-    (_: unknown, node: Node) => {
-      const updatedNodes = nodes.map((n) =>
-        n.id === node.id ? { ...n, position: node.position } : n
-      );
-      setStoreNodes(updatedNodes);
-    },
-    [nodes, setStoreNodes]
-  );
-
-  // Listen for delete-edge custom events from DeletableEdge component
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ id: string }>).detail;
-      if (detail?.id) {
-        removeEdge(detail.id);
-      }
+    const handler = (event: Event) => {
+      const detail = (event as CustomEvent<{ id: string }>).detail;
+      if (detail?.id) removeEdge(detail.id);
     };
     window.addEventListener("delete-edge", handler);
     return () => window.removeEventListener("delete-edge", handler);
   }, [removeEdge]);
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-[#141414]">
-      {/* Top Navigation Bar */}
+    <div className="flex h-screen w-screen overflow-hidden bg-[#141414]">
       <TopNavBar />
+      {isAssetPanelOpen && <AssetManagerPanel />}
 
-      {/* Script Header (compact title node above canvas) */}
-      <ScriptHeader />
-
-      {/* Main Content Area */}
-      <div className="flex flex-1 overflow-hidden relative">
-        {/* Left Sidebar */}
-        <LeftSidebar />
-
-        {/* Canvas Area */}
-        <div className="flex-1 relative">
+      <main className="relative min-w-0 flex-1 overflow-hidden">
+        {editorMode === "storyboard" ? (
+          <StoryboardBoard />
+        ) : (
           <ReactFlow
-            nodes={nodes}
-            edges={edges}
+            key={activeCanvasId}
+            nodes={flowNodes}
+            edges={showEdges ? edges : []}
+            onInit={(instance) => {
+              flowRef.current = instance;
+              setZoomLevel(Math.round(flowViewport.zoom * 100));
+            }}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            onNodeClick={onNodeClick}
-            onPaneClick={onPaneClick}
-            onNodeDragStop={onNodeDragStop}
+            onNodeClick={(_, node) => selectNode(node.id)}
+            onPaneClick={() => selectNode(null)}
+            onNodeDragStop={(_, node) => {
+              setStoreNodes(nodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)));
+            }}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
-            fitView
-            className="bg-[#171717]"
-            defaultEdgeOptions={{
-              type: "default",
-              animated: false,
-              style: { stroke: "#86909c", strokeWidth: 2 },
-            }}
+            viewport={flowViewport}
+            className={canvasTool === "pan" ? "cursor-grab bg-[#141414]" : "bg-[#141414]"}
+            defaultEdgeOptions={{ type: "default", animated: false, style: { stroke: "#7a8090", strokeWidth: 1.5 } }}
             snapToGrid={snapToGrid}
             snapGrid={[20, 20]}
             onViewportChange={onViewportChange}
-            // Pan and zoom settings
             panOnScroll
             zoomOnScroll
             panOnDrag
-            selectionOnDrag={false}
-            // Connection settings
-            connectionLineStyle={{ stroke: "#09caf5", strokeWidth: 2 }}
-            // Interaction options
-            nodesDraggable
+            selectionOnDrag={canvasTool === "select"}
+            connectionLineStyle={{ stroke: "#09caf5", strokeWidth: 1.5 }}
+            nodesDraggable={canvasTool === "select"}
             nodesConnectable
             elementsSelectable
             selectNodesOnDrag={false}
-            // Selection
             selectionMode={SelectionMode.Partial}
-            // Min/Max zoom
             minZoom={0.1}
-            maxZoom={2}
-            // Delete key
+            maxZoom={8}
             deleteKeyCode="Delete"
           >
-            {showGrid && (
-              <Background
-                variant={BackgroundVariant.Dots}
-                gap={20}
-                size={1}
-                color="#474747"
+            {showGrid && <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#303030" />}
+            {showMinimap && (
+              <MiniMap
+                position="bottom-right"
+                style={{ width: 150, height: 110, background: "#202020", borderRadius: 12 }}
+                maskColor="rgba(10,10,10,0.48)"
+                nodeColor="#666"
+                nodeStrokeColor="#8d8d8d"
               />
             )}
           </ReactFlow>
+        )}
+      </main>
 
-          {/* Following Status - Top center, purple background */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#8B25E4] border border-[#8B25E4] rounded-b-xl px-3 py-1.5 text-sm text-white z-50">
-            <span>正在跟随</span>
-            <button className="text-xs text-white/80 hover:text-white transition-colors">
-              取消ESC
-            </button>
-          </div>
+      {isAgentOpen && <AgentDrawer />}
+
+      <LeftSidebar />
+      <BottomToolbar onOrganize={organize} onFitView={fitView} onZoomBy={zoomBy} onZoomTo={zoomTo} />
+
+      {organizeSnapshot && (
+        <div className="fixed bottom-[70px] left-1/2 z-[72] flex -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-[#262626] p-2 pl-3 text-xs text-[#dedede] shadow-[0_14px_40px_rgba(0,0,0,0.5)] max-sm:bottom-[110px]">
+          <span>是否保留此次整理结果？</span>
+          <button onClick={restoreOrganize} className="h-7 rounded-lg px-3 text-[#aaa] hover:bg-white/[0.07] hover:text-white">还原</button>
+          <button onClick={() => setOrganizeSnapshot(null)} className="h-7 rounded-lg bg-[#eceff3] px-3 text-[#202020] hover:bg-white">保留</button>
         </div>
-      </div>
+      )}
 
-      {/* Bottom Toolbar */}
-      <BottomToolbar />
-
-      {/* Keyboard Shortcuts Dialog */}
-      <KeyboardShortcutsDialog
-        isOpen={isShortcutsPanelOpen}
-        onClose={toggleShortcutsPanel}
-      />
+      <KeyboardShortcutsDialog isOpen={isShortcutsPanelOpen} onClose={toggleShortcutsPanel} />
     </div>
   );
 }

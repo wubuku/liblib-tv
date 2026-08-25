@@ -1,10 +1,8 @@
 "use client";
 
-import { useRef, type MouseEvent } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
-import { type NodeProps, type Node, useReactFlow } from "@xyflow/react";
-import { Handle, Position } from "@xyflow/react";
+import { ImageIcon } from "lucide-react";
+import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 import { ImageEditPanel } from "@/components/ImageEditPanel";
 import { ImageToolbar } from "@/components/ImageToolbar";
@@ -19,146 +17,42 @@ export interface ImageNodeData extends Record<string, unknown> {
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
 
-export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
-  const { deleteElements } = useReactFlow();
-  const nodeRef = useRef<HTMLDivElement>(null);
-
+export function ImageNode({ data, selected }: NodeProps<ImageNodeType>) {
   const { filename, width, height, imageUrl, watermarkUrl } = data;
-
-  const handleDelete = (e: MouseEvent) => {
-    e.stopPropagation();
-    deleteElements({ nodes: [{ id }] });
-  };
+  const { zoom } = useViewport();
 
   return (
-    <div className="relative">
-      <div
-        ref={nodeRef}
-        className={cn(
-          "w-[360px] rounded-xl border border-[#363636] bg-[#171717] overflow-visible group",
-          "transition-shadow duration-150",
-          selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]"
-        )}
-      >
-        {/* Delete button - visible when selected */}
-        {selected && (
-          <button
-            onClick={handleDelete}
-            className="absolute -top-2 -right-2 z-10 w-5 h-5 bg-[#f53f3f] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#ff6a6f]"
-            aria-label="Delete node"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M2 2L8 8M8 2L2 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </button>
-        )}
+    <div
+      className={cn(
+        "group relative h-full w-full overflow-visible rounded-[4px] border bg-[#202020]",
+        selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/10",
+      )}
+    >
+      {selected && <ImageToolbar />}
+      <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
+      <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
-        {/* Left Handle (target) */}
-        <Handle
-          type="target"
-          position={Position.Left}
-          id="target"
-          style={{ width: 20, height: 20 }}
-        />
-
-        {/* Right Handle (source) */}
-        <Handle
-          type="source"
-          position={Position.Right}
-          id="source"
-          style={{ width: 20, height: 20 }}
-        />
-
-        {/* Header */}
-        <div className="flex items-center gap-2 border-b border-[#363636] px-3 py-2">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="shrink-0"
-          >
-            <rect
-              x="1.5"
-              y="2.5"
-              width="13"
-              height="11"
-              rx="1.5"
-              stroke="#f7f7f7"
-              strokeWidth="1.2"
-            />
-            <circle cx="5" cy="6" r="1.5" fill="#f7f7f7" />
-            <path
-              d="M1.5 11.5L5 8L8 11L10.5 8.5L14.5 11.5"
-              stroke="#f7f7f7"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          <span className="min-w-0 flex-1 truncate text-xs text-[#f7f7f7]">
-            {filename}
-          </span>
-
-          <span className="shrink-0 text-xs text-[#919191]">
-            {width} x {height}
-          </span>
-
-          <button
-            className={cn(
-              "flex h-5 w-5 shrink-0 items-center justify-center rounded",
-              "text-[#919191] transition-colors hover:bg-[#363636] hover:text-[#f7f7f7]",
-              "opacity-0 transition-opacity duration-150",
-              selected && "opacity-100"
-            )}
-            onClick={(e: MouseEvent) => {
-              e.stopPropagation();
-            }}
-            aria-label="Close"
-          >
-            <X size={12} />
-          </button>
-        </div>
-
-        {/* Image container */}
-        <div className="relative overflow-hidden">
-          <Image
-            src={imageUrl}
-            alt={filename}
-            width={width}
-            height={height}
-            className="h-auto w-full object-cover"
-            unoptimized
-          />
-
-          {/* Watermark overlay */}
-          {watermarkUrl && (
-            <div
-              className="pointer-events-none absolute z-10"
-              style={{ width: 210, height: 102 }}
-            >
-              <Image
-                src={watermarkUrl}
-                alt="Watermark"
-                width={210}
-                height={102}
-                className="h-full w-full object-contain"
-                unoptimized
-              />
-            </div>
-          )}
-        </div>
+      <div className="pointer-events-none absolute -top-7 left-0 flex h-6 w-full items-center gap-1.5 text-[12px] text-[#828282]">
+        <ImageIcon size={13} />
+        <span className="min-w-0 flex-1 truncate">{filename}</span>
+        <span className="shrink-0 tabular-nums">{width} × {height}</span>
       </div>
 
-      {/* Image Edit Panel - appears below when selected */}
-      {selected && (
-        <ImageEditPanel onClose={() => {}} />
-      )}
+      <div className="relative h-full w-full overflow-hidden rounded-[3px]">
+        <Image src={imageUrl} alt={filename} fill sizes="700px" className="object-cover" loading="eager" unoptimized />
+        {watermarkUrl && (
+          <Image
+            src={watermarkUrl}
+            alt=""
+            width={48}
+            height={23}
+            className="pointer-events-none absolute left-1 top-1 h-[23px] w-12 object-contain opacity-90"
+            unoptimized
+          />
+        )}
+      </div>
 
-      {/* Image Toolbar - appears on the right when selected */}
-      {selected && <ImageToolbar />}
+      {selected && <ImageEditPanel zoom={zoom} />}
     </div>
   );
 }

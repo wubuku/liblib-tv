@@ -1,6 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import {
+  CircleHelp,
+  Hand,
+  History,
+  Keyboard,
+  MousePointer2,
+  Plus,
+  Shapes,
+  UserRound,
+  WandSparkles,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
 import { AddNodePanel } from "./AddNodePanel";
@@ -9,173 +20,123 @@ import { ToolboxPanel } from "./ToolboxPanel";
 import { CharacterLibraryPanel } from "./CharacterLibraryPanel";
 import { HistoryPanel } from "./HistoryPanel";
 
-// SVG Icons for sidebar buttons
-function AddNodeIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
+type PanelName = "move" | "toolbox" | "material" | "character" | "history" | "tutorial";
 
-function ToolboxIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="1" y="5" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M5 5V3a3 3 0 016 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function MaterialIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="6" cy="6" r="1.5" fill="currentColor" />
-      <path d="M2 11l3-3 2 2 3-4 4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function CharacterIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function HistoryIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M2 8a6 6 0 1111.3-2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M14 2v4h-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M8 4v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function KeyboardIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="4" y="6" width="2" height="1.5" rx="0.5" fill="currentColor" />
-      <rect x="7" y="6" width="2" height="1.5" rx="0.5" fill="currentColor" />
-      <rect x="10" y="6" width="2" height="1.5" rx="0.5" fill="currentColor" />
-      <rect x="4" y="9" width="8" height="1.5" rx="0.5" fill="currentColor" />
-    </svg>
-  );
-}
-
-function TutorialIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6 6a2 2 0 114 0c0 1.5-2 1.5-2 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="8" cy="12" r="0.75" fill="currentColor" />
-    </svg>
-  );
-}
-
-interface SidebarButtonProps {
-  icon: React.ReactNode;
+interface ToolButtonProps {
   label: string;
-  isActive?: boolean;
-  onClick?: () => void;
-  badge?: string;
+  active?: boolean;
+  prominent?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
 }
 
-function SidebarButton({ icon, label, isActive, onClick, badge }: SidebarButtonProps) {
+function ToolButton({ label, active, prominent, onClick, children }: ToolButtonProps) {
   return (
     <button
       type="button"
+      title={label}
+      aria-label={label}
+      aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 cursor-pointer",
-        isActive ? "bg-[rgba(255,255,255,0.15)]" : "hover:bg-[rgba(255,255,255,0.08)]"
+        "relative flex shrink-0 items-center justify-center rounded-lg transition-colors",
+        prominent ? "h-10 w-10 bg-[#edf0f5] text-[#171717] hover:bg-white" : "h-8 w-8 text-[#d4d4d4] hover:bg-white/10",
+        active && !prominent && "bg-white/10 text-white",
       )}
-      title={label}
     >
-      <span className="text-[#f7f7f7]">{icon}</span>
-      {badge && (
-        <span className="absolute -right-1 -top-1 flex h-4 items-center rounded bg-[#09caf5] px-1 text-[10px] font-medium text-black">
-          {badge}
-        </span>
-      )}
+      {children}
     </button>
   );
 }
 
-export function LeftSidebar() {
-  const [activePanel, setActivePanel] = useState<string | null>(null);
-  const { toggleShortcutsPanel, toggleAddNodePanel, isAddNodePanelOpen } = useUIStore();
+function MoveMenu({ onSelect }: { onSelect: (tool: "select" | "pan") => void }) {
+  const canvasTool = useUIStore((state) => state.canvasTool);
 
-  const togglePanel = (panel: string) => {
-    setActivePanel((prev) => (prev === panel ? null : panel));
+  return (
+    <div className="fixed bottom-[68px] left-1/2 z-[61] w-40 -translate-x-[126px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[108px]">
+      <button onClick={() => onSelect("select")} className="flex h-9 w-full items-center gap-3 rounded-lg px-3 text-sm text-[#ededed] hover:bg-white/[0.07]">
+        <MousePointer2 size={16} />
+        <span className="flex-1 text-left">移动</span>
+        <span className="text-xs text-[#777]">V</span>
+        {canvasTool === "select" && <span className="h-1.5 w-1.5 rounded-full bg-[#09caf5]" />}
+      </button>
+      <button onClick={() => onSelect("pan")} className="flex h-9 w-full items-center gap-3 rounded-lg px-3 text-sm text-[#ededed] hover:bg-white/[0.07]">
+        <Hand size={16} />
+        <span className="flex-1 text-left">抓手工具</span>
+        <span className="text-xs text-[#777]">H</span>
+        {canvasTool === "pan" && <span className="h-1.5 w-1.5 rounded-full bg-[#09caf5]" />}
+      </button>
+    </div>
+  );
+}
+
+function TutorialMenu() {
+  return (
+    <div className="fixed bottom-[68px] left-[calc(50%+90px)] z-[61] w-[104px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[108px] max-sm:left-auto max-sm:right-6">
+      {["使用教程", "联系客服", "联系销售", "关注公众号"].map((label) => (
+        <button key={label} className="h-9 w-full rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]">
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function LeftSidebar() {
+  const [activePanel, setActivePanel] = useState<PanelName | null>(null);
+  const {
+    toggleShortcutsPanel,
+    toggleAddNodePanel,
+    isAddNodePanelOpen,
+    canvasTool,
+    setCanvasTool,
+  } = useUIStore();
+
+  const togglePanel = (panel: PanelName) => {
+    setActivePanel((current) => (current === panel ? null : panel));
+  };
+
+  const selectTool = (tool: "select" | "pan") => {
+    setCanvasTool(tool);
+    setActivePanel(null);
   };
 
   return (
     <>
-      <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1 p-1 bg-[#171717] border-r border-[#363636]"
-        style={{ zIndex: 40 }}
-      >
-        <SidebarButton
-          icon={<AddNodeIcon />}
-          label="添加节点"
-          isActive={isAddNodePanelOpen}
-          onClick={toggleAddNodePanel}
-        />
-        <SidebarButton
-          icon={<ToolboxIcon />}
-          label="打开工具箱"
-          isActive={activePanel === "toolbox"}
-          onClick={() => togglePanel("toolbox")}
-        />
-        <SidebarButton
-          icon={<MaterialIcon />}
-          label="素材库"
-          isActive={activePanel === "material"}
-          onClick={() => togglePanel("material")}
-        />
-        <SidebarButton
-          icon={<CharacterIcon />}
-          label="角色库"
-          isActive={activePanel === "character"}
-          onClick={() => togglePanel("character")}
-        />
-        <SidebarButton
-          icon={<HistoryIcon />}
-          label="历史记录"
-          isActive={activePanel === "history"}
-          onClick={() => togglePanel("history")}
-        />
-        <SidebarButton
-          icon={<KeyboardIcon />}
-          label="快捷键"
-          onClick={toggleShortcutsPanel}
-        />
-        <SidebarButton
-          icon={<TutorialIcon />}
-          label="教程"
-          isActive={activePanel === "tutorial"}
-          onClick={() => togglePanel("tutorial")}
-        />
+      <div className="fixed bottom-3 left-1/2 z-[60] flex h-[49px] -translate-x-1/2 items-center gap-2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.4)] max-sm:bottom-[52px]">
+        <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddNodePanel}>
+          <Plus size={22} />
+        </ToolButton>
+        <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePanel === "move"} onClick={() => togglePanel("move")}>
+          {canvasTool === "pan" ? <Hand size={17} /> : <MousePointer2 size={17} />}
+        </ToolButton>
+        <ToolButton label="打开工具箱" active={activePanel === "toolbox"} onClick={() => togglePanel("toolbox")}>
+          <WandSparkles size={17} />
+        </ToolButton>
+        <ToolButton label="素材库" active={activePanel === "material"} onClick={() => togglePanel("material")}>
+          <Shapes size={17} />
+        </ToolButton>
+        <ToolButton label="角色库" active={activePanel === "character"} onClick={() => togglePanel("character")}>
+          <UserRound size={17} />
+        </ToolButton>
+        <ToolButton label="历史记录" active={activePanel === "history"} onClick={() => togglePanel("history")}>
+          <History size={17} />
+        </ToolButton>
+        <ToolButton label="快捷键" onClick={toggleShortcutsPanel}>
+          <Keyboard size={17} />
+        </ToolButton>
+        <ToolButton label="教程与帮助" active={activePanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
+          <CircleHelp size={17} />
+        </ToolButton>
       </div>
 
-      {/* Panels */}
       {isAddNodePanelOpen && <AddNodePanel />}
-      {activePanel === "toolbox" && (
-        <ToolboxPanel onClose={() => setActivePanel(null)} />
-      )}
+      {activePanel === "move" && <MoveMenu onSelect={selectTool} />}
+      {activePanel === "toolbox" && <ToolboxPanel onClose={() => setActivePanel(null)} />}
       {activePanel === "material" && <MaterialLibraryPanel />}
-      {activePanel === "character" && (
-        <CharacterLibraryPanel onClose={() => setActivePanel(null)} />
-      )}
-      {activePanel === "history" && (
-        <HistoryPanel onClose={() => setActivePanel(null)} />
-      )}
+      {activePanel === "character" && <CharacterLibraryPanel onClose={() => setActivePanel(null)} />}
+      {activePanel === "history" && <HistoryPanel onClose={() => setActivePanel(null)} />}
+      {activePanel === "tutorial" && <TutorialMenu />}
     </>
   );
 }

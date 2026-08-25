@@ -13,10 +13,15 @@ interface UIState {
   isTutorialPanelOpen: boolean;
   isNotificationOpen: boolean;
   isUserMenuOpen: boolean;
+  isSharePanelOpen: boolean;
+  isAgentOpen: boolean;
+  editorMode: "workbench" | "storyboard";
+  canvasTool: "select" | "pan";
 
   // Canvas settings
   showMinimap: boolean;
   showGrid: boolean;
+  showEdges: boolean;
   snapToGrid: boolean;
   zoomLevel: number;
 
@@ -32,8 +37,13 @@ interface UIState {
   toggleTutorialPanel: () => void;
   toggleNotification: () => void;
   toggleUserMenu: () => void;
+  toggleSharePanel: () => void;
+  toggleAgent: () => void;
+  setEditorMode: (mode: "workbench" | "storyboard") => void;
+  setCanvasTool: (tool: "select" | "pan") => void;
   toggleMinimap: () => void;
   toggleGrid: () => void;
+  toggleEdges: () => void;
   toggleSnapToGrid: () => void;
   setZoomLevel: (zoom: number) => void;
 
@@ -53,9 +63,14 @@ export const useUIStore = create<UIState>((set) => ({
   isTutorialPanelOpen: false,
   isNotificationOpen: false,
   isUserMenuOpen: false,
+  isSharePanelOpen: false,
+  isAgentOpen: false,
+  editorMode: "workbench",
+  canvasTool: "select",
 
-  showMinimap: true,
+  showMinimap: false,
   showGrid: true,
+  showEdges: true,
   snapToGrid: false,
   zoomLevel: 54,
 
@@ -98,11 +113,32 @@ export const useUIStore = create<UIState>((set) => ({
   toggleUserMenu: () =>
     set((state) => ({ isUserMenuOpen: !state.isUserMenuOpen })),
 
+  toggleSharePanel: () =>
+    set((state) => ({
+      isSharePanelOpen: !state.isSharePanelOpen,
+      isCanvasDropdownOpen: false,
+    })),
+
+  toggleAgent: () =>
+    set((state) => ({ isAgentOpen: !state.isAgentOpen })),
+
+  setEditorMode: (mode) =>
+    set({
+      editorMode: mode,
+      isAgentOpen: mode === "storyboard",
+      isSharePanelOpen: false,
+    }),
+
+  setCanvasTool: (tool) => set({ canvasTool: tool }),
+
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),
 
   toggleGrid: () =>
     set((state) => ({ showGrid: !state.showGrid })),
+
+  toggleEdges: () =>
+    set((state) => ({ showEdges: !state.showEdges })),
 
   toggleSnapToGrid: () =>
     set((state) => ({ snapToGrid: !state.snapToGrid })),
@@ -122,5 +158,6 @@ export const useUIStore = create<UIState>((set) => ({
       isTutorialPanelOpen: false,
       isNotificationOpen: false,
       isUserMenuOpen: false,
+      isSharePanelOpen: false,
     }),
 }));
