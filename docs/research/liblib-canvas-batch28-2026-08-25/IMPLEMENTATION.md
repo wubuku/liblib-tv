@@ -1,6 +1,6 @@
 # Batch 28 Implementation Log
 
-> 状态：核心实现完成；专项 Playwright 与完整回归待执行。
+> 状态：核心实现与专项 Playwright 完成；完整回归待执行。
 
 ## Planned Protection Points
 
@@ -50,8 +50,28 @@
 - 两条 edge 都匹配 `Edge from {sourceId} to ...`；
 - console/page error 为 `0`。
 
+## Focused Playwright
+
+新增 `scripts/verify-liblib-batch28.py`，实际通过：
+
+- current menu 顺序、mode selectors、AV tooltip 与 no-SFX；
+- trigger-relative menu geometry；
+- busy spinner、`分离中`、disabled、hidden-chevron 与重复点击 guard；
+- `av / vocals / background` 三种双输出 transaction；
+- mode-specific filename、result copy、duration 与 metadata；
+- `source -> audio`、`source -> silent video`，且无
+  `audio -> silent video`；
+- top-aligned `120` world-unit clone geometry；
+- final silent-video selection；
+- graph single-step undo/redo；
+- multi-selection hiding；
+- `390x844` natural clipping 与 no document overflow；
+- 四张 state screenshot、一次性 contact sheet 与 zero browser errors。
+
+首轮脚本失败来自动态 `.selected` locator 在 graph transaction 后解析到
+silent-video；改为固定 source ID locator 后，产品行为无需修改。
+
 ## Pending
 
-- 新增 Batch 28 Playwright；
 - 运行跨批回归与完整门禁；
 - 更新 Big Picture、component specs 和 HARNESS。
