@@ -31,7 +31,7 @@
 |---|---|
 | [`PLAN.md`](PLAN.md) | 缺口盘点、价值排序、批次范围、验收标准 |
 | [`COMMAND_HISTORY.spec.md`](COMMAND_HISTORY.spec.md) | 每画布历史栈和命令边界 |
-| [`CONTEXT_MENU.spec.md`](CONTEXT_MENU.spec.md) | 节点/画布空白处右键菜单 |
+| [`CONTEXT_MENU.spec.md`](CONTEXT_MENU.spec.md) | 暂缓的节点/画布空白处右键菜单候选 |
 | [`KEYBOARD_SHORTCUTS.spec.md`](KEYBOARD_SHORTCUTS.spec.md) | 快捷键展示与实际行为对照 |
 | [`IMPLEMENTATION.md`](IMPLEMENTATION.md) | 实施文件、验证记录、已知差异和后续接力 |
 
@@ -40,4 +40,3 @@
 - Batch 1：主工具栏入口面板和锚点关系。
 - Seedance 批次：图片、视频、逐帧拉片、智能剪辑和 Seedance 2.5 工作流。
 - Batch 3：不改变这些节点的视觉合同，重点补充跨节点的编辑命令。
-

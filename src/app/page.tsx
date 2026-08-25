@@ -18,7 +18,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { useCanvasStore } from "@/store/canvasStore";
+import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import { useUIStore } from "@/store/uiStore";
 import { TopNavBar } from "@/components/TopNavBar";
 import { LeftSidebar } from "@/components/LeftSidebar";
@@ -63,6 +63,9 @@ export default function Home() {
     removeEdge,
     selectNode,
     selectedNodeId,
+    undo,
+    redo,
+    duplicateNode,
     setViewport: setStoreViewport,
     activeCanvasId,
   } = useCanvasStore();
@@ -76,6 +79,7 @@ export default function Home() {
     isAssetPanelOpen,
     isAgentOpen,
     closeAllPanels,
+    toggleAddNodePanel,
     isShortcutsPanelOpen,
     toggleShortcutsPanel,
     setCanvasTool,
@@ -87,6 +91,7 @@ export default function Home() {
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
+  const dragHistorySnapshot = useRef<GraphSnapshot | null>(null);
   const [flowViewport, setFlowViewport] = useState(() => {
     if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
     return typeof window !== "undefined" && window.innerWidth <= 768 ? compactViewport : desktopViewport;
@@ -164,13 +169,13 @@ export default function Home() {
         position: { x: 2280 + index * 760, y: index * 40 },
       })),
     ];
-    setStoreNodes(organized);
+    setStoreNodes(organized, { recordHistory: true });
     window.setTimeout(fitView, 40);
   }, [fitView, flowViewport, nodes, setStoreNodes]);
 
   const restoreOrganize = () => {
     if (organizeSnapshot) {
-      setStoreNodes(organizeSnapshot.nodes);
+      setStoreNodes(organizeSnapshot.nodes, { recordHistory: true });
       setFlowViewport(organizeSnapshot.viewport);
       setStoreViewport(organizeSnapshot.viewport);
       setZoomLevel(Math.round(organizeSnapshot.viewport.zoom * 100));
@@ -205,6 +210,8 @@ export default function Home() {
       const target = event.target as HTMLElement | null;
       if (target?.matches("input, textarea, [contenteditable='true']")) return;
 
+      const modifier = event.metaKey || event.ctrlKey;
+
       if (event.key === "Delete" || event.key === "Backspace") {
         const { selectedNodeId: nodeId, removeNode } = useCanvasStore.getState();
         if (nodeId) {
@@ -216,17 +223,41 @@ export default function Home() {
         selectNode(null);
         closeAllPanels();
       }
+      if (modifier && event.key.toLowerCase() === "z") {
+        event.preventDefault();
+        if (event.shiftKey) redo();
+        else undo();
+      }
+      if (modifier && event.key.toLowerCase() === "y") {
+        event.preventDefault();
+        redo();
+      }
+      if (modifier && event.key.toLowerCase() === "d") {
+        const nodeId = useCanvasStore.getState().selectedNodeId;
+        if (nodeId) {
+          event.preventDefault();
+          duplicateNode(nodeId, true);
+        }
+      }
+      if (event.key === "Tab") {
+        event.preventDefault();
+        toggleAddNodePanel();
+      }
+      if (event.altKey && event.shiftKey && event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        organize();
+      }
       if (event.key.toLowerCase() === "v") setCanvasTool("select");
       if (event.key.toLowerCase() === "h") setCanvasTool("pan");
-      if ((event.metaKey || event.ctrlKey) && event.key === "0") {
+      if (modifier && event.key === "0") {
         event.preventDefault();
         fitView();
       }
-      if ((event.metaKey || event.ctrlKey) && (event.key === "+" || event.key === "=")) {
+      if (modifier && (event.key === "+" || event.key === "=")) {
         event.preventDefault();
         zoomBy(0.1);
       }
-      if ((event.metaKey || event.ctrlKey) && event.key === "-") {
+      if (modifier && event.key === "-") {
         event.preventDefault();
         zoomBy(-0.1);
       }
@@ -234,7 +265,18 @@ export default function Home() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeAllPanels, fitView, selectNode, setCanvasTool, zoomBy]);
+  }, [
+    closeAllPanels,
+    duplicateNode,
+    fitView,
+    organize,
+    redo,
+    selectNode,
+    setCanvasTool,
+    toggleAddNodePanel,
+    undo,
+    zoomBy,
+  ]);
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -267,9 +309,22 @@ export default function Home() {
             onConnect={onConnect}
             onNodeClick={(_, node) => selectNode(node.id)}
             onPaneClick={() => selectNode(null)}
+            onNodeDragStart={() => {
+              const currentCanvas = useCanvasStore.getState().getActiveCanvas();
+              dragHistorySnapshot.current = currentCanvas
+                ? { nodes: currentCanvas.nodes, edges: currentCanvas.edges }
+                : null;
+            }}
             onNodeDragStop={(_, node) => {
               const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
-              setStoreNodes(currentNodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)));
+              setStoreNodes(
+                currentNodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)),
+                {
+                  recordHistory: true,
+                  historySnapshot: dragHistorySnapshot.current ?? undefined,
+                },
+              );
+              dragHistorySnapshot.current = null;
             }}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
@@ -310,7 +365,12 @@ export default function Home() {
       {isAgentOpen && <AgentDrawer />}
 
       <LeftSidebar />
-      <BottomToolbar onOrganize={organize} onFitView={fitView} onZoomBy={zoomBy} onZoomTo={zoomTo} />
+      <BottomToolbar
+        onOrganize={organize}
+        onFitView={fitView}
+        onZoomBy={zoomBy}
+        onZoomTo={zoomTo}
+      />
 
       {organizeSnapshot && (
         <div className="fixed bottom-[70px] left-1/2 z-[72] flex -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-[#262626] p-2 pl-3 text-xs text-[#dedede] shadow-[0_14px_40px_rgba(0,0,0,0.5)] max-sm:bottom-[110px]">

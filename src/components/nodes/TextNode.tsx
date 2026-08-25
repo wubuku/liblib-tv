@@ -3,6 +3,7 @@
 import { memo, useRef, useState } from "react";
 import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
 import { cn } from "@/lib/utils";
+import { useCanvasStore } from "@/store/canvasStore";
 
 export interface TextNodeData extends Record<string, unknown> {
   content: string;
@@ -11,10 +12,15 @@ export interface TextNodeData extends Record<string, unknown> {
 export type TextNodeType = Node<TextNodeData>;
 
 function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [content, setContent] = useState(data.content);
+  const [draft, setDraft] = useState<string | null>(null);
   const { deleteElements } = useReactFlow();
+  const updateNodeData = useCanvasStore((state) => state.updateNodeData);
   const nodeRef = useRef<HTMLDivElement>(null);
+
+  const commitContent = () => {
+    if (draft !== null && draft !== data.content) updateNodeData(id, { content: draft });
+    setDraft(null);
+  };
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -64,23 +70,25 @@ function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
       </div>
 
       <div className="p-3">
-        {isEditing ? (
+        {draft !== null ? (
           <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            onBlur={() => setIsEditing(false)}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onBlur={commitContent}
             onKeyDown={(e) => {
-              if (e.key === "Escape") setIsEditing(false);
+              if (e.key === "Escape") {
+                setDraft(null);
+              }
             }}
             className="w-full bg-[#363636] text-[#f7f7f7] text-sm p-2 rounded border border-[#525252] focus:border-[#09caf5] outline-none resize-none min-h-[60px]"
             autoFocus
           />
         ) : (
           <div
-            onClick={() => setIsEditing(true)}
+            onClick={() => setDraft(data.content)}
             className="text-sm text-[#f7f7f7] cursor-text hover:bg-[#363636] p-2 rounded min-h-[60px] whitespace-pre-wrap"
           >
-            {content || "点击编辑文本..."}
+            {data.content || "点击编辑文本..."}
           </div>
         )}
       </div>

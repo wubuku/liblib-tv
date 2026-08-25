@@ -37,7 +37,12 @@ function IconButton({ label, active, onClick, children }: IconButtonProps) {
   );
 }
 
-export function BottomToolbar({ onOrganize, onFitView, onZoomBy, onZoomTo }: BottomToolbarProps) {
+export function BottomToolbar({
+  onOrganize,
+  onFitView,
+  onZoomBy,
+  onZoomTo,
+}: BottomToolbarProps) {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const {
     isAssetPanelOpen,

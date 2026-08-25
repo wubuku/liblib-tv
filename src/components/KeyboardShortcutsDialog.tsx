@@ -18,15 +18,9 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
   {
     title: "创作",
     items: [
-      { label: "成组", keys: ["cmd", "G"] },
-      { label: "合并分镜组", keys: ["cmd", "⌥", "G"] },
-      { label: "解组", keys: ["cmd", "⇧", "G"] },
-      { label: "连线", keys: ["cmd", "L"] },
       { label: "复制节点和连线", keys: ["cmd", "D"] },
-      { label: "生成", keys: ["cmd", "Enter"] },
       { label: "新建节点", keys: ["Tab"] },
-      { label: "节点复制", keys: ["Option"], suffix: "+拖动节点" },
-      { label: "创建副本", keys: ["cmd", "Option"], suffix: "+拖动" },
+      { label: "删除", keys: ["Delete"] },
     ],
   },
   {
@@ -55,7 +49,7 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
     items: [
       { label: "撤销", keys: ["cmd", "Z"] },
       { label: "重做", keys: ["cmd", "⇧", "Z"] },
-      { label: "删除", keys: ["Delete"] },
+      { label: "重做（Windows）", keys: ["ctrl", "Y"] },
     ],
   },
 ];
@@ -63,7 +57,7 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
 function Key({ value }: { value: string }) {
   return (
     <kbd className="flex min-h-7 min-w-7 items-center justify-center rounded-lg border border-white/[0.06] bg-[#1d1d1d] px-1.5 text-sm font-normal text-[#dedede] shadow-[inset_0_-1px_rgba(255,255,255,0.04)]">
-      {value === "cmd" ? <Command size={15} /> : value}
+      {value === "cmd" || value === "ctrl" ? <Command size={15} /> : value}
     </kbd>
   );
 }
