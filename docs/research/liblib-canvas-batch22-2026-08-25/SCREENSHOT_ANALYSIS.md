@@ -69,3 +69,39 @@ Batch 21 已通过四图 contact sheet 识别过菜单上下文；本次只为�
 
 实施前不再打开该截图。后续优先使用本文；只有完整模型库、其他 description、精确 SVG 或键盘/滚动行为进入范围时才重新采样。
 
+## 5. Clone 验证截图
+
+### 文件
+
+- `docs/design-references/liblib-clone-batch22-model-menu-default-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch22-model-menu-fast-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch22-model-menu-mobile-390-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch22-model-menu-contact-sheet-2026-08-25.png`
+- 来源：本地 clone
+- 采样日期：2026-08-25
+- viewport：desktop `929x874`；mobile `390x844`
+- contact sheet 识图次数：1
+
+### Clone screenshot fact
+
+- 固定高度菜单内完整显示七个 source-visible row，没有底部裁切。
+- 每行右侧 estimate pill 形成稳定列；前五行 premium icon 与 title 对齐，Wan 两行没有 premium icon。
+- 默认截图只展开 `Seedance 2.5` 的说明；Fast 截图只展开 `Seedance 2.0 Fast VIP` 的说明。
+- 两种 selected state 都有可辨识的加亮 surface 和 border，其他行保持紧凑。
+- mobile 截图中菜单与 generation panel 左边缘对齐，`380px` 菜单完整落在 `390px` viewport 内。
+- 未见 title、estimate、premium icon 或 description 互相覆盖，也未见菜单与 viewport 产生水平溢出。
+
+### DOM-backed geometry
+
+专项脚本测得：
+
+- menu：`380x410`
+- desktop menu relative to generation panel：`left 0px`、`top -176.7px`
+- selected row：`58px`
+- compact row：`48px`
+- premium count：`5`
+
+### Remaining fidelity boundary
+
+- model tile 和 premium 仍使用 clone icon 近似，不代表原站 SVG path 已复刻。
+- 本组截图只验证 source-visible 七项及两个已确认 description，不扩大为完整模型库证据。

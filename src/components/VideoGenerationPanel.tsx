@@ -10,6 +10,7 @@ import {
   Check,
   ChevronDown,
   Film,
+  Gem,
   Images,
   Languages,
   Link2,
@@ -40,10 +41,57 @@ const references = [
 ];
 
 const modelItems = [
-  { id: "2.5", title: "Seedance 2.5", estimate: "2min", description: "最强视频模型，全能参考，30s音画同步" },
-  { id: "2.0 VIP", title: "Seedance 2.0 VIP", estimate: "2min", description: "会员专属通道，15s音画同步" },
-  { id: "Minimax H3", title: "Minimax H3", estimate: "2min", description: "全模态输入，多参数控制" },
-  { id: "Kling O3", title: "Kling O3", estimate: "3min", description: "视频编辑、音画同出、多镜头" },
+  {
+    id: "2.5",
+    title: "Seedance 2.5",
+    estimate: "2min",
+    premium: true,
+    family: "seedance",
+    description: "最强视频模型，全能参考，30s音画同步",
+  },
+  {
+    id: "2.0 VIP",
+    title: "Seedance 2.0 VIP",
+    estimate: "2min",
+    premium: true,
+    family: "seedance",
+  },
+  {
+    id: "Minimax H3",
+    title: "Minimax H3",
+    estimate: "2min",
+    premium: true,
+    family: "minimax",
+  },
+  {
+    id: "2.0 Fast VIP",
+    title: "Seedance 2.0 Fast VIP",
+    estimate: "2min",
+    premium: true,
+    family: "seedance",
+    description: "最强视频模型快速版，会员专属通道，15s音画同步",
+  },
+  {
+    id: "2.0 Mini",
+    title: "Seedance 2.0 Mini",
+    estimate: "2min",
+    premium: true,
+    family: "seedance",
+  },
+  {
+    id: "Wan 3.0 Prime",
+    title: "Wan 3.0 Prime",
+    estimate: "1min",
+    premium: false,
+    family: "wan",
+  },
+  {
+    id: "Wan 3.0",
+    title: "Wan 3.0",
+    estimate: "3min",
+    premium: false,
+    family: "wan",
+  },
 ];
 
 const modeItems = [
@@ -157,8 +205,48 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
 
 function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: string) => void }) {
   return (
-    <div className="absolute bottom-10 left-0 z-50 w-[330px] rounded-xl border border-white/10 bg-[#292929] p-1.5 shadow-2xl">
-      {modelItems.map((item) => <button key={item.id} type="button" onClick={() => onSelect(item.id)} className={cn("flex w-full items-start gap-3 rounded-lg p-2 text-left hover:bg-white/[0.06]", model === item.id && "bg-white/[0.08]")}><span className="mt-0.5 flex size-7 items-center justify-center rounded-lg bg-[#09caf5]/10 text-xs font-semibold text-[#09caf5]">{item.id.split(" ")[0]}</span><span className="min-w-0 flex-1"><span className="flex items-center gap-2 text-sm text-white">{item.title}<small className="text-[10px] text-[#777]">{item.estimate}</small></span><span className="block truncate text-[11px] text-[#777]">{item.description}</span></span></button>)}
+    <div
+      data-video-model-menu
+      className="absolute bottom-8 -left-[9px] z-50 flex h-[410px] w-[380px] flex-col gap-1 rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl"
+    >
+      {modelItems.map((item) => {
+        const selected = model === item.id;
+        const ModelIcon = item.family === "seedance" ? Film : Sparkles;
+        return (
+          <button
+            key={item.id}
+            data-video-model-option={item.id}
+            type="button"
+            aria-pressed={selected}
+            onClick={() => onSelect(item.id)}
+            className={cn(
+              "flex w-full shrink-0 items-center gap-2 rounded-xl border border-transparent px-2 text-left hover:bg-white/[0.055]",
+              selected && "min-h-[58px] border-[#4a4a4a] bg-white/[0.1]",
+              !selected && "min-h-[48px]",
+            )}
+          >
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-[#d9d9d9]">
+              <ModelIcon size={15} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center gap-1.5">
+                <span className="truncate text-sm text-[#efefef]">{item.title}</span>
+                {item.premium && (
+                  <Gem data-video-model-premium size={11} fill="currentColor" className="shrink-0 text-[#f3b74c]" />
+                )}
+              </span>
+              {selected && item.description && (
+                <span data-video-model-description className="mt-0.5 block truncate text-[11px] text-[#818181]">
+                  {item.description}
+                </span>
+              )}
+            </span>
+            <span className="shrink-0 rounded-full bg-white/[0.06] px-2 py-1 text-[10px] text-[#8a8a8a]">
+              {item.estimate}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
