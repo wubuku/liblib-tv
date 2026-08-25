@@ -17,6 +17,7 @@
   - `批量广告`
   - `口播视频`
   - `素材混剪`
+- commands use a single-column list with a small leading icon;
 - no textarea, reference row or footer inside the node.
 
 Stable selectors:

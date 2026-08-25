@@ -14,6 +14,7 @@
 - 交互状态：`video-clip` 节点单选，Prompt editor 可见
 - 整图识图次数：1
 - 临时最小 crop：原图 panel 区域，未入库，识图次数：1
+- 临时最小 crop：原图 node 区域放大，未入库，识图次数：1
 
 ### Source screenshot fact：节点
 
@@ -22,6 +23,7 @@
 - 节点内部顶部/中部有剪刀图标。
 - 主空态文案为 `空空如也，请连接视频节点后操作`。
 - 下方有 `尝试：` 和四个模式命令。
+- 四个模式是单列列表，不是 2x2 segmented grid；每行左侧有小图标。
 - 节点内部没有大 textarea、参考 row 或 footer。
 
 ### Source screenshot fact：下方 panel
