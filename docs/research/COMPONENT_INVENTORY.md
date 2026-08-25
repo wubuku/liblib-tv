@@ -29,7 +29,8 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready video renderer; single selection shows Seedance generation/processing/reshoot UI. Source failed video is a child of the video group. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
-| `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state and local storyboard/motion/music result cards. |
+| `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state, source metadata, dimensions and local completion command. |
+| `shot-breakdown-result` | `src/components/nodes/ShotBreakdownResultNode.tsx` | Persistent storyboard, motion or music result group created by a completed breakdown. |
 | `video-clip` | `src/components/nodes/VideoClipNode.tsx` | 智能剪辑 Beta four-mode prompt empty state. |
 | `audio` | `src/components/nodes/AudioNode.tsx` | Local audio preview card with handles, filename, waveform placeholder and duration. |
 
@@ -55,7 +56,6 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Ready-video top toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit and download actions. |
 | `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video lower editor for 片段重拍 and 智能续写. |
-| `ShotBreakdownResultsPanel` | `src/components/ShotBreakdownResultsPanel.tsx` | Local structured results for 逐帧拉片. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |
 | `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Four-column, bottom-toolbar-anchored shortcuts panel without a backdrop. |

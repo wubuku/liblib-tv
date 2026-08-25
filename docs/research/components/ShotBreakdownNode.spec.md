@@ -17,7 +17,9 @@
 - Default state: `empty`
 - Dimensions: `storyboard`, `motion`, `music`
 - Input paths: local video upload or a local mock video selected from the canvas
-- Result state: local example media cards, explicitly not a real upstream analysis task
+- Ready metadata: `00:30 · 1280×720` beside `视频素材`
+- Completion action: one store transaction creates persistent `shot-breakdown-result` nodes
+- Result state: three storyboard groups, one motion group and one music node, explicitly not a real upstream analysis task
 
 ## States
 
@@ -25,11 +27,22 @@
 |---|---|
 | `empty` | Upload/select video; start button disabled |
 | `ready` | Poster and source metadata visible; dimensions editable; start enabled |
-| `running` | Local 900ms transition; start disabled; spinner and `拉片中` |
-| `complete` | `ShotBreakdownResultsPanel` appears below the node |
+| `running` | Local component-only transition; start disabled; spinner and `拉片中` |
+| `complete` | Button shows `拉片完成`; persistent result nodes remain on canvas independent of selection |
+
+## Result Contract
+
+- Result renderer: `src/components/nodes/ShotBreakdownResultNode.tsx`
+- Structured local data: `src/lib/shotBreakdownResults.ts`
+- Storyboard: `S01-S08` across three groups
+- Motion: `M01-M03`
+- Music: BGM waveform, time and play command
+- No result tabs, checkmarks, aggregate selection footer or selected-state panel
+- One undo/redo removes/restores the source completion state, result nodes and edges together
+- Dimension toggles filter which categories are created
 
 ## Verification
 
-Desktop interaction was verified on the local clone at `929x874`: create node, select a canvas video, toggle dimensions, start analysis, wait for completion, switch result tabs, and select result cards. Result screenshot: `docs/design-references/liblib-clone-seedance-shot-breakdown-complete-2026-08-25.png`.
+Batch 24 verifies the ready input, five default persistent results, `S01-S08`, `M01-M03`, BGM, category filtering, deselection persistence, local item action feedback, one-step undo/redo and desktop/mobile canvas bounds.
 
-The original live tab was not mutated further after the initial source audit. No claim is made that the clone calls a real analysis API.
+See `docs/research/liblib-canvas-batch24-2026-08-25/` and `scripts/verify-liblib-batch24.py`. No claim is made that the clone calls a real analysis API.

@@ -92,7 +92,7 @@
 - 它具有独立视频节点标题和完整预览，不符合 `Sxx/Mxx/BGM` 结果命名。
 - 本批不把它计入逐帧拉片产物，也不据此新增额外结果视频。
 
-## 3. Current clone gap
+## 3. Batch 前 clone gap
 
 - `ShotBreakdownResultsPanel` 为 `660x260` 节点相对浮层，只在 source node selected + complete 时存在。
 - 结果被压进 `分镜 / 动态 / 音乐` tabs。
@@ -104,7 +104,61 @@
   - `加入参考`
 - ready 预览上覆盖 `sourceName · 00:30` pill，而 source screenshot 把时长/分辨率放在 section label 右侧。
 
-## 4. Re-inspection rule
+## 4. Clone verification
+
+### 文件与识图成本
+
+- `liblib-clone-batch24-shot-breakdown-ready-929-2026-08-25.png`
+- `liblib-clone-batch24-shot-breakdown-results-overview-929-2026-08-25.png`
+- `liblib-clone-batch24-shot-breakdown-results-detail-929-2026-08-25.png`
+- `liblib-clone-batch24-shot-breakdown-mobile-390-2026-08-25.png`
+- `liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png`
+- 最终 contact sheet 识图次数：1。
+- 预检 contact sheet 识图次数：1；预检发现细节图残留缩放菜单且 `S01` 已进入 active 反馈态，随后把 overlay close 和 action 断言移到截图之后，再生成最终证据。
+
+### Ready input
+
+- `929x874`、空白 `画布 1`、zoom `100%`。
+- 节点居中显示，外部标题、内部标题、`SD 2.5`、metadata、16:9 预览、三维度和开始按钮无重叠。
+- `00:30 · 1280×720` 位于 `视频素材` 同行右侧。
+- 图片上没有源名称/时长 pill。
+
+### Persistent results overview
+
+- `929x874`、fit-view `28%`。
+- source 位于结果列左上，五条边连接到右侧纵向结果组。
+- 三个分镜组、动态组和窄音乐节点都在同一画布中可见。
+- 结果没有 tabs、选择 footer 或 source selected-state panel。
+- 节点内容在总览态按画布 zoom 正常缩放，没有变成屏幕固定浮层。
+
+### Storyboard detail
+
+- `929x874`、zoom `50%`。
+- 第一、第二分镜组的两列媒体卡清晰可辨。
+- 卡片标题在媒体上方；复用图标位于媒体右上。
+- 三张卡组保留第四个空 grid 位置，与 source screenshot 的组密度一致。
+- 缩放菜单已关闭，没有页面级 overlay 遮挡结果。
+- 结果组之间保持连续纵向间隔，没有卡片或标题互相覆盖。
+
+### Mobile fit
+
+- `390x844`、fit-view `24%`。
+- source、五个结果组和派生边保留同一拓扑。
+- 底部两组画布工具仍可见。
+- `documentElement` 和 `body` 均无横向 overflow。
+
+### DOM-backed contract
+
+- ready source：`320x389` at `100%`。
+- default result nodes：3 storyboard + 1 motion + 1 music。
+- result items：8 storyboard + 3 motion + 1 BGM。
+- large groups：`1040x680 / 1040x680 / 1040x350 / 1040x680`。
+- music：`324x220`。
+- 相邻组 world gap：`48px`。
+- completion：nodes `1 -> 6`，edges `0 -> 5`。
+- one undo：nodes `6 -> 1`，edges `5 -> 0`；one redo 恢复。
+
+## 5. Re-inspection rule
 
 除非进入以下新范围，不再打开这两张整图：
 
@@ -113,4 +167,4 @@
 - 卡片右上命令的真实行为；
 - output screenshot 中连接线和节点 type 的 DOM 证明。
 
-本批 clone 验证截图完成后，应在本文追加一次性 contact sheet 识图结论。
+除非实现或截图发生变化，后续不再打开本批 clone 整图；行为与几何优先运行 `scripts/verify-liblib-batch24.py`。

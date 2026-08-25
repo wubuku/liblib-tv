@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
-import { Film, Images, Link2, LoaderCircle, Music2, Upload, Video } from "lucide-react";
-import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
+import { Film, Images, Link2, LoaderCircle, Music2, Upload } from "lucide-react";
+import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 import { useCanvasStore } from "@/store/canvasStore";
-import { ShotBreakdownResultsPanel } from "@/components/ShotBreakdownResultsPanel";
+import type { ShotBreakdownDimension } from "@/lib/shotBreakdownResults";
 
-type BreakdownDimension = "storyboard" | "motion" | "music";
 type BreakdownStatus = "empty" | "ready" | "running" | "complete" | "failed";
 
 export interface ShotBreakdownNodeData extends Record<string, unknown> {
@@ -17,12 +16,14 @@ export interface ShotBreakdownNodeData extends Record<string, unknown> {
   sourceName?: string;
   sourceDuration?: number;
   sourcePosterUrl?: string;
-  dimensions?: BreakdownDimension[];
+  sourceResolution?: string;
+  dimensions?: ShotBreakdownDimension[];
+  resultNodeIds?: string[];
 }
 
 export type ShotBreakdownNodeType = Node<ShotBreakdownNodeData, "shot-breakdown">;
 
-const dimensions: Array<{ id: BreakdownDimension; label: string; icon: typeof Images }> = [
+const dimensions: Array<{ id: ShotBreakdownDimension; label: string; icon: typeof Images }> = [
   { id: "storyboard", label: "分镜", icon: Images },
   { id: "motion", label: "动态", icon: Film },
   { id: "music", label: "音乐", icon: Music2 },
@@ -30,9 +31,10 @@ const dimensions: Array<{ id: BreakdownDimension; label: string; icon: typeof Im
 
 function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakdownNodeType>) {
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
-  const { zoom } = useViewport();
+  const completeShotBreakdown = useCanvasStore((state) => state.completeShotBreakdown);
   const [sourceMenuOpen, setSourceMenuOpen] = useState(false);
   const [localPreviewUrl, setLocalPreviewUrl] = useState<string | null>(null);
+  const [isRunning, setIsRunning] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const status = data.status ?? "empty";
@@ -50,11 +52,12 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
       sourceName: "咖啡馆漫步",
       sourceDuration: 30,
       sourcePosterUrl: "/images/scene-coffee-4.png",
+      sourceResolution: "1280×720",
     });
     setSourceMenuOpen(false);
   };
 
-  const toggleDimension = (dimension: BreakdownDimension) => {
+  const toggleDimension = (dimension: ShotBreakdownDimension) => {
     const next = activeDimensions.includes(dimension)
       ? activeDimensions.filter((item) => item !== dimension)
       : [...activeDimensions, dimension];
@@ -62,13 +65,24 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
   };
 
   const startBreakdown = () => {
-    if (status === "empty" || activeDimensions.length === 0) return;
-    updateNodeData(id, { status: "running" });
-    timerRef.current = setTimeout(() => updateNodeData(id, { status: "complete" }), 900);
+    if (
+      status === "empty" ||
+      status === "complete" ||
+      isRunning ||
+      activeDimensions.length === 0
+    ) {
+      return;
+    }
+    setIsRunning(true);
+    timerRef.current = setTimeout(() => {
+      completeShotBreakdown(id, activeDimensions);
+      setIsRunning(false);
+    }, 700);
   };
 
   return (
     <div
+      data-shot-breakdown-node
       className={cn(
         "node-shell relative flex h-full w-full flex-col overflow-visible rounded-2xl border bg-[#242424] p-3",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.18)]" : "border-white/10",
@@ -88,22 +102,27 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
         <span className="rounded bg-[#0e5560] px-1.5 py-0.5 text-[10px] font-medium text-[#36d4ed]">SD 2.5</span>
       </div>
 
-      <p className="mb-2 text-xs text-[#858585]">视频素材</p>
+      <div className="mb-2 flex items-center text-xs text-[#858585]">
+        <span>视频素材</span>
+        {posterUrl && (
+          <span
+            data-shot-breakdown-source-meta
+            className="ml-auto tabular-nums text-[#6f6f6f]"
+          >
+            00:{String(data.sourceDuration ?? 30).padStart(2, "0")} ·{" "}
+            {data.sourceResolution ?? "1280×720"}
+          </span>
+        )}
+      </div>
       <div className="relative">
         <button
           type="button"
+          data-shot-breakdown-media
           onClick={() => setSourceMenuOpen((open) => !open)}
           className="nodrag nopan relative flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border border-dashed border-[#363636] bg-[#1f1f1f] text-sm text-[#8f8f8f] transition-colors hover:bg-white/[0.04] hover:text-white"
         >
           {posterUrl ? (
-            <>
-              <Image src={posterUrl} alt="拉片视频素材" fill sizes="294px" className="object-cover" unoptimized />
-              <span className="absolute inset-0 bg-black/35" />
-              <span className="relative flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-xs text-white">
-                <Video size={13} />
-                {data.sourceName ?? "已选择视频"} · 00:{String(data.sourceDuration ?? 30).padStart(2, "0")}
-              </span>
-            </>
+            <Image src={posterUrl} alt="拉片视频素材" fill sizes="294px" className="object-cover" unoptimized />
           ) : (
             <>
               <Upload size={24} strokeWidth={1.5} />
@@ -147,6 +166,7 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
             <button
               key={dimension.id}
               type="button"
+              data-shot-breakdown-dimension={dimension.id}
               onClick={() => toggleDimension(dimension.id)}
               aria-pressed={active}
               className={cn(
@@ -163,17 +183,19 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
 
       <button
         type="button"
+        data-shot-breakdown-start
         onClick={startBreakdown}
-        disabled={status === "empty" || status === "running" || activeDimensions.length === 0}
+        disabled={
+          status === "empty" ||
+          status === "complete" ||
+          isRunning ||
+          activeDimensions.length === 0
+        }
         className="nodrag nopan mt-3 flex h-9 w-full items-center justify-center gap-2 rounded-[10px] bg-white text-sm font-medium text-[#202020] transition-colors hover:bg-[#ededed] disabled:cursor-not-allowed disabled:bg-white/[0.08] disabled:text-[#525252]"
       >
-        {status === "running" && <LoaderCircle size={15} className="animate-spin" />}
-        {status === "running" ? "拉片中" : status === "complete" ? "重新拉片" : "开始拉片"}
+        {isRunning && <LoaderCircle size={15} className="animate-spin" />}
+        {isRunning ? "拉片中" : status === "complete" ? "拉片完成" : "开始拉片"}
       </button>
-
-      {selected && status === "complete" && (
-        <ShotBreakdownResultsPanel zoom={zoom} activeDimensions={activeDimensions} />
-      )}
     </div>
   );
 }

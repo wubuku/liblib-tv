@@ -1,12 +1,12 @@
 # Batch 24：逐帧拉片持久化结果组
 
-> 状态：计划已落档，待实施与验证。
+> 状态：已实施；Batch 24 专项 Playwright、类型检查和 lint 已通过，跨批回归待最终门禁阶段记录。
 
-## 当前缺口
+## 批次前缺口
 
-当前 clone 的逐帧拉片输入节点已覆盖视频素材、三个拆解维度和本地完成状态，但把结果放在选中节点下方的 `660x260` tab 浮层中。源文章截图显示，结果会作为画布上的持久化媒体组展开，而不是依赖分析节点继续保持选中。
+批次前的逐帧拉片输入节点已覆盖视频素材、三个拆解维度和本地完成状态，但把结果放在选中节点下方的 `660x260` tab 浮层中。源文章截图显示，结果会作为画布上的持久化媒体组展开，而不是依赖分析节点继续保持选中。
 
-当前实现还包含没有源证据的 tabs、勾选状态、`加入参考` footer、`分析完成 · 本地示例结果` 和只展示 `S01-S04` 的简化结果。
+旧实现还包含没有源证据的 tabs、勾选状态、`加入参考` footer、`分析完成 · 本地示例结果` 和只展示 `S01-S04` 的简化结果。
 
 ## 本批范围
 
@@ -31,6 +31,21 @@
 - [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)
 - [`live-script-string-evidence.json`](../liblib-seedance-2.5-2026-08-25/live-script-string-evidence.json)
 - 当前组件规格：[`../components/ShotBreakdownNode.spec.md`](../components/ShotBreakdownNode.spec.md)
+- [clone ready input](../../design-references/liblib-clone-batch24-shot-breakdown-ready-929-2026-08-25.png)
+- [clone results overview](../../design-references/liblib-clone-batch24-shot-breakdown-results-overview-929-2026-08-25.png)
+- [clone storyboard detail](../../design-references/liblib-clone-batch24-shot-breakdown-results-detail-929-2026-08-25.png)
+- [clone mobile fit](../../design-references/liblib-clone-batch24-shot-breakdown-mobile-390-2026-08-25.png)
+- [clone contact sheet](../../design-references/liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png)
+- 可执行验证：[`scripts/verify-liblib-batch24.py`](../../../scripts/verify-liblib-batch24.py)
+
+## 完成结果
+
+- ready 素材区把 `00:30 · 1280×720` 放到 section 右侧，不再在图片上覆盖源名称 pill。
+- 完成后创建三个分镜组、一个动态组和一个音乐节点，覆盖 `S01-S08`、`M01-M03` 和 BGM。
+- 结果是顶层 React Flow 节点，取消选择后仍存在。
+- 维度决定创建哪些结果类别。
+- source 状态、结果节点和五条派生边作为一次 history transaction 写入；单次 undo/redo 整体回退/恢复。
+- 旧 `ShotBreakdownResultsPanel`、tabs、check 和 aggregate footer 已删除。
 
 ## 原型边界
 

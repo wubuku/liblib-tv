@@ -11,6 +11,6 @@
 | Image workflow | `ImageNode`, `ImageEditPanel` |
 | Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel` |
 | Graph behavior | `DeletableEdge`, `StoryboardGroupNode` |
-| Specialized nodes | `ScriptNode`, `ScriptExecutionNode`, `TextNode`, `AudioNode`, `ShotBreakdownNode`, `VideoClipNode` |
+| Specialized nodes | `ScriptNode`, `ScriptExecutionNode`, `TextNode`, `AudioNode`, `ShotBreakdownNode`, `ShotBreakdownResultNode`, `VideoClipNode` |
 
 Files are named `<Component>.spec.md`. Batch-specific contracts live in the corresponding `docs/research/liblib-canvas-batchN-*` directory.

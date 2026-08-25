@@ -1,5 +1,9 @@
 import { create } from "zustand";
 import type { Node, Edge } from "@xyflow/react";
+import {
+  SHOT_BREAKDOWN_RESULT_DEFINITIONS,
+  type ShotBreakdownDimension,
+} from "@/lib/shotBreakdownResults";
 
 export interface GraphSnapshot {
   nodes: Node[];
@@ -53,6 +57,10 @@ interface CanvasState {
     type: string,
     data?: Record<string, unknown>,
     options?: DerivedNodeOptions,
+  ) => void;
+  completeShotBreakdown: (
+    sourceId: string,
+    dimensions: ShotBreakdownDimension[],
   ) => void;
   duplicateNode: (nodeId: string, includeEdges?: boolean) => void;
   duplicateSelectedNodes: () => void;
@@ -688,6 +696,97 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
+  completeShotBreakdown: (
+    sourceId: string,
+    dimensions: ShotBreakdownDimension[],
+  ) => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (canvas) => canvas.id === activeCanvasId,
+      );
+      const source = currentCanvas?.nodes.find((node) => node.id === sourceId);
+      if (!currentCanvas || !source) return state;
+
+      const existingResults = currentCanvas.nodes.filter(
+        (node) =>
+          node.type === "shot-breakdown-result" &&
+          node.data.sourceBreakdownId === sourceId,
+      );
+      if (existingResults.length > 0) return state;
+
+      const activeDimensions = new Set(dimensions);
+      const definitions = SHOT_BREAKDOWN_RESULT_DEFINITIONS.filter(
+        (definition) => activeDimensions.has(definition.category),
+      );
+      if (definitions.length === 0) return state;
+
+      const nodesById = new Map(
+        currentCanvas.nodes.map((node) => [node.id, node]),
+      );
+      const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+      const resultX = sourcePosition.x + nodeWidth(source) + 120;
+      let resultY = sourcePosition.y - 80;
+
+      const resultNodes = definitions.map((definition) => {
+        const nodeId = createNodeId("shot-breakdown-result");
+        const node: Node = {
+          id: nodeId,
+          type: "shot-breakdown-result",
+          position: { x: resultX, y: resultY },
+          width: definition.dimensions.width,
+          height: definition.dimensions.height,
+          style: { ...definition.dimensions },
+          data: {
+            resultKey: definition.key,
+            category: definition.category,
+            title: definition.title,
+            items: definition.items,
+            sourceBreakdownId: sourceId,
+          },
+        };
+        resultY += definition.dimensions.height + 48;
+        return node;
+      });
+      const resultIds = resultNodes.map((node) => node.id);
+      const resultEdges: Edge[] = resultNodes.map((node) => ({
+        id: `e-${sourceId}-${node.id}`,
+        source: sourceId,
+        target: node.id,
+        type: "default",
+      }));
+      const nextNodes = currentCanvas.nodes
+        .map((node) =>
+          node.id === sourceId
+            ? {
+                ...node,
+                data: {
+                  ...node.data,
+                  status: "complete",
+                  resultNodeIds: resultIds,
+                },
+              }
+            : node,
+        )
+        .concat(resultNodes);
+
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: nextNodes,
+                edges: [...canvas.edges, ...resultEdges],
+              }
+            : canvas,
+        ),
+        selectedNodeIds: [resultIds[0]],
+        selectedNodeId: resultIds[0],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
   duplicateNode: (nodeId: string, includeEdges = true) => {
     const { activeCanvasId } = get();
     const activeCanvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
@@ -1133,6 +1232,8 @@ function getDefaultNodeDimensions(type: string) {
       return { width: 430, height: 452 };
     case "shot-breakdown":
       return { width: 320, height: 389 };
+    case "shot-breakdown-result":
+      return { width: 1040, height: 680 };
     case "video-clip":
       return { width: 350, height: 350 };
     case "audio":

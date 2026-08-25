@@ -40,6 +40,18 @@ Default completion creates five top-level result nodes:
 
 Each result is connected from the source analysis node and remains visible when selection changes. Disabling a dimension omits all nodes for that category.
 
+World geometry:
+
+| Result | Size |
+|---|---:|
+| storyboard 01 | `1040x680` |
+| storyboard 02 | `1040x680` |
+| storyboard 03 | `1040x350` |
+| motion | `1040x680` |
+| music | `324x220` |
+
+All results share the same `x` origin and use a `48px` vertical world gap.
+
 Stable selectors:
 
 - `[data-shot-breakdown-result]`
@@ -69,6 +81,7 @@ One undo restores the ready source and removes every generated result node/edge.
 - action icon remains on the media top-right;
 - music is narrower than storyboard/motion groups;
 - dimensions and offsets are source-shaped clone calibration, not claimed source DOM values.
+- clicking a card action only toggles local active feedback; it does not create a persisted asset.
 
 ## Prototype boundary
 

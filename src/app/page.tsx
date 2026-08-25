@@ -34,6 +34,7 @@ import { VideoNode } from "@/components/nodes/VideoNode";
 import { ScriptExecutionNode } from "@/components/nodes/ScriptExecutionNode";
 import { StoryboardGroupNode } from "@/components/nodes/StoryboardGroupNode";
 import { ShotBreakdownNode } from "@/components/nodes/ShotBreakdownNode";
+import { ShotBreakdownResultNode } from "@/components/nodes/ShotBreakdownResultNode";
 import { VideoClipNode } from "@/components/nodes/VideoClipNode";
 import { AudioNode } from "@/components/nodes/AudioNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
@@ -47,6 +48,7 @@ const nodeTypes = {
   "script-execution": ScriptExecutionNode,
   "storyboard-group": StoryboardGroupNode,
   "shot-breakdown": ShotBreakdownNode,
+  "shot-breakdown-result": ShotBreakdownResultNode,
   "video-clip": VideoClipNode,
   audio: AudioNode,
 };
