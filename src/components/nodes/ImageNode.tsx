@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { ImageEditPanel } from "@/components/ImageEditPanel";
+import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPanel";
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
 import { useCanvasStore } from "@/store/canvasStore";
 
@@ -15,6 +15,7 @@ export interface ImageNodeData extends Record<string, unknown> {
   imageUrl: string;
   watermarkUrl?: string;
   editorVariant?: "empty" | "prompt" | "referenced" | "tool";
+  editorHeight?: ImageEditorHeight;
   prompt?: string;
   references?: string[];
   generationSettings?: string;
@@ -54,6 +55,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       imageUrl,
       watermarkUrl,
       editorVariant: "tool",
+      editorHeight: 274,
       prompt: derived.prompt,
       references: [imageUrl],
       generationSettings: data.generationSettings ?? "16:9 · 标准画质 · 2K · 1张",
@@ -103,6 +105,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         <ImageEditPanel
           zoom={zoom}
           variant={data.editorVariant ?? "empty"}
+          panelHeight={data.editorHeight}
           initialPrompt={data.prompt}
           initialReferences={data.references}
           generationSettings={data.generationSettings}

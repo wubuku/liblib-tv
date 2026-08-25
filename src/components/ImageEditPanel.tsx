@@ -12,6 +12,7 @@ import {
   Images,
   Languages,
   Link2,
+  RectangleHorizontal,
   SlidersHorizontal,
   Undo2,
   X,
@@ -19,10 +20,12 @@ import {
 import { cn } from "@/lib/utils";
 
 type ImageEditorVariant = "empty" | "prompt" | "referenced" | "tool";
+export type ImageEditorHeight = 191 | 211 | 274;
 
 interface ImageEditPanelProps {
   zoom: number;
   variant: ImageEditorVariant;
+  panelHeight?: ImageEditorHeight;
   initialPrompt?: string;
   initialReferences?: string[];
   generationSettings?: string;
@@ -36,6 +39,7 @@ const autoLinkCandidates = [
 export function ImageEditPanel({
   zoom,
   variant,
+  panelHeight,
   initialPrompt = "",
   initialReferences = [],
   generationSettings = "16:9 · 低画质 · 1K · 1张",
@@ -44,12 +48,16 @@ export function ImageEditPanel({
   const [references, setReferences] = useState(initialReferences);
   const [showAutoLink, setShowAutoLink] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const panelHeight = variant === "empty" ? 191 : variant === "prompt" ? 211 : 274;
+  const resolvedPanelHeight =
+    panelHeight ?? (variant === "empty" ? 191 : variant === "prompt" ? 211 : 274);
   const canSuggest = prompt.trim().length > 0 && references.length === 0;
   const referenceItems = useMemo(
     () => references.map((image, index) => ({ image, name: index === 0 ? "陈默" : index === 1 ? "咖啡" : `参考 ${index + 1}` })),
     [references],
   );
+  const topControls = referenceItems.length > 0
+    ? ["参考", "标记", "风格"]
+    : ["标记", "风格"];
 
   const acceptAutoLink = () => {
     const newReferences = autoLinkCandidates.map((candidate) => candidate.image);
@@ -68,29 +76,29 @@ export function ImageEditPanel({
     >
       <section
         className="relative flex w-full flex-col rounded-2xl border border-[#363636] bg-[#262626] p-3 shadow-[0_22px_60px_rgba(0,0,0,0.5)]"
-        // Three source-observed node states use distinct fixed screen heights.
-        style={{ height: panelHeight }}
+        // Source-observed height is explicit per known node; variant is compatibility fallback only.
+        style={{ height: resolvedPanelHeight }}
       >
         <button type="button" className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white" aria-label="展开编辑器">
           <Expand size={15} />
         </button>
 
-        <div className="flex h-8 shrink-0 items-center gap-1.5 pr-9">
-          {(variant === "empty" ? ["标记", "风格"] : ["参考", "标记", "风格"]).map((label) => (
-            <button key={label} type="button" className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white">
+        <div data-image-editor-top-controls className="flex h-[26px] shrink-0 items-center gap-1 pr-9">
+          {topControls.map((label) => (
+            <button
+              key={label}
+              type="button"
+              data-image-editor-control={label}
+              className="flex h-[26px] w-[54px] items-center justify-center gap-1 rounded-full bg-white/[0.06] text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white"
+            >
               {label === "参考" ? <Images size={13} /> : label === "标记" ? <AtSign size={13} /> : <Box size={13} />}
               {label}
             </button>
           ))}
-          {canSuggest && (
-            <button type="button" onClick={() => setShowAutoLink((value) => !value)} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]">
-              <Link2 size={12} />智能引用 AutoLink
-            </button>
-          )}
         </div>
 
         {showAutoLink && (
-          <div className="absolute left-3 right-3 top-12 z-10 flex h-14 items-center rounded-xl border border-[#09caf5]/25 bg-[#202a2c] px-3 shadow-xl">
+          <div data-image-editor-autolink-popover className="absolute left-3 right-3 top-12 z-10 flex h-14 items-center rounded-xl border border-[#09caf5]/25 bg-[#202a2c] px-3 shadow-xl">
             <div className="flex -space-x-1.5">
               {autoLinkCandidates.map((candidate) => (
                 <div key={candidate.id} className="relative size-8 overflow-hidden rounded-lg border border-[#262626]">
@@ -104,10 +112,14 @@ export function ImageEditPanel({
         )}
 
         {referenceItems.length > 0 && (
-          <div className="mt-2 flex h-14 shrink-0 items-center gap-2">
+          <div className="mt-2 flex h-[47px] shrink-0 items-center gap-[9px]">
             {referenceItems.map((reference, index) => (
-              <div key={`${reference.image}-${index}`} className="group/reference relative size-12 overflow-hidden rounded-lg border border-white/10">
-                <Image src={reference.image} alt={`${reference.name}参考`} fill sizes="48px" className="object-cover" unoptimized />
+              <div
+                key={`${reference.image}-${index}`}
+                data-image-editor-reference
+                className="group/reference relative size-[47px] overflow-hidden rounded-lg border border-white/10"
+              >
+                <Image src={reference.image} alt={`${reference.name}参考`} fill sizes="47px" className="object-cover" unoptimized />
                 <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-[#202020]/90 text-[9px] text-white">{index + 1}</span>
                 <button type="button" onClick={() => setReferences((items) => items.filter((_, itemIndex) => itemIndex !== index))} aria-label={`移除${reference.name}参考`} className="absolute right-0.5 top-0.5 hidden size-4 items-center justify-center rounded-full bg-black/75 text-white group-hover/reference:flex"><X size={9} /></button>
               </div>
@@ -118,7 +130,7 @@ export function ImageEditPanel({
         <textarea
           value={prompt}
           onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
-          placeholder="描述你想要生成的画面，或使用 @ 引用画布素材"
+          placeholder="可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜"
           aria-label="图片生成提示词"
           className={cn(
             "min-h-0 flex-1 resize-none bg-transparent text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30 placeholder:text-[#5e5e5e]",
@@ -126,20 +138,34 @@ export function ImageEditPanel({
           )}
         />
 
-        <footer className="mt-2 flex h-9 shrink-0 items-center gap-2 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
-          <button type="button" className="flex h-7 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
-            <span className="text-base">⌘</span><span>Lib Image</span><ChevronDown size={12} className="text-[#777]" />
+        <footer className="mt-2 flex h-[41px] shrink-0 items-end gap-1 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
+          <button data-image-editor-model type="button" className="flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <Link2 size={14} className="text-[#9a9a9a]" /><span>Lib Image</span><ChevronDown size={12} className="text-[#777]" />
           </button>
           <span className="h-4 w-px bg-white/10" />
-          <button type="button" className="flex h-7 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
-            <span>▭ {generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
+          <button data-image-editor-settings type="button" className="flex h-8 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
+            <RectangleHorizontal size={14} className="text-[#9a9a9a]" />
+            <span>{generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
           </button>
-          <button type="button" className="flex size-7 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
+          <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
           <span className="ml-auto" />
           {submitted && <span className="text-[#09caf5]">已创建本地生成任务</span>}
-          <button type="button" className="flex size-7 items-center justify-center rounded-md text-[#b5b5b5] hover:bg-white/[0.06]" title="翻译" aria-label="翻译"><Languages size={15} /></button>
-          <button type="button" className="flex size-7 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.06]" title="撤销" aria-label="撤销"><Undo2 size={14} /></button>
-          <button type="button" onClick={() => setSubmitted(true)} disabled={!prompt.trim()} className="flex size-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef] disabled:bg-white/[0.08] disabled:text-[#555]" aria-label="生成图片"><ArrowUp size={17} /></button>
+          {canSuggest && (
+            <button
+              data-image-editor-autolink
+              data-image-editor-footer-icon
+              type="button"
+              onClick={() => setShowAutoLink((value) => !value)}
+              className="flex size-8 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06] hover:text-[#09caf5]"
+              title="智能引用 AutoLink"
+              aria-label="智能引用 AutoLink"
+            >
+              <Link2 size={15} />
+            </button>
+          )}
+          <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#b5b5b5] hover:bg-white/[0.06]" title="翻译" aria-label="翻译"><Languages size={15} /></button>
+          <button data-image-editor-footer-icon type="button" className="flex size-8 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.06]" title="撤销" aria-label="撤销"><Undo2 size={14} /></button>
+          <button data-image-editor-footer-icon type="button" onClick={() => setSubmitted(true)} disabled={!prompt.trim()} className="flex size-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef] disabled:bg-white/[0.08] disabled:text-[#555]" aria-label="生成图片"><ArrowUp size={17} /></button>
         </footer>
       </section>
     </div>

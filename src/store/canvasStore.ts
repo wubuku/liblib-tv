@@ -304,6 +304,7 @@ const initialCanvas2: CanvasData = {
         imageUrl: "/images/scene-coffee-1.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "empty",
+        editorHeight: 191,
         generationSettings: "16:9 · 标准画质 · 2K · 1张",
       },
     },
@@ -321,6 +322,7 @@ const initialCanvas2: CanvasData = {
         imageUrl: "/images/scene-coffee-3.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "empty",
+        editorHeight: 191,
         generationSettings: "16:9 · 标准画质 · 2K · 1张",
       },
     },
@@ -338,8 +340,9 @@ const initialCanvas2: CanvasData = {
         imageUrl: "/images/scene-coffee-2.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "prompt",
+        editorHeight: 211,
         prompt:
-          "道具名称：冷掉的黑咖啡；外观特征：一杯装在白色粗陶马克杯中的美式咖啡，杯口无任何热气，深黑色的咖啡液面平静无波，马克杯底部垫着一个同材质的白色粗陶托盘；材质细节：粗糙的哑光陶瓷质感，表面有微小的窑变颗粒；关键细节：杯子边缘有一道极其细微的缺口，暗示使用的年头。高质量写实道具多角度展示图，横向构图，以 2 行 3 列的干净网格整齐排版，展示道具的六个极正视角。纯白色纯净背景，专业产品影棚摄影。",
+          "道具名称：冷掉的黑咖啡；外观特征：一杯装在白色粗陶马克杯中的美式咖啡，杯口无任何热气，深黑色的咖啡液面平静无波，马克杯底部垫着一个同材质的白色粗陶托盘；材质细节：粗糙的哑光陶瓷质感，表面有微小的窑变颗粒；关键细节：杯子边缘有一道极其细微的缺口，暗示使用的年头。高质量写实道具多角度展示图，横向构图，以 2 行 3 列的干净网格整齐排版，展示道具的六个极正视角。纯白色纯净背景，专业产品影棚摄影，标准六视图参考。六视图包括：绝对正前方视图、绝对正后方视图、绝对左侧视图、绝对右侧视图、绝对正上方俯拍视图、绝对正下方仰拍视图。所有视图必须是同一件道具，材质、颜色、比例、结构完全一致。使用超长焦镜头或移轴镜头效果，将透视变形降到最低，物体所有本该平行的边缘在画面中保持平行，接近正交投影。每个视图都像在专业产品影棚中用三脚架精密校准拍摄，构图绝对端正，物体在每个格子中居中，无任何倾斜、旋转或透视畸变。画面出不得出现任何人物、角色、人群、人影等；不得出现手、脚、人脸、场景、建筑、自然景观；无其他道具；无文字、无水印、无 logo、无 UI 元素，不要任何剧情事件，保持道具本体清晰、保持完整轮廓、保持所有角度的材质和结构一致。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
         generationSettings: "2:1 · 低画质 · 1K · 1张",
       },
     },
@@ -357,6 +360,7 @@ const initialCanvas2: CanvasData = {
         imageUrl: "/images/scene-coffee-4.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "prompt",
+        editorHeight: 191,
         prompt: "咖啡馆室内场景",
         generationSettings: "2:1 · 低画质 · 1K · 1张",
       },
@@ -391,8 +395,9 @@ const initialCanvas2: CanvasData = {
         imageUrl: "/images/storyboard-2.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "referenced",
+        editorHeight: 274,
         prompt:
-          "近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
+          "近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。 [视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
         references: ["/images/scene-coffee-1.png", "/images/scene-coffee-2.png"],
         generationSettings: "16:9 · 低画质 · 1K · 1张",
       },
@@ -1119,6 +1124,7 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
         imageUrl: "/images/scene-coffee-1.png",
         watermarkUrl: "/images/watermark.png",
         editorVariant: "empty",
+        editorHeight: 191,
         generationSettings: "1:1 · 标准画质 · 2K · 1张",
       };
     case "video":
