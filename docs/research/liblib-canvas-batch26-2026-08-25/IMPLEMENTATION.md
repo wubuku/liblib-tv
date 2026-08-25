@@ -1,6 +1,6 @@
 # Batch 26 Implementation Log
 
-> 状态：核心实现完成，专项验证进行中。
+> 状态：核心实现与专项验证完成，跨批回归进行中。
 
 ## 1. Core Implementation
 
@@ -59,9 +59,37 @@
 - 定向 ESLint：通过。
 - `git diff --check`：通过。
 
-## 4. Pending
+## 4. Focused Verification
 
-- 新增 `scripts/verify-liblib-batch26.py`。
-- 覆盖 range constraints、close/Escape、clear、undo/redo、zoom/pan/drag、multi-selection、mobile clipping。
-- 生成并记录 Batch 26 screenshots/contact sheet。
-- 运行跨批回归、`npm run check` 和 `npm run docs:check`。
+`python3 scripts/verify-liblib-batch26.py` 已通过，覆盖：
+
+- `660x56` selector、`48px` timeline、`16px` handles；
+- `8 * zoom` anchor、`0-30s` 初始 range；
+- start/end/region drag 和 `4-30s` constraints；
+- close、capture-phase Escape；
+- target + edge creation、single selection、title、empty state；
+- visible prefix、专用 placeholder、固定 model/mode；
+- create transaction undo/redo；
+- exit 保留 target、移除 edge/metadata；
+- clear transaction undo/redo；
+- 50% zoom、source drag、canvas pan 跟随；
+- multi-selection hiding；
+- `390x844` natural clipping、document overflow；
+- desktop/mobile screenshots 和 zero console/page errors。
+
+专项运行期间只修正了一处 harness locator：source 从动态 `.selected` locator 改为稳定 `data-id`。产品实现不需要为此改变。
+
+## 5. Visual Verification
+
+2026-08-25 已一次性检查 Batch 26 contact sheet，并立即记录到 `SCREENSHOT_ANALYSIS.md`。后续除非截图变化，不重复整图识别。
+
+## 6. Git Protection Points
+
+- `1b601d2 docs: plan smart continuation workflow`
+- `d598f2d feat(liblib): add smart continuation workflow`
+
+## 7. Pending
+
+- 运行 Batch 9、21、23、25、26 跨批回归。
+- 运行 `npm run check`、`npm run docs:check`、`git diff --check`。
+- 更新 component specs、inventory、HARNESS 和最终结果。
