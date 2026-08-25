@@ -45,6 +45,18 @@ export interface SubtitleEraseMetadata {
   requestMode: "Subtitle" | "Text";
 }
 
+export type AudioSplitMode = "av" | "vocals" | "background";
+
+export type AudioSplitOutputKind = "audio" | "silent-video";
+
+export interface AudioSplitMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  mode: AudioSplitMode;
+  outputKind: AudioSplitOutputKind;
+  edgeId: string;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -98,6 +110,10 @@ interface CanvasState {
     mode: SubtitleEraseMode,
     regions: SubtitleEraseRegion[],
   ) => string | null;
+  createAudioSplit: (
+    sourceId: string,
+    mode: AudioSplitMode,
+  ) => { audioNodeId: string; silentVideoNodeId: string } | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
     sourceId: string,
@@ -963,6 +979,129 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return targetId;
   },
 
+  createAudioSplit: (sourceId: string, mode: AudioSplitMode) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourceDuration =
+      typeof source.data.durationSeconds === "number"
+        ? source.data.durationSeconds
+        : 30;
+    const sourceResolution =
+      typeof source.data.resolution === "string"
+        ? source.data.resolution
+        : "1280 × 720";
+    const audioLabelByMode: Record<AudioSplitMode, string> = {
+      av: "音轨",
+      vocals: "人声",
+      background: "背景音",
+    };
+    const audioDimensions = getDefaultNodeDimensions("audio");
+    const videoDimensions = getDefaultNodeDimensions("video");
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+    const audioNodeId = createNodeId("audio-split");
+    const silentVideoNodeId = createNodeId("silent-video");
+    const audioEdgeId = `e-${sourceId}-${audioNodeId}`;
+    const silentVideoEdgeId = `e-${sourceId}-${silentVideoNodeId}`;
+    const audioSplit: AudioSplitMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      mode,
+      outputKind: "audio",
+      edgeId: audioEdgeId,
+    };
+    const silentVideoSplit: AudioSplitMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      mode,
+      outputKind: "silent-video",
+      edgeId: silentVideoEdgeId,
+    };
+    const audioNode: Node = {
+      id: audioNodeId,
+      type: "audio",
+      position: {
+        x: sourcePosition.x + nodeWidth(source) + 120,
+        y: sourcePosition.y,
+      },
+      width: audioDimensions.width,
+      height: audioDimensions.height,
+      style: audioDimensions,
+      data: {
+        filename: `${sourceLabel}_${audioLabelByMode[mode]}`,
+        duration: formatDuration(sourceDuration),
+        durationSeconds: sourceDuration,
+        audioSplit,
+      },
+    };
+    const silentVideoNode: Node = {
+      id: silentVideoNodeId,
+      type: "video",
+      position: {
+        x: audioNode.position.x + audioDimensions.width + 120,
+        y: sourcePosition.y,
+      },
+      width: videoDimensions.width,
+      height: videoDimensions.height,
+      style: videoDimensions,
+      data: {
+        filename: `${sourceLabel}_无声`,
+        model: "音视频分离",
+        status: "pending",
+        durationSeconds: sourceDuration,
+        resolution: sourceResolution,
+        generatorType: "AUDIO_SPLIT",
+        audioSplit: silentVideoSplit,
+      },
+    };
+    const outputEdges: Edge[] = [
+      {
+        id: audioEdgeId,
+        source: sourceId,
+        target: audioNodeId,
+        type: "default",
+      },
+      {
+        id: silentVideoEdgeId,
+        source: sourceId,
+        target: silentVideoNodeId,
+        type: "default",
+      },
+    ];
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, audioNode, silentVideoNode],
+                edges: [...item.edges, ...outputEdges],
+              }
+            : item,
+        ),
+        selectedNodeIds: [silentVideoNodeId],
+        selectedNodeId: silentVideoNodeId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return { audioNodeId, silentVideoNodeId };
+  },
+
   clearVideoContinuation: (targetId: string) => {
     const { activeCanvasId } = get();
     set((state) => {
@@ -1595,6 +1734,13 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
 
 function clampNumber(value: number, minimum: number, maximum: number) {
   return Math.min(maximum, Math.max(minimum, value));
+}
+
+function formatDuration(durationSeconds: number) {
+  const totalSeconds = Math.max(0, Math.round(durationSeconds));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 function getViewportCenterPosition(

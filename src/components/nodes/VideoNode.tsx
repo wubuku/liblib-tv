@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { memo, useState } from "react";
-import { AlertTriangle, CaptionsOff, Play, Volume2 } from "lucide-react";
+import { memo, useEffect, useRef, useState } from "react";
+import { AlertTriangle, CaptionsOff, Play, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
   Position,
@@ -15,6 +15,8 @@ import {
 import { cn } from "@/lib/utils";
 import {
   useCanvasStore,
+  type AudioSplitMetadata,
+  type AudioSplitMode,
   type SubtitleEraseMetadata,
   type SubtitleEraseMode,
   type SubtitleEraseRegion,
@@ -36,18 +38,20 @@ export interface VideoNodeData extends Record<string, unknown> {
   prompt?: string;
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
+  audioSplit?: AudioSplitMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
-  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase } = data;
+  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase, audioSplit } = data;
   const { zoom } = useViewport();
   const internalNode = useInternalNode(id);
   const { setCenter } = useReactFlow();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
   const createSubtitleErase = useCanvasStore((state) => state.createSubtitleErase);
+  const createAudioSplit = useCanvasStore((state) => state.createAudioSplit);
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
@@ -55,12 +59,23 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     "generator" | "reshoot" | "continue" | "subtitle-smart" | "subtitle-region"
   >("generator");
   const [enhanced, setEnhanced] = useState(false);
+  const [audioSplittingMode, setAudioSplittingMode] =
+    useState<AudioSplitMode | null>(null);
+  const audioSplitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
       : activeTool === "subtitle-region"
         ? "region"
         : null;
+
+  useEffect(() => {
+    return () => {
+      if (audioSplitTimerRef.current) {
+        clearTimeout(audioSplitTimerRef.current);
+      }
+    };
+  }, []);
 
   const createBreakdown = () => {
     addDerivedNode(id, "shot-breakdown", {
@@ -98,6 +113,16 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     });
   };
 
+  const startAudioSplit = (mode: AudioSplitMode) => {
+    if (audioSplittingMode || audioSplitTimerRef.current) return;
+    setAudioSplittingMode(mode);
+    audioSplitTimerRef.current = setTimeout(() => {
+      audioSplitTimerRef.current = null;
+      createAudioSplit(id, mode);
+      setAudioSplittingMode(null);
+    }, 600);
+  };
+
   return (
     <div
       className={cn(
@@ -118,6 +143,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           onToggleEnhanced={() => setEnhanced((value) => !value)}
           onCreateBreakdown={createBreakdown}
           onSelectSubtitleMode={selectSubtitleMode}
+          onAudioSplit={startAudioSplit}
+          audioSplittingMode={audioSplittingMode}
         />
       )}
       <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
@@ -154,6 +181,23 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Play size={22} fill="currentColor" className="ml-1" />
             </span>
             <span className="text-xs text-[#777]">等待续写内容</span>
+          </div>
+        ) : audioSplit ? (
+          <div
+            data-audio-split-output
+            data-audio-split-mode={audioSplit.mode}
+            data-audio-split-output-kind={audioSplit.outputKind}
+            data-audio-split-source-id={audioSplit.sourceNodeId}
+            data-audio-split-edge-id={audioSplit.edgeId}
+            className="flex flex-col items-center gap-2 px-6 text-center"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-white/[0.05] text-[#858585]">
+              <VolumeX size={23} strokeWidth={1.5} />
+            </span>
+            <span className="text-xs text-[#a0a0a0]">无声视频结果</span>
+            <span className="text-[10px] text-[#626262]">
+              音视频分离 · 等待媒体资源
+            </span>
           </div>
         ) : (
           <div

@@ -20,6 +20,7 @@ interface VideoNodeData {
   prompt?: string;
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
+  audioSplit?: AudioSplitMetadata;
 }
 ```
 
@@ -83,6 +84,16 @@ VideoNode
 - region copy：`框选区域生成去字幕视频`
 - target metadata records source, mode, region snapshot, model/request mode and edge
 
+### Pending Silent-Video Target
+
+- filename is `{sourceLabel}_无声`
+- no source poster is reused as if the media processing had completed
+- body shows a muted `无声视频结果` resource placeholder
+- duration and resolution inherit the source
+- metadata records source, split mode, `outputKind: "silent-video"` and the
+  direct source edge
+- selection moves to this rightmost output after the transaction
+
 ### Selection
 
 - cyan border and low-opacity focus ring
@@ -117,3 +128,4 @@ See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinu
 - `scripts/verify-liblib-batch23.py`
 - `scripts/verify-liblib-batch26.py`
 - `scripts/verify-liblib-batch27.py`
+- `scripts/verify-liblib-batch28.py`
