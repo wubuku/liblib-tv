@@ -1,6 +1,6 @@
 # Batch 30 Implementation Log
 
-> 状态：核心实现完成，等待专项 Playwright 与回归。
+> 状态：核心实现与专项 Playwright 完成，等待跨批回归。
 
 ## Planned Protection Points
 
@@ -77,6 +77,31 @@
 - output 的 screen-space gap 折算约 `101` world units，Y 仅有边框取整差；
 - source 保持唯一 selected；
 - console/page error 为 `0`。
+
+## Focused Playwright
+
+新增 `scripts/verify-liblib-batch30.py`，实际通过：
+
+- source-backed trigger、四项顺序和 audio/picture/frame/download 相对位置；
+- hover `70ms` 未打开、累计 `140ms` 打开；
+- pointer leave `70ms` 保持、累计 `140ms` 关闭；
+- `1009x49` toolbar、`160px` menu、trigger-relative center/gap；
+- 三项 subject action 的 30 秒 guard 与 no graph mutation；
+- matting panel `512x48`、node center 和 `16px` bottom gap；
+- close 恢复普通 VideoGenerationPanel；
+- submit spinner、disabled state 和 pending graph；
+- provider/model/task type/WEBM/source dimensions/duration metadata；
+- direct edge、source right `+100` world units、同 Y；
+- source selection preservation；
+- one-step undo/redo；
+- repeated output deterministic non-overlap；
+- multi-selection hiding；
+- `390x844` natural clipping 和 no document overflow；
+- 五张 state screenshot、一次性 contact sheet 和 zero browser errors。
+
+一次性视觉识别已写入
+[`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)。未发现 menu 脱锚、
+上下浮层错位、output 重叠或移动端 document overflow。
 
 ## Handoff
 

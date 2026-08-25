@@ -119,9 +119,17 @@ def open_top_frame_menu(page: Page):
         7,
     )
 
-    edit_trigger = page.get_by_role("button", name="画面编辑", exact=True)
+    picture_edit_trigger = page.get_by_role(
+        "button",
+        name="主体消除",
+        exact=True,
+    )
     download = page.get_by_role("link", name="下载视频封面")
-    assert box(edit_trigger)["x"] < trigger_box["x"] < box(download)["x"]
+    assert (
+        box(picture_edit_trigger)["x"]
+        < trigger_box["x"]
+        < box(download)["x"]
+    )
     return trigger, menu
 
 
