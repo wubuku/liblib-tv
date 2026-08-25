@@ -98,12 +98,15 @@ screen size = 900.5 x 49
 ```text
 position: absolute
 left: 50%
-bottom: -16 flow units
+source semantic offset: -16 flow units
+clone bordered-shell implementation: bottom: -17px
 translate: -50% 100%
 width: 660px
 transform-origin: top center
 transform: scale(1 / zoom)
 ```
+
+clone 的 node shell 自带 `1px` border，absolute containing block 从 padding edge 计算。使用 `-16px` 时，节点外边界到面板实际只有 `15 * zoom`；因此当前实现用 `-17px` 抵消这一个 flow unit。该值属于 clone 的盒模型补偿，不应写成原站 CSS 事实。
 
 最终屏幕关系：
 
@@ -127,12 +130,14 @@ video absolute = (2436, 50)
 
 面板锚定对象必须是 child 的最终屏幕矩形：
 
-- parent drag：child 与面板获得相同位移；
+- ancestor parent 改变位置后：重新选择 child，面板必须按 child 新的最终屏幕矩形重建；
 - child drag：只有 child 与面板移动；
 - pan：child 与面板获得相同 viewport 位移；
 - zoom：child 尺寸变化，面板保持 `660px` 宽，间距更新为 `16 * zoom`。
 
 不得按 parent 的中心、child 的相对 store position 或浏览器视口中心定位面板。
+
+当前 React Flow 用户交互中，拖动 parent 会把选择切换到 parent，child 面板随之卸载。这是选择生命周期，不是锚定失败。
 
 ## 4. 生命周期
 
@@ -155,7 +160,22 @@ video absolute = (2436, 50)
 data-image-toolbar
 data-image-edit-panel
 data-video-generation-panel
+data-segment-reshoot-panel
 ```
 
 这些 attribute 只服务于可重复测量，不改变视觉或交互。
 
+## 6. Clone 最终测量
+
+`929x874`、整理后约 `28%`：
+
+```text
+image node / toolbar / panel center x = 393.120 / 393.120 / 393.120
+image toolbar gap = 16.000px
+image panel gap = 4.541px = 16 * 0.283816
+
+video child / panel center x = 643.446 / 643.446
+video panel gap = 4.541px = 16 * 0.283816
+```
+
+在约 `38%`、child drag 和 wheel pan 后，屏幕宽度与相同锚定公式继续成立。

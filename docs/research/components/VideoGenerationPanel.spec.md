@@ -29,7 +29,22 @@
 
 ## Positioning
 
-The panel is positioned relative to the node with `bottom: -16px`, `translateY(100%)`, and `scale(1 / zoom)`. It is not viewport-fixed and does not clamp itself to the browser.
+The panel is positioned relative to the selected video child with centered translate and `scale(1 / zoom)`. It is not viewport-fixed and does not clamp itself to the browser.
+
+The source semantic gap is `16 * zoom`. Because the clone's absolute containing block is a node shell with a `1px` border, the implementation uses `bottom: -17px`; `-16px` measured as only `15 * zoom`.
+
+At `929x874`, after source-like organize:
+
+```text
+video child center = 643.446
+panel center = 643.446
+panel gap = 4.541px = 16 * 0.283816
+panel size = 660x274
+```
+
+The video is a child of `g-EFbbHpwq5w`. Child drag, pan, and zoom keep the panel attached. Dragging the parent selects the parent and unmounts the child panel; selecting the child again reconstructs it from the child's new absolute screen rect.
+
+Stable test selector: `data-video-generation-panel`.
 
 ## Verification
 
@@ -41,5 +56,12 @@ Verified on desktop local clone:
 - `300s / 14700`
 - read-only four-stage `查看过程` view
 - prompt submission state
+- child drag, parent move/reselect, pan and zoom anchor geometry
+- multi-selection overlay lifecycle
 
-Evidence: `docs/design-references/liblib-clone-seedance-video-selected-2026-08-25.png` and `liblib-clone-seedance-long-video-process-2026-08-25.png`.
+Evidence includes:
+
+- `docs/design-references/liblib-clone-seedance-video-selected-2026-08-25.png`
+- `docs/design-references/liblib-clone-seedance-long-video-process-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch9-video-anchor-929-2026-08-25.png`
+- `scripts/verify-liblib-batch9.py`

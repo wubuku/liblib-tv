@@ -60,6 +60,16 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 
 本轮此前已保存 `390px` 图片选中态截图，证明图片工具条/编辑面板会随节点锚定并自然被视口裁切，而不是强行居中到屏幕。续接本轮时应用内浏览器连接不可用，因此没有把新的 Seedance 移动截图写成“实测”；移动端新增组件只通过源码断点、固定尺寸和既有 390px 截图做静态回归审查。
 
+### Batch 9 浮层锚定加固
+
+后续 Batch 9 复核了原站失败视频与生成面板的精确矩形，并补齐自动化：
+
+- image/video panel 中心与节点中心误差 `0px`；
+- `660x274` 屏幕尺寸在约 `28%` / `38%` zoom 下保持；
+- panel gap 校准为 `16 * zoom`；
+- parented video 的 child drag、parent move/reselect、pan、zoom 和多选生命周期通过；
+- 详细记录见 `docs/research/liblib-canvas-batch9-2026-08-25/`。
+
 ## 4. 未完成与刻意不做
 
 - 没有真实 Seedance、图片生成、片段重拍、逐帧拉片或智能剪辑后端。

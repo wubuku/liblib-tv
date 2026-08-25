@@ -17,7 +17,9 @@
 
 ## Positioning
 
-The panel uses the same node-relative, inverse-zoom contract as the generation editor. The panel bottom is intentionally kept above the fixed lower canvas toolbar at the observed desktop zoom.
+The panel uses the same node-relative, inverse-zoom contract as the generation editor. Its clone implementation uses `bottom: -17px` to compensate for the selected video's `1px` shell border and produce the source semantic `16 * zoom` gap.
+
+Stable test selector: `data-segment-reshoot-panel`.
 
 ## Verification
 

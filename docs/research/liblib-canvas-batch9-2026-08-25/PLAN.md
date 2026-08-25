@@ -34,7 +34,9 @@
    - 记录 child 节点与生成面板矩形；
    - 校验中心、间距和尺寸；
 5. 执行 parent drag、child drag、pan、zoom：
-   - 每一步重新校验相同锚定公式；
+   - parent drag 时确认 child 同步移动且面板按选择生命周期卸载；
+   - 重新选择 child 后校验新绝对位置；
+   - child drag、pan、zoom 时持续校验相同锚定公式；
 6. 多选两个节点：
    - 确认大型工具条和编辑面板都隐藏。
 
@@ -79,7 +81,8 @@
 - 生成面板中心与失败视频 child 中心误差不超过 `1px`；
 - 面板顶边到节点底边为 `16 * zoom ± 1px`；
 - 面板屏幕尺寸约 `660x274`；
-- 拖动 parent 后 child 和面板获得相同屏幕位移；
+- 拖动 parent 后 child 获得相同屏幕位移，面板因选择切到 parent 而卸载；
+- 重新选择 child 后，面板在 child 新绝对位置满足锚定公式；
 - 拖动 child 后 parent 不动，面板仍锚定 child；
 - pan 与 zoom 后锚定公式继续成立。
 
@@ -90,4 +93,3 @@
 - 控制台 error 为 0；
 - Batch 7-Batch 9 自动化通过；
 - `npm run check` 通过。
-

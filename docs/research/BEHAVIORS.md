@@ -152,24 +152,25 @@ Buttons (left to right):
 ### Select Image Node
 - **Trigger:** Click an ImageNode
 - **Effect:** Shows:
-  - `ImageToolbar` above the node — horizontal `900×49` toolbar, node-centered with a `16px` screen-space offset and constant screen size
+  - `ImageToolbar` above the node — horizontal `900.5×49` toolbar, node-centered with a `16px` screen-space offset and constant screen size
   - `ImageEditPanel` below the node — `660×274` populated prompt state, node-centered and counter-scaled by `1 / zoom`
   - Both overlays follow node drag, pan, and zoom; neither is clamped or recentered to the browser viewport
+  - The lower panel gap is `16 * zoom`; the clone uses `bottom: -17px` only to compensate for its bordered node shell
+- **Multi-select:** Hides every single-node toolbar/editor
+- **Gesture isolation:** `nodrag nowheel nopan` keeps textarea and panel gestures from moving the node or canvas
 
-### Click 摄像机 (Camera) Button in ImageEditPanel
-- Opens `CameraConfigDialog`.
-- Modal: pick from 9 cameras × 10 lenses × 7 focal lengths × 3 apertures.
-- **Apply:** Calls `onApply(config)`. Currently `console.log` only. To persist, write to `useCanvasStore.updateNodeData(selectedImageNodeId, { cameraConfig: config })`.
-
-### Click 运镜 (Camera Movement) Button
-- Opens `CameraMovementDialog` (shared with `VideoNode`).
-- Pick from 10 movement types, 5 speeds, two range sliders for duration (1-10s) and amplitude (0-100%).
+Image prompt, reference, AutoLink and derived-node behaviors are documented in `ImageNode.spec.md` and `ImageEditPanel.spec.md`.
 
 ## Video-Specific Behaviors
 
 ### Select VideoNode
-- **Effect:** Shows the 运镜 button at the bottom of the node.
-- **Click 运镜:** Opens `CameraMovementDialog`. On apply, the button label updates to show the selected movement type.
+- **Failed video:** Shows the `660×274` Seedance generation panel below the child node.
+- **Ready video:** Also shows the top processing toolbar; its lower panel can switch among generator, segment reshoot and continuation.
+- **Anchor:** The lower panel center equals the video child center, remains screen-sized through zoom, and uses a `16 * zoom` gap.
+- **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
+- **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
+- **Multi-select:** Hides all single-node video overlays.
+- **Verification:** `scripts/verify-liblib-batch9.py`.
 
 ## KeyboardShortcutsDialog
 

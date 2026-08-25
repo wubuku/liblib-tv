@@ -24,9 +24,11 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `script` | `src/components/nodes/ScriptNode.tsx` | Title + multi-line script text, default 320px wide, bg `#212121`. |
 | `image` | `src/components/nodes/ImageNode.tsx` | Image with header (filename + dimensions), watermark overlay. Width capped at 360px. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
-| `video` | `src/components/nodes/VideoNode.tsx` | Video preview + "运镜" button → CameraMovementDialog. |
+| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready video renderer; single selection shows Seedance generation/processing/reshoot UI. Source failed video is a child of the video group. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
+| `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state and local storyboard/motion/music result cards. |
+| `video-clip` | `src/components/nodes/VideoClipNode.tsx` | 智能剪辑 Beta four-mode prompt empty state. |
 
 ## Edge Components
 
@@ -44,8 +46,12 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |
 | `HistoryPanel` | `src/components/HistoryPanel.tsx` | Responsive asset history modal with filters, zoom, batch selection and local result images. |
-| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Horizontal `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
-| `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored panel below the selected image; inverse-scales with viewport zoom. |
+| `ImageToolbar` | `src/components/ImageToolbar.tsx` | `900.5x49` React Flow `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
+| `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
+| `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
+| `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Ready-video top toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit and download actions. |
+| `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video lower editor for 片段重拍 and 智能续写. |
+| `ShotBreakdownResultsPanel` | `src/components/ShotBreakdownResultsPanel.tsx` | Local structured results for 逐帧拉片. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |
 | `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Four-column, bottom-toolbar-anchored shortcuts panel without a backdrop. |

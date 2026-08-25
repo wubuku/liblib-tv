@@ -36,7 +36,7 @@ Node width and height come from the Zustand canvas data and React Flow's outer t
 
 ### Top toolbar
 
-The toolbar uses React Flow `NodeToolbar` with `position=Top`, `align=center`, and `offset=16`. React Flow renders it outside the scaled viewport, so it stays approximately `900x49` screen pixels at every zoom.
+The toolbar uses React Flow `NodeToolbar` with `position=Top`, `align=center`, and `offset=16`. React Flow renders it outside the scaled viewport, so it stays `900.5x49` screen pixels at every zoom.
 
 Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
@@ -52,6 +52,7 @@ The editor is a child of `ImageNode`, centered on the node and counter-scaled by
 - node drag and viewport pan keep both overlays attached
 - 28%, 53%, and 100% zoom preserve toolbar/panel screen size
 - mobile clipping follows the original; do not move the overlays to page center to keep them visible
+- `scripts/verify-liblib-batch9.py` remains green
 
 ## Assets
 

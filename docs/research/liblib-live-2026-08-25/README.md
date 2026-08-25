@@ -65,6 +65,9 @@
 - [`../../design-references/liblib-clone-after-2026-08-25-image-selected.png`](../../design-references/liblib-clone-after-2026-08-25-image-selected.png)
 - [`../../design-references/liblib-clone-after-2026-08-25-image-selected-mobile-390.png`](../../design-references/liblib-clone-after-2026-08-25-image-selected-mobile-390.png)
 
+Batch 9 对该合同做了自动化加固，并修正 clone bordered node shell 导致的 `15 * zoom` 间距偏差。最终图片/视频 panel gap 为 `16 * zoom`，详见
+[`../liblib-canvas-batch9-2026-08-25/README.md`](../liblib-canvas-batch9-2026-08-25/README.md)。
+
 ### 视频组父子关系
 
 原站视频组 class 包含 `.parent`，图片组不包含。当前 xyflow v12 只在 `parentLookup` 存在 child 时添加该 class；失败视频绝对坐标减去视频组绝对坐标又正好是 `(62,62)`。因此这不是视觉重叠，而是真实 parent-child。

@@ -198,7 +198,7 @@ React Flow change
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。编辑面板按空白、提示词、带参考图三种源站状态呈现，高价值工具会创建连接到源图片的派生节点
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。编辑面板按空白、提示词、带参考图三种源站状态呈现，高价值工具会创建连接到源图片的派生节点
 - `TextNode`：文本
 - `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍和智能续写
 - `ScriptExecutionNode`：步骤状态
@@ -210,7 +210,9 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 
 视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 
-图片节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。
+图片和视频节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。下方面板与节点外边界的屏幕间距是 `16 * zoom`；clone 因节点壳有 `1px` border，使用 `bottom: -17px` 补偿盒模型，不能把这个实现值误写成原站 CSS。
+
+截图识别结果必须及时文本化。先搜索 batch 的 `SCREENSHOT_ANALYSIS.md` 和组件规格，已有记录能回答时不得重复打开整张截图；新识图需记录路径、viewport/state、结构、几何、证据等级和未确认区域。
 
 ## 6. FrameOS 运行模型
 
@@ -398,17 +400,18 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ## 12. 本轮验证基线
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
-- `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch8.py`：多选/成组、移动/复制、导航手势、整理预览和视频组 hierarchy 全部通过
+- `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`
 - 整理预览 `929x874`：28% 视口；关键节点位置在 `3px` 容差内，左下确认卡约 `168x88`
 - 整理预览 `1440x900` / `390x844`：约 46% / 10%，无页面横向溢出
 - 视频组：原站 `.parent` class 与相对 `(62,62)` 已复刻；parent/child drag、group/child copy、级联删除和 history 通过
+- 选中浮层：图片 node/toolbar/panel 中心误差 `0px`，toolbar `900.5x49`、gap `16px`；图片/视频 panel `660x274`、gap `4.541px = 16 * 0.283816`
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
 - minimap：开关后渲染 `150x110`；zoom 菜单、吸附和点阵开关可操作
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`，列出 10 个节点
 - Agent：`340px` 右抽屉；分镜模式自动打开并渲染故事板列
-- 图片选中态：页面级 `900x49` 工具条和 `660x274` 编辑面板，包含原站提示词与生成参数
+- 图片选中态：节点锚定 `900.5x49` 工具条和 `660x274` 编辑面板，包含原站提示词与生成参数
 - 六个主入口面板：桌面锚点与原站一致；角色应用可创建可见节点；`390x844` 无检测到的标签溢出
 - 添加、分享、整理保留/还原、整理后 undo/redo、工作台/分镜切换均完成浏览器交互验证
 - `/frameos/canvas/demo` 运行态：7 节点、5 边
