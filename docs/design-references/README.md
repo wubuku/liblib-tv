@@ -24,5 +24,6 @@
 
 - [`liblib-live-2026-08-25/`](../research/liblib-live-2026-08-25/README.md) indexes LibTV source audits.
 - [`liblib-seedance-2.5-2026-08-25/`](../research/liblib-seedance-2.5-2026-08-25/README.md) indexes Seedance evidence.
+- [`liblib-canvas-batch29-2026-08-25/`](../research/liblib-canvas-batch29-2026-08-25/SCREENSHOT_ANALYSIS.md) indexes the video frame-capture top menu, player camera, graph, selected output and mobile ledger.
 - FrameOS-specific reference images are grouped under `frameos/`; their source research index is [`../research/frameos/`](../research/frameos/README.md).
 - Batch screenshots are listed in each batch `IMPLEMENTATION.md` and, when visually inspected, its `SCREENSHOT_ANALYSIS.md`.

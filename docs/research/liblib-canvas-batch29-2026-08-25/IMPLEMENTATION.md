@@ -1,6 +1,6 @@
 # Batch 29 Implementation Log
 
-> 状态：核心实现和专项 Playwright 完成；跨批回归待完成。
+> 状态：已完成。
 
 ## Planned Protection Points
 
@@ -78,16 +78,53 @@
 一次性视觉识别已写入 [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)。
 未发现工具条换行、dropdown 脱锚、player menu 遮挡、output 重叠或浮层错位。
 
+## Cross-Batch Regression
+
+串行通过：
+
+- Batch 9：image/video floating anchor、pan/zoom、多选；
+- Batch 15：add-node 与 AudioNode；
+- Batch 26：continuation range、target/edge 和 history；
+- Batch 27：subtitle modes、rectangle history 和 pending target；
+- Batch 28：audio menu/busy/dual outputs；
+- Batch 29：frame capture 双入口、三类 metadata、graph 和 history。
+
+这些脚本共享 `http://localhost:3000`，因此没有并行运行。回归重写的旧批次
+PNG 和 Batch 29 动态渲染差异均恢复到已审核提交版本，没有带入无关 binary
+churn。
+
+## Engineering Gates
+
+- `npm run check`：通过。
+  - ESLint：`0 error`，保留 9 条既有 FrameOS/共享代码 warning；
+  - TypeScript：通过；
+  - Next.js production build：通过。
+- `npm run docs:check`：通过，218 个 Markdown、514 个本地目标。
+- `git diff --check`：通过。
+
 ## Implementation History
 
 | Commit | Protection point |
 |---|---|
 | `08dd360` | source evidence、gap ranking、plan、workflow spec |
-| pending | core implementation |
-| pending | focused Playwright、screenshots、one-time recognition ledger |
-| pending | cross-batch regression、gates、Big Picture and handoff |
+| `e6f7ca5` | toolbar/player/store/image-node core implementation |
+| `d85e2b1` | focused Playwright、screenshots、one-time recognition ledger |
+| final docs commit | cross-batch regression、gates、Big Picture and handoff |
 
-## Current Handoff
+## Final State
 
-下一步新增并运行 `scripts/verify-liblib-batch29.py`。实现不得把 source poster
-描述成真实解码帧，也不得把 clone overlap slot search 描述成原站精确算法。
+Batch 29 已形成可独立接力的闭环：
+
+```text
+README
+  -> SOURCE_EVIDENCE
+  -> PLAN / FRAME_CAPTURE_WORKFLOW.spec
+  -> IMPLEMENTATION
+  -> component specs
+  -> SCREENSHOT_ANALYSIS
+  -> scripts/verify-liblib-batch29.py
+```
+
+本批没有声称实现真实视频解码或上传。下一批高价值候选是 `画面编辑`、
+`深度动作捕捉` 和 source-backed `高清视频`；必须重新遵循 source evidence
+-> spec -> implementation -> focused Playwright 的顺序。

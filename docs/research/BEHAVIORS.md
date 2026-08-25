@@ -209,11 +209,15 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Subtitle erase:** `智能去字幕` opens a `48px` compact lower bar. `框选去字幕` also overlays a normalized multi-rectangle editor with move, corner resize and local undo/redo/reset. Submit creates one connected pending target in a single graph transaction.
 - **Audio split menu:** `音视频分离` opens a trigger-centered `160px` menu with `音视频分离 / 人声提取 / 背景音提取`; current feature flags hide `音效提取`. Starting a mode closes the menu and replaces icon/label/chevron with a disabled spinner + `分离中` state.
 - **Audio split graph:** After the local busy timer, one graph transaction creates a mode-named audio node and a `{source}_无声` pending video. Both edges start at the source video; the silent video is positioned after the audio node and becomes the sole selection. One undo/redo removes/restores both outputs and both edges.
+- **Frame capture menu:** The top `截取首帧` trigger follows `画面编辑` and opens `截取首帧 / 截取尾帧 / 截取当前帧` in a trigger-centered `160px` menu.
+- **Player camera:** The `28x28` camera clicks directly to current-frame capture; hover opens the same three commands above the button. The local range playhead supplies current time in the prototype.
+- **Frame capture graph:** First/last/current create an ordinary image plus a direct source edge with source-backed time/name/alt metadata. The first output is source right `+100` world units at the same Y; repeated outputs use clone vertical slots. Source remains selected, and one undo/redo removes/restores the last output and edge.
+- **Frame result selection:** Clicking a captured image uses the ordinary ImageToolbar and ImageEditPanel rather than a dedicated frame editor.
 - **Anchor:** The lower panel center equals the video child center, remains screen-sized through zoom, and uses a `16 * zoom` gap.
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py`, `scripts/verify-liblib-batch27.py` and `scripts/verify-liblib-batch28.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py`, `scripts/verify-liblib-batch27.py`, `scripts/verify-liblib-batch28.py` and `scripts/verify-liblib-batch29.py`.
 
 ## KeyboardShortcutsDialog
 

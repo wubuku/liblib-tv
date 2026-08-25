@@ -24,9 +24,9 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | Type ID | File | Notes |
 |---------|------|-------|
 | `script` | `src/components/nodes/ScriptNode.tsx` | Title + multi-line script text, default 320px wide, bg `#212121`. |
-| `image` | `src/components/nodes/ImageNode.tsx` | Image with header (filename + dimensions), watermark overlay. Width capped at 360px. |
+| `image` | `src/components/nodes/ImageNode.tsx` | Image with header, dimensions and watermark; panorama and video-frame outputs reuse this renderer. Frame results expose source/kind/time/name/alt/edge metadata and retain ordinary image overlays. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
-| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending video renderer; single selection shows Seedance generation, processing, reshoot, continuation or subtitle-erase UI. Pending split outputs use a separate muted-video result body. |
+| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending renderer; single selection shows Seedance generation, processing, reshoot, continuation or subtitle UI. Ready playback includes local playhead and frame camera; pending split outputs use a muted-video result body. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 | `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state, source metadata, dimensions and local completion command. |
@@ -54,7 +54,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `ImageToolbar` | `src/components/ImageToolbar.tsx` | `900.5x49` React Flow `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
-| `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Ready-video top toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit and download actions. Subtitle/audio/edit menus are trigger-relative; audio split owns current three-item and busy states. |
+| `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |
 | `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video `片段重拍` filmstrip + Prompt editor; no continuation branch. |
 | `VideoContinuationSelector` | `src/components/VideoContinuationSelector.tsx` | `660x56` smart-continuation range selector with handle/region drag and target-node handoff. |
 | `SubtitleErasePanel` | `src/components/SubtitleErasePanel.tsx` | Compact smart/region subtitle-erase control bar; region mode owns multi-rectangle editing and hands off to a pending target video. |
@@ -76,7 +76,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 
 | Store | File | Responsibility |
 |------|------|--------|
-| `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, graph commands, continuation/subtitle/audio-split transactions and undo/redo. |
+| `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, continuation/subtitle/audio-split/frame-capture graph transactions and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
 
 ---

@@ -200,9 +200,9 @@ React Flow change
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
-- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕和音视频分离结果
+- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离和首/尾/当前帧截取
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
@@ -228,6 +228,18 @@ Seedance 模型菜单当前只表达截图可见集合，不表达完整模型�
 智能去字幕也不是工具条中的临时反馈。当前线上 bundle 支持 `智能去字幕` 和 `框选去字幕` 两种模式：两者都打开节点下方 `48px` 紧凑生成条；region 模式还会把 source 聚焦到至少 `zoom:1`，在视频画面内建立多矩形选择层，并提供 move、corner resize、undo、redo 和 reset。确认后 clone 用一次 history transaction 创建 `视频一键去字幕-{sourceLabel}` pending target 与 source edge，并记录 mode、normalized regions、model 和 request mode。真实字幕检测、像素擦除、积分、上传、任务提交和轮询不在原型范围内。
 
 音视频分离也已经从临时菜单反馈变成画布 graph workflow。2026-08-25 当前 bundle 的可见入口是 `音视频分离 / 人声提取 / 背景音提取`，`音效提取` 受 false feature flag 控制，因此 clone 不再显示该项。提交后 trigger 短暂进入 spinner + `分离中` disabled state，再由一次 history transaction 创建 mode-specific audio result 与 `{source}_无声` pending video；两条 edge 都从 source video 发出，silent video 只是位置上排在 audio 右侧并成为最终 selection。精确的 `120` world-unit gap、`600ms` timer、CSS waveform 和 muted placeholder 属于 clone calibration；真实下载、解码、上传、分离服务、轮询和 partial-output/failure 矩阵不在原型范围内。
+
+视频帧截取也不能只在工具条写一行反馈。当前线上 bundle 同时提供顶部
+`截取首帧 / 截取尾帧 / 截取当前帧` 工具组，以及 player camera
+“点击截当前帧、hover 显示同组三项”的入口。首帧取 `0s`，尾帧取
+`duration - 0.05s`，当前帧取 playhead；结果命名/alt 分别为
+`首帧/视频首帧`、`尾帧/视频尾帧`、`截图/视频截图`。clone 用一次
+history transaction 创建一个普通 image 和一条 direct source edge，首个
+位置严格使用 source right `+100` world units、同 Y，并保留 source
+selection 以连续截取。重复结果的 `288 + 48` 纵向 slot、local range
+playhead、`1400ms` feedback 和 source poster bitmap 都是 clone
+approximation；真实 video seek、canvas PNG、CORS、上传和 resource
+replacement 不在原型范围内。
 
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
 
@@ -421,6 +433,14 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ## 12. 本轮验证基线
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
+- `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch26.py` 到
+  `batch29.py` 串行通过：浮层、Add Node、续写、去字幕、音视频分离和
+  视频帧截取没有跨批回归
+- Batch 29：顶部 frame menu `160px` 且 trigger center delta `0px`；
+  player camera `28x28`；首个 output gap `100` world units、同 Y；
+  first/last/current metadata、direct edge、重复避让、source selection、
+  单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
+- `npm run docs:check`：218 个 Markdown、514 个本地目标通过
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`
