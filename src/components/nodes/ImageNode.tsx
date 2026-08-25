@@ -37,6 +37,8 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const { zoom } = useViewport();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
+  const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
+  const showSingleNodeEditor = selected && selectedNodeCount <= 1;
 
   const runAction = (action: ImageToolbarAction) => {
     if (action === "人像质感调节") {
@@ -65,7 +67,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/10",
       )}
     >
-      {selected && <ImageToolbar portraitEnhanced={Boolean(data.portraitEnhanced)} onAction={runAction} />}
+      {showSingleNodeEditor && <ImageToolbar portraitEnhanced={Boolean(data.portraitEnhanced)} onAction={runAction} />}
       <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
       <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
@@ -97,7 +99,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         )}
       </div>
 
-      {selected && (
+      {showSingleNodeEditor && (
         <ImageEditPanel
           zoom={zoom}
           variant={data.editorVariant ?? "empty"}

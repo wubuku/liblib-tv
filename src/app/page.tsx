@@ -62,7 +62,11 @@ export default function Home() {
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
-    selectedNodeId,
+    selectNodes,
+    selectedNodeIds,
+    groupSelectedNodes,
+    ungroupSelectedNodes,
+    removeSelectedNodes,
     undo,
     redo,
     duplicateNode,
@@ -98,18 +102,33 @@ export default function Home() {
   });
 
   const flowNodes = useMemo<Node[]>(
-    () => nodes.map((node) => ({ ...node, selected: node.id === selectedNodeId })),
-    [nodes, selectedNodeId],
+    () => {
+      const selectedIds = new Set(selectedNodeIds);
+      return nodes.map((node) => ({ ...node, selected: selectedIds.has(node.id) }));
+    },
+    [nodes, selectedNodeIds],
   );
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
-      const selectedChange = changes.find((change) => change.type === "select" && change.selected);
-      if (selectedChange?.type === "select") selectNode(selectedChange.id);
       const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
-      setStoreNodes(applyNodeChanges(changes, currentNodes));
+      const selectionChanges = changes.filter((change) => change.type === "select");
+      const graphChanges = changes.filter((change) => change.type !== "select");
+      if (selectionChanges.length > 0) {
+        const selectionNodes = applyNodeChanges(selectionChanges, flowNodes);
+        selectNodes(selectionNodes.filter((node) => node.selected).map((node) => node.id));
+      }
+      if (graphChanges.length === 0) return;
+      const nextNodes = applyNodeChanges(graphChanges, currentNodes);
+      setStoreNodes(
+        nextNodes.map((node) => {
+          const storedNode = { ...node };
+          delete storedNode.selected;
+          return storedNode;
+        }),
+      );
     },
-    [selectNode, setStoreNodes],
+    [flowNodes, selectNodes, setStoreNodes],
   );
 
   const onEdgesChange = useCallback(
@@ -213,10 +232,10 @@ export default function Home() {
       const modifier = event.metaKey || event.ctrlKey;
 
       if (event.key === "Delete" || event.key === "Backspace") {
-        const { selectedNodeId: nodeId, removeNode } = useCanvasStore.getState();
-        if (nodeId) {
+        const { selectedNodeIds: nodeIds, selectedNodeId: nodeId } = useCanvasStore.getState();
+        if (nodeIds.length > 0 || nodeId) {
           event.preventDefault();
-          removeNode(nodeId);
+          removeSelectedNodes();
         }
       }
       if (event.key === "Escape") {
@@ -242,6 +261,11 @@ export default function Home() {
       if (event.key === "Tab") {
         event.preventDefault();
         toggleAddNodePanel();
+      }
+      if (!modifier && !event.altKey && event.key.toLowerCase() === "g") {
+        event.preventDefault();
+        if (event.shiftKey) ungroupSelectedNodes();
+        else groupSelectedNodes();
       }
       if (event.altKey && event.shiftKey && event.key.toLowerCase() === "f") {
         event.preventDefault();
@@ -269,9 +293,12 @@ export default function Home() {
     closeAllPanels,
     duplicateNode,
     fitView,
+    groupSelectedNodes,
     organize,
+    removeSelectedNodes,
     redo,
     selectNode,
+    ungroupSelectedNodes,
     setCanvasTool,
     toggleAddNodePanel,
     undo,
@@ -286,6 +313,13 @@ export default function Home() {
     window.addEventListener("delete-edge", handler);
     return () => window.removeEventListener("delete-edge", handler);
   }, [removeEdge]);
+
+  const onSelectionChange = useCallback(
+    ({ nodes: selectedNodes }: { nodes: Node[] }) => {
+      selectNodes(selectedNodes.map((node) => node.id));
+    },
+    [selectNodes],
+  );
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#141414]">
@@ -307,8 +341,11 @@ export default function Home() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            onNodeClick={(_, node) => selectNode(node.id)}
+            onNodeClick={(event, node) => {
+              if (!event.metaKey && !event.ctrlKey) selectNode(node.id);
+            }}
             onPaneClick={() => selectNode(null)}
+            onSelectionChange={onSelectionChange}
             onNodeDragStart={() => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
               dragHistorySnapshot.current = currentCanvas
@@ -346,7 +383,7 @@ export default function Home() {
             selectionMode={SelectionMode.Partial}
             minZoom={0.1}
             maxZoom={8}
-            deleteKeyCode="Delete"
+            deleteKeyCode={[]}
           >
             {showGrid && <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#303030" />}
             {showMinimap && (

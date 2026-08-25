@@ -26,6 +26,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt } = data;
   const { zoom } = useViewport();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
+  const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
+  const showSingleNodeEditor = selected && selectedNodeCount <= 1;
   const [activeTool, setActiveTool] = useState<"generator" | "reshoot" | "continue">("generator");
   const [enhanced, setEnhanced] = useState(false);
 
@@ -47,7 +49,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/[0.07]",
       )}
     >
-      {selected && status === "ready" && (
+      {showSingleNodeEditor && status === "ready" && (
         <VideoProcessingToolbar
           activeTool={activeTool}
           enhanced={enhanced}
@@ -88,8 +90,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         )}
       </div>
 
-      {selected && activeTool === "generator" && <VideoGenerationPanel zoom={zoom} initialModel={model} initialPrompt={prompt} />}
-      {selected && activeTool !== "generator" && <SegmentReshootPanel zoom={zoom} mode={activeTool} onClose={() => setActiveTool("generator")} />}
+      {showSingleNodeEditor && activeTool === "generator" && <VideoGenerationPanel zoom={zoom} initialModel={model} initialPrompt={prompt} />}
+      {showSingleNodeEditor && activeTool !== "generator" && <SegmentReshootPanel zoom={zoom} mode={activeTool} onClose={() => setActiveTool("generator")} />}
     </div>
   );
 }

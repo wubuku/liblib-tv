@@ -27,6 +27,7 @@ export interface CanvasData {
 interface CanvasState {
   canvases: CanvasData[];
   activeCanvasId: string;
+  selectedNodeIds: string[];
   selectedNodeId: string | null;
   historyByCanvas: Record<string, HistoryStack>;
 
@@ -43,10 +44,14 @@ interface CanvasState {
   addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => void;
   duplicateNode: (nodeId: string, includeEdges?: boolean) => void;
   removeNode: (nodeId: string) => void;
+  removeSelectedNodes: () => void;
+  groupSelectedNodes: () => void;
+  ungroupSelectedNodes: () => void;
   updateNodeData: (nodeId: string, data: Record<string, unknown>) => void;
   setNodes: (nodes: Node[], options?: SetGraphOptions) => void;
   setEdges: (edges: Edge[], options?: SetGraphOptions) => void;
   selectNode: (nodeId: string | null) => void;
+  selectNodes: (nodeIds: string[]) => void;
 
   // Edge actions
   addEdge: (edge: Edge) => void;
@@ -103,6 +108,23 @@ function pushHistory(
 function createNodeId(prefix: string): string {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
+
+function nodeWidth(node: Node): number {
+  return (node.width ?? Number(node.style?.width)) || 350;
+}
+
+function nodeHeight(node: Node): number {
+  return (node.height ?? Number(node.style?.height)) || 180;
+}
+
+function withoutParent(node: Node, position: { x: number; y: number }): Node {
+  const nextNode = { ...node, position };
+  delete nextNode.parentId;
+  delete nextNode.extent;
+  return nextNode;
+}
+
+const GROUP_PADDING = 32;
 
 const initialCanvas2: CanvasData = {
   id: "canvas-2",
@@ -344,6 +366,7 @@ let canvasCounter = 2;
 export const useCanvasStore = create<CanvasState>((set, get) => ({
   canvases: [defaultCanvas("canvas-1", "画布 1"), initialCanvas2],
   activeCanvasId: "canvas-2",
+  selectedNodeIds: [],
   selectedNodeId: null,
   historyByCanvas: {},
 
@@ -356,6 +379,8 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     set((state) => ({
       canvases: [...state.canvases, newCanvas],
       activeCanvasId: newCanvas.id,
+      selectedNodeIds: [],
+      selectedNodeId: null,
     }));
   },
 
@@ -367,6 +392,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       canvases: filtered,
       activeCanvasId:
         activeCanvasId === id ? filtered[0].id : activeCanvasId,
+      selectedNodeIds: activeCanvasId === id ? [] : get().selectedNodeIds,
       selectedNodeId: activeCanvasId === id ? null : get().selectedNodeId,
       historyByCanvas: Object.fromEntries(
         Object.entries(get().historyByCanvas).filter(([canvasId]) => canvasId !== id),
@@ -383,7 +409,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   setActiveCanvas: (id: string) => {
-    set({ activeCanvasId: id, selectedNodeId: null });
+    set({ activeCanvasId: id, selectedNodeIds: [], selectedNodeId: null });
   },
 
   duplicateCanvas: (id: string) => {
@@ -400,6 +426,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       nodes: source.nodes.map((node) => ({
         ...node,
         id: nodeIdMap.get(node.id) ?? node.id,
+        parentId: node.parentId ? nodeIdMap.get(node.parentId) : undefined,
         position: { ...node.position },
         style: node.style ? { ...node.style } : node.style,
         data: { ...node.data },
@@ -414,6 +441,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     set((state) => ({
       canvases: [...state.canvases, newCanvas],
       activeCanvasId: newCanvas.id,
+      selectedNodeIds: [],
       selectedNodeId: null,
       historyByCanvas: {
         ...state.historyByCanvas,
@@ -453,6 +481,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
             ? { ...canvas, nodes: [...canvas.nodes, newNode] }
             : canvas,
         ),
+        selectedNodeIds: [newNode.id],
         selectedNodeId: newNode.id,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
@@ -493,6 +522,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
             ? { ...item, nodes: [...item.nodes, newNode], edges: [...item.edges, newEdge] }
             : item,
         ),
+        selectedNodeIds: [nodeId],
         selectedNodeId: nodeId,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
@@ -537,6 +567,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
             ? { ...canvas, nodes: [...canvas.nodes, copiedNode], edges: [...canvas.edges, ...copiedEdges] }
             : canvas,
         ),
+        selectedNodeIds: [newNodeId],
         selectedNodeId: newNodeId,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
@@ -548,6 +579,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas || !currentCanvas.nodes.some((node) => node.id === nodeId)) return state;
+      const nextSelectedNodeIds = state.selectedNodeIds.filter((id) => id !== nodeId);
       return {
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
@@ -558,7 +590,140 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               }
             : canvas,
         ),
+        selectedNodeIds: nextSelectedNodeIds,
+        selectedNodeId: nextSelectedNodeIds.at(-1) ?? null,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  removeSelectedNodes: () => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      const selectedIds = new Set(
+        state.selectedNodeIds.length > 0
+          ? state.selectedNodeIds
+          : state.selectedNodeId
+            ? [state.selectedNodeId]
+            : [],
+      );
+      if (!currentCanvas || selectedIds.size === 0) return state;
+      const hasSelectedNode = currentCanvas.nodes.some((node) => selectedIds.has(node.id));
+      if (!hasSelectedNode) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: canvas.nodes.filter((node) => !selectedIds.has(node.id)),
+                edges: canvas.edges.filter(
+                  (edge) => !selectedIds.has(edge.source) && !selectedIds.has(edge.target),
+                ),
+              }
+            : canvas,
+        ),
+        selectedNodeIds: [],
         selectedNodeId: null,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  groupSelectedNodes: () => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      const selectedIds = new Set(state.selectedNodeIds);
+      const children = currentCanvas.nodes.filter(
+        (node) => selectedIds.has(node.id) && node.type !== "storyboard-group" && !node.parentId,
+      );
+      if (children.length < 2) return state;
+
+      const minX = Math.min(...children.map((node) => node.position.x));
+      const minY = Math.min(...children.map((node) => node.position.y));
+      const maxX = Math.max(...children.map((node) => node.position.x + nodeWidth(node)));
+      const maxY = Math.max(...children.map((node) => node.position.y + nodeHeight(node)));
+      const groupId = createNodeId("group");
+      const groupNode: Node = {
+        id: groupId,
+        type: "storyboard-group",
+        position: { x: minX - GROUP_PADDING, y: minY - GROUP_PADDING },
+        width: maxX - minX + GROUP_PADDING * 2,
+        height: maxY - minY + GROUP_PADDING * 2,
+        zIndex: -1001,
+        style: {
+          width: maxX - minX + GROUP_PADDING * 2,
+          height: maxY - minY + GROUP_PADDING * 2,
+          zIndex: -1001,
+        },
+        data: {
+          title: "组合节点",
+          variant: "image",
+          groupKind: "selection",
+        },
+      };
+      const nextNodes = currentCanvas.nodes.map((node) =>
+        selectedIds.has(node.id)
+          ? {
+              ...node,
+              parentId: groupId,
+              position: {
+                x: node.position.x - groupNode.position.x,
+                y: node.position.y - groupNode.position.y,
+              },
+            }
+          : node,
+      );
+
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? { ...canvas, nodes: [groupNode, ...nextNodes] }
+            : canvas,
+        ),
+        selectedNodeIds: [groupId],
+        selectedNodeId: groupId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  ungroupSelectedNodes: () => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      const selectedIds = new Set(state.selectedNodeIds);
+      const selectedNodes = currentCanvas.nodes.filter((node) => selectedIds.has(node.id));
+      const groupId =
+        selectedNodes.find((node) => node.type === "storyboard-group")?.id ??
+        selectedNodes.find((node) => node.parentId)?.parentId;
+      if (!groupId) return state;
+
+      const group = currentCanvas.nodes.find((node) => node.id === groupId);
+      const children = currentCanvas.nodes.filter((node) => node.parentId === groupId);
+      if (!group || children.length === 0) return state;
+
+      const childIds = children.map((node) => node.id);
+      const nextNodes = currentCanvas.nodes
+        .filter((node) => node.id !== groupId)
+        .map((node) =>
+          node.parentId === groupId
+            ? withoutParent(node, {
+                x: group.position.x + node.position.x,
+                y: group.position.y + node.position.y,
+              })
+            : node,
+        );
+
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId ? { ...canvas, nodes: nextNodes } : canvas,
+        ),
+        selectedNodeIds: childIds,
+        selectedNodeId: childIds[0] ?? null,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
@@ -620,7 +785,37 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   selectNode: (nodeId: string | null) => {
-    set({ selectedNodeId: nodeId });
+    const nextSelectedNodeIds = nodeId ? [nodeId] : [];
+    const currentState = get();
+    if (
+      currentState.selectedNodeId === nodeId &&
+      currentState.selectedNodeIds.length === nextSelectedNodeIds.length &&
+      currentState.selectedNodeIds.every((id, index) => id === nextSelectedNodeIds[index])
+    ) {
+      return;
+    }
+    set({
+      selectedNodeIds: nextSelectedNodeIds,
+      selectedNodeId: nodeId,
+    });
+  },
+
+  selectNodes: (nodeIds: string[]) => {
+    const activeCanvas = get().getActiveCanvas();
+    const availableIds = new Set(activeCanvas?.nodes.map((node) => node.id) ?? []);
+    const uniqueIds = Array.from(new Set(nodeIds)).filter((id) => availableIds.has(id));
+    const currentState = get();
+    if (
+      currentState.selectedNodeIds.length === uniqueIds.length &&
+      currentState.selectedNodeIds.every((id, index) => id === uniqueIds[index]) &&
+      currentState.selectedNodeId === (uniqueIds.at(-1) ?? null)
+    ) {
+      return;
+    }
+    set({
+      selectedNodeIds: uniqueIds,
+      selectedNodeId: uniqueIds.at(-1) ?? null,
+    });
   },
 
   addEdge: (edge: Edge) => {
@@ -673,6 +868,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
             future: [cloneGraphSnapshot(currentCanvas.nodes, currentCanvas.edges), ...history.future].slice(0, MAX_HISTORY),
           },
         },
+        selectedNodeIds: [],
         selectedNodeId: null,
       };
     });
@@ -698,6 +894,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
             future: history.future.slice(1),
           },
         },
+        selectedNodeIds: [],
         selectedNodeId: null,
       };
     });

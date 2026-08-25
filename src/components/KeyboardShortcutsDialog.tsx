@@ -18,6 +18,8 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
   {
     title: "创作",
     items: [
+      { label: "成组", keys: ["G"] },
+      { label: "解组", keys: ["⇧", "G"] },
       { label: "复制节点和连线", keys: ["cmd", "D"] },
       { label: "新建节点", keys: ["Tab"] },
       { label: "删除", keys: ["Delete"] },
