@@ -13,12 +13,13 @@
 interface VideoNodeData {
   filename?: string;
   model?: string;
-  status?: "empty" | "failed" | "ready";
+  status?: "empty" | "failed" | "ready" | "pending";
   durationSeconds?: number;
   resolution?: string;
   posterUrl?: string;
   prompt?: string;
   continuation?: VideoContinuationMetadata;
+  subtitleErase?: SubtitleEraseMetadata;
 }
 ```
 
@@ -39,6 +40,7 @@ VideoNode
     ├── VideoGenerationPanel
     ├── SegmentReshootPanel for reshoot
     └── VideoContinuationSelector for continuation range selection
+    └── SubtitleErasePanel for smart/region subtitle erase
 ```
 
 ## States
@@ -61,6 +63,8 @@ VideoNode
 - toolbar can switch the lower editor to `片段重拍` or `智能续写`
 - `片段重拍` uses a separate filmstrip + Prompt editor stack; the active toolbar command switches back to the generator
 - `智能续写` first shows only the `660x56` range selector; confirm creates and selects a connected target video
+- `智能去字幕` and `框选去字幕` open a compact lower panel; region mode also overlays a multi-rectangle editor on the video
+- while subtitle mode is open, the normal generator and top processing toolbar are hidden
 - `逐帧拉片` creates a connected top-level `shot-breakdown` node
 
 ### Empty Continuation Target
@@ -70,6 +74,14 @@ VideoNode
 - no processing toolbar because the target is not ready media
 - selected target shows `VideoGenerationPanel` with continuation context
 - `退出续写模式` preserves the target but removes continuation metadata and its declared edge
+
+### Pending Subtitle-Erase Target
+
+- filename is `视频一键去字幕-{sourceLabel}`
+- no processing toolbar or normal video generator
+- smart copy：`点击生成自动去除字幕`
+- region copy：`框选区域生成去字幕视频`
+- target metadata records source, mode, region snapshot, model/request mode and edge
 
 ### Selection
 
@@ -90,7 +102,7 @@ For the parented failed video:
 - dragging the parent switches selection to the parent and unmounts the panel;
 - selecting the child again anchors the panel to its new absolute position.
 
-See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinuationSelector.spec.md`, and the Batch 9 floating anchor spec for measurements.
+See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinuationSelector.spec.md`, `SubtitleErasePanel.spec.md`, and the Batch 9 floating anchor spec for measurements.
 
 ## Files Referenced
 
@@ -99,7 +111,9 @@ See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinu
 - `src/components/VideoProcessingToolbar.tsx`
 - `src/components/SegmentReshootPanel.tsx`
 - `src/components/VideoContinuationSelector.tsx`
+- `src/components/SubtitleErasePanel.tsx`
 - `src/store/canvasStore.ts`
 - `scripts/verify-liblib-batch9.py`
 - `scripts/verify-liblib-batch23.py`
 - `scripts/verify-liblib-batch26.py`
+- `scripts/verify-liblib-batch27.py`

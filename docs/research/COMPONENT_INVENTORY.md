@@ -26,7 +26,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `script` | `src/components/nodes/ScriptNode.tsx` | Title + multi-line script text, default 320px wide, bg `#212121`. |
 | `image` | `src/components/nodes/ImageNode.tsx` | Image with header (filename + dimensions), watermark overlay. Width capped at 360px. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
-| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready video renderer; single selection shows Seedance generation/processing/reshoot UI. Source failed video is a child of the video group. |
+| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending video renderer; single selection shows Seedance generation, processing, reshoot, continuation or subtitle-erase UI as appropriate. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 | `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state, source metadata, dimensions and local completion command. |
@@ -57,6 +57,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Ready-video top toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit and download actions. |
 | `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video `片段重拍` filmstrip + Prompt editor; no continuation branch. |
 | `VideoContinuationSelector` | `src/components/VideoContinuationSelector.tsx` | `660x56` smart-continuation range selector with handle/region drag and target-node handoff. |
+| `SubtitleErasePanel` | `src/components/SubtitleErasePanel.tsx` | Compact smart/region subtitle-erase control bar; region mode owns multi-rectangle editing and hands off to a pending target video. |
 | `VideoClipEditPanel` | `src/components/VideoClipEditPanel.tsx` | `660x191` node-anchored 智能剪辑 Prompt editor with local-only mode/reference/submit feedback. |
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | 9 cameras × 10 lenses × 7 focal lengths × 3 apertures = custom camera config. |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |

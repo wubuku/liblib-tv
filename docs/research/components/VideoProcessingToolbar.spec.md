@@ -13,7 +13,9 @@
 - `高清` toggles a local visual enhancement state.
 - `片段重拍` and `智能续写` switch the lower editor.
 - `逐帧拉片` creates a linked `shot-breakdown` node through `canvasStore.addDerivedNode`.
-- Subtitle, audio, and edit commands open local action menus.
+- `智能去字幕` opens a two-item dropdown with `智能去字幕` and `框选去字幕`; either item enters the dedicated subtitle workflow rather than writing temporary feedback.
+- The subtitle entry tooltip is `AI一键去除视频字幕，仅支持中英文字幕`.
+- Audio and edit commands still open local prototype action menus.
 - Toolbar pointer/click events stop propagation so clicking a command cannot reselect or overwrite a newly created derived node.
 
 ## Positioning
