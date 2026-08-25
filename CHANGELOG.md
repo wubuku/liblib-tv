@@ -7,8 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Documentation
+- Migrated the self-contained `.agents/skills/project-docs` package into this repository
+- Added the documentation hub and agent-facing guides for architecture, development, layers, quality, verification and terminology
+- Added research, design-reference, draft and archive indexes so source evidence and implementation history remain discoverable
+- Reworked `README.md`, `AGENTS.md` and `CONTRIBUTING.md` around the LibTV + FrameOS canvas prototype
+- Added `npm run docs:check` to validate local Markdown links
+
 ### Changed
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation
+
+> Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 
 ## [0.3.1] - 2026-03-29
 

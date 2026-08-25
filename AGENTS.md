@@ -1,49 +1,74 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# LibTV + FrameOS Canvas Clones — Agent Navigation
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+## 1. Project Overview
 
-# LibTV + FrameOS Canvas Clones
+- Type: reverse-engineered frontend prototype for two AI canvas editors.
+- Routes: `/` = LibTV; `/frameos/*` = FrameOS.
+- Stack: Next.js 16 App Router, React 19, TypeScript strict, React Flow 12, Zustand, Tailwind 4.
+- Status: active research and UI/UX prototype; backend services are not implemented.
 
-Two parallel pixel-perfect reverse-engineered canvas editors, each on its own route, sharing React Flow primitives:
+## 2. Documentation Index
 
-- **`/` (liblib-tv)** — node-based video storyboarding editor from `liblib.tv/canvas`
-- **`/frameos/*` (FrameOS)** — AI prompt + canvas editor from `frameos.cn`
+- [Documentation Hub](docs/index.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Development](docs/DEVELOPMENT.md)
+- [Layer Rules](docs/LAYERS.md)
+- [Quality Rules](docs/QUALITY.md)
+- [Verification Harness](docs/HARNESS.md)
+- [Glossary](docs/GLOSSARY.md)
+- [Research Index](docs/research/README.md)
+- [Current Big Picture](docs/BIG_PICTURE.md)
+- [Documentation Plan](docs/DOCUMENTATION_PLAN.md)
 
-> **Discovery hub**: [`docs/README.md`](docs/README.md). It indexes every doc so you can navigate progressively (elevator pitch → routes → behaviors → per-component specs).
-
----
-
-## Red Lines — read before touching code
-
-1. **xyflow v12 selected state is reset by `applyNodeChanges`** — every `onNodesChange` resets `selected: false` on all nodes. FrameOS re-applies the store's `selectedNodeId` in `onNodesChange` for this reason. See `src/app/frameos/canvas/[id]/page.tsx`. The liblib-tv route doesn't have this issue because the data shape is simpler.
-2. **xyflow v12 does NOT pass `node.style` as a prop to custom node components.** It applies it directly to the outer transform layer. If you need width/height in a custom node, read from the Zustand store (the source of truth) or `props.measured`, never `props.style`. The `FrameosImageNode` portrait detection bug came from this.
-3. **The `<Handle>` IS the "+" icon.** Never decorate a separate "+" overlay near a handle — it blocks the drag and breaks connection creation. The handle renders the "+" via CSS `::before` in `src/app/globals.css` `/* Node Handle */`. See [`docs/README.md` § "Key Design Decisions"](docs/README.md#key-design-decisions).
-4. **Edge hover flow is analysis-driven, not guessed.** The 3-segment flowing pulse + glow filter was extracted from the live original site via Playwright. If you "improve" it without re-extracting, you will regress. See [`docs/research/components/DeletableEdge.spec.md`](docs/research/components/DeletableEdge.spec.md).
-5. **NodeEditPanel is DEBUG-only.** It is NOT part of the original frameos.cn. It is gated behind `isDebugMode` (toggle in the bottom-right of the canvas). If the user asks "why is this panel here?", it was a developer convenience added without verifying the original.
-6. **No `any`. TypeScript strict. Tailwind utility classes preferred; inline `style` allowed only for dynamic values (xyflow position calculations, viewport coords, conditional colors).** All inline-style usage is documented at the call site.
-7. **Two routes, two stores, separate node systems.** `canvasStore` (liblib-tv) and `frameosStore` (FrameOS) are independent. They share React Flow primitives and the `DeletableEdge` component, but their state shapes and node types differ. Do not unify them with a "mode" flag.
-8. **Worktree isolation for parallel agents.** When launching agent teams, each teammate works in its own worktree branch. Merge at the end, resolving conflicts with full project context.
-9. **Sync scripts after editing shared rules.** After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh`. After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs`.
-
----
-
-## Commands
+## 3. Quick Commands
 
 ```bash
-npm run dev        # localhost:3000 — main canvas editor (liblib-tv clone)
-npm run build      # production build
-npm run check      # lint + typecheck + build
-
-# FrameOS canvas:  http://localhost:3000/frameos/canvas/demo
-# Entry link:      homepage → top-right "FrameOS" pill
+npm run dev
+npm run lint
+npm run typecheck
+npm run build
+npm run check
+python3 scripts/verify-docs.py
 ```
 
-## Stack (one-line)
+## 4. Module Map
 
-Next.js 16 (App Router, React 19, TS strict) · Tailwind v4 (`@theme inline`) · React Flow v12 (`@xyflow/react`) · Zustand (`canvasStore`, `uiStore`, `frameosStore`) · `@base-ui/react/tooltip` · inline SVG (no icon library) · DevTools: `window.__frameos_store` exposes the FrameOS store for e2e.
+| Area | Path | Responsibility |
+|---|---|---|
+| LibTV route | `src/app/page.tsx` | React Flow page orchestration |
+| LibTV state | `src/store/canvasStore.ts`, `uiStore.ts` | graph, canvases, selection, UI |
+| LibTV components | `src/components/`, `src/components/nodes/` | nodes, panels, dialogs, overlays |
+| FrameOS route | `src/app/frameos/` | independent route and page orchestration |
+| FrameOS state | `src/store/frameosStore.ts` | independent graph/UI/history mock |
+| Shared utilities | `src/lib/`, `src/types/` | pure helpers and type contracts |
+| Evidence | `docs/research/`, `docs/design-references/` | source observations and visual records |
 
----
+## 5. Hard Constraints
 
-@docs/research/INSPECTION_GUIDE.md
+- Read the relevant guide in `node_modules/next/dist/docs/` before changing Next.js APIs.
+- Keep `canvasStore` and `frameosStore` separate; do not add a route `mode` flag.
+- React Flow v12 does not pass `node.style` to custom node props; read store data or `props.measured`.
+- `applyNodeChanges` resets selected state; FrameOS must re-apply `selectedNodeId` after changes.
+- `<Handle>` is the real `+` connection affordance; never add a decorative overlay that blocks dragging.
+- Do not change the LibTV edge flow effect without re-extracting source evidence.
+- `FrameosNodeEditPanel` is DEBUG-only and is not source-site functionality.
+- TypeScript is strict; do not use `any`. Prefer Tailwind; document dynamic inline styles.
+- Separate source fact, evidence-backed inference and clone-only decision in research docs.
+- Before visual reinspection, search existing `SCREENSHOT_ANALYSIS.md` records.
+
+## 6. Change Protocol
+
+1. Identify the route, store and component spec before editing.
+2. Read the relevant architecture/behavior/research document.
+3. Make the smallest scoped change.
+4. Update the appropriate document when behavior or evidence changes.
+5. Run the relevant Playwright script and `npm run check`.
+6. For shared rules or skills, run the required sync script.
+
+## 7. Documentation Maintenance
+
+- New formal docs belong in `docs/` and must be linked from `docs/index.md`.
+- New live research belongs in `docs/research/`; active plans belong in `docs/drafts/`.
+- Historical batch records remain traceable and must link back to their evidence.
+- Edit `AGENTS.md`, then run `bash scripts/sync-agent-rules.sh`.
+- Edit `.claude/skills/clone-website/SKILL.md`, then run `node scripts/sync-skills.mjs`.

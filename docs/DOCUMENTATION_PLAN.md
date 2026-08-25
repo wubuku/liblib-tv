@@ -105,3 +105,30 @@ docs/
 - `npm run check` 通过；
 - 整理历史可通过 Git commit 追踪。
 
+## 6. 实施结果
+
+> 状态：已完成（2026-08-25）。
+
+### 已交付
+
+- `.agents/skills/project-docs/` 已从外部工作区完整移植；`SKILL.md` 和两个 reference 文件与源包逐文件一致，技能包不依赖源工作区。
+- 根入口已重写为当前 LibTV + FrameOS 原型，`AGENTS.md` 已收敛为 agent 导航地图，并通过 `scripts/sync-agent-rules.sh` 同步平台规则副本。
+- 已补齐 `CONTRIBUTING.md`、`docs/index.md`、P1 指南、研究入口、截图台账入口和 drafts/archive 生命周期入口。
+- `docs/README.md` 保留为兼容入口；现有研究批次、原站证据、Seedance 背景和 `BIG_PICTURE.md` 均未删除或重命名。
+- package 元数据已对齐 `wubuku/liblib-tv`；上游模板版本历史和许可证归属仍保留并明确标注 provenance。
+- `scripts/verify-docs.py` 已支持仓库根基准的同步 agent 规则副本，并通过 `npm run docs:check`。
+
+### 验证记录
+
+| 检查 | 结果 |
+|---|---|
+| `npm run docs:check` | 通过：114 个 Markdown 文件，226 个本地目标 |
+| `npm run check` | 通过：lint、typecheck、production build 均成功 |
+| `git diff --check` | 通过 |
+| 技能包逐文件 `cmp` | 通过 |
+
+`npm run lint` 当前仍报告 9 个既有 warning、0 个 error；本批仅修正文档和元数据，没有借机修改无关产品代码。Next.js build 仍会提示工作区上层存在额外 lockfile，但构建成功。
+
+### 接力规则
+
+后续 agent 从 [`docs/index.md`](index.md) 开始；需要改代码时先读 [`AGENTS.md`](../AGENTS.md)、[`ARCHITECTURE.md`](ARCHITECTURE.md) 和对应研究规格。新增截图先查现有 `SCREENSHOT_ANALYSIS.md`，新增正式文档同步更新本页、`docs/index.md` 和必要的研究入口。
