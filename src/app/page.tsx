@@ -69,7 +69,7 @@ export default function Home() {
     removeSelectedNodes,
     undo,
     redo,
-    duplicateNode,
+    duplicateSelectedNodes,
     setViewport: setStoreViewport,
     activeCanvasId,
   } = useCanvasStore();
@@ -95,7 +95,7 @@ export default function Home() {
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
-  const dragHistorySnapshot = useRef<GraphSnapshot | null>(null);
+  const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
   const [flowViewport, setFlowViewport] = useState(() => {
     if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
     return typeof window !== "undefined" && window.innerWidth <= 768 ? compactViewport : desktopViewport;
@@ -252,10 +252,10 @@ export default function Home() {
         redo();
       }
       if (modifier && event.key.toLowerCase() === "d") {
-        const nodeId = useCanvasStore.getState().selectedNodeId;
-        if (nodeId) {
+        const { selectedNodeIds: nodeIds, selectedNodeId: nodeId } = useCanvasStore.getState();
+        if (nodeIds.length > 0 || nodeId) {
           event.preventDefault();
-          duplicateNode(nodeId, true);
+          duplicateSelectedNodes();
         }
       }
       if (event.key === "Tab") {
@@ -291,7 +291,7 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
     closeAllPanels,
-    duplicateNode,
+    duplicateSelectedNodes,
     fitView,
     groupSelectedNodes,
     organize,
@@ -346,21 +346,43 @@ export default function Home() {
             }}
             onPaneClick={() => selectNode(null)}
             onSelectionChange={onSelectionChange}
-            onNodeDragStart={() => {
+            onNodeDragStart={(_, node) => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
-              dragHistorySnapshot.current = currentCanvas
-                ? { nodes: currentCanvas.nodes, edges: currentCanvas.edges }
-                : null;
+              if (!currentCanvas) {
+                dragHistorySnapshot.current = null;
+                return;
+              }
+              const { selectedNodeIds: selectedIds } = useCanvasStore.getState();
+              dragHistorySnapshot.current = {
+                snapshot: { nodes: currentCanvas.nodes, edges: currentCanvas.edges },
+                nodeIds: selectedIds.includes(node.id) ? selectedIds : [node.id],
+              };
             }}
             onNodeDragStop={(_, node) => {
               const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
-              setStoreNodes(
-                currentNodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)),
-                {
-                  recordHistory: true,
-                  historySnapshot: dragHistorySnapshot.current ?? undefined,
-                },
-              );
+              const transaction = dragHistorySnapshot.current;
+              if (transaction) {
+                const moved = transaction.nodeIds.some((id) => {
+                  const before = transaction.snapshot.nodes.find((item) => item.id === id);
+                  const after = currentNodes.find((item) => item.id === id);
+                  return Boolean(
+                    before &&
+                      after &&
+                      (before.position.x !== after.position.x || before.position.y !== after.position.y),
+                  );
+                });
+                if (moved) {
+                  setStoreNodes(currentNodes, {
+                    recordHistory: true,
+                    historySnapshot: transaction.snapshot,
+                  });
+                }
+              } else {
+                setStoreNodes(
+                  currentNodes.map((item) => (item.id === node.id ? { ...item, position: node.position } : item)),
+                  { recordHistory: true },
+                );
+              }
               dragHistorySnapshot.current = null;
             }}
             nodeTypes={nodeTypes}

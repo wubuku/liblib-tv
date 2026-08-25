@@ -160,6 +160,7 @@ React Flow change
 - 注册 6 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
+- 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
 - 监听 `delete-edge` CustomEvent
 - 同步 React Flow viewport 与实际缩放百分比
 - 在 `929px+` 使用原站 53% 构图，在 `768px-` 使用原站 28% 紧凑构图
@@ -173,7 +174,7 @@ React Flow change
 
 - 画布列表、当前画布
 - 每个画布的 nodes、edges、viewport
-- 当前选中节点 ID
+- 当前选中节点 ID 集合，以及用于兼容单节点浮层的主选中节点 ID
 - 增删改节点、边和画布
 
 `uiStore` 管：

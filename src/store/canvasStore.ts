@@ -43,6 +43,7 @@ interface CanvasState {
   addNodeAtPosition: (type: string, position: { x: number; y: number }, data?: Record<string, unknown>) => void;
   addDerivedNode: (sourceId: string, type: string, data?: Record<string, unknown>) => void;
   duplicateNode: (nodeId: string, includeEdges?: boolean) => void;
+  duplicateSelectedNodes: () => void;
   removeNode: (nodeId: string) => void;
   removeSelectedNodes: () => void;
   groupSelectedNodes: () => void;
@@ -125,6 +126,95 @@ function withoutParent(node: Node, position: { x: number; y: number }): Node {
 }
 
 const GROUP_PADDING = 32;
+
+interface DuplicateGraphResult {
+  copiedNodes: Node[];
+  copiedEdges: Edge[];
+  selectedCopyIds: string[];
+}
+
+function duplicateGraphSelection(
+  canvas: CanvasData,
+  requestedIds: string[],
+  includeExternalEdges: boolean,
+): DuplicateGraphResult | null {
+  const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+  const requested = Array.from(new Set(requestedIds)).filter((id) => nodesById.has(id));
+  if (requested.length === 0) return null;
+
+  const copyIds = new Set(requested);
+  let expanded = true;
+  while (expanded) {
+    expanded = false;
+    for (const node of canvas.nodes) {
+      if (node.parentId && copyIds.has(node.parentId) && !copyIds.has(node.id)) {
+        copyIds.add(node.id);
+        expanded = true;
+      }
+    }
+  }
+
+  const idMap = new Map<string, string>();
+  for (const node of canvas.nodes) {
+    if (copyIds.has(node.id)) idMap.set(node.id, createNodeId(node.type ?? "node"));
+  }
+
+  const copiedNodes = canvas.nodes
+    .filter((node) => copyIds.has(node.id))
+    .map((node) => {
+      const copiedNode: Node = {
+        ...node,
+        id: idMap.get(node.id) ?? createNodeId(node.type ?? "node"),
+        position: { x: node.position.x + 40, y: node.position.y + 40 },
+        style: node.style ? { ...node.style } : node.style,
+        data: {
+          ...node.data,
+          ...(typeof node.data.title === "string" ? { title: `${node.data.title} 副本` } : {}),
+        },
+      };
+      delete copiedNode.selected;
+
+      const copiedParentId = node.parentId ? idMap.get(node.parentId) : undefined;
+      if (copiedParentId) {
+        copiedNode.parentId = copiedParentId;
+        copiedNode.position = { ...node.position };
+      } else if (node.parentId) {
+        const parent = nodesById.get(node.parentId);
+        copiedNode.position = parent
+          ? {
+              x: parent.position.x + node.position.x + 40,
+              y: parent.position.y + node.position.y + 40,
+            }
+          : { x: node.position.x + 40, y: node.position.y + 40 };
+        delete copiedNode.parentId;
+        delete copiedNode.extent;
+      }
+      return copiedNode;
+    });
+
+  const copiedEdges = canvas.edges
+    .filter((edge) => {
+      const sourceCopied = copyIds.has(edge.source);
+      const targetCopied = copyIds.has(edge.target);
+      return includeExternalEdges
+        ? sourceCopied || targetCopied
+        : sourceCopied && targetCopied;
+    })
+    .map((edge) => ({
+      ...edge,
+      id: `${edge.id}-copy-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      source: idMap.get(edge.source) ?? edge.source,
+      target: idMap.get(edge.target) ?? edge.target,
+    }));
+
+  return {
+    copiedNodes,
+    copiedEdges,
+    selectedCopyIds: requested
+      .map((id) => idMap.get(id))
+      .filter((id): id is string => Boolean(id)),
+  };
+}
 
 const initialCanvas2: CanvasData = {
   id: "canvas-2",
@@ -569,6 +659,40 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ),
         selectedNodeIds: [newNodeId],
         selectedNodeId: newNodeId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  duplicateSelectedNodes: () => {
+    const { activeCanvasId } = get();
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      const requestedIds =
+        state.selectedNodeIds.length > 0
+          ? state.selectedNodeIds
+          : state.selectedNodeId
+            ? [state.selectedNodeId]
+            : [];
+      const includesGroup = requestedIds.some(
+        (id) => currentCanvas.nodes.find((node) => node.id === id)?.type === "storyboard-group",
+      );
+      const result = duplicateGraphSelection(currentCanvas, requestedIds, requestedIds.length === 1 && !includesGroup);
+      if (!result) return state;
+
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: [...canvas.nodes, ...result.copiedNodes],
+                edges: [...canvas.edges, ...result.copiedEdges],
+              }
+            : canvas,
+        ),
+        selectedNodeIds: result.selectedCopyIds,
+        selectedNodeId: result.selectedCopyIds.at(-1) ?? null,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });

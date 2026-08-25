@@ -15,6 +15,7 @@ This is a reverse-engineered clone of [`liblib.tv/canvas`](https://www.liblib.tv
 > | Understand a design decision (e.g. "why does the handle look like a +?") | [§ Key Design Decisions](#key-design-decisions) |
 > | Read the Seedance 2.5 background, research and implementation history | [`research/liblib-seedance-2.5-2026-08-25/`](research/liblib-seedance-2.5-2026-08-25/) |
 > | Read the multi-selection and grouping batch handoff | [`research/liblib-canvas-batch4-2026-08-25/`](research/liblib-canvas-batch4-2026-08-25/) |
+> | Read the movement and selection-copy batch handoff | [`research/liblib-canvas-batch5-2026-08-25/`](research/liblib-canvas-batch5-2026-08-25/) |
 > | Look at the actual implementation of a node | [`src/components/nodes/`](../../src/components/nodes) |
 > | Look at the FrameOS canvas (separate route) | [§ FrameOS Canvas](#frameos-canvas) |
 
@@ -55,6 +56,7 @@ Their current edge renderers are route-specific: LibTV uses `DeletableEdge`; Fra
 - [`BIG_PICTURE.md`](BIG_PICTURE.md) — current architecture, route boundaries, state flow, research workflow, and prototype limits
 - [`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) — current live-site evidence, gap audit, value ranking, and implementation scope
 - [`research/liblib-canvas-batch3-2026-08-25/README.md`](research/liblib-canvas-batch3-2026-08-25/README.md) — command-history batch plan, evidence corrections, implementation record, and handoff notes
+- [`research/liblib-canvas-batch5-2026-08-25/README.md`](research/liblib-canvas-batch5-2026-08-25/README.md) — movement transactions, group movement, selection-copy, and batch verification
 - [`research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md`](research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md) — durable background knowledge extracted from the external LibTV Seedance 2.5 research document
 - [`.claude/skills/clone-website/SKILL.md`](../.claude/skills/clone-website/SKILL.md) — source-of-truth workflow for browser extraction, specs, parallel building, and visual QA
 - [`docs/research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md) — how to extract info from a live target site
