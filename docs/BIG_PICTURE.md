@@ -189,7 +189,7 @@ React Flow change
 - 分享弹层、Agent 抽屉；Agent 内容包含 source-shaped Skill 推荐、通知提示和本地 composer 状态
 - 与 React Flow viewport 同步的 zoom 百分比
 
-顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享和 Agent。项目名与画布 CRUD 进入 `canvasStore`，画布下拉只保留编辑草稿和行级更多菜单等短生命周期局部状态。缩放菜单和面板内部筛选/使用态仍在组件本地，因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
+顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。
 
@@ -410,7 +410,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - 视频组：原站 `.parent` class 与相对 `(62,62)` 已复刻；parent/child drag、group/child copy、级联删除和 history 通过
 - 选中浮层：图片 node/toolbar/panel 中心误差 `0px`，toolbar `900.5x49`、gap `16px`；图片/视频 panel `660x274`、gap `4.541px = 16 * 0.283816`
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
-- minimap：开关后渲染 `150x110`；zoom 菜单、吸附和点阵开关可操作
+- minimap：开关后渲染 `150x110`；zoom 菜单按原站提供放大/缩小/适合屏幕/50/100/800，吸附开关可操作
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`；显示项目/当前画布上下文、10 项 source-order 层级树和本地筛选/搜索
 - Agent：`340px` 右抽屉；分镜模式自动打开，并将当前画布渲染为关键元素栏与图片/视频故事板列
 - 分镜模式：`画布 2` 初始状态为 5 个图片卡、1 个失败视频卡、1 个脚本关键元素；卡片选择、空画布和 `390x844` 内部滚动通过 Batch 13 验证

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { LayoutGrid, Link2, Magnet, Map, PanelLeft, Scan, ZoomIn, ZoomOut } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { LayoutGrid, Link2, Magnet, Map, PanelLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
 
@@ -43,7 +43,7 @@ export function BottomToolbar({
   onZoomBy,
   onZoomTo,
 }: BottomToolbarProps) {
-  const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const zoomMenuRef = useRef<HTMLDivElement>(null);
   const {
     isAssetPanelOpen,
     toggleAssetPanel,
@@ -51,12 +51,24 @@ export function BottomToolbar({
     toggleMinimap,
     showEdges,
     toggleEdges,
-    showGrid,
-    toggleGrid,
     snapToGrid,
     toggleSnapToGrid,
     zoomLevel,
+    isZoomMenuOpen,
+    toggleZoomMenu,
+    closeZoomMenu,
   } = useUIStore();
+
+  useEffect(() => {
+    if (!isZoomMenuOpen) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      if (zoomMenuRef.current && !zoomMenuRef.current.contains(event.target as Node)) {
+        closeZoomMenu();
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown, true);
+    return () => document.removeEventListener("pointerdown", handlePointerDown, true);
+  }, [closeZoomMenu, isZoomMenuOpen]);
 
   return (
     <div
@@ -91,41 +103,51 @@ export function BottomToolbar({
           <Magnet size={15} />
         </IconButton>
       </span>
-      <div className="relative sm:max-[850px]:hidden">
+      <div ref={zoomMenuRef} className="relative sm:max-[850px]:hidden">
         <button
           type="button"
+          data-viewport-menu-trigger="zoom"
           aria-label="缩放选项"
-          aria-expanded={isZoomOpen}
-          onClick={() => setIsZoomOpen((open) => !open)}
+          aria-expanded={isZoomMenuOpen}
+          onClick={toggleZoomMenu}
           className="flex h-7 min-w-10 items-center justify-center rounded-md px-1.5 text-xs tabular-nums text-[#d7d7d7] hover:bg-white/[0.08]"
         >
           {zoomLevel}%
         </button>
-        {isZoomOpen && (
-          <div className="absolute bottom-9 right-0 w-[196px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_18px_44px_rgba(0,0,0,0.5)]">
-            <div className="mb-1 flex items-center gap-1 rounded-lg bg-[#1b1b1b] p-1">
-              <button onClick={() => onZoomBy(-0.1)} className="flex h-7 w-7 items-center justify-center rounded-md text-[#bcbcbc] hover:bg-white/10" aria-label="缩小">
-                <ZoomOut size={14} />
-              </button>
-              <span className="flex-1 text-center text-xs tabular-nums text-white">{zoomLevel}%</span>
-              <button onClick={() => onZoomBy(0.1)} className="flex h-7 w-7 items-center justify-center rounded-md text-[#bcbcbc] hover:bg-white/10" aria-label="放大">
-                <ZoomIn size={14} />
-              </button>
+        {isZoomMenuOpen && (
+          <div data-liblib-overlay="zoom-menu" className="absolute bottom-9 right-0 w-[188px] rounded-xl border border-white/10 bg-[#262626] p-1.5 shadow-[0_18px_44px_rgba(0,0,0,0.5)]">
+            <div data-zoom-current className="mb-1 flex h-9 items-center justify-between rounded-lg bg-white/[0.06] px-3 text-xs tabular-nums text-[#d7d7d7]">
+              <span>{zoomLevel}</span>
+              <span className="text-[#747474]">%</span>
             </div>
-            <button onClick={onFitView} className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
-              <Scan size={14} />
-              <span className="flex-1 text-left">适合屏幕</span>
-              <span className="text-[#777]">⌘0</span>
+            <button type="button" data-zoom-action="in" onClick={() => onZoomBy(0.1)} className="flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+              <span>放大</span>
+              <span className="text-[#777]">⌘ +</span>
             </button>
-            {[0.5, 1, 8].map((zoom) => (
-              <button key={zoom} onClick={() => onZoomTo(zoom)} className="h-8 w-full rounded-lg px-2 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
-                缩放至 {Math.round(zoom * 100)}%
+            <button type="button" data-zoom-action="out" onClick={() => onZoomBy(-0.1)} className="flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+              <span>缩小</span>
+              <span className="text-[#777]">⌘ -</span>
+            </button>
+            <button type="button" data-zoom-action="fit" onClick={onFitView} className="flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
+              <span>适合屏幕</span>
+              <span className="text-[#777]">⌘ 0</span>
+            </button>
+            <div className="my-1 h-px bg-white/[0.08]" />
+            {[
+              { zoom: 0.5, value: "50" },
+              { zoom: 1, value: "100" },
+              { zoom: 8, value: "800" },
+            ].map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                data-zoom-action={option.value}
+                onClick={() => onZoomTo(option.zoom)}
+                className="h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]"
+              >
+                缩放至{option.value}%
               </button>
             ))}
-            <button onClick={toggleGrid} className="flex h-8 w-full items-center justify-between rounded-lg px-2 text-xs text-[#e7e7e7] hover:bg-white/[0.07]">
-              <span>点阵网格</span>
-              <span className={showGrid ? "text-[#09caf5]" : "text-[#777]"}>{showGrid ? "开启" : "关闭"}</span>
-            </button>
           </div>
         )}
       </div>

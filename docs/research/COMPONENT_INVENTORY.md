@@ -12,7 +12,7 @@ This is the authoritative catalog of components in this clone. For each, file pa
 |-----------|------|---------|
 | `TopNavBar` | `src/components/TopNavBar.tsx` | Floating top controls: route mark, canvas/project navigation, workbench/storyboard mode, share, credits and Agent. |
 | `LeftSidebar` | `src/components/LeftSidebar.tsx` | Compatibility name for the centered primary bottom toolbar with 8 icon buttons and mutually exclusive entry panels. |
-| `BottomToolbar` | `src/components/BottomToolbar.tsx` | Centered floating toolbar at bottom: 资产管理 text button, icon buttons, large cyan "+" (add node), zoom %. |
+| `BottomToolbar` | `src/components/BottomToolbar.tsx` | Lower-left canvas controls: asset drawer, organize, minimap, edges, snap and source-shaped store-driven zoom menu. |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | Compact "正在跟随" + 取消ESC banner above canvas + script title node. |
 | `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | Data-driven storyboard mode: current-canvas key elements rail plus image/video columns; card selection stays in `canvasStore`. |
 | `AgentDrawer` | `src/components/AgentDrawer.tsx` | 340px right drawer with source-shaped new-chat header, 2x2 local Skill recommendations, notification banner and composer. |
@@ -74,7 +74,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | Store | File | Responsibility |
 |------|------|--------|
 | `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, graph commands and undo/redo. |
-| `useUIStore` | `src/store/uiStore.ts` | Panel visibility (add node, shortcuts, asset panel, etc.), grid/minimap/snap toggles, zoom level. `toggleAddNodePanel`, `closeAllPanels`, etc. |
+| `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
 
 ---
 

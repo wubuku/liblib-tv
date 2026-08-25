@@ -178,7 +178,7 @@ def run_video_anchor(page: Page):
     assert_same_delta(parent_video, child_video, parent_panel, child_panel)
 
     page.get_by_role("button", name="缩放选项").click()
-    page.get_by_role("button", name="放大", exact=True).click()
+    page.locator('[data-zoom-action="in"]').click()
     page.wait_for_timeout(250)
     zoom_video, zoom_panel = assert_video_anchor(page)
     assert page.get_by_role("button", name="缩放选项").inner_text() == "38%"

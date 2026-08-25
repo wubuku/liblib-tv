@@ -16,11 +16,11 @@
 ### Top-Level Overlay Lifecycle
 
 - **Primary panel state:** `move`, `toolbox`, `material`, `character`, `history` and `tutorial` are selected by `useUIStore.activePrimaryPanel`, not component-local state.
-- **Mutual exclusion:** Opening a top-level surface closes the other primary panel, add-node panel, shortcuts, canvas dropdown, asset drawer, share menu and Agent.
+- **Mutual exclusion:** Opening a top-level surface closes the other primary panel, add-node panel, shortcuts, canvas dropdown, asset drawer, share menu, Agent and zoom menu.
 - **Modal boundary:** Character and history modals still use their own backdrop; the backdrop blocks clicks to the canvas and bottom toolbar until the modal is closed.
 - **Mode lifecycle:** Entering storyboard mode opens Agent after clearing other top-level surfaces; returning to workbench closes Agent.
-- **Escape:** `Escape` invokes `closeAllPanels`, which now also clears the primary bottom-toolbar panel.
-- **Verification:** `scripts/verify-liblib-batch11.py`.
+- **Escape:** `Escape` invokes `closeAllPanels`, which clears the primary panel and zoom menu as well as the other top-level surfaces.
+- **Verification:** `scripts/verify-liblib-batch11.py` and `scripts/verify-liblib-batch18.py`.
 
 ### Storyboard Mode
 
@@ -173,7 +173,7 @@ Buttons (left to right):
 - **缩略图:** Toggles the React Flow minimap.
 - **节点连线:** Shows or hides all edges.
 - **吸附:** Toggles `20x20` grid snapping; hidden in the compact middle-width range.
-- **缩放百分比:** Opens zoom in/out, fit view, fixed zoom and grid controls.
+- **缩放百分比:** Opens the source-shaped current-percent, zoom in/out, fit-view and 50/100/800 menu. Zoom actions keep it open; Escape, outside pointerdown or another top-level overlay closes it. The menu no longer includes the unsupported grid item.
 
 ### Organize Preview
 

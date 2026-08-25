@@ -15,6 +15,7 @@ This contract covers the LibTV route's top-level canvas surfaces. It does not un
 | Asset drawer | `AssetManagerPanel` | `uiStore.isAssetPanelOpen` |
 | Share menu | `TopNavBar` | `uiStore.isSharePanelOpen` |
 | Agent drawer | `AgentDrawer` | `uiStore.isAgentOpen` |
+| Zoom menu | `BottomToolbar` | `uiStore.isZoomMenuOpen` |
 | Organize confirmation | `page.tsx` local transaction state | intentionally independent |
 
 ## Mutual exclusion
@@ -44,6 +45,7 @@ move | toolbox | material | character | history | tutorial | null
 - no asset drawer;
 - no share menu;
 - no Agent drawer.
+- no zoom menu.
 
 ## Selector contract
 
@@ -57,6 +59,7 @@ data-liblib-overlay="agent"
 data-liblib-overlay="canvas-dropdown"
 data-liblib-overlay="add-node"
 data-liblib-overlay="shortcuts"
+data-liblib-overlay="zoom-menu"
 ```
 
 The selector is a test/debug contract, not visible product copy.

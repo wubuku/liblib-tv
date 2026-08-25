@@ -23,6 +23,7 @@ interface UIState {
   isUserMenuOpen: boolean;
   isSharePanelOpen: boolean;
   isAgentOpen: boolean;
+  isZoomMenuOpen: boolean;
   activePrimaryPanel: PrimaryPanel | null;
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
@@ -49,6 +50,8 @@ interface UIState {
   toggleUserMenu: () => void;
   toggleSharePanel: () => void;
   toggleAgent: () => void;
+  toggleZoomMenu: () => void;
+  closeZoomMenu: () => void;
   togglePrimaryPanel: (panel: PrimaryPanel) => void;
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
@@ -78,6 +81,7 @@ type OverlayState = Pick<
   | "isUserMenuOpen"
   | "isSharePanelOpen"
   | "isAgentOpen"
+  | "isZoomMenuOpen"
   | "activePrimaryPanel"
 >;
 
@@ -95,6 +99,7 @@ const closedOverlayState: OverlayState = {
   isUserMenuOpen: false,
   isSharePanelOpen: false,
   isAgentOpen: false,
+  isZoomMenuOpen: false,
   activePrimaryPanel: null,
 };
 
@@ -112,6 +117,7 @@ export const useUIStore = create<UIState>((set) => ({
   isUserMenuOpen: false,
   isSharePanelOpen: false,
   isAgentOpen: false,
+  isZoomMenuOpen: false,
   activePrimaryPanel: null,
   editorMode: "workbench",
   canvasTool: "select",
@@ -206,6 +212,14 @@ export const useUIStore = create<UIState>((set) => ({
       ...closedOverlayState,
       isAgentOpen: !state.isAgentOpen,
     })),
+
+  toggleZoomMenu: () =>
+    set((state) => ({
+      ...closedOverlayState,
+      isZoomMenuOpen: !state.isZoomMenuOpen,
+    })),
+
+  closeZoomMenu: () => set({ isZoomMenuOpen: false }),
 
   togglePrimaryPanel: (panel) =>
     set((state) => ({

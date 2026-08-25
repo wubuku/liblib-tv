@@ -38,6 +38,7 @@ def assert_only_overlay(page: Page, expected: str):
         "asset",
         "share",
         "agent",
+        "zoom-menu",
     ]
     visible = [name for name in names if overlay(page, name).is_visible()]
     assert visible == [expected], visible
