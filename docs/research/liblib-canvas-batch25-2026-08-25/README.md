@@ -1,6 +1,6 @@
 # Batch 25：智能剪辑空态与节点下方 Prompt 面板
 
-> 状态：已实施；Batch 25 专项 Playwright、类型检查和 lint 已通过，跨批回归待最终门禁阶段记录。
+> 状态：已完成；Batch 25 专项 Playwright、目标跨批回归和完整工程/文档门禁均通过。
 
 ## 批次前缺口
 
@@ -44,6 +44,7 @@
 - panel 保持 `660x191` 屏幕尺寸、节点中心锚定和 `16 * zoom` gap。
 - mode、reference、Prompt、submit 和 expand 均有本地反馈。
 - 50% zoom、drag、pan、multi-selection hide 和 390px 自然裁切受专项自动化保护。
+- Batch 9、15、23、24、25 全部通过，未破坏共享浮层、Add Node、视频或逐帧工作流。
 
 ## 原型边界
 

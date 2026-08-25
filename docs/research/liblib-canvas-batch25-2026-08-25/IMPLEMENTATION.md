@@ -1,6 +1,6 @@
 # Batch 25 Implementation Log
 
-> 状态：实现与专项验证已完成；跨批回归和完整工程门禁待最终阶段补录。
+> 状态：实现、专项验证、跨批回归和完整工程门禁均已完成。
 
 ## 1. 实施内容
 
@@ -53,14 +53,45 @@
 - `npm run typecheck`：通过。
 - `npm run lint`：0 errors；保留 9 条既有 FrameOS warnings。
 
-## 3. 截图
+## 3. 跨批回归与最终门禁
+
+### Playwright
+
+以下脚本全部通过：
+
+- Batch 9：共享图片/视频浮层锚定、zoom、drag/pan 和 multi-selection；
+- Batch 15：九项 Add Node、专用类型创建和移动端 overflow；
+- Batch 23：片段重拍 filmstrip/editor；
+- Batch 24：逐帧拉片持久结果；
+- Batch 25：智能剪辑 empty node 和 Prompt panel。
+
+### Engineering
+
+- `npm run check`：通过。
+  - ESLint：0 errors，9 条既有 FrameOS warnings；
+  - TypeScript strict check：通过；
+  - Next.js 16.2.1 production build：通过；
+  - 路由：`/`、`/_not-found`、`/frameos`、`/frameos/canvas/[id]`。
+- `npm run docs:check`：通过，191 个 Markdown，457 个本地目标。
+- `git diff --check`：通过。
+
+构建仍提示仓库上层存在另一个 `package-lock.json`，Next 自动推断 workspace root；该警告在本批前已存在，不影响构建产物。
+
+## 4. 截图
 
 - `docs/design-references/liblib-clone-batch25-video-clip-source-context-929-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch25-video-clip-detail-929-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch25-video-clip-mobile-390-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch25-video-clip-contact-sheet-2026-08-25.png`
 
-## 4. 剩余边界
+## 5. Git 保护点
+
+- `780a56b`：Batch 25 原站证据、计划、截图台账和工作流规格。
+- `28a663e`：聚焦 crop 确认四模式为单列列表。
+- `624c6ef`：节点/panel 拆分实现、专项 Playwright、截图和实施台账。
+- 最终回归结果随本文档提交并推送。
+
+## 6. 剩余边界
 
 - 没有根据 incoming edge 解析真实视频输入。
 - 没有真实参考、智能剪辑、生成结果、积分、账户资产或持久化。
