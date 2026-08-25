@@ -13,7 +13,7 @@ This is a reverse-engineered clone of [`liblib.tv/canvas`](https://www.liblib.tv
 > | Find a specific component | [§ Source Tree](#source-tree-annotated) or [`docs/research/COMPONENT_INVENTORY.md`](research/COMPONENT_INVENTORY.md) |
 > | Understand a specific interaction | [§ Behaviors](research/BEHAVIORS.md) or [§ Per-component specs](research/components/) |
 > | Understand a design decision (e.g. "why does the handle look like a +?") | [§ Key Design Decisions](#key-design-decisions) |
-> | Follow the Seedance 2.5 canvas research and implementation history | [`research/liblib-seedance-2.5-2026-08-25/`](research/liblib-seedance-2.5-2026-08-25/) |
+> | Read the Seedance 2.5 background, research and implementation history | [`research/liblib-seedance-2.5-2026-08-25/`](research/liblib-seedance-2.5-2026-08-25/) |
 > | Look at the actual implementation of a node | [`src/components/nodes/`](../../src/components/nodes) |
 > | Look at the FrameOS canvas (separate route) | [§ FrameOS Canvas](#frameos-canvas) |
 
@@ -53,6 +53,7 @@ Their current edge renderers are route-specific: LibTV uses `DeletableEdge`; Fra
 - [`AGENTS.md`](../AGENTS.md) — agent red-lines (read first if you're an AI agent)
 - [`BIG_PICTURE.md`](BIG_PICTURE.md) — current architecture, route boundaries, state flow, research workflow, and prototype limits
 - [`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) — current live-site evidence, gap audit, value ranking, and implementation scope
+- [`research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md`](research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md) — durable background knowledge extracted from the external LibTV Seedance 2.5 research document
 - [`.claude/skills/clone-website/SKILL.md`](../.claude/skills/clone-website/SKILL.md) — source-of-truth workflow for browser extraction, specs, parallel building, and visual QA
 - [`docs/research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md) — how to extract info from a live target site
 
