@@ -61,8 +61,9 @@ export function ImageEditPanel({
 
   return (
     <div
-      className="nodrag nowheel nopan absolute -bottom-4 left-1/2 z-30 w-[660px] -translate-x-1/2 translate-y-full origin-top"
-      // The source panel counter-scales with the node so its screen geometry remains stable.
+      data-image-edit-panel
+      className="nodrag nowheel nopan absolute -bottom-[17px] left-1/2 z-20 w-[660px] -translate-x-1/2 translate-y-full origin-top"
+      // The bordered node is the containing block, so 17 flow units produce the source's 16-unit outer gap.
       style={{ transform: `scale(${1 / zoom})` }}
     >
       <section

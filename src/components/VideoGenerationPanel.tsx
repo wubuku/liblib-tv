@@ -88,8 +88,9 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
 
   return (
     <div
-      className="nodrag nowheel nopan absolute -bottom-4 left-1/2 z-30 w-[660px] -translate-x-1/2 translate-y-full origin-top"
-      // The live panel is nested in the scaled node and counter-scales to remain screen-sized.
+      data-video-generation-panel
+      className="nodrag nowheel nopan absolute -bottom-[17px] left-1/2 z-20 w-[660px] -translate-x-1/2 translate-y-full origin-top"
+      // The bordered node is the containing block, so 17 flow units produce the source's 16-unit outer gap.
       style={{ transform: `scale(${1 / zoom})` }}
     >
       <section className="relative flex h-[274px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">

@@ -48,8 +48,9 @@ export function SegmentReshootPanel({ zoom, mode, onClose }: SegmentReshootPanel
 
   return (
     <div
-      className="nodrag nowheel nopan absolute -bottom-4 left-1/2 z-30 w-[660px] -translate-x-1/2 translate-y-full origin-top"
-      // Matches the original node-anchored, screen-size editor positioning contract.
+      data-segment-reshoot-panel
+      className="nodrag nowheel nopan absolute -bottom-[17px] left-1/2 z-20 w-[660px] -translate-x-1/2 translate-y-full origin-top"
+      // The bordered node is the containing block, so 17 flow units produce the source's 16-unit outer gap.
       style={{ transform: `scale(${1 / zoom})` }}
     >
       <section className="flex h-[286px] flex-col overflow-hidden rounded-2xl border border-[#363636] bg-[#262626] shadow-[0_22px_60px_rgba(0,0,0,0.52)]">

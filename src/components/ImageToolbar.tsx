@@ -32,11 +32,17 @@ interface ImageToolbarProps {
 
 export function ImageToolbar({ portraitEnhanced, onAction }: ImageToolbarProps) {
   return (
-    <NodeToolbar position={Position.Top} offset={16} align="center" className="nodrag nopan z-[1001]">
+    <NodeToolbar
+      position={Position.Top}
+      offset={16}
+      align="center"
+      className="nodrag nopan z-[1001]"
+      data-image-toolbar
+    >
       <div
         onPointerDown={(event) => event.stopPropagation()}
         onClick={(event) => event.stopPropagation()}
-        className="flex h-[49px] w-[900px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]"
+        className="flex h-[49px] w-[900.5px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]"
       >
         {actions.map((action) => {
           const Icon = action.icon;
