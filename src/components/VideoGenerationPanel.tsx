@@ -126,27 +126,27 @@ export function VideoGenerationPanel({ zoom, initialModel, initialPrompt }: Vide
 
         <footer className="mt-1 flex h-9 shrink-0 items-center gap-1 border-t border-white/[0.07] pt-1 text-xs text-[#dfdfdf]">
           <div className="relative">
-            <button type="button" onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06]">
+            <button data-video-model-trigger type="button" onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06]">
               <span className="font-semibold">{model === "2.5" ? "2.5" : model}</span><ChevronDown size={12} className="text-[#777]" />
             </button>
             {menu === "model" && <ModelMenu model={model} onSelect={(value) => { setModel(value); setMenu(null); }} />}
           </div>
           <div className="relative">
-            <button type="button" onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
+            <button data-video-mode-trigger type="button" onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
             {menu === "mode" && <ModeMenu mode={mode} onSelect={selectMode} />}
           </div>
           <div className="relative min-w-0">
-            <button type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 max-w-[205px] items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
+            <button data-video-params-trigger type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 max-w-[205px] items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
             {menu === "params" && (
               <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongVideo} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
           </div>
-          <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} aria-label="高级设置" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Settings2 size={14} /></button>
+          <button data-video-advanced-trigger type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} aria-label="高级设置" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Settings2 size={14} /></button>
           {menu === "advanced" && (
             <AdvancedMenu networkSearch={networkSearch} materialCheck={materialCheck} autoLink={autoLink} onNetworkSearch={setNetworkSearch} onMaterialCheck={setMaterialCheck} onAutoLink={setAutoLink} />
           )}
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
-          <span className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
+          <span data-video-credits className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
           <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
           <button type="button" onClick={() => setSubmitted(true)} aria-label="生成视频" className={cn("flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]", submitted && "bg-[#09caf5]")} title={submitted ? "已加入本地任务" : "生成视频"}>{submitted ? <Check size={15} /> : <ArrowUp size={15} />}</button>
         </footer>
@@ -167,7 +167,7 @@ function ModeMenu({ mode, onSelect }: { mode: VideoMode; onSelect: (mode: VideoM
   return (
     <div className="absolute bottom-10 left-0 z-50 w-52 rounded-xl border border-white/10 bg-[#292929] p-1.5 shadow-2xl">
       <p className="px-2 py-1 text-[11px] text-[#777]">视频生成模式</p>
-      {modeItems.map((item) => <button key={item.id} type="button" disabled={item.disabled} onClick={() => onSelect(item.id as VideoMode)} className={cn("flex h-9 w-full items-center rounded-lg px-2 text-left text-sm", item.disabled ? "cursor-not-allowed text-[#555]" : "text-[#ddd] hover:bg-white/[0.06]", mode === item.id && "bg-white/[0.08] text-white")}><Film size={14} className="mr-2" />{item.label}{"badge" in item && item.badge && <span className="ml-auto rounded bg-[#0d5964] px-1.5 py-0.5 text-[9px] text-[#4de1f4]">{item.badge}</span>}</button>)}
+      {modeItems.map((item) => <button key={item.id} data-video-mode-option={item.id} type="button" disabled={item.disabled} onClick={() => onSelect(item.id as VideoMode)} className={cn("flex h-9 w-full items-center rounded-lg px-2 text-left text-sm", item.disabled ? "cursor-not-allowed text-[#555]" : "text-[#ddd] hover:bg-white/[0.06]", mode === item.id && "bg-white/[0.08] text-white")}><Film size={14} className="mr-2" />{item.label}{"badge" in item && item.badge && <span className="ml-auto rounded bg-[#0d5964] px-1.5 py-0.5 text-[9px] text-[#4de1f4]">{item.badge}</span>}</button>)}
     </div>
   );
 }
@@ -178,27 +178,173 @@ interface ParamsMenuProps {
 }
 
 function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
+  const ratios = ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
+  const resolutions = ["480P", "720P", "1080P"];
+
   return (
-    <div className="absolute bottom-10 left-0 z-50 w-[341px] rounded-xl border border-white/10 bg-[#292929] p-3 shadow-2xl">
-      <OptionGroup label="比例" values={["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"]} value={ratio} onSelect={onRatio} />
-      <OptionGroup label="清晰度" values={["480P", "720P", "1080P"]} value={resolution} onSelect={onResolution} />
-      <div className="mb-3">
-        <div className="mb-2 flex items-center justify-between text-xs text-[#888]"><span>视频时长</span><span>{duration}s</span></div>
-        <input aria-label={isLongVideo ? "超长视频时长" : "视频时长"} type="range" min={durationMin} max={durationMax} value={duration} onInput={(event) => onDuration(Number(event.currentTarget.value))} className="h-1 w-full cursor-pointer accent-[#09caf5]" />
+    <div
+      data-video-params-menu
+      data-video-params-mode={isLongVideo ? "long" : "normal"}
+      className={cn(
+        "absolute bottom-8 z-50 flex w-[341px] flex-col rounded-xl border border-white/10 bg-[#292929] p-3 shadow-2xl",
+        isLongVideo ? "-left-[60px] h-[397px]" : "-left-[68px] h-[445px]",
+      )}
+    >
+      <section>
+        <p className="mb-2 text-xs text-[#8a8a8a]">比例</p>
+        <div className="grid grid-cols-5 gap-1.5">
+          {ratios.map((item) => (
+            <button
+              key={item}
+              data-video-ratio-option={item}
+              type="button"
+              aria-pressed={ratio === item}
+              onClick={() => onRatio(item)}
+              className={cn(
+                "flex h-[52px] min-w-0 flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
+                ratio === item
+                  ? "border-[#7d7d7d] bg-white/[0.1] text-white"
+                  : "border-white/[0.07] bg-white/[0.025] text-[#777] hover:border-white/[0.16] hover:text-[#ddd]",
+              )}
+            >
+              <AspectRatioGlyph ratio={item} active={ratio === item} />
+              <span>{item}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-3">
+        <p className="mb-2 text-xs text-[#8a8a8a]">清晰度</p>
+        <div className="grid grid-cols-3 gap-1 rounded-lg bg-black/20 p-0.5">
+          {resolutions.map((item) => (
+            <button
+              key={item}
+              data-video-resolution-option={item}
+              type="button"
+              aria-pressed={resolution === item}
+              onClick={() => onResolution(item)}
+              className={cn(
+                "h-8 rounded-md text-xs",
+                resolution === item
+                  ? "border border-[#777] bg-white/[0.12] text-white"
+                  : "border border-transparent text-[#666] hover:text-[#ddd]",
+              )}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-3">
+        <div className="flex h-7 items-center justify-between">
+          <span className="text-xs text-[#8a8a8a]">视频时长</span>
+          <span data-video-duration-value className="flex h-7 min-w-12 items-center justify-end gap-1 rounded-md bg-white/[0.05] px-2 text-xs text-[#d8d8d8]">
+            <span>{duration}</span><span className="text-[#777]">s</span>
+          </span>
+        </div>
+        <input
+          data-video-duration
+          aria-label={isLongVideo ? "超长视频时长" : "视频时长"}
+          type="range"
+          min={durationMin}
+          max={durationMax}
+          value={duration}
+          onInput={(event) => onDuration(Number(event.currentTarget.value))}
+          className="mt-2 h-1 w-full cursor-pointer accent-[#09caf5]"
+        />
         <div className="mt-1 flex justify-between text-[10px] text-[#606060]"><span>{durationMin}s</span><span>{durationMax}s</span></div>
-      </div>
-      <div className="mb-3 flex items-center justify-between"><span className="text-xs text-[#888]">生成音频</span><Segmented values={["开启", "关闭"]} value={audio ? "开启" : "关闭"} onSelect={(value) => onAudio(value === "开启")} /></div>
-      {!isLongVideo && <div className="flex items-center justify-between"><span className="text-xs text-[#888]">生成数量</span><Segmented values={["1个", "2个", "4个"]} value={`${count}个`} onSelect={(value) => onCount(Number(value[0]))} /></div>}
+        {isLongVideo && (
+          <p data-video-long-hint className="mt-2 text-[11px] leading-4 text-[#676767]">
+            围绕视频画面设计，支持更长时长的连续场景
+          </p>
+        )}
+      </section>
+
+      <ParameterSegment
+        label="生成音频"
+        values={["开启", "关闭"]}
+        value={audio ? "开启" : "关闭"}
+        dataAttribute="audio"
+        onSelect={(value) => onAudio(value === "开启")}
+      />
+
+      {!isLongVideo && (
+        <ParameterSegment
+          label="生成数量"
+          values={["1个", "2个", "4个"]}
+          value={`${count}个`}
+          dataAttribute="count"
+          onSelect={(value) => onCount(Number(value[0]))}
+        />
+      )}
     </div>
   );
 }
 
-function OptionGroup({ label, values, value, onSelect }: { label: string; values: string[]; value: string; onSelect: (value: string) => void }) {
-  return <div className="mb-3"><p className="mb-2 text-xs text-[#888]">{label}</p><div className="flex flex-wrap gap-1">{values.map((item) => <button key={item} type="button" onClick={() => onSelect(item)} className={cn("h-7 rounded-lg px-2 text-xs", value === item ? "bg-white/[0.13] text-white" : "bg-white/[0.04] text-[#777] hover:text-white")}>{item}</button>)}</div></div>;
+function AspectRatioGlyph({ ratio, active }: { ratio: string; active: boolean }) {
+  const dimensions: Record<string, string> = {
+    Auto: "h-3.5 w-4",
+    "16:9": "h-3 w-5",
+    "4:3": "h-3.5 w-[18px]",
+    "1:1": "size-3.5",
+    "3:4": "h-[18px] w-3.5",
+    "9:16": "h-5 w-3",
+    "21:9": "h-2.5 w-5",
+  };
+
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "block rounded-[2px] border",
+        dimensions[ratio],
+        active ? "border-[#d4d4d4]" : "border-[#6b6b6b]",
+      )}
+    />
+  );
 }
 
-function Segmented({ values, value, onSelect }: { values: string[]; value: string; onSelect: (value: string) => void }) {
-  return <div className="flex rounded-lg bg-black/20 p-0.5">{values.map((item) => <button key={item} type="button" onClick={() => onSelect(item)} className={cn("h-7 rounded-md px-2 text-xs", value === item ? "bg-white/[0.12] text-white" : "text-[#777]")}>{item}</button>)}</div>;
+function ParameterSegment({
+  label,
+  values,
+  value,
+  dataAttribute,
+  onSelect,
+}: {
+  label: string;
+  values: string[];
+  value: string;
+  dataAttribute: "audio" | "count";
+  onSelect: (value: string) => void;
+}) {
+  return (
+    <section className="mt-3">
+      <p className="mb-2 text-xs text-[#8a8a8a]">{label}</p>
+      <div className="grid grid-flow-col auto-cols-fr gap-1 rounded-lg bg-black/20 p-0.5">
+        {values.map((item) => (
+          <button
+            key={item}
+            {...(dataAttribute === "audio"
+              ? { "data-video-audio-option": item }
+              : { "data-video-count-option": item })}
+            type="button"
+            aria-pressed={value === item}
+            onClick={() => onSelect(item)}
+            className={cn(
+              "h-8 rounded-md border text-xs",
+              value === item
+                ? "border-[#777] bg-white/[0.12] text-white"
+                : "border-transparent text-[#666] hover:text-[#ddd]",
+            )}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function AdvancedMenu({ networkSearch, materialCheck, autoLink, onNetworkSearch, onMaterialCheck, onAutoLink }: { networkSearch: boolean; materialCheck: boolean; autoLink: boolean; onNetworkSearch: (value: boolean) => void; onMaterialCheck: (value: boolean) => void; onAutoLink: (value: boolean) => void }) {
