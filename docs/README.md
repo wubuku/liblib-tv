@@ -17,7 +17,8 @@ This is a reverse-engineered clone of [`liblib.tv/canvas`](https://www.liblib.tv
 > | Read the multi-selection and grouping batch handoff | [`research/liblib-canvas-batch4-2026-08-25/`](research/liblib-canvas-batch4-2026-08-25/) |
 > | Read the movement and selection-copy batch handoff | [`research/liblib-canvas-batch5-2026-08-25/`](research/liblib-canvas-batch5-2026-08-25/) |
 > | Read the navigation gestures batch handoff | [`research/liblib-canvas-batch6-2026-08-25/`](research/liblib-canvas-batch6-2026-08-25/) |
-> | Look at the actual implementation of a node | [`src/components/nodes/`](../../src/components/nodes) |
+> | Read the organize-preview fidelity handoff | [`research/liblib-canvas-batch7-2026-08-25/`](research/liblib-canvas-batch7-2026-08-25/) |
+> | Look at the actual implementation of a node | [`src/components/nodes/`](../src/components/nodes) |
 > | Look at the FrameOS canvas (separate route) | [§ FrameOS Canvas](#frameos-canvas) |
 
 ---
@@ -59,6 +60,7 @@ Their current edge renderers are route-specific: LibTV uses `DeletableEdge`; Fra
 - [`research/liblib-canvas-batch3-2026-08-25/README.md`](research/liblib-canvas-batch3-2026-08-25/README.md) — command-history batch plan, evidence corrections, implementation record, and handoff notes
 - [`research/liblib-canvas-batch5-2026-08-25/README.md`](research/liblib-canvas-batch5-2026-08-25/README.md) — movement transactions, group movement, selection-copy, and batch verification
 - [`research/liblib-canvas-batch6-2026-08-25/README.md`](research/liblib-canvas-batch6-2026-08-25/README.md) — marquee selection, persistent/temporary pan, keyboard lifecycle, and batch verification
+- [`research/liblib-canvas-batch7-2026-08-25/README.md`](research/liblib-canvas-batch7-2026-08-25/README.md) — source-like organize topology, viewport calculation, confirmation card, and verification
 - [`research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md`](research/liblib-seedance-2.5-2026-08-25/BACKGROUND.md) — durable background knowledge extracted from the external LibTV Seedance 2.5 research document
 - [`.claude/skills/clone-website/SKILL.md`](../.claude/skills/clone-website/SKILL.md) — source-of-truth workflow for browser extraction, specs, parallel building, and visual QA
 - [`docs/research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md) — how to extract info from a live target site
@@ -124,7 +126,9 @@ src/
 │   ├── canvasStore.ts            # Nodes, edges, canvii, selection, viewport (liblib-tv)
 │   ├── uiStore.ts                # Panel visibility, grid/minimap toggles, zoom level
 │   └── frameosStore.ts           # FrameOS-specific store
-├── lib/utils.ts                  # cn() utility (shadcn)
+├── lib/
+│   ├── utils.ts                  # cn() utility (shadcn)
+│   └── liblibOrganize.ts         # Source-project organize topology, fallback, and viewport bounds
 └── types/                        # TypeScript interfaces
 ```
 

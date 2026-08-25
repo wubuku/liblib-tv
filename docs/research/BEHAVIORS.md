@@ -116,19 +116,25 @@ Opens when clicking the `+` sidebar button. Click outside to close. Clicking a n
 
 Node types: text, image, video, composition (Beta), director (NEW), audio, script, library (NEW).
 
-## BottomToolbar (centered floating)
+## BottomToolbar (bottom-left canvas controls)
 
 Buttons (left to right):
-- **资产管理 (text):** Toggles `useUIStore.toggleAssetPanel` (panel not implemented yet)
-- **整理画布 (icon, ⌥+Shift+F):** Reorganizes nodes and presents the existing keep/restore prompt
-- **人物 icon:** No-op
-- **`+` large cyan button:** Opens `AddNodePanel`
-- **整理节点 (icon):** No-op
-- **⭐ icon:** No-op (favorite)
-- **⏰ icon:** No-op (history)
-- **📷 icon:** No-op (image)
-- **? icon:** Opens `KeyboardShortcutsDialog`
-- **54% zoom:** Click → no-op in clone (could open a zoom menu)
+- **资产管理:** Toggles the `240px` asset drawer.
+- **整理画布 (`Option/Alt+Shift+F`):** Applies the source-like semantic topology and opens the keep/restore confirmation.
+- **缩略图:** Toggles the React Flow minimap.
+- **节点连线:** Shows or hides all edges.
+- **吸附:** Toggles `20x20` grid snapping; hidden in the compact middle-width range.
+- **缩放百分比:** Opens zoom in/out, fit view, fixed zoom and grid controls.
+
+### Organize Preview
+
+- The source project is arranged as four material nodes on the left, execution/storyboard in the middle, image/video groups on the right, and the script farther right at the top.
+- At `929x874`, organized bounds produce about `28%` zoom and the left content starts around `x=48`, `y=49`.
+- The confirmation card is fixed at the lower-left, about `168x88`, with the question on the first row and `还原` / `保留` on the second row.
+- `还原` restores the pre-organize nodes and viewport.
+- `保留` keeps the organized graph; undo/redo then switches between pre-organize and organized node positions.
+- Unknown top-level nodes use a stable fallback below the source project. Child nodes retain their parent-relative position.
+- See [`liblib-canvas-batch7-2026-08-25/`](./liblib-canvas-batch7-2026-08-25/) for evidence boundaries and measurements.
 
 ## Image-Specific Behaviors
 

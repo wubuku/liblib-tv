@@ -103,6 +103,7 @@ Next.js App Router
 │   │   ├── ReactFlow controlled graph
 │   │   ├── LibTV node components
 │   │   ├── DeletableEdge
+│   │   ├── liblibOrganize             整理拓扑、fallback 与 viewport 计算
 │   │   ├── canvasStore                画布数据
 │   │   └── uiStore                    面板与显示设置
 │   │
@@ -157,7 +158,7 @@ React Flow change
 
 页面还负责：
 
-- 注册 6 个节点组件和 `DeletableEdge`
+- 注册 8 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
 - 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
@@ -165,6 +166,7 @@ React Flow change
 - 监听 `delete-edge` CustomEvent
 - 同步 React Flow viewport 与实际缩放百分比
 - 在 `929px+` 使用原站 53% 构图，在 `768px-` 使用原站 28% 紧凑构图
+- 整理时调用 `liblibOrganize`，按保存的原站截图重建素材、执行/分镜、分组/视频和剧本的语义拓扑，并显示左下保留/还原卡
 - 组合顶部浮动导航、底部主工具条、底部画布控制、资产/Agent 抽屉和快捷键弹窗
 - 编排六个不同拓扑的一级入口面板，并保持入口互斥
 - 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent
@@ -187,6 +189,8 @@ React Flow change
 - 与 React Flow viewport 同步的 zoom 百分比
 
 部分短生命周期 UI 仍保留在组件本地状态中，例如主工具条的当前内容面板、缩放菜单和顶部项目名。这意味着 LibTV 当前不是单一、完整的编辑器状态机，而是 **画布数据 store + UI store + 局部组件状态** 的组合。
+
+整理预览快照也属于页面局部状态。节点位置变化进入 `canvasStore` 的 graph history，viewport 只随预览快照恢复，不进入通用 undo/redo。
 
 ### 5.3 节点系统
 
@@ -337,6 +341,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - LibTV 内容库已具备原站拓扑和本地真实样例素材，但账户数据、下载和生成调用仍是 mock
 - LibTV 分镜模式和 Agent 是可验证的前端原型，没有接入真实任务、模型或历史数据
 - LibTV 未实现后端生成、上传、分享链接、项目持久化和协作权限
+- LibTV 的整理位置针对当前 10 节点项目使用截图反推映射；未知节点只有稳定 fallback，不代表已复刻原站通用布局算法
 - FrameOS `duplicateNode` 已构造副本对象但没有把它加入 nodes，复制快捷键当前不会新增节点
 - FrameOS Prompt 顶栏的“删除连线”当前调用的是删除节点逻辑
 - 旧 E2E 仍查找 `.floating-toolbar`、`.canvas-footer-prompt`、`.debug-toggle` 等历史选择器
@@ -390,15 +395,18 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ## 12. 本轮验证基线
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
+- `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch7.py`：多选/成组、移动/复制、导航手势和整理预览全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`
+- 整理预览 `929x874`：28% 视口；关键节点位置在 `3px` 容差内，左下确认卡约 `168x88`
+- 整理预览 `1440x900` / `390x844`：约 46% / 10%，无页面横向溢出
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
 - minimap：开关后渲染 `150x110`；zoom 菜单、吸附和点阵开关可操作
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`，列出 10 个节点
 - Agent：`340px` 右抽屉；分镜模式自动打开并渲染故事板列
 - 图片选中态：页面级 `900x49` 工具条和 `660x274` 编辑面板，包含原站提示词与生成参数
 - 六个主入口面板：桌面锚点与原站一致；角色应用可创建可见节点；`390x844` 无检测到的标签溢出
-- 添加、分享、整理保留/还原、工作台/分镜切换均完成浏览器交互验证
+- 添加、分享、整理保留/还原、整理后 undo/redo、工作台/分镜切换均完成浏览器交互验证
 - `/frameos/canvas/demo` 运行态：7 节点、5 边
 - FrameOS 选中节点后浮动工具条与 PromptEditor 可见
 - 浏览器巡检未捕获 page error；开发态仅出现 Next Image LCP 提示，已为首屏画布图设置 eager loading

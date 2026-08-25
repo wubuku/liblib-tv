@@ -78,8 +78,8 @@ y = 49
 
 - 已知节点先使用上表位置；
 - 未知顶层节点按原数组顺序稳定排列；
-- fallback 从已知拓扑下方开始，使用固定三列；
-- 列间距和行高由节点尺寸与固定 gutter 计算；
+- fallback 从已知拓扑下方开始，使用与语义拓扑一致的三个固定列坐标；
+- 每列下一个节点的 y 由该列当前高度、节点高度与固定 gutter 计算；
 - 有 `parentId` 的 child 不单独进入 fallback，保留相对 parent 坐标；
 - fallback 是 clone 的可逆工程决策，不描述为原站算法。
 
@@ -90,4 +90,3 @@ y = 49
 - 保留后 undo/redo 在整理前后 graph snapshot 之间切换；
 - “还原”恢复节点和 viewport 快照并关闭确认卡；
 - viewport 仍不进入通用 graph history。
-
