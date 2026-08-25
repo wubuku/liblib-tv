@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   AudioLines,
+  Camera,
   CaptionsOff,
   ChevronDown,
   Crop,
@@ -11,6 +12,7 @@ import {
   Film,
   Highlighter,
   LoaderCircle,
+  PanelsTopLeft,
   Redo2,
   Scissors,
   Sparkles,
@@ -22,9 +24,10 @@ import { cn } from "@/lib/utils";
 import type {
   AudioSplitMode,
   SubtitleEraseMode,
+  VideoFrameCaptureKind,
 } from "@/store/canvasStore";
 
-type ToolbarMenu = "subtitle" | "audio" | "edit" | null;
+type ToolbarMenu = "subtitle" | "audio" | "edit" | "frame" | null;
 
 interface VideoProcessingToolbarProps {
   activeTool: "generator" | "reshoot" | "continue";
@@ -35,10 +38,11 @@ interface VideoProcessingToolbarProps {
   onCreateBreakdown: () => void;
   onSelectSubtitleMode: (mode: SubtitleEraseMode) => void;
   onAudioSplit: (mode: AudioSplitMode) => void;
+  onCaptureFrame: (kind: VideoFrameCaptureKind) => void;
   audioSplittingMode: AudioSplitMode | null;
 }
 
-export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown, onSelectSubtitleMode, onAudioSplit, audioSplittingMode }: VideoProcessingToolbarProps) {
+export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown, onSelectSubtitleMode, onAudioSplit, onCaptureFrame, audioSplittingMode }: VideoProcessingToolbarProps) {
   const [menu, setMenu] = useState<ToolbarMenu>(null);
   const [lastAction, setLastAction] = useState<string | null>(null);
 
@@ -64,7 +68,7 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
       <div
         onPointerDown={(event) => event.stopPropagation()}
         onClick={(event) => event.stopPropagation()}
-        className="relative flex h-[49px] w-[920px] items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]"
+        className="relative flex h-[49px] w-max items-center gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.38)]"
       >
         <ToolbarButton label={enhanced ? "高清已开启" : "高清"} active={enhanced} onClick={onToggleEnhanced}><Highlighter size={16} /></ToolbarButton>
         <ToolbarButton label="片段重拍" active={activeTool === "reshoot"} onClick={() => onSelectTool(activeTool === "reshoot" ? "generator" : "reshoot")}><Scissors size={16} /></ToolbarButton>
@@ -116,8 +120,26 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
             </ToolbarMenu>
           )}
         </div>
+        <div className="relative shrink-0">
+          <ToolbarButton
+            dataAttribute="data-video-frame-menu-trigger"
+            label="截取首帧"
+            active={menu === "frame"}
+            onClick={() => setMenu(menu === "frame" ? null : "frame")}
+            trailing={<ChevronDown size={12} />}
+          >
+            <PanelsTopLeft size={16} />
+          </ToolbarButton>
+          {menu === "frame" && (
+            <ToolbarMenu menu="frame">
+              <MenuItem frameKind="first" label="截取首帧" icon={<PanelsTopLeft size={14} />} onClick={() => { setMenu(null); onCaptureFrame("first"); }} />
+              <MenuItem frameKind="last" label="截取尾帧" icon={<PanelsTopLeft size={14} />} onClick={() => { setMenu(null); onCaptureFrame("last"); }} />
+              <MenuItem frameKind="current" label="截取当前帧" icon={<Camera size={14} />} onClick={() => { setMenu(null); onCaptureFrame("current"); }} />
+            </ToolbarMenu>
+          )}
+        </div>
 
-        <span className="min-w-1 flex-1" />
+        <span className="min-w-1" />
         {lastAction && <span className="max-w-28 truncate text-[11px] text-[#777]">{lastAction}</span>}
         <span className="h-5 w-px shrink-0 bg-white/10" />
         <a href={posterUrl ?? "/images/scene-coffee-4.png"} download className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" aria-label="下载视频封面"><Download size={16} /></a>
@@ -134,10 +156,10 @@ function ToolbarMenu({ menu, children }: { menu: Exclude<ToolbarMenu, null>; chi
   return <div data-video-toolbar-menu={menu} className="absolute left-1/2 top-[39px] z-40 w-40 -translate-x-1/2 rounded-xl border border-white/10 bg-[#292929] p-1.5 text-xs shadow-2xl">{children}</div>;
 }
 
-function ToolbarButton({ dataAttribute, label, title, active = false, disabled = false, onClick, children, trailing }: { dataAttribute?: "data-video-subtitle-menu-trigger" | "data-video-audio-menu-trigger"; label: string; title?: string; active?: boolean; disabled?: boolean; onClick: () => void; children: React.ReactNode; trailing?: React.ReactNode }) {
+function ToolbarButton({ dataAttribute, label, title, active = false, disabled = false, onClick, children, trailing }: { dataAttribute?: "data-video-subtitle-menu-trigger" | "data-video-audio-menu-trigger" | "data-video-frame-menu-trigger"; label: string; title?: string; active?: boolean; disabled?: boolean; onClick: () => void; children: React.ReactNode; trailing?: React.ReactNode }) {
   return <button {...(dataAttribute ? { [dataAttribute]: true } : {})} type="button" title={title} disabled={disabled} onClick={onClick} className={cn("flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-2 text-sm text-[#e5e5e5] hover:bg-white/[0.07] disabled:cursor-wait disabled:text-[#9a9a9a] disabled:hover:bg-transparent", active && "bg-white/[0.1] text-white")}>{children}<span>{label}</span>{trailing}</button>;
 }
 
-function MenuItem({ subtitleMode, audioMode, label, title, icon, onClick }: { subtitleMode?: SubtitleEraseMode; audioMode?: AudioSplitMode; label: string; title?: string; icon: React.ReactNode; onClick: () => void }) {
-  return <button data-video-subtitle-mode={subtitleMode} data-video-audio-mode={audioMode} type="button" title={title} onClick={onClick} className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-[#ddd] hover:bg-white/[0.07]">{icon}{label}</button>;
+function MenuItem({ subtitleMode, audioMode, frameKind, label, title, icon, onClick }: { subtitleMode?: SubtitleEraseMode; audioMode?: AudioSplitMode; frameKind?: VideoFrameCaptureKind; label: string; title?: string; icon: React.ReactNode; onClick: () => void }) {
+  return <button data-video-subtitle-mode={subtitleMode} data-video-audio-mode={audioMode} data-video-frame-kind={frameKind} type="button" title={title} onClick={onClick} className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-[#ddd] hover:bg-white/[0.07]">{icon}{label}</button>;
 }

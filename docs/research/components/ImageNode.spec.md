@@ -64,6 +64,20 @@ source image
 
 Only `全景` has this source-backed derived-node contract. `多角度`, `打光`, `九宫格`, `高清` and `宫格切分` still use older clone prototype behavior and must not be described as faithful until each action is sampled on the source.
 
+## Video Frame Capture State
+
+Batch 29 uses the ordinary ImageNode renderer for video frame outputs:
+
+- `filename` is `首帧`, `尾帧`, or `截图`;
+- logical dimensions inherit the source video resolution;
+- `imageUrl` is currently the source poster, explicitly as prototype fallback;
+- image alt comes from source-backed `视频首帧 / 视频尾帧 / 视频截图`;
+- metadata exposes source ID/label, kind, capture time, name, alt and edge ID;
+- selecting the result opens the same ImageToolbar and ImageEditPanel as an
+  ordinary image.
+
+Stable root selector: `[data-video-frame-capture]`.
+
 ## Required Regressions
 
 - selecting any image shows exactly one top toolbar and one bottom panel
@@ -77,6 +91,9 @@ Only `全景` has this source-backed derived-node contract. `多角度`, `打光
 - `scripts/verify-liblib-batch10.py` remains green
 - panorama creation preserves placeholder, edge, panel anchor and single-transaction history
 - `scripts/verify-liblib-batch20.py` remains green
+- video frame results preserve metadata, ordinary image overlays and
+  single-transaction history
+- `scripts/verify-liblib-batch29.py` remains green
 
 ## Assets
 

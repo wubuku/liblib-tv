@@ -35,7 +35,7 @@ VideoNode
 ├── floating filename + resolution
 ├── media body
 │   ├── failed: warning icon, 生成失败, model
-│   ├── ready: poster, play button, local timeline
+│   ├── ready: poster, play button, local timeline + frame camera
 │   └── empty: waiting-for-continuation body
 └── selected lower editor
     ├── VideoGenerationPanel
@@ -67,6 +67,11 @@ VideoNode
 - `智能去字幕` and `框选去字幕` open a compact lower panel; region mode also overlays a multi-rectangle editor on the video
 - while subtitle mode is open, the normal generator and top processing toolbar are hidden
 - `逐帧拉片` creates a connected top-level `shot-breakdown` node
+- the top frame group creates first/last/current linked image resources
+- the player camera clicks directly to current-frame capture; hover exposes the
+  same three frame commands
+- the local range playhead supplies current-frame time for the prototype
+- frame capture preserves source selection so repeated capture remains available
 
 ### Empty Continuation Target
 
@@ -115,6 +120,23 @@ For the parented failed video:
 
 See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinuationSelector.spec.md`, `SubtitleErasePanel.spec.md`, and the Batch 9 floating anchor spec for measurements.
 
+## Frame Capture
+
+Batch 29 adds a source-backed video-to-image path:
+
+- first：`0s`, `首帧`, `视频首帧`;
+- last：`duration - 0.05s`, `尾帧`, `视频尾帧`;
+- current：local playhead, `截图`, `视频截图`;
+- source-to-image direct edge;
+- first result at source right `+100` world units and the same Y;
+- repeated results use clone slot search;
+- source remains selected;
+- one image + edge is one undo/redo transaction.
+
+The current prototype reuses the source poster; it does not decode a real frame.
+See
+[`../liblib-canvas-batch29-2026-08-25/FRAME_CAPTURE_WORKFLOW.spec.md`](../liblib-canvas-batch29-2026-08-25/FRAME_CAPTURE_WORKFLOW.spec.md).
+
 ## Files Referenced
 
 - `src/components/nodes/VideoNode.tsx`
@@ -129,3 +151,4 @@ See `VideoGenerationPanel.spec.md`, `SegmentReshootPanel.spec.md`, `VideoContinu
 - `scripts/verify-liblib-batch26.py`
 - `scripts/verify-liblib-batch27.py`
 - `scripts/verify-liblib-batch28.py`
+- `scripts/verify-liblib-batch29.py`

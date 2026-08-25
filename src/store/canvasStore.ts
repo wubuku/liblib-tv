@@ -57,6 +57,18 @@ export interface AudioSplitMetadata {
   edgeId: string;
 }
 
+export type VideoFrameCaptureKind = "first" | "last" | "current";
+
+export interface VideoFrameCaptureMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  kind: VideoFrameCaptureKind;
+  captureSeconds: number;
+  name: "首帧" | "尾帧" | "截图";
+  alt: "视频首帧" | "视频尾帧" | "视频截图";
+  edgeId: string;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -114,6 +126,11 @@ interface CanvasState {
     sourceId: string,
     mode: AudioSplitMode,
   ) => { audioNodeId: string; silentVideoNodeId: string } | null;
+  createVideoFrameCapture: (
+    sourceId: string,
+    kind: VideoFrameCaptureKind,
+    captureSeconds?: number,
+  ) => string | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
     sourceId: string,
@@ -213,6 +230,18 @@ function nodeHeight(node: Node): number {
   return (node.height ?? Number(node.style?.height)) || 180;
 }
 
+function rectanglesOverlap(
+  a: { x: number; y: number; width: number; height: number },
+  b: { x: number; y: number; width: number; height: number },
+): boolean {
+  return (
+    a.x < b.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
+}
+
 function getAbsoluteNodePosition(node: Node, nodesById: Map<string, Node>): { x: number; y: number } {
   let x = node.position.x;
   let y = node.position.y;
@@ -229,6 +258,47 @@ function getAbsoluteNodePosition(node: Node, nodesById: Map<string, Node>): { x:
   }
 
   return { x, y };
+}
+
+function findAvailableRightSlot(
+  source: Node,
+  nodes: Node[],
+  dimensions: { width: number; height: number },
+  horizontalGap: number,
+): { x: number; y: number } {
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+  const x = sourcePosition.x + nodeWidth(source) + horizontalGap;
+  let y = sourcePosition.y;
+
+  for (let attempt = 0; attempt < nodes.length + 1; attempt++) {
+    const candidate = { x, y, ...dimensions };
+    const collides = nodes.some((node) => {
+      const position = getAbsoluteNodePosition(node, nodesById);
+      return rectanglesOverlap(candidate, {
+        ...position,
+        width: nodeWidth(node),
+        height: nodeHeight(node),
+      });
+    });
+    if (!collides) return { x, y };
+    y += dimensions.height + 48;
+  }
+
+  return { x, y };
+}
+
+function parseVideoResolution(value: unknown): { width: number; height: number } {
+  if (typeof value === "string") {
+    const match = value.match(/(\d+)\s*[x×]\s*(\d+)/i);
+    if (match) {
+      return {
+        width: Number(match[1]),
+        height: Number(match[2]),
+      };
+    }
+  }
+  return { width: 1280, height: 720 };
 }
 
 function withDescendantIds(nodes: Node[], requestedIds: Iterable<string>): Set<string> {
@@ -1100,6 +1170,116 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
 
     return { audioNodeId, silentVideoNodeId };
+  },
+
+  createVideoFrameCapture: (
+    sourceId: string,
+    kind: VideoFrameCaptureKind,
+    captureSeconds = 0,
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourcePosterUrl =
+      typeof source.data.posterUrl === "string"
+        ? source.data.posterUrl
+        : "/images/scene-coffee-4.png";
+    const durationSeconds =
+      typeof source.data.durationSeconds === "number"
+        ? Math.max(0, source.data.durationSeconds)
+        : 0;
+    if (kind === "last" && durationSeconds <= 0) return null;
+
+    const captureDefinition = {
+      first: { name: "首帧", alt: "视频首帧" },
+      last: { name: "尾帧", alt: "视频尾帧" },
+      current: { name: "截图", alt: "视频截图" },
+    } as const;
+    const definition = captureDefinition[kind];
+    const normalizedSeconds =
+      kind === "first"
+        ? 0
+        : kind === "last"
+          ? Math.max(durationSeconds - 0.05, 0)
+          : clampNumber(
+              captureSeconds,
+              0,
+              durationSeconds > 0 ? durationSeconds : Math.max(0, captureSeconds),
+            );
+    const dimensions = getDefaultNodeDimensions("image");
+    const position = findAvailableRightSlot(
+      source,
+      canvas.nodes,
+      dimensions,
+      100,
+    );
+    const imageDimensions = parseVideoResolution(source.data.resolution);
+    const targetId = createNodeId("video-frame");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const frameCapture: VideoFrameCaptureMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      kind,
+      captureSeconds: normalizedSeconds,
+      name: definition.name,
+      alt: definition.alt,
+      edgeId,
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "image",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: definition.name,
+        width: imageDimensions.width,
+        height: imageDimensions.height,
+        imageUrl: sourcePosterUrl,
+        editorVariant: "empty",
+        editorHeight: 191,
+        generationSettings: "16:9 · 标准画质 · 2K · 1张",
+        frameCapture,
+      },
+    };
+    const frameEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, frameEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [sourceId],
+        selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
   },
 
   clearVideoContinuation: (targetId: string) => {

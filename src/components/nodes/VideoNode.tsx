@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
-import { AlertTriangle, CaptionsOff, Play, Volume2, VolumeX } from "lucide-react";
+import { AlertTriangle, Camera, CaptionsOff, Play, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
   Position,
@@ -20,6 +20,7 @@ import {
   type SubtitleEraseMetadata,
   type SubtitleEraseMode,
   type SubtitleEraseRegion,
+  type VideoFrameCaptureKind,
   type VideoContinuationMetadata,
 } from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
@@ -52,6 +53,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
   const createSubtitleErase = useCanvasStore((state) => state.createSubtitleErase);
   const createAudioSplit = useCanvasStore((state) => state.createAudioSplit);
+  const createVideoFrameCapture = useCanvasStore(
+    (state) => state.createVideoFrameCapture,
+  );
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
@@ -61,7 +65,12 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const [enhanced, setEnhanced] = useState(false);
   const [audioSplittingMode, setAudioSplittingMode] =
     useState<AudioSplitMode | null>(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [frameFeedback, setFrameFeedback] = useState<string | null>(null);
   const audioSplitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const frameFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
@@ -73,6 +82,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     return () => {
       if (audioSplitTimerRef.current) {
         clearTimeout(audioSplitTimerRef.current);
+      }
+      if (frameFeedbackTimerRef.current) {
+        clearTimeout(frameFeedbackTimerRef.current);
       }
     };
   }, []);
@@ -123,6 +135,29 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     }, 600);
   };
 
+  const captureFrame = (kind: VideoFrameCaptureKind) => {
+    const resultId = createVideoFrameCapture(id, kind, currentTime);
+    if (!resultId) {
+      if (kind === "last") {
+        setFrameFeedback("视频尚未加载完成，暂时无法截取尾帧");
+      }
+      return;
+    }
+    const nameByKind: Record<VideoFrameCaptureKind, string> = {
+      first: "首帧",
+      last: "尾帧",
+      current: "截图",
+    };
+    setFrameFeedback(`${nameByKind[kind]}已截取，并添加到画布`);
+    if (frameFeedbackTimerRef.current) {
+      clearTimeout(frameFeedbackTimerRef.current);
+    }
+    frameFeedbackTimerRef.current = setTimeout(() => {
+      frameFeedbackTimerRef.current = null;
+      setFrameFeedback(null);
+    }, 1400);
+  };
+
   return (
     <div
       className={cn(
@@ -144,6 +179,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           onCreateBreakdown={createBreakdown}
           onSelectSubtitleMode={selectSubtitleMode}
           onAudioSplit={startAudioSplit}
+          onCaptureFrame={captureFrame}
           audioSplittingMode={audioSplittingMode}
         />
       )}
@@ -167,12 +203,35 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             <Image src={posterUrl ?? "/images/scene-coffee-4.png"} alt={filename} fill sizes="700px" className={cn("object-cover", enhanced && "contrast-110 saturate-110")} unoptimized />
             <span className="absolute inset-0 bg-black/10" />
             <button type="button" aria-label="播放视频" className="relative flex size-14 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/70"><Play size={22} fill="currentColor" className="ml-1" /></button>
-            <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 text-[11px] text-white">
+            {frameFeedback && (
+              <span
+                data-video-frame-feedback
+                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+              >
+                {frameFeedback}
+              </span>
+            )}
+            <div
+              className="absolute bottom-0 left-0 right-0 z-10 flex items-center gap-2 bg-gradient-to-b from-transparent via-black/25 to-black/55 px-3 pb-2.5 pt-8 text-[11px] text-white"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
+            >
               <Play size={12} fill="currentColor" />
-              <span>00:00</span>
-              <span className="h-1 flex-1 rounded-full bg-white/30"><span className="block h-full w-0 rounded-full bg-white" /></span>
+              <span>{formatVideoTime(currentTime)}</span>
+              <input
+                data-video-playhead
+                aria-label="视频播放进度"
+                type="range"
+                min={0}
+                max={durationSeconds}
+                step={0.05}
+                value={currentTime}
+                onChange={(event) => setCurrentTime(Number(event.target.value))}
+                className="h-1 min-w-0 flex-1 cursor-pointer accent-white"
+              />
               <span>00:{String(durationSeconds).padStart(2, "0")}</span>
               <Volume2 size={13} />
+              <PlayerFrameCaptureMenu onCapture={captureFrame} />
             </div>
           </>
         ) : status === "empty" ? (
@@ -255,3 +314,63 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
 }
 
 export const VideoNode = memo(VideoNodeComponent);
+
+function PlayerFrameCaptureMenu({
+  onCapture,
+}: {
+  onCapture: (kind: VideoFrameCaptureKind) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const items: Array<{ kind: VideoFrameCaptureKind; label: string }> = [
+    { kind: "first", label: "截取首帧" },
+    { kind: "last", label: "截取尾帧" },
+    { kind: "current", label: "截取当前帧" },
+  ];
+
+  return (
+    <div
+      className="relative shrink-0"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <div
+        data-video-player-frame-menu
+        data-state={open ? "open" : "closed"}
+        className={cn(
+          "absolute bottom-full right-0 z-30 flex justify-end pb-2 transition-opacity",
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        )}
+      >
+        <div className="flex flex-col gap-1 overflow-hidden rounded-xl border border-white/10 bg-[rgba(26,26,26,0.95)] p-1 shadow-[0_4px_10px_rgba(0,0,0,0.25),0_2px_4px_rgba(0,0,0,0.1)] backdrop-blur-lg">
+          {items.map((item) => (
+            <button
+              key={item.kind}
+              data-video-player-frame-kind={item.kind}
+              type="button"
+              onClick={() => onCapture(item.kind)}
+              className="flex h-8 w-full items-center whitespace-nowrap rounded-lg px-2 text-left text-[13px] text-white/90 transition-colors hover:bg-white/10"
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <button
+        data-video-player-camera
+        type="button"
+        aria-label="截取当前帧"
+        onClick={() => onCapture("current")}
+        className="flex size-7 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-black/50"
+      >
+        <Camera size={16} />
+      </button>
+    </div>
+  );
+}
+
+function formatVideoTime(seconds: number): string {
+  const safeSeconds = Math.max(0, Math.floor(seconds));
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainder = safeSeconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+}

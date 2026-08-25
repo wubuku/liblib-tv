@@ -6,7 +6,8 @@
 
 ## Commands
 
-`高清`, `片段重拍`, `逐帧拉片`, `智能续写`, `智能去字幕`, `音视频分离`, `画面编辑`, download poster, preview, undo, redo.
+`高清`, `片段重拍`, `逐帧拉片`, `智能续写`, `智能去字幕`, `音视频分离`,
+`画面编辑`, `截取首帧`, download poster, preview, undo, redo.
 
 ## Behavior
 
@@ -23,11 +24,17 @@
   completes.
 - The currently feature-flagged-off `音效提取` entry is not rendered.
 - Edit commands still open a local prototype action menu.
+- `截取首帧` opens the source-order frame menu:
+  `截取首帧`, `截取尾帧`, `截取当前帧`.
+- A frame command creates one linked image output while preserving source
+  selection. See Batch 29 for metadata, time and overlap contracts.
 - Toolbar pointer/click events stop propagation so clicking a command cannot reselect or overwrite a newly created derived node.
 
 ## Positioning
 
-`NodeToolbar position="top" offset={16}`. Width is `920px`, height is `49px`, and the toolbar remains screen-sized through React Flow's toolbar layer.
+`NodeToolbar position="top" offset={16}`. The source toolbar uses content width
+(`w-max`); with the current command set it is `991px` wide and `49px` high. It
+remains screen-sized through React Flow's toolbar layer.
 
 Each dropdown is absolutely anchored to its own trigger wrapper, centered below the
 button with a `7px` trigger-to-menu gap and a fixed `160px` screen width. It must

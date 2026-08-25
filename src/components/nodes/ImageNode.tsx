@@ -6,7 +6,10 @@ import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflo
 import { cn } from "@/lib/utils";
 import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPanel";
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
-import { useCanvasStore } from "@/store/canvasStore";
+import {
+  useCanvasStore,
+  type VideoFrameCaptureMetadata,
+} from "@/store/canvasStore";
 
 export interface ImageNodeData extends Record<string, unknown> {
   filename: string;
@@ -21,6 +24,7 @@ export interface ImageNodeData extends Record<string, unknown> {
   references?: string[];
   generationSettings?: string;
   portraitEnhanced?: boolean;
+  frameCapture?: VideoFrameCaptureMetadata;
 }
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
@@ -34,7 +38,7 @@ const derivedImageActions: Record<Exclude<ImageToolbarAction, "人像质感调�
 };
 
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
-  const { filename, width, height, imageUrl, watermarkUrl } = data;
+  const { filename, width, height, imageUrl, watermarkUrl, frameCapture } = data;
   const { zoom } = useViewport();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
@@ -90,6 +94,17 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
   return (
     <div
+      {...(frameCapture
+        ? {
+            "data-video-frame-capture": true,
+            "data-video-frame-capture-kind": frameCapture.kind,
+            "data-video-frame-source-id": frameCapture.sourceNodeId,
+            "data-video-frame-capture-seconds": frameCapture.captureSeconds,
+            "data-video-frame-edge-id": frameCapture.edgeId,
+            "data-video-frame-name": frameCapture.name,
+            "data-video-frame-alt": frameCapture.alt,
+          }
+        : {})}
       className={cn(
         "group relative h-full w-full overflow-visible rounded-[4px] border bg-[#202020]",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/10",
@@ -116,7 +131,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         ) : (
           <Image
             src={imageUrl}
-            alt={filename}
+            alt={frameCapture?.alt ?? filename}
             fill
             sizes="700px"
             className={cn("object-cover transition-[filter] duration-300", data.portraitEnhanced && "contrast-[1.06] saturate-[1.08] brightness-[1.03]")}
