@@ -65,3 +65,46 @@
 
 实施前不再打开该图。后续优先读取本文；只有原始截图、源 DOM、filmstrip 拖拽行为或真实结果态进入范围时才重新采样。
 
+## 5. Clone 验证截图
+
+### 文件
+
+- `docs/design-references/liblib-clone-batch23-segment-reshoot-default-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch23-segment-reshoot-selected-929-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch23-segment-reshoot-mobile-390-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch23-segment-reshoot-contact-sheet-2026-08-25.png`
+- 来源：本地 clone
+- 采样日期：2026-08-25
+- viewport：desktop `929x874`；mobile `390x844`
+- contact sheet 识图次数：1
+
+### Clone screenshot fact
+
+- desktop 默认态中，filmstrip 与 editor 是两个独立 surface，中间有清晰间距；没有 clone-only “片段重拍”标题栏。
+- filmstrip 保持连续缩略帧观感，右侧显示 `0/5 个片段`；最后的 2 秒 remainder 比 4 秒区间更窄并降权。
+- editor 顶部的 `参考 / 标记 / 角色库`、源视频缩略项、整段重跑 helper 和 footer 层级清晰。
+- 五段选中态中，每段有 cyan outline、check 和 `4.0s` badge；右侧计数为 `5/5 个片段`。
+- Prompt 中显示一个视频 token、五个 range chips 和用户意图，没有文字互相覆盖。
+- 本地完成状态、翻译和 submit 控件没有重叠；DOM 复测显示状态右边与翻译按钮左边相距 `4px`。
+- mobile 中 ready video、顶部处理工具条、filmstrip 和 editor 都继续以节点为锚；宽 surface 自然超出左右 viewport 并被裁切，没有改为浏览器居中。
+- desktop/mobile 均未见 document 水平 overflow 或 console/page error。
+
+### DOM-backed geometry
+
+专项脚本测得默认 lower stack：
+
+```text
+stack: 660x316
+filmstrip: 660x56
+gap: 8
+editor: 660x252
+node-to-stack gap: 16 * zoom
+```
+
+4 秒区间宽度约为最后 2 秒 remainder 的两倍。
+
+### Remaining fidelity boundary
+
+- 缩略帧使用仓库本地静态素材，不是源视频逐帧提取。
+- `660x316` 是遵循现有节点锚定合同的 clone geometry，不冒充文章截图的原始 DOM rect。
+- 本地状态文案不表示真实裁剪、模型提交、积分扣除或结果生成。

@@ -91,7 +91,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       </div>
 
       {showSingleNodeEditor && activeTool === "generator" && <VideoGenerationPanel zoom={zoom} initialModel={model} initialPrompt={prompt} />}
-      {showSingleNodeEditor && activeTool !== "generator" && <SegmentReshootPanel zoom={zoom} mode={activeTool} onClose={() => setActiveTool("generator")} />}
+      {showSingleNodeEditor && activeTool !== "generator" && <SegmentReshootPanel zoom={zoom} mode={activeTool} />}
     </div>
   );
 }
