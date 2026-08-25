@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bot, ChevronRight, LayoutPanelTop, Share2, Sparkles, Workflow, Zap } from "lucide-react";
+import { Bot, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
@@ -16,28 +16,42 @@ function LibTvMark() {
 }
 
 function SharePanel() {
+  const [status, setStatus] = useState("");
+
   return (
-    <div data-liblib-overlay="share" className="absolute right-[164px] top-10 h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
-      <button className="flex h-[75px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]">
+    <div data-liblib-overlay="share" className="pointer-events-auto absolute right-[164px] top-10 min-h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
+      <h2 className="px-2 py-1 text-sm font-medium text-[#f2f2f2]">发布与分享</h2>
+      <button
+        type="button"
+        data-share-action="publish"
+        onClick={() => setStatus("本地原型：发布服务未连接")}
+        className="flex min-h-[62px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]"
+      >
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
-          <Sparkles size={17} />
+          <Globe2 size={17} />
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block text-sm text-[#f7f7f7]">发布作品</span>
-          <span className="mt-0.5 block text-xs text-[#8c8c8c]">发布到 LibLib 创作社区</span>
+          <span className="block text-sm text-[#f7f7f7]">在LibTV上发布</span>
+          <span className="mt-0.5 block text-xs text-[#8c8c8c]">发布你的作品和创作过程，让更多创作者看到。</span>
         </span>
         <ChevronRight size={16} className="text-[#737373]" />
       </button>
-      <button className="flex h-[75px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]">
+      <button
+        type="button"
+        data-share-action="link"
+        onClick={() => setStatus("本地原型：分享链接服务未连接")}
+        className="flex min-h-[62px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]"
+      >
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
-          <Share2 size={17} />
+          <Link2 size={17} />
         </span>
         <span className="min-w-0 flex-1">
           <span className="block text-sm text-[#f7f7f7]">分享链接</span>
-          <span className="mt-0.5 block text-xs text-[#8c8c8c]">邀请其他人查看当前画布</span>
+          <span className="mt-0.5 block text-xs text-[#8c8c8c]">拥有此链接的人可以查看并复制你的画布。</span>
         </span>
         <ChevronRight size={16} className="text-[#737373]" />
       </button>
+      {status && <p data-share-status className="px-3 pb-1 text-[10px] text-[#75d7e8]">{status}</p>}
     </div>
   );
 }
@@ -55,7 +69,7 @@ export function TopNavBar() {
   } = useUIStore();
 
   return (
-    <nav className="pointer-events-none fixed inset-x-4 top-4 z-[70] flex h-8 items-center justify-between text-[#f7f7f7]">
+    <nav className={cn("pointer-events-none fixed left-4 right-4 top-4 z-[70] flex h-8 items-center justify-between text-[#f7f7f7]", isAgentOpen && "sm:right-[356px]")}>
       <div className="pointer-events-auto flex h-8 items-center gap-1">
         <Link
           href="/frameos/canvas/demo"
@@ -127,17 +141,16 @@ export function TopNavBar() {
           <Zap size={14} className="fill-white" />
           <span>20</span>
         </button>
-        <button
-          aria-expanded={isAgentOpen}
-          onClick={toggleAgent}
-          className={cn(
-            "flex h-8 items-center gap-2 rounded-lg bg-[#262626] px-3 text-sm hover:bg-[#333]",
-            isAgentOpen && "bg-[#3b3b3b]",
-          )}
-        >
-          <Bot size={16} />
-          <span>Agent</span>
-        </button>
+        {!isAgentOpen && (
+          <button
+            aria-expanded={isAgentOpen}
+            onClick={toggleAgent}
+            className="flex h-8 items-center gap-2 rounded-lg bg-[#262626] px-3 text-sm hover:bg-[#333]"
+          >
+            <Bot size={16} />
+            <span>Agent</span>
+          </button>
+        )}
       </div>
 
       {isSharePanelOpen && <SharePanel />}

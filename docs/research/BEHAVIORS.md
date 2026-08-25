@@ -31,6 +31,16 @@
 - **Empty states:** Empty canvases and empty media groups show explicit local prototype empty states.
 - **Evidence and verification:** `docs/research/liblib-canvas-batch13-2026-08-25/` and `scripts/verify-liblib-batch13.py`.
 
+### Agent Drawer
+
+- **Source-shaped structure:** 340px right drawer with `新对话`, command icons, 2x2 Skill recommendations, browser notification banner and bottom composer.
+- **Skill selection:** Clicking a local Skill card marks it pressed and writes its title into the composer.
+- **Recommendation refresh:** `换一批` switches between two local recommendation sets; it does not call a remote recommendation service.
+- **Notification banner:** `开启` or close dismisses the local banner.
+- **Composer:** Sending non-empty text shows a local-only submission status; no Agent task is dispatched.
+- **Share panel:** The top-right panel uses source copy for `在LibTV上发布` and `分享链接`; each command shows an explicit no-backend local status.
+- **Evidence and verification:** `docs/research/liblib-canvas-batch14-2026-08-25/` and `scripts/verify-liblib-batch14.py`.
+
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
 - `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph

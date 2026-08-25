@@ -33,11 +33,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 11 | top-level overlay exclusivity, Escape cleanup, mode lifecycle and mobile overflow |
 | Batch 12 | asset manager canvas/assets tabs, media filtering and node selection |
 | Batch 13 | storyboard mode key-elements rail, canvas data binding and card selection |
+| Batch 14 | Agent drawer Skill cards, notification/composer states and share feedback |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..13}.py; do
+for script in scripts/verify-liblib-batch{4..14}.py; do
   python3 "$script" || exit 1
 done
 ```

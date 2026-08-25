@@ -60,7 +60,7 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="Agent", exact=True).click()
     assert_only_overlay(page, "agent")
 
-    page.get_by_role("button", name="分享").click()
+    page.get_by_role("button", name="分享", exact=True).click()
     assert_only_overlay(page, "share")
 
     page.get_by_role("button", name="资产管理").click()

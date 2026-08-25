@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
 - Completed the LibTV asset manager's canvas/assets tab behavior and local media-node selection flow
 - Bound LibTV storyboard mode to the active canvas and aligned its key-elements/storyboard column structure with the source evidence
+- Aligned the LibTV Agent/share surfaces with source evidence and fixed top-nav pointer/layer conflicts that made their commands unreachable
 
 ### Changed
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation

@@ -15,6 +15,7 @@ This is the authoritative catalog of components in this clone. For each, file pa
 | `BottomToolbar` | `src/components/BottomToolbar.tsx` | Centered floating toolbar at bottom: 资产管理 text button, icon buttons, large cyan "+" (add node), zoom %. |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | Compact "正在跟随" + 取消ESC banner above canvas + script title node. |
 | `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | Data-driven storyboard mode: current-canvas key elements rail plus image/video columns; card selection stays in `canvasStore`. |
+| `AgentDrawer` | `src/components/AgentDrawer.tsx` | 340px right drawer with source-shaped new-chat header, 2x2 local Skill recommendations, notification banner and composer. |
 
 ## Node Components
 
