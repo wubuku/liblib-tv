@@ -1,0 +1,1675 @@
+{
+  "sampledAt": "2026-08-25",
+  "states": [
+    {
+      "node": {
+        "box": {
+          "bottom": 493.21,
+          "h": 98.979,
+          "right": 302.556,
+          "w": 174.769,
+          "x": 127.787,
+          "y": 394.231
+        },
+        "id": "i-1FQ9tErTcC",
+        "image": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/ee677b5998d05633d14b0aafe879148d2683be66.png?x-oss-process=image/resize,w_1600,m_lfit/format,webp/ignore-error,1",
+        "title": "image_2026-06-15T11-22-00.png",
+        "transform": "matrix(1, 0, 0, 1, 132, 273)"
+      },
+      "panel": {
+        "box": {
+          "bottom": 688.735,
+          "h": 191,
+          "right": 545.172,
+          "w": 660,
+          "x": -114.828,
+          "y": 497.735
+        },
+        "centerDelta": 0,
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "controls": [
+          {
+            "aria": null,
+            "box": {
+              "bottom": 536.235,
+              "h": 26,
+              "right": -48.328,
+              "w": 54,
+              "x": -102.328,
+              "y": 510.235
+            },
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 536.235,
+              "h": 26,
+              "right": 9.672,
+              "w": 54,
+              "x": -44.328,
+              "y": 510.235
+            },
+            "disabled": false,
+            "text": "风格"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 6.539,
+              "w": 112.867,
+              "x": -106.328,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": "Lib Image"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 216.726,
+              "w": 201.188,
+              "x": 15.539,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": "16:9 · 标准画质 · 2K · 1张"
+          },
+          {
+            "aria": "预设",
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 257.726,
+              "w": 32,
+              "x": 225.726,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 293.726,
+              "w": 32,
+              "x": 261.726,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 416.672,
+              "w": 32,
+              "x": 384.672,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 456.672,
+              "w": 32,
+              "x": 424.672,
+              "y": 648.235
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 680.235,
+              "h": 32,
+              "right": 536.672,
+              "w": 32,
+              "x": 504.672,
+              "y": 648.235
+            },
+            "disabled": true,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 534.235,
+              "h": 28,
+              "right": 536.672,
+              "w": 28,
+              "x": 508.672,
+              "y": 506.235
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "nodeGap": 4.525,
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "prompt": "",
+        "references": [],
+        "text": "标记风格可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜Lib Image16:9 · 标准画质 · 2K · 1张高级设置智能引用 AutoLink"
+      },
+      "toolbar": {
+        "box": {
+          "bottom": 377.438,
+          "h": 49,
+          "right": 665.414,
+          "w": 900.5,
+          "x": -235.086,
+          "y": 328.438
+        },
+        "buttons": [
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": -48.586,
+              "w": 178,
+              "x": -226.586,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "人像质感调节NEW"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 21.414,
+              "w": 62,
+              "x": -40.586,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "全景"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 104.414,
+              "w": 75,
+              "x": 29.414,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "多角度"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 174.414,
+              "w": 62,
+              "x": 112.414,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "打光"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 282.414,
+              "w": 91,
+              "x": 191.414,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "九宫格"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 368.414,
+              "w": 78,
+              "x": 290.414,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "高清"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 480.414,
+              "w": 104,
+              "x": 376.414,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": "宫格切分"
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 536.914,
+              "w": 32,
+              "x": 504.914,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 576.914,
+              "w": 32,
+              "x": 544.914,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 616.914,
+              "w": 32,
+              "x": 584.914,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 368.938,
+              "h": 32,
+              "right": 656.914,
+              "w": 32,
+              "x": 624.914,
+              "y": 336.938
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "centerDelta": -0.008,
+        "nodeGap": 16.793
+      },
+      "viewport": {
+        "h": 874,
+        "w": 929
+      },
+      "label": "男性参考图"
+    },
+    {
+      "node": {
+        "box": {
+          "bottom": 679.574,
+          "h": 98.979,
+          "right": 381.174,
+          "w": 174.769,
+          "x": 206.405,
+          "y": 580.595
+        },
+        "id": "i-lBzmo67AHv",
+        "image": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/148d3bd30096c0d041ccb2f950c7ba151c9bd215.png?x-oss-process=image/resize,w_1600,m_lfit/format,webp/ignore-error,1",
+        "title": "image_2026-06-15T11-22-15.png",
+        "transform": "matrix(1, 0, 0, 1, 410, 932)"
+      },
+      "panel": {
+        "box": {
+          "bottom": 875.099,
+          "h": 191,
+          "right": 623.789,
+          "w": 660,
+          "x": -36.211,
+          "y": 684.099
+        },
+        "centerDelta": 0,
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "controls": [
+          {
+            "aria": null,
+            "box": {
+              "bottom": 722.599,
+              "h": 26,
+              "right": 30.289,
+              "w": 54,
+              "x": -23.711,
+              "y": 696.599
+            },
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 722.599,
+              "h": 26,
+              "right": 88.289,
+              "w": 54,
+              "x": 34.289,
+              "y": 696.599
+            },
+            "disabled": false,
+            "text": "风格"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 85.157,
+              "w": 112.867,
+              "x": -27.711,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": "Lib Image"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 295.344,
+              "w": 201.188,
+              "x": 94.157,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": "16:9 · 标准画质 · 2K · 1张"
+          },
+          {
+            "aria": "预设",
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 336.344,
+              "w": 32,
+              "x": 304.344,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 372.344,
+              "w": 32,
+              "x": 340.344,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 495.289,
+              "w": 32,
+              "x": 463.289,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 535.289,
+              "w": 32,
+              "x": 503.289,
+              "y": 834.599
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 866.599,
+              "h": 32,
+              "right": 615.289,
+              "w": 32,
+              "x": 583.289,
+              "y": 834.599
+            },
+            "disabled": true,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 720.599,
+              "h": 28,
+              "right": 615.289,
+              "w": 28,
+              "x": 587.289,
+              "y": 692.599
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "nodeGap": 4.525,
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "prompt": "",
+        "references": [],
+        "text": "标记风格可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜Lib Image16:9 · 标准画质 · 2K · 1张18高级设置智能引用 AutoLink"
+      },
+      "toolbar": {
+        "box": {
+          "bottom": 563.805,
+          "h": 49,
+          "right": 744.039,
+          "w": 900.5,
+          "x": -156.461,
+          "y": 514.805
+        },
+        "buttons": [
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 30.039,
+              "w": 178,
+              "x": -147.961,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "人像质感调节NEW"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 100.039,
+              "w": 62,
+              "x": 38.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "全景"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 183.039,
+              "w": 75,
+              "x": 108.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "多角度"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 253.039,
+              "w": 62,
+              "x": 191.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "打光"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 361.039,
+              "w": 91,
+              "x": 270.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "九宫格"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 447.039,
+              "w": 78,
+              "x": 369.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "高清"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 559.039,
+              "w": 104,
+              "x": 455.039,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": "宫格切分"
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 615.539,
+              "w": 32,
+              "x": 583.539,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 655.539,
+              "w": 32,
+              "x": 623.539,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 695.539,
+              "w": 32,
+              "x": 663.539,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 555.305,
+              "h": 32,
+              "right": 735.539,
+              "w": 32,
+              "x": 703.539,
+              "y": 523.305
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "centerDelta": 0,
+        "nodeGap": 16.79
+      },
+      "viewport": {
+        "h": 874,
+        "w": 929
+      },
+      "label": "女性参考图"
+    },
+    {
+      "node": {
+        "box": {
+          "bottom": 792.693,
+          "h": 98.979,
+          "right": 404.363,
+          "w": 197.958,
+          "x": 206.405,
+          "y": 693.714
+        },
+        "id": "i-dnwoZQ7jsG",
+        "image": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+        "title": "咖啡",
+        "transform": "matrix(1, 0, 0, 1, 410, 1332)"
+      },
+      "panel": {
+        "box": {
+          "bottom": 1008.218,
+          "h": 211,
+          "right": 635.384,
+          "w": 660,
+          "x": -24.616,
+          "y": 797.218
+        },
+        "centerDelta": 0,
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "controls": [
+          {
+            "aria": null,
+            "box": {
+              "bottom": 835.718,
+              "h": 26,
+              "right": 41.884,
+              "w": 54,
+              "x": -12.116,
+              "y": 809.718
+            },
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 835.718,
+              "h": 26,
+              "right": 99.884,
+              "w": 54,
+              "x": 45.884,
+              "y": 809.718
+            },
+            "disabled": false,
+            "text": "风格"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 96.751,
+              "w": 112.867,
+              "x": -16.116,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": "Lib Image"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 283.486,
+              "w": 177.734,
+              "x": 105.751,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": "2:1 · 低画质 · 1K · 1张"
+          },
+          {
+            "aria": "预设",
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 324.486,
+              "w": 32,
+              "x": 292.486,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 360.486,
+              "w": 32,
+              "x": 328.486,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 506.884,
+              "w": 32,
+              "x": 474.884,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 546.884,
+              "w": 32,
+              "x": 514.884,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 999.718,
+              "h": 32,
+              "right": 626.884,
+              "w": 32,
+              "x": 594.884,
+              "y": 967.718
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 833.718,
+              "h": 28,
+              "right": 626.884,
+              "w": 28,
+              "x": 598.884,
+              "y": 805.718
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "nodeGap": 4.525,
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "prompt": "道具名称：冷掉的黑咖啡；外观特征：一杯装在白色粗陶马克杯中的美式咖啡，杯口无任何热气，深黑色的咖啡液面平静无波，马克杯底部垫着一个同材质的白色粗陶托盘；材质细节：粗糙的哑光陶瓷质感，表面有微小的窑变颗粒；关键细节：杯子边缘有一道极其细微的缺口，暗示使用的年头。高质量写实道具多角度展示图，横向构图，以 2 行 3 列的干净网格整齐排版，展示道具的六个极正视角。纯白色纯净背景，专业产品影棚摄影，标准六视图参考。六视图包括：绝对正前方视图、绝对正后方视图、绝对左侧视图、绝对右侧视图、绝对正上方俯拍视图、绝对正下方仰拍视图。所有视图必须是同一件道具，材质、颜色、比例、结构完全一致。使用超长焦镜头或移轴镜头效果，将透视变形降到最低，物体所有本该平行的边缘在画面中保持平行，接近正交投影。每个视图都像在专业产品影棚中用三脚架精密校准拍摄，构图绝对端正，物体在每个格子中居中，无任何倾斜、旋转或透视畸变。画面出不得出现任何人物、角色、人群、人影等；不得出现手、脚、人脸、场景、建筑、自然景观；无其他道具；无文字、无水印、无 logo、无 UI 元素，不要任何剧情事件，保持道具本体清晰、保持完整轮廓、保持所有角度的材质和结构一致。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
+        "references": [],
+        "text": "标记风格道具名称：冷掉的黑咖啡；外观特征：一杯装在白色粗陶马克杯中的美式咖啡，杯口无任何热气，深黑色的咖啡液面平静无波，马克杯底部垫着一个同材质的白色粗陶托盘；材质细节：粗糙的哑光陶瓷质感，表面有微小的窑变颗粒；关键细节：杯子边缘有一道极其细微的缺口，暗示使用的年头。高质量写实道具多角度展示图，横向构图，以 2 行 3 列的干净网格整齐排版，展示道具的六个极正视角。纯白色纯净背景，专业产品影棚摄影，标准六视图参考。六视图包括：绝对正前方视图、绝对正后方视图、绝对左侧视图、绝对右侧视图、绝对正上方俯拍视图、绝对正下方仰拍视图。所有视图必须是同一件道具，材质、颜色、比例、结构完全一致。使用超长焦镜头或移轴镜头效果，将透视变形降到最低，物体所有本该平行的边缘在画面中保持平行，接近正交投影。每个视图都像在专业产品影棚中用三脚架精密校准拍摄，构图绝对端正，物体在每个格子中居中，无任何倾斜、旋转或透视畸变。画面出不得出现任何人物、角色、人群、人影等；不得出现手、脚、人脸、场景、建筑、自然景观；无其他道具；无文字、无水印、无 logo、无 UI 元素，不要任何剧情事件，保持道具本体清晰、保持完整轮廓、保持所有角度的材质和结构一致。[视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]Lib Image2:1 · 低画质 · 1K · 1张2高级设置智能引用 AutoLink"
+      },
+      "toolbar": {
+        "box": {
+          "bottom": 676.922,
+          "h": 49,
+          "right": 755.633,
+          "w": 900.5,
+          "x": -144.867,
+          "y": 627.922
+        },
+        "buttons": [
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 41.633,
+              "w": 178,
+              "x": -136.367,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "人像质感调节NEW"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 111.633,
+              "w": 62,
+              "x": 49.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "全景"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 194.633,
+              "w": 75,
+              "x": 119.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "多角度"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 264.633,
+              "w": 62,
+              "x": 202.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "打光"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 372.633,
+              "w": 91,
+              "x": 281.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "九宫格"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 458.633,
+              "w": 78,
+              "x": 380.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "高清"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 570.633,
+              "w": 104,
+              "x": 466.633,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": "宫格切分"
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 627.133,
+              "w": 32,
+              "x": 595.133,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 667.133,
+              "w": 32,
+              "x": 635.133,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 707.133,
+              "w": 32,
+              "x": 675.133,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 668.422,
+              "h": 32,
+              "right": 747.133,
+              "w": 32,
+              "x": 715.133,
+              "y": 636.422
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "centerDelta": -0.001,
+        "nodeGap": 16.792
+      },
+      "viewport": {
+        "h": 874,
+        "w": 929
+      },
+      "label": "咖啡参考图"
+    },
+    {
+      "node": {
+        "box": {
+          "bottom": 580.75,
+          "h": 287.5,
+          "right": 632,
+          "w": 575,
+          "x": 57,
+          "y": 293.25
+        },
+        "id": "i-vxeeCnxySa",
+        "image": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765914494_3ae42ea368754adc929c201fd6315626.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+        "title": "图片41152 × 576标记风格咖啡馆室内场景Lib Image2:1 · 低画质 · 1K · ",
+        "transform": "matrix(1, 0, 0, 1, 410, 1732)"
+      },
+      "panel": {
+        "box": {
+          "bottom": 784.893,
+          "h": 191,
+          "right": 674.5,
+          "w": 660,
+          "x": 14.5,
+          "y": 593.893
+        },
+        "centerDelta": 0,
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "controls": [
+          {
+            "aria": null,
+            "box": {
+              "bottom": 632.393,
+              "h": 26,
+              "right": 81,
+              "w": 54,
+              "x": 27,
+              "y": 606.393
+            },
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 632.393,
+              "h": 26,
+              "right": 139,
+              "w": 54,
+              "x": 85,
+              "y": 606.393
+            },
+            "disabled": false,
+            "text": "风格"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 135.867,
+              "w": 112.867,
+              "x": 23,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": "Lib Image"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 322.602,
+              "w": 177.734,
+              "x": 144.867,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": "2:1 · 低画质 · 1K · 1张"
+          },
+          {
+            "aria": "预设",
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 363.602,
+              "w": 32,
+              "x": 331.602,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 399.602,
+              "w": 32,
+              "x": 367.602,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 546,
+              "w": 32,
+              "x": 514,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 586,
+              "w": 32,
+              "x": 554,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 776.393,
+              "h": 32,
+              "right": 666,
+              "w": 32,
+              "x": 634,
+              "y": 744.393
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 630.393,
+              "h": 28,
+              "right": 666,
+              "w": 28,
+              "x": 638,
+              "y": 602.393
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "nodeGap": 13.143,
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "prompt": "咖啡馆室内场景",
+        "references": [],
+        "text": "标记风格咖啡馆室内场景Lib Image2:1 · 低画质 · 1K · 1张2高级设置智能引用 AutoLink"
+      },
+      "toolbar": {
+        "box": {
+          "bottom": 263.531,
+          "h": 49,
+          "right": 794.75,
+          "w": 900.5,
+          "x": -105.75,
+          "y": 214.531
+        },
+        "buttons": [
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 80.75,
+              "w": 178,
+              "x": -97.25,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "人像质感调节NEW"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 150.75,
+              "w": 62,
+              "x": 88.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "全景"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 233.75,
+              "w": 75,
+              "x": 158.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "多角度"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 303.75,
+              "w": 62,
+              "x": 241.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "打光"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 411.75,
+              "w": 91,
+              "x": 320.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "九宫格"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 497.75,
+              "w": 78,
+              "x": 419.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "高清"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 609.75,
+              "w": 104,
+              "x": 505.75,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": "宫格切分"
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 666.25,
+              "w": 32,
+              "x": 634.25,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 706.25,
+              "w": 32,
+              "x": 674.25,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 746.25,
+              "w": 32,
+              "x": 714.25,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 255.031,
+              "h": 32,
+              "right": 786.25,
+              "w": 32,
+              "x": 754.25,
+              "y": 223.031
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "centerDelta": 0,
+        "nodeGap": 29.719
+      },
+      "viewport": {
+        "h": 874,
+        "w": 929
+      },
+      "label": "咖啡馆参考图"
+    },
+    {
+      "node": {
+        "box": {
+          "bottom": 331.167,
+          "h": 98.979,
+          "right": 713.179,
+          "w": 175.9,
+          "x": 537.278,
+          "y": 232.188
+        },
+        "id": "i-YDfWhFlthe",
+        "image": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765930586_ab1d46e5d96742c8b55d055fb1fe5a41.png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+        "title": "分镜 #2",
+        "transform": "matrix(1, 0, 0, 1, 1580, -300)"
+      },
+      "panel": {
+        "box": {
+          "bottom": 609.489,
+          "h": 273.797,
+          "right": 955.229,
+          "w": 660,
+          "x": 295.229,
+          "y": 335.692
+        },
+        "centerDelta": 0.001,
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660px]",
+        "controls": [
+          {
+            "aria": null,
+            "box": {
+              "bottom": 374.192,
+              "h": 26,
+              "right": 361.729,
+              "w": 54,
+              "x": 307.729,
+              "y": 348.192
+            },
+            "disabled": false,
+            "text": "参考"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 374.192,
+              "h": 26,
+              "right": 419.729,
+              "w": 54,
+              "x": 365.729,
+              "y": 348.192
+            },
+            "disabled": false,
+            "text": "标记"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 374.192,
+              "h": 26,
+              "right": 477.729,
+              "w": 54,
+              "x": 423.729,
+              "y": 348.192
+            },
+            "disabled": false,
+            "text": "风格"
+          },
+          {
+            "aria": "@",
+            "box": {
+              "bottom": 428.192,
+              "h": 12,
+              "right": 353.729,
+              "w": 12,
+              "x": 341.729,
+              "y": 416.192
+            },
+            "disabled": false,
+            "text": "@"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 399.192,
+              "h": 15,
+              "right": 353.729,
+              "w": 15,
+              "x": 338.729,
+              "y": 384.192
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": "@",
+            "box": {
+              "bottom": 428.192,
+              "h": 12,
+              "right": 409.729,
+              "w": 12,
+              "x": 397.729,
+              "y": 416.192
+            },
+            "disabled": false,
+            "text": "@"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 399.192,
+              "h": 15,
+              "right": 409.729,
+              "w": 15,
+              "x": 394.729,
+              "y": 384.192
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 416.596,
+              "w": 112.867,
+              "x": 303.729,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": "Lib Image"
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 611.963,
+              "w": 186.367,
+              "x": 425.596,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": "16:9 · 低画质 · 1K · 1张"
+          },
+          {
+            "aria": "预设",
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 652.963,
+              "w": 32,
+              "x": 620.963,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 688.963,
+              "w": 32,
+              "x": 656.963,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 826.729,
+              "w": 32,
+              "x": 794.729,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 866.729,
+              "w": 32,
+              "x": 834.729,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 600.989,
+              "h": 32,
+              "right": 946.729,
+              "w": 32,
+              "x": 914.728,
+              "y": 568.989
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "aria": null,
+            "box": {
+              "bottom": 372.192,
+              "h": 28,
+              "right": 946.729,
+              "w": 28,
+              "x": 918.729,
+              "y": 344.192
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "nodeGap": 4.525,
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "prompt": "近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。 [视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]",
+        "references": [
+          {
+            "alt": "",
+            "box": {
+              "bottom": 429.692,
+              "h": 47,
+              "right": 355.229,
+              "w": 47,
+              "x": 308.229,
+              "y": 382.692
+            },
+            "src": "https://libtv-res.liblib.art/upload-images/5cdcf405ca3e42299d1234607e630fce/ee677b5998d05633d14b0aafe879148d2683be66.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1"
+          },
+          {
+            "alt": "",
+            "box": {
+              "bottom": 429.692,
+              "h": 47,
+              "right": 411.229,
+              "w": 47,
+              "x": 364.229,
+              "y": 382.692
+            },
+            "src": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/image/5cdcf405ca3e42299d1234607e630fce/765910904_90405148df0648e0943f8abb5bd95808.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1"
+          }
+        ],
+        "text": "参考标记风格1@2@近景镜头。陈默面容冷峻，他身穿黑色高领毛衣和极简羊绒大衣，三七分微卷的黑发整齐，侧脸面对镜头。他目光始终凝视着窗外街道，下颌线紧绷。侧逆光勾勒出他冷白皮的质感与深棕色的瞳孔。浅景深背景，店内陈设模糊，整体基调冰冷且充满孤立感。 [视觉风格：现代都市·电影级写实。冷暖对比色调，以低饱和度冷蓝灰为主调，点缀暖橙色咖啡馆灯光。柔和的侧逆光，强调人物面部轮廓与眼神光。高清电影感，35mm胶片颗粒质感。真人媒介。]Lib Image16:9 · 低画质 · 1K · 1张高级设置智能引用 AutoLink"
+      },
+      "toolbar": {
+        "box": {
+          "bottom": 215.398,
+          "h": 49,
+          "right": 1075.477,
+          "w": 900.5,
+          "x": 174.977,
+          "y": 166.398
+        },
+        "buttons": [
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 361.477,
+              "w": 178,
+              "x": 183.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "人像质感调节NEW"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 431.477,
+              "w": 62,
+              "x": 369.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "全景"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 514.477,
+              "w": 75,
+              "x": 439.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "多角度"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 584.477,
+              "w": 62,
+              "x": 522.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "打光"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 692.477,
+              "w": 91,
+              "x": 601.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "九宫格"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 778.477,
+              "w": 78,
+              "x": 700.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "高清"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 890.477,
+              "w": 104,
+              "x": 786.477,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": "宫格切分"
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 946.977,
+              "w": 32,
+              "x": 914.977,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 986.977,
+              "w": 32,
+              "x": 954.977,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 1026.977,
+              "w": 32,
+              "x": 994.977,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": ""
+          },
+          {
+            "box": {
+              "bottom": 206.898,
+              "h": 32,
+              "right": 1066.977,
+              "w": 32,
+              "x": 1034.977,
+              "y": 174.898
+            },
+            "disabled": false,
+            "text": ""
+          }
+        ],
+        "centerDelta": -0.001,
+        "nodeGap": 16.79
+      },
+      "viewport": {
+        "h": 874,
+        "w": 929
+      },
+      "label": "分镜 #2"
+    }
+  ]
+}

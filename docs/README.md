@@ -13,6 +13,7 @@ This is a reverse-engineered clone of [`liblib.tv/canvas`](https://www.liblib.tv
 > | Find a specific component | [§ Source Tree](#source-tree-annotated) or [`docs/research/COMPONENT_INVENTORY.md`](research/COMPONENT_INVENTORY.md) |
 > | Understand a specific interaction | [§ Behaviors](research/BEHAVIORS.md) or [§ Per-component specs](research/components/) |
 > | Understand a design decision (e.g. "why does the handle look like a +?") | [§ Key Design Decisions](#key-design-decisions) |
+> | Follow the Seedance 2.5 canvas research and implementation history | [`research/liblib-seedance-2.5-2026-08-25/`](research/liblib-seedance-2.5-2026-08-25/) |
 > | Look at the actual implementation of a node | [`src/components/nodes/`](../../src/components/nodes) |
 > | Look at the FrameOS canvas (separate route) | [§ FrameOS Canvas](#frameos-canvas) |
 
