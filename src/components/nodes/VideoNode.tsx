@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
-import { AlertTriangle, Camera, CaptionsOff, Play, Volume2, VolumeX } from "lucide-react";
+import { AlertTriangle, Camera, CaptionsOff, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
   Position,
@@ -17,6 +17,8 @@ import {
   useCanvasStore,
   type AudioSplitMetadata,
   type AudioSplitMode,
+  type PictureEditAction,
+  type SmartMattingMetadata,
   type SubtitleEraseMetadata,
   type SubtitleEraseMode,
   type SubtitleEraseRegion,
@@ -24,6 +26,7 @@ import {
   type VideoContinuationMetadata,
 } from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
+import { SmartMattingPanel } from "@/components/SmartMattingPanel";
 import { SubtitleErasePanel } from "@/components/SubtitleErasePanel";
 import { VideoContinuationSelector } from "@/components/VideoContinuationSelector";
 import { VideoGenerationPanel } from "@/components/VideoGenerationPanel";
@@ -40,12 +43,13 @@ export interface VideoNodeData extends Record<string, unknown> {
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
   audioSplit?: AudioSplitMetadata;
+  smartMatting?: SmartMattingMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
-  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase, audioSplit } = data;
+  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase, audioSplit, smartMatting } = data;
   const { zoom } = useViewport();
   const internalNode = useInternalNode(id);
   const { setCenter } = useReactFlow();
@@ -56,21 +60,36 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const createVideoFrameCapture = useCanvasStore(
     (state) => state.createVideoFrameCapture,
   );
+  const createSmartMatting = useCanvasStore(
+    (state) => state.createSmartMatting,
+  );
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
   const [activeTool, setActiveTool] = useState<
-    "generator" | "reshoot" | "continue" | "subtitle-smart" | "subtitle-region"
+    | "generator"
+    | "reshoot"
+    | "continue"
+    | "subtitle-smart"
+    | "subtitle-region"
+    | "matting"
   >("generator");
   const [enhanced, setEnhanced] = useState(false);
   const [audioSplittingMode, setAudioSplittingMode] =
     useState<AudioSplitMode | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [frameFeedback, setFrameFeedback] = useState<string | null>(null);
+  const [pictureEditFeedback, setPictureEditFeedback] = useState<string | null>(
+    null,
+  );
+  const [mattingSubmitting, setMattingSubmitting] = useState(false);
   const audioSplitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const frameFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
+  const pictureEditFeedbackTimerRef =
+    useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mattingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
@@ -85,6 +104,12 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       }
       if (frameFeedbackTimerRef.current) {
         clearTimeout(frameFeedbackTimerRef.current);
+      }
+      if (pictureEditFeedbackTimerRef.current) {
+        clearTimeout(pictureEditFeedbackTimerRef.current);
+      }
+      if (mattingTimerRef.current) {
+        clearTimeout(mattingTimerRef.current);
       }
     };
   }, []);
@@ -158,6 +183,46 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     }, 1400);
   };
 
+  const showPictureEditFeedback = (message: string) => {
+    setPictureEditFeedback(message);
+    if (pictureEditFeedbackTimerRef.current) {
+      clearTimeout(pictureEditFeedbackTimerRef.current);
+    }
+    pictureEditFeedbackTimerRef.current = setTimeout(() => {
+      pictureEditFeedbackTimerRef.current = null;
+      setPictureEditFeedback(null);
+    }, 1800);
+  };
+
+  const selectPictureEdit = (action: PictureEditAction) => {
+    void action;
+    if (durationSeconds > 15) {
+      showPictureEditFeedback("视频大于15秒，暂不支持该功能");
+      return;
+    }
+    if (durationSeconds < 2.5) {
+      showPictureEditFeedback(
+        `源视频时长需在 3~15 秒之间（当前 ${durationSeconds} 秒）`,
+      );
+    }
+  };
+
+  const openSmartMatting = () => {
+    if (mattingSubmitting) return;
+    setActiveTool("matting");
+  };
+
+  const submitSmartMatting = () => {
+    if (mattingSubmitting || mattingTimerRef.current) return;
+    setMattingSubmitting(true);
+    mattingTimerRef.current = setTimeout(() => {
+      mattingTimerRef.current = null;
+      createSmartMatting(id);
+      setMattingSubmitting(false);
+      setActiveTool("generator");
+    }, 480);
+  };
+
   return (
     <div
       className={cn(
@@ -179,6 +244,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           onCreateBreakdown={createBreakdown}
           onSelectSubtitleMode={selectSubtitleMode}
           onAudioSplit={startAudioSplit}
+          onPictureEdit={selectPictureEdit}
+          onSmartMatting={openSmartMatting}
           onCaptureFrame={captureFrame}
           audioSplittingMode={audioSplittingMode}
         />
@@ -211,6 +278,14 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
                 {frameFeedback}
               </span>
             )}
+            {pictureEditFeedback && (
+              <span
+                data-video-picture-edit-feedback
+                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+              >
+                {pictureEditFeedback}
+              </span>
+            )}
             <div
               className="absolute bottom-0 left-0 right-0 z-10 flex items-center gap-2 bg-gradient-to-b from-transparent via-black/25 to-black/55 px-3 pb-2.5 pt-8 text-[11px] text-white"
               onPointerDown={(event) => event.stopPropagation()}
@@ -240,6 +315,27 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Play size={22} fill="currentColor" className="ml-1" />
             </span>
             <span className="text-xs text-[#777]">等待续写内容</span>
+          </div>
+        ) : smartMatting ? (
+          <div
+            data-smart-matting-output
+            data-smart-matting-source-id={smartMatting.sourceNodeId}
+            data-smart-matting-edge-id={smartMatting.edgeId}
+            data-smart-matting-provider={smartMatting.provider}
+            data-smart-matting-model={smartMatting.model}
+            data-smart-matting-format={smartMatting.format}
+            data-smart-matting-width={smartMatting.width}
+            data-smart-matting-height={smartMatting.height}
+            data-smart-matting-duration={smartMatting.duration}
+            className="flex flex-col items-center gap-2 px-6 text-center"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-white/[0.05] text-[#858585]">
+              <ScanLine size={23} strokeWidth={1.5} />
+            </span>
+            <span className="text-xs text-[#a0a0a0]">智能抠像结果</span>
+            <span className="text-[10px] text-[#626262]">
+              智能抠像 · 等待媒体资源
+            </span>
           </div>
         ) : audioSplit ? (
           <div
@@ -307,6 +403,16 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           mode={subtitleMode}
           onCancel={() => setActiveTool("generator")}
           onConfirm={confirmSubtitleErase}
+        />
+      )}
+      {showSingleNodeEditor && status === "ready" && activeTool === "matting" && (
+        <SmartMattingPanel
+          nodeWidth={
+            internalNode?.measured.width ?? internalNode?.width ?? 512
+          }
+          submitting={mattingSubmitting}
+          onCancel={() => setActiveTool("generator")}
+          onGenerate={submitSmartMatting}
         />
       )}
     </div>

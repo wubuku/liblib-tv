@@ -21,6 +21,7 @@ interface VideoNodeData {
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
   audioSplit?: AudioSplitMetadata;
+  smartMatting?: SmartMattingMetadata;
 }
 ```
 
@@ -42,6 +43,7 @@ VideoNode
     ├── SegmentReshootPanel for reshoot
     └── VideoContinuationSelector for continuation range selection
     └── SubtitleErasePanel for smart/region subtitle erase
+    └── SmartMattingPanel for video portrait matting
 ```
 
 ## States
@@ -72,6 +74,11 @@ VideoNode
   same three frame commands
 - the local range playhead supplies current-frame time for the prototype
 - frame capture preserves source selection so repeated capture remains available
+- `主体消除` exposes the source-order subject edit / smart matting menu
+- the current 30-second source fixture hits the source-backed subject-edit duration
+  guard rather than opening a fabricated editor
+- `智能抠像` replaces the lower generator with a compact `512x48` panel; submit
+  creates a linked pending video while preserving source selection
 
 ### Empty Continuation Target
 
@@ -99,6 +106,16 @@ VideoNode
   direct source edge
 - selection moves to this rightmost output after the transaction
 
+### Pending Smart-Matting Target
+
+- filename is `${sourceLabel}-智能抠像`
+- no source poster is reused as if transparent media had completed
+- body shows `智能抠像结果` and `智能抠像 · 等待媒体资源`
+- duration and resolution inherit the source
+- metadata records source, direct edge, provider `volcano`, model
+  `volcano-portrait-matting`, task type `video` and format `WEBM`
+- source remains selected after the transaction
+
 ### Selection
 
 - cyan border and low-opacity focus ring
@@ -110,6 +127,9 @@ VideoNode
 The lower editor is mounted inside the video node, centered on the child and inverse-scaled by `1 / zoom`. It remains `660px` wide on screen and is not clamped to the browser viewport.
 
 Generation/reshoot use the source semantic `16 * zoom` gap and clone compensation `bottom: -17px`. The continuation selector uses `8 * zoom` and `bottom: -9px`.
+
+SmartMattingPanel uses a bottom `NodeToolbar` with `16px` screen-space offset and
+source width clamping (`360..560px`); the current video produces a `512px` panel.
 
 For the parented failed video:
 

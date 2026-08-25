@@ -69,6 +69,27 @@ export interface VideoFrameCaptureMetadata {
   edgeId: string;
 }
 
+export type PictureEditAction =
+  | "subjectRemove"
+  | "subjectModify"
+  | "subjectReplace";
+
+export interface SmartMattingMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  sourcePosterUrl?: string;
+  edgeId: string;
+  provider: "volcano";
+  taskType: "video";
+  model: "volcano-portrait-matting";
+  format: "WEBM";
+  width: number;
+  height: number;
+  duration: number;
+  generatorType: "PICTURE_EDIT";
+  isSmartMattingOutput: true;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -131,6 +152,7 @@ interface CanvasState {
     kind: VideoFrameCaptureKind,
     captureSeconds?: number,
   ) => string | null;
+  createSmartMatting: (sourceId: string) => string | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
     sourceId: string,
@@ -1270,6 +1292,104 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
                 ...item,
                 nodes: [...item.nodes, targetNode],
                 edges: [...item.edges, frameEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [sourceId],
+        selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  createSmartMatting: (sourceId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourcePosterUrl =
+      typeof source.data.posterUrl === "string"
+        ? source.data.posterUrl
+        : undefined;
+    const duration =
+      typeof source.data.durationSeconds === "number"
+        ? Math.max(0, source.data.durationSeconds)
+        : 0;
+    const resolution =
+      typeof source.data.resolution === "string"
+        ? source.data.resolution
+        : "1280 × 720";
+    const mediaDimensions = parseVideoResolution(resolution);
+    const dimensions = getDefaultNodeDimensions("video");
+    const position = findAvailableRightSlot(
+      source,
+      canvas.nodes,
+      dimensions,
+      100,
+    );
+    const targetId = createNodeId("smart-matting");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const smartMatting: SmartMattingMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      sourcePosterUrl,
+      edgeId,
+      provider: "volcano",
+      taskType: "video",
+      model: "volcano-portrait-matting",
+      format: "WEBM",
+      width: mediaDimensions.width,
+      height: mediaDimensions.height,
+      duration,
+      generatorType: "PICTURE_EDIT",
+      isSmartMattingOutput: true,
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `${sourceLabel}-智能抠像`,
+        model: "volcano-portrait-matting",
+        status: "pending",
+        durationSeconds: duration,
+        resolution,
+        generatorType: "PICTURE_EDIT",
+        isSmartMattingOutput: true,
+        smartMatting,
+      },
+    };
+    const mattingEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, mattingEdge],
               }
             : item,
         ),
