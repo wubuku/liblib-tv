@@ -26,13 +26,15 @@
 - 暴露 `[data-open-director]`；
 - 使用 `nodrag nopan nowheel`；
 - 在 `pointerdown` 和 `click` 阶段阻止事件冒泡，避免 React Flow 抢占 CTA；
-- 调用 `useUIStore.openDirectorDesk(id)`；
+- 调用 `useUIStore.openDirectorDesk(id, activeCanvasId)`；
 - 打开 lazy-loaded、`position: fixed; inset: 0` 的 `DirectorDesk`；
 - 关闭后重新选中来源节点，且不重置主画布 viewport。
 
 ## State Boundary
 
-- `uiStore.activeDirectorNodeId`：工作区打开/关闭生命周期。
+- `uiStore.activeDirectorNodeId + activeDirectorCanvasId`：工作区打开/关闭和
+  canvas-bound owner 生命周期；Batch 58 在 owner 节点删除或 active canvas
+  切换时关闭 workspace。
 - `directorStore.sourceNodeId`：当前导演台 session 来源。
 - `canvasStore.createDirectorCapture`：把截图作为一个 image node 和一条来源 edge
   原子写回画布，并进入画布 undo/redo history。

@@ -5,6 +5,7 @@ import { Clapperboard } from "lucide-react";
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
+import { useCanvasStore } from "@/store/canvasStore";
 
 export interface ScriptExecutionData extends Record<string, unknown> {
   title?: string;
@@ -15,6 +16,7 @@ export type ScriptExecutionType = Node<ScriptExecutionData, "script-execution">;
 
 function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptExecutionType>) {
   const openDirectorDesk = useUIStore((state) => state.openDirectorDesk);
+  const activeCanvasId = useCanvasStore((state) => state.activeCanvasId);
   const title = data.title || "第一集：咖啡馆对峙";
   const objectCount = typeof data.objectCount === "number" ? data.objectCount : 4;
   const cameraCount = typeof data.cameraCount === "number" ? data.cameraCount : 1;
@@ -53,7 +55,7 @@ function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptEx
           onPointerDown={(event) => event.stopPropagation()}
           onClick={(event) => {
             event.stopPropagation();
-            openDirectorDesk(id);
+            openDirectorDesk(id, activeCanvasId);
           }}
           className="nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1 rounded bg-white/[0.08] text-xs text-[#f1f1f1] hover:bg-white/[0.12]"
         >

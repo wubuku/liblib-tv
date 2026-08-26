@@ -7,7 +7,7 @@
 
 ## State Ownership
 
-- `uiStore.imageElementEdit`：active image node identity 和媒体描述；
+- `uiStore.imageElementEdit`：active image canvas/node identity 和媒体描述；
 - `canvasStore`：不保存 active tool，不产生 graph history；
 - `ImageNode`：执行 `standard / annotate / element-edit` 互斥渲染；
 - `ImageElementEditToolbar`：固定尺寸 top toolbar 和空态 tools；
@@ -72,6 +72,8 @@ standard toolbar + standard generation panel
 - active mode owns Delete/Backspace/Tab/Space/undo/redo/duplicate so commands do
   not reach the graph;
 - empty mode does not alter nodes, edges, selection, Prompt, viewport or history.
+- Batch 58 closes the mode when its owner node disappears or the active canvas
+  changes; this clone-only invalidation does not mutate graph/history.
 
 ## Geometry
 

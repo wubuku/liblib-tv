@@ -7,7 +7,7 @@ modal，也不是 graph node result；它替换普通图片的标准上下双浮
 
 ## State Ownership
 
-- `uiStore.imageAnnotate`：当前 active image node identity 和媒体描述；
+- `uiStore.imageAnnotate`：当前 active image canvas/node identity 和媒体描述；
 - `canvasStore`：不写入 active state，不产生 graph history；
 - `ImageNode`：决定 standard/annotate render branch；
 - `ImageAnnotateToolbar`：节点上方专用 toolbar；
@@ -55,6 +55,8 @@ separate contracts.
 - undo/redo are disabled in the empty state; save remains enabled as a
   source-shaped control but has no clone-side effect in this batch;
 - the surface does not create a result node or call a provider.
+- Batch 58 also closes the surface when its owner node disappears or the active
+  canvas changes; the cleanup is UI-only and does not enter graph history.
 
 ## Responsive
 

@@ -58,6 +58,7 @@ const derivedImageActions: Partial<Record<ImageToolbarAction, { filename: string
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture } = data;
   const { zoom } = useViewport();
+  const activeCanvasId = useCanvasStore((state) => state.activeCanvasId);
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
@@ -85,6 +86,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
     if (action === "预览") {
       openImagePreview({
+        canvasId: activeCanvasId,
         nodeId: id,
         filename,
         imageUrl,
@@ -97,6 +99,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
     if (action === "标注") {
       openImageAnnotate({
+        canvasId: activeCanvasId,
         nodeId: id,
         filename,
         imageUrl,
@@ -108,6 +111,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
     if (action === "元素编辑") {
       openImageElementEdit({
+        canvasId: activeCanvasId,
         nodeId: id,
         filename,
         imageUrl,

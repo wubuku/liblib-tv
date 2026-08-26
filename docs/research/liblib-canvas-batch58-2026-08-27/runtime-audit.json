@@ -1,23 +1,1259 @@
 {
-  "status": "PLANNED",
-  "batch": 58,
+  "url": "http://localhost:3000",
+  "status": "SCRIPT_RECORDED_PASS",
   "contract": {
     "owner_identity": "canvas_id_plus_node_id",
     "invalid_owner": "canvas_mismatch_or_missing_node",
     "cleanup": "ui_only",
-    "graph_history_mutation": "none"
+    "graph_history_mutation": "delete_only"
   },
-  "scenarios": {
-    "preview_delete": "pending",
-    "annotate_delete": "pending",
-    "element_edit_delete": "pending",
-    "director_delete": "pending",
-    "canvas_switch": "pending",
-    "desktop_mobile": "pending"
+  "pure": {
+    "valid": {
+      "validOwners": [
+        "imagePreview",
+        "imageAnnotate"
+      ],
+      "invalidOwners": []
+    },
+    "invalid": {
+      "validOwners": [
+        "imageElementEdit"
+      ],
+      "invalidOwners": [
+        "imagePreview",
+        "imageAnnotate"
+      ]
+    },
+    "nullOnly": {
+      "validOwners": [],
+      "invalidOwners": []
+    }
+  },
+  "desktop": {
+    "pure": {
+      "valid": {
+        "validOwners": [
+          "imagePreview",
+          "imageAnnotate"
+        ],
+        "invalidOwners": []
+      },
+      "invalid": {
+        "validOwners": [
+          "imageElementEdit"
+        ],
+        "invalidOwners": [
+          "imagePreview",
+          "imageAnnotate"
+        ]
+      },
+      "nullOnly": {
+        "validOwners": [],
+        "invalidOwners": []
+      }
+    },
+    "preview_delete": {
+      "before": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-nlMX3rEjwN",
+            "source": "i-vxeeCnxySa",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [
+          "i-vxeeCnxySa"
+        ],
+        "selectedNodeId": "i-vxeeCnxySa",
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "after": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "pastLength": 2,
+        "futureLength": 0
+      },
+      "owner_before": {
+        "imagePreview": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "watermarkUrl": "/images/watermark.png",
+          "width": 1152,
+          "height": 576
+        },
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "owner_after": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "annotate_delete": {
+      "before": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-nlMX3rEjwN",
+            "source": "i-vxeeCnxySa",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [
+          "i-vxeeCnxySa"
+        ],
+        "selectedNodeId": "i-vxeeCnxySa",
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "after": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "pastLength": 2,
+        "futureLength": 0
+      },
+      "owner_before": {
+        "imagePreview": null,
+        "imageAnnotate": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "width": 1152,
+          "height": 576
+        },
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "owner_after": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "element_edit_delete": {
+      "before": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-nlMX3rEjwN",
+            "source": "i-vxeeCnxySa",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [
+          "i-vxeeCnxySa"
+        ],
+        "selectedNodeId": "i-vxeeCnxySa",
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "after": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "pastLength": 2,
+        "futureLength": 0
+      },
+      "owner_before": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "width": 1152,
+          "height": 576
+        },
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "owner_after": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "director_delete": {
+      "before": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image"
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-8IgMkf6Vbj",
+            "source": "i-1FQ9tErTcC",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-AQmdIgKtl2",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-245IDFh8sB"
+          },
+          {
+            "id": "e-m2wWA2wIBA",
+            "source": "i-dnwoZQ7jsG",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-nlMX3rEjwN",
+            "source": "i-vxeeCnxySa",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-QzX895ot0u",
+            "source": "i-lBzmo67AHv",
+            "target": "b-bTLLuU4w5q"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-yEqrTOR2Ya",
+            "source": "b-bTLLuU4w5q",
+            "target": "g-EFbbHpwq5w"
+          }
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "after": {
+        "activeCanvasId": "canvas-2",
+        "nodes": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group"
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script"
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image"
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image"
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image"
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image"
+          },
+          {
+            "id": "i-YDfWhFlthe",
+            "type": "image"
+          },
+          {
+            "id": "v-UGQZzZOpbv",
+            "type": "video"
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-abKze5c8Ug",
+            "source": "i-1FQ9tErTcC",
+            "target": "i-YDfWhFlthe"
+          },
+          {
+            "id": "e-OwhsBRzrTz",
+            "source": "i-1FQ9tErTcC",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-VQACH36eJC",
+            "source": "i-dnwoZQ7jsG",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-XmiJkHfFAL",
+            "source": "i-YDfWhFlthe",
+            "target": "v-UGQZzZOpbv"
+          },
+          {
+            "id": "e-xNVTHNFZZl",
+            "source": "i-dnwoZQ7jsG",
+            "target": "i-YDfWhFlthe"
+          }
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "pastLength": 2,
+        "futureLength": 0
+      },
+      "owner_before": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": "b-bTLLuU4w5q",
+        "activeDirectorCanvasId": "canvas-2"
+      },
+      "owner_after": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "preview_switch": {
+      "owner_kind": "imagePreview",
+      "before_ui": {
+        "imagePreview": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "watermarkUrl": "/images/watermark.png",
+          "width": 1152,
+          "height": 576
+        },
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "after_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "annotate_switch": {
+      "owner_kind": "imageAnnotate",
+      "before_ui": {
+        "imagePreview": null,
+        "imageAnnotate": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "width": 1152,
+          "height": 576
+        },
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "after_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "element_edit_switch": {
+      "owner_kind": "imageElementEdit",
+      "before_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": {
+          "canvasId": "canvas-2",
+          "nodeId": "i-vxeeCnxySa",
+          "filename": "图片4",
+          "imageUrl": "/images/scene-coffee-4.png",
+          "width": 1152,
+          "height": 576
+        },
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      },
+      "after_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    },
+    "director_switch": {
+      "owner_kind": "activeDirectorNodeId",
+      "before_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": "b-bTLLuU4w5q",
+        "activeDirectorCanvasId": "canvas-2"
+      },
+      "after_ui": {
+        "imagePreview": null,
+        "imageAnnotate": null,
+        "imageElementEdit": null,
+        "activeDirectorNodeId": null,
+        "activeDirectorCanvasId": null
+      }
+    }
+  },
+  "mobile": {
+    "before": {
+      "activeCanvasId": "canvas-2",
+      "nodes": [
+        {
+          "id": "g-245IDFh8sB",
+          "type": "storyboard-group"
+        },
+        {
+          "id": "g-EFbbHpwq5w",
+          "type": "storyboard-group"
+        },
+        {
+          "id": "t-9j2MoccxBj",
+          "type": "script"
+        },
+        {
+          "id": "i-1FQ9tErTcC",
+          "type": "image"
+        },
+        {
+          "id": "i-lBzmo67AHv",
+          "type": "image"
+        },
+        {
+          "id": "i-dnwoZQ7jsG",
+          "type": "image"
+        },
+        {
+          "id": "i-vxeeCnxySa",
+          "type": "image"
+        },
+        {
+          "id": "b-bTLLuU4w5q",
+          "type": "script-execution"
+        },
+        {
+          "id": "i-YDfWhFlthe",
+          "type": "image"
+        },
+        {
+          "id": "v-UGQZzZOpbv",
+          "type": "video"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-8IgMkf6Vbj",
+          "source": "i-1FQ9tErTcC",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-abKze5c8Ug",
+          "source": "i-1FQ9tErTcC",
+          "target": "i-YDfWhFlthe"
+        },
+        {
+          "id": "e-AQmdIgKtl2",
+          "source": "b-bTLLuU4w5q",
+          "target": "g-245IDFh8sB"
+        },
+        {
+          "id": "e-m2wWA2wIBA",
+          "source": "i-dnwoZQ7jsG",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-nlMX3rEjwN",
+          "source": "i-vxeeCnxySa",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-OwhsBRzrTz",
+          "source": "i-1FQ9tErTcC",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-QzX895ot0u",
+          "source": "i-lBzmo67AHv",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-VQACH36eJC",
+          "source": "i-dnwoZQ7jsG",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-XmiJkHfFAL",
+          "source": "i-YDfWhFlthe",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-xNVTHNFZZl",
+          "source": "i-dnwoZQ7jsG",
+          "target": "i-YDfWhFlthe"
+        },
+        {
+          "id": "e-yEqrTOR2Ya",
+          "source": "b-bTLLuU4w5q",
+          "target": "g-EFbbHpwq5w"
+        }
+      ],
+      "selectedNodeIds": [
+        "i-vxeeCnxySa"
+      ],
+      "selectedNodeId": "i-vxeeCnxySa",
+      "pastLength": 1,
+      "futureLength": 0
+    },
+    "after": {
+      "activeCanvasId": "canvas-2",
+      "nodes": [
+        {
+          "id": "g-245IDFh8sB",
+          "type": "storyboard-group"
+        },
+        {
+          "id": "g-EFbbHpwq5w",
+          "type": "storyboard-group"
+        },
+        {
+          "id": "t-9j2MoccxBj",
+          "type": "script"
+        },
+        {
+          "id": "i-1FQ9tErTcC",
+          "type": "image"
+        },
+        {
+          "id": "i-lBzmo67AHv",
+          "type": "image"
+        },
+        {
+          "id": "i-dnwoZQ7jsG",
+          "type": "image"
+        },
+        {
+          "id": "b-bTLLuU4w5q",
+          "type": "script-execution"
+        },
+        {
+          "id": "i-YDfWhFlthe",
+          "type": "image"
+        },
+        {
+          "id": "v-UGQZzZOpbv",
+          "type": "video"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-8IgMkf6Vbj",
+          "source": "i-1FQ9tErTcC",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-abKze5c8Ug",
+          "source": "i-1FQ9tErTcC",
+          "target": "i-YDfWhFlthe"
+        },
+        {
+          "id": "e-AQmdIgKtl2",
+          "source": "b-bTLLuU4w5q",
+          "target": "g-245IDFh8sB"
+        },
+        {
+          "id": "e-m2wWA2wIBA",
+          "source": "i-dnwoZQ7jsG",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-OwhsBRzrTz",
+          "source": "i-1FQ9tErTcC",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-QzX895ot0u",
+          "source": "i-lBzmo67AHv",
+          "target": "b-bTLLuU4w5q"
+        },
+        {
+          "id": "e-VQACH36eJC",
+          "source": "i-dnwoZQ7jsG",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-XmiJkHfFAL",
+          "source": "i-YDfWhFlthe",
+          "target": "v-UGQZzZOpbv"
+        },
+        {
+          "id": "e-xNVTHNFZZl",
+          "source": "i-dnwoZQ7jsG",
+          "target": "i-YDfWhFlthe"
+        },
+        {
+          "id": "e-yEqrTOR2Ya",
+          "source": "b-bTLLuU4w5q",
+          "target": "g-EFbbHpwq5w"
+        }
+      ],
+      "selectedNodeIds": [],
+      "selectedNodeId": null,
+      "pastLength": 2,
+      "futureLength": 0
+    },
+    "owner_before": {
+      "imagePreview": {
+        "canvasId": "canvas-2",
+        "nodeId": "i-vxeeCnxySa",
+        "filename": "图片4",
+        "imageUrl": "/images/scene-coffee-4.png",
+        "watermarkUrl": "/images/watermark.png",
+        "width": 1152,
+        "height": 576
+      },
+      "imageAnnotate": null,
+      "imageElementEdit": null,
+      "activeDirectorNodeId": null,
+      "activeDirectorCanvasId": null
+    },
+    "owner_after": {
+      "imagePreview": null,
+      "imageAnnotate": null,
+      "imageElementEdit": null,
+      "activeDirectorNodeId": null,
+      "activeDirectorCanvasId": null
+    }
   },
   "errors": {
-    "console": "pending",
-    "page": "pending",
-    "request": "pending"
+    "console": [],
+    "page": [],
+    "request": []
   }
 }

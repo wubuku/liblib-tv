@@ -101,7 +101,7 @@ activePrimaryPanel
 | `isSharePanelOpen` | `TopNavBar` -> local `SharePanel` | 当前有效。 |
 | `isAgentOpen` | `page.tsx` -> `AgentDrawer` | 当前有效。 |
 | `isZoomMenuOpen` | `BottomToolbar` 自挂载 | 当前有效。 |
-| `activeDirectorNodeId` | `page.tsx` -> `DirectorDesk` | 当前有效，但不属于 `closedOverlayState`。 |
+| `activeDirectorNodeId` + `activeDirectorCanvasId` | `page.tsx` -> `DirectorDesk` | 当前有效，但不属于 `closedOverlayState`；Batch 58 已补 canvas-bound owner cleanup。 |
 
 ### 3.3 未挂载或冗余兼容状态
 
@@ -194,16 +194,42 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 
 ### 6.2 Director
 
-`openDirectorDesk(nodeId)` 会先清除普通 overlays，再设置 `activeDirectorNodeId`。Director 根 surface 是 `fixed inset-0; z-index:100`，拥有自己的 nested panel/viewer 和 Escape 状态机。
+`openDirectorDesk(nodeId, canvasId)` 会先清除普通 overlays，再设置
+`activeDirectorNodeId + activeDirectorCanvasId`。Director 根 surface 是
+`fixed inset-0; z-index:100`，拥有自己的 nested panel/viewer 和 Escape 状态机。
 
-但 `activeDirectorNodeId` 不在 `closedOverlayState` 中：
+但 Director owner 不在 `closedOverlayState` 中：
 
 - 普通 overlay action 不会自动关闭 Director；
 - page global Escape 在发现 Director active 时提前返回，由 `DirectorDesk` 处理；
 - `closeAllPanels()` 本身会清 Director，但 page Escape 的 Director 分支不会调用它；
 - page global handler 对 Tab、Delete、group、undo/redo、zoom 等其他快捷键没有 Director guard。
+- Batch 58 的 route reconciliation 会在 active canvas 变化或 owner node 消失时关闭
+  Director；该 UI-only close 不写 graph/history。
 
 `INFERENCE`：如果 Director 前台期间触发 Tab 或其他 page command，普通 overlay state 或 graph transaction 可能在 Director 背后发生；关闭 Director 后，后台状态可能重新显现。未来实现批次应把“Director 是否隔离 page shortcuts”作为显式合同和回归项，而不是依赖 z-index。
+
+### 6.3 Node-bound owner reconciliation (Batch 58)
+
+图片 Preview、Annotate、Element Edit 和 Director 都属于带 owner 的 session
+surface。当前 clone 的 owner identity 是：
+
+```text
+{ canvasId, nodeId }
+```
+
+route 每次观察 active canvas ID 或 active node 集合变化时，调用纯函数
+`reconcileLibTVUiOwners`：
+
+- owner canvas 与 active canvas 不同，立即失效；
+- owner node 不在 active canvas，立即失效；
+- owner 仍有效时不重复 close；
+- close action 只修改 `uiStore`，不调用 graph setter、history 或 viewport；
+- 图片 authoring 还保留“必须单选 owner node”的既有 selection boundary。
+
+这是 `CLONE_RUNTIME` / `CLONE_DECISION`，由 Batch 58 local fixture 验证；不写成
+LibTV 源站删除语义。源站删除确认、远程资源回收、Director workspace 持久化和
+undo 后是否恢复 session overlay 仍未确认。
 
 ## 7. Selected-node And Authoring Surfaces
 

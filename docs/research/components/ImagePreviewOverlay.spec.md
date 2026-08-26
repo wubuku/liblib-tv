@@ -38,6 +38,7 @@ Source evidence:
 The preview descriptor contains:
 
 ```text
+canvasId
 nodeId
 filename
 imageUrl
@@ -47,7 +48,8 @@ height
 ```
 
 It lives in `uiStore`, because the owner is the page shell. The image node only
-dispatches `openImagePreview`.
+dispatches `openImagePreview`; Batch 58 adds `canvasId` so an old preview cannot
+be mistaken for a same-ID node on another canvas.
 
 ## Lifecycle
 
@@ -85,4 +87,6 @@ shortcuts do not execute.
 - watermark is rendered only when the selected node provides `watermarkUrl`;
 - no download, save, editing, metadata panel or remote request;
 - no graph mutation and no new media node.
-
+- if the owner node is deleted or the active canvas changes, Batch 58 closes the
+  preview as a UI-only invalidation; this is a clone lifecycle decision, not a
+  confirmed LibTV source delete contract.

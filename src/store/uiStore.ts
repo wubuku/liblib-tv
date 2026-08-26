@@ -9,6 +9,7 @@ export type PrimaryPanel =
   | "tutorial";
 
 export interface ImagePreviewState {
+  canvasId: string;
   nodeId: string;
   filename: string;
   imageUrl: string;
@@ -18,6 +19,7 @@ export interface ImagePreviewState {
 }
 
 export interface ImageAnnotateState {
+  canvasId: string;
   nodeId: string;
   filename: string;
   imageUrl: string;
@@ -26,6 +28,7 @@ export interface ImageAnnotateState {
 }
 
 export interface ImageElementEditState {
+  canvasId: string;
   nodeId: string;
   filename: string;
   imageUrl: string;
@@ -53,6 +56,7 @@ interface UIState {
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
   activeDirectorNodeId: string | null;
+  activeDirectorCanvasId: string | null;
   imagePreview: ImagePreviewState | null;
   imageAnnotate: ImageAnnotateState | null;
   imageElementEdit: ImageElementEditState | null;
@@ -85,7 +89,7 @@ interface UIState {
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
   setCanvasTool: (tool: "select" | "pan") => void;
-  openDirectorDesk: (nodeId: string) => void;
+  openDirectorDesk: (nodeId: string, canvasId: string) => void;
   closeDirectorDesk: () => void;
   openImagePreview: (preview: ImagePreviewState) => void;
   closeImagePreview: () => void;
@@ -165,6 +169,7 @@ export const useUIStore = create<UIState>((set) => ({
   editorMode: "workbench",
   canvasTool: "select",
   activeDirectorNodeId: null,
+  activeDirectorCanvasId: null,
   imagePreview: null,
   imageAnnotate: null,
   imageElementEdit: null,
@@ -289,13 +294,15 @@ export const useUIStore = create<UIState>((set) => ({
 
   setCanvasTool: (tool) => set({ canvasTool: tool }),
 
-  openDirectorDesk: (nodeId) =>
+  openDirectorDesk: (nodeId, canvasId) =>
     set({
       ...closedOverlayState,
       activeDirectorNodeId: nodeId,
+      activeDirectorCanvasId: canvasId,
     }),
 
-  closeDirectorDesk: () => set({ activeDirectorNodeId: null }),
+  closeDirectorDesk: () =>
+    set({ activeDirectorNodeId: null, activeDirectorCanvasId: null }),
 
   openImagePreview: (preview) =>
     set({
@@ -336,5 +343,19 @@ export const useUIStore = create<UIState>((set) => ({
   setZoomLevel: (zoom: number) => set({ zoomLevel: zoom }),
 
   closeAllPanels: () =>
-    set({ ...closedOverlayState, activeDirectorNodeId: null }),
+    set({
+      ...closedOverlayState,
+      activeDirectorNodeId: null,
+      activeDirectorCanvasId: null,
+    }),
 }));
+
+declare global {
+  interface Window {
+    __libtv_ui_store: typeof useUIStore;
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.__libtv_ui_store = useUIStore;
+}

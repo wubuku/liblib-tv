@@ -48,6 +48,10 @@ import {
   proposedLibTVConnectionFromEdge,
   validateLibTVGraphConnection,
 } from "@/lib/libtvGraphConnection";
+import {
+  reconcileLibTVUiOwners,
+  type LibTVUiOwnerSnapshot,
+} from "@/lib/libtvUiOwnerReconciliation";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
   ssr: false,
@@ -113,11 +117,14 @@ export default function Home() {
     setCanvasTool,
     setZoomLevel,
     activeDirectorNodeId,
+    activeDirectorCanvasId,
     closeDirectorDesk,
     imagePreview,
     closeImagePreview,
     imageAnnotate,
     closeImageAnnotate,
+    imageElementEdit,
+    closeImageElementEdit,
   } = useUIStore();
 
   const activeCanvas = getActiveCanvas();
@@ -145,19 +152,68 @@ export default function Home() {
     },
     [nodes, selectedNodeIds],
   );
+  const activeNodeIds = useMemo(() => nodes.map((node) => node.id), [nodes]);
   const effectivePan = canvasTool === "pan" || isSpacePressed;
 
   useEffect(() => {
-    if (!imageAnnotate && !useUIStore.getState().imageElementEdit) return;
+    const owners: LibTVUiOwnerSnapshot = {
+      imagePreview: imagePreview
+        ? { canvasId: imagePreview.canvasId, nodeId: imagePreview.nodeId }
+        : null,
+      imageAnnotate: imageAnnotate
+        ? { canvasId: imageAnnotate.canvasId, nodeId: imageAnnotate.nodeId }
+        : null,
+      imageElementEdit: imageElementEdit
+        ? { canvasId: imageElementEdit.canvasId, nodeId: imageElementEdit.nodeId }
+        : null,
+      director: activeDirectorNodeId
+        ? {
+            canvasId: activeDirectorCanvasId ?? "",
+            nodeId: activeDirectorNodeId,
+          }
+        : null,
+    };
+    const result = reconcileLibTVUiOwners({
+      activeCanvasId,
+      activeNodeIds,
+      owners,
+    });
+    const invalidOwners = new Set(result.invalidOwners);
+
+    if (invalidOwners.has("imagePreview")) closeImagePreview();
+    if (invalidOwners.has("imageAnnotate")) closeImageAnnotate();
+    if (invalidOwners.has("imageElementEdit")) closeImageElementEdit();
+    if (invalidOwners.has("director")) closeDirectorDesk();
+  }, [
+    activeCanvasId,
+    activeDirectorCanvasId,
+    activeDirectorNodeId,
+    activeNodeIds,
+    closeDirectorDesk,
+    closeImageAnnotate,
+    closeImageElementEdit,
+    closeImagePreview,
+    imageAnnotate,
+    imageElementEdit,
+    imagePreview,
+  ]);
+
+  useEffect(() => {
+    const imageOwner = imageAnnotate ?? imageElementEdit;
+    if (!imageOwner) return;
     const ownsSelection =
-      selectedNodeIds.length === 1 &&
-      (selectedNodeIds[0] === imageAnnotate?.nodeId ||
-        selectedNodeIds[0] === useUIStore.getState().imageElementEdit?.nodeId);
+      selectedNodeIds.length === 1 && selectedNodeIds[0] === imageOwner.nodeId;
     if (!ownsSelection) {
       closeImageAnnotate();
-      useUIStore.getState().closeImageElementEdit();
+      closeImageElementEdit();
     }
-  }, [closeImageAnnotate, imageAnnotate, selectedNodeIds]);
+  }, [
+    closeImageAnnotate,
+    closeImageElementEdit,
+    imageAnnotate,
+    imageElementEdit,
+    selectedNodeIds,
+  ]);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
