@@ -30,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added dedicated Toolbox, Character Library, History and Smart Matting component
   contracts that separate source evidence from local mock behavior and graph
   side effects.
+- Synchronized formal documentation with the stable Batch 45 verifier and moved
+  the explicit parallel-WIP boundary to Batch 46.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

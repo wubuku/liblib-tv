@@ -114,7 +114,8 @@ current source code + focused current run
 | `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码研究和可迁移模式 | 不能替代 LibTV 源站视觉/行为合同。 |
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |
-| Batch 45 | `PARALLEL_WIP` | Director group/crowd slice | 等并行工作稳定后再统一当前状态和 verifier 登记。 |
+| Batch 45 | `HISTORICAL_CONTRACT` / recorded pass | Director group/crowd slice | 已有专项 verifier 和 serial regression 记录；仍是有界 clone 合同，不代表源站全量一致。 |
+| Batch 46 | `PARALLEL_WIP` | Director camera screenshot gallery slice | evidence/plan 已落档；不覆盖并行 implementation、verifier 或截图。 |
 | `research/components/*.spec.md` | `CURRENT_GUIDANCE` 或有界合同 | 对应组件的交互、几何、状态和图事务 | 先查 coverage matrix；旧组件 spec 可被更新的跨切面 source contract 部分取代。 |
 | `research/frameos/` | `CURRENT_RESEARCH` | FrameOS 独立 route/store/UX | 不与 LibTV 组件和 store 合并。 |
 
@@ -144,7 +145,7 @@ current source code + focused current run
 本轮没有文件满足归档条件：
 
 - `docs/drafts/` 与 `docs/archive/` 都只有入口 README；
-- Batch 3-45 仍承担实现 provenance、证据或接力上下文；
+- 已完成的 Batch 3-45 仍承担实现 provenance、证据或接力上下文；Batch 46 作为并行 WIP 保持原位；
 - 旧 Batch 状态文字可能与当前项目完成度不同，但这属于 `HISTORICAL_CONTRACT`，不是应删除的错误；
 - `docs/README.md` 仍有兼容价值，且已经明确指向 canonical hub；
 - 截图和 JSON 属于证据资产，不以“过期”为由归档。

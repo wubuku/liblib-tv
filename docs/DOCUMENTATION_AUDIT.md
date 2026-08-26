@@ -29,8 +29,8 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-45 的目录记录 | Batch 45 是当前并行研究 WIP，不能只按已验证实现理解 |
-| LibTV verifier | 有 Batch 4-33、35-44 的专项脚本 | Batch 34 没有专项 verifier；Batch 45 当前也没有专项 verifier |
+| Batch 研究目录 | 已有 Batch 3-46 的目录记录 | Batch 45 已稳定；Batch 46 是当前并行研究 WIP |
+| LibTV verifier | 有 Batch 4-33、35-45 的专项脚本 | Batch 34 没有专项 verifier；Batch 46 当前也没有专项 verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
 | 代码边界 | LibTV/FrameOS route 与 store 独立；后端为 mock | 研究文档不能暗示真实 Provider、上传或持久化已经存在 |
@@ -39,24 +39,25 @@ AGENTS.md / README.md
 
 | ID | 问题 | 风险 | 处理决策 |
 |---|---|---|---|
-| DOC-01 | 根 README 仍写 `Batch 4-40` | 低估当前验证资产范围 | 改为精确脚本范围 `4-33、35-44` |
-| DOC-02 | Big Picture 自动化摘要仍写 `Batch 4-33` | 与后文 Batch 35-44 及 Harness 不一致 | 修正为脚本实际范围 |
+| DOC-01 | 根 README 仍写 `Batch 4-40` | 低估当前验证资产范围 | 先修正为当时的 `4-33、35-44`，Batch 45 稳定后继续同步到 `35-45` |
+| DOC-02 | Big Picture 自动化摘要仍写 `Batch 4-33` | 与 Harness 不一致 | 修正为当前脚本实际范围 |
 | DOC-03 | Big Picture 仍称 root README/package.json 保留模板身份 | 与当前 README/package.json 已对齐事实冲突 | 删除该过期判断，保留真实 prototype 边界 |
-| DOC-04 | Harness 总览写到 `batch43.py`，循环使用 `{4..44}` | 批量命令会把不存在的 Batch 34 当成脚本执行 | 改为显式 `4..33` 与 `35..44` 两段 |
+| DOC-04 | Harness 总览写到 `batch43.py`，循环使用 `{4..44}` | 批量命令会把不存在的 Batch 34 当成脚本执行 | 改为显式 `4..33` 与当前 Director verifier 范围两段 |
 | DOC-05 | Development/Contributing 只展示 Batch 4-10 | 新 agent 容易误以为后续 Batch 没有验证入口 | 改成单个窄脚本示例 + 链接到完整 Harness |
 | DOC-06 | Documentation Plan 的原始审计仍写 Batch 3-10 | 维护者无法区分历史快照和当前状态 | 保留历史段落，增加本轮维护增量与 supersede 说明 |
-| DOC-07 | Batch 45 已进入研究索引但尚无 verifier | 容易把研究目录误读为已完成回归 | 记录为并行 WIP，不为其伪造验证状态 |
-| DOC-08 | Big Picture 的详细验证基线停在 Batch 43 | 最新 Batch 44 的已记录验证不在摘要中 | 修正为 Batch 35-44 |
+| DOC-07 | 初次审计时 Batch 45 已进入研究索引但尚无 verifier | 容易把研究目录误读为已完成回归 | 当时记录为 WIP；脚本/实施稳定后升级，当前 WIP 前移到 Batch 46 |
+| DOC-08 | Big Picture 的详细验证基线停在 Batch 43 | 最新已记录验证不在摘要中 | 先修正到 Batch 44，再随稳定 verifier 更新到 Batch 45 |
+| DOC-09 | Batch 45 稳定提交后多个正式入口仍停在 `35-44`/Batch 45 WIP | agent 会忽略现有 verifier 或误判当前 WIP | 同步 README、Development、Contributing、Big Picture、计划和生命周期登记 |
 
 ## 3. 本轮已应用的修正
 
-- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-44`；
+- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-45`；
 - `docs/HARNESS.md` 的批量示例不再跨过不存在的 Batch 34；
 - 根 README、Big Picture、Development 和 Contributing 都链接到完整 Harness，而不是各自维护一份过时清单；
 - Big Picture 的 README/package 身份判断以当前仓库实际内容为准；
-- Big Picture 的详细验证基线更新到 Batch 44；
+- Big Picture 的详细验证基线更新到 Batch 45；
 - `docs/DOCUMENTATION_PLAN.md` 保留 2026-08-25 的迁移快照，并明确本审计是 2026-08-26 的维护增量；
-- Batch 45 不被加入“已验证脚本”清单，等待其并行开发者提供稳定脚本和实施记录。
+- Batch 45 在专项脚本和实施记录稳定后被纳入台账；Batch 46 保持 `PARALLEL_WIP`，不伪造 verifier。
 
 ## 4. 仍然有意保留的差异
 
@@ -64,9 +65,9 @@ AGENTS.md / README.md
 
 Batch 34 是既有导演台代码考古、源站差距和可借鉴性研究，不应被虚构成一条行为回归脚本。它的入口和证据仍由 [`docs/research/README.md`](research/README.md) 管理。
 
-### 4.2 Batch 45 不纳入本轮维护
+### 4.2 Batch 46 不纳入稳定门禁
 
-Batch 45 目录和研究记录可能由其他开发者并行推进。本轮只读取其在索引中的存在，不修改其 `README.md`、`PLAN.md`、`IMPLEMENTATION.md`、截图或源码。是否增加 verifier、何时加入 Harness，由该批次稳定后单独维护。
+Batch 46 目录和研究记录由其他开发者并行推进。本轮只读取其 evidence/plan 和台账状态，不修改其 `README.md`、`PLAN.md`、截图或源码。是否增加 implementation/verifier、何时加入 Harness，由该批次稳定后单独维护。
 
 ### 4.3 旧 Batch 仍是历史合同
 
@@ -88,7 +89,7 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 
 ## 5.1 本轮追加维护
 
-组件覆盖矩阵已建立，并由组件索引、研究总入口、正式文档入口和 agent task map 共同导出。它没有改写任何现有 Batch 45 WIP 或其他开发者文件；后续新增组件合同时，应先更新矩阵再更新索引。
+组件覆盖矩阵已建立，并由组件索引、研究总入口、正式文档入口和 agent task map 共同导出。建立时没有改写当时的 Batch 45 WIP；Batch 45 后续由其开发者闭环后，矩阵只同步稳定状态，并继续避开 Batch 46 WIP。后续新增组件合同时，应先更新矩阵再更新索引。
 
 P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬移资产。新增 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) 统一登记 authority、dated snapshot、historical contract、compatibility entry、evidence artifact、parallel WIP 和 supersession；历史 Batch 不再因为状态文字过时而被误判为待删除文档。
 
@@ -98,6 +99,6 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 1. `docs/index.md` 能发现本审计；
 2. 所有验证范围描述与实际脚本集合一致；
-3. Batch 34/45 的“无专项 verifier”状态没有被隐藏；
+3. Batch 34/46 的“无专项 verifier”状态没有被隐藏，Batch 45 的 recorded pass 没有被误写成源站一致；
 4. 文档链接检查通过；
 5. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。

@@ -21,7 +21,7 @@
 - LibTV：真实 R3F 导演台、对象/机位/时间轴/路径编辑、截图与可播放动画视频回流
 - FrameOS：独立 store、独立节点系统、浮动工具条、Prompt 编辑器、右键菜单、undo/redo
 - 研究证据：原站 DOM/JSON、截图、组件规格、批次计划与实施历史
-- 自动验证：Batch 4-33、35-44 专项 Playwright 脚本、lint、typecheck、production build
+- 自动验证：Batch 4-33、35-45 专项 Playwright 脚本、lint、typecheck、production build
 
 ## Quick Start
 
