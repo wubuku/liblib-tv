@@ -65,3 +65,13 @@
 - 明确当前 clone 已有的 `VideoGenerationPanel`、`ShotBreakdownNode`、长视频过程图和 Auto Link 合同不能被 Open Canvas 五类节点模型替换；
 - 新增 `LIBTV-SEEDANCE-OC-01..04` 后续取证批次，分别追踪输出版本、引用投影、长视频局部修改和拉片候选生命周期；
 - 保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。
+
+## 2026-08-26：v6 LibTV 现场几何抽查
+
+本轮使用当前已打开的登录态 LibTV 画布进行只读节点切换和 DOM 矩形测量：
+
+- 在 `929x874`、约 `27.81%` zoom 下确认图片节点选中态的顶部工具条为 `1092.5x49`，底部编辑面板外框为 `660x191`；
+- 确认两个浮层都以图片节点中心为 anchor，底部 gap 约为 `16 * zoom`，节点靠近左边缘时负 x 和裁切是源站当前行为；
+- 保存当前顶部图片处理动作顺序，并将现场记录写入 [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#8-2026-08-26-浏览器现场几何抽查)；
+- 明确这次 `1092.5x49` 与先前其他节点/状态的 `900.5x49` 必须按场景并列，不得未经归因覆盖；
+- 没有提交生成、上传媒体、修改参数或写入远端画布，保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。
