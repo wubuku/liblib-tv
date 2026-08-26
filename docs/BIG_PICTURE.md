@@ -211,6 +211,8 @@ camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zu
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
+普通 LibTV graph 目前还没有单一 node data schema authority：11 个 renderer、8 个公开创建入口、legacy `src/types/canvas.ts`、default-data switch 和各 node component interface 并不一致；history、selection duplicate 与 canvas duplicate 对 nested `data` 仍主要是浅复制。`sourceNodeId/edgeId`、拉片 `resultNodeIds/sourceBreakdownId`、长视频 `processId`、Director capture/export ID 和 repo/https/data/blob media 具有不同身份与生命周期，不能只按 `*Id` 后缀重写。当前固定事实见 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)，未来 type/version/operation registry、aggregate 和 portability 设计见 [`LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)；两者均未授权或实现 runtime codec。
+
 这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
 
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。

@@ -138,6 +138,7 @@ new BrowserContext
 | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | fresh Page + `LOCAL-EMPTY-01` + future authorized graph setup | ordinary A/B/C aliases；per-scenario edge/history boundary；无 pending/invalid state | direction normalize、duplicate/self/cycle、reject no-op 和 accepted one-step history |
 | `LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | pure V1 payload corpus + fresh Page + `LOCAL-EMPTY-01` | empty/demo/group/nested metadata/invalid version-ID-parent-media cases | document codec、strict load、migration boundary、nested history isolation 和 import zero-partial |
 | `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | fresh Page + deterministic ID provider + group/child/external/derived topology | named roots、descendant closure、internal/external edges、reference roles、placement/history boundary | copy planner、ID/reference map、detach/group、zero-partial 和 one-step undo/redo |
+| `LIBTV-FIX-LOCAL-NODE-DATA-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | pure V0 corpus + fresh Page + deterministic node/edge/aggregate IDs | all 11 runtime types、nested provenance、shot/process aggregates、repo/https/data/blob media、invalid type/version/ref cases | registry completeness、operation transforms、deep isolation、aggregate integrity、media diagnostics 和 zero-partial |
 | `LIBTV-FIX-LOCAL-IMAGE-01` | `UI_CONSTRUCTED` | 在空画布从 Add Node 添加图片 | 本地图片、`editorVariant=empty`、selected | 标准图片浮层、Preview/Annotate/Element Edit 的低风险本地状态 |
 | `LIBTV-FIX-LOCAL-VIDEO-READY-01` | `UI_CONSTRUCTED` | 在空画布从 Add Node 添加视频 | `status=ready`、30s、1280x720、Seedance 2.5、selected | Batch 23、26-33 视频入口和本地处理动作 |
 | `LIBTV-FIX-LOCAL-IMAGE-VARIANTS-01` | `AVAILABLE_BASELINE` | `canvas-2` 五个图片节点 | empty、prompt、referenced 三类 editor state | 历史 Batch 9/10 panel 高度与内容状态 |
@@ -280,10 +281,11 @@ ready source
 | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` | clone | ordinary A/B/C aliases、per-scenario edge/history boundary、可控 proposal/result | pure/browser normalize、guard precedence、zero-mutation reject、one-step accept | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` | clone | V1 payload corpus、fresh Page、nested marks/regions/process arrays、invalid version/ID/parent/media cases | strict round-trip、runtime-field exclusion、stable reason、deep history isolation、zero-partial load | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` | clone | G/A/B/C/X/Y/D aliases、deterministic node/edge IDs、owned/external/unmodeled refs | closure/dedupe、parent detach/remap、edge policy、reference role、placement、atomic history | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
+| `LIBTV-FIX-LOCAL-NODE-DATA-01` | clone | 11-type V0 corpus、all current identity paths、complete/broken shot/process aggregates、media locator classes | field role/operation policy、deep normalize、map/reset/reject、stable diagnostics、delete repair boundary | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-PROCESS-STATES-01` | clone | 固定 pending/failed/partial/success/retry data | UI lifecycle、graph delta、selection、undo/redo | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-SHORTCUT-01` | clone | 固定 node/group/internal/external-edge subgraph | handler precondition、focus guard、graph closure、history | `REQUIRED_DISPOSABLE` |
 
-`LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 的 A/B/C topology、direction/duplicate/self/cycle 场景、reason precedence 和 `VR-009` split 见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md#11-fixture-contract)。`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 的 payload corpus、strict load、nested isolation、media diagnostics 和 `VR-010` split 见 [`components/LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md#9-fixture-contract)。`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` 的 group/child/external/derived topology、reference roles、placement、history 和 `VR-011` split 见 [`components/LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md#12-fixture-contract)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。五者仍是设计完成但运行 fixture 未实现的状态。
+`LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 的 A/B/C topology、direction/duplicate/self/cycle 场景、reason precedence 和 `VR-009` split 见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md#11-fixture-contract)。`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 的 payload corpus、strict load、nested isolation、media diagnostics 和 `VR-010` split 见 [`components/LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md#9-fixture-contract)。`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` 的 group/child/external/derived topology、reference roles、placement、history 和 `VR-011` split 见 [`components/LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md#12-fixture-contract)。`LIBTV-FIX-LOCAL-NODE-DATA-01` 的 11-type corpus、field roles、operation profiles、aggregate/media cases 和 `VR-012` split 见 [`components/LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md#12-fixture-contract)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。六者仍是设计完成但运行 fixture 未实现的状态。
 
 ### 6.1 源站 disposable fixture 的接收条件
 
@@ -321,7 +323,7 @@ ready source
 | `LIBTV-PAR-005` | `SOURCE-SHARED-01` | 安全只读 page-shell freshness refresh | 不能修改共享 graph 或偏好；观察结果要带日期 |
 | `LIBTV-PAR-006` | `LOCAL-VIDEO-READY-01` + `SOURCE-VIDEO-READY-01` | clone 侧历史工具回归可读 | source toolbar 继续 `BLOCKED_BY_FIXTURE` |
 | `LIBTV-PAR-007` | `LOCAL-SHORTCUT-01` + `SOURCE-SHORTCUT-01` | 现有 help/handler crosswalk 可继续完善 | source-only 命令不得在共享 graph 试探 |
-| `LIBTV-PAR-008` | `LOCAL-GRAPH-CONNECTION-01` + `LOCAL-GRAPH-DOCUMENT-01` + `LOCAL-SUBGRAPH-COPY-01` + `LOCAL-DEMO/EMPTY/GROUP/DERIVED` | connection、document/snapshot、subgraph copy 合同/fixture/`VR-009..011` 设计已完成 | runtime/store 修改仍需授权；source invalid lifecycle/Option-drag 需要 source fixtures；persistence deferred |
+| `LIBTV-PAR-008` | `LOCAL-GRAPH-CONNECTION-01` + `LOCAL-GRAPH-DOCUMENT-01` + `LOCAL-SUBGRAPH-COPY-01` + `LOCAL-NODE-DATA-01` + `LOCAL-DEMO/EMPTY/GROUP/DERIVED` | connection、document/snapshot、subgraph copy、node data identity 合同/fixture/`VR-009..012` 设计已完成 | runtime/store 修改仍需授权；source invalid lifecycle/Option-drag/delete cascade 需要 source/product decisions；persistence deferred |
 | `LIBTV-PAR-009` | `LOCAL-LONG-PROCESS-01`、`LOCAL-PROCESS-STATES-01`、`SOURCE-PROCESS-01` | 当前可记录 bounded mock topology | 真实 lifecycle/局部重算继续被 fixture 和业务接口阻塞 |
 | `LIBTV-PAR-010` | `LOCAL-DEMO-01` | 显式 local mock boundary 已可验证 | 不升级为真实服务承诺 |
 | `LIBTV-PAR-011` | 静态 store/runtime 审计 | 文档已有冗余/unmounted state 清单 | 没有编码授权不清理 store |
@@ -400,7 +402,7 @@ Supersedes:
 
 1. 用本文完成 `PAR-005` source freshness refresh 的观察 checklist，不操作共享 graph；
 2. 保持 `PAR-003` AutoLink 和 `PAR-009` process fixture 接收规格为文档权威；运行 fixture 等待独立编码授权；
-3. 保持 `PAR-008` graph connection、graph document/snapshot 与 subgraph copy fixture/result/verifier contract 为 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`，不修改实现；
+3. 保持 `PAR-008` graph connection、graph document/snapshot、subgraph copy 与 node data identity fixture/result/verifier contract 为 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`，不修改实现；
 4. 为 `PAR-007` 设计 local shortcut subgraph，不修改实现；
 5. 等用户提供独立源站 project/权限后，再登记 `SOURCE-GRAPH-CONNECTION-01`、`SOURCE-VIDEO-READY-01` 等真实 fixture identity；
 6. 继续维护 `DIRECTOR-LOCAL-MODEL-01` 的 storage reset、fresh-context 和 proxy-cleanup 断言；
@@ -420,6 +422,7 @@ Supersedes:
 - graph connection reason/result、Reference policy 或 accepted/rejected history contract 改变；
 - graph document schema、node data version、media portability、snapshot isolation 或 import transaction 改变；
 - subgraph copy command、edge policy、parent closure、reference role、placement 或 clipboard packet 改变；
+- runtime node type、dataVersion、identity role、aggregate closure、status reset 或 media locator policy 改变；
 - verifier 改用新的 setup/teardown 策略。
 
 维护时同时检查 [`HARNESS.md`](../HARNESS.md)、[`VERIFICATION_LEDGER.md`](VERIFICATION_LEDGER.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) 和对应 Batch 实施记录。

@@ -309,9 +309,9 @@ The graph shell and Director workspace do not share a document identity. Future 
 
 Region/mark IDs、resultKey and item IDs look like identities but are scoped semantic/local keys. Name-based `*Id` rewriting would be wrong。
 
-## 11. Inputs For The Normative Contract
+## 11. Handoff To The Normative Contract
 
-The next document must define, without changing runtime code：
+[`LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md) now defines the following design inputs without changing runtime code：
 
 1. canonical runtime type registry and `dataVersion: 0` migration baseline；
 2. field roles that extend the copy contract without creating a second vocabulary；

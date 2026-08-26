@@ -407,3 +407,15 @@
 - 新增 `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01`、`LIBTV-VR-011`、`DEC-027` 和 `LIBTV-TR-032`，把 single-node incident edge 标为 `COMPATIBILITY_HOLD`，将 clipboard runtime 与 Option-drag source gesture 保持 blocked；
 - 同步 adoption、handoff、graph catalog、shortcut crosswalk、parity、fixture、verifier、component coverage、agent navigation 和 authority map；
 - 没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v38 node data identity、aggregate 与 portability 合同
+
+本轮继续把 Open Canvas 的 closed union、normalize、serialization whitelist 和 runtime reset 方法转译为 LibTV 专属 registry，不移植其五类 node data：
+
+- 新增 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](../LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)，固定当前 11 runtime types、8 public creation types、distributed interfaces/writers、nested source/edge refs、shot reciprocal refs、long-video process cohort、Director cross-store 和 media locator 风险；
+- 明确 `src/types/canvas.ts`、Add Node、default-data switch、renderer registry 与 component interfaces 不是同一 allowlist，current history/duplicate/canvas duplicate 仍只做 shallow data spread；
+- 新增 [`LibTVNodeDataIdentity.contract.md`](../components/LibTVNodeDataIdentity.contract.md)，定义 V0 registry、canonical field roles、七类 named operation profile 和 explicit transform verbs；
+- 为 shot aggregate、process complete cohort、Director shell/workspace、node-scoped mark IDs、repo/https/data/blob media 和 per-type status 建立 preserve/map/reset/diagnose/reject 边界；
+- 新增 `LIBTV-FIX-LOCAL-NODE-DATA-01`、`LIBTV-VR-012`、`DEC-028`、`LIBTV-TR-033` 和 `GI-013..015/GC-013..015`；
+- 同步 graph document/copy、adoption、handoff、parity、fixture、verifier、component coverage、agent navigation 和 authority map；
+- 事实审计以 commit `dbdc05f` 单独推送；规范合同批次没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 Batch 57 WIP 或 Open Canvas submodule。

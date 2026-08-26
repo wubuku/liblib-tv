@@ -35,6 +35,7 @@
 | DEC-025 | graph connection 校验边界 | 连接必须先归一化和纯校验，再以一个 accepted transaction 提交；reject/unknown 不得改变 graph、selection、history 或 model | ACTIVE / RESEARCH_GATE |
 | DEC-026 | graph document 与 history 分层 | runtime graph、history snapshot、portable document、clipboard packet 和 persistence envelope 保持独立；portable load 必须 versioned、strict、zero-partial | ACTIVE / RESEARCH_GATE |
 | DEC-027 | subgraph copy 身份闭包 | copy 使用具名 command、ownership closure、two-pass ID/reference rewrite 和 full-plan transaction；incident-edge 仅作兼容分支 | ACTIVE / RESEARCH_GATE |
+| DEC-028 | node data 身份注册表 | node data 按 `(runtime type, dataVersion)` 验证，并按具名 operation 映射、重置、诊断或拒绝字段；aggregate/ref 不允许浅拷贝 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -157,6 +158,16 @@
 **影响：** `internal-only` 是 multi/group/clipboard 的安全默认；current single-node incident-edge 分支只保持 `COMPATIBILITY_HOLD`。System clipboard 和 Option-drag 不因合同完成而实现，Option-drag 仍需 source fixture。任何 unmodeled identity field 都阻塞 transaction，不能只 remap structural edge 后深拷贝 data。
 
 **依据：** [`LibTVSubgraphCopy.contract.md`](research/components/LibTVSubgraphCopy.contract.md)、[`DUPLICATE_SELECTION.spec.md`](research/liblib-canvas-batch5-2026-08-25/DUPLICATE_SELECTION.spec.md)、[`OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)。
+
+### DEC-028：Node data 必须由 type/version/operation 注册表解释
+
+**背景：** 普通 LibTV runtime 有 11 类 node，但 renderer、Add Node、legacy types、default-data switch 和 component interfaces 不一致；node data 还包含 sourceNodeId、edgeId、shot reciprocal refs、processId、Director provenance、scoped mark IDs 和不同生命周期的 media locator。当前 history/duplicate/canvas duplicate 都只做浅层 data spread。
+
+**决策：** 后续 graph codec 以 `(node.type, dataVersion)` 选择封闭 registry entry，并按 `HISTORY_SNAPSHOT / DUPLICATE_SELECTION / CREATE_NODE_COPY / DUPLICATE_CANVAS / CLIPBOARD_PASTE / PORTABLE_IMPORT / DELETE_REPAIR` profile 为每个字段声明 preserve、map、reset、recompute、diagnose 或 reject。Shot breakdown 必须校验双向 aggregate；long-video process 只允许完整 cohort 映射一个新 processId；unknown type/version/reference 和缺失 edge-owned ref 均 zero mutation。
+
+**影响：** `src/types/canvas.ts`、`Record<string, unknown>`、字段名后缀和 object spread 都不能单独充当 schema。Director shell 复制不等于 workspace 复制；`data:` 受 byte budget，`blob:` 不 portable；node-specific status 不使用统一 reset。Registry、fixture 和 `LIBTV-VR-012` 仍需明确编码授权。
+
+**依据：** [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)、[`LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)、Open Canvas [`types.ts`](../research/upstream/open-canvas/shared/lib/canvas/types.ts) 与 [`serialization.ts`](../research/upstream/open-canvas/shared/lib/canvas/serialization.ts)。
 
 ## 3. 何时可以重审决策
 

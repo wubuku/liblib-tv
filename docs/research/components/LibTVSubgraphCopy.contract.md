@@ -200,11 +200,11 @@ Structural ID map alone is insufficient for current LibTV metadata. Every nodeTy
 | `EXTERNAL_PROVENANCE_NODE_REF` | copied derived result intentionally remembers original source | preserve old ID with explicit provenance marker；never pretend it was copied |
 | `OWNED_EDGE_REF` | metadata `edgeId` names an edge copied in the same transaction | rewrite through edgeMap；missing copied edge rejects |
 | `GLOBAL_ASSET_REF` | stable asset/media version identity | preserve；does not imply asset duplication |
-| `RUN_OR_TASK_ID` | processId/runId/provider task identity | reset/new/unresolved according to node contract；never silently reuse live task identity |
+| `RUN_OR_TASK_ID` | runId/provider task identity | reset/new/unresolved according to node contract；never silently reuse live task identity |
 | `SESSION_OR_UI_ID` | editor session, temporary mark owner, pending state | remove/reset；not portable semantic data |
 | `DISPLAY_PROJECTION` | sourceLabel、ordinal、title suffix | recompute from stable identity or apply declared copy label；not identity |
 
-Known current fields that require classification before broad copy consolidation include `sourceNodeId`、`edgeId`、`processId`、capture/export IDs、source labels/posters、marks/regions、candidate/result identity and Auto Link mention references。
+The detailed V0 classification for current `sourceNodeId`、`edgeId`、`processId`、capture/export IDs、source labels/posters、marks/regions、shot result identity and media locators is now defined by [`LibTVNodeDataIdentity.contract.md`](LibTVNodeDataIdentity.contract.md)。It extends this table with aggregate、scoped-local、catalog、media-locator and external-provenance roles。Auto Link mention identity remains owned by [`LibTVAutoLink.contract.md`](LibTVAutoLink.contract.md)。
 
 If a node type contains a field that looks like an identity/reference but has no registry rule, return `UNMODELED_REFERENCE_FIELD` / `unknown`. Do not deep-clone it and call the transaction safe。
 
@@ -404,10 +404,10 @@ System clipboard and Option-drag browser cases remain absent until their separat
 - pure result/reasons；
 - deterministic fixture provider and `VR-011` pure cases。
 
-### Slice B: Reference Role Registry
+### Slice B: Reference Role Registry Runtime
 
-- audit current runtime node types and reference-bearing data；
-- declare rewrite/preserve/reset/projection per nodeType/dataVersion；
+- use the completed 11-type static audit and [`LibTVNodeDataIdentity.contract.md`](LibTVNodeDataIdentity.contract.md) as design authority；
+- implement rewrite/preserve/reset/projection per nodeType/dataVersion and named operation；
 - block unmodeled reference fields；
 - no provider/task backend。
 

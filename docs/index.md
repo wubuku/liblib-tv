@@ -70,6 +70,7 @@ graph TD
 - [`research/components/LibTVGraphDocument.contract.md`](research/components/LibTVGraphDocument.contract.md)：runtime/history/portable document/clipboard/persistence 分层、V1 schema、strict load 和 snapshot isolation 合同。
 - [`research/components/LibTVSubgraphCopy.contract.md`](research/components/LibTVSubgraphCopy.contract.md)：selection/group/child copy 的 command、closure、ID/reference rewrite、edge policy、placement 和 atomic history 合同。
 - [`research/LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)：11 类 runtime node、分散 data shape、cross-node/aggregate identity、media portability 和现有 copy/delete/history 风险的静态审计。
+- [`research/components/LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)：runtime node data 的 type/version registry、field role、operation transform、aggregate integrity 和 portability 合同。
 - [`research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：LibTV page/route/node/Director 浮层的 state、mount owner、关闭路径、键盘和定位 ownership 目录。
 - [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)：当前 LibTV UI/UX parity 缺口的价值、证据、验证准备度、风险、依赖和授权/fixture 队列。
 - [`research/LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)：LibTV 本地/Director/源站 fixture 的身份、构造、隔离、reset、副作用和 parity backlog 映射。

@@ -115,7 +115,7 @@ Design choices:
 5. node/edge 数组顺序保留，因为 React Flow render order、group-before-child 和 z-order 可能依赖它；
 6. arbitrary `style` 不进入 V1；稳定 layout 只白名单化 width/height/zIndex，避免 CSS/runtime object 变成数据合同；
 7. edge renderer 固定为当前 `default` 产品合同；不能通过 import 改写 `DeletableEdge` flow effect；
-8. exact node type registry 仍需单独静态审计。当前 `src/types/canvas.ts` 不足以作为 allowlist。
+8. exact 11-type static inventory and V0 registry design are now recorded in [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](../LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md) and [`LibTVNodeDataIdentity.contract.md`](LibTVNodeDataIdentity.contract.md)；runtime registry/codec remain missing，and `src/types/canvas.ts` is still not an allowlist。
 
 ## 5. Field Classification
 

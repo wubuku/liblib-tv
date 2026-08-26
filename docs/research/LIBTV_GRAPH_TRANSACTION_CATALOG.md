@@ -206,6 +206,9 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-010` | one user command produces its declared history step count | `CURRENT_CLONE_FACT` | graph actions target one snapshot; route drag compresses many frames | no-op/equality and multi-node actions need exact compatibility cases |
 | `LIBTV-GI-011` | graph snapshot metadata is not mutated through shared nested references | `REQUIRED_CORRECTNESS` | current snapshot is only shallow for nested `data` | document/snapshot deep-isolation contract complete；runtime missing |
 | `LIBTV-GI-012` | graph history is in-memory and excludes viewport/UI/save state | `PROTOTYPE_BOUNDARY` | current `historyByCanvas` contract | do not infer persistence, collaboration or project-level undo |
+| `LIBTV-GI-013` | every runtime node type/dataVersion and identity-bearing field has one registry rule | `REQUIRED_CORRECTNESS` | 11-type static audit and node-data contract complete；runtime uses generic Node/Record | unknown type/version/field blocks codec/operation before mutation |
+| `LIBTV-GI-014` | owned node/edge metadata refs resolve or use an explicit external provenance mode | `REQUIRED_CORRECTNESS` | sourceNodeId/edgeId exist in derived metadata；continuation cleanup dereferences edgeId | map both refs, apply declared detach recipe, or reject；never retain stale edge ownership |
+| `LIBTV-GI-015` | shot reciprocal refs and long-video process cohort remain internally consistent | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | resultNodeIds/sourceBreakdownId and shared processId bypass parent closure | exact copy validates/maps full aggregate；delete cascade/detach remains product decision |
 
 ### 10.2 Compatibility case queue
 
@@ -223,10 +226,13 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-010` delete selected subtree | selected parent/group with child/reference edges | delete | node/edge closure, selection clear and one-step undo/redo exact | compare current cascade behavior |
 | `LIBTV-GC-011` transaction failure | derived action fails validation after computing draft IDs | submit | no orphan node/edge, no selection shift, no history step | design required |
 | `LIBTV-GC-012` canvas boundary | two canvases with independent graph/history | mutate, switch, undo | only active canvas graph/history changes | current clone contract exists |
+| `LIBTV-GC-013` shot aggregate copy/delete | complete or broken source/result reciprocal set | duplicate/delete | both directions and edges map/repair atomically；partial reason stable | data registry/fixture design complete；runtime/source delete policy missing |
+| `LIBTV-GC-014` process cohort copy/delete | complete or partial shared processId set | duplicate/delete | one new aggregate ID for complete copy；partial mutation rejects unless separately specified | data registry/fixture design complete；runtime/source lifecycle missing |
+| `LIBTV-GC-015` media portability | repo/https/data/blob locators | history/copy/export/import | locator class, alias, budget and non-portable diagnostics explicit | data registry/document design complete；runtime missing |
 
 ### 10.3 Decision and verification order
 
-1. Lock `GI-001..003/008..011` as data correctness rules with pure cases;
+1. Lock `GI-001..003/008..015` data-correctness portions as pure cases, while keeping source/product branches explicit;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
 3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
 4. implement and run the designed `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` only after coding authorization;
@@ -285,7 +291,20 @@ Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / PERSISTENCE_DEFERRED`�
 - full-plan validation、zero-partial failure 和 accepted one-step history；
 - `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` plus `LIBTV-VR-011` pure/browser acceptance design。
 
-Current runtime is `PARTIAL`：Batch 3/5/8 已有结构 closure 和 history，但没有 reference-role registry/system clipboard；single-node incident edge 分支保持 compatibility hold。Option-drag 仍需 disposable source fixture。
+Current runtime is `PARTIAL`：Batch 3/5/8 已有结构 closure 和 history，reference-role/aggregate registry 已完成设计但没有 runtime codec/system clipboard；single-node incident edge 分支保持 compatibility hold。Option-drag 仍需 disposable source fixture。
+
+### 10.8 Node data identity and aggregate handoff
+
+[`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md) is the dated clone-fact inventory；[`LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md) is the normative design authority for：
+
+- 11 runtime node types and current `dataVersion: 0` migration baseline；
+- canonical field roles for semantic/display/node/edge/aggregate/scoped/catalog/asset/media/provenance/run/session data；
+- named operation profiles for history、selection/node copy、canvas duplicate、clipboard、portable import and delete repair；
+- shot breakdown reciprocal aggregate and long-video process complete-cohort policy；
+- Director shell/workspace boundary and repo/https/data/blob portability；
+- stable reject/unknown reasons、zero-partial integrity pass、`LIBTV-FIX-LOCAL-NODE-DATA-01` and `LIBTV-VR-012`。
+
+Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PARTIAL`。It closes the registry audit/design gap, not the runtime schema gap；no graph/store/type/test code is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

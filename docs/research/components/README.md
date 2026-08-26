@@ -18,7 +18,7 @@ listed in `COMPONENT_INVENTORY.md`.
 | Panels and dialogs | `AddNodePanel`, `MainEntryPanels`, `ToolboxPanel`, `CharacterLibraryPanel`, `HistoryPanel`, `SmartMattingPanel`, `VideoClipEditPanel`, `CameraConfigDialog`, `CameraMovementDialog`, `KeyboardShortcutsDialog` |
 | Image workflow | `ImageNode`, `ImageEditPanel`, `ImagePreviewOverlay`, [`LibTVOverlayPositioning.contract.md`](LibTVOverlayPositioning.contract.md), [`LibTVAutoLink.contract.md`](LibTVAutoLink.contract.md) |
 | Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel`, `PictureEditPanel`, `DepthMotionCapturePanel` |
-| Graph behavior | `DeletableEdge`, `StoryboardGroupNode`, [`LibTVGraphConnection.contract.md`](LibTVGraphConnection.contract.md), [`LibTVGraphDocument.contract.md`](LibTVGraphDocument.contract.md), [`LibTVSubgraphCopy.contract.md`](LibTVSubgraphCopy.contract.md) |
+| Graph behavior | `DeletableEdge`, `StoryboardGroupNode`, [`LibTVGraphConnection.contract.md`](LibTVGraphConnection.contract.md), [`LibTVGraphDocument.contract.md`](LibTVGraphDocument.contract.md), [`LibTVSubgraphCopy.contract.md`](LibTVSubgraphCopy.contract.md), [`LibTVNodeDataIdentity.contract.md`](LibTVNodeDataIdentity.contract.md) |
 | Specialized nodes | `ScriptNode`, `ScriptExecutionNode`, `TextNode`, `AudioNode`, `ShotBreakdownNode`, `ShotBreakdownResultNode`, `VideoClipNode` |
 
 The `PictureEditPanel` contract is also recorded in

@@ -207,6 +207,8 @@ Document/snapshot 子切片的设计前置也已完成，权威入口是 [`LibTV
 
 Subgraph copy 子切片的设计前置见 [`LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md)：具名 command、descendant closure、two-pass identity、parent detach/remap、node-data reference roles、edge policy、flow placement、atomic history、`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` 和 `LIBTV-VR-011` 已定义。当前 Batch 3/5/8 runtime 只是 `PARTIAL`，single-node incident edge 是 compatibility hold；system clipboard 和 Option-drag 仍 blocked。
 
+Node data identity 子切片已经完成 fixed static audit 与规范设计，权威入口是 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md) 和 [`LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md)：11-type V0 registry、field roles、named operation profiles、shot reciprocal aggregate、long-video process cohort、Director shell/workspace boundary、media locator、`LIBTV-FIX-LOCAL-NODE-DATA-01` 和 `LIBTV-VR-012` 已定义。Runtime 仍使用 generic Node/Record 与浅 data spread；shot/process delete cascade 继续需要 source/product decision。
+
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle
 
 逐帧拉片、片段重拍和超长视频已经有有界 clone prototype，但 source 的处理中/失败/部分成功/重试/局部重算/版本替换仍不完整。进入实现前需要：
