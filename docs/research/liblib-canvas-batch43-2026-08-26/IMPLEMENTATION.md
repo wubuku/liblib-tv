@@ -1,7 +1,7 @@
 # Batch 43 Implementation Log
 
-> Status: planned. Evidence, upstream archaeology and the bounded camera
-> relation specification are complete. Implementation is next.
+> Status: implemented and focused-verified. Cross-batch regression and stable
+> documentation are next.
 
 ## Protection Points
 
@@ -19,22 +19,22 @@
 - [x] full current chunk search
 - [x] upstream object-target archaeology
 - [x] implementation specification
-- [ ] serializable camera relation and pure math
-- [ ] Inspector and R3F camera behavior
-- [ ] conflict guards
-- [ ] focused browser verification and screenshots
-- [ ] screenshot interpretation ledger
+- [x] serializable camera relation and pure math
+- [x] Inspector and R3F camera behavior
+- [x] conflict guards
+- [x] focused browser verification and screenshots
+- [x] screenshot interpretation ledger
 - [ ] cross-batch regression and stable documentation
 
 ## Commits
 
-- Plan/evidence protection: pending
-- Camera relation implementation: pending
+- Plan/evidence protection: `4aa0fb3`
+- Camera relation implementation: `8a4baf5`
 - Focused verification: pending
 - Stable documentation/finalization: pending
 
 ## Interruption Handoff
 
-Implement `PLAN.md` steps 1-7. Do not claim source geometry or math. Preserve
-the dirty historical PNGs, stage exact paths only and commit/push this plan
-before changing runtime code.
+Run Batch 35-43 regression and project quality gates, then update stable
+Director documentation. Do not claim source geometry or math. Preserve the
+dirty historical PNGs and stage exact paths only.
