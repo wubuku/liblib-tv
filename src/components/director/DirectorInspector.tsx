@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import {
   Camera,
   Check,
+  ChevronDown,
   Eye,
   EyeOff,
   Plus,
@@ -19,9 +21,16 @@ import {
   type DirectorMotionPath,
   type DirectorMotionPathAnchor,
   type DirectorMotionPathHandle,
+  type DirectorObject,
   type DirectorTransform,
   type DirectorTuple3,
 } from "@/store/directorStore";
+import {
+  createDirectorCharacterRig,
+  DIRECTOR_POSE_CONTROL_GROUPS,
+  DIRECTOR_POSE_PRESETS,
+  type DirectorPoseControlGroup,
+} from "@/components/director/directorPose";
 
 const axisLabels = ["X", "Y", "Z"] as const;
 
@@ -523,6 +532,160 @@ function MotionPathInspector({
   );
 }
 
+function PoseControlGroup({
+  character,
+  group,
+}: {
+  character: DirectorObject;
+  group: DirectorPoseControlGroup;
+}) {
+  const [expanded, setExpanded] = useState(
+    group.id === "body" || group.id === "head-neck",
+  );
+  const updateCharacterPoseControl = useDirectorStore(
+    (state) => state.updateCharacterPoseControl,
+  );
+  const controls =
+    character.characterRig?.controls ?? createDirectorCharacterRig().controls;
+
+  return (
+    <section
+      data-director-pose-group={group.id}
+      className="border-t border-white/[0.06]"
+    >
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((current) => !current)}
+        className="flex min-h-10 w-full items-center gap-2 py-2 text-left"
+      >
+        <span className="text-[11px] font-medium text-[#c8c8c8]">
+          {group.label}
+        </span>
+        <span className="min-w-0 flex-1 truncate text-[9px] text-[#626262]">
+          {group.bones.join(" / ")}
+        </span>
+        <ChevronDown
+          size={12}
+          className={cn(
+            "shrink-0 text-[#666] transition-transform",
+            expanded && "rotate-180",
+          )}
+        />
+      </button>
+      {expanded ? (
+        <div className="space-y-2 pb-3">
+          {group.controls.map((control) => {
+            const value = controls[control.key] ?? 0;
+            return (
+              <label
+                key={control.key}
+                className="grid grid-cols-[minmax(0,1fr)_42px] items-center gap-x-2 gap-y-1"
+              >
+                <span className="truncate text-[10px] text-[#8b8b8b]">
+                  {control.label}
+                </span>
+                <output className="text-right text-[10px] tabular-nums text-[#b8b8b8]">
+                  {control.unit === "meter"
+                    ? value.toFixed(2)
+                    : `${Math.round(value)}°`}
+                </output>
+                <input
+                  type="range"
+                  min={control.min}
+                  max={control.max}
+                  step={control.step}
+                  value={value}
+                  aria-label={`${group.label} ${control.label}`}
+                  data-director-pose-control={control.key}
+                  onChange={(event) =>
+                    updateCharacterPoseControl(
+                      character.id,
+                      control.key,
+                      Number(event.currentTarget.value),
+                    )
+                  }
+                  className="col-span-2 w-full accent-[#09caf5]"
+                />
+              </label>
+            );
+          })}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function CharacterPoseInspector({
+  character,
+}: {
+  character: DirectorObject;
+}) {
+  const applyCharacterPosePreset = useDirectorStore(
+    (state) => state.applyCharacterPosePreset,
+  );
+  const rig = character.characterRig ?? createDirectorCharacterRig();
+
+  return (
+    <div
+      data-director-pose-panel
+      className="space-y-4 px-3 py-3"
+    >
+      <section>
+        <div className="mb-2 flex items-center justify-between">
+          <h3 className="text-[11px] font-medium text-[#cfcfcf]">姿势预设</h3>
+          <span
+            data-director-pose-state
+            data-pose-preset={rig.posePresetId ?? "custom"}
+            data-pose-control-count={Object.keys(rig.controls).length}
+            className="text-[9px] text-[#686868]"
+          >
+            {rig.posePresetId
+              ? DIRECTOR_POSE_PRESETS.find(
+                  (preset) => preset.id === rig.posePresetId,
+                )?.label ?? "站立"
+              : "自定义"}
+          </span>
+        </div>
+        <div className="grid grid-cols-4 gap-1">
+          {DIRECTOR_POSE_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              data-director-pose-preset={preset.id}
+              aria-pressed={rig.posePresetId === preset.id}
+              onClick={() =>
+                applyCharacterPosePreset(character.id, preset.id)
+              }
+              className={cn(
+                "flex h-8 min-w-0 items-center justify-center rounded border border-white/[0.07] bg-[#222] px-1 text-[10px] text-[#898989] hover:border-white/[0.14] hover:text-white",
+                rig.posePresetId === preset.id &&
+                  "border-[#09caf5]/45 bg-[#09caf5]/10 text-[#62ddf7]",
+              )}
+            >
+              <span className="min-w-0 truncate">{preset.label}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-[11px] font-medium text-[#cfcfcf]">姿势调节</h3>
+        <p className="mt-1 text-[10px] text-[#686868]">SAM 骨骼姿势</p>
+        <div className="mt-2">
+          {DIRECTOR_POSE_CONTROL_GROUPS.map((group) => (
+            <PoseControlGroup
+              key={group.id}
+              character={character}
+              group={group}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 export function DirectorInspector({
   activeCapture,
   onSendCapture,
@@ -542,6 +705,7 @@ export function DirectorInspector({
   const recordObjectKeyframe = useDirectorStore(
     (state) => state.recordObjectKeyframe,
   );
+  const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
   const timeline = useDirectorStore((state) => state.timeline);
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
   const selectedTrack = timeline.tracks.find(
@@ -556,6 +720,10 @@ export function DirectorInspector({
     selectedTrack?.kind === "transform" &&
     selectedPath?.enabled === true &&
     selectedPath.orientToPath;
+  const characterTab =
+    selected?.kind === "character" && poseObjectId === selected.id
+      ? "pose"
+      : "properties";
 
   return (
     <section
@@ -578,8 +746,43 @@ export function DirectorInspector({
         </span>
       </header>
 
+      {selected?.kind === "character" ? (
+        <nav
+          data-director-character-tabs
+          aria-label="角色编辑"
+          className="grid h-9 shrink-0 grid-cols-2 border-b border-white/[0.07] bg-[#171717] p-1"
+        >
+          {(
+            [
+              ["properties", "属性"],
+              ["pose", "姿势"],
+            ] as const
+          ).map(([tab, label]) => (
+            <button
+              key={tab}
+              type="button"
+              data-director-character-tab={tab}
+              aria-pressed={characterTab === tab}
+              onClick={() =>
+                setPoseObjectId(tab === "pose" ? selected.id : null)
+              }
+              className={cn(
+                "rounded text-[11px] text-[#777] hover:text-white",
+                characterTab === tab &&
+                  "bg-[#292929] text-[#d9d9d9]",
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      ) : null}
+
       <div className="min-h-0 flex-1 overflow-y-auto">
         {selected ? (
+          selected.kind === "character" && characterTab === "pose" ? (
+            <CharacterPoseInspector character={selected} />
+          ) : (
           <div className="space-y-4 px-3 py-3">
             <label className="block">
               <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
@@ -705,6 +908,7 @@ export function DirectorInspector({
               <MotionPathInspector path={selectedPath} />
             ) : null}
           </div>
+          )
         ) : (
           <div className="space-y-4 px-3 py-3">
             <label className="block">

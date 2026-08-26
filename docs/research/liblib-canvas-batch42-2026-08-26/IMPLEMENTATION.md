@@ -1,7 +1,7 @@
 # Batch 42 Implementation Log
 
-> Status: planned. Evidence and specification are complete; implementation is
-> the next action.
+> Status: in progress. The articulated character and pose Inspector milestone
+> is implemented and browser-smoked; typed pose tracks are next.
 
 ## Protection Points
 
@@ -18,8 +18,8 @@
 - [x] source vocabulary extraction
 - [x] upstream pose code archaeology
 - [x] implementation specification
-- [ ] articulated rig and pose data
-- [ ] Inspector preset/SAM controls
+- [x] articulated rig and pose data
+- [x] Inspector preset/SAM controls
 - [ ] pose track sampling/composition
 - [ ] focused browser verification and screenshots
 - [ ] screenshot interpretation ledger
@@ -28,14 +28,35 @@
 ## Commits
 
 - Plan/evidence protection: pending
-- Main implementation: pending
+- Articulated character and Inspector: pending
+- Pose timeline integration: pending
 - Focused verification: pending
 - Stable documentation/finalization: pending
 
+## Articulated Character And Inspector Milestone
+
+- Added a strict serializable rig model, 20 source-named calibrated presets,
+  six source-named SAM groups and finite control normalization.
+- Replaced the rigid six-part character with nested R3F body, torso, head,
+  shoulder, elbow, wrist, hip, knee and foot chains.
+- Added character-only `属性 / 姿势` tabs, a compact four-column preset grid,
+  active/custom state and expandable grouped range controls.
+- Kept preset numeric values, channel mapping, geometry and ranges explicitly
+  clone-calibrated rather than source facts.
+
+An initial `1440x900` Chromium smoke confirmed:
+
+- exactly 20 preset commands and six SAM groups are rendered;
+- applying `招手` stores `posePresetId: "wave"` and the expected finite rig
+  controls;
+- the actual WebGL canvas changes measurably after the preset;
+- editing `rightShoulder.pitch` changes the state to `custom`;
+- no console/page errors or document-width overflow occur.
+
 ## Interruption Handoff
 
-Continue with `PLAN.md` step 1. Do not re-open historical screenshots: this
-batch has no source or clone screenshot yet. Preserve all unrelated dirty PNGs
-and stage only exact Batch 42 paths. The most important implementation invariant
-is that transform and pose tracks must compose for one character rather than
-compete in a `Map<objectId, track>`.
+Continue with `PLAN.md` step 5: add `kind: "pose"` keyframes and multi-track
+composition. Do not re-open historical screenshots: this batch has no durable
+screenshot yet. Preserve all unrelated dirty PNGs and stage only exact Batch 42
+paths. The most important invariant is that transform and pose tracks must
+compose for one character rather than compete in a `Map<objectId, track>`.

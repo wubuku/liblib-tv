@@ -11,6 +11,14 @@ import {
   type DirectorPhoneVcamPose,
 } from "@/components/director/directorPhoneVcamMath";
 import {
+  applyDirectorPosePreset,
+  cloneDirectorCharacterRig,
+  createDirectorCharacterRig,
+  updateDirectorPoseControl,
+  type DirectorCharacterRig,
+  type DirectorPosePresetId,
+} from "@/components/director/directorPose";
+import {
   buildDirectorMotionPathWorldAnchors,
   buildDirectorMotionPathPoints,
   cloneDirectorMotionPathAnchors,
@@ -50,6 +58,7 @@ export interface DirectorObject {
   visible: boolean;
   locked: boolean;
   transform: DirectorTransform;
+  characterRig?: DirectorCharacterRig;
   camera?: {
     fov: number;
     target: DirectorTuple3;
@@ -265,6 +274,15 @@ interface DirectorState {
     objectId: string,
     patch: Partial<NonNullable<DirectorObject["camera"]>>,
   ) => void;
+  applyCharacterPosePreset: (
+    objectId: string,
+    presetId: DirectorPosePresetId,
+  ) => void;
+  updateCharacterPoseControl: (
+    objectId: string,
+    key: string,
+    value: number,
+  ) => void;
   setCapturing: (capturing: boolean) => void;
   addCapture: (capture: DirectorCapture) => void;
   markCaptureSent: (captureId: string, nodeId: string) => void;
@@ -385,6 +403,7 @@ const defaultObjects: DirectorObject[] = [
       rotation: [0, 18, 0],
       scale: [1, 1, 1],
     },
+    characterRig: createDirectorCharacterRig(),
   },
   {
     id: "director-prop-table",
@@ -458,6 +477,9 @@ function cloneObjects(): DirectorObject[] {
     },
     camera: object.camera
       ? { ...object.camera, target: [...object.camera.target] }
+      : undefined,
+    characterRig: object.characterRig
+      ? cloneDirectorCharacterRig(object.characterRig)
       : undefined,
   }));
 }
@@ -991,6 +1013,34 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                   ? [...patch.target]
                   : [...object.camera.target],
               },
+            }
+          : object,
+      ),
+    })),
+
+  applyCharacterPosePreset: (objectId, presetId) =>
+    set((state) => ({
+      objects: state.objects.map((object) =>
+        object.id === objectId && object.kind === "character"
+          ? {
+              ...object,
+              characterRig: applyDirectorPosePreset(presetId),
+            }
+          : object,
+      ),
+    })),
+
+  updateCharacterPoseControl: (objectId, key, value) =>
+    set((state) => ({
+      objects: state.objects.map((object) =>
+        object.id === objectId && object.kind === "character"
+          ? {
+              ...object,
+              characterRig: updateDirectorPoseControl(
+                object.characterRig ?? createDirectorCharacterRig(),
+                key,
+                value,
+              ),
             }
           : object,
       ),

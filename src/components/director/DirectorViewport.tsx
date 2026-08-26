@@ -49,6 +49,8 @@ import {
   type DirectorVideoExportResult,
 } from "@/components/director/directorVideoExport";
 import { DirectorPhoneVcamPanel } from "@/components/director/DirectorPhoneVcamPanel";
+import { DirectorMannequin } from "@/components/director/DirectorMannequin";
+import { createDirectorCharacterRig } from "@/components/director/directorPose";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
 function CameraController() {
@@ -103,43 +105,6 @@ function CameraController() {
   );
 }
 /* eslint-enable react-hooks/immutability */
-
-function CharacterPrimitive({
-  color,
-  material,
-}: {
-  color: string;
-  material: MeshStandardMaterialParameters;
-}) {
-  return (
-    <group>
-      <mesh castShadow position={[0, 2.02, 0]}>
-        <sphereGeometry args={[0.25, 24, 18]} />
-        <meshStandardMaterial color="#c9aa94" {...material} />
-      </mesh>
-      <mesh castShadow position={[0, 1.35, 0]}>
-        <capsuleGeometry args={[0.34, 0.72, 8, 16]} />
-        <meshStandardMaterial color={color} roughness={0.72} {...material} />
-      </mesh>
-      <mesh castShadow position={[-0.2, 0.48, 0]}>
-        <capsuleGeometry args={[0.11, 0.7, 6, 12]} />
-        <meshStandardMaterial color="#25282e" roughness={0.8} {...material} />
-      </mesh>
-      <mesh castShadow position={[0.2, 0.48, 0]}>
-        <capsuleGeometry args={[0.11, 0.7, 6, 12]} />
-        <meshStandardMaterial color="#25282e" roughness={0.8} {...material} />
-      </mesh>
-      <mesh castShadow position={[-0.46, 1.38, 0]} rotation={[0, 0, -0.13]}>
-        <capsuleGeometry args={[0.09, 0.66, 6, 12]} />
-        <meshStandardMaterial color={color} roughness={0.72} {...material} />
-      </mesh>
-      <mesh castShadow position={[0.46, 1.38, 0]} rotation={[0, 0, 0.13]}>
-        <capsuleGeometry args={[0.09, 0.66, 6, 12]} />
-        <meshStandardMaterial color={color} roughness={0.72} {...material} />
-      </mesh>
-    </group>
-  );
-}
 
 function TablePrimitive({
   color,
@@ -277,7 +242,11 @@ function SceneObject({ object }: { object: DirectorObject }) {
       }}
     >
       {object.primitive === "character" ? (
-        <CharacterPrimitive color={object.color} material={material} />
+        <DirectorMannequin
+          color={object.color}
+          material={material}
+          rig={object.characterRig ?? createDirectorCharacterRig()}
+        />
       ) : null}
       {object.primitive === "table" ? (
         <TablePrimitive color={object.color} material={material} />
