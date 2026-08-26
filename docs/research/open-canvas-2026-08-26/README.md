@@ -58,3 +58,41 @@
 - 当前采纳治理已进一步区分“借鉴方法”和“移植实现”：坐标域、稳定身份、状态分层和结构化 graph transaction 可进入设计评审；Open Canvas 的视觉皮肤、provider/key、保存语义和未被 LibTV 证实的 Quick Add 行为不能直接进入 clone。
 
 本次研究不修改 `src/`、不修改上游 submodule 内容、不执行生成或上传、不创建官网画布。
+
+## Authority Map
+
+| 想确认什么 | 当前唯一入口 | 维护边界 |
+|---|---|---|
+| 固定 submodule 证明了什么 | [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)、[`SOURCE_ANALYSIS.md`](SOURCE_ANALYSIS.md) | 新上游版本另做 diff，不静默移动本次基线 |
+| 官网运行态实际观察到什么 | [`RUNTIME_AUDIT.md`](RUNTIME_AUDIT.md) | 带日期追加，不用源码推断替换 live observation |
+| 哪些一般机制值得研究 | [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)、[`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md) | 只提供机制，不提供 LibTV 产品真相 |
+| 一个机制采纳、改造、暂缓还是拒绝 | [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md) | 当前采纳状态权威；旧文档不得另起状态词表 |
+| 获批后怎样形成最小 LibTV slice | [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) | 七层交接和 `OC-BP-*` 权威；不代替具体组件合同 |
+| Auto Link identity/session/fixture | [`../components/LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md) | typed editor 和 `VR-003..005` 权威 |
+| Graph invariant/compatibility | [`../LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md#10-libtv-par-008-invariant-and-compatibility-design) | `LIBTV-GI-*` / `LIBTV-GC-*` 权威；source-decision 项保持未决 |
+| Process/result identity/state | [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) | `LIBTV-PR-*`、stale/retry、`VR-007` 权威 |
+| Model UI/descriptor/runner 边界 | [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | source-visible sample 和 execution anti-claim 权威 |
+| 当前优先级与授权状态 | [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)、[`../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | Open Canvas 目录不维护第二套当前排期 |
+| 第一阶段为何按 A-E 排过 | [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md) | 仅保留历史 provenance，不新增 A-E 条目 |
+
+## Research Completeness Boundary
+
+在固定 commit 和当前只读证据范围内，以下文档工作已经完成：
+
+- 产品/源码/运行态深度报告；
+- Open Canvas claim 与不可推出结论；
+- interaction/pattern 到 LibTV 的 crosswalk；
+- 采纳/改造/拒绝治理；
+- 单 slice 七层交接；
+- Auto Link fixture、graph invariant、process/result state 和 model capability 四项 design-first 合同。
+
+剩余高价值问题主要是证据或 fixture 工作，不是“缺一份文档”：
+
+1. `LIBTV-PAR-005` 的新日期 source freshness；
+2. `LIBTV-FIX-SOURCE-AUTOLINK-01` 的输入/IME/accept 行为；
+3. LibTV self-loop、cycle、Handle compatibility 的 source decision；
+4. `LIBTV-FIX-SOURCE-PROCESS-01` 的 partial/retry/result replacement；
+5. 非 Seedance 2.5 模型逐项 mode/control capability；
+6. Open Canvas 上游 commit 变化后的 impact diff。
+
+没有新证据时，应更新现有 claim 的状态、fixture blocker 或未决问题，不再新建同主题总览、最终版或第二套 backlog。获得新证据后，优先追加到对应 authority document，再更新 traceability、parity、fixture 和 verifier 入口。
