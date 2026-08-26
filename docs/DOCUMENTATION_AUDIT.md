@@ -76,8 +76,8 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 |---|---|---|---|
 | P0 | 任务到文档的 agent reading map | 新 agent 能按任务进入最小证据集合 | 已完成：[`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) |
 | P0 | 跨文档决策登记 | 关键红线和不可逆选择有单一索引 | 已完成：[`DECISION_REGISTER.md`](DECISION_REGISTER.md) |
-| P1 | 证据 claim 反向索引 | 从产品能力反查 DOM/JSON/截图/脚本证据 | 需要维护 claim ID 和日期 |
-| P1 | verifier 能力台账 | 区分脚本存在、脚本通过、源站已复核和仅有文章证据 | 不把并行 WIP 自动标为完成 |
+| P1 | 证据 claim 反向索引 | 从产品能力反查 DOM/JSON/截图/脚本证据 | 已完成：[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md) |
+| P1 | verifier 能力台账 | 区分脚本存在、脚本通过、源站已复核和仅有文章证据 | 已完成：[`VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md) |
 | P2 | 文档生命周期清理 | 处理真正过时的草稿和重复索引 | 必须先确认没有 inbound links |
 
 本审计不建议现在做全量目录重排、截图重命名或双语文档翻译；这些动作的收益低于继续维护证据可追溯性。
