@@ -1,6 +1,8 @@
 # Open Canvas 对当前项目的实施影响
 
 > 本文件是研究后的候选实施清单，不是授权。当前用户要求在获得允许前不能修改代码，因此本轮只建立任务边界、验收标准和依赖关系。
+>
+> 生命周期说明：本文保留第一阶段 Batch A-E 的研究 provenance。当前实施入口已由 [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md)、[`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) 和全局 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 接管；新工作不再扩展 A-E 编号。
 
 ## 1. 实施前提
 
@@ -126,7 +128,7 @@
 
 ## 5. 研究出口
 
-当前最合理的下一步不是立即编码，而是继续补齐拖动/平移时序、元素编辑的非空 record 状态、旋转入口的派生节点路径，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28%/34%/41%/50% 双浮层、100% virtualization boundary、preview、空 annotate、空元素编辑、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
+本文记录的第一阶段出口继续有效，但当前队列和编号以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准：标准图片双浮层对应 `LIBTV-PAR-001`，低风险 active surface 对应 `LIBTV-PAR-002`，Auto Link 对应 `LIBTV-PAR-003`。28%/34%/41%/50% 双浮层、100% virtualization boundary、preview、空 annotate、空元素编辑、六动作 bundle 状态和 AutoLink 静态状态链已经完成；元素编辑非空 record、图层分离和其他会写入/提交的 live 取证仍等待 disposable fixture 与授权。具体视觉克隆始终以 LibTV 源站证据为最高优先级。
 
 ## 6. 变更授权门槛
 
