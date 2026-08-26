@@ -106,5 +106,5 @@
 - [x] Source/upstream/clone boundaries recorded
 - [x] UI, pose, recording and import contracts planned
 - [x] Store, math and panel implementation
-- [ ] Focused Playwright and screenshot ledger
+- [x] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate

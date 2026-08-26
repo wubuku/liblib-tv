@@ -1,7 +1,7 @@
 # Batch 41: Director Phone Virtual Camera
 
-> Status: planned. Source vocabulary, implementation boundary, state contract
-> and verification matrix are protected before code changes.
+> Status: implementation and focused verification complete. Cross-batch
+> regression and stable-document closeout remain.
 
 ## Read Order
 

@@ -1,7 +1,7 @@
 # Batch 41 Implementation Log
 
-> Status: implementation complete; focused verification and final regression
-> remain.
+> Status: implementation and focused verification complete; final regression
+> and stable-doc closeout remain.
 
 ## Protection Points
 
@@ -17,8 +17,8 @@
 - [x] source-shaped panel and local input adapters
 - [x] live camera preview and recording timer
 - [x] named camera plus typed camera-track import
-- [ ] focused desktop/mobile Playwright
-- [ ] one-pass screenshot interpretation
+- [x] focused desktop/mobile Playwright
+- [x] one-pass screenshot interpretation
 - [ ] stable docs and cross-batch quality gates
 
 ## Main Implementation
@@ -74,11 +74,30 @@ At `390x844`, the connected panel measured `x=12`, `width=366`,
 TypeScript, quiet lint and targeted `git diff --check` passed after the main
 implementation.
 
+## Focused Verification
+
+Added `scripts/verify-liblib-batch41.py`. It covers:
+
+- waiting-state source vocabulary and explicit local-preview boundary;
+- real active-camera position changes from pointer pose;
+- stability, keep-level, hold and elevation behavior;
+- current-playhead end guard with no camera/track mutation;
+- recording-time close/export/capture exclusion;
+- advancing playhead and dynamic camera sample differences;
+- original camera restoration;
+- one new `手机运镜 1` camera plus typed camera track;
+- active object/track/keyframe selection and imported metadata;
+- nonblank R3F canvas, desktop/mobile overflow and mobile panel geometry;
+- console, page and request failures.
+
+The focused script passed and generated six Batch 41-only image artifacts.
+Their first visual interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
+
 ## Commits
 
 - Plan/evidence protection: `6419f40`
-- Main implementation: recorded by the next code commit
-- Focused verification: pending
+- Main implementation: `4e20e5a`
+- Focused verification: recorded by the next test/docs commit
 - Stable documentation/finalization: pending
 
 ## Interruption Handoff
