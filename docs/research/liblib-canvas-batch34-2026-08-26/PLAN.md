@@ -81,8 +81,29 @@ docs/research/liblib-canvas-batch34-2026-08-26/
 
 - [x] Batch 33 实现已提交并推送：`2bf1617`
 - [x] Batch 34 计划和初始证据边界已落档
-- [ ] 子模块固定版本和许可证核对
-- [ ] 代码考古与 UX 借鉴文档
-- [ ] 适配矩阵、验证和实施结果
+- [x] 子模块固定版本和许可证核对
+- [x] 代码考古与 UX 借鉴文档
+- [x] 适配矩阵、验证和实施结果
 - [ ] Batch 34 commit/push
 
+Parent verification is complete:
+
+- `npm run docs:check` passed;
+- `git diff --check` passed;
+- `npm run check` passed with 9 existing lint warnings and no errors.
+
+## 8. Verified Research Conclusion
+
+The upstream project is most valuable as a reference for editor interaction
+contracts:
+
+1. full-bleed three-zone workbench;
+2. semantic tree plus selection-driven inspector;
+3. first-class shot records linked to visible camera objects;
+4. visible framing guides and capture history;
+5. grouped selection, batched undo and scoped persistence.
+
+The first LibTV implementation should reproduce these contracts in a dedicated
+2D director workspace around source-backed shot/video entities. Three.js scene
+rendering, external model catalogs and the upstream host protocol remain
+separate follow-up decisions.

@@ -1,17 +1,77 @@
 # Batch 34 Portability Matrix
 
-> 状态：待完成上游依赖和架构分析后填写。
+## Current Architecture Constraints
 
-候选能力将按当前项目边界评估：
+The current clone has two independent routes and stores:
 
-| 能力 | 上游依赖 | 当前 LibTV 对应边界 | 适配成本 | 决策 |
+- LibTV `/` uses React Flow nodes, `canvasStore` and `uiStore`;
+- FrameOS `/frameos/*` uses its own node system and `frameosStore`;
+- the current project does not depend on Three.js or React Three Fiber for product
+  runtime;
+- selected-node panels are already calibrated as node-anchored overlays;
+- graph workflows use atomic store transactions and local in-memory history.
+
+The upstream desk is orthogonal: it stores a 3D scene document and renders it
+through R3F. Portability therefore means borrowing interaction contracts and
+domain ideas, not merging stores or rendering systems.
+
+## Capability Matrix
+
+| Upstream capability | Source location | Current LibTV analogue | Cost | Decision |
 |---|---|---|---:|---|
-| 导演台工作区 | React UI | `src/app/page.tsx` + `uiStore` | 待评估 | 待定 |
-| 对象树/属性面板 | React + Zustand | `canvasStore` + 侧栏/浮层 | 待评估 | 待定 |
-| 3D 场景视口 | Three.js / R3F | 当前无 3D runtime | 待评估 | 待定 |
-| 镜头/截图记录 | 本地数据模型 | 节点和派生 graph transaction | 待评估 | 待定 |
-| 模型/贴图资源 | 上游 public assets | 当前 design references / 本地 mock | 待评估 | 默认不直接复用 |
+| Full-bleed three-zone shell | `src/app/layout/DirectorDeskShell.tsx` | canvas page + drawers/overlays | Low | Borrow layout principle |
+| Selection-driven right inspector | `src/editor/store/directorSelectors.ts`, panels | selected-node panels | Low | Borrow routing principle |
+| Semantic object tree | `ObjectTreePanel.tsx` | asset drawer/storyboard context | Medium | Borrow for director mode |
+| Shot record linked to visible camera rig | `directorProject.ts`, `directorStore.ts` | video/image nodes and derived targets | Medium | Borrow as shot metadata, not 3D transform |
+| Camera view switching | `DirectorCanvas.tsx` | preview/player state | Medium | Borrow as preview mode concept |
+| Aspect frame + thirds guide | `ViewportAspectOverlay.tsx` | image/video preview surfaces | Medium | Borrow after source calibration |
+| Transform gizmo | R3F `TransformControls` + `SceneRoot.tsx` | React Flow node drag/resize | High | Defer; different coordinate systems |
+| 3D scene/object rendering | `DirectorCanvas.tsx`, `SceneRoot.tsx` | none | Very high | Separate future route/embedding decision |
+| Character body/pose runtime | `runtime/` and pose presets | no matching LibTV entity | Very high | Do not start here |
+| Crowd array | `directorStore.ts`, `ObjectTreePanel.tsx` | possible shot/candidate group | Medium | Borrow grouping contract only |
+| Model library | `modelLibraryCatalog.ts`, external `模型库/` | asset manager/history | High | Rebuild around owned assets |
+| Panorama import/adaptation | `panoramaImport.ts`, `ViewportBackground.tsx` | existing panorama prototype | Medium | Compare with existing source-backed behavior |
+| Screenshot variants | capture bridge + `CameraPanel.tsx` | local result/image nodes | Medium | High-value candidate |
+| Project JSON import/export | `io/exportProjectJson.ts`, `importProjectJson.ts` | in-memory canvas state | Medium | Borrow only after schema validation |
+| Scoped local persistence | `directorStore.ts`, `hostBridge.ts` | active canvas store | Medium | Borrow scoped-key principle |
+| StoryAI host bridge | `hostBridge.ts` | no current equivalent | High | Redesign; do not copy protocol |
 
-本文件不会把“能实现”误写成“应该实现”。最终决策需要结合证据、维护成本
-和当前 clone 的两条路线边界。
+## Proposed Adaptation Boundary
+
+```text
+LibTV canvas node / selected video
+  -> DirectorDeskSession (new director-specific state boundary)
+     -> 2D shot workspace and preview first
+     -> optional 3D staging surface later
+  -> selected capture / shot result
+  -> LibTV image/video node transaction
+```
+
+The director session should not be a `mode` flag added to `canvasStore`, and it
+should not reuse FrameOS state. A future implementation can use:
+
+- a dedicated `directorStore` for shot session, selection, inspector and captures;
+- typed adapters between LibTV node IDs and director shot IDs;
+- an explicit return transaction to create or update LibTV nodes;
+- a separate R3F route or lazy-loaded island only if 3D is approved.
+
+## Asset And License Boundary
+
+- Repository code is MIT at the fixed upstream commit.
+- The included mannequin has a separate Sketchfab Standard notice and source URL.
+- The model library references files outside the submodule and has no single
+  license statement in the inspected source.
+- Current clone should not copy the GLB, model library, thumbnails or README
+  screenshots into product assets without separately reviewing rights.
+
+## Risk Register
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Two rendering systems in one route | bundle size, event conflicts, debugging cost | start with 2D director slice; isolate R3F route |
+| Duplicate source of truth for shots | stale preview/node links | typed adapter and one transaction boundary |
+| Persisting data URLs in localStorage | quota failures and slow hydration | keep preview metadata; use object URLs/IndexedDB when real |
+| Upstream host protocol mismatch | silent integration failure | define LibTV-specific messages or same-store adapter |
+| External `模型库/` dependency | non-reproducible build | replace with owned catalog or explicit optional asset package |
+| README/test status drift | false confidence | record fixed commit and run commands in implementation log |
 

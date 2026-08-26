@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Research submodules are validated with their own toolchains.
+    "research/upstream/**",
   ]),
 ]);
 
