@@ -407,6 +407,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `docs/research/liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md`：获批的研究-only 执行顺序、安全边界、产出和授权门槛
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md`：LibTV UI 状态层级、浮层替换、预览和 graph mutation 转换合同
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md`：五项主推能力的共享底座、依赖关系、风险登记和研究优先级队列
+- `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`：编码授权前的继续研究、授权条件、fixture 规格和停止闸门
 - `docs/research/liblib-live-2026-08-25/*.json`：10 节点、11 边与首屏 DOM 的结构化抽取
 - `docs/research/PAGE_TOPOLOGY.md`：页面区域与层级
 - `docs/research/BEHAVIORS.md`：交互目录

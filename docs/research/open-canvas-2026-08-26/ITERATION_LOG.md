@@ -236,3 +236,13 @@
 - 为每条队列记录研究任务、风险、`BLOCKED_BY_FIXTURE` 停止条件和编码前验收标准，避免用文章截图或现有 clone 过程图填补源站未知；
 - 更新 Seedance README、NEXT_RESEARCH_PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，标记前 3 项已完成、go/no-go 仍待执行；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v23 研究阶段 go/no-go 闭环
+
+本轮完成第十八批研究项并收束本阶段：
+
+- 新增 [`LIBTV_RESEARCH_GO_NO_GO.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)，明确文档/只读研究为 `GO`，所有 clone 编码为等待明确授权的 `NO-GO`，真实 Provider/上传/计费/远端持久化为当前范围外；
+- 按双浮层、Auto Link、生成参数、逐帧拉片、片段重拍、超长视频和高风险图片动作建立分批授权矩阵，记录最小实现边界和不得顺手扩大的范围；
+- 补充 local disposable fixture、源站 disposable fixture、授权请求最小信息、编码后验收顺序和其他开发者 WIP 阻塞处理规则；
+- 更新 Seedance README、NEXT_RESEARCH_PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，将四项后续研究全部标为已完成；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。

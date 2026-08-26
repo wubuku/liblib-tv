@@ -18,7 +18,7 @@
 | 1 | LibTV UI 状态层级图 | 节点、双浮层、active tool、预览、任务和 graph mutation 的状态合同 | 已完成 |
 | 2 | Open Canvas 高价值模式卡 | measured viewport、typed inputs、run/save 状态、serialized subgraph 四张模式卡 | 已完成 |
 | 3 | 五项能力依赖/风险队列 | Auto Link、逐帧拉片、片段重拍、长视频和生成面板的依赖顺序与证据闸门 | 已完成 |
-| 4 | 编码授权前 go/no-go | 可继续只读研究、可授权编码、必须先取得 disposable source fixture 的清单 | 待执行 |
+| 4 | 编码授权前 go/no-go | 可继续只读研究、可授权编码、必须先取得 disposable source fixture 的清单 | 已完成 |
 
 每完成一项，必须先更新对应文档和索引，再进行文档校验；每个关键进展单独 commit 并 push。
 
