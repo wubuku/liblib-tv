@@ -90,6 +90,7 @@ docs/research/liblib-canvas-batch34-2026-08-26/
 - [x] 适配矩阵、验证和实施结果
 - [x] Batch 34 commit/push: research `e1d20ef` plus handoff metadata `84a7c59`,
   both pushed to `origin/master`
+- [x] 既有 LibTV 复刻定位修正、原站能力差距和截图台账：`ca1c9b0`
 
 Parent verification is complete:
 

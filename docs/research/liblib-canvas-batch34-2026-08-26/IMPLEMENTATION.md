@@ -6,6 +6,7 @@
 - Batch 34 plan protection commit: `b9895c7`
 - Batch 34 research commit: `e1d20ef` (pushed to `origin/master`)
 - Batch 34 handoff metadata commit: `84a7c59` (pushed to `origin/master`)
+- Replication-classification correction: `ca1c9b0` (pushed to `origin/master`)
 - Submodule path: `research/upstream/storyai-3d-director-desk`
 - Submodule commit: `8c8bd361790be4d37158a7430365e65546e358fe`
 - Submodule branch at inspection time: `main`
@@ -93,7 +94,29 @@ npm run check        passed
 also reports the repository's pre-existing multiple-lockfile workspace-root
 warning; the application build and typecheck complete successfully.
 
-## 5. Handoff
+## 7. Replication Classification Correction
+
+The initial archaeology described the upstream too generically as an independent
+3D editor reference. The corrected evidence is:
+
+- its initial public source explicitly names `LibTV-style` body types;
+- its test fixtures model director nodes, canvas edges and panorama/capture
+  exchange with a host canvas;
+- its screenshots and workflows implement a substantial static subset of the
+  LibTV director-desk domain;
+- the current LibTV bundle proves a larger product surface: timeline, keyframes,
+  paths, animation-video return and phone virtual camera.
+
+The correction and durable evidence were committed as `ca1c9b0` and pushed to
+`origin/master`. Verification after the correction:
+
+```text
+npm run docs:check   passed; 256 Markdown files, 602 local targets
+git diff --check     passed
+npm run check        passed with 9 existing warnings and no errors
+```
+
+## 8. Handoff
 
 Next implementation batch should begin from:
 

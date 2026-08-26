@@ -60,6 +60,7 @@ https://github.com/jiguang132/storyai-3d-director-desk.git
   [`SOURCE_EVIDENCE.md`](SOURCE_EVIDENCE.md).
 - Parent `npm run docs:check`, `git diff --check` and `npm run check` passed.
 - Batch 34 research commit `e1d20ef` is pushed to `origin/master`.
+- Replication-classification correction `ca1c9b0` is pushed to `origin/master`.
 - The implementation recommendation is now to use the existing R3F replication
   as the static 3D desk baseline, then source-calibrate it and add the missing
   LibTV timeline, motion-path and animation-return layers.
