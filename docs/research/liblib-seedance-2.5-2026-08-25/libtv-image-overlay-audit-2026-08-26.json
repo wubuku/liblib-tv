@@ -1,0 +1,123 @@
+{
+  "sampledAt": "2026-08-26",
+  "sourceUrl": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "viewport": {
+    "width": 929,
+    "height": 874,
+    "devicePixelRatio": 2,
+    "reactFlowTransform": "matrix(0.278112, 0, 0, 0.278112, 17.9639, 131.434)",
+    "zoom": 0.278112
+  },
+  "interactionBoundary": {
+    "performed": [
+      "read DOM",
+      "click empty canvas",
+      "select existing image nodes"
+    ],
+    "notPerformed": [
+      "upload",
+      "generation",
+      "parameter mutation",
+      "node creation",
+      "remote data write"
+    ]
+  },
+  "toolbar": {
+    "className": "border-hair bg-panel-background border-canvas-controls-border box-border flex w-fit items-center justify-center gap-2 rounded-xl p-2",
+    "width": 1092.5,
+    "height": 49,
+    "buttons": [
+      { "testId": "image-toolbar-portrait-texture", "label": "人像质感调节 NEW", "width": 178 },
+      { "testId": "image-toolbar-panorama-slash", "label": "全景", "width": 62 },
+      { "testId": "image-toolbar-angle", "label": "多角度", "width": 75 },
+      { "testId": "image-toolbar-light", "label": "打光", "width": 62 },
+      { "testId": "image-toolbar-nine-grid", "label": "九宫格", "width": 91 },
+      { "testId": "image-editor-primary-tool-trigger", "label": "高清", "width": 78 },
+      { "testId": "image-toolbar-interactive-edit", "label": "元素编辑", "width": 88 },
+      { "testId": "image-toolbar-layer-separation", "label": "图层分离", "width": 88 },
+      { "testId": "image-toolbar-grid-split", "label": "宫格切分", "width": 104 },
+      { "testId": "image-toolbar-annotate", "label": "", "width": 32 },
+      { "testId": "image-toolbar-rotate", "label": "", "width": 32 },
+      { "testId": "image-toolbar-download", "label": "", "width": 32 },
+      { "testId": "image-toolbar-preview", "label": "", "width": 32 }
+    ]
+  },
+  "historicalComparison": {
+    "sampledAt": "2026-08-25",
+    "evidence": "docs/research/liblib-live-2026-08-25/image-node-state-audit.json",
+    "toolbarWidth": 900.5,
+    "toolbarHeight": 49,
+    "textActions": [
+      "人像质感调节 NEW",
+      "全景",
+      "多角度",
+      "打光",
+      "九宫格",
+      "高清",
+      "宫格切分"
+    ],
+    "iconButtonCount": 4
+  },
+  "samples": [
+    {
+      "id": "i-1FQ9tErTcC",
+      "label": "image_2026-06-15T11-22-00",
+      "node": { "x": 54.675, "y": 207.358, "width": 171.873, "height": 97.339, "centerX": 140.611 },
+      "toolbar": { "x": -405.641, "y": 141.68, "width": 1092.5, "height": 49, "centerX": 140.609 },
+      "panel": { "x": -189.389, "y": 309.148, "width": 660, "height": 191, "centerX": 140.611 },
+      "toolbarCenterDelta": -0.002,
+      "panelCenterDelta": 0,
+      "toolbarGap": 16.678,
+      "panelGap": 4.45,
+      "panelState": "empty prompt, no references, 16:9 standard 2K"
+    },
+    {
+      "id": "i-dnwoZQ7jsG",
+      "label": "咖啡",
+      "node": { "x": 131.99, "y": 501.88, "width": 194.679, "height": 97.339, "centerX": 229.329 },
+      "toolbar": { "x": -316.922, "y": 436.203, "width": 1092.5, "height": 49, "centerX": 229.328 },
+      "panel": { "x": -100.671, "y": 603.669, "width": 660, "height": 211, "centerX": 229.329 },
+      "toolbarCenterDelta": -0.001,
+      "panelCenterDelta": 0,
+      "toolbarGap": 16.677,
+      "panelGap": 4.45,
+      "panelState": "long prompt, no references, 2:1 low 1K"
+    },
+    {
+      "id": "i-lBzmo67AHv",
+      "label": "image_2026-06-15T11-22-15",
+      "node": { "x": 131.99, "y": 390.635, "width": 171.874, "height": 97.339, "centerX": 217.927 },
+      "toolbar": { "x": -328.328, "y": 324.953, "width": 1092.5, "height": 49, "centerX": 217.922 },
+      "panel": { "x": -112.073, "y": 492.424, "width": 660, "height": 191, "centerX": 217.927 },
+      "toolbarCenterDelta": -0.005,
+      "panelCenterDelta": 0,
+      "toolbarGap": 16.682,
+      "panelGap": 4.45,
+      "panelState": "empty prompt, no references, 16:9 standard 2K"
+    },
+    {
+      "id": "i-vxeeCnxySa",
+      "label": "图片4",
+      "node": { "x": 131.99, "y": 613.124, "width": 194.679, "height": 97.339, "centerX": 229.329 },
+      "toolbar": { "x": -316.922, "y": 547.445, "width": 1092.5, "height": 49, "centerX": 229.328 },
+      "panel": { "x": -100.671, "y": 714.914, "width": 660, "height": 191, "centerX": 229.329 },
+      "toolbarCenterDelta": -0.001,
+      "panelCenterDelta": 0,
+      "toolbarGap": 16.679,
+      "panelGap": 4.45,
+      "panelState": "short prompt, no references, 2:1 low 1K"
+    },
+    {
+      "id": "i-YDfWhFlthe",
+      "label": "分镜 #2",
+      "node": { "x": 457.382, "y": 48, "width": 172.986, "height": 97.339, "centerX": 543.875 },
+      "toolbar": { "x": -2.383, "y": -17.68, "width": 1092.5, "height": 49, "centerX": 543.867 },
+      "panel": { "x": 213.874, "y": 149.789, "width": 660, "height": 273.797, "centerX": 543.874 },
+      "toolbarCenterDelta": -0.008,
+      "panelCenterDelta": -0.001,
+      "toolbarGap": 16.68,
+      "panelGap": 4.45,
+      "panelState": "two references, long prompt, 16:9 low 1K"
+    }
+  ]
+}

@@ -76,3 +76,14 @@
 - 保存当前顶部图片处理动作顺序，并将现场记录写入 [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#8-2026-08-26-浏览器现场几何抽查)；
 - 明确这次 `1092.5x49` 与先前其他节点/状态的 `900.5x49` 必须按场景并列，不得未经归因覆盖；
 - 没有提交生成、上传媒体、修改参数或写入远端画布，保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。
+
+## 2026-08-26：v7 五图片节点矩阵与工具条版本归因
+
+本轮继续使用已打开的登录态 LibTV 画布，只读复测全部五个现有图片节点：
+
+- 新增 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md) 和结构化 JSON，记录五组 node/toolbar/panel rect、中心误差、上下 gap、panel 高度和内容态；
+- 确认五个节点当前都使用 `1092.5x49`、13 按钮的同一工具条，不支持“宽度由图片内容态决定”的旧假设；
+- 将 `900.5 -> 1092.5` 归因为源站时间版本漂移：新增 `元素编辑 / 图层分离` 两个 `88px` 按钮及两个 `8px` 间距；
+- 对照 clone 静态实现，确认其仍固定 `900.5px`、缺两个新文字动作，并以 `撤销 / 重做` 替代源站四个末端图标动作；
+- 修订 ImageNode 规格和实施候选，明确保留当前双 anchor 结构、禁止新增 viewport clamp，下一步优先研究动作语义和多 zoom 时序；
+- 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有写入 LibTV 远端画布。

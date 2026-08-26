@@ -24,6 +24,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 针对用户指定的 LibTV Seedance 2.5 近期亮点，逐项对照“LibTV 当前有什么 / Open Canvas 能启发什么 / clone 不能直接搬什么”的交叉报告见 [`LIBTV_SEEDANCE_CROSSWALK.md`](LIBTV_SEEDANCE_CROSSWALK.md)。
 
+当前 LibTV 五个图片节点的双浮层 DOM 矩阵、`900.5 -> 1092.5px` 工具条版本漂移及 clone 动作缺口见 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。该矩阵表明现有 clone 的核心 anchor 结构接近源站，但顶部动作集合和宽度仍冻结在旧版本。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |
@@ -197,9 +199,10 @@ Open Canvas 的源码还提供了几个与 LibTV 后续复刻直接相关、但�
 
 ### P0：交互合同与证据补齐
 
-1. 继续在 LibTV 源站核对选中节点上下浮层的几何关系、定位基准、缩放/拖动行为和移动端退化策略；
-2. 为 clone 写出“节点选中态浮层合同”，明确 node rect、canvas viewport、screen fixed panel、z-index、碰撞避让和关闭条件；
-3. 记录每个状态的截图/DOM rect，先修视觉事实再抽象实现。
+1. 继续在 LibTV 源站核对 53%/100% zoom、拖动/平移和移动端的双浮层关系；28% 下五图片节点矩阵已经完成；
+2. 按当前源站动作集合更新“节点选中态浮层合同”，明确 node rect、canvas viewport、screen fixed toolbar、节点内 editor、z-index、无 clamp 的裁剪策略和关闭条件；
+3. 逐项取证 `元素编辑 / 图层分离 / 标注 / 旋转 / 下载 / 预览`，禁止用 clone-only 动作猜测替代；
+4. 记录每个状态的截图/DOM rect，先修视觉事实再抽象实现。
 
 理由：这是当前用户已明确指出的可见缺陷，直接影响 clone 的可信度，比引入 Open Canvas 的 provider 代码更高价值。
 

@@ -49,12 +49,12 @@ LibTV 当前问题
 当前项目已有 LibTV ImageNode 的源站复刻合同：
 
 - 顶部 `ImageToolbar` 使用 React Flow `NodeToolbar`，`position=Top`、`align=center`、`offset=16`；
-- 工具条在画布缩放时保持 `900.5x49` 的屏幕尺寸；
+- 工具条在画布缩放时保持屏幕尺寸，但宽度由当前动作集合决定：2026-08-25 的历史快照为 `900.5x49`，2026-08-26 的当前五节点快照统一为 `1092.5x49`；
 - 工具条中心等于选中 ImageNode 的屏幕中心，不等于浏览器窗口中心；
 - 底部 `ImageEditPanel` 是 ImageNode 的子节点，使用 `left:50%`、`bottom` 负偏移和 `scale(1/zoom)` 保持屏幕尺寸；
 - 原站允许靠近边缘时被 React Flow 容器裁剪，不做水平居中或强行 clamp。
 
-证据：[`ImageNode.spec.md`](../components/ImageNode.spec.md#selected-state)、[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md#positioning-contract)。对应声明为 OC-020。
+当前工具条外层 DOM 使用 `w-fit`；新增 `元素编辑 / 图层分离` 两个 `88px` 动作及两个 `8px` 间距，完整解释了 `192px` 宽度增量。证据：[`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)、[`ImageNode.spec.md`](../components/ImageNode.spec.md#selected-state)、[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md#positioning-contract)。对应声明为 OC-020。
 
 因此，Open Canvas 的“集中计算 screen anchor”可以启发后续实现，但不能把 LibTV 的底部面板改成 Open Canvas 的 page-level Panel，也不能为了避免裁剪而把浮层移动到浏览器中心。
 
@@ -78,6 +78,8 @@ LibTV 当前问题
 6. 节点实际尺寸变化后，底部 panel 的固定高度/宽度是否仍与源站合同一致。
 
 这些是待取证假设，不是已确认的 bug 根因。当前 clone 的结构事实对应 OC-019；“结构已存在”不能升级为“所有 viewport 场景都正确”。
+
+2026-08-26 的五节点复测已经排除一个旧假设：`900.5` 和 `1092.5` 不是由图片内容态切换。当前更高价值的 clone 缺口是工具条动作集合、末端图标语义和 `w-fit` sizing mode 落后于源站；上下 anchor 仍需在多 zoom/拖动场景回归，但不应再次凭感觉改 offset。
 
 ## 3. 启发转译矩阵
 
@@ -114,6 +116,8 @@ LibTV 当前问题
 **交付物**：截图、DOM rect 表、anchor 公式、`SOURCE_FACT`/`INFERENCE`/`CLONE_DECISION` 三栏记录。
 
 **停止条件**：若没有新的源站证据，只能修正已知坐标系错误，不能引入新的 clamp、自动避让或页面级重排。
+
+**当前进展**：28% zoom 下的五图片节点、三种 panel 高度、边缘裁剪和工具条时间版本差异已经落入 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。剩余重点为多 zoom、拖动/平移、选择卸载时序以及六个尚未逐项取证的当前工具条动作。
 
 ### `LIBTV-UIX-02`：连接语义与 Handle
 

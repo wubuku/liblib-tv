@@ -36,7 +36,15 @@ Node width and height come from the Zustand canvas data and React Flow's outer t
 
 ### Top toolbar
 
-The toolbar uses React Flow `NodeToolbar` with `position=Top`, `align=center`, and `offset=16`. React Flow renders it outside the scaled viewport, so it stays `900.5x49` screen pixels at every zoom.
+The toolbar uses React Flow `NodeToolbar` with `position=Top`, `align=center`, and `offset=16`. React Flow renders it outside the scaled viewport, so its height and controls stay at screen scale instead of shrinking with canvas zoom.
+
+Toolbar width is a time-versioned content contract, not a permanent global constant:
+
+- the 2026-08-25 source audit measured `900.5x49` with 7 text actions and 4 icon-only actions;
+- the 2026-08-26 source audit measured `1092.5x49` on all five existing image nodes, with 9 text actions and 4 icon-only actions;
+- the current source wrapper uses `w-fit`; `元素编辑` and `图层分离` added `192px` including gaps.
+
+The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. The clone currently remains on the older fixed-width/action baseline; treat this as a documented gap until code changes are authorized. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
 
 Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
@@ -84,7 +92,7 @@ Stable root selector: `[data-video-frame-capture]`.
 - clicking empty canvas removes both overlays
 - switching selected image moves both overlays to the new node
 - node drag and viewport pan keep both overlays attached
-- 28%, 53%, and 100% zoom preserve toolbar/panel screen size
+- 28%, 53%, and 100% zoom preserve toolbar/panel screen size; toolbar width matches the action set for the selected source baseline
 - mobile clipping follows the original; do not move the overlays to page center to keep them visible
 - `scripts/verify-liblib-batch9.py` remains green
 - the five initial image nodes preserve their explicit editor height, Prompt, references, top controls and settings matrix
