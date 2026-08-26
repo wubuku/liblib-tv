@@ -45,3 +45,13 @@
 3. 新增结论先进入 `EVIDENCE_MATRIX.md`，再写入 `REPORT.md`；
 4. 任何从推断升级为事实的结论，必须补充直接源码或运行证据；
 5. 每轮文档优化单独 commit + push，且暂存区不得包含他人 WIP。
+
+## 2026-08-26：v4 交互模式目录
+
+本轮目标是继续把 Open Canvas 的研究成果转化为后续 LibTV UI/UX 复刻的可执行研究队列，而不是开始编码：
+
+- 新增 `INTERACTION_CATALOG.md`，覆盖选中双浮层、Quick Add/连接、视口、复制粘贴、媒体历史、运行/保存状态、层级和 onboarding；
+- 补充 Open Canvas 源码中的 measured node/live viewport、screen/flow 双坐标、pending connection、内部子图 clipboard 和显式状态证据；
+- 新增 OC-021 至 OC-025，确保主报告中的交互结论可以追溯到固定 commit 的行号；
+- 建立 `LIBTV-UIX-09..16` 后续 batch，明确每个批次的源站取证内容、停止条件和“不得直接搬运”的边界；
+- 保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。

@@ -49,6 +49,7 @@
 | `REPORT.md` | 深度报告、架构图、数据流、比较和决策 |
 | `EVIDENCE_MATRIX.md` | 声明 ID、证据级别、可证明范围和待验证项 |
 | `UIUX_TRANSLATION.md` | Open Canvas 启发到 LibTV 后续 UI/UX 复刻 batch 的转译 |
+| `INTERACTION_CATALOG.md` | 选中、连线、视口、复制、媒体历史、状态和 onboarding 的交互模式目录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 

@@ -35,6 +35,11 @@
 | OC-018 | Open Canvas 的 selected editor/action overlay 共用 measured node + live viewport 的 screen anchor 语义，但分别位于节点上下 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L5964)；[`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L6015) | 可迁移的几何组织方法 | 不代表 LibTV 应改用同样的 Panel 容器或数字 |
 | OC-019 | 当前 clone 的 ImageNode 已将顶部 `NodeToolbar` 与节点内底部 `ImageEditPanel` 分开实现 | 当前仓库源码 | High | [`ImageNode.tsx`](../../../src/components/nodes/ImageNode.tsx#L125)；[`ImageNode.tsx`](../../../src/components/nodes/ImageNode.tsx#L166) | 当前实现形态和后续诊断入口 | 不代表当前运行态所有边缘/缩放场景都已验证 |
 | OC-020 | 当前 LibTV 复刻合同要求工具条以节点中心为基准、编辑器跟随节点并反向缩放，且边缘允许裁剪 | LibTV 研究记录 | High | [`ImageNode.spec.md`](../components/ImageNode.spec.md#selected-state)；[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md#positioning-contract) | LibTV 的源站行为基线 | 不代表 Open Canvas 的几何合同可以覆盖它 |
+| OC-021 | Open Canvas 的 Quick Add 同时保存菜单屏幕坐标和 `screenToFlowPosition` 后的节点 flow 坐标 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4144)；[`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4899) | 菜单定位与 graph 落点的双坐标关系 | 不代表 LibTV 的新增节点也以相同位置或 clamp 规则落点 |
+| OC-022 | Open Canvas 的悬空连线结束于 React Flow pane 时会以释放点打开 connection Quick Add，并保存 pending source/handle | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L6046) | 连接入口与创建节点的状态链 | 不代表 LibTV 源站存在相同的悬空连线菜单 |
+| OC-023 | Open Canvas 选择 Quick Add 节点后，先创建节点，再依据 pending connection 方向创建边，失败以 toast 反馈并关闭菜单 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4925) | 一次用户动作中的 graph mutation 顺序 | 不代表 clone 应复制其节点类型、文案或连接方向 |
+| OC-024 | Open Canvas 将 clipboard 限定为 versioned 选中子图，复制内部边并在粘贴时重写 ID、按视口中心和递增偏移落点 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L3896)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L339) | 可复用的复制/粘贴 graph 边界 | 不代表当前 LibTV 的父子、派生节点和媒体字段可以被该 payload 替换 |
+| OC-025 | Open Canvas 将节点/任务运行状态与画布保存状态分开，并以 debounce 保存 dirty graph | 源码 | High | [`types.ts`](../../../research/upstream/open-canvas/shared/lib/canvas/types.ts#L11)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L38)；[`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4868) | 反馈状态的分层建模 | 不代表当前 LibTV prototype 已有真实运行、保存或冲突后端 |
 
 ## 3. 对当前 clone 的引用规则
 
@@ -46,6 +51,7 @@
 4. 涉及安全/托管时必须同时检查 OC-011、OC-012、OC-013；
 5. 不能用 Open Canvas 的源码事实替代 LibTV 源站证据；
 6. 不能用官网预览、provider marquee 或 README 宣称证明当前 clone 已实现。
+7. 涉及选中、连线、视口、复制、媒体历史或状态反馈时，优先查阅 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md) 的模式和 batch 合同。
 
 ## 4. 待补证据队列
 

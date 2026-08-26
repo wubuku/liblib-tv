@@ -20,6 +20,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
 
+更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |
@@ -168,6 +170,12 @@ sequenceDiagram
 ### 5.3 移动端
 
 官网落地页在 390px viewport 下仍保持品牌、CTA 和工作台预览的连续叙事；这只能证明营销页有移动布局。studio 移动端需要另外测量：节点拖拽、固定 Panel、面板滚动、视图缩放与键盘弹出后的关系，本轮未执行该交互。
+
+### 5.4 交互模式的后续研究入口
+
+Open Canvas 的源码还提供了几个与 LibTV 后续复刻直接相关、但不能直接替换 LibTV 行为的参照：选中浮层共用 measured node/live viewport 的 screen anchor；Quick Add 同时保存菜单屏幕位置和节点 flow position；悬空连线可以携带 pending connection 进入节点创建；复制粘贴以 versioned 子图、内部边和 ID map 为边界；媒体历史和保存状态是显式数据。完整证据和当前 clone 的差异见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。
+
+本项目当前的优先顺序保持不变：先完成 LibTV 源站双浮层的几何取证，再研究连接/视口，最后判断媒体历史、状态反馈和 onboarding 是否存在需要复刻的源站行为。Open Canvas 的实现只能帮助我们提出可测问题，不能把待取证项升级为 clone 规格。
 
 ## 6. 与当前 LibTV + FrameOS clone 的关系
 
