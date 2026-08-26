@@ -41,6 +41,12 @@ import {
   getDirectorFrameRect,
   type DirectorFrameRect,
 } from "@/components/director/directorViewportMath";
+import {
+  DirectorVideoExportError,
+  recordDirectorCanvasVideo,
+  type DirectorVideoExportRequest,
+  type DirectorVideoExportResult,
+} from "@/components/director/directorVideoExport";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
 function CameraController() {
@@ -761,6 +767,91 @@ function CaptureController({
   return null;
 }
 
+function VideoExportController({
+  request,
+  frameRect,
+  onProgress,
+  onCompleted,
+  onFailed,
+}: {
+  request: DirectorVideoExportRequest | null;
+  frameRect: DirectorFrameRect | null;
+  onProgress: (progress: number) => void;
+  onCompleted: (result: DirectorVideoExportResult) => void;
+  onFailed: (message: string) => void;
+}) {
+  const gl = useThree((state) => state.gl);
+  const setCapturing = useDirectorStore((state) => state.setCapturing);
+  const setTimelineTime = useDirectorStore((state) => state.setTimelineTime);
+  const setTimelinePlaying = useDirectorStore(
+    (state) => state.setTimelinePlaying,
+  );
+  const handledRequest = useRef(0);
+
+  useEffect(() => {
+    if (!request || request.id === handledRequest.current) return;
+    handledRequest.current = request.id;
+    const previousTimeline = useDirectorStore.getState().timeline;
+    const sourceCanvas = gl.domElement;
+    const crop = frameRect ?? {
+      left: 0,
+      top: 0,
+      width: Math.max(sourceCanvas.clientWidth, 1),
+      height: Math.max(sourceCanvas.clientHeight, 1),
+    };
+    let active = true;
+
+    setTimelinePlaying(false);
+    setCapturing(true);
+    onProgress(0);
+
+    void recordDirectorCanvasVideo({
+      sourceCanvas,
+      frameRect: crop,
+      request,
+      timelineDuration: previousTimeline.duration,
+      onTimelineTime: setTimelineTime,
+      onProgress: (progress) => {
+        if (active) onProgress(progress);
+      },
+    })
+      .then((result) => {
+        if (active) onCompleted(result);
+        else URL.revokeObjectURL(result.videoUrl);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        onFailed(
+          error instanceof DirectorVideoExportError
+            ? error.userMessage
+            : "动画视频录制失败",
+        );
+      })
+      .finally(() => {
+        if (!active) return;
+        setTimelineTime(previousTimeline.currentTime);
+        if (previousTimeline.isPlaying) setTimelinePlaying(true);
+        setCapturing(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [
+    frameRect,
+    gl,
+    onCompleted,
+    onFailed,
+    onProgress,
+    request,
+    setCapturing,
+    setTimelinePlaying,
+    setTimelineTime,
+  ]);
+
+  return null;
+}
+
 function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
@@ -805,9 +896,17 @@ const transformTools: Array<{
 export function DirectorViewport({
   onOpenTree,
   onOpenInspector,
+  videoExportRequest,
+  onVideoExportProgress,
+  onVideoExportCompleted,
+  onVideoExportFailed,
 }: {
   onOpenTree: () => void;
   onOpenInspector: () => void;
+  videoExportRequest: DirectorVideoExportRequest | null;
+  onVideoExportProgress: (progress: number) => void;
+  onVideoExportCompleted: (result: DirectorVideoExportResult) => void;
+  onVideoExportFailed: (message: string) => void;
 }) {
   const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
@@ -909,6 +1008,13 @@ export function DirectorViewport({
             request={captureRequest}
             frameRect={frameRect}
             onCaptured={addCapture}
+          />
+          <VideoExportController
+            request={videoExportRequest}
+            frameRect={frameRect}
+            onProgress={onVideoExportProgress}
+            onCompleted={onVideoExportCompleted}
+            onFailed={onVideoExportFailed}
           />
         </Canvas>
       </div>

@@ -19,6 +19,7 @@ import {
   type AudioSplitMode,
   type DepthMotionCaptureMetadata,
   type DepthMotionCaptureResolution,
+  type DirectorAnimationExportMetadata,
   type LongVideoProcessInput,
   type PictureEditAction,
   type PictureEditMark,
@@ -46,6 +47,7 @@ export interface VideoNodeData extends Record<string, unknown> {
   durationSeconds?: number;
   resolution?: string;
   posterUrl?: string;
+  videoUrl?: string;
   prompt?: string;
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
@@ -53,6 +55,7 @@ export interface VideoNodeData extends Record<string, unknown> {
   depthMotionCapture?: DepthMotionCaptureMetadata;
   pictureEdit?: PictureEditMetadata;
   smartMatting?: SmartMattingMetadata;
+  directorAnimationExport?: DirectorAnimationExportMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
@@ -63,6 +66,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     model = "vip专属模型-会员",
     status = "failed",
     posterUrl,
+    videoUrl,
     durationSeconds: rawDurationSeconds = 30,
     resolution = "1280 × 720",
     prompt,
@@ -72,6 +76,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     depthMotionCapture,
     pictureEdit,
     smartMatting,
+    directorAnimationExport,
   } = data;
   const durationSeconds = getRuntimeDuration(rawDurationSeconds);
   const { zoom } = useViewport();
@@ -372,57 +377,94 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             <span className="text-[10px] text-[#626262]">{model}</span>
           </div>
         ) : status === "ready" ? (
-          <>
-            <Image src={posterUrl ?? "/images/scene-coffee-4.png"} alt={filename} fill sizes="700px" className={cn("object-cover", enhanced && "contrast-110 saturate-110")} unoptimized />
-            <span className="absolute inset-0 bg-black/10" />
-            <button type="button" aria-label="播放视频" className="relative flex size-14 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/70"><Play size={22} fill="currentColor" className="ml-1" /></button>
-            {frameFeedback && (
-              <span
-                data-video-frame-feedback
-                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
-              >
-                {frameFeedback}
-              </span>
-            )}
-            {pictureEditFeedback && (
-              <span
-                data-video-picture-edit-feedback
-                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
-              >
-                {pictureEditFeedback}
-              </span>
-            )}
-            {depthMotionFeedback && (
-              <span
-                data-video-depth-motion-feedback
-                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
-              >
-                {depthMotionFeedback}
-              </span>
-            )}
+          directorAnimationExport && videoUrl ? (
             <div
-              className="absolute bottom-0 left-0 right-0 z-10 flex items-center gap-2 bg-gradient-to-b from-transparent via-black/25 to-black/55 px-3 pb-2.5 pt-8 text-[11px] text-white"
-              onPointerDown={(event) => event.stopPropagation()}
-              onClick={(event) => event.stopPropagation()}
+              data-director-animation-export-node
+              data-director-animation-export-id={
+                directorAnimationExport.exportId
+              }
+              data-director-animation-export-source-id={
+                directorAnimationExport.sourceNodeId
+              }
+              data-director-animation-export-edge-id={
+                directorAnimationExport.edgeId
+              }
+              data-director-animation-export-mime={
+                directorAnimationExport.mimeType
+              }
+              data-director-animation-export-bytes={
+                directorAnimationExport.sizeBytes
+              }
+              data-director-animation-export-duration={
+                directorAnimationExport.durationSeconds
+              }
+              className="h-full w-full bg-black"
             >
-              <Play size={12} fill="currentColor" />
-              <span>{formatVideoTime(currentTime)}</span>
-              <input
-                data-video-playhead
-                aria-label="视频播放进度"
-                type="range"
-                min={0}
-                max={durationSeconds}
-                step={0.05}
-                value={currentTime}
-                onChange={(event) => setCurrentTime(Number(event.target.value))}
-                className="h-1 min-w-0 flex-1 cursor-pointer accent-white"
+              <video
+                data-director-animation-export
+                src={videoUrl}
+                poster={posterUrl}
+                controls
+                preload="metadata"
+                playsInline
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={(event) => event.stopPropagation()}
+                className="nodrag nopan h-full w-full bg-black object-contain"
               />
-              <span>00:{String(durationSeconds).padStart(2, "0")}</span>
-              <Volume2 size={13} />
-              <PlayerFrameCaptureMenu onCapture={captureFrame} />
             </div>
-          </>
+          ) : (
+            <>
+              <Image src={posterUrl ?? "/images/scene-coffee-4.png"} alt={filename} fill sizes="700px" className={cn("object-cover", enhanced && "contrast-110 saturate-110")} unoptimized />
+              <span className="absolute inset-0 bg-black/10" />
+              <button type="button" aria-label="播放视频" className="relative flex size-14 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/70"><Play size={22} fill="currentColor" className="ml-1" /></button>
+              {frameFeedback && (
+                <span
+                  data-video-frame-feedback
+                  className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+                >
+                  {frameFeedback}
+                </span>
+              )}
+              {pictureEditFeedback && (
+                <span
+                  data-video-picture-edit-feedback
+                  className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+                >
+                  {pictureEditFeedback}
+                </span>
+              )}
+              {depthMotionFeedback && (
+                <span
+                  data-video-depth-motion-feedback
+                  className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+                >
+                  {depthMotionFeedback}
+                </span>
+              )}
+              <div
+                className="absolute bottom-0 left-0 right-0 z-10 flex items-center gap-2 bg-gradient-to-b from-transparent via-black/25 to-black/55 px-3 pb-2.5 pt-8 text-[11px] text-white"
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={(event) => event.stopPropagation()}
+              >
+                <Play size={12} fill="currentColor" />
+                <span>{formatVideoTime(currentTime)}</span>
+                <input
+                  data-video-playhead
+                  aria-label="视频播放进度"
+                  type="range"
+                  min={0}
+                  max={durationSeconds}
+                  step={0.05}
+                  value={currentTime}
+                  onChange={(event) => setCurrentTime(Number(event.target.value))}
+                  className="h-1 min-w-0 flex-1 cursor-pointer accent-white"
+                />
+                <span>00:{String(durationSeconds).padStart(2, "0")}</span>
+                <Volume2 size={13} />
+                <PlayerFrameCaptureMenu onCapture={captureFrame} />
+              </div>
+            </>
+          )
         ) : status === "empty" ? (
           <div data-video-continuation-empty className="flex flex-col items-center gap-2 text-center">
             <span className="flex size-14 items-center justify-center rounded-full bg-white/[0.05] text-[#777]">

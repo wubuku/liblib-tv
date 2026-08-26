@@ -137,7 +137,7 @@ Only scalar metadata and the blob URL cross into `canvasStore`.
 - [x] Current source vocabulary and failure taxonomy recorded
 - [x] Upstream and current-clone implementation boundaries recorded
 - [x] Recording, UI, graph and verification contracts documented
-- [ ] Browser recording utility and director integration
-- [ ] Canvas video return and playable node
+- [x] Browser recording utility and director integration
+- [x] Canvas video return and playable node
 - [ ] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate

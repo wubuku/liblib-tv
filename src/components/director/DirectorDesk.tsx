@@ -1,15 +1,36 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Check, ImageIcon, X } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import {
+  ArrowLeft,
+  Check,
+  FileVideo2,
+  ImageIcon,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  DirectorExportPanel,
+  type DirectorExportStatus,
+} from "@/components/director/DirectorExportPanel";
 import { DirectorInspector } from "@/components/director/DirectorInspector";
 import { DirectorObjectTree } from "@/components/director/DirectorObjectTree";
 import { DirectorTimeline } from "@/components/director/DirectorTimeline";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
+import type {
+  DirectorVideoExportRequest,
+  DirectorVideoExportResult,
+} from "@/components/director/directorVideoExport";
 import { useCanvasStore } from "@/store/canvasStore";
 import {
   useDirectorStore,
+  type DirectorAspectRatio,
   type DirectorCapture,
   type DirectorViewMode,
 } from "@/store/directorStore";
@@ -28,14 +49,34 @@ export default function DirectorDesk({
   const captures = useDirectorStore((state) => state.captures);
   const activeCaptureId = useDirectorStore((state) => state.activeCaptureId);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const aspectRatio = useDirectorStore((state) => state.aspectRatio);
+  const timelineDuration = useDirectorStore(
+    (state) => state.timeline.duration,
+  );
   const openSession = useDirectorStore((state) => state.openSession);
   const setViewMode = useDirectorStore((state) => state.setViewMode);
+  const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const markCaptureSent = useDirectorStore((state) => state.markCaptureSent);
   const createDirectorCapture = useCanvasStore(
     (state) => state.createDirectorCapture,
   );
+  const createDirectorAnimationExport = useCanvasStore(
+    (state) => state.createDirectorAnimationExport,
+  );
   const selectNode = useCanvasStore((state) => state.selectNode);
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>(null);
+  const [exportPanelOpen, setExportPanelOpen] = useState(false);
+  const [exportDuration, setExportDuration] = useState(timelineDuration);
+  const [exportAspectRatio, setExportAspectRatio] =
+    useState<DirectorAspectRatio>(aspectRatio);
+  const [exportStatus, setExportStatus] =
+    useState<DirectorExportStatus>("idle");
+  const [exportProgress, setExportProgress] = useState(0);
+  const [exportError, setExportError] = useState<string | null>(null);
+  const [videoExportRequest, setVideoExportRequest] =
+    useState<DirectorVideoExportRequest | null>(null);
+  const exportRequestId = useRef(0);
+  const exporting = exportStatus === "exporting";
   const activeCapture = useMemo(
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
@@ -46,23 +87,29 @@ export default function DirectorDesk({
   }, [openSession, sourceNodeId]);
 
   const closeWorkspace = useCallback(() => {
+    if (exporting) return;
     selectNode(sourceNodeId);
     onClose();
-  }, [onClose, selectNode, sourceNodeId]);
+  }, [exporting, onClose, selectNode, sourceNodeId]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
+      if (exporting) return;
       if (mobilePanel) {
         setMobilePanel(null);
+        return;
+      }
+      if (exportPanelOpen) {
+        setExportPanelOpen(false);
         return;
       }
       closeWorkspace();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeWorkspace, mobilePanel]);
+  }, [closeWorkspace, exporting, exportPanelOpen, mobilePanel]);
 
   const sendCapture = (capture: DirectorCapture) => {
     if (capture.sentNodeId) return;
@@ -79,6 +126,89 @@ export default function DirectorDesk({
     if (nodeId) markCaptureSent(capture.id, nodeId);
   };
 
+  const toggleExportPanel = () => {
+    if (exporting) return;
+    setExportPanelOpen((open) => {
+      const nextOpen = !open;
+      if (nextOpen) {
+        setExportDuration((duration) =>
+          Math.min(Math.max(duration, 1), timelineDuration),
+        );
+        setExportAspectRatio(aspectRatio);
+      }
+      return nextOpen;
+    });
+  };
+
+  const changeExportDuration = (duration: number) => {
+    const nextDuration = Number.isFinite(duration)
+      ? Math.min(Math.max(duration, 1), timelineDuration)
+      : 1;
+    setExportDuration(nextDuration);
+  };
+
+  const changeExportAspectRatio = (ratio: DirectorAspectRatio) => {
+    setExportAspectRatio(ratio);
+    setAspectRatio(ratio);
+  };
+
+  const beginVideoExport = () => {
+    if (exporting) return;
+    const durationSeconds = Math.min(
+      Math.max(exportDuration, 1),
+      timelineDuration,
+    );
+    exportRequestId.current += 1;
+    setExportDuration(durationSeconds);
+    setExportError(null);
+    setExportProgress(0);
+    setExportStatus("exporting");
+    setVideoExportRequest({
+      id: exportRequestId.current,
+      durationSeconds,
+      aspectRatio: exportAspectRatio,
+    });
+  };
+
+  const completeVideoExport = useCallback(
+    (result: DirectorVideoExportResult) => {
+      const directorState = useDirectorStore.getState();
+      const activeCamera = directorState.objects.find(
+        (object) => object.id === directorState.activeCameraId,
+      );
+      const nodeId = createDirectorAnimationExport(sourceNodeId, {
+        exportId: result.exportId,
+        sceneName: directorState.scene.name,
+        cameraId: activeCamera?.id ?? null,
+        cameraName: activeCamera?.name ?? "导演视角",
+        aspectRatio: result.aspectRatio,
+        width: result.width,
+        height: result.height,
+        durationSeconds: result.durationSeconds,
+        mimeType: result.mimeType,
+        sizeBytes: result.sizeBytes,
+        createdAt: result.createdAt,
+        videoUrl: result.videoUrl,
+        posterDataUrl: result.posterDataUrl,
+      });
+      if (!nodeId) {
+        URL.revokeObjectURL(result.videoUrl);
+        setExportError("视频已生成，但画布节点创建失败");
+        setExportStatus("error");
+        return;
+      }
+      setExportProgress(1);
+      setExportError(null);
+      setExportStatus("success");
+    },
+    [createDirectorAnimationExport, sourceNodeId],
+  );
+
+  const failVideoExport = useCallback((message: string) => {
+    setExportError(message);
+    setExportStatus("error");
+  }, []);
+
   return (
     <div
       data-director-workspace
@@ -92,8 +222,9 @@ export default function DirectorDesk({
             data-close-director
             aria-label="返回画布"
             title="返回画布"
+            disabled={exporting}
             onClick={closeWorkspace}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
           >
             <ArrowLeft size={17} />
           </button>
@@ -133,10 +264,23 @@ export default function DirectorDesk({
 
         <div className="flex min-w-0 items-center justify-end">
           <div
-            data-director-capture-status={isCapturing ? "capturing" : activeCapture ? "ready" : "empty"}
+            data-director-capture-status={
+              exporting
+                ? "exporting"
+                : isCapturing
+                  ? "capturing"
+                  : activeCapture
+                    ? "ready"
+                    : "empty"
+            }
             className="mr-1 flex min-w-0 items-center gap-1.5 px-2 text-[10px] text-[#777] max-[620px]:hidden"
           >
-            {isCapturing ? (
+            {exporting ? (
+              <>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[#09caf5]" />
+                导出中 {Math.round(exportProgress * 100)}%
+              </>
+            ) : isCapturing ? (
               <>
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[#09caf5]" />
                 正在截图
@@ -150,12 +294,41 @@ export default function DirectorDesk({
               "尚无构图"
             )}
           </div>
+          <div className="relative">
+            <button
+              type="button"
+              data-director-export-trigger
+              aria-expanded={exportPanelOpen}
+              disabled={exporting}
+              onClick={toggleExportPanel}
+              className={cn(
+                "flex h-8 items-center gap-1.5 rounded px-2 text-[11px] text-[#b5b5b5] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]",
+                exportPanelOpen && "bg-white/[0.07] text-white",
+              )}
+            >
+              <FileVideo2 size={14} />
+              <span className="max-[640px]:hidden">导出视频到画布</span>
+            </button>
+            <DirectorExportPanel
+              open={exportPanelOpen}
+              status={exportStatus}
+              durationSeconds={exportDuration}
+              maxDurationSeconds={timelineDuration}
+              aspectRatio={exportAspectRatio}
+              progress={exportProgress}
+              error={exportError}
+              onDurationChange={changeExportDuration}
+              onAspectRatioChange={changeExportAspectRatio}
+              onSubmit={beginVideoExport}
+            />
+          </div>
           <button
             type="button"
             aria-label="关闭导演台"
             title="关闭"
+            disabled={exporting}
             onClick={closeWorkspace}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:bg-white/[0.06] hover:text-white"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
           >
             <X size={16} />
           </button>
@@ -190,6 +363,10 @@ export default function DirectorDesk({
             <DirectorViewport
               onOpenTree={() => setMobilePanel("tree")}
               onOpenInspector={() => setMobilePanel("inspector")}
+              videoExportRequest={videoExportRequest}
+              onVideoExportProgress={setExportProgress}
+              onVideoExportCompleted={completeVideoExport}
+              onVideoExportFailed={failVideoExport}
             />
           </main>
 

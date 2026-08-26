@@ -174,6 +174,22 @@ export interface DirectorCaptureMetadata {
   edgeId: string;
 }
 
+export interface DirectorAnimationExportMetadata {
+  sourceNodeId: string;
+  exportId: string;
+  sceneName: string;
+  cameraId: string | null;
+  cameraName: string;
+  aspectRatio: "16:9" | "9:16" | "1:1";
+  width: number;
+  height: number;
+  durationSeconds: number;
+  mimeType: string;
+  sizeBytes: number;
+  createdAt: string;
+  edgeId: string;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -255,6 +271,16 @@ interface CanvasState {
     sourceNodeId: string,
     capture: Omit<DirectorCaptureMetadata, "sourceNodeId" | "edgeId"> & {
       dataUrl: string;
+    },
+  ) => string | null;
+  createDirectorAnimationExport: (
+    sourceNodeId: string,
+    animation: Omit<
+      DirectorAnimationExportMetadata,
+      "sourceNodeId" | "edgeId"
+    > & {
+      videoUrl: string;
+      posterDataUrl: string;
     },
   ) => string | null;
   clearVideoContinuation: (targetId: string) => void;
@@ -2084,6 +2110,103 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return targetId;
   },
 
+  createDirectorAnimationExport: (
+    sourceId: string,
+    animation: Omit<
+      DirectorAnimationExportMetadata,
+      "sourceNodeId" | "edgeId"
+    > & {
+      videoUrl: string;
+      posterDataUrl: string;
+    },
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (
+      !canvas ||
+      !source ||
+      !animation.videoUrl ||
+      animation.sizeBytes <= 0
+    ) {
+      return null;
+    }
+
+    const dimensions = getDirectorAnimationExportNodeDimensions(
+      animation.aspectRatio,
+    );
+    const position = findAvailableRightSlot(
+      source,
+      canvas.nodes,
+      dimensions,
+      100,
+    );
+    const targetId = createNodeId("director-animation-export");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const directorAnimationExport: DirectorAnimationExportMetadata = {
+      sourceNodeId: sourceId,
+      exportId: animation.exportId,
+      sceneName: animation.sceneName,
+      cameraId: animation.cameraId,
+      cameraName: animation.cameraName,
+      aspectRatio: animation.aspectRatio,
+      width: animation.width,
+      height: animation.height,
+      durationSeconds: animation.durationSeconds,
+      mimeType: animation.mimeType,
+      sizeBytes: animation.sizeBytes,
+      createdAt: animation.createdAt,
+      edgeId,
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `${animation.sceneName} 动画导出`,
+        model: "3D导演台",
+        status: "ready",
+        durationSeconds: animation.durationSeconds,
+        resolution: `${animation.width} × ${animation.height}`,
+        posterUrl: animation.posterDataUrl,
+        videoUrl: animation.videoUrl,
+        directorAnimationExport,
+      },
+    };
+    const edge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, edge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [targetId],
+        selectedNodeId: targetId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
   clearVideoContinuation: (targetId: string) => {
     const { activeCanvasId } = get();
     set((state) => {
@@ -2669,6 +2792,14 @@ function getDefaultNodeDimensions(type: string) {
     default:
       return { width: 350, height: 180 };
   }
+}
+
+function getDirectorAnimationExportNodeDimensions(
+  aspectRatio: DirectorAnimationExportMetadata["aspectRatio"],
+): { width: number; height: number } {
+  if (aspectRatio === "9:16") return { width: 324, height: 576 };
+  if (aspectRatio === "1:1") return { width: 420, height: 420 };
+  return { width: 512, height: 288 };
 }
 
 function getDefaultNodeData(type: string): Record<string, unknown> {
