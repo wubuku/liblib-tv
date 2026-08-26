@@ -74,7 +74,18 @@ function CameraController() {
     if (viewMode === "camera" && activeCamera?.camera) {
       perspective.position.set(...activeCamera.transform.position);
       perspective.fov = activeCamera.camera.fov;
-      perspective.lookAt(...activeCamera.camera.target);
+      if (
+        activeCamera.camera.lookAtMode === "rotation" &&
+        !activeCamera.camera.followTargetId
+      ) {
+        perspective.rotation.set(
+          MathUtils.degToRad(activeCamera.transform.rotation[0]),
+          MathUtils.degToRad(activeCamera.transform.rotation[1]),
+          MathUtils.degToRad(activeCamera.transform.rotation[2]),
+        );
+      } else {
+        perspective.lookAt(...activeCamera.camera.target);
+      }
       perspective.updateProjectionMatrix();
       perspective.updateMatrixWorld();
       invalidate();

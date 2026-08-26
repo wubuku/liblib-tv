@@ -17,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import {
   useDirectorStore,
+  type DirectorCameraLookAtMode,
   type DirectorCapture,
   type DirectorMotionPath,
   type DirectorMotionPathAnchor,
@@ -42,7 +43,7 @@ function AxisFields({
   disabledAxes = [],
 }: {
   label: string;
-  field: keyof DirectorTransform | "target";
+  field: keyof DirectorTransform | "target" | "followOffset";
   values: DirectorTuple3;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
   disabledAxes?: Array<0 | 1 | 2>;
@@ -724,6 +725,11 @@ export function DirectorInspector({
     selected?.kind === "character" && poseObjectId === selected.id
       ? "pose"
       : "properties";
+  const cameraTargets = objects.filter(
+    (object) =>
+      object.visible &&
+      (object.kind === "character" || object.kind === "prop"),
+  );
 
   return (
     <section
@@ -890,17 +896,178 @@ export function DirectorInspector({
                     {selected.camera.fov}°
                   </div>
                 </label>
-                <AxisFields
-                  label="注视点"
-                  field="target"
-                  values={selected.camera.target}
-                  onChange={(axis, value) => {
-                    const target: DirectorTuple3 = [...selected.camera!.target];
-                    target[axis] = value;
-                    updateCamera(selected.id, { target });
-                    recordObjectKeyframe(selected.id);
-                  }}
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] text-[#777]">
+                    注视目标
+                  </span>
+                  <select
+                    data-director-camera-look-at-mode={
+                      selected.camera.lookAtMode
+                    }
+                    data-director-camera-look-at-object={
+                      selected.camera.lookAtObjectId ?? ""
+                    }
+                    value={
+                      selected.camera.lookAtMode === "object" &&
+                      selected.camera.lookAtObjectId
+                        ? `object:${selected.camera.lookAtObjectId}`
+                        : selected.camera.lookAtMode
+                    }
+                    onChange={(event) => {
+                      const value = event.currentTarget.value;
+                      if (value.startsWith("object:")) {
+                        updateCamera(selected.id, {
+                          lookAtMode: "object",
+                          lookAtObjectId: value.slice("object:".length),
+                        });
+                        return;
+                      }
+                      updateCamera(selected.id, {
+                        lookAtMode: value as Exclude<
+                          DirectorCameraLookAtMode,
+                          "object"
+                        >,
+                        lookAtObjectId: null,
+                      });
+                    }}
+                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+                  >
+                    <option value="coordinate">手动坐标</option>
+                    <option value="rotation">手动旋转</option>
+                    {cameraTargets.map((object) => (
+                      <option key={object.id} value={`object:${object.id}`}>
+                        {object.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                {selected.camera.lookAtMode !== "rotation" ? (
+                  <div
+                    data-director-camera-target-coordinates
+                    data-director-camera-target-derived={
+                      selected.camera.lookAtMode === "object"
+                    }
+                  >
+                    <AxisFields
+                      label="注视坐标"
+                      field="target"
+                      values={selected.camera.target}
+                      disabledAxes={
+                        selected.camera.lookAtMode === "object"
+                          ? [0, 1, 2]
+                          : []
+                      }
+                      onChange={(axis, value) => {
+                        const target: DirectorTuple3 = [
+                          ...selected.camera!.target,
+                        ];
+                        target[axis] = value;
+                        updateCamera(selected.id, { target });
+                        recordObjectKeyframe(selected.id);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <p className="text-[10px] leading-4 text-[#7298a2]">
+                    使用上方旋转参数控制机位方向
+                  </p>
+                )}
+
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] text-[#777]">
+                    跟随目标
+                  </span>
+                  <select
+                    data-director-camera-follow-target
+                    value={selected.camera.followTargetId ?? ""}
+                    onChange={(event) =>
+                      updateCamera(selected.id, {
+                        followTargetId: event.currentTarget.value || null,
+                      })
+                    }
+                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+                  >
+                    <option value="">不跟随</option>
+                    {cameraTargets.map((object) => (
+                      <option key={object.id} value={object.id}>
+                        {object.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <span
+                  data-director-camera-follow-state={
+                    selected.camera.followTargetId ? "active" : "none"
+                  }
+                  data-follow-target-id={
+                    selected.camera.followTargetId ?? ""
+                  }
+                  data-look-at-mode={selected.camera.lookAtMode}
+                  data-follow-view={selected.camera.followView}
+                  className="sr-only"
                 />
+
+                {selected.camera.followTargetId ? (
+                  <>
+                    <div data-director-camera-follow-offset>
+                      <AxisFields
+                        label="跟随偏移"
+                        field="followOffset"
+                        values={selected.camera.followOffset}
+                        onChange={(axis, value) => {
+                          const followOffset: DirectorTuple3 = [
+                            ...selected.camera!.followOffset,
+                          ];
+                          followOffset[axis] = value;
+                          updateCamera(selected.id, { followOffset });
+                        }}
+                      />
+                    </div>
+                    <fieldset className="border-0 p-0">
+                      <legend className="mb-1.5 text-[11px] text-[#777]">
+                        跟随视角
+                      </legend>
+                      <div
+                        data-director-camera-follow-view
+                        className="grid h-8 grid-cols-2 gap-1 rounded border border-white/[0.08] bg-[#1d1d1d] p-0.5"
+                      >
+                        {(
+                          [
+                            ["third-person", "第三人称"],
+                            ["first-person", "第一人称"],
+                          ] as const
+                        ).map(([mode, label]) => (
+                          <button
+                            key={mode}
+                            type="button"
+                            data-director-camera-follow-view-option={mode}
+                            aria-pressed={selected.camera!.followView === mode}
+                            onClick={() =>
+                              updateCamera(selected.id, {
+                                followView: mode,
+                              })
+                            }
+                            className={cn(
+                              "min-w-0 rounded text-[10px] text-[#858585] hover:text-white",
+                              selected.camera!.followView === mode &&
+                                "bg-[#303030] text-[#70def6]",
+                            )}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    </fieldset>
+                    <p
+                      data-director-camera-follow-conflict
+                      className="rounded border border-[#d6a35a]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#caa66f]"
+                    >
+                      请先关闭机位跟随，再绘制轨迹
+                    </p>
+                  </>
+                ) : null}
               </div>
             ) : null}
 

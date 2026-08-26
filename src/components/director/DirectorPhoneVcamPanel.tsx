@@ -100,6 +100,12 @@ export function DirectorPhoneVcamPanel({
   onClose: () => void;
 }) {
   const phoneVcam = useDirectorStore((state) => state.phoneVcam);
+  const cameraFollowActive = useDirectorStore((state) => {
+    const camera = state.objects.find(
+      (object) => object.id === state.activeCameraId,
+    );
+    return Boolean(camera?.camera?.followTargetId);
+  });
   const currentTime = useDirectorStore(
     (state) => state.timeline.currentTime,
   );
@@ -444,6 +450,14 @@ export function DirectorPhoneVcamPanel({
               <Smartphone size={13} />
               启动本机预演
             </button>
+            {cameraFollowActive ? (
+              <p
+                data-director-phone-vcam-conflict
+                className="mt-2 text-center text-[9px] leading-4 text-[#d3ab70]"
+              >
+                请先关闭机位跟随，再使用手机运镜
+              </p>
+            ) : null}
           </div>
         ) : (
           <>
@@ -633,9 +647,10 @@ export function DirectorPhoneVcamPanel({
                 type="button"
                 data-director-phone-vcam-record
                 aria-pressed={recording}
+                disabled={cameraFollowActive}
                 onClick={beginOrStopRecording}
                 className={cn(
-                  "mt-2 flex h-9 w-full items-center justify-center gap-2 rounded bg-[#e9e9e9] text-[11px] font-medium text-[#202020] hover:bg-white",
+                  "mt-2 flex h-9 w-full items-center justify-center gap-2 rounded bg-[#e9e9e9] text-[11px] font-medium text-[#202020] hover:bg-white disabled:bg-[#444] disabled:text-[#777]",
                   recording && "bg-[#d85256] text-white hover:bg-[#e05f63]",
                 )}
               >
@@ -647,6 +662,14 @@ export function DirectorPhoneVcamPanel({
                 />
                 {recording ? "停止录制" : "录制"}
               </button>
+              {cameraFollowActive ? (
+                <p
+                  data-director-phone-vcam-conflict
+                  className="mt-2 text-[9px] leading-4 text-[#d3ab70]"
+                >
+                  请先关闭机位跟随，再使用手机运镜
+                </p>
+              ) : null}
               {phoneVcam.error ? (
                 <p
                   data-director-phone-vcam-error

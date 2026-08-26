@@ -37,6 +37,12 @@ import {
   setDirectorMotionPathAnchorType,
   transformDirectorMotionPathPoint,
 } from "@/components/director/directorMotionMath";
+import {
+  createDirectorCameraRelation,
+  resolveDirectorCameraRelation,
+  type DirectorCameraFollowView,
+  type DirectorCameraLookAtMode,
+} from "@/components/director/directorCameraFollow";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -44,6 +50,7 @@ export type DirectorTransformMode = "translate" | "rotate" | "scale";
 export type DirectorAspectRatio = "16:9" | "9:16" | "1:1";
 export type DirectorObjectKind = "character" | "prop" | "camera";
 export type DirectorPrimitive = "character" | "table" | "mug" | "wall" | "camera";
+export type { DirectorCameraFollowView, DirectorCameraLookAtMode };
 
 export interface DirectorTransform {
   position: DirectorTuple3;
@@ -64,6 +71,11 @@ export interface DirectorObject {
   camera?: {
     fov: number;
     target: DirectorTuple3;
+    lookAtMode: DirectorCameraLookAtMode;
+    lookAtObjectId: string | null;
+    followTargetId: string | null;
+    followOffset: DirectorTuple3;
+    followView: DirectorCameraFollowView;
   };
 }
 
@@ -475,6 +487,7 @@ const defaultObjects: DirectorObject[] = [
     camera: {
       fov: 43,
       target: [-0.3, 1.15, 0],
+      ...createDirectorCameraRelation(),
     },
   },
 ];
@@ -488,7 +501,11 @@ function cloneObjects(): DirectorObject[] {
       scale: [...object.transform.scale],
     },
     camera: object.camera
-      ? { ...object.camera, target: [...object.camera.target] }
+      ? {
+          ...object.camera,
+          target: [...object.camera.target],
+          followOffset: [...object.camera.followOffset],
+        }
       : undefined,
     characterRig: object.characterRig
       ? cloneDirectorCharacterRig(object.characterRig)
@@ -827,7 +844,7 @@ function replaceTrackMotionPath(
   };
 }
 
-function applyTimelineAtTime(
+function sampleTimelineObjectsAtTime(
   objects: DirectorObject[],
   timeline: DirectorTimelineState,
   time: number,
@@ -874,6 +891,7 @@ function applyTimelineAtTime(
               : [...sample.transform.position],
           },
           camera: {
+            ...sampledObject.camera,
             fov: sample.fov,
             target: [...sample.target],
           },
@@ -892,6 +910,39 @@ function applyTimelineAtTime(
       };
     }, object);
   });
+}
+
+function resolveCameraRelations(objects: DirectorObject[]): DirectorObject[] {
+  return objects.map((object) => {
+    if (!object.camera) return object;
+    const resolution = resolveDirectorCameraRelation({
+      position: object.transform.position,
+      target: object.camera.target,
+      relation: object.camera,
+      objects,
+    });
+    return {
+      ...object,
+      transform: {
+        ...object.transform,
+        position: [...resolution.position],
+      },
+      camera: {
+        ...object.camera,
+        target: [...resolution.target],
+      },
+    };
+  });
+}
+
+function applyTimelineAtTime(
+  objects: DirectorObject[],
+  timeline: DirectorTimelineState,
+  time: number,
+): DirectorObject[] {
+  return resolveCameraRelations(
+    sampleTimelineObjectsAtTime(objects, timeline, time),
+  );
 }
 
 function upsertTrackKeyframe(
@@ -1095,8 +1146,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }),
 
   updateObjectTransform: (objectId, field, axis, value) =>
-    set((state) => ({
-      objects: state.objects.map((object) =>
+    set((state) => {
+      const objects = state.objects.map((object) =>
         object.id === objectId
           ? {
               ...object,
@@ -1106,12 +1157,24 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
               },
             }
           : object,
-      ),
-    })),
+      );
+      return { objects: resolveCameraRelations(objects) };
+    }),
 
   updateCamera: (objectId, patch) =>
-    set((state) => ({
-      objects: state.objects.map((object) =>
+    set((state) => {
+      const current = state.objects.find((object) => object.id === objectId);
+      const restoreOrdinaryCamera =
+        Boolean(current?.camera?.followTargetId) &&
+        patch.followTargetId === null;
+      const sourceObjects = restoreOrdinaryCamera
+        ? sampleTimelineObjectsAtTime(
+            state.objects,
+            state.timeline,
+            state.timeline.currentTime,
+          )
+        : state.objects;
+      const objects = sourceObjects.map((object) =>
         object.id === objectId && object.camera
           ? {
               ...object,
@@ -1119,13 +1182,17 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                 ...object.camera,
                 ...patch,
                 target: patch.target
-                  ? [...patch.target]
-                  : [...object.camera.target],
+                  ? ([...patch.target] as DirectorTuple3)
+                  : ([...object.camera.target] as DirectorTuple3),
+                followOffset: patch.followOffset
+                  ? ([...patch.followOffset] as DirectorTuple3)
+                  : ([...object.camera.followOffset] as DirectorTuple3),
               },
             }
           : object,
-      ),
-    })),
+      );
+      return { objects: resolveCameraRelations(objects) };
+    }),
 
   applyCharacterPosePreset: (objectId, presetId) =>
     set((state) =>
@@ -1193,6 +1260,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           ...current.phoneVcam,
           status: "error",
           error: "导演台视口还未准备好",
+        },
+      }));
+      return false;
+    }
+    if (camera.camera?.followTargetId) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "error",
+          error: "请先关闭机位跟随，再使用手机运镜",
         },
       }));
       return false;
@@ -1280,6 +1357,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (
         !camera?.camera ||
         !baselineCamera ||
+        camera.camera.followTargetId !== null ||
         state.phoneVcam.hold ||
         !["local-ready", "recording", "imported"].includes(
           state.phoneVcam.status,
@@ -1309,6 +1387,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                 ...object,
                 transform: cloneTransform(nextCamera.transform),
                 camera: {
+                  ...object.camera!,
                   target: [...nextCamera.target],
                   fov: nextCamera.fov,
                 },
@@ -1335,6 +1414,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (
         !camera?.camera ||
         !baselineCamera ||
+        camera.camera.followTargetId !== null ||
         state.phoneVcam.hold ||
         !Number.isFinite(delta)
       ) {
@@ -1361,6 +1441,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                 ...object,
                 transform: cloneTransform(nextCamera.transform),
                 camera: {
+                  ...object.camera!,
                   target: [...nextCamera.target],
                   fov: nextCamera.fov,
                 },
@@ -1386,6 +1467,15 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         phoneVcam: {
           ...current.phoneVcam,
           error: "导演台视口还未准备好",
+        },
+      }));
+      return false;
+    }
+    if (camera.camera.followTargetId) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          error: "请先关闭机位跟随，再使用手机运镜",
         },
       }));
       return false;
@@ -1520,6 +1610,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       camera: {
         target: [...lastValue.target],
         fov: lastValue.fov,
+        ...createDirectorCameraRelation(),
       },
     };
     const track: DirectorTimelineTrack = {
@@ -1544,6 +1635,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             ...object,
             transform: cloneTransform(baseline.transform),
             camera: {
+              ...object.camera!,
               target: [...baseline.target] as DirectorTuple3,
               fov: baseline.fov,
             },
@@ -1981,7 +2073,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find(
         (item) => item.id === track?.objectId,
       );
-      if (!track || !object || track.kind === "pose") return state;
+      if (
+        !track ||
+        !object ||
+        track.kind === "pose" ||
+        object.camera?.followTargetId
+      ) {
+        return state;
+      }
       const path = createMotionPathForTrack(object, preset);
       const timeline = {
         ...replaceTrackMotionPath(state.timeline, track, path),
@@ -2006,7 +2105,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find(
         (item) => item.id === track?.objectId,
       );
-      if (!track || !object || track.kind === "pose") return state;
+      if (
+        !track ||
+        !object ||
+        track.kind === "pose" ||
+        object.camera?.followTargetId
+      ) {
+        return state;
+      }
       return {
         viewMode: "director",
         selectedObjectId: object.id,
