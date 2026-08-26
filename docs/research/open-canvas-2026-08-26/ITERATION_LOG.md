@@ -217,3 +217,12 @@
 - 将标准双浮层、标注/元素编辑/旋转/图层分离、预览和派生结果分别写成状态转换及副作用合同，明确哪些只改 UI、哪些可能改变 nodes/edges；
 - 补充 geometry、z-index、pointer-events、selection、pan/zoom、multi-selection、virtualization、undo/redo 和 disposable fixture 验证要求；
 - 同步 Seedance README、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v21 Open Canvas 可迁移模式卡
+
+本轮完成第十六批研究项：
+
+- 新增 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)，将 Open Canvas 的高价值启发收敛为四张卡：`measured node + live viewport`、`typed input buckets + provider projection`、`node/run/save status` 分离、`serialized subgraph + ID map`；
+- 每张卡均按 `SOURCE_FACT`、LibTV 对应事实、`INFERENCE`、`CLONE_DECISION` 和验证门槛组织，明确 Open Canvas 只能提供一般性机制启发，不能替代 LibTV 的视觉和交互源站证据；
+- 将四张卡纳入 Open Canvas README、PLAN、深度报告、research index 和 docs index，形成可发现的后续评审入口；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。

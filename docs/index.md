@@ -56,6 +56,7 @@ graph TD
 - [`research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)：LibTV UI 状态层级、浮层替换、预览和 graph mutation 转换合同。
 - [`research/frameos/`](research/frameos/README.md)：FrameOS 原站抽取、组件、行为和运行手册。
 - [`research/open-canvas-2026-08-26/`](research/open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
+- [`research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据和 clone 验证闸门。
 - [`research/components/`](research/components/)：按组件查找实现合同。
 - [`design-references/README.md`](design-references/README.md)：截图分类、命名、复用和证据边界。
 

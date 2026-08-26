@@ -58,6 +58,7 @@
 | `../components/LibTVOverlayPositioning.contract.md` | 后续编码 agent 可直接引用的 screen/flow 坐标、标准 toolbar/panel 公式和验证断言 |
 | `../components/LibTVAutoLink.contract.md` | 后续编码 agent 可直接引用的 Auto Link 候选、ghost、structured mention 和 graph 事务合同 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 四类可迁移的坐标、引用、状态和子图模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
 ## 5. 状态

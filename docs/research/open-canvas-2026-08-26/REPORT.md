@@ -20,6 +20,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
 
+将上游启发压缩为可直接评审的四张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
+
 更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
 
 针对用户指定的 LibTV Seedance 2.5 近期亮点，逐项对照“LibTV 当前有什么 / Open Canvas 能启发什么 / clone 不能直接搬什么”的交叉报告见 [`LIBTV_SEEDANCE_CROSSWALK.md`](LIBTV_SEEDANCE_CROSSWALK.md)。
