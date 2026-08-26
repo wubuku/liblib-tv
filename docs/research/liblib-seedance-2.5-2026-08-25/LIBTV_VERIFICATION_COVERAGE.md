@@ -13,7 +13,7 @@ The existing LibTV checks are valuable historical implementation checks, but the
 - Batch 9 covers node-centered lower panels, pan/zoom follow, natural clipping and the old `900.5x49` toolbar baseline. Its top-gap assertion is a historical clone contract, not the current source formula.
 - Batch 10 covers the five original image panel content states and the clone's old AutoLink popover. Its AutoLink assertions must be replaced, not silently preserved, when structured inline mentions are authorized.
 - Batches 21-33 cover the clone's Seedance video workflow in increasing detail, but source-ready video toolbar behavior, real segment replacement and live frame-analysis results remain unverified because the shared source project has no safe ready-video fixture.
-- Batch 52 now covers the current toolbar action-set width/order and image Preview; no current clone script covers annotate, element edit, rotate boundary, layer separation or active-tool replacement.
+- Batch 52 now covers the current toolbar action-set width/order and image Preview; Batch 53/54 cover the empty annotate and element-edit replacement states. No current clone script covers rotate boundary, layer separation or non-empty active-tool semantics.
 - No current clone script covers the source AutoLink contract: global preference, connected/reference candidate scope, ghost spans, single/batch keyboard acceptance, IME/race guards and graph/mention transaction consistency.
 
 The next authorized coding batch should create new focused checks alongside the historical scripts. It should not rewrite old evidence until the expected contract is explicitly versioned.
@@ -27,10 +27,10 @@ The next authorized coding batch should create new focused checks alongside the 
 | Bottom panel gap is `16 * zoom` | Batch 9 | Good | Clone lower-panel compensation is covered | Keep; add explicit source-vs-clone comment and panel height variants |
 | Current source top gap is `10 + 24 * zoom` | No clone script | Missing | Existing Batch 9 `16px` top assertion is obsolete for current source fidelity | Add a versioned current-toolbar test after implementation authorization |
 | Current source toolbar is content-sized `1092.5x49` | Batch 52 focused verifier | Good for bounded clone slice | Source CSS remains versioned evidence; five high-risk clone actions are disabled placeholders | Reinspect only after source action-set change |
-| Active image tool replaces standard double overlay | Source live/bundle action matrix only; Preview is page-level | Partial | No clone replacement state exists for annotate/element edit/rotate/layer separation | Add one focused state-lifecycle test per low-risk tool |
+| Active image tool replaces standard double overlay | Source live/bundle action matrix + Batch 53/54 | Good for empty replacement states | Annotate and element-edit empty states are covered; rotate/layer separation and non-empty save/record semantics remain unverified | Add disposable fixture only for non-empty/high-risk states |
 | Preview is page-level read-only overlay | Batch 52 focused verifier and runtime audit | Good for bounded clone slice | Single image, local fixture, no remote media history | Add only if multi-media navigation or source behavior changes |
-| Annotate empty state | Source live evidence only | Missing | Source `536x49` toolbar, DPR canvas and no bottom panel are not cloned | Add empty enter/Escape test after authorization |
-| Element edit empty state | Source live evidence only | Missing | Source dedicated toolbar/stage/record panel are not cloned | Add empty enter/Escape and disabled-undo test |
+| Annotate empty state | Batch 53 focused verifier and source contract | Good for bounded clone slice | Empty toolbar/canvas replacement is covered; stroke/save/result semantics remain unverified | Add disposable fixture only for non-empty dirty/save state |
+| Element edit empty state | Batch 54 focused verifier and source contract | Good for bounded clone slice | Empty toolbar/stage/record replacement is covered; object record/generate/result semantics remain unverified | Add disposable fixture only for non-empty record state |
 | Rotate entry may mutate graph | Source live fixture + immediate undo | Missing | Must not assume pure local CSS action | Test only on disposable clone fixture with graph-count assertion |
 | Layer separation async composition | Source bundle only | Missing | High-risk path has no safe live evidence | Require disposable fixture and explicit task-boundary contract |
 | Five image panel heights/prompts/references | `scripts/verify-liblib-batch10.py` | Good for historical states | Explicit `191/211/274` clone data contract is covered | Keep as compatibility regression |
@@ -101,7 +101,7 @@ Use disposable local clone fixtures for:
 
 - standard image/video overlay lifecycle;
 - current action-set and active-tool replacement;
-- preview and annotate empty states;
+- preview, annotate empty and element-edit empty states;
 - AutoLink ghost, keyboard, IME and competing-popover behavior;
 - ready-video segment reshoot and analysis result states;
 - graph count, selection, undo/redo and mobile clipping.

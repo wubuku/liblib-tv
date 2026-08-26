@@ -44,9 +44,9 @@ Toolbar width is a time-versioned content contract, not a permanent global const
 - the 2026-08-26 source audit measured `1092.5x49` on all five existing image nodes, with 9 text actions and 4 icon-only actions;
 - the current source wrapper uses `w-fit`; `元素编辑` and `图层分离` added `192px` including gaps.
 
-The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. Batch 52 now renders this current action shell with a `1092.5x49` host; the five high-risk actions remain visible but disabled until their dedicated state contracts are implemented. See [`../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md) and [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
+The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. Batch 52 renders this current action shell with a `1092.5x49` host. `标注` and `元素编辑` now have separate empty replacement states; rotate, layer separation and download remain bounded until their own contracts are implemented. See [`../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md), [`../liblib-canvas-batch53-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch53-2026-08-26/IMPLEMENTATION.md), [`../liblib-canvas-batch54-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch54-2026-08-26/IMPLEMENTATION.md) and [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
 
-These actions do not share one graph-mutation contract. In the clone, Preview opens a page overlay; active annotate replaces the standard toolbar, hides the bottom generation panel and overlays a canvas on the selected node. Its empty state exposes source-shaped tools and an enabled no-op save control; it does not yet record strokes or mutate the graph. Rotate, element edit, layer separation and download remain separate bounded actions. The complete source-state and side-effect matrix is [`../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md).
+These actions do not share one graph-mutation contract. In the clone, Preview opens a page overlay; active annotate and element edit each replace the standard toolbar, hide the bottom generation panel and render their own node-local empty authoring surface. Annotate exposes source-shaped tools plus an enabled no-op save; element edit exposes point/box/brush controls, a masked stage and an empty record panel. Neither empty state records edits or mutates the graph. Rotate, layer separation and download remain separate bounded actions. The complete source-state and side-effect matrix is [`../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md).
 
 Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
@@ -105,6 +105,7 @@ Stable root selector: `[data-video-frame-capture]`.
   `预览` opens the page-level read-only overlay and the five unimplemented
   high-risk actions do not create graph mutations
 - entering an active image tool replaces the standard toolbar and hides the bottom generation panel; it does not add a third floating layer
+- element edit specifically renders a `272x44` toolbar, node-local stage and `400x50` empty record panel
 - clicking empty canvas removes both overlays
 - switching selected image moves both overlays to the new node
 - node drag and viewport pan keep both overlays attached

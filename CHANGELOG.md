@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Closed Batch 53 with a source-backed empty image annotate replacement:
   node-local DPR2 canvas, `536x49` tool surface, source-shaped tool/color/line-width
   controls, empty undo/redo disabled state, and enabled no-op save.
+- Closed Batch 54 with a source-backed empty image element-edit replacement:
+  node-local masked stage, `272x44` tool surface, `400x50` empty record panel,
+  point/box/brush and brush-size controls, empty undo/generate disabled state,
+  and keyboard/graph isolation.
 
 ### Documentation
 - Migrated the self-contained `.agents/skills/project-docs` package into this repository
@@ -67,6 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   blockers and explicit prototype/out-of-scope boundaries.
 - Added Batch 53 source evidence, screenshot ledger, component contract,
   runtime audit and implementation closeout documentation.
+- Added Batch 54 source evidence, screenshot ledger, component contracts,
+  runtime audit and implementation closeout documentation.
 
 ### Fixed
 - Updated the selected-image toolbar to the current source-shaped 13-action
@@ -88,6 +94,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Batch 53 focused Playwright/runtime-audit coverage for empty image
   annotate replacement at desktop/mobile viewports; Batch 52, Batch 10 and
   Batch 11 adjacent regressions remain covered.
+- Added Batch 54 focused Playwright/runtime-audit coverage for empty image
+  element-edit replacement at desktop/mobile viewports; Batch 53, Batch 52,
+  Batch 10 and Batch 11 adjacent regressions remain covered.
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
 - Completed the LibTV asset manager's canvas/assets tab behavior and local media-node selection flow
 - Bound LibTV storyboard mode to the active canvas and aligned its key-elements/storyboard column structure with the source evidence
