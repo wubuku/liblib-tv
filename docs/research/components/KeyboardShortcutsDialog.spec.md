@@ -14,6 +14,8 @@
 
 Source DOM/text snapshot 见 [`panel-audit.json`](../liblib-live-2026-08-25/panel-audit.json)，几何与 clone 截图记录见 [`BATCH_1_PANELS.md`](../liblib-live-2026-08-25/BATCH_1_PANELS.md)。
 
+源站帮助文案、clone 帮助行、普通工作台 handler、React Flow gesture 和局部 Escape 优先级的完整对照见 [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](../LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)。
+
 ## Geometry And Topology
 
 Source snapshot at `929x874`:
@@ -98,4 +100,4 @@ There are no row-level selectors. If shortcut behavior becomes a tested domain, 
 
 ## Future Gate
 
-Before changing the list, inventory actual key handlers in `page.tsx`, React Flow defaults and platform-specific modifiers, then re-inspect the current source help panel. A future typed `ShortcutCommand` registry should only be introduced when it can drive both execution and display without coupling LibTV to FrameOS shortcuts. Code changes still require explicit authorization.
+The first static inventory of actual key handlers, React Flow defaults and platform-specific help drift is now recorded in the runtime crosswalk. Before changing the list or handlers, re-inspect the current source help panel with a disposable fixture, especially `Option+G`, `L`, `Enter`, `Option+drag`, `V/H` and duplicate semantics. A future typed `ShortcutCommand` registry should only be introduced when it can drive both execution and display without coupling LibTV to FrameOS shortcuts. Code changes still require explicit authorization.

@@ -36,6 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ScriptHeader documentation to reflect that it is an unmounted legacy prototype.
 - Added a KeyboardShortcutsDialog contract that records the source/clone command
   delta and separates help text from actual keyboard-handler coverage.
+- Added a LibTV shortcut runtime crosswalk that separates source-advertised
+  commands, clone help rows, global handlers, React Flow gestures, local context
+  precedence and graph/history side effects.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
