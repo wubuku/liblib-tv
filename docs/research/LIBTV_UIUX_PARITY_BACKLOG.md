@@ -1,8 +1,9 @@
 # LibTV UI/UX Parity Backlog
 
 > 建档日期：2026-08-26。
-> 稳定 clone 基线：Batch 48 closeout checkpoint；本批已从并行 WIP 升级为
-> 有界历史合同。真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。
+> 稳定 clone 基线：Batch 49 closeout checkpoint；本批已从并行 WIP 升级为
+> 有界历史合同。真实 mesh loading、远程同步、LibTV 生产持久化和
+> source-exact gizmo renderer 仍不在合同内。
 > 目的：面向后续 LibTV UI/UX 复刻，统一回答“当前真正还差什么、先研究什么、什么已可申请编码、怎样验证”。
 > 本文是研究与排期文档，不授权修改 `src/`、测试脚本或共享源站状态。
 
@@ -77,6 +78,8 @@
 | 11 | `LIBTV-PAR-011` | `uiStore` 冗余/unmounted/unreachable 状态清理 | 2 | 5 | 4 | 2 | `DEFERRED_ENGINEERING` |
 | 12 | `LIBTV-PAR-012` | Provider、上传、计费、远端任务、账户持久化 | 5 | 1 | 1 | 5 | `OUT_OF_SCOPE` |
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
+| - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
+| 1 | `LIBTV-DIR-001` | Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
 
 ### 4.2 `LIBTV-PAR-001`: current standard image state
 

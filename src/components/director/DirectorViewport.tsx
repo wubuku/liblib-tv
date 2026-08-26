@@ -1,12 +1,14 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
   type ChangeEvent,
+  type CSSProperties,
 } from "react";
 import {
   Camera,
@@ -23,12 +25,26 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { Line, OrbitControls, TransformControls } from "@react-three/drei";
-import { Canvas, useThree, type ThreeEvent } from "@react-three/fiber";
+import {
+  GizmoHelper,
+  GizmoViewport,
+  Line,
+  OrbitControls,
+  TransformControls,
+} from "@react-three/drei";
+import {
+  Canvas,
+  useFrame,
+  useThree,
+  type ThreeEvent,
+} from "@react-three/fiber";
 import {
   DoubleSide,
+  Matrix4,
   MathUtils,
   PerspectiveCamera,
+  Quaternion,
+  Vector3,
   type Group,
   type MeshStandardMaterialParameters,
 } from "three";
@@ -50,7 +66,11 @@ import {
 } from "@/components/director/directorMotionMath";
 import {
   getDirectorFrameRect,
+  getDirectorViewportAxis,
+  getDirectorViewportAxisSnapshot,
+  type DirectorViewportAxisId,
   type DirectorFrameRect,
+  type DirectorViewportSnapshot,
 } from "@/components/director/directorViewportMath";
 import {
   DIRECTOR_MODEL_LIBRARY_CATEGORIES,
@@ -75,7 +95,46 @@ import {
 } from "@/components/director/directorGroupMath";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
-function CameraController() {
+const DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT: DirectorViewportSnapshot = {
+  fov: 45,
+  position: [6.2, 4.25, 7.4],
+  target: [0, 1, 0],
+};
+
+const DIRECTOR_VIEWPORT_GIZMO_AXIS_COLORS: [string, string, string] = [
+  "#E56C5B",
+  "#6CDB7A",
+  "#7AA7FF",
+] as const;
+
+const DIRECTOR_VIEWPORT_GIZMO_TARGETS: Array<{
+  id: DirectorViewportAxisId;
+  label: string;
+}> = [
+  { id: "x-positive", label: "X 正向" },
+  { id: "x-negative", label: "X 反向" },
+  { id: "y-positive", label: "Y 正向" },
+  { id: "y-negative", label: "Y 反向" },
+  { id: "z-positive", label: "Z 正向" },
+  { id: "z-negative", label: "Z 反向" },
+];
+
+function applyDirectorViewportSnapshot(
+  perspective: PerspectiveCamera,
+  snapshot: DirectorViewportSnapshot,
+) {
+  perspective.position.set(...snapshot.position);
+  perspective.fov = snapshot.fov;
+  perspective.lookAt(...snapshot.target);
+  perspective.updateProjectionMatrix();
+  perspective.updateMatrixWorld();
+}
+
+function CameraController({
+  directorCameraCommand,
+}: {
+  directorCameraCommand: DirectorViewportSnapshot | null;
+}) {
   const viewMode = useDirectorStore((state) => state.viewMode);
   const activeCameraId = useDirectorStore((state) => state.activeCameraId);
   const activeCamera = useDirectorStore((state) =>
@@ -88,6 +147,9 @@ function CameraController() {
   const camera = useThree((state) => state.camera);
   const invalidate = useThree((state) => state.invalidate);
   const previousMode = useRef(viewMode);
+  const lastAppliedDirectorCommand = useRef<DirectorViewportSnapshot | null>(
+    null,
+  );
 
   useEffect(() => {
     const perspective = camera as PerspectiveCamera;
@@ -111,30 +173,236 @@ function CameraController() {
       perspective.updateProjectionMatrix();
       perspective.updateMatrixWorld();
       invalidate();
-    } else if (previousMode.current === "camera") {
-      perspective.position.set(6.2, 4.25, 7.4);
-      perspective.fov = 45;
-      perspective.lookAt(0, 1, 0);
-      perspective.updateProjectionMatrix();
-      perspective.updateMatrixWorld();
-      invalidate();
+    } else if (viewMode === "director") {
+      const hasNewDirectorCommand =
+        directorCameraCommand !== null &&
+        directorCameraCommand !== lastAppliedDirectorCommand.current;
+      if (hasNewDirectorCommand && directorCameraCommand) {
+        applyDirectorViewportSnapshot(perspective, directorCameraCommand);
+        lastAppliedDirectorCommand.current = directorCameraCommand;
+        invalidate();
+      } else if (previousMode.current === "camera") {
+        applyDirectorViewportSnapshot(
+          perspective,
+          DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT,
+        );
+        invalidate();
+      }
     }
     previousMode.current = viewMode;
-  }, [activeCamera, camera, invalidate, viewMode]);
+  }, [activeCamera, camera, directorCameraCommand, invalidate, viewMode]);
 
   if (viewMode !== "director") return null;
 
   return (
     <OrbitControls
+      key={
+        directorCameraCommand
+          ? directorCameraCommand.position.join(":")
+          : "director-default"
+      }
       makeDefault
       enabled={!isCapturing && motionPathDraft === null}
       enableDamping
       dampingFactor={0.08}
       minDistance={2.5}
       maxDistance={20}
-      maxPolarAngle={Math.PI / 2.02}
+      maxPolarAngle={Math.PI}
       target={[0, 1, 0]}
     />
+  );
+}
+/* eslint-enable react-hooks/immutability */
+
+function DirectorCameraSnapshotBridge({
+  cameraTarget,
+  onSnapshot,
+  viewMode,
+}: {
+  cameraTarget: DirectorViewportSnapshot["target"];
+  onSnapshot: (snapshot: DirectorViewportSnapshot) => void;
+  viewMode: "director" | "camera";
+}) {
+  const camera = useThree((state) => state.camera);
+  const elapsed = useRef(0);
+  const lastSnapshot = useRef<DirectorViewportSnapshot | null>(null);
+
+  useFrame((_, delta) => {
+    elapsed.current += delta;
+    if (elapsed.current < 0.08) return;
+    elapsed.current = 0;
+
+    const perspective = camera as PerspectiveCamera;
+    if (!perspective.isPerspectiveCamera) return;
+
+    const target: DirectorViewportSnapshot["target"] =
+      viewMode === "director" ? [0, 1, 0] : [...cameraTarget];
+    const snapshot: DirectorViewportSnapshot = {
+      fov: perspective.fov,
+      position: [
+        perspective.position.x,
+        perspective.position.y,
+        perspective.position.z,
+      ],
+      target: [...target],
+    };
+    const previous = lastSnapshot.current;
+    if (
+      previous &&
+      previous.fov === snapshot.fov &&
+      previous.position.every(
+        (value, index) => value === snapshot.position[index],
+      ) &&
+      previous.target.every((value, index) => value === snapshot.target[index])
+    ) {
+      return;
+    }
+    lastSnapshot.current = snapshot;
+    onSnapshot(snapshot);
+  });
+
+  return null;
+}
+
+function getDirectorViewportGizmoButtonStyle(
+  snapshot: DirectorViewportSnapshot,
+  axis: DirectorViewportAxisId,
+): CSSProperties {
+  const relativePosition = new Vector3(
+    snapshot.position[0] - snapshot.target[0],
+    snapshot.position[1] - snapshot.target[1],
+    snapshot.position[2] - snapshot.target[2],
+  );
+  if (relativePosition.lengthSq() === 0) relativePosition.set(0, 0, 1);
+
+  const gizmoCamera = new PerspectiveCamera(snapshot.fov, 1, 0.1, 100);
+  gizmoCamera.position.copy(relativePosition);
+  gizmoCamera.lookAt(0, 0, 0);
+  gizmoCamera.updateMatrixWorld();
+
+  const gizmoQuaternion = new Quaternion().setFromRotationMatrix(
+    new Matrix4().copy(gizmoCamera.matrix).invert(),
+  );
+  const projectedDirection = new Vector3(...getDirectorViewportAxis(axis)).applyQuaternion(
+    gizmoQuaternion,
+  );
+  const hitRadius = 7.5;
+  const left = Math.min(
+    Math.max(40 + projectedDirection.x * 29, hitRadius),
+    80 - hitRadius,
+  );
+  const top = Math.min(
+    Math.max(40 - projectedDirection.y * 29, hitRadius),
+    80 - hitRadius,
+  );
+  const depth = Math.round((projectedDirection.z + 1) * 100);
+
+  return {
+    left,
+    top,
+    zIndex: 10 + depth,
+  };
+}
+
+function DirectorViewportGizmo({
+  disabled,
+  onAxisSelect,
+  snapshot,
+}: {
+  disabled: boolean;
+  onAxisSelect: (axis: DirectorViewportAxisId) => void;
+  snapshot: DirectorViewportSnapshot;
+}) {
+  return (
+    <div
+      data-director-viewport-gizmo
+      aria-label="3D视口原生坐标控件"
+      data-director-viewport-gizmo-position={snapshot.position.join(",")}
+      data-director-viewport-gizmo-target={snapshot.target.join(",")}
+      className="absolute right-5 top-5 z-20 h-20 w-20"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]"
+        data-director-gizmo-webgl-canvas-wrapper
+      >
+        <Canvas
+          frameloop="always"
+          camera={{ fov: snapshot.fov, position: [0, 0, 1] }}
+          gl={{ alpha: true, antialias: true }}
+          onCreated={({ gl }) => {
+            gl.domElement.dataset.directorGizmoWebglCanvas = "true";
+            gl.domElement.setAttribute("aria-label", "视口方向轴");
+          }}
+        >
+          <DirectorViewportGizmoScene snapshot={snapshot} />
+        </Canvas>
+      </div>
+      <div
+        data-director-viewport-gizmo-hit-layer
+        aria-label="3D视口坐标切换按钮"
+        data-director-viewport-gizmo-disabled={disabled}
+        className={cn(
+          "absolute inset-0",
+          disabled ? "pointer-events-none opacity-60" : "pointer-events-auto",
+        )}
+      >
+        {DIRECTOR_VIEWPORT_GIZMO_TARGETS.map((target) => (
+          <button
+            key={target.id}
+            type="button"
+            data-director-viewport-gizmo-button={target.id}
+            aria-label={target.label}
+            title={target.label}
+            disabled={disabled}
+            onClick={() => onAxisSelect(target.id)}
+            style={getDirectorViewportGizmoButtonStyle(snapshot, target.id)}
+            className="absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-transparent p-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/80"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* eslint-disable react-hooks/immutability -- R3F owns this mutable gizmo camera. */
+function DirectorViewportGizmoScene({
+  snapshot,
+}: {
+  snapshot: DirectorViewportSnapshot;
+}) {
+  const camera = useThree((state) => state.camera);
+  const relativePosition = useMemo(
+    () =>
+      new Vector3(
+        snapshot.position[0] - snapshot.target[0],
+        snapshot.position[1] - snapshot.target[1],
+        snapshot.position[2] - snapshot.target[2],
+      ),
+    [snapshot.position, snapshot.target],
+  );
+
+  useLayoutEffect(() => {
+    const perspective = camera as PerspectiveCamera;
+    if (!perspective.isPerspectiveCamera) return;
+    perspective.position.copy(
+      relativePosition.lengthSq() === 0
+        ? new Vector3(0, 0, 1)
+        : relativePosition,
+    );
+    perspective.fov = snapshot.fov;
+    perspective.lookAt(0, 0, 0);
+    perspective.updateProjectionMatrix();
+    perspective.updateMatrixWorld();
+  }, [camera, relativePosition, snapshot.fov]);
+
+  return (
+    <GizmoHelper alignment="center-center" margin={[0, 0]}>
+      <GizmoViewport
+        axisColors={DIRECTOR_VIEWPORT_GIZMO_AXIS_COLORS}
+        disabled
+        scale={25}
+      />
+    </GizmoHelper>
   );
 }
 /* eslint-enable react-hooks/immutability */
@@ -1231,6 +1499,10 @@ export function DirectorViewport({
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  const activeCamera = useDirectorStore((state) =>
+    state.objects.find((object) => object.id === activeCameraId),
+  );
   const phoneVcamStatus = useDirectorStore(
     (state) => state.phoneVcam.status,
   );
@@ -1238,6 +1510,7 @@ export function DirectorViewport({
   const setTransformMode = useDirectorStore((state) => state.setTransformMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
+  const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
   const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
@@ -1265,6 +1538,13 @@ export function DirectorViewport({
   );
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+  const [viewportSnapshot, setViewportSnapshot] =
+    useState<DirectorViewportSnapshot>(
+      DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT,
+    );
+  const viewportSnapshotRef = useRef(viewportSnapshot);
+  const [directorCameraCommand, setDirectorCameraCommand] =
+    useState<DirectorViewportSnapshot | null>(null);
   const [captureRequest, setCaptureRequest] = useState(0);
   const [phoneVcamOpen, setPhoneVcamOpen] = useState(false);
   const [crowdPanelOpen, setCrowdPanelOpen] = useState(false);
@@ -1278,6 +1558,30 @@ export function DirectorViewport({
   const modelLibraryPanelRef = useRef<HTMLDivElement>(null);
   const localModelLibraryInputRef = useRef<HTMLInputElement>(null);
   const phoneVcamRecording = phoneVcamStatus === "recording";
+  const viewportGizmoDisabled =
+    timeline.motionPathDraft !== null || phoneVcamRecording;
+
+  const handleViewportSnapshot = useCallback(
+    (snapshot: DirectorViewportSnapshot) => {
+      viewportSnapshotRef.current = snapshot;
+      setViewportSnapshot(snapshot);
+    },
+    [],
+  );
+
+  const handleViewportAxisSelect = useCallback(
+    (axis: DirectorViewportAxisId) => {
+      const nextSnapshot = getDirectorViewportAxisSnapshot(
+        viewportSnapshotRef.current,
+        axis,
+      );
+      viewportSnapshotRef.current = nextSnapshot;
+      setViewportSnapshot(nextSnapshot);
+      setDirectorCameraCommand(nextSnapshot);
+      setViewMode("director");
+    },
+    [setViewMode],
+  );
 
   useLayoutEffect(() => {
     const element = viewportRef.current;
@@ -1430,7 +1734,14 @@ export function DirectorViewport({
             gl.domElement.setAttribute("aria-label", "导演台 WebGL 场景");
           }}
         >
-          <CameraController />
+          <CameraController
+            directorCameraCommand={directorCameraCommand}
+          />
+          <DirectorCameraSnapshotBridge
+            cameraTarget={activeCamera?.camera?.target ?? [0, 1, 0]}
+            onSnapshot={handleViewportSnapshot}
+            viewMode={viewMode}
+          />
           <DirectorScene />
           <CaptureController
             request={captureRequest}
@@ -1446,6 +1757,14 @@ export function DirectorViewport({
           />
         </Canvas>
       </div>
+
+      {!isCapturing ? (
+        <DirectorViewportGizmo
+          disabled={viewportGizmoDisabled}
+          onAxisSelect={handleViewportAxisSelect}
+          snapshot={viewportSnapshot}
+        />
+      ) : null}
 
       <div
         data-director-motion-path-layer

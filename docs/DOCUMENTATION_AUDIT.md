@@ -29,8 +29,8 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-49 的目录记录 | Batch 47 已在 `b1e6212` 完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 仍是 parallel WIP |
-| LibTV verifier | 有 Batch 4-33、35-48 的专项脚本 | Batch 34 是 research-only；Batch 48 已有 focused verifier |
+| Batch 研究目录 | 已有 Batch 3-49 的目录记录 | Batch 47 已完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 已完成 viewport gizmo 有界闭环 |
+| LibTV verifier | 有 Batch 4-33、35-49 的专项脚本 | Batch 34 是 research-only；Batch 49 已有 focused verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
 | 代码边界 | LibTV/FrameOS route 与 store 独立；后端为 mock | 研究文档不能暗示真实 Provider、上传或持久化已经存在 |
@@ -65,6 +65,7 @@ AGENTS.md / README.md
 - `docs/DOCUMENTATION_PLAN.md` 保留 2026-08-25 的迁移快照，并明确本审计是 2026-08-26 的维护增量；
 - Batch 46/47 在各自专项脚本、实施记录和 serial regression 稳定后被纳入台账；Batch 47 的真实模型/环境资产加载仍不在合同内。
 - Batch 48 已完成 local-import workflow、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 48，真实 mesh loading/远程同步仍是 prototype boundary。
+- Batch 49 已完成独立 R3F gizmo、六方向 snapshot 命令、capture/path/phone guard、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 49，source-exact renderer/CSS 和连续 gizmo 操作仍不在合同内。
 - 快捷键文案/handler/局部优先级和 graph action/history 副作用已有独立、可发现的运行语义地图。
 - UI overlay 已有从命令反查 state、mount owner、关闭路径、键盘边界、节点 anchor strategy 和未挂载兼容字段的运行时目录。
 
@@ -91,9 +92,13 @@ LibTV 生产持久化。
 
 Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone 快照负责；它们不能覆盖当前 LibTV `1092.5px` 图片工具条、`10 + 24 * zoom` 顶部定位或 structured AutoLink 合同。
 
-### 4.5 Batch 49 保持 parallel WIP
+### 4.5 Batch 49 是有界 recorded pass
 
-Batch 49 的导演台视口坐标控件已有计划、上游考古、source evidence、组件 spec 和 implementation WIP，但当前缺少 `SCREENSHOT_ANALYSIS.md` 与稳定 verifier。因此它只进入研究索引，不进入 `SCRIPT_RECORDED_PASS`、serial regression 或当前稳定 clone 基线；后续只读链接并等待 owner closeout。
+Batch 49 已完成导演台视口坐标控件的 clone-owned 有界闭环：独立 R3F
+gizmo、六个离散方向命令、Camera mode 回切、path/phone disabled、capture
+隐藏、desktop/mobile bounds、双 WebGL 非空像素和 focused verifier。它已进入
+`SCRIPT_RECORDED_PASS` 与 Batch 35-49 serial regression 计划，但仍不代表当前
+LibTV source-exact renderer/CSS；上游尺寸、颜色和结构仍只作为借鉴/校准。
 
 ## 5. 后续文档 backlog
 
@@ -129,7 +134,9 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 2026-08-27 继续补齐研究执行的可重复性与替换边界：[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) 统一登记 fixture 身份、构造、reset、storage 和副作用；[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md) 把共享源站限制为版本化只读复核；[`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md) 把历史断言和 current-source replacement 拆成双轨。随后将 fixture/reset/source-write/replacement 主张登记进 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)，并将 DEC-021 至 DEC-023 登记进 [`DECISION_REGISTER.md`](DECISION_REGISTER.md)。本轮只做文档同步，没有修改 `src/`、verifier、截图或上游 submodule。
 
-同日发现 Batch 49 已在共享工作区启动。正式入口仅补充其 `PARALLEL_WIP` 链接和停止条件，不修改其计划、实现、证据或截图；在截图台账和稳定 verifier 完成前，官方文档检查的缺失链接保持为已登记的并行 WIP 阻塞。
+随后 Batch 49 完成 closeout：实施记录、成熟度评估、一次性截图识别台账、
+专项 verifier 和 Director 覆盖矩阵均已接入正式导航。历史截图修改仍与本批
+隔离，后续 agent 应先读取截图台账再决定是否需要新的视觉识别。
 
 ## 6. 验收
 
@@ -138,7 +145,7 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 1. `docs/index.md` 能发现本审计；
 2. 所有验证范围描述与实际脚本集合一致；
 3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
-4. 稳定文档集的链接检查通过；全工作区官方检查仅被 Batch 49 缺失 `SCREENSHOT_ANALYSIS.md` 阻塞，且该并行 WIP 边界已在本审计和验证台账登记；
+4. 稳定文档集的链接检查通过；Batch 49 的 screenshot ledger 和 verifier 已进入稳定检查范围；
 5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
-6. Batch 49 的 parallel WIP、截图台账阻塞和稳定范围排除已明确记录；
+6. Batch 49 的 clone-owned recorded pass、source-exact 非声明和截图识别边界已明确记录；
 7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。

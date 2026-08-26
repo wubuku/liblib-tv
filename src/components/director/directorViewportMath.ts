@@ -1,10 +1,59 @@
-import type { DirectorAspectRatio } from "@/store/directorStore";
+import type {
+  DirectorAspectRatio,
+  DirectorTuple3,
+} from "@/store/directorStore";
 
 export interface DirectorFrameRect {
   left: number;
   top: number;
   width: number;
   height: number;
+}
+
+export interface DirectorViewportSnapshot {
+  fov: number;
+  position: DirectorTuple3;
+  target: DirectorTuple3;
+}
+
+export type DirectorViewportAxisId =
+  | "x-positive"
+  | "x-negative"
+  | "y-positive"
+  | "y-negative"
+  | "z-positive"
+  | "z-negative";
+
+export function getDirectorViewportAxis(
+  axis: DirectorViewportAxisId,
+): DirectorTuple3 {
+  if (axis === "x-positive") return [1, 0, 0];
+  if (axis === "x-negative") return [-1, 0, 0];
+  if (axis === "y-positive") return [0, 1, 0];
+  if (axis === "y-negative") return [0, -1, 0];
+  if (axis === "z-positive") return [0, 0, 1];
+  return [0, 0, -1];
+}
+
+export function getDirectorViewportAxisSnapshot(
+  snapshot: DirectorViewportSnapshot,
+  axis: DirectorViewportAxisId,
+): DirectorViewportSnapshot {
+  const direction = getDirectorViewportAxis(axis);
+  const dx = snapshot.position[0] - snapshot.target[0];
+  const dy = snapshot.position[1] - snapshot.target[1];
+  const dz = snapshot.position[2] - snapshot.target[2];
+  const radius = Math.max(Math.hypot(dx, dy, dz), 0.001);
+
+  return {
+    fov: snapshot.fov,
+    target: [...snapshot.target],
+    position: [
+      snapshot.target[0] + direction[0] * radius,
+      snapshot.target[1] + direction[1] * radius,
+      snapshot.target[2] + direction[2] * radius,
+    ],
+  };
 }
 
 export function getDirectorAspectValue(ratio: DirectorAspectRatio): number {
