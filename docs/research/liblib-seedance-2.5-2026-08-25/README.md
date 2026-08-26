@@ -12,6 +12,7 @@
 6. [`evidence/`](evidence/)：第三方文章中的 LibTV UI 截图，只作为功能线索和视觉证据。
 7. [`LIBTV_FEATURE_GAP_MATRIX.md`](LIBTV_FEATURE_GAP_MATRIX.md)：以“LibTV 有什么”为中心的能力呈现、clone 缺口、价值排序和授权闸门总矩阵。
 8. [`LIBTV_VERIFICATION_COVERAGE.md`](LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本对当前源站合同的覆盖、历史断言和授权后测试队列。
+9. [`NEXT_RESEARCH_PLAN.md`](NEXT_RESEARCH_PLAN.md)：已批准的研究-only 执行顺序、安全边界、产出和验收标准。
 
 同日的当前项目原站复核仍在 [`../liblib-live-2026-08-25/`](../liblib-live-2026-08-25/)；图片节点逐状态审计属于两组研究的交叉证据。
 

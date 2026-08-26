@@ -199,3 +199,12 @@
 - 明确上游的具体 gap、宽度、节点类型、provider slug 和 Handle 规则不能直接替代 LibTV 源站合同；只有经过 `SOURCE_FACT -> LibTV evidence -> clone-only contract -> authorized implementation` 才能进入代码；
 - 在 Open Canvas 深度报告中链接 LibTV 能力缺口总矩阵与验证覆盖矩阵，补上“研究机制如何接到后续 batch”的入口；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v19 研究-only 后续路线获批并落档
+
+用户批准继续从调研和借鉴角度推进、暂不编码。本轮先把执行顺序独立落档：
+
+- 新增 [`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)，确定先做 LibTV UI 状态层级图，再做 Open Canvas 四类模式卡、五项能力依赖/风险队列和编码授权前 go/no-go；
+- 计划明确允许的只读工作、禁止的共享源站动作、disposable fixture 前提、协作保护规则和每批 commit/push 验收标准；
+- 将计划接入 Seedance README、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，使后续 agent 能从正式入口发现当前执行路线；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
