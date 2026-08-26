@@ -26,15 +26,16 @@ const actions = [
 export type ImageToolbarAction = (typeof actions)[number]["label"];
 
 interface ImageToolbarProps {
+  zoom: number;
   portraitEnhanced: boolean;
   onAction: (action: ImageToolbarAction) => void;
 }
 
-export function ImageToolbar({ portraitEnhanced, onAction }: ImageToolbarProps) {
+export function ImageToolbar({ zoom, portraitEnhanced, onAction }: ImageToolbarProps) {
   return (
     <NodeToolbar
       position={Position.Top}
-      offset={16}
+      offset={10 + 24 * zoom}
       align="center"
       className="nodrag nopan z-[1001]"
       data-image-toolbar
