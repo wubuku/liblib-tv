@@ -200,6 +200,8 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Blockers | stable business interface or explicit local mock contract |
 | Exit | no claim of real progress, billing or output quality |
 
+正交 identity/state、stale completion、retry、local/source fixture 和 graph/history 断言统一见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。该矩阵完成的是 verifier 设计，不表示 fixture 或实现已经存在。
+
 ### `LIBTV-VR-008`：source-only shortcuts
 
 | 字段 | 规划 |

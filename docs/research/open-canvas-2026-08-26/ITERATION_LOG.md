@@ -267,3 +267,14 @@
 - 将 [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md) 标为保留第一阶段 A-E provenance 的历史候选清单，当前编号交由采纳矩阵、交接蓝图和全局 parity backlog；
 - 蓝图以 commit `333bc17` 推送；随后将 `DEC-024`、`OC-TR-005..008`、任务导读、生命周期和文档审计接入治理闭环；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v26 Process / Result 正交状态设计
+
+本轮完成 `OC-BP-005` 的文档态设计，不接入任务后端：
+
+- 新增 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)，将 source node/version、operation/range、run 和 result identity 分开；
+- 建立 authoring、node availability、run、result 和 save 五个正交状态轴，以及 queued/running/partial/failed/candidates/accepted/stale/canceled 场景；
+- 分别记录逐帧拉片的一次性本地结果事务、片段重拍的 local confirmation 和长视频 12/22 pending graph，明确三者不能冒充统一真实任务合同；
+- 为 `LIBTV-FIX-LOCAL-PROCESS-STATES-01`、`LIBTV-FIX-SOURCE-PROCESS-01` 和 `LIBTV-VR-007` 补齐构造、stale/retry、graph/history、reset 与停止条件；
+- 更新交接蓝图、Open Canvas/research/docs index、任务导读、fixture catalog、replacement map 和 traceability；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。

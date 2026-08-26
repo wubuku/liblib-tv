@@ -276,6 +276,8 @@ ready source
 | `LIBTV-FIX-LOCAL-PROCESS-STATES-01` | clone | 固定 pending/failed/partial/success/retry data | UI lifecycle、graph delta、selection、undo/redo | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-LOCAL-SHORTCUT-01` | clone | 固定 node/group/internal/external-edge subgraph | handler precondition、focus guard、graph closure、history | `REQUIRED_DISPOSABLE` |
 
+`LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。两者仍是设计完成但运行 fixture 未实现的状态。
+
 ### 6.1 源站 disposable fixture 的接收条件
 
 开始任何写入型源站研究前，必须同时记录：

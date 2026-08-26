@@ -191,6 +191,8 @@ Open Canvas 的 typed bucket 只证明“结构化身份在边界层投影”是
 
 Open Canvas 的 node/run/save 分层在这里是高价值设计输入，但 current runner、轮询和保存实现不进入 clone。
 
+完整的五轴状态、能力投影、stale/retry 规则和 fixture 接收规格见 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。
+
 ## 10. `OC-BP-006`：模型能力投影审计
 
 这项保持文档态，输出一张三层矩阵：
@@ -266,7 +268,7 @@ pure identity/transaction cases
 
 1. 完成 `OC-BP-003` typed Auto Link 的 fixture/data/state/transaction 设计；
 2. 完成 `OC-BP-004` invariant 和 compatibility case 表；
-3. 完成 `OC-BP-005` process/result 固定状态矩阵；
+3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
 4. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；
 5. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 6. 保持 provider、真实保存和共享源站 mutation 在边界外。
