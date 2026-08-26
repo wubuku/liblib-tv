@@ -74,7 +74,7 @@ submit, desktop/mobile overflow and console diagnostics.
 | Commit | 内容 | 状态 |
 |---|---|---|
 | `fd52b9f` | Batch 57 计划、证据和接力文档 | 已 push |
-| 待提交 | 连接纯校验器、route/store 实施、focused verifier 和 closeout 文档 | 待提交 |
+| `cbb47fe` | 连接纯校验器、route/store 实施、focused verifier 和 closeout 文档 | 已 push |
 
 ## 5. 未决与边界
 

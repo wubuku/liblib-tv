@@ -209,6 +209,8 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-013` | every runtime node type/dataVersion and identity-bearing field has one registry rule | `REQUIRED_CORRECTNESS` | 11-type static audit and node-data contract complete；runtime uses generic Node/Record | unknown type/version/field blocks codec/operation before mutation |
 | `LIBTV-GI-014` | owned node/edge metadata refs resolve or use an explicit external provenance mode | `REQUIRED_CORRECTNESS` | sourceNodeId/edgeId exist in derived metadata；continuation cleanup dereferences edgeId | map both refs, apply declared detach recipe, or reject；never retain stale edge ownership |
 | `LIBTV-GI-015` | shot reciprocal refs and long-video process cohort remain internally consistent | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | resultNodeIds/sourceBreakdownId and shared processId bypass parent closure | exact copy validates/maps full aggregate；delete cascade/detach remains product decision |
+| `LIBTV-GI-016` | accepted delete leaves no stale structural、owned data or aggregate relation | `REQUIRED_CORRECTNESS` | current node/selection delete repairs descendants/endpoints only | plan inverse refs and aggregate impact before one mutation；unresolved policy returns unknown |
+| `LIBTV-GI-017` | graph delete reports node-bound UI invalidation and resource impact without folding them into graph history | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | uiStore owners and data/blob locators have separate lifetimes | route applies UI cleanup；media bytes/workspace/run destruction needs explicit owner |
 
 ### 10.2 Compatibility case queue
 
@@ -229,10 +231,12 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-013` shot aggregate copy/delete | complete or broken source/result reciprocal set | duplicate/delete | both directions and edges map/repair atomically；partial reason stable | data registry/fixture design complete；runtime/source delete policy missing |
 | `LIBTV-GC-014` process cohort copy/delete | complete or partial shared processId set | duplicate/delete | one new aggregate ID for complete copy；partial mutation rejects unless separately specified | data registry/fixture design complete；runtime/source lifecycle missing |
 | `LIBTV-GC-015` media portability | repo/https/data/blob locators | history/copy/export/import | locator class, alias, budget and non-portable diagnostics explicit | data registry/document design complete；runtime missing |
+| `LIBTV-GC-016` semantic edge deletion | derived target stores sourceNodeId/edgeId | delete edge/source | relation-specific clear/detach/cascade or stable unknown；no stale edgeId | delete matrix/fixture design complete；runtime/source policy missing |
+| `LIBTV-GC-017` delete UI/canvas/resource boundary | node-bound overlay + two canvases + media locator | delete node/canvas、undo | selection/overlay/fallback/history/resource diagnostic exact | delete matrix/fixture design complete；runtime/resource owner missing |
 
 ### 10.3 Decision and verification order
 
-1. Lock `GI-001..003/008..015` data-correctness portions as pure cases, while keeping source/product branches explicit;
+1. Lock `GI-001..003/008..017` data-correctness portions as pure cases, while keeping source/product branches explicit;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
 3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
 4. the Batch 57 structural connection slice is now implemented and recorded through `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`; keep its source-invalid/Reference/domain branches separate;
@@ -305,6 +309,19 @@ Current runtime is `PARTIAL`：Batch 3/5/8 已有结构 closure 和 history，re
 - stable reject/unknown reasons、zero-partial integrity pass、`LIBTV-FIX-LOCAL-NODE-DATA-01` and `LIBTV-VR-012`。
 
 Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PARTIAL`。It closes the registry audit/design gap, not the runtime schema gap；no graph/store/type/test code is authorized by this handoff。
+
+### 10.9 Delete impact and reference repair handoff
+
+[`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) is the delete-specific authority for：
+
+- Open Canvas centralized node/edge/selection deletion and conflict no-op as method-only inspiration；
+- current clone `removeNode/removeSelectedNodes/removeEdge/clearVideoContinuation/removeCanvas` impact inventory；
+- structural、owned-edge、provenance、shot reciprocal、process aggregate、UI owner、media and canvas relation classes；
+- named command、inverse relation index、full-plan validation and ready/reject/unknown results；
+- per-relation active/proposed/source-required/deferred policy and `LIBTV-DEL-DQ-001..008`；
+- `LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01` and `LIBTV-VR-013`。
+
+Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PARTIAL`。No delete planner、fixture adapter、verifier、cascade/detach behavior or media/workspace destruction is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

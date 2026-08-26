@@ -269,6 +269,20 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 
 Registry model、canonical field roles、operation profiles、per-type/aggregate/media policy、reason taxonomy、fixture corpus 和 implementation slices 统一见 [`components/LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md)。Static inventory 见 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)。
 
+### `LIBTV-VR-013`：relation-aware delete planning and repair
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008` / process、overlay and resource boundaries |
+| Old verifier | Batch 3 delete/history、Batch 8 group cascade、Batch 24 shot、Batch 26 clear continuation、Batch 27-33 derived/process、Batch 35/40 Director outputs；各自保留 bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-GRAPH-DELETE-01` + `LOCAL-NODE-DATA/GROUP/DERIVED/LONG-PROCESS`；source policy 使用 `SOURCE-GRAPH-DELETE-01` |
+| Pure checks | requested/descendant/incident closure；selected-edge dedupe；registered inverse refs；owned ref repair/block；shot reciprocity；process cohort；stable plan/reason；zero mutation；media diagnostics |
+| Browser checks | Delete focus ownership；edge scissors/relation clear；group cascade；edge-only selection；selection/top-bottom overlay/UI owner cleanup；one-step undo/redo；canvas fallback |
+| Blockers | pure impact index/planner、fixture and verifier missing；编码授权；derived source、shot result、process member、Director workspace 和 active-run semantics source/product-blocked |
+| Exit | every accepted delete leaves structural/data/aggregate/selection integrity；unknown/reject leaves graph/history/UI unchanged；old bounded regressions retained |
+
+Delete command inventory、Open Canvas boundary、relation topology、policy matrix、decision queue、fixture scenes and implementation slices 统一见 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -309,6 +323,7 @@ Registry model、canonical field roles、operation profiles、per-type/aggregate
 - `LIBTV-VR-010` 的 document/snapshot contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得用 JSON round-trip 静默丢字段，或把 import failure 退化为空画布；
 - `LIBTV-VR-011` 的 copy planner/reference/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 incident-edge compatibility 推广到 group/clipboard，也不得只 remap structure 而忽略 node data identity；
 - `LIBTV-VR-012` 的 11-type registry、aggregate/media fixture 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 `Record<string, unknown>`、suffix-based ID rewrite 或 shallow spread 当作 codec；
+- `LIBTV-VR-013` 的 relation-aware delete planner、repair policy、fixture scenes 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得先删 node/edge 再以 UI effect 或 suffix heuristic 修补 surviving refs；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

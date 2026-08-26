@@ -2,7 +2,7 @@
 
 > Scope: LibTV 普通 React Flow 画布的连接提议、方向归一化、校验结果、提交原子性、fixture 和 verifier 设计。
 >
-> Status: `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` / `SOURCE_EXCEPTION_BLOCKED`。本文不授权修改 `src/`、verifier 或共享源站 graph。
+> Status: `STRUCTURAL_SLICE_RECORDED_PASS` / `DOMAIN_AND_ENTRY_POINT_OPEN` / `SOURCE_EXCEPTION_BLOCKED`。Batch 57 已完成本地结构校验和 React Flow/store 提交边界；本文不授权继续修改 `src/`、verifier 或共享源站 graph。
 
 ## 1. Product Boundary
 
@@ -43,15 +43,15 @@ Open Canvas 固定版本可借鉴的是 pure validation、方向规范化、DAG/
 
 当前 clone：
 
-- [`page.tsx`](../../../src/app/page.tsx) 的 `onConnect` 只检查 source/target 非空，使用时间戳生成 edge ID，然后调用 `canvasStore.addEdge`；
-- React Flow 没有挂载 `isValidConnection`、`onConnectStart` 或 `onConnectEnd`；
-- [`canvasStore.ts`](../../../src/store/canvasStore.ts) 的 `addEdge` 只检查 active canvas，直接追加 edge 并压入一个 history snapshot；
-- 当前 store 不拒绝 dangling endpoint、duplicate pair、self-loop 或 cycle；
-- `CanvasEdge` 允许可选 `sourceHandle/targetHandle`，但当前校验没有使用它们；
+- Batch 57 新增 pure `normalizeLibTVConnection` / `validateLibTVGraphConnection`，覆盖 endpoint、Handle direction、dangling、unordered duplicate pair、self-loop 和 directed-cycle guard；
+- [`page.tsx`](../../../src/app/page.tsx) 的 React Flow 已挂载 `isValidConnection`、`onConnect`、`onConnectStart` 和 `onConnectEnd`；accepted proposal 在生成 edge 前完成校验，rejected proposal 不调用 store commit；
+- [`canvasStore.ts`](../../../src/store/canvasStore.ts) 的 `addEdge` 会以 `programmatic` origin 二次调用同一 pure validator，accepted edge 规范化 Handle 并产生一个 history step，rejected edge 返回稳定 reason 且 graph/history 保持不变；
+- `LibTVConnectionOrigin` 当前只实现 `react-flow | programmatic`；import、paste、batch、sync、collaboration 和 graph document load 尚未进入统一入口合同；
+- 当前 runtime result 只表达 structural `allow | reject`，并以 `domainStatus: "not-evaluated"` 明示 Reference、node action/type、capacity 和 model adjustment 尚未实现；
 - node renderers 普遍渲染固定左右 Handle，当前不会根据 node instance/domain capability 统一控制 `isConnectable`；
 - `CustomHandle` 是未挂载的 legacy prototype，不能作为未来实现依据；真实 affordance 仍是节点内的 React Flow `<Handle>`。
 
-这些是 reliability gap，不等于可以在未授权时重写 store。
+结构切片的实现与 focused verification 见 [`liblib-canvas-batch57-2026-08-27/`](../liblib-canvas-batch57-2026-08-27/)。该结果只证明 clone-owned local fixture，不证明完整 LibTV parity，也不授权继续重写 store。
 
 ## 3. Vocabulary And Identity
 
@@ -243,9 +243,9 @@ Atomic model adjustment is a `CLONE_DECISION` inspired by transaction safety. Cu
 
 | Entry | Required use of contract | Current state |
 |---|---|---|
-| React Flow `onConnect` | normalize, validate, commit accepted descriptor | raw append only |
-| React Flow `isValidConnection` | project pure result to connection affordance; must not mutate graph/history | absent |
-| programmatic connect | same validator and transaction result; explicit equal-ID behavior | no shared helper |
+| React Flow `onConnect` | normalize, validate, commit accepted descriptor | Batch 57 implemented and recorded |
+| React Flow `isValidConnection` | project pure result to connection affordance; must not mutate graph/history | Batch 57 implemented for structural result |
+| programmatic connect | same validator and transaction result; explicit equal-ID behavior | `canvasStore.addEdge` revalidates through shared helper |
 | derived action direct edge | structural validation at minimum; product-specific transaction remains separate | multiple store actions create edges directly |
 | import/paste/batch | validate whole draft before partial write; report per-edge diagnostics | policy not centralized |
 | remote sync/collaboration | reject corrupt payload or quarantine with diagnostics; do not apply UI gesture assumptions | current prototype out of scope |
@@ -268,7 +268,7 @@ Exact source invalid color, toast text, cursor, timeout and target highlight rem
 
 ### 11.1 Fixture identity
 
-`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` is the future deterministic local fixture. Current status: `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`.
+`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` is the deterministic local fixture. Current status: `AVAILABLE_LOCAL / DESIGN_SPEC_COMPLETE / RECORDED_PASS` for Batch 57 structural cases; domain, Reference and source-feedback extensions remain unavailable.
 
 It derives from a fresh `LIBTV-FIX-LOCAL-EMPTY-01` Page and must provide stable aliases for:
 
@@ -312,7 +312,7 @@ No fixture code, global store injector or source-site mutation is authorized by 
 
 ## 12. Verifier Contract
 
-Future `LIBTV-VR-009` is split into two layers:
+`LIBTV-VR-009` is split into two layers. Batch 57 recorded the local structural subset in both layers; the bullets that depend on domain, Reference or source feedback remain planned:
 
 ### 12.1 Pure contract layer
 
@@ -347,11 +347,15 @@ These slices are ordered but independently authorized:
 - no mutation on reject;
 - pure `VR-009` cases.
 
+Status: completed and recorded by Batch 57.
+
 ### Slice B: React Flow Boundary
 
 - use the pure result from `isValidConnection` and `onConnect`;
 - preserve Handle and edge visuals;
 - focused drag lifecycle and one-step history.
+
+Status: completed and recorded by Batch 57 for local structural behavior. Exact source invalid-feedback lifecycle remains open.
 
 ### Slice C: Domain Compatibility
 
@@ -365,11 +369,11 @@ These slices are ordered but independently authorized:
 - define partial-error reporting, migration and quarantine;
 - do not import Open Canvas serialized graph schema.
 
-No slice is authorized by this document. Slice A must not opportunistically include snapshot deep-clone, subgraph copy, persistence or collaboration.
+Slices C/D and any extension of A/B are not authorized by this document. The completed A/B slice must not be expanded opportunistically into snapshot deep-clone, subgraph copy, persistence or collaboration.
 
 ## 14. Non-Goals And Stop Conditions
 
-- No code, test script, fixture runtime, screenshot or submodule change is specified as completed.
+- No domain, Reference, import/batch/sync, persistence or collaboration runtime is specified as completed; Batch 57 structural code, fixture evidence and screenshots are recorded separately.
 - No exact source toast, cursor, invalid color, keyboard behavior or Reference outcome is claimed.
 - No real provider/model runner, upload, billing, collaboration or remote save is introduced.
 - No FrameOS route/store/Handle behavior is changed.

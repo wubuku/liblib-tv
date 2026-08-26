@@ -209,6 +209,8 @@ Subgraph copy 子切片的设计前置见 [`LibTVSubgraphCopy.contract.md`](comp
 
 Node data identity 子切片已经完成 fixed static audit 与规范设计，权威入口是 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md) 和 [`LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md)：11-type V0 registry、field roles、named operation profiles、shot reciprocal aggregate、long-video process cohort、Director shell/workspace boundary、media locator、`LIBTV-FIX-LOCAL-NODE-DATA-01` 和 `LIBTV-VR-012` 已定义。Runtime 仍使用 generic Node/Record 与浅 data spread；shot/process delete cascade 继续需要 source/product decision。
 
+Delete/reference repair 子切片也已完成设计，权威入口是 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：当前 destructive entry、Open Canvas 方法边界、relation inverse index、aggregate/UI/resource impact、cascade/detach/reset/block 队列、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01` 和 `LIBTV-VR-013` 已定义。Runtime 仍只做 descendants/incident-edge filter；derived、shot、process、Director 和 active-run 用户语义保持 source/product-blocked。
+
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle
 
 逐帧拉片、片段重拍和超长视频已经有有界 clone prototype，但 source 的处理中/失败/部分成功/重试/局部重算/版本替换仍不完整。进入实现前需要：
