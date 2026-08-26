@@ -34,7 +34,15 @@ Open Canvas 固定版本正好暴露了这类漂移：模型 registry、provider
 
 ## 3. Source-visible 模型目录
 
-以下七项来自 2026-08-25 的可见菜单样本，不是完整模型库：
+### 3.1 2026-08-27 current loaded DOM catalog
+
+新日期只读审计已在现有 failed video 的模型 dialog 中读取全部 `35` 个 loaded DOM row，其中前 `14` 行在当前 fixture 中使用 selectable style，后 `21` 行使用 `cursor-not-allowed opacity-50`。完整 label、estimate、premium、description、selected/style 状态和 screenshot 见 [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md) 与 [`libtv-model-catalog-audit-2026-08-27.json`](libtv-model-catalog-audit-2026-08-27.json)。
+
+35 行是当前登录态、当前失败视频和当前部署的 dialog 数据，不是 adapter/runner 支持表。所有 row 的 native `disabled=false` 且无 `aria-disabled`，因此 unavailable 只能作为当前 CSS/interaction style 事实，原因保持未知。
+
+### 3.2 2026-08-25 历史顶部样本
+
+以下七项来自 2026-08-25 的可见菜单顶部样本。它们仍解释历史截图，但不再承担当前 catalog 完整性：
 
 | UI order | Visible label | Estimate text | Premium marker | Confirmed selected description | Evidence boundary |
 |---:|---|---|---|---|---|
@@ -46,12 +54,12 @@ Open Canvas 固定版本正好暴露了这类漂移：模型 registry、provider
 | 6 | Wan 3.0 Prime | `1min` | no | unknown | visible row only |
 | 7 | Wan 3.0 | `3min` | no | unknown | visible row only；菜单底部可能还有内容 |
 
-规则：
+当前规则：
 
 - `2min/1min/3min` 只记录为菜单 estimate text，不写成生成时长、排队 SLA 或请求超时；
 - premium diamond 只证明 UI 标记，不证明当前账户可执行；
-- 只有两个已确认 description 可进入 source-visible contract；
-- 七项不得命名为“完整支持模型列表”；
+- 2026-08-27 的 35 行 description 可进入 dated source-visible contract；旧截图仍只证明当时直接读取的两个 description；
+- 35 行可称 current loaded DOM catalog，不得称“完整支持模型列表”；
 - 未逐项切换并读取参数前，不把 Seedance 2.5 的 mode/control matrix 套给其他模型。
 
 ## 4. Seedance 2.5 Authoring Capability
@@ -92,7 +100,7 @@ The clone's `settingsLabel` includes count even when long mode hides count in th
 
 | Capability claim | Source-visible UI | Clone UI / local graph | Request/runner | Current classification |
 |---|---|---|---|---|
-| choose one of seven visible models | yes | yes | no adapter proof | `UI_ONLY` |
+| browse current 35-row loaded model catalog | yes；14/21 为当前 fixture style split | clone 只有有界菜单样本 | no adapter proof | `UI_ONLY` |
 | selected-only description | two descriptions confirmed | rendered for confirmed rows | irrelevant | `SOURCE_SHAPED_UI` |
 | normal Seedance params | yes | local state and historical verifier | no request | `SOURCE_SHAPED_UI` |
 | long Seedance params | yes | local state and 12/22 graph handoff | no task | `BOUNDED_PROTOTYPE` |
@@ -178,7 +186,7 @@ Rule review 的最低问题：
 
 | Check | Local fixture | Source evidence | Required result |
 |---|---|---|---|
-| visible model rows | ready video | dated screenshot/live menu | order、label、estimate、premium、known descriptions separated |
+| visible model rows | ready/failed video | 2026-08-27 dated DOM/screenshots | 35-row order、label、estimate、premium、description、selected/current-context style separated |
 | normal controls | selected Seedance 2.5 normal | live parameter dialog | field presence, options, default/sample and clone delta |
 | long controls | selected Seedance 2.5 long | live parameter dialog | count absent, range/helper/audio and sample credits |
 | mode switch normalization | local component | source behavior incomplete | current clone fact recorded; source decision remains open |
@@ -202,7 +210,8 @@ No new replacement verifier is created by this document. A future parity item mu
 
 | Question | Evidence needed | Current state |
 |---|---|---|
-| 七项之后是否还有模型 | uncropped current menu / scroll audit | unknown |
+| current dialog 在七项之后是否还有模型 | 2026-08-27 scroll/DOM audit | resolved for current fixture：35 loaded rows |
+| 35 行是否跨账号/输入条件永久完整 | account/fixture matrix and product contract | unknown；不得泛化 |
 | 每个模型支持哪些 mode | model-by-model source selection audit | unknown; do not generalize |
 | 每个模型的 ratio/resolution/duration/audio/count | model/mode parameter snapshots | only Seedance 2.5 known |
 | estimate text semantics | source copy/help or API | UI text only |
@@ -213,7 +222,7 @@ No new replacement verifier is created by this document. A future parity item mu
 
 ## 11. 当前决策
 
-1. 保持七项为 `source-visible sample`，不称完整模型库；
+1. 以 2026-08-27 的 35 行作为 current loaded DOM catalog，以七项保留 2026-08-25 历史顶部样本；两者都不称执行支持表；
 2. 保持 Seedance 2.5 normal/long 为当前最成熟 authoring contract；
 3. 不把 clone credits 公式、ratio/resolution strings 或 model IDs 视为 API；
 4. 不为其他模型推断 mode/control capability；

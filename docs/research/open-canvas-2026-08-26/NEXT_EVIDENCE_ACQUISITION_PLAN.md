@@ -37,7 +37,7 @@
 | ID | 证据问题 | 当前状态 | 价值 | 直接解锁/更新 |
 |---|---|---|---|---|
 | `OC-EQ-001` | 当前 LibTV 页面壳、入口、标准双浮层和可见 surface 是否发生新漂移 | `PARTIAL_RECORDED`：41% standard image；其余场景仍 `READY_READ_ONLY` | 高 | `LIBTV-PAR-005`、`OC-BP-001/002` 的 `L0` |
-| `OC-EQ-002` | 非 Seedance 2.5 模型逐项有哪些可见 controls，哪些只存在于菜单/catalog | `STATIC_FIRST` | 中高 | `OC-BP-006`、model capability matrix |
+| `OC-EQ-002` | 非 Seedance 2.5 模型逐项有哪些可见 controls，哪些只存在于菜单/catalog | `PARTIAL_RECORDED`：35-row catalog；per-model controls 未选择 | 中高 | `OC-BP-006`、model capability matrix |
 | `OC-EQ-003` | LibTV 是否允许 duplicate edge、parallel handle edge、self-loop、cycle，以及 Handle 类型兼容是什么 | `STATIC_FIRST`，交互部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-004`、`LIBTV-GI-004..007` |
 | `OC-EQ-004` | Auto Link 的输入、IME、单项/全量接受、失败回滚和 stale result 当前怎样运行 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-003`、`LIBTV-VR-003..005` |
 | `OC-EQ-005` | ready-video、逐帧拉片、片段重拍、长视频的 partial/retry/result replacement 生命周期 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-005`、`LIBTV-VR-006/007` |
@@ -80,6 +80,10 @@
 得到同一 frame 的 node/toolbar/panel 几何和动作集合即可退出。若目标节点不存在、需要 graph mutation 才可构造、或任何动作出现写入风险，记录 `BLOCKED_BY_SOURCE_FIXTURE` 后停止。
 
 ## 5. `OC-EQ-002`：非 Seedance 模型能力
+
+### 5.0 最新有界结果
+
+2026-08-27 已从现有 failed video 的只读模型 dialog 记录 35 个 loaded DOM row、14/21 current-context style split、全部 description 和 selected alias，见 [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md)。本轮没有选择模型，因此逐模型 controls 仍为 `UNKNOWN_NOT_SELECTED`，队列保持 `PARTIAL_RECORDED`。
 
 ### 5.1 研究问题
 

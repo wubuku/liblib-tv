@@ -1,0 +1,450 @@
+{
+  "queueId": "OC-EQ-002",
+  "observedAt": "2026-08-27",
+  "url": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "fixture": {
+    "id": "LIBTV-FIX-SOURCE-SHARED-01",
+    "isolation": "SHARED_READ_ONLY",
+    "selectedNode": {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "mediaState": "failed",
+      "failureText": "vip专属模型-会员",
+      "panelModelLabel": "2.0 Fast",
+      "selectedCatalogLabel": "Seedance 2.0 Fast VIP",
+      "modeLabel": "全能参考",
+      "parameterSummary": "16:9 · 720P · 6s · 1个 ·",
+      "visibleCreditsSample": "132"
+    },
+    "actionsUsed": [
+      "fit view from 41% to 28%",
+      "clear existing selection",
+      "select existing failed video node",
+      "open and close model disclosure",
+      "scroll model menu"
+    ],
+    "actionsNotUsed": [
+      "select another model",
+      "change mode",
+      "change parameter",
+      "toggle preference",
+      "edit prompt",
+      "connect graph",
+      "generate",
+      "upload",
+      "save",
+      "download"
+    ]
+  },
+  "viewport": {
+    "width": 929,
+    "height": 874,
+    "devicePixelRatio": 2
+  },
+  "dialog": {
+    "width": 369,
+    "height": 409,
+    "scrollViewportHeight": 400,
+    "scrollContentHeight": 1956,
+    "rowCount": 35,
+    "styledSelectableCount": 14,
+    "styledUnavailableCount": 21
+  },
+  "rows": [
+    {
+      "order": 1,
+      "label": "Seedance 2.5",
+      "estimateText": "2min",
+      "description": "最强视频模型，全能参考，30s音画同步",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 2,
+      "label": "Seedance 2.0 VIP",
+      "estimateText": "2min",
+      "description": "最强视频模型，会员专属通道,15s音画同步",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 3,
+      "label": "Minimax H3",
+      "estimateText": "2min",
+      "description": "全模态输入，多参数控制，多场景商用级生成",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 4,
+      "label": "Seedance 2.0 Fast VIP",
+      "estimateText": "2min",
+      "description": "最强视频模型快速版，会员专属通道，15s音画同步",
+      "premiumMarker": true,
+      "dataSelected": true,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 5,
+      "label": "Seedance 2.0 Mini",
+      "estimateText": "2min",
+      "description": "最强视频模型mini版，高性价比生成，15s音画同步",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 6,
+      "label": "Wan 3.0 Prime",
+      "estimateText": "1min",
+      "description": "超快速生成，全模态参考，超写实高一致性",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 7,
+      "label": "Wan 3.0",
+      "estimateText": "3min",
+      "description": "全模态参考，支持文档与网页输入，超写实高一致性生成",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 8,
+      "label": "Happy Horse 1.1",
+      "estimateText": "3min",
+      "description": "阿里最新视频模型，一致性与视听质量更可控",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 9,
+      "label": "Happy Horse 1.0",
+      "estimateText": "3min",
+      "description": "阿里视频模型，支持多参生成",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 10,
+      "label": "Kling O3",
+      "estimateText": "3min",
+      "description": "视频编辑模型、参考一致性、音画同出、多镜头",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 11,
+      "label": "Wan 2.7",
+      "estimateText": "3min",
+      "description": "全能参考，支持修改视频画面、剧情、环境",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 12,
+      "label": "Kling O1",
+      "estimateText": "3min",
+      "description": "可灵一代编辑模型、支持多模态输入",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 13,
+      "label": "Vidu Q2",
+      "estimateText": "3min",
+      "description": "多图主体参考，精确控制效果佳",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 14,
+      "label": "Vidu Q2 Pro",
+      "estimateText": null,
+      "description": "Vidu Q2 Pro",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_SELECTABLE"
+    },
+    {
+      "order": 15,
+      "label": "Kling 3.0 Turbo",
+      "estimateText": "3min",
+      "description": "视频生成模型，高质感、支持多镜头",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 16,
+      "label": "Kling 3.0",
+      "estimateText": "3min",
+      "description": "视频生成模型，高质感、支持多镜头",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 17,
+      "label": "Wan 2.6",
+      "estimateText": "3min",
+      "description": "音画同步，支持多机位镜头，最长可生15秒视频",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 18,
+      "label": "Hailuo 2.3 Fast",
+      "estimateText": "1min",
+      "description": "善于表达动作、表情、镜头，更快速",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 19,
+      "label": "Hailuo 2.3",
+      "estimateText": "2min",
+      "description": "善于表达动作、表情、镜头，更高质感",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 20,
+      "label": "Seedance1.5 Pro",
+      "estimateText": "2min",
+      "description": "音画同步，支持多机位镜头，最长可生12秒视频",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 21,
+      "label": "Seedance 1.0 Pro",
+      "estimateText": "2min",
+      "description": "高精度提示词理解，40秒生成1080P视频",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 22,
+      "label": "Seedance 1.0 Lite",
+      "estimateText": "1min",
+      "description": "轻量快速，一键进行日常视频生成",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 23,
+      "label": "Kling 2.6",
+      "estimateText": "2min",
+      "description": "视频生成模型、直出音画同步",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 24,
+      "label": "Kling3.0 动作迁移",
+      "estimateText": "8min",
+      "description": "动作控制模型，需输入1张图片、1条视频",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 25,
+      "label": "Style Video",
+      "estimateText": "2min",
+      "description": "图生视频效果稳定，画面表现力强",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 26,
+      "label": "Hailuo 02",
+      "estimateText": "2min",
+      "description": "画质稳定，适合打造运动特效场景",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 27,
+      "label": "Vidu Q2 Turbo",
+      "estimateText": null,
+      "description": "Vidu Q2 Turbo",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 28,
+      "label": "Vidu Q3 Pro",
+      "estimateText": "2min",
+      "description": "支持主体参考，精确控制效果佳",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 29,
+      "label": "OmniHuman 1.5",
+      "estimateText": "3min",
+      "description": "多模态数字人视频生成",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 30,
+      "label": "Kling 2.5",
+      "estimateText": "2min",
+      "description": "速度快、效果稳定、性价比高",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 31,
+      "label": "Kling 2.1",
+      "estimateText": "3min",
+      "description": "支持首尾帧，图生视频效果更出色",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 32,
+      "label": "Wan 2.2",
+      "estimateText": "3min",
+      "description": "支持特效、玩法千变万化",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 33,
+      "label": "Wan 2.5",
+      "estimateText": "3min",
+      "description": "支持特效、直出音画同步",
+      "premiumMarker": false,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 34,
+      "label": "Pixverse V5.5",
+      "estimateText": "3min",
+      "description": "支持特效、玩法丰富",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    },
+    {
+      "order": 35,
+      "label": "Pixverse V5",
+      "estimateText": "3min",
+      "description": "支持特效、玩法丰富",
+      "premiumMarker": true,
+      "dataSelected": false,
+      "nativeDisabled": false,
+      "ariaDisabled": null,
+      "currentContextStyle": "STYLED_UNAVAILABLE"
+    }
+  ],
+  "evidence": {
+    "topScreenshot": "../../design-references/liblib-original-oc-eq-002-video-model-catalog-top-929x874-2026-08-27.png",
+    "bottomScreenshot": "../../design-references/liblib-original-oc-eq-002-video-model-catalog-bottom-929x874-2026-08-27.png",
+    "interpretation": "LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md"
+  },
+  "status": {
+    "queue": "PARTIAL_RECORDED",
+    "perModelControls": "UNKNOWN_NOT_SELECTED",
+    "adapterRunner": "OUT_OF_SCOPE"
+  }
+}

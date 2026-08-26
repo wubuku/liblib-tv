@@ -333,3 +333,14 @@
 - 记录 toolbar/panel 在 929px viewport 左边界为负并自然裁切，没有观察到 clamp；
 - 将 `OC-EQ-001` 标为 `PARTIAL_RECORDED`，因为本轮没有点击、改变 zoom、进入 active tool 或覆盖 mobile/selection transition；
 - 没有修改 Batch 51、`src/`、verifier、共享源站状态或 Open Canvas submodule。
+
+## 2026-08-27：v32 `OC-EQ-002` 模型目录 freshness
+
+本轮在 fit-view 28% 下只读选择已有 failed video，展开并滚动模型 dialog：
+
+- 新增 [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md)、35-row JSON 和 top/bottom screenshot；
+- 当前 dialog 加载 35 行，前 14 行使用 selectable style，后 21 行使用 `cursor-not-allowed opacity-50`；
+- 35 行均非 native disabled 且缺少 `aria-disabled`，因此不为 unavailable style 补写业务原因；
+- 当前 panel short label `2.0 Fast` 与 selected catalog row `Seedance 2.0 Fast VIP` 的 alias 得到直接证明；
+- 旧七行样本保留历史截图边界，current catalog authority 升级到新日期 35 行；
+- 没有选择其他模型或修改 mode/params，所以 per-model controls 与 runner 继续 unknown/out-of-scope；没有修改代码、verifier、共享源站 graph 或 submodule。
