@@ -132,6 +132,7 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 
 相关文档：
 
+- [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)
 - [`components/KeyboardShortcutsDialog.spec.md`](components/KeyboardShortcutsDialog.spec.md)
 - [`BEHAVIORS.md`](BEHAVIORS.md)
 - [`liblib-canvas-batch3-2026-08-25/`](liblib-canvas-batch3-2026-08-25/README.md)

@@ -39,6 +39,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a LibTV shortcut runtime crosswalk that separates source-advertised
   commands, clone help rows, global handlers, React Flow gestures, local context
   precedence and graph/history side effects.
+- Added a LibTV graph transaction catalog covering route event compression,
+  store actions, node/edge/selection deltas, atomic history, evidence maturity
+  and known transaction risks.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
