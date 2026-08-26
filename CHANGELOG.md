@@ -51,6 +51,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   verifier and Batch 35-47 serial regression.
 - Moved the explicit parallel-WIP documentation boundary to the planned Batch
   48 local model-library persistence slice.
+- Added a current LibTV UI/UX parity backlog with stable gap IDs, evidence and
+  verification readiness, risk, dependencies, authorization gates, fixture
+  blockers and explicit prototype/out-of-scope boundaries.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

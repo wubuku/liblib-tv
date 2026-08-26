@@ -16,7 +16,7 @@
 - `CHANGELOG.md`：混合了上游模板历史和本项目 FrameOS 迭代记录。
 - `.codex/skills/` / `.claude/skills/`：已有 `clone-website` 技能同步机制。
 
-> 维护说明（2026-08-27）：本节是 2026-08-25 文档体系迁移时的审计快照；Batch 研究已继续推进到 Batch 48，当前验证脚本实际覆盖 Batch 4-33、35-47，Batch 47 已形成 focused verifier 和 Batch 35-47 serial regression；Batch 48 当前是 evidence/plan/contract 已保护、implementation pending 的并行 WIP。现状漂移与修正记录见 [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)，当前指引与历史合同的替代关系见 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md)。
+> 维护说明（2026-08-27）：本节是 2026-08-25 文档体系迁移时的审计快照；Batch 研究已继续推进到 Batch 48，当前验证脚本实际覆盖 Batch 4-33、35-47，Batch 47 已形成 focused verifier 和 Batch 35-47 serial regression；Batch 48 已保护 evidence/plan/contract 并提交 local-import foundation，但完整 workflow/专项 verifier 仍是并行 WIP。现状漂移与修正记录见 [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)，当前指引与历史合同的替代关系见 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md)。
 
 ### 主要缺口
 

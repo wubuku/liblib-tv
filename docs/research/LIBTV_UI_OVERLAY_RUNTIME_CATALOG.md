@@ -338,4 +338,5 @@ page handler 先跳过 `input`、`textarea` 和 contenteditable target，再处�
 - [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)：当前图片上下浮层精确源站几何。
 - [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：help/handler/context 对照。
 - [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)：graph/history 副作用目录。
+- [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：把本目录风险放入当前价值、证据、授权和 fixture 优先队列。
 - [`PAGE_TOPOLOGY.md`](PAGE_TOPOLOGY.md)：page shell 和 z-index 区域。

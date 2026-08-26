@@ -409,6 +409,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `docs/research/liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md`：获批的研究-only 执行顺序、安全边界、产出和授权门槛
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md`：LibTV UI 状态层级、浮层替换、预览和 graph mutation 转换合同
 - `docs/research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`：当前 overlay state、mount owner、关闭路径、键盘边界、Director 例外和节点锚点策略
+- `docs/research/LIBTV_UIUX_PARITY_BACKLOG.md`：当前全路由 UI/UX 差距、价值/证据/风险排序、依赖、工作波次和 batch entry template
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md`：五项主推能力的共享底座、依赖关系、风险登记和研究优先级队列
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`：编码授权前的继续研究、授权条件、fixture 规格和停止闸门
 - `docs/research/liblib-live-2026-08-25/*.json`：10 节点、11 边与首屏 DOM 的结构化抽取
@@ -468,10 +469,11 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ### 修改某条路线
 
 1. 先确认目标是 LibTV 还是 FrameOS。
-2. 读对应 route page，确认 renderer 和 overlay 的真实挂载关系。
-3. 读对应 store；涉及普通 LibTV graph 时同时读 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)，涉及 page/node overlay 时读 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)，确认状态归属、mount owner 和 mutation point。
-4. 对照原站证据，而不是只对照旧实施文档。
-5. 修改后至少检查两个路由是否仍可渲染。
+2. 若目标是“下一项复刻什么”，先从 [`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) 选择一个有界 slice，并检查 authorization/fixture/parallel-WIP 状态。
+3. 读对应 route page，确认 renderer 和 overlay 的真实挂载关系。
+4. 读对应 store；涉及普通 LibTV graph 时同时读 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)，涉及 page/node overlay 时读 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)，确认状态归属、mount owner 和 mutation point。
+5. 对照原站证据，而不是只对照旧实施文档。
+6. 修改后至少检查两个路由是否仍可渲染。
 
 ### 修改共享 React Flow 样式
 
@@ -532,8 +534,8 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   插入、tree/Inspector selection、R3F 像素变化、`我的模型` 空态、Escape/outside
   dismissal 和移动端边界已记录通过；真实模型/环境资产加载不在有界合同内
 - Batch 48：浏览器本地 FBX/OBJ descriptor、持久化卡片、重新加入场景和实例
-  清理已有 evidence/plan/contract，但实现、专项 verifier 和 maturity assessment
-  尚未完成，不纳入上述验证基线
+  清理已有 evidence/plan/contract，local import helper foundation 已在 `f3104df`
+  提交；完整 workflow、专项 verifier 和 maturity assessment 尚未完成，不纳入上述验证基线
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

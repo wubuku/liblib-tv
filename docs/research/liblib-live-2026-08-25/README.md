@@ -4,6 +4,10 @@
 > 原站：`https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd`  
 > 目标：先以可重复证据描述缺口，再按价值决定实现范围；不把旧研究文档或视觉猜测当作当前原站事实。
 
+> Lifecycle note：本文的 DOM/截图/结构化数据继续作为 2026-08-25
+> `DATED_SOURCE_SNAPSHOT`；其中“当前克隆”“本轮实现”和价值排序只解释当时批次。
+> 当前跨路由优先队列见 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)。
+
 ## 1. 证据与方法
 
 本轮按 `clone-website` 技能完成了四类采样：

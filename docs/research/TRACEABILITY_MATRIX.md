@@ -34,6 +34,9 @@
 | LIBTV-TR-013 | 片段重拍依赖 ready video、时间范围、Prompt token 和结果版本关系 | `SOURCE_FACT` / `ARTICLE_EVIDENCE` | [`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 23、[`LIBTV_DEPENDENCY_RISK_QUEUE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md) | 入口文案、bundle 和文章截图 | 不代表共享项目具备安全 ready-video fixture |
 | LIBTV-TR-014 | 超长视频过程图和局部重算的源站状态仍不完整，当前 clone 的 12 节点/22 边只是本地 prototype fixture | `CLONE_FACT` / `ARTICLE_EVIDENCE` / `INFERENCE` | Batch 33、[`LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md) | 区分 clone 形态和源站未知 | 不代表源站真实任务拆分已经复刻 |
 | LIBTV-TR-015 | 研究阶段没有明确编码授权时，不修改 `src/`、回归脚本或共享源站状态 | `DECISION` | [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)、[`DECISION_REGISTER.md`](../DECISION_REGISTER.md) | 当前研究-only 工作 | 用户明确授权后可按单 slice 进入编码 |
+| LIBTV-TR-016 | 当前 top-level overlays 由 `uiStore` write-side exclusion 协调，organize confirmation 独立，selected-node surfaces 不进入该 store | `CLONE_FACT` | [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | 当前稳定 clone runtime | 不代表全部 surface 在源站使用同一种 outside/Escape 策略 |
+| LIBTV-TR-017 | 当前 clone 的节点上下 surface 混用 React Flow `NodeToolbar` 和 node-internal inverse scale，而最新 source toolbar formula/action set 尚未进入 clone | `SOURCE_FACT` / `CLONE_FACT` | [`LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | standard image/video 与部分 active tool | 不代表应把所有 bottom panel 改成同一种 anchor |
+| LIBTV-TR-018 | 当前 clone 的 page global shortcuts 只对 editable target 和 Director Escape 做局部 guard，modal/Director 前台的其他 keyboard ownership 仍有风险 | `CLONE_FACT` / `INFERENCE` | [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、[`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md) | 当前 page shell 与 Director 边界 | 不证明源站 keyboard/focus 行为；需要只读复核和产品决定 |
 
 ## 3. Open Canvas 启发主张
 
@@ -70,6 +73,6 @@
 | Auto Link 是否只是字符串前缀 | LIBTV-TR-008、LIBTV-TR-009 |
 | Seedance 文章数字能否直接写死 | LIBTV-TR-010、LIBTV-TR-011 |
 | 长视频/重拍是否已经完成 | LIBTV-TR-012 到 LIBTV-TR-014，再查验证台账 |
+| 当前最值得先研究/复刻什么 | LIBTV-TR-016 到 LIBTV-TR-018，再查 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) |
 | Open Canvas 能借鉴什么 | OC-TR-001 到 OC-TR-004，再查模式卡 |
 | 现在能不能编码 | LIBTV-TR-015 和 [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) |
-

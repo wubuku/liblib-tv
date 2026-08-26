@@ -5,7 +5,7 @@
 
 ## 1. 为什么需要本登记
 
-`docs/` 当前约有 376 份 Markdown 文档，其中大部分位于 LibTV Batch 目录。它们同时承担当前指引、源站证据、实施历史和验证记录。仅凭文件日期或“已完成”字样无法判断权威性：
+`docs/` 当前约有 377 份 Markdown 文档，其中大部分位于 LibTV Batch 目录。它们同时承担当前指引、源站证据、实施历史和验证记录。仅凭文件日期或“已完成”字样无法判断权威性：
 
 - 旧 Batch 的状态描述只对当时切片负责；
 - 当前源站事实可能推翻旧截图中的尺寸或动作集合；
@@ -106,6 +106,7 @@ current source code + focused current run
 | `research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md` | `CURRENT_GUIDANCE` | 源站帮助文案、clone help、运行时 handler/gesture/context 对照 | handler、帮助行或新的源站复核变化时更新。 |
 | `research/LIBTV_GRAPH_TRANSACTION_CATALOG.md` | `CURRENT_GUIDANCE` | 普通 LibTV graph actions、selection 和 history 边界 | `canvasStore` action、route adapter 或专项 transaction 变化时更新。 |
 | `research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md` | `CURRENT_GUIDANCE` | top-level、route-local、节点相对和 Director surface 的 state/mount/close/runtime 边界 | `uiStore`、mount owner、Escape/outside/focus 或节点 anchor strategy 变化时更新。 |
+| `research/LIBTV_UIUX_PARITY_BACKLOG.md` | `CURRENT_INDEX` / `CURRENT_RESEARCH` | 当前跨路由 parity 差距排序、依赖、授权/fixture 状态和 batch 入口 | 新 source evidence、稳定实现、verifier maturity 或 parallel-WIP 边界变化时更新；不替代专项合同。 |
 | `research/INSPECTION_GUIDE.md` | `CURRENT_GUIDANCE` | 源站检查和截图台账纪律 | 浏览器/取证流程变化时更新。 |
 
 ### 4.3 专项研究和 Batch
@@ -120,7 +121,7 @@ current source code + focused current run
 | Batch 45 | `HISTORICAL_CONTRACT` / recorded pass | Director group/crowd slice | 已有专项 verifier 和 serial regression 记录；仍是有界 clone 合同，不代表源站全量一致。 |
 | Batch 46 | `HISTORICAL_CONTRACT` / recorded pass | Director camera screenshot gallery slice | 已有 focused verifier 和 Batch 35-46 serial regression；仍是有界 clone 合同。 |
 | Batch 47 | `HISTORICAL_CONTRACT` / recorded pass | Director model-library slice | 已有 focused verifier 和 Batch 35-47 serial regression；clone-owned proxy model 已稳定，真实模型/环境资产仍不在合同内。 |
-| Batch 48 | `PARALLEL_WIP` | Director local model-library persistence slice | 当前只有 evidence、fixed-upstream archaeology、plan、contract 和 implementation-pending 交接；不覆盖其后续源码、verifier 或截图。 |
+| Batch 48 | `PARALLEL_WIP` | Director local model-library persistence slice | evidence/archaeology/plan/contract 与 local-import foundation 已提交；完整 workflow、verifier 和截图仍在并行推进，不覆盖其后续 WIP。 |
 | `research/components/*.spec.md` | `CURRENT_GUIDANCE` 或有界合同 | 对应组件的交互、几何、状态和图事务 | 先查 coverage matrix；旧组件 spec 可被更新的跨切面 source contract 部分取代。 |
 | `research/frameos/` | `CURRENT_RESEARCH` | FrameOS 独立 route/store/UX | 不与 LibTV 组件和 store 合并。 |
 
@@ -144,6 +145,7 @@ current source code + focused current run
 | Batch 10 固定候选 AutoLink 原型 | [`LibTVAutoLink.contract.md`](research/components/LibTVAutoLink.contract.md) + current AutoLink matrix | 当前源站 ghost、structured mention 和 ordinal 语义 | 保留旧 clone 为什么出现固定 popover。 |
 | `COMPONENT_INVENTORY.md` 的“列出组件” | [`components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) 的“合同状态” | 判断应读哪个 spec/Batch | Inventory 继续负责源码结构。 |
 | Open Canvas overlay/input/graph 模式 | LibTV 专项 source contract | LibTV 精确尺寸、动作、文案和副作用 | 上游模式只保留为机制启发。 |
+| `liblib-live-2026-08-25/README.md` 的当时差距排序 | [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) | 当前跨路由研究/复刻优先级 | 旧文档继续保留 2026-08-25 source snapshot、当时 clone baseline 和实施 provenance。 |
 
 ## 6. 本轮归档审计结论
 

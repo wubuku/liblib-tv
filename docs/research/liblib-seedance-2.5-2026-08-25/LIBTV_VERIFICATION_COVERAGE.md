@@ -1,6 +1,10 @@
 # LibTV Clone Verification Coverage
 
 > Purpose: map current source-backed contracts to the clone's existing browser checks. This document identifies test gaps; it does not authorize code or test-script changes.
+>
+> Current cross-route implementation/research priority is maintained in
+> [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md); this file
+> remains the detailed image/AutoLink/video verification-coverage view.
 
 ## 1. Executive Summary
 

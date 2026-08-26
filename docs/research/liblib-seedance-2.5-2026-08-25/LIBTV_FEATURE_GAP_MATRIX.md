@@ -2,6 +2,10 @@
 
 > 目的：回答“LibTV 当前有什么、在画布上如何呈现、clone 还缺什么、下一步值不值得做”。
 > 本文只研究 LibTV 的产品表现，不采纳外部调研文档对其他项目的实现展望；没有用户授权时，不修改 `src/`。
+>
+> 本文继续负责 Seedance 五项能力；跨 page shell、selected-node、active tool、
+> shortcut、overlay 和 graph 的当前统一排序见
+> [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)。
 
 ## 1. 阅读结论
 
