@@ -37,7 +37,7 @@ npm run check
 python3 scripts/verify-docs.py
 ```
 
-当前专项 verifier 覆盖 Batch 4-33、35-45；Batch 34 是 research-only，当前并行的 Batch 46 尚无专项 verifier。
+当前专项 verifier 覆盖 Batch 4-33、35-46；Batch 34 是 research-only，Batch 47 的稳定 HEAD 只有 evidence/plan 交接，当前并行实现 WIP 尚无专项 verifier。
 
 If a test or screenshot changes, explain why in the relevant implementation record. Preserve console-error checks in Playwright scripts.
 

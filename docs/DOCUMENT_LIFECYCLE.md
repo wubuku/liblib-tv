@@ -103,6 +103,8 @@ current source code + focused current run
 | `research/components/COVERAGE_MATRIX.md` | `CURRENT_INDEX` | 源码组件到合同/证据/验证状态 | 不取代 `COMPONENT_INVENTORY` 或具体 spec。 |
 | `research/TRACEABILITY_MATRIX.md` | `CURRENT_INDEX` | 产品主张到证据的反向索引 | 不把索引行当作新的原始证据。 |
 | `research/VERIFICATION_LEDGER.md` | `CURRENT_INDEX` | 验证成熟度和 fixture 阻塞 | 脚本新增、记录通过或合同变化时更新。 |
+| `research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md` | `CURRENT_GUIDANCE` | 源站帮助文案、clone help、运行时 handler/gesture/context 对照 | handler、帮助行或新的源站复核变化时更新。 |
+| `research/LIBTV_GRAPH_TRANSACTION_CATALOG.md` | `CURRENT_GUIDANCE` | 普通 LibTV graph actions、selection 和 history 边界 | `canvasStore` action、route adapter 或专项 transaction 变化时更新。 |
 | `research/INSPECTION_GUIDE.md` | `CURRENT_GUIDANCE` | 源站检查和截图台账纪律 | 浏览器/取证流程变化时更新。 |
 
 ### 4.3 专项研究和 Batch
@@ -115,7 +117,8 @@ current source code + focused current run
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |
 | Batch 45 | `HISTORICAL_CONTRACT` / recorded pass | Director group/crowd slice | 已有专项 verifier 和 serial regression 记录；仍是有界 clone 合同，不代表源站全量一致。 |
-| Batch 46 | `PARALLEL_WIP` | Director camera screenshot gallery slice | evidence/plan 已落档；不覆盖并行 implementation、verifier 或截图。 |
+| Batch 46 | `HISTORICAL_CONTRACT` / recorded pass | Director camera screenshot gallery slice | 已有 focused verifier 和 Batch 35-46 serial regression；仍是有界 clone 合同。 |
+| Batch 47 | `PARALLEL_WIP` | Director model-library slice | 稳定 HEAD 只有 evidence/plan/contract 与 implementation-pending 交接；工作区存在并行实现 WIP，不覆盖其源码、verifier 或截图。 |
 | `research/components/*.spec.md` | `CURRENT_GUIDANCE` 或有界合同 | 对应组件的交互、几何、状态和图事务 | 先查 coverage matrix；旧组件 spec 可被更新的跨切面 source contract 部分取代。 |
 | `research/frameos/` | `CURRENT_RESEARCH` | FrameOS 独立 route/store/UX | 不与 LibTV 组件和 store 合并。 |
 
@@ -145,7 +148,7 @@ current source code + focused current run
 本轮没有文件满足归档条件：
 
 - `docs/drafts/` 与 `docs/archive/` 都只有入口 README；
-- 已完成的 Batch 3-45 仍承担实现 provenance、证据或接力上下文；Batch 46 作为并行 WIP 保持原位；
+- 已完成的 Batch 3-46 仍承担实现 provenance、证据或接力上下文；Batch 47 作为并行 WIP 保持原位；
 - 旧 Batch 状态文字可能与当前项目完成度不同，但这属于 `HISTORICAL_CONTRACT`，不是应删除的错误；
 - `docs/README.md` 仍有兼容价值，且已经明确指向 canonical hub；
 - 截图和 JSON 属于证据资产，不以“过期”为由归档。

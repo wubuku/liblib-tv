@@ -76,7 +76,7 @@ for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{
 done
 ```
 
-Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45 的专项 verifier、研究目录和截图台账均已纳入维护。
+Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46 的专项 verifier、研究目录和截图台账均已纳入维护；Batch 47 当前并行 WIP 不在循环中。
 
 ## Browser Evidence Requirements
 

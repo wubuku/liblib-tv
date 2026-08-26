@@ -25,7 +25,7 @@
 
 ```text
 Batch 4-33
-Batch 35-45
+Batch 35-46
 ```
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。

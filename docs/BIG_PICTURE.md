@@ -444,7 +444,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-45 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-46 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -466,7 +466,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 1. 先确认目标是 LibTV 还是 FrameOS。
 2. 读对应 route page，确认 renderer 和 overlay 的真实挂载关系。
-3. 读对应 store，确认状态归属和 mutation point。
+3. 读对应 store；涉及普通 LibTV graph 时同时读 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)，确认状态归属和 mutation point。
 4. 对照原站证据，而不是只对照旧实施文档。
 5. 修改后至少检查两个路由是否仍可渲染。
 
@@ -508,7 +508,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch45.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch46.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
   和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
   helper-free capture、回流 history、移动抽屉、typed timeline、关键帧、
@@ -523,6 +523,11 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   路径保留禁用、真实 R3F 像素变化、desktop/mobile 弹层边界和零浏览器错误
 - Batch 45：角色 group/crowd 创建、Shift 多选成组、group transform、typed
   group track、scrub/play 像素变化、ungroup 保留和移动端边界已记录通过
+- Batch 46：摄像机截图 tabs、空态/分组图库、active selection、全屏 viewer、
+  zoom/Escape、单张/批量回画布、清空确认、已回流节点保留和移动端边界已记录通过
+- Batch 47：稳定 HEAD 只有模型库 evidence、固定上游考古、计划、合同和
+  implementation-pending 交接；共享工作区中的并行实现 WIP 尚无专项 verifier，
+  不纳入上述验证基线
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

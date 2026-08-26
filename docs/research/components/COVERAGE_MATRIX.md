@@ -43,7 +43,7 @@
 | `video-clip` / `VideoClipNode` | `src/components/nodes/VideoClipNode.tsx` | [`VideoClipNode.spec.md`](VideoClipNode.spec.md)、Batch 25 workflow | Batch 25 | `SPEC_COMPLETE` | selected overlay `VideoClipEditPanel` 作为同一工作流阅读。 |
 | `audio` / `AudioNode` | `src/components/nodes/AudioNode.tsx` | [`AudioNode.spec.md`](AudioNode.spec.md)、Batch 28 audio split | Batch 28 | `SPEC_COMPLETE` | 输出命名、metadata、source edge 和 atomic history 是一个合同。 |
 | `long-video-process` / `LongVideoProcessNode` | `src/components/nodes/LongVideoProcessNode.tsx` | [`LongVideoProcessNode.spec.md`](LongVideoProcessNode.spec.md)、Batch 33 | Batch 33 | `SPEC_COMPLETE` | 这是 process graph 的 stage renderer，不是后端任务状态。 |
-| `default` / `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | [`DeletableEdge.spec.md`](DeletableEdge.spec.md)、`AGENTS.md` edge rule | Batch 4-33、35-45 | `SPEC_COMPLETE` | 不改变 hover-flow effect，除非重新取得源站证据。 |
+| `default` / `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | [`DeletableEdge.spec.md`](DeletableEdge.spec.md)、`AGENTS.md` edge rule | Batch 4-33、35-46 | `SPEC_COMPLETE` | 不改变 hover-flow effect，除非重新取得源站证据。 |
 
 ## 3. LibTV 面板与对话框
 
@@ -87,7 +87,7 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-46 
 | `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Batch 42 `DIRECTOR_CHARACTER_POSE.spec.md`、Batch 45 groups | `DOMAIN_CONTRACT` | rig 与 crowd/group rendering 以 Batch 42/45 领域合同为准。 |
 | `DirectorExportPanel` | `src/components/director/DirectorExportPanel.tsx` | Batch 40 `DIRECTOR_ANIMATION_EXPORT.spec.md` | `DOMAIN_CONTRACT` | 修改导出字段必须同时读 `videoExport` 类型和 capture return。 |
 | `DirectorPhoneVcamPanel` | `src/components/director/DirectorPhoneVcamPanel.tsx` | Batch 41 `DIRECTOR_PHONE_VCAM.spec.md` | `DOMAIN_CONTRACT` | 保持 phone preview 与 viewport/path conflict guard。 |
-| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-45 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
+| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-46 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
 | Director Batch 45 group/crowd slice | `Director*` + `directorStore` | Batch 45 `DIRECTOR_GROUPS.spec.md`、source evidence | `DOMAIN_CONTRACT` | 专项 verifier 与 serial regression 已记录通过；仍只是有界 clone 合同。 |
 | Director Batch 46 capture gallery slice | `Director*` + `directorStore` | Batch 46 `DIRECTOR_CAPTURE_GALLERY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 截图图库、查看器、单/批量回流与清空边界已稳定；仍是有界 clone 合同。 |
 

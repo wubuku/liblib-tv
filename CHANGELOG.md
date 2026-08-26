@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a LibTV graph transaction catalog covering route event compression,
   store actions, node/edge/selection deltas, atomic history, evidence maturity
   and known transaction risks.
+- Synchronized formal documentation with the stable Batch 46 verifier and
+  moved the explicit parallel-WIP boundary to Batch 47.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
