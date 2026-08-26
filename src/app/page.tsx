@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import {
   ReactFlow,
   Background,
@@ -40,6 +41,15 @@ import { AudioNode } from "@/components/nodes/AudioNode";
 import { LongVideoProcessNode } from "@/components/nodes/LongVideoProcessNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { getLiblibOrganizeViewport, organizeLiblibNodes } from "@/lib/liblibOrganize";
+
+const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
+  ssr: false,
+  loading: () => (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#111] text-sm text-[#a9a9a9]">
+      正在载入导演台…
+    </div>
+  ),
+});
 
 const nodeTypes = {
   script: ScriptNode,
@@ -95,6 +105,8 @@ export default function Home() {
     toggleShortcutsPanel,
     setCanvasTool,
     setZoomLevel,
+    activeDirectorNodeId,
+    closeDirectorDesk,
   } = useUIStore();
 
   const activeCanvas = getActiveCanvas();
@@ -255,6 +267,7 @@ export default function Home() {
         }
       }
       if (event.key === "Escape") {
+        if (useUIStore.getState().activeDirectorNodeId) return;
         selectNode(null);
         closeAllPanels();
       }
@@ -487,6 +500,12 @@ export default function Home() {
       )}
 
       <KeyboardShortcutsDialog isOpen={isShortcutsPanelOpen} onClose={toggleShortcutsPanel} />
+      {activeDirectorNodeId && (
+        <DirectorDesk
+          sourceNodeId={activeDirectorNodeId}
+          onClose={closeDirectorDesk}
+        />
+      )}
     </div>
   );
 }

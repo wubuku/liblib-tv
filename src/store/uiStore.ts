@@ -27,6 +27,7 @@ interface UIState {
   activePrimaryPanel: PrimaryPanel | null;
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
+  activeDirectorNodeId: string | null;
 
   // Canvas settings
   showMinimap: boolean;
@@ -56,6 +57,8 @@ interface UIState {
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
   setCanvasTool: (tool: "select" | "pan") => void;
+  openDirectorDesk: (nodeId: string) => void;
+  closeDirectorDesk: () => void;
   toggleMinimap: () => void;
   toggleGrid: () => void;
   toggleEdges: () => void;
@@ -121,6 +124,7 @@ export const useUIStore = create<UIState>((set) => ({
   activePrimaryPanel: null,
   editorMode: "workbench",
   canvasTool: "select",
+  activeDirectorNodeId: null,
 
   showMinimap: false,
   showGrid: true,
@@ -242,6 +246,14 @@ export const useUIStore = create<UIState>((set) => ({
 
   setCanvasTool: (tool) => set({ canvasTool: tool }),
 
+  openDirectorDesk: (nodeId) =>
+    set({
+      ...closedOverlayState,
+      activeDirectorNodeId: nodeId,
+    }),
+
+  closeDirectorDesk: () => set({ activeDirectorNodeId: null }),
+
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),
 
@@ -257,5 +269,5 @@ export const useUIStore = create<UIState>((set) => ({
   setZoomLevel: (zoom: number) => set({ zoomLevel: zoom }),
 
   closeAllPanels: () =>
-    set(closedOverlayState),
+    set({ ...closedOverlayState, activeDirectorNodeId: null }),
 }));

@@ -162,6 +162,18 @@ export interface SmartMattingMetadata {
   isSmartMattingOutput: true;
 }
 
+export interface DirectorCaptureMetadata {
+  sourceNodeId: string;
+  captureId: string;
+  cameraId: string | null;
+  cameraName: string;
+  aspectRatio: "16:9" | "9:16" | "1:1";
+  width: number;
+  height: number;
+  createdAt: string;
+  edgeId: string;
+}
+
 interface HistoryStack {
   past: GraphSnapshot[];
   future: GraphSnapshot[];
@@ -238,6 +250,12 @@ interface CanvasState {
     sourceId: string,
     mode: PictureEditAction,
     marks: PictureEditMark[],
+  ) => string | null;
+  createDirectorCapture: (
+    sourceNodeId: string,
+    capture: Omit<DirectorCaptureMetadata, "sourceNodeId" | "edgeId"> & {
+      dataUrl: string;
+    },
   ) => string | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
@@ -1990,6 +2008,75 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ),
         selectedNodeIds: [sourceId],
         selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  createDirectorCapture: (
+    sourceId: string,
+    capture: Omit<DirectorCaptureMetadata, "sourceNodeId" | "edgeId"> & {
+      dataUrl: string;
+    },
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source || !capture.dataUrl) return null;
+
+    const dimensions = getDefaultNodeDimensions("image");
+    const position = findAvailableRightSlot(source, canvas.nodes, dimensions, 100);
+    const targetId = createNodeId("director-capture");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const directorCapture: DirectorCaptureMetadata = {
+      sourceNodeId: sourceId,
+      captureId: capture.captureId,
+      cameraId: capture.cameraId,
+      cameraName: capture.cameraName,
+      aspectRatio: capture.aspectRatio,
+      width: capture.width,
+      height: capture.height,
+      createdAt: capture.createdAt,
+      edgeId,
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "image",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `导演台截图-${capture.cameraName}`,
+        width: capture.width,
+        height: capture.height,
+        imageUrl: capture.dataUrl,
+        editorVariant: "empty",
+        editorHeight: 191,
+        generationSettings: `${capture.aspectRatio} · 导演台构图参考`,
+        directorCapture,
+      },
+    };
+    const edge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find((item) => item.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? { ...item, nodes: [...item.nodes, targetNode], edges: [...item.edges, edge] }
+            : item,
+        ),
+        selectedNodeIds: [targetId],
+        selectedNodeId: targetId,
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });

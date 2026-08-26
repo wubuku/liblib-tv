@@ -132,8 +132,7 @@ page.tsx
 - [x] Batch 34 证据与代码考古已复核
 - [x] Next.js 16 client/lazy-loading 约束已复核
 - [x] Batch 35 计划、规格、selectors 和验收矩阵已落档
-- [ ] 依赖、schema/store 和 canvas return transaction
-- [ ] 导演台 shell、R3F viewport、tree 和 Inspector
-- [ ] 机位、画幅、截图和回流
+- [x] 依赖、schema/store 和 canvas return transaction
+- [x] 导演台 shell、R3F viewport、tree 和 Inspector
+- [x] 机位、画幅、截图和回流
 - [ ] Playwright、像素检查、跨批回归和实施收口
-

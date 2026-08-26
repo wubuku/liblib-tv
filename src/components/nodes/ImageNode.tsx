@@ -8,6 +8,7 @@ import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPa
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
 import {
   useCanvasStore,
+  type DirectorCaptureMetadata,
   type VideoFrameCaptureMetadata,
 } from "@/store/canvasStore";
 
@@ -25,6 +26,7 @@ export interface ImageNodeData extends Record<string, unknown> {
   generationSettings?: string;
   portraitEnhanced?: boolean;
   frameCapture?: VideoFrameCaptureMetadata;
+  directorCapture?: DirectorCaptureMetadata;
 }
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
@@ -38,7 +40,7 @@ const derivedImageActions: Record<Exclude<ImageToolbarAction, "人像质感调�
 };
 
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
-  const { filename, width, height, imageUrl, watermarkUrl, frameCapture } = data;
+  const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture } = data;
   const { zoom } = useViewport();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
@@ -103,6 +105,16 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
             "data-video-frame-edge-id": frameCapture.edgeId,
             "data-video-frame-name": frameCapture.name,
             "data-video-frame-alt": frameCapture.alt,
+          }
+        : {})}
+      {...(directorCapture
+        ? {
+            "data-director-capture-node": true,
+            "data-director-capture-id": directorCapture.captureId,
+            "data-director-capture-source-id": directorCapture.sourceNodeId,
+            "data-director-capture-camera-id": directorCapture.cameraId ?? "",
+            "data-director-capture-aspect": directorCapture.aspectRatio,
+            "data-director-capture-edge-id": directorCapture.edgeId,
           }
         : {})}
       className={cn(
