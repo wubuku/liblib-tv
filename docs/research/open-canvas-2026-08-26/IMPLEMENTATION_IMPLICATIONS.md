@@ -29,7 +29,7 @@
 
 动作审计进一步确认：进入标注等 active tool 后，标准工具条和底部参数面板不再同时存在，而是切换为专用工具条 + 节点内编辑 surface。preview 则使用 page-level overlay，不改变节点选择。详见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。
 
-多 zoom 复测进一步拆开两种垂直合同：底部面板 gap 在 28%/34%/50% 都是 `16 * zoom`；顶部工具条尺寸与中心稳定，但到节点顶部的 gap 为约 `16.794/18.152/22px`，三点支持 `10 + 24 * zoom` 的近似模型，不能继续把 clone `NodeToolbar offset=16` 当作源站完整实现。100% 离屏节点还出现 virtualization 卸载边界。详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
+多 zoom 复测进一步拆开两种垂直合同：底部面板 gap 在 28%/34%/41%/50% 都是 `16 * zoom`；顶部工具条尺寸与中心稳定，当前生产 chunk 已确认其 host top 为 `nodeTop - 24 * zoom - 10` 并使用 `translateY(-100%)`，live gap 为约 `16.794/18.152/19.778/22px`。不能继续把 clone `NodeToolbar offset=16` 当作源站完整实现。100% 离屏节点还出现 virtualization 卸载边界。详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
 
 **候选设计**：保留 React Flow `NodeToolbar` 和节点内 inverse-scale panel 两条现有结构；先把当前动作集合、内容自适应宽度、无 clamp 边缘策略和选择生命周期固化为同一份 anchor contract，不新增碰撞修正或页面级重排。
 
@@ -126,7 +126,7 @@
 
 ## 5. 研究出口
 
-当前最合理的下一步不是立即编码，而是继续补齐顶部 toolbar gap 的源码解释、元素编辑/旋转的无提交状态，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28%/34%/50% 双浮层、100% virtualization boundary、preview、空 annotate、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
+当前最合理的下一步不是立即编码，而是继续补齐拖动/平移时序、元素编辑/旋转的无提交状态，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28%/34%/41%/50% 双浮层、100% virtualization boundary、preview、空 annotate、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
 
 ## 6. 变更授权门槛
 

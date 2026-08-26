@@ -48,7 +48,7 @@ LibTV 当前问题
 
 当前项目已有 LibTV ImageNode 的源站复刻合同：
 
-- 顶部 `ImageToolbar` 使用 React Flow `NodeToolbar`，`position=Top`、`align=center`、`offset=16`；
+- 顶部 `ImageToolbar` 使用 React Flow `NodeToolbar`，`position=Top`、`align=center`；当前生产 host 的 source positioning 是 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)`，所以 screen gap 为 `10 + 24 * zoom`，而不是 clone 当前 `offset=16` 的完整合同；
 - 工具条在画布缩放时保持屏幕尺寸，但宽度由当前动作集合决定：2026-08-25 的历史快照为 `900.5x49`，2026-08-26 的当前五节点快照统一为 `1092.5x49`；
 - 工具条中心等于选中 ImageNode 的屏幕中心，不等于浏览器窗口中心；
 - 底部 `ImageEditPanel` 是 ImageNode 的子节点，使用 `left:50%`、`bottom` 负偏移和 `scale(1/zoom)` 保持屏幕尺寸；
@@ -79,7 +79,7 @@ LibTV 当前问题
 
 这些是待取证假设，不是已确认的 bug 根因。当前 clone 的结构事实对应 OC-019；“结构已存在”不能升级为“所有 viewport 场景都正确”。
 
-2026-08-26 的五节点复测已经排除一个旧假设：`900.5` 和 `1092.5` 不是由图片内容态切换。当前更高价值的 clone 缺口是工具条动作集合、末端图标语义和 `w-fit` sizing mode 落后于源站；上下 anchor 仍需在多 zoom/拖动场景回归，但不应再次凭感觉改 offset。
+2026-08-26 的五节点复测已经排除一个旧假设：`900.5` 和 `1092.5` 不是由图片内容态切换。当前生产 chunk 又确认了顶部 host 的 `10 + 24 * zoom` 定位公式。当前更高价值的 clone 缺口是工具条动作集合、末端图标语义、`w-fit` sizing mode 和该垂直公式落后于源站；剩余几何风险集中在拖动/平移时序和 100% virtualization 边界，不应再次凭感觉改 offset。
 
 ## 3. 启发转译矩阵
 
@@ -119,7 +119,7 @@ LibTV 当前问题
 
 **当前进展**：28% zoom 下的五图片节点、三种 panel 高度、边缘裁剪和工具条时间版本差异已经落入 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。剩余几何重点为多 zoom、拖动/平移和选择卸载时序；当前六个新增/末端动作已进入下一份状态矩阵。
 
-六动作中的 preview 和空 annotate 已完成安全 live 复测，其他动作已从当前 bundle 还原状态与副作用，见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。关键修订是：active image tool 会替换标准工具条、隐藏底部生成面板并在节点上挂编辑 surface；因此 `editingImageTool` 必须进入 `UIX-01` 的几何/生命周期矩阵，不能把所有动作都实现为一次 `addDerivedNode`。
+六动作中的 preview 和空 annotate 已完成安全 live 复测，其他动作已从当前 bundle 还原状态与副作用，见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。关键修订是：active image tool 会替换标准工具条、隐藏底部生成面板并在节点上挂编辑 surface；因此 `editingImageTool` 必须进入 `UIX-01` 的几何/生命周期矩阵，不能把所有动作都实现为一次 `addDerivedNode`。标准工具条的顶部定位公式已由当前 chunk 确认，后续只需验证 clone 的 React Flow transform 映射。
 
 ### `LIBTV-UIX-02`：连接语义与 Handle
 

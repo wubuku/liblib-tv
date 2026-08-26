@@ -26,6 +26,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 当前 LibTV 五个图片节点的双浮层 DOM 矩阵、`900.5 -> 1092.5px` 工具条版本漂移及 clone 动作缺口见 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。该矩阵表明现有 clone 的核心 anchor 结构接近源站，但顶部动作集合和宽度仍冻结在旧版本。
 
+当前 LibTV 双浮层的多 zoom、自然裁切、选择卸载和顶部 host 源码公式见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：底部 gap 为 `16 * zoom`，顶部 host 由 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)` 构成；这把此前的 `10 + 24 * zoom` 拟合从推断升级为当前 production chunk 的直接源码事实。
+
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 
 当前 AutoLink 的 source/clone 状态与数据合同见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。生产实现把它组织为高级设置全局开关、connected/reference candidate pool、Prompt inline ghost 和 stable node ID mention；这修正了 clone 当前固定候选确认 popover 与字符串前缀写回的旧假设。

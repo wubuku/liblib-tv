@@ -129,8 +129,8 @@
 本轮在不移动节点、不修改画布数据的前提下，补测源站 zoom 菜单的第三个直接可见档位，并把观察和推断分开：
 
 - 在 fit-view 约 `28.28%` 基线后使用一次“放大”得到约 `33.94%`，重新测得图片节点、顶部工具条和底部面板的 screen rect；三者仍以同一节点中心为 anchor；
-- 28% / 34% / 50% 的顶部 gap 分别为 `16.794 / 18.152 / 22px`，底部 gap 分别为 `4.525 / 5.430 / 8px`；后者继续精确符合 `16 * zoom`；
-- 三个顶部样本可用 `10 + 24 * zoom` 拟合，最大残差约 `0.008px`，因此将它记录为 clone 布局实现的暂定模型；该模型仍不是源站源码事实，后续若找到 toolbar host 的 offset 计算必须优先以源码替换；
+- 28% / 34% / 41% / 50% 的顶部 gap 分别为 `16.794 / 18.152 / 19.778 / 22px`，底部 gap 分别为 `4.525 / 5.430 / 6.516 / 8px`；后者继续精确符合 `16 * zoom`；
+- 四个顶部样本可用 `10 + 24 * zoom` 拟合，最大残差约 `0.008px`；随后从当前生产 chunk 确认 toolbar host 的 `top: nodeTop - 24 * zoom - 10` 与 `translateY(-100%)`，因此该模型已升级为标准工具条的 source fact，仍需把 clone 的 `NodeToolbar offset=16` 映射到这个结果；
 - 100% 档仍观察到选中节点 DOM 被可见性/virtualization 策略移出，但 toolbar host 保留在 DOM；这说明 clone 的验证必须同时检查 selection state、host presence 和 node DOM presence，不能只用节点 DOM 是否存在判定双浮层是否失效；
 - 将本批结构化样本追加到 [`libtv-overlay-multizoom-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-overlay-multizoom-audit-2026-08-26.json)，并同步矩阵、Big Picture、ImageEditPanel 规格和实施影响文档；
 - 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有写入 LibTV 远端画布。

@@ -292,7 +292,7 @@ Buttons (left to right):
 ### Select Image Node
 - **Trigger:** Click an ImageNode
 - **Effect:** Shows:
-  - `ImageToolbar` above the node — horizontal `900.5×49` toolbar, node-centered with a `16px` screen-space offset and constant screen size
+  - `ImageToolbar` above the node — current source `1092.5×49` toolbar, node-centered with a `10 + 24 * zoom` screen-space gap and constant screen size; the older `900.5×49`/fixed-`16px` description is a historical clone baseline
   - `ImageEditPanel` below the node — `660×274` populated prompt state, node-centered and counter-scaled by `1 / zoom`
   - Both overlays follow node drag, pan, and zoom; neither is clamped or recentered to the browser viewport
   - The lower panel gap is `16 * zoom`; the clone uses `bottom: -17px` only to compensate for its bordered node shell

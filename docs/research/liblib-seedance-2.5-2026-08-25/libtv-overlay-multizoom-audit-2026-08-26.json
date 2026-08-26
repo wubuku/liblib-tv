@@ -8,7 +8,7 @@
   },
   "interactionBoundary": {
     "performed": [
-      "switch zoom menu between 34%, 50%, 100%, and fit view",
+      "switch zoom menu between 34%, 41%, 50%, 100%, and fit view",
       "select existing image nodes",
       "click the empty canvas",
       "read DOM rectangles and React Flow transforms"
@@ -132,6 +132,43 @@
       }
     },
     {
+      "label": "image_2026-06-15T11-22-00",
+      "nodeId": "i-1FQ9tErTcC",
+      "zoomMode": "41%",
+      "zoom": 0.407229,
+      "viewportTransform": "translate(-186.441px, 74.159px) scale(0.407229)",
+      "node": {
+        "x": -132.687,
+        "y": 185.333,
+        "width": 251.667,
+        "height": 142.53,
+        "centerX": -6.853
+      },
+      "toolbar": {
+        "x": -553.102,
+        "y": 116.555,
+        "width": 1092.5,
+        "height": 49,
+        "centerX": -6.852
+      },
+      "panel": {
+        "x": -336.853,
+        "y": 334.378,
+        "width": 660,
+        "height": 191,
+        "centerX": -6.853
+      },
+      "derived": {
+        "toolbarCenterDelta": 0.001,
+        "panelCenterDelta": 0,
+        "toolbarGap": 19.778,
+        "panelGap": 6.516,
+        "panelGapFormula": "16 * zoom",
+        "simpleToolbarGapModel": "10 + 24 * zoom",
+        "simpleToolbarGapResidual": 0.004
+      }
+    },
+    {
       "zoomMode": "100%",
       "zoom": 1,
       "selectedNodeDomCount": 0,
@@ -149,7 +186,7 @@
       "panelCount": 1
     },
     {
-      "action": "switch to 50%",
+      "action": "switch through 34%, 41%, and 50%",
       "selectedNodeCount": 1,
       "toolbarCount": 1,
       "panelCount": 1,
@@ -177,14 +214,21 @@
       "graphMutation": false
     }
   ],
+  "sourceCodeEvidence": {
+    "chunkUrl": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0jf40wzwc66-8.js",
+    "marker": "data-image-editor-toolbar",
+    "observedCodeShape": "toolbar host uses left=nodeScreenLeft+nodeScreenWidth/2 and top=nodeScreenTop-24*zoom-10 with translateX(-50%) translateY(-100%)",
+    "toolbarGapFormula": "10 + 24 * zoom",
+    "status": "source-confirmed from the current production chunk; live rects remain rounded measurements"
+  },
   "conclusions": {
     "toolbarScreenSizeStable": true,
     "panelScreenWidthStable": true,
     "horizontalAnchor": "node screen center",
     "viewportClamp": false,
     "panelGapFormula": "16 * zoom",
-    "toolbarGapFormula": "10 + 24 * zoom (evidence-backed inference, not source-code confirmed)",
-    "toolbarGapRequiresMoreEvidence": true,
+    "toolbarGapFormula": "10 + 24 * zoom (source-confirmed host positioning formula)",
+    "toolbarGapRequiresMoreEvidence": false,
     "offscreenNodeVirtualizationObserved": true
   }
 }

@@ -53,6 +53,12 @@
 6. 不能用官网预览、provider marquee 或 README 宣称证明当前 clone 已实现。
 7. 涉及选中、连线、视口、复制、媒体历史或状态反馈时，优先查阅 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md) 的模式和 batch 合同。
 
+## 3.1 当前 LibTV 源站补充声明
+
+| ID | 声明 | 类型 | 置信度 | 直接证据 | 证据支持的范围 | 不能据此得出 |
+|---|---|---|---|---|---|---|
+| LIBTV-001 | 当前图片标准工具条 host 以节点屏幕中心为水平 anchor，top 为 `nodeTop - 24 * zoom - 10`，并以 `translateY(-100%)` 抬起自身高度；因此顶部 gap 为 `10 + 24 * zoom` | 当前生产 chunk + live DOM | High | [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md#35-源站-chunk-对顶部-host-定位的直接证据)；[`libtv-overlay-multizoom-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-overlay-multizoom-audit-2026-08-26.json) | 标准图片工具条的 screen-space 定位合同 | 不代表标注、旋转、元素编辑或图层分离专用 host 使用同一定位分支，也不代表 clone 的 `NodeToolbar offset=16` 已经等价 |
+
 ## 4. 待补证据队列
 
 | 优先级 | 待验证项 | 最小证据 | 当前阻塞 |

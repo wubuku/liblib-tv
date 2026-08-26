@@ -55,7 +55,7 @@ Open Canvas 的可迁移价值不是某个按钮或颜色，而是把一次画�
 ### 3.2 当前 LibTV `SOURCE_FACT`
 
 - [`ImageNode.tsx`](../../../src/components/nodes/ImageNode.tsx#L42) 使用 `useViewport().zoom`，并以 `selected && selectedNodeCount <= 1` 决定单节点编辑器是否显示。
-- 顶部 [`ImageToolbar.tsx`](../../../src/components/ImageToolbar.tsx#L33) 使用 React Flow `NodeToolbar`，`position=Top`、`align=center`、`offset=16`；底部 [`ImageEditPanel.tsx`](../../../src/components/ImageEditPanel.tsx#L101) 是节点内部绝对定位并做 `scale(1/zoom)`。
+- 顶部 [`ImageToolbar.tsx`](../../../src/components/ImageToolbar.tsx#L33) 使用 React Flow `NodeToolbar`，`position=Top`、`align=center`；clone 当前 `offset=16` 只是实现值，源站标准 host 的直接合同是 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)`，见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md#35-源站-chunk-对顶部-host-定位的直接证据)。底部 [`ImageEditPanel.tsx`](../../../src/components/ImageEditPanel.tsx#L101) 是节点内部绝对定位并做 `scale(1/zoom)`。
 - 当前项目已经有明确的 LibTV 合同：顶部工具条和底部编辑器不是可以随意互换的两个通用 Panel。参见 [`ImageNode.spec.md`](../components/ImageNode.spec.md#selected-state) 和 [`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md#positioning-contract)。
 - 画布空白点击会清空选择，节点点击会选择节点；当前入口行为见 [`page.tsx`](../../../src/app/page.tsx#L388)。
 

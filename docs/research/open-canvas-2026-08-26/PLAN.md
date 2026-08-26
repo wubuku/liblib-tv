@@ -70,7 +70,8 @@
 - [x] 完成 LibTV 五图片节点双浮层矩阵与 clone 静态差异审计
 - [x] 完成 LibTV 当前图片工具条六动作的 bundle/live 风险分级审计
 - [x] 完成 LibTV AutoLink 当前 bundle/live 状态链和 clone 语义差异审计
-- [x] 完成 LibTV 双浮层 28%/50%/100% zoom 与空白选择生命周期审计
+- [x] 完成 LibTV 双浮层 28%/34%/41%/50%/100% zoom 与空白选择生命周期审计
+- [x] 从当前生产 chunk 确认标准图片工具条 host 的 `nodeTop - 24 * zoom - 10` + `translateY(-100%)` 定位公式
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

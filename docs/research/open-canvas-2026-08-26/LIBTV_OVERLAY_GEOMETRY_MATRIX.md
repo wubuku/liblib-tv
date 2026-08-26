@@ -108,7 +108,7 @@ bottom editor:
 
 | 合同 | 当前源站 | 当前 clone 静态实现 | 判断 | 优先级 |
 |---|---|---|---|---|
-| 顶部 anchor | NodeToolbar、节点中心、上方约 16px | `NodeToolbar position=Top align=center offset=16` | 结构一致 | 保持 |
+| 顶部 anchor | NodeToolbar、节点中心；host top 为 `nodeTop - 24 * zoom - 10`，再 `translateY(-100%)` | `NodeToolbar position=Top align=center offset=16` | 结构方向一致，但垂直公式仍未对齐 | P0 |
 | 底部 anchor | 节点内、中心、inverse zoom、`16 * zoom` gap | 节点内 `left-1/2`、`-bottom-[17px]`、`scale(1/zoom)` | 结构一致，17px 是边框补偿 | 保持 |
 | 边缘策略 | 不 clamp，允许负 x/y 和裁切 | 当前规格与实现允许裁切 | 一致 | 保持 |
 | Panel width/height | `660px`；`191/211/273.797` 内容态 | `660px`；初始节点为 `191/211/274` | 可接受的像素取整 | P2 视觉复核 |
@@ -127,13 +127,14 @@ bottom editor:
 - 当前五个图片节点共享相同的 13 按钮工具条和 `1092.5x49` 外框。
 - 工具条和编辑面板均以节点中心为水平 anchor。
 - 顶部和底部使用不同纵向坐标合同。
+- 当前生产 chunk 直接确认标准工具条 host 的 `nodeTop - 24 * zoom - 10` + `translateY(-100%)` 定位组合；live 28%/34%/41%/50% 样本分别落在约 `16.794/18.152/19.778/22px`。
 - 面板宽度固定、内容高度显式变化，边缘不 clamp。
 - 2026-08-25 的结构化源站记录确实是 7 个文字动作、4 个图标动作和 `900.5x49`。
 
 ### `INFERENCE`
 
 - `900.5 -> 1092.5` 是源站部署后的动作集合扩展，而不是图片节点内容态差异。
-- 当前 clone 的上下 anchor 结构已经接近源站，用户感知的“不准确”至少有一部分来自工具条内容和宽度版本落后，而不只是 offset。
+- 当前 clone 的上下 anchor 结构已经接近源站，用户感知的“不准确”至少有一部分来自工具条内容、宽度版本和顶部垂直公式落后，而不只是 offset。
 - 源站使用 `w-fit` 表明宽度应由动作集合决定，不应把某次测量值永久视为全局常量。
 
 ### `CLONE_DECISION`（待授权）

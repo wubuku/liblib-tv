@@ -52,7 +52,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |
 | `HistoryPanel` | `src/components/HistoryPanel.tsx` | Responsive asset history modal with filters, zoom, batch selection and local result images. |
-| `ImageToolbar` | `src/components/ImageToolbar.tsx` | `900.5x49` React Flow `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
+| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Current source contract is a content-sized `1092.5x49` React Flow toolbar above the selected image: 9 text actions plus annotate/rotate/download/preview icons; clone source remains the older `900.5px` action set pending authorization. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor; long-video submit hands request-shaped state to a canvas process graph. |
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, depth motion capture, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |

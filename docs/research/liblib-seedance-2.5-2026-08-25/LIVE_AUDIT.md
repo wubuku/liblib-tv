@@ -309,3 +309,17 @@ overlay 使用 `fixed inset-0` 和 `bg-black/80`，当前单输出节点没有 p
 当前生产实现从 connected/reference assets 构造名称、tag 和媒体 ordinal 候选，在 contenteditable 内注入 `data-mention-suggest` ghost spans。click/`Tab` 接受 active suggestion，`Shift+Tab` 接受全部；`Escape`、普通编辑和 blur 清理 ghost。检测还会避开 IME composition、其他 Prompt popover 和 stale async result。
 
 完整 source/clone 矩阵见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)，原始 rect 和 token 字段见 [`libtv-autolink-audit-2026-08-26.json`](libtv-autolink-audit-2026-08-26.json)。
+
+## 12. 多 zoom 顶部 host 源码复核
+
+在继续保持只读边界的情况下，从当前页面加载的生产 chunk [`0jf40wzwc66-8.js`](https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0jf40wzwc66-8.js) 定位到带 `data-image-editor-toolbar` 的标准图片工具条 host。其定位形态为：
+
+```text
+left = nodeScreenLeft + nodeScreenWidth / 2
+top = nodeScreenTop - 24 * zoom - 10
+transform = translateX(-50%) translateY(-100%)
+```
+
+因此，`10 + 24 * zoom` 不再只是 live rect 的拟合，而是当前 production chunk 的源码事实。继续补测的 41% 样本为 toolbar `1092.5x49`、top gap `19.778px`、panel gap `6.516px`，分别与该 host 公式和 `16 * zoom` 对齐。当前四个直接可见档位的 top gap 为 `16.794/18.152/19.778/22px`，panel gap 为 `4.525/5.430/6.516/8px`。
+
+这段源码同时存在 active image tool 的其他定位分支，所以标准公式不能外推到标注、旋转、元素编辑或图层分离专用工具条。完整矩阵与结构化证据见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md) 和 [`libtv-overlay-multizoom-audit-2026-08-26.json`](libtv-overlay-multizoom-audit-2026-08-26.json)。
