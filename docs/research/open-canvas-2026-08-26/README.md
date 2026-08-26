@@ -38,9 +38,10 @@
 17. [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和长视频的身份、authoring/node/run/result/save 正交状态、fixture 与 `VR-007` 合同。
 18. [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、Seedance 2.5 authoring controls、clone state、descriptor 与真实 runner 的分层审计。
 19. [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：未来比较/更新上游 commit 时的 claim、pattern、adoption、runtime 和 submodule pointer 影响审计协议。
-20. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
-21. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
-22. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+20. [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md)：将 source freshness、模型能力、graph decision、Auto Link/process fixture 和上游版本 diff 组织为带停止条件的证据队列。
+21. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
+22. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
+23. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 
@@ -73,6 +74,7 @@
 | Graph invariant/compatibility | [`../LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md#10-libtv-par-008-invariant-and-compatibility-design) | `LIBTV-GI-*` / `LIBTV-GC-*` 权威；source-decision 项保持未决 |
 | Process/result identity/state | [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) | `LIBTV-PR-*`、stale/retry、`VR-007` 权威 |
 | Model UI/descriptor/runner 边界 | [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | source-visible sample 和 execution anti-claim 权威 |
+| 下一条证据如何安全取得 | [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md) | `OC-EQ-*` 顺序、允许动作、停止条件和交付模板权威；不维护第二套 parity |
 | 当前优先级与授权状态 | [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)、[`../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | Open Canvas 目录不维护第二套当前排期 |
 | 第一阶段为何按 A-E 排过 | [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md) | 仅保留历史 provenance，不新增 A-E 条目 |
 | 上游 commit 变化后哪些结论失效 | [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md) | 先比较 immutable SHA；未经批准不移动 submodule pointer |
@@ -88,7 +90,7 @@
 - 单 slice 七层交接；
 - Auto Link fixture、graph invariant、process/result state 和 model capability 四项 design-first 合同。
 
-剩余高价值问题主要是证据或 fixture 工作，不是“缺一份文档”：
+剩余高价值问题主要是证据或 fixture 工作，不是“缺一份文档”；统一执行入口见 [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md)：
 
 1. `LIBTV-PAR-005` 的新日期 source freshness；
 2. `LIBTV-FIX-SOURCE-AUTOLINK-01` 的输入/IME/accept 行为；

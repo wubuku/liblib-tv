@@ -311,3 +311,14 @@
 - 标记 graph invariant/compatibility case 表已完成，剩余设计缺口是 `GI-004..007` source/product decisions、validation result shape 和专用 replacement；
 - 更新正式索引、任务导读、生命周期和审计，使 process、model 与 upstream protocol 可从全局入口发现；
 - 没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或 Batch 50 并行实施记录。
+
+## 2026-08-27：v30 下一阶段证据获取队列
+
+本轮将 research completeness boundary 中的六项剩余问题转成唯一执行计划：
+
+- 新增 [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md)，建立 `OC-EQ-001..006`；
+- 将 source freshness、非 Seedance 模型 controls 和 graph bundle guard 归入当前可推进的 read-only/static wave；
+- 将 Auto Link input/IME/accept、ready-video/process lifecycle 和 graph mutation 场景归入必须等待 disposable source fixture 的 wave；
+- 将 Open Canvas commit diff 设为只在新 immutable SHA 出现时触发，并继续禁止先移动 submodule pointer；
+- 为每项记录允许动作、禁止动作、最小证据包、退出标准、authority 更新和 blueprint/parity 影响；
+- 将计划接入 Open Canvas authority map、docs/research index 和 agent task map；没有修改代码、verifier、截图、共享源站状态或 submodule。

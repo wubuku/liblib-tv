@@ -116,6 +116,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：LibTV 过程型能力的稳定身份、五轴状态、stale/retry、fixture 和 replacement verifier 设计。
 - [`open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型 UI、参数、clone descriptor 和真实 runner 能力之间的可证实边界。
 - [`open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：固定 SHA 的 claim/pattern/adoption/runtime 影响审计和 submodule 更新闸门。
+- [`open-canvas-2026-08-26/NEXT_EVIDENCE_ACQUISITION_PLAN.md`](open-canvas-2026-08-26/NEXT_EVIDENCE_ACQUISITION_PLAN.md)：Open Canvas 启发下剩余证据问题的执行波次、fixture gate 和安全停止条件。
 - [`INSPECTION_GUIDE.md`](INSPECTION_GUIDE.md)：live-site extraction workflow and screenshot ledger rule.
 
 ## Evidence Assets
