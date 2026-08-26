@@ -28,6 +28,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 
+当前 AutoLink 的 source/clone 状态与数据合同见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。生产实现把它组织为高级设置全局开关、connected/reference candidate pool、Prompt inline ghost 和 stable node ID mention；这修正了 clone 当前固定候选确认 popover 与字符串前缀写回的旧假设。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |

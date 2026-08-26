@@ -37,7 +37,7 @@ Open Canvas 以 git submodule 固定在 `cf3a906bb8c35bb940d3267497e7f394b8f4258
 |---|---|---|
 | Seedance 2.5 生成 | 视频节点下方生成面板：模型、模式、比例、清晰度、时长、音频、数量、积分和提交 | 登录原站菜单/参数复核 + clone 截图；没有真实 provider 任务 |
 | 片段重拍 | 就绪视频工具栏进入；4 秒时间段选择；最多 5 个片段；范围 token 投影到 Prompt | 文章截图、线上 bundle 文案和 clone 前端闭环；未提交真实重拍 |
-| Auto Link | 画布素材作为候选；参考缩略条；Prompt 中的图片编号；用户接受后才写入 | 原站当前视频面板开关/引用 token + clone 可审核原型 |
+| Auto Link | connected/reference assets 作为候选；高级设置全局开关；Prompt inline ghost；点击/Tab/Shift+Tab 接受为 stable node ID mention | 当前图片/视频 DOM + 生产 chunks；clone 固定候选 popover 已确认不准确 |
 | 超长视频 Beta | `30-300s`，`300s / 14700`；提交后转到画布过程图，可查看中间节点 | 原站当前菜单/参数实测 + clone 12 节点/22 边 pending 过程图 |
 | 逐帧拉片 | 独立 `shot-breakdown` 节点；分镜/动态/音乐三个维度；结果是媒体卡组 | 原站空态节点和 bundle 事实 + 文章结果截图 + clone 结构化结果节点 |
 
@@ -172,9 +172,13 @@ Open Canvas 将 node status/run status 与 canvas save status 分开：任务可
 
 **LibTV 源站事实/当前复刻：**
 
-- 候选作用域是当前画布可见的素材；
-- Prompt 中的编号与底部参考缩略条同步；
-- 用户可以检查并接受，不准确时替换，不应直接覆盖原 Prompt。
+- 当前候选从 connected/reference assets 的名称、变体、tags 和媒体 ordinal 构造，不是无条件扫描并发送全部画布素材；
+- AutoLink 是高级设置中的全局偏好，图片和视频 Prompt 共用同一 toggle 语义；
+- Prompt 中先插入不改写正文的 ghost suggestion；click/`Tab` 接受 active，`Shift+Tab` 接受当前全部，`Escape`/编辑/blur 拒绝；
+- 正式媒体 mention 保存 stable node ID、media type 和 projected ordinal；Prompt 中的编号与参考缩略条顺序同步；
+- 当前 clone 仍是固定候选 popover 和字符串前缀写回，只能视为旧 prototype，不再属于“源站事实/当前复刻”共同合同。
+
+当前完整证据见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。
 
 **Open Canvas 启发：**
 
@@ -182,7 +186,7 @@ Open Canvas 将 node status/run status 与 canvas save status 分开：任务可
 - reference card 可以区分媒体类型、标题、职责和预览；
 - media inputs 在执行前才投影成 descriptor options。
 
-**当前决策：** 把 Auto Link 继续放在现有 mention binding 之前，输出“推荐绑定”而不是自动提交。内部保存稳定 asset ID/职责，最终请求再生成连续编号。
+**当前决策：** AutoLink 输出 ghost recommendation 而不是自动提交。内部保存稳定 node/asset ID 与职责，reference order 变化时再生成连续编号；graph connection、reference list 和 Prompt mention 分层建模。
 
 **后续验证：** 推荐绑定是否会改变节点边、是否需要在画布上插入显式边、手动替换后编号如何重排、低置信匹配如何展示、跨项目权限如何阻断。
 
@@ -251,7 +255,9 @@ Open Canvas 将 node status/run status 与 canvas save status 分开：任务可
 
 **问题：** Auto Link 推荐是否形成显式边，还是仅形成本次请求的引用列表？
 
-**最小证据：** 3 个以上画布候选；自动匹配；接受/替换/移除；Prompt token、缩略条、节点边和提交摘要前后快照。
+**当前进展：** 已确认全局 toggle、候选来源、name/ordinal detector、inline ghost、click/Tab/Shift+Tab、正式 badge 字段和未连接候选的先 connect 分支；详见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。
+
+**剩余最小证据：** 在专用空白项目中 live 触发 3 个以上候选；记录 ghost 精确视觉、接受/替换/移除、Prompt token、缩略条、节点边和提交摘要前后快照。
 
 **交付：** asset ID/职责/编号三层映射表和低置信失败态。
 

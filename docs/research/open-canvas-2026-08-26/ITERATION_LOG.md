@@ -99,3 +99,15 @@
 - live 确认空标注态以 `536x49` 专用工具条替换标准工具条、隐藏底部生成面板，并在节点上挂 DPR=2 的绘制 canvas；Escape 可无修改退出；
 - 将 clone 的统一 `addDerivedNode` 行为识别为关键语义缺口，并记录 preview -> editingImageTool -> task-backed composition 的待授权实施顺序；
 - 没有绘制、保存、下载、上传、生成或修改源站画布，也没有触碰当前仓库 `src/` 和其他开发者 WIP。
+
+## 2026-08-26：v9 AutoLink 状态与数据契约审计
+
+本轮继续使用当前登录态画布和页面已加载的生产 chunks，只进行节点选择、高级设置 disclosure 和 DOM 读取：
+
+- 新增 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md) 和结构化 JSON，记录全局开关、候选池、ghost suggestion、接受/拒绝键盘路径、mention commit 和 graph connect 分支；
+- live 确认图片 AutoLink 位于高级设置折叠区；`660x191` 面板展开为 `660x275.5`，`627x36` toggle row 中的 `38x20` switch 为 checked；
+- live 确认参考缩略图和 Prompt mention 是两层状态：`分镜 #2` 有两个 `48x48` draggable references，但 Prompt 本身没有正式 mention；
+- live 提取视频 Prompt 的四个正式 badge，确认媒体 token 保存 stable node ID/media type/ordinal，同一 `i-1FQ9tErTcC` 在两处都显示“图片 1”；
+- 从当前 chunks 确认 AutoLink 先注入 inline ghost，再由 click/Tab/Shift+Tab 接受；Escape、编辑、blur 清理建议，并有 IME、suspend 和 stale-result guards；
+- 将 clone 的固定 `陈默/咖啡` 候选、独立确认 popover、全量接受和字符串前缀写回标记为当前源站语义缺口；
+- 没有编辑 Prompt、切换开关、接受 mention、创建连接、生成、上传、下载或保存，也没有修改 `src/`、FrameOS、upstream submodule 和其他开发者 WIP。

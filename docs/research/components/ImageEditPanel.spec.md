@@ -78,7 +78,11 @@ Panel height is explicit per known source node and must not be inferred only fro
 
 The `咖啡馆` state directly disproves `hasPrompt => 211px`. Known nodes carry `editorHeight`; only compatibility data falls back to the older variant mapping.
 
-AutoLink is not a visible top-row text pill. The clone exposes it as a footer icon when a Prompt exists without references, then keeps its local suggest/confirm/write workflow. That workflow remains a prototype decision because the original popover was not fully extracted.
+AutoLink is not a visible top-row text pill or a conditional footer icon. Current source evidence places `智能引用 AutoLink` inside the advanced-settings disclosure and persists it through the global local preference `libtv:promptMentionEnabled`, defaulting to enabled.
+
+The source interaction is an inline Prompt workflow: connected/reference assets form the candidate pool, non-committing ghost spans are injected at matching occurrences, and click/`Tab`/`Shift+Tab` accept one or all suggestions. Accepted media mentions are `contenteditable=false` badges carrying stable node ID, media type and projected ordinal. `Escape`, edit and blur reject ghosts; IME composition and stale async results are guarded.
+
+The clone is currently known-inaccurate: it exposes a footer icon only when Prompt exists without references, uses the fixed `陈默 / 咖啡` candidate array, opens a separate confirmation popover, accepts both entries together and prepends ordinary token strings. Do not treat that flow as source-backed. The full source/clone matrix and live dimensions are in [`../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md).
 
 The footer uses icon components instead of the old guessed `⌘` and `▭` text characters. Exact original SVG paths remain unconfirmed. Backend generation remains outside the prototype boundary.
 

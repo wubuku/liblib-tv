@@ -1,0 +1,207 @@
+{
+  "observedAt": "2026-08-26",
+  "sourceUrl": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "environment": {
+    "viewport": {
+      "width": 929,
+      "height": 874
+    },
+    "canvasZoomApprox": 0.282798,
+    "safetyBoundary": "selection, disclosure and DOM inspection only; no prompt edit, toggle change, accept, upload, download, generation or save"
+  },
+  "sourceChunks": [
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/3_ztchafem3jb.js",
+      "scope": "PromptMentionToggle, candidate pool, ghost suggestions, commit and canvas mention connection"
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/32_oy6xm14gsz.js",
+      "scope": "duplicate loaded implementation of the prompt mention chain"
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/2axsluxmmf6m6.js",
+      "scope": "prompt reference dropdown and manual insertion"
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0_o2gxip5splz.js",
+      "scope": "AutoLink translations, tips and empty-state copy"
+    }
+  ],
+  "localStorageContracts": {
+    "enabled": {
+      "key": "libtv:promptMentionEnabled",
+      "default": true
+    },
+    "tabTipSeenPrefix": "libtv:promptMentionTabTipSeen:"
+  },
+  "imageAdvancedSettings": {
+    "nodeId": "i-1FQ9tErTcC",
+    "collapsed": {
+      "panel": {
+        "x": -192.82830810546875,
+        "y": 365.73492431640625,
+        "width": 660,
+        "height": 191
+      },
+      "gridTemplateRows": "0px",
+      "collapseHeight": 0
+    },
+    "expanded": {
+      "panel": {
+        "x": -192.82830810546875,
+        "y": 365.73492431640625,
+        "width": 660,
+        "height": 275.5
+      },
+      "collapse": {
+        "x": -184.32830810546875,
+        "y": 556.2349243164062,
+        "width": 642.9999389648438,
+        "height": 76.5,
+        "gridTemplateRows": "76.5px"
+      },
+      "toggleRow": {
+        "x": -176.32830810546875,
+        "y": 588.7349243164062,
+        "width": 626.9999389648438,
+        "height": 36
+      },
+      "switch": {
+        "x": 412.671630859375,
+        "y": 596.7349243164062,
+        "width": 38,
+        "height": 20,
+        "checked": true,
+        "disabled": false,
+        "ariaLabel": "智能引用 AutoLink"
+      }
+    }
+  },
+  "storyboardReferences": {
+    "nodeId": "i-YDfWhFlthe",
+    "panel": {
+      "x": 217.2285614013672,
+      "y": 203.6917724609375,
+      "width": 659.9999389648438,
+      "height": 273.796875
+    },
+    "items": [
+      {
+        "ordinal": 1,
+        "x": 229.7285614013672,
+        "y": 250.1917724609375,
+        "width": 47.99998474121094,
+        "height": 48,
+        "draggable": true,
+        "mentionButtonAriaLabel": "@",
+        "mentionButtonSize": 12
+      },
+      {
+        "ordinal": 2,
+        "x": 285.7285461425781,
+        "y": 250.1917724609375,
+        "width": 48,
+        "height": 48,
+        "draggable": true,
+        "mentionButtonAriaLabel": "@",
+        "mentionButtonSize": 12
+      }
+    ],
+    "contentEditableMentionCount": 0
+  },
+  "videoPrompt": {
+    "nodeId": "v-UGQZzZOpbv",
+    "panel": {
+      "x": 459.3035278320313,
+      "y": 305.2161865234375,
+      "width": 659.9999389648438,
+      "height": 273.796875
+    },
+    "editor": {
+      "x": 475.8035278320313,
+      "y": 422.5130615234375,
+      "width": 635.0000610351562,
+      "height": 153.0234375
+    },
+    "autoLinkSwitch": {
+      "checked": true,
+      "disabled": false,
+      "ariaLabel": "智能引用 AutoLink"
+    },
+    "mentions": [
+      {
+        "ordinalInPrompt": 1,
+        "label": "图片 1",
+        "mentionType": "mixed",
+        "mentionIndex": 1,
+        "mentionNodeId": "i-1FQ9tErTcC",
+        "mentionMediaType": "image",
+        "contentEditable": false,
+        "draggable": true
+      },
+      {
+        "ordinalInPrompt": 2,
+        "label": "镜头右摇",
+        "mentionType": "camerapreset",
+        "mentionIndex": 1,
+        "mentionNodeId": "",
+        "mentionMediaType": null,
+        "contentEditable": false,
+        "draggable": true
+      },
+      {
+        "ordinalInPrompt": 3,
+        "label": "图片 1",
+        "mentionType": "mixed",
+        "mentionIndex": 1,
+        "mentionNodeId": "i-1FQ9tErTcC",
+        "mentionMediaType": "image",
+        "contentEditable": false,
+        "draggable": true
+      },
+      {
+        "ordinalInPrompt": 4,
+        "label": "图片 2",
+        "mentionType": "mixed",
+        "mentionIndex": 2,
+        "mentionNodeId": "i-dnwoZQ7jsG",
+        "mentionMediaType": "image",
+        "contentEditable": false,
+        "draggable": true
+      }
+    ]
+  },
+  "staticContract": {
+    "candidateScope": "connected/reference assets expanded by usable names, variants, tags and media ordinals",
+    "ghostSelector": "[data-mention-suggest]",
+    "accept": [
+      "click active ghost",
+      "Tab accepts active ghost",
+      "Shift+Tab accepts all current ghosts"
+    ],
+    "reject": [
+      "Escape",
+      "normal edit",
+      "blur"
+    ],
+    "guards": [
+      "empty prompt",
+      "empty candidate pool",
+      "cursor outside editor",
+      "IME composing",
+      "suspended by another prompt popover",
+      "stale text or detection result"
+    ],
+    "manualCanvasMention": "connect target first when needed, then insert; return connectFailed or connectedWithoutMention on partial failure"
+  },
+  "cloneAudit": {
+    "imageCandidates": [
+      "陈默",
+      "咖啡"
+    ],
+    "imageUi": "conditional footer icon opens a separate confirmation popover",
+    "imageCommit": "accepts both candidates, sets two image URLs and prepends fixed token strings",
+    "videoUi": "component-local AutoLink boolean plus fixed 3 个匹配 pill",
+    "fidelity": "materially different from the current source interaction and identity contract"
+  }
+}

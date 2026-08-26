@@ -269,3 +269,43 @@ overlay 使用 `fixed inset-0` 和 `bg-black/80`，当前单输出节点没有 p
 - 按 Escape 后专用工具条和 canvas 卸载，标准双浮层恢复。
 
 没有绘制或点击保存。其他四个动作的 bundle 状态、潜在任务和 clone 差异见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)。图层分离存在任务提交路径，下载存在水印偏好和文件副作用，旋转保存可能上传/更新节点，均未 live 点击。
+
+## 11. AutoLink 高级设置与正式 mention
+
+本轮对 AutoLink 只做节点选择、高级设置 disclosure 和 DOM 读取，没有编辑 Prompt、切换开关或接受新 mention。
+
+### 图片高级设置
+
+在约 `28%` zoom 下，`i-1FQ9tErTcC` 的默认图片面板为 `660x191`。高级设置收起时，AutoLink row 虽存在于 DOM，但其祖先为 `grid-rows-[0fr]`、实际高度 `0px`，由 `overflow-hidden` 裁切。
+
+点击 footer 的 sliders 按钮后：
+
+| 元素 | rect / state |
+|---|---|
+| Panel | `660x275.5` |
+| Advanced grid | `643x76.5`, `grid-rows-[1fr]` |
+| AutoLink row | `627x36` |
+| Switch | `38x20`, checked, enabled |
+
+面板仍保持 node-center anchor，靠近左边缘时负 x 不做 clamp。bundle 表明开关使用 `libtv:promptMentionEnabled` 全局本地偏好，默认 `true`。
+
+### Reference 与 mention 不是同一层
+
+`分镜 #2` 当前有两个 `48x48` draggable reference thumbnails，左上角编号 `1/2`，右下角各有 `12x12` 的 `@` 入口；其 Prompt editor 当前没有正式 mention badge。reference list 可以存在而 Prompt 不包含 mention。
+
+失败视频 `v-UGQZzZOpbv` 的 Prompt 则有四个 `contenteditable=false`、`draggable=true` badge：
+
+| 可见标签 | type | node ID | index |
+|---|---|---|---:|
+| 图片 1 | `mixed` | `i-1FQ9tErTcC` | 1 |
+| 镜头右摇 | `camerapreset` | 空 | 1 |
+| 图片 1 | `mixed` | `i-1FQ9tErTcC` | 1 |
+| 图片 2 | `mixed` | `i-dnwoZQ7jsG` | 2 |
+
+同一素材在两处都保留同一 stable node ID 和 ordinal，证明“图片 1”只是当前 reference order 的 UI 投影。
+
+### Bundle 状态链
+
+当前生产实现从 connected/reference assets 构造名称、tag 和媒体 ordinal 候选，在 contenteditable 内注入 `data-mention-suggest` ghost spans。click/`Tab` 接受 active suggestion，`Shift+Tab` 接受全部；`Escape`、普通编辑和 blur 清理 ghost。检测还会避开 IME composition、其他 Prompt popover 和 stale async result。
+
+完整 source/clone 矩阵见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)，原始 rect 和 token 字段见 [`libtv-autolink-audit-2026-08-26.json`](libtv-autolink-audit-2026-08-26.json)。

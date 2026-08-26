@@ -213,7 +213,7 @@ Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zustand。
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；clone 顶部工具条仍固定 `900.5x49`，使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，而 2026-08-26 当前源站五图片节点已统一为内容自适应的 `1092.5x49`、13 动作；底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
 - `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取、智能抠像、主体编辑、深度动作捕捉和长视频过程图提交
 - `ScriptExecutionNode`：保留历史 type id 的 `3D导演台` 入口；CTA 进入独立
@@ -238,6 +238,8 @@ waveform 仍是 CSS placeholder，不解析真实音频。
 视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 
 图片和视频节点浮层不能使用页面固定坐标。原站的上工具条与下编辑器都以选中节点的屏幕中心为锚点；前者由 React Flow 在非缩放层定位，后者位于节点内部并反向缩放。它们允许超出画布边界后被裁切，不会为了保持可见而重新居中到浏览器视口。下方面板与节点外边界的屏幕间距是 `16 * zoom`；clone 因节点壳有 `1px` border，使用 `bottom: -17px` 补偿盒模型，不能把这个实现值误写成原站 CSS。
+
+AutoLink 也不能继续按 clone 当前的固定候选弹窗理解。当前源站把开关放在图片/视频生成面板的高级设置中，并用全局本地偏好共享状态；connected/reference assets 形成候选池，Prompt 内先出现不改写正文的 ghost suggestion，再由点击、`Tab` 或 `Shift+Tab` 接受为结构化 mention badge。正式媒体 badge 保存 stable node ID、media type 和当前 ordinal，“图片 1/2”只是 reference order 的显示投影。当前 clone 的 `陈默/咖啡` 固定数组、一次接受全部和字符串前缀写回均为已知 fidelity gap，详见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)。
 
 图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
 

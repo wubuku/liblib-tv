@@ -86,6 +86,18 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - 没有把图片 AutoLink、视频 AutoLink 和画布历史持久化到服务端。
 - 没有继续处理本轮之外的 Batch3 差异。
 
+### 4.1 2026-08-26 AutoLink 研究校正
+
+上述“建议 → 用户确认 → 写入 token 与参考图”准确描述了 2026-08-25 clone 的历史实施意图，不再代表当前源站的精确 UI 合同。后续生产 chunk 与 live DOM 审计已确认：
+
+- AutoLink 开关位于高级设置并使用全局本地偏好；
+- 候选来自 connected/reference assets，不是固定 `陈默 / 咖啡`；
+- 建议以 Prompt inline ghost 呈现，由 click/`Tab`/`Shift+Tab` 接受；
+- 正式 token 是带 stable node ID、media type 和 ordinal 的 `contenteditable=false` badge；
+- 当前 clone 的独立确认 popover、一次接受两项和字符串前缀写回属于已知 fidelity gap。
+
+本轮只补研究记录，没有修改历史实现。完整状态矩阵见 [`../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)。
+
 ## 5. 文件索引
 
 - Store 与页面：`src/store/canvasStore.ts`, `src/app/page.tsx`

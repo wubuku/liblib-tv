@@ -33,6 +33,18 @@
 
 **验收**：桌面 929px、移动 390px、至少两种 zoom、节点靠近四条边、图片和视频各一组截图；中心误差、screen/flow 两类 gap、当前动作集合、源站预期裁切和切换卸载均符合矩阵。音频节点只有取得同类源站浮层证据后才纳入。
 
+### Batch A2：AutoLink Prompt mention 合同（高优先）
+
+**目标**：替换当前 clone 的固定候选确认 popover 和字符串前缀写回，建立 source-shaped、可审核、可撤销的 AutoLink 前端状态链。
+
+**当前证据**：生产 chunk 和 live DOM 已确认高级设置全局 toggle、connected/reference candidate pool、inline ghost、click/Tab/Shift+Tab、IME/stale guards，以及带 stable node ID/media type/ordinal 的正式 badge；详见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。
+
+**候选设计**：先共享 toggle preference 和 mention data contract，再实现不改写正文的单项 ghost 接受；最后才接入 graph connection、reference reorder 和一次性键盘提示。删除固定匹配数和固定 `陈默/咖啡` 数组，不用另一个视觉 popover 替代 editor 内联状态。
+
+**验收**：图片/视频开关一致；接受前 Prompt 字符不变；Tab/Shift+Tab/Escape/blur/IME 行为稳定；重复 mention 共享 node ID/ordinal；reference 重排只更新 ordinal；未连接素材的 connect/mention 是一个可撤销 transaction。
+
+**限制**：本轮没有编码授权；ghost 的精确视觉和真实 connect payload 仍需在专用测试项目补证，不能据静态 bundle 猜测像素或 API。
+
 ### Batch B：图模型/连接纯逻辑合同
 
 **目标**：在不改变现有 LibTV 源站效果的前提下，整理 clone 内部对节点、边和引用类型的表达。
@@ -112,7 +124,7 @@
 
 ## 5. 研究出口
 
-当前最合理的下一步不是立即编码，而是继续补齐多 zoom、选择时序，以及元素编辑/旋转的无提交状态，再由用户授权 Batch A。28% 五图片节点、preview、空 annotate 和六动作 bundle 状态已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
+当前最合理的下一步不是立即编码，而是继续补齐多 zoom、选择时序、元素编辑/旋转的无提交状态，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28% 五图片节点、preview、空 annotate、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
 
 ## 6. 变更授权门槛
 

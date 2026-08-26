@@ -102,11 +102,12 @@
 **当前证据**
 
 - `article-screenshot`：画布素材、参考缩略条和引用编号逐步出现。
-- `live-confirmed`：当前视频生成面板显示 AutoLink 开关、3 个参考图和结构化 Prompt 引用；高级设置中的 AutoLink 采样为开启。
+- `live-confirmed`：当前图片/视频生成面板的高级设置都包含 AutoLink；当前 switch 为开启。视频 Prompt 的正式 badge 保存 stable node ID、media type 和 ordinal，同一 source node 的重复 mention 复用相同“图片 1”投影。
+- `bundle-confirmed`：候选来自 connected/reference assets；检测先注入 inline ghost，点击或 `Tab` 接受单项、`Shift+Tab` 接受全部，`Escape`/编辑/blur 拒绝。完整证据见 [`../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)。
 
 **稳定产品原则**
 
-Auto Link 是“候选匹配 + 人工确认 + 编号投影”，不是不可解释的自动改写。素材的内部身份和语义职责不能被临时 UI 编号替代。
+Auto Link 是“候选匹配 + 不改写正文的 ghost + 逐项/批量接受 + 编号投影”，不是独立确认弹窗或不可解释的自动改写。素材的 stable node ID 和语义职责不能被临时 UI 编号替代；graph connection、reference list 和 Prompt mention 是相关但独立的三层状态。
 
 ### 3.4 超长视频
 
