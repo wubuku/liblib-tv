@@ -1,0 +1,67 @@
+# ImageAnnotateMode
+
+## Purpose
+
+复刻 LibTV selected image 的空标注 active-tool 状态。该组件不是 page
+modal，也不是 graph node result；它替换普通图片的标准上下双浮层。
+
+## State Ownership
+
+- `uiStore.imageAnnotate`：当前 active image node identity 和媒体描述；
+- `canvasStore`：不写入 active state，不产生 graph history；
+- `ImageNode`：决定 standard/annotate render branch；
+- `ImageAnnotateToolbar`：节点上方专用 toolbar；
+- `ImageAnnotateSurface`：节点本体上的 canvas overlay。
+
+## Source Contract
+
+```text
+standard toolbar + standard bottom panel
+  -> annotate toolbar 536x49
+  -> bottom panel absent
+  -> canvas overlay with DPR2 backing
+  -> Escape/close
+  -> standard toolbar + standard bottom panel
+```
+
+The source empty state was observed at `929x874` with a `536x49` toolbar and a
+canvas CSS rect of approximately `194.117x97`, backed by `388x194` pixels.
+
+## Required DOM
+
+```text
+[data-image-annotate-toolbar]
+[data-image-annotate-surface]
+  [data-image-annotate-canvas]
+[data-image-annotate-close]
+[data-image-annotate-save]
+[data-image-annotate-undo]
+[data-image-annotate-redo]
+```
+
+The remaining icon buttons are deliberately not treated as source business
+contracts until their source DOM semantics are separately recorded.
+
+## Behavior
+
+- only one selected image may own the active state;
+- opening annotate hides standard toolbar and `data-image-edit-panel`;
+- Preview and top-level panels are mutually exclusive with annotate;
+- Escape and close restore the standard selected-image state;
+- empty annotate does not alter nodes, edges, selection, Prompt, viewport or
+  history;
+- save/undo/redo are disabled in the empty state;
+- the surface does not create a result node or call a provider.
+
+## Responsive
+
+- toolbar remains node-centered and may naturally clip at viewport edges;
+- surface follows the transformed node;
+- document must not gain horizontal overflow;
+- mobile does not promote the surface to a page-level fixed overlay.
+
+## Verification
+
+The primary verifier is `scripts/verify-liblib-batch53.py`. Batch 10/11 preserve
+adjacent historical image-panel and top-level overlay lifecycle contracts;
+Batch 52 preserves the current standard action shell and Preview.

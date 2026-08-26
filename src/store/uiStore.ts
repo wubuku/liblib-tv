@@ -17,6 +17,14 @@ export interface ImagePreviewState {
   height: number;
 }
 
+export interface ImageAnnotateState {
+  nodeId: string;
+  filename: string;
+  imageUrl: string;
+  width: number;
+  height: number;
+}
+
 interface UIState {
   // Panel visibility
   isAddNodePanelOpen: boolean;
@@ -38,6 +46,7 @@ interface UIState {
   canvasTool: "select" | "pan";
   activeDirectorNodeId: string | null;
   imagePreview: ImagePreviewState | null;
+  imageAnnotate: ImageAnnotateState | null;
 
   // Canvas settings
   showMinimap: boolean;
@@ -71,6 +80,8 @@ interface UIState {
   closeDirectorDesk: () => void;
   openImagePreview: (preview: ImagePreviewState) => void;
   closeImagePreview: () => void;
+  openImageAnnotate: (annotate: ImageAnnotateState) => void;
+  closeImageAnnotate: () => void;
   toggleMinimap: () => void;
   toggleGrid: () => void;
   toggleEdges: () => void;
@@ -99,6 +110,7 @@ type OverlayState = Pick<
   | "isZoomMenuOpen"
   | "activePrimaryPanel"
   | "imagePreview"
+  | "imageAnnotate"
 >;
 
 const closedOverlayState: OverlayState = {
@@ -118,6 +130,7 @@ const closedOverlayState: OverlayState = {
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   imagePreview: null,
+  imageAnnotate: null,
 };
 
 export const useUIStore = create<UIState>((set) => ({
@@ -140,6 +153,7 @@ export const useUIStore = create<UIState>((set) => ({
   canvasTool: "select",
   activeDirectorNodeId: null,
   imagePreview: null,
+  imageAnnotate: null,
 
   showMinimap: false,
   showGrid: true,
@@ -276,6 +290,14 @@ export const useUIStore = create<UIState>((set) => ({
     }),
 
   closeImagePreview: () => set({ imagePreview: null }),
+
+  openImageAnnotate: (annotate) =>
+    set({
+      ...closedOverlayState,
+      imageAnnotate: annotate,
+    }),
+
+  closeImageAnnotate: () => set({ imageAnnotate: null }),
 
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),

@@ -87,7 +87,7 @@ const actions = [
     icon: PencilLine,
     testId: "image-toolbar-annotate",
     widthClass: "w-8",
-    available: false,
+    available: true,
     iconOnly: true,
   },
   {

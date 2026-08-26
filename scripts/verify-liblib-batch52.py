@@ -28,7 +28,7 @@ ACTION_CONTRACT = [
     ("image-toolbar-interactive-edit", "元素编辑", 88, True),
     ("image-toolbar-layer-separation", "图层分离", 88, True),
     ("image-toolbar-grid-split", "宫格切分", 104, False),
-    ("image-toolbar-annotate", "标注", 32, True),
+    ("image-toolbar-annotate", "标注", 32, False),
     ("image-toolbar-rotate", "旋转", 32, True),
     ("image-toolbar-download", "下载", 32, True),
     ("image-toolbar-preview", "预览", 32, False),

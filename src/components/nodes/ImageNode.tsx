@@ -1,11 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { ImageIcon } from "lucide-react";
 import { Handle, Position, useViewport, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPanel";
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
+import { ImageAnnotateSurface } from "@/components/ImageAnnotateSurface";
+import {
+  ImageAnnotateToolbar,
+  type ImageAnnotateTool,
+} from "@/components/ImageAnnotateToolbar";
 import {
   useCanvasStore,
   type DirectorCaptureMetadata,
@@ -47,7 +53,12 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const openImagePreview = useUIStore((state) => state.openImagePreview);
-  const showSingleNodeEditor = selected && selectedNodeCount <= 1;
+  const openImageAnnotate = useUIStore((state) => state.openImageAnnotate);
+  const imageAnnotate = useUIStore((state) => state.imageAnnotate);
+  const closeImageAnnotate = useUIStore((state) => state.closeImageAnnotate);
+  const isAnnotating = selected && imageAnnotate?.nodeId === id && Boolean(imageUrl);
+  const [activeAnnotateTool, setActiveAnnotateTool] = useState<ImageAnnotateTool>("brush");
+  const showSingleNodeEditor = selected && selectedNodeCount <= 1 && !isAnnotating;
 
   const runAction = (action: ImageToolbarAction) => {
     if (action === "人像质感调节") {
@@ -63,6 +74,17 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         filename,
         imageUrl,
         watermarkUrl,
+        width,
+        height,
+      });
+      return;
+    }
+
+    if (action === "标注") {
+      openImageAnnotate({
+        nodeId: id,
+        filename,
+        imageUrl,
         width,
         height,
       });
@@ -144,6 +166,13 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
           onAction={runAction}
         />
       )}
+      {isAnnotating && (
+        <ImageAnnotateToolbar
+          activeTool={activeAnnotateTool}
+          onToolChange={setActiveAnnotateTool}
+          onClose={closeImageAnnotate}
+        />
+      )}
       <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
       <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
@@ -153,7 +182,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         <span className="shrink-0 tabular-nums">{width} × {height}</span>
       </div>
 
-      <div className="relative h-full w-full overflow-hidden rounded-[3px]">
+      <div data-image-node-media className="relative h-full w-full overflow-hidden rounded-[3px]">
         {data.placeholderKind === "panorama" || !imageUrl ? (
           <div
             data-image-placeholder={data.placeholderKind ?? "empty"}
@@ -182,6 +211,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
             unoptimized
           />
         )}
+        {isAnnotating && <ImageAnnotateSurface activeTool={activeAnnotateTool} />}
       </div>
 
       {showSingleNodeEditor && (
