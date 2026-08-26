@@ -46,6 +46,7 @@ AGENTS.md / README.md
 | DOC-05 | Development/Contributing 只展示 Batch 4-10 | 新 agent 容易误以为后续 Batch 没有验证入口 | 改成单个窄脚本示例 + 链接到完整 Harness |
 | DOC-06 | Documentation Plan 的原始审计仍写 Batch 3-10 | 维护者无法区分历史快照和当前状态 | 保留历史段落，增加本轮维护增量与 supersede 说明 |
 | DOC-07 | Batch 45 已进入研究索引但尚无 verifier | 容易把研究目录误读为已完成回归 | 记录为并行 WIP，不为其伪造验证状态 |
+| DOC-08 | Big Picture 的详细验证基线停在 Batch 43 | 最新 Batch 44 的已记录验证不在摘要中 | 修正为 Batch 35-44 |
 
 ## 3. 本轮已应用的修正
 
@@ -53,6 +54,7 @@ AGENTS.md / README.md
 - `docs/HARNESS.md` 的批量示例不再跨过不存在的 Batch 34；
 - 根 README、Big Picture、Development 和 Contributing 都链接到完整 Harness，而不是各自维护一份过时清单；
 - Big Picture 的 README/package 身份判断以当前仓库实际内容为准；
+- Big Picture 的详细验证基线更新到 Batch 44；
 - `docs/DOCUMENTATION_PLAN.md` 保留 2026-08-25 的迁移快照，并明确本审计是 2026-08-26 的维护增量；
 - Batch 45 不被加入“已验证脚本”清单，等待其并行开发者提供稳定脚本和实施记录。
 

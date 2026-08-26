@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `npm run docs:check` to validate local Markdown links
 - Recorded the fixed upstream director-desk archaeology, the current LibTV
   director evidence boundary and the implemented R3F workspace verification.
+- Added LibTV UI state hierarchy, Open Canvas pattern cards, Seedance dependency
+  risk queue and the research go/no-go authorization gate.
+- Added agent task navigation, cross-project decision register, claim
+  traceability matrix, verifier maturity ledger and clone-website project
+  adaptation guidance.
+- Audited documentation freshness and corrected Batch verifier ranges, while
+  explicitly retaining Batch 34 and the parallel Batch 45 work as unverified.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

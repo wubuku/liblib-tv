@@ -48,6 +48,7 @@ graph TD
 | [`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) | 按任务选择最小证据集合、验证路径和停止条件 |
 | [`DECISION_REGISTER.md`](DECISION_REGISTER.md) | 跨路由、研究、复刻和协作的长期有效决策登记 |
 | [`CLONE_WEBSITE_ADAPTATION.md`](CLONE_WEBSITE_ADAPTATION.md) | 通用 clone-website 技能在本项目的权限、证据和协作适配 |
+| [`../CHANGELOG.md`](../CHANGELOG.md) | 文档、研究和原型迭代的版本历史 |
 
 ## Research And Evidence
 
