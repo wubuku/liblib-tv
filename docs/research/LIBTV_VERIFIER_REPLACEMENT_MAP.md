@@ -153,7 +153,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Old verifier | Batch 10 fixed popover assertions |
 | Required fixture | `LIBTV-FIX-LOCAL-AUTOLINK-01`；source disposable only for input behavior |
 | New checks | global preference；connected/reference candidate scope；stable node ID；ordinal projection |
-| Blockers | typed editor/data design；local deterministic candidates；source input authorization |
+| Blockers | runtime fixture implementation；local deterministic candidate adapter；source input authorization |
 | Exit | image/video cross-node preference and candidate changes are separately asserted |
 
 ### `LIBTV-VR-004`：AutoLink ghost and keyboard race
@@ -164,7 +164,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Old verifier | 无 |
 | Required fixture | deterministic delayed detection、IME composition、competing popover |
 | New checks | ghost does not mutate committed text；click/Tab single；Shift+Tab all；Escape/blur/edit cleanup；stale discard |
-| Blockers | editor representation and race contract |
+| Blockers | runtime editor/fixture implementation；deterministic race controls；编码授权 |
 | Exit | no stale badge, no keyboard theft, no layout detachment after pan/zoom |
 
 ### `LIBTV-VR-005`：AutoLink graph/reference/mention transaction
@@ -175,7 +175,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Old verifier | 无 |
 | Required fixture | connected and unconnected candidates；success/failure connection outcomes |
 | New checks | connect + mention atomicity；failure rollback；reference reorder changes ordinal only；undo/redo policy |
-| Blockers | stable graph transaction contract；no orphan badge/edge rule |
+| Blockers | `GI-004..007` source/product decisions；runtime transaction fixture；no orphan badge/edge implementation |
 | Exit | node identity, reference role and mention token remain independently inspectable |
 
 ### `LIBTV-VR-006`：source ready-video toolbar

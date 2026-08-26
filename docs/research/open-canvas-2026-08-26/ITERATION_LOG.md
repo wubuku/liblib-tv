@@ -300,3 +300,14 @@
 - 明确未经批准不移动 submodule pointer，pointer、研究文档和 LibTV code change 必须分 commit；
 - 新增 `OC-TR-009` 供版本更新任务反查；当前 baseline 与 submodule 内容均未改变；
 - 没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v29 设计就绪度一致性校准
+
+本轮在 Batch 50 释放共享文档后，复核交接蓝图、parity backlog、fixture catalog 和 replacement map 的状态是否一致：
+
+- 将 `OC-BP-003` 从泛化的 `DESIGN_FIRST` 校准为 `DESIGN_READY`，明确 typed identity/state/transaction、fixture topology、deterministic controls 和 verifier split 已完成文档设计；
+- 同时保留 `LIBTV-FIX-LOCAL-AUTOLINK-01` 与 `LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的 `RUNTIME_MISSING`，不把接收规格误写为可运行 fixture；
+- 将 `LIBTV-PAR-003` 的 blocker 从“缺设计”收窄为运行 fixture、disposable source input fixture 和编码授权；
+- 标记 graph invariant/compatibility case 表已完成，剩余设计缺口是 `GI-004..007` source/product decisions、validation result shape 和专用 replacement；
+- 更新正式索引、任务导读、生命周期和审计，使 process、model 与 upstream protocol 可从全局入口发现；
+- 没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或 Batch 50 并行实施记录。

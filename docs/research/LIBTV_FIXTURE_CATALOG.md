@@ -272,8 +272,8 @@ ready source
 | `LIBTV-FIX-SOURCE-VIDEO-READY-01` | 独立源站项目 | 可播放 ready video、已知 duration/version、允许打开工具 | toolbar order、hover menu、active replacement、discard/submit delta | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-SOURCE-SHORTCUT-01` | 独立源站项目 | 可丢弃 subgraph、group、internal/external edges | `L`、Enter、Option-drag、Option+G、duplicate closure 和 cancel | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-SOURCE-PROCESS-01` | 独立源站项目 | 可观察 pending/failed/partial/success/retry 的任务或已授权 mock | run/node/save status、candidate/result version、局部重算和替换 | `REQUIRED_DISPOSABLE` |
-| `LIBTV-FIX-LOCAL-AUTOLINK-01` | clone | typed candidates/ghost/mention/session 和可控延迟 | keyboard/IME/stale-result/transaction consistency | `REQUIRED_DISPOSABLE` / `DESIGN_FIRST` |
-| `LIBTV-FIX-LOCAL-PROCESS-STATES-01` | clone | 固定 pending/failed/partial/success/retry data | UI lifecycle、graph delta、selection、undo/redo | `REQUIRED_DISPOSABLE` |
+| `LIBTV-FIX-LOCAL-AUTOLINK-01` | clone | typed candidates/ghost/mention/session 和可控延迟 | keyboard/IME/stale-result/transaction consistency | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
+| `LIBTV-FIX-LOCAL-PROCESS-STATES-01` | clone | 固定 pending/failed/partial/success/retry data | UI lifecycle、graph delta、selection、undo/redo | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-SHORTCUT-01` | clone | 固定 node/group/internal/external-edge subgraph | handler precondition、focus guard、graph closure、history | `REQUIRED_DISPOSABLE` |
 
 `LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。两者仍是设计完成但运行 fixture 未实现的状态。
@@ -392,7 +392,7 @@ Supersedes:
 ## 10. 下一步文档/研究顺序
 
 1. 用本文完成 `PAR-005` source freshness refresh 的观察 checklist，不操作共享 graph；
-2. 为 `PAR-003` 落 typed AutoLink fixture/data/state/transaction design；
+2. 保持 `PAR-003` AutoLink 和 `PAR-009` process fixture 接收规格为文档权威；运行 fixture 等待独立编码授权；
 3. 为 `PAR-007` 设计 local shortcut subgraph，不修改实现；
 4. 等用户提供独立源站 project/权限后，再登记 `SOURCE-VIDEO-READY-01` 等真实 fixture identity；
 5. 继续维护 `DIRECTOR-LOCAL-MODEL-01` 的 storage reset、fresh-context 和 proxy-cleanup 断言；

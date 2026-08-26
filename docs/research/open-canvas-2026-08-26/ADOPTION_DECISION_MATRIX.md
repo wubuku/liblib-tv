@@ -86,8 +86,8 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 以下内容不需要编码授权即可继续深化：
 
 1. `OC-ADOPT-001`：用坐标域和 anchor owner 评审 `PAR-001/002`，但所有数字回到 LibTV 合同；
-2. `OC-ADOPT-002`：为 Auto Link 建立 typed identity/session 草案；
-3. `OC-ADOPT-004..006`：为 `PAR-008` 写 graph invariant、transaction 和 fixture 用例；
+2. `OC-ADOPT-002`：维护已经完成的 Auto Link typed identity/session/fixture 合同，等待运行 fixture 授权；
+3. `OC-ADOPT-004..006`：使用已经完成的 graph invariant/compatibility case 表，继续取得 self-loop/cycle/Handle 等 source 决定；
 4. `OC-ADOPT-003/009`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态；
 5. `OC-ADOPT-010`：建立“模型 UI 能力 / 请求投影 / 实际 runner”三层审计表。
 

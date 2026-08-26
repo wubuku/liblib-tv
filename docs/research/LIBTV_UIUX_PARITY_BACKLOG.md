@@ -67,7 +67,7 @@
 |---:|---|---|---:|---:|---:|---:|---|
 | 1 | `LIBTV-PAR-001` | 当前图片标准双浮层的动作集合与几何 | 5 | 5 | 4 | 2 | `READY_FOR_AUTHORIZATION` |
 | 2 | `LIBTV-PAR-002` | Preview/Annotate/Element Edit 的 L2 -> L3/L4 替换 | 5 | 5 | 3 | 3 | `READY_FOR_AUTHORIZATION` |
-| 3 | `LIBTV-PAR-003` | Auto Link ghost + structured mention | 5 | 4 | 2 | 4 | `DESIGN_FIRST` |
+| 3 | `LIBTV-PAR-003` | Auto Link ghost + structured mention | 5 | 4 | 2 | 4 | `BLOCKED_BY_FIXTURE`；design spec complete |
 | 4 | `LIBTV-PAR-004` | Top-level modal/Director 的 keyboard 与 focus ownership | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
 | 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `RESEARCH_FIRST` |
 | 6 | `LIBTV-PAR-006` | Ready-video 顶部处理工具条与 mode replacement | 5 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
@@ -118,7 +118,7 @@
 - clone 是固定候选、独立 confirmation popover 和普通字符串前缀；
 - graph edge、reference role、Prompt mention 和模型 ordinal 必须保持不同身份。
 
-**先设计的原因**
+**为何先设计，以及当前结论**
 
 它会同时触及 ImageEditPanel、VideoGenerationPanel、稳定 node ID、reference projection、keyboard/IME/race guard 和 transaction consistency。没有 typed token/candidate/session 合同就直接改 UI，会把旧固定 popover 扩大成更难迁移的数据债。
 
@@ -129,6 +129,8 @@
 3. graph/reference/mention 成功与失败的原子边界；
 4. 图片/视频共用什么，Provider 投影留在哪一层；
 5. deterministic local fixture 和 replacement verifier。
+
+上述五项已经由 [`LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md) 的 identity/state/transaction 与 fixture acceptance 章节完成文档设计。当前 blocker 已从“缺设计”收窄为“运行 fixture 未实现、共享源站无 disposable input fixture、编码未授权”；不能因此把该项升级为已实现或 verifier-ready。
 
 ### 4.5 `LIBTV-PAR-004`: page keyboard and focus ownership
 
