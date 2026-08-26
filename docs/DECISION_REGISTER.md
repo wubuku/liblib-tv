@@ -36,6 +36,7 @@
 | DEC-026 | graph document 与 history 分层 | runtime graph、history snapshot、portable document、clipboard packet 和 persistence envelope 保持独立；portable load 必须 versioned、strict、zero-partial | ACTIVE / RESEARCH_GATE |
 | DEC-027 | subgraph copy 身份闭包 | copy 使用具名 command、ownership closure、two-pass ID/reference rewrite 和 full-plan transaction；incident-edge 仅作兼容分支 | ACTIVE / RESEARCH_GATE |
 | DEC-028 | node data 身份注册表 | node data 按 `(runtime type, dataVersion)` 验证，并按具名 operation 映射、重置、诊断或拒绝字段；aggregate/ref 不允许浅拷贝 | ACTIVE / RESEARCH_GATE |
+| DEC-029 | graph delete 关系修复 | delete 必须先规划 structural/relation/aggregate/UI/resource impact，再以 repair/cascade/detach 或 stable unknown 原子收口；不得只过滤 node/edge | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -168,6 +169,16 @@
 **影响：** `src/types/canvas.ts`、`Record<string, unknown>`、字段名后缀和 object spread 都不能单独充当 schema。Director shell 复制不等于 workspace 复制；`data:` 受 byte budget，`blob:` 不 portable；node-specific status 不使用统一 reset。Registry、fixture 和 `LIBTV-VR-012` 仍需明确编码授权。
 
 **依据：** [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)、[`LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)、Open Canvas [`types.ts`](../research/upstream/open-canvas/shared/lib/canvas/types.ts) 与 [`serialization.ts`](../research/upstream/open-canvas/shared/lib/canvas/serialization.ts)。
+
+### DEC-029：Graph delete 必须是 relation-aware full-plan transaction
+
+**背景：** 当前 `removeNode/removeSelectedNodes` 只展开 group descendants、删除 incident edges 并更新 selection/history；`removeEdge` 只过滤 edge。普通 LibTV node data 还包含 owned node/edge refs、shot reciprocal refs、shared processId、Director provenance、node-bound overlay owner 和不同生命周期的 media locator。Open Canvas 的固定版本只有 typed node + ordinary edge 模型，其简单删除不能直接覆盖这些关系。
+
+**决策：** 后续删除以具名 command 进入纯 planner，依次计算 structural closure、registered relation inverse index、aggregate impact、per-type cascade/detach/reset/block policy、selection/UI invalidation 和 resource diagnostics；只提交通过 post-plan integrity validation 的 `ready` plan，并形成一个 graph history step。Owned ref、shot/process aggregate 或 semantic edge 无安全 recipe 时返回 stable `unknown/reject` 且 zero mutation。Exact user-visible cascade/detach 仍按 source/product gate 决定，不用 Open Canvas 或字段名启发式填空。
+
+**影响：** Generic edge scissors 不能绕过 nested `edgeId` repair；V0 process 不允许 partial cohort；shot refs 必须双向一致；graph delete 不自动销毁 Director workspace、provider run 或 media bytes；UI owner cleanup 不进入 graph history。`GRAPH-DELETE-01`、`LIBTV-VR-013` 与 runtime planner 仍需明确编码授权。
+
+**依据：** [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)、[`LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts)。
 
 ## 3. 何时可以重审决策
 
