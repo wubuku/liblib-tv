@@ -1,6 +1,6 @@
 # Batch 32 Implementation Log
 
-> 状态：实现、专项浏览器验证、跨批回归和工程门禁已完成，等待提交保护。
+> 状态：实现、专项浏览器验证、跨批回归、工程门禁和提交推送均已完成。
 
 ## Planned Protection Points
 
@@ -90,9 +90,18 @@ git diff --check                                                 PASS
 `npm run check` 为 `0 error`；保留 9 条既有 FrameOS/共享代码 warning。
 Next build 仍提示上级目录存在另一个 lockfile，未影响 production build。
 
+## Commit Protection
+
+```text
+0f3344c feat(liblib): add depth motion capture workflow
+```
+
+已推送到 `origin/master`。该提交包含实现、专项脚本、Batch 32 截图、当前
+跨批 clone 截图刷新、回归脚本结构断言和文档收口。
+
 ## Interruption Handoff
 
 下一步先阅读本目录的 `README.md`、`SOURCE_EVIDENCE.md`、`PLAN.md`、
 `DEPTH_MOTION_WORKFLOW.spec.md`、`SCREENSHOT_ANALYSIS.md` 和本文件。继续回归
 时不要把具体 `{maxMin}` / `{maxSec}`、原站 dialog geometry 或真实深度媒体
-写成已确认事实。当前代码和文档已达到可提交状态。
+写成已确认事实。下一批研究可从当前 `origin/master` 继续。

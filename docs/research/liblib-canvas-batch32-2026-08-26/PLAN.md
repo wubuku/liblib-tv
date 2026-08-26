@@ -87,4 +87,4 @@
 - [x] 入口、panel、guard、busy 和 pending graph 已实施
 - [x] 专项 Playwright、截图台账和 zero browser-error 检查已完成
 - [x] 跨批回归与 `npm run check`
-- [ ] commit/push 实现结果
+- [x] commit/push 实现结果：`0f3344c`
