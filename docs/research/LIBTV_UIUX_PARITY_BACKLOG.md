@@ -19,6 +19,10 @@
 | `LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md` | 当前 overlay state、mount owner、close/focus/anchor 行为 | 把运行时风险转成研究或实施队列。 |
 | `LIBTV_GRAPH_TRANSACTION_CATALOG.md` | nodes/edges/selection/history 的实际副作用 | 判断某项能否作为独立、可撤销 slice。 |
 | `LIBTV_RESEARCH_GO_NO_GO.md` | 编码授权和 fixture 总闸门 | 给每个 backlog item 指定具体闸门。 |
+| `LIBTV_FIXTURE_CATALOG.md` | fixture 身份、构造、隔离、reset、storage 和副作用边界 | 判断 gap 是否具备可重复的本地/源站前置状态。 |
+| `LIBTV_SOURCE_FRESHNESS_REINSPECTION.md` | 共享源站的版本化只读复核顺序和停止条件 | 判断 source evidence 是否需要 refresh，以及未知是否必须阻塞。 |
+| `LIBTV_VERIFIER_REPLACEMENT_MAP.md` | 历史 verifier、current source contract 和 replacement queue | 判断旧断言应保留、标历史、补充还是申请替换。 |
+| `DECISION_REGISTER.md` | 跨项目长期的授权、安全、fixture 和协作决策 | 处理 backlog 排序不能自行解锁的全局闸门。 |
 
 不在本文范围内：
 
@@ -322,5 +326,9 @@ Stop conditions:
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)
+- [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)
+- [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)
+- [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)
+- [`../DECISION_REGISTER.md`](../DECISION_REGISTER.md)
 - [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)
 - [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md)

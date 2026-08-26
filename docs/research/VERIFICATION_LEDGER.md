@@ -4,6 +4,9 @@
 >
 > 本台账只记录当前仓库可发现的验证能力。Batch 48 的浏览器脚本、
 > 截图和实施结果已经单独落档；后续批次仍需按同样边界增量维护。
+> fixture 身份/隔离/reset 见 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)，
+> 历史断言迁移见 [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)，
+> 跨项目闸门见 [`../DECISION_REGISTER.md`](../DECISION_REGISTER.md)。
 
 ## 1. 状态词汇
 
