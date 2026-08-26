@@ -397,6 +397,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `docs/research/DESIGN_TOKENS.md`：颜色、尺寸、阴影
 - `docs/research/components/*.spec.md`：组件级规格
 - `docs/research/components/LibTVOverlayPositioning.contract.md`：图片节点双浮层的 screen/flow 定位合同与后续验证断言
+- `docs/research/components/LibTVAutoLink.contract.md`：Auto Link 的候选、ghost、structured mention 和 graph 事务合同
 
 ### FrameOS
 

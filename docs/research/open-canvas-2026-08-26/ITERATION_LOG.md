@@ -163,3 +163,12 @@
 - 将图片工具条、智能剪辑 Beta、失败视频与就绪视频工具条列为相邻但不可混并的能力，并把节点上下文、提交阶段、结果回画布和可审计引用作为共同 UI/UX 结构；
 - 通过当前登录态画布的只读 DOM 刷新确认当前图片工具条仍为 9 个文字动作 + 4 个图标动作；没有点击生成、上传、保存、下载或其他可能改变共享画布的动作；
 - 同步 Seedance 研究 README、PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，形成后续 agent 的单一能力缺口入口；没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP。
+
+## 2026-08-26：v15 Auto Link 组件状态合同
+
+本轮对当前 clone 的图片/视频 Auto Link 实现做静态代码对照，并将源站状态链收敛成组件级合同：
+
+- 新增 [`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)，定义全局偏好、候选池、异步检测、ghost、structured mention、ordinal 投影、graph connection 和竞态保护；
+- 明确指出当前 clone 的固定候选、独立确认 popover、全量接受、textarea 前缀写回和局部 references 更新属于结构性 fidelity gap，不能靠增加装饰文案修补；
+- 将未来工作切成 preference/visibility、read-only ghost、structured editor、graph transaction 四个独立授权 slice，并给出最小浏览器回归断言；
+- 同步组件入口、`ImageEditPanel` 规格、Seedance 能力缺口总矩阵和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；仍未修改 `src/`，未对共享源站 Prompt 输入、Auto Link 开关、建议接受或 graph 连接做 live 操作。

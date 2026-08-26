@@ -38,7 +38,7 @@
 |---|---|---|---|---|---|
 | Seedance 2.5 生成 | 视频节点下方 `660px` 生成面板；模型、模式、比例、清晰度、时长、音频、数量、预计积分同屏；模式/模型/参数使用邻近 popover | `SOURCE_FACT`：模型、模式、`4-30s`、`30-300s`、`300s / 14700` 已现场读取 | 已有参数面板和本地提交态 | 图片/视频浮层动作集合和源站当前版本持续漂移；真实 Provider 不在原型边界 | P0：决定主流程是否像 LibTV |
 | 片段重拍 | 就绪视频顶部工具栏进入；横向时间带以 `4s` 为粒度；最多 `5` 段；选区写入 Prompt 的视频/时间范围 token；提交后只替换目标区间 | `ARTICLE_EVIDENCE` + `SOURCE_FACT`：bundle 文案和文章截图；当前共享项目没有可安全执行的就绪视频 | 已有五段选择、disabled 尾段、token 投影和本地提交反馈 | 尚缺当前登录态就绪视频的实际入口、替换结果和边界帧行为 | P1：高频、高识别度；需可丢弃素材 |
-| Auto Link | 高级设置中的全局开关；从 connected/reference 素材池匹配；Prompt 内联 ghost 建议；逐项或全量接受后生成带 node ID/media type/ordinal 的正式 mention | `SOURCE_FACT`：当前 bundle + 图片/视频面板 DOM | 已有固定候选、独立确认 popover、批量写入字符串 | 候选作用域、ghost 生命周期、单项接受/替换/撤销和正式 token 语义不一致 | P0：影响引用可信度和所有生成入口 |
+| Auto Link | 高级设置中的全局开关；从 connected/reference 素材池匹配；Prompt 内联 ghost 建议；逐项或全量接受后生成带 node ID/media type/ordinal 的正式 mention | `SOURCE_FACT`：当前 bundle + 图片/视频面板 DOM | 已有固定候选、独立确认 popover、批量写入字符串 | 候选作用域、ghost 生命周期、单项接受/替换/撤销和正式 token 语义不一致 | P0：影响引用可信度和所有生成入口；合同见 [`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md) |
 | 超长视频 Beta | 生成模式中的独立入口；参数允许 `30-300s`；底栏显示 `300s / 14700`；查看过程后在画布中观察素材、镜头、候选和成片关系 | `SOURCE_FACT`：模式与参数；`ARTICLE_EVIDENCE`：过程图 | 已有 12 节点/22 边的本地 pending 过程图和 atomic undo/redo | 源站过程图的真实状态、局部重算、版本替换和费用/任务拆分仍未现场完成 | P1：价值高但状态和成本复杂；先保持只读过程 |
 | 逐帧拉片 | 视频工具栏或独立节点进入；选择“分镜/动态/音乐”；结果是 `S01...` 关键帧、`M01...` 动态片段、BGM 波形卡，可继续作为参考 | `SOURCE_FACT`：独立 `shot-breakdown` 空态；`ARTICLE_EVIDENCE`：结果截图；bundle 有失败/处理中状态 | 已有独立节点、三维度选择和持久化结果组 | 当前项目没有真实就绪视频，因此尚缺当前结果态、分析进度和重试细节 | P1：能把“分析”转成可复用素材，产品差异明显 |
 
@@ -134,6 +134,7 @@ Auto Link 的当前实现不是把画布素材静默塞进请求，而是先在 
 - 当前登录态总审计：[`LIVE_AUDIT.md`](LIVE_AUDIT.md)
 - 源站动作状态：[`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)
 - Auto Link 状态：[`LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)
+- Auto Link 组件合同：[`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)
 - 双浮层多 zoom：[`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)
 - 图片组件合同：[`ImageNode.spec.md`](../components/ImageNode.spec.md)、[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md)
 - 视频工作流合同：[`VideoGenerationPanel.spec.md`](../components/VideoGenerationPanel.spec.md)、[`SegmentReshootPanel.spec.md`](../components/SegmentReshootPanel.spec.md)

@@ -80,7 +80,7 @@ Panel height is explicit per known source node and must not be inferred only fro
 
 The `咖啡馆` state directly disproves `hasPrompt => 211px`. Known nodes carry `editorHeight`; only compatibility data falls back to the older variant mapping.
 
-AutoLink is not a visible top-row text pill or a conditional footer icon. Current source evidence places `智能引用 AutoLink` inside the advanced-settings disclosure and persists it through the global local preference `libtv:promptMentionEnabled`, defaulting to enabled.
+AutoLink is not a visible top-row text pill or a conditional footer icon. Current source evidence places `智能引用 AutoLink` inside the advanced-settings disclosure and persists it through the global local preference `libtv:promptMentionEnabled`, defaulting to enabled. The component-level state contract is [`LibTVAutoLink.contract.md`](LibTVAutoLink.contract.md).
 
 The source interaction is an inline Prompt workflow: connected/reference assets form the candidate pool, non-committing ghost spans are injected at matching occurrences, and click/`Tab`/`Shift+Tab` accept one or all suggestions. Accepted media mentions are `contenteditable=false` badges carrying stable node ID, media type and projected ordinal. `Escape`, edit and blur reject ghosts; IME composition and stale async results are guarded.
 
