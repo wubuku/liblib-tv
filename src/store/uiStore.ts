@@ -25,6 +25,14 @@ export interface ImageAnnotateState {
   height: number;
 }
 
+export interface ImageElementEditState {
+  nodeId: string;
+  filename: string;
+  imageUrl: string;
+  width: number;
+  height: number;
+}
+
 interface UIState {
   // Panel visibility
   isAddNodePanelOpen: boolean;
@@ -47,6 +55,7 @@ interface UIState {
   activeDirectorNodeId: string | null;
   imagePreview: ImagePreviewState | null;
   imageAnnotate: ImageAnnotateState | null;
+  imageElementEdit: ImageElementEditState | null;
 
   // Canvas settings
   showMinimap: boolean;
@@ -82,6 +91,8 @@ interface UIState {
   closeImagePreview: () => void;
   openImageAnnotate: (annotate: ImageAnnotateState) => void;
   closeImageAnnotate: () => void;
+  openImageElementEdit: (elementEdit: ImageElementEditState) => void;
+  closeImageElementEdit: () => void;
   toggleMinimap: () => void;
   toggleGrid: () => void;
   toggleEdges: () => void;
@@ -111,6 +122,7 @@ type OverlayState = Pick<
   | "activePrimaryPanel"
   | "imagePreview"
   | "imageAnnotate"
+  | "imageElementEdit"
 >;
 
 const closedOverlayState: OverlayState = {
@@ -131,6 +143,7 @@ const closedOverlayState: OverlayState = {
   activePrimaryPanel: null,
   imagePreview: null,
   imageAnnotate: null,
+  imageElementEdit: null,
 };
 
 export const useUIStore = create<UIState>((set) => ({
@@ -154,6 +167,7 @@ export const useUIStore = create<UIState>((set) => ({
   activeDirectorNodeId: null,
   imagePreview: null,
   imageAnnotate: null,
+  imageElementEdit: null,
 
   showMinimap: false,
   showGrid: true,
@@ -298,6 +312,14 @@ export const useUIStore = create<UIState>((set) => ({
     }),
 
   closeImageAnnotate: () => set({ imageAnnotate: null }),
+
+  openImageElementEdit: (elementEdit) =>
+    set({
+      ...closedOverlayState,
+      imageElementEdit: elementEdit,
+    }),
+
+  closeImageElementEdit: () => set({ imageElementEdit: null }),
 
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),

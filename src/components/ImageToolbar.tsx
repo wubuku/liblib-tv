@@ -66,7 +66,7 @@ const actions = [
     icon: MousePointer2,
     testId: "image-toolbar-interactive-edit",
     widthClass: "w-[88px]",
-    available: false,
+    available: true,
   },
   {
     label: "图层分离",

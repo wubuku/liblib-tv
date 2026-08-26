@@ -137,10 +137,15 @@ export default function Home() {
   const effectivePan = canvasTool === "pan" || isSpacePressed;
 
   useEffect(() => {
-    if (!imageAnnotate) return;
+    if (!imageAnnotate && !useUIStore.getState().imageElementEdit) return;
     const ownsSelection =
-      selectedNodeIds.length === 1 && selectedNodeIds[0] === imageAnnotate.nodeId;
-    if (!ownsSelection) closeImageAnnotate();
+      selectedNodeIds.length === 1 &&
+      (selectedNodeIds[0] === imageAnnotate?.nodeId ||
+        selectedNodeIds[0] === useUIStore.getState().imageElementEdit?.nodeId);
+    if (!ownsSelection) {
+      closeImageAnnotate();
+      useUIStore.getState().closeImageElementEdit();
+    }
   }, [closeImageAnnotate, imageAnnotate, selectedNodeIds]);
 
   const onNodesChange = useCallback(
@@ -259,7 +264,7 @@ export default function Home() {
   useEffect(() => {
     const handleActiveImageSurfaceKeyDown = (event: KeyboardEvent) => {
       const uiState = useUIStore.getState();
-      if (!uiState.imagePreview && !uiState.imageAnnotate) return;
+      if (!uiState.imagePreview && !uiState.imageAnnotate && !uiState.imageElementEdit) return;
 
       const modifier = event.metaKey || event.ctrlKey;
       const blocksBrowserDefault =
@@ -274,7 +279,8 @@ export default function Home() {
 
       if (event.key !== "Escape") return;
       if (uiState.imagePreview) uiState.closeImagePreview();
-      else uiState.closeImageAnnotate();
+      else if (uiState.imageAnnotate) uiState.closeImageAnnotate();
+      else uiState.closeImageElementEdit();
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -351,7 +357,7 @@ export default function Home() {
     };
     const handleKeyUp = (event: KeyboardEvent) => {
       const uiState = useUIStore.getState();
-      if (uiState.activeDirectorNodeId || uiState.imageAnnotate) {
+      if (uiState.activeDirectorNodeId || uiState.imageAnnotate || uiState.imageElementEdit) {
         setIsSpacePressed(false);
         return;
       }

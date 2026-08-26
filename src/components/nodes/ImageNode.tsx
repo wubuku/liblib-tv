@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPanel";
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
 import { ImageAnnotateSurface } from "@/components/ImageAnnotateSurface";
+import { ImageElementEditMode } from "@/components/ImageElementEditMode";
 import {
   ImageAnnotateToolbar,
   type ImageAnnotateTool,
@@ -56,11 +57,15 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const openImageAnnotate = useUIStore((state) => state.openImageAnnotate);
   const imageAnnotate = useUIStore((state) => state.imageAnnotate);
   const closeImageAnnotate = useUIStore((state) => state.closeImageAnnotate);
+  const openImageElementEdit = useUIStore((state) => state.openImageElementEdit);
+  const imageElementEdit = useUIStore((state) => state.imageElementEdit);
+  const closeImageElementEdit = useUIStore((state) => state.closeImageElementEdit);
   const isAnnotating = selected && imageAnnotate?.nodeId === id && Boolean(imageUrl);
+  const isElementEditing = selected && imageElementEdit?.nodeId === id && Boolean(imageUrl);
   const [activeAnnotateTool, setActiveAnnotateTool] = useState<ImageAnnotateTool>("pencil");
   const [annotateColor, setAnnotateColor] = useState("#ff0000");
   const [annotateStrokeWidth, setAnnotateStrokeWidth] = useState(4);
-  const showSingleNodeEditor = selected && selectedNodeCount <= 1 && !isAnnotating;
+  const showSingleNodeEditor = selected && selectedNodeCount <= 1 && !isAnnotating && !isElementEditing;
 
   const runAction = (action: ImageToolbarAction) => {
     if (action === "人像质感调节") {
@@ -84,6 +89,17 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
     if (action === "标注") {
       openImageAnnotate({
+        nodeId: id,
+        filename,
+        imageUrl,
+        width,
+        height,
+      });
+      return;
+    }
+
+    if (action === "元素编辑") {
+      openImageElementEdit({
         nodeId: id,
         filename,
         imageUrl,
@@ -179,6 +195,9 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
           onClose={closeImageAnnotate}
         />
       )}
+      {isElementEditing && (
+        <ImageElementEditMode zoom={zoom} onClose={closeImageElementEdit} />
+      )}
       <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
       <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
 
@@ -217,8 +236,9 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
             unoptimized
           />
         )}
-        {isAnnotating && <ImageAnnotateSurface activeTool={activeAnnotateTool} />}
       </div>
+
+      {isAnnotating && <ImageAnnotateSurface activeTool={activeAnnotateTool} />}
 
       {showSingleNodeEditor && (
         <ImageEditPanel
