@@ -83,6 +83,6 @@
 - [x] Source/upstream/clone boundaries recorded
 - [x] Articulated mannequin and rig state
 - [x] Pose Inspector and presets
-- [ ] Independent pose tracks and interpolation
+- [x] Independent pose tracks and interpolation
 - [ ] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression and stable docs

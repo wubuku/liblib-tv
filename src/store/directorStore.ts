@@ -13,9 +13,11 @@ import {
 import {
   applyDirectorPosePreset,
   cloneDirectorCharacterRig,
+  cloneDirectorPoseValue,
   createDirectorCharacterRig,
   updateDirectorPoseControl,
   type DirectorCharacterRig,
+  type DirectorPoseKeyframeValue,
   type DirectorPosePresetId,
 } from "@/components/director/directorPose";
 import {
@@ -101,6 +103,12 @@ export interface DirectorCameraKeyframe {
   id: string;
   time: number;
   value: DirectorCameraKeyframeValue;
+}
+
+export interface DirectorPoseKeyframe {
+  id: string;
+  time: number;
+  value: DirectorPoseKeyframeValue;
 }
 
 export type DirectorPhoneVcamStatus =
@@ -217,6 +225,10 @@ export type DirectorTimelineTrack =
   | (DirectorTimelineTrackBase & {
       kind: "camera";
       keyframes: DirectorCameraKeyframe[];
+    })
+  | (DirectorTimelineTrackBase & {
+      kind: "pose";
+      keyframes: DirectorPoseKeyframe[];
     });
 
 export interface DirectorTimelineState {
@@ -671,6 +683,28 @@ function createTrackForObject(
   };
 }
 
+function createPoseTrackForObject(
+  object: DirectorObject,
+  time: number,
+): DirectorTimelineTrack {
+  const id = `director-track-${object.id}-pose`;
+  const rig = object.characterRig ?? createDirectorCharacterRig();
+  return {
+    id,
+    kind: "pose",
+    objectId: object.id,
+    label: `${object.name} · 姿态`,
+    speedCurve: createDirectorSpeedCurve(),
+    keyframes: [
+      {
+        id: `${id}-keyframe-${Math.round(time * 1000)}`,
+        time,
+        value: cloneDirectorPoseValue(rig),
+      },
+    ],
+  };
+}
+
 function createMotionPathForTrack(
   object: DirectorObject,
   preset: DirectorMotionPathGeometryPreset,
@@ -798,53 +832,65 @@ function applyTimelineAtTime(
   timeline: DirectorTimelineState,
   time: number,
 ): DirectorObject[] {
-  const tracksByObject = new Map(
-    timeline.tracks.map((track) => [track.objectId, track]),
-  );
+  const tracksByObject = new Map<string, DirectorTimelineTrack[]>();
+  timeline.tracks.forEach((track) => {
+    const tracks = tracksByObject.get(track.objectId) ?? [];
+    tracks.push(track);
+    tracksByObject.set(track.objectId, tracks);
+  });
   const pathsById = new Map(
     timeline.motionPaths.map((path) => [path.id, path]),
   );
   return objects.map((object) => {
-    const track = tracksByObject.get(object.id);
-    if (!track) return object;
-    const sample = sampleDirectorTimelineTrack(track, time);
-    if (!sample) return object;
-    const path = track.motionPathId
-      ? pathsById.get(track.motionPathId)
-      : undefined;
-    const pathSample =
-      path?.enabled === true
-        ? sampleDirectorMotionPath(
-            path,
-            getDirectorTrackProgress(track, time),
-          )
-        : null;
-    if (sample.kind === "camera" && object.camera) {
-      return {
-        ...object,
-        transform: {
-          ...cloneTransform(sample.transform),
-          position: pathSample
-            ? [...pathSample.position]
-            : [...sample.transform.position],
-        },
-        camera: {
-          fov: sample.fov,
-          target: [...sample.target],
-        },
-      };
-    }
-    const transform = cloneTransform(sample.transform);
-    if (pathSample) {
-      transform.position = [...pathSample.position];
-      if (path?.orientToPath) {
-        transform.rotation[1] = getDirectorPathYaw(pathSample.tangent);
+    const tracks = tracksByObject.get(object.id);
+    if (!tracks) return object;
+    return tracks.reduce<DirectorObject>((sampledObject, track) => {
+      const sample = sampleDirectorTimelineTrack(track, time);
+      if (!sample) return sampledObject;
+      if (sample.kind === "pose") {
+        if (sampledObject.kind !== "character") return sampledObject;
+        return {
+          ...sampledObject,
+          characterRig: cloneDirectorPoseValue(sample.pose),
+        };
       }
-    }
-    return {
-      ...object,
-      transform,
-    };
+      const path = track.motionPathId
+        ? pathsById.get(track.motionPathId)
+        : undefined;
+      const pathSample =
+        path?.enabled === true
+          ? sampleDirectorMotionPath(
+              path,
+              getDirectorTrackProgress(track, time),
+            )
+          : null;
+      if (sample.kind === "camera" && sampledObject.camera) {
+        return {
+          ...sampledObject,
+          transform: {
+            ...cloneTransform(sample.transform),
+            position: pathSample
+              ? [...pathSample.position]
+              : [...sample.transform.position],
+          },
+          camera: {
+            fov: sample.fov,
+            target: [...sample.target],
+          },
+        };
+      }
+      const transform = cloneTransform(sample.transform);
+      if (pathSample) {
+        transform.position = [...pathSample.position];
+        if (path?.orientToPath) {
+          transform.rotation[1] = getDirectorPathYaw(pathSample.tangent);
+        }
+      }
+      return {
+        ...sampledObject,
+        transform,
+      };
+    }, object);
   });
 }
 
@@ -870,11 +916,70 @@ function upsertTrackKeyframe(
     return { track: { ...track, keyframes }, keyframeId };
   }
 
+  if (track.kind === "pose") {
+    const value = cloneDirectorPoseValue(
+      object.characterRig ?? createDirectorCharacterRig(),
+    );
+    const keyframes = [
+      ...track.keyframes.filter((keyframe) => keyframe.id !== existing?.id),
+      { id: keyframeId, time, value },
+    ].sort((a, b) => a.time - b.time);
+    return { track: { ...track, keyframes }, keyframeId };
+  }
+
   const keyframes = [
     ...track.keyframes.filter((keyframe) => keyframe.id !== existing?.id),
     { id: keyframeId, time, value: cloneTransform(object.transform) },
   ].sort((a, b) => a.time - b.time);
   return { track: { ...track, keyframes }, keyframeId };
+}
+
+function updateCharacterRigAndTimeline(
+  state: DirectorState,
+  objectId: string,
+  rig: DirectorCharacterRig,
+): Partial<DirectorState> {
+  const object = state.objects.find(
+    (item) => item.id === objectId && item.kind === "character",
+  );
+  if (!object) return state;
+  const updatedObject: DirectorObject = {
+    ...object,
+    characterRig: cloneDirectorCharacterRig(rig),
+  };
+  const objects = state.objects.map((item) =>
+    item.id === object.id ? updatedObject : item,
+  );
+  const existing = state.timeline.tracks.find(
+    (track) => track.objectId === object.id && track.kind === "pose",
+  );
+  const baseTrack =
+    existing ??
+    createPoseTrackForObject(updatedObject, state.timeline.currentTime);
+  const result = upsertTrackKeyframe(
+    baseTrack,
+    updatedObject,
+    state.timeline.currentTime,
+  );
+  const tracks = existing
+    ? state.timeline.tracks.map((track) =>
+        track.id === existing.id ? result.track : track,
+      )
+    : [...state.timeline.tracks, result.track];
+  return {
+    objects,
+    timeline: {
+      ...state.timeline,
+      tracks,
+      selectedTrackId: result.track.id,
+      selectedKeyframeId: result.keyframeId,
+      selectedMotionPathId: null,
+      selectedMotionPathAnchorId: null,
+      selectedMotionPathHandle: null,
+      motionPathDraft: null,
+      isPlaying: false,
+    },
+  };
 }
 
 function updateTuple(
@@ -975,7 +1080,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                   ? {
                       ...track,
                       label: `${patch.name} · ${
-                        track.kind === "camera" ? "机位" : "变换"
+                        track.kind === "camera"
+                          ? "机位"
+                          : track.kind === "pose"
+                            ? "姿态"
+                            : "变换"
                       }`,
                     }
                   : track,
@@ -1019,32 +1128,30 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     })),
 
   applyCharacterPosePreset: (objectId, presetId) =>
-    set((state) => ({
-      objects: state.objects.map((object) =>
-        object.id === objectId && object.kind === "character"
-          ? {
-              ...object,
-              characterRig: applyDirectorPosePreset(presetId),
-            }
-          : object,
+    set((state) =>
+      updateCharacterRigAndTimeline(
+        state,
+        objectId,
+        applyDirectorPosePreset(presetId),
       ),
-    })),
+    ),
 
   updateCharacterPoseControl: (objectId, key, value) =>
-    set((state) => ({
-      objects: state.objects.map((object) =>
-        object.id === objectId && object.kind === "character"
-          ? {
-              ...object,
-              characterRig: updateDirectorPoseControl(
-                object.characterRig ?? createDirectorCharacterRig(),
-                key,
-                value,
-              ),
-            }
-          : object,
-      ),
-    })),
+    set((state) => {
+      const object = state.objects.find(
+        (item) => item.id === objectId && item.kind === "character",
+      );
+      if (!object) return state;
+      return updateCharacterRigAndTimeline(
+        state,
+        objectId,
+        updateDirectorPoseControl(
+          object.characterRig ?? createDirectorCharacterRig(),
+          key,
+          value,
+        ),
+      );
+    }),
 
   setCapturing: (capturing) => set({ isCapturing: capturing }),
 
@@ -1617,7 +1724,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find((item) => item.id === objectId);
       if (!object) return state;
       const existing = state.timeline.tracks.find(
-        (track) => track.objectId === object.id,
+        (track) =>
+          track.objectId === object.id && track.kind !== "pose",
       );
       if (existing) {
         return {
@@ -1781,7 +1889,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find((item) => item.id === objectId);
       if (!object) return state;
       const existing = state.timeline.tracks.find(
-        (track) => track.objectId === objectId,
+        (track) => track.objectId === objectId && track.kind !== "pose",
       );
       const baseTrack =
         existing ??
@@ -1873,7 +1981,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find(
         (item) => item.id === track?.objectId,
       );
-      if (!track || !object) return state;
+      if (!track || !object || track.kind === "pose") return state;
       const path = createMotionPathForTrack(object, preset);
       const timeline = {
         ...replaceTrackMotionPath(state.timeline, track, path),
@@ -1898,7 +2006,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const object = state.objects.find(
         (item) => item.id === track?.objectId,
       );
-      if (!track || !object) return state;
+      if (!track || !object || track.kind === "pose") return state;
       return {
         viewMode: "director",
         selectedObjectId: object.id,

@@ -5,6 +5,11 @@ import type {
   DirectorTuple3,
 } from "@/store/directorStore";
 import { remapDirectorTrackTime } from "@/components/director/directorMotionMath";
+import {
+  cloneDirectorPoseValue,
+  interpolateDirectorPoseValue,
+  type DirectorPoseKeyframeValue,
+} from "@/components/director/directorPose";
 
 export type DirectorTimelineSample =
   | {
@@ -16,6 +21,10 @@ export type DirectorTimelineSample =
       transform: DirectorTransform;
       target: DirectorTuple3;
       fov: number;
+    }
+  | {
+      kind: "pose";
+      pose: DirectorPoseKeyframeValue;
     };
 
 function interpolateNumber(from: number, to: number, progress: number): number {
@@ -105,6 +114,34 @@ export function sampleDirectorTimelineTrack(
       transform: value.transform,
       target: value.target,
       fov: value.fov,
+    };
+  }
+
+  if (track.kind === "pose") {
+    const keyframes = track.keyframes;
+    if (keyframes.length === 0) return null;
+    const first = keyframes[0];
+    const last = keyframes[keyframes.length - 1];
+    if (sampledTime <= first.time) {
+      return { kind: "pose", pose: cloneDirectorPoseValue(first.value) };
+    }
+    if (sampledTime >= last.time) {
+      return { kind: "pose", pose: cloneDirectorPoseValue(last.value) };
+    }
+    const nextIndex = keyframes.findIndex(
+      (keyframe) => keyframe.time >= sampledTime,
+    );
+    const previous = keyframes[Math.max(0, nextIndex - 1)];
+    const next = keyframes[nextIndex];
+    const span = Math.max(next.time - previous.time, Number.EPSILON);
+    const progress = (sampledTime - previous.time) / span;
+    return {
+      kind: "pose",
+      pose: interpolateDirectorPoseValue(
+        previous.value,
+        next.value,
+        progress,
+      ),
     };
   }
 

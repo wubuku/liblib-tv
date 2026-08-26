@@ -1,7 +1,8 @@
 # Batch 42 Implementation Log
 
-> Status: in progress. The articulated character and pose Inspector milestone
-> is implemented and browser-smoked; typed pose tracks are next.
+> Status: in progress. The articulated character, pose Inspector and typed
+> pose-track composition are implemented and browser-smoked; focused
+> verification and durable screenshots are next.
 
 ## Protection Points
 
@@ -20,15 +21,15 @@
 - [x] implementation specification
 - [x] articulated rig and pose data
 - [x] Inspector preset/SAM controls
-- [ ] pose track sampling/composition
+- [x] pose track sampling/composition
 - [ ] focused browser verification and screenshots
 - [ ] screenshot interpretation ledger
 - [ ] cross-batch regression and stable documentation
 
 ## Commits
 
-- Plan/evidence protection: pending
-- Articulated character and Inspector: pending
+- Plan/evidence protection: `574d5b8`
+- Articulated character and Inspector: `bdb6969`
 - Pose timeline integration: pending
 - Focused verification: pending
 - Stable documentation/finalization: pending
@@ -53,10 +54,37 @@ An initial `1440x900` Chromium smoke confirmed:
 - editing `rightShoulder.pitch` changes the state to `custom`;
 - no console/page errors or document-width overflow occur.
 
+## Pose Timeline Milestone
+
+- Added a third strict timeline track kind, `pose`, with serializable sparse
+  rig keyframes.
+- Replaced the former one-track `Map<objectId, track>` sampler with per-object
+  track composition.
+- Added zero-default sparse-control interpolation through the existing
+  track-level speed curve.
+- Made preset and continuous-control edits upsert a pose keyframe at the
+  current playhead and select the resulting pose track/keyframe.
+- Kept transform/camera track creation independent from pose-track existence.
+- Added pose track labeling/iconography and blocked preset/free-draw motion
+  paths for pose tracks.
+- Extended generic add/delete/select/seek and curve operations through the
+  typed track union.
+
+A second `1440x900` Chromium smoke confirmed:
+
+- the lead character owns `transform + pose` tracks simultaneously;
+- `招手` at `0s` and `踢球` at `4s` produce two pose keyframes;
+- at `2s`, transform X is `-0.3`, right shoulder is `18°` and right elbow is
+  `45°`, proving transform-plus-pose composition and sparse interpolation;
+- the intermediate rig has no false preset identity;
+- the real WebGL canvas changes between intermediate and endpoint poses;
+- motion-path creation is disabled for the selected pose track;
+- no console or page errors occur.
+
 ## Interruption Handoff
 
-Continue with `PLAN.md` step 5: add `kind: "pose"` keyframes and multi-track
-composition. Do not re-open historical screenshots: this batch has no durable
-screenshot yet. Preserve all unrelated dirty PNGs and stage only exact Batch 42
-paths. The most important invariant is that transform and pose tracks must
-compose for one character rather than compete in a `Map<objectId, track>`.
+Continue with `PLAN.md` step 9: add focused desktop/mobile Playwright and
+durable screenshots. Do not re-open historical screenshots: this batch still
+has no durable screenshot. Preserve all unrelated dirty PNGs and staged
+concurrent docs; use path-limited commits. The implementation invariant already
+proved by smoke is that transform and pose tracks compose for one character.

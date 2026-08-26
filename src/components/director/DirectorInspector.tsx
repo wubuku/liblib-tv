@@ -709,7 +709,7 @@ export function DirectorInspector({
   const timeline = useDirectorStore((state) => state.timeline);
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
   const selectedTrack = timeline.tracks.find(
-    (track) => track.objectId === selected?.id,
+    (track) => track.objectId === selected?.id && track.kind !== "pose",
   );
   const selectedPath = selectedTrack?.motionPathId
     ? timeline.motionPaths.find(

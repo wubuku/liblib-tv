@@ -11,6 +11,7 @@ import {
   Move3D,
   Pause,
   PenTool,
+  PersonStanding,
   Pencil,
   Play,
   Plus,
@@ -129,7 +130,8 @@ export function DirectorTimeline() {
       ) ?? null
     : null;
   const hasSelectedObjectTrack = timeline.tracks.some(
-    (track) => track.objectId === selectedObjectId,
+    (track) =>
+      track.objectId === selectedObjectId && track.kind !== "pose",
   );
   const timelineWidth = Math.max(
     640,
@@ -297,7 +299,7 @@ export function DirectorTimeline() {
           ref={pathTriggerRef}
           type="button"
           data-director-create-motion-path
-          disabled={!selectedTrack}
+          disabled={!selectedTrack || selectedTrack.kind === "pose"}
           aria-expanded={pathMenuLeft !== null}
           onClick={togglePathMenu}
           className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
@@ -525,6 +527,8 @@ export function DirectorTimeline() {
                     >
                       {track.kind === "camera" ? (
                         <Camera size={12} />
+                      ) : track.kind === "pose" ? (
+                        <PersonStanding size={12} />
                       ) : (
                         <Move3D size={12} />
                       )}
