@@ -10,6 +10,7 @@
 4. [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实现完成后的文件、状态机、交互与验证记录。
 5. [`live-audit.json`](live-audit.json) 与 [`live-script-string-evidence.json`](live-script-string-evidence.json)：当前原站结构化数据和静态字符串证据。
 6. [`evidence/`](evidence/)：第三方文章中的 LibTV UI 截图，只作为功能线索和视觉证据。
+7. [`LIBTV_FEATURE_GAP_MATRIX.md`](LIBTV_FEATURE_GAP_MATRIX.md)：以“LibTV 有什么”为中心的能力呈现、clone 缺口、价值排序和授权闸门总矩阵。
 
 同日的当前项目原站复核仍在 [`../liblib-live-2026-08-25/`](../liblib-live-2026-08-25/)；图片节点逐状态审计属于两组研究的交叉证据。
 

@@ -153,3 +153,13 @@
 - 将当前 live 样本、生产 chunk 事实、virtualization 边界、自然裁切规则和 clone-only 的待授权决策写在同一处，并加入后续实现必须满足的七条验证断言；
 - 在组件规格入口、Open Canvas 研究 README、研究计划和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md) 增加可发现性链接；
 - 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有继续点击可能改变共享源站画布的动作。
+
+## 2026-08-26：v14 Seedance 2.5 能力缺口总矩阵
+
+本轮把外部 Seedance 2.5 功能调研中的“LibTV 有什么”与当前仓库的真实状态重新对齐：
+
+- 新增 [`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)，按 Seedance 2.5 生成、片段重拍、Auto Link、超长视频和逐帧拉片五项主推能力记录源站呈现、clone 缺口、证据等级、价值排序和授权闸门；
+- 明确区分 `SOURCE_FACT`、文章截图线索、源站推断、`CLONE_FACT` 和待授权的 `CLONE_DECISION`，避免把第三方文章的 4 秒/5 段/300 秒等产品数字写成模型永久契约；
+- 将图片工具条、智能剪辑 Beta、失败视频与就绪视频工具条列为相邻但不可混并的能力，并把节点上下文、提交阶段、结果回画布和可审计引用作为共同 UI/UX 结构；
+- 通过当前登录态画布的只读 DOM 刷新确认当前图片工具条仍为 9 个文字动作 + 4 个图标动作；没有点击生成、上传、保存、下载或其他可能改变共享画布的动作；
+- 同步 Seedance 研究 README、PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，形成后续 agent 的单一能力缺口入口；没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP。
