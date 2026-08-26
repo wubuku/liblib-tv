@@ -75,6 +75,7 @@ export default function DirectorDesk({
   const [exportError, setExportError] = useState<string | null>(null);
   const [videoExportRequest, setVideoExportRequest] =
     useState<DirectorVideoExportRequest | null>(null);
+  const [exportedNodeId, setExportedNodeId] = useState<string | null>(null);
   const exportRequestId = useRef(0);
   const exporting = exportStatus === "exporting";
   const activeCapture = useMemo(
@@ -88,9 +89,9 @@ export default function DirectorDesk({
 
   const closeWorkspace = useCallback(() => {
     if (exporting) return;
-    selectNode(sourceNodeId);
+    selectNode(exportedNodeId ?? sourceNodeId);
     onClose();
-  }, [exporting, onClose, selectNode, sourceNodeId]);
+  }, [exportedNodeId, exporting, onClose, selectNode, sourceNodeId]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -163,6 +164,7 @@ export default function DirectorDesk({
     setExportError(null);
     setExportProgress(0);
     setExportStatus("exporting");
+    setExportedNodeId(null);
     setVideoExportRequest({
       id: exportRequestId.current,
       durationSeconds,
@@ -199,6 +201,7 @@ export default function DirectorDesk({
       }
       setExportProgress(1);
       setExportError(null);
+      setExportedNodeId(nodeId);
       setExportStatus("success");
     },
     [createDirectorAnimationExport, sourceNodeId],

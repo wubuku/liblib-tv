@@ -68,10 +68,32 @@ git diff --check
 
 All passed.
 
+## Focused Verification
+
+Added `scripts/verify-liblib-batch40.py`. It covers:
+
+- exact export labels and all ratio controls;
+- finite duration clamping to `1..timeline.duration`;
+- live `9:16` composition-frame update;
+- exporting progress and close protection;
+- prior timeline-time and capture-state restoration;
+- still-image capture regression after video export;
+- real WebM byte fetch, metadata decode and native playback;
+- `540x960` portrait output and approximately `1s` duration;
+- sampled early/late video-frame pixel difference proving non-static motion;
+- returned metadata, direct edge, ratio-shaped node and target selection;
+- one-step undo/redo for node plus edge;
+- desktop/mobile overflow and mobile export-panel geometry;
+- console, page and request failures.
+
+The focused script passes and generates six Batch 40-only image artifacts.
+Their first and only visual interpretation is recorded in
+`SCREENSHOT_ANALYSIS.md`.
+
 ## Commit Protection
 
 - Plan protection: `7a2ffab`.
-- Main implementation: pending.
+- Main implementation: `3065e92`.
 - Focused verification: pending.
 - Stable documentation/finalization: pending.
 
