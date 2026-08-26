@@ -25,6 +25,20 @@ export interface DirectorModelLibraryItem {
   color: string;
 }
 
+export interface DirectorLocalModelLibraryItem {
+  id: string;
+  categoryId: "my-models";
+  name: string;
+  fileName: string;
+  dataUrl: string;
+  visual: DirectorModelLibraryVisual;
+  color: string;
+}
+
+export type DirectorModelLibraryCardItem =
+  | DirectorModelLibraryItem
+  | DirectorLocalModelLibraryItem;
+
 export const DIRECTOR_MODEL_LIBRARY_CATEGORIES: DirectorModelLibraryCategory[] =
   [
     { id: "convenience", label: "便利生活" },
