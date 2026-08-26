@@ -446,9 +446,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 画布基础 | Pan/zoom/drag/connect 已由 React Flow 支撑 |
 | 节点交互 | 两条路线都有可操作节点；LibTV 的逐帧拉片/智能剪辑已有专用节点，其余未实现入口使用显式原型映射 |
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
-| 数据生命周期 | 绝大多数画布/Director 状态仍是内存 mock；Batch 48 的 `我的模型` descriptor 例外地写入 clone-owned browser `localStorage`，不等于项目云端持久化 |
+| 数据生命周期 | 绝大多数画布/Director 状态仍是内存 mock；Batch 48 的 `我的模型` descriptor 例外地写入 clone-owned browser `localStorage`，不等于项目云端持久化；Batch 50 的 workspace collapse 仍是 session-local UI state |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-48 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-50 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -537,6 +537,13 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   持久化/刷新恢复、重复加入场景、关联实例清理、桌面/移动端边界和
   zero-browser-error 已形成 recorded pass；真实模型 mesh loading、上传和云端
   持久化不在有界合同内
+- Batch 49：Director viewport native coordinate gizmo 的六方向 snapshot、
+  Camera mode recovery、path/phone guard、capture hiding 和 dual WebGL bounds
+  已形成 recorded pass；不证明 LibTV source-exact renderer/CSS
+- Batch 50：Director workspace 侧栏折叠/恢复、viewport 扩展、mobile drawer
+  recovery、focus owner、普通画布快捷键隔离、editable-target guard 和
+  Escape layering 已形成 recorded pass；不证明 source exact shell 或完整
+  focus trap
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

@@ -56,9 +56,15 @@ export default function DirectorDesk({
   const timelineDuration = useDirectorStore(
     (state) => state.timeline.duration,
   );
+  const viewportPanelsCollapsed = useDirectorStore(
+    (state) => state.viewportPanelsCollapsed,
+  );
   const openSession = useDirectorStore((state) => state.openSession);
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
+  const setViewportPanelsCollapsed = useDirectorStore(
+    (state) => state.setViewportPanelsCollapsed,
+  );
   const markCaptureSent = useDirectorStore((state) => state.markCaptureSent);
   const createDirectorCapture = useCanvasStore(
     (state) => state.createDirectorCapture,
@@ -79,10 +85,12 @@ export default function DirectorDesk({
   const [videoExportRequest, setVideoExportRequest] =
     useState<DirectorVideoExportRequest | null>(null);
   const [exportedNodeId, setExportedNodeId] = useState<string | null>(null);
+  const workspaceRef = useRef<HTMLDivElement>(null);
   const exportRequestId = useRef(0);
   const exporting = exportStatus === "exporting";
   const phoneVcamRecording = phoneVcamStatus === "recording";
   const workspaceBusy = exporting || phoneVcamRecording;
+  const activeMobilePanel = viewportPanelsCollapsed ? null : mobilePanel;
   const activeCapture = useMemo(
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
@@ -91,6 +99,21 @@ export default function DirectorDesk({
   useEffect(() => {
     openSession(sourceNodeId);
   }, [openSession, sourceNodeId]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      workspaceRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const openMobilePanel = useCallback(
+    (panel: Exclude<MobilePanel, null>) => {
+      setViewportPanelsCollapsed(false);
+      setMobilePanel(panel);
+    },
+    [setViewportPanelsCollapsed],
+  );
 
   const closeWorkspace = useCallback(() => {
     if (workspaceBusy) return;
@@ -104,7 +127,7 @@ export default function DirectorDesk({
       event.preventDefault();
       if (document.querySelector("[data-director-capture-viewer]")) return;
       if (workspaceBusy) return;
-      if (mobilePanel) {
+      if (activeMobilePanel) {
         setMobilePanel(null);
         return;
       }
@@ -116,7 +139,7 @@ export default function DirectorDesk({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeWorkspace, exportPanelOpen, mobilePanel, workspaceBusy]);
+  }, [activeMobilePanel, closeWorkspace, exportPanelOpen, workspaceBusy]);
 
   const sendCapture = (capture: DirectorCapture) => {
     if (capture.sentNodeId) return;
@@ -238,8 +261,15 @@ export default function DirectorDesk({
 
   return (
     <div
+      ref={workspaceRef}
       data-director-workspace
+      data-director-workspace-focus-owner
       data-director-source-node-id={sourceNodeId}
+      data-director-panels-collapsed={viewportPanelsCollapsed}
+      role="dialog"
+      aria-modal="true"
+      aria-label="3D导演台工作区"
+      tabIndex={-1}
       className="fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-[#151515] text-[#ededed]"
     >
       <header className="relative z-40 grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.07] bg-[#181818] px-2">
@@ -371,7 +401,7 @@ export default function DirectorDesk({
 
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="relative min-h-0 flex-1">
-          {mobilePanel ? (
+          {activeMobilePanel ? (
             <button
               type="button"
               aria-label="关闭移动端面板"
@@ -382,10 +412,12 @@ export default function DirectorDesk({
 
           <aside
             aria-label="场景对象"
-            data-director-mobile-panel-state={mobilePanel === "tree" ? "open" : "closed"}
+            aria-hidden={viewportPanelsCollapsed ? "true" : undefined}
+            data-director-mobile-panel-state={activeMobilePanel === "tree" ? "open" : "closed"}
             className={cn(
               "absolute inset-y-0 left-0 z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200",
-              mobilePanel === "tree"
+              viewportPanelsCollapsed && "min-[900px]:hidden",
+              activeMobilePanel === "tree"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:-translate-x-full",
             )}
@@ -393,10 +425,17 @@ export default function DirectorDesk({
             <DirectorObjectTree />
           </aside>
 
-          <main className="absolute inset-y-0 left-[220px] right-[288px] min-w-0 max-[899px]:inset-x-0">
+          <main
+            className={cn(
+              "absolute inset-y-0 min-w-0 max-[899px]:inset-x-0",
+              viewportPanelsCollapsed
+                ? "inset-x-0"
+                : "left-[220px] right-[288px]",
+            )}
+          >
             <DirectorViewport
-              onOpenTree={() => setMobilePanel("tree")}
-              onOpenInspector={() => setMobilePanel("inspector")}
+              onOpenTree={() => openMobilePanel("tree")}
+              onOpenInspector={() => openMobilePanel("inspector")}
               videoExportRequest={videoExportRequest}
               onVideoExportProgress={setExportProgress}
               onVideoExportCompleted={completeVideoExport}
@@ -406,10 +445,12 @@ export default function DirectorDesk({
 
           <aside
             aria-label="属性"
-            data-director-mobile-panel-state={mobilePanel === "inspector" ? "open" : "closed"}
+            aria-hidden={viewportPanelsCollapsed ? "true" : undefined}
+            data-director-mobile-panel-state={activeMobilePanel === "inspector" ? "open" : "closed"}
             className={cn(
               "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
-              mobilePanel === "inspector"
+              viewportPanelsCollapsed && "min-[900px]:hidden",
+              activeMobilePanel === "inspector"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:translate-x-full",
             )}

@@ -29,8 +29,8 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-49 的目录记录 | Batch 47 已完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 已完成 viewport gizmo 有界闭环 |
-| LibTV verifier | 有 Batch 4-33、35-49 的专项脚本 | Batch 34 是 research-only；Batch 49 已有 focused verifier |
+| Batch 研究目录 | 已有 Batch 3-50 的目录记录 | Batch 47 已完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 已完成 viewport gizmo 有界闭环；Batch 50 已完成 workspace shell/keyboard 有界闭环 |
+| LibTV verifier | 有 Batch 4-33、35-50 的专项脚本 | Batch 34 是 research-only；Batch 50 已有 focused verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
 | 代码边界 | LibTV/FrameOS route 与 store 独立；后端为 mock | 研究文档不能暗示真实 Provider、上传或持久化已经存在 |
@@ -58,7 +58,7 @@ AGENTS.md / README.md
 
 ## 3. 本轮已应用的修正
 
-- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-48`；
+- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-50`；
 - `docs/HARNESS.md` 的批量示例不再跨过不存在的 Batch 34；
 - 根 README、Big Picture、Development 和 Contributing 都链接到完整 Harness，而不是各自维护一份过时清单；
 - Big Picture 的 README/package 身份判断以当前仓库实际内容为准；
@@ -67,6 +67,7 @@ AGENTS.md / README.md
 - Batch 46/47 在各自专项脚本、实施记录和 serial regression 稳定后被纳入台账；Batch 47 的真实模型/环境资产加载仍不在合同内。
 - Batch 48 已完成 local-import workflow、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 48，真实 mesh loading/远程同步仍是 prototype boundary。
 - Batch 49 已完成独立 R3F gizmo、六方向 snapshot 命令、capture/path/phone guard、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 49，source-exact renderer/CSS 和连续 gizmo 操作仍不在合同内。
+- Batch 50 已完成 Director workspace shell 的侧栏折叠/恢复、viewport 扩展、mobile drawer recovery、focus/keyboard boundary、focused verifier、四态截图台账和成熟度评估；稳定验证范围推进到 Batch 50，LibTV source-exact shell、完整 focus trap 和 source “全屏”语义仍不在合同内。
 - 快捷键文案/handler/局部优先级和 graph action/history 副作用已有独立、可发现的运行语义地图。
 - UI overlay 已有从命令反查 state、mount owner、关闭路径、键盘边界、节点 anchor strategy 和未挂载兼容字段的运行时目录。
 
@@ -100,6 +101,15 @@ gizmo、六个离散方向命令、Camera mode 回切、path/phone disabled、ca
 隐藏、desktop/mobile bounds、双 WebGL 非空像素和 focused verifier。它已进入
 `SCRIPT_RECORDED_PASS` 与 Batch 35-49 serial regression 计划，但仍不代表当前
 LibTV source-exact renderer/CSS；上游尺寸、颜色和结构仍只作为借鉴/校准。
+
+### 4.6 Batch 50 是有界 recorded pass
+
+Batch 50 已完成 Director workspace shell 的 clone-owned 有界闭环：typed
+session-local collapse state、desktop sidebars hidden/viewport expansion、
+mobile drawer recovery、workspace focus owner、普通画布 shortcut isolation、
+editable-target guard 和 Escape layering。focused verifier、四态截图台账、
+成熟度评估和 `Batch 35-50` 回归均作为本批 closeout 证据维护；这不代表
+LibTV authenticated source 的 exact shell、ARIA、focus trap 或“全屏”语义。
 
 ## 5. 后续文档 backlog
 
@@ -139,6 +149,11 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 专项 verifier 和 Director 覆盖矩阵均已接入正式导航。历史截图修改仍与本批
 隔离，后续 agent 应先读取截图台账再决定是否需要新的视觉识别。
 
+随后 Batch 50 完成 closeout：实施记录、成熟度评估、一次性截图识别台账、
+专项 verifier、Director 覆盖矩阵、verification ledger 和 Harness 均已接入
+正式导航。该批只证明 clone-owned workspace shell/keyboard 合同；现有其他
+开发者文档 WIP 保留原路径，未被覆盖或移动。
+
 2026-08-27 的 Open Canvas 增量审计确认：3393 行既有专题材料已经充分覆盖产品、源码、运行态、交互和 Seedance crosswalk，缺口不在继续写概述，而在实施治理。新增 [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) 将机制分为采纳方法、按 LibTV 改造、仅研究、暂缓和拒绝移植；新增 [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) 将获批工作拆为 evidence、identity、transaction、surface、fixture、verifier 和 provenance 七层纵向 slice。第一阶段 `IMPLEMENTATION_IMPLICATIONS.md` 保留 A-E provenance，但不再承担当前编号权威。本轮没有修改 `src/`、verifier、截图或上游 submodule。
 
 ## 6. 验收
@@ -147,9 +162,9 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 1. `docs/index.md` 能发现本审计；
 2. 所有验证范围描述与实际脚本集合一致；
-3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
-4. 稳定文档集的链接检查通过；Batch 49 的 screenshot ledger 和 verifier 已进入稳定检查范围；
+3. Batch 34 的 research-only、Batch 48/49/50 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48/49/50 的 recorded pass 没有被误写成源站全量一致；
+4. 稳定文档集的链接检查通过；Batch 49/50 的 screenshot ledger 和 verifier 已进入稳定检查范围；
 5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
-6. Batch 49 的 clone-owned recorded pass、source-exact 非声明和截图识别边界已明确记录；
+6. Batch 49/50 的 clone-owned recorded pass、source-exact 非声明和截图识别边界已明确记录；
 7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
 8. Open Canvas 的当前采纳状态和实施交接可从任务导读、生命周期、决策登记与 traceability matrix 反向发现，旧 Batch A-E 不再与现行 parity ID 竞争。

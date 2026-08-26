@@ -94,7 +94,7 @@
 | 47 | director model-library entry, category browser and local proxy-object insertion | [`liblib-canvas-batch47-2026-08-26/`](liblib-canvas-batch47-2026-08-26/) |
 | 48 | director `我的模型` local import, persistence, re-add and delete cleanup | [`liblib-canvas-batch48-2026-08-26/`](liblib-canvas-batch48-2026-08-26/) |
 | 49 | director viewport native coordinate gizmo | [`liblib-canvas-batch49-2026-08-26/`](liblib-canvas-batch49-2026-08-26/) `SCRIPT_RECORDED_PASS`，clone-owned 有界合同 |
-| 50 | director workspace collapse and keyboard boundary | [`liblib-canvas-batch50-2026-08-26/`](liblib-canvas-batch50-2026-08-26/) `PARALLEL_WIP` |
+| 50 | director workspace collapse and keyboard boundary | [`liblib-canvas-batch50-2026-08-26/`](liblib-canvas-batch50-2026-08-26/) `SCRIPT_RECORDED_PASS`，clone-owned 有界合同 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -113,6 +113,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：面向后续 batch 的 current-source verifier replacement queue 和 compatibility 规则。
 - [`open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：Open Canvas 机制对 LibTV 的采纳、改造、研究、暂缓和拒绝矩阵，并对齐 parity、fixture 与 verifier。
 - [`open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：面向获批纵向 slice 的七层交接、依赖、fixture、验证和禁止扩边蓝图。
+- [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：LibTV 过程型能力的稳定身份、五轴状态、stale/retry、fixture 和 replacement verifier 设计。
 - [`INSPECTION_GUIDE.md`](INSPECTION_GUIDE.md)：live-site extraction workflow and screenshot ledger rule.
 
 ## Evidence Assets

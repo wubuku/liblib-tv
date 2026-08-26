@@ -74,12 +74,12 @@
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-49 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-49 已形成有界 group/crowd、capture gallery、model-library、local-model persistence 与 viewport gizmo 合同和专项 verifier。
+Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-50 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-50 已形成有界 group/crowd、capture gallery、model-library、local-model persistence、viewport gizmo 与 workspace shell/keyboard 合同和专项 verifier。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
-| `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Batch 35 `DIRECTOR_WORKSPACE.spec.md`、Batch 40/41/45 records | `DOMAIN_CONTRACT` | 改生命周期、capture return 或响应式 shell 时读最新 Director maturity assessment。 |
-| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts、Batch 47/48 model library、Batch 49 gizmo | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone/model-library/local-import/gizmo guard 必须联动。 |
+| `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Batch 35 `DIRECTOR_WORKSPACE.spec.md`、Batch 40/41/45 records、Batch 50 `DIRECTOR_WORKSPACE_SHELL.spec.md` | `DOMAIN_CONTRACT` | 改生命周期、capture return、响应式 shell 或 keyboard ownership 时读最新 Director maturity assessment。 |
+| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts、Batch 47/48 model library、Batch 49 gizmo、Batch 50 shell collapse | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone/model-library/local-import/gizmo guard 和 panel-aware viewport layout 必须联动。 |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Batch 35 workspace、Batch 43/45 source evidence | `DOMAIN_CONTRACT` | selection 与 group/crowd tree 以 Batch 45 有界合同为准。 |
 | `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Batch 35 workspace、Batch 42 pose、Batch 43 follow、Batch 44 camera、Batch 46 capture gallery、Batch 47 prop selection | `DOMAIN_CONTRACT` | 角色、相机、路径、capture gallery 和模型库 prop 控件按 selection route 维护。 |
 | `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Batch 36 timeline、37 motion path、42 pose、44 camera、45 groups | `DOMAIN_CONTRACT` | 新轨道先扩展 typed track union，再更新播放/采样/验证合同。 |
@@ -93,6 +93,7 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-49 
 | Director Batch 47 model-library slice | `DirectorViewport` + `directorStore` | Batch 47 `DIRECTOR_MODEL_LIBRARY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 模型库入口、分类、代理卡片、prop 插入和空态已稳定；真实模型资产/环境库仍不在合同内。 |
 | Director Batch 48 local-model slice | `DirectorViewport` + `directorStore` + `directorLocalModelImport` | Batch 48 `DIRECTOR_LOCAL_MODEL_LIBRARY.spec.md`、source evidence、focused verifier、screenshot ledger | `DOMAIN_CONTRACT` | 多文件 FBX/OBJ descriptor、localStorage 恢复、重复加入、关联实例清理和响应式边界已稳定；真实 mesh loading/远程同步仍不在合同内。 |
 | Director Batch 49 viewport gizmo slice | `DirectorViewport` + `directorStore` | Batch 49 `DIRECTOR_VIEWPORT_GIZMO.spec.md`、source evidence、upstream archaeology、implementation、screenshot analysis、maturity assessment | `DOMAIN_CONTRACT` | clone-owned 方向反馈和离散视角已稳定；不把上游 gizmo 或本批结果当成 LibTV source-exact renderer/CSS。 |
+| Director Batch 50 workspace shell slice | `DirectorDesk` + `DirectorViewport` + `directorStore` + `page.tsx` | Batch 50 `DIRECTOR_WORKSPACE_SHELL.spec.md`、source evidence、upstream archaeology、implementation、screenshot analysis、maturity assessment | `DOMAIN_CONTRACT` | clone-owned 侧栏折叠、viewport 扩展、mobile drawer recovery、focus/keyboard boundary 已稳定；不把上游或本批结果当成 LibTV source-exact shell。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 

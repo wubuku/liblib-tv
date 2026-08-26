@@ -2,7 +2,7 @@
 
 > 目的：区分“有研究目录”“有 verifier”“最近有记录通过”“只有源站合同”“被 fixture 阻塞”和“并行 WIP”，防止把不同成熟度混成一个绿色状态。
 >
-> 本台账只记录当前仓库可发现的验证能力。Batch 49 的浏览器脚本、
+> 本台账只记录当前仓库可发现的验证能力。Batch 50 的浏览器脚本、
 > 截图和实施结果已经单独落档；后续批次仍需按同样边界增量维护。
 > fixture 身份/隔离/reset 见 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)，
 > 历史断言迁移见 [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)，
@@ -29,7 +29,7 @@
 
 ```text
 Batch 4-33
-Batch 35-49
+Batch 35-50
 ```
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
@@ -43,13 +43,14 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | `verify-liblib-batch12.py` - `batch20.py` | 资产、分镜、Agent/share、canvas metadata、zoom、minimap、全景 | `SCRIPT_AVAILABLE` / `SCRIPT_RECORDED_PASS` | 依赖本地 demo 数据和当时的 clone 状态 |
 | `verify-liblib-batch21.py` - `batch25.py` | Seedance 参数/模型、片段重拍、逐帧拉片、智能剪辑空态 | `SCRIPT_AVAILABLE` / `CLONE_FIXTURE_ONLY` | 结果任务、ready-video 源站入口和真实 provider 未验证 |
 | `verify-liblib-batch26.py` - `batch33.py` | 续写、去字幕、音视频分离、帧截取、主体编辑、深度、长视频 | `SCRIPT_AVAILABLE` / `CLONE_FIXTURE_ONLY` | 主要验证本地 graph、状态和 undo；源站结果态存在 fixture 阻塞 |
-| `verify-liblib-batch35.py` - `batch49.py` | Director R3F、时间轴、路径、导出、手机相机、角色、跟随、运镜、群组/群众、截图图库、模型库、本地模型导入/持久化、视口坐标控件 | `SCRIPT_AVAILABLE` / `SCRIPT_RECORDED_PASS` | 是有界 prototype 回归；不是 LibTV/FrameOS 通用行为合同 |
+| `verify-liblib-batch35.py` - `batch50.py` | Director R3F、时间轴、路径、导出、手机相机、角色、跟随、运镜、群组/群众、截图图库、模型库、本地模型导入/持久化、视口坐标控件、workspace shell 折叠和键盘边界 | `SCRIPT_AVAILABLE` / `SCRIPT_RECORDED_PASS` | 是有界 prototype 回归；不是 LibTV/FrameOS 通用行为合同 |
 | Batch 34 | Director 既有代码考古和可借鉴性 | `SOURCE_CONTRACT_ONLY` | 没有专项 verifier，不应在全量命令中伪造 |
 | Batch 45 | Director character groups/crowd/group tracks | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-45 serial regression 已通过；仍是有界 clone 合同 |
 | Batch 46 | Director camera screenshot gallery and bulk return | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-46 serial regression 已通过；仍是有界 clone 合同 |
 | Batch 47 | Director model-library categories, proxy insertion and responsive panel | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-47 serial regression 已通过；模型/环境真实资产仍明确不在合同内 |
 | Batch 48 | Director local model import, persistence, refresh, re-add and delete cleanup | `SCRIPT_RECORDED_PASS` | focused Playwright 已通过；只验证 clone-owned browser-local descriptors 和 proxy objects，不证明真实 FBX/OBJ loading 或 LibTV persistence |
 | Batch 49 | Director viewport native coordinate gizmo | `SCRIPT_RECORDED_PASS` | focused Playwright、截图台账、实施记录和 clone-owned 成熟度已闭环；仍不代表 LibTV source-exact renderer/CSS |
+| Batch 50 | Director workspace collapse and keyboard boundary | `SCRIPT_RECORDED_PASS` | focused Playwright、四态截图台账、实施记录和 clone-owned 成熟度已闭环；LibTV Director shell exact DOM/CSS、完整 focus trap 和 source “全屏”语义仍未知 |
 
 ## 3. 当前源站合同覆盖
 
@@ -96,7 +97,7 @@ python3 scripts/verify-liblib-batch<N>.py
 ### 5.2 当前脚本全集
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..49}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py; do
   python3 "$script" || exit 1
 done
 ```

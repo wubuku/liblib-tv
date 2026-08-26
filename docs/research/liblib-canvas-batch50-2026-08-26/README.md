@@ -1,6 +1,7 @@
 # Batch 50：导演台工作区折叠与键盘边界
 
-> 状态：计划已落档，准备实施。
+> 状态：已完成（2026-08-26）。本批是 clone-owned 的 Director workspace
+> shell 有界合同，不是当前 LibTV authenticated source 的精确 DOM/CSS 证明。
 > 本批继续以导演台为最高优先级，处理高频工作区壳层交互：
 > 侧栏折叠、视口扩展和 Director workspace 的键盘 ownership。
 
@@ -37,6 +38,8 @@ Director workspace keyboard boundary
 - [`UPSTREAM_ARCHAEOLOGY.md`](UPSTREAM_ARCHAEOLOGY.md)：固定上游代码考古；
 - [`DIRECTOR_WORKSPACE_SHELL.spec.md`](DIRECTOR_WORKSPACE_SHELL.spec.md)：
   本批 clone 行为契约；
+- [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：四态截图和一次性视觉识别台账；
+- [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md)：成熟度、残余风险和后续边界；
 - [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实施、验证和接力记录。
 
 ## 明确不包含

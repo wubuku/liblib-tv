@@ -251,6 +251,7 @@ export default function Home() {
         target?.closest("input, textarea, [contenteditable='true'], [contenteditable='plaintext-only']"),
       );
       if (isEditableTarget) return;
+      if (useUIStore.getState().activeDirectorNodeId) return;
 
       const modifier = event.metaKey || event.ctrlKey;
 
@@ -316,6 +317,10 @@ export default function Home() {
       }
     };
     const handleKeyUp = (event: KeyboardEvent) => {
+      if (useUIStore.getState().activeDirectorNodeId) {
+        setIsSpacePressed(false);
+        return;
+      }
       if (event.code === "Space") setIsSpacePressed(false);
     };
     const resetTemporaryPan = () => setIsSpacePressed(false);

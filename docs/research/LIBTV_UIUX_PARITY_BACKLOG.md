@@ -1,7 +1,7 @@
 # LibTV UI/UX Parity Backlog
 
 > 建档日期：2026-08-26。
-> 稳定 clone 基线：Batch 49 closeout checkpoint；本批已从并行 WIP 升级为
+> 稳定 clone 基线：Batch 50 closeout checkpoint；本批已从并行 WIP 升级为
 > 有界历史合同。真实 mesh loading、远程同步、LibTV 生产持久化和
 > source-exact gizmo renderer 仍不在合同内。
 > 目的：面向后续 LibTV UI/UX 复刻，统一回答“当前真正还差什么、先研究什么、什么已可申请编码、怎样验证”。
@@ -79,7 +79,7 @@
 | 12 | `LIBTV-PAR-012` | Provider、上传、计费、远端任务、账户持久化 | 5 | 1 | 1 | 5 | `OUT_OF_SCOPE` |
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
-| 1 | `LIBTV-DIR-001` | Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
+| - | `LIBTV-DIR-001` | Batch 50 Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 5 | 3 | `RECORDED_PASS` |
 
 ### 4.2 `LIBTV-PAR-001`: current standard image state
 
@@ -211,6 +211,7 @@ duplicate modifier and subgraph closure
 | `011` | 冗余 primary booleans、Notification/UserMenu unmounted state、`toggleGrid` 无 caller 已记录。等相关 store 获得编码授权或新入口证据时再清理。 |
 | `012` | Provider、上传、计费、远端任务、账号和协作持久化需要新的产品/后端合同，当前不排入前端 parity 实施。 |
 | `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。后续只读其历史合同，不把 clone-only 结果升级为源站事实。 |
+| `DIR-001` | Batch 50 已完成 clone-owned workspace collapse/restore、viewport expansion、mobile drawer recovery、focus owner、page shortcut isolation、editable-target guard 和 Escape layering；LibTV Director shell exact DOM/CSS、完整 focus trap 和 source “全屏”语义仍是 `UNKNOWN`，后续只读其历史合同，不升级为 source parity。 |
 
 ## 5. Dependency Order
 

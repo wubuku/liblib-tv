@@ -345,6 +345,7 @@ interface DirectorState {
   transformMode: DirectorTransformMode;
   aspectRatio: DirectorAspectRatio;
   showThirds: boolean;
+  viewportPanelsCollapsed: boolean;
   isCapturing: boolean;
   captures: DirectorCapture[];
   activeCaptureId: string | null;
@@ -382,6 +383,8 @@ interface DirectorState {
   setTransformMode: (mode: DirectorTransformMode) => void;
   setAspectRatio: (ratio: DirectorAspectRatio) => void;
   toggleThirds: () => void;
+  toggleViewportPanelsCollapsed: () => void;
+  setViewportPanelsCollapsed: (collapsed: boolean) => void;
   updateScene: (patch: Partial<DirectorScene>) => void;
   updateObject: (objectId: string, patch: Partial<Pick<DirectorObject, "name" | "color" | "visible" | "locked">>) => void;
   updateObjectTransform: (
@@ -1300,6 +1303,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   transformMode: "translate",
   aspectRatio: "16:9",
   showThirds: false,
+  viewportPanelsCollapsed: false,
   isCapturing: false,
   captures: [],
   activeCaptureId: null,
@@ -1310,6 +1314,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   openSession: (sourceNodeId) =>
     set((state) => ({
       sourceNodeId,
+      viewportPanelsCollapsed: false,
       selectedObjectId: state.selectedObjectId ?? "director-character-lead",
       selectedObjectIds:
         state.selectedObjectIds.length > 0
@@ -1744,6 +1749,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   setAspectRatio: (ratio) => set({ aspectRatio: ratio }),
 
   toggleThirds: () => set((state) => ({ showThirds: !state.showThirds })),
+
+  toggleViewportPanelsCollapsed: () =>
+    set((state) => ({
+      viewportPanelsCollapsed: !state.viewportPanelsCollapsed,
+    })),
+
+  setViewportPanelsCollapsed: (collapsed) =>
+    set({ viewportPanelsCollapsed: collapsed }),
 
   updateScene: (patch) =>
     set((state) => ({ scene: { ...state.scene, ...patch } })),

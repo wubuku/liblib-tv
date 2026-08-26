@@ -14,8 +14,10 @@ import {
   Camera,
   Check,
   Boxes,
+  Expand,
   Grid3X3,
   ImagePlus,
+  Minimize2,
   Move3D,
   PanelLeftOpen,
   PanelRightOpen,
@@ -1510,6 +1512,12 @@ export function DirectorViewport({
   const setTransformMode = useDirectorStore((state) => state.setTransformMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
+  const viewportPanelsCollapsed = useDirectorStore(
+    (state) => state.viewportPanelsCollapsed,
+  );
+  const toggleViewportPanelsCollapsed = useDirectorStore(
+    (state) => state.toggleViewportPanelsCollapsed,
+  );
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
@@ -1711,6 +1719,7 @@ export function DirectorViewport({
       ref={viewportRef}
       data-director-viewport
       data-director-view={viewMode}
+      data-director-panels-collapsed={viewportPanelsCollapsed}
       className="relative h-full min-h-0 min-w-0 overflow-hidden bg-[#20252b]"
       aria-label="3D导演视口"
     >
@@ -2123,6 +2132,21 @@ export function DirectorViewport({
           )}
         >
           <Grid3X3 size={15} />
+        </button>
+        <span className="mx-0.5 h-5 w-px bg-white/10" />
+        <button
+          type="button"
+          data-director-panels-toggle
+          aria-label={viewportPanelsCollapsed ? "恢复侧栏" : "全屏"}
+          title={viewportPanelsCollapsed ? "恢复侧栏" : "全屏"}
+          aria-pressed={viewportPanelsCollapsed}
+          onClick={toggleViewportPanelsCollapsed}
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
+            viewportPanelsCollapsed && "bg-white/10 text-[#5ddcff]",
+          )}
+        >
+          {viewportPanelsCollapsed ? <Minimize2 size={15} /> : <Expand size={15} />}
         </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button

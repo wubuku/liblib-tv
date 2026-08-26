@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-49 | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50 | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -68,13 +68,14 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 47 | model-library trigger, five category tabs, proxy cards, serializable prop insertion, tree/Inspector sync, R3F pixel change, `我的模型` empty state, dismissal and mobile bounds |
 | Batch 48 | multiple FBX/OBJ local import, invalid-extension filtering, browser-local persistence, refresh recovery, repeated local proxy insertion, linked-instance cleanup, desktop/mobile bounds and dismissal |
 | Batch 49 | Director viewport native coordinate gizmo, six axis commands, camera-mode recovery, projected hit geometry, path/phone guards, capture hiding, dual WebGL pixels and responsive bounds |
+| Batch 50 | Director workspace sidebars collapse/restore, viewport expansion, mobile drawer recovery, focus ownership, page shortcut isolation, editable-target guard and Escape layering |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..49}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py; do
   python3 "$script" || exit 1
 done
 ```
