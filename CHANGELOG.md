@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced the guessed smart-continuation reshoot branch with the source-backed two-stage range-selector and target-node workflow
 - Replaced the subtitle dropdown's temporary feedback with source-backed smart/region panels, multi-rectangle editing and a pending target graph transaction
 - Replaced the guessed audio menu and temporary feedback with the current three-item audio-split menu, trigger-relative popover, observable busy state and dual-output graph transaction
+- Replaced the guessed long-video four-card panel preview with a source-linked pending process graph, request metadata, repeated-batch avoidance and atomic undo/redo
 
 ### Changed
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation

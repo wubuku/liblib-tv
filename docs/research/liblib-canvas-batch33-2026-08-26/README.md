@@ -1,6 +1,6 @@
 # Batch 33：超长视频画布过程图
 
-> 状态：计划已落档，等待实施。目标是把原先仅存在于生成面板内部的四步
+> 状态：已实施、验证、落档并推送。目标是把原先仅存在于生成面板内部的四步
 > 只读预览，推进为 source-linked、可撤销的画布级过程图。
 
 本批复用 2026-08-25 登录态参数审计和外部文章保存的过程图截图，不重复
@@ -16,6 +16,8 @@
 但证据不能确认精确节点数量、标签、坐标、后端拆段协议或真实任务状态。
 因此本批只实现 request-shaped 的前端 graph handoff，并把所有校准值明确
 标成 clone-only。
+
+实现提交：见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md) 的 Commit Protection。
 
 ## Read Order
 

@@ -133,7 +133,7 @@ Next.js App Router
 | 入口 | `/` | `/frameos` 重定向到 `/frameos/canvas/demo` |
 | 页面控制器 | `src/app/page.tsx` | `src/app/frameos/canvas/[id]/page.tsx` |
 | Store | `canvasStore` + `uiStore` | `frameosStore` |
-| 已注册节点 renderer | 9 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip/audio | 3 种：text/image/video |
+| 已注册节点 renderer | 10 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip/audio/long-video-process | 3 种：text/image/video |
 | 初始运行态 | 10 节点、11 边；桌面 53%、紧凑视口 28% | 7 节点、5 边 |
 | 边 renderer | `DeletableEdge` | `FrameosEdge` |
 | 主题 | 深灰 + 青色强调 | 更深黑底 + 蓝色强调 |
@@ -158,7 +158,7 @@ React Flow change
 
 页面还负责：
 
-- 注册 9 个节点组件和 `DeletableEdge`
+- 注册 10 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
 - 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
@@ -202,14 +202,14 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `ScriptNode`：剧本文本
 - `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
-- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取、智能抠像、主体编辑和深度动作捕捉
+- `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取、智能抠像、主体编辑、深度动作捕捉和长视频过程图提交
 - `ScriptExecutionNode`：步骤状态
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
 - `ShotBreakdownResultNode`：完成后持久存在的三组分镜、动态和音乐结果组；维度决定创建范围，整批节点/边可一次撤销
 - `VideoClipNode`：智能剪辑未连接视频空态和四个单列尝试命令；单选时挂载 `660x191` 节点下方 Prompt panel
 
-当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer，导演台仍保留为专用执行节点原型。音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但 waveform 仍是 CSS placeholder，不解析真实音频。
+当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer，导演台仍保留为专用执行节点原型。长视频提交会额外创建独立的过程节点图。音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但 waveform 仍是 CSS placeholder，不解析真实音频。
 
 视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 
@@ -393,7 +393,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-32 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -456,9 +456,10 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 ## 12. 本轮验证基线
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
-- `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch26.py` 到
-  `batch32.py` 串行通过：浮层、Add Node、续写、去字幕、音视频分离、
-  视频帧截取、智能抠像、主体编辑和深度动作捕捉没有跨批回归
+- `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
+  `batch26.py` 到 `batch33.py` 串行通过：浮层、Add Node、Seedance 参数、
+  续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
+  和长视频过程图没有跨批回归
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按
@@ -475,7 +476,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   player camera `28x28`；首个 output gap `100` world units、同 Y；
   first/last/current metadata、direct edge、重复避让、source selection、
   单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
-- `npm run docs:check`：238 个 Markdown、561 个本地目标通过
+- `npm run docs:check`：245 个 Markdown、576 个本地目标通过
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

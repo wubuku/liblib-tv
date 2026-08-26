@@ -215,6 +215,9 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Frame result selection:** Clicking a captured image uses the ordinary ImageToolbar and ImageEditPanel rather than a dedicated frame editor.
 - **Depth motion capture:** The separate `深度动作捕捉` command shows an independent duration-limit feedback state on the default 30-second fixture. The development-only `?duration=10` fixture opens a lower node-anchored panel while keeping the top processing toolbar visible.
 - **Depth motion graph:** The panel shows the source summary, source-backed intro and local `720P / 1080P` state. Submit briefly disables with a spinner, then creates one pending reference video and one direct source edge. Repeated outputs use deterministic right-side slots, the source remains selected, and one undo/redo removes/restores the output and edge.
+- **Long-video process handoff:** `超长视频` keeps the source-confirmed `30-300s` range and `300s / 14700`. `查看过程` explains that the process appears on the canvas; it no longer renders the guessed four-card process inside the editor.
+- **Long-video process graph:** Submit briefly enters a disabled busy state, then one transaction creates 3 material, 3 shot, 4 candidate, 1 assembly and 1 final pending node. Source-to-shot, material-to-shot, shot-to-candidate, candidate-to-assembly and assembly-to-final edges form a dense process graph shaped by the article screenshot.
+- **Long-video history:** All 12 nodes and 22 edges share one process/request metadata set and one undo step. Repeated submissions move the whole calibrated graph downward to avoid overlap; source remains selected. Node counts, coordinates and local images are clone calibration, not recovered backend rules.
 - **Subject edit menu:** The source-backed `主体消除` trigger replaces the old unsupported `画面编辑` menu and opens `主体消除 / 主体修改 / 主体替换 / 智能抠像` in a trigger-centered `160px` menu. Toolbar dropdowns use `100ms` hover-open and `120ms` hover-close delays while retaining click toggle.
 - **Duration guard:** On the default `30s` ready-video fixture, the first three subject actions show `视频大于15秒，暂不支持该功能` and do not mutate nodes, edges or history.
 - **Smart matting panel:** `智能抠像` opens a node-centered `512x48` compact lower panel with close, label, unknown power `--` and submit/spinner states. It replaces the ordinary generation panel while active and keeps a `16px` screen-space node gap.
@@ -226,7 +229,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py`, `scripts/verify-liblib-batch27.py`, `scripts/verify-liblib-batch28.py`, `scripts/verify-liblib-batch29.py`, `scripts/verify-liblib-batch30.py` and `scripts/verify-liblib-batch31.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`.
 
 ## KeyboardShortcutsDialog
 

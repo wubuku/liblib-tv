@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  ArrowRight,
   ArrowUp,
   AtSign,
   Box,
@@ -14,15 +13,18 @@ import {
   Images,
   Languages,
   Link2,
+  LoaderCircle,
   Search,
   Settings2,
   ShieldCheck,
   Sparkles,
-  Volume2,
   Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { VideoContinuationMetadata } from "@/store/canvasStore";
+import type {
+  LongVideoProcessInput,
+  VideoContinuationMetadata,
+} from "@/store/canvasStore";
 
 type MenuName = "model" | "mode" | "params" | "advanced" | null;
 type VideoMode = "omnireference" | "image-reference" | "long-video";
@@ -32,6 +34,7 @@ interface VideoGenerationPanelProps {
   initialModel?: string;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
+  onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
   onClearContinuation?: () => void;
 }
 
@@ -112,6 +115,7 @@ export function VideoGenerationPanel({
   initialModel,
   initialPrompt,
   continuation,
+  onCreateLongVideoProcess,
   onClearContinuation,
 }: VideoGenerationPanelProps) {
   const isContinuation = Boolean(continuation);
@@ -137,6 +141,9 @@ export function VideoGenerationPanel({
   );
   const [showProcess, setShowProcess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [longVideoSubmitting, setLongVideoSubmitting] = useState(false);
+  const longVideoSubmitTimerRef =
+    useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongVideo = mode === "long-video";
   const durationMin = isLongVideo ? 30 : 4;
   const durationMax = isLongVideo ? 300 : 30;
@@ -145,12 +152,53 @@ export function VideoGenerationPanel({
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 
+  useEffect(() => {
+    return () => {
+      if (longVideoSubmitTimerRef.current) {
+        clearTimeout(longVideoSubmitTimerRef.current);
+      }
+    };
+  }, []);
+
   const selectMode = (nextMode: VideoMode) => {
     if (isContinuation) return;
     setMode(nextMode);
     setDuration(nextMode === "long-video" ? 30 : Math.min(30, Math.max(4, duration)));
     setShowProcess(false);
+    setSubmitted(false);
     setMenu(null);
+  };
+
+  const submitVideo = () => {
+    if (!isLongVideo) {
+      setSubmitted(true);
+      return;
+    }
+    if (
+      longVideoSubmitting ||
+      longVideoSubmitTimerRef.current ||
+      !onCreateLongVideoProcess
+    ) {
+      return;
+    }
+    setLongVideoSubmitting(true);
+    setSubmitted(false);
+    longVideoSubmitTimerRef.current = setTimeout(() => {
+      longVideoSubmitTimerRef.current = null;
+      const processId = onCreateLongVideoProcess({
+        prompt,
+        model,
+        ratio,
+        resolution,
+        durationSeconds: duration,
+        audio,
+        credits,
+        referenceCount: references.length,
+      });
+      setLongVideoSubmitting(false);
+      setSubmitted(Boolean(processId));
+      setShowProcess(Boolean(processId));
+    }, 520);
   };
 
   return (
@@ -180,7 +228,11 @@ export function VideoGenerationPanel({
         </div>
 
         {showProcess ? (
-          <LongVideoProcess onBack={() => setShowProcess(false)} />
+          <LongVideoProcessInfo
+            created={submitted}
+            duration={duration}
+            onBack={() => setShowProcess(false)}
+          />
         ) : (
           <>
             {continuation ? (
@@ -270,7 +322,46 @@ export function VideoGenerationPanel({
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
           <span data-video-credits className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
           <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
-          <button type="button" onClick={() => setSubmitted(true)} aria-label="生成视频" className={cn("flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]", submitted && "bg-[#09caf5]")} title={submitted ? "已加入本地任务" : "生成视频"}>{submitted ? <Check size={15} /> : <ArrowUp size={15} />}</button>
+          <button
+            data-video-generate-submit
+            data-video-long-submit-state={
+              isLongVideo
+                ? longVideoSubmitting
+                  ? "submitting"
+                  : submitted
+                    ? "created"
+                    : "idle"
+                : undefined
+            }
+            type="button"
+            disabled={longVideoSubmitting}
+            onClick={submitVideo}
+            aria-label="生成视频"
+            className={cn(
+              "flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]",
+              submitted && "bg-[#09caf5]",
+              longVideoSubmitting && "cursor-wait bg-[#09caf5]/70 text-white",
+            )}
+            title={
+              longVideoSubmitting
+                ? "正在创建本地过程"
+                : submitted
+                  ? "已加入本地任务"
+                  : "生成视频"
+            }
+          >
+            {longVideoSubmitting ? (
+              <LoaderCircle
+                data-video-long-submit-spinner
+                size={15}
+                className="animate-spin"
+              />
+            ) : submitted ? (
+              <Check size={15} />
+            ) : (
+              <ArrowUp size={15} />
+            )}
+          </button>
         </footer>
       </section>
     </div>
@@ -517,12 +608,36 @@ function SwitchRow({ label, icon, checked, onChange }: { label: string; icon: Re
   return <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg px-2 text-xs text-[#ccc] hover:bg-white/[0.05]">{icon}<span className="flex-1">{label}</span><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" /><span className={cn("relative h-5 w-9 rounded-full", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}><span className={cn("absolute top-0.5 size-4 rounded-full bg-white transition-transform", checked ? "translate-x-[18px]" : "translate-x-0.5")} /></span></label>;
 }
 
-function LongVideoProcess({ onBack }: { onBack: () => void }) {
-  const stages = [
-    { label: "输入素材", detail: "3 个引用", icon: Images },
-    { label: "镜头计划", detail: "10 段 · 300s", icon: Film },
-    { label: "生成批次", detail: "3/10 待确认", icon: Sparkles },
-    { label: "最终成片", detail: "等待拼接", icon: Volume2 },
-  ];
-  return <div className="mt-1 flex min-h-0 flex-1 flex-col rounded-xl bg-[#1d1d1d] p-3"><div className="mb-3 flex items-center"><span className="text-xs font-medium text-white">超长视频生成过程</span><span className="ml-2 rounded bg-[#0d5964] px-1.5 py-0.5 text-[9px] text-[#4de1f4]">Beta · 本地预览</span><button type="button" onClick={onBack} className="ml-auto text-xs text-[#888] hover:text-white">返回 Prompt</button></div><div className="flex flex-1 items-center justify-center">{stages.map((stage, index) => {const Icon=stage.icon;return <div key={stage.label} className="flex items-center"><div className="flex h-20 w-[125px] flex-col items-center justify-center rounded-xl border border-white/[0.08] bg-[#252525]"><Icon size={18} className="mb-2 text-[#09caf5]" /><span className="text-xs text-white">{stage.label}</span><span className="mt-1 text-[10px] text-[#777]">{stage.detail}</span></div>{index<stages.length-1&&<ArrowRight size={16} className="mx-2 text-[#555]" />}</div>})}</div></div>;
+function LongVideoProcessInfo({
+  created,
+  duration,
+  onBack,
+}: {
+  created: boolean;
+  duration: number;
+  onBack: () => void;
+}) {
+  return (
+    <div
+      data-video-long-process-info
+      className="mt-1 flex min-h-0 flex-1 flex-col items-center justify-center rounded-xl bg-[#1d1d1d] px-6 text-center"
+    >
+      <span className="flex size-11 items-center justify-center rounded-[8px] bg-[#17343a] text-[#3bd5ef]">
+        <Film size={20} />
+      </span>
+      <p className="mt-3 text-sm font-medium text-[#ededed]">
+        {created ? "画布过程已创建" : "过程将在提交后创建"}
+      </p>
+      <p className="mt-1 text-[11px] text-[#757575]">
+        素材 · 镜头 · 候选批次 · {duration}s 成片
+      </p>
+      <button
+        type="button"
+        onClick={onBack}
+        className="mt-3 h-7 rounded-[6px] px-2.5 text-xs text-[#9a9a9a] hover:bg-white/[0.06] hover:text-white"
+      >
+        返回 Prompt
+      </button>
+    </div>
+  );
 }

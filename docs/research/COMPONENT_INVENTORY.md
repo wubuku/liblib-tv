@@ -33,6 +33,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `shot-breakdown-result` | `src/components/nodes/ShotBreakdownResultNode.tsx` | Persistent storyboard, motion or music result group created by a completed breakdown. |
 | `video-clip` | `src/components/nodes/VideoClipNode.tsx` | 智能剪辑 empty node with four single-column suggestion modes; editor is a selected-node overlay. |
 | `audio` | `src/components/nodes/AudioNode.tsx` | Local audio preview or audio-split result card with handles, filename, deterministic waveform, duration and source/mode/output metadata. |
+| `long-video-process` | `src/components/nodes/LongVideoProcessNode.tsx` | Compact material, shot, candidate, assembly and final stage variants created by one long-video graph transaction. |
 
 ## Edge Components
 
@@ -53,7 +54,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `HistoryPanel` | `src/components/HistoryPanel.tsx` | Responsive asset history modal with filters, zoom, batch selection and local result images. |
 | `ImageToolbar` | `src/components/ImageToolbar.tsx` | `900.5x49` React Flow `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
-| `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
+| `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor; long-video submit hands request-shaped state to a canvas process graph. |
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, depth motion capture, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |
 | `PictureEditPanel` | `src/components/PictureEditPanel.tsx` | Shared subject remove/modify/replace mark editor with normalized point/box/brush state, local history, mode-specific validation and pending graph handoff. |
 | `DepthMotionCapturePanel` | `src/components/DepthMotionCapturePanel.tsx` | Node-anchored lower panel for the source-backed depth-motion intro, local resolution choice and pending reference handoff. |
@@ -78,7 +79,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 
 | Store | File | Responsibility |
 |------|------|--------|
-| `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, continuation/subtitle/audio-split/frame-capture graph transactions and undo/redo. |
+| `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, video-processing and long-video graph transactions, and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
 
 ---

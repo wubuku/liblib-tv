@@ -81,6 +81,34 @@ export interface DepthMotionCaptureMetadata {
   requestMode: "DepthMap";
 }
 
+export type LongVideoProcessStage =
+  | "material"
+  | "shot"
+  | "candidate"
+  | "assembly"
+  | "final";
+
+export interface LongVideoProcessInput {
+  prompt: string;
+  model: string;
+  ratio: string;
+  resolution: string;
+  durationSeconds: number;
+  audio: boolean;
+  credits: number;
+  referenceCount: number;
+}
+
+export interface LongVideoProcessMetadata extends LongVideoProcessInput {
+  sourceNodeId: string;
+  sourceLabel: string;
+  processId: string;
+  stage: LongVideoProcessStage;
+  stageIndex: number;
+  batchIndex?: number;
+  status: "pending";
+}
+
 export type PictureEditAction =
   | "subjectRemove"
   | "subjectModify"
@@ -200,6 +228,10 @@ interface CanvasState {
     sourceId: string,
     resolution: DepthMotionCaptureResolution,
     durationSeconds: number,
+  ) => string | null;
+  createLongVideoProcess: (
+    sourceId: string,
+    input: LongVideoProcessInput,
   ) => string | null;
   createSmartMatting: (sourceId: string) => string | null;
   createPictureEdit: (
@@ -359,6 +391,36 @@ function findAvailableRightSlot(
     });
     if (!collides) return { x, y };
     y += dimensions.height + 48;
+  }
+
+  return { x, y };
+}
+
+const LONG_VIDEO_PROCESS_BOUNDS = { width: 1890, height: 456 };
+
+function findAvailableLongVideoOrigin(
+  source: Node,
+  nodes: Node[],
+): { x: number; y: number } {
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const sourcePosition = getAbsoluteNodePosition(source, nodesById);
+  const x = sourcePosition.x + nodeWidth(source) + 140;
+  let y =
+    sourcePosition.y +
+    (nodeHeight(source) - LONG_VIDEO_PROCESS_BOUNDS.height) / 2;
+
+  for (let attempt = 0; attempt < nodes.length + 1; attempt++) {
+    const candidate = { x, y, ...LONG_VIDEO_PROCESS_BOUNDS };
+    const collides = nodes.some((node) => {
+      const position = getAbsoluteNodePosition(node, nodesById);
+      return rectanglesOverlap(candidate, {
+        ...position,
+        width: nodeWidth(node),
+        height: nodeHeight(node),
+      });
+    });
+    if (!collides) return { x, y };
+    y += LONG_VIDEO_PROCESS_BOUNDS.height + 140;
   }
 
   return { x, y };
@@ -1450,6 +1512,269 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return targetId;
   },
 
+  createLongVideoProcess: (
+    sourceId: string,
+    input: LongVideoProcessInput,
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const processId = createNodeId("long-video");
+    const origin = findAvailableLongVideoOrigin(source, canvas.nodes);
+    const normalizedInput: LongVideoProcessInput = {
+      prompt: input.prompt.trim(),
+      model: input.model,
+      ratio: input.ratio,
+      resolution: input.resolution,
+      durationSeconds: clampNumber(input.durationSeconds, 30, 300),
+      audio: input.audio,
+      credits: Math.max(0, Math.round(input.credits)),
+      referenceCount: clampNumber(
+        Math.round(input.referenceCount),
+        0,
+        20,
+      ),
+    };
+    const dimensionsByStage: Record<
+      LongVideoProcessStage,
+      { width: number; height: number }
+    > = {
+      material: { width: 220, height: 128 },
+      shot: { width: 236, height: 128 },
+      candidate: { width: 236, height: 132 },
+      assembly: { width: 210, height: 116 },
+      final: { width: 300, height: 169 },
+    };
+    const makeProcessNode = ({
+      stage,
+      stageIndex,
+      x,
+      y,
+      title,
+      subtitle,
+      imageUrl,
+      batchIndex,
+    }: {
+      stage: LongVideoProcessStage;
+      stageIndex: number;
+      x: number;
+      y: number;
+      title: string;
+      subtitle: string;
+      imageUrl?: string;
+      batchIndex?: number;
+    }): Node => {
+      const dimensions = dimensionsByStage[stage];
+      const longVideoProcess: LongVideoProcessMetadata = {
+        ...normalizedInput,
+        sourceNodeId: sourceId,
+        sourceLabel,
+        processId,
+        stage,
+        stageIndex,
+        batchIndex,
+        status: "pending",
+      };
+      return {
+        id: `${processId}-${stage}-${stageIndex}`,
+        type: "long-video-process",
+        position: { x: origin.x + x, y: origin.y + y },
+        width: dimensions.width,
+        height: dimensions.height,
+        style: dimensions,
+        data: {
+          title,
+          subtitle,
+          imageUrl,
+          longVideoProcess,
+        },
+      };
+    };
+
+    const materialNodes = [
+      makeProcessNode({
+        stage: "material",
+        stageIndex: 1,
+        x: 0,
+        y: 0,
+        title: "角色参考",
+        subtitle: "陈默 · 图片 1",
+        imageUrl: "/images/scene-coffee-1.png",
+      }),
+      makeProcessNode({
+        stage: "material",
+        stageIndex: 2,
+        x: 0,
+        y: 164,
+        title: "道具参考",
+        subtitle: "咖啡 · 图片 2",
+        imageUrl: "/images/scene-coffee-2.png",
+      }),
+      makeProcessNode({
+        stage: "material",
+        stageIndex: 3,
+        x: 0,
+        y: 328,
+        title: "场景参考",
+        subtitle: "咖啡馆 · 图片 3",
+        imageUrl: "/images/scene-coffee-4.png",
+      }),
+    ];
+    const shotNodes = [
+      makeProcessNode({
+        stage: "shot",
+        stageIndex: 1,
+        x: 320,
+        y: 0,
+        title: "S01 · 对峙开场",
+        subtitle: "镜头计划 · 等待生成",
+        imageUrl: "/images/storyboard-2.png",
+      }),
+      makeProcessNode({
+        stage: "shot",
+        stageIndex: 2,
+        x: 320,
+        y: 164,
+        title: "S02 · 情绪推进",
+        subtitle: "镜头计划 · 等待生成",
+        imageUrl: "/images/scene-coffee-3.png",
+      }),
+      makeProcessNode({
+        stage: "shot",
+        stageIndex: 3,
+        x: 320,
+        y: 328,
+        title: "S03 · 结尾特写",
+        subtitle: "镜头计划 · 等待生成",
+        imageUrl: "/images/scene-coffee-1.png",
+      }),
+    ];
+    const candidateNodes = [
+      makeProcessNode({
+        stage: "candidate",
+        stageIndex: 1,
+        batchIndex: 1,
+        x: 700,
+        y: 76,
+        title: "候选 A1",
+        subtitle: "批次 1 · 等待生成",
+        imageUrl: "/images/scene-coffee-4.png",
+      }),
+      makeProcessNode({
+        stage: "candidate",
+        stageIndex: 2,
+        batchIndex: 1,
+        x: 700,
+        y: 276,
+        title: "候选 A2",
+        subtitle: "批次 1 · 等待生成",
+        imageUrl: "/images/scene-coffee-3.png",
+      }),
+      makeProcessNode({
+        stage: "candidate",
+        stageIndex: 3,
+        batchIndex: 2,
+        x: 986,
+        y: 76,
+        title: "候选 B1",
+        subtitle: "批次 2 · 等待生成",
+        imageUrl: "/images/scene-coffee-1.png",
+      }),
+      makeProcessNode({
+        stage: "candidate",
+        stageIndex: 4,
+        batchIndex: 2,
+        x: 986,
+        y: 276,
+        title: "候选 B2",
+        subtitle: "批次 2 · 等待生成",
+        imageUrl: "/images/storyboard-2.png",
+      }),
+    ];
+    const assemblyNode = makeProcessNode({
+      stage: "assembly",
+      stageIndex: 1,
+      x: 1280,
+      y: 170,
+      title: "候选汇聚",
+      subtitle: "等待镜头选择与拼接",
+    });
+    const finalNode = makeProcessNode({
+      stage: "final",
+      stageIndex: 1,
+      x: 1590,
+      y: 144,
+      title: "最终成片",
+      subtitle: `${normalizedInput.durationSeconds}s · 等待拼接`,
+      imageUrl: "/images/scene-coffee-4.png",
+    });
+    const processNodes = [
+      ...materialNodes,
+      ...shotNodes,
+      ...candidateNodes,
+      assemblyNode,
+      finalNode,
+    ];
+    const makeEdge = (edgeSource: string, target: string): Edge => ({
+      id: `e-${processId}-${edgeSource}-${target}`,
+      source: edgeSource,
+      target,
+      type: "default",
+    });
+    const processEdges: Edge[] = [
+      ...shotNodes.map((shot) => makeEdge(sourceId, shot.id)),
+      makeEdge(materialNodes[0].id, shotNodes[0].id),
+      makeEdge(materialNodes[0].id, shotNodes[1].id),
+      makeEdge(materialNodes[1].id, shotNodes[0].id),
+      makeEdge(materialNodes[1].id, shotNodes[2].id),
+      makeEdge(materialNodes[2].id, shotNodes[1].id),
+      makeEdge(materialNodes[2].id, shotNodes[2].id),
+      makeEdge(shotNodes[0].id, candidateNodes[0].id),
+      makeEdge(shotNodes[0].id, candidateNodes[2].id),
+      makeEdge(shotNodes[1].id, candidateNodes[0].id),
+      makeEdge(shotNodes[1].id, candidateNodes[1].id),
+      makeEdge(shotNodes[1].id, candidateNodes[2].id),
+      makeEdge(shotNodes[1].id, candidateNodes[3].id),
+      makeEdge(shotNodes[2].id, candidateNodes[1].id),
+      makeEdge(shotNodes[2].id, candidateNodes[3].id),
+      ...candidateNodes.map((candidate) =>
+        makeEdge(candidate.id, assemblyNode.id),
+      ),
+      makeEdge(assemblyNode.id, finalNode.id),
+    ];
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, ...processNodes],
+                edges: [...item.edges, ...processEdges],
+              }
+            : item,
+        ),
+        selectedNodeIds: [sourceId],
+        selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return processId;
+  },
+
   createSmartMatting: (sourceId: string) => {
     const { activeCanvasId } = get();
     const canvas = get().canvases.find((item) => item.id === activeCanvasId);
@@ -2252,6 +2577,8 @@ function getDefaultNodeDimensions(type: string) {
       return { width: 350, height: 350 };
     case "audio":
       return { width: 350, height: 140 };
+    case "long-video-process":
+      return { width: 236, height: 132 };
     default:
       return { width: 350, height: 180 };
   }

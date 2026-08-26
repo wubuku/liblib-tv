@@ -37,6 +37,7 @@ import { ShotBreakdownNode } from "@/components/nodes/ShotBreakdownNode";
 import { ShotBreakdownResultNode } from "@/components/nodes/ShotBreakdownResultNode";
 import { VideoClipNode } from "@/components/nodes/VideoClipNode";
 import { AudioNode } from "@/components/nodes/AudioNode";
+import { LongVideoProcessNode } from "@/components/nodes/LongVideoProcessNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { getLiblibOrganizeViewport, organizeLiblibNodes } from "@/lib/liblibOrganize";
 
@@ -51,6 +52,7 @@ const nodeTypes = {
   "shot-breakdown-result": ShotBreakdownResultNode,
   "video-clip": VideoClipNode,
   audio: AudioNode,
+  "long-video-process": LongVideoProcessNode,
 };
 
 const edgeTypes = { default: DeletableEdge };

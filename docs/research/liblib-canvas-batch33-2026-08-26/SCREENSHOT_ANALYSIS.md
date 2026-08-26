@@ -69,9 +69,9 @@ right
 
 届时只打开最小必要裁剪，并把新增观察补写到本文件。
 
-## Planned Clone Evidence
+## Clone Evidence Result
 
-Batch 33 专项脚本将生成：
+Batch 33 专项脚本生成了：
 
 - 长视频提交前参数状态；
 - 提交 busy 状态；
@@ -80,5 +80,17 @@ Batch 33 专项脚本将生成：
 - atomic undo/redo；
 - `390x844` 响应式裁切；
 - 一张 contact sheet。
+
+一次性视觉检查结论：
+
+- `process graph` 在清除 source selection 后 fit-view，完整展示 source、
+  三列素材/镜头、两批候选、汇聚节点和最终成片；
+- source -> shot、material -> shot 和 candidate -> assembly 的连线密度能
+  表达文章截图中的多对多过程，而不是旧的线性四步卡；
+- candidate 与 final 的缩略图被压暗并覆盖 `等待生成` / `等待拼接`，没有把本地
+  咖啡馆图片误标为本次已完成生成；
+- 提交后的 source selection 会保留，因此 source 下方生成面板仍然可见；截图
+  专门在视觉检查前清 selection，避免编辑面板遮挡 graph；
+- mobile 截图保持节点浮层的自然裁切，不产生 document 横向 overflow。
 
 这些 clone 截图只能证明实现和回归，不能升级为原站事实。

@@ -19,7 +19,9 @@
 - 顶部工具条包含源站高价值视频处理命令。
 - 下方生成面板复刻模型菜单、模式菜单、普通/超长参数、音频、数量、高级设置和 AutoLink 视觉。
 - 超长视频范围为 `30-300s`，`300s` 显示 `14700` 本地预计积分。
-- `查看过程` 显示四阶段本地生成过程图。
+- Batch 33 将原先面板内四阶段只读预览替换为画布级 pending 过程图。
+- 长视频提交以一次 transaction 创建素材、镜头、两批候选、汇聚和最终成片
+  共 12 个节点、22 条边，并保留 source selection 与 atomic undo/redo。
 - 片段重拍支持最多五个预切 range、Prompt 投影和本地提交状态。
 - 智能续写使用独立 `4-30s` 连续 selector；确认后创建连接的 empty video target，由目标节点承载续写 Prompt 和退出模式事务。
 - 逐帧拉片由就绪视频工具条创建独立的 `shot-breakdown` 节点。
@@ -45,7 +47,7 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - Seedance 2.5 模型菜单和模式菜单。
 - 普通参数和超长参数。
 - `300s / 14700`。
-- 超长视频过程图。
+- 超长视频画布过程图、请求 metadata、重复批次避让和 atomic history。
 - 片段重拍五段上限、Prompt 投影和提交状态。
 - 逐帧拉片创建、选择画布视频、维度过滤、持久结果组和单次 undo/redo。
 
@@ -55,6 +57,7 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - `docs/design-references/liblib-clone-image-autolink-2026-08-25.png`
 - `docs/design-references/liblib-clone-seedance-video-selected-2026-08-25.png`
 - `docs/design-references/liblib-clone-seedance-long-video-process-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch33-long-video-contact-sheet-2026-08-26.png`
 - `docs/design-references/liblib-clone-seedance-segment-reshoot-2026-08-25.png`
 - `docs/design-references/liblib-clone-seedance-shot-breakdown-complete-2026-08-25.png`
 - `docs/design-references/liblib-clone-batch24-shot-breakdown-contact-sheet-2026-08-25.png`

@@ -131,6 +131,35 @@ Stable selectors:
 
 The source tile uses metadata copied at target creation because this prototype has no service-backed media reference object. Prompt submission remains local feedback.
 
+## Long Video Graph Handoff
+
+Long-video mode no longer presents a four-card process diagram inside the
+`660x274` editor. `查看过程` now explains that the process is created on the
+canvas after submit.
+
+Submitting long-video mode:
+
+- briefly disables the submit button and exposes `submitting`;
+- sends prompt, model, ratio, resolution, duration, audio, credits and reference
+  count to the selected source video;
+- calls one `canvasStore.createLongVideoProcess` transaction;
+- creates a 12-node, 22-edge material/shot/candidate/assembly/final graph;
+- keeps the source video selected;
+- exposes `created` and the canvas-process confirmation.
+
+The node count, geometry and local busy timer are clone calibration. Candidate
+and final cards remain pending and do not claim real generated media.
+
+Stable selectors:
+
+- `[data-video-long-process-info]`
+- `[data-video-generate-submit]`
+- `[data-video-long-submit-state]`
+- `[data-video-long-submit-spinner]`
+
+Detailed node and topology contract:
+[`LongVideoProcessNode.spec.md`](LongVideoProcessNode.spec.md).
+
 ## Verification
 
 Verified on desktop local clone:
@@ -139,7 +168,9 @@ Verified on desktop local clone:
 - disabled/enabled mode states
 - normal and long-video parameter menus
 - `300s / 14700`
-- read-only four-stage `查看过程` view
+- canvas-level long-video process graph handoff
+- submit busy/created states, request metadata and pending result copy
+- repeated process avoidance and atomic graph undo/redo
 - prompt submission state
 - child drag, parent move/reselect, pan and zoom anchor geometry
 - multi-selection overlay lifecycle
@@ -153,8 +184,10 @@ Evidence includes:
 
 - `docs/design-references/liblib-clone-seedance-video-selected-2026-08-25.png`
 - `docs/design-references/liblib-clone-seedance-long-video-process-2026-08-25.png`
+- `docs/design-references/liblib-clone-batch33-long-video-contact-sheet-2026-08-26.png`
 - `docs/design-references/liblib-clone-batch9-video-anchor-929-2026-08-25.png`
 - `scripts/verify-liblib-batch9.py`
 - `scripts/verify-liblib-batch21.py`
 - `scripts/verify-liblib-batch22.py`
 - `scripts/verify-liblib-batch26.py`
+- `scripts/verify-liblib-batch33.py`

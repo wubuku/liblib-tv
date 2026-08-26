@@ -80,7 +80,7 @@
 ## 6. 实施状态
 
 - [x] 证据边界、一次性截图识别、缺口排序和规格已落档
-- [ ] store transaction 与过程节点 renderer
-- [ ] 生成面板 graph handoff 与 busy 状态
-- [ ] Batch 33 专项 Playwright 和 clone screenshot ledger
-- [ ] 跨批回归、`npm run check`、实施收口和 commit/push
+- [x] store transaction 与过程节点 renderer
+- [x] 生成面板 graph handoff 与 busy 状态
+- [x] Batch 33 专项 Playwright 和 clone screenshot ledger
+- [x] 跨批回归、`npm run check`、实施收口和 commit/push

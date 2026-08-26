@@ -19,6 +19,7 @@ import {
   type AudioSplitMode,
   type DepthMotionCaptureMetadata,
   type DepthMotionCaptureResolution,
+  type LongVideoProcessInput,
   type PictureEditAction,
   type PictureEditMark,
   type PictureEditMetadata,
@@ -85,6 +86,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   );
   const createVideoFrameCapture = useCanvasStore(
     (state) => state.createVideoFrameCapture,
+  );
+  const createLongVideoProcess = useCanvasStore(
+    (state) => state.createLongVideoProcess,
   );
   const createSmartMatting = useCanvasStore(
     (state) => state.createSmartMatting,
@@ -535,6 +539,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           initialModel={model}
           initialPrompt={prompt}
           continuation={continuation}
+          onCreateLongVideoProcess={(input: LongVideoProcessInput) =>
+            createLongVideoProcess(id, input)
+          }
           onClearContinuation={
             continuation ? () => clearVideoContinuation(id) : undefined
           }
