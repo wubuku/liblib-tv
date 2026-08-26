@@ -72,7 +72,7 @@
 | 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `RESEARCH_FIRST` / `PARTIAL_RECORDED` |
 | 6 | `LIBTV-PAR-006` | Ready-video 顶部处理工具条与 mode replacement | 5 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
 | 7 | `LIBTV-PAR-007` | 快捷键 source-only 命令与 help/handler 一致性 | 4 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
-| 8 | `LIBTV-PAR-008` | 普通画布 graph transaction 健壮性 | 4 | 5 | 3 | 4 | `DESIGN_FIRST`；connection + document/snapshot 子切片设计完成 |
+| 8 | `LIBTV-PAR-008` | 普通画布 graph transaction 健壮性 | 4 | 5 | 3 | 4 | core design package complete；runtime/source fixtures pending |
 | 9 | `LIBTV-PAR-009` | 逐帧拉片/超长视频的真实过程与结果生命周期 | 4 | 3 | 2 | 5 | `BLOCKED_BY_FIXTURE` |
 | 10 | `LIBTV-PAR-010` | Agent/Share/Toolbox/History/Upload 的 local mock 边界 | 3 | 4 | 4 | 3 | `PROTOTYPE_BOUNDARY` |
 | 11 | `LIBTV-PAR-011` | `uiStore` 冗余/unmounted/unreachable 状态清理 | 2 | 5 | 4 | 2 | `DEFERRED_ENGINEERING` |
@@ -203,7 +203,9 @@ duplicate modifier and subgraph closure
 
 Connection 子切片的设计前置已经完成，权威入口是 [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md)：result/reason、guard precedence、reject 零 mutation、accepted one-step history、`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 和 `LIBTV-VR-009` 均已定义。它仍是 `RUNTIME_MISSING`；Reference、导入/批量/同步和 source invalid feedback 保持 blocked。
 
-Document/snapshot 子切片的设计前置也已完成，权威入口是 [`LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md)：runtime/history/portable document/clipboard/persistence 五层、V1 schema、strict load、nested isolation、`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 和 `LIBTV-VR-010` 均已定义。它同样是 `RUNTIME_MISSING`，普通画布 import/export/persistence 未实现。Subgraph copy closure 与 broader graph hardening 仍是独立 `DESIGN_FIRST` 工作。
+Document/snapshot 子切片的设计前置也已完成，权威入口是 [`LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md)：runtime/history/portable document/clipboard/persistence 五层、V1 schema、strict load、nested isolation、`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 和 `LIBTV-VR-010` 均已定义。它同样是 `RUNTIME_MISSING`，普通画布 import/export/persistence 未实现；该合同不代替 connection/copy runtime。
+
+Subgraph copy 子切片的设计前置见 [`LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md)：具名 command、descendant closure、two-pass identity、parent detach/remap、node-data reference roles、edge policy、flow placement、atomic history、`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` 和 `LIBTV-VR-011` 已定义。当前 Batch 3/5/8 runtime 只是 `PARTIAL`，single-node incident edge 是 compatibility hold；system clipboard 和 Option-drag 仍 blocked。
 
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle
 

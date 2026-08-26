@@ -52,6 +52,8 @@
 
 clone 的 `duplicateSelectedNodes()` 不是简单复制卡片：它调用 `duplicateGraphSelection()`，复制选择闭包内的节点和内部 edge；单节点且不是 storyboard group 时还有单节点复制分支。源站快照只给出帮助文案，尚不足以确认源站对 group、父子节点、跨选择边和外连边的复制闭包。
 
+后续实现权威是 [`LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md)：`duplicate-selection`、`create-node-copy`、`paste-subgraph` 和 `option-drag-copy` 必须保持具名命令，不能继续由 `includeEdges` 布尔值隐式混用。当前单普通节点复制 incident edge 的分支只标为 `COMPATIBILITY_HOLD`；system clipboard 与 Option-drag 仍分别等待 runtime 和 disposable source fixture。
+
 ### 3.2 “连线 L”不能由 Handle 代偿
 
 当前 React Flow 配置允许 `nodesConnectable`，真实 `<Handle>` 提供指针拖线。这证明 clone 有连接能力，但没有证明键盘 `L` 的起点选择、候选目标、取消和确认状态机。后续复刻 `L` 前必须先观察源站，而不是把帮助行直接接到 `addEdge()`。
@@ -133,6 +135,7 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 相关文档：
 
 - [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)
+- [`components/LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md)
 - [`components/KeyboardShortcutsDialog.spec.md`](components/KeyboardShortcutsDialog.spec.md)
 - [`BEHAVIORS.md`](BEHAVIORS.md)
 - [`liblib-canvas-batch3-2026-08-25/`](liblib-canvas-batch3-2026-08-25/README.md)

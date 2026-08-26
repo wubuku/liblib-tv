@@ -34,6 +34,7 @@
 | DEC-024 | Open Canvas 机制采纳 | 上游机制必须经过 LibTV source evidence、采纳分类、parity、fixture、verifier 和明确授权后，才可进入单一纵向 slice | ACTIVE / RESEARCH_GATE |
 | DEC-025 | graph connection 校验边界 | 连接必须先归一化和纯校验，再以一个 accepted transaction 提交；reject/unknown 不得改变 graph、selection、history 或 model | ACTIVE / RESEARCH_GATE |
 | DEC-026 | graph document 与 history 分层 | runtime graph、history snapshot、portable document、clipboard packet 和 persistence envelope 保持独立；portable load 必须 versioned、strict、zero-partial | ACTIVE / RESEARCH_GATE |
+| DEC-027 | subgraph copy 身份闭包 | copy 使用具名 command、ownership closure、two-pass ID/reference rewrite 和 full-plan transaction；incident-edge 仅作兼容分支 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -146,6 +147,16 @@
 **影响：** 当前 `src/types/canvas.ts` 不能直接冒充完整 serialization registry；future import 第一 slice 只允许创建新 canvas，不替换 active canvas。Open Canvas 的 `200/400` limits、file/KV、revision、debounce、conflict rebase 和 provider fields 保持 inspiration/deferred，不进入 runtime 合同。Codec、history isolation、fixture 和 `LIBTV-VR-010` 仍需明确编码授权。
 
 **依据：** [`LibTVGraphDocument.contract.md`](research/components/LibTVGraphDocument.contract.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)。
+
+### DEC-027：Subgraph copy 先构造完整身份闭包
+
+**背景：** 当前 clone 已能复制 selection/group/child/canvas，但单个普通节点会复制所有 incident edges，多选/group 只复制 internal edges；node data 中的 sourceNodeId、edgeId、process/run/media identity 尚无统一 rewrite/reset 规则。Open Canvas 的 versioned packet、internal-edge closure 和 ID map 是方法参考，不覆盖 LibTV parent/derived/process 语义。
+
+**决策：** 后续 copy 使用具名 `duplicate-selection / create-node-copy / paste-subgraph / option-drag-copy` command，不再以 `includeEdges` boolean 表达产品语义。Copy 在 mutation 前完成 root/descendant closure、two-pass node/edge ID map、parent placement、node-data reference role、edge policy 和 connection validation；reject/unknown 均 zero mutation，accepted command 只产生一个 history step。
+
+**影响：** `internal-only` 是 multi/group/clipboard 的安全默认；current single-node incident-edge 分支只保持 `COMPATIBILITY_HOLD`。System clipboard 和 Option-drag 不因合同完成而实现，Option-drag 仍需 source fixture。任何 unmodeled identity field 都阻塞 transaction，不能只 remap structural edge 后深拷贝 data。
+
+**依据：** [`LibTVSubgraphCopy.contract.md`](research/components/LibTVSubgraphCopy.contract.md)、[`DUPLICATE_SELECTION.spec.md`](research/liblib-canvas-batch5-2026-08-25/DUPLICATE_SELECTION.spec.md)、[`OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)。
 
 ## 3. 何时可以重审决策
 

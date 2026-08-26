@@ -216,8 +216,8 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | ordinary source pair guard does not compare handles, so it is expected to reject; import/batch behavior remains open | design contracted + static recorded; entry-point decision pending |
 | `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | ordinary non-Reference and programmatic paths have rejection evidence; assert Handle/line/history cleanup | design contracted + static recorded; Reference/source UI pending |
 | `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | ordinary source path has DFS rejection evidence; assert no UI/edge/history residue | design contracted + static recorded; source UI pending |
-| `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | compare current Batch 4/5/8 contract |
-| `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | current selection-copy contract exists |
+| `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | design contracted；current runtime partial |
+| `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | design contracted；current runtime partial |
 | `LIBTV-GC-008` equal data update | node data merge is semantically unchanged | update | no-op history policy explicitly asserted | current clone currently records a step |
 | `LIBTV-GC-009` nested metadata history | node has marks/regions/process arrays | mutate via immutable update, undo, redo | old/new snapshots stay isolated | fixture/verifier design complete；runtime missing |
 | `LIBTV-GC-010` delete selected subtree | selected parent/group with child/reference edges | delete | node/edge closure, selection clear and one-step undo/redo exact | compare current cascade behavior |
@@ -272,6 +272,20 @@ Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_EXCEPTION_BLOCKE
 - codec、history isolation、import-as-new-canvas、export/clipboard reuse 和 deferred persistence 的独立授权 slice。
 
 Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / PERSISTENCE_DEFERRED`。这不表示普通画布已有 import/export、reload recovery、revision、conflict 或 remote save。
+
+### 10.7 Subgraph copy and duplicate handoff
+
+[`LibTVSubgraphCopy.contract.md`](components/LibTVSubgraphCopy.contract.md) is now the copy-specific authority for：
+
+- duplicate-selection、node-only、paste-subgraph 和 future Option-drag 的具名命令；
+- root sanitize、recursive descendant closure 和 ancestor/child dedupe；
+- two-pass nodeMap/edgeMap、parent remap/detach 和 flow-space placement；
+- node data reference role：owned、external provenance、edge、asset、run/task、session 和 display projection；
+- `none / internal-only / incident-compatibility` edge policy；
+- full-plan validation、zero-partial failure 和 accepted one-step history；
+- `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01` plus `LIBTV-VR-011` pure/browser acceptance design。
+
+Current runtime is `PARTIAL`：Batch 3/5/8 已有结构 closure 和 history，但没有 reference-role registry/system clipboard；single-node incident edge 分支保持 compatibility hold。Option-drag 仍需 disposable source fixture。
 
 ## 11. 新事务立项模板
 

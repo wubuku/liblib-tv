@@ -395,3 +395,15 @@
 - 新增 `DEC-026` / `LIBTV-TR-031`，明确 history deep isolation 不等于 import/export/save 已实现；Open Canvas limits、file/KV、revision/debounce/rebase 保持 deferred；
 - 同步 adoption、handoff、graph catalog、fixture、verifier、component coverage、agent navigation 和 authority map；
 - 没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 Batch 56 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v37 subgraph copy 与 duplicate 身份合同
+
+本轮继续使用 Open Canvas 的结构化子图方法作为设计输入，但不移植其 payload、产品限制或快捷键语义：
+
+- 复核固定版本的 custom MIME/version、selected-node closure、internal-edge extraction、two-pass node ID map、endpoint rewrite、viewport-center placement、48 flow-unit repeated-paste shift、editable-target guard 和 in-memory fallback；
+- 复核当前 clone 的 `duplicateNode`、`duplicateSelectedNodes`、recursive group descendants、child detach/remap、single-node incident-edge compatibility、one-step history 和独立 `duplicateCanvas` 边界；
+- 新增 [`LibTVSubgraphCopy.contract.md`](../components/LibTVSubgraphCopy.contract.md)，将 `duplicate-selection`、`create-node-copy`、`paste-subgraph`、`option-drag-copy` 与 canvas lifecycle 分开；
+- 定义 descendant closure、two-pass structural identity、node-data reference role registry、internal-only edge policy、flow-space placement、full-plan prevalidation 和 atomic undo/redo；
+- 新增 `LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01`、`LIBTV-VR-011`、`DEC-027` 和 `LIBTV-TR-032`，把 single-node incident edge 标为 `COMPATIBILITY_HOLD`，将 clipboard runtime 与 Option-drag source gesture 保持 blocked；
+- 同步 adoption、handoff、graph catalog、shortcut crosswalk、parity、fixture、verifier、component coverage、agent navigation 和 authority map；
+- 没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或 Open Canvas submodule。
