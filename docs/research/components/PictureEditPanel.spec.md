@@ -49,3 +49,26 @@ PictureEditPanel
 
 See [`../liblib-canvas-batch31-2026-08-26/PICTURE_EDIT_WORKFLOW.spec.md`](../liblib-canvas-batch31-2026-08-26/PICTURE_EDIT_WORKFLOW.spec.md)
 and `scripts/verify-liblib-batch31.py`.
+
+## Stable Selectors
+
+- `[data-picture-edit-panel]`
+- `[data-picture-edit-close]`
+- `[data-picture-edit-mode]`
+- `[data-picture-edit-count]`
+- `button[data-picture-edit-tool]`
+- `[data-picture-edit-mark-overlay]`
+- `[data-picture-edit-mark]`
+- `[data-picture-edit-mark-tool]`
+- `[data-picture-edit-mark-frame]`
+- `[data-picture-edit-mark-handle]`
+- `[data-picture-edit-description]`
+- `[data-picture-edit-replacement]`
+- `[data-picture-edit-replacement-selected]`
+- `[data-picture-edit-history="undo"]`
+- `[data-picture-edit-history="redo"]`
+- `[data-picture-edit-reset]`
+- `[data-picture-edit-submit]`
+- `[data-picture-edit-spinner]`
+- `[data-picture-edit-submit-reason]`
+- `[data-picture-edit-output]`

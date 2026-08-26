@@ -18,6 +18,8 @@ import {
   type AudioSplitMetadata,
   type AudioSplitMode,
   type PictureEditAction,
+  type PictureEditMark,
+  type PictureEditMetadata,
   type SmartMattingMetadata,
   type SubtitleEraseMetadata,
   type SubtitleEraseMode,
@@ -27,6 +29,7 @@ import {
 } from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
 import { SmartMattingPanel } from "@/components/SmartMattingPanel";
+import { PictureEditPanel } from "@/components/PictureEditPanel";
 import { SubtitleErasePanel } from "@/components/SubtitleErasePanel";
 import { VideoContinuationSelector } from "@/components/VideoContinuationSelector";
 import { VideoGenerationPanel } from "@/components/VideoGenerationPanel";
@@ -43,13 +46,28 @@ export interface VideoNodeData extends Record<string, unknown> {
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
   audioSplit?: AudioSplitMetadata;
+  pictureEdit?: PictureEditMetadata;
   smartMatting?: SmartMattingMetadata;
 }
 
 export type VideoNodeType = Node<VideoNodeData, "video">;
 
 function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
-  const { filename = "分镜视频-#9", model = "vip专属模型-会员", status = "failed", posterUrl, durationSeconds = 30, resolution = "1280 × 720", prompt, continuation, subtitleErase, audioSplit, smartMatting } = data;
+  const {
+    filename = "分镜视频-#9",
+    model = "vip专属模型-会员",
+    status = "failed",
+    posterUrl,
+    durationSeconds: rawDurationSeconds = 30,
+    resolution = "1280 × 720",
+    prompt,
+    continuation,
+    subtitleErase,
+    audioSplit,
+    pictureEdit,
+    smartMatting,
+  } = data;
+  const durationSeconds = getRuntimeDuration(rawDurationSeconds);
   const { zoom } = useViewport();
   const internalNode = useInternalNode(id);
   const { setCenter } = useReactFlow();
@@ -63,6 +81,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const createSmartMatting = useCanvasStore(
     (state) => state.createSmartMatting,
   );
+  const createPictureEdit = useCanvasStore(
+    (state) => state.createPictureEdit,
+  );
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
@@ -73,6 +94,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     | "subtitle-smart"
     | "subtitle-region"
     | "matting"
+    | "picture-edit"
   >("generator");
   const [enhanced, setEnhanced] = useState(false);
   const [audioSplittingMode, setAudioSplittingMode] =
@@ -83,6 +105,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     null,
   );
   const [mattingSubmitting, setMattingSubmitting] = useState(false);
+  const [pictureEditMode, setPictureEditMode] =
+    useState<PictureEditAction | null>(null);
+  const [pictureEditSubmitting, setPictureEditSubmitting] = useState(false);
   const audioSplitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const frameFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -90,6 +115,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const pictureEditFeedbackTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
   const mattingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pictureEditTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
@@ -110,6 +136,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       }
       if (mattingTimerRef.current) {
         clearTimeout(mattingTimerRef.current);
+      }
+      if (pictureEditTimerRef.current) {
+        clearTimeout(pictureEditTimerRef.current);
       }
     };
   }, []);
@@ -195,7 +224,6 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   };
 
   const selectPictureEdit = (action: PictureEditAction) => {
-    void action;
     if (durationSeconds > 15) {
       showPictureEditFeedback("视频大于15秒，暂不支持该功能");
       return;
@@ -204,7 +232,10 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       showPictureEditFeedback(
         `源视频时长需在 3~15 秒之间（当前 ${durationSeconds} 秒）`,
       );
+      return;
     }
+    setPictureEditMode(action);
+    setActiveTool("picture-edit");
   };
 
   const openSmartMatting = () => {
@@ -223,6 +254,20 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     }, 480);
   };
 
+  const submitPictureEdit = (marks: PictureEditMark[]) => {
+    if (pictureEditSubmitting || pictureEditTimerRef.current || !pictureEditMode) {
+      return;
+    }
+    setPictureEditSubmitting(true);
+    pictureEditTimerRef.current = setTimeout(() => {
+      pictureEditTimerRef.current = null;
+      createPictureEdit(id, pictureEditMode, marks);
+      setPictureEditSubmitting(false);
+      setPictureEditMode(null);
+      setActiveTool("generator");
+    }, 520);
+  };
+
   return (
     <div
       className={cn(
@@ -230,7 +275,10 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/[0.07]",
       )}
     >
-      {showSingleNodeEditor && status === "ready" && !subtitleMode && (
+      {showSingleNodeEditor &&
+        status === "ready" &&
+        !subtitleMode &&
+        activeTool !== "picture-edit" && (
         <VideoProcessingToolbar
           activeTool={
             activeTool === "reshoot" || activeTool === "continue"
@@ -315,6 +363,31 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Play size={22} fill="currentColor" className="ml-1" />
             </span>
             <span className="text-xs text-[#777]">等待续写内容</span>
+          </div>
+        ) : pictureEdit ? (
+          <div
+            data-picture-edit-output
+            data-picture-edit-mode={pictureEdit.mode}
+            data-picture-edit-source-id={pictureEdit.sourceNodeId}
+            data-picture-edit-edge-id={pictureEdit.edgeId}
+            data-picture-edit-model={pictureEdit.model}
+            data-picture-edit-request-mode={pictureEdit.requestMode}
+            data-picture-edit-mark-count={pictureEdit.marks.length}
+            className="flex flex-col items-center gap-2 px-6 text-center"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-white/[0.05] text-[#858585]">
+              <ScanLine size={23} strokeWidth={1.5} />
+            </span>
+            <span className="text-xs text-[#a0a0a0]">
+              {pictureEdit.mode === "subjectRemove"
+                ? "主体消除结果"
+                : pictureEdit.mode === "subjectModify"
+                  ? "主体修改结果"
+                  : "主体替换结果"}
+            </span>
+            <span className="text-[10px] text-[#626262]">
+              主体编辑 · 等待媒体资源
+            </span>
           </div>
         ) : smartMatting ? (
           <div
@@ -415,6 +488,23 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           onGenerate={submitSmartMatting}
         />
       )}
+      {showSingleNodeEditor &&
+        status === "ready" &&
+        activeTool === "picture-edit" &&
+        pictureEditMode && (
+          <PictureEditPanel
+            zoom={zoom}
+            mode={pictureEditMode}
+            currentTime={currentTime}
+            submitting={pictureEditSubmitting}
+            onCancel={() => {
+              if (pictureEditSubmitting) return;
+              setPictureEditMode(null);
+              setActiveTool("generator");
+            }}
+            onConfirm={submitPictureEdit}
+          />
+        )}
     </div>
   );
 }
@@ -479,4 +569,17 @@ function formatVideoTime(seconds: number): string {
   const minutes = Math.floor(safeSeconds / 60);
   const remainder = safeSeconds % 60;
   return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+}
+
+function getRuntimeDuration(value: number) {
+  if (
+    typeof window === "undefined" ||
+    process.env.NODE_ENV === "production"
+  ) {
+    return value;
+  }
+  const override = Number(
+    new URLSearchParams(window.location.search).get("duration"),
+  );
+  return Number.isFinite(override) && override > 0 ? override : value;
 }

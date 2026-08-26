@@ -44,6 +44,7 @@ VideoNode
     └── VideoContinuationSelector for continuation range selection
     └── SubtitleErasePanel for smart/region subtitle erase
     └── SmartMattingPanel for video portrait matting
+    └── PictureEditPanel for subject remove/modify/replace marking
 ```
 
 ## States
@@ -79,6 +80,12 @@ VideoNode
   guard rather than opening a fabricated editor
 - `智能抠像` replaces the lower generator with a compact `512x48` panel; submit
   creates a linked pending video while preserving source selection
+- `主体消除 / 主体修改 / 主体替换` share `PictureEditPanel` on
+  source-compatible durations. The panel overlays normalized marks on the video,
+  supports point/box/brush/eraser and mode-specific description/replacement fields.
+- subject edit submit shows `分析中`, then creates a linked pending video with
+  `pictureEdit` metadata; the source remains selected and the pending body does not
+  reuse the source poster.
 
 ### Empty Continuation Target
 

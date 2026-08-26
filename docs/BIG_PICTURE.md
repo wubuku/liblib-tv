@@ -249,7 +249,12 @@ ready-video 工具条原先的 `画面编辑 / 片段截取 / 画面裁切` 没�
 重复结果纵向避让。provider/model/task/WEBM/source dimensions/duration 等
 字段是 request-shaped metadata；`--` power、pending body 和 spinner 明确
 表达前端原型边界，不声称真实抠像、透明视频、计费、上传或任务轮询。主体
-消除/修改/替换的完整标注器仍需后续重新提取，不能从当前 guard 脑补。
+消除/修改/替换现在共享 `PictureEditPanel`：在 source-compatible duration
+下提供 normalized point/box/brush 标记、橡皮、逐标记描述/替换图校验、
+本地 undo/redo/reset 和 `分析中` 提交态；提交后创建带 request-shaped
+`pictureEdit` metadata 的 pending video 与 direct source edge。候选标签、
+替换图入口、标记视觉样式和 pending media 仍是 clone-only prototype，不
+声称真实识别、分割、上传或视频处理。
 
 逐帧拉片结果也不是选中分析节点下方的 tab panel。文章 output screenshot 显示三组 `S01-S08` 分镜、`M01-M03` 动态和 BGM 作为画布内持久结果 surface 纵向展开。clone 用 `shot-breakdown-result` 顶层节点表达这些结果，并把 source 完成状态、结果节点和派生边写成一次 history transaction；尺寸和 edge 数量是截图驱动的实现推断，不冒充原站 DOM fact。
 
@@ -450,11 +455,15 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前宽
   `1009px`
+- Batch 31：三类主体编辑共享标注器、point/box/brush/eraser、normalized
+  mark/frame time、modify/replace 校验、局部 undo/redo/reset、`分析中`、
+  pending graph、direct edge、重复槽位、source selection、多选隐藏、
+  `390x844` 裁切和零浏览器错误均通过。
 - Batch 29：顶部 frame menu `160px` 且 trigger center delta `0px`；
   player camera `28x28`；首个 output gap `100` world units、同 Y；
   first/last/current metadata、direct edge、重复避让、source selection、
   单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
-- `npm run docs:check`：224 个 Markdown、524 个本地目标通过
+- `npm run docs:check`：231 个 Markdown、546 个本地目标通过
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

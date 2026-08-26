@@ -55,6 +55,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
 | `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |
+| `PictureEditPanel` | `src/components/PictureEditPanel.tsx` | Shared subject remove/modify/replace mark editor with normalized point/box/brush state, local history, mode-specific validation and pending graph handoff. |
 | `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video `片段重拍` filmstrip + Prompt editor; no continuation branch. |
 | `VideoContinuationSelector` | `src/components/VideoContinuationSelector.tsx` | `660x56` smart-continuation range selector with handle/region drag and target-node handoff. |
 | `SubtitleErasePanel` | `src/components/SubtitleErasePanel.tsx` | Compact smart/region subtitle-erase control bar; region mode owns multi-rectangle editing and hands off to a pending target video. |

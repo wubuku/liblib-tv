@@ -217,11 +217,14 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Duration guard:** On the default `30s` ready-video fixture, the first three subject actions show `视频大于15秒，暂不支持该功能` and do not mutate nodes, edges or history.
 - **Smart matting panel:** `智能抠像` opens a node-centered `512x48` compact lower panel with close, label, unknown power `--` and submit/spinner states. It replaces the ordinary generation panel while active and keeps a `16px` screen-space node gap.
 - **Smart matting graph:** Submit creates one `512x288` pending video plus a direct source edge in one transaction. The result records `volcano-portrait-matting`, `PICTURE_EDIT`, `WEBM`, source dimensions/duration and edge ID; source remains selected, repeated outputs use deterministic vertical slots, and one undo/redo removes/restores the output and edge. No real transparent video is claimed.
+- **Picture edit modes:** On a source-compatible video, `主体消除`、`主体修改` and `主体替换` enter one shared mark editor. The editor exposes `点选 / 框选 / 画笔 / 橡皮`, a normalized mark overlay, per-mark frame time and local candidate label, plus local undo/redo/reset.
+- **Picture edit validation:** Remove accepts marks up to `4`; modify accepts up to `4` and requires a non-empty description for every mark; replace accepts up to `2` and requires a replacement source for every mark. `本地上传 / 历史图库` are local prototype states and do not access files or account data.
+- **Picture edit graph:** Submit shows `分析中`, then creates one pending video and one direct source edge in one graph transaction. Output metadata records mode, marks, descriptions/replacement source, source and edge ID; source remains selected and repeated outputs use deterministic right-side slots. The output body says `主体编辑 · 等待媒体资源` and does not claim real segmentation or video rendering.
 - **Anchor:** The lower panel center equals the video child center, remains screen-sized through zoom, and uses a `16 * zoom` gap.
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py`, `scripts/verify-liblib-batch27.py`, `scripts/verify-liblib-batch28.py`, `scripts/verify-liblib-batch29.py` and `scripts/verify-liblib-batch30.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py`, `scripts/verify-liblib-batch27.py`, `scripts/verify-liblib-batch28.py`, `scripts/verify-liblib-batch29.py`, `scripts/verify-liblib-batch30.py` and `scripts/verify-liblib-batch31.py`.
 
 ## KeyboardShortcutsDialog
 

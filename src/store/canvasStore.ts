@@ -74,6 +74,38 @@ export type PictureEditAction =
   | "subjectModify"
   | "subjectReplace";
 
+export type PictureEditTool = "point" | "box" | "brush" | "eraser";
+
+export interface PictureEditReplacement {
+  source: "upload" | "history";
+  label: string;
+}
+
+export interface PictureEditMark {
+  id: string;
+  tool: Exclude<PictureEditTool, "eraser">;
+  frameSeconds: number;
+  relX: number;
+  relY: number;
+  width: number;
+  height: number;
+  points?: Array<{ x: number; y: number }>;
+  candidate: string;
+  description?: string;
+  replacement?: PictureEditReplacement;
+}
+
+export interface PictureEditMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  sourcePosterUrl?: string;
+  mode: PictureEditAction;
+  marks: PictureEditMark[];
+  edgeId: string;
+  model: "volcano-picture-editor";
+  requestMode: "Remove" | "Modify" | "Replace";
+}
+
 export interface SmartMattingMetadata {
   sourceNodeId: string;
   sourceLabel: string;
@@ -153,6 +185,11 @@ interface CanvasState {
     captureSeconds?: number,
   ) => string | null;
   createSmartMatting: (sourceId: string) => string | null;
+  createPictureEdit: (
+    sourceId: string,
+    mode: PictureEditAction,
+    marks: PictureEditMark[],
+  ) => string | null;
   clearVideoContinuation: (targetId: string) => void;
   completeShotBreakdown: (
     sourceId: string,
@@ -1390,6 +1427,130 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
                 ...item,
                 nodes: [...item.nodes, targetNode],
                 edges: [...item.edges, mattingEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [sourceId],
+        selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  createPictureEdit: (
+    sourceId: string,
+    mode: PictureEditAction,
+    marks: PictureEditMark[],
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source || marks.length === 0) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const sourcePosterUrl =
+      typeof source.data.posterUrl === "string"
+        ? source.data.posterUrl
+        : undefined;
+    const duration =
+      typeof source.data.durationSeconds === "number"
+        ? Math.max(0, source.data.durationSeconds)
+        : 0;
+    const resolution =
+      typeof source.data.resolution === "string"
+        ? source.data.resolution
+        : "1280 × 720";
+    const mediaDimensions = parseVideoResolution(resolution);
+    const dimensions = getDefaultNodeDimensions("video");
+    const position = findAvailableRightSlot(
+      source,
+      canvas.nodes,
+      dimensions,
+      100,
+    );
+    const targetId = createNodeId("picture-edit");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const normalizedMarks = marks.map((mark) => ({
+      ...mark,
+      relX: clampNumber(mark.relX, 0, 1),
+      relY: clampNumber(mark.relY, 0, 1),
+      width: clampNumber(mark.width, 0, 1),
+      height: clampNumber(mark.height, 0, 1),
+      points: mark.points?.map((point) => ({
+        x: clampNumber(point.x, 0, 1),
+        y: clampNumber(point.y, 0, 1),
+      })),
+      replacement: mark.replacement
+        ? { ...mark.replacement }
+        : undefined,
+    }));
+    const pictureEdit: PictureEditMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      sourcePosterUrl,
+      mode,
+      marks: normalizedMarks,
+      edgeId,
+      model: "volcano-picture-editor",
+      requestMode:
+        mode === "subjectRemove"
+          ? "Remove"
+          : mode === "subjectModify"
+            ? "Modify"
+            : "Replace",
+    };
+    const modeLabel =
+      mode === "subjectRemove"
+        ? "主体消除"
+        : mode === "subjectModify"
+          ? "主体修改"
+          : "主体替换";
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `${modeLabel}-${sourceLabel}`,
+        model: "volcano-picture-editor",
+        status: "pending",
+        durationSeconds: duration,
+        resolution,
+        generatorType: "PICTURE_EDIT",
+        isPictureEditOutput: true,
+        pictureEdit,
+        sourceWidth: mediaDimensions.width,
+        sourceHeight: mediaDimensions.height,
+      },
+    };
+    const pictureEditEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, pictureEditEdge],
               }
             : item,
         ),
