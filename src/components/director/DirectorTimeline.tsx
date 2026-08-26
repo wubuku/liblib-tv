@@ -1,22 +1,29 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import {
   Camera,
+  ChartSpline,
+  Circle,
   DiamondPlus,
+  Minus,
   Move3D,
   Pause,
   Play,
   Plus,
+  RectangleHorizontal,
   Repeat2,
+  Route,
   SkipBack,
   SkipForward,
   Trash2,
+  Waypoints,
   ZoomIn,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
+import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
 
 function formatTimelineTime(seconds: number): string {
   const safeSeconds = Math.max(0, seconds);
@@ -63,7 +70,26 @@ export function DirectorTimeline() {
   const seekTimelineKeyframe = useDirectorStore(
     (state) => state.seekTimelineKeyframe,
   );
+  const setTimelineEditorMode = useDirectorStore(
+    (state) => state.setTimelineEditorMode,
+  );
+  const createMotionPath = useDirectorStore(
+    (state) => state.createMotionPath,
+  );
+  const toggleMotionPathEnabled = useDirectorStore(
+    (state) => state.toggleMotionPathEnabled,
+  );
+  const toggleMotionPathOrient = useDirectorStore(
+    (state) => state.toggleMotionPathOrient,
+  );
+  const deleteMotionPath = useDirectorStore(
+    (state) => state.deleteMotionPath,
+  );
+  const timelineRootRef = useRef<HTMLElement>(null);
   const timelineCanvasRef = useRef<HTMLDivElement>(null);
+  const pathTriggerRef = useRef<HTMLButtonElement>(null);
+  const pathMenuRef = useRef<HTMLDivElement>(null);
+  const [pathMenuLeft, setPathMenuLeft] = useState<number | null>(null);
 
   useEffect(() => {
     if (!timeline.isPlaying) return;
@@ -92,6 +118,11 @@ export function DirectorTimeline() {
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
     null;
+  const selectedPath = selectedTrack?.motionPathId
+    ? timeline.motionPaths.find(
+        (path) => path.id === selectedTrack.motionPathId,
+      ) ?? null
+    : null;
   const hasSelectedObjectTrack = timeline.tracks.some(
     (track) => track.objectId === selectedObjectId,
   );
@@ -103,6 +134,43 @@ export function DirectorTimeline() {
     timeline.duration > 0
       ? (timeline.currentTime / timeline.duration) * 100
       : 0;
+
+  useEffect(() => {
+    if (pathMenuLeft === null) return;
+    const close = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        (pathMenuRef.current?.contains(target) ||
+          pathTriggerRef.current?.contains(target))
+      ) {
+        return;
+      }
+      setPathMenuLeft(null);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPathMenuLeft(null);
+    };
+    window.addEventListener("pointerdown", close);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      window.removeEventListener("pointerdown", close);
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [pathMenuLeft]);
+
+  const togglePathMenu = () => {
+    if (pathMenuLeft !== null) {
+      setPathMenuLeft(null);
+      return;
+    }
+    const root = timelineRootRef.current?.getBoundingClientRect();
+    const trigger = pathTriggerRef.current?.getBoundingClientRect();
+    if (!root || !trigger) return;
+    setPathMenuLeft(
+      Math.max(8, Math.min(trigger.left - root.left, root.width - 176)),
+    );
+  };
 
   const seekFromClientX = (clientX: number) => {
     const element = timelineCanvasRef.current;
@@ -139,8 +207,10 @@ export function DirectorTimeline() {
 
   return (
     <section
+      ref={timelineRootRef}
       data-director-timeline
-      className="flex h-[196px] shrink-0 flex-col border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]"
+      data-director-timeline-mode={timeline.editorMode}
+      className="relative flex h-[196px] shrink-0 flex-col overflow-visible border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]"
     >
       <header
         data-director-timeline-controls
@@ -219,6 +289,80 @@ export function DirectorTimeline() {
           自动关键帧
         </button>
         <button
+          ref={pathTriggerRef}
+          type="button"
+          data-director-create-motion-path
+          disabled={!selectedTrack}
+          aria-expanded={pathMenuLeft !== null}
+          onClick={togglePathMenu}
+          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+        >
+          <Route size={13} />
+          创建运动轨迹
+        </button>
+        <button
+          type="button"
+          data-director-open-curve-editor
+          disabled={!selectedTrack}
+          aria-pressed={timeline.editorMode === "curve"}
+          onClick={() => setTimelineEditorMode("curve")}
+          className={cn(
+            "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]",
+            timeline.editorMode === "curve" &&
+              "bg-white/[0.07] text-[#5ddcff]",
+          )}
+        >
+          <ChartSpline size={13} />
+          曲线编辑器
+        </button>
+        {selectedPath ? (
+          <>
+            <button
+              type="button"
+              data-director-motion-path-enabled={selectedPath.id}
+              aria-label="启用曲线"
+              title="启用曲线"
+              aria-pressed={selectedPath.enabled}
+              onClick={() => toggleMotionPathEnabled(selectedPath.id)}
+              className={cn(
+                "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
+                selectedPath.enabled && "bg-white/[0.07] text-[#5ddcff]",
+              )}
+            >
+              <Route size={13} />
+              启用曲线
+            </button>
+            {selectedTrack?.kind === "transform" ? (
+              <button
+                type="button"
+                data-director-motion-path-orient={selectedPath.id}
+                aria-label="绑定对象沿路径朝向"
+                title="绑定对象沿路径朝向"
+                aria-pressed={selectedPath.orientToPath}
+                onClick={() => toggleMotionPathOrient(selectedPath.id)}
+                className={cn(
+                  "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
+                  selectedPath.orientToPath &&
+                    "bg-white/[0.07] text-[#5ddcff]",
+                )}
+              >
+                <Waypoints size={13} />
+                沿路径朝向
+              </button>
+            ) : null}
+            <button
+              type="button"
+              data-director-delete-motion-path={selectedPath.id}
+              aria-label="删除曲线"
+              title="删除曲线"
+              onClick={() => deleteMotionPath(selectedPath.id)}
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d]"
+            >
+              <Trash2 size={13} />
+            </button>
+          </>
+        ) : null}
+        <button
           type="button"
           data-director-add-track
           disabled={!selectedObjectId || hasSelectedObjectTrack}
@@ -268,6 +412,50 @@ export function DirectorTimeline() {
         </label>
       </header>
 
+      {pathMenuLeft !== null ? (
+        <div
+          ref={pathMenuRef}
+          data-director-motion-path-menu
+          className="absolute top-10 z-50 w-44 border border-white/[0.1] bg-[#232323] p-1 shadow-[0_12px_30px_rgba(0,0,0,0.42)]"
+          style={{ left: pathMenuLeft }}
+        >
+          {[
+            {
+              preset: "line" as const,
+              label: "直线路径",
+              Icon: Minus,
+            },
+            {
+              preset: "ring" as const,
+              label: "圆环路径",
+              Icon: Circle,
+            },
+            {
+              preset: "rectangle" as const,
+              label: "矩形路径",
+              Icon: RectangleHorizontal,
+            },
+          ].map(({ preset, label, Icon }) => (
+            <button
+              key={preset}
+              type="button"
+              data-director-motion-path-preset={preset}
+              onClick={() => {
+                createMotionPath(preset);
+                setPathMenuLeft(null);
+              }}
+              className="flex h-8 w-full items-center gap-2 px-2 text-left text-[11px] text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+            >
+              <Icon size={13} className="text-[#777]" />
+              {label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      {timeline.editorMode === "curve" ? (
+        <DirectorCurveEditor />
+      ) : (
       <div className="flex min-h-0 flex-1">
         <div className="w-[220px] shrink-0 border-r border-white/[0.07] max-[899px]:w-[132px]">
           <div className="flex h-7 items-center px-2 text-[10px] text-[#666]">
@@ -311,6 +499,13 @@ export function DirectorTimeline() {
                     >
                       {track.label}
                     </span>
+                    {track.motionPathId ? (
+                      <Route
+                        size={11}
+                        className="shrink-0 text-[#5ddcff]"
+                        aria-label="已绑定运动轨迹"
+                      />
+                    ) : null}
                   </button>
                   {selected ? (
                     <button
@@ -420,6 +615,7 @@ export function DirectorTimeline() {
           </div>
         </div>
       </div>
+      )}
     </section>
   );
 }

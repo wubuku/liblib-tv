@@ -11,7 +11,7 @@ import {
   Rotate3D,
   Scaling,
 } from "lucide-react";
-import { OrbitControls, TransformControls } from "@react-three/drei";
+import { Line, OrbitControls, TransformControls } from "@react-three/drei";
 import { Canvas, useThree, type ThreeEvent } from "@react-three/fiber";
 import {
   MathUtils,
@@ -294,6 +294,54 @@ function SceneObject({ object }: { object: DirectorObject }) {
   );
 }
 
+function DirectorMotionPaths() {
+  const timeline = useDirectorStore((state) => state.timeline);
+  const viewMode = useDirectorStore((state) => state.viewMode);
+  const isCapturing = useDirectorStore((state) => state.isCapturing);
+
+  if (viewMode !== "director" || isCapturing) return null;
+
+  return (
+    <group>
+      {timeline.motionPaths
+        .filter((path) => path.enabled)
+        .map((path) => {
+          const selected = path.id === timeline.selectedMotionPathId;
+          const points = path.closed
+            ? [...path.points, path.points[0]]
+            : path.points;
+          return (
+            <group key={path.id}>
+              <Line
+                points={points}
+                color={selected ? "#09caf5" : "#6c7d86"}
+                lineWidth={selected ? 2.2 : 1.2}
+                transparent
+                opacity={selected ? 0.95 : 0.52}
+                depthTest={false}
+              />
+              {selected
+                ? path.points.map((point, index) => (
+                    <mesh
+                      key={`${path.id}-anchor-${index}`}
+                      position={point}
+                      renderOrder={3}
+                    >
+                      <sphereGeometry args={[0.055, 12, 8]} />
+                      <meshBasicMaterial
+                        color={index === 0 ? "#ffffff" : "#09caf5"}
+                        depthTest={false}
+                      />
+                    </mesh>
+                  ))
+                : null}
+            </group>
+          );
+        })}
+    </group>
+  );
+}
+
 function DirectorScene() {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
@@ -325,6 +373,7 @@ function DirectorScene() {
       {objects.map((object) => (
         <SceneObject key={object.id} object={object} />
       ))}
+      <DirectorMotionPaths />
     </>
   );
 }
@@ -475,6 +524,7 @@ export function DirectorViewport({
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const timeline = useDirectorStore((state) => state.timeline);
   const setTransformMode = useDirectorStore((state) => state.setTransformMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
@@ -541,6 +591,31 @@ export function DirectorViewport({
             onCaptured={addCapture}
           />
         </Canvas>
+      </div>
+
+      <div
+        data-director-motion-path-layer
+        data-director-motion-path-count={timeline.motionPaths.length}
+        className="sr-only"
+      >
+        {timeline.motionPaths.map((path) => (
+          <span
+            key={path.id}
+            data-director-motion-path-id={path.id}
+            data-director-motion-path-preset={path.preset}
+            data-director-motion-path-visible={
+              path.enabled && viewMode === "director" && !isCapturing
+            }
+          >
+            {path.name}
+            {path.points.map((_, index) => (
+              <span
+                key={`${path.id}-semantic-anchor-${index}`}
+                data-director-motion-path-anchor={index}
+              />
+            ))}
+          </span>
+        ))}
       </div>
 
       <AspectFrame frameRect={frameRect} />

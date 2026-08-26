@@ -5,6 +5,12 @@ import {
   clampDirectorTimelineTime,
   sampleDirectorTimelineTrack,
 } from "@/components/director/directorTimelineMath";
+import {
+  createDirectorSpeedCurve,
+  getDirectorPathYaw,
+  getDirectorTrackProgress,
+  sampleDirectorMotionPath,
+} from "@/components/director/directorMotionMath";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -72,21 +78,50 @@ export interface DirectorCameraKeyframe {
   value: DirectorCameraKeyframeValue;
 }
 
+export type DirectorSpeedCurvePreset =
+  | "linear"
+  | "smooth"
+  | "ease-in"
+  | "ease-out"
+  | "ease-in-out"
+  | "custom";
+
+export interface DirectorSpeedCurve {
+  preset: DirectorSpeedCurvePreset;
+  control1: [number, number];
+  control2: [number, number];
+}
+
+export type DirectorMotionPathPreset = "line" | "ring" | "rectangle";
+
+export interface DirectorMotionPath {
+  id: string;
+  objectId: string;
+  name: string;
+  preset: DirectorMotionPathPreset;
+  enabled: boolean;
+  orientToPath: boolean;
+  closed: boolean;
+  points: DirectorTuple3[];
+}
+
+interface DirectorTimelineTrackBase {
+  id: string;
+  objectId: string;
+  label: string;
+  motionPathId?: string;
+  speedCurve: DirectorSpeedCurve;
+}
+
 export type DirectorTimelineTrack =
-  | {
-      id: string;
+  | (DirectorTimelineTrackBase & {
       kind: "transform";
-      objectId: string;
-      label: string;
       keyframes: DirectorTransformKeyframe[];
-    }
-  | {
-      id: string;
+    })
+  | (DirectorTimelineTrackBase & {
       kind: "camera";
-      objectId: string;
-      label: string;
       keyframes: DirectorCameraKeyframe[];
-    };
+    });
 
 export interface DirectorTimelineState {
   duration: number;
@@ -96,8 +131,11 @@ export interface DirectorTimelineState {
   zoom: number;
   autoKeyframe: boolean;
   tracks: DirectorTimelineTrack[];
+  motionPaths: DirectorMotionPath[];
   selectedTrackId: string | null;
   selectedKeyframeId: string | null;
+  selectedMotionPathId: string | null;
+  editorMode: "timeline" | "curve";
 }
 
 interface DirectorState {
@@ -150,6 +188,23 @@ interface DirectorState {
   deleteTimelineKeyframe: (keyframeId?: string) => void;
   seekTimelineKeyframe: (direction: -1 | 1) => void;
   recordObjectKeyframe: (objectId: string, force?: boolean) => void;
+  setTimelineEditorMode: (mode: "timeline" | "curve") => void;
+  setTrackSpeedCurvePreset: (
+    trackId: string,
+    preset: Exclude<DirectorSpeedCurvePreset, "custom">,
+  ) => void;
+  setTrackSpeedCurveControl: (
+    trackId: string,
+    handle: 1 | 2,
+    point: [number, number],
+  ) => void;
+  createMotionPath: (
+    preset: DirectorMotionPathPreset,
+    trackId?: string,
+  ) => void;
+  toggleMotionPathEnabled: (pathId?: string) => void;
+  toggleMotionPathOrient: (pathId?: string) => void;
+  deleteMotionPath: (pathId?: string) => void;
 }
 
 const defaultObjects: DirectorObject[] = [
@@ -285,6 +340,7 @@ function createDefaultTimeline(): DirectorTimelineState {
         kind: "transform",
         objectId: character.id,
         label: `${character.name} · 变换`,
+        speedCurve: createDirectorSpeedCurve(),
         keyframes: [
           {
             id: "director-keyframe-character-0",
@@ -316,6 +372,7 @@ function createDefaultTimeline(): DirectorTimelineState {
         kind: "camera",
         objectId: camera.id,
         label: `${camera.name} · 机位`,
+        speedCurve: createDirectorSpeedCurve(),
         keyframes: [
           {
             id: "director-keyframe-camera-0",
@@ -351,8 +408,11 @@ function createDefaultTimeline(): DirectorTimelineState {
         ],
       },
     ],
+    motionPaths: [],
     selectedTrackId: "director-track-character-lead-transform",
     selectedKeyframeId: "director-keyframe-character-0",
+    selectedMotionPathId: null,
+    editorMode: "timeline",
   };
 }
 
@@ -367,6 +427,7 @@ function createTrackForObject(
       kind: "camera",
       objectId: object.id,
       label: `${object.name} · 机位`,
+      speedCurve: createDirectorSpeedCurve(),
       keyframes: [
         {
           id: `${id}-keyframe-${Math.round(time * 1000)}`,
@@ -381,6 +442,7 @@ function createTrackForObject(
     kind: "transform",
     objectId: object.id,
     label: `${object.name} · 变换`,
+    speedCurve: createDirectorSpeedCurve(),
     keyframes: [
       {
         id: `${id}-keyframe-${Math.round(time * 1000)}`,
@@ -391,32 +453,111 @@ function createTrackForObject(
   };
 }
 
+function createMotionPathForTrack(
+  object: DirectorObject,
+  preset: DirectorMotionPathPreset,
+): DirectorMotionPath {
+  const origin: DirectorTuple3 = [...object.transform.position];
+  let points: DirectorTuple3[];
+  let closed = false;
+
+  if (preset === "ring") {
+    const radius = 1.4;
+    const centerX = origin[0] - radius;
+    points = Array.from({ length: 16 }, (_, index) => {
+      const angle = (index / 16) * Math.PI * 2;
+      return [
+        centerX + Math.cos(angle) * radius,
+        origin[1],
+        origin[2] + Math.sin(angle) * radius,
+      ];
+    });
+    closed = true;
+  } else if (preset === "rectangle") {
+    points = [
+      origin,
+      [origin[0] + 2.6, origin[1], origin[2]],
+      [origin[0] + 2.6, origin[1], origin[2] + 1.8],
+      [origin[0], origin[1], origin[2] + 1.8],
+    ];
+    closed = true;
+  } else {
+    points = [
+      origin,
+      [origin[0] + 3.2, origin[1], origin[2] + 1.1],
+    ];
+  }
+
+  const fallbackName =
+    object.kind === "camera"
+      ? "机位自动帧轨迹"
+      : object.kind === "character"
+        ? "角色自动帧轨迹"
+        : "道具自动帧轨迹";
+
+  return {
+    id: `director-motion-path-${object.id}-${Date.now()}`,
+    objectId: object.id,
+    name: fallbackName,
+    preset,
+    enabled: true,
+    orientToPath: false,
+    closed,
+    points,
+  };
+}
+
 function applyTimelineAtTime(
   objects: DirectorObject[],
-  tracks: DirectorTimelineTrack[],
+  timeline: DirectorTimelineState,
   time: number,
 ): DirectorObject[] {
   const tracksByObject = new Map(
-    tracks.map((track) => [track.objectId, track]),
+    timeline.tracks.map((track) => [track.objectId, track]),
+  );
+  const pathsById = new Map(
+    timeline.motionPaths.map((path) => [path.id, path]),
   );
   return objects.map((object) => {
     const track = tracksByObject.get(object.id);
     if (!track) return object;
     const sample = sampleDirectorTimelineTrack(track, time);
     if (!sample) return object;
+    const path = track.motionPathId
+      ? pathsById.get(track.motionPathId)
+      : undefined;
+    const pathSample =
+      path?.enabled === true
+        ? sampleDirectorMotionPath(
+            path,
+            getDirectorTrackProgress(track, time),
+          )
+        : null;
     if (sample.kind === "camera" && object.camera) {
       return {
         ...object,
-        transform: cloneTransform(sample.transform),
+        transform: {
+          ...cloneTransform(sample.transform),
+          position: pathSample
+            ? [...pathSample.position]
+            : [...sample.transform.position],
+        },
         camera: {
           fov: sample.fov,
           target: [...sample.target],
         },
       };
     }
+    const transform = cloneTransform(sample.transform);
+    if (pathSample) {
+      transform.position = [...pathSample.position];
+      if (path?.orientToPath) {
+        transform.rotation[1] = getDirectorPathYaw(pathSample.tangent);
+      }
+    }
     return {
       ...object,
-      transform: cloneTransform(sample.transform),
+      transform,
     };
   });
 }
@@ -587,7 +728,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       return {
         objects: applyTimelineAtTime(
           state.objects,
-          state.timeline.tracks,
+          state.timeline,
           currentTime,
         ),
         timeline: {
@@ -610,7 +751,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
         objects: restart
           ? applyTimelineAtTime(
               state.objects,
-              state.timeline.tracks,
+              state.timeline,
               currentTime,
             )
           : state.objects,
@@ -636,7 +777,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       return {
         objects: applyTimelineAtTime(
           state.objects,
-          state.timeline.tracks,
+          state.timeline,
           currentTime,
         ),
         timeline: {
@@ -678,6 +819,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           ...state.timeline,
           selectedTrackId: track.id,
           selectedKeyframeId: null,
+          selectedMotionPathId: track.motionPathId ?? null,
           isPlaying: false,
         },
       };
@@ -692,7 +834,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
         selectedObjectId: track.objectId,
         objects: applyTimelineAtTime(
           state.objects,
-          state.timeline.tracks,
+          state.timeline,
           keyframe.time,
         ),
         timeline: {
@@ -700,6 +842,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           currentTime: keyframe.time,
           selectedTrackId: track.id,
           selectedKeyframeId: keyframe.id,
+          selectedMotionPathId: track.motionPathId ?? null,
           isPlaying: false,
         },
       };
@@ -719,6 +862,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
             ...state.timeline,
             selectedTrackId: existing.id,
             selectedKeyframeId: null,
+            selectedMotionPathId: existing.motionPathId ?? null,
           },
         };
       }
@@ -732,6 +876,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           tracks: [...state.timeline.tracks, track],
           selectedTrackId: track.id,
           selectedKeyframeId: track.keyframes[0]?.id ?? null,
+          selectedMotionPathId: null,
           isPlaying: false,
         },
       };
@@ -744,15 +889,26 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       const tracks = state.timeline.tracks.filter(
         (track) => track.id !== trackId,
       );
+      const removedTrack = state.timeline.tracks.find(
+        (track) => track.id === trackId,
+      );
+      const motionPaths = state.timeline.motionPaths.filter(
+        (path) => path.id !== removedTrack?.motionPathId,
+      );
       return {
         timeline: {
           ...state.timeline,
           tracks,
+          motionPaths,
           selectedTrackId:
             state.timeline.selectedTrackId === trackId
               ? tracks[0]?.id ?? null
               : state.timeline.selectedTrackId,
           selectedKeyframeId: null,
+          selectedMotionPathId:
+            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
+              ? null
+              : state.timeline.selectedMotionPathId,
           isPlaying: false,
         },
       };
@@ -795,15 +951,15 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           (keyframe) => keyframe.id !== keyframeId,
         ),
       })) as DirectorTimelineTrack[];
+      const timeline = { ...state.timeline, tracks };
       return {
         objects: applyTimelineAtTime(
           state.objects,
-          tracks,
+          timeline,
           state.timeline.currentTime,
         ),
         timeline: {
-          ...state.timeline,
-          tracks,
+          ...timeline,
           selectedKeyframeId: null,
           isPlaying: false,
         },
@@ -828,7 +984,7 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       return {
         objects: applyTimelineAtTime(
           state.objects,
-          state.timeline.tracks,
+          state.timeline,
           nextTime,
         ),
         timeline: {
@@ -867,8 +1023,183 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           tracks,
           selectedTrackId: result.track.id,
           selectedKeyframeId: result.keyframeId,
+          selectedMotionPathId: result.track.motionPathId ?? null,
           isPlaying: false,
         },
+      };
+    }),
+
+  setTimelineEditorMode: (mode) =>
+    set((state) => ({
+      timeline: {
+        ...state.timeline,
+        editorMode: mode,
+        isPlaying: false,
+      },
+    })),
+
+  setTrackSpeedCurvePreset: (trackId, preset) =>
+    set((state) => {
+      const tracks = state.timeline.tracks.map((track) =>
+        track.id === trackId
+          ? { ...track, speedCurve: createDirectorSpeedCurve(preset) }
+          : track,
+      ) as DirectorTimelineTrack[];
+      const timeline = { ...state.timeline, tracks, isPlaying: false };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  setTrackSpeedCurveControl: (trackId, handle, point) =>
+    set((state) => {
+      const controlPoint: [number, number] = [
+        Math.min(Math.max(Number.isFinite(point[0]) ? point[0] : 0, 0), 1),
+        Math.min(Math.max(Number.isFinite(point[1]) ? point[1] : 0, 0), 1),
+      ];
+      const tracks = state.timeline.tracks.map((track) =>
+        track.id === trackId
+          ? {
+              ...track,
+              speedCurve: {
+                ...track.speedCurve,
+                preset: "custom" as const,
+                [handle === 1 ? "control1" : "control2"]: controlPoint,
+              },
+            }
+          : track,
+      ) as DirectorTimelineTrack[];
+      const timeline = { ...state.timeline, tracks, isPlaying: false };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  createMotionPath: (preset, requestedTrackId) =>
+    set((state) => {
+      const trackId = requestedTrackId ?? state.timeline.selectedTrackId;
+      const track = state.timeline.tracks.find((item) => item.id === trackId);
+      const object = state.objects.find(
+        (item) => item.id === track?.objectId,
+      );
+      if (!track || !object) return state;
+      const path = createMotionPathForTrack(object, preset);
+      const tracks = state.timeline.tracks.map((item) =>
+        item.id === track.id ? { ...item, motionPathId: path.id } : item,
+      ) as DirectorTimelineTrack[];
+      const motionPaths = [
+        ...state.timeline.motionPaths.filter(
+          (item) => item.id !== track.motionPathId,
+        ),
+        path,
+      ];
+      const timeline: DirectorTimelineState = {
+        ...state.timeline,
+        tracks,
+        motionPaths,
+        selectedTrackId: track.id,
+        selectedKeyframeId: null,
+        selectedMotionPathId: path.id,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  toggleMotionPathEnabled: (requestedPathId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      if (!pathId) return state;
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === pathId ? { ...path, enabled: !path.enabled } : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: pathId,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  toggleMotionPathOrient: (requestedPathId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      if (!pathId) return state;
+      const track = state.timeline.tracks.find(
+        (item) => item.motionPathId === pathId,
+      );
+      if (track?.kind !== "transform") return state;
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === pathId
+          ? { ...path, orientToPath: !path.orientToPath }
+          : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: pathId,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  deleteMotionPath: (requestedPathId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      if (!pathId) return state;
+      const tracks = state.timeline.tracks.map((track) =>
+        track.motionPathId === pathId
+          ? { ...track, motionPathId: undefined }
+          : track,
+      ) as DirectorTimelineTrack[];
+      const motionPaths = state.timeline.motionPaths.filter(
+        (path) => path.id !== pathId,
+      );
+      const timeline: DirectorTimelineState = {
+        ...state.timeline,
+        tracks,
+        motionPaths,
+        selectedMotionPathId: null,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
       };
     }),
 }));

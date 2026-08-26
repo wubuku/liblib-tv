@@ -148,7 +148,7 @@ tuples and is sampled by pure helpers.
 
 - [x] Fresh source string context and guide workflow extracted
 - [x] Scope, selectors and acceptance matrix documented
-- [ ] Bezier/path pure helpers and store schema
-- [ ] R3F trajectory and path-driven playback
-- [ ] Path commands and functional curve editor
+- [x] Bezier/path pure helpers and store schema
+- [x] R3F trajectory and path-driven playback
+- [x] Path commands and functional curve editor
 - [ ] Playwright, screenshots, regressions and final documentation

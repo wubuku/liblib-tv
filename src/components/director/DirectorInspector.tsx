@@ -16,11 +16,13 @@ function AxisFields({
   field,
   values,
   onChange,
+  disabledAxes = [],
 }: {
   label: string;
   field: keyof DirectorTransform | "target";
   values: DirectorTuple3;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
+  disabledAxes?: Array<0 | 1 | 2>;
 }) {
   return (
     <fieldset className="border-0 p-0">
@@ -29,7 +31,9 @@ function AxisFields({
         {values.map((value, index) => (
           <label
             key={axisLabels[index]}
-            className="flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60"
+            className={`flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60 ${
+              disabledAxes.includes(index as 0 | 1 | 2) ? "opacity-45" : ""
+            }`}
           >
             <span className="mr-1 text-[10px] text-[#666]">{axisLabels[index]}</span>
             <input
@@ -38,6 +42,7 @@ function AxisFields({
               data-director-transform-field={field}
               data-director-transform-axis={axisLabels[index].toLowerCase()}
               value={Number(value.toFixed(2))}
+              disabled={disabledAxes.includes(index as 0 | 1 | 2)}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -108,7 +113,20 @@ export function DirectorInspector({
   const recordObjectKeyframe = useDirectorStore(
     (state) => state.recordObjectKeyframe,
   );
+  const timeline = useDirectorStore((state) => state.timeline);
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
+  const selectedTrack = timeline.tracks.find(
+    (track) => track.objectId === selected?.id,
+  );
+  const selectedPath = selectedTrack?.motionPathId
+    ? timeline.motionPaths.find(
+        (path) => path.id === selectedTrack.motionPathId,
+      )
+    : undefined;
+  const pathControlsRotationY =
+    selectedTrack?.kind === "transform" &&
+    selectedPath?.enabled === true &&
+    selectedPath.orientToPath;
 
   return (
     <section
@@ -189,11 +207,20 @@ export function DirectorInspector({
                 label="旋转"
                 field="rotation"
                 values={selected.transform.rotation}
+                disabledAxes={pathControlsRotationY ? [1] : []}
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "rotation", axis, value);
                   recordObjectKeyframe(selected.id);
                 }}
               />
+              {pathControlsRotationY ? (
+                <p
+                  data-director-motion-path-rotation-hint
+                  className="text-[10px] leading-4 text-[#7298a2]"
+                >
+                  已开启沿路径朝向，Y 轴旋转由运动轨迹控制
+                </p>
+              ) : null}
               <AxisFields
                 label="缩放"
                 field="scale"

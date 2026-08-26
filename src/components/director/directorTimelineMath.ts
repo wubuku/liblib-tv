@@ -4,6 +4,7 @@ import type {
   DirectorTransform,
   DirectorTuple3,
 } from "@/store/directorStore";
+import { remapDirectorTrackTime } from "@/components/director/directorMotionMath";
 
 export type DirectorTimelineSample =
   | {
@@ -69,12 +70,13 @@ export function sampleDirectorTimelineTrack(
   track: DirectorTimelineTrack,
   time: number,
 ): DirectorTimelineSample | null {
+  const sampledTime = remapDirectorTrackTime(track, time);
   if (track.kind === "camera") {
     const keyframes = track.keyframes;
     if (keyframes.length === 0) return null;
     const first = keyframes[0];
     const last = keyframes[keyframes.length - 1];
-    if (time <= first.time) {
+    if (sampledTime <= first.time) {
       return {
         kind: "camera",
         transform: first.value.transform,
@@ -82,7 +84,7 @@ export function sampleDirectorTimelineTrack(
         fov: first.value.fov,
       };
     }
-    if (time >= last.time) {
+    if (sampledTime >= last.time) {
       return {
         kind: "camera",
         transform: last.value.transform,
@@ -90,11 +92,13 @@ export function sampleDirectorTimelineTrack(
         fov: last.value.fov,
       };
     }
-    const nextIndex = keyframes.findIndex((keyframe) => keyframe.time >= time);
+    const nextIndex = keyframes.findIndex(
+      (keyframe) => keyframe.time >= sampledTime,
+    );
     const previous = keyframes[Math.max(0, nextIndex - 1)];
     const next = keyframes[nextIndex];
     const span = Math.max(next.time - previous.time, Number.EPSILON);
-    const progress = (time - previous.time) / span;
+    const progress = (sampledTime - previous.time) / span;
     const value = interpolateCamera(previous.value, next.value, progress);
     return {
       kind: "camera",
@@ -108,17 +112,19 @@ export function sampleDirectorTimelineTrack(
   if (keyframes.length === 0) return null;
   const first = keyframes[0];
   const last = keyframes[keyframes.length - 1];
-  if (time <= first.time) {
+  if (sampledTime <= first.time) {
     return { kind: "transform", transform: first.value };
   }
-  if (time >= last.time) {
+  if (sampledTime >= last.time) {
     return { kind: "transform", transform: last.value };
   }
-  const nextIndex = keyframes.findIndex((keyframe) => keyframe.time >= time);
+  const nextIndex = keyframes.findIndex(
+    (keyframe) => keyframe.time >= sampledTime,
+  );
   const previous = keyframes[Math.max(0, nextIndex - 1)];
   const next = keyframes[nextIndex];
   const span = Math.max(next.time - previous.time, Number.EPSILON);
-  const progress = (time - previous.time) / span;
+  const progress = (sampledTime - previous.time) / span;
   return {
     kind: "transform",
     transform: interpolateTransform(previous.value, next.value, progress),
