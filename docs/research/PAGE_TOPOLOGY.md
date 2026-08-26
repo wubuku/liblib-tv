@@ -56,8 +56,8 @@ See [`components/ScriptHeader.spec.md`](components/ScriptHeader.spec.md) before 
 - **Background:** `#171717` (`bg-canvas` token).
 - **Contents:** Nodes (script, image, video, etc.) connected by custom `DeletableEdge` paths.
 - **Interaction model:** Pan + Zoom + Drag (React Flow), with `panOnScroll`, `zoomOnScroll`, `panOnDrag` enabled.
-- **Defaults:** `fitView`, `minZoom=0.1`, `maxZoom=2`, `snapGrid=[20, 20]`.
-- **Backgrounds:** Optional dot grid via `<Background>` component (toggled by `useUIStore.showGrid`).
+- **Viewport bounds:** controlled viewport state, `minZoom=0.1`, `maxZoom=8`, `snapGrid=[20, 20]`; desktop/compact source-derived canvases use route-owned initial viewport baselines.
+- **Backgrounds:** Optional dot grid via `<Background>` reads `useUIStore.showGrid`. The store still has `toggleGrid`, but the current shell has no grid command.
 
 ### 5. Following Status Banner (historical, not mounted)
 
@@ -89,6 +89,7 @@ The earlier purple `正在跟随 / 取消ESC` banner is not part of the current 
 - The current clone has two separate bottom command groups: the centered primary-entry toolbar (`LeftSidebar`) and lower-left canvas controls (`BottomToolbar`).
 - The handle is positioned and styled in `globals.css` (see `/* Node Handle */` block). The handle is the connection source — drag from it to create edges.
 - Per-node topology/structure details live in their component specs under [`components/`](./components/). This page only describes page-level layout.
+- Top-level state ownership, close paths and the boundary with node-relative surfaces live in [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](./LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md).
 
 ## Related
 

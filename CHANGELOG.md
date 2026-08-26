@@ -44,6 +44,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and known transaction risks.
 - Synchronized formal documentation with the stable Batch 46 verifier and
   moved the explicit parallel-WIP boundary to Batch 47.
+- Added a LibTV UI overlay runtime catalog covering actual store authority,
+  mount owners, per-surface close paths, keyboard/Director boundaries,
+  node-relative anchoring strategies and unmounted compatibility state.
+- Synchronized formal documentation with the stable Batch 47 model-library
+  verifier and Batch 35-47 serial regression.
+- Moved the explicit parallel-WIP documentation boundary to the planned Batch
+  48 local model-library persistence slice.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

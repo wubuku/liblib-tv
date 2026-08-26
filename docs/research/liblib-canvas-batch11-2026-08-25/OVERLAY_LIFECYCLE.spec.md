@@ -1,5 +1,9 @@
 # Overlay Lifecycle Specification
 
+> Historical Batch 11 contract. For the current mount-owner, close-path,
+> Director and compatibility-state audit, read
+> [`../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md).
+
 ## Scope
 
 This contract covers the LibTV route's top-level canvas surfaces. It does not unify LibTV and FrameOS state.

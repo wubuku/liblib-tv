@@ -16,7 +16,7 @@
 - `CHANGELOG.md`：混合了上游模板历史和本项目 FrameOS 迭代记录。
 - `.codex/skills/` / `.claude/skills/`：已有 `clone-website` 技能同步机制。
 
-> 维护说明（2026-08-27）：本节是 2026-08-25 文档体系迁移时的审计快照；Batch 研究已继续推进到 Batch 47，当前验证脚本实际覆盖 Batch 4-33、35-46，Batch 46 已稳定；Batch 47 的稳定 HEAD 只有 evidence/plan 交接，当前并行实现仍是未验证 WIP。现状漂移与修正记录见 [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)，当前指引与历史合同的替代关系见 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md)。
+> 维护说明（2026-08-27）：本节是 2026-08-25 文档体系迁移时的审计快照；Batch 研究已继续推进到 Batch 48，当前验证脚本实际覆盖 Batch 4-33、35-47，Batch 47 已形成 focused verifier 和 Batch 35-47 serial regression；Batch 48 当前是 evidence/plan/contract 已保护、implementation pending 的并行 WIP。现状漂移与修正记录见 [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)，当前指引与历史合同的替代关系见 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md)。
 
 ### 主要缺口
 
@@ -101,7 +101,7 @@ docs/
 - 新 agent 从 `AGENTS.md` 能在 2 次跳转内找到架构、开发、质量和验证文档；
 - 人类从根 `README.md` 能在 3 次跳转内找到两条路线、运行地址、研究入口和已知边界；
 - `docs/index.md` 覆盖所有正式 P1 文档、研究入口、生命周期入口；
-- `docs/research/README.md` 覆盖两条路线、组件规格、Batch 3-46、原站审计和 Seedance 研究；专项 verifier 的实际范围另见 [`docs/HARNESS.md`](HARNESS.md)。
+- `docs/research/README.md` 覆盖两条路线、组件规格、Batch 3-48、原站审计和 Seedance 研究；专项 verifier 的实际范围另见 [`docs/HARNESS.md`](HARNESS.md)。
 - 技能包不依赖源目录或机器外文件；
 - 文档相对链接无死链；
 - `npm run check` 通过；

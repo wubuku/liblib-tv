@@ -95,7 +95,7 @@ The LibTV batch scripts use independent pages when state contamination is possib
 python3 scripts/verify-liblib-batch<N>.py
 ```
 
-当前专项 verifier 覆盖 Batch 4-33、35-46；Batch 34 是 research-only，Batch 47 的稳定 HEAD 只有 evidence/plan 交接，当前并行实现 WIP 尚无专项 verifier，均不应被隐式纳入脚本循环。
+当前专项 verifier 覆盖 Batch 4-33、35-47；Batch 34 是 research-only，Batch 48 当前只有 evidence/plan/contract 与 implementation-pending 交接，均不应被隐式纳入脚本循环。
 
 They check DOM geometry, interaction lifecycle, screenshots and console errors. Treat the corresponding `docs/design-references/` images as dated evidence, not as an automatically current screenshot.
 

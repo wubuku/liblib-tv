@@ -211,6 +211,8 @@ camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zu
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
+这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
+
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。
 
 整理预览快照也属于页面局部状态。节点位置变化进入 `canvasStore` 的 graph history，viewport 只随预览快照恢复，不进入通用 undo/redo。
@@ -406,6 +408,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`：现有回归脚本对当前源站合同的覆盖、历史断言和授权后测试队列
 - `docs/research/liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md`：获批的研究-only 执行顺序、安全边界、产出和授权门槛
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md`：LibTV UI 状态层级、浮层替换、预览和 graph mutation 转换合同
+- `docs/research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`：当前 overlay state、mount owner、关闭路径、键盘边界、Director 例外和节点锚点策略
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md`：五项主推能力的共享底座、依赖关系、风险登记和研究优先级队列
 - `docs/research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`：编码授权前的继续研究、授权条件、fixture 规格和停止闸门
 - `docs/research/liblib-live-2026-08-25/*.json`：10 节点、11 边与首屏 DOM 的结构化抽取
@@ -444,7 +447,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-46 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-47 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -466,7 +469,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 1. 先确认目标是 LibTV 还是 FrameOS。
 2. 读对应 route page，确认 renderer 和 overlay 的真实挂载关系。
-3. 读对应 store；涉及普通 LibTV graph 时同时读 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)，确认状态归属和 mutation point。
+3. 读对应 store；涉及普通 LibTV graph 时同时读 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)，涉及 page/node overlay 时读 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)，确认状态归属、mount owner 和 mutation point。
 4. 对照原站证据，而不是只对照旧实施文档。
 5. 修改后至少检查两个路由是否仍可渲染。
 
@@ -508,7 +511,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch46.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch47.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
   和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
   helper-free capture、回流 history、移动抽屉、typed timeline、关键帧、
@@ -525,9 +528,12 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   group track、scrub/play 像素变化、ungroup 保留和移动端边界已记录通过
 - Batch 46：摄像机截图 tabs、空态/分组图库、active selection、全屏 viewer、
   zoom/Escape、单张/批量回画布、清空确认、已回流节点保留和移动端边界已记录通过
-- Batch 47：稳定 HEAD 只有模型库 evidence、固定上游考古、计划、合同和
-  implementation-pending 交接；共享工作区中的并行实现 WIP 尚无专项 verifier，
-  不纳入上述验证基线
+- Batch 47：模型库 trigger、五类 tab、clone-owned proxy cards、可序列化 prop
+  插入、tree/Inspector selection、R3F 像素变化、`我的模型` 空态、Escape/outside
+  dismissal 和移动端边界已记录通过；真实模型/环境资产加载不在有界合同内
+- Batch 48：浏览器本地 FBX/OBJ descriptor、持久化卡片、重新加入场景和实例
+  清理已有 evidence/plan/contract，但实现、专项 verifier 和 maturity assessment
+  尚未完成，不纳入上述验证基线
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

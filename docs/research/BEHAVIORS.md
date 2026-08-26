@@ -18,9 +18,10 @@
 - **Primary panel state:** `move`, `toolbox`, `material`, `character`, `history` and `tutorial` are selected by `useUIStore.activePrimaryPanel`, not component-local state.
 - **Mutual exclusion:** Opening a top-level surface closes the other primary panel, add-node panel, shortcuts, canvas dropdown, asset drawer, share menu, Agent and zoom menu.
 - **Modal boundary:** Character and history modals still use their own backdrop; the backdrop blocks clicks to the canvas and bottom toolbar until the modal is closed.
-- **Mode lifecycle:** Entering storyboard mode opens Agent after clearing other top-level surfaces; returning to workbench closes Agent.
-- **Escape:** `Escape` invokes `closeAllPanels`, which clears the primary panel and zoom menu as well as the other top-level surfaces.
+- **Mode lifecycle:** Entering storyboard mode opens Agent after clearing other top-level surfaces; returning to workbench closes Agent. Agent is an entry transition, not a storyboard invariant: it can be closed while storyboard remains active.
+- **Escape:** Outside Director, `Escape` invokes `closeAllPanels`, clears graph selection and closes the primary/zoom/other top-level surfaces. It intentionally does not clear the route-local organize confirmation. Director owns its own Escape state machine.
 - **Verification:** `scripts/verify-liblib-batch11.py` and `scripts/verify-liblib-batch18.py`.
+- **Current runtime catalog:** [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) records mount owners, close paths, unmounted compatibility state, keyboard boundaries and node-relative surface ownership.
 
 ### Storyboard Mode
 
@@ -195,7 +196,7 @@
 - `Tab` — Open the add-node panel
 - `Option/Alt+Shift+F` — Arrange canvas
 - `Escape` — Deselect selection + close panels (`useUIStore.closeAllPanels` + `selectNode(null)`)
-- `Delete` / `Backspace` — Delete selected node (calls `useCanvasStore.removeNode`)
+- `Delete` / `Backspace` — Delete the current selection through `useCanvasStore.removeSelectedNodes`
 - `Cmd/Ctrl+0` — Fit the canvas
 - `Cmd/Ctrl++` / `Cmd/Ctrl+-` — Zoom in/out
 - `V` / `H` — Select/move tool and hand tool
@@ -281,9 +282,9 @@ See [`DeletableEdge.spec.md`](./components/DeletableEdge.spec.md) for full detai
 - Empty copy distinguishes no graph nodes from no media assets.
 - Evidence and verification: `docs/research/liblib-canvas-batch17-2026-08-25/` and `scripts/verify-liblib-batch17.py`.
 
-### VIP + Credits Button
-- Click → opens membership store (not implemented in clone).
-- The button shows "⚡ 会员特惠37折 | ⚡ 64" with an orange "限时 37 折" badge above.
+### Credits Display
+- The current TopNav shows a local `20` credit display with no click handler.
+- Membership purchase, discount banners and a real credit service are not implemented in the current clone.
 
 ### FrameOS Link (NEW)
 - Click → navigates to `/frameos/canvas/demo` (added to test navigation).
@@ -295,12 +296,12 @@ Each button has identical styling: `h-8 w-8 rounded-lg`, hover `bg-[rgba(255,255
 | Button | Click Effect |
 |--------|-------------|
 | 添加节点 (`+` icon) | Toggles `useUIStore.isAddNodePanelOpen` |
-| 工具箱 | Toggles local `activePanel === "toolbox"` |
-| 素材库 | Toggles `activePanel === "material"` → opens `MaterialLibraryPanel` |
-| 角色库 | Toggles `activePanel === "character"` → opens `CharacterLibraryPanel` |
-| 历史记录 | Toggles `activePanel === "history"` → opens `HistoryPanel` |
+| 工具箱 | Toggles `useUIStore.activePrimaryPanel === "toolbox"` |
+| 素材库 | Toggles `activePrimaryPanel === "material"` → opens `MaterialLibraryPanel` |
+| 角色库 | Toggles `activePrimaryPanel === "character"` → opens `CharacterLibraryPanel` |
+| 历史记录 | Toggles `activePrimaryPanel === "history"` → opens `HistoryPanel` |
 | 快捷键 | Calls `useUIStore.toggleShortcutsPanel` → opens `KeyboardShortcutsDialog` modal |
-| 教程 | Toggles the anchored four-command tutorial/help menu |
+| 教程 | Toggles `activePrimaryPanel === "tutorial"` → opens the anchored four-command tutorial/help menu |
 
 ## AddNodePanel (9 source-shaped entries)
 
