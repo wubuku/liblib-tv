@@ -135,4 +135,4 @@ page.tsx
 - [x] 依赖、schema/store 和 canvas return transaction
 - [x] 导演台 shell、R3F viewport、tree 和 Inspector
 - [x] 机位、画幅、截图和回流
-- [ ] Playwright、像素检查、跨批回归和实施收口
+- [x] Playwright、像素检查、跨批回归和实施收口

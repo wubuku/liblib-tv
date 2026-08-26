@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added research, design-reference, draft and archive indexes so source evidence and implementation history remain discoverable
 - Reworked `README.md`, `AGENTS.md` and `CONTRIBUTING.md` around the LibTV + FrameOS canvas prototype
 - Added `npm run docs:check` to validate local Markdown links
+- Recorded the fixed upstream director-desk archaeology, the current LibTV
+  director evidence boundary and the implemented R3F workspace verification.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
@@ -48,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Batch 26 coverage for continuation range constraints, graph transactions, target Prompt state, clear behavior and responsive anchoring
 - Added Batch 27 coverage for subtitle mode handoff, rectangle history, request metadata, target/edge lifecycle and responsive anchoring
 - Added Batch 28 coverage for AV/vocals/background output naming, metadata, direct source-edge topology, selection, atomic history and responsive clipping
+- Replaced the guessed static script-execution card with a lazy-loaded real R3F
+  director workspace, camera framing, helper-free capture and atomic canvas return.
 
 > Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 

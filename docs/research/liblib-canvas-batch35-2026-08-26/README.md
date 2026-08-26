@@ -1,7 +1,7 @@
 # Batch 35：真实 R3F 导演台第一条纵切
 
-> 状态：计划已落档，实施中。最高优先级是把现有无行为的“导演台”节点改为
-> 可进入、可编辑、可截图并可回到 React Flow 的真实 3D 工作区。
+> 状态：已完成并验证。现有无行为的“导演台”节点已改为可进入、可编辑、
+> 可截图并可原子回到 React Flow 的真实 R3F 工作区。
 
 ## Read Order
 
@@ -43,3 +43,8 @@ React Flow 导演台节点
 本批包括真实 WebGL 场景、基本物体与机位编辑、截图回流和响应式工作区。
 动画时间轴、关键帧、运动路径、手机运镜、外部模型库和动画视频回流留给后续批次。
 
+## Protected Commits
+
+- Plan: `47bc0f4`
+- Main implementation: `3661cca`
+- Verification/finalization: see [`IMPLEMENTATION.md`](IMPLEMENTATION.md)

@@ -159,7 +159,7 @@ function CameraPrimitive({
   material: MeshStandardMaterialParameters;
 }) {
   return (
-    <group scale={0.62}>
+    <group scale={0.38}>
       <mesh castShadow>
         <boxGeometry args={[0.8, 0.5, 1.15]} />
         <meshStandardMaterial color="#2d3338" metalness={0.32} roughness={0.54} {...material} />
@@ -182,6 +182,8 @@ function CameraPrimitive({
 
 function SceneObject({ object }: { object: DirectorObject }) {
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
   const selectObject = useDirectorStore((state) => state.selectObject);
@@ -191,7 +193,10 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const groupRef = useRef<Group>(null);
   const selected = selectedObjectId === object.id;
 
-  if (!object.visible || (isCapturing && object.kind === "camera")) return null;
+  const hideCameraRig =
+    object.kind === "camera" &&
+    (isCapturing || (viewMode === "camera" && object.id === activeCameraId));
+  if (!object.visible || hideCameraRig) return null;
 
   const material: MeshStandardMaterialParameters = selected
     ? {

@@ -132,8 +132,8 @@ Next.js App Router
 |---|---|---|
 | 入口 | `/` | `/frameos` 重定向到 `/frameos/canvas/demo` |
 | 页面控制器 | `src/app/page.tsx` | `src/app/frameos/canvas/[id]/page.tsx` |
-| Store | `canvasStore` + `uiStore` | `frameosStore` |
-| 已注册节点 renderer | 10 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/video-clip/audio/long-video-process | 3 种：text/image/video |
+| Store | `canvasStore` + `uiStore` + `directorStore` | `frameosStore` |
+| 已注册节点 renderer | 11 种：script/image/text/video/script-execution/storyboard-group/shot-breakdown/shot-breakdown-result/video-clip/audio/long-video-process | 3 种：text/image/video |
 | 初始运行态 | 10 节点、11 边；桌面 53%、紧凑视口 28% | 7 节点、5 边 |
 | 边 renderer | `DeletableEdge` | `FrameosEdge` |
 | 主题 | 深灰 + 青色强调 | 更深黑底 + 蓝色强调 |
@@ -158,7 +158,7 @@ React Flow change
 
 页面还负责：
 
-- 注册 10 个节点组件和 `DeletableEdge`
+- 注册 11 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
 - 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
@@ -170,6 +170,8 @@ React Flow change
 - 组合顶部浮动导航、底部主工具条、底部画布控制、资产/Agent 抽屉和快捷键弹窗；Agent 打开时顶部导航避让右抽屉，资产抽屉打开时项目/画布上下文进入左抽屉且 mode 控件避让其右边界
 - 编排六个不同拓扑的一级入口面板，并保持入口互斥
 - 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent，并将当前画布投影为“关键元素”资源栏与“图片 / 视频”故事板列
+- 从 `3D导演台` 节点按需载入全屏 R3F 工作区；主 React Flow 保持挂载，
+  截图通过一个原子 graph transaction 回流为 image node + source edge
 
 ### 5.2 状态边界
 
@@ -188,6 +190,11 @@ React Flow change
 - 工作台/分镜模式、移动/抓手工具
 - 分享弹层、Agent 抽屉；Agent 内容包含 source-shaped Skill 推荐、通知提示和本地 composer 状态
 - 与 React Flow viewport 同步的 zoom 百分比
+- 当前打开的导演台来源节点 ID；导演台内部场景状态不进入 `uiStore`
+
+`directorStore` 管可序列化的场景、对象、选择、活动机位、视角、transform
+模式、画幅、九宫格与截图记录。Three.js renderer、camera 和 Object3D refs
+属于 R3F 组件运行时，不能写入 Zustand。
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
@@ -203,13 +210,19 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 - `ImageNode`：按原站尺寸渲染图片和悬浮元数据；顶部 `900.5x49` 工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
 - `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取、智能抠像、主体编辑、深度动作捕捉和长视频过程图提交
-- `ScriptExecutionNode`：步骤状态
+- `ScriptExecutionNode`：保留历史 type id 的 `3D导演台` 入口；CTA 进入独立
+  R3F authoring surface，不再显示脑补的三步脚本状态
 - `StoryboardGroupNode`：图片组/视频组背景容器；当前视频组是真实 parent，失败视频是相对 `(62,62)` 的 child，图片组为空
 - `ShotBreakdownNode`：逐帧拉片素材、拆解维度和本地完成命令
 - `ShotBreakdownResultNode`：完成后持久存在的三组分镜、动态和音乐结果组；维度决定创建范围，整批节点/边可一次撤销
 - `VideoClipNode`：智能剪辑未连接视频空态和四个单列尝试命令；单选时挂载 `660x191` 节点下方 Prompt panel
 
-当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel` 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer，导演台仍保留为专用执行节点原型。长视频提交会额外创建独立的过程节点图。音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但 waveform 仍是 CSS placeholder，不解析真实音频。
+当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel`
+展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer。
+导演台入口会打开 lazy-loaded R3F 三栏工作区，支持真实场景、机位、画幅、
+helper-free PNG capture 和图片节点回流。长视频提交会额外创建独立的过程节点图。
+音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但
+waveform 仍是 CSS placeholder，不解析真实音频。
 
 视频组父子关系不是根据画面猜测：原站视频组 DOM 有 `.parent`，当前 xyflow v12 只在 `parentLookup` 有 child 时添加该 class；失败视频与组的绝对坐标差又是 `(62,62)`。clone 因此用真实 `parentId` 表达该关系。group 复制会带 descendants，单独复制 child 会转成顶层副本，删除 group 会级联 child 与相关边。
 
@@ -457,9 +470,10 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
-  和长视频过程图没有跨批回归
+  和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
+  helper-free capture、回流 history 和移动抽屉通过
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按
@@ -476,7 +490,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   player camera `28x28`；首个 output gap `100` world units、同 Y；
   first/last/current metadata、direct edge、重复避让、source selection、
   单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
-- `npm run docs:check`：245 个 Markdown、576 个本地目标通过
+- `npm run docs:check`：文档与本地图片链接通过
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

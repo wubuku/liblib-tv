@@ -1,63 +1,53 @@
-# ScriptExecutionNode Specification
+# Director Entry Node Specification
 
 ## Overview
 
 - **Target file:** `src/components/nodes/ScriptExecutionNode.tsx`
-- **Type ID:** `script-execution`
-- **Interaction model:** Static node showing 3 execution steps + open-script-node CTA. No editing.
+- **Type ID:** `script-execution`（保留历史 type id，产品语义已修正为导演台）
+- **Interaction model:** 点击主命令进入全屏 3D 导演台；不是静态脚本步骤卡。
+- **Detailed workspace spec:** [`../liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md`](../liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md)
 
-## DOM Structure
+## Visible Contract
 
-```
-<div className="w-[260px] overflow-visible rounded-xl bg-[#2a2d3d] border shadow-xl">
-  <Handle type="target" position={Left} id="target" />
-  <Handle type="source" position={Right} id="source" />
+节点固定宽 `260px`，显示：
 
-  <div className="py-4 text-center cursor-grab">
-    <MenuIcon className="text-[#919191]" />  <!-- 3 horizontal lines -->
-  </div>
+- 场记板图标和标题 `3D导演台`；
+- source-backed 说明 `搭建3D场景，截图作为构图参考`；
+- 当前原型对象/机位摘要；
+- 主命令 `进入导演台`；
+- 左右原生 React Flow `<Handle>`。
 
-  <div className="flex items-center justify-between px-3 py-4">
-    {steps.map((step, i) => (
-      <div className="flex items-center">
-        <div className="flex flex-col items-center gap-1.5">
-          <div className={completed-or-pending circle}>
-            {completed ? <CheckIcon /> : i + 1}
-          </div>
-          <span>{step.label}</span>
-        </div>
-        {i < steps.length - 1 && <div className="connector-line" />}
-      </div>
-    ))}
-  </div>
+节点不再显示旧 clone 脑补的 `确认镜头 / 准备资产 / 合成提示词` 三步状态。
 
-  <div className="px-3 pb-3">
-    <button>打开脚本节点 →</button>  <!-- non-functional CTA -->
-  </div>
-</div>
-```
+## Entry Behavior
 
-## Data Shape
+`进入导演台` 按钮必须：
 
-```ts
-interface ScriptExecutionData {
-  steps?: Array<{ label: string; completed?: boolean }>;
-}
-```
+- 暴露 `[data-open-director]`；
+- 使用 `nodrag nopan nowheel`；
+- 在 `pointerdown` 和 `click` 阶段阻止事件冒泡，避免 React Flow 抢占 CTA；
+- 调用 `useUIStore.openDirectorDesk(id)`；
+- 打开 lazy-loaded、`position: fixed; inset: 0` 的 `DirectorDesk`；
+- 关闭后重新选中来源节点，且不重置主画布 viewport。
 
-Default steps (from `canvasStore.ts`): `[确认镜头 ✓, 准备资产 ✓, 合成提示词]`.
+## State Boundary
 
-## Computed Styles
+- `uiStore.activeDirectorNodeId`：工作区打开/关闭生命周期。
+- `directorStore.sourceNodeId`：当前导演台 session 来源。
+- `canvasStore.createDirectorCapture`：把截图作为一个 image node 和一条来源 edge
+  原子写回画布，并进入画布 undo/redo history。
 
-| Element | Styles |
-|---------|--------|
-| Wrapper | `w-[260px] rounded-xl bg-[#2a2d3d] border border-[#363636] shadow-xl` (background darker than other nodes for hierarchy) |
-| Step circle (completed) | `w-7 h-7 rounded-full bg-[#09caf5] text-[#171717]` |
-| Step circle (pending) | `w-7 h-7 rounded-full bg-[#363636] text-[#919191] border border-[#525252]` |
-| Connector line (between completed steps) | `bg-[#09caf5]` |
-| Connector line (between incomplete steps) | `bg-[#525252]` |
-| Open button | `w-full py-2 rounded-lg bg-[#363636] hover:bg-[#525252]` |
+## Stable Selectors
 
-## Files Referenced
+| Selector | Contract |
+|---|---|
+| `[data-director-node]` | 导演台 React Flow 节点 |
+| `[data-open-director]` | 进入导演台命令 |
+| `[data-director-workspace]` | 全屏导演台根 |
+| `[data-director-capture-node]` | 回流到画布的截图节点 |
 
-- `src/components/nodes/ScriptExecutionNode.tsx`
+## Evidence And Verification
+
+- Source/runtime boundary: [`../liblib-canvas-batch34-2026-08-26/LIBTV_DIRECTOR_EVIDENCE.md`](../liblib-canvas-batch34-2026-08-26/LIBTV_DIRECTOR_EVIDENCE.md)
+- Implemented slice: [`../liblib-canvas-batch35-2026-08-26/README.md`](../liblib-canvas-batch35-2026-08-26/README.md)
+- Browser verification: `scripts/verify-liblib-batch35.py`

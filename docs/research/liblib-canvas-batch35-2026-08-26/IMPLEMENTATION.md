@@ -1,6 +1,6 @@
 # Batch 35 Implementation Log
 
-> 状态：第一条产品纵切已实现并通过 typecheck/build；浏览器验证与视觉校准待完成。
+> 状态：已完成、验证并形成可接力记录。
 
 ## Planned Protection Points
 
@@ -40,23 +40,42 @@
 - 新增 `canvasStore.createDirectorCapture` 原子事务，将 PNG data URL 回流为
   image node + source edge + typed metadata，并进入现有 undo/redo history。
 - `ImageNode` 暴露 director capture stable selectors，便于专项回归。
+- 首次浏览器 smoke test 发现节点内 CTA 被 React Flow pointer lifecycle
+  拦截；加入 `nodrag nopan nowheel` 和 pointer propagation guard 后，真实点击
+  可以稳定打开工作区。
+- 第一次 contact-sheet 识图发现 active camera rig 在自己的机位视角中遮挡
+  画面；最终实现会在 camera view 隐藏 active rig，并缩小 director view 中
+  的机位 authoring model。
 
 ## Verification Result
 
 - `npm run typecheck` passed.
 - `npm run build` passed.
 - 初次 lint 只发现 R3F mutable Three.js camera 与 React immutability rule
-  的边界冲突；已使用局部、带原因的 lint exception，待重跑确认。
-- 浏览器、WebGL 像素、截图与跨批验证 pending.
+  的边界冲突；已使用局部、带原因的 lint exception。重跑 lint 通过，保留
+  仓库原有 9 条 warning。
+- `python3 scripts/verify-liblib-batch35.py` passed. It covers real pointer entry,
+  full-screen geometry, WebGL pixel variance, tree/Inspector synchronization,
+  visibility and numeric edits, director/camera view switching, three aspect
+  ratios, thirds, helper-free capture, canvas return, atomic undo/redo and
+  `390x844` drawers/overflow.
+- Final raw capture is `852x479`; visual inspection confirms no grid, gizmo,
+  camera rig, frame, thirds or DOM chrome. Details are recorded in
+  [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md).
+- Cross-batch regression passed for Batch 9, 15, 21, 26, 27, 28, 29, 30,
+  31, 32 and 33.
+- `npm run check` passed with the repository's existing 9 lint warnings.
+- `npm run docs:check` and `git diff --check` passed.
 
 ## Commit Protection
 
-- Batch 35 plan protection: pending.
-- Batch 35 implementation protection: pending; next commit after lint recheck.
-- Batch 35 verification/finalization: pending.
+- Batch 35 plan protection: `47bc0f4`.
+- Batch 35 main implementation protection: `3661cca`.
+- Batch 35 verification/finalization: recorded by the next commit containing
+  this log, the two browser-found fixes, verifier and screenshots.
 
 ## Interruption Handoff
 
-如在计划保护点后中断，从 [`PLAN.md`](PLAN.md) 第 4 节开始。先安装依赖，再按
-`directorStore -> canvas return transaction -> dynamic workspace -> browser
-verification` 顺序推进；不要把历史截图变化带入提交。
+Batch 35 已收口。后续从 Batch 36 的时间轴计划继续，优先建立 typed tracks、
+playhead、关键帧、scrub/playback 和 R3F deterministic sampling，再进入运动
+路径与动画输出。不要把回归脚本重写的 Batch 9/15/21/26-33 历史截图带入提交。

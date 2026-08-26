@@ -50,11 +50,12 @@ function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptEx
         <button
           type="button"
           data-open-director
+          onPointerDown={(event) => event.stopPropagation()}
           onClick={(event) => {
             event.stopPropagation();
             openDirectorDesk(id);
           }}
-          className="flex h-9 w-full items-center justify-center gap-1 rounded bg-white/[0.08] text-xs text-[#f1f1f1] hover:bg-white/[0.12]"
+          className="nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1 rounded bg-white/[0.08] text-xs text-[#f1f1f1] hover:bg-white/[0.12]"
         >
           进入导演台 <span>→</span>
         </button>

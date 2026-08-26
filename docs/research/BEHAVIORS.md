@@ -41,6 +41,33 @@
 - **Share panel:** The top-right panel uses source copy for `在LibTV上发布` and `分享链接`; each command shows an explicit no-backend local status.
 - **Evidence and verification:** `docs/research/liblib-canvas-batch14-2026-08-25/` and `scripts/verify-liblib-batch14.py`.
 
+### Director Desk Lifecycle
+
+- **Entry:** the `3D导演台` node CTA uses `nodrag nopan nowheel` plus pointer
+  propagation guards, then sets `uiStore.activeDirectorNodeId`.
+- **Mount:** `DirectorDesk` is lazy-loaded with `next/dynamic(..., { ssr: false })`
+  and covers the viewport as a fixed full-screen authoring surface. React Flow
+  remains mounted behind it.
+- **Selection:** object-tree rows and R3F meshes share
+  `directorStore.selectedObjectId`; empty viewport selection routes the Inspector
+  back to scene settings. Selecting a camera also supplies camera-view controls.
+- **Editing:** visibility, color, XYZ transform, camera target and FOV edits update
+  the real R3F scene. TransformControls commit their values back to the store.
+- **Framing:** director/camera views, `16:9 / 9:16 / 1:1` and thirds guides are
+  visible authoring state.
+- **Capture:** the WebGL canvas is cropped to the visible frame after temporarily
+  hiding grid, transform controls and camera rigs. The PNG does not include DOM
+  toolbar, rails, frame or guide overlays.
+- **Canvas return:** one send command creates an image node plus one source edge
+  in a single `canvasStore` history transaction. One undo/redo removes/restores
+  both.
+- **Close:** Escape first closes a compact drawer; otherwise Escape/back/close
+  returns to the main canvas, reselects the source node and preserves viewport.
+- **Responsive:** below `900px`, tree and Inspector become mutually exclusive
+  left/right drawers over the full-screen R3F viewport.
+- **Evidence and verification:** `docs/research/liblib-canvas-batch35-2026-08-26/`
+  and `scripts/verify-liblib-batch35.py`.
+
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
 - `Cmd/Ctrl+Shift+Z` or `Cmd/Ctrl+Y` — Redo the active canvas graph
@@ -229,7 +256,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, and director return coverage in `scripts/verify-liblib-batch35.py`.
 
 ## KeyboardShortcutsDialog
 

@@ -21,8 +21,12 @@ graph TD
     LibPage --> LibFlow[React Flow graph]
     LibPage --> CanvasStore[canvasStore]
     LibPage --> UIStore[uiStore]
+    LibPage --> DirectorStore[directorStore]
     LibFlow --> LibNodes[LibTV node renderers]
     LibFlow --> LibOverlays[toolbars panels dialogs]
+    LibNodes --> DirectorDesk[lazy R3F DirectorDesk]
+    DirectorDesk --> DirectorStore
+    DirectorDesk --> CanvasStore
 
     FrameRoute --> FramePage[FrameOS page controller]
     FramePage --> FrameFlow[React Flow graph]
@@ -38,7 +42,7 @@ graph TD
 
 | Route | Controller | Store | Registered node renderers | Main boundary |
 |---|---|---|---|---|
-| `/` | `src/app/page.tsx` | `canvasStore` + `uiStore` | 10 LibTV types | in-memory LibTV prototype |
+| `/` | `src/app/page.tsx` | `canvasStore` + `uiStore` + `directorStore` | 11 LibTV types | in-memory LibTV graph plus lazy R3F director island |
 | `/frameos` | `src/app/frameos/page.tsx` | `frameosStore` | redirect entry | route entry only |
 | `/frameos/canvas/[id]` | `src/app/frameos/canvas/[id]/page.tsx` | `frameosStore` | text/image/video | `[id]` is currently a demo placeholder |
 
@@ -50,7 +54,8 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| State | `src/store/` | graph, selection, viewport, history and UI mock state; LibTV top-level overlay lifecycle is in `uiStore` |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing and capture |
+| State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
 | Evidence | `docs/research/` | source observations, specs, raw JSON and batch history |
@@ -81,6 +86,22 @@ the whole result set. Picture edit uses a shared node-local mark editor for thre
 subject modes, then creates one pending video + one direct source edge with
 request-shaped mark metadata.
 
+The director path uses a separate state and renderer boundary:
+
+```text
+director node CTA
+  -> uiStore.activeDirectorNodeId
+  -> lazy client-only DirectorDesk
+  -> directorStore scene/object/camera edits
+  -> R3F Canvas render and helper-free capture
+  -> canvasStore.createDirectorCapture
+  -> atomic image node + source edge + graph history
+```
+
+React Flow remains mounted while the fixed workspace is open. `directorStore`
+contains only serializable authoring state; mutable Three.js camera, renderer and
+Object3D references stay inside R3F components.
+
 ### FrameOS
 
 ```text
@@ -103,6 +124,8 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 - Image and video selected overlays are node-anchored; the image toolbar is a React Flow `NodeToolbar`, while the editor/generation panel is mounted inside the node and inverse-scaled.
 - Video groups use real `parentId` hierarchy. The failed video child has relative position `(62,62)`.
 - Selected single-node overlays may naturally clip at the canvas viewport edge; they are not recentered to the browser window.
+- The director desk is a lazy-loaded full-screen R3F island, not a React Flow
+  node panel. Its object tree, 3D selection and Inspector share one director store.
 
 ### FrameOS
 
@@ -121,6 +144,8 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | LibTV edge hover | extracted 3-segment flow | visual behavior is evidence-driven |
 | Image/video panel anchor | node-centered and inverse-scaled | source follows node, pan and zoom |
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
+| Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
+| Director return | one canvasStore graph transaction | capture node and source edge undo/redo atomically |
 | Backend | local mock only | scope is frontend prototype validation |
 
 ## Prototype Boundaries

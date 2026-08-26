@@ -90,6 +90,21 @@
 - **Children (left to right):** 资产管理 (text button) | [整理, 👤, 大青色+, 整理节点, ⭐, ⏰, 📷, ?] (icon buttons) | 54% (zoom).
 - **Tooltip:** Each icon button uses `@base-ui/react/tooltip` with 300ms delay.
 
+### 7. Director Desk (`<DirectorDesk>`)
+
+- **Type:** Lazy-loaded fixed overlay (`inset: 0`, `z-index: 100`) opened from the
+  `3D导演台` node. It covers the route without unmounting React Flow.
+- **Desktop:** 48px top bar, 220px object tree, flexible full-height R3F viewport
+  and 288px Inspector.
+- **Viewport overlays:** centered aspect frame, optional thirds and a compact
+  bottom command toolbar; these are DOM authoring helpers and are excluded from
+  PNG capture.
+- **Compact `<900px`:** side rails become mutually exclusive drawers; the live
+  R3F viewport remains full-screen.
+- **Return:** close restores the source-node selection and unchanged React Flow
+  viewport; sending a capture creates a source-linked image node.
+- **Detailed topology:** [`liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md`](./liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md).
+
 ## Notes
 
 - The currently rendered clone uses a **centered floating bottom toolbar** matching the original site (not a docked bottom strip). Earlier iterations had a docked bar that did not match the original.

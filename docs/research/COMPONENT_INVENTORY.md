@@ -27,7 +27,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `image` | `src/components/nodes/ImageNode.tsx` | Image with header, dimensions and watermark; panorama and video-frame outputs reuse this renderer. Frame results expose source/kind/time/name/alt/edge metadata and retain ordinary image overlays. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
 | `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending renderer; single selection shows Seedance generation, processing, reshoot, continuation, subtitle, subject-edit or depth-motion UI. Ready playback includes local playhead and frame camera; pending split/depth outputs use media-result placeholders. |
-| `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
+| `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | Historical type id for the source-backed `3D导演台` entry; its isolated CTA opens the lazy-loaded R3F workspace. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 | `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state, source metadata, dimensions and local completion command. |
 | `shot-breakdown-result` | `src/components/nodes/ShotBreakdownResultNode.tsx` | Persistent storyboard, motion or music result group created by a completed breakdown. |
@@ -66,6 +66,16 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | 10 movement types (静止/横摇/俯仰/推拉/横移/升降/旋转/变焦/环绕/摇臂) + speed + duration + amplitude. |
 | `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | Four-column, bottom-toolbar-anchored shortcuts panel without a backdrop. |
 
+## Director Desk
+
+| Component | File | Purpose |
+|---|---|---|
+| `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Full-screen director lifecycle, three-zone shell, responsive drawers and capture return orchestration. |
+| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Real R3F scene, object selection/transforms, director/camera views, aspect framing, guides and helper-free PNG capture. |
+| `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Searchable semantic character/prop/camera tree synchronized with viewport and Inspector selection. |
+| `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Selection-routed scene/object/camera controls and current-capture preview/send command. |
+| `directorViewportMath` | `src/components/director/directorViewportMath.ts` | Pure aspect-frame geometry for viewport display and capture cropping. |
+
 ## Utilities
 
 | Component | File | Notes |
@@ -81,6 +91,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |------|------|--------|
 | `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, video-processing and long-video graph transactions, and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
+| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state and capture records. Three.js runtime refs stay in components. |
 
 ---
 
