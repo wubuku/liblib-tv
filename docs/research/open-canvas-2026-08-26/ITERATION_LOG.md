@@ -143,3 +143,13 @@
 - `旋转` 的一次入口点击在当前共享 fixture 中实际新增并选中了“旋转与镜像”派生节点；随后一次 `Meta+Z` 将其撤销。没有继续改变角度/镜像，也没有打开 dirty modal、保存、上传或生成；因此旋转入口升级为“可能先发生 graph mutation”的高风险动作；
 - 将元素编辑空态和旋转入口副作用分别写入 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、[`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)；后续如需非空 record 或旋转 modal，必须使用可丢弃副本或取得明确授权；
 - 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP；对源站的唯一 graph 操作是为恢复误触发动作而执行一次撤销。
+
+## 2026-08-26：v13 双浮层定位合同
+
+本轮把前十二轮的几何和动作证据收敛成一个供后续 agent 直接使用的组件级合同：
+
+- 新增 [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md)，统一定义 node/world、viewport、zoom、screen rect 和 node-center anchor 的符号；标准图片工具条与下方面板分别给出可复核的定位公式；
+- 合同明确区分标准双浮层和标注、元素编辑、旋转、图层分离、预览等 active-tool 分支，避免把所有图片工具错误地实现为同一个浮层或统一的派生节点动作；
+- 将当前 live 样本、生产 chunk 事实、virtualization 边界、自然裁切规则和 clone-only 的待授权决策写在同一处，并加入后续实现必须满足的七条验证断言；
+- 在组件规格入口、Open Canvas 研究 README、研究计划和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md) 增加可发现性链接；
+- 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有继续点击可能改变共享源站画布的动作。

@@ -31,8 +31,9 @@
 10. [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)：当前图片工具条六个新增/末端动作的状态、呈现、副作用和 clone 差异。
 11. [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)：当前 AutoLink 开关、候选、ghost suggestion、mention token 和 clone 语义缺口。
 12. [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：28%/34%/41%/50%/100% zoom 的双浮层几何、裁切和选择卸载生命周期。
-13. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
-14. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+13. [`../components/LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md)：供后续 agent 使用的双浮层 screen/flow 定位合同与验证断言。
+14. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
+15. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 

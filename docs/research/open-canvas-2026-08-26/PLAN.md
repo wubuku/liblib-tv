@@ -55,6 +55,7 @@
 | `LIBTV_IMAGE_ACTION_MATRIX.md` | LibTV 图片工具条当前动作的状态、呈现、副作用与 clone 优先级 |
 | `LIBTV_AUTOLINK_STATE_MATRIX.md` | LibTV AutoLink 开关、候选、ghost、正式 mention、graph 关系与 clone 差异 |
 | `LIBTV_OVERLAY_MULTIZOOM_MATRIX.md` | LibTV 双浮层多 zoom 几何、自然裁切、virtualization 和选择生命周期 |
+| `../components/LibTVOverlayPositioning.contract.md` | 后续编码 agent 可直接引用的 screen/flow 坐标、标准 toolbar/panel 公式和验证断言 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
