@@ -88,3 +88,4 @@ Output:
 - `[data-depth-motion-source-id]`
 - `[data-depth-motion-edge-id]`
 - `[data-depth-motion-resolution-value]`
+- `[data-depth-motion-duration]`

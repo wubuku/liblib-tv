@@ -21,6 +21,8 @@ interface VideoNodeData {
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
   audioSplit?: AudioSplitMetadata;
+  depthMotionCapture?: DepthMotionCaptureMetadata;
+  pictureEdit?: PictureEditMetadata;
   smartMatting?: SmartMattingMetadata;
 }
 ```
@@ -41,10 +43,11 @@ VideoNode
 └── selected lower editor
     ├── VideoGenerationPanel
     ├── SegmentReshootPanel for reshoot
-    └── VideoContinuationSelector for continuation range selection
-    └── SubtitleErasePanel for smart/region subtitle erase
-    └── SmartMattingPanel for video portrait matting
-    └── PictureEditPanel for subject remove/modify/replace marking
+    ├── VideoContinuationSelector for continuation range selection
+    ├── SubtitleErasePanel for smart/region subtitle erase
+    ├── SmartMattingPanel for video portrait matting
+    ├── PictureEditPanel for subject remove/modify/replace marking
+    └── DepthMotionCapturePanel for depth reference extraction
 ```
 
 ## States
@@ -86,6 +89,16 @@ VideoNode
 - subject edit submit shows `分析中`, then creates a linked pending video with
   `pictureEdit` metadata; the source remains selected and the pending body does not
   reuse the source poster.
+- `深度动作捕捉` is a separate ready-video toolbar command. The current clone
+  keeps the top processing toolbar visible and mounts a node-anchored
+  `DepthMotionCapturePanel` below the video. The panel exposes the source summary,
+  local `720P / 1080P` options, cancel and a short extraction busy state.
+- The default 30-second fixture shows an independent
+  `[data-video-depth-motion-feedback]` duration guard; it must not reuse the
+  subject-edit feedback selector or timer.
+- A successful local test submission creates a source-linked pending video named
+  `深度动作捕捉-{sourceLabel}` with `depthMotionCapture` metadata and a direct edge.
+  It does not reuse the source poster or imply real depth media.
 
 ### Empty Continuation Target
 
@@ -121,6 +134,17 @@ VideoNode
 - duration and resolution inherit the source
 - metadata records source, direct edge, provider `volcano`, model
   `volcano-portrait-matting`, task type `video` and format `WEBM`
+- source remains selected after the transaction
+
+### Pending Depth-Motion Target
+
+- filename is `深度动作捕捉-{sourceLabel}`
+- no source poster is reused as if depth extraction had completed
+- body shows `深度动作捕捉参考` and `{resolution} · 等待媒体资源`
+- effective duration, source resolution and source label are inherited from the
+  current request state
+- metadata records source, direct edge, local resolution, effective duration,
+  model `depth-motion-reference` and request mode `DepthMap`
 - source remains selected after the transaction
 
 ### Selection

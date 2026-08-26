@@ -65,6 +65,16 @@ def assert_no_overflow(page: Page):
     )
 
 
+def assert_processing_toolbar_anchor(page: Page, source: Locator):
+    toolbar = page.locator(".react-flow__node-toolbar").first
+    toolbar_box = box(toolbar)
+    source_box = box(source)
+    assert_close(toolbar_box["height"], 49)
+    assert_close(center_x(toolbar_box), center_x(source_box))
+    assert page.locator("[data-video-depth-motion-trigger]").count() == 1
+    return toolbar_box
+
+
 def switch_to_empty_canvas(page: Page):
     page.goto(URL, wait_until="networkidle")
     page.locator("[data-canvas-trigger]").click()
@@ -155,8 +165,7 @@ def run_primary_flow(page: Page):
     source, source_id = add_ready_video(page)
 
     trigger, menu = open_picture_edit_menu(page, via_hover=True)
-    toolbar_box = box(page.locator(".react-flow__node-toolbar").first)
-    assert_close(toolbar_box["width"], 1009)
+    assert_processing_toolbar_anchor(page, source)
     page.screenshot(path=str(MENU_SCREENSHOT))
     assert_hover_close_delay(page, menu)
 
@@ -309,10 +318,8 @@ def run_multi_selection(page: Page):
 def run_mobile(page: Page):
     errors = attach_errors(page)
     switch_to_empty_canvas(page)
-    add_ready_video(page)
-    toolbar = page.locator(".react-flow__node-toolbar").first
-    toolbar_box = box(toolbar)
-    assert_close(toolbar_box["width"], 1009)
+    source, _ = add_ready_video(page)
+    toolbar_box = assert_processing_toolbar_anchor(page, source)
     assert toolbar_box["x"] < 0
     assert toolbar_box["x"] + toolbar_box["width"] > 390
 
@@ -321,10 +328,12 @@ def run_mobile(page: Page):
     menu = page.locator('[data-video-toolbar-menu="picture-edit"]')
     menu.locator('[data-video-picture-edit-action="matting"]').click()
     panel = page.locator("[data-smart-matting-panel]")
+    page.wait_for_timeout(120)
     panel_box = box(panel)
+    source_box = box(source)
     assert_close(panel_box["width"], 512)
     assert panel_box["x"] < 0
-    assert panel_box["x"] + panel_box["width"] > 390
+    assert_close(center_x(panel_box), center_x(source_box))
     assert_no_overflow(page)
     page.screenshot(path=str(MOBILE_SCREENSHOT))
     assert not errors, errors

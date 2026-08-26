@@ -14,6 +14,7 @@ import {
   LoaderCircle,
   PanelsTopLeft,
   Redo2,
+  ScanLine,
   Scissors,
   Sparkles,
   TimerReset,
@@ -42,11 +43,12 @@ interface VideoProcessingToolbarProps {
   onAudioSplit: (mode: AudioSplitMode) => void;
   onPictureEdit: (action: PictureEditAction) => void;
   onSmartMatting: () => void;
+  onDepthMotionCapture: () => void;
   onCaptureFrame: (kind: VideoFrameCaptureKind) => void;
   audioSplittingMode: AudioSplitMode | null;
 }
 
-export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown, onSelectSubtitleMode, onAudioSplit, onPictureEdit, onSmartMatting, onCaptureFrame, audioSplittingMode }: VideoProcessingToolbarProps) {
+export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSelectTool, onToggleEnhanced, onCreateBreakdown, onSelectSubtitleMode, onAudioSplit, onPictureEdit, onSmartMatting, onDepthMotionCapture, onCaptureFrame, audioSplittingMode }: VideoProcessingToolbarProps) {
   const [menu, setMenu] = useState<ToolbarMenu>(null);
   const [lastAction, setLastAction] = useState<string | null>(null);
   const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -142,6 +144,13 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
             </ToolbarMenu>
           )}
         </div>
+        <ToolbarButton
+          dataAttribute="data-video-depth-motion-trigger"
+          label="深度动作捕捉"
+          onClick={onDepthMotionCapture}
+        >
+          <ScanLine size={16} />
+        </ToolbarButton>
         <div
           className="relative shrink-0"
           onMouseEnter={() => openMenuOnHover("audio")}
@@ -237,7 +246,7 @@ function ToolbarMenu({ menu, children }: { menu: Exclude<ToolbarMenu, null>; chi
   return <div data-video-toolbar-menu={menu} className="absolute left-1/2 top-[39px] z-40 w-40 -translate-x-1/2 rounded-xl border border-white/10 bg-[#292929] p-1.5 text-xs shadow-2xl">{children}</div>;
 }
 
-function ToolbarButton({ dataAttribute, label, title, active = false, disabled = false, onClick, children, trailing }: { dataAttribute?: "data-video-subtitle-menu-trigger" | "data-video-audio-menu-trigger" | "data-video-picture-edit-menu-trigger" | "data-video-frame-menu-trigger"; label: string; title?: string; active?: boolean; disabled?: boolean; onClick: () => void; children: React.ReactNode; trailing?: React.ReactNode }) {
+function ToolbarButton({ dataAttribute, label, title, active = false, disabled = false, onClick, children, trailing }: { dataAttribute?: "data-video-subtitle-menu-trigger" | "data-video-audio-menu-trigger" | "data-video-picture-edit-menu-trigger" | "data-video-depth-motion-trigger" | "data-video-frame-menu-trigger"; label: string; title?: string; active?: boolean; disabled?: boolean; onClick: () => void; children: React.ReactNode; trailing?: React.ReactNode }) {
   return <button {...(dataAttribute ? { [dataAttribute]: true } : {})} type="button" title={title} disabled={disabled} onClick={onClick} className={cn("flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-2 text-sm text-[#e5e5e5] hover:bg-white/[0.07] disabled:cursor-wait disabled:text-[#9a9a9a] disabled:hover:bg-transparent", active && "bg-white/[0.1] text-white")}>{children}<span>{label}</span>{trailing}</button>;
 }
 

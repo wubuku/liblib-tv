@@ -122,6 +122,11 @@ Batch 30 增加 subject trigger 和 chevron 后，ready-video toolbar 的当前�
 更新为 `1009px`；其余 Batch 29 几何和行为断言未放宽。回归重写的旧批次
 PNG 已恢复到已审核提交版本，没有带入无关 binary churn。
 
+> Batch 32 follow-up（2026-08-26）：新增独立深度动作捕捉入口后，toolbar
+> 总宽度再次变化。Batch 29/30 现验证 `49px` 高度、source-center anchor、
+> trigger/menu geometry 和移动端自然裁切，不再把历史 `1009px` 当成永久
+> 当前宽度。
+
 ## Engineering Gates
 
 - `npm run check`：通过。

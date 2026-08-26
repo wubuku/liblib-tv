@@ -26,7 +26,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `script` | `src/components/nodes/ScriptNode.tsx` | Title + multi-line script text, default 320px wide, bg `#212121`. |
 | `image` | `src/components/nodes/ImageNode.tsx` | Image with header, dimensions and watermark; panorama and video-frame outputs reuse this renderer. Frame results expose source/kind/time/name/alt/edge metadata and retain ordinary image overlays. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
-| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending renderer; single selection shows Seedance generation, processing, reshoot, continuation or subtitle UI. Ready playback includes local playhead and frame camera; pending split outputs use a muted-video result body. |
+| `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending renderer; single selection shows Seedance generation, processing, reshoot, continuation, subtitle, subject-edit or depth-motion UI. Ready playback includes local playhead and frame camera; pending split/depth outputs use media-result placeholders. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | 3-step progress UI (确认镜头/准备资产/合成提示词) + open-script-node button. |
 | `storyboard-group` | `src/components/nodes/StoryboardGroupNode.tsx` | Image/video background shell; source video group parents the failed video at relative `(62,62)`. |
 | `shot-breakdown` | `src/components/nodes/ShotBreakdownNode.tsx` | 逐帧拉片 input state, source metadata, dimensions and local completion command. |
@@ -54,8 +54,9 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `ImageToolbar` | `src/components/ImageToolbar.tsx` | `900.5x49` React Flow `NodeToolbar` above the selected image: 人像质感, 全景, 多角度, 打光, 九宫格, 高清, 宫格切分. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor below a selected video. |
-| `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |
+| `VideoProcessingToolbar` | `src/components/VideoProcessingToolbar.tsx` | Content-width ready-video toolbar for enhance, reshoot, frame analysis, continuation, subtitle/audio/edit, depth motion capture, frame capture and download. Dropdowns are trigger-relative; frame capture follows source order after picture edit. |
 | `PictureEditPanel` | `src/components/PictureEditPanel.tsx` | Shared subject remove/modify/replace mark editor with normalized point/box/brush state, local history, mode-specific validation and pending graph handoff. |
+| `DepthMotionCapturePanel` | `src/components/DepthMotionCapturePanel.tsx` | Node-anchored lower panel for the source-backed depth-motion intro, local resolution choice and pending reference handoff. |
 | `SegmentReshootPanel` | `src/components/SegmentReshootPanel.tsx` | Ready-video `片段重拍` filmstrip + Prompt editor; no continuation branch. |
 | `VideoContinuationSelector` | `src/components/VideoContinuationSelector.tsx` | `660x56` smart-continuation range selector with handle/region drag and target-node handoff. |
 | `SubtitleErasePanel` | `src/components/SubtitleErasePanel.tsx` | Compact smart/region subtitle-erase control bar; region mode owns multi-rectangle editing and hands off to a pending target video. |

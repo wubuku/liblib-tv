@@ -69,6 +69,18 @@ export interface VideoFrameCaptureMetadata {
   edgeId: string;
 }
 
+export type DepthMotionCaptureResolution = "720P" | "1080P";
+
+export interface DepthMotionCaptureMetadata {
+  sourceNodeId: string;
+  sourceLabel: string;
+  resolution: DepthMotionCaptureResolution;
+  durationSeconds: number;
+  edgeId: string;
+  model: "depth-motion-reference";
+  requestMode: "DepthMap";
+}
+
 export type PictureEditAction =
   | "subjectRemove"
   | "subjectModify"
@@ -183,6 +195,11 @@ interface CanvasState {
     sourceId: string,
     kind: VideoFrameCaptureKind,
     captureSeconds?: number,
+  ) => string | null;
+  createDepthMotionCapture: (
+    sourceId: string,
+    resolution: DepthMotionCaptureResolution,
+    durationSeconds: number,
   ) => string | null;
   createSmartMatting: (sourceId: string) => string | null;
   createPictureEdit: (
@@ -1329,6 +1346,98 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
                 ...item,
                 nodes: [...item.nodes, targetNode],
                 edges: [...item.edges, frameEdge],
+              }
+            : item,
+        ),
+        selectedNodeIds: [sourceId],
+        selectedNodeId: sourceId,
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+
+    return targetId;
+  },
+
+  createDepthMotionCapture: (
+    sourceId: string,
+    resolution: DepthMotionCaptureResolution,
+    requestedDurationSeconds: number,
+  ) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === sourceId);
+    if (!canvas || !source) return null;
+
+    const sourceLabel =
+      typeof source.data.filename === "string"
+        ? source.data.filename
+        : typeof source.data.title === "string"
+          ? source.data.title
+          : "视频";
+    const durationSeconds =
+      Number.isFinite(requestedDurationSeconds) && requestedDurationSeconds >= 0
+        ? requestedDurationSeconds
+        : typeof source.data.durationSeconds === "number"
+          ? Math.max(0, source.data.durationSeconds)
+          : 0;
+    const sourceResolution =
+      typeof source.data.resolution === "string"
+        ? source.data.resolution
+        : "1280 × 720";
+    const dimensions = getDefaultNodeDimensions("video");
+    const position = findAvailableRightSlot(
+      source,
+      canvas.nodes,
+      dimensions,
+      100,
+    );
+    const targetId = createNodeId("depth-motion");
+    const edgeId = `e-${sourceId}-${targetId}`;
+    const depthMotionCapture: DepthMotionCaptureMetadata = {
+      sourceNodeId: sourceId,
+      sourceLabel,
+      resolution,
+      durationSeconds,
+      edgeId,
+      model: "depth-motion-reference",
+      requestMode: "DepthMap",
+    };
+    const targetNode: Node = {
+      id: targetId,
+      type: "video",
+      position,
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: {
+        filename: `深度动作捕捉-${sourceLabel}`,
+        model: "depth-motion-reference",
+        status: "pending",
+        durationSeconds,
+        resolution: sourceResolution,
+        generatorType: "DEPTH_MOTION_CAPTURE",
+        depthMotionCapture,
+      },
+    };
+    const depthMotionEdge: Edge = {
+      id: edgeId,
+      source: sourceId,
+      target: targetId,
+      type: "default",
+    };
+
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (item) => item.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((item) =>
+          item.id === activeCanvasId
+            ? {
+                ...item,
+                nodes: [...item.nodes, targetNode],
+                edges: [...item.edges, depthMotionEdge],
               }
             : item,
         ),

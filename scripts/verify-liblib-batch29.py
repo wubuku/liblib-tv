@@ -72,6 +72,16 @@ def assert_no_overflow(page: Page):
     )
 
 
+def assert_processing_toolbar_anchor(page: Page, source: Locator):
+    toolbar = page.locator(".react-flow__node-toolbar")
+    toolbar_box = box(toolbar)
+    source_box = box(source)
+    assert_close(toolbar_box["height"], 49)
+    assert_close(center_x(toolbar_box), center_x(source_box))
+    assert page.locator("[data-video-depth-motion-trigger]").count() == 1
+    return toolbar_box
+
+
 def switch_to_empty_canvas(page: Page):
     page.goto(URL, wait_until="networkidle")
     page.locator("[data-canvas-trigger]").click()
@@ -187,8 +197,7 @@ def run_primary_flow(page: Page):
     source, source_id = add_ready_video(page)
 
     _, menu = open_top_frame_menu(page)
-    toolbar_box = box(page.locator(".react-flow__node-toolbar"))
-    assert_close(toolbar_box["width"], 1009)
+    assert_processing_toolbar_anchor(page, source)
     page.screenshot(path=str(MENU_SCREENSHOT))
     menu.locator('[data-video-frame-kind="first"]').click()
     page.wait_for_timeout(100)
@@ -326,10 +335,8 @@ def run_multi_selection(page: Page):
 def run_mobile(page: Page):
     errors = attach_errors(page)
     switch_to_empty_canvas(page)
-    add_ready_video(page)
-    toolbar = page.locator(".react-flow__node-toolbar")
-    toolbar_box = box(toolbar)
-    assert_close(toolbar_box["width"], 1009)
+    source, _ = add_ready_video(page)
+    toolbar_box = assert_processing_toolbar_anchor(page, source)
     assert toolbar_box["x"] < 0
     assert toolbar_box["x"] + toolbar_box["width"] > 390
     trigger = page.locator("[data-video-frame-menu-trigger]")

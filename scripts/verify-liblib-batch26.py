@@ -433,7 +433,11 @@ def run_mobile(page: Page):
     errors = attach_errors(page)
     switch_to_empty_canvas(page)
     source, _ = add_ready_video(page)
-    selector = open_selector(page)
+    page.get_by_role("button", name="智能续写", exact=True).evaluate(
+        "(element) => element.click()"
+    )
+    selector = page.locator("[data-video-continuation-selector]")
+    selector.wait_for(state="visible")
     assert_selector_structure(page, source, selector)
     selector_box = box(selector)
     assert selector_box["x"] < 0

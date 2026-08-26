@@ -17,6 +17,8 @@ import {
   useCanvasStore,
   type AudioSplitMetadata,
   type AudioSplitMode,
+  type DepthMotionCaptureMetadata,
+  type DepthMotionCaptureResolution,
   type PictureEditAction,
   type PictureEditMark,
   type PictureEditMetadata,
@@ -28,6 +30,7 @@ import {
   type VideoContinuationMetadata,
 } from "@/store/canvasStore";
 import { SegmentReshootPanel } from "@/components/SegmentReshootPanel";
+import { DepthMotionCapturePanel } from "@/components/DepthMotionCapturePanel";
 import { SmartMattingPanel } from "@/components/SmartMattingPanel";
 import { PictureEditPanel } from "@/components/PictureEditPanel";
 import { SubtitleErasePanel } from "@/components/SubtitleErasePanel";
@@ -46,6 +49,7 @@ export interface VideoNodeData extends Record<string, unknown> {
   continuation?: VideoContinuationMetadata;
   subtitleErase?: SubtitleEraseMetadata;
   audioSplit?: AudioSplitMetadata;
+  depthMotionCapture?: DepthMotionCaptureMetadata;
   pictureEdit?: PictureEditMetadata;
   smartMatting?: SmartMattingMetadata;
 }
@@ -64,6 +68,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     continuation,
     subtitleErase,
     audioSplit,
+    depthMotionCapture,
     pictureEdit,
     smartMatting,
   } = data;
@@ -75,6 +80,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
   const createSubtitleErase = useCanvasStore((state) => state.createSubtitleErase);
   const createAudioSplit = useCanvasStore((state) => state.createAudioSplit);
+  const createDepthMotionCapture = useCanvasStore(
+    (state) => state.createDepthMotionCapture,
+  );
   const createVideoFrameCapture = useCanvasStore(
     (state) => state.createVideoFrameCapture,
   );
@@ -95,13 +103,20 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     | "subtitle-region"
     | "matting"
     | "picture-edit"
+    | "depth-motion"
   >("generator");
   const [enhanced, setEnhanced] = useState(false);
   const [audioSplittingMode, setAudioSplittingMode] =
     useState<AudioSplitMode | null>(null);
+  const [depthMotionResolution, setDepthMotionResolution] =
+    useState<DepthMotionCaptureResolution>("720P");
+  const [depthMotionSubmitting, setDepthMotionSubmitting] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [frameFeedback, setFrameFeedback] = useState<string | null>(null);
   const [pictureEditFeedback, setPictureEditFeedback] = useState<string | null>(
+    null,
+  );
+  const [depthMotionFeedback, setDepthMotionFeedback] = useState<string | null>(
     null,
   );
   const [mattingSubmitting, setMattingSubmitting] = useState(false);
@@ -114,8 +129,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   );
   const pictureEditFeedbackTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
+  const depthMotionFeedbackTimerRef =
+    useRef<ReturnType<typeof setTimeout> | null>(null);
   const mattingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pictureEditTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const depthMotionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
@@ -134,11 +152,17 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       if (pictureEditFeedbackTimerRef.current) {
         clearTimeout(pictureEditFeedbackTimerRef.current);
       }
+      if (depthMotionFeedbackTimerRef.current) {
+        clearTimeout(depthMotionFeedbackTimerRef.current);
+      }
       if (mattingTimerRef.current) {
         clearTimeout(mattingTimerRef.current);
       }
       if (pictureEditTimerRef.current) {
         clearTimeout(pictureEditTimerRef.current);
+      }
+      if (depthMotionTimerRef.current) {
+        clearTimeout(depthMotionTimerRef.current);
       }
     };
   }, []);
@@ -187,6 +211,35 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       createAudioSplit(id, mode);
       setAudioSplittingMode(null);
     }, 600);
+  };
+
+  const openDepthMotionCapture = () => {
+    if (depthMotionSubmitting) return;
+    if (durationSeconds > 15) {
+      setDepthMotionFeedback("视频时长超过处理上限，暂不支持深度动作捕捉");
+      if (depthMotionFeedbackTimerRef.current) {
+        clearTimeout(depthMotionFeedbackTimerRef.current);
+      }
+      depthMotionFeedbackTimerRef.current = setTimeout(() => {
+        depthMotionFeedbackTimerRef.current = null;
+        setDepthMotionFeedback(null);
+      }, 1800);
+      return;
+    }
+    setDepthMotionFeedback(null);
+    setDepthMotionResolution("720P");
+    setActiveTool("depth-motion");
+  };
+
+  const submitDepthMotionCapture = () => {
+    if (depthMotionSubmitting || depthMotionTimerRef.current) return;
+    setDepthMotionSubmitting(true);
+    depthMotionTimerRef.current = setTimeout(() => {
+      depthMotionTimerRef.current = null;
+      createDepthMotionCapture(id, depthMotionResolution, durationSeconds);
+      setDepthMotionSubmitting(false);
+      setActiveTool("generator");
+    }, 520);
   };
 
   const captureFrame = (kind: VideoFrameCaptureKind) => {
@@ -294,6 +347,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           onAudioSplit={startAudioSplit}
           onPictureEdit={selectPictureEdit}
           onSmartMatting={openSmartMatting}
+          onDepthMotionCapture={openDepthMotionCapture}
           onCaptureFrame={captureFrame}
           audioSplittingMode={audioSplittingMode}
         />
@@ -334,6 +388,14 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
                 {pictureEditFeedback}
               </span>
             )}
+            {depthMotionFeedback && (
+              <span
+                data-video-depth-motion-feedback
+                className="absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-[11px] text-white shadow-lg backdrop-blur-md"
+              >
+                {depthMotionFeedback}
+              </span>
+            )}
             <div
               className="absolute bottom-0 left-0 right-0 z-10 flex items-center gap-2 bg-gradient-to-b from-transparent via-black/25 to-black/55 px-3 pb-2.5 pt-8 text-[11px] text-white"
               onPointerDown={(event) => event.stopPropagation()}
@@ -363,6 +425,25 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               <Play size={22} fill="currentColor" className="ml-1" />
             </span>
             <span className="text-xs text-[#777]">等待续写内容</span>
+          </div>
+        ) : depthMotionCapture ? (
+          <div
+            data-depth-motion-output
+            data-depth-motion-source-id={depthMotionCapture.sourceNodeId}
+            data-depth-motion-edge-id={depthMotionCapture.edgeId}
+            data-depth-motion-resolution-value={depthMotionCapture.resolution}
+            data-depth-motion-duration={depthMotionCapture.durationSeconds}
+            data-depth-motion-model={depthMotionCapture.model}
+            data-depth-motion-request-mode={depthMotionCapture.requestMode}
+            className="flex flex-col items-center gap-2 px-6 text-center"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-white/[0.05] text-[#858585]">
+              <ScanLine size={23} strokeWidth={1.5} />
+            </span>
+            <span className="text-xs text-[#a0a0a0]">深度动作捕捉参考</span>
+            <span className="text-[10px] text-[#626262]">
+              {depthMotionCapture.resolution} · 等待媒体资源
+            </span>
           </div>
         ) : pictureEdit ? (
           <div
@@ -503,6 +584,26 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               setActiveTool("generator");
             }}
             onConfirm={submitPictureEdit}
+          />
+        )}
+      {showSingleNodeEditor &&
+        status === "ready" &&
+        activeTool === "depth-motion" && (
+          <DepthMotionCapturePanel
+            nodeWidth={
+              internalNode?.measured.width ?? internalNode?.width ?? 512
+            }
+            sourceLabel={filename}
+            durationSeconds={durationSeconds}
+            sourceResolution={resolution}
+            resolution={depthMotionResolution}
+            submitting={depthMotionSubmitting}
+            onResolutionChange={setDepthMotionResolution}
+            onCancel={() => {
+              if (depthMotionSubmitting) return;
+              setActiveTool("generator");
+            }}
+            onConfirm={submitDepthMotionCapture}
           />
         )}
     </div>

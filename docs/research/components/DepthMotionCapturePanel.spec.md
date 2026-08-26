@@ -53,3 +53,4 @@ depth-capture screenshot is currently persisted.
 - `[data-depth-motion-spinner]`
 - `[data-depth-motion-submit-reason]`
 - `[data-depth-motion-output]`
+- `[data-depth-motion-duration]`

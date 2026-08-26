@@ -80,3 +80,11 @@
 - 具体源站最大分钟数、720P 秒数和完整清晰度枚举；
 - 精确原站 dialog rect、动画曲线、真实图标 SVG；
 - 服务端任务、计费、上传、轮询、失败/超时/部分输出矩阵。
+
+## 6. 实施状态
+
+- [x] 证据边界、缺口排序和 workflow/component spec 已落档
+- [x] 入口、panel、guard、busy 和 pending graph 已实施
+- [x] 专项 Playwright、截图台账和 zero browser-error 检查已完成
+- [x] 跨批回归与 `npm run check`
+- [ ] commit/push 实现结果
