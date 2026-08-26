@@ -19,6 +19,8 @@
 - [Research Index](docs/research/README.md)
 - [Current Big Picture](docs/BIG_PICTURE.md)
 - [Documentation Plan](docs/DOCUMENTATION_PLAN.md)
+- [Agent Task Map](docs/AGENT_TASK_MAP.md)
+- [Decision Register](docs/DECISION_REGISTER.md)
 
 ## 3. Quick Commands
 

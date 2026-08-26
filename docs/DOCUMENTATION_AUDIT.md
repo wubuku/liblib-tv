@@ -74,8 +74,8 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 
 | 优先级 | 工作 | 价值 | 前置条件 |
 |---|---|---|---|
-| P0 | 任务到文档的 agent reading map | 新 agent 能按任务进入最小证据集合 | 正式入口已稳定 |
-| P0 | 跨文档决策登记 | 关键红线和不可逆选择有单一索引 | 只收录已存在合同，不重新发明规则 |
+| P0 | 任务到文档的 agent reading map | 新 agent 能按任务进入最小证据集合 | 已完成：[`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) |
+| P0 | 跨文档决策登记 | 关键红线和不可逆选择有单一索引 | 已完成：[`DECISION_REGISTER.md`](DECISION_REGISTER.md) |
 | P1 | 证据 claim 反向索引 | 从产品能力反查 DOM/JSON/截图/脚本证据 | 需要维护 claim ID 和日期 |
 | P1 | verifier 能力台账 | 区分脚本存在、脚本通过、源站已复核和仅有文章证据 | 不把并行 WIP 自动标为完成 |
 | P2 | 文档生命周期清理 | 处理真正过时的草稿和重复索引 | 必须先确认没有 inbound links |
@@ -91,4 +91,3 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 3. Batch 34/45 的“无专项 verifier”状态没有被隐藏；
 4. 文档链接检查通过；
 5. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
-

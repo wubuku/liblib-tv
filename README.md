@@ -57,6 +57,7 @@ python3 scripts/verify-docs.py
 | Development and verification | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) / [`docs/HARNESS.md`](docs/HARNESS.md) |
 | Research evidence and batch history | [`docs/research/README.md`](docs/research/README.md) |
 | Current detailed system picture | [`docs/BIG_PICTURE.md`](docs/BIG_PICTURE.md) |
+| Agent task reading paths and decisions | [`docs/AGENT_TASK_MAP.md`](docs/AGENT_TASK_MAP.md) / [`docs/DECISION_REGISTER.md`](docs/DECISION_REGISTER.md) |
 | Contribution and documentation rules | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 
 ## Prototype Boundaries
