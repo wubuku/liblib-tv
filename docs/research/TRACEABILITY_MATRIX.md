@@ -37,6 +37,13 @@
 | LIBTV-TR-016 | 当前 top-level overlays 由 `uiStore` write-side exclusion 协调，organize confirmation 独立，selected-node surfaces 不进入该 store | `CLONE_FACT` | [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | 当前稳定 clone runtime | 不代表全部 surface 在源站使用同一种 outside/Escape 策略 |
 | LIBTV-TR-017 | 当前 clone 的节点上下 surface 混用 React Flow `NodeToolbar` 和 node-internal inverse scale，而最新 source toolbar formula/action set 尚未进入 clone | `SOURCE_FACT` / `CLONE_FACT` | [`LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | standard image/video 与部分 active tool | 不代表应把所有 bottom panel 改成同一种 anchor |
 | LIBTV-TR-018 | 当前 clone 的 page global shortcuts 只对 editable target 和 Director Escape 做局部 guard，modal/Director 前台的其他 keyboard ownership 仍有风险 | `CLONE_FACT` / `INFERENCE` | [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、[`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md) | 当前 page shell 与 Director 边界 | 不证明源站 keyboard/focus 行为；需要只读复核和产品决定 |
+| LIBTV-TR-019 | 普通 LibTV verifier 的确定性隔离依赖新 Page、切换到初始空画布和真实 UI 构造，不依赖通用 `canvasStore` 注入 API | `CLONE_FACT` / `DECISION` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`canvasStore.ts`](../../src/store/canvasStore.ts)、[`verify-liblib-batch33.py`](../../scripts/verify-liblib-batch33.py) | 普通本地画布回归和可丢弃场景 | 不代表 `page.evaluate` 可以安全写入任意 store，也不代表新 Page 会清理同一 BrowserContext 的持久化 |
+| LIBTV-TR-020 | 当前 `canvas-2` 是 10 节点/11 边的 source-shaped demo，包含 5 个图片节点和一个 `failed` 视频子节点 | `CLONE_FACT` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`canvasStore.ts`](../../src/store/canvasStore.ts) | 本地 baseline、历史图片 variant、group 和 failed 分支 | 不代表源站当前 graph、节点数量或视频 ready 状态 |
+| LIBTV-TR-021 | 本地 Add Node 视频 fixture 默认是 `ready`、30 秒、`1280x720`、Seedance 2.5；它是 clone-only 的可复现输入 | `CLONE_FACT` / `DECISION` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`canvasStore.ts`](../../src/store/canvasStore.ts) | 本地片段重拍、视频动作和长视频入口回归 | 不代表源站提供相同 ready toolbar、结果版本或任务生命周期 |
+| LIBTV-TR-022 | graph history 不能充当 fixture teardown：默认 `setNodes`/`setEdges` 不入 history，undo 不恢复 viewport、canvas CRUD、UI 或远端副作用，snapshot 的 nested data 也不是深拷贝 | `CLONE_FACT` / `DECISION` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`canvasStore.ts`](../../src/store/canvasStore.ts) | reset 设计、transaction 回归和 undo/redo 解释 | 不代表源站用户可见 undo 语义，也不允许用多次 Cmd/Ctrl+Z 代替独立 Page |
+| LIBTV-TR-023 | 共享登录态源站项目是 `SHARED_READ_ONLY`，不能作为可重复 reset 的 source fixture；输入、提交、上传、保存、生成和 graph mutation 都不在当前研究边界 | `DECISION` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | 源站 freshness、已有状态和安全只读观察 | 不代表源站后端没有持久化、任务或独立 disposable project 能力 |
+| LIBTV-TR-024 | 历史 verifier 只有在 current source contract、稳定 fixture、明确授权和新 verifier 都具备后，才进入 replacement；旧断言先保留并标为历史合同 | `DECISION` | [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)、[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | verifier 演进、回归台账和授权 batch 规划 | 不代表已有 replacement queue 已实施，也不允许通过放宽旧断言制造“通过” |
+| LIBTV-TR-025 | Director 的 `window.__director_store` 和 Batch 48 的 browser-local persistence 属于独立 fixture 域，不是普通 `canvasStore` 的持久化或注入合同 | `CLONE_FACT` / `DECISION` | [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`Batch 48 PLAN.md`](liblib-canvas-batch48-2026-08-26/PLAN.md)、[`directorStore.ts`](../../src/store/directorStore.ts) | Director 专项回归、local model proxy 研究和并行 WIP 边界 | 不代表普通 LibTV route 具有同样 storage、fresh-context reset 或公开 store API |
 
 ## 3. Open Canvas 启发主张
 
@@ -56,6 +63,7 @@
 - clone 实现或 verifier 更新，使原来的 `CLONE_FACT` 只剩历史意义；
 - Open Canvas submodule 更新，导致固定行号或调用链改变；
 - 用户授权后某个 clone-only 决策被实现并形成新的实施合同。
+- fixture 构造、reset、BrowserContext persistence 或 verifier replacement 前提发生变化；这类变化应先更新 fixture catalog，再更新受影响主张。
 
 ### 4.2 更新动作
 
@@ -63,7 +71,8 @@
 2. 在本表增加或更新主张 ID 的状态和日期；
 3. 将旧主张标为 `HISTORICAL`，不要无说明删除；
 4. 更新 [`VERIFICATION_LEDGER.md`](VERIFICATION_LEDGER.md) 的覆盖解释；
-5. 运行 `python3 scripts/verify-docs.py`，并对文档变更做 path-scoped commit/push。
+5. 若变化涉及普通画布 reset、Director storage 或 source write boundary，回读 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)；若涉及历史断言，回读 [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)。
+6. 运行 `python3 scripts/verify-docs.py`，并对文档变更做 path-scoped commit/push。
 
 ## 5. 当前最重要的反向查找
 
@@ -76,3 +85,7 @@
 | 当前最值得先研究/复刻什么 | LIBTV-TR-016 到 LIBTV-TR-018，再查 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) |
 | Open Canvas 能借鉴什么 | OC-TR-001 到 OC-TR-004，再查模式卡 |
 | 现在能不能编码 | LIBTV-TR-015 和 [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) |
+| 为什么新 Page、切换 `canvas-1` 和 undo 不能混称为 reset | LIBTV-TR-019、LIBTV-TR-022、LIBTV-TR-025，再查 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md) |
+| 为什么不能把失败视频当 ready-video | LIBTV-TR-020、LIBTV-TR-021，再查 fixture catalog 的本地视频和 demo baseline 条目 |
+| 为什么不能在共享源站试探输入或提交 | LIBTV-TR-023，再查 source freshness runbook 和 go/no-go |
+| 历史 verifier 什么时候可以替换 | LIBTV-TR-024，再查 [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md) |
