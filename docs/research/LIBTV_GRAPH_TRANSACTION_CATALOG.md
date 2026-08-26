@@ -216,6 +216,14 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-020` | multi-entity command validates complete final draft before one commit | `REQUIRED_CORRECTNESS` | derived/process/shot creators append direct arrays | reject/unknown is zero-partial；accepted command is one history step |
 | `LIBTV-GI-021` | history/document restore validates schema/invariants before atomic swap | `REQUIRED_CORRECTNESS` | undo/redo directly restore shallow snapshot arrays | invalid restore keeps graph and history cursor unchanged |
 | `LIBTV-GI-022` | remote/server patch declares revision/base identity and field ownership | `FUTURE_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | ordinary remote ingress absent | stale/conflicting patch cannot silently overwrite graph/user fields |
+| `LIBTV-GI-023` | every graph-producing completion carries operation/run/result identity | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | current timers call graph creators directly | no anonymous delayed graph write |
+| `LIBTV-GI-024` | completion compares canvas/source/type/media-version/current owner before planning | `REQUIRED_CORRECTNESS` | current delayed actions mostly check source existence only | stale/invalid returns stable zero-mutation disposition |
+| `LIBTV-GI-025` | async patch writes only operation-registered fields | `REQUIRED_CORRECTNESS` | no remote patch；generic data writer exists | never overwrite graph identity or unrelated current draft |
+| `LIBTV-GI-026` | duplicate/out-of-order completion is idempotent | `REQUIRED_CORRECTNESS` | no result/version ingress | no duplicate node/edge/media/history/selection effect |
+| `LIBTV-GI-027` | accepted result delta uses one validated full-draft command | `REQUIRED_CORRECTNESS` | delayed creators append precomputed graph directly | existing GI/GC validation before one commit |
+| `LIBTV-GI-028` | component unmount and accepted operation lifecycle are separate | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | current timer cleanup semantics differ by surface | accepted operation remains observable or explicitly canceled |
+| `LIBTV-GI-029` | async completion does not steal unrelated selection/surface | `REQUIRED_CORRECTNESS` | several delayed creators rewrite global selection | default preserve or declared contextual transition |
+| `LIBTV-GI-030` | async resource ownership transfers or releases exactly once | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | Director has partial blob failure cleanup | stale/reject/delete/commit failure have deterministic release |
 
 ### 10.2 Compatibility case queue
 
@@ -244,10 +252,20 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-021` malformed history restore | invalid snapshot at past/future head | undo/redo | restore reject；history cursor unchanged | document/entrypoint design complete；runtime missing |
 | `LIBTV-GC-022` invalid clipboard/import relation | valid structure + invalid aggregate/data ref | paste/import | whole packet reject with path diagnostic | document/data/entrypoint design complete；runtime absent |
 | `LIBTV-GC-023` stale server result | old revision/run patches replaced node | remote patch | stale/conflict result；no overwrite | future backend boundary only |
+| `LIBTV-GC-024` draft drift | descriptor A submitted, current draft becomes B | A completes | A belongs to captured operation；B unchanged | async-ingress design complete；runtime absent |
+| `LIBTV-GC-025` source version drift | run reads V1, source becomes V2 | V1 result | stale/superseded；current output unchanged | source media version runtime absent |
+| `LIBTV-GC-026` delete/undo during run | operation placeholder/source removed | completion | no resurrection、selection steal or partial graph | async/delete composition designed |
+| `LIBTV-GC-027` retry race | A old attempt, B current attempt | B then A completion | B remains current；A stale | run/attempt runtime absent |
+| `LIBTV-GC-028` duplicate delivery | same result/version delivered twice | second ingress | exact no-op incl. history/resource | idempotency design complete |
+| `LIBTV-GC-029` UI owner drift | user selects unrelated node/surface | completion | current owner preserved unless contextual transition passes | current delayed creators may rewrite selection |
+| `LIBTV-GC-030` graph drift | placement/relation changes after submit | completion | replan on current graph or stable reject | current creators precompute before set |
+| `LIBTV-GC-031` projection recovery | terminal envelope stored, graph commit fails | retry projection | provider not re-invoked；eventual one commit | future backend boundary |
+| `LIBTV-GC-032` rejected resource | blob/temp result exists, ingress stale/invalid | reject | release exactly once | Director-focused future fixture |
+| `LIBTV-GC-033` polling history | progress/failure/success sequence | observe/complete | no per-poll graph history；terminal transaction exact | future local fixture |
 
 ### 10.3 Decision and verification order
 
-1. Lock `GI-001..003/008..022` data-correctness portions as pure cases, while keeping source/product branches explicit;
+1. Lock `GI-001..003/008..030` data-correctness portions as pure cases, while keeping source/product branches explicit;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
 3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
 4. the Batch 57 structural connection slice is now implemented and recorded through `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`; keep its source-invalid/Reference/domain branches separate;
@@ -346,6 +364,19 @@ Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PAR
 - `LIBTV-ING-DQ-001..008`、`LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014` and `GI-018..022/GC-018..023`。
 
 Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL`。Batch 57 protects only the local structural connection island；no generic setter restriction、derived command planner、restore codec、clipboard/import or remote authority is authorized by this handoff。
+
+### 10.11 Async result ingress and convergence handoff
+
+[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) is the completion-specific authority for：
+
+- fixed Open Canvas descriptor/run/runId polling/server-patch/revision/saved-baseline chain；
+- upstream missing expected-run/source-version/field-owner compare、stranded-run、two-write projection and storage RMW limitations；
+- committed clone shot/video/long-video timer and Director async completion inventory；
+- operation descriptor、result envelope、current/stale/duplicate/invalid disposition and operation-specific field ownership；
+- selection/history/undo/redo/resource transfer and recoverable projection policy；
+- `LIBTV-ASYNC-DQ-001..010`、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01`、`LIBTV-VR-015` and `GI-023..030/GC-024..033`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`。Current timers remain `PROTOTYPE_LATENCY`；no async schema、fixture queue、provider、polling、persistence or source task action is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

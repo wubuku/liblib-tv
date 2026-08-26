@@ -23,6 +23,7 @@
 | OC-PATTERN-02 | typed input buckets + provider projection | 图上的引用语义与执行请求耦合 | 直接对应 AutoLink 的稳定身份和 ordinal 投影 | P0，LibTV AutoLink 合同已落档，待授权实现 |
 | OC-PATTERN-03 | node status / run status / save status 分离 | 异步任务、节点展示和保存反馈互相覆盖 | 适合 Seedance 长视频、重拍和过程节点 | P1，先建立状态证据，不引入真实 provider |
 | OC-PATTERN-04 | serialized subgraph + ID map | 复制、派生和导入时保持图关系 | 适合复拍、版本链和过程图的可追溯性 | P1，先确认 LibTV 派生关系展示方式 |
+| OC-PATTERN-05 | run-keyed polling + stale-safe result ingress | 晚到/重复/乱序结果覆盖当前编辑或错误落图 | 适合拉片、长视频、处理结果与 Director export | P1，控制面方法可借；fixed generic patch 作为反例 |
 
 ---
 
@@ -216,13 +217,77 @@ Open Canvas 的画布 store 维护 nodes、edges、viewport、revision 和保存
 
 ---
 
-## 7. 四张卡的共同落地顺序
+## 7. OC-PATTERN-05：Run-keyed Polling + Stale-safe Result Ingress
+
+### 7.1 上游 `SOURCE_FACT`
+
+Open Canvas current studio 在 execute 前保存 graph，把 revision 交给 runner；runner 从 persisted graph 构造 descriptor、创建独立 run，非 terminal 任务由 client 使用 run ID 轮询。Server node patch 会推进 durable canvas revision，client store 同时 patch live node 与 saved graph baseline。页面还可以从 node 的 `queued/running + lastRunId` 恢复 polling。
+
+这套结构把 component timer、run identity、provider result、node projection 和 save baseline 分开，是当前 clone 值得借鉴的控制面。
+
+固定实现也提供了重要反例：node patch 只按 canvas/node ID 应用，不比较 expected current run、source media version 或 field owner；run terminal 与 node patch 是两个独立 local DB 写入；runner 在创建 `running` run 后发生 unsupported/provider exception 时没有统一 terminal cleanup。详见 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 的 `OC-AR-001..009`。
+
+### 7.2 LibTV 对应的 `CLONE_FACT`
+
+当前 committed clone 没有普通 canvas fetch/run store：
+
+- shot breakdown、audio split、depth motion、smart matting、picture edit 和 long video 由 component-local timer 延迟调用 graph creator；
+- 多数结果创建后永久保持 `pending`，没有 completion ingress；
+- timer callback 可在用户已选择其他节点后改写全局 selection；
+- shot breakdown 可在运行期间继续修改 dimensions，旧 descriptor 结果与新 source data 可能失配；
+- Director animation export 是唯一真实 browser-side async asset 完成后再创建 ready canvas result 的路径。
+
+这些行为是 `PROTOTYPE_LATENCY` 或本地导出，不是源站 task backend。
+
+### 7.3 `INFERENCE`
+
+仅把 timer 换成 fetch/poll 不会自动获得正确性。真正需要的是：
+
+```text
+captured operation descriptor
+  -> run / attempt / result envelope
+  -> current owner + source version compare
+  -> field ownership check
+  -> stale / duplicate / current disposition
+  -> validated full graph plan
+  -> idempotent commit or zero mutation
+```
+
+没有这条链，旧 retry 可以覆盖新 retry、source 删除后结果可以复活节点、translated error 可以被当作 local dirty edit、重复 poll 可以添加重复 result，component unmount 也会不清楚是在停止观察还是取消真实任务。
+
+### 7.4 `CLONE_DECISION`
+
+- 借鉴 run record、runId polling、独立 server authority 和 saved-baseline projection；
+- 补充 source media version、descriptor fingerprint、attempt/result identity 和 operation-specific field registry；
+- stale/duplicate/reject 默认 zero graph/history/selection mutation；
+- progress 不进入 graph history；新 topology/accept result 才形成具名 transaction；
+- undo 不自动重放 provider side effect；terminal envelope 与 graph projection 分离时必须可幂等重试；
+- 当前无 provenance UI 时拒绝 stale result，不偷偷附加孤立历史节点；
+- 不移植 Open Canvas generic `CanvasNodePatch`、URL identity、provider 或 file/KV persistence。
+
+### 7.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| identity | canvas/source/version/operation/run/attempt/result 可独立检查 |
+| freshness | source edit/delete、retry race、undo 和 canvas switch 有稳定 disposition |
+| idempotency | duplicate/out-of-order completion 不增加 node/edge/history/resource owner |
+| field owner | result patch 不覆盖 current draft、graph identity 或 unrelated selection |
+| recovery | terminal result 可重试 graph projection，而不重新调用 provider |
+| resource | blob/temp output 在 commit transfer 或 reject cleanup 时只处理一次 |
+
+设计 authority：[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015`。
+
+---
+
+## 8. 五张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
   -> 02 AutoLink stable identity
   -> 04 派生/版本关系
   -> 03 运行、节点、保存状态
+  -> 05 异步结果入口与陈旧收敛
 ```
 
 这个顺序不是实现顺序，而是研究依赖：
@@ -230,9 +295,10 @@ Open Canvas 的画布 store 维护 nodes、edges、viewport、revision 和保存
 - 浮层几何是当前已确认的高价值视觉缺口，且不依赖真实后端；
 - AutoLink 的身份边界会影响后续引用、候选和派生节点的关系表达；
 - 派生/版本关系明确后，才能设计长视频、重拍和过程型状态；
-- 运行与保存状态最后归纳，避免为尚未确认的源站操作预先制造状态机。
+- 运行与保存状态先归纳语义，避免为尚未确认的源站操作预先制造状态机；
+- 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 8. 统一拒绝清单
+## 9. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -240,15 +306,17 @@ Open Canvas 的画布 store 维护 nodes、edges、viewport、revision 和保存
 - 用一个固定 CSS offset 修复所有双浮层，而不检查 measured size、viewport 和选择生命周期；
 - 把 AutoLink 的 mention、graph edge、reference role 合并为字符串或单一连接；
 - 把 mock `running/success` 文案描述为真实任务后端；
+- 把 Open Canvas 的 generic node patch、URL media identity 或 read-modify-write persistence 当成 stale-safe 模板；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 9. 后续研究入口
+## 10. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
 - Open Canvas 到 LibTV 的转译：[`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)
 - Open Canvas 深度报告：[`REPORT.md`](REPORT.md)
+- 异步结果入口与陈旧收敛：[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

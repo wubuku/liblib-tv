@@ -98,11 +98,13 @@
 
 - UI 可选模型与实际 adapter 一一对应；
 - 请求、轮询、错误、重试、取消和输出回写都有状态机；
+- result ingress 携带 operation/run/attempt/result/source-version identity，并先判 current/stale/duplicate/invalid；
+- terminal result 与 graph projection 可幂等恢复，projection retry 不重新调用 provider；
 - 不把真实 key 放入可被 client script 读取的普通 cookie；
 - 明确计费、超时、上传和跨域策略；
 - mock 和 live 两套验证路径分开。
 
-**停止条件**：如果只能证明 UI 可见或 descriptor 可构造，不能证明 current route 可执行和结果可回写，则保持研究态，不把该 provider 标记为已支持。
+**停止条件**：如果只能证明 UI 可见或 descriptor 可构造，不能证明 current route 可执行、结果可按 field owner 回写、stale completion 可拒绝且 projection 可恢复，则保持研究态，不把该 provider 标记为已支持。异步入口权威见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
 
 ## 3. 当前项目文件边界
 

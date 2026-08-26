@@ -217,6 +217,8 @@ camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zu
 
 Graph authority 也不是一个 `addEdge` 就能覆盖：Batch 57 只关闭 React Flow connection 与 programmatic `addEdge` 的本地结构切片；派生动作、拉片/长视频多节点命令、duplicate、`setNodes/setEdges`、React Flow changes 和 undo/redo 仍通过不同入口直接写 graph。Open Canvas 固定版本采用 store local guard、serialization/full-graph validation、API validation、revision 和 server patch 多层边界，但其 clipboard paste 与 framework delta 也存在旁路，不能照抄。当前入口盘点、T0-T5 信任等级、full-draft command plan、`GRAPH-ENTRYPOINT-01` 和 `LIBTV-VR-014` 见 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)；runtime 仍为 partial，未授权集中重构。
 
+异步结果是这套 authority 的下一层，而不是一个 generic node patch：committed clone 没有普通画布网络任务或 run store，逐帧拉片、音视频分离、深度/抠像/主体编辑和长视频主要在 component timer 后直接创建 graph，Director 动画导出才有真实 browser-side completion。Open Canvas 的 descriptor/run/poll/server-patch/revision 结构值得借鉴，但固定实现没有比较 expected current run、source media version 或 field owner，terminal run 与 graph projection 也分成独立写入。当前 operation identity、stale/duplicate disposition、selection/history/resource 收敛、`ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 的设计权威是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)；当前短 timer 只表示 `PROTOTYPE_LATENCY`，不表示真实任务已接通。
+
 这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
 
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。
@@ -425,6 +427,8 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `docs/research/components/*.spec.md`：组件级规格
 - `docs/research/components/LibTVOverlayPositioning.contract.md`：图片节点双浮层的 screen/flow 定位合同与后续验证断言
 - `docs/research/components/LibTVAutoLink.contract.md`：Auto Link 的候选、ghost、structured mention 和 graph 事务合同
+- `docs/research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`：普通 graph 全写入口 T0-T5 authority、full-draft plan 与旁路审计
+- `docs/research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`：异步 operation/run/result identity、stale/duplicate disposition、field/history/resource 收敛合同
 
 ### FrameOS
 

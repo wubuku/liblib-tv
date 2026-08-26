@@ -80,6 +80,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 | `OC-ADOPT-015` | Open Canvas 的视觉皮肤、Panel 层级和具体尺寸 | `REJECT_TRANSPLANT` | 只作为源码定位线索，不作为 LibTV 视觉输入 | `OC-017/018/020` | LibTV 视觉只能由当前 DOM、computed style、截图和组件合同决定 |
 | `OC-ADOPT-016` | 集中 node/edge/selection delete、incident-edge cleanup 和 conflict no-op | `ADAPT_TO_LIBTV` | 借鉴 named deletion、zero-mutation gate 和一次提交；扩展为 LibTV relation inverse index、aggregate repair、UI/resource result | `OC-003`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`；`LIBTV-VR-013` | delete matrix/design 已完成；runtime、derived/shot/process/Director/media semantics 和 disposable source fixture 未完成；不得只移植 incident-edge filter |
 | `OC-ADOPT-017` | store local guard + serialization/save/API validation + revision/server-patch 分层 authority | `ADOPT_METHOD` | 为 LibTV graph ingress 定 T0-T5；将 transport、proposal、planned command、restore 和 remote patch 分开；同时保留上游 clipboard/framework delta 反例 | `OC-TR-010`；`DEC-030`；`LIBTV-PAR-008`；`GRAPH-ENTRYPOINT-01`；`LIBTV-VR-014` | static/design complete；runtime 仅 connection island protected；不得移植 autosave/conflict/persistence，也不得把上游 partial ingress 当正确模板 |
+| `OC-ADOPT-018` | descriptor/run/runId polling/server patch 控制面与 stale-result 反例 | `ADAPT_TO_LIBTV` | 为 process/result completion 定 operation/run/result/source-version identity、freshness、field ownership、idempotent projection 和 resource transfer | `OC-026..030`、`OC-TR-011`；`DEC-031`；`LIBTV-PAR-009`；`ASYNC-INGRESS-01`；`LIBTV-VR-015` | design complete/runtime missing；只借分层与 run-keyed observation，不移植 generic patch、URL identity、provider、persistence 或非原子 write flow |
 
 ## 5. 高价值采纳路径
 
@@ -90,7 +91,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 1. `OC-ADOPT-001`：用坐标域和 anchor owner 评审 `PAR-001/002`，但所有数字回到 LibTV 合同；
 2. `OC-ADOPT-002`：维护已经完成的 Auto Link typed identity/session/fixture 合同，等待运行 fixture 授权；
 3. `OC-ADOPT-004..006/016/017`：使用已经完成的 graph invariant/case 表、四份 component contracts、delete matrix、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md) 和两份 dated static audit；按 verifier 分开维护 runtime maturity，保持 persistence deferred，继续取得 Reference、导入/批量/同步、invalid lifecycle、Option-drag 和 cascade/detach source/product 决定；
-4. `OC-ADOPT-003/009`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态；
+4. `OC-ADOPT-003/009/018`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态，并以 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 约束 completion freshness、field/history/resource ownership；
 5. `OC-ADOPT-010`：建立“模型 UI 能力 / 请求投影 / 实际 runner”三层审计表。
 
 这些工作只能产出设计和验证合同，不能修改 `src/` 或测试脚本。
@@ -117,6 +118,7 @@ Auto Link 和 graph transaction 不应跟随该视觉 slice 一起实现。前�
 | 复制 `canvas-studio-shell.tsx` 的 overlay DOM/CSS | 上游只证明一种组织方法，LibTV 的上下浮层位于不同坐标域且允许自然裁切 | 读取 LibTV current contract，只借统一测量与推导思想 |
 | 用 Open Canvas input bucket 直接定义 Auto Link token | bucket 是执行输入分类，LibTV mention 还包含 stable node ID、media type 和 ordinal | 先定义 LibTV identity，再在边界层投影 |
 | 将所有 `status` 收敛成上游枚举 | LibTV 过程节点、媒体 ready/failed、候选和保存反馈不是同一生命周期 | 分别定义 node/run/result/save 状态和 owner |
+| 复制 Open Canvas generic server node patch | fixed path 不比较 expected current run/source version/field owner，run terminal 与 graph projection 也非原子 | 只借独立 authority；先判 stale/duplicate，再以 operation-specific full plan 幂等落图 |
 | 把上游子图 clipboard payload 当成 LibTV schema | LibTV 有 group、parent-child、derived media 和历史 candidate 语义 | 只借 ID map 与内部边闭包，重新定义 payload |
 | 因上游有 provider registry 就在 clone 宣称支持模型 | registry、设置 UI、legacy route 和 current runner 范围并不相等 | 同时证明 UI、adapter、request、polling 和 result write-back |
 | 复制非 HttpOnly provider key cookie | 与当前原型安全和 backend 边界冲突 | 保持 `PAR-012 OUT_OF_SCOPE`，另立安全设计 |

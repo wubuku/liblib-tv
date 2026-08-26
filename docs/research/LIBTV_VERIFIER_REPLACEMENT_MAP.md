@@ -195,8 +195,8 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 |---|---|
 | Backlog | `LIBTV-PAR-009` |
 | Old verifier | Batch 24/33 bounded results/process graph |
-| Required fixture | local fixed status matrix + disposable source process if authorized |
-| New checks | pending/failed/partial/success/retry；run/node/save status；version/time range；replacement and retry |
+| Required fixture | `LIBTV-FIX-LOCAL-PROCESS-STATES-01` + disposable source process if authorized；async mechanics compose `ASYNC-INGRESS-01` |
+| New checks | pending/failed/partial/success/retry；run/node/save status；version/time range；replacement and retry；completion mechanics delegated to `VR-015` |
 | Blockers | stable business interface or explicit local mock contract |
 | Exit | no claim of real progress, billing or output quality |
 
@@ -298,6 +298,22 @@ Delete command inventory、Open Canvas boundary、relation topology、policy mat
 
 Ingress inventory、Open Canvas layered boundary/limitations、T0-T5 model、decision queue、fixture and implementation slices 统一见 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)。
 
+### `LIBTV-VR-015`：async result ingress and stale convergence
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-009` completion correctness；composes `PAR-008` graph authorities |
+| Old verifier | Batch 24 shot completion、Batch 27/30-33 delayed derived/process、Batch 40 Director export；各自保留 bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` + `LOCAL-EMPTY-01` + reused graph data/delete/entrypoint authorities |
+| Static checks | enumerate timer/promise/poll/subscription graph writers；operation/run/result/source-version identity；no anonymous delayed write |
+| Pure checks | current/stale/duplicate/invalid disposition；field owner；draft/source drift；retry race；delete/undo；idempotent projection；resource transfer/release |
+| Browser checks | controlled completion queue/fake clock；unrelated selection/surface preserved；no per-poll history；one accepted graph commit；zero-mutation reject |
+| Recovery checks | terminal envelope survives injected projection failure；retry does not re-invoke provider；duplicate delivery exact no-op |
+| Blockers | identity/reconciliation runtime、fixture queue/resource ledger missing；编码授权；source version and real backend/provider remain blocked/out of scope |
+| Exit | every graph-producing completion is owner-checked and idempotent；stale/duplicate cannot overwrite draft、selection、history or graph；resource owner exact |
+
+Open Canvas positive control-plane evidence、fixed stale-write limitations、clone delayed-writer inventory、`GI-023..030/GC-024..033` and implementation slices 统一见 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。`VR-015` 检查 completion mechanics，`VR-007` 检查 process/result state meaning；二者不互相替代。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -340,6 +356,7 @@ Ingress inventory、Open Canvas layered boundary/limitations、T0-T5 model、dec
 - `LIBTV-VR-012` 的 11-type registry、aggregate/media fixture 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 `Record<string, unknown>`、suffix-based ID rewrite 或 shallow spread 当作 codec；
 - `LIBTV-VR-013` 的 relation-aware delete planner、repair policy、fixture scenes 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得先删 node/edge 再以 UI effect 或 suffix heuristic 修补 surviving refs；
 - `LIBTV-VR-014` 的入口审计、T0-T5 authority、fixture composition 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL`；不得用 Batch 57 `addEdge` 通过推导所有 direct writer 已受保护；
+- `LIBTV-VR-015` 的 Open Canvas/clone static audit、freshness/field/history/resource contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 component timer、node status 或 generic patch 当成 accepted operation owner；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

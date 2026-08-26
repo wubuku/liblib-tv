@@ -444,3 +444,16 @@
 - 新增 `LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014`、`DEC-030`、`LIBTV-TR-035`、`OC-TR-010` 和 `OC-ADOPT-017` 的 authority chain；
 - 同步 Big Picture、agent task map、docs/research/Open Canvas indexes、graph catalog、fixture/verifier、component coverage 和 handoff blueprint；
 - 本轮只修改文档，不触碰其他开发者 Batch 58 的 `src/` WIP、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。
+
+## 2026-08-27：v41 async result ingress 与陈旧执行收敛
+
+本轮继续深读 Open Canvas current execute/run/poll/patch chain，并将其正面结构与 stale-write 限制一起转译为 LibTV process/result completion 合同：
+
+- 固定复核 execute 前 `saveGraphNow`、revision preflight、persisted-graph descriptor、独立 run record、runId-keyed polling、hydrate 后 polling recovery、server node patch 和 client saved-baseline projection；
+- 明确 fixed implementation 的 revision compare/run reservation 非原子、generic patch 不比较 expected current run/source version/field owner、run terminal 与 node projection 两次写、audio/provider exception stranded-run 和 storage read-modify-write 风险；
+- 使用 fixed clone commit `8007e13` 审计，确认普通 canvas 无 network/run store；shot、audio/depth/matting/picture、long-video 由 component timer 延迟写 graph，Director export 才是真实 browser async asset completion；共享分支随后推进的 Batch 58/59 不纳入本轮代码事实；
+- 新增 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)，定义 operation descriptor、result envelope、current/stale/duplicate/invalid disposition、field ownership、full-plan commit、selection/history/undo/redo、recoverable projection 和 resource transfer；
+- 新增 `OC-PATTERN-05`、`OC-026..030`、`OC-ADOPT-018`、`OC-TR-011`、`DEC-031`、`LIBTV-TR-037`、`GI-023..030/GC-024..033`、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015`；
+- 明确当前短 timer 只算 `PROTOTYPE_LATENCY`，第一授权候选应是 deterministic shot-breakdown convergence fixture，不是 provider integration；
+- 同步 Big Picture、agent/index、process state、graph ingress/catalog、fixture/verifier/coverage、evidence/report/source analysis、adoption/pattern/handoff 和 traceability；
+- 本轮只修改文档，不触碰其他开发者 Batch 59 的 Director `src/`、verifier、截图/runtime-audit WIP、FrameOS、共享源站 graph 或 Open Canvas submodule。

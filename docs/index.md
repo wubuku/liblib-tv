@@ -73,6 +73,7 @@ graph TD
 - [`research/components/LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)：runtime node data 的 type/version registry、field role、operation transform、aggregate integrity 和 portability 合同。
 - [`research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：graph 删除入口、relation inverse index、cascade/detach/reset 决策、UI/resource lifecycle、fixture 和 verifier 合同。
 - [`research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：Open Canvas 分层校验与 clone 全 graph 写入口审计、T0-T5 信任等级、command plan、fixture 和 `LIBTV-VR-014` 设计。
+- [`research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas run/poll/server-patch 深读、clone 延迟写图审计，以及 operation identity、stale disposition、field ownership、history/resource 收敛和 `LIBTV-VR-015` 设计。
 - [`research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：LibTV page/route/node/Director 浮层的 state、mount owner、关闭路径、键盘和定位 ownership 目录。
 - [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)：当前 LibTV UI/UX parity 缺口的价值、证据、验证准备度、风险、依赖和授权/fixture 队列。
 - [`research/LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)：LibTV 本地/Director/源站 fixture 的身份、构造、隔离、reset、副作用和 parity backlog 映射。

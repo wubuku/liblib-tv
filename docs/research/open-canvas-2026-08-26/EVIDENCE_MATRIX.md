@@ -40,6 +40,11 @@
 | OC-023 | Open Canvas 选择 Quick Add 节点后，先创建节点，再依据 pending connection 方向创建边，失败以 toast 反馈并关闭菜单 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4925) | 一次用户动作中的 graph mutation 顺序 | 不代表 clone 应复制其节点类型、文案或连接方向 |
 | OC-024 | Open Canvas 将 clipboard 限定为 versioned 选中子图，复制内部边并在粘贴时重写 ID、按视口中心和递增偏移落点 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L3896)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L339) | 可复用的复制/粘贴 graph 边界 | 不代表当前 LibTV 的父子、派生节点和媒体字段可以被该 payload 替换 |
 | OC-025 | Open Canvas 将节点/任务运行状态与画布保存状态分开，并以 debounce 保存 dirty graph | 源码 | High | [`types.ts`](../../../research/upstream/open-canvas/shared/lib/canvas/types.ts#L11)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L38)；[`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4868) | 反馈状态的分层建模 | 不代表当前 LibTV prototype 已有真实运行、保存或冲突后端 |
+| OC-026 | current studio 在 execute 前保存 graph，并以 revision + node ID 创建独立 run；非 terminal run 以 run ID 轮询，页面可从 node `status + lastRunId` 恢复 polling | 源码调用链 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4768)；[`local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L90)；[`run route`](../../../research/upstream/open-canvas/app/api/canvas/[canvasId]/runs/[runId]/route.ts#L1) | descriptor/run/poll 控制面与 reload recovery | 不代表 run reservation 与 revision compare 是原子事务，也不证明 cancel/retry UI 已接通 |
+| OC-027 | server node patch 会增加 durable canvas revision，并在 client 同时 patch live node 与 saved graph baseline | 源码 | High | [`local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L337)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L836) | remote authority 与 local dirty/save baseline 分层 | 不代表 patch 已校验 current run、source version 或每个字段的 owner |
+| OC-028 | fixed node patch path 只以 canvas/node existence 定位目标，不要求 expected current run、source version 或 expected revision；client apply 也不比较 `lastRunId` | 源码 | High | [`types.ts`](../../../research/upstream/open-canvas/shared/lib/canvas/types.ts#L670)；[`local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L337)；[`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L836) | stale-write 与 field ownership 的静态设计缺口 | 不证明已经发生生产事故，也不表示 revision/save 分层没有价值 |
+| OC-029 | runner 在创建 `running` run 后才进入 audio unsupported/provider 调用，且没有 runner-level catch/finally 将异常 run 收敛为 terminal failure | 源码 | High | [`local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L120)；[`local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L190) | 失败补偿和 stranded-run 风险 | 不证明所有 provider 异常都必然留下同一状态，也不替代 live provider 测试 |
+| OC-030 | local store 的 `updateDb` 是无 storage CAS 的 read-modify-write；run terminal update 与 node patch 使用独立写入 | 源码 + 并发推断 | Medium | [`local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L133)；[`local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L160) | graph projection recovery 与并发验证需求 | 不等于已证明数据丢失；需要并发实验、部署拓扑和 storage 语义才能升级为运行事实 |
 
 ## 3. 对当前 clone 的引用规则
 
@@ -47,7 +52,7 @@
 
 1. 只引用带 ID 的声明，或先为新声明增加 ID；
 2. 涉及产品“有什么”时优先引用 OC-002、OC-004、OC-005、OC-010、OC-014、OC-015；
-3. 涉及“能否执行”时必须同时检查 OC-006、OC-007、OC-008、OC-009；
+3. 涉及“能否执行”时必须同时检查 OC-006、OC-007、OC-008、OC-009；涉及结果回写/竞态时再检查 OC-026..030；
 4. 涉及安全/托管时必须同时检查 OC-011、OC-012、OC-013；
 5. 不能用 Open Canvas 的源码事实替代 LibTV 源站证据；
 6. 不能用官网预览、provider marquee 或 README 宣称证明当前 clone 已实现。

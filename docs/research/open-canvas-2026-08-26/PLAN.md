@@ -57,8 +57,9 @@
 | `LIBTV_OVERLAY_MULTIZOOM_MATRIX.md` | LibTV 双浮层多 zoom 几何、自然裁切、virtualization 和选择生命周期 |
 | `../components/LibTVOverlayPositioning.contract.md` | 后续编码 agent 可直接引用的 screen/flow 坐标、标准 toolbar/panel 公式和验证断言 |
 | `../components/LibTVAutoLink.contract.md` | 后续编码 agent 可直接引用的 Auto Link 候选、ghost、structured mention 和 graph 事务合同 |
+| `../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md` | Open Canvas run/poll/patch 正反面、clone delayed writer 审计，以及 stale-safe completion、history/resource 和 verifier 设计 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 四类可迁移的坐标、引用、状态和子图模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 五类可迁移的坐标、引用、状态、子图和 async ingress 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
 ## 5. 状态

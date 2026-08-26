@@ -38,6 +38,7 @@
 | DEC-028 | node data 身份注册表 | node data 按 `(runtime type, dataVersion)` 验证，并按具名 operation 映射、重置、诊断或拒绝字段；aggregate/ref 不允许浅拷贝 | ACTIVE / RESEARCH_GATE |
 | DEC-029 | graph delete 关系修复 | delete 必须先规划 structural/relation/aggregate/UI/resource impact，再以 repair/cascade/detach 或 stable unknown 原子收口；不得只过滤 node/edge | ACTIVE / RESEARCH_GATE |
 | DEC-030 | graph mutation 入口定权 | 每个 graph 写入口必须归入 transport/proposal/planned command/restore/remote authority；multi-entity command 验证完整 draft 后一次提交，generic setter 不得成为业务旁路 | ACTIVE / RESEARCH_GATE |
+| DEC-031 | 异步结果陈旧收敛 | completion 必须携带 operation/run/result/source-version identity，经 freshness、field ownership 和 graph plan 校验后幂等落图；stale/duplicate/reject 不得覆盖当前 draft、selection 或 history | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -190,6 +191,16 @@
 **影响：** 不能把所有 derived edge 循环调用 `addEdge`，否则会产生 partial graph 和多 history step；也不能依赖 future save-time validation 才发现 runtime invalid state。后续先收窄 React Flow change 类型，再按单一 command 迁移 derived/copy/delete/history，不做一次性 store 重构。`GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014` 和 runtime authority boundary 仍需明确编码授权。
 
 **依据：** [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts) 与 [`validation.ts`](../research/upstream/open-canvas/shared/lib/canvas/validation.ts)。
+
+### DEC-031：异步结果必须先判 freshness 再落图
+
+**背景：** 当前 clone 的逐帧拉片、视频后处理和长视频主要由 component-local timer 延迟调用 graph creator，Director 动画导出则在真实 browser-side 录制完成后创建结果节点；普通画布没有共同的 operation/run/result ingress。Open Canvas 固定版本展示了 descriptor、run record、runId polling、server patch、revision 与 saved baseline 分层，但其 node patch 不比较 expected current run/source version/field owner，run terminal 与 graph patch 也不是一个原子写入。
+
+**决策：** 每个 graph-producing completion 必须携带 canvas/source/source-version/operation/run/attempt/result identity。T5 或 local async ingress 先判 current、stale、duplicate 或 invalid，再检查 operation-specific field ownership、构造并验证完整 graph plan；只允许 current accepted plan 一次提交。Stale/duplicate/reject 默认 preserve 当前 draft、selection、surface 和 history；没有 provenance UI 时不偷偷附加孤立结果。Progress/status observation 不产生 graph history，undo 不自动重放外部 side effect，result resource 在 accepted commit 时才转移 ownership。
+
+**影响：** 当前短 timer 统一解释为 `PROTOTYPE_LATENCY`，不能冒充 task backend。后续若获授权，先用 deterministic shot-breakdown fixture 验证 descriptor freeze、delete/undo stale rejection、selection preserve 和 duplicate no-op，再扩展长视频、视频处理与 Director；真实 provider、上传、计费、保存、cancel/retry backend 仍需独立授权。
+
+**依据：** [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、[`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、Open Canvas [`local-canvas-runner.ts`](../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts) 与 [`canvas-studio-shell.tsx`](../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx)。
 
 ## 3. 何时可以重审决策
 

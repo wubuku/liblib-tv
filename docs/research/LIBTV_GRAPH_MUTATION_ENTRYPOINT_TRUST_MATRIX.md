@@ -375,6 +375,8 @@ Rules:
 - full document payload receives server-side validation;
 - local UI feedback and remote persistence status remain separate owners.
 
+Provider/run completion 的 operation/result envelope、expected current owner、stale/duplicate disposition、history/selection/resource 和 recoverable projection 继续由 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 细化；T5 分类本身不是免检 patch 通道。
+
 ## 9. Command Envelope
 
 The following is conceptual design, not an implementation signature:
@@ -485,7 +487,7 @@ Required properties:
 
 **Question:** how may asynchronous result patches interact with local graph edits?
 
-**Recommended decision:** patch declares base graph/revision, node ID, operation/run ID and field ownership. Stale result becomes diagnostic/quarantine or explicit rebase; it cannot overwrite graph identity or user-authored fields generically.
+**Recommended decision:** patch declares base graph/revision, node ID, source media version、operation/run/attempt/result ID and field ownership. Stale/duplicate/current/invalid 先分类，再由 operation-specific full plan 决定 apply/quarantine/reject；它不能 generically overwrite graph identity、user-authored fields、current selection 或 history。完整机械合同见 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
 
 ## 12. Correctness Invariants
 
@@ -641,6 +643,7 @@ No slice is authorized by this document. If the user later authorizes code, keep
 
 - only after a real backend/run/sync interface is authorized;
 - revision/base identity and field ownership are mandatory;
+- compose `LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` / `LIBTV-VR-015` before provider integration;
 - do not copy Open Canvas file/KV/conflict UI as LibTV parity.
 
 ## 16. Implementation Review Checklist

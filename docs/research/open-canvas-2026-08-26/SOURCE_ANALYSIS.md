@@ -219,9 +219,26 @@ studio 在图改变后约 1.2 秒自动保存。保存请求携带 revision；�
 - canvas 文档和 runs 在同一个 JSON 数据库中；
 - 删除最后一张画布时自动创建一张空画布。
 
-`updateDb` 本身是 read-modify-write。图保存有 revision compare-and-swap，但列表元数据、运行记录及节点 patch 依然共享一次完整 DB 读写。由此可推断，在多实例或高并发 KV 场景下仍需要更强的原子更新/锁/队列策略；这是运营风险，不是当前源码已经声明的 bug。
+`updateDb` 本身是 read-modify-write。图保存会在当前读出的对象副本上做 application-level revision compare，但 storage 层没有 CAS；列表元数据、运行记录及节点 patch 也各自共享一次完整 DB 读写。由此可推断，在多实例或高并发 KV 场景下仍需要更强的原子更新/锁/队列策略；这是运营风险，不是当前源码已经声明的 bug。
 
 参考：[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L20)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L77)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L160)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L302)。
+
+### 6.4 Run polling 与结果回写 authority
+
+current studio 在执行前调用 `saveGraphNow`，把返回 revision 交给 execute route；runner 在 durable graph 上构造 descriptor，创建独立 run，并把非 terminal run ID 交回 client。Client 以 run ID 管理 polling timer，且可在 hydrate 后从 node 的 `queued/running + lastRunId` 恢复轮询。Terminal node patch 会在 server 增加 canvas revision，client 的 `applyServerNodePatch` 同时 patch live node 和 `savedGraphString` baseline。这是比 component-local spinner 更完整的控制面分层。
+
+但 fixed implementation 尚未把它收口成 stale-safe transaction：
+
+- execute 的 revision compare、run creation 和 current-node owner claim 不是同一原子写；
+- `applyLocalCanvasNodePatch` 只验证 canvas/node 存在，不比较 expected revision、expected `lastRunId` 或 source version；
+- client `applyServerNodePatch` 也不检查 patch 是否仍来自 current run，且 `plainText` 一类字段可能同时承担 user draft 和 generated output；
+- run terminal update 与 node patch 是两个独立 `updateDb`；中间失败需要 recoverable projection，但当前没有 projection state；
+- runner 在创建 `running` run 后才进入 audio unsupported/provider 调用，异常路径没有统一 terminal cleanup；
+- failed/canceled polling 在应用 server patch 后又走本地 `updateNodeData`，会混合 server result 与 local dirty authority。
+
+因此 Open Canvas 可以证明 descriptor/run/poll/server-patch/revision 应分层，不能证明“有 revision 就不会有 stale result”。完整正反面审计与 LibTV 转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
+
+参考：[`shared/services/canvas/local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L90)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L337)、[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L836)、[`shared/blocks/canvas/canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L5187)。
 
 ## 7. Provider 事实与关键缺口
 

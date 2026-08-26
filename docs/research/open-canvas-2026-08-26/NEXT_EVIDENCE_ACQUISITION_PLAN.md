@@ -195,11 +195,20 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 4. result state；
 5. save state。
 
-同时记录 source node、media version、operation、time range、run、result/version 六类 identity，重点观察 partial result、retry、stale input、局部重算、候选接受和结果替换。
+同时记录 source node、media version、operation、time range、run、result/version 六类 identity，重点观察 partial result、retry、stale input、局部重算、候选接受和结果替换。若 disposable fixture 明确允许对应动作，还要记录：
+
+- submit 的 accepted point 是点击、server acknowledgement 还是结果节点创建；
+- 运行期间继续编辑 draft、切 selection/关闭 surface 后，completion 归属和可见反馈是否变化；
+- retry/late result 是否保留独立 attempt/result identity；
+- undo/delete/cancel 对已接受 operation 和晚到 result 的处理；
+- result ready 是否自动选择节点、增加 history 或改变 save state；
+- 失败后是否保留 terminal envelope、partial output 和可恢复 projection。
+
+这些观察按 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 的 freshness/field/history/resource 轴追加，不能只记一个 status label。Clone 侧先以 `LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 做 deterministic design；不得用真实 provider 制造 race fixture。
 
 ### 8.3 退出与停止
 
-不得为了得到 running/failed 状态而在共享源站触发真实任务。费用、进度百分比、轮询频率和结果时间只有直接证据时才能记录，且不作为 SLA。证据完成只允许升级 `L0` 和 fixture/verifier 规划；真实 runner、计费、保存后端仍是 `OUT_OF_SCOPE`。
+不得为了得到 running/failed/stale/race 状态而在共享源站触发真实任务，也不得为 race 主动重复计费提交。费用、进度百分比、轮询频率和结果时间只有直接证据时才能记录，且不作为 SLA。证据完成只允许升级 `L0` 和 fixture/`LIBTV-VR-007/015` 规划；真实 runner、计费、保存后端仍是 `OUT_OF_SCOPE`。
 
 ## 9. `OC-EQ-006`：Open Canvas upstream impact diff
 

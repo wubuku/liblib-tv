@@ -2,7 +2,7 @@
 
 > 状态：`CURRENT_RESEARCH` / `CURRENT_GUIDANCE`
 >
-> 对应：`OC-BP-005`、`OC-ADOPT-003/009`、`LIBTV-PAR-009`、`LIBTV-VR-007`
+> 对应：`OC-BP-005`、`OC-ADOPT-003/009/018`、`DEC-031`、`LIBTV-PAR-009`、`LIBTV-VR-007/015`
 >
 > 当前授权：只做研究和设计；不修改 `src/`、verifier 或共享源站状态
 
@@ -178,6 +178,8 @@ not-created -> queued -> running -> succeeded
 
 这些规则借鉴 Open Canvas 的 run/node/save 分离和稳定输入投影，但仍需要 LibTV 业务接口或明确 clone-only contract 才能编码。
 
+本节只定义状态/身份语义。Completion envelope、current/stale/duplicate/invalid 判定、field ownership、graph plan、selection/history 和 resource transfer 的机械合同由 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 负责；未来实现必须同时满足 `LIBTV-VR-007` 与 `LIBTV-VR-015`，不能把“状态名齐全”当成 stale-safe result ingress。
+
 ## 9. `LIBTV-FIX-LOCAL-PROCESS-STATES-01` 接收规格
 
 ### 9.1 构造原则
@@ -232,6 +234,8 @@ The shared logged-in research project is not this fixture. Without an accepted d
 | runtime | focused desktop/mobile states, console/page/request errors and deterministic reset |
 
 Historical Batch 23/24/33 verifiers remain bounded compatibility tracks. `LIBTV-VR-007` does not replace them until current source contract, accepted fixture, authorized implementation and a stable new verifier all exist.
+
+`LIBTV-VR-007` 检查状态语义，`LIBTV-VR-015` 检查 completion 的 authority/收敛机制；二者互相组合但不互相替代。
 
 ## 12. 未决问题与停止条件
 

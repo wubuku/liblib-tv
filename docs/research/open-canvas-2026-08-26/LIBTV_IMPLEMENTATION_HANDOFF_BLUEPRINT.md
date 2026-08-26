@@ -72,7 +72,7 @@ RESEARCH_ONLY
 | `OC-BP-002` low-risk active surfaces | `OC-ADOPT-001` | `LIBTV-PAR-002` | 分三个待授权 slice | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-002` |
 | `OC-BP-003` typed Auto Link | `OC-ADOPT-002` | `LIBTV-PAR-003` | `DESIGN_READY`；运行 fixture 未实现 | `LIBTV-FIX-LOCAL-AUTOLINK-01` 接收规格已完成 | `LIBTV-VR-003..005` |
 | `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016/017` | `LIBTV-PAR-008` | connection/document/copy/data/delete/entrypoint contracts complete；runtime maturity 按 verifier 独立维护 | `GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` + `SUBGRAPH-COPY-01` + `NODE-DATA-01` + `GRAPH-DELETE-01` + `GRAPH-ENTRYPOINT-01` 设计完成 | `LIBTV-VR-009..014` 有 authority；Reference/domain/invalid lifecycle/Option-drag/cascade/detach and runtime ingress migration remain open |
-| `OC-BP-005` process/result lifecycle | `OC-ADOPT-003/009` | `LIBTV-PAR-009` | `BLOCKED_BY_FIXTURE` | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` + 所需 source fixture | `LIBTV-VR-007` |
+| `OC-BP-005` process/result lifecycle + async ingress | `OC-ADOPT-003/009/018` | `LIBTV-PAR-009` | state/ingress design complete；runtime/source blocked | `LOCAL-PROCESS-STATES-01` + `LOCAL-ASYNC-INGRESS-01` + 所需 source fixture | `LIBTV-VR-007/015` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
@@ -201,9 +201,25 @@ Entry-point authority 子切片已有 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MA
 
 `LIBTV-FIX-LOCAL-LONG-PROCESS-01` 只证明 clone-owned 的 12 节点/22 边 pending topology。它不能证明真实 source 拆分、进度、失败、费用、局部重算或结果替换。进入 `LIBTV-VR-007` 前仍需要固定本地状态矩阵和获授权的 disposable source process fixture，或明确批准的 bounded local mock contract。
 
-Open Canvas 的 node/run/save 分层在这里是高价值设计输入，但 current runner、轮询和保存实现不进入 clone。
+Open Canvas 的 node/run/save 分层在这里是高价值设计输入。进一步静态深读证明 current runner 的 descriptor、runId polling、独立 server patch 和 saved-baseline projection 也可作为控制面方法；但 fixed patch 不比较 expected current run/source version/field owner，run terminal 与 graph projection 也不是原子写入，因此 current runner、provider、generic patch 和保存实现都不进入 clone。
 
 完整的五轴状态、能力投影、stale/retry 规则和 fixture 接收规格见 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。
+
+### 9.3 Async ingress 交接
+
+完整机械合同见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。任何 graph-producing completion 在实施前还必须回答：
+
+| 层 | 必须具备 |
+|---|---|
+| operation identity | canvas/source/source media version、descriptor fingerprint、operation/run/attempt/result ID |
+| freshness | current/stale/duplicate/invalid disposition 和 stable reason |
+| field owner | run/result 可写字段与 user draft/graph identity 明确分开 |
+| transaction | current graph 上重建并验证 full plan；accepted one commit，reject zero mutation |
+| UI/history | completion 默认 preserve unrelated selection/surface；progress 不写 graph history；undo 不重放外部 side effect |
+| recovery/resource | terminal envelope 可幂等重试 projection；blob/temp output transfer/release exactly once |
+| fixture/verifier | `LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` / `LIBTV-VR-015` |
+
+如果未来获得编码授权，第一 slice 应是 deterministic shot-breakdown operation，不是 provider 接入：冻结 dimensions descriptor，覆盖 draft drift、delete/undo、retry/duplicate、selection preserve 和 stale zero-mutation。Long-video multi-node cohort 与 Director blob ownership 分开进入后续 slice。
 
 ## 10. `OC-BP-006`：模型能力投影审计
 

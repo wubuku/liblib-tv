@@ -137,14 +137,16 @@ sequenceDiagram
 
   U->>S: 选中节点并点击生成
   S->>Z: 读取 graph / selected node
-  S->>S: resolve inputs + infer scene + build descriptor
   S->>Z: 保存作者图
   S->>API: POST node execute + revision
   API->>R: executeLocalCanvasNode
+  R->>DB: 读取 persisted graph + 比较 revision
+  R->>R: resolve inputs + infer scene + build descriptor
   R->>DB: 创建 running run
   R->>P: 发送文本或媒体任务
   P-->>R: task id / immediate output
-  R->>DB: 回写 run 与 node patch
+  R->>DB: 独立回写 run
+  R->>DB: 独立回写 node patch + revision
   S->>API: 轮询 run
   API->>R: queryLocalCanvasNodeRun
   R->>P: 查询 task
@@ -159,9 +161,10 @@ sequenceDiagram
 2. **场景由图决定**：文本/图片/视频节点在上游连接变化后，scene 和可见设置可能变化。
 3. **模型能力由 registry/options 决定**：不同 Seedance、Midjourney、Gemini Omni 变体的 ratio、resolution、duration、reference 规则不同。
 4. **结果是节点 patch**：运行记录用于审计/轮询，节点 data 用于画布呈现和下游输入。
-5. **保存和执行共享 revision**：异步运行回写不能假定用户没有继续编辑。
+5. **保存和执行共享 revision**：execute 以 persisted graph revision 为 preflight；server patch 会推进 revision 和 client saved baseline。
+6. **revision 不是 run owner**：fixed patch path 不比较 expected current run、source version 或 field owner，terminal run 与 graph projection 也不是一个原子写入。
 
-对应声明：OC-003、OC-004、OC-005、OC-007、OC-010；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)。
+对应声明：OC-003、OC-004、OC-005、OC-007、OC-010、OC-026..030；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)，异步入口的完整正反面转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
 
 ## 5. 视觉/交互研究重点
 
@@ -268,6 +271,10 @@ provider key 写入非 HttpOnly cookie，client ID 只是 namespace 而非认证
 ### R6：持久化并发（中）
 
 JSON/KV 的 read-modify-write 适合 alpha/local-first，但不能直接推导为多用户协作方案。当前 clone 仍应把本地 mock 与真实协作边界写在文档中。
+
+### R7：异步结果 patch ownership（高）
+
+current runner 的 descriptor、run、polling、node patch 和 revision 分层值得借鉴，但 node patch 只按 canvas/node ID 应用，不要求 expected current run/source version/field owner。旧 attempt、后续文本编辑、source version 切换和 terminal-run/graph-patch 中间失败都需要额外收敛合同。当前 clone 不应复制 generic server patch；先建立 operation/result envelope、stale disposition、idempotent graph projection 和 resource transfer 验证。
 
 ## 8.1 声明漂移的处理方式
 

@@ -221,6 +221,7 @@ Open Canvas 把节点/任务运行状态与画布保存状态拆开：
 - store 的保存状态包括 `idle`、`saving`、`saved`、`error`、`conflict`，并另存 `isDirty`、revision、saveError 和 lastSavedAt；
 - 编辑节点时可以使 graph dirty，而不会把任务状态误写成 saving；保存冲突会阻止继续写入并要求加载最新版本。见 [`types.ts`](../../../research/upstream/open-canvas/shared/lib/canvas/types.ts#L11) 和 [`canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L38)。
 - studio shell 使用 debounce 保存，源码中当前观察到的延迟为 1200ms。见 [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4868)。
+- execute 前会保存 graph 并提交 revision，非 terminal run 以 run ID 轮询，server patch 推进 revision 与 saved baseline；但 fixed patch 不比较 expected current run/source version/field owner，不能把这条路径直接当 stale-safe 模板。见 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
 
 ### 8.2 `INSPIRATION`
 
@@ -236,6 +237,8 @@ Open Canvas 把节点/任务运行状态与画布保存状态拆开：
 ```
 
 每条转移都要确认节点是否仍可拖拽、工具条/编辑面板是否仍可定位、异步结果回来时是否覆盖用户的新输入。没有真实服务端时，测试必须明确标为 mock/local 行为。
+
+状态转移记录还不够。Graph-producing completion 必须另记 operation/run/result/source-version identity、current/stale/duplicate/invalid disposition、field owner、selection/history delta 和 resource owner；对应 `LIBTV-UIX-14` 的机械 verifier 是 `LIBTV-VR-015`，状态语义 verifier 仍是 `LIBTV-VR-007`。
 
 ## 9. 模式 G：画布级控件与节点级控件的层级
 
@@ -326,7 +329,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | 连线 | source/target/handle/边结果 | Handle 事件是否被装饰层拦截、方向是否归一化 |
 | 复制粘贴 | graph 前后 JSON、选择态和位置 | ID map、内部边、父子关系、历史事务 |
 | 媒体结果 | 输出数组、selected index、下游引用 | 当前候选和派生节点是否被混为一谈 |
-| 状态反馈 | 状态转移日志 + 可操作性 | run/save 状态是否覆盖、异步结果是否陈旧 |
+| 状态反馈 | 状态转移日志 + operation/result envelope + 可操作性 | run/save 是否混淆；stale/duplicate completion 是否覆盖 draft、selection、history/resource |
 | 移动端 | 390px screenshot + hit target | 不要从桌面 clamp 推导移动端布局 |
 
 ## 14. 明确禁止事项
