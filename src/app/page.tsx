@@ -257,6 +257,26 @@ export default function Home() {
   }, [activeCanvasId, setStoreViewport, setZoomLevel]);
 
   useEffect(() => {
+    const handleActiveImageSurfaceKeyDown = (event: KeyboardEvent) => {
+      const uiState = useUIStore.getState();
+      if (!uiState.imagePreview && !uiState.imageAnnotate) return;
+
+      const modifier = event.metaKey || event.ctrlKey;
+      const blocksBrowserDefault =
+        event.key === "Escape" ||
+        event.key === "Delete" ||
+        event.key === "Backspace" ||
+        event.key === "Tab" ||
+        event.code === "Space" ||
+        (modifier && ["z", "y", "d"].includes(event.key.toLowerCase()));
+      if (blocksBrowserDefault) event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (event.key !== "Escape") return;
+      if (uiState.imagePreview) uiState.closeImagePreview();
+      else uiState.closeImageAnnotate();
+    };
+
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       const isEditableTarget = Boolean(
@@ -265,22 +285,6 @@ export default function Home() {
       if (isEditableTarget) return;
       const uiState = useUIStore.getState();
       if (uiState.activeDirectorNodeId) return;
-      if (uiState.imagePreview) {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          uiState.closeImagePreview();
-        }
-        return;
-      }
-      if (uiState.imageAnnotate) {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          uiState.closeImageAnnotate();
-        }
-        return;
-      }
 
       const modifier = event.metaKey || event.ctrlKey;
 
@@ -358,12 +362,14 @@ export default function Home() {
       if (document.hidden) resetTemporaryPan();
     };
 
-    window.addEventListener("keydown", handleKeyDown, true);
+    window.addEventListener("keydown", handleActiveImageSurfaceKeyDown, true);
+    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
     window.addEventListener("blur", resetTemporaryPan);
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown, true);
+      window.removeEventListener("keydown", handleActiveImageSurfaceKeyDown, true);
+      window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("blur", resetTemporaryPan);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
