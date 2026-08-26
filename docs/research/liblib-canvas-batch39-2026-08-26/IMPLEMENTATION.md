@@ -82,6 +82,24 @@ git diff --check
 
 All passed.
 
+## Focused Verification
+
+Added `scripts/verify-liblib-batch39.py`. It covers:
+
+- identity schema, deep creation snapshot and finite pivot;
+- position/rotation/scale Inspector updates;
+- transformed world points and live character sampling;
+- world anchor and symmetric world handle round trips;
+- offset-only reset versus creation-snapshot reset;
+- scale lower/upper clamps;
+- playback over transformed points;
+- helper-free capture pixels;
+- `1440x900` and `390x844` layout/overflow;
+- console, page and request failures.
+
+The focused script passes and generates six Batch 39-only image artifacts.
+Their one-time interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
+
 ## Commit Protection
 
 - Plan protection: `42f1a3c`.

@@ -119,5 +119,5 @@ Batch 38 anchor/handle selectors remain stable.
 - [x] Pure transform math and path schema
 - [x] R3F world/local control conversion
 - [x] Inspector controls and store actions
-- [ ] Focused Playwright and screenshot ledger
+- [x] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate
