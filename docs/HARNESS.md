@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch41.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch43.py` | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -61,13 +61,14 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 40 | real cropped WebGL recording, export settings/progress/error states, dynamic WebM decode/playback, ratio-shaped video return, target selection, atomic undo/redo and mobile geometry |
 | Batch 41 | phone virtual-camera local boundary, real pose input, stability/level/hold/elevation controls, current-playhead recording, named camera-track import and mobile geometry |
 | Batch 42 | articulated R3F character, 20 pose presets, SAM controls, independent pose tracks, transform-plus-pose composition, interpolation, path rejection and mobile geometry |
+| Batch 43 | coordinate/rotation/object camera look-at, animated target follow, first/third-person modes, FOV composition, path/phone guards, recovery and mobile geometry |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..42}.py; do
+for script in scripts/verify-liblib-batch{4..43}.py; do
   python3 "$script" || exit 1
 done
 ```

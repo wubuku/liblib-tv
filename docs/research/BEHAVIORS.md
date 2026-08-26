@@ -87,6 +87,18 @@
   endpoint preset identity. Pose tracks use generic keyframe navigation and
   editing, but reject motion-path authoring because paths only bind
   transform/camera movement.
+- **Camera look-at:** a selected camera can use `手动坐标`, `手动旋转` or a
+  visible character/prop stable ID. Coordinate/object modes render through
+  `lookAt`; rotation mode applies the sampled camera Euler values directly.
+- **Camera follow:** `跟随目标` stores a stable object ID, target-local
+  `跟随偏移` and `第三人称 / 第一人称`. Timeline evaluation samples every
+  object first, then resolves camera relationships from the sampled target,
+  preserving camera-track FOV.
+- **Follow conflicts:** a followed camera keeps existing paths/tracks but
+  rejects new preset/free path authoring with
+  `请先关闭机位跟随，再绘制轨迹`, and rejects phone-camera connection or
+  recording with `请先关闭机位跟随，再使用手机运镜`. Disabling follow
+  restores ordinary sampled camera/path values.
 - **Motion-path creation:** a selected transform/camera track enables
   `创建运动轨迹`; the current source-backed menu creates `直线路径`,
   `圆环路径` or `矩形路径`, or starts source-labeled `铅笔路径` /
@@ -155,7 +167,10 @@
   `scripts/verify-liblib-batch41.py` cover phone virtual-camera local preview
   and camera-track import; `docs/research/liblib-canvas-batch42-2026-08-26/`
   and `scripts/verify-liblib-batch42.py` cover articulated character posing,
-  SAM controls and transform-plus-pose track composition.
+  SAM controls and transform-plus-pose track composition;
+  `docs/research/liblib-canvas-batch43-2026-08-26/` and
+  `scripts/verify-liblib-batch43.py` cover coordinate/rotation/object look-at,
+  animated target follow, first/third-person modes and path/phone conflicts.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph

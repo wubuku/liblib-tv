@@ -175,7 +175,8 @@ React Flow change
   工作区底部的 typed timeline 可 scrub/playback 并确定性驱动场景与机位；
   transform/camera track 还可绑定预设运动路径和 cubic-Bezier 速度曲线；
   角色支持关节化 R3F mannequin、20 个 source-named 姿势预设、SAM 分组调节
-  和可与 transform 同时采样的独立 pose track
+  和可与 transform 同时采样的独立 pose track；机位支持手动坐标/旋转/对象
+  注视、目标跟随、第一/第三人称，并在所有普通轨道采样后解析目标关系
 
 ### 5.2 状态边界
 
@@ -199,10 +200,11 @@ React Flow change
 `directorStore` 管可序列化的场景、对象、选择、活动机位、视角、transform
 模式、画幅、九宫格、截图记录、角色 rig，以及 transform/camera/pose typed tracks、
 playhead、播放/循环/缩放、关键帧选择、auto-keyframe、运动路径和轨道级
-速度曲线。时间轴采样会先计算关键帧值，再以 cubic-Bezier 重映射进度并按
+速度曲线，以及机位 look-at/follow 关系。时间轴采样会先计算关键帧值，再以 cubic-Bezier 重映射进度并按
 弧长采样启用的绑定路径；非相机对象可选用路径切线接管 Y 旋转。pose 轨道
 对稀疏控制值执行有限插值，并按 object + kind 与 transform 轨道组合。结果
-仍是 serializable object/camera values，再由 R3F 消费；Three.js renderer、
+形成普通 serializable object/camera values 后，才按 sampled stable object ID
+解析对象注视和第一/第三人称跟随，同时保留 camera track FOV；再由 R3F 消费。Three.js renderer、
 camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zustand。
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
@@ -237,7 +239,9 @@ playhead 自动 upsert 独立 `姿态` 关键帧，同一角色的 transform 与
 轨道可并行组合。已选 transform/camera 轨道还能创建直线/圆环/矩形路径，在 R3F
 世界空间显示轨迹与锚点，驱动对象或机位沿路径播放，并用线性/平滑/缓入/
 缓出/缓入缓出或自定义 Bezier 控制速度；helper-free capture 会隐藏这些
-编辑辅助。动画导出会把完整时间轴映射到所选时长，裁切当前画幅，通过
+编辑辅助。机位 Inspector 还支持 `手动坐标 / 手动旋转 / 对象注视` 与
+`不跟随 / 第一人称 / 第三人称`；跟随期间保留既有路径和轨道，但阻止新路径
+及手机运镜，关闭后恢复普通采样。动画导出会把完整时间轴映射到所选时长，裁切当前画幅，通过
 `captureStream`/`MediaRecorder` 生成当前会话可播放的 WebM blob，再以一个
 视频节点和 source edge 原子回流；MP4、远端上传和刷新后持久化不在当前
 前端原型范围。长视频提交会额外创建独立的过程节点图。
@@ -498,7 +502,7 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch42.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch43.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
   和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
   helper-free capture、回流 history、移动抽屉、typed timeline、关键帧、
@@ -507,7 +511,8 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   Inspector 内部滚动，以及路径整体位置/旋转/缩放、world/local 控制提交、
   `重置偏移`/`重置` 区分、真实 WebM 字节/解码/动态帧差、画幅输出、视频
   回流 selection/history、移动导出面板、手机虚拟机位、关节角色、20 个
-  姿势预设、SAM 控制和 transform + pose 轨道组合通过
+  姿势预设、SAM 控制、transform + pose 轨道组合、三类机位注视、目标跟随、
+  第一/第三人称、FOV 组合、路径/手机互斥与关闭跟随后恢复通过
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

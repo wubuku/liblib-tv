@@ -54,7 +54,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, articulated character posing, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, relationship-aware cameras, articulated character posing, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
@@ -166,6 +166,7 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
 | Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
 | Director character pose | serializable rig plus independent pose tracks composed with transform tracks | keeps articulated R3F rendering, source-named presets/SAM controls and deterministic animation in one testable data model |
+| Director camera relation | serializable look-at/follow data resolved after all ordinary object-track sampling | lets cameras follow animated stable object IDs while preserving camera-track FOV and keeping Three.js runtime objects out of Zustand |
 | Director motion path | local anchors/relative handles plus fixed pivot and serializable transform derive world sampled points | supports editable pencil/pen/Bezier authoring, path-level position/rotation/scale and deterministic playback without putting Three.js geometry in Zustand |
 | Director speed curve | track-level cubic-Bezier control points | keeps preset/custom timing effects testable in pure sampling code |
 | Director path interaction | viewport selection requests are store-guarded while a draft/anchor owns input | prevents R3F pointer-up/click ordering from changing the bound object during path authoring |

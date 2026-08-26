@@ -1,8 +1,8 @@
 # Batch 43: Director Camera Look-At And Follow
 
-> Status: planned. Current LibTV source vocabulary, the complete current chunk
-> search, upstream archaeology and the bounded clone contract are recorded
-> before implementation.
+> Status: complete and regression-verified. Current LibTV source vocabulary,
+> the complete current chunk search, upstream archaeology, bounded clone
+> contract and implementation history are preserved.
 
 ## Read Order
 
@@ -16,6 +16,10 @@
    serializable state, Inspector, runtime sampling and conflict contract.
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): live progress, commits,
    verification and interruption handoff.
+6. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-time interpretation
+   of the focused clone screenshots.
+7. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): post-batch Director
+   maturity and next-candidate ranking.
 
 ## Batch Goal
 

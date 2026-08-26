@@ -99,8 +99,8 @@
 - [x] Exact look-at/follow/conflict vocabulary recorded
 - [x] Fixed upstream object-look-at implementation audited
 - [x] Source/upstream/clone boundaries recorded
-- [ ] Serializable relation state and pure math
-- [ ] Inspector and R3F runtime
-- [ ] Path and phone-camera conflict guards
-- [ ] Focused Playwright and screenshot ledger
-- [ ] Cross-batch regression and stable docs
+- [x] Serializable relation state and pure math
+- [x] Inspector and R3F runtime
+- [x] Path and phone-camera conflict guards
+- [x] Focused Playwright and screenshot ledger
+- [x] Cross-batch regression and stable docs
