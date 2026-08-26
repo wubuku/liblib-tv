@@ -135,7 +135,8 @@ DirectorInspector + DirectorViewport
 
 - [x] Fresh current HTML/chunk evidence extracted
 - [x] Scope, selectors and acceptance matrix documented
-- [ ] Timeline schema and sampling helpers
-- [ ] Timeline UI and scene/camera playback
-- [ ] Track/keyframe lifecycle and auto-keyframe
-- [ ] Playwright, screenshots, regressions and final documentation
+- [x] Timeline schema and sampling helpers
+- [x] Timeline UI and scene/camera playback
+- [x] Track/keyframe lifecycle and auto-keyframe
+- [x] Focused Playwright and screenshot verification
+- [ ] Cross-batch regressions, stable docs and final quality gate

@@ -190,6 +190,9 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const updateObjectTransform = useDirectorStore(
     (state) => state.updateObjectTransform,
   );
+  const recordObjectKeyframe = useDirectorStore(
+    (state) => state.recordObjectKeyframe,
+  );
   const groupRef = useRef<Group>(null);
   const selected = selectedObjectId === object.id;
 
@@ -230,6 +233,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
         );
       });
     });
+    recordObjectKeyframe(object.id);
   };
 
   const content = (

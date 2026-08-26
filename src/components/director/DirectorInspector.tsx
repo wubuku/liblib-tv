@@ -105,6 +105,9 @@ export function DirectorInspector({
     (state) => state.updateObjectTransform,
   );
   const updateCamera = useDirectorStore((state) => state.updateCamera);
+  const recordObjectKeyframe = useDirectorStore(
+    (state) => state.recordObjectKeyframe,
+  );
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
 
   return (
@@ -177,25 +180,28 @@ export function DirectorInspector({
                 label="位置"
                 field="position"
                 values={selected.transform.position}
-                onChange={(axis, value) =>
-                  updateObjectTransform(selected.id, "position", axis, value)
-                }
+                onChange={(axis, value) => {
+                  updateObjectTransform(selected.id, "position", axis, value);
+                  recordObjectKeyframe(selected.id);
+                }}
               />
               <AxisFields
                 label="旋转"
                 field="rotation"
                 values={selected.transform.rotation}
-                onChange={(axis, value) =>
-                  updateObjectTransform(selected.id, "rotation", axis, value)
-                }
+                onChange={(axis, value) => {
+                  updateObjectTransform(selected.id, "rotation", axis, value);
+                  recordObjectKeyframe(selected.id);
+                }}
               />
               <AxisFields
                 label="缩放"
                 field="scale"
                 values={selected.transform.scale}
-                onChange={(axis, value) =>
-                  updateObjectTransform(selected.id, "scale", axis, value)
-                }
+                onChange={(axis, value) => {
+                  updateObjectTransform(selected.id, "scale", axis, value);
+                  recordObjectKeyframe(selected.id);
+                }}
               />
             </div>
 
@@ -213,11 +219,12 @@ export function DirectorInspector({
                     step="1"
                     data-director-camera-fov
                     value={selected.camera.fov}
-                    onChange={(event) =>
+                    onChange={(event) => {
                       updateCamera(selected.id, {
                         fov: Number(event.target.value),
-                      })
-                    }
+                      });
+                      recordObjectKeyframe(selected.id);
+                    }}
                     className="w-full accent-[#09caf5]"
                   />
                   <div className="mt-1 text-right text-[11px] tabular-nums text-[#a7a7a7]">
@@ -232,6 +239,7 @@ export function DirectorInspector({
                     const target: DirectorTuple3 = [...selected.camera!.target];
                     target[axis] = value;
                     updateCamera(selected.id, { target });
+                    recordObjectKeyframe(selected.id);
                   }}
                 />
               </div>

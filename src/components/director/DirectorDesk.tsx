@@ -5,6 +5,7 @@ import { ArrowLeft, Check, ImageIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DirectorInspector } from "@/components/director/DirectorInspector";
 import { DirectorObjectTree } from "@/components/director/DirectorObjectTree";
+import { DirectorTimeline } from "@/components/director/DirectorTimeline";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import { useCanvasStore } from "@/store/canvasStore";
 import {
@@ -161,51 +162,55 @@ export default function DirectorDesk({
         </div>
       </header>
 
-      <div className="relative min-h-0 flex-1">
-        {mobilePanel ? (
-          <button
-            type="button"
-            aria-label="关闭移动端面板"
-            onClick={() => setMobilePanel(null)}
-            className="absolute inset-0 z-20 hidden bg-black/45 max-[899px]:block"
-          />
-        ) : null}
+      <div className="flex min-h-0 flex-1 flex-col">
+        <div className="relative min-h-0 flex-1">
+          {mobilePanel ? (
+            <button
+              type="button"
+              aria-label="关闭移动端面板"
+              onClick={() => setMobilePanel(null)}
+              className="absolute inset-0 z-20 hidden bg-black/45 max-[899px]:block"
+            />
+          ) : null}
 
-        <aside
-          aria-label="场景对象"
-          data-director-mobile-panel-state={mobilePanel === "tree" ? "open" : "closed"}
-          className={cn(
-            "absolute inset-y-0 left-0 z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200",
-            mobilePanel === "tree"
-              ? "max-[899px]:translate-x-0"
-              : "max-[899px]:-translate-x-full",
-          )}
-        >
-          <DirectorObjectTree />
-        </aside>
+          <aside
+            aria-label="场景对象"
+            data-director-mobile-panel-state={mobilePanel === "tree" ? "open" : "closed"}
+            className={cn(
+              "absolute inset-y-0 left-0 z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200",
+              mobilePanel === "tree"
+                ? "max-[899px]:translate-x-0"
+                : "max-[899px]:-translate-x-full",
+            )}
+          >
+            <DirectorObjectTree />
+          </aside>
 
-        <main className="absolute inset-y-0 left-[220px] right-[288px] min-w-0 max-[899px]:inset-x-0">
-          <DirectorViewport
-            onOpenTree={() => setMobilePanel("tree")}
-            onOpenInspector={() => setMobilePanel("inspector")}
-          />
-        </main>
+          <main className="absolute inset-y-0 left-[220px] right-[288px] min-w-0 max-[899px]:inset-x-0">
+            <DirectorViewport
+              onOpenTree={() => setMobilePanel("tree")}
+              onOpenInspector={() => setMobilePanel("inspector")}
+            />
+          </main>
 
-        <aside
-          aria-label="属性"
-          data-director-mobile-panel-state={mobilePanel === "inspector" ? "open" : "closed"}
-          className={cn(
-            "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
-            mobilePanel === "inspector"
-              ? "max-[899px]:translate-x-0"
-              : "max-[899px]:translate-x-full",
-          )}
-        >
-          <DirectorInspector
-            activeCapture={activeCapture}
-            onSendCapture={sendCapture}
-          />
-        </aside>
+          <aside
+            aria-label="属性"
+            data-director-mobile-panel-state={mobilePanel === "inspector" ? "open" : "closed"}
+            className={cn(
+              "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
+              mobilePanel === "inspector"
+                ? "max-[899px]:translate-x-0"
+                : "max-[899px]:translate-x-full",
+            )}
+          >
+            <DirectorInspector
+              activeCapture={activeCapture}
+              onSendCapture={sendCapture}
+            />
+          </aside>
+        </div>
+
+        <DirectorTimeline />
       </div>
     </div>
   );
