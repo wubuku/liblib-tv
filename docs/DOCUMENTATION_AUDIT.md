@@ -123,6 +123,8 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 随后新增 [`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)，将首轮 live gap 的历史排期、Seedance 专项缺口、shortcut/overlay/graph runtime 风险和 verification readiness 收束为 13 个稳定 ID。该表明确区分 `READY_FOR_AUTHORIZATION`、`DESIGN_FIRST`、`RESEARCH_FIRST`、`BLOCKED_BY_FIXTURE`、`PROTOTYPE_BOUNDARY`、`OUT_OF_SCOPE` 和 `PARALLEL_WIP`，并把当前最高价值收敛到图片标准双浮层、低风险 active surfaces、Auto Link、keyboard ownership 和 source freshness refresh。
 
+2026-08-27 继续补齐研究执行的可重复性与替换边界：[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) 统一登记 fixture 身份、构造、reset、storage 和副作用；[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md) 把共享源站限制为版本化只读复核；[`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md) 把历史断言和 current-source replacement 拆成双轨。随后将 fixture/reset/source-write/replacement 主张登记进 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)，并将 DEC-021 至 DEC-023 登记进 [`DECISION_REGISTER.md`](DECISION_REGISTER.md)。本轮只做文档同步，没有修改 `src/`、verifier、截图或上游 submodule。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -131,4 +133,5 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 2. 所有验证范围描述与实际脚本集合一致；
 3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
 4. 文档链接检查通过；
-5. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
+5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
+6. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。

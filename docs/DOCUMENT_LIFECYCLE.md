@@ -107,6 +107,9 @@ current source code + focused current run
 | `research/LIBTV_GRAPH_TRANSACTION_CATALOG.md` | `CURRENT_GUIDANCE` | 普通 LibTV graph actions、selection 和 history 边界 | `canvasStore` action、route adapter 或专项 transaction 变化时更新。 |
 | `research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md` | `CURRENT_GUIDANCE` | top-level、route-local、节点相对和 Director surface 的 state/mount/close/runtime 边界 | `uiStore`、mount owner、Escape/outside/focus 或节点 anchor strategy 变化时更新。 |
 | `research/LIBTV_UIUX_PARITY_BACKLOG.md` | `CURRENT_INDEX` / `CURRENT_RESEARCH` | 当前跨路由 parity 差距排序、依赖、授权/fixture 状态和 batch 入口 | 新 source evidence、稳定实现、verifier maturity 或 parallel-WIP 边界变化时更新；不替代专项合同。 |
+| `research/LIBTV_FIXTURE_CATALOG.md` | `CURRENT_INDEX` / `CURRENT_GUIDANCE` | LibTV 本地、Director、共享源站和所需 disposable fixture 的身份、构造、隔离、reset 与副作用边界 | 新 fixture、owner、storage/reset、允许动作或 parity gate 变化时更新；不把 fixture 记录当源站事实。 |
+| `research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md` | `CURRENT_RESEARCH` / `CURRENT_GUIDANCE` | 共享源站只读 freshness 复核顺序、采样、停止条件和 drift 处理 | 新日期 source run、登录态、viewport/zoom 样本或安全边界变化时追加，不改写旧 dated evidence。 |
+| `research/LIBTV_VERIFIER_REPLACEMENT_MAP.md` | `CURRENT_RESEARCH` / `CURRENT_GUIDANCE` | 历史 verifier、current source contract、local fixture 和 replacement queue 的迁移关系 | source contract、fixture maturity、verifier 或授权状态变化时更新；不直接删除历史断言。 |
 | `research/INSPECTION_GUIDE.md` | `CURRENT_GUIDANCE` | 源站检查和截图台账纪律 | 浏览器/取证流程变化时更新。 |
 
 ### 4.3 专项研究和 Batch
