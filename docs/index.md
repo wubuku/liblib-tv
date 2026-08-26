@@ -78,6 +78,8 @@ graph TD
 - [`research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游机制到 LibTV parity、fixture、verifier 和授权边界的采纳决策总表。
 - [`research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：高价值上游启发转为 LibTV 单 slice 的证据、身份、事务、surface、fixture 和 verifier 交接蓝图。
 - [`research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和超长视频的正交状态、身份、fixture、stale/retry 与 `VR-007` 合同。
+- [`research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、authoring controls、clone state、请求 descriptor 与真实 runner 的分层审计。
+- [`research/open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](research/open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：比较上游新 commit、重审研究主张并决定是否移动 submodule 指针的版本影响协议。
 - [`research/components/`](research/components/)：按组件查找实现合同。
 - [`design-references/README.md`](design-references/README.md)：截图分类、命名、复用和证据边界。
 

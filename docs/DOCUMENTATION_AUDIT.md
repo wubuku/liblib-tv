@@ -156,6 +156,8 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 2026-08-27 的 Open Canvas 增量审计确认：3393 行既有专题材料已经充分覆盖产品、源码、运行态、交互和 Seedance crosswalk，缺口不在继续写概述，而在实施治理。新增 [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) 将机制分为采纳方法、按 LibTV 改造、仅研究、暂缓和拒绝移植；新增 [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) 将获批工作拆为 evidence、identity、transaction、surface、fixture、verifier 和 provenance 七层纵向 slice。第一阶段 `IMPLEMENTATION_IMPLICATIONS.md` 保留 A-E provenance，但不再承担当前编号权威。本轮没有修改 `src/`、verifier、截图或上游 submodule。
 
+同日第二轮增量把可直接由文档推进的设计缺口继续收口：[`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 定义过程型能力的身份与五轴状态，[`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 分开 UI catalog、authoring controls、clone descriptor 和真实 runner，[`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](research/open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md) 固化 immutable SHA 影响审计和 submodule 更新闸门。三者已接入正式索引、任务导读与生命周期 authority；这仍是研究/设计完成，不表示 fixture、verifier、provider 或编码已获授权。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -168,3 +170,4 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 6. Batch 49/50 的 clone-owned recorded pass、source-exact 非声明和截图识别边界已明确记录；
 7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
 8. Open Canvas 的当前采纳状态和实施交接可从任务导读、生命周期、决策登记与 traceability matrix 反向发现，旧 Batch A-E 不再与现行 parity ID 竞争。
+9. Open Canvas 启发下的 process/result、model capability 和 upstream update 各有单一权威入口，且均明确不可推出真实 backend/runner 或编码授权。

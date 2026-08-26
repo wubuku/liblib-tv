@@ -118,7 +118,7 @@ current source code + focused current run
 |---|---|---|---|
 | `liblib-live-YYYY-MM-DD/` | `DATED_SOURCE_SNAPSHOT` | 指定日期、URL、登录态和 fixture 的源站观察 | 新复核另建日期记录或专项 audit；旧 JSON/截图不改写。 |
 | `liblib-seedance-2.5-2026-08-25/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | Seedance 主推能力、当前缺口、风险和授权闸门 | `FEATURE_GAP_MATRIX`/go-no-go 是当前导航；背景文章不是实现承诺。 |
-| `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理；不能替代 LibTV 源站合同。 |
+| `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理，process/model 矩阵负责各自设计权威，版本协议负责上游更新；不能替代 LibTV 源站合同。 |
 | Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` | `HISTORICAL_CONTRACT` | 第一阶段 Batch A-E 候选实施清单 | 保留研究 provenance；新工作使用采纳矩阵、交接蓝图和全局 parity ID，不扩展 A-E 编号。 |
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |
