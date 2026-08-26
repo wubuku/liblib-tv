@@ -33,9 +33,10 @@
 12. [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：28%/34%/41%/50%/100% zoom 的双浮层几何、裁切和选择卸载生命周期。
 13. [`../components/LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md)：供后续 agent 使用的双浮层 screen/flow 定位合同与验证断言。
 14. [`../components/LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)：Auto Link 候选、ghost、structured mention、竞态和 graph 事务合同。
-15. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
-16. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
-17. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+15. [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md)：将上游机制映射为 `ADOPT_METHOD`、`ADAPT_TO_LIBTV`、`RESEARCH_ONLY`、`DEFER` 或 `REJECT_TRANSPLANT`，并对齐当前 parity、fixture 和 verifier。
+16. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；当前入口以采纳决策矩阵和全局 parity backlog 为准。
+17. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
+18. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 
@@ -51,5 +52,6 @@
 - 当前工具条还包含 preview overlay、可替换标准双浮层的标注/旋转/元素编辑工具态，以及可能提交任务的图层分离；不能继续用统一 `addDerivedNode` 语义概括。
 - 当前 AutoLink 是高级设置中的全局偏好，加上 Prompt 内联 ghost suggestion 和带稳定 node ID 的正式 mention；clone 的固定候选弹窗、全量接受和字符串前缀写回不是源站现行合同。
 - 多 zoom 复测确认下方面板 gap 是 `16 * zoom`，上下浮层都保持 node-center anchor；当前生产 chunk 已确认顶部 host 使用 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)`，所以 28%/34%/41%/50% 的 gap 约为 `16.794/18.152/19.778/22px`，不能用 clone 当前固定 `offset=16` 直接代表源站合同。
+- 当前采纳治理已进一步区分“借鉴方法”和“移植实现”：坐标域、稳定身份、状态分层和结构化 graph transaction 可进入设计评审；Open Canvas 的视觉皮肤、provider/key、保存语义和未被 LibTV 证实的 Quick Add 行为不能直接进入 clone。
 
 本次研究不修改 `src/`、不修改上游 submodule 内容、不执行生成或上传、不创建官网画布。
