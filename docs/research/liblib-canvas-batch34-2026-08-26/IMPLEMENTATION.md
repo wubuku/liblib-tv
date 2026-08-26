@@ -5,6 +5,7 @@
 - Batch 33 implementation commit: `2bf1617`
 - Batch 34 plan protection commit: `b9895c7`
 - Batch 34 research commit: `e1d20ef` (pushed to `origin/master`)
+- Batch 34 handoff metadata commit: `84a7c59` (pushed to `origin/master`)
 - Submodule path: `research/upstream/storyai-3d-director-desk`
 - Submodule commit: `8c8bd361790be4d37158a7430365e65546e358fe`
 - Submodule branch at inspection time: `main`
@@ -77,7 +78,7 @@ validated by its own toolchain.
 Parent commands run on 2026-08-26:
 
 ```text
-npm run docs:check   passed; 253 Markdown files, 595 local targets
+npm run docs:check   passed; 253 Markdown files, 597 local targets
 git diff --check     passed
 npm run check        passed
 ```
