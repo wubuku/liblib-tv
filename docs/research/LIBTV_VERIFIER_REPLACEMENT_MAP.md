@@ -175,7 +175,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Old verifier | 无 |
 | Required fixture | connected and unconnected candidates；success/failure connection outcomes |
 | New checks | connect + mention atomicity；failure rollback；reference reorder changes ordinal only；undo/redo policy |
-| Blockers | `GI-004..007` source/product decisions；runtime transaction fixture；no orphan badge/edge implementation |
+| Blockers | graph connection contract 已完成；Reference/source invalid lifecycle 仍未决；runtime transaction fixture；no orphan badge/edge implementation |
 | Exit | node identity, reference role and mention token remain independently inspectable |
 
 ### `LIBTV-VR-006`：source ready-video toolbar
@@ -213,6 +213,20 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Blockers | source fixture or explicit source contract |
 | Exit | help row、handler、React Flow gesture and local context are separately asserted |
 
+### `LIBTV-VR-009`：graph connection validation and transaction
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008` |
+| Old verifier | Batch 4-8 普通 graph regressions；保留，不改写为 current source parity |
+| Required fixture | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`；source static audit；真实 invalid lifecycle 另需 `LIBTV-FIX-SOURCE-GRAPH-CONNECTION-01` |
+| Pure checks | 两侧 Handle direction normalize；missing/dangling；unordered pair duplicate precedence；self/cycle；stable result/reason；Reference/domain unknown |
+| Browser checks | accepted normalized edge；rejected zero node/edge/selection/history delta；one-step accepted history；connection line/invalid feedback cleanup；pan/zoom identity；console/page errors |
+| Blockers | runtime validator/fixture 未实现；编码授权；Reference/entry-point/source UI feedback 仍未决 |
+| Exit | pure + focused browser verifier recorded；旧 Batch graph compatibility retained；source-only claims separate |
+
+结果形状、reason taxonomy、pipeline precedence、transaction no-op/atomicity、fixture topology 和授权 slice 统一见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md)。该合同完成的是设计，不表示 runtime、verifier 或 source disposable fixture 已存在。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -249,6 +263,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 - Batch 35-47 继续保留为 bounded Director regression，不迁移到普通 LibTV；
 - Batch 48 已是 bounded Director `recorded pass`，保留其 setup、storage、脚本、截图和实施记录；不把 local descriptor/proxy 解释为真实资产、远端同步或 LibTV persistence；
 - 新 current-source verifier 只有在 source freshness report、fixture ID、明确授权和 replacement plan 同时存在时才进入实现批次；
+- `LIBTV-VR-009` 的 contract/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得通过改 Batch 4-8 或直接写 store 构造“通过”；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

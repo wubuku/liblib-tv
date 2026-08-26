@@ -68,7 +68,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 | `OC-ADOPT-003` | node、run、save/conflict 状态分层 | `ADAPT_TO_LIBTV` | 避免把长视频 process、节点媒体状态、局部任务和画布保存反馈压成一个 `status` | `OC-010/025`、`OC-TR-003`；`LIBTV-PAR-009`；`LIBTV-VR-007` | 取得 process/result 生命周期证据；prototype 不伪造真实进度、费用、保存后端或 conflict |
 | `OC-ADOPT-004` | versioned serialized graph + validation | `ADOPT_METHOD` | 为 graph snapshot、迁移、非法边和 fixture schema 提供边界设计输入 | `OC-003`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-EMPTY-01`、`LIBTV-FIX-LOCAL-DEMO-01` | 先定义 LibTV graph schema、兼容策略、selection/history 边界和纯逻辑用例 |
 | `OC-ADOPT-005` | 结构化子图复制、ID map、仅恢复内部边 | `ADAPT_TO_LIBTV` | 改善 duplicate/copy 的身份重写与 subgraph closure 设计 | `OC-024`、`OC-TR-004`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-GROUP-01` | 明确 parent-child、派生节点、媒体版本、incident-edge 和 selection policy；不能套用 Open Canvas payload |
-| `OC-ADOPT-006` | connection type compatibility、方向归一化和 DAG guard | `ADOPT_METHOD` | 为 duplicate/dangling/self-loop/cycle guard 提供纯逻辑参考；LibTV 普通连接 path 的 pair/DFS/type guard 已有静态 bundle 证据 | `OC-003`、`OC-EQ-003`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-EMPTY-01` | LibTV 自身的 Handle、edge direction、group/derived 语义仍须 disposable fixture/产品决定；不改变已确认的 edge flow 视觉 |
+| `OC-ADOPT-006` | connection type compatibility、方向归一化和 DAG guard | `ADOPT_METHOD` | 为 duplicate/dangling/self-loop/cycle guard 提供纯逻辑参考；LibTV 普通连接 path 的 pair/DFS/type guard 已有静态 bundle 证据 | `OC-003`、`OC-EQ-003`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`；`LIBTV-VR-009` | connection result/reason/transaction、fixture 和 verifier 设计已完成；runtime、Reference/entry-point/source invalid lifecycle 仍待授权或 disposable fixture；不改变 edge flow 视觉 |
 | `OC-ADOPT-007` | Quick Add 同时保存 screen menu anchor 与 flow drop point | `RESEARCH_ONLY` | 作为坐标域分离的案例，帮助评审 Add Node/connection 菜单 | `OC-021`；当前无独立 parity item | 只有 LibTV 源站证明同类入口后才能建 slice；不得把上游落点或 clamp 规则移植过来 |
 | `OC-ADOPT-008` | pending connection -> create node -> create edge transaction | `RESEARCH_ONLY` | 作为“一个用户动作、多个 graph mutation”的原子性案例 | `OC-022/023`；可为未来 `LIBTV-PAR-008` 提供测试思想 | 先取得 LibTV 悬空连线/新增节点事实；当前 `<Handle>` 仍是真实连接 affordance |
 | `OC-ADOPT-009` | media output history 与当前候选分离 | `ADAPT_TO_LIBTV` | 帮助区分 Seedance candidate、派生媒体、重拍结果、被选版本和 source node | `OC-TR-002/003`；`LIBTV-PAR-009`；`LIBTV-VR-007` | 建立 `source/mediaVersion/operation/range/candidate/result` 身份合同与 disposable process fixture |
@@ -87,7 +87,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 
 1. `OC-ADOPT-001`：用坐标域和 anchor owner 评审 `PAR-001/002`，但所有数字回到 LibTV 合同；
 2. `OC-ADOPT-002`：维护已经完成的 Auto Link typed identity/session/fixture 合同，等待运行 fixture 授权；
-3. `OC-ADOPT-004..006`：使用已经完成的 graph invariant/compatibility case 表和 [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)；继续取得 Reference、导入/批量/同步和 invalid lifecycle 等 source 决定；
+3. `OC-ADOPT-004..006`：使用已经完成的 graph invariant/case 表、[`LibTVGraphConnection.contract.md`](../components/LibTVGraphConnection.contract.md) 和 [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)；保持 connection runtime 未实现，继续取得 Reference、导入/批量/同步和 invalid lifecycle 等 source 决定；
 4. `OC-ADOPT-003/009`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态；
 5. `OC-ADOPT-010`：建立“模型 UI 能力 / 请求投影 / 实际 runner”三层审计表。
 

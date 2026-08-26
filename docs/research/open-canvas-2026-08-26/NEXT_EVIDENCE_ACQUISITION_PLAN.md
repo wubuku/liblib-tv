@@ -139,7 +139,18 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 
 ### 6.3 退出与停止
 
-静态证据可缩小某项时，更新对应 `GI/GC` 行并标注 `STATIC_RECORDED`；无法关闭则保持 `SOURCE_DECISION_REQUIRED`。共享项目禁止拖 Handle 或创建测试边。四项决定没有全部取得，不阻塞 `GI-001..003/008..011` 的 correctness 设计，但阻塞统一 graph validation 实现。
+静态证据可缩小某项时，更新对应 `GI/GC` 行并标注 `STATIC_RECORDED`；无法关闭则保持 `SOURCE_DECISION_REQUIRED`。共享项目禁止拖 Handle 或创建测试边。四项决定没有全部取得，不阻塞 clone 侧结构校验合同和授权切片规划，但阻塞 source-parity 宣称、Reference/domain exception 与全入口一致性的实施。
+
+### 6.4 Clone-side design handoff
+
+在不增加 source interaction 的前提下，2026-08-27 已完成 [`LibTVGraphConnection.contract.md`](../components/LibTVGraphConnection.contract.md)：
+
+- 将 source static guard 转为 raw/normalized connection、result/reason 和 transaction no-op/atomicity 设计；
+- 为 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 定义 A/B/C topology、逐场景 fresh Page reset 和禁止用 undo 充当 teardown；
+- 为 `LIBTV-VR-009` 拆出 pure contract 与 focused browser 两层；
+- 将 Reference、import/batch/sync 和 source invalid feedback 保持为显式 `unknown`/fixture blocker。
+
+这关闭的是 clone 设计缺口，不关闭 `OC-EQ-003` 的交互证据问题，也不授权实现 fixture、validator 或 verifier。
 
 ## 7. `OC-EQ-004`：Auto Link disposable source evidence
 

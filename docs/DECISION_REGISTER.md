@@ -32,6 +32,7 @@
 | DEC-022 | 共享源站 fixture | 当前登录态共享项目只作为 `SHARED_READ_ONLY` 观察对象；没有独立 project、owner、允许动作、清理路径和停止条件时，不把它当可重复 source fixture | ACTIVE |
 | DEC-023 | Verifier replacement | 历史断言先保留；只有 current source contract、稳定 fixture、明确编码授权和新 verifier 齐备后，才申请替换或退役 | RESEARCH_GATE |
 | DEC-024 | Open Canvas 机制采纳 | 上游机制必须经过 LibTV source evidence、采纳分类、parity、fixture、verifier 和明确授权后，才可进入单一纵向 slice | ACTIVE / RESEARCH_GATE |
+| DEC-025 | graph connection 校验边界 | 连接必须先归一化和纯校验，再以一个 accepted transaction 提交；reject/unknown 不得改变 graph、selection、history 或 model | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -124,6 +125,16 @@
 **影响：** 上游代码不直接成为 clone 文件清单；`ADOPT_METHOD` 也不等于已授权。没有 LibTV 同类事实的 Quick Add/pending connection 保持研究态，provider/key 和视觉皮肤保持拒绝移植，Batch A-E 旧清单只保留历史 provenance。
 
 **依据：** [`EVIDENCE_MATRIX.md`](research/open-canvas-2026-08-26/EVIDENCE_MATRIX.md)、[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)。
+
+### DEC-025：Graph connection 先校验后提交
+
+**背景：** LibTV source static bundle 已证明普通连接存在 target-start 方向归一化、node-pair 去重、普通非 Reference cycle guard 和 domain validator；当前 clone 的 `onConnect -> addEdge` 则只检查端点非空后直接追加并记录 history。Open Canvas 可以提供 pure validation 和 transaction 方法，但不能决定 LibTV 的 node/Handle 产品语义。
+
+**决策：** 后续连接入口统一遵循 normalize -> endpoint/structural/domain validate -> result -> commit。结果区分 `allow`、`allow-with-adjustment`、`reject` 和 `unknown`；reject/unknown 对 nodes、edges、selection、history、viewport 和 model 保持零 mutation，accepted gesture 只产生一个声明完整的 graph transaction。Reference、未建模 action 和未确认 entry point 保持显式 unknown，不默认放行或伪装 source parity。
+
+**影响：** React Flow gesture、programmatic connect、import/batch/sync 最终使用同一纯校验权威；Handle 和 edge flow 视觉不在 graph-hardening slice 中改变。运行 fixture、validator 和 `LIBTV-VR-009` 仍需明确编码授权；真实 invalid feedback 与 Reference 语义仍需 disposable source fixture。
+
+**依据：** [`LibTVGraphConnection.contract.md`](research/components/LibTVGraphConnection.contract.md)、[`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](research/open-canvas-2026-08-26/LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)。
 
 ## 3. 何时可以重审决策
 

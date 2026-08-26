@@ -135,6 +135,7 @@ new BrowserContext
 |---|---|---|---|---|
 | `LIBTV-FIX-LOCAL-DEMO-01` | `AVAILABLE_BASELINE` | `canvasStore.initialCanvas2` | `canvas-2`，10 nodes / 11 edges，source-shaped viewport | 历史图片/视频浮层、分组、整理、asset/tree、baseline topology |
 | `LIBTV-FIX-LOCAL-EMPTY-01` | `AVAILABLE_BASELINE` | `defaultCanvas("canvas-1")` | 0 nodes / 0 edges / zoom 1 | 隔离构造单节点、派生 graph 和响应式场景 |
+| `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | fresh Page + `LOCAL-EMPTY-01` + future authorized graph setup | ordinary A/B/C aliases；per-scenario edge/history boundary；无 pending/invalid state | direction normalize、duplicate/self/cycle、reject no-op 和 accepted one-step history |
 | `LIBTV-FIX-LOCAL-IMAGE-01` | `UI_CONSTRUCTED` | 在空画布从 Add Node 添加图片 | 本地图片、`editorVariant=empty`、selected | 标准图片浮层、Preview/Annotate/Element Edit 的低风险本地状态 |
 | `LIBTV-FIX-LOCAL-VIDEO-READY-01` | `UI_CONSTRUCTED` | 在空画布从 Add Node 添加视频 | `status=ready`、30s、1280x720、Seedance 2.5、selected | Batch 23、26-33 视频入口和本地处理动作 |
 | `LIBTV-FIX-LOCAL-IMAGE-VARIANTS-01` | `AVAILABLE_BASELINE` | `canvas-2` 五个图片节点 | empty、prompt、referenced 三类 editor state | 历史 Batch 9/10 panel 高度与内容状态 |
@@ -271,12 +272,14 @@ ready source
 | `LIBTV-FIX-SOURCE-AUTOLINK-01` | 独立源站项目 | 至少两个 connected/reference candidates、可输入 Prompt | ghost、Tab/Shift+Tab/Escape/IME、single/all accept、mention identity | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-SOURCE-VIDEO-READY-01` | 独立源站项目 | 可播放 ready video、已知 duration/version、允许打开工具 | toolbar order、hover menu、active replacement、discard/submit delta | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-SOURCE-SHORTCUT-01` | 独立源站项目 | 可丢弃 subgraph、group、internal/external edges | `L`、Enter、Option-drag、Option+G、duplicate closure 和 cancel | `REQUIRED_DISPOSABLE` |
+| `LIBTV-FIX-SOURCE-GRAPH-CONNECTION-01` | 独立源站项目 | ordinary A/B/C、可连接 Handle、已知初始 edge/selection/history、允许销毁 | target-start normalize、duplicate/reverse/self/cycle、invalid target/line/feedback 和 no-residue | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-SOURCE-PROCESS-01` | 独立源站项目 | 可观察 pending/failed/partial/success/retry 的任务或已授权 mock | run/node/save status、candidate/result version、局部重算和替换 | `REQUIRED_DISPOSABLE` |
 | `LIBTV-FIX-LOCAL-AUTOLINK-01` | clone | typed candidates/ghost/mention/session 和可控延迟 | keyboard/IME/stale-result/transaction consistency | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
+| `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` | clone | ordinary A/B/C aliases、per-scenario edge/history boundary、可控 proposal/result | pure/browser normalize、guard precedence、zero-mutation reject、one-step accept | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-PROCESS-STATES-01` | clone | 固定 pending/failed/partial/success/retry data | UI lifecycle、graph delta、selection、undo/redo | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` |
 | `LIBTV-FIX-LOCAL-SHORTCUT-01` | clone | 固定 node/group/internal/external-edge subgraph | handler precondition、focus guard、graph closure、history | `REQUIRED_DISPOSABLE` |
 
-`LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。两者仍是设计完成但运行 fixture 未实现的状态。
+`LIBTV-FIX-LOCAL-AUTOLINK-01` 的 topology、deterministic controls、setup/reset 和 verifier split 见 [`components/LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md#9-fixture-acceptance-and-verifier-split)。`LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 的 A/B/C topology、direction/duplicate/self/cycle 场景、reason precedence 和 `VR-009` split 见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md#11-fixture-contract)。`LIBTV-FIX-LOCAL-PROCESS-STATES-01` 的五轴场景、stale/retry 和 source fixture 接收条件见 [`open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)。三者仍是设计完成但运行 fixture 未实现的状态。
 
 ### 6.1 源站 disposable fixture 的接收条件
 
@@ -314,7 +317,7 @@ ready source
 | `LIBTV-PAR-005` | `SOURCE-SHARED-01` | 安全只读 page-shell freshness refresh | 不能修改共享 graph 或偏好；观察结果要带日期 |
 | `LIBTV-PAR-006` | `LOCAL-VIDEO-READY-01` + `SOURCE-VIDEO-READY-01` | clone 侧历史工具回归可读 | source toolbar 继续 `BLOCKED_BY_FIXTURE` |
 | `LIBTV-PAR-007` | `LOCAL-SHORTCUT-01` + `SOURCE-SHORTCUT-01` | 现有 help/handler crosswalk 可继续完善 | source-only 命令不得在共享 graph 试探 |
-| `LIBTV-PAR-008` | `LOCAL-DEMO-01`、`LOCAL-EMPTY-01`、`LOCAL-DERIVED-01` | 可继续设计 guard/snapshot/selection compatibility cases | 修改 store 仍需授权；不要用 source fixture |
+| `LIBTV-PAR-008` | `LOCAL-GRAPH-CONNECTION-01` + `LOCAL-DEMO-01`、`LOCAL-EMPTY-01`、`LOCAL-DERIVED-01` | connection result/reason/transaction、fixture 和 `VR-009` 设计已完成；snapshot/copy 可继续研究 | connection runtime 和 store 修改仍需授权；source invalid lifecycle 需要 `SOURCE-GRAPH-CONNECTION-01` |
 | `LIBTV-PAR-009` | `LOCAL-LONG-PROCESS-01`、`LOCAL-PROCESS-STATES-01`、`SOURCE-PROCESS-01` | 当前可记录 bounded mock topology | 真实 lifecycle/局部重算继续被 fixture 和业务接口阻塞 |
 | `LIBTV-PAR-010` | `LOCAL-DEMO-01` | 显式 local mock boundary 已可验证 | 不升级为真实服务承诺 |
 | `LIBTV-PAR-011` | 静态 store/runtime 审计 | 文档已有冗余/unmounted state 清单 | 没有编码授权不清理 store |
@@ -393,10 +396,11 @@ Supersedes:
 
 1. 用本文完成 `PAR-005` source freshness refresh 的观察 checklist，不操作共享 graph；
 2. 保持 `PAR-003` AutoLink 和 `PAR-009` process fixture 接收规格为文档权威；运行 fixture 等待独立编码授权；
-3. 为 `PAR-007` 设计 local shortcut subgraph，不修改实现；
-4. 等用户提供独立源站 project/权限后，再登记 `SOURCE-VIDEO-READY-01` 等真实 fixture identity；
-5. 继续维护 `DIRECTOR-LOCAL-MODEL-01` 的 storage reset、fresh-context 和 proxy-cleanup 断言；
-6. 获得编码授权后，每个 parity slice 单独新增 fixture、verifier、screenshot ledger、implementation 和 commit。
+3. 保持 `PAR-008` graph connection fixture/result/verifier contract 为 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`，不修改实现；
+4. 为 `PAR-007` 设计 local shortcut subgraph，不修改实现；
+5. 等用户提供独立源站 project/权限后，再登记 `SOURCE-GRAPH-CONNECTION-01`、`SOURCE-VIDEO-READY-01` 等真实 fixture identity；
+6. 继续维护 `DIRECTOR-LOCAL-MODEL-01` 的 storage reset、fresh-context 和 proxy-cleanup 断言；
+7. 获得编码授权后，每个 parity slice 单独新增 fixture、verifier、screenshot ledger、implementation 和 commit。
 
 ## 11. Maintenance
 
@@ -409,6 +413,7 @@ Supersedes:
 - Director 新增/移除 browser persistence；
 - disposable source fixture 获得 owner、权限或被销毁；
 - parity backlog item 的 fixture 状态从 blocked 升级为 available；
+- graph connection reason/result、Reference policy 或 accepted/rejected history contract 改变；
 - verifier 改用新的 setup/teardown 策略。
 
 维护时同时检查 [`HARNESS.md`](../HARNESS.md)、[`VERIFICATION_LEDGER.md`](VERIFICATION_LEDGER.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) 和对应 Batch 实施记录。

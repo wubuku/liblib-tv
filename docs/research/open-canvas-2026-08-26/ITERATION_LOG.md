@@ -370,3 +370,15 @@
 - `OC-EQ-001` 保持 `PARTIAL_RECORDED`，`LIBTV-PAR-005` 保持
   `RESEARCH_FIRST`，不能把本轮重定向解释成 source drift；
 - 没有修改 `src/`、verifier、FrameOS、共享源站状态或 Open Canvas submodule。
+
+## 2026-08-27：v35 graph connection 实施前合同收敛
+
+本轮没有新增 source mutation，而是把 Open Canvas 方法、LibTV source static evidence 和当前 clone gap 收敛为可执行的文档交接包：
+
+- 新增 [`LibTVGraphConnection.contract.md`](../components/LibTVGraphConnection.contract.md)，定义 target-start normalize、result/reason taxonomy、guard precedence、reject/unknown 零 mutation 和 accepted one-step history；
+- 为 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 定义 A/B/C topology、逐场景 fresh Page reset 和禁止 undo-as-teardown；
+- 新增 `LIBTV-VR-009` pure/browser replacement 设计，保留 Batch 4-8 历史 graph regressions，不通过直接 store 注入制造通过；
+- 将 `OC-BP-004` connection 子切片升级为 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`，snapshot/copy 仍保持独立 `DESIGN_FIRST`；
+- 将 Reference、import/batch/sync、未建模 action 和 source invalid feedback 保持显式 unknown/source-blocked，不用 Open Canvas 规则填空；
+- 同步 adoption、evidence、parity、fixture、verifier、decision、traceability、component coverage 和 agent navigation；
+- 没有修改 `src/`、测试脚本、FrameOS、共享源站 graph、其他开发者 Batch 56 WIP 或 Open Canvas submodule。

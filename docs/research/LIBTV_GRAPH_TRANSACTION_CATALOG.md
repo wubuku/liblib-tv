@@ -211,11 +211,11 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 
 | Case | Setup | Action | Required observation | Current status |
 |---|---|---|---|---|
-| `LIBTV-GC-001` dangling endpoint | one valid node + missing target ID | add/import edge | no partial edge; graph/history/selection delta explicitly defined | design required |
-| `LIBTV-GC-002` exact duplicate | one existing edge with same handles | connect same pair again | ordinary source path has a same-pair guard; still assert no graph/history/feedback residue | static recorded; source decision required |
-| `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | ordinary source pair guard does not compare handles, so it is expected to reject; import/batch behavior remains open | static recorded; source decision required |
-| `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | ordinary non-Reference and programmatic paths have rejection evidence; assert Handle/line/history cleanup | static recorded; Reference exception/source decision required |
-| `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | ordinary source path has DFS rejection evidence; assert no UI/edge/history residue | static recorded; source decision required |
+| `LIBTV-GC-001` dangling endpoint | one valid node + missing target ID | add/import edge | no partial edge; graph/history/selection delta explicitly defined | design contracted; runtime missing |
+| `LIBTV-GC-002` exact duplicate | one existing edge with same handles | connect same pair again | ordinary source path has a same-pair guard; still assert no graph/history/feedback residue | design contracted + static recorded; source interaction pending |
+| `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | ordinary source pair guard does not compare handles, so it is expected to reject; import/batch behavior remains open | design contracted + static recorded; entry-point decision pending |
+| `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | ordinary non-Reference and programmatic paths have rejection evidence; assert Handle/line/history cleanup | design contracted + static recorded; Reference/source UI pending |
+| `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | ordinary source path has DFS rejection evidence; assert no UI/edge/history residue | design contracted + static recorded; source UI pending |
 | `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | compare current Batch 4/5/8 contract |
 | `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | current selection-copy contract exists |
 | `LIBTV-GC-008` equal data update | node data merge is semantically unchanged | update | no-op history policy explicitly asserted | current clone currently records a step |
@@ -228,11 +228,11 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 
 1. Lock `GI-001..003/008..011` as data correctness rules with pure cases;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
-3. define a versioned validation result shape without adopting Open Canvas node types or payload;
-4. run pure compatibility fixtures on `LIBTV-FIX-LOCAL-EMPTY-01`;
+3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
+4. implement and run the designed `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` only after coding authorization;
 5. use `LIBTV-FIX-LOCAL-DEMO-01/GROUP-01/DERIVED-01` for existing command compatibility;
 6. only after authorization, integrate one guard at a time and keep Handle/edge visuals unchanged;
-7. add a dedicated replacement entry before claiming `LIBTV-PAR-008` complete.
+7. implement the designed `LIBTV-VR-009` replacement before claiming the connection sub-slice complete.
 
 ### 10.4 2026-08-27 静态审计补充
 
@@ -246,6 +246,19 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 以上仍是 `SOURCE_STATIC_EVIDENCE`，不关闭 `SOURCE_DECISION_REQUIRED`。Reference exception、导入/批量/同步入口、invalid feedback、connection-line 生命周期和 history/no-residue 必须在 disposable source fixture 或明确 clone-only 决策中处理。本节不授权添加 DAG guard、修改 `canvasStore` 或改变已确认的 edge flow effect。
 
 This register is a design input. It does not authorize adding DAG validation, changing edge direction or rewriting `canvasStore`.
+
+### 10.5 Connection contract handoff
+
+[`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) is now the connection-specific authority for:
+
+- raw gesture and target-start direction normalization;
+- `allow / allow-with-adjustment / reject / unknown` result shape and stable clone-only reason codes;
+- duplicate/self/cycle precedence and explicit source-policy unknowns;
+- rejected/unknown zero mutation and accepted one-step graph history;
+- `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` plus `LIBTV-VR-009` pure/browser acceptance design;
+- four independently authorized implementation slices: structural, React Flow boundary, domain compatibility and import/batch/sync.
+
+Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_EXCEPTION_BLOCKED`. This closes a documentation gap, not a runtime gap; it does not authorize code, fixture or verifier changes.
 
 ## 11. 新事务立项模板
 
