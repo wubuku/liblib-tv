@@ -179,7 +179,64 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | 专项 action 重复手写 | placement、metadata、edge、selection、history 模板高度重复 | 只有在新增能力前先定义共同不变量且能降低真实错误时才抽象；不为形式统一抹掉不同 selection/guard |
 | backend 仍不存在 | pending/ready、静态图和 blob URL 都是本地 prototype | 文档和 UI 不宣称真实 Provider、任务轮询、持久化或计费 |
 
-## 10. 新事务立项模板
+## 10. `LIBTV-PAR-008` Invariant And Compatibility Design
+
+本节将 Open Canvas 的 validation/DAG/subgraph 方法转成 LibTV 的评审问题，不把上游规则直接升级为当前产品决定。分类含义：
+
+| 分类 | 含义 |
+|---|---|
+| `REQUIRED_CORRECTNESS` | 不依赖源站产品选择也必须保持的数据一致性 |
+| `CURRENT_CLONE_FACT` | 当前实现已存在的语义，变更前需兼容评估 |
+| `SOURCE_DECISION_REQUIRED` | 需要 LibTV 源站证据或明确 clone-only 产品决定 |
+| `PROTOTYPE_BOUNDARY` | 当前可记录，但不应伪装成后端/协作保证 |
+
+### 10.1 Invariant register
+
+| ID | Invariant / question | Classification | Current evidence | Decision before coding |
+|---|---|---|---|---|
+| `LIBTV-GI-001` | node ID 在同一 canvas 内非空且唯一 | `REQUIRED_CORRECTNESS` | store actions and React Flow identity depend on it | validation must reject or normalize invalid fixture/import before runtime |
+| `LIBTV-GI-002` | edge ID 在同一 canvas 内唯一 | `REQUIRED_CORRECTNESS` | edge removal/rendering use ID | define collision handling; never silently overwrite another edge |
+| `LIBTV-GI-003` | edge source/target point to existing nodes | `REQUIRED_CORRECTNESS` | dangling edges cannot render a coherent transaction | define add/import/copy failure policy and no partial mutation |
+| `LIBTV-GI-004` | exact duplicate edge identity includes source/target/handles | `SOURCE_DECISION_REQUIRED` | current `addEdge` has no duplicate guard | confirm whether parallel edges or distinct handle pairs are valid |
+| `LIBTV-GI-005` | self-loop is accepted or rejected | `SOURCE_DECISION_REQUIRED` | current store accepts it; Open Canvas rejects it | do not reject solely because upstream is a DAG |
+| `LIBTV-GI-006` | directed cycle is accepted or rejected | `SOURCE_DECISION_REQUIRED` | current store has no cycle guard; Open Canvas uses DAG validation | obtain LibTV behavior or make an explicit clone-only workflow decision |
+| `LIBTV-GI-007` | source/target Handle and node-type compatibility | `SOURCE_DECISION_REQUIRED` | real `<Handle>` creates edges; typed compatibility is not centralized | document valid pairs without changing the sourced edge affordance/effect |
+| `LIBTV-GI-008` | parent/group references resolve and do not create orphan descendants | `REQUIRED_CORRECTNESS` | group/delete/duplicate actions traverse descendants | define import/copy/delete closure and invalid-parent handling |
+| `LIBTV-GI-009` | selected IDs are a subset of current nodes after transaction | `REQUIRED_CORRECTNESS` | delete/undo/redo already clear or rewrite selection | every command declares selection output; stale selection is not tolerated |
+| `LIBTV-GI-010` | one user command produces its declared history step count | `CURRENT_CLONE_FACT` | graph actions target one snapshot; route drag compresses many frames | no-op/equality and multi-node actions need exact compatibility cases |
+| `LIBTV-GI-011` | graph snapshot metadata is not mutated through shared nested references | `REQUIRED_CORRECTNESS` | current snapshot is only shallow for nested `data` | use immutable replacement now; decide deep clone/schema before mutable nested state |
+| `LIBTV-GI-012` | graph history is in-memory and excludes viewport/UI/save state | `PROTOTYPE_BOUNDARY` | current `historyByCanvas` contract | do not infer persistence, collaboration or project-level undo |
+
+### 10.2 Compatibility case queue
+
+| Case | Setup | Action | Required observation | Current status |
+|---|---|---|---|---|
+| `LIBTV-GC-001` dangling endpoint | one valid node + missing target ID | add/import edge | no partial edge; graph/history/selection delta explicitly defined | design required |
+| `LIBTV-GC-002` exact duplicate | one existing edge with same handles | connect same pair again | behavior follows `GI-004`; unrelated edges unchanged | source decision required |
+| `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | distinguish from exact duplicate if handles are product-significant | source decision required |
+| `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | behavior follows `GI-005`; Handle remains draggable | source decision required |
+| `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | behavior follows `GI-006`; rejection must not leave UI/edge residue | source decision required |
+| `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | compare current Batch 4/5/8 contract |
+| `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | current selection-copy contract exists |
+| `LIBTV-GC-008` equal data update | node data merge is semantically unchanged | update | no-op history policy explicitly asserted | current clone currently records a step |
+| `LIBTV-GC-009` nested metadata history | node has marks/regions/process arrays | mutate via immutable update, undo, redo | old/new snapshots stay isolated | fixture design required |
+| `LIBTV-GC-010` delete selected subtree | selected parent/group with child/reference edges | delete | node/edge closure, selection clear and one-step undo/redo exact | compare current cascade behavior |
+| `LIBTV-GC-011` transaction failure | derived action fails validation after computing draft IDs | submit | no orphan node/edge, no selection shift, no history step | design required |
+| `LIBTV-GC-012` canvas boundary | two canvases with independent graph/history | mutate, switch, undo | only active canvas graph/history changes | current clone contract exists |
+
+### 10.3 Decision and verification order
+
+1. Lock `GI-001..003/008..011` as data correctness rules with pure cases;
+2. obtain source evidence or explicit clone decision for `GI-004..007`;
+3. define a versioned validation result shape without adopting Open Canvas node types or payload;
+4. run pure compatibility fixtures on `LIBTV-FIX-LOCAL-EMPTY-01`;
+5. use `LIBTV-FIX-LOCAL-DEMO-01/GROUP-01/DERIVED-01` for existing command compatibility;
+6. only after authorization, integrate one guard at a time and keep Handle/edge visuals unchanged;
+7. add a dedicated replacement entry before claiming `LIBTV-PAR-008` complete.
+
+This register is a design input. It does not authorize adding DAG validation, changing edge direction or rewriting `canvasStore`.
+
+## 11. 新事务立项模板
 
 任何新的 LibTV graph 能力，在编码授权前至少落档以下字段：
 
@@ -213,7 +270,7 @@ Backend/prototype boundary:
 5. multi-selection、group/child、重复提交和移动端不破坏既有合同；
 6. source fact、evidence-backed inference 和 clone-only decision 在实施记录中分开。
 
-## 11. 相关入口
+## 12. 相关入口
 
 - [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：键盘命令到 store transaction 的运行语义。
 - [`LIBTV_UI_STATE_HIERARCHY.md`](liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)：overlay、editor-local state、preview、task 和 graph mutation 分层。
@@ -221,3 +278,5 @@ Backend/prototype boundary:
 - [`MULTI_MOVE.spec.md`](liblib-canvas-batch5-2026-08-25/MULTI_MOVE.spec.md)：拖动压缩为单事务的合同。
 - [`ORGANIZE_CANVAS.spec.md`](liblib-canvas-batch7-2026-08-25/ORGANIZE_CANVAS.spec.md)：graph 与 viewport 跨域命令。
 - [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)：新能力的研究/授权闸门。
+- [`open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游 graph 模式的采纳、改造与拒绝边界。
+- [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：`PAR-008` 的本地 fixture 和 reset 规则。

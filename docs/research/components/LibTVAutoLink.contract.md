@@ -162,7 +162,70 @@ These are independent slices for a future authorized coding batch:
 
 Slices A and B are lower-risk UI prototype work. Slices C and D change input representation and graph semantics and require broader browser regression. None is authorized by this document alone.
 
-## 9. Verification Contract
+## 9. Fixture Acceptance And Verifier Split
+
+### 9.1 Fixture status
+
+| Fixture | Current status | Purpose | Stop condition |
+|---|---|---|---|
+| `LIBTV-FIX-LOCAL-AUTOLINK-01` | `REQUIRED_DISPOSABLE` / `DESIGN_FIRST` | Deterministic candidate, ghost, mention, delay, IME and transaction regression | Do not add a global store injector or hard-coded production candidates merely to make the fixture easy |
+| `LIBTV-FIX-SOURCE-AUTOLINK-01` | `REQUIRED_DISPOSABLE` | Confirm current source input, keyboard, mention and failure behavior | Shared source project remains read-only; no Prompt input or preference mutation |
+
+The local fixture is the implementation prerequisite. The source fixture is needed only for behavior that cannot be proven from current DOM/bundle evidence. Neither fixture currently exists as an accepted runtime asset.
+
+### 9.2 Required local topology
+
+The fixture must be built in a fresh Page from `LIBTV-FIX-LOCAL-EMPTY-01` or an equivalently isolated canvas. Stable fixture aliases may be exposed to the verifier, but production node IDs must remain normal graph identities.
+
+| Role | Minimum state | Why it exists |
+|---|---|---|
+| image target | selected image with Prompt editor | image preference, candidate and ghost path |
+| video target | ready or empty video with generation Prompt | cross-panel preference and representation compatibility |
+| connected image source | stable node ID, distinct display name and tags, direct graph edge to target | connected candidate and ordinal projection |
+| reference video source | stable node ID, distinct display name, explicit reference role | reference candidate independent from direct edge |
+| unrelated same-name source | same visible label as a valid candidate, outside connected/reference scope | proves matching does not search the whole canvas |
+| optionally unconnected candidate | selectable only in the explicit connect flow | success/failure transaction and rollback |
+
+The fixture must not depend on fixed `陈默`/`咖啡` arrays, remote assets, provider keys, generated URLs or source-site state.
+
+### 9.3 Required deterministic controls
+
+The future test design needs controllable inputs at the editor/domain boundary, not browser-global mutation of the production store:
+
+- current preference value and `tabTipSeen` state;
+- Prompt text version, caret/selection and editor instance identity;
+- IME composition start/end;
+- detection request ID, response delay and ordered candidate result;
+- focus/blur and competing Prompt popover ownership;
+- connection outcome: success, rejected/no-op or failure;
+- reference reorder and candidate removal between detection and acceptance.
+
+If these controls require a helper, it must be scoped to the Auto Link domain and activated only by an explicit local test path. A generic `window` store injector is not accepted by this contract.
+
+### 9.4 Setup and reset assertions
+
+Before each scenario, assert:
+
+1. a fresh Page and expected empty-canvas substrate;
+2. exact target/source node and edge counts;
+3. candidate roles and stable node IDs;
+4. no ghost, committed mention, competing popover or pending detection;
+5. known preference and editor text version;
+6. graph history `past/future` starts at the scenario's declared boundary.
+
+After each scenario, assert the expected graph/reference/mention delta, then discard the Page. Switching canvas, pressing Escape, reloading or undoing once is not sufficient fixture teardown.
+
+### 9.5 Replacement verifier split
+
+| Verifier | Fixture subset | Must prove | Must not include |
+|---|---|---|---|
+| `LIBTV-VR-003` | image/video targets + connected/reference/unrelated candidates | shared preference, exact candidate scope, stable node ID and ordinal projection | inline editor replacement or graph mutation |
+| `LIBTV-VR-004` | deterministic delay + IME + competing popover | ghost does not commit text; click/Tab/Shift+Tab/Escape/blur/edit; stale result discarded | provider request or source graph write |
+| `LIBTV-VR-005` | connected and unconnected candidates + controlled connection outcome | connect/reference/mention atomicity, failure rollback, reorder and undo/redo policy | remote generation, upload or billing |
+
+`LIBTV-VR-003` can be authorized before `004/005` only if it does not preserve the fixed-candidate popover as a new long-term representation. `004` requires the editor representation decision. `005` requires the graph transaction contract.
+
+## 10. Verification Contract
 
 After explicit coding authorization, the minimum browser checks are:
 
@@ -177,7 +240,7 @@ After explicit coding authorization, the minimum browser checks are:
 9. Opening a competing Prompt menu suspends Auto Link keyboard handling.
 10. Selection change, canvas pan, zoom and mobile clipping do not detach the editor from its node.
 
-## 10. Non-Goals And Safety Boundary
+## 11. Non-Goals And Safety Boundary
 
 - No real model generation, upload, billing, remote save or provider payload is specified here.
 - No source Prompt typing, suggestion acceptance, source toggle mutation or graph connection was performed for this contract.
