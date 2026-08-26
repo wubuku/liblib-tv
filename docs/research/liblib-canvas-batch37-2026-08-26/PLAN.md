@@ -152,4 +152,4 @@ tuples and is sampled by pure helpers.
 - [x] R3F trajectory and path-driven playback
 - [x] Path commands and functional curve editor
 - [x] Focused Playwright and screenshot verification
-- [ ] Cross-batch regressions, stable docs and final quality gate
+- [x] Cross-batch regressions, stable docs and final quality gate

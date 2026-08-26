@@ -1,7 +1,8 @@
 # Batch 37 Implementation Log
 
-> Status: main implementation and browser smoke complete; focused verification
-> and finalization pending.
+> Status: complete. Main implementation, focused browser verification,
+> screenshot ledger, stable documentation, cross-batch regression and final
+> quality gates passed.
 
 ## Protection Points
 
@@ -74,12 +75,29 @@ the main implementation.
 
 - Plan protection: `baf0db9`.
 - Implementation protection: `e4d7ecf`.
-- Verification/finalization: pending.
+- Focused verification protection: `f7a9b64`.
+- Stable documentation protection: `2493653`.
+- Finalization: this documentation-only closeout commit.
+
+## Regression And Quality Result
+
+The final serial gate passed on August 26, 2026:
+
+- `python3 scripts/verify-liblib-batch35.py`
+- `python3 scripts/verify-liblib-batch36.py`
+- `python3 scripts/verify-liblib-batch37.py`
+- `npm run docs:check`
+- `npm run check`
+- `git diff --check`
+
+`npm run check` completed lint, strict TypeScript and the Next.js production
+build. ESLint still reports the same nine existing warnings in FrameOS and
+`CustomHandle`; Batch 37 introduced no lint errors or new warning class.
 
 ## Interruption Handoff
 
-If interrupted after the main implementation commit, add
-`scripts/verify-liblib-batch37.py` and verify exact path lifecycle, curve sampling,
-custom handle drag, capture-helper exclusion and mobile overflow. Then inspect the
-new contact sheet once and finish stable docs. Do not stage verifier-regenerated
-historical screenshots from Batch 9/15/21/26-36.
+Batch 37 is closed. Continue from Batch 38 with pencil/pen path authoring and
+real path-anchor editing, using the existing serializable path foundation and
+pure sampling helpers. Read `SOURCE_EVIDENCE.md` before extending source claims.
+Do not stage verifier-regenerated historical screenshots from
+Batch 9/15/21/26-36.

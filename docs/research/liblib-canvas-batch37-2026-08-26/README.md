@@ -1,7 +1,7 @@
 # Batch 37：导演台运动轨迹与速度曲线第一条纵切
 
-> 状态：主实现、专项 Playwright 和截图台账已完成；跨批回归、稳定文档和
-> 最终质量门待收口。
+> 状态：已完成。主实现、专项 Playwright、截图台账、跨批回归、稳定文档、
+> `npm run check` 和提交推送均已闭环。
 
 ## Read Order
 
@@ -44,3 +44,11 @@ selected transform/camera track
 本批不实现铅笔/钢笔自由绘制、Bezier path anchor type/handle 编辑、路径
 position/rotation/scale offset Inspector、pose/group track、动画视频导出或手机
 虚拟机位。它们保留为后续批次，不以 disabled 假控件冒充完成。
+
+## Completion
+
+- Plan: `baf0db9`
+- Implementation: `e4d7ecf`
+- Focused verification: `f7a9b64`
+- Stable documentation: `2493653`
+- Finalization: recorded in the next documentation-only commit
