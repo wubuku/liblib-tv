@@ -74,7 +74,7 @@
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-48 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-48 已形成有界 group/crowd、capture gallery、model-library 与 local-model persistence 合同和专项 verifier。
+Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-48 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-48 已形成有界 group/crowd、capture gallery、model-library 与 local-model persistence 合同和专项 verifier。Batch 49 的 viewport gizmo 仍是并行 WIP，不改变当前稳定领域合同。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
@@ -92,6 +92,7 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-48 
 | Director Batch 46 capture gallery slice | `Director*` + `directorStore` | Batch 46 `DIRECTOR_CAPTURE_GALLERY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 截图图库、查看器、单/批量回流与清空边界已稳定；仍是有界 clone 合同。 |
 | Director Batch 47 model-library slice | `DirectorViewport` + `directorStore` | Batch 47 `DIRECTOR_MODEL_LIBRARY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 模型库入口、分类、代理卡片、prop 插入和空态已稳定；真实模型资产/环境库仍不在合同内。 |
 | Director Batch 48 local-model slice | `DirectorViewport` + `directorStore` + `directorLocalModelImport` | Batch 48 `DIRECTOR_LOCAL_MODEL_LIBRARY.spec.md`、source evidence、focused verifier、screenshot ledger | `DOMAIN_CONTRACT` | 多文件 FBX/OBJ descriptor、localStorage 恢复、重复加入、关联实例清理和响应式边界已稳定；真实 mesh loading/远程同步仍不在合同内。 |
+| Director Batch 49 viewport gizmo slice | `DirectorViewport` + `directorStore` | Batch 49 `DIRECTOR_VIEWPORT_GIZMO.spec.md`、source evidence、upstream archaeology、implementation WIP | `PARALLEL_WIP` | 只读等待截图台账、稳定 verifier 和 closeout；不把上游 gizmo 或当前 WIP 当成已完成 LibTV 合同。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 
