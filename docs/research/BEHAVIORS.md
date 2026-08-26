@@ -77,12 +77,29 @@
 - **Authoring:** manual keyframe add performs a same-time upsert. Inspector edits
   and completed TransformControls drags record at the playhead when auto-keyframe
   is enabled. Sampling itself never creates keyframes.
+- **Motion-path creation:** a selected transform/camera track enables
+  `创建运动轨迹`; the current source-backed menu creates `直线路径`,
+  `圆环路径` or `矩形路径` and replaces that track's previous binding without
+  leaving orphan path state.
+- **Path sampling:** enabled paths are sampled by world-space arc length after
+  the track speed curve remaps normalized progress. Disabling/deleting a path
+  falls back to ordinary keyframe sampling. Non-camera tracks may bind their
+  Y rotation to the sampled tangent; camera target/FOV remain camera-track data.
+- **Path presentation:** R3F renders enabled trajectories and selected-path
+  anchors as authoring helpers. They are excluded from camera view and
+  helper-free PNG capture.
+- **Curve editor:** the selected track can switch from the timeline to
+  `线性 / 平滑 / 缓入 / 缓出 / 缓入缓出` presets or drag two normalized
+  cubic-Bezier handles. Both presets and custom values change live scene
+  sampling, not only the SVG preview.
 - **Timeline responsive behavior:** desktop uses a `196px` clone-calibrated band;
   `390x844` uses `176px`, a contracted label column and internal horizontal
   scrolling without document overflow.
 - **Evidence and verification:** Batch 35 covers the R3F workspace and return;
   `docs/research/liblib-canvas-batch36-2026-08-26/` and
-  `scripts/verify-liblib-batch36.py` cover the animation timeline.
+  `scripts/verify-liblib-batch36.py` cover the animation timeline;
+  `docs/research/liblib-canvas-batch37-2026-08-26/` and
+  `scripts/verify-liblib-batch37.py` cover motion paths and speed curves.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
@@ -272,7 +289,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, and director timeline coverage in `scripts/verify-liblib-batch36.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, and director motion-path/curve coverage in `scripts/verify-liblib-batch37.py`.
 
 ## KeyboardShortcutsDialog
 

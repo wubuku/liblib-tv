@@ -172,7 +172,8 @@ React Flow change
 - 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent，并将当前画布投影为“关键元素”资源栏与“图片 / 视频”故事板列
 - 从 `3D导演台` 节点按需载入全屏 R3F 工作区；主 React Flow 保持挂载，
   截图通过一个原子 graph transaction 回流为 image node + source edge；
-  工作区底部的 typed timeline 可 scrub/playback 并确定性驱动场景与机位
+  工作区底部的 typed timeline 可 scrub/playback 并确定性驱动场景与机位；
+  transform/camera track 还可绑定预设运动路径和 cubic-Bezier 速度曲线
 
 ### 5.2 状态边界
 
@@ -195,9 +196,11 @@ React Flow change
 
 `directorStore` 管可序列化的场景、对象、选择、活动机位、视角、transform
 模式、画幅、九宫格、截图记录，以及 transform/camera typed tracks、
-playhead、播放/循环/缩放、关键帧选择和 auto-keyframe。时间轴采样先更新
-serializable object/camera values，再由 R3F 消费；Three.js renderer、camera
-和 Object3D refs 属于 R3F 组件运行时，不能写入 Zustand。
+playhead、播放/循环/缩放、关键帧选择、auto-keyframe、运动路径和轨道级
+速度曲线。时间轴采样会先计算关键帧值，再以 cubic-Bezier 重映射进度并按
+弧长采样启用的绑定路径；非相机对象可选用路径切线接管 Y 旋转。结果仍是
+serializable object/camera values，再由 R3F 消费；Three.js renderer、camera、
+Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zustand。
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
@@ -225,7 +228,10 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 导演台入口会打开 lazy-loaded R3F 三栏工作区，支持真实场景、机位、画幅、
 helper-free PNG capture 和图片节点回流；底部时间轴支持 typed track、
 关键帧生命周期、scrub/playback/loop/zoom、Inspector/gizmo auto-keyframe
-和场景/相机确定性采样。长视频提交会额外创建独立的过程节点图。
+和场景/相机确定性采样。已选轨道还能创建直线/圆环/矩形路径，在 R3F
+世界空间显示轨迹与锚点，驱动对象或机位沿路径播放，并用线性/平滑/缓入/
+缓出/缓入缓出或自定义 Bezier 控制速度；helper-free capture 会隐藏这些
+编辑辅助。长视频提交会额外创建独立的过程节点图。
 音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但
 waveform 仍是 CSS placeholder，不解析真实音频。
 

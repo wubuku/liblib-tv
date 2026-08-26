@@ -71,12 +71,14 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | Component | File | Purpose |
 |---|---|---|
 | `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Full-screen director lifecycle, three-zone shell, responsive drawers and capture return orchestration. |
-| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Real R3F scene, object selection/transforms, director/camera views, aspect framing, guides and helper-free PNG capture. |
+| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Real R3F scene, object selection/transforms, director/camera views, aspect framing, guides, world-space motion-path helpers and helper-free PNG capture. |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Searchable semantic character/prop/camera tree synchronized with viewport and Inspector selection. |
-| `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Selection-routed scene/object/camera controls and current-capture preview/send command. |
-| `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Full-width typed animation timeline with playback, loop, scrub, zoom, tracks, keyframes and auto-keyframe controls. |
+| `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Selection-routed scene/object/camera controls, path-orientation Y lock and current-capture preview/send command. |
+| `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Full-width typed animation timeline with playback, loop, scrub, zoom, tracks, keyframes, auto-keyframe, preset motion-path lifecycle and curve-mode entry. |
+| `DirectorCurveEditor` | `src/components/director/DirectorCurveEditor.tsx` | Track-level speed-curve mode with five source-backed presets, draggable cubic-Bezier handles and live normalized values. |
 | `directorViewportMath` | `src/components/director/directorViewportMath.ts` | Pure aspect-frame geometry for viewport display and capture cropping. |
-| `directorTimelineMath` | `src/components/director/directorTimelineMath.ts` | Pure time clamping and linear transform/camera interpolation for deterministic scene sampling. |
+| `directorTimelineMath` | `src/components/director/directorTimelineMath.ts` | Pure time clamping, transform/camera interpolation and path-aware deterministic scene sampling. |
+| `directorMotionMath` | `src/components/director/directorMotionMath.ts` | Pure cubic-Bezier inversion/remapping, polyline arc-length sampling, tangent normalization and path-orientation helpers. |
 
 ## Utilities
 
@@ -93,7 +95,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |------|------|--------|
 | `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, video-processing and long-video graph transactions, and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
-| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state, capture records and typed transform/camera timeline. Three.js runtime refs stay in components. |
+| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state, capture records, typed transform/camera timeline, motion paths and speed curves. Three.js runtime refs stay in components. |
 
 ---
 
