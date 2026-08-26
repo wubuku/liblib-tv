@@ -54,7 +54,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, articulated character posing, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
@@ -93,7 +93,8 @@ director node CTA
   -> uiStore.activeDirectorNodeId
   -> lazy client-only DirectorDesk
   -> directorStore scene/object/camera/timeline edits
-  -> typed transform/camera tracks
+  -> typed transform/camera/pose tracks
+  -> optional articulated-character preset and SAM control authoring
   -> optional serializable motion path + track-level cubic-Bezier speed curve
   -> optional browser-orientation/pointer phone-camera pose recording
   -> deterministic scrub/playback sampling
@@ -105,16 +106,19 @@ director node CTA
 React Flow remains mounted while the fixed workspace is open. `directorStore`
 contains only serializable authoring state; mutable Three.js camera, renderer and
 Object3D references stay inside R3F components. Timeline sampling is a director
-store concern: transform and camera tracks interpolate serializable values, then
-optionally remap normalized progress through a track-level cubic-Bezier speed
-curve and sample a bound polyline by arc length. The R3F scene observes the
-resulting objects and renders enabled authoring paths; helper-free capture hides
-those paths and anchors. Inspector edits and completed gizmo drags may
-auto-keyframe at the current playhead, while scrub/playback never author new
-keyframes. The phone virtual-camera prototype keeps orientation events, timers
-and temporary sample buffers in its client component; `directorStore` receives
-only finite pose/camera values and imports a completed take as a new serializable
-camera object plus typed camera track.
+store concern: transform, camera and articulated-character pose tracks
+interpolate serializable values. Transform/camera tracks may also remap
+normalized progress through a track-level cubic-Bezier speed curve and sample a
+bound polyline by arc length. Sparse pose controls interpolate from finite zero
+defaults, and per-kind track composition lets one character receive transform
+and pose samples at the same playhead. The R3F scene observes the resulting
+objects and renders enabled authoring paths; helper-free capture hides those
+paths and anchors. Inspector edits and completed gizmo drags may auto-keyframe
+at the current playhead, while scrub/playback never author new keyframes. The
+phone virtual-camera prototype keeps orientation events, timers and temporary
+sample buffers in its client component; `directorStore` receives only finite
+pose/camera values and imports a completed take as a new serializable camera
+object plus typed camera track.
 
 ### FrameOS
 
@@ -161,6 +165,7 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
 | Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
+| Director character pose | serializable rig plus independent pose tracks composed with transform tracks | keeps articulated R3F rendering, source-named presets/SAM controls and deterministic animation in one testable data model |
 | Director motion path | local anchors/relative handles plus fixed pivot and serializable transform derive world sampled points | supports editable pencil/pen/Bezier authoring, path-level position/rotation/scale and deterministic playback without putting Three.js geometry in Zustand |
 | Director speed curve | track-level cubic-Bezier control points | keeps preset/custom timing effects testable in pure sampling code |
 | Director path interaction | viewport selection requests are store-guarded while a draft/anchor owns input | prevents R3F pointer-up/click ordering from changing the bound object during path authoring |

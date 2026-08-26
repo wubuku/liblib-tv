@@ -68,15 +68,25 @@
 - **Timeline shell:** a full-width bottom band remains outside the three-zone
   workspace. Its label column aligns with the object-tree rail; controls and the
   time canvas scroll internally on compact viewports.
-- **Typed tracks:** current runtime values support transform and camera tracks.
-  Track/keyframe selection routes object selection and the Inspector to the same
-  context.
+- **Typed tracks:** current runtime values support transform, camera and pose
+  tracks. Track/keyframe selection routes object selection and the Inspector to
+  the same context.
 - **Scrub/playback:** ruler pointer input, previous/next navigation and playback
   sample transform/camera values deterministically. Pause freezes the scene;
   loop-off stops at duration and loop-on wraps.
 - **Authoring:** manual keyframe add performs a same-time upsert. Inspector edits
   and completed TransformControls drags record at the playhead when auto-keyframe
   is enabled. Sampling itself never creates keyframes.
+- **Character pose:** selecting a character exposes source-named `属性 / 姿势`
+  tabs. The pose surface contains all 20 current source preset names and six
+  source-named SAM groups covering 14 displayed bones. Preset or continuous
+  control edits update the articulated R3F mannequin and upsert a pose keyframe
+  at the current playhead.
+- **Pose sampling:** pose tracks interpolate sparse finite rig controls and
+  compose with a same-character transform track. Intermediate values clear the
+  endpoint preset identity. Pose tracks use generic keyframe navigation and
+  editing, but reject motion-path authoring because paths only bind
+  transform/camera movement.
 - **Motion-path creation:** a selected transform/camera track enables
   `创建运动轨迹`; the current source-backed menu creates `直线路径`,
   `圆环路径` or `矩形路径`, or starts source-labeled `铅笔路径` /
@@ -141,7 +151,11 @@
   and `scripts/verify-liblib-batch39.py` cover path-level transform and reset;
   `docs/research/liblib-canvas-batch40-2026-08-26/` and
   `scripts/verify-liblib-batch40.py` cover real animation export and playable
-  canvas video return.
+  canvas video return; `docs/research/liblib-canvas-batch41-2026-08-26/` and
+  `scripts/verify-liblib-batch41.py` cover phone virtual-camera local preview
+  and camera-track import; `docs/research/liblib-canvas-batch42-2026-08-26/`
+  and `scripts/verify-liblib-batch42.py` cover articulated character posing,
+  SAM controls and transform-plus-pose track composition.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph

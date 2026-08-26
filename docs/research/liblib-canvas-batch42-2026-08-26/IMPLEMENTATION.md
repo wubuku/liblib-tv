@@ -1,9 +1,9 @@
 # Batch 42 Implementation Log
 
-> Status: in progress. The articulated character, pose Inspector and typed
-> pose-track composition are implemented. Focused desktop/mobile Playwright,
-> durable screenshots and one-pass interpretation are complete; cross-batch
-> regression and stable docs are next.
+> Status: complete. The articulated character, pose Inspector and typed
+> pose-track composition are implemented and covered by focused desktop/mobile
+> Playwright, durable screenshots, one-pass interpretation, cross-batch
+> regression and project quality gates.
 
 ## Protection Points
 
@@ -25,15 +25,16 @@
 - [x] pose track sampling/composition
 - [x] focused browser verification and screenshots
 - [x] screenshot interpretation ledger
-- [ ] cross-batch regression and stable documentation
+- [x] cross-batch regression and stable documentation
 
 ## Commits
 
 - Plan/evidence protection: `574d5b8`
 - Articulated character and Inspector: `bdb6969`
-- Pose timeline integration: pending
-- Focused verification: pending
-- Stable documentation/finalization: pending
+- Pose timeline integration: `232772d`
+- Focused verification: `fb0b4c8`
+- Stable documentation/finalization: see the commit that introduces
+  `MATURITY_ASSESSMENT.md`; a commit cannot self-reference its own hash.
 
 ## Articulated Character And Inspector Milestone
 
@@ -100,13 +101,27 @@ Added `scripts/verify-liblib-batch42.py`. It covers:
   overflow;
 - console, page and request failures.
 
-The focused script passed and generated five Batch 42-only state screenshots
-plus one contact sheet. Their first and only visual interpretation is recorded
-in `SCREENSHOT_ANALYSIS.md`.
+The focused script passed twice and generated five Batch 42-only state
+screenshots plus one contact sheet. Their first and only visual interpretation
+is recorded in `SCREENSHOT_ANALYSIS.md`.
+
+## Regression And Gates
+
+The following completed successfully after implementation:
+
+```text
+scripts/verify-liblib-batch35.py through batch42.py
+npm run docs:check
+npm run check
+git diff --check
+```
+
+`npm run check` completed lint, strict typecheck and the Next.js 16 production
+build. Only the existing nine FrameOS/`CustomHandle` warnings remain.
 
 ## Interruption Handoff
 
-Continue with `PLAN.md` step 10: run Batch 35-42 regression and project gates,
-then update stable docs and maturity assessment. Do not re-open Batch 42
-screenshots; use `SCREENSHOT_ANALYSIS.md`. Preserve unrelated dirty PNGs and
-concurrent docs, and use path-limited commits.
+Batch 42 is closed. Do not re-open its screenshots unless the images change or
+authenticated source pose evidence becomes available; use
+`SCREENSHOT_ANALYSIS.md`. Continue from `MATURITY_ASSESSMENT.md`, and preserve
+unrelated dirty PNGs with path-limited commits.

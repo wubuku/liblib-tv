@@ -1,8 +1,8 @@
 # Batch 42: Director Character Pose And SAM Tracks
 
-> Status: in progress. Source evidence, implementation, focused Playwright and
-> one-pass screenshot analysis are complete; cross-batch regression and stable
-> docs are pending.
+> Status: complete. Source evidence, implementation, focused Playwright,
+> one-pass screenshot analysis, cross-batch regression and stable docs are
+> complete.
 
 ## Read Order
 
@@ -18,6 +18,8 @@
    of the focused clone screenshots.
 6. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): live progress, commits,
    verification and interruption handoff.
+7. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): current Director Desk
+   maturity, evidence debt and next-batch ranking.
 
 ## Batch Goal
 

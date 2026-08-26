@@ -85,4 +85,4 @@
 - [x] Pose Inspector and presets
 - [x] Independent pose tracks and interpolation
 - [x] Focused Playwright and screenshot ledger
-- [ ] Cross-batch regression and stable docs
+- [x] Cross-batch regression and stable docs
