@@ -32,6 +32,9 @@
 | OC-015 | `/zh/canvas` 空状态显示设置、JSON 导入、新建画布，并自动弹出设置向导 | 官网运行事实 | High | [`RUNTIME_AUDIT.md`](RUNTIME_AUDIT.md#3-中文画布入口)；[空状态截图](../../design-references/open-canvas-official-canvas-empty-zh-2026-08-26.png) | 未登录、无 key 场景的入口流程 | 不代表已验证节点编辑和生成流程 |
 | OC-016 | 官网 provider marquee/向导的宣传范围宽于本次已核实的 current execute runner | 交叉推断 | Medium | OC-006、OC-007、OC-014、OC-015 | 需要在报告中标记的声明/实现漂移 | 不代表官网是错误页面，可能对应其他部署或目标状态 |
 | OC-017 | 当前尚未完成 studio 选中节点上下浮层的运行态几何审计 | 研究边界 | High | [`RUNTIME_AUDIT.md`](RUNTIME_AUDIT.md#6-仍需后续取证的交互) | 清楚标记哪些内容不可用于视觉 clone | 不代表源码中的 Panel 没有定位逻辑 |
+| OC-018 | Open Canvas 的 selected editor/action overlay 共用 measured node + live viewport 的 screen anchor 语义，但分别位于节点上下 | 源码 | High | [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L5964)；[`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L6015) | 可迁移的几何组织方法 | 不代表 LibTV 应改用同样的 Panel 容器或数字 |
+| OC-019 | 当前 clone 的 ImageNode 已将顶部 `NodeToolbar` 与节点内底部 `ImageEditPanel` 分开实现 | 当前仓库源码 | High | [`ImageNode.tsx`](../../../src/components/nodes/ImageNode.tsx#L125)；[`ImageNode.tsx`](../../../src/components/nodes/ImageNode.tsx#L166) | 当前实现形态和后续诊断入口 | 不代表当前运行态所有边缘/缩放场景都已验证 |
+| OC-020 | 当前 LibTV 复刻合同要求工具条以节点中心为基准、编辑器跟随节点并反向缩放，且边缘允许裁剪 | LibTV 研究记录 | High | [`ImageNode.spec.md`](../components/ImageNode.spec.md#selected-state)；[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md#positioning-contract) | LibTV 的源站行为基线 | 不代表 Open Canvas 的几何合同可以覆盖它 |
 
 ## 3. 对当前 clone 的引用规则
 

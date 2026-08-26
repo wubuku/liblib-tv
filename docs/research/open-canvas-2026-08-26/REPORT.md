@@ -18,6 +18,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 本报告的声明索引见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)。正文中的“源码事实/官网运行事实/推断”仍需按该矩阵的 claim ID 复核；报告不能替代 LibTV 源站的视觉取证。
 
+面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |

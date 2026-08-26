@@ -27,6 +27,17 @@
 - 在实施影响文档中补充 claim ID 引用规则、依赖关系和停止条件；
 - 保持 `src/`、其他开发者 WIP、上游源码和真实 provider 数据不变。
 
+## 2026-08-26：v3 面向 LibTV UI/UX 的持续转译
+
+本轮不新增上游功能判断，而是把研究成果接入后续复刻工作：
+
+- 新增 `UIUX_TRANSLATION.md`，建立 LibTV 源站事实、Open Canvas 启发和 clone-only 决策的三层边界；
+- 以当前已知的 LibTV 双浮层问题为 P0，拆解为坐标系统、层级、状态生命周期和边缘策略四类可测问题；
+- 记录 Open Canvas selected overlay 的 `measured node + live viewport + screen anchor` 方法；
+- 明确 LibTV 自有的 `NodeToolbar`/节点内编辑器合同不能被 Open Canvas 的 Panel 结构替换；
+- 建立 `LIBTV-UIX-01` 至 `LIBTV-UIX-08` 的后续研究队列和统一 batch 文档模板；
+- 未修改 `src/`，未触碰其他开发者 WIP，未将 Open Canvas provider/runtime 接入当前项目。
+
 ## 维护规则
 
 1. 上游 submodule 更新时，新建一轮带日期的研究记录，不覆盖旧 commit 的结论；
