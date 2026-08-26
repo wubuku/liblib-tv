@@ -226,3 +226,13 @@
 - 每张卡均按 `SOURCE_FACT`、LibTV 对应事实、`INFERENCE`、`CLONE_DECISION` 和验证门槛组织，明确 Open Canvas 只能提供一般性机制启发，不能替代 LibTV 的视觉和交互源站证据；
 - 将四张卡纳入 Open Canvas README、PLAN、深度报告、research index 和 docs index，形成可发现的后续评审入口；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v22 Seedance 能力依赖、风险与研究队列
+
+本轮完成第十七批研究项：
+
+- 新增 [`LIBTV_DEPENDENCY_RISK_QUEUE.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md)，把普通/超长生成、Auto Link、逐帧拉片、片段重拍和超长视频过程放入同一张依赖图；
+- 明确 `source node / media version / reference role / time range / run-node-save status` 六类共享底座，并区分可并行研究和必须串行的证据前提；
+- 为每条队列记录研究任务、风险、`BLOCKED_BY_FIXTURE` 停止条件和编码前验收标准，避免用文章截图或现有 clone 过程图填补源站未知；
+- 更新 Seedance README、NEXT_RESEARCH_PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，标记前 3 项已完成、go/no-go 仍待执行；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
