@@ -126,7 +126,7 @@
 
 ## 5. 研究出口
 
-当前最合理的下一步不是立即编码，而是继续补齐拖动/平移时序、元素编辑/旋转的无提交状态，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28%/34%/41%/50% 双浮层、100% virtualization boundary、preview、空 annotate、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
+当前最合理的下一步不是立即编码，而是继续补齐拖动/平移时序、元素编辑的非空 record 状态、旋转入口的派生节点路径，以及专用空白项目中的 AutoLink ghost 视觉，再由用户授权 Batch A/A2。28%/34%/41%/50% 双浮层、100% virtualization boundary、preview、空 annotate、空元素编辑、六动作 bundle 状态和 AutoLink 静态状态链已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
 
 ## 6. 变更授权门槛
 

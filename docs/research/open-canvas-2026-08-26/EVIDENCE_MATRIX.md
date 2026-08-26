@@ -58,6 +58,8 @@
 | ID | 声明 | 类型 | 置信度 | 直接证据 | 证据支持的范围 | 不能据此得出 |
 |---|---|---|---|---|---|---|
 | LIBTV-001 | 当前图片标准工具条 host 以节点屏幕中心为水平 anchor，top 为 `nodeTop - 24 * zoom - 10`，并以 `translateY(-100%)` 抬起自身高度；因此顶部 gap 为 `10 + 24 * zoom` | 当前生产 chunk + live DOM | High | [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md#35-源站-chunk-对顶部-host-定位的直接证据)；[`libtv-overlay-multizoom-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-overlay-multizoom-audit-2026-08-26.json) | 标准图片工具条的 screen-space 定位合同 | 不代表标注、旋转、元素编辑或图层分离专用 host 使用同一定位分支，也不代表 clone 的 `NodeToolbar offset=16` 已经等价 |
+| LIBTV-002 | 元素编辑空态会替换标准 toolbar/panel，提供 point/box/brush、初始 mask/guide 和空 record panel；Escape 可恢复标准双浮层 | 当前 live DOM | High | [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md#31-元素编辑)；[`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#13-元素编辑与旋转入口的安全边界) | 元素编辑空态的层级、几何和退出合同 | 不代表非空 record 的生成、上传、任务或输出节点语义已在共享画布验证 |
+| LIBTV-003 | 当前共享画布点击旋转入口产生了一个选中的“旋转与镜像”派生节点，单次 `Meta+Z` 可撤销该节点；旋转入口应按可 graph mutation 的高风险动作处理 | 当前 live DOM + 撤销结果 | High | [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md#34-旋转与镜像)；[`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#13-元素编辑与旋转入口的安全边界) | 当前 fixture 的入口副作用和研究安全边界 | 不代表所有项目权限、图片状态或部署版本都一定走同一派生路径，也不代表保存/上传合同已确认 |
 
 ## 4. 待补证据队列
 

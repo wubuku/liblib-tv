@@ -246,7 +246,7 @@ AutoLink 也不能继续按 clone 当前的固定候选弹窗理解。当前源�
 
 双浮层的 zoom 合同也需要拆开理解：当前源站下方 panel gap 在直接测得的 28%/34%/41%/50% 分别是 `16 * zoom`，顶部 toolbar 仍保持 `1092.5x49` 和 node-center；生产 chunk 已确认其 host top 是 `nodeTop - 24 * zoom - 10`，再用 `translateY(-100%)` 抬起自身高度，因此 gap 约为 `16.794/18.152/19.778/22px`。100% 离屏时还会触发可见节点 DOM 卸载。clone 的 `NodeToolbar offset=16` 和单档回归不能代表全部源站行为，详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
 
-图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
+图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。元素编辑空态也已确认会替换标准双浮层并提供 point/box/brush authoring surface；旋转入口在当前共享 fixture 中则实际触发了“旋转与镜像”派生节点并由一次撤销恢复，因此必须按可能发生 graph mutation 的高风险动作处理。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
 
 Seedance 视频参数不能压缩成普通下拉列表。原站普通和超长参数分别是 `341x445`、`341x397` 的高 dialog；比例使用 5+2 glyph cards，清晰度、音频和数量使用整宽 segmented controls，时长带当前值框。超长模式切换到 `30-300s`、移除数量并保留时长说明；`300s` 对应的 `14700` 只是本地原型中的 source-shaped 积分显示。
 

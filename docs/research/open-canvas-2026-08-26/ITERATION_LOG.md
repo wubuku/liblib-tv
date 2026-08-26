@@ -134,3 +134,12 @@
 - 100% 档仍观察到选中节点 DOM 被可见性/virtualization 策略移出，但 toolbar host 保留在 DOM；这说明 clone 的验证必须同时检查 selection state、host presence 和 node DOM presence，不能只用节点 DOM 是否存在判定双浮层是否失效；
 - 将本批结构化样本追加到 [`libtv-overlay-multizoom-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-overlay-multizoom-audit-2026-08-26.json)，并同步矩阵、Big Picture、ImageEditPanel 规格和实施影响文档；
 - 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有写入 LibTV 远端画布。
+
+## 2026-08-26：v12 图片动作的安全进入边界
+
+本轮继续遵守“不生成、不上传、不保存”的限制，重点验证两个此前只由 bundle 推断的高价值动作：
+
+- `元素编辑` 在 `41%` zoom 的空态会替换标准双浮层，出现 `272x44` 专用 toolbar、`250.852x203.711` mode root、`250.211x141.711` edit stage 和 `400x50` 空 record panel；初始 mask/guide、point/box/brush 和 disabled undo 都是可见合同；Escape 可恢复标准 toolbar/panel；
+- `旋转` 的一次入口点击在当前共享 fixture 中实际新增并选中了“旋转与镜像”派生节点；随后一次 `Meta+Z` 将其撤销。没有继续改变角度/镜像，也没有打开 dirty modal、保存、上传或生成；因此旋转入口升级为“可能先发生 graph mutation”的高风险动作；
+- 将元素编辑空态和旋转入口副作用分别写入 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、[`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)；后续如需非空 record 或旋转 modal，必须使用可丢弃副本或取得明确授权；
+- 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP；对源站的唯一 graph 操作是为恢复误触发动作而执行一次撤销。

@@ -323,3 +323,25 @@ transform = translateX(-50%) translateY(-100%)
 因此，`10 + 24 * zoom` 不再只是 live rect 的拟合，而是当前 production chunk 的源码事实。继续补测的 41% 样本为 toolbar `1092.5x49`、top gap `19.778px`、panel gap `6.516px`，分别与该 host 公式和 `16 * zoom` 对齐。当前四个直接可见档位的 top gap 为 `16.794/18.152/19.778/22px`，panel gap 为 `4.525/5.430/6.516/8px`。
 
 这段源码同时存在 active image tool 的其他定位分支，所以标准公式不能外推到标注、旋转、元素编辑或图层分离专用工具条。完整矩阵与结构化证据见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md) 和 [`libtv-overlay-multizoom-audit-2026-08-26.json`](libtv-overlay-multizoom-audit-2026-08-26.json)。
+
+## 13. 元素编辑与旋转入口的安全边界
+
+### 元素编辑空态
+
+在约 `41%` zoom、节点 `i-1FQ9tErTcC` 上点击 `image-toolbar-interactive-edit` 后，标准 `1092.5x49` toolbar 和 `660x191` 生成面板被替换为元素编辑 mode：
+
+| 元素 | Rect / state |
+|---|---|
+| 专用 toolbar | `x=-142.852, y=89.734, w=272, h=44` |
+| mode root | `x=-132.273, y=185.734, w=250.852, h=203.711` |
+| edit stage | `x=-131.961, y=185.734, w=250.211, h=141.711` |
+| record panel | `x=-206.844, y=339.445, w=400, h=50` |
+| 初始态 | mask 覆盖 stage，提示 `标记你想要修改的对象`，point active，undo disabled |
+
+工具条包含关闭、点选、框选、画笔和撤销入口。没有点选、框选、画笔、生成或保存；按 Escape 后 mode、专用 toolbar 和 stage 卸载，标准双浮层恢复。
+
+### 旋转入口
+
+同一登录态共享画布点击 `image-toolbar-rotate` 后，实际新增并选中一个 `i-EnxA3zCn8U` 节点，标签为 `旋转与镜像`；随后使用一次 `Meta+Z`，该派生节点从可见 graph 和 DOM 消失。没有继续改变角度/镜像、打开 dirty modal、保存、上传或生成。
+
+因此，旋转按钮在当前 fixture 中被视为“可能立即进入 graph mutation 的高风险入口”，不能仅依据 bundle 中的 local rotate state 就在共享画布继续试探；后续应使用可丢弃副本或得到明确授权。

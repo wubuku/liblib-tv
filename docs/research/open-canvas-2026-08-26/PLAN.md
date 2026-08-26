@@ -72,6 +72,7 @@
 - [x] 完成 LibTV AutoLink 当前 bundle/live 状态链和 clone 语义差异审计
 - [x] 完成 LibTV 双浮层 28%/34%/41%/50%/100% zoom 与空白选择生命周期审计
 - [x] 从当前生产 chunk 确认标准图片工具条 host 的 `nodeTop - 24 * zoom - 10` + `translateY(-100%)` 定位公式
+- [x] 完成元素编辑空态的专用 toolbar/stage/record panel 只读取证，并确认旋转入口在共享 fixture 中的派生节点与撤销边界
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准
