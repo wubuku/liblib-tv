@@ -2,6 +2,14 @@
 
 > Component-level contracts for the LibTV clone. Read the matching spec before changing a component or node.
 
+## Coverage First
+
+Use [`COVERAGE_MATRIX.md`](COVERAGE_MATRIX.md) to map a source component to its
+spec, batch evidence, verifier and current documentation gap. The matrix also
+marks components covered by a parent/domain contract, legacy helpers, debug-only
+surfaces and parallel WIP. Do not infer `SPEC_COMPLETE` merely because a file is
+listed in `COMPONENT_INVENTORY.md`.
+
 ## How To Find A Spec
 
 | Area | Specs |

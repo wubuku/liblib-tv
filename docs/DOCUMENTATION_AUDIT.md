@@ -81,9 +81,14 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 | P1 | 证据 claim 反向索引 | 从产品能力反查 DOM/JSON/截图/脚本证据 | 已完成：[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md) |
 | P1 | verifier 能力台账 | 区分脚本存在、脚本通过、源站已复核和仅有文章证据 | 已完成：[`VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md) |
 | P1 | clone-website 技能项目适配 | 说明通用技能与本项目授权/证据/协作规则的优先级 | 已完成：[`CLONE_WEBSITE_ADAPTATION.md`](CLONE_WEBSITE_ADAPTATION.md) |
+| P1 | 组件合同覆盖矩阵 | 从源码组件反查独立 spec、父/领域合同、批次证据和 `NEEDS_SPEC` 缺口 | 已完成：[`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) |
 | P2 | 文档生命周期清理 | 处理真正过时的草稿和重复索引 | 必须先确认没有 inbound links |
 
 本审计不建议现在做全量目录重排、截图重命名或双语文档翻译；这些动作的收益低于继续维护证据可追溯性。
+
+## 5.1 本轮追加维护
+
+组件覆盖矩阵已建立，并由组件索引、研究总入口、正式文档入口和 agent task map 共同导出。它没有改写任何现有 Batch 45 WIP 或其他开发者文件；后续新增组件合同时，应先更新矩阵再更新索引。
 
 ## 6. 验收
 

@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   adaptation guidance.
 - Audited documentation freshness and corrected Batch verifier ranges, while
   explicitly retaining Batch 34 and the parallel Batch 45 work as unverified.
+- Added a source-component contract coverage matrix that distinguishes dedicated
+  specs, parent/domain contracts, batch-only evidence, missing contracts,
+  legacy helpers and parallel WIP.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

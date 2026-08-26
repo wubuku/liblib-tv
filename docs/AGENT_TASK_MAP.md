@@ -24,7 +24,7 @@
 |---|---|---|---|
 | 了解项目全貌 | [`AGENTS.md`](../AGENTS.md)、[`BIG_PICTURE.md`](BIG_PICTURE.md) | [`ARCHITECTURE.md`](ARCHITECTURE.md)、[`GLOSSARY.md`](GLOSSARY.md) | 不把 LibTV 与 FrameOS 合并理解 |
 | 启动/验证本地项目 | [`DEVELOPMENT.md`](DEVELOPMENT.md)、[`HARNESS.md`](HARNESS.md) | [`QUALITY.md`](QUALITY.md) | 先确认端口和其他开发者 server，不覆盖现有进程 |
-| 修改 LibTV 节点/面板 | [`ARCHITECTURE.md`](ARCHITECTURE.md)、对应 `research/components/*.spec.md` | [`BEHAVIORS.md`](research/BEHAVIORS.md)、对应 Batch `PLAN.md`/`IMPLEMENTATION.md` | 不以旧截图或相似项目替代当前源站合同 |
+| 修改 LibTV 节点/面板 | [`ARCHITECTURE.md`](ARCHITECTURE.md)、[`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md)、对应 `research/components/*.spec.md` | [`BEHAVIORS.md`](research/BEHAVIORS.md)、对应 Batch `PLAN.md`/`IMPLEMENTATION.md` | 先确认是独立 spec、父合同、批次合同还是 `NEEDS_SPEC`；不以旧截图或相似项目替代当前源站合同 |
 | 修复图片节点上下浮层 | [`ImageNode.spec.md`](research/components/ImageNode.spec.md)、[`ImageEditPanel.spec.md`](research/components/ImageEditPanel.spec.md) | [`LibTVOverlayPositioning.contract.md`](research/components/LibTVOverlayPositioning.contract.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)、[`LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md) | 先确认 measured size、live viewport、selection lifecycle；不先凭感觉改 offset/clamp |
 | 修改图片工具动作 | [`LIBTV_IMAGE_ACTION_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | `ImageNode.spec.md`、相关 source evidence | 标注/预览/旋转/图层分离不是同一种 `addDerivedNode` 副作用 |
 | 修改 Auto Link | [`LibTVAutoLink.contract.md`](research/components/LibTVAutoLink.contract.md)、[`LIBTV_AUTOLINK_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md) | [`LIBTV_DEPENDENCY_RISK_QUEUE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md) | 不把 graph edge、reference role、mention token 合并；没有 fixture 不操作共享源站 |
@@ -107,4 +107,3 @@
 6. 我是否会只暂存自己的路径，并保留其他人的 WIP？
 
 不能回答其中任一项时，先停在文档和证据整理，不开始编码。
-
