@@ -9,7 +9,7 @@ Batch 33 已完成并推送。下一批最高优先级是“导演台”功能�
 https://github.com/jiguang132/storyai-3d-director-desk.git
 ```
 
-本批先回答“这个项目有什么值得借鉴”，再决定如何实现。研究结果必须让
+本批先回答“这个既有复刻有什么值得借鉴”，再决定如何实现。研究结果必须让
 后续 agent 能在会话中断后接力，不依赖当前模型记忆。
 
 ## 2. 事实分层
@@ -34,6 +34,7 @@ https://github.com/jiguang132/storyai-3d-director-desk.git
 | Three.js/R3F 运行时移植到当前 Next.js/React Flow | 4 | 必须分析适配成本 |
 | 上游模型库和示例素材 | 2 | 只核对许可证和引用，不直接复用 |
 | 上游测试缺口和潜在回归风险 | 3 | 必须记录 |
+| 原站当前时间轴、运动路径、动画导出与手机运镜 | 5 | 必须建立与上游的差距矩阵 |
 
 ## 4. 实施批次
 
@@ -49,7 +50,7 @@ https://github.com/jiguang132/storyai-3d-director-desk.git
 
 1. 按工作区、对象树、视口、属性面板、镜头、持久化、快捷键拆分 UX；
 2. 对照当前 LibTV React Flow + Zustand 架构；
-3. 标出可抽取的 2D UI、需要 Three.js 的能力和不可直接移植的部分；
+3. 标出可直接借鉴的 R3F 运行时、需要适配的代码和不可直接移植的资产；
 4. 形成下一批最高价值实现候选；
 5. 本批不修改产品运行时代码。
 
@@ -60,7 +61,10 @@ docs/research/liblib-canvas-batch34-2026-08-26/
 ├── README.md
 ├── PLAN.md
 ├── SOURCE_EVIDENCE.md
+├── LIBTV_DIRECTOR_EVIDENCE.md
 ├── CODE_ARCHAEOLOGY.md
+├── UPSTREAM_SCREENSHOT_ANALYSIS.md
+├── REPLICATION_REFERENCE_MATRIX.md
 ├── BORROWABLE_UX.md
 ├── PORTABILITY_MATRIX.md
 └── IMPLEMENTATION.md
@@ -104,10 +108,10 @@ contracts:
 4. visible framing guides and capture history;
 5. grouped selection, batched undo and scoped persistence.
 
-The first LibTV implementation should reproduce these contracts in a dedicated
-director workspace around source-backed shot/video entities. A 2D preview is a
-valid sequencing option, but React Flow does not prevent a Three.js/R3F central
-viewport. If true 3D staging is part of the required director-desk experience,
-R3F should be introduced behind a dedicated viewport/state boundary rather than
-deferred merely because the existing graph uses React Flow. External model
-catalogs and the upstream host protocol remain separate follow-up decisions.
+The first LibTV implementation should reuse the existing replication as the
+static R3F director-workspace baseline: scene schema, viewport, object tree,
+selection-driven inspector, camera records, framing and capture return. React
+Flow remains the host graph and R3F owns the director viewport. The current
+LibTV-only timeline, motion-path, animation-export and phone-camera layers follow
+after that baseline is integrated. External model catalogs remain a separate
+asset and licensing decision.

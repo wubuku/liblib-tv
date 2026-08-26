@@ -12,9 +12,10 @@ The current clone has two independent routes and stores:
 - selected-node panels are already calibrated as node-anchored overlays;
 - graph workflows use atomic store transactions and local in-memory history.
 
-The upstream desk is orthogonal: it stores a 3D scene document and renders it
-through R3F. Portability therefore means borrowing interaction contracts and
-domain ideas, not merging stores or rendering systems.
+The upstream desk is an existing LibTV-oriented replication: it stores a 3D
+scene document and renders it through R3F. Portability means adapting its MIT
+code to the current Next.js/React 19 project while keeping the director store
+separate from both canvas stores.
 
 ## Capability Matrix
 
@@ -23,27 +24,30 @@ domain ideas, not merging stores or rendering systems.
 | Full-bleed three-zone shell | `src/app/layout/DirectorDeskShell.tsx` | canvas page + drawers/overlays | Low | Borrow layout principle |
 | Selection-driven right inspector | `src/editor/store/directorSelectors.ts`, panels | selected-node panels | Low | Borrow routing principle |
 | Semantic object tree | `ObjectTreePanel.tsx` | asset drawer/storyboard context | Medium | Borrow for director mode |
-| Shot record linked to visible camera rig | `directorProject.ts`, `directorStore.ts` | video/image nodes and derived targets | Medium | Borrow as shot metadata, not 3D transform |
-| Camera view switching | `DirectorCanvas.tsx` | preview/player state | Medium | Borrow as preview mode concept |
+| Shot record linked to visible camera rig | `directorProject.ts`, `directorStore.ts` | video/image nodes and derived targets | Medium | Port dual rig/shot model |
+| Camera view switching | `DirectorCanvas.tsx` | preview/player state | Medium | Port with R3F viewport |
 | Aspect frame + thirds guide | `ViewportAspectOverlay.tsx` | image/video preview surfaces | Medium | Borrow after source calibration |
-| Transform gizmo | R3F `TransformControls` + `SceneRoot.tsx` | React Flow node drag/resize | High | Defer; different coordinate systems |
-| 3D scene/object rendering | `DirectorCanvas.tsx`, `SceneRoot.tsx` | none in current clone | High | Technically compatible; decide route/region boundary from the director-desk UX |
-| Character body/pose runtime | `runtime/` and pose presets | no matching LibTV entity | Very high | Do not start here |
-| Crowd array | `directorStore.ts`, `ObjectTreePanel.tsx` | possible shot/candidate group | Medium | Borrow grouping contract only |
+| Transform gizmo | R3F `TransformControls` + `SceneRoot.tsx` | none inside current clone | Medium | Port inside director viewport |
+| 3D scene/object rendering | `DirectorCanvas.tsx`, `SceneRoot.tsx` | none in current clone | High | Port as first-slice baseline |
+| Character body/pose runtime | `runtime/` and pose presets | source confirms pose/bone editing | High | Port basic presets; extend to keyframes later |
+| Crowd array | `directorStore.ts`, `ObjectTreePanel.tsx` | source confirms group tracks | Medium | Port group transform model |
 | Model library | `modelLibraryCatalog.ts`, external `模型库/` | asset manager/history | High | Rebuild around owned assets |
 | Panorama import/adaptation | `panoramaImport.ts`, `ViewportBackground.tsx` | existing panorama prototype | Medium | Compare with existing source-backed behavior |
 | Screenshot variants | capture bridge + `CameraPanel.tsx` | local result/image nodes | Medium | High-value candidate |
 | Project JSON import/export | `io/exportProjectJson.ts`, `importProjectJson.ts` | in-memory canvas state | Medium | Borrow only after schema validation |
 | Scoped local persistence | `directorStore.ts`, `hostBridge.ts` | active canvas store | Medium | Borrow scoped-key principle |
-| StoryAI host bridge | `hostBridge.ts` | no current equivalent | High | Redesign; do not copy protocol |
+| StoryAI host bridge | `hostBridge.ts` | React Flow node/edge transactions | Medium | Adapt typed panorama/session/capture bridge |
+| Animation timeline | absent upstream | source bundle confirms full timeline | High | New implementation after static desk |
+| Motion paths and curves | absent upstream | source bundle confirms path editor | High | New implementation after timeline |
+| Phone virtual camera | absent upstream | source bundle confirms gyro recording | Very high | Defer until camera tracks exist |
 
 ## Proposed Adaptation Boundary
 
 ```text
 LibTV canvas node / selected video
   -> DirectorDeskSession (new director-specific state boundary)
-     -> 2D shot workspace and preview first
-     -> optional 3D staging surface later
+     -> R3F scene staging, camera and capture
+     -> timeline and motion-path extension
   -> selected capture / shot result
   -> LibTV image/video node transaction
 ```
@@ -54,7 +58,7 @@ should not reuse FrameOS state. A future implementation can use:
 - a dedicated `directorStore` for shot session, selection, inspector and captures;
 - typed adapters between LibTV node IDs and director shot IDs;
 - an explicit return transaction to create or update LibTV nodes;
-- a separate R3F route or lazy-loaded island only if 3D is approved.
+- a lazy-loaded R3F route or full-screen island opened by the director node.
 
 ## Asset And License Boundary
 

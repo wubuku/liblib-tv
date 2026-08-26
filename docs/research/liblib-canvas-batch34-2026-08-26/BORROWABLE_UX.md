@@ -2,15 +2,14 @@
 
 ## Decision Summary
 
-The highest-value borrow is the **director-desk interaction model**, not the 3D
-renderer. The current LibTV clone already has a dense 2D node canvas with selected
-node toolbars/panels, React Flow topology and Zustand history. It can borrow the
-director desk's context rules and camera-oriented workflows without pretending
-that a 2D node graph is a 3D scene editor.
+The highest-value borrow is the upstream's **complete static 3D editor slice**:
+R3F viewport, scene schema, object tree, selection-driven inspector, camera/shot
+model, framing and capture return. Rebuilding those pieces as a 2D placeholder
+would discard the main value of an existing LibTV director-desk replication.
 
 This is a product sequencing decision, not a technical incompatibility claim:
 React Flow and Three.js/R3F can coexist. If the director-desk experience requires
-true 3D staging, R3F should be treated as a first-class central viewport and
+true 3D staging. R3F should be treated as the first-class central viewport and
 connected to the LibTV graph through a typed session/return boundary.
 
 ## Priority A: Borrow
@@ -26,7 +25,7 @@ and property context at once. The sidebars do not become unrelated modal steps.
 This is the clearest information architecture for a “导演台” mode inside a
 canvas product.
 
-**Borrow in LibTV:** Create a director-desk route or mode shell with:
+**Borrow in LibTV:** Port the workbench shell with:
 
 - a central stage/preview surface;
 - a left scene/shot context rail;
@@ -34,8 +33,8 @@ canvas product.
 - one explicit collapse/fullscreen action;
 - safe-area-aware overlay positioning.
 
-**Do not borrow:** the exact 220/300 values as a LibTV source fact. LibTV already
-has source-calibrated overlay widths and should be measured independently.
+**Calibrate later:** the exact 220/300 values are upstream facts until the
+authenticated LibTV desk is measured.
 
 ### A2. Selection-driven inspector routing
 
@@ -96,7 +95,7 @@ shot.
 an authored shot that can be recalled, captured and sent elsewhere. This duality
 is directly relevant to video storyboarding.
 
-**Borrow in LibTV:** Represent a director-desk shot with:
+**Borrow in LibTV:** Reuse the dual camera-object/shot-record model with:
 
 - stable shot id/name;
 - source/reference association;
@@ -104,8 +103,8 @@ is directly relevant to video storyboarding.
 - preview/capture outputs;
 - a link from shot record to the corresponding canvas node or node group.
 
-**Do not borrow:** 3D position/FOV semantics until a 3D runtime or an explicit
-2D framing model exists. Start with shot metadata and preview state.
+The first implementation now includes the R3F runtime, so position, target and
+FOV are legitimate first-slice fields rather than deferred 2D metadata.
 
 ### A5. Capture as an authored artifact loop
 
@@ -140,9 +139,8 @@ lifecycle work and is safer than adding another global modal.
 ### B2. Framing tools as visible state
 
 The aspect frame, safe-area mask, rule-of-thirds overlay and native axis gizmo
-make composition state visible. In LibTV, the first adaptation can be a 2D
-framing/shot overlay around a selected image/video node or director preview, with
-the same “what will be captured is visibly framed” principle.
+make composition state visible. Port them into the R3F director viewport and
+keep “what will be captured is visibly framed” as an explicit contract.
 
 ### B3. Axis fields with drag affordances and batched history
 
@@ -168,24 +166,23 @@ protocol must be redesigned around current LibTV identifiers and origin rules.
 
 | Upstream element | Reason |
 |---|---|
-| Blindly copying the upstream Three.js scene runtime | React Flow and R3F are compatible, but the upstream scene model, controls and assets must be adapted to LibTV rather than copied wholesale |
+| Treating the nested Vite app as an opaque iframe dependency | Port the MIT code into current Next.js/React 19 boundaries so types, history and return transactions remain owned |
 | `模型库/` asset glob and model files | The path is external to the submodule and asset licenses are separate |
 | All upstream CSS tokens and dimensions | Visual evidence belongs to the upstream product, not LibTV source calibration |
-| Host message names | They are specific to StoryAI embedding and are not current LibTV contracts |
+| Host message names unchanged | Preserve the bridge shape, but rename and type it for current LibTV node transactions |
 | README feature counts | README claims must be checked against fixed source/runtime |
-| Direct source copy into `src/` | Creates license, ownership and architecture drift; use behavior/spec extraction |
+| Model and screenshot assets | They have separate or unresolved rights; code reuse under MIT does not grant asset rights |
 
 ## Recommended Next Implementation Batch
 
-The first product-facing director desk slice should be **director workspace shell,
-shot inspector, framed preview and capture history**. The central preview may be
-implemented as a 2D framed surface or an R3F viewport; that decision must follow
-the director-desk requirements, not a presumed React Flow/R3F incompatibility:
+The first product-facing director desk slice should be a **real R3F director
+workspace** based on the existing replication:
 
 1. open a director-desk mode from a verified LibTV shot/video context;
-2. show a source-aware left rail for shots and references;
-3. show a right inspector for shot name, ratio, duration, prompt and source links;
-4. show a central framed preview with composition guides;
-5. create capture/preview variants as a reversible local transaction;
+2. port the director store, scene schema and central R3F viewport;
+3. show the semantic object tree and context-sensitive scene/object/camera inspector;
+4. support transforms, camera view, aspect framing and composition guides;
+5. create helper-free capture variants as a reversible local transaction;
 6. allow sending a selected preview back to the main LibTV canvas;
-7. keep the 3D viewport as a separately planned follow-up.
+7. add the source-backed timeline, motion paths and animation export in the next
+   slice rather than inventing them from the upstream project.

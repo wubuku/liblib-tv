@@ -22,6 +22,9 @@
 - [x] Inspected model catalog and recorded the external `模型库/` dependency.
 - [x] Inspected the included mannequin license notice.
 - [x] Recorded high-value borrowable UX and current-project portability risks.
+- [x] Confirmed fixed-source `LibTV-style` targeting and canvas/director host semantics.
+- [x] Extracted current LibTV timeline, motion-path, animation-export and phone-camera scope.
+- [x] Recorded all seven upstream README screenshots in a durable recognition ledger.
 - [x] Finish upstream `npm ci`, `npm test` and `npm run build` result.
 - [x] Run parent `npm run docs:check` and `git diff --check`.
 - [x] Run parent `npm run check`.
@@ -43,14 +46,16 @@ checkout after running `npm test`.
 
 ## 4. Result
 
-The highest-value borrowing decision is:
+The corrected highest-value borrowing decision is:
 
-> Implement a LibTV-specific director workspace first: source-aware shot tree,
-> selected-shot inspector, framed preview and capture history. The framed preview
-> can be 2D or R3F; the choice must follow the required director-desk experience.
-> React Flow does not prevent a Three.js/R3F viewport.
+> Treat the upstream repository as an existing LibTV director-desk replication.
+> Port its MIT-licensed static R3F editor slice into a dedicated current-project
+> director boundary, then add the current LibTV source's missing timeline,
+> motion-path, animation-export and phone-camera layers.
 
-No upstream source, model, texture or screenshot has been copied into `src/`.
+No upstream source, model, texture or screenshot has been copied into `src/` in
+Batch 34. A later implementation batch may adapt MIT-licensed code while
+preserving its notice; model and catalog assets remain excluded.
 
 ## 5. Verification Result
 
@@ -92,8 +97,10 @@ warning; the application build and typecheck complete successfully.
 
 Next implementation batch should begin from:
 
+- [`LIBTV_DIRECTOR_EVIDENCE.md`](LIBTV_DIRECTOR_EVIDENCE.md) source scope;
+- [`REPLICATION_REFERENCE_MATRIX.md`](REPLICATION_REFERENCE_MATRIX.md) reuse boundary;
 - [`BORROWABLE_UX.md`](BORROWABLE_UX.md) recommended slice;
 - [`PORTABILITY_MATRIX.md`](PORTABILITY_MATRIX.md) architecture boundary;
 - existing LibTV source evidence for shot/video/capture behaviors;
-- a new implementation plan that defines selectors, store boundary, return
-  transaction and browser verification before touching product code.
+- a new implementation plan that ports the static R3F desk first and defines the
+  selector, store, route, return transaction and browser verification contracts.

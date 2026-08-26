@@ -6,7 +6,7 @@
 |---|---|
 | Repository | `jiguang132/storyai-3d-director-desk` |
 | URL | `https://github.com/jiguang132/storyai-3d-director-desk` |
-| Requested use | 作为当前项目的研究子模块，不直接接入运行时代码 |
+| Requested use | 作为已有 LibTV 导演台复刻的研究与后续实现参考 |
 | Initial remote observation | 2026-08-26 |
 | Local fixed commit | `8c8bd361790be4d37158a7430365e65546e358fe` |
 | Local branch at inspection | `main` |
@@ -48,8 +48,9 @@ and local source inspection remain the authoritative evidence for this batch.
 | included mannequin asset | fixed checkout notice | separate Sketchfab Standard notice; do not treat it as covered by repository MIT |
 | model/image asset license | unresolved for external catalog | inspect asset paths and notices; do not reuse |
 | exact panel geometry and interaction timing | unresolved | inspect source; use browser only if needed |
-| LibTV original site's Three.js/R3F usage | not established by this batch | do not infer the original stack from the clone's package.json |
-| LibTV director-desk parity | not established | compare only after code archaeology |
+| Explicit LibTV targeting | fixed source test and host identifiers | initial commit names `LibTV-style` body types and models canvas/director edges |
+| LibTV original site's Three.js/R3F usage | exact library not established | source bundle proves hardware-accelerated 3D, not the renderer library |
+| LibTV director-desk parity | partial | compare static staging plus capture separately from timeline and motion |
 
 ## 4. Screenshot Policy
 
@@ -90,11 +91,33 @@ reproducibility and maintenance risk, not evidence about LibTV behavior.
 
 ## 6. Known Boundaries
 
-- The upstream project is an implementation reference, not evidence of LibTV behavior.
+- The upstream project is an existing LibTV director-desk replication and a
+  high-value implementation reference. It is not the source of truth for current
+  LibTV behavior.
 - README wording does not prove that a capability is complete or production-ready.
-- The current LibTV prototype has no 3D runtime dependency and uses React Flow for
-  a 2D node graph; Three.js integration therefore needs an explicit architecture
-  decision.
+- The current LibTV source bundle proves a hardware-accelerated 3D director
+  domain with an animation timeline, motion paths, animation output and a phone
+  virtual camera. The exact original renderer library remains unresolved.
+- React Flow and R3F can coexist: React Flow hosts the product graph while R3F
+  owns the director viewport.
 - Local models, textures and panorama assets may have licenses separate from MIT.
 - The external model catalog is not self-contained in this submodule and should
   not be copied into the product prototype without a separate asset/license review.
+
+## 7. Fixed-Source Replication Signals
+
+The classification as an existing LibTV replication is supported by fixed
+source, not only user description:
+
+- `src/editor/runtime/mannequin/bodyTypes.test.ts:10` names the approved
+  `LibTV-style procedural body types`;
+- `src/editor/store/directorStore.test.ts:472-493` scopes scenes using
+  `node_director_a` and `node_director_b`;
+- `src/editor/io/hostBridge.test.ts:44-72` accepts a canvas image/panorama with
+  `edge-image-director` and `sourceNodeId`;
+- `src/editor/io/hostBridge.ts:138-161` sends camera captures back to the host;
+- the seven README screenshots show the three-zone desk, LibTV-like body lineup,
+  camera view, aspect menu, model library and helper-free crowd capture.
+
+The public README's generic wording means we should say “existing LibTV
+replication/implementation reference”, not “official LibTV source”.
