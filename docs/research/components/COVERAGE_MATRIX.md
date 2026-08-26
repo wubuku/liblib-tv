@@ -26,12 +26,12 @@
 
 | 组件 | 源码入口 | 合同/证据入口 | 验证入口 | 状态 | 文档动作 |
 |---|---|---|---|---|---|
-| `TopNavBar` | `src/components/TopNavBar.tsx` | [`TopNavBar.spec.md`](TopNavBar.spec.md)、`BEHAVIORS.md` 顶部导航 | Batch 11 overlay lifecycle | `SPEC_COMPLETE` | 修改导航、Agent 或共享入口前先读互斥浮层合同。 |
-| `LeftSidebar` | `src/components/LeftSidebar.tsx` | [`LeftSidebar.spec.md`](LeftSidebar.spec.md)、`BottomToolbar.spec.md` | Batch 1 panels / Batch 11 lifecycle | `SPEC_COMPLETE` | 当前名称兼容旧实现；不要把它误判成源站左侧竖栏。 |
-| `BottomToolbar` | `src/components/BottomToolbar.tsx` | [`BottomToolbar.spec.md`](BottomToolbar.spec.md)、`PAGE_TOPOLOGY.md` | Batch 18 zoom/minimap | `SPEC_COMPLETE` | 修改入口面板、缩放、minimap 时同步检查 overlay lifecycle。 |
+| `TopNavBar` | `src/components/TopNavBar.tsx` | [`TopNavBar.spec.md`](TopNavBar.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 11 overlay lifecycle | `SPEC_COMPLETE` | 修改导航、Agent 或共享入口前先读当前 mount/close 目录。 |
+| `LeftSidebar` | `src/components/LeftSidebar.tsx` | [`LeftSidebar.spec.md`](LeftSidebar.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 1 panels / Batch 11 lifecycle | `SPEC_COMPLETE` | 当前名称兼容旧实现；`activePrimaryPanel` 是实际渲染权威。 |
+| `BottomToolbar` | `src/components/BottomToolbar.tsx` | [`BottomToolbar.spec.md`](BottomToolbar.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 18 zoom/minimap | `SPEC_COMPLETE` | 修改缩放/minimap 时区分 viewport setting、top-level overlay 和独立 organize confirmation。 |
 | `ScriptHeader` | `src/components/ScriptHeader.tsx` | [`ScriptHeader.spec.md`](ScriptHeader.spec.md)、`PAGE_TOPOLOGY.md` | no current verifier | `LEGACY` | 当前未挂载；不把固定标题或装饰圆点重新引入运行态。 |
 | `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | [`StoryboardBoard.spec.md`](StoryboardBoard.spec.md)、Batch 13 `STORYBOARD_MODE.spec.md` | Batch 11/13 | `SPEC_COMPLETE` | active-canvas 投影、selection 和 Agent mode lifecycle 已形成独立合同。 |
-| `AgentDrawer` | `src/components/AgentDrawer.tsx` | Batch 14 `AGENT_SHARE.spec.md`、Batch 11 overlay lifecycle | Batch 11/14 | `BATCH_CONTRACT` | 修改分享、Skill 推荐或 composer 前先读 Batch 14 全套记录。 |
+| `AgentDrawer` | `src/components/AgentDrawer.tsx` | Batch 14 `AGENT_SHARE.spec.md`、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 11/14 | `BATCH_CONTRACT` | 进入 storyboard 会打开 Agent，但 Agent 不是该模式的持续 invariant。 |
 | `script` / `ScriptNode` | `src/components/nodes/ScriptNode.tsx` | [`ScriptNode.spec.md`](ScriptNode.spec.md) | Batch 4-10 历史回归 | `SPEC_COMPLETE` | 这是运行态脚本标题/内容载体；不要依赖未挂载的 `ScriptHeader`。 |
 | `image` / `ImageNode` | `src/components/nodes/ImageNode.tsx` | [`ImageNode.spec.md`](ImageNode.spec.md)、[`LibTVOverlayPositioning.contract.md`](LibTVOverlayPositioning.contract.md)、[`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md) | `VERIFICATION_LEDGER.md` image rows | `SPEC_COMPLETE` | 这是图片节点、上下浮层、派生节点和 active tool 的总入口；改动前必须看多 zoom 几何合同。 |
 | `text` / `TextNode` | `src/components/nodes/TextNode.tsx` | [`TextNode.spec.md`](TextNode.spec.md) | Batch 4-10 历史回归 | `SPEC_COMPLETE` | 保持 inline edit 与 graph selection 分离。 |
@@ -49,9 +49,9 @@
 
 | 组件 | 源码入口 | 合同/证据入口 | 验证入口 | 状态 | 文档动作 |
 |---|---|---|---|---|---|
-| `AddNodePanel` | `src/components/AddNodePanel.tsx` | [`AddNodePanel.spec.md`](AddNodePanel.spec.md)、Batch 15 | Batch 15 | `SPEC_COMPLETE` | 菜单项、素材子菜单和 upload/history feedback 分开维护。 |
-| `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | [`CanvasTabDropdown.spec.md`](CanvasTabDropdown.spec.md)、`BEHAVIORS.md` | Batch 16/11 lifecycle | `SPEC_COMPLETE` | 导航动作的 close cleanup 是合同的一部分。 |
-| `AssetManagerPanel` | `src/components/AssetManagerPanel.tsx` | [`AssetManagerPanel.spec.md`](AssetManagerPanel.spec.md)、Batch 1 panels | Batch 1/资产抽屉 records | `SPEC_COMPLETE` | canvas/assets tab、树和空态要作为一个状态机阅读。 |
+| `AddNodePanel` | `src/components/AddNodePanel.tsx` | [`AddNodePanel.spec.md`](AddNodePanel.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 15 | `SPEC_COMPLETE` | 菜单项、素材子菜单、outside-close 和 graph/local action 分开维护。 |
+| `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | [`CanvasTabDropdown.spec.md`](CanvasTabDropdown.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 16/11 lifecycle | `SPEC_COMPLETE` | local Escape/outside cleanup 与 page global Escape 同时属于合同。 |
+| `AssetManagerPanel` | `src/components/AssetManagerPanel.tsx` | [`AssetManagerPanel.spec.md`](AssetManagerPanel.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 1/资产抽屉 records | `SPEC_COMPLETE` | canvas/assets tab、树、selection 与 drawer->dropdown transition 要作为一个状态机阅读。 |
 | `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | [`ToolboxPanel.spec.md`](ToolboxPanel.spec.md)、Batch 1 `BATCH_1_PANELS.md` | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | 合同明确 source geometry、local used state 和无真实 preset transaction 的边界。 |
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Batch 1 `BATCH_1_PANELS.md`、`AddNodePanel.spec.md` | Batch 1 panels | `COVERED_BY_PARENT` | 素材入口由 AddNodePanel/底部入口共同覆盖。 |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | [`CharacterLibraryPanel.spec.md`](CharacterLibraryPanel.spec.md)、Batch 1 `BATCH_1_PANELS.md` | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | source identity/filter 与 clone 普通 image-node handoff 已显式分层。 |
@@ -69,27 +69,28 @@
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | [`CameraConfigDialog.spec.md`](CameraConfigDialog.spec.md)、Batch 21/Director camera contracts | Batch 21、Director 35+ | `SPEC_COMPLETE` | 普通视频相机参数与 Director camera state 不合并。 |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | [`CameraMovementDialog.spec.md`](CameraMovementDialog.spec.md)、Batch 21、Director preset contract | Batch 21、Batch 44 | `SPEC_COMPLETE` | 普通生成参数与 Director preset motion 是两个边界。 |
 | `MainEntryPanels` | `src/components/*` entry lifecycle | [`MainEntryPanels.spec.md`](MainEntryPanels.spec.md)、Batch 11 overlay lifecycle | Batch 11 | `SPEC_COMPLETE` | 入口互斥、Escape、outside click 是共享生命周期。 |
-| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | [`KeyboardShortcutsDialog.spec.md`](KeyboardShortcutsDialog.spec.md)、Batch 1 panel audit | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | source/clone 命令差异和“帮助文案不等于监听器”边界已显式记录。 |
+| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | [`KeyboardShortcutsDialog.spec.md`](KeyboardShortcutsDialog.spec.md)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](../LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md) | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | source/clone 命令差异、无 outside/backdrop 和 page keyboard boundary 已显式记录。 |
 | `SmartMattingPanel` | `src/components/SmartMattingPanel.tsx` | [`SmartMattingPanel.spec.md`](SmartMattingPanel.spec.md)、Batch 30 `SMART_MATTING_WORKFLOW.spec.md` | Batch 30 | `SPEC_COMPLETE` | panel ownership、measured-width anchor、submit state 与 store transaction 已分层。 |
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-46 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45/46 已形成有界 group/crowd 与 capture gallery 合同和专项 verifier。
+Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-47 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45/46/47 已形成有界 group/crowd、capture gallery 与 model-library 合同和专项 verifier。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
 | `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Batch 35 `DIRECTOR_WORKSPACE.spec.md`、Batch 40/41/45 records | `DOMAIN_CONTRACT` | 改生命周期、capture return 或响应式 shell 时读最新 Director maturity assessment。 |
-| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone guard 必须联动。 |
+| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts、Batch 47 model library | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone/model-library guard 必须联动。 |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Batch 35 workspace、Batch 43/45 source evidence | `DOMAIN_CONTRACT` | selection 与 group/crowd tree 以 Batch 45 有界合同为准。 |
-| `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Batch 35 workspace、Batch 42 pose、Batch 43 follow、Batch 44 camera、Batch 46 capture gallery | `DOMAIN_CONTRACT` | 角色、相机、路径、capture gallery 控件按 selection route 维护。 |
+| `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Batch 35 workspace、Batch 42 pose、Batch 43 follow、Batch 44 camera、Batch 46 capture gallery、Batch 47 prop selection | `DOMAIN_CONTRACT` | 角色、相机、路径、capture gallery 和模型库 prop 控件按 selection route 维护。 |
 | `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Batch 36 timeline、37 motion path、42 pose、44 camera、45 groups | `DOMAIN_CONTRACT` | 新轨道先扩展 typed track union，再更新播放/采样/验证合同。 |
 | `DirectorCurveEditor` | `src/components/director/DirectorCurveEditor.tsx` | Batch 37 `DIRECTOR_MOTION_PATH.spec.md` | `DOMAIN_CONTRACT` | 只处理 speed curve；不要与 timeline keyframe 语义混成一类。 |
 | `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Batch 42 `DIRECTOR_CHARACTER_POSE.spec.md`、Batch 45 groups | `DOMAIN_CONTRACT` | rig 与 crowd/group rendering 以 Batch 42/45 领域合同为准。 |
 | `DirectorExportPanel` | `src/components/director/DirectorExportPanel.tsx` | Batch 40 `DIRECTOR_ANIMATION_EXPORT.spec.md` | `DOMAIN_CONTRACT` | 修改导出字段必须同时读 `videoExport` 类型和 capture return。 |
 | `DirectorPhoneVcamPanel` | `src/components/director/DirectorPhoneVcamPanel.tsx` | Batch 41 `DIRECTOR_PHONE_VCAM.spec.md` | `DOMAIN_CONTRACT` | 保持 phone preview 与 viewport/path conflict guard。 |
-| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-46 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
+| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-47 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
 | Director Batch 45 group/crowd slice | `Director*` + `directorStore` | Batch 45 `DIRECTOR_GROUPS.spec.md`、source evidence | `DOMAIN_CONTRACT` | 专项 verifier 与 serial regression 已记录通过；仍只是有界 clone 合同。 |
 | Director Batch 46 capture gallery slice | `Director*` + `directorStore` | Batch 46 `DIRECTOR_CAPTURE_GALLERY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 截图图库、查看器、单/批量回流与清空边界已稳定；仍是有界 clone 合同。 |
+| Director Batch 47 model-library slice | `DirectorViewport` + `directorStore` | Batch 47 `DIRECTOR_MODEL_LIBRARY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 模型库入口、分类、代理卡片、prop 插入和空态已稳定；真实模型资产/环境库仍不在合同内。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 

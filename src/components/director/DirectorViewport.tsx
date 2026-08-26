@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Camera,
   Check,
+  Boxes,
   Grid3X3,
   ImagePlus,
   Move3D,
@@ -44,6 +45,12 @@ import {
   getDirectorFrameRect,
   type DirectorFrameRect,
 } from "@/components/director/directorViewportMath";
+import {
+  DIRECTOR_MODEL_LIBRARY_CATEGORIES,
+  getDirectorModelLibraryItems,
+  type DirectorModelLibraryCategoryId,
+  type DirectorModelLibraryItem,
+} from "@/components/director/directorModelLibrary";
 import {
   DirectorVideoExportError,
   recordDirectorCanvasVideo,
@@ -183,6 +190,129 @@ function CameraPrimitive({
   );
 }
 
+function LibraryPropPrimitive({
+  visual,
+  color,
+  material,
+}: {
+  visual: NonNullable<DirectorObject["libraryVisual"]>;
+  color: string;
+  material: MeshStandardMaterialParameters;
+}) {
+  if (visual === "bottle") {
+    return (
+      <group position={[0, 0.45, 0]} scale={0.82}>
+        <mesh castShadow>
+          <cylinderGeometry args={[0.22, 0.27, 0.78, 20]} />
+          <meshStandardMaterial color={color} roughness={0.3} {...material} />
+        </mesh>
+        <mesh castShadow position={[0, 0.52, 0]}>
+          <cylinderGeometry args={[0.13, 0.16, 0.22, 20]} />
+          <meshStandardMaterial color={color} roughness={0.28} {...material} />
+        </mesh>
+        <mesh castShadow position={[0, 0.68, 0]}>
+          <cylinderGeometry args={[0.14, 0.14, 0.08, 20]} />
+          <meshStandardMaterial color="#27333a" roughness={0.42} {...material} />
+        </mesh>
+      </group>
+    );
+  }
+
+  if (visual === "chair") {
+    return (
+      <group position={[0, 0.02, 0]} scale={0.9}>
+        <mesh castShadow position={[0, 0.62, 0]}>
+          <boxGeometry args={[0.9, 0.16, 0.82]} />
+          <meshStandardMaterial color={color} roughness={0.58} {...material} />
+        </mesh>
+        <mesh castShadow position={[0, 1.18, -0.3]}>
+          <boxGeometry args={[0.9, 1.1, 0.14]} />
+          <meshStandardMaterial color={color} roughness={0.58} {...material} />
+        </mesh>
+        {[
+          [-0.34, 0.3, -0.27],
+          [0.34, 0.3, -0.27],
+          [-0.34, 0.3, 0.27],
+          [0.34, 0.3, 0.27],
+        ].map((position) => (
+          <mesh
+            key={position.join("-")}
+            castShadow
+            position={position as [number, number, number]}
+          >
+            <boxGeometry args={[0.12, 0.58, 0.12]} />
+            <meshStandardMaterial color="#34312e" roughness={0.82} {...material} />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  if (visual === "lamp") {
+    return (
+      <group position={[0, 0.02, 0]} scale={0.88}>
+        <mesh castShadow position={[0, 0.08, 0]}>
+          <cylinderGeometry args={[0.3, 0.34, 0.16, 24]} />
+          <meshStandardMaterial color="#34383d" metalness={0.24} roughness={0.5} {...material} />
+        </mesh>
+        <mesh castShadow position={[0, 0.62, 0]}>
+          <cylinderGeometry args={[0.055, 0.055, 1.05, 16]} />
+          <meshStandardMaterial color="#7f858a" metalness={0.32} roughness={0.44} {...material} />
+        </mesh>
+        <mesh castShadow position={[0, 1.12, 0]}>
+          <coneGeometry args={[0.38, 0.36, 24, 1, false]} />
+          <meshStandardMaterial color={color} roughness={0.48} {...material} />
+        </mesh>
+        <pointLight
+          color={color}
+          intensity={0.7}
+          distance={2.2}
+          position={[0, 1.02, 0.08]}
+        />
+      </group>
+    );
+  }
+
+  if (visual === "plant") {
+    return (
+      <group position={[0, 0.02, 0]} scale={0.92}>
+        <mesh castShadow position={[0, 0.28, 0]}>
+          <cylinderGeometry args={[0.3, 0.23, 0.5, 20]} />
+          <meshStandardMaterial color="#9b694d" roughness={0.72} {...material} />
+        </mesh>
+        {[
+          [0, 0.92, 0],
+          [-0.2, 0.78, 0.03],
+          [0.2, 0.78, -0.04],
+        ].map((position, index) => (
+          <mesh
+            key={index}
+            castShadow
+            position={position as [number, number, number]}
+            scale={index === 0 ? [0.28, 0.52, 0.16] : [0.2, 0.38, 0.13]}
+          >
+            <sphereGeometry args={[0.6, 16, 12]} />
+            <meshStandardMaterial color={color} roughness={0.66} {...material} />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  return (
+    <group position={[0, 0.38, 0]} scale={0.9}>
+      <mesh castShadow>
+        <boxGeometry args={[0.86, 0.72, 0.72]} />
+        <meshStandardMaterial color={color} roughness={0.62} {...material} />
+      </mesh>
+      <mesh castShadow position={[0, 0.42, 0]}>
+        <boxGeometry args={[0.72, 0.08, 0.58]} />
+        <meshStandardMaterial color="#d1b184" roughness={0.55} {...material} />
+      </mesh>
+    </group>
+  );
+}
+
 function SceneObject({ object }: { object: DirectorObject }) {
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
@@ -300,6 +430,13 @@ function SceneObject({ object }: { object: DirectorObject }) {
       ) : null}
       {object.primitive === "camera" ? (
         <CameraPrimitive color={object.color} material={material} />
+      ) : null}
+      {object.primitive === "library" && object.libraryVisual ? (
+        <LibraryPropPrimitive
+          color={object.color}
+          material={material}
+          visual={object.libraryVisual}
+        />
       ) : null}
     </group>
   );
@@ -996,6 +1133,9 @@ export function DirectorViewport({
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
   const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
+  const addModelLibraryObject = useDirectorStore(
+    (state) => state.addModelLibraryObject,
+  );
   const selectObject = useDirectorStore((state) => state.selectObject);
   const finishMotionPathDrawing = useDirectorStore(
     (state) => state.finishMotionPathDrawing,
@@ -1011,6 +1151,11 @@ export function DirectorViewport({
   const [crowdRows, setCrowdRows] = useState("3");
   const [crowdColumns, setCrowdColumns] = useState("3");
   const [crowdSpacing, setCrowdSpacing] = useState("1.2");
+  const [modelLibraryOpen, setModelLibraryOpen] = useState(false);
+  const [activeModelLibraryCategoryId, setActiveModelLibraryCategoryId] =
+    useState<DirectorModelLibraryCategoryId>("convenience");
+  const modelLibraryTriggerRef = useRef<HTMLButtonElement>(null);
+  const modelLibraryPanelRef = useRef<HTMLDivElement>(null);
   const phoneVcamRecording = phoneVcamStatus === "recording";
 
   useLayoutEffect(() => {
@@ -1041,6 +1186,28 @@ export function DirectorViewport({
     timeline.motionPathDraft,
   ]);
 
+  useEffect(() => {
+    if (!modelLibraryOpen) return;
+    const closeOnOutsidePointerDown = (event: PointerEvent) => {
+      if (!(event.target instanceof Node)) return;
+      if (modelLibraryTriggerRef.current?.contains(event.target)) return;
+      if (modelLibraryPanelRef.current?.contains(event.target)) return;
+      setModelLibraryOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      setModelLibraryOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsidePointerDown);
+    window.addEventListener("keydown", closeOnEscape, true);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePointerDown);
+      window.removeEventListener("keydown", closeOnEscape, true);
+    };
+  }, [modelLibraryOpen]);
+
   const frameRect = useMemo(
     () =>
       getDirectorFrameRect(
@@ -1070,6 +1237,22 @@ export function DirectorViewport({
     });
     setCrowdPanelOpen(false);
   };
+
+  const toggleModelLibrary = () => {
+    setPhoneVcamOpen(false);
+    setCrowdPanelOpen(false);
+    setModelLibraryOpen((value) => !value);
+  };
+
+  const addModelLibraryItem = (item: DirectorModelLibraryItem) => {
+    addModelLibraryObject(item);
+    setModelLibraryOpen(false);
+  };
+
+  const activeModelLibraryItems =
+    activeModelLibraryCategoryId === "my-models"
+      ? []
+      : getDirectorModelLibraryItems(activeModelLibraryCategoryId);
 
   return (
     <section
@@ -1277,6 +1460,133 @@ export function DirectorViewport({
         </div>
       ) : null}
 
+      {modelLibraryOpen ? (
+        <div
+          ref={modelLibraryPanelRef}
+          data-director-model-library-panel
+          role="dialog"
+          aria-label="模型库"
+          className="absolute bottom-[72px] left-1/2 z-30 h-[360px] max-h-[calc(100%-120px)] w-[500px] max-w-[calc(100%-24px)] -translate-x-1/2 overflow-hidden rounded-lg border border-white/10 bg-[#242424]/[.98] text-[#dedede] shadow-[0_12px_32px_rgba(0,0,0,0.42)]"
+        >
+          <div className="flex h-10 items-center justify-between border-b border-white/[0.06] px-3">
+            <h2 className="text-xs font-medium text-[#eeeeee]">模型库</h2>
+            <button
+              type="button"
+              aria-label="关闭模型库"
+              title="关闭模型库"
+              onClick={() => setModelLibraryOpen(false)}
+              className="flex h-7 w-7 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
+            >
+              <X size={15} />
+            </button>
+          </div>
+          <div
+            className="grid h-10 grid-cols-5 border-b border-white/[0.06]"
+            role="tablist"
+            aria-label="模型分类"
+          >
+            {DIRECTOR_MODEL_LIBRARY_CATEGORIES.map((category) => {
+              const active = category.id === activeModelLibraryCategoryId;
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  data-director-model-library-tab={category.id}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setActiveModelLibraryCategoryId(category.id)}
+                  className={cn(
+                    "relative min-w-0 px-1 text-[11px] text-[#777] hover:text-white",
+                    active && "text-[#5ddcff]",
+                  )}
+                >
+                  {category.label}
+                  {active ? (
+                    <span className="absolute bottom-0 left-1/2 h-[2px] w-7 -translate-x-1/2 bg-[#09caf5]" />
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+          {activeModelLibraryCategoryId === "my-models" ? (
+            <div
+              data-director-model-library-empty
+              className="flex h-[calc(100%-80px)] flex-col items-center justify-center gap-3 text-xs text-[#777]"
+              role="status"
+              aria-label="暂无任何模型"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/[0.04] text-[#666]">
+                <Boxes size={19} />
+              </span>
+              <span>暂无任何模型</span>
+              <button
+                type="button"
+                disabled
+                title="本批暂不接入本地模型文件"
+                className="h-7 rounded border border-white/[0.08] bg-white/[0.03] px-3 text-[11px] text-[#666]"
+              >
+                本地导入
+              </button>
+            </div>
+          ) : (
+            <div
+              className="grid h-[calc(100%-80px)] auto-rows-max grid-cols-3 gap-x-3 gap-y-4 overflow-y-auto p-3 min-[480px]:grid-cols-4 min-[680px]:grid-cols-5"
+              role="list"
+              aria-label="模型列表"
+            >
+              {activeModelLibraryItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  data-director-model-library-card
+                  data-director-model-library-add
+                  data-director-model-library-asset-id={item.id}
+                  aria-label={`添加模型 ${item.name}`}
+                  onClick={() => addModelLibraryItem(item)}
+                  className="group flex min-w-0 flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#8f8f8f] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
+                >
+                  <span
+                    className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg border border-white/[0.05] bg-[#1b1b1b] transition-colors group-hover:bg-[#2c3236]"
+                    style={{ color: item.color }}
+                    aria-hidden="true"
+                  >
+                    <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(255,255,255,0.12),transparent_52%)]" />
+                    <span
+                      className={cn(
+                        "relative block border border-current/60 bg-current/45 shadow-[0_4px_8px_rgba(0,0,0,0.25)]",
+                        item.visual === "bottle" &&
+                          "h-9 w-5 rounded-[40%_40%_34%_34%]",
+                        item.visual === "chair" &&
+                          "h-7 w-9 rounded-sm border-b-4",
+                        item.visual === "lamp" &&
+                          "h-7 w-10 rounded-[60%_60%_35%_35%]",
+                        item.visual === "plant" &&
+                          "h-8 w-8 rounded-[50%_50%_35%_35%]",
+                        item.visual === "box" && "h-9 w-9 rounded-sm",
+                      )}
+                    >
+                      {item.visual === "bottle" ? (
+                        <span className="absolute -top-2 left-1/2 h-2 w-2 -translate-x-1/2 rounded-t-sm border border-current/60 bg-current/45" />
+                      ) : null}
+                      {item.visual === "chair" ? (
+                        <span className="absolute -bottom-3 left-1/2 h-3 w-6 -translate-x-1/2 border-x border-current/60" />
+                      ) : null}
+                      {item.visual === "lamp" ? (
+                        <span className="absolute -bottom-4 left-1/2 h-4 w-px -translate-x-1/2 bg-current/80" />
+                      ) : null}
+                      {item.visual === "plant" ? (
+                        <span className="absolute -bottom-2 left-1/2 h-3 w-5 -translate-x-1/2 rounded-b-md bg-[#9b694d]" />
+                      ) : null}
+                    </span>
+                  </span>
+                  <span className="w-full truncate">{item.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : null}
+
       <div className="absolute left-3 top-3 z-10 hidden gap-1 max-[899px]:flex">
         <button
           type="button"
@@ -1300,7 +1610,7 @@ export function DirectorViewport({
 
       <div
         data-director-viewport-toolbar
-        className="absolute bottom-5 left-1/2 z-10 flex h-11 max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-1 rounded-md border border-white/10 bg-[#222]/95 px-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.34)]"
+        className="absolute bottom-5 left-1/2 z-10 flex h-11 max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-md border border-white/10 bg-[#222]/95 px-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.34)]"
       >
         <div className="flex items-center">
           {transformTools.map(({ mode, label, Icon }) => (
@@ -1362,6 +1672,8 @@ export function DirectorViewport({
           aria-pressed={phoneVcamOpen}
           onClick={() => {
             if (phoneVcamRecording) return;
+            setModelLibraryOpen(false);
+            setCrowdPanelOpen(false);
             setPhoneVcamOpen((value) => !value);
           }}
           className={cn(
@@ -1378,13 +1690,32 @@ export function DirectorViewport({
           aria-label="添加群众阵列"
           title="添加群众阵列"
           aria-expanded={crowdPanelOpen}
-          onClick={() => setCrowdPanelOpen((value) => !value)}
+          onClick={() => {
+            setModelLibraryOpen(false);
+            setPhoneVcamOpen(false);
+            setCrowdPanelOpen((value) => !value);
+          }}
           className={cn(
             "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
             crowdPanelOpen && "bg-white/10 text-[#5ddcff]",
           )}
         >
           <Users size={15} />
+        </button>
+        <button
+          ref={modelLibraryTriggerRef}
+          type="button"
+          data-director-model-library-trigger
+          aria-label="模型库"
+          title="模型库"
+          aria-expanded={modelLibraryOpen}
+          onClick={toggleModelLibrary}
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
+            modelLibraryOpen && "bg-white/10 text-[#5ddcff]",
+          )}
+        >
+          <Boxes size={15} />
         </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button

@@ -5,8 +5,9 @@
 
 ## Status
 
-Plan/evidence protection on 2026-08-26. Implementation starts after this
-context-protection commit.
+Complete as a bounded frontend prototype on 2026-08-26. Evidence, plan,
+implementation, screenshot interpretation, focused verification and maturity
+limits are recorded in this directory.
 
 ## Read Order
 

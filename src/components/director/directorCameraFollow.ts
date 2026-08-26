@@ -13,7 +13,13 @@ export interface DirectorCameraRelation {
 export interface DirectorCameraTargetObject {
   id: string;
   kind: "character" | "prop" | "camera";
-  primitive: "character" | "table" | "mug" | "wall" | "camera";
+  primitive:
+    | "character"
+    | "table"
+    | "mug"
+    | "wall"
+    | "camera"
+    | "library";
   transform: {
     position: DirectorCameraTuple3;
     rotation: DirectorCameraTuple3;
@@ -82,6 +88,8 @@ export function getDirectorCameraTargetFocus(
         ? 0.94 * scaleY
         : object.primitive === "mug"
           ? 0.12 * scaleY
+          : object.primitive === "library"
+            ? 0.6 * scaleY
           : 0;
   return finiteTuple(
     [

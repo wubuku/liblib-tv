@@ -54,13 +54,24 @@ import {
   getDirectorGroupAnchorTransform,
   getDirectorGroupMemberOffsets,
 } from "@/components/director/directorGroupMath";
+import type {
+  DirectorModelLibraryCategoryId,
+  DirectorModelLibraryItem,
+  DirectorModelLibraryVisual,
+} from "@/components/director/directorModelLibrary";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
 export type DirectorTransformMode = "translate" | "rotate" | "scale";
 export type DirectorAspectRatio = "16:9" | "9:16" | "1:1";
 export type DirectorObjectKind = "character" | "prop" | "camera";
-export type DirectorPrimitive = "character" | "table" | "mug" | "wall" | "camera";
+export type DirectorPrimitive =
+  | "character"
+  | "table"
+  | "mug"
+  | "wall"
+  | "camera"
+  | "library";
 export type { DirectorCameraFollowView, DirectorCameraLookAtMode };
 export type {
   DirectorCameraMotionPresetId,
@@ -82,6 +93,9 @@ export interface DirectorObject {
   visible: boolean;
   locked: boolean;
   transform: DirectorTransform;
+  libraryAssetId?: string;
+  libraryCategoryId?: DirectorModelLibraryCategoryId;
+  libraryVisual?: DirectorModelLibraryVisual;
   characterRig?: DirectorCharacterRig;
   camera?: {
     fov: number;
@@ -348,6 +362,7 @@ interface DirectorState {
     columns: number;
     spacing: number;
   }) => string | null;
+  addModelLibraryObject: (item: DirectorModelLibraryItem) => string;
   updateGroup: (
     groupId: string,
     patch: Partial<Pick<DirectorCharacterGroup, "label">>,
@@ -1476,6 +1491,51 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     });
     return createdGroupId;
+  },
+
+  addModelLibraryObject: (item) => {
+    let createdObjectId = "";
+    set((state) => {
+      const libraryObjectCount = state.objects.filter(
+        (object) => object.primitive === "library",
+      ).length;
+      const column = libraryObjectCount % 3;
+      const row = Math.floor(libraryObjectCount / 3);
+      const objectId = `director-library-${item.id}-${Date.now()}`;
+      const object: DirectorObject = {
+        id: objectId,
+        name: item.name,
+        kind: "prop",
+        primitive: "library",
+        color: item.color,
+        visible: true,
+        locked: false,
+        transform: {
+          position: [1.65 + column * 0.85, 0, 0.8 + row * 0.9],
+          rotation: [0, 0, 0],
+          scale: [1, 1, 1],
+        },
+        libraryAssetId: item.id,
+        libraryCategoryId: item.categoryId,
+        libraryVisual: item.visual,
+      };
+      createdObjectId = objectId;
+      return {
+        objects: [...state.objects, object],
+        selectedObjectId: objectId,
+        selectedObjectIds: [objectId],
+        selectedGroupId: null,
+        timeline: {
+          ...state.timeline,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+      };
+    });
+    return createdObjectId;
   },
 
   updateGroup: (groupId, patch) =>
