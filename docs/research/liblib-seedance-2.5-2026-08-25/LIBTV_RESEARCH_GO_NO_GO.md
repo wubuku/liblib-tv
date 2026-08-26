@@ -6,6 +6,8 @@
 >
 > 选择具体 slice 和当前优先级时，先读
 > [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)，再用本文判断授权与 fixture 闸门。
+> 已有 fixture 身份、构造、reset 和共享源站禁止动作统一见
+> [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md)。
 
 ## 1. 总体决策
 
@@ -68,6 +70,8 @@
 - 可捕获选择、拖动、平移、zoom、空白点击、撤销和重新加载的初始状态。
 
 fixture 每次测试后必须能回到相同 graph、viewport、selection 和媒体版本。不得依赖共享源站项目当前的节点位置、登录态或浏览器 local storage。
+
+当前仓库可直接复用的 baseline、空画布、默认 ready 视频、transaction-derived graph 和 Director 专项状态，使用 [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md) 的稳定 ID。需要的新 fixture 不得只写“测试数据”，必须补 owner、构造、reset assertions 和禁止动作。
 
 ### 4.2 源站 fixture
 
