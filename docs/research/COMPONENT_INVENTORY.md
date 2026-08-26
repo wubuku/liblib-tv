@@ -95,7 +95,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |------|------|--------|
 | `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, video-processing and long-video graph transactions, and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
-| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state, capture records, typed transform/camera timeline, editable motion-path anchors/handles, derived points and speed curves. It atomically guards viewport selection ownership during path authoring; Three.js runtime refs stay in components. |
+| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state, capture records, typed transform/camera timeline, local motion-path anchors/handles, fixed pivots, path transforms, creation snapshots, derived world points and speed curves. It atomically guards viewport selection and world/local path-control commits; Three.js runtime refs stay in components. |
 
 ---
 

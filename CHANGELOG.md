@@ -55,6 +55,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extended the director timeline with preset and freehand motion paths,
   serializable editable anchors/Bezier handles, deterministic arc-length
   playback, source-labeled path controls and responsive Inspector authoring.
+- Added fixed-pivot path-level position/rotation/scale, inverse world-anchor
+  commits and distinct offset/full reset workflows while preserving serializable
+  local geometry and helper-free capture.
 
 > Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 

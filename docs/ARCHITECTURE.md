@@ -157,9 +157,10 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
 | Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
-| Director motion path | serializable anchors/relative handles derive sampled points and bind one-to-one to a typed track | supports editable pencil/pen/Bezier authoring plus deterministic playback without putting Three.js geometry in Zustand |
+| Director motion path | local anchors/relative handles plus fixed pivot and serializable transform derive world sampled points | supports editable pencil/pen/Bezier authoring, path-level position/rotation/scale and deterministic playback without putting Three.js geometry in Zustand |
 | Director speed curve | track-level cubic-Bezier control points | keeps preset/custom timing effects testable in pure sampling code |
 | Director path interaction | viewport selection requests are store-guarded while a draft/anchor owns input | prevents R3F pointer-up/click ordering from changing the bound object during path authoring |
+| Director path reset | identity-offset reset and creation-snapshot reset are distinct store actions | preserves a testable difference between placement cleanup and geometry restoration |
 | Director return | one canvasStore graph transaction | capture node and source edge undo/redo atomically |
 | Backend | local mock only | scope is frontend prototype validation |
 

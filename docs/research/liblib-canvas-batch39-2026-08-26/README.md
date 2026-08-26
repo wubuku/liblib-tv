@@ -1,6 +1,7 @@
 # Batch 39：导演台路径整体变换与重置
 
-> 状态：证据、计划与实现合同已落档；产品实现和专项验证待完成。
+> 状态：已完成。主实现、专项 Playwright、截图台账、Batch 35-39
+> 跨批回归、稳定文档、`npm run check` 和提交推送均已闭环。
 
 ## Read Order
 
@@ -41,3 +42,11 @@ editable local anchors
 
 本批不实现路径整体 TransformControls、负缩放、pivot 移动、路径 history/
 persistence、属性曲线、动画视频导出或手机虚拟机位。
+
+## Completion
+
+- Plan: `42f1a3c`
+- Main implementation: `21f5c01`
+- Focused verification: `8d521cb`
+- Stable documentation/finalization: recorded by the next documentation-only
+  commit

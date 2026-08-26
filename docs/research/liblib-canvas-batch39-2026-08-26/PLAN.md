@@ -120,4 +120,4 @@ Batch 38 anchor/handle selectors remain stable.
 - [x] R3F world/local control conversion
 - [x] Inspector controls and store actions
 - [x] Focused Playwright and screenshot ledger
-- [ ] Cross-batch regression, stable docs and final quality gate
+- [x] Cross-batch regression, stable docs and final quality gate

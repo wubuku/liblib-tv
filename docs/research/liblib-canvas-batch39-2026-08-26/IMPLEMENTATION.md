@@ -1,7 +1,8 @@
 # Batch 39 Implementation Log
 
-> Status: main product implementation complete; focused verification and
-> screenshot finalization pending.
+> Status: complete. Main implementation, focused browser verification,
+> screenshot ledger, stable documentation, Batch 35-39 regression and final
+> quality gates passed.
 
 ## Protection Points
 
@@ -103,13 +104,31 @@ Their one-time interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
 ## Commit Protection
 
 - Plan protection: `42f1a3c`.
-- Implementation protection: pending.
-- Verification/finalization: pending.
+- Main implementation protection: `21f5c01`.
+- Focused verification protection: `8d521cb`.
+- Stable documentation/finalization: this documentation-only closeout commit.
+
+## Regression And Quality Result
+
+The final gate passed on August 26, 2026:
+
+- `python3 scripts/verify-liblib-batch35.py`
+- `python3 scripts/verify-liblib-batch36.py`
+- `python3 scripts/verify-liblib-batch37.py`
+- `python3 scripts/verify-liblib-batch38.py`
+- `python3 scripts/verify-liblib-batch39.py`
+- `npm run docs:check`
+- `npm run check`
+- `git diff --check`
+
+`npm run check` completed lint, strict TypeScript and the Next.js production
+build. ESLint still reports the same nine existing warnings in FrameOS and
+`CustomHandle`; Batch 39 introduced no lint errors or new warning class.
 
 ## Interruption Handoff
 
-After the implementation commit, add `scripts/verify-liblib-batch39.py`,
-generate only Batch 39 screenshots, inspect them once into
-`SCREENSHOT_ANALYSIS.md`, then run Batch 35-39 regressions and repository
-quality gates. Preserve Batch 38 selectors and do not stage verifier-regenerated
-historical screenshots.
+Batch 39 is closed. The next director batch should implement the directly guided
+`导出视频到画布` workflow over the now-mature timeline/path foundation. Keep
+real encoding out of scope unless source/runtime evidence supports it; prefer a
+truthful observable export job and canvas video handoff. Do not stage
+verifier-regenerated historical screenshots.

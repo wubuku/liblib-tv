@@ -90,6 +90,18 @@
   translation, exact `顶点 / 对称 / 非对称` semantics, relative handle fields,
   rename, insert/delete and open/closed controls. Anchor or handle edits rebuild
   the derived sampled polyline immediately.
+- **Path transform:** every path keeps local anchors, a creation-time centroid
+  pivot, degree rotation and positive per-axis scale. `位置 / 旋转 / 缩放`
+  derive world anchors/points without mutating local geometry; playback and
+  orient-to-path consume the transformed world polyline.
+- **World/local control commit:** R3F submits world anchor/handle targets to
+  store actions. The store applies the current inverse path transform and writes
+  only serializable local anchor tuples, keeping component closures out of the
+  authoring contract.
+- **Path reset:** `重置偏移` preserves edited anchors while restoring identity
+  transform. `重置` restores the deep creation anchor snapshot, creation pivot
+  and identity transform. This distinction, pivot and transform order are clone
+  calibration because source runtime behavior was not recovered.
 - **Interaction ownership:** drawing and selected path controls suppress object
   TransformControls and OrbitControls. Viewport-originated object/blank
   selection is also rejected atomically in `directorStore` while a draft or
@@ -115,7 +127,8 @@
   `scripts/verify-liblib-batch37.py` cover preset paths and speed curves;
   `docs/research/liblib-canvas-batch38-2026-08-26/` and
   `scripts/verify-liblib-batch38.py` cover pencil/pen authoring and editable
-  anchors/Bezier handles.
+  anchors/Bezier handles; `docs/research/liblib-canvas-batch39-2026-08-26/`
+  and `scripts/verify-liblib-batch39.py` cover path-level transform and reset.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
@@ -305,7 +318,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, preset-path/curve coverage in `scripts/verify-liblib-batch37.py`, and free-path/anchor coverage in `scripts/verify-liblib-batch38.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, preset-path/curve coverage in `scripts/verify-liblib-batch37.py`, free-path/anchor coverage in `scripts/verify-liblib-batch38.py`, and path-transform/reset coverage in `scripts/verify-liblib-batch39.py`.
 
 ## KeyboardShortcutsDialog
 
