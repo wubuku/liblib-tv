@@ -18,10 +18,10 @@
 - LibTV：10 节点、11 条边、分组与视频 parent-child 层级
 - LibTV：选择、框选、多选、移动、复制、成组、整理、pan、zoom、grid snap
 - LibTV：图片上下浮层、Seedance 2.5 视频生成、片段重拍、逐帧拉片、智能剪辑原型
-- LibTV：真实 R3F 导演台、对象/机位编辑、画幅构图、截图与画布回流
+- LibTV：真实 R3F 导演台、对象/机位/时间轴/路径编辑、截图与可播放动画视频回流
 - FrameOS：独立 store、独立节点系统、浮动工具条、Prompt 编辑器、右键菜单、undo/redo
 - 研究证据：原站 DOM/JSON、截图、组件规格、批次计划与实施历史
-- 自动验证：Batch 4-35 专项 Playwright 脚本、lint、typecheck、production build
+- 自动验证：Batch 4-40 专项 Playwright 脚本、lint、typecheck、production build
 
 ## Quick Start
 

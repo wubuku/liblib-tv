@@ -1,7 +1,7 @@
 # Batch 40：导演台动画视频导出与画布回流
 
-> 状态：计划已落档，等待主实现、专项 Playwright、截图台账、跨批回归和
-> 稳定文档闭环。
+> 状态：已完成。真实浏览器录制、可播放视频回流、专项 Playwright、截图
+> 台账、Batch 35-40 跨批回归、稳定文档和提交推送均已闭环。
 
 ## Read Order
 
@@ -13,6 +13,8 @@
 4. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：本批截图的一次性识图
    台账，生成截图前也保留为接力入口。
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：提交、验证和中断接力记录。
+6. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md)：核心导演工作流成熟度、
+   剩余源站能力和下一批决策边界。
 
 ## Batch Goal
 
@@ -43,3 +45,11 @@ source-backed export settings
 本批不实现 LibTV 账号/只读权限体系、远端上传、持久化媒体存储、MP4 转码、
 音轨、服务端渲染、后台导出队列或导出取消。blob URL 只保证当前页面会话内
 可播放。
+
+## Completion
+
+- Plan: `7a2ffab`
+- Main implementation: `3065e92`
+- Focused verification: `e085e63`
+- Stable documentation/finalization: recorded by the next documentation-only
+  commit

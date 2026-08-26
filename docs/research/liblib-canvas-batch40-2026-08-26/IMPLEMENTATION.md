@@ -1,7 +1,8 @@
 # Batch 40 Implementation Log
 
-> Status: main implementation and browser smoke complete. Focused Playwright,
-> screenshot ledger, cross-batch regression and stable closeout are pending.
+> Status: complete. Main implementation, focused browser verification,
+> screenshot ledger, stable documentation, Batch 35-40 regression and final
+> quality gates passed.
 
 ## Protection Points
 
@@ -90,17 +91,34 @@ The focused script passes and generates six Batch 40-only image artifacts.
 Their first and only visual interpretation is recorded in
 `SCREENSHOT_ANALYSIS.md`.
 
+## Regression And Quality Result
+
+The final gate passed on August 26, 2026:
+
+- `python3 scripts/verify-liblib-batch35.py`
+- `python3 scripts/verify-liblib-batch36.py`
+- `python3 scripts/verify-liblib-batch37.py`
+- `python3 scripts/verify-liblib-batch38.py`
+- `python3 scripts/verify-liblib-batch39.py`
+- `python3 scripts/verify-liblib-batch40.py`
+- `npm run docs:check`
+- `npm run check`
+- `git diff --check`
+
+`npm run check` completed lint, strict TypeScript and the Next.js production
+build. ESLint still reports the same nine existing warnings in FrameOS and
+`CustomHandle`; Batch 40 introduced no lint errors or new warning class.
+
 ## Commit Protection
 
 - Plan protection: `7a2ffab`.
 - Main implementation: `3065e92`.
-- Focused verification: pending.
-- Stable documentation/finalization: pending.
+- Focused verification: `e085e63`.
+- Stable documentation/finalization: this documentation-only closeout commit.
 
 ## Interruption Handoff
 
-Add `scripts/verify-liblib-batch40.py` for real media bytes/metadata/playback,
-timeline restoration, ratio output, graph selection/edge/history, still-capture
-regression and mobile geometry. Generate only Batch 40 screenshots, inspect
-them once into `SCREENSHOT_ANALYSIS.md`, and never stage verifier-regenerated
-historical screenshots.
+Batch 40 is closed. Read `MATURITY_ASSESSMENT.md` before selecting the next
+director batch. The bounded next candidate is phone virtual camera; if live
+runtime evidence is insufficient, return to the source-confirmed canvas overlay
+action/zoom gaps. Never stage verifier-regenerated historical screenshots.

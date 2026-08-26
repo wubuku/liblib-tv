@@ -54,7 +54,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, capture, typed animation timeline, editable motion paths and speed curves |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, typed animation timeline, editable motion paths/speed curves and browser video recording |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
@@ -96,9 +96,9 @@ director node CTA
   -> typed transform/camera tracks
   -> optional serializable motion path + track-level cubic-Bezier speed curve
   -> deterministic scrub/playback sampling
-  -> R3F Canvas render and helper-free capture
-  -> canvasStore.createDirectorCapture
-  -> atomic image node + source edge + graph history
+  -> R3F Canvas render and helper-free still/video capture
+  -> canvasStore.createDirectorCapture or createDirectorAnimationExport
+  -> atomic image/video node + source edge + graph history
 ```
 
 React Flow remains mounted while the fixed workspace is open. `directorStore`
@@ -161,7 +161,8 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Director speed curve | track-level cubic-Bezier control points | keeps preset/custom timing effects testable in pure sampling code |
 | Director path interaction | viewport selection requests are store-guarded while a draft/anchor owns input | prevents R3F pointer-up/click ordering from changing the bound object during path authoring |
 | Director path reset | identity-offset reset and creation-snapshot reset are distinct store actions | preserves a testable difference between placement cleanup and geometry restoration |
-| Director return | one canvasStore graph transaction | capture node and source edge undo/redo atomically |
+| Director return | one canvasStore graph transaction per still/video result | result node and source edge undo/redo atomically |
+| Director video export | cropped 2D canvas + `captureStream`/`MediaRecorder` outside Zustand | records real R3F pixels while keeping browser runtime objects out of serializable authoring state |
 | Backend | local mock only | scope is frontend prototype validation |
 
 ## Prototype Boundaries

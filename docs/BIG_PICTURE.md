@@ -226,12 +226,15 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel`
 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer。
 导演台入口会打开 lazy-loaded R3F 三栏工作区，支持真实场景、机位、画幅、
-helper-free PNG capture 和图片节点回流；底部时间轴支持 typed track、
+helper-free PNG capture、真实浏览器动画录制和图片/视频节点回流；底部时间轴支持 typed track、
 关键帧生命周期、scrub/playback/loop/zoom、Inspector/gizmo auto-keyframe
 和场景/相机确定性采样。已选轨道还能创建直线/圆环/矩形路径，在 R3F
 世界空间显示轨迹与锚点，驱动对象或机位沿路径播放，并用线性/平滑/缓入/
 缓出/缓入缓出或自定义 Bezier 控制速度；helper-free capture 会隐藏这些
-编辑辅助。长视频提交会额外创建独立的过程节点图。
+编辑辅助。动画导出会把完整时间轴映射到所选时长，裁切当前画幅，通过
+`captureStream`/`MediaRecorder` 生成当前会话可播放的 WebM blob，再以一个
+视频节点和 source edge 原子回流；MP4、远端上传和刷新后持久化不在当前
+前端原型范围。长视频提交会额外创建独立的过程节点图。
 音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但
 waveform 仍是 CSS placeholder，不解析真实音频。
 
@@ -485,14 +488,15 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch39.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch40.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
   和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
   helper-free capture、回流 history、移动抽屉、typed timeline、关键帧、
   scrub/playback/loop/zoom、auto-keyframe、预设运动路径、沿路径朝向、
   速度曲线、铅笔/钢笔路径、锚点/Bezier 控制柄编辑、取消保护和移动端
   Inspector 内部滚动，以及路径整体位置/旋转/缩放、world/local 控制提交、
-  `重置偏移`/`重置` 区分通过
+  `重置偏移`/`重置` 区分、真实 WebM 字节/解码/动态帧差、画幅输出、视频
+  回流 selection/history 和移动导出面板通过
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

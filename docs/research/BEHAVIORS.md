@@ -112,7 +112,7 @@
   Y rotation to the sampled tangent; camera target/FOV remain camera-track data.
 - **Path presentation:** R3F renders enabled trajectories and selected-path
   anchors as authoring helpers. They are excluded from camera view and
-  helper-free PNG capture.
+  helper-free PNG/video capture.
 - **Curve editor:** the selected track can switch from the timeline to
   `线性 / 平滑 / 缓入 / 缓出 / 缓入缓出` presets or drag two normalized
   cubic-Bezier handles. Both presets and custom values change live scene
@@ -120,6 +120,16 @@
 - **Timeline responsive behavior:** desktop uses a `196px` clone-calibrated band;
   `390x844` uses `176px`, a contracted label column and internal horizontal
   scrolling without document overflow.
+- **Animation export:** `导出设置` exposes duration and aspect ratio, then
+  records the live R3F canvas through a cropped output canvas,
+  `captureStream(30)` and `MediaRecorder`. The full timeline is retimed over
+  the requested output duration; helpers are hidden and the previous playhead
+  state is restored.
+- **Video return:** a non-empty browser-decodable WebM blob and first-frame
+  poster enter one `createDirectorAnimationExport` transaction. It creates a
+  ratio-shaped ready video plus direct source edge, selects the result and
+  supports one-step graph undo/redo. The blob URL is session-local and does not
+  claim source MP4/upload parity.
 - **Evidence and verification:** Batch 35 covers the R3F workspace and return;
   `docs/research/liblib-canvas-batch36-2026-08-26/` and
   `scripts/verify-liblib-batch36.py` cover the animation timeline;
@@ -128,7 +138,10 @@
   `docs/research/liblib-canvas-batch38-2026-08-26/` and
   `scripts/verify-liblib-batch38.py` cover pencil/pen authoring and editable
   anchors/Bezier handles; `docs/research/liblib-canvas-batch39-2026-08-26/`
-  and `scripts/verify-liblib-batch39.py` cover path-level transform and reset.
+  and `scripts/verify-liblib-batch39.py` cover path-level transform and reset;
+  `docs/research/liblib-canvas-batch40-2026-08-26/` and
+  `scripts/verify-liblib-batch40.py` cover real animation export and playable
+  canvas video return.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
@@ -318,7 +331,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, preset-path/curve coverage in `scripts/verify-liblib-batch37.py`, free-path/anchor coverage in `scripts/verify-liblib-batch38.py`, and path-transform/reset coverage in `scripts/verify-liblib-batch39.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, preset-path/curve coverage in `scripts/verify-liblib-batch37.py`, free-path/anchor coverage in `scripts/verify-liblib-batch38.py`, path-transform/reset coverage in `scripts/verify-liblib-batch39.py`, and animation-video export coverage in `scripts/verify-liblib-batch40.py`.
 
 ## KeyboardShortcutsDialog
 
