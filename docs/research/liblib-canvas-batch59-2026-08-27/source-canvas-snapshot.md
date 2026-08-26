@@ -1,0 +1,134 @@
+- generic [active] [ref=f22e1] [box=0,0,1920,874]:
+  - alert [ref=f22e2] [box=-1,-1,1,1]
+  - generic [ref=f22e3] [box=0,0,1920,3176]:
+    - generic [ref=f22e7] [cursor=pointer] [box=8,8,1904,48]:
+      - generic [ref=f22e8] [box=476,18,968,28]:
+        - generic [ref=f22e9] [box=476,18,249,28]:
+          - generic [ref=f22e15] [box=502,22,60,20]: 活动剩余
+          - generic [ref=f22e16] [box=562,22,139,20]: 0 天 16 时 26 分 40 秒
+        - generic [ref=f22e19] [box=738,21,612,22]: 💥 Seedance 系列 & MiniMax H3 多模型限时折扣｜Seedance 2.5 低至 0.4 元/秒，年会员最低 4 折
+        - generic [ref=f22e20] [box=1362,18,82,28]: 限时抢购
+      - button "关闭" [ref=f22e21] [box=1864,16,32,32]
+    - generic [ref=f22e24] [box=0,64,1920,3112]:
+      - complementary "侧边导航" [ref=f22e26] [box=0,64,68,810]:
+        - button "展开侧边栏" [ref=f22e28] [cursor=pointer] [box=16,71,36,36]
+        - generic [ref=f22e33] [box=0,126,67,684]:
+          - button "新建项目" [ref=f22e35] [cursor=pointer] [box=16,126,35,36]
+          - generic [ref=f22e37] [box=16,178,35,632]:
+            - navigation [ref=f22e38] [box=16,178,35,150]:
+              - button "首页" [ref=f22e39] [cursor=pointer] [box=16,178,35,36]
+              - button "项目" [ref=f22e41] [cursor=pointer] [box=16,216,35,36]
+              - button "LibTV Agent" [ref=f22e43] [cursor=pointer] [box=16,254,35,36]
+              - button "创作者挑战赛" [ref=f22e45] [cursor=pointer] [box=16,292,35,36]
+            - button [ref=f22e49] [cursor=pointer] [box=16,348,35,462]
+        - button "帮助" [ref=f22e51] [cursor=pointer] [box=16,822,35,36]
+      - main [ref=f22e53] [box=68,64,1852,3112]:
+        - generic [ref=f22e60] [box=1418,73,490,32]:
+          - button "Blender 插件" [ref=f22e62] [cursor=pointer] [box=1418,73,124,32]
+          - button "积分超市" [ref=f22e65] [cursor=pointer] [box=1550,73,98,32]
+          - button "开通会员 限时 40 折" [ref=f22e68] [cursor=pointer] [box=1656,73,159,32]:
+            - text: 开通会员
+            - generic [ref=f22e69] [box=1743,81,61,16]: 限时 40 折
+          - button "注册/登录" [ref=f22e70] [cursor=pointer] [box=1823,73,85,32]
+        - generic [ref=f22e72] [box=294,114,1400,3062]:
+          - generic [ref=f22e74] [box=294,114,1400,175]:
+            - generic [ref=f22e77] [box=-6786,114,1400,175]:
+              - button [ref=f22e81] [cursor=pointer] [box=-6786,114,1400,175]
+              - button [ref=f22e86] [cursor=pointer] [box=-5370,114,1400,175]
+              - button [ref=f22e91] [cursor=pointer] [box=-3954,114,1400,175]
+              - button [ref=f22e96] [cursor=pointer] [box=-2538,114,1400,175]
+              - button [ref=f22e101] [cursor=pointer] [box=-1122,114,1400,175]
+              - button [ref=f22e106] [cursor=pointer] [box=294,114,1400,175]
+              - button [ref=f22e111] [cursor=pointer] [box=1710,114,1400,175]
+              - button [ref=f22e116] [cursor=pointer] [box=3126,114,1400,175]
+              - button [ref=f22e121] [cursor=pointer] [box=4542,114,1400,175]
+              - button [ref=f22e126] [cursor=pointer] [box=5958,114,1400,175]
+              - button [ref=f22e131] [cursor=pointer] [box=7374,114,1400,175]
+              - button [ref=f22e136] [cursor=pointer] [box=8790,114,1400,175]
+            - button "上一张" [ref=f22e138] [cursor=pointer] [box=305,188,28,28]
+            - button "下一张" [ref=f22e140] [cursor=pointer] [box=1655,188,28,28]
+          - generic [ref=f22e143] [box=294,313,1400,200]:
+            - button "新建画布创作" [ref=f22e144] [cursor=pointer] [box=294,313,553,200]
+            - generic [ref=f22e151] [box=859,313,835,200]:
+              - button "Seedance 2.5 多参创作 音视频直出30s" [ref=f22e152] [cursor=pointer] [box=859,313,270,94]:
+                - generic [ref=f22e156] [box=919,351,198,22]
+                - generic [ref=f22e161] [box=871,373,246,22]
+              - button "Wan 3.0 全新上线 改写视频画面、剧情、环境" [ref=f22e168] [cursor=pointer] [box=1141,313,270,94]:
+                - generic [ref=f22e172] [box=1201,351,198,22]
+                - generic [ref=f22e177] [box=1153,373,246,22]
+              - button "Minimax H3 高性价比 高适配高性价比视频模型" [ref=f22e184] [cursor=pointer] [box=1424,313,270,94]:
+                - generic [ref=f22e188] [box=1484,351,198,22]
+                - generic [ref=f22e193] [box=1436,373,246,22]
+              - button "导演台 独家 3D 虚拟场景，精准控制空间" [ref=f22e200] [cursor=pointer] [box=859,419,270,94]:
+                - generic [ref=f22e204] [box=919,457,198,22]
+                - generic [ref=f22e209] [box=871,479,246,22]
+              - button "逐帧拉片 独家 传视频，逐帧拉片快捷参考" [ref=f22e216] [cursor=pointer] [box=1141,419,270,94]:
+                - generic [ref=f22e220] [box=1201,457,198,22]
+                - generic [ref=f22e225] [box=1153,479,246,22]
+              - button "片段重拍 精准修改视频片段" [ref=f22e232] [cursor=pointer] [box=1424,419,270,94]:
+                - generic [ref=f22e233] [box=1436,431,246,36]: 片段重拍
+                - generic [ref=f22e240] [box=1436,479,246,22]
+          - region "LibTV Agent" [ref=f22e246] [box=294,537,1400,196]:
+            - generic [ref=f22e247] [box=294,537,1400,32]:
+              - heading "LibTV Agent" [level=2] [ref=f22e248] [box=302,539,111,28]
+              - button "查看全部 skills" [ref=f22e249] [cursor=pointer] [box=1562,537,132,32]
+            - generic [ref=f22e251] [box=294,581,1400,152]:
+              - generic [ref=f22e252] [box=714,605,560,48]:
+                - button "添加附件" [ref=f22e255] [cursor=pointer] [box=722,614,32,32]
+                - generic [ref=f22e258] [box=758,618,472,22]
+                - generic [box=758,637,32,32]
+                - generic [box=794,637,32,32]
+                - generic [box=830,637,32,32]
+                - button "发送" [disabled] [ref=f22e266] [cursor=pointer] [box=1234,614,32,32]
+              - generic [ref=f22e267] [box=302,669,1384,40]:
+                - button "使用 Skill POP MV" [ref=f22e268] [cursor=pointer] [box=651,670,169,38]
+                - button "使用 Skill 日系剧情镜头导演" [ref=f22e272] [cursor=pointer] [box=824,670,229,38]
+                - button "使用 Skill 真人感美妆UGC产品测评" [ref=f22e276] [cursor=pointer] [box=1057,670,236,38]
+                - button "全部Skill" [ref=f22e280] [cursor=pointer] [box=1297,669,40,40]
+          - generic [ref=f22e281] [box=294,757,1400,2419]:
+            - generic [ref=f22e282] [box=294,757,1400,111]:
+              - generic [ref=f22e283] [box=298,769,1396,27]: TV Show
+              - generic [ref=f22e284] [box=294,816,1400,40]:
+                - generic [ref=f22e287] [cursor=pointer] [box=294,819,1104,34]
+                - generic [ref=f22e299] [box=1414,816,280,40]
+            - list [ref=f22e303] [box=294,876,1400,2300]:
+              - listitem [ref=f22e304] [box=294,1146,338,254]:
+                - generic [ref=f22e305] [cursor=pointer] [box=294,1146,338,254]
+              - listitem [ref=f22e324] [box=648,1146,338,254]:
+                - generic [ref=f22e325] [cursor=pointer] [box=648,1146,338,254]
+              - listitem [ref=f22e346] [box=1002,1146,338,254]:
+                - generic [ref=f22e347] [cursor=pointer] [box=1002,1146,338,254]
+              - listitem [ref=f22e366] [box=1356,1146,338,254]:
+                - generic [ref=f22e367] [cursor=pointer] [box=1356,1146,338,254]
+              - listitem [ref=f22e388] [box=294,1686,338,254]:
+                - generic [ref=f22e389] [cursor=pointer] [box=294,1686,338,254]
+              - listitem [ref=f22e410] [box=648,1686,338,254]:
+                - generic [ref=f22e411] [cursor=pointer] [box=648,1686,338,254]
+              - listitem [ref=f22e432] [box=1002,1686,338,254]:
+                - generic [ref=f22e433] [cursor=pointer] [box=1002,1686,338,254]
+              - listitem [ref=f22e454] [box=1356,1686,338,254]:
+                - generic [ref=f22e455] [cursor=pointer] [box=1356,1686,338,254]
+              - listitem [ref=f22e476] [box=294,1956,338,254]:
+                - generic [ref=f22e477] [cursor=pointer] [box=294,1956,338,254]
+              - listitem [ref=f22e498] [box=648,1956,338,254]:
+                - generic [ref=f22e499] [cursor=pointer] [box=648,1956,338,254]
+              - listitem [ref=f22e520] [box=1002,1956,338,254]:
+                - generic [ref=f22e521] [cursor=pointer] [box=1002,1956,338,254]
+              - listitem [ref=f22e542] [box=1356,1956,338,254]:
+                - generic [ref=f22e543] [cursor=pointer] [box=1356,1956,338,254]
+              - listitem [ref=f22e562] [box=294,1416,338,254]:
+                - generic [ref=f22e563] [cursor=pointer] [box=294,1416,338,254]
+              - listitem [ref=f22e584] [box=648,1416,338,254]:
+                - generic [ref=f22e585] [cursor=pointer] [box=648,1416,338,254]
+              - listitem [ref=f22e606] [box=1002,1416,338,254]:
+                - generic [ref=f22e607] [cursor=pointer] [box=1002,1416,338,254]
+              - listitem [ref=f22e628] [box=1356,1416,338,254]:
+                - generic [ref=f22e629] [cursor=pointer] [box=1356,1416,338,254]
+              - listitem [ref=f22e650] [box=294,876,338,254]:
+                - generic [ref=f22e651] [cursor=pointer] [box=294,876,338,254]
+              - listitem [ref=f22e672] [box=648,876,338,254]:
+                - generic [ref=f22e673] [cursor=pointer] [box=648,876,338,254]
+              - listitem [ref=f22e694] [box=1002,876,338,254]:
+                - generic [ref=f22e695] [cursor=pointer] [box=1002,876,338,254]
+              - listitem [ref=f22e716] [box=1356,876,338,254]:
+                - generic [ref=f22e717] [cursor=pointer] [box=1356,876,338,254]

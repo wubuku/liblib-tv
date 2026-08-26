@@ -1,0 +1,42 @@
+- generic [active] [ref=e1] [box=0,0,1920,874]:
+  - alert [ref=e2] [box=-1,-1,1,1]
+  - generic [ref=e3] [box=0,0,1920,3235]:
+    - generic [ref=e7] [cursor=pointer] [box=8,8,1904,48]:
+      - generic [ref=e8] [box=476,18,968,28]:
+        - generic [ref=e9] [box=476,18,249,28]:
+          - generic [ref=e15] [box=502,22,60,20]: 活动剩余
+          - generic [ref=e16] [box=562,22,139,20]: 0 天 16 时 27 分 52 秒
+        - generic [ref=e19] [box=738,21,612,22]: 💥 Seedance 系列 & MiniMax H3 多模型限时折扣｜Seedance 2.5 低至 0.4 元/秒，年会员最低 4 折
+        - generic [ref=e20] [box=1362,18,82,28]: 限时抢购
+      - button "关闭" [ref=e21] [box=1864,16,32,32]
+    - generic [ref=e24] [box=0,64,1920,3171]:
+      - complementary "侧边导航" [ref=e26] [box=0,64,68,810]:
+        - button "展开侧边栏" [ref=e28] [cursor=pointer] [box=16,71,36,36]
+        - generic [ref=e33] [box=0,126,67,684]:
+          - button "新建项目" [ref=e35] [cursor=pointer] [box=16,126,35,36]
+          - generic [ref=e37] [box=16,178,35,632]:
+            - navigation [ref=e38] [box=16,178,35,150]
+            - button [ref=e49] [cursor=pointer] [box=16,348,35,462]
+        - button "帮助" [ref=e51] [cursor=pointer] [box=16,822,35,36]
+      - main [ref=e53] [box=68,64,1852,3171]:
+        - generic [ref=e60] [box=1418,73,490,32]:
+          - button "Blender 插件" [ref=e62] [cursor=pointer] [box=1418,73,124,32]
+          - button "积分超市" [ref=e65] [cursor=pointer] [box=1550,73,98,32]
+          - button "开通会员 限时 40 折" [ref=e68] [cursor=pointer] [box=1656,73,159,32]:
+            - text: 开通会员
+            - generic [ref=e69] [box=1743,81,61,16]: 限时 40 折
+          - button "注册/登录" [ref=e70] [cursor=pointer] [box=1823,73,85,32]
+        - generic [ref=e72] [box=294,114,1400,3121]:
+          - generic [ref=e74] [box=294,114,1400,175]:
+            - generic [ref=e77] [box=-9618,114,1400,175]
+            - button "上一张" [ref=e138] [cursor=pointer] [box=305,188,28,28]
+            - button "下一张" [ref=e140] [cursor=pointer] [box=1655,188,28,28]
+          - generic [ref=e143] [box=294,313,1400,200]:
+            - button "新建画布创作" [ref=e144] [cursor=pointer] [box=294,313,553,200]
+            - generic [ref=e151] [box=859,313,835,200]
+          - region "LibTV Agent" [ref=e246] [box=294,537,1400,196]:
+            - generic [ref=e247] [box=294,537,1400,32]
+            - generic [ref=e251] [box=294,581,1400,152]
+          - generic [ref=e281] [box=294,757,1400,2478]:
+            - generic [ref=e282] [box=294,757,1400,111]
+            - list [ref=e306] [box=294,876,1400,2359]
