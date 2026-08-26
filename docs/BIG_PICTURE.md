@@ -444,12 +444,12 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
 | 数据生命周期 | 内存 mock；刷新丢失；画布切换也不是可靠持久化 |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-44 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
 
-- 根 `README.md` 和 `package.json` 仍保留通用 website-cloner 模板身份
+- 根 `README.md` 和 `package.json` 已对齐当前 LibTV + FrameOS 原型身份，但仓库仍保留历史迁移记录和通用工具命名
 - LibTV 内容库已具备原站拓扑和本地真实样例素材，但账户数据、下载和生成调用仍是 mock
 - LibTV 分镜模式、Agent 和分享是可验证的前端原型；分镜模式已绑定当前画布节点，Agent/分享已有本地状态，但没有接入真实任务、模型、发布或历史数据
 - LibTV 未实现后端生成、上传、分享链接、项目持久化和协作权限

@@ -89,17 +89,13 @@ Read [`research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md) and the loca
 
 ## Browser Verification
 
-The LibTV batch scripts use independent pages when state contamination is possible:
+The LibTV batch scripts use independent pages when state contamination is possible. Run the narrowest script for the change; the complete script-backed range is maintained in [`HARNESS.md`](HARNESS.md):
 
 ```bash
-python3 scripts/verify-liblib-batch4.py
-python3 scripts/verify-liblib-batch5.py
-python3 scripts/verify-liblib-batch6.py
-python3 scripts/verify-liblib-batch7.py
-python3 scripts/verify-liblib-batch8.py
-python3 scripts/verify-liblib-batch9.py
-python3 scripts/verify-liblib-batch10.py
+python3 scripts/verify-liblib-batch<N>.py
 ```
+
+当前专项 verifier 覆盖 Batch 4-33、35-44；Batch 34 是研究批次，Batch 45 是当前并行研究/实现 WIP，均不代表已经有专项回归脚本。
 
 They check DOM geometry, interaction lifecycle, screenshots and console errors. Treat the corresponding `docs/design-references/` images as dated evidence, not as an automatically current screenshot.
 

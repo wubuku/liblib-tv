@@ -29,19 +29,15 @@ Use `http://localhost:3000` for LibTV and `http://localhost:3000/frameos/canvas/
 
 ## Verification
 
-Run the narrowest relevant browser script first, then the full check:
+Run the narrowest relevant browser script first, then the full check. The complete script-backed range and serial command are maintained in [`docs/HARNESS.md`](docs/HARNESS.md):
 
 ```bash
-python3 scripts/verify-liblib-batch10.py
-python3 scripts/verify-liblib-batch4.py
-python3 scripts/verify-liblib-batch5.py
-python3 scripts/verify-liblib-batch6.py
-python3 scripts/verify-liblib-batch7.py
-python3 scripts/verify-liblib-batch8.py
-python3 scripts/verify-liblib-batch9.py
+python3 scripts/verify-liblib-batch<N>.py
 npm run check
 python3 scripts/verify-docs.py
 ```
+
+当前专项 verifier 覆盖 Batch 4-33、35-44；Batch 34 和当前并行的 Batch 45 没有对应的专项 verifier。
 
 If a test or screenshot changes, explain why in the relevant implementation record. Preserve console-error checks in Playwright scripts.
 

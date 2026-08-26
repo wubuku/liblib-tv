@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch43.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-44 | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -69,10 +69,12 @@ The current source-contract coverage and historical assertion boundaries are tra
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..44}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..44}.py; do
   python3 "$script" || exit 1
 done
 ```
+
+Batch 34 和当前并行的 Batch 45 目前没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45 的研究目录仍在 [`research/README.md`](research/README.md) 中维护。
 
 ## Browser Evidence Requirements
 

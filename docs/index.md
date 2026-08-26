@@ -44,6 +44,7 @@ graph TD
 | [`GLOSSARY.md`](GLOSSARY.md) | 产品、画布、React Flow 和研究术语 |
 | [`BIG_PICTURE.md`](BIG_PICTURE.md) | 当前系统的详细认知和原型边界 |
 | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md) | 文档体系迁移和维护计划 |
+| [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md) | 文档事实漂移、验证范围和 agent 导航缺口审计 |
 
 ## Research And Evidence
 
