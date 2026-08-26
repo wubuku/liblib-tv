@@ -52,4 +52,3 @@ Batch 48 收口后的 clone 已具备：
 - [`../liblib-canvas-batch34-2026-08-26/LIBTV_DIRECTOR_EVIDENCE.md`](../liblib-canvas-batch34-2026-08-26/LIBTV_DIRECTOR_EVIDENCE.md)；
 - [`../liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md`](../liblib-canvas-batch35-2026-08-26/DIRECTOR_WORKSPACE.spec.md)；
 - [`../liblib-canvas-batch48-2026-08-26/MATURITY_ASSESSMENT.md`](../liblib-canvas-batch48-2026-08-26/MATURITY_ASSESSMENT.md)。
-

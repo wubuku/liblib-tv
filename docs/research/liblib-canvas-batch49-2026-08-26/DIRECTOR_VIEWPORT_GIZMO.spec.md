@@ -68,4 +68,3 @@ nextFov = snapshot.fov
 - 不实现 timeline keyframe；
 - 不实现 source-exact gizmo DOM；
 - 不让 gizmo 进入截图或动画导出像素。
-
