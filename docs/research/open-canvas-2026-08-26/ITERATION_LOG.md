@@ -190,3 +190,12 @@
 - 明确 Batch 9 的 `900.5px`/顶部 `16px` 与 Batch 10 的固定 AutoLink popover 是历史 clone 快照合同，不能冒充当前源站 `1092.5px`/`10 + 24 * zoom` 和 inline structured mention；
 - 将未来验证分为纯合同、local disposable fixture 和 source observation 三层，并记录哪些项目可以在未授权时继续研究、哪些必须先获得编码/测试或源站副本授权；
 - 同步 `HARNESS.md`、docs index、research index、Seedance README 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；没有修改任何回归脚本、`src/`、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v18 Open Canvas 启发合同桥接
+
+本轮继续迭代 Open Canvas 研究，重点检查它对 LibTV 后续复刻是否提供可执行帮助：
+
+- 在 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md) 新增合同桥接矩阵，把 measured/live viewport、typed input buckets、run/save 状态、media history、serialized subgraph 和 pending connection 分别映射到 LibTV 双浮层、Auto Link、片段重拍、逐帧拉片和长视频过程；
+- 明确上游的具体 gap、宽度、节点类型、provider slug 和 Handle 规则不能直接替代 LibTV 源站合同；只有经过 `SOURCE_FACT -> LibTV evidence -> clone-only contract -> authorized implementation` 才能进入代码；
+- 在 Open Canvas 深度报告中链接 LibTV 能力缺口总矩阵与验证覆盖矩阵，补上“研究机制如何接到后续 batch”的入口；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。

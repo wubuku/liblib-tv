@@ -32,6 +32,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 当前 AutoLink 的 source/clone 状态与数据合同见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。生产实现把它组织为高级设置全局开关、connected/reference candidate pool、Prompt inline ghost 和 stable node ID mention；这修正了 clone 当前固定候选确认 popover 与字符串前缀写回的旧假设。
 
+当前 LibTV Seedance 2.5 五项主推能力的统一缺口、价值排序和授权闸门见 [`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)；现有回归脚本的历史断言与当前源站合同覆盖见 [`LIBTV_VERIFICATION_COVERAGE.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。Open Canvas 的启发只有在通过这两层 LibTV 证据检查后，才进入后续复刻 batch。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |

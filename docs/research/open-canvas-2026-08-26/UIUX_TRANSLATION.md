@@ -94,6 +94,48 @@ LibTV 当前问题
 | Canvas Panel + minimap/zoom | 画布级 controls 与节点级浮层分离 | 服从现有 `BottomToolbar` 和 `MainEntryPanels` 合同 | `LIBTV-UIX-07` |
 | onboarding / empty state | 首次使用的状态机和入口分层 | LibTV 当前入口是否存在同等流程需另取证 | `LIBTV-UIX-08` |
 
+### 3.1 与当前 LibTV Seedance 能力合同的桥接
+
+Open Canvas 的机制只有在能解决一个已被 LibTV 证据确认的问题时，才进入后续复刻队列。当前桥接关系如下：
+
+| Open Canvas 启发 | LibTV 已确认的对象 | 可迁移的最小合同 | 不能直接搬入的内容 |
+|---|---|---|---|
+| measured node + live viewport | 图片/视频节点上下双浮层 | 同一 viewport snapshot 计算 node rect、screen anchor、中心和 zoom gap | Open Canvas 的 `18px` editor gap、360-820px 宽度和 Panel 层级不替换 LibTV 公式 |
+| typed input buckets | Auto Link、图片/视频/音频引用 | 内部保存 stable node ID、媒体类型、职责，提交时再投影 ordinal | Open Canvas 的 Handle/provider slug 不等于 LibTV mention 或模型 API |
+| node status 与 run status 分离 | 片段重拍、逐帧拉片、长视频过程 | 区分编辑草稿、候选、任务和结果版本 | 不因有 `running` 字样就声称已接通真实 Provider |
+| media history + selected index | 重拍/续写/长视频结果回选 | 研究输出候选、派生版本和当前引用的身份关系 | 在 LibTV 未证实时不强行增加节点内候选轮播 |
+| serialized subgraph + ID map | 长视频过程图和拉片结果组 | 派生节点/边保存 source、时间范围、操作和版本关系 | 不把上游五类节点模型当作 LibTV 领域模型 |
+| pending connection + typed handles | Auto Link 未连接候选、后续素材复用 | 只有源站证明连接动作存在时，才把连接与 mention/结果作为事务 | 不改变当前 LibTV Handle 位置、edge flow effect 或自由连接规则 |
+
+对应的 LibTV 事实和缺口集中见 [`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)；双浮层和 Auto Link 的可执行合同分别见 [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md) 与 [`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)。
+
+### 3.2 从启发到验证，而不是从启发到复制
+
+每个桥接项都必须经过下面的证据转换：
+
+```text
+Open Canvas SOURCE_FACT
+  -> 共同问题假设
+  -> LibTV SOURCE_FACT / ARTICLE_EVIDENCE
+  -> clone-only 合同
+  -> 授权后的局部实现
+  -> 独立回归
+```
+
+例如，Open Canvas 的 live viewport 计算只说明“浮层可以统一使用同一份视口快照”；只有 LibTV 现场矩阵确认了 `node-center`、顶部 `10 + 24 * zoom`、底部 `16 * zoom` 和自然裁切后，这些关系才成为 LibTV 合同。相同地，Open Canvas 的 typed input buckets 只能启发 Auto Link 的身份分层，不能替代 LibTV 已验证的 ghost、structured mention 和 ordinal projection。
+
+### 3.3 后续 batch 的退出条件
+
+后续 agent 在实现 Open Canvas 启发前，必须能回答：
+
+1. 目标行为是否在 LibTV 当前源站存在，而不是只在 Open Canvas 存在？
+2. 该行为属于节点内容、节点操作、参数编辑、画布 graph 还是 page-level overlay 哪一层？
+3. 它的状态是否会改变节点/边/媒体版本，是否需要可撤销事务？
+4. 当前测试是 clone 历史快照、当前源站合同，还是仅仅一个 clone-only 选择？
+5. 若证据不足，停止条件是什么，如何避免用上游代码填补未知事实？
+
+若无法回答第 1 或第 4 项，不能将该启发写入 LibTV 代码；应先更新 [`LIBTV_VERIFICATION_COVERAGE.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md) 或对应源站证据矩阵。
+
 ## 4. 后续 UI/UX 研究批次
 
 ### `LIBTV-UIX-01`：选中节点双浮层几何
