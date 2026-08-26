@@ -181,3 +181,12 @@
 - 记录当前图片工具条从 `900.5x49`/7 个文字动作到 `1092.5x49`/9 个文字动作 + 4 个图标动作的版本漂移，并明确 `元素编辑`、`图层分离` 带来的 active-tool/graph 状态差距；
 - 将标准双浮层的两条 zoom 公式和 source/clone 的统一 `addDerivedNode` 差距链接到定位合同、Auto Link 合同和能力总矩阵；
 - 没有修改 `src/`、FrameOS、upstream submodule、截图或其他开发者 WIP，也没有在共享源站执行动作。
+
+## 2026-08-26：v17 验证覆盖矩阵
+
+本轮对现有 LibTV Playwright 回归脚本做静态审计：
+
+- 新增 [`LIBTV_VERIFICATION_COVERAGE.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)，逐项映射双浮层、图片工具、Auto Link、Seedance 参数、片段重拍、逐帧拉片和长视频过程的已有覆盖与缺口；
+- 明确 Batch 9 的 `900.5px`/顶部 `16px` 与 Batch 10 的固定 AutoLink popover 是历史 clone 快照合同，不能冒充当前源站 `1092.5px`/`10 + 24 * zoom` 和 inline structured mention；
+- 将未来验证分为纯合同、local disposable fixture 和 source observation 三层，并记录哪些项目可以在未授权时继续研究、哪些必须先获得编码/测试或源站副本授权；
+- 同步 `HARNESS.md`、docs index、research index、Seedance README 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；没有修改任何回归脚本、`src/`、FrameOS、upstream submodule、截图或其他开发者 WIP。

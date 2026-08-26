@@ -61,6 +61,8 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 40 | real cropped WebGL recording, export settings/progress/error states, dynamic WebM decode/playback, ratio-shaped video return, target selection, atomic undo/redo and mobile geometry |
 | Batch 41 | phone virtual-camera local boundary, real pose input, stability/level/hold/elevation controls, current-playhead recording, named camera-track import and mobile geometry |
 
+The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
+
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
