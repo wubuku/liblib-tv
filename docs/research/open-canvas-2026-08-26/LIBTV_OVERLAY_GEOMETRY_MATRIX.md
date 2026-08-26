@@ -12,7 +12,7 @@
 - 源站不做 viewport clamp。左边缘出现负 x、顶部出现负 y、底部超出 viewport 都是当前可见行为。
 - 2026-08-25 的源站工具条是 `900.5x49`，包含 7 个文字动作和 4 个图标动作；2026-08-26 同一画布、同一批节点统一变为 `1092.5x49`，包含 9 个文字动作和 4 个图标动作。
 - 这次宽度增加不是节点内容态差异，而是源站动作集合更新：新增 `元素编辑` 和 `图层分离`，两个按钮各 `88px`，加上两个 `8px` 间距，合计正好增加 `192px`。
-- 当前 clone 仍硬编码 `900.5px`，缺少这两个文字动作，并用 `撤销 / 重做` 两个图标按钮替代了源站的 `标注 / 旋转 / 下载 / 预览` 四个工具。因此，下一轮实现前应先补动作语义取证，而不是继续调整上下 offset。
+- 当前 clone 仍硬编码 `900.5px`，缺少这两个文字动作，并用 `撤销 / 重做` 两个图标按钮替代了源站的 `标注 / 旋转 / 下载 / 预览` 四个工具。六动作的静态状态链和安全 live 复测已继续落入 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)；实现前不应继续凭感觉调整上下 offset。
 
 原始结构化记录见 [`libtv-image-overlay-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-image-overlay-audit-2026-08-26.json)。历史 `900.5px` 数据见 [`image-node-state-audit.json`](../liblib-live-2026-08-25/image-node-state-audit.json)。
 
@@ -150,7 +150,7 @@ bottom editor:
 |---|---|---|---|
 | `UIX-01A` | 28% 下多节点几何 | 本文件与 JSON | 已完成 |
 | `UIX-01B` | 53% / 100% 下是否保持 `1092.5x49`、`660px` | 多 zoom rect 表 | 不拖动或改写远端节点 |
-| `UIX-01C` | 新增两个文字动作和四个图标动作打开什么 UI | 逐动作状态卡、截图、关闭路径 | 任何动作若会立即创建/提交则停止 |
+| `UIX-01C` | 新增两个文字动作和四个图标动作打开什么 UI | [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)；preview/空 annotate live，其余 bundle | 图层分离等任务动作保持未点击 |
 | `UIX-01D` | 选择切换、空白点击、拖动/平移的卸载与跟随时序 | 连续 DOM rect/状态记录 | 不改变远端画布数据 |
 | `UIX-01E` | clone runtime 当前值与源站同场景对照 | source/clone 双列矩阵 | 等用户授权代码前仍可只读运行 |
 

@@ -27,6 +27,8 @@
 
 当前五节点矩阵已经确认：上方工具条使用屏幕空间 offset，底部参数面板使用节点内 flow-space offset 和 inverse zoom；两者共享 node center，但不共享 containing block。源站明确允许边缘裁切，不存在需要复刻的 viewport clamp。详见 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。
 
+动作审计进一步确认：进入标注等 active tool 后，标准工具条和底部参数面板不再同时存在，而是切换为专用工具条 + 节点内编辑 surface。preview 则使用 page-level overlay，不改变节点选择。详见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。
+
 **候选设计**：保留 React Flow `NodeToolbar` 和节点内 inverse-scale panel 两条现有结构；先把当前动作集合、内容自适应宽度、无 clamp 边缘策略和选择生命周期固化为同一份 anchor contract，不新增碰撞修正或页面级重排。
 
 **验收**：桌面 929px、移动 390px、至少两种 zoom、节点靠近四条边、图片和视频各一组截图；中心误差、screen/flow 两类 gap、当前动作集合、源站预期裁切和切换卸载均符合矩阵。音频节点只有取得同类源站浮层证据后才纳入。
@@ -110,7 +112,7 @@
 
 ## 5. 研究出口
 
-当前最合理的下一步不是立即编码，而是继续补齐多 zoom、选择时序和当前六个未取证工具动作，再由用户授权 Batch A。28% 下五图片节点的 anchor、裁剪、面板尺寸和工具条时间版本差异已经完成；具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
+当前最合理的下一步不是立即编码，而是继续补齐多 zoom、选择时序，以及元素编辑/旋转的无提交状态，再由用户授权 Batch A。28% 五图片节点、preview、空 annotate 和六动作 bundle 状态已经完成；图层分离 live 取证必须等待任务/积分授权。具体视觉克隆仍应以 LibTV 源站证据为最高优先级。
 
 ## 6. 变更授权门槛
 

@@ -117,7 +117,9 @@ LibTV 当前问题
 
 **停止条件**：若没有新的源站证据，只能修正已知坐标系错误，不能引入新的 clamp、自动避让或页面级重排。
 
-**当前进展**：28% zoom 下的五图片节点、三种 panel 高度、边缘裁剪和工具条时间版本差异已经落入 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。剩余重点为多 zoom、拖动/平移、选择卸载时序以及六个尚未逐项取证的当前工具条动作。
+**当前进展**：28% zoom 下的五图片节点、三种 panel 高度、边缘裁剪和工具条时间版本差异已经落入 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。剩余几何重点为多 zoom、拖动/平移和选择卸载时序；当前六个新增/末端动作已进入下一份状态矩阵。
+
+六动作中的 preview 和空 annotate 已完成安全 live 复测，其他动作已从当前 bundle 还原状态与副作用，见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。关键修订是：active image tool 会替换标准工具条、隐藏底部生成面板并在节点上挂编辑 surface；因此 `editingImageTool` 必须进入 `UIX-01` 的几何/生命周期矩阵，不能把所有动作都实现为一次 `addDerivedNode`。
 
 ### `LIBTV-UIX-02`：连接语义与 Handle
 

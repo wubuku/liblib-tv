@@ -87,3 +87,15 @@
 - 对照 clone 静态实现，确认其仍固定 `900.5px`、缺两个新文字动作，并以 `撤销 / 重做` 替代源站四个末端图标动作；
 - 修订 ImageNode 规格和实施候选，明确保留当前双 anchor 结构、禁止新增 viewport clamp，下一步优先研究动作语义和多 zoom 时序；
 - 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有写入 LibTV 远端画布。
+
+## 2026-08-26：v8 图片工具条动作状态审计
+
+本轮从当前页面加载的 128 个 LibTV chunks 中定位图片工具条实现，并只对无任务风险的动作做 live 复测：
+
+- 新增 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)，将元素编辑、图层分离、标注、旋转、下载和预览按 UI 状态、保存/任务边界与 clone 价值分级；
+- 确认元素编辑进入 `InteractiveImageEditMode`，使用 point/box/brush records，只有显式生成才创建/复用输出节点并提交任务；
+- 确认图层分离拥有 splitting/ready/redrawing/merging composition 状态和任务提交路径，因此没有在当前研究画布上点击；
+- live 确认预览是全屏 `MediaPreviewOverlay`，显示当前图片和水印，关闭后保持节点选择与参数不变；
+- live 确认空标注态以 `536x49` 专用工具条替换标准工具条、隐藏底部生成面板，并在节点上挂 DPR=2 的绘制 canvas；Escape 可无修改退出；
+- 将 clone 的统一 `addDerivedNode` 行为识别为关键语义缺口，并记录 preview -> editingImageTool -> task-backed composition 的待授权实施顺序；
+- 没有绘制、保存、下载、上传、生成或修改源站画布，也没有触碰当前仓库 `src/` 和其他开发者 WIP。

@@ -26,6 +26,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 当前 LibTV 五个图片节点的双浮层 DOM 矩阵、`900.5 -> 1092.5px` 工具条版本漂移及 clone 动作缺口见 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)。该矩阵表明现有 clone 的核心 anchor 结构接近源站，但顶部动作集合和宽度仍冻结在旧版本。
 
+当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |
@@ -201,8 +203,9 @@ Open Canvas 的源码还提供了几个与 LibTV 后续复刻直接相关、但�
 
 1. 继续在 LibTV 源站核对 53%/100% zoom、拖动/平移和移动端的双浮层关系；28% 下五图片节点矩阵已经完成；
 2. 按当前源站动作集合更新“节点选中态浮层合同”，明确 node rect、canvas viewport、screen fixed toolbar、节点内 editor、z-index、无 clamp 的裁剪策略和关闭条件；
-3. 逐项取证 `元素编辑 / 图层分离 / 标注 / 旋转 / 下载 / 预览`，禁止用 clone-only 动作猜测替代；
-4. 记录每个状态的截图/DOM rect，先修视觉事实再抽象实现。
+3. `预览` 和空 `标注` 已完成安全 live 取证；继续研究元素编辑、旋转和下载的无提交状态，图层分离必须等待任务授权；
+4. 将标准选中态与 `editingImageTool` 态分开记录，禁止用 clone-only 即时派生节点替代 authoring/submit/result 状态机；
+5. 记录每个状态的截图/DOM rect，先修视觉事实再抽象实现。
 
 理由：这是当前用户已明确指出的可见缺陷，直接影响 clone 的可信度，比引入 Open Canvas 的 provider 代码更高价值。
 

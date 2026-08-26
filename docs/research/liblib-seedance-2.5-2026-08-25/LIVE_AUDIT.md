@@ -238,3 +238,34 @@ matrix(0.278112, 0, 0, 0.278112, 17.9639, 131.434)
 当前外层 DOM 使用 `w-fit`，说明工具条宽度由动作集合决定。完整 rect、按钮 test id、宽度和 clone 差异见 [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md)，结构化记录见 [`libtv-image-overlay-audit-2026-08-26.json`](libtv-image-overlay-audit-2026-08-26.json)。
 
 这次归因修正了上一节的未决表达：`900.5` 和 `1092.5` 都是真实源站快照，但前者是历史动作集合，后者是当前动作集合；没有证据支持把它们解释成不同图片节点或不同 panel 内容态的宽度分支。
+
+## 10. 图片工具态与预览浮层
+
+本轮继续使用当前页面已加载的前端 chunks 做静态处理路径审计，并只 live 打开无任务风险的预览和空标注态。唯一命中六个当前工具动作 test id 的 chunk 为 `15epcn_e-6pl6.js`，当前长度 `1,563,088` bytes。
+
+### 预览
+
+`图片4` 的预览是 page-level `MediaPreviewOverlay`：
+
+| 元素 | DOM rect |
+|---|---|
+| overlay | `0,0,929,874` |
+| content | `69.67,87.40,789.65,699.20` |
+| 图片 | `69.67,239.59,789.65,394.82` |
+| 水印 | `79.67,249.59,48,23.31` |
+| 关闭按钮 | `839.32,75.40,32,32` |
+
+overlay 使用 `fixed inset-0` 和 `bg-black/80`，当前单输出节点没有 prev/next；bundle 表明多输出时会按 output/history index 提供翻页。关闭后节点选择、标准工具条和底部面板保持原状态。
+
+### 空标注态
+
+`图片4` 进入标注后：
+
+- 标准 `1092.5x49` 工具条被 `536x49`、8 按钮的专用工具条替换；
+- 专用工具条与节点中心误差 `-0.009px`，到节点顶部 gap `9.726px`；
+- 标准底部 `660px` 生成面板卸载；
+- 节点上叠加 CSS rect `194.117x97`、backing size `388x194` 的 canvas，符合 DPR `2`；
+- 工具条可见 `标注 / 保存`，undo/redo 在空态 disabled；
+- 按 Escape 后专用工具条和 canvas 卸载，标准双浮层恢复。
+
+没有绘制或点击保存。其他四个动作的 bundle 状态、潜在任务和 clone 差异见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)。图层分离存在任务提交路径，下载存在水印偏好和文件副作用，旋转保存可能上传/更新节点，均未 live 点击。

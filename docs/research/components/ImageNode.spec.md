@@ -46,6 +46,8 @@ Toolbar width is a time-versioned content contract, not a permanent global const
 
 The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. The clone currently remains on the older fixed-width/action baseline; treat this as a documented gap until code changes are authorized. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
 
+These actions do not share one graph-mutation contract. Preview opens a page overlay; annotate, rotate and element edit enter dedicated tool modes; layer separation owns an asynchronous composition state. Active annotate replaces the standard toolbar, hides the bottom generation panel and overlays a canvas on the selected node. The complete source-state and side-effect matrix is [`../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md).
+
 Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
 ### Bottom editor
@@ -89,6 +91,7 @@ Stable root selector: `[data-video-frame-capture]`.
 ## Required Regressions
 
 - selecting any image shows exactly one top toolbar and one bottom panel
+- entering an active image tool replaces the standard toolbar and hides the bottom generation panel; it does not add a third floating layer
 - clicking empty canvas removes both overlays
 - switching selected image moves both overlays to the new node
 - node drag and viewport pan keep both overlays attached
