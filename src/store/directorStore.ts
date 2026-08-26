@@ -6,6 +6,11 @@ import {
   sampleDirectorTimelineTrack,
 } from "@/components/director/directorTimelineMath";
 import {
+  isFiniteDirectorCameraValue,
+  mapDirectorPhonePoseToCamera,
+  type DirectorPhoneVcamPose,
+} from "@/components/director/directorPhoneVcamMath";
+import {
   buildDirectorMotionPathWorldAnchors,
   buildDirectorMotionPathPoints,
   cloneDirectorMotionPathAnchors,
@@ -87,6 +92,42 @@ export interface DirectorCameraKeyframe {
   id: string;
   time: number;
   value: DirectorCameraKeyframeValue;
+}
+
+export type DirectorPhoneVcamStatus =
+  | "idle"
+  | "preparing"
+  | "waiting"
+  | "local-ready"
+  | "recording"
+  | "imported"
+  | "error";
+
+export interface DirectorPhoneVcamSample {
+  time: number;
+  value: DirectorCameraKeyframeValue;
+}
+
+export interface DirectorPhoneVcamState {
+  status: DirectorPhoneVcamStatus;
+  gyroEnabled: boolean;
+  stability: number;
+  keepLevel: boolean;
+  hold: boolean;
+  elevation: number;
+  pose: DirectorPhoneVcamPose;
+  baselineCamera: DirectorCameraKeyframeValue | null;
+  recordingStartTime: number | null;
+  sampleCount: number;
+  takeCount: number;
+  importedCameraId: string | null;
+  importedTrackId: string | null;
+  error: string | null;
+}
+
+export interface DirectorPhoneVcamImportResult {
+  cameraId: string;
+  trackId: string;
 }
 
 export type DirectorSpeedCurvePreset =
@@ -201,6 +242,7 @@ interface DirectorState {
   captures: DirectorCapture[];
   activeCaptureId: string | null;
   timeline: DirectorTimelineState;
+  phoneVcam: DirectorPhoneVcamState;
 
   openSession: (sourceNodeId: string) => void;
   selectObject: (
@@ -226,6 +268,24 @@ interface DirectorState {
   setCapturing: (capturing: boolean) => void;
   addCapture: (capture: DirectorCapture) => void;
   markCaptureSent: (captureId: string, nodeId: string) => void;
+  setPhoneVcamStatus: (
+    status: DirectorPhoneVcamStatus,
+    error?: string | null,
+  ) => void;
+  connectPhoneVcamLocal: () => boolean;
+  setPhoneVcamGyroEnabled: (enabled: boolean) => void;
+  setPhoneVcamStability: (stability: number) => void;
+  togglePhoneVcamKeepLevel: () => void;
+  setPhoneVcamHold: (hold: boolean) => void;
+  calibratePhoneVcam: () => void;
+  applyPhoneVcamPose: (pose: DirectorPhoneVcamPose) => void;
+  elevatePhoneVcam: (delta: number) => void;
+  startPhoneVcamRecording: () => boolean;
+  setPhoneVcamRecordingTime: (time: number) => void;
+  setPhoneVcamSampleCount: (count: number) => void;
+  importPhoneVcamTake: (
+    samples: DirectorPhoneVcamSample[],
+  ) => DirectorPhoneVcamImportResult | null;
   setTimelineTime: (time: number) => void;
   setTimelinePlaying: (playing: boolean) => void;
   advanceTimeline: (deltaSeconds: number) => void;
@@ -418,6 +478,35 @@ function cloneCameraValue(
     transform: cloneTransform(object.transform),
     target: [...object.camera.target],
     fov: object.camera.fov,
+  };
+}
+
+function cloneCameraKeyframeValue(
+  value: DirectorCameraKeyframeValue,
+): DirectorCameraKeyframeValue {
+  return {
+    transform: cloneTransform(value.transform),
+    target: [...value.target],
+    fov: value.fov,
+  };
+}
+
+function createDefaultPhoneVcamState(): DirectorPhoneVcamState {
+  return {
+    status: "idle",
+    gyroEnabled: false,
+    stability: 58,
+    keepLevel: true,
+    hold: false,
+    elevation: 0,
+    pose: { yaw: 0, pitch: 0, roll: 0 },
+    baselineCamera: null,
+    recordingStartTime: null,
+    sampleCount: 0,
+    takeCount: 0,
+    importedCameraId: null,
+    importedTrackId: null,
+    error: null,
   };
 }
 
@@ -776,7 +865,7 @@ function updateTuple(
   return next;
 }
 
-export const useDirectorStore = create<DirectorState>((set) => ({
+export const useDirectorStore = create<DirectorState>((set, get) => ({
   sourceNodeId: null,
   scene: {
     name: "第一集：咖啡馆对峙",
@@ -796,12 +885,23 @@ export const useDirectorStore = create<DirectorState>((set) => ({
   captures: [],
   activeCaptureId: null,
   timeline: createDefaultTimeline(),
+  phoneVcam: createDefaultPhoneVcamState(),
 
   openSession: (sourceNodeId) =>
     set((state) => ({
       sourceNodeId,
       selectedObjectId: state.selectedObjectId ?? "director-character-lead",
       timeline: { ...state.timeline, isPlaying: false },
+      phoneVcam:
+        state.phoneVcam.status === "recording"
+          ? {
+              ...state.phoneVcam,
+              status: "local-ready",
+              recordingStartTime: null,
+              sampleCount: 0,
+              error: null,
+            }
+          : state.phoneVcam,
     })),
 
   selectObject: (objectId, source = "explicit") =>
@@ -910,6 +1010,423 @@ export const useDirectorStore = create<DirectorState>((set) => ({
         capture.id === captureId ? { ...capture, sentNodeId: nodeId } : capture,
       ),
     })),
+
+  setPhoneVcamStatus: (status, error = null) =>
+    set((state) => ({
+      phoneVcam: {
+        ...state.phoneVcam,
+        status,
+        error,
+        recordingStartTime:
+          status === "recording"
+            ? state.phoneVcam.recordingStartTime
+            : null,
+      },
+    })),
+
+  connectPhoneVcamLocal: () => {
+    const state = get();
+    const camera = state.objects.find(
+      (object) => object.id === state.activeCameraId,
+    );
+    const baselineCamera = camera ? cloneCameraValue(camera) : null;
+    if (!camera || !baselineCamera) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "error",
+          error: "导演台视口还未准备好",
+        },
+      }));
+      return false;
+    }
+    set((current) => ({
+      viewMode: "camera",
+      selectedObjectId: camera.id,
+      timeline: { ...current.timeline, isPlaying: false },
+      phoneVcam: {
+        ...current.phoneVcam,
+        status: "local-ready",
+        hold: false,
+        elevation: 0,
+        pose: { yaw: 0, pitch: 0, roll: 0 },
+        baselineCamera,
+        recordingStartTime: null,
+        sampleCount: 0,
+        error: null,
+      },
+    }));
+    return true;
+  },
+
+  setPhoneVcamGyroEnabled: (enabled) =>
+    set((state) => ({
+      phoneVcam: { ...state.phoneVcam, gyroEnabled: enabled },
+    })),
+
+  setPhoneVcamStability: (stability) =>
+    set((state) => ({
+      phoneVcam: {
+        ...state.phoneVcam,
+        stability: Math.min(
+          Math.max(Number.isFinite(stability) ? stability : 0, 0),
+          100,
+        ),
+      },
+    })),
+
+  togglePhoneVcamKeepLevel: () =>
+    set((state) => ({
+      phoneVcam: {
+        ...state.phoneVcam,
+        keepLevel: !state.phoneVcam.keepLevel,
+      },
+    })),
+
+  setPhoneVcamHold: (hold) =>
+    set((state) => ({
+      phoneVcam: { ...state.phoneVcam, hold },
+    })),
+
+  calibratePhoneVcam: () =>
+    set((state) => {
+      const camera = state.objects.find(
+        (object) => object.id === state.activeCameraId,
+      );
+      const baselineCamera = camera ? cloneCameraValue(camera) : null;
+      if (!baselineCamera) return state;
+      return {
+        phoneVcam: {
+          ...state.phoneVcam,
+          baselineCamera,
+          elevation: 0,
+          pose: { yaw: 0, pitch: 0, roll: 0 },
+          hold: false,
+          error: null,
+        },
+      };
+    }),
+
+  applyPhoneVcamPose: (pose) =>
+    set((state) => {
+      const camera = state.objects.find(
+        (object) => object.id === state.activeCameraId,
+      );
+      const baselineCamera =
+        state.phoneVcam.baselineCamera ??
+        (camera ? cloneCameraValue(camera) : null);
+      const normalizedPose: DirectorPhoneVcamPose = {
+        yaw: Number.isFinite(pose.yaw) ? pose.yaw : 0,
+        pitch: Number.isFinite(pose.pitch) ? pose.pitch : 0,
+        roll: Number.isFinite(pose.roll) ? pose.roll : 0,
+      };
+      if (
+        !camera?.camera ||
+        !baselineCamera ||
+        state.phoneVcam.hold ||
+        !["local-ready", "recording", "imported"].includes(
+          state.phoneVcam.status,
+        )
+      ) {
+        return {
+          phoneVcam: {
+            ...state.phoneVcam,
+            pose: normalizedPose,
+          },
+        };
+      }
+      const previous = cloneCameraValue(camera);
+      if (!previous) return state;
+      const nextCamera = mapDirectorPhonePoseToCamera({
+        baseline: baselineCamera,
+        previous,
+        pose: normalizedPose,
+        stability: state.phoneVcam.stability,
+        keepLevel: state.phoneVcam.keepLevel,
+        elevation: state.phoneVcam.elevation,
+      });
+      return {
+        objects: state.objects.map((object) =>
+          object.id === camera.id
+            ? {
+                ...object,
+                transform: cloneTransform(nextCamera.transform),
+                camera: {
+                  target: [...nextCamera.target],
+                  fov: nextCamera.fov,
+                },
+              }
+            : object,
+        ),
+        phoneVcam: {
+          ...state.phoneVcam,
+          pose: normalizedPose,
+          baselineCamera,
+          error: null,
+        },
+      };
+    }),
+
+  elevatePhoneVcam: (delta) =>
+    set((state) => {
+      const camera = state.objects.find(
+        (object) => object.id === state.activeCameraId,
+      );
+      const baselineCamera =
+        state.phoneVcam.baselineCamera ??
+        (camera ? cloneCameraValue(camera) : null);
+      if (
+        !camera?.camera ||
+        !baselineCamera ||
+        state.phoneVcam.hold ||
+        !Number.isFinite(delta)
+      ) {
+        return state;
+      }
+      const elevation = Math.min(
+        Math.max(state.phoneVcam.elevation + delta, -4),
+        4,
+      );
+      const previous = cloneCameraValue(camera);
+      if (!previous) return state;
+      const nextCamera = mapDirectorPhonePoseToCamera({
+        baseline: baselineCamera,
+        previous,
+        pose: state.phoneVcam.pose,
+        stability: state.phoneVcam.stability,
+        keepLevel: state.phoneVcam.keepLevel,
+        elevation,
+      });
+      return {
+        objects: state.objects.map((object) =>
+          object.id === camera.id
+            ? {
+                ...object,
+                transform: cloneTransform(nextCamera.transform),
+                camera: {
+                  target: [...nextCamera.target],
+                  fov: nextCamera.fov,
+                },
+              }
+            : object,
+        ),
+        phoneVcam: {
+          ...state.phoneVcam,
+          elevation,
+          baselineCamera,
+          error: null,
+        },
+      };
+    }),
+
+  startPhoneVcamRecording: () => {
+    const state = get();
+    const camera = state.objects.find(
+      (object) => object.id === state.activeCameraId,
+    );
+    if (!camera?.camera) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          error: "导演台视口还未准备好",
+        },
+      }));
+      return false;
+    }
+    if (
+      !["local-ready", "imported"].includes(state.phoneVcam.status)
+    ) {
+      return false;
+    }
+    if (state.timeline.currentTime >= state.timeline.duration - 0.001) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          error: "当前播放头后没有可录制时长",
+        },
+      }));
+      return false;
+    }
+    set((current) => ({
+      timeline: { ...current.timeline, isPlaying: false },
+      phoneVcam: {
+        ...current.phoneVcam,
+        status: "recording",
+        baselineCamera:
+          cloneCameraValue(camera) ?? current.phoneVcam.baselineCamera,
+        recordingStartTime: current.timeline.currentTime,
+        sampleCount: 0,
+        importedCameraId: null,
+        importedTrackId: null,
+        error: null,
+      },
+    }));
+    return true;
+  },
+
+  setPhoneVcamRecordingTime: (time) =>
+    set((state) => {
+      if (state.phoneVcam.status !== "recording") return state;
+      const currentTime = clampDirectorTimelineTime(
+        time,
+        state.timeline.duration,
+      );
+      const activeCamera = state.objects.find(
+        (object) => object.id === state.activeCameraId,
+      );
+      const sampledObjects = applyTimelineAtTime(
+        state.objects,
+        state.timeline,
+        currentTime,
+      );
+      return {
+        objects: activeCamera
+          ? sampledObjects.map((object) =>
+              object.id === activeCamera.id ? activeCamera : object,
+            )
+          : sampledObjects,
+        timeline: {
+          ...state.timeline,
+          currentTime,
+          isPlaying: false,
+        },
+      };
+    }),
+
+  setPhoneVcamSampleCount: (count) =>
+    set((state) => ({
+      phoneVcam: {
+        ...state.phoneVcam,
+        sampleCount: Math.max(
+          0,
+          Math.round(Number.isFinite(count) ? count : 0),
+        ),
+      },
+    })),
+
+  importPhoneVcamTake: (samples) => {
+    const state = get();
+    const activeCamera = state.objects.find(
+      (object) => object.id === state.activeCameraId,
+    );
+    const startTime = state.phoneVcam.recordingStartTime;
+    const validSamples = samples
+      .filter(
+        (sample) =>
+          Number.isFinite(sample.time) &&
+          sample.time >= 0 &&
+          sample.time <= state.timeline.duration &&
+          isFiniteDirectorCameraValue(sample.value),
+      )
+      .sort((left, right) => left.time - right.time)
+      .filter(
+        (sample, index, all) =>
+          index === 0 ||
+          Math.abs(sample.time - all[index - 1].time) >= 0.001,
+      );
+    if (
+      state.phoneVcam.status !== "recording" ||
+      startTime === null ||
+      !activeCamera?.camera ||
+      validSamples.length < 2
+    ) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status:
+            current.phoneVcam.status === "recording"
+              ? "local-ready"
+              : current.phoneVcam.status,
+          recordingStartTime: null,
+          error: "本次手机运镜没有有效录制内容",
+        },
+      }));
+      return null;
+    }
+
+    const takeIndex = state.phoneVcam.takeCount + 1;
+    const createdAt = Date.now();
+    const cameraId = `director-phone-vcam-${takeIndex}-${createdAt}`;
+    const trackId = `director-track-phone-vcam-${takeIndex}-${createdAt}`;
+    const name = `手机运镜 ${takeIndex}`;
+    const lastSample = validSamples[validSamples.length - 1];
+    const lastValue = cloneCameraKeyframeValue(lastSample.value);
+    const camera: DirectorObject = {
+      id: cameraId,
+      name,
+      kind: "camera",
+      primitive: "camera",
+      color: "#6ed9f5",
+      visible: true,
+      locked: false,
+      transform: cloneTransform(lastValue.transform),
+      camera: {
+        target: [...lastValue.target],
+        fov: lastValue.fov,
+      },
+    };
+    const track: DirectorTimelineTrack = {
+      id: trackId,
+      kind: "camera",
+      objectId: cameraId,
+      label: name,
+      speedCurve: createDirectorSpeedCurve(),
+      keyframes: validSamples.map((sample, index) => ({
+        id: `${trackId}-keyframe-${index}`,
+        time: clampDirectorTimelineTime(
+          Math.max(sample.time, startTime),
+          state.timeline.duration,
+        ),
+        value: cloneCameraKeyframeValue(sample.value),
+      })),
+    };
+    const baseline = state.phoneVcam.baselineCamera;
+    const restoredObjects = state.objects.map((object) =>
+      object.id === activeCamera.id && baseline
+        ? {
+            ...object,
+            transform: cloneTransform(baseline.transform),
+            camera: {
+              target: [...baseline.target] as DirectorTuple3,
+              fov: baseline.fov,
+            },
+          }
+        : object,
+    );
+
+    set((current) => ({
+      objects: [...restoredObjects, camera],
+      selectedObjectId: cameraId,
+      activeCameraId: cameraId,
+      viewMode: "camera",
+      timeline: {
+        ...current.timeline,
+        currentTime: lastSample.time,
+        isPlaying: false,
+        tracks: [...current.timeline.tracks, track],
+        selectedTrackId: trackId,
+        selectedKeyframeId:
+          track.keyframes[track.keyframes.length - 1]?.id ?? null,
+        selectedMotionPathId: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+        editorMode: "timeline",
+      },
+      phoneVcam: {
+        ...current.phoneVcam,
+        status: "imported",
+        baselineCamera: cloneCameraKeyframeValue(lastValue),
+        recordingStartTime: null,
+        sampleCount: validSamples.length,
+        takeCount: takeIndex,
+        importedCameraId: cameraId,
+        importedTrackId: trackId,
+        error: null,
+      },
+    }));
+    return { cameraId, trackId };
+  },
 
   setTimelineTime: (time) =>
     set((state) => {

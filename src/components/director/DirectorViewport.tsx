@@ -11,6 +11,7 @@ import {
   PanelRightOpen,
   Rotate3D,
   Scaling,
+  Smartphone,
   X,
 } from "lucide-react";
 import { Line, OrbitControls, TransformControls } from "@react-three/drei";
@@ -47,6 +48,7 @@ import {
   type DirectorVideoExportRequest,
   type DirectorVideoExportResult,
 } from "@/components/director/directorVideoExport";
+import { DirectorPhoneVcamPanel } from "@/components/director/DirectorPhoneVcamPanel";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
 function CameraController() {
@@ -913,6 +915,9 @@ export function DirectorViewport({
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const phoneVcamStatus = useDirectorStore(
+    (state) => state.phoneVcam.status,
+  );
   const timeline = useDirectorStore((state) => state.timeline);
   const setTransformMode = useDirectorStore((state) => state.setTransformMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
@@ -929,6 +934,8 @@ export function DirectorViewport({
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [captureRequest, setCaptureRequest] = useState(0);
+  const [phoneVcamOpen, setPhoneVcamOpen] = useState(false);
+  const phoneVcamRecording = phoneVcamStatus === "recording";
 
   useLayoutEffect(() => {
     const element = viewportRef.current;
@@ -1098,6 +1105,11 @@ export function DirectorViewport({
         </div>
       ) : null}
 
+      <DirectorPhoneVcamPanel
+        open={phoneVcamOpen}
+        onClose={() => setPhoneVcamOpen(false)}
+      />
+
       <div className="absolute left-3 top-3 z-10 hidden gap-1 max-[899px]:flex">
         <button
           type="button"
@@ -1176,8 +1188,32 @@ export function DirectorViewport({
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button
           type="button"
+          data-director-phone-vcam-trigger
+          aria-label="虚拟相机"
+          title="虚拟相机"
+          aria-expanded={phoneVcamOpen}
+          aria-pressed={phoneVcamOpen}
+          onClick={() => {
+            if (phoneVcamRecording) return;
+            setPhoneVcamOpen((value) => !value);
+          }}
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
+            phoneVcamOpen && "bg-white/10 text-[#5ddcff]",
+            phoneVcamRecording && "text-[#ed7a7d]",
+          )}
+        >
+          <Smartphone size={15} />
+        </button>
+        <span className="mx-0.5 h-5 w-px bg-white/10" />
+        <button
+          type="button"
           data-director-capture
-          disabled={isCapturing || timeline.motionPathDraft !== null}
+          disabled={
+            isCapturing ||
+            timeline.motionPathDraft !== null ||
+            phoneVcamRecording
+          }
           onClick={requestCapture}
           className="flex h-8 items-center gap-1.5 rounded bg-[#e7e7e7] px-2.5 text-[11px] text-[#202020] hover:bg-white disabled:bg-[#555] disabled:text-[#999]"
         >

@@ -105,6 +105,6 @@
 - [x] Current locale and public chunk corpus audited
 - [x] Source/upstream/clone boundaries recorded
 - [x] UI, pose, recording and import contracts planned
-- [ ] Store, math and panel implementation
+- [x] Store, math and panel implementation
 - [ ] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate

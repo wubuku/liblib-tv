@@ -49,6 +49,9 @@ export default function DirectorDesk({
   const captures = useDirectorStore((state) => state.captures);
   const activeCaptureId = useDirectorStore((state) => state.activeCaptureId);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const phoneVcamStatus = useDirectorStore(
+    (state) => state.phoneVcam.status,
+  );
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const timelineDuration = useDirectorStore(
     (state) => state.timeline.duration,
@@ -78,6 +81,8 @@ export default function DirectorDesk({
   const [exportedNodeId, setExportedNodeId] = useState<string | null>(null);
   const exportRequestId = useRef(0);
   const exporting = exportStatus === "exporting";
+  const phoneVcamRecording = phoneVcamStatus === "recording";
+  const workspaceBusy = exporting || phoneVcamRecording;
   const activeCapture = useMemo(
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
@@ -88,16 +93,16 @@ export default function DirectorDesk({
   }, [openSession, sourceNodeId]);
 
   const closeWorkspace = useCallback(() => {
-    if (exporting) return;
+    if (workspaceBusy) return;
     selectNode(exportedNodeId ?? sourceNodeId);
     onClose();
-  }, [exportedNodeId, exporting, onClose, selectNode, sourceNodeId]);
+  }, [exportedNodeId, onClose, selectNode, sourceNodeId, workspaceBusy]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
-      if (exporting) return;
+      if (workspaceBusy) return;
       if (mobilePanel) {
         setMobilePanel(null);
         return;
@@ -110,7 +115,7 @@ export default function DirectorDesk({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeWorkspace, exporting, exportPanelOpen, mobilePanel]);
+  }, [closeWorkspace, exportPanelOpen, mobilePanel, workspaceBusy]);
 
   const sendCapture = (capture: DirectorCapture) => {
     if (capture.sentNodeId) return;
@@ -128,7 +133,7 @@ export default function DirectorDesk({
   };
 
   const toggleExportPanel = () => {
-    if (exporting) return;
+    if (workspaceBusy) return;
     setExportPanelOpen((open) => {
       const nextOpen = !open;
       if (nextOpen) {
@@ -154,7 +159,7 @@ export default function DirectorDesk({
   };
 
   const beginVideoExport = () => {
-    if (exporting) return;
+    if (workspaceBusy) return;
     const durationSeconds = Math.min(
       Math.max(exportDuration, 1),
       timelineDuration,
@@ -225,7 +230,7 @@ export default function DirectorDesk({
             data-close-director
             aria-label="返回画布"
             title="返回画布"
-            disabled={exporting}
+            disabled={workspaceBusy}
             onClick={closeWorkspace}
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
           >
@@ -270,6 +275,8 @@ export default function DirectorDesk({
             data-director-capture-status={
               exporting
                 ? "exporting"
+                : phoneVcamRecording
+                  ? "phone-recording"
                 : isCapturing
                   ? "capturing"
                   : activeCapture
@@ -282,6 +289,11 @@ export default function DirectorDesk({
               <>
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[#09caf5]" />
                 导出中 {Math.round(exportProgress * 100)}%
+              </>
+            ) : phoneVcamRecording ? (
+              <>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[#e25c60]" />
+                手机运镜录制中
               </>
             ) : isCapturing ? (
               <>
@@ -302,7 +314,7 @@ export default function DirectorDesk({
               type="button"
               data-director-export-trigger
               aria-expanded={exportPanelOpen}
-              disabled={exporting}
+              disabled={workspaceBusy}
               onClick={toggleExportPanel}
               className={cn(
                 "flex h-8 items-center gap-1.5 rounded px-2 text-[11px] text-[#b5b5b5] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]",
@@ -329,7 +341,7 @@ export default function DirectorDesk({
             type="button"
             aria-label="关闭导演台"
             title="关闭"
-            disabled={exporting}
+            disabled={workspaceBusy}
             onClick={closeWorkspace}
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
           >
