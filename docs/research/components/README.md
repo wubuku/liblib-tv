@@ -9,8 +9,11 @@
 | Shell and navigation | `TopNavBar`, `CanvasTabDropdown`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel`, `StoryboardBoard`, `AgentDrawer` |
 | Panels and dialogs | `AddNodePanel`, `MainEntryPanels`, `VideoClipEditPanel`, `CameraConfigDialog`, `CameraMovementDialog`, `KeyboardShortcutsDialog` |
 | Image workflow | `ImageNode`, `ImageEditPanel` |
-| Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel` |
+| Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel`, `PictureEditPanel` |
 | Graph behavior | `DeletableEdge`, `StoryboardGroupNode` |
 | Specialized nodes | `ScriptNode`, `ScriptExecutionNode`, `TextNode`, `AudioNode`, `ShotBreakdownNode`, `ShotBreakdownResultNode`, `VideoClipNode` |
+
+The `PictureEditPanel` contract is also recorded in
+[`PictureEditPanel.spec.md`](PictureEditPanel.spec.md).
 
 Files are named `<Component>.spec.md`. Batch-specific contracts live in the corresponding `docs/research/liblib-canvas-batchN-*` directory.
