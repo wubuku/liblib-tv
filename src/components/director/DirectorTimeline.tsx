@@ -22,11 +22,16 @@ import {
   SkipForward,
   Trash2,
   Waypoints,
+  X,
   ZoomIn,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
 import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
+import {
+  DIRECTOR_CAMERA_MOTION_PRESETS,
+  type DirectorCameraMotionPresetMode,
+} from "@/components/director/directorCameraPresets";
 
 function formatTimelineTime(seconds: number): string {
   const safeSeconds = Math.max(0, seconds);
@@ -80,6 +85,9 @@ export function DirectorTimeline() {
   const createMotionPath = useDirectorStore(
     (state) => state.createMotionPath,
   );
+  const applyCameraMotionPreset = useDirectorStore(
+    (state) => state.applyCameraMotionPreset,
+  );
   const startMotionPathDrawing = useDirectorStore(
     (state) => state.startMotionPathDrawing,
   );
@@ -96,7 +104,12 @@ export function DirectorTimeline() {
   const timelineCanvasRef = useRef<HTMLDivElement>(null);
   const pathTriggerRef = useRef<HTMLButtonElement>(null);
   const pathMenuRef = useRef<HTMLDivElement>(null);
+  const presetTriggerRef = useRef<HTMLButtonElement>(null);
+  const presetPanelRef = useRef<HTMLDivElement>(null);
   const [pathMenuLeft, setPathMenuLeft] = useState<number | null>(null);
+  const [presetPanelLeft, setPresetPanelLeft] = useState<number | null>(null);
+  const [presetMode, setPresetMode] =
+    useState<DirectorCameraMotionPresetMode>("replace");
 
   useEffect(() => {
     if (!timeline.isPlaying) return;
@@ -136,6 +149,17 @@ export function DirectorTimeline() {
   const cameraFollowActive = Boolean(
     selectedTrackObject?.camera?.followTargetId,
   );
+  const selectedPresetApplication =
+    timeline.cameraMotionPreset.application?.trackId === selectedTrack?.id
+      ? timeline.cameraMotionPreset.application
+      : null;
+  const presetError = timeline.cameraMotionPreset.error;
+  const selectedPresetError =
+    presetError &&
+    presetError.trackId === selectedTrack?.id &&
+    presetError.mode === presetMode
+      ? presetError
+      : null;
   const hasSelectedObjectTrack = timeline.tracks.some(
     (track) =>
       track.objectId === selectedObjectId && track.kind !== "pose",
@@ -173,8 +197,33 @@ export function DirectorTimeline() {
     };
   }, [pathMenuLeft]);
 
+  useEffect(() => {
+    if (presetPanelLeft === null) return;
+    const close = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        (presetPanelRef.current?.contains(target) ||
+          presetTriggerRef.current?.contains(target))
+      ) {
+        return;
+      }
+      setPresetPanelLeft(null);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPresetPanelLeft(null);
+    };
+    window.addEventListener("pointerdown", close);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      window.removeEventListener("pointerdown", close);
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [presetPanelLeft]);
+
   const togglePathMenu = () => {
     if (cameraFollowActive) return;
+    setPresetPanelLeft(null);
     if (pathMenuLeft !== null) {
       setPathMenuLeft(null);
       return;
@@ -184,6 +233,21 @@ export function DirectorTimeline() {
     if (!root || !trigger) return;
     setPathMenuLeft(
       Math.max(8, Math.min(trigger.left - root.left, root.width - 176)),
+    );
+  };
+
+  const togglePresetPanel = () => {
+    if (selectedTrack?.kind !== "camera" || cameraFollowActive) return;
+    if (presetPanelLeft !== null) {
+      setPresetPanelLeft(null);
+      return;
+    }
+    const root = timelineRootRef.current?.getBoundingClientRect();
+    const trigger = presetTriggerRef.current?.getBoundingClientRect();
+    if (!root || !trigger) return;
+    setPathMenuLeft(null);
+    setPresetPanelLeft(
+      Math.max(8, Math.min(trigger.left - root.left, root.width - 312)),
     );
   };
 
@@ -303,6 +367,31 @@ export function DirectorTimeline() {
           />
           自动关键帧
         </button>
+        <button
+          ref={presetTriggerRef}
+          type="button"
+          data-director-camera-preset-trigger
+          disabled={selectedTrack?.kind !== "camera" || cameraFollowActive}
+          title={
+            cameraFollowActive
+              ? "跟随目标时不可使用预设运镜"
+              : undefined
+          }
+          aria-expanded={presetPanelLeft !== null}
+          onClick={togglePresetPanel}
+          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+        >
+          <Camera size={13} />
+          预设运镜
+        </button>
+        {cameraFollowActive && selectedTrack?.kind === "camera" ? (
+          <span
+            data-director-camera-preset-error
+            className="shrink-0 text-[10px] text-[#c9a36c]"
+          >
+            跟随目标时不可使用预设运镜
+          </span>
+        ) : null}
         <button
           ref={pathTriggerRef}
           type="button"
@@ -443,6 +532,137 @@ export function DirectorTimeline() {
           />
         </label>
       </header>
+
+      {presetPanelLeft !== null ? (
+        <div
+          ref={presetPanelRef}
+          data-director-camera-preset-panel
+          data-director-camera-preset-panel-mode={presetMode}
+          className="absolute top-10 z-50 w-[304px] max-w-[calc(100%-16px)] overflow-hidden rounded border border-white/[0.1] bg-[#202020] shadow-[0_16px_38px_rgba(0,0,0,0.48)]"
+          style={{ left: presetPanelLeft }}
+        >
+          <header className="flex h-10 items-center border-b border-white/[0.07] px-3">
+            <Camera size={14} className="text-[#66d9f4]" />
+            <h3 className="ml-2 text-[11px] font-medium text-[#dedede]">
+              预设运镜
+            </h3>
+            <span className="ml-auto text-[9px] text-[#5f5f5f]">预设</span>
+            <button
+              type="button"
+              aria-label="关闭预设运镜"
+              title="关闭"
+              onClick={() => setPresetPanelLeft(null)}
+              className="ml-1 flex h-7 w-7 items-center justify-center rounded text-[#727272] hover:bg-white/[0.06] hover:text-white"
+            >
+              <X size={13} />
+            </button>
+          </header>
+
+          <div className="p-3">
+            <div
+              data-director-camera-preset-mode={presetMode}
+              className="grid h-8 grid-cols-2 gap-1 rounded border border-white/[0.08] bg-[#181818] p-0.5"
+            >
+              {(
+                [
+                  ["replace", "替换运镜"],
+                  ["append", "追加运镜"],
+                ] as const
+              ).map(([mode, label]) => (
+                <button
+                  key={mode}
+                  type="button"
+                  data-director-camera-preset-mode-option={mode}
+                  aria-pressed={presetMode === mode}
+                  onClick={() => setPresetMode(mode)}
+                  className={cn(
+                    "rounded text-[10px] text-[#818181] hover:text-white",
+                    presetMode === mode &&
+                      "bg-[#303030] text-[#6eddf6]",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-2 grid grid-cols-2 gap-1.5">
+              {DIRECTOR_CAMERA_MOTION_PRESETS.map((preset) => {
+                const active =
+                  selectedPresetApplication?.preset === preset.id &&
+                  selectedPresetApplication.mode === presetMode;
+                return (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    data-director-camera-preset-option={preset.id}
+                    aria-pressed={active}
+                    onClick={() =>
+                      applyCameraMotionPreset(
+                        preset.id,
+                        presetMode,
+                        selectedTrack?.id,
+                      )
+                    }
+                    className={cn(
+                      "flex h-8 min-w-0 items-center justify-center gap-1.5 rounded border border-white/[0.07] bg-[#252525] px-2 text-[10px] text-[#9b9b9b] hover:border-white/[0.14] hover:text-white",
+                      active &&
+                        "border-[#65d9f4]/35 bg-[#0c6579]/20 text-[#78e0f7]",
+                    )}
+                  >
+                    {preset.id === "orbit" ? (
+                      <Circle size={12} />
+                    ) : preset.id === "half-arc" ? (
+                      <Waypoints size={12} />
+                    ) : preset.id === "spiral-up" ? (
+                      <Route size={12} />
+                    ) : (
+                      <Move3D size={12} />
+                    )}
+                    <span className="truncate">{preset.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-2 min-h-8 border-t border-white/[0.07] pt-2">
+              {selectedPresetError ? (
+                <p
+                  data-director-camera-preset-error
+                  className="text-[9px] leading-4 text-[#d5a86d]"
+                >
+                  {selectedPresetError.message}
+                </p>
+              ) : selectedPresetApplication ? (
+                <p
+                  data-director-camera-preset-status
+                  data-preset={selectedPresetApplication.preset}
+                  data-mode={selectedPresetApplication.mode}
+                  data-start-time={selectedPresetApplication.startTime}
+                  data-end-time={selectedPresetApplication.endTime}
+                  data-keyframe-count={
+                    selectedPresetApplication.generatedKeyframeIds.length
+                  }
+                  className="text-[9px] leading-4 text-[#72d995]"
+                >
+                  {selectedPresetApplication.mode === "replace"
+                    ? "替换运镜"
+                    : "追加运镜"}
+                  {" · "}
+                  {
+                    DIRECTOR_CAMERA_MOTION_PRESETS.find(
+                      (item) =>
+                        item.id === selectedPresetApplication.preset,
+                    )?.label
+                  }
+                </p>
+              ) : (
+                <p className="text-[9px] leading-4 text-[#5f5f5f]">预设</p>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {pathMenuLeft !== null ? (
         <div

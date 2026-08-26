@@ -43,6 +43,11 @@ import {
   type DirectorCameraFollowView,
   type DirectorCameraLookAtMode,
 } from "@/components/director/directorCameraFollow";
+import {
+  createDirectorCameraMotionPresetValues,
+  type DirectorCameraMotionPresetId,
+  type DirectorCameraMotionPresetMode,
+} from "@/components/director/directorCameraPresets";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -51,6 +56,10 @@ export type DirectorAspectRatio = "16:9" | "9:16" | "1:1";
 export type DirectorObjectKind = "character" | "prop" | "camera";
 export type DirectorPrimitive = "character" | "table" | "mug" | "wall" | "camera";
 export type { DirectorCameraFollowView, DirectorCameraLookAtMode };
+export type {
+  DirectorCameraMotionPresetId,
+  DirectorCameraMotionPresetMode,
+};
 
 export interface DirectorTransform {
   position: DirectorTuple3;
@@ -259,6 +268,22 @@ export interface DirectorTimelineState {
   selectedMotionPathHandle: DirectorMotionPathHandle | null;
   motionPathDraft: DirectorMotionPathDraft | null;
   editorMode: "timeline" | "curve";
+  cameraMotionPreset: {
+    application: {
+      trackId: string;
+      preset: DirectorCameraMotionPresetId;
+      mode: DirectorCameraMotionPresetMode;
+      startTime: number;
+      endTime: number;
+      generatedKeyframeIds: string[];
+    } | null;
+    error: {
+      trackId: string;
+      preset: DirectorCameraMotionPresetId;
+      mode: DirectorCameraMotionPresetMode;
+      message: string;
+    } | null;
+  };
 }
 
 interface DirectorState {
@@ -352,6 +377,11 @@ interface DirectorState {
     handle: 1 | 2,
     point: [number, number],
   ) => void;
+  applyCameraMotionPreset: (
+    preset: DirectorCameraMotionPresetId,
+    mode: DirectorCameraMotionPresetMode,
+    trackId?: string,
+  ) => boolean;
   createMotionPath: (
     preset: DirectorMotionPathGeometryPreset,
     trackId?: string,
@@ -660,6 +690,10 @@ function createDefaultTimeline(): DirectorTimelineState {
     selectedMotionPathHandle: null,
     motionPathDraft: null,
     editorMode: "timeline",
+    cameraMotionPreset: {
+      application: null,
+      error: null,
+    },
   };
 }
 
@@ -2065,6 +2099,119 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         timeline,
       };
     }),
+
+  applyCameraMotionPreset: (preset, mode, requestedTrackId) => {
+    const state = get();
+    const trackId = requestedTrackId ?? state.timeline.selectedTrackId;
+    const track = state.timeline.tracks.find(
+      (item) => item.id === trackId && item.kind === "camera",
+    );
+    const camera = state.objects.find(
+      (object) => object.id === track?.objectId && object.camera,
+    );
+    if (!track || track.kind !== "camera" || !camera?.camera) return false;
+
+    if (camera.camera.followTargetId) {
+      set((current) => ({
+        timeline: {
+          ...current.timeline,
+          cameraMotionPreset: {
+            ...current.timeline.cameraMotionPreset,
+            error: {
+              trackId: track.id,
+              preset,
+              mode,
+              message: "跟随目标时不可使用预设运镜",
+            },
+          },
+        },
+      }));
+      return false;
+    }
+
+    const lastKeyframe = track.keyframes[track.keyframes.length - 1];
+    if (
+      mode === "append" &&
+      (!lastKeyframe ||
+        lastKeyframe.time >= state.timeline.duration - 0.001)
+    ) {
+      set((current) => ({
+        timeline: {
+          ...current.timeline,
+          cameraMotionPreset: {
+            ...current.timeline.cameraMotionPreset,
+            error: {
+              trackId: track.id,
+              preset,
+              mode,
+              message: "当前时间轴没有可追加的时长",
+            },
+          },
+        },
+      }));
+      return false;
+    }
+
+    const startTime = mode === "replace" ? 0 : lastKeyframe.time;
+    const endTime = state.timeline.duration;
+    const startValue =
+      mode === "replace"
+        ? cloneCameraValue(camera)
+        : cloneCameraKeyframeValue(lastKeyframe.value);
+    if (!startValue) return false;
+    const values = createDirectorCameraMotionPresetValues(preset, startValue);
+    const createdAt = Date.now();
+    const generated = values.map((value, index) => ({
+      id: `${track.id}-preset-${preset}-${createdAt}-${index}`,
+      time:
+        startTime +
+        (endTime - startTime) * (index / Math.max(values.length - 1, 1)),
+      value: cloneCameraKeyframeValue(value),
+    }));
+    const keyframes =
+      mode === "replace"
+        ? generated
+        : [...track.keyframes, ...generated.slice(1)];
+    const tracks = state.timeline.tracks.map((item) =>
+      item.id === track.id ? { ...track, keyframes } : item,
+    ) as DirectorTimelineTrack[];
+    const motionPaths = state.timeline.motionPaths.map((path) =>
+      path.id === track.motionPathId ? { ...path, enabled: false } : path,
+    );
+    const timeline: DirectorTimelineState = {
+      ...state.timeline,
+      tracks,
+      motionPaths,
+      selectedTrackId: track.id,
+      selectedKeyframeId: null,
+      selectedMotionPathId: null,
+      selectedMotionPathAnchorId: null,
+      selectedMotionPathHandle: null,
+      motionPathDraft: null,
+      editorMode: "timeline",
+      isPlaying: false,
+      cameraMotionPreset: {
+        application: {
+          trackId: track.id,
+          preset,
+          mode,
+          startTime,
+          endTime,
+          generatedKeyframeIds: generated.map((keyframe) => keyframe.id),
+        },
+        error: null,
+      },
+    };
+    set({
+      objects: applyTimelineAtTime(
+        state.objects,
+        timeline,
+        timeline.currentTime,
+      ),
+      timeline,
+    });
+    return true;
+  },
 
   createMotionPath: (preset, requestedTrackId) =>
     set((state) => {
