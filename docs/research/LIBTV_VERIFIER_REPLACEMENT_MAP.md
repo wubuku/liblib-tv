@@ -2,7 +2,7 @@
 
 > 目的：区分历史 clone 回归、当前 source contract、local fixture contract 和尚未具备 source fixture 的断言，给后续授权 batch 一条可审计的替换路径。
 >
-> 本文是文档和测试规划，不修改现有 verifier，也不把任何历史通过升级为当前 LibTV parity。当前 fixture 身份与 reset 见 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)。
+> 本文是文档和测试规划，不修改现有 verifier，也不把任何历史通过升级为当前 LibTV parity。当前 fixture 身份与 reset 见 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)；跨项目长期闸门见 [`DECISION_REGISTER.md`](../DECISION_REGISTER.md) 的 DEC-021 至 DEC-023。
 
 ## 1. 核心规则
 
@@ -51,7 +51,7 @@
 | 23-25 | 片段重拍、逐帧拉片结果结构、智能剪辑空态 | `LOCAL_FIXTURE` + `BLOCKED_SOURCE` | source ready-video、result/version/process lifecycle | 保留 clone fixture；新增 source-ready contract 前不替换 |
 | 26-33 | 续写、字幕、音视频分离、截帧、主体编辑、深度、长视频 | `LOCAL_FIXTURE` + `BLOCKED_SOURCE` | source ready/process/dirty fixture、失败和重试状态 | 保留 bounded graph/history；真实 lifecycle 单独新增 |
 | 35-47 | Director R3F、timeline、path、capture/export、phone、pose、camera、groups、model proxy | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | source locale/entry 与 clone implementation 分开；真实资产不推导 | 保留 bounded Director regression；不迁移成普通 LibTV verifier |
-| 48 | Director local model import/persistence workflow | `PARALLEL_WIP` | owner 收口后才核定 storage reset、verifier 和 maturity | 当前稳定门之外；只读避让 |
+| 48 | Director local model import/persistence workflow | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | 保留 clone-owned storage reset、focused verifier 和 bounded maturity；真实 mesh/远端同步另行阻塞 | 作为有界 Director regression 保留；不迁移成普通 LibTV 或源站 parity verifier |
 
 Batch 34 是 research-only，不是缺失的 verifier；不要为它创建“补跑脚本”以填充编号。
 
@@ -111,14 +111,15 @@ Prompt 非空且 references 为空
 - source-ready toolbar、real segment replacement、partial/failed/retry lifecycle 均进入 `BLOCKED_SOURCE`；
 - 任何新 source verifier 必须使用独立 source fixture，并记录 version/time range/run/node/save status。
 
-### 4.4 `verify-liblib-batch35.py` - `batch47.py`
+### 4.4 `verify-liblib-batch35.py` - `batch48.py`
 
 Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取，并拥有独立的 R3F、timeline、history、capture/export 语义。它们：
 
 - 可以继续保护 bounded Director prototype；
 - 不能作为普通 LibTV `canvasStore` fixture 或 source parity 验证；
 - 真实 mesh/FBX/OBJ、摄影机设备、Provider 和远端资源不在当前合同内；
-- 新增 Director persistence 或 local model fixture 时，必须由 owner 维护 setup/teardown 和 storage boundary。
+- Batch 48 已补齐 clone-owned local model 的 setup/teardown、storage boundary 和 focused verifier；这些断言仍只证明 Director prototype。
+- 新增 Director persistence 或 local model fixture 时，必须由 owner 维护 setup/teardown 和 storage boundary，不得把普通 LibTV 的 reset 规则套进来。
 
 ## 5. Replacement Queue
 
@@ -244,7 +245,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 - Batch 9/10 的历史断言继续保留，不扩写为当前 source contract；
 - Batch 21-33 的 local process/result checks 继续保留为 bounded clone fixture；
 - Batch 35-47 继续保留为 bounded Director regression，不迁移到普通 LibTV；
-- Batch 48 继续按 `PARALLEL_WIP` 处理，不修改其 setup、storage、脚本、截图或实施记录；
+- Batch 48 已是 bounded Director `recorded pass`，保留其 setup、storage、脚本、截图和实施记录；不把 local descriptor/proxy 解释为真实资产、远端同步或 LibTV persistence；
 - 新 current-source verifier 只有在 source freshness report、fixture ID、明确授权和 replacement plan 同时存在时才进入实现批次；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 

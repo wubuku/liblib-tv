@@ -28,6 +28,9 @@
 | DEC-018 | 协作工作区 | 不使用 stash/reset/checkout 覆盖他人 WIP；提交只暂存自己的路径，关键进展 commit/push | ACTIVE |
 | DEC-019 | 历史截图 | 截图是带日期、viewport、zoom、状态的证据，不自动等于当前 UI | ACTIVE |
 | DEC-020 | Director 边界 | Director 是独立的 lazy R3F island；React Flow graph、director serializable state 和 Three.js runtime refs 分层 | ACTIVE |
+| DEC-021 | Fixture 身份与 reset | 后续 verifier 必须引用具名 fixture；普通画布以新 Page/真实 UI 构造隔离，undo 不替代 teardown；Director storage 使用显式清理和 fresh-context 断言 | ACTIVE |
+| DEC-022 | 共享源站 fixture | 当前登录态共享项目只作为 `SHARED_READ_ONLY` 观察对象；没有独立 project、owner、允许动作、清理路径和停止条件时，不把它当可重复 source fixture | ACTIVE |
+| DEC-023 | Verifier replacement | 历史断言先保留；只有 current source contract、稳定 fixture、明确编码授权和新 verifier 齐备后，才申请替换或退役 | RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -81,6 +84,36 @@
 
 **依据：** [`LIBTV_RESEARCH_GO_NO_GO.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)、[`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)。
 
+### DEC-021：Fixture 必须有身份和可证明的 reset
+
+**背景：** 当前普通 LibTV、Director 和源站研究混用多种状态来源：源码内置 demo、空画布 UI 构造、transaction-derived graph、公开 Director store 和登录态共享项目。新 Page、reload、切换空画布、undo 和清理 browser-local storage 的隔离等级不同。
+
+**决策：** 后续 verifier 和研究计划必须引用 [`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) 的具名 fixture ID，并记录 owner、构造、初始状态、允许动作、禁止动作、reset method 和 reset assertions。普通 LibTV 优先使用新 Page 加真实 UI 构造；undo 只能验证 graph transaction，不能代替 teardown。Director 的 storage 必须显式清理并用 fresh Page/context 验证；未经授权不增加通用 fixture injector。
+
+**影响：** “使用测试数据”“刷新即可”“按 Cmd/Ctrl+Z 撤销”都不足以描述可重复性。fixture 状态变化必须同步 fixture catalog、verification ledger 和受影响的 traceability claim。
+
+**依据：** [`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`LIBTV_VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)。
+
+### DEC-022：共享源站只用于安全只读观察
+
+**背景：** 当前 LibTV 登录态 URL 指向共享项目，无法证明每次研究前都能恢复相同 graph、viewport、selection、媒体版本或远端任务状态。
+
+**决策：** 共享项目保持 `SHARED_READ_ONLY`。没有独立 project/space、owner、允许动作、消耗上限、预期观测量、远端清理路径和停止条件时，不输入 Prompt、不接受 AutoLink、不上传、不提交、不保存、不生成、不改变偏好，也不做可能产生 graph mutation 的探索。
+
+**影响：** 共享源站可以回答“当前看见什么”，不能回答“写入后发生什么”或提供 source parity regression fixture。需要写入、ready-video、dirty image 或 process lifecycle 的问题必须登记 `REQUIRED_DISPOSABLE` / `BLOCKED_BY_FIXTURE`。
+
+**依据：** [`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_RESEARCH_GO_NO_GO.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)。
+
+### DEC-023：历史 verifier 采用双轨替换
+
+**背景：** Batch 9/10 等历史 clone verifier 仍有兼容回归价值，但部分几何、AutoLink 和动作断言已被较新的 source contract 取代；Batch 48 则证明了另一个有界 clone-owned Director slice 已经可以 recorded pass。
+
+**决策：** 历史 verifier 不因当前 source 漂移而直接删除、放宽或重写。先并行登记 current source contract、local/source fixture、focused verifier、截图台账和授权状态；新 verifier 稳定后再评估旧断言是保留、标历史、降级还是退役。clone-owned recorded pass 只提升 clone 的有界成熟度，不提升为源站 parity。
+
+**影响：** replacement queue 的 `REPLACEMENT_READY` 不是“已经实现”，而是满足 source、fixture、授权和 verifier 前置条件后的可申请状态。任何替换都要保留 old verifier provenance，并以 path-scoped commit/push 落档。
+
+**依据：** [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md)、[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)、[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
+
 ## 3. 何时可以重审决策
 
 只有出现以下事件之一，才需要更新对应决策，而不是在代码中悄悄绕过：
@@ -89,7 +122,7 @@
 - 用户明确授权某个具体编码 slice；
 - 获得可丢弃的源站/clone fixture，能够安全复现此前的未知状态；
 - React Flow、Next.js 或项目路由边界发生已批准的基础设施升级；
-- 其他开发者的业务接口稳定并明确需要最小测试夹具适配。
+- 其他开发者的业务接口稳定并明确需要最小测试夹具适配；
+- fixture 的身份、reset/storage 边界或 verifier replacement 前置条件发生变化。
 
 重审时必须追加新的证据、影响范围、替代方案和 commit，不得静默删除旧决策。历史 snapshot 若仍对旧 Batch 有效，保留为 `HISTORICAL`。
-
