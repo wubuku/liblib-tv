@@ -48,6 +48,7 @@ and local source inspection remain the authoritative evidence for this batch.
 | included mannequin asset | fixed checkout notice | separate Sketchfab Standard notice; do not treat it as covered by repository MIT |
 | model/image asset license | unresolved for external catalog | inspect asset paths and notices; do not reuse |
 | exact panel geometry and interaction timing | unresolved | inspect source; use browser only if needed |
+| LibTV original site's Three.js/R3F usage | not established by this batch | do not infer the original stack from the clone's package.json |
 | LibTV director-desk parity | not established | compare only after code archaeology |
 
 ## 4. Screenshot Policy

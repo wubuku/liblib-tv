@@ -6,8 +6,9 @@ The current clone has two independent routes and stores:
 
 - LibTV `/` uses React Flow nodes, `canvasStore` and `uiStore`;
 - FrameOS `/frameos/*` uses its own node system and `frameosStore`;
-- the current project does not depend on Three.js or React Three Fiber for product
-  runtime;
+- the current clone does not currently depend on Three.js or React Three Fiber
+  for product runtime; this is the starting state of the clone, not a
+  compatibility restriction;
 - selected-node panels are already calibrated as node-anchored overlays;
 - graph workflows use atomic store transactions and local in-memory history.
 
@@ -26,7 +27,7 @@ domain ideas, not merging stores or rendering systems.
 | Camera view switching | `DirectorCanvas.tsx` | preview/player state | Medium | Borrow as preview mode concept |
 | Aspect frame + thirds guide | `ViewportAspectOverlay.tsx` | image/video preview surfaces | Medium | Borrow after source calibration |
 | Transform gizmo | R3F `TransformControls` + `SceneRoot.tsx` | React Flow node drag/resize | High | Defer; different coordinate systems |
-| 3D scene/object rendering | `DirectorCanvas.tsx`, `SceneRoot.tsx` | none | Very high | Separate future route/embedding decision |
+| 3D scene/object rendering | `DirectorCanvas.tsx`, `SceneRoot.tsx` | none in current clone | High | Technically compatible; decide route/region boundary from the director-desk UX |
 | Character body/pose runtime | `runtime/` and pose presets | no matching LibTV entity | Very high | Do not start here |
 | Crowd array | `directorStore.ts`, `ObjectTreePanel.tsx` | possible shot/candidate group | Medium | Borrow grouping contract only |
 | Model library | `modelLibraryCatalog.ts`, external `模型库/` | asset manager/history | High | Rebuild around owned assets |
@@ -68,10 +69,9 @@ should not reuse FrameOS state. A future implementation can use:
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| Two rendering systems in one route | bundle size, event conflicts, debugging cost | start with 2D director slice; isolate R3F route |
+| Two rendering systems in one route | bundle size, pointer-event conflicts, debugging cost | use a dedicated R3F viewport region and an explicit React Flow/R3F state bridge |
 | Duplicate source of truth for shots | stale preview/node links | typed adapter and one transaction boundary |
 | Persisting data URLs in localStorage | quota failures and slow hydration | keep preview metadata; use object URLs/IndexedDB when real |
 | Upstream host protocol mismatch | silent integration failure | define LibTV-specific messages or same-store adapter |
 | External `模型库/` dependency | non-reproducible build | replace with owned catalog or explicit optional asset package |
 | README/test status drift | false confidence | record fixed commit and run commands in implementation log |
-

@@ -8,6 +8,11 @@ node toolbars/panels, React Flow topology and Zustand history. It can borrow the
 director desk's context rules and camera-oriented workflows without pretending
 that a 2D node graph is a 3D scene editor.
 
+This is a product sequencing decision, not a technical incompatibility claim:
+React Flow and Three.js/R3F can coexist. If the director-desk experience requires
+true 3D staging, R3F should be treated as a first-class central viewport and
+connected to the LibTV graph through a typed session/return boundary.
+
 ## Priority A: Borrow
 
 ### A1. Full-bleed three-zone workbench
@@ -163,7 +168,7 @@ protocol must be redesigned around current LibTV identifiers and origin rules.
 
 | Upstream element | Reason |
 |---|---|
-| Three.js scene runtime as the first implementation | Current LibTV is a React Flow 2D canvas; adding a second rendering model has high integration cost |
+| Blindly copying the upstream Three.js scene runtime | React Flow and R3F are compatible, but the upstream scene model, controls and assets must be adapted to LibTV rather than copied wholesale |
 | `模型库/` asset glob and model files | The path is external to the submodule and asset licenses are separate |
 | All upstream CSS tokens and dimensions | Visual evidence belongs to the upstream product, not LibTV source calibration |
 | Host message names | They are specific to StoryAI embedding and are not current LibTV contracts |
@@ -172,8 +177,10 @@ protocol must be redesigned around current LibTV identifiers and origin rules.
 
 ## Recommended Next Implementation Batch
 
-The first product-facing director desk slice should be **2D director workspace
-shell + shot inspector + capture history**, not a full 3D scene:
+The first product-facing director desk slice should be **director workspace shell,
+shot inspector, framed preview and capture history**. The central preview may be
+implemented as a 2D framed surface or an R3F viewport; that decision must follow
+the director-desk requirements, not a presumed React Flow/R3F incompatibility:
 
 1. open a director-desk mode from a verified LibTV shot/video context;
 2. show a source-aware left rail for shots and references;
@@ -182,4 +189,3 @@ shell + shot inspector + capture history**, not a full 3D scene:
 5. create capture/preview variants as a reversible local transaction;
 6. allow sending a selected preview back to the main LibTV canvas;
 7. keep the 3D viewport as a separately planned follow-up.
-

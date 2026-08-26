@@ -105,6 +105,9 @@ contracts:
 5. grouped selection, batched undo and scoped persistence.
 
 The first LibTV implementation should reproduce these contracts in a dedicated
-2D director workspace around source-backed shot/video entities. Three.js scene
-rendering, external model catalogs and the upstream host protocol remain
-separate follow-up decisions.
+director workspace around source-backed shot/video entities. A 2D preview is a
+valid sequencing option, but React Flow does not prevent a Three.js/R3F central
+viewport. If true 3D staging is part of the required director-desk experience,
+R3F should be introduced behind a dedicated viewport/state boundary rather than
+deferred merely because the existing graph uses React Flow. External model
+catalogs and the upstream host protocol remain separate follow-up decisions.

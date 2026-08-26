@@ -45,9 +45,10 @@ checkout after running `npm test`.
 
 The highest-value borrowing decision is:
 
-> Implement a LibTV-specific 2D director workspace first: source-aware shot tree,
-> selected-shot inspector, framed preview and capture history. Keep full 3D staging
-> as a separate follow-up requiring an explicit Three.js architecture decision.
+> Implement a LibTV-specific director workspace first: source-aware shot tree,
+> selected-shot inspector, framed preview and capture history. The framed preview
+> can be 2D or R3F; the choice must follow the required director-desk experience.
+> React Flow does not prevent a Three.js/R3F viewport.
 
 No upstream source, model, texture or screenshot has been copied into `src/`.
 
