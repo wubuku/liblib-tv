@@ -1,0 +1,103 @@
+{
+  "queueId": "OC-EQ-001",
+  "observedAt": "2026-08-27",
+  "url": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "title": "未命名项目 - 画布 2 - LibTV - 专业视频创作工具",
+  "fixture": {
+    "id": "LIBTV-FIX-SOURCE-SHARED-01",
+    "isolation": "SHARED_READ_ONLY",
+    "initialState": "image node already selected before browser claim",
+    "actionsUsed": [
+      "claim existing tab",
+      "read DOM and computed rectangles",
+      "read visible buttons",
+      "capture viewport screenshot"
+    ],
+    "actionsNotUsed": [
+      "click",
+      "keypress",
+      "type or fill",
+      "toggle",
+      "drag or connect",
+      "generate",
+      "upload",
+      "save",
+      "download"
+    ]
+  },
+  "viewport": {
+    "width": 929,
+    "height": 874,
+    "devicePixelRatio": 2
+  },
+  "zoom": {
+    "visibleLabel": "41%",
+    "exact": 0.40722891566265057
+  },
+  "selectedNode": {
+    "id": "i-1FQ9tErTcC",
+    "type": "image",
+    "rect": {
+      "x": 38.131324768066406,
+      "y": 365.73492431640625,
+      "width": 251.66748046875,
+      "height": 142.5301513671875
+    },
+    "centerX": 163.9650650024414
+  },
+  "topToolbar": {
+    "rect": {
+      "x": -382.2890625,
+      "y": 296.9609375,
+      "width": 1092.5,
+      "height": 49
+    },
+    "centerX": 163.9609375,
+    "hostStyle": "position: absolute; left: 163.965px; top: 345.961px; transform: translateX(-50%) translateY(-100%); z-index: 1001; pointer-events: all; width: max-content; --image-editor-node-scale: 0.40722891566265057;",
+    "buttonCount": 13,
+    "textActions": [
+      "人像质感调节 NEW",
+      "全景",
+      "多角度",
+      "打光",
+      "九宫格",
+      "高清",
+      "元素编辑",
+      "图层分离",
+      "宫格切分"
+    ],
+    "iconButtonCount": 4
+  },
+  "bottomPanel": {
+    "rect": {
+      "x": -166.03492736816406,
+      "y": 514.7807006835938,
+      "width": 659.9999389648438,
+      "height": 191
+    },
+    "centerX": 163.9650421142578,
+    "inverseScale": 2.45562
+  },
+  "derived": {
+    "toolbarCenterErrorPx": 0.00412750244140625,
+    "panelCenterErrorPx": 0.00002288818359375,
+    "observedTopGapPx": 19.77398681640625,
+    "expectedTopGapPx": 19.773493975903612,
+    "topGapResidualPx": 0.0004928405026385367,
+    "observedBottomGapPx": 6.515625,
+    "expectedBottomGapPx": 6.515662650602409,
+    "bottomGapResidualPx": -0.00003765060240934481,
+    "toolbarNaturallyClippedLeft": true,
+    "panelNaturallyClippedLeft": true
+  },
+  "evidence": {
+    "screenshot": "../../design-references/liblib-original-oc-eq-001-standard-image-41-929x874-2026-08-27.png",
+    "interpretation": "LIBTV_SOURCE_FRESHNESS_2026-08-27.md"
+  },
+  "status": {
+    "queue": "PARTIAL_RECORDED",
+    "selectionLifecycle": "UNKNOWN_THIS_RUN",
+    "multiZoom": "UNKNOWN_THIS_RUN",
+    "activeToolReplacement": "UNKNOWN_THIS_RUN"
+  }
+}

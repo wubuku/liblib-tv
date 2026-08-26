@@ -28,6 +28,7 @@
 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 必须输入、切换、连线、生成、重试或保存才能回答 | 只补接收规格；等待独立可丢弃源站项目和明确授权 |
 | `TRIGGERED_BY_UPSTREAM_CHANGE` | 只有出现新的 immutable upstream SHA 才有工作 | 保持当前 baseline；候选出现后执行版本影响协议 |
 | `CLOSED_AS_DESIGN` | 文档设计已经足够，不应继续以“缺设计”为由扩写 | 维护既有 authority，等待 fixture/授权或新证据 |
+| `PARTIAL_RECORDED` | 一个有界场景已有新日期证据，但队列的其他 viewport/state 仍未覆盖 | 引用已记录结果，只补未覆盖场景，不重复测同一状态 |
 
 `READY_READ_ONLY` 不等于可以操作任意控件。只要一个动作可能改变 Prompt、模型参数、偏好、graph、任务、媒体、账户或保存状态，就立即转为 `BLOCKED_BY_DISPOSABLE_SOURCE`。
 
@@ -35,7 +36,7 @@
 
 | ID | 证据问题 | 当前状态 | 价值 | 直接解锁/更新 |
 |---|---|---|---|---|
-| `OC-EQ-001` | 当前 LibTV 页面壳、入口、标准双浮层和可见 surface 是否发生新漂移 | `READY_READ_ONLY` | 高 | `LIBTV-PAR-005`、`OC-BP-001/002` 的 `L0` |
+| `OC-EQ-001` | 当前 LibTV 页面壳、入口、标准双浮层和可见 surface 是否发生新漂移 | `PARTIAL_RECORDED`：41% standard image；其余场景仍 `READY_READ_ONLY` | 高 | `LIBTV-PAR-005`、`OC-BP-001/002` 的 `L0` |
 | `OC-EQ-002` | 非 Seedance 2.5 模型逐项有哪些可见 controls，哪些只存在于菜单/catalog | `STATIC_FIRST` | 中高 | `OC-BP-006`、model capability matrix |
 | `OC-EQ-003` | LibTV 是否允许 duplicate edge、parallel handle edge、self-loop、cycle，以及 Handle 类型兼容是什么 | `STATIC_FIRST`，交互部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-004`、`LIBTV-GI-004..007` |
 | `OC-EQ-004` | Auto Link 的输入、IME、单项/全量接受、失败回滚和 stale result 当前怎样运行 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-003`、`LIBTV-VR-003..005` |
@@ -45,6 +46,10 @@
 这六项是当前固定研究基线下的完整证据队列。没有新的 source drift、fixture 或 upstream SHA 时，不另建同主题总览。
 
 ## 4. `OC-EQ-001`：LibTV source freshness
+
+### 4.0 最新有界结果
+
+2026-08-27 已在共享只读项目的既有选中态记录 41% standard image：`1092.5x49` toolbar、`660x191` panel、node-center anchor、`10 + 24 * zoom`、`16 * zoom` 和自然左侧裁切均未漂移，见 [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](LIBTV_SOURCE_FRESHNESS_2026-08-27.md)。该结果不覆盖 selection transition、多 zoom、mobile 或 active tool，因此本队列保持 `PARTIAL_RECORDED`。
 
 ### 4.1 研究问题
 

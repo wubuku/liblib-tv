@@ -322,3 +322,14 @@
 - 将 Open Canvas commit diff 设为只在新 immutable SHA 出现时触发，并继续禁止先移动 submodule pointer；
 - 为每项记录允许动作、禁止动作、最小证据包、退出标准、authority 更新和 blueprint/parity 影响；
 - 将计划接入 Open Canvas authority map、docs/research index 和 agent task map；没有修改代码、verifier、截图、共享源站状态或 submodule。
+
+## 2026-08-27：v31 `OC-EQ-001` 标准图片 freshness
+
+本轮使用用户已打开的登录态 LibTV tab，只读取接管前已经存在的 41% 图片选中态：
+
+- 新增 [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](LIBTV_SOURCE_FRESHNESS_2026-08-27.md)、结构化 JSON 和 source screenshot；
+- 同一 frame 记录 selected node、`1092.5x49` toolbar 和 `660x191` panel，三者 center X 误差均小于 `0.01px`；
+- 顶部 gap `19.77399px` 与 `10 + 24 * zoom` 残差约 `0.00049px`，底部 gap `6.51563px` 与 `16 * zoom` 残差约 `0.00004px`；
+- 记录 toolbar/panel 在 929px viewport 左边界为负并自然裁切，没有观察到 clamp；
+- 将 `OC-EQ-001` 标为 `PARTIAL_RECORDED`，因为本轮没有点击、改变 zoom、进入 active tool 或覆盖 mobile/selection transition；
+- 没有修改 Batch 51、`src/`、verifier、共享源站状态或 Open Canvas submodule。
