@@ -58,6 +58,7 @@
 | OC-TR-006 | Open Canvas 的模型 registry、设置 UI、legacy route 和 current runner 覆盖范围不同 | `OPEN_CANVAS_FACT` / `INFERENCE` | [`EVIDENCE_MATRIX.md`](open-canvas-2026-08-26/EVIDENCE_MATRIX.md) 的 `OC-006..009/016`、[`SOURCE_ANALYSIS.md`](open-canvas-2026-08-26/SOURCE_ANALYSIS.md)、[`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | 审计“UI 可选、descriptor 可构造、真实可执行”三层差异 | 不证明 LibTV clone 或 Open Canvas current studio 已执行全部可见 provider/model |
 | OC-TR-007 | Open Canvas 机制只有经过 LibTV source、采纳分类、parity、fixture、verifier 和授权链，才可进入 clone slice | `DECISION` | [`ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)、[`DECISION_REGISTER.md`](../DECISION_REGISTER.md) 的 `DEC-024` | 上游研究到 LibTV 实施的治理边界 | 不代表标为 `ADOPT_METHOD` 的机制已经授权或实现 |
 | OC-TR-008 | 获批的上游启发按 evidence、identity、transaction、surface、fixture、verifier、provenance 七层纵向交接 | `DECISION` | [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) | 单 slice 计划、评审、验证和接力 | 不允许把多项机制打成横向重构，也不替代具体组件合同 |
+| OC-TR-009 | Open Canvas 新版本必须先以 immutable SHA 做逐 claim impact audit，不能先移动 submodule pointer 或覆盖旧研究基线 | `DECISION` | [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](open-canvas-2026-08-26/UPSTREAM_VERSION_IMPACT_PROTOCOL.md)、[`DECISION_REGISTER.md`](../DECISION_REGISTER.md) 的 `DEC-013/024` | 上游版本比较、claim/pattern/adoption 重审和 git provenance | 不代表当前存在待更新版本，也不授权修改 submodule 或 LibTV code |
 
 ## 4. 证据更新规则
 
@@ -88,7 +89,7 @@
 | Seedance 文章数字能否直接写死 | LIBTV-TR-010、LIBTV-TR-011 |
 | 长视频/重拍是否已经完成 | LIBTV-TR-012 到 LIBTV-TR-014，再查验证台账 |
 | 当前最值得先研究/复刻什么 | LIBTV-TR-016 到 LIBTV-TR-018，再查 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) |
-| Open Canvas 能借鉴什么、哪些不能移植 | OC-TR-001 到 OC-TR-008，再查采纳决策矩阵和实施交接蓝图 |
+| Open Canvas 能借鉴什么、哪些不能移植 | OC-TR-001 到 OC-TR-009，再查采纳决策矩阵、实施交接蓝图和上游版本影响协议 |
 | 现在能不能编码 | LIBTV-TR-015 和 [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) |
 | 为什么新 Page、切换 `canvas-1` 和 undo 不能混称为 reset | LIBTV-TR-019、LIBTV-TR-022、LIBTV-TR-025，再查 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md) |
 | 为什么不能把失败视频当 ready-video | LIBTV-TR-020、LIBTV-TR-021，再查 fixture catalog 的本地视频和 demo baseline 条目 |

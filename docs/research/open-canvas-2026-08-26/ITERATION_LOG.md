@@ -289,3 +289,14 @@
 - 明确 clone credits 公式属于 calibration，只有采样显示是 source fact；其他模型的 mode/control capability 仍未知；
 - 将 Open Canvas registry/current runner 漂移转成 LibTV 的 UI/descriptor/adapter/run 审计规则，并保持 `LIBTV-PAR-012 OUT_OF_SCOPE`；
 - 更新 VideoGenerationPanel 合同、交接蓝图、Open Canvas README 和 traceability；没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v28 Authority 与上游版本影响协议
+
+本轮完成研究去重和长期维护边界：
+
+- 在 Open Canvas README 增加 authority map，明确固定事实、runtime、pattern、adoption、handoff、Auto Link、graph、process、model 和当前排期的唯一 owner；
+- 增加 research completeness boundary，确认剩余高价值问题主要依赖 source freshness、disposable fixture 或新上游 commit，不应继续新建重复总览；
+- 新增 [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)，定义 immutable candidate SHA、path watchlist、逐 claim 状态、pattern/adoption/LibTV 影响、runtime 分离和 baseline decision；
+- 明确未经批准不移动 submodule pointer，pointer、研究文档和 LibTV code change 必须分 commit；
+- 新增 `OC-TR-009` 供版本更新任务反查；当前 baseline 与 submodule 内容均未改变；
+- 没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或其他开发者 WIP。

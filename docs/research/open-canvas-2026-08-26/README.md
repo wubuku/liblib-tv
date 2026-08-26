@@ -37,9 +37,10 @@
 16. [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：将高价值机制拆成证据、身份、事务、surface、fixture、verifier 和 provenance 七层实施交接包。
 17. [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和长视频的身份、authoring/node/run/result/save 正交状态、fixture 与 `VR-007` 合同。
 18. [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、Seedance 2.5 authoring controls、clone state、descriptor 与真实 runner 的分层审计。
-19. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
-20. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
-21. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+19. [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：未来比较/更新上游 commit 时的 claim、pattern、adoption、runtime 和 submodule pointer 影响审计协议。
+20. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
+21. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
+22. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 
@@ -74,6 +75,7 @@
 | Model UI/descriptor/runner 边界 | [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | source-visible sample 和 execution anti-claim 权威 |
 | 当前优先级与授权状态 | [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)、[`../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | Open Canvas 目录不维护第二套当前排期 |
 | 第一阶段为何按 A-E 排过 | [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md) | 仅保留历史 provenance，不新增 A-E 条目 |
+| 上游 commit 变化后哪些结论失效 | [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md) | 先比较 immutable SHA；未经批准不移动 submodule pointer |
 
 ## Research Completeness Boundary
 
