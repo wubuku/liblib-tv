@@ -59,6 +59,19 @@ replace/append/no-room/follow contracts, generic-path preservation and
 disablement, desktop/mobile bounds and zero browser errors. The one-time
 visual reading is recorded in [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md).
 
+Cross-batch and repository gates also passed:
+
+```text
+python3 scripts/verify-liblib-batch35.py ... scripts/verify-liblib-batch44.py
+npm run docs:check
+npm run check
+git diff --check
+```
+
+`npm run check` reported the nine pre-existing lint warnings in FrameOS and
+`CustomHandle`; it reported zero errors. The regression scripts completed
+serially against the existing local server.
+
 ## Closeout
 
 The panel placement was adjusted after visual inspection: it now sits fully
