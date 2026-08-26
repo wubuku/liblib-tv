@@ -107,4 +107,4 @@
 - [x] UI, pose, recording and import contracts planned
 - [x] Store, math and panel implementation
 - [x] Focused Playwright and screenshot ledger
-- [ ] Cross-batch regression, stable docs and final quality gate
+- [x] Cross-batch regression, stable docs and final quality gate

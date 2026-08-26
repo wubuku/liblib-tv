@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch40.py` | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch4.py` ... `batch41.py` | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -59,11 +59,12 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 38 | pencil/pen pointer authoring, serializable anchors/handles, vertex/symmetric/asymmetric editing, cancellation, path structure edits, helper-free capture and responsive Inspector |
 | Batch 39 | fixed path pivot, position/rotation/scale transform, world/local anchor inversion, offset/full reset distinction, transformed playback, capture and responsive Inspector |
 | Batch 40 | real cropped WebGL recording, export settings/progress/error states, dynamic WebM decode/playback, ratio-shaped video return, target selection, atomic undo/redo and mobile geometry |
+| Batch 41 | phone virtual-camera local boundary, real pose input, stability/level/hold/elevation controls, current-playhead recording, named camera-track import and mobile geometry |
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..40}.py; do
+for script in scripts/verify-liblib-batch{4..41}.py; do
   python3 "$script" || exit 1
 done
 ```

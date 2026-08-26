@@ -466,6 +466,9 @@ export function DirectorPhoneVcamPanel({
                 data-director-phone-vcam-pose-pad
                 role="slider"
                 aria-label="手机运镜姿态"
+                aria-valuemin={-90}
+                aria-valuemax={90}
+                aria-valuenow={Math.round(phoneVcam.pose.yaw)}
                 aria-valuetext={`yaw ${phoneVcam.pose.yaw.toFixed(0)}, pitch ${phoneVcam.pose.pitch.toFixed(0)}`}
                 tabIndex={0}
                 onPointerDown={(event) => {

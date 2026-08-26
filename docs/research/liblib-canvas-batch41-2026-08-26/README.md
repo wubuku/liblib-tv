@@ -1,7 +1,7 @@
 # Batch 41: Director Phone Virtual Camera
 
-> Status: implementation and focused verification complete. Cross-batch
-> regression and stable-document closeout remain.
+> Status: complete. Implementation, focused verification, one-pass screenshot
+> ledger, Batch 35-41 regression, stable docs and push are closed.
 
 ## Read Order
 
@@ -15,6 +15,8 @@
    interpretation ledger.
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): commits, verification and
    interruption handoff.
+6. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): remaining director
+   breadth and next-batch decision.
 
 ## Batch Goal
 
@@ -48,3 +50,10 @@ This batch does not implement HTTPS certificate provisioning, LAN discovery,
 WebRTC/ICE, video uplink, phone-hosted UI, remote QR pairing or performance
 diagnostics. Those source capabilities remain documented, not simulated as
 successful backend behavior.
+
+## Completion
+
+- Plan/evidence: `6419f40`
+- Main implementation: `4e20e5a`
+- Focused verification/screenshots: `77075df`
+- Stable documentation/finalization: recorded by the next closeout commit

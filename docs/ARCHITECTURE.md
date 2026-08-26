@@ -54,7 +54,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, typed animation timeline, editable motion paths/speed curves and browser video recording |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, still capture, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
@@ -95,6 +95,7 @@ director node CTA
   -> directorStore scene/object/camera/timeline edits
   -> typed transform/camera tracks
   -> optional serializable motion path + track-level cubic-Bezier speed curve
+  -> optional browser-orientation/pointer phone-camera pose recording
   -> deterministic scrub/playback sampling
   -> R3F Canvas render and helper-free still/video capture
   -> canvasStore.createDirectorCapture or createDirectorAnimationExport
@@ -110,7 +111,10 @@ curve and sample a bound polyline by arc length. The R3F scene observes the
 resulting objects and renders enabled authoring paths; helper-free capture hides
 those paths and anchors. Inspector edits and completed gizmo drags may
 auto-keyframe at the current playhead, while scrub/playback never author new
-keyframes.
+keyframes. The phone virtual-camera prototype keeps orientation events, timers
+and temporary sample buffers in its client component; `directorStore` receives
+only finite pose/camera values and imports a completed take as a new serializable
+camera object plus typed camera track.
 
 ### FrameOS
 
@@ -163,6 +167,7 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Director path reset | identity-offset reset and creation-snapshot reset are distinct store actions | preserves a testable difference between placement cleanup and geometry restoration |
 | Director return | one canvasStore graph transaction per still/video result | result node and source edge undo/redo atomically |
 | Director video export | cropped 2D canvas + `captureStream`/`MediaRecorder` outside Zustand | records real R3F pixels while keeping browser runtime objects out of serializable authoring state |
+| Director phone virtual camera | explicit local-preview boundary plus browser orientation/pointer input | preserves source-shaped pose recording and track import without pretending the frontend has LAN signaling, QR pairing or WebRTC |
 | Backend | local mock only | scope is frontend prototype validation |
 
 ## Prototype Boundaries

@@ -1,7 +1,7 @@
 # Batch 41 Implementation Log
 
-> Status: implementation and focused verification complete; final regression
-> and stable-doc closeout remain.
+> Status: complete. Main implementation, focused browser verification,
+> screenshot ledger, Batch 35-41 regression and final quality gates passed.
 
 ## Protection Points
 
@@ -19,7 +19,7 @@
 - [x] named camera plus typed camera-track import
 - [x] focused desktop/mobile Playwright
 - [x] one-pass screenshot interpretation
-- [ ] stable docs and cross-batch quality gates
+- [x] stable docs and cross-batch quality gates
 
 ## Main Implementation
 
@@ -93,15 +93,43 @@ Added `scripts/verify-liblib-batch41.py`. It covers:
 The focused script passed and generated six Batch 41-only image artifacts.
 Their first visual interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
 
+## Regression And Quality Result
+
+The final gate passed on August 26, 2026:
+
+```bash
+python3 scripts/verify-liblib-batch35.py
+python3 scripts/verify-liblib-batch36.py
+python3 scripts/verify-liblib-batch37.py
+python3 scripts/verify-liblib-batch38.py
+python3 scripts/verify-liblib-batch39.py
+python3 scripts/verify-liblib-batch40.py
+python3 scripts/verify-liblib-batch41.py
+npm run docs:check
+npm run check
+git diff --check
+```
+
+All passed. The initial full lint reported one new ARIA warning on the pose-pad
+slider; the missing `aria-valuemin`, `aria-valuemax` and `aria-valuenow`
+contract was added and the gate rerun. Final lint output contains only the
+same nine existing FrameOS/`CustomHandle` warnings.
+
+Verifier runs rewrite several historical PNGs non-deterministically. They
+remain unstaged; this batch staged only its deliberate artifacts before the
+cross-batch rerun.
+
 ## Commits
 
 - Plan/evidence protection: `6419f40`
 - Main implementation: `4e20e5a`
-- Focused verification: recorded by the next test/docs commit
-- Stable documentation/finalization: pending
+- Focused verification: `77075df`
+- Stable documentation/finalization: recorded by the next documentation-only
+  closeout commit
 
 ## Interruption Handoff
 
-If interrupted before implementation, read `SOURCE_EVIDENCE.md`, `PLAN.md` and
-`DIRECTOR_PHONE_VCAM.spec.md`. Do not infer source UI geometry from the locale
-or implement a fake scannable QR/phone-connected state.
+Batch 41 is closed. Read `MATURITY_ASSESSMENT.md` before selecting the next
+director batch. Do not infer source UI geometry from the locale or upgrade the
+local-preview state to real phone/LAN parity without implementing and verifying
+the transport.
