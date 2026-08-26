@@ -22,6 +22,7 @@ import {
   SkipForward,
   Trash2,
   Waypoints,
+  Users,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -46,6 +47,7 @@ export function DirectorTimeline() {
   const timeline = useDirectorStore((state) => state.timeline);
   const objects = useDirectorStore((state) => state.objects);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const setTimelineTime = useDirectorStore((state) => state.setTimelineTime);
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
@@ -143,9 +145,10 @@ export function DirectorTimeline() {
         (path) => path.id === selectedTrack.motionPathId,
       ) ?? null
     : null;
-  const selectedTrackObject = objects.find(
-    (object) => object.id === selectedTrack?.objectId,
-  );
+  const selectedTrackObject =
+    selectedTrack?.kind === "group"
+      ? undefined
+      : objects.find((object) => object.id === selectedTrack?.objectId);
   const cameraFollowActive = Boolean(
     selectedTrackObject?.camera?.followTargetId,
   );
@@ -162,7 +165,9 @@ export function DirectorTimeline() {
       : null;
   const hasSelectedObjectTrack = timeline.tracks.some(
     (track) =>
-      track.objectId === selectedObjectId && track.kind !== "pose",
+      selectedGroupId
+        ? track.kind === "group" && track.groupId === selectedGroupId
+        : track.objectId === selectedObjectId && track.kind !== "pose",
   );
   const timelineWidth = Math.max(
     640,
@@ -399,6 +404,7 @@ export function DirectorTimeline() {
           disabled={
             !selectedTrack ||
             selectedTrack.kind === "pose" ||
+            selectedTrack.kind === "group" ||
             cameraFollowActive
           }
           title={
@@ -486,7 +492,9 @@ export function DirectorTimeline() {
         <button
           type="button"
           data-director-add-track
-          disabled={!selectedObjectId || hasSelectedObjectTrack}
+          disabled={
+            (!selectedObjectId && !selectedGroupId) || hasSelectedObjectTrack
+          }
           onClick={() => addTimelineTrack()}
           className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
         >
@@ -772,6 +780,8 @@ export function DirectorTimeline() {
                     >
                       {track.kind === "camera" ? (
                         <Camera size={12} />
+                      ) : track.kind === "group" ? (
+                        <Users size={12} />
                       ) : track.kind === "pose" ? (
                         <PersonStanding size={12} />
                       ) : (
@@ -842,6 +852,9 @@ export function DirectorTimeline() {
                 data-director-track-id={track.id}
                 data-director-track-kind={track.kind}
                 data-director-track-object-id={track.objectId}
+                data-director-track-group-id={
+                  track.kind === "group" ? track.groupId : undefined
+                }
                 data-director-track-selected={
                   track.id === timeline.selectedTrackId
                 }

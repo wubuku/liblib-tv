@@ -25,10 +25,10 @@
 
 ```text
 Batch 4-33
-Batch 35-44
+Batch 35-45
 ```
 
-Batch 34 没有专项 verifier，是导演台代码考古/研究批次；Batch 45 已有研究/实现目录，但当前没有专项 verifier，属于 `PARALLEL_WIP`。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
+Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
 
 ### 2.2 脚本分组台账
 
@@ -41,7 +41,7 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次；Batch 4
 | `verify-liblib-batch26.py` - `batch33.py` | 续写、去字幕、音视频分离、帧截取、主体编辑、深度、长视频 | `SCRIPT_AVAILABLE` / `CLONE_FIXTURE_ONLY` | 主要验证本地 graph、状态和 undo；源站结果态存在 fixture 阻塞 |
 | `verify-liblib-batch35.py` - `batch44.py` | Director R3F、时间轴、路径、导出、手机相机、角色、跟随、运镜 | `SCRIPT_AVAILABLE` / `SCRIPT_RECORDED_PASS` | 是有界 prototype 回归；不是 LibTV/FrameOS 通用行为合同 |
 | Batch 34 | Director 既有代码考古和可借鉴性 | `SOURCE_CONTRACT_ONLY` | 没有专项 verifier，不应在全量命令中伪造 |
-| Batch 45 | Director character groups/crowd/group tracks | `PARALLEL_WIP` | 研究/实现尚在并行推进，等待稳定脚本和实施记录 |
+| Batch 45 | Director character groups/crowd/group tracks | `SCRIPT_RECORDED_PASS` | focused Playwright 已通过；仍需跨批回归确认 |
 
 ## 3. 当前源站合同覆盖
 
@@ -88,7 +88,7 @@ python3 scripts/verify-liblib-batch<N>.py
 ### 5.2 当前脚本全集
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..44}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..45}.py; do
   python3 "$script" || exit 1
 done
 ```
@@ -103,4 +103,3 @@ done
 - 被 fixture 阻塞：使用 `BLOCKED_BY_FIXTURE`，记录所需 fixture，不在共享项目试探；
 - 并行 WIP：保留 `PARALLEL_WIP`，待该开发者的脚本、实施记录和验证结果稳定后再升级；
 - 任何文档变更都运行 `python3 scripts/verify-docs.py`，并只提交自己的路径。
-

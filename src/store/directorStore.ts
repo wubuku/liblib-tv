@@ -48,6 +48,12 @@ import {
   type DirectorCameraMotionPresetId,
   type DirectorCameraMotionPresetMode,
 } from "@/components/director/directorCameraPresets";
+import {
+  applyDirectorGroupTransform,
+  createDirectorCrowdPositions,
+  getDirectorGroupAnchorTransform,
+  getDirectorGroupMemberOffsets,
+} from "@/components/director/directorGroupMath";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -85,6 +91,17 @@ export interface DirectorObject {
     followTargetId: string | null;
     followOffset: DirectorTuple3;
     followView: DirectorCameraFollowView;
+  };
+}
+
+export interface DirectorCharacterGroup {
+  id: string;
+  label: string;
+  characterIds: string[];
+  crowd?: {
+    rows: number;
+    columns: number;
+    spacing: number;
   };
 }
 
@@ -130,6 +147,12 @@ export interface DirectorPoseKeyframe {
   id: string;
   time: number;
   value: DirectorPoseKeyframeValue;
+}
+
+export interface DirectorGroupKeyframe {
+  id: string;
+  time: number;
+  value: DirectorTransform;
 }
 
 export type DirectorPhoneVcamStatus =
@@ -250,6 +273,12 @@ export type DirectorTimelineTrack =
   | (DirectorTimelineTrackBase & {
       kind: "pose";
       keyframes: DirectorPoseKeyframe[];
+    })
+  | (DirectorTimelineTrackBase & {
+      kind: "group";
+      groupId: string;
+      memberOffsets: Record<string, DirectorTuple3>;
+      keyframes: DirectorGroupKeyframe[];
     });
 
 export interface DirectorTimelineState {
@@ -290,7 +319,10 @@ interface DirectorState {
   sourceNodeId: string | null;
   scene: DirectorScene;
   objects: DirectorObject[];
+  groups: DirectorCharacterGroup[];
   selectedObjectId: string | null;
+  selectedObjectIds: string[];
+  selectedGroupId: string | null;
   activeCameraId: string;
   viewMode: DirectorViewMode;
   transformMode: DirectorTransformMode;
@@ -306,6 +338,23 @@ interface DirectorState {
   selectObject: (
     objectId: string | null,
     source?: "explicit" | "viewport",
+  ) => void;
+  toggleObjectSelection: (objectId: string) => void;
+  selectGroup: (groupId: string | null) => void;
+  groupSelectedCharacters: () => string | null;
+  ungroupSelectedCharacters: () => void;
+  addCrowdArray: (input: {
+    rows: number;
+    columns: number;
+    spacing: number;
+  }) => string | null;
+  updateGroup: (
+    groupId: string,
+    patch: Partial<Pick<DirectorCharacterGroup, "label">>,
+  ) => void;
+  updateGroupTransform: (
+    groupId: string,
+    transform: DirectorTransform,
   ) => void;
   setViewMode: (mode: DirectorViewMode) => void;
   setTransformMode: (mode: DirectorTransformMode) => void;
@@ -367,6 +416,7 @@ interface DirectorState {
   deleteTimelineKeyframe: (keyframeId?: string) => void;
   seekTimelineKeyframe: (direction: -1 | 1) => void;
   recordObjectKeyframe: (objectId: string, force?: boolean) => void;
+  recordGroupKeyframe: (groupId: string, force?: boolean) => void;
   setTimelineEditorMode: (mode: "timeline" | "curve") => void;
   setTrackSpeedCurvePreset: (
     trackId: string,
@@ -734,6 +784,32 @@ function createTrackForObject(
   };
 }
 
+function createTrackForGroup(
+  group: DirectorCharacterGroup,
+  objects: DirectorObject[],
+  time: number,
+): DirectorTimelineTrack | null {
+  const transform = getDirectorGroupAnchorTransform(objects, group);
+  if (!transform) return null;
+  const id = `director-track-${group.id}`;
+  return {
+    id,
+    kind: "group",
+    objectId: group.id,
+    groupId: group.id,
+    label: `${group.label} · 分组`,
+    memberOffsets: getDirectorGroupMemberOffsets(objects, group),
+    speedCurve: createDirectorSpeedCurve(),
+    keyframes: [
+      {
+        id: `${id}-keyframe-${Math.round(time * 1000)}`,
+        time,
+        value: cloneTransform(transform),
+      },
+    ],
+  };
+}
+
 function createPoseTrackForObject(
   object: DirectorObject,
   time: number,
@@ -882,9 +958,12 @@ function sampleTimelineObjectsAtTime(
   objects: DirectorObject[],
   timeline: DirectorTimelineState,
   time: number,
+  groups: DirectorCharacterGroup[] = [],
 ): DirectorObject[] {
   const tracksByObject = new Map<string, DirectorTimelineTrack[]>();
-  timeline.tracks.forEach((track) => {
+  timeline.tracks
+    .filter((track) => track.kind !== "group")
+    .forEach((track) => {
     const tracks = tracksByObject.get(track.objectId) ?? [];
     tracks.push(track);
     tracksByObject.set(track.objectId, tracks);
@@ -892,7 +971,7 @@ function sampleTimelineObjectsAtTime(
   const pathsById = new Map(
     timeline.motionPaths.map((path) => [path.id, path]),
   );
-  return objects.map((object) => {
+  const sampledObjects = objects.map((object) => {
     const tracks = tracksByObject.get(object.id);
     if (!tracks) return object;
     return tracks.reduce<DirectorObject>((sampledObject, track) => {
@@ -944,6 +1023,18 @@ function sampleTimelineObjectsAtTime(
       };
     }, object);
   });
+  return timeline.tracks
+    .filter((track) => track.kind === "group")
+    .reduce((currentObjects, track) => {
+      const group = groups.find((item) => item.id === track.groupId);
+      const sample = sampleDirectorTimelineTrack(track, time);
+      if (!group || sample?.kind !== "group") return currentObjects;
+      return applyDirectorGroupTransform(
+        currentObjects,
+        group,
+        sample.transform,
+      );
+    }, sampledObjects);
 }
 
 function resolveCameraRelations(objects: DirectorObject[]): DirectorObject[] {
@@ -973,9 +1064,10 @@ function applyTimelineAtTime(
   objects: DirectorObject[],
   timeline: DirectorTimelineState,
   time: number,
+  groups: DirectorCharacterGroup[] = [],
 ): DirectorObject[] {
   return resolveCameraRelations(
-    sampleTimelineObjectsAtTime(objects, timeline, time),
+    sampleTimelineObjectsAtTime(objects, timeline, time, groups),
   );
 }
 
@@ -1016,6 +1108,27 @@ function upsertTrackKeyframe(
     ...track.keyframes.filter((keyframe) => keyframe.id !== existing?.id),
     { id: keyframeId, time, value: cloneTransform(object.transform) },
   ].sort((a, b) => a.time - b.time);
+  return { track: { ...track, keyframes }, keyframeId };
+}
+
+function upsertGroupTrackKeyframe(
+  track: Extract<DirectorTimelineTrack, { kind: "group" }>,
+  transform: DirectorTransform,
+  time: number,
+): {
+  track: Extract<DirectorTimelineTrack, { kind: "group" }>;
+  keyframeId: string;
+} {
+  const existing = track.keyframes.find(
+    (keyframe) => Math.abs(keyframe.time - time) < 0.001,
+  );
+  const keyframeId =
+    existing?.id ??
+    `${track.id}-keyframe-${Math.round(time * 1000)}-${Date.now()}`;
+  const keyframes = [
+    ...track.keyframes.filter((keyframe) => keyframe.id !== existing?.id),
+    { id: keyframeId, time, value: cloneTransform(transform) },
+  ].sort((left, right) => left.time - right.time);
   return { track: { ...track, keyframes }, keyframeId };
 }
 
@@ -1077,6 +1190,15 @@ function updateTuple(
   return next;
 }
 
+const DIRECTOR_CROWD_COLORS = [
+  "#7f91a5",
+  "#9c7f75",
+  "#728b7f",
+  "#9a8b68",
+  "#7e7897",
+  "#8f7588",
+];
+
 export const useDirectorStore = create<DirectorState>((set, get) => ({
   sourceNodeId: null,
   scene: {
@@ -1087,7 +1209,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     showGrid: true,
   },
   objects: cloneObjects(),
+  groups: [],
   selectedObjectId: "director-character-lead",
+  selectedObjectIds: ["director-character-lead"],
+  selectedGroupId: null,
   activeCameraId: "director-camera-main",
   viewMode: "director",
   transformMode: "translate",
@@ -1103,6 +1228,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => ({
       sourceNodeId,
       selectedObjectId: state.selectedObjectId ?? "director-character-lead",
+      selectedObjectIds:
+        state.selectedObjectIds.length > 0
+          ? state.selectedObjectIds
+          : [state.selectedObjectId ?? "director-character-lead"],
       timeline: { ...state.timeline, isPlaying: false },
       phoneVcam:
         state.phoneVcam.status === "recording"
@@ -1127,6 +1256,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       }
       return {
         selectedObjectId: objectId,
+        selectedObjectIds: objectId ? [objectId] : [],
+        selectedGroupId: null,
         timeline: {
           ...state.timeline,
           selectedMotionPathAnchorId: null,
@@ -1135,10 +1266,250 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 
+  toggleObjectSelection: (objectId) =>
+    set((state) => {
+      const object = state.objects.find(
+        (item) => item.id === objectId && item.kind === "character",
+      );
+      if (!object) return state;
+      const currentIds = state.selectedGroupId
+        ? []
+        : state.selectedObjectIds;
+      const selectedObjectIds = currentIds.includes(objectId)
+        ? currentIds.filter((id) => id !== objectId)
+        : [...currentIds, objectId];
+      return {
+        selectedObjectId:
+          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline: {
+          ...state.timeline,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          isPlaying: false,
+        },
+      };
+    }),
+
+  selectGroup: (groupId) =>
+    set((state) => {
+      if (!groupId) {
+        return {
+          selectedObjectId: null,
+          selectedObjectIds: [],
+          selectedGroupId: null,
+        };
+      }
+      const group = state.groups.find((item) => item.id === groupId);
+      if (!group) return state;
+      const selectedObjectIds = group.characterIds.filter((id) =>
+        state.objects.some((object) => object.id === id),
+      );
+      if (selectedObjectIds.length === 0) return state;
+      return {
+        selectedObjectId:
+          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
+        selectedObjectIds,
+        selectedGroupId: group.id,
+        timeline: {
+          ...state.timeline,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+      };
+    }),
+
+  groupSelectedCharacters: () => {
+    let createdGroupId: string | null = null;
+    set((state) => {
+      const assignedIds = new Set(
+        state.groups.flatMap((group) => group.characterIds),
+      );
+      const characterIds = state.selectedObjectIds.filter(
+        (id) =>
+          !assignedIds.has(id) &&
+          state.objects.some(
+            (object) => object.id === id && object.kind === "character",
+          ),
+      );
+      if (characterIds.length < 2) return state;
+      const groupIndex = state.groups.length + 1;
+      const group: DirectorCharacterGroup = {
+        id: `director-character-group-${Date.now()}-${groupIndex}`,
+        label: `角色组${groupIndex}`,
+        characterIds,
+      };
+      createdGroupId = group.id;
+      return {
+        groups: [...state.groups, group],
+        selectedObjectId: characterIds[characterIds.length - 1] ?? null,
+        selectedObjectIds: characterIds,
+        selectedGroupId: group.id,
+        timeline: {
+          ...state.timeline,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+      };
+    });
+    return createdGroupId;
+  },
+
+  ungroupSelectedCharacters: () =>
+    set((state) => {
+      const group = state.groups.find(
+        (item) => item.id === state.selectedGroupId,
+      );
+      if (!group) return state;
+      const tracks = state.timeline.tracks.filter(
+        (track) => track.kind !== "group" || track.groupId !== group.id,
+      );
+      const selectedTrackRemoved = state.timeline.tracks.some(
+        (track) =>
+          track.id === state.timeline.selectedTrackId &&
+          track.kind === "group" &&
+          track.groupId === group.id,
+      );
+      return {
+        groups: state.groups.filter((item) => item.id !== group.id),
+        selectedObjectId:
+          group.characterIds[group.characterIds.length - 1] ?? null,
+        selectedObjectIds: [...group.characterIds],
+        selectedGroupId: null,
+        timeline: {
+          ...state.timeline,
+          tracks,
+          selectedTrackId: selectedTrackRemoved
+            ? tracks[0]?.id ?? null
+            : state.timeline.selectedTrackId,
+          selectedKeyframeId: null,
+          isPlaying: false,
+        },
+      };
+    }),
+
+  addCrowdArray: ({ rows, columns, spacing }) => {
+    let createdGroupId: string | null = null;
+    set((state) => {
+      const safeRows = Math.min(Math.max(Math.round(rows), 1), 6);
+      const requestedColumns = Math.min(
+        Math.max(Math.round(columns), 1),
+        8,
+      );
+      const safeColumns = Math.max(
+        1,
+        Math.min(requestedColumns, Math.floor(24 / safeRows)),
+      );
+      const safeSpacing = Number(
+        Math.min(Math.max(spacing, 0.6), 3).toFixed(2),
+      );
+      const characterObjects = state.objects.filter(
+        (object) => object.kind === "character",
+      );
+      const maxCharacterX =
+        characterObjects.length > 0
+          ? Math.max(
+              ...characterObjects.map(
+                (object) => object.transform.position[0],
+              ),
+            )
+          : 0;
+      const positions = createDirectorCrowdPositions(
+        safeRows,
+        safeColumns,
+        safeSpacing,
+        [maxCharacterX + safeSpacing * 2, 0, 0.8],
+      );
+      const groupIndex = state.groups.length + 1;
+      const stamp = Date.now();
+      const startIndex = characterObjects.length + 1;
+      const characters = positions.map<DirectorObject>((position, index) => ({
+        id: `director-crowd-${stamp}-${index + 1}`,
+        name: `角色${String(startIndex + index).padStart(2, "0")}`,
+        kind: "character",
+        primitive: "character",
+        color:
+          DIRECTOR_CROWD_COLORS[
+            (startIndex + index - 1) % DIRECTOR_CROWD_COLORS.length
+          ],
+        visible: true,
+        locked: false,
+        transform: {
+          position,
+          rotation: [0, 0, 0],
+          scale: [0.92, 0.92, 0.92],
+        },
+        characterRig: createDirectorCharacterRig(),
+      }));
+      const group: DirectorCharacterGroup = {
+        id: `director-crowd-group-${stamp}-${groupIndex}`,
+        label: `群众 (${safeRows}x${safeColumns})`,
+        characterIds: characters.map((character) => character.id),
+        crowd: {
+          rows: safeRows,
+          columns: safeColumns,
+          spacing: safeSpacing,
+        },
+      };
+      createdGroupId = group.id;
+      return {
+        objects: [...state.objects, ...characters],
+        groups: [...state.groups, group],
+        selectedObjectId:
+          group.characterIds[group.characterIds.length - 1] ?? null,
+        selectedObjectIds: [...group.characterIds],
+        selectedGroupId: group.id,
+        timeline: {
+          ...state.timeline,
+          isPlaying: false,
+        },
+      };
+    });
+    return createdGroupId;
+  },
+
+  updateGroup: (groupId, patch) =>
+    set((state) => ({
+      groups: state.groups.map((group) =>
+        group.id === groupId ? { ...group, ...patch } : group,
+      ),
+      timeline: patch.label
+        ? {
+            ...state.timeline,
+            tracks: state.timeline.tracks.map((track) =>
+              track.kind === "group" && track.groupId === groupId
+                ? { ...track, label: `${patch.label} · 分组` }
+                : track,
+            ),
+          }
+        : state.timeline,
+    })),
+
+  updateGroupTransform: (groupId, transform) =>
+    set((state) => {
+      const group = state.groups.find((item) => item.id === groupId);
+      if (!group) return state;
+      return {
+        objects: resolveCameraRelations(
+          applyDirectorGroupTransform(state.objects, group, transform),
+        ),
+      };
+    }),
+
   setViewMode: (mode) =>
     set((state) => ({
       viewMode: mode,
       selectedObjectId: mode === "camera" ? state.activeCameraId : state.selectedObjectId,
+      selectedObjectIds:
+        mode === "camera" ? [state.activeCameraId] : state.selectedObjectIds,
+      selectedGroupId: mode === "camera" ? null : state.selectedGroupId,
     })),
 
   setTransformMode: (mode) => set({ transformMode: mode }),
@@ -1167,6 +1538,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                       label: `${patch.name} · ${
                         track.kind === "camera"
                           ? "机位"
+                          : track.kind === "group"
+                            ? "分组"
                           : track.kind === "pose"
                             ? "姿态"
                             : "变换"
@@ -1206,6 +1579,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             state.objects,
             state.timeline,
             state.timeline.currentTime,
+            state.groups,
           )
         : state.objects;
       const objects = sourceObjects.map((object) =>
@@ -1559,6 +1933,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         state.objects,
         state.timeline,
         currentTime,
+        state.groups,
       );
       return {
         objects: activeCamera
@@ -1722,6 +2097,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           state.timeline,
           currentTime,
+          state.groups,
         ),
         timeline: {
           ...state.timeline,
@@ -1745,6 +2121,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
               state.objects,
               state.timeline,
               currentTime,
+              state.groups,
             )
           : state.objects,
         timeline: {
@@ -1771,6 +2148,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           state.timeline,
           currentTime,
+          state.groups,
         ),
         timeline: {
           ...state.timeline,
@@ -1805,8 +2183,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       const track = state.timeline.tracks.find((item) => item.id === trackId);
       if (!track) return state;
+      const group =
+        track.kind === "group"
+          ? state.groups.find((item) => item.id === track.groupId)
+          : null;
+      const selectedObjectIds = group
+        ? [...group.characterIds]
+        : [track.objectId];
       return {
-        selectedObjectId: track.objectId,
+        selectedObjectId:
+          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
+        selectedObjectIds,
+        selectedGroupId: group?.id ?? null,
         timeline: {
           ...state.timeline,
           selectedTrackId: track.id,
@@ -1824,12 +2212,23 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const track = state.timeline.tracks.find((item) => item.id === trackId);
       const keyframe = track?.keyframes.find((item) => item.id === keyframeId);
       if (!track || !keyframe) return state;
+      const group =
+        track.kind === "group"
+          ? state.groups.find((item) => item.id === track.groupId)
+          : null;
+      const selectedObjectIds = group
+        ? [...group.characterIds]
+        : [track.objectId];
       return {
-        selectedObjectId: track.objectId,
+        selectedObjectId:
+          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
+        selectedObjectIds,
+        selectedGroupId: group?.id ?? null,
         objects: applyTimelineAtTime(
           state.objects,
           state.timeline,
           keyframe.time,
+          state.groups,
         ),
         timeline: {
           ...state.timeline,
@@ -1846,6 +2245,49 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   addTimelineTrack: (requestedObjectId) =>
     set((state) => {
+      const requestedGroup = state.groups.find(
+        (group) =>
+          group.id === requestedObjectId ||
+          (!requestedObjectId && group.id === state.selectedGroupId),
+      );
+      if (requestedGroup) {
+        const existing = state.timeline.tracks.find(
+          (track) =>
+            track.kind === "group" &&
+            track.groupId === requestedGroup.id,
+        );
+        if (existing) {
+          return {
+            timeline: {
+              ...state.timeline,
+              selectedTrackId: existing.id,
+              selectedKeyframeId: null,
+              selectedMotionPathId: null,
+              selectedMotionPathAnchorId: null,
+              selectedMotionPathHandle: null,
+              isPlaying: false,
+            },
+          };
+        }
+        const track = createTrackForGroup(
+          requestedGroup,
+          state.objects,
+          state.timeline.currentTime,
+        );
+        if (!track) return state;
+        return {
+          timeline: {
+            ...state.timeline,
+            tracks: [...state.timeline.tracks, track],
+            selectedTrackId: track.id,
+            selectedKeyframeId: track.keyframes[0]?.id ?? null,
+            selectedMotionPathId: null,
+            selectedMotionPathAnchorId: null,
+            selectedMotionPathHandle: null,
+            isPlaying: false,
+          },
+        };
+      }
       const objectId = requestedObjectId ?? state.selectedObjectId;
       const object = state.objects.find((item) => item.id === objectId);
       if (!object) return state;
@@ -1931,6 +2373,31 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       const trackId = requestedTrackId ?? state.timeline.selectedTrackId;
       const track = state.timeline.tracks.find((item) => item.id === trackId);
+      if (track?.kind === "group") {
+        const group = state.groups.find(
+          (item) => item.id === track.groupId,
+        );
+        const transform = group
+          ? getDirectorGroupAnchorTransform(state.objects, group)
+          : null;
+        if (!group || !transform) return state;
+        const result = upsertGroupTrackKeyframe(
+          track,
+          transform,
+          state.timeline.currentTime,
+        );
+        return {
+          timeline: {
+            ...state.timeline,
+            tracks: state.timeline.tracks.map((item) =>
+              item.id === track.id ? result.track : item,
+            ),
+            selectedTrackId: track.id,
+            selectedKeyframeId: result.keyframeId,
+            isPlaying: false,
+          },
+        };
+      }
       const object = state.objects.find(
         (item) => item.id === track?.objectId,
       );
@@ -1970,6 +2437,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           state.timeline.currentTime,
+          state.groups,
         ),
         timeline: {
           ...timeline,
@@ -1999,6 +2467,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           state.timeline,
           nextTime,
+          state.groups,
         ),
         timeline: {
           ...state.timeline,
@@ -2044,6 +2513,48 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 
+  recordGroupKeyframe: (groupId, force = false) =>
+    set((state) => {
+      if (!force && !state.timeline.autoKeyframe) return state;
+      const group = state.groups.find((item) => item.id === groupId);
+      const transform = group
+        ? getDirectorGroupAnchorTransform(state.objects, group)
+        : null;
+      if (!group || !transform) return state;
+      const existing = state.timeline.tracks.find(
+        (
+          track,
+        ): track is Extract<DirectorTimelineTrack, { kind: "group" }> =>
+          track.kind === "group" && track.groupId === group.id,
+      );
+      const baseTrack =
+        existing ??
+        createTrackForGroup(group, state.objects, state.timeline.currentTime);
+      if (!baseTrack || baseTrack.kind !== "group") return state;
+      const result = upsertGroupTrackKeyframe(
+        baseTrack,
+        transform,
+        state.timeline.currentTime,
+      );
+      const tracks = existing
+        ? state.timeline.tracks.map((track) =>
+            track.id === existing.id ? result.track : track,
+          )
+        : [...state.timeline.tracks, result.track];
+      return {
+        timeline: {
+          ...state.timeline,
+          tracks,
+          selectedTrackId: result.track.id,
+          selectedKeyframeId: result.keyframeId,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          isPlaying: false,
+        },
+      };
+    }),
+
   setTimelineEditorMode: (mode) =>
     set((state) => ({
       timeline: {
@@ -2066,6 +2577,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2095,6 +2607,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2207,6 +2720,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         state.objects,
         timeline,
         timeline.currentTime,
+        state.groups,
       ),
       timeline,
     });
@@ -2224,6 +2738,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         !track ||
         !object ||
         track.kind === "pose" ||
+        track.kind === "group" ||
         object.camera?.followTargetId
       ) {
         return state;
@@ -2240,6 +2755,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2256,6 +2772,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         !track ||
         !object ||
         track.kind === "pose" ||
+        track.kind === "group" ||
         object.camera?.followTargetId
       ) {
         return state;
@@ -2409,6 +2926,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2484,6 +3002,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2531,6 +3050,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2589,6 +3109,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2660,6 +3181,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2693,6 +3215,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2752,6 +3275,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2795,6 +3319,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2826,6 +3351,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2875,6 +3401,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2908,6 +3435,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2947,6 +3475,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2970,6 +3499,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -2999,6 +3529,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };
@@ -3035,6 +3566,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.objects,
           timeline,
           timeline.currentTime,
+          state.groups,
         ),
         timeline,
       };

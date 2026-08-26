@@ -12,6 +12,7 @@ import {
   Rotate3D,
   Scaling,
   Smartphone,
+  Users,
   X,
 } from "lucide-react";
 import { Line, OrbitControls, TransformControls } from "@react-three/drei";
@@ -27,6 +28,7 @@ import { cn } from "@/lib/utils";
 import {
   useDirectorStore,
   type DirectorCapture,
+  type DirectorCharacterGroup,
   type DirectorMotionPath,
   type DirectorMotionPathAnchor,
   type DirectorMotionPathHandle,
@@ -51,6 +53,9 @@ import {
 import { DirectorPhoneVcamPanel } from "@/components/director/DirectorPhoneVcamPanel";
 import { DirectorMannequin } from "@/components/director/DirectorMannequin";
 import { createDirectorCharacterRig } from "@/components/director/directorPose";
+import {
+  getDirectorGroupAnchorTransform,
+} from "@/components/director/directorGroupMath";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
 function CameraController() {
@@ -180,6 +185,8 @@ function CameraPrimitive({
 
 function SceneObject({ object }: { object: DirectorObject }) {
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
+  const groups = useDirectorStore((state) => state.groups);
   const activeCameraId = useDirectorStore((state) => state.activeCameraId);
   const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
@@ -198,7 +205,10 @@ function SceneObject({ object }: { object: DirectorObject }) {
     (state) => state.timeline.motionPathDraft,
   );
   const groupRef = useRef<Group>(null);
-  const selected = selectedObjectId === object.id;
+  const selected = selectedObjectId === object.id && selectedGroupId === null;
+  const owningGroup = groups.find((group) =>
+    group.characterIds.includes(object.id),
+  );
 
   const hideCameraRig =
     object.kind === "camera" &&
@@ -249,6 +259,10 @@ function SceneObject({ object }: { object: DirectorObject }) {
       onClick={(event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
         if (motionPathDraft || selectedMotionPathAnchorId) return;
+        if (owningGroup) {
+          useDirectorStore.getState().selectGroup(owningGroup.id);
+          return;
+        }
         selectObject(object.id, "viewport");
       }}
     >
@@ -308,6 +322,79 @@ function SceneObject({ object }: { object: DirectorObject }) {
     >
       {content}
     </TransformControls>
+  );
+}
+
+function DirectorGroupTransformRig({
+  group,
+}: {
+  group: DirectorCharacterGroup;
+}) {
+  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
+  const objects = useDirectorStore((state) => state.objects);
+  const transformMode = useDirectorStore((state) => state.transformMode);
+  const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const motionPathDraft = useDirectorStore(
+    (state) => state.timeline.motionPathDraft,
+  );
+  const selectedMotionPathAnchorId = useDirectorStore(
+    (state) => state.timeline.selectedMotionPathAnchorId,
+  );
+  const updateGroupTransform = useDirectorStore(
+    (state) => state.updateGroupTransform,
+  );
+  const recordGroupKeyframe = useDirectorStore(
+    (state) => state.recordGroupKeyframe,
+  );
+  const groupRef = useRef<Group>(null);
+  const anchor = getDirectorGroupAnchorTransform(objects, group);
+  if (
+    !anchor ||
+    selectedGroupId !== group.id ||
+    isCapturing ||
+    motionPathDraft !== null ||
+    selectedMotionPathAnchorId !== null
+  ) {
+    return null;
+  }
+
+  const commitTransform = () => {
+    const current = groupRef.current;
+    if (!current) return;
+    const nextTransform = {
+      position: [
+        current.position.x,
+        current.position.y,
+        current.position.z,
+      ] as DirectorTuple3,
+      rotation: [
+        MathUtils.radToDeg(current.rotation.x),
+        MathUtils.radToDeg(current.rotation.y),
+        MathUtils.radToDeg(current.rotation.z),
+      ] as DirectorTuple3,
+      scale: [current.scale.x, current.scale.y, current.scale.z] as DirectorTuple3,
+    };
+    updateGroupTransform(group.id, nextTransform);
+    recordGroupKeyframe(group.id);
+  };
+
+  return (
+    <group data-director-group-rig={group.id}>
+      <TransformControls
+        mode={transformMode}
+        size={0.82}
+        onMouseUp={commitTransform}
+      >
+        <group
+          ref={groupRef}
+          position={anchor.position}
+          rotation={anchor.rotation.map((value) =>
+            MathUtils.degToRad(value),
+          ) as [number, number, number]}
+          scale={anchor.scale}
+        />
+      </TransformControls>
+    </group>
   );
 }
 
@@ -623,6 +710,7 @@ function DirectorScene() {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const groups = useDirectorStore((state) => state.groups);
 
   return (
     <>
@@ -649,6 +737,9 @@ function DirectorScene() {
       ) : null}
       {objects.map((object) => (
         <SceneObject key={object.id} object={object} />
+      ))}
+      {groups.map((group) => (
+        <DirectorGroupTransformRig key={group.id} group={group} />
       ))}
       <DirectorMotionPaths />
       <DirectorMotionPathDrawingSurface />
@@ -904,6 +995,7 @@ export function DirectorViewport({
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
+  const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
   const selectObject = useDirectorStore((state) => state.selectObject);
   const finishMotionPathDrawing = useDirectorStore(
     (state) => state.finishMotionPathDrawing,
@@ -915,6 +1007,10 @@ export function DirectorViewport({
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [captureRequest, setCaptureRequest] = useState(0);
   const [phoneVcamOpen, setPhoneVcamOpen] = useState(false);
+  const [crowdPanelOpen, setCrowdPanelOpen] = useState(false);
+  const [crowdRows, setCrowdRows] = useState("3");
+  const [crowdColumns, setCrowdColumns] = useState("3");
+  const [crowdSpacing, setCrowdSpacing] = useState("1.2");
   const phoneVcamRecording = phoneVcamStatus === "recording";
 
   useLayoutEffect(() => {
@@ -959,6 +1055,20 @@ export function DirectorViewport({
     if (isCapturing) return;
     setCapturing(true);
     setCaptureRequest((value) => value + 1);
+  };
+
+  const crowdTotal = Math.min(
+    Math.max(Number(crowdRows) || 1, 1),
+    6,
+  ) * Math.min(Math.max(Number(crowdColumns) || 1, 1), 8);
+
+  const addCrowd = () => {
+    addCrowdArray({
+      rows: Number(crowdRows),
+      columns: Number(crowdColumns),
+      spacing: Number(crowdSpacing),
+    });
+    setCrowdPanelOpen(false);
   };
 
   return (
@@ -1090,6 +1200,83 @@ export function DirectorViewport({
         onClose={() => setPhoneVcamOpen(false)}
       />
 
+      {crowdPanelOpen ? (
+        <div
+          data-director-crowd-panel
+          role="dialog"
+          aria-label="添加群众阵列"
+          className="absolute bottom-[72px] left-1/2 z-20 w-[272px] -translate-x-1/2 rounded border border-white/10 bg-[#242424]/[.98] p-3 shadow-[0_12px_28px_rgba(0,0,0,0.38)]"
+        >
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-xs text-[#dedede]">添加群众阵列</h2>
+            <span
+              data-director-crowd-count={crowdTotal}
+              className="text-[10px] tabular-nums text-[#777]"
+            >
+              共{crowdTotal}人
+            </span>
+          </div>
+          <div className="grid grid-cols-[1fr_auto_1fr] gap-2">
+            <label className="block">
+              <span className="mb-1 block text-[10px] text-[#777]">行数</span>
+              <input
+                data-director-crowd-rows
+                type="number"
+                min="1"
+                max="6"
+                value={crowdRows}
+                onChange={(event) => setCrowdRows(event.target.value)}
+                className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+              />
+            </label>
+            <span className="self-end pb-2 text-xs text-[#666]">×</span>
+            <label className="block">
+              <span className="mb-1 block text-[10px] text-[#777]">列数</span>
+              <input
+                data-director-crowd-columns
+                type="number"
+                min="1"
+                max="8"
+                value={crowdColumns}
+                onChange={(event) => setCrowdColumns(event.target.value)}
+                className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+              />
+            </label>
+          </div>
+          <label className="mt-2 block">
+            <span className="mb-1 block text-[10px] text-[#777]">间距</span>
+            <input
+              data-director-crowd-spacing
+              type="number"
+              min="0.6"
+              max="3"
+              step="0.1"
+              value={crowdSpacing}
+              onChange={(event) => setCrowdSpacing(event.target.value)}
+              className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+            />
+          </label>
+          <div className="mt-3 flex justify-end gap-1.5">
+            <button
+              type="button"
+              data-director-crowd-action="cancel"
+              onClick={() => setCrowdPanelOpen(false)}
+              className="h-8 rounded px-3 text-[11px] text-[#888] hover:bg-white/[0.06] hover:text-white"
+            >
+              取消
+            </button>
+            <button
+              type="button"
+              data-director-crowd-action="add"
+              onClick={addCrowd}
+              className="h-8 rounded bg-[#e7e7e7] px-3 text-[11px] text-[#202020] hover:bg-white"
+            >
+              添加
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <div className="absolute left-3 top-3 z-10 hidden gap-1 max-[899px]:flex">
         <button
           type="button"
@@ -1184,6 +1371,20 @@ export function DirectorViewport({
           )}
         >
           <Smartphone size={15} />
+        </button>
+        <button
+          type="button"
+          data-director-crowd-trigger
+          aria-label="添加群众阵列"
+          title="添加群众阵列"
+          aria-expanded={crowdPanelOpen}
+          onClick={() => setCrowdPanelOpen((value) => !value)}
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
+            crowdPanelOpen && "bg-white/10 text-[#5ddcff]",
+          )}
+        >
+          <Users size={15} />
         </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button

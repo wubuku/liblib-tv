@@ -5,8 +5,9 @@
 
 ## Status
 
-In progress. The source and upstream archaeology are protected before
-implementation.
+Complete as a bounded frontend prototype slice on 2026-08-26. Source and
+upstream archaeology, implementation, focused browser verification and
+screenshot interpretation are recorded below.
 
 ## Why This Batch
 
@@ -30,8 +31,12 @@ Director Desk rather than an upstream-only idea.
   implementation facts.
 - [`PLAN.md`](PLAN.md): ordered implementation and verification plan.
 - [`DIRECTOR_GROUPS.spec.md`](DIRECTOR_GROUPS.spec.md): clone behavior contract.
-- [`IMPLEMENTATION.md`](IMPLEMENTATION.md): interruption-safe progress log.
-- `SCREENSHOT_ANALYSIS.md`: created after the first focused clone visual pass.
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md): implementation and verification
+  history.
+- [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-time interpretation
+  of the focused clone screenshots.
+- [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): post-batch maturity and
+  next Director queue.
 
 ## Evidence Rule
 

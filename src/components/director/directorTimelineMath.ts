@@ -1,5 +1,6 @@
 import type {
   DirectorCameraKeyframeValue,
+  DirectorGroupKeyframe,
   DirectorTimelineTrack,
   DirectorTransform,
   DirectorTuple3,
@@ -25,6 +26,10 @@ export type DirectorTimelineSample =
   | {
       kind: "pose";
       pose: DirectorPoseKeyframeValue;
+    }
+  | {
+      kind: "group";
+      transform: DirectorTransform;
     };
 
 function interpolateNumber(from: number, to: number, progress: number): number {
@@ -65,6 +70,14 @@ function interpolateCamera(
     target: interpolateTuple(from.target, to.target, progress),
     fov: interpolateNumber(from.fov, to.fov, progress),
   };
+}
+
+function interpolateGroup(
+  from: DirectorGroupKeyframe,
+  to: DirectorGroupKeyframe,
+  progress: number,
+): DirectorTransform {
+  return interpolateTransform(from.value, to.value, progress);
 }
 
 export function clampDirectorTimelineTime(
@@ -117,6 +130,30 @@ export function sampleDirectorTimelineTrack(
     };
   }
 
+  if (track.kind === "group") {
+    const keyframes = track.keyframes;
+    if (keyframes.length === 0) return null;
+    const first = keyframes[0];
+    const last = keyframes[keyframes.length - 1];
+    if (sampledTime <= first.time) {
+      return { kind: "group", transform: cloneDirectorTransform(first.value) };
+    }
+    if (sampledTime >= last.time) {
+      return { kind: "group", transform: cloneDirectorTransform(last.value) };
+    }
+    const nextIndex = keyframes.findIndex(
+      (keyframe) => keyframe.time >= sampledTime,
+    );
+    const previous = keyframes[Math.max(0, nextIndex - 1)];
+    const next = keyframes[nextIndex];
+    const span = Math.max(next.time - previous.time, Number.EPSILON);
+    const progress = (sampledTime - previous.time) / span;
+    return {
+      kind: "group",
+      transform: interpolateGroup(previous, next, progress),
+    };
+  }
+
   if (track.kind === "pose") {
     const keyframes = track.keyframes;
     if (keyframes.length === 0) return null;
@@ -165,5 +202,13 @@ export function sampleDirectorTimelineTrack(
   return {
     kind: "transform",
     transform: interpolateTransform(previous.value, next.value, progress),
+  };
+}
+
+function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform {
+  return {
+    position: [...transform.position],
+    rotation: [...transform.rotation],
+    scale: [...transform.scale],
   };
 }

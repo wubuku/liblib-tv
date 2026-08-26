@@ -83,6 +83,12 @@ multi-select characters or add crowd array
 ## Protection Commits
 
 - [x] plan/evidence
-- [ ] implementation
-- [ ] focused verification
-- [ ] final documentation/regression
+- [x] implementation
+- [x] focused verification
+- [x] final documentation/regression
+
+## Closeout
+
+Focused browser verification passed on 2026-08-26 with
+`scripts/verify-liblib-batch45.py`. The remaining repository-wide gates and
+exact commit hashes are recorded in [`IMPLEMENTATION.md`](IMPLEMENTATION.md).

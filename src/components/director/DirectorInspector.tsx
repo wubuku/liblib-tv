@@ -13,12 +13,14 @@ import {
   Route,
   Send,
   Trash2,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   useDirectorStore,
   type DirectorCameraLookAtMode,
   type DirectorCapture,
+  type DirectorCharacterGroup,
   type DirectorMotionPath,
   type DirectorMotionPathAnchor,
   type DirectorMotionPathHandle,
@@ -32,6 +34,15 @@ import {
   DIRECTOR_POSE_PRESETS,
   type DirectorPoseControlGroup,
 } from "@/components/director/directorPose";
+import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
+
+function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform {
+  return {
+    position: [...transform.position],
+    rotation: [...transform.rotation],
+    scale: [...transform.scale],
+  };
+}
 
 const axisLabels = ["X", "Y", "Z"] as const;
 
@@ -115,6 +126,81 @@ function CapturePreview({
         {capture.sentNodeId ? "已发送到画布" : "发送到画布"}
       </button>
     </section>
+  );
+}
+
+function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
+  const objects = useDirectorStore((state) => state.objects);
+  const updateGroup = useDirectorStore((state) => state.updateGroup);
+  const updateGroupTransform = useDirectorStore(
+    (state) => state.updateGroupTransform,
+  );
+  const recordGroupKeyframe = useDirectorStore(
+    (state) => state.recordGroupKeyframe,
+  );
+  const anchor = getDirectorGroupAnchorTransform(objects, group);
+  if (!anchor) return null;
+
+  const updateField = (
+    field: keyof DirectorTransform,
+    axis: 0 | 1 | 2,
+    value: number,
+  ) => {
+    const next = cloneDirectorTransform(anchor);
+    next[field][axis] = value;
+    updateGroupTransform(group.id, next);
+    recordGroupKeyframe(group.id);
+  };
+
+  return (
+    <div
+      data-director-group-inspector
+      className="space-y-4 px-3 py-3"
+    >
+      <label className="block">
+        <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
+        <input
+          data-director-group-name
+          value={group.label}
+          onChange={(event) =>
+            updateGroup(group.id, { label: event.target.value })
+          }
+          className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+        />
+      </label>
+      <div className="flex items-center gap-2 rounded border border-white/[0.07] bg-[#202020] px-2 py-2 text-[11px] text-[#aaa]">
+        <Users size={13} className="text-[#5ddcff]" />
+        <span>{group.crowd ? "群众阵列" : "角色组"}</span>
+        <span className="ml-auto tabular-nums text-[#777]">
+          {group.characterIds.length} 个成员
+        </span>
+      </div>
+      {group.crowd ? (
+        <div className="grid grid-cols-3 gap-1.5 text-center text-[10px] text-[#777]">
+          <span>行 {group.crowd.rows}</span>
+          <span>列 {group.crowd.columns}</span>
+          <span>间距 {group.crowd.spacing}</span>
+        </div>
+      ) : null}
+      <div className="space-y-3 border-t border-white/[0.07] pt-4">
+        {(
+          [
+            ["position", "位置"],
+            ["rotation", "旋转"],
+            ["scale", "缩放"],
+          ] as const
+        ).map(([field, label]) => (
+          <div key={field} data-director-group-transform-field={field}>
+            <AxisFields
+              label={label}
+              field={field}
+              values={anchor[field]}
+              onChange={(axis, value) => updateField(field, axis, value)}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -696,7 +782,9 @@ export function DirectorInspector({
 }) {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
+  const groups = useDirectorStore((state) => state.groups);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const updateScene = useDirectorStore((state) => state.updateScene);
   const updateObject = useDirectorStore((state) => state.updateObject);
   const updateObjectTransform = useDirectorStore(
@@ -708,9 +796,14 @@ export function DirectorInspector({
   );
   const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
   const timeline = useDirectorStore((state) => state.timeline);
+  const selectedGroup =
+    groups.find((group) => group.id === selectedGroupId) ?? null;
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
   const selectedTrack = timeline.tracks.find(
-    (track) => track.objectId === selected?.id && track.kind !== "pose",
+    (track) =>
+      selectedGroup
+        ? track.kind === "group" && track.groupId === selectedGroup.id
+        : track.objectId === selected?.id && track.kind !== "pose",
   );
   const selectedPath = selectedTrack?.motionPathId
     ? timeline.motionPaths.find(
@@ -734,15 +827,21 @@ export function DirectorInspector({
   return (
     <section
       data-director-inspector
-      data-director-inspector-kind={selected?.kind ?? "scene"}
+      data-director-inspector-kind={
+        selectedGroup ? "group" : selected?.kind ?? "scene"
+      }
       className="flex h-full min-h-0 flex-col bg-[#191919]"
     >
       <header className="flex h-12 shrink-0 items-center border-b border-white/[0.07] px-3">
         <h2 className="text-xs font-medium text-[#dedede]">
-          {selected ? "对象属性" : "场景属性"}
+          {selectedGroup ? "分组属性" : selected ? "对象属性" : "场景属性"}
         </h2>
         <span className="ml-auto text-[10px] text-[#666]">
-          {selected?.kind === "camera"
+          {selectedGroup
+            ? selectedGroup.crowd
+              ? "群众"
+              : "角色组"
+            : selected?.kind === "camera"
             ? "摄像机"
             : selected?.kind === "character"
               ? "角色"
@@ -752,7 +851,9 @@ export function DirectorInspector({
         </span>
       </header>
 
-      {selected?.kind === "character" ? (
+      {selectedGroup ? (
+        <GroupInspector group={selectedGroup} />
+      ) : selected?.kind === "character" ? (
         <nav
           data-director-character-tabs
           aria-label="角色编辑"
@@ -785,7 +886,7 @@ export function DirectorInspector({
       ) : null}
 
       <div className="min-h-0 flex-1 overflow-y-auto">
-        {selected ? (
+        {selectedGroup ? null : selected ? (
           selected.kind === "character" && characterTab === "pose" ? (
             <CharacterPoseInspector character={selected} />
           ) : (

@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-44 | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-45 | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -63,18 +63,19 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 42 | articulated R3F character, 20 pose presets, SAM controls, independent pose tracks, transform-plus-pose composition, interpolation, path rejection and mobile geometry |
 | Batch 43 | coordinate/rotation/object camera look-at, animated target follow, first/third-person modes, FOV composition, path/phone guards, recovery and mobile geometry |
 | Batch 44 | seven preset camera motions, replace/append allocation, no-room/follow guards, path preservation/disablement, R3F pixel changes and mobile panel bounds |
+| Batch 45 | character groups, 2×3 crowd creation, Shift multi-select grouping, group transforms, typed group tracks, scrub/play pixel changes, ungroup preservation and mobile bounds |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..44}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..45}.py; do
   python3 "$script" || exit 1
 done
 ```
 
-Batch 34 和当前并行的 Batch 45 目前没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45 的研究目录仍在 [`research/README.md`](research/README.md) 中维护。
+Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45 的专项 verifier、研究目录和截图台账均已纳入维护。
 
 ## Browser Evidence Requirements
 
