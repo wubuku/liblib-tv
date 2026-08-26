@@ -29,8 +29,8 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-52 的目录记录 | Batch 47 已完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 已完成 viewport gizmo 有界闭环；Batch 50 已完成 workspace shell/keyboard 有界闭环；Batch 52 已完成图片 action shell/Preview 有界闭环 |
-| LibTV verifier | 有 Batch 4-33、35-50、52 的专项脚本 | Batch 34 是 research-only；Batch 50 和 Batch 52 已有 focused verifier |
+| Batch 研究目录 | 已有 Batch 3-53 的目录记录 | Batch 47 已完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 已完成 viewport gizmo 有界闭环；Batch 50 已完成 workspace shell/keyboard 有界闭环；Batch 52 已完成图片 action shell/Preview 有界闭环；Batch 53 已完成空标注替换态有界闭环 |
+| LibTV verifier | 有 Batch 4-33、35-50、52-53 的专项脚本 | Batch 34 是 research-only；Batch 50、52 和 53 已有 focused verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
 | 代码边界 | LibTV/FrameOS route 与 store 独立；后端为 mock | 研究文档不能暗示真实 Provider、上传或持久化已经存在 |
@@ -67,7 +67,7 @@ AGENTS.md / README.md
 - Batch 46/47 在各自专项脚本、实施记录和 serial regression 稳定后被纳入台账；Batch 47 的真实模型/环境资产加载仍不在合同内。
 - Batch 48 已完成 local-import workflow、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 48，真实 mesh loading/远程同步仍是 prototype boundary。
 - Batch 49 已完成独立 R3F gizmo、六方向 snapshot 命令、capture/path/phone guard、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 49，source-exact renderer/CSS 和连续 gizmo 操作仍不在合同内。
-- Batch 50 已完成 Director workspace shell 的侧栏折叠/恢复、viewport 扩展、mobile drawer recovery、focus/keyboard boundary、focused verifier、四态截图台账和成熟度评估；Batch 52 随后完成当前图片 action shell、Preview、desktop/mobile verifier 和截图账本。稳定验证范围推进到 Batch 52；LibTV source-exact shell、完整 focus trap、source “全屏”语义以及图片高风险 active tool 仍不在合同内。
+- Batch 50 已完成 Director workspace shell 的侧栏折叠/恢复、viewport 扩展、mobile drawer recovery、focus/keyboard boundary、focused verifier、四态截图台账和成熟度评估；Batch 52 随后完成当前图片 action shell、Preview、desktop/mobile verifier 和截图账本；Batch 53 完成空标注替换态、DPR2 canvas、工具/颜色/线宽空态控制和键盘隔离。稳定验证范围推进到 Batch 53；LibTV source-exact shell、完整 focus trap、source “全屏”语义以及图片非空标注保存/图层分离等高风险行为仍不在合同内。
 - 快捷键文案/handler/局部优先级和 graph action/history 副作用已有独立、可发现的运行语义地图。
 - UI overlay 已有从命令反查 state、mount owner、关闭路径、键盘边界、节点 anchor strategy 和未挂载兼容字段的运行时目录。
 

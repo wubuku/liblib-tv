@@ -95,7 +95,7 @@ The LibTV batch scripts use independent pages when state contamination is possib
 python3 scripts/verify-liblib-batch<N>.py
 ```
 
-当前专项 verifier 覆盖 Batch 4-33、35-50、52；Batch 34 是 research-only，Batch 48 的本地模型 workflow、Batch 49 的 viewport gizmo、Batch 50 的 workspace shell/keyboard workflow 和 Batch 52 的图片 action shell/Preview 已形成有界 recorded pass。Batch 34 不应被隐式纳入脚本循环。
+当前专项 verifier 覆盖 Batch 4-33、35-50、52-53；Batch 34 是 research-only，Batch 48 的本地模型 workflow、Batch 49 的 viewport gizmo、Batch 50 的 workspace shell/keyboard workflow、Batch 52 的图片 action shell/Preview 和 Batch 53 的空标注替换态已形成有界 recorded pass。Batch 34 不应被隐式纳入脚本循环。
 
 They check DOM geometry, interaction lifecycle, screenshots and console errors. Treat the corresponding `docs/design-references/` images as dated evidence, not as an automatically current screenshot.
 

@@ -11,8 +11,16 @@
 - [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#10-图片工具态与预览浮层)
 
 本批不把 Batch 52 clone 截图当作源站证据，也不重新识别相同的源站状态。
+收尾阶段另对当前生产 chunk 做了静态组件审计，用于补齐 live 空态观察
+没有展开的工具语义。
 
 ## 2. 已确认的空态合同
+
+收尾阶段的静态审计锁定了当前生产 chunk 中 `AnnotateToolbar` 的可见
+control contract：默认工具为 `pencil`，默认颜色为 `#ff0000`，颜色板为
+`#ffcc00 #ff7a00 #ff2d55 #ff0000 #8e5cff #3a86ff #ffffff`，线宽范围为
+`1..40`，默认值为 `4`。这部分是当前 production bundle 的静态证据，不把
+本地 clone 的旧实现或按钮命名当作源站事实。
 
 在源站 `图片4` 选中态进入 `标注` 后：
 
@@ -20,16 +28,18 @@
 |---|---|
 | 标准 toolbar | 卸载 |
 | 专用 toolbar | `536x49`，节点中心对齐 |
-| 专用 toolbar controls | 8 个按钮；可见文字包含 `标注`、`保存`；空态 undo/redo disabled |
+| 专用 toolbar controls | 关闭+`标注`、`画笔`/`矩形`/`文字`、颜色、线宽、`撤销`、`重做`、`保存`；空态仅 undo/redo disabled，保存 enabled |
 | 标准 bottom panel | 不存在 |
 | drawing canvas | 覆盖图片节点，CSS rect `194.117x97` |
 | canvas backing | `388x194`，DPR2 |
 | 退出 | Escape 后专用 toolbar/canvas 消失，标准双浮层恢复 |
 | graph | 空态没有绘制、保存、上传、生成或 graph mutation |
 
-专用 toolbar 的 8 个按钮中，除 `标注`、`保存` 和空态禁用状态外，本批不
-宣称每个图标的确切业务语义。源站具体 icon DOM/CSS 如需复刻，必须另建
-最小 source crop/evidence，不应从图标名称脑补。
+专用 toolbar 的 8 个按钮及线宽 input 已由 production chunk 静态审计补齐：
+按钮是关闭+`标注`、pencil、rect、text、color、undo、redo、save；线宽是
+独立 range input。空态仅 undo/redo disabled，save 仍 enabled。仍未确认的
+是非空 stroke、dirty、save/upload/result transaction，而不是这些 control
+的存在与空态 enabled/disabled 边界。
 
 ## 3. clone 状态合同
 

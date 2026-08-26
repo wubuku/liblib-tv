@@ -43,7 +43,7 @@
 - canvas backing ratio 固定为 `2`，以便在当前 device scale factor=1 的本地
   verifier 中仍明确复现源站 DPR2 合同；
 - 专用工具条未获证据的图标只作为空态视觉壳层，不绑定绘制或保存副作用；
-- `保存` 保持 disabled，所有 undo/redo/clear 类空态控制保持 disabled；
+- `保存` 在空态保持 enabled，但本批不实现保存副作用；仅空态 `撤销`/`重做` 为 disabled；
 - Escape、关闭按钮和节点切换都只退出 active state，不产生 graph transaction。
 
 ## 3. 实施步骤
@@ -69,7 +69,7 @@
 - toolbar center 与 node center 在 1px 内；
 - 出现一个覆盖 node image 的 canvas，CSS rect 等于 node image rect；
 - canvas backing width/height 为 CSS rect 的约 2 倍；
-- `标注`、`保存` 可访问名称可读，空态 undo/redo/save disabled；
+- `标注`、`保存` 可访问名称可读，空态 `撤销`/`重做` disabled，`保存` enabled；
 - nodes、edges、selected node、Prompt、viewport、history 不变；
 - Escape 和 close button 恢复 standard toolbar/panel。
 
@@ -91,7 +91,13 @@
 ## 5. 不做事项
 
 - 不实现真实 stroke/path/eraser；
-- 不启用保存，不上传标注图片；
+- 不实现真实保存，不上传标注图片；保留源站可见的 enabled `保存` 控件，但点击不产生副作用；
 - 不创建结果 image node，不修改当前 image node；
 - 不实现旋转、元素编辑、图层分离或下载；
 - 不把 source 未确认的 8 个按钮逐一解释成真实业务能力。
+
+## 6. Closeout
+
+本计划已实施完成。代码、验证、问题修复、截图和 commit/push 历史见
+[`IMPLEMENTATION.md`](IMPLEMENTATION.md)；后续先读
+[`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)，不要重复识别本批截图。

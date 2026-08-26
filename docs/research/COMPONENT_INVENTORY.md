@@ -24,7 +24,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | Type ID | File | Notes |
 |---------|------|-------|
 | `script` | `src/components/nodes/ScriptNode.tsx` | Title + multi-line script text, default 320px wide, bg `#212121`. |
-| `image` | `src/components/nodes/ImageNode.tsx` | Image with header, dimensions and watermark; panorama and video-frame outputs reuse this renderer. Frame results expose source/kind/time/name/alt/edge metadata and retain ordinary image overlays. |
+| `image` | `src/components/nodes/ImageNode.tsx` | Image with header, dimensions and watermark; panorama and video-frame outputs reuse this renderer. Frame results expose source/kind/time/name/alt/edge metadata and retain ordinary image overlays. Selected images use the current 13-action toolbar, page-level Preview, and Batch 53's empty annotate replacement state. |
 | `text` | `src/components/nodes/TextNode.tsx` | Inline-editable text block. |
 | `video` | `src/components/nodes/VideoNode.tsx` | Failed/ready/empty/pending renderer; single selection shows Seedance generation, processing, reshoot, continuation, subtitle, subject-edit or depth-motion UI. Ready playback includes local playhead and frame camera; pending split/depth outputs use media-result placeholders. |
 | `script-execution` | `src/components/nodes/ScriptExecutionNode.tsx` | Historical type id for the source-backed `3D导演台` entry; its isolated CTA opens the lazy-loaded R3F workspace. |
@@ -52,7 +52,9 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Bottom-toolbar-anchored 240x163 material menu. |
 | `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Responsive character detail and 23-item asset carousel modal. |
 | `HistoryPanel` | `src/components/HistoryPanel.tsx` | Responsive asset history modal with filters, zoom, batch selection and local result images. |
-| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Clone Batch 52 renders the current source-shaped 13-action set in a `1092.5x49` host and maps live zoom to the source-confirmed top gap. Preview is enabled; annotate, element edit, rotate, layer separation and download remain visible bounded placeholders. |
+| `ImageToolbar` | `src/components/ImageToolbar.tsx` | Clone Batch 52 renders the current source-shaped 13-action set in a `1092.5x49` host and maps live zoom to the source-confirmed top gap. Preview and annotate are enabled; annotate replaces the standard double overlay with Batch 53's `536x49` empty authoring state. Element edit, rotate, layer separation and download remain visible bounded placeholders. |
+| `ImageAnnotateToolbar` | `src/components/ImageAnnotateToolbar.tsx` | Batch 53 node-anchored `536x49` empty annotate toolbar: close+label, pencil/rect/text, color, line width, undo, redo and enabled no-op save. |
+| `ImageAnnotateSurface` | `src/components/ImageAnnotateSurface.tsx` | Batch 53 node-local transparent DPR2 canvas overlay with pointer isolation; no stroke/result persistence. |
 | `ImagePreviewOverlay` | `src/components/ImagePreviewOverlay.tsx` | Page-level `85vw x 80vh` read-only image preview with intrinsic-ratio media, watermark, focused close button, Escape/Tab boundary and no graph mutation. |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | `660px` node-anchored image prompt panel; inverse-scales and keeps a `16 * zoom` lower gap. |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | `660x274` Seedance 2.5 model/mode/parameter prompt editor; long-video submit hands request-shaped state to a canvas process graph. |

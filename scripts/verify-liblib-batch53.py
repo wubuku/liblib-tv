@@ -128,16 +128,38 @@ def assert_annotate(page: Page):
     assert buttons.count() == 8
     assert page.get_by_role("button", name="标注", exact=True).count() == 1
     assert page.get_by_role("button", name="保存", exact=True).count() == 1
-    assert page.locator("[data-image-annotate-save]").is_disabled()
-    assert page.locator("[data-image-annotate-clear]").is_disabled()
     assert page.locator("[data-image-annotate-undo]").is_disabled()
     assert page.locator("[data-image-annotate-redo]").is_disabled()
     assert not page.locator("[data-image-annotate-close]").is_disabled()
+    assert not page.locator("[data-image-annotate-save]").is_disabled()
+    assert toolbar.locator("[data-image-annotate-control]").count() == 3
+    assert page.locator("[data-image-annotate-color]").count() == 1
+    assert page.locator("[data-image-annotate-line-width]").count() == 1
+    line_width = page.locator("[data-image-annotate-line-width] input")
+    assert line_width.get_attribute("min") == "1"
+    assert line_width.get_attribute("max") == "40"
+    assert line_width.input_value() == "4"
+    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "pencil"
 
-    page.locator("[data-image-annotate-eraser]").click()
-    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "eraser"
-    page.locator("[data-image-annotate-brush]").click()
-    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "brush"
+    page.locator("[data-image-annotate-color]").click()
+    colors = ["#ffcc00", "#ff7a00", "#ff2d55", "#ff0000", "#8e5cff", "#3a86ff", "#ffffff"]
+    assert page.locator("[data-image-annotate-color-menu] button").count() == len(colors)
+    for color in colors:
+        assert page.locator(f'[data-image-annotate-color-menu] button[aria-label="{color}"]').count() == 1
+    page.locator('[data-image-annotate-color-menu] button[aria-label="#3a86ff"]').click()
+    assert page.locator("[data-image-annotate-color]").get_attribute("aria-expanded") == "false"
+
+    line_width.fill("12")
+    assert line_width.input_value() == "12"
+
+    page.get_by_role("button", name="矩形", exact=True).click()
+    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "rect"
+    page.get_by_role("button", name="文字", exact=True).click()
+    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "text"
+    page.get_by_role("button", name="画笔", exact=True).click()
+    assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "pencil"
+    page.locator("[data-image-annotate-save]").click()
+    assert graph_signature(page) == graph_before
 
     return {
         "node": node_box,

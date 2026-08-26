@@ -57,7 +57,9 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const imageAnnotate = useUIStore((state) => state.imageAnnotate);
   const closeImageAnnotate = useUIStore((state) => state.closeImageAnnotate);
   const isAnnotating = selected && imageAnnotate?.nodeId === id && Boolean(imageUrl);
-  const [activeAnnotateTool, setActiveAnnotateTool] = useState<ImageAnnotateTool>("brush");
+  const [activeAnnotateTool, setActiveAnnotateTool] = useState<ImageAnnotateTool>("pencil");
+  const [annotateColor, setAnnotateColor] = useState("#ff0000");
+  const [annotateStrokeWidth, setAnnotateStrokeWidth] = useState(4);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1 && !isAnnotating;
 
   const runAction = (action: ImageToolbarAction) => {
@@ -169,7 +171,11 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       {isAnnotating && (
         <ImageAnnotateToolbar
           activeTool={activeAnnotateTool}
+          color={annotateColor}
+          strokeWidth={annotateStrokeWidth}
           onToolChange={setActiveAnnotateTool}
+          onColorChange={setAnnotateColor}
+          onStrokeWidthChange={setAnnotateStrokeWidth}
           onClose={closeImageAnnotate}
         />
       )}

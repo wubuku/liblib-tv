@@ -45,4 +45,3 @@ export function ImageAnnotateSurface({ activeTool }: ImageAnnotateSurfaceProps) 
     </div>
   );
 }
-

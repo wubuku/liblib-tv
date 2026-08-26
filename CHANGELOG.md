@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added the Batch 48 Playwright verifier, one-time screenshot ledger and
   maturity assessment; real mesh loading and remote persistence remain outside
   the prototype contract.
+- Closed Batch 53 with a source-backed empty image annotate replacement:
+  node-local DPR2 canvas, `536x49` tool surface, source-shaped tool/color/line-width
+  controls, empty undo/redo disabled state, and enabled no-op save.
 
 ### Documentation
 - Migrated the self-contained `.agents/skills/project-docs` package into this repository
@@ -62,6 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a current LibTV UI/UX parity backlog with stable gap IDs, evidence and
   verification readiness, risk, dependencies, authorization gates, fixture
   blockers and explicit prototype/out-of-scope boundaries.
+- Added Batch 53 source evidence, screenshot ledger, component contract,
+  runtime audit and implementation closeout documentation.
 
 ### Fixed
 - Updated the selected-image toolbar to the current source-shaped 13-action
@@ -80,6 +85,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Batch 52 focused Playwright/runtime-audit coverage for the current image
   action set and Preview at desktop/mobile viewports; Batch 10 and Batch 11
   adjacent regressions also pass.
+- Added Batch 53 focused Playwright/runtime-audit coverage for empty image
+  annotate replacement at desktop/mobile viewports; Batch 52, Batch 10 and
+  Batch 11 adjacent regressions remain covered.
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
 - Completed the LibTV asset manager's canvas/assets tab behavior and local media-node selection flow
 - Bound LibTV storyboard mode to the active canvas and aligned its key-elements/storyboard column structure with the source evidence

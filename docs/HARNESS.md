@@ -70,6 +70,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 49 | Director viewport native coordinate gizmo, six axis commands, camera-mode recovery, projected hit geometry, path/phone guards, capture hiding, dual WebGL pixels and responsive bounds |
 | Batch 50 | Director workspace sidebars collapse/restore, viewport expansion, mobile drawer recovery, focus ownership, page shortcut isolation, editable-target guard and Escape layering |
 | Batch 52 | Current 13-action image toolbar, source-sized button geometry, page-level Preview, watermark/close geometry, keyboard isolation, unchanged graph/selection and mobile clipping |
+| Batch 53 | Empty image annotate replacement, `536x49` toolbar, source-shaped tool/color/line-width controls, DPR2 canvas, standard-panel removal, keyboard isolation, unchanged graph/selection and mobile clipping |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

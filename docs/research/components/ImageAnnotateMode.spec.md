@@ -39,8 +39,10 @@ canvas CSS rect of approximately `194.117x97`, backed by `388x194` pixels.
 [data-image-annotate-redo]
 ```
 
-The remaining icon buttons are deliberately not treated as source business
-contracts until their source DOM semantics are separately recorded.
+The current production bundle confirms the empty-state control set: pencil, rect,
+text, color, line width, undo, redo and save. The clone only implements the local
+tool/color/width state in this batch; non-empty stroke and save semantics remain
+separate contracts.
 
 ## Behavior
 
@@ -50,7 +52,8 @@ contracts until their source DOM semantics are separately recorded.
 - Escape and close restore the standard selected-image state;
 - empty annotate does not alter nodes, edges, selection, Prompt, viewport or
   history;
-- save/undo/redo are disabled in the empty state;
+- undo/redo are disabled in the empty state; save remains enabled as a
+  source-shaped control but has no clone-side effect in this batch;
 - the surface does not create a result node or call a provider.
 
 ## Responsive
