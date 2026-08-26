@@ -1,8 +1,7 @@
 # Batch 45 Implementation Log
 
-> Status: focused implementation and browser verification complete on
-> 2026-08-26. Repository-wide regression and final documentation closeout are
-> tracked separately below.
+> Status: complete on 2026-08-26. Focused browser verification, cross-batch
+> regression and repository gates all passed.
 
 ## Protected Context
 
@@ -27,7 +26,7 @@
 - [x] tree, viewport and Inspector UI
 - [x] focused browser verification
 - [x] screenshot analysis
-- [ ] cross-batch regression and stable documentation closeout
+- [x] cross-batch regression and stable documentation closeout
 
 ### Code Surface
 
@@ -89,6 +88,17 @@ The first visual pass is recorded in
 screenshots and the generated contact sheet. Do not reopen the full contact
 sheet unless a new question is not answered by that ledger.
 
+## Repository Gates
+
+Passed on 2026-08-26:
+
+```text
+Batch 35-45 serial regression: passed
+npm run docs:check: passed (364 Markdown files, 1242 local targets)
+npm run check: passed (9 pre-existing lint warnings, 0 errors)
+git diff --check: passed
+```
+
 ## Worktree Safety
 
 Historical regression PNGs were already modified in the shared worktree before
@@ -105,12 +115,13 @@ Do not revert or absorb unrelated historical PNG changes.
 ## Commits
 
 - Plan/evidence protection: `56e822f`
-- Focused implementation and verification: pending
+- Focused implementation and verification: `93c4d67`
 - Repository-wide closeout: pending
 
 ## Interruption Handoff
 
-After repository-wide closeout, read
+The focused implementation commit is pushed. After the repository-wide
+documentation closeout commit, read
 [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md) before selecting the next
 Director batch. Keep source facts, fixed-upstream facts and clone calibration
 separate.

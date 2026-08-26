@@ -89,6 +89,7 @@ multi-select characters or add crowd array
 
 ## Closeout
 
-Focused browser verification passed on 2026-08-26 with
-`scripts/verify-liblib-batch45.py`. The remaining repository-wide gates and
-exact commit hashes are recorded in [`IMPLEMENTATION.md`](IMPLEMENTATION.md).
+Focused browser verification, Batch 35-45 serial regression,
+`npm run docs:check`, `npm run check` and `git diff --check` all passed on
+2026-08-26. The implementation and repository history are recorded in
+[`IMPLEMENTATION.md`](IMPLEMENTATION.md).
