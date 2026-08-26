@@ -34,6 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the explicit parallel-WIP boundary to Batch 46.
 - Added the stable StoryboardBoard projection/mode contract and corrected
   ScriptHeader documentation to reflect that it is an unmounted legacy prototype.
+- Added a KeyboardShortcutsDialog contract that records the source/clone command
+  delta and separates help text from actual keyboard-handler coverage.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

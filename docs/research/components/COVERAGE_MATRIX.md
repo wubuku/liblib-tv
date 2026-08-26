@@ -69,7 +69,7 @@
 | `CameraConfigDialog` | `src/components/CameraConfigDialog.tsx` | [`CameraConfigDialog.spec.md`](CameraConfigDialog.spec.md)、Batch 21/Director camera contracts | Batch 21、Director 35+ | `SPEC_COMPLETE` | 普通视频相机参数与 Director camera state 不合并。 |
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | [`CameraMovementDialog.spec.md`](CameraMovementDialog.spec.md)、Batch 21、Director preset contract | Batch 21、Batch 44 | `SPEC_COMPLETE` | 普通生成参数与 Director preset motion 是两个边界。 |
 | `MainEntryPanels` | `src/components/*` entry lifecycle | [`MainEntryPanels.spec.md`](MainEntryPanels.spec.md)、Batch 11 overlay lifecycle | Batch 11 | `SPEC_COMPLETE` | 入口互斥、Escape、outside click 是共享生命周期。 |
-| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | `BottomToolbar.spec.md`、`BEHAVIORS.md` | Batch 1 panels | `BATCH_CONTRACT` | 当前没有独立 spec；若 shortcut 影响状态机再单独建合同。 |
+| `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | [`KeyboardShortcutsDialog.spec.md`](KeyboardShortcutsDialog.spec.md)、Batch 1 panel audit | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | source/clone 命令差异和“帮助文案不等于监听器”边界已显式记录。 |
 | `SmartMattingPanel` | `src/components/SmartMattingPanel.tsx` | [`SmartMattingPanel.spec.md`](SmartMattingPanel.spec.md)、Batch 30 `SMART_MATTING_WORKFLOW.spec.md` | Batch 30 | `SPEC_COMPLETE` | panel ownership、measured-width anchor、submit state 与 store transaction 已分层。 |
 
 ## 4. Director Desk
@@ -104,11 +104,10 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-45 
 
 按“会阻塞后续复刻决策”的优先级排序，而不是按文件数量排序：
 
-本轮已补齐 `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel`、`SmartMattingPanel` 和 `StoryboardBoard` 的独立合同，并把未挂载的 `ScriptHeader` 明确降级为 legacy。合同将 source fact、clone fact、clone decision 和未验证业务副作用分开，因此不再列为待补缺口。
+本轮已补齐 `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel`、`SmartMattingPanel`、`StoryboardBoard` 和 `KeyboardShortcutsDialog` 的独立合同，并把未挂载的 `ScriptHeader` 明确降级为 legacy。合同将 source fact、clone fact、clone decision 和未验证业务副作用分开，因此不再列为待补缺口。
 
 | 优先级 | 缺口 | 影响 | 建议触发条件 |
 |---|---|---|---|
-| P2 | `KeyboardShortcutsDialog` 的源站完整采样 | 当前已有入口与布局记录，但快捷键集合不是当前高价值复刻主线 | 需要实现或调整快捷键时补合同。 |
 | P2 | Director 组件级拆分合同 | 目前领域合同已经足够支持连续批次；逐文件拆分会重复大量 domain contract | Director domain 稳定、开始多人并行修改同一组件时再拆。 |
 
 ## 7. 新增组件规范的判定规则
