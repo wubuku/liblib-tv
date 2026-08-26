@@ -65,7 +65,7 @@
 
 | Rank | ID | Slice | V | E | T | R | 状态 |
 |---:|---|---|---:|---:|---:|---:|---|
-| 1 | `LIBTV-PAR-001` | 当前图片标准双浮层的动作集合与几何 | 5 | 5 | 4 | 2 | `READY_FOR_AUTHORIZATION` |
+| 1 | `LIBTV-PAR-001` | 当前图片标准双浮层的动作集合与几何 | 5 | 5 | 5 | 2 | `RECORDED_PASS (geometry only)` |
 | 2 | `LIBTV-PAR-002` | Preview/Annotate/Element Edit 的 L2 -> L3/L4 替换 | 5 | 5 | 3 | 3 | `READY_FOR_AUTHORIZATION` |
 | 3 | `LIBTV-PAR-003` | Auto Link ghost + structured mention | 5 | 4 | 2 | 4 | `BLOCKED_BY_FIXTURE`；design spec complete |
 | 4 | `LIBTV-PAR-004` | Top-level modal/Director 的 keyboard 与 focus ownership | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
@@ -90,13 +90,18 @@
 | 项 | 当前结论 |
 |---|---|
 | `SOURCE_FACT` | toolbar 以 node screen center 为横向 anchor；host top 为 `nodeTop - 24 * zoom - 10` 后向上平移自身；当前 action set 为 9 个文字动作 + 4 个图标动作，已观察 `1092.5x49`。 |
-| `CLONE_FACT` | `ImageToolbar` 使用 `NodeToolbar offset=16`、7 个文字动作和约 `900.5px` 固定宽；bottom panel 使用节点内 absolute + inverse zoom。 |
+| `CLONE_FACT` | Batch 51 后 `ImageToolbar` 使用 `NodeToolbar offset=10 + 24 * zoom`；仍有 7 个文字动作和约 `900.5px` 固定宽；bottom panel 使用节点内 absolute + inverse zoom。 |
 | 差距 | top action/order/width/formula 尚未升级；historical Batch 9 断言不能证明当前 source parity。 |
 | 最小 slice | 只做 standard selected image；不顺手实现 active tools、Auto Link 或 backend。 |
 | 验收 | 同 frame 读取 node/toolbar/panel/viewport；多 zoom center/gap；desktop/mobile；自然裁切；空选/多选卸载；graph count 不变。 |
 | 停止条件 | 没有明确编码授权；或当前源站重新取证发现 action set/formula 已变。 |
 
 主要证据：`LIBTV-TR-002..006`、`LibTVOverlayPositioning.contract.md`、`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`。
+
+Batch 51 已完成 clone-owned 的几何 slice：`ImageToolbar` 的 top host
+现在使用 `10 + 24 * zoom`，并由专项 verifier 覆盖约 28%/放大/pan；
+bottom panel 合同保持 `16 * zoom`。当前 source action set 与 clone
+`900.5px` 旧动作集合的差异仍未实施，active image tool 也继续单独排队。
 
 ### 4.3 `LIBTV-PAR-002`: low-risk active surfaces
 

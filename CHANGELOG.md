@@ -64,6 +64,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   blockers and explicit prototype/out-of-scope boundaries.
 
 ### Fixed
+- Aligned the selected-image toolbar's top host with the source-confirmed
+  `10 + 24 * zoom` geometry while preserving the node-centered inverse-scaled
+  bottom editor; Batch 51 records the focused clone verification and keeps the
+  older toolbar action set explicitly separate from the current source contract.
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
 - Completed the LibTV asset manager's canvas/assets tab behavior and local media-node selection flow
 - Bound LibTV storyboard mode to the active canvas and aligned its key-elements/storyboard column structure with the source evidence

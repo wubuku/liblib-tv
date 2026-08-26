@@ -36,7 +36,7 @@ Node width and height come from the Zustand canvas data and React Flow's outer t
 
 ### Top toolbar
 
-The toolbar uses React Flow `NodeToolbar` with `position=Top` and `align=center`. React Flow renders it outside the scaled viewport, so its height and controls stay at screen scale instead of shrinking with canvas zoom. The clone's `offset=16` is only its current implementation value; the current LibTV source host uses `nodeTop - 24 * zoom - 10` plus `translateY(-100%)`, producing a `10 + 24 * zoom` gap. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md#35-源站-chunk-对顶部-host-定位的直接证据).
+The toolbar uses React Flow `NodeToolbar` with `position=Top` and `align=center`. React Flow renders it outside the scaled viewport, so its height and controls stay at screen scale instead of shrinking with canvas zoom. Batch 51 maps the live viewport zoom to `offset = 10 + 24 * zoom`; this is equivalent to the current LibTV source host's `nodeTop - 24 * zoom - 10` plus `translateY(-100%)`, producing a `10 + 24 * zoom` gap. See [`../liblib-canvas-batch51-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch51-2026-08-26/IMPLEMENTATION.md) and [`../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md#35-源站-chunk-对顶部-host-定位的直接证据).
 
 Toolbar width is a time-versioned content contract, not a permanent global constant:
 
