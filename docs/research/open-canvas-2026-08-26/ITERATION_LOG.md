@@ -111,3 +111,15 @@
 - 从当前 chunks 确认 AutoLink 先注入 inline ghost，再由 click/Tab/Shift+Tab 接受；Escape、编辑、blur 清理建议，并有 IME、suspend 和 stale-result guards；
 - 将 clone 的固定 `陈默/咖啡` 候选、独立确认 popover、全量接受和字符串前缀写回标记为当前源站语义缺口；
 - 没有编辑 Prompt、切换开关、接受 mention、创建连接、生成、上传、下载或保存，也没有修改 `src/`、FrameOS、upstream submodule 和其他开发者 WIP。
+
+## 2026-08-26：v10 双浮层多 Zoom 与生命周期审计
+
+本轮继续使用当前登录态画布，只切换源站 zoom 菜单、节点选择和空白画布选择态：
+
+- 新增 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md) 和结构化 JSON，补齐 28%/50%/100% 的几何与 virtualization 边界；
+- 直接 live 确认 28% 与 50% 下工具条均为 `1092.5x49`、面板均为 `660x191`，两者保持 node center；
+- 确认底部面板 gap 在 28% 为 `4.525px`、50% 为 `8px`，均等于 `16 * zoom`；
+- 发现顶部工具条 gap 从约 28% 的 `16.794px` 变为 50% 的 `22px`，将其标为待解释的多 zoom source contract，不再用固定 `16px` 概括；
+- 空白画布点击会同时卸载 toolbar/panel，`适合屏幕`恢复约 28% 后可重新选择图片并恢复一组双浮层；
+- 100% 时选中 node 因源站可见性策略离开 DOM，记录为 virtualization boundary，不把缺失 DOM 误判成业务选择丢失；
+- 没有修改节点数据、Prompt、AutoLink、生成任务、上传、下载或远端保存，也没有触碰 `src/`、FrameOS、upstream submodule 和其他开发者 WIP。

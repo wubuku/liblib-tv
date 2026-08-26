@@ -54,6 +54,7 @@
 | `LIBTV_OVERLAY_GEOMETRY_MATRIX.md` | LibTV 五图片节点双浮层、工具条版本漂移和 clone 缺口矩阵 |
 | `LIBTV_IMAGE_ACTION_MATRIX.md` | LibTV 图片工具条当前动作的状态、呈现、副作用与 clone 优先级 |
 | `LIBTV_AUTOLINK_STATE_MATRIX.md` | LibTV AutoLink 开关、候选、ghost、正式 mention、graph 关系与 clone 差异 |
+| `LIBTV_OVERLAY_MULTIZOOM_MATRIX.md` | LibTV 双浮层多 zoom 几何、自然裁切、virtualization 和选择生命周期 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
@@ -69,6 +70,7 @@
 - [x] 完成 LibTV 五图片节点双浮层矩阵与 clone 静态差异审计
 - [x] 完成 LibTV 当前图片工具条六动作的 bundle/live 风险分级审计
 - [x] 完成 LibTV AutoLink 当前 bundle/live 状态链和 clone 语义差异审计
+- [x] 完成 LibTV 双浮层 28%/50%/100% zoom 与空白选择生命周期审计
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

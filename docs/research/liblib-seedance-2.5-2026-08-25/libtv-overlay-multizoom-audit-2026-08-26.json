@@ -1,0 +1,153 @@
+{
+  "sampledAt": "2026-08-26",
+  "sourceUrl": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "viewport": {
+    "width": 929,
+    "height": 874,
+    "devicePixelRatio": 2
+  },
+  "interactionBoundary": {
+    "performed": [
+      "switch zoom menu between 50%, 100%, and fit view",
+      "select existing image nodes",
+      "click the empty canvas",
+      "read DOM rectangles and React Flow transforms"
+    ],
+    "notPerformed": [
+      "edit prompt",
+      "toggle or accept AutoLink",
+      "run generation",
+      "upload",
+      "download",
+      "save",
+      "invoke image toolbar actions"
+    ]
+  },
+  "samples": [
+    {
+      "label": "图片4",
+      "nodeId": "i-vxeeCnxySa",
+      "zoomMode": "fit-view",
+      "zoom": 0.282798,
+      "viewportTransform": "translate(12.4578px, 185.027px) scale(0.282798)",
+      "node": {
+        "x": 128.405,
+        "y": 674.833,
+        "width": 197.958,
+        "height": 98.979,
+        "centerX": 227.384
+      },
+      "toolbar": {
+        "x": -318.867,
+        "y": 609.039,
+        "width": 1092.5,
+        "height": 49,
+        "centerX": 227.383
+      },
+      "panel": {
+        "x": -102.616,
+        "y": 778.337,
+        "width": 660,
+        "height": 191,
+        "centerX": 227.384
+      },
+      "derived": {
+        "toolbarCenterDelta": -0.001,
+        "panelCenterDelta": 0,
+        "toolbarGap": 16.794,
+        "panelGap": 4.525,
+        "panelGapFormula": "16 * zoom"
+      }
+    },
+    {
+      "label": "image_2026-06-15T11-22-00",
+      "nodeId": "i-1FQ9tErTcC",
+      "zoomMode": "50%",
+      "zoom": 0.5,
+      "viewportTransform": "translate(-334.732px, -8.5px) scale(0.5)",
+      "node": {
+        "x": -268.732,
+        "y": 128,
+        "width": 309,
+        "height": 175,
+        "centerX": -114.232
+      },
+      "toolbar": {
+        "x": -660.477,
+        "y": 57,
+        "width": 1092.5,
+        "height": 49,
+        "centerX": -114.227
+      },
+      "panel": {
+        "x": -444.232,
+        "y": 311,
+        "width": 660,
+        "height": 191,
+        "centerX": -114.232
+      },
+      "derived": {
+        "toolbarCenterDelta": 0.005,
+        "panelCenterDelta": 0,
+        "toolbarGap": 22,
+        "panelGap": 8,
+        "panelGapFormula": "16 * zoom"
+      }
+    },
+    {
+      "zoomMode": "100%",
+      "zoom": 1,
+      "selectedNodeDomCount": 0,
+      "toolbarDomCount": 1,
+      "toolbarWidth": 1092.5,
+      "toolbarHeight": 49,
+      "interpretation": "selected node moved outside the source visibility window and its DOM was virtualized; this sample is not valid for center or gap geometry"
+    }
+  ],
+  "lifecycle": [
+    {
+      "action": "select 图片4",
+      "selectedNodeCount": 1,
+      "toolbarCount": 1,
+      "panelCount": 1
+    },
+    {
+      "action": "switch to 50%",
+      "selectedNodeCount": 1,
+      "toolbarCount": 1,
+      "panelCount": 1,
+      "graphMutation": false
+    },
+    {
+      "action": "select another image",
+      "selectedNodeCount": 1,
+      "toolbarCount": 1,
+      "panelCount": 1,
+      "previousOverlayUnmounted": true
+    },
+    {
+      "action": "click empty canvas",
+      "selectedNodeCount": 0,
+      "toolbarCount": 0,
+      "panelCount": 0
+    },
+    {
+      "action": "switch to fit view and reselect 图片4",
+      "selectedNodeCount": 1,
+      "toolbarCount": 1,
+      "panelCount": 1,
+      "zoom": 0.282798,
+      "graphMutation": false
+    }
+  ],
+  "conclusions": {
+    "toolbarScreenSizeStable": true,
+    "panelScreenWidthStable": true,
+    "horizontalAnchor": "node screen center",
+    "viewportClamp": false,
+    "panelGapFormula": "16 * zoom",
+    "toolbarGapFormula": null,
+    "toolbarGapRequiresMoreEvidence": true,
+    "offscreenNodeVirtualizationObserved": true
+  }
+}
