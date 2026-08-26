@@ -138,7 +138,7 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 1. `docs/index.md` 能发现本审计；
 2. 所有验证范围描述与实际脚本集合一致；
 3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
-4. 文档链接检查通过；
+4. 稳定文档集的链接检查通过；全工作区官方检查仅被 Batch 49 缺失 `SCREENSHOT_ANALYSIS.md` 阻塞，且该并行 WIP 边界已在本审计和验证台账登记；
 5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
 6. Batch 49 的 parallel WIP、截图台账阻塞和稳定范围排除已明确记录；
 7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
