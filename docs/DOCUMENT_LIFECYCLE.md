@@ -118,7 +118,8 @@ current source code + focused current run
 |---|---|---|---|
 | `liblib-live-YYYY-MM-DD/` | `DATED_SOURCE_SNAPSHOT` | 指定日期、URL、登录态和 fixture 的源站观察 | 新复核另建日期记录或专项 audit；旧 JSON/截图不改写。 |
 | `liblib-seedance-2.5-2026-08-25/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | Seedance 主推能力、当前缺口、风险和授权闸门 | `FEATURE_GAP_MATRIX`/go-no-go 是当前导航；背景文章不是实现承诺。 |
-| `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码研究和可迁移模式 | 不能替代 LibTV 源站视觉/行为合同。 |
+| `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理；不能替代 LibTV 源站合同。 |
+| Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` | `HISTORICAL_CONTRACT` | 第一阶段 Batch A-E 候选实施清单 | 保留研究 provenance；新工作使用采纳矩阵、交接蓝图和全局 parity ID，不扩展 A-E 编号。 |
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |
 | Batch 45 | `HISTORICAL_CONTRACT` / recorded pass | Director group/crowd slice | 已有专项 verifier 和 serial regression 记录；仍是有界 clone 合同，不代表源站全量一致。 |
@@ -149,6 +150,7 @@ current source code + focused current run
 | Batch 10 固定候选 AutoLink 原型 | [`LibTVAutoLink.contract.md`](research/components/LibTVAutoLink.contract.md) + current AutoLink matrix | 当前源站 ghost、structured mention 和 ordinal 语义 | 保留旧 clone 为什么出现固定 popover。 |
 | `COMPONENT_INVENTORY.md` 的“列出组件” | [`components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) 的“合同状态” | 判断应读哪个 spec/Batch | Inventory 继续负责源码结构。 |
 | Open Canvas overlay/input/graph 模式 | LibTV 专项 source contract | LibTV 精确尺寸、动作、文案和副作用 | 上游模式只保留为机制启发。 |
+| Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` 的 Batch A-E | [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) + [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) + [`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) | 当前采纳状态、纵向 slice 和稳定编号 | 旧文档继续解释首轮优先级与研究出口。 |
 | `liblib-live-2026-08-25/README.md` 的当时差距排序 | [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) | 当前跨路由研究/复刻优先级 | 旧文档继续保留 2026-08-25 source snapshot、当时 clone baseline 和实施 provenance。 |
 
 ## 6. 本轮归档审计结论

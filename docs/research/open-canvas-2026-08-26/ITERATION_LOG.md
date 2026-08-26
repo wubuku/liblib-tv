@@ -246,3 +246,24 @@
 - 补充 local disposable fixture、源站 disposable fixture、授权请求最小信息、编码后验收顺序和其他开发者 WIP 阻塞处理规则；
 - 更新 Seedance README、NEXT_RESEARCH_PLAN、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，将四项后续研究全部标为已完成；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v24 Open Canvas 机制采纳治理
+
+本轮不再扩写 Open Canvas 产品概述，而是修复研究结论与当前实施治理脱节的问题：
+
+- 新增 [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md)，将 15 类上游机制标为 `ADOPT_METHOD`、`ADAPT_TO_LIBTV`、`RESEARCH_ONLY`、`DEFER` 或 `REJECT_TRANSPLANT`；
+- 将坐标、typed input、状态分层、graph transaction、Quick Add、模型能力、持久化和 provider 分别映射到当前 `LIBTV-PAR-*`、`LIBTV-FIX-*` 和 `LIBTV-VR-*`；
+- 增加反移植清单，明确 Open Canvas 的视觉皮肤、provider key cookie、保存语义和未被 LibTV 证实的悬空连线行为不能进入 clone；
+- 更新 Open Canvas README、research index 和 docs index，并以 commit `c0b068e` 推送；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v25 LibTV 七层实施交接
+
+本轮将已分类的上游启发继续转成面向未来授权的纵向交接合同：
+
+- 新增 [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)，定义 evidence、identity、transaction、surface、fixture、verifier 和 provenance 七层；
+- 为标准图片双浮层、低风险 active surface、typed Auto Link、graph hardening、process/result lifecycle 和模型能力投影建立 `OC-BP-001..006`；
+- 每个 blueprint 记录对应采纳决策、parity、fixture、replacement、候选 ownership、禁止扩边和停止条件；
+- 将 [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md) 标为保留第一阶段 A-E provenance 的历史候选清单，当前编号交由采纳矩阵、交接蓝图和全局 parity backlog；
+- 蓝图以 commit `333bc17` 推送；随后将 `DEC-024`、`OC-TR-005..008`、任务导读、生命周期和文档审计接入治理闭环；
+- 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。

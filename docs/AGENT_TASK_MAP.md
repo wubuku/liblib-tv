@@ -39,7 +39,7 @@
 | 研究 LibTV 源站 | [`research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md)、[`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) | 目标能力的专项 `LIVE_AUDIT.md`、`SCREENSHOT_ANALYSIS.md`、bundle evidence | 先查已有截图分析；不在共享项目输入/提交/上传/保存/生成 |
 | 做源站 freshness refresh | [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) | [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、旧 dated source JSON/截图 | 只读复核 page shell、已有节点、浮层和响应式；遇到输入/提交/graph mutation 立即停止，不把共享项目当可重置 fixture |
 | 规划 verifier replacement | [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md)、[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) | [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)、[`LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)、对应 Batch `IMPLEMENTATION.md` | 历史断言先保留并标版本；没有 current source、fixture 和编码授权，不删除/放宽旧断言 |
-| 研究 Open Canvas | [`research/open-canvas-2026-08-26/README.md`](research/open-canvas-2026-08-26/README.md)、固定 submodule | [`SOURCE_ANALYSIS.md`](research/open-canvas-2026-08-26/SOURCE_ANALYSIS.md)、[`OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md) | 上游是启发，不是 LibTV 视觉或行为真相；不修改 submodule |
+| 研究 Open Canvas / 将启发交接给 LibTV | [`research/open-canvas-2026-08-26/README.md`](research/open-canvas-2026-08-26/README.md)、[`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) | 固定 submodule、[`SOURCE_ANALYSIS.md`](research/open-canvas-2026-08-26/SOURCE_ANALYSIS.md)、[`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) | 上游是启发，不是 LibTV 视觉或行为真相；没有 source/parity/fixture/verifier/授权链时停在文档；不修改 submodule |
 | 复刻 website/新能力立项 | [`../.codex/skills/clone-website/SKILL.md`](../.codex/skills/clone-website/SKILL.md)、[`LIBTV_RESEARCH_GO_NO_GO.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | 目标路由的源站证据和组件合同 | 用户未明确授权编码时只做研究/计划/文档 |
 | 只做文档维护 | [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)、[`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md)、[`docs/index.md`](index.md)、[`research/README.md`](research/README.md) | 先判断当前指引/历史合同/兼容入口/证据/WIP；新正式文档更新 docs index；不改代码 |
 | 修改 Next.js API | `AGENTS.md` 的硬约束 | `node_modules/next/dist/docs/` 相关指南、`DEVELOPMENT.md` | 先读本地 Next 文档，再最小修改并运行对应验证 |
@@ -65,7 +65,9 @@
   -> SOURCE_ANALYSIS / EVIDENCE_MATRIX
   -> 一张 pattern card
   -> LibTV 源站证据
-  -> clone-only 决策
+  -> ADOPTION_DECISION_MATRIX
+  -> parity / fixture / verifier
+  -> LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT
 ```
 
 上游源码不能填补 LibTV 的未知行为。只能借鉴已经被 LibTV 问题验证过的抽象，例如统一 screen anchor、结构化引用身份、状态分离和子图 ID 映射。

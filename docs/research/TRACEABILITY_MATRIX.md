@@ -53,6 +53,10 @@
 | OC-TR-002 | Open Canvas 将 typed inputs 分桶，最后才投影到 provider route/task descriptor | `OPEN_CANVAS_FACT` | [`OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)、上游 [`execution.ts`](../../research/upstream/open-canvas/shared/lib/canvas/execution.ts#L69) | 稳定引用身份和请求投影分离 | 不代表 LibTV 使用同样 provider 或 scene 名 |
 | OC-TR-003 | Open Canvas 把 node status、run status、save/conflict status 分开 | `OPEN_CANVAS_FACT` | 上游 [`types.ts`](../../research/upstream/open-canvas/shared/lib/canvas/types.ts#L60)、[`canvas-store.ts`](../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L38) | 过程型 UI 的状态分层 | 不代表当前 clone 已有真实任务或保存后端 |
 | OC-TR-004 | Open Canvas 复制粘贴以结构化子图和 ID map 保持内部边关系 | `OPEN_CANVAS_FACT` | 上游 [`canvas-studio-shell.tsx`](../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L3896)、[`canvas-store.ts`](../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L339) | 派生/复制时的身份与坐标边界 | 不代表 LibTV 的历史候选必须改成复制子图 |
+| OC-TR-005 | Open Canvas Quick Add 同时维护 screen menu anchor、flow drop point 和 pending connection transaction | `OPEN_CANVAS_FACT` | [`EVIDENCE_MATRIX.md`](open-canvas-2026-08-26/EVIDENCE_MATRIX.md) 的 `OC-021..023`、上游 [`canvas-studio-shell.tsx`](../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L4899) | 坐标域分离和多步 graph transaction 的研究案例 | 不证明 LibTV 存在同类悬空连线菜单，也不允许改变当前 Handle affordance |
+| OC-TR-006 | Open Canvas 的模型 registry、设置 UI、legacy route 和 current runner 覆盖范围不同 | `OPEN_CANVAS_FACT` / `INFERENCE` | [`EVIDENCE_MATRIX.md`](open-canvas-2026-08-26/EVIDENCE_MATRIX.md) 的 `OC-006..009/016`、[`SOURCE_ANALYSIS.md`](open-canvas-2026-08-26/SOURCE_ANALYSIS.md) | 审计“UI 可选、descriptor 可构造、真实可执行”三层差异 | 不证明 LibTV clone 或 Open Canvas current studio 已执行全部可见 provider/model |
+| OC-TR-007 | Open Canvas 机制只有经过 LibTV source、采纳分类、parity、fixture、verifier 和授权链，才可进入 clone slice | `DECISION` | [`ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)、[`DECISION_REGISTER.md`](../DECISION_REGISTER.md) 的 `DEC-024` | 上游研究到 LibTV 实施的治理边界 | 不代表标为 `ADOPT_METHOD` 的机制已经授权或实现 |
+| OC-TR-008 | 获批的上游启发按 evidence、identity、transaction、surface、fixture、verifier、provenance 七层纵向交接 | `DECISION` | [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) | 单 slice 计划、评审、验证和接力 | 不允许把多项机制打成横向重构，也不替代具体组件合同 |
 
 ## 4. 证据更新规则
 
@@ -83,7 +87,7 @@
 | Seedance 文章数字能否直接写死 | LIBTV-TR-010、LIBTV-TR-011 |
 | 长视频/重拍是否已经完成 | LIBTV-TR-012 到 LIBTV-TR-014，再查验证台账 |
 | 当前最值得先研究/复刻什么 | LIBTV-TR-016 到 LIBTV-TR-018，再查 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) |
-| Open Canvas 能借鉴什么 | OC-TR-001 到 OC-TR-004，再查模式卡 |
+| Open Canvas 能借鉴什么、哪些不能移植 | OC-TR-001 到 OC-TR-008，再查采纳决策矩阵和实施交接蓝图 |
 | 现在能不能编码 | LIBTV-TR-015 和 [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) |
 | 为什么新 Page、切换 `canvas-1` 和 undo 不能混称为 reset | LIBTV-TR-019、LIBTV-TR-022、LIBTV-TR-025，再查 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md) |
 | 为什么不能把失败视频当 ready-video | LIBTV-TR-020、LIBTV-TR-021，再查 fixture catalog 的本地视频和 demo baseline 条目 |

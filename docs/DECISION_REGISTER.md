@@ -31,6 +31,7 @@
 | DEC-021 | Fixture 身份与 reset | 后续 verifier 必须引用具名 fixture；普通画布以新 Page/真实 UI 构造隔离，undo 不替代 teardown；Director storage 使用显式清理和 fresh-context 断言 | ACTIVE |
 | DEC-022 | 共享源站 fixture | 当前登录态共享项目只作为 `SHARED_READ_ONLY` 观察对象；没有独立 project、owner、允许动作、清理路径和停止条件时，不把它当可重复 source fixture | ACTIVE |
 | DEC-023 | Verifier replacement | 历史断言先保留；只有 current source contract、稳定 fixture、明确编码授权和新 verifier 齐备后，才申请替换或退役 | RESEARCH_GATE |
+| DEC-024 | Open Canvas 机制采纳 | 上游机制必须经过 LibTV source evidence、采纳分类、parity、fixture、verifier 和明确授权后，才可进入单一纵向 slice | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -113,6 +114,16 @@
 **影响：** replacement queue 的 `REPLACEMENT_READY` 不是“已经实现”，而是满足 source、fixture、授权和 verifier 前置条件后的可申请状态。任何替换都要保留 old verifier provenance，并以 path-scoped commit/push 落档。
 
 **依据：** [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md)、[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)、[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
+
+### DEC-024：Open Canvas 机制按证据链采纳
+
+**背景：** Open Canvas 固定源码能够为坐标、typed identity、状态分层和 graph transaction 提供高质量参考，但它的视觉、产品语义、provider、保存和 Quick Add 行为不等于 LibTV。
+
+**决策：** 每项上游机制先在 [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) 标记为 `ADOPT_METHOD`、`ADAPT_TO_LIBTV`、`RESEARCH_ONLY`、`DEFER` 或 `REJECT_TRANSPLANT`。只有继续具备 LibTV current source contract、`LIBTV-PAR-*`、具名 `LIBTV-FIX-*`、`LIBTV-VR-*` 或等价窄验证合同，以及用户对该 slice 的明确编码授权，才可按 [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) 进入实现。
+
+**影响：** 上游代码不直接成为 clone 文件清单；`ADOPT_METHOD` 也不等于已授权。没有 LibTV 同类事实的 Quick Add/pending connection 保持研究态，provider/key 和视觉皮肤保持拒绝移植，Batch A-E 旧清单只保留历史 provenance。
+
+**依据：** [`EVIDENCE_MATRIX.md`](research/open-canvas-2026-08-26/EVIDENCE_MATRIX.md)、[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)。
 
 ## 3. 何时可以重审决策
 

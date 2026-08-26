@@ -54,6 +54,7 @@ AGENTS.md / README.md
 | DOC-13 | Batch 47 在本轮 overlay 审计期间由并行开发者稳定提交，正式入口仍保留 implementation-pending/WIP 描述 | 新 agent 会漏跑现有 verifier，并误判 Director model-library 成熟度 | 同步正式范围到 `35-47`，保留 Batch 34 research-only 例外和 model asset/license 边界 |
 | DOC-14 | Batch 48 随后建立 research/plan/contract 并提交 local-import foundation，最新并行 WIP 边界再次前移 | 如果只看 foundation commit，会把未完成的 local model workflow 误读为已验证能力 | Batch 48 完成 focused verifier、截图台账、成熟度和回归后升级为 recorded pass；真实 mesh loading 仍不在合同内 |
 | DOC-15 | 首轮 live gap、Seedance gap、verification coverage 和多个 runtime catalog 各自准确，但没有当前全路由优先队列 | agent 会继续按已完成的 2026-08-25 P0/P1 排期，或只从最近 Batch 猜下一项 | 新增 UI/UX parity backlog，以稳定 ID 统一价值、证据、验证准备度、风险、依赖和停止条件 |
+| DOC-16 | Open Canvas 描述性研究和模式卡充分，但借鉴结论尚未统一对齐当前 parity、fixture、verifier 和授权体系 | agent 可能把“值得借鉴”误读为直接移植，或继续沿用首轮 Batch A-E 编号 | 新增采纳决策矩阵和七层实施交接蓝图，保留 A-E provenance，并以 `OC-ADOPT-*` / `OC-BP-*` 对齐当前治理 ID |
 
 ## 3. 本轮已应用的修正
 
@@ -138,6 +139,8 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 专项 verifier 和 Director 覆盖矩阵均已接入正式导航。历史截图修改仍与本批
 隔离，后续 agent 应先读取截图台账再决定是否需要新的视觉识别。
 
+2026-08-27 的 Open Canvas 增量审计确认：3393 行既有专题材料已经充分覆盖产品、源码、运行态、交互和 Seedance crosswalk，缺口不在继续写概述，而在实施治理。新增 [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) 将机制分为采纳方法、按 LibTV 改造、仅研究、暂缓和拒绝移植；新增 [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) 将获批工作拆为 evidence、identity、transaction、surface、fixture、verifier 和 provenance 七层纵向 slice。第一阶段 `IMPLEMENTATION_IMPLICATIONS.md` 保留 A-E provenance，但不再承担当前编号权威。本轮没有修改 `src/`、verifier、截图或上游 submodule。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -149,3 +152,4 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
 6. Batch 49 的 clone-owned recorded pass、source-exact 非声明和截图识别边界已明确记录；
 7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
+8. Open Canvas 的当前采纳状态和实施交接可从任务导读、生命周期、决策登记与 traceability matrix 反向发现，旧 Batch A-E 不再与现行 parity ID 竞争。
