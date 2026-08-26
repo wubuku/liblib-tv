@@ -102,6 +102,7 @@ export default function DirectorDesk({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
+      if (document.querySelector("[data-director-capture-viewer]")) return;
       if (workspaceBusy) return;
       if (mobilePanel) {
         setMobilePanel(null);
@@ -130,6 +131,24 @@ export default function DirectorDesk({
       dataUrl: capture.dataUrl,
     });
     if (nodeId) markCaptureSent(capture.id, nodeId);
+  };
+
+  const sendAllCaptures = () => {
+    captures
+      .filter((capture) => !capture.sentNodeId)
+      .forEach((capture) => {
+        const nodeId = createDirectorCapture(sourceNodeId, {
+          captureId: capture.id,
+          cameraId: capture.cameraId,
+          cameraName: capture.cameraName,
+          aspectRatio: capture.aspectRatio,
+          width: capture.width,
+          height: capture.height,
+          createdAt: capture.createdAt,
+          dataUrl: capture.dataUrl,
+        });
+        if (nodeId) markCaptureSent(capture.id, nodeId);
+      });
   };
 
   const toggleExportPanel = () => {
@@ -395,10 +414,11 @@ export default function DirectorDesk({
                 : "max-[899px]:translate-x-full",
             )}
           >
-            <DirectorInspector
-              activeCapture={activeCapture}
-              onSendCapture={sendCapture}
-            />
+          <DirectorInspector
+            activeCapture={activeCapture}
+            onSendCapture={sendCapture}
+            onSendAllCaptures={sendAllCaptures}
+          />
           </aside>
         </div>
 

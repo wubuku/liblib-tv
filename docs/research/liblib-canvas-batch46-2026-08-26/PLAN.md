@@ -81,3 +81,10 @@ capture several compositions
 | `[data-director-capture-clear-all]` | clear-all command |
 | `[data-director-capture-clear-confirm]` | clear confirmation |
 | `[data-director-capture-send-all]` | bulk canvas return |
+
+## Closeout
+
+All planned work is complete on 2026-08-26. The focused verifier passed after
+fixing the viewer stacking context and Escape routing. Cross-batch regression,
+documentation checks, the full repository check and whitespace validation are
+the final gates recorded in `IMPLEMENTATION.md`.

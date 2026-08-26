@@ -5,8 +5,9 @@
 
 ## Status
 
-Evidence and implementation plan protected on 2026-08-26. The current clone
-gap is bounded; implementation follows after this protection commit.
+Complete as a bounded frontend prototype slice on 2026-08-26. Evidence,
+implementation, focused browser verification, screenshot interpretation and
+maturity assessment are recorded below.
 
 ## Read Order
 
@@ -19,6 +20,10 @@ gap is bounded; implementation follows after this protection commit.
    clone contract and evidence boundaries.
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): implementation and verification
    history.
+6. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-time visual
+   inspection ledger.
+7. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): maturity boundary and
+   next Director queue.
 
 ## Why This Batch
 

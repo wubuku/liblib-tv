@@ -383,6 +383,9 @@ interface DirectorState {
   ) => void;
   setCapturing: (capturing: boolean) => void;
   addCapture: (capture: DirectorCapture) => void;
+  selectCapture: (captureId: string | null) => void;
+  removeCapture: (captureId: string) => void;
+  clearCaptures: () => void;
   markCaptureSent: (captureId: string, nodeId: string) => void;
   setPhoneVcamStatus: (
     status: DirectorPhoneVcamStatus,
@@ -1635,6 +1638,30 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       captures: [capture, ...state.captures].slice(0, 12),
       activeCaptureId: capture.id,
     })),
+
+  selectCapture: (captureId) =>
+    set((state) => ({
+      activeCaptureId:
+        captureId && state.captures.some((capture) => capture.id === captureId)
+          ? captureId
+          : null,
+    })),
+
+  removeCapture: (captureId) =>
+    set((state) => {
+      const captures = state.captures.filter(
+        (capture) => capture.id !== captureId,
+      );
+      return {
+        captures,
+        activeCaptureId:
+          state.activeCaptureId === captureId
+            ? captures[0]?.id ?? null
+            : state.activeCaptureId,
+      };
+    }),
+
+  clearCaptures: () => set({ captures: [], activeCaptureId: null }),
 
   markCaptureSent: (captureId, nodeId) =>
     set((state) => ({

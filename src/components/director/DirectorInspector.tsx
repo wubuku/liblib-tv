@@ -1,19 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   Camera,
   Check,
   ChevronDown,
+  Download,
   Eye,
   EyeOff,
+  Images,
   Plus,
   RotateCcw,
   Route,
   Send,
   Trash2,
   Users,
+  X,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -126,6 +132,333 @@ function CapturePreview({
         {capture.sentNodeId ? "已发送到画布" : "发送到画布"}
       </button>
     </section>
+  );
+}
+
+function formatCaptureLabel(
+  capture: DirectorCapture,
+  index: number,
+): string {
+  return `${capture.cameraName}-截图${String(index + 1).padStart(2, "0")}`;
+}
+
+function DirectorCaptureGallery({
+  captures,
+  onSendCapture,
+  onSendAllCaptures,
+}: {
+  captures: DirectorCapture[];
+  onSendCapture: (capture: DirectorCapture) => void;
+  onSendAllCaptures: () => void;
+}) {
+  const activeCaptureId = useDirectorStore((state) => state.activeCaptureId);
+  const selectCapture = useDirectorStore((state) => state.selectCapture);
+  const removeCapture = useDirectorStore((state) => state.removeCapture);
+  const clearCaptures = useDirectorStore((state) => state.clearCaptures);
+  const [viewerCaptureId, setViewerCaptureId] = useState<string | null>(null);
+  const [viewerScale, setViewerScale] = useState(1);
+  const [confirmClear, setConfirmClear] = useState(false);
+  const viewerCapture =
+    captures.find((capture) => capture.id === viewerCaptureId) ?? null;
+  const cameraGroups = useMemo(() => {
+    const groups = new Map<string, DirectorCapture[]>();
+    captures.forEach((capture) => {
+      const group = groups.get(capture.cameraName) ?? [];
+      group.push(capture);
+      groups.set(capture.cameraName, group);
+    });
+    return Array.from(groups.entries()).map(([cameraName, groupCaptures]) => {
+      const chronological = [...groupCaptures].sort((left, right) =>
+        left.createdAt.localeCompare(right.createdAt),
+      );
+      return {
+        cameraName,
+        captures: groupCaptures,
+        labels: new Map(
+          chronological.map((capture, index) => [
+            capture.id,
+            formatCaptureLabel(capture, index),
+          ]),
+        ),
+      };
+    });
+  }, [captures]);
+
+  useEffect(() => {
+    if (!viewerCaptureId) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setViewerCaptureId(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [viewerCaptureId]);
+
+  const closeViewer = () => setViewerCaptureId(null);
+  const changeViewerScale = (delta: number) => {
+    setViewerScale((scale) =>
+      Math.min(4, Math.max(0.5, Number((scale + delta).toFixed(2)))),
+    );
+  };
+
+  const viewerLayer = viewerCapture ? (
+    <div
+      data-director-capture-viewer
+      role="dialog"
+      aria-label="截图预览"
+      className="fixed inset-0 z-[220] flex items-center justify-center bg-black/90 p-5 backdrop-blur-[4px]"
+      onClick={closeViewer}
+    >
+      <div
+        className="absolute right-4 top-4 z-10 flex gap-1.5"
+        role="toolbar"
+        aria-label="截图预览工具栏"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          aria-label="缩小图片"
+          title="缩小"
+          onClick={() => changeViewerScale(-0.25)}
+          className="flex h-9 w-9 items-center justify-center rounded border border-white/10 bg-white/10 text-white/90 hover:bg-white/20"
+        >
+          <ZoomOut size={16} />
+        </button>
+        <button
+          type="button"
+          aria-label="放大图片"
+          title="放大"
+          onClick={() => changeViewerScale(0.25)}
+          className="flex h-9 w-9 items-center justify-center rounded border border-white/10 bg-white/10 text-white/90 hover:bg-white/20"
+        >
+          <ZoomIn size={16} />
+        </button>
+        <a
+          href={viewerCapture.dataUrl}
+          download={`${viewerCapture.cameraName}-截图.png`}
+          aria-label="下载图片"
+          title="下载"
+          onClick={(event) => event.stopPropagation()}
+          className="flex h-9 w-9 items-center justify-center rounded border border-white/10 bg-white/10 text-white/90 hover:bg-white/20"
+        >
+          <Download size={16} />
+        </a>
+        <button
+          type="button"
+          data-director-capture-viewer-close
+          aria-label="关闭截图预览"
+          title="关闭"
+          onClick={closeViewer}
+          className="flex h-9 w-9 items-center justify-center rounded border border-white/10 bg-white/10 text-white/90 hover:bg-white/20"
+        >
+          <X size={16} />
+        </button>
+      </div>
+      <div
+        className="grid h-full w-full place-items-center overflow-hidden"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <Image
+          src={viewerCapture.dataUrl}
+          alt={`${viewerCapture.cameraName}截图预览`}
+          width={viewerCapture.width}
+          height={viewerCapture.height}
+          unoptimized
+          draggable={false}
+          className="max-h-[80vh] max-w-[80vw] select-none rounded object-contain transition-transform duration-200"
+          style={{ transform: `scale(${viewerScale})` }}
+        />
+      </div>
+    </div>
+  ) : null;
+
+  return (
+    <>
+      <section
+        data-director-capture-gallery
+        className="flex min-h-0 flex-1 flex-col"
+      >
+        <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
+        {cameraGroups.length === 0 ? (
+          <div
+            data-director-capture-empty
+            role="status"
+            aria-label="暂无摄像机截图"
+            className="flex min-h-[180px] flex-col items-center justify-center gap-2 text-center text-[11px] text-[#686868]"
+          >
+            <Images size={22} strokeWidth={1.4} />
+            <span>暂无摄像机截图</span>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {cameraGroups.map(({ cameraName, captures: groupCaptures, labels }) => (
+              <section
+                key={cameraName}
+                data-director-capture-group={cameraName}
+                aria-label={`${cameraName}截图`}
+              >
+                <h3 className="mb-2 text-[11px] text-[#bdbdbd]">
+                  {cameraName}截图
+                </h3>
+                <div
+                  className="grid grid-cols-3 gap-2"
+                  aria-label={`${cameraName}截图列表`}
+                >
+                  {groupCaptures.map((capture) => {
+                    const label = labels.get(capture.id) ?? `${cameraName}截图`;
+                    const selected = activeCaptureId === capture.id;
+                    return (
+                      <article
+                        key={capture.id}
+                        data-director-capture-item={capture.id}
+                        data-director-capture-item-selected={selected}
+                        className="min-w-0"
+                      >
+                        <button
+                          type="button"
+                          aria-label={`选择截图 ${label}`}
+                          aria-pressed={selected}
+                          onClick={() => selectCapture(capture.id)}
+                          className={cn(
+                            "block w-full min-w-0 text-left",
+                            selected && "text-[#dffaff]",
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "relative block aspect-square overflow-hidden rounded border bg-black",
+                              selected
+                                ? "border-[#09caf5] shadow-[0_0_0_1px_rgba(9,202,245,0.32)]"
+                                : "border-white/[0.1]",
+                            )}
+                          >
+                            <Image
+                              src={capture.dataUrl}
+                              alt={`${label}缩略图`}
+                              fill
+                              sizes="84px"
+                              className="object-cover"
+                              unoptimized
+                            />
+                          </span>
+                          <span className="mt-1 block truncate text-[10px] text-[#858585]">
+                            {label}
+                          </span>
+                        </button>
+                        <div className="mt-1 grid grid-cols-3 border border-white/[0.08] bg-[#202020]">
+                          <button
+                            type="button"
+                            data-director-capture-view={capture.id}
+                            aria-label={`查看截图 ${label}`}
+                            title="查看截图"
+                            onClick={() => {
+                              selectCapture(capture.id);
+                              setViewerCaptureId(capture.id);
+                              setViewerScale(1);
+                            }}
+                            className="flex h-6 items-center justify-center text-[#777] hover:bg-white/[0.06] hover:text-white"
+                          >
+                            <Eye size={12} />
+                          </button>
+                          <button
+                            type="button"
+                            data-director-capture-send={capture.id}
+                            aria-label={`发送到画布 ${label}`}
+                            title="发送到画布"
+                            disabled={Boolean(capture.sentNodeId)}
+                            onClick={() => onSendCapture(capture)}
+                            className="flex h-6 items-center justify-center text-[#777] hover:bg-white/[0.06] hover:text-white disabled:text-[#3f3f3f]"
+                          >
+                            {capture.sentNodeId ? (
+                              <Check size={12} />
+                            ) : (
+                              <Send size={12} />
+                            )}
+                          </button>
+                          <button
+                            type="button"
+                            data-director-capture-remove={capture.id}
+                            aria-label={`删除截图 ${label}`}
+                            title="删除截图"
+                            onClick={() => removeCapture(capture.id)}
+                            className="flex h-6 items-center justify-center text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d]"
+                          >
+                            <Trash2 size={12} />
+                          </button>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
+          </div>
+        )}
+        </div>
+
+        <footer className="grid shrink-0 grid-cols-2 gap-2 border-t border-white/[0.07] px-3 py-3">
+        <button
+          type="button"
+          data-director-capture-clear-all
+          disabled={captures.length === 0}
+          onClick={() => setConfirmClear(true)}
+          className="flex h-8 items-center justify-center gap-1.5 rounded border border-white/[0.08] bg-[#222] text-[11px] text-[#999] hover:text-white disabled:text-[#484848]"
+        >
+          <Trash2 size={13} />
+          全部清空
+        </button>
+        <button
+          type="button"
+          data-director-capture-send-all
+          disabled={!captures.some((capture) => !capture.sentNodeId)}
+          onClick={onSendAllCaptures}
+          className="flex h-8 items-center justify-center gap-1.5 rounded bg-[#0aa8cf] text-[11px] text-white hover:bg-[#13b9df] disabled:bg-[#303030] disabled:text-[#555]"
+        >
+          <Send size={13} />
+          发送到画布
+        </button>
+        </footer>
+
+      {confirmClear ? (
+        <div
+          data-director-capture-clear-confirm
+          role="dialog"
+          aria-label="确认清空所有截图"
+          className="absolute inset-x-3 bottom-[68px] z-20 rounded border border-white/[0.1] bg-[#262626] p-3 shadow-[0_12px_30px_rgba(0,0,0,0.48)]"
+        >
+          <p className="text-xs text-[#dedede]">确认清空所有截图？</p>
+          <p className="mt-1 text-[10px] leading-4 text-[#777]">
+            已发送到画布的图片节点不会被删除。
+          </p>
+          <div className="mt-3 flex justify-end gap-1.5">
+            <button
+              type="button"
+              data-director-capture-clear-cancel
+              onClick={() => setConfirmClear(false)}
+              className="h-7 rounded px-2.5 text-[11px] text-[#888] hover:bg-white/[0.06] hover:text-white"
+            >
+              取消
+            </button>
+            <button
+              type="button"
+              data-director-capture-clear-confirm-submit
+              onClick={() => {
+                clearCaptures();
+                setConfirmClear(false);
+                closeViewer();
+              }}
+              className="h-7 rounded bg-[#d76767] px-2.5 text-[11px] text-white hover:bg-[#e57979]"
+            >
+              确认
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      </section>
+      {typeof document !== "undefined" && viewerLayer
+        ? createPortal(viewerLayer, document.body)
+        : null}
+    </>
   );
 }
 
@@ -776,13 +1109,16 @@ function CharacterPoseInspector({
 export function DirectorInspector({
   activeCapture,
   onSendCapture,
+  onSendAllCaptures,
 }: {
   activeCapture: DirectorCapture | null;
   onSendCapture: (capture: DirectorCapture) => void;
+  onSendAllCaptures: () => void;
 }) {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
   const groups = useDirectorStore((state) => state.groups);
+  const captures = useDirectorStore((state) => state.captures);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const updateScene = useDirectorStore((state) => state.updateScene);
@@ -795,6 +1131,9 @@ export function DirectorInspector({
     (state) => state.recordObjectKeyframe,
   );
   const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
+  const [cameraTab, setCameraTab] = useState<"properties" | "captures">(
+    "properties",
+  );
   const timeline = useDirectorStore((state) => state.timeline);
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
@@ -883,11 +1222,44 @@ export function DirectorInspector({
             </button>
           ))}
         </nav>
+      ) : selected?.kind === "camera" ? (
+        <nav
+          data-director-camera-tabs
+          aria-label="摄像机编辑"
+          className="grid h-9 shrink-0 grid-cols-2 border-b border-white/[0.07] bg-[#171717] p-1"
+        >
+          {(
+            [
+              ["properties", "属性"],
+              ["captures", "摄像机截图"],
+            ] as const
+          ).map(([tab, label]) => (
+            <button
+              key={tab}
+              type="button"
+              data-director-camera-tab={tab}
+              aria-pressed={cameraTab === tab}
+              onClick={() => setCameraTab(tab)}
+              className={cn(
+                "rounded text-[11px] text-[#777] hover:text-white",
+                cameraTab === tab && "bg-[#292929] text-[#d9d9d9]",
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
       ) : null}
 
       <div className="min-h-0 flex-1 overflow-y-auto">
         {selectedGroup ? null : selected ? (
-          selected.kind === "character" && characterTab === "pose" ? (
+          selected.kind === "camera" && cameraTab === "captures" ? (
+            <DirectorCaptureGallery
+              captures={captures}
+              onSendCapture={onSendCapture}
+              onSendAllCaptures={onSendAllCaptures}
+            />
+          ) : selected.kind === "character" && characterTab === "pose" ? (
             <CharacterPoseInspector character={selected} />
           ) : (
           <div className="space-y-4 px-3 py-3">
@@ -1221,7 +1593,8 @@ export function DirectorInspector({
         )}
       </div>
 
-      {activeCapture ? (
+      {activeCapture &&
+      !(selected?.kind === "camera" && cameraTab === "captures") ? (
         <CapturePreview capture={activeCapture} onSend={onSendCapture} />
       ) : null}
     </section>
