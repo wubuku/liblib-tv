@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   side effects.
 - Synchronized formal documentation with the stable Batch 45 verifier and moved
   the explicit parallel-WIP boundary to Batch 46.
+- Added the stable StoryboardBoard projection/mode contract and corrected
+  ScriptHeader documentation to reflect that it is an unmounted legacy prototype.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

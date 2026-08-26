@@ -29,10 +29,10 @@
 | `TopNavBar` | `src/components/TopNavBar.tsx` | [`TopNavBar.spec.md`](TopNavBar.spec.md)、`BEHAVIORS.md` 顶部导航 | Batch 11 overlay lifecycle | `SPEC_COMPLETE` | 修改导航、Agent 或共享入口前先读互斥浮层合同。 |
 | `LeftSidebar` | `src/components/LeftSidebar.tsx` | [`LeftSidebar.spec.md`](LeftSidebar.spec.md)、`BottomToolbar.spec.md` | Batch 1 panels / Batch 11 lifecycle | `SPEC_COMPLETE` | 当前名称兼容旧实现；不要把它误判成源站左侧竖栏。 |
 | `BottomToolbar` | `src/components/BottomToolbar.tsx` | [`BottomToolbar.spec.md`](BottomToolbar.spec.md)、`PAGE_TOPOLOGY.md` | Batch 18 zoom/minimap | `SPEC_COMPLETE` | 修改入口面板、缩放、minimap 时同步检查 overlay lifecycle。 |
-| `ScriptHeader` | `src/components/ScriptHeader.tsx` | `BEHAVIORS.md`、脚本节点合同 | Batch 4-10 历史行为 | `COVERED_BY_PARENT` | 若改变脚本跟随态，补充行为记录而非凭截图调整。 |
-| `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | `BEHAVIORS.md` storyboard section、`PAGE_TOPOLOGY.md` | active-canvas / storyboard records | `COVERED_BY_PARENT` | 需要新的卡片状态时再建立专门合同。 |
+| `ScriptHeader` | `src/components/ScriptHeader.tsx` | [`ScriptHeader.spec.md`](ScriptHeader.spec.md)、`PAGE_TOPOLOGY.md` | no current verifier | `LEGACY` | 当前未挂载；不把固定标题或装饰圆点重新引入运行态。 |
+| `StoryboardBoard` | `src/components/StoryboardBoard.tsx` | [`StoryboardBoard.spec.md`](StoryboardBoard.spec.md)、Batch 13 `STORYBOARD_MODE.spec.md` | Batch 11/13 | `SPEC_COMPLETE` | active-canvas 投影、selection 和 Agent mode lifecycle 已形成独立合同。 |
 | `AgentDrawer` | `src/components/AgentDrawer.tsx` | Batch 14 `AGENT_SHARE.spec.md`、Batch 11 overlay lifecycle | Batch 11/14 | `BATCH_CONTRACT` | 修改分享、Skill 推荐或 composer 前先读 Batch 14 全套记录。 |
-| `script` / `ScriptNode` | `src/components/nodes/ScriptNode.tsx` | [`ScriptNode.spec.md`](ScriptNode.spec.md) | Batch 4-10 历史回归 | `SPEC_COMPLETE` | 保持 script 节点与 `ScriptHeader` 的职责边界。 |
+| `script` / `ScriptNode` | `src/components/nodes/ScriptNode.tsx` | [`ScriptNode.spec.md`](ScriptNode.spec.md) | Batch 4-10 历史回归 | `SPEC_COMPLETE` | 这是运行态脚本标题/内容载体；不要依赖未挂载的 `ScriptHeader`。 |
 | `image` / `ImageNode` | `src/components/nodes/ImageNode.tsx` | [`ImageNode.spec.md`](ImageNode.spec.md)、[`LibTVOverlayPositioning.contract.md`](LibTVOverlayPositioning.contract.md)、[`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md) | `VERIFICATION_LEDGER.md` image rows | `SPEC_COMPLETE` | 这是图片节点、上下浮层、派生节点和 active tool 的总入口；改动前必须看多 zoom 几何合同。 |
 | `text` / `TextNode` | `src/components/nodes/TextNode.tsx` | [`TextNode.spec.md`](TextNode.spec.md) | Batch 4-10 历史回归 | `SPEC_COMPLETE` | 保持 inline edit 与 graph selection 分离。 |
 | `video` / `VideoNode` | `src/components/nodes/VideoNode.tsx` | [`VideoNode.spec.md`](VideoNode.spec.md)、视频处理跨切面合同 | Batch 21-33、视频专项 verifier | `SPEC_COMPLETE` | ready/empty/pending/failed 是不同状态，不能只按媒体类型复用一个面板。 |
@@ -104,11 +104,10 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-45 
 
 按“会阻塞后续复刻决策”的优先级排序，而不是按文件数量排序：
 
-本轮已补齐 `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel` 和 `SmartMattingPanel` 的独立合同。合同将 source fact、clone fact、clone decision 和未验证业务副作用分开，因此不再列为待补缺口。
+本轮已补齐 `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel`、`SmartMattingPanel` 和 `StoryboardBoard` 的独立合同，并把未挂载的 `ScriptHeader` 明确降级为 legacy。合同将 source fact、clone fact、clone decision 和未验证业务副作用分开，因此不再列为待补缺口。
 
 | 优先级 | 缺口 | 影响 | 建议触发条件 |
 |---|---|---|---|
-| P1 | `ScriptHeader` / `StoryboardBoard` 的独立状态边界 | 当前主要由全局行为和页面拓扑覆盖，agent 不容易判断 selection、follow 和 storyboard card 的责任 | 改 script follow、storyboard mode 或 active canvas 时补 spec。 |
 | P2 | `KeyboardShortcutsDialog` 的源站完整采样 | 当前已有入口与布局记录，但快捷键集合不是当前高价值复刻主线 | 需要实现或调整快捷键时补合同。 |
 | P2 | Director 组件级拆分合同 | 目前领域合同已经足够支持连续批次；逐文件拆分会重复大量 domain contract | Director domain 稳定、开始多人并行修改同一组件时再拆。 |
 

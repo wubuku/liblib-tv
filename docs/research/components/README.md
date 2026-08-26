@@ -14,7 +14,7 @@ listed in `COMPONENT_INVENTORY.md`.
 
 | Area | Specs |
 |---|---|
-| Shell and navigation | `TopNavBar`, `CanvasTabDropdown`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel`, `StoryboardBoard`, `AgentDrawer` |
+| Shell and navigation | `TopNavBar`, `CanvasTabDropdown`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel`, `StoryboardBoard`, `AgentDrawer`; `ScriptHeader` is documented as legacy/unmounted |
 | Panels and dialogs | `AddNodePanel`, `MainEntryPanels`, `ToolboxPanel`, `CharacterLibraryPanel`, `HistoryPanel`, `SmartMattingPanel`, `VideoClipEditPanel`, `CameraConfigDialog`, `CameraMovementDialog`, `KeyboardShortcutsDialog` |
 | Image workflow | `ImageNode`, `ImageEditPanel`, [`LibTVOverlayPositioning.contract.md`](LibTVOverlayPositioning.contract.md), [`LibTVAutoLink.contract.md`](LibTVAutoLink.contract.md) |
 | Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel`, `PictureEditPanel`, `DepthMotionCapturePanel` |
