@@ -100,7 +100,7 @@ def click_toolbar_button(page: Page, selector: str):
         trigger.click()
 
 
-def assert_annotate(page: Page):
+def assert_annotate(page: Page, graph_before=None):
     image_node = node(page)
     node_box = box(image_node)
     media_box = box(image_node.locator("[data-image-node-media]"))
@@ -152,14 +152,15 @@ def assert_annotate(page: Page):
     line_width.fill("12")
     assert line_width.input_value() == "12"
 
-    page.get_by_role("button", name="矩形", exact=True).click()
+    click_toolbar_button(page, '[data-image-annotate-control="rect"]')
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "rect"
-    page.get_by_role("button", name="文字", exact=True).click()
+    click_toolbar_button(page, '[data-image-annotate-control="text"]')
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "text"
-    page.get_by_role("button", name="画笔", exact=True).click()
+    click_toolbar_button(page, '[data-image-annotate-control="pencil"]')
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "pencil"
-    page.locator("[data-image-annotate-save]").click()
-    assert graph_signature(page) == graph_before
+    click_toolbar_button(page, "[data-image-annotate-save]")
+    if graph_before is not None:
+        assert graph_signature(page) == graph_before
 
     return {
         "node": node_box,
@@ -184,7 +185,7 @@ def run_desktop(page: Page):
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch53-image-annotate-standard-929-2026-08-26.png"))
 
     open_annotate(page)
-    annotate_metrics = assert_annotate(page)
+    annotate_metrics = assert_annotate(page, graph_before)
     page.keyboard.press("Delete")
     page.keyboard.press("Control+z")
     page.keyboard.down("Space")
@@ -268,7 +269,7 @@ def main():
     print(
         "Batch 53 Playwright verification passed: annotate toolbar replacement, "
         "standard panel removal, node-centered geometry, DPR2 canvas backing, "
-        "empty-state disabled actions, tool toggle, keyboard isolation, "
+        "empty-state undo/redo state, tool/color/line-width controls, keyboard isolation, "
         "Escape/close recovery, graph immutability and mobile overflow."
     )
 

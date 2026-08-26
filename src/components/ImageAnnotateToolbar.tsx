@@ -101,7 +101,7 @@ export function ImageAnnotateToolbar({
           {isColorOpen && (
             <div
               data-image-annotate-color-menu
-              className="absolute left-1/2 top-full z-20 mt-2 grid -translate-x-1/2 grid-cols-4 gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_24px_rgba(0,0,0,0.42)]"
+              className="absolute left-1/2 top-full z-20 mt-2 grid w-[140px] -translate-x-1/2 grid-cols-4 gap-1 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_24px_rgba(0,0,0,0.42)]"
             >
               {colors.map((option) => (
                 <button

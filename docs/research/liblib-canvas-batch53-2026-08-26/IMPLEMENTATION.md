@@ -91,6 +91,19 @@ desktop/mobile 上 `536px` toolbar 的关闭按钮可能位于 viewport 外。�
 先保留 rect 事实，再通过 DOM click 验证关闭生命周期；产品没有为测试增加
 clamp 或 page-center 重定位。
 
+### 4.4 颜色板收缩导致的 pointer overlap
+
+首次补充颜色板断言时发现，绝对定位的 shrink-to-fit grid 在本地运行态被
+压缩为 `30px` 宽，四列计算为 `0px`，后列 swatch 覆盖了前列按钮。已为
+popover 设置稳定的 `140px` 宽度，使 4 列按钮拥有可点击的独立几何；专项
+验证随后确认七个颜色选项均可访问并可选择。
+
+### 4.5 移动端被裁切控件的验证策略
+
+移动端保持 source-shaped toolbar 的 node-centered 自然裁切，因此部分工具
+按钮可能位于 viewport 外。产品没有为测试添加 clamp；verifier 对这类控件
+使用 selector 的 DOM click fallback，继续验证状态切换而不改变产品布局。
+
 ## 5. 回归与静态检查
 
 已通过：
