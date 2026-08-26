@@ -227,6 +227,20 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 
 结果形状、reason taxonomy、pipeline precedence、transaction no-op/atomicity、fixture topology 和授权 slice 统一见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md)。该合同完成的是设计，不表示 runtime、verifier 或 source disposable fixture 已存在。
 
+### `LIBTV-VR-010`：graph document and snapshot isolation
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008` |
+| Old verifier | Batch 3-8 undo/redo、selection copy、group 和 canvas duplicate regressions；保留各自历史合同 |
+| Required fixture | `LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` + `LOCAL-EMPTY/DEMO/GROUP/DERIVED` |
+| Pure checks | V1 round-trip/order；runtime-field exclusion；future-version/ID/edge/parent/media reason；migration provenance；nested past/future isolation；viewport/selection exclusion |
+| Browser checks | nested metadata command -> undo/redo；future clear；selection clear；viewport 独立；history step count；future import-as-new-canvas 另待 surface contract |
+| Blockers | codec/validator/fixture/runtime 未实现；node type/data registry 未审计；编码授权；import UI 未立项 |
+| Exit | pure corpus + focused history verifier recorded；旧 Batch regressions retained；不宣称 persistence/source parity |
+
+五层 shape、V1 conceptual schema、field/media 分类、parse/migration pipeline、zero-partial load、fixture corpus 和授权 slice 统一见 [`components/LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md)。Open Canvas revision/file/KV/rebase 仍是 `DEFERRED_PRODUCT_SCOPE`，不是 `VR-010` 目标。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -264,6 +278,7 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 - Batch 48 已是 bounded Director `recorded pass`，保留其 setup、storage、脚本、截图和实施记录；不把 local descriptor/proxy 解释为真实资产、远端同步或 LibTV persistence；
 - 新 current-source verifier 只有在 source freshness report、fixture ID、明确授权和 replacement plan 同时存在时才进入实现批次；
 - `LIBTV-VR-009` 的 contract/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得通过改 Batch 4-8 或直接写 store 构造“通过”；
+- `LIBTV-VR-010` 的 document/snapshot contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得用 JSON round-trip 静默丢字段，或把 import failure 退化为空画布；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

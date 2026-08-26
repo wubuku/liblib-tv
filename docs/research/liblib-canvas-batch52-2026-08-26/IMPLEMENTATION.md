@@ -16,8 +16,10 @@
 - [x] Preview 打开时阻断底层 Delete/Space/Tab/undo 等画布快捷键。
 - [x] Preview 的关闭按钮和 Escape 只关闭预览，不清除 selection、Prompt、
   nodes、edges、viewport 或 graph history。
-- [x] 元素编辑、图层分离、标注、旋转和下载保持独立入口，但在专用批次前
-  不伪造任务、保存或派生节点副作用。
+- [x] 元素编辑、图层分离、标注和下载保持独立入口，不伪造任务、保存或
+  派生节点副作用。
+- [x] 旋转入口的 media-backed graph delta 由 Batch 56 单独实现和验证；
+  本批旧的 disabled-placeholder 断言已被 supersede，但无媒体边界仍保留。
 - [x] 增加 Batch 52 focused Playwright 和结构化 `runtime-audit.json`。
 - [x] 保留 desktop、mobile 两种一次性 clone 截图及本批识图台账。
 
@@ -130,7 +132,7 @@ selected image
 
 - 标注绘制、保存、dirty state 或远程提交；
 - 元素编辑的 point/box/brush record 和生成任务；
-- 旋转/镜像的派生节点语义；
+- 旋转/镜像的真实 bitmap/editor 语义；Batch 56 只覆盖入口派生 graph slice；
 - 图层分离的异步 composition；
 - 下载副作用、水印偏好、会员校验和文件写入；
 - 源站 exact CSS、真实任务服务或远程持久化。
@@ -148,3 +150,16 @@ standard toolbar/panel
 ```
 
 不在 Batch 53 实现绘制保存、远程任务、结果节点或 graph mutation。
+
+## 8. Supersession note
+
+Batch 52 originally recorded `旋转` as a disabled placeholder because the
+action had not yet received an implementation contract. Batch 56 observed and
+implemented the narrower media-backed source-shaped graph delta. Therefore:
+
+- `verify-liblib-batch52.py` now expects `旋转` enabled for its media-backed image
+  fixture;
+- Batch 56 remains the authority for the derived node, source edge, metadata,
+  selection and undo/redo assertions;
+- Batch 52 remains the authority for the 13-action toolbar shell and Preview;
+- no batch claims a real rotate/mirror bitmap editor, save or provider path.

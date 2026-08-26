@@ -204,7 +204,7 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-008` | parent/group references resolve and do not create orphan descendants | `REQUIRED_CORRECTNESS` | group/delete/duplicate actions traverse descendants | define import/copy/delete closure and invalid-parent handling |
 | `LIBTV-GI-009` | selected IDs are a subset of current nodes after transaction | `REQUIRED_CORRECTNESS` | delete/undo/redo already clear or rewrite selection | every command declares selection output; stale selection is not tolerated |
 | `LIBTV-GI-010` | one user command produces its declared history step count | `CURRENT_CLONE_FACT` | graph actions target one snapshot; route drag compresses many frames | no-op/equality and multi-node actions need exact compatibility cases |
-| `LIBTV-GI-011` | graph snapshot metadata is not mutated through shared nested references | `REQUIRED_CORRECTNESS` | current snapshot is only shallow for nested `data` | use immutable replacement now; decide deep clone/schema before mutable nested state |
+| `LIBTV-GI-011` | graph snapshot metadata is not mutated through shared nested references | `REQUIRED_CORRECTNESS` | current snapshot is only shallow for nested `data` | document/snapshot deep-isolation contract complete；runtime missing |
 | `LIBTV-GI-012` | graph history is in-memory and excludes viewport/UI/save state | `PROTOTYPE_BOUNDARY` | current `historyByCanvas` contract | do not infer persistence, collaboration or project-level undo |
 
 ### 10.2 Compatibility case queue
@@ -219,7 +219,7 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | compare current Batch 4/5/8 contract |
 | `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | current selection-copy contract exists |
 | `LIBTV-GC-008` equal data update | node data merge is semantically unchanged | update | no-op history policy explicitly asserted | current clone currently records a step |
-| `LIBTV-GC-009` nested metadata history | node has marks/regions/process arrays | mutate via immutable update, undo, redo | old/new snapshots stay isolated | fixture design required |
+| `LIBTV-GC-009` nested metadata history | node has marks/regions/process arrays | mutate via immutable update, undo, redo | old/new snapshots stay isolated | fixture/verifier design complete；runtime missing |
 | `LIBTV-GC-010` delete selected subtree | selected parent/group with child/reference edges | delete | node/edge closure, selection clear and one-step undo/redo exact | compare current cascade behavior |
 | `LIBTV-GC-011` transaction failure | derived action fails validation after computing draft IDs | submit | no orphan node/edge, no selection shift, no history step | design required |
 | `LIBTV-GC-012` canvas boundary | two canvases with independent graph/history | mutate, switch, undo | only active canvas graph/history changes | current clone contract exists |
@@ -259,6 +259,19 @@ This register is a design input. It does not authorize adding DAG validation, ch
 - four independently authorized implementation slices: structural, React Flow boundary, domain compatibility and import/batch/sync.
 
 Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_EXCEPTION_BLOCKED`. This closes a documentation gap, not a runtime gap; it does not authorize code, fixture or verifier changes.
+
+### 10.6 Graph document and snapshot handoff
+
+[`LibTVGraphDocument.contract.md`](components/LibTVGraphDocument.contract.md) is now the document/snapshot-specific authority for:
+
+- runtime graph、history snapshot、portable document、clipboard packet 和 future persistence envelope 的五层分离；
+- clone-only V1 conceptual schema、node data version 和 runtime-field whitelist；
+- nested metadata deep isolation，同时继续排除 viewport、selection、canvas CRUD 和 UI/save state；
+- strict parse、future-version stop、pure migration、node/edge/parent/media diagnostics 和 zero-partial load；
+- `LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` plus `LIBTV-VR-010` pure/history acceptance design；
+- codec、history isolation、import-as-new-canvas、export/clipboard reuse 和 deferred persistence 的独立授权 slice。
+
+Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / PERSISTENCE_DEFERRED`。这不表示普通画布已有 import/export、reload recovery、revision、conflict 或 remote save。
 
 ## 11. 新事务立项模板
 

@@ -95,7 +95,8 @@ const actions = [
     icon: RotateCw,
     testId: "image-toolbar-rotate",
     widthClass: "w-8",
-    available: false,
+    available: true,
+    mediaRequired: true,
     iconOnly: true,
   },
   {
@@ -121,10 +122,16 @@ export type ImageToolbarAction = (typeof actions)[number]["label"];
 interface ImageToolbarProps {
   zoom: number;
   portraitEnhanced: boolean;
+  hasMedia: boolean;
   onAction: (action: ImageToolbarAction) => void;
 }
 
-export function ImageToolbar({ zoom, portraitEnhanced, onAction }: ImageToolbarProps) {
+export function ImageToolbar({
+  zoom,
+  portraitEnhanced,
+  hasMedia,
+  onAction,
+}: ImageToolbarProps) {
   return (
     <NodeToolbar
       position={Position.Top}
@@ -141,12 +148,14 @@ export function ImageToolbar({ zoom, portraitEnhanced, onAction }: ImageToolbarP
         {actions.map((action) => {
           const Icon = action.icon;
           const iconOnly = "iconOnly" in action && action.iconOnly;
+          const isAvailable =
+            action.available && (!("mediaRequired" in action) || hasMedia);
           return (
             <button
               key={action.label}
               type="button"
               data-testid={action.testId}
-              disabled={!action.available}
+              disabled={!isAvailable}
               onClick={() => onAction(action.label)}
               aria-pressed={action.label === "人像质感调节" ? portraitEnhanced : undefined}
               aria-label={iconOnly ? action.label : undefined}

@@ -33,8 +33,16 @@ export interface ImageNodeData extends Record<string, unknown> {
   references?: string[];
   generationSettings?: string;
   portraitEnhanced?: boolean;
+  rotateMirror?: RotateMirrorMetadata;
   frameCapture?: VideoFrameCaptureMetadata;
   directorCapture?: DirectorCaptureMetadata;
+}
+
+export interface RotateMirrorMetadata {
+  sourceNodeId: string;
+  sourceFilename: string;
+  operation: "rotate-mirror";
+  prototype: true;
 }
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
@@ -109,6 +117,26 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       return;
     }
 
+    if (action === "旋转") {
+      addDerivedNode(id, "image", {
+        filename: "旋转与镜像",
+        width,
+        height,
+        imageUrl,
+        watermarkUrl,
+        editorVariant: "tool",
+        editorHeight: 274,
+        generationSettings: data.generationSettings ?? "16:9 · 标准画质 · 2K · 1张",
+        rotateMirror: {
+          sourceNodeId: id,
+          sourceFilename: filename,
+          operation: "rotate-mirror",
+          prototype: true,
+        } satisfies RotateMirrorMetadata,
+      });
+      return;
+    }
+
     if (action === "全景") {
       addDerivedNode(
         id,
@@ -172,6 +200,15 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
             "data-director-capture-edge-id": directorCapture.edgeId,
           }
         : {})}
+      {...(data.rotateMirror
+        ? {
+            "data-rotate-mirror": true,
+            "data-rotate-mirror-source-id": data.rotateMirror.sourceNodeId,
+            "data-rotate-mirror-source-filename": data.rotateMirror.sourceFilename,
+            "data-rotate-mirror-operation": data.rotateMirror.operation,
+            "data-rotate-mirror-prototype": data.rotateMirror.prototype,
+          }
+        : {})}
       className={cn(
         "group relative h-full w-full overflow-visible rounded-[4px] border bg-[#202020]",
         selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.22)]" : "border-white/10",
@@ -181,6 +218,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         <ImageToolbar
           zoom={zoom}
           portraitEnhanced={Boolean(data.portraitEnhanced)}
+          hasMedia={Boolean(imageUrl)}
           onAction={runAction}
         />
       )}

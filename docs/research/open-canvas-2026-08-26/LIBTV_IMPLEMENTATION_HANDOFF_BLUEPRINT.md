@@ -71,7 +71,7 @@ RESEARCH_ONLY
 | `OC-BP-001` standard selected image | `OC-ADOPT-001` | `LIBTV-PAR-001` | `READY_FOR_AUTHORIZATION`，但当前未授权 | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-001` |
 | `OC-BP-002` low-risk active surfaces | `OC-ADOPT-001` | `LIBTV-PAR-002` | 分三个待授权 slice | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-002` |
 | `OC-BP-003` typed Auto Link | `OC-ADOPT-002` | `LIBTV-PAR-003` | `DESIGN_READY`；运行 fixture 未实现 | `LIBTV-FIX-LOCAL-AUTOLINK-01` 接收规格已完成 | `LIBTV-VR-003..005` |
-| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006` | `LIBTV-PAR-008` | connection 子切片 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`；snapshot/copy 仍 `DESIGN_FIRST` | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` 设计完成，运行 fixture 与 disposable source fixture 待定 | `LIBTV-VR-009` 设计完成；Reference/entry-point/invalid lifecycle 仍 source-blocked |
+| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006` | `LIBTV-PAR-008` | connection + document/snapshot 子切片 `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`；subgraph copy 仍 `DESIGN_FIRST` | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` 设计完成；运行 fixture/source fixture 待定 | `LIBTV-VR-009..010` 设计完成；Reference/entry-point/invalid lifecycle 仍 source-blocked |
 | `OC-BP-005` process/result lifecycle | `OC-ADOPT-003/009` | `LIBTV-PAR-009` | `BLOCKED_BY_FIXTURE` | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` + 所需 source fixture | `LIBTV-VR-007` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 
@@ -168,7 +168,9 @@ Open Canvas 的 typed bucket 只证明“结构化身份在边界层投影”是
 
 其中 connection 子切片已有独立 [`LibTVGraphConnection.contract.md`](../components/LibTVGraphConnection.contract.md)：统一 raw/normalized connection、`allow / allow-with-adjustment / reject / unknown` 结果、stable reason、guard precedence、reject 零 mutation 和 accepted one-step history。`unknown` 用于保留 Reference、未建模 action 和未确认入口，不允许 silent allow。
 
-基础 fixture 使用 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`、`LIBTV-FIX-LOCAL-EMPTY-01`、`LIBTV-FIX-LOCAL-DEMO-01`、`LIBTV-FIX-LOCAL-GROUP-01` 和 `LIBTV-FIX-LOCAL-DERIVED-01`。前者的 A/B/C topology、scenario reset 和 `LIBTV-VR-009` pure/browser split 已设计完成，但运行 fixture 和 verifier 尚未实现。不能用共享源站验证 destructive graph guard。
+Document/snapshot 子切片已有独立 [`LibTVGraphDocument.contract.md`](../components/LibTVGraphDocument.contract.md)：分开 runtime、history、portable document、clipboard packet 和 future persistence envelope，定义 V1 schema、nested isolation、strict load/migration 和 zero-partial transaction。Open Canvas revision/file/KV/rebase 不进入近期 scope。
+
+基础 fixture 使用 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`、`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01`、`LIBTV-FIX-LOCAL-EMPTY-01`、`LIBTV-FIX-LOCAL-DEMO-01`、`LIBTV-FIX-LOCAL-GROUP-01` 和 `LIBTV-FIX-LOCAL-DERIVED-01`。前两者的 topology/corpus、scenario reset 和 `LIBTV-VR-009..010` split 已设计完成，但运行 fixture 和 verifier 尚未实现。不能用共享源站验证 destructive graph guard。
 
 候选 ownership 边界是 [`canvasStore.ts`](../../../src/store/canvasStore.ts)、[`canvas.ts`](../../../src/types/canvas.ts) 和经评审后新增的纯 helper。禁止借某个 UI slice 顺手重写整个 store。
 
@@ -271,7 +273,7 @@ pure identity/transaction cases
 在仍然只有文档授权的当前阶段：
 
 1. `OC-BP-003` 的 fixture/data/state/transaction 设计已完成；保持为 `DESIGN_READY`，直到运行 fixture 获授权并实现；
-2. `OC-BP-004` 的 connection result/reason/transaction、local fixture 和 `LIBTV-VR-009` 设计已完成；下一步保持 runtime 未实现，继续补 Reference/导入/批量/同步 source 决定与 invalid lifecycle，snapshot/copy 另走独立设计；
+2. `OC-BP-004` 的 connection 与 document/snapshot schema/result/fixture/`LIBTV-VR-009..010` 设计已完成；下一步保持 runtime 未实现，继续补 Reference/导入/批量/同步 source 决定与 invalid lifecycle，subgraph copy 另走独立设计；
 3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
 4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；projection 审计已完成，不创建 provider backlog；
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；

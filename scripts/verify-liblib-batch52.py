@@ -31,7 +31,9 @@ ACTION_CONTRACT = [
     ("image-toolbar-layer-separation", "图层分离", 88, True),
     ("image-toolbar-grid-split", "宫格切分", 104, False),
     ("image-toolbar-annotate", "标注", 32, False),
-    ("image-toolbar-rotate", "旋转", 32, True),
+    # Batch 56 supersedes Batch 52's old disabled-placeholder contract for
+    # media-backed images. Batch 56 verifies the no-media disabled boundary.
+    ("image-toolbar-rotate", "旋转", 32, False),
     ("image-toolbar-download", "下载", 32, True),
     ("image-toolbar-preview", "预览", 32, False),
 ]

@@ -382,3 +382,16 @@
 - 将 Reference、import/batch/sync、未建模 action 和 source invalid feedback 保持显式 unknown/source-blocked，不用 Open Canvas 规则填空；
 - 同步 adoption、evidence、parity、fixture、verifier、decision、traceability、component coverage 和 agent navigation；
 - 没有修改 `src/`、测试脚本、FrameOS、共享源站 graph、其他开发者 Batch 56 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v36 graph document 与 snapshot 分层合同
+
+本轮继续将 Open Canvas 的 versioned graph 方法转译为 LibTV clone 文档，不引入上游 persistence 产品语义：
+
+- 复核固定版本的 `SerializedCanvasGraph version: 1`、flow serializer、strict API validator、local DB normalization、revision/save baseline、template runtime reset 和 conflict rebase；
+- 复核当前 clone 的 in-memory `CanvasData`、浅层 nested `GraphSnapshot`、50-step history、canvas duplicate、selection copy 和无普通画布 persistence 边界；
+- 新增 [`LibTVGraphDocument.contract.md`](../components/LibTVGraphDocument.contract.md)，分开 runtime graph、history snapshot、portable document、clipboard packet 和 future persistence envelope；
+- 定义 clone-only V1 conceptual schema、node dataVersion、runtime-field whitelist、media portability、strict parse/migration、future-version stop 和 zero-partial load；
+- 为 `LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 与 `LIBTV-VR-010` 定义 pure payload corpus、nested history isolation 和 future import-as-new-canvas boundary；
+- 新增 `DEC-026` / `LIBTV-TR-031`，明确 history deep isolation 不等于 import/export/save 已实现；Open Canvas limits、file/KV、revision/debounce/rebase 保持 deferred；
+- 同步 adoption、handoff、graph catalog、fixture、verifier、component coverage、agent navigation 和 authority map；
+- 没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 Batch 56 WIP 或 Open Canvas submodule。

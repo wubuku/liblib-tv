@@ -53,8 +53,9 @@ DOM、bundle 和 live state 合同。
 - 当前 toolbar 已为 `1092.5x49`，包含 13 项 source-shaped actions；
 - `预览` 已打开 page-level `ImagePreviewOverlay`，不改变 selection、graph、
   Prompt、viewport 或 history；
-- `元素编辑`、`图层分离`、`标注`、`旋转`、`下载` 只保留独立 disabled
-  入口，等待各自的专用状态合同；
+- `元素编辑`、`图层分离`、`标注`、`下载` 仍保留独立 disabled 入口；
+- `旋转` 的 media-backed image 入口已由 Batch 56 提升为
+  `旋转与镜像` 派生节点的 bounded graph slice；无媒体图片仍 disabled；
 - Batch 10/11 的历史断言仍保留 compatibility 价值，不覆盖当前 action set。
 
 ## 5. Clone 决策

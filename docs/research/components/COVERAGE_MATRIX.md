@@ -45,6 +45,7 @@
 | `long-video-process` / `LongVideoProcessNode` | `src/components/nodes/LongVideoProcessNode.tsx` | [`LongVideoProcessNode.spec.md`](LongVideoProcessNode.spec.md)、Batch 33 | Batch 33 | `SPEC_COMPLETE` | 这是 process graph 的 stage renderer，不是后端任务状态。 |
 | `default` / `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | [`DeletableEdge.spec.md`](DeletableEdge.spec.md)、`AGENTS.md` edge rule | Batch 4-33、35-46 | `SPEC_COMPLETE` | 不改变 hover-flow effect，除非重新取得源站证据。 |
 | React Flow connection boundary | `src/app/page.tsx` + `src/store/canvasStore.ts#addEdge` | [`LibTVGraphConnection.contract.md`](LibTVGraphConnection.contract.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[source static audit](../open-canvas-2026-08-26/LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md) | `LIBTV-VR-009` planned | `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | normalize/result/reason/zero-mutation contract 已完成；Reference/entry-point/source invalid feedback 仍 blocked，不改变 Handle/edge 视觉。 |
+| Graph document/history boundary | `src/store/canvasStore.ts` + `src/types/canvas.ts` | [`LibTVGraphDocument.contract.md`](LibTVGraphDocument.contract.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md) | `LIBTV-VR-010` planned | `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | runtime/history/document/clipboard/persistence 五层已定义；nested snapshot 仍浅复制，import/export/persistence 未实现。 |
 
 ## 3. LibTV 面板与对话框
 

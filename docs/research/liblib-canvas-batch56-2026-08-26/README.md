@@ -1,6 +1,6 @@
 # Batch 56：图片旋转入口的最小派生节点复刻
 
-> 状态：计划中。
+> 状态：已完成（2026-08-26）。
 > 对应 backlog：`LIBTV-PAR-002` 图片高风险动作中的旋转入口。
 > 本批只复刻已直接观察到的 graph delta，不声称完成旋转编辑器或保存链路。
 
@@ -52,7 +52,8 @@ clone-only decision：
 - 派生节点的 `data.rotateMirror` 只记录 source identity 和原型状态，不伪造
   真实角度或镜像结果；
 - 新节点创建后自动成为唯一选中节点；
-- 一次 undo 删除 node 和 edge，一次 redo 恢复；
+- 一次 undo 删除 node 和 edge，一次 redo 恢复 graph；按当前 clone history
+  合同，undo/redo 后 selection 清空；
 - action 在当前本地图片有 `imageUrl` 时可用，无媒体时保持 no-op；
 - 本地 UI 反馈明确标注为 prototype，不把本地派生图写成真实处理结果。
 

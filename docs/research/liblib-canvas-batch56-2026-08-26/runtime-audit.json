@@ -1,0 +1,57 @@
+{
+  "url": "http://localhost:3000",
+  "source_node_id": "i-vxeeCnxySa",
+  "contract": {
+    "action": "旋转",
+    "derived_filename": "旋转与镜像",
+    "operation": "rotate-mirror",
+    "prototype": true,
+    "graph_delta": "one_image_node_plus_one_source_edge",
+    "undo_redo": "atomic_graph_transaction",
+    "no_media": "disabled_noop",
+    "selection_after_create": "derived_node",
+    "selection_after_undo_redo": "cleared_by_existing_history_contract"
+  },
+  "desktop": {
+    "viewport": {
+      "width": 929,
+      "height": 874
+    },
+    "derived_id": "image-1787782246679",
+    "derived": {
+      "x": 280.7291259765625,
+      "y": 176.71719360351562,
+      "width": 145.31381225585938,
+      "height": 81.73904418945312
+    },
+    "nodes_before": 10,
+    "nodes_after": 11,
+    "edges_before": 11,
+    "edges_after": 12,
+    "selection_after_redo": []
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "derived_id": "image-1787782249141",
+    "derived": {
+      "x": 130.1396942138672,
+      "y": 94.07666015625,
+      "width": 51.28721618652344,
+      "height": 28.84906768798828
+    },
+    "nodes_before": 10,
+    "nodes_after": 11,
+    "edges_before": 11,
+    "edges_after": 12,
+    "selection_after_redo": []
+  },
+  "no_media": {
+    "empty_node_id": "image-1787782251511",
+    "rotate_disabled": true,
+    "nodes": 11,
+    "edges": 12
+  }
+}

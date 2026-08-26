@@ -66,7 +66,7 @@
 | Rank | ID | Slice | V | E | T | R | 状态 |
 |---:|---|---|---:|---:|---:|---:|---|
 | 1 | `LIBTV-PAR-001` | 当前图片标准双浮层的动作集合与几何 | 5 | 5 | 5 | 2 | `RECORDED_PASS (geometry only)` |
-| 2 | `LIBTV-PAR-002` | Preview/Annotate/Element Edit 的 L2 -> L3/L4 替换 | 5 | 5 | 5 | 3 | `RECORDED_PASS (empty states)` |
+| 2 | `LIBTV-PAR-002` | Preview/Annotate/Element Edit/Rotate 的 L2 -> L3/L4/graph slice | 5 | 5 | 5 | 3 | `RECORDED_PASS (empty states + bounded rotate graph)` |
 | 3 | `LIBTV-PAR-003` | Auto Link ghost + structured mention | 5 | 4 | 2 | 4 | `BLOCKED_BY_FIXTURE`；design spec complete |
 | 4 | `LIBTV-PAR-004` | Top-level modal/Director 的 keyboard 与 focus ownership | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
 | 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `RESEARCH_FIRST` / `PARTIAL_RECORDED` |
@@ -112,8 +112,9 @@ bottom panel 合同保持 `16 * zoom`。当前 source action set 与 clone
 | Preview | page-level read-only overlay；关闭后回到原 selection | Batch 52 已覆盖 open/close/Escape、媒体比例、watermark/close geometry、unchanged graph/selection、mobile clipping | 多媒体历史切换、下载、水印偏好、会员逻辑 |
 | Annotate empty | dedicated `536x49` toolbar + DPR canvas；standard bottom panel absent | empty enter/Escape/discard，恢复 standard L2 | 绘制保存、远端任务 |
 | Element Edit empty | dedicated toolbar/stage/record panel；standard L2 absent | Batch 54 已覆盖 empty enter/Escape、tool/brush-size controls、disabled local history、geometry and keyboard isolation | 有效 record、对象识别、生成结果 |
+| Rotate graph entry | 有媒体时点击 `旋转` 新增并选中 `旋转与镜像` 节点；source edge 可见；无媒体 disabled | Batch 56 已覆盖 media gate、node/edge/selection、typed `rotateMirror`、atomic undo/redo 和 desktop/mobile overflow | 真实 bitmap、角度/镜像编辑器、dirty/save、provider 和最终结果状态 |
 
-三个子项不能合成一个“通用图片弹窗”。Preview 属于 page L4；Annotate/Element Edit 属于 node authoring L3。旋转、图层分离和 dirty save 继续留在高风险 fixture 队列。
+这些子项不能合成一个“通用图片弹窗”。Preview 属于 page L4；Annotate/Element Edit 属于 node authoring L3；Batch 56 的 Rotate 只覆盖 graph-visible entry。旋转编辑器、图层分离和 dirty save 继续留在高风险 fixture 队列。
 
 ### 4.4 `LIBTV-PAR-003`: Auto Link
 

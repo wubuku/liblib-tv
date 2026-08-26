@@ -1,6 +1,6 @@
 # Batch 56 截图识别台账
 
-> 状态：待实施截图。
+> 状态：已完成（2026-08-26）。
 > 规则：本文件是 Batch 56 的唯一截图识别入口。后续回答本批截图内容前先
 > 阅读本文；除非截图、viewport、代码状态或研究问题变化，否则不重复视觉识别。
 
@@ -8,23 +8,48 @@
 
 | 文件 | 来源 | viewport | 状态 |
 |---|---|---:|---|
-| `liblib-clone-batch56-image-rotate-derived-929-2026-08-26.png` | clone | `929x874` | 旋转点击后派生节点被选中 |
+| `liblib-clone-batch56-image-rotate-derived-desktop-929-2026-08-26.png` | clone | `929x874` | 旋转点击后派生节点被选中 |
 | `liblib-clone-batch56-image-rotate-derived-mobile-390-2026-08-26.png` | clone | `390x844` | 旋转点击后派生节点与边的窄屏状态 |
 
-截图文件尚未生成。生成后必须在本文件补充实际路径、捕获时间、缩放、
-交互步骤和可见层级。
+截图由 Batch 56 verifier 在派生节点创建后、undo 前采集；这是“新节点被选中”
+状态，而不是 redo 后 selection 被现有 history 合同清空的状态。
 
-## 2. 待记录的识图问题
+## 2. 首次识别结果
 
-实施完成后只识别本批新问题：
+识别日期：2026-08-27。来源：本地 LibTV clone；截图由当前 Batch 56
+verifier 生成；desktop/mobile 均为 `deviceScaleFactor=1`，画布已先执行
+`Alt+Shift+f` 整理，随后选中 `图片4` 点击 `旋转`。
 
-- 派生节点的标题、图片媒体和尺寸标签是否清晰可见；
-- source -> derived edge 是否在两个 viewport 中可辨识；
-- 旋转入口在原节点 toolbar 中是否仍保持 source-shaped 的位置和 icon-only
-  语义；
-- 派生节点选中后，上方 toolbar 与下方 generation panel 是否以新节点为锚；
-- mobile 是否自然裁切而非引入页面横向滚动；
-- 是否出现任何声称真实旋转/镜像完成的文案或控件。
+### Desktop `929x874`
+
+- 画布保持深色 React Flow 工作区，顶部仍是画布导航，底部保留整理确认卡和
+  工具栏；没有 page-level 旋转弹窗。
+- source `图片4` 与右侧新建的 `旋转与镜像` 图片节点同时可见，中间有一条
+  source -> derived 连线。
+- `旋转与镜像` 节点带青色 selected border；其节点上方出现标准图片 toolbar，
+  下方出现 generation panel，说明 selection 已移动到派生节点。
+- 派生节点中的 media 仍是本地 prototype 图片；截图没有角度值、镜像按钮或
+  “真实处理完成”结果状态。
+- 由于画布是 `28%` 左右的组织视图，节点和浮层在整页中相对紧凑；这是当前
+  clone 的 viewport 状态，不应把截图尺寸误读为 world geometry。
+
+### Mobile `390x844`
+
+- 画布 graph 在窄屏中保持自然缩小，source、derived node 和连线仍可见；
+  页面没有横向滚动。
+- 顶部导航和底部工具栏按既有 mobile shell 布局收缩；派生节点继续位于
+  source 右侧，而不是被搬到页面中心。
+- selected 派生节点的 source-shaped toolbar 可能自然裁切于窄视口边缘，符合
+  当前节点中心 anchor / fixed content width 合同；没有新增 mobile clamp。
+- 截图只证明本地 prototype 的可见层级和选中态，不证明源站最终旋转 bitmap。
+
+## 3. 待记录的识图问题
+
+后续只有在截图、viewport、代码状态或研究问题变化时，才追加最小识别：
+
+- 是否需要单独记录“旋转点击后”与“redo 后 selection 清空”两种状态；
+- 派生节点的真实 source image result 是否能在获准 fixture 中确认；
+- source toolbar 与 derived toolbar 的 exact source CSS 是否发生漂移。
 
 ## 3. 证据分层模板
 
@@ -38,7 +63,7 @@
 
 ## 4. 当前可复用截图证据
 
-本批尚无新截图。不要重新识别 Batch 52、53 或 54 的 PNG；相关结论分别见：
+不要重新识别 Batch 52、53 或 54 的 PNG；相关结论分别见：
 
 - [`../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md)
 - [`../liblib-canvas-batch53-2026-08-26/SCREENSHOT_ANALYSIS.md`](../liblib-canvas-batch53-2026-08-26/SCREENSHOT_ANALYSIS.md)

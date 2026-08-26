@@ -59,6 +59,7 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | Batch 53 | image annotate empty replacement state | `SCRIPT_RECORDED_PASS` | focused Playwright、desktop/mobile runtime audit、截图识别台账、Batch 52/10/11 adjacent regression 和 closeout 文档已闭环；真实 stroke/save/upload/result 仍不在合同内 |
 | Batch 54 | image element-edit empty replacement state | `SCRIPT_RECORDED_PASS` | focused Playwright、desktop/mobile runtime audit、截图识别台账、Batch 53/52/10/11 adjacent regression 和 closeout 文档已闭环；真实 record/object recognition/generate/save/result 仍不在合同内 |
 | Batch 55 | source freshness reinspection attempt | `BLOCKED_BY_FIXTURE` | 目标画布重定向首页，浏览器插件版本路径异常；仅完成 blocked handoff，不产生 clone/source parity 结论 |
+| Batch 56 | image rotate bounded graph slice | `SCRIPT_RECORDED_PASS` | focused Playwright、desktop/mobile runtime audit、截图识别台账和 closeout 文档已闭环；只证明 media-gated `旋转与镜像` 派生 node/edge/selection/history，不证明真实 bitmap/editor/save/provider |
 
 ## 3. 当前源站合同覆盖
 
@@ -67,13 +68,13 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | 图片标准双浮层 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 51/52） | [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md)、[`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)、Batch 51/52 `runtime-audit.json` | standard toolbar/panel geometry and current action shell are covered; active-tool replacement remains separate |
 | 当前顶部工具条 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 52） | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 52 | current `1092.5x49`, 13 actions, order, width, disabled boundary and natural clipping are covered |
 | image Preview | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 52） | [`ImagePreviewOverlay.spec.md`](components/ImagePreviewOverlay.spec.md)、Batch 52 `runtime-audit.json` | page-level open/close/Escape, media ratio, watermark/close geometry and graph immutability are covered |
-| active image tool | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 53 annotate empty + Batch 54 element-edit empty） | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`liblib-canvas-batch53-2026-08-26/`](liblib-canvas-batch53-2026-08-26/)、[`liblib-canvas-batch54-2026-08-26/`](liblib-canvas-batch54-2026-08-26/) | annotate and element-edit empty replacement are covered; rotate/layer separation/download and non-empty save/record semantics still need dedicated fixture |
+| active image tool | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 53 annotate empty + Batch 54 element-edit empty + Batch 56 rotate graph slice） | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`liblib-canvas-batch53-2026-08-26/`](liblib-canvas-batch53-2026-08-26/)、[`liblib-canvas-batch54-2026-08-26/`](liblib-canvas-batch54-2026-08-26/)、[`liblib-canvas-batch56-2026-08-26/`](liblib-canvas-batch56-2026-08-26/) | annotate/element-edit empty replacement and rotate graph delta are covered; rotate editor/bitmap, layer separation, download and non-empty save/record semantics remain fixture-gated |
 | Auto Link | `SOURCE_CONTRACT_ONLY` | [`LIBTV_AUTOLINK_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)、[`LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md) | 需要 editor token、竞态和 graph/reference/mention 事务回归 |
 | Seedance 普通/超长参数 | `SOURCE_CONTRACT_ONLY` + `CLONE_FIXTURE_ONLY` | [`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 21/22 | 需区分源站采样值、clone 本地参数和真实 provider |
 | 片段重拍 | `BLOCKED_BY_FIXTURE` | bundle 文案、文章证据、Batch 23 clone fixture | 需要 disposable ready-video source fixture 和时间范围/版本合同 |
 | 逐帧拉片 | `BLOCKED_BY_FIXTURE` | 空态 DOM、文章结果截图、Batch 24 clone fixture | 需要 ready video 或本地固定结果 fixture 的结果/失败态 |
 | 超长视频过程 | `CLONE_FIXTURE_ONLY` + `BLOCKED_BY_FIXTURE` | Batch 33 12/22 graph、文章/源站参数证据 | 需要源站过程图或稳定 mock 合同，不能把 clone graph 当源站事实 |
-| 旋转/图层分离/标注保存 | `BLOCKED_BY_FIXTURE` | 当前 bundle/live 空态和一次撤销边界 | 需要 disposable 项目、任务/保存许可和可回滚方案 |
+| 旋转编辑器/图层分离/标注保存 | `BLOCKED_BY_FIXTURE` | Batch 56 只覆盖旋转入口的 bounded graph delta；当前 bundle/live 空态和一次撤销边界 | 需要 disposable 项目、任务/保存许可和可回滚方案；不要把 Batch 56 graph slice 升级为真实 bitmap/editor parity |
 | page shell/source freshness | `SOURCE_CONTRACT_ONLY` | Batch 55 记录了接管失败；既有 2026-08-27 standard image freshness 仍只覆盖 41% selected state | 需要恢复登录态后补 page shell、selection transition、safe zoom 和 mobile；不要把重定向解释成 source drift |
 
 ## 4. 如何解读“通过”
@@ -107,7 +108,7 @@ python3 scripts/verify-liblib-batch<N>.py
 ### 5.2 当前脚本全集
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch{52..54}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch{52..54}.py scripts/verify-liblib-batch56.py; do
   python3 "$script" || exit 1
 done
 ```

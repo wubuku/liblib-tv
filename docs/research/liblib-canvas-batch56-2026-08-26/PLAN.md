@@ -69,7 +69,9 @@
 - 新节点被唯一选中，原节点不再是唯一选中节点；
 - 新 edge 为 source -> derived；
 - 派生节点有本地图片可见，但不显示角度/镜像结果承诺；
-- 一次 undo 恢复到点击前 node/edge/selection，redo 恢复派生节点；
+- 一次 undo 恢复到点击前 node/edge graph；按现有 clone history 合同，
+  undo/redo 会清空 selection，因此 redo 只要求派生 node/edge 恢复，不伪造
+  source-backed 的 redo selection 语义；
 - 窄 viewport 不产生 document/body 横向滚动。
 
 ### No-media boundary

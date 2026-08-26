@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   node-local masked stage, `272x44` tool surface, `400x50` empty record panel,
   point/box/brush and brush-size controls, empty undo/generate disabled state,
   and keyboard/graph isolation.
+- Closed Batch 56 with a bounded image rotate graph slice: media-gated
+  `旋转` entry, `旋转与镜像` derived image node, source edge, typed
+  `rotateMirror` metadata, selected-create state and atomic undo/redo; real
+  bitmap rotation and editor/save semantics remain fixture-gated.
 
 ### Documentation
 - Migrated the self-contained `.agents/skills/project-docs` package into this repository
@@ -73,6 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   runtime audit and implementation closeout documentation.
 - Added Batch 54 source evidence, screenshot ledger, component contracts,
   runtime audit and implementation closeout documentation.
+- Added Batch 56 source evidence, screenshot ledger, focused verifier,
+  runtime audit and bounded rotate implementation closeout documentation.
 
 ### Fixed
 - Updated the selected-image toolbar to the current source-shaped 13-action
@@ -82,6 +88,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a page-level read-only image Preview overlay with intrinsic-ratio media,
   watermark/close geometry, Escape/Tab focus boundaries and unchanged graph,
   selection and Prompt state.
+- Added a media-gated image rotate entry that creates a source-linked local
+  prototype node named `旋转与镜像`; the prototype records source identity
+  without pretending to rotate the bitmap.
 - Aligned the selected-image toolbar's top host with the source-confirmed
   `10 + 24 * zoom` geometry while preserving the node-centered inverse-scaled
   bottom editor; Batch 51 records the focused clone verification and keeps the
@@ -97,6 +106,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Batch 54 focused Playwright/runtime-audit coverage for empty image
   element-edit replacement at desktop/mobile viewports; Batch 53, Batch 52,
   Batch 10 and Batch 11 adjacent regressions remain covered.
+- Added Batch 56 focused Playwright/runtime-audit coverage for the bounded image
+  rotate graph slice at desktop/mobile viewports, including no-media disabled
+  behavior and atomic undo/redo.
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
 - Completed the LibTV asset manager's canvas/assets tab behavior and local media-node selection flow
 - Bound LibTV storyboard mode to the active canvas and aligned its key-elements/storyboard column structure with the source evidence

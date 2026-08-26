@@ -33,6 +33,7 @@
 | DEC-023 | Verifier replacement | 历史断言先保留；只有 current source contract、稳定 fixture、明确编码授权和新 verifier 齐备后，才申请替换或退役 | RESEARCH_GATE |
 | DEC-024 | Open Canvas 机制采纳 | 上游机制必须经过 LibTV source evidence、采纳分类、parity、fixture、verifier 和明确授权后，才可进入单一纵向 slice | ACTIVE / RESEARCH_GATE |
 | DEC-025 | graph connection 校验边界 | 连接必须先归一化和纯校验，再以一个 accepted transaction 提交；reject/unknown 不得改变 graph、selection、history 或 model | ACTIVE / RESEARCH_GATE |
+| DEC-026 | graph document 与 history 分层 | runtime graph、history snapshot、portable document、clipboard packet 和 persistence envelope 保持独立；portable load 必须 versioned、strict、zero-partial | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -135,6 +136,16 @@
 **影响：** React Flow gesture、programmatic connect、import/batch/sync 最终使用同一纯校验权威；Handle 和 edge flow 视觉不在 graph-hardening slice 中改变。运行 fixture、validator 和 `LIBTV-VR-009` 仍需明确编码授权；真实 invalid feedback 与 Reference 语义仍需 disposable source fixture。
 
 **依据：** [`LibTVGraphConnection.contract.md`](research/components/LibTVGraphConnection.contract.md)、[`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](research/open-canvas-2026-08-26/LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)。
+
+### DEC-026：Graph document 与 history snapshot 分层
+
+**背景：** 当前普通画布 `GraphSnapshot` 只做浅层 nested data 复制，runtime React Flow `Node/Edge`、undo snapshot、canvas duplicate 和未来 import/export 尚无独立 schema。Open Canvas 固定版本证明 versioned serialized graph、strict API validation、revision envelope 和 template runtime reset 可以分层，但其保存/协作产品语义不属于当前 clone。
+
+**决策：** 后续保持 `RuntimeGraphState`、`GraphHistorySnapshot`、`PortableGraphDocument`、`ClipboardSubgraphPacket` 和 future `PersistenceEnvelope` 五层独立。History 深隔离 declared node/edge fields，但继续排除 viewport、selection、canvas CRUD、UI/save state；portable document 使用显式 kind/schemaVersion/node dataVersion、strict parse/migration/validation，任何 reject/unsupported 都不得产生 partial canvas mutation。
+
+**影响：** 当前 `src/types/canvas.ts` 不能直接冒充完整 serialization registry；future import 第一 slice 只允许创建新 canvas，不替换 active canvas。Open Canvas 的 `200/400` limits、file/KV、revision、debounce、conflict rebase 和 provider fields 保持 inspiration/deferred，不进入 runtime 合同。Codec、history isolation、fixture 和 `LIBTV-VR-010` 仍需明确编码授权。
+
+**依据：** [`LibTVGraphDocument.contract.md`](research/components/LibTVGraphDocument.contract.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)。
 
 ## 3. 何时可以重审决策
 

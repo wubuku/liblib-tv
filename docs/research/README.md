@@ -101,6 +101,7 @@
 | 53 | image annotate empty replacement state and source-shaped authoring controls | [`liblib-canvas-batch53-2026-08-26/`](liblib-canvas-batch53-2026-08-26/) `SCRIPT_RECORDED_PASS`，空态 toolbar/canvas replacement、DPR2、keyboard isolation 与 mobile clipping 已通过 |
 | 54 | image element-edit empty replacement state and source-shaped authoring controls | [`liblib-canvas-batch54-2026-08-26/`](liblib-canvas-batch54-2026-08-26/) `SCRIPT_RECORDED_PASS`，空态 toolbar/stage/record replacement、keyboard isolation 与 mobile clipping 已通过 |
 | 55 | source freshness reinspection attempt and blocked handoff | [`liblib-canvas-batch55-2026-08-26/`](liblib-canvas-batch55-2026-08-26/) `PARTIAL_RECORDED`，目标画布重定向首页且浏览器运行时版本路径异常；未产生新的 source behavior claim |
+| 56 | bounded image rotate graph slice | [`liblib-canvas-batch56-2026-08-26/`](liblib-canvas-batch56-2026-08-26/) `SCRIPT_RECORDED_PASS`，media-gated 派生节点、source edge、selection、metadata、atomic undo/redo 和 mobile overflow 已通过；真实 bitmap/editor/save 仍不在合同内 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 

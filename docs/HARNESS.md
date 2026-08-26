@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-54 | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-54、56 | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -72,18 +72,19 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 52 | Current 13-action image toolbar, source-sized button geometry, page-level Preview, watermark/close geometry, keyboard isolation, unchanged graph/selection and mobile clipping |
 | Batch 53 | Empty image annotate replacement, `536x49` toolbar, source-shaped tool/color/line-width controls, DPR2 canvas, standard-panel removal, keyboard isolation, unchanged graph/selection and mobile clipping |
 | Batch 54 | Empty image element-edit replacement, `272x44` toolbar, node-local masked stage/guide, `400x50` empty record panel, tool/brush-size controls, standard-panel removal, keyboard isolation, unchanged graph/selection and mobile clipping |
+| Batch 56 | Media-gated image rotate entry, `旋转与镜像` derived image node, source edge, typed metadata, selected-create state, atomic undo/redo, no-media disabled/no-op and desktop/mobile overflow |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch{52..54}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch{52..54}.py scripts/verify-liblib-batch56.py; do
   python3 "$script" || exit 1
 done
 ```
 
-Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46/47/48/49/50/52/53/54 的专项 verifier、研究目录和截图台账均已纳入维护。
+Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46/47/48/49/50/52/53/54/56 的专项 verifier、研究目录和截图台账均已纳入维护。
 
 ## Browser Evidence Requirements
 
