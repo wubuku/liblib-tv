@@ -5,6 +5,7 @@ import type {
   DirectorSpeedCurve,
   DirectorSpeedCurvePreset,
   DirectorTimelineTrack,
+  DirectorTransform,
   DirectorTuple3,
 } from "@/store/directorStore";
 
@@ -124,6 +125,44 @@ function scaleTuple(tuple: DirectorTuple3, scale: number): DirectorTuple3 {
   return [tuple[0] * scale, tuple[1] * scale, tuple[2] * scale];
 }
 
+function rotateTupleX(tuple: DirectorTuple3, radians: number): DirectorTuple3 {
+  const cosine = Math.cos(radians);
+  const sine = Math.sin(radians);
+  return [
+    tuple[0],
+    tuple[1] * cosine - tuple[2] * sine,
+    tuple[1] * sine + tuple[2] * cosine,
+  ];
+}
+
+function rotateTupleY(tuple: DirectorTuple3, radians: number): DirectorTuple3 {
+  const cosine = Math.cos(radians);
+  const sine = Math.sin(radians);
+  return [
+    tuple[0] * cosine + tuple[2] * sine,
+    tuple[1],
+    -tuple[0] * sine + tuple[2] * cosine,
+  ];
+}
+
+function rotateTupleZ(tuple: DirectorTuple3, radians: number): DirectorTuple3 {
+  const cosine = Math.cos(radians);
+  const sine = Math.sin(radians);
+  return [
+    tuple[0] * cosine - tuple[1] * sine,
+    tuple[0] * sine + tuple[1] * cosine,
+    tuple[2],
+  ];
+}
+
+function degreesToRadians(value: number): number {
+  return (value * Math.PI) / 180;
+}
+
+function safeScale(value: number): number {
+  return Number.isFinite(value) && Math.abs(value) > 0.000001 ? value : 1;
+}
+
 function hasHandle(tuple: DirectorTuple3): boolean {
   return Math.hypot(tuple[0], tuple[1], tuple[2]) > 0.000001;
 }
@@ -168,6 +207,134 @@ export function createDirectorMotionPathAnchor(
     handleIn: [0, 0, 0],
     handleOut: [0, 0, 0],
   };
+}
+
+export function cloneDirectorMotionPathAnchors(
+  anchors: DirectorMotionPathAnchor[],
+): DirectorMotionPathAnchor[] {
+  return anchors.map((anchor) => ({
+    ...anchor,
+    position: [...anchor.position],
+    handleIn: [...anchor.handleIn],
+    handleOut: [...anchor.handleOut],
+  }));
+}
+
+export function createDirectorMotionPathTransform(): DirectorTransform {
+  return {
+    position: [0, 0, 0],
+    rotation: [0, 0, 0],
+    scale: [1, 1, 1],
+  };
+}
+
+export function getDirectorMotionPathPivot(
+  anchors: DirectorMotionPathAnchor[],
+): DirectorTuple3 {
+  if (anchors.length === 0) return [0, 0, 0];
+  const total = anchors.reduce<DirectorTuple3>(
+    (sum, anchor) => [
+      sum[0] + anchor.position[0],
+      sum[1] + anchor.position[1],
+      sum[2] + anchor.position[2],
+    ],
+    [0, 0, 0],
+  );
+  return [
+    total[0] / anchors.length,
+    total[1] / anchors.length,
+    total[2] / anchors.length,
+  ];
+}
+
+export function transformDirectorMotionPathVector(
+  vector: DirectorTuple3,
+  transform: DirectorTransform,
+): DirectorTuple3 {
+  let result: DirectorTuple3 = [
+    vector[0] * safeScale(transform.scale[0]),
+    vector[1] * safeScale(transform.scale[1]),
+    vector[2] * safeScale(transform.scale[2]),
+  ];
+  result = rotateTupleX(result, degreesToRadians(transform.rotation[0]));
+  result = rotateTupleY(result, degreesToRadians(transform.rotation[1]));
+  return rotateTupleZ(result, degreesToRadians(transform.rotation[2]));
+}
+
+export function inverseTransformDirectorMotionPathVector(
+  vector: DirectorTuple3,
+  transform: DirectorTransform,
+): DirectorTuple3 {
+  let result = rotateTupleZ(
+    vector,
+    -degreesToRadians(transform.rotation[2]),
+  );
+  result = rotateTupleY(
+    result,
+    -degreesToRadians(transform.rotation[1]),
+  );
+  result = rotateTupleX(
+    result,
+    -degreesToRadians(transform.rotation[0]),
+  );
+  return [
+    result[0] / safeScale(transform.scale[0]),
+    result[1] / safeScale(transform.scale[1]),
+    result[2] / safeScale(transform.scale[2]),
+  ];
+}
+
+export function transformDirectorMotionPathPoint(
+  point: DirectorTuple3,
+  pivot: DirectorTuple3,
+  transform: DirectorTransform,
+): DirectorTuple3 {
+  const offset = transformDirectorMotionPathVector(
+    subtractTuple(point, pivot),
+    transform,
+  );
+  return addTuple(
+    addTuple(pivot, transform.position),
+    offset,
+  );
+}
+
+export function inverseTransformDirectorMotionPathPoint(
+  point: DirectorTuple3,
+  pivot: DirectorTuple3,
+  transform: DirectorTransform,
+): DirectorTuple3 {
+  const translated = subtractTuple(
+    point,
+    addTuple(pivot, transform.position),
+  );
+  return addTuple(
+    pivot,
+    inverseTransformDirectorMotionPathVector(translated, transform),
+  );
+}
+
+export function buildDirectorMotionPathWorldAnchors(
+  anchors: DirectorMotionPathAnchor[],
+  pivot: DirectorTuple3,
+  transform: DirectorTransform,
+): DirectorMotionPathAnchor[] {
+  return anchors.map((anchor) => ({
+    ...anchor,
+    position: transformDirectorMotionPathPoint(
+      anchor.position,
+      pivot,
+      transform,
+    ),
+    handleIn: transformDirectorMotionPathVector(
+      anchor.handleIn,
+      transform,
+    ),
+    handleOut: transformDirectorMotionPathVector(
+      anchor.handleOut,
+      transform,
+    ),
+  }));
 }
 
 export function buildDirectorMotionPathPoints(

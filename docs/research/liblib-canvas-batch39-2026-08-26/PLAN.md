@@ -116,8 +116,8 @@ Batch 38 anchor/handle selectors remain stable.
 - [x] Current source vocabulary and cross-chunk limit recorded
 - [x] Upstream group-transform reference recorded
 - [x] Transform/reset contract and selectors documented
-- [ ] Pure transform math and path schema
-- [ ] R3F world/local control conversion
-- [ ] Inspector controls and store actions
+- [x] Pure transform math and path schema
+- [x] R3F world/local control conversion
+- [x] Inspector controls and store actions
 - [ ] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate

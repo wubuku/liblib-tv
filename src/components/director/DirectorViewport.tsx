@@ -33,7 +33,10 @@ import {
   type DirectorTransformMode,
   type DirectorTuple3,
 } from "@/store/directorStore";
-import { buildDirectorMotionPathPoints } from "@/components/director/directorMotionMath";
+import {
+  buildDirectorMotionPathPoints,
+  buildDirectorMotionPathWorldAnchors,
+} from "@/components/director/directorMotionMath";
 import {
   getDirectorFrameRect,
   type DirectorFrameRect,
@@ -334,10 +337,12 @@ function addTuple(
 function PathControlPoint({
   path,
   anchor,
+  worldAnchor,
   handle,
 }: {
   path: DirectorMotionPath;
   anchor: DirectorMotionPathAnchor;
+  worldAnchor: DirectorMotionPathAnchor;
   handle: DirectorMotionPathHandle | null;
 }) {
   const selectedAnchorId = useDirectorStore(
@@ -349,24 +354,24 @@ function PathControlPoint({
   const selectMotionPathAnchor = useDirectorStore(
     (state) => state.selectMotionPathAnchor,
   );
-  const updateMotionPathAnchorPosition = useDirectorStore(
-    (state) => state.updateMotionPathAnchorPosition,
+  const updateMotionPathAnchorWorldPosition = useDirectorStore(
+    (state) => state.updateMotionPathAnchorWorldPosition,
   );
-  const updateMotionPathAnchorHandle = useDirectorStore(
-    (state) => state.updateMotionPathAnchorHandle,
+  const updateMotionPathAnchorWorldHandle = useDirectorStore(
+    (state) => state.updateMotionPathAnchorWorldHandle,
   );
   const groupRef = useRef<Group>(null);
   const selected =
     selectedAnchorId === anchor.id && selectedHandle === handle;
   const relative =
     handle === "in"
-      ? anchor.handleIn
+      ? worldAnchor.handleIn
       : handle === "out"
-        ? anchor.handleOut
+        ? worldAnchor.handleOut
         : null;
   const position = relative
-    ? addTuple(anchor.position, relative)
-    : anchor.position;
+    ? addTuple(worldAnchor.position, relative)
+    : worldAnchor.position;
 
   const commit = () => {
     const group = groupRef.current;
@@ -377,14 +382,19 @@ function PathControlPoint({
       Number(group.position.z.toFixed(3)),
     ];
     if (handle) {
-      updateMotionPathAnchorHandle(path.id, anchor.id, handle, [
-        worldPosition[0] - anchor.position[0],
-        worldPosition[1] - anchor.position[1],
-        worldPosition[2] - anchor.position[2],
-      ]);
+      updateMotionPathAnchorWorldHandle(
+        path.id,
+        anchor.id,
+        handle,
+        worldPosition,
+      );
       return;
     }
-    updateMotionPathAnchorPosition(path.id, anchor.id, worldPosition);
+    updateMotionPathAnchorWorldPosition(
+      path.id,
+      anchor.id,
+      worldPosition,
+    );
   };
 
   const content = (
@@ -432,21 +442,33 @@ function DirectorMotionPathControls({
   const selectedAnchorId = useDirectorStore(
     (state) => state.timeline.selectedMotionPathAnchorId,
   );
+  const worldAnchors = buildDirectorMotionPathWorldAnchors(
+    path.anchors,
+    path.pivot,
+    path.transform,
+  );
 
   return (
     <>
-      {path.anchors.map((anchor) => {
+      {path.anchors.map((anchor, index) => {
+        const worldAnchor = worldAnchors[index];
         const anchorSelected = anchor.id === selectedAnchorId;
         const showHandles =
           anchorSelected && anchor.type !== "vertex";
-        const handleIn = addTuple(anchor.position, anchor.handleIn);
-        const handleOut = addTuple(anchor.position, anchor.handleOut);
+        const handleIn = addTuple(
+          worldAnchor.position,
+          worldAnchor.handleIn,
+        );
+        const handleOut = addTuple(
+          worldAnchor.position,
+          worldAnchor.handleOut,
+        );
         return (
           <group key={anchor.id}>
             {showHandles ? (
               <>
                 <Line
-                  points={[handleIn, anchor.position, handleOut]}
+                  points={[handleIn, worldAnchor.position, handleOut]}
                   color="#b88a51"
                   lineWidth={1}
                   transparent
@@ -456,11 +478,13 @@ function DirectorMotionPathControls({
                 <PathControlPoint
                   path={path}
                   anchor={anchor}
+                  worldAnchor={worldAnchor}
                   handle="in"
                 />
                 <PathControlPoint
                   path={path}
                   anchor={anchor}
+                  worldAnchor={worldAnchor}
                   handle="out"
                 />
               </>
@@ -468,6 +492,7 @@ function DirectorMotionPathControls({
             <PathControlPoint
               path={path}
               anchor={anchor}
+              worldAnchor={worldAnchor}
               handle={null}
             />
           </group>
@@ -901,6 +926,7 @@ export function DirectorViewport({
             data-director-motion-path-visible={
               path.enabled && viewMode === "director" && !isCapturing
             }
+            data-director-motion-path-pivot={path.pivot.join(",")}
           >
             {path.name}
             {path.anchors.map((anchor, index) => (
@@ -912,6 +938,11 @@ export function DirectorViewport({
                 data-director-motion-path-anchor-selected={
                   anchor.id === timeline.selectedMotionPathAnchorId
                 }
+                data-director-motion-path-world-anchor={buildDirectorMotionPathWorldAnchors(
+                  [anchor],
+                  path.pivot,
+                  path.transform,
+                )[0].position.join(",")}
               >
                 {anchor.type !== "vertex" ? (
                   <>

@@ -7,6 +7,7 @@ import {
   Eye,
   EyeOff,
   Plus,
+  RotateCcw,
   Route,
   Send,
   Trash2,
@@ -157,6 +158,51 @@ function PathTupleFields({
   );
 }
 
+function PathTransformFields({
+  label,
+  field,
+  values,
+  onChange,
+}: {
+  label: string;
+  field: keyof DirectorTransform;
+  values: DirectorTuple3;
+  onChange: (axis: 0 | 1 | 2, value: number) => void;
+}) {
+  return (
+    <fieldset
+      data-director-path-transform-field={field}
+      className="border-0 p-0"
+    >
+      <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
+      <div className="grid grid-cols-3 gap-1.5">
+        {values.map((value, index) => (
+          <label
+            key={axisLabels[index]}
+            className="flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60"
+          >
+            <span className="mr-1 text-[10px] text-[#666]">
+              {axisLabels[index]}
+            </span>
+            <input
+              type="number"
+              step={field === "rotation" ? "1" : "0.1"}
+              data-director-path-transform-axis={axisLabels[
+                index
+              ].toLowerCase()}
+              value={Number(value.toFixed(3))}
+              onChange={(event) =>
+                onChange(index as 0 | 1 | 2, Number(event.target.value))
+              }
+              className="min-w-0 flex-1 bg-transparent text-right text-[11px] tabular-nums text-[#d5d5d5] outline-none"
+            />
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
 function MotionPathInspector({
   path,
 }: {
@@ -189,6 +235,15 @@ function MotionPathInspector({
   );
   const toggleMotionPathClosed = useDirectorStore(
     (state) => state.toggleMotionPathClosed,
+  );
+  const updateMotionPathTransform = useDirectorStore(
+    (state) => state.updateMotionPathTransform,
+  );
+  const resetMotionPathOffset = useDirectorStore(
+    (state) => state.resetMotionPathOffset,
+  );
+  const resetMotionPath = useDirectorStore(
+    (state) => state.resetMotionPath,
   );
   const selectedAnchor =
     path.anchors.find(
@@ -263,6 +318,62 @@ function MotionPathInspector({
         >
           {path.closed ? "闭合路径" : "开放路径"}
         </button>
+      </div>
+
+      <div className="space-y-3 border-t border-white/[0.06] pt-3">
+        <PathTransformFields
+          label="位置"
+          field="position"
+          values={path.transform.position}
+          onChange={(axis, value) =>
+            updateMotionPathTransform(
+              path.id,
+              "position",
+              axis,
+              value,
+            )
+          }
+        />
+        <PathTransformFields
+          label="旋转"
+          field="rotation"
+          values={path.transform.rotation}
+          onChange={(axis, value) =>
+            updateMotionPathTransform(
+              path.id,
+              "rotation",
+              axis,
+              value,
+            )
+          }
+        />
+        <PathTransformFields
+          label="缩放"
+          field="scale"
+          values={path.transform.scale}
+          onChange={(axis, value) =>
+            updateMotionPathTransform(path.id, "scale", axis, value)
+          }
+        />
+        <div className="grid grid-cols-2 gap-1.5">
+          <button
+            type="button"
+            data-director-path-reset-offset
+            onClick={() => resetMotionPathOffset(path.id)}
+            className="flex h-8 items-center justify-center gap-1 rounded border border-white/[0.08] bg-[#222] text-[11px] text-[#a7a7a7] hover:text-white"
+          >
+            <RotateCcw size={12} />
+            重置偏移
+          </button>
+          <button
+            type="button"
+            data-director-path-reset
+            onClick={() => resetMotionPath(path.id)}
+            className="h-8 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#777] hover:text-white"
+          >
+            重置
+          </button>
+        </div>
       </div>
 
       <div>
