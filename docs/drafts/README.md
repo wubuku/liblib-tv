@@ -2,6 +2,9 @@
 
 > Active plans and designs that are still being iterated.
 
+Lifecycle status and promotion/supersession rules are defined in
+[`DOCUMENT_LIFECYCLE.md`](../DOCUMENT_LIFECYCLE.md).
+
 ## Rules
 
 - Use a descriptive topic name; do not use `NOTES`, `TEMP` or `TASK_PROGRESS`.

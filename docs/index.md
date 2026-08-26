@@ -45,6 +45,7 @@ graph TD
 | [`BIG_PICTURE.md`](BIG_PICTURE.md) | 当前系统的详细认知和原型边界 |
 | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md) | 文档体系迁移和维护计划 |
 | [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md) | 文档事实漂移、验证范围和 agent 导航缺口审计 |
+| [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) | 当前指引、历史合同、兼容入口、证据资产和替代关系登记 |
 | [`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) | 按任务选择最小证据集合、验证路径和停止条件 |
 | [`DECISION_REGISTER.md`](DECISION_REGISTER.md) | 跨路由、研究、复刻和协作的长期有效决策登记 |
 | [`CLONE_WEBSITE_ADAPTATION.md`](CLONE_WEBSITE_ADAPTATION.md) | 通用 clone-website 技能在本项目的权限、证据和协作适配 |

@@ -82,13 +82,15 @@ Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone
 | P1 | verifier 能力台账 | 区分脚本存在、脚本通过、源站已复核和仅有文章证据 | 已完成：[`VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md) |
 | P1 | clone-website 技能项目适配 | 说明通用技能与本项目授权/证据/协作规则的优先级 | 已完成：[`CLONE_WEBSITE_ADAPTATION.md`](CLONE_WEBSITE_ADAPTATION.md) |
 | P1 | 组件合同覆盖矩阵 | 从源码组件反查独立 spec、父/领域合同、批次证据和 `NEEDS_SPEC` 缺口 | 已完成：[`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) |
-| P2 | 文档生命周期清理 | 处理真正过时的草稿和重复索引 | 必须先确认没有 inbound links |
+| P2 | 文档生命周期清理 | 区分当前指引、历史合同、兼容入口、证据资产和 supersession；审计归档候选 | 已完成：[`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md)；当前无应搬移文件 |
 
 本审计不建议现在做全量目录重排、截图重命名或双语文档翻译；这些动作的收益低于继续维护证据可追溯性。
 
 ## 5.1 本轮追加维护
 
 组件覆盖矩阵已建立，并由组件索引、研究总入口、正式文档入口和 agent task map 共同导出。它没有改写任何现有 Batch 45 WIP 或其他开发者文件；后续新增组件合同时，应先更新矩阵再更新索引。
+
+P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬移资产。新增 [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) 统一登记 authority、dated snapshot、historical contract、compatibility entry、evidence artifact、parallel WIP 和 supersession；历史 Batch 不再因为状态文字过时而被误判为待删除文档。
 
 ## 6. 验收
 

@@ -35,7 +35,7 @@
 | 研究 LibTV 源站 | [`research/INSPECTION_GUIDE.md`](research/INSPECTION_GUIDE.md)、[`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) | 目标能力的专项 `LIVE_AUDIT.md`、`SCREENSHOT_ANALYSIS.md`、bundle evidence | 先查已有截图分析；不在共享项目输入/提交/上传/保存/生成 |
 | 研究 Open Canvas | [`research/open-canvas-2026-08-26/README.md`](research/open-canvas-2026-08-26/README.md)、固定 submodule | [`SOURCE_ANALYSIS.md`](research/open-canvas-2026-08-26/SOURCE_ANALYSIS.md)、[`OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md) | 上游是启发，不是 LibTV 视觉或行为真相；不修改 submodule |
 | 复刻 website/新能力立项 | [`../.codex/skills/clone-website/SKILL.md`](../.codex/skills/clone-website/SKILL.md)、[`LIBTV_RESEARCH_GO_NO_GO.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) | 目标路由的源站证据和组件合同 | 用户未明确授权编码时只做研究/计划/文档 |
-| 只做文档维护 | [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)、[`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md) | [`docs/index.md`](index.md)、[`research/README.md`](research/README.md) | 新正式文档更新 docs index；新研究更新 research index；不改代码 |
+| 只做文档维护 | [`DOCUMENTATION_AUDIT.md`](DOCUMENTATION_AUDIT.md)、[`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md)、[`docs/index.md`](index.md)、[`research/README.md`](research/README.md) | 先判断当前指引/历史合同/兼容入口/证据/WIP；新正式文档更新 docs index；不改代码 |
 | 修改 Next.js API | `AGENTS.md` 的硬约束 | `node_modules/next/dist/docs/` 相关指南、`DEVELOPMENT.md` | 先读本地 Next 文档，再最小修改并运行对应验证 |
 
 ## 3. 证据读取顺序

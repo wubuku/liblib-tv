@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a source-component contract coverage matrix that distinguishes dedicated
   specs, parent/domain contracts, batch-only evidence, missing contracts,
   legacy helpers and parallel WIP.
+- Added a documentation lifecycle and supersession register, retaining dated
+  source snapshots and Batch contracts while making current authority explicit.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions

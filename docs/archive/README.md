@@ -2,6 +2,10 @@
 
 > Historical documents that are no longer maintained as current guidance.
 
+Before moving a document here, apply the gates in
+[`DOCUMENT_LIFECYCLE.md`](../DOCUMENT_LIFECYCLE.md). Historical Batch contracts
+and evidence artifacts are not archive candidates merely because they are old.
+
 ## Archive Rules
 
 1. Add a date prefix: `YYYY-MM-DD_<name>.md`.
