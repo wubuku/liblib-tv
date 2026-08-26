@@ -2,6 +2,7 @@
 
 > 实施日期：2026-08-25
 > 范围：只复刻 LibTV 已有能力的前端呈现，不实现真实模型、上传、计费或持久化后端。
+> 基线说明：本文首先记录 2026-08-25 clone 实施快照；2026-08-26 的当前源站校正以 [`LIBTV_FEATURE_GAP_MATRIX.md`](LIBTV_FEATURE_GAP_MATRIX.md) 和组件合同为准。
 
 ## 1. 完成内容
 
@@ -97,6 +98,17 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 - 当前 clone 的独立确认 popover、一次接受两项和字符串前缀写回属于已知 fidelity gap。
 
 本轮只补研究记录，没有修改历史实现。完整状态矩阵见 [`../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)。
+
+### 4.2 2026-08-26 图片工具条与双浮层基线校正
+
+当前源站复测后，本文第 1 节的图片工具条实现不能继续被理解为“当前源站的完整复刻”：
+
+- 2026-08-25 clone 快照使用 7 个文字动作和 `900.5x49` 固定宽度；2026-08-26 当前源站使用 9 个文字动作加 4 个图标动作，外层为 content-sized `1092.5x49`，新增 `元素编辑` 和 `图层分离`；
+- 源站标准图片态的顶部工具条和下方编辑面板都以 node center 为 anchor，但顶部 gap 使用 `10 + 24 * zoom`，下方面板 gap 使用 `16 * zoom`；clone 的 `NodeToolbar offset=16` 仍只是旧实现值；
+- 源站的预览、标注、元素编辑、旋转和图层分离不是同一种“点击后创建派生图片”语义；当前 clone 的 `ImageNode.runAction` 仍把大多数工具映射到统一的 `addDerivedNode`，因此这是行为状态差距，不是单纯按钮宽度差距；
+- 源站 active tool 会替换标准 toolbar、隐藏标准生成面板，并进入专用 authoring/session；当前 clone 尚未建立 `editingImageTool` 状态，也没有 source-backed 的 interactive editor 或 layer composition editor。
+
+后续 agent 应先阅读 [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md)、[`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md) 和 [`LIBTV_FEATURE_GAP_MATRIX.md`](LIBTV_FEATURE_GAP_MATRIX.md)，再判断是否有明确编码授权。本文的历史截图和已通过的 clone 回归仍然有效，但不能覆盖上述当前源站差异。本轮只修正文档语义，没有修改 `src/`、FrameOS、upstream submodule 或其他开发者 WIP。
 
 ## 5. 文件索引
 

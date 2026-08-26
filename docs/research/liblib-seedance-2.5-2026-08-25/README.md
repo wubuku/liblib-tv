@@ -7,7 +7,7 @@
 1. [`BACKGROUND.md`](BACKGROUND.md)：外部调研中提炼出的 LibTV 能力背景、共性产品模式和证据边界。
 2. [`PLAN.md`](PLAN.md)：实施前的能力清单、缺口、价值排序、范围与验收标准。
 3. [`LIVE_AUDIT.md`](LIVE_AUDIT.md)：登录原站后的逐项验证记录和证据等级。
-4. [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实现完成后的文件、状态机、交互与验证记录。
+4. [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实现完成后的文件、状态机、交互与验证记录；其中 2026-08-25 是历史 clone 快照，当前差距以总矩阵和组件合同为准。
 5. [`live-audit.json`](live-audit.json) 与 [`live-script-string-evidence.json`](live-script-string-evidence.json)：当前原站结构化数据和静态字符串证据。
 6. [`evidence/`](evidence/)：第三方文章中的 LibTV UI 截图，只作为功能线索和视觉证据。
 7. [`LIBTV_FEATURE_GAP_MATRIX.md`](LIBTV_FEATURE_GAP_MATRIX.md)：以“LibTV 有什么”为中心的能力呈现、clone 缺口、价值排序和授权闸门总矩阵。

@@ -172,3 +172,12 @@
 - 明确指出当前 clone 的固定候选、独立确认 popover、全量接受、textarea 前缀写回和局部 references 更新属于结构性 fidelity gap，不能靠增加装饰文案修补；
 - 将未来工作切成 preference/visibility、read-only ghost、structured editor、graph transaction 四个独立授权 slice，并给出最小浏览器回归断言；
 - 同步组件入口、`ImageEditPanel` 规格、Seedance 能力缺口总矩阵和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；仍未修改 `src/`，未对共享源站 Prompt 输入、Auto Link 开关、建议接受或 graph 连接做 live 操作。
+
+## 2026-08-26：v16 实施结果基线校正
+
+本轮检查 Seedance 2.5 实施结果文档与当前源站证据，修正历史快照可能造成的误读：
+
+- 在 [`IMPLEMENTATION.md`](../liblib-seedance-2.5-2026-08-25/IMPLEMENTATION.md) 标明 2026-08-25 是 clone 实施快照，不是当前源站完整合同；
+- 记录当前图片工具条从 `900.5x49`/7 个文字动作到 `1092.5x49`/9 个文字动作 + 4 个图标动作的版本漂移，并明确 `元素编辑`、`图层分离` 带来的 active-tool/graph 状态差距；
+- 将标准双浮层的两条 zoom 公式和 source/clone 的统一 `addDerivedNode` 差距链接到定位合同、Auto Link 合同和能力总矩阵；
+- 没有修改 `src/`、FrameOS、upstream submodule、截图或其他开发者 WIP，也没有在共享源站执行动作。
