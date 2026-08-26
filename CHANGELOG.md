@@ -52,6 +52,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Batch 28 coverage for AV/vocals/background output naming, metadata, direct source-edge topology, selection, atomic history and responsive clipping
 - Replaced the guessed static script-execution card with a lazy-loaded real R3F
   director workspace, camera framing, helper-free capture and atomic canvas return.
+- Extended the director timeline with preset and freehand motion paths,
+  serializable editable anchors/Bezier handles, deterministic arc-length
+  playback, source-labeled path controls and responsive Inspector authoring.
 
 > Releases `0.1.0` through `0.3.1` below are inherited template history. Their original upstream links are retained for provenance; current project development is tracked from this point in `wubuku/liblib-tv`.
 

@@ -79,8 +79,21 @@
   is enabled. Sampling itself never creates keyframes.
 - **Motion-path creation:** a selected transform/camera track enables
   `创建运动轨迹`; the current source-backed menu creates `直线路径`,
-  `圆环路径` or `矩形路径` and replaces that track's previous binding without
-  leaving orphan path state.
+  `圆环路径` or `矩形路径`, or starts source-labeled `铅笔路径` /
+  `钢笔路径` authoring. Committing replaces that track's previous binding
+  without leaving orphan path state; cancellation preserves the old path.
+- **Free path authoring:** pencil drag appends decimated vertex anchors and
+  commits on pointer-up. Pen clicks add anchors, click-drag creates symmetric
+  relative handles, Enter/complete commits and Escape cancels. The drawing
+  plane, thresholds and completion details remain clone calibration.
+- **Anchor editing:** persisted paths expose selectable anchors, world-space
+  translation, exact `顶点 / 对称 / 非对称` semantics, relative handle fields,
+  rename, insert/delete and open/closed controls. Anchor or handle edits rebuild
+  the derived sampled polyline immediately.
+- **Interaction ownership:** drawing and selected path controls suppress object
+  TransformControls and OrbitControls. Viewport-originated object/blank
+  selection is also rejected atomically in `directorStore` while a draft or
+  selected anchor owns input; explicit tree selection may exit path editing.
 - **Path sampling:** enabled paths are sampled by world-space arc length after
   the track speed curve remaps normalized progress. Disabling/deleting a path
   falls back to ordinary keyframe sampling. Non-camera tracks may bind their
@@ -99,7 +112,10 @@
   `docs/research/liblib-canvas-batch36-2026-08-26/` and
   `scripts/verify-liblib-batch36.py` cover the animation timeline;
   `docs/research/liblib-canvas-batch37-2026-08-26/` and
-  `scripts/verify-liblib-batch37.py` cover motion paths and speed curves.
+  `scripts/verify-liblib-batch37.py` cover preset paths and speed curves;
+  `docs/research/liblib-canvas-batch38-2026-08-26/` and
+  `scripts/verify-liblib-batch38.py` cover pencil/pen authoring and editable
+  anchors/Bezier handles.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
@@ -289,7 +305,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, and director motion-path/curve coverage in `scripts/verify-liblib-batch37.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, director timeline coverage in `scripts/verify-liblib-batch36.py`, preset-path/curve coverage in `scripts/verify-liblib-batch37.py`, and free-path/anchor coverage in `scripts/verify-liblib-batch38.py`.
 
 ## KeyboardShortcutsDialog
 

@@ -1,7 +1,8 @@
 # Batch 38 Implementation Log
 
-> Status: main product implementation complete; focused verification and
-> screenshot finalization pending.
+> Status: complete. Main implementation, focused browser verification,
+> screenshot ledger, stable documentation, Batch 35-38 regression and final
+> quality gates passed.
 
 ## Protection Points
 
@@ -119,13 +120,29 @@ Their one-time interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
 ## Commit Protection
 
 - Plan protection: `dc35be3`.
-- Implementation protection: pending.
-- Verification/finalization: pending.
+- Main implementation protection: `341eabf`.
+- Focused verification protection: `e7cc84a`.
+- Stable documentation/finalization: this documentation-only closeout commit.
+
+## Regression And Quality Result
+
+The final gate passed on August 26, 2026:
+
+- `python3 scripts/verify-liblib-batch35.py`
+- `python3 scripts/verify-liblib-batch36.py`
+- `python3 scripts/verify-liblib-batch37.py`
+- `python3 scripts/verify-liblib-batch38.py`
+- `npm run docs:check`
+- `npm run check`
+- `git diff --check`
+
+`npm run check` completed lint, strict TypeScript and the Next.js production
+build. ESLint still reports the same nine existing warnings in FrameOS and
+`CustomHandle`; Batch 38 introduced no lint errors or new warning class.
 
 ## Interruption Handoff
 
-If interrupted after the implementation commit, add
-`scripts/verify-liblib-batch38.py`, generate only Batch 38 screenshots, inspect
-them once into `SCREENSHOT_ANALYSIS.md`, then run Batch 35-38 regressions and
-the repository quality gates. Do not stage verifier-regenerated historical
-screenshots.
+Batch 38 is closed. The next director batch should start from the source-backed
+path-level `位置 / 旋转 / 缩放 / 重置 / 重置偏移` vocabulary before animation
+video export. Preserve the anchor-to-derived-points boundary and do not stage
+verifier-regenerated historical screenshots.

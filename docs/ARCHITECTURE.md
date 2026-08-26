@@ -54,7 +54,7 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, capture, typed animation timeline, motion paths and speed curves |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, capture, typed animation timeline, editable motion paths and speed curves |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
@@ -157,8 +157,9 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
 | Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
-| Director motion path | serializable points bound one-to-one to a typed track | supports deterministic R3F path playback without putting Three.js geometry in Zustand |
+| Director motion path | serializable anchors/relative handles derive sampled points and bind one-to-one to a typed track | supports editable pencil/pen/Bezier authoring plus deterministic playback without putting Three.js geometry in Zustand |
 | Director speed curve | track-level cubic-Bezier control points | keeps preset/custom timing effects testable in pure sampling code |
+| Director path interaction | viewport selection requests are store-guarded while a draft/anchor owns input | prevents R3F pointer-up/click ordering from changing the bound object during path authoring |
 | Director return | one canvasStore graph transaction | capture node and source edge undo/redo atomically |
 | Backend | local mock only | scope is frontend prototype validation |
 

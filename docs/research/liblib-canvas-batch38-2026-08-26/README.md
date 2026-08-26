@@ -1,6 +1,7 @@
 # Batch 38：导演台自由路径创作与锚点编辑
 
-> 状态：计划与证据边界已落档；实施、专项 Playwright 和稳定文档待完成。
+> 状态：已完成。主实现、专项 Playwright、截图台账、Batch 35-38
+> 跨批回归、稳定文档、`npm run check` 和提交推送均已闭环。
 
 ## Read Order
 
@@ -43,3 +44,10 @@ selected transform/camera track
 本批不实现路径整体 position/rotation/scale offset、路径 undo/redo/persistence、
 属性曲线、动画视频导出、手机虚拟机位或原站未测量的精确 3D hit area。
 
+## Completion
+
+- Plan: `dc35be3`
+- Main implementation: `341eabf`
+- Focused verification: `e7cc84a`
+- Stable documentation/finalization: recorded by the next documentation-only
+  commit
