@@ -1,7 +1,8 @@
 # Batch 44: Director Preset Camera Motion
 
-> Status: planned. Fresh current LibTV locale evidence, upstream absence and a
-> bounded replace/append keyframe contract are recorded before implementation.
+> Status: complete. Source vocabulary, bounded clone contract, implementation,
+> focused browser verification and screenshot interpretation were completed on
+> 2026-08-26.
 
 ## Read Order
 
@@ -13,6 +14,10 @@
 4. [`DIRECTOR_CAMERA_PRESETS.spec.md`](DIRECTOR_CAMERA_PRESETS.spec.md):
    serializable application state, generated keyframes and UI contract.
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): progress, commits and handoff.
+6. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-time interpretation
+   of the focused clone screenshots.
+7. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): post-batch Director
+   maturity and next-candidate ranking.
 
 ## Batch Goal
 

@@ -538,7 +538,7 @@ export function DirectorTimeline() {
           ref={presetPanelRef}
           data-director-camera-preset-panel
           data-director-camera-preset-panel-mode={presetMode}
-          className="absolute top-10 z-50 w-[304px] max-w-[calc(100%-16px)] overflow-hidden rounded border border-white/[0.1] bg-[#202020] shadow-[0_16px_38px_rgba(0,0,0,0.48)]"
+          className="absolute bottom-full z-50 max-h-[calc(100vh-88px)] w-[304px] max-w-[calc(100%-16px)] overflow-hidden rounded border border-white/[0.1] bg-[#202020] shadow-[0_16px_38px_rgba(0,0,0,0.48)]"
           style={{ left: presetPanelLeft }}
         >
           <header className="flex h-10 items-center border-b border-white/[0.07] px-3">
@@ -558,7 +558,7 @@ export function DirectorTimeline() {
             </button>
           </header>
 
-          <div className="p-3">
+          <div className="max-h-[calc(100vh-136px)] overflow-y-auto p-3">
             <div
               data-director-camera-preset-mode={presetMode}
               className="grid h-8 grid-cols-2 gap-1 rounded border border-white/[0.08] bg-[#181818] p-0.5"

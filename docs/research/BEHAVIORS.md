@@ -99,6 +99,18 @@
   `请先关闭机位跟随，再绘制轨迹`, and rejects phone-camera connection or
   recording with `请先关闭机位跟随，再使用手机运镜`. Disabling follow
   restores ordinary sampled camera/path values.
+- **Preset camera motion:** a selected camera track exposes `预设运镜` with
+  `替换运镜` and `追加运镜`, then seven source-named choices: `环绕`, `半弧`,
+  `推近`, `拉远`, `升降`, `横移` and `螺旋上升`. The clone writes finite
+  ordinary camera keyframes through the existing typed timeline. Replace
+  spans the complete duration; append keeps prior keyframes and fills the
+  remaining tail. The exact source-named guards are enforced in the UI and
+  store: `当前时间轴没有可追加的时长` and
+  `跟随目标时不可使用预设运镜`.
+- **Preset panel geometry:** the clone-calibrated panel expands upward from
+  the timeline, with a stable two-column option grid and internally scrollable
+  content on compact screens. It remains above the timeline control band;
+  exact LibTV panel placement and CSS were not recovered.
 - **Motion-path creation:** a selected transform/camera track enables
   `创建运动轨迹`; the current source-backed menu creates `直线路径`,
   `圆环路径` or `矩形路径`, or starts source-labeled `铅笔路径` /
@@ -170,7 +182,11 @@
   SAM controls and transform-plus-pose track composition;
   `docs/research/liblib-canvas-batch43-2026-08-26/` and
   `scripts/verify-liblib-batch43.py` cover coordinate/rotation/object look-at,
-  animated target follow, first/third-person modes and path/phone conflicts.
+  animated target follow, first/third-person modes and path/phone conflicts;
+  `docs/research/liblib-canvas-batch44-2026-08-26/` and
+  `scripts/verify-liblib-batch44.py` cover seven preset camera motions,
+  replace/append allocation, exact guards, path preservation/disablement and
+  responsive panel geometry.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph

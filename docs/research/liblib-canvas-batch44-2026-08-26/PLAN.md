@@ -78,7 +78,11 @@ without adding an invented crowd domain.
 - [x] Exact preset/mode/error vocabulary
 - [x] Fixed upstream absence audit
 - [x] Bounded clone contract
-- [ ] Pure preset math and store action
-- [ ] Timeline popover and guards
-- [ ] Focused Playwright and screenshot ledger
-- [ ] Cross-batch regression and stable docs
+- [x] Pure preset math and store action
+- [x] Timeline popover and guards
+- [x] Focused Playwright and screenshot ledger
+- [x] Cross-batch regression and stable docs
+
+Closeout: 2026-08-26. The preset workflow is a mature clone vertical slice,
+but source-exact preset geometry, timing, easing and backend persistence remain
+unresolved evidence debt.

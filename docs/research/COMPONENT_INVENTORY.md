@@ -74,7 +74,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Real R3F scene, object selection/transforms, articulated character rendering, coordinate/object/follow camera targeting, direct Euler camera mode, aspect framing, guides, world-space motion-path helpers and helper-free PNG capture. |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Searchable semantic character/prop/camera tree synchronized with viewport and Inspector selection. |
 | `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Selection-routed scene/object/camera controls, source-named camera look-at/follow controls, character `属性 / 姿势` tabs, pose presets/SAM controls, path-orientation Y lock and current-capture preview/send command. |
-| `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Full-width typed transform/camera/pose animation timeline with playback, loop, scrub, zoom, keyframes, auto-keyframe, preset motion-path lifecycle and curve-mode entry. |
+| `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Full-width typed transform/camera/pose animation timeline with playback, loop, scrub, zoom, keyframes, auto-keyframe, preset camera-motion replace/append workflow, preset motion-path lifecycle and curve-mode entry. |
 | `DirectorCurveEditor` | `src/components/director/DirectorCurveEditor.tsx` | Track-level speed-curve mode with five source-backed presets, draggable cubic-Bezier handles and live normalized values. |
 | `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Nested articulated R3F character consuming serializable body, head, arm, wrist, leg and foot rig controls. |
 | `directorPose` | `src/components/director/directorPose.ts` | Strict rig defaults, 20 source-named calibrated presets, SAM group metadata, cloning, normalization and sparse interpolation helpers. |
@@ -82,6 +82,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `directorViewportMath` | `src/components/director/directorViewportMath.ts` | Pure aspect-frame geometry for viewport display and capture cropping. |
 | `directorTimelineMath` | `src/components/director/directorTimelineMath.ts` | Pure time clamping, transform/camera/pose interpolation, per-kind composition and path-aware deterministic scene sampling. |
 | `directorMotionMath` | `src/components/director/directorMotionMath.ts` | Pure cubic-Bezier inversion/remapping, polyline arc-length sampling, tangent normalization and path-orientation helpers. |
+| `directorCameraPresets` | `src/components/director/directorCameraPresets.ts` | Pure finite geometry generator for seven source-named camera motions; emits serializable typed camera values and intentionally carries clone-calibrated math. |
 
 ## Utilities
 

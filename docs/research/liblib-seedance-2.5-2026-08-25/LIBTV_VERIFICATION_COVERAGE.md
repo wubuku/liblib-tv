@@ -42,6 +42,7 @@ The next authorized coding batch should create new focused checks alongside the 
 | Shot breakdown node/results | Batch 24 | Good for clone prototype | Structure and persistence are covered; source result state remains article/bundle evidence | Add source status mapping if live fixture becomes safe |
 | Long-video process graph | Batch 33 | Good for clone prototype | Local 12-node/22-edge process and history are covered | Keep read-only process boundary; do not fake provider progress |
 | Ready-video processing toolbar | Batches 27-32 use clone fixtures | Partial | Individual clone tools are covered; source ready toolbar order is not | Add source-shaped ready-video toolbar contract |
+| Director preset camera motion | `docs/research/liblib-canvas-batch44-2026-08-26/`, `scripts/verify-liblib-batch44.py` | Good for bounded clone slice | Source locale proves entry/modes/names/guards; generated math, timing and panel CSS remain clone calibration | Reinspect only with authenticated source preset state or a new source artifact |
 
 ## 3. Historical Tests That Need Explicit Version Labels
 
