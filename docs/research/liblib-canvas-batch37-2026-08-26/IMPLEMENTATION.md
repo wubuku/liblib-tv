@@ -55,11 +55,25 @@ The local clone was exercised at `1440x900` without creating durable screenshots
 `npm run typecheck`, `npm run lint -- --quiet` and `git diff --check` passed after
 the main implementation.
 
+## Focused Verification Result
+
+- `python3 scripts/verify-liblib-batch37.py` passed.
+- Desktop coverage includes exact preset menu contents/geometry, R3F pixel
+  change, ring state/anchors, deterministic linear path midpoint, enable fallback,
+  orient-to-path/Y lock, curve preset sampling, custom handle drag, playback,
+  path replacement/delete and camera-path behavior.
+- Capture coverage creates a real PNG while a path is active and checks that
+  cyan authoring helpers are absent from the result.
+- Mobile coverage creates a rectangle path, opens `缓出` curve mode, verifies
+  internal graph scrolling and zero document overflow at `390x844`.
+- Desktop and mobile browser console, page and request errors are empty.
+- The contact sheet was visually inspected once; detailed observations are in
+  [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md).
+
 ## Commit Protection
 
 - Plan protection: `baf0db9`.
-- Implementation protection: recorded by the commit containing this log and
-  the main runtime implementation.
+- Implementation protection: `e4d7ecf`.
 - Verification/finalization: pending.
 
 ## Interruption Handoff

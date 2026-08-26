@@ -151,4 +151,5 @@ tuples and is sampled by pure helpers.
 - [x] Bezier/path pure helpers and store schema
 - [x] R3F trajectory and path-driven playback
 - [x] Path commands and functional curve editor
-- [ ] Playwright, screenshots, regressions and final documentation
+- [x] Focused Playwright and screenshot verification
+- [ ] Cross-batch regressions, stable docs and final quality gate

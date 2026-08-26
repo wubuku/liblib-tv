@@ -161,7 +161,7 @@ export function DirectorCurveEditor() {
         </span>
       </header>
 
-      <div className="flex min-h-0 flex-1 items-center px-2">
+      <div className="flex min-h-0 flex-1 items-center overflow-x-auto px-2">
         <svg
           ref={svgRef}
           viewBox={`0 0 ${graph.width} ${graph.height}`}
