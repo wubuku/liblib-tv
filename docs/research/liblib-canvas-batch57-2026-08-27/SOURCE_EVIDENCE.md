@@ -23,13 +23,16 @@ Source fact：
 这些事实是 bundle/DOM 静态审计结果，不证明 source invalid feedback 的文案、
 颜色、cursor、focus 或 timeout。
 
-## 2. 当前 clone 事实
+## 2. 当前 clone 事实（2026-08-27 closeout）
 
-- `page.tsx` 的 `onConnect` 目前只判断 `params.source/target`；
-- `canvasStore.addEdge` 目前直接追加 edge 并压入 graph history；
-- 普通 LibTV route 未挂载 `isValidConnection`、`onConnectStart`、
-  `onConnectEnd`；
-- FrameOS route 已有自己的连接 boundary，本批不触碰。
+- `page.tsx` 的 `onConnect` 先调用共享 pure validator，再提交 normalized edge；
+- React Flow route 已挂载 `isValidConnection`、`onConnectStart` 和 `onConnectEnd`；
+- `canvasStore.addEdge` 在 active canvas 上再次执行同一 validator，reject 时直接
+  返回且不改变 graph/history；
+- accepted addEdge 一次追加 normalized edge，并压入一次 graph history；
+- `window.__libtv_store` 与 `window.__libtv_validate_connection` 只用于
+  verifier/诊断，不是产品 UI 或后端 persistence API。
+- FrameOS route 已有自己的 connection boundary，本批不触碰。
 
 ## 3. 本批可推出的 clone 行为
 
@@ -50,6 +53,7 @@ Source fact：
 
 ## 4. 截图识别边界
 
-本批截图只用于记录 clone runtime 的 accepted/rejected connection 状态。
+本批截图只用于记录 clone runtime 的 accepted connection 状态；rejected cases
+使用 state/history 与 pure validator 断言，避免用截图替代事务证据。
 截图首次识别结果写入 [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)；
 后续 verifier 复跑应先读该文件，不重复识别相同区域。

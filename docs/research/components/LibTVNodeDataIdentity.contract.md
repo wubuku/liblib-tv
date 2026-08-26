@@ -344,6 +344,8 @@ Result-only copy has no accepted V0 detach recipe and returns `PARTIAL_SHOT_BREA
 
 Deleting source or result nodes must update both directions and status in the same history transaction. Exact source-site cascade behavior remains unknown；the clone may choose cascade or authoring reset only after product review, but it cannot leave stale refs。
 
+Command inventory、relation inverse index、shot/process policy candidates、UI/resource impact、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01` and `LIBTV-VR-013` are specified in [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)。This contract remains authority for field roles；the delete matrix is authority for command impact and repair planning。
+
 ### 8.8 Long-video process
 
 The aggregate key is `longVideoProcess.processId`。
@@ -568,7 +570,7 @@ Exit condition：all 11 types and every current identity-bearing V0 path have a 
 
 ### Slice F: delete repair
 
-`SOURCE_PRODUCT_DECISION_REQUIRED` for shot result cascade、process partial delete and derived provenance detach. Implement only after behavior choice is documented；all accepted variants remain one-step graph transactions。
+`SOURCE_PRODUCT_DECISION_REQUIRED` for shot result cascade、process partial delete and derived provenance detach. Use the planner、reason and fixture boundary in [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)；implement only after behavior choice is documented，and keep every accepted variant a one-step graph transaction。
 
 ## 15. Non-Goals
 

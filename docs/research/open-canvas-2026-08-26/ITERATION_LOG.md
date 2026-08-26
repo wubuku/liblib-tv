@@ -419,3 +419,15 @@
 - 新增 `LIBTV-FIX-LOCAL-NODE-DATA-01`、`LIBTV-VR-012`、`DEC-028`、`LIBTV-TR-033` 和 `GI-013..015/GC-013..015`；
 - 同步 graph document/copy、adoption、handoff、parity、fixture、verifier、component coverage、agent navigation 和 authority map；
 - 事实审计以 commit `dbdc05f` 单独推送；规范合同批次没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 Batch 57 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v39 graph delete impact 与 reference repair 合同
+
+本轮继续使用 Open Canvas 的集中 deletion、incident-edge cleanup、selection delete 和 conflict no-op 作为方法输入，但不把其简单五类 node/edge 模型移植到 LibTV：
+
+- 固定复核 Open Canvas `deleteNode/deleteEdge/deleteSelection/deleteIncomingReference`，确认上游没有 LibTV 的 parent descendants、nested owned edge IDs、shot reciprocal refs 或 process cohort；
+- 固定复核 clone `removeNode/removeSelectedNodes/removeEdge/clearVideoContinuation/removeCanvas`，记录当前只修结构、不修 surviving node data、aggregate、UI owner 和 resource lifetime 的风险；
+- 新增 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)，定义 destructive command inventory、relation topology、inverse index、full-plan planner、correctness floor 和 stable reject/unknown reasons；
+- 为 group/ordinary edge、owned edge metadata、shot source/result、V0 long-video process、Director provenance、canvas lifecycle 和 media locator 建立 active/proposed/source-required/deferred policy；
+- 新增 `LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01`、`LIBTV-VR-013`、`DEC-029` 和 `LIBTV-TR-034` 的 authority chain；
+- 新增 `OC-ADOPT-016`，明确只借 named deletion/zero-mutation/one-commit 方法，LibTV 仍必须做 relation-aware repair；
+- 删除矩阵第一阶段以 commit `d635788` 推送；本轮未修改 `src/`、测试、FrameOS、共享源站、其他开发者 Batch 57 WIP 或 Open Canvas submodule。

@@ -73,13 +73,14 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 53 | Empty image annotate replacement, `536x49` toolbar, source-shaped tool/color/line-width controls, DPR2 canvas, standard-panel removal, keyboard isolation, unchanged graph/selection and mobile clipping |
 | Batch 54 | Empty image element-edit replacement, `272x44` toolbar, node-local masked stage/guide, `400x50` empty record panel, tool/brush-size controls, standard-panel removal, keyboard isolation, unchanged graph/selection and mobile clipping |
 | Batch 56 | Media-gated image rotate entry, `旋转与镜像` derived image node, source edge, typed metadata, selected-create state, atomic undo/redo, no-media disabled/no-op and desktop/mobile overflow |
+| Batch 57 | Ordinary graph connection normalization, source/target Handle direction, duplicate/reverse/parallel/self/cycle guards, zero-mutation rejects, one-step history and desktop/mobile diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch{52..54}.py scripts/verify-liblib-batch56.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py; do
   python3 "$script" || exit 1
 done
 ```

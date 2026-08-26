@@ -12,6 +12,8 @@ import {
   type NodeChange,
   type EdgeChange,
   type ReactFlowInstance,
+  type OnConnectEnd,
+  type OnConnectStart,
   BackgroundVariant,
   applyNodeChanges,
   applyEdgeChanges,
@@ -42,6 +44,10 @@ import { AudioNode } from "@/components/nodes/AudioNode";
 import { LongVideoProcessNode } from "@/components/nodes/LongVideoProcessNode";
 import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { getLiblibOrganizeViewport, organizeLiblibNodes } from "@/lib/liblibOrganize";
+import {
+  proposedLibTVConnectionFromEdge,
+  validateLibTVGraphConnection,
+} from "@/lib/libtvGraphConnection";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
   ssr: false,
@@ -122,6 +128,11 @@ export default function Home() {
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
+  const connectionGesture = useRef<{
+    nodeId: string | null;
+    handleId: string | null;
+    handleType: "source" | "target" | null;
+  } | null>(null);
   const [flowViewport, setFlowViewport] = useState(() => {
     if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
     return typeof window !== "undefined" && window.innerWidth <= 768 ? compactViewport : desktopViewport;
@@ -175,19 +186,45 @@ export default function Home() {
     [edges, setStoreEdges],
   );
 
+  const validateActiveConnection = useCallback((params: Connection | Edge) => {
+    const canvas = useCanvasStore.getState().getActiveCanvas();
+    return validateLibTVGraphConnection(
+      proposedLibTVConnectionFromEdge(params, "react-flow"),
+      canvas?.nodes ?? [],
+      canvas?.edges ?? [],
+    );
+  }, []);
+
+  const isValidConnection = useCallback(
+    (params: Connection | Edge) =>
+      validateActiveConnection(params).status === "allow",
+    [validateActiveConnection],
+  );
+
   const onConnect = useCallback(
     (params: Connection) => {
-      if (!params.source || !params.target) return;
+      const validation = validateActiveConnection(params);
+      if (validation.status === "reject") return;
+      const { connection } = validation;
       addStoreEdge({
-        ...params,
-        id: `e-${params.source}-${params.target}-${Date.now()}`,
-        source: params.source,
-        target: params.target,
+        id: `e-${connection.sourceNodeId}-${connection.targetNodeId}-${Date.now()}`,
+        source: connection.sourceNodeId,
+        sourceHandle: connection.sourceHandleId,
+        target: connection.targetNodeId,
+        targetHandle: connection.targetHandleId,
         type: "default",
       });
     },
-    [addStoreEdge],
+    [addStoreEdge, validateActiveConnection],
   );
+
+  const onConnectStart = useCallback<OnConnectStart>((_, params) => {
+    connectionGesture.current = params;
+  }, []);
+
+  const onConnectEnd = useCallback<OnConnectEnd<Node>>(() => {
+    connectionGesture.current = null;
+  }, []);
 
   const onViewportChange = useCallback(
     (viewport: { x: number; y: number; zoom: number }) => {
@@ -431,7 +468,10 @@ export default function Home() {
             }}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            isValidConnection={isValidConnection}
             onConnect={onConnect}
+            onConnectStart={onConnectStart}
+            onConnectEnd={onConnectEnd}
             onNodeClick={(event, node) => {
               if (!event.metaKey && !event.ctrlKey) selectNode(node.id);
             }}

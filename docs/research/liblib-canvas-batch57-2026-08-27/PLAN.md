@@ -71,20 +71,20 @@
 
 aliases 只属于 verifier 报告，生产 runtime ID 继续动态生成。
 
-## 4. 实施步骤
+## 4. 实施步骤与结果
 
-1. 新增 `libtvGraphConnection.ts`，定义 proposed/normalized/result/reason 类型；
-2. 实现 missing/dangling/invalid-handle/duplicate/self/cycle 的确定性顺序；
-3. 将 `canvasStore.addEdge` 改为只提交通过 pure validator 的 normalized edge；
+1. 新增 `libtvGraphConnection.ts`，定义 proposed/normalized/result/reason 类型；**已完成**。
+2. 实现 missing/dangling/invalid-handle/duplicate/self/cycle 的确定性顺序；**已完成**。
+3. 将 `canvasStore.addEdge` 改为只提交通过 pure validator 的 normalized edge；**已完成**。
 4. 在 LibTV route 挂载 `onConnectStart`、`onConnectEnd`、
-   `isValidConnection` 和共用的 `onConnect` validator；
+   `isValidConnection` 和共用的 `onConnect` validator；**已完成**。
 5. 增加 verifier-only `window.__libtv_store` 与
    `window.__libtv_validate_connection` 诊断入口，便于可重复验证，不提供
-   产品 UI 或持久化能力；
-6. 新增 desktop/mobile focused Playwright verifier；
-7. 记录截图识别结果、runtime audit、失败与修正；
+   产品 UI 或持久化能力；**已完成**。
+6. 新增 desktop/mobile focused Playwright verifier；**已完成**。
+7. 记录截图识别结果、runtime audit、失败与修正；**已完成**。
 8. 运行 focused、Batch 4-8 graph regressions、相关 image/video regressions、
-   `npm run check` 和 `python3 scripts/verify-docs.py`。
+   `npm run check` 和 `python3 scripts/verify-docs.py`；**已完成**。
 
 ## 5. 验收标准
 
@@ -110,7 +110,22 @@ aliases 只属于 verifier 报告，生产 runtime ID 继续动态生成。
 - desktop 与 mobile 不出现 document/body 横向溢出；
 - Handle、connection line、DeletableEdge 视觉保持现状。
 
-## 6. 停止条件
+## 6. 本批结果与停止条件
+
+### 6.1 当前结果
+
+- `scripts/verify-liblib-batch57.py` 已通过；
+- 真实 source -> target Handle drag 在 desktop `929x874` 与 mobile
+  `390x844` 均增加一条 normalized edge 和一个 history step；
+- target-start gesture 的最终 edge 被规范化为 source -> target；
+- duplicate、reverse duplicate、parallel-handle duplicate、self-loop 和
+  directed cycle 都返回稳定 reject reason；
+- rejected store submit 保持 nodes、edges、selection、history 不变；
+- 一次 undo 删除 accepted edge，一次 redo 恢复 edge；当前 clone history
+  合同下 redo 后 selection 清空；
+- overflow、console error、page error 和 request failure 检查通过。
+
+### 6.2 停止条件
 
 - 如果必须决定 Reference、node action、capacity、model switch 才能判断普通
   结构连接，则停止在 `unknown`，把未知写回实施记录；
@@ -119,3 +134,12 @@ aliases 只属于 verifier 报告，生产 runtime ID 继续动态生成。
 - 如果 rejected path 仍产生 history 或 selection residue，先修事务边界，
   不扩展其他 graph hardening；
 - 不因 verifier 难以操作而通过 `addEdge` 直接注入来伪造 Handle drag 成功。
+
+### 6.3 仍未关闭的边界
+
+- source-side invalid line cleanup、toast、cursor、focus 和 timeout；
+- `REFERENCE` source exception；
+- node action/type compatibility、target capacity、model capability 和
+  `switchToModel`；
+- import/paste/batch/sync/collaboration 入口；
+- 真实后端 persistence。

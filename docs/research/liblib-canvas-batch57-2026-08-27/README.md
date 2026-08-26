@@ -1,6 +1,8 @@
 # Batch 57：普通画布连接事务 Slice A/B
 
-> 状态：计划中。
+> 状态：已完成（2026-08-27）。普通连接的结构校验、提交边界和 focused
+> Playwright 验证已闭环；Reference、domain compatibility 和 source invalid
+> feedback 仍保持明确未决。
 > 对应 backlog：`LIBTV-PAR-008` / `LIBTV-VR-009`。
 > 本批只实现结构性连接校验和 React Flow 提交边界，不扩展到
 > Reference、domain compatibility、导入同步、持久化或源站错误反馈。
@@ -22,8 +24,8 @@ raw React Flow connection
 
 | Slice | 内容 | 状态 |
 |---|---|---|
-| A | 纯连接 normalizer、稳定 reason/result、duplicate/self/cycle guard | 待实施 |
-| B | `isValidConnection`、`onConnectStart`、`onConnect`、store commit boundary | 待实施 |
+| A | 纯连接 normalizer、稳定 reason/result、duplicate/self/cycle guard | 已完成 |
+| B | `isValidConnection`、`onConnectStart`、`onConnect`、store commit boundary | 已完成 |
 
 ## 明确不做
 

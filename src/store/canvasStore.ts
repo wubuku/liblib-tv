@@ -4,6 +4,12 @@ import {
   SHOT_BREAKDOWN_RESULT_DEFINITIONS,
   type ShotBreakdownDimension,
 } from "@/lib/shotBreakdownResults";
+import {
+  proposedLibTVConnectionFromEdge,
+  validateLibTVGraphConnection,
+  type LibTVConnectionValidationResult,
+  type ProposedLibTVConnection,
+} from "@/lib/libtvGraphConnection";
 
 export interface GraphSnapshot {
   nodes: Node[];
@@ -301,7 +307,7 @@ interface CanvasState {
   selectNodes: (nodeIds: string[]) => void;
 
   // Edge actions
-  addEdge: (edge: Edge) => void;
+  addEdge: (edge: Edge) => LibTVConnectionValidationResult;
   removeEdge: (edgeId: string) => void;
 
   // History actions
@@ -2672,17 +2678,39 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   addEdge: (edge: Edge) => {
-    const { activeCanvasId } = get();
+    let result: LibTVConnectionValidationResult = {
+      status: "reject",
+      reason: "DANGLING_ENDPOINT",
+    };
     set((state) => {
-      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      const currentCanvas = state.canvases.find(
+        (canvas) => canvas.id === state.activeCanvasId,
+      );
       if (!currentCanvas) return state;
+      result = validateLibTVGraphConnection(
+        proposedLibTVConnectionFromEdge(edge, "programmatic"),
+        currentCanvas.nodes,
+        currentCanvas.edges,
+      );
+      if (result.status === "reject") return state;
+
+      const normalizedEdge: Edge = {
+        ...edge,
+        source: result.connection.sourceNodeId,
+        sourceHandle: result.connection.sourceHandleId,
+        target: result.connection.targetNodeId,
+        targetHandle: result.connection.targetHandleId,
+      };
       return {
         canvases: state.canvases.map((canvas) =>
-          canvas.id === activeCanvasId ? { ...canvas, edges: [...canvas.edges, edge] } : canvas,
+          canvas.id === state.activeCanvasId
+            ? { ...canvas, edges: [...canvas.edges, normalizedEdge] }
+            : canvas,
         ),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
+    return result;
   },
 
   removeEdge: (edgeId: string) => {
@@ -2767,6 +2795,27 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return canvases.find((c) => c.id === activeCanvasId);
   },
 }));
+
+declare global {
+  interface Window {
+    __libtv_store: typeof useCanvasStore;
+    __libtv_validate_connection: (
+      proposal: ProposedLibTVConnection,
+    ) => LibTVConnectionValidationResult;
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.__libtv_store = useCanvasStore;
+  window.__libtv_validate_connection = (proposal) => {
+    const canvas = useCanvasStore.getState().getActiveCanvas();
+    return validateLibTVGraphConnection(
+      proposal,
+      canvas?.nodes ?? [],
+      canvas?.edges ?? [],
+    );
+  };
+}
 
 function getDefaultNodeDimensions(type: string) {
   switch (type) {

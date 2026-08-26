@@ -222,8 +222,8 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 | Required fixture | `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`；source static audit；真实 invalid lifecycle 另需 `LIBTV-FIX-SOURCE-GRAPH-CONNECTION-01` |
 | Pure checks | 两侧 Handle direction normalize；missing/dangling；unordered pair duplicate precedence；self/cycle；stable result/reason；Reference/domain unknown |
 | Browser checks | accepted normalized edge；rejected zero node/edge/selection/history delta；one-step accepted history；connection line/invalid feedback cleanup；pan/zoom identity；console/page errors |
-| Blockers | runtime validator/fixture 未实现；编码授权；Reference/entry-point/source UI feedback 仍未决 |
-| Exit | pure + focused browser verifier recorded；旧 Batch graph compatibility retained；source-only claims separate |
+| Blockers | Batch 57 已关闭 local structural validator/fixture；Reference/entry-point/source UI feedback、domain compatibility 和其他 graph entry points 仍未决 |
+| Exit | pure + focused browser verifier 已 recorded；旧 Batch graph compatibility retained；source-only claims separate；完整 connection parity 仍未声称 |
 
 结果形状、reason taxonomy、pipeline precedence、transaction no-op/atomicity、fixture topology 和授权 slice 统一见 [`components/LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md)。该合同完成的是设计，不表示 runtime、verifier 或 source disposable fixture 已存在。
 
@@ -305,7 +305,7 @@ Registry model、canonical field roles、operation profiles、per-type/aggregate
 - Batch 35-47 继续保留为 bounded Director regression，不迁移到普通 LibTV；
 - Batch 48 已是 bounded Director `recorded pass`，保留其 setup、storage、脚本、截图和实施记录；不把 local descriptor/proxy 解释为真实资产、远端同步或 LibTV persistence；
 - 新 current-source verifier 只有在 source freshness report、fixture ID、明确授权和 replacement plan 同时存在时才进入实现批次；
-- `LIBTV-VR-009` 的 contract/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得通过改 Batch 4-8 或直接写 store 构造“通过”；
+- `LIBTV-VR-009` 的 local structural slice 已由 Batch 57 实现并通过；Reference/domain/source invalid lifecycle、import/batch/sync 仍保持未完成，不得把 Batch 57 升级为完整 connection parity；
 - `LIBTV-VR-010` 的 document/snapshot contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得用 JSON round-trip 静默丢字段，或把 import failure 退化为空画布；
 - `LIBTV-VR-011` 的 copy planner/reference/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 incident-edge compatibility 推广到 group/clipboard，也不得只 remap structure 而忽略 node data identity；
 - `LIBTV-VR-012` 的 11-type registry、aggregate/media fixture 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 `Record<string, unknown>`、suffix-based ID rewrite 或 shallow spread 当作 codec；

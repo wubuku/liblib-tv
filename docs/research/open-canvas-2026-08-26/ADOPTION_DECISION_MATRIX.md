@@ -78,6 +78,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 | `OC-ADOPT-013` | BYOK/provider adapter/current runner | `REJECT_TRANSPLANT` | 当前只用于识别“UI registry 不等于可执行能力”的风险 | `OC-006..009/013/016`；`LIBTV-PAR-012 OUT_OF_SCOPE` | 需要新的后端、密钥、上传、计费和安全授权；不能接入上游 cookie/key 方案 |
 | `OC-ADOPT-014` | provider 设置向导、导入 JSON、空画布 onboarding | `RESEARCH_ONLY` | 作为空态任务分流和渐进披露的产品参考 | `OC-014/015`；当前无 LibTV parity 证据 | 先确认 LibTV 空画布和首访 source contract；不把 Open Canvas 产品叙事复刻到 LibTV |
 | `OC-ADOPT-015` | Open Canvas 的视觉皮肤、Panel 层级和具体尺寸 | `REJECT_TRANSPLANT` | 只作为源码定位线索，不作为 LibTV 视觉输入 | `OC-017/018/020` | LibTV 视觉只能由当前 DOM、computed style、截图和组件合同决定 |
+| `OC-ADOPT-016` | 集中 node/edge/selection delete、incident-edge cleanup 和 conflict no-op | `ADAPT_TO_LIBTV` | 借鉴 named deletion、zero-mutation gate 和一次提交；扩展为 LibTV relation inverse index、aggregate repair、UI/resource result | `OC-003`；`LIBTV-PAR-008`；`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`；`LIBTV-VR-013` | delete matrix/design 已完成；runtime、derived/shot/process/Director/media semantics 和 disposable source fixture 未完成；不得只移植 incident-edge filter |
 
 ## 5. 高价值采纳路径
 
@@ -87,7 +88,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 
 1. `OC-ADOPT-001`：用坐标域和 anchor owner 评审 `PAR-001/002`，但所有数字回到 LibTV 合同；
 2. `OC-ADOPT-002`：维护已经完成的 Auto Link typed identity/session/fixture 合同，等待运行 fixture 授权；
-3. `OC-ADOPT-004..006`：使用已经完成的 graph invariant/case 表、[`LibTVGraphConnection.contract.md`](../components/LibTVGraphConnection.contract.md)、[`LibTVGraphDocument.contract.md`](../components/LibTVGraphDocument.contract.md)、[`LibTVSubgraphCopy.contract.md`](../components/LibTVSubgraphCopy.contract.md)、[`LibTVNodeDataIdentity.contract.md`](../components/LibTVNodeDataIdentity.contract.md) 和两份 dated static audit；保持 runtime 未集中、persistence deferred，继续取得 Reference、导入/批量/同步、invalid lifecycle、Option-drag 和 aggregate delete 等 source/product 决定；
+3. `OC-ADOPT-004..006/016`：使用已经完成的 graph invariant/case 表、四份 component contracts、[`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) 和两份 dated static audit；按 verifier 分开维护 runtime maturity，保持 persistence deferred，继续取得 Reference、导入/批量/同步、invalid lifecycle、Option-drag 和 cascade/detach source/product 决定；
 4. `OC-ADOPT-003/009`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态；
 5. `OC-ADOPT-010`：建立“模型 UI 能力 / 请求投影 / 实际 runner”三层审计表。
 

@@ -235,10 +235,10 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 1. Lock `GI-001..003/008..015` data-correctness portions as pure cases, while keeping source/product branches explicit;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
 3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
-4. implement and run the designed `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` only after coding authorization;
+4. the Batch 57 structural connection slice is now implemented and recorded through `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`; keep its source-invalid/Reference/domain branches separate;
 5. use `LIBTV-FIX-LOCAL-DEMO-01/GROUP-01/DERIVED-01` for existing command compatibility;
 6. only after authorization, integrate one guard at a time and keep Handle/edge visuals unchanged;
-7. implement the designed `LIBTV-VR-009` replacement before claiming the connection sub-slice complete.
+7. treat `LIBTV-VR-009` as partially closed: structural clone acceptance is recorded by Batch 57, while source invalid lifecycle, Reference/domain compatibility and other entry points remain open.
 
 ### 10.4 2026-08-27 静态审计补充
 
@@ -264,7 +264,7 @@ This register is a design input. It does not authorize adding DAG validation, ch
 - `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01` plus `LIBTV-VR-009` pure/browser acceptance design;
 - four independently authorized implementation slices: structural, React Flow boundary, domain compatibility and import/batch/sync.
 
-Status remains `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_EXCEPTION_BLOCKED`. This closes a documentation gap, not a runtime gap; it does not authorize code, fixture or verifier changes.
+Status: `STRUCTURAL_SLICE_RECORDED_PASS / SOURCE_EXCEPTION_BLOCKED / DOMAIN_COMPATIBILITY_OPEN`. Batch 57 closes the local structural connection transaction only; it does not close Reference, domain compatibility, source invalid lifecycle, import/batch/sync or persistence.
 
 ### 10.6 Graph document and snapshot handoff
 
