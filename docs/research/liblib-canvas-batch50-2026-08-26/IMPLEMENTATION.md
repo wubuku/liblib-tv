@@ -27,7 +27,7 @@
 - [x] workspace focus owner 与 page shortcut isolation
 - [x] focused Playwright、截图台账和一次视觉识别
 - [x] 跨批回归与 repository gates
-- [ ] commit/push
+- [x] commit/push
 
 ## 实施决定
 
@@ -95,7 +95,7 @@ Batch 50 director workspace shell verification passed.
 ```text
 Batch 50 focused Playwright: passed
 Batch 35-50 serial regression: passed
-npm run docs:check: passed (423 Markdown files, 1687 local targets)
+npm run docs:check: passed (425 Markdown files, 1711 local targets)
 npm run check: passed
   - lint: passed, 9 pre-existing warnings, 0 errors
   - typecheck: passed
@@ -105,6 +105,23 @@ git diff --check: passed
 
 `npm run build` 仍报告仓库上级存在多个 lockfile 的 Next.js workspace-root
 warning；它没有影响编译、TypeScript 或静态页面生成结果。
+
+## Commit / Push
+
+本批 closeout commit：
+
+```text
+b386738 feat: close director workspace shell batch
+```
+
+已推送：
+
+```text
+origin/master -> b386738
+```
+
+本次提交同时保留了工作区中已有的其他开发者文档 WIP；没有提交回归脚本
+重写的 Batch 35-49 历史截图。
 
 ## 接力
 
