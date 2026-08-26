@@ -17,6 +17,16 @@ export interface DirectorModelLibraryCategory {
   label: string;
 }
 
+export interface DirectorModelLibraryQuery {
+  categoryId: DirectorModelLibraryCategoryId;
+  search: string;
+}
+
+export interface DirectorModelLibrarySelection {
+  assetId: string | null;
+  categoryId: DirectorModelLibraryCategoryId | null;
+}
+
 export interface DirectorModelLibraryItem {
   id: string;
   categoryId: Exclude<DirectorModelLibraryCategoryId, "my-models">;
@@ -140,5 +150,29 @@ export function getDirectorModelLibraryItems(
 ) {
   return DIRECTOR_MODEL_LIBRARY_ITEMS.filter(
     (item) => item.categoryId === categoryId,
+  );
+}
+
+export function filterDirectorModelLibraryItems(
+  items: DirectorModelLibraryCardItem[],
+  search: string,
+) {
+  const normalized = search.trim().toLocaleLowerCase("zh-CN");
+  if (!normalized) return items;
+  return items.filter((item) =>
+    [item.name, "fileName" in item ? item.fileName : ""]
+      .join(" ")
+      .toLocaleLowerCase("zh-CN")
+      .includes(normalized),
+  );
+}
+
+export function getDirectorModelLibraryCategoryLabel(
+  categoryId: DirectorModelLibraryCategoryId,
+) {
+  return (
+    DIRECTOR_MODEL_LIBRARY_CATEGORIES.find(
+      (category) => category.id === categoryId,
+    )?.label ?? categoryId
   );
 }

@@ -1,0 +1,27 @@
+{
+  "batch": 59,
+  "status": "SCRIPT_RECORDED_PASS",
+  "contract": {
+    "scope": "clone-owned Director asset library browser/preview/add slice",
+    "source_exact": false,
+    "real_asset_loading": false,
+    "graph_history_mutation": false
+  },
+  "desktop": {
+    "initial_director_object_count": 5,
+    "final_director_object_count": 6,
+    "added_asset_id": "proxy-home-lamp",
+    "graph_unchanged": true,
+    "search_and_preview": "pass",
+    "empty_result": "pass"
+  },
+  "mobile": {
+    "panel_inside_viewport": true,
+    "no_overflow": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

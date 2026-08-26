@@ -1,6 +1,6 @@
 # Batch 59：Director 资源库浏览与加入场景
 
-> 状态：规划中。优先级：Director Desk。  
+> 状态：`SCRIPT_RECORDED_PASS`。优先级：Director Desk。
 > 本批目标是补齐“资源库 -> 预览 -> 加入 3D 场景”的 clone-owned 前端闭环，
 > 不宣称当前 LibTV 已认证资源库 DOM/CSS 或真实资产加载语义。
 
@@ -39,3 +39,14 @@ serializable `DirectorObject`、local model library 和 R3F proxy 边界。
 - [`runtime-audit.json`](runtime-audit.json)：focused verifier 结果；
 - [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：截图识别台账。
 
+## 已完成
+
+- 五分类既有资源浏览和文本搜索；
+- 预览 selection 与 scene object insertion 分离；
+- 显式“加入场景”后对象树/Inspector 连续选中；
+- 搜索无结果与清空恢复；
+- 保留历史卡片主体快速加入路径；
+- desktop/mobile、WebGL nonblank、graph isolation 和 diagnostics verifier。
+
+真实模型解析、远程资源、生产持久化和认证后的 LibTV exact surface 仍明确
+不在本批合同内。

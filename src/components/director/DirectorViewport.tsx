@@ -14,6 +14,7 @@ import {
   Camera,
   Check,
   Boxes,
+  Eye,
   Expand,
   Grid3X3,
   ImagePlus,
@@ -21,7 +22,9 @@ import {
   Move3D,
   PanelLeftOpen,
   PanelRightOpen,
+  Plus,
   Rotate3D,
+  Search,
   Scaling,
   Smartphone,
   Users,
@@ -76,6 +79,8 @@ import {
 } from "@/components/director/directorViewportMath";
 import {
   DIRECTOR_MODEL_LIBRARY_CATEGORIES,
+  filterDirectorModelLibraryItems,
+  getDirectorModelLibraryCategoryLabel,
   getDirectorModelLibraryItems,
   type DirectorModelLibraryCategoryId,
   type DirectorLocalModelLibraryItem,
@@ -1429,26 +1434,61 @@ function ModelLibraryThumbnail({
 function ModelLibraryCard({
   item,
   onAdd,
+  onPreview,
+  selected,
   onDelete,
 }: {
   item: DirectorModelLibraryCardItem;
   onAdd: (item: DirectorModelLibraryCardItem) => void;
+  onPreview: (item: DirectorModelLibraryCardItem) => void;
+  selected: boolean;
   onDelete?: (item: DirectorLocalModelLibraryItem) => void;
 }) {
   const local = item.categoryId === "my-models";
   const localItem = local ? item : null;
   const card = (
-    <button
-      type="button"
+    <article
+      role="group"
+      tabIndex={0}
       data-director-model-library-card
       data-director-model-library-add
       data-director-model-library-asset-id={item.id}
       {...(local ? { "data-director-model-library-local-card": "" } : {})}
       aria-label={`添加模型 ${item.name}`}
       onClick={() => onAdd(item)}
-      className="group flex min-w-0 flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#8f8f8f] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onAdd(item);
+        }
+      }}
+      className={cn(
+        "group relative flex min-w-0 cursor-pointer flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#8f8f8f] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]",
+        selected && "bg-[#09caf5]/10 text-[#dffaff]",
+      )}
     >
-      <ModelLibraryThumbnail item={item} />
+      <span
+        data-director-model-library-preview
+        data-director-model-library-preview-asset-id={item.id}
+        aria-hidden="true"
+        className={cn("relative block rounded-lg", selected && "ring-1 ring-[#09caf5]")}
+      >
+        <ModelLibraryThumbnail item={item} />
+      </span>
+      <button
+        type="button"
+        data-director-model-library-preview-trigger
+        data-director-model-library-preview-asset-id={item.id}
+        aria-label={`预览模型 ${item.name}`}
+        title="预览"
+        onClick={(event) => {
+          event.stopPropagation();
+          onPreview(item);
+        }}
+        className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/55 text-white/80 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
+      >
+        <Eye size={11} />
+      </button>
       <span className="w-full truncate">{item.name}</span>
       {localItem ? (
         <span
@@ -1458,7 +1498,7 @@ function ModelLibraryCard({
           {localItem.fileName}
         </span>
       ) : null}
-    </button>
+    </article>
   );
 
   if (!localItem || !onDelete) return card;
@@ -1562,6 +1602,9 @@ export function DirectorViewport({
   const [modelLibraryOpen, setModelLibraryOpen] = useState(false);
   const [activeModelLibraryCategoryId, setActiveModelLibraryCategoryId] =
     useState<DirectorModelLibraryCategoryId>("convenience");
+  const [modelLibrarySearch, setModelLibrarySearch] = useState("");
+  const [selectedModelLibraryAssetId, setSelectedModelLibraryAssetId] =
+    useState<string | null>(null);
   const modelLibraryTriggerRef = useRef<HTMLButtonElement>(null);
   const modelLibraryPanelRef = useRef<HTMLDivElement>(null);
   const localModelLibraryInputRef = useRef<HTMLInputElement>(null);
@@ -1681,6 +1724,10 @@ export function DirectorViewport({
     setModelLibraryOpen((value) => !value);
   };
 
+  const selectModelLibraryItem = (item: DirectorModelLibraryCardItem) => {
+    setSelectedModelLibraryAssetId(item.id);
+  };
+
   const addModelLibraryItem = (item: DirectorModelLibraryItem) => {
     addModelLibraryObject(item);
     setModelLibraryOpen(false);
@@ -1713,6 +1760,28 @@ export function DirectorViewport({
     activeModelLibraryCategoryId === "my-models"
       ? localModelLibrary
       : getDirectorModelLibraryItems(activeModelLibraryCategoryId);
+  const visibleModelLibraryItems = filterDirectorModelLibraryItems(
+    activeModelLibraryItems,
+    modelLibrarySearch,
+  );
+  const previewModelLibraryItem =
+    visibleModelLibraryItems.find(
+      (item) => item.id === selectedModelLibraryAssetId,
+    ) ??
+    visibleModelLibraryItems[0] ??
+    null;
+
+  useEffect(() => {
+    if (
+      previewModelLibraryItem &&
+      previewModelLibraryItem.id !== selectedModelLibraryAssetId
+    ) {
+      setSelectedModelLibraryAssetId(previewModelLibraryItem.id);
+    }
+    if (!previewModelLibraryItem && selectedModelLibraryAssetId !== null) {
+      setSelectedModelLibraryAssetId(null);
+    }
+  }, [previewModelLibraryItem, selectedModelLibraryAssetId]);
 
   return (
     <section
@@ -1993,11 +2062,70 @@ export function DirectorViewport({
               );
             })}
           </div>
+          <label className="flex h-9 items-center gap-2 border-b border-white/[0.06] px-3 text-[#777] focus-within:text-[#bdbdbd]">
+            <Search size={13} />
+            <input
+              data-director-model-library-search
+              aria-label="搜索模型"
+              value={modelLibrarySearch}
+              onChange={(event) => setModelLibrarySearch(event.target.value)}
+              placeholder="搜索模型"
+              className="min-w-0 flex-1 bg-transparent text-[11px] text-[#dedede] outline-none placeholder:text-[#666]"
+            />
+          </label>
+          {previewModelLibraryItem ? (
+            <div
+              data-director-model-library-preview-panel
+              data-director-model-library-preview-asset-id={
+                previewModelLibraryItem.id
+              }
+              className="flex h-[72px] items-center gap-2 border-b border-white/[0.06] px-3"
+            >
+              <ModelLibraryThumbnail item={previewModelLibraryItem} />
+              <div className="min-w-0 flex-1">
+                <p
+                  data-director-model-library-preview-name
+                  data-director-model-library-preview-name-value={
+                    previewModelLibraryItem.name
+                  }
+                  aria-label={`已选资源 ${previewModelLibraryItem.name}`}
+                  className="truncate text-[11px] text-[#e2e2e2]"
+                >
+                  已选资源
+                </p>
+                <p className="mt-1 truncate text-[10px] text-[#6f6f6f]">
+                  {getDirectorModelLibraryCategoryLabel(
+                    previewModelLibraryItem.categoryId,
+                  )}
+                  {"fileName" in previewModelLibraryItem
+                    ? ` · ${previewModelLibraryItem.fileName}`
+                    : " · 场景代理模型"}
+                </p>
+              </div>
+              <button
+                type="button"
+                data-director-model-library-preview-add
+                aria-label={`加入场景 ${previewModelLibraryItem.name}`}
+                onClick={() => {
+                  if (previewModelLibraryItem.categoryId === "my-models") {
+                    addLocalModelLibraryItemToScene(previewModelLibraryItem);
+                  } else {
+                    addModelLibraryItem(previewModelLibraryItem);
+                  }
+                }}
+                className="flex h-7 shrink-0 items-center gap-1 rounded bg-[#e7e7e7] px-2 text-[10px] text-[#202020] hover:bg-white"
+              >
+                <Plus size={12} />
+                加入场景
+              </button>
+            </div>
+          ) : null}
           {activeModelLibraryCategoryId === "my-models" &&
-          activeModelLibraryItems.length === 0 ? (
+          activeModelLibraryItems.length === 0 &&
+          modelLibrarySearch.trim() === "" ? (
             <div
               data-director-model-library-empty
-              className="flex h-[calc(100%-80px)] flex-col items-center justify-center gap-3 text-xs text-[#777]"
+              className="flex h-[calc(100%-157px)] flex-col items-center justify-center gap-3 text-xs text-[#777]"
               role="status"
               aria-label="暂无任何模型"
             >
@@ -2016,30 +2144,44 @@ export function DirectorViewport({
             </div>
           ) : (
             <div
-              className="grid h-[calc(100%-80px)] auto-rows-max grid-cols-3 gap-x-3 gap-y-4 overflow-y-auto p-3 min-[480px]:grid-cols-4 min-[680px]:grid-cols-5"
+              className="grid h-[calc(100%-157px)] auto-rows-max grid-cols-3 gap-x-3 gap-y-4 overflow-y-auto p-3 min-[480px]:grid-cols-4 min-[680px]:grid-cols-5"
               role="list"
               aria-label="模型列表"
             >
-              {activeModelLibraryItems.map((item) => (
-                <ModelLibraryCard
-                  key={item.id}
-                  item={item}
-                  onAdd={(nextItem) => {
-                    if (nextItem.categoryId === "my-models") {
-                      addLocalModelLibraryItemToScene(nextItem);
-                      return;
+              {visibleModelLibraryItems.length === 0 ? (
+                <div
+                  data-director-model-library-no-results
+                  role="status"
+                  aria-label="未搜索到模型"
+                  className="col-span-full flex min-h-[120px] items-center justify-center text-center text-[11px] text-[#686868]"
+                >
+                  未搜索到模型
+                </div>
+              ) : (
+                visibleModelLibraryItems.map((item) => (
+                  <ModelLibraryCard
+                    key={item.id}
+                    item={item}
+                    selected={selectedModelLibraryAssetId === item.id}
+                    onPreview={selectModelLibraryItem}
+                    onAdd={(nextItem) => {
+                      if (nextItem.categoryId === "my-models") {
+                        addLocalModelLibraryItemToScene(nextItem);
+                        return;
+                      }
+                      addModelLibraryItem(nextItem);
+                    }}
+                    onDelete={
+                      item.categoryId === "my-models"
+                        ? (localItem) =>
+                            removeLocalModelLibraryItem(localItem.id)
+                        : undefined
                     }
-                    addModelLibraryItem(nextItem);
-                  }}
-                  onDelete={
-                    item.categoryId === "my-models"
-                      ? (localItem) =>
-                          removeLocalModelLibraryItem(localItem.id)
-                      : undefined
-                  }
-                />
-              ))}
-              {activeModelLibraryCategoryId === "my-models" ? (
+                  />
+                ))
+              )}
+              {activeModelLibraryCategoryId === "my-models" &&
+              modelLibrarySearch.trim() === "" ? (
                 <button
                   type="button"
                   data-director-model-library-import
