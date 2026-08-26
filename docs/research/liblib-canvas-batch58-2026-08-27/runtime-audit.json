@@ -1,0 +1,23 @@
+{
+  "status": "PLANNED",
+  "batch": 58,
+  "contract": {
+    "owner_identity": "canvas_id_plus_node_id",
+    "invalid_owner": "canvas_mismatch_or_missing_node",
+    "cleanup": "ui_only",
+    "graph_history_mutation": "none"
+  },
+  "scenarios": {
+    "preview_delete": "pending",
+    "annotate_delete": "pending",
+    "element_edit_delete": "pending",
+    "director_delete": "pending",
+    "canvas_switch": "pending",
+    "desktop_mobile": "pending"
+  },
+  "errors": {
+    "console": "pending",
+    "page": "pending",
+    "request": "pending"
+  }
+}
