@@ -144,9 +144,8 @@ No Three.js `Vector3`, `Object3D`, geometry or pointer event enters Zustand.
 - [x] Current online artifact and hash reconfirmed
 - [x] Source/upstream/clone boundaries documented
 - [x] State, selectors and acceptance matrix documented
-- [ ] Pure path-anchor helpers and store schema
-- [ ] R3F drawing and control editing
-- [ ] Timeline/Inspector UI
+- [x] Pure path-anchor helpers and store schema
+- [x] R3F drawing and control editing
+- [x] Timeline/Inspector UI
 - [ ] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression, stable docs and final quality gate
-

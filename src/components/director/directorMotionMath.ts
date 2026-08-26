@@ -1,5 +1,7 @@
 import type {
   DirectorMotionPath,
+  DirectorMotionPathAnchor,
+  DirectorMotionPathAnchorType,
   DirectorSpeedCurve,
   DirectorSpeedCurvePreset,
   DirectorTimelineTrack,
@@ -94,6 +96,189 @@ function normalizeTuple(tuple: DirectorTuple3): DirectorTuple3 {
   const length = Math.hypot(tuple[0], tuple[1], tuple[2]);
   if (length < 0.000001) return [0, 0, 1];
   return [tuple[0] / length, tuple[1] / length, tuple[2] / length];
+}
+
+function addTuple(
+  left: DirectorTuple3,
+  right: DirectorTuple3,
+): DirectorTuple3 {
+  return [
+    left[0] + right[0],
+    left[1] + right[1],
+    left[2] + right[2],
+  ];
+}
+
+function subtractTuple(
+  left: DirectorTuple3,
+  right: DirectorTuple3,
+): DirectorTuple3 {
+  return [
+    left[0] - right[0],
+    left[1] - right[1],
+    left[2] - right[2],
+  ];
+}
+
+function scaleTuple(tuple: DirectorTuple3, scale: number): DirectorTuple3 {
+  return [tuple[0] * scale, tuple[1] * scale, tuple[2] * scale];
+}
+
+function hasHandle(tuple: DirectorTuple3): boolean {
+  return Math.hypot(tuple[0], tuple[1], tuple[2]) > 0.000001;
+}
+
+function cubicBezierPoint(
+  from: DirectorTuple3,
+  control1: DirectorTuple3,
+  control2: DirectorTuple3,
+  to: DirectorTuple3,
+  progress: number,
+): DirectorTuple3 {
+  const inverse = 1 - progress;
+  const fromWeight = inverse * inverse * inverse;
+  const control1Weight = 3 * inverse * inverse * progress;
+  const control2Weight = 3 * inverse * progress * progress;
+  const toWeight = progress * progress * progress;
+  return [
+    from[0] * fromWeight +
+      control1[0] * control1Weight +
+      control2[0] * control2Weight +
+      to[0] * toWeight,
+    from[1] * fromWeight +
+      control1[1] * control1Weight +
+      control2[1] * control2Weight +
+      to[1] * toWeight,
+    from[2] * fromWeight +
+      control1[2] * control1Weight +
+      control2[2] * control2Weight +
+      to[2] * toWeight,
+  ];
+}
+
+export function createDirectorMotionPathAnchor(
+  id: string,
+  position: DirectorTuple3,
+  type: DirectorMotionPathAnchorType = "vertex",
+): DirectorMotionPathAnchor {
+  return {
+    id,
+    position: [...position],
+    type,
+    handleIn: [0, 0, 0],
+    handleOut: [0, 0, 0],
+  };
+}
+
+export function buildDirectorMotionPathPoints(
+  anchors: DirectorMotionPathAnchor[],
+  closed: boolean,
+  subdivisions = 12,
+): DirectorTuple3[] {
+  if (anchors.length === 0) return [];
+  if (anchors.length === 1) return [[...anchors[0].position]];
+
+  const points: DirectorTuple3[] = [[...anchors[0].position]];
+  const segmentCount = closed ? anchors.length : anchors.length - 1;
+  const steps = Math.max(2, Math.round(subdivisions));
+
+  for (let index = 0; index < segmentCount; index += 1) {
+    const from = anchors[index];
+    const to = anchors[(index + 1) % anchors.length];
+    const isClosingSegment = closed && index === segmentCount - 1;
+    if (!hasHandle(from.handleOut) && !hasHandle(to.handleIn)) {
+      if (!isClosingSegment) points.push([...to.position]);
+      continue;
+    }
+
+    const control1 = addTuple(from.position, from.handleOut);
+    const control2 = addTuple(to.position, to.handleIn);
+    for (let step = 1; step <= steps; step += 1) {
+      if (isClosingSegment && step === steps) continue;
+      points.push(
+        cubicBezierPoint(
+          from.position,
+          control1,
+          control2,
+          to.position,
+          step / steps,
+        ),
+      );
+    }
+  }
+
+  return points;
+}
+
+function defaultAnchorHandles(
+  anchors: DirectorMotionPathAnchor[],
+  index: number,
+  closed: boolean,
+): { handleIn: DirectorTuple3; handleOut: DirectorTuple3 } {
+  const anchor = anchors[index];
+  const previous =
+    anchors[index - 1] ?? (closed ? anchors[anchors.length - 1] : anchor);
+  const next =
+    anchors[index + 1] ?? (closed ? anchors[0] : anchor);
+  const direction = normalizeTuple(
+    subtractTuple(next.position, previous.position),
+  );
+  const previousDistance = tupleDistance(anchor.position, previous.position);
+  const nextDistance = tupleDistance(anchor.position, next.position);
+  const availableDistances = [previousDistance, nextDistance].filter(
+    (distance) => distance > 0.000001,
+  );
+  const handleLength =
+    (availableDistances.length > 0
+      ? Math.min(...availableDistances)
+      : 1) * 0.28;
+  const handleOut = scaleTuple(direction, handleLength);
+  return {
+    handleIn: scaleTuple(handleOut, -1),
+    handleOut,
+  };
+}
+
+export function setDirectorMotionPathAnchorType(
+  anchors: DirectorMotionPathAnchor[],
+  anchorId: string,
+  type: DirectorMotionPathAnchorType,
+  closed: boolean,
+): DirectorMotionPathAnchor[] {
+  const index = anchors.findIndex((anchor) => anchor.id === anchorId);
+  if (index < 0) return anchors;
+  const current = anchors[index];
+  let handleIn: DirectorTuple3 = [...current.handleIn];
+  let handleOut: DirectorTuple3 = [...current.handleOut];
+
+  if (type === "vertex") {
+    handleIn = [0, 0, 0];
+    handleOut = [0, 0, 0];
+  } else if (!hasHandle(handleIn) && !hasHandle(handleOut)) {
+    ({ handleIn, handleOut } = defaultAnchorHandles(anchors, index, closed));
+  } else if (type === "symmetric") {
+    const source = hasHandle(handleOut)
+      ? handleOut
+      : scaleTuple(handleIn, -1);
+    handleOut = [...source];
+    handleIn = scaleTuple(source, -1);
+  }
+
+  return anchors.map((anchor) =>
+    anchor.id === anchorId
+      ? { ...anchor, type, handleIn, handleOut }
+      : anchor,
+  );
+}
+
+export function isDirectorMotionPathValid(
+  anchors: DirectorMotionPathAnchor[],
+): boolean {
+  if (anchors.length < 2) return false;
+  const first = anchors[0].position;
+  return anchors.some(
+    (anchor) => tupleDistance(first, anchor.position) > 0.0001,
+  );
 }
 
 export function createDirectorSpeedCurve(

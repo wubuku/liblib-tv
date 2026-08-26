@@ -1,10 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { Camera, Check, Eye, EyeOff, Send } from "lucide-react";
+import {
+  Camera,
+  Check,
+  Eye,
+  EyeOff,
+  Plus,
+  Route,
+  Send,
+  Trash2,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   useDirectorStore,
   type DirectorCapture,
+  type DirectorMotionPath,
+  type DirectorMotionPathAnchor,
+  type DirectorMotionPathHandle,
   type DirectorTransform,
   type DirectorTuple3,
 } from "@/store/directorStore";
@@ -90,6 +103,311 @@ function CapturePreview({
         {capture.sentNodeId ? <Check size={13} /> : <Send size={13} />}
         {capture.sentNodeId ? "已发送到画布" : "发送到画布"}
       </button>
+    </section>
+  );
+}
+
+function PathTupleFields({
+  label,
+  values,
+  kind,
+  handle,
+  onChange,
+}: {
+  label: string;
+  values: DirectorTuple3;
+  kind: "position" | "handle";
+  handle?: DirectorMotionPathHandle;
+  onChange: (axis: 0 | 1 | 2, value: number) => void;
+}) {
+  return (
+    <fieldset className="border-0 p-0">
+      <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
+      <div className="grid grid-cols-3 gap-1.5">
+        {values.map((value, index) => (
+          <label
+            key={axisLabels[index]}
+            className="flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60"
+          >
+            <span className="mr-1 text-[10px] text-[#666]">
+              {axisLabels[index]}
+            </span>
+            <input
+              type="number"
+              step="0.1"
+              data-director-path-anchor-position={
+                kind === "position" ? axisLabels[index].toLowerCase() : undefined
+              }
+              data-director-path-anchor-handle={
+                kind === "handle" ? handle : undefined
+              }
+              data-director-path-anchor-handle-axis={
+                kind === "handle" ? axisLabels[index].toLowerCase() : undefined
+              }
+              value={Number(value.toFixed(3))}
+              onChange={(event) =>
+                onChange(index as 0 | 1 | 2, Number(event.target.value))
+              }
+              className="min-w-0 flex-1 bg-transparent text-right text-[11px] tabular-nums text-[#d5d5d5] outline-none"
+            />
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+function MotionPathInspector({
+  path,
+}: {
+  path: DirectorMotionPath;
+}) {
+  const timeline = useDirectorStore((state) => state.timeline);
+  const renameMotionPath = useDirectorStore(
+    (state) => state.renameMotionPath,
+  );
+  const toggleMotionPathEnabled = useDirectorStore(
+    (state) => state.toggleMotionPathEnabled,
+  );
+  const selectMotionPathAnchor = useDirectorStore(
+    (state) => state.selectMotionPathAnchor,
+  );
+  const updateMotionPathAnchorPosition = useDirectorStore(
+    (state) => state.updateMotionPathAnchorPosition,
+  );
+  const updateMotionPathAnchorHandle = useDirectorStore(
+    (state) => state.updateMotionPathAnchorHandle,
+  );
+  const setMotionPathAnchorType = useDirectorStore(
+    (state) => state.setMotionPathAnchorType,
+  );
+  const insertMotionPathAnchor = useDirectorStore(
+    (state) => state.insertMotionPathAnchor,
+  );
+  const deleteMotionPathAnchor = useDirectorStore(
+    (state) => state.deleteMotionPathAnchor,
+  );
+  const toggleMotionPathClosed = useDirectorStore(
+    (state) => state.toggleMotionPathClosed,
+  );
+  const selectedAnchor =
+    path.anchors.find(
+      (anchor) => anchor.id === timeline.selectedMotionPathAnchorId,
+    ) ?? null;
+
+  const updateAnchorTuple = (
+    anchor: DirectorMotionPathAnchor,
+    field: "position" | "handleIn" | "handleOut",
+    axis: 0 | 1 | 2,
+    value: number,
+  ) => {
+    const tuple: DirectorTuple3 = [...anchor[field]];
+    tuple[axis] = value;
+    if (field === "position") {
+      updateMotionPathAnchorPosition(path.id, anchor.id, tuple);
+      return;
+    }
+    updateMotionPathAnchorHandle(
+      path.id,
+      anchor.id,
+      field === "handleIn" ? "in" : "out",
+      tuple,
+    );
+  };
+
+  return (
+    <section
+      data-director-motion-path-inspector={path.id}
+      className="space-y-3 border-t border-white/[0.07] pt-4"
+    >
+      <div className="flex items-center gap-1.5 text-[11px] text-[#a9a9a9]">
+        <Route size={12} className="text-[#5ddcff]" />
+        <span>运动轨迹</span>
+        <span className="ml-auto text-[10px] uppercase text-[#5d5d5d]">
+          {path.preset}
+        </span>
+      </div>
+
+      <label className="block">
+        <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
+        <input
+          data-director-path-name
+          value={path.name}
+          onChange={(event) =>
+            renameMotionPath(path.id, event.target.value)
+          }
+          className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+        />
+      </label>
+
+      <div className="grid grid-cols-2 gap-1.5">
+        <label className="flex h-8 items-center justify-between rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#bdbdbd]">
+          <span>启用曲线</span>
+          <input
+            type="checkbox"
+            checked={path.enabled}
+            onChange={() => toggleMotionPathEnabled(path.id)}
+            className="accent-[#09caf5]"
+          />
+        </label>
+        <button
+          type="button"
+          data-director-toggle-path-closed
+          aria-pressed={path.closed}
+          disabled={!path.closed && path.anchors.length < 3}
+          onClick={() => toggleMotionPathClosed(path.id)}
+          className={cn(
+            "h-8 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#888] hover:text-white disabled:text-[#454545]",
+            path.closed && "border-[#09caf5]/35 text-[#5ddcff]",
+          )}
+        >
+          {path.closed ? "闭合路径" : "开放路径"}
+        </button>
+      </div>
+
+      <div>
+        <div className="mb-1.5 flex items-center justify-between text-[11px] text-[#777]">
+          <span>锚点</span>
+          <span className="tabular-nums">{path.anchors.length}</span>
+        </div>
+        <div
+          data-director-path-anchor-list
+          className="grid grid-cols-6 gap-1"
+        >
+          {path.anchors.map((anchor, index) => (
+            <button
+              key={anchor.id}
+              type="button"
+              data-director-path-anchor-option={anchor.id}
+              aria-pressed={anchor.id === selectedAnchor?.id}
+              onClick={() =>
+                selectMotionPathAnchor(path.id, anchor.id)
+              }
+              className={cn(
+                "flex h-7 min-w-0 items-center justify-center rounded border border-white/[0.07] bg-[#222] text-[10px] tabular-nums text-[#777] hover:text-white",
+                anchor.id === selectedAnchor?.id &&
+                  "border-[#09caf5]/45 bg-[#09caf5]/10 text-[#5ddcff]",
+              )}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {selectedAnchor ? (
+        <div className="space-y-3 border-t border-white/[0.06] pt-3">
+          <fieldset className="border-0 p-0">
+            <legend className="mb-1.5 text-[11px] text-[#777]">
+              锚点类型
+            </legend>
+            <div className="grid grid-cols-3 rounded bg-[#222] p-0.5">
+              {(
+                [
+                  ["vertex", "顶点"],
+                  ["symmetric", "对称"],
+                  ["asymmetric", "非对称"],
+                ] as const
+              ).map(([type, label]) => (
+                <button
+                  key={type}
+                  type="button"
+                  data-director-path-anchor-type-option={type}
+                  aria-pressed={selectedAnchor.type === type}
+                  onClick={() =>
+                    setMotionPathAnchorType(
+                      path.id,
+                      selectedAnchor.id,
+                      type,
+                    )
+                  }
+                  className={cn(
+                    "h-7 rounded text-[10px] text-[#777] hover:text-white",
+                    selectedAnchor.type === type &&
+                      "bg-[#3a3a3a] text-[#5ddcff]",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          <PathTupleFields
+            label="位置"
+            kind="position"
+            values={selectedAnchor.position}
+            onChange={(axis, value) =>
+              updateAnchorTuple(
+                selectedAnchor,
+                "position",
+                axis,
+                value,
+              )
+            }
+          />
+
+          {selectedAnchor.type !== "vertex" ? (
+            <>
+              <PathTupleFields
+                label="入控制柄"
+                kind="handle"
+                handle="in"
+                values={selectedAnchor.handleIn}
+                onChange={(axis, value) =>
+                  updateAnchorTuple(
+                    selectedAnchor,
+                    "handleIn",
+                    axis,
+                    value,
+                  )
+                }
+              />
+              <PathTupleFields
+                label="出控制柄"
+                kind="handle"
+                handle="out"
+                values={selectedAnchor.handleOut}
+                onChange={(axis, value) =>
+                  updateAnchorTuple(
+                    selectedAnchor,
+                    "handleOut",
+                    axis,
+                    value,
+                  )
+                }
+              />
+            </>
+          ) : null}
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              data-director-insert-path-anchor
+              onClick={() =>
+                insertMotionPathAnchor(path.id, selectedAnchor.id)
+              }
+              className="flex h-8 flex-1 items-center justify-center gap-1 rounded border border-white/[0.08] bg-[#222] text-[11px] text-[#a7a7a7] hover:text-white"
+            >
+              <Plus size={12} />
+              新增锚点
+            </button>
+            <button
+              type="button"
+              data-director-delete-path-anchor
+              aria-label="删除锚点"
+              title="删除锚点"
+              disabled={path.anchors.length <= 2}
+              onClick={() =>
+                deleteMotionPathAnchor(path.id, selectedAnchor.id)
+              }
+              className="flex h-8 w-8 items-center justify-center rounded border border-white/[0.08] bg-[#222] text-[#777] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
+            >
+              <Trash2 size={13} />
+            </button>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -270,6 +588,10 @@ export function DirectorInspector({
                   }}
                 />
               </div>
+            ) : null}
+
+            {selectedPath ? (
+              <MotionPathInspector path={selectedPath} />
             ) : null}
           </div>
         ) : (

@@ -1,6 +1,7 @@
 # Batch 38 Implementation Log
 
-> Status: evidence and implementation plan complete; product work pending.
+> Status: main product implementation complete; focused verification and
+> screenshot finalization pending.
 
 ## Protection Points
 
@@ -20,17 +21,87 @@
   contract remains stable.
 - Do not implement path transforms or animation export in this batch.
 
+## Main Implementation
+
+### Pure geometry and state
+
+- Added serializable `DirectorMotionPathAnchor` records with relative incoming
+  and outgoing handles.
+- Added deterministic cubic-Bezier expansion, default tangent generation,
+  anchor-type conversion and path validity helpers.
+- Migrated line/ring/rectangle presets to the same anchor-backed model without
+  changing Batch 37's sampled `points` playback boundary.
+- Added pencil/pen draft lifecycle, one-path-per-track replacement, explicit
+  complete/cancel, anchor selection, position/handle editing, type conversion,
+  insertion, deletion, closed toggle and path rename.
+
+### R3F authoring
+
+- Added a transparent horizontal drawing plane at the bound object's Y value.
+- Pencil drag appends decimated vertex anchors and commits on pointer-up.
+- Pen pointer-down adds an anchor; pointer drag creates exact inverse symmetric
+  handles; Enter or the completion command commits.
+- Persisted paths render selectable anchors, handle guides and one active
+  `TransformControls` attachment.
+- Object transform controls are suppressed while a path control or drawing
+  draft owns the interaction.
+
+### Timeline and Inspector
+
+- Added source-labeled `自由绘制`, `铅笔路径` and `钢笔路径` commands while
+  preserving the exact three Batch 37 preset selectors.
+- Added the `正在绘制曲线` overlay with pen completion and cancel commands.
+- Added path name, enabled state, open/closed state, anchor list, exact
+  `顶点` / `对称` / `非对称` controls, numeric position/handle editing and
+  clone-only insert/delete commands.
+
+## Browser-Discovered Regression
+
+The first real pen smoke exposed an event-layer problem that static store tests
+would not catch:
+
+1. the drawing plane handled pointer down/move/up;
+2. the later synthesized click still reached a scene object;
+3. that object became selected, so the bound object's path Inspector vanished.
+
+The fix blocks object and blank-scene selection while a draft is active,
+restores the bound object explicitly on commit, and disables `OrbitControls`
+during drawing so camera orbit cannot consume the same drag gesture.
+
+## Main Smoke Evidence
+
+Run against `http://localhost:3000/?batch38-fixed=1` at `1440x900`:
+
+- pencil drag committed 17 anchors and selected the first anchor;
+- converting the first pencil anchor to symmetric produced exact inverse,
+  nonzero handles and expanded 17 points to 28;
+- pen created three anchors and 25 sampled points;
+- cancellation preserved the previous path;
+- asymmetric output-handle editing left the input handle unchanged and rebuilt
+  sampled geometry;
+- insertion, deletion and closed toggle preserved a valid path;
+- capture contained zero detected cyan/orange helper pixels;
+- no console or page errors occurred.
+
+Quality gates after the interaction fix:
+
+```bash
+npm run typecheck
+npm run lint -- --quiet
+```
+
+Both passed.
+
 ## Commit Protection
 
-- Plan protection: pending.
+- Plan protection: `dc35be3`.
 - Implementation protection: pending.
 - Verification/finalization: pending.
 
 ## Interruption Handoff
 
-If interrupted after the plan commit, begin with
-`src/components/director/directorMotionMath.ts` and
-`src/store/directorStore.ts`. Add pure anchor-to-polyline rebuilding before
-touching R3F. Do not stage concurrent `docs/research/open-canvas-2026-08-26/`
-changes or verifier-regenerated historical screenshots.
-
+If interrupted after the implementation commit, add
+`scripts/verify-liblib-batch38.py`, generate only Batch 38 screenshots, inspect
+them once into `SCREENSHOT_ANALYSIS.md`, then run Batch 35-38 regressions and
+the repository quality gates. Do not stage verifier-regenerated historical
+screenshots.

@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Camera,
+  Check,
   Grid3X3,
   ImagePlus,
   Move3D,
@@ -10,10 +11,12 @@ import {
   PanelRightOpen,
   Rotate3D,
   Scaling,
+  X,
 } from "lucide-react";
 import { Line, OrbitControls, TransformControls } from "@react-three/drei";
 import { Canvas, useThree, type ThreeEvent } from "@react-three/fiber";
 import {
+  DoubleSide,
   MathUtils,
   PerspectiveCamera,
   type Group,
@@ -23,9 +26,14 @@ import { cn } from "@/lib/utils";
 import {
   useDirectorStore,
   type DirectorCapture,
+  type DirectorMotionPath,
+  type DirectorMotionPathAnchor,
+  type DirectorMotionPathHandle,
   type DirectorObject,
   type DirectorTransformMode,
+  type DirectorTuple3,
 } from "@/store/directorStore";
+import { buildDirectorMotionPathPoints } from "@/components/director/directorMotionMath";
 import {
   getDirectorFrameRect,
   type DirectorFrameRect,
@@ -39,6 +47,9 @@ function CameraController() {
     state.objects.find((object) => object.id === activeCameraId),
   );
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const motionPathDraft = useDirectorStore(
+    (state) => state.timeline.motionPathDraft,
+  );
   const camera = useThree((state) => state.camera);
   const invalidate = useThree((state) => state.invalidate);
   const previousMode = useRef(viewMode);
@@ -70,7 +81,7 @@ function CameraController() {
   return (
     <OrbitControls
       makeDefault
-      enabled={!isCapturing}
+      enabled={!isCapturing && motionPathDraft === null}
       enableDamping
       dampingFactor={0.08}
       minDistance={2.5}
@@ -193,6 +204,12 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const recordObjectKeyframe = useDirectorStore(
     (state) => state.recordObjectKeyframe,
   );
+  const selectedMotionPathAnchorId = useDirectorStore(
+    (state) => state.timeline.selectedMotionPathAnchorId,
+  );
+  const motionPathDraft = useDirectorStore(
+    (state) => state.timeline.motionPathDraft,
+  );
   const groupRef = useRef<Group>(null);
   const selected = selectedObjectId === object.id;
 
@@ -244,6 +261,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
       scale={object.transform.scale}
       onClick={(event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
+        if (motionPathDraft) return;
         selectObject(object.id);
       }}
     >
@@ -281,7 +299,15 @@ function SceneObject({ object }: { object: DirectorObject }) {
     </group>
   );
 
-  if (!selected || object.locked || isCapturing) return content;
+  if (
+    !selected ||
+    object.locked ||
+    isCapturing ||
+    selectedMotionPathAnchorId !== null ||
+    motionPathDraft !== null
+  ) {
+    return content;
+  }
 
   return (
     <TransformControls
@@ -291,6 +317,163 @@ function SceneObject({ object }: { object: DirectorObject }) {
     >
       {content}
     </TransformControls>
+  );
+}
+
+function addTuple(
+  left: DirectorTuple3,
+  right: DirectorTuple3,
+): DirectorTuple3 {
+  return [
+    left[0] + right[0],
+    left[1] + right[1],
+    left[2] + right[2],
+  ];
+}
+
+function PathControlPoint({
+  path,
+  anchor,
+  handle,
+}: {
+  path: DirectorMotionPath;
+  anchor: DirectorMotionPathAnchor;
+  handle: DirectorMotionPathHandle | null;
+}) {
+  const selectedAnchorId = useDirectorStore(
+    (state) => state.timeline.selectedMotionPathAnchorId,
+  );
+  const selectedHandle = useDirectorStore(
+    (state) => state.timeline.selectedMotionPathHandle,
+  );
+  const selectMotionPathAnchor = useDirectorStore(
+    (state) => state.selectMotionPathAnchor,
+  );
+  const updateMotionPathAnchorPosition = useDirectorStore(
+    (state) => state.updateMotionPathAnchorPosition,
+  );
+  const updateMotionPathAnchorHandle = useDirectorStore(
+    (state) => state.updateMotionPathAnchorHandle,
+  );
+  const groupRef = useRef<Group>(null);
+  const selected =
+    selectedAnchorId === anchor.id && selectedHandle === handle;
+  const relative =
+    handle === "in"
+      ? anchor.handleIn
+      : handle === "out"
+        ? anchor.handleOut
+        : null;
+  const position = relative
+    ? addTuple(anchor.position, relative)
+    : anchor.position;
+
+  const commit = () => {
+    const group = groupRef.current;
+    if (!group) return;
+    const worldPosition: DirectorTuple3 = [
+      Number(group.position.x.toFixed(3)),
+      Number(group.position.y.toFixed(3)),
+      Number(group.position.z.toFixed(3)),
+    ];
+    if (handle) {
+      updateMotionPathAnchorHandle(path.id, anchor.id, handle, [
+        worldPosition[0] - anchor.position[0],
+        worldPosition[1] - anchor.position[1],
+        worldPosition[2] - anchor.position[2],
+      ]);
+      return;
+    }
+    updateMotionPathAnchorPosition(path.id, anchor.id, worldPosition);
+  };
+
+  const content = (
+    <group
+      ref={groupRef}
+      position={position}
+      onClick={(event: ThreeEvent<MouseEvent>) => {
+        event.stopPropagation();
+        selectMotionPathAnchor(path.id, anchor.id, handle);
+      }}
+    >
+      <mesh renderOrder={5}>
+        {handle ? (
+          <boxGeometry args={[0.095, 0.095, 0.095]} />
+        ) : (
+          <sphereGeometry args={[selected ? 0.09 : 0.068, 14, 10]} />
+        )}
+        <meshBasicMaterial
+          color={
+            selected
+              ? "#ffffff"
+              : handle
+                ? "#f6b85f"
+                : "#09caf5"
+          }
+          depthTest={false}
+        />
+      </mesh>
+    </group>
+  );
+
+  if (!selected) return content;
+  return (
+    <TransformControls mode="translate" size={0.62} onMouseUp={commit}>
+      {content}
+    </TransformControls>
+  );
+}
+
+function DirectorMotionPathControls({
+  path,
+}: {
+  path: DirectorMotionPath;
+}) {
+  const selectedAnchorId = useDirectorStore(
+    (state) => state.timeline.selectedMotionPathAnchorId,
+  );
+
+  return (
+    <>
+      {path.anchors.map((anchor) => {
+        const anchorSelected = anchor.id === selectedAnchorId;
+        const showHandles =
+          anchorSelected && anchor.type !== "vertex";
+        const handleIn = addTuple(anchor.position, anchor.handleIn);
+        const handleOut = addTuple(anchor.position, anchor.handleOut);
+        return (
+          <group key={anchor.id}>
+            {showHandles ? (
+              <>
+                <Line
+                  points={[handleIn, anchor.position, handleOut]}
+                  color="#b88a51"
+                  lineWidth={1}
+                  transparent
+                  opacity={0.85}
+                  depthTest={false}
+                />
+                <PathControlPoint
+                  path={path}
+                  anchor={anchor}
+                  handle="in"
+                />
+                <PathControlPoint
+                  path={path}
+                  anchor={anchor}
+                  handle="out"
+                />
+              </>
+            ) : null}
+            <PathControlPoint
+              path={path}
+              anchor={anchor}
+              handle={null}
+            />
+          </group>
+        );
+      })}
+    </>
   );
 }
 
@@ -320,24 +503,105 @@ function DirectorMotionPaths() {
                 opacity={selected ? 0.95 : 0.52}
                 depthTest={false}
               />
-              {selected
-                ? path.points.map((point, index) => (
-                    <mesh
-                      key={`${path.id}-anchor-${index}`}
-                      position={point}
-                      renderOrder={3}
-                    >
-                      <sphereGeometry args={[0.055, 12, 8]} />
-                      <meshBasicMaterial
-                        color={index === 0 ? "#ffffff" : "#09caf5"}
-                        depthTest={false}
-                      />
-                    </mesh>
-                  ))
-                : null}
+              {selected ? <DirectorMotionPathControls path={path} /> : null}
             </group>
           );
         })}
+    </group>
+  );
+}
+
+function DirectorMotionPathDrawingSurface() {
+  const draft = useDirectorStore(
+    (state) => state.timeline.motionPathDraft,
+  );
+  const appendMotionPathDraftAnchor = useDirectorStore(
+    (state) => state.appendMotionPathDraftAnchor,
+  );
+  const updateMotionPathDraftLastHandle = useDirectorStore(
+    (state) => state.updateMotionPathDraftLastHandle,
+  );
+  const finishMotionPathDrawing = useDirectorStore(
+    (state) => state.finishMotionPathDrawing,
+  );
+  const pointerActive = useRef(false);
+
+  if (!draft) return null;
+  const draftPoints = buildDirectorMotionPathPoints(draft.anchors, false);
+  const pointFromEvent = (
+    event: ThreeEvent<PointerEvent>,
+  ): DirectorTuple3 => [
+    Number(event.point.x.toFixed(3)),
+    draft.planeY,
+    Number(event.point.z.toFixed(3)),
+  ];
+
+  return (
+    <group>
+      {draftPoints.length >= 2 ? (
+        <Line
+          points={draftPoints}
+          color="#f6b85f"
+          lineWidth={2}
+          transparent
+          opacity={0.96}
+          depthTest={false}
+        />
+      ) : null}
+      {draft.anchors.map((anchor) => (
+        <mesh
+          key={anchor.id}
+          position={anchor.position}
+          renderOrder={6}
+        >
+          <sphereGeometry args={[0.06, 12, 8]} />
+          <meshBasicMaterial color="#f6b85f" depthTest={false} />
+        </mesh>
+      ))}
+      <mesh
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, draft.planeY + 0.018, 0]}
+        onPointerDown={(event) => {
+          if (event.nativeEvent.button !== 0) return;
+          event.stopPropagation();
+          pointerActive.current = true;
+          const target = event.nativeEvent.currentTarget;
+          if (target instanceof Element) {
+            target.setPointerCapture(event.pointerId);
+          }
+          appendMotionPathDraftAnchor(pointFromEvent(event));
+        }}
+        onPointerMove={(event) => {
+          if (!pointerActive.current) return;
+          event.stopPropagation();
+          if (draft.tool === "pencil") {
+            appendMotionPathDraftAnchor(pointFromEvent(event));
+          } else {
+            updateMotionPathDraftLastHandle(pointFromEvent(event));
+          }
+        }}
+        onPointerUp={(event) => {
+          if (!pointerActive.current) return;
+          event.stopPropagation();
+          pointerActive.current = false;
+          const target = event.nativeEvent.currentTarget;
+          if (
+            target instanceof Element &&
+            target.hasPointerCapture(event.pointerId)
+          ) {
+            target.releasePointerCapture(event.pointerId);
+          }
+          if (draft.tool === "pencil") finishMotionPathDrawing();
+        }}
+      >
+        <planeGeometry args={[40, 40]} />
+        <meshBasicMaterial
+          transparent
+          opacity={0}
+          depthWrite={false}
+          side={DoubleSide}
+        />
+      </mesh>
     </group>
   );
 }
@@ -374,6 +638,7 @@ function DirectorScene() {
         <SceneObject key={object.id} object={object} />
       ))}
       <DirectorMotionPaths />
+      <DirectorMotionPathDrawingSurface />
     </>
   );
 }
@@ -531,6 +796,12 @@ export function DirectorViewport({
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
   const selectObject = useDirectorStore((state) => state.selectObject);
+  const finishMotionPathDrawing = useDirectorStore(
+    (state) => state.finishMotionPathDrawing,
+  );
+  const cancelMotionPathDrawing = useDirectorStore(
+    (state) => state.cancelMotionPathDrawing,
+  );
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [captureRequest, setCaptureRequest] = useState(0);
@@ -545,6 +816,23 @@ export function DirectorViewport({
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!timeline.motionPathDraft) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" && event.key !== "Enter") return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (event.key === "Escape") cancelMotionPathDrawing();
+      else finishMotionPathDrawing();
+    };
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [
+    cancelMotionPathDrawing,
+    finishMotionPathDrawing,
+    timeline.motionPathDraft,
+  ]);
 
   const frameRect = useMemo(
     () =>
@@ -577,7 +865,9 @@ export function DirectorViewport({
           dpr={[1, 2]}
           camera={{ position: [6.2, 4.25, 7.4], fov: 45, near: 0.1, far: 100 }}
           gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
-          onPointerMissed={() => selectObject(null)}
+          onPointerMissed={() => {
+            if (!timeline.motionPathDraft) selectObject(null);
+          }}
           onCreated={({ gl }) => {
             gl.domElement.dataset.directorWebglCanvas = "true";
             gl.domElement.setAttribute("aria-label", "导演台 WebGL 场景");
@@ -608,17 +898,63 @@ export function DirectorViewport({
             }
           >
             {path.name}
-            {path.points.map((_, index) => (
+            {path.anchors.map((anchor, index) => (
               <span
-                key={`${path.id}-semantic-anchor-${index}`}
+                key={anchor.id}
                 data-director-motion-path-anchor={index}
-              />
+                data-director-motion-path-anchor-id={anchor.id}
+                data-director-motion-path-anchor-type={anchor.type}
+                data-director-motion-path-anchor-selected={
+                  anchor.id === timeline.selectedMotionPathAnchorId
+                }
+              >
+                {anchor.type !== "vertex" ? (
+                  <>
+                    <span data-director-motion-path-handle="in" />
+                    <span data-director-motion-path-handle="out" />
+                  </>
+                ) : null}
+              </span>
             ))}
           </span>
         ))}
       </div>
 
       <AspectFrame frameRect={frameRect} />
+
+      {timeline.motionPathDraft ? (
+        <div
+          data-director-path-drawing
+          data-director-path-drawing-tool={timeline.motionPathDraft.tool}
+          className="absolute bottom-[76px] left-1/2 z-20 flex h-9 -translate-x-1/2 items-center gap-1 rounded border border-[#f6b85f]/35 bg-[#24211d]/95 px-2 shadow-[0_8px_20px_rgba(0,0,0,0.3)]"
+        >
+          <span className="px-1 text-[11px] text-[#f2c781]">
+            正在绘制曲线
+          </span>
+          {timeline.motionPathDraft.tool === "pen" ? (
+            <button
+              type="button"
+              data-director-path-drawing-complete
+              aria-label="完成钢笔路径"
+              title="完成"
+              onClick={finishMotionPathDrawing}
+              className="flex h-7 w-7 items-center justify-center rounded text-[#a9d8bf] hover:bg-white/[0.07] hover:text-white"
+            >
+              <Check size={14} />
+            </button>
+          ) : null}
+          <button
+            type="button"
+            data-director-path-drawing-cancel
+            aria-label="取消路径绘制"
+            title="取消"
+            onClick={cancelMotionPathDrawing}
+            className="flex h-7 w-7 items-center justify-center rounded text-[#b8a09a] hover:bg-white/[0.07] hover:text-white"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      ) : null}
 
       <div className="absolute left-3 top-3 z-10 hidden gap-1 max-[899px]:flex">
         <button
@@ -699,7 +1035,7 @@ export function DirectorViewport({
         <button
           type="button"
           data-director-capture
-          disabled={isCapturing}
+          disabled={isCapturing || timeline.motionPathDraft !== null}
           onClick={requestCapture}
           className="flex h-8 items-center gap-1.5 rounded bg-[#e7e7e7] px-2.5 text-[11px] text-[#202020] hover:bg-white disabled:bg-[#555] disabled:text-[#999]"
         >

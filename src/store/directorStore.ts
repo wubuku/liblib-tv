@@ -6,10 +6,14 @@ import {
   sampleDirectorTimelineTrack,
 } from "@/components/director/directorTimelineMath";
 import {
+  buildDirectorMotionPathPoints,
+  createDirectorMotionPathAnchor,
   createDirectorSpeedCurve,
   getDirectorPathYaw,
   getDirectorTrackProgress,
+  isDirectorMotionPathValid,
   sampleDirectorMotionPath,
+  setDirectorMotionPathAnchorType,
 } from "@/components/director/directorMotionMath";
 
 export type DirectorTuple3 = [number, number, number];
@@ -92,7 +96,30 @@ export interface DirectorSpeedCurve {
   control2: [number, number];
 }
 
-export type DirectorMotionPathPreset = "line" | "ring" | "rectangle";
+export type DirectorMotionPathPreset =
+  | "line"
+  | "ring"
+  | "rectangle"
+  | "pencil"
+  | "pen";
+export type DirectorMotionPathGeometryPreset = Exclude<
+  DirectorMotionPathPreset,
+  "pencil" | "pen"
+>;
+export type DirectorMotionPathDrawTool = "pencil" | "pen";
+export type DirectorMotionPathAnchorType =
+  | "vertex"
+  | "symmetric"
+  | "asymmetric";
+export type DirectorMotionPathHandle = "in" | "out";
+
+export interface DirectorMotionPathAnchor {
+  id: string;
+  position: DirectorTuple3;
+  type: DirectorMotionPathAnchorType;
+  handleIn: DirectorTuple3;
+  handleOut: DirectorTuple3;
+}
 
 export interface DirectorMotionPath {
   id: string;
@@ -102,7 +129,16 @@ export interface DirectorMotionPath {
   enabled: boolean;
   orientToPath: boolean;
   closed: boolean;
+  anchors: DirectorMotionPathAnchor[];
   points: DirectorTuple3[];
+}
+
+export interface DirectorMotionPathDraft {
+  tool: DirectorMotionPathDrawTool;
+  trackId: string;
+  objectId: string;
+  planeY: number;
+  anchors: DirectorMotionPathAnchor[];
 }
 
 interface DirectorTimelineTrackBase {
@@ -135,6 +171,9 @@ export interface DirectorTimelineState {
   selectedTrackId: string | null;
   selectedKeyframeId: string | null;
   selectedMotionPathId: string | null;
+  selectedMotionPathAnchorId: string | null;
+  selectedMotionPathHandle: DirectorMotionPathHandle | null;
+  motionPathDraft: DirectorMotionPathDraft | null;
   editorMode: "timeline" | "curve";
 }
 
@@ -199,9 +238,42 @@ interface DirectorState {
     point: [number, number],
   ) => void;
   createMotionPath: (
-    preset: DirectorMotionPathPreset,
+    preset: DirectorMotionPathGeometryPreset,
     trackId?: string,
   ) => void;
+  startMotionPathDrawing: (
+    tool: DirectorMotionPathDrawTool,
+    trackId?: string,
+  ) => void;
+  appendMotionPathDraftAnchor: (position: DirectorTuple3) => void;
+  updateMotionPathDraftLastHandle: (worldPosition: DirectorTuple3) => void;
+  finishMotionPathDrawing: () => void;
+  cancelMotionPathDrawing: () => void;
+  selectMotionPathAnchor: (
+    pathId: string,
+    anchorId: string,
+    handle?: DirectorMotionPathHandle | null,
+  ) => void;
+  updateMotionPathAnchorPosition: (
+    pathId: string,
+    anchorId: string,
+    position: DirectorTuple3,
+  ) => void;
+  updateMotionPathAnchorHandle: (
+    pathId: string,
+    anchorId: string,
+    handle: DirectorMotionPathHandle,
+    value: DirectorTuple3,
+  ) => void;
+  setMotionPathAnchorType: (
+    pathId: string,
+    anchorId: string,
+    type: DirectorMotionPathAnchorType,
+  ) => void;
+  insertMotionPathAnchor: (pathId?: string, anchorId?: string) => void;
+  deleteMotionPathAnchor: (pathId?: string, anchorId?: string) => void;
+  toggleMotionPathClosed: (pathId?: string) => void;
+  renameMotionPath: (pathId: string, name: string) => void;
   toggleMotionPathEnabled: (pathId?: string) => void;
   toggleMotionPathOrient: (pathId?: string) => void;
   deleteMotionPath: (pathId?: string) => void;
@@ -412,6 +484,9 @@ function createDefaultTimeline(): DirectorTimelineState {
     selectedTrackId: "director-track-character-lead-transform",
     selectedKeyframeId: "director-keyframe-character-0",
     selectedMotionPathId: null,
+    selectedMotionPathAnchorId: null,
+    selectedMotionPathHandle: null,
+    motionPathDraft: null,
     editorMode: "timeline",
   };
 }
@@ -455,7 +530,7 @@ function createTrackForObject(
 
 function createMotionPathForTrack(
   object: DirectorObject,
-  preset: DirectorMotionPathPreset,
+  preset: DirectorMotionPathGeometryPreset,
 ): DirectorMotionPath {
   const origin: DirectorTuple3 = [...object.transform.position];
   let points: DirectorTuple3[];
@@ -494,16 +569,69 @@ function createMotionPathForTrack(
       : object.kind === "character"
         ? "角色自动帧轨迹"
         : "道具自动帧轨迹";
+  const pathId = `director-motion-path-${object.id}-${Date.now()}`;
+  const anchors = points.map((point, index) =>
+    createDirectorMotionPathAnchor(
+      `${pathId}-anchor-${index}`,
+      point,
+    ),
+  );
 
   return {
-    id: `director-motion-path-${object.id}-${Date.now()}`,
+    id: pathId,
     objectId: object.id,
     name: fallbackName,
     preset,
     enabled: true,
     orientToPath: false,
     closed,
-    points,
+    anchors,
+    points: buildDirectorMotionPathPoints(anchors, closed),
+  };
+}
+
+function finiteTuple(
+  value: DirectorTuple3,
+  fallback: DirectorTuple3,
+): DirectorTuple3 {
+  return value.map((item, index) =>
+    Number.isFinite(item) ? item : fallback[index],
+  ) as DirectorTuple3;
+}
+
+function rebuildMotionPath(
+  path: DirectorMotionPath,
+  anchors: DirectorMotionPathAnchor[],
+  closed = path.closed,
+): DirectorMotionPath {
+  return {
+    ...path,
+    closed,
+    anchors,
+    points: buildDirectorMotionPathPoints(anchors, closed),
+  };
+}
+
+function replaceTrackMotionPath(
+  timeline: DirectorTimelineState,
+  track: DirectorTimelineTrack,
+  path: DirectorMotionPath,
+): DirectorTimelineState {
+  return {
+    ...timeline,
+    tracks: timeline.tracks.map((item) =>
+      item.id === track.id ? { ...item, motionPathId: path.id } : item,
+    ) as DirectorTimelineTrack[],
+    motionPaths: [
+      ...timeline.motionPaths.filter(
+        (item) => item.id !== track.motionPathId,
+      ),
+      path,
+    ],
+    selectedTrackId: track.id,
+    selectedKeyframeId: null,
+    selectedMotionPathId: path.id,
+    isPlaying: false,
   };
 }
 
@@ -820,6 +948,8 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           selectedTrackId: track.id,
           selectedKeyframeId: null,
           selectedMotionPathId: track.motionPathId ?? null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
           isPlaying: false,
         },
       };
@@ -843,6 +973,8 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           selectedTrackId: track.id,
           selectedKeyframeId: keyframe.id,
           selectedMotionPathId: track.motionPathId ?? null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
           isPlaying: false,
         },
       };
@@ -863,6 +995,8 @@ export const useDirectorStore = create<DirectorState>((set) => ({
             selectedTrackId: existing.id,
             selectedKeyframeId: null,
             selectedMotionPathId: existing.motionPathId ?? null,
+            selectedMotionPathAnchorId: null,
+            selectedMotionPathHandle: null,
           },
         };
       }
@@ -877,6 +1011,8 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           selectedTrackId: track.id,
           selectedKeyframeId: track.keyframes[0]?.id ?? null,
           selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
           isPlaying: false,
         },
       };
@@ -909,6 +1045,18 @@ export const useDirectorStore = create<DirectorState>((set) => ({
             state.timeline.selectedMotionPathId === removedTrack?.motionPathId
               ? null
               : state.timeline.selectedMotionPathId,
+          selectedMotionPathAnchorId:
+            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
+              ? null
+              : state.timeline.selectedMotionPathAnchorId,
+          selectedMotionPathHandle:
+            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
+              ? null
+              : state.timeline.selectedMotionPathHandle,
+          motionPathDraft:
+            state.timeline.motionPathDraft?.trackId === trackId
+              ? null
+              : state.timeline.motionPathDraft,
           isPlaying: false,
         },
       };
@@ -1024,6 +1172,8 @@ export const useDirectorStore = create<DirectorState>((set) => ({
           selectedTrackId: result.track.id,
           selectedKeyframeId: result.keyframeId,
           selectedMotionPathId: result.track.motionPathId ?? null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
           isPlaying: false,
         },
       };
@@ -1094,22 +1244,244 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       );
       if (!track || !object) return state;
       const path = createMotionPathForTrack(object, preset);
-      const tracks = state.timeline.tracks.map((item) =>
-        item.id === track.id ? { ...item, motionPathId: path.id } : item,
-      ) as DirectorTimelineTrack[];
-      const motionPaths = [
-        ...state.timeline.motionPaths.filter(
-          (item) => item.id !== track.motionPathId,
+      const timeline = {
+        ...replaceTrackMotionPath(state.timeline, track, path),
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
         ),
-        path,
+        timeline,
+      };
+    }),
+
+  startMotionPathDrawing: (tool, requestedTrackId) =>
+    set((state) => {
+      const trackId = requestedTrackId ?? state.timeline.selectedTrackId;
+      const track = state.timeline.tracks.find((item) => item.id === trackId);
+      const object = state.objects.find(
+        (item) => item.id === track?.objectId,
+      );
+      if (!track || !object) return state;
+      return {
+        viewMode: "director",
+        selectedObjectId: object.id,
+        timeline: {
+          ...state.timeline,
+          selectedTrackId: track.id,
+          selectedKeyframeId: null,
+          selectedMotionPathId: track.motionPathId ?? null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: {
+            tool,
+            trackId: track.id,
+            objectId: object.id,
+            planeY: object.transform.position[1],
+            anchors: [],
+          },
+          isPlaying: false,
+        },
+      };
+    }),
+
+  appendMotionPathDraftAnchor: (position) =>
+    set((state) => {
+      const draft = state.timeline.motionPathDraft;
+      if (!draft) return state;
+      const safePosition = finiteTuple(position, [
+        0,
+        draft.planeY,
+        0,
+      ]);
+      safePosition[1] = draft.planeY;
+      const previous = draft.anchors[draft.anchors.length - 1];
+      const minimumDistance = draft.tool === "pencil" ? 0.12 : 0.04;
+      if (
+        previous &&
+        Math.hypot(
+          safePosition[0] - previous.position[0],
+          safePosition[1] - previous.position[1],
+          safePosition[2] - previous.position[2],
+        ) < minimumDistance
+      ) {
+        return state;
+      }
+      const anchor = createDirectorMotionPathAnchor(
+        `director-motion-draft-${Date.now()}-${draft.anchors.length}`,
+        safePosition,
+      );
+      return {
+        timeline: {
+          ...state.timeline,
+          motionPathDraft: {
+            ...draft,
+            anchors: [...draft.anchors, anchor],
+          },
+        },
+      };
+    }),
+
+  updateMotionPathDraftLastHandle: (worldPosition) =>
+    set((state) => {
+      const draft = state.timeline.motionPathDraft;
+      const anchor = draft?.anchors[draft.anchors.length - 1];
+      if (!draft || draft.tool !== "pen" || !anchor) return state;
+      const safePosition = finiteTuple(worldPosition, anchor.position);
+      safePosition[1] = draft.planeY;
+      const handleOut: DirectorTuple3 = [
+        safePosition[0] - anchor.position[0],
+        safePosition[1] - anchor.position[1],
+        safePosition[2] - anchor.position[2],
       ];
-      const timeline: DirectorTimelineState = {
+      const hasHandle =
+        Math.hypot(handleOut[0], handleOut[1], handleOut[2]) >= 0.04;
+      const anchors = draft.anchors.map((item) =>
+        item.id === anchor.id
+          ? {
+              ...item,
+              type: hasHandle ? ("symmetric" as const) : ("vertex" as const),
+              handleIn: hasHandle
+                ? (handleOut.map((value) => -value) as DirectorTuple3)
+                : ([0, 0, 0] as DirectorTuple3),
+              handleOut: hasHandle
+                ? handleOut
+                : ([0, 0, 0] as DirectorTuple3),
+            }
+          : item,
+      );
+      return {
+        timeline: {
+          ...state.timeline,
+          motionPathDraft: { ...draft, anchors },
+        },
+      };
+    }),
+
+  finishMotionPathDrawing: () =>
+    set((state) => {
+      const draft = state.timeline.motionPathDraft;
+      const track = state.timeline.tracks.find(
+        (item) => item.id === draft?.trackId,
+      );
+      if (!draft || !track || !isDirectorMotionPathValid(draft.anchors)) {
+        return {
+          timeline: {
+            ...state.timeline,
+            motionPathDraft: null,
+            selectedMotionPathAnchorId: null,
+            selectedMotionPathHandle: null,
+          },
+        };
+      }
+      const pathId = `director-motion-path-${draft.objectId}-${Date.now()}`;
+      const anchors = draft.anchors.map((anchor, index) => ({
+        ...anchor,
+        id: `${pathId}-anchor-${index}`,
+        position: [...anchor.position] as DirectorTuple3,
+        handleIn: [...anchor.handleIn] as DirectorTuple3,
+        handleOut: [...anchor.handleOut] as DirectorTuple3,
+      }));
+      const toolLabel = draft.tool === "pencil" ? "铅笔路径" : "钢笔路径";
+      const toolCount =
+        state.timeline.motionPaths.filter((path) => path.preset === draft.tool)
+          .length + 1;
+      const path: DirectorMotionPath = {
+        id: pathId,
+        objectId: draft.objectId,
+        name: `${toolLabel}${toolCount}`,
+        preset: draft.tool,
+        enabled: true,
+        orientToPath: false,
+        closed: false,
+        anchors,
+        points: buildDirectorMotionPathPoints(anchors, false),
+      };
+      const timeline = {
+        ...replaceTrackMotionPath(state.timeline, track, path),
+        selectedMotionPathAnchorId: anchors[0]?.id ?? null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+      };
+      return {
+        selectedObjectId: draft.objectId,
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  cancelMotionPathDrawing: () =>
+    set((state) => ({
+      timeline: {
         ...state.timeline,
-        tracks,
+        motionPathDraft: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        isPlaying: false,
+      },
+    })),
+
+  selectMotionPathAnchor: (pathId, anchorId, handle = null) =>
+    set((state) => {
+      const path = state.timeline.motionPaths.find(
+        (item) => item.id === pathId,
+      );
+      const anchor = path?.anchors.find((item) => item.id === anchorId);
+      const track = state.timeline.tracks.find(
+        (item) => item.motionPathId === pathId,
+      );
+      if (!path || !anchor || !track) return state;
+      return {
+        selectedObjectId: track.objectId,
+        viewMode: "director",
+        timeline: {
+          ...state.timeline,
+          selectedTrackId: track.id,
+          selectedKeyframeId: null,
+          selectedMotionPathId: path.id,
+          selectedMotionPathAnchorId: anchor.id,
+          selectedMotionPathHandle: handle,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+      };
+    }),
+
+  updateMotionPathAnchorPosition: (pathId, anchorId, position) =>
+    set((state) => {
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      const currentAnchor = currentPath?.anchors.find(
+        (anchor) => anchor.id === anchorId,
+      );
+      if (!currentPath || !currentAnchor) return state;
+      const anchors = currentPath.anchors.map((anchor) =>
+        anchor.id === anchorId
+          ? {
+              ...anchor,
+              position: finiteTuple(position, anchor.position),
+            }
+          : anchor,
+      );
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === pathId ? rebuildMotionPath(path, anchors) : path,
+      );
+      const timeline = {
+        ...state.timeline,
         motionPaths,
-        selectedTrackId: track.id,
-        selectedKeyframeId: null,
-        selectedMotionPathId: path.id,
+        selectedMotionPathId: pathId,
+        selectedMotionPathAnchorId: anchorId,
+        selectedMotionPathHandle: null,
         isPlaying: false,
       };
       return {
@@ -1121,6 +1493,240 @@ export const useDirectorStore = create<DirectorState>((set) => ({
         timeline,
       };
     }),
+
+  updateMotionPathAnchorHandle: (pathId, anchorId, handle, value) =>
+    set((state) => {
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      const currentAnchor = currentPath?.anchors.find(
+        (anchor) => anchor.id === anchorId,
+      );
+      if (!currentPath || !currentAnchor || currentAnchor.type === "vertex") {
+        return state;
+      }
+      const safeValue = finiteTuple(
+        value,
+        handle === "in"
+          ? currentAnchor.handleIn
+          : currentAnchor.handleOut,
+      );
+      const opposite = safeValue.map(
+        (item) => -item,
+      ) as DirectorTuple3;
+      const anchors = currentPath.anchors.map((anchor) => {
+        if (anchor.id !== anchorId) return anchor;
+        if (handle === "in") {
+          return {
+            ...anchor,
+            handleIn: safeValue,
+            handleOut:
+              anchor.type === "symmetric" ? opposite : anchor.handleOut,
+          };
+        }
+        return {
+          ...anchor,
+          handleOut: safeValue,
+          handleIn:
+            anchor.type === "symmetric" ? opposite : anchor.handleIn,
+        };
+      });
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === pathId ? rebuildMotionPath(path, anchors) : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: pathId,
+        selectedMotionPathAnchorId: anchorId,
+        selectedMotionPathHandle: handle,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  setMotionPathAnchorType: (pathId, anchorId, type) =>
+    set((state) => {
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      if (!currentPath) return state;
+      const anchors = setDirectorMotionPathAnchorType(
+        currentPath.anchors,
+        anchorId,
+        type,
+        currentPath.closed,
+      );
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === pathId ? rebuildMotionPath(path, anchors) : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: pathId,
+        selectedMotionPathAnchorId: anchorId,
+        selectedMotionPathHandle: null,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  insertMotionPathAnchor: (requestedPathId, requestedAnchorId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      const anchorId =
+        requestedAnchorId ?? state.timeline.selectedMotionPathAnchorId;
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      const index = currentPath?.anchors.findIndex(
+        (anchor) => anchor.id === anchorId,
+      );
+      if (!currentPath || index === undefined || index < 0) return state;
+      const current = currentPath.anchors[index];
+      const next =
+        currentPath.anchors[index + 1] ??
+        (currentPath.closed ? currentPath.anchors[0] : null);
+      const position: DirectorTuple3 = next
+        ? [
+            (current.position[0] + next.position[0]) / 2,
+            (current.position[1] + next.position[1]) / 2,
+            (current.position[2] + next.position[2]) / 2,
+          ]
+        : [
+            current.position[0] + 0.8,
+            current.position[1],
+            current.position[2],
+          ];
+      const anchor = createDirectorMotionPathAnchor(
+        `${currentPath.id}-anchor-${Date.now()}`,
+        position,
+      );
+      const anchors = [
+        ...currentPath.anchors.slice(0, index + 1),
+        anchor,
+        ...currentPath.anchors.slice(index + 1),
+      ];
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === currentPath.id
+          ? rebuildMotionPath(path, anchors)
+          : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: currentPath.id,
+        selectedMotionPathAnchorId: anchor.id,
+        selectedMotionPathHandle: null,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  deleteMotionPathAnchor: (requestedPathId, requestedAnchorId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      const anchorId =
+        requestedAnchorId ?? state.timeline.selectedMotionPathAnchorId;
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      if (!currentPath || !anchorId || currentPath.anchors.length <= 2) {
+        return state;
+      }
+      const index = currentPath.anchors.findIndex(
+        (anchor) => anchor.id === anchorId,
+      );
+      if (index < 0) return state;
+      const anchors = currentPath.anchors.filter(
+        (anchor) => anchor.id !== anchorId,
+      );
+      const closed = currentPath.closed && anchors.length >= 3;
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === currentPath.id
+          ? rebuildMotionPath(path, anchors, closed)
+          : path,
+      );
+      const nextAnchor = anchors[Math.min(index, anchors.length - 1)];
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: currentPath.id,
+        selectedMotionPathAnchorId: nextAnchor?.id ?? null,
+        selectedMotionPathHandle: null,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  toggleMotionPathClosed: (requestedPathId) =>
+    set((state) => {
+      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
+      const currentPath = state.timeline.motionPaths.find(
+        (path) => path.id === pathId,
+      );
+      if (!currentPath || (!currentPath.closed && currentPath.anchors.length < 3)) {
+        return state;
+      }
+      const closed = !currentPath.closed;
+      const motionPaths = state.timeline.motionPaths.map((path) =>
+        path.id === currentPath.id
+          ? rebuildMotionPath(path, path.anchors, closed)
+          : path,
+      );
+      const timeline = {
+        ...state.timeline,
+        motionPaths,
+        selectedMotionPathId: currentPath.id,
+        isPlaying: false,
+      };
+      return {
+        objects: applyTimelineAtTime(
+          state.objects,
+          timeline,
+          timeline.currentTime,
+        ),
+        timeline,
+      };
+    }),
+
+  renameMotionPath: (pathId, name) =>
+    set((state) => ({
+      timeline: {
+        ...state.timeline,
+        motionPaths: state.timeline.motionPaths.map((path) =>
+          path.id === pathId ? { ...path, name } : path,
+        ),
+      },
+    })),
 
   toggleMotionPathEnabled: (requestedPathId) =>
     set((state) => {
@@ -1191,6 +1797,13 @@ export const useDirectorStore = create<DirectorState>((set) => ({
         tracks,
         motionPaths,
         selectedMotionPathId: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft:
+          state.timeline.motionPathDraft?.trackId ===
+          state.timeline.tracks.find((track) => track.motionPathId === pathId)?.id
+            ? null
+            : state.timeline.motionPathDraft,
         isPlaying: false,
       };
       return {

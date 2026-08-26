@@ -10,6 +10,8 @@ import {
   Minus,
   Move3D,
   Pause,
+  PenTool,
+  Pencil,
   Play,
   Plus,
   RectangleHorizontal,
@@ -75,6 +77,9 @@ export function DirectorTimeline() {
   );
   const createMotionPath = useDirectorStore(
     (state) => state.createMotionPath,
+  );
+  const startMotionPathDrawing = useDirectorStore(
+    (state) => state.startMotionPathDrawing,
   );
   const toggleMotionPathEnabled = useDirectorStore(
     (state) => state.toggleMotionPathEnabled,
@@ -419,6 +424,39 @@ export function DirectorTimeline() {
           className="absolute top-10 z-50 w-44 border border-white/[0.1] bg-[#232323] p-1 shadow-[0_12px_30px_rgba(0,0,0,0.42)]"
           style={{ left: pathMenuLeft }}
         >
+          <div
+            data-director-motion-path-free-draw
+            className="px-2 pb-1 pt-1.5 text-[10px] text-[#626262]"
+          >
+            自由绘制
+          </div>
+          {[
+            {
+              tool: "pencil" as const,
+              label: "铅笔路径",
+              Icon: Pencil,
+            },
+            {
+              tool: "pen" as const,
+              label: "钢笔路径",
+              Icon: PenTool,
+            },
+          ].map(({ tool, label, Icon }) => (
+            <button
+              key={tool}
+              type="button"
+              data-director-motion-path-draw-tool={tool}
+              onClick={() => {
+                startMotionPathDrawing(tool);
+                setPathMenuLeft(null);
+              }}
+              className="flex h-8 w-full items-center gap-2 px-2 text-left text-[11px] text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+            >
+              <Icon size={13} className="text-[#777]" />
+              {label}
+            </button>
+          ))}
+          <div className="mx-2 my-1 h-px bg-white/[0.07]" />
           {[
             {
               preset: "line" as const,
