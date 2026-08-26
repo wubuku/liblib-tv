@@ -283,6 +283,21 @@ Registry model、canonical field roles、operation profiles、per-type/aggregate
 
 Delete command inventory、Open Canvas boundary、relation topology、policy matrix、decision queue、fixture scenes and implementation slices 统一见 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)。
 
+### `LIBTV-VR-014`：graph mutation entry-point authority
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008` cross-entrypoint correctness |
+| Old verifier | Batch 3-8 graph/history/group、Batch 24/26-33 derived/process、Batch 57 connection；各自保留 bounded semantic contract |
+| Required fixture | `LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01` composed from `GRAPH-CONNECTION/DOCUMENT/SUBGRAPH-COPY/NODE-DATA/GRAPH-DELETE` |
+| Static checks | enumerate graph-writing actions/callers；T0-T5 classification；flag unclassified direct writes and generic setter bypass；exclude FrameOS |
+| Pure checks | equivalent ingress reason；T1 whitelist；T3 full-draft zero-partial；T4 invalid restore cursor stability；T5 stale patch；one-step accepted history |
+| Browser checks | real Handle retained；drag/organize field allowlist；edge/node deletion routes；undo/redo owner cleanup；no console/visual edge regression |
+| Blockers | authority boundary、transport whitelist、planner/restore/remote adapters and fixture missing；编码授权；future backend/persistence deferred |
+| Exit | every graph write ingress classified；no semantic mutation bypasses `VR-009..013` authority；accepted/rejected history behavior exact |
+
+Ingress inventory、Open Canvas layered boundary/limitations、T0-T5 model、decision queue、fixture and implementation slices 统一见 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -324,6 +339,7 @@ Delete command inventory、Open Canvas boundary、relation topology、policy mat
 - `LIBTV-VR-011` 的 copy planner/reference/fixture/replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 incident-edge compatibility 推广到 group/clipboard，也不得只 remap structure 而忽略 node data identity；
 - `LIBTV-VR-012` 的 11-type registry、aggregate/media fixture 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 `Record<string, unknown>`、suffix-based ID rewrite 或 shallow spread 当作 codec；
 - `LIBTV-VR-013` 的 relation-aware delete planner、repair policy、fixture scenes 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得先删 node/edge 再以 UI effect 或 suffix heuristic 修补 surviving refs；
+- `LIBTV-VR-014` 的入口审计、T0-T5 authority、fixture composition 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL`；不得用 Batch 57 `addEdge` 通过推导所有 direct writer 已受保护；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

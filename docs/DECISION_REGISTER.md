@@ -37,6 +37,7 @@
 | DEC-027 | subgraph copy 身份闭包 | copy 使用具名 command、ownership closure、two-pass ID/reference rewrite 和 full-plan transaction；incident-edge 仅作兼容分支 | ACTIVE / RESEARCH_GATE |
 | DEC-028 | node data 身份注册表 | node data 按 `(runtime type, dataVersion)` 验证，并按具名 operation 映射、重置、诊断或拒绝字段；aggregate/ref 不允许浅拷贝 | ACTIVE / RESEARCH_GATE |
 | DEC-029 | graph delete 关系修复 | delete 必须先规划 structural/relation/aggregate/UI/resource impact，再以 repair/cascade/detach 或 stable unknown 原子收口；不得只过滤 node/edge | ACTIVE / RESEARCH_GATE |
+| DEC-030 | graph mutation 入口定权 | 每个 graph 写入口必须归入 transport/proposal/planned command/restore/remote authority；multi-entity command 验证完整 draft 后一次提交，generic setter 不得成为业务旁路 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -179,6 +180,16 @@
 **影响：** Generic edge scissors 不能绕过 nested `edgeId` repair；V0 process 不允许 partial cohort；shot refs 必须双向一致；graph delete 不自动销毁 Director workspace、provider run 或 media bytes；UI owner cleanup 不进入 graph history。`GRAPH-DELETE-01`、`LIBTV-VR-013` 与 runtime planner 仍需明确编码授权。
 
 **依据：** [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)、[`LibTVNodeDataIdentity.contract.md`](research/components/LibTVNodeDataIdentity.contract.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts)。
+
+### DEC-030：Graph mutation 入口必须先定权再验证
+
+**背景：** Batch 57 已保护 React Flow connection 和 programmatic `addEdge`，但派生媒体、拉片/长视频、duplicate、group、delete、generic `setNodes/setEdges`、React Flow changes 和 undo/redo 仍通过不同入口直接写 graph。Open Canvas 固定版本采用 store command、serialization、save/API full-graph validation、revision 和 server patch 多层边界，但其 clipboard 与 framework delta 也不是完整验证入口。
+
+**决策：** 每个 graph mutation ingress 必须归入 T0 presentation、T1 whitelisted transport、T2 single proposal、T3 planned multi-entity command、T4 snapshot/document restore 或 T5 remote authority。T3 在任何 mutation 前构造并验证完整 final draft，只以一个 history transaction 提交；T4 先 decode/invariant check 再原子 swap；T5 声明 revision/base identity 与 field ownership。低层 setter 只能承载已分类 transport/commit，不能被组件当作业务命令旁路。
+
+**影响：** 不能把所有 derived edge 循环调用 `addEdge`，否则会产生 partial graph 和多 history step；也不能依赖 future save-time validation 才发现 runtime invalid state。后续先收窄 React Flow change 类型，再按单一 command 迁移 derived/copy/delete/history，不做一次性 store 重构。`GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014` 和 runtime authority boundary 仍需明确编码授权。
+
+**依据：** [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts) 与 [`validation.ts`](../research/upstream/open-canvas/shared/lib/canvas/validation.ts)。
 
 ## 3. 何时可以重审决策
 

@@ -72,10 +72,10 @@
 | 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `RESEARCH_FIRST` / `PARTIAL_RECORDED` |
 | 6 | `LIBTV-PAR-006` | Ready-video 顶部处理工具条与 mode replacement | 5 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
 | 7 | `LIBTV-PAR-007` | 快捷键 source-only 命令与 help/handler 一致性 | 4 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
-| 8 | `LIBTV-PAR-008` | 普通画布 graph transaction 健壮性 | 4 | 5 | 3 | 4 | connection structural slice `RECORDED_PASS`（Batch 57）；document/snapshot、subgraph copy、node data、Reference/domain/source feedback 仍 pending |
+| 8 | `LIBTV-PAR-008` | 普通画布 graph transaction 健壮性 | 4 | 5 | 3 | 4 | connection structural slice `RECORDED_PASS`（Batch 57）；document/copy/data/delete/entrypoint authority design complete，runtime 仍 partial |
 | 9 | `LIBTV-PAR-009` | 逐帧拉片/超长视频的真实过程与结果生命周期 | 4 | 3 | 2 | 5 | `BLOCKED_BY_FIXTURE` |
 | 10 | `LIBTV-PAR-010` | Agent/Share/Toolbox/History/Upload 的 local mock 边界 | 3 | 4 | 4 | 3 | `PROTOTYPE_BOUNDARY` |
-| 11 | `LIBTV-PAR-011` | `uiStore` 冗余/unmounted/unreachable 状态清理 | 2 | 5 | 4 | 2 | `DEFERRED_ENGINEERING` |
+| 11 | `LIBTV-PAR-011` | `uiStore` owner identity 与冗余/unmounted/unreachable 状态清理 | 3 | 5 | 5 | 2 | Batch 58 owner lifecycle `RECORDED_PASS`；冗余 boolean/unmounted state 仍 deferred |
 | 12 | `LIBTV-PAR-012` | Provider、上传、计费、远端任务、账户持久化 | 5 | 1 | 1 | 5 | `OUT_OF_SCOPE` |
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
@@ -209,7 +209,11 @@ Subgraph copy 子切片的设计前置见 [`LibTVSubgraphCopy.contract.md`](comp
 
 Node data identity 子切片已经完成 fixed static audit 与规范设计，权威入口是 [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md) 和 [`LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md)：11-type V0 registry、field roles、named operation profiles、shot reciprocal aggregate、long-video process cohort、Director shell/workspace boundary、media locator、`LIBTV-FIX-LOCAL-NODE-DATA-01` 和 `LIBTV-VR-012` 已定义。Runtime 仍使用 generic Node/Record 与浅 data spread；shot/process delete cascade 继续需要 source/product decision。
 
-Delete/reference repair 子切片也已完成设计，权威入口是 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：当前 destructive entry、Open Canvas 方法边界、relation inverse index、aggregate/UI/resource impact、cascade/detach/reset/block 队列、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01` 和 `LIBTV-VR-013` 已定义。Runtime 仍只做 descendants/incident-edge filter；derived、shot、process、Director 和 active-run 用户语义保持 source/product-blocked。
+Delete/reference repair 子切片也已完成设计，权威入口是 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：当前 destructive entry、Open Canvas 方法边界、relation inverse index、aggregate/UI/resource impact、cascade/detach/reset/block 队列、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01` 和 `LIBTV-VR-013` 已定义。Batch 58 已实现其中 clone-owned 的 node-bound UI owner invalidation slice；runtime 仍只做 descendants/incident-edge filter，derived、shot、process、Director workspace/resource 和 source cascade/detach 用户语义保持 source/product-blocked。
+
+Batch 58 的实现入口是 [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/)：`ImagePreviewState`、`ImageAnnotateState`、`ImageElementEditState` 和 Director owner 都携带 canvas identity；纯 reconciliation 只关闭失效 UI owner，不写 graph/history。它不能替代 `LIBTV-VR-013` 的 relation-aware planner。
+
+Graph ingress 子切片也已完成全入口静态审计与设计，权威入口是 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：Open Canvas store/save/API/revision/server-patch 分层与 clipboard/framework delta 反例、clone direct writers、T0-T5、full-draft command plan、`LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01` 和 `LIBTV-VR-014` 已定义。Runtime 只有 Batch 57 connection/addEdge island 受保护；transport whitelist、derived/copy/delete plan、history restore 和 remote authority 未实现。
 
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle
 

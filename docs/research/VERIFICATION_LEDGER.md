@@ -39,6 +39,7 @@ Batch 57
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
 Batch 57 有独立的普通连接事务 verifier。
+Batch 58 有独立的 node-bound UI owner lifecycle verifier。
 
 ### 2.2 脚本分组台账
 
@@ -64,6 +65,7 @@ Batch 57 有独立的普通连接事务 verifier。
 | Batch 55 | source freshness reinspection attempt | `BLOCKED_BY_FIXTURE` | 目标画布重定向首页，浏览器插件版本路径异常；仅完成 blocked handoff，不产生 clone/source parity 结论 |
 | Batch 56 | image rotate bounded graph slice | `SCRIPT_RECORDED_PASS` | focused Playwright、desktop/mobile runtime audit、截图识别台账和 closeout 文档已闭环；只证明 media-gated `旋转与镜像` 派生 node/edge/selection/history，不证明真实 bitmap/editor/save/provider |
 | Batch 57 | ordinary graph connection normalization, structural guards and zero-mutation transaction boundary | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch57.py` 已通过；覆盖真实 Handle drag、target-start、duplicate/reverse/parallel/self/cycle reject、one-step history、undo/redo、desktop/mobile overflow 与诊断错误；不覆盖 Reference/domain/source invalid feedback/import/sync |
+| Batch 58 | node-bound UI owner invalidation and canvas boundary cleanup | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch58.py` 已通过；覆盖纯 reconciliation、preview/annotate/element-edit/Director 删除关闭、四类 owner 换画布关闭、delete-only history、desktop/mobile overflow 与诊断错误；不证明源站 destructive delete、资源回收或完整 relation-aware delete planner |
 
 ## 3. 当前源站合同覆盖
 
@@ -79,6 +81,8 @@ Batch 57 有独立的普通连接事务 verifier。
 | 逐帧拉片 | `BLOCKED_BY_FIXTURE` | 空态 DOM、文章结果截图、Batch 24 clone fixture | 需要 ready video 或本地固定结果 fixture 的结果/失败态 |
 | 超长视频过程 | `CLONE_FIXTURE_ONLY` + `BLOCKED_BY_FIXTURE` | Batch 33 12/22 graph、文章/源站参数证据 | 需要源站过程图或稳定 mock 合同，不能把 clone graph 当源站事实 |
 | 普通画布结构连接事务 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 57） | source static audit、Batch 57 `runtime-audit.json`、`LibTVGraphConnection.contract.md` | structural normalize/guard/transaction 已覆盖；Reference、domain compatibility、invalid feedback、import/batch/sync 仍未覆盖 |
+| 节点绑定 UI owner 生命周期 | `CLONE_FIXTURE_ONLY`（Batch 58） | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、delete impact matrix | clone 的 `canvasId + nodeId` owner reconciliation、删除/换画布 UI cleanup 已覆盖；源站删除语义、Director workspace/media resource lifecycle 仍未确认 |
+| 普通画布 graph mutation ingress | `STATIC_CONTRACT_ONLY` + connection island `LOCAL_FIXTURE` | [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、`LIBTV-VR-014` design、Batch 57 | 全 writer/T0-T5 audit 已完成；derived/setter/copy/delete/restore/remote routing runtime 尚未验证或实现 |
 | 旋转编辑器/图层分离/标注保存 | `BLOCKED_BY_FIXTURE` | Batch 56 只覆盖旋转入口的 bounded graph delta；当前 bundle/live 空态和一次撤销边界 | 需要 disposable 项目、任务/保存许可和可回滚方案；不要把 Batch 56 graph slice 升级为真实 bitmap/editor parity |
 | page shell/source freshness | `SOURCE_CONTRACT_ONLY` | Batch 55 记录了接管失败；既有 2026-08-27 standard image freshness 仍只覆盖 41% selected state | 需要恢复登录态后补 page shell、selection transition、safe zoom 和 mobile；不要把重定向解释成 source drift |
 
@@ -113,7 +117,7 @@ python3 scripts/verify-liblib-batch<N>.py
 ### 5.2 当前脚本全集
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py scripts/verify-liblib-batch58.py; do
   python3 "$script" || exit 1
 done
 ```

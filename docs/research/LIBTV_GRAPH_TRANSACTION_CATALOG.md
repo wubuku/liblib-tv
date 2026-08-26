@@ -211,6 +211,11 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-015` | shot reciprocal refs and long-video process cohort remain internally consistent | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | resultNodeIds/sourceBreakdownId and shared processId bypass parent closure | exact copy validates/maps full aggregate；delete cascade/detach remains product decision |
 | `LIBTV-GI-016` | accepted delete leaves no stale structural、owned data or aggregate relation | `REQUIRED_CORRECTNESS` | current node/selection delete repairs descendants/endpoints only | plan inverse refs and aggregate impact before one mutation；unresolved policy returns unknown |
 | `LIBTV-GI-017` | graph delete reports node-bound UI invalidation and resource impact without folding them into graph history | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | uiStore owners and data/blob locators have separate lifetimes | route applies UI cleanup；media bytes/workspace/run destruction needs explicit owner |
+| `LIBTV-GI-018` | every graph write ingress has one declared T0-T5 authority | `REQUIRED_CORRECTNESS` | addEdge is protected；derived/setter/restore paths are heterogeneous | no unclassified direct graph mutation |
+| `LIBTV-GI-019` | React Flow transport cannot add/delete/replace semantic entities through generic apply/set | `REQUIRED_CORRECTNESS` | current node/edge changes flow to public whole-array setters | whitelist transport fields；route semantic changes to commands |
+| `LIBTV-GI-020` | multi-entity command validates complete final draft before one commit | `REQUIRED_CORRECTNESS` | derived/process/shot creators append direct arrays | reject/unknown is zero-partial；accepted command is one history step |
+| `LIBTV-GI-021` | history/document restore validates schema/invariants before atomic swap | `REQUIRED_CORRECTNESS` | undo/redo directly restore shallow snapshot arrays | invalid restore keeps graph and history cursor unchanged |
+| `LIBTV-GI-022` | remote/server patch declares revision/base identity and field ownership | `FUTURE_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | ordinary remote ingress absent | stale/conflicting patch cannot silently overwrite graph/user fields |
 
 ### 10.2 Compatibility case queue
 
@@ -233,10 +238,16 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-015` media portability | repo/https/data/blob locators | history/copy/export/import | locator class, alias, budget and non-portable diagnostics explicit | data registry/document design complete；runtime missing |
 | `LIBTV-GC-016` semantic edge deletion | derived target stores sourceNodeId/edgeId | delete edge/source | relation-specific clear/detach/cascade or stable unknown；no stale edgeId | delete matrix/fixture design complete；runtime/source policy missing |
 | `LIBTV-GC-017` delete UI/canvas/resource boundary | node-bound overlay + two canvases + media locator | delete node/canvas、undo | selection/overlay/fallback/history/resource diagnostic exact | delete matrix/fixture design complete；runtime/resource owner missing |
+| `LIBTV-GC-018` ingress-equivalent connection reject | same invalid edge through gesture/programmatic | connect | same structural reason；zero mutation | Batch 57 covers first two local paths |
+| `LIBTV-GC-019` invalid derived draft | valid new node + invalid edge/data ref | derived command | entire plan reject/unknown；no partial node/ID/history | entrypoint design complete；runtime missing |
+| `LIBTV-GC-020` semantic React Flow change bypass | edge add/replace/remove change | `onEdgesChange` | reroute or reject before generic apply | current route uses generic setEdges |
+| `LIBTV-GC-021` malformed history restore | invalid snapshot at past/future head | undo/redo | restore reject；history cursor unchanged | document/entrypoint design complete；runtime missing |
+| `LIBTV-GC-022` invalid clipboard/import relation | valid structure + invalid aggregate/data ref | paste/import | whole packet reject with path diagnostic | document/data/entrypoint design complete；runtime absent |
+| `LIBTV-GC-023` stale server result | old revision/run patches replaced node | remote patch | stale/conflict result；no overwrite | future backend boundary only |
 
 ### 10.3 Decision and verification order
 
-1. Lock `GI-001..003/008..017` data-correctness portions as pure cases, while keeping source/product branches explicit;
+1. Lock `GI-001..003/008..022` data-correctness portions as pure cases, while keeping source/product branches explicit;
 2. obtain source evidence or explicit clone decision for `GI-004..007`;
 3. use the versioned result/reason/precedence shape in [`LibTVGraphConnection.contract.md`](components/LibTVGraphConnection.contract.md) without adopting Open Canvas node types or payload;
 4. the Batch 57 structural connection slice is now implemented and recorded through `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`; keep its source-invalid/Reference/domain branches separate;
@@ -322,6 +333,19 @@ Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PAR
 - `LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01` and `LIBTV-VR-013`。
 
 Status is `DESIGN_SPEC_COMPLETE / RUNTIME_MISSING / SOURCE_PRODUCT_DECISIONS_PARTIAL`。No delete planner、fixture adapter、verifier、cascade/detach behavior or media/workspace destruction is authorized by this handoff。
+
+### 10.10 Graph mutation entry-point authority handoff
+
+[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md) is the ingress-specific authority for：
+
+- fixed Open Canvas store/local guard、serialization、full-graph save/API validation、revision and server-patch layers；
+- upstream clipboard、framework delta、handle-retarget、tolerant normalize and edge-rebase limitations that must not be copied；
+- current clone canvas/node/derived/copy/group/delete/data/setter/connection/history/future ingress inventory；
+- `PROTECTED / PARTIAL / TRUSTED_OUTPUT_UNPROVEN / BYPASS / DEFERRED` maturity；
+- T0 presentation、T1 transport、T2 proposal、T3 planned command、T4 restore and T5 remote authority；
+- `LIBTV-ING-DQ-001..008`、`LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014` and `GI-018..022/GC-018..023`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL`。Batch 57 protects only the local structural connection island；no generic setter restriction、derived command planner、restore codec、clipboard/import or remote authority is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

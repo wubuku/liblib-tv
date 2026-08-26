@@ -431,3 +431,16 @@
 - 新增 `LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-SOURCE-GRAPH-DELETE-01`、`LIBTV-VR-013`、`DEC-029` 和 `LIBTV-TR-034` 的 authority chain；
 - 新增 `OC-ADOPT-016`，明确只借 named deletion/zero-mutation/one-commit 方法，LibTV 仍必须做 relation-aware repair；
 - 删除矩阵第一阶段以 commit `d635788` 推送；本轮未修改 `src/`、测试、FrameOS、共享源站、其他开发者 Batch 57 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v40 graph mutation 入口信任边界
+
+本轮继续从 Open Canvas 的 store/save/API 链提取可迁移方法，同时把上游自身的 partial ingress 作为反例保留：
+
+- 固定复核 Open Canvas `hydrate/addNode/pasteClipboard/delete*/on*Change/onConnect/updateNodeData/applyServerNodePatch`、serialization/full-graph save validation、API strict parse、revision compare、conflict rebase 和 durable replace；
+- 明确上游不是“所有入口经过一个 validator”：clipboard 只做浅 packet shape、paste 不做完整 DAG、framework delta 直接 apply、Handle retarget 不重跑所有 policy、tolerant storage normalize 可能静默丢弃；
+- 固定复核 clone 全部 canvas/node/derived/copy/group/delete/data/setter/connection/history/future ingress，确认 Batch 57 只保护 connection/addEdge island；
+- 新增 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)，定义 `PROTECTED/PARTIAL/TRUSTED_OUTPUT_UNPROVEN/BYPASS/DEFERRED` 和 T0-T5 authority；
+- 定义 multi-entity full-draft plan、transport whitelist、restore/remote boundary、`LIBTV-ING-DQ-001..008`、`GI-018..022/GC-018..023`；
+- 新增 `LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01`、`LIBTV-VR-014`、`DEC-030`、`LIBTV-TR-035`、`OC-TR-010` 和 `OC-ADOPT-017` 的 authority chain；
+- 同步 Big Picture、agent task map、docs/research/Open Canvas indexes、graph catalog、fixture/verifier、component coverage 和 handoff blueprint；
+- 本轮只修改文档，不触碰其他开发者 Batch 58 的 `src/` WIP、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。

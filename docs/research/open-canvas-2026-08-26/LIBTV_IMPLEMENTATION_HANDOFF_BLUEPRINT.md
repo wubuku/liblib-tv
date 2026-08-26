@@ -71,7 +71,7 @@ RESEARCH_ONLY
 | `OC-BP-001` standard selected image | `OC-ADOPT-001` | `LIBTV-PAR-001` | `READY_FOR_AUTHORIZATION`，但当前未授权 | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-001` |
 | `OC-BP-002` low-risk active surfaces | `OC-ADOPT-001` | `LIBTV-PAR-002` | 分三个待授权 slice | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-002` |
 | `OC-BP-003` typed Auto Link | `OC-ADOPT-002` | `LIBTV-PAR-003` | `DESIGN_READY`；运行 fixture 未实现 | `LIBTV-FIX-LOCAL-AUTOLINK-01` 接收规格已完成 | `LIBTV-VR-003..005` |
-| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016` | `LIBTV-PAR-008` | connection/document/copy/data/delete contracts complete；runtime maturity 按 verifier 独立维护 | `GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` + `SUBGRAPH-COPY-01` + `NODE-DATA-01` + `GRAPH-DELETE-01` 设计完成 | `LIBTV-VR-009..013` 有设计 authority；Reference/entry-point/invalid lifecycle/Option-drag/cascade/detach 仍 source/product-blocked |
+| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016/017` | `LIBTV-PAR-008` | connection/document/copy/data/delete/entrypoint contracts complete；runtime maturity 按 verifier 独立维护 | `GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` + `SUBGRAPH-COPY-01` + `NODE-DATA-01` + `GRAPH-DELETE-01` + `GRAPH-ENTRYPOINT-01` 设计完成 | `LIBTV-VR-009..014` 有 authority；Reference/domain/invalid lifecycle/Option-drag/cascade/detach and runtime ingress migration remain open |
 | `OC-BP-005` process/result lifecycle | `OC-ADOPT-003/009` | `LIBTV-PAR-009` | `BLOCKED_BY_FIXTURE` | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` + 所需 source fixture | `LIBTV-VR-007` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 
@@ -176,7 +176,9 @@ Node data identity 子切片已有 dated [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-
 
 Delete/repair 子切片已有 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：固定 Open Canvas 简单 deletion 的可借方法与 LibTV 领域差异，定义 relation inverse index、structural/aggregate/UI/resource impact、cascade/detach/reset/block policy、stable reason 和 full-plan transaction。
 
-基础 fixture 使用 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`、`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01`、`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01`、`LIBTV-FIX-LOCAL-NODE-DATA-01`、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-LOCAL-EMPTY-01`、`LIBTV-FIX-LOCAL-DEMO-01`、`LIBTV-FIX-LOCAL-GROUP-01` 和 `LIBTV-FIX-LOCAL-DERIVED-01`。五个专项 fixture 的 topology/corpus、scenario reset 和 `LIBTV-VR-009..013` split 已有设计 authority；各自 runtime maturity 必须回到 verifier/fixture ledger，不能用共享源站验证 destructive graph guard。
+Entry-point authority 子切片已有 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：固定 Open Canvas 多层 defense 与 partial ingress 反例，审计 clone 全 direct writer，并定义 T0-T5、transport whitelist、full-draft plan、restore/remote boundary 和 routing verifier。
+
+基础 fixture 使用 `LIBTV-FIX-LOCAL-GRAPH-CONNECTION-01`、`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01`、`LIBTV-FIX-LOCAL-SUBGRAPH-COPY-01`、`LIBTV-FIX-LOCAL-NODE-DATA-01`、`LIBTV-FIX-LOCAL-GRAPH-DELETE-01`、`LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01`、`LIBTV-FIX-LOCAL-EMPTY-01`、`LIBTV-FIX-LOCAL-DEMO-01`、`LIBTV-FIX-LOCAL-GROUP-01` 和 `LIBTV-FIX-LOCAL-DERIVED-01`。六个专项 fixture 的 topology/corpus、scenario reset 和 `LIBTV-VR-009..014` split 已有设计 authority；各自 runtime maturity 必须回到 verifier/fixture ledger，不能用共享源站验证 destructive graph guard。
 
 候选 ownership 边界是 [`canvasStore.ts`](../../../src/store/canvasStore.ts)、[`canvas.ts`](../../../src/types/canvas.ts) 和经评审后新增的纯 helper。禁止借某个 UI slice 顺手重写整个 store。
 
@@ -279,7 +281,7 @@ pure identity/transaction cases
 在仍然只有文档授权的当前阶段：
 
 1. `OC-BP-003` 的 fixture/data/state/transaction 设计已完成；保持为 `DESIGN_READY`，直到运行 fixture 获授权并实现；
-2. `OC-BP-004` 的 connection、document/snapshot、subgraph copy、node data identity 和 relation-aware delete schema/result/fixture/`LIBTV-VR-009..013` 设计已完成；下一步按 verifier 维护 runtime maturity，继续补 Reference/导入/批量/同步/Option-drag/cascade/detach source/product 决定与 invalid lifecycle，不再新建同主题总览；
+2. `OC-BP-004` 的 connection、document/snapshot、subgraph copy、node data identity、relation-aware delete 和 entrypoint authority schema/result/fixture/`LIBTV-VR-009..014` 设计已完成；下一步按 verifier 维护 runtime maturity，优先收窄 transport/command/restore 旁路，并继续补 Reference/导入/批量/同步/Option-drag/cascade/detach source/product 决定与 invalid lifecycle，不再新建同主题总览；
 3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
 4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；projection 审计已完成，不创建 provider backlog；
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；

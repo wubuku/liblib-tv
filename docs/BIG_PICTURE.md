@@ -215,6 +215,8 @@ camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zu
 
 删除也不是单纯过滤 node/edge：当前 runtime 只展开 `parentId` descendants 并删除 incident edges，surviving node data 不修复，因此 shot 双向引用、process cohort、nested `edgeId/sourceNodeId`、node-bound overlay 和 media resource owner 都可能脱节。Open Canvas 固定版本只证明集中删除、conflict no-op、selected node/edge 与 incident edge 一次 mutation 的方法，不能覆盖 LibTV 的领域关系。完整影响、correctness floor、source/product decision queue、`GRAPH-DELETE-01` 和 `LIBTV-VR-013` 见 [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)；runtime planner 尚未授权。
 
+Graph authority 也不是一个 `addEdge` 就能覆盖：Batch 57 只关闭 React Flow connection 与 programmatic `addEdge` 的本地结构切片；派生动作、拉片/长视频多节点命令、duplicate、`setNodes/setEdges`、React Flow changes 和 undo/redo 仍通过不同入口直接写 graph。Open Canvas 固定版本采用 store local guard、serialization/full-graph validation、API validation、revision 和 server patch 多层边界，但其 clipboard paste 与 framework delta 也存在旁路，不能照抄。当前入口盘点、T0-T5 信任等级、full-draft command plan、`GRAPH-ENTRYPOINT-01` 和 `LIBTV-VR-014` 见 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)；runtime 仍为 partial，未授权集中重构。
+
 这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
 
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。

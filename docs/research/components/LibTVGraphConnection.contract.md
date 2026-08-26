@@ -252,6 +252,8 @@ Atomic model adjustment is a `CLONE_DECISION` inspired by transaction safety. Cu
 
 The later implementation should have one pure validation authority. Do not copy duplicate/cycle rules into every node component. The exact file/module and whether `addEdge` accepts only a validated descriptor are implementation decisions for an authorized PLAN, not decisions made by this document.
 
+Cross-entrypoint ownership is now authoritative in [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md). Derived multi-node commands must validate a complete draft through their T3 authority; they must not loop through this user-connection transaction and create partial graph/history writes.
+
 ## 10. Handle And Presentation Contract
 
 - `<Handle>` remains the real draggable affordance; decorative layers stay `pointer-events:none`;

@@ -32,6 +32,7 @@
 - [`LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md`](LIBTV_NODE_DATA_STATIC_AUDIT_2026-08-27.md)：普通 LibTV 11 类 runtime node、identity/reference-bearing fields、shot/process aggregate、Director/media boundary 和 schema drift 的固定代码审计。
 - [`components/LibTVNodeDataIdentity.contract.md`](components/LibTVNodeDataIdentity.contract.md)：11-type V0 registry、field roles、named operation profiles、shot/process aggregate、Director/media portability、fixture 和 `LIBTV-VR-012` 设计合同。
 - [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)：普通 graph node/edge/selection/canvas 删除影响、relation-aware repair planner、shot/process/derived policy queue、`GRAPH-DELETE-01` 和 `LIBTV-VR-013` 设计合同。
+- [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：Open Canvas store/save/API 分层与 clone 全 graph mutation ingress 的固定审计，定义 T0-T5、入口 policy、`GRAPH-ENTRYPOINT-01` 和 `LIBTV-VR-014`。
 - [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：top-level、route-local、节点相对和 Director surfaces 的 state、mount owner、关闭路径、键盘边界及兼容残留目录。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：当前全路由 UI/UX 差距、价值/证据/风险/验证准备度排序、依赖、工作波次和停止条件。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
@@ -108,6 +109,7 @@
 | 55 | source freshness reinspection attempt and blocked handoff | [`liblib-canvas-batch55-2026-08-26/`](liblib-canvas-batch55-2026-08-26/) `PARTIAL_RECORDED`，目标画布重定向首页且浏览器运行时版本路径异常；未产生新的 source behavior claim |
 | 56 | bounded image rotate graph slice | [`liblib-canvas-batch56-2026-08-26/`](liblib-canvas-batch56-2026-08-26/) `SCRIPT_RECORDED_PASS`，media-gated 派生节点、source edge、selection、metadata、atomic undo/redo 和 mobile overflow 已通过；真实 bitmap/editor/save 仍不在合同内 |
 | 57 | ordinary graph connection transaction | [`liblib-canvas-batch57-2026-08-27/`](liblib-canvas-batch57-2026-08-27/) `SCRIPT_RECORDED_PASS`，normalization、duplicate/reverse/parallel/self/cycle guards、accepted one-step history、rejected zero mutation 和 desktop/mobile focused verification 已通过；Reference/domain/source invalid feedback/import/sync 仍未覆盖 |
+| 58 | node-bound image/Director owner invalidation on delete and canvas switch | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/) `SCRIPT_RECORDED_PASS`，preview/annotate/element-edit/Director owner 以 `canvasId + nodeId` 校验，删除/切换后 UI-only cleanup 已通过；relation-aware graph delete planner 仍未完成 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -119,6 +121,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - [`COMPONENT_INVENTORY.md`](COMPONENT_INVENTORY.md)：current component catalog.
 - [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：help text 与实际运行语义的三方漂移审计。
 - [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)：graph-changing action 与原子 history 边界目录。
+- [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：graph 写入口的 authority、transport/command/restore/remote 分类与旁路风险。
 - [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：UI overlay state、挂载 ownership、关闭路径和节点锚点策略目录。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：面向后续复刻的当前优先队列和 batch entry template。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：面向 verifier 和源站研究的 fixture catalog、隔离等级、副作用边界与 backlog 映射。
