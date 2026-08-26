@@ -9,7 +9,7 @@
 | Shell and navigation | `TopNavBar`, `CanvasTabDropdown`, `LeftSidebar`, `BottomToolbar`, `AssetManagerPanel`, `StoryboardBoard`, `AgentDrawer` |
 | Panels and dialogs | `AddNodePanel`, `MainEntryPanels`, `VideoClipEditPanel`, `CameraConfigDialog`, `CameraMovementDialog`, `KeyboardShortcutsDialog` |
 | Image workflow | `ImageNode`, `ImageEditPanel` |
-| Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel`, `PictureEditPanel` |
+| Video workflow | `VideoNode`, `VideoGenerationPanel`, `VideoProcessingToolbar`, `SegmentReshootPanel`, `VideoContinuationSelector`, `SubtitleErasePanel`, `PictureEditPanel`, `DepthMotionCapturePanel` |
 | Graph behavior | `DeletableEdge`, `StoryboardGroupNode` |
 | Specialized nodes | `ScriptNode`, `ScriptExecutionNode`, `TextNode`, `AudioNode`, `ShotBreakdownNode`, `ShotBreakdownResultNode`, `VideoClipNode` |
 
