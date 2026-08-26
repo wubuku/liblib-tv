@@ -42,6 +42,7 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | `verify-liblib-batch35.py` - `batch45.py` | Director R3F、时间轴、路径、导出、手机相机、角色、跟随、运镜、群组/群众 | `SCRIPT_AVAILABLE` / `SCRIPT_RECORDED_PASS` | 是有界 prototype 回归；不是 LibTV/FrameOS 通用行为合同 |
 | Batch 34 | Director 既有代码考古和可借鉴性 | `SOURCE_CONTRACT_ONLY` | 没有专项 verifier，不应在全量命令中伪造 |
 | Batch 45 | Director character groups/crowd/group tracks | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-45 serial regression 已通过；仍是有界 clone 合同 |
+| Batch 46 | Director camera screenshot gallery and bulk return | `PARALLEL_WIP` | evidence/plan protected; implementation and verifier pending |
 
 ## 3. 当前源站合同覆盖
 
