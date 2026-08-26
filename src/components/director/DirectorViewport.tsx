@@ -261,8 +261,8 @@ function SceneObject({ object }: { object: DirectorObject }) {
       scale={object.transform.scale}
       onClick={(event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
-        if (motionPathDraft) return;
-        selectObject(object.id);
+        if (motionPathDraft || selectedMotionPathAnchorId) return;
+        selectObject(object.id, "viewport");
       }}
     >
       {object.primitive === "character" ? (
@@ -866,7 +866,12 @@ export function DirectorViewport({
           camera={{ position: [6.2, 4.25, 7.4], fov: 45, near: 0.1, far: 100 }}
           gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
           onPointerMissed={() => {
-            if (!timeline.motionPathDraft) selectObject(null);
+            if (
+              !timeline.motionPathDraft &&
+              !timeline.selectedMotionPathAnchorId
+            ) {
+              selectObject(null, "viewport");
+            }
           }}
           onCreated={({ gl }) => {
             gl.domElement.dataset.directorWebglCanvas = "true";

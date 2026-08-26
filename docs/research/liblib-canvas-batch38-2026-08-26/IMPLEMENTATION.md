@@ -68,6 +68,12 @@ The fix blocks object and blank-scene selection while a draft is active,
 restores the bound object explicitly on commit, and disables `OrbitControls`
 during drawing so camera orbit cannot consume the same drag gesture.
 
+Mobile verification exposed a second timing form of the same bug: R3F could
+invoke an object click handler whose React closure predated the commit. The
+final guard therefore also lives in the store. Viewport-originated selection
+requests are atomically ignored while a draft or selected anchor owns the
+interaction; explicit object-tree selection remains able to exit anchor editing.
+
 ## Main Smoke Evidence
 
 Run against `http://localhost:3000/?batch38-fixed=1` at `1440x900`:
@@ -91,6 +97,24 @@ npm run lint -- --quiet
 ```
 
 Both passed.
+
+## Focused Verification
+
+Added `scripts/verify-liblib-batch38.py`. It covers:
+
+- exact free-draw and preset menu contracts;
+- real pencil and pen pointer gestures;
+- drawing/anchor selection ownership across desktop and mobile;
+- symmetric and asymmetric handle semantics;
+- name, position, insert, delete and closed-path edits;
+- Escape cancellation preserving the old path;
+- deterministic playback movement;
+- helper-free capture pixels;
+- `1440x900` and `390x844` layout/overflow;
+- console, page and request failures.
+
+The focused script passes and generates six Batch 38-only image artifacts.
+Their one-time interpretation is recorded in `SCREENSHOT_ANALYSIS.md`.
 
 ## Commit Protection
 

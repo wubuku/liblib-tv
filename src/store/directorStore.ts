@@ -193,7 +193,10 @@ interface DirectorState {
   timeline: DirectorTimelineState;
 
   openSession: (sourceNodeId: string) => void;
-  selectObject: (objectId: string | null) => void;
+  selectObject: (
+    objectId: string | null,
+    source?: "explicit" | "viewport",
+  ) => void;
   setViewMode: (mode: DirectorViewMode) => void;
   setTransformMode: (mode: DirectorTransformMode) => void;
   setAspectRatio: (ratio: DirectorAspectRatio) => void;
@@ -757,7 +760,24 @@ export const useDirectorStore = create<DirectorState>((set) => ({
       timeline: { ...state.timeline, isPlaying: false },
     })),
 
-  selectObject: (objectId) => set({ selectedObjectId: objectId }),
+  selectObject: (objectId, source = "explicit") =>
+    set((state) => {
+      if (
+        source === "viewport" &&
+        (state.timeline.motionPathDraft ||
+          state.timeline.selectedMotionPathAnchorId)
+      ) {
+        return state;
+      }
+      return {
+        selectedObjectId: objectId,
+        timeline: {
+          ...state.timeline,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+        },
+      };
+    }),
 
   setViewMode: (mode) =>
     set((state) => ({
