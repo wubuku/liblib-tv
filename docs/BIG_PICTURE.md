@@ -171,7 +171,8 @@ React Flow change
 - 编排六个不同拓扑的一级入口面板，并保持入口互斥
 - 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent，并将当前画布投影为“关键元素”资源栏与“图片 / 视频”故事板列
 - 从 `3D导演台` 节点按需载入全屏 R3F 工作区；主 React Flow 保持挂载，
-  截图通过一个原子 graph transaction 回流为 image node + source edge
+  截图通过一个原子 graph transaction 回流为 image node + source edge；
+  工作区底部的 typed timeline 可 scrub/playback 并确定性驱动场景与机位
 
 ### 5.2 状态边界
 
@@ -193,8 +194,10 @@ React Flow change
 - 当前打开的导演台来源节点 ID；导演台内部场景状态不进入 `uiStore`
 
 `directorStore` 管可序列化的场景、对象、选择、活动机位、视角、transform
-模式、画幅、九宫格与截图记录。Three.js renderer、camera 和 Object3D refs
-属于 R3F 组件运行时，不能写入 Zustand。
+模式、画幅、九宫格、截图记录，以及 transform/camera typed tracks、
+playhead、播放/循环/缩放、关键帧选择和 auto-keyframe。时间轴采样先更新
+serializable object/camera values，再由 R3F 消费；Three.js renderer、camera
+和 Object3D refs 属于 R3F 组件运行时，不能写入 Zustand。
 
 顶层浮层选择已集中到 `uiStore.activePrimaryPanel`，并由同一组互斥 action 协调添加节点、快捷键、画布下拉、资产抽屉、分享、Agent 和缩放菜单。项目名与画布 CRUD 进入 `canvasStore`；画布下拉只保留编辑草稿和行级更多菜单，资产/历史等面板仍保留筛选/使用态等短生命周期局部状态。因此 LibTV 当前仍是 **画布数据 store + UI store + 局部组件状态** 的组合，但项目/画布导航与页面级 overlay 已有明确边界。
 
@@ -220,7 +223,9 @@ LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 Nod
 当前初始画布按原站结构化数据放置 10 个节点和 11 条边。`AddNodePanel`
 展示原站的 9 个节点入口；逐帧拉片、视频编辑和音频已有专用 renderer。
 导演台入口会打开 lazy-loaded R3F 三栏工作区，支持真实场景、机位、画幅、
-helper-free PNG capture 和图片节点回流。长视频提交会额外创建独立的过程节点图。
+helper-free PNG capture 和图片节点回流；底部时间轴支持 typed track、
+关键帧生命周期、scrub/playback/loop/zoom、Inspector/gizmo auto-keyframe
+和场景/相机确定性采样。长视频提交会额外创建独立的过程节点图。
 音频 renderer 可以表达普通本地预览或音轨/人声/背景音 split result，但
 waveform 仍是 CSS placeholder，不解析真实音频。
 
@@ -470,10 +475,11 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
-  `batch26.py` 到 `batch33.py`、`batch35.py` 串行通过：浮层、Add Node、Seedance 参数、
+  `batch26.py` 到 `batch33.py`、`batch35.py`、`batch36.py` 串行通过：浮层、Add Node、Seedance 参数、
   续写、去字幕、音视频分离、视频帧截取、智能抠像、主体编辑、深度动作捕捉
   和长视频过程图没有跨批回归；导演台真实入口、R3F 像素、机位/画幅、
-  helper-free capture、回流 history 和移动抽屉通过
+  helper-free capture、回流 history、移动抽屉、typed timeline、关键帧、
+  scrub/playback/loop/zoom、auto-keyframe 和移动端内部滚动通过
 - Batch 30：subject menu 四项顺序、`100/120ms` hover 时序、30 秒 guard、
   `512x48` panel、`16px` gap、pending graph、metadata、重复避让、source
   selection、单步 undo/redo 和 `390x844` 裁切均通过；toolbar 当前按

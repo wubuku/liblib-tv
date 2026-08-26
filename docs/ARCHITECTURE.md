@@ -54,8 +54,8 @@ graph TD
 | UI components | `src/components/` | panels, toolbars, dialogs and route-specific visual behavior |
 | LibTV nodes | `src/components/nodes/` | script, image, text, video, execution, group, breakdown input/result, clip and audio |
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
-| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing and capture |
-| State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring state in `directorStore` |
+| Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, capture and typed animation timeline |
+| State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
 | Pure helpers | `src/lib/` | organize topology and class-name utilities |
 | Types | `src/types/` | route-specific data contracts |
 | Evidence | `docs/research/` | source observations, specs, raw JSON and batch history |
@@ -92,7 +92,9 @@ The director path uses a separate state and renderer boundary:
 director node CTA
   -> uiStore.activeDirectorNodeId
   -> lazy client-only DirectorDesk
-  -> directorStore scene/object/camera edits
+  -> directorStore scene/object/camera/timeline edits
+  -> typed transform/camera tracks
+  -> deterministic scrub/playback sampling
   -> R3F Canvas render and helper-free capture
   -> canvasStore.createDirectorCapture
   -> atomic image node + source edge + graph history
@@ -100,7 +102,11 @@ director node CTA
 
 React Flow remains mounted while the fixed workspace is open. `directorStore`
 contains only serializable authoring state; mutable Three.js camera, renderer and
-Object3D references stay inside R3F components.
+Object3D references stay inside R3F components. Timeline sampling is a director
+store concern: transform and camera tracks interpolate serializable values, then
+the R3F scene observes the resulting objects. Inspector edits and completed gizmo
+drags may auto-keyframe at the current playhead, while scrub/playback never author
+new keyframes.
 
 ### FrameOS
 
@@ -125,7 +131,8 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 - Video groups use real `parentId` hierarchy. The failed video child has relative position `(62,62)`.
 - Selected single-node overlays may naturally clip at the canvas viewport edge; they are not recentered to the browser window.
 - The director desk is a lazy-loaded full-screen R3F island, not a React Flow
-  node panel. Its object tree, 3D selection and Inspector share one director store.
+  node panel. Its object tree, 3D selection, Inspector and bottom timeline share
+  one director store.
 
 ### FrameOS
 
@@ -145,6 +152,7 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Image/video panel anchor | node-centered and inverse-scaled | source follows node, pan and zoom |
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
+| Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
 | Director return | one canvasStore graph transaction | capture node and source edge undo/redo atomically |
 | Backend | local mock only | scope is frontend prototype validation |
 

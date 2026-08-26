@@ -139,4 +139,4 @@ DirectorInspector + DirectorViewport
 - [x] Timeline UI and scene/camera playback
 - [x] Track/keyframe lifecycle and auto-keyframe
 - [x] Focused Playwright and screenshot verification
-- [ ] Cross-batch regressions, stable docs and final quality gate
+- [x] Cross-batch regressions, stable docs and final quality gate

@@ -1,8 +1,8 @@
 # Batch 36：导演台动画时间轴第一条纵切
 
-> 状态：实现与专项 Playwright 已完成；跨批回归、稳定文档和最终质量门待收口。
-> 当前结果是在 Batch 35 的真实 R3F 工作区中加入 source-backed、可播放、
-> 可编辑并能确定性驱动场景的 typed timeline。
+> 状态：已完成、验证并形成可接力记录。当前结果是在 Batch 35 的真实 R3F
+> 工作区中加入 source-backed、可播放、可编辑并能确定性驱动场景的
+> typed timeline。
 
 ## Read Order
 

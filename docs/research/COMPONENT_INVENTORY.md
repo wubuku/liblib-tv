@@ -74,7 +74,9 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 | `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Real R3F scene, object selection/transforms, director/camera views, aspect framing, guides and helper-free PNG capture. |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Searchable semantic character/prop/camera tree synchronized with viewport and Inspector selection. |
 | `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Selection-routed scene/object/camera controls and current-capture preview/send command. |
+| `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Full-width typed animation timeline with playback, loop, scrub, zoom, tracks, keyframes and auto-keyframe controls. |
 | `directorViewportMath` | `src/components/director/directorViewportMath.ts` | Pure aspect-frame geometry for viewport display and capture cropping. |
+| `directorTimelineMath` | `src/components/director/directorTimelineMath.ts` | Pure time clamping and linear transform/camera interpolation for deterministic scene sampling. |
 
 ## Utilities
 
@@ -91,7 +93,7 @@ All node types inherit the React Flow `NodeProps` shape. The connection handle i
 |------|------|--------|
 | `useCanvasStore` | `src/store/canvasStore.ts` | Project name plus all canvas data: canvas list, active ID, multi-selection, graph, viewport and per-canvas in-memory history. Includes project/canvas CRUD, video-processing and long-video graph transactions, and undo/redo. |
 | `useUIStore` | `src/store/uiStore.ts` | Top-level overlay visibility including zoom menu, editor mode/tools, and grid/minimap/edge/snap/zoom display state. |
-| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state and capture records. Three.js runtime refs stay in components. |
+| `useDirectorStore` | `src/store/directorStore.ts` | Serializable 3D scene, objects, selection, active camera, view/transform/aspect state, capture records and typed transform/camera timeline. Three.js runtime refs stay in components. |
 
 ---
 

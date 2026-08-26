@@ -65,8 +65,24 @@
   returns to the main canvas, reselects the source node and preserves viewport.
 - **Responsive:** below `900px`, tree and Inspector become mutually exclusive
   left/right drawers over the full-screen R3F viewport.
-- **Evidence and verification:** `docs/research/liblib-canvas-batch35-2026-08-26/`
-  and `scripts/verify-liblib-batch35.py`.
+- **Timeline shell:** a full-width bottom band remains outside the three-zone
+  workspace. Its label column aligns with the object-tree rail; controls and the
+  time canvas scroll internally on compact viewports.
+- **Typed tracks:** current runtime values support transform and camera tracks.
+  Track/keyframe selection routes object selection and the Inspector to the same
+  context.
+- **Scrub/playback:** ruler pointer input, previous/next navigation and playback
+  sample transform/camera values deterministically. Pause freezes the scene;
+  loop-off stops at duration and loop-on wraps.
+- **Authoring:** manual keyframe add performs a same-time upsert. Inspector edits
+  and completed TransformControls drags record at the playhead when auto-keyframe
+  is enabled. Sampling itself never creates keyframes.
+- **Timeline responsive behavior:** desktop uses a `196px` clone-calibrated band;
+  `390x844` uses `176px`, a contracted label column and internal horizontal
+  scrolling without document overflow.
+- **Evidence and verification:** Batch 35 covers the R3F workspace and return;
+  `docs/research/liblib-canvas-batch36-2026-08-26/` and
+  `scripts/verify-liblib-batch36.py` cover the animation timeline.
 
 ### Keyboard Shortcuts
 - `Cmd/Ctrl+Z` — Undo the active canvas graph
@@ -256,7 +272,7 @@ The five source image states use explicit panel heights rather than a generic Pr
 - **Parent move:** Dragging the video group selects the parent and unmounts the child panel. Re-selecting the child rebuilds the panel at the child's new absolute position.
 - **Child move / pan / zoom:** Child and panel remain attached with no viewport clamping.
 - **Multi-select:** Hides all single-node video overlays.
-- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, and director return coverage in `scripts/verify-liblib-batch35.py`.
+- **Verification:** `scripts/verify-liblib-batch9.py`, `scripts/verify-liblib-batch26.py` through `scripts/verify-liblib-batch33.py`, director return coverage in `scripts/verify-liblib-batch35.py`, and director timeline coverage in `scripts/verify-liblib-batch36.py`.
 
 ## KeyboardShortcutsDialog
 

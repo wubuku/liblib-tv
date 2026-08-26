@@ -1,7 +1,6 @@
 # Batch 36 Implementation Log
 
-> Status: implementation and focused verification complete; final cross-batch
-> regression and quality gate pending.
+> Status: complete, verified and documented for handoff.
 
 ## Protection Points
 
@@ -58,16 +57,27 @@
 - The final contact sheet was visually inspected once. Detailed observations are
   preserved in [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md).
 
+## Regression And Quality Result
+
+- The focused high-risk regression set passed serially: Batch 9, 15, 21,
+  26, 27, 28, 29, 30, 31, 32, 33, 35 and 36.
+- `npm run check` passed: ESLint has the repository's existing 9 warnings and
+  zero errors; TypeScript and the Next.js 16.2.1 production build passed.
+- `npm run docs:check` passed with 276 Markdown files and 678 local targets.
+- `git diff --check` passed.
+- Stable docs now describe the timeline data flow, components, behavior,
+  verification entry and current Big Picture.
+
 ## Commit Protection
 
 - Plan protection: `55c48bd`.
-- Implementation protection: recorded by the commit containing this log,
-  timeline code, verifier and screenshots.
-- Verification/finalization: pending.
+- Implementation protection: `472df50`.
+- Verification/finalization: recorded by the commit containing this completed
+  log and stable-doc updates.
 
 ## Interruption Handoff
 
-If interrupted after the implementation commit, run the documented cross-batch
-regression set, `npm run docs:check`, `npm run check` and `git diff --check`;
-then record the exact commands and final commit ID here. Do not include the 37
-historical Batch 9/15/21/26-33 screenshot modifications in any Batch 36 commit.
+Batch 36 is complete. Continue with Batch 37 from the source-backed curve editor
+and motion-path contract. Preserve the separation between source facts, clone
+calibration and unresolved runtime geometry. Do not include regenerated historical
+screenshots from earlier verifier runs in later commits.
