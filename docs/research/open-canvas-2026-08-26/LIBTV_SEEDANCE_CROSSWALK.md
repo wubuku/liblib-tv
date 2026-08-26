@@ -46,6 +46,7 @@ Open Canvas 以 git submodule 固定在 `cf3a906bb8c35bb940d3267497e7f394b8f4258
 ### 2.2 当前 clone 的关键实现边界
 
 - 视频生成面板属于选中视频节点的节点内编辑层，采用 `660px` 稳定屏幕宽度和节点锚定的 inverse zoom；参见 [`VideoGenerationPanel.spec.md`](../components/VideoGenerationPanel.spec.md#positioning)。
+- 2026-08-26 的现场抽查进一步记录了图片节点在 `929x874`、约 `27.81%` zoom 下的上下浮层矩形、中心误差和边缘裁切；详见 [`LIVE_AUDIT.md`](../liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md#8-2026-08-26-浏览器现场几何抽查)。
 - 长视频过程图是 clone-only 的本地 pending 过程表达，提交一次对应一个 graph transaction；其节点数、布局和状态不是 LibTV API 契约。
 - 逐帧拉片和智能剪辑是不同节点类型，不能因为都处理视频就合并为同一个通用面板。
 - 片段重拍、Auto Link、拉片和长视频均不触发真实模型、上传、计费或后台任务。
