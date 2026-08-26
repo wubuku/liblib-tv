@@ -1,8 +1,9 @@
 # Batch 42 Implementation Log
 
 > Status: in progress. The articulated character, pose Inspector and typed
-> pose-track composition are implemented and browser-smoked; focused
-> verification and durable screenshots are next.
+> pose-track composition are implemented. Focused desktop/mobile Playwright,
+> durable screenshots and one-pass interpretation are complete; cross-batch
+> regression and stable docs are next.
 
 ## Protection Points
 
@@ -22,8 +23,8 @@
 - [x] articulated rig and pose data
 - [x] Inspector preset/SAM controls
 - [x] pose track sampling/composition
-- [ ] focused browser verification and screenshots
-- [ ] screenshot interpretation ledger
+- [x] focused browser verification and screenshots
+- [x] screenshot interpretation ledger
 - [ ] cross-batch regression and stable documentation
 
 ## Commits
@@ -81,10 +82,31 @@ A second `1440x900` Chromium smoke confirmed:
 - motion-path creation is disabled for the selected pose track;
 - no console or page errors occur.
 
+## Focused Verification
+
+Added `scripts/verify-liblib-batch42.py`. It covers:
+
+- all 20 preset labels, six SAM groups and 14 bone labels;
+- nonblank articulated R3F rendering and measurable preset/interpolation pixel
+  changes;
+- character-only Inspector tabs, active/custom preset state and continuous
+  controls;
+- automatic pose-track creation and `0s / 4s` endpoint keyframes;
+- transform-plus-pose composition at `2s`;
+- generic pose keyframe add/delete and previous/next seeking;
+- playback sampling and finite sparse-control values;
+- UI and store-level motion-path rejection for pose tracks;
+- desktop and `390x844` geometry, internal Inspector scrolling and document
+  overflow;
+- console, page and request failures.
+
+The focused script passed and generated five Batch 42-only state screenshots
+plus one contact sheet. Their first and only visual interpretation is recorded
+in `SCREENSHOT_ANALYSIS.md`.
+
 ## Interruption Handoff
 
-Continue with `PLAN.md` step 9: add focused desktop/mobile Playwright and
-durable screenshots. Do not re-open historical screenshots: this batch still
-has no durable screenshot. Preserve all unrelated dirty PNGs and staged
-concurrent docs; use path-limited commits. The implementation invariant already
-proved by smoke is that transform and pose tracks compose for one character.
+Continue with `PLAN.md` step 10: run Batch 35-42 regression and project gates,
+then update stable docs and maturity assessment. Do not re-open Batch 42
+screenshots; use `SCREENSHOT_ANALYSIS.md`. Preserve unrelated dirty PNGs and
+concurrent docs, and use path-limited commits.

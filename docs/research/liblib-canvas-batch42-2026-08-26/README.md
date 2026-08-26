@@ -1,7 +1,8 @@
 # Batch 42: Director Character Pose And SAM Tracks
 
-> Status: planned. Source evidence and upstream archaeology are protected;
-> implementation and focused verification are pending.
+> Status: in progress. Source evidence, implementation, focused Playwright and
+> one-pass screenshot analysis are complete; cross-batch regression and stable
+> docs are pending.
 
 ## Read Order
 
@@ -13,7 +14,9 @@
    criteria.
 4. [`DIRECTOR_CHARACTER_POSE.spec.md`](DIRECTOR_CHARACTER_POSE.spec.md):
    articulated mannequin, Inspector and independent pose-track contract.
-5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): live progress, commits,
+5. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-pass interpretation
+   of the focused clone screenshots.
+6. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): live progress, commits,
    verification and interruption handoff.
 
 ## Batch Goal

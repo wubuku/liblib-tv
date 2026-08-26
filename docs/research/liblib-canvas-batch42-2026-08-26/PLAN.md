@@ -84,5 +84,5 @@
 - [x] Articulated mannequin and rig state
 - [x] Pose Inspector and presets
 - [x] Independent pose tracks and interpolation
-- [ ] Focused Playwright and screenshot ledger
+- [x] Focused Playwright and screenshot ledger
 - [ ] Cross-batch regression and stable docs
