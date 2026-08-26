@@ -205,6 +205,8 @@ Open Canvas 的 node/run/save 分层在这里是高价值设计输入，但 curr
 
 Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为审计反例。当前 `LIBTV-PAR-012` 仍是 `OUT_OF_SCOPE`，所以本文不规划 provider 接入。
 
+完整的 source-visible catalog、Seedance 2.5 control projection、UI/descriptor/adapter/run 分层和未决问题见 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -269,8 +271,9 @@ pure identity/transaction cases
 1. 完成 `OC-BP-003` typed Auto Link 的 fixture/data/state/transaction 设计；
 2. 完成 `OC-BP-004` invariant 和 compatibility case 表；
 3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
-4. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；
-5. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
-6. 保持 provider、真实保存和共享源站 mutation 在边界外。
+4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；三层 projection 审计已完成，不创建 provider backlog；
+5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；
+6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
+7. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

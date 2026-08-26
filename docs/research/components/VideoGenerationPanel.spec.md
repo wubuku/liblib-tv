@@ -92,6 +92,8 @@ Stable selectors:
 
 `model`, `mode`, `ratio`, `resolution`, `duration`, `audio`, `count`, advanced switches, prompt, process view, and local submission state are component-local prototype state. The range uses `onInput` so drag, keyboard, and automation update the same React state path.
 
+Model/menu visibility, authoring controls, clone state, request projection and real runner support are separate evidence layers. Their current three-layer audit and Open Canvas anti-drift lessons are recorded in [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md). The seven visible rows are not a complete executable registry, and the local credits formulas are not billing/API contracts.
+
 ## Positioning
 
 The panel is positioned relative to the selected video child with centered translate and `scale(1 / zoom)`. It is not viewport-fixed and does not clamp itself to the browser.

@@ -278,3 +278,14 @@
 - 为 `LIBTV-FIX-LOCAL-PROCESS-STATES-01`、`LIBTV-FIX-SOURCE-PROCESS-01` 和 `LIBTV-VR-007` 补齐构造、stale/retry、graph/history、reset 与停止条件；
 - 更新交接蓝图、Open Canvas/research/docs index、任务导读、fixture catalog、replacement map 和 traceability；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-27：v27 模型能力与执行投影审计
+
+本轮完成 `OC-BP-006` 的文档态审计，不创建 Provider 实现 backlog：
+
+- 新增 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)，将 source-visible catalog、authoring controls、clone UI state、request projection 和 adapter/runner 分层；
+- 记录七个 source-visible 模型的 label、estimate、premium 和两个已确认 description，明确七项不是完整模型库，estimate 不是 SLA；
+- 对 Seedance 2.5 normal/long 的 mode、ratio、resolution、duration、audio、count、helper 和 credits 做 source/clone/projection 对照；
+- 明确 clone credits 公式属于 calibration，只有采样显示是 source fact；其他模型的 mode/control capability 仍未知；
+- 将 Open Canvas registry/current runner 漂移转成 LibTV 的 UI/descriptor/adapter/run 审计规则，并保持 `LIBTV-PAR-012 OUT_OF_SCOPE`；
+- 更新 VideoGenerationPanel 合同、交接蓝图、Open Canvas README 和 traceability；没有修改 `src/`、verifier、FrameOS、upstream submodule、截图或其他开发者 WIP。
