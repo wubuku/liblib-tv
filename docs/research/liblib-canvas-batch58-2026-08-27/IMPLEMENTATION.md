@@ -53,7 +53,7 @@
 ## 4. Checkpoint
 
 本批计划 checkpoint：`a542068`（已 push）。
-实施 checkpoint：`待提交`；commit/push 后补写具体 hash、远端同步状态和工作区
-状态。Batch 58 只完成 clone-owned node-bound UI invalidation，不宣称完整
+实施 checkpoint：`372d3ad`（已 push 到 `origin/master`；提交后工作区干净）。
+Batch 58 只完成 clone-owned node-bound UI invalidation，不宣称完整
 `LIBTV-VR-013` relation-aware delete planner，也不证明源站 destructive delete、
 远程资源回收、Director workspace 持久化或 undo 恢复 overlay。

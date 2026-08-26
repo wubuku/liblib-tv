@@ -1,6 +1,6 @@
 # Batch 58：节点绑定浮层失效收口
 
-> 状态：实施中。目标是让图片预览、图片标注、图片元素编辑和 Director
+> 状态：`SCRIPT_RECORDED_PASS`，实施与 checkpoint 已完成。目标是让图片预览、图片标注、图片元素编辑和 Director
 > owner 在节点删除或 active canvas 切换后自动关闭。该批不改变 graph/history、
 > Director 内部状态、既有浮层几何或源站未确认的产品反馈。
 >
