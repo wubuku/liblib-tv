@@ -6,6 +6,8 @@
 > 本文继续负责 Seedance 五项能力；跨 page shell、selected-node、active tool、
 > shortcut、overlay 和 graph 的当前统一排序见
 > [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)。
+>
+> 进入后续研究/复刻前，先用 [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md) 判断状态是否可重复，用 [`../LIBTV_VERIFIER_REPLACEMENT_MAP.md`](../LIBTV_VERIFIER_REPLACEMENT_MAP.md) 判断历史断言是否可迁移，并用 [`../TRACEABILITY_MATRIX.md`](../TRACEABILITY_MATRIX.md) 反查主张证据；跨项目授权和安全红线见 [`../../DECISION_REGISTER.md`](../../DECISION_REGISTER.md)。
 
 ## 1. 阅读结论
 
@@ -142,3 +144,7 @@ Auto Link 的当前实现不是把画布素材静默塞进请求，而是先在 
 - 双浮层多 zoom：[`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)
 - 图片组件合同：[`ImageNode.spec.md`](../components/ImageNode.spec.md)、[`ImageEditPanel.spec.md`](../components/ImageEditPanel.spec.md)
 - 视频工作流合同：[`VideoGenerationPanel.spec.md`](../components/VideoGenerationPanel.spec.md)、[`SegmentReshootPanel.spec.md`](../components/SegmentReshootPanel.spec.md)
+- Fixture 与 reset 合同：[`LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md)
+- 历史 verifier replacement：[`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](../LIBTV_VERIFIER_REPLACEMENT_MAP.md)
+- 主张证据与不可推出结论：[`TRACEABILITY_MATRIX.md`](../TRACEABILITY_MATRIX.md)
+- 跨项目长期决策：[`../../DECISION_REGISTER.md`](../../DECISION_REGISTER.md)

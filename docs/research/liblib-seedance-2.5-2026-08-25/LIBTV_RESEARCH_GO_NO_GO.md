@@ -8,6 +8,9 @@
 > [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md)，再用本文判断授权与 fixture 闸门。
 > 已有 fixture 身份、构造、reset 和共享源站禁止动作统一见
 > [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md)。
+> 历史 verifier 的保留/替换边界见
+> [`../LIBTV_VERIFIER_REPLACEMENT_MAP.md`](../LIBTV_VERIFIER_REPLACEMENT_MAP.md)，跨项目长期决策见
+> [`../../DECISION_REGISTER.md`](../../DECISION_REGISTER.md)。
 
 ## 1. 总体决策
 

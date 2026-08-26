@@ -3,6 +3,8 @@
 > 目的：在不编码的前提下，把 LibTV 当前已观察到的五项 Seedance 2.5 主推能力排成“依赖关系 + 证据闸门 + 研究价值”的队列。
 >
 > 本文关注 LibTV **有什么、如何在画布上呈现**。它不采用外部项目对“想要做什么”的实现展望，也不授权修改 `src/`、真实 Provider、共享源站项目或远端数据。
+>
+> 研究执行时，fixture 身份、隔离和 reset 以 [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md) 为准；历史 verifier 与 current-source replacement 以 [`../LIBTV_VERIFIER_REPLACEMENT_MAP.md`](../LIBTV_VERIFIER_REPLACEMENT_MAP.md) 为准；主张证据反查见 [`../TRACEABILITY_MATRIX.md`](../TRACEABILITY_MATRIX.md)，跨项目长期闸门见 [`../../DECISION_REGISTER.md`](../../DECISION_REGISTER.md)。
 
 ## 1. 结论先行
 
@@ -271,6 +273,10 @@
 - UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](LIBTV_UI_STATE_HIERARCHY.md)
 - 验证现状和测试授权边界：[`LIBTV_VERIFICATION_COVERAGE.md`](LIBTV_VERIFICATION_COVERAGE.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](NEXT_RESEARCH_PLAN.md)
+- Fixture 身份、隔离和 reset：[`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md)
+- 历史 verifier replacement：[`../LIBTV_VERIFIER_REPLACEMENT_MAP.md`](../LIBTV_VERIFIER_REPLACEMENT_MAP.md)
+- 主张证据反查：[`../TRACEABILITY_MATRIX.md`](../TRACEABILITY_MATRIX.md)
+- 跨项目决策登记：[`../../DECISION_REGISTER.md`](../../DECISION_REGISTER.md)
 - Open Canvas 模式卡：[`OPEN_CANVAS_PATTERN_CARDS.md`](../open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)
 - Open Canvas 到 LibTV 的机制转译：[`UIUX_TRANSLATION.md`](../open-canvas-2026-08-26/UIUX_TRANSLATION.md)
 
