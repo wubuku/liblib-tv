@@ -208,3 +208,12 @@
 - 计划明确允许的只读工作、禁止的共享源站动作、disposable fixture 前提、协作保护规则和每批 commit/push 验收标准；
 - 将计划接入 Seedance README、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)，使后续 agent 能从正式入口发现当前执行路线；
 - 没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
+
+## 2026-08-26：v20 LibTV UI 状态层级合同
+
+本轮完成第十五批研究项：
+
+- 新增 [`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)，将 LibTV UI 分为 page shell、canvas graph、标准选中节点控制、active authoring tool、page-level preview 和过程/结果 graph 六层；
+- 将标准双浮层、标注/元素编辑/旋转/图层分离、预览和派生结果分别写成状态转换及副作用合同，明确哪些只改 UI、哪些可能改变 nodes/edges；
+- 补充 geometry、z-index、pointer-events、selection、pan/zoom、multi-selection、virtualization、undo/redo 和 disposable fixture 验证要求；
+- 同步 Seedance README、research index、docs index 和 [`BIG_PICTURE.md`](../../BIG_PICTURE.md)；没有修改 `src/`、回归脚本、FrameOS、upstream submodule、截图或其他开发者 WIP。
