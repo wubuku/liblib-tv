@@ -344,3 +344,14 @@
 - 当前 panel short label `2.0 Fast` 与 selected catalog row `Seedance 2.0 Fast VIP` 的 alias 得到直接证明；
 - 旧七行样本保留历史截图边界，current catalog authority 升级到新日期 35 行；
 - 没有选择其他模型或修改 mode/params，所以 per-model controls 与 runner 继续 unknown/out-of-scope；没有修改代码、verifier、共享源站 graph 或 submodule。
+
+## 2026-08-27：v33 `OC-EQ-003` graph compatibility 静态审计
+
+本轮完成 Wave A 的 graph 静态阶段，仍不执行共享项目连线：
+
+- 新增 [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md) 和结构化 JSON，记录 13 node/12 edge 的 DOM、Handle instance state、ARIA edge identity、viewport 和 production bundle 坐标；
+- 从当前画布 chunk 确认普通连接 path 的 target-start 方向归一化、同/反向 node-pair duplicate guard、普通非 Reference 的 adjacency + DFS cycle guard 和 programmatic equal-ID guard；
+- 从当前 action/type bundle 确认 LibTV 的连接兼容性继续受 node action、默认 action、group/script 特例、目标容量、model capability 和可选 `switchToModel` 影响；Handle CSS class 不是最终业务规则；
+- 将 `LIBTV-GI-004..007` 和 `LIBTV-GC-002..005` 更新为 `STATIC_RECORDED` 但保留 `SOURCE_DECISION_REQUIRED`：Reference 例外、导入/批量/同步入口、invalid feedback、history/no-residue 和真实拖线仍需 disposable source fixture；
+- 同步 Open Canvas README、采纳矩阵、实施交接蓝图、证据队列、graph authority 和 traceability，明确上游 DAG/typed validation 只作为方法启发，不能替代 LibTV graph 语义；
+- 没有修改 `src/`、verifier、FrameOS、共享源站 graph、其他开发者 Batch 51 WIP 或 Open Canvas submodule。

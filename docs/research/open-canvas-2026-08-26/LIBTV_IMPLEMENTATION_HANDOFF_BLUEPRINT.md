@@ -71,7 +71,7 @@ RESEARCH_ONLY
 | `OC-BP-001` standard selected image | `OC-ADOPT-001` | `LIBTV-PAR-001` | `READY_FOR_AUTHORIZATION`，但当前未授权 | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-001` |
 | `OC-BP-002` low-risk active surfaces | `OC-ADOPT-001` | `LIBTV-PAR-002` | 分三个待授权 slice | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-002` |
 | `OC-BP-003` typed Auto Link | `OC-ADOPT-002` | `LIBTV-PAR-003` | `DESIGN_READY`；运行 fixture 未实现 | `LIBTV-FIX-LOCAL-AUTOLINK-01` 接收规格已完成 | `LIBTV-VR-003..005` |
-| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006` | `LIBTV-PAR-008` | `DESIGN_FIRST`；invariant/case 表已完成 | `LOCAL-EMPTY/DEMO/GROUP/DERIVED` | source decision、validation shape 和专用 replacement 待定 |
+| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006` | `LIBTV-PAR-008` | `STATIC_AUDIT_RECORDED`；invariant/case 表和普通连接 path 的 bundle guard 已完成 | `LOCAL-EMPTY/DEMO/GROUP/DERIVED` + disposable source fixture 待定 | Reference/entry-point source decision、validation shape、invalid lifecycle 和专用 replacement 待定 |
 | `OC-BP-005` process/result lifecycle | `OC-ADOPT-003/009` | `LIBTV-PAR-009` | `BLOCKED_BY_FIXTURE` | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` + 所需 source fixture | `LIBTV-VR-007` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 
@@ -269,7 +269,7 @@ pure identity/transaction cases
 在仍然只有文档授权的当前阶段：
 
 1. `OC-BP-003` 的 fixture/data/state/transaction 设计已完成；保持为 `DESIGN_READY`，直到运行 fixture 获授权并实现；
-2. `OC-BP-004` 的 invariant 和 compatibility case 表已完成；下一步只补 `GI-004..007` 的 source/产品决定、validation result shape 和 replacement entry；
+2. `OC-BP-004` 的 invariant/case 表与 `GI-004..007` 普通连接 path 静态审计已完成；下一步只补 Reference/导入/批量/同步 source 决定、validation result shape、invalid lifecycle 和 replacement entry；
 3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
 4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；projection 审计已完成，不创建 provider backlog；
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；

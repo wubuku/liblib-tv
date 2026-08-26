@@ -197,10 +197,10 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-001` | node ID 在同一 canvas 内非空且唯一 | `REQUIRED_CORRECTNESS` | store actions and React Flow identity depend on it | validation must reject or normalize invalid fixture/import before runtime |
 | `LIBTV-GI-002` | edge ID 在同一 canvas 内唯一 | `REQUIRED_CORRECTNESS` | edge removal/rendering use ID | define collision handling; never silently overwrite another edge |
 | `LIBTV-GI-003` | edge source/target point to existing nodes | `REQUIRED_CORRECTNESS` | dangling edges cannot render a coherent transaction | define add/import/copy failure policy and no partial mutation |
-| `LIBTV-GI-004` | exact duplicate edge identity includes source/target/handles | `SOURCE_DECISION_REQUIRED` | current `addEdge` has no duplicate guard | confirm whether parallel edges or distinct handle pairs are valid |
-| `LIBTV-GI-005` | self-loop is accepted or rejected | `SOURCE_DECISION_REQUIRED` | current store accepts it; Open Canvas rejects it | do not reject solely because upstream is a DAG |
-| `LIBTV-GI-006` | directed cycle is accepted or rejected | `SOURCE_DECISION_REQUIRED` | current store has no cycle guard; Open Canvas uses DAG validation | obtain LibTV behavior or make an explicit clone-only workflow decision |
-| `LIBTV-GI-007` | source/target Handle and node-type compatibility | `SOURCE_DECISION_REQUIRED` | real `<Handle>` creates edges; typed compatibility is not centralized | document valid pairs without changing the sourced edge affordance/effect |
+| `LIBTV-GI-004` | exact duplicate edge identity includes source/target/handles | `SOURCE_DECISION_REQUIRED` | 2026-08-27 LibTV bundle pair guard rejects same or reverse node pair without comparing handles on the normal connection path | treat same-node-pair parallel handles as statically blocked in that path; confirm store/import/batch/sync coverage before clone decision |
+| `LIBTV-GI-005` | self-loop is accepted or rejected | `SOURCE_DECISION_REQUIRED` | 2026-08-27 programmatic pair helper rejects equal IDs; ordinary non-Reference source reaches DFS self-loop guard | preserve Reference exception as unknown; confirm real drag cleanup and history before clone decision |
+| `LIBTV-GI-006` | directed cycle is accepted or rejected | `SOURCE_DECISION_REQUIRED` | 2026-08-27 LibTV bundle adds candidate edge to adjacency and runs recursive DFS for ordinary connection path | confirm invalid feedback, connection-line cleanup and all entry points before clone decision |
+| `LIBTV-GI-007` | source/target Handle and node-type compatibility | `SOURCE_DECISION_REQUIRED` | 2026-08-27 both Handle sides may start; target-start is direction-normalized; action/type/model/capacity validator returns `allowed` and optional `switchToModel` | preserve source Handle affordance; complete context matrix and UI/validator equivalence before clone decision |
 | `LIBTV-GI-008` | parent/group references resolve and do not create orphan descendants | `REQUIRED_CORRECTNESS` | group/delete/duplicate actions traverse descendants | define import/copy/delete closure and invalid-parent handling |
 | `LIBTV-GI-009` | selected IDs are a subset of current nodes after transaction | `REQUIRED_CORRECTNESS` | delete/undo/redo already clear or rewrite selection | every command declares selection output; stale selection is not tolerated |
 | `LIBTV-GI-010` | one user command produces its declared history step count | `CURRENT_CLONE_FACT` | graph actions target one snapshot; route drag compresses many frames | no-op/equality and multi-node actions need exact compatibility cases |
@@ -212,10 +212,10 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | Case | Setup | Action | Required observation | Current status |
 |---|---|---|---|---|
 | `LIBTV-GC-001` dangling endpoint | one valid node + missing target ID | add/import edge | no partial edge; graph/history/selection delta explicitly defined | design required |
-| `LIBTV-GC-002` exact duplicate | one existing edge with same handles | connect same pair again | behavior follows `GI-004`; unrelated edges unchanged | source decision required |
-| `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | distinguish from exact duplicate if handles are product-significant | source decision required |
-| `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | behavior follows `GI-005`; Handle remains draggable | source decision required |
-| `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | behavior follows `GI-006`; rejection must not leave UI/edge residue | source decision required |
+| `LIBTV-GC-002` exact duplicate | one existing edge with same handles | connect same pair again | ordinary source path has a same-pair guard; still assert no graph/history/feedback residue | static recorded; source decision required |
+| `LIBTV-GC-003` parallel handle edge | same nodes, different source/target handles | connect | ordinary source pair guard does not compare handles, so it is expected to reject; import/batch behavior remains open | static recorded; source decision required |
+| `LIBTV-GC-004` self-loop | one node with reachable handles | connect node to itself | ordinary non-Reference and programmatic paths have rejection evidence; assert Handle/line/history cleanup | static recorded; Reference exception/source decision required |
+| `LIBTV-GC-005` three-node cycle | A -> B -> C | connect C -> A | ordinary source path has DFS rejection evidence; assert no UI/edge/history residue | static recorded; source decision required |
 | `LIBTV-GC-006` group/child copy | selected group with descendants and internal/external edges | duplicate selection | ID map, parent IDs, internal closure, external-edge policy and placement exact | compare current Batch 4/5/8 contract |
 | `LIBTV-GC-007` partial multi-copy | selected nodes share one internal and two external edges | duplicate selection | internal edge copied once; external behavior matches declared command | current selection-copy contract exists |
 | `LIBTV-GC-008` equal data update | node data merge is semantically unchanged | update | no-op history policy explicitly asserted | current clone currently records a step |
@@ -233,6 +233,17 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 5. use `LIBTV-FIX-LOCAL-DEMO-01/GROUP-01/DERIVED-01` for existing command compatibility;
 6. only after authorization, integrate one guard at a time and keep Handle/edge visuals unchanged;
 7. add a dedicated replacement entry before claiming `LIBTV-PAR-008` complete.
+
+### 10.4 2026-08-27 静态审计补充
+
+本次 source bundle/DOM 结果和原始结构化证据见 [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](open-canvas-2026-08-26/LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md) 与 [`libtv-graph-compatibility-static-audit-2026-08-27.json`](open-canvas-2026-08-26/libtv-graph-compatibility-static-audit-2026-08-27.json)。它把 Open Canvas 的一般性 DAG/typed validation 启发收敛为 LibTV 当前连接 boundary 的四个静态信号：
+
+- `onConnect` 不是低层 `addEdge` 的别名，而是先做 target-start 方向归一化，再执行 validator，再提交 edge；
+- normal connection path 的 pair guard 按 unordered node pair 去重，不给不同 Handle 留 parallel edge 旁路；
+- ordinary non-Reference path 使用候选 edge 的 adjacency + DFS 拒绝 self-loop/cycle，programmatic pair 对 equal IDs 还有独立 guard；
+- node action/type matrix、目标容量、当前 model capability 和可选 `switchToModel` 仍是最终兼容性的一部分，不能用 DOM Handle class 或 Open Canvas 五类 node 替代。
+
+以上仍是 `SOURCE_STATIC_EVIDENCE`，不关闭 `SOURCE_DECISION_REQUIRED`。Reference exception、导入/批量/同步入口、invalid feedback、connection-line 生命周期和 history/no-residue 必须在 disposable source fixture 或明确 clone-only 决策中处理。本节不授权添加 DAG guard、修改 `canvasStore` 或改变已确认的 edge flow effect。
 
 This register is a design input. It does not authorize adding DAG validation, changing edge direction or rewriting `canvasStore`.
 

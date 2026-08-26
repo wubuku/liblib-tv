@@ -47,6 +47,7 @@
 | LIBTV-TR-026 | 当前逐帧拉片、片段重拍和长视频使用三套有界本地状态近似，尚没有共同的真实 run/result/save backend contract | `CLONE_FACT` / `DECISION` | [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)、对应 component specs、Batch 23/24/33 | `LIBTV-PAR-009` 状态设计、fixture 和 replacement planning | 不代表三项能力应共用一个实现枚举，也不代表本地 `running/pending/complete` 是源站 API |
 | LIBTV-TR-027 | 2026-08-27 的 41% 标准图片只读样本继续符合 `1092.5x49` toolbar、`660x191` panel、node-center、`10 + 24 * zoom`、`16 * zoom` 和自然左侧裁切 | `SOURCE_FACT` | [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](open-canvas-2026-08-26/LIBTV_SOURCE_FRESHNESS_2026-08-27.md)、[结构化 JSON](open-canvas-2026-08-26/libtv-source-freshness-standard-image-41-2026-08-27.json) | `OC-EQ-001` 的 41%/929x874/既有选中态，强化 `OC-BP-001 L0` | 不覆盖 selection transition、多 zoom/mobile、active tool，也不证明 Batch 51 clone 已通过 |
 | LIBTV-TR-028 | 2026-08-27 当前 failed-video dialog 加载 35 个模型 row，14/21 行分别使用 selectable/unavailable style，当前 `2.0 Fast` 映射选中 `Seedance 2.0 Fast VIP` | `SOURCE_FACT` | [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](open-canvas-2026-08-26/LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md)、[结构化 JSON](open-canvas-2026-08-26/libtv-model-catalog-audit-2026-08-27.json) | `OC-EQ-002` 的当前登录态/failed video/catalog disclosure | 不证明 35 个 runner 可执行，不解释 unavailable 原因，也不提供逐模型 mode/control contract |
+| LIBTV-TR-029 | 2026-08-27 LibTV production bundle 的普通连接 path 具备 target-start 方向归一化、同/反向 node-pair 去重、普通非 Reference 的 DFS cycle guard、equal-ID programmatic guard，以及 action/type/model/capacity validator | `SOURCE_FACT` | [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](open-canvas-2026-08-26/LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)、[结构化 JSON](open-canvas-2026-08-26/libtv-graph-compatibility-static-audit-2026-08-27.json) | `OC-EQ-003` static phase、`LIBTV-GI-004..007` 和 `OC-BP-004` 设计收敛 | 不证明 Reference/导入/批量/同步入口、invalid feedback、history residue 或 disposable source 交互结果 |
 
 ## 3. Open Canvas 启发主张
 
@@ -97,3 +98,4 @@
 | 为什么不能把失败视频当 ready-video | LIBTV-TR-020、LIBTV-TR-021，再查 fixture catalog 的本地视频和 demo baseline 条目 |
 | 为什么不能在共享源站试探输入或提交 | LIBTV-TR-023，再查 source freshness runbook 和 go/no-go |
 | 历史 verifier 什么时候可以替换 | LIBTV-TR-024，再查 [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md) |
+| 为什么不能直接把 Open Canvas DAG guard 移植进 LibTV | LIBTV-TR-029，再查 [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md#10-libtv-par-008-invariant-and-compatibility-design) 与 [`ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) |

@@ -1,0 +1,123 @@
+{
+  "auditId": "OC-EQ-003-2026-08-27",
+  "date": "2026-08-27",
+  "source": {
+    "url": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+    "title": "未命名项目 - 画布 2 - LibTV - 专业视频创作工具",
+    "fixtureClass": "SHARED_READ_ONLY",
+    "actionsUsed": [
+      "read DOM",
+      "read ARIA edge labels",
+      "read computed Handle state",
+      "read loaded script URLs",
+      "download and locally inspect loaded production chunks outside the repository"
+    ],
+    "actionsNotUsed": [
+      "drag Handle",
+      "create/delete/reconnect edge",
+      "create node",
+      "input",
+      "generate",
+      "upload",
+      "retry",
+      "save",
+      "download",
+      "select model",
+      "change parameters"
+    ],
+    "observedAtBrowserUtc": "2026-08-26T19:09:03.772Z",
+    "viewport": {
+      "width": 929,
+      "height": 874,
+      "devicePixelRatio": 2,
+      "transform": "translate(12.4578px, 200.864px) scale(0.282798)"
+    }
+  },
+  "dom": {
+    "visibleNodeCount": 13,
+    "visibleEdgeCount": 12,
+    "existingGraphHasExactDuplicate": false,
+    "existingGraphHasReversePair": false,
+    "existingGraphHasSelfLoop": false,
+    "existingGraphHasDirectedCycle": false,
+    "handleRulesObserved": [
+      "left target and right source are rendered on every visible node",
+      "both sides can carry connectablestart and connectableend",
+      "instance-level unavailable handles remove connectable/connectionindicator and use pointer-events none",
+      "DOM classes alone do not establish business compatibility"
+    ],
+    "nodeTypes": {
+      "image": { "count": 6, "targetStates": ["connectable", "not-connectable"], "sourceState": "connectable" },
+      "video": { "count": 1, "targetState": "connectable", "sourceState": "connectable" },
+      "video-clip": { "count": 1, "targetState": "connectable", "sourceState": "connectable" },
+      "script-v2": { "count": 1, "targetState": "connectable", "sourceState": "connectable" },
+      "group": { "count": 2, "targetState": "connectable", "sourceState": "connectable" },
+      "shot-breakdown": { "count": 1, "targetState": "connectable", "sourceState": "not-connectable" },
+      "text": { "count": 1, "targetState": "not-connectable", "sourceState": "connectable" }
+    }
+  },
+  "bundles": [
+    {
+      "chunk": "0jf40wzwc66-8.js",
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0jf40wzwc66-8.js",
+      "role": "canvas connection callbacks and React Flow isValidConnection wiring"
+    },
+    {
+      "chunk": "2axsluxmmf6m6.js",
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/2axsluxmmf6m6.js",
+      "role": "LibTV action/type connection matrix and validateGeneratorConnection"
+    }
+  ],
+  "staticFindings": {
+    "GI-004": {
+      "status": "STATIC_RECORDED_INTERACTION_REQUIRED",
+      "finding": "The normal connection validator rejects an existing edge with the same source/target or reverse source/target, without comparing handles.",
+      "implication": "Same-node-pair parallel edges with different handles are blocked on the normal connection path.",
+      "unknowns": ["store/import/batch/sync entry coverage", "invalid UI and history residue"]
+    },
+    "GI-005": {
+      "status": "STATIC_RECORDED_REFERENCE_EXCEPTION_UNKNOWN",
+      "finding": "The programmatic pair helper explicitly rejects sourceId===targetId; normal non-reference sources also reach the DFS cycle guard.",
+      "implication": "Self-loop is rejected for ordinary connection paths.",
+      "unknowns": ["reference-source exception", "real drag lifecycle", "history and connection-line cleanup"]
+    },
+    "GI-006": {
+      "status": "STATIC_RECORDED_INTERACTION_REQUIRED",
+      "finding": "The normal connection validator builds adjacency and uses recursive DFS to reject a candidate that closes a directed path.",
+      "implication": "A three-node directed cycle is rejected on the ordinary connection path.",
+      "unknowns": ["real drag lifecycle", "invalid target feedback", "no-op history"]
+    },
+    "GI-007": {
+      "status": "STATIC_RECORDED_CONTEXT_MATRIX_INCOMPLETE",
+      "finding": "Both Handle sides may initiate a connection, onConnect normalizes target-start gestures, and action/type/model/capacity validation determines allowed plus optional switchToModel.",
+      "implication": "Handle CSS state, edge direction and domain compatibility are separate layers.",
+      "unknowns": ["all action rows in live UI", "dynamic model capability", "affordance-validator equivalence"]
+    }
+  },
+  "openCanvasCrosswalk": {
+    "adoptMethod": [
+      "connection-boundary validation",
+      "direction normalization",
+      "pure compatibility cases",
+      "invalid transaction no-residue assertions",
+      "structured validation result instead of boolean-only assumptions"
+    ],
+    "doNotTransplant": [
+      "Open Canvas node types",
+      "provider payloads",
+      "Handle names and visual styling",
+      "global DAG rule over LibTV reference semantics",
+      "any source behavior not confirmed by LibTV evidence"
+    ]
+  },
+  "nextState": {
+    "queue": "OC-EQ-003",
+    "staticPhase": "RECORDED",
+    "interactivePhase": "BLOCKED_BY_DISPOSABLE_SOURCE",
+    "implementationAuthorization": "NO-GO",
+    "codeChanges": false,
+    "verifierChanges": false,
+    "submoduleChanges": false
+  },
+  "traceability": "LIBTV-TR-029"
+}

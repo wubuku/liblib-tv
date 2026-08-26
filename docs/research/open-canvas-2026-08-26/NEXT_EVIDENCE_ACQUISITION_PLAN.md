@@ -38,7 +38,7 @@
 |---|---|---|---|---|
 | `OC-EQ-001` | 当前 LibTV 页面壳、入口、标准双浮层和可见 surface 是否发生新漂移 | `PARTIAL_RECORDED`：41% standard image；其余场景仍 `READY_READ_ONLY` | 高 | `LIBTV-PAR-005`、`OC-BP-001/002` 的 `L0` |
 | `OC-EQ-002` | 非 Seedance 2.5 模型逐项有哪些可见 controls，哪些只存在于菜单/catalog | `PARTIAL_RECORDED`：35-row catalog；per-model controls 未选择 | 中高 | `OC-BP-006`、model capability matrix |
-| `OC-EQ-003` | LibTV 是否允许 duplicate edge、parallel handle edge、self-loop、cycle，以及 Handle 类型兼容是什么 | `STATIC_FIRST`，交互部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-004`、`LIBTV-GI-004..007` |
+| `OC-EQ-003` | LibTV 是否允许 duplicate edge、parallel handle edge、self-loop、cycle，以及 Handle 类型兼容是什么 | `PARTIAL_RECORDED`：普通连接 path 的 bundle/DOM static guard 已记录；交互部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-004`、`LIBTV-GI-004..007` |
 | `OC-EQ-004` | Auto Link 的输入、IME、单项/全量接受、失败回滚和 stale result 当前怎样运行 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-003`、`LIBTV-VR-003..005` |
 | `OC-EQ-005` | ready-video、逐帧拉片、片段重拍、长视频的 partial/retry/result replacement 生命周期 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-005`、`LIBTV-VR-006/007` |
 | `OC-EQ-006` | Open Canvas 新 commit 是否改变既有 claim、pattern、adoption 或 LibTV 启发 | `TRIGGERED_BY_UPSTREAM_CHANGE` | 条件性高 | `OC-TR-*`、`OC-ADOPT-*`、baseline decision |
@@ -126,9 +126,20 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 
 **交互阶段**：只有取得独立可丢弃源站 project 后，才通过最小 subgraph 测试 duplicate、parallel、self-loop 和 three-node cycle。每个动作前后记录 nodes/edges/selection/history/toast，并在单场景后销毁 fixture。
 
+### 6.3 最新静态结果
+
+2026-08-27 已完成当前 production bundle 和可见 DOM 的静态阶段，见 [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md) 与 [结构化 JSON](libtv-graph-compatibility-static-audit-2026-08-27.json)。当前连接 validator 已直接暴露：
+
+- 同向或反向的相同节点对会被 pair guard 拒绝，且 guard 不比较 Handle，因此普通连接路径不会因为改 Handle 而产生 parallel edge；
+- programmatic pair 显式拒绝 `sourceId == targetId`，普通非 Reference source 也会进入 DFS self-loop/cycle guard；
+- 候选 edge 加入 adjacency 后执行递归 DFS，普通有向环会被拒绝；
+- 两侧 Handle 可以发起连接，但从 `target` 发起的手势会被归一化为标准 `source -> target`；最终允许与否还由 LibTV action/type/model/capacity matrix 决定。
+
+这些是 `SOURCE_STATIC_EVIDENCE`，不是完整 source contract。Reference 例外、导入/批量/同步入口、invalid feedback 和 history/no-residue 仍需 disposable source fixture；因此不关闭 `GI-004..007`，也不授权修改 clone。
+
 ### 6.3 退出与停止
 
-静态证据可关闭某项时，更新对应 `GI/GC` 行；无法关闭则保持 `SOURCE_DECISION_REQUIRED`。共享项目禁止拖 Handle 或创建测试边。四项决定没有全部取得，不阻塞 `GI-001..003/008..011` 的 correctness 设计，但阻塞统一 graph validation 实现。
+静态证据可缩小某项时，更新对应 `GI/GC` 行并标注 `STATIC_RECORDED`；无法关闭则保持 `SOURCE_DECISION_REQUIRED`。共享项目禁止拖 Handle 或创建测试边。四项决定没有全部取得，不阻塞 `GI-001..003/008..011` 的 correctness 设计，但阻塞统一 graph validation 实现。
 
 ## 7. `OC-EQ-004`：Auto Link disposable source evidence
 
@@ -202,7 +213,7 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 
 1. `OC-EQ-001`：按只读 freshness checklist 建立新日期基线；
 2. `OC-EQ-002`：只用当前 DOM/bundle 扩展模型能力证据；
-3. `OC-EQ-003`：先做 bundle/Handle 静态分支审计。
+3. `OC-EQ-003`：先做 bundle/Handle 静态分支审计（已完成）；
 
 Wave A 的任何一项一旦需要输入、选择会写入的参数或 graph mutation，就停止在静态证据，不自动进入 Wave B。
 
