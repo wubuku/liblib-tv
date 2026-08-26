@@ -355,3 +355,18 @@
 - 将 `LIBTV-GI-004..007` 和 `LIBTV-GC-002..005` 更新为 `STATIC_RECORDED` 但保留 `SOURCE_DECISION_REQUIRED`：Reference 例外、导入/批量/同步入口、invalid feedback、history/no-residue 和真实拖线仍需 disposable source fixture；
 - 同步 Open Canvas README、采纳矩阵、实施交接蓝图、证据队列、graph authority 和 traceability，明确上游 DAG/typed validation 只作为方法启发，不能替代 LibTV graph 语义；
 - 没有修改 `src/`、verifier、FrameOS、共享源站 graph、其他开发者 Batch 51 WIP 或 Open Canvas submodule。
+
+## 2026-08-26：v34 `OC-EQ-001` freshness 接管阻塞留档
+
+本轮尝试继续推进 `LIBTV-PAR-005` / `OC-EQ-001`，但没有获得可用的源站画布
+运行态：
+
+- 目标 canvas URL 接管后重定向到 LibTV 首页，当前 tab 没有保留目标画布登录态；
+- 浏览器自动化运行时报告 `26.818.41509` 插件路径不存在，实际安装目录为
+  `26.818.61809`；
+- 没有输入、生成、保存、上传、下载、连线、删除或其他 graph mutation；
+- 新建 [`../liblib-canvas-batch55-2026-08-26/`](../liblib-canvas-batch55-2026-08-26/README.md)，
+  记录 blocked handoff、已有 standard image evidence 和未覆盖场景；
+- `OC-EQ-001` 保持 `PARTIAL_RECORDED`，`LIBTV-PAR-005` 保持
+  `RESEARCH_FIRST`，不能把本轮重定向解释成 source drift；
+- 没有修改 `src/`、verifier、FrameOS、共享源站状态或 Open Canvas submodule。
