@@ -1,0 +1,262 @@
+{
+  "url": "http://localhost:3000",
+  "node_id": "i-vxeeCnxySa",
+  "contract": {
+    "toolbar_size": [
+      1092.5,
+      49
+    ],
+    "action_count": 13,
+    "preview_content": [
+      "85vw",
+      "80vh"
+    ],
+    "preview_media_ratio": "2:1",
+    "graph_mutation": "none"
+  },
+  "desktop": {
+    "toolbar": {
+      "node": {
+        "x": 48,
+        "y": 176.71719360351562,
+        "width": 198.67120361328125,
+        "height": 99.33560180664062
+      },
+      "toolbar": {
+        "x": -398.9143981933594,
+        "y": 110.90562438964844,
+        "width": 1092.4999694824219,
+        "height": 49
+      },
+      "panel": {
+        "x": -182.66439819335938,
+        "y": 280.5938720703125,
+        "width": 660,
+        "height": 191
+      },
+      "zoom": 0.28381600516183036,
+      "actions": [
+        {
+          "index": 0,
+          "test_id": "image-toolbar-portrait-texture",
+          "label": "人像质感调节",
+          "rect": {
+            "x": -377.6643981933594,
+            "y": 119.40562438964844,
+            "width": 178,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 1,
+          "test_id": "image-toolbar-panorama-slash",
+          "label": "全景",
+          "rect": {
+            "x": -191.66439819335938,
+            "y": 119.40562438964844,
+            "width": 62,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 2,
+          "test_id": "image-toolbar-angle",
+          "label": "多角度",
+          "rect": {
+            "x": -121.66439819335938,
+            "y": 119.40562438964844,
+            "width": 75,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 3,
+          "test_id": "image-toolbar-light",
+          "label": "打光",
+          "rect": {
+            "x": -38.664398193359375,
+            "y": 119.40562438964844,
+            "width": 62,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 4,
+          "test_id": "image-toolbar-nine-grid",
+          "label": "九宫格",
+          "rect": {
+            "x": 31.335601806640625,
+            "y": 119.40562438964844,
+            "width": 91,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 5,
+          "test_id": "image-editor-primary-tool-trigger",
+          "label": "高清",
+          "rect": {
+            "x": 130.33560180664062,
+            "y": 119.40562438964844,
+            "width": 78,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 6,
+          "test_id": "image-toolbar-interactive-edit",
+          "label": "元素编辑",
+          "rect": {
+            "x": 216.33560180664062,
+            "y": 119.40562438964844,
+            "width": 88,
+            "height": 32
+          },
+          "disabled": true
+        },
+        {
+          "index": 7,
+          "test_id": "image-toolbar-layer-separation",
+          "label": "图层分离",
+          "rect": {
+            "x": 312.3356018066406,
+            "y": 119.40562438964844,
+            "width": 88,
+            "height": 32
+          },
+          "disabled": true
+        },
+        {
+          "index": 8,
+          "test_id": "image-toolbar-grid-split",
+          "label": "宫格切分",
+          "rect": {
+            "x": 408.3356018066406,
+            "y": 119.40562438964844,
+            "width": 103.99996948242188,
+            "height": 32
+          },
+          "disabled": false
+        },
+        {
+          "index": 9,
+          "test_id": "image-toolbar-annotate",
+          "label": "标注",
+          "rect": {
+            "x": 520.3355712890625,
+            "y": 119.40562438964844,
+            "width": 32,
+            "height": 32
+          },
+          "disabled": true
+        },
+        {
+          "index": 10,
+          "test_id": "image-toolbar-rotate",
+          "label": "旋转",
+          "rect": {
+            "x": 560.3355712890625,
+            "y": 119.40562438964844,
+            "width": 32,
+            "height": 32
+          },
+          "disabled": true
+        },
+        {
+          "index": 11,
+          "test_id": "image-toolbar-download",
+          "label": "下载",
+          "rect": {
+            "x": 600.3355712890625,
+            "y": 119.40562438964844,
+            "width": 32,
+            "height": 32
+          },
+          "disabled": true
+        },
+        {
+          "index": 12,
+          "test_id": "image-toolbar-preview",
+          "label": "预览",
+          "rect": {
+            "x": 640.3355712890625,
+            "y": 119.40562438964844,
+            "width": 32,
+            "height": 32
+          },
+          "disabled": false
+        }
+      ]
+    },
+    "preview": {
+      "overlay": {
+        "x": 0,
+        "y": 0,
+        "width": 929,
+        "height": 874
+      },
+      "content": {
+        "x": 69.671875,
+        "y": 87.40625,
+        "width": 789.640625,
+        "height": 699.1875
+      },
+      "media": {
+        "x": 69.671875,
+        "y": 239.59375,
+        "width": 789.640625,
+        "height": 394.8125
+      },
+      "watermark": {
+        "x": 79.671875,
+        "y": 249.59375,
+        "width": 48,
+        "height": 23
+      },
+      "close": {
+        "x": 839.3125,
+        "y": 75.40625,
+        "width": 32,
+        "height": 32
+      }
+    }
+  },
+  "mobile_preview": {
+    "overlay": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 844
+    },
+    "content": {
+      "x": 29.25,
+      "y": 84.40625,
+      "width": 331.5,
+      "height": 675.1875
+    },
+    "media": {
+      "x": 29.25,
+      "y": 339.125,
+      "width": 331.5,
+      "height": 165.75
+    },
+    "watermark": {
+      "x": 39.25,
+      "y": 349.125,
+      "width": 48,
+      "height": 23
+    },
+    "close": {
+      "x": 340.75,
+      "y": 72.40625,
+      "width": 32,
+      "height": 32
+    }
+  }
+}

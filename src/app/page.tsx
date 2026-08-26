@@ -25,6 +25,7 @@ import { TopNavBar } from "@/components/TopNavBar";
 import { LeftSidebar } from "@/components/LeftSidebar";
 import { BottomToolbar } from "@/components/BottomToolbar";
 import { KeyboardShortcutsDialog } from "@/components/KeyboardShortcutsDialog";
+import { ImagePreviewOverlay } from "@/components/ImagePreviewOverlay";
 import { AssetManagerPanel } from "@/components/AssetManagerPanel";
 import { AgentDrawer } from "@/components/AgentDrawer";
 import { StoryboardBoard } from "@/components/StoryboardBoard";
@@ -107,6 +108,8 @@ export default function Home() {
     setZoomLevel,
     activeDirectorNodeId,
     closeDirectorDesk,
+    imagePreview,
+    closeImagePreview,
   } = useUIStore();
 
   const activeCanvas = getActiveCanvas();
@@ -251,7 +254,15 @@ export default function Home() {
         target?.closest("input, textarea, [contenteditable='true'], [contenteditable='plaintext-only']"),
       );
       if (isEditableTarget) return;
-      if (useUIStore.getState().activeDirectorNodeId) return;
+      const uiState = useUIStore.getState();
+      if (uiState.activeDirectorNodeId) return;
+      if (uiState.imagePreview) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          uiState.closeImagePreview();
+        }
+        return;
+      }
 
       const modifier = event.metaKey || event.ctrlKey;
 
@@ -505,6 +516,12 @@ export default function Home() {
       )}
 
       <KeyboardShortcutsDialog isOpen={isShortcutsPanelOpen} onClose={toggleShortcutsPanel} />
+      {imagePreview && (
+        <ImagePreviewOverlay
+          preview={imagePreview}
+          onClose={closeImagePreview}
+        />
+      )}
       {activeDirectorNodeId && (
         <DirectorDesk
           sourceNodeId={activeDirectorNodeId}

@@ -8,6 +8,15 @@ export type PrimaryPanel =
   | "history"
   | "tutorial";
 
+export interface ImagePreviewState {
+  nodeId: string;
+  filename: string;
+  imageUrl: string;
+  watermarkUrl?: string;
+  width: number;
+  height: number;
+}
+
 interface UIState {
   // Panel visibility
   isAddNodePanelOpen: boolean;
@@ -28,6 +37,7 @@ interface UIState {
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
   activeDirectorNodeId: string | null;
+  imagePreview: ImagePreviewState | null;
 
   // Canvas settings
   showMinimap: boolean;
@@ -59,6 +69,8 @@ interface UIState {
   setCanvasTool: (tool: "select" | "pan") => void;
   openDirectorDesk: (nodeId: string) => void;
   closeDirectorDesk: () => void;
+  openImagePreview: (preview: ImagePreviewState) => void;
+  closeImagePreview: () => void;
   toggleMinimap: () => void;
   toggleGrid: () => void;
   toggleEdges: () => void;
@@ -86,6 +98,7 @@ type OverlayState = Pick<
   | "isAgentOpen"
   | "isZoomMenuOpen"
   | "activePrimaryPanel"
+  | "imagePreview"
 >;
 
 const closedOverlayState: OverlayState = {
@@ -104,6 +117,7 @@ const closedOverlayState: OverlayState = {
   isAgentOpen: false,
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
+  imagePreview: null,
 };
 
 export const useUIStore = create<UIState>((set) => ({
@@ -125,6 +139,7 @@ export const useUIStore = create<UIState>((set) => ({
   editorMode: "workbench",
   canvasTool: "select",
   activeDirectorNodeId: null,
+  imagePreview: null,
 
   showMinimap: false,
   showGrid: true,
@@ -253,6 +268,14 @@ export const useUIStore = create<UIState>((set) => ({
     }),
 
   closeDirectorDesk: () => set({ activeDirectorNodeId: null }),
+
+  openImagePreview: (preview) =>
+    set({
+      ...closedOverlayState,
+      imagePreview: preview,
+    }),
+
+  closeImagePreview: () => set({ imagePreview: null }),
 
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),

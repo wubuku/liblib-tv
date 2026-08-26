@@ -11,6 +11,7 @@ import {
   type DirectorCaptureMetadata,
   type VideoFrameCaptureMetadata,
 } from "@/store/canvasStore";
+import { useUIStore } from "@/store/uiStore";
 
 export interface ImageNodeData extends Record<string, unknown> {
   filename: string;
@@ -31,7 +32,7 @@ export interface ImageNodeData extends Record<string, unknown> {
 
 export type ImageNodeType = Node<ImageNodeData, "image">;
 
-const derivedImageActions: Record<Exclude<ImageToolbarAction, "人像质感调节" | "全景">, { filename: string; prompt: string }> = {
+const derivedImageActions: Partial<Record<ImageToolbarAction, { filename: string; prompt: string }>> = {
   "多角度": { filename: "多角度展示图", prompt: "保持主体造型一致，生成正面、侧面、背面和三分之二视角的多角度展示。" },
   "打光": { filename: "智能打光", prompt: "保持主体与构图不变，增强电影级侧逆光、轮廓光与自然环境反射。" },
   "九宫格": { filename: "九宫格分镜", prompt: "保持角色和场景连续，生成九宫格镜头探索图，覆盖景别与机位变化。" },
@@ -45,6 +46,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const updateNodeData = useCanvasStore((state) => state.updateNodeData);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
+  const openImagePreview = useUIStore((state) => state.openImagePreview);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
 
   const runAction = (action: ImageToolbarAction) => {
@@ -54,6 +56,18 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
     }
 
     if (!imageUrl) return;
+
+    if (action === "预览") {
+      openImagePreview({
+        nodeId: id,
+        filename,
+        imageUrl,
+        watermarkUrl,
+        width,
+        height,
+      });
+      return;
+    }
 
     if (action === "全景") {
       addDerivedNode(
@@ -80,6 +94,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
     }
 
     const derived = derivedImageActions[action];
+    if (!derived) return;
     addDerivedNode(id, "image", {
       filename: derived.filename,
       width,
