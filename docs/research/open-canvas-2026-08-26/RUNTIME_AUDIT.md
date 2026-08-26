@@ -14,6 +14,8 @@
 
 本页只记录官网“呈现了什么”和公开入口如何引导用户，不把营销描述直接当成后端已实现能力。源码事实与运行事实分开记录。
 
+证据等级：本页第 2、3 节是本次浏览器中直接可见的 High 级运行事实；第 5 节是源码与官网的交叉推断；第 6 节是明确的 Pending 项。对应 claim ID 见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)。
+
 ## 2. 中文落地页
 
 ### 2.1 首屏信息架构
@@ -123,3 +125,14 @@ CTA 为 `开始创作` 与 `在 GitHub 点星`。这说明 Open Canvas 的公开
 7. 分享按钮到底是 UI 预览装饰还是公开模板/链接能力。
 
 这些项目应在浏览器中记录 DOM rect、截图和操作前后 graph/API 请求，继续遵守“源站事实、证据推断、clone-only 决策”分栏规则。
+
+## 7. 不可从本次审计推出的结论
+
+以下结论本次没有证据支持，后续文档不得把它们写成已验证事实：
+
+- 所有官网 marquee 中的 provider 都能从 current studio 成功生成；
+- landing preview 中的模板、分享、保存中状态与固定 submodule commit 一一对应；
+- `/zh/canvas` 的 onboarding 完成后必然可生成图片/视频；
+- studio 选中节点后的 Panel 几何与 LibTV 原站相同；
+- 未登录时的 client ID 能提供访问控制或多用户隔离；
+- 上传接口和音频生成接口是同一条能力链。

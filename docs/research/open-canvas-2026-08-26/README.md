@@ -23,7 +23,9 @@
 2. [`REPORT.md`](REPORT.md)：面向项目决策的完整结论。
 3. [`SOURCE_ANALYSIS.md`](SOURCE_ANALYSIS.md)：固定版本的目录、模块和源码证据。
 4. [`RUNTIME_AUDIT.md`](RUNTIME_AUDIT.md)：官网落地页和托管应用入口的只读核对。
-5. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
+5. [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)：OC claim ID、证据级别、可证明范围和待验证问题。
+6. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
+7. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 

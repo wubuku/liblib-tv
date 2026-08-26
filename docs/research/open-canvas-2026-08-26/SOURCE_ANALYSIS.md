@@ -251,6 +251,25 @@ README 声称：Text 可走 Cyberbara/OpenRouter，Image/Video 可走 Cyberbara/
 
 对当前项目的意义是：若借鉴 Open Canvas 的节点和面板外形，应先确认当前 clone 的“视觉实现”与“可执行合同”是否需要同步；不能因为下拉框里出现模型名称就把它记录为已支持。
 
+## 8.1 API surface 速查
+
+| 路径 | 方法 | 主要职责 | 研究备注 |
+|---|---|---|---|
+| `/api/canvas` | GET/POST | 列表、创建画布 | local client namespace |
+| `/api/canvas/[canvasId]` | GET/PATCH/DELETE | 读取、重命名、删除画布 | 删除最后一张会补空画布 |
+| `/api/canvas/[canvasId]/graph` | PUT | 带 revision 保存 graph | validator + conflict response |
+| `/api/canvas/[canvasId]/nodes/[nodeId]/execute` | POST | current studio 执行入口 | 进入 local runner |
+| `/api/canvas/[canvasId]/runs/[runId]` | GET | 查询异步 run | current runner 轮询 provider |
+| `/api/canvas/[canvasId]/template` | POST | 模板相关写入入口 | 与 README known limits 存在漂移，待运行态复核 |
+| `/api/canvas/uploads/images`、`videos` | POST | canvas 资源上传 | 与 storage provider 相关 |
+| `/api/uploads/images`、`videos` | POST | 通用上传入口 | 与上面存在并行 API surface |
+| `/api/storage/upload-audio` | POST | 音频上传入口 | 不等同于音频生成 |
+| `/api/provider-settings` | GET/POST | 读取/写入 provider settings | 当前使用 cookie |
+| `/api/media/proxy` | GET | 媒体代理 | 需要单独核对跨域/安全边界 |
+| `/api/execute` | POST | legacy provider execution | 不应当作 current studio route |
+
+入口源码可从 [`app/api/canvas/route.ts`](../../../research/upstream/open-canvas/app/api/canvas/route.ts) 及其同级路由复核；其中 current canvas path 与 legacy endpoint 的分离是本研究识别 provider 漂移的关键。
+
 ## 8. Provider 设置与身份边界
 
 设置表单包含 OpenRouter API Key/Base URL、Replicate Token、Cyberbara Key/Base URL 和 S3-compatible 配置。Zod 会校验 URL、Cyberbara 存储必需的 key、S3 endpoint/access/secret/bucket。
@@ -295,3 +314,12 @@ README 声称：Text 可走 Cyberbara/OpenRouter，Image/Video 可走 Cyberbara/
 6. 未发现单元、集成或 Playwright 测试目录/脚本，行为变更主要依赖手工检查。
 
 以上各项是后续克隆实现的风险清单，不是本轮编码任务。完整优先级和实施门槛见 [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)。
+
+## 11. 静态验证边界
+
+本次源码分析没有安装上游依赖、没有启动上游 dev server、没有调用真实 provider，也没有执行 Cloudflare 部署。上游 `package.json` 只有 lint/build 等脚本，未发现 test/e2e/vitest/jest 脚本或测试目录。因此：
+
+- 路由、类型、调用链、常量和分支结论可由固定源码复核；
+- provider 是否能在当前公网配置下成功生成，不能由本轮静态研究确认；
+- studio 的真实 DOM 几何必须通过浏览器运行态补证；
+- 任何实施前的 live 结论都应在 `EVIDENCE_MATRIX.md` 新增或升级 claim。

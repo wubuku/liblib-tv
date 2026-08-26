@@ -16,6 +16,19 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 本次没有修改当前项目的 `src/`、没有修改 upstream submodule 内容、没有输入密钥或触发官网副作用。任何编码实施必须等待用户明确授权。
 
+本报告的声明索引见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)。正文中的“源码事实/官网运行事实/推断”仍需按该矩阵的 claim ID 复核；报告不能替代 LibTV 源站的视觉取证。
+
+## 0.1 研究成熟度
+
+| 主题 | 本轮覆盖度 | 置信度 | 边界 |
+|---|---|---|---|
+| 固定 commit 的路由、图模型、校验、store、执行和持久化 | 高 | High | 静态源码考古，未执行 provider 任务 |
+| 官网 landing 和 `/zh/canvas` 空状态 | 高 | High | 未登录、无 key、无远端写操作 |
+| current studio 的 provider 实际可执行范围 | 中 | High（源码入口）/ Pending（live） | 已识别静态调用链，未做真实生成 |
+| studio 选中节点上下浮层几何 | 低 | Pending | 本轮没有创建画布和节点操作 |
+| 官网预览中的分享/模板/保存状态是否对应 alpha runtime | 低 | Low | 只能作为信息架构证据 |
+| 对当前 LibTV/FrameOS 的借鉴建议 | 中 | Medium | 属于研究推断，必须服从当前项目源站证据 |
+
 ## 1. 对象与版本锁定
 
 | 维度 | 记录 |
@@ -92,6 +105,8 @@ flowchart TB
 
 ## 4. 运行时数据流
 
+> 下面是由固定源码拼出的静态调用链，不是本次对真实 provider 任务的 live 运行记录。官网公开页的运行事实单独见 [`RUNTIME_AUDIT.md`](RUNTIME_AUDIT.md)。
+
 ```mermaid
 sequenceDiagram
   participant U as 用户
@@ -127,6 +142,8 @@ sequenceDiagram
 3. **模型能力由 registry/options 决定**：不同 Seedance、Midjourney、Gemini Omni 变体的 ratio、resolution、duration、reference 规则不同。
 4. **结果是节点 patch**：运行记录用于审计/轮询，节点 data 用于画布呈现和下游输入。
 5. **保存和执行共享 revision**：异步运行回写不能假定用户没有继续编辑。
+
+对应声明：OC-003、OC-004、OC-005、OC-007、OC-010；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)。
 
 ## 5. 视觉/交互研究重点
 
@@ -225,6 +242,17 @@ provider key 写入非 HttpOnly cookie，client ID 只是 namespace 而非认证
 ### R6：持久化并发（中）
 
 JSON/KV 的 read-modify-write 适合 alpha/local-first，但不能直接推导为多用户协作方案。当前 clone 仍应把本地 mock 与真实协作边界写在文档中。
+
+## 8.1 声明漂移的处理方式
+
+遇到“README 说支持、UI 能选择、registry 有路由、current runner 未接通”的组合时，采用四层判定：
+
+1. **可见**：页面是否展示入口或字段；
+2. **可构造**：共享执行层能否生成合法 descriptor；
+3. **可执行**：当前页面实际调用的 route/runner 是否分派到对应 provider；
+4. **可回写**：异步结果是否能落入 run record 和节点 data。
+
+只有四层都成立，才可以在当前版本报告为“已接通能力”。这条规则也是当前 clone 评估 LibTV 近期模型亮点时的建议审计标准。
 
 ## 9. 对当前项目的明确建议
 
