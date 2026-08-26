@@ -55,3 +55,13 @@
 - 新增 OC-021 至 OC-025，确保主报告中的交互结论可以追溯到固定 commit 的行号；
 - 建立 `LIBTV-UIX-09..16` 后续 batch，明确每个批次的源站取证内容、停止条件和“不得直接搬运”的边界；
 - 保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。
+
+## 2026-08-26：v5 Seedance 能力交叉研究
+
+本轮继续围绕“Open Canvas 给 LibTV 后续 UI/UX 复刻的启发”推进，并读取用户指定的 LibTV Seedance 2.5 功能调研文档及当前仓库的原站复核记录：
+
+- 新增 `LIBTV_SEEDANCE_CROSSWALK.md`，逐项对照 Seedance 2.5 生成、片段重拍、Auto Link、超长视频和逐帧拉片；
+- 明确 Open Canvas 的 video history/index、引用分桶、descriptor、pending connection、graph transaction 和 run/save 状态，分别如何启发 LibTV 的视频版本、素材职责、过程图和反馈设计；
+- 明确当前 clone 已有的 `VideoGenerationPanel`、`ShotBreakdownNode`、长视频过程图和 Auto Link 合同不能被 Open Canvas 五类节点模型替换；
+- 新增 `LIBTV-SEEDANCE-OC-01..04` 后续取证批次，分别追踪输出版本、引用投影、长视频局部修改和拉片候选生命周期；
+- 保持 `src/`、FrameOS、upstream submodule 和其他开发者 WIP 不变。

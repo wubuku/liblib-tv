@@ -26,8 +26,9 @@
 5. [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)：OC claim ID、证据级别、可证明范围和待验证问题。
 6. [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)：将 Open Canvas 的机制转译为 LibTV 后续 UI/UX 复刻 batch。
 7. [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)：选中、连线、视口、复制、媒体历史、状态和 onboarding 的交互模式目录。
-8. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
-9. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+8. [`LIBTV_SEEDANCE_CROSSWALK.md`](LIBTV_SEEDANCE_CROSSWALK.md)：将 Open Canvas 交互启发与当前 LibTV Seedance 2.5 五条能力链逐项对照。
+9. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
+10. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
 ## 当前结论摘要
 

@@ -22,6 +22,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
 
+针对用户指定的 LibTV Seedance 2.5 近期亮点，逐项对照“LibTV 当前有什么 / Open Canvas 能启发什么 / clone 不能直接搬什么”的交叉报告见 [`LIBTV_SEEDANCE_CROSSWALK.md`](LIBTV_SEEDANCE_CROSSWALK.md)。
+
 ## 0.1 研究成熟度
 
 | 主题 | 本轮覆盖度 | 置信度 | 边界 |
