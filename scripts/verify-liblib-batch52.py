@@ -25,7 +25,9 @@ ACTION_CONTRACT = [
     ("image-toolbar-light", "打光", 62, False),
     ("image-toolbar-nine-grid", "九宫格", 91, False),
     ("image-editor-primary-tool-trigger", "高清", 78, False),
-    ("image-toolbar-interactive-edit", "元素编辑", 88, True),
+    # Batch 54 promoted this entry from a bounded placeholder to the
+    # source-backed empty element-edit replacement state.
+    ("image-toolbar-interactive-edit", "元素编辑", 88, False),
     ("image-toolbar-layer-separation", "图层分离", 88, True),
     ("image-toolbar-grid-split", "宫格切分", 104, False),
     ("image-toolbar-annotate", "标注", 32, False),

@@ -99,18 +99,24 @@ fallback 验证生命周期，不通过产品 clamp 改变几何。
 
 ## 5. 回归与静态检查
 
-本批 closeout 预定并记录以下门禁：
+本批 closeout 已实际通过以下门禁。Batch 52 verifier 在回归时发现其旧的
+`元素编辑=disabled` 断言已被本批实现取代，已将该断言更新为当前可进入的
+空态入口；`图层分离`、`旋转`、`下载` 仍保持 disabled。
 
 ```text
-python3 scripts/verify-liblib-batch54.py
-python3 scripts/verify-liblib-batch53.py
-python3 scripts/verify-liblib-batch52.py
-python3 scripts/verify-liblib-batch10.py
-python3 scripts/verify-liblib-batch11.py
-npm run check
-python3 scripts/verify-docs.py
-git diff --check
+PASS python3 scripts/verify-liblib-batch54.py
+PASS python3 scripts/verify-liblib-batch53.py
+PASS python3 scripts/verify-liblib-batch52.py
+PASS python3 scripts/verify-liblib-batch10.py
+PASS python3 scripts/verify-liblib-batch11.py
+PASS npm run check
+PASS python3 scripts/verify-docs.py
+PASS git diff --check
 ```
+
+`npm run check` 保留 9 个既有 lint warnings、0 errors；typecheck 和
+production build 均通过。回归脚本曾重写历史视觉产物，已在提交前恢复，
+因此本批没有把旧截图或 Batch 52 runtime audit 改成新的证据。
 
 Batch 53/52/10/11 仍分别保护其自身合同；历史 Batch 10 的 AutoLink 断言
 不被解释成当前 source AutoLink parity。
@@ -146,4 +152,5 @@ Batch 53/52/10/11 仍分别保护其自身合同；历史 Batch 10 的 AutoLink 
 | `7b84010` | Batch 54 计划、源站证据和组件规格 | 已 push |
 | `b593c6b` | 元素编辑空态实现 | 已 push |
 | `834a637` | 专项 verifier、runtime audit、截图和验证修复 | 已 push |
-| 本 closeout commit | 实施记录、截图台账、全局索引和回归结果 | 待提交 |
+| `4a43bde` | 实施记录、截图台账和全局索引 | 已 push |
+| 后续 checkpoint | Batch 52 断言迁移和实际回归结果 | 待提交 |
