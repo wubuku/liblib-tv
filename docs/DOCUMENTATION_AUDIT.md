@@ -29,7 +29,7 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-48 的目录记录 | Batch 47 已在 `b1e6212` 完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环 |
+| Batch 研究目录 | 已有 Batch 3-49 的目录记录 | Batch 47 已在 `b1e6212` 完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环；Batch 49 仍是 parallel WIP |
 | LibTV verifier | 有 Batch 4-33、35-48 的专项脚本 | Batch 34 是 research-only；Batch 48 已有 focused verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
@@ -91,6 +91,10 @@ LibTV 生产持久化。
 
 Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone 快照负责；它们不能覆盖当前 LibTV `1092.5px` 图片工具条、`10 + 24 * zoom` 顶部定位或 structured AutoLink 合同。
 
+### 4.5 Batch 49 保持 parallel WIP
+
+Batch 49 的导演台视口坐标控件已有计划、上游考古、source evidence、组件 spec 和 implementation WIP，但当前缺少 `SCREENSHOT_ANALYSIS.md` 与稳定 verifier。因此它只进入研究索引，不进入 `SCRIPT_RECORDED_PASS`、serial regression 或当前稳定 clone 基线；后续只读链接并等待 owner closeout。
+
 ## 5. 后续文档 backlog
 
 | 优先级 | 工作 | 价值 | 前置条件 |
@@ -125,6 +129,8 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 2026-08-27 继续补齐研究执行的可重复性与替换边界：[`LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md) 统一登记 fixture 身份、构造、reset、storage 和副作用；[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md) 把共享源站限制为版本化只读复核；[`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](research/LIBTV_VERIFIER_REPLACEMENT_MAP.md) 把历史断言和 current-source replacement 拆成双轨。随后将 fixture/reset/source-write/replacement 主张登记进 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)，并将 DEC-021 至 DEC-023 登记进 [`DECISION_REGISTER.md`](DECISION_REGISTER.md)。本轮只做文档同步，没有修改 `src/`、verifier、截图或上游 submodule。
 
+同日发现 Batch 49 已在共享工作区启动。正式入口仅补充其 `PARALLEL_WIP` 链接和停止条件，不修改其计划、实现、证据或截图；在截图台账和稳定 verifier 完成前，官方文档检查的缺失链接保持为已登记的并行 WIP 阻塞。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -134,4 +140,5 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
 4. 文档链接检查通过；
 5. 新增 fixture、source freshness、verifier replacement 文档已进入生命周期登记，并能从正式索引反查；
-6. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。
+6. Batch 49 的 parallel WIP、截图台账阻塞和稳定范围排除已明确记录；
+7. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。

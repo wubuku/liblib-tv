@@ -49,6 +49,7 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | Batch 46 | Director camera screenshot gallery and bulk return | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-46 serial regression 已通过；仍是有界 clone 合同 |
 | Batch 47 | Director model-library categories, proxy insertion and responsive panel | `SCRIPT_RECORDED_PASS` | focused Playwright 与 Batch 35-47 serial regression 已通过；模型/环境真实资产仍明确不在合同内 |
 | Batch 48 | Director local model import, persistence, refresh, re-add and delete cleanup | `SCRIPT_RECORDED_PASS` | focused Playwright 已通过；只验证 clone-owned browser-local descriptors 和 proxy objects，不证明真实 FBX/OBJ loading 或 LibTV persistence |
+| Batch 49 | Director viewport native coordinate gizmo | `PARALLEL_WIP` | 已有计划、上游考古、source evidence、spec 和 implementation WIP；缺少 `SCREENSHOT_ANALYSIS.md`/稳定 verifier，不纳入 serial regression |
 
 ## 3. 当前源站合同覆盖
 
