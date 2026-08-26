@@ -18,6 +18,7 @@
 | `LEGACY` | 遗留或当前未使用的组件，不应作为新功能入口。 |
 | `DEBUG_ONLY` | 仅用于 clone 调试，不是源站功能合同。 |
 | `PARALLEL_WIP` | 相关批次或实现可能由其他开发者并行推进；本表只引用，不覆盖其 WIP。 |
+| `OUT_OF_SCOPE` | 属于另一条 route/store 或当前原型明确不覆盖的能力。 |
 
 “有合同”不等于“已经达到源站像素级一致”。合同仍需区分源站事实、证据支持的推断和 clone-only 决策，并以 [`TRACEABILITY_MATRIX.md`](../TRACEABILITY_MATRIX.md) 与 [`VERIFICATION_LEDGER.md`](../VERIFICATION_LEDGER.md) 为验证状态入口。
 
@@ -42,7 +43,7 @@
 | `video-clip` / `VideoClipNode` | `src/components/nodes/VideoClipNode.tsx` | [`VideoClipNode.spec.md`](VideoClipNode.spec.md)、Batch 25 workflow | Batch 25 | `SPEC_COMPLETE` | selected overlay `VideoClipEditPanel` 作为同一工作流阅读。 |
 | `audio` / `AudioNode` | `src/components/nodes/AudioNode.tsx` | [`AudioNode.spec.md`](AudioNode.spec.md)、Batch 28 audio split | Batch 28 | `SPEC_COMPLETE` | 输出命名、metadata、source edge 和 atomic history 是一个合同。 |
 | `long-video-process` / `LongVideoProcessNode` | `src/components/nodes/LongVideoProcessNode.tsx` | [`LongVideoProcessNode.spec.md`](LongVideoProcessNode.spec.md)、Batch 33 | Batch 33 | `SPEC_COMPLETE` | 这是 process graph 的 stage renderer，不是后端任务状态。 |
-| `default` / `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | [`DeletableEdge.spec.md`](DeletableEdge.spec.md)、`AGENTS.md` edge rule | Batch 4-33、35-44 | `SPEC_COMPLETE` | 不改变 hover-flow effect，除非重新取得源站证据。 |
+| `default` / `DeletableEdge` | `src/components/nodes/DeletableEdge.tsx` | [`DeletableEdge.spec.md`](DeletableEdge.spec.md)、`AGENTS.md` edge rule | Batch 4-33、35-45 | `SPEC_COMPLETE` | 不改变 hover-flow effect，除非重新取得源站证据。 |
 
 ## 3. LibTV 面板与对话框
 
@@ -51,10 +52,10 @@
 | `AddNodePanel` | `src/components/AddNodePanel.tsx` | [`AddNodePanel.spec.md`](AddNodePanel.spec.md)、Batch 15 | Batch 15 | `SPEC_COMPLETE` | 菜单项、素材子菜单和 upload/history feedback 分开维护。 |
 | `CanvasTabDropdown` | `src/components/CanvasTabDropdown.tsx` | [`CanvasTabDropdown.spec.md`](CanvasTabDropdown.spec.md)、`BEHAVIORS.md` | Batch 16/11 lifecycle | `SPEC_COMPLETE` | 导航动作的 close cleanup 是合同的一部分。 |
 | `AssetManagerPanel` | `src/components/AssetManagerPanel.tsx` | [`AssetManagerPanel.spec.md`](AssetManagerPanel.spec.md)、Batch 1 panels | Batch 1/资产抽屉 records | `SPEC_COMPLETE` | canvas/assets tab、树和空态要作为一个状态机阅读。 |
-| `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | Batch 1 `BATCH_1_PANELS.md`、`BEHAVIORS.md` | Batch 1 panels | `BATCH_CONTRACT` | 当前没有独立 spec；若继续增加工具类别，先补合同。 |
+| `ToolboxPanel` | `src/components/ToolboxPanel.tsx` | [`ToolboxPanel.spec.md`](ToolboxPanel.spec.md)、Batch 1 `BATCH_1_PANELS.md` | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | 合同明确 source geometry、local used state 和无真实 preset transaction 的边界。 |
 | `MaterialLibraryPanel` | `src/components/MaterialLibraryPanel.tsx` | Batch 1 `BATCH_1_PANELS.md`、`AddNodePanel.spec.md` | Batch 1 panels | `COVERED_BY_PARENT` | 素材入口由 AddNodePanel/底部入口共同覆盖。 |
-| `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | Batch 1 `BATCH_1_PANELS.md`、`BEHAVIORS.md` | Batch 1 panels | `BATCH_CONTRACT` | 角色详情、轮播和“应用到画布”若成为后续重点，应补独立 spec。 |
-| `HistoryPanel` | `src/components/HistoryPanel.tsx` | Batch 1 `BATCH_1_PANELS.md`、`canvasStore` history 说明 | Batch 1 panels | `BATCH_CONTRACT` | 批选/收藏/结果操作若接入真实历史语义，应补合同。 |
+| `CharacterLibraryPanel` | `src/components/CharacterLibraryPanel.tsx` | [`CharacterLibraryPanel.spec.md`](CharacterLibraryPanel.spec.md)、Batch 1 `BATCH_1_PANELS.md` | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | source identity/filter 与 clone 普通 image-node handoff 已显式分层。 |
+| `HistoryPanel` | `src/components/HistoryPanel.tsx` | [`HistoryPanel.spec.md`](HistoryPanel.spec.md)、Batch 1 `BATCH_1_PANELS.md` | Batch 1 screenshot + Batch 11 lifecycle | `SPEC_COMPLETE` | 资产历史与 graph undo history 明确分离；真实查看/使用/下载仍未实现。 |
 | `ImageToolbar` | `src/components/ImageToolbar.tsx` | `ImageNode.spec.md`、[`LibTVOverlayPositioning.contract.md`](LibTVOverlayPositioning.contract.md)、[`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md) | image rows in `VERIFICATION_LEDGER.md` | `COVERED_BY_PARENT` | 当前源站动作集合为 `1092.5x49` 证据；不得按旧 `900.5px` 截图扩展动作。 |
 | `ImageEditPanel` | `src/components/ImageEditPanel.tsx` | [`ImageEditPanel.spec.md`](ImageEditPanel.spec.md)、`LibTVAutoLink.contract.md` | overlay/AutoLink contract-only | `SPEC_COMPLETE` | 上下锚点、inverse scale、mention identity 必须一起审查。 |
 | `VideoGenerationPanel` | `src/components/VideoGenerationPanel.tsx` | [`VideoGenerationPanel.spec.md`](VideoGenerationPanel.spec.md)、Batch 21/22 | Batch 21/22 | `SPEC_COMPLETE` | Seedance 数字是 sampled source fact，不是 provider API contract。 |
@@ -69,25 +70,26 @@
 | `CameraMovementDialog` | `src/components/CameraMovementDialog.tsx` | [`CameraMovementDialog.spec.md`](CameraMovementDialog.spec.md)、Batch 21、Director preset contract | Batch 21、Batch 44 | `SPEC_COMPLETE` | 普通生成参数与 Director preset motion 是两个边界。 |
 | `MainEntryPanels` | `src/components/*` entry lifecycle | [`MainEntryPanels.spec.md`](MainEntryPanels.spec.md)、Batch 11 overlay lifecycle | Batch 11 | `SPEC_COMPLETE` | 入口互斥、Escape、outside click 是共享生命周期。 |
 | `KeyboardShortcutsDialog` | `src/components/KeyboardShortcutsDialog.tsx` | `BottomToolbar.spec.md`、`BEHAVIORS.md` | Batch 1 panels | `BATCH_CONTRACT` | 当前没有独立 spec；若 shortcut 影响状态机再单独建合同。 |
-| `SmartMattingPanel` | `src/components/SmartMattingPanel.tsx` | Batch 30 `SMART_MATTING_WORKFLOW.spec.md` | Batch 30 | `BATCH_CONTRACT` | 当前证据以工作流合同为准，尚无组件级独立入口。 |
+| `SmartMattingPanel` | `src/components/SmartMattingPanel.tsx` | [`SmartMattingPanel.spec.md`](SmartMattingPanel.spec.md)、Batch 30 `SMART_MATTING_WORKFLOW.spec.md` | Batch 30 | `SPEC_COMPLETE` | panel ownership、measured-width anchor、submit state 与 store transaction 已分层。 |
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-45 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45 由并行开发者推进，本表不替代其自身的实施记录。
+Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-45 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45 已形成有界 group/crowd 合同和专项 verifier；Batch 46 是当前并行 WIP，本表不替代其自身记录。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
 | `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Batch 35 `DIRECTOR_WORKSPACE.spec.md`、Batch 40/41/45 records | `DOMAIN_CONTRACT` | 改生命周期、capture return 或响应式 shell 时读最新 Director maturity assessment。 |
 | `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone guard 必须联动。 |
-| `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Batch 35 workspace、Batch 43/45 source evidence | `DOMAIN_CONTRACT` | selection 与 group/crowd tree 的语义随 Batch 45 WIP 变化。 |
+| `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Batch 35 workspace、Batch 43/45 source evidence | `DOMAIN_CONTRACT` | selection 与 group/crowd tree 以 Batch 45 有界合同为准。 |
 | `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Batch 35 workspace、Batch 42 pose、Batch 43 follow、Batch 44 camera | `DOMAIN_CONTRACT` | 角色、相机、路径、capture 控件按 selection route 维护。 |
 | `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Batch 36 timeline、37 motion path、42 pose、44 camera、45 groups | `DOMAIN_CONTRACT` | 新轨道先扩展 typed track union，再更新播放/采样/验证合同。 |
 | `DirectorCurveEditor` | `src/components/director/DirectorCurveEditor.tsx` | Batch 37 `DIRECTOR_MOTION_PATH.spec.md` | `DOMAIN_CONTRACT` | 只处理 speed curve；不要与 timeline keyframe 语义混成一类。 |
-| `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Batch 42 `DIRECTOR_CHARACTER_POSE.spec.md`、Batch 45 groups | `DOMAIN_CONTRACT` | rig 与 crowd/group rendering 以最新并行 WIP 为准。 |
+| `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Batch 42 `DIRECTOR_CHARACTER_POSE.spec.md`、Batch 45 groups | `DOMAIN_CONTRACT` | rig 与 crowd/group rendering 以 Batch 42/45 领域合同为准。 |
 | `DirectorExportPanel` | `src/components/director/DirectorExportPanel.tsx` | Batch 40 `DIRECTOR_ANIMATION_EXPORT.spec.md` | `DOMAIN_CONTRACT` | 修改导出字段必须同时读 `videoExport` 类型和 capture return。 |
 | `DirectorPhoneVcamPanel` | `src/components/director/DirectorPhoneVcamPanel.tsx` | Batch 41 `DIRECTOR_PHONE_VCAM.spec.md` | `DOMAIN_CONTRACT` | 保持 phone preview 与 viewport/path conflict guard。 |
 | `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-45 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
-| Director Batch 45 group/crowd slice | `Director*` + `directorStore` | Batch 45 `DIRECTOR_GROUPS.spec.md`、source evidence | `PARALLEL_WIP` | 不在本矩阵内重新定义其完成度；等批次稳定后再纳入正式 verifier 入口。 |
+| Director Batch 45 group/crowd slice | `Director*` + `directorStore` | Batch 45 `DIRECTOR_GROUPS.spec.md`、source evidence | `DOMAIN_CONTRACT` | 专项 verifier 与 serial regression 已记录通过；仍只是有界 clone 合同。 |
+| Director Batch 46 capture gallery slice | `Director*` + `directorStore` | Batch 46 evidence/plan | `PARALLEL_WIP` | 不覆盖并行开发者的 implementation、verifier 或截图；稳定后再登记。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 
@@ -102,10 +104,10 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-45 
 
 按“会阻塞后续复刻决策”的优先级排序，而不是按文件数量排序：
 
+本轮已补齐 `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel` 和 `SmartMattingPanel` 的独立合同。合同将 source fact、clone fact、clone decision 和未验证业务副作用分开，因此不再列为待补缺口。
+
 | 优先级 | 缺口 | 影响 | 建议触发条件 |
 |---|---|---|---|
-| P1 | `ToolboxPanel`、`CharacterLibraryPanel`、`HistoryPanel` 的独立交互合同 | 当前只能依赖 Batch 1 总记录；后续若扩展面板状态，容易把 clone-only mock 当源站事实 | 开始修改其筛选、排序、详情或 graph handoff 时补 spec。 |
-| P1 | `SmartMattingPanel` 的组件级状态合同 | Batch 30 已有工作流合同，但组件生命周期和 node overlay 入口仍分散 | 再次修改智能抠图 panel 或与其他图片工具合并时补 spec。 |
 | P1 | `ScriptHeader` / `StoryboardBoard` 的独立状态边界 | 当前主要由全局行为和页面拓扑覆盖，agent 不容易判断 selection、follow 和 storyboard card 的责任 | 改 script follow、storyboard mode 或 active canvas 时补 spec。 |
 | P2 | `KeyboardShortcutsDialog` 的源站完整采样 | 当前已有入口与布局记录，但快捷键集合不是当前高价值复刻主线 | 需要实现或调整快捷键时补合同。 |
 | P2 | Director 组件级拆分合同 | 目前领域合同已经足够支持连续批次；逐文件拆分会重复大量 domain contract | Director domain 稳定、开始多人并行修改同一组件时再拆。 |

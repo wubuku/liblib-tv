@@ -27,6 +27,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   legacy helpers and parallel WIP.
 - Added a documentation lifecycle and supersession register, retaining dated
   source snapshots and Batch contracts while making current authority explicit.
+- Added dedicated Toolbox, Character Library, History and Smart Matting component
+  contracts that separate source evidence from local mock behavior and graph
+  side effects.
 
 ### Fixed
 - Centralized LibTV top-level overlay lifecycle and added Batch 11 Playwright coverage for mutual exclusion, Escape cleanup and storyboard Agent transitions
