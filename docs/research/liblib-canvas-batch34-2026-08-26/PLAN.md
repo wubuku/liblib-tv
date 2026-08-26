@@ -84,7 +84,7 @@ docs/research/liblib-canvas-batch34-2026-08-26/
 - [x] 子模块固定版本和许可证核对
 - [x] 代码考古与 UX 借鉴文档
 - [x] 适配矩阵、验证和实施结果
-- [ ] Batch 34 commit/push
+- [x] Batch 34 commit/push: `e1d20ef` pushed to `origin/master`
 
 Parent verification is complete:
 

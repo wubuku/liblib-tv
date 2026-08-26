@@ -51,6 +51,7 @@ README 或源码中的能力直接写成 LibTV 原站事实。
 - `npm test` passed `304/312`; the 8 failures are recorded in
   [`SOURCE_EVIDENCE.md`](SOURCE_EVIDENCE.md).
 - Parent `npm run docs:check`, `git diff --check` and `npm run check` passed.
+- Batch 34 research commit `e1d20ef` is pushed to `origin/master`.
 - The implementation recommendation remains a LibTV-specific 2D director
   workspace first: shot tree, selection-driven inspector, framed preview and
   capture history. Full 3D staging is a separate architecture decision.
