@@ -24,7 +24,7 @@ export function ImageElementEditSurface({
     >
       <div
         data-image-element-edit-stage
-        data-image-element-edit-tool={activeTool}
+        data-image-element-edit-active-tool={activeTool}
         className="nodrag nowheel nopan pointer-events-auto absolute left-0 top-0 w-full overflow-hidden rounded-[3px] border border-white/20"
         style={{ height: `calc(100% - ${extraHeight}px)` }}
         onPointerDown={(event) => event.stopPropagation()}
@@ -46,7 +46,7 @@ export function ImageElementEditSurface({
 
       <div
         data-image-element-edit-record-panel
-        className="pointer-events-auto absolute left-1/2 top-[calc(100%_-_var(--element-edit-extra-height))] w-[400px] origin-top rounded-xl border border-[#363636] bg-[#262626] shadow-[0_12px_32px_rgba(0,0,0,0.42)]"
+        className="pointer-events-auto absolute left-1/2 top-[calc(100%_-_var(--element-edit-extra-height))] h-[50px] w-[400px] origin-top rounded-xl border border-[#363636] bg-[#262626] shadow-[0_12px_32px_rgba(0,0,0,0.42)]"
         style={{
           "--element-edit-extra-height": `${extraHeight}px`,
           marginTop: `${screenGap}px`,
@@ -57,7 +57,7 @@ export function ImageElementEditSurface({
       >
         <div
           data-image-element-edit-empty
-          className="flex h-[50px] items-center justify-center text-[13px] text-[#8e8e8e]"
+          className="flex h-full items-center justify-center text-[13px] text-[#8e8e8e]"
         >
           编辑内容待添加
         </div>
@@ -74,4 +74,3 @@ export function ImageElementEditSurface({
     </div>
   );
 }
-

@@ -51,7 +51,7 @@ standard toolbar + standard generation panel
   [data-image-element-edit-undo]
 
 [data-image-element-edit-mode]
-  [data-image-element-edit-stage]
+  [data-image-element-edit-stage][data-image-element-edit-active-tool]
     [data-image-element-edit-mask]
     [data-image-element-edit-guide]
   [data-image-element-edit-record-panel]
@@ -102,4 +102,3 @@ Adjacent regressions:
 - Batch 53: annotate replacement and active-image shortcut ownership;
 - Batch 52: current standard toolbar and Preview;
 - Batch 10/11: historical image panel and top-level overlay lifecycle.
-
