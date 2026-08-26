@@ -30,6 +30,7 @@
 ```text
 Batch 4-33
 Batch 35-50
+Batch 52
 ```
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
@@ -52,14 +53,16 @@ Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要�
 | Batch 49 | Director viewport native coordinate gizmo | `SCRIPT_RECORDED_PASS` | focused Playwright、截图台账、实施记录和 clone-owned 成熟度已闭环；仍不代表 LibTV source-exact renderer/CSS |
 | Batch 50 | Director workspace collapse and keyboard boundary | `SCRIPT_RECORDED_PASS` | focused Playwright、四态截图台账、实施记录和 clone-owned 成熟度已闭环；LibTV Director shell exact DOM/CSS、完整 focus trap 和 source “全屏”语义仍未知 |
 | Batch 51 | ordinary canvas image toolbar zoom-aware top host geometry | `SCRIPT_RECORDED_PASS` | focused Playwright、结构化 runtime audit 和截图台账已闭环；仅完成 clone-owned geometry，source current action set 和 active image tools 仍未复刻 |
+| Batch 52 | current image toolbar action set and page-level read-only Preview | `SCRIPT_RECORDED_PASS` | focused Playwright、desktop/mobile runtime audit、一次性截图台账、Batch 10/11 adjacent regression 和 closeout 文档已闭环；高风险 active tools 仍是独立后续批次 |
 
 ## 3. 当前源站合同覆盖
 
 | 能力/合同 | 当前状态 | 已有证据 | 缺口/下一步 |
 |---|---|---|---|
-| 图片标准双浮层 | `SOURCE_CONTRACT_ONLY` + `LOCAL_FIXTURE`（Batch 51 geometry） | [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md)、[`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)、Batch 51 `runtime-audit.json` | 几何 slice 已通过；仍需 current action set、active tool replacement 和 source freshness |
-| 当前顶部工具条 | `SOURCE_CONTRACT_ONLY` + `LOCAL_FIXTURE`（geometry） | [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)、[`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 51 | clone 几何已映射；仍需更新 `1092.5×49` 动作集合和版本化断言 |
-| active image tool | `SOURCE_CONTRACT_ONLY` | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | 预览/空标注可低风险，旋转/图层分离需 fixture |
+| 图片标准双浮层 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 51/52） | [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md)、[`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)、Batch 51/52 `runtime-audit.json` | standard toolbar/panel geometry and current action shell are covered; active-tool replacement remains separate |
+| 当前顶部工具条 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 52） | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 52 | current `1092.5x49`, 13 actions, order, width, disabled boundary and natural clipping are covered |
+| image Preview | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 52） | [`ImagePreviewOverlay.spec.md`](components/ImagePreviewOverlay.spec.md)、Batch 52 `runtime-audit.json` | page-level open/close/Escape, media ratio, watermark/close geometry and graph immutability are covered |
+| active image tool | `SOURCE_CONTRACT_ONLY` + `LOCAL_FIXTURE`（Preview only） | [`LIBTV_IMAGE_ACTION_MATRIX.md`](open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md)、[`LIBTV_UI_STATE_HIERARCHY.md`](liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | Preview is closed; empty annotate is next; rotate/layer separation/download still need dedicated fixture |
 | Auto Link | `SOURCE_CONTRACT_ONLY` | [`LIBTV_AUTOLINK_STATE_MATRIX.md`](open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)、[`LibTVAutoLink.contract.md`](components/LibTVAutoLink.contract.md) | 需要 editor token、竞态和 graph/reference/mention 事务回归 |
 | Seedance 普通/超长参数 | `SOURCE_CONTRACT_ONLY` + `CLONE_FIXTURE_ONLY` | [`LIVE_AUDIT.md`](liblib-seedance-2.5-2026-08-25/LIVE_AUDIT.md)、Batch 21/22 | 需区分源站采样值、clone 本地参数和真实 provider |
 | 片段重拍 | `BLOCKED_BY_FIXTURE` | bundle 文案、文章证据、Batch 23 clone fixture | 需要 disposable ready-video source fixture 和时间范围/版本合同 |

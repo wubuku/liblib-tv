@@ -101,7 +101,7 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 
 ### 4.2 2026-08-26 图片工具条与双浮层基线校正
 
-当前源站复测后，本文第 1 节的图片工具条实现不能继续被理解为“当前源站的完整复刻”：
+当前源站复测后，本文第 1 节的图片工具条实现不能继续被理解为“当前源站的完整复刻”。Batch 52 已补齐当前 action shell 和 Preview，但 active tool 仍未全部实现：
 
 - 2026-08-25 clone 快照使用 7 个文字动作和 `900.5x49` 固定宽度；2026-08-26 当前源站使用 9 个文字动作加 4 个图标动作，外层为 content-sized `1092.5x49`，新增 `元素编辑` 和 `图层分离`；
 - 源站标准图片态的顶部工具条和下方编辑面板都以 node center 为 anchor，但顶部 gap 使用 `10 + 24 * zoom`，下方面板 gap 使用 `16 * zoom`；clone 的 `NodeToolbar offset=16` 仍只是旧实现值；
@@ -113,7 +113,10 @@ React Flow 的 `onNodesChange` 原先使用 render 闭包里的旧 `nodes` 快�
 ## 5. 文件索引
 
 - Store 与页面：`src/store/canvasStore.ts`, `src/app/page.tsx`
-- 图片：`src/components/nodes/ImageNode.tsx`, `src/components/ImageToolbar.tsx`, `src/components/ImageEditPanel.tsx`
+- 图片：`src/components/nodes/ImageNode.tsx`, `src/components/ImageToolbar.tsx`, `src/components/ImageEditPanel.tsx`, `src/components/ImagePreviewOverlay.tsx`
 - 视频：`src/components/nodes/VideoNode.tsx`, `src/components/VideoProcessingToolbar.tsx`, `src/components/VideoGenerationPanel.tsx`, `src/components/SegmentReshootPanel.tsx`, `src/components/VideoContinuationSelector.tsx`
 - 专用节点：`src/components/nodes/ShotBreakdownNode.tsx`, `src/components/nodes/ShotBreakdownResultNode.tsx`, `src/components/nodes/VideoClipNode.tsx`, `src/components/VideoClipEditPanel.tsx`
 - 对应组件规格：`docs/research/components/`
+
+Batch 52 的实施、验证和截图账本见
+[`../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md)。

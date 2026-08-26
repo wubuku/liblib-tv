@@ -96,7 +96,7 @@
 | 49 | director viewport native coordinate gizmo | [`liblib-canvas-batch49-2026-08-26/`](liblib-canvas-batch49-2026-08-26/) `SCRIPT_RECORDED_PASS`，clone-owned 有界合同 |
 | 50 | director workspace collapse and keyboard boundary | [`liblib-canvas-batch50-2026-08-26/`](liblib-canvas-batch50-2026-08-26/) `SCRIPT_RECORDED_PASS`，clone-owned 有界合同 |
 | 51 | ordinary canvas image toolbar zoom-aware top host geometry | [`liblib-canvas-batch51-2026-08-26/`](liblib-canvas-batch51-2026-08-26/) `SCRIPT_RECORDED_PASS`，几何 slice；action set 仍待独立 batch |
-| 52 | current image-toolbar action set and page-level read-only preview | [`liblib-canvas-batch52-2026-08-26/`](liblib-canvas-batch52-2026-08-26/) 计划已落档 |
+| 52 | current image-toolbar action set and page-level read-only preview | [`liblib-canvas-batch52-2026-08-26/`](liblib-canvas-batch52-2026-08-26/) `SCRIPT_RECORDED_PASS`，desktop/mobile 与相邻 Batch 10/11 回归已通过 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 

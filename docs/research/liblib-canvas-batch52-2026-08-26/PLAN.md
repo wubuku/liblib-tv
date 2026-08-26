@@ -88,3 +88,8 @@
 2. Batch 54：元素编辑空态；
 3. 下载、旋转、图层分离必须等待各自可验证的副作用边界，不与空态批次捆绑。
 
+## 7. Closeout
+
+本计划已于 2026-08-26 实施完成。结果、回归命令、截图账本、runtime audit
+和提交历史见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)；后续接力前先读
+[`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)，不要重复识别本批截图。

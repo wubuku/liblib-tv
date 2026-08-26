@@ -1,6 +1,6 @@
 # Batch 52：当前图片工具条与只读预览
 
-> 状态：计划已落档（2026-08-26）。本批把标准图片选中态从历史
+> 状态：已完成（2026-08-26）。本批把标准图片选中态从历史
 > `900.5x49` 工具条升级到当前源站的 13 项动作集合，并实现证据完整、
 > 无 graph 副作用的 page-level 图片预览。
 
@@ -20,7 +20,9 @@ single selected image
 - [`SOURCE_EVIDENCE.md`](SOURCE_EVIDENCE.md)：源站事实、clone 差距和证据时序边界；
 - [`../components/ImagePreviewOverlay.spec.md`](../components/ImagePreviewOverlay.spec.md)：
   Preview 的页面层级、几何和生命周期合同；
-- `IMPLEMENTATION.md`：实施后补充代码、验证、截图台账和 commit/push。
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：代码、验证、截图台账和 commit/push；
+- [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：本批截图唯一识图记录；
+- [`runtime-audit.json`](runtime-audit.json)：专项 verifier 的结构化 rect 和状态记录。
 
 ## 本批边界
 
@@ -31,3 +33,12 @@ single selected image
   batch 完成前不得复用 `addDerivedNode` 或伪造远端成功；
 - 不修改视频、FrameOS、Director、Auto Link 或真实 provider。
 
+## 验证结果
+
+- `scripts/verify-liblib-batch52.py`：desktop/mobile 通过；
+- `scripts/verify-liblib-batch10.py`、`scripts/verify-liblib-batch11.py`：
+  相邻历史生命周期回归通过；
+- `npx tsc --noEmit`、目标文件 ESLint、`git diff --check` 和
+  `py_compile`：通过；
+- 代码与运行证据已在 `a17b590` 提交并 push；文档 closeout 待本轮文档检查后
+  单独提交。

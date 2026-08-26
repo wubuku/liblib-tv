@@ -222,7 +222,7 @@ camera、Object3D refs 和 geometry 属于 R3F 组件运行时，不能写入 Zu
 LibTV 节点各自直接实现卡片、Handle 和专属交互，没有统一 NodeShell：
 
 - `ScriptNode`：剧本文本
-- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；clone 顶部工具条仍固定 `900.5x49`，使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，而 2026-08-26 当前源站五图片节点已统一为内容自适应的 `1092.5x49`、13 动作；底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
+- `ImageNode`：按原站尺寸渲染图片和悬浮元数据；clone 顶部工具条使用 React Flow `NodeToolbar` 锚定节点并保持屏幕尺寸，Batch 52 已对齐当前源站内容自适应的 `1092.5x49`、13 动作；顶部 host 继续使用 `10 + 24 * zoom`，底部编辑面板挂在节点内并用 `1 / zoom` 反向缩放。预览动作打开 page-level 只读 overlay，关闭后恢复同一 selection/graph；标注、元素编辑、旋转、图层分离和下载暂以独立 disabled 入口保留。五个初始图片节点保留空白、提示词、带参考图等源站状态；有直接截图证据的“全景”会创建连接到源图片的空 `720°全景图` 节点和专用单参考图 panel；视频帧结果继续复用普通图片 renderer 和上下浮层
 - `TextNode`：文本
 - `VideoNode`：既保留当前项目中的失败视频，也支持就绪视频、Seedance 2.5 生成面板、处理工具条、片段重拍、智能续写、智能/框选去字幕、音视频分离、首/尾/当前帧截取、智能抠像、主体编辑、深度动作捕捉和长视频过程图提交
 - `ScriptExecutionNode`：保留历史 type id 的 `3D导演台` 入口；CTA 进入独立
@@ -260,7 +260,7 @@ AutoLink 也不能继续按 clone 当前的固定候选弹窗理解。当前源�
 
 双浮层的 zoom 合同也需要拆开理解：当前源站下方 panel gap 在直接测得的 28%/34%/41%/50% 分别是 `16 * zoom`，顶部 toolbar 仍保持 `1092.5x49` 和 node-center；生产 chunk 已确认其 host top 是 `nodeTop - 24 * zoom - 10`，再用 `translateY(-100%)` 抬起自身高度，因此 gap 约为 `16.794/18.152/19.778/22px`。100% 离屏时还会触发可见节点 DOM 卸载。clone 的 `NodeToolbar offset=16` 和单档回归不能代表全部源站行为，详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
 
-图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。元素编辑空态也已确认会替换标准双浮层并提供 point/box/brush authoring surface；旋转入口在当前共享 fixture 中则实际触发了“旋转与镜像”派生节点并由一次撤销恢复，因此必须按可能发生 graph mutation 的高风险动作处理。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
+图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。Batch 52 已完成只读 Preview 的 page-level 生命周期；元素编辑空态也已确认会替换标准双浮层并提供 point/box/brush authoring surface；旋转入口在当前共享 fixture 中则实际触发了“旋转与镜像”派生节点并由一次撤销恢复，因此必须按可能发生 graph mutation 的高风险动作处理。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
 
 Seedance 视频参数不能压缩成普通下拉列表。原站普通和超长参数分别是 `341x445`、`341x397` 的高 dialog；比例使用 5+2 glyph cards，清晰度、音频和数量使用整宽 segmented controls，时长带当前值框。超长模式切换到 `30-300s`、移除数量并保留时长说明；`300s` 对应的 `14700` 只是本地原型中的 source-shaped 积分显示。
 
@@ -567,14 +567,14 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - 整理预览 `929x874`：28% 视口；关键节点位置在 `3px` 容差内，左下确认卡约 `168x88`
 - 整理预览 `1440x900` / `390x844`：约 46% / 10%，无页面横向溢出
 - 视频组：原站 `.parent` class 与相对 `(62,62)` 已复刻；parent/child drag、group/child copy、级联删除和 history 通过
-- 选中浮层：图片 node/toolbar/panel 中心误差 `0px`，toolbar `900.5x49`、gap `16px`；图片/视频 panel `660x274`、gap `4.541px = 16 * 0.283816`
+- 选中浮层：Batch 52 图片 node/toolbar/panel 中心误差保持 `0px`，当前 toolbar `1092.5x49`、top gap `10 + 24 * zoom`；图片 panel `660px`、bottom gap `16 * zoom`。Batch 10/11 仍保护历史面板和 overlay lifecycle 合同
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
 - minimap：开关后在缩略图按钮上方渲染 `150x110`，资产抽屉打开时与 canvas 同步右移，390px 下避让双工具条；zoom 菜单按原站提供放大/缩小/适合屏幕/50/100/800
 - 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`；显示项目/当前画布上下文、10 项 source-order 层级树和本地筛选/搜索
 - Agent：`340px` 右抽屉；分镜模式自动打开，并将当前画布渲染为关键元素栏与图片/视频故事板列
 - 分镜模式：`画布 2` 初始状态为 5 个图片卡、1 个失败视频卡、1 个脚本关键元素；卡片选择、空画布和 `390x844` 内部滚动通过 Batch 13 验证
 - Agent/share：Agent source-shaped header/2×2 Skill/通知/composer，分享“发布与分享”两项命令和桌面导航避让通过 Batch 14 验证
-- 图片选中态：节点锚定 `900.5x49` 工具条和 `660x274` 编辑面板，包含原站提示词与生成参数
+- 图片选中态：节点锚定当前 `1092.5x49`、13-action 工具条和 `660px` 编辑面板，包含原站提示词与生成参数；Preview 是独立 page-level overlay
 - 六个主入口面板：桌面锚点与原站一致；角色应用可创建可见节点；`390x844` 无检测到的标签溢出
 - 添加、分享、整理保留/还原、整理后 undo/redo、工作台/分镜切换均完成浏览器交互验证
 - `/frameos/canvas/demo` 运行态：7 节点、5 边

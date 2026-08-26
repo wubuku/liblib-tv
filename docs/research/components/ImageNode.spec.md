@@ -44,15 +44,25 @@ Toolbar width is a time-versioned content contract, not a permanent global const
 - the 2026-08-26 source audit measured `1092.5x49` on all five existing image nodes, with 9 text actions and 4 icon-only actions;
 - the current source wrapper uses `w-fit`; `元素编辑` and `图层分离` added `192px` including gaps.
 
-The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. The clone currently remains on the older fixed-width/action baseline; treat this as a documented gap until code changes are authorized. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
+The current source order is `人像质感调节 / 全景 / 多角度 / 打光 / 九宫格 / 高清 / 元素编辑 / 图层分离 / 宫格切分`, followed by annotate, rotate, download and preview icons. Batch 52 now renders this current action shell with a `1092.5x49` host; the five high-risk actions remain visible but disabled until their dedicated state contracts are implemented. See [`../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md`](../liblib-canvas-batch52-2026-08-26/IMPLEMENTATION.md) and [`../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_GEOMETRY_MATRIX.md).
 
-These actions do not share one graph-mutation contract. Preview opens a page overlay; annotate, rotate and element edit enter dedicated tool modes; layer separation owns an asynchronous composition state. Active annotate replaces the standard toolbar, hides the bottom generation panel and overlays a canvas on the selected node. The complete source-state and side-effect matrix is [`../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md).
+These actions do not share one graph-mutation contract. In the clone, Preview opens a page overlay; annotate, rotate and element edit remain disabled placeholders; layer separation and download do not execute side effects. Active annotate is the next authorized slice: it must replace the standard toolbar, hide the bottom generation panel and overlay a canvas on the selected node. The complete source-state and side-effect matrix is [`../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md).
 
 Its horizontal center equals the selected node center. It is not centered in the browser viewport and is not clamped at the viewport edge.
 
 ### Bottom editor
 
 The editor is a child of `ImageNode`, centered on the node and counter-scaled by `1 / zoom`. See `ImageEditPanel.spec.md` for the exact formula and measurements.
+
+### Preview state
+
+Clicking the enabled `预览` action dispatches an `ImagePreviewState` to the
+page-level `uiStore` and mounts `ImagePreviewOverlay` outside the React Flow
+transform layer. The overlay is fixed to the viewport, preserves the source
+media ratio, and closes through its button or Escape without changing the
+selected node, Prompt, graph, viewport or history. See
+[`ImagePreviewOverlay.spec.md`](ImagePreviewOverlay.spec.md) and the Batch 52
+runtime audit.
 
 ## Panorama Derived State
 
@@ -91,15 +101,20 @@ Stable root selector: `[data-video-frame-capture]`.
 ## Required Regressions
 
 - selecting any image shows exactly one top toolbar and one bottom panel
+- the current clone toolbar exposes 13 source-shaped actions in source order;
+  `预览` opens the page-level read-only overlay and the five unimplemented
+  high-risk actions do not create graph mutations
 - entering an active image tool replaces the standard toolbar and hides the bottom generation panel; it does not add a third floating layer
 - clicking empty canvas removes both overlays
 - switching selected image moves both overlays to the new node
 - node drag and viewport pan keep both overlays attached
 - 28%, 53%, and 100% zoom preserve toolbar/panel screen size; toolbar width matches the action set for the selected source baseline
 - mobile clipping follows the original; do not move the overlays to page center to keep them visible
-- `scripts/verify-liblib-batch9.py` remains green
+- `scripts/verify-liblib-batch9.py` remains a historical compatibility check;
+  `scripts/verify-liblib-batch52.py` is the current action-set/Preview check
 - the five initial image nodes preserve their explicit editor height, Prompt, references, top controls and settings matrix
-- `scripts/verify-liblib-batch10.py` remains green
+- `scripts/verify-liblib-batch10.py` remains green as a historical five-state
+  image-panel/AutoLink compatibility check
 - panorama creation preserves placeholder, edge, panel anchor and single-transaction history
 - `scripts/verify-liblib-batch20.py` remains green
 - video frame results preserve metadata, ordinary image overlays and

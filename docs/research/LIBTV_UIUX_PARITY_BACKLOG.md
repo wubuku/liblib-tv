@@ -90,7 +90,7 @@
 | 项 | 当前结论 |
 |---|---|
 | `SOURCE_FACT` | toolbar 以 node screen center 为横向 anchor；host top 为 `nodeTop - 24 * zoom - 10` 后向上平移自身；当前 action set 为 9 个文字动作 + 4 个图标动作，已观察 `1092.5x49`。 |
-| `CLONE_FACT` | Batch 51 后 `ImageToolbar` 使用 `NodeToolbar offset=10 + 24 * zoom`；仍有 7 个文字动作和约 `900.5px` 固定宽；bottom panel 使用节点内 absolute + inverse zoom。 |
+| `CLONE_FACT` | Batch 52 后 `ImageToolbar` 使用 `NodeToolbar offset=10 + 24 * zoom`，当前 clone action shell 为 `1092.5x49`、13 项 source-shaped actions；Preview 已是 page-level read-only overlay；bottom panel 继续使用节点内 absolute + inverse zoom。 |
 | 差距 | top action/order/width/formula 尚未升级；historical Batch 9 断言不能证明当前 source parity。 |
 | 最小 slice | 只做 standard selected image；不顺手实现 active tools、Auto Link 或 backend。 |
 | 验收 | 同 frame 读取 node/toolbar/panel/viewport；多 zoom center/gap；desktop/mobile；自然裁切；空选/多选卸载；graph count 不变。 |
@@ -109,7 +109,7 @@ bottom panel 合同保持 `16 * zoom`。当前 source action set 与 clone
 
 | 子项 | Source state | 最小 clone 目标 | 明确不包含 |
 |---|---|---|---|
-| Preview | page-level read-only overlay；关闭后回到原 selection | open/close/Escape、媒体比例、unchanged graph/selection | 下载、水印、会员逻辑 |
+| Preview | page-level read-only overlay；关闭后回到原 selection | Batch 52 已覆盖 open/close/Escape、媒体比例、watermark/close geometry、unchanged graph/selection、mobile clipping | 多媒体历史切换、下载、水印偏好、会员逻辑 |
 | Annotate empty | dedicated `536x49` toolbar + DPR canvas；standard bottom panel absent | empty enter/Escape/discard，恢复 standard L2 | 绘制保存、远端任务 |
 | Element Edit empty | dedicated toolbar/stage/record panel；standard L2 absent | empty enter/Escape、disabled local history | 有效 record、生成结果 |
 
