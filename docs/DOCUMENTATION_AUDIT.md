@@ -1,6 +1,6 @@
 # 文档体系维护审计
 
-> 审计日期：2026-08-27（在 2026-08-26 初次维护审计上增量复核）
+> 审计日期：2026-08-26（在 2026-08-26 初次维护审计上增量复核）
 > 审计范围：根入口、正式指南、研究索引、验证手册、Batch 目录/脚本和当前 LibTV/Open Canvas 研究入口。
 > 目的：检查文档是否仍准确反映当前仓库，而不是重新识别已有截图或修改业务实现。
 
@@ -29,8 +29,8 @@ AGENTS.md / README.md
 
 | 对象 | 当前观察 | 文档含义 |
 |---|---|---|
-| Batch 研究目录 | 已有 Batch 3-48 的目录记录 | Batch 47 已在 `b1e6212` 完成有界 model-library slice；Batch 48 的 local-import foundation 已提交，完整 workflow 仍是 WIP |
-| LibTV verifier | 有 Batch 4-33、35-47 的专项脚本 | Batch 34 是 research-only；Batch 48 当前没有专项 verifier |
+| Batch 研究目录 | 已有 Batch 3-48 的目录记录 | Batch 47 已在 `b1e6212` 完成有界 model-library slice；Batch 48 已完成 local-import/persistence 有界闭环 |
+| LibTV verifier | 有 Batch 4-33、35-48 的专项脚本 | Batch 34 是 research-only；Batch 48 已有 focused verifier |
 | 默认工程门禁 | `npm run check`、`python3 scripts/verify-docs.py` | 不等于所有 Batch 行为回归都已执行 |
 | 源站研究 | LibTV、FrameOS、Open Canvas 均有独立入口 | 源站事实、上游启发和 clone 决策必须继续分层 |
 | 代码边界 | LibTV/FrameOS route 与 store 独立；后端为 mock | 研究文档不能暗示真实 Provider、上传或持久化已经存在 |
@@ -52,19 +52,19 @@ AGENTS.md / README.md
 | DOC-11 | 组件合同已丰富，但快捷键 help/handler 和 graph action/history 的运行语义仍分散 | 后续复刻容易把帮助文案当 handler，或把不同 graph transaction 压成统一副作用 | 新增 shortcut runtime crosswalk 与 graph transaction catalog，并接入 task map/index |
 | DOC-12 | Batch 11 overlay 设计合同、当前 `uiStore` 状态和节点上下浮层 ownership 分散，且部分字段已无 mount owner | 后续 agent 容易把兼容 state 当产品入口、把 organize/Director/节点浮层并入同一互斥模型，或统一错误的 outside/Escape 策略 | 新增 UI overlay runtime catalog，修正 Behaviors/Page Topology 漂移并接入导航 |
 | DOC-13 | Batch 47 在本轮 overlay 审计期间由并行开发者稳定提交，正式入口仍保留 implementation-pending/WIP 描述 | 新 agent 会漏跑现有 verifier，并误判 Director model-library 成熟度 | 同步正式范围到 `35-47`，保留 Batch 34 research-only 例外和 model asset/license 边界 |
-| DOC-14 | Batch 48 随后建立 research/plan/contract 并提交 local-import foundation，最新并行 WIP 边界再次前移 | 如果只看 foundation commit，会把未完成的 local model workflow 误读为已验证能力 | 登记 Batch 48 为 `PARALLEL_WIP`，不纳入 Harness 稳定范围，不改写其后续源码/批次文件 |
+| DOC-14 | Batch 48 随后建立 research/plan/contract 并提交 local-import foundation，最新并行 WIP 边界再次前移 | 如果只看 foundation commit，会把未完成的 local model workflow 误读为已验证能力 | Batch 48 完成 focused verifier、截图台账、成熟度和回归后升级为 recorded pass；真实 mesh loading 仍不在合同内 |
 | DOC-15 | 首轮 live gap、Seedance gap、verification coverage 和多个 runtime catalog 各自准确，但没有当前全路由优先队列 | agent 会继续按已完成的 2026-08-25 P0/P1 排期，或只从最近 Batch 猜下一项 | 新增 UI/UX parity backlog，以稳定 ID 统一价值、证据、验证准备度、风险、依赖和停止条件 |
 
 ## 3. 本轮已应用的修正
 
-- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-47`；
+- 验证范围统一写成：专项脚本存在于 Batch `4-33` 和 `35-48`；
 - `docs/HARNESS.md` 的批量示例不再跨过不存在的 Batch 34；
 - 根 README、Big Picture、Development 和 Contributing 都链接到完整 Harness，而不是各自维护一份过时清单；
 - Big Picture 的 README/package 身份判断以当前仓库实际内容为准；
 - Big Picture 的详细验证基线更新到 Batch 47，并记录 model-library 的有界通过项；
 - `docs/DOCUMENTATION_PLAN.md` 保留 2026-08-25 的迁移快照，并明确本审计是 2026-08-26 的维护增量；
 - Batch 46/47 在各自专项脚本、实施记录和 serial regression 稳定后被纳入台账；Batch 47 的真实模型/环境资产加载仍不在合同内。
-- Batch 48 已有 local-import foundation，但完整 workflow 仍保持 implementation-pending/无专项 verifier 的 `PARALLEL_WIP`，稳定门禁止于 Batch 47。
+- Batch 48 已完成 local-import workflow、focused verifier、截图台账和成熟度评估；稳定验证范围推进到 Batch 48，真实 mesh loading/远程同步仍是 prototype boundary。
 - 快捷键文案/handler/局部优先级和 graph action/history 副作用已有独立、可发现的运行语义地图。
 - UI overlay 已有从命令反查 state、mount owner、关闭路径、键盘边界、节点 anchor strategy 和未挂载兼容字段的运行时目录。
 
@@ -78,7 +78,16 @@ Batch 34 是既有导演台代码考古、源站差距和可借鉴性研究，�
 
 Batch 46 已在 `7b746aa` 完成实现、focused verifier 和 Batch 35-46 serial regression。Batch 47 随后在 `b1e6212` 完成 model-library trigger、五类 tab、clone-owned proxy cards、可序列化 prop 插入、R3F/tree/Inspector 联动、空态和响应式边界，并记录 focused verifier、Batch 35-47 serial regression、docs check 与 `npm run check` 通过。本轮只同步该稳定事实，不改写 Batch 47 的实现、截图或专项合同；真实 FBX/OBJ/环境资产和相关 license 决策仍明确排除。
 
-### 4.3 旧 Batch 仍是历史合同
+### 4.3 Batch 48 是有界 recorded pass
+
+Batch 48 在 `DirectorViewport`、`directorStore` 和 local-import helper 中完成
+多文件 `.fbx`/`.obj` descriptor、clone-owned localStorage、刷新恢复、重复
+加入场景和关联实例清理。focused verifier、Batch 35-48 serial regression、
+截图台账、docs check 与 `npm run check` 均已通过。Batch 48 只证明当前 clone
+的 browser-local prototype contract，不证明真实 mesh loading、远程同步或
+LibTV 生产持久化。
+
+### 4.4 旧 Batch 仍是历史合同
 
 Batch 9/10 等历史截图和断言仍然有效，但只对各自日期的 clone 快照负责；它们不能覆盖当前 LibTV `1092.5px` 图片工具条、`10 + 24 * zoom` 顶部定位或 structured AutoLink 合同。
 
@@ -110,7 +119,7 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 同日继续补齐 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：它把 Batch 11 历史设计、当前 `uiStore`、真实 mount owner、逐 surface close path、storyboard/Director 边界和 selected-node 混合锚点策略对齐，并明确冗余 boolean、未挂载 Notification/UserMenu、不可达 grid action 只属于 clone runtime 残留。本轮同时修正 `BEHAVIORS.md` 的 local-state/credits 旧描述与 `PAGE_TOPOLOGY.md` 的 `maxZoom` 漂移。
 
-该目录落档期间，并行工作先后把 Batch 47 稳定提交为 recorded pass，并为 Batch 48 新建 evidence/plan/contract、提交 local-import foundation。正式验证范围因此同步到 `4-33、35-47`，最新 `PARALLEL_WIP` 边界前移到 Batch 48；本轮没有修改两个批次的源码、verifier、截图或专项合同。
+该目录落档期间，并行工作先后把 Batch 47 稳定提交为 recorded pass，并为 Batch 48 新建 evidence/plan/contract、local-import 实现和 focused verifier。正式验证范围因此同步到 `4-33、35-48`；Batch 48 作为 recorded pass 保留真实 mesh loading/远程同步边界。
 
 随后新增 [`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)，将首轮 live gap 的历史排期、Seedance 专项缺口、shortcut/overlay/graph runtime 风险和 verification readiness 收束为 13 个稳定 ID。该表明确区分 `READY_FOR_AUTHORIZATION`、`DESIGN_FIRST`、`RESEARCH_FIRST`、`BLOCKED_BY_FIXTURE`、`PROTOTYPE_BOUNDARY`、`OUT_OF_SCOPE` 和 `PARALLEL_WIP`，并把当前最高价值收敛到图片标准双浮层、低风险 active surfaces、Auto Link、keyboard ownership 和 source freshness refresh。
 
@@ -120,6 +129,6 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 1. `docs/index.md` 能发现本审计；
 2. 所有验证范围描述与实际脚本集合一致；
-3. Batch 34 的 research-only 和 Batch 48 的 implementation-pending 状态没有被隐藏，Batch 46/47 的 recorded pass 没有被误写成源站全量一致；
+3. Batch 34 的 research-only、Batch 48 的 clone-only recorded pass 和真实资产边界没有被隐藏，Batch 46/47/48 的 recorded pass 没有被误写成源站全量一致；
 4. 文档链接检查通过；
 5. 不修改代码、不修改上游 submodule、不覆盖其他开发者 WIP。

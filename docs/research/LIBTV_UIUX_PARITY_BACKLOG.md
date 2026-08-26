@@ -1,7 +1,8 @@
 # LibTV UI/UX Parity Backlog
 
-> 建档日期：2026-08-27。
-> 稳定 clone 基线：`9597a81`；共享工作区中的 Batch 48 实现 WIP 不在本轮审计范围内。
+> 建档日期：2026-08-26。
+> 稳定 clone 基线：Batch 48 closeout checkpoint；本批已从并行 WIP 升级为
+> 有界历史合同。真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。
 > 目的：面向后续 LibTV UI/UX 复刻，统一回答“当前真正还差什么、先研究什么、什么已可申请编码、怎样验证”。
 > 本文是研究与排期文档，不授权修改 `src/`、测试脚本或共享源站状态。
 
@@ -23,7 +24,7 @@
 
 - 将文章截图、Open Canvas 或 clone 当前行为提升为 LibTV 源站事实；
 - 设计真实 Provider、上传、积分、计费、远端任务或账户持久化；
-- 替 Batch 48 决定实现或修改其并行 WIP；
+- 替 Batch 48 决定实现或修改其已收口的历史合同；
 - 因为某项“高价值”就自动获得编码授权。
 
 ## 2. Status Vocabulary
@@ -38,6 +39,7 @@
 | `DEFERRED_ENGINEERING` | 有维护价值，但用户可见收益低于 fidelity 工作 | 保持记录，等待相关代码触发。 |
 | `OUT_OF_SCOPE` | 不属于当前前端原型研究 | 需要新的产品/后端授权和合同。 |
 | `PARALLEL_WIP` | 由其他开发者正在推进 | 只读、链接、避让，不覆盖。 |
+| `RECORDED_PASS` | clone-owned 有界 slice 已完成实现和验证 | 读取其历史合同，不把结果升级为源站事实。 |
 
 ## 3. Scoring Method
 
@@ -70,7 +72,7 @@
 | 10 | `LIBTV-PAR-010` | Agent/Share/Toolbox/History/Upload 的 local mock 边界 | 3 | 4 | 4 | 3 | `PROTOTYPE_BOUNDARY` |
 | 11 | `LIBTV-PAR-011` | `uiStore` 冗余/unmounted/unreachable 状态清理 | 2 | 5 | 4 | 2 | `DEFERRED_ENGINEERING` |
 | 12 | `LIBTV-PAR-012` | Provider、上传、计费、远端任务、账户持久化 | 5 | 1 | 1 | 5 | `OUT_OF_SCOPE` |
-| - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 2 | 4 | `PARALLEL_WIP` |
+| - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
 
 ### 4.2 `LIBTV-PAR-001`: current standard image state
 
@@ -201,7 +203,7 @@ duplicate modifier and subgraph closure
 | `010` | Agent/Share/Toolbox/History/AddNode resource action 继续使用显式 local feedback。只有源站可见结构/生命周期差距值得继续复刻；不把“按钮可点”升级成真实服务。 |
 | `011` | 冗余 primary booleans、Notification/UserMenu unmounted state、`toggleGrid` 无 caller 已记录。等相关 store 获得编码授权或新入口证据时再清理。 |
 | `012` | Provider、上传、计费、远端任务、账号和协作持久化需要新的产品/后端合同，当前不排入前端 parity 实施。 |
-| `013` | Batch 48 由并行开发者推进 browser-local model descriptor/persistence；evidence/plan/contract 与 local-import foundation 已提交，完整 workflow/verifier 仍是 WIP。当前只读避让，不修改其源码、测试、截图或实施记录。 |
+| `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。后续只读其历史合同，不把 clone-only 结果升级为源站事实。 |
 
 ## 5. Dependency Order
 

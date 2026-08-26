@@ -121,7 +121,7 @@ current source code + focused current run
 | Batch 45 | `HISTORICAL_CONTRACT` / recorded pass | Director group/crowd slice | 已有专项 verifier 和 serial regression 记录；仍是有界 clone 合同，不代表源站全量一致。 |
 | Batch 46 | `HISTORICAL_CONTRACT` / recorded pass | Director camera screenshot gallery slice | 已有 focused verifier 和 Batch 35-46 serial regression；仍是有界 clone 合同。 |
 | Batch 47 | `HISTORICAL_CONTRACT` / recorded pass | Director model-library slice | 已有 focused verifier 和 Batch 35-47 serial regression；clone-owned proxy model 已稳定，真实模型/环境资产仍不在合同内。 |
-| Batch 48 | `PARALLEL_WIP` | Director local model-library persistence slice | evidence/archaeology/plan/contract 与 local-import foundation 已提交；完整 workflow、verifier 和截图仍在并行推进，不覆盖其后续 WIP。 |
+| Batch 48 | `HISTORICAL_CONTRACT` / recorded pass | Director local model-library persistence slice | evidence/archaeology/plan/contract、实现、focused verifier、截图台账和 maturity assessment 已闭环；真实 mesh loading/远程同步仍明确排除。 |
 | `research/components/*.spec.md` | `CURRENT_GUIDANCE` 或有界合同 | 对应组件的交互、几何、状态和图事务 | 先查 coverage matrix；旧组件 spec 可被更新的跨切面 source contract 部分取代。 |
 | `research/frameos/` | `CURRENT_RESEARCH` | FrameOS 独立 route/store/UX | 不与 LibTV 组件和 store 合并。 |
 
@@ -152,7 +152,7 @@ current source code + focused current run
 本轮没有文件满足归档条件：
 
 - `docs/drafts/` 与 `docs/archive/` 都只有入口 README；
-- 已完成的 Batch 3-47 仍承担实现 provenance、证据或接力上下文；Batch 48 作为并行 WIP 保持原位；
+- 已完成的 Batch 3-48 仍承担实现 provenance、证据或接力上下文；它们不是应删除的临时稿；
 - 旧 Batch 状态文字可能与当前项目完成度不同，但这属于 `HISTORICAL_CONTRACT`，不是应删除的错误；
 - `docs/README.md` 仍有兼容价值，且已经明确指向 canonical hub；
 - 截图和 JSON 属于证据资产，不以“过期”为由归档。

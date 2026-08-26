@@ -20,6 +20,16 @@
 - Do not call a screenshot “current” solely because its filename contains `final` or `after`.
 - New screenshot states must be linked from the relevant research or component spec.
 
+## Git Policy
+
+- `docs/design-references/` is a versioned evidence directory, not an ignore
+  target. Tracked source/clone screenshots must remain available for agent
+  handoff and visual regression history.
+- New batch screenshots should be named with their batch, viewport and date,
+  and committed together with a `SCREENSHOT_ANALYSIS.md` ledger.
+- Temporary screenshots outside the evidence directory use the existing
+  root-level ignore patterns such as `verify-*.png` and `test-*.png`.
+
 ## Main Reference Groups
 
 - [`liblib-live-2026-08-25/`](../research/liblib-live-2026-08-25/README.md) indexes LibTV source audits.

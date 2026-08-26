@@ -2,8 +2,8 @@
 
 ## Status
 
-Plan/evidence protection prepared on 2026-08-26. Implementation starts after
-this context-protection commit.
+Plan/evidence protection prepared on 2026-08-26. The bounded implementation
+and verification closed on 2026-08-26.
 
 ## Goal
 
@@ -82,3 +82,9 @@ Close the highest-value Batch 47 gap:
 5. Add focused Playwright, screenshot capture and one-time visual ledger.
 6. Run Batch 35-48, docs check, `npm run check` and diff check.
 7. Record maturity limits and commit/push.
+
+## Result
+
+All in-scope acceptance gates passed on 2026-08-26. The result is a
+clone-owned browser-local prototype boundary; it is not a production FBX/OBJ
+loader or a claim about LibTV's persistence implementation.

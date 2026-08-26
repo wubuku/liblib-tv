@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 import {
   Camera,
   Check,
@@ -49,8 +56,11 @@ import {
   DIRECTOR_MODEL_LIBRARY_CATEGORIES,
   getDirectorModelLibraryItems,
   type DirectorModelLibraryCategoryId,
+  type DirectorLocalModelLibraryItem,
+  type DirectorModelLibraryCardItem,
   type DirectorModelLibraryItem,
 } from "@/components/director/directorModelLibrary";
+import { readDirectorLocalModelFiles } from "@/components/director/directorLocalModelImport";
 import {
   DirectorVideoExportError,
   recordDirectorCanvasVideo,
@@ -1103,6 +1113,104 @@ const transformTools: Array<{
   { mode: "scale", label: "缩放", Icon: Scaling },
 ];
 
+function ModelLibraryThumbnail({
+  item,
+}: {
+  item: DirectorModelLibraryCardItem;
+}) {
+  return (
+    <span
+      className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg border border-white/[0.05] bg-[#1b1b1b] transition-colors group-hover:bg-[#2c3236]"
+      style={{ color: item.color }}
+      aria-hidden="true"
+    >
+      <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(255,255,255,0.12),transparent_52%)]" />
+      <span
+        className={cn(
+          "relative block border border-current/60 bg-current/45 shadow-[0_4px_8px_rgba(0,0,0,0.25)]",
+          item.visual === "bottle" &&
+            "h-9 w-5 rounded-[40%_40%_34%_34%]",
+          item.visual === "chair" &&
+            "h-7 w-9 rounded-sm border-b-4",
+          item.visual === "lamp" &&
+            "h-7 w-10 rounded-[60%_60%_35%_35%]",
+          item.visual === "plant" &&
+            "h-8 w-8 rounded-[50%_50%_35%_35%]",
+          item.visual === "box" && "h-9 w-9 rounded-sm",
+        )}
+      >
+        {item.visual === "bottle" ? (
+          <span className="absolute -top-2 left-1/2 h-2 w-2 -translate-x-1/2 rounded-t-sm border border-current/60 bg-current/45" />
+        ) : null}
+        {item.visual === "chair" ? (
+          <span className="absolute -bottom-3 left-1/2 h-3 w-6 -translate-x-1/2 border-x border-current/60" />
+        ) : null}
+        {item.visual === "lamp" ? (
+          <span className="absolute -bottom-4 left-1/2 h-4 w-px -translate-x-1/2 bg-current/80" />
+        ) : null}
+        {item.visual === "plant" ? (
+          <span className="absolute -bottom-2 left-1/2 h-3 w-5 -translate-x-1/2 rounded-b-md bg-[#9b694d]" />
+        ) : null}
+      </span>
+    </span>
+  );
+}
+
+function ModelLibraryCard({
+  item,
+  onAdd,
+  onDelete,
+}: {
+  item: DirectorModelLibraryCardItem;
+  onAdd: (item: DirectorModelLibraryCardItem) => void;
+  onDelete?: (item: DirectorLocalModelLibraryItem) => void;
+}) {
+  const local = item.categoryId === "my-models";
+  const localItem = local ? item : null;
+  const card = (
+    <button
+      type="button"
+      data-director-model-library-card
+      data-director-model-library-add
+      data-director-model-library-asset-id={item.id}
+      {...(local ? { "data-director-model-library-local-card": "" } : {})}
+      aria-label={`添加模型 ${item.name}`}
+      onClick={() => onAdd(item)}
+      className="group flex min-w-0 flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#8f8f8f] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
+    >
+      <ModelLibraryThumbnail item={item} />
+      <span className="w-full truncate">{item.name}</span>
+      {localItem ? (
+        <span
+          data-director-model-library-local-file-name
+          className="sr-only"
+        >
+          {localItem.fileName}
+        </span>
+      ) : null}
+    </button>
+  );
+
+  if (!localItem || !onDelete) return card;
+
+  return (
+    <div className="group relative min-w-0">
+      {card}
+      <button
+        type="button"
+        data-director-model-library-local-delete
+        data-director-model-library-local-asset-id={localItem.id}
+        aria-label={`删除模型 ${localItem.name}`}
+        title={`删除模型 ${localItem.name}`}
+        onClick={() => onDelete(localItem)}
+        className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/55 text-[#bdbdbd] opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5] hover:bg-black/75 hover:text-white"
+      >
+        <X size={12} />
+      </button>
+    </div>
+  );
+}
+
 export function DirectorViewport({
   onOpenTree,
   onOpenInspector,
@@ -1136,6 +1244,18 @@ export function DirectorViewport({
   const addModelLibraryObject = useDirectorStore(
     (state) => state.addModelLibraryObject,
   );
+  const localModelLibrary = useDirectorStore(
+    (state) => state.localModelLibrary,
+  );
+  const hydrateLocalModelLibrary = useDirectorStore(
+    (state) => state.hydrateLocalModelLibrary,
+  );
+  const addLocalModelLibraryItem = useDirectorStore(
+    (state) => state.addLocalModelLibraryItem,
+  );
+  const removeLocalModelLibraryItem = useDirectorStore(
+    (state) => state.removeLocalModelLibraryItem,
+  );
   const selectObject = useDirectorStore((state) => state.selectObject);
   const finishMotionPathDrawing = useDirectorStore(
     (state) => state.finishMotionPathDrawing,
@@ -1156,6 +1276,7 @@ export function DirectorViewport({
     useState<DirectorModelLibraryCategoryId>("convenience");
   const modelLibraryTriggerRef = useRef<HTMLButtonElement>(null);
   const modelLibraryPanelRef = useRef<HTMLDivElement>(null);
+  const localModelLibraryInputRef = useRef<HTMLInputElement>(null);
   const phoneVcamRecording = phoneVcamStatus === "recording";
 
   useLayoutEffect(() => {
@@ -1185,6 +1306,10 @@ export function DirectorViewport({
     finishMotionPathDrawing,
     timeline.motionPathDraft,
   ]);
+
+  useEffect(() => {
+    hydrateLocalModelLibrary();
+  }, [hydrateLocalModelLibrary]);
 
   useEffect(() => {
     if (!modelLibraryOpen) return;
@@ -1249,9 +1374,32 @@ export function DirectorViewport({
     setModelLibraryOpen(false);
   };
 
+  const addLocalModelLibraryItemToScene = (
+    item: DirectorLocalModelLibraryItem,
+  ) => {
+    addModelLibraryObject(item);
+    setModelLibraryOpen(false);
+  };
+
+  const handleLocalModelLibraryChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const input = event.currentTarget;
+    try {
+      const items = await readDirectorLocalModelFiles(input.files ?? []);
+      items.forEach(addLocalModelLibraryItem);
+    } finally {
+      input.value = "";
+    }
+  };
+
+  const openLocalModelLibraryImport = () => {
+    localModelLibraryInputRef.current?.click();
+  };
+
   const activeModelLibraryItems =
     activeModelLibraryCategoryId === "my-models"
-      ? []
+      ? localModelLibrary
       : getDirectorModelLibraryItems(activeModelLibraryCategoryId);
 
   return (
@@ -1468,6 +1616,15 @@ export function DirectorViewport({
           aria-label="模型库"
           className="absolute bottom-[72px] left-1/2 z-30 h-[360px] max-h-[calc(100%-120px)] w-[500px] max-w-[calc(100%-24px)] -translate-x-1/2 overflow-hidden rounded-lg border border-white/10 bg-[#242424]/[.98] text-[#dedede] shadow-[0_12px_32px_rgba(0,0,0,0.42)]"
         >
+          <input
+            ref={localModelLibraryInputRef}
+            data-director-model-library-local-input
+            type="file"
+            accept=".fbx,.obj"
+            multiple
+            onChange={(event) => void handleLocalModelLibraryChange(event)}
+            className="sr-only"
+          />
           <div className="flex h-10 items-center justify-between border-b border-white/[0.06] px-3">
             <h2 className="text-xs font-medium text-[#eeeeee]">模型库</h2>
             <button
@@ -1508,7 +1665,8 @@ export function DirectorViewport({
               );
             })}
           </div>
-          {activeModelLibraryCategoryId === "my-models" ? (
+          {activeModelLibraryCategoryId === "my-models" &&
+          activeModelLibraryItems.length === 0 ? (
             <div
               data-director-model-library-empty
               className="flex h-[calc(100%-80px)] flex-col items-center justify-center gap-3 text-xs text-[#777]"
@@ -1521,9 +1679,9 @@ export function DirectorViewport({
               <span>暂无任何模型</span>
               <button
                 type="button"
-                disabled
-                title="本批暂不接入本地模型文件"
-                className="h-7 rounded border border-white/[0.08] bg-white/[0.03] px-3 text-[11px] text-[#666]"
+                data-director-model-library-import
+                onClick={openLocalModelLibraryImport}
+                className="h-7 rounded border border-white/[0.08] bg-white/[0.05] px-3 text-[11px] text-[#b5b5b5] hover:bg-white/[0.09] hover:text-white"
               >
                 本地导入
               </button>
@@ -1535,53 +1693,38 @@ export function DirectorViewport({
               aria-label="模型列表"
             >
               {activeModelLibraryItems.map((item) => (
-                <button
+                <ModelLibraryCard
                   key={item.id}
-                  type="button"
-                  data-director-model-library-card
-                  data-director-model-library-add
-                  data-director-model-library-asset-id={item.id}
-                  aria-label={`添加模型 ${item.name}`}
-                  onClick={() => addModelLibraryItem(item)}
-                  className="group flex min-w-0 flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#8f8f8f] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
-                >
-                  <span
-                    className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg border border-white/[0.05] bg-[#1b1b1b] transition-colors group-hover:bg-[#2c3236]"
-                    style={{ color: item.color }}
-                    aria-hidden="true"
-                  >
-                    <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(255,255,255,0.12),transparent_52%)]" />
-                    <span
-                      className={cn(
-                        "relative block border border-current/60 bg-current/45 shadow-[0_4px_8px_rgba(0,0,0,0.25)]",
-                        item.visual === "bottle" &&
-                          "h-9 w-5 rounded-[40%_40%_34%_34%]",
-                        item.visual === "chair" &&
-                          "h-7 w-9 rounded-sm border-b-4",
-                        item.visual === "lamp" &&
-                          "h-7 w-10 rounded-[60%_60%_35%_35%]",
-                        item.visual === "plant" &&
-                          "h-8 w-8 rounded-[50%_50%_35%_35%]",
-                        item.visual === "box" && "h-9 w-9 rounded-sm",
-                      )}
-                    >
-                      {item.visual === "bottle" ? (
-                        <span className="absolute -top-2 left-1/2 h-2 w-2 -translate-x-1/2 rounded-t-sm border border-current/60 bg-current/45" />
-                      ) : null}
-                      {item.visual === "chair" ? (
-                        <span className="absolute -bottom-3 left-1/2 h-3 w-6 -translate-x-1/2 border-x border-current/60" />
-                      ) : null}
-                      {item.visual === "lamp" ? (
-                        <span className="absolute -bottom-4 left-1/2 h-4 w-px -translate-x-1/2 bg-current/80" />
-                      ) : null}
-                      {item.visual === "plant" ? (
-                        <span className="absolute -bottom-2 left-1/2 h-3 w-5 -translate-x-1/2 rounded-b-md bg-[#9b694d]" />
-                      ) : null}
-                    </span>
-                  </span>
-                  <span className="w-full truncate">{item.name}</span>
-                </button>
+                  item={item}
+                  onAdd={(nextItem) => {
+                    if (nextItem.categoryId === "my-models") {
+                      addLocalModelLibraryItemToScene(nextItem);
+                      return;
+                    }
+                    addModelLibraryItem(nextItem);
+                  }}
+                  onDelete={
+                    item.categoryId === "my-models"
+                      ? (localItem) =>
+                          removeLocalModelLibraryItem(localItem.id)
+                      : undefined
+                  }
+                />
               ))}
+              {activeModelLibraryCategoryId === "my-models" ? (
+                <button
+                  type="button"
+                  data-director-model-library-import
+                  aria-label="本地导入"
+                  onClick={openLocalModelLibraryImport}
+                  className="group flex min-w-0 flex-col items-center gap-1.5 rounded p-1 text-center text-[11px] text-[#777] hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5]"
+                >
+                  <span className="flex h-16 w-16 items-center justify-center rounded-lg border border-dashed border-white/15 bg-transparent text-[#777] group-hover:bg-white/[0.04] group-hover:text-white">
+                    <span className="text-2xl leading-none">+</span>
+                  </span>
+                  <span className="w-full truncate">本地导入</span>
+                </button>
+              ) : null}
             </div>
           )}
         </div>

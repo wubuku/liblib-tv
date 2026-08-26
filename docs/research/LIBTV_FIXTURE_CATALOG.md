@@ -2,7 +2,7 @@
 
 > 目的：为后续 LibTV UI/UX 研究、复刻和回归提供统一的 fixture 身份、构造、隔离、reset 和副作用合同。
 >
-> 本文来自 2026-08-27 对 `canvasStore`、`page.tsx`、Batch 4-47 verifier、当前源站研究边界和 Batch 48 并行 WIP 的只读审计。本文不授权修改代码、测试、截图或源站项目。
+> 本文来自 2026-08-26 对 `canvasStore`、`page.tsx`、Batch 4-48 verifier、当前源站研究边界和 Batch 48 clone-owned local model workflow 的只读审计。本文不授权修改代码、测试、截图或源站项目。
 >
 > 选择复刻 slice 时先读 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)；判断是否允许操作时再读 [`liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)。
 
@@ -88,14 +88,44 @@ browser.new_page()
 
 ### 3.4 Director 是另一套 fixture 域
 
-Batch 35-47 的 Director verifier 可以读取或调用 `window.__director_store.getState()`。这是 Director 专项测试入口，不是普通 LibTV graph 的通用注入规范。
+Batch 35-48 的 Director verifier 可以读取或调用 `window.__director_store.getState()`。这是 Director 专项测试入口，不是普通 LibTV graph 的通用注入规范。
 
-Batch 48 的并行工作又新增 browser-local model-library storage。其完整 workflow、稳定 verifier 和最终成熟度仍处于并行 WIP 边界，且当前工作区存在未提交的相关实现/记录；在 owner 明确收口前：
+Batch 48 新增了 browser-local model-library storage。它已有完整 workflow、
+稳定 verifier、截图台账和成熟度记录，但只定义了 clone-owned prototype
+边界：
 
-- 不把 Batch 48 纳入稳定 Harness；
-- 不复制或修改其 storage key、setup/teardown、截图和断言；
-- 不把“新 Page”误认为足以清理其 BrowserContext persistence；
-- 稳定后由 Batch owner 把新 reset 合同回填本文。
+- 测试必须显式清理
+  `liblib-tv-director-local-model-library-v1`，不能把“新 Page”误认为足以
+  清理同一 BrowserContext 的 persistence；
+- import 应通过多个合法 `.fbx`/`.obj` 文件和真实 UI input 构造；
+- descriptor 恢复应在 fresh Page/context 中重新断言；
+- 不把 localStorage descriptor 或 proxy object 升级为真实 LibTV 生产资产合同。
+
+### 3.5 Director local-model fixture reset
+
+Batch 48 的最小可重复 setup/teardown：
+
+```text
+new BrowserContext
+  -> new Page
+  -> goto clone
+  -> localStorage.removeItem("liblib-tv-director-local-model-library-v1")
+  -> open Director
+  -> import via [data-director-model-library-local-input]
+  -> assert localStorage/card/scene state
+  -> remove final local card
+  -> assert storage === []
+  -> discard context
+```
+
+固定断言：
+
+- 初始 `我的模型` 是空态，input `multiple` 且接受 `.fbx,.obj`；
+- 非法扩展名不产生 card 或 browser error；
+- persistence 只包含 `DirectorLocalModelLibraryItem` 的 bounded fields；
+- fresh context 能恢复卡片；
+- 删除资产会删除全部关联 local proxy object、timeline track 和 motion path；
+- 最后一张卡删除后 storage 为空并回到 empty state。
 
 ## 4. 当前可用本地 Fixture
 
@@ -111,8 +141,8 @@ Batch 48 的并行工作又新增 browser-local model-library storage。其完�
 | `LIBTV-FIX-LOCAL-GROUP-01` | `AVAILABLE_BASELINE` | `canvas-2` 两个 storyboard groups | image group、video parent-child group | group/ungroup、parent-child、organize 和 subgraph 研究 |
 | `LIBTV-FIX-LOCAL-DERIVED-01` | `TRANSACTION_DERIVED` | UI/store 的 derived actions | 动态 node/edge ID、atomic history 视 action 而定 | continuation、subtitle、audio、frame、matting、picture/depth edit |
 | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` | `TRANSACTION_DERIVED` | ready video 切 long-video 后提交 | 1 source + 12 process nodes / 22 edges；process status `pending` | 本地超长视频 process topology、重复提交、undo/redo |
-| `LIBTV-FIX-DIRECTOR-BASE-01` | `DIRECT_STORE_DRIVEN` | Director store + Batch 35-47 setup | scene/object/camera/timeline domain state | Director 专项视觉、轨道、路径、拍摄、导出和 model-library proxy |
-| `LIBTV-FIX-DIRECTOR-LOCAL-MODEL-01` | `PARALLEL_WIP` | Batch 48 owner | browser-local descriptor/persistence | 暂不纳入稳定 fixture catalog 的可运行集合 |
+| `LIBTV-FIX-DIRECTOR-BASE-01` | `DIRECT_STORE_DRIVEN` | Director store + Batch 35-48 setup | scene/object/camera/timeline domain state | Director 专项视觉、轨道、路径、拍摄、导出和 model-library proxy |
+| `LIBTV-FIX-DIRECTOR-LOCAL-MODEL-01` | `UI_CONSTRUCTED` | Batch 48 verifier + local input | fresh context + cleared clone-owned storage | local descriptor import/persistence, refresh recovery, proxy re-add and cleanup |
 
 ### 4.2 `LIBTV-FIX-LOCAL-DEMO-01`
 
@@ -287,7 +317,7 @@ ready source
 | `LIBTV-PAR-010` | `LOCAL-DEMO-01` | 显式 local mock boundary 已可验证 | 不升级为真实服务承诺 |
 | `LIBTV-PAR-011` | 静态 store/runtime 审计 | 文档已有冗余/unmounted state 清单 | 没有编码授权不清理 store |
 | `LIBTV-PAR-012` | 无 | 记录 scope boundary | Provider/计费/远端持久化是 `OUT_OF_SCOPE` |
-| `LIBTV-PAR-013` | `DIRECTOR-LOCAL-MODEL-01` | 只读跟踪 Batch 48 owner 的稳定提交 | 不修改其 source/test/screenshot/storage setup |
+| `LIBTV-PAR-013` | `DIRECTOR-LOCAL-MODEL-01` | Batch 48 已形成 recorded pass；读取其稳定 verifier 和 reset 合同 | 不把 local descriptor/proxy 升级为真实资产或远端持久化 |
 
 表内简称省略了 `LIBTV-FIX-` 前缀。
 
@@ -363,7 +393,7 @@ Supersedes:
 2. 为 `PAR-003` 落 typed AutoLink fixture/data/state/transaction design；
 3. 为 `PAR-007` 设计 local shortcut subgraph，不修改实现；
 4. 等用户提供独立源站 project/权限后，再登记 `SOURCE-VIDEO-READY-01` 等真实 fixture identity；
-5. Batch 48 稳定后，由 owner 回填 Director local model 的 storage reset 和 stable verifier 边界；
+5. 继续维护 `DIRECTOR-LOCAL-MODEL-01` 的 storage reset、fresh-context 和 proxy-cleanup 断言；
 6. 获得编码授权后，每个 parity slice 单独新增 fixture、verifier、screenshot ledger、implementation 和 commit。
 
 ## 11. Maintenance

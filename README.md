@@ -19,9 +19,10 @@
 - LibTV：选择、框选、多选、移动、复制、成组、整理、pan、zoom、grid snap
 - LibTV：图片上下浮层、Seedance 2.5 视频生成、片段重拍、逐帧拉片、智能剪辑原型
 - LibTV：真实 R3F 导演台、对象/机位/时间轴/路径编辑、截图与可播放动画视频回流
+- LibTV：导演台模型库、浏览器本地 FBX/OBJ descriptor 导入、刷新恢复与实例清理
 - FrameOS：独立 store、独立节点系统、浮动工具条、Prompt 编辑器、右键菜单、undo/redo
 - 研究证据：原站 DOM/JSON、截图、组件规格、批次计划与实施历史
-- 自动验证：Batch 4-33、35-47 专项 Playwright 脚本、lint、typecheck、production build
+- 自动验证：Batch 4-33、35-48 专项 Playwright 脚本、lint、typecheck、production build
 
 ## Quick Start
 

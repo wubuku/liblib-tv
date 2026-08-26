@@ -10,6 +10,7 @@ from playwright.sync_api import Locator, Page, sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:3000")
+LOCAL_MODEL_STORAGE_KEY = "liblib-tv-director-local-model-library-v1"
 
 PANEL_SCREENSHOT = (
     REFERENCE_DIR
@@ -98,6 +99,11 @@ def assert_pixel_difference(left: bytes, right: bytes, label: str):
 
 def open_director(page: Page, force_dom_click: bool = False):
     page.goto(f"{BASE_URL}/?batch47=1", wait_until="networkidle")
+    # Batch 48 adds persistence to this tab; keep the catalog-only fixture
+    # deterministic without importing Batch 48 behavior into this verifier.
+    page.evaluate(
+        f"localStorage.removeItem({json.dumps(LOCAL_MODEL_STORAGE_KEY)})"
+    )
     button = page.locator("[data-open-director]")
     assert button.count() == 1
     if force_dom_click:
@@ -231,7 +237,9 @@ def run_desktop(page: Page):
     empty.wait_for(state="visible")
     assert empty.get_attribute("aria-label") == "暂无任何模型"
     assert empty.get_by_text("暂无任何模型", exact=True).count() == 1
-    assert empty.get_by_role("button", name="本地导入").is_disabled()
+    # Batch 48 supersedes the old disabled placeholder with the real
+    # clone-owned local-import entry point.
+    assert not empty.get_by_role("button", name="本地导入").is_disabled()
     page.screenshot(path=str(EMPTY_SCREENSHOT))
 
     page.keyboard.press("Escape")

@@ -74,12 +74,12 @@
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-47 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45/46/47 已形成有界 group/crowd、capture gallery 与 model-library 合同和专项 verifier。
+Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-48 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-48 已形成有界 group/crowd、capture gallery、model-library 与 local-model persistence 合同和专项 verifier。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
 | `DirectorDesk` | `src/components/director/DirectorDesk.tsx` | Batch 35 `DIRECTOR_WORKSPACE.spec.md`、Batch 40/41/45 records | `DOMAIN_CONTRACT` | 改生命周期、capture return 或响应式 shell 时读最新 Director maturity assessment。 |
-| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts、Batch 47 model library | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone/model-library guard 必须联动。 |
+| `DirectorViewport` | `src/components/director/DirectorViewport.tsx` | Batch 35 workspace、Batch 37-44 camera/path contracts、Batch 47/48 model library | `DOMAIN_CONTRACT` | 真实 R3F、capture、camera target、path/phone/model-library/local-import guard 必须联动。 |
 | `DirectorObjectTree` | `src/components/director/DirectorObjectTree.tsx` | Batch 35 workspace、Batch 43/45 source evidence | `DOMAIN_CONTRACT` | selection 与 group/crowd tree 以 Batch 45 有界合同为准。 |
 | `DirectorInspector` | `src/components/director/DirectorInspector.tsx` | Batch 35 workspace、Batch 42 pose、Batch 43 follow、Batch 44 camera、Batch 46 capture gallery、Batch 47 prop selection | `DOMAIN_CONTRACT` | 角色、相机、路径、capture gallery 和模型库 prop 控件按 selection route 维护。 |
 | `DirectorTimeline` | `src/components/director/DirectorTimeline.tsx` | Batch 36 timeline、37 motion path、42 pose、44 camera、45 groups | `DOMAIN_CONTRACT` | 新轨道先扩展 typed track union，再更新播放/采样/验证合同。 |
@@ -87,10 +87,11 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-47 
 | `DirectorMannequin` | `src/components/director/DirectorMannequin.tsx` | Batch 42 `DIRECTOR_CHARACTER_POSE.spec.md`、Batch 45 groups | `DOMAIN_CONTRACT` | rig 与 crowd/group rendering 以 Batch 42/45 领域合同为准。 |
 | `DirectorExportPanel` | `src/components/director/DirectorExportPanel.tsx` | Batch 40 `DIRECTOR_ANIMATION_EXPORT.spec.md` | `DOMAIN_CONTRACT` | 修改导出字段必须同时读 `videoExport` 类型和 capture return。 |
 | `DirectorPhoneVcamPanel` | `src/components/director/DirectorPhoneVcamPanel.tsx` | Batch 41 `DIRECTOR_PHONE_VCAM.spec.md` | `DOMAIN_CONTRACT` | 保持 phone preview 与 viewport/path conflict guard。 |
-| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-47 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
+| `directorStore` / math utilities | `src/store/directorStore.ts`, `src/components/director/director*.ts` | Batch 35-48 各领域合同、`COMPONENT_INVENTORY.md` | `DOMAIN_CONTRACT` | 纯数学模块必须保持可序列化、无 Three.js runtime ref；变更需更新对应 domain spec。 |
 | Director Batch 45 group/crowd slice | `Director*` + `directorStore` | Batch 45 `DIRECTOR_GROUPS.spec.md`、source evidence | `DOMAIN_CONTRACT` | 专项 verifier 与 serial regression 已记录通过；仍只是有界 clone 合同。 |
 | Director Batch 46 capture gallery slice | `Director*` + `directorStore` | Batch 46 `DIRECTOR_CAPTURE_GALLERY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 截图图库、查看器、单/批量回流与清空边界已稳定；仍是有界 clone 合同。 |
 | Director Batch 47 model-library slice | `DirectorViewport` + `directorStore` | Batch 47 `DIRECTOR_MODEL_LIBRARY.spec.md`、source evidence、focused verifier | `DOMAIN_CONTRACT` | 模型库入口、分类、代理卡片、prop 插入和空态已稳定；真实模型资产/环境库仍不在合同内。 |
+| Director Batch 48 local-model slice | `DirectorViewport` + `directorStore` + `directorLocalModelImport` | Batch 48 `DIRECTOR_LOCAL_MODEL_LIBRARY.spec.md`、source evidence、focused verifier、screenshot ledger | `DOMAIN_CONTRACT` | 多文件 FBX/OBJ descriptor、localStorage 恢复、重复加入、关联实例清理和响应式边界已稳定；真实 mesh loading/远程同步仍不在合同内。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 

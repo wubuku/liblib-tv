@@ -5,8 +5,9 @@
 
 ## Status
 
-Plan and source-boundary protection on 2026-08-26. Implementation follows the
-protected scope in [`PLAN.md`](PLAN.md).
+Plan and source-boundary protection on 2026-08-26. The bounded implementation
+closed on 2026-08-26; implementation and verification details are in
+[`IMPLEMENTATION.md`](IMPLEMENTATION.md).
 
 ## Read Order
 
@@ -18,6 +19,10 @@ protected scope in [`PLAN.md`](PLAN.md).
    clone behavior contract.
 5. [`IMPLEMENTATION.md`](IMPLEMENTATION.md): implementation and verification
    history.
+6. [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md): one-time visual reading
+   of the generated clone states.
+7. [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md): closed contracts,
+   deliberate non-claims and next handoff boundary.
 
 ## Why This Batch
 

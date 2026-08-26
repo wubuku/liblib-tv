@@ -56,7 +56,8 @@ import {
 } from "@/components/director/directorGroupMath";
 import type {
   DirectorModelLibraryCategoryId,
-  DirectorModelLibraryItem,
+  DirectorLocalModelLibraryItem,
+  DirectorModelLibraryCardItem,
   DirectorModelLibraryVisual,
 } from "@/components/director/directorModelLibrary";
 
@@ -96,6 +97,8 @@ export interface DirectorObject {
   libraryAssetId?: string;
   libraryCategoryId?: DirectorModelLibraryCategoryId;
   libraryVisual?: DirectorModelLibraryVisual;
+  librarySource?: "catalog" | "local";
+  libraryFileName?: string;
   characterRig?: DirectorCharacterRig;
   camera?: {
     fov: number;
@@ -345,6 +348,7 @@ interface DirectorState {
   isCapturing: boolean;
   captures: DirectorCapture[];
   activeCaptureId: string | null;
+  localModelLibrary: DirectorLocalModelLibraryItem[];
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
 
@@ -362,7 +366,10 @@ interface DirectorState {
     columns: number;
     spacing: number;
   }) => string | null;
-  addModelLibraryObject: (item: DirectorModelLibraryItem) => string;
+  hydrateLocalModelLibrary: () => void;
+  addLocalModelLibraryItem: (item: DirectorLocalModelLibraryItem) => void;
+  removeLocalModelLibraryItem: (assetId: string) => void;
+  addModelLibraryObject: (item: DirectorModelLibraryCardItem) => string;
   updateGroup: (
     groupId: string,
     patch: Partial<Pick<DirectorCharacterGroup, "label">>,
@@ -609,6 +616,63 @@ function cloneObjects(): DirectorObject[] {
       ? cloneDirectorCharacterRig(object.characterRig)
       : undefined,
   }));
+}
+
+const DIRECTOR_LOCAL_MODEL_LIBRARY_STORAGE_KEY =
+  "liblib-tv-director-local-model-library-v1";
+
+function isDirectorModelLibraryVisual(
+  value: unknown,
+): value is DirectorModelLibraryVisual {
+  return (
+    value === "bottle" ||
+    value === "chair" ||
+    value === "lamp" ||
+    value === "plant" ||
+    value === "box"
+  );
+}
+
+function isLocalModelLibraryItem(
+  value: unknown,
+): value is DirectorLocalModelLibraryItem {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Partial<DirectorLocalModelLibraryItem>;
+  return (
+    typeof candidate.id === "string" &&
+    candidate.categoryId === "my-models" &&
+    typeof candidate.name === "string" &&
+    typeof candidate.fileName === "string" &&
+    typeof candidate.dataUrl === "string" &&
+    isDirectorModelLibraryVisual(candidate.visual) &&
+    typeof candidate.color === "string"
+  );
+}
+
+function readPersistedLocalModelLibrary(): DirectorLocalModelLibraryItem[] {
+  if (typeof localStorage === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(DIRECTOR_LOCAL_MODEL_LIBRARY_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter(isLocalModelLibraryItem) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writePersistedLocalModelLibrary(
+  items: DirectorLocalModelLibraryItem[],
+) {
+  if (typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(
+      DIRECTOR_LOCAL_MODEL_LIBRARY_STORAGE_KEY,
+      JSON.stringify(items),
+    );
+  } catch {
+    // Keep the current session usable when browser storage quota is exceeded.
+  }
 }
 
 function cloneTransform(transform: DirectorTransform): DirectorTransform {
@@ -1239,6 +1303,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   isCapturing: false,
   captures: [],
   activeCaptureId: null,
+  localModelLibrary: [],
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
 
@@ -1493,6 +1558,102 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     return createdGroupId;
   },
 
+  hydrateLocalModelLibrary: () =>
+    set({ localModelLibrary: readPersistedLocalModelLibrary() }),
+
+  addLocalModelLibraryItem: (item) =>
+    set((state) => {
+      const items = [
+        ...state.localModelLibrary.filter(
+          (current) => current.id !== item.id,
+        ),
+        item,
+      ];
+      writePersistedLocalModelLibrary(items);
+      return { localModelLibrary: items };
+    }),
+
+  removeLocalModelLibraryItem: (assetId) =>
+    set((state) => {
+      const localModelLibrary = state.localModelLibrary.filter(
+        (item) => item.id !== assetId,
+      );
+      writePersistedLocalModelLibrary(localModelLibrary);
+      const removedObjectIds = new Set(
+        state.objects
+          .filter(
+            (object) =>
+              object.libraryAssetId === assetId &&
+              object.libraryCategoryId === "my-models",
+          )
+          .map((object) => object.id),
+      );
+      if (removedObjectIds.size === 0) {
+        return { localModelLibrary };
+      }
+
+      const tracks = state.timeline.tracks.filter(
+        (track) => !removedObjectIds.has(track.objectId),
+      );
+      const removedTrackIds = new Set(
+        state.timeline.tracks
+          .filter((track) => removedObjectIds.has(track.objectId))
+          .map((track) => track.id),
+      );
+      const motionPaths = state.timeline.motionPaths.filter(
+        (path) => !removedObjectIds.has(path.objectId),
+      );
+      const removedMotionPathIds = new Set(
+        state.timeline.motionPaths
+          .filter((path) => removedObjectIds.has(path.objectId))
+          .map((path) => path.id),
+      );
+      const selectedTrackRemoved =
+        state.timeline.selectedTrackId !== null &&
+        removedTrackIds.has(state.timeline.selectedTrackId);
+      const selectedPathRemoved =
+        state.timeline.selectedMotionPathId !== null &&
+        removedMotionPathIds.has(state.timeline.selectedMotionPathId);
+      return {
+        localModelLibrary,
+        objects: state.objects.filter(
+          (object) => !removedObjectIds.has(object.id),
+        ),
+        selectedObjectId: removedObjectIds.has(state.selectedObjectId ?? "")
+          ? null
+          : state.selectedObjectId,
+        selectedObjectIds: state.selectedObjectIds.filter(
+          (objectId) => !removedObjectIds.has(objectId),
+        ),
+        timeline: {
+          ...state.timeline,
+          tracks,
+          motionPaths,
+          selectedTrackId: selectedTrackRemoved
+            ? tracks[0]?.id ?? null
+            : state.timeline.selectedTrackId,
+          selectedKeyframeId: selectedTrackRemoved
+            ? null
+            : state.timeline.selectedKeyframeId,
+          selectedMotionPathId: selectedPathRemoved
+            ? null
+            : state.timeline.selectedMotionPathId,
+          selectedMotionPathAnchorId: selectedPathRemoved
+            ? null
+            : state.timeline.selectedMotionPathAnchorId,
+          selectedMotionPathHandle: selectedPathRemoved
+            ? null
+            : state.timeline.selectedMotionPathHandle,
+          motionPathDraft:
+            state.timeline.motionPathDraft &&
+            removedTrackIds.has(state.timeline.motionPathDraft.trackId)
+              ? null
+              : state.timeline.motionPathDraft,
+          isPlaying: false,
+        },
+      };
+    }),
+
   addModelLibraryObject: (item) => {
     let createdObjectId = "";
     set((state) => {
@@ -1518,6 +1679,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         libraryAssetId: item.id,
         libraryCategoryId: item.categoryId,
         libraryVisual: item.visual,
+        librarySource:
+          item.categoryId === "my-models" ? "local" : "catalog",
+        libraryFileName: "fileName" in item ? item.fileName : undefined,
       };
       createdObjectId = objectId;
       return {

@@ -15,6 +15,13 @@ source-shaped entry and categories
 It is not evidence that the clone contains the complete LibTV model catalog or
 that its proxy geometry is a source-accurate replacement for production assets.
 
+### Current Supersession
+
+Batch 48 supersedes this batch's deferred `我的模型` import placeholder with
+a browser-local descriptor workflow. The claims below remain valid as the
+2026-08-26 Batch 47 snapshot, while current local-model behavior is documented
+in [`../liblib-canvas-batch48-2026-08-26/MATURITY_ASSESSMENT.md`](../liblib-canvas-batch48-2026-08-26/MATURITY_ASSESSMENT.md).
+
 ## Closed Contracts
 
 - a model-library trigger is discoverable in the viewport toolbar;

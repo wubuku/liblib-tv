@@ -53,6 +53,11 @@ Read [`MATURITY_ASSESSMENT.md`](MATURITY_ASSESSMENT.md) before selecting the
 next batch. The bounded model-library slice is complete; do not expand it into
 real FBX/OBJ loading without a new source/asset/license decision.
 
+Batch 48 later enabled the previously deferred local-import entry point. Its
+current verifier keeps this catalog slice deterministic by clearing the
+clone-owned local-model storage before testing and asserts the superseding
+enabled empty-state action.
+
 ## Focused Verification
 
 Command:

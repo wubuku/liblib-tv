@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Closed Batch 48 with a browser-local Director `我的模型` workflow:
+  multiple FBX/OBJ descriptor import, localStorage refresh recovery,
+  repeated proxy insertion and linked-instance cleanup.
+- Added the Batch 48 Playwright verifier, one-time screenshot ledger and
+  maturity assessment; real mesh loading and remote persistence remain outside
+  the prototype contract.
+
 ### Documentation
 - Migrated the self-contained `.agents/skills/project-docs` package into this repository
 - Added the documentation hub and agent-facing guides for architecture, development, layers, quality, verification and terminology
