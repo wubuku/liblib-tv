@@ -116,10 +116,21 @@
 
 本轮继续使用当前登录态画布，只切换源站 zoom 菜单、节点选择和空白画布选择态：
 
-- 新增 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md) 和结构化 JSON，补齐 28%/50%/100% 的几何与 virtualization 边界；
-- 直接 live 确认 28% 与 50% 下工具条均为 `1092.5x49`、面板均为 `660x191`，两者保持 node center；
-- 确认底部面板 gap 在 28% 为 `4.525px`、50% 为 `8px`，均等于 `16 * zoom`；
-- 发现顶部工具条 gap 从约 28% 的 `16.794px` 变为 50% 的 `22px`，将其标为待解释的多 zoom source contract，不再用固定 `16px` 概括；
+- 新增 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md) 和结构化 JSON，补齐 28%/34%/50%/100% 的几何与 virtualization 边界；
+- 直接 live 确认 28%/34%/50% 下工具条均为 `1092.5x49`、面板均为 `660x191`，两者保持 node center；
+- 确认底部面板 gap 在 28%/34%/50% 分别为 `4.525/5.430/8px`，均等于 `16 * zoom`；
+- 发现顶部工具条 gap 在 28%/34%/50% 分别为 `16.794/18.152/22px`，三点支持 `10 + 24 * zoom` 的近似模型，但仍标为待源码确认的 source contract，不用固定 `16px` 概括；
 - 空白画布点击会同时卸载 toolbar/panel，`适合屏幕`恢复约 28% 后可重新选择图片并恢复一组双浮层；
 - 100% 时选中 node 因源站可见性策略离开 DOM，记录为 virtualization boundary，不把缺失 DOM 误判成业务选择丢失；
 - 没有修改节点数据、Prompt、AutoLink、生成任务、上传、下载或远端保存，也没有触碰 `src/`、FrameOS、upstream submodule 和其他开发者 WIP。
+
+## 2026-08-26：v11 顶部工具条间距归因补测
+
+本轮在不移动节点、不修改画布数据的前提下，补测源站 zoom 菜单的第三个直接可见档位，并把观察和推断分开：
+
+- 在 fit-view 约 `28.28%` 基线后使用一次“放大”得到约 `33.94%`，重新测得图片节点、顶部工具条和底部面板的 screen rect；三者仍以同一节点中心为 anchor；
+- 28% / 34% / 50% 的顶部 gap 分别为 `16.794 / 18.152 / 22px`，底部 gap 分别为 `4.525 / 5.430 / 8px`；后者继续精确符合 `16 * zoom`；
+- 三个顶部样本可用 `10 + 24 * zoom` 拟合，最大残差约 `0.008px`，因此将它记录为 clone 布局实现的暂定模型；该模型仍不是源站源码事实，后续若找到 toolbar host 的 offset 计算必须优先以源码替换；
+- 100% 档仍观察到选中节点 DOM 被可见性/virtualization 策略移出，但 toolbar host 保留在 DOM；这说明 clone 的验证必须同时检查 selection state、host presence 和 node DOM presence，不能只用节点 DOM 是否存在判定双浮层是否失效；
+- 将本批结构化样本追加到 [`libtv-overlay-multizoom-audit-2026-08-26.json`](../liblib-seedance-2.5-2026-08-25/libtv-overlay-multizoom-audit-2026-08-26.json)，并同步矩阵、Big Picture、ImageEditPanel 规格和实施影响文档；
+- 没有修改 `src/`、FrameOS、upstream submodule、其他开发者截图或 Director WIP，也没有写入 LibTV 远端画布。

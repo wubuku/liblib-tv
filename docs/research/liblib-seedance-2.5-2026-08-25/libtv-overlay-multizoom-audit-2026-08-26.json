@@ -8,7 +8,7 @@
   },
   "interactionBoundary": {
     "performed": [
-      "switch zoom menu between 50%, 100%, and fit view",
+      "switch zoom menu between 34%, 50%, 100%, and fit view",
       "select existing image nodes",
       "click the empty canvas",
       "read DOM rectangles and React Flow transforms"
@@ -57,6 +57,43 @@
         "toolbarGap": 16.794,
         "panelGap": 4.525,
         "panelGapFormula": "16 * zoom"
+      }
+    },
+    {
+      "label": "image_2026-06-15T11-22-00",
+      "nodeId": "i-1FQ9tErTcC",
+      "zoomMode": "zoom-in",
+      "zoom": 0.339357,
+      "viewportTransform": "translate(-77.9506px, 134.633px) scale(0.339357)",
+      "node": {
+        "x": -33.155,
+        "y": 227.277,
+        "width": 209.723,
+        "height": 118.775,
+        "centerX": 71.706
+      },
+      "toolbar": {
+        "x": -474.547,
+        "y": 160.125,
+        "width": 1092.5,
+        "height": 49,
+        "centerX": 71.703
+      },
+      "panel": {
+        "x": -258.294,
+        "y": 351.482,
+        "width": 660,
+        "height": 191,
+        "centerX": 71.706
+      },
+      "derived": {
+        "toolbarCenterDelta": -0.003,
+        "panelCenterDelta": 0,
+        "toolbarGap": 18.152,
+        "panelGap": 5.43,
+        "panelGapFormula": "16 * zoom",
+        "simpleToolbarGapModel": "10 + 24 * zoom",
+        "simpleToolbarGapResidual": 0.008
       }
     },
     {
@@ -146,7 +183,7 @@
     "horizontalAnchor": "node screen center",
     "viewportClamp": false,
     "panelGapFormula": "16 * zoom",
-    "toolbarGapFormula": null,
+    "toolbarGapFormula": "10 + 24 * zoom (evidence-backed inference, not source-code confirmed)",
     "toolbarGapRequiresMoreEvidence": true,
     "offscreenNodeVirtualizationObserved": true
   }

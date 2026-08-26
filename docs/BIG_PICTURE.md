@@ -244,7 +244,7 @@ waveform 仍是 CSS placeholder，不解析真实音频。
 
 AutoLink 也不能继续按 clone 当前的固定候选弹窗理解。当前源站把开关放在图片/视频生成面板的高级设置中，并用全局本地偏好共享状态；connected/reference assets 形成候选池，Prompt 内先出现不改写正文的 ghost suggestion，再由点击、`Tab` 或 `Shift+Tab` 接受为结构化 mention badge。正式媒体 badge 保存 stable node ID、media type 和当前 ordinal，“图片 1/2”只是 reference order 的显示投影。当前 clone 的 `陈默/咖啡` 固定数组、一次接受全部和字符串前缀写回均为已知 fidelity gap，详见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_AUTOLINK_STATE_MATRIX.md)。
 
-双浮层的 zoom 合同也需要拆开理解：当前源站下方 panel gap 在直接测得的 28%/50% 分别是 `16 * zoom`，顶部 toolbar 仍保持 `1092.5x49` 和 node-center，但其到节点顶部的 gap 会随 zoom 变化；100% 离屏时还会触发可见节点 DOM 卸载。clone 的 `NodeToolbar offset=16` 和单档回归不能代表全部源站行为，详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
+双浮层的 zoom 合同也需要拆开理解：当前源站下方 panel gap 在直接测得的 28%/34%/50% 分别是 `16 * zoom`，顶部 toolbar 仍保持 `1092.5x49` 和 node-center，但其到节点顶部的 gap 约为 `16.794/18.152/22px`，三点支持 `10 + 24 * zoom` 的近似模型；100% 离屏时还会触发可见节点 DOM 卸载。clone 的 `NodeToolbar offset=16` 和单档回归不能代表全部源站行为，详见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)。
 
 图片工具条动作不能共享一个凭想象推导的流程。“全景”已经由原站点击态确认：创建空派生节点、source edge、单参考图和 `2:1 · 标准画质 · 2K · 1张` 专用 panel；其 `700x350`、`+120/-110` 和 `660x252` 是截图反推参数。多角度、打光、九宫格、高清、宫格切分尚未逐动作采样，当前通用派生行为只是旧 prototype，不得写成原站事实。
 

@@ -31,7 +31,7 @@ This produces two intentional behaviors:
 
 The original does not clamp the panel to the viewport. Near an edge, it is clipped by the React Flow container.
 
-Multi-zoom source checks confirm the bottom gap contract at two direct live samples: about `4.525px` at `0.282798` and `8px` at `0.5`, both `16 * zoom`. The source panel stays `660px` wide on screen. The corresponding toolbar is also `1092.5x49` at both samples, but its measured gap above the node is about `16.794px` at 28% and `22px` at 50%; keep that toolbar contract separate until its source positioning formula is fully explained. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md).
+Multi-zoom source checks confirm the bottom gap contract at three direct live samples: about `4.525px`, `5.430px` and `8px` at `0.282798`, `0.339357` and `0.5`, all `16 * zoom`. The source panel stays `660px` wide on screen. The corresponding toolbar is `1092.5x49` at all three samples, but its measured gap above the node is about `16.794px`, `18.152px` and `22px`; the three points fit a tentative `10 + 24 * zoom` model, so keep that toolbar contract separate until its source positioning formula is fully explained. See [`../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_OVERLAY_MULTIZOOM_MATRIX.md).
 
 The source class uses `-bottom-4`. The clone mounts the panel directly inside a node shell with a `1px` border, so `-bottom-4` produced only `15 * zoom` outside the node border. The current `-bottom-[17px]` is a clone-specific box-model compensation that restores the source geometry; it is not a claim that the source CSS uses `17px`.
 

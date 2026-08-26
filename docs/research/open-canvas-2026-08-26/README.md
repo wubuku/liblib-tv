@@ -30,7 +30,7 @@
 9. [`LIBTV_OVERLAY_GEOMETRY_MATRIX.md`](LIBTV_OVERLAY_GEOMETRY_MATRIX.md)：LibTV 五个图片节点的双浮层矩阵、工具条时间版本差异和 clone 缺口。
 10. [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)：当前图片工具条六个新增/末端动作的状态、呈现、副作用和 clone 差异。
 11. [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)：当前 AutoLink 开关、候选、ghost suggestion、mention token 和 clone 语义缺口。
-12. [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：28%/50%/100% zoom 的双浮层几何、裁切和选择卸载生命周期。
+12. [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：28%/34%/50%/100% zoom 的双浮层几何、裁切和选择卸载生命周期。
 13. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：与当前 LibTV/FrameOS 克隆的映射、收益、风险和待授权队列。
 14. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 
@@ -47,6 +47,6 @@
 - LibTV 当前图片工具条已从 2026-08-25 的 7 个文字动作、`900.5px` 扩展为 9 个文字动作、`1092.5px`；clone 仍冻结在旧宽度和旧动作集合，详见双浮层矩阵。
 - 当前工具条还包含 preview overlay、可替换标准双浮层的标注/旋转/元素编辑工具态，以及可能提交任务的图层分离；不能继续用统一 `addDerivedNode` 语义概括。
 - 当前 AutoLink 是高级设置中的全局偏好，加上 Prompt 内联 ghost suggestion 和带稳定 node ID 的正式 mention；clone 的固定候选弹窗、全量接受和字符串前缀写回不是源站现行合同。
-- 多 zoom 复测确认下方面板 gap 是 `16 * zoom`，上下浮层都保持 node-center anchor；顶部工具条的 gap 会随 zoom 变化，不能用 clone 当前固定 `offset=16` 直接代表源站合同。
+- 多 zoom 复测确认下方面板 gap 是 `16 * zoom`，上下浮层都保持 node-center anchor；顶部工具条在 28%/34%/50% 的 gap 约为 `16.794/18.152/22px`，不能用 clone 当前固定 `offset=16` 直接代表源站合同。
 
 本次研究不修改 `src/`、不修改上游 submodule 内容、不执行生成或上传、不创建官网画布。
