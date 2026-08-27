@@ -23,6 +23,10 @@
 - history snapshot、duplicate node/edge、setNodes/setEdges、named edge delete
   对 framework selection/runtime 字段做了边界处理。
 - 增加 [`scripts/verify-liblib-batch61.py`](../../../scripts/verify-liblib-batch61.py)。
+- 通过 Batch 6 框选回归发现并修复一个 controlled React Flow 交互问题：
+  `onSelectionChange` 与 `onNodesChange/onEdgesChange` 双重写回会在框选期间
+  重置内部 `.react-flow__selection`；现由 change routing 作为唯一 selection
+  ingress，保留框选期间的 selection rectangle。
 
 ## 2. 验证结果
 
@@ -38,6 +42,17 @@
 - 真实 node click、multi-frame drag + one stop、no-op drag；
 - 真实 edge select、scissors delete、undo/redo；
 - desktop `929x874`、mobile `390x844`、overflow 和 console/page/request diagnostics。
+
+相邻回归：
+
+- `python3 scripts/verify-liblib-batch4.py`：通过；
+- `python3 scripts/verify-liblib-batch5.py`：通过；
+- `python3 scripts/verify-liblib-batch6.py`：通过。
+- `python3 scripts/verify-liblib-batch7.py`：通过；
+- `python3 scripts/verify-liblib-batch8.py`：通过；
+- `python3 scripts/verify-liblib-batch9.py`：按既有台账记录为
+  `EXPECTED_HISTORICAL_MISMATCH`，失败于旧 `900.5px` toolbar 宽度；当前
+  Batch 52/60 合同为 `1092.5px`，未回退当前实现。
 
 首次真实 callback 观察到的安装版 payload：
 

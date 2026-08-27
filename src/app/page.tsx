@@ -87,7 +87,6 @@ export default function Home() {
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
-    selectElements,
     selectedNodeIds,
     selectedEdgeIds,
     routeReactFlowChanges,
@@ -497,22 +496,6 @@ export default function Home() {
     return () => window.removeEventListener("delete-edge", handler);
   }, [removeEdge]);
 
-  const onSelectionChange = useCallback(
-    ({
-      nodes: selectedNodes,
-      edges: selectedEdges,
-    }: {
-      nodes: Node[];
-      edges: Edge[];
-    }) => {
-      selectElements({
-        nodeIds: selectedNodes.map((node) => node.id),
-        edgeIds: selectedEdges.map((edge) => edge.id),
-      });
-    },
-    [selectElements],
-  );
-
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#141414]">
       <TopNavBar />
@@ -540,7 +523,6 @@ export default function Home() {
               if (!event.metaKey && !event.ctrlKey) selectNode(node.id);
             }}
             onPaneClick={() => selectNode(null)}
-            onSelectionChange={onSelectionChange}
             onNodeDragStart={(_, node) => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
               if (!currentCanvas) {
