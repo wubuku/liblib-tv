@@ -1,0 +1,125 @@
+{
+  "batch": 60,
+  "status": "SCRIPT_RECORDED_PASS",
+  "contract": {
+    "scope": "clone-owned standard image double-overlay owner and hit-testing boundary",
+    "source_exact_pointer_hit_testing": false,
+    "toolbar_top_gap": "10 + 24 * zoom",
+    "panel_bottom_gap": "16 * zoom",
+    "graph_mutation": false
+  },
+  "desktop": {
+    "initial_graph": {
+      "nodes": [
+        "g-245IDFh8sB",
+        "g-EFbbHpwq5w",
+        "t-9j2MoccxBj",
+        "i-1FQ9tErTcC",
+        "i-lBzmo67AHv",
+        "i-dnwoZQ7jsG",
+        "i-vxeeCnxySa",
+        "b-bTLLuU4w5q",
+        "i-YDfWhFlthe",
+        "v-UGQZzZOpbv"
+      ],
+      "edges": [
+        "e-8IgMkf6Vbj",
+        "e-abKze5c8Ug",
+        "e-AQmdIgKtl2",
+        "e-m2wWA2wIBA",
+        "e-nlMX3rEjwN",
+        "e-OwhsBRzrTz",
+        "e-QzX895ot0u",
+        "e-VQACH36eJC",
+        "e-XmiJkHfFAL",
+        "e-xNVTHNFZZl",
+        "e-yEqrTOR2Ya"
+      ],
+      "selectedNodeIds": [],
+      "selectedNodeId": null,
+      "pastLength": 1,
+      "futureLength": 0
+    },
+    "first_owner": "i-vxeeCnxySa",
+    "second_owner": "i-dnwoZQ7jsG",
+    "first": {
+      "node": {
+        "x": 48,
+        "y": 176.71719360351562,
+        "width": 198.67120361328125,
+        "height": 99.33560180664062
+      },
+      "toolbar": {
+        "x": -398.9143981933594,
+        "y": 110.90562438964844,
+        "width": 1092.4999694824219,
+        "height": 49
+      },
+      "panel": {
+        "x": -182.66439819335938,
+        "y": 280.5938720703125,
+        "width": 660,
+        "height": 191
+      },
+      "zoom": 0.28381600516183036
+    },
+    "second": {
+      "node": {
+        "x": 48,
+        "y": 432.151611328125,
+        "width": 198.67120361328125,
+        "height": 99.3355712890625
+      },
+      "toolbar": {
+        "x": -398.9143981933594,
+        "y": 366.34002685546875,
+        "width": 1092.4999694824219,
+        "height": 49
+      },
+      "panel": {
+        "x": -182.66439819335938,
+        "y": 536.0282592773438,
+        "width": 660,
+        "height": 211.00006103515625
+      },
+      "zoom": 0.28381600516183036
+    },
+    "pointer_contract": {
+      "panelPointerEvents": "none",
+      "sectionPointerEvents": "none",
+      "textareaPointerEvents": "auto",
+      "buttonPointerEvents": "auto"
+    },
+    "graph_unchanged": true,
+    "no_overflow": true
+  },
+  "mobile": {
+    "metrics": {
+      "node": {
+        "x": 48,
+        "y": 94.07666015625,
+        "width": 70.11924743652344,
+        "height": 35.05963134765625
+      },
+      "toolbar": {
+        "x": -463.19036865234375,
+        "y": 32.672569274902344,
+        "width": 1092.5,
+        "height": 49
+      },
+      "panel": {
+        "x": -246.9403839111328,
+        "y": 130.739013671875,
+        "width": 660.0000152587891,
+        "height": 191
+      },
+      "zoom": 0.10017035348074776
+    },
+    "no_overflow": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

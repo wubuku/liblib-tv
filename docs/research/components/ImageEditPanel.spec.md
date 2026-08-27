@@ -35,6 +35,12 @@ Multi-zoom source checks confirm the bottom gap contract at four direct live sam
 
 The source class uses `-bottom-4`. The clone mounts the panel directly inside a node shell with a `1px` border, so `-bottom-4` produced only `15 * zoom` outside the node border. The current `-bottom-[17px]` is a clone-specific box-model compensation that restores the source geometry; it is not a claim that the source CSS uses `17px`. Batch 51 changes only the sibling top toolbar's zoom-aware host offset; this bottom-panel contract remains unchanged.
 
+The standard panel also exposes `data-owner-node-id`, supplied by the owning
+`ImageNode`. Its outer wrapper and non-interactive sections use
+`pointer-events: none`; controls that must remain usable explicitly restore
+`pointer-events: auto`. This is the Batch 60 clone-owned hit-testing boundary,
+not a source-exact claim about overlapping adjacent nodes.
+
 ## Live Measurements
 
 At `zoom = 0.282798`, with `分镜 #2` selected:
@@ -119,6 +125,7 @@ The geometry values are screenshot-derived inference, while the empty node, sing
 - Stable test selector: `data-image-edit-panel`.
 - Five-state regression: `scripts/verify-liblib-batch10.py`.
 - Panorama regression: `scripts/verify-liblib-batch20.py`.
+- Owner/pointer regression: `scripts/verify-liblib-batch60.py`.
 
 ## Files Referenced
 

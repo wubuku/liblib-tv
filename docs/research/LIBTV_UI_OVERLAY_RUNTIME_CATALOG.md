@@ -231,6 +231,13 @@ route 每次观察 active canvas ID 或 active node 集合变化时，调用纯�
 LibTV 源站删除语义。源站删除确认、远程资源回收、Director workspace 持久化和
 undo 后是否恢复 session overlay 仍未确认。
 
+对于普通选中的图片标准双浮层，Batch 60 增加了更窄的 node-local owner
+合同：`ImageToolbar` 与 `ImageEditPanel` 暴露相同的
+`data-owner-node-id`，selection 迁移后只保留当前节点的一组 surface。
+panel wrapper 不 blanket 捕获 pointer；textarea、按钮和 popover 控件显式
+保持可交互。这是 clone-owned 的命中策略；相邻节点被可编辑 panel 覆盖时，
+源站实际如何 routing 仍未验证。
+
 ## 7. Selected-node And Authoring Surfaces
 
 ### 7.1 Mount rule

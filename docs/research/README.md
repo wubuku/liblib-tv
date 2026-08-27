@@ -113,6 +113,7 @@
 | 57 | ordinary graph connection transaction | [`liblib-canvas-batch57-2026-08-27/`](liblib-canvas-batch57-2026-08-27/) `SCRIPT_RECORDED_PASS`，normalization、duplicate/reverse/parallel/self/cycle guards、accepted one-step history、rejected zero mutation 和 desktop/mobile focused verification 已通过；Reference/domain/source invalid feedback/import/sync 仍未覆盖 |
 | 58 | node-bound image/Director owner invalidation on delete and canvas switch | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/) `SCRIPT_RECORDED_PASS`，preview/annotate/element-edit/Director owner 以 `canvasId + nodeId` 校验，删除/切换后 UI-only cleanup 已通过；relation-aware graph delete planner 仍未完成 |
 | 59 | Director asset-library search, preview selection and explicit scene insertion | [`liblib-canvas-batch59-2026-08-27/`](liblib-canvas-batch59-2026-08-27/) `SCRIPT_RECORDED_PASS`，五分类资源搜索、preview-only selection、显式加入 proxy object、对象树/Inspector continuity、desktop/mobile 和普通 graph isolation 已通过；真实资产与认证后 LibTV exact surface 仍未知 |
+| 60 | ordinary canvas image double-overlay owner continuity and pointer boundary | [`liblib-canvas-batch60-2026-08-26/`](liblib-canvas-batch60-2026-08-26/) `SCRIPT_RECORDED_PASS`，owner identity、selection migration、panel hit-testing boundary、active-tool replacement、graph/history isolation 和 desktop/mobile diagnostics 已通过；pointer routing 仍是 clone-owned decision |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 

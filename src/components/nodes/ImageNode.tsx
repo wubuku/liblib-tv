@@ -220,6 +220,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
     >
       {showSingleNodeEditor && (
         <ImageToolbar
+          ownerNodeId={id}
           zoom={zoom}
           portraitEnhanced={Boolean(data.portraitEnhanced)}
           hasMedia={Boolean(imageUrl)}
@@ -284,6 +285,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
 
       {showSingleNodeEditor && (
         <ImageEditPanel
+          ownerNodeId={id}
           zoom={zoom}
           variant={data.editorVariant ?? "empty"}
           panelHeight={data.editorHeight}

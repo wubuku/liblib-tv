@@ -75,18 +75,20 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 56 | Media-gated image rotate entry, `旋转与镜像` derived image node, source edge, typed metadata, selected-create state, atomic undo/redo, no-media disabled/no-op and desktop/mobile overflow |
 | Batch 57 | Ordinary graph connection normalization, source/target Handle direction, duplicate/reverse/parallel/self/cycle guards, zero-mutation rejects, one-step history and desktop/mobile diagnostics |
 | Batch 58 | Node-bound preview/annotate/element-edit/Director owner identity, delete/switch invalidation, UI-only cleanup, delete-only history delta and desktop/mobile diagnostics |
+| Batch 59 | Director asset-library search, preview-only selection, explicit proxy insertion, object-tree/Inspector continuity, WebGL nonblank and desktop/mobile diagnostics |
+| Batch 60 | Ordinary image double-overlay owner identity, selection migration, geometry invariants, panel pointer boundary, control interaction, active-tool replacement, graph/history isolation and desktop/mobile diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py scripts/verify-liblib-batch58.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py scripts/verify-liblib-batch58.py scripts/verify-liblib-batch59.py scripts/verify-liblib-batch60.py; do
   python3 "$script" || exit 1
 done
 ```
 
-Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46/47/48/49/50/52/53/54/56 的专项 verifier、研究目录和截图台账均已纳入维护。
+Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46/47/48/49/50/52/53/54/56/57/58/59/60 的专项 verifier、研究目录和截图台账均已纳入维护。
 
 ## Browser Evidence Requirements
 

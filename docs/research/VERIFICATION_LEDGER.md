@@ -30,17 +30,15 @@
 ```text
 Batch 4-33
 Batch 35-50
-Batch 52
-Batch 53
-Batch 54
-Batch 56
-Batch 57
+Batch 51-54
+Batch 56-60
 ```
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
 Batch 57 有独立的普通连接事务 verifier。
 Batch 58 有独立的 node-bound UI owner lifecycle verifier。
 Batch 59 有独立的 Director asset-library search/preview/add verifier。
+Batch 60 有独立的普通图片双浮层 owner/pointer boundary verifier。
 
 ### 2.2 脚本分组台账
 
@@ -68,6 +66,12 @@ Batch 59 有独立的 Director asset-library search/preview/add verifier。
 | Batch 57 | ordinary graph connection normalization, structural guards and zero-mutation transaction boundary | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch57.py` 已通过；覆盖真实 Handle drag、target-start、duplicate/reverse/parallel/self/cycle reject、one-step history、undo/redo、desktop/mobile overflow 与诊断错误；不覆盖 Reference/domain/source invalid feedback/import/sync |
 | Batch 58 | node-bound UI owner invalidation and canvas boundary cleanup | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch58.py` 已通过；覆盖纯 reconciliation、preview/annotate/element-edit/Director 删除关闭、四类 owner 换画布关闭、delete-only history、desktop/mobile overflow 与诊断错误；不证明源站 destructive delete、资源回收或完整 relation-aware delete planner |
 | Batch 59 | Director asset-library search, preview-only selection and explicit proxy insertion | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch59.py` 已通过；覆盖五分类、搜索、空结果、preview 不写场景、显式加入、对象树/Inspector continuity、desktop/mobile bounds、WebGL nonblank 和普通 graph isolation；不证明真实 asset loading、远程资源或认证后 LibTV exact UI |
+| Batch 60 | ordinary image double-overlay owner continuity and pointer boundary | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch60.py` 已通过；覆盖 standard toolbar/panel owner 一致性、selection migration、几何不变量、非交互 panel boundary、textarea/button interaction、active-tool replacement、空白卸载、graph/history isolation、desktop/mobile bounds 和 diagnostics；pointer routing 是 clone-owned decision，不证明源站重叠命中语义 |
+
+Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
+`900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
+记录为 `EXPECTED_HISTORICAL_MISMATCH`，不应通过回退当前图片工具条实现来“修绿”；
+当前图片标准态应以 Batch 52 和 Batch 60 为准。
 
 ## 3. 当前源站合同覆盖
 
@@ -85,6 +89,7 @@ Batch 59 有独立的 Director asset-library search/preview/add verifier。
 | 普通画布结构连接事务 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 57） | source static audit、Batch 57 `runtime-audit.json`、`LibTVGraphConnection.contract.md` | structural normalize/guard/transaction 已覆盖；Reference、domain compatibility、invalid feedback、import/batch/sync 仍未覆盖 |
 | 节点绑定 UI owner 生命周期 | `CLONE_FIXTURE_ONLY`（Batch 58） | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、delete impact matrix | clone 的 `canvasId + nodeId` owner reconciliation、删除/换画布 UI cleanup 已覆盖；源站删除语义、Director workspace/media resource lifecycle 仍未确认 |
 | Director 资源库搜索/预览/加入场景 | `CLONE_FIXTURE_ONLY`（Batch 59） | [`liblib-canvas-batch59-2026-08-27/`](liblib-canvas-batch59-2026-08-27/)、Batch 47/48 model-library contracts | 搜索、preview-only selection、proxy insertion 和 Inspector continuity 已覆盖；真实模型/环境资产、远程同步、生产持久化和认证后 source-exact surface 仍未知 |
+| 普通图片双浮层 owner/命中边界 | `CLONE_FIXTURE_ONLY`（Batch 60） | [`liblib-canvas-batch60-2026-08-26/`](liblib-canvas-batch60-2026-08-26/)、[`ImageNode.spec.md`](components/ImageNode.spec.md)、[`ImageEditPanel.spec.md`](components/ImageEditPanel.spec.md) | owner identity、selection migration、既有几何、panel controls 和 active-tool replacement 已覆盖；相邻节点被 panel 覆盖像素的真实源站 routing 未取得 |
 | 普通画布 graph mutation ingress | `STATIC_CONTRACT_ONLY` + connection island `LOCAL_FIXTURE` | [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、`LIBTV-VR-014` design、Batch 57 | 全 writer/T0-T5 audit 已完成；derived/setter/copy/delete/restore/remote routing runtime 尚未验证或实现 |
 | React Flow change transport | `STATIC_CONTRACT_ONLY` / `RUNTIME_PARTIAL` | [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、共同 12.11.1 types/reducer、Open Canvas/clone callback static audit、`LIBTV-VR-016` design | exact T0/T1/semantic contract 已完成；current-snapshot routing、whole-batch reject、edge selection owner、runtime-field sanitation 和 focused fixture 未实现 |
 | 普通画布 async result ingress | `STATIC_CONTRACT_ONLY` / `RUNTIME_MISSING` | [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、Open Canvas `OC-026..030`、`LIBTV-VR-015` design | clone delayed writer/Director completion 与上游 run/poll/patch 正反面审计已完成；operation identity、controlled completion fixture、stale/duplicate convergence、projection recovery 和 resource ledger 未实现 |

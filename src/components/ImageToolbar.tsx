@@ -120,6 +120,7 @@ const actions = [
 export type ImageToolbarAction = (typeof actions)[number]["label"];
 
 interface ImageToolbarProps {
+  ownerNodeId: string;
   zoom: number;
   portraitEnhanced: boolean;
   hasMedia: boolean;
@@ -127,6 +128,7 @@ interface ImageToolbarProps {
 }
 
 export function ImageToolbar({
+  ownerNodeId,
   zoom,
   portraitEnhanced,
   hasMedia,
@@ -139,6 +141,7 @@ export function ImageToolbar({
       align="center"
       className="nodrag nopan z-[1001]"
       data-image-toolbar
+      data-owner-node-id={ownerNodeId}
     >
       <div
         onPointerDown={(event) => event.stopPropagation()}

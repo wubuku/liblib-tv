@@ -54,6 +54,20 @@ Its horizontal center equals the selected node center. It is not centered in the
 
 The editor is a child of `ImageNode`, centered on the node and counter-scaled by `1 / zoom`. See `ImageEditPanel.spec.md` for the exact formula and measurements.
 
+### Overlay owner and hit-testing boundary
+
+The standard pair is owned by the selected image node. Both surfaces expose the
+same `data-owner-node-id`; after selection migration the old pair must unmount
+and the new pair must mount without changing graph/history. Batch 60 also makes
+the panel wrapper and non-interactive regions transparent to pointer hit
+testing while restoring `pointer-events: auto` on textarea, buttons and
+popover controls.
+
+This pointer policy is a clone-owned interaction decision. The current source
+evidence does not establish how LibTV routes a click on an adjacent node when
+that node is covered by an editable panel, so the contract must not claim
+source-exact routing for that case.
+
 ### Preview state
 
 Clicking the enabled `预览` action dispatches an `ImagePreviewState` to the
@@ -110,6 +124,8 @@ Stable root selector: `[data-video-frame-capture]`.
 - element edit specifically renders a `272x44` toolbar, node-local stage and `400x50` empty record panel
 - clicking empty canvas removes both overlays
 - switching selected image moves both overlays to the new node
+- standard toolbar and panel carry the same `data-owner-node-id`; selection migration leaves exactly one pair
+- panel non-interactive regions do not blanket-capture pointer while textarea, buttons and popovers remain interactive
 - node drag and viewport pan keep both overlays attached
 - 28%, 53%, and 100% zoom preserve toolbar/panel screen size; toolbar width matches the action set for the selected source baseline
 - mobile clipping follows the original; do not move the overlays to page center to keep them visible
@@ -118,6 +134,8 @@ Stable root selector: `[data-video-frame-capture]`.
 - the five initial image nodes preserve their explicit editor height, Prompt, references, top controls and settings matrix
 - `scripts/verify-liblib-batch10.py` remains green as a historical five-state
   image-panel/AutoLink compatibility check
+- `scripts/verify-liblib-batch60.py` covers owner identity, selection migration,
+  pointer boundary, active-tool replacement and graph/history isolation
 - panorama creation preserves placeholder, edge, panel anchor and single-transaction history
 - `scripts/verify-liblib-batch20.py` remains green
 - video frame results preserve metadata, ordinary image overlays and

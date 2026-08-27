@@ -1,8 +1,9 @@
 # LibTV UI/UX Parity Backlog
 
 > 建档日期：2026-08-26。
-> 稳定 clone 基线：Batch 59 closeout；Director 资源库搜索、preview-only
-> selection 和 proxy insertion 已形成有界 clone 合同。真实 mesh loading、
+> 稳定 clone 基线：Batch 60 closeout；普通图片双浮层 owner 连续性和 panel
+> 命中边界已形成 clone-owned 有界合同。Director 资源库搜索、preview-only
+> selection 和 proxy insertion 也已形成有界 clone 合同。真实 mesh loading、
 > 远程同步、LibTV 生产持久化和
 > source-exact gizmo renderer 仍不在合同内。
 > 目的：面向后续 LibTV UI/UX 复刻，统一回答“当前真正还差什么、先研究什么、什么已可申请编码、怎样验证”。
@@ -104,6 +105,13 @@ Batch 51 已完成 clone-owned 的几何 slice：`ImageToolbar` 的 top host
 现在使用 `10 + 24 * zoom`，并由专项 verifier 覆盖约 28%/放大/pan；
 bottom panel 合同保持 `16 * zoom`。当前 source action set 与 clone
 `900.5px` 旧动作集合的差异仍未实施，active image tool 也继续单独排队。
+
+Batch 60 在该图片基线之上补齐了 standard pair 的 owner identity 和 selection
+迁移回归：`ImageToolbar` 与 `ImageEditPanel` 必须携带同一
+`data-owner-node-id`，旧 pair 在切换时卸载，新 pair 在同一选中态下挂载；
+panel 非交互区域不 blanket 捕获 pointer，控件仍保持交互。该命中策略是
+clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 routing，也
+不改变既有几何、自然裁切或 graph/history 合同。
 
 ### 4.3 `LIBTV-PAR-002`: low-risk active surfaces
 
