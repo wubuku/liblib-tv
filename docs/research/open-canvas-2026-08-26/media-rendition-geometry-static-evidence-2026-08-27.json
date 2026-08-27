@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "topic": "media-rendition-aspect-node-geometry",
+  "recordedAt": "2026-08-27",
+  "cloneBaseline": "fd90b18",
+  "openCanvasBaseline": "cf3a906bb8c35bb940d3267497e7f394b8f42582",
+  "authorization": "documentation-only; LibTV source read-only",
+  "openCanvasEvidence": [
+    {
+      "id": "OC-081",
+      "claim": "CanvasNodeMedia stores locator/source/asset/thumbnail/duration/size but no intrinsic width or height; image and video data store selected output identity separately from generation aspect and resolution.",
+      "locations": [
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:50",
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:84",
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:98"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "Does not prove intrinsic dimensions are unavailable from the remote asset or DOM; only that the normalized graph descriptor omits them."
+    },
+    {
+      "id": "OC-082",
+      "claim": "Image upload probes decoded width/height, closes ImageBitmap or revokes the fallback object URL, chooses the closest supported generation aspect ratio and patches normalized image settings; video upload probes duration only.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-media-control.tsx:120",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-media-control.tsx:160",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-media-control.tsx:291",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-media-control.tsx:325"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "The selected ratio is a model option, not retained exact intrinsic metadata."
+    },
+    {
+      "id": "OC-083",
+      "claim": "Image and video cards have fixed type widths and their media preview wrapper uses nodeData.aspectRatio, so request configuration rather than selected-media intrinsic dimensions drives preview height.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:293",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:3192",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:3457"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "This is an upstream implementation choice, not LibTV source evidence."
+    },
+    {
+      "id": "OC-084",
+      "claim": "Canvas node previews, candidate grids and compact media controls use cover; the full-screen active image uses contain and its candidate thumbnails use cover.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:1410",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:1477",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:1536",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:7442",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:7467",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-media-control.tsx:381"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "Surface-role separation is reusable; exact fit/crop policy remains product-specific."
+    },
+    {
+      "id": "OC-085",
+      "claim": "Image/video history normalization clamps selected indexes, reconciles primary media with history and deduplicates by assetId or URL; output switching updates both selected index and primary media.",
+      "locations": [
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:353",
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:582",
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:623",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:3991",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:4112"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "The normalized media entries still cannot reconcile per-output intrinsic aspect because they omit dimensions."
+    },
+    {
+      "id": "OC-086",
+      "claim": "Edited-image save appends and selects a new uploaded output but does not patch aspectRatio or store the exported canvas dimensions in CanvasNodeMedia.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:4021",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:4056",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:4072"
+      ],
+      "class": "OPEN_CANVAS_FACT_AND_COUNTEREXAMPLE",
+      "boundary": "A ratio mismatch is structurally possible; this audit did not execute an edited mixed-ratio save."
+    },
+    {
+      "id": "OC-087",
+      "claim": "The graph schema serializes optional node width/height while React Flow measured dimensions remain runtime-only; no NodeResizer, resize control or explicit resize callback exists in the fixed canvas source.",
+      "locations": [
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:126",
+        "research/upstream/open-canvas/shared/lib/canvas/serialization.ts:56",
+        "research/upstream/open-canvas/shared/lib/canvas/serialization.ts:124"
+      ],
+      "absenceQueries": [
+        "NodeResizer",
+        "NodeResizeControl",
+        "onResize",
+        "resize-control",
+        "node-resizer"
+      ],
+      "class": "OPEN_CANVAS_FACT_AND_ABSENCE_AUDIT",
+      "boundary": "Serialized compatibility fields do not prove user-resize product semantics."
+    },
+    {
+      "id": "OC-088",
+      "claim": "Double-click centering and selected action/editor overlays resolve geometry through measured width/height, then node width/height, then fixed fallback values.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:5030",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:5964",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:6015"
+      ],
+      "class": "OPEN_CANVAS_FACT",
+      "boundary": "The method supports current-frame anchoring but does not solve stale measurement or define LibTV source offsets."
+    },
+    {
+      "id": "OC-089",
+      "claim": "Whole-canvas image drop repeats intrinsic-dimension ratio inference, whereas whole-canvas video drop stores duration and leaves the existing video aspect setting unchanged.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:5738",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:5780"
+      ],
+      "class": "OPEN_CANVAS_FACT_AND_COUNTEREXAMPLE",
+      "boundary": "This is an image/video asymmetry, not a recommended LibTV policy."
+    },
+    {
+      "id": "OC-090",
+      "claim": "Node and thumbnail surfaces may render thumbnailUrl while the detail viewer uses the full media URL, but neither URL has independent dimensions or crop metadata in the normalized descriptor.",
+      "locations": [
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:1410",
+        "research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx:7442",
+        "research/upstream/open-canvas/shared/lib/canvas/types.ts:50"
+      ],
+      "class": "OPEN_CANVAS_FACT_AND_INFERENCE",
+      "boundary": "Does not prove current thumbnails have a different crop; it proves the descriptor cannot declare how to reconcile one."
+    }
+  ],
+  "libtvSourceReadOnlyEvidence": {
+    "url": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+    "viewportTransform": "translate(12.4578px, 200.864px) scale(0.282798)",
+    "observations": [
+      {
+        "id": "LIBTV-MRG-SRC-001",
+        "nodeId": "i-1FQ9tErTcC",
+        "labelDimensions": [1808, 1024],
+        "logicalNodeDimensions": [618, 350],
+        "thumbnailIntrinsicDimensions": [200, 113],
+        "objectFit": "cover",
+        "objectPosition": "50% 50%"
+      },
+      {
+        "id": "LIBTV-MRG-SRC-002",
+        "nodeId": "i-dnwoZQ7jsG",
+        "labelDimensions": [1152, 576],
+        "logicalNodeDimensions": [700, 350],
+        "thumbnailIntrinsicDimensions": [200, 100],
+        "objectFit": "cover",
+        "objectPosition": "50% 50%"
+      },
+      {
+        "id": "LIBTV-MRG-SRC-003",
+        "nodeId": "i-lBzmo67AHv",
+        "labelDimensions": [1808, 1024],
+        "logicalNodeDimensions": [618, 350],
+        "thumbnailIntrinsicDimensions": [200, 113],
+        "objectFit": "cover",
+        "objectPosition": "50% 50%"
+      },
+      {
+        "id": "LIBTV-MRG-SRC-004",
+        "nodeId": "i-vxeeCnxySa",
+        "labelDimensions": [1152, 576],
+        "logicalNodeDimensions": [700, 350],
+        "thumbnailIntrinsicDimensions": [200, 100],
+        "objectFit": "cover",
+        "objectPosition": "50% 50%"
+      },
+      {
+        "id": "LIBTV-MRG-SRC-005",
+        "nodeId": "i-YDfWhFlthe",
+        "labelDimensions": [1280, 720],
+        "logicalNodeDimensions": [622, 350],
+        "thumbnailIntrinsicDimensions": [200, 112],
+        "objectFit": "cover",
+        "objectPosition": "50% 50%",
+        "selectedNodeScreenRect": [699.2784, 116.0244, 175.9002, 98.9792],
+        "selectedToolbarScreenRect": [240.9766, 50.2344, 1092.5, 49],
+        "selectedPanelScreenRect": [457.2286, 219.5284, 660, 273.7969]
+      },
+      {
+        "id": "LIBTV-MRG-SRC-006",
+        "claim": "No React Flow node resize/resizer selector was present in the observed current DOM.",
+        "selectors": [
+          ".react-flow__resize-control",
+          ".react-flow__node-resizer",
+          "[class*=resize-control]",
+          "[class*=node-resizer]"
+        ],
+        "counts": [0, 0, 0, 0],
+        "boundary": "Current DOM absence does not prove the feature never appears for other node types or modes."
+      }
+    ]
+  },
+  "cloneFindings": [
+    {
+      "id": "LIBTV-MRG-001",
+      "claim": "ImageNodeData width/height are displayed and handed to preview/edit owners, while React Flow node width/height independently control the node frame.",
+      "locations": ["src/components/nodes/ImageNode.tsx:23", "src/store/canvasStore.ts:637"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-002",
+      "claim": "The ordinary ImageNode uses cover; ImagePreviewOverlay uses contain but trusts node-data dimensions instead of decoded intrinsic dimensions.",
+      "locations": ["src/components/nodes/ImageNode.tsx:247", "src/components/ImagePreviewOverlay.tsx:16"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-003",
+      "claim": "A newly added default image has 512x512 media data but a 512x288 graph frame, producing an undeclared center crop.",
+      "locations": ["src/store/canvasStore.ts:2820", "src/store/canvasStore.ts:2854"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-004",
+      "claim": "Most derived image actions inherit source media dimensions but use default image graph dimensions unless callers explicitly override them.",
+      "locations": ["src/components/nodes/ImageNode.tsx:124", "src/store/canvasStore.ts:980"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-005",
+      "claim": "Director image capture stores actual/aspect metadata but always uses default landscape image node dimensions; portrait and square capture frames can therefore be cropped in the ordinary route.",
+      "locations": ["src/store/canvasStore.ts:2050", "src/store/canvasStore.ts:2820"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-006",
+      "claim": "Director animation export is a positive local method: graph node dimensions are aspect-aware and the actual video uses contain.",
+      "locations": ["src/store/canvasStore.ts:2119", "src/store/canvasStore.ts:2846", "src/components/nodes/VideoNode.tsx:380"],
+      "severity": "METHOD"
+    },
+    {
+      "id": "LIBTV-MRG-007",
+      "claim": "The same VideoNode type uses cover for poster-only ready state and contain for Director video playback, without a named rendition profile.",
+      "locations": ["src/components/nodes/VideoNode.tsx:380", "src/components/nodes/VideoNode.tsx:416"],
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "LIBTV-MRG-008",
+      "claim": "Picture-edit and subtitle-region coordinates normalize against the full node overlay; if the underlying poster is cover-cropped, the stored coordinates are visible-frame coordinates rather than declared intrinsic-media coordinates.",
+      "locations": ["src/components/PictureEditPanel.tsx:113", "src/components/PictureEditPanel.tsx:561", "src/components/SubtitleErasePanel.tsx:94", "src/components/SubtitleErasePanel.tsx:375"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-009",
+      "claim": "Image annotation sizes a blank backing canvas from the rendered node rect and does not declare a transform to intrinsic image space.",
+      "locations": ["src/components/ImageAnnotateSurface.tsx:10"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-010",
+      "claim": "Ordinary image/video node data have no first-class output list, selected output identity, per-output dimensions or thumbnail/full rendition descriptor.",
+      "locations": ["src/components/nodes/ImageNode.tsx:23", "src/components/nodes/VideoNode.tsx:43"],
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "LIBTV-MRG-011",
+      "claim": "Generation settings are opaque display strings and cannot safely serve as a geometry authority.",
+      "locations": ["src/components/nodes/ImageNode.tsx:34", "src/store/canvasStore.ts:661"],
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "LIBTV-MRG-012",
+      "claim": "The ordinary route uses React Flow measured width for selected video tools but has no explicit media-ready geometry epoch or output-switch remeasurement contract.",
+      "locations": ["src/components/nodes/VideoNode.tsx:203", "src/components/nodes/VideoNode.tsx:611"],
+      "severity": "HIGH"
+    },
+    {
+      "id": "LIBTV-MRG-013",
+      "claim": "Shot Breakdown source/result surfaces force near-16:9 frames with cover regardless of declared source/result dimensions.",
+      "locations": ["src/components/nodes/ShotBreakdownNode.tsx:117", "src/components/nodes/ShotBreakdownResultNode.tsx:70"],
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "LIBTV-MRG-014",
+      "claim": "Initial shared-project clone fixtures align graph-frame ratios with their media labels, showing a useful source-shaped method that newer generic creation paths do not preserve.",
+      "locations": ["src/store/canvasStore.ts:637", "src/store/canvasStore.ts:650", "src/store/canvasStore.ts:683", "src/store/canvasStore.ts:738"],
+      "severity": "METHOD"
+    }
+  ]
+}

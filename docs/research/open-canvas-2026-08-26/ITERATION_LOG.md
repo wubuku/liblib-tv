@@ -591,3 +591,16 @@
 - 拒绝移植 40-entry full bitmap、JPEG/0.92、HTML/editor schema、close-first、node-ID-only patch、Open Canvas upload/provider/save 产品语义；
 - runtime 仍 fragmented、source parity partial；任何实现、fixture 脚本或测试变更继续需要用户明确编码授权；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v53 media rendition、aspect 与 node geometry 三向静态审计
+
+本轮先固定 intrinsic media、selected output、generation request、node frame、React Flow measurement 和 per-surface crop/fit 的不同权威，不提前增加 generic resize 或 runtime schema：
+
+- 以 `fd90b18` 落档 active documentation plan，明确 passive measurement 不等于 user resize intent；
+- 新增 [`LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)，固定 Open Canvas fixed-width/request-aspect card、cover node/candidate、contain detail、selected output normalization 和 measured anchor 方法；
+- 保留 per-output intrinsic dimensions 缺失、image/video probe asymmetry、edited output 不更新 aspect、thumbnail/full URL 无 crop metadata、serialized dimensions 被误读为 resize 等反例；
+- 固定 clone default square-media/landscape-frame、derived-image frame reset、portrait/square Director capture crop、poster/video fit branch、mark overlay 绑定 cover-cropped node plane 等 `LIBTV-MRG-001..014`；
+- 只读当前 LibTV source 五个既有图片节点，确认 `1808x1024 -> 618x350`、`1152x576 -> 700x350`、`1280x720 -> 622x350`，均为 centered cover 且当前 DOM 无 known node-resizer selector；
+- 选择既有 `分镜 #2` 后只测量 node/top-toolbar/lower-panel rect，确认 media-shaped frame 会参与已有 center/gap contract；没有上传、生成、编辑、保存、删除或付费动作；
+- 原始固定路径和测量落档为 [`media-rendition-geometry-static-evidence-2026-08-27.json`](media-rendition-geometry-static-evidence-2026-08-27.json)；formal contract、fixture、`VR-023` 与治理链进入下一文档批；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站持久状态、其他开发者 WIP 或任一 submodule。

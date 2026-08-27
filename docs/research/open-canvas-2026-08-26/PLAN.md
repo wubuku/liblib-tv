@@ -69,10 +69,12 @@
 | `../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` | ten entry profiles、intent/lease/asset/reference、cohort、reachability/release、fixture 和 `LIBTV-VR-021` 正式设计权威 |
 | `../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md` | Open Canvas bitmap/text editor、save/upload handoff 正反面与 clone draft/local-history/inert command/graph gateway 的 fixed static audit |
 | `../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md` | ten editor profiles、session/baseline/draft、native/local/graph undo、commit/cancel、async/resource handoff、fixture 和 `LIBTV-VR-022` 正式设计权威 |
+| `../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md` | Open Canvas media/output/request-aspect/card rendition 正反面、clone dimension collision 与 LibTV source media-shaped node 的 fixed audit |
 | `libtv-media-ingress-source-dom-audit-2026-08-27.json` | LibTV source Add Resource、Generated History、Material、Asset、Shot 和 dormant uploader 的只读原始 DOM 记录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `OPEN_CANVAS_PATTERN_CARDS.md` | 十二类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial、media/resource 与 editor session authority 模式卡，以及对应的 LibTV 证据闸门 |
 | `editor-session-static-evidence-2026-08-27.json` | `OC-071..080` 与 `LIBTV-EDS-001..014` 的固定 source path、事实和迁移边界原始清单 |
+| `media-rendition-geometry-static-evidence-2026-08-27.json` | `OC-081..090`、`LIBTV-MRG-001..014` 与 source read-only node/media/overlay 尺寸的机器可读清单 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 | [`LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 viewport/coordinate/gesture/placement 研究计划与交付历史 |
 | [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 media ingress/resource lifecycle 研究计划与交付历史 |
