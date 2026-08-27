@@ -114,6 +114,8 @@ current source code + focused current run
 | `research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` | `CURRENT_GUIDANCE` | media intent、local lease、asset/reference、cohort transaction、reachability/release、fixture 和 `VR-021` | entry profile、resource owner、backend boundary 或 verifier maturity 变化时更新；不承载 exact source limits/progress/storage。 |
 | `research/LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md` | `DATED_SOURCE_SNAPSHOT` / `CURRENT_RESEARCH` | fixed Open Canvas 与 committed clone 的 editor draft/local-history/commit facts、counterexamples、maturity 和 unknowns | upstream SHA、clone runtime 或新 LibTV source evidence 变化时追加/另建审计；不把 Open Canvas/clone 行为升级为 LibTV 产品事实。 |
 | `research/LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md` | `CURRENT_GUIDANCE` | editor profile/session/baseline/draft、native/local/graph undo、commit/close/async/resource、fixture 和 `VR-022` | profile、history/commit owner、source decision 或 verifier maturity 变化时更新；不承载 exact source blur/Escape/save/close。 |
+| `research/LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md` | `DATED_SOURCE_SNAPSHOT` / `CURRENT_RESEARCH` | fixed Open Canvas、committed clone 与当日 LibTV source 的 intrinsic/output/request/frame/measured/rendition facts、counterexamples and unknowns | upstream SHA、clone runtime 或新 ratio-diverse source evidence 变化时追加/另建审计；不把 Open Canvas fixed-card 或 clone CSS 升级为 LibTV 产品事实。 |
+| `research/LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md` | `CURRENT_GUIDANCE` | dimension authority、selected output、frame/rendition profile、fit transform、measurement freshness、editor media space、fixture 和 `VR-023` | media/frame/fit owner、source decision 或 verifier maturity 变化时更新；不承载 exact source portrait/square/video/mixed-output/resize behavior。 |
 | `research/INSPECTION_GUIDE.md` | `CURRENT_GUIDANCE` | 源站检查和截图台账纪律 | 浏览器/取证流程变化时更新。 |
 
 ### 4.3 专项研究和 Batch
@@ -125,6 +127,7 @@ current source code + focused current run
 | `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理，process/model 矩阵负责各自设计权威，版本协议负责上游更新；不能替代 LibTV 源站合同。 |
 | Open Canvas media ingress research plan | `HISTORICAL_CONTRACT` | 2026-08-27 media ingress/resource lifecycle 的计划、执行顺序、停止条件和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + lifecycle contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
 | Open Canvas editor session research plan | `HISTORICAL_CONTRACT` | 2026-08-27 editor session/commit/history 的计划、问题拆解、停止条件和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + editor contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
+| Open Canvas media rendition research plan | `HISTORICAL_CONTRACT` | 2026-08-27 media rendition/aspect/node geometry 的计划、问题拆解、停止条件、里程碑和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + geometry contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
 | Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` | `HISTORICAL_CONTRACT` | 第一阶段 Batch A-E 候选实施清单 | 保留研究 provenance；新工作使用采纳矩阵、交接蓝图和全局 parity ID，不扩展 A-E 编号。 |
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |
@@ -157,6 +160,7 @@ current source code + focused current run
 | Batch 10 固定候选 AutoLink 原型 | [`LibTVAutoLink.contract.md`](research/components/LibTVAutoLink.contract.md) + current AutoLink matrix | 当前源站 ghost、structured mention 和 ordinal 语义 | 保留旧 clone 为什么出现固定 popover。 |
 | `COMPONENT_INVENTORY.md` 的“列出组件” | [`components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) 的“合同状态” | 判断应读哪个 spec/Batch | Inventory 继续负责源码结构。 |
 | Open Canvas overlay/input/graph 模式 | LibTV 专项 source contract | LibTV 精确尺寸、动作、文案和副作用 | 上游模式只保留为机制启发。 |
+| Open Canvas fixed media card/request-aspect/fit behavior | [`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](research/LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md) + LibTV dated source evidence | LibTV dimension authority、frame/rendition/measurement correctness | 上游只提供 selected-output/surface-fit/measured-anchor 方法和反例，不提供 LibTV frame policy 或 visual truth。 |
 | Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` 的 Batch A-E | [`ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md) + [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md) + [`LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) | 当前采纳状态、纵向 slice 和稳定编号 | 旧文档继续解释首轮优先级与研究出口。 |
 | `liblib-live-2026-08-25/README.md` 的当时差距排序 | [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md) | 当前跨路由研究/复刻优先级 | 旧文档继续保留 2026-08-25 source snapshot、当时 clone baseline 和实施 provenance。 |
 

@@ -80,6 +80,7 @@
 | [`LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 viewport/coordinate/gesture/placement 研究计划与交付历史 |
 | [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 media ingress/resource lifecycle 研究计划与交付历史 |
 | [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 editor session/commit/history 研究计划与交付历史 |
+| [`LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 media rendition/aspect/node geometry 研究计划与交付历史 |
 
 ## 5. 状态
 
@@ -117,6 +118,8 @@
 - [x] 完成 `OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`LIBTV-UIX-22`、`DEC-038` 与 Open Canvas 侧治理追溯同步
 - [x] 完成 `OC-081..090`、`OC-PATTERN-13` 与 `OC-ADOPT-026`，明确 selected output、frame/rendition、measurement 和 editor transform 的迁移/拒绝边界
 - [x] 完成 `OC-BP-013`、`LIBTV-UIX-23`、`OC-TR-019`、`LIBTV-TR-045`、`DEC-039` 与 `LIBTV-PAR-016` 的 LibTV 实施治理追溯
+- [x] 完成 `GI-101..116/GC-127..145`、local/source fixture、`LIBTV-VR-023`、verification ledger/coverage 与 `OC-EQ-009` 项目治理
+- [x] 将完成的 media rendition 计划迁入专题历史目录，稳定权威保持为 dated audit + formal contract
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

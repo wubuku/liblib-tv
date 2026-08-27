@@ -1,10 +1,12 @@
 # LibTV Media Rendition, Aspect And Node Geometry Research Plan
 
-> Status: `ACTIVE` / `DOCUMENTATION_ONLY`.
+> Status: `COMPLETE` / `HISTORICAL_CONTRACT` / `DOCUMENTATION_ONLY`.
 >
 > Scope: study how fixed Open Canvas and the current LibTV clone relate media intrinsic metadata, selected output identity, generation aspect/resolution, node frame geometry, React Flow measurement and per-surface fit/crop policy, then turn the useful methods and counterexamples into implementation-ready LibTV guidance.
 >
 > Baselines: clone `6aa92e8`; Open Canvas `cf3a906bb8c35bb940d3267497e7f394b8f42582`.
+>
+> Stable authority: [`../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md) + [`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md). This file preserves execution history and does not compete with those documents.
 >
 > Authorization boundary: no changes to `src/`, tests, runtime fixtures, either submodule, FrameOS, Director behavior or either source website. Shared LibTV source remains read-only.
 
@@ -57,15 +59,15 @@ The current clone likewise mixes graph node dimensions, image metadata labels, v
 
 | Authority | Owns | This study delegates |
 |---|---|---|
-| [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | coordinate domains, host/live viewport and placement | flow/client conversion and measured node anchor use |
-| [`components/LibTVOverlayPositioning.contract.md`](../research/components/LibTVOverlayPositioning.contract.md) | source-exact selected-node toolbar/panel geometry | overlay rect formulas and natural clipping |
-| [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) | bytes, validation, stable locators, leases and release | metadata probe operation/resource ownership |
-| [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../research/LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md) | editor baseline/draft/local history and commit | crop/annotate/editor session lifecycle |
-| [`components/LibTVNodeDataIdentity.contract.md`](../research/components/LibTVNodeDataIdentity.contract.md) | semantic/reference/runtime field roles | media/output identity and portability classes |
-| [`components/LibTVGraphDocument.contract.md`](../research/components/LibTVGraphDocument.contract.md) | portable graph schema and runtime exclusions | persisted node/media field boundary |
-| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../research/LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history commands | accepted resize/output-selection command cardinality |
-| [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](../research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | source model/mode option projection | exact provider ratio/resolution option sets |
-| [`ImagePreviewOverlay.spec.md`](../research/components/ImagePreviewOverlay.spec.md) | current image detail-overlay behavior | component-specific visual contract |
+| [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | coordinate domains, host/live viewport and placement | flow/client conversion and measured node anchor use |
+| [`components/LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md) | source-exact selected-node toolbar/panel geometry | overlay rect formulas and natural clipping |
+| [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) | bytes, validation, stable locators, leases and release | metadata probe operation/resource ownership |
+| [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md) | editor baseline/draft/local history and commit | crop/annotate/editor session lifecycle |
+| [`components/LibTVNodeDataIdentity.contract.md`](../components/LibTVNodeDataIdentity.contract.md) | semantic/reference/runtime field roles | media/output identity and portability classes |
+| [`components/LibTVGraphDocument.contract.md`](../components/LibTVGraphDocument.contract.md) | portable graph schema and runtime exclusions | persisted node/media field boundary |
+| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history commands | accepted resize/output-selection command cardinality |
+| [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) | source model/mode option projection | exact provider ratio/resolution option sets |
+| [`ImagePreviewOverlay.spec.md`](../components/ImagePreviewOverlay.spec.md) | current image detail-overlay behavior | component-specific visual contract |
 
 This study does not redefine the source overlay formulas and does not infer a resizable-node product feature from the presence of serialized `width/height` or React Flow measurement fields.
 
@@ -192,7 +194,7 @@ Do not upload, generate, edit, save, delete, switch a destructive setting or inv
 | `LIBTV-PAR-016` | parity backlog | one implementation-ready media-rendition slice |
 | `OC-EQ-009` / `LIBTV-FIX-SOURCE-MEDIA-RENDITION-01` | source queue | ratio-diverse read-only/disposable source confirmation |
 
-IDs are reserved by this active plan but become authoritative only when their target documents are written and indexed. Proposed graph IDs begin at `LIBTV-GI-101` and `LIBTV-GC-127`; final ranges depend on whether output selection and explicit frame resize are proven semantic commands.
+These IDs are now authoritative in their target documents. The final graph ranges are `LIBTV-GI-101..116` and `LIBTV-GC-127..145`; output/frame changes are modeled as explicit semantic commands, while passive measurement remains runtime-only and zero-history.
 
 ## 8. Work Sequence
 
@@ -275,6 +277,48 @@ This research batch is complete when:
 - agent navigation, traceability and implementation handoff remain discoverable;
 - documentation checks pass and no runtime/submodule/WIP path is modified.
 
-## 13. Immediate Next Action
+## 13. Completion Record
 
-Extract `OC-081..090` and the first `LIBTV-MRG-*` findings into the dated static audit and raw evidence artifact. Do not write the normative contract until output-switch, node-frame and fit-policy conflicts are demonstrated with fixed paths.
+### 13.1 Milestones
+
+| Milestone | Commit | Result |
+|---|---|---|
+| plan and authority boundary | `fd90b18` | active docs-only plan, questions, stop conditions and deliverables fixed |
+| three-way static audit | `c2278f8` | `OC-081..090`, `LIBTV-MRG-001..014`, source measurements and raw JSON fixed |
+| formal authority contract | `2c3b003` | ten authorities, frame/rendition profiles, fit transforms, invariants, fixture and `VR-023` design |
+| component-spec propagation | `2d7d84c` | eight media/detail/editor specs aligned with the formal contract |
+| Open Canvas governance | `c002272` | `OC-PATTERN-13`, `OC-ADOPT-026`, evidence/report/translation governance synchronized |
+| LibTV handoff governance | `3523614` | traceability, UIX, blueprint, decision, parity and report synchronized |
+| project verification governance | `1d46648` | graph/fixture/verifier/ledger/coverage/evidence queue synchronized |
+| discovery and lifecycle closeout | closeout commit containing this historical record | Hub/task/glossary/Big Picture/lifecycle/audit/index and plan promotion synchronized |
+
+### 13.2 Completed authority chain
+
+```text
+OC-081..090
+  -> OC-PATTERN-13 / OC-ADOPT-026 / OC-BP-013
+  -> LIBTV-TR-045 / LIBTV-UIX-23 / DEC-039 / LIBTV-PAR-016
+  -> LIBTV-MRG-I-001..042
+  -> GI-101..116 / GC-127..145
+  -> LIBTV-FIX-LOCAL-MEDIA-RENDITION-01
+  -> LIBTV-VR-023
+  -> OC-EQ-009 / LIBTV-FIX-SOURCE-MEDIA-RENDITION-01
+```
+
+### 13.3 Remaining work is intentionally not claimed complete
+
+- runtime remains `RUNTIME_FRAGMENTED`; no common media/frame/rendition/measurement authority was implemented;
+- source parity remains partial; current read-only evidence is landscape-image bounded;
+- portrait/square/odd-size/video/mixed-output/resize/editor-round-trip source behavior remains gated by a disposable fixture and per-action authorization;
+- no runtime fixture, verifier, provider, upload, generation, save, test or submodule change was made;
+- any implementation must re-enter through `LIBTV-PAR-016` + `OC-BP-013` and obtain explicit coding authorization.
+
+### 13.4 Reopen conditions
+
+Create a new dated plan rather than reactivating this file only when at least one of these occurs:
+
+1. a ratio-diverse disposable LibTV source fixture is accepted;
+2. clone runtime/fixture/verifier implementation is explicitly authorized;
+3. Open Canvas baseline SHA changes in a way that affects `OC-081..090`;
+4. new source evidence changes frame, fit, output-switch, resize or editor-coordinate decisions;
+5. a runtime change invalidates an invariant or component-spec handoff.

@@ -55,6 +55,7 @@ AGENTS.md / README.md
 | DOC-14 | Batch 48 随后建立 research/plan/contract 并提交 local-import foundation，最新并行 WIP 边界再次前移 | 如果只看 foundation commit，会把未完成的 local model workflow 误读为已验证能力 | Batch 48 完成 focused verifier、截图台账、成熟度和回归后升级为 recorded pass；真实 mesh loading 仍不在合同内 |
 | DOC-15 | 首轮 live gap、Seedance gap、verification coverage 和多个 runtime catalog 各自准确，但没有当前全路由优先队列 | agent 会继续按已完成的 2026-08-25 P0/P1 排期，或只从最近 Batch 猜下一项 | 新增 UI/UX parity backlog，以稳定 ID 统一价值、证据、验证准备度、风险、依赖和停止条件 |
 | DOC-16 | Open Canvas 描述性研究和模式卡充分，但借鉴结论尚未统一对齐当前 parity、fixture、verifier 和授权体系 | agent 可能把“值得借鉴”误读为直接移植，或继续沿用首轮 Batch A-E 编号 | 新增采纳决策矩阵和七层实施交接蓝图，保留 A-E provenance，并以 `OC-ADOPT-*` / `OC-BP-*` 对齐当前治理 ID |
+| DOC-17 | media ingress、editor session 和 overlay 已有合同，但 intrinsic/output/request/frame/measured/editor dimensions 仍混用，且 Open Canvas fixed-card 方法容易被误当 LibTV visual truth | 后续 agent 会用 landscape 单样本、CSS size 或 `object-fit` 修表象，造成 crop、anchor、output-switch 和编辑器坐标漂移 | 新增 dated audit、formal geometry contract、`OC-PATTERN-13`、`DEC-039`、`LIBTV-PAR-016`、fixture/`VR-023` 和 `OC-EQ-009`，并贯穿组件规格、任务导航、验证与生命周期治理 |
 
 ## 3. 本轮已应用的修正
 
@@ -162,6 +163,25 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 2026-08-27 的 editor session/commit/history 增量沿用同一治理链：dated audit 固定 Open Canvas inline/rich/bitmap editor、local history、save/upload handoff 正反面与 clone 十类 editor island；正式合同定义 profile/session/baseline/draft、native/local/graph undo、commit/close/async/resource、40 invariants、fixture 和 `VR-022`；`OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`DEC-038`、`LIBTV-PAR-015` 已接入 Big Picture、agent task map、traceability、graph catalog、fixture/verifier、coverage 和 ledger。完成计划迁入 Open Canvas 专题目录，raw static JSON 按 evidence artifact 管理。本增量只修改文档，没有修改 runtime、tests、submodule 或共享源站状态。
 
+2026-08-27 的 media rendition/aspect/node geometry 增量继续完成 authority chain：dated audit 固定 Open Canvas selected-output/request-aspect/fixed-card/surface-fit/measured-anchor 正反面、clone ordinary/derived/Director dimension collision 与 LibTV source landscape sample；正式合同定义 ten dimension authorities、four frame policies、named rendition profiles、cover/contain transform、mixed-output disposition、measurement epoch、42 invariants、fixture 和 `VR-023`。`OC-PATTERN-13`、`OC-ADOPT-026`、`OC-BP-013`、`DEC-039`、`LIBTV-UIX-23`、`LIBTV-PAR-016`、`GI-101..116/GC-127..145` 与 `OC-EQ-009` 已接入 Big Picture、agent task map、traceability、component specs、graph/fixture/verifier catalogs、coverage、ledger、evidence queue 和 lifecycle。完成计划迁入 Open Canvas 专题目录，raw static JSON 按 evidence artifact 管理。本增量只修改文档，没有修改 runtime、tests、submodule 或共享源站状态。
+
+## 5.2 Media rendition 可发现性复核
+
+本专题完成后按“用户意图 -> 入口 -> 权威 -> 执行/停止点”反向复核，而不是只检查文件是否存在：
+
+| 用户/agent 意图 | 首个可发现入口 | 稳定权威或历史入口 | 执行与停止点 |
+|---|---|---|---|
+| 理解项目全貌 | `AGENTS.md` -> [`BIG_PICTURE.md`](BIG_PICTURE.md) | geometry contract | runtime fragmented、source ratio-diverse gated、无编码授权 |
+| 修改 media ratio/frame/fit/editor coordinate | [`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) | dated audit + formal contract + component spec | `LIBTV-PAR-016` / `OC-BP-013` / `LIBTV-VR-023` |
+| 从正式文档 Hub 进入 | [`index.md`](index.md) -> [`research/README.md`](research/README.md) | audit、contract、historical plan 三者分列 | stable guidance 与 provenance 不竞争 |
+| 从 Open Canvas 研究进入 | Open Canvas `README.md` / `PLAN.md` | `OC-081..090`、pattern/adoption/blueprint、historical plan | 不把 fixed card/request aspect 当 LibTV truth |
+| 从组件反查 | [`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) | node/detail/editor specs -> geometry contract | 局部 Batch 通过不升级为共同 authority |
+| 从 graph/fixture/verifier 反查 | graph catalog / fixture catalog / verifier map / ledger | `GI-101..116`、`GC-127..145`、local/source fixture、`VR-023` | passive measurement zero history；runtime fixture missing |
+| 继续 source research | [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](research/open-canvas-2026-08-26/NEXT_EVIDENCE_ACQUISITION_PLAN.md) `OC-EQ-009` | current landscape read-only evidence | portrait/square/video/mixed-output/resize 需 disposable fixture 和逐动作授权 |
+| 判断文档状态 | [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) + [`drafts/README.md`](drafts/README.md) | audit=`DATED_SOURCE_SNAPSHOT`、contract=`CURRENT_GUIDANCE`、plan=`HISTORICAL_CONTRACT` | 不重新激活旧计划；触发条件满足后新建 dated plan |
+
+复核发现并修正两处真实缺口：迁移计划保留了九个 `docs/drafts/` 层级的旧相对链接；research Hub 后半部跨切面合同清单漏列 geometry audit/contract。修正后没有残留旧 draft path、`ACTIVE` 状态、十二张模式卡或八项 evidence queue 文案。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -177,3 +197,4 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 9. Open Canvas 启发下的 process/result、model capability 和 upstream update 各有单一权威入口，且均明确不可推出真实 backend/runner 或编码授权。
 10. Open Canvas media ingress 的可借方法与反例、LibTV source surface、clone runtime island、正式生命周期合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，object URL/local preview 不会被文档误写成 durable upload。
 11. Open Canvas editor session/local history 的可借方法与反例、clone editor maturity、正式 commit/history 合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，局部 `useState`、snapshot 或可见 Undo/Save 不会被误写成完整能力。
+12. Open Canvas selected-output/surface-fit/measured-anchor 的可借方法与反例、clone dimension collision、正式 media geometry 合同、ratio-diverse fixture/source queue 和 implementation handoff 可以沿单一 authority chain 反查，request aspect、CSS size、`object-fit` 或 passive measurement 不会被误写成 intrinsic media、semantic frame 或 source parity。

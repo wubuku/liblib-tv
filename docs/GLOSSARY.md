@@ -37,3 +37,10 @@
 | Local editor history | Undo/redo state owned by a custom foreground editor and excluded from semantic graph history until acceptance | `LIBTV-VR-022`, `OC-PATTERN-12` |
 | Commit intent | A frozen, normalized request to accept one editor draft synchronously or hand it to async authority | editor session contract, async ingress contract |
 | Baseline drift | A scoped owner/source change after editor open that requires explicit rebase, conflict or invalidation instead of silent draft overwrite | `DEC-038`, `LIBTV-EDS-I-019/020` |
+| Media intrinsic dimensions | Decoded dimensions of one exact image/video output, with explicit provenance and validity; not request settings or node size | `LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md` |
+| Selected output | The current candidate/version identity and its own metadata, distinct from a node's source collection or request aspect | `OC-PATTERN-13`, `DEC-039` |
+| Semantic node frame | Graph-owned width/height policy for a media node's canvas frame; changes only through a declared semantic command | `LIBTV-MRG-I-013..018`, `LIBTV-VR-023` |
+| Passive measured rect | Runtime observation of the rendered node shell used for selection and anchors; never evidence of user resize intent | React Flow `measured`, media geometry contract |
+| Rendition profile | A named surface policy that binds media/output identity, frame role, fit, object position, clipping and fallback | `CANVAS_PRIMARY`, `DETAIL_INSPECTOR`, `EDITOR_FULL_MEDIA` |
+| Frame policy | The declared authority that shapes a node frame: source media, request aspect, fixed type or explicit semantic frame | `SOURCE_MEDIA_SHAPED`, `REQUEST_ASPECT_SHAPED`, `TYPE_FIXED`, `EXPLICIT_SEMANTIC_FRAME` |
+| Measurement epoch | Owner/generation/frame/rendition revision tuple used to reject stale DOM measurements and anchors | `DEC-039`, `LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` |

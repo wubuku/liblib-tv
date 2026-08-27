@@ -651,3 +651,16 @@
 - 新增 `LIBTV-PAR-016 DESIGN_FIRST`，横跨 node/overlay/preview、graph frame/history、output identity、owner freshness、media descriptor 和 editor baseline；
 - 更新深度报告的十三张模式卡、成熟度、`R10`、当前建议/禁止项，以及 README/PLAN current authority；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v58 media rendition 项目验证、证据准入与生命周期闭环
+
+本轮把 v53-v57 的专题 authority 接入项目级执行与发现体系，并将完成计划从 active draft 晋升为历史合同：
+
+- 以 `1d46648` 登记 `GI-101..116/GC-127..145`、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-FIX-SOURCE-MEDIA-RENDITION-01` 和 `LIBTV-VR-023`，同步 verification ledger 与 component coverage；
+- 新增 `OC-EQ-009`，允许共享源站只读现有 landscape sample，将 portrait/square/odd-size/video/mixed-output/resize/editor-round-trip 明确放入 disposable fixture 和逐动作授权边界；
+- Big Picture、Agent Task Map 和 Glossary 现在分别承担整体认知、按任务进入和稳定术语入口，不与 dated audit/formal contract 竞争事实权威；
+- docs Hub、research Hub、Open Canvas README/PLAN、component coverage、graph/fixture/verifier catalogs、verification ledger 和 evidence queue 形成正向导航与反向索引；
+- [`LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md) 晋升为 `COMPLETE / HISTORICAL_CONTRACT`，稳定指导由 dated audit + formal contract 承担；
+- Documentation Audit 和 Lifecycle 登记新增 `DOC-17`、dated snapshot/current guidance/historical plan 与 supersession 边界；
+- 首次归档链接检查发现九个仍按 `docs/drafts/` 解析的旧相对路径，修正后文档链接验证恢复通过；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
