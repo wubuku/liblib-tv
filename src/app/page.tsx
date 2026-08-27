@@ -58,7 +58,10 @@ import {
 import {
   getLibTVHostCenterClientPoint,
   getLibTVViewportForFlowAtHostCenter,
+  isValidLibTVViewport,
+  planLibTVResponsiveViewportProjection,
   type LibTVViewport,
+  type LibTVViewportOwnership,
 } from "@/lib/libtvViewportPlacement";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
@@ -106,9 +109,38 @@ interface LibTVAssetLayoutLogEntry {
     | "host-unchanged";
 }
 
+interface LibTVViewportOwnerLogEntry {
+  canvasId: string;
+  status: "committed" | "skipped";
+  reason:
+    | "bootstrap-applied"
+    | "stable-restored"
+    | "viewport-accepted"
+    | "projection-echo"
+    | "canvas-changed"
+    | "invalid-viewport"
+    | "canvas-unavailable";
+  ownership: LibTVViewportOwnership | null;
+  viewport: LibTVViewport | null;
+}
+
+interface LibTVViewportEventResult {
+  status: "committed" | "skipped";
+  reason: LibTVViewportOwnerLogEntry["reason"];
+}
+
 declare global {
   interface Window {
     __libtv_asset_layout_log: LibTVAssetLayoutLogEntry[];
+    __libtv_viewport_owner_log: LibTVViewportOwnerLogEntry[];
+    __libtv_apply_viewport_event?: (
+      expectedCanvasId: string,
+      viewport: LibTVViewport,
+    ) => LibTVViewportEventResult;
+    __libtv_get_viewport_ownership?: () => Record<
+      string,
+      LibTVViewportOwnership
+    >;
   }
 }
 
@@ -122,6 +154,7 @@ function sameViewport(left: LibTVViewport, right: LibTVViewport): boolean {
 
 if (typeof window !== "undefined") {
   window.__libtv_asset_layout_log = [];
+  window.__libtv_viewport_owner_log = [];
 }
 
 export default function Home() {
@@ -179,6 +212,9 @@ export default function Home() {
   const flowContainerRef = useRef<HTMLElement | null>(null);
   const assetLayoutOperationRef = useRef(0);
   const assetLayoutFrameRef = useRef<number | null>(null);
+  const viewportOwnershipRef = useRef<Map<string, LibTVViewportOwnership>>(
+    new Map([["canvas-2", "bootstrap"]]),
+  );
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
@@ -332,14 +368,75 @@ export default function Home() {
     connectionGesture.current = null;
   }, []);
 
-  const onViewportChange = useCallback(
-    (viewport: { x: number; y: number; zoom: number }) => {
+  const applyViewportEvent = useCallback(
+    (
+      expectedCanvasId: string,
+      viewport: LibTVViewport,
+    ): LibTVViewportEventResult => {
+      const log = (
+        status: LibTVViewportOwnerLogEntry["status"],
+        reason: LibTVViewportOwnerLogEntry["reason"],
+        ownership: LibTVViewportOwnership | null,
+      ): LibTVViewportEventResult => {
+        window.__libtv_viewport_owner_log.push({
+          canvasId: expectedCanvasId,
+          status,
+          reason,
+          ownership,
+          viewport: isValidLibTVViewport(viewport) ? { ...viewport } : null,
+        });
+        return { status, reason };
+      };
+
+      if (useCanvasStore.getState().activeCanvasId !== expectedCanvasId) {
+        return log("skipped", "canvas-changed", null);
+      }
+      if (!isValidLibTVViewport(viewport)) {
+        return log("skipped", "invalid-viewport", null);
+      }
+
+      const ownership =
+        viewportOwnershipRef.current.get(expectedCanvasId) ??
+        (expectedCanvasId === "canvas-2" ? "bootstrap" : "stable");
+      const bootstrapViewport =
+        expectedCanvasId === "canvas-2"
+          ? window.matchMedia("(max-width: 768px)").matches
+            ? compactViewport
+            : desktopViewport
+          : null;
+      if (
+        ownership === "bootstrap" &&
+        bootstrapViewport &&
+        sameViewport(bootstrapViewport, viewport)
+      ) {
+        return log("committed", "projection-echo", ownership);
+      }
+
+      viewportOwnershipRef.current.set(expectedCanvasId, "stable");
       setFlowViewport(viewport);
       setStoreViewport(viewport);
       setZoomLevel(Math.round(viewport.zoom * 100));
+      return log("committed", "viewport-accepted", "stable");
     },
     [setStoreViewport, setZoomLevel],
   );
+
+  const onViewportChange = useCallback(
+    (viewport: LibTVViewport) => {
+      applyViewportEvent(activeCanvasId, viewport);
+    },
+    [activeCanvasId, applyViewportEvent],
+  );
+
+  useEffect(() => {
+    window.__libtv_apply_viewport_event = applyViewportEvent;
+    window.__libtv_get_viewport_ownership = () =>
+      Object.fromEntries(viewportOwnershipRef.current.entries());
+    return () => {
+      delete window.__libtv_apply_viewport_event;
+      delete window.__libtv_get_viewport_ownership;
+    };
+  }, [applyViewportEvent]);
 
   const addNodeAtHostCenter = useCallback(
     (type: string, data?: Record<string, unknown>) => {
@@ -481,14 +578,12 @@ export default function Home() {
             return;
           }
 
-          setFlowViewport(targetViewport);
-          setStoreViewport(targetViewport);
-          setZoomLevel(Math.round(targetViewport.zoom * 100));
+          applyViewportEvent(capturedCanvasId, targetViewport);
           log("committed");
         });
       });
     },
-    [activeCanvasId, setStoreViewport, setZoomLevel],
+    [activeCanvasId, applyViewportEvent],
   );
 
   const toggleAssetPanelWithAnchor = useCallback(() => {
@@ -535,17 +630,20 @@ export default function Home() {
     setOrganizeSnapshot({ nodes, viewport: currentViewport });
     selectNode(null);
     setStoreNodes(organized, { recordHistory: true });
-    setFlowViewport(organizedViewport);
-    setStoreViewport(organizedViewport);
-    setZoomLevel(Math.round(organizedViewport.zoom * 100));
-  }, [flowViewport, nodes, selectNode, setStoreNodes, setStoreViewport, setZoomLevel]);
+    applyViewportEvent(activeCanvasId, organizedViewport);
+  }, [
+    activeCanvasId,
+    applyViewportEvent,
+    flowViewport,
+    nodes,
+    selectNode,
+    setStoreNodes,
+  ]);
 
   const restoreOrganize = () => {
     if (organizeSnapshot) {
       setStoreNodes(organizeSnapshot.nodes, { recordHistory: true });
-      setFlowViewport(organizeSnapshot.viewport);
-      setStoreViewport(organizeSnapshot.viewport);
-      setZoomLevel(Math.round(organizeSnapshot.viewport.zoom * 100));
+      applyViewportEvent(activeCanvasId, organizeSnapshot.viewport);
     }
     setOrganizeSnapshot(null);
   };
@@ -555,13 +653,72 @@ export default function Home() {
     let frame = 0;
     const applyResponsiveViewport = () => {
       window.cancelAnimationFrame(frame);
+      const capturedCanvasId = activeCanvasId;
       frame = window.requestAnimationFrame(() => {
-        const viewport = activeCanvasId === "canvas-2"
-          ? media.matches ? compactViewport : desktopViewport
-          : useCanvasStore.getState().getActiveCanvas()?.viewport ?? { x: 0, y: 0, zoom: 1 };
-        setFlowViewport(viewport);
-        setStoreViewport(viewport);
-        setZoomLevel(Math.round(viewport.zoom * 100));
+        const state = useCanvasStore.getState();
+        if (state.activeCanvasId !== capturedCanvasId) {
+          window.__libtv_viewport_owner_log.push({
+            canvasId: capturedCanvasId,
+            status: "skipped",
+            reason: "canvas-changed",
+            ownership: null,
+            viewport: null,
+          });
+          return;
+        }
+
+        const canvas = state.canvases.find(
+          (item) => item.id === capturedCanvasId,
+        );
+        if (!canvas) {
+          window.__libtv_viewport_owner_log.push({
+            canvasId: capturedCanvasId,
+            status: "skipped",
+            reason: "canvas-unavailable",
+            ownership: null,
+            viewport: null,
+          });
+          return;
+        }
+
+        const ownership =
+          viewportOwnershipRef.current.get(capturedCanvasId) ??
+          (capturedCanvasId === "canvas-2" ? "bootstrap" : "stable");
+        viewportOwnershipRef.current.set(capturedCanvasId, ownership);
+        const bootstrapViewport =
+          capturedCanvasId === "canvas-2"
+            ? media.matches
+              ? compactViewport
+              : desktopViewport
+            : canvas.viewport;
+        const plan = planLibTVResponsiveViewportProjection(
+          canvas.viewport,
+          bootstrapViewport,
+          ownership,
+        );
+        if (!plan) {
+          window.__libtv_viewport_owner_log.push({
+            canvasId: capturedCanvasId,
+            status: "skipped",
+            reason: "invalid-viewport",
+            ownership,
+            viewport: null,
+          });
+          return;
+        }
+
+        setFlowViewport(plan.viewport);
+        if (plan.shouldWriteStore) setStoreViewport(plan.viewport);
+        setZoomLevel(Math.round(plan.viewport.zoom * 100));
+        window.__libtv_viewport_owner_log.push({
+          canvasId: capturedCanvasId,
+          status: "committed",
+          reason: plan.shouldWriteStore
+            ? "bootstrap-applied"
+            : "stable-restored",
+          ownership: plan.ownership,
+          viewport: { ...plan.viewport },
+        });
       });
     };
     applyResponsiveViewport();

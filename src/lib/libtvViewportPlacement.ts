@@ -30,8 +30,25 @@ export interface LibTVHostResizeCenterPlan {
   targetViewport: LibTVViewport;
 }
 
+export type LibTVViewportOwnership = "bootstrap" | "stable";
+
+export interface LibTVResponsiveViewportPlan {
+  viewport: LibTVViewport;
+  ownership: LibTVViewportOwnership;
+  shouldWriteStore: boolean;
+}
+
 function isFinitePoint(point: LibTVPoint): boolean {
   return Number.isFinite(point.x) && Number.isFinite(point.y);
+}
+
+export function isValidLibTVViewport(viewport: LibTVViewport): boolean {
+  return (
+    isFinitePoint(viewport) &&
+    Number.isFinite(viewport.zoom) &&
+    viewport.zoom >= 0.1 &&
+    viewport.zoom <= 8
+  );
 }
 
 function isValidDimensions(dimensions: LibTVDimensions): boolean {
@@ -144,10 +161,35 @@ export function planLibTVHostCenterPlacement(
   };
 }
 
+export function planLibTVResponsiveViewportProjection(
+  storedViewport: LibTVViewport,
+  bootstrapViewport: LibTVViewport,
+  ownership: LibTVViewportOwnership,
+): LibTVResponsiveViewportPlan | null {
+  if (!isValidLibTVViewport(storedViewport)) return null;
+
+  if (ownership === "stable") {
+    return {
+      viewport: { ...storedViewport },
+      ownership,
+      shouldWriteStore: false,
+    };
+  }
+
+  if (!isValidLibTVViewport(bootstrapViewport)) return null;
+
+  return {
+    viewport: { ...bootstrapViewport },
+    ownership,
+    shouldWriteStore: true,
+  };
+}
+
 declare global {
   interface Window {
     __libtv_plan_host_center_placement: typeof planLibTVHostCenterPlacement;
     __libtv_plan_host_resize_center_preservation: typeof planLibTVHostResizeCenterPreservation;
+    __libtv_plan_responsive_viewport_projection: typeof planLibTVResponsiveViewportProjection;
   }
 }
 
@@ -155,4 +197,6 @@ if (typeof window !== "undefined") {
   window.__libtv_plan_host_center_placement = planLibTVHostCenterPlacement;
   window.__libtv_plan_host_resize_center_preservation =
     planLibTVHostResizeCenterPreservation;
+  window.__libtv_plan_responsive_viewport_projection =
+    planLibTVResponsiveViewportProjection;
 }
