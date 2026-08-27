@@ -55,6 +55,16 @@ import {
 } from "three";
 import { cn } from "@/lib/utils";
 import {
+  createDirectorAsyncIdentity,
+  directorAsyncAuthority,
+  type DirectorAsyncIngressContextV1,
+  type DirectorAsyncOperationDescriptorV1,
+  type DirectorAsyncOwnerSnapshotV1,
+  type DirectorAsyncResultEnvelopeV1,
+} from "@/lib/directorAsyncAuthority";
+import { directorDocumentFingerprint } from "@/lib/directorCommandKernel";
+import {
+  getDirectorProjectRegistrySnapshot,
   useDirectorStore,
   type DirectorCapture,
   type DirectorCharacterGroup,
@@ -1288,7 +1298,7 @@ function CaptureController({
   frameRect,
   onCaptured,
 }: {
-  request: number;
+  request: DirectorAsyncOperationDescriptorV1 | null;
   frameRect: DirectorFrameRect | null;
   onCaptured: (capture: DirectorCapture) => void;
 }) {
@@ -1301,11 +1311,11 @@ function CaptureController({
   const gl = useThree((state) => state.gl);
   const scene = useThree((state) => state.scene);
   const camera = useThree((state) => state.camera);
-  const handledRequest = useRef(0);
+  const handledRequest = useRef<string | null>(null);
 
   useEffect(() => {
-    if (request <= 0 || request === handledRequest.current) return;
-    handledRequest.current = request;
+    if (!request || request.operationId === handledRequest.current) return;
+    handledRequest.current = request.operationId;
     let firstFrame = 0;
     let secondFrame = 0;
 
@@ -1327,9 +1337,10 @@ function CaptureController({
           const output = document.createElement("canvas");
           output.width = Math.max(1, Math.round(rect.width * scaleX));
           output.height = Math.max(1, Math.round(rect.height * scaleY));
-          const context = output.getContext("2d");
-          if (!context) throw new Error("Director capture canvas is unavailable");
-          context.drawImage(
+          const canvasContext = output.getContext("2d");
+          if (!canvasContext)
+            throw new Error("Director capture canvas is unavailable");
+          canvasContext.drawImage(
             source,
             Math.round(rect.left * scaleX),
             Math.round(rect.top * scaleY),
@@ -1341,7 +1352,7 @@ function CaptureController({
             output.height,
           );
           const createdAt = new Date().toISOString();
-          onCaptured({
+          const capture: DirectorCapture = {
             id: `director-capture-${Date.now()}`,
             dataUrl: output.toDataURL("image/png"),
             cameraId: activeCamera?.id ?? null,
@@ -1350,7 +1361,53 @@ function CaptureController({
             width: output.width,
             height: output.height,
             createdAt,
-          });
+          };
+          const currentState = useDirectorStore.getState();
+          const record = currentState.projectId
+            ? getDirectorProjectRegistrySnapshot().records.find(
+                (candidate) =>
+                  candidate.identity.projectId === currentState.projectId,
+              )
+            : null;
+          const currentOwner =
+            currentState.projectOwner &&
+            currentState.projectId &&
+            currentState.sessionId &&
+            currentState.generation !== null &&
+              ({
+                owner: { ...currentState.projectOwner },
+                projectId: currentState.projectId,
+                sessionId: currentState.sessionId,
+                generation: currentState.generation,
+              } satisfies DirectorAsyncOwnerSnapshotV1);
+          const ingressContext: DirectorAsyncIngressContextV1 | null =
+            currentOwner && record
+              ? {
+                  owner: currentOwner,
+                  sourceFingerprint: directorDocumentFingerprint(
+                    record.document,
+                  ),
+                }
+              : null;
+          const envelope: DirectorAsyncResultEnvelopeV1<DirectorCapture> = {
+            operationId: request.operationId,
+            kind: request.kind,
+            owner: request.owner,
+            attemptId: request.attemptId,
+            sourceFingerprint: request.sourceFingerprint,
+            resultId: capture.id,
+            resultVersionId: capture.id,
+            phase: "succeeded",
+            payload: capture,
+          };
+          if (
+            ingressContext &&
+            directorAsyncAuthority.reconcile(envelope, ingressContext)
+              .disposition ===
+              "apply-current"
+          ) {
+            onCaptured(capture);
+          }
         } finally {
           setCapturing(false);
         }
@@ -1713,7 +1770,9 @@ export function DirectorViewport({
   const viewportSnapshotRef = useRef(viewportSnapshot);
   const [directorCameraCommand, setDirectorCameraCommand] =
     useState<DirectorViewportSnapshot | null>(null);
-  const [captureRequest, setCaptureRequest] = useState(0);
+  const [captureRequest, setCaptureRequest] =
+    useState<DirectorAsyncOperationDescriptorV1 | null>(null);
+  const captureRequestSequence = useRef(0);
   const [phoneVcamOpen, setPhoneVcamOpen] = useState(false);
   const [crowdPanelOpen, setCrowdPanelOpen] = useState(false);
   const [crowdRows, setCrowdRows] = useState("3");
@@ -1827,8 +1886,48 @@ export function DirectorViewport({
 
   const requestCapture = () => {
     if (isCapturing) return;
+    const currentState = useDirectorStore.getState();
+    const record = currentState.projectId
+      ? getDirectorProjectRegistrySnapshot().records.find(
+          (candidate) => candidate.identity.projectId === currentState.projectId,
+        )
+      : null;
+    if (
+      !currentState.projectOwner ||
+      !currentState.projectId ||
+      !currentState.sessionId ||
+      currentState.generation === null ||
+      !record
+    ) {
+      return;
+    }
+    const owner: DirectorAsyncOwnerSnapshotV1 = {
+      owner: { ...currentState.projectOwner },
+      projectId: currentState.projectId,
+      sessionId: currentState.sessionId,
+      generation: currentState.generation,
+    };
+    captureRequestSequence.current += 1;
+    const descriptor: DirectorAsyncOperationDescriptorV1 = {
+      operationId: createDirectorAsyncIdentity("director-capture"),
+      kind: "capture",
+      owner,
+      attemptId: createDirectorAsyncIdentity("director-capture-attempt"),
+      sourceFingerprint: directorDocumentFingerprint(record.document),
+      requestFingerprint: JSON.stringify({
+        aspectRatio,
+        frameRect,
+        activeCameraId: currentState.activeCameraId,
+        sequence: captureRequestSequence.current,
+      }),
+      acceptedAt: new Date().toISOString(),
+      selectionPolicy: "preserve-current",
+    };
+    if (directorAsyncAuthority.begin(descriptor).disposition !== "accepted") {
+      return;
+    }
     setCapturing(true);
-    setCaptureRequest((value) => value + 1);
+    setCaptureRequest(descriptor);
   };
 
   const crowdTotal = Math.min(

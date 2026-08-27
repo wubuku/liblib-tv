@@ -27,8 +27,17 @@ import type {
   DirectorVideoExportRequest,
   DirectorVideoExportResult,
 } from "@/components/director/directorVideoExport";
+import {
+  createDirectorAsyncIdentity,
+  directorAsyncAuthority,
+  type DirectorAsyncIngressContextV1,
+  type DirectorAsyncOwnerSnapshotV1,
+  type DirectorAsyncResultEnvelopeV1,
+} from "@/lib/directorAsyncAuthority";
+import { directorDocumentFingerprint } from "@/lib/directorCommandKernel";
 import { useCanvasStore } from "@/store/canvasStore";
 import {
+  getDirectorProjectRegistrySnapshot,
   useDirectorStore,
   type DirectorAspectRatio,
   type DirectorCapture,
@@ -36,6 +45,54 @@ import {
 } from "@/store/directorStore";
 
 type MobilePanel = "tree" | "inspector" | null;
+
+function getCurrentDirectorAsyncContext(): DirectorAsyncIngressContextV1 | null {
+  const state = useDirectorStore.getState();
+  if (
+    !state.projectOwner ||
+    !state.projectId ||
+    !state.sessionId ||
+    state.generation === null
+  ) {
+    return null;
+  }
+  const record = getDirectorProjectRegistrySnapshot().records.find(
+    (candidate) => candidate.identity.projectId === state.projectId,
+  );
+  if (!record) return null;
+  const owner: DirectorAsyncOwnerSnapshotV1 = {
+    owner: { ...state.projectOwner },
+    projectId: state.projectId,
+    sessionId: state.sessionId,
+    generation: state.generation,
+  };
+  return {
+    owner,
+    sourceFingerprint: directorDocumentFingerprint(record.document),
+  };
+}
+
+function releaseUnacceptedVideoResource(
+  result: DirectorVideoExportResult,
+): void {
+  const claim = directorAsyncAuthority.claimResource(
+    result.videoUrl,
+    result.authority.operationId,
+  );
+  if (
+    claim.resource?.status === "transferred" ||
+    claim.resource?.status === "released"
+  ) {
+    return;
+  }
+  const release = directorAsyncAuthority.releaseResource(
+    result.videoUrl,
+    result.authority.operationId,
+  );
+  if (release.disposition === "released") {
+    URL.revokeObjectURL(result.videoUrl);
+  }
+}
 
 export default function DirectorDesk({
   canvasId,
@@ -313,15 +370,82 @@ export default function DirectorDesk({
     setExportProgress(0);
     setExportStatus("exporting");
     setExportedNodeId(null);
+    const context = getCurrentDirectorAsyncContext();
+    if (!context || context.owner.owner.sourceNodeId !== sourceNodeId) {
+      setExportError("导演台会话已失效，请重新打开后导出");
+      setExportStatus("error");
+      return;
+    }
+    const operationId = createDirectorAsyncIdentity("director-video-export");
+    const descriptor = {
+      operationId,
+      kind: "video-export" as const,
+      owner: context.owner,
+      attemptId: createDirectorAsyncIdentity("director-video-export-attempt"),
+      sourceFingerprint: context.sourceFingerprint,
+      requestFingerprint: JSON.stringify({
+        durationSeconds,
+        aspectRatio: exportAspectRatio,
+      }),
+      acceptedAt: new Date().toISOString(),
+      selectionPolicy: "select-result" as const,
+    };
+    const begin = directorAsyncAuthority.begin(descriptor);
+    if (begin.disposition !== "accepted") {
+      setExportError("导出请求未被接受，请重试");
+      setExportStatus("error");
+      return;
+    }
     setVideoExportRequest({
       id: exportRequestId.current,
       durationSeconds,
       aspectRatio: exportAspectRatio,
+      authority: descriptor,
     });
   };
 
   const completeVideoExport = useCallback(
     (result: DirectorVideoExportResult) => {
+      const context = getCurrentDirectorAsyncContext();
+      const envelope: DirectorAsyncResultEnvelopeV1<DirectorVideoExportResult> =
+        {
+          operationId: result.authority.operationId,
+          kind: result.authority.kind,
+          owner: result.authority.owner,
+          attemptId: result.authority.attemptId,
+          sourceFingerprint: result.authority.sourceFingerprint,
+          resultId: result.exportId,
+          resultVersionId: result.exportId,
+          phase: "succeeded",
+          payload: result,
+        };
+      const ingress = context
+        ? directorAsyncAuthority.reconcile(envelope, context)
+        : {
+            disposition: "reject-stale" as const,
+            reason: "DIRECTOR_ASYNC_OWNER_STALE" as const,
+          };
+      if (ingress.disposition !== "apply-current") {
+        releaseUnacceptedVideoResource(result);
+        setExportError("导出结果已失效，请重新导出");
+        setExportStatus("error");
+        return;
+      }
+      const claim = directorAsyncAuthority.claimResource(
+        result.videoUrl,
+        result.authority.operationId,
+      );
+      if (
+        claim.disposition === "reject-invalid" ||
+        !claim.resource ||
+        claim.resource.status === "transferred" ||
+        claim.resource.status === "released"
+      ) {
+        releaseUnacceptedVideoResource(result);
+        setExportError("导出资源状态无效，请重新导出");
+        setExportStatus("error");
+        return;
+      }
       const directorState = useDirectorStore.getState();
       const activeCamera = directorState.objects.find(
         (object) => object.id === directorState.activeCameraId,
@@ -342,11 +466,22 @@ export default function DirectorDesk({
         posterDataUrl: result.posterDataUrl,
       });
       if (!nodeId) {
-        URL.revokeObjectURL(result.videoUrl);
+        const release = directorAsyncAuthority.releaseResource(
+          result.videoUrl,
+          result.authority.operationId,
+        );
+        if (release.disposition === "released") {
+          URL.revokeObjectURL(result.videoUrl);
+        }
         setExportError("视频已生成，但画布节点创建失败");
         setExportStatus("error");
         return;
       }
+      directorAsyncAuthority.transferResource(
+        result.videoUrl,
+        result.authority.operationId,
+        result.exportId,
+      );
       setExportProgress(1);
       setExportError(null);
       setExportedNodeId(nodeId);
@@ -355,10 +490,29 @@ export default function DirectorDesk({
     [createDirectorAnimationExport, sourceNodeId],
   );
 
-  const failVideoExport = useCallback((message: string) => {
-    setExportError(message);
-    setExportStatus("error");
-  }, []);
+  const failVideoExport = useCallback(
+    (message: string) => {
+      const request = videoExportRequest;
+      const context = getCurrentDirectorAsyncContext();
+      if (request && context) {
+        const envelope: DirectorAsyncResultEnvelopeV1<{ message: string }> = {
+          operationId: request.authority.operationId,
+          kind: request.authority.kind,
+          owner: request.authority.owner,
+          attemptId: request.authority.attemptId,
+          sourceFingerprint: request.authority.sourceFingerprint,
+          resultId: `${request.authority.operationId}-failure`,
+          resultVersionId: `${request.authority.operationId}-failure`,
+          phase: "failed",
+          payload: { message },
+        };
+        directorAsyncAuthority.reconcile(envelope, context);
+      }
+      setExportError(message);
+      setExportStatus("error");
+    },
+    [videoExportRequest],
+  );
 
   return (
     <div

@@ -86,6 +86,13 @@ import {
   type DirectorCommandResult,
   type DirectorHistoryState,
 } from "@/lib/directorCommandKernel";
+import {
+  createDirectorAsyncIdentity,
+  directorAsyncAuthority,
+  type DirectorAsyncIngressContextV1,
+  type DirectorAsyncOwnerSnapshotV1,
+  type DirectorAsyncResultEnvelopeV1,
+} from "@/lib/directorAsyncAuthority";
 import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
 import {
   planDirectorDelete,
@@ -1432,6 +1439,35 @@ function getDirectorDocumentSnapshot(
   } catch {
     return null;
   }
+}
+
+function getDirectorAsyncContext(
+  state: DirectorState,
+): DirectorAsyncIngressContextV1 | null {
+  if (
+    !state.projectOwner ||
+    !state.projectId ||
+    !state.sessionId ||
+    state.generation === null
+  ) {
+    return null;
+  }
+  const record = directorProjectRegistry
+    .getSnapshot()
+    .records.find(
+      (candidate) => candidate.identity.projectId === state.projectId,
+    );
+  if (!record) return null;
+  const owner: DirectorAsyncOwnerSnapshotV1 = {
+    owner: { ...state.projectOwner },
+    projectId: state.projectId,
+    sessionId: state.sessionId,
+    generation: state.generation,
+  };
+  return {
+    owner,
+    sourceFingerprint: directorDocumentFingerprint(record.document),
+  };
 }
 
 function rememberDirectorCaptures(
@@ -3501,6 +3537,77 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       return null;
     }
 
+    const context = getDirectorAsyncContext(state);
+    if (!context) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "local-ready",
+          recordingStartTime: null,
+          error: "导演台会话已失效，请重新录制",
+        },
+      }));
+      return null;
+    }
+    const operationId = createDirectorAsyncIdentity(
+      "director-phone-vcam-import",
+    );
+    const descriptor = {
+      operationId,
+      kind: "phone-vcam" as const,
+      owner: context.owner,
+      attemptId: createDirectorAsyncIdentity(
+        "director-phone-vcam-import-attempt",
+      ),
+      sourceFingerprint: context.sourceFingerprint,
+      requestFingerprint: JSON.stringify({
+        sampleCount: validSamples.length,
+        firstTime: validSamples[0]?.time ?? null,
+        lastTime: validSamples.at(-1)?.time ?? null,
+      }),
+      acceptedAt: new Date().toISOString(),
+      selectionPolicy: "select-result" as const,
+    };
+    if (directorAsyncAuthority.begin(descriptor).disposition !== "accepted") {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "local-ready",
+          recordingStartTime: null,
+          error: "手机运镜结果未被接受，请重新录制",
+        },
+      }));
+      return null;
+    }
+    const resultId = `${operationId}-take`;
+    const envelope: DirectorAsyncResultEnvelopeV1<{
+      sampleCount: number;
+    }> = {
+      operationId,
+      kind: descriptor.kind,
+      owner: descriptor.owner,
+      attemptId: descriptor.attemptId,
+      sourceFingerprint: descriptor.sourceFingerprint,
+      resultId,
+      resultVersionId: resultId,
+      phase: "succeeded",
+      payload: { sampleCount: validSamples.length },
+    };
+    if (
+      directorAsyncAuthority.reconcile(envelope, context).disposition !==
+      "apply-current"
+    ) {
+      set((current) => ({
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "local-ready",
+          recordingStartTime: null,
+          error: "手机运镜结果已失效，请重新录制",
+        },
+      }));
+      return null;
+    }
+
     const takeIndex = state.phoneVcam.takeCount + 1;
     const createdAt = Date.now();
     const cameraId = `director-phone-vcam-${takeIndex}-${createdAt}`;
@@ -5120,6 +5227,9 @@ if (typeof window !== "undefined") {
       __director_store: typeof useDirectorStore;
       __director_project_registry_snapshot:
         typeof getDirectorProjectRegistrySnapshot;
+      __director_async_authority_snapshot: () => ReturnType<
+        typeof directorAsyncAuthority.getSnapshot
+      >;
     }
   ).__director_store = useDirectorStore;
   (
@@ -5127,7 +5237,18 @@ if (typeof window !== "undefined") {
       __director_store: typeof useDirectorStore;
       __director_project_registry_snapshot:
         typeof getDirectorProjectRegistrySnapshot;
+      __director_async_authority_snapshot: () => ReturnType<
+        typeof directorAsyncAuthority.getSnapshot
+      >;
     }
   ).__director_project_registry_snapshot =
     getDirectorProjectRegistrySnapshot;
+  (
+    window as unknown as {
+      __director_async_authority_snapshot: () => ReturnType<
+        typeof directorAsyncAuthority.getSnapshot
+      >;
+    }
+  ).__director_async_authority_snapshot = () =>
+    directorAsyncAuthority.getSnapshot();
 }

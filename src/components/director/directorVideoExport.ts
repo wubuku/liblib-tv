@@ -2,6 +2,9 @@ import type {
   DirectorAspectRatio,
 } from "@/store/directorStore";
 import type {
+  DirectorAsyncOperationDescriptorV1,
+} from "@/lib/directorAsyncAuthority";
+import type {
   DirectorFrameRect,
 } from "@/components/director/directorViewportMath";
 
@@ -9,10 +12,12 @@ export interface DirectorVideoExportRequest {
   id: number;
   durationSeconds: number;
   aspectRatio: DirectorAspectRatio;
+  authority: DirectorAsyncOperationDescriptorV1;
 }
 
 export interface DirectorVideoExportResult {
   exportId: string;
+  authority: DirectorAsyncOperationDescriptorV1;
   videoUrl: string;
   posterDataUrl: string;
   aspectRatio: DirectorAspectRatio;
@@ -255,6 +260,7 @@ export async function recordDirectorCanvasVideo({
   const createdAt = new Date().toISOString();
   return {
     exportId: `director-animation-export-${Date.now()}`,
+    authority: request.authority,
     videoUrl: URL.createObjectURL(video),
     posterDataUrl,
     aspectRatio: request.aspectRatio,
