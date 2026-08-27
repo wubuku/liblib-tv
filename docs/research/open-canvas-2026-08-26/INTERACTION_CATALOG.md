@@ -78,6 +78,12 @@ Open Canvas 提醒我们把以下数据作为一个几何合同共同测量：no
 - 保留 LibTV 当前“顶部 NodeToolbar + 节点内底部编辑器”的架构；只可借鉴 Open Canvas 的统一 anchor 数据和测量方法。
 - 在没有新的源站证据前，不加入页面中心对齐、自动避让、边缘 clamp、浮层重排或新的 z-index 层。
 
+### 3.5 Selection 不等于 focus 或 command context
+
+Open Canvas 的 selected flags 同时服务 editor、count、copy 和 delete，clone 则已把 node selection 分离成 session IDs，却仍让 edge selection 留在 stored edge record。两侧都不能仅凭“节点高亮”推出当前键盘 owner：editable target、foreground surface、local capture listener、Director workspace 和 browser/native command 还需要独立 context。
+
+完整 fixed audit 见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。在正式合同前，`LIBTV-UIX-01` 的 selection lifecycle verifier 继续只证明浮层 mount/unmount，不升级为 edge-selection、focus trap 或 shortcut precedence 已完成。
+
 ## 4. 模式 B：新增节点、菜单模式与连线入口
 
 ### 4.1 Open Canvas `SOURCE_FACT`

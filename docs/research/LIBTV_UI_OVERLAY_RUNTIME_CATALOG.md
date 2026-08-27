@@ -322,7 +322,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 | UI-02 | Notification/UserMenu 有 store state，无 mount owner | 标记为 unmounted | 先取得源站入口证据和产品需求。 |
 | UI-03 | `toggleGrid` 无 UI caller | 记录为不可达设置 | 不因 action 存在就补一个按钮。 |
 | UI-04 | Storyboard -> Agent 是 transition，不是 invariant | 修正文案 | verifier 覆盖手动关闭 Agent 后的 storyboard。 |
-| UI-05 | Director 只隔离 Escape，未隔离其他 page shortcuts | 标记为后台状态/graph 风险 | 明确 shortcut ownership 后再实现 guard。 |
+| UI-05 | Batch 50 已隔离 Director 与全部普通 page shortcuts；完整 focus trap、focus return、nested listener 和 source-exact 语义仍未关闭 | 保留 recorded isolation，删除旧“只隔离 Escape”表述 | 以 Batch 50 和 selection/focus static audit 为事实入口，再定义跨 surface command context。 |
 | UI-06 | Modal 只阻断 pointer，不统一阻断 canvas keyboard | 标记为 interaction boundary gap | 测试 Delete/Tab/group/undo 在 modal 前台的行为。 |
 | UI-07 | Outside-close policy 逐组件不同 | 保留差异，不抽象成默认行为 | 逐 surface 取得 source contract。 |
 | UI-08 | 节点上下 surface 混用 `NodeToolbar` 与 inverse scale | 指向精确定位合同 | 同 frame 读取 node/toolbar/panel/viewport rect。 |
@@ -367,6 +367,8 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 - selected-node surface 的 anchor strategy 或 mount condition 变化。
 
 不要在本文复制每个面板的视觉像素和完整业务动作。视觉尺寸回到组件 spec；graph delta 回到 graph transaction catalog；源站当前几何回到 overlay positioning contract。
+
+Selection、DOM focus、listener phase 和 command context 的 fixed baseline 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。
 
 ## 12. Related Documents
 

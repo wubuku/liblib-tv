@@ -269,6 +269,14 @@ CRUD 还证明 outcome-sensitive policy：create success 用 navigation/新 docu
 
 固定实现也有明确反例：store result code 主要只有 `invalid_graph/graph_cycle_detected`，具体 identity 放在中文 message；`translateCanvasRuntimeMessage` 再匹配整段中文/标点做 i18n。Global toast call 也没有显式 canvasId、operationId、attempt 或 dedupe key，因此 old-canvas async terminal 可能在新 owner 上下文发出无归属 announcement。完整转译见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
 
+### 6.8 Selection、focus 与 command context
+
+固定 studio 将 node/edge `selected` 留在 React Flow records：selected-node editor 只要求恰好一个 selected node，selected count 同时统计 node/edge，clipboard 从 selected nodes 构造 internal-edge subgraph，delete selection 则删除 selected node/edge 与 incident edge。这个结构让 command closure 直接，但 selection、primary editor 和 portable graph shape 没有天然分层。
+
+`onNodesChange/onEdgesChange` 在 conflict 下整体 return，因此 React Flow `select` change 也与 persistent mutation 一起被冻结；这是不能直接移植到 LibTV 的 authority coupling。文档级 copy/paste 另有更好的局部边界：`isEditableTarget` 覆盖 input/textarea/select/contenteditable/role textbox，image preview active 时暂停 graph clipboard；title/note/text editor 则各自拥有 focus 与 Enter/Escape commit/cancel。
+
+fixed implementation 没有一个 app-level undo/tool/group/duplicate shortcut dispatcher。Quick Add Escape 是不阻止传播的 document bubble listener，部分 destructive key 仍依赖 React Flow/default focus；Dialog/Dropdown 又主要委托 Radix primitive。它提供的是 local ownership 与 framework delegation 的正反面对照，不是 LibTV shortcut/focus 规格。完整双向审计见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。
+
 ## 7. Provider 事实与关键缺口
 
 ### 7.1 声明层和旧 API 层

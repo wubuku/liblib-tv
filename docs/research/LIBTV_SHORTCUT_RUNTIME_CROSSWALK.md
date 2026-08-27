@@ -105,7 +105,7 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 
 ### 6.3 Director 是独立快捷键域
 
-当 `activeDirectorNodeId` 存在时，普通工作台 Escape 明确返回。`DirectorDesk`、`DirectorInspector`、`DirectorTimeline`、`DirectorViewport` 和 phone virtual-camera panel 还有自己的键盘监听器。本文不把这些局部命令合入普通 LibTV 工作台；Director 应继续由 Batch 35-46 的领域合同维护。
+当 `activeDirectorNodeId` 存在时，普通 page dispatcher 对全部工作台快捷键提前返回；Batch 50 已对 Tab/Space/Delete/undo 的背景隔离形成 recorded runtime。`DirectorDesk`、`DirectorInspector`、`DirectorTimeline`、`DirectorViewport` 和 phone virtual-camera panel 仍有自己的键盘监听器。本文不把这些局部命令合入普通 LibTV 工作台；完整 selection/focus/listener 静态边界见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，Director 领域行为继续由 Batch 35-50 合同维护。
 
 ### 6.4 视口不是 graph history
 

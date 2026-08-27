@@ -494,3 +494,16 @@
 - 新增 `OC-PATTERN-08`、`OC-040..045`、`OC-ADOPT-021`、`OC-TR-014`、`OC-BP-008`、`DEC-034`、`LIBTV-TR-040`、`GI-049..058/GC-059..075`、`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01`、`LIBTV-VR-018` 和 `LIBTV-UIX-18` 的 authority chain；
 - 明确第一实施切片应是本地 deterministic feedback adapter/fixture，不是新增 global toast host；exact source toast placement/timeout、invalid connection style 和 provider task 文案仍保留 source/fixture gate；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或 Open Canvas submodule。
+
+## 2026-08-27：v45 selection、focus 与 command context 双向静态审计
+
+本轮先固定事实，不提前编写全局 modal/shortcut 实现方案：
+
+- 固定复核 Open Canvas selected node/edge flags、selected-node editor/count/copy/delete 的不同 projection，以及 conflict gate 同时冻结 selection 和 persistent change 的 coupling；
+- 固定复核 Open Canvas document clipboard 的 input/textarea/select/contenteditable/role-textbox guard、image preview suspension、local editor Enter/Escape ownership、Quick Add weak Escape listener 和 Radix dialog/dropdown delegation；
+- 明确 fixed studio 没有统一 app shortcut dispatcher，部分 destructive key 仍依赖 React Flow/default focus，因此上游是正反面方法输入，不是 LibTV shortcut 规格；
+- 固定审计 clone node selection session projection、三类 node selection ingress、stored edge `selected` authority、node-only Delete input、active image capture guard、local Escape listeners、pointer-modal surfaces、Preview/Director focus owner 与缺失 focus return；
+- 新增 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，登记 `LIBTV-SFC-001..012`、`OC-046..052`、formal contract questions，以及候选 `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` / `LIBTV-VR-019`；
+- 纠正 `PAR-004` 和 overlay `UI-05` 的旧事实：Batch 50 已让 Director active 时普通 page dispatcher 对全部快捷键 return，剩余缺口是完整 focus trap/return、nested listener 和 source-exact 语义；
+- 同步 docs hub、research index、Open Canvas read order/authority、evidence/source/report/interaction/plan 与 shortcut crosswalk；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或任一 submodule。

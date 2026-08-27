@@ -154,10 +154,11 @@ clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 r
 
 - Character/History backdrop 阻断 pointer，但没有统一 focus trap 或 page shortcut boundary；
 - Shortcuts 不是带 backdrop 的 modal；普通 button 上的 Delete/Tab/group 等仍会到 page handler；
-- Director 只让 page Escape 提前返回，其他 global shortcuts 仍可能在 full-screen workspace 背后改变 overlay 或 graph；
+- Batch 50 已让 page dispatcher 在 Director active 时对全部普通画布快捷键提前返回，并记录 workspace focus owner；完整 focus trap、focus return 和 LibTV source-exact Director keyboard contract 仍未知；
 - CanvasDropdown 的 local Escape 与 page Escape 可同时观察事件；active node tools 又有 capture-phase listener。
+- node selection 已有独立 session projection，但 edge selection 仍由 generic `onEdgesChange` 留在 stored edge record，Delete 又只读取 node selection。
 
-这既是 correctness 风险，也是 fidelity 未知。下一步先只读复核源站 modal、Agent、Share、Director 的 keyboard/outside/focus 行为，再决定 clone 应采用 source parity 还是显式可访问性改良。没有证据前不引入全局 modal manager。
+完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。下一步先定义 node/edge/primary selection、focus zone 和 command dispatch precedence，并只读复核源站 modal、Agent、Share、Shortcuts 的 keyboard/outside/focus 行为，再决定 clone 应采用 source parity 还是显式可访问性改良。没有证据和合同前不引入全局 modal manager。
 
 ### 4.6 `LIBTV-PAR-005`: source freshness refresh
 
