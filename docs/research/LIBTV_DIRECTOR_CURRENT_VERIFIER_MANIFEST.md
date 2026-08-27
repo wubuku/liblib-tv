@@ -4,14 +4,15 @@
 > `OWNER_SESSION_GATE_RECORDED_PASS` /
 > `BROWSER_SMOKE_RECORDED_PASS` /
 > `AUTHORED_RUNTIME_GATE_RECORDED_PASS` /
-> `HISTORY_GATE_RECORDED_PASS` /
+> `HISTORY_GATE_RECORDED_PASS` / `POINTER_LIFECYCLE_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
 >
 > Scope: `scripts/verify-liblib-batch35.py` through Batch 50, Batch 59,
 > Batch 67 pure codec verifier, Batch 68 hybrid owner/session verifier,
-> Batch 69 authored/runtime verifier and Batch 70 command/history verifier.
+> Batch 69 authored/runtime verifier, Batch 70 command/history verifier and
+> Batch 71 pointer-lifecycle verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -46,6 +47,9 @@ single current gate on their own:
 - Batch 70 covers project-local command results、semantic mutation history、
   no-op/rejection outcomes、gesture coalescing、undo/redo、redo truncation、
   close/reopen history continuity and ordinary graph/history isolation.
+- Batch 71 covers Inspector numeric/range、pose、camera、path anchor/Bezier、
+  path transform and pencil/pen pointer lifecycle with commit/cancel/
+  pointercancel cleanup and ordinary graph/history isolation.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -87,6 +91,7 @@ historical regressions.
 | Batch 68 | structured owner key、project/session/generation、A/B/cross-canvas isolation、duplicate reset and active-delete close | `CURRENT_GATE` | Pure Node registry corpus + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` owner/session gate；does not prove authored/runtime stability、inactive tombstone、async destination、history/delete or persistence |
 | Batch 69 | authored/runtime object split、seek/playback/path stability、object/camera/pose authoring restore、close/reopen and owner/graph isolation | `CURRENT_GATE` | Static Node source gate + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` authored/runtime gate；does not prove history/delete、async destination、durable persistence or source parity |
 | Batch 70 | project-local command result、semantic history、no-op/rejection、gesture coalescing、undo/redo and reopen continuity | `CURRENT_GATE` | Pure Node source gate + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` command/history gate；does not prove reference-aware delete、async destination、durable persistence or source parity |
+| Batch 71 | Inspector、pose、camera、path and free-draw gesture lifecycle | `CURRENT_GATE` | Pure source gate + one fresh-page Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` pointer-lifecycle gate；does not prove reference-aware delete、async destination、durable persistence or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -115,6 +120,8 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch59.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch70.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch71.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -201,6 +208,22 @@ This result closes the synchronous Director command/history/gesture slice, not
 reference-aware delete、async capture/export destination freshness、durable
 persistence、real resources or source-exact UI.
 
+Batch 71 pointer-lifecycle gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 |
+| Implementation checkpoint | `3a511a9` |
+| Pure corpus | gesture helper、Inspector、R3F path controls and pencil/pen commit/cancel wiring |
+| Browser corpus | numeric、pose、camera、path anchor/transform、pencil/pen completion/cancel/pointercancel and ordinary graph/history isolation |
+| Runtime boundary | continuous input is coalesced to at most one project history entry; cancel and interruption restore the baseline and clear active gesture |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 71 `runtime-audit.json` only；zero screenshots |
+
+This result closes the focused Director pointer lifecycle slice, not
+reference-aware delete、async capture/export destination freshness、durable
+persistence、real resources or source-exact UI.
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -262,8 +285,8 @@ Required future scenarios:
 | strict document codec | **implemented in Batch 67**：valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
 | owner registry | **focused runtime in Batch 68**：open A、switch B、reopen A、cross canvas、duplicate reset、active delete close、generation freshness |
 | authored/runtime split | **implemented in Batch 69**：seek/playback/path sampling does not mutate portable authored snapshot；authoring writes authored layer and restores |
-| command/history | **implemented in Batch 70**：committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation; reopen continuity |
-| delete closure | object/group/camera/track/path/resource references repaired or blocked atomically |
+| command/history | **implemented in Batch 70/71**：committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation; reopen continuity; Inspector/R3F pointer lifecycle |
+| delete closure | **planned for Batch 72**：object/group/camera/track/path/resource references repaired or blocked atomically |
 | async bridge | capture/export commits only to captured live owner/generation |
 | route isolation | ordinary graph history and Director project history remain independent |
 
@@ -276,6 +299,7 @@ OWNER_SESSION_FOCUSED_PASS
 CURRENT_BROWSER_SEED_PASS
 AUTHORED_RUNTIME_FOCUSED_PASS
 HISTORY_FOCUSED_PASS
+POINTER_LIFECYCLE_FOCUSED_PASS
 DELETE_ASYNC_PERSISTENCE_RUNTIME_MISSING
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
