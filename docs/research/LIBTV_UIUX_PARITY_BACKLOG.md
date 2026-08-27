@@ -217,6 +217,8 @@ Batch 58 的实现入口是 [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-
 
 Graph ingress 子切片也已完成全入口静态审计与设计，权威入口是 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：Open Canvas store/save/API/revision/server-patch 分层与 clipboard/framework delta 反例、clone direct writers、T0-T5、full-draft command plan、`LIBTV-FIX-LOCAL-GRAPH-ENTRYPOINT-01` 和 `LIBTV-VR-014` 已定义。Runtime 只有 Batch 57 connection/addEdge island 受保护；transport whitelist、derived/copy/delete plan、history restore 和 remote authority 未实现。
 
+其中 React Flow framework delta 已完成独立细化，权威入口是 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)：两个项目共同的 12.11.1 variant/reducer 语义、Open Canvas current-state 正面模式与 generic acceptance 反例、clone render-closure/whole-array/mixed-batch 风险、T0 selection、T1 existing-node position/passive measurement、semantic reroute、runtime-field sanitation、`LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` 和 `LIBTV-VR-016` 已定义。Runtime 仍未收窄；node resize/reconnect 保持 source/product-blocked。
+
 Async result ingress 也已完成 implementation 前的双向静态审计，权威入口是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas descriptor/run/runId polling/server patch/revision/saved baseline 的可借结构与 expected-run/source-version/field-owner/two-write 缺口、clone 7 类 delayed/Director completion、operation envelope、freshness disposition、selection/history/resource、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 已定义。Runtime 仍没有共同 operation owner；当前短 timer 只算 `PROTOTYPE_LATENCY`，不能升级为真实 task lifecycle。
 
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle

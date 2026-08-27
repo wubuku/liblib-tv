@@ -58,8 +58,9 @@
 | `../components/LibTVOverlayPositioning.contract.md` | 后续编码 agent 可直接引用的 screen/flow 坐标、标准 toolbar/panel 公式和验证断言 |
 | `../components/LibTVAutoLink.contract.md` | 后续编码 agent 可直接引用的 Auto Link 候选、ghost、structured mention 和 graph 事务合同 |
 | `../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md` | Open Canvas run/poll/patch 正反面、clone delayed writer 审计，以及 stale-safe completion、history/resource 和 verifier 设计 |
+| `../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md` | 共同 React Flow 12.11.1 change/reducer 深读、Open Canvas/clone adapter 对照，以及 transport whitelist、whole-batch/current-snapshot 和 verifier 设计 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 五类可迁移的坐标、引用、状态、子图和 async ingress 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 六类可迁移的坐标、引用、状态、子图、async ingress 和 framework change routing 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
 ## 5. 状态
@@ -77,6 +78,8 @@
 - [x] 完成 LibTV 双浮层 28%/34%/41%/50%/100% zoom 与空白选择生命周期审计
 - [x] 从当前生产 chunk 确认标准图片工具条 host 的 `nodeTop - 24 * zoom - 10` + `translateY(-100%)` 定位公式
 - [x] 完成元素编辑空态的专用 toolbar/stage/record panel 只读取证，并确认旋转入口在共享 fixture 中的派生节点与撤销边界
+- [x] 精确核对共同 React Flow 12.11.1 change union/reducer、Open Canvas functional current-state adapter 和 generic non-select acceptance 边界
+- [x] 完成 LibTV T0/T1/semantic whole-batch change routing、history/runtime-field sanitation、fixture 和 `LIBTV-VR-016` 设计
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

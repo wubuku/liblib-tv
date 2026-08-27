@@ -174,6 +174,8 @@ Open Canvas 的重要启发是连接应同时具备：真实 Handle、类型兼�
 
 不能因为 Open Canvas 使用左右 handles，就直接改变当前 LibTV 的连接方向和边动效。
 
+框架 callback 也必须与连接 UX 分开评审。Open Canvas 使用 current Zustand state 处理 changes，可借来避免 stale render overwrite；但其“所有 non-select 都直接 apply”的策略不能移植。LibTV 后续只把 selection、existing-node position 和 passive measurement 当 transport，add/remove/replace/reconnect 必须回到命名连接/删除/layout command；完整合同见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。
+
 ### `LIBTV-UIX-03`：节点内容层与控制层
 
 从 Open Canvas 借鉴层级，而不是复制视觉：

@@ -202,6 +202,16 @@
 
 **依据：** [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、[`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、Open Canvas [`local-canvas-runner.ts`](../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts) 与 [`canvas-studio-shell.tsx`](../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx)。
 
+### DEC-032：React Flow change 必须先整批分类再归约
+
+**背景：** clone 与 Open Canvas 固定版本都锁定 `@xyflow/react@12.11.1`。该版本的 `NodeChange` 包含 select/position/dimensions/add/remove/replace，`EdgeChange` 包含 select/add/remove/replace；reconnect 是独立 callback。当前 clone 把 node 非选择 change 与全部 edge change 直接交给 generic reducer，再以 whole-array setter 写回，其中 edge reducer base 还来自 render closure。Open Canvas 使用 current Zustand state 是正面方法，但同样接受所有 variant，并把所有 non-select change 统一视为 persistent。
+
+**决策：** `onNodesChange/onEdgesChange` 必须在任何副作用前解析整个 batch。T0 只处理 selection；T1 只允许 existing-node finite position 和不带 `setAttributes` 的 passive measurement；node/edge add/remove/replace、attribute resize 与 reconnect 必须进入具名 T2/T3 command 或拒绝。Edge 在 12.11.1 没有 non-selection T1 variant。Accepted T0/T1 必须基于同一 current active-canvas snapshot；unsupported/malformed mixed batch 零 partial mutation；selection、measured/dragging/resizing 等 runtime 字段不得泄漏进 portable document/copy/semantic history。
+
+**影响：** 当前命名 connect/delete 和 drag-stop one-history 合同保持不变。未来实现先加 pure classifier/result 和 focused fixture，再收口 current-snapshot store routing 与 edge selection owner；不顺手引入 node resize、reconnect、persistence、FrameOS 改造或视觉变更。`REACT-FLOW-CHANGES-01`、`LIBTV-VR-016` 与 runtime adapter 仍需明确编码授权。
+
+**依据：** [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts) 及固定 `@xyflow/react@12.11.1` / `@xyflow/system@0.0.78` 类型与 reducer 实现。
+
 ## 3. 何时可以重审决策
 
 只有出现以下事件之一，才需要更新对应决策，而不是在代码中悄悄绕过：

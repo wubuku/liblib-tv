@@ -163,8 +163,9 @@ sequenceDiagram
 4. **结果是节点 patch**：运行记录用于审计/轮询，节点 data 用于画布呈现和下游输入。
 5. **保存和执行共享 revision**：execute 以 persisted graph revision 为 preflight；server patch 会推进 revision 和 client saved baseline。
 6. **revision 不是 run owner**：fixed patch path 不比较 expected current run、source version 或 field owner，terminal run 与 graph projection 也不是一个原子写入。
+7. **框架 delta 不是 domain command**：Open Canvas callback 使用 current Zustand state 是可借方法，但 fixed implementation 将全部 non-select React Flow change 送入 generic reducer；add/remove/replace、reconnect 和 LibTV delete/connect/history policy 仍需应用层重新分权。
 
-对应声明：OC-003、OC-004、OC-005、OC-007、OC-010、OC-026..030；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)，异步入口的完整正反面转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。
+对应声明：OC-003、OC-004、OC-005、OC-007、OC-010、OC-026..034；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)，异步入口的完整正反面转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)，framework adapter 转译见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。
 
 ## 5. 视觉/交互研究重点
 

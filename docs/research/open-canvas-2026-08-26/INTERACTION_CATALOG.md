@@ -103,6 +103,7 @@ Open Canvas 提醒我们把以下数据作为一个几何合同共同测量：no
 
 - Open Canvas 使用真正的 React Flow `Handle` 作为连接入口，节点内还区分普通输出、style reference、omni reference 等语义端点。见 [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L3235)。
 - 连接模式允许更宽松的方向输入，但 graph 层仍负责合法化、去重和环检测；不能把可拖拽视觉入口等同于“所有连接都合法”。参见 [`validation.ts`](../../../research/upstream/open-canvas/shared/lib/canvas/validation.ts#L418)。
+- Framework delta 也不是连接 command：固定 12.11.1 的 edge change 只有 select/add/remove/replace，reconnect 是独立 callback。Open Canvas 用 current store state 是正面模式，但 generic non-select apply 会把 semantic mutation 混进框架 transport；LibTV 精确转译见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。
 - Edge 有可见 path 和较宽的透明 hit path；hover/selected 状态改变可见线，点击 hit path 删除边。见 [`canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L3515)。
 
 ### 4.3 当前 LibTV 映射

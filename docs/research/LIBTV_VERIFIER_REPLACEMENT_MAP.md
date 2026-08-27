@@ -314,6 +314,22 @@ Ingress inventory、Open Canvas layered boundary/limitations、T0-T5 model、dec
 
 Open Canvas positive control-plane evidence、fixed stale-write limitations、clone delayed-writer inventory、`GI-023..030/GC-024..033` and implementation slices 统一见 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)。`VR-015` 检查 completion mechanics，`VR-007` 检查 process/result state meaning；二者不互相替代。
 
+### `LIBTV-VR-016`：React Flow change routing and transport whitelist
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008` T0/T1 framework adapter correctness；sub-verifier of `VR-014` |
+| Old verifier | Batch 3/5 selection/drag/history、Batch 57 connect/delete compatibility；保留各自 bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` + fresh Page + exact 12.11.1 change corpus |
+| Static checks | exhaustive NodeChange/EdgeChange classifier；no direct unclassified apply；edge has selection-only T0；semantic variants use named command |
+| Pure checks | whole-batch reject/reroute；finite payload；same-ID ordering；stale element/canvas；runtime-field projection |
+| Store checks | reducer base is current store snapshot；stale render cannot drop newer edge；mixed invalid batch has zero partial effects |
+| Browser/history | real node/edge selection、drag frames + one stop、measurement、named delete/connect；no visual/overlay regression |
+| Blockers | classifier/store adapter、edge selection owner、fixture and encoding authorization missing；resize/reconnect source/product scope blocked |
+| Exit | only T0 selection and allowed T1 node transport reach generic reducer；semantic identity never bypasses command；history and sanitation exact |
+
+Exact framework taxonomy、Open Canvas comparison、routing matrix、stable result vocabulary、`GI-031..037/GC-034..043` and implementation slices 统一见 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。`VR-016` 细化 `VR-014` 的 framework adapter，不替代 connection/delete/document/copy 专项 verifier。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：

@@ -280,13 +280,76 @@ captured operation descriptor
 
 ---
 
-## 8. 五张卡的共同落地顺序
+## 8. OC-PATTERN-06：Current-state Change Adapter + Semantic Whitelist
+
+### 8.1 上游 `SOURCE_FACT`
+
+Open Canvas 与 clone 都锁定 `@xyflow/react@12.11.1`。上游的 `onNodesChange/onEdgesChange` 使用 Zustand functional updater，因此 reducer base 是 callback 执行时的 current store state，而不是创建 callback 时的 React render closure；revision conflict 下，persistent change 还会被 gate。
+
+固定实现同时把 exact framework union 的全部 variant 交给 generic reducer，并以“是不是 select”判断是否 persistent。该版本的 node change 包含 add/remove/replace，edge change 的所有 non-select variant 都是 add/remove/replace；reconnect 不是 EdgeChange，而是独立 callback/helper。上游因此提供了 current-state ownership 的正例，也提供了 semantic mutation 混入 framework transport 的反例。
+
+### 8.2 LibTV 对应的 `CLONE_FACT`
+
+当前 clone 已把 node selection 投影到独立 selected IDs，并把 drag frames 压缩为 drag-stop 一次 history；命名键盘删除和连接也已经有独立 command path。
+
+但 route callback 仍存在：
+
+- node selection 先发生，全部 non-select variant 再 generic apply；
+- edge select/add/remove/replace 全部 generic apply；
+- edge reducer base 来自 rendered `edges` closure，再整数组写回 store；
+- edge selection 可进入 semantic edge/history/document shape；
+- measured/dragging/resizing 等 runtime fields 缺少统一 boundary sanitation；
+- mixed semantic batch 没有 zero-partial policy。
+
+### 8.3 `INFERENCE`
+
+React Flow 的 reducer 是 deterministic delta executor，不是 LibTV graph policy。把 union 中的 add/remove/replace 当普通 callback payload，会绕过 connection validation、delete repair、node-data registry 和 history command boundary。使用旧 render closure 做 whole-array writeback，还会让“刚刚由另一个 command 创建的 edge”面临被旧 selection callback 覆盖的竞态。
+
+正确链路是：
+
+```text
+exact batch parse
+  -> classify all variants before mutation
+  -> T0 selection owner
+  -> T1 existing-node position/passive measurement
+  -> T2/T3 semantic command or reject
+  -> current active-canvas snapshot commit
+  -> document/copy/history runtime-field sanitation
+```
+
+### 8.4 `CLONE_DECISION`
+
+- 借 Open Canvas functional current-state ownership，不借 all non-select generic apply；
+- selection 是 T0；只有 existing-node finite position 和无 `setAttributes` 的 passive measurement 是 T1；
+- edge 没有 non-selection T1 variant；add/remove/replace/reconnect 必须回到命名 command；
+- mixed malformed/semantic batch 在任何 selection/position side effect 前 reject 或整批 reroute；
+- drag frames 零 history，changed drag stop 正好一个；passive measurement 零 history；
+- edge selection 必须有声明 owner，selected/measured/dragging/resizing 不进入 portable graph/copy/semantic history；
+- node resize/reconnect 仍需 LibTV source/product evidence，不因 framework API 存在而实现。
+
+### 8.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| exhaustiveness | exact 12.11.1 variant 全分类；unknown 有 stable reject |
+| batch atomicity | semantic/malformed mixed batch 没有 partial selection/position |
+| current snapshot | stale render callback 不丢失更新较晚的 node/edge，也不写错 active canvas |
+| command authority | add/remove/replace/reconnect 不绕过 connection/delete/layout/document contract |
+| history | many drag frames + one changed stop 只有一条 history；selection/measurement 为零 |
+| sanitation | runtime React Flow fields 不进入 portable document、copy packet 或 semantic hash/history |
+
+设计 authority：[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、`LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` 和 `LIBTV-VR-016`。
+
+---
+
+## 9. 六张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
   -> 02 AutoLink stable identity
   -> 04 派生/版本关系
   -> 03 运行、节点、保存状态
+  -> 06 framework change authority
   -> 05 异步结果入口与陈旧收敛
 ```
 
@@ -296,9 +359,10 @@ captured operation descriptor
 - AutoLink 的身份边界会影响后续引用、候选和派生节点的关系表达；
 - 派生/版本关系明确后，才能设计长视频、重拍和过程型状态；
 - 运行与保存状态先归纳语义，避免为尚未确认的源站操作预先制造状态机；
+- framework callback 先限定 T0/T1，防止命名 graph command 被 generic reducer 旁路；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 9. 统一拒绝清单
+## 10. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -307,16 +371,18 @@ captured operation descriptor
 - 把 AutoLink 的 mention、graph edge、reference role 合并为字符串或单一连接；
 - 把 mock `running/success` 文案描述为真实任务后端；
 - 把 Open Canvas 的 generic node patch、URL media identity 或 read-modify-write persistence 当成 stale-safe 模板；
+- 把 React Flow union 的 add/remove/replace 当作无须 domain validation 的普通 transport；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 10. 后续研究入口
+## 11. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
 - Open Canvas 到 LibTV 的转译：[`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)
 - Open Canvas 深度报告：[`REPORT.md`](REPORT.md)
 - 异步结果入口与陈旧收敛：[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)
+- React Flow change routing：[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

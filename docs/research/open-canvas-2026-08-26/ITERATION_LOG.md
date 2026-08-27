@@ -457,3 +457,16 @@
 - 明确当前短 timer 只算 `PROTOTYPE_LATENCY`，第一授权候选应是 deterministic shot-breakdown convergence fixture，不是 provider integration；
 - 同步 Big Picture、agent/index、process state、graph ingress/catalog、fixture/verifier/coverage、evidence/report/source analysis、adoption/pattern/handoff 和 traceability；
 - 本轮只修改文档，不触碰其他开发者 Batch 59 的 Director `src/`、verifier、截图/runtime-audit WIP、FrameOS、共享源站 graph 或 Open Canvas submodule。
+
+## 2026-08-27：v42 React Flow change routing 与 transport whitelist
+
+本轮继续把 Open Canvas 的 framework adapter 作为正反面研究对象，并将 clone graph ingress 的 T1 层细化为可实施合同：
+
+- 确认 Open Canvas 与 clone 都锁定 `@xyflow/react@12.11.1` / `@xyflow/system@0.0.78`，排除 framework version mismatch；
+- 精确记录 NodeChange select/position/dimensions/add/remove/replace、EdgeChange select/add/remove/replace，以及 reconnect 独立 callback 的边界；
+- 深读 installed reducer 的 same-ID grouping、remove/replace precedence、deferred add 和 unknown no-op 行为，明确不能先 partial filter 再 apply；
+- 固定复核 Open Canvas functional current Zustand state/conflict gate 的正面方法，以及 all non-select generic apply/dirty classification、Handle retarget incomplete validation 的反例；
+- 固定复核 clone selection split、render-closure edge base、whole-array setter、semantic variant bypass、drag-stop one-history 和 runtime-field leakage；
+- 新增 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)，定义 whole-batch T0/T1 routing、field allowlist、current active-canvas snapshot、selection/history/document sanitation 和 stable result；
+- 新增 `OC-PATTERN-06`、`OC-031..034`、`OC-ADOPT-019`、`OC-TR-012`、`DEC-032`、`LIBTV-TR-038`、`GI-031..037/GC-034..043`、`LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` 和 `LIBTV-VR-016`；
+- 本轮只修改文档，不触碰其他开发者 Batch 60 图片组件/证据 WIP、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。

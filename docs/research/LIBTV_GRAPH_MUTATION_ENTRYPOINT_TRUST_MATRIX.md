@@ -319,7 +319,7 @@ Rules:
 
 ### T1: Whitelisted React Flow patch
 
-Examples: node position/dimensions from drag/measure, selection changes, edge selection.
+Examples: existing-node position from drag and passive measured dimensions. Selection is T0; React Flow 12.11.1 has no non-selection T1 edge variant.
 
 Rules:
 
@@ -327,6 +327,8 @@ Rules:
 - `add/remove/replace/reconnect` do not pass as generic transport;
 - collapse continuous drag writes into one declared history transaction;
 - reject unknown change type without partial apply.
+
+Exact 12.11.1 taxonomy、same-ID reducer precedence、whole-batch planning、current-snapshot requirement、runtime-field sanitation、fixture and `LIBTV-VR-016` are authoritative in [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md). This matrix only assigns the trust tier.
 
 ### T2: Single-entity graph proposal
 
@@ -428,7 +430,7 @@ Required properties:
 |---|---:|---|---|
 | selection/viewport | T0 | route/UI owner | connection validator |
 | node drag/measure | T1 | whitelisted patch reducer | arbitrary `setNodes` payload |
-| edge selection | T1 | selection-only edge patch | relation delete planner |
+| edge selection | T0 | route/UI selection owner | semantic edge document mutation |
 | ordinary connect | T2 | `LibTVGraphConnection` structural/domain pipeline | direct edge append |
 | detached node create | T2 | node registry/default-data validator | arbitrary type + `Record` merge |
 | node data non-relational patch | T2 | type/version field registry | generic shallow spread |

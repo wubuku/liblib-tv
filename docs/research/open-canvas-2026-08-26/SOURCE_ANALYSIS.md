@@ -203,13 +203,21 @@ public model registry 将用户可见模型名映射为 provider 和内部 model
 
 参考：[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L80)、[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L221)、[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L283)、[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L339)。
 
-### 6.2 自动保存与版本冲突
+### 6.2 React Flow change routing
+
+Open Canvas 与当前 clone 的 lockfile 都固定到 `@xyflow/react@12.11.1`，所以可以在同一 framework contract 上做机制比较。上游 store callback 使用 Zustand functional updater 读取 current nodes/edges，避免由旧 React render closure 生成 whole-array 覆盖；发生 conflict 时，persistent change 也会被 gate。
+
+但固定实现的 `hasPersistentNodeChanges/hasPersistentEdgeChanges` 只区分 `select` 与 non-select，并把整个 union 交给 `applyNodeChanges/applyEdgeChanges`。在精确类型中，node 包含 `add/remove/replace`，edge 的 non-select variant 全是 `add/remove/replace`，reconnect 还是独立 callback。Generic reducer 能执行这些 delta，却不知道 graph identity、delete repair、connection policy 或 history command。
+
+因此这是一个同时包含正例和反例的研究对象：借 current-store ownership 和 conflict gate；不要复制“所有 non-select 都是普通 persistent delta”。完整 reducer precedence、clone callback 风险和 T0/T1/T2/T3 转译见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。
+
+### 6.3 自动保存与版本冲突
 
 studio 在图改变后约 1.2 秒自动保存。保存请求携带 revision；服务端只有 revision 未变化时才写入并加一。前端 `finishSave` 会再次比较当前图和刚保存的 graph string，避免“请求返回期间用户又编辑了内容”时错误地清除 dirty 状态。
 
 发生版本冲突时，当前实现尝试以当前用户编辑为基础做 rebase；无法安全合并则进入显式 conflict 状态，要求加载最新版本。这个合同比简单的最后写入覆盖更适合画布，因为拖拽位置、节点 data 和运行时输出可能交错更新。
 
-### 6.3 本地存储分层
+### 6.4 本地存储分层
 
 `local-canvas-store.ts` 把数据库抽象成：
 
@@ -223,7 +231,7 @@ studio 在图改变后约 1.2 秒自动保存。保存请求携带 revision；�
 
 参考：[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L20)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L77)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L160)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L302)。
 
-### 6.4 Run polling 与结果回写 authority
+### 6.5 Run polling 与结果回写 authority
 
 current studio 在执行前调用 `saveGraphNow`，把返回 revision 交给 execute route；runner 在 durable graph 上构造 descriptor，创建独立 run，并把非 terminal run ID 交回 client。Client 以 run ID 管理 polling timer，且可在 hydrate 后从 node 的 `queued/running + lastRunId` 恢复轮询。Terminal node patch 会在 server 增加 canvas revision，client 的 `applyServerNodePatch` 同时 patch live node 和 `savedGraphString` baseline。这是比 component-local spinner 更完整的控制面分层。
 

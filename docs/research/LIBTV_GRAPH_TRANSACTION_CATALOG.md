@@ -224,6 +224,13 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-028` | component unmount and accepted operation lifecycle are separate | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | current timer cleanup semantics differ by surface | accepted operation remains observable or explicitly canceled |
 | `LIBTV-GI-029` | async completion does not steal unrelated selection/surface | `REQUIRED_CORRECTNESS` | several delayed creators rewrite global selection | default preserve or declared contextual transition |
 | `LIBTV-GI-030` | async resource ownership transfers or releases exactly once | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | Director has partial blob failure cleanup | stale/reject/delete/commit failure have deterministic release |
+| `LIBTV-GI-031` | every React Flow change batch is exhaustively classified before any owner mutation | `REQUIRED_CORRECTNESS` | current clone splits selection then generically applies the remainder | unknown/semantic/malformed batch rejects or reroutes before partial effect |
+| `LIBTV-GI-032` | T1 accepts only existing-node finite position and passive measurement | `REQUIRED_CORRECTNESS` | exact 12.11.1 union includes semantic variants | selection is T0；edge has no non-selection T1 variant；attribute resize is T2 |
+| `LIBTV-GI-033` | node/edge add/remove/replace and reconnect use named semantic authority | `REQUIRED_CORRECTNESS` | current generic callbacks can bypass named connect/delete | no semantic identity/relation mutation through framework reducer |
+| `LIBTV-GI-034` | framework reducer base is current active-canvas store state | `REQUIRED_CORRECTNESS` | current edge callback uses render-closure array | stale callback cannot overwrite a later graph command or another canvas |
+| `LIBTV-GI-035` | selection has a declared runtime owner separate from semantic graph | `REQUIRED_CORRECTNESS` | node selection is projected；edge selection remains on edge objects | no selection in portable document/copy/semantic history |
+| `LIBTV-GI-036` | passive measurement and explicit resize have different history/authority | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | no current NodeResizer/expandParent path found | measurement zero history；future source-authorized resize one named command |
+| `LIBTV-GI-037` | React Flow runtime fields are sanitized at graph boundaries | `REQUIRED_CORRECTNESS` | measured/dragging/resizing/edge selected may enter arrays | codec/copy/history/hash explicitly project declared semantic fields |
 
 ### 10.2 Compatibility case queue
 
@@ -262,6 +269,16 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-031` projection recovery | terminal envelope stored, graph commit fails | retry projection | provider not re-invoked；eventual one commit | future backend boundary |
 | `LIBTV-GC-032` rejected resource | blob/temp result exists, ingress stale/invalid | reject | release exactly once | Director-focused future fixture |
 | `LIBTV-GC-033` polling history | progress/failure/success sequence | observe/complete | no per-poll graph history；terminal transaction exact | future local fixture |
+| `LIBTV-GC-034` node selection owner | selected node change | `onNodesChange` | selected IDs change；semantic graph/history unchanged | design complete；current node projection partial |
+| `LIBTV-GC-035` edge selection owner | selected edge change | `onEdgesChange` | runtime owner changes；semantic edge/document/history unchanged | edge owner decision/runtime missing |
+| `LIBTV-GC-036` valid node drag frame | finite position + dragging | `onNodesChange` | current node position only；no frame history | current behavior partial；current-snapshot routing missing |
+| `LIBTV-GC-037` passive measurement | measured dimensions without setAttributes | `onNodesChange` | runtime measured state only；no semantic resize/history | design complete；boundary sanitation missing |
+| `LIBTV-GC-038` attribute resize | dimensions with setAttributes | `onNodesChange` | named layout command required；generic callback zero mutation | source/product unsupported |
+| `LIBTV-GC-039` mixed semantic batch | selection/position followed by add/remove/replace | framework callback | whole batch reject/reroute；no partial selection/position | design complete；runtime missing |
+| `LIBTV-GC-040` stale rendered edges | store gains edge before old callback runs | edge selection callback | new edge preserved；selection cannot whole-array overwrite | focused race fixture missing |
+| `LIBTV-GC-041` stale element ID | node deleted before queued drag/measure | framework callback | no resurrection or cross-canvas write；stable stale result | focused fixture missing |
+| `LIBTV-GC-042` same-ID reducer precedence | remove/add/position for same ID | framework callback | app classifier rejects before reducer replacement-like semantics | pure fixture missing |
+| `LIBTV-GC-043` runtime field sanitation | selected/measured/dragging/resizing present | history/copy/document projection | portable/semantic outputs exclude undeclared fields | composes document/copy verifier |
 
 ### 10.3 Decision and verification order
 
