@@ -414,6 +414,22 @@ Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and t
 
 Open Canvas `OC-061..070` 正反面、clone/source dated audit、ten entry profiles、`GI-071..084/GC-091..108` and implementation slices 统一见 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)。`VR-021` 组合 `VR-010/012..015/017/018/020`，但不取代 graph codec、node data、delete、async、canvas、feedback、placement 或 Director 专项合同。
 
+### `LIBTV-VR-022`：foreground editor session, commit and local-history authority
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-004/008/009/011/015` foreground context、graph history、request/result、owner cleanup and editor-session correctness |
+| Old verifier | Text/Picture/Subtitle/Segment/Camera/image-mode/video-toolbar Batch verifiers；各自保留 bounded local/runtime contract，不推导共同 session/history authority |
+| Required fixture | `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` with deterministic text/config/record/range/request/empty owners、small bitmap buffers、session/source versions、fake async/resource/focus/graph oracles |
+| Static checks | every editor declares profile/session/baseline/history/commit/close policy；enabled commands have handlers；bitmap/history resources excluded from semantic graph document |
+| Pure checks | semantic dirty/no-op、legal transitions、gesture coalescing/redo truncation、byte eviction/release、drift/delete/switch/IME、async descriptor/idempotency and route isolation |
+| Transaction | unaccepted/local edits zero graph history；accepted sync edit exact one graph step；invalid/noop/cancel/stale zero residue；graph undo after close does not revive local session |
+| UI/browser | cancel blur guard、local-vs-graph undo precedence、duplicate submit lock、owner invalidation、focus return、empty-mode disabled commands、small bitmap budget crossing |
+| Blockers | common profile/session/history/commit runtime、fixture and encoding authorization；source exact blur/Enter/Escape/outside/restore/save/close and real raster/provider remain blocked/out of scope |
+| Exit | one current editor owner、one declared undo owner、typed commit/close result、deterministic budget/resource cleanup and no enabled inert command |
+
+Open Canvas `OC-071..080` 正反面、clone dated audit、ten profiles、`LIBTV-EDS-I-001..040`、`GI-085..100/GC-109..126` and implementation slices 统一见 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)。`VR-022` 组合 `VR-010/013..015/017..021`，但不取代各 profile 的 source visual、graph/async/resource、selection/focus 或 route-specific contract。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -461,6 +477,7 @@ Open Canvas `OC-061..070` 正反面、clone/source dated audit、ten entry profi
 - `LIBTV-VR-016..019` 的 React Flow routing、multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority 已统一；
 - `LIBTV-VR-020` 的 six-domain spatial model、actual host、live/stable/bootstrap viewport、gesture/placement owner、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 controlled viewport、window center 或 Open Canvas Quick Add 推导普通 LibTV 空间权威已经统一；
 - `LIBTV-VR-021` 的 ten entry profiles、validation/probe/materialization、cohort/replace、asset/reference、lease/reachability、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 mock upload、object URL preview、data/blob locator 或 Open Canvas upload route 推导 durable asset/resource lifecycle 已实现；
+- `LIBTV-VR-022` 的 ten editor profiles、baseline/draft、native/local/graph undo、commit/close/drift、bitmap budget、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`；不得用局部 `useState`、30-step snapshot、submitted copy 或可见 Undo/Save 图标推导共同 editor authority 已实现；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

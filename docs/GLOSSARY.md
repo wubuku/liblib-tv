@@ -31,3 +31,9 @@
 | Node media reference | A graph-owned reference to a stable asset/result/locator, not the bytes or asset registry record itself | node data contract, media ingress contract |
 | Provisional projection | Operation-owned progress/error UI shown before a semantic graph plan is accepted; excluded from graph history/document | `OC-PATTERN-11`, `LIBTV-UIX-21` |
 | Resource reachability | The set of graph/history/clipboard/editor/operation/asset/export owners that must be empty before release | media ingress contract, delete/async contracts |
+| Editor session | One foreground editing lifetime bound to route/canvas generation, target/source baseline and one declared profile | `LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`, `DEC-038` |
+| Editor baseline | Immutable, field/source-scoped semantic value captured when an editor session opens | editor session contract |
+| Working draft | Session-owned mutable authoring state that has not yet been accepted into graph or async operation authority | `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` |
+| Local editor history | Undo/redo state owned by a custom foreground editor and excluded from semantic graph history until acceptance | `LIBTV-VR-022`, `OC-PATTERN-12` |
+| Commit intent | A frozen, normalized request to accept one editor draft synchronously or hand it to async authority | editor session contract, async ingress contract |
+| Baseline drift | A scoped owner/source change after editor open that requires explicit rebase, conflict or invalidation instead of silent draft overwrite | `DEC-038`, `LIBTV-EDS-I-019/020` |

@@ -160,6 +160,8 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 2026-08-27 的 media ingress/resource lifecycle 增量继续按 Hub -> Guide -> Reference 维护：dated audit 固定 Open Canvas validation/probe/upload 正反面、clone mock/local-preview/data/blob 和 LibTV source upload/history/material/asset/Shot 分域；正式合同定义 ten entry profiles、intent/lease/asset/reference/cohort/reachability；`OC-PATTERN-11`、`OC-ADOPT-024`、`OC-BP-011`、`DEC-037`、`LIBTV-PAR-014`、fixture 和 `VR-021` 已接入 agent task map、Big Picture、traceability、coverage 和 verification ledger。完成计划从 `docs/drafts/` 迁入 Open Canvas 专题目录保留实施历史，raw source DOM JSON 按 evidence artifact 管理。本增量只修改文档，没有修改 runtime、tests、submodule 或共享源站状态。
 
+2026-08-27 的 editor session/commit/history 增量沿用同一治理链：dated audit 固定 Open Canvas inline/rich/bitmap editor、local history、save/upload handoff 正反面与 clone 十类 editor island；正式合同定义 profile/session/baseline/draft、native/local/graph undo、commit/close/async/resource、40 invariants、fixture 和 `VR-022`；`OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`DEC-038`、`LIBTV-PAR-015` 已接入 Big Picture、agent task map、traceability、graph catalog、fixture/verifier、coverage 和 ledger。完成计划迁入 Open Canvas 专题目录，raw static JSON 按 evidence artifact 管理。本增量只修改文档，没有修改 runtime、tests、submodule 或共享源站状态。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -174,3 +176,4 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 8. Open Canvas 的当前采纳状态和实施交接可从任务导读、生命周期、决策登记与 traceability matrix 反向发现，旧 Batch A-E 不再与现行 parity ID 竞争。
 9. Open Canvas 启发下的 process/result、model capability 和 upstream update 各有单一权威入口，且均明确不可推出真实 backend/runner 或编码授权。
 10. Open Canvas media ingress 的可借方法与反例、LibTV source surface、clone runtime island、正式生命周期合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，object URL/local preview 不会被文档误写成 durable upload。
+11. Open Canvas editor session/local history 的可借方法与反例、clone editor maturity、正式 commit/history 合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，局部 `useState`、snapshot 或可见 Undo/Save 不会被误写成完整能力。

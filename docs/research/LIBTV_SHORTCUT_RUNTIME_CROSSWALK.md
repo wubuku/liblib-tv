@@ -103,11 +103,17 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 
 不能仅从 `page.tsx` 推断“Escape 总会清空选择并关闭全部面板”。
 
-### 6.3 Director 是独立快捷键域
+### 6.3 Native/local/graph undo 只能有一个当前 owner
+
+Editable target guard 只能证明 page graph undo 不穿透输入框，不能证明自定义画布编辑器的 undo 已正确路由。`PictureEditPanel`、`SubtitleErasePanel` 等 local history surface 必须在 command context 中先返回 `HANDLED/CONSUMED`，否则同一 `Meta/Ctrl+Z` 可能既改变 local draft，又触发背景 graph snapshot。反过来，Text/input/contentEditable 应保留浏览器 native undo，不能被 custom editor 或 graph handler接管。
+
+正式 precedence 为：native editable -> active custom editor local history -> foreground surface command -> ordinary graph history -> route fallback。一次 chord 只能由一个 owner 消费；local undo/redo 不改 graph/selection/viewport，accepted commit 关闭后 graph undo 才可恢复前一语义状态。完整 profile、fixture 和 `LIBTV-VR-022` 见 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)。
+
+### 6.4 Director 是独立快捷键域
 
 当 `activeDirectorNodeId` 存在时，普通 page dispatcher 对全部工作台快捷键提前返回；Batch 50 已对 Tab/Space/Delete/undo 的背景隔离形成 recorded runtime。`DirectorDesk`、`DirectorInspector`、`DirectorTimeline`、`DirectorViewport` 和 phone virtual-camera panel 仍有自己的键盘监听器。本文不把这些局部命令合入普通 LibTV 工作台；完整 selection/focus/listener 静态边界见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 node/edge/primary、surface policy、one-Escape 和 focus return 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，Director 领域行为继续由 Batch 35-50 合同维护。
 
-### 6.4 视口不是 graph history
+### 6.5 视口不是 graph history
 
 普通缩放、fit view、滚轮和 pan 不进入 `canvasStore` graph history。`organize()` 是组合命令：node 重排进入 graph history，viewport 通过 route/UI store 单独记录。后续编写 verifier 时必须分开断言。
 
@@ -118,6 +124,7 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 | P1 | `V` 显示“移动”但实际切到 select | 用户会按帮助行得到相反工具语义 | 在可丢弃源站 fixture 观察 V/H 的 toolbar active state，再决定修文案还是 handler |
 | P1 | `L`、`Enter`、`Option+drag`、`Option+G` source-only | 这些是高频创作与 storyboard 结构命令 | 分项记录触发前状态、焦点、selection、取消路径和 graph delta |
 | P1 | duplicate 的 source modifier/闭包不明 | 错误复制父子节点或外连 edge 会破坏 graph | 用最小 2-node/1-edge fixture 比对单选、多选、group 和外连边 |
+| P1 | foreground editor local/native/graph undo precedence 未统一 | 一个 chord 可能双消费，enabled Undo 也可能无 handler | 用 `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` 验证 Text/Picture/Subtitle/empty-mode，再等待 source disposable fixture |
 | P2 | zoom/fit keycap 与 gesture 文案漂移 | 影响跨平台可发现性，但不阻塞核心画布 | 同时采集 macOS/Windows source DOM 与实际事件 |
 | P2 | 帮助面板没有 row-level command ID | 文案和 handler 会继续独立漂移 | 获得编码授权后才评估 typed registry，不在研究阶段改代码 |
 | P2 | 无 focused shortcut verifier | 现有 Batch 只覆盖部分生命周期或 graph 行为 | 未来按 command ID 验证 guard、side effect 和 no-op 条件 |

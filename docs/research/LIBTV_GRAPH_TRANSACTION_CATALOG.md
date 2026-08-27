@@ -278,6 +278,22 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-082` | resource release requires zero reachability across graph、history、clipboard、editor/preview、operation、asset registry and portable export owner | `REQUIRED_CORRECTNESS` | graph-only delete is insufficient | undo/copy/open editor/reusable asset remain valid after current node deletion |
 | `LIBTV-GI-083` | graph node deletion never implies deletion of a stable reusable/remote asset without a separate authorized asset command | `REQUIRED_CORRECTNESS` / `SOURCE_FACT` | source Asset Manager is distinct from Canvas node index | graph cleanup and account asset lifecycle remain separate transactions |
 | `LIBTV-GI-084` | ordinary LibTV、Director and FrameOS media operations keep independent route/store/resource owners；prototype capability is projected honestly | `REQUIRED_CORRECTNESS` | current route stores and capability islands are separate | no cross-route locator/resource transfer；local preview/unavailable cannot masquerade as durable/provider success |
+| `LIBTV-GI-085` | open editor session captures immutable route/canvas/generation/owner/field/source baseline | `REQUIRED_CORRECTNESS` | current editor islands use partial/local owner data | stale render/callback cannot retarget current node or canvas |
+| `LIBTV-GI-086` | unaccepted draft and local history create zero semantic graph/history mutation | `REQUIRED_CORRECTNESS` | Picture/Subtitle/Text use different current timing | editor trial remains local until declared acceptance |
+| `LIBTV-GI-087` | cancel before acceptance creates zero semantic graph/history/operation residue | `REQUIRED_CORRECTNESS` | blur/unmount/cancel guards are not unified | close cannot accidentally commit or start work |
+| `LIBTV-GI-088` | one local pointer gesture is one local command independent of event frequency/zoom | `REQUIRED_CORRECTNESS` | Picture/Subtitle have useful partial coalescing | pointer move frequency cannot inflate local history |
+| `LIBTV-GI-089` | local undo/redo/reset never directly mutate graph/selection/viewport and new edit clears redo | `REQUIRED_CORRECTNESS` | local/graph history ownership is fragmented | one shortcut is consumed by one active history owner |
+| `LIBTV-GI-090` | normalized no-op commit creates zero graph-history entry | `REQUIRED_CORRECTNESS` | current `updateNodeData` records an existing-node patch without equality guard | open/apply unchanged cannot truncate redo or dirty graph |
+| `LIBTV-GI-091` | one accepted synchronous editor commit creates at most one named graph-history entry | `REQUIRED_CORRECTNESS` | live/immediate/delayed writers differ | multi-field accepted edit is one reviewable transaction |
+| `LIBTV-GI-092` | async editor handoff freezes session/owner/source identity before operation acceptance | `REQUIRED_CORRECTNESS` | current local timers/callbacks do not share an envelope | late result cannot patch by current node ID alone |
+| `LIBTV-GI-093` | native/local/graph undo precedence follows active command context without fallthrough invalidation | `REQUIRED_CORRECTNESS` | editable and custom editor histories coexist | a consumed local/native chord never also triggers graph undo |
+| `LIBTV-GI-094` | scoped baseline drift has explicit rebase/conflict/invalidate disposition and never overwrites dirty draft silently | `REQUIRED_CORRECTNESS` | effect-driven resync is an upstream/current risk | unrelated patch may coexist；owned-field drift is explicit |
+| `LIBTV-GI-095` | owner delete/canvas generation change invalidates open session before stale commit | `REQUIRED_CORRECTNESS` | image modes have partial reconciliation | no old editor commit/focus return crosses owner lifecycle |
+| `LIBTV-GI-096` | editor-local bytes/snapshots/URLs are budgeted resources outside semantic graph history | `REQUIRED_CORRECTNESS` | full bitmap entry count is not a memory budget | history eviction/disposal is deterministic and exact-once |
+| `LIBTV-GI-097` | submitting lock/idempotency and reachable failure/retry survive editor close policy | `REQUIRED_CORRECTNESS` | enabled inert/delayed local controls lack common owner | close is not success；duplicate accept cannot duplicate effect |
+| `LIBTV-GI-098` | graph undo of accepted projection does not imply cancellation of provider operation | `REQUIRED_CORRECTNESS` | graph history and future operation owner are separate | compensate/cancel requires a dedicated authorized command |
+| `LIBTV-GI-099` | editor dirty/accepted、graph history/dirty and durable save revision remain separate states | `REQUIRED_CORRECTNESS` | local prototype has no durable save authority | no local Save/Submitted copy masquerades as persisted result |
+| `LIBTV-GI-100` | ordinary LibTV、FrameOS and Director editor/session/history owners remain route/store isolated | `REQUIRED_CORRECTNESS` | route/store domains are intentionally separate | no shared form/history singleton or route mode flag |
 
 ### 10.2 Compatibility case queue
 
@@ -391,6 +407,24 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-106` blob reachability across delete/undo | graph/history/editor share one blob-backed result | delete、undo、redo、close editor | lease remains while reachable；release only at final zero reachability；never use-after-revoke | resource ledger fixture required |
 | `LIBTV-GC-107` data locator portability budget | data URL below/above declared local budget | project/export/copy | small allowed case keeps provenance；oversize rejected or materialized；never silently durable | prototype-only policy required |
 | `LIBTV-GC-108` media route/capability isolation | Director/FrameOS operation or unavailable provider selected | ordinary LibTV callback/action | zero cross-route graph/resource effect；honest unavailable/local-only projection | architectural + UI assertion |
+| `LIBTV-GC-109` open editor | valid owner/baseline | open editor | unique clean session；zero graph/history | pure fixture required |
+| `LIBTV-GC-110` inline changed commit | dirty text/config | accept | one normalized owner patch；one history | equality-aware adapter missing |
+| `LIBTV-GC-111` Escape cancel | dirty local draft | Escape | zero graph/history/operation residue | source exact policy partial |
+| `LIBTV-GC-112` no-op apply | normalized draft equals baseline | Apply | close/no-op；zero graph history | graph equality guard missing |
+| `LIBTV-GC-113` pointer gesture | many move events | pointer down/moves/up | one local entry；zero graph history | Picture/Subtitle positive islands |
+| `LIBTV-GC-114` local undo/redo | active custom history | undo then redo | local draft only；graph unchanged | context routing fixture required |
+| `LIBTV-GC-115` redo invalidation | local undo then new draft command | edit | future cleared；graph unchanged | pure reducer case |
+| `LIBTV-GC-116` reset then cancel | reversible local reset | reset then cancel | owner remains original；zero graph history | reset policy source-partial |
+| `LIBTV-GC-117` record editor accept | valid marks/regions | accept | one frozen payload；one named graph/operation handoff | profile fixture required |
+| `LIBTV-GC-118` async submit accept | valid request draft | submit twice | one immutable operation；duplicate accept ignored | async acceptor fixture required |
+| `LIBTV-GC-119` async acceptance failure | resolver rejects before acceptance | submit | retryable draft；no accepted operation/history leak | feedback/resource fixture required |
+| `LIBTV-GC-120` late completion | owner/source/canvas changed | resolve accepted work | stale disposition；no current-owner overwrite | composes async/lifecycle fixtures |
+| `LIBTV-GC-121` owner delete | dirty open editor | delete owner then commit | invalidate/dispose；zero stale commit；exact release | composes delete fixture |
+| `LIBTV-GC-122` canvas switch | dirty/submitting session | switch canvas | no retarget；focus/resource/operation follow declared owner | composes lifecycle fixture |
+| `LIBTV-GC-123` baseline drift | scoped external field change | continue/commit | conflict/rebase policy；never silent draft replacement | owner version oracle required |
+| `LIBTV-GC-124` bitmap budget | history exceeds bytes/entries | append snapshots | deterministic eviction and exact release | small synthetic buffer fixture |
+| `LIBTV-GC-125` graph undo after accepted commit | session closed after one commit | graph undo | graph restores previous semantic state；no local session revival | graph history oracle required |
+| `LIBTV-GC-126` route isolation | FrameOS/Director event | dispatch ordinary editor callback | no ordinary LibTV session/history/graph effect | architectural assertion |
 
 ### 10.3 Decision and verification order
 
@@ -534,6 +568,20 @@ Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL / SOUR
 - `LIBTV-MIR-I-001..036`、`LIBTV-MIR-DQ-001..014`、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`、`LIBTV-VR-021` and `GI-071..084/GC-091..108`。
 
 Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`。Current Add Resource mocks、Shot component-local preview and Director data/blob paths remain evidence islands；no common classifier/materializer/lease/asset registry/fixture/verifier、real upload/storage/provider or source mutation is authorized by this handoff。
+
+### 10.14 Foreground editor session, commit and history handoff
+
+[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md) is the cross-editor authority for：
+
+- ten profiles spanning inline scalar/multiline、rich text、modal config、record/bitmap editors、range selectors、request drafts、live-coalesced inspectors and empty evidence-gated modes；
+- immutable session/route/canvas/generation/target/source baseline plus normalized draft/dirty/drift identity；
+- native editable、editor-local and graph undo precedence、gesture coalescing、redo truncation、reset and byte/resource budgets；
+- sync typed commit/no-op/conflict、async acceptance descriptor、last-known-good、close/cancel/invalidation/focus and exact resource transfer/release；
+- honest enabled/disabled command projection and source-decision queue for blur/Enter/Escape/restore/save/close；
+- Open Canvas `OC-071..080` positive methods and full-bitmap/close-first/node-only/result-ignored counterexamples；
+- `LIBTV-EDS-I-001..040`、`LIBTV-EDS-DQ-001..016`、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01`、`LIBTV-VR-022` and `GI-085..100/GC-109..126`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`。Current Text/Picture/Subtitle/image-mode/config/request islands remain evidence inputs；no common profile/session/history/commit adapter、focused fixture/verifier、global form framework、real provider/storage or source mutation is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

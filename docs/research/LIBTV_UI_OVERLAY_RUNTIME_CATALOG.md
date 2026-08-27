@@ -286,6 +286,12 @@ showSingleNodeEditor = React Flow selected && canvasStore.selectedNodeIds.length
 
 精确几何和证据必须回到 [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)，不能从本目录表单独推出新的 offset。
 
+### 7.4 Foreground editor close is not commit
+
+S2/S3 surface 的 mount/close owner 与 editor draft/commit owner 必须分开：面板被 selection、Escape、X、canvas switch、owner delete 或 unmount 卸载，只证明 surface 生命周期结束，不证明 draft 已提交、异步任务已接受或资源已持久化。当前 Text/Picture/Subtitle/image-mode/config/request surface 的 blur/cancel/submit timing 并不统一；有些 local history 正常，有些命令 disabled，有些 enabled-looking command 没有 handler。
+
+后续每个 foreground editor 都必须声明 profile、session/baseline/draft、native/local/graph undo、close policy 和 typed commit result。Dirty draft 遇到 baseline/source drift 不得被 effect 静默覆盖；commit/no-op/conflict/async-accepted 决定 surface 是关闭、保留还是把 failure/retry 交给另一 reachable owner。正式 authority 是 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)；本目录只保留 mount/close/anchor 的 runtime 投影。
+
 ## 8. Keyboard, Focus And Pointer Ownership
 
 ### 8.1 Page global handler
@@ -328,6 +334,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 | UI-08 | 节点上下 surface 混用 `NodeToolbar` 与 inverse scale | 指向精确定位合同 | 同 frame 读取 node/toolbar/panel/viewport rect。 |
 | UI-09 | 当前图片 toolbar 仍是历史 action set/width | 标记为 source delta | 先更新 action contract，再判断 offset。 |
 | UI-10 | Organize confirmation 独立于 overlay store | 保持独立目录 | 验证和 modal/drawer 并存，不误并入 closeAll。 |
+| UI-11 | foreground editor surface close、draft cancel、graph commit 与 async acceptance 当前缺共同 owner | 指向 editor session contract，不用通用 overlay close 推导提交 | 按 profile 验证 cancel-blur guard、no-op/one-history、dirty drift、failure/retry 和 enabled-control honesty。 |
 
 ## 10. Future Verification Matrix
 
@@ -355,6 +362,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 3. top/bottom 中心与 source gap formula 分别断言，不以浏览器中心代替 node center。
 4. active tool 替换标准 L2，不叠加第三 surface。
 5. pointerdown、wheel、text editing 不误触发 node drag/pan/selection clear。
+6. foreground editor close/cancel/no-op/commit/async-accept 各有可区分结果；local/native/graph undo 每次只消费一层。
 
 ## 11. Maintenance Rules
 
@@ -372,6 +380,8 @@ Selection、DOM focus、listener phase 和 command context 的 fixed baseline �
 
 Overlay catalog 只登记 mount/close/position owner；actual host frame、six coordinate domains、live/stable viewport、host resize and gesture/placement generation 以 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) 为权威。Selected-image 的 exact toolbar/panel 数字仍回到 [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)，不能从 Open Canvas 菜单/Panel 数字或 generic clamp 推导。
 
+Foreground editor 的 session/baseline/draft、native/local/graph undo、commit/cancel/async/resource handoff 以 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md) 为权威。本目录中的 close path 不能单独证明 semantic acceptance 或 durable save。
+
 ## 12. Related Documents
 
 - [`liblib-canvas-batch11-2026-08-25/OVERLAY_LIFECYCLE.spec.md`](liblib-canvas-batch11-2026-08-25/OVERLAY_LIFECYCLE.spec.md)：top-level exclusion 的历史设计合同。
@@ -379,5 +389,6 @@ Overlay catalog 只登记 mount/close/position owner；actual host frame、six c
 - [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)：当前图片上下浮层精确源站几何。
 - [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：help/handler/context 对照。
 - [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](LIBTV_GRAPH_TRANSACTION_CATALOG.md)：graph/history 副作用目录。
+- [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)：foreground editor session、local history、commit/close 和 `VR-022` 权威。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：把本目录风险放入当前价值、证据、授权和 fixture 优先队列。
 - [`PAGE_TOPOLOGY.md`](PAGE_TOPOLOGY.md)：page shell 和 z-index 区域。

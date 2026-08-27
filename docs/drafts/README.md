@@ -16,8 +16,8 @@ Lifecycle status and promotion/supersession rules are defined in
 
 | Draft | Scope | Status |
 |---|---|---|
-| [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md) | Open Canvas-inspired editor draft/local-history/commit research for the LibTV clone | `ACTIVE` / documentation only |
+No active draft is registered. New work must add an explicit row before implementation begins.
 
-Completed Open Canvas research plans, including the media ingress/resource lifecycle plan, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
+Completed Open Canvas research plans, including media ingress/resource lifecycle and editor session/commit/history, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
 
 Active research/implementation batches under `docs/research/liblib-canvas-batchN-*` carry their own `PLAN.md` and are indexed from [`../research/README.md`](../research/README.md).

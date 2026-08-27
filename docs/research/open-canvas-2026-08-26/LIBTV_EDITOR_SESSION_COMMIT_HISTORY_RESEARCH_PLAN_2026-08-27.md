@@ -1,6 +1,6 @@
 # LibTV Editor Session, Commit And History Research Plan
 
-> Status: `ACTIVE` / `DOCUMENTATION_ONLY`.
+> Status: `COMPLETE` / `HISTORICAL_CONTRACT` / `DOCUMENTATION_ONLY`.
 >
 > Scope: study how fixed Open Canvas and the current LibTV clone separate editor-local drafts, local undo/redo, semantic graph commits and asynchronous submission, then turn the useful methods and counterexamples into implementation-ready LibTV guidance.
 >
@@ -46,13 +46,13 @@ Open Canvas is useful because its fixed implementation contains concrete inline 
 
 | Authority | Owns | This study delegates |
 |---|---|---|
-| [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) | active command context, IME and shortcut routing | which owner receives `Escape`, `Enter`, `Cmd/Ctrl+Z` |
-| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../research/LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph command/history boundaries | accepted node/edge mutation and graph undo entry |
-| [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) | operation freshness and delayed-result convergence | accepted async submission and late completion |
-| [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) | byte/resource leases and locator materialization | bitmap/file export ownership and release |
-| [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) | destructive graph command planning | owner deletion and reference repair |
-| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | canvas identity/generation and switch isolation | canvas switch/delete invalidation |
-| [`LIBTV_UI_STATE_HIERARCHY.md`](../research/liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | conceptual UI-state strata | presentation-level open/closed/processing vocabulary |
+| [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) | active command context, IME and shortcut routing | which owner receives `Escape`, `Enter`, `Cmd/Ctrl+Z` |
+| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph command/history boundaries | accepted node/edge mutation and graph undo entry |
+| [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) | operation freshness and delayed-result convergence | accepted async submission and late completion |
+| [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) | byte/resource leases and locator materialization | bitmap/file export ownership and release |
+| [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) | destructive graph command planning | owner deletion and reference repair |
+| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | canvas identity/generation and switch isolation | canvas switch/delete invalidation |
+| [`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md) | conceptual UI-state strata | presentation-level open/closed/processing vocabulary |
 
 This authority starts only after an entry surface has chosen an owner and supplied an editable baseline. It ends when cancel disposes the draft, a synchronous commit is accepted/rejected, or an immutable async submission descriptor is handed off.
 
@@ -247,6 +247,12 @@ This research batch is complete when:
 - agent navigation, traceability and implementation handoff remain discoverable;
 - documentation checks pass and no runtime/submodule/WIP path is modified.
 
-## 13. Immediate Next Action
+## 13. Completion Record
 
-Write the dated static audit from the fixed Open Canvas and current clone baselines. Do not begin the normative contract until the audit has tested all editing profiles above and identified the exact authority overlap with existing graph, async, media and command-context documents.
+- planning baseline and scope: `0a1c0a3`;
+- fixed Open Canvas/clone static audit and raw evidence: `b5ea255`;
+- formal editor-session contract and component-spec reconciliation: `20d4324`;
+- Open Canvas claim/pattern/adoption/translation/handoff governance: `93c96d5`;
+- project-level parity/graph/fixture/verifier/Big Picture governance and plan promotion: recorded by the promotion commit containing this historical plan.
+
+All acceptance criteria are satisfied at documentation/design level. Runtime remains fragmented, source interaction remains partial and coding is not authorized. Stable guidance now lives in the dated audit plus [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md); this plan remains only as execution provenance.
