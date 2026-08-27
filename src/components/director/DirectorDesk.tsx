@@ -129,6 +129,12 @@ export default function DirectorDesk({
   );
   const undoDirector = useDirectorStore((state) => state.undoDirector);
   const redoDirector = useDirectorStore((state) => state.redoDirector);
+  const copyDirectorSelection = useDirectorStore(
+    (state) => state.copyDirectorSelection,
+  );
+  const pasteDirectorClipboard = useDirectorStore(
+    (state) => state.pasteDirectorClipboard,
+  );
   const cancelDirectorGesture = useDirectorStore(
     (state) => state.cancelDirectorGesture,
   );
@@ -225,6 +231,22 @@ export default function DirectorDesk({
       if (event.isComposing || isEditable) return;
 
       const modifier = event.metaKey || event.ctrlKey;
+      if (modifier && event.key.toLowerCase() === "c") {
+        event.preventDefault();
+        copyDirectorSelection();
+        return;
+      }
+      if (modifier && event.key.toLowerCase() === "v") {
+        if (
+          workspaceBusy ||
+          document.querySelector("[data-director-capture-viewer]")
+        ) {
+          return;
+        }
+        event.preventDefault();
+        pasteDirectorClipboard();
+        return;
+      }
       if (modifier && event.key.toLowerCase() === "z") {
         event.preventDefault();
         if (event.shiftKey) redoDirector();
@@ -292,8 +314,10 @@ export default function DirectorDesk({
     activeMobilePanel,
     cancelDirectorGesture,
     closeWorkspace,
+    copyDirectorSelection,
     deleteDirectorEntity,
     exportPanelOpen,
+    pasteDirectorClipboard,
     redoDirector,
     undoDirector,
     workspaceBusy,

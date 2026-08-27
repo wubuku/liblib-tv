@@ -99,6 +99,12 @@ import {
 } from "@/lib/directorAsyncAuthority";
 import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
 import {
+  buildDirectorClipboardPacket,
+  planDirectorClipboardPaste,
+  type DirectorClipboardPacketV1,
+  type DirectorClipboardPastePlan,
+} from "@/lib/directorClipboard";
+import {
   planDirectorDelete,
   type DirectorDeleteCommand,
   type DirectorDeletePlan,
@@ -419,6 +425,8 @@ interface DirectorState {
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
   history: DirectorHistoryState;
+  clipboard: DirectorClipboardPacketV1 | null;
+  clipboardPasteCount: number;
   lastCommandResult: DirectorCommandResult | null;
 
   openSession: (owner: DirectorProjectOwnerV1) => DirectorProjectOpenResult;
@@ -432,6 +440,8 @@ interface DirectorState {
   cancelDirectorGesture: () => DirectorCommandResult;
   undoDirector: () => DirectorCommandResult;
   redoDirector: () => DirectorCommandResult;
+  copyDirectorSelection: () => DirectorCommandResult;
+  pasteDirectorClipboard: () => DirectorCommandResult;
   deleteDirectorEntity: (
     command: DirectorDeleteCommand,
   ) => DirectorCommandResult;
@@ -1877,6 +1887,64 @@ function projectDirectorDeleteState(
   };
 }
 
+function projectDirectorClipboardPasteState(
+  state: DirectorState,
+  plan: DirectorClipboardPastePlan,
+): Partial<DirectorState> {
+  const restored = restoreDirectorProjectRuntimeSnapshotV1(plan.document);
+  const pastedTrackIds = new Set(plan.pastedTrackIds);
+  const pastedPathIds = new Set(plan.pastedMotionPathIds);
+  const selectedTrack =
+    restored.timeline.tracks.find((track) => pastedTrackIds.has(track.id)) ??
+    (state.timeline.selectedTrackId
+      ? restored.timeline.tracks.find(
+          (track) => track.id === state.timeline.selectedTrackId,
+        )
+      : null) ??
+    restored.timeline.tracks[0] ??
+    null;
+  const selectedPath =
+    restored.timeline.motionPaths.find((path) => pastedPathIds.has(path.id)) ??
+    (selectedTrack?.motionPathId
+      ? restored.timeline.motionPaths.find(
+          (path) => path.id === selectedTrack.motionPathId,
+        )
+      : null) ??
+    null;
+  const timeline: DirectorTimelineState = {
+    ...restored.timeline,
+    currentTime: clampDirectorTimelineTime(
+      state.timeline.currentTime,
+      restored.timeline.duration,
+    ),
+    isPlaying: false,
+    zoom: state.timeline.zoom,
+    selectedTrackId: selectedTrack?.id ?? null,
+    selectedKeyframeId: selectedTrack?.keyframes[0]?.id ?? null,
+    selectedMotionPathId: selectedPath?.id ?? null,
+    selectedMotionPathAnchorId: null,
+    selectedMotionPathHandle: null,
+    motionPathDraft: null,
+    editorMode: state.timeline.editorMode,
+    cameraMotionPreset: state.timeline.cameraMotionPreset,
+  };
+  const authoredObjects = restored.objects;
+  return {
+    authoredObjects,
+    objects: projectDirectorRuntimeObjects(
+      authoredObjects,
+      timeline,
+      restored.groups,
+    ),
+    groups: restored.groups,
+    selectedObjectId: plan.selection.selectedObjectId,
+    selectedObjectIds: [...plan.selection.selectedObjectIds],
+    selectedGroupId: plan.selection.selectedGroupId,
+    activeCameraId: restored.activeCameraId,
+    timeline,
+  };
+}
+
 function createRejectedOpenResult(
   reason: NonNullable<DirectorProjectOpenResult["reason"]>,
   previousOwnerKey: string | null,
@@ -1922,6 +1990,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
   history: createDirectorHistoryState(),
+  clipboard: null,
+  clipboardPasteCount: 0,
   lastCommandResult: null,
 
   openSession: (owner) => {
@@ -2433,6 +2503,173 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       directorHistorySyncSuspended = false;
     }
     rememberDirectorHistory(entry.projectId, history);
+    return result;
+  },
+
+  copyDirectorSelection: () => {
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "COPY_SELECTION",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (!snapshot) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "COPY_SELECTION",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const built = buildDirectorClipboardPacket({
+      document: snapshot.document,
+      selection: {
+        selectedObjectIds:
+          state.selectedObjectIds.length > 0
+            ? state.selectedObjectIds
+            : state.selectedObjectId
+              ? [state.selectedObjectId]
+              : [],
+        selectedGroupId: state.selectedGroupId,
+      },
+    });
+    if (!built.ok) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "COPY_SELECTION",
+        disposition:
+          built.reason === "EMPTY_SELECTION" ? "NOOP" : "REJECTED",
+        reason:
+          built.reason === "EMPTY_SELECTION"
+            ? "DIRECTOR_CLIPBOARD_EMPTY"
+            : "DIRECTOR_CLIPBOARD_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "COPY_SELECTION",
+      disposition: "COMMITTED",
+      projectChanged: false,
+      historyEntries: 0,
+    });
+    set({
+      clipboard: built.packet,
+      clipboardPasteCount: 0,
+      lastCommandResult: result,
+    });
+    return result;
+  },
+
+  pasteDirectorClipboard: () => {
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (!state.clipboard) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: "NOOP",
+        reason: "DIRECTOR_CLIPBOARD_EMPTY",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      state.history.activeGesture ||
+      state.timeline.motionPathDraft ||
+      state.isCapturing ||
+      state.phoneVcam.status === "recording"
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (!snapshot) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const planned = planDirectorClipboardPaste({
+      document: snapshot.document,
+      packet: state.clipboard,
+      pasteOrdinal: state.clipboardPasteCount + 1,
+    });
+    if (!planned.ok) {
+      const stale = planned.reason === "PROJECT_MISMATCH";
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: stale ? "STALE" : "REJECTED",
+        reason: stale
+          ? "DIRECTOR_CLIPBOARD_STALE"
+          : "DIRECTOR_CLIPBOARD_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      !updateActiveDirectorDocument(
+        state,
+        planned.plan.document,
+        state.captures,
+      )
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PASTE_CLIPBOARD",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "PASTE_CLIPBOARD",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+      selectionResult: planned.plan.selection,
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: "PASTE_CLIPBOARD",
+      projectId: snapshot.projectId,
+      generation: snapshot.generation,
+      before: snapshot.document,
+      after: planned.plan.document,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(snapshot.projectId, history);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        ...projectDirectorClipboardPasteState(state, planned.plan),
+        clipboardPasteCount: state.clipboardPasteCount + 1,
+        history,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
     return result;
   },
 

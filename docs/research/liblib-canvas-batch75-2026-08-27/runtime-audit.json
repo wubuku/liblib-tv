@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "batch": 75,
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 75,
+    "scenarios": [
+      "single-object typed closure",
+      "selected-group full closure",
+      "external camera detach and coordinate freeze",
+      "internal camera relation remap",
+      "object/group/track/path/keyframe/anchor identity remap",
+      "deterministic repeated paste offset",
+      "stable resource alias",
+      "missing and conflicting resource rejection",
+      "cross-project stale rejection",
+      "strict packet shape and empty selection",
+      "identity allocation failure",
+      "capture/runtime/graph projection exclusion"
+    ],
+    "counts": {
+      "groupObjects": 2,
+      "groupTracks": 4,
+      "groupPaths": 1,
+      "remappedKeyframes": 7,
+      "remappedAnchors": 3
+    },
+    "errors": []
+  },
+  "browser": {
+    "keyboard": {
+      "copy": "Control+C",
+      "paste": "Control+V",
+      "oneHistory": true,
+      "selectionTargetsPaste": true
+    },
+    "identityAndOffset": {
+      "firstPasteOffset": 0.6,
+      "secondPasteOffset": 1.2,
+      "thirdPasteOrdinal": 3,
+      "uniqueIds": true
+    },
+    "history": {
+      "undoExact": true,
+      "redoExact": true
+    },
+    "guards": {
+      "editableNative": true,
+      "compositionNative": true,
+      "activeGestureConflict": "DIRECTOR_HISTORY_CONFLICT",
+      "busyBlocked": true,
+      "captureViewerBlocked": true
+    },
+    "projectIsolation": {
+      "staleReason": "DIRECTOR_CLIPBOARD_STALE",
+      "aBAContinuity": true
+    },
+    "boundaries": {
+      "ordinaryGraphUnchanged": true,
+      "persistenceExcludesClipboard": true,
+      "persistenceExcludesCaptureBytes": true
+    },
+    "reloadBoundary": {
+      "documentRestored": true,
+      "clipboardRestored": false,
+      "pasteCountRestored": false,
+      "sessionCaptureRestored": false,
+      "objectCount": 8
+    }
+  },
+  "screenshots": [],
+  "errors": []
+}
