@@ -14,7 +14,6 @@ import {
   Upload,
   Video,
 } from "lucide-react";
-import { useCanvasStore } from "@/store/canvasStore";
 import { useUIStore } from "@/store/uiStore";
 
 interface NodeEntry {
@@ -38,9 +37,12 @@ const nodeEntries: NodeEntry[] = [
   { type: "material", label: "素材库", icon: Library, action: "material", arrow: true },
 ];
 
-export function AddNodePanel() {
+interface AddNodePanelProps {
+  onAddNode: (type: string, data?: Record<string, unknown>) => void;
+}
+
+export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
   const { isAddNodePanelOpen, toggleAddNodePanel, setPrimaryPanel } = useUIStore();
-  const addNode = useCanvasStore((state) => state.addNode);
   const panelRef = useRef<HTMLDivElement>(null);
   const [materialSubmenuOpen, setMaterialSubmenuOpen] = useState(false);
   const [status, setStatus] = useState("");
@@ -66,7 +68,7 @@ export function AddNodePanel() {
   if (!isAddNodePanelOpen) return null;
 
   const createNode = (type: string) => {
-    addNode(type);
+    onAddNode(type);
     closePanel();
   };
 

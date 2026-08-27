@@ -55,6 +55,7 @@ import {
   isLibTVEditableCommandTarget,
   resolveLibTVBlockingForegroundSurface,
 } from "@/lib/libtvSelectionCommandContext";
+import { getLibTVHostCenterClientPoint } from "@/lib/libtvViewportPlacement";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
   ssr: false,
@@ -89,6 +90,7 @@ export default function Home() {
   const {
     getActiveCanvas,
     setNodes: setStoreNodes,
+    addNodeAtFlowCenter,
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
@@ -295,6 +297,37 @@ export default function Home() {
       setZoomLevel(Math.round(viewport.zoom * 100));
     },
     [setStoreViewport, setZoomLevel],
+  );
+
+  const addNodeAtHostCenter = useCallback(
+    (type: string, data?: Record<string, unknown>) => {
+      const instance = flowRef.current;
+      const host =
+        flowContainerRef.current?.querySelector<HTMLElement>(
+          "[data-libtv-react-flow-host]",
+        ) ?? null;
+      if (!instance || !host) return;
+
+      const hostRect = host.getBoundingClientRect();
+      const clientCenter = getLibTVHostCenterClientPoint({
+        left: hostRect.left,
+        top: hostRect.top,
+        width: hostRect.width,
+        height: hostRect.height,
+      });
+      if (!clientCenter) return;
+
+      try {
+        addNodeAtFlowCenter(
+          type,
+          instance.screenToFlowPosition(clientCenter),
+          data,
+        );
+      } catch {
+        // A stale/unmounted React Flow instance must not create a misplaced node.
+      }
+    },
+    [addNodeAtFlowCenter],
   );
 
   const fitView = useCallback(() => {
@@ -603,6 +636,7 @@ export default function Home() {
             edgeTypes={edgeTypes}
             viewport={flowViewport}
             className={effectivePan ? "cursor-grab bg-[#141414]" : "bg-[#141414]"}
+            data-libtv-react-flow-host
             data-canvas-tool={canvasTool}
             data-temporary-pan={isSpacePressed}
             defaultEdgeOptions={{ type: "default", animated: false, style: { stroke: "#7a8090", strokeWidth: 1.5 } }}
@@ -648,7 +682,7 @@ export default function Home() {
 
       {isAgentOpen && <AgentDrawer />}
 
-      <LeftSidebar />
+      <LeftSidebar onAddNode={addNodeAtHostCenter} />
       <BottomToolbar
         onOrganize={organize}
         onFitView={fitView}

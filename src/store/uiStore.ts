@@ -155,6 +155,15 @@ const closedOverlayState: OverlayState = {
   imageElementEdit: null,
 };
 
+function closeTransientOverlays(
+  state: Pick<UIState, "isAssetPanelOpen">,
+): OverlayState {
+  return {
+    ...closedOverlayState,
+    isAssetPanelOpen: state.isAssetPanelOpen,
+  };
+}
+
 export const useUIStore = create<UIState>((set) => ({
   isAddNodePanelOpen: false,
   isCanvasDropdownOpen: false,
@@ -187,7 +196,7 @@ export const useUIStore = create<UIState>((set) => ({
 
   toggleAddNodePanel: () =>
     set((state) => ({
-      ...closedOverlayState,
+      ...closeTransientOverlays(state),
       isAddNodePanelOpen: !state.isAddNodePanelOpen,
     })),
 
@@ -280,15 +289,15 @@ export const useUIStore = create<UIState>((set) => ({
 
   togglePrimaryPanel: (panel) =>
     set((state) => ({
-      ...closedOverlayState,
+      ...closeTransientOverlays(state),
       activePrimaryPanel: state.activePrimaryPanel === panel ? null : panel,
     })),
 
   setPrimaryPanel: (panel) =>
-    set({
-      ...closedOverlayState,
+    set((state) => ({
+      ...closeTransientOverlays(state),
       activePrimaryPanel: panel,
-    }),
+    })),
 
   setEditorMode: (mode) =>
     set({

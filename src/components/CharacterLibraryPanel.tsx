@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useCanvasStore } from "@/store/canvasStore";
 
 interface CharacterLibraryPanelProps {
+  onAddNode: (type: string, data?: Record<string, unknown>) => void;
   onClose: () => void;
 }
 
@@ -52,8 +52,10 @@ function tagsFor(name: string) {
   return [name.includes("主") ? "主角" : "角色", gender, era, name.includes("男孩") || name.includes("女孩") ? "儿童" : "青年"];
 }
 
-export function CharacterLibraryPanel({ onClose }: CharacterLibraryPanelProps) {
-  const addNode = useCanvasStore((state) => state.addNode);
+export function CharacterLibraryPanel({
+  onAddNode,
+  onClose,
+}: CharacterLibraryPanelProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [recentOnly, setRecentOnly] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ export function CharacterLibraryPanel({ onClose }: CharacterLibraryPanelProps) {
   };
 
   const applyCharacter = () => {
-    addNode("image", {
+    onAddNode("image", {
       filename: selected.name,
       width: 568,
       height: 761,

@@ -27,6 +27,10 @@ interface ToolButtonProps {
   children: React.ReactNode;
 }
 
+interface LeftSidebarProps {
+  onAddNode: (type: string, data?: Record<string, unknown>) => void;
+}
+
 function ToolButton({ label, active, prominent, onClick, children }: ToolButtonProps) {
   return (
     <button
@@ -79,12 +83,13 @@ function TutorialMenu() {
   );
 }
 
-export function LeftSidebar() {
+export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
   const {
     toggleShortcutsPanel,
     toggleAddNodePanel,
     isAddNodePanelOpen,
     isShortcutsPanelOpen,
+    isAssetPanelOpen,
     canvasTool,
     setCanvasTool,
     activePrimaryPanel,
@@ -109,7 +114,12 @@ export function LeftSidebar() {
 
   return (
     <>
-      <div className="fixed bottom-3 left-1/2 z-[60] flex h-[49px] -translate-x-1/2 items-center gap-2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.4)] max-sm:bottom-[52px]">
+      <div
+        className={cn(
+          "fixed bottom-3 left-1/2 z-[60] flex h-[49px] -translate-x-1/2 items-center gap-2 rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_8px_30px_rgba(0,0,0,0.4)] max-sm:bottom-[52px]",
+          isAssetPanelOpen && "sm:left-[calc(50%+120px)]",
+        )}
+      >
         <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddPanel}>
           <Plus size={22} />
         </ToolButton>
@@ -136,11 +146,16 @@ export function LeftSidebar() {
         </ToolButton>
       </div>
 
-      {isAddNodePanelOpen && <AddNodePanel />}
+      {isAddNodePanelOpen && <AddNodePanel onAddNode={onAddNode} />}
       {activePrimaryPanel === "move" && <MoveMenu onSelect={selectTool} />}
       {activePrimaryPanel === "toolbox" && <ToolboxPanel onClose={() => setPrimaryPanel(null)} />}
       {activePrimaryPanel === "material" && <MaterialLibraryPanel onClose={() => setPrimaryPanel(null)} />}
-      {activePrimaryPanel === "character" && <CharacterLibraryPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "character" && (
+        <CharacterLibraryPanel
+          onAddNode={onAddNode}
+          onClose={() => setPrimaryPanel(null)}
+        />
+      )}
       {activePrimaryPanel === "history" && <HistoryPanel onClose={() => setPrimaryPanel(null)} />}
       {activePrimaryPanel === "tutorial" && <TutorialMenu />}
     </>

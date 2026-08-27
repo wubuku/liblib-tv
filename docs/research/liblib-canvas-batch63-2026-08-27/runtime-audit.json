@@ -1,0 +1,538 @@
+{
+  "batch": 63,
+  "date": "2026-08-27",
+  "url": "http://localhost:3000",
+  "scope": "clone-owned actual React Flow host-center default placement",
+  "sourceParityClaim": false,
+  "screenshotsReused": true,
+  "desktop": {
+    "pureHelper": {
+      "identity": {
+        "clientCenter": {
+          "x": 120,
+          "y": 70
+        },
+        "flowCenter": {
+          "x": 12,
+          "y": -4
+        },
+        "nodePosition": {
+          "x": 7,
+          "y": -7
+        }
+      },
+      "translated": {
+        "clientCenter": {
+          "x": 584.5,
+          "y": 437
+        },
+        "flowCenter": {
+          "x": 900,
+          "y": 450
+        },
+        "nodePosition": {
+          "x": 644,
+          "y": 306
+        }
+      },
+      "invalidHost": null,
+      "invalidFlow": null,
+      "invalidDimensions": null
+    },
+    "closed": {
+      "text": {
+        "graph": {
+          "nodes": [
+            {
+              "id": "text-1787816788098-0fyb2x",
+              "type": "text",
+              "position": {
+                "x": 289.5,
+                "y": 347
+              },
+              "width": 350,
+              "height": 180,
+              "data": {
+                "content": "新文本节点"
+              }
+            }
+          ],
+          "selectedNodeIds": [
+            "text-1787816788098-0fyb2x"
+          ],
+          "selectedNodeId": "text-1787816788098-0fyb2x",
+          "selectedEdgeIds": [],
+          "pastLength": 1,
+          "futureLength": 0
+        },
+        "placement": {
+          "hostRect": {
+            "x": 0,
+            "y": 0,
+            "width": 929,
+            "height": 874
+          },
+          "nodeRect": {
+            "x": 289.5,
+            "y": 347,
+            "width": 350,
+            "height": 180
+          },
+          "hostCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "nodeCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "centerError": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "image": {
+        "graph": {
+          "nodes": [
+            {
+              "id": "image-1787816788498-gfn3n7",
+              "type": "image",
+              "position": {
+                "x": 208.5,
+                "y": 293
+              },
+              "width": 512,
+              "height": 288,
+              "data": {
+                "filename": "新图片",
+                "width": 512,
+                "height": 512,
+                "imageUrl": "/images/scene-coffee-1.png",
+                "watermarkUrl": "/images/watermark.png",
+                "editorVariant": "empty",
+                "editorHeight": 191,
+                "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+              }
+            }
+          ],
+          "selectedNodeIds": [
+            "image-1787816788498-gfn3n7"
+          ],
+          "selectedNodeId": "image-1787816788498-gfn3n7",
+          "selectedEdgeIds": [],
+          "pastLength": 1,
+          "futureLength": 0
+        },
+        "placement": {
+          "hostRect": {
+            "x": 0,
+            "y": 0,
+            "width": 929,
+            "height": 874
+          },
+          "nodeRect": {
+            "x": 208.5,
+            "y": 293,
+            "width": 512,
+            "height": 288
+          },
+          "hostCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "nodeCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "centerError": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "video": {
+        "graph": {
+          "nodes": [
+            {
+              "id": "video-1787816788898-rxjdyn",
+              "type": "video",
+              "position": {
+                "x": 208.5,
+                "y": 293
+              },
+              "width": 512,
+              "height": 288,
+              "data": {
+                "filename": "视频节点 5-片段重拍",
+                "durationSeconds": 30,
+                "resolution": "1280 × 720",
+                "posterUrl": "/images/scene-coffee-4.png",
+                "model": "Seedance 2.5",
+                "status": "ready"
+              }
+            }
+          ],
+          "selectedNodeIds": [
+            "video-1787816788898-rxjdyn"
+          ],
+          "selectedNodeId": "video-1787816788898-rxjdyn",
+          "selectedEdgeIds": [],
+          "pastLength": 1,
+          "futureLength": 0
+        },
+        "placement": {
+          "hostRect": {
+            "x": 0,
+            "y": 0,
+            "width": 929,
+            "height": 874
+          },
+          "nodeRect": {
+            "x": 208.5,
+            "y": 293,
+            "width": 512,
+            "height": 288
+          },
+          "hostCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "nodeCenter": {
+            "x": 464.5,
+            "y": 437.0
+          },
+          "centerError": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      }
+    },
+    "assetOpen": {
+      "graph": {
+        "nodes": [
+          {
+            "id": "text-1787816789449-3thmay",
+            "type": "text",
+            "position": {
+              "x": 169.5,
+              "y": 347
+            },
+            "width": 350,
+            "height": 180,
+            "data": {
+              "content": "新文本节点"
+            }
+          }
+        ],
+        "selectedNodeIds": [
+          "text-1787816789449-3thmay"
+        ],
+        "selectedNodeId": "text-1787816789449-3thmay",
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "placement": {
+        "hostRect": {
+          "x": 240,
+          "y": 0,
+          "width": 689,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 409.5,
+          "y": 347,
+          "width": 350,
+          "height": 180
+        },
+        "hostCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "characterClosed": {
+      "graph": {
+        "nodes": [
+          {
+            "id": "image-1787816789865-tuka4l",
+            "type": "image",
+            "position": {
+              "x": 208.5,
+              "y": 293
+            },
+            "width": 512,
+            "height": 288,
+            "data": {
+              "filename": "甜妹/清新少女",
+              "width": 568,
+              "height": 761,
+              "imageUrl": "/images/liblib-panels/character-thumb-01.webp",
+              "watermarkUrl": "/images/watermark.png",
+              "editorVariant": "empty",
+              "editorHeight": 191,
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+            }
+          }
+        ],
+        "selectedNodeIds": [
+          "image-1787816789865-tuka4l"
+        ],
+        "selectedNodeId": "image-1787816789865-tuka4l",
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "placement": {
+        "hostRect": {
+          "x": 0,
+          "y": 0,
+          "width": 929,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 208.5,
+          "y": 293,
+          "width": 512,
+          "height": 288
+        },
+        "hostCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "characterAssetOpen": {
+      "graph": {
+        "nodes": [
+          {
+            "id": "image-1787816790448-x7l1nb",
+            "type": "image",
+            "position": {
+              "x": 88.5,
+              "y": 293
+            },
+            "width": 512,
+            "height": 288,
+            "data": {
+              "filename": "甜妹/清新少女",
+              "width": 568,
+              "height": 761,
+              "imageUrl": "/images/liblib-panels/character-thumb-01.webp",
+              "watermarkUrl": "/images/watermark.png",
+              "editorVariant": "empty",
+              "editorHeight": 191,
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+            }
+          }
+        ],
+        "selectedNodeIds": [
+          "image-1787816790448-x7l1nb"
+        ],
+        "selectedNodeId": "image-1787816790448-x7l1nb",
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "placement": {
+        "hostRect": {
+          "x": 240,
+          "y": 0,
+          "width": 689,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 328.5,
+          "y": 293,
+          "width": 512,
+          "height": 288
+        },
+        "hostCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "zeroMutation": {
+      "nodes": [],
+      "selectedNodeIds": [],
+      "selectedNodeId": null,
+      "selectedEdgeIds": [],
+      "pastLength": 0,
+      "futureLength": 0
+    },
+    "compatibilityAdd": {
+      "nodes": [
+        {
+          "id": "audio-1787816790970-5a10sk",
+          "type": "audio",
+          "position": {
+            "x": 289.5,
+            "y": 367
+          },
+          "width": 350,
+          "height": 140,
+          "data": {
+            "filename": "新音频",
+            "duration": "00:00"
+          }
+        }
+      ],
+      "selectedNodeIds": [
+        "audio-1787816790970-5a10sk"
+      ],
+      "selectedNodeId": "audio-1787816790970-5a10sk",
+      "selectedEdgeIds": [],
+      "pastLength": 1,
+      "futureLength": 0
+    }
+  },
+  "mobile": {
+    "closed": {
+      "graph": {
+        "nodes": [
+          {
+            "id": "text-1787816792549-ds4zr8",
+            "type": "text",
+            "position": {
+              "x": 20,
+              "y": 332
+            },
+            "width": 350,
+            "height": 180,
+            "data": {
+              "content": "新文本节点"
+            }
+          }
+        ],
+        "selectedNodeIds": [
+          "text-1787816792549-ds4zr8"
+        ],
+        "selectedNodeId": "text-1787816792549-ds4zr8",
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "placement": {
+        "hostRect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "nodeRect": {
+          "x": 20,
+          "y": 332,
+          "width": 350,
+          "height": 180
+        },
+        "hostCenter": {
+          "x": 195.0,
+          "y": 422.0
+        },
+        "nodeCenter": {
+          "x": 195.0,
+          "y": 422.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "assetOpen": {
+      "graph": {
+        "nodes": [
+          {
+            "id": "image-1787816793048-sqlq9p",
+            "type": "image",
+            "position": {
+              "x": -181,
+              "y": 278
+            },
+            "width": 512,
+            "height": 288,
+            "data": {
+              "filename": "新图片",
+              "width": 512,
+              "height": 512,
+              "imageUrl": "/images/scene-coffee-1.png",
+              "watermarkUrl": "/images/watermark.png",
+              "editorVariant": "empty",
+              "editorHeight": 191,
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+            }
+          }
+        ],
+        "selectedNodeIds": [
+          "image-1787816793048-sqlq9p"
+        ],
+        "selectedNodeId": "image-1787816793048-sqlq9p",
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      },
+      "placement": {
+        "hostRect": {
+          "x": 240,
+          "y": 0,
+          "width": 150,
+          "height": 844
+        },
+        "nodeRect": {
+          "x": 59,
+          "y": 278,
+          "width": 512,
+          "height": 288
+        },
+        "hostCenter": {
+          "x": 315.0,
+          "y": 422.0
+        },
+        "nodeCenter": {
+          "x": 315.0,
+          "y": 422.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    }
+  },
+  "acceptance": {
+    "maxCenterErrorPx": 1.5,
+    "graphHistoryStepsPerAdd": 1,
+    "selectionProjectsCreatedNode": true,
+    "invalidFlowCenterZeroMutation": true,
+    "legacyAddNodeCallable": true,
+    "noOverflow": true,
+    "browserDiagnosticsClean": true
+  }
+}

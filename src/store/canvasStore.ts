@@ -19,6 +19,7 @@ import {
   captureLibTVSelectionSnapshot,
   type LibTVSelectionSnapshot,
 } from "@/lib/libtvSelectionCommandContext";
+import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement";
 
 export interface GraphSnapshot {
   nodes: Node[];
@@ -242,6 +243,11 @@ interface CanvasState {
 
   // Node actions
   addNode: (type: string, data?: Record<string, unknown>) => void;
+  addNodeAtFlowCenter: (
+    type: string,
+    center: { x: number; y: number },
+    data?: Record<string, unknown>,
+  ) => void;
   addNodeAtPosition: (type: string, position: { x: number; y: number }, data?: Record<string, unknown>) => void;
   addDerivedNode: (
     sourceId: string,
@@ -1012,6 +1018,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     if (!activeCanvas) return;
     const dimensions = getDefaultNodeDimensions(type);
     const position = getViewportCenterPosition(activeCanvas, dimensions);
+    get().addNodeAtPosition(type, position, data);
+  },
+
+  addNodeAtFlowCenter: (
+    type: string,
+    center: { x: number; y: number },
+    data?: Record<string, unknown>,
+  ) => {
+    const dimensions = getDefaultNodeDimensions(type);
+    const position = getLibTVNodePositionForFlowCenter(center, dimensions);
+    if (!position) return;
     get().addNodeAtPosition(type, position, data);
   },
 
