@@ -47,20 +47,21 @@
 26. [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)：Open Canvas selected flags/editable guard/Radix delegation 与 clone node/edge selection、listener phase、modal/Director focus、Batch 50 事实漂移的 fixed static audit。
 27. [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：validated node/edge/primary selection、focus zone、command-context precedence、single-layer Escape、fixture 和 `VR-019` 正式设计权威。
 28. [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)：Open Canvas dual screen/flow anchor、live/stable viewport、placement/counterexamples 与 clone coordinate domain、host center、gesture/lifecycle gap 的 fixed audit。
-29. [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md)：将上游机制映射为 `ADOPT_METHOD`、`ADAPT_TO_LIBTV`、`RESEARCH_ONLY`、`DEFER` 或 `REJECT_TRANSPLANT`，并对齐当前 parity、fixture 和 verifier。
-30. [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：将高价值机制拆成证据、身份、事务、surface、fixture、verifier 和 provenance 七层实施交接包。
-31. [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和长视频的身份、authoring/node/run/result/save 正交状态、fixture 与 `VR-007` 合同。
-32. [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、Seedance 2.5 authoring controls、clone state、descriptor 与真实 runner 的分层审计。
-33. [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md)：35-row current loaded DOM catalog、current-context style split 和 per-model control 停止点。
-34. [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：未来比较/更新上游 commit 时的 claim、pattern、adoption、runtime 和 submodule pointer 影响审计协议。
-35. [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md)：将 source freshness、模型能力、graph decision、Auto Link/process fixture 和上游版本 diff 组织为带停止条件的证据队列。
-36. [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](LIBTV_SOURCE_FRESHNESS_2026-08-27.md)：`OC-EQ-001` 的 41% 标准图片双浮层新日期只读样本、几何残差和自然裁切证据。
-37. [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)：`OC-EQ-003` 的 LibTV DOM Handle、edge identity、方向归一化、duplicate/self-loop/cycle 和 action/type validator 静态证据。
-38. [`libtv-graph-compatibility-static-audit-2026-08-27.json`](libtv-graph-compatibility-static-audit-2026-08-27.json)：graph compatibility 原始结构化采样、bundle 坐标和未决边界。
-39. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
-40. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：九类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
-41. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
-42. [`../liblib-canvas-batch55-2026-08-26/`](../liblib-canvas-batch55-2026-08-26/README.md)：`OC-EQ-001` freshness 接管尝试、登录态阻塞和可接力停止条件。
+29. [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：actual host、six coordinate domains、live/stable/bootstrap/target viewport、gesture/placement/resize owner、fixture 和 `VR-020` 正式设计权威。
+30. [`ADOPTION_DECISION_MATRIX.md`](ADOPTION_DECISION_MATRIX.md)：将上游机制映射为 `ADOPT_METHOD`、`ADAPT_TO_LIBTV`、`RESEARCH_ONLY`、`DEFER` 或 `REJECT_TRANSPLANT`，并对齐当前 parity、fixture 和 verifier。
+31. [`LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：将高价值机制拆成证据、身份、事务、surface、fixture、verifier 和 provenance 七层实施交接包。
+32. [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和长视频的身份、authoring/node/run/result/save 正交状态、fixture 与 `VR-007` 合同。
+33. [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、Seedance 2.5 authoring controls、clone state、descriptor 与真实 runner 的分层审计。
+34. [`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md)：35-row current loaded DOM catalog、current-context style split 和 per-model control 停止点。
+35. [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：未来比较/更新上游 commit 时的 claim、pattern、adoption、runtime 和 submodule pointer 影响审计协议。
+36. [`NEXT_EVIDENCE_ACQUISITION_PLAN.md`](NEXT_EVIDENCE_ACQUISITION_PLAN.md)：将 source freshness、模型能力、graph decision、Auto Link/process fixture 和上游版本 diff 组织为带停止条件的证据队列。
+37. [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](LIBTV_SOURCE_FRESHNESS_2026-08-27.md)：`OC-EQ-001` 的 41% 标准图片双浮层新日期只读样本、几何残差和自然裁切证据。
+38. [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)：`OC-EQ-003` 的 LibTV DOM Handle、edge identity、方向归一化、duplicate/self-loop/cycle 和 action/type validator 静态证据。
+39. [`libtv-graph-compatibility-static-audit-2026-08-27.json`](libtv-graph-compatibility-static-audit-2026-08-27.json)：graph compatibility 原始结构化采样、bundle 坐标和未决边界。
+40. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
+41. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：十类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
+42. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
+43. [`../liblib-canvas-batch55-2026-08-26/`](../liblib-canvas-batch55-2026-08-26/README.md)：`OC-EQ-001` freshness 接管尝试、登录态阻塞和可接力停止条件。
 
 ## 当前结论摘要
 
@@ -87,6 +88,7 @@
 - 当前 command outcome/feedback 已完成跨层静态审计：Open Canvas 的 toast、node status/error、save/conflict、field error/pending 分层可借，但 localized message lookup 和无 owner async toast 是反例；clone 有 connection reason、surface string、VideoNode timer 与 Director persistent islands，但无共同 disposition/primary-surface/owner authority。`COMMAND-FEEDBACK-01` / `VR-018` 已定义，runtime adapter 与 exact source feedback 未授权/未取证。
 - 当前 async ingress 已完成 fixed Open Canvas 与 committed clone 双向审计：上游 descriptor/run/runId polling/server patch/revision/saved baseline 可借方法，但 patch 不校验 expected run/source version/field owner，terminal run 与 graph projection 非原子；clone 多数 graph-producing delay 仍是 component timer，Director 才有真实 browser async asset。`ASYNC-INGRESS-01` / `VR-015` 已定义，runtime/provider 均未授权。
 - 当前采纳治理已进一步区分“借鉴方法”和“移植实现”：坐标域、稳定身份、状态分层和结构化 graph transaction 可进入设计评审；Open Canvas 的视觉皮肤、provider/key、保存语义和未被 LibTV 证实的 Quick Add 行为不能直接进入 clone。
+- 当前 viewport/coordinate/gesture/placement 已形成正式权威：actual host、six domain、live/stable/bootstrap/target、generation-bound session、entry placement、resize、fixture/`VR-020` 均已落档；runtime/source parity 仍 partial。
 
 本次研究不修改 `src/`、不修改上游 submodule 内容、不执行生成或上传、不创建官网画布。
 
@@ -110,7 +112,7 @@
 | Multi-canvas lifecycle/isolation | [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | project/document/history/session/external owner、CRUD/switch plan、reconciliation manifest、transient/async/resource race、`CANVAS-LIFECYCLE-01` / `VR-017` 权威；runtime partial，source final/fallback/panel decisions open |
 | Command outcome/feedback | [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md) | disposition/reason/copy、primary field/node/surface/canvas/transient owner、clear/retry/dedupe、history/accessibility/route isolation、`COMMAND-FEEDBACK-01` / `VR-018` 权威；runtime partial，exact source toast/invalid style/timeout open |
 | Selection/focus command context | [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)、[`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) | fixed facts + validated selection、focus zone、context precedence、dispatch result、single-layer Escape、fixture/`VR-019` 权威；design complete/runtime partial，exact source interactions partial |
-| Viewport/coordinate/gesture facts | [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md) | fixed Open Canvas dual-anchor/live-stable viewport/placement methods and counterexamples + clone host/window center、projection、gesture/placement issue register；formal contract/`VR-020` in progress |
+| Viewport/coordinate/gesture/placement | [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)、[`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | dated facts + actual host、six domain、live/stable/bootstrap/target、gesture/placement/resize owner、fixture/`VR-020` authority；runtime/source parity partial，Quick Add/drop remain gated |
 | Process/result identity/state | [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) | `LIBTV-PR-*`、stale/retry、`VR-007` 权威 |
 | Async completion ingress/convergence | [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) | operation/run/result/source-version、freshness、field/history/resource ownership、`ASYNC-INGRESS-01` / `VR-015` 权威；runtime missing，provider out of scope |
 | Model UI/descriptor/runner 边界 | [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)、[`LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md`](LIBTV_MODEL_CATALOG_FRESHNESS_2026-08-27.md) | capability projection authority + dated 35-row catalog；不等于 runner |

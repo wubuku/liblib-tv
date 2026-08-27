@@ -96,6 +96,7 @@ LibTV 当前问题
 | summary list + URL identity + full hydrate | 切换画布是跨 owner 的原子 lifecycle，不只是换 nodes | 保留当前 LibTV dropdown 视觉、每画布 graph/viewport/history 与源站待证 fallback | `LIBTV-UIX-17` |
 | toast + node/save/form/control feedback 分层 | outcome/reason 与 primary surface 分开，durable error 可恢复，cancel/noop 可 silent | 精确 LibTV 文案/颜色/timeout/invalid style 仍由源站决定；不复用 FrameOS toast | `LIBTV-UIX-18` |
 | selected flags + editable guard + local editor/Radix focus ownership | validated selection、declared command context、single-layer Escape 和 owned focus return | 精确 LibTV multi-select/edge/foreground surface/Escape/focus behavior 仍由源站决定；不引入全局 modal manager | `LIBTV-UIX-19` |
+| screen/flow dual anchor + live/stable viewport + entry-specific placement | actual host、typed coordinate domain、current frame/endpoint、gesture/placement owner 分开 | 保留 LibTV overlay formulas、Handle/edge、V/H/Space 和现有命令语义；exact add/fit/resize/drop 仍由源站决定 | `LIBTV-UIX-20` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -301,6 +302,23 @@ LibTV 后续复刻应把三个 owner 分开：
 
 一次 Escape 只退出一个最上层 context，不能同时关闭 modal、Director 和底层 selection；不可退出的 foreground layer 必须明确 consumed/blocked。画布切换、节点删除、undo/unmount 要共同使陈旧 selection、surface owner 和 return target 失效。正式合同、fixture 与 `LIBTV-VR-019` 见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，固定静态事实见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。
 
+### `LIBTV-UIX-20`：空间权威与创建落点
+
+Open Canvas 的双锚点说明一个高价值 UI/UX 边界：菜单为了可见可以在 screen domain clamp/flip，但用户选择后创建的 graph point 应保持最初捕获的 flow anchor。`onMove` 的 live viewport 与 `onMoveEnd` 的 stable viewport 又说明“当前看到什么”和“下次恢复什么”不能由同一个无阶段对象含糊承担。
+
+对当前 LibTV clone，复刻时应同时观察以下对象：
+
+| 对象 | 当前权威 | 不允许的替代 |
+|---|---|---|
+| canvas center | actual React Flow host rect + current live viewport | browser window center |
+| overlay anchor | measured world node + one current host/live frame | rounded zoom label、old store viewport 或 Open Canvas offset |
+| pan/zoom current frame | current gesture/programmatic owner | bootstrap preset |
+| switch restore | target canvas stable viewport | old canvas late callback |
+| graph placement | named entry policy in flow world | screen clamp 后位置、统一 fixed offset |
+| media editor pointer | media rect/intrinsic-normalized transform | graph viewport conversion |
+
+`LIBTV-UIX-11` 保留早期“收集 screen/flow 场景”的历史研究入口；`LIBTV-UIX-20` 是在 fixed Open Canvas/clone 双向审计后形成的正式 cross-owner 交接。完整 six-domain、gesture、resize、history、fixture 与 `LIBTV-VR-020` 合同见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)，固定事实见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -346,6 +364,7 @@ LibTV 后续复刻应把三个 owner 分开：
 | P1 | 多画布切换与 surface owner 隔离 | 防止旧画布 UI、viewport、transient 和异步结果污染当前画布 | 设计合同完成，runtime partial |
 | P1 | 命令 outcome/reason 与反馈 owner | 防止 toast-only workflow、string reason、stale success 和 feedback/history 混淆 | 设计合同完成，runtime partial/source feedback partial |
 | P1 | selection/focus/command-context owner | 防止 selected flags 分叉、快捷键穿透、多层 Escape 和陈旧回焦 | 设计合同完成，runtime partial/source interaction partial |
+| P1 | actual-host viewport/coordinate/placement owner | 防止 panel/compact host 后新增落点漂移、live/stable 混用、switch stale callback 和 overlay frame 分叉 | 设计合同完成，runtime/source parity partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

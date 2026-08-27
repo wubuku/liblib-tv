@@ -1,6 +1,6 @@
 # LibTV Viewport, Coordinate And Gesture Research Plan
 
-> Status: `STATIC_AUDIT_COMPLETE` / `FORMAL_CONTRACT_IN_PROGRESS`.
+> Status: `COMPLETE` / `PROMOTED_TO_FORMAL_CONTRACT`.
 >
 > Scope: documentation-only study of Open Canvas viewport/coordinate/placement methods and their value for the ordinary LibTV clone route.
 >
@@ -26,14 +26,14 @@ Open Canvas is valuable because its fixed implementation contains both positive 
 
 | Authority | Owns | Must not be duplicated |
 |---|---|---|
-| [`LibTVOverlayPositioning.contract.md`](../research/components/LibTVOverlayPositioning.contract.md) | standard selected-image toolbar/panel geometry | source-exact toolbar/panel formulas |
-| [`NAVIGATION_GESTURES.spec.md`](../research/liblib-canvas-batch6-2026-08-25/NAVIGATION_GESTURES.spec.md) | current V/H/Space clone gesture state | historical implementation provenance |
-| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | per-canvas viewport and generation lifecycle | switch/delete owner policy |
-| [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md) | framework change transport and drag history | node-position mutation authority |
-| [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) | shortcut/focus/context precedence | keyboard dispatch authority |
-| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../research/LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history rules | named graph command semantics |
+| [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md) | standard selected-image toolbar/panel geometry | source-exact toolbar/panel formulas |
+| [`NAVIGATION_GESTURES.spec.md`](../liblib-canvas-batch6-2026-08-25/NAVIGATION_GESTURES.spec.md) | current V/H/Space clone gesture state | historical implementation provenance |
+| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | per-canvas viewport and generation lifecycle | switch/delete owner policy |
+| [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md) | framework change transport and drag history | node-position mutation authority |
+| [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) | shortcut/focus/context precedence | keyboard dispatch authority |
+| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history rules | named graph command semantics |
 
-The new research should define composition edges and fill only the missing coordinate/gesture/placement authority.
+The completed research defines composition edges and fills only the missing coordinate/gesture/placement authority.
 
 ## 3. Research Questions
 
@@ -83,14 +83,14 @@ Candidate clone issue IDs: `LIBTV-VGP-001..N`.
 
 | Deliverable | Lifecycle | Purpose |
 |---|---|---|
-| [`docs/research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md) | dated reference complete | fixed source/clone facts, issue inventory and authority gaps |
-| `docs/research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md` | stable guide/reference | coordinate taxonomy, owner model, transitions, invariants and decision queue |
+| [`docs/research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md) | dated reference complete | fixed source/clone facts, issue inventory and authority gaps |
+| [`docs/research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | stable guide/reference complete | coordinate taxonomy, owner model, transitions, invariants and decision queue |
 | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | fixture design | deterministic A/B canvas, viewport, node, pointer and container cases |
 | `LIBTV-VR-020` | verifier design | pure conversion/owner checks plus focused browser trace |
 | `OC-PATTERN-10` / `OC-ADOPT-023` / `OC-BP-010` | Open Canvas translation | method, adoption boundary and implementation handoff |
 | `OC-TR-016` / `LIBTV-TR-042` / `DEC-036` / `LIBTV-UIX-20` | governance | traceability, decision and UI/UX mapping |
 
-IDs are reserved by this plan and become authoritative only when their target documents are added and indexed.
+These IDs are now authoritative through their indexed target documents. This plan remains historical provenance, not a second status authority.
 
 ## 6. Work Sequence
 
@@ -126,11 +126,11 @@ This research batch is complete when:
 - all current placement writers are inventoried and mapped to named policies;
 - overlay geometry composes with, rather than duplicates, the existing source formula;
 - viewport-only effects are separated from graph/history effects;
-- fixture `VIEWPORT-COORDINATE-01` and verifier `VR-020` have deterministic cases;
+- fixture `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` and verifier `LIBTV-VR-020` have deterministic cases;
 - Open Canvas methods and counterexamples have an explicit adoption boundary;
 - agent navigation, decision, traceability and implementation handoff remain discoverable;
 - documentation checks pass and no code/submodule/WIP path is modified.
 
 ## 9. Next Action
 
-Use the completed dated audit to define the stable coordinate/viewport/placement owner model, invariants, decision queue, fixture and `VR-020`, then synchronize Open Canvas adoption and implementation handoff records.
+Plan closed. Stable design authority is [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md); fixed evidence remains in [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md). Runtime/test work remains unauthorized and must begin from a new single-slice plan if explicitly approved.

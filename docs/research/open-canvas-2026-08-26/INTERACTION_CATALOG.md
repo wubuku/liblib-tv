@@ -297,6 +297,12 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 
 当前 clone 的 node projection、edge selected field、page bubble shortcut、modal capture guard 和 Director foreground isolation 已形成多个 island。固定静态审计已记录 Batch 50 后 Director 会隔离全部普通 page shortcut，而不是旧文档描述的仅 Escape。该结论形成 `LIBTV-UIX-19`：先归一化 active node/edge/primary selection，再按 editable/surface/modal/Director/route 解析 top context；一次 Escape 只退一层，close 后焦点只返回仍有效 owner。正式合同见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
+### 10.6 Viewport、coordinate、gesture 与 placement authority
+
+固定 Open Canvas 把 Quick Add 的 screen surface position 与 flow placement point 分开；普通 Add Node 读取 actual container center；`onMove` 提供 live viewport，`onMoveEnd` 更新 stable viewport；add/drop/paste/duplicate/pending connection 使用 entry-specific placement。它也暴露 permissive normalize、窄 host clamp、gesture cancel 和逐文件 drop 非原子反例。
+
+当前 clone 有 per-canvas viewport、V/H/Space cleanup、drag one-history、derived/duplicate/organize placement 和 source-shaped overlay formulas，但 default add 使用 browser window center，live/stable/bootstrap 未显式分权，viewport/organize/drag/connection transient 缺 canvas generation。该结论形成 `LIBTV-UIX-20`：actual host + typed domain + current viewport phase + named gesture/placement owner 共同决定空间结果；不增加 Quick Add/drop/pending connection。正式合同见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。
+
 ## 11. 对比矩阵：什么可以借鉴，什么不能搬
 
 | 主题 | Open Canvas 固定版本事实 | 当前 LibTV 已知合同 | 后续动作 | 状态 |
@@ -313,6 +319,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | 多画布 lifecycle | summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup | clone 有 dropdown 与局部 owner cleanup，源站产品语义未证 | 建 switch manifest 并验证 old-owner callback | `UIX-17` |
 | command feedback | toast、node error、save banner、field/pending 分层；cancel/noop 非必 toast | clone reason/string/timer/Director islands，exact source visual 未证 | 建 disposition/reason/primary-surface matrix | `UIX-18` |
 | selection/focus/context | selected flags、editable guard、local editor、Radix delegation；弱 Escape/conflict gate 反例 | clone node/edge/listener/modal/Director islands，exact source multi-select/focus 未完整 | 建 validated selection + context precedence + focus-return matrix | `UIX-19` |
+| spatial authority | screen/flow 双锚点、actual host、live/stable viewport、entry placement；normalize/clamp/drop 反例 | clone viewport/navigation/placement/overlay islands，default add/phase/generation 仍 partial | 建 actual-host + six-domain + gesture/placement owner matrix | `UIX-20` |
 
 ## 12. 后续 batch 合同
 
@@ -359,6 +366,10 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 ### `LIBTV-UIX-19`：选择、焦点与前台命令上下文
 
 验证 node/edge/primary selection 对 active graph 的归一化、editable/canvas/node-control/modal/Director/route 优先级、明确 dispatch result、一次 Escape 只退一层、focus acquire/contain/return/fallback、switch/delete/undo/unmount stale-owner cleanup，以及 selection/focus zero semantic history。Exact multi-select、edge action、Escape 和 focus visual 未有源站证据时保持 research gate。
+
+### `LIBTV-UIX-20`：actual-host 空间权威与 entry placement
+
+验证 client/host/flow/node/media domain、actual React Flow host、live/stable/bootstrap/target viewport、pan/zoom/drag/connection/organize session owner、host resize、default/derived/duplicate placement、selected overlay same-frame composition、viewport zero semantic history 和 graph command exact one-step history。Exact source add/fit/zoom/resize/drop 未有证据时保持 research gate；Open Canvas Quick Add/drop/pending connection 保持 absent。
 
 ## 13. 验证矩阵
 

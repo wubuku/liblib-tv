@@ -85,6 +85,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 | `OC-ADOPT-020` | list summary + URL document + hydrate owner + delete-run cleanup + stale save 反例 | `ADAPT_TO_LIBTV` | 为 in-place LibTV 多画布定义 registry/document/history/session/external owner、switch manifest、canvas generation 和 explicit async destination | `OC-035..039`、`OC-TR-013`；`DEC-033`；`LIBTV-PAR-008/011`；`CANVAS-LIFECYCLE-01`；`LIBTV-VR-017` | design complete/runtime partial；不移植 list/URL visual、persistence/revision/conflict/final-delete policy；source fallback/panel/resource decisions open |
 | `OC-ADOPT-021` | global toast + node status/error + save/conflict surface + field error/pending，以及 localized message/owner 反例 | `ADAPT_TO_LIBTV` | 为 LibTV command outcome 定 disposition/reason/primary surface/owner/clear-retry-dedupe；保留 local prototype honesty 与 Director persistent surface | `OC-040..045`、`OC-TR-014`；`DEC-034`；`LIBTV-PAR-004/008..011`；`COMMAND-FEEDBACK-01`；`LIBTV-VR-018` | design complete/runtime partial；不新增 global toast、不复用 FrameOS toast、不复制 skin/message/save/provider；exact invalid style/timeout source-blocked |
 | `OC-ADOPT-022` | selected flags + editable guards + local editor ownership + Radix focus delegation，以及 conflict gate/weak Escape/default key handler 反例 | `ADAPT_TO_LIBTV` | 为 LibTV 定义 validated node/edge/primary selection、focus zone、command-context precedence、single-layer Escape 和 focus return；保留 route/store 隔离 | `OC-046..052`、`OC-TR-015`；`DEC-035`；`LIBTV-PAR-004/007/008/011`；`SELECTION-FOCUS-CONTEXT-01`；`LIBTV-VR-019` | design complete/runtime partial；不移植 Radix/global modal manager、不复制 selected flags/conflict gate/weak Escape；exact source multi-select/edge/focus behavior partial |
+| `OC-ADOPT-023` | screen/flow dual anchor + actual host conversion + live/stable viewport + entry-specific placement，以及 permissive normalize/clamp/gesture/drop 反例 | `ADAPT_TO_LIBTV` | 为 LibTV 定义 six-domain、actual host/epoch、viewport phase、generation-bound gesture/placement、resize reconciliation 和 exact history/selection composition | `OC-053..060`、`OC-TR-016`；`DEC-036`；`LIBTV-PAR-001/002/007/008/011`；`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01`；`LIBTV-VR-020` | design complete/runtime/source parity partial；不移植 Quick Add/drop/pending connection、menu/zoom/pan/overlay/persistence；exact source add/fit/resize behavior remains gated |
 
 ## 5. 高价值采纳路径
 
@@ -94,7 +95,7 @@ Open Canvas 只能帮助回答“怎样把问题建模得更稳”，不能回�
 
 1. `OC-ADOPT-001`：用坐标域和 anchor owner 评审 `PAR-001/002`，但所有数字回到 LibTV 合同；
 2. `OC-ADOPT-002`：维护已经完成的 Auto Link typed identity/session/fixture 合同，等待运行 fixture 授权；
-3. `OC-ADOPT-004..006/016/017/019..022`：使用已经完成的 graph invariant/case 表、四份 component contracts、delete matrix、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) 和两份 dated static audit；按 verifier 分开维护 runtime maturity，保持 persistence deferred，继续取得 Reference、导入/批量/同步、invalid lifecycle/feedback、Option-drag、resize/reconnect、canvas fallback/panel/resource、feedback timeout/placement、multi-select/edge/focus 和 cascade/detach source/product 决定；
+3. `OC-ADOPT-004..006/016/017/019..023`：使用已经完成的 graph invariant/case 表、四份 component contracts、delete matrix、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](../LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)、[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) 和三份 dated static audit；按 verifier 分开维护 runtime maturity，保持 persistence deferred，继续取得 Reference、导入/批量/同步、invalid lifecycle/feedback、Option-drag、resize/reconnect、canvas fallback/panel/resource、feedback timeout/placement、multi-select/edge/focus、source add/fit/resize 和 cascade/detach source/product 决定；
 4. `OC-ADOPT-003/009/018`：为 `PAR-009` 拆开 source、candidate、result、run 和 save 状态，并以 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) 约束 completion freshness、field/history/resource ownership；
 5. `OC-ADOPT-010`：建立“模型 UI 能力 / 请求投影 / 实际 runner”三层审计表。
 
@@ -131,6 +132,8 @@ Auto Link 和 graph transaction 不应跟随该视觉 slice 一起实现。前�
 | 把 React Flow `selected` flags 当成完整 selection authority | node/edge flags 不能单独表达 primary、active canvas、stale ID 与 surface context | 先归一化 validated active selection，再向 React Flow 投影 |
 | 复制 Open Canvas conflict gate 或弱 Escape handler | 单个 guard/handler 不构成 command-context precedence，也不能保证一次只退一层 | 使用具名 context resolver、declared dispatch result 和 single-layer unwind |
 | 因 Open Canvas 使用 Radix 就引入全局 modal manager | 上游库只证明局部 focus containment/return 方法，不证明 LibTV 产品层级 | 保留现有 surface owner；按 LibTV 合同声明 acquire/contain/return/fallback |
+| 复制 Open Canvas Quick Add/drop/pending connection 或其 menu/zoom 数字 | 双锚点和 live/stable 是空间方法，不证明 LibTV 有相同入口、视觉或产品手势 | 使用 actual host/typed domain/generation owner；source 未证入口保持 absent/honest |
+| 用 viewport normalize fallback 或 surface clamp 修复无效 graph anchor | 这会把坏输入静默变成有效坐标，或把 UI 可见性混入 graph placement | strict finite/owner validation；screen anchor 与 flow anchor 独立 |
 
 ## 7. 决策更新协议
 
@@ -145,6 +148,6 @@ Auto Link 和 graph transaction 不应跟随该视觉 slice 一起实现。前�
 
 ## 8. 当前结论
 
-Open Canvas 对本项目最有价值的是四类工程方法：坐标域显式化、稳定身份与请求投影分离、状态生命周期分层、结构化 graph transaction。它最不适合作为 LibTV 视觉、产品文案、provider 能力和保存语义的替代来源。
+Open Canvas 对本项目最有价值的是五类工程方法：坐标域/空间 owner 显式化、稳定身份与请求投影分离、状态生命周期分层、结构化 graph transaction、current owner 收敛。它最不适合作为 LibTV 视觉、产品文案、provider 能力和保存语义的替代来源。
 
 因此，后续复刻应把它当作“设计评审器”：用上游实现暴露当前 clone 可能遗漏的状态、身份和原子性问题，再回到 LibTV 源站决定最终行为。任何没有 LibTV 证据、fixture、verifier 和授权的机制，都停留在研究文档中。

@@ -188,7 +188,7 @@ The copy clears `parentId` and `extent`. It must not retain a hidden reference t
 | flow-anchor | flow/world | align copied closure bounds to an explicit anchor, then apply declared repeat offset |
 | flow-delta | flow/world | Option-drag candidate uses pointer-derived flow delta after source evidence |
 
-Screen pixels must be converted once through React Flow before planning. Zoom/pan cannot change copied graph geometry. Open Canvas viewport-center behavior is an inspiration for `flow-anchor`, not LibTV's decided paste placement。
+Screen pixels must be converted once through React Flow before planning. Zoom/pan cannot change copied graph geometry. Open Canvas viewport-center behavior is an inspiration for `flow-anchor`, not LibTV's decided paste placement。Actual host、coordinate-domain、live/stable viewport and owner validation are delegated to [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)；this copy contract retains closure/bounds/delta/history authority.
 
 ## 7. Node Data Reference Roles
 

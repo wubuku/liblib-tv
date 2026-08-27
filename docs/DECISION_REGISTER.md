@@ -43,6 +43,7 @@
 | DEC-033 | 多画布 lifecycle isolation | create/switch/rename/duplicate/delete 是跨 registry/document/history/session/external owner 的 lifecycle transaction | ACTIVE / RESEARCH_GATE |
 | DEC-034 | command outcome feedback | typed disposition/reason 先于 UI projection；一个 primary owner，feedback 不进 graph history，stale completion 不宣告当前成功 | ACTIVE / RESEARCH_GATE |
 | DEC-035 | selection/focus command context | node/edge/primary selection 是 active-session authority；focus zone 与 foreground surface 决定 command permission，one Escape 只处理一个 top context | ACTIVE / RESEARCH_GATE |
+| DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -245,6 +246,16 @@
 **影响：** 不因本决策引入 global modal manager 或 Radix，也不改变 FrameOS store。Character/History/Shortcuts/Canvas dropdown 的 exact source policy、mixed node-edge primary、undo selection、Director return 和 focus visual 继续 source/product-gated。`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01`、`LIBTV-VR-019` 与 runtime convergence 均需明确编码授权。
 
 **依据：** [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)、Batch 50/58/60 records、Open Canvas studio/store/Radix fixed chain。
+
+### DEC-036：空间结果由 actual host、坐标域和当前 owner 共同定权
+
+**背景：** 当前 clone 已有 per-canvas viewport、controlled React Flow、V/H/Space 清理、drag one-history、derived/duplicate/organize placement 和 source-shaped overlay formula，但这些能力尚未共享一套空间 owner。默认新增节点仍以 browser window center 计算位置；asset panel 会改变实际 React Flow host。Viewport callback、organize、drag 和 connection transient 也可能在 canvas switch 后晚到。Open Canvas 的 screen-menu/flow-point 双锚点和 live/stable viewport 提供了可借方法，同时其 permissive normalize、窄 host clamp、缺 pointercancel cleanup 和逐文件 async drop 是反例。
+
+**决策：** 普通 LibTV 空间边界显式区分 `CLIENT`、`HOST_LOCAL`、`FLOW_WORLD`、`NODE_LOCAL`、`SCREEN_OVERLAY` 和 `MEDIA_NORMALIZED`。Client/local conversion 只使用当前实际 React Flow host 和当前 live viewport；stable viewport 只在 current gesture/programmatic operation 结束时提交，bootstrap preset 只用于尚无用户稳定状态的首次投影。每个 gesture、delayed coordinate 和 placement plan 携带 route/canvas/generation，必要时携带 host epoch/operation ID。Default add 的 clone correctness floor 是 actual host center；screen clamp 不得改写 graph flow anchor；viewport/host/gesture transient 不进入 semantic graph history。
+
+**影响：** 不移植 Open Canvas Quick Add/drop/pending connection、菜单尺寸、缩放范围、overlay DOM 或 persistence。LibTV source 的 exact add anchor、fit/zoom、panel resize、drag cancel、organize framing 和 mobile degradation 继续留在 decision queue。`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01`、`LIBTV-VR-020` 及任何 runtime slice 均需明确编码授权；FrameOS React Flow viewport 与 Director 3D viewport 继续隔离。
+
+**依据：** [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)、[`LibTVOverlayPositioning.contract.md`](research/components/LibTVOverlayPositioning.contract.md)、Open Canvas `OC-053..060` fixed chain。
 
 ## 3. 何时可以重审决策
 

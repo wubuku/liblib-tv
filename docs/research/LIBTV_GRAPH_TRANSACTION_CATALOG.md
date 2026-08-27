@@ -252,6 +252,18 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-056` | prototype feedback states unavailable/local preview honestly | `PROTOTYPE_BOUNDARY` | current Share/Agent/AddNode use explicit local copy | no fake remote run、progress、credits or completion |
 | `LIBTV-GI-057` | every feedback projection has deterministic clear/retry/dedupe lifecycle | `REQUIRED_CORRECTNESS` | current timer/string policies are component-local | no accidental cleanup by rerender/unrelated action |
 | `LIBTV-GI-058` | LibTV and FrameOS feedback owners remain route-isolated | `REQUIRED_CORRECTNESS` | stores/routes are independent；FrameOS has its own toast | no route mode or cross-route queue residue |
+| `LIBTV-GI-059` | every spatial point at a planning/conversion boundary has one declared coordinate domain | `REQUIRED_CORRECTNESS` | current plain `{x,y}` spans client/flow/node/media meanings | no implicit client/host/flow/node/media conversion |
+| `LIBTV-GI-060` | client/local conversion uses the current actual React Flow host | `REQUIRED_CORRECTNESS` | default add currently derives browser window center | panel/compact layout cannot shift graph placement away from visible host intent |
+| `LIBTV-GI-061` | accepted viewport/coordinate values are finite and owner-valid | `REQUIRED_CORRECTNESS` | current viewport setter is permissive | invalid/stale value leaves graph/selection/history/viewport unchanged |
+| `LIBTV-GI-062` | live viewport is current projection authority；stable viewport commits once at operation end | `REQUIRED_CORRECTNESS` | current page/store update on every callback without explicit phase | overlays/conversion use one live frame；switch restore uses one stable endpoint |
+| `LIBTV-GI-063` | bootstrap viewport never overwrites user-owned stable viewport | `REQUIRED_CORRECTNESS` | demo responsive effect can reapply preset | breakpoint/layout change uses declared resize reconciliation |
+| `LIBTV-GI-064` | screen surface clamp/flip cannot mutate captured graph flow anchor | `REQUIRED_CORRECTNESS` | Open Canvas dual anchor is positive evidence | future menu placement and current overlay geometry keep domains separate |
+| `LIBTV-GI-065` | viewport、host frame and temporary gesture state stay outside semantic graph history | `REQUIRED_CORRECTNESS` / `CURRENT_CLONE_FACT` | current graph history excludes viewport | pan/zoom/resize/cancel adds zero graph snapshots |
+| `LIBTV-GI-066` | every gesture/placement carries current canvas generation and delayed local point also carries host epoch | `REQUIRED_CORRECTNESS` | organize/drag/connection/viewport transients are unkeyed | stale completion cannot retarget active canvas or new host |
+| `LIBTV-GI-067` | one named placement command has one declared anchor/strategy and exact graph/selection/history result | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | add/derived/duplicate/organize use different current rules | no generic “create node somewhere” policy；source-specific entries remain gated |
+| `LIBTV-GI-068` | default add clone correctness floor is actual-host center with declared node dimensions | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | current store uses browser dimensions | exact source anchor remains open；window center is not accepted fallback |
+| `LIBTV-GI-069` | overlay inputs belong to one current host/viewport/node frame | `REQUIRED_CORRECTNESS` | source-shaped formulas and measured/live islands exist | no stable/live or old/new host mixing；LibTV visual formula remains separate authority |
+| `LIBTV-GI-070` | FrameOS graph viewport、ordinary LibTV viewport and Director 3D viewport remain domain-isolated | `REQUIRED_CORRECTNESS` | route/store domains are separate | no shared route mode、gesture session or transform state |
 
 ### 10.2 Compatibility case queue
 
@@ -332,6 +344,21 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-073` history feedback replay | accepted result then undo/redo | undo/redo | graph follows snapshot；toast/timer not replayed | fixture missing |
 | `LIBTV-GC-074` feedback burst | multiple file/result errors | batch | bounded aggregate/dedupe；no toast storm | policy/runtime missing |
 | `LIBTV-GC-075` route feedback isolation | FrameOS toast active | enter LibTV | no shared store/queue/announcement | architectural invariant |
+| `LIBTV-GC-076` client/host/flow round trip | offset host + translated/zoomed viewport | convert client -> flow -> client | finite round trip within declared tolerance | pure fixture designed |
+| `LIBTV-GC-077` actual-host center add | asset panel narrows/shifts React Flow host | add ordinary node | node center aligns actual host center；one graph history；selection exact | runtime uses browser window center |
+| `LIBTV-GC-078` live/stable pan | stable baseline | pan frames then end | live follows every current frame；stable commits once；zero graph history | phase runtime missing |
+| `LIBTV-GC-079` pan/zoom cancel | current viewport session | pointercancel/blur/interruption | live returns declared baseline；stable/history unchanged | owner/cancel runtime missing |
+| `LIBTV-GC-080` interrupted programmatic zoom | operation A then newer B | A completion arrives after B | A stale；B final stable exact；one endpoint | operation ID runtime missing |
+| `LIBTV-GC-081` responsive bootstrap guard | user has stable viewport | breakpoint/layout changes | preserve declared graph anchor；bootstrap not reapplied | current demo preset can overwrite |
+| `LIBTV-GC-082` viewport switch race | A gesture/animation pending | switch B then A callback | B live/stable unchanged；A result stale | composes lifecycle `GC-049` |
+| `LIBTV-GC-083` nested-node projection | child with valid parent chain | compute overlay/placement world point | full ancestor world sum before viewport transform | pure fixture designed |
+| `LIBTV-GC-084` invalid parent geometry | dangling or cyclic parent | project child | invalid result；no fabricated partial position/surface | pure fixture designed |
+| `LIBTV-GC-085` screen clamp dual anchor | pointer menu near host edge | clamp/flip menu | screen anchor changes；captured flow anchor exact | future entry remains unsupported |
+| `LIBTV-GC-086` fixed-flow duplicate under zoom | same selection at two viewports | duplicate | equal world `+40,+40` delta；one history | current compatibility island |
+| `LIBTV-GC-087` derived placement under viewport | source node at two pan/zoom states | add derived output | same world source-relative/collision result | current useful partial |
+| `LIBTV-GC-088` host resize overlay composition | selected image + asset/compact layout change | resize host | one current host/live/node frame；existing LibTV toolbar/panel residuals remain in tolerance | formal composition designed |
+| `LIBTV-GC-089` invalid spatial payload | NaN/Infinity/out-of-range zoom/stale host epoch | viewport/placement callback | stable typed reject/stale；zero graph/selection/history/viewport residue | validation runtime missing |
+| `LIBTV-GC-090` route spatial isolation | Director or FrameOS active | ordinary LibTV spatial callback | no cross-route transform/gesture/graph effect | architectural invariant |
 
 ### 10.3 Decision and verification order
 
@@ -447,6 +474,19 @@ Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL`。Bat
 - `LIBTV-ASYNC-DQ-001..010`、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01`、`LIBTV-VR-015` and `GI-023..030/GC-024..033`。
 
 Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`。Current timers remain `PROTOTYPE_LATENCY`；no async schema、fixture queue、provider、polling、persistence or source task action is authorized by this handoff。
+
+### 10.12 Viewport, coordinate, gesture and placement handoff
+
+[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) is the spatial authority for：
+
+- `CLIENT/HOST_LOCAL/FLOW_WORLD/NODE_LOCAL/SCREEN_OVERLAY/MEDIA_NORMALIZED` coordinate domains and strict finite validation；
+- actual React Flow host frame/epoch，plus `BOOTSTRAP/LIVE/STABLE/TARGET` viewport ownership；
+- pan/zoom/drag/connection/menu/organize gesture start/update/end/cancel/stale lifecycle；
+- `HOST_CENTER/EXPLICIT_FLOW/SOURCE_RIGHT_SLOT/FIXED_FLOW_DELTA/FLOW_ANCHOR/FRAMEWORK_DRAG/ORGANIZE_LAYOUT/BOOTSTRAP_TOPOLOGY` placement strategies；
+- host resize anchor preservation、canvas generation、history/document boundary and overlay-frame composition；
+- `LIBTV-VGP-I-001..032`、`LIBTV-VGP-DQ-001..012`、`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01`、`LIBTV-VR-020` and `GI-059..070/GC-076..090`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`。Current V/H/Space、per-canvas viewport、drag history、derived/duplicate/organize placement and selected-overlay formulas remain positive islands；no spatial helper、store/page adapter、fixture、verifier、Quick Add/drop/pending connection or source mutation is authorized by this handoff。
 
 ## 11. 新事务立项模板
 

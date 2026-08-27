@@ -77,6 +77,7 @@ RESEARCH_ONLY
 | `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
 | `OC-BP-008` command outcome/feedback ownership | `OC-ADOPT-021` | `LIBTV-PAR-004/008..011` | design complete；local reason/status/timer/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` | `LIBTV-VR-018` |
 | `OC-BP-009` selection/focus/command-context ownership | `OC-ADOPT-022` | `LIBTV-PAR-004/007/008/011` | static/design complete；node projection/modal/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` | `LIBTV-VR-019` |
+| `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；viewport/navigation/placement/overlay islands；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -286,6 +287,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 第一 authorized slice 不应先引入全局 context/modal infrastructure。应从一个可界定 surface 的 Escape + focus return 或 edge-selection owner 收口开始，同时证明普通 canvas shortcut、editable isolation、graph/history 和 FrameOS route 均不回归。
 
+## 10.4 `OC-BP-010`：Viewport, Coordinate, Gesture And Placement Authority
+
+完整机械合同见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-053..060` + dated clone static audit；exact LibTV add/fit/zoom/resize/drop remains explicit partial |
+| `L1 Identity` | route、canvas/generation、host/epoch、viewport phase/operation、gesture session、coordinate domain、placement intent |
+| `L2 Transaction` | viewport/host/gesture zero semantic history；accepted placement exact graph/selection/history；stale/invalid/cancel zero residue |
+| `L3 Surface` | actual React Flow host、live viewport、screen/flow dual anchor、host resize policy and existing LibTV overlay formula composition |
+| `L4 Fixture` | deterministic A/B canvas、full/asset-open/compact host、nested/measured nodes、viewport operation clock and layout/gesture cases |
+| `L5 Verifier` | `LIBTV-VR-020` composed with overlay、React Flow routing、multi-canvas、copy、organize and shortcut regressions |
+| `L6 Provenance` | no Quick Add/drop/pending connection、Open Canvas menu/zoom/pan/overlay/persistence or source-unconfirmed placement promoted to LibTV truth |
+
+如果未来获授权，第一 slice 应只关闭 actual-host default add：读取 current React Flow host、以 current live instance 做一次 center-to-flow conversion，并保持现有 add data、selection、history 和 UI。不要在同一 slice 同时重写 viewport phase、全部 placement、resize、overlay 或增加 Open Canvas 产品入口。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -355,6 +372,7 @@ pure identity/transaction cases
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
-9. 保持 provider、真实保存和共享源站 mutation 在边界外。
+9. `OC-BP-010` 保持 design complete/runtime/source parity partial；若获授权先关闭 actual-host default add，再分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不实现 Quick Add/drop/pending connection；
+10. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

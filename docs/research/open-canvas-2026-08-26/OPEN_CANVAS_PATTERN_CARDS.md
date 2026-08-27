@@ -28,6 +28,7 @@
 | OC-PATTERN-07 | document identity + hydrate owner + switch manifest | 多画布切换时 graph/UI/async owner 串线 | 适合当前 in-place canvas registry | P0，正式合同完成，runtime partial |
 | OC-PATTERN-08 | typed outcome + primary surface + owned announcement | 命令效果与反馈文案/落点/生命周期混合 | 适合统一 reject、process、Director 与 utility feedback | P0，正式合同完成，runtime partial |
 | OC-PATTERN-09 | validated selection + declared context + owned focus return | selected flags、快捷键、浮层层级和焦点回归分叉 | 适合节点/边/primary selection、Director/modal precedence 与单层 Escape | P0，正式合同完成，runtime partial |
+| OC-PATTERN-10 | dual anchor + live/stable viewport + entry-specific placement | browser/host/flow 坐标、移动帧、稳定恢复和创建入口互相覆盖 | 适合 default add、zoom/fit/resize、drag/organize、copy/derived placement 与 overlay composition | P0，正式合同完成，runtime/source parity partial |
 
 ---
 
@@ -542,7 +543,68 @@ raw node/edge selection events
 
 ---
 
-## 12. 九张卡的共同落地顺序
+## 12. OC-PATTERN-10：Dual Anchor + Live/Stable Viewport + Entry-Specific Placement
+
+### 12.1 上游 `SOURCE_FACT`
+
+固定 Open Canvas shell 同时保存 Quick Add 的 screen surface position 和 graph flow position：前者基于实际 canvas container rect 计算并 clamp，后者由同一次 current React Flow conversion 捕获，菜单贴边不会改写节点落点。普通 Add Node 也读取实际 container center，再调用 `screenToFlowPosition`。
+
+Viewport 存在两个明显阶段：`onMove` 更新 `liveViewport` 供 selected overlay 和当前 projection 使用，`onMoveEnd` 再写稳定 store viewport。Add、drop、paste、duplicate、pending connection 和 initial topology 使用不同放置入口，而不是复用一个“当前中心 + 固定 offset”。对应 fixed evidence 是 `OC-053..060`。
+
+固定实现也提供反例：viewport normalize 会给异常 supplied value 静默 fallback；窄 container menu clamp 可产生负位置；custom panning 未完整声明 pointercancel/blur cleanup；multi-file drop 逐文件异步提交；pending connection 先建 node 再补 edge，不是完整原子 graph plan。
+
+### 12.2 LibTV 对应的 `CLONE_FACT`
+
+当前 clone 已有 per-canvas controlled viewport、V/H/Space blur/visibility cleanup、drag-stop one-history、source-relative derived placement、fixed-flow duplicate、organize layout 和 source-shaped selected-image overlay formula。这些是应保留的正面 island。
+
+跨入口仍有四类缺口：
+
+- default add 使用 `window.innerWidth/innerHeight`，asset panel/compact layout 后不等于 actual React Flow host center；
+- page/store/zoom projection 没有明确区分 live frame、stable endpoint 和 bootstrap preset；
+- organize/drag/connection/viewport transient 缺 canvas generation/operation identity；
+- `{x,y}` 在 client、host、flow、node-local 和 media normalized 之间缺统一声明边界。
+
+### 12.3 `INFERENCE`
+
+```text
+current route + canvas generation
+  -> measured actual host + host epoch
+  -> current live/stable viewport phase
+  -> one declared coordinate conversion
+  -> named gesture or placement intent
+  -> validated plan/result
+  -> exact projection/history/selection reconciliation
+```
+
+空间正确性不是抽取一个通用 transform 函数，而是确保 host、viewport frame、canvas generation 和 command intent 属于同一 owner。Screen menu/overlay 的可见位置和 graph node 的 flow anchor 可以相关，但不能共享一个会被 clamp 的坐标值。
+
+### 12.4 `CLONE_DECISION`
+
+- 使用 actual React Flow host，不用 browser window，作为 client/local conversion 和 host-center add 的 correctness floor；
+- 显式区分 `CLIENT/HOST_LOCAL/FLOW_WORLD/NODE_LOCAL/SCREEN_OVERLAY/MEDIA_NORMALIZED`；
+- live viewport 驱动当前 overlay/conversion，stable viewport 只在 current operation end 提交，bootstrap 只用于无用户状态的首次投影；
+- pan/zoom/drag/connection/menu/organize 和 delayed point 携带 canvas generation，必要时携带 host epoch/operation ID；
+- add、derived、duplicate、paste、organize 等入口分别声明 placement policy、selection 和 history；
+- viewport/host/menu/temporary gesture 零 semantic graph history；accepted graph placement 保持专属命令的一步 history；
+- 不移植 Quick Add/file drop/pending connection、菜单视觉/数字、Open Canvas zoom/pan/persistence 或 permissive normalize。
+
+### 12.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| domain | 每个 conversion/placement boundary 只有一个 domain；NaN/Infinity/stale owner 零 residue |
+| host | full/asset-open/compact 使用实际 React Flow host rect；default add center exact |
+| viewport | live frames、stable endpoint、bootstrap guard、interrupted operation 和 switch race exact |
+| gesture | start/update/end/cancel/stale idempotent；V/H/Space 现有 cleanup 不回归 |
+| placement | default/derived/duplicate/organize 各用声明策略；pan/zoom 不改变 flow delta |
+| overlay | actual host + one live viewport + measured world node；LibTV 既有公式保持 tolerance |
+| history/route | viewport zero graph history；graph placement exact one-step；FrameOS/Director isolated |
+
+设计 authority：[`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)、`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` 和 `LIBTV-VR-020`。
+
+---
+
+## 13. 十张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -553,6 +615,7 @@ raw node/edge selection events
   -> 06 framework change authority
   -> 09 selection、command context 与 focus owner
   -> 07 canvas lifecycle owner isolation
+  -> 10 viewport、coordinate、gesture 与 placement owner
   -> 05 异步结果入口与陈旧收敛
 ```
 
@@ -566,9 +629,10 @@ raw node/edge selection events
 - framework callback 先限定 T0/T1，防止命名 graph command 被 generic reducer 旁路；
 - selection/context/focus 再统一 active-session authority，避免快捷键和 surface close 穿透或回焦到陈旧 owner；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
+- spatial authority 再把 actual host、live/stable viewport、gesture generation 和 entry placement 组合到既有 overlay/graph/lifecycle contracts；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 13. 统一拒绝清单
+## 14. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -584,10 +648,12 @@ raw node/edge selection events
 - 因为 Open Canvas 有 Sonner Toaster，就为普通 LibTV route 新增全局 toast 或复用 FrameOS toast；
 - 把 React Flow selected flags、event target 或单个组件 Escape handler 当成完整 selection/context authority；
 - 复制 Open Canvas conflict gate、默认 key propagation 或 Radix 组件树来替代 LibTV 自己的优先级与 focus-return 合同；
+- 用 browser window 代替 actual React Flow host，或用 screen clamp 后的 surface position 回写 graph flow anchor；
+- 把 Open Canvas Quick Add/drop/pending connection、zoom 范围、menu offset 或 viewport persistence 当成 LibTV 已证产品语义；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 14. 后续研究入口
+## 15. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -598,6 +664,7 @@ raw node/edge selection events
 - Multi-canvas lifecycle：[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)
 - Command outcome/feedback：[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)
 - Selection/focus/command context：[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)
+- Viewport/coordinate/gesture/placement：[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

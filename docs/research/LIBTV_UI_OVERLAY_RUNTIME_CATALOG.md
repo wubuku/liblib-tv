@@ -370,6 +370,8 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 
 Selection、DOM focus、listener phase 和 command context 的 fixed baseline 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 selection/context/focus lifecycle 权威见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
+Overlay catalog 只登记 mount/close/position owner；actual host frame、six coordinate domains、live/stable viewport、host resize and gesture/placement generation 以 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) 为权威。Selected-image 的 exact toolbar/panel 数字仍回到 [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)，不能从 Open Canvas 菜单/Panel 数字或 generic clamp 推导。
+
 ## 12. Related Documents
 
 - [`liblib-canvas-batch11-2026-08-25/OVERLAY_LIFECYCLE.spec.md`](liblib-canvas-batch11-2026-08-25/OVERLAY_LIFECYCLE.spec.md)：top-level exclusion 的历史设计合同。

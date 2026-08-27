@@ -381,6 +381,22 @@ Open Canvas toast/node/save/form 正反面、clone feedback inventory、`GI-049.
 
 Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listener/modal/Director audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式状态、优先级、fixture 和 verifier 合同见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。`VR-019` 组合 graph routing、multi-canvas、overlay 和 shortcut verifier，不替代各自的 source/semantic contract。
 
+### `LIBTV-VR-020`：viewport, coordinate, gesture and placement authority
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-001/002/007/008/011` spatial、overlay、navigation、graph-placement and canvas-lifecycle correctness |
+| Old verifier | Batch 6/7/16/18/51/60；各自保留 bounded navigation、organize、canvas、zoom and overlay contract |
+| Required fixture | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` with deterministic A/B canvas generations、actual host epochs、nested/measured nodes、layout states and viewport operation clock |
+| Static checks | every conversion and placement writer declares domain/owner/strategy；ordinary default add does not use browser window center；FrameOS/Director viewport domains isolated |
+| Pure checks | finite validation、client/host/flow round trip、parent-world resolution、host-center placement、resize anchor preservation、stale/idempotent session reduction |
+| Store/transaction | live/stable/bootstrap ownership exact；viewport zero semantic history；drag/add/duplicate/organize preserve adjacent one-step history and selection contracts |
+| UI/browser | actual host rect、pan/zoom frames/end/cancel、asset-open/compact resize、canvas switch stale callbacks、default/derived/duplicate placement and selected-overlay same-frame geometry |
+| Blockers | spatial runtime boundary、live/stable split、generation/host epoch/session owner、fixture and implementation authorization；exact source add/fit/zoom/resize/drop behavior partial |
+| Exit | one domain per point；one current spatial owner；actual-host placement exact；stale/cancel leaves zero residue；overlay and graph/history contracts compose without visual transplant |
+
+Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and transient audit、`LIBTV-VGP-I-001..032` and decision queue 统一见 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。`VR-020` 组合 overlay、React Flow routing、multi-canvas、copy、organize 和 shortcut verifier，不取代其 source visual、graph semantic 或 route-specific contract。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -425,6 +441,7 @@ Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listene
 - `LIBTV-VR-014` 的入口审计、T0-T5 authority、fixture composition 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL`；不得用 Batch 57 `addEdge` 通过推导所有 direct writer 已受保护；
 - `LIBTV-VR-015` 的 Open Canvas/clone static audit、freshness/field/history/resource contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 component timer、node status 或 generic patch 当成 accepted operation owner；
 - `LIBTV-VR-016..019` 的 React Flow routing、multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority 已统一；
+- `LIBTV-VR-020` 的 six-domain spatial model、actual host、live/stable/bootstrap viewport、gesture/placement owner、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 controlled viewport、window center 或 Open Canvas Quick Add 推导普通 LibTV 空间权威已经统一；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

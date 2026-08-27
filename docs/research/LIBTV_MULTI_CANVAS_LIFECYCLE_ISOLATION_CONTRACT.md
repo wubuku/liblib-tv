@@ -673,4 +673,6 @@ This contract is implemented only when：
 
 Until then, the accurate status is：
 
+Spatial phase、actual host、gesture/placement session and resize mechanics are delegated to [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md). This lifecycle contract remains authoritative for canvas registry/generation and switch/delete invalidation; neither document may late-read the new active canvas as an old operation destination.
+
 > The clone has a functional in-memory multi-canvas menu, per-canvas graph/history/viewport storage and partial node-bound owner cleanup. It does not yet have a complete lifecycle transaction that prevents page-local, async, resource and viewport ownership from crossing canvas boundaries. Open Canvas offers strong identity/hydrate/delete methods and an important stale local-convergence counterexample, but not LibTV product semantics.

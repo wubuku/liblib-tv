@@ -663,4 +663,6 @@ This contract is implemented only when all of the following are true:
 
 Until then, the accurate project status is:
 
+Drag/viewport gesture identity、current host/viewport frame and coordinate conversion are delegated to [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md). This contract retains change-variant classification、current-store reducer base、T0/T1 routing and semantic history authority.
+
 > The clone has useful selection projection, named delete/connect paths and drag-stop history, but React Flow change adapters remain a partially trusted ingress. Open Canvas provides strong current-state and durable-validation patterns, while its generic change acceptance is a negative example to refine rather than reproduce.

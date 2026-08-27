@@ -126,3 +126,4 @@ Any later clone verification should capture node, toolbar, panel and viewport fr
 - [`LIBTV_IMAGE_ACTION_MATRIX.md`](../open-canvas-2026-08-26/LIBTV_IMAGE_ACTION_MATRIX.md): active-tool replacement and side-effect boundaries.
 - [`ImageNode.spec.md`](ImageNode.spec.md) and [`ImageEditPanel.spec.md`](ImageEditPanel.spec.md): current clone component contracts.
 - [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md): current coordinate-domain, live/stable viewport, host-resize and generation composition gaps; it does not replace the formulas in this contract.
+- [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md): actual host frame、six coordinate domains、live/stable viewport and gesture/generation composition authority；this overlay contract remains the source-exact visual formula authority.

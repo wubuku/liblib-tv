@@ -21,7 +21,7 @@ The static audit establishes six conclusions:
 5. The clone's V/H/Space state machine is stronger than the fixed Open Canvas middle/right-button visual state: temporary pan clears on keyup, window blur and document visibility change. This behavior should be preserved.
 6. The clone has several current-state races already named by other contracts: viewport, organize, drag and connection transients lack a canvas generation owner; demo responsive bootstrap can overwrite a stored viewport. The new formal contract must compose those authorities rather than create a second lifecycle model.
 
-The recommended next document is a formal `LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md` with fixture `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` and verifier `LIBTV-VR-020`.
+At audit completion, the recommended next document was a formal contract with fixture `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` and verifier `LIBTV-VR-020`. That follow-up is now complete in [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md); this dated audit remains the fixed-fact inventory.
 
 ## 2. Evidence Discipline
 

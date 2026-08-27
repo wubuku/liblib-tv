@@ -283,6 +283,8 @@ fixed implementation 没有一个 app-level undo/tool/group/duplicate shortcut d
 
 这些方法不能整段复制。`normalizeCanvasViewport` 不检查 finite/range；窄 host clamp 可成为负数；已打开菜单/overlay 对 host resize 的重算不完整；middle/right panning state 缺 pointercancel/blur cleanup；multi-file drop 逐项 async 创建，pending connection 先建 node 再建 edge。完整正反面与 clone 对照见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)。
 
+这些 fixed facts 在 LibTV 的正式转译见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：只借 dual anchor、actual host conversion、live/stable phase 和 entry-specific placement 方法，同时补 strict finite/owner validation、host epoch、generation-bound session、resize/history/overlay composition；不复制 Quick Add/drop/pending connection、菜单/zoom/pan/overlay 或 persistence 产品语义。
+
 ## 7. Provider 事实与关键缺口
 
 ### 7.1 声明层和旧 API 层

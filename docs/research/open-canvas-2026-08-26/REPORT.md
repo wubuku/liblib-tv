@@ -20,7 +20,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
 
-将上游启发压缩为可直接评审的四张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
+将上游启发压缩为可直接评审的十张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
 
 更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
 
@@ -31,6 +31,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 当前 LibTV 双浮层的多 zoom、自然裁切、选择卸载和顶部 host 源码公式见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：底部 gap 为 `16 * zoom`，顶部 host 由 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)` 构成；这把此前的 `10 + 24 * zoom` 拟合从推断升级为当前 production chunk 的直接源码事实。
 
 跨入口空间权威的 fixed audit 见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 screen-menu/flow-point 分域和 live/stable viewport 是可借方法，permissive normalization、窄容器 clamp、gesture cleanup 与逐文件 drop 是反例；clone 当前最高置信缺口是 default add 使用 browser window center 而非实际 React Flow host center。
+
+正式设计权威见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：它将 fixed audit 转为 six-domain、actual host/epoch、live/stable/bootstrap/target viewport、generation-bound gesture/placement、resize/history/overlay composition、fixture 与 `LIBTV-VR-020`。这不表示 runtime 已实现，也不把 Open Canvas Quick Add/drop/pending connection 升级为 LibTV 产品事实。
 
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 

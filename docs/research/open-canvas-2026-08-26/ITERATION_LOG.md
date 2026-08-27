@@ -531,3 +531,16 @@
 - 新增 `OC-053..060` 和 `LIBTV-VGP-001..016`，确认最高置信可见缺口是 default add 以 browser window 而非 actual React Flow host 计算中心；
 - 预留 `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` 与 `LIBTV-VR-020`，formal contract、adoption/traceability/handoff 尚在下一批；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v48 viewport、coordinate 与 placement 正式权威
+
+本轮把 v47 fixed facts 转为可交接、可验证且不越过编码授权的空间合同：
+
+- 新增 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)，定义 `CLIENT/HOST_LOCAL/FLOW_WORLD/NODE_LOCAL/SCREEN_OVERLAY/MEDIA_NORMALIZED`、actual host frame/epoch、`BOOTSTRAP/LIVE/STABLE/TARGET` viewport phase；
+- 定义 pan/zoom/drag/connection/menu/organize session start/update/end/cancel/stale、host resize anchor preservation、entry-specific placement、history/document/overlay composition 和 typed result；
+- 新增 `LIBTV-VGP-I-001..032`、`LIBTV-VGP-DQ-001..012`、`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01`、`LIBTV-VR-020`、`GI-059..070/GC-076..090`；
+- 新增 `OC-PATTERN-10`、`OC-ADOPT-023`、`OC-TR-016`、`OC-BP-010`、`LIBTV-UIX-20`、`DEC-036` 和 `LIBTV-TR-042`，完成 pattern -> adoption -> parity -> fixture -> verifier -> handoff 追溯；
+- 明确 actual-host default add 是 clone correctness floor，exact source add/fit/zoom/resize/drop 仍 gated；不实现 Quick Add、file drop、pending connection，不移植 Open Canvas menu/zoom/pan/overlay/persistence；
+- 同步 Hub、research/Open Canvas indexes、Big Picture、agent task map、decision/traceability、fixture/verifier/coverage、graph、overlay/copy/routing/lifecycle/parity 权威；
+- 将完成的研究计划从 `docs/drafts/` 迁入本目录保留交付历史，stable guidance 由正式合同承担；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
