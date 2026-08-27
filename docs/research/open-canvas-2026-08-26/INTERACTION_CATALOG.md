@@ -283,7 +283,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 
 固定版本还把画布列表摘要、URL `canvasId`、完整 graph/viewport hydrate、删除后的 registry fallback 和保存 revision 分开。正面启发是 identity first、整份 document hydrate 和 per-canvas viewport；反面启发是异步 save response 即使请求 URL 绑定旧 ID，本地 `finishSave/failSave/enterConflict` 仍需再次核对当前 in-memory owner。该结论形成 `LIBTV-UIX-17`，不能被简化成 dropdown row 是否高亮。
 
-当前 clone 已有 per-canvas graph/viewport/history、切换清 selection 和 Batch 58 node-bound owner cleanup；仍需验证 invalid target、demo canvas preset overwrite、organize/drag/connection/viewport transient、delayed graph writer 与 resource owner。完整静态审计和 switch manifest 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
+当前 clone 已有 per-canvas graph/viewport/history、切换清 selection 和 Batch 58 node-bound owner cleanup；Batch 65 已关闭 demo responsive preset 覆盖 stable viewport，并验证 target stored viewport restore、current/old canvas callback guard 和 invalid viewport zero mutation。仍需处理 invalid active target、organize/drag/connection transient 的统一 generation/host epoch、delayed graph writer 与 resource owner。完整静态审计和 switch manifest 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
 
 ### 10.4 Command outcome 与 feedback surface
 

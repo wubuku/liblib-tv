@@ -369,7 +369,11 @@ Open Canvas 将 canvas registry summary、URL `canvasId` 和 full document recor
 - React Flow 以 activeCanvasId key remount；
 - Batch 58 preview/annotate/element edit/Director owner reconciliation。
 
-未收口的 owner 包括 invalid active target、demo responsive viewport preset、organize snapshot、drag baseline、connection gesture、late viewport callback、projection panel、timer/export destination 和 resource/run lifecycle。
+未收口的 owner 包括 invalid active target、organize snapshot、drag baseline、
+connection gesture、generic late viewport generation/host epoch、projection panel、
+timer/export destination 和 resource/run lifecycle。Batch 65 已关闭 demo responsive
+preset 覆盖 stable viewport 和 current/old canvas viewport callback 的 focused
+clone slice，但没有实现完整 lifecycle owner。
 
 ### 9.3 `INFERENCE`
 
@@ -396,7 +400,7 @@ resource owner changes only by explicit policy
 - organize/drag/connection/viewport transient 携带 canvas/generation，switch 后 old owner no-op；
 - node-bound UI 继续按 `canvasId + nodeId` 失效；projection panel 明确 close/rebind；global preference 可声明保留；
 - duplicate/delete 组合 node-data/copy/delete/resource/async registry，不能只 remap/filter structural graph；
-- final delete、fallback、responsive preset、background operation 和 resource policy 保持 source/product queue；
+- final delete、fallback、source-exact responsive policy、background operation 和 resource policy 保持 source/product queue；
 - network request durable target 与 local convergence owner 都必须检查。
 
 ### 9.5 验证门槛

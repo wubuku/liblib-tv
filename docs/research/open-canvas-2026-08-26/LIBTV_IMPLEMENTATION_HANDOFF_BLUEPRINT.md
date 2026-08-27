@@ -77,7 +77,7 @@ RESEARCH_ONLY
 | `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
 | `OC-BP-008` command outcome/feedback ownership | `OC-ADOPT-021` | `LIBTV-PAR-004/008..011` | design complete；local reason/status/timer/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` | `LIBTV-VR-018` |
 | `OC-BP-009` selection/focus/command-context ownership | `OC-ADOPT-022` | `LIBTV-PAR-004/007/008/011` | static/design complete；node projection/modal/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` | `LIBTV-VR-019` |
-| `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；viewport/navigation/placement/overlay islands；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
+| `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；Batch 63/64/65 close add/drawer/bootstrap owner slices；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
 | `OC-BP-011` media ingress/resource lifecycle authority | `OC-ADOPT-024` | `LIBTV-PAR-008/009/010/011/014` | static/design complete；mock/local-preview/data/blob islands；common runtime missing or partial、source parity partial | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` | `LIBTV-VR-021` |
 | `OC-BP-012` foreground editor session/commit/history authority | `OC-ADOPT-025` | `LIBTV-PAR-004/008/009/011/015` | static/design complete；ten profile runtime islands；common owner missing、source parity partial | `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` | `LIBTV-VR-022` |
 | `OC-BP-013` media rendition/aspect/node geometry authority | `OC-ADOPT-026` | `LIBTV-PAR-001/002/008/009/011/014/015/016` | static/design complete；source-shaped landscape island；generic/derived/Director/editor runtime fragmented、source ratio-diverse parity gated | `LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` | `LIBTV-VR-023` |
@@ -313,10 +313,14 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 - Batch 64：Asset drawer open/close/X/Canvas-context 捕获旧 host-center flow anchor，
   在 layout commit 后以 current operation/canvas/instance/viewport guards
   reconcile 新 viewport。
+- Batch 65：demo responsive preset 仅在 bootstrap owner 下生效；用户或具名 layout
+  viewport 转 stable，A/B canvas switch 恢复 stored viewport，stale/invalid callback
+  zero mutation。
 
-下一批不要重复实现这两个入口，也不要在同一 slice 同时重写全部 viewport
-phase、placement、resize、overlay 或增加 Open Canvas 产品入口。优先处理
-browser responsive bootstrap guard 或 canvas-owned viewport callback。
+后续不要重复实现这三个入口，也不要在同一 slice 同时重写全部 viewport
+phase、placement、resize、overlay 或增加 Open Canvas 产品入口。空间专题下一步
+优先 browser resize anchor 或 full live/stable endpoint；项目级优先级仍需与
+Director reliability、source evidence 和其他 parity backlog 综合排序。
 
 ## 10.5 `OC-BP-011`：Media Ingress And Resource Lifecycle Authority
 
@@ -435,7 +439,7 @@ pure identity/transaction cases
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
-9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63 已关闭 actual-host default add，Batch 64 已关闭 Asset drawer host-center resize anchor 和局部 current-owner guard；下一步分开处理 live/stable viewport、browser bootstrap、generation/host-epoch-bound gesture 与 selected-overlay composition，不重复这两个入口，也不实现 Quick Add/drop/pending connection；
+9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63/64/65 已分别关闭 actual-host default add、Asset drawer host-center anchor 与 responsive bootstrap/stored-viewport owner；下一步分开处理 full live/stable endpoint、browser resize anchor、generation/host-epoch-bound gesture 与 selected-overlay composition，不重复这三个入口，也不实现 Quick Add/drop/pending connection；
 10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
 11. `OC-BP-012` 保持 design complete/runtime fragmented/source parity partial；若获授权先关闭单一 profile 的 equality/drift/history/honesty 缺口，不统一重写所有 editor，也不接真实 provider/storage；
 12. `OC-BP-013` 保持 design complete/runtime fragmented/source ratio-diverse parity gated；若获授权先做 deterministic fixture + pure policy，或关闭一个 generic/derived/Director still mismatch，不增加 generic resize/真实 output history；

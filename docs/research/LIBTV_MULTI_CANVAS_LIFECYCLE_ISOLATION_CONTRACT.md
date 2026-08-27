@@ -250,14 +250,21 @@ This violates a project registry invariant. Missing route/store target must retu
 
 ### 5.3 Viewport behavior
 
-Each `CanvasData` has a viewport, and ordinary canvas switch reads it. But `canvas-2` has special desktop/mobile preset ownership in the route：
+Each `CanvasData` has a viewport, and ordinary canvas switch reads it. The
+pre-Batch-65 route mixed `canvas-2` desktop/mobile preset bootstrap with runtime：
 
 - initial flow viewport uses a calibration preset；
 - every activeCanvasId/media-query effect for `canvas-2` reapplies the preset；
 - the effect writes that preset back to the store；
 - switching away and back therefore may replace a user-adjusted `canvas-2` viewport instead of restoring it。
 
-This is clone-specific calibration, not source proof. The correctness default is：seed/bootstrap viewport applies only at declared initialization; after user interaction, target canvas viewport is the owner. If responsive source evidence requires recomputation, that needs a separate product rule and must not masquerade as ordinary restore。
+Batch 65 replaced that overwrite path with a page-session
+`bootstrap/stable` owner：the demo preset applies only before a valid user or
+layout viewport exists；afterward target stored viewport is switch/breakpoint
+authority。Current-canvas and finite guards reject stale/invalid callbacks
+without graph/history/selection mutation。This remains clone-specific
+calibration, not source proof；browser resize anchor、full live/stable endpoint
+and generic canvas generation remain outside that focused slice。
 
 ### 5.4 Selection and history
 
@@ -499,6 +506,10 @@ Run、Director workspace and media/resource ownership are not inferred from grap
 
 Switch restores the target canvas viewport. Seed/responsive calibration cannot silently overwrite a user-owned viewport without a separately declared rule。
 
+Batch 65 is the focused clone runtime implementation for the bootstrap/stored
+viewport subset；source-exact responsive policy and full lifecycle fixture remain
+open。
+
 ### `LIBTV-GI-048` — Async convergence checks current owner
 
 Even when a network request URL targets the correct durable canvas, its local completion cannot update the current in-memory store unless expected canvas/generation still matches or an explicit background-canvas store adapter owns the result。
@@ -587,7 +598,7 @@ Verifier ID: `LIBTV-VR-017`。
 | `LIBTV-CAN-DQ-003` | fallback after active delete | deterministic next neighbor preferred over first-item surprise | source row-order/delete evidence or explicit clone decision |
 | `LIBTV-CAN-DQ-004` | delete final canvas | retain current reject until source/product decision | disposable source fixture |
 | `LIBTV-CAN-DQ-005` | duplicate viewport | copy source by current clone contract | source duplicate behavior if parity claim desired |
-| `LIBTV-CAN-DQ-006` | demo canvas responsive preset | bootstrap-only；stored user viewport wins after interaction | multi-viewport clone fixture + source evidence if parity |
+| `LIBTV-CAN-DQ-006` | demo canvas responsive preset | Batch 65 implements bootstrap-only；stored user viewport wins after interaction | source evidence only if changing or claiming parity；full lifecycle fixture for broader owner convergence |
 | `LIBTV-CAN-DQ-007` | asset/history/agent panels on switch | remain open only if atomically rebound to target；otherwise close | current component projection audit + source behavior |
 | `LIBTV-CAN-DQ-008` | background operation after switch | continue under original canvas owner；do not steal target selection | operation-specific source/product contract |
 | `LIBTV-CAN-DQ-009` | canvas duplicate resource policy | immutable locator may share；owned mutable/run/workspace resets or blocks | node-data/resource registry |

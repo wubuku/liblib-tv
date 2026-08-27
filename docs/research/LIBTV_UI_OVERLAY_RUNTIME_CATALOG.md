@@ -148,7 +148,7 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 | Shortcuts | centered keyboard command；`page.tsx` -> dialog | trigger；X；page Escape；另一个 top-level action | 纯展示；文案与实际 handler 差异见 shortcut crosswalk。 |
 | Share | TopNav；`TopNavBar` local mount | trigger；page Escape；另一个 top-level action | publish/link 只写 local status；无 outside-close 和 X。 |
 | Agent | TopNav 或 storyboard mode；`page.tsx` -> `AgentDrawer` | drawer close command；page Escape；另一个 top-level action；切 workbench | drawer 占据右侧 340px；skill/composer 只写 local state/status。 |
-| Zoom | lower-left percent；`BottomToolbar` local mount | trigger；document capture-phase `pointerdown` outside；page Escape；另一个 top-level action | zoom/fit/preset 改 viewport，菜单保持打开；不进入 graph history。 |
+| Zoom | lower-left percent；`BottomToolbar` local mount | trigger；document capture-phase `pointerdown` outside；page Escape；另一个 top-level action | zoom/fit/preset 改 viewport，菜单保持打开；不进入 graph history。Batch 65 起有效 viewport callback 将 current canvas 标记为 stable，responsive preset 只保留 bootstrap 权威。 |
 
 ### 4.3 Close-path crosswalk
 
@@ -383,7 +383,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 
 Selection、DOM focus、listener phase 和 command context 的 fixed baseline 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 selection/context/focus lifecycle 权威见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
-Overlay catalog 只登记 mount/close/position owner；actual host frame、six coordinate domains、live/stable viewport、host resize and gesture/placement generation 以 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) 为权威。Selected-image 的 exact toolbar/panel 数字仍回到 [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)，不能从 Open Canvas 菜单/Panel 数字或 generic clamp 推导。
+Overlay catalog 只登记 mount/close/position owner；actual host frame、six coordinate domains、live/stable viewport、host resize and gesture/placement generation 以 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) 为权威。Batch 65 只关闭 responsive bootstrap/stored viewport 和 current-canvas callback 子切片，不代表 selected overlay 已与 browser resize、full live phase 或 host epoch 组合。Selected-image 的 exact toolbar/panel 数字仍回到 [`components/LibTVOverlayPositioning.contract.md`](components/LibTVOverlayPositioning.contract.md)，不能从 Open Canvas 菜单/Panel 数字或 generic clamp 推导。
 
 Foreground editor 的 session/baseline/draft、native/local/graph undo、commit/cancel/async/resource handoff 以 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md) 为权威。本目录中的 close path 不能单独证明 semantic acceptance 或 durable save。
 

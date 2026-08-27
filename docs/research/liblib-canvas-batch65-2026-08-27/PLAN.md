@@ -1,6 +1,6 @@
 # Batch 65 计划：Responsive Viewport Bootstrap Ownership
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS`；实施见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)。
 >
 > 计划基线：`cf8da51`，Batch 64 已 commit/push，工作区干净。
 >

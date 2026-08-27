@@ -1,6 +1,6 @@
 # Batch 65：Responsive Viewport Bootstrap Ownership
 
-> 状态：`PLAN_RECORDED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -28,7 +28,8 @@ gesture cancel、持久化或 Open Canvas hydrate。
 
 - [`PLAN.md`](PLAN.md)：价值、静态事实、实施切片、验收和停止条件；
 - [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：截图复用与运行证据策略；
-- `IMPLEMENTATION.md`：完成后的代码、验证、边界和 checkpoint；
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：代码、验证、边界和 checkpoint；
+- [`runtime-audit.json`](runtime-audit.json)：focused browser 原始结果；
 - Batch 63：actual-host default add；
 - Batch 64：Asset drawer host-resize center anchor；
-- `LIBTV-GI-047/061/063/066` 与 `LIBTV-GC-081/082/089`：本批治理入口。
+- `LIBTV-GI-047/061/063/065` 与 `LIBTV-GC-081/082/089`：本批治理入口。

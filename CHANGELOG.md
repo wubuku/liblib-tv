@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Closed Batch 65 with per-canvas responsive viewport ownership: demo
+  desktop/mobile presets now remain bootstrap-only, user/stored viewports survive
+  breakpoint and canvas switches, and stale/invalid callbacks are zero-mutation.
 - Closed Batch 64 with page-owned Asset drawer host-resize reconciliation:
   toolbar toggle, explicit close and Canvas-context transition preserve the old
   host-center flow anchor across desktop/mobile layout changes without graph,

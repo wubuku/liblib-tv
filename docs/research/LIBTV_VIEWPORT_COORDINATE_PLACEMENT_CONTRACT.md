@@ -665,7 +665,7 @@ Reasons are stable codes/args, not localized strings. Presentation follows [`LIB
 | drag | per-frame positions + end history | owner-bound session/cancel | partial |
 | organize | unkeyed page snapshot | owner-bound preview | partial |
 | connection | unkeyed ref | owner-bound session | partial |
-| demo responsive | repeated preset overwrite | bootstrap-only + resize reconcile | mismatch |
+| demo responsive | Batch 65 per-canvas bootstrap/stable owner + current-canvas callback guard | preserve；extend with browser resize anchor and full endpoint phase | focused runtime pass |
 | overlay | specialized current formulas | one current host/live frame composition | partial |
 | drop/Quick Add/paste | absent/design-only | remain gated | correct boundary |
 
@@ -827,9 +827,12 @@ It does not replace their source, graph, accessibility or visual semantics.
 
 ## 19. Authorized Implementation Slices
 
-Batch 63 has implemented Slice A's finite host/placement subset and Slice B's
-default-add host authority. Batch 64 is authorized for the Asset drawer subset
-of `§7.2` host-resize reconciliation. Other slices remain separately gated.
+Batch 63 implemented Slice A's finite host/placement subset and Slice B's
+default-add host authority. Batch 64 implemented the Asset drawer subset of
+`§7.2` host-resize reconciliation. Batch 65 implemented the responsive
+bootstrap/stored-viewport subset of Slice C plus a current-canvas callback
+guard. Full live/stable endpoint compression、browser resize anchor、generic
+generation/host epoch and other slices remain separately gated.
 
 ### Slice A: pure spatial model
 
