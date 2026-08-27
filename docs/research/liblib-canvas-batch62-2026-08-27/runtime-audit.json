@@ -1,0 +1,153 @@
+{
+  "batch": 62,
+  "status": "SCRIPT_RECORDED_PASS",
+  "contract": {
+    "scope": "clone-owned selection command snapshot, editable/IME boundary, blocking foreground surface suspension, one-Escape and canvas focus root",
+    "source_exact_modal_focus": false,
+    "universal_mixed_primary": false,
+    "graph_mutation_from_selection_context": false
+  },
+  "desktop": {
+    "selectionSnapshot": {
+      "canvasId": "canvas-2",
+      "nodeIds": [
+        "g-245IDFh8sB"
+      ],
+      "edgeIds": [
+        "e-8IgMkf6Vbj"
+      ],
+      "kind": "mixed",
+      "primary": {
+        "kind": "node",
+        "id": "g-245IDFh8sB"
+      }
+    },
+    "capturedCommand": {
+      "capturedNodeIds": [
+        "g-245IDFh8sB"
+      ],
+      "remainingNodeId": "g-EFbbHpwq5w",
+      "graph": {
+        "canvasId": "canvas-2",
+        "nodeIds": [
+          "g-EFbbHpwq5w",
+          "t-9j2MoccxBj",
+          "i-1FQ9tErTcC",
+          "i-lBzmo67AHv",
+          "i-dnwoZQ7jsG",
+          "i-vxeeCnxySa",
+          "b-bTLLuU4w5q",
+          "i-YDfWhFlthe",
+          "v-UGQZzZOpbv"
+        ],
+        "edgeIds": [
+          "e-8IgMkf6Vbj",
+          "e-abKze5c8Ug",
+          "e-m2wWA2wIBA",
+          "e-nlMX3rEjwN",
+          "e-OwhsBRzrTz",
+          "e-QzX895ot0u",
+          "e-VQACH36eJC",
+          "e-XmiJkHfFAL",
+          "e-xNVTHNFZZl",
+          "e-yEqrTOR2Ya"
+        ],
+        "selectedNodeIds": [],
+        "selectedNodeId": null,
+        "selectedEdgeIds": [],
+        "pastLength": 1,
+        "futureLength": 0
+      }
+    },
+    "foreground": {
+      "shortcuts": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "canvas-dropdown": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "add-node": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "zoom": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "share": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "notification": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "user-menu": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      },
+      "primary-panel": {
+        "blockedDelete": true,
+        "firstEscapePreservedSelection": true,
+        "secondEscapeClearedSelection": true,
+        "focusRoot": true
+      }
+    },
+    "editable": {
+      "input": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "textarea": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "select": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "contenteditable": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "role-textbox": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "role-searchbox": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "role-combobox": {
+        "deleteAndEscapePassedThrough": true
+      },
+      "ime-composition": {
+        "escapePassedThrough": true
+      }
+    },
+    "pane": {
+      "selectionCleared": true,
+      "focusRoot": true
+    },
+    "noOverflow": true
+  },
+  "mobile": {
+    "surfaceCloseAndSelectionClear": true,
+    "noOverflow": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
