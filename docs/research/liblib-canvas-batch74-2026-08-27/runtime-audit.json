@@ -1,0 +1,8 @@
+{
+  "status": "PENDING",
+  "batch": 74,
+  "topic": "Director durable project persistence",
+  "screenshots": [],
+  "errors": [],
+  "note": "Plan checkpoint only. Replace with verifier output after implementation."
+}
