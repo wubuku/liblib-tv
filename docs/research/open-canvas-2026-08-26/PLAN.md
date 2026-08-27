@@ -67,9 +67,12 @@
 | `../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md` | actual host、six coordinate domains、live/stable/bootstrap/target viewport、gesture/placement owner、fixture 和 `LIBTV-VR-020` 正式设计权威 |
 | `../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md` | Open Canvas validation/probe/upload/dedupe/save 正反面、clone mock/local-preview/blob-data 与 LibTV source surface 分域的 fixed audit |
 | `../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` | ten entry profiles、intent/lease/asset/reference、cohort、reachability/release、fixture 和 `LIBTV-VR-021` 正式设计权威 |
+| `../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md` | Open Canvas bitmap/text editor、save/upload handoff 正反面与 clone draft/local-history/inert command/graph gateway 的 fixed static audit |
+| `../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md` | ten editor profiles、session/baseline/draft、native/local/graph undo、commit/cancel、async/resource handoff、fixture 和 `LIBTV-VR-022` 正式设计权威 |
 | `libtv-media-ingress-source-dom-audit-2026-08-27.json` | LibTV source Add Resource、Generated History、Material、Asset、Shot 和 dormant uploader 的只读原始 DOM 记录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 十一类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial 与 media/resource authority 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 十二类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial、media/resource 与 editor session authority 模式卡，以及对应的 LibTV 证据闸门 |
+| `editor-session-static-evidence-2026-08-27.json` | `OC-071..080` 与 `LIBTV-EDS-001..014` 的固定 source path、事实和迁移边界原始清单 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 | [`LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 viewport/coordinate/gesture/placement 研究计划与交付历史 |
 | [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 media ingress/resource lifecycle 研究计划与交付历史 |
@@ -105,6 +108,9 @@
 - [x] 完成 LibTV source upload/history/material/asset/Shot surface 的只读 DOM 分域与原始 JSON 记录
 - [x] 完成 media intent/local lease/stable asset/node reference/cohort/reachability 正式合同、fixture 与 `LIBTV-VR-021` 设计
 - [x] 完成 `OC-PATTERN-11`、`OC-ADOPT-024`、`OC-BP-011`、`LIBTV-UIX-21`、`DEC-037` 与治理追溯同步
+- [x] 完成 Open Canvas/clone foreground editor、draft/local history、save/upload handoff 与 inert command 双向静态审计
+- [x] 完成 editor profile/session/baseline、native/local/graph undo、typed commit/cancel、fixture 与 `LIBTV-VR-022` 正式设计
+- [x] 完成 `OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`LIBTV-UIX-22`、`DEC-038` 与 Open Canvas 侧治理追溯同步
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

@@ -569,3 +569,25 @@
 - 将 exact source limits/progress/cancel/placement/register/restore 归入 `OC-EQ-007`，没有 disposable source fixture 时不在共享项目试探；
 - 将完成的研究计划从 `docs/drafts/` 迁入本目录，stable guidance 由 audit + contract 承担；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v51 foreground editor session/history 双向静态审计
+
+本轮固定 Open Canvas 与 committed clone 的编辑器会话、局部历史和提交入口，不在共享源站输入或保存：
+
+- 以 `0a1c0a3` 落档 active plan，以 `b5ea255` 落档 [`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md) 与结构化 JSON；
+- 新增 `OC-071..080` 和 `LIBTV-EDS-001..014`，区分 session identity、baseline/draft、bitmap snapshots、Restore、JPEG export、upload/patch、inline/rich draft 与 graph save owner；
+- 固定 entry-only 40-step full bitmap 可达约 2.38 GiB、cleanup 未 abort hidden fetch、close-first async save、node-ID-only completion、active draft resync 和 caller 忽略 commit result 等反例；
+- 固定 clone TextNode、ImageEditPanel、Annotate、Element、Picture、Subtitle、Range、Reshoot、Camera 与 VideoToolbar 的 fragmented maturity，以及 `updateNodeData` 无 semantic equality guard；
+- 修正四份 component spec 中与 committed runtime 不一致的 editor/history/submit 描述；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v52 editor profile、commit 与 history 正式权威
+
+本轮把 v51 facts 转为可交接、可验证且不越过编码授权的正式合同：
+
+- 以 `20d4324` 落档 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)，定义十类 profile、session/baseline/draft、drift/equality、native/local/graph undo、commit/async/resource handoff；
+- 新增 40 条 `LIBTV-EDS-I-*`、`GI-085..100`、`GC-109..126`、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01`、`LIBTV-VR-022` 与 source decision queue；
+- 发布 `OC-PATTERN-12`、`OC-ADOPT-025`、`OC-TR-018`、`OC-BP-012`、`LIBTV-UIX-22`、`DEC-038` 和 `LIBTV-TR-044`，明确 local editor trial 与 semantic graph commit 分权；
+- 拒绝移植 40-entry full bitmap、JPEG/0.92、HTML/editor schema、close-first、node-ID-only patch、Open Canvas upload/provider/save 产品语义；
+- runtime 仍 fragmented、source parity partial；任何实现、fixture 脚本或测试变更继续需要用户明确编码授权；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

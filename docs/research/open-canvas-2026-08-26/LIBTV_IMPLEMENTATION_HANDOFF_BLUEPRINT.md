@@ -79,6 +79,7 @@ RESEARCH_ONLY
 | `OC-BP-009` selection/focus/command-context ownership | `OC-ADOPT-022` | `LIBTV-PAR-004/007/008/011` | static/design complete；node projection/modal/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` | `LIBTV-VR-019` |
 | `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；viewport/navigation/placement/overlay islands；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
 | `OC-BP-011` media ingress/resource lifecycle authority | `OC-ADOPT-024` | `LIBTV-PAR-008/009/010/011/014` | static/design complete；mock/local-preview/data/blob islands；common runtime missing or partial、source parity partial | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` | `LIBTV-VR-021` |
+| `OC-BP-012` foreground editor session/commit/history authority | `OC-ADOPT-025` | `LIBTV-PAR-004/008/009/011/015` | static/design complete；ten profile runtime islands；common owner missing、source parity partial | `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` | `LIBTV-VR-022` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -320,6 +321,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 未来若获得编码授权，第一 slice 仍不应接真实上传。建议先落一个纯 descriptor/classifier/probe result 边界和 deterministic fake materializer fixture，或只让 Add Resource 形成 honest local-preview cohort；必须证明 `File`/`Blob`/object URL 不进入 semantic history/document，invalid/cancel/stale 零 graph residue，cleanup exact-once。不得同批重做 Asset Manager、Shot Breakdown、Director、真实 provider/storage 或 persistence。
 
+## 10.6 `OC-BP-012`：Foreground Editor Session, Commit And History Authority
+
+完整机械合同见 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-071..080` 正反面 + dated clone static audit；LibTV exact blur/Enter/Escape/outside/restore/save/close 继续 source-partial |
+| `L1 Identity` | route、canvas/generation、editor session/profile、target node/source version、baseline digest、gesture、commit attempt、async/resource owner |
+| `L2 Transaction` | native/local/graph history 分权；gesture endpoint one local snapshot；accepted commit exact one graph step 或 typed async handoff；invalid/noop/cancel/stale zero residue |
+| `L3 Surface` | dirty/baseline drift、pending/failure/retry、last-known-good、close/focus return 与 enabled/disabled honesty；不把 panel close 当成功 |
+| `L4 Fixture` | deterministic text/config/record/range/bitmap sessions、A/B canvas generation、drift/undo/redo/restore/close/async clock、byte/resource counters |
+| `L5 Verifier` | `LIBTV-VR-022` 与 graph history/ingress、selection/context、multi-canvas、async/resource、feedback 和 overlay regression 组合 |
+| `L6 Provenance` | 不把 Open Canvas 40-step full bitmap、JPEG/0.92、HTML schema、timeout、close-first/node-ID patch 或 clone inert control 升级为 LibTV truth |
+
+未来若获得编码授权，第一 slice 应从一个小而确定的 correctness island 开始，例如 `TextNode` 的 semantic equality/no-op + dirty drift guard，或一个 enabled-looking inert control 的 honest disabled projection。不得在同批创建全局 form framework、重写十类 editor、接真实 upload/provider、统一所有 undo 栈，或改变未经 source 取证的 blur/Escape/close 行为。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -391,6 +408,7 @@ pure identity/transaction cases
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
 9. `OC-BP-010` 保持 design complete/runtime/source parity partial；若获授权先关闭 actual-host default add，再分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不实现 Quick Add/drop/pending connection；
 10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
-11. 保持 provider、真实保存和共享源站 mutation 在边界外。
+11. `OC-BP-012` 保持 design complete/runtime fragmented/source parity partial；若获授权先关闭单一 profile 的 equality/drift/history/honesty 缺口，不统一重写所有 editor，也不接真实 provider/storage；
+12. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

@@ -98,6 +98,7 @@ LibTV 当前问题
 | selected flags + editable guard + local editor/Radix focus ownership | validated selection、declared command context、single-layer Escape 和 owned focus return | 精确 LibTV multi-select/edge/foreground surface/Escape/focus behavior 仍由源站决定；不引入全局 modal manager | `LIBTV-UIX-19` |
 | screen/flow dual anchor + live/stable viewport + entry-specific placement | actual host、typed coordinate domain、current frame/endpoint、gesture/placement owner 分开 | 保留 LibTV overlay formulas、Handle/edge、V/H/Space 和现有命令语义；exact add/fit/resize/drop 仍由源站决定 | `LIBTV-UIX-20` |
 | validate/probe/materialize + normalized descriptor + digest reuse | media intent、local lease、asset identity、node reference、provisional UI 与 semantic graph 分开 | 保留 source upload/history/material/asset/Shot surface 分域；limits/progress/cancel/storage/durability 仍由源站决定 | `LIBTV-UIX-21` |
+| foreground editor session + local history + typed commit handoff | session/baseline/draft、native/local/graph undo、commit/cancel、async/resource handoff 分开 | 十类 editor profile 各自保留 source interaction；blur/Escape/restore/save/close 与 enabled controls 仍由源站决定 | `LIBTV-UIX-22` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -112,6 +113,7 @@ Open Canvas 的机制只有在能解决一个已被 LibTV 证据确认的问题�
 | serialized subgraph + ID map | 长视频过程图和拉片结果组 | 派生节点/边保存 source、时间范围、操作和版本关系 | 不把上游五类节点模型当作 LibTV 领域模型 |
 | pending connection + typed handles | Auto Link 未连接候选、后续素材复用 | 只有源站证明连接动作存在时，才把连接与 mention/结果作为事务 | 不改变当前 LibTV Handle 位置、edge flow effect 或自由连接规则 |
 | validation/probe/materialization + media descriptor | Add Resource、生成历史、Asset Manager、Shot Breakdown、图片编辑与 Director media | 具名 ingress profile；local bytes/lease、stable asset、node ref、cohort commit、resource release 分权 | 不移植 Open Canvas accept/size/storage/provider，不把四类 source surface 合成一个素材库 |
+| foreground editor session + local/graph handoff | TextNode、Prompt/config、图片标注/编辑、字幕区域、续写范围、重拍与 camera dialogs | 具名 editor profile；baseline/draft/history/commit/close/async owner 分权 | 不移植 40 步 full bitmap、JPEG/0.92、HTML schema、close-first 或 node-ID-only patch |
 
 对应的 LibTV 事实和缺口集中见 [`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)；双浮层和 Auto Link 的可执行合同分别见 [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md) 与 [`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)。
 
@@ -347,6 +349,34 @@ clone 后续 surface 应遵守以下 UI/UX 规则：
 
 当前 source 尚未安全验证 exact limits、progress/cancel/retry、failure retention、multi-file placement、asset registration 和 refresh restoration；这些保持 source decision queue，不能由 Open Canvas 数字或 clone 历史 mock 补齐。正式 entry profile、state machine、resource ledger、fixture 与 `LIBTV-VR-021` 见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)，固定正反面事实见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)。
 
+### `LIBTV-UIX-22`：前台编辑器中的 draft、局部撤销与语义提交
+
+Open Canvas 的多类编辑器说明，画布上的“编辑”不是一次普通 `updateNodeData`：用户在 foreground surface 内会经历输入、指针 gesture、局部 undo/redo、恢复、提交和关闭，图片保存还会跨过导出、上传、graph patch 与资源转移。fixed implementation 将这些阶段部分分开，但 full bitmap entry budget、active draft resync、close-first upload 和 node-ID-only patch 也提供了明确反例。
+
+当前 clone 的编辑器成熟度差异很大，UI/UX 不能继续用相似按钮外观掩盖不同能力：
+
+| profile/surface | 当前用户可见风险 | UI/UX correctness floor |
+|---|---|---|
+| inline text/title | blur、Enter、Escape 与外部更新可能争夺 draft | dirty draft 不被静默覆盖；commit/noop/cancel 可区分；editable native undo 优先 |
+| Prompt/config/request draft | submitted/local-only 状态可能看似已写入 graph 或任务 | 明确 draft/accepted/pending/unavailable；关闭不会伪造提交 |
+| image annotate / element empty mode | Undo/Redo disabled 尚诚实，但 enabled-looking Save 无 handler | 没有完整 commit contract 时 disable 或不呈现为可用；退出恢复标准 surface |
+| bitmap/picture edit | gesture history、描述字段和替换结果可能属于不同 owner | 指针 gesture coalesce；byte/pixel/entry budget；graph 只接收一次 accepted result |
+| subtitle region / range selector | local history 与 graph live update 容易产生多步 undo 或重复提交 | profile 明确 live-coalesced 或 commit-on-close；一次用户操作的 history 语义稳定 |
+| camera/reshoot dialog | cancel/reopen 可能保留旧 draft，且 caller/提交链未证 | open 创建或显式恢复 session；cancel 清理 owner；unknown caller 保持 evidence-gated |
+
+后续 surface 统一遵守以下投影规则：
+
+- 打开编辑器时固定 `sessionId + canvas generation + target/source version + baseline digest`，而不是每次 render late-read active node；
+- dirty session 遇到 upstream drift 时展示 conflict/rebase/restart 所需状态，默认不以 effect 覆盖用户 draft；
+- Cmd/Ctrl+Z 只由当前最内层有效 owner 消费：editable native history、editor-local history、背景 graph history 三选一；
+- pointer move、brush stroke 和 slider drag 可以高频预览，但只在 gesture endpoint 写一个 local snapshot；accepted commit 再产生最多一步 graph history；
+- pending async materialization 必须有可见 owner 和 failure/retry path；editor close 不是成功证明，旧 session completion 不能覆盖新 draft；
+- semantic equality/no-op 不推进 graph history，也不需要伪成功；commit result 决定 surface 是否关闭、保留或显示 recoverable error；
+- visible enabled control 必须有真实 handler 和 deterministic verifier，未实现能力使用 disabled/unavailable 状态；
+- source 尚未确认的 blur/Escape/outside/restore/save/close exact 行为继续留在 evidence queue，不能从 Open Canvas 或 clone 现状反推。
+
+正式 profile、state machine、40 条 invariant、fixture 与 `LIBTV-VR-022` 见 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)，静态事实见 [`../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -394,6 +424,7 @@ clone 后续 surface 应遵守以下 UI/UX 规则：
 | P1 | selection/focus/command-context owner | 防止 selected flags 分叉、快捷键穿透、多层 Escape 和陈旧回焦 | 设计合同完成，runtime partial/source interaction partial |
 | P1 | actual-host viewport/coordinate/placement owner | 防止 panel/compact host 后新增落点漂移、live/stable 混用、switch stale callback 和 overlay frame 分叉 | 设计合同完成，runtime/source parity partial |
 | P1 | media ingress/resource lifecycle owner | 防止 upload/history/material/asset 混域、placeholder 假提交、stale overwrite、object URL 泄漏和 node/asset delete 混淆 | 设计合同完成，runtime missing/partial、source parity partial |
+| P1 | foreground editor session/commit/history owner | 防止 draft 被覆盖、局部/graph undo 双消费、无效控件伪能力、close-first async failure 和多步 graph residue | 设计合同完成，runtime fragmented、source parity partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

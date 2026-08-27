@@ -45,6 +45,7 @@
 | DEC-035 | selection/focus command context | node/edge/primary selection 是 active-session authority；focus zone 与 foreground surface 决定 command permission，one Escape 只处理一个 top context | ACTIVE / RESEARCH_GATE |
 | DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
 | DEC-037 | media ingress/resource lifecycle authority | media intent、local bytes/lease、asset identity、node reference 与 provisional/semantic projection 分权；release 只由显式 owner + reachability 决定 | ACTIVE / RESEARCH_GATE |
+| DEC-038 | editor session/commit/history authority | foreground editor 以 profile/session/baseline/draft 定权；native/local/graph undo 分流，typed commit 决定 graph/async handoff 与 close | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -267,6 +268,16 @@
 **影响：** 不因本决策接真实 provider/storage、上传、账户资产、计费或 persistence，也不把 Open Canvas MIME/size/provider/skin 当成 LibTV 产品事实。无后端 prototype 可以做 validation、local preview 和 deterministic fake materializer，但必须标明 `LOCAL_PREVIEW/UNAVAILABLE`，不能宣称 durable upload。`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`、`LIBTV-VR-021` 与任何 runtime slice 均需明确编码授权；FrameOS 与 Director owner 继续隔离。
 
 **依据：** [`LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)、Open Canvas `OC-061..070` fixed chain、2026-08-27 LibTV read-only source DOM evidence。
+
+### DEC-038：foreground editor session、local history 与 graph commit 分权
+
+**背景：** 当前 clone 的普通编辑器形成了多个互不一致的 island：TextNode 有 local draft；ImageEditPanel 的 Prompt/reference/submitted 只存在组件内；图片标注的 Undo/Redo disabled 但 Save 看似可用且无 handler；图片编辑和字幕区域各有 30 步 local history，却分别采用延迟一次提交和即时 graph 写入；range/reshoot/camera dialog 还有不同的 cancel/reopen 行为；video toolbar 出现 enabled-looking inert Undo/Redo。Open Canvas 同样分开 inline/rich/bitmap draft 与 graph save，但其 active draft resync、40 个 full `ImageData` entry、Restore 折叠、close-first JPEG upload、node-ID-only patch 和 caller 忽略 no-op/conflict result 不能直接复制。
+
+**决策：** 每个 foreground editor 必须声明十类 profile 之一，并在 open 时固定 route/canvas generation、session、target/source version、baseline digest 和 resource owner。Working draft 与 semantic graph 分离；dirty baseline drift 默认不被 effect 静默覆盖。Editable native history、editor-local history 和背景 graph history 按 foreground context 三选一消费 shortcut。Pointer gesture 只在 endpoint 形成一个 local history entry；accepted semantic commit 最多产生一步 graph history，或形成携带 freshness/resource owner 的 typed async handoff；invalid/noop/cancel/stale 为零 graph/history residue。Commit result 决定 close、保留或 recoverable failure，不以 panel close 代表成功。Bitmap history 同时受 entry/byte/pixel budget 约束；visible enabled control 必须有真实 handler，否则应 disabled/unavailable。
+
+**影响：** 不因本决策引入全局 form framework、统一十类 editor schema、Open Canvas HTML/JPEG/timeout/upload/provider/persistence，也不改变未经 source 取证的 blur/Enter/Escape/outside/restore/save/close exact 行为。`LIBTV-FIX-LOCAL-EDITOR-SESSION-01`、`LIBTV-VR-022` 和任何 runtime slice 都需明确编码授权；FrameOS/Director history 与普通 LibTV editor owner 继续隔离。
+
+**依据：** [`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](research/LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)、Open Canvas `OC-071..080` fixed chain、相关 LibTV component specs。
 
 ## 3. 何时可以重审决策
 

@@ -55,6 +55,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 | 官网预览中的分享/模板/保存状态是否对应 alpha runtime | 低 | Low | 只能作为信息架构证据 |
 | 对当前 LibTV/FrameOS 的借鉴建议 | 中 | Medium | 属于研究推断，必须服从当前项目源站证据 |
 | Open Canvas media ingress + LibTV source/clone resource boundary | 高（static/design） | High（fixed/source surface）/ Pending（source mutation/runtime） | 未选择 source 文件、未上传、未接 provider/storage；exact lifecycle 需 disposable fixture |
+| Open Canvas foreground editor + LibTV clone session/history boundary | 高（static/design） | High（fixed/clone static）/ Pending（source exact interaction/runtime） | 未在共享源站输入、保存或触发图片编辑；blur/Escape/restore/save/close 需 disposable fixture |
 
 ## 1. 对象与版本锁定
 
@@ -317,6 +318,7 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 - 继续用浏览器取证源站选中节点上下浮层；
 - 设计并记录 clone-only 的浮层 anchor/层级合同；
 - 以 `OC-PATTERN-11` 和 `OC-BP-011` 评审 Add Resource、History、Material、Asset、Shot 与 Director 的 owner/identity/transaction 边界；
+- 以 `OC-PATTERN-12` 和 `OC-BP-012` 评审 TextNode、配置、标注、图片编辑、字幕区域、范围选择和请求草稿的 session/history/commit 边界；
 - 在不修改业务代码的前提下为后续批次列出验证用例。
 
 ### 当前不要做

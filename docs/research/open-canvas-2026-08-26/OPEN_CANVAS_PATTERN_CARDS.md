@@ -30,6 +30,7 @@
 | OC-PATTERN-09 | validated selection + declared context + owned focus return | selected flags、快捷键、浮层层级和焦点回归分叉 | 适合节点/边/primary selection、Director/modal precedence 与单层 Escape | P0，正式合同完成，runtime partial |
 | OC-PATTERN-10 | dual anchor + live/stable viewport + entry-specific placement | browser/host/flow 坐标、移动帧、稳定恢复和创建入口互相覆盖 | 适合 default add、zoom/fit/resize、drag/organize、copy/derived placement 与 overlay composition | P0，正式合同完成，runtime/source parity partial |
 | OC-PATTERN-11 | validate/probe/materialize + explicit resource lease | 文件意图、临时 bytes、稳定 asset、node reference、graph/history 与 cleanup 分叉 | 适合 Add Resource、生成历史、Shot Breakdown、普通图片编辑和 Director media boundary | P0，正式合同完成，runtime missing/partial、source parity partial |
+| OC-PATTERN-12 | foreground editor session + owned local history + typed commit handoff | baseline、draft、本地撤销、graph history、异步保存和关闭生命周期分叉 | 适合文字、配置、标注、图片编辑、字幕区域、范围选择和请求草稿 | P0，正式合同完成，runtime fragmented、source parity partial |
 
 ---
 
@@ -676,7 +677,79 @@ immutable ingress intent
 
 ---
 
-## 14. 十一张卡的共同落地顺序
+## 14. OC-PATTERN-12：Foreground Editor Session + Owned Local History + Typed Commit Handoff
+
+### 14.1 上游 `SOURCE_FACT`
+
+固定版本 Open Canvas 同时存在多类前台编辑会话：
+
+- title/text 以 component-local draft 承接输入，再由 blur、Enter 或 Escape 选择提交/取消；
+- rich note 使用 `contentEditable` 和提交前 sanitization；
+- 图片编辑器创建随机 sessionId，保存 target node/media/title，并维护 load/stroke 后的完整 `ImageData` 历史；
+- bitmap undo/redo 使用 cursor 和 redo truncation，Restore 折叠为单 baseline，最多保留 40 个 entry；
+- Save 导出 JPEG 0.92，先关闭 editor，再由 caller 上传并按 node ID patch graph；
+- graph dirty/revision/save baseline、editor local history 和浏览器原生 editable history 分属不同 owner。
+
+这些机制证明“编辑器内部试错”和“画布语义提交”应分层；也暴露了不能照搬的缺口：session 不携带 canvas generation/source version，full bitmap 只按 entry 计数可能占用约 2.38 GiB，hidden fetch 没有真正 abort，close-first async save 缺 pending/failure return surface，caller 也可能忽略 no-op/conflict result。
+
+### 14.2 LibTV 对应的 `SOURCE_FACT` 与 `CLONE_FACT`
+
+当前 LibTV clone 已有十类不同成熟度的 foreground editor profile：
+
+- `TextNode` 有 local draft，但 blur commit、Escape cancel 与 active upstream drift 尚未共享 typed session result；
+- `ImageEditPanel` 的 Prompt、reference 与 submitted 状态仅在本地，Undo 按钮可见但无效；
+- 图片标注已有 canvas/node owner reconciliation，但没有 record/local history，Undo/Redo disabled，Save 看似可用却无 handler；
+- `PictureEditPanel` 有 30 步深拷贝 snapshot、gesture coalescing 和一次延迟 graph transaction，但 description/replacement 不进入同一本地历史；
+- 字幕区域编辑有 30 步本地历史并立即写 graph，缺 panel-level submitting/idempotency token；
+- 续写范围是一份局部草稿和一次 graph transaction；片段重拍草稿 local-only，缺显式 cancel callback；
+- camera dialogs 没有已证 caller，取消后的 draft 可能跨 reopen 保留；video toolbar 的 Undo/Redo 是 enabled-looking inert control；
+- graph `updateNodeData` 对现有 node 总是推进 history，没有 semantic equality/no-op gate。
+
+这些差异不能被一个“所有弹窗共用 form hook”抹平。正式合同将它们分为 `INLINE_SCALAR`、`INLINE_MULTILINE`、`RICH_TEXT`、`MODAL_CONFIG`、`RECORD_EDITOR`、`BITMAP_EDITOR`、`RANGE_SELECTOR`、`REQUEST_DRAFT`、`LIVE_COALESCED_INSPECTOR` 和 `EMPTY_EVIDENCE_GATED` 十类 profile。
+
+### 14.3 `INFERENCE`
+
+可迁移的方法是让每次前台编辑显式拥有：
+
+```text
+session identity + target/source baseline
+  -> working draft
+  -> native or editor-local history
+  -> typed commit intent/result
+  -> exact one graph transaction or async handoff descriptor
+  -> close/cancel/invalidation/resource convergence
+```
+
+Undo 路由必须取决于当前 foreground context：editable 原生 undo、bitmap/record local undo 和背景 graph undo 不能同时消费一个 chord。Baseline drift 也必须声明策略：clean session 可以 rebase，dirty session 默认不能被 effect 静默覆盖。异步保存不能把“关闭 editor”当成成功；handoff 必须绑定 canvas generation、session、target/source version 与 resource owner。
+
+### 14.4 `CLONE_DECISION`
+
+- 采用具名 editor profile、session/baseline/draft、typed commit result 和 native/local/graph undo precedence；
+- local gesture 在编辑器内部 coalesce，只有 accepted semantic commit 才产生一步 graph history；invalid/noop/cancel/stale 为零 graph/history residue；
+- bitmap history 同时受 entry、byte 与 dimension/pixel budget 约束，拒绝复制 fixed 40-entry full-image 策略；
+- commit 前保留 last-known-good graph/media；异步 materialization 期间由明确 surface 显示 pending/failure/retry，不能 close-first 后静默失败；
+- inert control 必须 disabled、标记 honest unavailable，或在拥有完整 handler/fixture 前不呈现为可用；
+- 不移植 Open Canvas 的 JPEG/0.92、HTML schema、toolbar visual、timeout、session shape、upload/provider 或 graph save/revision 产品语义；
+- 本卡只形成设计、fixture 和 verifier authority，不授权修改 `src/`。
+
+### 14.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| session | open/reopen/switch/delete/unmount 形成唯一 owner；旧 callback 不写新 owner |
+| baseline | clean rebase、dirty drift、semantic equality/no-op 和 restore policy 按 profile 明确 |
+| history | native/local/graph undo 每次只由一个 owner 消费；gesture coalescing 与 redo truncation exact |
+| commit | accepted exact one graph transaction 或 typed async handoff；invalid/noop/cancel/stale 零 residue |
+| close | Escape/blur/submit/outside/switch/delete 的 close/cancel policy 可区分，focus return 不指向 stale owner |
+| async/resource | pending/failure/retry surface 可达；freshness、last-known-good 与 resource transfer/release exact |
+| budget | bitmap history 对 bytes/pixels/entries 均有 deterministic guard，不依赖浏览器 OOM 才收敛 |
+| honesty | visible enabled control 有实际 handler；未实现能力明确 disabled/unavailable |
+
+设计 authority：[`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01` 和 `LIBTV-VR-022`。
+
+---
+
+## 15. 十二张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -688,6 +761,7 @@ immutable ingress intent
   -> 09 selection、command context 与 focus owner
   -> 07 canvas lifecycle owner isolation
   -> 10 viewport、coordinate、gesture 与 placement owner
+  -> 12 foreground editor session、local history 与 commit handoff
   -> 11 media ingress、asset/reference 与 resource lease
   -> 05 异步结果入口与陈旧收敛
 ```
@@ -703,10 +777,11 @@ immutable ingress intent
 - selection/context/focus 再统一 active-session authority，避免快捷键和 surface close 穿透或回焦到陈旧 owner；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - spatial authority 再把 actual host、live/stable viewport、gesture generation 和 entry placement 组合到既有 overlay/graph/lifecycle contracts；
+- foreground editor session 随后固定 baseline/draft、native/local/graph undo、commit/cancel 和 close policy，避免局部编辑直接旁路 graph/async authority；
 - media ingress 随后固定 local bytes、asset/reference、cohort 和 release owner，避免用 URL 字段提前替代资源生命周期；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态、graph 与 resource authority。
 
-## 15. 统一拒绝清单
+## 16. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -726,12 +801,15 @@ immutable ingress intent
 - 把 Open Canvas Quick Add/drop/pending connection、zoom 范围、menu offset 或 viewport persistence 当成 LibTV 已证产品语义；
 - 把 `File`、`Blob`、object URL、stable asset、generated-history item 和 node media reference 合并成一个 `url` 字段或共同 identity；
 - 因为 Open Canvas 有 upload route/digest key，就移植其 MIME/size/storage/provider，或把 placeholder-first、sequential partial mutation 和 autosaved running state 当正确模板；
+- 因为 Open Canvas 图片编辑器保留 40 个 snapshot，就按 entry count 复制 full-image history，而不设置 byte/pixel budget、gesture coalescing 和资源释放；
+- 让 foreground editor 在 commit result 未确认或 async materialization 尚未接管 pending/failure surface 时先关闭，或只按 node ID 回写晚到结果；
+- 让 enabled-looking Undo/Redo/Save/Generate 控件没有 handler，或用 graph undo 同时消费 editor-local chord；
 - 把 LibTV source 的上传、生成历史、风格/特效素材与 account asset 合并成一个“素材库”，或把 clone 历史文案反写成 source 事实；
 - 在无后端 prototype 中把 local preview/fake materializer 宣称为 durable upload、synced asset 或 provider result；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 16. 后续研究入口
+## 17. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -744,6 +822,7 @@ immutable ingress intent
 - Selection/focus/command context：[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)
 - Viewport/coordinate/gesture/placement：[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)
 - Media ingress/resource lifecycle：[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)
+- Editor session/commit/history：[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。
