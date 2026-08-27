@@ -1,8 +1,55 @@
 {
-  "status": "PENDING",
+  "status": "PASS",
   "batch": 74,
-  "topic": "Director durable project persistence",
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 74,
+    "scenarios": [
+      "missing storage",
+      "strict envelope round-trip",
+      "capture byte exclusion",
+      "stale save completion",
+      "corrupt payload zero replacement",
+      "future schema rejection",
+      "owner mismatch rejection",
+      "project mismatch rejection",
+      "write failure preserves session-only status",
+      "storage unavailable"
+    ],
+    "snapshot": {
+      "status": "SESSION_ONLY",
+      "generation": 4,
+      "savedFingerprint": "{\"schemaVersion\":1,\"projectId\":\"batch74-project-a\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"batch74-canvas-a\",\"sourceNodeId\":\"batch74-director-a\"},\"scene\":{\"name\":\"write failure\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"batch74-character\",\"name\":\"Lead\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8899aa\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"batch74-camera\",\"name\":\"Main camera\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#99ddff\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4,2,6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":45,\"target\":[0,1,0],\"lookAtMode\":\"object\",\"lookAtObjectId\":\"batch74-character\",\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"activeCameraId\":\"batch74-camera\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}"
+    },
+    "errors": []
+  },
+  "browser": {
+    "reload": {
+      "sameProject": true,
+      "newSessionGeneration": true,
+      "authoredScene": "Batch 74 persisted scene",
+      "runtimeTime": 0,
+      "runtimePlaying": false
+    },
+    "ownerIsolation": {
+      "storageKeyCount": 2,
+      "graphUnchanged": true,
+      "ownerBSourceNodeId": "b-bTLLuU4w5q-batch74-b"
+    },
+    "corruptPayload": {
+      "rejectedWithoutReplacement": true,
+      "rawPayloadPreserved": true
+    },
+    "serializedBoundary": {
+      "captureDescriptors": [],
+      "containsRuntimeOrUiFields": false
+    },
+    "storageFailure": {
+      "memorySessionPreserved": true,
+      "sessionOnly": true
+    }
+  },
   "screenshots": [],
-  "errors": [],
-  "note": "Plan checkpoint only. Replace with verifier output after implementation."
+  "errors": []
 }

@@ -89,20 +89,21 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 71 | Director Inspector/pose/camera/path/free-draw pointer lifecycle, gesture commit/cancel/pointercancel cleanup and ordinary graph/history isolation |
 | Batch 72 | Director reference-aware delete planning, object/group/camera/track/path/capture/resource closure, last-camera/resource policy, runtime repair, exact delete/undo/redo and ordinary graph/history isolation |
 | Batch 73 | Director capture/export/phone async operation/attempt/result authority, owner/source freshness, duplicate/stale convergence and export resource transfer/release |
+| Batch 74 | Director browser-local durable project persistence, strict envelope restore, stale save, owner isolation, runtime/UI/resource-byte exclusion and storage failure continuity |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..73}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..74}.py; do
   python3 "$script" || exit 1
 done
 ```
 
 Batch 34 和 Batch 66 没有对应的专项 verifier，不应被循环命令隐式当作已验证
 行为。Batch 67 是无浏览器 pure codec gate；Batch 68、Batch 69、Batch 70、
-Batch 71、Batch 72、Batch 73 是 pure + browser hybrid 且不生成截图；其余视觉脚本仍按
+Batch 71、Batch 72、Batch 73、Batch 74 是 pure + browser hybrid 且不生成截图；其余视觉脚本仍按
 各自 batch screenshot ledger 维护。
 
 ## Browser Evidence Requirements

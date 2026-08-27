@@ -3,7 +3,8 @@
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
 > `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_FOCUSED_RUNTIME_PASS` /
 > `AUTHORED_HISTORY_POINTER_DELETE_FOCUSED_RUNTIME_PASS` /
-> `ASYNC_AUTHORITY_FOCUSED_RUNTIME_PASS` / `PERSISTENCE_RUNTIME_MISSING` /
+> `ASYNC_AUTHORITY_FOCUSED_RUNTIME_PASS` /
+> `PERSISTENCE_FOCUSED_RUNTIME_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -86,8 +87,13 @@ Director project document
   operation/attempt、owner/session/generation、source/request fingerprint、
   terminal convergence 和 resource transfer/release；普通画布 async ingress
   仍未统一接入；
-- inactive owner tombstone/reachability、copy/paste identity remap 和 durable
-  persistence 仍未解决。
+- Batch 74 已增加 clone-owned browser-local versioned storage envelope、
+  strict V1 load/normalize、owner/project/generation/fingerprint guard、
+  reload authored restore、stale save ignore、corrupt/future/mismatch
+  zero-replacement 和 write-failure `SESSION_ONLY` 语义；
+- inactive owner tombstone/reachability、copy/paste identity remap、
+  ordinary canvas persistence、remote persistence 和 source-exact storage
+  仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -491,7 +497,9 @@ Duplicate 不是共享同一 document：
 
 ### 10.1 Storage-neutral boundary
 
-本合同不选择 localStorage、IndexedDB 或 backend。实现必须先有 storage adapter：
+本合同保持 storage-neutral 抽象；当前 clone 已在 Batch 74 选择
+browser-local `localStorage` 作为可注入 prototype adapter。正式产品后端、
+IndexedDB 和云端同步仍不在本批范围。抽象边界为：
 
 ```ts
 interface DirectorProjectStorage {
@@ -501,9 +509,9 @@ interface DirectorProjectStorage {
 }
 ```
 
-第一 prototype slice 可以使用 in-memory registry；如加入 browser persistence，应：
+如加入 browser persistence，应：
 
-- key包含 route/canvas/source/project/schema；
+- key按 route/canvas/source owner 隔离，envelope 另存 project ID 和 schema；
 - 保存 canonical document，不保存 session/runtime；
 - 可注入 storage failure/quota；
 - write completion比较 generation；
@@ -518,6 +526,23 @@ interface DirectorProjectStorage {
 - old save completion不得更新 current project status；
 - storage unavailable 时，UI 必须标明 session-only；
 - persistence 成功不代表 graph result已materialize或云端同步。
+
+### 10.3 Batch 74 clone implementation
+
+`src/lib/directorProjectPersistence.ts` 是当前 clone 的 storage authority：
+
+- `DirectorProjectStorageEnvelopeV1` 包含 storage schema、project ID、owner、
+  generation、savedAt、canonical document 和 document fingerprint；
+- load 先做 envelope shape 检查，再调用 `decodeDirectorProjectDocument`，
+  校验 document/envelope identity 和 fingerprint；
+- capture descriptor 只有在有 stable `resourceRefId` 时才进入 persisted
+  document；当前 data URL capture 因没有 stable locator 而保持 session-only；
+- `beginSave`/`completeSave` 对同一 owner 的旧 request 产生
+  `STALE_IGNORED`，浏览器同步 adapter 同时拒绝低 generation 覆盖；
+- `REJECTED`、`SESSION_ONLY` 和 `STALE_IGNORED` 是 storage outcome，不进入
+  Director semantic history，也不改变当前内存 state；
+- fresh-page Batch 74 已验证 reload、A/B owner key、corrupt payload 保留、
+  runtime/UI exclusion、普通 graph/history isolation 和模拟 quota。
 
 ## 11. Graph Bridge
 
@@ -703,8 +728,11 @@ owner/session 子项已在 Batch 68 升级为
 1. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
 2. 普通画布 delayed result 也只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 明确；
-4. persistence adapter 有 corrupt/quota/stale fixture；
-5. copy/paste identity remap 有 focused runtime。
+4. ordinary canvas graph/document persistence 有独立合同和 fixture；
+5. copy/paste identity remap 有 focused runtime；
+6. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
 
-Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项，
-但不关闭普通画布 async ingress 或 durable persistence 子项。
+Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项；
+Batch 74 已关闭 clone-owned Director browser-local durable document persistence
+子项，但不关闭普通画布 async/persistence、remote storage、真实资源或
+source-exact LibTV persistence 子项。

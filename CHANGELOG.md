@@ -8,11 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Added the Batch 74 Director durable project persistence plan:
-  clone-owned browser-local versioned storage envelope, strict V1 restore,
-  owner/project/generation/fingerprint guards, storage failure semantics and
-  fresh-page verifier scope. Implementation is pending; cloud sync, ordinary
-  canvas persistence and source-exact LibTV persistence remain outside scope.
+- Closed Batch 74 with clone-owned Director browser-local durable project
+  persistence: versioned storage envelope, strict V1 restore,
+  owner/project/generation/fingerprint guards, stale-save rejection, corrupt
+  payload preservation, runtime/UI/resource-byte exclusion and
+  `SESSION_ONLY` storage-failure continuity. Cloud sync, ordinary canvas
+  persistence, real resource materialization and source-exact LibTV persistence
+  remain outside scope.
 - Added Batch 73 Director async result authority:
   typed capture/export/phone operation and attempt identity, owner/session/
   generation and source/request freshness checks, stale/duplicate/invalid

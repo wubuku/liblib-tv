@@ -1,10 +1,10 @@
 # Batch 74 计划：Director Durable Project Persistence
 
-> 状态：`IN_PROGRESS / PERSISTENCE_AUTHORITY_PENDING`。
+> 状态：`COMPLETE / PERSISTENCE_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 >
-> 上游 checkpoint：`137d8c3`。
+> 实施 checkpoint：`d68285b`。
 
 ## 1. 目标
 
@@ -23,49 +23,49 @@ clone-owned browser-local persistence slice：
 
 ### Slice A：storage contract
 
-- [ ] 新增 `src/lib/directorProjectPersistence.ts`；
-- [ ] 定义 storage envelope、load/save result、failure reason；
-- [ ] 定义 clone-owned key，避免不同 route/canvas/source/project 串场；
-- [ ] 只依赖 `unknown` + strict `decodeDirectorProjectDocument`；
-- [ ] 注入 storage adapter，便于 pure verifier 模拟 corrupt/future/quota。
+- [x] 新增 `src/lib/directorProjectPersistence.ts`；
+- [x] 定义 storage envelope、load/save result、failure reason；
+- [x] 定义 clone-owned key，避免不同 route/canvas/source/project 串场；
+- [x] 只依赖 `unknown` + strict `decodeDirectorProjectDocument`；
+- [x] 注入 storage adapter，便于 pure verifier 模拟 corrupt/future/quota。
 
 ### Slice B：registry/store integration
 
-- [ ] registry open 时先读取 owner-scoped persisted envelope；
-- [ ] 只在 decode、identity、generation guard 全部通过时恢复；
-- [ ] 新 project 和 canonical mutation commit 触发 persistence request；
-- [ ] close/reopen、A/B owner、refresh 恢复同一 project；
-- [ ] stale save completion 不改变 current persistence status；
-- [ ] 失败只记录 persistence outcome，不生成 semantic history entry。
+- [x] registry open 时先读取 owner-scoped persisted envelope；
+- [x] 只在 decode、identity、generation guard 全部通过时恢复；
+- [x] 新 project 和 canonical mutation commit 触发 persistence request；
+- [x] close/reopen、A/B owner、refresh 恢复同一 project；
+- [x] stale save completion 不改变 current persistence status；
+- [x] 失败只记录 persistence outcome，不生成 semantic history entry。
 
 ### Slice C：runtime diagnostics
 
-- [ ] 暴露最小 browser diagnostic snapshot；
-- [ ] 记录 storage status、last failure、saved fingerprint/generation；
-- [ ] 不暴露或持久化 selection、playhead、panel、Three.js refs、Blob/File；
-- [ ] 保持现有 async authority snapshot 独立。
+- [x] 暴露最小 browser diagnostic snapshot；
+- [x] 记录 storage status、last failure、saved fingerprint/generation；
+- [x] 不暴露或持久化 selection、playhead、panel、Three.js refs、Blob/File；
+- [x] 保持现有 async authority snapshot 独立。
 
 ### Slice D：focused verifier
 
-- [ ] pure V1 envelope round-trip；
-- [ ] missing storage creates new document；
-- [ ] corrupt/future/owner/project mismatch reject with zero replacement；
-- [ ] quota/write failure preserves memory session；
-- [ ] stale save completion ignored；
-- [ ] reload restores authored document and runtime time-zero projection；
-- [ ] UI/session/runtime fields absent from serialized payload；
-- [ ] ordinary canvas graph/history unchanged；
-- [ ] diagnostics/page/request errors 为零，截图写入为零。
+- [x] pure V1 envelope round-trip；
+- [x] missing storage creates new document；
+- [x] corrupt/future/owner/project mismatch reject with zero replacement；
+- [x] quota/write failure preserves memory session；
+- [x] stale save completion ignored；
+- [x] reload restores authored document and runtime time-zero projection；
+- [x] UI/session/runtime fields absent from serialized payload；
+- [x] ordinary canvas graph/history unchanged；
+- [x] diagnostics/page/request errors 为零，截图写入为零。
 
 ### Slice E：治理与回归
 
-- [ ] 更新 Director project/session contract；
-- [ ] 更新 verifier manifest、fixture catalog、verification ledger、
+- [x] 更新 Director project/session contract；
+- [x] 更新 verifier manifest、fixture catalog、verification ledger、
   traceability、decision register；
-- [ ] 更新 Big Picture、Agent Task Map、HARNESS、docs hubs、CHANGELOG；
-- [ ] 运行 Batch 67-74 focused gates；
-- [ ] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
-- [ ] 记录实施结果、commit/push，并确认主工作区干净且无额外 worktree。
+- [x] 更新 Big Picture、Agent Task Map、HARNESS、docs hubs、CHANGELOG；
+- [x] 运行 Batch 67-74 focused gates；
+- [x] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
+- [x] 记录实施结果、commit/push，并确认主工作区干净且无额外 worktree。
 
 ## 3. Fixture
 

@@ -6,6 +6,7 @@
 > `AUTHORED_RUNTIME_GATE_RECORDED_PASS` /
 > `HISTORY_GATE_RECORDED_PASS` / `POINTER_LIFECYCLE_GATE_RECORDED_PASS` /
 > `REFERENCE_DELETE_GATE_RECORDED_PASS` / `ASYNC_AUTHORITY_GATE_RECORDED_PASS` /
+> `PERSISTENCE_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
@@ -13,8 +14,8 @@
 > Scope: `scripts/verify-liblib-batch35.py` through Batch 50, Batch 59,
 > Batch 67 pure codec verifier, Batch 68 hybrid owner/session verifier,
 > Batch 69 authored/runtime verifier, Batch 70 command/history verifier,
-> Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier
-> and Batch 73 async-authority verifier.
+> Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier,
+> Batch 73 async-authority verifier and Batch 74 persistence verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -27,7 +28,7 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, six current hybrid pure/browser reliability verifiers and one
+codec verifier, seven current hybrid pure/browser reliability verifiers and one
 current browser smoke.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
@@ -60,6 +61,10 @@ single current gate on their own:
   generation and source/request fingerprint freshness、attempt supersession、
   duplicate/terminal conflict handling、graph result projection and resource
   transfer/release exactly once.
+- Batch 74 covers browser-local versioned persistence envelope、strict restore、
+  owner/project/generation/fingerprint guards、stale save ignore、corrupt/future/
+  mismatch rejection、runtime/UI/resource-byte exclusion、reload recovery and
+  storage-failure session continuity.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -104,6 +109,7 @@ historical regressions.
 | Batch 71 | Inspector、pose、camera、path and free-draw gesture lifecycle | `CURRENT_GATE` | Pure source gate + one fresh-page Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` pointer-lifecycle gate；does not prove reference-aware delete、async destination、durable persistence or source parity |
 | Batch 72 | reference-aware delete planner、closure repair、last-camera/resource policy and delete/undo/redo | `CURRENT_GATE` | Pure planner corpus + five fresh-page Playwright scenarios；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` reference-delete gate；does not prove async destination、durable persistence、copy/paste or source parity |
 | Batch 73 | Director capture/export/phone async authority、attempt supersession、stale/duplicate/invalid completion and resource ownership | `CURRENT_GATE` | Pure Node authority corpus + one fresh-page Playwright page；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` async-authority gate；does not prove ordinary canvas async ingress、durable persistence、copy/paste or source parity |
+| Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -138,6 +144,8 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch72.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch73.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch74.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -272,6 +280,23 @@ This result closes the focused Director async-authority slice, not ordinary
 canvas async ingress、durable persistence、inactive-owner tombstone/copy-paste
 remap、real provider/resource loading or source-exact UI.
 
+Batch 74 persistence gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 |
+| Implementation checkpoint | `d68285b` |
+| Pure corpus | missing、strict envelope round-trip、capture byte exclusion、stale save completion、corrupt/future/owner/project rejection、write failure and unavailable storage |
+| Browser corpus | authored edit -> reload restore、new session generation、A/B owner key isolation、runtime/UI exclusion、corrupt payload preservation、simulated quota/session-only continuity、ordinary graph isolation |
+| Runtime boundary | only canonical V1 document is stored；selection/playhead/panel/phone runtime、capture bytes、Blob/File/Object URL and Three.js refs are excluded；invalid load never replaces raw payload |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 74 `runtime-audit.json` only；zero screenshots |
+
+This result closes the clone-owned Director browser-local persistence slice, not
+ordinary canvas graph persistence、remote/cloud storage、durable history、real
+resource materialization、inactive-owner reconciliation、copy/paste remap or
+source-exact LibTV persistence.
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -284,6 +309,7 @@ Batch 67 pure codec gate
   + Batch 71 pointer-lifecycle gate
   + Batch 72 reference-delete gate
   + Batch 73 async-authority gate
+  + Batch 74 persistence gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -328,7 +354,8 @@ Batch 67 supplies the pure codec slice；Batch 68 supplies the owner/session
 runtime slice；Batch 69 supplies the authored/runtime projection slice；Batch 70
 supplies the command/history slice；Batch 71 supplies the pointer-lifecycle
 slice；Batch 72 supplies the reference-delete slice；Batch 73 supplies the
-async-authority slice；Batch 59 supplies the current WebGL/browser smoke seed.
+async-authority slice；Batch 74 supplies the browser-local persistence slice；
+Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
 
@@ -340,6 +367,7 @@ Required future scenarios:
 | command/history | **implemented in Batch 70/71**：committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation; reopen continuity; Inspector/R3F pointer lifecycle |
 | delete closure | **focused runtime in Batch 72**：object/group/camera/track/path/resource references repaired or blocked atomically；capture provenance、selection/runtime cleanup and exact delete/undo/redo are covered |
 | async bridge | **focused runtime in Batch 73**：capture/export/phone completion carries operation/attempt/result identity；owner/session/generation and source/request freshness are checked；stale/invalid/duplicate results have zero-mutation disposition；export resource transfer/release is exactly once |
+| durable project persistence | **focused runtime in Batch 74**：versioned owner-scoped envelope、strict V1 restore、project/generation/fingerprint guards、stale save ignore、corrupt/future/mismatch zero-replacement、runtime/UI/resource-byte exclusion and session-only write failure |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -354,7 +382,7 @@ HISTORY_FOCUSED_PASS
 POINTER_LIFECYCLE_FOCUSED_PASS
 REFERENCE_DELETE_FOCUSED_PASS
 ASYNC_AUTHORITY_FOCUSED_PASS
-PERSISTENCE_RUNTIME_MISSING
+PERSISTENCE_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

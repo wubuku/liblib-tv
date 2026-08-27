@@ -46,9 +46,10 @@
 | DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
 | DEC-037 | media ingress/resource lifecycle authority | media intent、local bytes/lease、asset identity、node reference 与 provisional/semantic projection 分权；release 只由显式 owner + reachability 决定 | ACTIVE / RESEARCH_GATE |
 | DEC-038 | editor session/commit/history authority | foreground editor 以 profile/session/baseline/draft 定权；native/local/graph undo 分流，typed commit 决定 graph/async handoff 与 close | ACTIVE / RESEARCH_GATE |
-| DEC-040 | Director project/session authority | Director portable project、session UI、runtime projection、resource lease 与 graph projection 分权；先实现 versioned strict codec，再做 owner registry、history/delete 与真实资产 | ACTIVE / RESEARCH_GATE |
+| DEC-040 | Director project/session authority | Director portable project、session UI、runtime projection、resource lease 与 graph projection 分权；先实现 versioned strict codec、owner registry、history/delete 和 browser-local persistence，再做真实资产 | ACTIVE / RESEARCH_GATE |
 | DEC-039 | media rendition/geometry authority | selected output、intrinsic metadata、request、semantic frame、passive measurement、surface rendition、editor space 与 export 分权 | ACTIVE / RESEARCH_GATE |
-| DEC-041 | Director command/history/gesture authority | Director semantic mutation 使用 project-local typed command/history；完整 pointer lifecycle 逐类接入，delete/async/persistence 仍按独立合同推进 | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-041 | Director command/history/gesture authority | Director semantic mutation 使用 project-local typed command/history；完整 pointer lifecycle 逐类接入，delete/async/persistence 按独立合同推进 | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-042 | Director browser-local persistence | 只保存 owner-scoped、versioned canonical V1 document；strict reject、stale-save guard 和 storage failure 必须保持当前 session 可用；普通画布、远端同步和真实资源另行建合同 | ACTIVE / IMPLEMENTATION_GATE |
 
 ## 2. 决策详情
 
@@ -372,6 +373,32 @@ idempotency 和 resource exactly-once。
 [`liblib-canvas-batch70-2026-08-27/`](research/liblib-canvas-batch70-2026-08-27/)、
 [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
 `LIBTV-VR-024`。
+
+### DEC-042：Director browser-local persistence 的边界
+
+**背景：** Batch 67-73 已建立 Director 的 document、owner/session、
+authored/runtime、history、pointer、delete 和 async authority，但刷新页面后
+项目恢复仍是未完成的 clone reliability slice。LibTV 原站的认证后 persistence
+API、恢复 UI、云端同步和真实资源 locator 尚没有 source-exact 证据。
+
+**决策：** 当前 prototype 只实现可注入的 browser-local storage adapter。key
+按 `route + canvasId + sourceNodeId` 隔离，envelope 另存 project ID、
+generation、fingerprint 和 canonical V1 document。restore 必须 strict、
+zero-partial；corrupt/future/mismatch 不得替换当前有效状态；旧 save completion
+不得覆盖新 request；storage failure 只降级为 `SESSION_ONLY`。selection、
+playhead、panel、phone live state、history、capture bytes、Blob/File/Object URL
+和 Three.js refs 不进入 envelope。
+
+**影响：** Batch 74 将 `LIBTV-VR-024` 提升为
+`PERSISTENCE_FOCUSED_PASS`。这只关闭 clone-owned Director browser-local
+persistence，不授权普通画布 persistence、remote/cloud sync、durable history、
+真实资源 materialization、inactive-owner reconciliation、copy/paste remap 或
+source-exact LibTV persistence。
+
+**依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
+[`liblib-canvas-batch74-2026-08-27/`](research/liblib-canvas-batch74-2026-08-27/)、
+[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
+[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
 
 ## 3. 何时可以重审决策
 

@@ -1,6 +1,6 @@
 # Batch 74: Director Durable Project Persistence
 
-> 状态：`PLANNED / PERSISTENCE_AUTHORITY_PENDING`。
+> 状态：`PERSISTENCE_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 
@@ -10,7 +10,8 @@ Batch 67-73 已经建立 Director 的 V1 portable document、strict codec、
 owner/session/generation、authored/runtime 分离、project-local
 command/history/delete，以及 capture/export/phone 的 async result authority。
 当前最高价值的可靠性缺口是：刷新页面后 Director project 仍没有 clone-owned
-durable restore，registry 仍只存在于当前 JavaScript session。
+durable restore，registry 仍只存在于当前 JavaScript session。该缺口已在本批
+以浏览器本地、版本化且 owner-scoped 的 prototype persistence 关闭。
 
 本批只补齐浏览器本地的版本化 project persistence。它不把 StoryAI、
 Open Canvas 或未经认证的 LibTV 行为写成 source fact，也不引入后端、云同步、
@@ -68,6 +69,12 @@ active Director state
 
 ## 5. 当前状态
 
-Batch 74 已完成研究与计划落档，代码实施尚未开始。下一步是先提交本计划
-checkpoint，再实现独立 persistence adapter、store/registry 接入和 pure +
-fresh-page verifier。
+Batch 74 已完成独立 persistence adapter、store/registry 接入、pure verifier
+和 fresh-page BrowserContext verifier。结果为
+`PERSISTENCE_FOCUSED_PASS`，结构化运行结果见
+[`runtime-audit.json`](runtime-audit.json)，实施细节见
+[`IMPLEMENTATION.md`](IMPLEMENTATION.md)。
+
+后续仍需独立规划 ordinary canvas graph/document persistence、copy/paste
+identity remap、inactive-owner reconciliation、真实资源 materialization、
+remote/cloud persistence 和 LibTV source-exact persistence 证据。
