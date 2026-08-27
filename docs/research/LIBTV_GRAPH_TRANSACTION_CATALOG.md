@@ -294,6 +294,22 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-098` | graph undo of accepted projection does not imply cancellation of provider operation | `REQUIRED_CORRECTNESS` | graph history and future operation owner are separate | compensate/cancel requires a dedicated authorized command |
 | `LIBTV-GI-099` | editor dirty/accepted、graph history/dirty and durable save revision remain separate states | `REQUIRED_CORRECTNESS` | local prototype has no durable save authority | no local Save/Submitted copy masquerades as persisted result |
 | `LIBTV-GI-100` | ordinary LibTV、FrameOS and Director editor/session/history owners remain route/store isolated | `REQUIRED_CORRECTNESS` | route/store domains are intentionally separate | no shared form/history singleton or route mode flag |
+| `LIBTV-GI-101` | media/output identity is distinct from URL and selected index | `REQUIRED_CORRECTNESS` | Open Canvas normalization is useful but current clone has URL-centric ordinary nodes | output selection and copy/history do not depend on locator/index coincidence |
+| `LIBTV-GI-102` | intrinsic、request、semantic node-frame、passive measured and export dimensions remain distinct authorities | `REQUIRED_CORRECTNESS` | generic image currently mixes square media data with landscape graph frame | no field-name or string heuristic chooses geometry authority |
+| `LIBTV-GI-103` | accepted intrinsic metadata is finite、positive and provenance-tagged | `REQUIRED_CORRECTNESS` | current preview trusts node-data dimensions without decode reconciliation | invalid/zero/guessed values cannot become full-media authority |
+| `LIBTV-GI-104` | full-media and thumbnail dimensions/freshness cannot overwrite one another | `REQUIRED_CORRECTNESS` | current source uses rounded resized thumbnails；Open Canvas aliases lack full provenance | thumbnail ready/rounding never marks full media ready or triggers semantic reflow |
+| `LIBTV-GI-105` | every media-bearing node declares one frame policy | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | source landscape fixtures are media-shaped；generic clone paths are fixed landscape | source-shaped/request-shaped/type-fixed/explicit semantic frame never chosen implicitly |
+| `LIBTV-GI-106` | every media surface declares one rendition profile | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | cover/contain currently depends on component branch | node/detail/candidate/editor/filmstrip/status/export fit and object position are explicit |
+| `LIBTV-GI-107` | cover/contain transform uses actual media content box and round-trips within tolerance | `REQUIRED_CORRECTNESS` | source bordered frame differs from inner image box | border/crop/letterbox offsets cannot corrupt editor coordinates |
+| `LIBTV-GI-108` | editor coordinate intent and transform baseline are explicit | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | current marks normalize against visible cropped node plane | `FULL_INTRINSIC` and `VISIBLE_RENDER` cannot be silently interchanged |
+| `LIBTV-GI-109` | selected output resolves by stable identity and owns its own intrinsic metadata | `REQUIRED_CORRECTNESS` | ordinary clone lacks per-output descriptor | URL/index change cannot reuse stale dimensions or editor baseline |
+| `LIBTV-GI-110` | mixed-ratio output policy is declared before selection commit | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | Open Canvas edited output can drift from request-shaped frame | reflow/preserve-cover/preserve-contain/reject/source-required is explicit |
+| `LIBTV-GI-111` | accepted output selection and optional frame change are one atomic graph transaction | `REQUIRED_CORRECTNESS` | no ordinary output switch authority exists | no intermediate wrong crop/selection/history state |
+| `LIBTV-GI-112` | frame/rendition revision and measurement epoch prevent stale anchor use | `REQUIRED_CORRECTNESS` | current overlay formulas lack media-ready/frame freshness owner | old rect cannot place toolbar/panel or bind editor after reflow/switch |
+| `LIBTV-GI-113` | passive measurement has zero semantic history and no resize meaning | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | React Flow measured dimensions are runtime input；generic resize source evidence absent | no history/portable document/user-resize claim from passive measurement |
+| `LIBTV-GI-114` | status and poster/full-media transitions preserve declared semantic frame | `REQUIRED_CORRECTNESS` | failed/pending/ready nodes currently keep frames but poster/video fit is incidental | loading/error/retry/playback cannot collapse or silently reframe node |
+| `LIBTV-GI-115` | last-known-good media/frame survives failed replace or metadata probe | `REQUIRED_CORRECTNESS` | media ingress contract already requires replacement retention | no zero dimensions、blank node or stale thumbnail downgrade |
+| `LIBTV-GI-116` | route/canvas/generation isolation applies to metadata、measurement and rendition owners | `REQUIRED_CORRECTNESS` | ordinary LibTV、Director and FrameOS are separate domains | no cross-route metadata cache、measurement callback or rendition projection |
 
 ### 10.2 Compatibility case queue
 
@@ -425,6 +441,25 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-124` bitmap budget | history exceeds bytes/entries | append snapshots | deterministic eviction and exact release | small synthetic buffer fixture |
 | `LIBTV-GC-125` graph undo after accepted commit | session closed after one commit | graph undo | graph restores previous semantic state；no local session revival | graph history oracle required |
 | `LIBTV-GC-126` route isolation | FrameOS/Director event | dispatch ordinary editor callback | no ordinary LibTV session/history/graph effect | architectural assertion |
+| `LIBTV-GC-127` matching landscape source | valid intrinsic + source-shaped frame | render node | source-backed frame + centered cover；no creative crop beyond thumbnail/border rounding | source landscape recorded；fixture policy pure |
+| `LIBTV-GC-128` default square image | `512x512` media enters ordinary image | derive frame | explicit square/aspect-preserving frame or declared non-source fallback；no silent `512x288` crop | current runtime mismatch |
+| `LIBTV-GC-129` portrait Director capture | `9:16` actual output | project ordinary image result | aspect-aware frame/full-content rendition；no generic landscape crop | current runtime mismatch |
+| `LIBTV-GC-130` same-ratio output switch | selected identity changes | select output | one atomic selection commit；frame may remain；fresh metadata projected | pure output fixture required |
+| `LIBTV-GC-131` mixed-ratio output reflow | declared reflow policy | select output | selection + frame one transaction；measurement pending then overlays reconcile | source policy partial |
+| `LIBTV-GC-132` mixed-ratio preserve cover | declared cover policy | select output | frame stable；crop transform updates；full detail remains reachable | pure rendition fixture required |
+| `LIBTV-GC-133` mixed-ratio preserve contain | declared contain policy | select output | frame stable；letterbox explicit；no hidden crop | pure rendition fixture required |
+| `LIBTV-GC-134` mixed-ratio source unknown | no source/product policy | select output | zero mutation；typed source-decision result | source-gated |
+| `LIBTV-GC-135` thumbnail ratio rounding | thumbnail differs slightly from full metadata | thumbnail/full swap | no graph-frame/history/overlay jump | source landscape positive input |
+| `LIBTV-GC-136` thumbnail/full mismatch | materially different ratios | open editor/detail | full authority owns editor/output；thumbnail remains scan rendition | deterministic mismatch fixture required |
+| `LIBTV-GC-137` metadata probe failure | incoming media invalid/fails | resolve probe | preserve last-known-good or stable placeholder；no zero dimensions/history | composes media ingress fixture |
+| `LIBTV-GC-138` status transition | pending -> error -> retry -> ready | project statuses | declared frame stable unless accepted frame command occurs | current status islands positive |
+| `LIBTV-GC-139` cover editor mapping | known crop + full-media intent | map pointer | content-box/crop offsets produce expected intrinsic coordinate and round-trip | transform oracle required |
+| `LIBTV-GC-140` editor drift | output/frame changes while dirty | continue/commit | explicit conflict/invalidate/rebase；no silent mark retarget | composes editor-session fixture |
+| `LIBTV-GC-141` passive measurement | React Flow reports current-frame rect | apply measurement | runtime cache only；zero graph history | framework adapter fixture required |
+| `LIBTV-GC-142` stale measurement | old frame revision completes after new switch | apply measurement | stale ignored；current overlay/editor unchanged | deterministic measurement clock required |
+| `LIBTV-GC-143` detail preview | selected output valid | open/close contain inspector | graph/selection/frame/history unchanged；full media visible | current preview partial |
+| `LIBTV-GC-144` absent resize product | ordinary node without source-authorized resize | inspect/interact | no enabled resize affordance or fabricated resize command | source/product gate |
+| `LIBTV-GC-145` route isolation | FrameOS/Director media event | dispatch ordinary rendition callback | no ordinary LibTV rendition/graph/overlay effect | architectural assertion |
 
 ### 10.3 Decision and verification order
 
@@ -583,6 +618,22 @@ Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING_OR_PAR
 
 Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`。Current Text/Picture/Subtitle/image-mode/config/request islands remain evidence inputs；no common profile/session/history/commit adapter、focused fixture/verifier、global form framework、real provider/storage or source mutation is authorized by this handoff。
 
+### 10.15 Media rendition, aspect and node geometry handoff
+
+[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md) is the cross-media geometry authority for：
+
+- stable media/output identity、full/thumbnail intrinsic metadata and provenance；
+- generation request、semantic node frame、passive measured rect、surface rendition、visible media rect、editor media space and export output separation；
+- source-shaped/request-shaped/type-fixed/explicit semantic frame policies and per-surface cover/contain/object-position profiles；
+- content-box fit transform、mixed-ratio output switch、frame/rendition revision and measurement epoch；
+- editor open gate、`FULL_INTRINSIC` versus `VISIBLE_RENDER`、drift and commit baseline；
+- status/thumbnail/full/poster transitions、last-known-good and graph/history isolation；
+- Open Canvas `OC-081..090` positive methods and request-shaped/missing-metadata/output-drift/resize-ambiguity counterexamples；
+- source landscape `LIBTV-MRG-SRC-001..006` plus portrait/square/video/mixed-output/resize decision queue；
+- `LIBTV-MRG-I-001..042`、`LIBTV-MRG-DQ-001..014`、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-VR-023` and `GI-101..116/GC-127..145`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_FRAGMENTED / SOURCE_RATIO_DIVERSE_PARITY_GATED`。Initial landscape fixtures and Director animation output are positive method islands；no common output metadata/frame/rendition/measurement/editor-transform runtime、fixture/verifier、generic resize、provider integration or source mutation is authorized by this handoff。
+
 ## 11. 新事务立项模板
 
 任何新的 LibTV graph 能力，在编码授权前至少落档以下字段：
@@ -629,3 +680,4 @@ Backend/prototype boundary:
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：`PAR-008` 的本地 fixture 和 reset 规则。
 - [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：node/edge/primary selection、focus zone、command context、单层 Escape 和 `VR-019` 的正式设计权威。
 - [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：media intent、temporary lease、asset/reference、cohort transaction、reachability/release 和 `VR-021` 的正式设计权威。
+- [`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)：media/output/request/frame/measured/rendition/editor/export、fit transform、mixed-ratio transaction 和 `VR-023` 的正式设计权威。

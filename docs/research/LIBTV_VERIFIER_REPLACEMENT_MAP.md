@@ -430,6 +430,22 @@ Open Canvas `OC-061..070` 正反面、clone/source dated audit、ten entry profi
 
 Open Canvas `OC-071..080` 正反面、clone dated audit、ten profiles、`LIBTV-EDS-I-001..040`、`GI-085..100/GC-109..126` and implementation slices 统一见 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)。`VR-022` 组合 `VR-010/013..015/017..021`，但不取代各 profile 的 source visual、graph/async/resource、selection/focus 或 route-specific contract。
 
+### `LIBTV-VR-023`：media rendition, aspect and node geometry authority
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-001/002/008/009/011/014/015/016` visual geometry、media truth、graph projection、prototype honesty、canvas isolation、editor continuity and rendition correctness |
+| Old verifier | Batch 9/29/31/52/53/54/60 以及 Shot/Director 相关 bounded contracts；各自保留已证 surface/fixture，不推导共同 media/frame/node geometry authority |
+| Required fixture | `LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` with square/portrait/landscape/odd-size stills、video poster/video descriptors、mixed-output identity、invalid metadata and deterministic measurement clock |
+| Static checks | intrinsic、declared、media-frame、graph-node、measured and editor-stage dimensions各有唯一 owner；每个 surface 声明 rendition profile、fit policy、frame policy、fallback and mutation authority |
+| Pure checks | finite/provenance validation；contain/cover transform；frame derivation；mixed-output disposition；status-independent geometry；measurement epoch and stale-result rejection |
+| Transaction | accepted output/frame change is one declared graph/history transaction；passive load、measurement、preview、detail and metadata observation are zero graph history；invalid/stale/no-op leaves zero residue |
+| UI/browser | square/portrait/odd-size composition；node/detail/editor rendering；status transition stability；selected toolbar/panel freshness；editor round-trip；zoom/resize/switch/delete and route isolation |
+| Blockers | common rendition/profile/measurement runtime、focused fixture and implementation authorization；source portrait/square/video/mixed-output/resize evidence remains partial |
+| Exit | one authority per dimension；current frame/fit is explicit；no stale anchor/editor transform；no silent crop, distortion, fabricated resize or metadata-driven graph mutation |
+
+Open Canvas `OC-081..090` 正反面、clone/source dated audit、surface profiles、`LIBTV-MRG-I-001..040`、`GI-101..116/GC-127..145` and decision queue 统一见 [`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)。`VR-023` 组合 `VR-001/002/010/013..022`，但不取代 source visual、editor-session、graph、resource、overlay positioning 或 route-specific contract。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -478,6 +494,7 @@ Open Canvas `OC-071..080` 正反面、clone dated audit、ten profiles、`LIBTV-
 - `LIBTV-VR-020` 的 six-domain spatial model、actual host、live/stable/bootstrap viewport、gesture/placement owner、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 controlled viewport、window center 或 Open Canvas Quick Add 推导普通 LibTV 空间权威已经统一；
 - `LIBTV-VR-021` 的 ten entry profiles、validation/probe/materialization、cohort/replace、asset/reference、lease/reachability、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 mock upload、object URL preview、data/blob locator 或 Open Canvas upload route 推导 durable asset/resource lifecycle 已实现；
 - `LIBTV-VR-022` 的 ten editor profiles、baseline/draft、native/local/graph undo、commit/close/drift、bitmap budget、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`；不得用局部 `useState`、30-step snapshot、submitted copy 或可见 Undo/Save 图标推导共同 editor authority 已实现；
+- `LIBTV-VR-023` 的 dimension authority、rendition/frame/fit profiles、measurement epoch、mixed-output disposition、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`；不得用 landscape 单样本、CSS width/height、图片 `onLoad`、Director animation method 或可见 contain/cover 结果推导共同 media geometry authority 已实现；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

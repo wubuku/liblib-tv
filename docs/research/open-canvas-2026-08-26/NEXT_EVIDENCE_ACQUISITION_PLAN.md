@@ -43,9 +43,10 @@
 | `OC-EQ-005` | ready-video、逐帧拉片、片段重拍、长视频的 partial/retry/result replacement 生命周期 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-005`、`LIBTV-VR-006/007` |
 | `OC-EQ-007` | LibTV media ingress 的 exact limits/reason、progress/cancel/retry、multi-file placement、replace、asset registration 和 refresh restoration 怎样运行 | `PARTIAL_RECORDED`：只读 surface/domain 已记录；mutation 部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-011`、`LIBTV-PAR-014`、`LIBTV-VR-021` |
 | `OC-EQ-008` | LibTV foreground editor 的 blur/Enter/Escape/IME、local/global undo、reset/redo、dirty close、source drift 和 submit/failure/close 怎样运行 | `PARTIAL_RECORDED`：clone/Open Canvas static authority 已完成；source interaction `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-012`、`LIBTV-PAR-015`、`LIBTV-VR-022` |
+| `OC-EQ-009` | LibTV 的 intrinsic/media-frame/graph/measured/editor dimensions、fit/frame policy、ratio-diverse output 和 resize freshness 怎样运行 | `PARTIAL_RECORDED`：现有 landscape image 只读样本；其余 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-013`、`LIBTV-PAR-016`、`LIBTV-VR-023` |
 | `OC-EQ-006` | Open Canvas 新 commit 是否改变既有 claim、pattern、adoption 或 LibTV 启发 | `TRIGGERED_BY_UPSTREAM_CHANGE` | 条件性高 | `OC-TR-*`、`OC-ADOPT-*`、baseline decision |
 
-这八项是当前固定研究基线下的完整证据队列。没有新的 source drift、fixture 或 upstream SHA 时，不另建同主题总览。
+这九项是当前固定研究基线下的完整证据队列。没有新的 source drift、fixture 或 upstream SHA 时，不另建同主题总览。
 
 ## 4. `OC-EQ-001`：LibTV source freshness
 
@@ -269,9 +270,51 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 
 出现费用/任务语义未知、无法恢复初始 graph/history/media、保存会覆盖他人内容、资源无法清理、登录态变化或 source surface 没有明确 owner 时立即停止。只读/shared fixture 不输入；没有 disposable fixture 时只维护 decision queue 和 local deterministic design，不通过 Open Canvas 行为填补 LibTV source unknown。
 
-## 11. `OC-EQ-006`：Open Canvas upstream impact diff
+## 11. `OC-EQ-009`：Media rendition/aspect/node geometry source evidence
 
-### 11.1 触发条件
+### 11.1 最新有界结果
+
+2026-08-27 的共享项目只读 freshness 只覆盖一个现有 landscape image selected state：普通图片节点、顶部工具条和底部面板在该样本下的 frame/anchor 关系已记录，见 [`LIBTV_SOURCE_FRESHNESS_2026-08-27.md`](LIBTV_SOURCE_FRESHNESS_2026-08-27.md)。这不能回答 portrait/square/odd-size、video、mixed-output、editor round-trip、media replacement 或 resize freshness。
+
+Open Canvas 固定版本与 committed clone 的静态证据、维度权威和验证设计已分别落在 [`LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md) 和 `LIBTV-VR-023`。它们提供 correctness floor，不是 LibTV source parity。
+
+### 11.2 共享页面允许的只读观察
+
+只在现有媒体节点和既有状态上读取：
+
+1. DOM/computed rect、`img`/`video` 可见属性、object-fit/object-position、node wrapper 和 measured dimensions；
+2. 当前 zoom/viewport 下 node、toolbar、panel、preview/detail 的 anchor 和 clipping；
+3. 已存在 output/candidate 切换控件的 label、selected identity 和禁用态，但不切换会写入的候选；
+4. 已加载 bundle 中显式 ratio/frame/fit/resize/metadata 分支；
+5. 截图、结构化 JSON、日期、URL、viewport、zoom、fixture identity 和动作清单。
+
+禁止上传、生成、保存、替换媒体、拖拽 resize handle、编辑画面、切换会提交状态的 output、创建/删除节点或边。现有样本不足时记录 `UNKNOWN`，不能以 clone 或 Open Canvas 数据补齐 source fact。
+
+### 11.3 Disposable fixture 接收条件
+
+交互阶段必须先接收 [`../LIBTV_FIXTURE_CATALOG.md`](../LIBTV_FIXTURE_CATALOG.md) 的 `LIBTV-FIX-SOURCE-MEDIA-RENDITION-01`：独立可丢弃 project、已知且非私人 square/portrait/landscape/odd-size image、ready video/poster、mixed-output identity、初始 graph/history、逐动作授权和可证明 reset/cleanup owner。
+
+fixture 有媒体不等于授权上传或生成；fixture 可丢弃不等于授权保存、替换、resize 或编辑。每项动作必须单独列入允许清单，任何费用、远端任务、账户 asset 或不可恢复 mutation 都使场景停止。
+
+### 11.4 场景与记录轴
+
+1. 同一 node type 的 square/portrait/landscape/odd-size initial composition；
+2. still/video/poster 的 intrinsic、declared、frame、graph 和 measured dimensions；
+3. contain/cover、letterbox/crop、fallback 和 metadata failure；
+4. mixed-output/candidate switch 的 output identity、frame policy、selection/overlay continuity；
+5. node resize、viewport zoom、host resize、canvas switch 后的 measurement epoch 和 stale anchor rejection；
+6. Preview、Annotate、Element、Picture、Subtitle 等 foreground surface 的 editor-stage transform 与 round-trip；
+7. accepted frame/output change 的 graph/history cardinality，以及 passive load/measurement 的 zero-history contract。
+
+每个场景记录 `intrinsic -> declared -> media frame -> graph node -> measured -> editor stage` 全链路、fit/frame policy、output identity、nodes/edges/selection/history、visible clipping、feedback 和 cleanup。不要用最终看起来“没变形”推导 transform 正确，也不要用 CSS width/height 推导 semantic graph dimension。
+
+### 11.5 退出与停止
+
+共享页面的现有 landscape 样本不重复采样，除非出现 source drift 或新 viewport/state 问题。缺少 ratio-diverse/video/mixed-output/resize fixture 时保持 `PARTIAL_RECORDED`；需要上传、生成、保存、付费、覆盖媒体或无法 reset 时立即停止。证据完成只更新 source/component/traceability/parity/fixture/verifier authority，不自动授权 clone 编码。
+
+## 12. `OC-EQ-006`：Open Canvas upstream impact diff
+
+### 12.1 触发条件
 
 只有出现以下事件之一才启动：
 
@@ -280,13 +323,13 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 - 既有 claim 的文件路径消失，需要确认是否重构；
 - 用户明确要求评估是否更新 submodule baseline。
 
-### 11.2 执行方法
+### 12.2 执行方法
 
 严格使用 [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：先比较 candidate SHA，不移动当前 pointer；逐项评估 claim、pattern、adoption、LibTV impact 和 runtime；最后给出 `KEEP_PINNED`、`ADD_SECOND_BASELINE`、`UPDATE_BASELINE` 或 `REJECT_CANDIDATE`。
 
 候选源码变化不能自动改写 LibTV source contract。即使建议 `UPDATE_BASELINE`，submodule pointer、研究文档和 LibTV 代码也必须分 commit，并分别取得所需授权。
 
-## 12. 执行波次
+## 13. 执行波次
 
 ### Wave A：当前可主动推进
 
@@ -295,6 +338,7 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 3. `OC-EQ-003`：先做 bundle/Handle 静态分支审计（已完成）；
 4. `OC-EQ-007`：只读 surface/domain 审计已完成；不重复打开 chooser 或选择文件；
 5. `OC-EQ-008`：clone/Open Canvas static/design 已完成；共享源站只保持只读，不输入或保存；
+6. `OC-EQ-009`：只读现有 landscape media/overlay/fit/rect；不构造新比例、不 resize、不切换会写入的 output；
 
 Wave A 的任何一项一旦需要输入、选择会写入的参数或 graph mutation，就停止在静态证据，不自动进入 Wave B。
 
@@ -305,6 +349,7 @@ Wave A 的任何一项一旦需要输入、选择会写入的参数或 graph mut
 3. `OC-EQ-003` 的真实 graph compatibility 场景；
 4. `OC-EQ-007` 的 media validation/progress/cancel/replace/asset/refresh 场景。
 5. `OC-EQ-008` 的 editor blur/undo/reset/dirty-close/source-drift/submit 场景。
+6. `OC-EQ-009` 的 ratio-diverse still/video/mixed-output/resize/editor-round-trip 场景。
 
 Wave B 必须逐 fixture 授权，不能用一个“可丢弃项目”笼统授权所有生成、上传、保存和账户动作。
 
@@ -312,7 +357,7 @@ Wave B 必须逐 fixture 授权，不能用一个“可丢弃项目”笼统授�
 
 1. `OC-EQ-006`：仅在新 upstream SHA 出现时执行。
 
-## 13. 单项研究交付模板
+## 14. 单项研究交付模板
 
 每次证据获取形成一个有日期、可独立提交的批次，至少包含：
 
@@ -334,7 +379,7 @@ Commit / push:
 
 新事实先追加到最近的 authority document，不另建“最终版”总览。原始 JSON 和截图必须有解释文档；截图文件名中的 `final` 不代表事实永久有效。
 
-## 14. 完成定义
+## 15. 完成定义
 
 一个 `OC-EQ-*` 只有在以下条件满足时才能关闭：
 
