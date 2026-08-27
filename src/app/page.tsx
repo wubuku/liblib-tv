@@ -50,6 +50,11 @@ import {
   reconcileLibTVUiOwners,
   type LibTVUiOwnerSnapshot,
 } from "@/lib/libtvUiOwnerReconciliation";
+import {
+  isLibTVCanvasCommandKey,
+  isLibTVEditableCommandTarget,
+  resolveLibTVBlockingForegroundSurface,
+} from "@/lib/libtvSelectionCommandContext";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
   ssr: false,
@@ -87,6 +92,7 @@ export default function Home() {
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
+    selectElements,
     selectedNodeIds,
     selectedEdgeIds,
     routeReactFlowChanges,
@@ -108,7 +114,7 @@ export default function Home() {
     editorMode,
     isAssetPanelOpen,
     isAgentOpen,
-    closeAllPanels,
+    closeTopForegroundSurface,
     toggleAddNodePanel,
     isShortcutsPanelOpen,
     toggleShortcutsPanel,
@@ -142,6 +148,9 @@ export default function Home() {
     if (activeCanvasId !== "canvas-2") return activeCanvas?.viewport ?? { x: 0, y: 0, zoom: 1 };
     return typeof window !== "undefined" && window.innerWidth <= 768 ? compactViewport : desktopViewport;
   });
+  const focusCanvasRoot = useCallback(() => {
+    flowContainerRef.current?.focus({ preventScroll: true });
+  }, []);
 
   const flowNodes = useMemo<Node[]>(
     () => {
@@ -355,33 +364,50 @@ export default function Home() {
   useEffect(() => {
     const handleActiveImageSurfaceKeyDown = (event: KeyboardEvent) => {
       const uiState = useUIStore.getState();
-      if (!uiState.imagePreview && !uiState.imageAnnotate && !uiState.imageElementEdit) return;
+      const hasActiveImageSurface =
+        Boolean(uiState.imagePreview) ||
+        Boolean(uiState.imageAnnotate) ||
+        Boolean(uiState.imageElementEdit);
+      if (hasActiveImageSurface) {
+        const modifier = event.metaKey || event.ctrlKey;
+        const blocksBrowserDefault =
+          event.key === "Escape" ||
+          event.key === "Delete" ||
+          event.key === "Backspace" ||
+          event.key === "Tab" ||
+          event.code === "Space" ||
+          (modifier && ["z", "y", "d"].includes(event.key.toLowerCase()));
+        if (blocksBrowserDefault) event.preventDefault();
+        event.stopImmediatePropagation();
 
-      const modifier = event.metaKey || event.ctrlKey;
-      const blocksBrowserDefault =
-        event.key === "Escape" ||
-        event.key === "Delete" ||
-        event.key === "Backspace" ||
-        event.key === "Tab" ||
-        event.code === "Space" ||
-        (modifier && ["z", "y", "d"].includes(event.key.toLowerCase()));
-      if (blocksBrowserDefault) event.preventDefault();
-      event.stopImmediatePropagation();
+        if (event.key !== "Escape") return;
+        if (uiState.imagePreview) uiState.closeImagePreview();
+        else if (uiState.imageAnnotate) uiState.closeImageAnnotate();
+        else uiState.closeImageElementEdit();
+        return;
+      }
 
-      if (event.key !== "Escape") return;
-      if (uiState.imagePreview) uiState.closeImagePreview();
-      else if (uiState.imageAnnotate) uiState.closeImageAnnotate();
-      else uiState.closeImageElementEdit();
+      if (event.isComposing || isLibTVEditableCommandTarget(event.target)) return;
+      if (!resolveLibTVBlockingForegroundSurface(uiState)) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        uiState.closeTopForegroundSurface();
+        focusCanvasRoot();
+        event.stopImmediatePropagation();
+        return;
+      }
+      if (isLibTVCanvasCommandKey(event)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      const isEditableTarget = Boolean(
-        target?.closest("input, textarea, [contenteditable='true'], [contenteditable='plaintext-only']"),
-      );
-      if (isEditableTarget) return;
+      if (event.isComposing || isLibTVEditableCommandTarget(event.target)) return;
       const uiState = useUIStore.getState();
       if (uiState.activeDirectorNodeId) return;
+      if (resolveLibTVBlockingForegroundSurface(uiState)) return;
 
       const modifier = event.metaKey || event.ctrlKey;
 
@@ -391,16 +417,19 @@ export default function Home() {
         return;
       }
       if (event.key === "Delete" || event.key === "Backspace") {
-        const { selectedNodeIds: nodeIds, selectedNodeId: nodeId } = useCanvasStore.getState();
-        if (nodeIds.length > 0 || nodeId) {
+        const selection = useCanvasStore.getState().getSelectionSnapshot();
+        if (selection.nodeIds.length > 0) {
           event.preventDefault();
-          removeSelectedNodes();
+          removeSelectedNodes(selection.nodeIds);
         }
       }
       if (event.key === "Escape") {
-        if (useUIStore.getState().activeDirectorNodeId) return;
-        selectNode(null);
-        closeAllPanels();
+        const selection = useCanvasStore.getState().getSelectionSnapshot();
+        if (selection.kind !== "none") {
+          event.preventDefault();
+          selectElements({ nodeIds: [], edgeIds: [] });
+          focusCanvasRoot();
+        }
       }
       if (modifier && event.key.toLowerCase() === "z") {
         event.preventDefault();
@@ -412,10 +441,10 @@ export default function Home() {
         redo();
       }
       if (modifier && event.key.toLowerCase() === "d") {
-        const { selectedNodeIds: nodeIds, selectedNodeId: nodeId } = useCanvasStore.getState();
-        if (nodeIds.length > 0 || nodeId) {
+        const selection = useCanvasStore.getState().getSelectionSnapshot();
+        if (selection.nodeIds.length > 0) {
           event.preventDefault();
-          duplicateSelectedNodes();
+          duplicateSelectedNodes(selection.nodeIds);
         }
       }
       if (event.key === "Tab") {
@@ -424,8 +453,9 @@ export default function Home() {
       }
       if (!modifier && !event.altKey && event.key.toLowerCase() === "g") {
         event.preventDefault();
-        if (event.shiftKey) ungroupSelectedNodes();
-        else groupSelectedNodes();
+        const selection = useCanvasStore.getState().getSelectionSnapshot();
+        if (event.shiftKey) ungroupSelectedNodes(selection.nodeIds);
+        else groupSelectedNodes(selection.nodeIds);
       }
       if (event.altKey && event.shiftKey && event.key.toLowerCase() === "f") {
         event.preventDefault();
@@ -472,14 +502,15 @@ export default function Home() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [
-    closeAllPanels,
+    closeTopForegroundSurface,
     duplicateSelectedNodes,
     fitView,
+    focusCanvasRoot,
     groupSelectedNodes,
     organize,
     removeSelectedNodes,
     redo,
-    selectNode,
+    selectElements,
     ungroupSelectedNodes,
     setCanvasTool,
     toggleAddNodePanel,
@@ -501,7 +532,12 @@ export default function Home() {
       <TopNavBar />
       {isAssetPanelOpen && <AssetManagerPanel />}
 
-      <main ref={flowContainerRef} className="relative min-w-0 flex-1 overflow-hidden">
+      <main
+        ref={flowContainerRef}
+        data-libtv-canvas-focus-root
+        tabIndex={-1}
+        className="relative min-w-0 flex-1 overflow-hidden outline-none"
+      >
         {editorMode === "storyboard" ? (
           <StoryboardBoard />
         ) : (
@@ -522,7 +558,10 @@ export default function Home() {
             onNodeClick={(event, node) => {
               if (!event.metaKey && !event.ctrlKey) selectNode(node.id);
             }}
-            onPaneClick={() => selectNode(null)}
+            onPaneClick={() => {
+              selectElements({ nodeIds: [], edgeIds: [] });
+              focusCanvasRoot();
+            }}
             onNodeDragStart={(_, node) => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
               if (!currentCanvas) {

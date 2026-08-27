@@ -15,6 +15,10 @@ import {
   type LibTVReactFlowChangeRoutingRequest,
   type LibTVReactFlowChangeRoutingResult,
 } from "@/lib/libtvReactFlowChangeRouting";
+import {
+  captureLibTVSelectionSnapshot,
+  type LibTVSelectionSnapshot,
+} from "@/lib/libtvSelectionCommandContext";
 
 export interface GraphSnapshot {
   nodes: Node[];
@@ -301,11 +305,11 @@ interface CanvasState {
     dimensions: ShotBreakdownDimension[],
   ) => void;
   duplicateNode: (nodeId: string, includeEdges?: boolean) => void;
-  duplicateSelectedNodes: () => void;
+  duplicateSelectedNodes: (nodeIds?: readonly string[]) => void;
   removeNode: (nodeId: string) => void;
-  removeSelectedNodes: () => void;
-  groupSelectedNodes: () => void;
-  ungroupSelectedNodes: () => void;
+  removeSelectedNodes: (nodeIds?: readonly string[]) => void;
+  groupSelectedNodes: (nodeIds?: readonly string[]) => void;
+  ungroupSelectedNodes: (nodeIds?: readonly string[]) => void;
   updateNodeData: (nodeId: string, data: Record<string, unknown>) => void;
   setNodes: (nodes: Node[], options?: SetGraphOptions) => void;
   setEdges: (edges: Edge[], options?: SetGraphOptions) => void;
@@ -333,6 +337,7 @@ interface CanvasState {
 
   // Getters
   getActiveCanvas: () => CanvasData | undefined;
+  getSelectionSnapshot: () => LibTVSelectionSnapshot;
 }
 
 const defaultCanvas = (id: string, name: string): CanvasData => ({
@@ -2464,17 +2469,19 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  duplicateSelectedNodes: () => {
+  duplicateSelectedNodes: (nodeIds) => {
     const { activeCanvasId } = get();
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas) return state;
-      const requestedIds =
-        state.selectedNodeIds.length > 0
-          ? state.selectedNodeIds
-          : state.selectedNodeId
-            ? [state.selectedNodeId]
-            : [];
+      const requestedIds = Array.from(
+        nodeIds ??
+          (state.selectedNodeIds.length > 0
+            ? state.selectedNodeIds
+            : state.selectedNodeId
+              ? [state.selectedNodeId]
+              : []),
+      );
       const includesGroup = requestedIds.some(
         (id) => currentCanvas.nodes.find((node) => node.id === id)?.type === "storyboard-group",
       );
@@ -2528,16 +2535,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  removeSelectedNodes: () => {
+  removeSelectedNodes: (nodeIds) => {
     const { activeCanvasId } = get();
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       const requestedIds = new Set(
-        state.selectedNodeIds.length > 0
-          ? state.selectedNodeIds
-          : state.selectedNodeId
-            ? [state.selectedNodeId]
-            : [],
+        nodeIds ??
+          (state.selectedNodeIds.length > 0
+            ? state.selectedNodeIds
+            : state.selectedNodeId
+              ? [state.selectedNodeId]
+              : []),
       );
       if (!currentCanvas || requestedIds.size === 0) return state;
       const hasSelectedNode = currentCanvas.nodes.some((node) => requestedIds.has(node.id));
@@ -2563,12 +2571,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  groupSelectedNodes: () => {
+  groupSelectedNodes: (nodeIds) => {
     const { activeCanvasId } = get();
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas) return state;
-      const selectedIds = new Set(state.selectedNodeIds);
+      const selectedIds = new Set(nodeIds ?? state.selectedNodeIds);
       const nodesById = new Map(currentCanvas.nodes.map((node) => [node.id, node]));
       const children = currentCanvas.nodes.filter(
         (node) => selectedIds.has(node.id) && node.type !== "storyboard-group",
@@ -2632,12 +2640,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  ungroupSelectedNodes: () => {
+  ungroupSelectedNodes: (nodeIds) => {
     const { activeCanvasId } = get();
     set((state) => {
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas) return state;
-      const selectedIds = new Set(state.selectedNodeIds);
+      const selectedIds = new Set(nodeIds ?? state.selectedNodeIds);
       const selectedNodes = currentCanvas.nodes.filter((node) => selectedIds.has(node.id));
       const groupId =
         selectedNodes.find((node) => node.type === "storyboard-group")?.id ??
@@ -3044,6 +3052,21 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const { canvases, activeCanvasId } = get();
     return canvases.find((c) => c.id === activeCanvasId);
   },
+
+  getSelectionSnapshot: () => {
+    const state = get();
+    const activeCanvas = state.canvases.find(
+      (canvas) => canvas.id === state.activeCanvasId,
+    );
+    return captureLibTVSelectionSnapshot({
+      canvasId: state.activeCanvasId,
+      availableNodeIds: activeCanvas?.nodes.map((node) => node.id) ?? [],
+      availableEdgeIds: activeCanvas?.edges.map((edge) => edge.id) ?? [],
+      selectedNodeIds: state.selectedNodeIds,
+      selectedNodeId: state.selectedNodeId,
+      selectedEdgeIds: state.selectedEdgeIds,
+    });
+  },
 }));
 
 declare global {
@@ -3059,6 +3082,7 @@ declare global {
       request: LibTVReactFlowChangeRoutingRequest;
       result: LibTVReactFlowChangeRoutingResult;
     }>;
+    __libtv_capture_selection: () => LibTVSelectionSnapshot;
   }
 }
 
@@ -3067,6 +3091,8 @@ if (typeof window !== "undefined") {
   window.__libtv_react_flow_change_log = [];
   window.__libtv_route_react_flow_changes = (request) =>
     useCanvasStore.getState().routeReactFlowChanges(request);
+  window.__libtv_capture_selection = () =>
+    useCanvasStore.getState().getSelectionSnapshot();
   window.__libtv_validate_connection = (proposal) => {
     const canvas = useCanvasStore.getState().getActiveCanvas();
     return validateLibTVGraphConnection(

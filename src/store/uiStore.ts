@@ -1,4 +1,8 @@
 import { create } from "zustand";
+import {
+  resolveLibTVBlockingForegroundSurface,
+  type LibTVBlockingForegroundSurface,
+} from "@/lib/libtvSelectionCommandContext";
 
 export type PrimaryPanel =
   | "move"
@@ -104,6 +108,7 @@ interface UIState {
   setZoomLevel: (zoom: number) => void;
 
   // Close all panels
+  closeTopForegroundSurface: () => LibTVBlockingForegroundSurface | null;
   closeAllPanels: () => void;
 }
 
@@ -341,6 +346,41 @@ export const useUIStore = create<UIState>((set) => ({
     set((state) => ({ snapToGrid: !state.snapToGrid })),
 
   setZoomLevel: (zoom: number) => set({ zoomLevel: zoom }),
+
+  closeTopForegroundSurface: () => {
+    let closedSurface: LibTVBlockingForegroundSurface | null = null;
+    set((state) => {
+      closedSurface = resolveLibTVBlockingForegroundSurface(state);
+      switch (closedSurface) {
+        case "shortcuts":
+          return { isShortcutsPanelOpen: false };
+        case "canvas-dropdown":
+          return { isCanvasDropdownOpen: false };
+        case "add-node":
+          return { isAddNodePanelOpen: false };
+        case "zoom-menu":
+          return { isZoomMenuOpen: false };
+        case "share":
+          return { isSharePanelOpen: false };
+        case "notification":
+          return { isNotificationOpen: false };
+        case "user-menu":
+          return { isUserMenuOpen: false };
+        case "primary-panel":
+          return {
+            activePrimaryPanel: null,
+            isToolboxPanelOpen: false,
+            isMaterialPanelOpen: false,
+            isCharacterPanelOpen: false,
+            isHistoryPanelOpen: false,
+            isTutorialPanelOpen: false,
+          };
+        default:
+          return state;
+      }
+    });
+    return closedSurface;
+  },
 
   closeAllPanels: () =>
     set({
