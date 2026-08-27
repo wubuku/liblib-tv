@@ -604,3 +604,15 @@
 - 选择既有 `分镜 #2` 后只测量 node/top-toolbar/lower-panel rect，确认 media-shaped frame 会参与已有 center/gap contract；没有上传、生成、编辑、保存、删除或付费动作；
 - 原始固定路径和测量落档为 [`media-rendition-geometry-static-evidence-2026-08-27.json`](media-rendition-geometry-static-evidence-2026-08-27.json)；formal contract、fixture、`VR-023` 与治理链进入下一文档批；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站持久状态、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v54 media rendition、aspect 与 node geometry 正式合同
+
+本轮把 v53 fixed facts 转为不依赖实现细节、可由后续编码 agent 直接执行和验证的几何权威：
+
+- 新增 [`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)，把 media intrinsic、thumbnail、selected output、generation request、semantic node frame、passive measured rect、surface rendition、visible rect、editor media space 和 export output 分为十类 authority；
+- 定义 `SOURCE_MEDIA_SHAPED`、`REQUEST_ASPECT_SHAPED`、`TYPE_FIXED`、`EXPLICIT_SEMANTIC_FRAME` 四类 frame policy，以及 node poster、candidate、detail、editor、mark overlay 和 export 的具名 rendition profile；
+- 给出 cover/contain 双向坐标公式、border/content-box 边界、transform identity、mixed-ratio output 原子切换、last-known-good metadata 和 thumbnail/full freshness 规则；
+- 将 passive measurement 与 semantic resize 分离，引入 `frameRevision`、`renditionRevision`、`measurementEpoch`，禁止 stale rect 驱动选中节点 toolbar、lower panel 或 editor surface；
+- 新增 42 条 `LIBTV-MRG-I-*`、`GI-101..116`、`GC-127..145`、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-VR-023` 与 `LIBTV-MRG-DQ-001..014`；
+- 明确拒绝把 `width/height` 合并为一组字段、把 `object-fit` 当 node policy、把 request aspect 当 actual output、把 measured rect 当持久 resize 或照搬 Open Canvas fixed card policy；
+- runtime 仍 fragmented，source portrait/square/video/mixed-output/resize 仍 gated；本轮没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

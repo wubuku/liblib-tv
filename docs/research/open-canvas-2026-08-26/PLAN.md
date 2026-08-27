@@ -70,6 +70,7 @@
 | `../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md` | Open Canvas bitmap/text editor、save/upload handoff 正反面与 clone draft/local-history/inert command/graph gateway 的 fixed static audit |
 | `../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md` | ten editor profiles、session/baseline/draft、native/local/graph undo、commit/cancel、async/resource handoff、fixture 和 `LIBTV-VR-022` 正式设计权威 |
 | `../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md` | Open Canvas media/output/request-aspect/card rendition 正反面、clone dimension collision 与 LibTV source media-shaped node 的 fixed audit |
+| `../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md` | ten media geometry authorities、frame/rendition profile、fit transform、mixed-ratio output、measurement freshness、fixture 和 `LIBTV-VR-023` 正式设计权威 |
 | `libtv-media-ingress-source-dom-audit-2026-08-27.json` | LibTV source Add Resource、Generated History、Material、Asset、Shot 和 dormant uploader 的只读原始 DOM 记录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `OPEN_CANVAS_PATTERN_CARDS.md` | 十二类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial、media/resource 与 editor session authority 模式卡，以及对应的 LibTV 证据闸门 |
