@@ -14,7 +14,9 @@ Lifecycle status and promotion/supersession rules are defined in
 
 ## Current Drafts
 
-No standalone draft is active. New work should enter this directory only when it has not yet earned a stable research or batch home.
+| Draft | Scope | Status |
+|---|---|---|
+| [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_RESEARCH_PLAN_2026-08-27.md) | Open Canvas-inspired editor draft/local-history/commit research for the LibTV clone | `ACTIVE` / documentation only |
 
 Completed Open Canvas research plans, including the media ingress/resource lifecycle plan, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
 
