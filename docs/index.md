@@ -80,6 +80,7 @@ graph TD
 - [`research/liblib-canvas-batch73-2026-08-27/`](research/liblib-canvas-batch73-2026-08-27/)：Director capture/export/phone async authority、attempt supersession、stale/duplicate/invalid convergence、graph projection、resource transfer/release 与 focused verifier。
 - [`research/liblib-canvas-batch74-2026-08-27/`](research/liblib-canvas-batch74-2026-08-27/)：Director 版本化 Project Document 的 browser-local persistence、strict restore、storage failure 与 focused verifier。
 - [`research/liblib-canvas-batch75-2026-08-27/`](research/liblib-canvas-batch75-2026-08-27/)：Director project-scoped session clipboard、typed closure、two-pass identity/reference remap、camera detach、resource alias、one-history 与 guarded keyboard focused pass。
+- [`research/liblib-canvas-batch76-2026-08-27/`](research/liblib-canvas-batch76-2026-08-27/)：Director 全画布 owner reachability、inactive source/canvas tombstone、active runtime cleanup、幂等与 graph/persistence 边界实施计划。
 - [`research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director 17 个历史 browser verifier、Batch 67-75 current reliability gates、merge candidate/historical-only 分级与 `LIBTV-VR-024` 入口。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。
