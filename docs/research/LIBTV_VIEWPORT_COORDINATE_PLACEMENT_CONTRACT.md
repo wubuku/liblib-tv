@@ -467,7 +467,7 @@ The planner validates all spatial values and graph owner before allocating/commi
 
 | Strategy | Entry | Rule | Status |
 |---|---|---|---|
-| `HOST_CENTER` | ordinary Add Node / Character Library | actual host center -> flow center -> node top-left | design target; runtime mismatch |
+| `HOST_CENTER` | ordinary Add Node / Character Library | actual host center -> flow center -> node top-left | Batch 63 focused runtime pass |
 | `EXPLICIT_FLOW` | `addNodeAtPosition` / future accepted point | use validated current-owner flow point | runtime primitive; caller typing missing |
 | `SOURCE_RIGHT_SLOT` | derived outputs | absolute source right + domain offset/collision | current useful runtime |
 | `FIXED_FLOW_DELTA` | duplicate selection/node copy | root `+40,+40`, children per copy contract | current compatibility |
@@ -659,7 +659,7 @@ Reasons are stable codes/args, not localized strings. Presentation follows [`LIB
 | controlled viewport | page state + per-frame store write | live/stable phase split | partial |
 | stable viewport | per-canvas object | validated generation-bound owner | partial |
 | zoom percent | separate UI state | pure live projection | partial |
-| default add | window center arithmetic | actual host center conversion | mismatch |
+| default add | Batch 63 page-owned actual-host conversion | preserve and extend through current placement owner | focused runtime pass |
 | derived placement | absolute source + slot/collision | named strategy | useful partial |
 | duplicate | fixed flow delta | copy contract strategy | compatibility |
 | drag | per-frame positions + end history | owner-bound session/cancel | partial |
@@ -827,7 +827,9 @@ It does not replace their source, graph, accessibility or visual semantics.
 
 ## 19. Authorized Implementation Slices
 
-No slice is currently authorized. If authorization is granted later:
+Batch 63 has implemented Slice A's finite host/placement subset and Slice B's
+default-add host authority. Batch 64 is authorized for the Asset drawer subset
+of `§7.2` host-resize reconciliation. Other slices remain separately gated.
 
 ### Slice A: pure spatial model
 
