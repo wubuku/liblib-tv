@@ -65,10 +65,14 @@
 | `../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md` | validated selection、focus zone、command-context precedence、single-layer Escape、fixture 和 `LIBTV-VR-019` 正式设计权威 |
 | `../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md` | Open Canvas dual anchor/live viewport/placement 正反面与 clone host/window center、gesture/placement owner 的 fixed static audit |
 | `../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md` | actual host、six coordinate domains、live/stable/bootstrap/target viewport、gesture/placement owner、fixture 和 `LIBTV-VR-020` 正式设计权威 |
+| `../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md` | Open Canvas validation/probe/upload/dedupe/save 正反面、clone mock/local-preview/blob-data 与 LibTV source surface 分域的 fixed audit |
+| `../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` | ten entry profiles、intent/lease/asset/reference、cohort、reachability/release、fixture 和 `LIBTV-VR-021` 正式设计权威 |
+| `libtv-media-ingress-source-dom-audit-2026-08-27.json` | LibTV source Add Resource、Generated History、Material、Asset、Shot 和 dormant uploader 的只读原始 DOM 记录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 十类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context 和 spatial authority 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 十一类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial 与 media/resource authority 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 | [`LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 viewport/coordinate/gesture/placement 研究计划与交付历史 |
+| [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md) | 已完成并保留的 media ingress/resource lifecycle 研究计划与交付历史 |
 
 ## 5. 状态
 
@@ -97,6 +101,10 @@
 - [x] 完成 Open Canvas/clone viewport、coordinate domain、gesture owner 与 placement writer 双向静态审计
 - [x] 完成 viewport/coordinate/placement 正式合同、fixture 与 `LIBTV-VR-020` 设计
 - [x] 完成 `OC-PATTERN-10`、`OC-ADOPT-023`、`OC-BP-010`、`LIBTV-UIX-20` 与治理追溯同步
+- [x] 完成 Open Canvas/clone media validation、probe、materialization、descriptor、placeholder/partial/freshness/cleanup 双向静态审计
+- [x] 完成 LibTV source upload/history/material/asset/Shot surface 的只读 DOM 分域与原始 JSON 记录
+- [x] 完成 media intent/local lease/stable asset/node reference/cohort/reachability 正式合同、fixture 与 `LIBTV-VR-021` 设计
+- [x] 完成 `OC-PATTERN-11`、`OC-ADOPT-024`、`OC-BP-011`、`LIBTV-UIX-21`、`DEC-037` 与治理追溯同步
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

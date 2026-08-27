@@ -110,6 +110,8 @@ current source code + focused current run
 | `research/LIBTV_FIXTURE_CATALOG.md` | `CURRENT_INDEX` / `CURRENT_GUIDANCE` | LibTV 本地、Director、共享源站和所需 disposable fixture 的身份、构造、隔离、reset 与副作用边界 | 新 fixture、owner、storage/reset、允许动作或 parity gate 变化时更新；不把 fixture 记录当源站事实。 |
 | `research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md` | `CURRENT_RESEARCH` / `CURRENT_GUIDANCE` | 共享源站只读 freshness 复核顺序、采样、停止条件和 drift 处理 | 新日期 source run、登录态、viewport/zoom 样本或安全边界变化时追加，不改写旧 dated evidence。 |
 | `research/LIBTV_VERIFIER_REPLACEMENT_MAP.md` | `CURRENT_RESEARCH` / `CURRENT_GUIDANCE` | 历史 verifier、current source contract、local fixture 和 replacement queue 的迁移关系 | source contract、fixture maturity、verifier 或授权状态变化时更新；不直接删除历史断言。 |
+| `research/LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md` | `DATED_SOURCE_SNAPSHOT` / `CURRENT_RESEARCH` | fixed Open Canvas、committed clone 和当日 LibTV source media ingress/resource facts、counterexamples 与 unknowns | 新 source 日期、clone runtime 或 upstream SHA 变化时追加/另建审计；不把 Open Canvas/clone 行为升级为 LibTV 产品事实。 |
+| `research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` | `CURRENT_GUIDANCE` | media intent、local lease、asset/reference、cohort transaction、reachability/release、fixture 和 `VR-021` | entry profile、resource owner、backend boundary 或 verifier maturity 变化时更新；不承载 exact source limits/progress/storage。 |
 | `research/INSPECTION_GUIDE.md` | `CURRENT_GUIDANCE` | 源站检查和截图台账纪律 | 浏览器/取证流程变化时更新。 |
 
 ### 4.3 专项研究和 Batch
@@ -119,6 +121,7 @@ current source code + focused current run
 | `liblib-live-YYYY-MM-DD/` | `DATED_SOURCE_SNAPSHOT` | 指定日期、URL、登录态和 fixture 的源站观察 | 新复核另建日期记录或专项 audit；旧 JSON/截图不改写。 |
 | `liblib-seedance-2.5-2026-08-25/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | Seedance 主推能力、当前缺口、风险和授权闸门 | `FEATURE_GAP_MATRIX`/go-no-go 是当前导航；背景文章不是实现承诺。 |
 | `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理，process/model 矩阵负责各自设计权威，版本协议负责上游更新；不能替代 LibTV 源站合同。 |
+| Open Canvas media ingress research plan | `HISTORICAL_CONTRACT` | 2026-08-27 media ingress/resource lifecycle 的计划、执行顺序、停止条件和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + lifecycle contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
 | Open Canvas `IMPLEMENTATION_IMPLICATIONS.md` | `HISTORICAL_CONTRACT` | 第一阶段 Batch A-E 候选实施清单 | 保留研究 provenance；新工作使用采纳矩阵、交接蓝图和全局 parity ID，不扩展 A-E 编号。 |
 | `liblib-canvas-batchN-*` | `HISTORICAL_CONTRACT` | 该批次的计划、规格、实现、验证和截图解释 | README 中“完成/进行中”只解释当时批次；当前完成度看 ledger 和现有代码。 |
 | Batch 34 | `HISTORICAL_CONTRACT` / research-only | Director 既有代码考古和可借鉴性 | 没有专项 verifier，不伪造行为通过状态。 |

@@ -41,9 +41,10 @@
 | `OC-EQ-003` | LibTV 是否允许 duplicate edge、parallel handle edge、self-loop、cycle，以及 Handle 类型兼容是什么 | `PARTIAL_RECORDED`：普通连接 path 的 bundle/DOM static guard 已记录；交互部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-004`、`LIBTV-GI-004..007` |
 | `OC-EQ-004` | Auto Link 的输入、IME、单项/全量接受、失败回滚和 stale result 当前怎样运行 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-003`、`LIBTV-VR-003..005` |
 | `OC-EQ-005` | ready-video、逐帧拉片、片段重拍、长视频的 partial/retry/result replacement 生命周期 | `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-005`、`LIBTV-VR-006/007` |
+| `OC-EQ-007` | LibTV media ingress 的 exact limits/reason、progress/cancel/retry、multi-file placement、replace、asset registration 和 refresh restoration 怎样运行 | `PARTIAL_RECORDED`：只读 surface/domain 已记录；mutation 部分 `BLOCKED_BY_DISPOSABLE_SOURCE` | 高 | `OC-BP-011`、`LIBTV-PAR-014`、`LIBTV-VR-021` |
 | `OC-EQ-006` | Open Canvas 新 commit 是否改变既有 claim、pattern、adoption 或 LibTV 启发 | `TRIGGERED_BY_UPSTREAM_CHANGE` | 条件性高 | `OC-TR-*`、`OC-ADOPT-*`、baseline decision |
 
-这六项是当前固定研究基线下的完整证据队列。没有新的 source drift、fixture 或 upstream SHA 时，不另建同主题总览。
+这七项是当前固定研究基线下的完整证据队列。没有新的 source drift、fixture 或 upstream SHA 时，不另建同主题总览。
 
 ## 4. `OC-EQ-001`：LibTV source freshness
 
@@ -210,9 +211,38 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 
 不得为了得到 running/failed/stale/race 状态而在共享源站触发真实任务，也不得为 race 主动重复计费提交。费用、进度百分比、轮询频率和结果时间只有直接证据时才能记录，且不作为 SLA。证据完成只允许升级 `L0` 和 fixture/`LIBTV-VR-007/015` 规划；真实 runner、计费、保存后端仍是 `OUT_OF_SCOPE`。
 
-## 9. `OC-EQ-006`：Open Canvas upstream impact diff
+## 9. `OC-EQ-007`：Media ingress/resource lifecycle source evidence
 
-### 9.1 触发条件
+### 9.1 最新有界结果
+
+2026-08-27 已在共享项目只读记录：Add Resource 是 multiple `image/*,video/*,audio/*` chooser；Generated History 有来源/type/最多 10/15-per-page；Material Library 是风格/特效创建；Asset Manager 分 Canvas/Assets、Personal/Agent；Shot Breakdown 是单 `video/*` source chooser。全程没有选择文件、上传、生成、保存或删除，原始记录见 [`libtv-media-ingress-source-dom-audit-2026-08-27.json`](libtv-media-ingress-source-dom-audit-2026-08-27.json)。
+
+这些证据足以关闭 surface/domain confusion，不足以关闭生命周期。当前正式设计见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)，source mutation 问题保持 blocked。
+
+### 9.2 前置接收条件
+
+必须先接收 `LIBTV-FIX-SOURCE-MEDIA-INGRESS-01`：独立可丢弃 project、synthetic non-private files、已知初始 graph/history/assets、允许的 upload/task/credit/delete 上限、每项远端 cleanup owner，以及失败/超时/登录失效停止条件。一个可丢弃项目不能笼统授权全部媒体类型和付费动作。
+
+### 9.3 场景顺序
+
+1. chooser cancel 和 invalid family/size，只记录 feedback 与零 residue；
+2. 单 image/video/audio 的 validation、probe、placeholder/progress、cancel/retry；
+3. 同文件重复选择、mixed multi-file、完成乱序和 placement/order/history；
+4. node-bound replace success/failure/cancel，观察 last-known-good 是否保留；
+5. generated-history attach，区分 attach 与 upload/materialize；
+6. Canvas/Assets、Personal/Agent 之间的 register/attach/delete 语义；
+7. node delete、undo/redo、copy、canvas switch 对 media reference/resource 的影响；
+8. save/refresh 后 graph node、generated history、asset registry 和 locator 的恢复边界。
+
+每个场景记录 intent/attempt/cohort/source/node/asset/reference identity、nodes/edges/selection/history、可见 feedback、network request/result、locator class 和 cleanup 结果。不要用 object URL 能播放推导 durable asset，也不要把一次 source undo 当作远端资源已删除。
+
+### 9.4 退出与停止
+
+出现真实费用未知、无法确认数据归属、任务不可取消、asset 无法删除、账户级副作用或 fixture 无法恢复时立即停止。只读 surface 结果不重复采样；没有 disposable fixture 时只维护 decision queue，不上传私人媒体、不在共享项目试探。
+
+## 10. `OC-EQ-006`：Open Canvas upstream impact diff
+
+### 10.1 触发条件
 
 只有出现以下事件之一才启动：
 
@@ -221,19 +251,20 @@ Open Canvas 的 registry/current runner 漂移提醒本项目：模型出现在�
 - 既有 claim 的文件路径消失，需要确认是否重构；
 - 用户明确要求评估是否更新 submodule baseline。
 
-### 9.2 执行方法
+### 10.2 执行方法
 
 严格使用 [`UPSTREAM_VERSION_IMPACT_PROTOCOL.md`](UPSTREAM_VERSION_IMPACT_PROTOCOL.md)：先比较 candidate SHA，不移动当前 pointer；逐项评估 claim、pattern、adoption、LibTV impact 和 runtime；最后给出 `KEEP_PINNED`、`ADD_SECOND_BASELINE`、`UPDATE_BASELINE` 或 `REJECT_CANDIDATE`。
 
 候选源码变化不能自动改写 LibTV source contract。即使建议 `UPDATE_BASELINE`，submodule pointer、研究文档和 LibTV 代码也必须分 commit，并分别取得所需授权。
 
-## 10. 执行波次
+## 11. 执行波次
 
 ### Wave A：当前可主动推进
 
 1. `OC-EQ-001`：按只读 freshness checklist 建立新日期基线；
 2. `OC-EQ-002`：只用当前 DOM/bundle 扩展模型能力证据；
 3. `OC-EQ-003`：先做 bundle/Handle 静态分支审计（已完成）；
+4. `OC-EQ-007`：只读 surface/domain 审计已完成；不重复打开 chooser 或选择文件；
 
 Wave A 的任何一项一旦需要输入、选择会写入的参数或 graph mutation，就停止在静态证据，不自动进入 Wave B。
 
@@ -241,7 +272,8 @@ Wave A 的任何一项一旦需要输入、选择会写入的参数或 graph mut
 
 1. `OC-EQ-004`：Auto Link input/IME/accept/rollback；
 2. `OC-EQ-005`：ready-video toolbar 与 process/result lifecycle；
-3. `OC-EQ-003` 的真实 graph compatibility 场景。
+3. `OC-EQ-003` 的真实 graph compatibility 场景；
+4. `OC-EQ-007` 的 media validation/progress/cancel/replace/asset/refresh 场景。
 
 Wave B 必须逐 fixture 授权，不能用一个“可丢弃项目”笼统授权所有生成、上传、保存和账户动作。
 
@@ -249,7 +281,7 @@ Wave B 必须逐 fixture 授权，不能用一个“可丢弃项目”笼统授�
 
 1. `OC-EQ-006`：仅在新 upstream SHA 出现时执行。
 
-## 11. 单项研究交付模板
+## 12. 单项研究交付模板
 
 每次证据获取形成一个有日期、可独立提交的批次，至少包含：
 
@@ -271,7 +303,7 @@ Commit / push:
 
 新事实先追加到最近的 authority document，不另建“最终版”总览。原始 JSON 和截图必须有解释文档；截图文件名中的 `final` 不代表事实永久有效。
 
-## 12. 完成定义
+## 13. 完成定义
 
 一个 `OC-EQ-*` 只有在以下条件满足时才能关闭：
 

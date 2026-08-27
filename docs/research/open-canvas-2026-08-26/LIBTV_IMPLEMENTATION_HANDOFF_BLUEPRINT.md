@@ -78,6 +78,7 @@ RESEARCH_ONLY
 | `OC-BP-008` command outcome/feedback ownership | `OC-ADOPT-021` | `LIBTV-PAR-004/008..011` | design complete；local reason/status/timer/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` | `LIBTV-VR-018` |
 | `OC-BP-009` selection/focus/command-context ownership | `OC-ADOPT-022` | `LIBTV-PAR-004/007/008/011` | static/design complete；node projection/modal/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` | `LIBTV-VR-019` |
 | `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；viewport/navigation/placement/overlay islands；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
+| `OC-BP-011` media ingress/resource lifecycle authority | `OC-ADOPT-024` | `LIBTV-PAR-008/009/010/011/014` | static/design complete；mock/local-preview/data/blob islands；common runtime missing or partial、source parity partial | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` | `LIBTV-VR-021` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -303,6 +304,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 如果未来获授权，第一 slice 应只关闭 actual-host default add：读取 current React Flow host、以 current live instance 做一次 center-to-flow conversion，并保持现有 add data、selection、history 和 UI。不要在同一 slice 同时重写 viewport phase、全部 placement、resize、overlay 或增加 Open Canvas 产品入口。
 
+## 10.5 `OC-BP-011`：Media Ingress And Resource Lifecycle Authority
+
+完整机械合同见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-061..070` 正反面 + clone dated static audit + LibTV source `LIBTV-SRC-MIR-001..006`；exact limits/progress/cancel/placement/register/restore 保持 partial |
+| `L1 Identity` | ingress、attempt、cohort、route/canvas/generation、target node/version、source item、local lease、stable asset、node reference 和 locator provenance |
+| `L2 Transaction` | validation/probe/materialization/freshness 后形成 full projection；provisional zero semantic history；accepted cohort exact one graph step；invalid/noop/stale/cancel zero residue |
+| `L3 Surface` | Add Resource、Generated History、Material Library、Asset Manager、Shot Breakdown 和 Director 保持不同 owner；replace 保留 last-known-good；feedback 靠近 operation item |
+| `L4 Fixture` | synthetic in-memory files、deterministic probe/fake materializer、A/B generation、resolver clock、asset/reference/reachability ledger、object URL create/revoke counters |
+| `L5 Verifier` | `LIBTV-VR-021` 与 graph ingress/history、async、delete、document/copy、multi-canvas、feedback、viewport placement 和 Director isolation 组合 |
+| `L6 Provenance` | 不把 Open Canvas MIME/size/storage/provider/placeholder skin、clone 历史素材文案或 source 未证 lifecycle 升级为 LibTV truth |
+
+未来若获得编码授权，第一 slice 仍不应接真实上传。建议先落一个纯 descriptor/classifier/probe result 边界和 deterministic fake materializer fixture，或只让 Add Resource 形成 honest local-preview cohort；必须证明 `File`/`Blob`/object URL 不进入 semantic history/document，invalid/cancel/stale 零 graph residue，cleanup exact-once。不得同批重做 Asset Manager、Shot Breakdown、Director、真实 provider/storage 或 persistence。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -373,6 +390,7 @@ pure identity/transaction cases
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
 9. `OC-BP-010` 保持 design complete/runtime/source parity partial；若获授权先关闭 actual-host default add，再分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不实现 Quick Add/drop/pending connection；
-10. 保持 provider、真实保存和共享源站 mutation 在边界外。
+10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
+11. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

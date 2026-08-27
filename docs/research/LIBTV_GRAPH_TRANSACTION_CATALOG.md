@@ -264,6 +264,20 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-068` | default add clone correctness floor is actual-host center with declared node dimensions | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | current store uses browser dimensions | exact source anchor remains open；window center is not accepted fallback |
 | `LIBTV-GI-069` | overlay inputs belong to one current host/viewport/node frame | `REQUIRED_CORRECTNESS` | source-shaped formulas and measured/live islands exist | no stable/live or old/new host mixing；LibTV visual formula remains separate authority |
 | `LIBTV-GI-070` | FrameOS graph viewport、ordinary LibTV viewport and Director 3D viewport remain domain-isolated | `REQUIRED_CORRECTNESS` | route/store domains are separate | no shared route mode、gesture session or transform state |
+| `LIBTV-GI-071` | every ingress carries immutable intent/attempt/cohort/route/canvas/generation and target/source identity | `REQUIRED_CORRECTNESS` | current media paths use component-local or loosely typed values | retry、replace、switch and late completion cannot retarget current owner |
+| `LIBTV-GI-072` | `File`、`Blob` and object URL never enter semantic graph history or portable document | `REQUIRED_CORRECTNESS` | Shot/Director local locators can reach runtime data | nonportable bytes remain operation/lease scoped until materialized or released |
+| `LIBTV-GI-073` | one canonical media classifier feeds client convenience validation and materializer trust-boundary validation | `REQUIRED_CORRECTNESS` | Open Canvas accept/probe/server family drift is a counterexample | same payload cannot be accepted by one stage and silently reclassified by another |
+| `LIBTV-GI-074` | metadata probe and preview URL are explicit leases with exact-once create/transfer/release | `REQUIRED_CORRECTNESS` | current component object URL has no common ledger | failure、cancel、retry、replace、delete and unmount have deterministic cleanup |
+| `LIBTV-GI-075` | stable asset identity、generated-history item and node media reference remain distinct | `REQUIRED_CORRECTNESS` / `SOURCE_FACT` | source upload/history/material/asset surfaces are separate | attach、register、copy、replace and delete cannot collapse into URL equality |
+| `LIBTV-GI-076` | validation、probe、materialization and freshness complete before semantic graph projection plan is accepted | `REQUIRED_CORRECTNESS` | Open Canvas placeholder-first and clone ready-before-durability are counterexamples | provisional UI may exist；graph mutation requires a full owner-valid plan |
+| `LIBTV-GI-077` | provisional ingress UI adds zero semantic graph snapshots and is excluded from document/clipboard | `REQUIRED_CORRECTNESS` | current Add Resource mock and source progress behavior are incomplete | progress/errors/cancel can update operation state without polluting undo/history |
+| `LIBTV-GI-078` | one multi-item cohort preserves original order and commits accepted successes in one declared graph/history transaction | `REQUIRED_CORRECTNESS` | Open Canvas sequential partial mutation is a counterexample | completion order cannot alter node order；failure policy is explicit and atomic |
+| `LIBTV-GI-079` | node-bound media replacement preserves last-known-good media until current replacement commit | `REQUIRED_CORRECTNESS` | Shot/Image replace semantics are not centralized | invalid/failed/canceled/stale replacement cannot blank or downgrade current node |
+| `LIBTV-GI-080` | invalid、noop、stale、duplicate and canceled media completion leaves graph/selection/history/current success feedback unchanged | `REQUIRED_CORRECTNESS` | common async ingress runtime is missing | no late residue、false success or redo truncation |
+| `LIBTV-GI-081` | every resource ownership transfer has exactly one destination owner；every terminal non-transfer releases exactly once | `REQUIRED_CORRECTNESS` | clone object URLs/data/blob paths lack common owner | no leak、double revoke or use-after-revoke |
+| `LIBTV-GI-082` | resource release requires zero reachability across graph、history、clipboard、editor/preview、operation、asset registry and portable export owner | `REQUIRED_CORRECTNESS` | graph-only delete is insufficient | undo/copy/open editor/reusable asset remain valid after current node deletion |
+| `LIBTV-GI-083` | graph node deletion never implies deletion of a stable reusable/remote asset without a separate authorized asset command | `REQUIRED_CORRECTNESS` / `SOURCE_FACT` | source Asset Manager is distinct from Canvas node index | graph cleanup and account asset lifecycle remain separate transactions |
+| `LIBTV-GI-084` | ordinary LibTV、Director and FrameOS media operations keep independent route/store/resource owners；prototype capability is projected honestly | `REQUIRED_CORRECTNESS` | current route stores and capability islands are separate | no cross-route locator/resource transfer；local preview/unavailable cannot masquerade as durable/provider success |
 
 ### 10.2 Compatibility case queue
 
@@ -359,6 +373,24 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-088` host resize overlay composition | selected image + asset/compact layout change | resize host | one current host/live/node frame；existing LibTV toolbar/panel residuals remain in tolerance | formal composition designed |
 | `LIBTV-GC-089` invalid spatial payload | NaN/Infinity/out-of-range zoom/stale host epoch | viewport/placement callback | stable typed reject/stale；zero graph/selection/history/viewport residue | validation runtime missing |
 | `LIBTV-GC-090` route spatial isolation | Director or FrameOS active | ordinary LibTV spatial callback | no cross-route transform/gesture/graph effect | architectural invariant |
+| `LIBTV-GC-091` chooser cancel | no active ingress | open chooser then cancel | zero operation residue、zero graph/history/feedback；no lease created | local fixture required |
+| `LIBTV-GC-092` all-invalid cohort | synthetic wrong family/size/probe failures | submit multi-item ingress | stable per-item reasons in original order；zero graph/selection/history；all temporary leases released | classifier/probe fixture required |
+| `LIBTV-GC-093` mixed cohort | valid A、invalid B、valid C | resolve all probes/materialization | explicit profile commits A/C in original order as one graph/history step or rejects full cohort；never sequential partial history | policy/profile fixture required |
+| `LIBTV-GC-094` out-of-order materialization | A/B/C accepted | resolve C then A then B | provisional completion may update；final graph order follows original indices；one history | deterministic resolver clock required |
+| `LIBTV-GC-095` cohort cancel | accepted items with one pending | cancel during materialization | profile-declared rollback/accepted boundary exact；pending completion stale；terminal leases exact | cancel semantics source-partial |
+| `LIBTV-GC-096` node replace success | node has stable old media | current replacement resolves valid | old remains visible until one commit；new reference exact；old release only after reachability check；one history | local replacement fixture required |
+| `LIBTV-GC-097` node replace failure | node has stable old media | validation/probe/materialization fails | old media/reference unchanged；persistent item-local error/retry owner；zero graph history | source exact feedback partial |
+| `LIBTV-GC-098` delete target during ingress | node-bound operation pending | delete node then resolve | delete transaction wins；completion stale；no recreated node/current success；lease release exact | composes delete/async fixtures |
+| `LIBTV-GC-099` switch canvas during ingress | A operation pending | switch B then resolve A | B graph/selection/history/feedback unchanged；A follows explicit background/cancel policy only | composes lifecycle fixture |
+| `LIBTV-GC-100` retry race | attempt 1 pending/failed then attempt 2 current | resolve attempt 1 after attempt 2 | attempt 1 stale；attempt 2 is sole commit/feedback owner；no double transfer/release | attempt identity required |
+| `LIBTV-GC-101` generated-history attach | stable history items already exist | select supported items and attach | no file upload/materializer claim；source item identity preserved；declared node refs/placement/selection/one history | source exact projection partial |
+| `LIBTV-GC-102` shared asset alias deletion | two nodes reference one reusable asset | delete one node | surviving node and asset remain valid；only deleted reference removed；no remote asset delete | asset/reference ledger required |
+| `LIBTV-GC-103` Shot local preview | synthetic video selected | probe and bind under no-backend profile | honest `LOCAL_PREVIEW` locator/state；not durable ready/uploaded；replace/history policy exact | current clone labels ready too early |
+| `LIBTV-GC-104` probe failure cleanup | preview/probe lease created | metadata probe rejects/errors | no graph mutation；object URL revoke exactly once；typed reason retained by operation owner | lease counter fixture required |
+| `LIBTV-GC-105` duplicate terminal callback | current operation already committed/failed/canceled | same result arrives again | typed duplicate；zero graph/history/feedback/resource delta | composes async idempotency |
+| `LIBTV-GC-106` blob reachability across delete/undo | graph/history/editor share one blob-backed result | delete、undo、redo、close editor | lease remains while reachable；release only at final zero reachability；never use-after-revoke | resource ledger fixture required |
+| `LIBTV-GC-107` data locator portability budget | data URL below/above declared local budget | project/export/copy | small allowed case keeps provenance；oversize rejected or materialized；never silently durable | prototype-only policy required |
+| `LIBTV-GC-108` media route/capability isolation | Director/FrameOS operation or unavailable provider selected | ordinary LibTV callback/action | zero cross-route graph/resource effect；honest unavailable/local-only projection | architectural + UI assertion |
 
 ### 10.3 Decision and verification order
 
@@ -488,6 +520,21 @@ Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`。Cur
 
 Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`。Current V/H/Space、per-canvas viewport、drag history、derived/duplicate/organize placement and selected-overlay formulas remain positive islands；no spatial helper、store/page adapter、fixture、verifier、Quick Add/drop/pending connection or source mutation is authorized by this handoff。
 
+### 10.13 Media ingress and resource lifecycle handoff
+
+[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) is the cross-entry media authority for：
+
+- Add Resource、canvas drop、node replace、Shot source、generated-history attach、asset attach、canvas reference、local edit export and two Director profiles；
+- immutable ingress/attempt/cohort/canvas/node/source identities plus local lease、stable asset、node reference and locator provenance；
+- canonical validation、metadata probe、materialization、freshness reconciliation and full projection plan；
+- provisional UI versus semantic graph/history/document、multi-item order/commit policy and last-known-good replacement；
+- explicit resource transfer/release and reachability across graph/history/clipboard/editor/operation/asset/export owners；
+- Open Canvas `OC-061..070` positive methods and classifier/placeholder/partial/autosave/no-cleanup counterexamples；
+- source `LIBTV-SRC-MIR-001..006` surface separation and exact behavior decision queue；
+- `LIBTV-MIR-I-001..036`、`LIBTV-MIR-DQ-001..014`、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`、`LIBTV-VR-021` and `GI-071..084/GC-091..108`。
+
+Status is `STATIC_AUDIT_COMPLETE / DESIGN_SPEC_COMPLETE / RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`。Current Add Resource mocks、Shot component-local preview and Director data/blob paths remain evidence islands；no common classifier/materializer/lease/asset registry/fixture/verifier、real upload/storage/provider or source mutation is authorized by this handoff。
+
 ## 11. 新事务立项模板
 
 任何新的 LibTV graph 能力，在编码授权前至少落档以下字段：
@@ -533,3 +580,4 @@ Backend/prototype boundary:
 - [`open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游 graph 模式的采纳、改造与拒绝边界。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：`PAR-008` 的本地 fixture 和 reset 规则。
 - [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：node/edge/primary selection、focus zone、command context、单层 Escape 和 `VR-019` 的正式设计权威。
+- [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：media intent、temporary lease、asset/reference、cohort transaction、reachability/release 和 `VR-021` 的正式设计权威。

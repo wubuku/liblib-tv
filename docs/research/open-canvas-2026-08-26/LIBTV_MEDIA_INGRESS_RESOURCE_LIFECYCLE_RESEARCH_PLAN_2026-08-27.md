@@ -1,10 +1,10 @@
 # LibTV Media Ingress And Resource Lifecycle Research Plan
 
-> Status: `ACTIVE` / `DOCUMENTATION_ONLY`.
+> Status: `COMPLETE` / `DOCUMENTATION_ONLY` / `HISTORICAL_PLAN`.
 >
 > Scope: study Open Canvas media ingress and resource-lifecycle methods, then translate the useful parts into implementation-ready guidance for the ordinary LibTV clone route.
 >
-> Baselines: clone `bc8add1`; Open Canvas `cf3a906bb8c35bb940d3267497e7f394b8f42582`.
+> Baselines: clone `bc8add1`; planning commit `6325a1f`; dated audit commit `dfb7ec4`; Open Canvas `cf3a906bb8c35bb940d3267497e7f394b8f42582`.
 >
 > Authorization boundary: no changes to `src/`, tests, FrameOS, Director runtime, either submodule or either source website.
 
@@ -31,13 +31,13 @@ Open Canvas is useful because its fixed implementation contains a concrete file-
 
 | Authority | Owns | This study must not duplicate |
 |---|---|---|
-| [`LibTVNodeDataIdentity.contract.md`](../research/components/LibTVNodeDataIdentity.contract.md) | `MEDIA_LOCATOR` field role and locator classes | copy/import field transformation policy |
-| [`LibTVGraphDocument.contract.md`](../research/components/LibTVGraphDocument.contract.md) | portable document and media-reference rejection | document codec and migration |
-| [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) | delayed-result freshness, transfer/release and one graph commit | generic async completion authority |
-| [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) | delete impact, history reachability and cleanup delegation | destructive graph command planning |
-| [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | drop-point conversion and multi-item placement | coordinate conversion and viewport ownership |
-| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../research/LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history command boundaries | graph transaction taxonomy |
-| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | canvas identity/generation and switch/delete isolation | project/canvas lifecycle |
+| [`LibTVNodeDataIdentity.contract.md`](../components/LibTVNodeDataIdentity.contract.md) | `MEDIA_LOCATOR` field role and locator classes | copy/import field transformation policy |
+| [`LibTVGraphDocument.contract.md`](../components/LibTVGraphDocument.contract.md) | portable document and media-reference rejection | document codec and migration |
+| [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) | delayed-result freshness, transfer/release and one graph commit | generic async completion authority |
+| [`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](../LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md) | delete impact, history reachability and cleanup delegation | destructive graph command planning |
+| [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md) | drop-point conversion and multi-item placement | coordinate conversion and viewport ownership |
+| [`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](../LIBTV_GRAPH_TRANSACTION_CATALOG.md) | semantic graph/history command boundaries | graph transaction taxonomy |
+| [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) | canvas identity/generation and switch/delete isolation | project/canvas lifecycle |
 
 The new authority begins when an ingress intent acquires bytes or an existing asset reference. It ends by delegating accepted graph projection, document portability and destructive cleanup to the authorities above.
 
@@ -199,6 +199,15 @@ This research batch is complete when:
 - agent navigation, traceability and implementation handoff remain discoverable;
 - documentation checks pass and no runtime/submodule/WIP path is modified.
 
-## 11. Next Action
+## 11. Completion Record
 
-Complete the fixed-code and clone-code evidence extraction, then publish the dated static audit before drafting the normative lifecycle contract.
+The research sequence completed without runtime, test, submodule or source-site mutation:
+
+1. planning and authority-overlap boundary were committed as `6325a1f`;
+2. fixed Open Canvas、committed clone and read-only LibTV source findings were published in the dated audit and committed as `dfb7ec4`;
+3. the normative lifecycle contract defined ten entry profiles、state/identity/lease/cohort/reachability authorities、36 invariants、14 decision questions、the local fixture and `LIBTV-VR-021`;
+4. `OC-061..070`、`LIBTV-SRC-MIR-001..006`、`OC-PATTERN-11`、`OC-ADOPT-024`、`OC-BP-011`、`LIBTV-UIX-21`、`OC-TR-017`、`LIBTV-TR-043` and `DEC-037` were synchronized into governance;
+5. graph invariants/cases、fixture catalog、replacement map、verification ledger、coverage matrix、parity backlog、Big Picture、report and evidence queue were updated;
+6. exact source mutation questions remain in `OC-EQ-007` and `LIBTV-FIX-SOURCE-MEDIA-INGRESS-01`; they are not unfinished documentation work and require a disposable source fixture plus explicit action authorization.
+
+Future agents should maintain the stable contract and dated audit rather than reopening this plan as an active backlog. A new plan is justified only by new source evidence、an authorized implementation slice or an Open Canvas baseline change.

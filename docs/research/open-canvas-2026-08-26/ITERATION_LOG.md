@@ -544,3 +544,28 @@
 - 同步 Hub、research/Open Canvas indexes、Big Picture、agent task map、decision/traceability、fixture/verifier/coverage、graph、overlay/copy/routing/lifecycle/parity 权威；
 - 将完成的研究计划从 `docs/drafts/` 迁入本目录保留交付历史，stable guidance 由正式合同承担；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v49 media ingress/resource lifecycle 三向静态审计
+
+本轮先固定 Open Canvas、committed clone 与当前 LibTV source 的资源入口事实，不选择文件或提前设计真实上传：
+
+- 以 `6325a1f` 落档 active research plan，明确新 authority 从 ingress intent/local bytes 开始，以 graph/document/delete/async/viewport owner delegation 结束；
+- 新增 [`LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)，固定 Open Canvas client validation、metadata probe、multipart route、server trust boundary、digest dedupe、normalized descriptor、copy/save path；
+- 同时保留 accept/probe classifier drift、node-first running placeholder、sequential partial mutation、text/audio asymmetry、autosaved running、缺失 operation freshness/cancel/resource cleanup 等反例；
+- 固定 clone Add Resource upload/history mock、Shot Breakdown component object URL + ready projection、picture replacement placeholder、Director data/blob locator island，以及 ordinary route 没有 drop/paste/upload/asset registry 的边界；
+- 只读当前 LibTV source DOM，记录 Add Resource multiple image/video/audio chooser、Generated History 来源/type/cap/page、风格/特效 Material Library、Canvas/Assets + Personal/Agent Asset Manager、single-video Shot source 与 dormant generic uploader；
+- 原始记录落档为 [`libtv-media-ingress-source-dom-audit-2026-08-27.json`](libtv-media-ingress-source-dom-audit-2026-08-27.json)，全程没有选择文件、上传、生成、保存、下载或删除；
+- dated audit 以 `dfb7ec4` 独立提交并推送；本轮没有修改 `src/`、测试、FrameOS、Director runtime、共享源站状态、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v50 media intent、asset/reference 与 resource lease 正式权威
+
+本轮把 v49 fixed facts 转为可交接、可验证且保持前端 prototype 诚实的正式合同：
+
+- 新增 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)，定义 ten entry profiles、immutable ingress/attempt/cohort/canvas/node/source identity、canonical validation/probe/materialization/freshness 和 full projection plan；
+- 明确 `File`/`Blob`/object URL 属于 instance operation/lease，stable asset、generated-history item、material preset、node media reference 和 session result 不共享 identity；
+- 定义 provisional UI zero semantic history、accepted cohort original-order one-step commit、replace last-known-good、invalid/noop/stale/cancel zero residue，以及 graph/history/clipboard/editor/operation/asset/export reachability 后 exact-once release；
+- 新增 `OC-061..070`、`LIBTV-SRC-MIR-001..006`、`OC-PATTERN-11`、`OC-ADOPT-024`、`OC-TR-017`、`OC-BP-011`、`LIBTV-UIX-21`、`DEC-037`、`LIBTV-TR-043`、`LIBTV-PAR-014` 的 authority chain；
+- 新增 `GI-071..084/GC-091..108`、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`、`LIBTV-FIX-SOURCE-MEDIA-INGRESS-01` 和 `LIBTV-VR-021`，并同步 fixture/verifier/ledger/coverage/Big Picture/report/evidence queue；
+- 将 exact source limits/progress/cancel/placement/register/restore 归入 `OC-EQ-007`，没有 disposable source fixture 时不在共享项目试探；
+- 将完成的研究计划从 `docs/drafts/` 迁入本目录，stable guidance 由 audit + contract 承担；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

@@ -397,6 +397,23 @@ Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listene
 
 Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and transient audit、`LIBTV-VGP-I-001..032` and decision queue 统一见 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。`VR-020` 组合 overlay、React Flow routing、multi-canvas、copy、organize 和 shortcut verifier，不取代其 source visual、graph semantic 或 route-specific contract。
 
+### `LIBTV-VR-021`：media ingress and resource lifecycle authority
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008/009/010/011/014` media intent、graph projection、prototype honesty、canvas isolation and resource lifecycle correctness |
+| Old verifier | Batch 12/15 Add Resource、Batch 17 asset/canvas projection、Batch 24 Shot、Batch 40/46/48 Director media；各自保留 bounded mock/local-preview/data/blob contract |
+| Required fixture | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` with synthetic files、deterministic classifier/probe/fake materializer/resolver clock、A/B generations、asset/reference/reachability ledger and object URL counters |
+| Static checks | every ingress declares profile/owner/identity/classifier/materializer；`File`/`Blob`/object URL excluded from semantic history/document；upload/history/material/asset/Shot/Director surfaces remain distinct |
+| Pure checks | typed validation/probe result；original-order cohort convergence；full projection plan；replace last-known-good；stale/duplicate/cancel disposition；locator portability and capability honesty |
+| Transaction | provisional zero graph/history；accepted cohort exact declared graph/selection/history；invalid/noop/stale/cancel zero residue；asset attach does not claim upload |
+| Resource checks | preview/probe lease create/transfer/release exact；delete/undo/redo/copy/editor/history reachability；stable asset delete separate from graph delete；no leak/double revoke/use-after-revoke |
+| UI/browser | chooser cancel、mixed/out-of-order cohort、item-local error/retry、replace failure retention、switch/delete/retry races、honest local-preview/unavailable、route isolation |
+| Blockers | common classifier/materializer/lease/asset/reference runtime、fixture and encoding authorization；source exact limits/progress/cancel/placement/register/restore and real backend remain blocked/out of scope |
+| Exit | every media entry has one current owner and declared transaction；semantic commit only after owner-valid materialization；resource transfer/release exact；no surface or capability is falsely conflated |
+
+Open Canvas `OC-061..070` 正反面、clone/source dated audit、ten entry profiles、`GI-071..084/GC-091..108` and implementation slices 统一见 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)。`VR-021` 组合 `VR-010/012..015/017/018/020`，但不取代 graph codec、node data、delete、async、canvas、feedback、placement 或 Director 专项合同。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -423,6 +440,7 @@ Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and t
 | clone 12/22 process graph | source 真实任务拆分 |
 | Open Canvas 有 typed state | LibTV 使用同样数据结构 |
 | Batch 48 local storage 成功读写 | 普通 LibTV store 已具备持久化 |
+| clone 能显示 object URL/data URL 预览 | 已完成上传、可刷新恢复、资源可安全释放或 asset 已注册 |
 
 ## 8. Current Decision
 
@@ -442,6 +460,7 @@ Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and t
 - `LIBTV-VR-015` 的 Open Canvas/clone static audit、freshness/field/history/resource contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 component timer、node status 或 generic patch 当成 accepted operation owner；
 - `LIBTV-VR-016..019` 的 React Flow routing、multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority 已统一；
 - `LIBTV-VR-020` 的 six-domain spatial model、actual host、live/stable/bootstrap viewport、gesture/placement owner、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 controlled viewport、window center 或 Open Canvas Quick Add 推导普通 LibTV 空间权威已经统一；
+- `LIBTV-VR-021` 的 ten entry profiles、validation/probe/materialization、cohort/replace、asset/reference、lease/reachability、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 mock upload、object URL preview、data/blob locator 或 Open Canvas upload route 推导 durable asset/resource lifecycle 已实现；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

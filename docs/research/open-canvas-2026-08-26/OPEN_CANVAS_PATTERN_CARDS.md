@@ -29,6 +29,7 @@
 | OC-PATTERN-08 | typed outcome + primary surface + owned announcement | 命令效果与反馈文案/落点/生命周期混合 | 适合统一 reject、process、Director 与 utility feedback | P0，正式合同完成，runtime partial |
 | OC-PATTERN-09 | validated selection + declared context + owned focus return | selected flags、快捷键、浮层层级和焦点回归分叉 | 适合节点/边/primary selection、Director/modal precedence 与单层 Escape | P0，正式合同完成，runtime partial |
 | OC-PATTERN-10 | dual anchor + live/stable viewport + entry-specific placement | browser/host/flow 坐标、移动帧、稳定恢复和创建入口互相覆盖 | 适合 default add、zoom/fit/resize、drag/organize、copy/derived placement 与 overlay composition | P0，正式合同完成，runtime/source parity partial |
+| OC-PATTERN-11 | validate/probe/materialize + explicit resource lease | 文件意图、临时 bytes、稳定 asset、node reference、graph/history 与 cleanup 分叉 | 适合 Add Resource、生成历史、Shot Breakdown、普通图片编辑和 Director media boundary | P0，正式合同完成，runtime missing/partial、source parity partial |
 
 ---
 
@@ -604,7 +605,78 @@ current route + canvas generation
 
 ---
 
-## 13. 十张卡的共同落地顺序
+## 13. OC-PATTERN-11：Validate/Probe/Materialize + Explicit Resource Lease
+
+### 13.1 上游 `SOURCE_FACT`
+
+固定版本 Open Canvas 已提供一条完整但并不完美的 media ingress 路径：
+
+- image/video 控件先按 family、size 做客户端校验，并探测 image dimensions 或 video duration；
+- multipart upload route 在服务端再次校验 MIME、空文件和大小，并返回稳定 URL/key/metadata；
+- digest key 可以让相同内容复用 storage object，graph node 只保存归一化 descriptor；
+- duplicate、paste、save/hydrate 会继续携带 descriptor aliases；
+- local asset picker 和 local audio materialization 明确 unavailable，证明能力缺失可以诚实投影。
+
+同时，`OC-061..070` 也固定了不能复制的反例：accept 与 probe 支持面不一致、drop 先建 running node、multi-file 逐项异步部分提交、text/audio 家族能力不对称、没有 expected operation/canvas/node freshness、没有 cancel 和 object URL/resource owner，autosave 还可能保存 running placeholder。
+
+### 13.2 LibTV 对应的 `SOURCE_FACT` 与 `CLONE_FACT`
+
+2026-08-27 的只读 source DOM 记录证明，LibTV 至少有四种不同资源域：
+
+1. Add Resource 上传：multiple chooser，接受 image/video/audio；
+2. Generated History：已有生成结果的多来源、多媒体类型选择器；
+3. Material Library：风格和特效创建，不是普通媒体历史；
+4. Asset Manager：Canvas/Assets 与 Personal/Agent 分域，当前 asset 空态不妨碍画布已有媒体节点。
+
+Shot Breakdown 另有单 `video/*` source entry。当前 clone 则把 Add Resource upload/history 保持为 mock；Shot Breakdown 用 component object URL 做真实 local preview，却提前把 node 标成 ready；Director data/blob locator 进入独立 store，但还没有共同 resource authority。clone 中“我的素材库/预设素材库”的二分也不能继续被当作当前 source 事实。
+
+### 13.3 `INFERENCE`
+
+可迁移方法不是“加一个上传按钮”，而是把以下对象分开：
+
+```text
+immutable ingress intent
+  -> local bytes + instance-scoped lease
+  -> canonical validation + metadata probe
+  -> materialization result
+  -> stable asset identity
+  -> node media reference
+  -> provisional UI / semantic graph projection
+  -> explicit transfer or exact-once release
+```
+
+一旦这些对象混成 `node.data.url`，cancel、retry、canvas switch、node replace、copy/history、delete/undo 和 object URL revoke 就无法共享同一套正确性。资源释放也不能只看 current graph；至少要检查 history、clipboard、editor/preview、active operation、asset registry 和可移植文档的 reachability。
+
+### 13.4 `CLONE_DECISION`
+
+- 采用 validation/probe/materialization/descriptor 的分层方法，不移植 Open Canvas 的 MIME/size 数字、storage、provider、placeholder skin 或逐项 history；
+- Add Resource、canvas drop、node replace、Shot upload、history attach、asset attach、local edit export 和 Director ingress 必须用具名 entry profile 声明 transaction/history/selection/feedback/resource policy；
+- `File`/`Blob` 与 preview/probe object URL 只进入 operation/lease owner，不进入 semantic history、portable document 或 stable asset identity；
+- runtime provisional card 可以独立展示进度和逐项失败，但 accepted cohort 默认形成一个完整 graph plan 和一步 semantic history；
+- replace 在新资源 commit 前保留 last-known-good media；invalid/noop/stale/canceled 产生零 semantic graph/history residue；
+- 无后端 prototype 只能声明 `LOCAL_PREVIEW` 或 `UNAVAILABLE`，不能用 fake URL 宣称 durable upload；
+- graph node 删除不自动删除 reusable remote asset；resource release 只由显式 owner 与完整 reachability ledger 决定；
+- 本卡只形成设计/fixture/verifier authority，不授权修改 `src/` 或接入真实上传。
+
+### 13.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| classifier | client convenience gate 与 materializer trust boundary 可区分；family/size/probe failure reason 稳定 |
+| identity | ingress/attempt/canvas/node/source/asset/reference identity 不混用；retry 和 stale completion 不串线 |
+| cohort | 多文件按原始顺序收敛；失败策略显式；accepted success 默认一步 graph history |
+| replace | commit 前保留旧媒体；failure/cancel/stale 不覆盖 last-known-good |
+| resource | object URL create/revoke exact-once；transfer/release 有 ledger；history/clipboard/editor reachability 被计入 |
+| persistence | `File`/`Blob`/object URL 不冒充 portable locator；data URL 有预算和 provenance |
+| surface | upload/history/material/asset/Shot/Director 保持不同 owner，不以相似媒体缩略图合并 |
+| honesty | 无 provider/storage 时明确 local preview/unavailable；不伪造 durable/synced/saved |
+| isolation | canvas generation、route 和 Director/FrameOS owner stale-safe；cancel/delete/switch 零晚到 residue |
+
+设计 authority：[`LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` 和 `LIBTV-VR-021`。
+
+---
+
+## 14. 十一张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -616,6 +688,7 @@ current route + canvas generation
   -> 09 selection、command context 与 focus owner
   -> 07 canvas lifecycle owner isolation
   -> 10 viewport、coordinate、gesture 与 placement owner
+  -> 11 media ingress、asset/reference 与 resource lease
   -> 05 异步结果入口与陈旧收敛
 ```
 
@@ -630,9 +703,10 @@ current route + canvas generation
 - selection/context/focus 再统一 active-session authority，避免快捷键和 surface close 穿透或回焦到陈旧 owner；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - spatial authority 再把 actual host、live/stable viewport、gesture generation 和 entry placement 组合到既有 overlay/graph/lifecycle contracts；
-- 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
+- media ingress 随后固定 local bytes、asset/reference、cohort 和 release owner，避免用 URL 字段提前替代资源生命周期；
+- 最后才设计 completion ingress，确保它复用已决定的身份、状态、graph 与 resource authority。
 
-## 14. 统一拒绝清单
+## 15. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -650,10 +724,14 @@ current route + canvas generation
 - 复制 Open Canvas conflict gate、默认 key propagation 或 Radix 组件树来替代 LibTV 自己的优先级与 focus-return 合同；
 - 用 browser window 代替 actual React Flow host，或用 screen clamp 后的 surface position 回写 graph flow anchor；
 - 把 Open Canvas Quick Add/drop/pending connection、zoom 范围、menu offset 或 viewport persistence 当成 LibTV 已证产品语义；
+- 把 `File`、`Blob`、object URL、stable asset、generated-history item 和 node media reference 合并成一个 `url` 字段或共同 identity；
+- 因为 Open Canvas 有 upload route/digest key，就移植其 MIME/size/storage/provider，或把 placeholder-first、sequential partial mutation 和 autosaved running state 当正确模板；
+- 把 LibTV source 的上传、生成历史、风格/特效素材与 account asset 合并成一个“素材库”，或把 clone 历史文案反写成 source 事实；
+- 在无后端 prototype 中把 local preview/fake materializer 宣称为 durable upload、synced asset 或 provider result；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 15. 后续研究入口
+## 16. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -665,6 +743,7 @@ current route + canvas generation
 - Command outcome/feedback：[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)
 - Selection/focus/command context：[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)
 - Viewport/coordinate/gesture/placement：[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)
+- Media ingress/resource lifecycle：[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

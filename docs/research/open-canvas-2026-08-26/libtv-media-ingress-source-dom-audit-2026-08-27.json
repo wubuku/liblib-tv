@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-08-27",
+  "mode": "AUTHENTICATED_READ_ONLY_DOM",
+  "target": "https://www.liblib.tv/canvas?spaceId=670983&projectId=5f2550d0036944e2b618f494276fa1dd",
+  "safety": {
+    "fileSelected": false,
+    "fileUploaded": false,
+    "generationStarted": false,
+    "saveTriggered": false,
+    "downloadTriggered": false,
+    "deleteTriggered": false,
+    "paidActionTriggered": false
+  },
+  "observations": {
+    "addResource": {
+      "commands": ["上传", "从生成历史选择"],
+      "uploadChooser": {
+        "multiple": true,
+        "accept": "image/*,video/*,audio/*"
+      }
+    },
+    "generatedHistoryPicker": {
+      "defaultTitle": "选择图片",
+      "sourceFilters": ["LibTV", "Lib生成器", "WebUI", "ComfyUI", "AI应用"],
+      "mediaTabs": ["图片", "视频", "音频"],
+      "selectionCounter": "0/10",
+      "pageSizeText": "15条/页",
+      "confirmDisabledAtZero": true,
+      "videoEmptyText": "暂无数据",
+      "audioEmptyText": "暂无数据",
+      "counterUnitOnVideoAndAudio": "张"
+    },
+    "materialLibrary": {
+      "entries": [
+        { "label": "风格库", "action": "新增风格节点", "badge": "NEW" },
+        { "label": "特效库", "action": "新增特效节点", "badge": "NEW" }
+      ]
+    },
+    "assetManager": {
+      "tabs": ["画布", "资产"],
+      "canvasTab": {
+        "title": "画布元素",
+        "nodeCount": 13,
+        "supportsLocate": true,
+        "supportsSearch": true,
+        "supportsTypeFilter": true
+      },
+      "assetTab": {
+        "sources": ["个人", "Agent"],
+        "supportsSearch": true,
+        "typeTags": ["其它", "人物", "场景", "物品", "风格", "音效"],
+        "emptyText": "暂无资产"
+      }
+    },
+    "shotBreakdown": {
+      "fileInput": { "multiple": false, "accept": "video/*" },
+      "emptyActionText": "上传视频后开始"
+    },
+    "dormantUploader": {
+      "multiple": true,
+      "accept": "image/*,video/*,audio/*",
+      "inputDisplay": "none",
+      "triggerDisplay": "none",
+      "triggerText": "选择文件上传",
+      "classification": "BUNDLED_INACTIVE_DOM_ONLY"
+    }
+  },
+  "evidenceBoundary": [
+    "DOM presence and visible labels do not prove backend validation, upload transport, persistence or cleanup.",
+    "The empty asset tab while media nodes are visible supports a separation inference, not a universal product rule.",
+    "No file was supplied to a file chooser, so no upload lifecycle behavior was exercised."
+  ]
+}

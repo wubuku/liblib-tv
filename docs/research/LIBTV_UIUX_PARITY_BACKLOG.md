@@ -80,6 +80,7 @@
 | 11 | `LIBTV-PAR-011` | `uiStore` owner identity 与冗余/unmounted/unreachable 状态清理 | 3 | 5 | 5 | 2 | Batch 58 owner lifecycle `RECORDED_PASS`；冗余 boolean/unmounted state 仍 deferred |
 | 12 | `LIBTV-PAR-012` | Provider、上传、计费、远端任务、账户持久化 | 5 | 1 | 1 | 5 | `OUT_OF_SCOPE` |
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
+| - | `LIBTV-PAR-014` | 媒体接入、asset/reference 与 temporary resource lifecycle correctness | 5 | 4 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime missing/partial、source parity partial |
 | - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-001` | Batch 50 Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 5 | 3 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-002` | Batch 59 Director asset-library search/preview/add-object flow | 4 | 2 | 5 | 2 | `RECORDED_PASS`；clone-owned，source exact blocked by authentication |
@@ -230,6 +231,8 @@ Graph ingress 子切片也已完成全入口静态审计与设计，权威入口
 
 Viewport/coordinate/gesture/placement 也已完成 fixed audit 与正式设计，权威入口是 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：actual React Flow host、six coordinate domains、live/stable/bootstrap/target phases、gesture/operation owner、entry-specific placement、resize reconciliation、`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` 和 `LIBTV-VR-020` 已定义。它横跨 `PAR-001/002` overlay、`PAR-007` navigation、`PAR-008` graph placement 和 `PAR-011` canvas/UI owner；runtime 仍缺 actual-host default add、phase split、host epoch/generation owner 与 focused fixture，source exact add/fit/resize/drop 继续 gated。
 
+Media ingress/resource lifecycle 已完成 Open Canvas/clone/source 三向 static audit 与正式设计，权威入口是 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：ten named entry profiles、validation/probe/materialization、ingress/attempt/cohort identity、temporary lease、stable asset/node reference、provisional/semantic projection、multi-item commit、last-known-good replace、reachability/release、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` 和 `LIBTV-VR-021` 已定义。它作为 `PAR-014` 横跨 `PAR-008` graph transaction、`PAR-009` result identity、`PAR-010` prototype honesty、`PAR-011` owner cleanup 和 `PAR-012` backend boundary；当前 upload/history 是 mock、Shot 是 local preview、Director data/blob 为独立 island，common runtime/fixture 未实现，source exact limits/progress/cancel/placement/register/restore 继续 gated。
+
 多画布 lifecycle 也已从“下拉菜单可操作”提升为 cross-owner correctness 合同，权威入口是 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)：Open Canvas summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup 与 stale save local convergence 正反面已审计；clone registry/document/history/session/external owner、create/switch/rename/duplicate/delete command matrix、switch manifest、`LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` 和 `LIBTV-VR-017` 已定义。它同时横跨 `PAR-008` graph owner 与 `PAR-011` UI owner；runtime 仍缺 invalid target guard、demo viewport ownership、page transaction generation、late callback 和 async/resource isolation。
 
 Async result ingress 也已完成 implementation 前的双向静态审计，权威入口是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas descriptor/run/runId polling/server patch/revision/saved baseline 的可借结构与 expected-run/source-version/field-owner/two-write 缺口、clone 7 类 delayed/Director completion、operation envelope、freshness disposition、selection/history/resource、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 已定义。Runtime 仍没有共同 operation owner；当前短 timer 只算 `PROTOTYPE_LATENCY`，不能升级为真实 task lifecycle。
@@ -248,7 +251,7 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 - delete/undo/retry race、projection recovery 与 blob/temp resource transfer/release；
 - 不伪造真实 provider progress、费用或输出质量。
 
-### 4.11 `LIBTV-PAR-010..013`: boundaries
+### 4.11 `LIBTV-PAR-010..014`: boundaries
 
 | ID | 当前决策 |
 |---|---|
@@ -256,6 +259,7 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 | `011` | 冗余 primary booleans、Notification/UserMenu unmounted state、`toggleGrid` 无 caller 已记录。等相关 store 获得编码授权或新入口证据时再清理。 |
 | `012` | Provider、上传、计费、远端任务、账号和协作持久化需要新的产品/后端合同，当前不排入前端 parity 实施。 |
 | `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。后续只读其历史合同，不把 clone-only 结果升级为源站事实。 |
+| `014` | media intent、local byte/lease、stable asset、node reference 和 provisional/semantic projection 必须分权；只允许 validation/local preview/fake materializer 的 honest prototype，真实 upload/storage/provider 仍归 `PAR-012 OUT_OF_SCOPE`。 |
 | `DIR-001` | Batch 50 已完成 clone-owned workspace collapse/restore、viewport expansion、mobile drawer recovery、focus owner、page shortcut isolation、editable-target guard 和 Escape layering；LibTV Director shell exact DOM/CSS、完整 focus trap 和 source “全屏”语义仍是 `UNKNOWN`，后续只读其历史合同，不升级为 source parity。 |
 | `DIR-002` | Batch 59 已完成资源搜索、preview-only selection、显式加入 proxy object、对象树/Inspector continuity 和 desktop/mobile focused verifier；卡片主体仍保留 Batch 47 快速加入兼容路径。真实 FBX/OBJ mesh、远程资源和认证后 LibTV 资源库 DOM/CSS 仍是 `UNKNOWN`。 |
 
@@ -275,6 +279,10 @@ typed identity/session design (PAR-003)
 graph transaction guards (PAR-008)
   -> graph-mutating active tools/process results
 
+media ingress/resource design (PAR-014)
+  -> honest local fixture/profile
+  -> only then authorized Add Resource/replace/history/asset slices
+
 disposable ready-video/process fixture
   -> PAR-006 / PAR-007 source-only commands / PAR-009
 ```
@@ -292,6 +300,7 @@ disposable ready-video/process fixture
 3. 给 historical/current verifier assertion 加版本标签和 replacement plan；
 4. 为 `PAR-003` 写 typed Auto Link data/state/transaction design；
 5. 将新的 source claim 追加到 traceability matrix，不静默改旧快照。
+6. 维护 `PAR-014` 的 source decision queue，只有独立 disposable fixture 才取 exact limits/progress/cancel/placement/register/restore；共享画布保持只读。
 
 ### Wave B: authorization-ready local slices
 
@@ -310,6 +319,7 @@ disposable ready-video/process fixture
 - source-only shortcuts；
 - shot-breakdown/long-video live lifecycle；
 - rotate/layer separation/dirty save/download。
+- source media upload/history/asset/Shot lifecycle exact parity。
 
 ### Wave D: new product scope
 

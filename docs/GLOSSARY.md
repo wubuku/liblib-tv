@@ -25,3 +25,9 @@
 | `frameosStore` | Independent FrameOS Zustand store for graph, prompt, history and menus | `src/store/frameosStore.ts` |
 | DEBUG-only | A developer convenience intentionally excluded from source-site claims | `FrameosNodeEditPanel` |
 | Prototype boundary | A feature is visually/interactionally mocked without a real backend | README, Architecture |
+| Media ingress | A named user intent that introduces local bytes or attaches an existing media result/asset before graph projection | `LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md` |
+| Temporary resource lease | Instance-scoped ownership of `File`/`Blob`/object URL used for probe or preview, with explicit transfer/release | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`, `LIBTV-VR-021` |
+| Stable asset | Reusable media identity whose lifetime is independent from one canvas node reference | Asset Manager research, `DEC-037` |
+| Node media reference | A graph-owned reference to a stable asset/result/locator, not the bytes or asset registry record itself | node data contract, media ingress contract |
+| Provisional projection | Operation-owned progress/error UI shown before a semantic graph plan is accepted; excluded from graph history/document | `OC-PATTERN-11`, `LIBTV-UIX-21` |
+| Resource reachability | The set of graph/history/clipboard/editor/operation/asset/export owners that must be empty before release | media ingress contract, delete/async contracts |

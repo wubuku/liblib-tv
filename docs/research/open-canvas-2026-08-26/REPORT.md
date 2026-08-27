@@ -20,7 +20,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
 
-将上游启发压缩为可直接评审的十张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
+将上游启发压缩为可直接评审的十一张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
 
 更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
 
@@ -33,6 +33,10 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 跨入口空间权威的 fixed audit 见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 screen-menu/flow-point 分域和 live/stable viewport 是可借方法，permissive normalization、窄容器 clamp、gesture cleanup 与逐文件 drop 是反例；clone 当前最高置信缺口是 default add 使用 browser window center 而非实际 React Flow host center。
 
 正式设计权威见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：它将 fixed audit 转为 six-domain、actual host/epoch、live/stable/bootstrap/target viewport、generation-bound gesture/placement、resize/history/overlay composition、fixture 与 `LIBTV-VR-020`。这不表示 runtime 已实现，也不把 Open Canvas Quick Add/drop/pending connection 升级为 LibTV 产品事实。
+
+媒体接入与资源生命周期的三向审计见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 validation/probe/materialization/normalized descriptor 是高价值方法，classifier drift、placeholder-first、sequential partial mutation、autosaved running 和缺少 freshness/cancel/cleanup 是反例；LibTV source upload/history/material/asset/Shot surface 已只读分域；clone upload/history mock、Shot object URL 和 Director data/blob 仍没有共同 owner。
+
+对应正式设计权威见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：它将 media intent、local bytes/lease、stable asset、node reference 和 provisional/semantic projection 分权，并定义 ten entry profiles、cohort transaction、last-known-good replacement、reachability/release、fixture 与 `LIBTV-VR-021`。这不表示 runtime、durable upload 或 account asset 已实现；Open Canvas MIME/size/storage/provider 和 clone 历史素材文案均不能升级为 LibTV 产品事实。
 
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 
@@ -50,6 +54,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 | studio 选中节点上下浮层几何 | 低 | Pending | 本轮没有创建画布和节点操作 |
 | 官网预览中的分享/模板/保存状态是否对应 alpha runtime | 低 | Low | 只能作为信息架构证据 |
 | 对当前 LibTV/FrameOS 的借鉴建议 | 中 | Medium | 属于研究推断，必须服从当前项目源站证据 |
+| Open Canvas media ingress + LibTV source/clone resource boundary | 高（static/design） | High（fixed/source surface）/ Pending（source mutation/runtime） | 未选择 source 文件、未上传、未接 provider/storage；exact lifecycle 需 disposable fixture |
 
 ## 1. 对象与版本锁定
 
@@ -288,6 +293,10 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 
 全局 toast、节点错误、保存 banner、字段提示和 busy control 解决的是不同可见性问题。固定实现的中文 message lookup 会让 i18n/测试依赖 copy；无 canvas/operation owner 的 terminal toast 又可能在 route/canvas 已变化后脱离上下文。当前 clone 不应先增加统一 toast，而应先定义 disposition、stable reason/args、一个 primary surface 和 switch/delete/retry/dedupe lifecycle；visible result 不能用 toast-only 代替，stale completion 不能宣告当前成功。
 
+### R9：媒体 locator 与资源 owner 混淆（高）
+
+固定实现的上传 URL/assetId 能随 graph 保存和复制，但缺少完整 delete/reachability/cleanup authority；drop 又在 materialization 前创建 running node。当前 clone 更同时存在 mock upload、component object URL、data URL 和 Director blob URL。若都压成 `node.data.url`，取消、替换、复制、undo、canvas switch、node delete 和 object URL revoke 会互相破坏。后续必须分开 ingress intent、local lease、stable asset、node reference 和 projection；release 要检查 graph/history/clipboard/editor/operation/asset/export reachability，graph delete 不能自动解释为 account asset delete。
+
 ## 8.1 声明漂移的处理方式
 
 遇到“README 说支持、UI 能选择、registry 有路由、current runner 未接通”的组合时，采用四层判定：
@@ -307,6 +316,7 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 - 在当前 LibTV 研究文档中补充 Open Canvas 作为旁证对象；
 - 继续用浏览器取证源站选中节点上下浮层；
 - 设计并记录 clone-only 的浮层 anchor/层级合同；
+- 以 `OC-PATTERN-11` 和 `OC-BP-011` 评审 Add Resource、History、Material、Asset、Shot 与 Director 的 owner/identity/transaction 边界；
 - 在不修改业务代码的前提下为后续批次列出验证用例。
 
 ### 当前不要做
@@ -316,6 +326,7 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 - 不要把 Open Canvas 的 `canvasStore` 合并进 FrameOS；
 - 不要在没有用户授权时修改 `src/`；
 - 不要为验证而输入第三方 key、上传真实素材或触发付费生成。
+- 不要把 object URL/local preview 称为 durable upload，也不要用 Open Canvas 的 MIME/size/storage 数字填补 LibTV source unknown。
 
 ## 10. 研究完成定义
 

@@ -44,6 +44,7 @@
 | DEC-034 | command outcome feedback | typed disposition/reason 先于 UI projection；一个 primary owner，feedback 不进 graph history，stale completion 不宣告当前成功 | ACTIVE / RESEARCH_GATE |
 | DEC-035 | selection/focus command context | node/edge/primary selection 是 active-session authority；focus zone 与 foreground surface 决定 command permission，one Escape 只处理一个 top context | ACTIVE / RESEARCH_GATE |
 | DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
+| DEC-037 | media ingress/resource lifecycle authority | media intent、local bytes/lease、asset identity、node reference 与 provisional/semantic projection 分权；release 只由显式 owner + reachability 决定 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -256,6 +257,16 @@
 **影响：** 不移植 Open Canvas Quick Add/drop/pending connection、菜单尺寸、缩放范围、overlay DOM 或 persistence。LibTV source 的 exact add anchor、fit/zoom、panel resize、drag cancel、organize framing 和 mobile degradation 继续留在 decision queue。`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01`、`LIBTV-VR-020` 及任何 runtime slice 均需明确编码授权；FrameOS React Flow viewport 与 Director 3D viewport 继续隔离。
 
 **依据：** [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)、[`LibTVOverlayPositioning.contract.md`](research/components/LibTVOverlayPositioning.contract.md)、Open Canvas `OC-053..060` fixed chain。
+
+### DEC-037：media intent、resource lease、asset 与 node reference 分权
+
+**背景：** 当前 clone 的 Add Resource 上传/历史只是 mock；Shot Breakdown 用 component-local object URL 预览，却把 graph status 写成 ready；Director data/blob locator 又进入普通 graph/history。Open Canvas 提供 validation、metadata probe、stable URL/assetId 和 server dedupe 方法，但其 node-first drop、classifier drift、sequential partial mutation、autosaved running state和缺失 cancel/stale/cleanup 不能直接复制。当前 LibTV source 进一步证明上传、生成历史、风格/特效素材库、画布节点索引和 Personal/Agent asset 是不同 surface/owner。
+
+**决策：** 每个媒体入口先形成 immutable ingress/attempt/canvas/node/source identity，经 canonical validation、metadata probe、materialization 和 freshness reconciliation 后，才生成完整 graph projection plan。`File`/`Blob` 和 probe/preview object URL 只存在于 instance-scoped operation/lease owner；provisional progress 不进 semantic graph/history/document。Stable asset、generated-history item、node media reference、material preset 和 session result 保持不同 identity。Multi-item ingress按 original order 收敛，accepted successes 默认 one cohort graph history；invalid/noop/stale/canceled 为 zero semantic history。Object URL 只能在 graph/history/clipboard/editor/operation 等 reachability 为零且 owner 证明 exclusive 时 exact-once release；graph delete 不推导 stable remote asset delete。
+
+**影响：** 不因本决策接真实 provider/storage、上传、账户资产、计费或 persistence，也不把 Open Canvas MIME/size/provider/skin 当成 LibTV 产品事实。无后端 prototype 可以做 validation、local preview 和 deterministic fake materializer，但必须标明 `LOCAL_PREVIEW/UNAVAILABLE`，不能宣称 durable upload。`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01`、`LIBTV-VR-021` 与任何 runtime slice 均需明确编码授权；FrameOS 与 Director owner 继续隔离。
+
+**依据：** [`LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)、Open Canvas `OC-061..070` fixed chain、2026-08-27 LibTV read-only source DOM evidence。
 
 ## 3. 何时可以重审决策
 

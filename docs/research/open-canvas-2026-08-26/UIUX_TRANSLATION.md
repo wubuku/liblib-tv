@@ -97,6 +97,7 @@ LibTV 当前问题
 | toast + node/save/form/control feedback 分层 | outcome/reason 与 primary surface 分开，durable error 可恢复，cancel/noop 可 silent | 精确 LibTV 文案/颜色/timeout/invalid style 仍由源站决定；不复用 FrameOS toast | `LIBTV-UIX-18` |
 | selected flags + editable guard + local editor/Radix focus ownership | validated selection、declared command context、single-layer Escape 和 owned focus return | 精确 LibTV multi-select/edge/foreground surface/Escape/focus behavior 仍由源站决定；不引入全局 modal manager | `LIBTV-UIX-19` |
 | screen/flow dual anchor + live/stable viewport + entry-specific placement | actual host、typed coordinate domain、current frame/endpoint、gesture/placement owner 分开 | 保留 LibTV overlay formulas、Handle/edge、V/H/Space 和现有命令语义；exact add/fit/resize/drop 仍由源站决定 | `LIBTV-UIX-20` |
+| validate/probe/materialize + normalized descriptor + digest reuse | media intent、local lease、asset identity、node reference、provisional UI 与 semantic graph 分开 | 保留 source upload/history/material/asset/Shot surface 分域；limits/progress/cancel/storage/durability 仍由源站决定 | `LIBTV-UIX-21` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -110,6 +111,7 @@ Open Canvas 的机制只有在能解决一个已被 LibTV 证据确认的问题�
 | media history + selected index | 重拍/续写/长视频结果回选 | 研究输出候选、派生版本和当前引用的身份关系 | 在 LibTV 未证实时不强行增加节点内候选轮播 |
 | serialized subgraph + ID map | 长视频过程图和拉片结果组 | 派生节点/边保存 source、时间范围、操作和版本关系 | 不把上游五类节点模型当作 LibTV 领域模型 |
 | pending connection + typed handles | Auto Link 未连接候选、后续素材复用 | 只有源站证明连接动作存在时，才把连接与 mention/结果作为事务 | 不改变当前 LibTV Handle 位置、edge flow effect 或自由连接规则 |
+| validation/probe/materialization + media descriptor | Add Resource、生成历史、Asset Manager、Shot Breakdown、图片编辑与 Director media | 具名 ingress profile；local bytes/lease、stable asset、node ref、cohort commit、resource release 分权 | 不移植 Open Canvas accept/size/storage/provider，不把四类 source surface 合成一个素材库 |
 
 对应的 LibTV 事实和缺口集中见 [`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)；双浮层和 Auto Link 的可执行合同分别见 [`LibTVOverlayPositioning.contract.md`](../components/LibTVOverlayPositioning.contract.md) 与 [`LibTVAutoLink.contract.md`](../components/LibTVAutoLink.contract.md)。
 
@@ -319,6 +321,32 @@ Open Canvas 的双锚点说明一个高价值 UI/UX 边界：菜单为了可见�
 
 `LIBTV-UIX-11` 保留早期“收集 screen/flow 场景”的历史研究入口；`LIBTV-UIX-20` 是在 fixed Open Canvas/clone 双向审计后形成的正式 cross-owner 交接。完整 six-domain、gesture、resize、history、fixture 与 `LIBTV-VR-020` 合同见 [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)，固定事实见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)。
 
+### `LIBTV-UIX-21`：媒体接入的 surface、provisional state 与资源 owner
+
+Open Canvas 的上传路径说明，文件入口不能只用一个 loading spinner 表达：validation、metadata probe、materialization、graph projection 和 resource ownership 是不同阶段；它的 placeholder-first、逐项异步 mutation、autosaved running 和无 cancel/cleanup 则说明，视觉上“已有节点”不等于语义上“可以提交”。
+
+当前 LibTV source 的四类 surface 必须在 UI/UX 上保持可辨识：
+
+| surface | 用户意图 | UI 状态底线 | semantic effect |
+|---|---|---|---|
+| Add Resource upload | 从本地 bytes 创建画布媒体 | cohort provisional rows、逐项 validation/probe/error、明确 cancel/retry 能力 | accepted cohort 才形成 graph nodes/history |
+| Generated History | 引用已有生成结果 | 来源/type/filter/selection cap/empty state | attach existing result，不重复宣称 upload |
+| Material Library | 创建或选择风格/特效素材 | material-specific form/result state | material identity，不冒充普通 media asset |
+| Asset Manager | 检索 Canvas index 或 reusable Personal/Agent asset | domain/tags/empty state/registration status | attach or register stable asset reference |
+| Shot Breakdown | 为特定工作流绑定单个 source video | replacing/probing/local-preview/error | node-bound create/replace profile，失败保留 last-known-good |
+
+clone 后续 surface 应遵守以下 UI/UX 规则：
+
+- 用户选中文件后可以先看到 operation-owned provisional row/card，但该卡不是 semantic node，也不进入 graph undo/history/document；
+- node media replacement 在新结果 commit 前继续显示原媒体，避免 failed/stale/canceled operation 把节点变成空壳；
+- multi-item progress 按用户选择的原始顺序稳定排列，完成顺序不能引发布局跳动或 graph 顺序漂移；
+- 每项错误靠近对应 provisional row，cohort summary 只总结，不吞掉 typed reason；
+- local preview、generated-history attach、stable asset attach 和 durable upload 使用不同状态词，不能都显示“上传成功”；
+- asset 删除、node 删除、preview 关闭、history 清理和 object URL revoke 是不同命令；UI 不能让一个垃圾桶同时暗示这些副作用；
+- 无 backend 的 prototype 应显示 local preview/unavailable，不显示伪进度、云同步、持久化完成或 provider result。
+
+当前 source 尚未安全验证 exact limits、progress/cancel/retry、failure retention、multi-file placement、asset registration 和 refresh restoration；这些保持 source decision queue，不能由 Open Canvas 数字或 clone 历史 mock 补齐。正式 entry profile、state machine、resource ledger、fixture 与 `LIBTV-VR-021` 见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)，固定正反面事实见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -365,6 +393,7 @@ Open Canvas 的双锚点说明一个高价值 UI/UX 边界：菜单为了可见�
 | P1 | 命令 outcome/reason 与反馈 owner | 防止 toast-only workflow、string reason、stale success 和 feedback/history 混淆 | 设计合同完成，runtime partial/source feedback partial |
 | P1 | selection/focus/command-context owner | 防止 selected flags 分叉、快捷键穿透、多层 Escape 和陈旧回焦 | 设计合同完成，runtime partial/source interaction partial |
 | P1 | actual-host viewport/coordinate/placement owner | 防止 panel/compact host 后新增落点漂移、live/stable 混用、switch stale callback 和 overlay frame 分叉 | 设计合同完成，runtime/source parity partial |
+| P1 | media ingress/resource lifecycle owner | 防止 upload/history/material/asset 混域、placeholder 假提交、stale overwrite、object URL 泄漏和 node/asset delete 混淆 | 设计合同完成，runtime missing/partial、source parity partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

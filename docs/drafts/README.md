@@ -14,8 +14,8 @@ Lifecycle status and promotion/supersession rules are defined in
 
 ## Current Drafts
 
-- [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md) - active documentation-only Open Canvas/LibTV study of file and asset ingress, temporary preview leases, locator materialization, graph projection and release.
+No standalone draft is active. New work should enter this directory only when it has not yet earned a stable research or batch home.
 
-Completed Open Canvas research plans are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
+Completed Open Canvas research plans, including the media ingress/resource lifecycle plan, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
 
 Active research/implementation batches under `docs/research/liblib-canvas-batchN-*` carry their own `PLAN.md` and are indexed from [`../research/README.md`](../research/README.md).
