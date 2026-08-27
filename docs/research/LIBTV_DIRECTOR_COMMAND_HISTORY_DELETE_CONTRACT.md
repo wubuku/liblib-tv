@@ -2,7 +2,8 @@
 
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
 > `HISTORY_FOCUSED_PASS` / `POINTER_LIFECYCLE_FOCUSED_PASS` /
-> `REFERENCE_DELETE_FOCUSED_PASS` / `ASYNC_PERSISTENCE_RUNTIME_MISSING` /
+> `REFERENCE_DELETE_FOCUSED_PASS` / `ASYNC_AUTHORITY_FOCUSED_PASS` /
+> `PERSISTENCE_RUNTIME_MISSING` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: Director project semantic command、gesture transaction、undo/redo、
@@ -52,6 +53,9 @@ UI intent
 - Batch 72 已将 object/group/camera/track/path/capture/resource 删除统一到
   `deleteDirectorEntity`；planner 在写入前计算 closure，并以 strict V1 post-state
   gate 保证 accepted one-commit 或 rejected zero-mutation；
+- Batch 73 已将 capture/export/phone result completion 置于 typed async
+  authority；stale/invalid/duplicate completion 不产生 graph/history side effect，
+  export resource 只 transfer 或 release 一次；
 - camera relation、active camera、group membership、track/path reciprocal refs、
   capture provenance、selection/runtime draft 和 local resource block/cascade 已有
   明确 repair policy；
@@ -684,6 +688,16 @@ capture/video graph projection
 - [x] resource diagnostics；
 - [ ] clipboard packet/remap；
 - [x] prior command/history/pointer/delete slices are stable enough for the remaining copy/paste slice。
+
+### `DIR-CMD-I06` Async Result Authority
+
+- [x] capture/export/phone operation descriptor；
+- [x] owner/session/generation and source/request fingerprint；
+- [x] retry attempt supersession and terminal conflict handling；
+- [x] duplicate/stale/invalid completion disposition；
+- [x] resource transfer/release exactly once；
+- [ ] ordinary canvas async ingress；
+- [ ] durable result envelope/persistence。
 
 每个 slice 独立commit/push和current verifier update。不得把所有85个action在一个提交中
 批量机械包装。

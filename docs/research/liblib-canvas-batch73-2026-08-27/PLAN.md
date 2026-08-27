@@ -104,7 +104,7 @@ baseline，验证 stale/duplicate 不产生节点、边、selection 或 history 
 - export stale/reject 时 video URL 被释放；
 - accepted export 只向 ordinary canvas 写入一次 graph history；
 - phone/capture adapter 不破坏 Director project history；
-- Batch 67-72、docs check、`npm run check` 全部通过；
+- Batch 67-73、docs check、`npm run check` 全部通过；
 - 文档明确记录 clone-owned 决策、LibTV source unknown 和后续边界；
 - `master` 与 `origin/master` 同步且工作区干净。
 

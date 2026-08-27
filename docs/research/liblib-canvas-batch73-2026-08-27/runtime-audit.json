@@ -1,9 +1,54 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "PASS",
   "batch": 73,
-  "baseUrl": null,
-  "pure": null,
-  "browser": null,
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 73,
+    "scenarios": [
+      "current progress and terminal apply",
+      "owner/session/generation stale",
+      "source fingerprint drift",
+      "retry attempt supersession",
+      "duplicate terminal delivery",
+      "terminal conflict",
+      "invalid descriptor and envelope",
+      "resource transfer exactly once",
+      "resource release exactly once"
+    ],
+    "snapshot": {
+      "operationStatus": "succeeded",
+      "currentAttemptId": "attempt-2",
+      "seenResultKeys": [
+        "attempt-1:result-1-progress",
+        "attempt-1:result-1",
+        "attempt-2:result-retry"
+      ]
+    },
+    "errors": []
+  },
+  "browser": {
+    "capture": {
+      "captureCount": 1,
+      "operationKinds": [
+        "capture"
+      ],
+      "ordinaryGraphUnchanged": true
+    },
+    "export": {
+      "graphNodeDelta": 1,
+      "graphEdgeDelta": 1,
+      "resourceCount": 1,
+      "operationKinds": [
+        "capture",
+        "video-export"
+      ]
+    },
+    "diagnostics": {
+      "errors": [],
+      "status": "PASS"
+    }
+  },
   "screenshots": [],
   "errors": []
 }

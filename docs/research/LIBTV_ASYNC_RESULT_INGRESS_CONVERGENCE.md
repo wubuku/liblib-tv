@@ -1,12 +1,18 @@
 # LibTV 异步结果入口与陈旧执行收敛合同
 
-> 状态：`CURRENT_RESEARCH` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING`
+> 状态：`CURRENT_RESEARCH` / `DESIGN_SPEC_COMPLETE` /
+> `DIRECTOR_FOCUSED_RUNTIME_PASS` / `ORDINARY_GRAPH_RUNTIME_MISSING`
 >
 > 对应：`DEC-031`、`LIBTV-TR-037`、`OC-TR-011`、`OC-ADOPT-018`、`LIBTV-PAR-009`
 >
-> Fixture / verifier：`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` / `LIBTV-VR-015`
+> Director focused fixture / verifier：
+> `LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01` / `LIBTV-VR-024` async slice；
+> ordinary async fixture / verifier：`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` /
+> `LIBTV-VR-015`（design only）
 >
-> 当前授权：只做研究和设计；不修改 `src/`、测试脚本、submodule pointer、provider 或共享源站状态
+> 当前授权：Batch 73 已实现 Director capture、animation export 和 phone take
+> 的 clone-owned async authority；普通画布 async ingress、provider、持久化和共享
+> 源站状态仍不在授权范围。
 
 ## 1. 目的
 
@@ -141,6 +147,24 @@ feedback-only local state
 deferred graph creation after a short timer
 real browser-side asset production followed by graph insertion
 ```
+
+Batch 73 已为 Director capture、animation export 和 phone take import 增加
+clone-owned async identity/reconciliation slice。它不改变上述普通 canvas timer 的
+`PROTOTYPE_LATENCY` 解释，也不证明 source/backend parity。
+
+Batch 73 的实现边界是：
+
+```text
+Director accepted descriptor
+  -> captured owner/session/generation + source/request fingerprint
+  -> current attempt/result reconciliation
+  -> terminal projection or zero-mutation stale/invalid reject
+  -> explicit resource transfer/release
+```
+
+它覆盖的是 Director 本地 browser-side completion authority，不是普通画布的
+`run/poll/server-patch` backend，也不把 `DirectorAsyncAuthority` 变成
+`canvasStore` 的通用写入口。
 
 ### 5.2 Graph-producing delayed entries
 
@@ -381,6 +405,17 @@ producer owns URL
 
 **推荐决策：** 若未来授权，先用 shot breakdown deterministic fixture 证明 descriptor freeze、selection preserve、delete/undo stale rejection，再覆盖多节点长视频和 Director resource transfer。不要先接真实 provider。
 
+Batch 73 已先完成一个更窄的 Director-only candidate：
+
+- capture completion；
+- animation export completion；
+- phone virtual-camera take import；
+- owner/session/generation、source/request fingerprint、retry supersession、
+  duplicate terminal、terminal conflict 和 resource transfer/release。
+
+因此这条决策只关闭了 Director focused slice；`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01`
+仍需在普通画布 deterministic shot-breakdown 入口上单独实现和验证。
+
 ### `LIBTV-ASYNC-DQ-010`：Open Canvas server patch 是否可复用
 
 **推荐决策：** 只借独立 authority 和 saved-baseline projection 思路；不复用其 generic patch、URL identity、无 owner compare 或非原子 run/patch 流程。
@@ -389,14 +424,14 @@ producer owns URL
 
 | ID | Invariant | Current clone | Pass condition |
 |---|---|---|---|
-| `LIBTV-GI-023` | every graph-producing async completion carries operation/run/result identity | timers call creator directly | no anonymous delayed graph write |
-| `LIBTV-GI-024` | completion is checked against canvas/source/type/media version/current owner before planning | source existence only or component active flag | stale/invalid returns stable zero-mutation disposition |
-| `LIBTV-GI-025` | async patch touches only operation-registered fields | generic node data mechanisms remain available | no overwrite of graph identity or current user draft |
-| `LIBTV-GI-026` | duplicate/out-of-order completions are idempotent | no result/version ingress | no duplicate node/edge/media/history/selection effect |
-| `LIBTV-GI-027` | accepted result graph delta is one validated full-draft command | current creators append direct precomputed nodes/edges | existing GI/GC authorities run before one commit |
-| `LIBTV-GI-028` | component unmount and durable operation lifecycle are explicitly separate | mixed timer cleanup semantics | accepted operation remains observable or explicitly canceled |
-| `LIBTV-GI-029` | async completion does not steal unrelated current selection/surface | several creators rewrite selection | default preserve or declared contextual selection result |
-| `LIBTV-GI-030` | resource ownership transfers exactly once or is released | Director has partial local cleanup | stale/reject/delete/commit failure have deterministic release |
+| `LIBTV-GI-023` | every graph-producing async completion carries operation/run/result identity | Director capture/export/phone focused pass；ordinary timers remain direct | no anonymous delayed graph write in an implemented async profile |
+| `LIBTV-GI-024` | completion is checked against canvas/source/type/media version/current owner before planning | Director owner/session/generation/source fingerprint focused pass；ordinary source-version backend missing | stale/invalid returns stable zero-mutation disposition |
+| `LIBTV-GI-025` | async patch touches only operation-registered fields | Director envelope is typed；ordinary generic node data mechanisms remain available | no overwrite of graph identity or current user draft |
+| `LIBTV-GI-026` | duplicate/out-of-order completions are idempotent | Director attempt/result authority focused pass；ordinary graph ingress missing | no duplicate node/edge/media/history/selection effect |
+| `LIBTV-GI-027` | accepted result graph delta is one validated full-draft command | Director export uses one graph transaction；ordinary creators append direct precomputed nodes/edges | existing GI/GC authorities run before one commit |
+| `LIBTV-GI-028` | component unmount and durable operation lifecycle are explicitly separate | Director export/capture request identity survives component callback boundary；remote durable transport missing | accepted operation remains observable or explicitly canceled |
+| `LIBTV-GI-029` | async completion does not steal unrelated current selection/surface | Director capture preserves current selection and export/phone use declared result policy；several ordinary creators still rewrite selection | default preserve or declared contextual selection result |
+| `LIBTV-GI-030` | resource ownership transfers exactly once or is released | Director export Blob URL resource ledger focused pass；ordinary media ingress still partial | stale/reject/delete/commit failure have deterministic release |
 
 These extend `LIBTV-GI-018..022`; they do not replace graph connection, document, data, delete or ingress invariants.
 

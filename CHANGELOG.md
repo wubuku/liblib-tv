@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 73 Director async result authority:
+  typed capture/export/phone operation and attempt identity, owner/session/
+  generation and source/request freshness checks, stale/duplicate/invalid
+  convergence, ordinary graph projection and exactly-once Blob URL resource
+  transfer/release. Ordinary canvas async ingress and durable persistence remain
+  separate implementation slices.
 - Added Batch 72 Director reference-aware delete planning and resource closure:
   object/group/camera/track/path/capture/resource repair or block/cascade policy,
   last-camera protection, selection/runtime cleanup, exact delete/undo/redo and

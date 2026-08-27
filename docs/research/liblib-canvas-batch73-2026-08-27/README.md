@@ -1,6 +1,6 @@
 # Batch 73: Director Async Result Authority
 
-> 状态：`IN_PROGRESS / ASYNC_AUTHORITY_FOCUSED_PASS_PENDING`。
+> 状态：`COMPLETE / ASYNC_AUTHORITY_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 
@@ -69,6 +69,6 @@ accepted request
 
 ## 5. 当前状态
 
-代码与 verifier 仍在实施。完成条件是 pure authority corpus、导出完成结果的
-freshness guard、Batch 67-72 回归、docs check、`npm run check` 和
-commit/push 全部通过。
+Batch 73 已完成。pure authority corpus、capture/export/phone 完成结果的
+freshness guard、Batch 67-73 回归、docs check、`npm run check` 和
+commit/push 均已通过；详细结果见 `IMPLEMENTATION.md` 和 `runtime-audit.json`。

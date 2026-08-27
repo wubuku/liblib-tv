@@ -194,7 +194,7 @@ adapter 和 17-case pure corpus；它明确排除 selection/playback/panel/phone
 capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch 67 pure
 codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
 command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
-Batch 59 browser smoke。Batch 68 已建立
+Batch 73 async authority + Batch 59 browser smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
@@ -205,9 +205,12 @@ repeated gesture coalescing 和 close/reopen history continuity；当前真实 a
 只覆盖 object/group TransformControls 与 speed curve。Batch 71 已补齐 Inspector/
 pose/camera/path/free-draw 的 focused pointer lifecycle；Batch 72 又补齐
 reference-aware delete 的关系闭包、相机回退、资源阻断/级联和 exact
-delete/undo/redo。inactive-owner reconciliation、async destination、copy/paste
-identity remap、真实资源和 durable persistence 仍未实现，不能把这些 focused pass
-写成完整 project authority。
+delete/undo/redo。Batch 73 又为 capture、animation export 和 phone take import
+补齐 operation/attempt、owner/session/generation、source/request fingerprint、
+terminal convergence 和 export Blob URL transfer/release。inactive-owner
+reconciliation、普通画布 async ingress、copy/paste identity remap、真实资源和
+durable persistence 仍未实现，不能把这些 focused pass 写成完整 project
+authority。
 
 ### 5.2 状态边界
 
@@ -254,7 +257,7 @@ React Flow transport 已进一步单独收口：clone 与 Open Canvas 都锁定 
 
 Selection、focus 和 keyboard context 也必须分权：Batch 61 已让 node/edge selection 共用 active-session authority，并以 React Flow change routing 作为唯一 framework selection ingress；Batch 62 又完成 validated command snapshot、editable/IME guard、blocking foreground shortcut suspension、单层 Escape 和 canvas focus fallback 的 clone-owned focused pass。未完成的 primary identity、plain/additive/marquee precedence、mixed node+edge editor gating、modal focus trap、Asset/Agent containment 和 source-exact modal/focus 仍保持边界。Batch 50 已隔离 Director 与普通 page shortcuts。Open Canvas 可借 local editor/clipboard guard，selected flags/conflict coupling、weak Escape 和 framework default destructive key 是反例。统一 selection/focus/context 的长期合同、`SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019` 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)；Batch 62 的实施和证据入口见 [`research/liblib-canvas-batch62-2026-08-27/`](research/liblib-canvas-batch62-2026-08-27/)；精确 LibTV modal/shortcut/focus visual 仍需 source evidence。
 
-异步结果是这套 authority 的下一层，而不是一个 generic node patch：committed clone 没有普通画布网络任务或 run store，逐帧拉片、音视频分离、深度/抠像/主体编辑和长视频主要在 component timer 后直接创建 graph，Director 动画导出才有真实 browser-side completion。Open Canvas 的 descriptor/run/poll/server-patch/revision 结构值得借鉴，但固定实现没有比较 expected current run、source media version 或 field owner，terminal run 与 graph projection 也分成独立写入。当前 operation identity、stale/duplicate disposition、selection/history/resource 收敛、`ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 的设计权威是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)；当前短 timer 只表示 `PROTOTYPE_LATENCY`，不表示真实任务已接通。
+异步结果是这套 authority 的下一层，而不是一个 generic node patch：committed clone 没有普通画布网络任务或 run store，逐帧拉片、音视频分离、深度/抠像/主体编辑和长视频主要在 component timer 后直接创建 graph。Batch 73 已把 Director capture、animation export 和 phone take import 接到 clone-owned operation/attempt/result authority，并验证 stale/duplicate/invalid 零 mutation 与 export resource exactly-once；它没有把普通 timer 升级成 task backend。Open Canvas 的 descriptor/run/poll/server-patch/revision 结构值得借鉴，但固定实现没有比较 expected current run、source media version 或 field owner，terminal run 与 graph projection 也分成独立写入。当前 operation identity、stale/duplicate disposition、selection/history/resource 收敛、`ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 的设计权威是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)；当前短 timer 只表示 `PROTOTYPE_LATENCY`，不表示真实任务已接通。
 
 这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
 

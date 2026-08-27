@@ -3,7 +3,7 @@
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
 > `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_FOCUSED_RUNTIME_PASS` /
 > `AUTHORED_HISTORY_POINTER_DELETE_FOCUSED_RUNTIME_PASS` /
-> `ASYNC_PERSISTENCE_RUNTIME_MISSING` /
+> `ASYNC_AUTHORITY_FOCUSED_RUNTIME_PASS` / `PERSISTENCE_RUNTIME_MISSING` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -82,8 +82,12 @@ Director project document
   gesture coalescing；Batch 71 已覆盖 Inspector/pose/camera/path/free-draw
   pointer lifecycle；Batch 72 已覆盖 reference-aware delete、关系闭包、相机回退、
   资源阻断/级联和 exact delete/undo/redo；
-- inactive owner tombstone/reachability、async graph destination、copy/paste identity
-  remap 和 durable persistence 仍未解决。
+- Batch 73 已为 capture、animation export 和 phone take import 增加
+  operation/attempt、owner/session/generation、source/request fingerprint、
+  terminal convergence 和 resource transfer/release；普通画布 async ingress
+  仍未统一接入；
+- inactive owner tombstone/reachability、copy/paste identity remap 和 durable
+  persistence 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -129,7 +133,7 @@ async convergence、resource lease 和 multi-document lifecycle 的设计问题�
 | ordinary canvas lifecycle | Director owner 与 canvas generation 的组合 | [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) |
 | Director command/history/delete | project mutation 接收与 document snapshot | [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md) |
 | media/resource | Director project 只保存 stable descriptor/reference | [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md) |
-| async result | captured owner/generation 和 destination request | [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) |
+| async result | captured owner/generation、source/request fingerprint、attempt/result convergence 和 destination request | [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md) |
 | selection/focus | Director 是 foreground command context | [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) |
 | feedback | project/session lifecycle outcome | [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md) |
 | graph result | typed result intent与provenance | ordinary canvas graph transaction authority |
@@ -630,8 +634,9 @@ document、duplicate、delete和 delayed result。
 - duplicate source 当前采用新默认 project reset，不共享原 project；
 - active source invalid 会 close session，inactive registry tombstone 未接；
 - capture bytes/sent graph ID 仅保存在 memory sidecar；
-- 没有 browser persistence 或 async destination；authored/runtime split 已由
-  Batch 69 的 `DIR-PROJECT-I03` 完成。
+- Batch 73 已接入 capture/export/phone 的 clone-owned async destination
+  authority；普通画布 async ingress 和 durable browser persistence 仍未接入；
+  authored/runtime split 已由 Batch 69 的 `DIR-PROJECT-I03` 完成。
 
 ### `DIR-PROJECT-I03` Authored/Runtime Projection Split
 
@@ -696,7 +701,10 @@ owner/session 子项已在 Batch 68 升级为
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
 1. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
-2. delayed capture/export 只写 captured canvas/source/generation；
+2. 普通画布 delayed result 也只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 明确；
 4. persistence adapter 有 corrupt/quota/stale fixture；
 5. copy/paste identity remap 有 focused runtime。
+
+Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项，
+但不关闭普通画布 async ingress 或 durable persistence 子项。

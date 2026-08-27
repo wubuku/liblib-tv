@@ -322,8 +322,10 @@ seek/playback/path fingerprint stability、authoring restore 和 owner/graph iso
 Batch 70 已完成 typed project-local command/history、undo/redo 和 gesture
 coalescing；Batch 71 已完成 focused pointer lifecycle；Batch 72 已完成
 reference-aware delete、关系闭包、相机回退、资源阻断/级联和 exact
-delete/undo/redo。inactive-owner reconciliation、async destination、
-copy/paste identity remap 与 persistence 仍缺。
+delete/undo/redo；Batch 73 已完成 Director capture/export/phone 的 async
+operation/attempt/result authority、source/owner freshness、terminal convergence
+和 resource transfer/release。inactive-owner reconciliation、ordinary canvas
+async、copy/paste identity remap 与 persistence 仍缺。
 Batch 59 继续是当前低成本 WebGL browser smoke；Batch 46/48/49/50 在
 artifact/storage 隔离前只是 merge candidates。不得把 StoryAI/Open Canvas
 schema、历史 verifier 或 clone screenshot 写成 LibTV source fact，也不得借下一
@@ -356,14 +358,15 @@ pointer lifecycle。
 
 **影响：** Batch 70 将 `LIBTV-VR-024` 的同步 command/history slice 提升为
 `HISTORY_FOCUSED_PASS`，Batch 71 提升 pointer lifecycle，Batch 72 提升
-reference-aware delete。三批都保留 close/reopen 后同一 project 的 history
+reference-aware delete，Batch 73 提升 Director async authority。四批都保留 close/reopen 后同一 project 的 history
 continuity、zero-partial 和普通 graph/history isolation。当前不宣称全部旧 action
 已成为 typed command，也不宣称 LibTV source 已证实相同 undo/redo、删除菜单或
 确认 UI。inactive-owner reconciliation、capture/export async freshness、durable
 persistence、copy/paste identity remap、真实资源加载和 source-exact Director
 DOM/CSS 仍是独立后续合同；Batch 72 的验收重点是 reference closure、last-camera
 and resource policy、runtime cleanup 与每个 accepted destructive action 至多一条
-history。
+history；Batch 73 的验收重点是 operation/attempt freshness、terminal
+idempotency 和 resource exactly-once。
 
 **依据：** [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
 [`liblib-canvas-batch70-2026-08-27/`](research/liblib-canvas-batch70-2026-08-27/)、
