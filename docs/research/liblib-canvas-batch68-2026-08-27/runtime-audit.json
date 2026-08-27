@@ -7,7 +7,8 @@
     "sourceExact": false,
     "browserPersistence": false,
     "authoredRuntimeSplit": false,
-    "historyDelete": false
+    "historyDelete": false,
+    "activeDeleteTombstone": true
   },
   "pure": {
     "status": "PASS",
@@ -32,7 +33,7 @@
     "closeReopenGeneration": "pass",
     "crossCanvasIsolation": "pass",
     "duplicateResetPolicy": "pass",
-    "activeDeleteClose": "pass",
+    "activeDeleteTombstone": "pass",
     "memoryCaptureSidecar": "pass",
     "ordinaryGraphIsolation": "pass",
     "projectsObserved": 4

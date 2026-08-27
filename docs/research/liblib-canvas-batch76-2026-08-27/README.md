@@ -1,6 +1,6 @@
 # Batch 76: Director Owner Reachability Reconciliation
 
-> 状态：`IMPLEMENTED / REGRESSION_PENDING`。
+> 状态：`OWNER_REACHABILITY_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27；代码基线：`30f071b`。
 
@@ -45,7 +45,14 @@ undo 后复活 Director project。上述 durable cleanup/restore policy 保留�
 - ordinary source delete 仍只有一条 graph history；
 - zero screenshots、zero console/page/request errors。
 
-跨批回归、全量质量门禁、治理收口与最终 checkpoint 尚待执行。
+跨批与全量结果：
+
+- Batch 59、Batch 67-76 均串行通过；
+- `npm run docs:check`、`git diff --check`、`npm run check` 均通过；
+- Batch 68 当前兼容断言已从 active-delete `CLOSED` 校正为
+  `TOMBSTONED`，并等待两阶段 shell teardown 后再断言 runtime 清空；
+- 治理、fixture、traceability、coverage 与 verifier manifest 已同步；
+- zero screenshots、zero console/page/request errors。
 
 ## 4. 入口
 

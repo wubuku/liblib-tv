@@ -359,6 +359,12 @@ def run_browser_verifier(page: Page) -> dict:
     page.wait_for_function(
         "() => !document.querySelector('[data-director-workspace]')"
     )
+    page.wait_for_function(
+        """() => {
+          const state = window.__director_store.getState();
+          return state.projectId === null && state.sessionId === null;
+        }"""
+    )
     deleted_state = director_state(page)
     assert deleted_state["projectId"] is None
     assert deleted_state["sessionId"] is None
@@ -373,7 +379,7 @@ def run_browser_verifier(page: Page) -> dict:
         if record["identity"]["owner"]["canvasId"] == fixture["canvasId"]
         and record["identity"]["owner"]["sourceNodeId"] == duplicate
     )
-    assert duplicate_record["lifecycle"] == "CLOSED"
+    assert duplicate_record["lifecycle"] == "TOMBSTONED"
     assert registry_snapshot["activeSession"] is None
 
     assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
@@ -383,7 +389,7 @@ def run_browser_verifier(page: Page) -> dict:
         "closeReopenGeneration": "pass",
         "crossCanvasIsolation": "pass",
         "duplicateResetPolicy": "pass",
-        "activeDeleteClose": "pass",
+        "activeDeleteTombstone": "pass",
         "memoryCaptureSidecar": "pass",
         "ordinaryGraphIsolation": "pass",
         "projectsObserved": len(registry_snapshot["records"]),
@@ -444,6 +450,7 @@ def main() -> None:
             "browserPersistence": False,
             "authoredRuntimeSplit": False,
             "historyDelete": False,
+            "activeDeleteTombstone": True,
         },
         "pure": pure_result,
         "browser": browser_result,
@@ -456,7 +463,7 @@ def main() -> None:
     print(
         "Batch 68 verification passed: structured owner keys, project/session/"
         "generation lifecycle, A/B and cross-canvas isolation, memory capture "
-        "sidecar, duplicate reset policy, active-delete close and ordinary graph "
+        "sidecar, duplicate reset policy, active-delete tombstone and ordinary graph "
         "isolation."
     )
 

@@ -1,6 +1,6 @@
 # Batch 76 实施与验证记录
 
-> 状态：`IMPLEMENTED / REGRESSION_PENDING`。
+> 状态：`OWNER_REACHABILITY_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 
@@ -77,9 +77,52 @@ close shell owner
 
 该顺序同时保持 async correctness 和 renderer lifecycle安全。
 
-## 4. 待完成
+## 4. 跨批回归
 
-- Batch 67-76 current gate跨批回归；
-- docs check、`git diff --check`、`npm run check`；
-- governance/traceability/coverage/ledger更新；
-- 最终 commit/push 与 clean-worktree确认。
+在同一 `localhost:3001` 开发服务器上串行通过：
+
+```text
+Batch 59
+Batch 67
+Batch 68
+Batch 69
+Batch 70
+Batch 71
+Batch 72
+Batch 73
+Batch 74
+Batch 75
+Batch 76
+```
+
+Batch 68 verifier 随当前 owner lifecycle 校正：
+
+- active source 删除后的 registry lifecycle 断言由 `CLOSED` 改为
+  `TOMBSTONED`；
+- 等待 Director shell teardown 后再断言 `projectId/sessionId == null`；
+- runtime audit 使用 `activeDeleteTombstone`；
+- 其他 owner/session、capture sidecar 和 ordinary graph isolation 断言保持。
+
+全部脚本均为零截图；Batch 68-76 browser gate 均无 console/page/request error。
+
+## 5. 全量门禁与治理
+
+- `npm run docs:check`：通过；
+- `git diff --check`：通过；
+- `npm run check`：通过，保留既有 9 条 lint warning；
+- 已更新 Changelog、Hub、Big Picture、Agent Task Map、HARNESS、decision、
+  traceability、fixture、verification ledger、component coverage、Director
+  authority contract 和 current verifier manifest；
+- 实现 checkpoint：`10b9251`；
+- closeout checkpoint：包含本记录的 Batch 76 最终提交；
+- 提交推送后要求 `master == origin/master`、工作区干净且仅保留主 worktree。
+
+## 6. 结论与后续边界
+
+Batch 76 关闭 clone-owned memory owner reachability 缺口。它没有定义：
+
+- durable tombstone 是否写入 persistence envelope；
+- localStorage/IndexedDB/backend record 和资源何时删除；
+- graph undo 后 Director project 是否 restore/recreate；
+- whole-project duplicate 的 owner/project/resource transaction；
+- LibTV source-exact delete、toast、modal 或 recovery UI。

@@ -51,6 +51,7 @@
 | DEC-041 | Director command/history/gesture authority | Director semantic mutation 使用 project-local typed command/history；完整 pointer lifecycle 逐类接入，delete/async/persistence 按独立合同推进 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-042 | Director browser-local persistence | 只保存 owner-scoped、versioned canonical V1 document；strict reject、stale-save guard 和 storage failure 必须保持当前 session 可用；普通画布、远端同步和真实资源另行建合同 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-043 | Director session clipboard authority | clipboard 是 project-scoped、memory-only typed packet；copy 零 semantic mutation，paste two-pass remap 后一次提交；跨 project、资源冲突和 runtime/capture data 全部拒绝或排除 | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-044 | Director owner reachability authority | 全部 canvas 的 live source owner 是 registry reachability 权威；不可达 record 一次性 tombstone，active owner 先关闭 shell/session 再清 runtime projection；graph undo、durable storage 和资源删除不得隐式联动 | ACTIVE / IMPLEMENTATION_GATE |
 
 ## 2. 决策详情
 
@@ -318,7 +319,7 @@ authored/runtime split、command/history/gesture authority、reference-aware del
 V1 strict codec、snapshot adapter、runtime-field exclusion、reference validation
 和 pure contract corpus。Batch 68 已完成 structured owner、in-memory project
 registry、project/session/generation、A/B/cross-canvas restore、duplicate reset、
-active-delete close 和 memory capture sidecar focused runtime。Batch 69 已完成
+active-delete tombstone 和 memory capture sidecar focused runtime。Batch 69 已完成
 `authoredObjects` portable baseline、`objects` runtime projection、
 seek/playback/path fingerprint stability、authoring restore 和 owner/graph isolation。
 Batch 70 已完成 typed project-local command/history、undo/redo 和 gesture
@@ -327,9 +328,10 @@ reference-aware delete、关系闭包、相机回退、资源阻断/级联和 ex
 delete/undo/redo；Batch 73 已完成 Director capture/export/phone 的 async
 operation/attempt/result authority、source/owner freshness、terminal convergence
 和 resource transfer/release。Batch 74 已完成 browser-local persistence，Batch 75
-已完成 same-project session clipboard identity remap。inactive-owner
-reconciliation、ordinary canvas async/persistence、whole-project duplicate、
-remote storage 与真实资源仍缺。
+已完成 same-project session clipboard identity remap，Batch 76 已完成 all-canvas
+owner reachability、inactive source/canvas tombstone 与 active shell/session/runtime
+两阶段 cleanup。durable tombstone、storage/resource cleanup、ordinary canvas
+async/persistence、whole-project duplicate、remote storage 与真实资源仍缺。
 Batch 59 继续是当前低成本 WebGL browser smoke；Batch 46/48/49/50 在
 artifact/storage 隔离前只是 merge candidates。不得把 StoryAI/Open Canvas
 schema、历史 verifier 或 clone screenshot 写成 LibTV source fact，也不得借下一
@@ -366,9 +368,10 @@ reference-aware delete，Batch 73 提升 Director async authority，Batch 75 提
 same-project clipboard remap。相关批次都保留 close/reopen 后同一 project 的 history
 continuity、zero-partial 和普通 graph/history isolation。当前不宣称全部旧 action
 已成为 typed command，也不宣称 LibTV source 已证实相同 undo/redo、删除菜单或
-确认 UI。inactive-owner reconciliation、ordinary canvas async/persistence、
+确认 UI。Batch 76 已关闭 clone-owned inactive-owner reconciliation；durable
+tombstone、storage/resource cleanup、ordinary canvas async/persistence、
 whole-project duplicate、真实资源加载和 source-exact Director DOM/CSS 仍是独立
-后续合同；Batch 72 的验收重点是 reference closure、last-camera
+后续合同。Batch 72 的验收重点是 reference closure、last-camera
 and resource policy、runtime cleanup 与每个 accepted destructive action 至多一条
 history；Batch 73 的验收重点是 operation/attempt freshness、terminal
 idempotency 和 resource exactly-once；Batch 75 的验收重点是 typed closure、
@@ -397,7 +400,7 @@ playhead、panel、phone live state、history、capture bytes、Blob/File/Object
 **影响：** Batch 74 将 `LIBTV-VR-024` 提升为
 `PERSISTENCE_FOCUSED_PASS`。这只关闭 clone-owned Director browser-local
 persistence，不授权普通画布 persistence、remote/cloud sync、durable history、
-真实资源 materialization、inactive-owner reconciliation、whole-project duplicate
+真实资源 materialization、durable tombstone cleanup、whole-project duplicate
 或 source-exact LibTV persistence。
 
 **依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
@@ -434,6 +437,36 @@ feedback。
 
 **依据：** [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
 [`liblib-canvas-batch75-2026-08-27/`](research/liblib-canvas-batch75-2026-08-27/)、
+[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
+[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
+
+### DEC-044：Director registry 以全画布 live owner reachability 定权
+
+**背景：** Batch 68 的 structured owner registry 只在 foreground owner 删除时
+关闭 session。后台 source node 或整个 canvas 删除后，对应 project record 仍可
+保持 `ACTIVE/CLOSED` 并被重新打开；把 Director side effect 直接塞进
+`canvasStore.removeNode/removeCanvas` 又会污染普通 graph transaction 和 history。
+R3F shell 卸载还要求 renderer event manager 先脱离 DOM，再清空 runtime projection。
+
+**决策：** Page 从全部 `canvases[].nodes` 构造稳定 live Director owner set，只
+reconcile registry 中已存在且非 `TOMBSTONED` 的 records。不可达 owner 一次性
+tombstone；inactive owner 不影响 foreground project。Active owner 采用两阶段
+cleanup：先关闭 Director shell owner 并同步 tombstone registry/session，使旧
+async context 立即 stale；shell teardown 后再清 runtime/history/capture/clipboard
+projection。Reconciliation 是 derived lifecycle repair，不新增 Director history，
+也不改变普通 graph delete 的原 history 数量。
+
+**影响：** Batch 76 将 `LIBTV-VR-024` 提升为
+`OWNER_REACHABILITY_FOCUSED_PASS`，覆盖 inactive source/canvas delete、active
+cleanup、rename/switch/unrelated isolation、重复幂等、tombstoned reopen reject、
+delayed async stale、graph undo boundary 和 retained persistence。Graph undo
+恢复 source node 不自动 untombstone project；browser persistence envelope、
+history/capture archive、资源字节和 stable asset 不被隐式删除。Durable tombstone、
+storage/resource cleanup、restore/recreate、whole-project duplicate 和
+source-exact delete/recovery UI 必须另行决策。
+
+**依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
+[`liblib-canvas-batch76-2026-08-27/`](research/liblib-canvas-batch76-2026-08-27/)、
 [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
 

@@ -6,6 +6,7 @@
 > `ASYNC_AUTHORITY_FOCUSED_RUNTIME_PASS` /
 > `PERSISTENCE_FOCUSED_RUNTIME_PASS` /
 > `CLIPBOARD_REMAP_FOCUSED_RUNTIME_PASS` /
+> `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -14,6 +15,7 @@
 > Evidence baseline:
 > [`liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md`](liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md)，
 > [`liblib-canvas-batch67-2026-08-27/IMPLEMENTATION.md`](liblib-canvas-batch67-2026-08-27/IMPLEMENTATION.md)，
+> [`liblib-canvas-batch76-2026-08-27/IMPLEMENTATION.md`](liblib-canvas-batch76-2026-08-27/IMPLEMENTATION.md)，
 > clone `a7bcf21`，StoryAI `8c8bd36`，Open Canvas
 > `cf3a906bb8c35bb940d3267497e7f394b8f42582`。
 >
@@ -75,7 +77,7 @@ Director project document
 - Batch 68 已增加 structured owner key、in-memory project registry、
   project/session/generation、document restore adapter 和 owner-aware
   open/switch/close；
-- A/B source、cross-canvas、close/reopen、duplicate reset、active delete close 和
+- A/B source、cross-canvas、close/reopen、duplicate reset、active delete tombstone 和
   memory capture sidecar 已通过 focused runtime；
 - Batch 69 已增加 `authoredObjects` baseline，timeline/path sampling 不再覆盖
   portable snapshot；object/camera/pose authoring 与 close/reopen focused runtime
@@ -96,9 +98,12 @@ Director project document
   object/group/track/path/keyframe/anchor two-pass remap、camera relation
   detach/remap、stable resource alias、one-entry paste history 和 reload
   non-persistence boundary；
-- inactive owner tombstone/reachability、
-  ordinary canvas persistence、remote persistence 和 source-exact storage
-  仍未解决。
+- Batch 76 已增加 all-canvas live owner collection、deterministic reachability
+  planner、inactive source/canvas one-time tombstone、active shell/session/runtime
+  两阶段 cleanup、repeated reconciliation 幂等和 graph undo/persistence retained
+  boundary；
+- durable tombstone、storage/resource cleanup、ordinary canvas persistence、
+  remote persistence 和 source-exact storage 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -481,6 +486,18 @@ type DirectorOwnerDeleteDisposition =
 - graph export results可独立保留 provenance；
 -真正删除 persistence/resource需独立明确 command。
 
+Batch 76 的 clone runtime 已按该默认实现：
+
+1. page 从全部 `canvases[].nodes` 构造 live Director owner set；
+2. 只 reconciliation registry 中已存在且非 `TOMBSTONED` 的 records；
+3. inactive owner 只 tombstone 对应后台 project；
+4. active owner 先关闭 shell owner并同步 tombstone session，使 async context
+   立即 stale；
+5. shell teardown 后再清 Director runtime/history/capture/clipboard projection；
+6. ordinary graph delete仍只有原 graph history step；
+7. graph undo恢复 source node，但不自动 untombstone Director project；
+8. persistence envelope、history/capture archive和资源保持。
+
 最终 cascade/tombstone/retain 是 `SOURCE_PRODUCT_DECISION_REQUIRED`。
 
 ### 9.6 `DUPLICATE_SOURCE_OR_CANVAS`
@@ -669,7 +686,9 @@ document、duplicate、delete和 delayed result。
 - 已接 current store snapshot/restore adapter；
 - 已验证 A/B、cross-canvas、close/reopen 和 same-owner focus；
 - duplicate source 当前采用新默认 project reset，不共享原 project；
-- active source invalid 会 close session，inactive registry tombstone 未接；
+- Batch 68 的 active source invalid 兼容路径已随 Batch 76 收敛为
+  tombstone + 两阶段 shell/runtime cleanup；
+- inactive registry tombstone 已由 Batch 76 的 `DIR-PROJECT-I06` 接入；
 - capture bytes/sent graph ID 仅保存在 memory sidecar；
 - Batch 73 已接入 capture/export/phone 的 clone-owned async destination
   authority；普通画布 async ingress 和 durable browser persistence 仍未接入；
@@ -704,6 +723,21 @@ document、duplicate、delete和 delayed result。
 - whole-project duplicate、resource bytes transfer 和 system clipboard 仍是独立
   lifecycle/resource slices。
 
+### `DIR-PROJECT-I06` Owner Reachability Reconciliation
+
+- 状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 76；
+- 全部 canvas/source nodes 构成 live owner authority，而非只读取 active canvas；
+- pure planner只处理 existing registry records，规范化 invalid/duplicate owner，
+  并确定性输出 preserved/tombstone/already-tombstoned/active-invalidated；
+- inactive source/canvas 删除只 tombstone对应 project，不影响 foreground；
+- active owner采用 shell close -> registry/session tombstone -> R3F teardown ->
+  runtime/history/capture/clipboard projection cleanup；
+- repeated reconcile不重复增加 generation，rename/switch/unrelated delete不误伤；
+- tombstoned owner reopen拒绝，旧 async completion立即 stale；
+- ordinary graph history、persistence envelope、archive和资源保持；
+- durable tombstone、storage/resource cleanup、graph undo restore 和
+  whole-project duplicate保持独立决策。
+
 每个 slice 独立计划、fixture、verifier、commit/push。不得以“建立 project document”
 为由一次性重写全部 Director components。
 
@@ -734,19 +768,22 @@ document、duplicate、delete和 delayed result。
 本合同的 codec 子项已在 Batch 67 升级为 `V1_CODEC_RUNTIME_PASS`，同步
 owner/session 子项已在 Batch 68 升级为
 `OWNER_SESSION_FOCUSED_RUNTIME_PASS`，authored/runtime 子项已在 Batch 69
-升级为 `AUTHORED_RUNTIME_FOCUSED_PASS`：
+升级为 `AUTHORED_RUNTIME_FOCUSED_PASS`，owner reachability 子项已在 Batch 76
+升级为 `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS`：
 
 1. 两个 source node 和两个 canvas 已证明 project 不串场；
-2. open/switch/close、same-owner focus、duplicate reset 和 active delete close
+2. open/switch/close、same-owner focus、duplicate reset 和 active delete tombstone
    已有 typed/focused runtime；
 3. session/runtime/capture sidecar exclusion 在 store integration 后仍成立；
 4. seek/playback/path sampling 不污染 authored fingerprint，object/camera/pose
    authoring 可在 close/reopen 后恢复；
-5. focused verifier、`npm run check`、docs check 和实施台账通过。
+5. inactive source/canvas delete、active cleanup、重复 reconcile、stale async、
+   graph undo/persistence retained boundary 已有 focused runtime；
+6. focused verifier、`npm run check`、docs check 和实施台账通过。
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
-1. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
+1. durable tombstone、storage/resource cleanup 与 graph undo restore policy 明确；
 2. 普通画布 delayed result 也只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 明确；
 4. ordinary canvas graph/document persistence 有独立合同和 fixture；
@@ -754,6 +791,8 @@ owner/session 子项已在 Batch 68 升级为
 
 Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项；
 Batch 74 已关闭 clone-owned Director browser-local durable document persistence
-子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项。三者
-都不关闭 inactive-owner reconciliation、ordinary canvas async/persistence、
-whole-project duplicate、remote storage、真实资源或 source-exact LibTV 子项。
+子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项；
+Batch 76 已关闭 memory-only owner reachability reconciliation 子项。它们都不
+关闭 durable tombstone/storage/resource cleanup、ordinary canvas
+async/persistence、whole-project duplicate、remote storage、真实资源或
+source-exact LibTV 子项。

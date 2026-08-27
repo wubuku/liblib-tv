@@ -8,11 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Planned Batch 76 Director owner reachability reconciliation: all-canvas live
-  owner planning, inactive source/canvas tombstones, active session/runtime
-  cleanup, idempotency, stale async completion and ordinary graph-history
-  isolation. Durable tombstones, storage/resource deletion and undo restoration
-  remain separate product decisions.
+- Closed Batch 76 Director owner reachability reconciliation: all-canvas live
+  owner planning, one-time inactive source/canvas tombstones, two-phase active
+  shell/session/runtime cleanup, idempotency, stale async completion, retained
+  persistence and ordinary graph-history isolation. Added pure and fresh-page
+  Playwright gates and reran Batch 59 plus Batch 67-76 serial regression with
+  zero screenshots or browser diagnostics. Durable tombstones,
+  storage/resource deletion and graph-undo restoration remain separate product
+  decisions.
 - Closed Batch 75 Director clipboard identity remap: project-scoped
   portable packet, object/group/track/path closure, two-pass IDs and references,
   camera detach/freeze, stable resource alias, deterministic offset, one-entry

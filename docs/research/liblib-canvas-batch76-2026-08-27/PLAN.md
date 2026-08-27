@@ -1,6 +1,6 @@
 # Batch 76 计划：Director Owner Reachability Reconciliation
 
-> 状态：`IMPLEMENTED / REGRESSION_PENDING`。
+> 状态：`OWNER_REACHABILITY_FOCUSED_PASS`。
 >
 > 日期：2026-08-27；代码基线：`30f071b`。
 
@@ -61,12 +61,12 @@
 
 ### Slice E：治理与回归
 
-- [ ] 更新 Director project/session contract；
-- [ ] 更新 verifier manifest、fixture、ledger、traceability、decision register；
-- [ ] 更新 coverage、Big Picture、Agent Task Map、HARNESS、hubs、CHANGELOG；
-- [ ] 运行 Batch 67-76 focused gates；
-- [ ] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
-- [ ] 记录实施结果、commit/push，确认唯一主 worktree 干净。
+- [x] 更新 Director project/session contract；
+- [x] 更新 verifier manifest、fixture、ledger、traceability、decision register；
+- [x] 更新 coverage、Big Picture、Agent Task Map、HARNESS、hubs、CHANGELOG；
+- [x] 运行 Batch 67-76 focused gates；
+- [x] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
+- [x] 记录实施结果、commit/push，确认唯一主 worktree 干净。
 
 ## 3. Fixture
 

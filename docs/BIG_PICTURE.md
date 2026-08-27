@@ -195,7 +195,8 @@ capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch
 codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
 command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
 Batch 73 async authority + Batch 74 browser-local persistence + Batch 75
-clipboard identity remap + Batch 59 browser smoke。Batch 68 已建立
+clipboard identity remap + Batch 76 owner reachability + Batch 59 browser
+smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
@@ -214,9 +215,12 @@ strict reload restore、stale save、坏数据零替换和 storage-failure
 `SESSION_ONLY` continuity。Batch 75 又增加 project-scoped session clipboard、
 typed entity closure、two-pass ID/reference remap、camera detach/freeze、stable
 resource alias、one-entry paste history 和 guarded `Cmd/Ctrl+C/V`。inactive-owner
-reconciliation、普通画布 async/persistence、whole-project duplicate、真实资源、
-remote storage 和 source parity 仍未完成；这些 focused pass 不能写成完整 project
-authority，也不能写成 LibTV source-exact 行为。
+reconciliation 已由 Batch 76 以 all-canvas live owner planner、inactive
+source/canvas one-time tombstone、active shell/session/runtime 两阶段 cleanup、
+graph undo 不复活 project 和 retained persistence boundary 完成 focused pass。
+durable tombstone、storage/resource cleanup、whole-project duplicate、普通画布
+async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
+focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
 
 ### 5.2 状态边界
 

@@ -8,6 +8,7 @@
 > `REFERENCE_DELETE_GATE_RECORDED_PASS` / `ASYNC_AUTHORITY_GATE_RECORDED_PASS` /
 > `PERSISTENCE_GATE_RECORDED_PASS` /
 > `CLIPBOARD_REMAP_GATE_RECORDED_PASS` /
+> `OWNER_REACHABILITY_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
@@ -17,7 +18,7 @@
 > Batch 69 authored/runtime verifier, Batch 70 command/history verifier,
 > Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier,
 > Batch 73 async-authority verifier, Batch 74 persistence verifier and Batch 75
-> clipboard identity-remap verifier.
+> clipboard identity-remap verifier, and Batch 76 owner-reachability verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -30,7 +31,7 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, eight current hybrid pure/browser reliability verifiers and one
+codec verifier, nine current hybrid pure/browser reliability verifiers and one
 current browser smoke.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
@@ -45,8 +46,8 @@ single current gate on their own:
 - Batch 67 covers the strict V1 document slice；
 - Batch 68 covers structured owner keys、per-owner in-memory project records、
   open/switch/close generation、A/B/cross-canvas isolation and active-delete
-  session close without claiming authored/runtime、async、history/delete or
-  persistence coverage.
+  tombstone compatibility；Batch 76 owns current all-canvas reachability and
+  two-phase shell/runtime cleanup.
 - Batch 69 covers authored/runtime object authority、timeline/path projection
   stability、object/camera/pose authoring restore and existing owner/graph
   isolation.
@@ -71,6 +72,10 @@ single current gate on their own:
   identity/reference remap、camera detach/freeze、stable resource alias、
   deterministic repeated placement、one-entry history、shortcut priority and
   reload non-persistence.
+- Batch 76 covers all-canvas live owner collection、inactive source/canvas
+  one-time tombstone、active shell/session/runtime two-phase cleanup、
+  deterministic/idempotent reconciliation、tombstoned reopen rejection、
+  delayed async stale、graph undo boundary and retained persistence.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -109,7 +114,7 @@ historical regressions.
 | Batch 50 | workspace collapse, mobile drawers and keyboard boundary | `MERGE_CANDIDATE` | 4 tracked screenshots; desktop/mobile focus checks | High-value shell/focus regression once artifact output is isolated |
 | Batch 59 | asset search, preview-only selection, explicit insertion, WebGL and graph isolation | `CURRENT_GATE` | Writes only its deterministic tracked runtime audit; no page screenshot writes | Current low-cost Director smoke and present `LIBTV-VR-024` browser seed |
 | Batch 67 | V1 document snapshot, strict decode/normalize/encode and invalid/future/reference corpus | `CURRENT_GATE` | Pure Node 24 process; no browser, storage, graph or screenshot artifact | Current `LIBTV-VR-024` project-codec gate; does not prove project registry or store integration |
-| Batch 68 | structured owner key、project/session/generation、A/B/cross-canvas isolation、duplicate reset and active-delete close | `CURRENT_GATE` | Pure Node registry corpus + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` owner/session gate；does not prove authored/runtime stability、inactive tombstone、async destination、history/delete or persistence |
+| Batch 68 | structured owner key、project/session/generation、A/B/cross-canvas isolation、duplicate reset and active-delete tombstone compatibility | `CURRENT_GATE` | Pure Node registry corpus + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` owner/session gate；Batch 76 now owns all-canvas reachability and two-phase cleanup |
 | Batch 69 | authored/runtime object split、seek/playback/path stability、object/camera/pose authoring restore、close/reopen and owner/graph isolation | `CURRENT_GATE` | Static Node source gate + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` authored/runtime gate；does not prove history/delete、async destination、durable persistence or source parity |
 | Batch 70 | project-local command result、semantic history、no-op/rejection、gesture coalescing、undo/redo and reopen continuity | `CURRENT_GATE` | Pure Node source gate + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` command/history gate；does not prove reference-aware delete、async destination、durable persistence or source parity |
 | Batch 71 | Inspector、pose、camera、path and free-draw gesture lifecycle | `CURRENT_GATE` | Pure source gate + one fresh-page Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` pointer-lifecycle gate；does not prove reference-aware delete、async destination、durable persistence or source parity |
@@ -117,6 +122,7 @@ historical regressions.
 | Batch 73 | Director capture/export/phone async authority、attempt supersession、stale/duplicate/invalid completion and resource ownership | `CURRENT_GATE` | Pure Node authority corpus + one fresh-page Playwright page；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` async-authority gate；does not prove ordinary canvas async ingress、durable persistence、copy/paste or source parity |
 | Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
 | Batch 75 | Director project-scoped clipboard identity remap and guarded keyboard routing | `CURRENT_GATE` | 12-scenario pure packet/planner corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` clipboard-remap gate；does not prove LibTV source copy/paste UI、system/cross-project clipboard、whole-project duplicate or real resource transfer |
+| Batch 76 | Director all-canvas owner reachability reconciliation and tombstone cleanup | `CURRENT_GATE` | 9-scenario pure planner corpus + A/B/cross-canvas fresh-page Playwright；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` owner-reachability gate；does not prove durable tombstone、storage/resource deletion、undo restore、whole-project duplicate or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -155,6 +161,8 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch74.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch75.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch76.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -200,7 +208,7 @@ Batch 68 owner/session gate:
 | Date | 2026-08-27 |
 | Implementation checkpoint | `7aafbc9` |
 | Pure corpus | 3 owner keys/projects；create/focus/restore/stale/tombstone；deep sidecar/document isolation；zero partial |
-| Browser corpus | A -> B -> A、same owner、close/reopen、cross canvas、duplicate reset、active delete close |
+| Browser corpus | A -> B -> A、same owner、close/reopen、cross canvas、duplicate reset、active delete tombstone |
 | Runtime reset | playback、playhead、path draft、view/transform/thirds/panel/phone state do not bleed |
 | Graph boundary | session lifecycle adds zero ordinary graph/history mutation |
 | Diagnostics | zero console/page/request errors |
@@ -269,9 +277,10 @@ Batch 72 reference-delete gate:
 | Diagnostics | zero console/page/request errors |
 | Artifact | Batch 72 `runtime-audit.json` only；zero screenshots；stable semantic ordinary graph node ID |
 
-This result closes the focused Director reference-aware delete slice, not
-inactive-owner reconciliation、async capture/export destination freshness、
-durable persistence、copy/paste identity remap、real resources or source-exact UI.
+This result closes the focused Director reference-aware delete slice. It does
+not by itself cover async destination freshness、durable persistence、
+copy/paste identity remap、real resources or source-exact UI；owner reachability
+is covered separately by Batch 76.
 
 Batch 73 async-authority gate:
 
@@ -303,8 +312,8 @@ Batch 74 persistence gate:
 
 This result closes the clone-owned Director browser-local persistence slice, not
 ordinary canvas graph persistence、remote/cloud storage、durable history、real
-resource materialization、inactive-owner reconciliation、whole-project duplicate or
-source-exact LibTV persistence.
+resource materialization、whole-project duplicate or source-exact LibTV
+persistence；owner reachability is covered separately by Batch 76.
 
 Batch 75 clipboard-remap gate:
 
@@ -322,6 +331,22 @@ This result closes the clone-owned same-project Director clipboard identity-rema
 slice, not system clipboard MIME、cross-project transfer、whole-project duplicate、
 resource-byte transfer、ordinary canvas clipboard or source-exact LibTV behavior.
 
+Batch 76 owner-reachability gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 focused run and serial regression |
+| Implementation checkpoint | `10b9251` |
+| Pure corpus | 9 scenarios covering all-canvas collection、inactive source/canvas delete、active invalidation、invalid/duplicate normalization、deterministic ordering、idempotency、tombstoned reopen reject and delayed async stale |
+| Browser corpus | active A、inactive B、cross-canvas C；inactive source delete、inactive canvas delete、active source cleanup、rename/switch/unrelated isolation、repeated reconcile、graph undo and retained persistence |
+| Runtime boundary | active shell closes before R3F/store projection cleanup；registry/session tombstone invalidates async synchronously；inactive owner does not disturb foreground；ordinary delete remains one graph history |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 76 `runtime-audit.json` only；zero screenshots |
+
+This result closes clone-owned memory owner reachability reconciliation, not
+durable tombstone storage、resource cleanup、graph-undo project restore、
+whole-project duplicate or source-exact LibTV deletion/recovery behavior.
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -336,6 +361,7 @@ Batch 67 pure codec gate
   + Batch 73 async-authority gate
   + Batch 74 persistence gate
   + Batch 75 clipboard-remap gate
+  + Batch 76 owner-reachability gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -381,21 +407,23 @@ runtime slice；Batch 69 supplies the authored/runtime projection slice；Batch 
 supplies the command/history slice；Batch 71 supplies the pointer-lifecycle
 slice；Batch 72 supplies the reference-delete slice；Batch 73 supplies the
 async-authority slice；Batch 74 supplies the browser-local persistence slice；
-Batch 75 supplies the clipboard identity-remap slice；Batch 59 supplies the
-current WebGL/browser smoke seed.
+Batch 75 supplies the clipboard identity-remap slice；Batch 76 supplies the
+owner-reachability slice；Batch 59 supplies the current WebGL/browser smoke
+seed.
 
 Required future scenarios:
 
 | Layer | Minimum checks |
 |---|---|
 | strict document codec | **implemented in Batch 67**：valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
-| owner registry | **focused runtime in Batch 68**：open A、switch B、reopen A、cross canvas、duplicate reset、active delete close、generation freshness |
+| owner registry | **focused runtime in Batch 68/76**：open A、switch B、reopen A、cross canvas、duplicate reset、active delete tombstone、all-canvas reachability、inactive source/canvas tombstone、generation freshness and idempotency |
 | authored/runtime split | **implemented in Batch 69**：seek/playback/path sampling does not mutate portable authored snapshot；authoring writes authored layer and restores |
 | command/history | **implemented in Batch 70/71**：committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation; reopen continuity; Inspector/R3F pointer lifecycle |
 | delete closure | **focused runtime in Batch 72**：object/group/camera/track/path/resource references repaired or blocked atomically；capture provenance、selection/runtime cleanup and exact delete/undo/redo are covered |
 | async bridge | **focused runtime in Batch 73**：capture/export/phone completion carries operation/attempt/result identity；owner/session/generation and source/request freshness are checked；stale/invalid/duplicate results have zero-mutation disposition；export resource transfer/release is exactly once |
 | durable project persistence | **focused runtime in Batch 74**：versioned owner-scoped envelope、strict V1 restore、project/generation/fingerprint guards、stale save ignore、corrupt/future/mismatch zero-replacement、runtime/UI/resource-byte exclusion and session-only write failure |
 | clipboard identity remap | **focused runtime in Batch 75**：project-scoped typed packet、group/object/track/path closure、all project-local ID remap、internal/external camera policy、stable resource alias、deterministic offset、one-entry paste、reload/system boundary |
+| owner reachability reconciliation | **focused runtime in Batch 76**：all-canvas live owner authority、inactive/active invalidation、two-phase shell/runtime cleanup、repeated idempotency、tombstoned reopen rejection、stale async、graph undo and retained persistence boundary |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -412,6 +440,7 @@ REFERENCE_DELETE_FOCUSED_PASS
 ASYNC_AUTHORITY_FOCUSED_PASS
 PERSISTENCE_FOCUSED_PASS
 CLIPBOARD_REMAP_FOCUSED_PASS
+OWNER_REACHABILITY_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 
