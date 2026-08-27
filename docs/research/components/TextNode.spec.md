@@ -42,11 +42,29 @@ interface TextNodeData {
 
 | State | Trigger | Effect |
 |-------|---------|--------|
-| Idle | — | Shows content text; click anywhere to start editing. |
-| Editing | Click the body or already focused | Textarea with autofocus. |
-| Blur save | Click outside or press `Escape` | Exits edit mode; content persisted in component state. |
+| Idle | - | Shows content text; click the body to create a local draft from `data.content`. |
+| Editing | Click the body | Textarea with autofocus; keystrokes update the component-local draft only. |
+| Blur commit | Focus leaves the textarea | If the draft differs, calls `canvasStore.updateNodeData(id, { content })`, then exits. |
+| Escape cancel | `Escape` while editing | Attempts to discard the draft and exit without calling the explicit commit function. |
 
-**Note:** Text changes stay in local state; not propagated to `canvasStore`. To persist, wire `onChange` to `useCanvasStore().updateNodeData(id, { content })`.
+The previous statement that text never reaches `canvasStore` is obsolete. Current
+runtime commits through `updateNodeData`, which records one graph snapshot whenever
+the target node exists.
+
+## Editor Session Boundary
+
+[`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)
+classifies this surface as `INLINE_MULTILINE` and is authoritative for future
+baseline、dirty、cancel/blur guard、no-op and graph-history behavior.
+
+Current known gaps:
+
+- no captured field/node version or baseline drift policy;
+- Escape-triggered unmount versus blur ordering is not protected by an explicit
+  cancel reason;
+- graph undo clears selection and may unmount the editor;
+- native text undo and graph undo ownership relies on the page editable-target
+  guard rather than a typed editor-session result.
 
 ## Files Referenced
 

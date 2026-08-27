@@ -58,6 +58,13 @@ separate contracts.
 - Batch 58 also closes the surface when its owner node disappears or the active
   canvas changes; the cleanup is UI-only and does not enter graph history.
 
+The enabled-looking inert Save command is retained here as a historical/current
+clone fact, not an accepted final interaction. It violates future correctness
+invariant `LIBTV-EDS-I-031` in
+[`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md).
+Future work must either implement a source-evidenced `BITMAP_EDITOR` handoff or
+make Save unavailable; this specification does not authorize either code change.
+
 ## Responsive
 
 - toolbar remains node-centered and may naturally clip at viewport edges;

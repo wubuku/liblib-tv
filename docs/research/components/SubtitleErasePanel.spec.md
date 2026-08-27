@@ -30,9 +30,19 @@
 
 The clone uses local history and does not claim source store/API parity.
 
+One pointer draw/move/resize interaction produces at most one local snapshot;
+new interaction clears redo, and reset is a reversible local history command.
+The history is capped at 30 entries and remains outside graph history before
+confirm.
+
 ## Graph Handoff
 
 Submit calls `canvasStore.createSubtitleErase` once. The store creates a right-side pending video and one edge, records one history snapshot and selects the target.
+
+The formal `RECORD_EDITOR` session/commit boundary is
+[`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md).
+Current synchronous confirm has no panel-level submitting/idempotency token, so it
+must not be reused unchanged for real asynchronous processing.
 
 ## Prototype Boundary
 

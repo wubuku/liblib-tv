@@ -45,6 +45,24 @@ PictureEditPanel
 - submit creates a pending graph placeholder only;
 - no real video, task ID, power calculation or polling.
 
+## Editor Session Boundary
+
+[`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)
+classifies this surface as `RECORD_EDITOR`:
+
+- pointermove mutates the working draft and one completed pointer interaction
+  creates at most one local history entry;
+- local history is capped at 30 entries and never writes graph history before
+  submit;
+- submit deep-clones marks and `canvasStore.createPictureEdit` owns the eventual
+  one-step graph transaction;
+- current description and replacement updates use `replaceMarks` rather than
+  `commitMarks`, so not every semantic detail edit is represented in local undo;
+- the 520ms component timer is a local simulation, not a durable operation ID.
+
+The missing detail-history ownership and production async handoff remain
+implementation work; the current visual/geometry contract is unchanged.
+
 ## Verification
 
 See [`../liblib-canvas-batch31-2026-08-26/PICTURE_EDIT_WORKFLOW.spec.md`](../liblib-canvas-batch31-2026-08-26/PICTURE_EDIT_WORKFLOW.spec.md)

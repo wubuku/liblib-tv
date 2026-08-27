@@ -46,6 +46,7 @@
 - [`open-canvas-2026-08-26/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md`](open-canvas-2026-08-26/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_RESEARCH_PLAN_2026-08-27.md)：本专题从计划、里程碑 commit 到治理同步的历史执行记录；稳定指导仍以 audit + contract 为准。
 - [`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)：Open Canvas session/bitmap snapshot/text draft/save-upload 正反面与 clone 十四类 draft/history/commit surface、inert controls、graph gateway 和 spec drift 的固定审计。
 - [`open-canvas-2026-08-26/editor-session-static-evidence-2026-08-27.json`](open-canvas-2026-08-26/editor-session-static-evidence-2026-08-27.json)：`OC-071..080` 与 `LIBTV-EDS-001..014` 的固定代码路径、事实、迁移含义和证据边界原始清单。
+- [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)：十类 editor profile、session/baseline/draft model、native/local/graph undo、commit/async/resource handoff、40 invariants、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01` 和 `LIBTV-VR-022` 正式设计权威。
 - [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：top-level、route-local、节点相对和 Director surfaces 的 state、mount owner、关闭路径、键盘边界及兼容残留目录。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：当前全路由 UI/UX 差距、价值/证据/风险/验证准备度排序、依赖、工作波次和停止条件。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
@@ -147,6 +148,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - [`LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)：文件/资产进入画布前后的 validation、metadata probe、temporary lease、materialization、graph projection、source surface 分域和 lifecycle gap 的 dated evidence。
 - [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：media intent、locator/asset/reference、provisional/semantic projection、cohort/history、async freshness 和 resource reachability 的跨入口权威。
 - [`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)：foreground editor baseline、working draft、local/native/graph history、commit/cancel、async handoff 与 source-unknown 队列的 dated evidence。
+- [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)：profile registry、field/source baseline drift、local history budget、no-op/sync/async acceptance、disposal 和 verifier 的跨编辑器权威。
 - [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：UI overlay state、挂载 ownership、关闭路径和节点锚点策略目录。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：面向后续复刻的当前优先队列和 batch entry template。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：面向 verifier 和源站研究的 fixture catalog、隔离等级、副作用边界与 backlog 映射。
