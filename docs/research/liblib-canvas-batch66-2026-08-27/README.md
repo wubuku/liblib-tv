@@ -1,6 +1,6 @@
 # Batch 66: Director Reliability Authority
 
-> 状态：`PLAN_RECORDED / RESEARCH_IN_PROGRESS`。
+> 状态：`STATIC_AUDIT_RECORDED / CONTRACTS_IN_PROGRESS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -32,6 +32,8 @@
 
 - [`PLAN.md`](PLAN.md)：问题、价值排序、产物、验证和停止条件；
 - [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：截图复用与零重复识别台账；
-- 后续 dated audit、evidence matrix、implementation record 将继续放在本目录；
+- [`STATIC_AUDIT_2026-08-27.md`](STATIC_AUDIT_2026-08-27.md)：当前
+  project/session、mutation/history 和 reference/delete 静态审计；
+- [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)：上游、clone、历史验证、建议和未知项；
+- 后续 implementation record 将继续放在本目录；
 - 稳定合同与 current manifest 将放在 `docs/research/` 并接入文档 Hub。
-
