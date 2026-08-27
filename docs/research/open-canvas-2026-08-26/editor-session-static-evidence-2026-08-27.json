@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-08-27",
+  "mode": "FIXED_STATIC_CODE_AUDIT",
+  "baselines": {
+    "clone": "0a1c0a3",
+    "openCanvas": "cf3a906bb8c35bb940d3267497e7f394b8f42582"
+  },
+  "safety": {
+    "runtimeChanged": false,
+    "testsChanged": false,
+    "submoduleChanged": false,
+    "sourceSiteMutated": false
+  },
+  "openCanvasEvidence": [
+    {
+      "id": "OC-071",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "image-editor-session-envelope",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:365",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:6418"
+      ],
+      "fact": "Opening the image editor creates a random sessionId and captures nodeId, media and title, but not graph revision, node-data revision or source-media version.",
+      "translation": "Adopt explicit session identity and captured source; add owner/source freshness fields before using the method in LibTV."
+    },
+    {
+      "id": "OC-072",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "source-load-guard",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1611",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1660",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1839"
+      ],
+      "fact": "The editor tries normalized source candidates with a 20-second per-candidate timeout, limits decoded canvas dimensions/pixels, revokes fallback object URLs and ignores a result after effect cleanup. Cleanup does not abort the active fetch controller; it only suppresses projection.",
+      "translation": "Adopt bounded decoding and stale projection suppression; require caller-owned abort for actual cancellation."
+    },
+    {
+      "id": "OC-073",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "bitmap-local-history",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1764",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1801",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1950"
+      ],
+      "fact": "The bitmap editor captures one full ImageData snapshot after load and after each completed stroke, truncates redo after a new snapshot and keeps at most 40 entries.",
+      "translation": "Adopt gesture-level local history and redo invalidation, but reject entry-count-only memory budgeting."
+    },
+    {
+      "id": "OC-074",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "restore-baseline",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1963"
+      ],
+      "fact": "Restore applies snapshot zero and collapses local history to that single baseline, so redo cannot recover the discarded draft.",
+      "translation": "Treat Restore as an explicit destructive local command; source evidence is still needed before adopting this exact redo policy for LibTV."
+    },
+    {
+      "id": "OC-075",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "export-close-order",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:1973",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:2020"
+      ],
+      "fact": "Save exports JPEG at quality 0.92, marks the dialog dismissed, closes it, then invokes onSave and reports that upload has started.",
+      "translation": "Reuse export timing instrumentation; reject close-before-operation-acceptance unless retry/error ownership remains reachable."
+    },
+    {
+      "id": "OC-076",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "edited-image-async-handoff",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:4021"
+      ],
+      "fact": "The caller captures nodeId and current output history, patches the node to running, uploads asynchronously and later appends the result. It does not carry sessionId, source-media version, graph revision or operation identity into completion checks.",
+      "translation": "Delegate accepted export to the existing LibTV async-ingress contract with immutable owner/generation/source identities."
+    },
+    {
+      "id": "OC-077",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "inline-text-drafts",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:3134",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:3280",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:3390"
+      ],
+      "fact": "Title and text body use component-local drafts, commit changed values on blur or Enter/modified Enter, and restore node data on Escape. Effects resynchronize the drafts whenever upstream node data changes, including while editing.",
+      "translation": "Adopt local drafts and no-op checks; add an explicit baseline-drift policy instead of silently replacing an active draft."
+    },
+    {
+      "id": "OC-078",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "rich-note-draft",
+      "paths": [
+        "shared/blocks/canvas/canvas-studio-shell.tsx:3170",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:3335"
+      ],
+      "fact": "Rich notes edit directly in a contentEditable DOM, sanitize on blur or modified Enter, and restore original HTML on Escape. There is no custom note-history stack or captured revision.",
+      "translation": "Keep sanitization at commit, but do not infer that DOM ownership alone is a sufficient session model."
+    },
+    {
+      "id": "OC-079",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "graph-mutation-guard",
+      "paths": [
+        "shared/stores/canvas-store.ts:790"
+      ],
+      "fact": "updateNodeData normalizes data, rejects equal patches and blocks mutation during a graph revision conflict. Editor handlers generally ignore the returned mutation result and still exit editing or continue async work.",
+      "translation": "Adopt equality/conflict guards and require commit acceptance to control editor close/failure state."
+    },
+    {
+      "id": "OC-080",
+      "classification": "OPEN_CANVAS_FACT",
+      "subject": "persistence-is-not-editor-history",
+      "paths": [
+        "shared/stores/canvas-store.ts:82",
+        "shared/blocks/canvas/canvas-studio-shell.tsx:4766"
+      ],
+      "fact": "Open Canvas tracks graph dirty/save/revision/conflict state and can three-way merge saves, but the fixed shared code has no graph undo/redo stack; the only custom undo/redo is inside the bitmap editor.",
+      "translation": "Use this as strong evidence that editor-local history, graph history and durable save are separate authorities."
+    }
+  ],
+  "cloneEvidence": [
+    {
+      "id": "LIBTV-EDS-001",
+      "classification": "CLONE_FACT",
+      "subject": "text-node-draft",
+      "paths": ["src/components/nodes/TextNode.tsx:15"],
+      "fact": "TextNode owns a nullable local draft, commits changed content on blur and cancels on Escape; its component specification still incorrectly says changes do not reach canvasStore.",
+      "risk": "Escape-triggered unmount and blur ordering is not explicitly guarded, and documentation is stale."
+    },
+    {
+      "id": "LIBTV-EDS-002",
+      "classification": "CLONE_FACT",
+      "subject": "image-generation-panel",
+      "paths": ["src/components/ImageEditPanel.tsx:83"],
+      "fact": "Prompt, references, AutoLink and submitted feedback are component-local. Generate only flips submitted; the visible Undo button has no handler; unmount loses the draft.",
+      "risk": "The surface looks commit-capable but has no graph or async handoff."
+    },
+    {
+      "id": "LIBTV-EDS-003",
+      "classification": "CLONE_FACT",
+      "subject": "image-annotate-mode",
+      "paths": [
+        "src/components/nodes/ImageNode.tsx:72",
+        "src/components/ImageAnnotateToolbar.tsx:145"
+      ],
+      "fact": "Annotate has owner-aware top-level UI state and local tool/color/width controls, but no annotation records or history. Undo/redo are disabled while an enabled-looking Save button has no handler.",
+      "risk": "Save is a high-salience inert command."
+    },
+    {
+      "id": "LIBTV-EDS-004",
+      "classification": "CLONE_FACT",
+      "subject": "image-element-edit-mode",
+      "paths": [
+        "src/components/ImageElementEditToolbar.tsx:97",
+        "src/components/ImageElementEditSurface.tsx:10"
+      ],
+      "fact": "Element Edit is explicitly an empty authoring shell: tools are local, Undo and Generate are disabled, and close/selection/owner invalidation changes no graph history.",
+      "risk": "This is honest placeholder behavior, but it does not prove full source editor semantics."
+    },
+    {
+      "id": "LIBTV-EDS-005",
+      "classification": "CLONE_FACT",
+      "subject": "picture-edit-history",
+      "paths": [
+        "src/components/PictureEditPanel.tsx:166",
+        "src/components/nodes/VideoNode.tsx:319"
+      ],
+      "fact": "Picture Edit keeps at most 30 mark snapshots, coalesces pointer movement into a completed interaction, deep-clones marks on submit and later creates one graph transaction after a local timer.",
+      "risk": "Description and replacement edits call replaceMarks rather than commitMarks, so local undo does not represent every meaningful draft edit."
+    },
+    {
+      "id": "LIBTV-EDS-006",
+      "classification": "CLONE_FACT",
+      "subject": "subtitle-region-history",
+      "paths": [
+        "src/components/SubtitleErasePanel.tsx:112",
+        "src/components/nodes/VideoNode.tsx:179"
+      ],
+      "fact": "Region subtitle erase keeps at most 30 snapshots, coalesces draw/move/resize gestures, deep-clones regions on confirm and immediately creates a graph transaction; Escape/close discards local regions.",
+      "risk": "There is no submitting/idempotency guard at the panel boundary."
+    },
+    {
+      "id": "LIBTV-EDS-007",
+      "classification": "CLONE_FACT",
+      "subject": "video-continuation-range",
+      "paths": [
+        "src/components/VideoContinuationSelector.tsx:43",
+        "src/components/nodes/VideoNode.tsx:174"
+      ],
+      "fact": "Continuation owns a local range and pointer drag session; cancel discards it and confirm produces one graph transaction. It has no local undo/redo stack.",
+      "risk": "The pattern is sound for a small scalar draft but has no explicit owner revision."
+    },
+    {
+      "id": "LIBTV-EDS-008",
+      "classification": "CLONE_FACT",
+      "subject": "segment-reshoot-local-task",
+      "paths": ["src/components/SegmentReshootPanel.tsx:39"],
+      "fact": "Segment Reshoot keeps selected segments, intent and submission feedback locally; submit only flips a local flag and the component exposes no cancel callback.",
+      "risk": "It is a non-dismissable local simulation rather than a commit-capable editor session."
+    },
+    {
+      "id": "LIBTV-EDS-009",
+      "classification": "CLONE_FACT",
+      "subject": "timed-processing-panels",
+      "paths": [
+        "src/components/nodes/VideoNode.tsx:308",
+        "src/components/SmartMattingPanel.tsx:58",
+        "src/components/DepthMotionCapturePanel.tsx:97"
+      ],
+      "fact": "Smart Matting, Picture Edit and Depth Motion use component timers as submitting simulations, disable primary controls and create graph placeholders after the delay.",
+      "risk": "Timers are not durable operation identities and do not model retry/failure/freshness."
+    },
+    {
+      "id": "LIBTV-EDS-010",
+      "classification": "CLONE_FACT",
+      "subject": "camera-dialogs",
+      "paths": [
+        "src/components/CameraConfigDialog.tsx:48",
+        "src/components/CameraMovementDialog.tsx:34"
+      ],
+      "fact": "Both dialogs have local config and apply/cancel-shaped UI, but no repository caller was found. Because the components remain mounted when isOpen is false, canceled draft values would persist into the next reopen.",
+      "risk": "Dead prototype components should not be treated as current product contracts."
+    },
+    {
+      "id": "LIBTV-EDS-011",
+      "classification": "CLONE_FACT",
+      "subject": "inert-history-chrome",
+      "paths": [
+        "src/components/VideoProcessingToolbar.tsx:237",
+        "src/components/ImageEditPanel.tsx:204"
+      ],
+      "fact": "Video Processing shows enabled-looking Undo/Redo buttons with no handlers, and Image Edit shows an enabled-looking Undo button with no handler.",
+      "risk": "Visual parity currently overstates behavioral parity."
+    },
+    {
+      "id": "LIBTV-EDS-012",
+      "classification": "CLONE_FACT",
+      "subject": "graph-history-gateway",
+      "paths": ["src/store/canvasStore.ts:2591"],
+      "fact": "canvasStore updateNodeData always pushes one graph snapshot when the node exists and has no equality guard; graph undo/redo clear selection.",
+      "risk": "Live controls and duplicate patches can inflate graph history, while undo can indirectly unmount an active editor."
+    },
+    {
+      "id": "LIBTV-EDS-013",
+      "classification": "CLONE_FACT",
+      "subject": "active-image-command-ownership",
+      "paths": [
+        "src/app/page.tsx:158",
+        "src/app/page.tsx:357"
+      ],
+      "fact": "Owner reconciliation closes image editors after node/canvas invalidation, and active image modes capture Escape/Delete/Tab/Space/undo/redo so commands do not fall through to graph actions.",
+      "risk": "Command ownership is stronger than draft semantics: close always discards because no dirty/commit model exists."
+    },
+    {
+      "id": "LIBTV-EDS-014",
+      "classification": "CLONE_FACT",
+      "subject": "director-motion-path-comparison",
+      "paths": [
+        "src/store/directorStore.ts:265",
+        "src/store/directorStore.ts:3066",
+        "src/store/directorStore.ts:3139"
+      ],
+      "fact": "Director uses a typed motionPathDraft, appends/updates anchors, validates on finish and clears on cancel. It is a separate-store comparison and does not establish ordinary LibTV graph-history semantics.",
+      "risk": "Reusing its store shape across routes would violate the route/store boundary."
+    }
+  ],
+  "evidenceBoundary": [
+    "Static code presence does not prove exercised browser behavior or LibTV source parity.",
+    "Open Canvas behavior is a method and counterexample source, not a source-site oracle.",
+    "No source-site editing, upload, save, provider execution or paid action was performed in this audit.",
+    "Line anchors identify the fixed baseline and may drift after the submodule or clone advances."
+  ]
+}

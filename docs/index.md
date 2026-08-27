@@ -85,6 +85,7 @@ graph TD
 - [`research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：普通 LibTV 的 client/host/flow/node/media 坐标域、live/stable/bootstrap/target viewport、gesture session、placement policy、fixture 和 `LIBTV-VR-020` 设计权威。
 - [`research/LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)：Open Canvas file/drop/upload 正反面、clone mock/local-preview/data/blob 路径和 LibTV source upload/history/material/asset 分域的 dated audit。
 - [`research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：普通 LibTV entry profile、validation/probe/materialization、temporary lease、asset/reference、cohort commit、reachability/release、fixture 和 `LIBTV-VR-021` 设计权威。
+- [`research/LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)：Open Canvas bitmap/text editor 正反面、clone draft/local-history/inert command/graph-history gateway 与 stale component spec 的 dated audit。
 - [`research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：LibTV page/route/node/Director 浮层的 state、mount owner、关闭路径、键盘和定位 ownership 目录。
 - [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)：当前 LibTV UI/UX parity 缺口的价值、证据、验证准备度、风险、依赖和授权/fixture 队列。
 - [`research/LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)：LibTV 本地/Director/源站 fixture 的身份、构造、隔离、reset、副作用和 parity backlog 映射。
