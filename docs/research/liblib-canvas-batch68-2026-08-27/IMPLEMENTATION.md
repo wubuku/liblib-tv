@@ -1,6 +1,6 @@
 # Batch 68 实施与验证记录
 
-> 状态：`PLANNED / IMPLEMENTATION_NOT_STARTED`。
+> 状态：`PLANNED / WORKTREE_CLEANUP_COMPLETE / IMPLEMENTATION_NOT_STARTED`。
 >
 > 日期：2026-08-27。
 
@@ -31,13 +31,30 @@
 
 ## 3. Worktree 清理前置
 
-计划 checkpoint 提交并推送后，先完成：
+计划 checkpoint `39deb21` 提交并推送后，已完成：
 
-1. 枚举 Git 注册 worktree 与 `.claude/worktrees`；
-2. 检查每个 worktree status、HEAD 和相对 `master` 独有提交；
-3. 对疑似已合入但 hash 不同的提交比较 patch；
-4. 仅在内容已被 `master` 吸收或目录为空时移除；
-5. 清理后确认只保留主工作区，`git status` 干净。
+| 检查项 | 结果 |
+|---|---|
+| Git 注册 worktree | 只有 `/Users/yangjiefeng/Documents/wubuku/liblib-tv` 主工作区 |
+| `.git/worktrees` | 不存在，无 stale metadata |
+| `.claude/worktrees` | 空目录，已移除 |
+| remote `worktree-agent-*` branch | 无 |
+| 主工作区 | `master` 与 `origin/master` 同步 |
+
+残留的 5 个本地 agent 分支均通过
+`git merge-base --is-ancestor <branch> master`：
+
+```text
+worktree-agent-a40ad05698eaa6e8b 15b1962 absorbed-by-master=yes
+worktree-agent-a46f3e13dd9606a6e 37f1397 absorbed-by-master=yes
+worktree-agent-a49f826b731a6b601 2123941 absorbed-by-master=yes
+worktree-agent-a91acb41cb4e231ca 53e60c2 absorbed-by-master=yes
+worktree-agent-aba09f525c5282859 bad875e absorbed-by-master=yes
+```
+
+因此不需要 cherry-pick、patch-id 补偿或保存额外 WIP。已执行 worktree prune，并
+使用安全的 `git branch -d` 删除上述已合并分支。最终只保留主 worktree 和
+`master` 分支。
 
 在该前置完成前不开始 Batch 68 业务代码。
 

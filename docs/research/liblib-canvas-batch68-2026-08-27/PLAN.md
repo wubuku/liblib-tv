@@ -1,6 +1,6 @@
 # Batch 68 计划：Director Owner Registry And Session Lifecycle
 
-> 状态：`PLANNED`。
+> 状态：`PLANNED / WORKTREE_CLEANUP_COMPLETE`。
 >
 > 日期：2026-08-27。
 >
@@ -99,12 +99,13 @@ owner key
 
 ### Slice 0：主工作区与 worktree 安全清理
 
-- 计划 checkpoint commit/push；
-- 审计 `git worktree list --porcelain`、`.git/worktrees` 和
+- [x] 计划 checkpoint commit/push：`39deb21`；
+- [x] 审计 `git worktree list --porcelain`、`.git/worktrees` 和
   `.claude/worktrees`；
-- 对每个其他 worktree 检查 status、HEAD、相对 `master` 独有提交和 patch-id；
-- 仅在 WIP/提交已被 `master` 吸收或为空时移除；
-- 保持 `master` 主工作区干净，后续不创建 worktree。
+- [x] 逐个确认 5 个 `worktree-agent-*` tip 均是 `master` 祖先；
+- [x] prune worktree 元数据并删除已合并本地 agent 分支；
+- [x] 确认没有远端 agent 分支或未吸收 worktree WIP；
+- [x] 只保留 `master` 主工作区，后续不创建 worktree。
 
 ### Slice A：纯 registry 与 identity
 
