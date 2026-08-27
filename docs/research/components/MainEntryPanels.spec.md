@@ -21,9 +21,13 @@ The authoritative live extraction is `docs/research/liblib-live-2026-08-25/panel
 
 - Only one primary toolbar content panel may be open at a time.
 - Opening add-node or shortcuts closes a locally open content panel; opening a content panel closes add-node and shortcuts.
+- Opening Add Node or a primary content panel preserves the Asset drawer as a
+  layout surface; closing that transient surface also preserves the drawer.
 - Backdrop modals close from their explicit close button or backdrop.
 - Anchored panels close from the triggering button or their close control.
-- Character “应用到画布” creates a visible image node with dimensions and selects it.
+- Character “应用到画布” uses the page-owned actual-host placement path, creates
+  one visible `512x288` graph image frame with the selected character media data,
+  records one history step and selects it.
 - History filters, zoom, batch selection and favorite state are local prototype interactions.
 - On narrow screens, anchored panels move above the stacked bottom toolbars; large modals constrain width without shrinking text until it overflows.
 

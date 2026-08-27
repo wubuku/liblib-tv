@@ -1,6 +1,6 @@
 # Batch 63：Actual React Flow Host 中心定位
 
-> 状态：`PLAN_RECORDED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS` / `RESULTS_RECORDED`。
 >
 > 建档日期：2026-08-27。
 >
@@ -37,7 +37,8 @@ React Flow 实例的 `screenToFlowPosition` 转换为 `FLOW_WORLD`，再由 stor
 - [`PLAN.md`](PLAN.md)：证据边界、实现切片、fixture、验证与停止条件；
 - [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：截图复用和视觉变化闸门；
 - [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：完成后的代码、验证和 checkpoint；
+- [`runtime-audit.json`](runtime-audit.json)：focused Playwright 原始结果；
 - [`../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)：
   actual host、坐标域和 placement authority；
-- [`../../components/CharacterLibraryPanel.tsx`](../../components/CharacterLibraryPanel.tsx)：
+- [`../../../src/components/CharacterLibraryPanel.tsx`](../../../src/components/CharacterLibraryPanel.tsx)：
   当前角色库创建入口。

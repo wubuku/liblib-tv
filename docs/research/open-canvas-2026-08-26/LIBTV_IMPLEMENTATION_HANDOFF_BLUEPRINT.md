@@ -425,7 +425,7 @@ pure identity/transaction cases
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
-9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63 先关闭 actual-host default add，再分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不实现 Quick Add/drop/pending connection；
+9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63 已关闭 actual-host default add focused slice，下一步分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不重复实现 default add，也不实现 Quick Add/drop/pending connection；
 10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
 11. `OC-BP-012` 保持 design complete/runtime fragmented/source parity partial；若获授权先关闭单一 profile 的 equality/drift/history/honesty 缺口，不统一重写所有 editor，也不接真实 provider/storage；
 12. `OC-BP-013` 保持 design complete/runtime fragmented/source ratio-diverse parity gated；若获授权先做 deterministic fixture + pure policy，或关闭一个 generic/derived/Director still mismatch，不增加 generic resize/真实 output history；

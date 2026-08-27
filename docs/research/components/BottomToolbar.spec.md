@@ -18,7 +18,17 @@
 | 吸附到网格 | `uiStore.toggleSnapToGrid` |
 | 缩放百分比 | `uiStore.toggleZoomMenu` |
 
-The snap and zoom controls are hidden only in the middle compact range (`640-850px`) to protect layout; they remain available at the 390px mobile viewport.
+The snap and zoom controls are hidden in the middle compact range (`640-850px`)
+to protect layout. When the Asset drawer is open, that compact suppression extends
+to `1100px`, and the “资产管理” text is hidden in the same range. The commands
+remain available at the `390px` mobile viewport, where the two toolbars use
+separate rows.
+
+At `929x874`, the pre-Batch-63 asset-open toolbar overlapped the primary toolbar
+by about `231.5px` and intercepted Add Node. Batch 63 keeps this secondary toolbar
+canvas-relative while moving the primary toolbar to the remaining host center and
+compacting these lower-priority controls. This is clone-owned responsive
+correctness, not a source-exact policy claim.
 
 ## Minimap
 

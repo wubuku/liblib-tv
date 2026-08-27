@@ -4,7 +4,8 @@
 
 - **Target file:** `src/components/LeftSidebar.tsx`
 - **Historical name:** `LeftSidebar`; the live component is the centered primary bottom toolbar.
-- **Desktop position:** fixed at bottom `16px`, horizontally centered.
+- **Desktop position:** fixed at bottom `12px`; normally browser-centered, and
+  centered in the remaining React Flow host while the 240px Asset drawer is open.
 - **Layout:** eight icon-only commands in a `338x49` rounded toolbar.
 - **z-index:** above the React Flow surface and below opened entry panels.
 
@@ -24,9 +25,13 @@
 ## Interaction Contract
 
 - A content panel, add-node panel, and shortcuts panel cannot remain open together.
+- Asset drawer is a layout surface for Add Node / primary-panel workflows and can
+  remain open while those transient surfaces mount.
 - Clicking an already active entry closes it.
 - Toolbar buttons expose accessible labels and active pressed state.
 - At mobile widths the primary toolbar remains the first of two stacked bottom rows; anchored panels move upward to avoid covering it.
+- Add Node and Character creation are delegated to a page-owned actual-host
+  placement callback; these components do not read browser window dimensions.
 
 Panel-specific geometry, assets and responsive rules are documented in [`MainEntryPanels.spec.md`](MainEntryPanels.spec.md).
 

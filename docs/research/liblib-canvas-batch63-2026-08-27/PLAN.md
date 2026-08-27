@@ -1,6 +1,6 @@
 # Batch 63 计划：Actual React Flow Host 中心定位
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS` / `RESULTS_RECORDED`。
 >
 > 计划基线：`d893061`，Batch 62 已 commit/push，工作区干净。
 >
@@ -161,3 +161,16 @@ Batch 9 的旧 toolbar 断言继续按历史 mismatch 处理，不纳入本批�
 3. focused verifier 与必要回归通过后补实施台账；
 4. 最终 commit/push 并确认工作区干净；
 5. 再按 parity backlog 选择下一批，不把本批扩大为完整 `LIBTV-VR-020`。
+
+## 8. 完成记录
+
+- [x] pure helper 与 named store action；
+- [x] page-owned actual-host conversion；
+- [x] Add Node 与 Character Library callback 迁移；
+- [x] asset-open drawer coexistence 与固定工具条碰撞修复；
+- [x] desktop/mobile focused verifier 与 runtime audit；
+- [x] Batch 15/17/46/59/60/61/62 相邻回归；
+- [x] `npm run check`、`npm run docs:check`、`git diff --check`；
+- [x] 实施结果与稳定治理文档留档。
+
+实际实现和证据边界见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)。

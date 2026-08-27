@@ -57,7 +57,8 @@ S4 full-screen workspace
 
 关键区别：
 
-- S0 的互斥由 `uiStore` action 在写入时实现；
+- S0 的 transient 互斥由 `uiStore` action 在写入时实现；Batch 63 起 Asset drawer
+  对 Add Node / primary panel 作为可并存 layout surface 保留；
 - S1 不进入 `closedOverlayState`，可以和 S0 并存；
 - S2/S3 由节点 selection 和组件 local state 驱动，不进入 top-level overlay store；
 - S4 有独立 Escape 优先级，但并未完全隔离 page global shortcuts；
@@ -87,7 +88,11 @@ isZoomMenuOpen
 activePrimaryPanel
 ```
 
-所有普通 `toggle*` 和 `setPrimaryPanel` action 都先展开这份关闭态，再设置自己的目标状态。因此“打开一个 top-level surface 会关闭其他 surface”是一个 **write-side convention**，不是由 discriminated union 或 selector 强制得到的不可破坏状态。
+多数 `toggle*` action 先展开这份关闭态，再设置自己的目标状态。Batch 63 的
+`toggleAddNodePanel`、`togglePrimaryPanel` 和 `setPrimaryPanel` 使用
+`closeTransientOverlays(state)`，保留当前 `isAssetPanelOpen`；因此“打开一个
+top-level surface 会关闭其他 surface”仍是 **write-side convention**，而不是
+discriminated union 或 selector 强制得到的不可破坏状态。
 
 ### 3.2 当前实际挂载权威
 
@@ -137,9 +142,9 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 
 | Surface | 命令与 mount owner | 关闭路径 | 数据/布局副作用 |
 |---|---|---|---|
-| Add node | centered `+`；`LeftSidebar` -> `AddNodePanel` | trigger；document `mousedown` outside；创建节点后；切到 Material；page Escape；另一个 top-level action | 普通 entry 调用 `addNode`；上传/生成历史仅 local status。 |
+| Add node | centered `+`；`LeftSidebar` -> `AddNodePanel` | trigger；document `mousedown` outside；创建节点后；切到 Material；page Escape；另一个 transient action；Asset drawer 可保留 | 普通 entry 经 page-owned actual-host callback 调用 `addNodeAtFlowCenter`；上传/生成历史仅 local status。 |
 | Canvas dropdown | TopNav 或 Asset context；`CanvasTabDropdown` | trigger；document `mousedown` outside；local document Escape；完成 canvas action；另一个 top-level action | 修改 project/canvas lifecycle；不进入 active graph 的 undo/redo history；切换后按 multi-canvas manifest 关闭、重绑或保留其他 surface。 |
-| Asset drawer | lower-left command；`page.tsx` -> `AssetManagerPanel` | trigger；X；点击 drawer canvas context 转入 Canvas dropdown；page Escape；另一个 top-level action | 改变页面横向布局；条目点击只更新 graph selection。 |
+| Asset drawer | lower-left command；`page.tsx` -> `AssetManagerPanel` | trigger；X；点击 drawer canvas context 转入 Canvas dropdown；page Escape；多数 top-level action；Add Node/primary panel 保留 | 改变页面横向布局；条目点击只更新 graph selection；Batch 63 default add 使用当前 drawer-open host。 |
 | Shortcuts | centered keyboard command；`page.tsx` -> dialog | trigger；X；page Escape；另一个 top-level action | 纯展示；文案与实际 handler 差异见 shortcut crosswalk。 |
 | Share | TopNav；`TopNavBar` local mount | trigger；page Escape；另一个 top-level action | publish/link 只写 local status；无 outside-close 和 X。 |
 | Agent | TopNav 或 storyboard mode；`page.tsx` -> `AgentDrawer` | drawer close command；page Escape；另一个 top-level action；切 workbench | drawer 占据右侧 340px；skill/composer 只写 local state/status。 |

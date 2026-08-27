@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Closed Batch 63 with actual React Flow host-centered default placement for
+  Add Node and Character Library, including finite conversion helpers, page-owned
+  current-instance routing and focused desktop/mobile runtime evidence.
 - Closed Batch 48 with a browser-local Director `我的模型` workflow:
   multiple FBX/OBJ descriptor import, localStorage refresh recovery,
   repeated proxy insertion and linked-instance cleanup.
@@ -81,6 +84,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   runtime audit and bounded rotate implementation closeout documentation.
 
 ### Fixed
+- Kept the Asset drawer open across Add Node and primary-panel workflows, centered
+  the primary toolbar in the remaining desktop host and compacted conflicting
+  secondary controls so drawer-open node creation remains reachable.
 - Updated the selected-image toolbar to the current source-shaped 13-action
   contract (`1092.5x49`), separating Preview from graph-mutating actions and
   keeping unsupported high-risk actions visibly bounded instead of guessing
