@@ -175,3 +175,15 @@ sampled values 被错误当作 authored document 的问题，只记录为下一�
 - current verifier 无法区分 document failure 与 Director runtime failure；
 - 其他开发者代码 WIP 与本批文件冲突且无法在不覆盖的情况下继续。
 
+## 9. 当前进度
+
+| 工作项 | 状态 | 记录 |
+|---|---|---|
+| 计划、边界、截图成本 checkpoint | `DONE` | `e56f2e6` |
+| V1 schema / strict codec / snapshot adapter | `DONE` | `src/lib/directorProjectDocument.ts` |
+| valid + invalid/future/reference corpus | `DONE` | `scripts/verify-liblib-batch67.mjs` |
+| Batch 67 Python verifier entry | `DONE` | `scripts/verify-liblib-batch67.py` |
+| focused typecheck/lint/verifier | `PASS` | 17 个 rejection case + round-trip/isolation/order |
+| 稳定索引与治理台账 | `PENDING` | 下一 slice |
+| full `npm run check` 与 Batch 59 smoke | `PENDING` | 收口前执行 |
+
