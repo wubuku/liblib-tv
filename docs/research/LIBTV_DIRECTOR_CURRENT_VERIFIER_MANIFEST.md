@@ -3,12 +3,14 @@
 > Status: `CURRENT_MANIFEST_RECORDED` / `PURE_CODEC_GATE_RECORDED_PASS` /
 > `OWNER_SESSION_GATE_RECORDED_PASS` /
 > `BROWSER_SMOKE_RECORDED_PASS` /
+> `AUTHORED_RUNTIME_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
 >
 > Scope: `scripts/verify-liblib-batch35.py` through Batch 50, Batch 59,
-> Batch 67 pure codec verifier and Batch 68 hybrid owner/session verifier.
+> Batch 67 pure codec verifier, Batch 68 hybrid owner/session verifier and
+> Batch 69 authored/runtime verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -21,10 +23,10 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier and one current hybrid pure/browser owner-session verifier.
+codec verifier and two current hybrid pure/browser reliability verifiers.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
-single current gate:
+single current gate on their own:
 
 - Batch 35-50 overwrite tracked historical screenshots;
 - Batch 40 performs a real browser `MediaRecorder` export;
@@ -37,6 +39,9 @@ single current gate:
   open/switch/close generation、A/B/cross-canvas isolation and active-delete
   session close without claiming authored/runtime、async、history/delete or
   persistence coverage.
+- Batch 69 covers authored/runtime object authority、timeline/path projection
+  stability、object/camera/pose authoring restore and existing owner/graph
+  isolation.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -76,6 +81,7 @@ historical regressions.
 | Batch 59 | asset search, preview-only selection, explicit insertion, WebGL and graph isolation | `CURRENT_GATE` | Writes only its deterministic tracked runtime audit; no page screenshot writes | Current low-cost Director smoke and present `LIBTV-VR-024` browser seed |
 | Batch 67 | V1 document snapshot, strict decode/normalize/encode and invalid/future/reference corpus | `CURRENT_GATE` | Pure Node 24 process; no browser, storage, graph or screenshot artifact | Current `LIBTV-VR-024` project-codec gate; does not prove project registry or store integration |
 | Batch 68 | structured owner key、project/session/generation、A/B/cross-canvas isolation、duplicate reset and active-delete close | `CURRENT_GATE` | Pure Node registry corpus + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` owner/session gate；does not prove authored/runtime stability、inactive tombstone、async destination、history/delete or persistence |
+| Batch 69 | authored/runtime object split、seek/playback/path stability、object/camera/pose authoring restore、close/reopen and owner/graph isolation | `CURRENT_GATE` | Static Node source gate + one headless Playwright page；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` authored/runtime gate；does not prove history/delete、async destination、durable persistence or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -98,6 +104,8 @@ Use a same-origin host name with the Next dev server:
 npm run dev -- --port 3001
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch68.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch69.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch59.py
 ```
@@ -154,6 +162,22 @@ Batch 68 owner/session gate:
 This result closes the synchronous owner/session slice, not the remaining
 authored/runtime、async、history/delete or persistence slices.
 
+Batch 69 authored/runtime gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 |
+| Implementation checkpoint | `985e33a` |
+| Pure corpus | authored state discoverability、snapshot source、projection writer source and phone runtime-only assertions |
+| Browser corpus | repeated seek/playback、keyframe selection、speed curve、motion path、camera preset、object/camera/pose authoring、close/reopen、A/B owner and graph isolation |
+| Runtime boundary | authored fingerprint unchanged during sampling；reopen restores authored baseline and time-zero runtime |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 69 `runtime-audit.json` only；zero screenshots |
+
+This result closes the authored/runtime projection slice, not Director
+command/history、reference-aware delete、async destination、durable persistence
+or source-exact UI.
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -161,6 +185,7 @@ authored/runtime、async、history/delete or persistence slices.
 ```text
 Batch 67 pure codec gate
   + Batch 68 owner/session gate
+  + Batch 69 authored/runtime gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -202,7 +227,8 @@ The full historical audit is not the default merge gate.
 
 `LIBTV-VR-024` is the Director project/session/command authority verifier family.
 Batch 67 supplies the pure codec slice；Batch 68 supplies the owner/session
-runtime slice；Batch 59 supplies the current WebGL/browser smoke seed.
+runtime slice；Batch 69 supplies the authored/runtime projection slice；Batch 59
+supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
 
@@ -210,7 +236,7 @@ Required future scenarios:
 |---|---|
 | strict document codec | **implemented in Batch 67**：valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
 | owner registry | **focused runtime in Batch 68**：open A、switch B、reopen A、cross canvas、duplicate reset、active delete close、generation freshness |
-| authored/runtime split | seek/playback does not mutate portable authored snapshot |
+| authored/runtime split | **implemented in Batch 69**：seek/playback/path sampling does not mutate portable authored snapshot；authoring writes authored layer and restores |
 | command/history | committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation |
 | delete closure | object/group/camera/track/path/resource references repaired or blocked atomically |
 | async bridge | capture/export commits only to captured live owner/generation |
@@ -223,7 +249,7 @@ DESIGN_SPEC_COMPLETE
 PROJECT_CODEC_FOCUSED_PASS
 OWNER_SESSION_FOCUSED_PASS
 CURRENT_BROWSER_SEED_PASS
-AUTHORED_ASYNC_HISTORY_DELETE_RUNTIME_MISSING
+ASYNC_HISTORY_DELETE_RUNTIME_MISSING
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

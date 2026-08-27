@@ -1,6 +1,6 @@
 # Batch 69: Director Authored And Runtime Projection Split
 
-> 状态：`PLANNED / IMPLEMENTATION_IN_PROGRESS`。
+> 状态：`COMPLETE / AUTHORED_RUNTIME_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -41,6 +41,14 @@
 6. 增加 pure/browser stability verifier，证明 seek/playback 后 document fingerprint
    不变，并覆盖跨 owner restore。
 
+## 交接入口
+
+- [`PLAN.md`](PLAN.md)：范围、状态模型、mutation policy 和停止条件；
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：代码切片、验证命令、运行结果和已知边界；
+- [`runtime-audit.json`](runtime-audit.json)：Batch 69 最近一次结构化 verifier 结果；
+- [`../../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：
+  `LIBTV-VR-024` 当前 gate。
+
 ## 明确不解决
 
 ```text
@@ -54,7 +62,7 @@ LibTV source-exact Director DOM/CSS
 
 ## 验收结论
 
-本批只有同时满足以下条件才可标记 focused pass：
+Batch 69 已达到 focused pass：
 
 - runtime `objects` 与 `authoredObjects` 的职责可由 DOM/store diagnostics 发现；
 - 非零 playhead seek、loop playback 和 path sampling 后，encoded authored document
@@ -63,4 +71,8 @@ LibTV source-exact Director DOM/CSS
   不被旧 sampled 值覆盖；
 - close/switch/reopen 只恢复 authored document，再在 time-zero 派生 runtime；
 - 普通 graph/history、owner registry、capture sidecar 和手机 runtime 边界不回归；
-- Batch 67、Batch 68、Batch 59、docs check、`npm run check` 通过。
+- Batch 67、Batch 68、Batch 69、Batch 59、docs check、`npm run check` 通过。
+
+本批仍不宣称 Director project authority 全部完成；command/history、reference-aware
+delete、async freshness、durable persistence、真实资源和 LibTV source-exact Director
+UI 仍是独立后续合同。

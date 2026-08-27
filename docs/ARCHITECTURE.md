@@ -131,9 +131,11 @@ and reference validation. `src/lib/directorProjectRegistry.ts` and
 `directorProjectRuntimeAdapter.ts` now bind that document to a structured
 route/canvas/source owner, per-owner in-memory project, fresh session/generation
 and deterministic session UI/runtime reset. Capture bytes and graph projection
-IDs remain in a memory-only sidecar. Timeline sampling still writes the current
-`objects` container, so authored/runtime projection separation remains the next
-reliability slice.
+IDs remain in a memory-only sidecar. `directorStore` now keeps
+`authoredObjects` as the portable authoring baseline and derives the compatibility
+`objects` container from timeline/path state for the current R3F projection.
+Timeline sampling therefore cannot overwrite the snapshot baseline; phone live
+preview remains a runtime-only exception.
 
 ### FrameOS
 
@@ -180,6 +182,7 @@ FrameOS re-applies `selectedNodeId` after `applyNodeChanges`, because xyflow v12
 | Organize layout | evidence-based current-project topology | source project is known; generic auto-layout is not |
 | Director renderer | lazy R3F island over mounted React Flow | keeps graph and 3D renderer ownership independent while preserving return context |
 | Director timeline | typed serializable tracks sampled in `directorStore` | keeps deterministic playback independent from mutable Three.js refs |
+| Director object authority | `authoredObjects` baseline plus `objects` runtime projection | prevents seek/playback/path sampling from contaminating portable project snapshots while preserving existing selectors |
 | Director character pose | serializable rig plus independent pose tracks composed with transform tracks | keeps articulated R3F rendering, source-named presets/SAM controls and deterministic animation in one testable data model |
 | Director camera relation | serializable look-at/follow data resolved after all ordinary object-track sampling | lets cameras follow animated stable object IDs while preserving camera-track FOV and keeping Three.js runtime objects out of Zustand |
 | Director motion path | local anchors/relative handles plus fixed pivot and serializable transform derive world sampled points | supports editable pencil/pen/Bezier authoring, path-level position/rotation/scale and deterministic playback without putting Three.js geometry in Zustand |

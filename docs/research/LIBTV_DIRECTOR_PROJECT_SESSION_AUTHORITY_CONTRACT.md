@@ -54,8 +54,10 @@ Director project document
 
 - Director 是普通 LibTV route 内 lazy-loaded 全屏 R3F island；
 - `uiStore` 持有 `activeDirectorCanvasId + activeDirectorNodeId`；
-- `directorStore` 是单例，只有 `sourceNodeId`，没有 project ID/version/generation；
-- `objects` 同时承载 authored values 和 timeline sampled projection；
+- `directorStore` 仍是单例实例，但当前 active state 由 structured
+  route/canvas/source owner、project ID、session ID 和 generation 绑定；
+- `authoredObjects` 承载 portable authored baseline，`objects` 是 timeline/path
+  与当前时间派生的 R3F runtime projection；
 - capture/export 向普通 canvas 回流时 late-read `activeCanvasId`；
 - scene/timeline 不持久化，local model catalog 以全局 localStorage key 持久化；
 - graph return 使用普通 canvas graph history，Director 内部没有 domain history。
@@ -64,15 +66,18 @@ Director project document
 - codec 排除 selection/playback/panel/phone runtime、capture bytes、
   Three.js refs 和 graph `sentNodeId`，并检查 unknown/future/duplicate/dangling/
   non-finite 输入；
-- codec 仍未成为 `directorStore` source of truth，单例 session 与
-  authored/runtime 混写事实没有因此消失。
+- Batch 67 结束时 codec 尚未成为 `directorStore` source of truth；Batch 68/69
+  已继续接入 owner registry、snapshot/restore 与 authored/runtime authority。
 - Batch 68 已增加 structured owner key、in-memory project registry、
   project/session/generation、document restore adapter 和 owner-aware
   open/switch/close；
 - A/B source、cross-canvas、close/reopen、duplicate reset、active delete close 和
   memory capture sidecar 已通过 focused runtime；
-- `objects` authored/sampled 混写、inactive owner tombstone、async graph
-  destination、persistence 与 history/delete 仍未解决。
+- Batch 69 已增加 `authoredObjects` baseline，timeline/path sampling 不再覆盖
+  portable snapshot；object/camera/pose authoring 与 close/reopen focused runtime
+  已通过；
+- inactive owner tombstone、async graph destination、persistence 与
+  command/history/reference-aware delete 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -619,13 +624,21 @@ document、duplicate、delete和 delayed result。
 - duplicate source 当前采用新默认 project reset，不共享原 project；
 - active source invalid 会 close session，inactive registry tombstone 未接；
 - capture bytes/sent graph ID 仅保存在 memory sidecar；
-- 没有 browser persistence、async destination 或 authored/runtime split。
+- 没有 browser persistence 或 async destination；authored/runtime split 已由
+  Batch 69 的 `DIR-PROJECT-I03` 完成。
 
 ### `DIR-PROJECT-I03` Authored/Runtime Projection Split
 
-- timeline sampling不再覆写 document objects；
-- R3F/selectors消费 sampled projection；
-- current transform/keyframe semantics显式化。
+状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 69。
+
+- `authoredObjects` 是 portable document baseline；
+- timeline、playback、speed curve、camera preset 和 motion path sampling 从
+  authored state 派生 `objects` runtime projection；
+- object/camera/pose/group 与对象集合 authoring writer 同步维护 authored state；
+- phone live preview 保持 runtime-only；
+- close/reopen 在 time-zero 从 authored document 重新派生 runtime；
+- focused verifier 已覆盖 seek/playback/path fingerprint stability、authoring
+  restore、A/B owner 和普通 graph/history isolation。
 
 ### `DIR-PROJECT-I04` Persistence Adapter
 
@@ -662,18 +675,22 @@ document、duplicate、delete和 delayed result。
 ## 17. Completion Criteria
 
 本合同的 codec 子项已在 Batch 67 升级为 `V1_CODEC_RUNTIME_PASS`，同步
-owner/session 子项已在 Batch 68 升级为 `OWNER_SESSION_FOCUSED_RUNTIME_PASS`：
+owner/session 子项已在 Batch 68 升级为
+`OWNER_SESSION_FOCUSED_RUNTIME_PASS`，authored/runtime 子项已在 Batch 69
+升级为 `AUTHORED_RUNTIME_FOCUSED_PASS`：
 
 1. 两个 source node 和两个 canvas 已证明 project 不串场；
 2. open/switch/close、same-owner focus、duplicate reset 和 active delete close
    已有 typed/focused runtime；
 3. session/runtime/capture sidecar exclusion 在 store integration 后仍成立；
-4. focused verifier、`npm run check`、docs check 和实施台账通过。
+4. seek/playback/path sampling 不污染 authored fingerprint，object/camera/pose
+   authoring 可在 close/reopen 后恢复；
+5. focused verifier、`npm run check`、docs check 和实施台账通过。
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
-1. authored document 在 seek/playback 后 fingerprint 不漂移；
-2. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
-3. delayed capture/export 只写 captured canvas/source/generation；
-4. duplicate deep clone/remap 与 resource policy 明确；
+1. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
+2. delayed capture/export 只写 captured canvas/source/generation；
+3. duplicate deep clone/remap 与 resource policy 明确；
+4. command/history/gesture authority 与 reference-aware delete 有 focused runtime；
 5. persistence adapter 有 corrupt/quota/stale fixture。

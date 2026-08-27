@@ -22,6 +22,9 @@
 - [Research Index](docs/research/README.md)
 - [Current Big Picture](docs/BIG_PICTURE.md)
 - [Documentation Plan](docs/DOCUMENTATION_PLAN.md)
+- [Agent Task Map](docs/AGENT_TASK_MAP.md)
+- [Decision Register](docs/DECISION_REGISTER.md)
+- [Clone Website Adaptation](docs/CLONE_WEBSITE_ADAPTATION.md)
 
 ## 3. Quick Commands
 
@@ -55,6 +58,9 @@ python3 scripts/verify-docs.py
 - `<Handle>` is the real `+` connection affordance; never add a decorative overlay that blocks dragging.
 - Do not change the LibTV edge flow effect without re-extracting source evidence.
 - `FrameosNodeEditPanel` is DEBUG-only and is not source-site functionality.
+- Director `authoredObjects` is the portable authoring baseline; `objects` is its
+  timeline/path runtime projection. Timeline sampling must start from authored
+  state, while phone live preview remains runtime-only.
 - TypeScript is strict; do not use `any`. Prefer Tailwind; document dynamic inline styles.
 - Separate source fact, evidence-backed inference and clone-only decision in research docs.
 - Before visual reinspection, search existing `SCREENSHOT_ANALYSIS.md` records.

@@ -315,7 +315,9 @@ authored/runtime split、command/history/gesture authority、reference-aware del
 V1 strict codec、snapshot adapter、runtime-field exclusion、reference validation
 和 pure contract corpus。Batch 68 已完成 structured owner、in-memory project
 registry、project/session/generation、A/B/cross-canvas restore、duplicate reset、
-active-delete close 和 memory capture sidecar focused runtime。authored/runtime、
+active-delete close 和 memory capture sidecar focused runtime。Batch 69 已完成
+`authoredObjects` portable baseline、`objects` runtime projection、
+seek/playback/path fingerprint stability、authoring restore 和 owner/graph isolation。
 inactive tombstone、async destination、history/delete 与 persistence 仍缺。
 Batch 59 继续是当前低成本 WebGL browser smoke；Batch 46/48/49/50 在
 artifact/storage 隔离前只是 merge candidates。不得把 StoryAI/Open Canvas

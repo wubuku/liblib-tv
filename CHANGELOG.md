@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 69 Director authored/runtime projection separation:
+  `authoredObjects` is now the portable project baseline while the existing
+  `objects` selector is derived for timeline/path/R3F runtime state. Added pure
+  and Playwright fingerprint-stability verification for seek, playback, path
+  sampling, authoring restore, close/reopen and owner isolation.
 - Added Batch 68 Director owner registry and session lifecycle with structured
   route/canvas/source ownership, per-owner project records, fresh session
   generations, A/B and cross-canvas isolation, memory-only capture sidecars and

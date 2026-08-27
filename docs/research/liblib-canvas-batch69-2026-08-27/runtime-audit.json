@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "batch": 69,
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 69,
+    "staticAssertions": [
+      "authored state is part of DirectorState",
+      "authored state is initialized",
+      "snapshot uses authored state",
+      "restore creates authored state",
+      "runtime projection helper exists",
+      "timeline projection never samples runtime objects",
+      "path projection never samples runtime objects",
+      "phone preview remains runtime-only"
+    ],
+    "forbiddenRuntimeProjectionCalls": 0,
+    "authoredRuntimeState": "discoverable"
+  },
+  "browser": {
+    "seekPlaybackPathProjection": "pass",
+    "authoredFingerprintStableDuringSampling": "pass",
+    "objectCameraPoseAuthoring": "pass",
+    "closeReopenAuthoredRestore": "pass",
+    "ownerIsolation": "pass",
+    "ordinaryGraphIsolation": "pass"
+  },
+  "screenshots": [],
+  "errors": []
+}

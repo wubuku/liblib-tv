@@ -1,6 +1,6 @@
 # Batch 69 计划：Director Authored And Runtime Projection Split
 
-> 状态：`PLANNED / IMPLEMENTATION_IN_PROGRESS`。
+> 状态：`COMPLETE / AUTHORED_RUNTIME_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 >
@@ -68,33 +68,33 @@ objects
 ### Slice A：计划与纯 projection 设计
 
 - [x] 记录 Batch 69 目标、状态模型和不重复截图理由；
-- [ ] 明确所有 `state.objects` 写入点；
-- [ ] 保留既有 runtime selector 兼容；
-- [ ] 增加 authored/runtime fingerprint 断言。
+- [x] 明确所有 `state.objects` 写入点；
+- [x] 保留既有 runtime selector 兼容；
+- [x] 增加 authored/runtime fingerprint 断言。
 
 ### Slice B：store 双层 authority
 
-- [ ] 增加 `authoredObjects` state；
-- [ ] 初始化、restore、snapshot 改为 authored source；
-- [ ] 所有 timeline projection writer 改用 authored source；
-- [ ] 所有对象集合和 semantic authoring writer 同步维护 authored/runtime；
-- [ ] phone live preview 保持 runtime-only。
+- [x] 增加 `authoredObjects` state；
+- [x] 初始化、restore、snapshot 改为 authored source；
+- [x] 所有 timeline projection writer 改用 authored source；
+- [x] 所有对象集合和 semantic authoring writer 同步维护 authored/runtime；
+- [x] phone live preview 保持 runtime-only。
 
 ### Slice C：verifier
 
-- [ ] pure helper/static assertions；
-- [ ] browser seek/playback fingerprint stability；
-- [ ] Inspector/keyframe authoring stability；
-- [ ] owner close/reopen restores authored baseline；
-- [ ] zero graph/history mutation、zero console/page/request errors。
+- [x] pure helper/static assertions；
+- [x] browser seek/playback fingerprint stability；
+- [x] Inspector/keyframe authoring stability；
+- [x] owner close/reopen restores authored baseline；
+- [x] zero graph/history mutation、zero console/page/request errors。
 
 ### Slice D：治理与收口
 
-- [ ] 更新 current verifier manifest、fixture catalog、coverage、traceability；
-- [ ] 更新 `BIG_PICTURE`、`ARCHITECTURE`、`DEVELOPMENT`、`HARNESS`、`CHANGELOG`
+- [x] 更新 current verifier manifest、fixture catalog、coverage、traceability；
+- [x] 更新 `BIG_PICTURE`、`ARCHITECTURE`、`DEVELOPMENT`、`HARNESS`、`CHANGELOG`
   和 research hubs；
-- [ ] Batch 67/68/59、docs、full check；
-- [ ] commit/push checkpoint，确认 main workspace clean。
+- [x] Batch 67/68/69/59、docs、full check；
+- [x] commit/push checkpoint，确认 main workspace clean。
 
 ## 5. 停止条件
 
