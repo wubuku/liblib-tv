@@ -38,9 +38,11 @@ import {
 type MobilePanel = "tree" | "inspector" | null;
 
 export default function DirectorDesk({
+  canvasId,
   sourceNodeId,
   onClose,
 }: {
+  canvasId: string;
   sourceNodeId: string;
   onClose: () => void;
 }) {
@@ -60,6 +62,10 @@ export default function DirectorDesk({
     (state) => state.viewportPanelsCollapsed,
   );
   const openSession = useDirectorStore((state) => state.openSession);
+  const closeSession = useDirectorStore((state) => state.closeSession);
+  const projectId = useDirectorStore((state) => state.projectId);
+  const sessionId = useDirectorStore((state) => state.sessionId);
+  const generation = useDirectorStore((state) => state.generation);
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const setViewportPanelsCollapsed = useDirectorStore(
@@ -95,10 +101,14 @@ export default function DirectorDesk({
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
   );
+  const projectOwner = useMemo(
+    () => ({ route: "libtv" as const, canvasId, sourceNodeId }),
+    [canvasId, sourceNodeId],
+  );
 
   useEffect(() => {
-    openSession(sourceNodeId);
-  }, [openSession, sourceNodeId]);
+    openSession(projectOwner);
+  }, [openSession, projectOwner]);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -117,9 +127,18 @@ export default function DirectorDesk({
 
   const closeWorkspace = useCallback(() => {
     if (workspaceBusy) return;
+    closeSession(projectOwner);
     selectNode(exportedNodeId ?? sourceNodeId);
     onClose();
-  }, [exportedNodeId, onClose, selectNode, sourceNodeId, workspaceBusy]);
+  }, [
+    closeSession,
+    exportedNodeId,
+    onClose,
+    projectOwner,
+    selectNode,
+    sourceNodeId,
+    workspaceBusy,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -264,7 +283,11 @@ export default function DirectorDesk({
       ref={workspaceRef}
       data-director-workspace
       data-director-workspace-focus-owner
+      data-director-canvas-id={canvasId}
       data-director-source-node-id={sourceNodeId}
+      data-director-project-id={projectId ?? ""}
+      data-director-session-id={sessionId ?? ""}
+      data-director-generation={generation ?? ""}
       data-director-panels-collapsed={viewportPanelsCollapsed}
       role="dialog"
       aria-modal="true"

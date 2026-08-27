@@ -1,6 +1,6 @@
 # Batch 68 计划：Director Owner Registry And Session Lifecycle
 
-> 状态：`PLANNED / WORKTREE_CLEANUP_COMPLETE`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS / BROWSER_AND_FULL_GATES_PENDING`。
 >
 > 日期：2026-08-27。
 >
@@ -124,6 +124,8 @@ src/lib/directorProjectRegistry.ts
 - deterministic clock/ID dependency，供 pure verifier 使用；
 - invalid/stale/noop 为 zero partial。
 
+状态：`DONE / PURE_VERIFIER_PASS`。
+
 ### Slice B：document -> store restore adapter
 
 在 Batch 67 codec 附近增加显式 reverse adapter：
@@ -134,6 +136,8 @@ src/lib/directorProjectRegistry.ts
 - resource/capture sidecar 与 document 明确分开；
 - strict decode failure 不替换 live store。
 
+状态：`DONE / FOCUSED_TYPECHECK_PASS`。
+
 ### Slice C：Director store/session authority
 
 - `openSession` 输入完整 owner；
@@ -143,6 +147,8 @@ src/lib/directorProjectRegistry.ts
 - 不包装现有全部 mutation action，不新增 history；
 - 暂不把 registry 写入 localStorage。
 
+状态：`DONE / FOCUSED_TYPECHECK_PASS`。
+
 ### Slice D：页面与 UI owner bridge
 
 - `DirectorDesk` 接收 `canvasId + sourceNodeId`；
@@ -151,6 +157,8 @@ src/lib/directorProjectRegistry.ts
 - source node 删除导致 active owner invalid 时关闭 session；
 - source duplicate/new canvas owner 首次打开得到独立默认 project；
 - 保持现有普通 graph selection、capture return 和 foreground shortcut 行为。
+
+状态：`DONE / BROWSER_PENDING`。
 
 ### Slice E：`LIBTV-VR-024` owner/session verifier
 
@@ -170,6 +178,8 @@ ordinary graph count/history isolation
 ```
 
 继续运行 Batch 67 pure codec 与 Batch 59 browser smoke。
+
+状态：pure registry corpus 已通过；focused Playwright、跨批和 full gate 待运行。
 
 ### Slice F：治理与收口
 

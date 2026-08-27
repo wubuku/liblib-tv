@@ -20,6 +20,7 @@ import {
 import "@xyflow/react/dist/style.css";
 
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
+import { useDirectorStore } from "@/store/directorStore";
 import { useUIStore } from "@/store/uiStore";
 import { TopNavBar } from "@/components/TopNavBar";
 import { LeftSidebar } from "@/components/LeftSidebar";
@@ -276,7 +277,16 @@ export default function Home() {
     if (invalidOwners.has("imagePreview")) closeImagePreview();
     if (invalidOwners.has("imageAnnotate")) closeImageAnnotate();
     if (invalidOwners.has("imageElementEdit")) closeImageElementEdit();
-    if (invalidOwners.has("director")) closeDirectorDesk();
+    if (invalidOwners.has("director")) {
+      if (owners.director) {
+        useDirectorStore.getState().closeSession({
+          route: "libtv",
+          canvasId: owners.director.canvasId,
+          sourceNodeId: owners.director.nodeId,
+        });
+      }
+      closeDirectorDesk();
+    }
   }, [
     activeCanvasId,
     activeDirectorCanvasId,
@@ -290,6 +300,11 @@ export default function Home() {
     imageElementEdit,
     imagePreview,
   ]);
+
+  useEffect(() => {
+    if (activeDirectorNodeId !== null) return;
+    useDirectorStore.getState().closeSession();
+  }, [activeDirectorNodeId]);
 
   useEffect(() => {
     const imageOwner = imageAnnotate ?? imageElementEdit;
@@ -1052,8 +1067,9 @@ export default function Home() {
           onClose={closeImagePreview}
         />
       )}
-      {activeDirectorNodeId && (
+      {activeDirectorNodeId && activeDirectorCanvasId && (
         <DirectorDesk
+          canvasId={activeDirectorCanvasId}
           sourceNodeId={activeDirectorNodeId}
           onClose={closeDirectorDesk}
         />

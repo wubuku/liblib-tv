@@ -60,6 +60,21 @@ import type {
   DirectorModelLibraryCardItem,
   DirectorModelLibraryVisual,
 } from "@/components/director/directorModelLibrary";
+import {
+  createDirectorProjectDocumentV1,
+  normalizeDirectorProjectDocument,
+  type DirectorProjectOwnerV1,
+} from "@/lib/directorProjectDocument";
+import {
+  DirectorProjectRegistry,
+  isSameDirectorProjectOwner,
+  type DirectorProjectCloseResult,
+  type DirectorProjectLifecycle,
+  type DirectorProjectOpenResult,
+  type DirectorProjectRegistrySnapshot,
+  type DirectorSessionV1,
+} from "@/lib/directorProjectRegistry";
+import { restoreDirectorProjectRuntimeSnapshotV1 } from "@/lib/directorProjectRuntimeAdapter";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -332,8 +347,23 @@ export interface DirectorTimelineState {
   };
 }
 
+function createDefaultScene(): DirectorScene {
+  return {
+    name: "第一集：咖啡馆对峙",
+    backgroundColor: "#20252b",
+    groundColor: "#30343a",
+    showGround: true,
+    showGrid: true,
+  };
+}
+
 interface DirectorState {
   sourceNodeId: string | null;
+  projectOwner: DirectorProjectOwnerV1 | null;
+  projectId: string | null;
+  sessionId: string | null;
+  generation: number | null;
+  projectLifecycle: DirectorProjectLifecycle | null;
   scene: DirectorScene;
   objects: DirectorObject[];
   groups: DirectorCharacterGroup[];
@@ -353,7 +383,10 @@ interface DirectorState {
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
 
-  openSession: (sourceNodeId: string) => void;
+  openSession: (owner: DirectorProjectOwnerV1) => DirectorProjectOpenResult;
+  closeSession: (
+    expectedOwner?: DirectorProjectOwnerV1,
+  ) => DirectorProjectCloseResult;
   selectObject: (
     objectId: string | null,
     source?: "explicit" | "viewport",
@@ -1284,15 +1317,114 @@ const DIRECTOR_CROWD_COLORS = [
   "#8f7588",
 ];
 
+const directorProjectRegistry = new DirectorProjectRegistry({
+  normalizeDocument: normalizeDirectorProjectDocument,
+});
+
+function createDefaultDirectorProjectDocument(
+  projectId: string,
+  owner: DirectorProjectOwnerV1,
+) {
+  return createDirectorProjectDocumentV1({
+    projectId,
+    owner,
+    scene: createDefaultScene(),
+    objects: cloneObjects(),
+    groups: [],
+    activeCameraId: "director-camera-main",
+    aspectRatio: "16:9",
+    timeline: createDefaultTimeline(),
+    captures: [],
+  });
+}
+
+function snapshotCurrentDirectorProject(
+  state: DirectorState,
+  session: DirectorSessionV1,
+) {
+  return createDirectorProjectDocumentV1({
+    projectId: session.projectId,
+    owner: session.owner,
+    scene: state.scene,
+    objects: state.objects,
+    groups: state.groups,
+    activeCameraId: state.activeCameraId,
+    aspectRatio: state.aspectRatio,
+    timeline: state.timeline,
+    captures: state.captures,
+  });
+}
+
+function restoreDirectorProjectState(
+  record: NonNullable<DirectorProjectOpenResult["record"]>,
+  session: NonNullable<DirectorProjectOpenResult["session"]>,
+  localModelLibrary: DirectorLocalModelLibraryItem[],
+): Partial<DirectorState> {
+  const restored = restoreDirectorProjectRuntimeSnapshotV1(record.document);
+  const objects = applyTimelineAtTime(
+    restored.objects,
+    restored.timeline,
+    restored.timeline.currentTime,
+    restored.groups,
+  );
+  const selectedObjectId =
+    objects.find((object) => object.kind === "character")?.id ??
+    objects[0]?.id ??
+    null;
+  return {
+    sourceNodeId: session.owner.sourceNodeId,
+    projectOwner: { ...session.owner },
+    projectId: session.projectId,
+    sessionId: session.sessionId,
+    generation: session.generation,
+    projectLifecycle: "ACTIVE",
+    scene: restored.scene,
+    objects,
+    groups: restored.groups,
+    selectedObjectId,
+    selectedObjectIds: selectedObjectId ? [selectedObjectId] : [],
+    selectedGroupId: null,
+    activeCameraId: restored.activeCameraId,
+    viewMode: "director",
+    transformMode: "translate",
+    aspectRatio: restored.aspectRatio,
+    showThirds: false,
+    viewportPanelsCollapsed: false,
+    isCapturing: false,
+    captures: record.memory.captures.map((capture) => ({ ...capture })),
+    activeCaptureId: null,
+    localModelLibrary,
+    timeline: restored.timeline,
+    phoneVcam: createDefaultPhoneVcamState(),
+  };
+}
+
+function createRejectedOpenResult(
+  reason: NonNullable<DirectorProjectOpenResult["reason"]>,
+  previousOwnerKey: string | null,
+): DirectorProjectOpenResult {
+  return {
+    disposition: "REJECTED",
+    reason,
+    record: null,
+    session: null,
+    previousOwnerKey,
+  };
+}
+
+export function getDirectorProjectRegistrySnapshot():
+  DirectorProjectRegistrySnapshot {
+  return directorProjectRegistry.getSnapshot();
+}
+
 export const useDirectorStore = create<DirectorState>((set, get) => ({
   sourceNodeId: null,
-  scene: {
-    name: "第一集：咖啡馆对峙",
-    backgroundColor: "#20252b",
-    groundColor: "#30343a",
-    showGround: true,
-    showGrid: true,
-  },
+  projectOwner: null,
+  projectId: null,
+  sessionId: null,
+  generation: null,
+  projectLifecycle: null,
+  scene: createDefaultScene(),
   objects: cloneObjects(),
   groups: [],
   selectedObjectId: "director-character-lead",
@@ -1311,27 +1443,128 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
 
-  openSession: (sourceNodeId) =>
-    set((state) => ({
-      sourceNodeId,
-      viewportPanelsCollapsed: false,
-      selectedObjectId: state.selectedObjectId ?? "director-character-lead",
-      selectedObjectIds:
-        state.selectedObjectIds.length > 0
-          ? state.selectedObjectIds
-          : [state.selectedObjectId ?? "director-character-lead"],
-      timeline: { ...state.timeline, isPlaying: false },
-      phoneVcam:
-        state.phoneVcam.status === "recording"
-          ? {
-              ...state.phoneVcam,
-              status: "local-ready",
-              recordingStartTime: null,
-              sampleCount: 0,
-              error: null,
-            }
-          : state.phoneVcam,
-    })),
+  openSession: (owner) => {
+    const currentState = get();
+    const activeSession = directorProjectRegistry.getActiveSession();
+    if (
+      activeSession &&
+      !isSameDirectorProjectOwner(activeSession.owner, owner)
+    ) {
+      let document;
+      try {
+        document = snapshotCurrentDirectorProject(
+          currentState,
+          activeSession,
+        );
+      } catch {
+        return createRejectedOpenResult(
+          "INVALID_DOCUMENT",
+          JSON.stringify([
+            activeSession.owner.route,
+            activeSession.owner.canvasId,
+            activeSession.owner.sourceNodeId,
+          ]),
+        );
+      }
+      const update = directorProjectRegistry.updateActive({
+        owner: activeSession.owner,
+        projectId: activeSession.projectId,
+        generation: activeSession.generation,
+        document,
+        captures: currentState.captures,
+      });
+      if (update.disposition !== "COMMITTED") {
+        return createRejectedOpenResult(
+          update.reason ?? "OWNER_STALE",
+          JSON.stringify([
+            activeSession.owner.route,
+            activeSession.owner.canvasId,
+            activeSession.owner.sourceNodeId,
+          ]),
+        );
+      }
+    }
+
+    const result = directorProjectRegistry.open({
+      owner,
+      createDocument: createDefaultDirectorProjectDocument,
+    });
+    if (
+      result.disposition !== "REJECTED" &&
+      result.record &&
+      result.session &&
+      result.disposition !== "FOCUSED"
+    ) {
+      set(
+        restoreDirectorProjectState(
+          result.record,
+          result.session,
+          currentState.localModelLibrary,
+        ),
+      );
+    }
+    return result;
+  },
+
+  closeSession: (expectedOwner) => {
+    const activeSession = directorProjectRegistry.getActiveSession();
+    if (!activeSession) {
+      return {
+        disposition: "NOOP",
+        reason: "NO_ACTIVE_SESSION",
+        record: null,
+      };
+    }
+    if (
+      expectedOwner &&
+      !isSameDirectorProjectOwner(activeSession.owner, expectedOwner)
+    ) {
+      return {
+        disposition: "STALE",
+        reason: "OWNER_STALE",
+        record: null,
+      };
+    }
+    const currentState = get();
+    let document;
+    try {
+      document = snapshotCurrentDirectorProject(
+        currentState,
+        activeSession,
+      );
+    } catch {
+      return {
+        disposition: "REJECTED",
+        reason: "INVALID_DOCUMENT",
+        record: null,
+      };
+    }
+    const result = directorProjectRegistry.close({
+      owner: activeSession.owner,
+      projectId: activeSession.projectId,
+      generation: activeSession.generation,
+      document,
+      captures: currentState.captures,
+    });
+    if (result.disposition === "CLOSED") {
+      set((state) => ({
+        sourceNodeId: null,
+        projectOwner: null,
+        projectId: null,
+        sessionId: null,
+        generation: null,
+        projectLifecycle: null,
+        isCapturing: false,
+        timeline: {
+          ...state.timeline,
+          isPlaying: false,
+          motionPathDraft: null,
+        },
+        phoneVcam: createDefaultPhoneVcamState(),
+      }));
+    }
+    return result;
+  },
 
   selectObject: (objectId, source = "explicit") =>
     set((state) => {
@@ -3841,6 +4074,16 @@ if (typeof window !== "undefined") {
   (
     window as unknown as {
       __director_store: typeof useDirectorStore;
+      __director_project_registry_snapshot:
+        typeof getDirectorProjectRegistrySnapshot;
     }
   ).__director_store = useDirectorStore;
+  (
+    window as unknown as {
+      __director_store: typeof useDirectorStore;
+      __director_project_registry_snapshot:
+        typeof getDirectorProjectRegistrySnapshot;
+    }
+  ).__director_project_registry_snapshot =
+    getDirectorProjectRegistrySnapshot;
 }
