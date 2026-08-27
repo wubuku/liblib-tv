@@ -1,8 +1,9 @@
 # Batch 64 计划：Asset Drawer Host-Resize Anchor Preservation
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED` / `SCRIPT_RECORDED_PASS`。
 >
-> 计划基线：`8acb13a`，Batch 63 已 commit/push，工作区干净。
+> 计划基线：`8acb13a`；计划 checkpoint `7624f0a`；实施与 focused verifier
+> checkpoint `4b8f931`。
 >
 > 日期：2026-08-27。
 >

@@ -4,8 +4,9 @@
 
 - **Target file:** `src/components/LeftSidebar.tsx`
 - **Historical name:** `LeftSidebar`; the live component is the centered primary bottom toolbar.
-- **Desktop position:** fixed at bottom `12px`; normally browser-centered, and
-  centered in the remaining React Flow host while the 240px Asset drawer is open.
+- **Desktop position:** fixed at bottom `12px`; normally browser-centered. With
+  the 240px Asset drawer open it follows remaining-host center, clamped to a
+  `704px` screen-center floor so it cannot overlap the full secondary toolbar.
 - **Layout:** eight icon-only commands in a `338x49` rounded toolbar.
 - **z-index:** above the React Flow surface and below opened entry panels.
 

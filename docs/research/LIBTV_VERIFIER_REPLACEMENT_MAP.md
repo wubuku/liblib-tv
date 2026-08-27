@@ -387,14 +387,14 @@ Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listene
 | 字段 | 规划 |
 |---|---|
 | Backlog | `LIBTV-PAR-001/002/007/008/011` spatial、overlay、navigation、graph-placement and canvas-lifecycle correctness |
-| Old verifier | Batch 6/7/16/18/51/60；Batch 63 actual-host focused slice；各自保留 bounded navigation、organize、canvas、zoom、overlay and default-add contract |
+| Old verifier | Batch 6/7/16/18/51/60；Batch 63 actual-host default-add 与 Batch 64 Asset host-resize focused slices；各自保留 bounded navigation、organize、canvas、zoom、overlay、default-add and drawer-layout contract |
 | Required fixture | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` with deterministic A/B canvas generations、actual host epochs、nested/measured nodes、layout states and viewport operation clock |
 | Static checks | every conversion and placement writer declares domain/owner/strategy；ordinary default add does not use browser window center；FrameOS/Director viewport domains isolated |
 | Pure checks | finite validation、client/host/flow round trip、parent-world resolution、host-center placement、resize anchor preservation、stale/idempotent session reduction |
 | Store/transaction | live/stable/bootstrap ownership exact；viewport zero semantic history；drag/add/duplicate/organize preserve adjacent one-step history and selection contracts |
 | UI/browser | actual host rect、pan/zoom frames/end/cancel、asset-open/compact resize、canvas switch stale callbacks、default/derived/duplicate placement and selected-overlay same-frame geometry |
-| Implemented slice | Batch 63：finite host-center helper、page-owned `screenToFlowPosition`、Add Node/Character callback、asset-open layout continuity、desktop/mobile graph/history/selection/zero-mutation verifier |
-| Blockers | live/stable split、generation/host epoch/session owner、full fixture、resize/derived/duplicate/organize composition；exact source add/fit/zoom/resize/drop behavior partial |
+| Implemented slice | Batch 63：finite host-center helper、page-owned `screenToFlowPosition`、Add Node/Character callback；Batch 64：Asset open/close/X/Canvas-context capture/reconcile、operation/canvas/instance/viewport guards、desktop/mobile center preservation and zero graph/history/selection mutation |
+| Blockers | live/stable split、generic generation/host epoch/session owner、browser resize/bootstrap、full fixture、derived/duplicate/organize/selected-overlay composition；exact source add/fit/zoom/resize/drop behavior partial |
 | Exit | one domain per point；one current spatial owner；actual-host placement exact；stale/cancel leaves zero residue；overlay and graph/history contracts compose without visual transplant |
 
 Open Canvas dual-anchor/live-stable/placement evidence、clone host/window and transient audit、`LIBTV-VGP-I-001..032` and decision queue 统一见 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。`VR-020` 组合 overlay、React Flow routing、multi-canvas、copy、organize 和 shortcut verifier，不取代其 source visual、graph semantic 或 route-specific contract。

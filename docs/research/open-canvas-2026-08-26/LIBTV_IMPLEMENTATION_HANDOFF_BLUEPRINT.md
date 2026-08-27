@@ -306,7 +306,17 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 | `L5 Verifier` | `LIBTV-VR-020` composed with overlay、React Flow routing、multi-canvas、copy、organize and shortcut regressions |
 | `L6 Provenance` | no Quick Add/drop/pending connection、Open Canvas menu/zoom/pan/overlay/persistence or source-unconfirmed placement promoted to LibTV truth |
 
-下一批已授权的最小实施入口是 actual-host default add：读取 current React Flow host、以 current live instance 做一次 center-to-flow conversion，并保持现有 add data、selection、history 和 UI。不要在同一 slice 同时重写 viewport phase、全部 placement、resize、overlay 或增加 Open Canvas 产品入口。
+已完成的最小运行切片：
+
+- Batch 63：actual-host default add，经 current React Flow instance 做一次
+  center-to-flow conversion；
+- Batch 64：Asset drawer open/close/X/Canvas-context 捕获旧 host-center flow anchor，
+  在 layout commit 后以 current operation/canvas/instance/viewport guards
+  reconcile 新 viewport。
+
+下一批不要重复实现这两个入口，也不要在同一 slice 同时重写全部 viewport
+phase、placement、resize、overlay 或增加 Open Canvas 产品入口。优先处理
+browser responsive bootstrap guard 或 canvas-owned viewport callback。
 
 ## 10.5 `OC-BP-011`：Media Ingress And Resource Lifecycle Authority
 
@@ -425,7 +435,7 @@ pure identity/transaction cases
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
 8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
-9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63 已关闭 actual-host default add focused slice，下一步分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不重复实现 default add，也不实现 Quick Add/drop/pending connection；
+9. `OC-BP-010` 保持 design complete/runtime/source parity partial；Batch 63 已关闭 actual-host default add，Batch 64 已关闭 Asset drawer host-center resize anchor 和局部 current-owner guard；下一步分开处理 live/stable viewport、browser bootstrap、generation/host-epoch-bound gesture 与 selected-overlay composition，不重复这两个入口，也不实现 Quick Add/drop/pending connection；
 10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
 11. `OC-BP-012` 保持 design complete/runtime fragmented/source parity partial；若获授权先关闭单一 profile 的 equality/drift/history/honesty 缺口，不统一重写所有 editor，也不接真实 provider/storage；
 12. `OC-BP-013` 保持 design complete/runtime fragmented/source ratio-diverse parity gated；若获授权先做 deterministic fixture + pure policy，或关闭一个 generic/derived/Director still mismatch，不增加 generic resize/真实 output history；

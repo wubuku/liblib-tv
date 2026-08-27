@@ -11,24 +11,24 @@
 
 | Control | State / command |
 |---|---|
-| 资产管理 | `uiStore.toggleAssetPanel` |
+| 资产管理 | page-owned Asset layout callback |
 | 整理画布 | page `onOrganize` |
 | 缩略图 | `uiStore.toggleMinimap` |
 | 节点连线 | `uiStore.toggleEdges` |
 | 吸附到网格 | `uiStore.toggleSnapToGrid` |
 | 缩放百分比 | `uiStore.toggleZoomMenu` |
 
-The snap and zoom controls are hidden in the middle compact range (`640-850px`)
-to protect layout. When the Asset drawer is open, that compact suppression extends
-to `1100px`, and the “资产管理” text is hidden in the same range. The commands
-remain available at the `390px` mobile viewport, where the two toolbars use
-separate rows.
+The snap and zoom controls are hidden only in the middle compact range
+(`640-850px`) to protect layout; they remain available at the `390px` mobile
+viewport.
 
 At `929x874`, the pre-Batch-63 asset-open toolbar overlapped the primary toolbar
-by about `231.5px` and intercepted Add Node. Batch 63 keeps this secondary toolbar
-canvas-relative while moving the primary toolbar to the remaining host center and
-compacting these lower-priority controls. This is clone-owned responsive
-correctness, not a source-exact policy claim.
+by about `231.5px` and intercepted Add Node. Batch 64 regression corrected the
+first compact implementation: this toolbar keeps its full control widths and
+240px drawer follow, while the primary toolbar applies a screen-space collision
+floor. This preserves minimap/zoom trigger geometry and separates screen UI clamp
+from graph anchor policy. It remains clone-owned responsive correctness, not a
+source-exact policy claim.
 
 ## Minimap
 
@@ -40,6 +40,9 @@ correctness, not a source-exact policy claim.
 - The clone does not enable minimap click, pan or zoom without source interaction evidence.
 
 Evidence and verification: [`../liblib-canvas-batch19-2026-08-25/`](../liblib-canvas-batch19-2026-08-25/).
+
+Asset layout transaction and adjacent regression:
+[`../liblib-canvas-batch64-2026-08-27/`](../liblib-canvas-batch64-2026-08-27/).
 
 ## Zoom menu
 

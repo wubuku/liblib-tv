@@ -24,7 +24,7 @@ live/stable viewport、FrameOS、Director 或图片双浮层公式。
 | `src/app/page.tsx` | 为 React Flow root 增加稳定 host selector；page-owned callback 量测 host、调用 `screenToFlowPosition()`，host/instance/转换失效时 zero mutation。 |
 | `AddNodePanel` / `CharacterLibraryPanel` / `LeftSidebar` | 移除组件对 `canvasStore.addNode()` 的直接依赖，统一接收 page-owned default add callback。 |
 | `src/store/uiStore.ts` | Add Node 与 primary panel 的 transient 互斥保留当前 Asset drawer，避免创建前先恢复全宽 host。 |
-| `BottomToolbar` / `LeftSidebar` | 资产抽屉打开时桌面主入口工具条跟随实际 host center；窄桌面压缩次级工具条，消除两个固定工具条的点击碰撞；移动端保持上下两行。 |
+| `BottomToolbar` / `LeftSidebar` | 资产抽屉打开时桌面主入口工具条跟随实际 host center；Batch 64 regression 将窄桌面实现修正为主工具条 screen-space center floor，保留次级工具条完整控件和 minimap/zoom trigger；移动端保持上下两行。 |
 | `scripts/verify-liblib-batch63.py` | 新增 pure helper、desktop/mobile、drawer closed/open、普通节点、角色库、history/selection、invalid guard、兼容路径、overflow 与 diagnostics verifier。 |
 | `runtime-audit.json` | 保存本批 focused runtime 原始结果；不新增截图。 |
 

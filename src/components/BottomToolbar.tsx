@@ -89,9 +89,7 @@ export function BottomToolbar({
         )}
       >
         <PanelLeft size={15} />
-        <span className={cn(isAssetPanelOpen && "sm:max-[1100px]:hidden")}>
-          资产管理
-        </span>
+        <span>资产管理</span>
       </button>
       <IconButton label="整理画布，Option+Shift+F" onClick={onOrganize}>
         <LayoutGrid size={15} />
@@ -103,10 +101,7 @@ export function BottomToolbar({
         <Link2 size={15} />
       </IconButton>
       <span
-        className={cn(
-          "contents sm:max-[850px]:hidden",
-          isAssetPanelOpen && "sm:max-[1100px]:hidden",
-        )}
+        className="contents sm:max-[850px]:hidden"
       >
         <IconButton label="吸附到网格" active={snapToGrid} onClick={toggleSnapToGrid}>
           <Magnet size={15} />
@@ -114,10 +109,7 @@ export function BottomToolbar({
       </span>
       <div
         ref={zoomMenuRef}
-        className={cn(
-          "relative sm:max-[850px]:hidden",
-          isAssetPanelOpen && "sm:max-[1100px]:hidden",
-        )}
+        className="relative sm:max-[850px]:hidden"
       >
         <button
           type="button"

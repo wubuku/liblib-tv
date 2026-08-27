@@ -52,8 +52,9 @@ default add 无法由用户触发。该结论来自 DOM rect、Playwright hit-te
 
 本批采用 clone correctness 修复：
 
-- 桌面资产抽屉打开时，主入口工具条中心改为 actual host center；
-- `640..1100px` 且资产抽屉打开时，次级工具条隐藏“资产管理”文字、吸附和缩放项；
+- 桌面资产抽屉打开时，主入口工具条跟随 actual host center；Batch 64 regression
+  将窄桌面改为 screen-space center floor，避免与完整次级工具条碰撞；
+- 次级工具条保持完整宽度和 minimap/zoom trigger 的 `+240px` drawer follow；
 - 移动端继续使用上下两行工具条，不做 host-center 横移；
 - Add Node 与 primary panel 的开关保留当前资产抽屉，其他 transient overlay 仍关闭；
 - 不声称这是 LibTV 源站 exact responsive policy。

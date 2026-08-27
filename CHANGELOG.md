@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Closed Batch 64 with page-owned Asset drawer host-resize reconciliation:
+  toolbar toggle, explicit close and Canvas-context transition preserve the old
+  host-center flow anchor across desktop/mobile layout changes without graph,
+  selection or history mutation.
 - Closed Batch 63 with actual React Flow host-centered default placement for
   Add Node and Character Library, including finite conversion helpers, page-owned
   current-instance routing and focused desktop/mobile runtime evidence.
@@ -84,6 +88,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   runtime audit and bounded rotate implementation closeout documentation.
 
 ### Fixed
+- Restored the complete Asset/edge/snap/zoom secondary toolbar after adjacent
+  regression exposed hidden zoom and broken minimap follow; collision avoidance
+  now clamps only the screen-space primary toolbar and leaves graph anchoring
+  unchanged.
 - Kept the Asset drawer open across Add Node and primary-panel workflows, centered
   the primary toolbar in the remaining desktop host and compacted conflicting
   secondary controls so drawer-open node creation remains reachable.
