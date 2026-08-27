@@ -70,7 +70,7 @@
 49. [`LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md`](LIBTV_GRAPH_COMPATIBILITY_STATIC_AUDIT_2026-08-27.md)：`OC-EQ-003` 的 LibTV DOM Handle、edge identity、方向归一化、duplicate/self-loop/cycle 和 action/type validator 静态证据。
 50. [`libtv-graph-compatibility-static-audit-2026-08-27.json`](libtv-graph-compatibility-static-audit-2026-08-27.json)：graph compatibility 原始结构化采样、bundle 坐标和未决边界。
 51. [`IMPLEMENTATION_IMPLICATIONS.md`](IMPLEMENTATION_IMPLICATIONS.md)：第一阶段候选实施清单、收益、风险和待授权队列；保留 Batch A-E provenance，不再作为当前编号入口。
-52. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：十二类可迁移模式卡，区分上游启发、LibTV 证据、clone 决策和验证门槛。
+52. [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，新增 selected output、frame/rendition、measurement freshness 与 editor transform，继续区分上游启发、LibTV 证据、clone 决策和验证门槛。
 53. [`ITERATION_LOG.md`](ITERATION_LOG.md)：研究报告版本和维护历史。
 54. [`../liblib-canvas-batch55-2026-08-26/`](../liblib-canvas-batch55-2026-08-26/README.md)：`OC-EQ-001` freshness 接管尝试、登录态阻塞和可接力停止条件。
 

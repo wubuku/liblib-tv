@@ -31,6 +31,7 @@
 | OC-PATTERN-10 | dual anchor + live/stable viewport + entry-specific placement | browser/host/flow 坐标、移动帧、稳定恢复和创建入口互相覆盖 | 适合 default add、zoom/fit/resize、drag/organize、copy/derived placement 与 overlay composition | P0，正式合同完成，runtime/source parity partial |
 | OC-PATTERN-11 | validate/probe/materialize + explicit resource lease | 文件意图、临时 bytes、稳定 asset、node reference、graph/history 与 cleanup 分叉 | 适合 Add Resource、生成历史、Shot Breakdown、普通图片编辑和 Director media boundary | P0，正式合同完成，runtime missing/partial、source parity partial |
 | OC-PATTERN-12 | foreground editor session + owned local history + typed commit handoff | baseline、draft、本地撤销、graph history、异步保存和关闭生命周期分叉 | 适合文字、配置、标注、图片编辑、字幕区域、范围选择和请求草稿 | P0，正式合同完成，runtime fragmented、source parity partial |
+| OC-PATTERN-13 | selected output + declared frame/rendition + fresh measurement | media/output/request/frame/measured/editor coordinate 混为一组尺寸 | 适合普通图片/视频、详情预览、混合比例版本、标记编辑器与双浮层 anchor | P0，正式合同完成，runtime fragmented、source ratio-diverse parity gated |
 
 ---
 
@@ -749,7 +750,62 @@ Undo 路由必须取决于当前 foreground context：editable 原生 undo、bit
 
 ---
 
-## 15. 十二张卡的共同落地顺序
+## 15. OC-PATTERN-13：Selected Output + Declared Frame/Rendition + Fresh Measurement
+
+### 15.1 上游 `SOURCE_FACT`
+
+固定版本 Open Canvas 把 selected media output 与主 preview 分开，并按 surface role 使用不同呈现方法：node/candidate/thumbnail 多为 cover，full-screen active image 使用 contain；selected index 会随 output collection normalize。图片上传还会先解码尺寸，再把最近 generation ratio 投影到请求设置。
+
+这些做法提供了明确方法，也暴露了边界：`CanvasNodeMedia` 没有 intrinsic dimensions；video probe 只保存 duration；node card 高度跟随 request aspect 而非 selected output intrinsic；编辑输出追加后不更新 aspect 或保存导出尺寸；full/thumbnail metadata freshness、crop transform 和 editor coordinate space 都未形成完整 descriptor。Serialized node dimensions 和 passive measured rect 也不能证明存在 user resize。
+
+### 15.2 LibTV 对应的 `SOURCE_FACT` 与 `CLONE_FACT`
+
+2026-08-27 的 LibTV 共享画布只读测量证明五个 landscape image node 使用 media-shaped frame：`1808x1024 -> 618x350`、`1152x576 -> 700x350`、`1280x720 -> 622x350`，图片内容在 bordered content box 内 centered cover。选中节点后，toolbar 与 lower panel 均以 node center 为横向 anchor；因此 node frame 错误会继续放大为浮层 top/bottom/center 错位。
+
+当前 clone 的初始 fixture 对齐这些值，但 generic image 把 square media 放入 `512x288` frame；多数 derived action 和 Director still capture 也会继承 media dimensions 后重置成 generic landscape frame。Node poster cover、detail preview contain、Director video contain 和 mark editor visible-node normalization 分散在不同 branch，没有具名 rendition profile。普通节点也没有 per-output dimensions/selected output identity，React Flow measurement 没有 media-ready/frame revision freshness contract。
+
+### 15.3 `INFERENCE`
+
+可迁移方法不是把所有媒体都改为 contain，也不是复制 Open Canvas fixed card。它要求先把十类 authority 分开：
+
+```text
+media intrinsic + thumbnail intrinsic + selected output
+  + generation request + semantic node frame + passive measured rect
+  + surface rendition + visible media rect + editor media space
+  + export output
+```
+
+每个 media-bearing node 声明 frame policy，每个 surface 声明 rendition profile。Cover/contain 只是可逆 display transform；full-media editor 必须把 visible pointer 经过 content-box/crop transform 映射到 intrinsic space。Output switch 若改变 ratio，必须以一个 typed transaction 决定 frame reflow/preserve/reject/source-required，并等待 current measurement 后再断言浮层位置。
+
+### 15.4 `CLONE_DECISION`
+
+- 采用 stable output identity、per-output intrinsic metadata/provenance、具名 frame/rendition profile 和 current measurement epoch；
+- current source-backed landscape image 保持 media-shaped centered cover，不以 Open Canvas request-shaped fixed card 替代；
+- compact candidate/reference/filmstrip 可继续 fixed-cell cover，但 detail/full-media editor 默认优先 full-content visibility，直到 source evidence 给出其他策略；
+- passive React Flow measurement、thumbnail/full swap 和 metadata cache refresh 不进入 semantic graph history；explicit resize 继续 source/product-gated；
+- mixed-ratio output switch、frame reflow、selection 和 anchor refresh 形成一个具名 semantic plan，不允许 silent ratio drift；
+- mark editor 必须声明 `FULL_INTRINSIC` 或 `VISIBLE_RENDER`；当前 visible-node normalized marks 不升级为 full-media correctness；
+- 不移植 Open Canvas card width、aspect control、provider/media schema、rounded visual、crop numbers 或缺失 per-output dimensions 的做法；
+- 本卡只形成设计、fixture 和 verifier authority，不授权修改 runtime。
+
+### 15.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| authority | media/output/request/frame/measured/rendition 字段不混用；invalid/zero/missing metadata typed |
+| frame | 16:9、2:1、1:1、9:16 和 odd ratio 的 frame decision finite、deterministic、source/prototype provenance 明确 |
+| rendition | node cover 与 detail contain 均符合声明 transform；thumbnail/fixed cell 不泄漏到 editor/export |
+| output | mixed-ratio selected output identity/metadata 原子更新；reflow/preserve/reject policy 明确 |
+| measurement | frame/rendition revision 后 stale rect 不驱动 toolbar/panel；fresh rect 到达前 overlay policy 稳定 |
+| editor | visible/intrinsic point round-trip 在 tolerance 内；border/content box、cover offsets、drift baseline 被计入 |
+| history | passive measurement/metadata refresh/preview 零 semantic history；accepted frame/output command 最多一步 |
+| source | portrait/square/video/mixed-output/resize 未取证时保持 gated，不以 Open Canvas 或 clone coincidence 代替 |
+
+设计 authority：[`LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` 和 `LIBTV-VR-023`。
+
+---
+
+## 16. 十三张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -761,8 +817,9 @@ Undo 路由必须取决于当前 foreground context：editable 原生 undo、bit
   -> 09 selection、command context 与 focus owner
   -> 07 canvas lifecycle owner isolation
   -> 10 viewport、coordinate、gesture 与 placement owner
-  -> 12 foreground editor session、local history 与 commit handoff
   -> 11 media ingress、asset/reference 与 resource lease
+  -> 13 media/output/frame/rendition 与 measurement freshness
+  -> 12 foreground editor session、local history 与 commit handoff
   -> 05 异步结果入口与陈旧收敛
 ```
 
@@ -777,11 +834,12 @@ Undo 路由必须取决于当前 foreground context：editable 原生 undo、bit
 - selection/context/focus 再统一 active-session authority，避免快捷键和 surface close 穿透或回焦到陈旧 owner；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - spatial authority 再把 actual host、live/stable viewport、gesture generation 和 entry placement 组合到既有 overlay/graph/lifecycle contracts；
-- foreground editor session 随后固定 baseline/draft、native/local/graph undo、commit/cancel 和 close policy，避免局部编辑直接旁路 graph/async authority；
 - media ingress 随后固定 local bytes、asset/reference、cohort 和 release owner，避免用 URL 字段提前替代资源生命周期；
+- media rendition 再固定 selected output、intrinsic metadata、node frame、surface fit 和 measurement freshness，避免编辑器在错误裁切面建立坐标；
+- foreground editor session 随后固定 baseline/draft、native/local/graph undo、commit/cancel 和 close policy，避免局部编辑直接旁路 graph/async/media authority；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态、graph 与 resource authority。
 
-## 16. 统一拒绝清单
+## 17. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -804,12 +862,15 @@ Undo 路由必须取决于当前 foreground context：editable 原生 undo、bit
 - 因为 Open Canvas 图片编辑器保留 40 个 snapshot，就按 entry count 复制 full-image history，而不设置 byte/pixel budget、gesture coalescing 和资源释放；
 - 让 foreground editor 在 commit result 未确认或 async materialization 尚未接管 pending/failure surface 时先关闭，或只按 node ID 回写晚到结果；
 - 让 enabled-looking Undo/Redo/Save/Generate 控件没有 handler，或用 graph undo 同时消费 editor-local chord；
+- 把 request aspect、thumbnail dimensions、node frame、React Flow measured rect 和 full-media intrinsic dimensions 合并成一组 `width/height`，或把 cover/contain 当成未声明的全局视觉偏好；
+- 因 serialized node 有 width/height 就添加 generic resize，或让 passive measurement/thumbnail swap 进入 semantic history；
+- 在 cover-cropped node rect 上存 normalized marks 后把它们描述为 full-media coordinates，或在 mixed-ratio output switch 后静默复用旧 editor transform；
 - 把 LibTV source 的上传、生成历史、风格/特效素材与 account asset 合并成一个“素材库”，或把 clone 历史文案反写成 source 事实；
 - 在无后端 prototype 中把 local preview/fake materializer 宣称为 durable upload、synced asset 或 provider result；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 17. 后续研究入口
+## 18. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -823,6 +884,7 @@ Undo 路由必须取决于当前 foreground context：editable 原生 undo、bit
 - Viewport/coordinate/gesture/placement：[`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](../LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)
 - Media ingress/resource lifecycle：[`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)
 - Editor session/commit/history：[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)
+- Media rendition/aspect/node geometry：[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

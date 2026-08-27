@@ -73,7 +73,7 @@
 | `../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md` | ten media geometry authorities、frame/rendition profile、fit transform、mixed-ratio output、measurement freshness、fixture 和 `LIBTV-VR-023` 正式设计权威 |
 | `libtv-media-ingress-source-dom-audit-2026-08-27.json` | LibTV source Add Resource、Generated History、Material、Asset、Shot 和 dormant uploader 的只读原始 DOM 记录 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 十二类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial、media/resource 与 editor session authority 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 十三类可迁移的浮层几何、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 与 media rendition authority 模式卡，以及对应的 LibTV 证据闸门 |
 | `editor-session-static-evidence-2026-08-27.json` | `OC-071..080` 与 `LIBTV-EDS-001..014` 的固定 source path、事实和迁移边界原始清单 |
 | `media-rendition-geometry-static-evidence-2026-08-27.json` | `OC-081..090`、`LIBTV-MRG-001..014` 与 source read-only node/media/overlay 尺寸的机器可读清单 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
@@ -115,6 +115,7 @@
 - [x] 完成 Open Canvas/clone foreground editor、draft/local history、save/upload handoff 与 inert command 双向静态审计
 - [x] 完成 editor profile/session/baseline、native/local/graph undo、typed commit/cancel、fixture 与 `LIBTV-VR-022` 正式设计
 - [x] 完成 `OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`LIBTV-UIX-22`、`DEC-038` 与 Open Canvas 侧治理追溯同步
+- [x] 完成 `OC-081..090`、`OC-PATTERN-13` 与 `OC-ADOPT-026`，明确 selected output、frame/rendition、measurement 和 editor transform 的迁移/拒绝边界
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

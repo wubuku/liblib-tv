@@ -57,7 +57,7 @@
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
-- [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十二类可迁移模式卡，覆盖几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource 和 editor session authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
+- [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
 - [`components/`](components/)：LibTV 组件规格，包括节点、面板、工具条和对话框。
 - [`components/COVERAGE_MATRIX.md`](components/COVERAGE_MATRIX.md)：源码组件到组件合同、批次证据、验证状态和文档缺口的反向索引。
 - [`COMPONENT_INVENTORY.md`](COMPONENT_INVENTORY.md)：当前 clone 的权威组件清单；先用覆盖矩阵判断应读哪个合同。

@@ -628,3 +628,14 @@
 - `ShotBreakdownNode.spec.md` 将 fixed near-16:9 cover 限定为 thumbnail/scanning role，不允许它泄漏成普通 node/detail/editor/export 几何；
 - 八份规格共同指向正式 geometry contract 与 designed `LIBTV-VR-023`，现有 batch verifier 仍只是当前局部交互/兼容证据；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v56 Open Canvas media rendition 证据、模式卡与采纳决策
+
+本轮把 v53/v54 的 fixed facts 和正式合同接入 Open Canvas 研究治理，不把上游 fixed-card 产品语义升级为 LibTV source truth：
+
+- 在 `EVIDENCE_MATRIX.md` 登记 `OC-081..090`，固定 media descriptor 缺 intrinsic dimensions、image/video probe 不对称、request-shaped card、surface-role fit、selected-index normalization、edited-output ratio drift、measured anchor、optional serialized dimensions 与 crop/editor-space 缺口；
+- 新增 `OC-PATTERN-13`，将可迁移方法压缩为 selected output + declared frame/rendition + fresh measurement，同时把 request aspect、thumbnail、semantic frame、passive measured rect 和 intrinsic media 分权；
+- 新增 `OC-ADOPT-026 ADAPT_TO_LIBTV`：保留 LibTV source-shaped landscape nodes，采纳 output identity、per-output metadata、fit transform 和 measurement epoch，不移植 Open Canvas fixed width、request-aspect frame、视觉或不完整 media schema；
+- 卡片总览从十二张更新为十三张，研究依赖顺序调整为 media ingress -> media rendition -> foreground editor -> async completion；
+- 明确拒绝由 serialized/measured width 推导 generic resize、把 cover/contain 当全局视觉偏好，以及把 visible-crop normalized marks 描述为 full-media coordinates；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
