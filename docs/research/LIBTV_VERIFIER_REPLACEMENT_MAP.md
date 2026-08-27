@@ -52,6 +52,9 @@
 | 26-33 | 续写、字幕、音视频分离、截帧、主体编辑、深度、长视频 | `LOCAL_FIXTURE` + `BLOCKED_SOURCE` | source ready/process/dirty fixture、失败和重试状态 | 保留 bounded graph/history；真实 lifecycle 单独新增 |
 | 35-47 | Director R3F、timeline、path、capture/export、phone、pose、camera、groups、model proxy | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | source locale/entry 与 clone implementation 分开；真实资产不推导 | 保留 bounded Director regression；不迁移成普通 LibTV verifier |
 | 48 | Director local model import/persistence workflow | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | 保留 clone-owned storage reset、focused verifier 和 bounded maturity；真实 mesh/远端同步另行阻塞 | 作为有界 Director regression 保留；不迁移成普通 LibTV 或源站 parity verifier |
+| 49-50 | Director viewport gizmo and workspace shell | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | artifact output、focus/storage isolation 和 current runtime rerun | 作为 merge candidate；未完成隔离前不进入日常 gate |
+| 59 | Director asset-library search/preview/add | `LOCAL_FIXTURE` + `CURRENT_GATE` | 无 screenshot write；localhost same-origin current smoke | 作为当前低成本 Director smoke；不证明真实资产或 source parity |
+| 66 | Director project/session/command/history/delete authority | `DESIGN_SPEC_COMPLETE` + `RUNTIME_MISSING` | 新增 strict codec/owner/history/delete verifier family `LIBTV-VR-024` | 保留为下一实施批次；不把 Batch 35-59 历史脚本升级为 authority coverage |
 
 Batch 34 是 research-only，不是缺失的 verifier；不要为它创建“补跑脚本”以填充编号。
 

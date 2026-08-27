@@ -46,6 +46,7 @@
 | DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
 | DEC-037 | media ingress/resource lifecycle authority | media intent、local bytes/lease、asset identity、node reference 与 provisional/semantic projection 分权；release 只由显式 owner + reachability 决定 | ACTIVE / RESEARCH_GATE |
 | DEC-038 | editor session/commit/history authority | foreground editor 以 profile/session/baseline/draft 定权；native/local/graph undo 分流，typed commit 决定 graph/async handoff 与 close | ACTIVE / RESEARCH_GATE |
+| DEC-040 | Director project/session authority | Director portable project、session UI、runtime projection、resource lease 与 graph projection 分权；先实现 versioned strict codec，再做 owner registry、history/delete 与真实资产 | ACTIVE / RESEARCH_GATE |
 | DEC-039 | media rendition/geometry authority | selected output、intrinsic metadata、request、semantic frame、passive measurement、surface rendition、editor space 与 export 分权 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
@@ -289,6 +290,38 @@
 **影响：** current source-backed landscape frame 与既有 toolbar/panel formula 保持；不以 Open Canvas fixed card/request aspect 或全局 contain 替代。Portrait/square/video/mixed-output/object-position/generic resize 继续 source/product-gated。`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-VR-023` 和任何 runtime/schema/editor slice 都需明确编码授权；FrameOS/Director owner 继续隔离，Director 的 aspect-aware animation path仅作为 clone method evidence。
 
 **依据：** [`LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](research/LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)、Open Canvas `OC-081..090` fixed chain、2026-08-27 LibTV landscape source measurements 和相关 component specs。
+
+### DEC-040：Director project、session、runtime 与 graph projection 分权
+
+**背景：** 当前 Director 是功能丰富的 R3F authoring island，但 `directorStore`
+仍是单例；`openSession` 只替换 source node ID，scene、objects、groups、
+timeline 和 captures 会跨 node 保留。Timeline seek/playback 又会把 sampled
+值写回 objects，capture/export completion 在提交时 late-read active canvas。
+StoryAI 和 Open Canvas 提供 versioned document、scoped owner、history 和
+reference repair 的方法，也同时暴露 shallow decode、UI state persistence、
+资源生命周期和 stale completion 反例。
+
+**决策：** Director 必须分开 portable project document、session UI、runtime
+projection、resource lease 和 ordinary graph projection。Portable document
+具备独立 project ID、schema version、owner 与严格 decoder；session selection、
+playhead、panel、recording、Three.js refs、Blob/object URL 和 graph `sentNodeId`
+不得混入 document。实现顺序固定为 strict V1 codec、owner registry、
+authored/runtime split、command/history/gesture authority、reference-aware delete，
+再进入真实资产、panorama 和多机位。Director history 与 ordinary graph history
+保持独立。
+
+**影响：** Batch 66 已完成静态审计、两份正式合同、17-script current manifest、
+`LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01` 与 `LIBTV-VR-024` 设计。Batch 59
+是当前低成本 smoke；Batch 46/48/49/50 在 artifact/storage 隔离前只是 merge
+candidates。不得把 StoryAI/Open Canvas schema、历史 verifier 或 clone screenshot
+写成 LibTV source fact，也不得在 codec slice 中顺手包装全部 85 actions 或接入
+真实 persistence。
+
+**依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
+[`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
+[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
+[`liblib-canvas-batch66-2026-08-27/`](research/liblib-canvas-batch66-2026-08-27/)、
+StoryAI/Open Canvas 固定专题。
 
 ## 3. 何时可以重审决策
 

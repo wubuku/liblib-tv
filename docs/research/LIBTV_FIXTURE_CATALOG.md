@@ -158,6 +158,7 @@ new BrowserContext
 | `LIBTV-FIX-LOCAL-LONG-PROCESS-01` | `TRANSACTION_DERIVED` | ready video 切 long-video 后提交 | 1 source + 12 process nodes / 22 edges；process status `pending` | 本地超长视频 process topology、重复提交、undo/redo |
 | `LIBTV-FIX-DIRECTOR-BASE-01` | `DIRECT_STORE_DRIVEN` | Director store + Batch 35-48 setup | scene/object/camera/timeline domain state | Director 专项视觉、轨道、路径、拍摄、导出和 model-library proxy |
 | `LIBTV-FIX-DIRECTOR-LOCAL-MODEL-01` | `UI_CONSTRUCTED` | Batch 48 verifier + local input | fresh context + cleared clone-owned storage | local descriptor import/persistence, refresh recovery, proxy re-add and cleanup |
+| `LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01` | `REQUIRED_DISPOSABLE` / `DESIGN_SPEC_COMPLETE` / `RUNTIME_MISSING` | future pure `DirectorProjectDocumentV1` corpus + fresh Director page + deterministic owner/session/generation and resource/graph oracles | valid/invalid/future documents；A/B source nodes and canvas generations；authored/runtime snapshots；command/history/delete reference graph | strict codec、owner registry、async freshness、Director history and reference-aware delete；Batch 59 only supplies current browser seed |
 
 ### 4.2 `LIBTV-FIX-LOCAL-DEMO-01`
 

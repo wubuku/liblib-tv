@@ -1,0 +1,187 @@
+# LibTV Director Current Verifier Manifest
+
+> Status: `CURRENT_MANIFEST_RECORDED` / `ONE_CURRENT_GATE_RECORDED_PASS` /
+> `FULL_SUITE_NOT_CURRENTLY_RUN`.
+>
+> Audit date: 2026-08-27.
+>
+> Scope: `scripts/verify-liblib-batch35.py` through Batch 50, plus Batch 59.
+>
+> Fixture authority:
+> [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
+>
+> Director design authority:
+> [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)
+> and
+> [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md).
+
+## 1. Purpose
+
+The repository has 17 Director-focused Playwright scripts. They preserve valuable
+bounded clone behavior, but they were created batch by batch and do not form a
+single current gate:
+
+- Batch 35-50 overwrite tracked historical screenshots;
+- Batch 40 performs a real browser `MediaRecorder` export;
+- Batch 47/48 touch the Director local-model storage key;
+- most scripts prove a dated clone contract, not current LibTV source parity;
+- none of the historical scripts covers project identity, strict document decode,
+  owner generation, Director history or reference-aware delete.
+
+This manifest defines which script is cheap and safe enough for a current smoke,
+which scripts are candidates for a future merge gate, and which remain manual
+historical regressions.
+
+## 2. Classification
+
+| Class | Meaning | Default execution |
+|---|---|---|
+| `CURRENT_GATE` | Current HEAD was run in this batch; low-cost and bounded enough for routine use | Run for every Director reliability batch |
+| `MERGE_CANDIDATE` | High-value current behavior, but artifact/storage/runtime side effects must be isolated first | Run manually when the affected slice changes |
+| `HISTORICAL_ONLY` | Preserves a dated clone capability and screenshots; too broad, expensive or superseded for routine gating | Run only for targeted regression or release audit |
+| `SOURCE_STALE` | Assertions use source-shaped vocabulary or behavior without fresh authenticated evidence | Never interpret a pass as current source parity |
+
+`SOURCE_STALE` is an evidence label and can coexist with an execution class.
+
+## 3. Script Inventory
+
+| Script | Primary capability | Execution class | Artifact/storage/runtime cost | Current interpretation |
+|---|---|---|---|---|
+| Batch 35 | R3F workspace, camera framing, still capture, graph return, undo/redo | `HISTORICAL_ONLY` | 6 tracked screenshots; graph mutation; desktop/mobile WebGL | Foundational clone regression; entry/WebGL is now more cheaply covered by Batch 59 |
+| Batch 36 | typed timeline, keyframes, playback | `HISTORICAL_ONLY` | 4 tracked screenshots; timer/playback | Dated timeline contract; does not prove authored/runtime separation |
+| Batch 37 | preset paths and speed curves | `HISTORICAL_ONLY` | 5 tracked screenshots; WebGL sampling | Dated path contract; no project/history authority |
+| Batch 38 | pencil/pen path authoring and anchors | `HISTORICAL_ONLY` | 5 tracked screenshots; pointer simulation | Dated authoring contract; gesture updates are not coalesced Director history |
+| Batch 39 | path transform/reset | `HISTORICAL_ONLY` | 5 tracked screenshots; repeated store writes | Dated transform contract; does not prove one gesture/one history entry |
+| Batch 40 | real animation export and video graph return | `HISTORICAL_ONLY` | 5 tracked screenshots; real `MediaRecorder`; object URL and graph mutation | Expensive manual export regression; async owner freshness remains uncovered |
+| Batch 41 | phone virtual camera and take import | `HISTORICAL_ONLY` | 5 tracked screenshots; timed recording/import | Dated phone workflow; runtime/session/document separation remains uncovered |
+| Batch 42 | character pose and pose tracks | `HISTORICAL_ONLY` | 4 tracked screenshots; WebGL pixel comparisons | Dated pose contract; slider gesture history remains uncovered |
+| Batch 43 | camera look-at/follow modes | `HISTORICAL_ONLY` | 5 tracked screenshots; multiple WebGL samples | Dated relation contract; general camera delete/repair remains uncovered |
+| Batch 44 | preset camera motion replace/append | `HISTORICAL_ONLY` | 6 tracked screenshots; repeated scenario setup | Dated camera preset contract; no command/history authority |
+| Batch 45 | groups, crowd and group tracks | `HISTORICAL_ONLY` | 6 tracked screenshots; multi-selection/playback | Dated aggregate contract; group delete closure remains uncovered |
+| Batch 46 | capture gallery, viewer, bulk graph return | `MERGE_CANDIDATE` | 5 tracked screenshots; capture and graph mutation | Valuable resource/graph bridge coverage once artifacts can be redirected |
+| Batch 47 | proxy model library categories and insertion | `HISTORICAL_ONLY` | 4 tracked screenshots; clears local-model storage | Compatibility coverage largely superseded by Batch 59 search/preview/add smoke |
+| Batch 48 | local model import, persistence, refresh and cleanup | `MERGE_CANDIDATE` | 4 tracked screenshots; localStorage mutation and reload | High-value resource lifecycle regression; requires isolated BrowserContext and explicit cleanup |
+| Batch 49 | viewport coordinate gizmo and camera recovery | `MERGE_CANDIDATE` | 5 tracked screenshots; dual WebGL pixel checks | High-value renderer/camera smoke once artifact output is isolated |
+| Batch 50 | workspace collapse, mobile drawers and keyboard boundary | `MERGE_CANDIDATE` | 4 tracked screenshots; desktop/mobile focus checks | High-value shell/focus regression once artifact output is isolated |
+| Batch 59 | asset search, preview-only selection, explicit insertion, WebGL and graph isolation | `CURRENT_GATE` | Writes only its deterministic tracked runtime audit; no page screenshot writes | Current low-cost Director smoke and present `LIBTV-VR-024` browser seed |
+
+All 17 scripts remain `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS,
+project persistence, delete semantics and undo/redo behavior. Their passes only
+prove clone-owned contracts.
+
+## 4. Current Gate
+
+### 4.1 Command
+
+Use a same-origin host name with the Next dev server:
+
+```bash
+npm run dev -- --port 3001
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch59.py
+```
+
+Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
+On 2026-08-27, Next 16.2.1 blocked the dev resource request from
+`127.0.0.1`; the page returned HTTP 200 and the Director entry was visible, but
+client hydration did not make the click effective. The same clean server passed
+with `localhost:3001`.
+
+### 4.2 Current recorded result
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 |
+| Clone HEAD | `d4bbb41` before Batch 66 closeout |
+| Server | fresh Next dev server, port 3001 |
+| Browser | Playwright Chromium, headless |
+| Desktop | `1440x900`, WebGL nonblank, search/preview/add/tree/Inspector/graph isolation passed |
+| Mobile | `390x844`, WebGL nonblank, panel bounds/no-overflow passed |
+| Browser diagnostics | zero console/page/request errors on the passing same-origin run |
+| Artifact | existing deterministic `liblib-canvas-batch59-2026-08-27/runtime-audit.json`; no content drift |
+| Worktree after run | clean |
+
+This result is a current smoke, not a current full Director regression.
+
+## 5. Future Gate Profiles
+
+### 5.1 Routine Director reliability batch
+
+```text
+Batch 59 current smoke
+  + focused pure/unit tests for the changed reliability slice
+  + npm run check
+```
+
+### 5.2 Targeted merge candidate
+
+Choose only the affected candidates:
+
+```text
+resource persistence change -> Batch 48
+capture/graph bridge change -> Batch 46
+R3F camera/viewport change -> Batch 49
+shell/focus/keyboard change -> Batch 50
+```
+
+Before promotion to an automated gate, each candidate must:
+
+1. accept an isolated artifact directory or disable historical screenshot writes;
+2. own BrowserContext/storage setup and teardown;
+3. record runtime and failure diagnostics as structured output;
+4. avoid depending on another script's residual store or localStorage state;
+5. distinguish current clone checks from source-exact assertions.
+
+### 5.3 Manual full historical audit
+
+The 17 scripts may be run serially for a release audit, but only after:
+
+- recording the expected runtime and MediaRecorder cost;
+- snapshotting tracked artifacts;
+- using `localhost` with the dev server;
+- clearing Director storage between storage-sensitive scripts;
+- restoring unchanged historical screenshots/audits before commit;
+- recording each failure as product, environment, fixture or historical mismatch.
+
+The full historical audit is not the default merge gate.
+
+## 6. `LIBTV-VR-024` Scope
+
+`LIBTV-VR-024` is the Director project/session/command authority verifier family.
+Batch 59 supplies only its current browser smoke seed.
+
+Required future scenarios:
+
+| Layer | Minimum checks |
+|---|---|
+| strict document codec | valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
+| owner registry | open A, switch B, reopen A, switch canvas, delete/duplicate source node, generation freshness |
+| authored/runtime split | seek/playback does not mutate portable authored snapshot |
+| command/history | committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation |
+| delete closure | object/group/camera/track/path/resource references repaired or blocked atomically |
+| async bridge | capture/export commits only to captured live owner/generation |
+| route isolation | ordinary graph history and Director project history remain independent |
+
+Until these scenarios exist, `LIBTV-VR-024` status is:
+
+```text
+DESIGN_SPEC_COMPLETE
+CURRENT_BROWSER_SEED_PASS
+PROJECT_CODEC_RUNTIME_MISSING
+OWNER_HISTORY_DELETE_RUNTIME_MISSING
+SOURCE_PARITY_UNKNOWN_OR_PARTIAL
+```
+
+## 7. Maintenance Rules
+
+- A historical script pass never upgrades source parity.
+- A current gate must record date, HEAD, server host/port, artifact delta and
+  worktree state.
+- Do not rewrite historical screenshot files merely to refresh timestamps.
+- New Director verifiers join this manifest before joining any shell loop.
+- When a merge candidate gains isolated artifacts and deterministic cleanup,
+  promote it in a dedicated batch and update `HARNESS.md`,
+  [`VERIFICATION_LEDGER.md`](VERIFICATION_LEDGER.md) and the relevant component
+  contracts.
+- When project/session/command runtime lands, add focused `LIBTV-VR-024` tests
+  rather than expanding Batch 59 into an all-purpose script.

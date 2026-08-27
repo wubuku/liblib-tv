@@ -51,6 +51,8 @@
 | `B66-HIST-002` | `HISTORICAL_RECORDED_PASS` | 历史 verifier 覆盖 workspace、timeline、path、export、phone、pose、camera、group、capture、asset和 responsive | 各 batch `IMPLEMENTATION.md` 与 verifier | 已覆盖 project/session/history/delete authority |
 | `B66-HIST-003` | `HISTORICAL_RECORDED_PASS` | 多数 verifier 会覆盖 tracked historical screenshots | 17 个脚本中的 screenshot path | 可无副作用并行运行 |
 | `B66-HIST-004` | `HISTORICAL_RECORDED_PASS` | Batch 40 执行真实 MediaRecorder export，Batch 48 改 localStorage，Batch 59 写 runtime audit | 对应 verifier | 三者适合作为每次低成本 smoke |
+| `B66-CURRENT-001` | `CURRENT_CLONE_RECORDED_PASS` | 2026-08-27 在 fresh Next dev server、`localhost:3001` 上重跑 Batch 59，desktop/mobile WebGL、asset search/preview/add、graph isolation、bounds 和 diagnostics 通过 | [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、Batch 59 runtime audit | 其余 16 个脚本当前 HEAD 全部通过，或 project/history/delete authority 已实现 |
+| `B66-ENV-001` | `ENVIRONMENT_FACT` | 同一 dev server 使用 `127.0.0.1:3001` 时 Next 16 dev-origin policy 阻止客户端资源，入口可见但 click 未生效 | Next dev log 与失败 traceback | Director 产品入口本身回归 |
 
 ## 4. 本批建议
 

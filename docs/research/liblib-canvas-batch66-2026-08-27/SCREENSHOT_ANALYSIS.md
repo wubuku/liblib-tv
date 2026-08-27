@@ -1,6 +1,6 @@
 # Batch 66 截图与运行证据台账
 
-> 状态：`NO_NEW_SCREENSHOT_INSPECTION_PLANNED`。
+> 状态：`NO_NEW_SCREENSHOT_INSPECTION_PERFORMED`。
 >
 > 日期：2026-08-27。
 
@@ -34,3 +34,11 @@
 若触发，必须记录 screenshot path、viewport、状态、DOM-backed fact、视觉估计、
 不确定项和不可推出结论。否则保持本文件为零重复识别记录。
 
+## 4. 本批实际运行
+
+Batch 59 current smoke 只使用 DOM、store、bounding box 和 WebGL pixel variance
+断言，没有写 page screenshot，也没有触发新的视觉识别。
+
+第一轮 `127.0.0.1:3001` 因 Next 16 dev-origin policy 阻止客户端资源而失败；
+同一干净服务改用 `localhost:3001` 后通过。该诊断来自 dev log、DOM 和 verifier
+结果，不需要打开截图。

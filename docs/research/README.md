@@ -57,6 +57,7 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个脚本分级、当前 smoke、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
@@ -137,7 +138,7 @@
 | 63 | actual React Flow host center placement for default node creation | [`liblib-canvas-batch63-2026-08-27/`](liblib-canvas-batch63-2026-08-27/) `IMPLEMENTED_FOCUSED_PASS`，Add Node 与 Character Library 已由 page 测量 actual host 并经 React Flow 转换，drawer closed/open、desktop/mobile、history/selection 和 zero-mutation guard 已通过；derived/duplicate/organize、live/stable viewport 和 source-exact add policy 保持后续 |
 | 64 | Asset drawer host-resize anchor preservation | [`liblib-canvas-batch64-2026-08-27/`](liblib-canvas-batch64-2026-08-27/) `SCRIPT_RECORDED_PASS`，toolbar/X/Canvas-context 已统一进入 page-owned layout transaction；desktop/mobile host-center anchor、current owner guard、zero graph/history/selection mutation和 Batch 63 composition 已通过；source exact policy、通用 resize observer、browser bootstrap 与 live/stable split 保持后续 |
 | 65 | responsive viewport bootstrap ownership | [`liblib-canvas-batch65-2026-08-27/`](liblib-canvas-batch65-2026-08-27/) `IMPLEMENTED_FOCUSED_PASS`，desktop/mobile bootstrap、未交互 breakpoint reprojection、用户 stable viewport preservation、A/B canvas restore、projection echo、stale/invalid callback 和 Batch 6/7/16/18/19/61-64 回归已通过；full live/stable endpoint、browser resize anchor、generic generation/host epoch 和 source exact responsive policy 保持后续 |
-| 66 | Director project/session、command/history/delete 与 current verifier authority | [`liblib-canvas-batch66-2026-08-27/`](liblib-canvas-batch66-2026-08-27/) `RESEARCH_IN_PROGRESS`，综合 Open Canvas 与 StoryAI 评估，优先关闭单例 session、不可恢复 project、无领域 history、reference-unsafe delete 和 17 个历史 verifier 无 current gate 的研究缺口；本批不修改业务 runtime |
+| 66 | Director project/session、command/history/delete 与 current verifier authority | [`liblib-canvas-batch66-2026-08-27/`](liblib-canvas-batch66-2026-08-27/) `RESEARCH_AND_GOVERNANCE_COMPLETE`，完成静态审计、两份正式合同、17-script manifest、Batch 59 current smoke 和治理索引；本批不修改业务 runtime |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 

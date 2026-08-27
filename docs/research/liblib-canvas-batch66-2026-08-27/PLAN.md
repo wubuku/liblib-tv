@@ -1,6 +1,6 @@
 # Batch 66 计划：Director Reliability Authority
 
-> 状态：`CONTRACTS_RECORDED / VERIFIER_MANIFEST_IN_PROGRESS`。
+> 状态：`COMPLETE`。
 >
 > 日期：2026-08-27。
 >
@@ -142,5 +142,5 @@ current verifier manifest 需要对脚本做静态解析，并至少运行一个
 | command/history/delete 静态审计 | `DONE` | 同上 |
 | evidence matrix | `DONE` | [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md) |
 | 两份稳定合同 | `DONE` | project/session + command/history/delete |
-| 17-script current manifest | `IN_PROGRESS` | 待静态分级和至少一次 current smoke |
-| governance/implementation closeout | `PENDING` | 待合同与验证完成 |
+| 17-script current manifest | `DONE` | [`../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)；Batch 59 current smoke 通过 |
+| governance/implementation closeout | `DONE` | [`IMPLEMENTATION.md`](IMPLEMENTATION.md) 与稳定索引/治理台账已同步 |

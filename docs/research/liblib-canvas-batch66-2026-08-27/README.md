@@ -1,6 +1,6 @@
 # Batch 66: Director Reliability Authority
 
-> 状态：`CONTRACTS_RECORDED / VERIFIER_MANIFEST_IN_PROGRESS`。
+> 状态：`RESEARCH_AND_GOVERNANCE_COMPLETE`。
 >
 > 建档日期：2026-08-27。
 >
@@ -35,9 +35,12 @@
 - [`STATIC_AUDIT_2026-08-27.md`](STATIC_AUDIT_2026-08-27.md)：当前
   project/session、mutation/history 和 reference/delete 静态审计；
 - [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)：上游、clone、历史验证、建议和未知项；
-- 后续 implementation record 将继续放在本目录；
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：本批产物、current smoke 诊断、
+  验证结果和下一代码 slice；
 - [`../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)：
   project document、owner、session/runtime/resource 和 lifecycle 权威；
 - [`../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)：
   command outcome、gesture/history 和 reference-aware delete 权威；
-- current verifier manifest 将放在 `docs/research/` 并接入文档 Hub。
+- [`../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：
+  17 个历史脚本的 current/merge/historical 分级、运行成本和 `LIBTV-VR-024`
+  入口。

@@ -186,6 +186,10 @@ StoryAI 借鉴与 Director 当前进展已有独立跨批次权威：固定上�
 当前结论不是“功能未够多”，而是可见能力已经超过上游，下一阶段应优先补
 per-project scene、版本化导入导出/持久化、领域 undo/redo、真实资源加载和
 统一 Director gate；这些仍是建议和待授权工作，不表示 runtime 已具备。
+Batch 66 已将这项判断进一步固化为 `DEC-040`、两份 Director authority contract、
+17-script current verifier manifest 和 `LIBTV-VR-024`。当前日常 browser gate 是
+Batch 59 的低成本 asset-library smoke；下一代码 slice 是 strict
+`DirectorProjectDocumentV1` codec，不应借机包装全部 85 个 action 或接入真实 persistence。
 
 ### 5.2 状态边界
 
