@@ -1,6 +1,6 @@
 # Batch 67: Director Project Document V1
 
-> 状态：`PLANNED`。
+> 状态：`COMPLETE / PROJECT_CODEC_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -72,3 +72,16 @@ sentNodeId graph projection cache / ordinary canvas graph history
 `DirectorCapture.dataUrl` 是当前 clone 的临时媒体 bytes，不进入 portable document；
 V1 只保留 capture descriptor，后续由 media/resource contract 处理稳定资源引用。
 
+## 完成结论
+
+Batch 67 已实现并验证：
+
+- `DirectorProjectDocumentV1` 封闭 DTO、strict decode/normalize/encode；
+- current Director state snapshot adapter；
+- unknown/future/duplicate/dangling/non-finite zero-partial rejection；
+- runtime、UI、capture bytes、Three.js refs 与普通 graph projection exclusion；
+- deterministic round-trip、deep isolation 与 authored array order preservation。
+
+本批只完成 portable document codec，不表示 owner registry、session restore、
+authored/runtime split、Director history/delete 或 persistence 已完成。下一可靠性
+切片应从 `route + canvasId + sourceNodeId` owner registry 和 session lifecycle 开始。

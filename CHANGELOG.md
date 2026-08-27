@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 67 Director Project Document V1 with strict
+  decode/normalize/encode, an explicit current-state snapshot adapter and a
+  dependency-free 17-case contract verifier; project registry, persistence and
+  Director history remain separate later slices.
 - Closed Batch 65 with per-canvas responsive viewport ownership: demo
   desktop/mobile presets now remain bootstrap-only, user/stored viewports survive
   breakpoint and canvas switches, and stale/invalid callbacks are zero-mutation.

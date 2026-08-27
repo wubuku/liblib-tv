@@ -1,6 +1,6 @@
 # Batch 67 计划：Director Project Document V1
 
-> 状态：`IN_PROGRESS`。
+> 状态：`COMPLETE`。
 >
 > 日期：2026-08-27。
 >
@@ -184,6 +184,11 @@ sampled values 被错误当作 authored document 的问题，只记录为下一�
 | valid + invalid/future/reference corpus | `DONE` | `scripts/verify-liblib-batch67.mjs` |
 | Batch 67 Python verifier entry | `DONE` | `scripts/verify-liblib-batch67.py` |
 | focused typecheck/lint/verifier | `PASS` | 17 个 rejection case + round-trip/isolation/order |
-| 稳定索引与治理台账 | `PENDING` | 下一 slice |
-| full `npm run check` 与 Batch 59 smoke | `PENDING` | 收口前执行 |
+| 稳定索引与治理台账 | `DONE` | Hub、authority、fixture、manifest、traceability、coverage 已同步 |
+| full `npm run check` 与 Batch 59 smoke | `PASS` | 9 条既有 lint warning；typecheck/build/smoke 通过 |
 
+## 10. 收口
+
+Batch 67 按既定边界完成，没有接入 registry、storage、history/delete，也没有移动
+Open Canvas 或 StoryAI submodule。下一批应实施 `DIR-PROJECT-I02` 的 owner registry
+与 session lifecycle，继续使用本批 document 作为 project payload。

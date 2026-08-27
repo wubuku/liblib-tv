@@ -311,16 +311,19 @@ authored/runtime split、command/history/gesture authority、reference-aware del
 保持独立。
 
 **影响：** Batch 66 已完成静态审计、两份正式合同、17-script current manifest、
-`LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01` 与 `LIBTV-VR-024` 设计。Batch 59
-是当前低成本 smoke；Batch 46/48/49/50 在 artifact/storage 隔离前只是 merge
-candidates。不得把 StoryAI/Open Canvas schema、历史 verifier 或 clone screenshot
-写成 LibTV source fact，也不得在 codec slice 中顺手包装全部 85 actions 或接入
-真实 persistence。
+`LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01` 与 `LIBTV-VR-024` 设计。Batch 67 已完成
+V1 strict codec、snapshot adapter、runtime-field exclusion、reference validation
+和 pure contract corpus；它没有把 document 接成 store source of truth，也没有
+实现 owner registry、authored/runtime split、history/delete 或 persistence。
+Batch 59 继续是当前低成本 browser smoke；Batch 46/48/49/50 在 artifact/storage
+隔离前只是 merge candidates。不得把 StoryAI/Open Canvas schema、历史 verifier
+或 clone screenshot 写成 LibTV source fact，也不得借下一 slice 包装全部 85 actions。
 
 **依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
 [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
 [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
 [`liblib-canvas-batch66-2026-08-27/`](research/liblib-canvas-batch66-2026-08-27/)、
+[`liblib-canvas-batch67-2026-08-27/`](research/liblib-canvas-batch67-2026-08-27/)、
 StoryAI/Open Canvas 固定专题。
 
 ## 3. 何时可以重审决策

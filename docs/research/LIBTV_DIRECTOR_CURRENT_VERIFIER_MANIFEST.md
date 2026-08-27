@@ -1,11 +1,13 @@
 # LibTV Director Current Verifier Manifest
 
-> Status: `CURRENT_MANIFEST_RECORDED` / `ONE_CURRENT_GATE_RECORDED_PASS` /
+> Status: `CURRENT_MANIFEST_RECORDED` / `PURE_CODEC_GATE_RECORDED_PASS` /
+> `BROWSER_SMOKE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
 >
-> Scope: `scripts/verify-liblib-batch35.py` through Batch 50, plus Batch 59.
+> Scope: `scripts/verify-liblib-batch35.py` through Batch 50, Batch 59 and
+> Batch 67 pure codec verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -17,7 +19,8 @@
 
 ## 1. Purpose
 
-The repository has 17 Director-focused Playwright scripts. They preserve valuable
+The repository has 17 Director-focused Playwright scripts plus one pure codec
+verifier. The browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
 single current gate:
 
@@ -25,8 +28,10 @@ single current gate:
 - Batch 40 performs a real browser `MediaRecorder` export;
 - Batch 47/48 touch the Director local-model storage key;
 - most scripts prove a dated clone contract, not current LibTV source parity;
-- none of the historical scripts covers project identity, strict document decode,
-  owner generation, Director history or reference-aware delete.
+- none of the historical browser scripts covers project identity, strict
+  document decode, owner generation, Director history or reference-aware delete;
+- Batch 67 now covers the strict V1 document slice without claiming owner,
+  history/delete or browser integration coverage.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -64,14 +69,21 @@ historical regressions.
 | Batch 49 | viewport coordinate gizmo and camera recovery | `MERGE_CANDIDATE` | 5 tracked screenshots; dual WebGL pixel checks | High-value renderer/camera smoke once artifact output is isolated |
 | Batch 50 | workspace collapse, mobile drawers and keyboard boundary | `MERGE_CANDIDATE` | 4 tracked screenshots; desktop/mobile focus checks | High-value shell/focus regression once artifact output is isolated |
 | Batch 59 | asset search, preview-only selection, explicit insertion, WebGL and graph isolation | `CURRENT_GATE` | Writes only its deterministic tracked runtime audit; no page screenshot writes | Current low-cost Director smoke and present `LIBTV-VR-024` browser seed |
+| Batch 67 | V1 document snapshot, strict decode/normalize/encode and invalid/future/reference corpus | `CURRENT_GATE` | Pure Node 24 process; no browser, storage, graph or screenshot artifact | Current `LIBTV-VR-024` project-codec gate; does not prove project registry or store integration |
 
 All 17 scripts remain `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS,
 project persistence, delete semantics and undo/redo behavior. Their passes only
 prove clone-owned contracts.
 
-## 4. Current Gate
+## 4. Current Gates
 
-### 4.1 Command
+### 4.1 Commands
+
+Run the pure codec gate without a dev server:
+
+```bash
+python3 scripts/verify-liblib-batch67.py
+```
 
 Use a same-origin host name with the Next dev server:
 
@@ -87,7 +99,21 @@ On 2026-08-27, Next 16.2.1 blocked the dev resource request from
 client hydration did not make the click effective. The same clean server passed
 with `localhost:3001`.
 
-### 4.2 Current recorded result
+### 4.2 Current recorded results
+
+Batch 67 pure codec:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 |
+| Clone HEAD | `1bc1043` |
+| Runtime | Node 24 type stripping through Python wrapper |
+| Valid corpus | 3 objects、1 group、4 track kinds、edited path、resource and capture descriptor |
+| Invalid corpus | 17 malformed/future/unknown/duplicate/dangling/non-finite cases |
+| Additional assertions | deterministic round-trip、zero partial、input isolation、runtime/media-byte exclusion、order preservation |
+| Artifact/storage/browser cost | none |
+
+Batch 59 browser smoke:
 
 | Field | Result |
 |---|---|
@@ -108,8 +134,9 @@ This result is a current smoke, not a current full Director regression.
 ### 5.1 Routine Director reliability batch
 
 ```text
-Batch 59 current smoke
-  + focused pure/unit tests for the changed reliability slice
+Batch 67 pure codec gate
+  + Batch 59 current browser smoke
+  + focused tests for the changed reliability slice
   + npm run check
 ```
 
@@ -148,13 +175,14 @@ The full historical audit is not the default merge gate.
 ## 6. `LIBTV-VR-024` Scope
 
 `LIBTV-VR-024` is the Director project/session/command authority verifier family.
-Batch 59 supplies only its current browser smoke seed.
+Batch 67 supplies its first implemented pure codec slice; Batch 59 supplies the
+current browser smoke seed.
 
 Required future scenarios:
 
 | Layer | Minimum checks |
 |---|---|
-| strict document codec | valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
+| strict document codec | **implemented in Batch 67**：valid V1 round-trip; future/malformed/duplicate-ID/invalid-reference rejection; zero partial mutation |
 | owner registry | open A, switch B, reopen A, switch canvas, delete/duplicate source node, generation freshness |
 | authored/runtime split | seek/playback does not mutate portable authored snapshot |
 | command/history | committed/noop/rejected/stale; one gesture one entry; undo/redo; future truncation |
@@ -166,8 +194,8 @@ Until these scenarios exist, `LIBTV-VR-024` status is:
 
 ```text
 DESIGN_SPEC_COMPLETE
+PROJECT_CODEC_FOCUSED_PASS
 CURRENT_BROWSER_SEED_PASS
-PROJECT_CODEC_RUNTIME_MISSING
 OWNER_HISTORY_DELETE_RUNTIME_MISSING
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```

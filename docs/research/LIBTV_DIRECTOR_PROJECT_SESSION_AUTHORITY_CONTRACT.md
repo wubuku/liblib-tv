@@ -1,13 +1,15 @@
 # LibTV Director Project And Session Authority Contract
 
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
-> `RUNTIME_MISSING` / `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
+> `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_RUNTIME_MISSING` /
+> `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
 > projection、resource reference、open/switch/close/delete/duplicate 和 graph bridge。
 >
 > Evidence baseline:
 > [`liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md`](liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md)，
+> [`liblib-canvas-batch67-2026-08-27/IMPLEMENTATION.md`](liblib-canvas-batch67-2026-08-27/IMPLEMENTATION.md)，
 > clone `a7bcf21`，StoryAI `8c8bd36`，Open Canvas
 > `cf3a906bb8c35bb940d3267497e7f394b8f42582`。
 >
@@ -56,6 +58,13 @@ Director project document
 - capture/export 向普通 canvas 回流时 late-read `activeCanvasId`；
 - scene/timeline 不持久化，local model catalog 以全局 localStorage key 持久化；
 - graph return 使用普通 canvas graph history，Director 内部没有 domain history。
+- Batch 67 已增加独立 `DirectorProjectDocumentV1`、strict
+  decode/normalize/encode、current state snapshot adapter 和 pure corpus；
+- codec 排除 selection/playback/panel/phone runtime、capture bytes、
+  Three.js refs 和 graph `sentNodeId`，并检查 unknown/future/duplicate/dangling/
+  non-finite 输入；
+- codec 仍未成为 `directorStore` source of truth，单例 session 与
+  authored/runtime 混写事实没有因此消失。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -582,10 +591,14 @@ document、duplicate、delete和 delayed result。
 
 ### `DIR-PROJECT-I01` Schema And Pure Codec
 
-- add V1 types、decoder、normalizer、migration registry；
-- convert current fixture to canonical document；
-- pure unit tests；
-- no UI、persistence、history/delete。
+状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 67。
+
+- 已增加 V1 types、strict decoder、normalizer 和 deterministic encoder；
+- 已将 current Director state 通过显式 adapter 转为 canonical document；
+- 已增加 dependency-free pure contract corpus；
+- V1 当前对 future version 明确 reject，migration registry 等第二个 schema
+  出现时再实现；
+- 没有 UI、persistence、history/delete 或 store authority 修改。
 
 ### `DIR-PROJECT-I02` Owner Registry And Session Lifecycle
 
@@ -635,14 +648,14 @@ document、duplicate、delete和 delayed result。
 
 ## 17. Completion Criteria
 
-本合同的 runtime maturity 只有在以下条件同时成立后才能从 `RUNTIME_MISSING`
-升级：
+本合同的 codec 子项已在 Batch 67 升级为 `V1_CODEC_RUNTIME_PASS`。整体 owner/session
+runtime maturity 只有在以下剩余条件同时成立后才能从
+`OWNER_SESSION_RUNTIME_MISSING` 升级：
 
-1. V1 strict codec和reference validation有unit tests；
-2. 至少两个 source node和两个 canvas证明project不串场；
-3. authored document在seek/playback后不漂移；
-4. open/switch/close/delete/duplicate都有typed disposition；
-5. delayed result不能写入错误canvas/source/generation；
-6. session/runtime/resource不进入portable serializer；
-7. focused verifier、`npm run check`、docs check通过；
-8. 实施记录、commit、push和current manifest更新完成。
+1. 至少两个 source node和两个 canvas证明project不串场；
+2. authored document在seek/playback后不漂移；
+3. open/switch/close/delete/duplicate都有typed disposition；
+4. delayed result不能写入错误canvas/source/generation；
+5. session/runtime/resource exclusion 在 store integration 后继续成立；
+6. owner/session focused verifier、`npm run check`、docs check通过；
+7. 实施记录、commit、push和current manifest更新完成。

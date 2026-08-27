@@ -1,6 +1,6 @@
 # Batch 67 实施与验证记录
 
-> 状态：`CODEC_IMPLEMENTED / GOVERNANCE_AND_FULL_REGRESSION_PENDING`。
+> 状态：`COMPLETE / PROJECT_CODEC_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 >
@@ -70,12 +70,16 @@ python3 scripts/verify-liblib-batch67.py：
 
 npm run typecheck：PASS
 npx eslint src/lib/directorProjectDocument.ts scripts/verify-liblib-batch67.mjs：PASS
-docs:check：收口前待运行
-npm run check：收口前待运行
-Batch 59 current smoke：收口前待运行
+docs:check：PASS，548 Markdown files / 3235 local targets
+npm run check：PASS，9 条既有 lint warning，typecheck/build 通过
+Batch 59 current smoke：PASS，localhost:3001 fresh dev server
 git diff --check：PASS
-git status：仅 Batch 67 codec/verifier WIP
+git status：收口提交前仅 Batch 67 governance docs
 ```
+
+Batch 59 current smoke 复核了 Director WebGL 主工作区、资源搜索与空结果、
+preview-only selection、显式加入场景、对象树/Inspector 连续性、移动端边界以及
+普通 graph 隔离。该 smoke 不升级为完整 Director 历史回归。
 
 ## 6. 未决事项
 
@@ -88,3 +92,14 @@ git status：仅 Batch 67 codec/verifier WIP
 - project registry、local persistence、Director history/redo、delete repair、真实
   asset/panorama 和 multi-camera 仍是后续批次；
 - LibTV source-exact project persistence 和 Director UI 不由本批推断。
+
+## 7. 收口与接力
+
+Batch 67 代码 checkpoint 为 `1bc1043`。治理收口提交在本文件完成后创建并推送。
+下一批优先级：
+
+1. 建立 `route + canvasId + sourceNodeId` owner key；
+2. 建立 in-memory project registry、project ID 与 generation；
+3. 验证 open A、switch B、reopen A、cross-canvas isolation；
+4. 明确 source node delete/duplicate 与 session UI reconciliation；
+5. 暂不接 persistence，不在同一批包装全部 Director action 或实现 history/delete。

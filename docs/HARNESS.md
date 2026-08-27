@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-54、56-58 | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -77,18 +77,26 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 58 | Node-bound preview/annotate/element-edit/Director owner identity, delete/switch invalidation, UI-only cleanup, delete-only history delta and desktop/mobile diagnostics |
 | Batch 59 | Director asset-library search, preview-only selection, explicit proxy insertion, object-tree/Inspector continuity, WebGL nonblank and desktop/mobile diagnostics |
 | Batch 60 | Ordinary image double-overlay owner identity, selection migration, geometry invariants, panel pointer boundary, control interaction, active-tool replacement, graph/history isolation and desktop/mobile diagnostics |
+| Batch 61 | React Flow whole-batch T0/T1 routing, current-snapshot selection/position/measurement and zero-partial semantic rejection |
+| Batch 62 | validated selection command snapshot, editable/IME guard, foreground shortcut suspension, one-Escape and focus fallback |
+| Batch 63 | actual React Flow host-centered default node placement |
+| Batch 64 | Asset drawer host-resize anchor preservation |
+| Batch 65 | responsive viewport bootstrap/stored ownership and stale callback rejection |
+| Batch 67 | Director Project Document V1 pure strict codec, round-trip, runtime-field exclusion and invalid/future/reference corpus |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch57.py scripts/verify-liblib-batch58.py scripts/verify-liblib-batch59.py scripts/verify-liblib-batch60.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch67.py; do
   python3 "$script" || exit 1
 done
 ```
 
-Batch 34 没有对应的专项 verifier，不应被循环命令隐式当作已验证行为。Batch 45/46/47/48/49/50/52/53/54/56/57/58/59/60 的专项 verifier、研究目录和截图台账均已纳入维护。
+Batch 34 和 Batch 66 没有对应的专项 verifier，不应被循环命令隐式当作已验证
+行为。Batch 67 是无浏览器 pure codec gate，不生成截图；其余视觉脚本仍按各自
+batch screenshot ledger 维护。
 
 ## Browser Evidence Requirements
 

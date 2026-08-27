@@ -56,7 +56,7 @@ graph TD
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
 | Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, relationship-aware cameras, articulated character posing, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
-| Pure helpers | `src/lib/` | organize topology and class-name utilities |
+| Pure helpers | `src/lib/` | graph/viewport helpers, organize topology, class-name utilities and Director portable document codec |
 | Types | `src/types/` | route-specific data contracts |
 | Evidence | `docs/research/` | source observations, specs, raw JSON and batch history |
 
@@ -99,6 +99,7 @@ director node CTA
   -> optional browser-orientation/pointer phone-camera pose recording
   -> deterministic scrub/playback sampling
   -> R3F Canvas render and helper-free still/video capture
+  -> explicit DirectorProjectDocumentV1 snapshot/strict codec boundary
   -> canvasStore.createDirectorCapture or createDirectorAnimationExport
   -> atomic image/video node + source edge + graph history
 ```
@@ -119,6 +120,12 @@ phone virtual-camera prototype keeps orientation events, timers and temporary
 sample buffers in its client component; `directorStore` receives only finite
 pose/camera values and imports a completed take as a new serializable camera
 object plus typed camera track.
+
+`src/lib/directorProjectDocument.ts` provides a browser-independent V1 authored
+document boundary with strict unknown-field, version, finite-number, identity
+and reference validation. It is currently an adapter over `directorStore`, not
+the store's source of truth: project registry, owner-scoped session restore and
+authored/runtime separation remain later reliability slices.
 
 ### FrameOS
 
