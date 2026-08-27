@@ -39,6 +39,7 @@
 - [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)：Open Canvas command/toast/node/save/form feedback 与 clone local status/timer/Director 审计，定义 disposition/reason/copy、primary surface、owner、clear/retry/dedupe、`COMMAND-FEEDBACK-01` 和 `LIBTV-VR-018`。
 - [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)：Open Canvas selected flags/editable guard/Radix delegation 与 clone node/edge selection、capture/bubble listener、focus owner、Batch 50 事实漂移的 fixed static audit。
 - [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：node/edge/primary active-session selection、focus zones、foreground surface policy、dispatch result、one-Escape、focus return、`SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。
+- [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)：Open Canvas dual screen/flow anchor、live/stable viewport、placement/counterexamples 与 clone coordinate domain、host center、gesture/lifecycle gap 的 fixed audit。
 - [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：top-level、route-local、节点相对和 Director surfaces 的 state、mount owner、关闭路径、键盘边界及兼容残留目录。
 - [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)：当前全路由 UI/UX 差距、价值/证据/风险/验证准备度排序、依赖、工作波次和停止条件。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。

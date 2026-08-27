@@ -30,6 +30,8 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 当前 LibTV 双浮层的多 zoom、自然裁切、选择卸载和顶部 host 源码公式见 [`LIBTV_OVERLAY_MULTIZOOM_MATRIX.md`](LIBTV_OVERLAY_MULTIZOOM_MATRIX.md)：底部 gap 为 `16 * zoom`，顶部 host 由 `nodeTop - 24 * zoom - 10` 加 `translateY(-100%)` 构成；这把此前的 `10 + 24 * zoom` 拟合从推断升级为当前 production chunk 的直接源码事实。
 
+跨入口空间权威的 fixed audit 见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 screen-menu/flow-point 分域和 live/stable viewport 是可借方法，permissive normalization、窄容器 clamp、gesture cleanup 与逐文件 drop 是反例；clone 当前最高置信缺口是 default add 使用 browser window center 而非实际 React Flow host center。
+
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 
 当前 AutoLink 的 source/clone 状态与数据合同见 [`LIBTV_AUTOLINK_STATE_MATRIX.md`](LIBTV_AUTOLINK_STATE_MATRIX.md)。生产实现把它组织为高级设置全局开关、connected/reference candidate pool、Prompt inline ghost 和 stable node ID mention；这修正了 clone 当前固定候选确认 popover 与字符串前缀写回的旧假设。

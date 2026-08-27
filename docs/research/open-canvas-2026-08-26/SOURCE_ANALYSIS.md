@@ -277,6 +277,12 @@ CRUD 还证明 outcome-sensitive policy：create success 用 navigation/新 docu
 
 fixed implementation 没有一个 app-level undo/tool/group/duplicate shortcut dispatcher。Quick Add Escape 是不阻止传播的 document bubble listener，部分 destructive key 仍依赖 React Flow/default focus；Dialog/Dropdown 又主要委托 Radix primitive。它提供的是 local ownership 与 framework delegation 的正反面对照，不是 LibTV shortcut/focus 规格。完整双向审计见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)；转译后的 validated selection、context precedence、single-layer Escape 和 focus-return 设计见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
+### 6.9 Viewport、coordinate domain 与 placement owner
+
+固定 studio 的 Quick Add state 同时保留 container-local menu `x/y` 和 `screenToFlowPosition` 后的 graph point；menu clamp 只改变可见 surface，不移动节点落点。`onMove` 更新 `liveViewport`，`onMoveEnd` 才写 store viewport；selected overlays 使用 live transform。Add-center、duplicate、paste、file drop、double-click center 又分别使用 entry-specific placement policy。
+
+这些方法不能整段复制。`normalizeCanvasViewport` 不检查 finite/range；窄 host clamp 可成为负数；已打开菜单/overlay 对 host resize 的重算不完整；middle/right panning state 缺 pointercancel/blur cleanup；multi-file drop 逐项 async 创建，pending connection 先建 node 再建 edge。完整正反面与 clone 对照见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)。
+
 ## 7. Provider 事实与关键缺口
 
 ### 7.1 声明层和旧 API 层

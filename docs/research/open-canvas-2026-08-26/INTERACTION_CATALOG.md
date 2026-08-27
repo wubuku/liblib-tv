@@ -162,6 +162,8 @@ pointer clientX/clientY + viewport
 
 `LIBTV-UIX-07` 的验收重点是：画布级控件、节点级浮层、modal/drawer 的事件边界互不串层；缩放改变时，所有依赖 viewport 的元素连续跟随；节点创建位置在源站允许的裁剪策略内保持一致。
 
+2026-08-27 fixed audit 已将本模式从一般启发细化为 6 个 coordinate domains、`OC-053..060` 和 `LIBTV-VGP-001..016`：当前 clone default add 使用 window center 而非 actual host center；V/H/Space blur/visibility cleanup 是应保留的正面 island；viewport/organize/drag/connection transients 仍缺 canvas generation。完整事实与 formal-contract queue 见 [`../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)。
+
 ## 6. 模式 D：复制、粘贴、重复与派生
 
 ### 6.1 Open Canvas `SOURCE_FACT`

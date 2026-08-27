@@ -519,3 +519,15 @@
 - 明确不移植 React Flow selected flags 作为完整 authority，不复制 Open Canvas conflict gate、默认 key propagation 或 Radix 产品语义，不引入 global modal manager；
 - 同步 Big Picture、agent task map、docs/research/Open Canvas indexes、graph catalog、fixture/verifier、overlay/shortcut、parity、coverage 和 traceability；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v47 viewport、coordinate 与 gesture 双向静态审计
+
+本轮先固定空间事实与缺口，不提前实现 Quick Add、drop、viewport adapter 或全局 geometry service：
+
+- 落档 [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)，区分 client、container-local、flow-world、node-local、screen-sized overlay 和 media-normalized 六个 domain；
+- 固定 Open Canvas Quick Add screen/flow 双锚点、live/stable viewport、add/duplicate/paste/drop/double-click placement、hydrate projection 和 selected-overlay 共享 transform 方法；
+- 同时记录 permissive viewport normalization、窄 host clamp/resize、panning cleanup、逐文件 async drop、pending node-then-edge 的上游反例；
+- 固定 clone `flowViewport` / per-canvas viewport / zoom-percent 三重投影、V/H/Space blur/visibility cleanup、default/derived/duplicate/group/drag/organize placement writers；
+- 新增 `OC-053..060` 和 `LIBTV-VGP-001..016`，确认最高置信可见缺口是 default add 以 browser window 而非 actual React Flow host 计算中心；
+- 预留 `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` 与 `LIBTV-VR-020`，formal contract、adoption/traceability/handoff 尚在下一批；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

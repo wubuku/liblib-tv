@@ -1,6 +1,6 @@
 # LibTV Viewport, Coordinate And Gesture Research Plan
 
-> Status: `ACTIVE_RESEARCH`.
+> Status: `STATIC_AUDIT_COMPLETE` / `FORMAL_CONTRACT_IN_PROGRESS`.
 >
 > Scope: documentation-only study of Open Canvas viewport/coordinate/placement methods and their value for the ordinary LibTV clone route.
 >
@@ -83,7 +83,7 @@ Candidate clone issue IDs: `LIBTV-VGP-001..N`.
 
 | Deliverable | Lifecycle | Purpose |
 |---|---|---|
-| `docs/research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md` | dated reference | fixed source/clone facts, issue inventory and authority gaps |
+| [`docs/research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](../research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md) | dated reference complete | fixed source/clone facts, issue inventory and authority gaps |
 | `docs/research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md` | stable guide/reference | coordinate taxonomy, owner model, transitions, invariants and decision queue |
 | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | fixture design | deterministic A/B canvas, viewport, node, pointer and container cases |
 | `LIBTV-VR-020` | verifier design | pure conversion/owner checks plus focused browser trace |
@@ -133,4 +133,4 @@ This research batch is complete when:
 
 ## 9. Next Action
 
-Extract exact fixed Open Canvas viewport, conversion, Quick Add, drop, paste and fitView call sites; then audit the corresponding clone route/store paths from current state rather than historical assumptions.
+Use the completed dated audit to define the stable coordinate/viewport/placement owner model, invariants, decision queue, fixture and `VR-020`, then synchronize Open Canvas adoption and implementation handoff records.
