@@ -48,6 +48,7 @@
 | DEC-038 | editor session/commit/history authority | foreground editor 以 profile/session/baseline/draft 定权；native/local/graph undo 分流，typed commit 决定 graph/async handoff 与 close | ACTIVE / RESEARCH_GATE |
 | DEC-040 | Director project/session authority | Director portable project、session UI、runtime projection、resource lease 与 graph projection 分权；先实现 versioned strict codec，再做 owner registry、history/delete 与真实资产 | ACTIVE / RESEARCH_GATE |
 | DEC-039 | media rendition/geometry authority | selected output、intrinsic metadata、request、semantic frame、passive measurement、surface rendition、editor space 与 export 分权 | ACTIVE / RESEARCH_GATE |
+| DEC-041 | Director command/history/gesture authority | Director semantic mutation 使用 project-local typed command/history；完整 pointer lifecycle 逐类接入，delete/async/persistence 仍按独立合同推进 | ACTIVE / IMPLEMENTATION_GATE |
 
 ## 2. 决策详情
 
@@ -331,6 +332,37 @@ slice 包装全部 85 actions。
 [`liblib-canvas-batch67-2026-08-27/`](research/liblib-canvas-batch67-2026-08-27/)、
 [`liblib-canvas-batch68-2026-08-27/`](research/liblib-canvas-batch68-2026-08-27/)、
 StoryAI/Open Canvas 固定专题。
+
+### DEC-041：Director semantic command、project-local history 与完整 gesture lifecycle
+
+**背景：** Batch 67-69 已分别建立 Director V1 strict document、owner/session
+隔离和 authored/runtime projection。此前 semantic mutation 没有统一的
+project-local history；TransformControls、curve、Inspector、pose、path 和
+free-draw 的连续输入也没有共同的 begin/update/commit/cancel 边界。
+
+**决策：** Director semantic mutation 以 typed command result 和 portable
+document fingerprint 定义 commit/no-op/reject；history 按 `projectId` 维护
+bounded `past/future`，undo/redo 只恢复 Director document，不触碰普通
+`canvasStore`。连续用户动作必须由显式 gesture transaction 收口：中间
+preview 不生成 history，commit 最多生成一条，cancel、stale、invalid 和
+same-value 产生零条。Batch 70 先落地 command kernel、undo/redo、object/group
+TransformControls 与 speed-curve adapter；Batch 71 再补齐 Inspector numeric、
+pose、motion-path anchor/Bezier、path transform 和 free-path draft 的真实
+pointer lifecycle。
+
+**影响：** Batch 70 将 `LIBTV-VR-024` 的同步 command/history slice 提升为
+`HISTORY_FOCUSED_PASS`，并保留 close/reopen 后同一 project 的 history continuity
+和普通 graph/history isolation。当前不宣称全部旧 action 已成为 typed command，
+也不宣称 LibTV source 已证实相同 undo/redo UI。reference-aware delete、
+inactive-owner reconciliation、capture/export async freshness、durable persistence、
+真实资源加载和 source-exact Director DOM/CSS 仍是独立后续合同；Batch 71 的
+验收重点是完整 pointerup/blur/Escape/pointercancel 边界和每个完整用户动作至多一条
+history。
+
+**依据：** [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
+[`liblib-canvas-batch70-2026-08-27/`](research/liblib-canvas-batch70-2026-08-27/)、
+[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
+`LIBTV-VR-024`。
 
 ## 3. 何时可以重审决策
 

@@ -75,6 +75,18 @@ import {
   type DirectorSessionV1,
 } from "@/lib/directorProjectRegistry";
 import { restoreDirectorProjectRuntimeSnapshotV1 } from "@/lib/directorProjectRuntimeAdapter";
+import {
+  cloneDirectorHistoryState,
+  createDirectorCommandResult,
+  createDirectorGesture,
+  createDirectorHistoryEntry,
+  createDirectorHistoryState,
+  directorDocumentFingerprint,
+  pushDirectorHistory,
+  type DirectorCommandResult,
+  type DirectorHistoryState,
+} from "@/lib/directorCommandKernel";
+import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -357,6 +369,12 @@ function createDefaultScene(): DirectorScene {
   };
 }
 
+export interface DirectorGestureInput {
+  commandKind: string;
+  targetId?: string | null;
+  fieldScope?: string | null;
+}
+
 interface DirectorState {
   sourceNodeId: string | null;
   projectOwner: DirectorProjectOwnerV1 | null;
@@ -383,11 +401,20 @@ interface DirectorState {
   localModelLibrary: DirectorLocalModelLibraryItem[];
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
+  history: DirectorHistoryState;
+  lastCommandResult: DirectorCommandResult | null;
 
   openSession: (owner: DirectorProjectOwnerV1) => DirectorProjectOpenResult;
   closeSession: (
     expectedOwner?: DirectorProjectOwnerV1,
   ) => DirectorProjectCloseResult;
+  beginDirectorGesture: (
+    input: DirectorGestureInput,
+  ) => DirectorCommandResult;
+  commitDirectorGesture: () => DirectorCommandResult;
+  cancelDirectorGesture: () => DirectorCommandResult;
+  undoDirector: () => DirectorCommandResult;
+  redoDirector: () => DirectorCommandResult;
   selectObject: (
     objectId: string | null,
     source?: "explicit" | "viewport",
@@ -426,7 +453,7 @@ interface DirectorState {
     field: keyof DirectorTransform,
     axis: 0 | 1 | 2,
     value: number,
-  ) => void;
+  ) => DirectorCommandResult;
   updateCamera: (
     objectId: string,
     patch: Partial<NonNullable<DirectorObject["camera"]>>,
@@ -1341,6 +1368,181 @@ const directorProjectRegistry = new DirectorProjectRegistry({
   normalizeDocument: normalizeDirectorProjectDocument,
 });
 
+const directorHistoryByProject = new Map<string, DirectorHistoryState>();
+const directorCaptureArchives = new Map<
+  string,
+  Map<string, DirectorCapture>
+>();
+let directorHistorySyncSuspended = false;
+
+interface DirectorDocumentSnapshot {
+  document: DirectorProjectDocumentV1;
+  fingerprint: string;
+  projectId: string;
+  generation: number;
+}
+
+function getDirectorSelectionResult(
+  state: DirectorState,
+): {
+  selectedObjectId: string | null;
+  selectedObjectIds: string[];
+  selectedGroupId: string | null;
+} {
+  return {
+    selectedObjectId: state.selectedObjectId,
+    selectedObjectIds: [...state.selectedObjectIds],
+    selectedGroupId: state.selectedGroupId,
+  };
+}
+
+function getDirectorDocumentSnapshot(
+  state: DirectorState,
+): DirectorDocumentSnapshot | null {
+  const session = directorProjectRegistry.getActiveSession();
+  if (
+    !session ||
+    !state.projectOwner ||
+    state.projectId !== session.projectId ||
+    state.generation !== session.generation ||
+    !isSameDirectorProjectOwner(state.projectOwner, session.owner)
+  ) {
+    return null;
+  }
+  try {
+    const document = snapshotCurrentDirectorProject(state, session);
+    return {
+      document,
+      fingerprint: directorDocumentFingerprint(document),
+      projectId: session.projectId,
+      generation: session.generation,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function rememberDirectorCaptures(
+  projectId: string,
+  captures: DirectorCapture[],
+): void {
+  const archive =
+    directorCaptureArchives.get(projectId) ??
+    new Map<string, DirectorCapture>();
+  captures.forEach((capture) => archive.set(capture.id, { ...capture }));
+  directorCaptureArchives.set(projectId, archive);
+}
+
+function capturesForDirectorDocument(
+  projectId: string,
+  document: DirectorProjectDocumentV1,
+  fallback: DirectorCapture[],
+): DirectorCapture[] {
+  rememberDirectorCaptures(projectId, fallback);
+  const archive = directorCaptureArchives.get(projectId);
+  if (!archive) return [];
+  return document.captureDescriptors
+    .map((descriptor) => archive.get(descriptor.id))
+    .filter((capture): capture is DirectorCapture => Boolean(capture))
+    .map((capture) => ({ ...capture }));
+}
+
+function historyForDirectorProject(projectId: string): DirectorHistoryState {
+  const history = directorHistoryByProject.get(projectId);
+  if (!history) return createDirectorHistoryState();
+  const cloned = cloneDirectorHistoryState(history);
+  cloned.activeGesture = null;
+  return cloned;
+}
+
+function rememberDirectorHistory(
+  projectId: string,
+  history: DirectorHistoryState,
+): void {
+  const cloned = cloneDirectorHistoryState(history);
+  cloned.activeGesture = null;
+  directorHistoryByProject.set(projectId, cloned);
+}
+
+function updateActiveDirectorDocument(
+  state: DirectorState,
+  document: DirectorProjectDocumentV1,
+  captures: DirectorCapture[],
+): boolean {
+  const session = directorProjectRegistry.getActiveSession();
+  if (
+    !session ||
+    !state.projectOwner ||
+    state.projectId !== session.projectId ||
+    state.generation !== session.generation ||
+    !isSameDirectorProjectOwner(state.projectOwner, session.owner)
+  ) {
+    return false;
+  }
+  rememberDirectorCaptures(session.projectId, captures);
+  const result = directorProjectRegistry.updateActive({
+    owner: session.owner,
+    projectId: session.projectId,
+    generation: session.generation,
+    document,
+    captures,
+  });
+  return result.disposition === "COMMITTED";
+}
+
+function restoreDirectorDocumentState(
+  state: DirectorState,
+  document: DirectorProjectDocumentV1,
+): Partial<DirectorState> | null {
+  const session = directorProjectRegistry.getActiveSession();
+  if (
+    !session ||
+    !state.projectOwner ||
+    state.projectId !== session.projectId ||
+    state.generation !== session.generation ||
+    !isSameDirectorProjectOwner(state.projectOwner, session.owner)
+  ) {
+    return null;
+  }
+  const record = directorProjectRegistry.getRecord(session.owner);
+  if (!record) return null;
+  const captures = capturesForDirectorDocument(
+    session.projectId,
+    document,
+    record.memory.captures,
+  );
+  return restoreDirectorProjectState(
+    {
+      ...record,
+      document,
+      memory: { captures },
+    },
+    session,
+    state.localModelLibrary,
+  );
+}
+
+function makeDirectorCommandResult(
+  state: DirectorState,
+  input: Omit<
+    Parameters<typeof createDirectorCommandResult>[0],
+    "projectId" | "generation"
+  > & {
+    projectId?: string | null;
+    generation?: number | null;
+  },
+): DirectorCommandResult {
+  return createDirectorCommandResult({
+    ...input,
+    projectId: input.projectId ?? state.projectId,
+    generation: input.generation ?? state.generation,
+    selectionResult:
+      input.selectionResult === undefined
+        ? getDirectorSelectionResult(state)
+        : input.selectionResult,
+  });
+}
+
 function createDefaultDirectorProjectDocument(
   projectId: string,
   owner: DirectorProjectOwnerV1,
@@ -1465,6 +1667,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   localModelLibrary: [],
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
+  history: createDirectorHistoryState(),
+  lastCommandResult: null,
 
   openSession: (owner) => {
     const currentState = get();
@@ -1519,11 +1723,15 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       result.disposition !== "FOCUSED"
     ) {
       set(
-        restoreDirectorProjectState(
-          result.record,
-          result.session,
-          currentState.localModelLibrary,
-        ),
+        {
+          ...restoreDirectorProjectState(
+            result.record,
+            result.session,
+            currentState.localModelLibrary,
+          ),
+          history: historyForDirectorProject(result.session.projectId),
+          lastCommandResult: null,
+        },
       );
     }
     return result;
@@ -1549,6 +1757,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }
     const currentState = get();
+    rememberDirectorHistory(activeSession.projectId, currentState.history);
     let document;
     try {
       document = snapshotCurrentDirectorProject(
@@ -1584,8 +1793,367 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           motionPathDraft: null,
         },
         phoneVcam: createDefaultPhoneVcamState(),
+        history: createDirectorHistoryState(),
+        lastCommandResult: null,
       }));
     }
+    return result;
+  },
+
+  beginDirectorGesture: (input) => {
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_BEGIN",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (!input.commandKind.trim()) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_BEGIN",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (state.history.activeGesture) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_BEGIN",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (!snapshot) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_BEGIN",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const gesture = createDirectorGesture({
+      projectId: snapshot.projectId,
+      generation: snapshot.generation,
+      commandKind: input.commandKind,
+      targetId: input.targetId ?? null,
+      fieldScope: input.fieldScope ?? null,
+      baselineFingerprint: snapshot.fingerprint,
+      baseline: snapshot.document,
+    });
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "GESTURE_BEGIN",
+      disposition: "COMMITTED",
+      projectChanged: false,
+      historyEntries: 0,
+    });
+    set({
+      history: {
+        ...state.history,
+        activeGesture: gesture,
+      },
+      lastCommandResult: result,
+    });
+    return result;
+  },
+
+  commitDirectorGesture: () => {
+    const state = get();
+    const gesture = state.history.activeGesture;
+    if (!gesture) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_COMMIT",
+        disposition: "NOOP",
+        reason: "DIRECTOR_GESTURE_NOT_ACTIVE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (
+      !snapshot ||
+      snapshot.projectId !== gesture.projectId ||
+      snapshot.generation !== gesture.generation
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_COMMIT",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({
+        history: { ...state.history, activeGesture: null },
+        lastCommandResult: result,
+      });
+      return result;
+    }
+    if (snapshot.fingerprint === gesture.baselineFingerprint) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_COMMIT",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({
+        history: { ...state.history, activeGesture: null },
+        lastCommandResult: result,
+      });
+      return result;
+    }
+    if (
+      !updateActiveDirectorDocument(
+        state,
+        snapshot.document,
+        state.captures,
+      )
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_COMMIT",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "GESTURE_COMMIT",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: gesture.commandKind,
+      projectId: gesture.projectId,
+      generation: gesture.generation,
+      before: gesture.baseline,
+      after: snapshot.document,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(gesture.projectId, history);
+    set({ history, lastCommandResult: result });
+    return result;
+  },
+
+  cancelDirectorGesture: () => {
+    const state = get();
+    const gesture = state.history.activeGesture;
+    if (!gesture) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_CANCEL",
+        disposition: "NOOP",
+        reason: "DIRECTOR_GESTURE_NOT_ACTIVE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (
+      !snapshot ||
+      snapshot.projectId !== gesture.projectId ||
+      snapshot.generation !== gesture.generation
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_CANCEL",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({
+        history: { ...state.history, activeGesture: null },
+        lastCommandResult: result,
+      });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "GESTURE_CANCEL",
+      disposition: "NOOP",
+      projectChanged: false,
+      historyEntries: 0,
+    });
+    if (snapshot.fingerprint === gesture.baselineFingerprint) {
+      set({
+        history: { ...state.history, activeGesture: null },
+        lastCommandResult: result,
+      });
+      return result;
+    }
+    const restored = restoreDirectorDocumentState(state, gesture.baseline);
+    const captures = capturesForDirectorDocument(
+      gesture.projectId,
+      gesture.baseline,
+      state.captures,
+    );
+    if (!restored || !updateActiveDirectorDocument(state, gesture.baseline, captures)) {
+      const staleResult = makeDirectorCommandResult(state, {
+        commandKind: "GESTURE_CANCEL",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: staleResult });
+      return staleResult;
+    }
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        ...restored,
+        history: { ...state.history, activeGesture: null },
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    rememberDirectorHistory(gesture.projectId, state.history);
+    return result;
+  },
+
+  undoDirector: () => {
+    if (get().history.activeGesture) get().cancelDirectorGesture();
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UNDO",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const entry = state.history.past.at(-1);
+    if (!entry) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UNDO",
+        disposition: "NOOP",
+        reason: "DIRECTOR_HISTORY_EMPTY",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const current = getDirectorDocumentSnapshot(state);
+    if (
+      !current ||
+      entry.projectId !== current.projectId ||
+      directorDocumentFingerprint(entry.after) !== current.fingerprint
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UNDO",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const restored = restoreDirectorDocumentState(state, entry.before);
+    const captures = capturesForDirectorDocument(
+      entry.projectId,
+      entry.before,
+      state.captures,
+    );
+    if (!restored || !updateActiveDirectorDocument(state, entry.before, captures)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UNDO",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const history: DirectorHistoryState = {
+      ...state.history,
+      past: state.history.past.slice(0, -1),
+      future: [entry, ...state.history.future].slice(0, state.history.limit),
+      activeGesture: null,
+    };
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "UNDO",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 0,
+    });
+    directorHistorySyncSuspended = true;
+    try {
+      set({ ...restored, history, lastCommandResult: result });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    rememberDirectorHistory(entry.projectId, history);
+    return result;
+  },
+
+  redoDirector: () => {
+    if (get().history.activeGesture) get().cancelDirectorGesture();
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "REDO",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const entry = state.history.future[0];
+    if (!entry) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "REDO",
+        disposition: "NOOP",
+        reason: "DIRECTOR_HISTORY_EMPTY",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const current = getDirectorDocumentSnapshot(state);
+    if (
+      !current ||
+      entry.projectId !== current.projectId ||
+      directorDocumentFingerprint(entry.before) !== current.fingerprint
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "REDO",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const restored = restoreDirectorDocumentState(state, entry.after);
+    const captures = capturesForDirectorDocument(
+      entry.projectId,
+      entry.after,
+      state.captures,
+    );
+    if (!restored || !updateActiveDirectorDocument(state, entry.after, captures)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "REDO",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const history: DirectorHistoryState = {
+      ...state.history,
+      past: [...state.history.past, entry].slice(-state.history.limit),
+      future: state.history.future.slice(1),
+      activeGesture: null,
+    };
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "REDO",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 0,
+    });
+    directorHistorySyncSuspended = true;
+    try {
+      set({ ...restored, history, lastCommandResult: result });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    rememberDirectorHistory(entry.projectId, history);
     return result;
   },
 
@@ -2101,15 +2669,42 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 
-  updateObjectTransform: (objectId, field, axis, value) =>
+  updateObjectTransform: (objectId, field, axis, value) => {
+    const state = get();
+    const authoredObject = state.authoredObjects.find(
+      (object) => object.id === objectId,
+    );
+    const runtimeObject = state.objects.find(
+      (object) => object.id === objectId,
+    );
+    if (!authoredObject || !runtimeObject) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (!Number.isFinite(value)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (authoredObject.transform[field][axis] === value) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT_TRANSFORM",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
     set((state) => {
-      const authoredObject = state.authoredObjects.find(
-        (object) => object.id === objectId,
-      );
-      const runtimeObject = state.objects.find(
-        (object) => object.id === objectId,
-      );
-      if (!authoredObject || !runtimeObject) return state;
       const authoredObjects = state.authoredObjects.map((object) =>
         object.id === objectId
           ? {
@@ -2170,7 +2765,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         ),
         timeline,
       };
-    }),
+    });
+    return makeDirectorCommandResult(state, {
+      commandKind: "UPDATE_OBJECT_TRANSFORM",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+  },
 
   updateCamera: (objectId, patch) =>
     set((state) => {
@@ -4256,6 +4858,82 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 }));
+
+useDirectorStore.subscribe((state, previousState) => {
+  if (state.projectId) {
+    rememberDirectorCaptures(state.projectId, state.captures);
+    rememberDirectorHistory(state.projectId, state.history);
+  }
+
+  const current = getDirectorDocumentSnapshot(state);
+  const previous = getDirectorDocumentSnapshot(previousState);
+  if (
+    !current ||
+    !previous ||
+    current.projectId !== previous.projectId ||
+    current.generation !== previous.generation ||
+    !isSameDirectorProjectOwner(
+      state.projectOwner ?? { route: "libtv", canvasId: "", sourceNodeId: "" },
+      previousState.projectOwner ?? {
+        route: "libtv",
+        canvasId: "",
+        sourceNodeId: "",
+      },
+    ) ||
+    current.fingerprint === previous.fingerprint ||
+    directorHistorySyncSuspended ||
+    state.history.activeGesture
+  ) {
+    return;
+  }
+
+  if (
+    !updateActiveDirectorDocument(
+      state,
+      current.document,
+      state.captures,
+    )
+  ) {
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "PROJECT_MUTATION",
+      disposition: "STALE",
+      reason: "DIRECTOR_OWNER_STALE",
+    });
+    directorHistorySyncSuspended = true;
+    try {
+      useDirectorStore.setState({ lastCommandResult: result });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return;
+  }
+
+  const result = makeDirectorCommandResult(state, {
+    commandKind: "PROJECT_MUTATION",
+    disposition: "COMMITTED",
+    projectChanged: true,
+    historyEntries: 1,
+  });
+  const entry = createDirectorHistoryEntry({
+    commandId: result.commandId,
+    commandKind: "PROJECT_MUTATION",
+    projectId: current.projectId,
+    generation: current.generation,
+    before: previous.document,
+    after: current.document,
+  });
+  const history = pushDirectorHistory(state.history, entry);
+  rememberDirectorHistory(current.projectId, history);
+  directorHistorySyncSuspended = true;
+  try {
+    useDirectorStore.setState({
+      history,
+      lastCommandResult: result,
+    });
+  } finally {
+    directorHistorySyncSuspended = false;
+  }
+});
 
 if (typeof window !== "undefined") {
   (

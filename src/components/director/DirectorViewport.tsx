@@ -613,6 +613,12 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const recordObjectKeyframe = useDirectorStore(
     (state) => state.recordObjectKeyframe,
   );
+  const beginDirectorGesture = useDirectorStore(
+    (state) => state.beginDirectorGesture,
+  );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
+  );
   const selectedMotionPathAnchorId = useDirectorStore(
     (state) => state.timeline.selectedMotionPathAnchorId,
   );
@@ -663,6 +669,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
       });
     });
     recordObjectKeyframe(object.id);
+    commitDirectorGesture();
   };
 
   const content = (
@@ -740,6 +747,13 @@ function SceneObject({ object }: { object: DirectorObject }) {
     <TransformControls
       mode={transformMode}
       size={0.72}
+      onMouseDown={() =>
+        beginDirectorGesture({
+          commandKind: "object-transform",
+          targetId: object.id,
+          fieldScope: transformMode,
+        })
+      }
       onMouseUp={commitTransform}
     >
       {content}
@@ -767,6 +781,12 @@ function DirectorGroupTransformRig({
   );
   const recordGroupKeyframe = useDirectorStore(
     (state) => state.recordGroupKeyframe,
+  );
+  const beginDirectorGesture = useDirectorStore(
+    (state) => state.beginDirectorGesture,
+  );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
   );
   const groupRef = useRef<Group>(null);
   const anchor = getDirectorGroupAnchorTransform(objects, group);
@@ -798,6 +818,7 @@ function DirectorGroupTransformRig({
     };
     updateGroupTransform(group.id, nextTransform);
     recordGroupKeyframe(group.id);
+    commitDirectorGesture();
   };
 
   return (
@@ -805,6 +826,13 @@ function DirectorGroupTransformRig({
       <TransformControls
         mode={transformMode}
         size={0.82}
+        onMouseDown={() =>
+          beginDirectorGesture({
+            commandKind: "group-transform",
+            targetId: group.id,
+            fieldScope: transformMode,
+          })
+        }
         onMouseUp={commitTransform}
       >
         <group

@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "batch": 70,
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 70,
+    "staticAssertions": [
+      "typed history state exists",
+      "typed command result exists",
+      "history uses before and after documents",
+      "bounded history exists",
+      "store exposes history",
+      "store exposes undo and redo",
+      "store observes document mutations",
+      "transform command exposes no-op reason",
+      "transform command exposes invalid-value reason",
+      "transform command exposes missing-target reason",
+      "gesture begin is explicit",
+      "gesture commit is explicit",
+      "gesture cancel is explicit",
+      "workspace routes undo",
+      "object transform starts a gesture",
+      "curve editing starts a gesture",
+      "graph history is not called"
+    ],
+    "historyBoundary": "discoverable",
+    "gestureBoundary": "discoverable"
+  },
+  "browser": {
+    "semanticMutationOneEntry": "pass",
+    "noopZeroEntry": "pass",
+    "undoRedoRoundTrip": "pass",
+    "futureTruncation": "pass",
+    "gestureOneEntry": "pass",
+    "ownerHistoryIsolation": "pass",
+    "reopenHistoryContinuity": "pass",
+    "ordinaryGraphIsolation": "pass"
+  },
+  "screenshots": [],
+  "errors": []
+}

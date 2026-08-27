@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 70 Director project-local command/history kernel:
+  typed command results, bounded `past/future`, no-op/rejection reasons,
+  gesture coalescing, undo/redo, redo-future truncation and close/reopen
+  history continuity. Added pure and fresh-page Playwright verification with
+  zero console/page/request errors; reference-aware delete, async freshness and
+  persistence remain separate slices.
 - Added Batch 69 Director authored/runtime projection separation:
   `authoredObjects` is now the portable project baseline while the existing
   `objects` selector is derived for timeline/path/R3F runtime state. Added pure

@@ -191,15 +191,19 @@ Batch 66 已将这项判断进一步固化为 `DEC-040`、两份 Director author
 `DirectorProjectDocumentV1`、strict decode/normalize/encode、当前 state snapshot
 adapter 和 17-case pure corpus；它明确排除 selection/playback/panel/phone runtime、
 capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch 67 pure
-codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 59 browser
-smoke。Batch 68 已建立
+codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
+command/history + Batch 59 browser smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
 `objects` projection 分开，seek/playback/path sampling 不再污染 project snapshot，
 对象/相机/姿态编辑及 close/reopen 恢复已有 focused verifier。inactive tombstone、
-async destination、Director history/delete 和 persistence 仍未实现，不能把上述
-三个 focused pass 写成完整 project authority。
+async destination、reference-aware delete 和 persistence 仍未实现，不能把上述
+四个 focused pass 写成完整 project authority。Batch 70 又落地 typed
+project-local command result、bounded `past/future`、undo/redo、redo truncation、
+repeated gesture coalescing 和 close/reopen history continuity；当前真实 adapter
+只覆盖 object/group TransformControls 与 speed curve，Inspector/pose/path/free-draw
+的完整 pointer lifecycle 仍是 Batch 71 优先事项。
 
 ### 5.2 状态边界
 

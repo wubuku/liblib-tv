@@ -47,6 +47,12 @@ export function DirectorCurveEditor() {
   const setTrackSpeedCurveControl = useDirectorStore(
     (state) => state.setTrackSpeedCurveControl,
   );
+  const beginDirectorGesture = useDirectorStore(
+    (state) => state.beginDirectorGesture,
+  );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
+  );
   const svgRef = useRef<SVGSVGElement>(null);
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
@@ -59,6 +65,11 @@ export function DirectorCurveEditor() {
     if (!selectedTrack) return;
     event.preventDefault();
     event.stopPropagation();
+    beginDirectorGesture({
+      commandKind: "speed-curve",
+      targetId: selectedTrack.id,
+      fieldScope: `control-${handle}`,
+    });
     const update = (pointerEvent: PointerEvent) => {
       const svg = svgRef.current;
       if (!svg) return;
@@ -78,6 +89,7 @@ export function DirectorCurveEditor() {
     const end = () => {
       window.removeEventListener("pointermove", update);
       window.removeEventListener("pointerup", end);
+      commitDirectorGesture();
     };
     window.addEventListener("pointermove", update);
     window.addEventListener("pointerup", end, { once: true });

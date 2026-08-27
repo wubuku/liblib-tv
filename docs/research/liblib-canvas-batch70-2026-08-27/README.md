@@ -1,6 +1,6 @@
 # Batch 70: Director Command And History Kernel
 
-> 状态：`PLANNED / IMPLEMENTATION_IN_PROGRESS`。
+> 状态：`COMPLETE / DIRECTOR_HISTORY_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 
@@ -68,3 +68,20 @@ portable project document fingerprint
 - [`../liblib-canvas-batch69-2026-08-27/`](../liblib-canvas-batch69-2026-08-27/)：
   authored/runtime 前置实现与 verifier。
 
+## 5. 结果
+
+Batch 70 已完成 Director project-local command/history kernel 的 focused pass：
+
+- semantic document mutation 自动形成一条 bounded history entry；
+- same-value、invalid-value、missing-target、empty-history、cancel 和 stale
+  路径不会产生伪 history；
+- repeated object-transform、group-transform 和 speed-curve gesture 可合并为
+  一条 entry；
+- undo/redo 恢复 strict-valid portable document，新的 commit 清空 redo future；
+- project A/B、close/reopen generation 和普通 canvas graph/history 保持隔离；
+- fresh-page Playwright、pure verifier、typecheck、lint、docs check 和 full
+  project gate 的最终结果以 `IMPLEMENTATION.md` 为准。
+
+本批仍不证明 LibTV source-exact Director UI、reference-aware delete、async
+capture/export freshness、真实 mesh/resource loading、durable persistence 或
+StoryAI 上游 schema parity。

@@ -66,6 +66,15 @@ export default function DirectorDesk({
   const projectId = useDirectorStore((state) => state.projectId);
   const sessionId = useDirectorStore((state) => state.sessionId);
   const generation = useDirectorStore((state) => state.generation);
+  const history = useDirectorStore((state) => state.history);
+  const lastCommandResult = useDirectorStore(
+    (state) => state.lastCommandResult,
+  );
+  const undoDirector = useDirectorStore((state) => state.undoDirector);
+  const redoDirector = useDirectorStore((state) => state.redoDirector);
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const setViewportPanelsCollapsed = useDirectorStore(
@@ -127,11 +136,15 @@ export default function DirectorDesk({
 
   const closeWorkspace = useCallback(() => {
     if (workspaceBusy) return;
+    if (useDirectorStore.getState().history.activeGesture) {
+      cancelDirectorGesture();
+    }
     closeSession(projectOwner);
     selectNode(exportedNodeId ?? sourceNodeId);
     onClose();
   }, [
     closeSession,
+    cancelDirectorGesture,
     exportedNodeId,
     onClose,
     projectOwner,
@@ -142,10 +155,35 @@ export default function DirectorDesk({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      const isEditable =
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT");
+      if (event.isComposing || isEditable) return;
+
+      const modifier = event.metaKey || event.ctrlKey;
+      if (modifier && event.key.toLowerCase() === "z") {
+        event.preventDefault();
+        if (event.shiftKey) redoDirector();
+        else undoDirector();
+        return;
+      }
+      if (modifier && event.key.toLowerCase() === "y") {
+        event.preventDefault();
+        redoDirector();
+        return;
+      }
       if (event.key !== "Escape") return;
       event.preventDefault();
       if (document.querySelector("[data-director-capture-viewer]")) return;
       if (workspaceBusy) return;
+      if (useDirectorStore.getState().history.activeGesture) {
+        cancelDirectorGesture();
+        return;
+      }
       if (activeMobilePanel) {
         setMobilePanel(null);
         return;
@@ -158,7 +196,15 @@ export default function DirectorDesk({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeMobilePanel, closeWorkspace, exportPanelOpen, workspaceBusy]);
+  }, [
+    activeMobilePanel,
+    cancelDirectorGesture,
+    closeWorkspace,
+    exportPanelOpen,
+    redoDirector,
+    undoDirector,
+    workspaceBusy,
+  ]);
 
   const sendCapture = (capture: DirectorCapture) => {
     if (capture.sentNodeId) return;
@@ -288,6 +334,12 @@ export default function DirectorDesk({
       data-director-project-id={projectId ?? ""}
       data-director-session-id={sessionId ?? ""}
       data-director-generation={generation ?? ""}
+      data-director-history-past={history.past.length}
+      data-director-history-future={history.future.length}
+      data-director-active-gesture={history.activeGesture?.gestureId ?? ""}
+      data-director-last-command={lastCommandResult?.commandKind ?? ""}
+      data-director-last-disposition={lastCommandResult?.disposition ?? ""}
+      data-director-last-reason={lastCommandResult?.reason ?? ""}
       data-director-panels-collapsed={viewportPanelsCollapsed}
       role="dialog"
       aria-modal="true"
