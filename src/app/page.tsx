@@ -114,7 +114,6 @@ export default function Home() {
     editorMode,
     isAssetPanelOpen,
     isAgentOpen,
-    closeTopForegroundSurface,
     toggleAddNodePanel,
     isShortcutsPanelOpen,
     toggleShortcutsPanel,
@@ -502,7 +501,6 @@ export default function Home() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [
-    closeTopForegroundSurface,
     duplicateSelectedNodes,
     fitView,
     focusCanvasRoot,

@@ -377,8 +377,8 @@ Open Canvas toast/node/save/form 正反面、clone feedback inventory、`GI-049.
 | Transaction | selection/focus/context transitions are zero semantic history；mixed delete/undo/switch outcomes preserve graph/history authority |
 | Owner/timing | canvas generation、surface owner、focus origin/return target validated；delete/switch/unmount/stale return cleanup exact |
 | UI/browser | activeElement、editable isolation、modal containment、Director precedence、one Escape per layer、fallback focus and desktop/mobile parity |
-| Blockers | common selection authority、context resolver、fixture and implementation authorization；exact source multi-select/edge/Escape/focus details remain partial |
-| Exit | one validated active selection；one top command context；one Escape unwinds one layer；focus never returns to stale/hidden owner |
+| Blockers | exact source multi-select/edge/Escape/focus details remain partial；universal mixed primary、focus trap 和 target-scoped containment 未实现 |
+| Exit | one validated active selection；one top command context；one Escape unwinds one layer；focus never returns to stale/hidden owner；clone-owned focused slice is recorded |
 
 Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listener/modal/Director audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式状态、优先级、fixture 和 verifier 合同见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。`VR-019` 组合 graph routing、multi-canvas、overlay 和 shortcut verifier，不替代各自的 source/semantic contract。
 

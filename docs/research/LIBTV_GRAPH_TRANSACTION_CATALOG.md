@@ -391,7 +391,7 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-074` feedback burst | multiple file/result errors | batch | bounded aggregate/dedupe；no toast storm | policy/runtime missing |
 | `LIBTV-GC-075` route feedback isolation | FrameOS toast active | enter LibTV | no shared store/queue/announcement | architectural invariant |
 | `LIBTV-GC-076` client/host/flow round trip | offset host + translated/zoomed viewport | convert client -> flow -> client | finite round trip within declared tolerance | pure fixture designed |
-| `LIBTV-GC-077` actual-host center add | asset panel narrows/shifts React Flow host | add ordinary node | node center aligns actual host center；one graph history；selection exact | runtime uses browser window center |
+| `LIBTV-GC-077` actual-host center add | asset panel narrows/shifts React Flow host | add ordinary node | node center aligns actual host center；one graph history；selection exact | Batch 63 next implementation entry；runtime currently uses browser window center |
 | `LIBTV-GC-078` live/stable pan | stable baseline | pan frames then end | live follows every current frame；stable commits once；zero graph history | phase runtime missing |
 | `LIBTV-GC-079` pan/zoom cancel | current viewport session | pointercancel/blur/interruption | live returns declared baseline；stable/history unchanged | owner/cancel runtime missing |
 | `LIBTV-GC-080` interrupted programmatic zoom | operation A then newer B | A completion arrives after B | A stale；B final stable exact；one endpoint | operation ID runtime missing |

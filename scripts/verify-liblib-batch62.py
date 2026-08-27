@@ -121,6 +121,7 @@ def ui(page: Page):
             isAgentOpen: state.isAgentOpen,
             isZoomMenuOpen: state.isZoomMenuOpen,
             activePrimaryPanel: state.activePrimaryPanel,
+            canvasTool: state.canvasTool,
           };
         }"""
     )
@@ -185,14 +186,42 @@ def run_selection_snapshot(page: Page):
             selectedNodeId: "stale",
             selectedEdgeIds: edgeId ? [edgeId, edgeId, "stale-edge"] : [],
           });
-          return window.__libtv_capture_selection();
+          const mixed = window.__libtv_capture_selection();
+          store.setState({
+            selectedNodeIds: [nodeId],
+            selectedNodeId: nodeId,
+            selectedEdgeIds: [],
+          });
+          const nodeOnly = window.__libtv_capture_selection();
+          store.setState({
+            selectedNodeIds: [],
+            selectedNodeId: null,
+            selectedEdgeIds: edgeId ? [edgeId] : [],
+          });
+          const edgeOnly = window.__libtv_capture_selection();
+          return { mixed, nodeOnly, edgeOnly };
         }""",
         {"nodeId": node_id, "edgeId": edge_id},
     )
-    assert result["nodeIds"] == [node_id], result
-    assert result["edgeIds"] == ([edge_id] if edge_id else []), result
-    assert result["kind"] == ("mixed" if edge_id else "node"), result
-    assert result["primary"] == {"kind": "node", "id": node_id}, result
+    mixed = result["mixed"]
+    assert mixed["nodeIds"] == [node_id], result
+    assert mixed["edgeIds"] == ([edge_id] if edge_id else []), result
+    assert mixed["kind"] == ("mixed" if edge_id else "node"), result
+    assert mixed["primary"] == {"kind": "node", "id": node_id}, result
+    assert result["nodeOnly"] == {
+        "canvasId": item["canvasId"],
+        "nodeIds": [node_id],
+        "edgeIds": [],
+        "kind": "node",
+        "primary": {"kind": "node", "id": node_id},
+    }, result
+    assert result["edgeOnly"] == {
+        "canvasId": item["canvasId"],
+        "nodeIds": [],
+        "edgeIds": [edge_id] if edge_id else [],
+        "kind": "edge" if edge_id else "none",
+        "primary": {"kind": "edge", "id": edge_id} if edge_id else None,
+    }, result
     return result
 
 
@@ -220,9 +249,10 @@ def run_captured_command(page: Page):
 
 def run_foreground_escape(page: Page):
     item = fixture(page)
-    node_id = item["nodeIds"][0]
+    assert len(item["nodeIds"]) >= 2, "fixture requires at least two nodes"
+    node_ids = item["nodeIds"][:2]
     edge_id = item["edgeIds"][0] if item["edgeIds"] else None
-    set_selection(page, [node_id], [edge_id] if edge_id else [])
+    set_selection(page, node_ids, [edge_id] if edge_id else [])
     before = graph(page)
     cases = {}
 
@@ -236,20 +266,37 @@ def run_foreground_escape(page: Page):
         "user-menu",
         "primary-panel",
     ]:
-        set_selection(page, [node_id], [edge_id] if edge_id else [])
+        set_selection(page, node_ids, [edge_id] if edge_id else [])
         set_foreground(page, surface)
+        surface_before = ui(page)
         page.keyboard.press("Delete")
+        page.keyboard.press("Meta+d")
+        page.keyboard.press("g")
+        page.keyboard.press("Meta+z")
+        page.keyboard.press("h")
+        page.keyboard.press("Alt+Shift+f")
+        page.keyboard.down("Space")
+        assert page.locator(".react-flow").get_attribute("data-temporary-pan") == "false"
+        page.keyboard.up("Space")
+        page.keyboard.press("Tab")
         blocked = graph(page)
         assert blocked["nodeIds"] == before["nodeIds"], (surface, blocked)
         assert blocked["edgeIds"] == before["edgeIds"], (surface, blocked)
         assert blocked["pastLength"] == before["pastLength"], (surface, blocked)
-        assert selection(page)["nodeIds"] == [node_id], (surface, selection(page))
+        assert selection(page)["nodeIds"] == node_ids, (surface, selection(page))
+        assert page.locator("[data-organize-confirmation]").count() == 0, surface
+        surface_after_commands = ui(page)
+        assert surface_after_commands == surface_before, (
+            surface,
+            surface_before,
+            surface_after_commands,
+        )
 
         page.keyboard.press("Escape")
         after_first_escape = graph(page)
         assert resolve_surface_closed(page), (surface, ui(page))
         assert after_first_escape["nodeIds"] == before["nodeIds"], (surface, after_first_escape)
-        assert after_first_escape["selectedNodeIds"] == [node_id], (surface, after_first_escape)
+        assert after_first_escape["selectedNodeIds"] == node_ids, (surface, after_first_escape)
         assert after_first_escape["selectedEdgeIds"] == ([edge_id] if edge_id else []), (
             surface,
             after_first_escape,
@@ -264,7 +311,16 @@ def run_foreground_escape(page: Page):
             "() => document.activeElement === document.querySelector('[data-libtv-canvas-focus-root]')"
         ), surface
         cases[surface] = {
-            "blockedDelete": True,
+            "blockedCommands": [
+                "Delete",
+                "Meta+D",
+                "G",
+                "Meta+Z",
+                "H",
+                "Alt+Shift+F",
+                "Space",
+                "Tab",
+            ],
             "firstEscapePreservedSelection": True,
             "secondEscapeClearedSelection": True,
             "focusRoot": True,

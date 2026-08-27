@@ -300,8 +300,8 @@ page handler 先跳过 `input`、`textarea` 和 contenteditable target，再处�
 
 - 在 prompt/input 中按键通常不会触发 canvas delete/group/Tab 等命令；
 - 在 overlay 的普通 button、section 或 backdrop 上按键仍可能触发 page shortcuts；
-- Character/History/Shortcuts 当前没有 focus trap，也没有统一的 modal keyboard boundary；
-- Canvas dropdown 的 local Escape 和 page global Escape 可能都观察同一次事件，最终关闭结果是幂等的，但 page handler还会清 selection 和其他 overlays；
+- Character/History/Shortcuts 当前没有 source-exact focus trap；Batch 62 已在 clone page 层为 blocking foreground surface 建立 keyboard boundary，第一层 Escape 只关闭一个 surface并保留 selection；
+- Canvas dropdown 的 local Escape 和 page global Escape 仍需 source-exact 复核；Batch 62 的 clone resolver 将其纳入单层 Escape，但不据此推导源站 compound behavior；
 - active authoring surface 的 capture-phase Escape handler可能比 page handler更早消费状态，必须按组件单独审计。
 
 帮助文案与运行 handler 的完整差异见 [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)。
@@ -329,7 +329,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 | UI-03 | `toggleGrid` 无 UI caller | 记录为不可达设置 | 不因 action 存在就补一个按钮。 |
 | UI-04 | Storyboard -> Agent 是 transition，不是 invariant | 修正文案 | verifier 覆盖手动关闭 Agent 后的 storyboard。 |
 | UI-05 | Batch 50 已隔离 Director 与全部普通 page shortcuts；完整 focus trap、focus return、nested listener 和 source-exact 语义仍未关闭 | 保留 recorded isolation，删除旧“只隔离 Escape”表述 | 以 Batch 50 和 selection/focus static audit 为事实入口，按正式 selection/focus/context contract 收口跨 surface authority。 |
-| UI-06 | Modal 只阻断 pointer，不统一阻断 canvas keyboard | 标记为 interaction boundary gap | 测试 Delete/Tab/group/undo 在 modal 前台的行为。 |
+| UI-06 | Batch 62 已阻断 clone page 的 Delete/Tab/group/undo 等普通 canvas keyboard，但 focus trap、target-scoped drawer containment 和 source exact policy 仍未知 | 更新为 partial closure | 保留 Batch 62 verifier；后续逐 surface 取得 source contract。 |
 | UI-07 | Outside-close policy 逐组件不同 | 保留差异，不抽象成默认行为 | 逐 surface 取得 source contract。 |
 | UI-08 | 节点上下 surface 混用 `NodeToolbar` 与 inverse scale | 指向精确定位合同 | 同 frame 读取 node/toolbar/panel/viewport rect。 |
 | UI-09 | 当前图片 toolbar 仍是历史 action set/width | 标记为 source delta | 先更新 action contract，再判断 offset。 |

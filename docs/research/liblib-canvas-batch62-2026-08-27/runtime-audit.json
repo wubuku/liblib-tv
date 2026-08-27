@@ -9,17 +9,43 @@
   },
   "desktop": {
     "selectionSnapshot": {
-      "canvasId": "canvas-2",
-      "nodeIds": [
-        "g-245IDFh8sB"
-      ],
-      "edgeIds": [
-        "e-8IgMkf6Vbj"
-      ],
-      "kind": "mixed",
-      "primary": {
+      "mixed": {
+        "canvasId": "canvas-2",
+        "nodeIds": [
+          "g-245IDFh8sB"
+        ],
+        "edgeIds": [
+          "e-8IgMkf6Vbj"
+        ],
+        "kind": "mixed",
+        "primary": {
+          "kind": "node",
+          "id": "g-245IDFh8sB"
+        }
+      },
+      "nodeOnly": {
+        "canvasId": "canvas-2",
+        "nodeIds": [
+          "g-245IDFh8sB"
+        ],
+        "edgeIds": [],
         "kind": "node",
-        "id": "g-245IDFh8sB"
+        "primary": {
+          "kind": "node",
+          "id": "g-245IDFh8sB"
+        }
+      },
+      "edgeOnly": {
+        "canvasId": "canvas-2",
+        "nodeIds": [],
+        "edgeIds": [
+          "e-8IgMkf6Vbj"
+        ],
+        "kind": "edge",
+        "primary": {
+          "kind": "edge",
+          "id": "e-8IgMkf6Vbj"
+        }
       }
     },
     "capturedCommand": {
@@ -61,49 +87,121 @@
     },
     "foreground": {
       "shortcuts": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "canvas-dropdown": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "add-node": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "zoom": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "share": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "notification": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "user-menu": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true
       },
       "primary-panel": {
-        "blockedDelete": true,
+        "blockedCommands": [
+          "Delete",
+          "Meta+D",
+          "G",
+          "Meta+Z",
+          "H",
+          "Alt+Shift+F",
+          "Space",
+          "Tab"
+        ],
         "firstEscapePreservedSelection": true,
         "secondEscapeClearedSelection": true,
         "focusRoot": true

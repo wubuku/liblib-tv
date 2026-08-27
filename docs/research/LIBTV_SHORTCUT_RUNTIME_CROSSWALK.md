@@ -111,7 +111,7 @@ Editable target guard 只能证明 page graph undo 不穿透输入框，不能�
 
 ### 6.4 Director 是独立快捷键域
 
-当 `activeDirectorNodeId` 存在时，普通 page dispatcher 对全部工作台快捷键提前返回；Batch 50 已对 Tab/Space/Delete/undo 的背景隔离形成 recorded runtime。`DirectorDesk`、`DirectorInspector`、`DirectorTimeline`、`DirectorViewport` 和 phone virtual-camera panel 仍有自己的键盘监听器。本文不把这些局部命令合入普通 LibTV 工作台；完整 selection/focus/listener 静态边界见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 node/edge/primary、surface policy、one-Escape 和 focus return 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，Director 领域行为继续由 Batch 35-50 合同维护。
+当 `activeDirectorNodeId` 存在时，普通 page dispatcher 对全部工作台快捷键提前返回；Batch 50 已对 Tab/Space/Delete/undo 的背景隔离形成 recorded runtime。Batch 62 又在普通 LibTV foreground surface 上补充 selection snapshot、editable/IME pass-through、command suspension、one-Escape 和 canvas focus fallback。`DirectorDesk`、`DirectorInspector`、`DirectorTimeline`、`DirectorViewport` 和 phone virtual-camera panel 仍有自己的键盘监听器。本文不把这些局部命令合入普通 LibTV 工作台；完整 selection/focus/listener 静态边界见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 node/edge/primary、surface policy、one-Escape 和 focus return 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，Director 领域行为继续由 Batch 35-50 合同维护。
 
 ### 6.5 视口不是 graph history
 

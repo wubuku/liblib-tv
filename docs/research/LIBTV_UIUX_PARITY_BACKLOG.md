@@ -155,13 +155,13 @@ clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 r
 
 当前 clone runtime 已证明：
 
-- Character/History backdrop 阻断 pointer，但没有统一 focus trap 或 page shortcut boundary；
-- Shortcuts 不是带 backdrop 的 modal；普通 button 上的 Delete/Tab/group 等仍会到 page handler；
+- Character/History backdrop 阻断 pointer，但没有 source-exact focus trap；
+- Shortcuts 不是带 backdrop 的 modal；Batch 62 已在 clone page 层阻断普通 button/foreground surface 上的 Delete/Tab/group/undo 等 canvas commands；
 - Batch 50 已让 page dispatcher 在 Director active 时对全部普通画布快捷键提前返回，并记录 workspace focus owner；完整 focus trap、focus return 和 LibTV source-exact Director keyboard contract 仍未知；
 - CanvasDropdown 的 local Escape 与 page Escape 可同时观察事件；active node tools 又有 capture-phase listener。
-- Batch 61 已把 node/edge selection 收口为独立 active-session projection，并移除 generic `onEdgesChange` 对 stored edge `selected` 的写入；Delete 仍是 node-only command，primary、mixed node+edge policy 与 command snapshot 尚未统一。
+- Batch 61 已把 node/edge selection 收口为独立 active-session projection，并移除 generic `onEdgesChange` 对 stored edge `selected` 的写入；Batch 62 已补 validated command snapshot、editable/IME guard、blocking foreground suspension、single-layer Escape 和 canvas focus fallback，并通过 focused verifier。Delete 仍是 node-only command，universal mixed primary、mixed edge mutation、focus trap 和 target-scoped containment 尚未统一。
 
-完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)；正式设计权威是 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，已定义 node/edge/primary active-session selection、focus zone、surface policy、`HANDLED/CONSUMED/PASS/BLOCKED/NOOP`、one-Escape、focus return、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。Batch 61 只关闭了共同 node/edge session owner；下一步优先实施 primary、选择 precedence、mixed editor gate、pane/Escape cleanup 和 command snapshot 的高置信子切片，并继续把精确 modal/Agent/Share/Shortcuts focus 行为留在 source gate，不引入全局 modal manager。
+完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)；正式设计权威是 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，已定义 node/edge/primary active-session selection、focus zone、surface policy、`HANDLED/CONSUMED/PASS/BLOCKED/NOOP`、one-Escape、focus return、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。Batch 62 已关闭该合同的高置信 clone slice；下一步只在 source/product 允许时处理 mixed primary、focus trap、target-scoped containment 或更窄的 command-specific edge semantics，不引入全局 modal manager。
 
 ### 4.6 `LIBTV-PAR-005`: source freshness refresh
 

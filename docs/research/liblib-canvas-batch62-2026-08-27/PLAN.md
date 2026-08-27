@@ -1,6 +1,6 @@
 # Batch 62 计划：Selection Command Snapshot 与单层 Escape
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS`。
 >
 > 计划基线：`258ff57`，`master == origin/master`，工作区在建档前干净。
 >
@@ -59,6 +59,9 @@ slice。它为后续 primary、focus return、delete/copy 和 editor gating 提�
 `SOURCE_FACT`。
 
 ## 3. 实施切片
+
+> 实施结果：Slice A-E 已完成；focused verifier 已通过。未完成项目仍按本计划的
+> `明确不做` 与 `SOURCE_UNKNOWN` 边界保留。
 
 ### Slice A：validated command selection snapshot
 
@@ -196,3 +199,11 @@ Batch 9 的旧 toolbar 断言继续按历史 mismatch 处理，不纳入本批�
 3. focused verifier、跨批回归、治理文档和实施结果收口后 commit/push；
 4. 工作区恢复干净后，按 parity backlog 重新排序下一批。
 
+实际完成：
+
+- `01ffaba`：计划、证据边界和截图成本落档；
+- `dba3aab`：pure helper、store/page/UI 实施；
+- `8af9853`：focused verifier 与 runtime audit；
+- 当前收口提交：实施记录、治理入口和状态同步。
+
+下一批入口：`LIBTV-VR-020` 的 actual React Flow host center placement。

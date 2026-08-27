@@ -1,6 +1,6 @@
 # Batch 62：Selection Command Snapshot 与单层 Escape
 
-> 状态：`PLAN_RECORDED`。
+> 状态：`SCRIPT_RECORDED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -41,9 +41,9 @@ edge effect、Director 隔离和 React Flow selection 行为。
 ## 接力入口
 
 - [`PLAN.md`](PLAN.md)：实施切片、决策、fixture、回归与停止边界；
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：代码变更、验证结果、证据成本与未完成边界；
 - [`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)：截图复用与新识别闸门；
 - [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：
   长期 selection/focus/context authority；
 - [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)：
   Batch 61 selection transport 前置。
-
