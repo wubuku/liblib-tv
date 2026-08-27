@@ -616,3 +616,15 @@
 - 新增 42 条 `LIBTV-MRG-I-*`、`GI-101..116`、`GC-127..145`、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-VR-023` 与 `LIBTV-MRG-DQ-001..014`；
 - 明确拒绝把 `width/height` 合并为一组字段、把 `object-fit` 当 node policy、把 request aspect 当 actual output、把 measured rect 当持久 resize 或照搬 Open Canvas fixed card policy；
 - runtime 仍 fragmented，source portrait/square/video/mixed-output/resize 仍 gated；本轮没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v55 media rendition 组件规格贯穿
+
+本轮逐份复核媒体节点、详情预览和节点内编辑 surface，消除“normalized”等于“full intrinsic”的隐含错误：
+
+- `ImageNode.spec.md` 区分 `ImageNodeData.width/height`、graph frame 和 passive measured rect，记录 generic/derived/Director still 的 ratio mismatch，并保留初始 landscape fixture 的 source-shaped 正面方法；
+- `VideoNode.spec.md` 将 presentation `resolution`、poster intrinsic、full-video intrinsic 和 graph frame 分权，记录 ordinary poster cover 与 Director video contain 是未命名 runtime branch，不是 source policy；
+- `ImagePreviewOverlay.spec.md` 将 preview 定义为 `DETAIL_INSPECTOR`，同时记录当前直接信任 node-data dimensions、缺少 output identity/provenance/invalid-metadata path 的事实；
+- `PictureEditPanel.spec.md`、`SubtitleErasePanel.spec.md`、`ImageAnnotateMode.spec.md` 和 `ImageElementEditMode.spec.md` 明确当前 marks/canvas/stage 绑定 visible cropped node plane，未来 full-media 操作必须经过 content-box/fit transform 和 drift baseline；
+- `ShotBreakdownNode.spec.md` 将 fixed near-16:9 cover 限定为 thumbnail/scanning role，不允许它泄漏成普通 node/detail/editor/export 几何；
+- 八份规格共同指向正式 geometry contract 与 designed `LIBTV-VR-023`，现有 batch verifier 仍只是当前局部交互/兼容证据；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

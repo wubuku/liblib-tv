@@ -51,6 +51,30 @@ It lives in `uiStore`, because the owner is the page shell. The image node only
 dispatches `openImagePreview`; Batch 58 adds `canvasId` so an old preview cannot
 be mistaken for a same-ID node on another canvas.
 
+`width/height` currently comes directly from `ImageNodeData`. The overlay trusts
+that pair when deriving its wrapper ratio and does not decode or reconcile the
+actual asset. Zero, stale or media-mismatched values therefore have no typed
+failure path in the committed runtime.
+
+## Rendition Authority
+
+The preview is the `DETAIL_INSPECTOR` role in
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md):
+
+- render the selected `mediaId/outputId`, not an unrelated primary URL;
+- use validated full-media intrinsic dimensions and `contain` inside the bounded
+  viewport;
+- allow letterboxing rather than silently cropping full-content inspection;
+- keep graph frame, node position and node rendition unchanged;
+- reject or wait on invalid metadata instead of producing `NaN`, infinity or a
+  guessed ratio;
+- invalidate or close when canvas/node/output ownership becomes stale.
+
+This is a correctness contract, not proof that current runtime already has
+output identity or metadata provenance. The source measurement above proves one
+2:1 image-preview sample only; it does not establish all source orientations or
+video-detail behavior.
+
 ## Lifecycle
 
 ```text
@@ -90,3 +114,5 @@ shortcuts do not execute.
 - if the owner node is deleted or the active canvas changes, Batch 58 closes the
   preview as a UI-only invalidation; this is a clone lifecycle decision, not a
   confirmed LibTV source delete contract.
+- current batch verification does not replace designed `LIBTV-VR-023`
+  square/portrait/odd-ratio and stale-metadata coverage.

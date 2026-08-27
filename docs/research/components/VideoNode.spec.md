@@ -27,6 +27,10 @@ interface VideoNodeData {
 }
 ```
 
+`resolution` is currently presentation metadata, not a parsed intrinsic-media
+authority. The graph node frame, poster dimensions and eventual full-video
+dimensions are separate values even when all happen to be `16:9`.
+
 The initial failed video has `parentId: "g-EFbbHpwq5w"` and relative position `(62,62)`. Its displayed absolute position is derived from the video group.
 
 ## Structure
@@ -153,6 +157,26 @@ VideoNode
 - overlays only appear when this is the sole selected node
 - multi-selection hides both top and bottom single-node overlays
 
+## Media Rendition Boundary
+
+The current ready-video branch renders its poster with centered `object-cover`.
+A Director animation result renders an actual video with `object-contain`. The
+branch difference is a current implementation fact, not a named LibTV product
+policy and not evidence that playback should change composition.
+
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)
+therefore requires poster and full video to have independently validated media
+descriptors while sharing a declared node-frame/rendition profile. `failed`,
+`pending`, `empty` and `ready` content must preserve the node frame. If poster
+and full-video ratios disagree, the renderer must use an explicit policy rather
+than inheriting incidental React branch styling.
+
+The subject-edit and subtitle-region overlays currently normalize points against
+the visible node plane. With cover-cropped media, those values do not identify
+the same positions in the full intrinsic video. This remains a known
+`LIBTV-MRG-008` limitation; the component specs below define the future editor
+gate and transform requirement without claiming it is implemented.
+
 ## Floating UI Contract
 
 The lower editor is mounted inside the video node, centered on the child and inverse-scaled by `1 / zoom`. It remains `660px` wide on screen and is not clamped to the browser viewport.
@@ -203,3 +227,5 @@ See
 - `scripts/verify-liblib-batch27.py`
 - `scripts/verify-liblib-batch28.py`
 - `scripts/verify-liblib-batch29.py`
+- future designed verifier: `LIBTV-VR-023` for poster/full-media ratio,
+  geometry-stable status and visible-to-intrinsic editor transforms

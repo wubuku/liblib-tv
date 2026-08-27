@@ -30,6 +30,11 @@
 
 The clone uses local history and does not claim source store/API parity.
 
+Current `relX / relY / width / height` values are normalized against the visible
+node overlay. They are not yet proven full-video coordinates. Under a
+cover-cropped poster, a rectangle can therefore select a different region from
+the eventual full media.
+
 One pointer draw/move/resize interaction produces at most one local snapshot;
 new interaction clears redo, and reset is a reversible local history command.
 The history is capped at 30 entries and remains outside graph history before
@@ -43,6 +48,14 @@ The formal `RECORD_EDITOR` session/commit boundary is
 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md).
 Current synchronous confirm has no panel-level submitting/idempotency token, so it
 must not be reused unchanged for real asynchronous processing.
+
+For a future full-media subtitle request, the editor must satisfy the open gate,
+fit transform, drift and commit-baseline rules in
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md).
+An explicitly visible-crop-only product mode may retain visible-render
+coordinates, but must carry the exact crop/rendition descriptor and must not be
+described as editing the untouched full video. This distinction is design-only;
+the current Batch 27 verifier does not prove it.
 
 ## Prototype Boundary
 

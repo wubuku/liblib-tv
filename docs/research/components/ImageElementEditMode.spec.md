@@ -86,6 +86,15 @@ standard toolbar + standard generation panel
 - toolbar and record panel may naturally clip at viewport edges;
 - no viewport clamp or page-level fixed promotion is allowed.
 
+The stage currently follows the node's visible cover-rendered plane. This is
+sufficient for the documented empty guide/mask state, but not for persisted
+point/box/brush semantics. Before a non-empty record or generate action is
+implemented, the mode must declare `FULL_INTRINSIC` versus `VISIBLE_RENDER`,
+capture media/output/frame/rendition revisions and transform coordinates through
+the actual media content box as specified by
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md).
+The current source evidence does not resolve that product decision.
+
 ## Visual Boundary
 
 - stage keeps the source image visible beneath a translucent editing mask;

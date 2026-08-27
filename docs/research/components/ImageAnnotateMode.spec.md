@@ -27,6 +27,14 @@ standard toolbar + standard bottom panel
 The source empty state was observed at `929x874` with a `536x49` toolbar and a
 canvas CSS rect of approximately `194.117x97`, backed by `388x194` pixels.
 
+The backing size proves device-pixel scaling for that observed empty surface; it
+does not prove intrinsic-image coordinate mapping. The current clone sizes its
+blank backing canvas from the rendered node rect and has no media/output,
+content-box or cover-crop transform. Any future non-empty stroke/save behavior
+must first adopt the `EDITOR_FULL_MEDIA` or explicitly declared
+`EDITOR_VISIBLE_RENDER` rules in
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md).
+
 ## Required DOM
 
 ```text
@@ -64,6 +72,8 @@ invariant `LIBTV-EDS-I-031` in
 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md).
 Future work must either implement a source-evidenced `BITMAP_EDITOR` handoff or
 make Save unavailable; this specification does not authorize either code change.
+It must also record intrinsic/frame/rendition baseline identity so media or frame
+drift cannot silently reinterpret an existing drawing.
 
 ## Responsive
 

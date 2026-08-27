@@ -28,6 +28,35 @@ Node width and height come from the Zustand canvas data and React Flow's outer t
 - target/source handles sit at the horizontal midpoint
 - optional LibTV watermark is rendered at the image's top-left
 
+## Media And Frame Authority
+
+The current runtime has two dimension owners that must not be conflated:
+
+- `ImageNodeData.width/height` describes the clone's intended media dimensions;
+- the React Flow node `width/height` describes the graph frame and selected-overlay anchor.
+
+The five initial landscape fixtures deliberately align those values with the
+current LibTV source samples. Generic image creation, most derived-image actions
+and portrait/square Director captures do not: they can retain one media ratio
+while falling back to a `512x288` graph frame. The resulting centered
+`object-cover` crop is a current runtime limitation, not a source-backed product
+rule.
+
+The normative authority, frame-policy and rendition rules are in
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md).
+In particular:
+
+- ordinary source-shaped landscape fixtures use `CANVAS_PRIMARY_IMAGE` with a
+  media-shaped frame and centered cover;
+- thumbnail dimensions, generation labels and React Flow measured dimensions do
+  not replace full-media intrinsic dimensions;
+- a future media/output switch must update identity and metadata atomically and
+  may reflow the frame only through a declared policy;
+- passive measurement may refresh toolbar/panel anchors but is not semantic
+  resize or graph history;
+- source portrait/square behavior remains gated and must not be invented from
+  the Open Canvas fixed-card policy.
+
 ## Selected State
 
 - cyan border and low-opacity cyan focus ring
@@ -110,6 +139,11 @@ Batch 29 uses the ordinary ImageNode renderer for video frame outputs:
 - selecting the result opens the same ImageToolbar and ImageEditPanel as an
   ordinary image.
 
+The capture metadata preserves the source video resolution, but the current
+graph insertion path still uses the generic landscape image frame. This is
+harmless only for matching landscape media and is explicitly tracked as
+`LIBTV-MRG-005`; the spec does not claim portrait/square capture parity.
+
 Stable root selector: `[data-video-frame-capture]`.
 
 ## Required Regressions
@@ -141,6 +175,9 @@ Stable root selector: `[data-video-frame-capture]`.
 - video frame results preserve metadata, ordinary image overlays and
   single-transaction history
 - `scripts/verify-liblib-batch29.py` remains green
+- future `LIBTV-VR-023` replaces ratio-coincidence assumptions with deterministic
+  square/portrait/odd-ratio, mixed-output and editor-transform checks; until that
+  fixture exists, existing batch verifiers are compatibility evidence only
 
 ## Assets
 

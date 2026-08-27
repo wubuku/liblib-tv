@@ -45,6 +45,30 @@ PictureEditPanel
 - submit creates a pending graph placeholder only;
 - no real video, task ID, power calculation or polling.
 
+## Coordinate Geometry Boundary
+
+The current overlay is `absolute inset-0` over the rendered video node and stores
+coordinates normalized to that visible rectangle. When the poster uses
+`object-cover` and its ratio differs from the node frame, the stored values
+describe the cropped presentation plane, not the full source video. Calling them
+source-video coordinates would be incorrect.
+
+The future `RECORD_EDITOR` open gate and commit payload must follow
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md):
+
+- capture media/output identity, validated intrinsic dimensions, content box,
+  frame revision and rendition revision;
+- declare whether the operation targets `FULL_INTRINSIC` or intentionally targets
+  `VISIBLE_RENDER`;
+- for full-media operations, map pointer coordinates through the active
+  cover/contain transform before normalization;
+- treat output switch, media replacement, frame/rendition change, delete or
+  canvas switch as editor drift rather than silently rebinding marks;
+- include the captured baseline and coordinate intent in the graph handoff.
+
+This transform is designed but not implemented. The existing mark selectors and
+Batch 31 verifier prove local interaction only, not intrinsic-media targeting.
+
 ## Editor Session Boundary
 
 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)

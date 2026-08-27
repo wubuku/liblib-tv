@@ -21,6 +21,20 @@
 - Completion action: one store transaction creates persistent `shot-breakdown-result` nodes
 - Result state: three storyboard groups, one motion group and one music node, explicitly not a real upstream analysis task
 
+## Media Rendition Boundary
+
+The current source selector and result cards use fixed near-`16:9` frames with
+`object-cover`. This is a compact scanning role, not an authority for ordinary
+media-node, detail-view, editor or export geometry. Non-`16:9` source/result
+media can be visibly cropped by the current prototype.
+
+The `TYPE_FIXED` / `REFERENCE_THUMBNAIL` policy in
+[`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)
+allows that crop only as an explicit surface rendition. Source intrinsic
+dimensions and eventual result output metadata must remain separate; no
+thumbnail or request ratio may overwrite them. `LIBTV-MRG-013` and the designed
+`LIBTV-VR-023` retain square/portrait coverage as future work.
+
 ## States
 
 | State | Behavior |
