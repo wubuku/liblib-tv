@@ -125,6 +125,7 @@ current source code + focused current run
 | `liblib-live-YYYY-MM-DD/` | `DATED_SOURCE_SNAPSHOT` | 指定日期、URL、登录态和 fixture 的源站观察 | 新复核另建日期记录或专项 audit；旧 JSON/截图不改写。 |
 | `liblib-seedance-2.5-2026-08-25/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | Seedance 主推能力、当前缺口、风险和授权闸门 | `FEATURE_GAP_MATRIX`/go-no-go 是当前导航；背景文章不是实现承诺。 |
 | `open-canvas-2026-08-26/` | `CURRENT_RESEARCH` + `DATED_SOURCE_SNAPSHOT` | 固定 commit 的上游源码事实、采纳决策和 LibTV 实施交接 | `EVIDENCE_MATRIX`/源码报告负责固定事实，`ADOPTION_DECISION_MATRIX`/交接蓝图负责当前治理，process/model 矩阵负责各自设计权威，版本协议负责上游更新；不能替代 LibTV 源站合同。 |
+| `storyai-3d-director-desk-2026-08-27/` | `CURRENT_RESEARCH` + `CURRENT_GUIDANCE` | 固定 StoryAI commit、当前 Director 跨批次进展、借鉴决策与后续路线 | `PROGRESS_AUDIT`/`EVIDENCE_MATRIX` 负责当前事实，借鉴矩阵/路线图负责当前建议；Batch 34-50/59 继续承担历史合同，不以功能数量替代项目/history/resource/verification 成熟度。 |
 | Open Canvas media ingress research plan | `HISTORICAL_CONTRACT` | 2026-08-27 media ingress/resource lifecycle 的计划、执行顺序、停止条件和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + lifecycle contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
 | Open Canvas editor session research plan | `HISTORICAL_CONTRACT` | 2026-08-27 editor session/commit/history 的计划、问题拆解、停止条件和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + editor contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
 | Open Canvas media rendition research plan | `HISTORICAL_CONTRACT` | 2026-08-27 media rendition/aspect/node geometry 的计划、问题拆解、停止条件、里程碑和完成记录 | 计划完成后保留在专题目录；stable guidance 由 dated audit + geometry contract 承担，只有新证据/授权/SHA 变化才新建计划。 |
@@ -146,6 +147,7 @@ current source code + focused current run
 |---|---|---|---|
 | `design-references/**` | `EVIDENCE_ARTIFACT` | 某次源站或 clone 截图 | 先读最近的 `SCREENSHOT_ANALYSIS.md`；文件被修改不代表解释已更新。 |
 | `research/upstream/open-canvas` | 固定 upstream evidence | Open Canvas 固定 commit 源码 | submodule 不在研究批次中修改。 |
+| `research/upstream/storyai-3d-director-desk` | 固定 upstream evidence | StoryAI 3D Director Desk 固定 commit 源码 | 当前固定 `8c8bd361790be4d37158a7430365e65546e358fe`；先做版本影响审计，未经授权不移动 submodule。 |
 | `docs/drafts/` | active draft container | 尚未稳定的计划/设计 | 当前没有 standalone draft；Batch 自带 PLAN 留在 Batch。 |
 | `docs/archive/` | `ARCHIVED` container | 有明确替代入口、无需继续维护的文档 | 当前没有归档候选。 |
 

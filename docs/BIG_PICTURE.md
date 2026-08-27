@@ -180,6 +180,13 @@ React Flow change
   相机轨道还支持七种 source-named 预设运镜的替换/追加生成和 follow/
   no-room guards
 
+StoryAI 借鉴与 Director 当前进展已有独立跨批次权威：固定上游、能力对照、
+运行态复核、证据边界和后续路线见
+[`storyai-3d-director-desk-2026-08-27/`](research/storyai-3d-director-desk-2026-08-27/README.md)。
+当前结论不是“功能未够多”，而是可见能力已经超过上游，下一阶段应优先补
+per-project scene、版本化导入导出/持久化、领域 undo/redo、真实资源加载和
+统一 Director gate；这些仍是建议和待授权工作，不表示 runtime 已具备。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

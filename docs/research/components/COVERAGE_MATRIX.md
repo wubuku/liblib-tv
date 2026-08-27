@@ -93,7 +93,7 @@
 
 ## 4. Director Desk
 
-Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-50 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-50 已形成有界 group/crowd、capture gallery、model-library、local-model persistence、viewport gizmo 与 workspace shell/keyboard 合同和专项 verifier。
+Director 是 LibTV clone 内的独立领域。当前跨批次进展、风险和路线首先读取 [`storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md`](../storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md)；组件行为主要由 Batch 35-50/59 的领域合同覆盖，不能直接套用普通画布的 node/panel 规则。Batch 34 是考古与可借鉴性研究，没有专项 verifier；Batch 45-50/59 已形成有界 group/crowd、capture gallery、model-library、local-model persistence、viewport gizmo、workspace shell/keyboard 与 asset-library 合同和专项 verifier。
 
 | 组件/模块 | 源码入口 | 领域合同/证据 | 当前状态 | 下一步 |
 |---|---|---|---|---|
@@ -113,6 +113,7 @@ Director 是 LibTV clone 内的独立领域。组件行为主要由 Batch 35-50 
 | Director Batch 48 local-model slice | `DirectorViewport` + `directorStore` + `directorLocalModelImport` | Batch 48 `DIRECTOR_LOCAL_MODEL_LIBRARY.spec.md`、source evidence、focused verifier、screenshot ledger | `DOMAIN_CONTRACT` | 多文件 FBX/OBJ descriptor、localStorage 恢复、重复加入、关联实例清理和响应式边界已稳定；真实 mesh loading/远程同步仍不在合同内。 |
 | Director Batch 49 viewport gizmo slice | `DirectorViewport` + `directorStore` | Batch 49 `DIRECTOR_VIEWPORT_GIZMO.spec.md`、source evidence、upstream archaeology、implementation、screenshot analysis、maturity assessment | `DOMAIN_CONTRACT` | clone-owned 方向反馈和离散视角已稳定；不把上游 gizmo 或本批结果当成 LibTV source-exact renderer/CSS。 |
 | Director Batch 50 workspace shell slice | `DirectorDesk` + `DirectorViewport` + `directorStore` + `page.tsx` | Batch 50 `DIRECTOR_WORKSPACE_SHELL.spec.md`、source evidence、upstream archaeology、implementation、screenshot analysis、maturity assessment | `DOMAIN_CONTRACT` | clone-owned 侧栏折叠、viewport 扩展、mobile drawer recovery、focus/keyboard boundary 已稳定；不把上游或本批结果当成 LibTV source-exact shell。 |
+| Director Batch 59 asset-library slice | `DirectorResourceLibrary` + `DirectorViewport` + `directorStore` | Batch 59 plan/source evidence/spec/implementation/runtime audit/screenshot analysis/maturity assessment | `DOMAIN_CONTRACT` | 搜索、preview-only selection、显式 proxy insertion 和 Inspector continuity 已稳定；不证明真实 asset loading、远端资源、生产持久化或 LibTV source-exact surface。 |
 
 ## 5. 明确不作为 LibTV 合同的组件
 

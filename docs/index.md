@@ -63,6 +63,7 @@ graph TD
 - [`research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_DEPENDENCY_RISK_QUEUE.md)：五项主推能力的共享底座、依赖关系、风险登记和研究优先级队列。
 - [`research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)：编码授权前的继续研究、授权条件、fixture 规格和停止闸门。
 - [`research/liblib-canvas-batch59-2026-08-27/`](research/liblib-canvas-batch59-2026-08-27/)：Director 资源库搜索、预览与显式加入场景的 clone-owned 实施、证据边界和 focused verifier。
+- [`research/storyai-3d-director-desk-2026-08-27/`](research/storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游、当前 Director 跨批次进展、借鉴决策、证据边界和下一阶段路线图。
 - [`research/liblib-canvas-batch60-2026-08-26/`](research/liblib-canvas-batch60-2026-08-26/)：普通画布图片上下双浮层 owner 连续性、panel 命中边界、active-tool replacement 和 focused verifier。
 - [`research/liblib-canvas-batch61-2026-08-27/`](research/liblib-canvas-batch61-2026-08-27/)：React Flow whole-batch change routing、current-snapshot transport、edge selection owner 和 `LIBTV-VR-016` 的实施、runtime audit 与截图成本台账。
 - [`research/liblib-canvas-batch62-2026-08-27/`](research/liblib-canvas-batch62-2026-08-27/)：selection command snapshot、editable/IME guard、foreground shortcut suspension、单层 Escape 与 canvas focus fallback 的计划和实施历史。

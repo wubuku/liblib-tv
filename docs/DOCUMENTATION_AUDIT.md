@@ -56,6 +56,7 @@ AGENTS.md / README.md
 | DOC-15 | 首轮 live gap、Seedance gap、verification coverage 和多个 runtime catalog 各自准确，但没有当前全路由优先队列 | agent 会继续按已完成的 2026-08-25 P0/P1 排期，或只从最近 Batch 猜下一项 | 新增 UI/UX parity backlog，以稳定 ID 统一价值、证据、验证准备度、风险、依赖和停止条件 |
 | DOC-16 | Open Canvas 描述性研究和模式卡充分，但借鉴结论尚未统一对齐当前 parity、fixture、verifier 和授权体系 | agent 可能把“值得借鉴”误读为直接移植，或继续沿用首轮 Batch A-E 编号 | 新增采纳决策矩阵和七层实施交接蓝图，保留 A-E provenance，并以 `OC-ADOPT-*` / `OC-BP-*` 对齐当前治理 ID |
 | DOC-17 | media ingress、editor session 和 overlay 已有合同，但 intrinsic/output/request/frame/measured/editor dimensions 仍混用，且 Open Canvas fixed-card 方法容易被误当 LibTV visual truth | 后续 agent 会用 landscape 单样本、CSS size 或 `object-fit` 修表象，造成 crop、anchor、output-switch 和编辑器坐标漂移 | 新增 dated audit、formal geometry contract、`OC-PATTERN-13`、`DEC-039`、`LIBTV-PAR-016`、fixture/`VR-023` 和 `OC-EQ-009`，并贯穿组件规格、任务导航、验证与生命周期治理 |
+| DOC-18 | StoryAI 借鉴与 Director 进展散落在 Batch 34-50/59、源码和 verifier 中，没有当前跨批次权威 | agent 容易把旧 Batch 成熟度当当前状态，或以功能数量误判 project/history/resource/verification 已完成 | 新增 StoryAI 专题 Hub、固定证据矩阵、当前进展审计、借鉴决策和分阶段路线图，并接入 Hub、任务地图、Big Picture、覆盖矩阵、ledger 与生命周期治理 |
 
 ## 3. 本轮已应用的修正
 
@@ -182,6 +183,21 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 
 复核发现并修正两处真实缺口：迁移计划保留了九个 `docs/drafts/` 层级的旧相对链接；research Hub 后半部跨切面合同清单漏列 geometry audit/contract。修正后没有残留旧 draft path、`ACTIVE` 状态、十二张模式卡或八项 evidence queue 文案。
 
+## 5.3 StoryAI / Director 可发现性复核
+
+本专题按“意图 -> 入口 -> 当前权威 -> 停止条件”反向复核，避免新增目录成为另一座文档孤岛：
+
+| 用户/agent 意图 | 首个可发现入口 | 当前权威或历史入口 | 执行与停止点 |
+|---|---|---|---|
+| 理解 Director 当前进展 | `AGENTS.md` -> [`BIG_PICTURE.md`](BIG_PICTURE.md) -> StoryAI topic README | `PROGRESS_AUDIT` + `EVIDENCE_MATRIX` | 功能深度高不等于 durable project/history/resource 已完成 |
+| 判断哪些 StoryAI 模式值得借 | [`AGENT_TASK_MAP.md`](AGENT_TASK_MAP.md) -> `BORROWING_DECISION_MATRIX` | 固定 SHA 上游 + 当前 clone 证据 | 上游不是 LibTV 视觉/行为真相，先做转译和反例检查 |
+| 安排下一阶段工作 | topic `NEXT_RESEARCH_AND_IMPLEMENTATION_ROADMAP` | `STORY-R01..R05` / `STORY-I01..I05` | 先研究 project/history contracts；没有编码授权不进入 implementation |
+| 修改 Director 组件 | [`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md) | topic progress audit + 对应 Batch 35-50/59 | 先检查 project owner、history、resource 和验证影响，不按单文件局部推导全域成熟度 |
+| 判断验证成熟度 | [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md) | 历史 focused scripts + topic current smoke | 17 条脚本尚未形成单一 current gate，不声明完整回归通过 |
+| 更新 StoryAI submodule | [`DOCUMENT_LIFECYCLE.md`](DOCUMENT_LIFECYCLE.md) + topic evidence matrix | 固定 `8c8bd361...` 与远端 freshness | 未经授权不移动指针；先重审 claim/pattern/roadmap 影响 |
+
+复核结果：StoryAI 专题已能从正式 Hub、研究 Hub、任务地图、Big Picture、组件覆盖、验证台账和生命周期七个方向进入；topic README 作为局部导航，dated plan/iteration log 保留执行历史，Batch 文件继续作为 provenance，不与当前跨批次判断竞争。
+
 ## 6. 验收
 
 本批维护完成的最低标准：
@@ -198,3 +214,4 @@ P2 生命周期审计随后确认 `drafts/`、`archive/` 当前都没有应搬�
 10. Open Canvas media ingress 的可借方法与反例、LibTV source surface、clone runtime island、正式生命周期合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，object URL/local preview 不会被文档误写成 durable upload。
 11. Open Canvas editor session/local history 的可借方法与反例、clone editor maturity、正式 commit/history 合同、source fixture queue 和 implementation handoff 可以沿单一 authority chain 反查，局部 `useState`、snapshot 或可见 Undo/Save 不会被误写成完整能力。
 12. Open Canvas selected-output/surface-fit/measured-anchor 的可借方法与反例、clone dimension collision、正式 media geometry 合同、ratio-diverse fixture/source queue 和 implementation handoff 可以沿单一 authority chain 反查，request aspect、CSS size、`object-fit` 或 passive measurement 不会被误写成 intrinsic media、semantic frame 或 source parity。
+13. StoryAI 固定上游、Director 当前进展、借鉴决策、后续路线、组件入口和验证成熟度能沿同一 authority chain 反查，分散 Batch pass 不会被误写成当前完整回归或 source parity。
