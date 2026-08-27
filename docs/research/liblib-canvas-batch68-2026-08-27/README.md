@@ -1,6 +1,6 @@
 # Batch 68: Director Owner Registry And Session Lifecycle
 
-> 状态：`PLANNED`。
+> 状态：`COMPLETE / OWNER_SESSION_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -57,3 +57,19 @@ LibTV source-exact DOM/CSS/文案校准
 
 本批及后续实现保持在 `master` 主工作区。除非用户明确要求某个功能使用隔离
 worktree，不再自动创建并行 worktree。
+
+## 完成结论
+
+Batch 68 已实现并验证：
+
+- structured `route + canvasId + sourceNodeId` owner key；
+- per-owner project ID、per-open session ID 与 monotonic generation；
+- A -> B -> A、cross-canvas、close/reopen document 和 capture sidecar 隔离；
+- same active owner focus no-op；
+- duplicate owner 使用新默认 project，不共享原 project；
+- active source delete 关闭 session，不回绑其他 canvas/source；
+- Director session open/switch/close 对普通 graph/history 零额外 mutation。
+
+本批没有完成 authored/runtime split、inactive owner tombstone reconciliation、
+async capture/export destination、Director history/delete 或 persistence。下一批最高
+价值切片是 `DIR-PROJECT-I03` authored/runtime projection split。

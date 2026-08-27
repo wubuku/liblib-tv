@@ -72,7 +72,7 @@ graph TD
 - [`research/liblib-canvas-batch65-2026-08-27/`](research/liblib-canvas-batch65-2026-08-27/)：responsive viewport bootstrap/stored ownership、A/B canvas restore、stale callback guard、runtime audit 与跨批回归收口。
 - [`research/liblib-canvas-batch66-2026-08-27/`](research/liblib-canvas-batch66-2026-08-27/)：Director project/session、command/history/reference-aware delete 和 current verifier authority 的计划、证据边界与实施历史。
 - [`research/liblib-canvas-batch67-2026-08-27/`](research/liblib-canvas-batch67-2026-08-27/)：Director Project Document V1、strict codec、snapshot adapter、invalid/future/reference corpus 与实施历史。
-- [`research/liblib-canvas-batch68-2026-08-27/`](research/liblib-canvas-batch68-2026-08-27/)：Director owner registry、project/session/generation、A/B owner 隔离、worktree 清理前置与计划中的 `LIBTV-VR-024` runtime slice。
+- [`research/liblib-canvas-batch68-2026-08-27/`](research/liblib-canvas-batch68-2026-08-27/)：Director owner registry、project/session/generation、A/B/cross-canvas 隔离、memory capture sidecar、worktree 清理与 `LIBTV-VR-024` focused runtime pass。
 - [`research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director 17 个历史 browser verifier、Batch 67 pure codec gate、merge candidate/historical-only 分级与 `LIBTV-VR-024` 入口。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。

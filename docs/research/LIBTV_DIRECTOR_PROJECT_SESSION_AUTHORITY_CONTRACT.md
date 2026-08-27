@@ -1,7 +1,8 @@
 # LibTV Director Project And Session Authority Contract
 
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
-> `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_RUNTIME_MISSING` /
+> `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_FOCUSED_RUNTIME_PASS` /
+> `AUTHORED_ASYNC_PERSISTENCE_RUNTIME_MISSING` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -65,6 +66,13 @@ Director project document
   non-finite 输入；
 - codec 仍未成为 `directorStore` source of truth，单例 session 与
   authored/runtime 混写事实没有因此消失。
+- Batch 68 已增加 structured owner key、in-memory project registry、
+  project/session/generation、document restore adapter 和 owner-aware
+  open/switch/close；
+- A/B source、cross-canvas、close/reopen、duplicate reset、active delete close 和
+  memory capture sidecar 已通过 focused runtime；
+- `objects` authored/sampled 混写、inactive owner tombstone、async graph
+  destination、persistence 与 history/delete 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -602,11 +610,16 @@ document、duplicate、delete和 delayed result。
 
 ### `DIR-PROJECT-I02` Owner Registry And Session Lifecycle
 
-- in-memory owner registry；
-- open/switch/close generation；
-- current store adapter；
-- preserve current UI shell；
-- no browser persistence。
+状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 68。
+
+- 已增加 structured owner key 和 in-memory registry；
+- 已增加 per-owner project ID、per-open session ID 与 generation；
+- 已接 current store snapshot/restore adapter；
+- 已验证 A/B、cross-canvas、close/reopen 和 same-owner focus；
+- duplicate source 当前采用新默认 project reset，不共享原 project；
+- active source invalid 会 close session，inactive registry tombstone 未接；
+- capture bytes/sent graph ID 仅保存在 memory sidecar；
+- 没有 browser persistence、async destination 或 authored/runtime split。
 
 ### `DIR-PROJECT-I03` Authored/Runtime Projection Split
 
@@ -648,14 +661,19 @@ document、duplicate、delete和 delayed result。
 
 ## 17. Completion Criteria
 
-本合同的 codec 子项已在 Batch 67 升级为 `V1_CODEC_RUNTIME_PASS`。整体 owner/session
-runtime maturity 只有在以下剩余条件同时成立后才能从
-`OWNER_SESSION_RUNTIME_MISSING` 升级：
+本合同的 codec 子项已在 Batch 67 升级为 `V1_CODEC_RUNTIME_PASS`，同步
+owner/session 子项已在 Batch 68 升级为 `OWNER_SESSION_FOCUSED_RUNTIME_PASS`：
 
-1. 至少两个 source node和两个 canvas证明project不串场；
-2. authored document在seek/playback后不漂移；
-3. open/switch/close/delete/duplicate都有typed disposition；
-4. delayed result不能写入错误canvas/source/generation；
-5. session/runtime/resource exclusion 在 store integration 后继续成立；
-6. owner/session focused verifier、`npm run check`、docs check通过；
-7. 实施记录、commit、push和current manifest更新完成。
+1. 两个 source node 和两个 canvas 已证明 project 不串场；
+2. open/switch/close、same-owner focus、duplicate reset 和 active delete close
+   已有 typed/focused runtime；
+3. session/runtime/capture sidecar exclusion 在 store integration 后仍成立；
+4. focused verifier、`npm run check`、docs check 和实施台账通过。
+
+整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
+
+1. authored document 在 seek/playback 后 fingerprint 不漂移；
+2. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
+3. delayed capture/export 只写 captured canvas/source/generation；
+4. duplicate deep clone/remap 与 resource policy 明确；
+5. persistence adapter 有 corrupt/quota/stale fixture。

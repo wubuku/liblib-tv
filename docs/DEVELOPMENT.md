@@ -95,13 +95,16 @@ The LibTV batch scripts use independent pages when state contamination is possib
 python3 scripts/verify-liblib-batch<N>.py
 ```
 
-当前专项 verifier 覆盖 Batch 4-33、35-50、52-65、67（中间无脚本的 batch
-除外）。Batch 67 是不需要 dev server 的 Director V1 pure codec gate；Batch 34
-是 research-only，Batch 66 是 authority/governance 批次，两者都不应被隐式纳入
-脚本循环。当前 Director reliability batch 至少运行：
+当前专项 verifier 覆盖 Batch 4-33、35-50、52-65、67-68（中间无脚本的 batch
+除外）。Batch 67 是不需要 dev server 的 Director V1 pure codec gate；Batch 68
+组合 pure registry 与 browser owner/session gate。Batch 34 是 research-only，
+Batch 66 是 authority/governance 批次，两者都不应被隐式纳入脚本循环。当前
+Director reliability batch 至少运行：
 
 ```bash
 python3 scripts/verify-liblib-batch67.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch68.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch59.py
 ```

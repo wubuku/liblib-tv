@@ -126,7 +126,7 @@ def open_owner(page: Page, canvas_id: str, node_id: str) -> dict:
             typeof state.sessionId === "string"
           );
         }""",
-        {"canvasId": canvas_id, "nodeId": node_id},
+        arg={"canvasId": canvas_id, "nodeId": node_id},
     )
     page.locator("[data-director-workspace]").wait_for(state="visible")
     workspace = page.locator("[data-director-workspace]")
@@ -195,8 +195,8 @@ def run_browser_verifier(page: Page) -> dict:
             sentNodeId: "batch68-graph-result-a",
           });
           state.setTimelineTime(2);
-          state.setTimelinePlaying(true);
           state.startMotionPathDrawing("pencil");
+          state.setTimelinePlaying(true);
           state.setViewMode("camera");
           state.setTransformMode("rotate");
           state.toggleThirds();
@@ -303,13 +303,15 @@ def run_browser_verifier(page: Page) -> dict:
           const store = window.__libtv_store.getState();
           const before = new Set(store.canvases.map((canvas) => canvas.id));
           store.addCanvas("Batch 68 cross-canvas");
-          const canvasId = store.activeCanvasId;
+          const nextStore = window.__libtv_store.getState();
+          const canvasId = nextStore.activeCanvasId;
           if (before.has(canvasId)) throw new Error("Canvas creation failed");
           const beforeNodes = new Set(
-            store.getActiveCanvas()?.nodes.map((node) => node.id) || [],
+            nextStore.getActiveCanvas()?.nodes.map((node) => node.id) || [],
           );
-          store.addNode("script-execution", { title: "Batch 68 C" });
-          const nodeId = store
+          nextStore.addNode("script-execution", { title: "Batch 68 C" });
+          const nodeId = window.__libtv_store
+            .getState()
             .getActiveCanvas()
             ?.nodes.find((node) => !beforeNodes.has(node.id))?.id;
           if (!nodeId) throw new Error("Cross-canvas node creation failed");

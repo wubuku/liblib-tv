@@ -191,9 +191,12 @@ Batch 66 已将这项判断进一步固化为 `DEC-040`、两份 Director author
 `DirectorProjectDocumentV1`、strict decode/normalize/encode、当前 state snapshot
 adapter 和 17-case pure corpus；它明确排除 selection/playback/panel/phone runtime、
 capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch 67 pure
-codec + Batch 59 browser smoke；project registry、按 owner 恢复、authored/runtime
-split、Director history/delete 和 persistence 仍未实现，不能因已有 codec 就宣称
-单例 session 风险已关闭。
+codec + Batch 68 owner/session + Batch 59 browser smoke。Batch 68 已建立
+route/canvas/source owner、per-owner in-memory project、fresh session/generation、
+A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
+focused slice 关闭。authored/runtime split、inactive tombstone、async destination、
+Director history/delete 和 persistence 仍未实现，不能把 owner isolation pass
+写成完整 project authority。
 
 ### 5.2 状态边界
 

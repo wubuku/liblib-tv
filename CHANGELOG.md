@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 68 Director owner registry and session lifecycle with structured
+  route/canvas/source ownership, per-owner project records, fresh session
+  generations, A/B and cross-canvas isolation, memory-only capture sidecars and
+  a pure plus Playwright verifier.
 - Added Batch 67 Director Project Document V1 with strict
   decode/normalize/encode, an explicit current-state snapshot adapter and a
   dependency-free 17-case contract verifier; project registry, persistence and

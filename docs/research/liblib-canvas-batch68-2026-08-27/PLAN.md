@@ -1,6 +1,6 @@
 # Batch 68 计划：Director Owner Registry And Session Lifecycle
 
-> 状态：`IMPLEMENTED_FOCUSED_PASS / BROWSER_AND_FULL_GATES_PENDING`。
+> 状态：`COMPLETE / OWNER_SESSION_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 >
@@ -158,7 +158,7 @@ src/lib/directorProjectRegistry.ts
 - source duplicate/new canvas owner 首次打开得到独立默认 project；
 - 保持现有普通 graph selection、capture return 和 foreground shortcut 行为。
 
-状态：`DONE / BROWSER_PENDING`。
+状态：`DONE / BROWSER_PASS`。
 
 ### Slice E：`LIBTV-VR-024` owner/session verifier
 
@@ -179,7 +179,7 @@ ordinary graph count/history isolation
 
 继续运行 Batch 67 pure codec 与 Batch 59 browser smoke。
 
-状态：pure registry corpus 已通过；focused Playwright、跨批和 full gate 待运行。
+状态：`DONE / PURE_AND_BROWSER_PASS`。Batch 67、Batch 59、docs 和 full gate 均通过。
 
 ### Slice F：治理与收口
 
@@ -188,39 +188,41 @@ ordinary graph count/history isolation
 - 运行专项 verifier、跨批 smoke、`npm run docs:check`、`npm run check`；
 - 记录 warning、known boundary、commit/push 和下一批建议。
 
+状态：`DONE`。
+
 ## 5. 验收标准
 
 代码：
 
-- [ ] owner key 对 route/canvas/source 三元组无碰撞；
-- [ ] A/B source 和 A/B canvas 的 project ID/document/capture sidecar 不串场；
-- [ ] reopen 同 owner 保持 project ID 与 authored document；
-- [ ] session ID 与 generation 在 reopen/switch 后更新；
-- [ ] same active owner open 是 no-op；
-- [ ] close/switch 停止 playback/capture/path draft/phone recording；
-- [ ] invalid/future document zero replacement；
-- [ ] duplicate owner 不共享原 project；
-- [ ] 普通 canvas graph/history 不因 open/switch/close 改变；
-- [ ] TypeScript strict，无 `any`。
+- [x] owner key 对 route/canvas/source 三元组无碰撞；
+- [x] A/B source 和 A/B canvas 的 project ID/document/capture sidecar 不串场；
+- [x] reopen 同 owner 保持 project ID 与当前 project document；
+- [x] session ID 与 generation 在 reopen/switch 后更新；
+- [x] same active owner open 是 no-op；
+- [x] close/switch 停止 playback/capture/path draft/phone recording；
+- [x] invalid/future document zero replacement；
+- [x] duplicate owner 不共享原 project；
+- [x] 普通 canvas graph/history 不因 open/switch/close 改变；
+- [x] TypeScript strict，无 `any`。
 
 验证：
 
-- [ ] Batch 68 pure/store verifier；
-- [ ] Batch 68 Playwright focused verifier；
-- [ ] Batch 67 pure codec；
-- [ ] Batch 59 current Director smoke；
-- [ ] `npm run docs:check`；
-- [ ] `npm run check`；
-- [ ] `git diff --check`；
-- [ ] submodule pointers 未变化。
+- [x] Batch 68 pure/store verifier；
+- [x] Batch 68 Playwright focused verifier；
+- [x] Batch 67 pure codec；
+- [x] Batch 59 current Director smoke；
+- [x] `npm run docs:check`；
+- [x] `npm run check`；
+- [x] `git diff --check`；
+- [x] submodule pointers 未变化。
 
 治理：
 
-- [ ] 计划 checkpoint 后所有其他 worktree 已安全审计和移除；
-- [ ] 关键进展及时 commit/push；
-- [ ] 工作区最终干净且 `master...origin/master` 同步；
-- [ ] 未把 Open Canvas/StoryAI 方法写成 LibTV source fact；
-- [ ] 未把 owner isolation pass 写成 authored/runtime split pass。
+- [x] 计划 checkpoint 后所有其他 worktree 已安全审计和移除；
+- [x] 关键进展及时 commit/push；
+- [x] 工作区最终干净且 `master...origin/master` 同步；
+- [x] 未把 Open Canvas/StoryAI 方法写成 LibTV source fact；
+- [x] 未把 owner isolation pass 写成 authored/runtime split pass。
 
 ## 6. 停止条件
 

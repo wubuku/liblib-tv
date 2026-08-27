@@ -56,7 +56,7 @@ graph TD
 | FrameOS nodes | `src/components/frameos/nodes/` | shared shell plus text/image/video renderers |
 | Director desk | `src/components/director/` | full-screen shell, R3F scene, semantic tree, Inspector, framing, relationship-aware cameras, articulated character posing, typed animation timeline, editable motion paths/speed curves, browser video recording and phone virtual-camera local preview |
 | State | `src/store/` | graph/history in `canvasStore`, page overlays in `uiStore`, serializable 3D authoring and timeline state in `directorStore` |
-| Pure helpers | `src/lib/` | graph/viewport helpers, organize topology, class-name utilities and Director portable document codec |
+| Pure helpers | `src/lib/` | graph/viewport helpers, organize topology, class-name utilities, Director portable document codec, owner registry and runtime restore adapter |
 | Types | `src/types/` | route-specific data contracts |
 | Evidence | `docs/research/` | source observations, specs, raw JSON and batch history |
 
@@ -90,8 +90,12 @@ The director path uses a separate state and renderer boundary:
 
 ```text
 director node CTA
-  -> uiStore.activeDirectorNodeId
+  -> uiStore.activeDirectorCanvasId + activeDirectorNodeId
   -> lazy client-only DirectorDesk
+  -> structured Director owner key
+  -> in-memory per-owner project registry
+  -> project ID + session ID + generation
+  -> DirectorProjectDocumentV1 restore/create
   -> directorStore scene/object/camera/timeline edits
   -> typed transform/camera/pose tracks
   -> optional articulated-character preset and SAM control authoring
@@ -123,9 +127,13 @@ object plus typed camera track.
 
 `src/lib/directorProjectDocument.ts` provides a browser-independent V1 authored
 document boundary with strict unknown-field, version, finite-number, identity
-and reference validation. It is currently an adapter over `directorStore`, not
-the store's source of truth: project registry, owner-scoped session restore and
-authored/runtime separation remain later reliability slices.
+and reference validation. `src/lib/directorProjectRegistry.ts` and
+`directorProjectRuntimeAdapter.ts` now bind that document to a structured
+route/canvas/source owner, per-owner in-memory project, fresh session/generation
+and deterministic session UI/runtime reset. Capture bytes and graph projection
+IDs remain in a memory-only sidecar. Timeline sampling still writes the current
+`objects` container, so authored/runtime projection separation remains the next
+reliability slice.
 
 ### FrameOS
 

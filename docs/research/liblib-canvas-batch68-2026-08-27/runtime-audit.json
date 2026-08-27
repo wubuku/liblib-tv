@@ -1,0 +1,46 @@
+{
+  "batch": 68,
+  "status": "SCRIPT_RECORDED_PASS",
+  "date": "2026-08-27",
+  "contract": {
+    "scope": "clone-owned Director owner registry and session lifecycle",
+    "sourceExact": false,
+    "browserPersistence": false,
+    "authoredRuntimeSplit": false,
+    "historyDelete": false
+  },
+  "pure": {
+    "status": "PASS",
+    "ownerKeys": 3,
+    "projects": 3,
+    "activeProjectId": "project-3",
+    "activeGeneration": 2,
+    "dispositions": {
+      "create": "CREATED",
+      "focus": "FOCUSED",
+      "restore": "RESTORED",
+      "stale": "STALE",
+      "tombstone": "REJECTED"
+    },
+    "documentIsolation": true,
+    "memorySidecarIsolation": true,
+    "zeroPartialRejection": true
+  },
+  "browser": {
+    "ownerIsolation": "pass",
+    "sameOwnerFocus": "pass",
+    "closeReopenGeneration": "pass",
+    "crossCanvasIsolation": "pass",
+    "duplicateResetPolicy": "pass",
+    "activeDeleteClose": "pass",
+    "memoryCaptureSidecar": "pass",
+    "ordinaryGraphIsolation": "pass",
+    "projectsObserved": 4
+  },
+  "screenshots": [],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

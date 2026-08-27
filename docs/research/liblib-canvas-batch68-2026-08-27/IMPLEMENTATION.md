@@ -1,6 +1,6 @@
 # Batch 68 实施与验证记录
 
-> 状态：`IMPLEMENTED_FOCUSED_PASS / BROWSER_AND_FULL_GATES_PENDING`。
+> 状态：`COMPLETE / OWNER_SESSION_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 
@@ -89,7 +89,7 @@ worktree-agent-aba09f525c5282859 bad875e absorbed-by-master=yes
 ## 5. Verifier 实施
 
 - `scripts/verify-liblib-batch68.mjs`：直接执行实际 registry + Batch 67 codec；
-- `scripts/verify-liblib-batch68.py`：计划组合 pure corpus 与 focused Playwright；
+- `scripts/verify-liblib-batch68.py`：组合 pure corpus 与 focused Playwright；
 - 没有截图识别或视觉 artifact 写入。
 
 当前 pure 结果：
@@ -115,9 +115,26 @@ zeroPartialRejection=true
 npm run typecheck：PASS
 npx eslint changed TS/TSX + verifier：PASS
 git diff --check：PASS
-Batch 68 Playwright：PENDING
-Batch 67 / Batch 59 regression：PENDING
-npm run check：PENDING
+Batch 68 Playwright：PASS
+Batch 67 pure codec：PASS
+Batch 59 current browser smoke：PASS
+npm run docs:check：PASS，552 Markdown files / 3249 local targets
+npm run check：PASS，9 条既有 lint warning，typecheck/build 通过
+```
+
+Batch 68 browser corpus 通过：
+
+```text
+A -> B -> A owner isolation
+same-owner focus no-op
+close/reopen project stable + fresh session/generation
+cross-canvas isolation
+duplicate owner -> distinct default project
+active source delete -> workspace/session close
+memory-only capture dataUrl/sentNodeId sidecar isolation
+ordinary graph/history isolation
+zero console/page/request errors
+zero screenshot artifact
 ```
 
 ## 6. 当前已知边界
@@ -131,13 +148,24 @@ npm run check：PENDING
 - capture `dataUrl/sentNodeId` 仅在内存 sidecar 隔离，不进入 V1 codec 或 persistence；
 - capture/export async destination owner 仍是后续 slice。
 
-## 7. 后续记录规则
+## 7. 实施历史与提交
 
-实施后在此追加：
+| 节点 | 结果 |
+|---|---|
+| Batch 67 收口 | `b95c088` |
+| Batch 68 计划 checkpoint | `39deb21` |
+| worktree 清理台账 | `2c100a9` |
+| registry/session 实现 checkpoint | `7aafbc9` |
+| verifier 修复 | Python `wait_for_function(arg=...)` 与 Zustand mutation 后 fresh snapshot |
+| 最终收口 | 本文件完成后 commit/push |
 
-- 实际 registry/session API；
-- reverse adapter 与 runtime reset 规则；
-- A/B owner fixture 与 rejection cases；
-- focused/browser/full gate 命令和结果；
-- warning、known boundary、commit/push；
-- 下一批的 high-value decision。
+## 8. 下一批建议
+
+最高价值下一步是 `DIR-PROJECT-I03`：
+
+1. 把 portable authored objects 与 timeline sampled render projection 分开；
+2. seek/playback 不再覆写可序列化 baseline；
+3. Inspector/Transform/auto-keyframe 明确写 authored base、current-time keyframe
+   或 named composite command；
+4. 为 seek/playback 后 document fingerprint stability 增加 pure + browser verifier；
+5. 完成后再进入 Director command/history/delete。

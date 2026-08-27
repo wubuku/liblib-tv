@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-68（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -83,20 +83,21 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 64 | Asset drawer host-resize anchor preservation |
 | Batch 65 | responsive viewport bootstrap/stored ownership and stale callback rejection |
 | Batch 67 | Director Project Document V1 pure strict codec, round-trip, runtime-field exclusion and invalid/future/reference corpus |
+| Batch 68 | Director structured owner key, in-memory project/session/generation, A/B and cross-canvas isolation, duplicate reset, active-delete close, memory capture sidecar and graph isolation |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch67.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch67.py scripts/verify-liblib-batch68.py; do
   python3 "$script" || exit 1
 done
 ```
 
 Batch 34 和 Batch 66 没有对应的专项 verifier，不应被循环命令隐式当作已验证
-行为。Batch 67 是无浏览器 pure codec gate，不生成截图；其余视觉脚本仍按各自
-batch screenshot ledger 维护。
+行为。Batch 67 是无浏览器 pure codec gate；Batch 68 是 pure + browser hybrid
+且不生成截图；其余视觉脚本仍按各自 batch screenshot ledger 维护。
 
 ## Browser Evidence Requirements
 
