@@ -87,6 +87,12 @@ import {
   type DirectorHistoryState,
 } from "@/lib/directorCommandKernel";
 import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
+import {
+  planDirectorDelete,
+  type DirectorDeleteCommand,
+  type DirectorDeletePlan,
+  type DirectorResourceDeletePolicy,
+} from "@/lib/directorDeletePlanner";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -415,6 +421,9 @@ interface DirectorState {
   cancelDirectorGesture: () => DirectorCommandResult;
   undoDirector: () => DirectorCommandResult;
   redoDirector: () => DirectorCommandResult;
+  deleteDirectorEntity: (
+    command: DirectorDeleteCommand,
+  ) => DirectorCommandResult;
   selectObject: (
     objectId: string | null,
     source?: "explicit" | "viewport",
@@ -430,7 +439,10 @@ interface DirectorState {
   }) => string | null;
   hydrateLocalModelLibrary: () => void;
   addLocalModelLibraryItem: (item: DirectorLocalModelLibraryItem) => void;
-  removeLocalModelLibraryItem: (assetId: string) => void;
+  removeLocalModelLibraryItem: (
+    assetId: string,
+    policy?: DirectorResourceDeletePolicy,
+  ) => DirectorCommandResult;
   addModelLibraryObject: (item: DirectorModelLibraryCardItem) => string;
   updateGroup: (
     groupId: string,
@@ -470,8 +482,8 @@ interface DirectorState {
   setCapturing: (capturing: boolean) => void;
   addCapture: (capture: DirectorCapture) => void;
   selectCapture: (captureId: string | null) => void;
-  removeCapture: (captureId: string) => void;
-  clearCaptures: () => void;
+  removeCapture: (captureId: string) => DirectorCommandResult;
+  clearCaptures: () => DirectorCommandResult;
   markCaptureSent: (captureId: string, nodeId: string) => void;
   setPhoneVcamStatus: (
     status: DirectorPhoneVcamStatus,
@@ -500,7 +512,7 @@ interface DirectorState {
   selectTimelineTrack: (trackId: string) => void;
   selectTimelineKeyframe: (trackId: string, keyframeId: string) => void;
   addTimelineTrack: (objectId?: string) => void;
-  removeTimelineTrack: (trackId?: string) => void;
+  removeTimelineTrack: (trackId?: string) => DirectorCommandResult;
   addTimelineKeyframe: (trackId?: string) => void;
   deleteTimelineKeyframe: (keyframeId?: string) => void;
   seekTimelineKeyframe: (direction: -1 | 1) => void;
@@ -579,7 +591,7 @@ interface DirectorState {
   resetMotionPath: (pathId?: string) => void;
   toggleMotionPathEnabled: (pathId?: string) => void;
   toggleMotionPathOrient: (pathId?: string) => void;
-  deleteMotionPath: (pathId?: string) => void;
+  deleteMotionPath: (pathId?: string) => DirectorCommandResult;
 }
 
 const defaultObjects: DirectorObject[] = [
@@ -1442,9 +1454,20 @@ function capturesForDirectorDocument(
   const archive = directorCaptureArchives.get(projectId);
   if (!archive) return [];
   return document.captureDescriptors
-    .map((descriptor) => archive.get(descriptor.id))
-    .filter((capture): capture is DirectorCapture => Boolean(capture))
-    .map((capture) => ({ ...capture }));
+    .map((descriptor) => {
+      const capture = archive.get(descriptor.id);
+      if (!capture) return null;
+      return {
+        ...capture,
+        cameraId: descriptor.cameraId,
+        cameraName: descriptor.cameraName,
+        aspectRatio: descriptor.aspectRatio,
+        width: descriptor.width,
+        height: descriptor.height,
+        createdAt: descriptor.createdAt,
+      };
+    })
+    .filter((capture): capture is DirectorCapture => Boolean(capture));
 }
 
 function historyForDirectorProject(projectId: string): DirectorHistoryState {
@@ -1620,6 +1643,190 @@ function restoreDirectorProjectState(
     localModelLibrary,
     timeline: restored.timeline,
     phoneVcam: createDefaultPhoneVcamState(),
+  };
+}
+
+interface DirectorDeleteStateProjection {
+  state: Partial<DirectorState>;
+  captures: DirectorCapture[];
+  localModelLibrary: DirectorLocalModelLibraryItem[];
+  selectionResult: {
+    selectedObjectId: string | null;
+    selectedObjectIds: string[];
+    selectedGroupId: string | null;
+  };
+}
+
+function projectDirectorDeleteState(
+  state: DirectorState,
+  plan: DirectorDeletePlan,
+  command: DirectorDeleteCommand,
+): DirectorDeleteStateProjection {
+  const restored = restoreDirectorProjectRuntimeSnapshotV1(plan.document);
+  const objectIds = new Set(restored.objects.map((object) => object.id));
+  const groupById = new Map(
+    restored.groups.map((group) => [group.id, group]),
+  );
+  const trackById = new Map(
+    restored.timeline.tracks.map((track) => [track.id, track]),
+  );
+  const pathById = new Map(
+    restored.timeline.motionPaths.map((path) => [path.id, path]),
+  );
+  const selectedTrack =
+    (state.timeline.selectedTrackId
+      ? trackById.get(state.timeline.selectedTrackId)
+      : null) ??
+    restored.timeline.tracks[0] ??
+    null;
+  const selectedKeyframeId =
+    selectedTrack?.keyframes.some(
+      (keyframe) => keyframe.id === state.timeline.selectedKeyframeId,
+    )
+      ? state.timeline.selectedKeyframeId
+      : null;
+  const selectedPath =
+    (state.timeline.selectedMotionPathId
+      ? pathById.get(state.timeline.selectedMotionPathId)
+      : null) ??
+    (selectedTrack?.motionPathId
+      ? pathById.get(selectedTrack.motionPathId)
+      : null) ??
+    null;
+  const selectedAnchorId =
+    selectedPath?.anchors.some(
+      (anchor) => anchor.id === state.timeline.selectedMotionPathAnchorId,
+    )
+      ? state.timeline.selectedMotionPathAnchorId
+      : null;
+  const deletedTrackIds = new Set(plan.closure.deletedTrackIds);
+  const deletedObjectIds = new Set(plan.closure.deletedObjectIds);
+  const deletedPathIds = new Set(plan.closure.deletedPathIds);
+  const draft = state.timeline.motionPathDraft;
+  const motionPathDraft =
+    draft &&
+    !deletedTrackIds.has(draft.trackId) &&
+    !deletedObjectIds.has(draft.objectId) &&
+    deletedPathIds.size === 0
+      ? draft
+      : null;
+  const presetApplication = state.timeline.cameraMotionPreset.application;
+  const presetTrack = presetApplication
+    ? trackById.get(presetApplication.trackId)
+    : null;
+  const cameraMotionPresetApplication =
+    presetApplication &&
+    presetTrack &&
+    presetApplication.generatedKeyframeIds.every((keyframeId) =>
+      presetTrack.keyframes.some((keyframe) => keyframe.id === keyframeId),
+    )
+      ? presetApplication
+      : null;
+  const presetError = state.timeline.cameraMotionPreset.error;
+  const cameraMotionPresetError =
+    presetError && trackById.has(presetError.trackId) ? presetError : null;
+  const currentTime = clampDirectorTimelineTime(
+    state.timeline.currentTime,
+    restored.timeline.duration,
+  );
+  const timeline: DirectorTimelineState = {
+    ...restored.timeline,
+    currentTime,
+    isPlaying: false,
+    zoom: state.timeline.zoom,
+    selectedTrackId: selectedTrack?.id ?? null,
+    selectedKeyframeId,
+    selectedMotionPathId: selectedPath?.id ?? null,
+    selectedMotionPathAnchorId: selectedAnchorId,
+    selectedMotionPathHandle: selectedAnchorId
+      ? state.timeline.selectedMotionPathHandle
+      : null,
+    motionPathDraft,
+    editorMode: state.timeline.editorMode,
+    cameraMotionPreset: {
+      application: cameraMotionPresetApplication,
+      error: cameraMotionPresetError,
+    },
+  };
+  const authoredObjects = restored.objects;
+  const objects = projectDirectorRuntimeObjects(
+    authoredObjects,
+    timeline,
+    restored.groups,
+  );
+
+  const survivingGroup = state.selectedGroupId
+    ? groupById.get(state.selectedGroupId)
+    : null;
+  let selectedGroupId = survivingGroup?.id ?? null;
+  let selectedObjectIds = survivingGroup
+    ? [...survivingGroup.characterIds]
+    : state.selectedObjectIds.filter((objectId) => objectIds.has(objectId));
+  let selectedObjectId =
+    state.selectedObjectId && objectIds.has(state.selectedObjectId)
+      ? state.selectedObjectId
+      : selectedObjectIds.at(-1) ?? null;
+  if (state.viewMode === "camera") {
+    selectedGroupId = null;
+    selectedObjectId = restored.activeCameraId;
+    selectedObjectIds = [restored.activeCameraId];
+  }
+
+  const activeCameraChanged =
+    state.activeCameraId !== restored.activeCameraId;
+  const phoneVcamInvalidated =
+    activeCameraChanged ||
+    (state.phoneVcam.importedCameraId !== null &&
+      deletedObjectIds.has(state.phoneVcam.importedCameraId)) ||
+    (state.phoneVcam.importedTrackId !== null &&
+      deletedTrackIds.has(state.phoneVcam.importedTrackId));
+  const captures = capturesForDirectorDocument(
+    plan.document.projectId,
+    plan.document,
+    state.captures,
+  );
+  const activeCaptureId =
+    state.activeCaptureId &&
+    captures.some((capture) => capture.id === state.activeCaptureId)
+      ? state.activeCaptureId
+      : captures[0]?.id ?? null;
+  const removesLocalLibraryDescriptor =
+    command.kind === "DELETE_RESOURCE" &&
+    plan.closure.deletedResourceIds.includes(command.resourceId);
+  const localModelLibrary = removesLocalLibraryDescriptor
+    ? state.localModelLibrary.filter(
+        (item) => item.id !== command.resourceId,
+      )
+    : state.localModelLibrary;
+
+  const selectionResult = {
+    selectedObjectId,
+    selectedObjectIds,
+    selectedGroupId,
+  };
+  return {
+    state: {
+      scene: restored.scene,
+      authoredObjects,
+      objects,
+      groups: restored.groups,
+      activeCameraId: restored.activeCameraId,
+      aspectRatio: restored.aspectRatio,
+      selectedObjectId,
+      selectedObjectIds,
+      selectedGroupId,
+      captures,
+      activeCaptureId,
+      localModelLibrary,
+      timeline,
+      phoneVcam: phoneVcamInvalidated
+        ? createDefaultPhoneVcamState()
+        : state.phoneVcam,
+      isCapturing: activeCameraChanged ? false : state.isCapturing,
+    },
+    captures,
+    localModelLibrary,
+    selectionResult,
   };
 }
 
@@ -2157,6 +2364,134 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     return result;
   },
 
+  deleteDirectorEntity: (command) => {
+    if (get().history.activeGesture) get().cancelDirectorGesture();
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: command.kind,
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const snapshot = getDirectorDocumentSnapshot(state);
+    if (!snapshot) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: command.kind,
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      command.kind === "DELETE_RESOURCE" &&
+      state.localModelLibrary.some(
+        (item) => item.id === command.resourceId,
+      ) &&
+      !snapshot.document.resourceRefs.some(
+        (resource) => resource.id === command.resourceId,
+      )
+    ) {
+      const localModelLibrary = state.localModelLibrary.filter(
+        (item) => item.id !== command.resourceId,
+      );
+      writePersistedLocalModelLibrary(localModelLibrary);
+      const result = makeDirectorCommandResult(state, {
+        commandKind: command.kind,
+        disposition: "COMMITTED",
+        projectChanged: false,
+        historyEntries: 0,
+        resourceEffects: [
+          {
+            kind: "descriptor-deleted",
+            resourceId: command.resourceId,
+          },
+        ],
+      });
+      set({ localModelLibrary, lastCommandResult: result });
+      return result;
+    }
+    const plan = planDirectorDelete(
+      snapshot.document,
+      command,
+      normalizeDirectorProjectDocument,
+    );
+    if (plan.disposition !== "READY") {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: plan.commandKind,
+        disposition:
+          plan.disposition === "NOOP" ? "NOOP" : "REJECTED",
+        reason: plan.reason,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const projection = projectDirectorDeleteState(state, plan, command);
+    if (
+      !updateActiveDirectorDocument(
+        state,
+        plan.document,
+        projection.captures,
+      )
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: plan.commandKind,
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    if (
+      projection.localModelLibrary !== state.localModelLibrary
+    ) {
+      writePersistedLocalModelLibrary(projection.localModelLibrary);
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: plan.commandKind,
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+      selectionResult: projection.selectionResult,
+      resourceEffects: plan.closure.deletedResourceIds.map(
+        (resourceId) => ({
+          kind:
+            command.kind === "DELETE_RESOURCE" &&
+            command.resourceId === resourceId
+              ? ("descriptor-deleted" as const)
+              : ("release-candidate" as const),
+          resourceId,
+        }),
+      ),
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: plan.commandKind,
+      projectId: snapshot.projectId,
+      generation: snapshot.generation,
+      before: snapshot.document,
+      after: plan.document,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(snapshot.projectId, history);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        ...projection.state,
+        history,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return result;
+  },
+
   selectObject: (objectId, source = "explicit") =>
     set((state) => {
       if (
@@ -2274,38 +2609,15 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     return createdGroupId;
   },
 
-  ungroupSelectedCharacters: () =>
-    set((state) => {
-      const group = state.groups.find(
-        (item) => item.id === state.selectedGroupId,
-      );
-      if (!group) return state;
-      const tracks = state.timeline.tracks.filter(
-        (track) => track.kind !== "group" || track.groupId !== group.id,
-      );
-      const selectedTrackRemoved = state.timeline.tracks.some(
-        (track) =>
-          track.id === state.timeline.selectedTrackId &&
-          track.kind === "group" &&
-          track.groupId === group.id,
-      );
-      return {
-        groups: state.groups.filter((item) => item.id !== group.id),
-        selectedObjectId:
-          group.characterIds[group.characterIds.length - 1] ?? null,
-        selectedObjectIds: [...group.characterIds],
-        selectedGroupId: null,
-        timeline: {
-          ...state.timeline,
-          tracks,
-          selectedTrackId: selectedTrackRemoved
-            ? tracks[0]?.id ?? null
-            : state.timeline.selectedTrackId,
-          selectedKeyframeId: null,
-          isPlaying: false,
-        },
-      };
-    }),
+  ungroupSelectedCharacters: () => {
+    const groupId = get().selectedGroupId;
+    if (!groupId) return;
+    get().deleteDirectorEntity({
+      kind: "DELETE_GROUP",
+      groupId,
+      memberPolicy: "UNGROUP",
+    });
+  },
 
   addCrowdArray: ({ rows, columns, spacing }) => {
     let createdGroupId: string | null = null;
@@ -2408,95 +2720,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       return { localModelLibrary: items };
     }),
 
-  removeLocalModelLibraryItem: (assetId) =>
-    set((state) => {
-      const localModelLibrary = state.localModelLibrary.filter(
-        (item) => item.id !== assetId,
-      );
-      writePersistedLocalModelLibrary(localModelLibrary);
-      const removedObjectIds = new Set(
-        state.objects
-          .filter(
-            (object) =>
-              object.libraryAssetId === assetId &&
-              object.libraryCategoryId === "my-models",
-          )
-          .map((object) => object.id),
-      );
-      if (removedObjectIds.size === 0) {
-        return { localModelLibrary };
-      }
-
-      const tracks = state.timeline.tracks.filter(
-        (track) => !removedObjectIds.has(track.objectId),
-      );
-      const removedTrackIds = new Set(
-        state.timeline.tracks
-          .filter((track) => removedObjectIds.has(track.objectId))
-          .map((track) => track.id),
-      );
-      const motionPaths = state.timeline.motionPaths.filter(
-        (path) => !removedObjectIds.has(path.objectId),
-      );
-      const removedMotionPathIds = new Set(
-        state.timeline.motionPaths
-          .filter((path) => removedObjectIds.has(path.objectId))
-          .map((path) => path.id),
-      );
-      const selectedTrackRemoved =
-        state.timeline.selectedTrackId !== null &&
-        removedTrackIds.has(state.timeline.selectedTrackId);
-      const selectedPathRemoved =
-        state.timeline.selectedMotionPathId !== null &&
-        removedMotionPathIds.has(state.timeline.selectedMotionPathId);
-      const authoredObjects = state.authoredObjects.filter(
-        (object) => !removedObjectIds.has(object.id),
-      );
-      return {
-        localModelLibrary,
-        authoredObjects,
-        objects: projectDirectorRuntimeObjects(
-          authoredObjects,
-          {
-            ...state.timeline,
-            tracks,
-            motionPaths,
-          },
-          state.groups,
-        ),
-        selectedObjectId: removedObjectIds.has(state.selectedObjectId ?? "")
-          ? null
-          : state.selectedObjectId,
-        selectedObjectIds: state.selectedObjectIds.filter(
-          (objectId) => !removedObjectIds.has(objectId),
-        ),
-        timeline: {
-          ...state.timeline,
-          tracks,
-          motionPaths,
-          selectedTrackId: selectedTrackRemoved
-            ? tracks[0]?.id ?? null
-            : state.timeline.selectedTrackId,
-          selectedKeyframeId: selectedTrackRemoved
-            ? null
-            : state.timeline.selectedKeyframeId,
-          selectedMotionPathId: selectedPathRemoved
-            ? null
-            : state.timeline.selectedMotionPathId,
-          selectedMotionPathAnchorId: selectedPathRemoved
-            ? null
-            : state.timeline.selectedMotionPathAnchorId,
-          selectedMotionPathHandle: selectedPathRemoved
-            ? null
-            : state.timeline.selectedMotionPathHandle,
-          motionPathDraft:
-            state.timeline.motionPathDraft &&
-            removedTrackIds.has(state.timeline.motionPathDraft.trackId)
-              ? null
-              : state.timeline.motionPathDraft,
-          isPlaying: false,
-        },
-      };
+  removeLocalModelLibraryItem: (assetId, policy = "BLOCK") =>
+    get().deleteDirectorEntity({
+      kind: "DELETE_RESOURCE",
+      resourceId: assetId,
+      instancePolicy: policy,
     }),
 
   addModelLibraryObject: (item) => {
@@ -2898,20 +3126,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     })),
 
   removeCapture: (captureId) =>
-    set((state) => {
-      const captures = state.captures.filter(
-        (capture) => capture.id !== captureId,
-      );
-      return {
-        captures,
-        activeCaptureId:
-          state.activeCaptureId === captureId
-            ? captures[0]?.id ?? null
-            : state.activeCaptureId,
-      };
+    get().deleteDirectorEntity({
+      kind: "DELETE_CAPTURE",
+      captureId,
     }),
 
-  clearCaptures: () => set({ captures: [], activeCaptureId: null }),
+  clearCaptures: () =>
+    get().deleteDirectorEntity({
+      kind: "DELETE_CAPTURES",
+      captureIds: get().captures.map((capture) => capture.id),
+    }),
 
   markCaptureSent: (captureId, nodeId) =>
     set((state) => ({
@@ -3611,49 +3835,23 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 
-  removeTimelineTrack: (requestedTrackId) =>
-    set((state) => {
-      const trackId = requestedTrackId ?? state.timeline.selectedTrackId;
-      if (!trackId) return state;
-      const tracks = state.timeline.tracks.filter(
-        (track) => track.id !== trackId,
-      );
-      const removedTrack = state.timeline.tracks.find(
-        (track) => track.id === trackId,
-      );
-      const motionPaths = state.timeline.motionPaths.filter(
-        (path) => path.id !== removedTrack?.motionPathId,
-      );
-      return {
-        timeline: {
-          ...state.timeline,
-          tracks,
-          motionPaths,
-          selectedTrackId:
-            state.timeline.selectedTrackId === trackId
-              ? tracks[0]?.id ?? null
-              : state.timeline.selectedTrackId,
-          selectedKeyframeId: null,
-          selectedMotionPathId:
-            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
-              ? null
-              : state.timeline.selectedMotionPathId,
-          selectedMotionPathAnchorId:
-            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
-              ? null
-              : state.timeline.selectedMotionPathAnchorId,
-          selectedMotionPathHandle:
-            state.timeline.selectedMotionPathId === removedTrack?.motionPathId
-              ? null
-              : state.timeline.selectedMotionPathHandle,
-          motionPathDraft:
-            state.timeline.motionPathDraft?.trackId === trackId
-              ? null
-              : state.timeline.motionPathDraft,
-          isPlaying: false,
-        },
-      };
-    }),
+  removeTimelineTrack: (requestedTrackId) => {
+    const trackId = requestedTrackId ?? get().timeline.selectedTrackId;
+    if (!trackId) {
+      const state = get();
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "DELETE_TRACK",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    return get().deleteDirectorEntity({
+      kind: "DELETE_TRACK",
+      trackId,
+    });
+  },
 
   addTimelineKeyframe: (requestedTrackId) =>
     set((state) => {
@@ -4821,42 +5019,23 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     }),
 
-  deleteMotionPath: (requestedPathId) =>
-    set((state) => {
-      const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
-      if (!pathId) return state;
-      const tracks = state.timeline.tracks.map((track) =>
-        track.motionPathId === pathId
-          ? { ...track, motionPathId: undefined }
-          : track,
-      ) as DirectorTimelineTrack[];
-      const motionPaths = state.timeline.motionPaths.filter(
-        (path) => path.id !== pathId,
-      );
-      const timeline: DirectorTimelineState = {
-        ...state.timeline,
-        tracks,
-        motionPaths,
-        selectedMotionPathId: null,
-        selectedMotionPathAnchorId: null,
-        selectedMotionPathHandle: null,
-        motionPathDraft:
-          state.timeline.motionPathDraft?.trackId ===
-          state.timeline.tracks.find((track) => track.motionPathId === pathId)?.id
-            ? null
-            : state.timeline.motionPathDraft,
-        isPlaying: false,
-      };
-      return {
-        objects: applyTimelineAtTime(
-          state.authoredObjects,
-          timeline,
-          timeline.currentTime,
-          state.groups,
-        ),
-        timeline,
-      };
-    }),
+  deleteMotionPath: (requestedPathId) => {
+    const pathId = requestedPathId ?? get().timeline.selectedMotionPathId;
+    if (!pathId) {
+      const state = get();
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "DELETE_MOTION_PATH",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    return get().deleteDirectorEntity({
+      kind: "DELETE_MOTION_PATH",
+      pathId,
+    });
+  },
 }));
 
 useDirectorStore.subscribe((state, previousState) => {

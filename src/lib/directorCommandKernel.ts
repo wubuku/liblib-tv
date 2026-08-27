@@ -33,7 +33,7 @@ export interface DirectorSelectionResult {
 }
 
 export interface DirectorResourceEffect {
-  kind: "none";
+  kind: "none" | "descriptor-deleted" | "release-candidate";
   resourceId: string | null;
 }
 
@@ -140,6 +140,8 @@ export function createDirectorCommandResult(input: {
   projectChanged?: boolean;
   historyEntries?: 0 | 1;
   selectionResult?: DirectorSelectionResult | null;
+  resourceEffects?: DirectorResourceEffect[];
+  graphEffects?: DirectorGraphEffect[];
 }): DirectorCommandResult {
   return {
     commandId: nextIdentity("director-command"),
@@ -151,8 +153,8 @@ export function createDirectorCommandResult(input: {
     projectChanged: input.projectChanged ?? false,
     historyEntries: input.historyEntries ?? 0,
     selectionResult: input.selectionResult ?? null,
-    resourceEffects: [],
-    graphEffects: [],
+    resourceEffects: input.resourceEffects ?? [],
+    graphEffects: input.graphEffects ?? [],
   };
 }
 

@@ -9,6 +9,7 @@ import {
   Eye,
   EyeOff,
   Search,
+  Trash2,
   User,
   Users,
 } from "lucide-react";
@@ -50,6 +51,9 @@ function GroupRow({
 }) {
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const selectGroup = useDirectorStore((state) => state.selectGroup);
+  const deleteDirectorEntity = useDirectorStore(
+    (state) => state.deleteDirectorEntity,
+  );
   const [expanded, setExpanded] = useState(false);
   const normalized = query.trim().toLocaleLowerCase("zh-CN");
   const members = group.characterIds
@@ -101,6 +105,23 @@ function GroupRow({
         <span className="text-[10px] tabular-nums text-[#686868]">
           {members.length}
         </span>
+        <button
+          type="button"
+          data-director-delete-group={group.id}
+          aria-label={`删除分组${group.label}`}
+          title="删除分组并保留成员"
+          onClick={(event) => {
+            event.stopPropagation();
+            deleteDirectorEntity({
+              kind: "DELETE_GROUP",
+              groupId: group.id,
+              memberPolicy: "UNGROUP",
+            });
+          }}
+          className="flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover:text-[#f08d8d]"
+        >
+          <Trash2 size={12} />
+        </button>
       </div>
       {expanded ? (
         <div
@@ -143,6 +164,9 @@ export function DirectorObjectTree() {
     (state) => state.toggleObjectSelection,
   );
   const updateObject = useDirectorStore((state) => state.updateObject);
+  const deleteDirectorEntity = useDirectorStore(
+    (state) => state.deleteDirectorEntity,
+  );
   const groupSelectedCharacters = useDirectorStore(
     (state) => state.groupSelectedCharacters,
   );
@@ -311,6 +335,22 @@ export function DirectorObjectTree() {
                         )}
                       >
                         {object.visible ? <Eye size={13} /> : <EyeOff size={13} />}
+                      </button>
+                      <button
+                        type="button"
+                        data-director-delete-object={object.id}
+                        aria-label={`删除${object.name}`}
+                        title="删除"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          deleteDirectorEntity({
+                            kind: "DELETE_OBJECT",
+                            objectId: object.id,
+                          });
+                        }}
+                        className="flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover:text-[#f08d8d]"
+                      >
+                        <Trash2 size={13} />
                       </button>
                     </div>
                   );

@@ -1624,8 +1624,8 @@ function ModelLibraryCard({
         type="button"
         data-director-model-library-local-delete
         data-director-model-library-local-asset-id={localItem.id}
-        aria-label={`删除模型 ${localItem.name}`}
-        title={`删除模型 ${localItem.name}`}
+        aria-label={`删除模型及场景实例 ${localItem.name}`}
+        title="删除模型及场景实例"
         onClick={() => onDelete(localItem)}
         className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/55 text-[#bdbdbd] opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5] hover:bg-black/75 hover:text-white"
       >
@@ -2307,7 +2307,10 @@ export function DirectorViewport({
                     onDelete={
                       item.categoryId === "my-models"
                         ? (localItem) =>
-                            removeLocalModelLibraryItem(localItem.id)
+                            removeLocalModelLibraryItem(
+                              localItem.id,
+                              "CASCADE",
+                            )
                         : undefined
                     }
                   />

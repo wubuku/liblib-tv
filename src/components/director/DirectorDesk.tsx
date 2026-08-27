@@ -75,6 +75,9 @@ export default function DirectorDesk({
   const cancelDirectorGesture = useDirectorStore(
     (state) => state.cancelDirectorGesture,
   );
+  const deleteDirectorEntity = useDirectorStore(
+    (state) => state.deleteDirectorEntity,
+  );
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const setViewportPanelsCollapsed = useDirectorStore(
@@ -176,6 +179,38 @@ export default function DirectorDesk({
         redoDirector();
         return;
       }
+      if (event.key === "Delete" || event.key === "Backspace") {
+        if (
+          workspaceBusy ||
+          document.querySelector("[data-director-capture-viewer]")
+        ) {
+          return;
+        }
+        const directorState = useDirectorStore.getState();
+        if (directorState.selectedGroupId) {
+          event.preventDefault();
+          deleteDirectorEntity({
+            kind: "DELETE_GROUP",
+            groupId: directorState.selectedGroupId,
+            memberPolicy: "UNGROUP",
+          });
+          return;
+        }
+        const objectIds =
+          directorState.selectedObjectIds.length > 0
+            ? directorState.selectedObjectIds
+            : directorState.selectedObjectId
+              ? [directorState.selectedObjectId]
+              : [];
+        if (objectIds.length > 0) {
+          event.preventDefault();
+          deleteDirectorEntity({
+            kind: "DELETE_OBJECTS",
+            objectIds,
+          });
+        }
+        return;
+      }
       if (event.key !== "Escape") return;
       event.preventDefault();
       if (document.querySelector("[data-director-capture-viewer]")) return;
@@ -200,6 +235,7 @@ export default function DirectorDesk({
     activeMobilePanel,
     cancelDirectorGesture,
     closeWorkspace,
+    deleteDirectorEntity,
     exportPanelOpen,
     redoDirector,
     undoDirector,
