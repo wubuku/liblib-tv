@@ -20,7 +20,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 
 面向后续 LibTV UI/UX 复刻的转译队列见 [`UIUX_TRANSLATION.md`](UIUX_TRANSLATION.md)。该文档把 Open Canvas 的坐标、层级、状态和验证方法转化为 LibTV batch 的研究问题，但不改变 LibTV 的源站合同。
 
-将上游启发压缩为可直接评审的十一张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
+将上游启发压缩为可直接评审的十三张模式卡见 [`OPEN_CANVAS_PATTERN_CARDS.md`](OPEN_CANVAS_PATTERN_CARDS.md)。每张卡都明确上游事实、LibTV 对应证据、可迁移的最小合同、不可搬入的细节和进入编码前的验证门槛。
 
 更细的交互模式、源码入口和后续 `LIBTV-UIX-09..16` 验证合同见 [`INTERACTION_CATALOG.md`](INTERACTION_CATALOG.md)。该目录把“节点选中后双浮层”放在更大的事件、坐标、graph mutation 和反馈链中，便于后续持续迭代时按批次推进。
 
@@ -37,6 +37,10 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 媒体接入与资源生命周期的三向审计见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 validation/probe/materialization/normalized descriptor 是高价值方法，classifier drift、placeholder-first、sequential partial mutation、autosaved running 和缺少 freshness/cancel/cleanup 是反例；LibTV source upload/history/material/asset/Shot surface 已只读分域；clone upload/history mock、Shot object URL 和 Director data/blob 仍没有共同 owner。
 
 对应正式设计权威见 [`../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](../LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)：它将 media intent、local bytes/lease、stable asset、node reference 和 provisional/semantic projection 分权，并定义 ten entry profiles、cohort transaction、last-known-good replacement、reachability/release、fixture 与 `LIBTV-VR-021`。这不表示 runtime、durable upload 或 account asset 已实现；Open Canvas MIME/size/storage/provider 和 clone 历史素材文案均不能升级为 LibTV 产品事实。
+
+媒体呈现、宽高比与节点几何的三向审计见 [`../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)：Open Canvas 的 selected output normalization、surface-role cover/contain 和 measured anchor 是可借方法，request-shaped fixed card、缺 per-output dimensions、image/video probe 不对称与 edited-output ratio drift 是反例；LibTV source landscape image 更接近 media-shaped frame；clone generic/derived/Director still/editor 路径则存在 ratio/coordinate collision。
+
+对应正式设计权威见 [`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)：它把 media/output/request/frame/measured/rendition/editor/export 分权，定义 fit transform、mixed-ratio output transaction、measurement freshness、42 invariants、fixture 与 `LIBTV-VR-023`。这不表示 runtime schema/fixture/verifier 已实现，也不授权全局 contain、Open Canvas fixed card 或 source 未证 generic resize。
 
 当前六个新增/末端图片动作的 active tool、preview、保存和任务边界见 [`LIBTV_IMAGE_ACTION_MATRIX.md`](LIBTV_IMAGE_ACTION_MATRIX.md)。源站在进入标注态后会替换标准工具条、隐藏底部生成面板并在节点上挂绘制 canvas；这证明动作状态机本身也是浮层几何合同的一部分。
 
@@ -56,6 +60,7 @@ Open Canvas 对当前 LibTV + FrameOS 项目的最大价值，不是提供一套
 | 对当前 LibTV/FrameOS 的借鉴建议 | 中 | Medium | 属于研究推断，必须服从当前项目源站证据 |
 | Open Canvas media ingress + LibTV source/clone resource boundary | 高（static/design） | High（fixed/source surface）/ Pending（source mutation/runtime） | 未选择 source 文件、未上传、未接 provider/storage；exact lifecycle 需 disposable fixture |
 | Open Canvas foreground editor + LibTV clone session/history boundary | 高（static/design） | High（fixed/clone static）/ Pending（source exact interaction/runtime） | 未在共享源站输入、保存或触发图片编辑；blur/Escape/restore/save/close 需 disposable fixture |
+| Open Canvas media rendition + LibTV source/clone geometry boundary | 高（static/design） | High（fixed/clone static + landscape source）/ Pending（ratio-diverse source/runtime） | portrait/square/video/mixed-output/resize 未取证；local fixture/`VR-023` 仅设计 |
 
 ## 1. 对象与版本锁定
 
@@ -298,6 +303,10 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 
 固定实现的上传 URL/assetId 能随 graph 保存和复制，但缺少完整 delete/reachability/cleanup authority；drop 又在 materialization 前创建 running node。当前 clone 更同时存在 mock upload、component object URL、data URL 和 Director blob URL。若都压成 `node.data.url`，取消、替换、复制、undo、canvas switch、node delete 和 object URL revoke 会互相破坏。后续必须分开 ingress intent、local lease、stable asset、node reference 和 projection；release 要检查 graph/history/clipboard/editor/operation/asset/export reachability，graph delete 不能自动解释为 account asset delete。
 
+### R10：媒体构图与节点/编辑坐标权威混淆（高）
+
+Open Canvas 的 surface-role fit 和 selected output 值得借鉴，但 request-shaped card 与缺失 per-output dimensions 会在 edited/mixed-ratio output 上产生 frame drift。当前 clone 更把 media data width/height、graph frame、preview ratio 和 visible-node normalized marks 分散处理；square/portrait media 可在 node 中被 cover crop，却在 detail 中完整显示，mark 还可能指向错误 full-media 区域。后续必须声明 frame/rendition profile、content-box fit transform、output/frame transaction 和 measurement epoch；不能用全局 `object-fit`、thumbnail dimensions、request text 或 optional measured width 修复。
+
 ## 8.1 声明漂移的处理方式
 
 遇到“README 说支持、UI 能选择、registry 有路由、current runner 未接通”的组合时，采用四层判定：
@@ -319,6 +328,7 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 - 设计并记录 clone-only 的浮层 anchor/层级合同；
 - 以 `OC-PATTERN-11` 和 `OC-BP-011` 评审 Add Resource、History、Material、Asset、Shot 与 Director 的 owner/identity/transaction 边界；
 - 以 `OC-PATTERN-12` 和 `OC-BP-012` 评审 TextNode、配置、标注、图片编辑、字幕区域、范围选择和请求草稿的 session/history/commit 边界；
+- 以 `OC-PATTERN-13` 和 `OC-BP-013` 评审 selected output、media/request/frame/measured/rendition、preview 与 mark editor transform；先设计 ratio-diverse local fixture，不先改全局 CSS；
 - 在不修改业务代码的前提下为后续批次列出验证用例。
 
 ### 当前不要做
@@ -329,6 +339,7 @@ current runner 的 descriptor、run、polling、node patch 和 revision 分层�
 - 不要在没有用户授权时修改 `src/`；
 - 不要为验证而输入第三方 key、上传真实素材或触发付费生成。
 - 不要把 object URL/local preview 称为 durable upload，也不要用 Open Canvas 的 MIME/size/storage 数字填补 LibTV source unknown。
+- 不要把 Open Canvas fixed card/request aspect 或 cover/contain 视觉直接当 LibTV node-frame 规则，也不要由 serialized/measured dimensions 推导 generic resize。
 
 ## 10. 研究完成定义
 

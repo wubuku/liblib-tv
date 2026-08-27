@@ -639,3 +639,15 @@
 - 卡片总览从十二张更新为十三张，研究依赖顺序调整为 media ingress -> media rendition -> foreground editor -> async completion；
 - 明确拒绝由 serialized/measured width 推导 generic resize、把 cover/contain 当全局视觉偏好，以及把 visible-crop normalized marks 描述为 full-media coordinates；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v57 media rendition 的 LibTV UI/UX、追溯与交接治理
+
+本轮将 `OC-PATTERN-13` 投影到 LibTV 当前项目治理，形成从 source/clone facts 到未来单 slice 的完整反向查找：
+
+- 新增 `LIBTV-TR-045` 与 `OC-TR-019`，分别固定 LibTV ten-authority correctness 决策和 Open Canvas selected-output/surface-fit/measured-anchor 正反面输入；
+- 新增 `LIBTV-UIX-23`，按 canvas image/video、candidate/reference/filmstrip、detail、full/visible editor 和 status surface 写出用户可见构图与坐标底线；
+- 新增 `OC-BP-013` 七层交接，要求每个后续 slice 明确 media/output/intrinsic/frame/rendition/measurement identity、transaction、surface、ratio-diverse fixture、`VR-023` 和 provenance；
+- 新增 `DEC-039`，禁止把 request/thumbnail/frame/measured/intrinsic 共用为一组尺寸，禁止 passive measurement 进入 semantic history，禁止 stale rect 或 visible-crop marks 冒充 current/full-media authority；
+- 新增 `LIBTV-PAR-016 DESIGN_FIRST`，横跨 node/overlay/preview、graph frame/history、output identity、owner freshness、media descriptor 和 editor baseline；
+- 更新深度报告的十三张模式卡、成熟度、`R10`、当前建议/禁止项，以及 README/PLAN current authority；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、Director runtime、共享源站、其他开发者 WIP 或任一 submodule。

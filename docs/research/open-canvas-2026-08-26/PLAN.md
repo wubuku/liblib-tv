@@ -116,6 +116,7 @@
 - [x] 完成 editor profile/session/baseline、native/local/graph undo、typed commit/cancel、fixture 与 `LIBTV-VR-022` 正式设计
 - [x] 完成 `OC-PATTERN-12`、`OC-ADOPT-025`、`OC-BP-012`、`LIBTV-UIX-22`、`DEC-038` 与 Open Canvas 侧治理追溯同步
 - [x] 完成 `OC-081..090`、`OC-PATTERN-13` 与 `OC-ADOPT-026`，明确 selected output、frame/rendition、measurement 和 editor transform 的迁移/拒绝边界
+- [x] 完成 `OC-BP-013`、`LIBTV-UIX-23`、`OC-TR-019`、`LIBTV-TR-045`、`DEC-039` 与 `LIBTV-PAR-016` 的 LibTV 实施治理追溯
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

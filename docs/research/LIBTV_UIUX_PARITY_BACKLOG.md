@@ -82,6 +82,7 @@
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
 | - | `LIBTV-PAR-014` | 媒体接入、asset/reference 与 temporary resource lifecycle correctness | 5 | 4 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime missing/partial、source parity partial |
 | - | `LIBTV-PAR-015` | foreground editor session、local history、commit/close 与 inert-control honesty | 5 | 5 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime fragmented、source parity partial |
+| - | `LIBTV-PAR-016` | media output、aspect、node frame、surface rendition、measurement 与 editor-coordinate correctness | 5 | 5 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime fragmented、source ratio-diverse parity gated |
 | - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-001` | Batch 50 Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 5 | 3 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-002` | Batch 59 Director asset-library search/preview/add-object flow | 4 | 2 | 5 | 2 | `RECORDED_PASS`；clone-owned，source exact blocked by authentication |
@@ -236,6 +237,8 @@ Media ingress/resource lifecycle 已完成 Open Canvas/clone/source 三向 stati
 
 Foreground editor session/commit/history 也已完成 Open Canvas/clone 双向 static audit 与正式设计，权威入口是 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)：十类 editor profile、session/baseline/draft、semantic equality/drift、native/local/graph undo precedence、gesture coalescing、sync/async commit、close/cancel/focus、bitmap byte/resource budget、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01` 和 `LIBTV-VR-022` 已定义。它作为 `PAR-015` 横跨 `PAR-004` foreground context、`PAR-008` graph history、`PAR-009` request/result、`PAR-011` owner cleanup 和 `PAR-014` resource handoff；当前 functional/local-only/empty/inert islands 尚无共同 runtime owner，source exact blur/Escape/restore/save/close 继续 gated。
 
+Media rendition/aspect/node geometry 已完成 Open Canvas/clone/source 三向 static audit 与正式设计，权威入口是 [`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)：ten authorities、intrinsic provenance、frame/rendition profile、cover/contain transform、mixed-ratio output transaction、measurement freshness、editor coordinate baseline、`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` 和 `LIBTV-VR-023` 已定义。它作为 `PAR-016` 横跨 `PAR-001/002` node/overlay/preview、`PAR-008` graph frame/history、`PAR-009` output identity、`PAR-011` owner freshness、`PAR-014` media descriptor 和 `PAR-015` editor baseline；当前 initial landscape fixture 是正面 island，generic/derived/Director still/editor transform 仍 fragmented，source portrait/square/video/mixed-output/resize 继续 gated。
+
 多画布 lifecycle 也已从“下拉菜单可操作”提升为 cross-owner correctness 合同，权威入口是 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)：Open Canvas summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup 与 stale save local convergence 正反面已审计；clone registry/document/history/session/external owner、create/switch/rename/duplicate/delete command matrix、switch manifest、`LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` 和 `LIBTV-VR-017` 已定义。它同时横跨 `PAR-008` graph owner 与 `PAR-011` UI owner；runtime 仍缺 invalid target guard、demo viewport ownership、page transaction generation、late callback 和 async/resource isolation。
 
 Async result ingress 也已完成 implementation 前的双向静态审计，权威入口是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas descriptor/run/runId polling/server patch/revision/saved baseline 的可借结构与 expected-run/source-version/field-owner/two-write 缺口、clone 7 类 delayed/Director completion、operation envelope、freshness disposition、selection/history/resource、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 已定义。Runtime 仍没有共同 operation owner；当前短 timer 只算 `PROTOTYPE_LATENCY`，不能升级为真实 task lifecycle。
@@ -254,7 +257,7 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 - delete/undo/retry race、projection recovery 与 blob/temp resource transfer/release；
 - 不伪造真实 provider progress、费用或输出质量。
 
-### 4.11 `LIBTV-PAR-010..014`: boundaries
+### 4.11 `LIBTV-PAR-010..016`: boundaries
 
 | ID | 当前决策 |
 |---|---|
@@ -263,6 +266,8 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 | `012` | Provider、上传、计费、远端任务、账号和协作持久化需要新的产品/后端合同，当前不排入前端 parity 实施。 |
 | `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。后续只读其历史合同，不把 clone-only 结果升级为源站事实。 |
 | `014` | media intent、local byte/lease、stable asset、node reference 和 provisional/semantic projection 必须分权；只允许 validation/local preview/fake materializer 的 honest prototype，真实 upload/storage/provider 仍归 `PAR-012 OUT_OF_SCOPE`。 |
+| `015` | foreground editor 的 draft/history/commit/close 必须按 profile/session 分权；当前只允许从一个 equality/drift/honesty island 开始，不统一重写十类 editor。 |
+| `016` | media/output/request/frame/measured/rendition/editor/export 必须分权；先做 ratio-diverse local fixture 和 pure policy，source 未证 portrait/square/video/resize 不进入 parity claim。 |
 | `DIR-001` | Batch 50 已完成 clone-owned workspace collapse/restore、viewport expansion、mobile drawer recovery、focus owner、page shortcut isolation、editable-target guard 和 Escape layering；LibTV Director shell exact DOM/CSS、完整 focus trap 和 source “全屏”语义仍是 `UNKNOWN`，后续只读其历史合同，不升级为 source parity。 |
 | `DIR-002` | Batch 59 已完成资源搜索、preview-only selection、显式加入 proxy object、对象树/Inspector continuity 和 desktop/mobile focused verifier；卡片主体仍保留 Batch 47 快速加入兼容路径。真实 FBX/OBJ mesh、远程资源和认证后 LibTV 资源库 DOM/CSS 仍是 `UNKNOWN`。 |
 
@@ -290,6 +295,10 @@ foreground editor session design (PAR-015)
   -> pure profile/session/history fixture
   -> one equality/drift/honesty slice before broad editor migration
 
+media rendition geometry design (PAR-016)
+  -> ratio-diverse pure frame/rendition fixture
+  -> one generic/derived/Director still mismatch before output/editor migration
+
 disposable ready-video/process fixture
   -> PAR-006 / PAR-007 source-only commands / PAR-009
 ```
@@ -308,6 +317,7 @@ disposable ready-video/process fixture
 4. 为 `PAR-003` 写 typed Auto Link data/state/transaction design；
 5. 将新的 source claim 追加到 traceability matrix，不静默改旧快照。
 6. 维护 `PAR-014` 的 source decision queue，只有独立 disposable fixture 才取 exact limits/progress/cancel/placement/register/restore；共享画布保持只读。
+7. 维护 `PAR-016` 的 `OC-EQ-009`，只读补 portrait/square/video/mixed-output/resize；先完成 local geometry fixture 才申请 runtime slice。
 
 ### Wave B: authorization-ready local slices
 

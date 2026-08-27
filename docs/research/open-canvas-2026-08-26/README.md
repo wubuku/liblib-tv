@@ -102,6 +102,7 @@
 - 当前 viewport/coordinate/gesture/placement 已形成正式权威：actual host、six domain、live/stable/bootstrap/target、generation-bound session、entry placement、resize、fixture/`VR-020` 均已落档；runtime/source parity 仍 partial。
 - 当前 media ingress/resource lifecycle 已形成正式权威：Open Canvas validation/probe/materialization/descriptor 正面方法与 classifier drift、placeholder-first、partial commit、autosaved running、no cleanup 反例均已固定；LibTV source upload/history/material/asset/Shot 分域、clone mock/local-preview/data/blob islands、ten entry profiles、asset/reference/lease/reachability、fixture/`VR-021` 均已落档；runtime missing/partial、source parity partial，provider/storage/upload 保持边界外。
 - 当前 editor session/commit/history 已形成正式权威：Open Canvas 的 session identity、gesture-level bitmap history、no-op guard、bounded decode 值得借鉴，但 entry-only bitmap budget、close-before-upload、node-only completion 和 active-draft resync 不可照搬；clone 十类 profile、native/local/graph undo、baseline drift、typed commit、async/resource handoff、40 invariants、fixture/`VR-022` 均已落档，runtime fragmented、source parity partial。
+- 当前 media rendition/aspect/node geometry 已形成正式权威：Open Canvas selected output/surface-role fit/measured anchor 可借，request-shaped card、missing per-output dimensions、probe asymmetry 和 edited-output drift 是反例；LibTV source landscape media-shaped frame、clone generic/derived/Director still collision、fit transform、measurement freshness、42 invariants、fixture/`VR-023` 均已落档，runtime fragmented、ratio-diverse source parity gated。
 
 本次研究不修改 `src/`、不修改上游 submodule 内容、不执行生成或上传、不创建官网画布。
 

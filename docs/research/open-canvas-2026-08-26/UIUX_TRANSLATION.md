@@ -99,6 +99,7 @@ LibTV 当前问题
 | screen/flow dual anchor + live/stable viewport + entry-specific placement | actual host、typed coordinate domain、current frame/endpoint、gesture/placement owner 分开 | 保留 LibTV overlay formulas、Handle/edge、V/H/Space 和现有命令语义；exact add/fit/resize/drop 仍由源站决定 | `LIBTV-UIX-20` |
 | validate/probe/materialize + normalized descriptor + digest reuse | media intent、local lease、asset identity、node reference、provisional UI 与 semantic graph 分开 | 保留 source upload/history/material/asset/Shot surface 分域；limits/progress/cancel/storage/durability 仍由源站决定 | `LIBTV-UIX-21` |
 | foreground editor session + local history + typed commit handoff | session/baseline/draft、native/local/graph undo、commit/cancel、async/resource handoff 分开 | 十类 editor profile 各自保留 source interaction；blur/Escape/restore/save/close 与 enabled controls 仍由源站决定 | `LIBTV-UIX-22` |
+| selected output + declared frame/rendition + fresh measurement | media/output/request/frame/measured/editor/export 分权；surface fit 与 editor transform 可验证 | 保留 source-shaped landscape node、现有 overlay 公式和自然裁切；portrait/square/video/mixed-output/resize 仍由源站决定 | `LIBTV-UIX-23` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -377,6 +378,28 @@ Open Canvas 的多类编辑器说明，画布上的“编辑”不是一次普�
 
 正式 profile、state machine、40 条 invariant、fixture 与 `LIBTV-VR-022` 见 [`../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](../LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)，静态事实见 [`../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)。
 
+### `LIBTV-UIX-23`：媒体构图、节点外框与编辑坐标的一致性
+
+Open Canvas 明确区分 selected output，并按 node/candidate/detail 等 surface 使用 cover 或 contain；它也用 current measured node 驱动 selected overlay。这些方法有价值，但 fixed card 跟随 generation request aspect、output 缺 intrinsic dimensions、编辑结果可能改变 ratio 却不更新 frame，以及 video probe 不保留像素尺寸，均不能直接成为 LibTV 行为。
+
+当前 LibTV source 的已证 landscape image node 更接近 media-shaped frame。当前 clone 的初始五图对齐这一方法，但 generic image、derived image 和 Director still capture 可把 square/portrait media 放进 generic `512x288` frame。结果是 node cover、detail contain、mark editor visible-plane 和 overlay anchor 同时暴露不同构图。
+
+后续 UI/UX 必须先声明 surface role：
+
+| Surface role | 用户应看到 | 几何底线 |
+|---|---|---|
+| canvas primary image | source-backed landscape sample 保留 media-shaped frame + centered cover | thumbnail rounding 不触发 graph reflow；frame 参与 overlay anchor |
+| canvas video poster/media | status 间 frame 稳定；poster/full video 切换不意外换构图 | 两个资源分别验证 intrinsic ratio；fit policy 不由 React branch 偶然决定 |
+| output candidate/reference/filmstrip | 可比较、紧凑、允许声明式 crop | fixed cell cover 不改变 output intrinsic metadata |
+| detail inspector | 检查完整内容 | validated selected output + contain；不修改 graph/frame/selection |
+| full-media editor | marks 对应完整 source/output | pointer 经过 content-box + cover/contain transform 后进入 intrinsic space |
+| visible-render editor | 明确只编辑当前 crop | commit 携带完整 crop/rendition descriptor，不冒充 untouched full media |
+| status placeholder | pending/error/empty/ready 切换稳定 | 保持 declared frame，失败不写零尺寸或折叠节点 |
+
+混合宽高比 output 切换不能只换 URL：identity、intrinsic metadata、frame policy、rendition revision、selection 和 history 必须由一个 typed result 原子决定。若需要 frame reflow，toolbar/panel 只在 current measurement 到达后按既有 LibTV 公式定位；等待期间不能用旧 rect 假装已完成，也不能清 selection 强迫 remount。
+
+这项转译明确不要求“全局改成 contain”，也不授权 generic `NodeResizer`。Source portrait/square/video/mixed-output/resize 进入 `OC-EQ-009`；实现前先用 `LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` 覆盖 16:9、2:1、1:1、9:16、odd ratio、thumbnail mismatch、invalid metadata 和 editor round-trip。正式 authority、42 条 invariant、fixture 和 `LIBTV-VR-023` 见 [`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)，fixed facts 见 [`../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -425,6 +448,7 @@ Open Canvas 的多类编辑器说明，画布上的“编辑”不是一次普�
 | P1 | actual-host viewport/coordinate/placement owner | 防止 panel/compact host 后新增落点漂移、live/stable 混用、switch stale callback 和 overlay frame 分叉 | 设计合同完成，runtime/source parity partial |
 | P1 | media ingress/resource lifecycle owner | 防止 upload/history/material/asset 混域、placeholder 假提交、stale overwrite、object URL 泄漏和 node/asset delete 混淆 | 设计合同完成，runtime missing/partial、source parity partial |
 | P1 | foreground editor session/commit/history owner | 防止 draft 被覆盖、局部/graph undo 双消费、无效控件伪能力、close-first async failure 和多步 graph residue | 设计合同完成，runtime fragmented、source parity partial |
+| P1 | media output/frame/rendition/measurement authority | 防止 square/portrait crop、detail/node 构图漂移、mark 坐标错位和 stale overlay anchor | 设计合同完成，runtime fragmented、ratio-diverse source parity gated |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

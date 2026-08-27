@@ -46,6 +46,7 @@
 | DEC-036 | viewport/coordinate/placement authority | actual React Flow host、typed coordinate domain、live/stable viewport 和 canvas-generation-bound gesture/placement owner 共同决定空间结果 | ACTIVE / RESEARCH_GATE |
 | DEC-037 | media ingress/resource lifecycle authority | media intent、local bytes/lease、asset identity、node reference 与 provisional/semantic projection 分权；release 只由显式 owner + reachability 决定 | ACTIVE / RESEARCH_GATE |
 | DEC-038 | editor session/commit/history authority | foreground editor 以 profile/session/baseline/draft 定权；native/local/graph undo 分流，typed commit 决定 graph/async handoff 与 close | ACTIVE / RESEARCH_GATE |
+| DEC-039 | media rendition/geometry authority | selected output、intrinsic metadata、request、semantic frame、passive measurement、surface rendition、editor space 与 export 分权 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -278,6 +279,16 @@
 **影响：** 不因本决策引入全局 form framework、统一十类 editor schema、Open Canvas HTML/JPEG/timeout/upload/provider/persistence，也不改变未经 source 取证的 blur/Enter/Escape/outside/restore/save/close exact 行为。`LIBTV-FIX-LOCAL-EDITOR-SESSION-01`、`LIBTV-VR-022` 和任何 runtime slice 都需明确编码授权；FrameOS/Director history 与普通 LibTV editor owner 继续隔离。
 
 **依据：** [`LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_EDITOR_SESSION_HISTORY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](research/LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)、Open Canvas `OC-071..080` fixed chain、相关 LibTV component specs。
+
+### DEC-039：media/output、node frame、rendition 与 measurement 分权
+
+**背景：** 当前 clone 初始 landscape fixture 接近 LibTV source 的 media-shaped frame，但 generic image 把 `512x512` media 放入 `512x288` frame，多数 derived action 和 Director still capture 也会保留 media dimensions 后重置成 landscape graph frame。Node cover、detail contain、video poster/video branch 和 mark editor visible-plane 因此可能展示或编辑不同构图。Open Canvas 分开 selected output、按 surface role 使用 cover/contain 并以 measured rect 驱动 overlay，提供了可借方法；但 fixed card 由 request aspect 决定、per-output intrinsic dimensions 缺失、video probe 不对称、edited output ratio drift 和 optional serialized dimensions 不能直接复制。
+
+**决策：** 普通 LibTV 分开 full/thumbnail media descriptor、selected output、generation request、semantic node frame、passive measured rect、surface rendition、visible media rect、editor coordinate space 和 export output。每个 media node 声明 frame policy，每个 surface 声明 fit/object-position/content-box policy。Cover/contain 是 display transform，不是 destructive crop。Mixed-ratio output switch 以一个 typed transaction 更新 identity/metadata，并按声明策略 reflow/preserve/reject；frame/rendition revision 后 stale measurement 不驱动 overlay/editor。Full-media mark 先经 visible-to-intrinsic transform；passive measurement、thumbnail/full swap 和 metadata cache refresh 不进入 semantic history。
+
+**影响：** current source-backed landscape frame 与既有 toolbar/panel formula 保持；不以 Open Canvas fixed card/request aspect 或全局 contain 替代。Portrait/square/video/mixed-output/object-position/generic resize 继续 source/product-gated。`LIBTV-FIX-LOCAL-MEDIA-RENDITION-01`、`LIBTV-VR-023` 和任何 runtime/schema/editor slice 都需明确编码授权；FrameOS/Director owner 继续隔离，Director 的 aspect-aware animation path仅作为 clone method evidence。
+
+**依据：** [`LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_MEDIA_RENDITION_GEOMETRY_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](research/LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)、Open Canvas `OC-081..090` fixed chain、2026-08-27 LibTV landscape source measurements 和相关 component specs。
 
 ## 3. 何时可以重审决策
 

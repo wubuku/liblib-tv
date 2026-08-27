@@ -80,6 +80,7 @@ RESEARCH_ONLY
 | `OC-BP-010` viewport/coordinate/gesture/placement authority | `OC-ADOPT-023` | `LIBTV-PAR-001/002/007/008/011` | static/design complete；viewport/navigation/placement/overlay islands；common runtime/source parity partial | `LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` | `LIBTV-VR-020` |
 | `OC-BP-011` media ingress/resource lifecycle authority | `OC-ADOPT-024` | `LIBTV-PAR-008/009/010/011/014` | static/design complete；mock/local-preview/data/blob islands；common runtime missing or partial、source parity partial | `LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` | `LIBTV-VR-021` |
 | `OC-BP-012` foreground editor session/commit/history authority | `OC-ADOPT-025` | `LIBTV-PAR-004/008/009/011/015` | static/design complete；ten profile runtime islands；common owner missing、source parity partial | `LIBTV-FIX-LOCAL-EDITOR-SESSION-01` | `LIBTV-VR-022` |
+| `OC-BP-013` media rendition/aspect/node geometry authority | `OC-ADOPT-026` | `LIBTV-PAR-001/002/008/009/011/014/015/016` | static/design complete；source-shaped landscape island；generic/derived/Director/editor runtime fragmented、source ratio-diverse parity gated | `LIBTV-FIX-LOCAL-MEDIA-RENDITION-01` | `LIBTV-VR-023` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -337,6 +338,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 未来若获得编码授权，第一 slice 应从一个小而确定的 correctness island 开始，例如 `TextNode` 的 semantic equality/no-op + dirty drift guard，或一个 enabled-looking inert control 的 honest disabled projection。不得在同批创建全局 form framework、重写十类 editor、接真实 upload/provider、统一所有 undo 栈，或改变未经 source 取证的 blur/Escape/close 行为。
 
+## 10.7 `OC-BP-013`：Media Rendition, Aspect And Node Geometry Authority
+
+完整机械合同见 [`../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md`](../LIBTV_MEDIA_RENDITION_GEOMETRY_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-081..090` 正反面 + dated clone/static source audit；LibTV portrait/square/video/mixed-output/resize 继续 source-gated |
+| `L1 Identity` | route/canvas/generation、node、media/output、full/thumbnail locator/version、intrinsic provenance、request、frame/rendition/measurement revision |
+| `L2 Transaction` | output selection + optional frame reflow + anchor preservation atomic；passive measurement/metadata refresh/detail open zero semantic history；invalid/noop/stale/source-required zero residue |
+| `L3 Surface` | canvas image/video、candidate/reference/filmstrip、detail、full/visible editor、status/export 各有具名 fit/object-position/content-box policy |
+| `L4 Fixture` | 16:9/2:1/1:1/9:16/odd ratio、thumbnail mismatch、poster/full video、mixed outputs、invalid metadata、known editor target 和 measurement clock |
+| `L5 Verifier` | `LIBTV-VR-023` 与 overlay、viewport、React Flow routing、editor、graph history、media ingress、async、multi-canvas 和 preview regressions 组合 |
+| `L6 Provenance` | 不把 Open Canvas fixed card/request aspect/visual/schema、clone ratio coincidence 或 source 未证 orientation/resize 升级为 LibTV truth |
+
+若未来获得编码授权，第一 slice 应先实现 deterministic local fixture 和纯 frame/rendition decision，或只修正 generic/derived/Director still 中一个已证 ratio mismatch。不得同批增加 generic resize、重写所有 media schema/editor、接真实 provider/output history，或以全局 `object-fit` 替代 per-surface policy。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -409,6 +426,7 @@ pure identity/transaction cases
 9. `OC-BP-010` 保持 design complete/runtime/source parity partial；若获授权先关闭 actual-host default add，再分开处理 live/stable viewport、generation-bound gesture 和 resize/overlay composition，不实现 Quick Add/drop/pending connection；
 10. `OC-BP-011` 保持 design complete/runtime missing or partial/source parity partial；若获授权先做纯 classifier/probe/descriptor + fake materializer fixture，或 honest local-preview Add Resource cohort，不接真实 upload/storage，不合并 source 四类资源 surface；
 11. `OC-BP-012` 保持 design complete/runtime fragmented/source parity partial；若获授权先关闭单一 profile 的 equality/drift/history/honesty 缺口，不统一重写所有 editor，也不接真实 provider/storage；
-12. 保持 provider、真实保存和共享源站 mutation 在边界外。
+12. `OC-BP-013` 保持 design complete/runtime fragmented/source ratio-diverse parity gated；若获授权先做 deterministic fixture + pure policy，或关闭一个 generic/derived/Director still mismatch，不增加 generic resize/真实 output history；
+13. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。
