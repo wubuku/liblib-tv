@@ -406,13 +406,82 @@ resource owner changes only by explicit policy
 
 ---
 
-## 10. 七张卡的共同落地顺序
+## 10. OC-PATTERN-08：Typed Outcome + Primary Surface + Owned Announcement
+
+### 10.1 上游 `SOURCE_FACT`
+
+Open Canvas 的 feedback 不是单一 toast 系统：
+
+- root layout 挂全局 bottom-right Sonner Toaster；
+- graph command 返回 `ok/code/message`，studio adapter 再投影 error toast；
+- node run/upload 把 queued/running/success/error、errorMessage、lastRunId 保留在 node，并投影 card/MiniMap/editor；
+- save/dirty/error/conflict 使用持续 header status 和 conflict banner/action；
+- provider settings 使用 field error map + summary toast + saving control；
+- list CRUD 对 create navigation、same-title noop、cancel、rename/delete/import 采用不同反馈策略。
+
+固定实现同时提供两个反例：具体 reason 主要埋在中文 message，i18n 通过 literal string/标点匹配；global toast call 没有 canvas/operation/attempt/dedupe owner。
+
+### 10.2 LibTV 对应的 `CLONE_FACT`
+
+当前 clone 已有多种反馈 island：
+
+- connection validator 的 stable reason union，但 page reject silent；
+- Share/Agent/AddNode/VideoClip 的 string-only surface status；
+- VideoNode 的 frame/picture/depth action-specific timer chip；
+- toolbar `lastAction`、segment/long-video submitted/busy；
+- Director export/phone/camera preset 的 persistent progress/error/retry surface；
+- FrameOS 独立 toast，不属于普通 LibTV route。
+
+这些 island 多数保持 graph/history 分离并诚实标记 local prototype，但没有共同 disposition、primary surface、owner、clear/retry/dedupe authority。
+
+### 10.3 `INFERENCE`
+
+```text
+typed disposition + reason code/args
+  -> graph/history effects
+  -> one primary owner-local surface
+  -> optional secondary announcement
+  -> clear/retry/switch/delete/dedupe lifecycle
+```
+
+Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/download 等无持续可见对象的动作适合 transient confirmation；visible graph result 本身是 primary；cancel/noop/stale/duplicate 通常 silent。Toast 不能填补未知 workflow，也不能让 old-canvas completion 宣告当前成功。
+
+### 10.4 `CLONE_DECISION`
+
+- outcome 先归入 committed/started/completed/rejected/noop/failed/canceled/stale/conflict/unknown；
+- stable reason/args 与 localized/source display copy 分开；
+- reject/noop/stale/unknown 默认 zero graph/history；
+- 一个 outcome 只有一个 primary persistent authority；
+- field error、node process、canvas conflict、utility confirmation 使用不同 surface；
+- local prototype 保持 unavailable/local-preview 诚实边界；
+- switch/delete/retry/unmount/burst 明确 owner 和 dedupe；
+- 未取得 LibTV source evidence 前不新增 global toast、invalid Handle style 或统一 timeout；
+- 不复用 FrameOS toast/store。
+
+### 10.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| identity | disposition/reason/args 稳定；display text 不参与 branching |
+| transaction | reject/noop/stale zero graph/history；feedback 不进入 document/history |
+| surface | durable error 可恢复；visible result 不靠 toast-only；one primary owner |
+| owner | node/canvas/surface/attempt 与 switch/delete/unmount exact |
+| timing | retry、timer replace、duplicate terminal、burst dedupe deterministic |
+| accessibility | field association、busy state、persistent recovery、no duplicate announcement |
+| route | LibTV/FrameOS queue/store/announcement isolation |
+
+设计 authority：[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 和 `LIBTV-VR-018`。
+
+---
+
+## 11. 八张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
   -> 02 AutoLink stable identity
   -> 04 派生/版本关系
   -> 03 运行、节点、保存状态
+  -> 08 command outcome 与 feedback owner
   -> 06 framework change authority
   -> 07 canvas lifecycle owner isolation
   -> 05 异步结果入口与陈旧收敛
@@ -424,11 +493,12 @@ resource owner changes only by explicit policy
 - AutoLink 的身份边界会影响后续引用、候选和派生节点的关系表达；
 - 派生/版本关系明确后，才能设计长视频、重拍和过程型状态；
 - 运行与保存状态先归纳语义，避免为尚未确认的源站操作预先制造状态机；
+- command outcome/feedback 先分开 reason、domain effect 和 presentation，避免用 toast/string 补齐未知 workflow；
 - framework callback 先限定 T0/T1，防止命名 graph command 被 generic reducer 旁路；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 11. 统一拒绝清单
+## 12. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -440,10 +510,12 @@ resource owner changes only by explicit policy
 - 把 React Flow union 的 add/remove/replace 当作无须 domain validation 的普通 transport；
 - 因为 Open Canvas 使用 URL canvasId，就复制其列表页、route、final-delete 或持久化产品语义；
 - 依赖 incidental React remount 清理所有 page-local transaction，或让 delayed callback late-read active canvas；
+- 用 localized display string 充当 reason，或让 stale completion 在当前 canvas 发 success toast；
+- 因为 Open Canvas 有 Sonner Toaster，就为普通 LibTV route 新增全局 toast 或复用 FrameOS toast；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 12. 后续研究入口
+## 13. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -452,6 +524,7 @@ resource owner changes only by explicit policy
 - 异步结果入口与陈旧收敛：[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)
 - React Flow change routing：[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)
 - Multi-canvas lifecycle：[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)
+- Command outcome/feedback：[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

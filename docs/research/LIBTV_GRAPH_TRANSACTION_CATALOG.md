@@ -242,6 +242,16 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-046` | duplicate/delete external operation/resource impact is explicit | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | current graph-only lifecycle has no ledger | map/reset/detach/retain/release/unknown exact |
 | `LIBTV-GI-047` | target canvas viewport is switch restore authority | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | demo canvas responsive effect overwrites stored viewport | seed preset cannot silently replace user-owned viewport |
 | `LIBTV-GI-048` | async local convergence checks current canvas/generation | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | Open Canvas request URL is explicit but finishSave global | old durable result cannot rewrite new in-memory owner |
+| `LIBTV-GI-049` | typed command outcome exists before presentation projection | `REQUIRED_CORRECTNESS` | current clone mixes reason unions、strings、booleans and timers | UI never infers disposition from string/exception presence |
+| `LIBTV-GI-050` | reason code/args are separate from localized/source copy | `REQUIRED_CORRECTNESS` | connection reasons positive；Open Canvas literal message lookup negative | branching/verifier/retry never depend on display text |
+| `LIBTV-GI-051` | rejected/noop/stale/unknown outcome is zero-history by default | `REQUIRED_CORRECTNESS` | multiple command contracts already require zero mutation | feedback cannot become hidden graph/history residue |
+| `LIBTV-GI-052` | presentation feedback is outside graph history/document | `REQUIRED_CORRECTNESS` | current local states mostly separate | undo/redo never replays toast、timer、focus or local prototype status |
+| `LIBTV-GI-053` | one outcome has one primary persistent visual owner | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | Open Canvas node error + toast demonstrates layered need and duplication risk | secondary announcement cannot become competing state authority |
+| `LIBTV-GI-054` | durable failure/conflict remains visible and recoverable | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | Director/Open Canvas persistent surfaces positive | timeout-only feedback cannot carry required recovery |
+| `LIBTV-GI-055` | stale result cannot announce current success | `REQUIRED_CORRECTNESS` | async/canvas lifecycle owner rules | no selection、toast or status theft across owner |
+| `LIBTV-GI-056` | prototype feedback states unavailable/local preview honestly | `PROTOTYPE_BOUNDARY` | current Share/Agent/AddNode use explicit local copy | no fake remote run、progress、credits or completion |
+| `LIBTV-GI-057` | every feedback projection has deterministic clear/retry/dedupe lifecycle | `REQUIRED_CORRECTNESS` | current timer/string policies are component-local | no accidental cleanup by rerender/unrelated action |
+| `LIBTV-GI-058` | LibTV and FrameOS feedback owners remain route-isolated | `REQUIRED_CORRECTNESS` | stores/routes are independent；FrameOS has its own toast | no route mode or cross-route queue residue |
 
 ### 10.2 Compatibility case queue
 
@@ -305,6 +315,23 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-056` old timer completion | operation starts A | switch B；A completes | explicit A/stale result；never B/selection steal | async/lifecycle composition missing |
 | `LIBTV-GC-057` old save completion | save A pending | hydrate B；A returns | durable A may finish；B in-memory baseline/status unchanged | Open Canvas-inspired race fixture |
 | `LIBTV-GC-058` canvas resource delete | A owns blob/run/workspace | delete A | exact cancel/detach/release/retain once | resource ledger missing |
+| `LIBTV-GC-059` invalid connection feedback | duplicate pair | drag connect | stable reason、zero graph/history、source-gated projection、gesture clear | local reason exists；source UI blocked |
+| `LIBTV-GC-060` valid connection feedback | valid A -> B | connect | visible edge + one history；no required generic success toast | Batch 57 graph slice recorded |
+| `LIBTV-GC-061` same-value command | unchanged title/value | submit | exact silent noop、zero history | command-specific audit needed |
+| `LIBTV-GC-062` field rejection | empty required field | submit | field-local reason/focus；no started/success state | feedback fixture missing |
+| `LIBTV-GC-063` prototype unavailable | remote service absent | click | honest action-adjacent local disclosure | current islands exist |
+| `LIBTV-GC-064` node guard timer | unsupported media duration | invoke | node-local reason、zero graph/history、deterministic replace/clear | current action-specific timers partial |
+| `LIBTV-GC-065` visible graph result | frame capture succeeds | invoke | result node/selection/history primary；announcement source-specific | Batch 29 behavior recorded |
+| `LIBTV-GC-066` async started | operation accepted | submit | busy/process owner；not completed success | current booleans can conflate |
+| `LIBTV-GC-067` async failed/retry | owned operation fails | retry | persistent reason/recovery；new attempt owns future completion | async runtime missing |
+| `LIBTV-GC-068` stale completion announcement | A operation then switch B | A success | B unchanged；no B success announcement | owner fixture missing |
+| `LIBTV-GC-069` duplicate terminal announcement | same terminal event twice | converge | one result/announcement；second no-op | dedupe runtime missing |
+| `LIBTV-GC-070` local panel close | local-only status visible | close/reopen | status cleared；no hidden operation | current islands vary |
+| `LIBTV-GC-071` background panel close | real operation visible | close | operation transfers to declared owner；not lost/misowned | product/owner decision needed |
+| `LIBTV-GC-072` feedback owner delete | node/canvas error owner | delete | projection closes；operation/resource policy explicit | composes delete/lifecycle |
+| `LIBTV-GC-073` history feedback replay | accepted result then undo/redo | undo/redo | graph follows snapshot；toast/timer not replayed | fixture missing |
+| `LIBTV-GC-074` feedback burst | multiple file/result errors | batch | bounded aggregate/dedupe；no toast storm | policy/runtime missing |
+| `LIBTV-GC-075` route feedback isolation | FrameOS toast active | enter LibTV | no shared store/queue/announcement | architectural invariant |
 
 ### 10.3 Decision and verification order
 

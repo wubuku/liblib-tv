@@ -165,8 +165,9 @@ sequenceDiagram
 6. **revision 不是 run owner**：fixed patch path 不比较 expected current run、source version 或 field owner，terminal run 与 graph projection 也不是一个原子写入。
 7. **框架 delta 不是 domain command**：Open Canvas callback 使用 current Zustand state 是可借方法，但 fixed implementation 将全部 non-select React Flow change 送入 generic reducer；add/remove/replace、reconnect 和 LibTV delete/connect/history policy 仍需应用层重新分权。
 8. **Canvas identity 不止是 active index**：Open Canvas 分开 list summary、URL canvasId、full document 和 hydrate owner，并在 delete 时清 runs/保 valid registry；但 old-route async save 的 local completion 仍缺 expected current canvas check。
+9. **反馈 surface 不是 outcome identity**：Open Canvas 分开 global toast、node status/error、save/conflict、field error 和 pending control是正面结构；coarse code + localized message lookup 与无 canvas/operation owner 的 async toast 是反例。
 
-对应声明：OC-003、OC-004、OC-005、OC-007、OC-010、OC-026..039；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)，异步入口的完整正反面转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)，framework adapter 转译见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)，canvas lifecycle 转译见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
+对应声明：OC-003、OC-004、OC-005、OC-007、OC-010、OC-026..045；逐条证据见 [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md#2-核心声明)，异步入口的完整正反面转译见 [`../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)，framework adapter 转译见 [`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)，canvas lifecycle 转译见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)，command feedback 转译见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
 
 ## 5. 视觉/交互研究重点
 
@@ -277,6 +278,10 @@ JSON/KV 的 read-modify-write 适合 alpha/local-first，但不能直接推导�
 ### R7：异步结果 patch ownership（高）
 
 current runner 的 descriptor、run、polling、node patch 和 revision 分层值得借鉴，但 node patch 只按 canvas/node ID 应用，不要求 expected current run/source version/field owner。旧 attempt、后续文本编辑、source version 切换和 terminal-run/graph-patch 中间失败都需要额外收敛合同。当前 clone 不应复制 generic server patch；先建立 operation/result envelope、stale disposition、idempotent graph projection 和 resource transfer 验证。
+
+### R8：Command feedback identity/owner（高）
+
+全局 toast、节点错误、保存 banner、字段提示和 busy control 解决的是不同可见性问题。固定实现的中文 message lookup 会让 i18n/测试依赖 copy；无 canvas/operation owner 的 terminal toast 又可能在 route/canvas 已变化后脱离上下文。当前 clone 不应先增加统一 toast，而应先定义 disposition、stable reason/args、一个 primary surface 和 switch/delete/retry/dedupe lifecycle；visible result 不能用 toast-only 代替，stale completion 不能宣告当前成功。
 
 ## 8.1 声明漂移的处理方式
 

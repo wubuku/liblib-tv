@@ -347,6 +347,23 @@ Exact framework taxonomy、Open Canvas comparison、routing matrix、stable resu
 
 Open Canvas positive URL/hydrate/delete methods、stale local-convergence counterexample、clone owner audit、`GI-038..048/GC-044..058` and decision queue 统一见 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。`VR-017` composes `VR-010..016`，不取代其 graph/data/async 专项断言。
 
+### `LIBTV-VR-018`：command outcome and feedback ownership
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-004/008..011` command result、feedback、owner、prototype-boundary cross-cutting correctness |
+| Old verifier | Batch 14/15/23/24/29/30/32/33/40/41/44/57/58/60；各自保留 source/local bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` with deterministic disposition/reason、fake timer/announcement clock and A/B owner scenes |
+| Static checks | every target command has reason registry、primary surface、owner、clear/retry/dedupe policy；FrameOS isolated |
+| Pure checks | disposition/reason/args stable；display copy not branch identity；unknown fallback bounded；prototype honesty |
+| Transaction | reject/noop/stale zero graph/history；accepted exact history；toast/timer/focus excluded from document/history |
+| Owner/timing | node/canvas/surface/attempt identity；switch/delete/unmount/retry/duplicate/burst reconciliation exact |
+| UI/browser | persistent recovery、field association、busy state、no duplicate announcement、desktop/mobile geometry/pointer/focus |
+| Blockers | common outcome adapter、feedback owner ledger、fixture、encoding authorization；exact source toast/invalid style/timeout unavailable |
+| Exit | one primary authority per outcome；durable error recoverable；visible result not toast-only；stale never announces current success |
+
+Open Canvas toast/node/save/form 正反面、clone feedback inventory、`GI-049..058/GC-059..075` and decision queue 统一见 [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。`VR-018` composes connection/delete/async/canvas/overlay verifiers，不取代其 source/graph semantics。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：

@@ -277,6 +277,12 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 
 当前 clone 已有 per-canvas graph/viewport/history、切换清 selection 和 Batch 58 node-bound owner cleanup；仍需验证 invalid target、demo canvas preset overwrite、organize/drag/connection/viewport transient、delayed graph writer 与 resource owner。完整静态审计和 switch manifest 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
 
+### 10.4 Command outcome 与 feedback surface
+
+固定版本的 root toast、node status/error、save/conflict banner、field error/pending control 是不同 owner。List CRUD 还区分 navigation-visible success、same-value/cancel silent、pending、confirm 和 terminal toast。值得借的是 outcome-sensitive projection；localized message lookup、owner-less async toast 和多文件逐项 toast 是反例。
+
+当前 clone 的 connection reason、local status、VideoNode timer 和 Director persistent surface 不能继续只按组件各自定义。该结论形成 `LIBTV-UIX-18`：先记录 disposition/reason/owner/primary surface，再验证 clear/retry/switch/delete/dedupe/accessibility；不因 Open Canvas 使用 Sonner 就新增 LibTV global toast。完整合同见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
+
 ## 11. 对比矩阵：什么可以借鉴，什么不能搬
 
 | 主题 | Open Canvas 固定版本事实 | 当前 LibTV 已知合同 | 后续动作 | 状态 |
@@ -291,6 +297,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | 响应式 | landing mobile 已观察，studio 完整行为未证实 | 当前项目有 desktop/mobile 研究记录 | 对照 390px/929px | `UIX-15` |
 | onboarding | key、空状态、导入、新建有入口分层 | LibTV 是否存在等价流程未证实 | 只做源站观察 | `UIX-16` |
 | 多画布 lifecycle | summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup | clone 有 dropdown 与局部 owner cleanup，源站产品语义未证 | 建 switch manifest 并验证 old-owner callback | `UIX-17` |
+| command feedback | toast、node error、save banner、field/pending 分层；cancel/noop 非必 toast | clone reason/string/timer/Director islands，exact source visual 未证 | 建 disposition/reason/primary-surface matrix | `UIX-18` |
 
 ## 12. 后续 batch 合同
 
@@ -329,6 +336,10 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 ### `LIBTV-UIX-17`：多画布 owner reconciliation
 
 验证 A/B 独立 graph/viewport/history、selection 和 node-bound surface 清理、project preference 保留、page transient generation、无效 target、active/inactive/final delete，以及旧 viewport/async callback 不写入 B。源站未证的 URL、save/conflict 和最后删除 fallback 只保留为 Open Canvas 启发。
+
+### `LIBTV-UIX-18`：命令 outcome 与 feedback owner
+
+验证 reject/noop/start/complete/fail/stale/duplicate 的 stable reason、zero-history feedback、field/node/surface/canvas primary owner、timer/retry/dedupe、switch/delete/unmount、desktop/mobile geometry、accessibility 和 LibTV/FrameOS route isolation。Exact toast/invalid style/timeout 未有源站证据时保持 research gate。
 
 ## 13. 验证矩阵
 

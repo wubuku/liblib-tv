@@ -60,8 +60,9 @@
 | `../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md` | Open Canvas run/poll/patch 正反面、clone delayed writer 审计，以及 stale-safe completion、history/resource 和 verifier 设计 |
 | `../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md` | 共同 React Flow 12.11.1 change/reducer 深读、Open Canvas/clone adapter 对照，以及 transport whitelist、whole-batch/current-snapshot 和 verifier 设计 |
 | `../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md` | Open Canvas list/URL/hydrate/delete/save owner 深读、clone 多画布/viewport/UI/transient/async 审计，以及 lifecycle manifest、fixture 和 verifier 设计 |
+| `../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md` | Open Canvas toast/node/save/form feedback 正反面、clone reason/string/timer/Director 审计，以及 outcome/primary-surface/owner、fixture 和 verifier 设计 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 七类可迁移的坐标、引用、状态、子图、async ingress、framework change routing 和 canvas lifecycle 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 八类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle 和 command feedback 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
 ## 5. 状态
@@ -83,6 +84,8 @@
 - [x] 完成 LibTV T0/T1/semantic whole-batch change routing、history/runtime-field sanitation、fixture 和 `LIBTV-VR-016` 设计
 - [x] 完成 Open Canvas canvas list/URL document/hydrate/delete/save owner 正反面审计
 - [x] 完成 LibTV multi-canvas registry/document/history/session/external owner manifest、fixture 和 `LIBTV-VR-017` 设计
+- [x] 完成 Open Canvas toast/node/save/form feedback 正反面与 clone reason/string/timer/Director inventory 审计
+- [x] 完成 LibTV command disposition/reason/primary-surface/owner、fixture 和 `LIBTV-VR-018` 设计
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准

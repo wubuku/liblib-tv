@@ -302,6 +302,8 @@ page handler 先跳过 `input`、`textarea` 和 contenteditable target，再处�
 
 Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含义。切换还必须同步分类 selection、node-bound surface、page-local organize/drag/connection/viewport transient、project preference、async observation 和 resource owner；权威 owner manifest 见 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。Batch 58 只覆盖其中四类 node-bound owner，不能据此推断所有 top-level/page-local state 都已隔离。
 
+本目录只回答 surface 在哪里挂载、由谁关闭和如何定位，不单独决定命令结果应该投影到哪个 surface。`COMPLETED/REJECTED/FAILED/STALE/CONFLICT` 的 typed disposition、stable reason、primary persistent owner、transient announcement、clear/retry/dedupe 和 canvas/route isolation 以 [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md) 为权威；不能因为已有 overlay mount owner，就为每个结果重复增加 toast，也不能把 local status timer 当成 graph/history 状态。
+
 ### 8.2 Pointer policy
 
 - AddNode/CanvasDropdown 使用 bubble-phase document `mousedown`；

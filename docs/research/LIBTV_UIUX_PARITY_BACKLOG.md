@@ -231,6 +231,8 @@ Graph ingress 子切片也已完成全入口静态审计与设计，权威入口
 
 Async result ingress 也已完成 implementation 前的双向静态审计，权威入口是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas descriptor/run/runId polling/server patch/revision/saved baseline 的可借结构与 expected-run/source-version/field-owner/two-write 缺口、clone 7 类 delayed/Director completion、operation envelope、freshness disposition、selection/history/resource、`LIBTV-FIX-LOCAL-ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 已定义。Runtime 仍没有共同 operation owner；当前短 timer 只算 `PROTOTYPE_LATENCY`，不能升级为真实 task lifecycle。
 
+Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)：Open Canvas global toast、node status/error、save/conflict、field/pending 的分层正面证据，以及 localized message matching、owner-less async announcement 反例均已固定；clone connection reason、local string status、VideoNode timer 和 Director persistent progress/error/retry 已纳入同一 disposition/reason/primary-surface/owner lifecycle。它横跨 `PAR-004` connection invalid feedback、`PAR-008` graph command、`PAR-009` async process 和 `PAR-011` surface lifecycle；`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` / `LIBTV-VR-018` 尚未实现，且不得因 Open Canvas 使用 Sonner 就默认新增 LibTV global toast。
+
 ### 4.10 `LIBTV-PAR-009`: process and result lifecycle
 
 逐帧拉片、片段重拍和超长视频已经有有界 clone prototype，但 source 的处理中/失败/部分成功/重试/局部重算/版本替换仍不完整。进入实现前需要：

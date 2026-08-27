@@ -75,6 +75,7 @@ RESEARCH_ONLY
 | `OC-BP-005` process/result lifecycle + async ingress | `OC-ADOPT-003/009/018` | `LIBTV-PAR-009` | state/ingress design complete；runtime/source blocked | `LOCAL-PROCESS-STATES-01` + `LOCAL-ASYNC-INGRESS-01` + 所需 source fixture | `LIBTV-VR-007/015` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 | `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
+| `OC-BP-008` command outcome/feedback ownership | `OC-ADOPT-021` | `LIBTV-PAR-004/008..011` | design complete；local reason/status/timer/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` | `LIBTV-VR-018` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -251,6 +252,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 | `L4 Fixture` | deterministic A/B/C + page transient + fake completion/save + resource ledger |
 | `L5 Verifier` | `LIBTV-VR-017` plus Batch 16/58 regressions |
 | `L6 Provenance` | no Open Canvas route/list/persistence claims promoted to LibTV source truth |
+
+## 10.2 `OC-BP-008`：Command Outcome And Feedback Ownership
+
+完整机械合同见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-040..045` + current clone connection/local status/VideoNode/Director inventory；exact LibTV feedback remains source-specific |
+| `L1 Identity` | command kind、disposition、reason/args、canvas/node/surface/operation/attempt owner |
+| `L2 Transaction` | reject/noop/stale zero mutation/history；accepted domain/history delta；feedback excluded from document/history |
+| `L3 Surface` | one primary field/control/node/surface/canvas/toast/modal owner；clear/retry/dedupe/aria/geometry exact |
+| `L4 Fixture` | deterministic outcome injection + fake timer/announcement clock + A/B switch/delete/retry/burst/route isolation |
+| `L5 Verifier` | `LIBTV-VR-018` composed with connection/delete/async/canvas/overlay verifier families |
+| `L6 Provenance` | no Sonner skin/message/provider/save semantics or source-unconfirmed invalid style promoted to LibTV truth |
+
+第一 authorized slice 不应是新增 global toast。应先选择一个现有 owner-local feedback island，将 string/boolean 分解为 stable disposition/reason，并证明 graph/history、timer、switch/delete 和 source geometry 均不回归。
 
 ## 11. 单 Slice 计划模板
 

@@ -94,6 +94,7 @@ LibTV 当前问题
 | Canvas Panel + minimap/zoom | 画布级 controls 与节点级浮层分离 | 服从现有 `BottomToolbar` 和 `MainEntryPanels` 合同 | `LIBTV-UIX-07` |
 | onboarding / empty state | 首次使用的状态机和入口分层 | LibTV 当前入口是否存在同等流程需另取证 | `LIBTV-UIX-08` |
 | summary list + URL identity + full hydrate | 切换画布是跨 owner 的原子 lifecycle，不只是换 nodes | 保留当前 LibTV dropdown 视觉、每画布 graph/viewport/history 与源站待证 fallback | `LIBTV-UIX-17` |
+| toast + node/save/form/control feedback 分层 | outcome/reason 与 primary surface 分开，durable error 可恢复，cancel/noop 可 silent | 精确 LibTV 文案/颜色/timeout/invalid style 仍由源站决定；不复用 FrameOS toast | `LIBTV-UIX-18` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -269,6 +270,22 @@ Open Canvas 把列表摘要、URL `canvasId`、完整 document hydrate、viewpor
 
 视觉复刻仍由 LibTV 源站决定：Open Canvas 的 URL 路由、最后一张删除后自动建空画布和 save/conflict UI 都不能直接搬入。clone correctness 权威合同、decision queue 与 `LIBTV-VR-017` 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
 
+### `LIBTV-UIX-18`：命令结果与反馈落点
+
+Open Canvas 同时使用 global toast、node status/error、save/conflict banner、field error 和 pending control，说明“反馈”不是一个 UI 组件。对 LibTV 后续复刻，应先判断命令 disposition 与用户下一步，再选择 primary surface：
+
+| outcome | 默认 primary surface | 约束 |
+|---|---|---|
+| field/gesture reject | field/control/gesture-local reason | zero graph/history；exact invalid visual source-gated |
+| visible graph result | 新节点/边/selection/history | 不用 generic success toast 代替结果 |
+| started process | node/process/panel busy/progress | 不显示 completed check/copy |
+| recoverable failure | owner-local persistent error + retry | timeout toast 只能辅助 |
+| copy/download/link | transient local/global confirmation | 不写 graph/history |
+| local prototype unavailable | action-adjacent honest disclosure | 不伪造远端 success/progress/credits |
+| cancel/noop/stale/duplicate | silent 或原 operation ledger | 不在当前 canvas 宣告成功 |
+
+Open Canvas 的 localized message lookup 和 owner-less async toast 是不能照抄的反例。当前 clone connection 已有 stable reason，Share/Agent/AddNode/VideoClip 有 string-only local status，VideoNode 有 action-specific timer，Director 有 persistent progress/error/retry；它们需要共同 lifecycle，不需要先新增 toast host。完整合同见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -312,6 +329,7 @@ Open Canvas 把列表摘要、URL `canvasId`、完整 document hydrate、viewpor
 | P1 | 模型能力矩阵与参数面板 | 支撑近期 Seedance/视频亮点复刻 | 先建立 LibTV 证据表 |
 | P1 | Handle/连接菜单/派生节点 | 决定工作流是否可用 | 不能改变现有边效果 |
 | P1 | 多画布切换与 surface owner 隔离 | 防止旧画布 UI、viewport、transient 和异步结果污染当前画布 | 设计合同完成，runtime partial |
+| P1 | 命令 outcome/reason 与反馈 owner | 防止 toast-only workflow、string reason、stale success 和 feedback/history 混淆 | 设计合同完成，runtime partial/source feedback partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

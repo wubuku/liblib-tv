@@ -256,6 +256,19 @@ Open Canvas 将列表摘要和可编辑 document 分开。`/canvas` 读取按更
 
 固定实现仍有跨 route async 限制。Save request URL 使用 `initialCanvas.id`，所以 durable target 明确；但 response 后调用 global store 的 `finishSave/failSave/enterConflict` 时不携带 expected canvas ID。旧 route promise 可在新 canvas hydrate 后 settle，并更新当前 in-memory revision/save baseline/status。该结论是静态竞态推断，不是 live incident；完整正反面转译见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
 
+### 6.7 Command outcome 与 feedback surface
+
+固定版本不是只用 toast。它同时存在四类 presentation owner：
+
+1. root layout 的全局 Sonner `Toaster`，由 studio/list/settings/media/shell 直接发 success/error；
+2. node data 的 queued/running/success/error、errorMessage、lastRunId，投影到 card/MiniMap/editor；
+3. canvas save/dirty/error/conflict 的持续 header status 与 conflict banner/action；
+4. provider settings 的 field error map、saving control 和 summary toast。
+
+CRUD 还证明 outcome-sensitive policy：create success 用 navigation/新 document 体现，rename 同名与用户 cancel silent，delete 先 confirm，rename/delete/import 的完成/失败再 toast。可借的是 transient、persistent、field 和 control projection 分层，不是“每个 handler 调 toast”。
+
+固定实现也有明确反例：store result code 主要只有 `invalid_graph/graph_cycle_detected`，具体 identity 放在中文 message；`translateCanvasRuntimeMessage` 再匹配整段中文/标点做 i18n。Global toast call 也没有显式 canvasId、operationId、attempt 或 dedupe key，因此 old-canvas async terminal 可能在新 owner 上下文发出无归属 announcement。完整转译见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
+
 ## 7. Provider 事实与关键缺口
 
 ### 7.1 声明层和旧 API 层

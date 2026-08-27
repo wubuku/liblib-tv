@@ -482,3 +482,15 @@
 - 新增 `OC-PATTERN-07`、`OC-035..039`、`OC-ADOPT-020`、`OC-TR-013`、`OC-BP-007`、`DEC-033`、`LIBTV-TR-039`、`GI-038..048/GC-044..058`、`LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` 和 `LIBTV-VR-017`；
 - 主合同因共享 Batch 60 全量暂存被并行带入 `8881ad6`；本轮 follow-up commit 单独同步权威链，保留这一 provenance，不改写对方历史；
 - 本轮没有修改 `src/`、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。
+
+## 2026-08-27：v44 command outcome 与 feedback ownership
+
+本轮继续将 Open Canvas 的命令结果与反馈投影作为正反面研究对象，并把 clone 分散的 reason、string、timer 和 Director 状态收敛为实施前合同：
+
+- 固定复核 Open Canvas Sonner root、typed command result、localized runtime message、node run/status/error、save/conflict、field error/pending、CRUD confirm/no-op 等层次，确认其优势是局部持续状态与全局瞬时通知分工；
+- 同时保留两个上游反例：result code 粒度过粗、具体 identity 埋在本地化 message 并靠整段中文匹配翻译，以及 async toast 缺少 canvas/operation/attempt/dedupe owner；
+- 固定审计 clone：connection 已有 stable reason 但 page reject 静默；Share/Agent/AddNode/VideoClip 仍是 string-only local status；VideoNode 使用 action-specific timer；Director 已有更强的 persistent progress/error/retry surface；FrameOS route/store 必须保持隔离；
+- 新增 [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)，定义 `COMMITTED/STARTED/COMPLETED/REJECTED/NOOP/FAILED/CANCELED/STALE/CONFLICT/UNKNOWN`、reason/copy 分层、primary surface、announcement owner、clear/retry/dedupe、history/accessibility 和 route/canvas isolation；
+- 新增 `OC-PATTERN-08`、`OC-040..045`、`OC-ADOPT-021`、`OC-TR-014`、`OC-BP-008`、`DEC-034`、`LIBTV-TR-040`、`GI-049..058/GC-059..075`、`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01`、`LIBTV-VR-018` 和 `LIBTV-UIX-18` 的 authority chain；
+- 明确第一实施切片应是本地 deterministic feedback adapter/fixture，不是新增 global toast host；exact source toast placement/timeout、invalid connection style 和 provider task 文案仍保留 source/fixture gate；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或 Open Canvas submodule。

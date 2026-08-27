@@ -39,6 +39,9 @@
 | DEC-029 | graph delete 关系修复 | delete 必须先规划 structural/relation/aggregate/UI/resource impact，再以 repair/cascade/detach 或 stable unknown 原子收口；不得只过滤 node/edge | ACTIVE / RESEARCH_GATE |
 | DEC-030 | graph mutation 入口定权 | 每个 graph 写入口必须归入 transport/proposal/planned command/restore/remote authority；multi-entity command 验证完整 draft 后一次提交，generic setter 不得成为业务旁路 | ACTIVE / RESEARCH_GATE |
 | DEC-031 | 异步结果陈旧收敛 | completion 必须携带 operation/run/result/source-version identity，经 freshness、field ownership 和 graph plan 校验后幂等落图；stale/duplicate/reject 不得覆盖当前 draft、selection 或 history | ACTIVE / RESEARCH_GATE |
+| DEC-032 | React Flow change routing | callback 整批分类，只允许 T0 selection 与 existing-node T1 position/passive measurement；semantic change 回到具名 command | ACTIVE / RESEARCH_GATE |
+| DEC-033 | 多画布 lifecycle isolation | create/switch/rename/duplicate/delete 是跨 registry/document/history/session/external owner 的 lifecycle transaction | ACTIVE / RESEARCH_GATE |
+| DEC-034 | command outcome feedback | typed disposition/reason 先于 UI projection；一个 primary owner，feedback 不进 graph history，stale completion 不宣告当前成功 | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -221,6 +224,16 @@
 **影响：** 当前 in-place CanvasTabDropdown 视觉和 Batch 16/58 合同保持；不移植 Open Canvas 列表页、URL、file/KV、revision/conflict。最终 canvas 删除、active fallback、projection panel 保留、responsive preset、background operation 和 resource copy 继续由 decision queue/source/product 约束。`CANVAS-LIFECYCLE-01`、`LIBTV-VR-017` 与 runtime planner 仍需明确编码授权。
 
 **依据：** [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)、Open Canvas list/page/store/hydrate/save fixed chain。
+
+### DEC-034：命令结果先定权，再投影反馈
+
+**背景：** 当前 clone 已有 connection reason union、多个 surface-local status、VideoNode timer chip 和 Director progress/error/retry，但没有共同 outcome-to-surface authority。Open Canvas 同时使用 global toast、node status/error、save/conflict surface 和 field errors，证明 feedback 应分层；其 coarse code + localized message lookup、无 canvas/operation owner 的 async toast 又会让 i18n、stale convergence 和 verifier 依赖字符串/当前页面。
+
+**决策：** 每个用户命令先返回 `COMMITTED / STARTED / COMPLETED / REJECTED / NOOP / FAILED / CANCELED / STALE / CONFLICT / UNKNOWN` 中的稳定 disposition，以及 reason code/args 和 owner。Display copy 只在 presentation adapter 映射。Durable/recoverable state 使用 owner-local persistent surface；field rejection 靠近字段；visible graph result 是 primary；copy/download 等无持续对象的动作才默认适合 transient confirmation。一个 outcome 只有一个 primary visual authority，secondary announcement 不改变语义。Reject/noop/stale/unknown 默认 zero graph/history；stale/duplicate completion 不在当前 canvas 宣告成功。
+
+**影响：** 不因本决策新增全局 LibTV toast，也不复用 FrameOS toast。当前 local-prototype disclosure 与 Director owner surface保持；精确 LibTV toast、invalid Handle style、颜色、文案、timeout 和 modal 仍 source-gated。`COMMAND-FEEDBACK-01`、reason projection、timer/dedupe/aria owner 和 `LIBTV-VR-018` runtime 均需明确编码授权。
+
+**依据：** [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](research/LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、Open Canvas layout/store/i18n/studio/list/settings fixed chain。
 
 ## 3. 何时可以重审决策
 
