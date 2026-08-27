@@ -1,10 +1,13 @@
 # Batch 61 计划：React Flow Change Routing 与运行态选择权威
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS`。
 >
 > 计划基线：`4202890`，`master == origin/master`，工作区在建档前干净。
 >
 > 日期：2026-08-27。
+>
+> 实施 checkpoints：`83d2384`（routing）与 `2663971`（marquee
+> selection regression fix）。完整结果见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)。
 >
 > 风险等级：中高。视觉不应变化，但该批触及普通画布 selection、drag、
 > measurement、edge selection 和 graph callback 入口。

@@ -325,7 +325,8 @@ Open Canvas positive control-plane evidence、fixed stale-write limitations、cl
 | Pure checks | whole-batch reject/reroute；finite payload；same-ID ordering；stale element/canvas；runtime-field projection |
 | Store checks | reducer base is current store snapshot；stale render cannot drop newer edge；mixed invalid batch has zero partial effects |
 | Browser/history | real node/edge selection、drag frames + one stop、measurement、named delete/connect；no visual/overlay regression |
-| Blockers | classifier/store adapter、edge selection owner、fixture and encoding authorization missing；resize/reconnect source/product scope blocked |
+| Current maturity | Batch 61 `SCRIPT_RECORDED_PASS`：classifier/store adapter、edge session owner、fixture corpus、真实 browser/history 与相邻回归已通过 |
+| Remaining blockers | resize/reconnect source/product scope blocked；primary/focus/context 交给 `VR-019`；portable document 全面 sanitation 仍由 `VR-010..012` 组合验证 |
 | Exit | only T0 selection and allowed T1 node transport reach generic reducer；semantic identity never bypasses command；history and sanitation exact |
 
 Exact framework taxonomy、Open Canvas comparison、routing matrix、stable result vocabulary、`GI-031..037/GC-034..043` and implementation slices 统一见 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。`VR-016` 细化 `VR-014` 的 framework adapter，不替代 connection/delete/document/copy 专项 verifier。
@@ -490,7 +491,7 @@ Open Canvas `OC-081..090` 正反面、clone/source dated audit、surface profile
 - `LIBTV-VR-013` 的 relation-aware delete planner、repair policy、fixture scenes 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得先删 node/edge 再以 UI effect 或 suffix heuristic 修补 surviving refs；
 - `LIBTV-VR-014` 的入口审计、T0-T5 authority、fixture composition 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL`；不得用 Batch 57 `addEdge` 通过推导所有 direct writer 已受保护；
 - `LIBTV-VR-015` 的 Open Canvas/clone static audit、freshness/field/history/resource contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 component timer、node status 或 generic patch 当成 accepted operation owner；
-- `LIBTV-VR-016..019` 的 React Flow routing、multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority 已统一；
+- `LIBTV-VR-016` 已由 Batch 61 形成 focused `SCRIPT_RECORDED_PASS`；`LIBTV-VR-017..019` 的 multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用 routing pass、局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority已统一；
 - `LIBTV-VR-020` 的 six-domain spatial model、actual host、live/stable/bootstrap viewport、gesture/placement owner、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 controlled viewport、window center 或 Open Canvas Quick Add 推导普通 LibTV 空间权威已经统一；
 - `LIBTV-VR-021` 的 ten entry profiles、validation/probe/materialization、cohort/replace、asset/reference、lease/reachability、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING_OR_PARTIAL / SOURCE_PARITY_PARTIAL`；不得用 mock upload、object URL preview、data/blob locator 或 Open Canvas upload route 推导 durable asset/resource lifecycle 已实现；
 - `LIBTV-VR-022` 的 ten editor profiles、baseline/draft、native/local/graph undo、commit/close/drift、bitmap budget、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_FRAGMENTED / SOURCE_PARITY_PARTIAL`；不得用局部 `useState`、30-step snapshot、submitted copy 或可见 Undo/Save 图标推导共同 editor authority 已实现；

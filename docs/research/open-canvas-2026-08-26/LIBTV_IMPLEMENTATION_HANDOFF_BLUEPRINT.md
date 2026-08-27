@@ -71,7 +71,7 @@ RESEARCH_ONLY
 | `OC-BP-001` standard selected image | `OC-ADOPT-001` | `LIBTV-PAR-001` | `READY_FOR_AUTHORIZATION`，但当前未授权 | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-001` |
 | `OC-BP-002` low-risk active surfaces | `OC-ADOPT-001` | `LIBTV-PAR-002` | 分三个待授权 slice | `LIBTV-FIX-LOCAL-IMAGE-01` | `LIBTV-VR-002` |
 | `OC-BP-003` typed Auto Link | `OC-ADOPT-002` | `LIBTV-PAR-003` | `DESIGN_READY`；运行 fixture 未实现 | `LIBTV-FIX-LOCAL-AUTOLINK-01` 接收规格已完成 | `LIBTV-VR-003..005` |
-| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016/017/019` | `LIBTV-PAR-008` | connection document/copy/data/delete/entrypoint/React Flow routing contracts complete；Batch 61 已记录 React Flow routing 实施计划，runtime 未开始 | `GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` + `SUBGRAPH-COPY-01` + `NODE-DATA-01` + `GRAPH-DELETE-01` + `GRAPH-ENTRYPOINT-01` + `REACT-FLOW-CHANGES-01` 设计完成 | `LIBTV-VR-009..014/016` 有 authority；Batch 61 只申请 transport/selection adapter；Reference/domain/invalid lifecycle/Option-drag/resize/reconnect/cascade/detach and other runtime ingress remain open |
+| `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016/017/019` | `LIBTV-PAR-008` | connection 与 React Flow routing 有 focused runtime；document/copy/data/delete/entrypoint 保持 design/partial | `GRAPH-CONNECTION-01` + `REACT-FLOW-CHANGES-01` 已运行；其余 fixture 设计完成 | `LIBTV-VR-009/016` focused pass，`VR-010..014` 按各自 maturity；Reference/domain/invalid lifecycle/Option-drag/resize/reconnect/cascade/detach and other runtime ingress remain open |
 | `OC-BP-005` process/result lifecycle + async ingress | `OC-ADOPT-003/009/018` | `LIBTV-PAR-009` | state/ingress design complete；runtime/source blocked | `LOCAL-PROCESS-STATES-01` + `LOCAL-ASYNC-INGRESS-01` + 所需 source fixture | `LIBTV-VR-007/015` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 | `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
@@ -189,7 +189,7 @@ Entry-point authority 子切片已有 [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MA
 
 React Flow transport 是 `OC-BP-004` 的独立首批候选：[`../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md) 已定义 exact 12.11.1 variant、whole-batch classifier、current-store snapshot、T0/T1 allowlist、semantic reroute、drag history 和 runtime-field sanitation。对应 fixture `LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` 与 `LIBTV-VR-016` 只收口 framework adapter，不顺手实现 resize/reconnect 或修改视觉。
 
-该候选已在 [`../liblib-canvas-batch61-2026-08-27/`](../liblib-canvas-batch61-2026-08-27/) 形成下一轮实施计划：pure classifier、current-snapshot commit、edge session selection、route callback 收口和 focused verifier 分层执行。规划通过不表示 runtime 已实现；实施仍需按该批 checkpoint 逐层记录和验证。
+该候选已在 [`../liblib-canvas-batch61-2026-08-27/`](../liblib-canvas-batch61-2026-08-27/) 完成 pure classifier、current-snapshot commit、edge session selection、route callback 收口和 focused verifier；真实 marquee 回归暴露的双 ingress 问题也已修复。该 pass 只证明 framework adapter slice，不表示 resize/reconnect、primary/focus 或其余 graph authority 已实现。
 
 候选 ownership 边界是 [`canvasStore.ts`](../../../src/store/canvasStore.ts)、[`canvas.ts`](../../../src/types/canvas.ts) 和经评审后新增的纯 helper。禁止借某个 UI slice 顺手重写整个 store。
 
@@ -418,7 +418,7 @@ pure identity/transaction cases
 在仍然只有文档授权的当前阶段：
 
 1. `OC-BP-003` 的 fixture/data/state/transaction 设计已完成；保持为 `DESIGN_READY`，直到运行 fixture 获授权并实现；
-2. `OC-BP-004` 的 connection、document/snapshot、subgraph copy、node data identity、relation-aware delete、entrypoint authority 和 React Flow routing schema/result/fixture/`LIBTV-VR-009..014/016` 设计已完成；下一步按 verifier 维护 runtime maturity，优先收窄 T0/T1 transport/command/restore 旁路，并继续补 Reference/导入/批量/同步/Option-drag/resize/reconnect/cascade/detach source/product 决定与 invalid lifecycle，不再新建同主题总览；
+2. `OC-BP-004` 的 connection 与 React Flow T0/T1 routing 已有 focused runtime pass；document/snapshot、subgraph copy、node data identity、relation-aware delete、entrypoint authority 仍按 `LIBTV-VR-010..014` 分别维护。下一步不要重复实现 Batch 61 transport adapter，优先处理具名 command/restore 旁路，并继续补 Reference/导入/批量/同步/Option-drag/resize/reconnect/cascade/detach source/product 决定与 invalid lifecycle；
 3. 以 [`LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](LIBTV_PROCESS_RESULT_STATE_MATRIX.md) 继续补 source process evidence；固定本地状态矩阵设计已完成，运行 fixture 仍未授权；
 4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；projection 审计已完成，不创建 provider backlog；
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；

@@ -50,9 +50,21 @@
 - `python3 scripts/verify-liblib-batch6.py`：通过。
 - `python3 scripts/verify-liblib-batch7.py`：通过；
 - `python3 scripts/verify-liblib-batch8.py`：通过；
+- `python3 scripts/verify-liblib-batch11.py`：通过；
+- `python3 scripts/verify-liblib-batch57.py`：通过；
+- `python3 scripts/verify-liblib-batch58.py`：通过；
+- `python3 scripts/verify-liblib-batch60.py`：通过；
 - `python3 scripts/verify-liblib-batch9.py`：按既有台账记录为
   `EXPECTED_HISTORICAL_MISMATCH`，失败于旧 `900.5px` toolbar 宽度；当前
   Batch 52/60 合同为 `1092.5px`，未回退当前实现。
+
+项目门禁：
+
+- `npm run check`：通过；
+- ESLint 为 `0 errors`，保留 9 个既有 FrameOS/共享 warning；
+- TypeScript strict typecheck：通过；
+- Next.js `16.2.1` production build：通过；
+- 保留既有 workspace root / multiple lockfiles warning，不属于本批回归。
 
 首次真实 callback 观察到的安装版 payload：
 

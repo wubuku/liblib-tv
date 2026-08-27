@@ -216,7 +216,7 @@
 
 **决策：** `onNodesChange/onEdgesChange` 必须在任何副作用前解析整个 batch。T0 只处理 selection；T1 只允许 existing-node finite position 和不带 `setAttributes` 的 passive measurement；node/edge add/remove/replace、attribute resize 与 reconnect 必须进入具名 T2/T3 command 或拒绝。Edge 在 12.11.1 没有 non-selection T1 variant。Accepted T0/T1 必须基于同一 current active-canvas snapshot；unsupported/malformed mixed batch 零 partial mutation；selection、measured/dragging/resizing 等 runtime 字段不得泄漏进 portable document/copy/semantic history。
 
-**影响：** 当前命名 connect/delete 和 drag-stop one-history 合同保持不变。未来实现先加 pure classifier/result 和 focused fixture，再收口 current-snapshot store routing 与 edge selection owner；不顺手引入 node resize、reconnect、persistence、FrameOS 改造或视觉变更。`REACT-FLOW-CHANGES-01`、`LIBTV-VR-016` 与 runtime adapter 仍需明确编码授权。
+**影响：** Batch 61 已实现 pure classifier/result、current-snapshot store routing、edge session selection owner 和 focused fixture，命名 connect/delete、drag-stop one-history、marquee 与图片双浮层相邻合同均保持。该 focused pass 不授权 node resize、reconnect、persistence、FrameOS 改造或视觉变更，也不表示其余 graph ingress 已经统一。`REACT-FLOW-CHANGES-01` 与 `LIBTV-VR-016` 的运行证据见 [`liblib-canvas-batch61-2026-08-27/`](research/liblib-canvas-batch61-2026-08-27/)。
 
 **依据：** [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts) 及固定 `@xyflow/react@12.11.1` / `@xyflow/system@0.0.78` 类型与 reducer 实现。
 
