@@ -8,10 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Added the Batch 75 Director clipboard identity-remap plan: project-scoped
+- Closed Batch 75 Director clipboard identity remap: project-scoped
   portable packet, object/group/track/path closure, two-pass IDs and references,
   camera detach/freeze, stable resource alias, deterministic offset, one-entry
-  paste history and non-editable `Cmd/Ctrl+C/V` verification scope.
+  paste history, guarded `Cmd/Ctrl+C/V`, A-B-A owner isolation and reload
+  non-persistence. System/cross-project clipboard, whole-project duplicate and
+  real resource transfer remain outside scope.
 - Closed Batch 74 with clone-owned Director browser-local durable project
   persistence: versioned storage envelope, strict V1 restore,
   owner/project/generation/fingerprint guards, stale-save rejection, corrupt

@@ -7,6 +7,7 @@
 > `HISTORY_GATE_RECORDED_PASS` / `POINTER_LIFECYCLE_GATE_RECORDED_PASS` /
 > `REFERENCE_DELETE_GATE_RECORDED_PASS` / `ASYNC_AUTHORITY_GATE_RECORDED_PASS` /
 > `PERSISTENCE_GATE_RECORDED_PASS` /
+> `CLIPBOARD_REMAP_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-27.
@@ -15,7 +16,8 @@
 > Batch 67 pure codec verifier, Batch 68 hybrid owner/session verifier,
 > Batch 69 authored/runtime verifier, Batch 70 command/history verifier,
 > Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier,
-> Batch 73 async-authority verifier and Batch 74 persistence verifier.
+> Batch 73 async-authority verifier, Batch 74 persistence verifier and Batch 75
+> clipboard identity-remap verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -28,7 +30,7 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, seven current hybrid pure/browser reliability verifiers and one
+codec verifier, eight current hybrid pure/browser reliability verifiers and one
 current browser smoke.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
@@ -65,6 +67,10 @@ single current gate on their own:
   owner/project/generation/fingerprint guards、stale save ignore、corrupt/future/
   mismatch rejection、runtime/UI/resource-byte exclusion、reload recovery and
   storage-failure session continuity.
+- Batch 75 covers project-scoped session clipboard、typed closure、two-pass
+  identity/reference remap、camera detach/freeze、stable resource alias、
+  deterministic repeated placement、one-entry history、shortcut priority and
+  reload non-persistence.
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -110,6 +116,7 @@ historical regressions.
 | Batch 72 | reference-aware delete planner、closure repair、last-camera/resource policy and delete/undo/redo | `CURRENT_GATE` | Pure planner corpus + five fresh-page Playwright scenarios；writes one structured runtime audit and no screenshots/storage | Current `LIBTV-VR-024` reference-delete gate；does not prove async destination、durable persistence、copy/paste or source parity |
 | Batch 73 | Director capture/export/phone async authority、attempt supersession、stale/duplicate/invalid completion and resource ownership | `CURRENT_GATE` | Pure Node authority corpus + one fresh-page Playwright page；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` async-authority gate；does not prove ordinary canvas async ingress、durable persistence、copy/paste or source parity |
 | Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
+| Batch 75 | Director project-scoped clipboard identity remap and guarded keyboard routing | `CURRENT_GATE` | 12-scenario pure packet/planner corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` clipboard-remap gate；does not prove LibTV source copy/paste UI、system/cross-project clipboard、whole-project duplicate or real resource transfer |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -146,6 +153,8 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch73.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch74.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch75.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -294,8 +303,24 @@ Batch 74 persistence gate:
 
 This result closes the clone-owned Director browser-local persistence slice, not
 ordinary canvas graph persistence、remote/cloud storage、durable history、real
-resource materialization、inactive-owner reconciliation、copy/paste remap or
+resource materialization、inactive-owner reconciliation、whole-project duplicate or
 source-exact LibTV persistence.
+
+Batch 75 clipboard-remap gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-27 focused run and serial regression |
+| Implementation checkpoint | `27c6127` |
+| Pure corpus | 12 scenarios covering object/group/track/path/keyframe/anchor closure/remap、internal/external camera refs、resource alias/conflict、stale/empty/allocation failure and runtime/capture exclusion |
+| Browser corpus | guarded `Control+C/V`、one paste one history、selection、exact undo/redo、offset `0.6/1.2/1.8`、A-B-A isolation、reload non-persistence and ordinary graph isolation |
+| Runtime boundary | clipboard is project-scoped and memory-only；accepted paste commits canonical document once；cross-project/resource conflict/gesture conflict is zero mutation |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 75 `runtime-audit.json` only；zero screenshots |
+
+This result closes the clone-owned same-project Director clipboard identity-remap
+slice, not system clipboard MIME、cross-project transfer、whole-project duplicate、
+resource-byte transfer、ordinary canvas clipboard or source-exact LibTV behavior.
 
 ## 5. Future Gate Profiles
 
@@ -310,6 +335,7 @@ Batch 67 pure codec gate
   + Batch 72 reference-delete gate
   + Batch 73 async-authority gate
   + Batch 74 persistence gate
+  + Batch 75 clipboard-remap gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -355,7 +381,8 @@ runtime slice；Batch 69 supplies the authored/runtime projection slice；Batch 
 supplies the command/history slice；Batch 71 supplies the pointer-lifecycle
 slice；Batch 72 supplies the reference-delete slice；Batch 73 supplies the
 async-authority slice；Batch 74 supplies the browser-local persistence slice；
-Batch 59 supplies the current WebGL/browser smoke seed.
+Batch 75 supplies the clipboard identity-remap slice；Batch 59 supplies the
+current WebGL/browser smoke seed.
 
 Required future scenarios:
 
@@ -368,6 +395,7 @@ Required future scenarios:
 | delete closure | **focused runtime in Batch 72**：object/group/camera/track/path/resource references repaired or blocked atomically；capture provenance、selection/runtime cleanup and exact delete/undo/redo are covered |
 | async bridge | **focused runtime in Batch 73**：capture/export/phone completion carries operation/attempt/result identity；owner/session/generation and source/request freshness are checked；stale/invalid/duplicate results have zero-mutation disposition；export resource transfer/release is exactly once |
 | durable project persistence | **focused runtime in Batch 74**：versioned owner-scoped envelope、strict V1 restore、project/generation/fingerprint guards、stale save ignore、corrupt/future/mismatch zero-replacement、runtime/UI/resource-byte exclusion and session-only write failure |
+| clipboard identity remap | **focused runtime in Batch 75**：project-scoped typed packet、group/object/track/path closure、all project-local ID remap、internal/external camera policy、stable resource alias、deterministic offset、one-entry paste、reload/system boundary |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -383,6 +411,7 @@ POINTER_LIFECYCLE_FOCUSED_PASS
 REFERENCE_DELETE_FOCUSED_PASS
 ASYNC_AUTHORITY_FOCUSED_PASS
 PERSISTENCE_FOCUSED_PASS
+CLIPBOARD_REMAP_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

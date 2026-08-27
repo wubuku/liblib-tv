@@ -1,8 +1,8 @@
 # Batch 75 计划：Director Clipboard Identity Remap
 
-> 状态：`IN_PROGRESS / CLIPBOARD_REMAP_PENDING`。
+> 状态：`COMPLETED / CLIPBOARD_REMAP_FOCUSED_PASS`。
 >
-> 日期：2026-08-27；上游 checkpoint：`ce7b883`。
+> 日期：2026-08-27；实现 checkpoint：`27c6127`。
 
 ## 1. 目标
 
@@ -21,48 +21,48 @@
 
 ### Slice A：pure packet/planner
 
-- [ ] 新增 `src/lib/directorClipboard.ts`；
-- [ ] 定义 V1 packet、selection、build/paste result 与 stable reason；
-- [ ] 收集 object/group/track/path/resource closure；
-- [ ] two-pass remap 所有 project-local ID/reference；
-- [ ] strict normalize final document，失败 zero-partial；
-- [ ] same-project、resource conflict 和 empty packet guard。
+- [x] 新增 `src/lib/directorClipboard.ts`；
+- [x] 定义 V1 packet、selection、build/paste result 与 stable reason；
+- [x] 收集 object/group/track/path/resource closure；
+- [x] two-pass remap 所有 project-local ID/reference；
+- [x] strict normalize final document，失败 zero-partial；
+- [x] same-project、resource conflict 和 empty packet guard。
 
 ### Slice B：store authority
 
-- [ ] `DirectorState` 增加 project-scoped clipboard 与 paste count；
-- [ ] `copyDirectorSelection` 不修改 project/history；
-- [ ] `pasteDirectorClipboard` 通过 registry/document/history/persistence 一次提交；
-- [ ] paste 后选择新 object/group；
-- [ ] undo/redo、close/reopen、A-B-A 和 persistence 不携带 clipboard。
+- [x] `DirectorState` 增加 project-scoped clipboard 与 paste count；
+- [x] `copyDirectorSelection` 不修改 project/history；
+- [x] `pasteDirectorClipboard` 通过 registry/document/history/persistence 一次提交；
+- [x] paste 后选择新 object/group；
+- [x] undo/redo、close/reopen、A-B-A 和 persistence 不携带 clipboard。
 
 ### Slice C：workspace UX
 
-- [ ] 非 editable/composing 状态支持 `Cmd/Ctrl+C`；
-- [ ] 非 editable/composing 状态支持 `Cmd/Ctrl+V`；
-- [ ] foreground viewer/busy state 不执行 paste；
-- [ ] 不增加无源站证据的 visible toolbar/context menu。
+- [x] 非 editable/composing 状态支持 `Cmd/Ctrl+C`；
+- [x] 非 editable/composing 状态支持 `Cmd/Ctrl+V`；
+- [x] foreground viewer/busy state 不执行 paste；
+- [x] 不增加无源站证据的 visible toolbar/context menu。
 
 ### Slice D：focused verifier
 
-- [ ] pure single object、multi object、group closure；
-- [ ] internal/external camera relation；
-- [ ] track/path/keyframe/anchor remap；
-- [ ] stable resource alias、capture/runtime exclusion；
-- [ ] repeated paste offset/identity；
-- [ ] empty/stale/resource-conflict zero mutation；
-- [ ] browser keyboard copy/paste、selection、one history、undo/redo；
-- [ ] A/B project clipboard isolation、reload persistence boundary；
-- [ ] ordinary canvas graph/history 和 diagnostics 零变化；
-- [ ] screenshots 为零。
+- [x] pure single object、multi object、group closure；
+- [x] internal/external camera relation；
+- [x] track/path/keyframe/anchor remap；
+- [x] stable resource alias、capture/runtime exclusion；
+- [x] repeated paste offset/identity；
+- [x] empty/stale/resource-conflict zero mutation；
+- [x] browser keyboard copy/paste、selection、one history、undo/redo；
+- [x] A/B project clipboard isolation、reload persistence boundary；
+- [x] ordinary canvas graph/history 和 diagnostics 零变化；
+- [x] screenshots 为零。
 
 ### Slice E：治理与回归
 
-- [ ] 更新 Director contracts、manifest、fixture、ledger、traceability；
-- [ ] 更新 coverage、Big Picture、Agent Task Map、HARNESS、hubs、CHANGELOG；
-- [ ] 运行 Batch 67-75 focused gates；
-- [ ] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
-- [ ] 记录实施结果、commit/push，确认唯一主 worktree 干净。
+- [x] 更新 Director contracts、manifest、fixture、ledger、traceability；
+- [x] 更新 coverage、Big Picture、Agent Task Map、HARNESS、hubs、CHANGELOG；
+- [x] 运行 Batch 67-75 focused gates；
+- [x] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
+- [x] 记录实施结果、commit/push，确认唯一主 worktree 干净。
 
 ## 3. Fixture
 
@@ -102,6 +102,8 @@ project B:
 - 文档明确 clone-owned decision、source unknown 和跨 project/resource non-goal；
 - commit/push 完成，`master == origin/master` 且唯一 worktree 干净。
 
+上述条件均已满足；精确命令和结果见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)。
+
 ## 5. 暂不解决
 
 - system clipboard MIME、跨浏览器/跨窗口 paste；
@@ -111,4 +113,3 @@ project B:
 - source/canvas duplicate 的整个 Director project deep clone；
 - Option-drag、visible context menu、source-exact copy/paste feedback；
 - ordinary React Flow graph clipboard。
-

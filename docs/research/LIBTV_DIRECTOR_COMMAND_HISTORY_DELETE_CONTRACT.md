@@ -3,7 +3,7 @@
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
 > `HISTORY_FOCUSED_PASS` / `POINTER_LIFECYCLE_FOCUSED_PASS` /
 > `REFERENCE_DELETE_FOCUSED_PASS` / `ASYNC_AUTHORITY_FOCUSED_PASS` /
-> `PERSISTENCE_FOCUSED_PASS` /
+> `PERSISTENCE_FOCUSED_PASS` / `CLIPBOARD_REMAP_FOCUSED_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: Director project semantic command、gesture transaction、undo/redo、
@@ -13,7 +13,7 @@
 > Evidence baseline:
 > [`liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md`](liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md)，
 > [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)，
-> clone Batch 70/71/72 implementation，StoryAI `8c8bd36`。
+> clone Batch 70-75 implementation，StoryAI `8c8bd36`。
 >
 > Authorization boundary: 本文是设计合同。它不授权一次性包装 85 个 action、
 > 复制上游 store、修改 source fixture 或把 clone defaults称为LibTV source行为。
@@ -56,13 +56,18 @@ UI intent
 - Batch 73 已将 capture/export/phone result completion 置于 typed async
   authority；stale/invalid/duplicate completion 不产生 graph/history side effect，
   export resource 只 transfer 或 release 一次；
+- Batch 75 已将 session clipboard 置于 typed portable packet authority；copy
+  不修改 document/history，paste 对 object/group/track/path/keyframe/anchor
+  two-pass remap，内部 camera refs 映射、外部 refs detach/freeze，stable resource
+  只 exact alias，accepted paste 恰好一条 history；
 - camera relation、active camera、group membership、track/path reciprocal refs、
   capture provenance、selection/runtime draft 和 local resource block/cascade 已有
   明确 repair policy；
 - screenshot/video graph return各自在普通canvas push一步history；
 - Batch 70 已提供 Director project-local `past/future` 和 typed command result，
   Batch 71 已补齐 focused pointer lifecycle，Batch 72 已补齐 reference-aware
-  delete；copy/paste 与所有旧 action 的统一 command 化仍未完成。
+  delete；Batch 75 已关闭同 project copy/paste identity-remap focused slice；
+  所有旧 action 的统一 command 化仍未完成。
 
 ### 2.1.1 Batch 70 current implementation boundary
 
@@ -537,6 +542,29 @@ Copy/paste排在delete/history之后，但identity规则现在固定：
 
 StoryAI copy/paste只提供ID map方法，不提供当前typed timeline closure。
 
+### 12.1 Batch 75 clone implementation
+
+当前 clone 的 copy/paste observable contract：
+
+- clipboard packet 只存在于当前 browser session，并绑定 `projectId`；
+- selected group 复制完整 member closure；普通 multi-selection 不隐式扩展 group；
+- packet 包含 object-local tracks/paths 和所需 stable resource descriptors；
+- object/group/track/path/keyframe/anchor 全部分配新 ID；
+- internal camera look-at/follow references remap，external references detach 并冻结
+  当前 target/transform；
+- repeated paste 使用 `0.6 * ordinal` 的 X/Z deterministic offset；
+- stable resource 只在目标 document 已存在完全一致 descriptor 时 alias；
+- missing/conflicting resource、cross-project、empty/invalid packet 和 allocation
+  failure 全部 zero mutation；
+- accepted paste 通过 canonical document/history/persistence authority 一次提交；
+- clipboard、paste ordinal、capture、bytes、`sentNodeId`、selection UI、runtime、
+  history/persistence metadata 不进入 packet 或 durable envelope；
+- editable、IME、active gesture、busy 和 capture viewer 优先于 Director shortcut；
+- 没有 source evidence 时不新增 visible clipboard toolbar/context menu/feedback。
+
+该实现是 clone correctness floor，不证明 LibTV source 的 shortcut、placement、
+feedback、cross-project 或 system clipboard 行为。
+
 ## 13. Async And Graph Boundaries
 
 ### 13.1 Phone take
@@ -686,7 +714,7 @@ capture/video graph projection
 
 - [x] group/track/path/capture/local asset；
 - [x] resource diagnostics；
-- [ ] clipboard packet/remap；
+- [x] clipboard packet/remap；
 - [x] prior command/history/pointer/delete slices are stable enough for the remaining copy/paste slice。
 
 ### `DIR-CMD-I06` Async Result Authority

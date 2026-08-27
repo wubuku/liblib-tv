@@ -50,6 +50,7 @@
 | DEC-039 | media rendition/geometry authority | selected output、intrinsic metadata、request、semantic frame、passive measurement、surface rendition、editor space 与 export 分权 | ACTIVE / RESEARCH_GATE |
 | DEC-041 | Director command/history/gesture authority | Director semantic mutation 使用 project-local typed command/history；完整 pointer lifecycle 逐类接入，delete/async/persistence 按独立合同推进 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-042 | Director browser-local persistence | 只保存 owner-scoped、versioned canonical V1 document；strict reject、stale-save guard 和 storage failure 必须保持当前 session 可用；普通画布、远端同步和真实资源另行建合同 | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-043 | Director session clipboard authority | clipboard 是 project-scoped、memory-only typed packet；copy 零 semantic mutation，paste two-pass remap 后一次提交；跨 project、资源冲突和 runtime/capture data 全部拒绝或排除 | ACTIVE / IMPLEMENTATION_GATE |
 
 ## 2. 决策详情
 
@@ -325,8 +326,10 @@ coalescing；Batch 71 已完成 focused pointer lifecycle；Batch 72 已完成
 reference-aware delete、关系闭包、相机回退、资源阻断/级联和 exact
 delete/undo/redo；Batch 73 已完成 Director capture/export/phone 的 async
 operation/attempt/result authority、source/owner freshness、terminal convergence
-和 resource transfer/release。inactive-owner reconciliation、ordinary canvas
-async、copy/paste identity remap 与 persistence 仍缺。
+和 resource transfer/release。Batch 74 已完成 browser-local persistence，Batch 75
+已完成 same-project session clipboard identity remap。inactive-owner
+reconciliation、ordinary canvas async/persistence、whole-project duplicate、
+remote storage 与真实资源仍缺。
 Batch 59 继续是当前低成本 WebGL browser smoke；Batch 46/48/49/50 在
 artifact/storage 隔离前只是 merge candidates。不得把 StoryAI/Open Canvas
 schema、历史 verifier 或 clone screenshot 写成 LibTV source fact，也不得借下一
@@ -359,15 +362,17 @@ pointer lifecycle。
 
 **影响：** Batch 70 将 `LIBTV-VR-024` 的同步 command/history slice 提升为
 `HISTORY_FOCUSED_PASS`，Batch 71 提升 pointer lifecycle，Batch 72 提升
-reference-aware delete，Batch 73 提升 Director async authority。四批都保留 close/reopen 后同一 project 的 history
+reference-aware delete，Batch 73 提升 Director async authority，Batch 75 提升
+same-project clipboard remap。相关批次都保留 close/reopen 后同一 project 的 history
 continuity、zero-partial 和普通 graph/history isolation。当前不宣称全部旧 action
 已成为 typed command，也不宣称 LibTV source 已证实相同 undo/redo、删除菜单或
-确认 UI。inactive-owner reconciliation、capture/export async freshness、durable
-persistence、copy/paste identity remap、真实资源加载和 source-exact Director
-DOM/CSS 仍是独立后续合同；Batch 72 的验收重点是 reference closure、last-camera
+确认 UI。inactive-owner reconciliation、ordinary canvas async/persistence、
+whole-project duplicate、真实资源加载和 source-exact Director DOM/CSS 仍是独立
+后续合同；Batch 72 的验收重点是 reference closure、last-camera
 and resource policy、runtime cleanup 与每个 accepted destructive action 至多一条
 history；Batch 73 的验收重点是 operation/attempt freshness、terminal
-idempotency 和 resource exactly-once。
+idempotency 和 resource exactly-once；Batch 75 的验收重点是 typed closure、
+identity remap、resource alias 和 one-entry paste。
 
 **依据：** [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
 [`liblib-canvas-batch70-2026-08-27/`](research/liblib-canvas-batch70-2026-08-27/)、
@@ -392,11 +397,43 @@ playhead、panel、phone live state、history、capture bytes、Blob/File/Object
 **影响：** Batch 74 将 `LIBTV-VR-024` 提升为
 `PERSISTENCE_FOCUSED_PASS`。这只关闭 clone-owned Director browser-local
 persistence，不授权普通画布 persistence、remote/cloud sync、durable history、
-真实资源 materialization、inactive-owner reconciliation、copy/paste remap 或
-source-exact LibTV persistence。
+真实资源 materialization、inactive-owner reconciliation、whole-project duplicate
+或 source-exact LibTV persistence。
 
 **依据：** [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、
 [`liblib-canvas-batch74-2026-08-27/`](research/liblib-canvas-batch74-2026-08-27/)、
+[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
+[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
+
+### DEC-043：Director clipboard 使用 project-scoped typed packet
+
+**背景：** StoryAI 与 Open Canvas 都证明了 copy/paste 的 ID map 方法价值，但其
+payload 不覆盖当前 Director 的 group、typed tracks、motion path、camera relation、
+resource reference、capture sidecar、project-local history 和 durable persistence。
+直接复制 runtime object 或跨 owner 粘贴会复用 project-local identity，并可能把
+capture bytes、`sentNodeId` 或 local resource locator 错当 portable data。
+
+**决策：** Director clipboard 只存在于当前 browser session，并绑定 copy 时的
+`projectId`。Copy 从 canonical portable document 构造 typed packet，selected
+group 扩展 member closure，普通 selection 只复制显式 objects；object-local
+tracks/paths 和 stable resource descriptor 进入 packet。Paste 为
+object/group/track/path/keyframe/anchor two-pass 分配并重写 ID，内部 camera
+reference remap、外部 relation detach/freeze；stable resource 只允许目标 document
+中完全一致 descriptor alias。Accepted paste 一次提交 canonical document，并产生
+恰好一条 Director history；empty/stale/conflict/invalid 为 zero mutation。
+Clipboard、paste ordinal、capture、bytes、`sentNodeId`、UI/runtime/history/
+persistence metadata 不持久化。
+
+**影响：** Batch 75 将 `LIBTV-VR-024` 提升为
+`CLIPBOARD_REMAP_FOCUSED_PASS`，并验证 guarded `Cmd/Ctrl+C/V`、deterministic
+`0.6 * ordinal` placement、exact undo/redo、A-B-A owner isolation、reload
+non-persistence 和 ordinary graph isolation。该决策不授权 system clipboard MIME、
+cross-project/cross-window transfer、whole-project duplicate、resource bytes/lease
+transfer、ordinary graph clipboard、Option-drag 或 source-unconfirmed visible
+feedback。
+
+**依据：** [`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、
+[`liblib-canvas-batch75-2026-08-27/`](research/liblib-canvas-batch75-2026-08-27/)、
 [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
 

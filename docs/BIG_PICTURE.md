@@ -194,8 +194,8 @@ adapter 和 17-case pure corpus；它明确排除 selection/playback/panel/phone
 capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch 67 pure
 codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
 command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
-Batch 73 async authority + Batch 74 browser-local persistence + Batch 59 browser
-smoke。Batch 68 已建立
+Batch 73 async authority + Batch 74 browser-local persistence + Batch 75
+clipboard identity remap + Batch 59 browser smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
@@ -208,12 +208,15 @@ pose/camera/path/free-draw 的 focused pointer lifecycle；Batch 72 又补齐
 reference-aware delete 的关系闭包、相机回退、资源阻断/级联和 exact
 delete/undo/redo。Batch 73 又为 capture、animation export 和 phone take import
 补齐 operation/attempt、owner/session/generation、source/request fingerprint、
-terminal convergence 和 export Blob URL transfer/release。inactive-owner
-reconciliation、普通画布 async ingress、copy/paste identity remap、真实资源和
-ordinary canvas/remote persistence 仍未实现，不能把这些 focused pass 写成完整
-project authority。Batch 74 已为 Director 增加 browser-local versioned envelope、
+terminal convergence 和 export Blob URL transfer/release。Batch 74 已为
+Director 增加 browser-local versioned envelope、
 strict reload restore、stale save、坏数据零替换和 storage-failure
-`SESSION_ONLY` continuity；这仍不是 LibTV source-exact persistence 或云端同步。
+`SESSION_ONLY` continuity。Batch 75 又增加 project-scoped session clipboard、
+typed entity closure、two-pass ID/reference remap、camera detach/freeze、stable
+resource alias、one-entry paste history 和 guarded `Cmd/Ctrl+C/V`。inactive-owner
+reconciliation、普通画布 async/persistence、whole-project duplicate、真实资源、
+remote storage 和 source parity 仍未完成；这些 focused pass 不能写成完整 project
+authority，也不能写成 LibTV source-exact 行为。
 
 ### 5.2 状态边界
 

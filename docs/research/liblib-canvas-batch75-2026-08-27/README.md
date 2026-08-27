@@ -1,8 +1,8 @@
 # Batch 75: Director Clipboard Identity Remap
 
-> 状态：`PLANNED / CLIPBOARD_REMAP_PENDING`。
+> 状态：`IMPLEMENTED / CLIPBOARD_REMAP_FOCUSED_PASS`。
 >
-> 建档日期：2026-08-27；上游 checkpoint：`ce7b883`。
+> 建档日期：2026-08-27；实现 checkpoint：`27c6127`。
 
 ## 1. 背景
 
@@ -34,11 +34,30 @@ reference 和 project-local history。
 这不是 LibTV source-exact copy/paste 结论，也不实现系统级跨浏览器 clipboard、
 跨 project resource transfer、普通 React Flow graph copy 或 Option-drag。
 
-## 3. 入口
+## 3. 实施结论
+
+Batch 75 已完成：
+
+- `src/lib/directorClipboard.ts` 的 typed V1 packet、closure 和 two-pass remap；
+- `directorStore` 的 project-scoped session clipboard 与 one-entry paste commit；
+- `DirectorDesk` 的 editable、IME、gesture、busy 和 capture-viewer shortcut guard；
+- 12 个 pure scenarios 和 fresh-page browser corpus；
+- repeated paste `0.6 / 1.2 / 1.8` deterministic offset；
+- exact undo/redo、A-B-A owner isolation、reload non-persistence 和普通 graph
+  zero-mutation；
+- zero screenshots 和 zero browser diagnostics。
+
+稳定资源只在目标 document 已有完全一致 descriptor 时 alias；missing/conflicting
+resource、cross-project clipboard、invalid allocation 和 empty selection 全部
+zero-mutation reject。Clipboard、paste ordinal、capture bytes、`sentNodeId`、
+selection UI、runtime 和 history metadata 均不进入持久化 envelope。
+
+## 4. 入口
 
 - [`STATIC_AUDIT_2026-08-27.md`](STATIC_AUDIT_2026-08-27.md)：当前代码与上游方法审计；
 - [`PLAN.md`](PLAN.md)：实施切片、fixture、验证和停止条件；
 - [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实施和回归记录；
+- [`runtime-audit.json`](runtime-audit.json)：12 个 pure scenario 和 browser
+  assertion 的结构化结果；
 - [`../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)：正式 identity/history 合同；
 - [`../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：current gate 入口。
-

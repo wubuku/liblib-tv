@@ -5,6 +5,7 @@
 > `AUTHORED_HISTORY_POINTER_DELETE_FOCUSED_RUNTIME_PASS` /
 > `ASYNC_AUTHORITY_FOCUSED_RUNTIME_PASS` /
 > `PERSISTENCE_FOCUSED_RUNTIME_PASS` /
+> `CLIPBOARD_REMAP_FOCUSED_RUNTIME_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -91,7 +92,11 @@ Director project document
   strict V1 load/normalize、owner/project/generation/fingerprint guard、
   reload authored restore、stale save ignore、corrupt/future/mismatch
   zero-replacement 和 write-failure `SESSION_ONLY` 语义；
-- inactive owner tombstone/reachability、copy/paste identity remap、
+- Batch 75 已增加 project-scoped session clipboard、typed entity closure、
+  object/group/track/path/keyframe/anchor two-pass remap、camera relation
+  detach/remap、stable resource alias、one-entry paste history 和 reload
+  non-persistence boundary；
+- inactive owner tombstone/reachability、
   ordinary canvas persistence、remote persistence 和 source-exact storage
   仍未解决。
 
@@ -493,6 +498,11 @@ Duplicate 不是共享同一 document：
 
 若 remap/resource policy未实现，返回 `BLOCK_UNKNOWN`，不要共享旧 project。
 
+Batch 75 已提供可复用的 object/group/track/path/keyframe/anchor remap machinery，
+但 whole-project duplicate 仍需独立 owner/project allocation、capture policy、
+resource policy、history reset、persistence transaction 和 source/canvas lifecycle
+fixture，不能把 session clipboard paste 直接当成 duplicate 已完成。
+
 ## 10. Persistence Contract
 
 ### 10.1 Storage-neutral boundary
@@ -610,6 +620,8 @@ deterministic ID and clock
 - seek/playback不改变 authored document；
 - storage fail保持 memory project并显示 honest状态；
 - stale/duplicate async graph result zero commit。
+- same-project clipboard paste remaps typed identities and creates one history；
+- cross-project clipboard and reload remain zero-transfer。
 
 ## 13. Verifier Contract
 
@@ -678,10 +690,19 @@ document、duplicate、delete和 delayed result。
 
 ### `DIR-PROJECT-I04` Persistence Adapter
 
-- only after I01-I03；
-- storage-neutral tests first；
-- browser adapter必须有quota/corrupt/stale fixture；
--不扩展到cloud/backend。
+- 状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 74；
+- browser-local adapter已覆盖quota/corrupt/stale fixture；
+- canonical V1 document、owner-scoped key 和 session-only failure 已验证；
+- 不扩展到cloud/backend。
+
+### `DIR-PROJECT-I05` Session Clipboard Identity Remap
+
+- 状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 75；
+- project-scoped packet、typed closure 和 two-pass remap 已实现；
+- stable resource exact alias、external camera detach 和 one-entry history 已验证；
+- clipboard/paste ordinal 不持久化、不跨 project；
+- whole-project duplicate、resource bytes transfer 和 system clipboard 仍是独立
+  lifecycle/resource slices。
 
 每个 slice 独立计划、fixture、verifier、commit/push。不得以“建立 project document”
 为由一次性重写全部 Director components。
@@ -729,10 +750,10 @@ owner/session 子项已在 Batch 68 升级为
 2. 普通画布 delayed result 也只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 明确；
 4. ordinary canvas graph/document persistence 有独立合同和 fixture；
-5. copy/paste identity remap 有 focused runtime；
-6. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
+5. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
 
 Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项；
 Batch 74 已关闭 clone-owned Director browser-local durable document persistence
-子项，但不关闭普通画布 async/persistence、remote storage、真实资源或
-source-exact LibTV persistence 子项。
+子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项。三者
+都不关闭 inactive-owner reconciliation、ordinary canvas async/persistence、
+whole-project duplicate、remote storage、真实资源或 source-exact LibTV 子项。
