@@ -65,6 +65,7 @@ graph TD
 - [`research/liblib-canvas-batch59-2026-08-27/`](research/liblib-canvas-batch59-2026-08-27/)：Director 资源库搜索、预览与显式加入场景的 clone-owned 实施、证据边界和 focused verifier。
 - [`research/liblib-canvas-batch60-2026-08-26/`](research/liblib-canvas-batch60-2026-08-26/)：普通画布图片上下双浮层 owner 连续性、panel 命中边界、active-tool replacement 和 focused verifier。
 - [`research/liblib-canvas-batch61-2026-08-27/`](research/liblib-canvas-batch61-2026-08-27/)：React Flow whole-batch change routing、current-snapshot transport、edge selection owner 和 `LIBTV-VR-016` 的实施、runtime audit 与截图成本台账。
+- [`research/liblib-canvas-batch62-2026-08-27/`](research/liblib-canvas-batch62-2026-08-27/)：selection command snapshot、editable/IME guard、foreground shortcut suspension、单层 Escape 与 canvas focus fallback 的计划和实施历史。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。
 - [`research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：源站快捷键文案、clone 帮助行、实际 handler、React Flow gesture 与局部上下文优先级对照。
