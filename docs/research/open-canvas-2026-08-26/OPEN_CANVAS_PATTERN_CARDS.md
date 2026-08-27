@@ -342,7 +342,71 @@ exact batch parse
 
 ---
 
-## 9. 六张卡的共同落地顺序
+## 9. OC-PATTERN-07：Document Identity + Hydrate Owner + Switch Manifest
+
+### 9.1 上游 `SOURCE_FACT`
+
+Open Canvas 将 canvas registry summary、URL `canvasId` 和 full document record 分开。List page 只消费 title/revision/preview/timestamps；studio route 按 ID 取一个完整 graph，missing ID not-found。`hydrate` 一次替换 canvasId、nodes/edges、viewport、revision、saved baseline、dirty/save/error/conflict。Delete 还会清理同 canvas runs，并在 registry 为空时创建一张空 document。
+
+这套结构建立了强 document identity，但并不自动解决所有跨 route async：graph PUT 使用旧 `initialCanvas.id` 是正确 durable target；response 后的 global `finishSave/failSave/enterConflict` 却不比较 current store canvasId。旧 route promise 在新 canvas hydrate 后 settle，可能污染新的 local revision/save owner。这是静态竞态推断，不是 live incident。
+
+### 9.2 LibTV 对应的 `CLONE_FACT`
+
+当前 clone 已有：
+
+- `canvases[] + activeCanvasId` 内存 registry；
+- 每张 canvas 独立 graph/viewport 和 `historyByCanvas`；
+- Batch 16 create/switch/rename/duplicate/delete UI；
+- switch/create/duplicate/active delete 清 selection；
+- React Flow 以 activeCanvasId key remount；
+- Batch 58 preview/annotate/element edit/Director owner reconciliation。
+
+未收口的 owner 包括 invalid active target、demo responsive viewport preset、organize snapshot、drag baseline、connection gesture、late viewport callback、projection panel、timer/export destination 和 resource/run lifecycle。
+
+### 9.3 `INFERENCE`
+
+切换画布不是“换数组”也不是“closeAll”。每一类状态必须声明 preserve、restore、clear、rebind、cancel、detach 或 continue：
+
+```text
+project registry persists
+canvas graph / viewport / history stay keyed by canvasId
+active selection clears
+node-bound surface closes
+projection panel closes or rebinds atomically
+page-local transaction cancels
+async operation remains bound to original canvas
+resource owner changes only by explicit policy
+```
+
+只依赖 React subtree remount 无法清理 route component 外层 refs；只在 delayed callback 执行时读取 active canvas 则会把旧 operation 重新定向。
+
+### 9.4 `CLONE_DECISION`
+
+- 保留 LibTV in-place dropdown UX，不复制 Open Canvas list-card/URL visual；
+- unknown canvas target reject/no-op，active ID 始终解析；
+- switch 保持 source/target graph、viewport、history，清 current clone selection，零 graph history；
+- organize/drag/connection/viewport transient 携带 canvas/generation，switch 后 old owner no-op；
+- node-bound UI 继续按 `canvasId + nodeId` 失效；projection panel 明确 close/rebind；global preference 可声明保留；
+- duplicate/delete 组合 node-data/copy/delete/resource/async registry，不能只 remap/filter structural graph；
+- final delete、fallback、responsive preset、background operation 和 resource policy 保持 source/product queue；
+- network request durable target 与 local convergence owner 都必须检查。
+
+### 9.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| registry | active ID resolves、canvas IDs unique、unknown/same target stable |
+| switch | source/target graph/viewport/history exact；selection clear；zero history |
+| transient | old organize/drag/connection/viewport callbacks cannot mutate target |
+| UI | node-bound closes；projection panel target-only；global preference exact |
+| duplicate/delete | full identity/resource/run plan；fallback/final policy；zero-partial |
+| async | old timer/save/export result cannot late-write current canvas or steal selection |
+
+设计 authority：[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、`LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` 和 `LIBTV-VR-017`。
+
+---
+
+## 10. 七张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -350,6 +414,7 @@ exact batch parse
   -> 04 派生/版本关系
   -> 03 运行、节点、保存状态
   -> 06 framework change authority
+  -> 07 canvas lifecycle owner isolation
   -> 05 异步结果入口与陈旧收敛
 ```
 
@@ -360,9 +425,10 @@ exact batch parse
 - 派生/版本关系明确后，才能设计长视频、重拍和过程型状态；
 - 运行与保存状态先归纳语义，避免为尚未确认的源站操作预先制造状态机；
 - framework callback 先限定 T0/T1，防止命名 graph command 被 generic reducer 旁路；
+- canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 10. 统一拒绝清单
+## 11. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -372,10 +438,12 @@ exact batch parse
 - 把 mock `running/success` 文案描述为真实任务后端；
 - 把 Open Canvas 的 generic node patch、URL media identity 或 read-modify-write persistence 当成 stale-safe 模板；
 - 把 React Flow union 的 add/remove/replace 当作无须 domain validation 的普通 transport；
+- 因为 Open Canvas 使用 URL canvasId，就复制其列表页、route、final-delete 或持久化产品语义；
+- 依赖 incidental React remount 清理所有 page-local transaction，或让 delayed callback late-read active canvas；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 11. 后续研究入口
+## 12. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -383,6 +451,7 @@ exact batch parse
 - Open Canvas 深度报告：[`REPORT.md`](REPORT.md)
 - 异步结果入口与陈旧收敛：[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](../LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)
 - React Flow change routing：[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)
+- Multi-canvas lifecycle：[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

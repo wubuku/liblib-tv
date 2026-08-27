@@ -363,7 +363,7 @@ Whole-cohort cascade is preferred because every node is `pending`, no member has
 - every node-bound UI owner for that canvas must close or explicitly detach；
 - its graph history is discarded；
 - resource cleanup is emitted to a future owner, not inferred from URLs；
-- source Open Canvas creates an empty canvas after deleting the final document, but clone's "refuse final deletion" behavior remains a separate product decision。
+- source Open Canvas creates an empty canvas after deleting the final document, but clone's "refuse final deletion" behavior remains a separate product decision；canvas registry/fallback/history/UI/async/resource 的完整删除边界见 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
 
 ## 10. Selection, Overlay And Focus Repair
 

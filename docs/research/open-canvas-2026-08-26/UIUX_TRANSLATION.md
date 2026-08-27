@@ -93,6 +93,7 @@ LibTV 当前问题
 | dirty/saving/conflict | 明确保存状态而非单一 loading | 只有需要真实持久化时才引入 clone 语义 | `LIBTV-UIX-06` |
 | Canvas Panel + minimap/zoom | 画布级 controls 与节点级浮层分离 | 服从现有 `BottomToolbar` 和 `MainEntryPanels` 合同 | `LIBTV-UIX-07` |
 | onboarding / empty state | 首次使用的状态机和入口分层 | LibTV 当前入口是否存在同等流程需另取证 | `LIBTV-UIX-08` |
+| summary list + URL identity + full hydrate | 切换画布是跨 owner 的原子 lifecycle，不只是换 nodes | 保留当前 LibTV dropdown 视觉、每画布 graph/viewport/history 与源站待证 fallback | `LIBTV-UIX-17` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -251,6 +252,23 @@ Open Canvas 将 add node、minimap、zoom 等作为 React Flow `Panel`，当前 
 3. 设置/帮助/导入不应与节点编辑器共享同一浮层层级；
 4. 跳过和继续的状态需要可复现，不依赖隐式 session。
 
+### `LIBTV-UIX-17`：多画布切换与 surface reconciliation
+
+Open Canvas 把列表摘要、URL `canvasId`、完整 document hydrate、viewport、revision/save baseline 和删除后的有效 registry 分开处理。可迁移的 UI/UX 方法是：一次画布切换必须有明确的 owner transition，用户不能看到 A 的节点编辑 surface 叠在 B 的 graph 上，也不能让 A 的拖动结束、viewport callback 或延迟结果改写 B。
+
+对当前 LibTV clone，后续取证和实现必须共同维护一份 switch manifest：
+
+| surface/state | 离开 A | 进入 B | 可跨画布保留 |
+|---|---|---|---|
+| graph / viewport / history | 精确保存在 A | 原子投影 B | 否，只按 canvas ID 保存 |
+| selection / node toolbar / editor | 清除或 owner invalidation | 默认空选中 | 否 |
+| preview / annotate / element edit / Director shell | owner 不匹配即关闭 | 不自动重开 | 否 |
+| organize / drag / connection / viewport transient | 使 A generation 失效 | 建立 B generation | 否 |
+| drawer/menu | 按 anchor/target owner 关闭或重绑 | 只显示 B 可用目标 | 仅 project-level preference |
+| background operation | 保持原 canvas operation owner | 依产品规则观察 | operation 可继续，结果不可偷走 B selection |
+
+视觉复刻仍由 LibTV 源站决定：Open Canvas 的 URL 路由、最后一张删除后自动建空画布和 save/conflict UI 都不能直接搬入。clone correctness 权威合同、decision queue 与 `LIBTV-VR-017` 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -293,6 +311,7 @@ Open Canvas 将 add node、minimap、zoom 等作为 React Flow `Panel`，当前 
 | P1 | 节点/编辑器/画布层级合同 | 降低浮层互相遮挡和事件穿透 | 研究合同可先写 |
 | P1 | 模型能力矩阵与参数面板 | 支撑近期 Seedance/视频亮点复刻 | 先建立 LibTV 证据表 |
 | P1 | Handle/连接菜单/派生节点 | 决定工作流是否可用 | 不能改变现有边效果 |
+| P1 | 多画布切换与 surface owner 隔离 | 防止旧画布 UI、viewport、transient 和异步结果污染当前画布 | 设计合同完成，runtime partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

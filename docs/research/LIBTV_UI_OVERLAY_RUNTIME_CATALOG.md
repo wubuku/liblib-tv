@@ -138,7 +138,7 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 | Surface | 命令与 mount owner | 关闭路径 | 数据/布局副作用 |
 |---|---|---|---|
 | Add node | centered `+`；`LeftSidebar` -> `AddNodePanel` | trigger；document `mousedown` outside；创建节点后；切到 Material；page Escape；另一个 top-level action | 普通 entry 调用 `addNode`；上传/生成历史仅 local status。 |
-| Canvas dropdown | TopNav 或 Asset context；`CanvasTabDropdown` | trigger；document `mousedown` outside；local document Escape；完成 canvas action；另一个 top-level action | 修改 project/canvas lifecycle；不进入 active graph 的 undo/redo history。 |
+| Canvas dropdown | TopNav 或 Asset context；`CanvasTabDropdown` | trigger；document `mousedown` outside；local document Escape；完成 canvas action；另一个 top-level action | 修改 project/canvas lifecycle；不进入 active graph 的 undo/redo history；切换后按 multi-canvas manifest 关闭、重绑或保留其他 surface。 |
 | Asset drawer | lower-left command；`page.tsx` -> `AssetManagerPanel` | trigger；X；点击 drawer canvas context 转入 Canvas dropdown；page Escape；另一个 top-level action | 改变页面横向布局；条目点击只更新 graph selection。 |
 | Shortcuts | centered keyboard command；`page.tsx` -> dialog | trigger；X；page Escape；另一个 top-level action | 纯展示；文案与实际 handler 差异见 shortcut crosswalk。 |
 | Share | TopNav；`TopNavBar` local mount | trigger；page Escape；另一个 top-level action | publish/link 只写 local status；无 outside-close 和 X。 |
@@ -299,6 +299,8 @@ page handler 先跳过 `input`、`textarea` 和 contenteditable target，再处�
 - active authoring surface 的 capture-phase Escape handler可能比 page handler更早消费状态，必须按组件单独审计。
 
 帮助文案与运行 handler 的完整差异见 [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)。
+
+Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含义。切换还必须同步分类 selection、node-bound surface、page-local organize/drag/connection/viewport transient、project preference、async observation 和 resource owner；权威 owner manifest 见 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。Batch 58 只覆盖其中四类 node-bound owner，不能据此推断所有 top-level/page-local state 都已隔离。
 
 ### 8.2 Pointer policy
 

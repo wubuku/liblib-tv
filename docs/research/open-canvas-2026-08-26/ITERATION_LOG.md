@@ -470,3 +470,15 @@
 - 新增 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)，定义 whole-batch T0/T1 routing、field allowlist、current active-canvas snapshot、selection/history/document sanitation 和 stable result；
 - 新增 `OC-PATTERN-06`、`OC-031..034`、`OC-ADOPT-019`、`OC-TR-012`、`DEC-032`、`LIBTV-TR-038`、`GI-031..037/GC-034..043`、`LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01` 和 `LIBTV-VR-016`；
 - 本轮只修改文档，不触碰其他开发者 Batch 60 图片组件/证据 WIP、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。
+
+## 2026-08-27：v43 multi-canvas lifecycle 与 cross-owner isolation
+
+本轮继续从 Open Canvas canvas registry/list/studio chain 提取方法，并审计当前 clone 的跨画布 owner：
+
+- 固定复核 Open Canvas summary/full record、URL canvasId、missing not-found、create/rename/delete、last-empty replacement、run cleanup、hydrate、viewport save 和 route-local async save；
+- 记录 list/document/hydrate/delete-run cleanup 的正面方法，以及 old-route request 虽有 explicit URL target、global `finishSave/failSave/enterConflict` 却无 expected current canvas guard 的竞态推断；
+- 固定复核 clone Batch 16 CRUD、per-canvas graph/viewport/history、global selection、Batch 58 node-bound owner、React Flow keyed remount，以及 invalid target、demo viewport preset、organize/drag/connection/viewport transient 和 delayed active-destination 风险；
+- 新增 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)，定义 registry/document/history/session/external owner、CRUD/switch plan、reconciliation manifest、invariants、decision queue 和实施切片；
+- 新增 `OC-PATTERN-07`、`OC-035..039`、`OC-ADOPT-020`、`OC-TR-013`、`OC-BP-007`、`DEC-033`、`LIBTV-TR-039`、`GI-038..048/GC-044..058`、`LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` 和 `LIBTV-VR-017`；
+- 主合同因共享 Batch 60 全量暂存被并行带入 `8881ad6`；本轮 follow-up commit 单独同步权威链，保留这一 provenance，不改写对方历史；
+- 本轮没有修改 `src/`、测试、FrameOS、共享源站 graph 或 Open Canvas submodule。

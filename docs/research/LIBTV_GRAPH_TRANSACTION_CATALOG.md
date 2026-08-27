@@ -231,6 +231,17 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-035` | selection has a declared runtime owner separate from semantic graph | `REQUIRED_CORRECTNESS` | node selection is projected；edge selection remains on edge objects | no selection in portable document/copy/semantic history |
 | `LIBTV-GI-036` | passive measurement and explicit resize have different history/authority | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | no current NodeResizer/expandParent path found | measurement zero history；future source-authorized resize one named command |
 | `LIBTV-GI-037` | React Flow runtime fields are sanitized at graph boundaries | `REQUIRED_CORRECTNESS` | measured/dragging/resizing/edge selected may enter arrays | codec/copy/history/hash explicitly project declared semantic fields |
+| `LIBTV-GI-038` | activeCanvasId resolves to exactly one existing canvas | `REQUIRED_CORRECTNESS` | current setter accepts arbitrary ID | unknown target reject/no-op；never blank invalid active owner |
+| `LIBTV-GI-039` | canvas IDs are unique and lifecycle allocation is zero-partial | `REQUIRED_CORRECTNESS` | module counter + timestamp/random copy suffix | create/duplicate plan validates identity before registry mutation |
+| `LIBTV-GI-040` | graph、viewport and history remain keyed to one canvas | `REQUIRED_CORRECTNESS` | CanvasData + historyByCanvas partially implement | switch preserves source/target exact；delete removes target owner |
+| `LIBTV-GI-041` | selection is active-session state and subset of active graph | `REQUIRED_CORRECTNESS` / `CURRENT_CLONE_FACT` | create/switch/duplicate/active delete clear | no inactive node selection or history leakage |
+| `LIBTV-GI-042` | organize/drag/connection/viewport transaction carries canvas owner/generation | `REQUIRED_CORRECTNESS` | route refs/state are not canvas-keyed | old callback cannot commit after switch |
+| `LIBTV-GI-043` | node-bound UI owner cannot cross canvas | `REQUIRED_CORRECTNESS` | Batch 58 covers preview/annotate/element/Director | every future surface enters reconciliation manifest |
+| `LIBTV-GI-044` | canvas lifecycle remains outside graph undo | `CURRENT_CLONE_FACT` / `SOURCE_DECISION_REQUIRED` | current per-canvas history excludes CRUD/viewport | project undo is a separate future contract |
+| `LIBTV-GI-045` | delayed graph write carries declared canvas identity | `REQUIRED_CORRECTNESS` | current component actions often late-read active canvas | switch does not retarget timer/promise/poll/export result |
+| `LIBTV-GI-046` | duplicate/delete external operation/resource impact is explicit | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | current graph-only lifecycle has no ledger | map/reset/detach/retain/release/unknown exact |
+| `LIBTV-GI-047` | target canvas viewport is switch restore authority | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | demo canvas responsive effect overwrites stored viewport | seed preset cannot silently replace user-owned viewport |
+| `LIBTV-GI-048` | async local convergence checks current canvas/generation | `REQUIRED_CORRECTNESS` / `PROTOTYPE_BOUNDARY` | Open Canvas request URL is explicit but finishSave global | old durable result cannot rewrite new in-memory owner |
 
 ### 10.2 Compatibility case queue
 
@@ -279,6 +290,21 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-041` stale element ID | node deleted before queued drag/measure | framework callback | no resurrection or cross-canvas write；stable stale result | focused fixture missing |
 | `LIBTV-GC-042` same-ID reducer precedence | remove/add/position for same ID | framework callback | app classifier rejects before reducer replacement-like semantics | pure fixture missing |
 | `LIBTV-GC-043` runtime field sanitation | selected/measured/dragging/resizing present | history/copy/document projection | portable/semantic outputs exclude undeclared fields | composes document/copy verifier |
+| `LIBTV-GC-044` valid canvas switch | A/B distinct graph/viewport/history | A -> B -> A | each owner exact；selection clear；zero history | lifecycle design complete；runtime partial |
+| `LIBTV-GC-045` unknown canvas target | valid A active | switch missing ID | stable reject/no-op；A unchanged | current setter creates invalid active ID |
+| `LIBTV-GC-046` same canvas target | A active | switch A | exact no-op；no owner flicker/reset | fixture missing |
+| `LIBTV-GC-047` organize switch race | A organize snapshot armed | switch B then restore | B unchanged；old transaction canceled | current route snapshot unkeyed |
+| `LIBTV-GC-048` drag switch race | A drag baseline armed | switch B before late stop | no B graph/history write | current ref unkeyed |
+| `LIBTV-GC-049` viewport switch race | A viewport callback queued | switch B then callback | B viewport unchanged | current owner token missing |
+| `LIBTV-GC-050` node-bound UI switch | A preview/annotate/Director open | switch B | surface closes；graph/history unchanged | Batch 58 recorded for four owners |
+| `LIBTV-GC-051` projection panel switch | asset/history/agent open on A | switch B | close or target-only rebind；no mixed data | manifest/source decision pending |
+| `LIBTV-GC-052` complex canvas duplicate | group/derived/shot/process/Director/media | duplicate A | one valid B；mapped/reset resource policy；empty history/selection | current structural copy partial |
+| `LIBTV-GC-053` inactive canvas delete | A active/selected；B target | delete B | A all owners exact；B history/UI/ops removed | runtime graph/history partial |
+| `LIBTV-GC-054` active canvas delete | A active；B/C exist | delete A | valid deterministic fallback；selection/UI/transient clear | current first-item fallback；source decision open |
+| `LIBTV-GC-055` final canvas delete | one canvas | delete | exact reject or replace-empty；registry remains valid | clone rejects；Open Canvas replaces empty |
+| `LIBTV-GC-056` old timer completion | operation starts A | switch B；A completes | explicit A/stale result；never B/selection steal | async/lifecycle composition missing |
+| `LIBTV-GC-057` old save completion | save A pending | hydrate B；A returns | durable A may finish；B in-memory baseline/status unchanged | Open Canvas-inspired race fixture |
+| `LIBTV-GC-058` canvas resource delete | A owns blob/run/workspace | delete A | exact cancel/detach/release/retain once | resource ledger missing |
 
 ### 10.3 Decision and verification order
 

@@ -77,6 +77,7 @@ graph TD
 - [`research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)：Open Canvas 分层校验与 clone 全 graph 写入口审计、T0-T5 信任等级、command plan、fixture 和 `LIBTV-VR-014` 设计。
 - [`research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)：Open Canvas run/poll/server-patch 深读、clone 延迟写图审计，以及 operation identity、stale disposition、field ownership、history/resource 收敛和 `LIBTV-VR-015` 设计。
 - [`research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)：React Flow 12.11.1 精确 change taxonomy、T0/T1 transport whitelist、整批分类、当前快照、运行时字段/历史边界和 `LIBTV-VR-016` 设计。
+- [`research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)：Open Canvas list/URL/hydrate/delete/save 生命周期与 clone 多画布 registry、viewport、history、UI/transient/async owner 隔离审计，含 switch manifest、fixture 和 `LIBTV-VR-017` 设计。
 - [`research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)：LibTV page/route/node/Director 浮层的 state、mount owner、关闭路径、键盘和定位 ownership 目录。
 - [`research/LIBTV_UIUX_PARITY_BACKLOG.md`](research/LIBTV_UIUX_PARITY_BACKLOG.md)：当前 LibTV UI/UX parity 缺口的价值、证据、验证准备度、风险、依赖和授权/fixture 队列。
 - [`research/LIBTV_FIXTURE_CATALOG.md`](research/LIBTV_FIXTURE_CATALOG.md)：LibTV 本地/Director/源站 fixture 的身份、构造、隔离、reset、副作用和 parity backlog 映射。
@@ -85,7 +86,7 @@ graph TD
 - [`research/components/COVERAGE_MATRIX.md`](research/components/COVERAGE_MATRIX.md)：源码组件到合同、证据、验证和下一步文档缺口的反向索引。
 - [`research/frameos/`](research/frameos/README.md)：FrameOS 原站抽取、组件、行为和运行手册。
 - [`research/open-canvas-2026-08-26/`](research/open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
-- [`research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：四类可迁移模式卡，区分上游启发、LibTV 证据和 clone 验证闸门。
+- [`research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：七类可迁移模式卡，覆盖几何、typed input、状态/身份、异步、framework change routing 与多画布 lifecycle，并区分上游启发、LibTV 证据和 clone 验证闸门。
 - [`research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游机制到 LibTV parity、fixture、verifier 和授权边界的采纳决策总表。
 - [`research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：高价值上游启发转为 LibTV 单 slice 的证据、身份、事务、surface、fixture 和 verifier 交接蓝图。
 - [`research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和超长视频的正交状态、身份、fixture、stale/retry 与 `VR-007` 合同。

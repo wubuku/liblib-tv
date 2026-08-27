@@ -271,6 +271,12 @@ Open Canvas 的 Panel 结构只能启发“画布级控件不应侵入节点内�
 
 Open Canvas 提供了一个信息架构问题：空状态、导入、新建、设置、帮助、生成前配置和节点编辑器应不应该共享同一层。LibTV 是否有等价 onboarding 仍需源站取证，暂定形成 `LIBTV-UIX-16`，不因上游存在而新增 LibTV 首屏流程。
 
+### 10.3 多画布 lifecycle 与 owner 切换
+
+固定版本还把画布列表摘要、URL `canvasId`、完整 graph/viewport hydrate、删除后的 registry fallback 和保存 revision 分开。正面启发是 identity first、整份 document hydrate 和 per-canvas viewport；反面启发是异步 save response 即使请求 URL 绑定旧 ID，本地 `finishSave/failSave/enterConflict` 仍需再次核对当前 in-memory owner。该结论形成 `LIBTV-UIX-17`，不能被简化成 dropdown row 是否高亮。
+
+当前 clone 已有 per-canvas graph/viewport/history、切换清 selection 和 Batch 58 node-bound owner cleanup；仍需验证 invalid target、demo canvas preset overwrite、organize/drag/connection/viewport transient、delayed graph writer 与 resource owner。完整静态审计和 switch manifest 见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
+
 ## 11. 对比矩阵：什么可以借鉴，什么不能搬
 
 | 主题 | Open Canvas 固定版本事实 | 当前 LibTV 已知合同 | 后续动作 | 状态 |
@@ -284,6 +290,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | 运行/保存 | 两套状态枚举、dirty/conflict、debounced save | 当前主要是 prototype/mock | 只复刻可见反馈 | `UIX-14` |
 | 响应式 | landing mobile 已观察，studio 完整行为未证实 | 当前项目有 desktop/mobile 研究记录 | 对照 390px/929px | `UIX-15` |
 | onboarding | key、空状态、导入、新建有入口分层 | LibTV 是否存在等价流程未证实 | 只做源站观察 | `UIX-16` |
+| 多画布 lifecycle | summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup | clone 有 dropdown 与局部 owner cleanup，源站产品语义未证 | 建 switch manifest 并验证 old-owner callback | `UIX-17` |
 
 ## 12. 后续 batch 合同
 
@@ -318,6 +325,10 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 ### `LIBTV-UIX-16`：空状态与 onboarding
 
 只在 LibTV 源站确认存在对应入口后，记录空画布、导入、配置、帮助和首次生成前流程。
+
+### `LIBTV-UIX-17`：多画布 owner reconciliation
+
+验证 A/B 独立 graph/viewport/history、selection 和 node-bound surface 清理、project preference 保留、page transient generation、无效 target、active/inactive/final delete，以及旧 viewport/async callback 不写入 B。源站未证的 URL、save/conflict 和最后删除 fallback 只保留为 Open Canvas 启发。
 
 ## 13. 验证矩阵
 

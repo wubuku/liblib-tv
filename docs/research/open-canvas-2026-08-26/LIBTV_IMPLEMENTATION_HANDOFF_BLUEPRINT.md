@@ -74,6 +74,7 @@ RESEARCH_ONLY
 | `OC-BP-004` graph transaction hardening | `OC-ADOPT-004..006/016/017/019` | `LIBTV-PAR-008` | connection/document/copy/data/delete/entrypoint/React Flow routing contracts complete；runtime maturity 按 verifier 独立维护 | `GRAPH-CONNECTION-01` + `GRAPH-DOCUMENT-01` + `SUBGRAPH-COPY-01` + `NODE-DATA-01` + `GRAPH-DELETE-01` + `GRAPH-ENTRYPOINT-01` + `REACT-FLOW-CHANGES-01` 设计完成 | `LIBTV-VR-009..014/016` 有 authority；Reference/domain/invalid lifecycle/Option-drag/resize/reconnect/cascade/detach and runtime ingress migration remain open |
 | `OC-BP-005` process/result lifecycle + async ingress | `OC-ADOPT-003/009/018` | `LIBTV-PAR-009` | state/ingress design complete；runtime/source blocked | `LOCAL-PROCESS-STATES-01` + `LOCAL-ASYNC-INGRESS-01` + 所需 source fixture | `LIBTV-VR-007/015` |
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
+| `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -237,6 +238,20 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 完整的 source-visible catalog、Seedance 2.5 control projection、UI/descriptor/adapter/run 分层和未决问题见 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)。
 
+## 10.1 `OC-BP-007`：Multi-Canvas Lifecycle Isolation
+
+完整机械合同见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Batch 16/58 current clone + Open Canvas OC-035..039；source final/fallback/panel behavior remains explicit unknown |
+| `L1 Identity` | project registry、canvasId、active generation、node/UI/operation/resource owner |
+| `L2 Transaction` | create/switch/rename/duplicate/delete full plan/result；graph/viewport/history/selection exact |
+| `L3 Surface` | node-bound close、projection rebind/close、global preference preserve、zoom/minimap target projection |
+| `L4 Fixture` | deterministic A/B/C + page transient + fake completion/save + resource ledger |
+| `L5 Verifier` | `LIBTV-VR-017` plus Batch 16/58 regressions |
+| `L6 Provenance` | no Open Canvas route/list/persistence claims promoted to LibTV source truth |
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -304,6 +319,7 @@ pure identity/transaction cases
 4. 以 [`LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md) 维护模型/参数 source freshness；projection 审计已完成，不创建 provider backlog；
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
-7. 保持 provider、真实保存和共享源站 mutation 在边界外。
+7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
+8. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

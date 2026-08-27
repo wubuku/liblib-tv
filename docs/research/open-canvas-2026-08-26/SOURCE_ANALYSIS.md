@@ -248,6 +248,14 @@ current studio 在执行前调用 `saveGraphNow`，把返回 revision 交给 exe
 
 参考：[`shared/services/canvas/local-canvas-runner.ts`](../../../research/upstream/open-canvas/shared/services/canvas/local-canvas-runner.ts#L90)、[`shared/models/local-canvas-store.ts`](../../../research/upstream/open-canvas/shared/models/local-canvas-store.ts#L337)、[`shared/stores/canvas-store.ts`](../../../research/upstream/open-canvas/shared/stores/canvas-store.ts#L836)、[`shared/blocks/canvas/canvas-studio-shell.tsx`](../../../research/upstream/open-canvas/shared/blocks/canvas/canvas-studio-shell.tsx#L5187)。
 
+### 6.6 Canvas registry、hydrate 与跨 route owner
+
+Open Canvas 将列表摘要和可编辑 document 分开。`/canvas` 读取按更新时间排序的 summary；`/canvas/[canvasId]` 按稳定 ID 读取 full record，missing ID 直接 not-found。Create 返回新空 document 后导航到其 URL；rename 在 API 边界要求 trimmed non-empty title；delete 清 document 和同 canvas runs，最后一张删除后自动创建空 document。Studio 不在同一 React Flow 内切换另一张 canvas，而是返回列表再进入 URL。
+
+进入 studio 时，`hydrate` 一次替换 canvasId、nodes/edges、viewport、revision、saved baseline、dirty/save/error/conflict；hydration effect 再应用 title 和 React Flow viewport。这是比依次 setNodes/setEdges/setViewport 更清晰的 active-document owner boundary。
+
+固定实现仍有跨 route async 限制。Save request URL 使用 `initialCanvas.id`，所以 durable target 明确；但 response 后调用 global store 的 `finishSave/failSave/enterConflict` 时不携带 expected canvas ID。旧 route promise 可在新 canvas hydrate 后 settle，并更新当前 in-memory revision/save baseline/status。该结论是静态竞态推断，不是 live incident；完整正反面转译见 [`../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。
+
 ## 7. Provider 事实与关键缺口
 
 ### 7.1 声明层和旧 API 层

@@ -17,6 +17,8 @@
 
 仍缺少的机械合同是：**一次已接受的操作异步完成后，结果如何证明仍属于当前 canvas/source/version/run，如何与期间发生的编辑、删除、切换、undo、retry 和另一个 completion 收敛，以及如何把结果以一次受验证的 graph transaction 落地。**
 
+其中“切换/删除 canvas 后旧 operation 如何继续、观察或收敛”由 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md) 统一定义 owner/generation 边界；本文继续负责 operation/run/result、field ownership 和 graph projection。两个合同必须组合验证，不能各自用当前 `activeCanvasId` 的 late read 代替 captured owner。
+
 本文不再创造一套 run status，也不设计真实后端。它只把状态语义和 graph authority 之间的空白补齐，避免未来 Seedance 逐帧拉片、片段重拍、超长视频、视频处理和 Director 导出继续由 component timer 或 generic node patch 决定 durable graph state。
 
 ## 2. 研究基线与证据边界

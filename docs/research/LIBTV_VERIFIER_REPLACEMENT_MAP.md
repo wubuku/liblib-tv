@@ -330,6 +330,23 @@ Open Canvas positive control-plane evidence、fixed stale-write limitations、cl
 
 Exact framework taxonomy、Open Canvas comparison、routing matrix、stable result vocabulary、`GI-031..037/GC-034..043` and implementation slices 统一见 [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)。`VR-016` 细化 `VR-014` 的 framework adapter，不替代 connection/delete/document/copy 专项 verifier。
 
+### `LIBTV-VR-017`：multi-canvas lifecycle and owner isolation
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-008/011` graph-lifecycle + UI-owner cross-cutting correctness |
+| Old verifier | Batch 16 canvas CRUD/dropdown、Batch 17 active projection、Batch 58 node-bound owner；各自保留 bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` with deterministic A/B/C graph/viewport/history/UI/transient/async/resource owners |
+| Static checks | canvas owner manifest；unknown active target guard；page refs/callbacks and delayed writers carry canvas/generation；FrameOS excluded |
+| Pure checks | create/switch/rename/duplicate/delete plan/result；active/fallback/final policy；zero-partial；resource/operation impacts |
+| Store checks | registry/active/selection/history atomicity；target viewport restore；duplicate empty history；delete target cleanup |
+| Race checks | organize/drag/connection/viewport callback after switch；old timer/save response cannot mutate current owner |
+| UI/browser | node-bound close；projection panel close/rebind；global preference exact；Batch 16/58 desktop/mobile regressions |
+| Blockers | lifecycle planner/generation/transient registry/resource ledger/fixture missing；编码授权；source final/fallback/panel/background decisions |
+| Exit | no graph/UI/history/viewport/async/resource owner crosses canvas implicitly；every lifecycle command has exact one-result behavior |
+
+Open Canvas positive URL/hydrate/delete methods、stale local-convergence counterexample、clone owner audit、`GI-038..048/GC-044..058` and decision queue 统一见 [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)。`VR-017` composes `VR-010..016`，不取代其 graph/data/async 专项断言。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：

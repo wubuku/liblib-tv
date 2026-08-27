@@ -212,6 +212,16 @@
 
 **依据：** [`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](research/LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)、[`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](research/LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、Open Canvas [`canvas-store.ts`](../research/upstream/open-canvas/shared/stores/canvas-store.ts) 及固定 `@xyflow/react@12.11.1` / `@xyflow/system@0.0.78` 类型与 reducer 实现。
 
+### DEC-033：多画布切换必须是 owner reconciliation transaction
+
+**背景：** Batch 16 已实现内存 canvas CRUD，Batch 58 已为四类 node-bound surface 引入 `canvasId + nodeId` owner；当前 graph/viewport/history 也按 canvas 保存。但 `setActiveCanvas` 不验证 ID，organize/drag/connection/viewport transient 没有 canvas owner，demo viewport preset 会在切换时重写 store，delayed action 多数 late-read active canvas。Open Canvas 以 URL canvasId、summary/document、hydrate 和 delete-run cleanup 建立强文档边界，但 old-route in-flight save response 的 local `finishSave/failSave` 不校验 current canvas。
+
+**决策：** create/switch/rename/duplicate/delete 使用具名 lifecycle plan/result。Switch 必须验证目标，在一次 current project snapshot 上切换 active/selection/history owner，保持 source/target graph-history-viewport，清 current clone selection，关闭 node-bound owner，并取消所有不具 canvasId/generation 的 page-local transaction。Delayed/remote completion 必须携带 canvas/operation owner，不能把 active canvas 当延迟目的地。Duplicate/delete 对 graph data、run、Director workspace 和 resource 返回显式影响；lifecycle 不进入 per-canvas graph undo。
+
+**影响：** 当前 in-place CanvasTabDropdown 视觉和 Batch 16/58 合同保持；不移植 Open Canvas 列表页、URL、file/KV、revision/conflict。最终 canvas 删除、active fallback、projection panel 保留、responsive preset、background operation 和 resource copy 继续由 decision queue/source/product 约束。`CANVAS-LIFECYCLE-01`、`LIBTV-VR-017` 与 runtime planner 仍需明确编码授权。
+
+**依据：** [`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、[`LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)、[`LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md`](research/LIBTV_GRAPH_DELETE_REFERENCE_REPAIR_MATRIX.md)、Open Canvas list/page/store/hydrate/save fixed chain。
+
 ## 3. 何时可以重审决策
 
 只有出现以下事件之一，才需要更新对应决策，而不是在代码中悄悄绕过：
