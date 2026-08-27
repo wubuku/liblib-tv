@@ -15,12 +15,16 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useCanvasStore } from "@/store/canvasStore";
-import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
 
 type AssetManagerTab = "canvas" | "assets";
 type NodeFilter = "all" | "image" | "video" | "text" | "group";
 type SortMode = "graph" | "name";
+
+interface AssetManagerPanelProps {
+  onClose: () => void;
+  onOpenCanvasDropdown: () => void;
+}
 
 const filterOptions: Array<{ value: NodeFilter; label: string }> = [
   { value: "all", label: "全部" },
@@ -93,7 +97,10 @@ function buildTreeRows(nodes: Node[], sortMode: SortMode) {
   return rows;
 }
 
-export function AssetManagerPanel() {
+export function AssetManagerPanel({
+  onClose,
+  onOpenCanvasDropdown,
+}: AssetManagerPanelProps) {
   const {
     projectName,
     canvases,
@@ -101,7 +108,6 @@ export function AssetManagerPanel() {
     selectedNodeId,
     selectNode,
   } = useCanvasStore();
-  const { toggleAssetPanel, toggleCanvasDropdown } = useUIStore();
   const [activeTab, setActiveTab] = useState<AssetManagerTab>("canvas");
   const [filter, setFilter] = useState<NodeFilter>("all");
   const [filterOpen, setFilterOpen] = useState(false);
@@ -129,7 +135,7 @@ export function AssetManagerPanel() {
         <button
           type="button"
           data-asset-manager-canvas
-          onClick={toggleCanvasDropdown}
+          onClick={onOpenCanvasDropdown}
           className="flex min-w-0 items-center gap-1 text-[#d0d0d0] hover:text-white"
         >
           <span className="truncate">{activeCanvas?.name ?? "画布"}</span>
@@ -170,7 +176,7 @@ export function AssetManagerPanel() {
         </button>
         <button
           type="button"
-          onClick={toggleAssetPanel}
+          onClick={onClose}
           className="ml-auto flex h-7 w-7 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.07] hover:text-white"
           aria-label="关闭资产管理"
         >

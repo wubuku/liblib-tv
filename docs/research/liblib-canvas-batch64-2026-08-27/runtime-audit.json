@@ -1,0 +1,371 @@
+{
+  "batch": 64,
+  "date": "2026-08-27",
+  "url": "http://localhost:3000",
+  "scope": "clone-owned Asset drawer host-center anchor preservation",
+  "sourceParityClaim": false,
+  "screenshotsReused": true,
+  "desktop": {
+    "pureHelper": {
+      "identity": {
+        "oldClientCenter": {
+          "x": 464.5,
+          "y": 437
+        },
+        "newClientCenter": {
+          "x": 464.5,
+          "y": 437
+        },
+        "flowAnchor": {
+          "x": 464.5,
+          "y": 437
+        },
+        "targetViewport": {
+          "x": 0,
+          "y": 0,
+          "zoom": 1
+        }
+      },
+      "open": {
+        "oldClientCenter": {
+          "x": 464.5,
+          "y": 437
+        },
+        "newClientCenter": {
+          "x": 584.5,
+          "y": 437
+        },
+        "flowAnchor": {
+          "x": 464.5,
+          "y": 437
+        },
+        "targetViewport": {
+          "x": -120,
+          "y": 0,
+          "zoom": 1
+        }
+      },
+      "translated": {
+        "oldClientCenter": {
+          "x": 120,
+          "y": 80
+        },
+        "newClientCenter": {
+          "x": 190,
+          "y": 80
+        },
+        "flowAnchor": {
+          "x": 35,
+          "y": 35
+        },
+        "targetViewport": {
+          "x": 80,
+          "y": 0,
+          "zoom": 2
+        }
+      },
+      "invalidZoom": null,
+      "invalidHost": null
+    },
+    "toolbarToggle": {
+      "before": {
+        "hostRect": {
+          "x": 0,
+          "y": 0,
+          "width": 929,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 289.5,
+          "y": 347,
+          "width": 350,
+          "height": 180
+        },
+        "hostCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "opened": {
+        "hostRect": {
+          "x": 240,
+          "y": 0,
+          "width": 689,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 409.5,
+          "y": 347,
+          "width": 350,
+          "height": 180
+        },
+        "hostCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 584.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "closed": {
+        "hostRect": {
+          "x": 0,
+          "y": 0,
+          "width": 929,
+          "height": 874
+        },
+        "nodeRect": {
+          "x": 289.5,
+          "y": 347,
+          "width": 350,
+          "height": 180
+        },
+        "hostCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "nodeCenter": {
+          "x": 464.5,
+          "y": 437.0
+        },
+        "centerError": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "logs": [
+        {
+          "operationId": 1,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        },
+        {
+          "operationId": 2,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        }
+      ],
+      "viewportOpen": {
+        "x": -120,
+        "y": 0,
+        "zoom": 1
+      },
+      "viewportClosed": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1
+      }
+    },
+    "explicitClose": {
+      "logs": [
+        {
+          "operationId": 1,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        },
+        {
+          "operationId": 2,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        }
+      ],
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1
+      }
+    },
+    "canvasContext": {
+      "logs": [
+        {
+          "operationId": 1,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        },
+        {
+          "operationId": 2,
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "committed"
+        }
+      ],
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "zoom": 1
+      }
+    },
+    "staleCanvasGuard": {
+      "log": {
+        "operationId": 1,
+        "canvasId": "canvas-1",
+        "status": "skipped",
+        "reason": "canvas-changed"
+      },
+      "canvasTwoViewportBefore": {
+        "x": -583.8,
+        "y": 260.8,
+        "zoom": 0.526
+      },
+      "canvasTwoViewportAfter": {
+        "x": -583.8,
+        "y": 260.8,
+        "zoom": 0.526
+      }
+    },
+    "defaultAddComposition": {
+      "hostRect": {
+        "x": 240,
+        "y": 0,
+        "width": 689,
+        "height": 874
+      },
+      "nodeRect": {
+        "x": 409.5,
+        "y": 347,
+        "width": 350,
+        "height": 180
+      },
+      "centerError": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "viewport": {
+        "x": -120,
+        "y": 0,
+        "zoom": 1
+      }
+    }
+  },
+  "mobile": {
+    "before": {
+      "hostRect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "nodeRect": {
+        "x": 20,
+        "y": 332,
+        "width": 350,
+        "height": 180
+      },
+      "hostCenter": {
+        "x": 195.0,
+        "y": 422.0
+      },
+      "nodeCenter": {
+        "x": 195.0,
+        "y": 422.0
+      },
+      "centerError": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "opened": {
+      "hostRect": {
+        "x": 240,
+        "y": 0,
+        "width": 150,
+        "height": 844
+      },
+      "nodeRect": {
+        "x": 140,
+        "y": 332,
+        "width": 350,
+        "height": 180
+      },
+      "hostCenter": {
+        "x": 315.0,
+        "y": 422.0
+      },
+      "nodeCenter": {
+        "x": 315.0,
+        "y": 422.0
+      },
+      "centerError": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "closed": {
+      "hostRect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "nodeRect": {
+        "x": 20,
+        "y": 332,
+        "width": 350,
+        "height": 180
+      },
+      "hostCenter": {
+        "x": 195.0,
+        "y": 422.0
+      },
+      "nodeCenter": {
+        "x": 195.0,
+        "y": 422.0
+      },
+      "centerError": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "logs": [
+      {
+        "operationId": 1,
+        "canvasId": "canvas-1",
+        "status": "committed",
+        "reason": "committed"
+      },
+      {
+        "operationId": 2,
+        "canvasId": "canvas-1",
+        "status": "committed",
+        "reason": "committed"
+      }
+    ],
+    "viewportOpen": {
+      "x": -120,
+      "y": 0,
+      "zoom": 1
+    },
+    "viewportClosed": {
+      "x": 0,
+      "y": 0,
+      "zoom": 1
+    }
+  },
+  "acceptance": {
+    "maxCenterErrorPx": 1.5,
+    "expectedDrawerViewportDeltaX": -120,
+    "graphHistorySelectionZeroMutation": true,
+    "currentOwnerGuard": true,
+    "defaultAddComposition": true,
+    "noOverflow": true,
+    "browserDiagnosticsClean": true
+  }
+}

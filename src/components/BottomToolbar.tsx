@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
 
 interface BottomToolbarProps {
+  onToggleAssetPanel: () => void;
   onOrganize: () => void;
   onFitView: () => void;
   onZoomBy: (delta: number) => void;
@@ -38,6 +39,7 @@ function IconButton({ label, active, onClick, children }: IconButtonProps) {
 }
 
 export function BottomToolbar({
+  onToggleAssetPanel,
   onOrganize,
   onFitView,
   onZoomBy,
@@ -46,7 +48,6 @@ export function BottomToolbar({
   const zoomMenuRef = useRef<HTMLDivElement>(null);
   const {
     isAssetPanelOpen,
-    toggleAssetPanel,
     showMinimap,
     toggleMinimap,
     showEdges,
@@ -79,8 +80,9 @@ export function BottomToolbar({
     >
       <button
         type="button"
+        aria-label="资产管理"
         aria-pressed={isAssetPanelOpen}
-        onClick={toggleAssetPanel}
+        onClick={onToggleAssetPanel}
         className={cn(
           "flex h-7 items-center gap-2 rounded-md px-2 text-xs text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
           isAssetPanelOpen && "bg-white/10 text-white",

@@ -55,7 +55,11 @@ import {
   isLibTVEditableCommandTarget,
   resolveLibTVBlockingForegroundSurface,
 } from "@/lib/libtvSelectionCommandContext";
-import { getLibTVHostCenterClientPoint } from "@/lib/libtvViewportPlacement";
+import {
+  getLibTVHostCenterClientPoint,
+  getLibTVViewportForFlowAtHostCenter,
+  type LibTVViewport,
+} from "@/lib/libtvViewportPlacement";
 
 const DirectorDesk = dynamic(() => import("@/components/director/DirectorDesk"), {
   ssr: false,
@@ -85,6 +89,40 @@ const emptyNodes: Node[] = [];
 const emptyEdges: Edge[] = [];
 const desktopViewport = { x: -583.8, y: 260.8, zoom: 0.526 };
 const compactViewport = { x: 17, y: 128, zoom: 0.28 };
+
+interface LibTVAssetLayoutLogEntry {
+  operationId: number;
+  canvasId: string;
+  status: "committed" | "skipped";
+  reason:
+    | "committed"
+    | "capture-unavailable"
+    | "canvas-changed"
+    | "instance-changed"
+    | "operation-superseded"
+    | "viewport-changed"
+    | "host-unavailable"
+    | "invalid-target"
+    | "host-unchanged";
+}
+
+declare global {
+  interface Window {
+    __libtv_asset_layout_log: LibTVAssetLayoutLogEntry[];
+  }
+}
+
+function sameViewport(left: LibTVViewport, right: LibTVViewport): boolean {
+  return (
+    Math.abs(left.x - right.x) <= 0.001 &&
+    Math.abs(left.y - right.y) <= 0.001 &&
+    Math.abs(left.zoom - right.zoom) <= 0.000001
+  );
+}
+
+if (typeof window !== "undefined") {
+  window.__libtv_asset_layout_log = [];
+}
 
 export default function Home() {
   const {
@@ -116,6 +154,8 @@ export default function Home() {
     editorMode,
     isAssetPanelOpen,
     isAgentOpen,
+    toggleAssetPanel,
+    toggleCanvasDropdown,
     toggleAddNodePanel,
     isShortcutsPanelOpen,
     toggleShortcutsPanel,
@@ -137,6 +177,8 @@ export default function Home() {
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const flowContainerRef = useRef<HTMLElement | null>(null);
+  const assetLayoutOperationRef = useRef(0);
+  const assetLayoutFrameRef = useRef<number | null>(null);
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
@@ -328,6 +370,143 @@ export default function Home() {
       }
     },
     [addNodeAtFlowCenter],
+  );
+
+  const runAssetHostLayoutAction = useCallback(
+    (action: () => void) => {
+      const operationId = ++assetLayoutOperationRef.current;
+      if (assetLayoutFrameRef.current !== null) {
+        window.cancelAnimationFrame(assetLayoutFrameRef.current);
+        assetLayoutFrameRef.current = null;
+      }
+
+      const instance = flowRef.current;
+      const host =
+        flowContainerRef.current?.querySelector<HTMLElement>(
+          "[data-libtv-react-flow-host]",
+        ) ?? null;
+      const capturedViewport = instance?.getViewport() ?? null;
+      const oldHostRect = host?.getBoundingClientRect() ?? null;
+      const oldClientCenter = oldHostRect
+        ? getLibTVHostCenterClientPoint({
+            left: oldHostRect.left,
+            top: oldHostRect.top,
+            width: oldHostRect.width,
+            height: oldHostRect.height,
+          })
+        : null;
+      let flowAnchor: { x: number; y: number } | null = null;
+
+      if (instance && oldClientCenter) {
+        try {
+          flowAnchor = instance.screenToFlowPosition(oldClientCenter);
+        } catch {
+          flowAnchor = null;
+        }
+      }
+
+      action();
+
+      if (!instance || !oldHostRect || !capturedViewport || !flowAnchor) {
+        window.__libtv_asset_layout_log.push({
+          operationId,
+          canvasId: activeCanvasId,
+          status: "skipped",
+          reason: "capture-unavailable",
+        });
+        return;
+      }
+
+      const capturedCanvasId = activeCanvasId;
+      assetLayoutFrameRef.current = window.requestAnimationFrame(() => {
+        assetLayoutFrameRef.current = window.requestAnimationFrame(() => {
+          assetLayoutFrameRef.current = null;
+          const log = (reason: LibTVAssetLayoutLogEntry["reason"]) => {
+            window.__libtv_asset_layout_log.push({
+              operationId,
+              canvasId: capturedCanvasId,
+              status: reason === "committed" ? "committed" : "skipped",
+              reason,
+            });
+          };
+
+          if (assetLayoutOperationRef.current !== operationId) {
+            log("operation-superseded");
+            return;
+          }
+          if (useCanvasStore.getState().activeCanvasId !== capturedCanvasId) {
+            log("canvas-changed");
+            return;
+          }
+          if (flowRef.current !== instance) {
+            log("instance-changed");
+            return;
+          }
+          if (!sameViewport(instance.getViewport(), capturedViewport)) {
+            log("viewport-changed");
+            return;
+          }
+
+          const nextHost =
+            flowContainerRef.current?.querySelector<HTMLElement>(
+              "[data-libtv-react-flow-host]",
+            ) ?? null;
+          if (!nextHost) {
+            log("host-unavailable");
+            return;
+          }
+          const nextHostRect = nextHost.getBoundingClientRect();
+          if (
+            Math.abs(nextHostRect.left - oldHostRect.left) <= 0.5 &&
+            Math.abs(nextHostRect.top - oldHostRect.top) <= 0.5 &&
+            Math.abs(nextHostRect.width - oldHostRect.width) <= 0.5 &&
+            Math.abs(nextHostRect.height - oldHostRect.height) <= 0.5
+          ) {
+            log("host-unchanged");
+            return;
+          }
+
+          const targetViewport = getLibTVViewportForFlowAtHostCenter(
+            flowAnchor,
+            {
+              left: nextHostRect.left,
+              top: nextHostRect.top,
+              width: nextHostRect.width,
+              height: nextHostRect.height,
+            },
+            capturedViewport.zoom,
+          );
+          if (!targetViewport) {
+            log("invalid-target");
+            return;
+          }
+
+          setFlowViewport(targetViewport);
+          setStoreViewport(targetViewport);
+          setZoomLevel(Math.round(targetViewport.zoom * 100));
+          log("committed");
+        });
+      });
+    },
+    [activeCanvasId, setStoreViewport, setZoomLevel],
+  );
+
+  const toggleAssetPanelWithAnchor = useCallback(() => {
+    runAssetHostLayoutAction(toggleAssetPanel);
+  }, [runAssetHostLayoutAction, toggleAssetPanel]);
+
+  const openCanvasDropdownFromAsset = useCallback(() => {
+    runAssetHostLayoutAction(toggleCanvasDropdown);
+  }, [runAssetHostLayoutAction, toggleCanvasDropdown]);
+
+  useEffect(
+    () => () => {
+      assetLayoutOperationRef.current += 1;
+      if (assetLayoutFrameRef.current !== null) {
+        window.cancelAnimationFrame(assetLayoutFrameRef.current);
+      }
+    },
+    [],
   );
 
   const fitView = useCallback(() => {
@@ -561,7 +740,12 @@ export default function Home() {
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#141414]">
       <TopNavBar />
-      {isAssetPanelOpen && <AssetManagerPanel />}
+      {isAssetPanelOpen && (
+        <AssetManagerPanel
+          onClose={toggleAssetPanelWithAnchor}
+          onOpenCanvasDropdown={openCanvasDropdownFromAsset}
+        />
+      )}
 
       <main
         ref={flowContainerRef}
@@ -684,6 +868,7 @@ export default function Home() {
 
       <LeftSidebar onAddNode={addNodeAtHostCenter} />
       <BottomToolbar
+        onToggleAssetPanel={toggleAssetPanelWithAnchor}
         onOrganize={organize}
         onFitView={fitView}
         onZoomBy={zoomBy}
