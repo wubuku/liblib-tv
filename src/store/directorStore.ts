@@ -76,6 +76,10 @@ import {
 } from "@/lib/directorProjectRegistry";
 import { restoreDirectorProjectRuntimeSnapshotV1 } from "@/lib/directorProjectRuntimeAdapter";
 import {
+  directorProjectPersistence,
+  getDirectorProjectPersistenceSnapshot,
+} from "@/lib/directorProjectPersistence";
+import {
   cloneDirectorHistoryState,
   createDirectorCommandResult,
   createDirectorGesture,
@@ -1546,7 +1550,14 @@ function updateActiveDirectorDocument(
     document,
     captures,
   });
-  return result.disposition === "COMMITTED";
+  if (result.disposition !== "COMMITTED") return false;
+  directorProjectPersistence.save({
+    owner: session.owner,
+    projectId: session.projectId,
+    generation: session.generation,
+    document,
+  });
+  return true;
 }
 
 function restoreDirectorDocumentState(
@@ -1915,6 +1926,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   openSession: (owner) => {
     const currentState = get();
+    const persisted = directorProjectPersistence.load(owner);
     const activeSession = directorProjectRegistry.getActiveSession();
     if (
       activeSession &&
@@ -1953,11 +1965,19 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           ]),
         );
       }
+      directorProjectPersistence.save({
+        owner: activeSession.owner,
+        projectId: activeSession.projectId,
+        generation: activeSession.generation,
+        document,
+      });
     }
 
     const result = directorProjectRegistry.open({
       owner,
       createDocument: createDefaultDirectorProjectDocument,
+      persistedDocument: persisted.document,
+      persistedGeneration: persisted.generation,
     });
     if (
       result.disposition !== "REJECTED" &&
@@ -1976,6 +1996,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           lastCommandResult: null,
         },
       );
+      if (persisted.disposition !== "REJECTED") {
+        directorProjectPersistence.save({
+          owner: result.session.owner,
+          projectId: result.session.projectId,
+          generation: result.session.generation,
+          document: result.record.document,
+        });
+      }
     }
     return result;
   },
@@ -2022,6 +2050,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       captures: currentState.captures,
     });
     if (result.disposition === "CLOSED") {
+      if (result.record) {
+        directorProjectPersistence.save({
+          owner: result.record.identity.owner,
+          projectId: result.record.identity.projectId,
+          generation: result.record.identity.generation,
+          document: result.record.document,
+        });
+      }
       set((state) => ({
         sourceNodeId: null,
         projectOwner: null,
@@ -5227,6 +5263,8 @@ if (typeof window !== "undefined") {
       __director_store: typeof useDirectorStore;
       __director_project_registry_snapshot:
         typeof getDirectorProjectRegistrySnapshot;
+      __director_project_persistence_snapshot:
+        typeof getDirectorProjectPersistenceSnapshot;
       __director_async_authority_snapshot: () => ReturnType<
         typeof directorAsyncAuthority.getSnapshot
       >;
@@ -5237,12 +5275,21 @@ if (typeof window !== "undefined") {
       __director_store: typeof useDirectorStore;
       __director_project_registry_snapshot:
         typeof getDirectorProjectRegistrySnapshot;
+      __director_project_persistence_snapshot:
+        typeof getDirectorProjectPersistenceSnapshot;
       __director_async_authority_snapshot: () => ReturnType<
         typeof directorAsyncAuthority.getSnapshot
       >;
     }
   ).__director_project_registry_snapshot =
     getDirectorProjectRegistrySnapshot;
+  (
+    window as unknown as {
+      __director_project_persistence_snapshot:
+        typeof getDirectorProjectPersistenceSnapshot;
+    }
+  ).__director_project_persistence_snapshot =
+    getDirectorProjectPersistenceSnapshot;
   (
     window as unknown as {
       __director_async_authority_snapshot: () => ReturnType<

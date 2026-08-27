@@ -96,6 +96,8 @@ interface OpenDirectorProjectInput {
     projectId: string,
     owner: DirectorProjectOwnerV1,
   ) => DirectorProjectDocumentV1;
+  persistedDocument?: DirectorProjectDocumentV1 | null;
+  persistedGeneration?: number | null;
 }
 
 interface CommitDirectorProjectInput {
@@ -280,6 +282,31 @@ export class DirectorProjectRegistry {
       projectId = existing.identity.projectId;
       nextDocument = this.dependencies.normalizeDocument(existing.document);
       disposition = "RESTORED";
+    } else if (input.persistedDocument) {
+      projectId = input.persistedDocument.projectId;
+      try {
+        nextDocument = this.dependencies.normalizeDocument(
+          input.persistedDocument,
+        );
+      } catch {
+        return {
+          disposition: "REJECTED",
+          reason: "INVALID_DOCUMENT",
+          record: null,
+          session: null,
+          previousOwnerKey,
+        };
+      }
+      if (!hasMatchingDocumentIdentity(nextDocument, projectId, owner)) {
+        return {
+          disposition: "REJECTED",
+          reason: "INVALID_DOCUMENT",
+          record: null,
+          session: null,
+          previousOwnerKey,
+        };
+      }
+      disposition = "RESTORED";
     } else {
       projectId = this.dependencies.createProjectId(ownerKey);
       try {
@@ -307,7 +334,9 @@ export class DirectorProjectRegistry {
       disposition = "CREATED";
     }
 
-    const generation = (existing?.identity.generation ?? 0) + 1;
+    const generation = existing
+      ? existing.identity.generation + 1
+      : (input.persistedGeneration ?? 0) + 1;
     const nextRecord: DirectorProjectRecordV1 = {
       identity: {
         projectId,
