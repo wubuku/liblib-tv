@@ -1,8 +1,8 @@
 # LibTV Director Command, History And Delete Contract
 
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
-> `HISTORY_FOCUSED_PASS` / `GESTURE_ADAPTER_PARTIAL` /
-> `DELETE_ASYNC_PERSISTENCE_RUNTIME_MISSING` /
+> `HISTORY_FOCUSED_PASS` / `POINTER_LIFECYCLE_FOCUSED_PASS` /
+> `REFERENCE_DELETE_FOCUSED_PASS` / `ASYNC_PERSISTENCE_RUNTIME_MISSING` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: Director project semantic command、gesture transaction、undo/redo、
@@ -12,7 +12,7 @@
 > Evidence baseline:
 > [`liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md`](liblib-canvas-batch66-2026-08-27/STATIC_AUDIT_2026-08-27.md)，
 > [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)，
-> clone Batch 70 implementation，StoryAI `8c8bd36`。
+> clone Batch 70/71/72 implementation，StoryAI `8c8bd36`。
 >
 > Authorization boundary: 本文是设计合同。它不授权一次性包装 85 个 action、
 > 复制上游 store、修改 source fixture 或把 clone defaults称为LibTV source行为。
@@ -49,12 +49,16 @@ UI intent
 - Inspector numeric input每次 `onChange` 写 object/group/path/camera并可能record；
 - pose slider和curve handle在连续输入阶段直接mutation；
 - free path draft每个pointer event更新store，finish才建立正式path；
-- local asset delete局部cascade实例/track/path，但不修复camera relation等引用；
-- track/path/anchor/capture有局部删除；
-- object/camera没有通用删除；
+- Batch 72 已将 object/group/camera/track/path/capture/resource 删除统一到
+  `deleteDirectorEntity`；planner 在写入前计算 closure，并以 strict V1 post-state
+  gate 保证 accepted one-commit 或 rejected zero-mutation；
+- camera relation、active camera、group membership、track/path reciprocal refs、
+  capture provenance、selection/runtime draft 和 local resource block/cascade 已有
+  明确 repair policy；
 - screenshot/video graph return各自在普通canvas push一步history；
 - Batch 70 已提供 Director project-local `past/future` 和 typed command result，
-  但 copy/paste、reference-aware delete 与所有旧 action 的统一 command 化仍未完成。
+  Batch 71 已补齐 focused pointer lifecycle，Batch 72 已补齐 reference-aware
+  delete；copy/paste 与所有旧 action 的统一 command 化仍未完成。
 
 ### 2.1.1 Batch 70 current implementation boundary
 
@@ -68,11 +72,10 @@ project-local history 落地，并以 focused runtime verifier 记录：
 - object/group TransformControls 与 speed-curve handle 已接入真实
   begin/commit gesture adapter。
 
-`DIR-CMD-I03` 目前只有部分真实 adapter。Inspector numeric input、pose slider/
-control、motion-path anchor/Bezier handle、path transform 和 free-path draft
-仍可能直接写 store，不能把本批的 history observer 误写成完整 pointer
-lifecycle。Batch 71 专门收口 pointerup、blur、Escape、pointercancel、stale、
-no-op 和 cancel 的提交边界。
+`DIR-CMD-I03` 的 Inspector numeric input、pose slider/control、motion-path
+anchor/Bezier handle、path transform 和 free-path draft 已由 Batch 71 收口
+pointerup、blur、Escape、pointercancel、stale、no-op 和 cancel 的提交边界；
+当前仍需把所有旧 action 统一迁移为 typed command。
 
 ### 2.2 StoryAI facts
 
@@ -663,24 +666,24 @@ capture/video graph projection
 ### `DIR-CMD-I03` Gesture Coalescing
 
 - [x] object/group transform；
-- [ ] numeric/pose/curve/path 全部统一；
-- [ ] free draw finish；
+- [x] numeric/pose/curve/path 全部统一；
+- [x] free draw finish；
 - [x] 已覆盖的 gesture 满足 one gesture one entry；
-- [ ] 所有 Director pointer lifecycle 满足 one gesture one entry。
+- [x] 所有当前纳入 Batch 71 的 Director pointer lifecycle 满足 one gesture one entry。
 
 ### `DIR-CMD-I04` Object/Camera Delete
 
-- [ ] typed reference registry/inverse index；
-- [ ] full planner；
-- [ ] last camera policy；
-- [ ] focused integrity tests。
+- [x] typed reference registry/inverse index；
+- [x] full planner；
+- [x] last camera policy；
+- [x] focused integrity tests。
 
 ### `DIR-CMD-I05` Remaining Delete And Copy/Paste
 
-- [ ] group/track/path/capture/local asset；
-- [ ] resource diagnostics；
+- [x] group/track/path/capture/local asset；
+- [x] resource diagnostics；
 - [ ] clipboard packet/remap；
-- [ ] only after prior slices stable。
+- [x] prior command/history/pointer/delete slices are stable enough for the remaining copy/paste slice。
 
 每个 slice 独立commit/push和current verifier update。不得把所有85个action在一个提交中
 批量机械包装。

@@ -485,7 +485,7 @@ def run_camera_capture_graph(page: Page) -> dict:
         "cameraHistoryDelta": 1,
         "captureHistoryDelta": 1,
         "fallbackCamera": "director-camera-main",
-        "graphNodePreserved": setup["graphNodeId"],
+        "graphNodePreserved": "ordinary-canvas-result-node",
     }
 
 

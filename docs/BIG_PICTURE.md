@@ -184,26 +184,30 @@ StoryAI 借鉴与 Director 当前进展已有独立跨批次权威：固定上�
 运行态复核、证据边界和后续路线见
 [`storyai-3d-director-desk-2026-08-27/`](research/storyai-3d-director-desk-2026-08-27/README.md)。
 当前结论不是“功能未够多”，而是可见能力已经超过上游，下一阶段应优先补
-per-project scene、版本化导入导出/持久化、领域 undo/redo、真实资源加载和
-统一 Director gate。
+per-project scene、版本化导入导出/持久化、真实资源加载和统一 Director gate；
+领域 undo/redo、完整 pointer lifecycle 与 reference-aware delete 已先形成
+clone-owned focused pass。
 Batch 66 已将这项判断进一步固化为 `DEC-040`、两份 Director authority contract、
 17-script current verifier manifest 和 `LIBTV-VR-024`。Batch 67 已实现独立
 `DirectorProjectDocumentV1`、strict decode/normalize/encode、当前 state snapshot
 adapter 和 17-case pure corpus；它明确排除 selection/playback/panel/phone runtime、
 capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch 67 pure
 codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
-command/history + Batch 59 browser smoke。Batch 68 已建立
+command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
+Batch 59 browser smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
 `objects` projection 分开，seek/playback/path sampling 不再污染 project snapshot，
-对象/相机/姿态编辑及 close/reopen 恢复已有 focused verifier。inactive tombstone、
-async destination、reference-aware delete 和 persistence 仍未实现，不能把上述
-四个 focused pass 写成完整 project authority。Batch 70 又落地 typed
+对象/相机/姿态编辑及 close/reopen 恢复已有 focused verifier。Batch 70 又落地 typed
 project-local command result、bounded `past/future`、undo/redo、redo truncation、
 repeated gesture coalescing 和 close/reopen history continuity；当前真实 adapter
-只覆盖 object/group TransformControls 与 speed curve，Inspector/pose/path/free-draw
-的完整 pointer lifecycle 仍是 Batch 71 优先事项。
+只覆盖 object/group TransformControls 与 speed curve。Batch 71 已补齐 Inspector/
+pose/camera/path/free-draw 的 focused pointer lifecycle；Batch 72 又补齐
+reference-aware delete 的关系闭包、相机回退、资源阻断/级联和 exact
+delete/undo/redo。inactive-owner reconciliation、async destination、copy/paste
+identity remap、真实资源和 durable persistence 仍未实现，不能把这些 focused pass
+写成完整 project authority。
 
 ### 5.2 状态边界
 

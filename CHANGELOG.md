@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Batch 72 Director reference-aware delete planning and resource closure:
+  object/group/camera/track/path/capture/resource repair or block/cascade policy,
+  last-camera protection, selection/runtime cleanup, exact delete/undo/redo and
+  ordinary graph isolation. Added pure and fresh-page verification with stable
+  structured audit output; inactive-owner reconciliation, async freshness,
+  persistence, copy/paste identity remap and source-exact UI remain separate.
 - Added Batch 70 Director project-local command/history kernel:
   typed command results, bounded `past/future`, no-op/rejection reasons,
   gesture coalescing, undo/redo, redo-future truncation and close/reopen

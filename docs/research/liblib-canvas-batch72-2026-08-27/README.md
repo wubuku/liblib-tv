@@ -1,6 +1,6 @@
 # Batch 72: Director Reference-Aware Delete
 
-> 状态：`PLANNED / IMPLEMENTATION_PENDING`。
+> 状态：`COMPLETE / REFERENCE_DELETE_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 
@@ -43,8 +43,8 @@ typed delete intent
 ## 3. 交接入口
 
 - [`PLAN.md`](PLAN.md)：实现切片、政策矩阵、fixture 和停止条件；
-- `IMPLEMENTATION.md`：实施、失败修正和验证结果，完成后新增；
-- `runtime-audit.json`：fresh-page 结构化结果，完成后新增；
+- [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：实施、失败修正和验证结果；
+- [`runtime-audit.json`](runtime-audit.json)：最新 fresh-page 结构化结果；
 - [`../../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)：
   Director command/history/delete 总合同；
 - [`../liblib-canvas-batch71-2026-08-27/`](../liblib-canvas-batch71-2026-08-27/)：
@@ -52,7 +52,21 @@ typed delete intent
 - [`../../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：
   当前 Director verifier authority。
 
-## 4. 明确不解决
+## 4. 完成摘要
+
+- pure planner 以 portable V1 document 为唯一输入，先计算 closure，再以 strict
+  normalizer 验证 post-state；
+- object/camera/group/track/path/capture/resource 删除已走统一
+  `deleteDirectorEntity` command；
+- camera relation、active camera、group member offsets、track/path reciprocal refs、
+  selection、capture sidecar、phone/preset runtime 均有对应清理或 fallback；
+- accepted delete 产生一条 Director history，reject/noop 不产生 history；
+- 对象树删除按钮、本地模型级联入口和 Director foreground Delete/Backspace 已接入；
+- pure corpus、fresh-page Batch 72、Batch 59、Batch 67-71 回归和 `npm run check`
+  均通过；无截图写入、无 console/page/request error；
+- 当前结果是 clone-owned reliability slice，不升级为 LibTV source-exact delete UX。
+
+## 5. 明确不解决
 
 - LibTV 登录态 Director 的 source-exact 删除菜单、确认框、文案和快捷键；
 - copy/paste identity remap；

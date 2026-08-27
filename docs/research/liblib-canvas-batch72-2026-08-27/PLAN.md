@@ -1,6 +1,6 @@
 # Batch 72 计划：Director Reference-Aware Delete And Resource Closure
 
-> 状态：`PLANNED / IMPLEMENTATION_PENDING`。
+> 状态：`COMPLETE / REFERENCE_DELETE_FOCUSED_PASS`。
 >
 > 日期：2026-08-27。
 >
@@ -57,53 +57,53 @@ target；保留 document 中已存 target 数值。本批不声称这是 LibTV �
 
 ### Slice A：pure planner
 
-- [ ] 新增 `directorDeletePlanner.ts`；
-- [ ] typed command、plan、deleted entity summary、runtime invalidation；
-- [ ] 显式 object/group/track/path/capture/resource inverse refs；
-- [ ] stable document-order fallback；
-- [ ] strict normalizer 作为 post-state gate；
-- [ ] reject/noop 保持 input document 不变。
+- [x] 新增 `directorDeletePlanner.ts`；
+- [x] typed command、plan、deleted entity summary、runtime invalidation；
+- [x] 显式 object/group/track/path/capture/resource inverse refs；
+- [x] stable document-order fallback；
+- [x] strict normalizer 作为 post-state gate；
+- [x] reject/noop 保持 input document 不变。
 
 ### Slice B：store authority
 
-- [ ] 新增统一 `deleteDirectorEntity` command；
-- [ ] 取消 active gesture 后再计划 destructive command；
-- [ ] 通过 registry current owner/generation 校验；
-- [ ] 一次性 restore planned document；
-- [ ] 显式生成 typed result 和一条 history；
-- [ ] reconcile selection/timeline/path draft/phone/preset/capture sidecar；
-- [ ] local asset storage 只在 accepted resource command 后更新。
+- [x] 新增统一 `deleteDirectorEntity` command；
+- [x] 取消 active gesture 后再计划 destructive command；
+- [x] 通过 registry current owner/generation 校验；
+- [x] 一次性 restore planned document；
+- [x] 显式生成 typed result 和一条 history；
+- [x] reconcile selection/timeline/path draft/phone/preset/capture sidecar；
+- [x] local asset storage 只在 accepted resource command 后更新。
 
 ### Slice C：UI routing
 
-- [ ] ObjectTree object/group 删除 icon button；
-- [ ] Director foreground Delete/Backspace；
-- [ ] editable、active gesture、viewer/panel 优先级不回归；
-- [ ] timeline 与 capture 的既有删除按钮改走统一 command；
-- [ ] 最后机位、resource in-use 的 reason 通过 workspace diagnostics 可检查。
+- [x] ObjectTree object/group 删除 icon button；
+- [x] Director foreground Delete/Backspace；
+- [x] editable、active gesture、viewer/panel 优先级不回归；
+- [x] timeline 与 capture 的既有删除按钮改走统一 command；
+- [x] 最后机位、resource in-use 的 reason 通过 workspace diagnostics 可检查。
 
 ### Slice D：focused verifier
 
-- [ ] pure planner corpus；
-- [ ] character in group + tracks + path + camera refs closure；
-- [ ] active camera fallback + capture provenance repair；
-- [ ] last-camera reject 与 zero partial mutation；
-- [ ] group `UNGROUP` / `CASCADE`；
-- [ ] track/path reciprocal cleanup；
-- [ ] capture delete不改变 ordinary graph；
-- [ ] local resource `BLOCK` / explicit `CASCADE`；
-- [ ] delete/undo/redo exact document；
-- [ ] one accepted command one history；
-- [ ] keyboard route 与 editable guard；
-- [ ] zero console/page/request errors、zero screenshots。
+- [x] pure planner corpus；
+- [x] character in group + tracks + path + camera refs closure；
+- [x] active camera fallback + capture provenance repair；
+- [x] last-camera reject 与 zero partial mutation；
+- [x] group `UNGROUP` / `CASCADE`；
+- [x] track/path reciprocal cleanup；
+- [x] capture delete不改变 ordinary graph；
+- [x] local resource `BLOCK` / explicit `CASCADE`；
+- [x] delete/undo/redo exact document；
+- [x] one accepted command one history；
+- [x] keyboard route 与 editable guard；
+- [x] zero console/page/request errors、zero screenshots。
 
 ### Slice E：治理与收口
 
-- [ ] 更新 current verifier manifest、fixture catalog、coverage、traceability；
-- [ ] 更新 verification ledger、HARNESS、research hubs、Big Picture、decision register；
-- [ ] 运行 Batch 67-72 focused gates；
-- [ ] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
-- [ ] commit/push 并确认唯一 master worktree 干净同步。
+- [x] 更新 current verifier manifest、fixture catalog、coverage、traceability；
+- [x] 更新 verification ledger、HARNESS、research hubs、Big Picture、decision register；
+- [x] 运行 Batch 67-72 focused gates；
+- [x] 运行 `npm run docs:check`、`git diff --check`、`npm run check`；
+- [x] commit/push 并确认唯一 master worktree 干净同步。
 
 ## 5. Fixture
 
@@ -146,3 +146,9 @@ selection、local storage 或 resource side effect 污染下一场景。
 - 文档记录证据边界、实现结果、失败修正和剩余风险；
 - `master` 与 `origin/master` 同步且工作区干净。
 
+## 7. 实施结果
+
+2026-08-27 完成本批实现。pure planner verifier 与 fresh-page Playwright verifier
+均通过；Batch 59、67、68、69、70、71 以及 `npm run check` 也通过。最终结果、
+命令、动态 artifact 处理和剩余边界见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)
+与 [`runtime-audit.json`](runtime-audit.json)。

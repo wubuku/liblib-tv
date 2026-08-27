@@ -2,7 +2,8 @@
 
 > Status: `STATIC_AUDIT_COMPLETE` / `DESIGN_SPEC_COMPLETE` /
 > `V1_CODEC_RUNTIME_PASS` / `OWNER_SESSION_FOCUSED_RUNTIME_PASS` /
-> `AUTHORED_ASYNC_PERSISTENCE_RUNTIME_MISSING` /
+> `AUTHORED_HISTORY_POINTER_DELETE_FOCUSED_RUNTIME_PASS` /
+> `ASYNC_PERSISTENCE_RUNTIME_MISSING` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -60,7 +61,8 @@ Director project document
   与当前时间派生的 R3F runtime projection；
 - capture/export 向普通 canvas 回流时 late-read `activeCanvasId`；
 - scene/timeline 不持久化，local model catalog 以全局 localStorage key 持久化；
-- graph return 使用普通 canvas graph history，Director 内部没有 domain history。
+- graph return 使用普通 canvas graph history，Director document mutation 现在使用
+  project-local domain history；两者仍保持隔离。
 - Batch 67 已增加独立 `DirectorProjectDocumentV1`、strict
   decode/normalize/encode、current state snapshot adapter 和 pure corpus；
 - codec 排除 selection/playback/panel/phone runtime、capture bytes、
@@ -76,8 +78,12 @@ Director project document
 - Batch 69 已增加 `authoredObjects` baseline，timeline/path sampling 不再覆盖
   portable snapshot；object/camera/pose authoring 与 close/reopen focused runtime
   已通过；
-- inactive owner tombstone、async graph destination、persistence 与
-  command/history/reference-aware delete 仍未解决。
+- Batch 70 已增加 project-local command/history、undo/redo、redo truncation 和
+  gesture coalescing；Batch 71 已覆盖 Inspector/pose/camera/path/free-draw
+  pointer lifecycle；Batch 72 已覆盖 reference-aware delete、关系闭包、相机回退、
+  资源阻断/级联和 exact delete/undo/redo；
+- inactive owner tombstone/reachability、async graph destination、copy/paste identity
+  remap 和 durable persistence 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -692,5 +698,5 @@ owner/session 子项已在 Batch 68 升级为
 1. inactive owner/source/canvas delete 有 tombstone/reachability reconciliation；
 2. delayed capture/export 只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 明确；
-4. command/history/gesture authority 与 reference-aware delete 有 focused runtime；
-5. persistence adapter 有 corrupt/quota/stale fixture。
+4. persistence adapter 有 corrupt/quota/stale fixture；
+5. copy/paste identity remap 有 focused runtime。

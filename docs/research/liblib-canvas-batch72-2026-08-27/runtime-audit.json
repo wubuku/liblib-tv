@@ -37,7 +37,7 @@
       "cameraHistoryDelta": 1,
       "captureHistoryDelta": 1,
       "fallbackCamera": "director-camera-main",
-      "graphNodePreserved": "director-capture-1787848087368-9d849s"
+      "graphNodePreserved": "ordinary-canvas-result-node"
     },
     "localResource": {
       "blockReason": "DIRECTOR_RESOURCE_IN_USE",
