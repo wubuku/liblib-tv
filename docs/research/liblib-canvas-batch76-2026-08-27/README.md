@@ -1,6 +1,6 @@
 # Batch 76: Director Owner Reachability Reconciliation
 
-> 状态：`PLANNED / OWNER_REACHABILITY_PENDING`。
+> 状态：`IMPLEMENTED / REGRESSION_PENDING`。
 >
 > 建档日期：2026-08-27；代码基线：`30f071b`。
 
@@ -29,7 +29,25 @@ Director registry record 仍保持 `ACTIVE/CLOSED`，旧 project 也可能被重
 本批不删除 browser persistence envelope、资源字节或 stable asset，也不定义 graph
 undo 后复活 Director project。上述 durable cleanup/restore policy 保留为独立决策。
 
-## 3. 入口
+## 3. 当前实施结果
+
+专项 focused verifier 已通过：
+
+- pure planner 覆盖 all-canvas collection、active/inactive/cross-canvas、
+  invalid/duplicate、deterministic ordering 和 repeated reconciliation；
+- fresh-page Playwright 覆盖 inactive source delete、inactive canvas delete、
+  active source delete、rename/switch/unrelated delete、graph undo 和 retained
+  persistence；
+- active delete 先同步 tombstone registry/session，再在 Director shell 卸载后
+  清理 R3F/runtime/history/clipboard projection；
+- store 与 DirectorDesk async context 都要求 active registry session identity；
+- tombstoned owner reopen返回 `PROJECT_TOMBSTONED`；
+- ordinary source delete 仍只有一条 graph history；
+- zero screenshots、zero console/page/request errors。
+
+跨批回归、全量质量门禁、治理收口与最终 checkpoint 尚待执行。
+
+## 4. 入口
 
 - [`STATIC_AUDIT_2026-08-27.md`](STATIC_AUDIT_2026-08-27.md)：当前代码、合同和风险审计；
 - [`PLAN.md`](PLAN.md)：实施切片、fixture、验证和停止条件；
@@ -37,7 +55,7 @@ undo 后复活 Director project。上述 durable cleanup/restore policy 保留�
 - [`../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)：正式 owner/session authority；
 - [`../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](../LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：`LIBTV-VR-024` current gate 入口。
 
-## 4. 证据边界
+## 5. 证据边界
 
 本批是 clone reliability implementation，不是 LibTV source-exact deletion UX
 结论。不会从 StoryAI/Open Canvas 推导 source 的删除提示、恢复入口、持久化

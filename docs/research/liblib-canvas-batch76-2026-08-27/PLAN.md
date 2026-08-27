@@ -1,6 +1,6 @@
 # Batch 76 计划：Director Owner Reachability Reconciliation
 
-> 状态：`PLANNED / OWNER_REACHABILITY_PENDING`。
+> 状态：`IMPLEMENTED / REGRESSION_PENDING`。
 >
 > 日期：2026-08-27；代码基线：`30f071b`。
 
@@ -20,44 +20,44 @@
 
 ### Slice A：pure planner
 
-- [ ] 新增 `src/lib/directorOwnerReconciliation.ts`；
-- [ ] 定义 live owner、tombstone owner、preserved owner 和 active invalidation；
-- [ ] 只处理 registry 已存在且非 `TOMBSTONED` 的 record；
-- [ ] owner key 复用 structured `route/canvas/source` identity；
-- [ ] invalid/duplicate live owner 输入归一化，输出 deterministic；
-- [ ] pure planner 不读 Zustand、DOM、storage 或 React Flow。
+- [x] 新增 `src/lib/directorOwnerReconciliation.ts`；
+- [x] 定义 live owner、tombstone owner、preserved owner 和 active invalidation；
+- [x] 只处理 registry 已存在且非 `TOMBSTONED` 的 record；
+- [x] owner key 复用 structured `route/canvas/source` identity；
+- [x] invalid/duplicate live owner 输入归一化，输出 deterministic；
+- [x] pure planner 不读 Zustand、DOM、storage 或 React Flow。
 
 ### Slice B：store authority
 
-- [ ] `DirectorState` 增加 owner reconciliation action；
-- [ ] 对 planner 返回的 owner 逐个调用 registry `tombstone()`；
-- [ ] active owner 失效时清理 project/session/runtime gesture/capture/clipboard；
-- [ ] inactive tombstone 不切换或重置当前 foreground project；
-- [ ] 不删除 persistence envelope、history archive、capture archive 或资源；
-- [ ] repeated reconcile 不重复增加 generation。
+- [x] `DirectorState` 增加 owner reconciliation action；
+- [x] 对 planner 返回的 owner 逐个调用 registry `tombstone()`；
+- [x] active owner 失效时清理 project/session/runtime gesture/capture/clipboard；
+- [x] inactive tombstone 不切换或重置当前 foreground project；
+- [x] 不删除 persistence envelope、history archive、capture archive 或资源；
+- [x] repeated reconcile 不重复增加 generation。
 
 ### Slice C：page lifecycle adapter
 
-- [ ] page 订阅全部 canvas 的稳定 owner reachability projection；
-- [ ] graph/source delete、canvas delete 和 graph undo 后运行 reconcile；
-- [ ] 前台 UI owner cleanup 与 registry reconciliation 保持分层；
-- [ ] active Director owner invalid 时关闭 Director shell；
-- [ ] rename、switch、unrelated node mutation 不误伤 registry；
-- [ ] 不把 Director side effect写进 `canvasStore.remove*` transaction。
+- [x] page 订阅全部 canvas 的稳定 owner reachability projection；
+- [x] graph/source delete、canvas delete 和 graph undo 后运行 reconcile；
+- [x] 前台 UI owner cleanup 与 registry reconciliation 保持分层；
+- [x] active Director owner invalid 时关闭 Director shell；
+- [x] rename、switch、unrelated node mutation 不误伤 registry；
+- [x] 不把 Director side effect写进 `canvasStore.remove*` transaction。
 
 ### Slice D：focused verifier
 
-- [ ] pure active/inactive/cross-canvas owner planner corpus；
-- [ ] source delete active owner -> tombstone + shell/session cleanup；
-- [ ] source delete inactive owner -> tombstone only；
-- [ ] canvas delete -> tombstone canvas 内全部 records；
-- [ ] unrelated node delete、canvas switch、rename -> preserve；
-- [ ] repeated reconciliation -> same generation/snapshot；
-- [ ] tombstoned owner reopen -> `PROJECT_TOMBSTONED`；
-- [ ] delayed async result -> stale/zero mutation；
-- [ ] ordinary graph delete remains one graph history step；
-- [ ] persistence envelope retained and reload boundary explicitly recorded；
-- [ ] diagnostics/page/request errors 和 screenshots 均为零。
+- [x] pure active/inactive/cross-canvas owner planner corpus；
+- [x] source delete active owner -> tombstone + shell/session cleanup；
+- [x] source delete inactive owner -> tombstone only；
+- [x] canvas delete -> tombstone canvas 内全部 records；
+- [x] unrelated node delete、canvas switch、rename -> preserve；
+- [x] repeated reconciliation -> same generation/snapshot；
+- [x] tombstoned owner reopen -> `PROJECT_TOMBSTONED`；
+- [x] delayed async result -> stale/zero mutation；
+- [x] ordinary graph delete remains one graph history step；
+- [x] persistence envelope retained and reload boundary explicitly recorded；
+- [x] diagnostics/page/request errors 和 screenshots 均为零。
 
 ### Slice E：治理与回归
 

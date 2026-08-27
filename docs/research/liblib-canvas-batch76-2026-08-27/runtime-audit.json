@@ -1,0 +1,70 @@
+{
+  "batch": 76,
+  "status": "OWNER_REACHABILITY_FOCUSED_PASS",
+  "date": "2026-08-27",
+  "contract": {
+    "scope": "clone-owned in-memory Director owner reachability reconciliation",
+    "sourceExact": false,
+    "durableTombstone": false,
+    "persistenceCleanup": false,
+    "resourceCleanup": false,
+    "graphUndoRestoresDirectorProject": false
+  },
+  "pure": {
+    "status": "PASS",
+    "scenarios": {
+      "allCanvasCollection": "pass",
+      "inactiveSourceDelete": "pass",
+      "inactiveCanvasDelete": "pass",
+      "activeSourceDelete": "pass",
+      "invalidDuplicateNormalization": "pass",
+      "deterministicOrdering": "pass",
+      "registryIdempotency": "pass",
+      "tombstonedReopenRejected": "pass",
+      "delayedAsyncOwnerStale": "pass"
+    },
+    "ownersObserved": 4,
+    "tombstonedProjects": 3,
+    "screenshots": 0
+  },
+  "browser": {
+    "owners": {
+      "active": {
+        "route": "libtv",
+        "canvasId": "canvas-2",
+        "sourceNodeId": "script-execution-1787858850470-lg1xkh"
+      },
+      "inactive": {
+        "route": "libtv",
+        "canvasId": "canvas-2",
+        "sourceNodeId": "script-execution-1787858850470-3d6kjt"
+      },
+      "crossCanvas": {
+        "route": "libtv",
+        "canvasId": "canvas-3",
+        "sourceNodeId": "script-execution-1787858850470-2x40gn"
+      }
+    },
+    "projects": {
+      "active": "director-project-1787858851152-5",
+      "inactive": "director-project-1787858850860-1",
+      "crossCanvas": "director-project-1787858851029-3"
+    },
+    "inactiveSourceTombstone": "pass",
+    "inactiveCanvasTombstone": "pass",
+    "activeSourceCleanup": "pass",
+    "renameSwitchPreservation": "pass",
+    "unrelatedDeleteIsolation": "pass",
+    "repeatedReconciliation": "pass",
+    "tombstonedReopenRejected": "pass",
+    "graphUndoDoesNotUntombstone": "pass",
+    "persistenceEnvelopeRetained": "pass",
+    "ordinaryDeleteHistory": "one-step"
+  },
+  "screenshots": [],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

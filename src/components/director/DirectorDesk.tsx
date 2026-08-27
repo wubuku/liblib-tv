@@ -56,7 +56,19 @@ function getCurrentDirectorAsyncContext(): DirectorAsyncIngressContextV1 | null 
   ) {
     return null;
   }
-  const record = getDirectorProjectRegistrySnapshot().records.find(
+  const registry = getDirectorProjectRegistrySnapshot();
+  const activeSession = registry.activeSession;
+  if (
+    !activeSession ||
+    activeSession.projectId !== state.projectId ||
+    activeSession.sessionId !== state.sessionId ||
+    activeSession.generation !== state.generation ||
+    activeSession.owner.canvasId !== state.projectOwner.canvasId ||
+    activeSession.owner.sourceNodeId !== state.projectOwner.sourceNodeId
+  ) {
+    return null;
+  }
+  const record = registry.records.find(
     (candidate) => candidate.identity.projectId === state.projectId,
   );
   if (!record) return null;

@@ -67,6 +67,7 @@ import {
 } from "@/lib/directorProjectDocument";
 import {
   DirectorProjectRegistry,
+  createDirectorProjectOwnerKey,
   isSameDirectorProjectOwner,
   type DirectorProjectCloseResult,
   type DirectorProjectLifecycle,
@@ -74,6 +75,10 @@ import {
   type DirectorProjectRegistrySnapshot,
   type DirectorSessionV1,
 } from "@/lib/directorProjectRegistry";
+import {
+  planDirectorOwnerReachability,
+  type DirectorOwnerReachabilityPlan,
+} from "@/lib/directorOwnerReconciliation";
 import { restoreDirectorProjectRuntimeSnapshotV1 } from "@/lib/directorProjectRuntimeAdapter";
 import {
   directorProjectPersistence,
@@ -398,6 +403,11 @@ export interface DirectorGestureInput {
   fieldScope?: string | null;
 }
 
+export interface DirectorOwnerReconciliationResult
+  extends DirectorOwnerReachabilityPlan {
+  appliedTombstoneOwnerKeys: string[];
+}
+
 interface DirectorState {
   sourceNodeId: string | null;
   projectOwner: DirectorProjectOwnerV1 | null;
@@ -433,6 +443,12 @@ interface DirectorState {
   closeSession: (
     expectedOwner?: DirectorProjectOwnerV1,
   ) => DirectorProjectCloseResult;
+  reconcileProjectOwners: (
+    liveOwners: readonly DirectorProjectOwnerV1[],
+  ) => DirectorOwnerReconciliationResult;
+  clearTombstonedProjectOwner: (
+    expectedOwner: DirectorProjectOwnerV1,
+  ) => boolean;
   beginDirectorGesture: (
     input: DirectorGestureInput,
   ) => DirectorCommandResult;
@@ -1466,6 +1482,16 @@ function getDirectorAsyncContext(
   ) {
     return null;
   }
+  const activeSession = directorProjectRegistry.getActiveSession();
+  if (
+    !activeSession ||
+    activeSession.projectId !== state.projectId ||
+    activeSession.sessionId !== state.sessionId ||
+    activeSession.generation !== state.generation ||
+    !isSameDirectorProjectOwner(activeSession.owner, state.projectOwner)
+  ) {
+    return null;
+  }
   const record = directorProjectRegistry
     .getSnapshot()
     .records.find(
@@ -1700,6 +1726,39 @@ function restoreDirectorProjectState(
     localModelLibrary,
     timeline: restored.timeline,
     phoneVcam: createDefaultPhoneVcamState(),
+  };
+}
+
+function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
+  return {
+    sourceNodeId: null,
+    projectOwner: null,
+    projectId: null,
+    sessionId: null,
+    generation: null,
+    projectLifecycle: null,
+    scene: createDefaultScene(),
+    authoredObjects: cloneObjects(),
+    objects: cloneObjects(),
+    groups: [],
+    selectedObjectId: "director-character-lead",
+    selectedObjectIds: ["director-character-lead"],
+    selectedGroupId: null,
+    activeCameraId: "director-camera-main",
+    viewMode: "director",
+    transformMode: "translate",
+    aspectRatio: "16:9",
+    showThirds: false,
+    viewportPanelsCollapsed: false,
+    isCapturing: false,
+    captures: [],
+    activeCaptureId: null,
+    timeline: createDefaultTimeline(),
+    phoneVcam: createDefaultPhoneVcamState(),
+    history: createDirectorHistoryState(),
+    clipboard: null,
+    clipboardPasteCount: 0,
+    lastCommandResult: null,
   };
 }
 
@@ -2147,6 +2206,64 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       }));
     }
     return result;
+  },
+
+  reconcileProjectOwners: (liveOwners) => {
+    const plan = planDirectorOwnerReachability({
+      liveOwners,
+      registry: directorProjectRegistry.getSnapshot(),
+    });
+    if (plan.tombstoneOwners.length === 0) {
+      return {
+        ...plan,
+        appliedTombstoneOwnerKeys: [],
+      };
+    }
+
+    const currentState = get();
+    const activeSession = directorProjectRegistry.getActiveSession();
+    if (plan.activeOwnerInvalidated && activeSession) {
+      rememberDirectorHistory(activeSession.projectId, currentState.history);
+      rememberDirectorCaptures(
+        activeSession.projectId,
+        currentState.captures,
+      );
+    }
+
+    const appliedTombstoneOwnerKeys: string[] = [];
+    for (const owner of plan.tombstoneOwners) {
+      const result = directorProjectRegistry.tombstone(owner);
+      if (result.disposition === "CLOSED") {
+        appliedTombstoneOwnerKeys.push(
+          createDirectorProjectOwnerKey(owner),
+        );
+      }
+    }
+
+    return {
+      ...plan,
+      appliedTombstoneOwnerKeys,
+    };
+  },
+
+  clearTombstonedProjectOwner: (expectedOwner) => {
+    const state = get();
+    if (
+      !state.projectOwner ||
+      !isSameDirectorProjectOwner(state.projectOwner, expectedOwner)
+    ) {
+      return false;
+    }
+    const record = directorProjectRegistry.getRecord(expectedOwner);
+    if (!record || record.lifecycle !== "TOMBSTONED") return false;
+
+    directorHistorySyncSuspended = true;
+    try {
+      set(createInvalidatedDirectorSessionState());
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return true;
   },
 
   beginDirectorGesture: (input) => {

@@ -82,15 +82,20 @@ source node type 打开，而不把 UI capability 规则复制到 lifecycle plan
 
 active owner 被 planner 判定 missing 时：
 
-1. registry 直接 tombstone，不先 `close()` 保存；
-2. generation 增加，active session 清空；
-3. Director store 清除 project/session owner、capture viewer、gesture、playback、
-   phone recording、clipboard 和 command projection；
-4. project-local history/archive、capture archive 和 persistence envelope暂时保留；
-5. page 同步关闭 Director shell。
+1. page 先撤销 Director shell UI owner；
+2. registry 同步 tombstone，不先 `close()` 保存；
+3. generation 增加，active session立即清空；
+4. async context resolver 立即因 active session mismatch返回 stale；
+5. R3F shell卸载后再清除 project/session owner、capture viewer、gesture、
+   playback、phone recording、clipboard 和 command projection；
+6. project-local history/archive、capture archive 和 persistence envelope暂时保留。
 
 不先保存的原因是 owner 已失效；被动 reconciliation 不应把 deletion 后的 stale
 UI/runtime snapshot提升为新的 durable canonical save。
+
+Store projection 延迟到 shell 卸载后清理，是为了避免 R3F `<Canvas>` 在
+event target 已撤销时收到一轮 default scene/runtime 更新；registry/session 和
+async authority仍在同一个 deletion effect 内同步失效，不存在结果写入窗口。
 
 ## 6. Idempotency 与误伤防护
 

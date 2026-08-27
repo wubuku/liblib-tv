@@ -20,7 +20,10 @@ import {
 import "@xyflow/react/dist/style.css";
 
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
-import { useDirectorStore } from "@/store/directorStore";
+import {
+  getDirectorProjectRegistrySnapshot,
+  useDirectorStore,
+} from "@/store/directorStore";
 import { useUIStore } from "@/store/uiStore";
 import { TopNavBar } from "@/components/TopNavBar";
 import { LeftSidebar } from "@/components/LeftSidebar";
@@ -51,6 +54,11 @@ import {
   reconcileLibTVUiOwners,
   type LibTVUiOwnerSnapshot,
 } from "@/lib/libtvUiOwnerReconciliation";
+import {
+  collectLiveDirectorProjectOwners,
+  createDirectorOwnerReachabilitySignature,
+  planDirectorOwnerReachability,
+} from "@/lib/directorOwnerReconciliation";
 import {
   isLibTVCanvasCommandKey,
   isLibTVEditableCommandTarget,
@@ -178,6 +186,7 @@ export default function Home() {
     duplicateSelectedNodes,
     setViewport: setStoreViewport,
     activeCanvasId,
+    canvases,
   } = useCanvasStore();
   const {
     showMinimap,
@@ -247,7 +256,36 @@ export default function Home() {
     }));
   }, [edges, selectedEdgeIds]);
   const activeNodeIds = useMemo(() => nodes.map((node) => node.id), [nodes]);
+  const directorOwnerReachabilitySignature = useMemo(
+    () => createDirectorOwnerReachabilitySignature(canvases),
+    [canvases],
+  );
   const effectivePan = canvasTool === "pan" || isSpacePressed;
+
+  useEffect(() => {
+    const liveOwners = collectLiveDirectorProjectOwners(
+      useCanvasStore.getState().canvases,
+    );
+    const registry = getDirectorProjectRegistrySnapshot();
+    const plan = planDirectorOwnerReachability({
+      liveOwners,
+      registry,
+    });
+    if (plan.activeOwnerInvalidated) closeDirectorDesk();
+    useDirectorStore.getState().reconcileProjectOwners(liveOwners);
+    const invalidatedOwner = plan.activeOwnerInvalidated
+      ? registry.activeSession?.owner ?? null
+      : null;
+    if (invalidatedOwner) {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          useDirectorStore
+            .getState()
+            .clearTombstonedProjectOwner(invalidatedOwner);
+        });
+      });
+    }
+  }, [closeDirectorDesk, directorOwnerReachabilitySignature]);
 
   useEffect(() => {
     const owners: LibTVUiOwnerSnapshot = {
