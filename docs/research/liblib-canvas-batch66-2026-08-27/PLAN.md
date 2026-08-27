@@ -1,6 +1,6 @@
 # Batch 66 计划：Director Reliability Authority
 
-> 状态：`STATIC_AUDIT_RECORDED / CONTRACTS_IN_PROGRESS`。
+> 状态：`CONTRACTS_RECORDED / VERIFIER_MANIFEST_IN_PROGRESS`。
 >
 > 日期：2026-08-27。
 >
@@ -141,6 +141,6 @@ current verifier manifest 需要对脚本做静态解析，并至少运行一个
 | project/session/owner 静态审计 | `DONE` | [`STATIC_AUDIT_2026-08-27.md`](STATIC_AUDIT_2026-08-27.md) |
 | command/history/delete 静态审计 | `DONE` | 同上 |
 | evidence matrix | `DONE` | [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md) |
-| 两份稳定合同 | `IN_PROGRESS` | 待新增 |
-| 17-script current manifest | `PENDING` | 待静态分级和至少一次 current smoke |
+| 两份稳定合同 | `DONE` | project/session + command/history/delete |
+| 17-script current manifest | `IN_PROGRESS` | 待静态分级和至少一次 current smoke |
 | governance/implementation closeout | `PENDING` | 待合同与验证完成 |

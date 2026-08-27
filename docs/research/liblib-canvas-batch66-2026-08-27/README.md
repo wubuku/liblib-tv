@@ -1,6 +1,6 @@
 # Batch 66: Director Reliability Authority
 
-> 状态：`STATIC_AUDIT_RECORDED / CONTRACTS_IN_PROGRESS`。
+> 状态：`CONTRACTS_RECORDED / VERIFIER_MANIFEST_IN_PROGRESS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -36,4 +36,8 @@
   project/session、mutation/history 和 reference/delete 静态审计；
 - [`EVIDENCE_MATRIX.md`](EVIDENCE_MATRIX.md)：上游、clone、历史验证、建议和未知项；
 - 后续 implementation record 将继续放在本目录；
-- 稳定合同与 current manifest 将放在 `docs/research/` 并接入文档 Hub。
+- [`../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](../LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)：
+  project document、owner、session/runtime/resource 和 lifecycle 权威；
+- [`../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)：
+  command outcome、gesture/history 和 reference-aware delete 权威；
+- current verifier manifest 将放在 `docs/research/` 并接入文档 Hub。
