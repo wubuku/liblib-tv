@@ -276,6 +276,8 @@ These are coherent foundations. Remaining gaps：
 - graph history snapshots themselves still have the deep-isolation/runtime-field gaps documented elsewhere；
 - canvas lifecycle has no project-level undo, which must remain explicit rather than hidden inside graph history。
 
+Selection 的 node/edge/primary normalization、context precedence 和 focus-return target 有效性由 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) 负责；本文只负责 canvas generation、switch/delete reconciliation 和跨 owner 隔离。
+
 ### 5.5 Page-local transactions
 
 The route owns three high-risk transient holders without canvas identity：

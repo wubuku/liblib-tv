@@ -95,6 +95,7 @@ LibTV 当前问题
 | onboarding / empty state | 首次使用的状态机和入口分层 | LibTV 当前入口是否存在同等流程需另取证 | `LIBTV-UIX-08` |
 | summary list + URL identity + full hydrate | 切换画布是跨 owner 的原子 lifecycle，不只是换 nodes | 保留当前 LibTV dropdown 视觉、每画布 graph/viewport/history 与源站待证 fallback | `LIBTV-UIX-17` |
 | toast + node/save/form/control feedback 分层 | outcome/reason 与 primary surface 分开，durable error 可恢复，cancel/noop 可 silent | 精确 LibTV 文案/颜色/timeout/invalid style 仍由源站决定；不复用 FrameOS toast | `LIBTV-UIX-18` |
+| selected flags + editable guard + local editor/Radix focus ownership | validated selection、declared command context、single-layer Escape 和 owned focus return | 精确 LibTV multi-select/edge/foreground surface/Escape/focus behavior 仍由源站决定；不引入全局 modal manager | `LIBTV-UIX-19` |
 
 ### 3.1 与当前 LibTV Seedance 能力合同的桥接
 
@@ -286,6 +287,20 @@ Open Canvas 同时使用 global toast、node status/error、save/conflict banner
 
 Open Canvas 的 localized message lookup 和 owner-less async toast 是不能照抄的反例。当前 clone connection 已有 stable reason，Share/Agent/AddNode/VideoClip 有 string-only local status，VideoNode 有 action-specific timer，Director 有 persistent progress/error/retry；它们需要共同 lifecycle，不需要先新增 toast host。完整合同见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
 
+### `LIBTV-UIX-19`：选择、焦点与前台命令上下文
+
+Open Canvas 的 selected flags、editable guard、局部 editor state 和 Radix focus delegation 提供了实现方法，也暴露了反例：React Flow flags 不是完整 selection authority，零散 conflict/Escape handler 不是统一 context precedence，组件库也不能自动协调画布、modal、Director 和 route。
+
+LibTV 后续复刻应把三个 owner 分开：
+
+| owner | 最小状态 | UI/UX 约束 |
+|---|---|---|
+| selection | active canvas/generation、node IDs、edge IDs、primary | stale ID 清理；不进入 portable document/semantic history |
+| command context | editable/node control/canvas/modal/Director/route + precedence | 每次 key dispatch 只有一个 top context；handler 返回明确 result |
+| focus | zone、origin、current target、return target、fallback | foreground surface containment；close 后不回到 stale/hidden/disabled owner |
+
+一次 Escape 只退出一个最上层 context，不能同时关闭 modal、Director 和底层 selection；不可退出的 foreground layer 必须明确 consumed/blocked。画布切换、节点删除、undo/unmount 要共同使陈旧 selection、surface owner 和 return target 失效。正式合同、fixture 与 `LIBTV-VR-019` 见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，固定静态事实见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。
+
 ## 5. 可复用的研究记录模板
 
 后续每个 batch 的研究文档可以采用以下结构：
@@ -330,6 +345,7 @@ Open Canvas 的 localized message lookup 和 owner-less async toast 是不能照
 | P1 | Handle/连接菜单/派生节点 | 决定工作流是否可用 | 不能改变现有边效果 |
 | P1 | 多画布切换与 surface owner 隔离 | 防止旧画布 UI、viewport、transient 和异步结果污染当前画布 | 设计合同完成，runtime partial |
 | P1 | 命令 outcome/reason 与反馈 owner | 防止 toast-only workflow、string reason、stale success 和 feedback/history 混淆 | 设计合同完成，runtime partial/source feedback partial |
+| P1 | selection/focus/command-context owner | 防止 selected flags 分叉、快捷键穿透、多层 Escape 和陈旧回焦 | 设计合同完成，runtime partial/source interaction partial |
 | P2 | 媒体历史和结果回选 | 影响连续创作效率 | 需源站证据 |
 | P2 | 运行/保存状态可视化 | 让 prototype 状态诚实可读 | 暂不接真实 provider |
 | P3 | BYOK/onboarding/provider 视觉 | Open Canvas 特色明显但非当前 LibTV 核心 | 仅作旁证 |

@@ -507,3 +507,15 @@
 - 纠正 `PAR-004` 和 overlay `UI-05` 的旧事实：Batch 50 已让 Director active 时普通 page dispatcher 对全部快捷键 return，剩余缺口是完整 focus trap/return、nested listener 和 source-exact 语义；
 - 同步 docs hub、research index、Open Canvas read order/authority、evidence/source/report/interaction/plan 与 shortcut crosswalk；
 - 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或任一 submodule。
+
+## 2026-08-27：v46 selection、focus 与 command context 正式合同
+
+本轮把 v45 的 fixed facts 转换为可交接、可验证的正式设计，不引入全局 modal/shortcut 实现：
+
+- 新增 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，定义 active canvas/generation 下的 node IDs、edge IDs、primary selection snapshot，并明确 React Flow `selected` 只作 transport/projection；
+- 定义 editable/node-control/canvas/modal/Director/route focus zone 与 context policy、top-context precedence、`HANDLED/CONSUMED/PASS/BLOCKED/NOOP` dispatch result、一次 Escape 只退一层，以及 acquire/contain/return/fallback 生命周期；
+- 新增 `LIBTV-SFC-I-001..030`、`LIBTV-SFC-DQ-001..012`、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`，覆盖 switch/delete/undo/unmount、stale return、zero semantic history 与 FrameOS route isolation；
+- 新增 `OC-PATTERN-09`、`OC-ADOPT-022`、`OC-TR-015`、`OC-BP-009`、`LIBTV-UIX-19`、`DEC-035` 和 `LIBTV-TR-041`，把 Open Canvas selected/editable/local editor/Radix 正面方法与 conflict gate/weak Escape/default propagation 反例纳入完整 authority chain；
+- 明确不移植 React Flow selected flags 作为完整 authority，不复制 Open Canvas conflict gate、默认 key propagation 或 Radix 产品语义，不引入 global modal manager；
+- 同步 Big Picture、agent task map、docs/research/Open Canvas indexes、graph catalog、fixture/verifier、overlay/shortcut、parity、coverage 和 traceability；
+- 本轮只修改文档，没有修改 `src/`、测试脚本、FrameOS、共享源站、其他开发者 WIP 或任一 submodule。

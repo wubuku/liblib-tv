@@ -418,6 +418,8 @@ Undo/redo 只恢复 graph snapshot 中声明的 domain state。它不应“重�
 
 精确 ARIA role/live politeness 需按最终 surface 和 source evidence 决定；本文不预设所有 feedback 都用 assertive alert。
 
+快捷键 dispatch、foreground surface precedence、single-layer Escape 和 close 后 focus-return validity 由 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md) 负责；本文只定义 outcome 到反馈 owner 的投影，不能借 toast/focus effect 夺取 command-context authority。
+
 ## 11. Invariants
 
 ### `LIBTV-GI-049` — Outcome precedes projection

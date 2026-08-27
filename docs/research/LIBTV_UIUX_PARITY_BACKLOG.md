@@ -158,7 +158,7 @@ clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 r
 - CanvasDropdown 的 local Escape 与 page Escape 可同时观察事件；active node tools 又有 capture-phase listener。
 - node selection 已有独立 session projection，但 edge selection 仍由 generic `onEdgesChange` 留在 stored edge record，Delete 又只读取 node selection。
 
-完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。下一步先定义 node/edge/primary selection、focus zone 和 command dispatch precedence，并只读复核源站 modal、Agent、Share、Shortcuts 的 keyboard/outside/focus 行为，再决定 clone 应采用 source parity 还是显式可访问性改良。没有证据和合同前不引入全局 modal manager。
+完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)；正式设计权威是 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，已定义 node/edge/primary active-session selection、focus zone、surface policy、`HANDLED/CONSUMED/PASS/BLOCKED/NOOP`、one-Escape、focus return、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。下一步仍需只读复核源站 modal、Agent、Share、Shortcuts 的 keyboard/outside/focus 行为并等待编码授权；不因设计完成就引入全局 modal manager。
 
 ### 4.6 `LIBTV-PAR-005`: source freshness refresh
 

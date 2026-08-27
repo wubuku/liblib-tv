@@ -62,8 +62,9 @@
 | `../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md` | Open Canvas list/URL/hydrate/delete/save owner 深读、clone 多画布/viewport/UI/transient/async 审计，以及 lifecycle manifest、fixture 和 verifier 设计 |
 | `../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md` | Open Canvas toast/node/save/form feedback 正反面、clone reason/string/timer/Director 审计，以及 outcome/primary-surface/owner、fixture 和 verifier 设计 |
 | `../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md` | Open Canvas selected flags/editable/Radix 与 clone node/edge selection、listener phase、foreground modal/Director focus、Batch 50 drift 的 fixed static audit |
+| `../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md` | validated selection、focus zone、command-context precedence、single-layer Escape、fixture 和 `LIBTV-VR-019` 正式设计权威 |
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
-| `OPEN_CANVAS_PATTERN_CARDS.md` | 八类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle 和 command feedback 模式卡，以及对应的 LibTV 证据闸门 |
+| `OPEN_CANVAS_PATTERN_CARDS.md` | 九类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback 和 selection/focus/context 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
 
 ## 5. 状态
@@ -88,6 +89,7 @@
 - [x] 完成 Open Canvas toast/node/save/form feedback 正反面与 clone reason/string/timer/Director inventory 审计
 - [x] 完成 LibTV command disposition/reason/primary-surface/owner、fixture 和 `LIBTV-VR-018` 设计
 - [x] 完成 Open Canvas/clone selection、focus、editable guard 与 listener precedence 双向静态审计
+- [x] 完成 LibTV validated selection、focus lifecycle、command-context precedence、fixture 和 `LIBTV-VR-019` 正式设计
 - [x] 修正 PAR-004 与 overlay catalog 中 Batch 50 之前的 Director shortcut 事实漂移
 - [x] 文档检查、提交并推送研究成果
 

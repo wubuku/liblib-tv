@@ -364,6 +364,23 @@ Open Canvas positive URL/hydrate/delete methods、stale local-convergence counte
 
 Open Canvas toast/node/save/form 正反面、clone feedback inventory、`GI-049..058/GC-059..075` and decision queue 统一见 [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。`VR-018` composes connection/delete/async/canvas/overlay verifiers，不取代其 source/graph semantics。
 
+### `LIBTV-VR-019`：selection, focus and command-context ownership
+
+| 字段 | 规划 |
+|---|---|
+| Backlog | `LIBTV-PAR-004/007/008/011` selection、keyboard、foreground surface、focus and route-isolation correctness |
+| Old verifier | Batch 3/4/6/7/11/50/58/60；各自保留 source/local bounded contract |
+| Required fixture | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` with deterministic node/edge/primary selections、focus zones、surface stack and A/B canvas generations |
+| Static checks | every target surface declares selection/context/focus policy；node/edge/primary owner unique；FrameOS isolated |
+| Pure checks | selection normalization、context precedence、dispatch result、single-layer Escape and focus fallback deterministic |
+| Transaction | selection/focus/context transitions are zero semantic history；mixed delete/undo/switch outcomes preserve graph/history authority |
+| Owner/timing | canvas generation、surface owner、focus origin/return target validated；delete/switch/unmount/stale return cleanup exact |
+| UI/browser | activeElement、editable isolation、modal containment、Director precedence、one Escape per layer、fallback focus and desktop/mobile parity |
+| Blockers | common selection authority、context resolver、fixture and implementation authorization；exact source multi-select/edge/Escape/focus details remain partial |
+| Exit | one validated active selection；one top command context；one Escape unwinds one layer；focus never returns to stale/hidden owner |
+
+Open Canvas selected flags/editable/Radix delegation 和 clone node/edge/listener/modal/Director audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式状态、优先级、fixture 和 verifier 合同见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。`VR-019` 组合 graph routing、multi-canvas、overlay 和 shortcut verifier，不替代各自的 source/semantic contract。
+
 ## 6. Replacement Protocol
 
 每个 `VR-*` 都按下列顺序执行：
@@ -407,6 +424,7 @@ Open Canvas toast/node/save/form 正反面、clone feedback inventory、`GI-049.
 - `LIBTV-VR-013` 的 relation-aware delete planner、repair policy、fixture scenes 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得先删 node/edge 再以 UI effect 或 suffix heuristic 修补 surviving refs；
 - `LIBTV-VR-014` 的入口审计、T0-T5 authority、fixture composition 和 replacement design 已完成，但保持 `RUNTIME_PARTIAL`；不得用 Batch 57 `addEdge` 通过推导所有 direct writer 已受保护；
 - `LIBTV-VR-015` 的 Open Canvas/clone static audit、freshness/field/history/resource contract、fixture corpus 和 replacement design 已完成，但保持 `RUNTIME_MISSING`；不得把 component timer、node status 或 generic patch 当成 accepted operation owner；
+- `LIBTV-VR-016..019` 的 React Flow routing、multi-canvas lifecycle、command feedback、selection/focus/context replacement design 已完成，runtime maturity 分别维护；不得用局部 selected flag、组件 Escape handler、toast 或 focus effect 推导全局 authority 已统一；
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。

@@ -492,7 +492,7 @@ An unsupported semantic or malformed change prevents earlier selection/position 
 
 ### `LIBTV-GC-038` — Selection ownership
 
-Node/edge selection is runtime state. It does not alter portable graph semantics, history equality, copy packets or async graph baselines.
+Node/edge selection is runtime state. It does not alter portable graph semantics, history equality, copy packets or async graph baselines. Its unified node/edge/primary active-session authority is defined by [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md); this framework contract owns only event classification and projection transport.
 
 ### `LIBTV-GC-039` — Measurement is not resize
 
@@ -575,7 +575,7 @@ Recorded runtime evidence remains necessary because static checks cannot prove c
 
 | ID | Decision | Recommended default | Evidence needed before change |
 |---|---|---|---|
-| `LIBTV-RFC-DQ-001` | edge selection owner | dedicated UI/store selected edge ID(s) | current edge-selection consumers and toolbar behavior |
+| `LIBTV-RFC-DQ-001` | edge selection owner | resolved：one validated active-session node/edge/primary authority；React Flow field is projection | [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)；runtime consumer migration still required |
 | `LIBTV-RFC-DQ-002` | missing-ID position result | deterministic stale no-op with diagnostic | real queued drag/delete fixture |
 | `LIBTV-RFC-DQ-003` | mixed valid T0/T1 commit primitive | one planned store action or equivalent atomic owner sequence | store subscriber/render behavior |
 | `LIBTV-RFC-DQ-004` | runtime measured fields in semantic history | exclude from semantic equality; retain only where render needs them | undo/render regression fixture |
@@ -603,8 +603,8 @@ These decisions are implementation-facing, not blockers for this research contra
 
 ### Slice C — Selection ownership
 
-- keep node selection projected from stable selected IDs;
-- choose dedicated edge selection owner;
+- project node/edge flags from the validated active-session selection authority;
+- derive one primary selection under the formal selection/context contract;
 - sanitize graph/history/copy/document boundaries.
 
 ### Slice D — Semantic rejection/rerouting

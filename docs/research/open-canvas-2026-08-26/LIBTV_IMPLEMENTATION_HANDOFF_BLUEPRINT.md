@@ -76,6 +76,7 @@ RESEARCH_ONLY
 | `OC-BP-006` capability projection audit | `OC-ADOPT-010` | Seedance 参数研究 | `RESEARCH_ONLY` | source read-only + local parameter states | 新立项前不新增 verifier |
 | `OC-BP-007` multi-canvas lifecycle isolation | `OC-ADOPT-020` | `LIBTV-PAR-008/011` | design complete；Batch 16/58 islands recorded；cross-owner runtime partial | `LIBTV-FIX-LOCAL-CANVAS-LIFECYCLE-01` | `LIBTV-VR-017` |
 | `OC-BP-008` command outcome/feedback ownership | `OC-ADOPT-021` | `LIBTV-PAR-004/008..011` | design complete；local reason/status/timer/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` | `LIBTV-VR-018` |
+| `OC-BP-009` selection/focus/command-context ownership | `OC-ADOPT-022` | `LIBTV-PAR-004/007/008/011` | static/design complete；node projection/modal/Director islands；common runtime missing | `LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` | `LIBTV-VR-019` |
 
 表中的 Open Canvas decision 只解释设计输入。实施优先级仍以 [`../LIBTV_UIUX_PARITY_BACKLOG.md`](../LIBTV_UIUX_PARITY_BACKLOG.md) 为准。
 
@@ -269,6 +270,22 @@ Open Canvas 的 registry/current runner 漂移（`OC-006..009/016`）应作为�
 
 第一 authorized slice 不应是新增 global toast。应先选择一个现有 owner-local feedback island，将 string/boolean 分解为 stable disposition/reason，并证明 graph/history、timer、switch/delete 和 source geometry 均不回归。
 
+## 10.3 `OC-BP-009`：Selection, Focus And Command-Context Ownership
+
+完整机械合同见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。交接时必须逐层回答：
+
+| Layer | Required handoff |
+|---|---|
+| `L0 Evidence` | Open Canvas `OC-046..052` + dated clone static audit；exact LibTV multi-select/edge/Escape/focus behavior remains explicit partial |
+| `L1 Identity` | active canvas/generation、node IDs、edge IDs、primary、focus zone/origin/return target、foreground surface/context |
+| `L2 Transaction` | selection/focus/context zero semantic history；delete/undo/switch use named graph/lifecycle authority；stale owner cleanup exact |
+| `L3 Surface` | editable/canvas/node control/modal/Director/route policy；single-layer Escape；acquire/contain/return/fallback |
+| `L4 Fixture` | deterministic selection sets、focus zones、surface stack、A/B generations、delete/switch/undo/unmount/stale return cases |
+| `L5 Verifier` | `LIBTV-VR-019` composed with React Flow routing、multi-canvas、overlay and shortcut regressions |
+| `L6 Provenance` | no selected flags、conflict gate、default propagation or Radix product semantics promoted to LibTV truth |
+
+第一 authorized slice 不应先引入全局 context/modal infrastructure。应从一个可界定 surface 的 Escape + focus return 或 edge-selection owner 收口开始，同时证明普通 canvas shortcut、editable isolation、graph/history 和 FrameOS route 均不回归。
+
 ## 11. 单 Slice 计划模板
 
 后续获得编码授权时，每个 Batch 的 `PLAN.md` 至少包含：
@@ -337,6 +354,7 @@ pure identity/transaction cases
 5. 继续按 `LIBTV-PAR-005` 做安全只读 freshness，更新受影响的 `L0`；
 6. 保持 `OC-BP-001/002` 为可单独申请授权的最小视觉 slice；
 7. `OC-BP-007` 保持 design complete/runtime partial；若获授权，先做 invalid target + switch transient isolation，再处理 duplicate/delete resource 和 background operation，不把多画布改造成 Open Canvas route/persistence；
-8. 保持 provider、真实保存和共享源站 mutation 在边界外。
+8. `OC-BP-008/009` 均保持 design complete/runtime partial；feedback 从现有 owner-local island 收口，selection/context 从单一 surface 或 edge owner 收口，不新造 global toast/modal manager；
+9. 保持 provider、真实保存和共享源站 mutation 在边界外。
 
 这套顺序让文档继续降低实施风险，同时不越过用户当前的“只研究、不编码”约束。

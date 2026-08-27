@@ -24,6 +24,10 @@
 | OC-PATTERN-03 | node status / run status / save status 分离 | 异步任务、节点展示和保存反馈互相覆盖 | 适合 Seedance 长视频、重拍和过程节点 | P1，先建立状态证据，不引入真实 provider |
 | OC-PATTERN-04 | serialized subgraph + ID map | 复制、派生和导入时保持图关系 | 适合复拍、版本链和过程图的可追溯性 | P1，先确认 LibTV 派生关系展示方式 |
 | OC-PATTERN-05 | run-keyed polling + stale-safe result ingress | 晚到/重复/乱序结果覆盖当前编辑或错误落图 | 适合拉片、长视频、处理结果与 Director export | P1，控制面方法可借；fixed generic patch 作为反例 |
+| OC-PATTERN-06 | current-state change adapter + semantic whitelist | framework delta 旁路领域命令与陈旧闭包覆盖 | 适合收窄 React Flow node/edge change transport | P0，正式合同完成，runtime partial |
+| OC-PATTERN-07 | document identity + hydrate owner + switch manifest | 多画布切换时 graph/UI/async owner 串线 | 适合当前 in-place canvas registry | P0，正式合同完成，runtime partial |
+| OC-PATTERN-08 | typed outcome + primary surface + owned announcement | 命令效果与反馈文案/落点/生命周期混合 | 适合统一 reject、process、Director 与 utility feedback | P0，正式合同完成，runtime partial |
+| OC-PATTERN-09 | validated selection + declared context + owned focus return | selected flags、快捷键、浮层层级和焦点回归分叉 | 适合节点/边/primary selection、Director/modal precedence 与单层 Escape | P0，正式合同完成，runtime partial |
 
 ---
 
@@ -474,7 +478,71 @@ Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/downlo
 
 ---
 
-## 11. 八张卡的共同落地顺序
+## 11. OC-PATTERN-09：Validated Selection + Declared Context + Owned Focus Return
+
+### 11.1 上游 `SOURCE_FACT`
+
+Open Canvas 把一部分 selection、keyboard 和 focus 责任显式化：
+
+- React Flow node/edge `selected` flags 参与局部 selection 投影；
+- editable target guard 阻止画布 Delete 等快捷键吞掉输入编辑；
+- 节点编辑器保留局部 draft/commit owner；
+- Radix Dialog/Popover 负责部分 focus containment、Escape 和 return-focus；
+- pending connection、conflict、menu/editor 形成局部前台上下文。
+
+固定实现也提供边界反例：selected flags 不能独立表达 primary/active canvas；部分全局 key handler 依赖默认事件传播；conflict gate 与弱 Escape handler 不是统一 context resolver；Radix 只能约束其管理的 surface，不能自动协调 canvas、Director 和 route owner。
+
+### 11.2 LibTV 对应的 `CLONE_FACT`
+
+当前 clone 同时存在 node selection projection、edge selected runtime field、page bubble shortcut、modal capture guard、Director foreground isolation 和多个 surface-local Escape/focus effect。静态审计确认：
+
+- node/edge selection 尚无统一 node/edge/primary snapshot；
+- editable guard、modal/Director precedence 分散在不同 listener phase；
+- Batch 50 后 Director 前台隔离的是所有普通 page shortcut，旧文档曾只描述 Escape；
+- surface close 后的 focus return/fallback 没有共同有效性规则；
+- selection/focus/context 应属于 active session，不进入 portable document 或 semantic history。
+
+### 11.3 `INFERENCE`
+
+```text
+raw node/edge selection events
+  -> validate against active canvas + derive primary
+  -> resolve top command context from focus/surface stack
+  -> dispatch HANDLED / CONSUMED / PASS / BLOCKED / NOOP
+  -> apply at most one Escape unwind
+  -> return focus to a still-valid owner or deterministic fallback
+```
+
+选择集合、焦点位置和命令上下文是三个相关但不等价的 owner。可靠行为不能由 `event.target`、React Flow flags 或组件 mount 状态单独推导；每次 dispatch 都必须使用当前 active canvas generation 和前台 surface snapshot。
+
+### 11.4 `CLONE_DECISION`
+
+- node IDs、edge IDs 和 primary 组成一份经过 active graph 校验的 session selection；
+- React Flow `selected` 只作为 transport/projection，不作为 portable document/history authority；
+- editable、node control、canvas、modal、Director 和 route 采用声明式 context policy；
+- 每个 handler 返回明确 dispatch result，禁止多个层级隐式重复处理；
+- 一次 Escape 只退出最上层一个可退出 context；
+- modal/Director 必须 containment；close 后仅向仍存在、可见、未 disabled 的 origin 回焦，否则走稳定 fallback；
+- switch/delete/undo/unmount 清理 stale selection、surface owner 和 focus return target；
+- 不引入全局 modal manager，也不因上游使用 Radix 就改造现有组件栈。
+
+### 11.5 验证门槛
+
+| 检查 | 必须证明的内容 |
+|---|---|
+| selection | node/edge IDs 属于 active graph；primary 唯一且可推导；stale ID 清理 |
+| context | editable/modal/Director/canvas precedence 对每个目标快捷键确定 |
+| dispatch | `HANDLED/CONSUMED/PASS/BLOCKED/NOOP` 无重复 graph/history effect |
+| Escape | 每次只退一层；不可退出层明确 consumed/blocked；不穿透到底层 |
+| focus | acquire/contain/return/fallback 可观察；不回到 stale/hidden/disabled owner |
+| lifecycle | switch/delete/undo/unmount 与 canvas generation 隔离；selection/focus zero semantic history |
+| route | LibTV 与 FrameOS listener/store/focus owner 独立 |
+
+设计 authority：[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。
+
+---
+
+## 12. 九张卡的共同落地顺序
 
 ```text
 01 浮层 screen rect 合同
@@ -483,6 +551,7 @@ Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/downlo
   -> 03 运行、节点、保存状态
   -> 08 command outcome 与 feedback owner
   -> 06 framework change authority
+  -> 09 selection、command context 与 focus owner
   -> 07 canvas lifecycle owner isolation
   -> 05 异步结果入口与陈旧收敛
 ```
@@ -495,10 +564,11 @@ Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/downlo
 - 运行与保存状态先归纳语义，避免为尚未确认的源站操作预先制造状态机；
 - command outcome/feedback 先分开 reason、domain effect 和 presentation，避免用 toast/string 补齐未知 workflow；
 - framework callback 先限定 T0/T1，防止命名 graph command 被 generic reducer 旁路；
+- selection/context/focus 再统一 active-session authority，避免快捷键和 surface close 穿透或回焦到陈旧 owner；
 - canvas lifecycle 先固定 active/document/session owner，避免旧 callback 在新画布收敛；
 - 最后才设计 completion ingress，确保它复用已决定的身份、状态和 graph authority。
 
-## 12. 统一拒绝清单
+## 13. 统一拒绝清单
 
 在后续“借鉴”中，以下做法默认禁止，除非有新的 LibTV 源站证据和用户编码授权：
 
@@ -512,10 +582,12 @@ Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/downlo
 - 依赖 incidental React remount 清理所有 page-local transaction，或让 delayed callback late-read active canvas；
 - 用 localized display string 充当 reason，或让 stale completion 在当前 canvas 发 success toast；
 - 因为 Open Canvas 有 Sonner Toaster，就为普通 LibTV route 新增全局 toast 或复用 FrameOS toast；
+- 把 React Flow selected flags、event target 或单个组件 Escape handler 当成完整 selection/context authority；
+- 复制 Open Canvas conflict gate、默认 key propagation 或 Radix 组件树来替代 LibTV 自己的优先级与 focus-return 合同；
 - 因为 Open Canvas 支持复制子图，就擅自改变 LibTV 的派生节点/历史候选语义；
 - 修改 LibTV 现有 edge flow effect、Handle 位置、FrameOS 独立 store 或源站未证实的移动端布局。
 
-## 13. 后续研究入口
+## 14. 后续研究入口
 
 - LibTV 功能差距与优先级：[`LIBTV_FEATURE_GAP_MATRIX.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)
 - LibTV UI 状态层级：[`LIBTV_UI_STATE_HIERARCHY.md`](../liblib-seedance-2.5-2026-08-25/LIBTV_UI_STATE_HIERARCHY.md)
@@ -525,6 +597,7 @@ Durable/recoverable failure 必须留在 node/surface/canvas owner；copy/downlo
 - React Flow change routing：[`LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md`](../LIBTV_REACT_FLOW_CHANGE_ROUTING_CONTRACT.md)
 - Multi-canvas lifecycle：[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](../LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)
 - Command outcome/feedback：[`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)
+- Selection/focus/command context：[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)
 - 后续研究总计划：[`NEXT_RESEARCH_PLAN.md`](../liblib-seedance-2.5-2026-08-25/NEXT_RESEARCH_PLAN.md)
 
 **本卡片集的结论：** Open Canvas 最值得借鉴的是可复核的边界和数据流，而不是“长得像画布”的视觉细节。LibTV 复刻继续以源站证据为准，Open Canvas 只负责帮助我们把已确认的问题拆成可验证、可撤销、可分层的工程合同。

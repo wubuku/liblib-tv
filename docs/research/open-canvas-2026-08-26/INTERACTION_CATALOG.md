@@ -289,6 +289,12 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 
 当前 clone 的 connection reason、local status、VideoNode timer 和 Director persistent surface 不能继续只按组件各自定义。该结论形成 `LIBTV-UIX-18`：先记录 disposition/reason/owner/primary surface，再验证 clear/retry/switch/delete/dedupe/accessibility；不因 Open Canvas 使用 Sonner 就新增 LibTV global toast。完整合同见 [`../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](../LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)。
 
+### 10.5 Selection、focus 与 command context
+
+固定版本的 selected flags、editable guard、local editor state 和 Radix focus delegation 说明 selection、keyboard 与 focus 有可分离 owner；同时，conflict gate、弱 Escape/default propagation 和组件库边界说明这些局部机制不能代替统一优先级。
+
+当前 clone 的 node projection、edge selected field、page bubble shortcut、modal capture guard 和 Director foreground isolation 已形成多个 island。固定静态审计已记录 Batch 50 后 Director 会隔离全部普通 page shortcut，而不是旧文档描述的仅 Escape。该结论形成 `LIBTV-UIX-19`：先归一化 active node/edge/primary selection，再按 editable/surface/modal/Director/route 解析 top context；一次 Escape 只退一层，close 后焦点只返回仍有效 owner。正式合同见 [`../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](../LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
+
 ## 11. 对比矩阵：什么可以借鉴，什么不能搬
 
 | 主题 | Open Canvas 固定版本事实 | 当前 LibTV 已知合同 | 后续动作 | 状态 |
@@ -304,6 +310,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | onboarding | key、空状态、导入、新建有入口分层 | LibTV 是否存在等价流程未证实 | 只做源站观察 | `UIX-16` |
 | 多画布 lifecycle | summary/full record、URL/not-found、hydrate、per-canvas viewport、delete/run cleanup | clone 有 dropdown 与局部 owner cleanup，源站产品语义未证 | 建 switch manifest 并验证 old-owner callback | `UIX-17` |
 | command feedback | toast、node error、save banner、field/pending 分层；cancel/noop 非必 toast | clone reason/string/timer/Director islands，exact source visual 未证 | 建 disposition/reason/primary-surface matrix | `UIX-18` |
+| selection/focus/context | selected flags、editable guard、local editor、Radix delegation；弱 Escape/conflict gate 反例 | clone node/edge/listener/modal/Director islands，exact source multi-select/focus 未完整 | 建 validated selection + context precedence + focus-return matrix | `UIX-19` |
 
 ## 12. 后续 batch 合同
 
@@ -347,6 +354,10 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 
 验证 reject/noop/start/complete/fail/stale/duplicate 的 stable reason、zero-history feedback、field/node/surface/canvas primary owner、timer/retry/dedupe、switch/delete/unmount、desktop/mobile geometry、accessibility 和 LibTV/FrameOS route isolation。Exact toast/invalid style/timeout 未有源站证据时保持 research gate。
 
+### `LIBTV-UIX-19`：选择、焦点与前台命令上下文
+
+验证 node/edge/primary selection 对 active graph 的归一化、editable/canvas/node-control/modal/Director/route 优先级、明确 dispatch result、一次 Escape 只退一层、focus acquire/contain/return/fallback、switch/delete/undo/unmount stale-owner cleanup，以及 selection/focus zero semantic history。Exact multi-select、edge action、Escape 和 focus visual 未有源站证据时保持 research gate。
+
 ## 13. 验证矩阵
 
 | 维度 | 最小证据 | 失败时先查什么 |
@@ -359,6 +370,7 @@ Open Canvas 提供了一个信息架构问题：空状态、导入、新建、�
 | 复制粘贴 | graph 前后 JSON、选择态和位置 | ID map、内部边、父子关系、历史事务 |
 | 媒体结果 | 输出数组、selected index、下游引用 | 当前候选和派生节点是否被混为一谈 |
 | 状态反馈 | 状态转移日志 + operation/result envelope + 可操作性 | run/save 是否混淆；stale/duplicate completion 是否覆盖 draft、selection、history/resource |
+| 焦点/命令上下文 | activeElement + context stack + dispatch/Escape trace | editable guard、listener phase、foreground owner 或 return target 是否分叉 |
 | 移动端 | 390px screenshot + hit target | 不要从桌面 clamp 推导移动端布局 |
 
 ## 14. 明确禁止事项

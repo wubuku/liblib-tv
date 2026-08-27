@@ -42,6 +42,7 @@
 | DEC-032 | React Flow change routing | callback 整批分类，只允许 T0 selection 与 existing-node T1 position/passive measurement；semantic change 回到具名 command | ACTIVE / RESEARCH_GATE |
 | DEC-033 | 多画布 lifecycle isolation | create/switch/rename/duplicate/delete 是跨 registry/document/history/session/external owner 的 lifecycle transaction | ACTIVE / RESEARCH_GATE |
 | DEC-034 | command outcome feedback | typed disposition/reason 先于 UI projection；一个 primary owner，feedback 不进 graph history，stale completion 不宣告当前成功 | ACTIVE / RESEARCH_GATE |
+| DEC-035 | selection/focus command context | node/edge/primary selection 是 active-session authority；focus zone 与 foreground surface 决定 command permission，one Escape 只处理一个 top context | ACTIVE / RESEARCH_GATE |
 
 ## 2. 决策详情
 
@@ -234,6 +235,16 @@
 **影响：** 不因本决策新增全局 LibTV toast，也不复用 FrameOS toast。当前 local-prototype disclosure 与 Director owner surface保持；精确 LibTV toast、invalid Handle style、颜色、文案、timeout 和 modal 仍 source-gated。`COMMAND-FEEDBACK-01`、reason projection、timer/dedupe/aria owner 和 `LIBTV-VR-018` runtime 均需明确编码授权。
 
 **依据：** [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](research/LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、Open Canvas layout/store/i18n/studio/list/settings fixed chain。
+
+### DEC-035：selection、focus 与 command context 分权
+
+**背景：** 当前 clone node selection 已从 stored node data 分离，但 edge `selected` 仍经 generic reducer 留在 edge record；node selection 又有三个写入口。视觉前台 surface、DOM focus 与 page shortcut permission 没有共同 authority，导致 pointer-modal/keyboard-pass-through、local/global Escape 和 focus return 风险。Batch 50 已关闭 Director 背景 shortcut island。Open Canvas 的 local editor/editable clipboard 是正面方法，selected flag/conflict coupling、weak Escape、framework default destructive key 是反例。
+
+**决策：** active canvas 使用 validated node/edge/primary selection snapshot，React Flow selected 只作 T0 transport/projection，不进 document/history。事件先解析 native/editable/local tool/Director/modal/menu/target-scoped/canvas context，再返回 `HANDLED/CONSUMED/PASS/BLOCKED/NOOP`；chord 只有被当前 owner 接受后才成为 command。视觉阻断 modal 按 clone correctness floor 暂停背景 canvas command；one Escape 默认只关闭一个 top context。Modal/exclusive owner 必须声明 initial focus、containment 和 opener/owner/canvas fallback，stale async/switch/delete 不得偷 selection/focus。
+
+**影响：** 不因本决策引入 global modal manager 或 Radix，也不改变 FrameOS store。Character/History/Shortcuts/Canvas dropdown 的 exact source policy、mixed node-edge primary、undo selection、Director return 和 focus visual 继续 source/product-gated。`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01`、`LIBTV-VR-019` 与 runtime convergence 均需明确编码授权。
+
+**依据：** [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)、[`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](research/LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)、Batch 50/58/60 records、Open Canvas studio/store/Radix fixed chain。
 
 ## 3. 何时可以重审决策
 

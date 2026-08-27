@@ -228,7 +228,7 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GI-032` | T1 accepts only existing-node finite position and passive measurement | `REQUIRED_CORRECTNESS` | exact 12.11.1 union includes semantic variants | selection is T0；edge has no non-selection T1 variant；attribute resize is T2 |
 | `LIBTV-GI-033` | node/edge add/remove/replace and reconnect use named semantic authority | `REQUIRED_CORRECTNESS` | current generic callbacks can bypass named connect/delete | no semantic identity/relation mutation through framework reducer |
 | `LIBTV-GI-034` | framework reducer base is current active-canvas store state | `REQUIRED_CORRECTNESS` | current edge callback uses render-closure array | stale callback cannot overwrite a later graph command or another canvas |
-| `LIBTV-GI-035` | selection has a declared runtime owner separate from semantic graph | `REQUIRED_CORRECTNESS` | node selection is projected；edge selection remains on edge objects | no selection in portable document/copy/semantic history |
+| `LIBTV-GI-035` | selection has one validated active-session authority separate from semantic graph | `REQUIRED_CORRECTNESS` | node selection is projected；edge selection remains on edge objects | node/edge/primary snapshot is normalized against the active canvas；no selection in portable document/copy/semantic history |
 | `LIBTV-GI-036` | passive measurement and explicit resize have different history/authority | `REQUIRED_CORRECTNESS` / `SOURCE_DECISION_REQUIRED` | no current NodeResizer/expandParent path found | measurement zero history；future source-authorized resize one named command |
 | `LIBTV-GI-037` | React Flow runtime fields are sanitized at graph boundaries | `REQUIRED_CORRECTNESS` | measured/dragging/resizing/edge selected may enter arrays | codec/copy/history/hash explicitly project declared semantic fields |
 | `LIBTV-GI-038` | activeCanvasId resolves to exactly one existing canvas | `REQUIRED_CORRECTNESS` | current setter accepts arbitrary ID | unknown target reject/no-op；never blank invalid active owner |
@@ -290,8 +290,8 @@ React Flow 的持续 position 更新先写 store、drag stop 再用显式 `histo
 | `LIBTV-GC-031` projection recovery | terminal envelope stored, graph commit fails | retry projection | provider not re-invoked；eventual one commit | future backend boundary |
 | `LIBTV-GC-032` rejected resource | blob/temp result exists, ingress stale/invalid | reject | release exactly once | Director-focused future fixture |
 | `LIBTV-GC-033` polling history | progress/failure/success sequence | observe/complete | no per-poll graph history；terminal transaction exact | future local fixture |
-| `LIBTV-GC-034` node selection owner | selected node change | `onNodesChange` | selected IDs change；semantic graph/history unchanged | design complete；current node projection partial |
-| `LIBTV-GC-035` edge selection owner | selected edge change | `onEdgesChange` | runtime owner changes；semantic edge/document/history unchanged | edge owner decision/runtime missing |
+| `LIBTV-GC-034` node selection owner | selected node change | `onNodesChange` | validated node IDs/primary change；semantic graph/history unchanged | formal design complete；current node projection partial |
+| `LIBTV-GC-035` edge selection owner | selected edge change | `onEdgesChange` | validated edge IDs/primary change；semantic edge/document/history unchanged | formal design complete；edge runtime owner missing |
 | `LIBTV-GC-036` valid node drag frame | finite position + dragging | `onNodesChange` | current node position only；no frame history | current behavior partial；current-snapshot routing missing |
 | `LIBTV-GC-037` passive measurement | measured dimensions without setAttributes | `onNodesChange` | runtime measured state only；no semantic resize/history | design complete；boundary sanitation missing |
 | `LIBTV-GC-038` attribute resize | dimensions with setAttributes | `onNodesChange` | named layout command required；generic callback zero mutation | source/product unsupported |
@@ -492,3 +492,4 @@ Backend/prototype boundary:
 - [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md)：新能力的研究/授权闸门。
 - [`open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游 graph 模式的采纳、改造与拒绝边界。
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：`PAR-008` 的本地 fixture 和 reset 规则。
+- [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)：node/edge/primary selection、focus zone、command context、单层 Escape 和 `VR-019` 的正式设计权威。

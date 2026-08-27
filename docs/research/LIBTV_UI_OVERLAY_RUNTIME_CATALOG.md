@@ -201,13 +201,13 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 但 Director owner 不在 `closedOverlayState` 中：
 
 - 普通 overlay action 不会自动关闭 Director；
-- page global Escape 在发现 Director active 时提前返回，由 `DirectorDesk` 处理；
+- page global handler 在发现 Director active 时对全部普通画布快捷键提前返回，由 `DirectorDesk` 与 nested owner 处理；
 - `closeAllPanels()` 本身会清 Director，但 page Escape 的 Director 分支不会调用它；
-- page global handler 对 Tab、Delete、group、undo/redo、zoom 等其他快捷键没有 Director guard。
+- Batch 50 已记录 Tab、Space、Delete 和 undo 不穿透普通画布；
 - Batch 58 的 route reconciliation 会在 active canvas 变化或 owner node 消失时关闭
   Director；该 UI-only close 不写 graph/history。
 
-`INFERENCE`：如果 Director 前台期间触发 Tab 或其他 page command，普通 overlay state 或 graph transaction 可能在 Director 背后发生；关闭 Director 后，后台状态可能重新显现。未来实现批次应把“Director 是否隔离 page shortcuts”作为显式合同和回归项，而不是依赖 z-index。
+当前剩余边界不是“普通 page shortcut 仍穿透”，而是完整 focus trap/return、nested listener precedence 和 source-exact Director keyboard 仍未知。跨 surface selection/focus/command policy 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
 ### 6.3 Node-bound owner reconciliation (Batch 58)
 
@@ -322,7 +322,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 | UI-02 | Notification/UserMenu 有 store state，无 mount owner | 标记为 unmounted | 先取得源站入口证据和产品需求。 |
 | UI-03 | `toggleGrid` 无 UI caller | 记录为不可达设置 | 不因 action 存在就补一个按钮。 |
 | UI-04 | Storyboard -> Agent 是 transition，不是 invariant | 修正文案 | verifier 覆盖手动关闭 Agent 后的 storyboard。 |
-| UI-05 | Batch 50 已隔离 Director 与全部普通 page shortcuts；完整 focus trap、focus return、nested listener 和 source-exact 语义仍未关闭 | 保留 recorded isolation，删除旧“只隔离 Escape”表述 | 以 Batch 50 和 selection/focus static audit 为事实入口，再定义跨 surface command context。 |
+| UI-05 | Batch 50 已隔离 Director 与全部普通 page shortcuts；完整 focus trap、focus return、nested listener 和 source-exact 语义仍未关闭 | 保留 recorded isolation，删除旧“只隔离 Escape”表述 | 以 Batch 50 和 selection/focus static audit 为事实入口，按正式 selection/focus/context contract 收口跨 surface authority。 |
 | UI-06 | Modal 只阻断 pointer，不统一阻断 canvas keyboard | 标记为 interaction boundary gap | 测试 Delete/Tab/group/undo 在 modal 前台的行为。 |
 | UI-07 | Outside-close policy 逐组件不同 | 保留差异，不抽象成默认行为 | 逐 surface 取得 source contract。 |
 | UI-08 | 节点上下 surface 混用 `NodeToolbar` 与 inverse scale | 指向精确定位合同 | 同 frame 读取 node/toolbar/panel/viewport rect。 |
@@ -368,7 +368,7 @@ Canvas dropdown 的“菜单关闭”不是 canvas switch lifecycle 的完整含
 
 不要在本文复制每个面板的视觉像素和完整业务动作。视觉尺寸回到组件 spec；graph delta 回到 graph transaction catalog；源站当前几何回到 overlay positioning contract。
 
-Selection、DOM focus、listener phase 和 command context 的 fixed baseline 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)。
+Selection、DOM focus、listener phase 和 command context 的 fixed baseline 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)，正式 selection/context/focus lifecycle 权威见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)。
 
 ## 12. Related Documents
 
