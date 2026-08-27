@@ -16,8 +16,8 @@ Lifecycle status and promotion/supersession rules are defined in
 
 | Draft | Scope | Status |
 |---|---|---|
-No active draft is registered. New work must add an explicit row before implementation begins.
+| [`LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md`](LIBTV_MEDIA_RENDITION_GEOMETRY_RESEARCH_PLAN_2026-08-27.md) | Open Canvas/LibTV intrinsic media、selected output、generation aspect、node frame、measured geometry 与 per-surface crop/fit 权威 | `ACTIVE` / documentation only |
 
-Completed Open Canvas research plans, including media ingress/resource lifecycle and editor session/commit/history, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md).
+Completed Open Canvas research plans, including media ingress/resource lifecycle and editor session/commit/history, are retained with their evidence and handoff history under [`../research/open-canvas-2026-08-26/`](../research/open-canvas-2026-08-26/README.md). The active media-rendition plan will be promoted there after its dated audit, stable contract and governance chain are complete.
 
 Active research/implementation batches under `docs/research/liblib-canvas-batchN-*` carry their own `PLAN.md` and are indexed from [`../research/README.md`](../research/README.md).
