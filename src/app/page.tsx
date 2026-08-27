@@ -15,8 +15,6 @@ import {
   type OnConnectEnd,
   type OnConnectStart,
   BackgroundVariant,
-  applyNodeChanges,
-  applyEdgeChanges,
   SelectionMode,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -86,12 +84,13 @@ export default function Home() {
   const {
     getActiveCanvas,
     setNodes: setStoreNodes,
-    setEdges: setStoreEdges,
     addEdge: addStoreEdge,
     removeEdge,
     selectNode,
-    selectNodes,
+    selectElements,
     selectedNodeIds,
+    selectedEdgeIds,
+    routeReactFlowChanges,
     groupSelectedNodes,
     ungroupSelectedNodes,
     removeSelectedNodes,
@@ -152,6 +151,13 @@ export default function Home() {
     },
     [nodes, selectedNodeIds],
   );
+  const flowEdges = useMemo<Edge[]>(() => {
+    const selectedIds = new Set(selectedEdgeIds);
+    return edges.map((edge) => ({
+      ...edge,
+      selected: selectedIds.has(edge.id),
+    }));
+  }, [edges, selectedEdgeIds]);
   const activeNodeIds = useMemo(() => nodes.map((node) => node.id), [nodes]);
   const effectivePan = canvasTool === "pan" || isSpacePressed;
 
@@ -217,29 +223,22 @@ export default function Home() {
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
-      const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
-      const selectionChanges = changes.filter((change) => change.type === "select");
-      const graphChanges = changes.filter((change) => change.type !== "select");
-      if (selectionChanges.length > 0) {
-        const selectionNodes = applyNodeChanges(selectionChanges, flowNodes);
-        selectNodes(selectionNodes.filter((node) => node.selected).map((node) => node.id));
-      }
-      if (graphChanges.length === 0) return;
-      const nextNodes = applyNodeChanges(graphChanges, currentNodes);
-      setStoreNodes(
-        nextNodes.map((node) => {
-          const storedNode = { ...node };
-          delete storedNode.selected;
-          return storedNode;
-        }),
-      );
+      routeReactFlowChanges({
+        expectedActiveCanvasId: activeCanvasId,
+        nodeChanges: changes,
+      });
     },
-    [flowNodes, selectNodes, setStoreNodes],
+    [activeCanvasId, routeReactFlowChanges],
   );
 
   const onEdgesChange = useCallback(
-    (changes: EdgeChange[]) => setStoreEdges(applyEdgeChanges(changes, edges)),
-    [edges, setStoreEdges],
+    (changes: EdgeChange[]) => {
+      routeReactFlowChanges({
+        expectedActiveCanvasId: activeCanvasId,
+        edgeChanges: changes,
+      });
+    },
+    [activeCanvasId, routeReactFlowChanges],
   );
 
   const validateActiveConnection = useCallback((params: Connection | Edge) => {
@@ -499,10 +498,19 @@ export default function Home() {
   }, [removeEdge]);
 
   const onSelectionChange = useCallback(
-    ({ nodes: selectedNodes }: { nodes: Node[] }) => {
-      selectNodes(selectedNodes.map((node) => node.id));
+    ({
+      nodes: selectedNodes,
+      edges: selectedEdges,
+    }: {
+      nodes: Node[];
+      edges: Edge[];
+    }) => {
+      selectElements({
+        nodeIds: selectedNodes.map((node) => node.id),
+        edgeIds: selectedEdges.map((edge) => edge.id),
+      });
     },
-    [selectNodes],
+    [selectElements],
   );
 
   return (
@@ -517,7 +525,7 @@ export default function Home() {
           <ReactFlow
             key={activeCanvasId}
             nodes={flowNodes}
-            edges={showEdges ? edges : []}
+            edges={showEdges ? flowEdges : []}
             onInit={(instance) => {
               flowRef.current = instance;
               setZoomLevel(Math.round(flowViewport.zoom * 100));

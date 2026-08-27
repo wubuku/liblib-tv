@@ -1,0 +1,610 @@
+{
+  "batch": 61,
+  "date": "2026-08-27",
+  "status": "SCRIPT_RECORDED_PASS",
+  "url": "http://localhost:3000",
+  "fixture": "LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01",
+  "verifier": "LIBTV-VR-016",
+  "staticChecks": {
+    "routeHasNoGenericReducers": true,
+    "edgeSelectionOwnerPresent": true,
+    "exactNodeVariantsPresent": [
+      "select",
+      "position",
+      "dimensions",
+      "add",
+      "remove",
+      "replace"
+    ],
+    "exactEdgeVariantsPresent": [
+      "select",
+      "add",
+      "remove",
+      "replace"
+    ]
+  },
+  "syntheticCorpus": {
+    "node_selection": {
+      "status": "applied",
+      "code": "APPLIED_SELECTION",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0
+    },
+    "edge_selection": {
+      "status": "applied",
+      "code": "APPLIED_SELECTION",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1
+    },
+    "finite_position": {
+      "status": "applied",
+      "code": "APPLIED_TRANSPORT",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0
+    },
+    "passive_dimensions": {
+      "status": "applied",
+      "code": "APPLIED_TRANSPORT",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0
+    },
+    "mixed_runtime": {
+      "status": "applied",
+      "code": "APPLIED_MIXED_RUNTIME",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 2,
+      "edgeChangeCount": 0
+    },
+    "selection_then_remove": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 2,
+      "edgeChangeCount": 0,
+      "changeIndex": 1,
+      "elementId": "batch61-node-a"
+    },
+    "node_add": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": null
+    },
+    "node_replace": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "attribute_resize": {
+      "status": "rejected",
+      "code": "ATTRIBUTE_RESIZE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "edge_add": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1,
+      "changeIndex": 0,
+      "elementId": null
+    },
+    "edge_remove": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1,
+      "changeIndex": 0,
+      "elementId": "batch61-edge-ab"
+    },
+    "edge_replace": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1,
+      "changeIndex": 0,
+      "elementId": "batch61-edge-ab"
+    },
+    "unknown_variant": {
+      "status": "rejected",
+      "code": "UNSUPPORTED_CHANGE_VARIANT",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "unexpected_field": {
+      "status": "rejected",
+      "code": "UNSUPPORTED_CHANGE_VARIANT",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": null
+    },
+    "stale_node": {
+      "status": "rejected",
+      "code": "STALE_ELEMENT_ID",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "deleted-node"
+    },
+    "stale_edge": {
+      "status": "rejected",
+      "code": "STALE_ELEMENT_ID",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1,
+      "changeIndex": 0,
+      "elementId": "deleted-edge"
+    },
+    "old_canvas": {
+      "status": "rejected",
+      "code": "ACTIVE_CANVAS_CHANGED",
+      "expectedActiveCanvasId": "canvas-2",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0
+    },
+    "same_id_semantic_precedence": {
+      "status": "rejected",
+      "code": "SEMANTIC_CHANGE_REQUIRES_COMMAND",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 3,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "nan_position": {
+      "status": "rejected",
+      "code": "INVALID_NUMERIC_PAYLOAD",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "infinite_dimensions": {
+      "status": "rejected",
+      "code": "INVALID_NUMERIC_PAYLOAD",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 1,
+      "edgeChangeCount": 0,
+      "changeIndex": 0,
+      "elementId": "batch61-node-a"
+    },
+    "current_snapshot_preserves_new_edge": {
+      "status": "applied",
+      "code": "APPLIED_SELECTION",
+      "expectedActiveCanvasId": "canvas-1",
+      "activeCanvasId": "canvas-1",
+      "nodeChangeCount": 0,
+      "edgeChangeCount": 1
+    },
+    "history_copy_runtime_sanitation": {
+      "copiedNodeId": "text-1787810815462-9rm91i",
+      "copyCommitRuntimeFields": [],
+      "postMountMeasured": null,
+      "historyRuntimeFields": {
+        "nodes": [
+          [],
+          [],
+          []
+        ],
+        "edges": [
+          []
+        ]
+      }
+    }
+  },
+  "realCallbacks": {
+    "observedNodeChangeTypes": [
+      "dimensions",
+      "position",
+      "select"
+    ],
+    "observedEdgeChangeTypes": [
+      "select"
+    ],
+    "callbackLog": [
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "select",
+              "selected": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_SELECTION",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 128,
+                "y": 156
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 137,
+                "y": 162
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 146,
+                "y": 167
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 155,
+                "y": 173
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 164,
+                "y": 178
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 173,
+                "y": 184
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 182,
+                "y": 190
+              },
+              "dragging": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "position",
+              "position": {
+                "x": 182,
+                "y": 190
+              },
+              "dragging": false
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "select",
+              "selected": false
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_SELECTION",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 1,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "edgeChanges": [
+            {
+              "id": "batch61-edge-ab",
+              "type": "select",
+              "selected": true
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_SELECTION",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 0,
+          "edgeChangeCount": 1
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            },
+            {
+              "id": "batch61-node-b",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            },
+            {
+              "id": "batch61-node-c",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 3,
+          "edgeChangeCount": 0
+        }
+      },
+      {
+        "request": {
+          "expectedActiveCanvasId": "canvas-1",
+          "nodeChanges": [
+            {
+              "id": "batch61-node-a",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            },
+            {
+              "id": "batch61-node-b",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            },
+            {
+              "id": "batch61-node-c",
+              "type": "dimensions",
+              "dimensions": {
+                "width": 220,
+                "height": 140
+              }
+            }
+          ]
+        },
+        "result": {
+          "status": "applied",
+          "code": "APPLIED_TRANSPORT",
+          "expectedActiveCanvasId": "canvas-1",
+          "activeCanvasId": "canvas-1",
+          "nodeChangeCount": 3,
+          "edgeChangeCount": 0
+        }
+      }
+    ],
+    "drag": {
+      "historyBefore": 0,
+      "historyDuringFirstFrame": 0,
+      "historyDuringSecondFrame": 0,
+      "historyAfterStop": 1,
+      "historyAfterNoop": 1
+    },
+    "edgeSelectionSemanticFieldAbsent": true,
+    "namedDeleteUndoRedo": true
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "selectedEdgeIds": [
+      "batch61-edge-ab"
+    ],
+    "semanticSelectedFieldAbsent": true,
+    "noOverflow": true
+  },
+  "screenshots": {
+    "newScreenshotRequired": false,
+    "reason": "No visual geometry or styling changed; Batch 57 and Batch 60 remain the visual regression authorities."
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

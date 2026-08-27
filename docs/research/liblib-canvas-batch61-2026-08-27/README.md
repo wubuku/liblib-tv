@@ -1,6 +1,6 @@
 # Batch 61：React Flow Change Routing 与运行态选择权威
 
-> 状态：`PLAN_RECORDED` / `IMPLEMENTATION_NOT_STARTED`。
+> 状态：`IMPLEMENTED_FOCUSED_PASS`。
 >
 > 建档日期：2026-08-27。
 >
@@ -67,5 +67,6 @@ source parity 仍有 fixture 或产品边界，不纳入本批。
 - [`../open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](../open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：
   Open Canvas 到 LibTV 的七层交接。
 
-实施开始后再新增 `IMPLEMENTATION.md`、`runtime-audit.json` 和必要的
-`SCREENSHOT_ANALYSIS.md`；本次规划 checkpoint 不伪造运行结果。
+实施结果见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)、
+[`runtime-audit.json`](runtime-audit.json) 和
+[`SCREENSHOT_ANALYSIS.md`](SCREENSHOT_ANALYSIS.md)。
