@@ -14,4 +14,6 @@ Lifecycle status and promotion/supersession rules are defined in
 
 ## Current Drafts
 
-No standalone drafts currently exist. The active research/implementation batches under `docs/research/liblib-canvas-batchN-*` carry their own `PLAN.md` and are indexed from [`../research/README.md`](../research/README.md).
+- [`LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md)：Open Canvas/LibTV viewport、coordinate domain、gesture owner 和 placement policy 的当前只读研究计划。
+
+Active research/implementation batches under `docs/research/liblib-canvas-batchN-*` carry their own `PLAN.md` and are indexed from [`../research/README.md`](../research/README.md).

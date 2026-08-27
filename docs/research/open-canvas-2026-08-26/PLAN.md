@@ -66,6 +66,7 @@
 | `IMPLEMENTATION_IMPLICATIONS.md` | 仅作为待授权的后续设计队列 |
 | `OPEN_CANVAS_PATTERN_CARDS.md` | 九类可迁移的坐标、引用、状态、子图、async ingress、framework change routing、canvas lifecycle、command feedback 和 selection/focus/context 模式卡，以及对应的 LibTV 证据闸门 |
 | `ITERATION_LOG.md` | 研究报告的版本演进和维护规则 |
+| [`../../drafts/LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md`](../../drafts/LIBTV_VIEWPORT_COORDINATE_GESTURE_RESEARCH_PLAN_2026-08-27.md) | 当前 viewport/coordinate/gesture/placement 正反面研究、正式合同与 `VR-020` 交付计划 |
 
 ## 5. 状态
 
@@ -91,6 +92,8 @@
 - [x] 完成 Open Canvas/clone selection、focus、editable guard 与 listener precedence 双向静态审计
 - [x] 完成 LibTV validated selection、focus lifecycle、command-context precedence、fixture 和 `LIBTV-VR-019` 正式设计
 - [x] 修正 PAR-004 与 overlay catalog 中 Batch 50 之前的 Director shortcut 事实漂移
+- [ ] 完成 Open Canvas/clone viewport、coordinate domain、gesture owner 与 placement writer 双向静态审计
+- [ ] 完成 viewport/coordinate/placement 正式合同、fixture 与 `LIBTV-VR-020` 设计
 - [x] 文档检查、提交并推送研究成果
 
 ## 6. 验收标准
