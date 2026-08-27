@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "batch": 71,
+  "baseUrl": "http://localhost:3001",
+  "pure": {
+    "status": "PASS",
+    "batch": 71,
+    "staticAssertions": [
+      "gesture helper is typed",
+      "gesture helper begins from focus/pointer",
+      "gesture helper commits on blur",
+      "number inputs stay active through pointerup",
+      "range keyboard interaction begins a gesture",
+      "gesture helper handles pointercancel",
+      "external gesture cancellation clears local ref",
+      "Inspector uses the gesture helper",
+      "pose control has a gesture scope",
+      "camera FOV has a gesture scope",
+      "path fields have gesture scopes",
+      "path transform has a gesture scope",
+      "path drawing begins a gesture",
+      "path drawing commits from the pen completion UI",
+      "path drawing cancel clears both draft and gesture",
+      "path anchor handle transform commits history",
+      "path controls have a window cancel fallback",
+      "drawing surface has a window cancel fallback",
+      "store has path drawing lifecycle"
+    ],
+    "gestureBoundary": "focus-pointer-update-commit-cancel",
+    "coveredInputs": [
+      "number",
+      "range",
+      "path-anchor",
+      "path-transform",
+      "path-draw"
+    ]
+  },
+  "browser": {
+    "numberCommit": {
+      "historyDelta": 1,
+      "field": "object.position.x"
+    },
+    "numberCancel": {
+      "historyDelta": 0,
+      "cancel": "Escape"
+    },
+    "poseCommit": {
+      "historyDelta": 1,
+      "field": "pose-control"
+    },
+    "fovCommit": {
+      "historyDelta": 1,
+      "field": "camera.fov"
+    },
+    "pathFieldsCommit": {
+      "historyDelta": 2,
+      "fields": [
+        "path-anchor-position.x",
+        "path-transform.position.x"
+      ]
+    },
+    "pencilCommit": {
+      "historyDelta": 1,
+      "tool": "pencil",
+      "commit": "pointerup"
+    },
+    "penCommit": {
+      "historyDelta": 1,
+      "tool": "pen",
+      "commit": "completion-button"
+    },
+    "penEscape": {
+      "historyDelta": 0,
+      "cancel": "Escape",
+      "pathPreserved": true
+    },
+    "pointercancel": {
+      "historyDelta": 0,
+      "cancel": "window-pointercancel"
+    },
+    "diagnostics": {
+      "errors": [],
+      "status": "PASS"
+    }
+  },
+  "screenshots": [],
+  "errors": []
+}

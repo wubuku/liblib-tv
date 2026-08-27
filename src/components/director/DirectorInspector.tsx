@@ -41,6 +41,7 @@ import {
   type DirectorPoseControlGroup,
 } from "@/components/director/directorPose";
 import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
+import { useDirectorGestureBoundary } from "@/components/director/useDirectorGestureBoundary";
 
 function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform {
   return {
@@ -58,13 +59,22 @@ function AxisFields({
   values,
   onChange,
   disabledAxes = [],
+  gestureTargetId = null,
+  gestureCommandKind = "inspector-transform",
 }: {
   label: string;
   field: keyof DirectorTransform | "target" | "followOffset";
   values: DirectorTuple3;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
   disabledAxes?: Array<0 | 1 | 2>;
+  gestureTargetId?: string | null;
+  gestureCommandKind?: string;
 }) {
+  const gesture = useDirectorGestureBoundary({
+    commandKind: gestureCommandKind,
+    targetId: gestureTargetId,
+    fieldScope: field,
+  });
   return (
     <fieldset className="border-0 p-0">
       <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
@@ -84,6 +94,7 @@ function AxisFields({
               data-director-transform-axis={axisLabels[index].toLowerCase()}
               value={Number(value.toFixed(2))}
               disabled={disabledAxes.includes(index as 0 | 1 | 2)}
+              {...(disabledAxes.includes(index as 0 | 1 | 2) ? {} : gesture)}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -528,6 +539,8 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
               label={label}
               field={field}
               values={anchor[field]}
+              gestureTargetId={group.id}
+              gestureCommandKind="group-transform"
               onChange={(axis, value) => updateField(field, axis, value)}
             />
           </div>
@@ -542,14 +555,21 @@ function PathTupleFields({
   values,
   kind,
   handle,
+  gestureTargetId,
   onChange,
 }: {
   label: string;
   values: DirectorTuple3;
   kind: "position" | "handle";
   handle?: DirectorMotionPathHandle;
+  gestureTargetId: string;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
 }) {
+  const gesture = useDirectorGestureBoundary({
+    commandKind: kind === "position" ? "path-anchor-position" : "path-anchor-handle",
+    targetId: gestureTargetId,
+    fieldScope: kind === "handle" ? `${handle}` : "position",
+  });
   return (
     <fieldset className="border-0 p-0">
       <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
@@ -575,6 +595,7 @@ function PathTupleFields({
                 kind === "handle" ? axisLabels[index].toLowerCase() : undefined
               }
               value={Number(value.toFixed(3))}
+              {...gesture}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -591,13 +612,20 @@ function PathTransformFields({
   label,
   field,
   values,
+  gestureTargetId,
   onChange,
 }: {
   label: string;
   field: keyof DirectorTransform;
   values: DirectorTuple3;
+  gestureTargetId: string;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
 }) {
+  const gesture = useDirectorGestureBoundary({
+    commandKind: "path-transform",
+    targetId: gestureTargetId,
+    fieldScope: field,
+  });
   return (
     <fieldset
       data-director-path-transform-field={field}
@@ -620,6 +648,7 @@ function PathTransformFields({
                 index
               ].toLowerCase()}
               value={Number(value.toFixed(3))}
+              {...gesture}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -754,6 +783,7 @@ function MotionPathInspector({
           label="位置"
           field="position"
           values={path.transform.position}
+          gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(
               path.id,
@@ -767,6 +797,7 @@ function MotionPathInspector({
           label="旋转"
           field="rotation"
           values={path.transform.rotation}
+          gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(
               path.id,
@@ -780,6 +811,7 @@ function MotionPathInspector({
           label="缩放"
           field="scale"
           values={path.transform.scale}
+          gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(path.id, "scale", axis, value)
           }
@@ -876,6 +908,7 @@ function MotionPathInspector({
           <PathTupleFields
             label="位置"
             kind="position"
+            gestureTargetId={selectedAnchor.id}
             values={selectedAnchor.position}
             onChange={(axis, value) =>
               updateAnchorTuple(
@@ -893,6 +926,7 @@ function MotionPathInspector({
                 label="入控制柄"
                 kind="handle"
                 handle="in"
+                gestureTargetId={selectedAnchor.id}
                 values={selectedAnchor.handleIn}
                 onChange={(axis, value) =>
                   updateAnchorTuple(
@@ -907,6 +941,7 @@ function MotionPathInspector({
                 label="出控制柄"
                 kind="handle"
                 handle="out"
+                gestureTargetId={selectedAnchor.id}
                 values={selectedAnchor.handleOut}
                 onChange={(axis, value) =>
                   updateAnchorTuple(
@@ -996,43 +1031,73 @@ function PoseControlGroup({
       {expanded ? (
         <div className="space-y-2 pb-3">
           {group.controls.map((control) => {
-            const value = controls[control.key] ?? 0;
             return (
-              <label
+              <PoseControl
                 key={control.key}
-                className="grid grid-cols-[minmax(0,1fr)_42px] items-center gap-x-2 gap-y-1"
-              >
-                <span className="truncate text-[10px] text-[#8b8b8b]">
-                  {control.label}
-                </span>
-                <output className="text-right text-[10px] tabular-nums text-[#b8b8b8]">
-                  {control.unit === "meter"
-                    ? value.toFixed(2)
-                    : `${Math.round(value)}°`}
-                </output>
-                <input
-                  type="range"
-                  min={control.min}
-                  max={control.max}
-                  step={control.step}
-                  value={value}
-                  aria-label={`${group.label} ${control.label}`}
-                  data-director-pose-control={control.key}
-                  onChange={(event) =>
-                    updateCharacterPoseControl(
-                      character.id,
-                      control.key,
-                      Number(event.currentTarget.value),
-                    )
-                  }
-                  className="col-span-2 w-full accent-[#09caf5]"
-                />
-              </label>
+                characterId={character.id}
+                groupLabel={group.label}
+                control={control}
+                value={controls[control.key] ?? 0}
+                updateCharacterPoseControl={updateCharacterPoseControl}
+              />
             );
           })}
         </div>
       ) : null}
     </section>
+  );
+}
+
+function PoseControl({
+  characterId,
+  groupLabel,
+  control,
+  value,
+  updateCharacterPoseControl,
+}: {
+  characterId: string;
+  groupLabel: string;
+  control: DirectorPoseControlGroup["controls"][number];
+  value: number;
+  updateCharacterPoseControl: (
+    objectId: string,
+    key: string,
+    value: number,
+  ) => void;
+}) {
+  const gesture = useDirectorGestureBoundary({
+    commandKind: "pose-control",
+    targetId: characterId,
+    fieldScope: control.key,
+  });
+
+  return (
+    <label className="grid grid-cols-[minmax(0,1fr)_42px] items-center gap-x-2 gap-y-1">
+      <span className="truncate text-[10px] text-[#8b8b8b]">
+        {control.label}
+      </span>
+      <output className="text-right text-[10px] tabular-nums text-[#b8b8b8]">
+        {control.unit === "meter" ? value.toFixed(2) : `${Math.round(value)}°`}
+      </output>
+      <input
+        type="range"
+        min={control.min}
+        max={control.max}
+        step={control.step}
+        value={value}
+        aria-label={`${groupLabel} ${control.label}`}
+        data-director-pose-control={control.key}
+        {...gesture}
+        onChange={(event) =>
+          updateCharacterPoseControl(
+            characterId,
+            control.key,
+            Number(event.currentTarget.value),
+          )
+        }
+        className="col-span-2 w-full accent-[#09caf5]"
+      />
+    </label>
   );
 }
 
@@ -1103,6 +1168,55 @@ function CharacterPoseInspector({
         </div>
       </section>
     </div>
+  );
+}
+
+function CameraFovField({
+  objectId,
+  fov,
+  updateCamera,
+  recordObjectKeyframe,
+}: {
+  objectId: string;
+  fov: number;
+  updateCamera: (
+    objectId: string,
+    patch: Partial<NonNullable<DirectorObject["camera"]>>,
+  ) => void;
+  recordObjectKeyframe: (objectId: string, force?: boolean) => void;
+}) {
+  const gesture = useDirectorGestureBoundary({
+    commandKind: "camera-fov",
+    targetId: objectId,
+    fieldScope: "fov",
+  });
+
+  return (
+    <label className="block">
+      <span className="mb-1.5 flex items-center gap-1 text-[11px] text-[#777]">
+        <Camera size={12} />
+        视场角
+      </span>
+      <input
+        type="range"
+        min="20"
+        max="90"
+        step="1"
+        data-director-camera-fov
+        value={fov}
+        {...gesture}
+        onChange={(event) => {
+          updateCamera(objectId, {
+            fov: Number(event.target.value),
+          });
+          recordObjectKeyframe(objectId);
+        }}
+        className="w-full accent-[#09caf5]"
+      />
+      <div className="mt-1 text-right text-[11px] tabular-nums text-[#a7a7a7]">
+        {fov}°
+      </div>
+    </label>
   );
 }
 
@@ -1309,6 +1423,8 @@ export function DirectorInspector({
                 label="位置"
                 field="position"
                 values={selected.transform.position}
+                gestureTargetId={selected.id}
+                gestureCommandKind="object-transform"
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "position", axis, value);
                   recordObjectKeyframe(selected.id);
@@ -1319,6 +1435,8 @@ export function DirectorInspector({
                 field="rotation"
                 values={selected.transform.rotation}
                 disabledAxes={pathControlsRotationY ? [1] : []}
+                gestureTargetId={selected.id}
+                gestureCommandKind="object-transform"
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "rotation", axis, value);
                   recordObjectKeyframe(selected.id);
@@ -1336,6 +1454,8 @@ export function DirectorInspector({
                 label="缩放"
                 field="scale"
                 values={selected.transform.scale}
+                gestureTargetId={selected.id}
+                gestureCommandKind="object-transform"
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "scale", axis, value);
                   recordObjectKeyframe(selected.id);
@@ -1345,30 +1465,12 @@ export function DirectorInspector({
 
             {selected.camera ? (
               <div className="space-y-3 border-t border-white/[0.07] pt-4">
-                <label className="block">
-                  <span className="mb-1.5 flex items-center gap-1 text-[11px] text-[#777]">
-                    <Camera size={12} />
-                    视场角
-                  </span>
-                  <input
-                    type="range"
-                    min="20"
-                    max="90"
-                    step="1"
-                    data-director-camera-fov
-                    value={selected.camera.fov}
-                    onChange={(event) => {
-                      updateCamera(selected.id, {
-                        fov: Number(event.target.value),
-                      });
-                      recordObjectKeyframe(selected.id);
-                    }}
-                    className="w-full accent-[#09caf5]"
-                  />
-                  <div className="mt-1 text-right text-[11px] tabular-nums text-[#a7a7a7]">
-                    {selected.camera.fov}°
-                  </div>
-                </label>
+                <CameraFovField
+                  objectId={selected.id}
+                  fov={selected.camera.fov}
+                  updateCamera={updateCamera}
+                  recordObjectKeyframe={recordObjectKeyframe}
+                />
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] text-[#777]">
                     注视目标
@@ -1439,6 +1541,8 @@ export function DirectorInspector({
                         updateCamera(selected.id, { target });
                         recordObjectKeyframe(selected.id);
                       }}
+                      gestureTargetId={selected.id}
+                      gestureCommandKind="camera-target"
                     />
                   </div>
                 ) : (
@@ -1489,6 +1593,8 @@ export function DirectorInspector({
                         label="跟随偏移"
                         field="followOffset"
                         values={selected.camera.followOffset}
+                        gestureTargetId={selected.id}
+                        gestureCommandKind="camera-follow-offset"
                         onChange={(axis, value) => {
                           const followOffset: DirectorTuple3 = [
                             ...selected.camera!.followOffset,

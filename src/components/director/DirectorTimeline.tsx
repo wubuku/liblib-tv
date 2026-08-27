@@ -93,6 +93,9 @@ export function DirectorTimeline() {
   const startMotionPathDrawing = useDirectorStore(
     (state) => state.startMotionPathDrawing,
   );
+  const beginDirectorGesture = useDirectorStore(
+    (state) => state.beginDirectorGesture,
+  );
   const toggleMotionPathEnabled = useDirectorStore(
     (state) => state.toggleMotionPathEnabled,
   );
@@ -703,6 +706,15 @@ export function DirectorTimeline() {
               data-director-motion-path-draw-tool={tool}
               onClick={() => {
                 startMotionPathDrawing(tool);
+                const draft =
+                  useDirectorStore.getState().timeline.motionPathDraft;
+                if (draft) {
+                  beginDirectorGesture({
+                    commandKind: "path-draw",
+                    targetId: draft.trackId,
+                    fieldScope: draft.tool,
+                  });
+                }
                 setPathMenuLeft(null);
               }}
               className="flex h-8 w-full items-center gap-2 px-2 text-left text-[11px] text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"

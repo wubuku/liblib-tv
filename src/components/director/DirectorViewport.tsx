@@ -885,7 +885,17 @@ function PathControlPoint({
   const updateMotionPathAnchorWorldHandle = useDirectorStore(
     (state) => state.updateMotionPathAnchorWorldHandle,
   );
+  const beginDirectorGesture = useDirectorStore(
+    (state) => state.beginDirectorGesture,
+  );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
+  );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const groupRef = useRef<Group>(null);
+  const transformActiveRef = useRef(false);
   const selected =
     selectedAnchorId === anchor.id && selectedHandle === handle;
   const relative =
@@ -900,7 +910,11 @@ function PathControlPoint({
 
   const commit = () => {
     const group = groupRef.current;
-    if (!group) return;
+    if (!group) {
+      transformActiveRef.current = false;
+      cancelDirectorGesture();
+      return;
+    }
     const worldPosition: DirectorTuple3 = [
       Number(group.position.x.toFixed(3)),
       Number(group.position.y.toFixed(3)),
@@ -913,6 +927,8 @@ function PathControlPoint({
         handle,
         worldPosition,
       );
+      transformActiveRef.current = false;
+      commitDirectorGesture();
       return;
     }
     updateMotionPathAnchorWorldPosition(
@@ -920,7 +936,20 @@ function PathControlPoint({
       anchor.id,
       worldPosition,
     );
+    transformActiveRef.current = false;
+    commitDirectorGesture();
   };
+
+  useEffect(() => {
+    const handlePointerCancel = () => {
+      if (!transformActiveRef.current) return;
+      transformActiveRef.current = false;
+      cancelDirectorGesture();
+    };
+    window.addEventListener("pointercancel", handlePointerCancel);
+    return () =>
+      window.removeEventListener("pointercancel", handlePointerCancel);
+  }, [cancelDirectorGesture]);
 
   const content = (
     <group
@@ -953,7 +982,26 @@ function PathControlPoint({
 
   if (!selected) return content;
   return (
-    <TransformControls mode="translate" size={0.62} onMouseUp={commit}>
+    <TransformControls
+      mode="translate"
+      size={0.62}
+      onMouseDown={() => {
+        const result = beginDirectorGesture({
+          commandKind: handle
+            ? "path-anchor-handle-transform"
+            : "path-anchor-transform",
+          targetId: anchor.id,
+          fieldScope: handle ?? "position",
+        });
+        transformActiveRef.current = result.disposition === "COMMITTED";
+      }}
+      onMouseUp={commit}
+      onPointerCancel={() => {
+        if (!transformActiveRef.current) return;
+        transformActiveRef.current = false;
+        cancelDirectorGesture();
+      }}
+    >
       {content}
     </TransformControls>
   );
@@ -1071,10 +1119,31 @@ function DirectorMotionPathDrawingSurface() {
   const updateMotionPathDraftLastHandle = useDirectorStore(
     (state) => state.updateMotionPathDraftLastHandle,
   );
+  const cancelMotionPathDrawing = useDirectorStore(
+    (state) => state.cancelMotionPathDrawing,
+  );
   const finishMotionPathDrawing = useDirectorStore(
     (state) => state.finishMotionPathDrawing,
   );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
+  );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const pointerActive = useRef(false);
+
+  useEffect(() => {
+    const handlePointerCancel = () => {
+      if (!pointerActive.current) return;
+      pointerActive.current = false;
+      cancelMotionPathDrawing();
+      cancelDirectorGesture();
+    };
+    window.addEventListener("pointercancel", handlePointerCancel);
+    return () =>
+      window.removeEventListener("pointercancel", handlePointerCancel);
+  }, [cancelDirectorGesture, cancelMotionPathDrawing]);
 
   if (!draft) return null;
   const draftPoints = buildDirectorMotionPathPoints(draft.anchors, false);
@@ -1141,7 +1210,24 @@ function DirectorMotionPathDrawingSurface() {
           ) {
             target.releasePointerCapture(event.pointerId);
           }
-          if (draft.tool === "pencil") finishMotionPathDrawing();
+          if (draft.tool === "pencil") {
+            finishMotionPathDrawing();
+            commitDirectorGesture();
+          }
+        }}
+        onPointerCancel={(event) => {
+          if (!pointerActive.current) return;
+          event.stopPropagation();
+          pointerActive.current = false;
+          const target = event.nativeEvent.currentTarget;
+          if (
+            target instanceof Element &&
+            target.hasPointerCapture(event.pointerId)
+          ) {
+            target.releasePointerCapture(event.pointerId);
+          }
+          cancelMotionPathDrawing();
+          cancelDirectorGesture();
         }}
       >
         <planeGeometry args={[40, 40]} />
@@ -1612,6 +1698,12 @@ export function DirectorViewport({
   const cancelMotionPathDrawing = useDirectorStore(
     (state) => state.cancelMotionPathDrawing,
   );
+  const commitDirectorGesture = useDirectorStore(
+    (state) => state.commitDirectorGesture,
+  );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [viewportSnapshot, setViewportSnapshot] =
@@ -1679,13 +1771,20 @@ export function DirectorViewport({
       if (event.key !== "Escape" && event.key !== "Enter") return;
       event.preventDefault();
       event.stopImmediatePropagation();
-      if (event.key === "Escape") cancelMotionPathDrawing();
-      else finishMotionPathDrawing();
+      if (event.key === "Escape") {
+        cancelMotionPathDrawing();
+        cancelDirectorGesture();
+      } else {
+        finishMotionPathDrawing();
+        commitDirectorGesture();
+      }
     };
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
   }, [
+    cancelDirectorGesture,
     cancelMotionPathDrawing,
+    commitDirectorGesture,
     finishMotionPathDrawing,
     timeline.motionPathDraft,
   ]);
@@ -1932,7 +2031,10 @@ export function DirectorViewport({
               data-director-path-drawing-complete
               aria-label="完成钢笔路径"
               title="完成"
-              onClick={finishMotionPathDrawing}
+              onClick={() => {
+                finishMotionPathDrawing();
+                commitDirectorGesture();
+              }}
               className="flex h-7 w-7 items-center justify-center rounded text-[#a9d8bf] hover:bg-white/[0.07] hover:text-white"
             >
               <Check size={14} />
@@ -1943,7 +2045,10 @@ export function DirectorViewport({
             data-director-path-drawing-cancel
             aria-label="取消路径绘制"
             title="取消"
-            onClick={cancelMotionPathDrawing}
+            onClick={() => {
+              cancelMotionPathDrawing();
+              cancelDirectorGesture();
+            }}
             className="flex h-7 w-7 items-center justify-center rounded text-[#b8a09a] hover:bg-white/[0.07] hover:text-white"
           >
             <X size={14} />
