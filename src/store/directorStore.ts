@@ -69,6 +69,7 @@ import {
   DirectorProjectRegistry,
   createDirectorProjectOwnerKey,
   isSameDirectorProjectOwner,
+  type DirectorProjectCopyRegistrationV1,
   type DirectorProjectCloseResult,
   type DirectorProjectLifecycle,
   type DirectorProjectOpenResult,
@@ -103,6 +104,10 @@ import {
   type DirectorAsyncResultEnvelopeV1,
 } from "@/lib/directorAsyncAuthority";
 import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
+import type {
+  DirectorDuplicatePersistenceDisposition,
+  DirectorWholeProjectCopyPlan,
+} from "@/lib/directorWholeProjectDuplicate";
 import {
   buildDirectorClipboardPacket,
   planDirectorClipboardPaste,
@@ -1664,6 +1669,122 @@ function createDefaultDirectorProjectDocument(
     timeline: createDefaultTimeline(),
     captures: [],
   });
+}
+
+export function createFreshDirectorProjectDocument(
+  projectId: string,
+  owner: DirectorProjectOwnerV1,
+): DirectorProjectDocumentV1 {
+  return createDefaultDirectorProjectDocument(projectId, owner);
+}
+
+export interface DirectorProjectDuplicateSourceSnapshot {
+  sourceOwner: DirectorProjectOwnerV1;
+  document: DirectorProjectDocumentV1 | null;
+  lifecycle: DirectorProjectLifecycle | null;
+  captures: DirectorCapture[];
+  persistenceDisposition: DirectorDuplicatePersistenceDisposition;
+}
+
+export function getDirectorProjectDuplicateSource(
+  owner: DirectorProjectOwnerV1,
+): DirectorProjectDuplicateSourceSnapshot {
+  const record = directorProjectRegistry.getRecord(owner);
+  if (record) {
+    return {
+      sourceOwner: { ...owner },
+      document: record.document,
+      lifecycle: record.lifecycle,
+      captures: record.memory.captures.map((capture) => ({ ...capture })),
+      persistenceDisposition: "RESTORED",
+    };
+  }
+
+  const persisted = directorProjectPersistence.load(owner);
+  if (persisted.disposition === "RESTORED" && persisted.document) {
+    return {
+      sourceOwner: { ...owner },
+      document: persisted.document,
+      lifecycle: "CLOSED",
+      captures: [],
+      persistenceDisposition: "RESTORED",
+    };
+  }
+  return {
+    sourceOwner: { ...owner },
+    document: null,
+    lifecycle: null,
+    captures: [],
+    persistenceDisposition:
+      persisted.disposition === "MISSING"
+        ? "MISSING"
+        : persisted.reason === "STORAGE_UNAVAILABLE"
+          ? "UNAVAILABLE"
+          : "REJECTED",
+  };
+}
+
+export interface DirectorProjectCopyCommitResult {
+  disposition: "COMMITTED" | "COMMITTED_SESSION_ONLY" | "REJECTED";
+  reason: string | null;
+  persistence: Array<{
+    projectId: string;
+    owner: DirectorProjectOwnerV1;
+    disposition: "SAVED" | "SESSION_ONLY";
+    reason: string | null;
+  }>;
+}
+
+export function registerDirectorProjectCopies(
+  copies: readonly DirectorWholeProjectCopyPlan[],
+): DirectorProjectCopyCommitResult {
+  const registrations: DirectorProjectCopyRegistrationV1[] = copies.map(
+    (copy) => ({
+      owner: copy.targetOwner,
+      projectId: copy.projectId,
+      generation: copy.generation,
+      document: copy.document,
+      captures: [],
+    }),
+  );
+  const registered = directorProjectRegistry.registerCopies(registrations);
+  if (registered.disposition !== "COMMITTED") {
+    return {
+      disposition: "REJECTED",
+      reason: registered.reason,
+      persistence: [],
+    };
+  }
+
+  const persistence = copies.map((copy) => {
+    directorHistoryByProject.set(
+      copy.projectId,
+      createDirectorHistoryState(),
+    );
+    directorCaptureArchives.set(copy.projectId, new Map());
+    const saved = directorProjectPersistence.save({
+      owner: copy.targetOwner,
+      projectId: copy.projectId,
+      generation: copy.generation,
+      document: copy.document,
+    });
+    return {
+      projectId: copy.projectId,
+      owner: { ...copy.targetOwner },
+      disposition: (saved.disposition === "SAVED"
+        ? "SAVED"
+        : "SESSION_ONLY") as "SAVED" | "SESSION_ONLY",
+      reason: saved.reason,
+    };
+  });
+  return {
+    disposition: persistence.some((entry) => entry.disposition === "SESSION_ONLY")
+      ? "COMMITTED_SESSION_ONLY"
+      : "COMMITTED",
+    reason:
+      persistence.find((entry) => entry.reason)?.reason ?? null,
+    persistence,
+  };
 }
 
 function snapshotCurrentDirectorProject(

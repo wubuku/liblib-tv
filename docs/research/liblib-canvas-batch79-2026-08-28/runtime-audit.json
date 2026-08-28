@@ -1,0 +1,48 @@
+{
+  "batch": 79,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "sourceCanvasId": "canvas-2",
+  "targetCanvasId": "canvas-3",
+  "duplicate": {
+    "disposition": "COMMITTED",
+    "sourceCanvasId": "canvas-2",
+    "targetCanvasId": "canvas-3",
+    "targetProjectIds": [
+      "director-project-director-project-1787959319513-1-copy-1787959319577-q0w6-0-0"
+    ],
+    "persistence": [
+      {
+        "projectId": "director-project-director-project-1787959319513-1-copy-1787959319577-q0w6-0-0",
+        "owner": {
+          "route": "libtv",
+          "canvasId": "canvas-3",
+          "sourceNodeId": "b-bTLLuU4w5q-copy-1787959319577-q0w6"
+        },
+        "disposition": "SAVED",
+        "reason": null
+      }
+    ],
+    "reason": null
+  },
+  "graph": {
+    "sourceNodeCount": 10,
+    "targetNodeCount": 10,
+    "sourceEdgeCount": 11,
+    "targetEdgeCount": 11,
+    "selectionCleared": true,
+    "targetHistoryEmpty": true
+  },
+  "director": {
+    "targetAuthoredCopied": true,
+    "targetHistoryEmpty": true,
+    "targetClipboardEmpty": true,
+    "sourceTargetIsolation": true,
+    "independentProjectIds": true
+  },
+  "persistence": {
+    "targetKeyPresent": true,
+    "targetOwnerIsDistinct": true
+  },
+  "errors": []
+}

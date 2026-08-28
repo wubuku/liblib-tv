@@ -151,6 +151,7 @@
 | 76 | Director owner reachability reconciliation | [`liblib-canvas-batch76-2026-08-27/`](liblib-canvas-batch76-2026-08-27/) `OWNER_REACHABILITY_FOCUSED_PASS`，完成 all-canvas live owner、inactive source/canvas one-time tombstone、active shell/session/runtime 两阶段 cleanup、幂等、stale async、graph undo boundary 与 retained persistence；Batch 59、67-76 跨批回归已通过 |
 | 77 | source-aligned canvas navigation and Director TransformControls binding regression | [`liblib-canvas-batch77-2026-08-28/`](liblib-canvas-batch77-2026-08-28/) `SCRIPT_RECORDED_PASS`，普通 wheel/middle/Space/H/V/blank no-op/modifier zoom 与 mobile overflow 已对齐源站运行态；Director object/group/path explicit attachment、真实 gizmo pointer drag、authored/runtime sync、undo/redo 和 zero-distance cleanup 已通过；不证明源站 Director exact DOM/CSS、真实触摸板硬件或内部实现技术 |
 | 78 | Director pointer cancellation, cleanup and R3F teardown | [`liblib-canvas-batch78-2026-08-28/`](liblib-canvas-batch78-2026-08-28/) `POINTER_CANCELLATION_AND_R3F_TEARDOWN_RECORDED_PASS`，Curve/Phone Vcam/Timeline 的 pointercancel、blur、visibility、unmount、stale-pointer 防护以及跨 owner/canvas 的 R3F Canvas 异步 teardown 已通过；Batch 59、67-78 当前闸门串行回归、`npm run check` 和 `docs:check` 通过；不改变 phone runtime-only 语义，也不证明源站 Director exact DOM/CSS |
+| 79 | Director whole-project duplicate | [`liblib-canvas-batch79-2026-08-28/`](liblib-canvas-batch79-2026-08-28/) `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`，graph/Director two-pass identity/reference remap、multi-owner project copy、fresh document policy、non-portable resource reject、clean target authority、persistence isolation 和 pure/browser verifier 已通过；不证明 LibTV source duplicate 语义或真实资源复制 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -158,7 +159,10 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | Batch | Focus | Entry |
 |---|---|---|
-| 79 | Director whole-project duplicate: graph + owner/project/document/resource/persistence transaction | [`liblib-canvas-batch79-2026-08-28/`](liblib-canvas-batch79-2026-08-28/README.md) `PLANNED / NOT_IMPLEMENTED`；先建立 pure planner、fixture 和 zero-partial verifier，不把 Batch 75 clipboard paste 当作 whole-project duplicate |
+| 80 | Director durable tombstone、storage/resource cleanup boundary | `PLANNED`；先明确 memory tombstone 与 browser persistence/resource cleanup 的原子边界 |
+| 81 | Director strict project import/export and recoverable UI workflow | `PLANNED`；以 V1 document codec 为核心，不引入远端同步 |
+| 82 | Director real asset/resource lifecycle or panorama vertical slice | `PLANNED`；先选择可验证的本地 stable resource slice |
+| 83 | current verifier manifest consolidation and command feedback gate | `PLANNED`；建立 current manifest 与 typed outcome 到 primary surface 的最小闭环 |
 
 ## Stable Cross-Cutting Research
 

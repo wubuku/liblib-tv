@@ -20,6 +20,15 @@ import {
   type LibTVSelectionSnapshot,
 } from "@/lib/libtvSelectionCommandContext";
 import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement";
+import {
+  planDirectorWholeProjectDuplicate,
+  type DirectorWholeProjectDuplicateFailureReason,
+} from "@/lib/directorWholeProjectDuplicate";
+import {
+  createFreshDirectorProjectDocument,
+  getDirectorProjectDuplicateSource,
+  registerDirectorProjectCopies,
+} from "@/store/directorStore";
 
 export interface GraphSnapshot {
   nodes: Node[];
@@ -224,6 +233,33 @@ export interface CanvasData {
   viewport: { x: number; y: number; zoom: number };
 }
 
+export type LibTVCanvasDuplicateResult =
+  | {
+      disposition: "COMMITTED" | "COMMITTED_SESSION_ONLY";
+      sourceCanvasId: string;
+      targetCanvasId: string;
+      targetProjectIds: string[];
+      persistence: Array<{
+        projectId: string;
+        owner: {
+          route: "libtv";
+          canvasId: string;
+          sourceNodeId: string;
+        };
+        disposition: "SAVED" | "SESSION_ONLY";
+        reason: string | null;
+      }>;
+      reason: string | null;
+    }
+  | {
+      disposition: "REJECTED";
+      sourceCanvasId: string;
+      targetCanvasId: null;
+      targetProjectIds: [];
+      persistence: [];
+      reason: DirectorWholeProjectDuplicateFailureReason | string;
+    };
+
 interface CanvasState {
   projectName: string;
   canvases: CanvasData[];
@@ -239,7 +275,7 @@ interface CanvasState {
   removeCanvas: (id: string) => void;
   renameCanvas: (id: string, name: string) => void;
   setActiveCanvas: (id: string) => void;
-  duplicateCanvas: (id: string) => void;
+  duplicateCanvas: (id: string) => LibTVCanvasDuplicateResult;
 
   // Node actions
   addNode: (type: string, data?: Record<string, unknown>) => void;
@@ -974,31 +1010,109 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
   },
 
-  duplicateCanvas: (id: string) => {
+  duplicateCanvas: (id: string): LibTVCanvasDuplicateResult => {
     const { canvases } = get();
     const source = canvases.find((c) => c.id === id);
-    if (!source) return;
-    canvasCounter++;
+    if (!source) {
+      return {
+        disposition: "REJECTED",
+        sourceCanvasId: id,
+        targetCanvasId: null,
+        targetProjectIds: [],
+        persistence: [],
+        reason: "DUPLICATE_SOURCE_CANVAS_MISSING",
+      };
+    }
+    const nextCanvasNumber = canvasCounter + 1;
+    const targetCanvasId = `canvas-${nextCanvasNumber}`;
     const copySuffix = `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
-    const nodeIdMap = new Map(source.nodes.map((node) => [node.id, `${node.id}-copy-${copySuffix}`]));
+    const makeId = ({
+      kind,
+      sourceId,
+      projectOrdinal,
+      index,
+    }: {
+      kind: string;
+      sourceId: string;
+      projectOrdinal: number;
+      index: number;
+    }): string => {
+      const safeSourceId =
+        sourceId.replace(/[^a-zA-Z0-9_-]+/g, "-").slice(-48) || "entity";
+      return `director-${kind}-${safeSourceId}-copy-${copySuffix}-${projectOrdinal}-${index}`;
+    };
+    const projects = source.nodes
+      .filter((node) => node.type === "script-execution")
+      .map((node) => {
+        const sourceOwner = {
+          route: "libtv" as const,
+          canvasId: source.id,
+          sourceNodeId: node.id,
+        };
+        const snapshot = getDirectorProjectDuplicateSource(sourceOwner);
+        return {
+          sourceOwner: snapshot.sourceOwner,
+          sourceDocument: snapshot.document,
+          sourceLifecycle: snapshot.lifecycle,
+          sourcePersistenceDisposition: snapshot.persistenceDisposition,
+        };
+      });
+    const planned = planDirectorWholeProjectDuplicate({
+      sourceCanvasId: source.id,
+      targetCanvasId,
+      sourceNodes: source.nodes,
+      sourceEdges: source.edges,
+      sourceViewport: source.viewport,
+      projects,
+      createProjectId: (input) =>
+        makeId({
+          kind: "project",
+          sourceId: input.sourceId,
+          projectOrdinal: input.projectOrdinal,
+          index: input.index,
+        }),
+      createEntityId: (input) =>
+        makeId({
+          kind: input.kind,
+          sourceId: input.sourceId,
+          projectOrdinal: input.projectOrdinal,
+          index: input.index,
+        }),
+      createGraphNodeId: (input) =>
+        `${input.sourceId}-copy-${copySuffix}`,
+      createGraphEdgeId: (input) =>
+        `${input.sourceId}-copy-${copySuffix}`,
+      createFreshDocument: createFreshDirectorProjectDocument,
+    });
+    if (!planned.ok) {
+      return {
+        disposition: "REJECTED",
+        sourceCanvasId: source.id,
+        targetCanvasId: null,
+        targetProjectIds: [],
+        persistence: [],
+        reason: planned.reason,
+      };
+    }
+    const registered = registerDirectorProjectCopies(planned.plan.projects);
+    if (registered.disposition === "REJECTED") {
+      return {
+        disposition: "REJECTED",
+        sourceCanvasId: source.id,
+        targetCanvasId: null,
+        targetProjectIds: [],
+        persistence: [],
+        reason: registered.reason ?? "DUPLICATE_IDENTITY_ALLOCATION_FAILED",
+      };
+    }
+    canvasCounter = nextCanvasNumber;
     const newCanvas: CanvasData = {
       ...source,
-      id: `canvas-${canvasCounter}`,
+      id: targetCanvasId,
       name: `${source.name} (副本)`,
-      nodes: source.nodes.map((node) => {
-        const copiedNode = cloneSemanticNode(node);
-        return {
-          ...copiedNode,
-          id: nodeIdMap.get(node.id) ?? node.id,
-          parentId: node.parentId ? nodeIdMap.get(node.parentId) : undefined,
-        };
-      }),
-      edges: source.edges.map((edge) => ({
-        ...cloneSemanticEdge(edge),
-        id: `${edge.id}-copy-${copySuffix}`,
-        source: nodeIdMap.get(edge.source) ?? edge.source,
-        target: nodeIdMap.get(edge.target) ?? edge.target,
-      })),
+      nodes: planned.plan.targetNodes,
+      edges: planned.plan.targetEdges,
+      viewport: planned.plan.targetViewport,
     };
     set((state) => ({
       canvases: [...state.canvases, newCanvas],
@@ -1011,6 +1125,14 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         [newCanvas.id]: { past: [], future: [] },
       },
     }));
+    return {
+      disposition: registered.disposition,
+      sourceCanvasId: source.id,
+      targetCanvasId: newCanvas.id,
+      targetProjectIds: planned.plan.projects.map((project) => project.projectId),
+      persistence: registered.persistence,
+      reason: registered.reason,
+    };
   },
 
   addNode: (type: string, data?: Record<string, unknown>) => {

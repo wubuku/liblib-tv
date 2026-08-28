@@ -1,11 +1,11 @@
 # Batch 79 计划：Director Whole-Project Duplicate
 
-> **状态**：`PLANNED / NOT_IMPLEMENTED / NO_CODE_AUTHORIZATION_IN_THIS_RECORD`
+> **状态**：`WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`
 >
 > **日期**：2026-08-28
 >
 > **目标**：为普通 LibTV canvas duplicate 建立一个不会丢失或串用
-> Director project 的整批复制事务；本文件只规划，不修改 `src/`、测试或源站。
+> Director project 的整批复制事务。
 
 ## 1. 为什么现在做
 
@@ -551,6 +551,49 @@ mesh/panorama materialization 不属于本 verifier。
 
 ## 10. 本批状态与下一步
 
-当前只完成了计划和索引，不创建 `IMPLEMENTATION.md`、`runtime-audit.json` 或
-Batch 79 verifier。得到编码授权后，应从 Slice A 的 pure planner 开始；每个
-slice 先更新实施台账，再建立保护性 checkpoint，之后才进入下一 slice。
+本轮目标是完成 Slice A-D 的最小闭环：pure planner、Director registry
+registration、普通 canvas coordinator、per-owner persistence outcome 和
+focused verifier。实现不得扩展为通用 graph codec，也不得把 session-only
+capture/resource 静默复制到 target。
+
+### 10.1 已锁定的实施决策
+
+1. `duplicateCanvas` 保留现有产品入口和 target-active/selection-clear
+   语义，但返回 typed lifecycle result 供 verifier 和未来反馈层观察。
+2. 没有 registry record 且 persistence 明确为 `MISSING` 的 Director root
+   视为尚未建立 authoring document，target 创建 fresh project；storage
+   `REJECTED`、tombstone 或 malformed document 不允许静默 reset。
+3. `catalog`、`remote`、`canvas` resource 只 alias descriptor 并分配新的
+   target-local reference ID；`local` resource 和没有 durable capture
+   reference 的 session-only capture 不复制，若 graph result 依赖它则整批
+   reject。
+4. target Director record 以 `CLOSED`、generation `1`、空 history/session/
+   clipboard/runtime 登记；target 打开时才创建新的 active session。
+5. persistence 写入是 memory commit 之后的独立 outcome；全部成功为
+   `COMMITTED`，任一 owner 只能 session-only 时返回
+   `COMMITTED_SESSION_ONLY`，不回滚已验证的 memory duplicate。
+
+### 10.2 实际实施结果
+
+- [x] `planDirectorWholeProjectDuplicate` pure planner；
+- [x] graph/parent/edge 与 Director project-local identity 两阶段映射；
+- [x] source owner/document/lifecycle/persistence strict gate；
+- [x] `DirectorProjectRegistry.registerCopies` 原子批量登记；
+- [x] `canvasStore.duplicateCanvas` coordinator 和 typed result；
+- [x] target `CLOSED + generation 1`、空 history/session/clipboard/runtime；
+- [x] stable resource descriptor copy 与 local/ephemeral resource block；
+- [x] pure verifier、fresh-page Playwright verifier 和 `runtime-audit.json`；
+- [x] 移除 planner 临时类型断言，并校验外部 `targetSourceNodeId` 必须与 graph
+  map 一致；
+- [x] Batch 59、67-79 current gate、`npm run check`、`npm run docs:check` 和
+  `git diff --check`；
+- [x] 实施记录、治理台账、commit/push 和干净主 worktree。
+
+实际偏差：
+
+1. persistence 仍是当前 browser-local synchronous adapter；写失败不回滚已登记
+   的 memory project，而是返回 `COMMITTED_SESSION_ONLY`；
+2. portable capture descriptor 只复制具有 stable resource reference 的条目，
+   memory capture bytes 不复制；
+3. 本批未重构普通 canvas 全局 ID allocator，只保证 target canvas 和本次
+   graph/Director identity 不复用 source。

@@ -108,6 +108,8 @@ mouse pointer、pointer capture、gesture/history 和 stale-pointer 输入，不
 | Batch 77 | source-aligned canvas navigation and Director TransformControls binding/gesture cleanup | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch77.py` 已通过；覆盖普通纵/横 wheel 平移、默认中键平移、`Space`/`H` 左键平移、`V` 空白拖动 no-op、`Command`/`Control` wheel 缩放、mobile overflow、真实 Director mug gizmo pointer drag、authored/runtime 同步、one-entry undo/redo、zero-distance zero-history、pointer cleanup、static explicit attachment 和 graph/history isolation；不证明真实触摸板硬件、源站 Director exact DOM/CSS、源站内部实现或真实资产/provider |
 | Batch 78 | Director pointer cancellation, cleanup and R3F teardown | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch78.py` 已通过；覆盖 Curve commit/cancel/pointercancel/blur/hidden/begin-rejected、Phone Vcam pointer capture cancel/blur/close/reuse、Timeline scrub cancel/hidden/reuse/stale-move prevention、R3F Canvas cross-owner teardown、zero screenshots 和 zero console/page/request errors；Batch 59、67-78 serial regression 亦通过；不证明源站 Director exact DOM/CSS、真实手机设备或 source parity |
 
+| Batch 79 | Director whole-project duplicate | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch79.mjs` 与 `verify-liblib-batch79.py` 已通过；覆盖 graph/parent/edge 与 Director two-pass identity/reference remap、多 owner/project、fresh missing document、stable resource descriptor、non-portable resource reject、clean target history/session/clipboard、source/target persistence isolation 和 zero diagnostics；不证明 LibTV source duplicate、真实资源 materialization 或 capture/history copy |
+
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
 记录为 `EXPECTED_HISTORICAL_MISMATCH`，不应通过回退当前图片工具条实现来“修绿”；

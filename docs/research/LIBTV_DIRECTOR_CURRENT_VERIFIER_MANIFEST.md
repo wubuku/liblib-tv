@@ -132,6 +132,8 @@ historical regressions.
 | Batch 76 | Director all-canvas owner reachability reconciliation and tombstone cleanup | `CURRENT_GATE` | 9-scenario pure planner corpus + A/B/cross-canvas fresh-page Playwright；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` owner-reachability gate；does not prove durable tombstone、storage/resource deletion、undo restore、whole-project duplicate or source parity |
 | Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation, cleanup and R3F teardown | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios + cross-owner/canvas teardown regression；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
 
+| Batch 79 | Director whole-project duplicate | `CURRENT_GATE` | Pure Node two-pass planner corpus + fresh-page Playwright duplicate/isolation scenario；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` whole-project duplicate gate；does not prove LibTV source duplicate semantics、remote persistence、capture bytes or real resource loading |
+
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
 delete semantics and undo/redo behavior. Their passes only prove clone-owned
@@ -380,7 +382,7 @@ following current gates were run serially and all passed:
 
 ```text
 Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
-Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78
+Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79
 ```
 
 The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
@@ -452,6 +454,7 @@ slice；Batch 72 supplies the reference-delete slice；Batch 73 supplies the
 async-authority slice；Batch 74 supplies the browser-local persistence slice；
 Batch 75 supplies the clipboard identity-remap slice；Batch 76 supplies the
 owner-reachability slice；Batch 78 supplies the pointer-cancellation slice；
+Batch 79 supplies the whole-project duplicate slice；
 Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
@@ -468,6 +471,7 @@ Required future scenarios:
 | clipboard identity remap | **focused runtime in Batch 75**：project-scoped typed packet、group/object/track/path closure、all project-local ID remap、internal/external camera policy、stable resource alias、deterministic offset、one-entry paste、reload/system boundary |
 | owner reachability reconciliation | **focused runtime in Batch 76**：all-canvas live owner authority、inactive/active invalidation、two-phase shell/runtime cleanup、repeated idempotency、tombstoned reopen rejection、stale async、graph undo and retained persistence boundary |
 | pointer cancellation and stale-input cleanup | **focused runtime in Batch 78**：Curve begin-result ownership、pointerup commit、pointercancel/blur/hidden/unmount cancel、Phone Vcam capture release/reuse、Timeline scrub stale-pointer prevention |
+| whole-project duplicate | **focused runtime in Batch 79**：graph/parent/edge 与 Director project/entity two-pass remap、multi-owner isolation、fresh-document policy、stable resource descriptor、non-portable reject、clean target authority and source/target persistence isolation |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -486,6 +490,7 @@ PERSISTENCE_FOCUSED_PASS
 CLIPBOARD_REMAP_FOCUSED_PASS
 OWNER_REACHABILITY_FOCUSED_PASS
 POINTER_CANCELLATION_FOCUSED_PASS
+WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

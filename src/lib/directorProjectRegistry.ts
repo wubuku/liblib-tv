@@ -24,6 +24,28 @@ export interface DirectorProjectRecordV1 {
   memory: DirectorProjectMemorySidecarV1;
 }
 
+export interface DirectorProjectCopyRegistrationV1 {
+  owner: DirectorProjectOwnerV1;
+  projectId: string;
+  generation: number;
+  document: DirectorProjectDocumentV1;
+  captures: DirectorCapture[];
+}
+
+export type DirectorProjectCopyRegistrationResult =
+  | {
+      disposition: "COMMITTED";
+      records: DirectorProjectRecordV1[];
+    }
+  | {
+      disposition: "REJECTED";
+      reason:
+        | "INVALID_OWNER"
+        | "INVALID_DOCUMENT"
+        | "IDENTITY_CONFLICT";
+      records: [];
+    };
+
 export interface DirectorSessionV1 {
   sessionId: string;
   projectId: string;
@@ -514,6 +536,90 @@ export class DirectorProjectRegistry {
       disposition: "CLOSED",
       reason: null,
       record: cloneRecord(nextRecord, this.dependencies.normalizeDocument),
+    };
+  }
+
+  registerCopies(
+    inputs: readonly DirectorProjectCopyRegistrationV1[],
+  ): DirectorProjectCopyRegistrationResult {
+    const stagedRecords: DirectorProjectRecordV1[] = [];
+    const ownerKeys = new Set<string>();
+    const projectIds = new Set<string>();
+
+    for (const input of inputs) {
+      if (
+        !isValidOwner(input.owner) ||
+        typeof input.projectId !== "string" ||
+        input.projectId.trim().length === 0 ||
+        !Number.isInteger(input.generation) ||
+        input.generation <= 0
+      ) {
+        return {
+          disposition: "REJECTED",
+          reason: "INVALID_OWNER",
+          records: [],
+        };
+      }
+      const ownerKey = createDirectorProjectOwnerKey(input.owner);
+      if (
+        ownerKeys.has(ownerKey) ||
+        this.records.has(ownerKey) ||
+        projectIds.has(input.projectId) ||
+        [...this.records.values()].some(
+          (record) => record.identity.projectId === input.projectId,
+        )
+      ) {
+        return {
+          disposition: "REJECTED",
+          reason: "IDENTITY_CONFLICT",
+          records: [],
+        };
+      }
+      let document: DirectorProjectDocumentV1;
+      try {
+        document = this.dependencies.normalizeDocument(input.document);
+      } catch {
+        return {
+          disposition: "REJECTED",
+          reason: "INVALID_DOCUMENT",
+          records: [],
+        };
+      }
+      if (!hasMatchingDocumentIdentity(document, input.projectId, input.owner)) {
+        return {
+          disposition: "REJECTED",
+          reason: "INVALID_DOCUMENT",
+          records: [],
+        };
+      }
+      ownerKeys.add(ownerKey);
+      projectIds.add(input.projectId);
+      stagedRecords.push({
+        identity: {
+          projectId: input.projectId,
+          owner: cloneOwner(input.owner),
+          schemaVersion: 1,
+          generation: input.generation,
+        },
+        document,
+        lifecycle: "CLOSED",
+        memory: {
+          captures: input.captures.map(cloneCapture),
+        },
+      });
+    }
+
+    stagedRecords.forEach((record) => {
+      this.records.set(
+        createDirectorProjectOwnerKey(record.identity.owner),
+        record,
+      );
+    });
+    return {
+      disposition: "COMMITTED",
+      records: stagedRecords.map((record) =>
+        cloneRecord(record, this.dependencies.normalizeDocument),
+      ),
     };
   }
 }

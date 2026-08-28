@@ -102,8 +102,11 @@ Director project document
   planner、inactive source/canvas one-time tombstone、active shell/session/runtime
   两阶段 cleanup、repeated reconciliation 幂等和 graph undo/persistence retained
   boundary；
+- Batch 79 已增加 whole-project duplicate 的 graph/Director two-pass identity
+  remap、stable resource descriptor policy、fresh missing-document policy、clean
+  target authority 和 source/target persistence isolation；
 - durable tombstone、storage/resource cleanup、ordinary canvas persistence、
-  remote persistence 和 source-exact storage 仍未解决。
+  strict import/export、remote persistence 和 source-exact storage 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -515,10 +518,11 @@ Duplicate 不是共享同一 document：
 
 若 remap/resource policy未实现，返回 `BLOCK_UNKNOWN`，不要共享旧 project。
 
-Batch 75 已提供可复用的 object/group/track/path/keyframe/anchor remap machinery，
-但 whole-project duplicate 仍需独立 owner/project allocation、capture policy、
-resource policy、history reset、persistence transaction 和 source/canvas lifecycle
-fixture，不能把 session clipboard paste 直接当成 duplicate 已完成。
+Batch 75 已提供可复用的 object/group/track/path/keyframe/anchor remap machinery。
+Batch 79 已将其扩展为独立的 whole-project owner/project allocation、capture
+descriptor policy、resource policy、history reset、persistence transaction 和
+source/canvas lifecycle fixture；它仍是 clone-owned decision，不能当作 LibTV
+source duplicate 语义。
 
 ## 10. Persistence Contract
 
@@ -736,7 +740,9 @@ document、duplicate、delete和 delayed result。
 - tombstoned owner reopen拒绝，旧 async completion立即 stale；
 - ordinary graph history、persistence envelope、archive和资源保持；
 - durable tombstone、storage/resource cleanup、graph undo restore 和
-  whole-project duplicate保持独立决策。
+  whole-project duplicate已由 Batch 79 关闭 clone-owned focused slice；durable
+  storage cleanup、strict import/export、真实 resource materialization 和 source
+  parity 保持独立决策。
 
 每个 slice 独立计划、fixture、verifier、commit/push。不得以“建立 project document”
 为由一次性重写全部 Director components。
@@ -769,7 +775,8 @@ document、duplicate、delete和 delayed result。
 owner/session 子项已在 Batch 68 升级为
 `OWNER_SESSION_FOCUSED_RUNTIME_PASS`，authored/runtime 子项已在 Batch 69
 升级为 `AUTHORED_RUNTIME_FOCUSED_PASS`，owner reachability 子项已在 Batch 76
-升级为 `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS`：
+升级为 `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS`，whole-project duplicate 子项
+已在 Batch 79 升级为 `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`：
 
 1. 两个 source node 和两个 canvas 已证明 project 不串场；
 2. open/switch/close、same-owner focus、duplicate reset 和 active delete tombstone
@@ -779,20 +786,23 @@ owner/session 子项已在 Batch 68 升级为
    authoring 可在 close/reopen 后恢复；
 5. inactive source/canvas delete、active cleanup、重复 reconcile、stale async、
    graph undo/persistence retained boundary 已有 focused runtime；
-6. focused verifier、`npm run check`、docs check 和实施台账通过。
+6. whole-project duplicate 的 graph/document identity remap、resource policy 和
+   clean target authority 已有 focused runtime；
+7. focused verifier、`npm run check`、docs check 和实施台账通过。
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
 1. durable tombstone、storage/resource cleanup 与 graph undo restore policy 明确；
 2. 普通画布 delayed result 也只写 captured canvas/source/generation；
-3. duplicate deep clone/remap 与 resource policy 明确；
+3. duplicate deep clone/remap 与 resource policy 已在 clone-owned Batch 79 明确，
+   但 LibTV source duplicate 语义仍未知；
 4. ordinary canvas graph/document persistence 有独立合同和 fixture；
 5. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
 
 Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项；
 Batch 74 已关闭 clone-owned Director browser-local durable document persistence
 子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项；
-Batch 76 已关闭 memory-only owner reachability reconciliation 子项。它们都不
-关闭 durable tombstone/storage/resource cleanup、ordinary canvas
-async/persistence、whole-project duplicate、remote storage、真实资源或
-source-exact LibTV 子项。
+Batch 76 已关闭 memory-only owner reachability reconciliation 子项；Batch 79 已
+关闭 clone-owned whole-project duplicate 子项。它们都不关闭 durable
+tombstone/storage/resource cleanup、ordinary canvas async/persistence、strict
+import/export、remote storage、真实资源或 source-exact LibTV 子项。

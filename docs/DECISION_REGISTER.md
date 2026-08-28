@@ -471,6 +471,30 @@ source-exact delete/recovery UI 必须另行决策。
 [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、
 [`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
 
+### DEC-045：Director whole-project duplicate 采用先计划后提交的 clone-owned 事务
+
+**背景：** 普通 `duplicateCanvas` 原先只复制 React Flow graph；Director node
+背后的 authored project、对象关系、时间轴、路径和 capture descriptor 不在 graph
+data 中，因此复制画布可能静默丢失最有价值的 authoring state。Batch 75 的
+clipboard remap 只处理同一 project 的选中闭包，不能直接当作 whole-project copy。
+
+**决策：** clone 的 whole-project duplicate 先构造完整 graph/Director plan，再做
+strict document/reference/resource validation，之后原子登记 target Director records
+并提交 graph。target 使用新的 canvas、graph、project 和 entity IDs；复制 authored
+document 与 stable resource descriptors，不复制 Director history、session、runtime
+projection、clipboard 或 capture bytes。source document 缺失且 persistence 明确
+`MISSING` 时允许 fresh target；tombstone、invalid/corrupt document、local/ephemeral
+resource 和未知引用一律 zero-partial reject。storage 写失败返回
+`COMMITTED_SESSION_ONLY`，不伪造 durable success。
+
+**影响：** Batch 79 已实现 `planDirectorWholeProjectDuplicate`、
+`registerCopies`、duplicate coordinator、pure/browser focused verifier 和 typed
+result。该决策只约束 clone，不宣称 LibTV 原站具有相同 duplicate 语义。durable
+tombstone/storage/resource cleanup、strict import/export、真实资源 materialization
+和 source-exact feedback 继续独立排队。
+
+**依据：** [`liblib-canvas-batch79-2026-08-28/`](research/liblib-canvas-batch79-2026-08-28/)、[`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)。
+
 ## 3. 何时可以重审决策
 
 只有出现以下事件之一，才需要更新对应决策，而不是在代码中悄悄绕过：

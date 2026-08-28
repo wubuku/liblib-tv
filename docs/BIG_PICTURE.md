@@ -224,11 +224,14 @@ graph undo 不复活 project 和 retained persistence boundary 完成 focused pa
 Batch 78 又补齐 Curve Editor、Phone Vcam 和 Timeline scrub 的
 pointercancel/blur/visibility/unmount cleanup、pointer capture release、
 begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
-teardown 时 R3F Canvas 异步初始化访问 null event source 的问题。Batch 59、
-67-78 当前闸门串行回归和全量项目门禁已通过。durable tombstone、
-durable tombstone、storage/resource cleanup、whole-project duplicate、普通画布
-async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
-focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
+  teardown 时 R3F Canvas 异步初始化访问 null event source 的问题。Batch 79 又把
+  `duplicateCanvas` 接到 graph/Director whole-project two-pass plan：复制
+  authored document、project-local identity 和 stable resource descriptor，清空
+  target history/session/runtime/clipboard，并对 local/ephemeral resource 和未知
+  引用 zero-partial reject。Batch 59、67-79 当前闸门串行回归和全量项目门禁已通过。
+  durable tombstone、storage/resource cleanup、strict import/export、普通画布
+  async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
+  focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
 
 ### 5.2 状态边界
 
