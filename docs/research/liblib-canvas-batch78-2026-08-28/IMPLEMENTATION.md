@@ -1,6 +1,6 @@
 # Batch 78 实施与验证记录
 
-> 状态：`FOCUSED_RUNTIME_RECORDED_PASS`。
+> 状态：`POINTER_CANCELLATION_AND_R3F_TEARDOWN_RECORDED_PASS`。
 >
 > 日期：2026-08-28。
 
@@ -55,6 +55,21 @@ cleanup 结果，对全部 Director 指针入口做了静态检索。确认以�
 - scrub 仍只调用 `setTimelineTime`，不创建 Director history；
 - 取消后继续移动鼠标不会再次改变 playhead。
 
+### 2.4 R3F Canvas 异步 teardown
+
+跨批 Batch 68 回归发现，Director 在跨 canvas/owner 自动关闭时，R3F `Canvas`
+可能在父 DOM 已卸载后才完成异步 `configure`；默认事件源此时为 `null`，
+内部 `connect()` 会触发 `null.addEventListener` pageerror。
+
+`src/components/director/DirectorViewport.tsx` 为主视口和方向控件分别增加
+稳定的事件源 ref：
+
+- Canvas 挂载时，事件源指向实际可见的 wrapper，因此正常 pointer 行为不变；
+- wrapper 卸载时，ref 回落到该 Canvas 实例专属的脱离 DOM fallback；
+- 晚到的 R3F 初始化最多连接到这个安全 fallback，不再对 `null` 调用事件 API；
+- 没有修改 R3F/node 交互模型，也没有把该 clone-owned 修复写成 LibTV 原站
+  的 source fact。
+
 ## 3. 专项 verifier
 
 新增 [`scripts/verify-liblib-batch78.py`](../../../scripts/verify-liblib-batch78.py)，
@@ -81,8 +96,9 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch78.py
 ```
 
-最终结构化结果见 [`runtime-audit.json`](runtime-audit.json)，状态为
-`SCRIPT_RECORDED_PASS`。
+最终专项结构化结果见 [`runtime-audit.json`](runtime-audit.json)，状态为
+`SCRIPT_RECORDED_PASS`；跨批串行结果见
+[`current-gate-regression.json`](current-gate-regression.json)。
 
 ## 4. 静态与专项结果
 
@@ -95,16 +111,48 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   - hidden scrub 以本次 pointerdown 后的 seek 时间作为基线；
 - 上述修正没有放宽产品断言。
 
+### 4.1 跨批与全量门禁
+
+2026-08-28 重启唯一的 `localhost:3001` Next dev server 后，按顺序运行：
+
+```text
+Batch 59
+Batch 67
+Batch 68
+Batch 69
+Batch 70
+Batch 71
+Batch 72
+Batch 73
+Batch 74
+Batch 75
+Batch 76
+Batch 77
+Batch 78
+```
+
+全部 `PASS`。其中 Batch 68 在 R3F fallback 修复后 pageerror 为 0；Batch 77
+真实 Director gizmo 拖动和 Batch 78 全部 pointer cancellation 场景均保持
+通过。
+
+项目门禁：
+
+- `npm run check`：通过；lint 0 error、既有 9 条 warning、typecheck/build 通过；
+- `npm run docs:check`：通过，588 份 Markdown、3495 个本地目标；
+- `git diff --check`：通过；
+- `python3 -m py_compile scripts/verify-liblib-batch77.py scripts/verify-liblib-batch78.py`：通过。
+
 ## 5. 待完成门禁
 
 - [x] 三处 pointer lifecycle 风险审计；
 - [x] Curve/Phone/Timeline 修复；
+- [x] R3F Canvas 异步 teardown 修复；
 - [x] Batch 78 专项 verifier；
 - [x] `runtime-audit.json` 结果落档；
-- [ ] Batch 71、Batch 77 及 Batch 67-76 跨批回归；
-- [ ] `npm run check`、`npm run docs:check`；
-- [ ] 更新治理台账；
-- [ ] commit/push，确认工作区干净。
+- [x] 跨批回归：Batch 59、67-78；
+- [x] `npm run check`、`npm run docs:check`；
+- [x] 更新治理台账；
+- [x] checkpoint commit/push，确认工作区干净。
 
 ## 6. 边界与后续
 
@@ -119,3 +167,5 @@ LIBLIB_BASE_URL=http://localhost:3001 \
 选择下一项前必须重新检查 source evidence、fixture 前提和现有
 `LIBTV_UIUX_PARITY_BACKLOG.md`，不能把 clone-only Director pass 当成 LibTV
 source parity。
+
+本批完成后只留下下一批计划，不在同一批继续实施。

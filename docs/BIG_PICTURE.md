@@ -223,7 +223,9 @@ source/canvas one-time tombstone、active shell/session/runtime 两阶段 cleanu
 graph undo 不复活 project 和 retained persistence boundary 完成 focused pass。
 Batch 78 又补齐 Curve Editor、Phone Vcam 和 Timeline scrub 的
 pointercancel/blur/visibility/unmount cleanup、pointer capture release、
-begin-result ownership 与 stale-pointer prevention。durable tombstone、
+begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
+teardown 时 R3F Canvas 异步初始化访问 null event source 的问题。Batch 59、
+67-78 当前闸门串行回归和全量项目门禁已通过。durable tombstone、
 durable tombstone、storage/resource cleanup、whole-project duplicate、普通画布
 async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
 focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
@@ -637,6 +639,8 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - `npm run docs:check`：文档与本地图片链接通过
 - Batch 77：普通画布 wheel/middle/Space/H/V/blank no-op/modifier zoom
   与 Director 真实 TransformControls pointer drag 的专项门禁
+- Batch 78：Director Curve/Phone Vcam/Timeline pointer cancellation，以及跨
+  owner/canvas R3F Canvas teardown 的专项门禁
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

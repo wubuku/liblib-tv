@@ -137,6 +137,25 @@ const DIRECTOR_VIEWPORT_GIZMO_TARGETS: Array<{
   { id: "z-negative", label: "Z 反向" },
 ];
 
+function useDirectorCanvasEventSource() {
+  const [fallbackEventSource] = useState<HTMLElement | null>(
+    () =>
+      typeof document === "undefined" ? null : document.createElement("div"),
+  );
+  const eventSourceRef = useMemo(
+    () => ({ current: fallbackEventSource as HTMLElement }),
+    [fallbackEventSource],
+  );
+  const setEventSource = useCallback(
+    (element: HTMLDivElement | null) => {
+      eventSourceRef.current = element ?? (fallbackEventSource as HTMLElement);
+    },
+    [eventSourceRef, fallbackEventSource],
+  );
+
+  return { eventSourceRef, setEventSource };
+}
+
 function applyDirectorViewportSnapshot(
   perspective: PerspectiveCamera,
   snapshot: DirectorViewportSnapshot,
@@ -331,6 +350,8 @@ function DirectorViewportGizmo({
   onAxisSelect: (axis: DirectorViewportAxisId) => void;
   snapshot: DirectorViewportSnapshot;
 }) {
+  const { eventSourceRef, setEventSource } = useDirectorCanvasEventSource();
+
   return (
     <div
       data-director-viewport-gizmo
@@ -340,10 +361,12 @@ function DirectorViewportGizmo({
       className="absolute right-5 top-5 z-20 h-20 w-20"
     >
       <div
+        ref={setEventSource}
         className="pointer-events-none absolute inset-0 drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]"
         data-director-gizmo-webgl-canvas-wrapper
       >
         <Canvas
+          eventSource={eventSourceRef}
           frameloop="always"
           camera={{ fov: snapshot.fov, position: [0, 0, 1] }}
           gl={{ alpha: true, antialias: true }}
@@ -1949,6 +1972,7 @@ export function DirectorViewport({
     (state) => state.cancelDirectorGesture,
   );
   const viewportRef = useRef<HTMLDivElement>(null);
+  const { eventSourceRef, setEventSource } = useDirectorCanvasEventSource();
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [viewportSnapshot, setViewportSnapshot] =
     useState<DirectorViewportSnapshot>(
@@ -2205,8 +2229,13 @@ export function DirectorViewport({
       className="relative h-full min-h-0 min-w-0 overflow-hidden bg-[#20252b]"
       aria-label="3D导演视口"
     >
-      <div data-director-webgl-canvas className="absolute inset-0">
+      <div
+        ref={setEventSource}
+        data-director-webgl-canvas
+        className="absolute inset-0"
+      >
         <Canvas
+          eventSource={eventSourceRef}
           shadows
           frameloop="always"
           dpr={[1, 2]}

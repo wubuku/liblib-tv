@@ -1,0 +1,41 @@
+{
+  "date": "2026-08-28",
+  "baseUrl": "http://localhost:3001",
+  "server": {
+    "process": "single project Next dev server",
+    "port": 3001,
+    "restartedBeforeRun": true
+  },
+  "scripts": [
+    "verify-liblib-batch59.py",
+    "verify-liblib-batch67.py",
+    "verify-liblib-batch68.py",
+    "verify-liblib-batch69.py",
+    "verify-liblib-batch70.py",
+    "verify-liblib-batch71.py",
+    "verify-liblib-batch72.py",
+    "verify-liblib-batch73.py",
+    "verify-liblib-batch74.py",
+    "verify-liblib-batch75.py",
+    "verify-liblib-batch76.py",
+    "verify-liblib-batch77.py",
+    "verify-liblib-batch78.py"
+  ],
+  "status": "PASS",
+  "results": {
+    "batch68R3fTeardown": {
+      "ownerSwitch": true,
+      "crossCanvasAutoClose": true,
+      "duplicateDeleteTeardown": true,
+      "pageErrors": 0
+    },
+    "allCurrentGates": true,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestErrors": 0
+  },
+  "evidenceBoundary": {
+    "cloneReliability": true,
+    "libtvDirectorSourceExact": false
+  }
+}

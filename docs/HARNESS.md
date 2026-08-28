@@ -116,8 +116,10 @@ Batch 77 是 source-aligned navigation + Director pointer hybrid gate，默认�
 真实 mouse pointer drag 断言。
 
 Batch 78 是 Director pointer cancellation hybrid gate，默认不写截图；它保留
-真实 mouse pointer 输入、pointer capture 状态、gesture/history 与 stale listener
-断言。
+真实 mouse pointer 输入、pointer capture 状态、gesture/history、stale listener
+与跨 owner/canvas R3F Canvas teardown 断言。2026-08-28 已串行复跑 Batch 59、
+67-78，全部通过；这仍是 clone-owned reliability gate，不是源站 Director
+source parity。
 
 ## Browser Evidence Requirements
 

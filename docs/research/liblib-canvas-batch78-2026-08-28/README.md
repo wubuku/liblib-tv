@@ -1,6 +1,6 @@
 # Batch 78: Director Pointer Cancellation and Cleanup
 
-> 状态：`FOCUSED_RUNTIME_RECORDED_PASS`。
+> 状态：`POINTER_CANCELLATION_AND_R3F_TEARDOWN_RECORDED_PASS`。
 >
 > 建档日期：2026-08-28；实施前代码基线：`8e59409`。
 
@@ -21,6 +21,8 @@ runtime-only 语义或 LibTV 未核实的 source-exact 行为。
 - [`PLAN.md`](PLAN.md)：范围、验收条件和停止条件；
 - [`IMPLEMENTATION.md`](IMPLEMENTATION.md)：代码改动、专项运行和回归结果；
 - [`runtime-audit.json`](runtime-audit.json)：无截图的结构化运行记录；
+- [`current-gate-regression.json`](current-gate-regression.json)：Batch 59、
+  67-78 串行回归与 Batch 68 R3F teardown 结果；
 - [`../../CANVAS_NAVIGATION.md`](../../CANVAS_NAVIGATION.md)：普通画布导航入口；
 - [`../liblib-canvas-batch71-2026-08-27/`](../liblib-canvas-batch71-2026-08-27/)：
   Director 原有 gesture boundary 合同；
@@ -35,13 +37,16 @@ runtime-only 语义或 LibTV 未核实的 source-exact 行为。
   仍可使用；姿态保持 runtime-only；
 - Timeline：scrub pointercancel、hidden 后不再响应 stale pointermove，完成后
   可再次 scrub，且不引入 Director history；
+- R3F Canvas：跨 owner/canvas teardown 的异步初始化不会再向 `null` 事件目标
+  注册 listener；真实 wrapper 仍承载正常 Canvas pointer 事件；
 - Batch 78 专项 Playwright：`SCRIPT_RECORDED_PASS`；
+- Batch 68 原始 verifier 与 Batch 59、67-78 当前闸门串行回归：全部通过；
+- `npm run check`、`npm run docs:check`、`git diff --check`：全部通过；
 - 截图：0；console/page/request errors：0。
 
 ## 4. 证据边界
 
-这些结果证明当前 clone 的指针生命周期合同，不证明 LibTV 原站 Director 的
-DOM/CSS、内部事件实现、真实手机陀螺仪或真实资源/provider 行为。普通画布
-鼠标/触摸板导航仍以 Batch 77 的源站 runtime audit 和
+这些结果证明当前 clone 的指针生命周期和 R3F teardown 合同，不证明 LibTV
+原站 Director 的 DOM/CSS、内部事件实现、真实手机陀螺仪或真实资源/provider
+行为。普通画布鼠标/触摸板导航仍以 Batch 77 的源站 runtime audit 和
 [`CANVAS_NAVIGATION.md`](../../CANVAS_NAVIGATION.md) 为准。
-

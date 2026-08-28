@@ -10,7 +10,8 @@
 > `CLIPBOARD_REMAP_GATE_RECORDED_PASS` /
 > `OWNER_REACHABILITY_GATE_RECORDED_PASS` /
 > `POINTER_CANCELLATION_GATE_RECORDED_PASS` /
-> `FULL_SUITE_NOT_CURRENTLY_RUN`.
+> `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
+> `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
 > Audit date: 2026-08-28.
 >
@@ -20,7 +21,8 @@
 > Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier,
 > Batch 73 async-authority verifier, Batch 74 persistence verifier and Batch 75
 > clipboard identity-remap verifier, Batch 76 owner-reachability verifier, and
-> Batch 78 pointer-cancellation verifier.
+> Batch 78 pointer-cancellation verifier, including the R3F Canvas teardown
+> regression exposed by the Batch 68 cross-owner sequence.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -128,7 +130,7 @@ historical regressions.
 | Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
 | Batch 75 | Director project-scoped clipboard identity remap and guarded keyboard routing | `CURRENT_GATE` | 12-scenario pure packet/planner corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` clipboard-remap gate；does not prove LibTV source copy/paste UI、system/cross-project clipboard、whole-project duplicate or real resource transfer |
 | Batch 76 | Director all-canvas owner reachability reconciliation and tombstone cleanup | `CURRENT_GATE` | 9-scenario pure planner corpus + A/B/cross-canvas fresh-page Playwright；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` owner-reachability gate；does not prove durable tombstone、storage/resource deletion、undo restore、whole-project duplicate or source parity |
-| Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation and cleanup | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
+| Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation, cleanup and R3F teardown | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios + cross-owner/canvas teardown regression；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -364,11 +366,27 @@ Batch 78 pointer-cancellation gate:
 | Browser corpus | Curve commit/cancel/pointercancel/blur/hidden/begin-rejected；Phone Vcam pointercancel/blur/close/reuse；Timeline scrub pointercancel/hidden/reuse/stale-move prevention |
 | Runtime boundary | Curve cancel restores baseline and leaves zero history；Phone pose remains runtime-only；Timeline cancel removes stale listeners and leaves Director/graph history untouched |
 | Diagnostics | zero console/page/request errors |
-| Artifact | Batch 78 `runtime-audit.json` only；zero screenshots |
+| Artifact | Batch 78 `runtime-audit.json` and `current-gate-regression.json`；zero screenshots |
 
 This result closes the clone-owned pointer cancellation slice adjacent to Batch 71
 and Batch 77. It does not prove source-exact LibTV Director cancellation behavior,
 real phone sensors, touchpad hardware or source/provider parity.
+
+### 4.3 Current-gate serial regression
+
+On 2026-08-28, after restarting the single `localhost:3001` Next dev server, the
+following current gates were run serially and all passed:
+
+```text
+Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
+Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78
+```
+
+The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
+that had previously exposed five R3F `null.addEventListener` pageerrors. After the
+Batch 78 event-source fallback fix, Batch 68 and the full current-gate sequence
+reported zero console/page/request errors. This is a clone reliability result,
+not LibTV source parity.
 
 ## 5. Future Gate Profiles
 

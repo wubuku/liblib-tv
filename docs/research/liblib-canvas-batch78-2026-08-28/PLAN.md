@@ -82,7 +82,21 @@ store/history 状态验证。
 - [x] 读取 Batch 71/77 合同和现有实现；
 - [x] 确认三处相似指针生命周期风险；
 - [x] 本计划落档；
-- [ ] 实施三处修复；
-- [ ] 运行 Batch 78 专项 verifier；
-- [ ] 运行跨批回归和全量检查；
-- [ ] 更新台账并 commit/push。
+- [x] 实施三处修复；
+- [x] 发现并修复跨批回归暴露的 R3F Canvas 异步 teardown 风险；
+- [x] 运行 Batch 78 专项 verifier；
+- [x] 运行 Batch 59、67-78 当前闸门串行回归；
+- [x] 运行 `npm run check`、`npm run docs:check` 和 diff/脚本门禁；
+- [x] 更新台账并 commit/push。
+
+## 7. 实施后停止条件
+
+本批在以下条件同时满足后结束：
+
+- Director 三类 DOM/runtime pointer 入口在 commit、cancel、失焦、隐藏和卸载
+  后均无 stale listener/capture；
+- Director 快速切换、跨 canvas 自动关闭、duplicate/delete teardown 不产生
+  R3F `pageerror`；
+- Batch 59、67-78 当前回归、`npm run check` 和 `npm run docs:check` 均通过；
+- 本文、Batch README、验证台账和 current verifier manifest 已记录结果；
+- 主 worktree 是唯一 worktree，checkpoint 已提交并推送。
