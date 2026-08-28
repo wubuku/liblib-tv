@@ -2,7 +2,7 @@
 
 > **Purpose**：恢复 Director object/group/path TransformControls 的正确绑定、
 > 拖拽提交和 gesture cleanup。
-> **Status**：`IN_PROGRESS`。
+> **Status**：`SCRIPT_RECORDED_PASS`。
 > **Date**：2026-08-28。
 
 ## 1. 前置合同
@@ -100,8 +100,21 @@ TransformControls 实际 attach 到它自己创建的外层 group；当前 commi
 
 - [x] 读取合同与 Drei implementation；
 - [x] fresh-page 复现 object gizmo 错位、零提交和 gesture 泄漏；
-- [ ] 修复 object/group/path explicit attachment；
-- [ ] 新增并运行实际 pointer drag verifier；
-- [ ] 运行 Director 跨批回归与全量检查；
-- [ ] 补齐实施和治理台账；
-- [ ] commit/push，确认工作区干净。
+- [x] 修复 object/group/path explicit attachment；
+- [x] 新增并运行实际 pointer drag verifier；
+- [x] 运行 Director 跨批回归与全量检查；
+- [x] 补齐实施和治理台账；
+- [x] commit/push，确认工作区干净。
+
+## 8. 结果摘要
+
+- `scripts/verify-liblib-batch77.py` 已通过真实 Playwright pointer/wheel 输入；
+- 普通画布已与 2026-08-28 登录态源站对齐：普通 wheel 平移、默认中键
+  平移、`Space`/`H` 左键平移、`Command`/`Control` wheel 缩放，以及 `V`
+  空白左键拖动 no-op；
+- Director mug gizmo 拖动会同步 `authoredObjects` 与 runtime `objects`，提交
+  恰好一条 Director history，undo/redo 可往返，零距离拖动不产生 history；
+- 详细实现、运行命令和边界见 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)、
+  [`runtime-audit.json`](runtime-audit.json) 与
+  [`SOURCE_NAVIGATION_AUDIT_2026-08-28.md`](SOURCE_NAVIGATION_AUDIT_2026-08-28.md)；
+- 本计划的最终提交、push 和工作区状态以仓库 git 历史为准。

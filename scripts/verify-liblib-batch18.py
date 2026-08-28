@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from playwright.sync_api import Page, sync_playwright
@@ -5,7 +6,7 @@ from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
-URL = "http://localhost:3000"
+URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:3000")
 
 
 def attach_errors(page: Page):
@@ -24,7 +25,7 @@ def open_zoom_menu(page: Page):
     trigger = page.locator('[data-viewport-menu-trigger="zoom"]')
     trigger.click()
     menu = page.locator('[data-liblib-overlay="zoom-menu"]')
-    assert menu.is_visible()
+    menu.wait_for(state="visible")
     return trigger, menu
 
 

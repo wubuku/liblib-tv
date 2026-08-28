@@ -65,12 +65,12 @@ clone 的 `duplicateSelectedNodes()` 不是简单复制卡片：它调用 `dupli
 | 放大 | 可见“放大”，文本快照无明确 keycap | `Command++` | `Meta/Ctrl` + `+` 或 `=`，每次 `+0.1`，限制在 `0.1..8` | 只改 React Flow viewport，不进入 graph history | clone 运行语义存在；source chord 未证实 |
 | 缩小 | 可见“缩小”，文本快照无明确 keycap | `Command+-` | `Meta/Ctrl+-`，每次 `-0.1`，限制在 `0.1..8` | 只改 viewport | 同上 |
 | 适应画布 | `0` | `Command+0` | `Meta/Ctrl+0` 调用 `fitView({ padding: 0.12 })` | 只改 viewport | `HELP_DRIFT`：source 快照未证明 modifier |
-| 滚轮/触控板缩放 | 触控板、鼠标行可见 | 触控板；`Command` + 鼠标 | React Flow `zoomOnScroll` 为 true，代码没有要求 modifier | React Flow gesture；具体设备解释未做专项验证 | `REACT_FLOW_GESTURE` + `HELP_DRIFT` |
+| 滚轮/触控板缩放 | 触控板、鼠标行可见 | 触控板；`Command`/`Control` + 鼠标 | React Flow wheel path；Batch 77 已验证普通 wheel 平移、修饰键 wheel 缩放 | React Flow gesture；真实物理触摸板未测，Chromium wheel/pinch 路径已核对 | `REACT_FLOW_GESTURE` + `SOURCE_RUNTIME_AUDIT` |
 | Space 临时移动 | `Space` | `Space` | keydown 进入 temporary pan；keyup、窗口 blur、页面隐藏时复位 | 不切换持久工具，不进入 graph history | 已实现，并显式接管 React Flow 默认 Space pan |
 | V | `V`，源站标签“移动” | `V`，clone 同样显示“移动” | 实际调用 `setCanvasTool("select")` | 切换到选择工具 | `HELP_DRIFT`：显示语义与 handler 名称相冲突，需源站复核 |
 | H | `H`，抓手工具 | `H` | 调用 `setCanvasTool("pan")` | 切换持久 pan 工具 | 运行语义一致 |
 | 整理画布 | `Option+Shift+F` | `Option+Shift+F` | `Alt+Shift+F` 调用 route-local `organize()` | 重排 nodes、清空选择、记录 graph history，并另存/应用 viewport | 已实现；graph 和 viewport 的恢复边界需与图事务目录联读 |
-| 鼠标/触控板移动 | 两行可见 | 两行可见 | `panOnScroll` 开启；drag pan 只在持久 pan 或 Space 临时 pan 时开启 | React Flow gesture | 文案级对齐，设备级手势仍未专项验证 |
+| 鼠标/触控板移动 | 两行可见 | 两行可见 | `panOnScroll` 开启；普通中键、持久 `H` 和临时 `Space` 左键均可平移 | React Flow gesture | Batch 77 已完成源站运行态行为核对；真实物理触摸板仍未直接测试 |
 
 React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键：默认 Space 激活与默认删除均被关闭，普通工作台由 `page.tsx` 统一接管。不能同时把 React Flow 默认行为和 page handler 记为两个能力。
 

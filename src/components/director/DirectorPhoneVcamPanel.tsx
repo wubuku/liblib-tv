@@ -144,6 +144,7 @@ export function DirectorPhoneVcamPanel({
     (state) => state.importPhoneVcamTake,
   );
   const pointerId = useRef<number | null>(null);
+  const posePadRef = useRef<HTMLDivElement>(null);
   const orientationOrigin = useRef<DirectorPhoneOrientation | null>(null);
   const samples = useRef<DirectorPhoneVcamSample[]>([]);
   const [gyroMessage, setGyroMessage] = useState<string | null>(null);
@@ -152,6 +153,35 @@ export function DirectorPhoneVcamPanel({
   );
   const recording = phoneVcam.status === "recording";
   const remaining = Math.max(duration - currentTime, 0);
+
+  const releasePosePointer = useCallback((requestedPointerId?: number) => {
+    const activePointerId = pointerId.current;
+    if (activePointerId === null) return;
+    const releaseId = requestedPointerId ?? activePointerId;
+    const target = posePadRef.current;
+    if (target?.hasPointerCapture(releaseId)) {
+      target.releasePointerCapture(releaseId);
+    }
+    pointerId.current = null;
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      releasePosePointer();
+      return;
+    }
+    const handleBlur = () => releasePosePointer();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") releasePosePointer();
+    };
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      releasePosePointer();
+    };
+  }, [open, releasePosePointer]);
 
   useEffect(() => {
     if (!open || phoneVcam.status !== "idle") return;
@@ -387,7 +417,10 @@ export function DirectorPhoneVcamPanel({
           aria-label="关闭虚拟相机"
           title="关闭"
           disabled={recording}
-          onClick={onClose}
+          onClick={() => {
+            releasePosePointer();
+            onClose();
+          }}
           className="flex h-7 w-7 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white disabled:text-[#444]"
         >
           <X size={14} />
@@ -477,6 +510,7 @@ export function DirectorPhoneVcamPanel({
                 </span>
               </div>
               <div
+                ref={posePadRef}
                 data-director-phone-vcam-pose-pad
                 role="slider"
                 aria-label="手机运镜姿态"
@@ -497,10 +531,13 @@ export function DirectorPhoneVcamPanel({
                 }}
                 onPointerUp={(event) => {
                   if (pointerId.current !== event.pointerId) return;
+                  releasePosePointer(event.pointerId);
+                }}
+                onPointerCancel={(event) =>
+                  releasePosePointer(event.pointerId)
+                }
+                onLostPointerCapture={() => {
                   pointerId.current = null;
-                  if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-                    event.currentTarget.releasePointerCapture(event.pointerId);
-                  }
                 }}
                 className={cn(
                   "relative h-24 touch-none overflow-hidden rounded border border-white/[0.08] bg-[#171717]",

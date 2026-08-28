@@ -1,8 +1,8 @@
-# Batch 77: Director Transform Controls Binding Regression
+# Batch 77: Director Transform Controls Binding Regression and Canvas Navigation Parity
 
-> 状态：`IN_PROGRESS`。
+> 状态：`SCRIPT_RECORDED_PASS`。
 >
-> 建档日期：2026-08-28；代码基线：`d5734d3`。
+> 建档日期：2026-08-28；实施前代码基线：`8e59409`。
 
 ## 1. 问题
 
@@ -29,7 +29,8 @@ wrapper group，而提交逻辑读取内部 `groupRef`。gizmo attachment、视�
 - character group rig；
 - motion-path anchor / Bezier handle。
 
-本批会统一修正三类绑定，并以实际 browser pointer drag 建立回归门禁。
+本批已统一修正三类绑定，并以实际 browser pointer drag 建立回归门禁；同时收口
+普通 LibTV 画布的 source-aligned navigation 行为和开发者操作文档。
 
 ## 3. 入口
 
@@ -40,8 +41,20 @@ wrapper group，而提交逻辑读取内部 `groupRef`。gizmo attachment、视�
   原始 Director workspace 交互合同；
 - [`../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](../LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)：
   gesture/history 总合同。
+- [`../../CANVAS_NAVIGATION.md`](../../CANVAS_NAVIGATION.md)：普通画布操作的当前
+  开发者/agent 权威入口。
 
 ## 4. 证据边界
 
 本批修复当前 clone 的 R3F/Drei ownership 回归，不新增 LibTV source-exact
 Director 视觉或交互主张，也不重新识别历史截图。
+
+## 5. 完成结果
+
+- 普通画布导航 focused verifier：`SCRIPT_RECORDED_PASS`；
+- Director 真实 gizmo pointer drag、undo/redo、zero-distance cleanup：
+  `SCRIPT_RECORDED_PASS`；
+- `npm run docs:check`、`npm run check`、跨批回归和 git diff 检查的最终结果
+  记录在 `IMPLEMENTATION.md` 与仓库验证台账中；
+- 源站只读导航证据不包含 graph mutation，也不证明源站 Director 的 exact
+  DOM/CSS 或内部渲染技术。

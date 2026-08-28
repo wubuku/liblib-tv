@@ -1,6 +1,7 @@
 # LibTV 画布 Batch 6 实施记录
 
-> 状态：源码实施、跨批回归和完整工程检查完成  
+> 状态：历史源码实施、跨批回归和完整工程检查完成；框选子合同已被 Batch 77
+> source runtime audit supersede
 > 最后更新：2026-08-25
 
 ## 已确认
@@ -86,6 +87,15 @@ npm run check
 - 临时状态实现和 blur 恢复是当前 clone 的可靠前端契约；
 - viewport 仍不进入 graph history；
 - 没有修改 FrameOS 的导航手势。
+
+## 后续源站校准
+
+2026-08-28 登录态源站 runtime 核对了普通滚轮、中键、`Space`、`H`、`V`、
+modifier wheel 和空白拖动。核对结果表明 `V` 下空白左键拖动是 no-op，因此
+Batch 6 的“选择工具空白框选”只保留为 dated clone history，不属于当前
+source-aligned gate。当前操作步骤、实现参数和 verifier 见
+[`docs/CANVAS_NAVIGATION.md`](../../CANVAS_NAVIGATION.md) 与
+[`liblib-canvas-batch77-2026-08-28/`](../liblib-canvas-batch77-2026-08-28/)。
 
 ## 下一批候选
 

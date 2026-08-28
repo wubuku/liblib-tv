@@ -41,6 +41,7 @@ graph TD
 | [`LAYERS.md`](LAYERS.md) | `types → lib → store → components → route` 依赖边界 |
 | [`QUALITY.md`](QUALITY.md) | TypeScript、React Flow、证据、截图和文档质量规则 |
 | [`HARNESS.md`](HARNESS.md) | lint/typecheck/build、Batch Playwright 和文档链接检查 |
+| [`CANVAS_NAVIGATION.md`](CANVAS_NAVIGATION.md) | 当前 LibTV 普通画布拖动、缩放、鼠标和 macOS 触摸板操作权威 |
 | [`GLOSSARY.md`](GLOSSARY.md) | 产品、画布、React Flow 和研究术语 |
 | [`BIG_PICTURE.md`](BIG_PICTURE.md) | 当前系统的详细认知和原型边界 |
 | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md) | 文档体系迁移和维护计划 |
@@ -82,10 +83,12 @@ graph TD
 - [`research/liblib-canvas-batch75-2026-08-27/`](research/liblib-canvas-batch75-2026-08-27/)：Director project-scoped session clipboard、typed closure、two-pass identity/reference remap、camera detach、resource alias、one-history 与 guarded keyboard focused pass。
 - [`research/liblib-canvas-batch76-2026-08-27/`](research/liblib-canvas-batch76-2026-08-27/)：Director 全画布 owner reachability、inactive source/canvas tombstone、active shell/session/runtime 两阶段 cleanup、幂等、stale async 与 graph/persistence 边界 focused pass。
 - [`research/liblib-canvas-batch77-2026-08-28/`](research/liblib-canvas-batch77-2026-08-28/)：Director TransformControls attachment 错位、实际 pointer drag 零提交与 gesture 泄漏的复现、修复和专项验证入口。
+- [`research/liblib-canvas-batch78-2026-08-28/`](research/liblib-canvas-batch78-2026-08-28/)：Director Curve/Phone Vcam/Timeline 三类指针手势的 pointercancel、失焦、页面隐藏、卸载清理与专项验证入口。
 - [`research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director 17 个历史 browser verifier、Batch 67-76 current reliability gates、merge candidate/historical-only 分级与 `LIBTV-VR-024` 入口。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。
 - [`research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)：源站快捷键文案、clone 帮助行、实际 handler、React Flow gesture 与局部上下文优先级对照。
+- [`CANVAS_NAVIGATION.md`](CANVAS_NAVIGATION.md)：开发者/agent 查找普通画布 viewport、滚轮、触摸板、`V/H/Space` 和中键行为的首要入口。
 - [`research/LIBTV_GRAPH_TRANSACTION_CATALOG.md`](research/LIBTV_GRAPH_TRANSACTION_CATALOG.md)：LibTV 用户动作、store transaction、nodes/edges/selection/history 副作用和证据成熟度目录。
 - [`research/components/LibTVGraphConnection.contract.md`](research/components/LibTVGraphConnection.contract.md)：普通 graph connection 的方向归一化、校验结果、事务、fixture 和 verifier 设计权威。
 - [`research/components/LibTVGraphDocument.contract.md`](research/components/LibTVGraphDocument.contract.md)：runtime/history/portable document/clipboard/persistence 分层、V1 schema、strict load 和 snapshot isolation 合同。

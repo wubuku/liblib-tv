@@ -5,8 +5,15 @@
 ## Page-Level
 
 ### Canvas Interaction Model
-- **Type:** Select/marquee + temporary/persistent pan + zoom + node drag (React Flow)
-- **Select mode:** Empty-area left drag creates a partial-intersection marquee selection.
+- **Type:** Select + temporary/persistent pan + scroll/pinch zoom + node drag (React Flow)
+- **Current operation authority:** [`../CANVAS_NAVIGATION.md`](../CANVAS_NAVIGATION.md)
+- **Select mode:** Empty-area left drag is a no-op in the current source-aligned clone;
+  node-body drag remains the node move entry. The historical marquee implementation is
+  recorded in Batch 6 and superseded by Batch 77.
+- **Wheel pan:** Plain vertical/horizontal wheel pans the viewport without changing zoom.
+- **Modifier zoom:** `Command`/`Control` + wheel zooms around the pointer; macOS trackpad
+  pinch follows the browser's modifier-wheel path.
+- **Middle-button pan:** Middle-button drag pans in every persistent tool state.
 - **Persistent pan:** Press `H`, then left drag the pane. Press `V` to return to select mode.
 - **Temporary pan:** Hold `Space` while left dragging the pane; release returns to the persistent tool.
 - **Zoom:** Scroll wheel or pinch gesture (configured via `zoomOnScroll`)
@@ -53,7 +60,8 @@
   `directorStore.selectedObjectId`; empty viewport selection routes the Inspector
   back to scene settings. Selecting a camera also supplies camera-view controls.
 - **Editing:** visibility, color, XYZ transform, camera target and FOV edits update
-  the real R3F scene. TransformControls commit their values back to the store.
+  the real R3F scene. Explicitly attached TransformControls commit the same preview
+  object back to the store; Batch 77 covers the previous attachment regression.
 - **Framing:** director/camera views, `16:9 / 9:16 / 1:1` and thirds guides are
   visible authoring state.
 - **Capture:** the WebGL canvas is cropped to the visible frame after temporarily
@@ -78,6 +86,11 @@
 - **Authoring:** manual keyframe add performs a same-time upsert. Inspector edits
   and completed TransformControls drags record at the playhead when auto-keyframe
   is enabled. Sampling itself never creates keyframes.
+- **Pointer cancellation:** Curve Editor continuous edits commit once on
+  pointerup and cancel back to baseline on pointercancel, blur, hidden-page,
+  lost-capture or unmount. Phone Vcam pose capture and Timeline scrub use the
+  same cleanup boundary without entering ordinary graph history; Batch 78 is the
+  focused clone-owned regression gate.
 - **Character pose:** selecting a character exposes source-named `属性 / 姿势`
   tabs. The pose surface contains all 20 current source preset names and six
   source-named SAM groups covering 14 displayed bones. Preset or continuous

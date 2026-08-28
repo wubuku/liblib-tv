@@ -161,8 +161,11 @@ React Flow change
 - 注册 11 个节点组件和 `DeletableEdge`
 - 建立新连线
 - 处理节点选择、画布空白点击和键盘删除
-- 支持多选/框选、成组/解组，以及选择集合的移动和复制事务
-- 在选择工具中用空白拖动框选；`H` 持久抓手、`V` 恢复选择、按住 `Space` 临时平移
+- 支持多选/成组/解组，以及选择集合的移动和复制事务；历史 Batch 6
+  曾实现空白框选，但 2026-08-28 源站 runtime 核对后已由 Batch 77 supersede
+- 普通滚轮/触摸板滚动平移，中键拖动平移；`H` 持久抓手、`V` 恢复选择、
+  按住 `Space` 临时平移；`Command/Control` + wheel 或触摸板 pinch 缩放
+- `V` 下空白左键拖动是 no-op；当前操作入口见 [`CANVAS_NAVIGATION.md`](CANVAS_NAVIGATION.md)
 - 监听 `delete-edge` CustomEvent
 - 同步 React Flow viewport 与实际缩放百分比
 - 在 `929px+` 使用原站 53% 构图，在 `768px-` 使用原站 28% 紧凑构图
@@ -195,8 +198,8 @@ capture bytes、Three.js refs 与 graph projection。当前日常 gate 是 Batch
 codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
 command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
 Batch 73 async authority + Batch 74 browser-local persistence + Batch 75
-clipboard identity remap + Batch 76 owner reachability + Batch 59 browser
-smoke。Batch 68 已建立
+clipboard identity remap + Batch 76 owner reachability + Batch 78 pointer
+cancellation + Batch 59 browser smoke。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
@@ -218,6 +221,9 @@ resource alias、one-entry paste history 和 guarded `Cmd/Ctrl+C/V`。inactive-o
 reconciliation 已由 Batch 76 以 all-canvas live owner planner、inactive
 source/canvas one-time tombstone、active shell/session/runtime 两阶段 cleanup、
 graph undo 不复活 project 和 retained persistence boundary 完成 focused pass。
+Batch 78 又补齐 Curve Editor、Phone Vcam 和 Timeline scrub 的
+pointercancel/blur/visibility/unmount cleanup、pointer capture release、
+begin-result ownership 与 stale-pointer prevention。durable tombstone、
 durable tombstone、storage/resource cleanup、whole-project duplicate、普通画布
 async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
 focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
@@ -629,6 +635,8 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   first/last/current metadata、direct edge、重复避让、source selection、
   单步 undo/redo、普通图片浮层和 `390x844` 裁切均通过
 - `npm run docs:check`：文档与本地图片链接通过
+- Batch 77：普通画布 wheel/middle/Space/H/V/blank no-op/modifier zoom
+  与 Director 真实 TransformControls pointer drag 的专项门禁
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

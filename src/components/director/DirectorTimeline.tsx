@@ -107,6 +107,7 @@ export function DirectorTimeline() {
   );
   const timelineRootRef = useRef<HTMLElement>(null);
   const timelineCanvasRef = useRef<HTMLDivElement>(null);
+  const scrubCleanupRef = useRef<(() => void) | null>(null);
   const pathTriggerRef = useRef<HTMLButtonElement>(null);
   const pathMenuRef = useRef<HTMLDivElement>(null);
   const presetTriggerRef = useRef<HTMLButtonElement>(null);
@@ -115,6 +116,12 @@ export function DirectorTimeline() {
   const [presetPanelLeft, setPresetPanelLeft] = useState<number | null>(null);
   const [presetMode, setPresetMode] =
     useState<DirectorCameraMotionPresetMode>("replace");
+
+  useEffect(() => {
+    return () => {
+      scrubCleanupRef.current?.();
+    };
+  }, []);
 
   useEffect(() => {
     if (!timeline.isPlaying) return;
@@ -281,15 +288,50 @@ export function DirectorTimeline() {
     setTimelinePlaying(false);
     seekFromClientX(event.clientX);
 
+    const target = event.currentTarget;
+    const pointerId = event.pointerId;
+    let active = true;
     const handleMove = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId !== pointerId) return;
       seekFromClientX(pointerEvent.clientX);
     };
-    const handleUp = () => {
+    const cleanup = () => {
+      if (!active) return;
+      active = false;
       window.removeEventListener("pointermove", handleMove);
       window.removeEventListener("pointerup", handleUp);
+      window.removeEventListener("pointercancel", handleCancel);
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      target.removeEventListener("lostpointercapture", handleLostPointerCapture);
+      if (target.hasPointerCapture(pointerId)) {
+        target.releasePointerCapture(pointerId);
+      }
+      if (scrubCleanupRef.current === cleanup) {
+        scrubCleanupRef.current = null;
+      }
     };
+    const handleUp = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId === pointerId) cleanup();
+    };
+    const handleCancel = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId === pointerId) cleanup();
+    };
+    const handleBlur = () => cleanup();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") cleanup();
+    };
+    const handleLostPointerCapture = () => cleanup();
+
+    scrubCleanupRef.current?.();
+    scrubCleanupRef.current = cleanup;
+    target.setPointerCapture(pointerId);
     window.addEventListener("pointermove", handleMove);
-    window.addEventListener("pointerup", handleUp, { once: true });
+    window.addEventListener("pointerup", handleUp);
+    window.addEventListener("pointercancel", handleCancel);
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    target.addEventListener("lostpointercapture", handleLostPointerCapture);
   };
 
   return (

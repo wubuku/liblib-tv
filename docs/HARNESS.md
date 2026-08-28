@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-76（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-78（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -25,7 +25,7 @@ The repository does not currently have a single `npm test` suite. The source can
 |---|---|
 | Batch 4 | grouping, ungrouping, delete/undo, mobile overflow |
 | Batch 5 | multi-drag, transactional undo/redo, duplicate selection |
-| Batch 6 | marquee selection, H/V tools, Space pan, input guard |
+| Batch 6 | historical marquee implementation, H/V tools, Space pan, input guard |
 | Batch 7 | source-like organize topology, confirmation, restore/keep |
 | Batch 8 | video group parent-child hierarchy, copy and cascade delete |
 | Batch 9 | selected-node overlays, anchor geometry, pan/zoom and clipping |
@@ -92,13 +92,15 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 74 | Director browser-local durable project persistence, strict envelope restore, stale save, owner isolation, runtime/UI/resource-byte exclusion and storage failure continuity |
 | Batch 75 | Director project-scoped clipboard packet, typed closure, identity/reference remap, resource alias, deterministic paste, one-entry history and keyboard/persistence isolation |
 | Batch 76 | Director all-canvas owner reachability, inactive source/canvas tombstone, active shell/session/runtime cleanup, idempotency, stale async, graph undo boundary and retained persistence |
+| Batch 77 | source-aligned wheel/middle/Space/H/V canvas navigation, blank-drag no-op, modifier zoom, mobile diagnostics and real Director TransformControls pointer drag/gesture cleanup |
+| Batch 78 | Director Curve Editor/Phone Vcam/Timeline pointercancel, blur, visibility, unmount cleanup, pointer reuse and stale-pointer prevention |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..76}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..78}.py; do
   python3 "$script" || exit 1
 done
 ```
@@ -108,6 +110,14 @@ Batch 34 和 Batch 66 没有对应的专项 verifier，不应被循环命令隐�
 Batch 71、Batch 72、Batch 73、Batch 74、Batch 75、Batch 76 是 pure + browser hybrid
 且不生成截图；其余视觉脚本仍按
 各自 batch screenshot ledger 维护。
+
+Batch 77 是 source-aligned navigation + Director pointer hybrid gate，默认不写
+截图；它保留 DOM/computed style、viewport runtime、R3F canvas pixels 和
+真实 mouse pointer drag 断言。
+
+Batch 78 是 Director pointer cancellation hybrid gate，默认不写截图；它保留
+真实 mouse pointer 输入、pointer capture 状态、gesture/history 与 stale listener
+断言。
 
 ## Browser Evidence Requirements
 

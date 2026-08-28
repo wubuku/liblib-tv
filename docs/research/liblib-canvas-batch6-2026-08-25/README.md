@@ -1,7 +1,7 @@
 # LibTV 画布 Batch 6：导航手势闭环
 
 > 建档日期：2026-08-25  
-> 状态：规划、实施、专项验证和完整工程检查完成  
+> 状态：历史批次完成；空白框选子合同已被 Batch 77 source runtime audit supersede
 > 目标：让原站快捷键面板已经公开的 `Space`、`V`、`H` 与当前画布真实行为一致，并恢复被 pan 配置覆盖的框选。
 
 ## 本批结论
@@ -22,6 +22,11 @@
 - `H` 与 `V` 只切换节点是否可拖，未形成完整的 pane drag 模式。
 
 本批修正这些已有承诺，不新增未经实时观察的右键菜单、对齐线或导航动画。
+
+2026-08-28 的登录态源站核对显示，`V` 下空白左键拖动实际是 no-op，而不是
+框选。因此 Batch 6 的框选实现仍保留用于历史追溯，但不再代表当前 clone
+的 source-aligned 行为。当前导航权威见 [`docs/CANVAS_NAVIGATION.md`](../../CANVAS_NAVIGATION.md)
+和 [`liblib-canvas-batch77-2026-08-28/`](../liblib-canvas-batch77-2026-08-28/)。
 
 ## 文档导航
 

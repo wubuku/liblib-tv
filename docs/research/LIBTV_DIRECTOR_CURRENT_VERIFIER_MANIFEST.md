@@ -9,16 +9,18 @@
 > `PERSISTENCE_GATE_RECORDED_PASS` /
 > `CLIPBOARD_REMAP_GATE_RECORDED_PASS` /
 > `OWNER_REACHABILITY_GATE_RECORDED_PASS` /
+> `POINTER_CANCELLATION_GATE_RECORDED_PASS` /
 > `FULL_SUITE_NOT_CURRENTLY_RUN`.
 >
-> Audit date: 2026-08-27.
+> Audit date: 2026-08-28.
 >
 > Scope: `scripts/verify-liblib-batch35.py` through Batch 50, Batch 59,
 > Batch 67 pure codec verifier, Batch 68 hybrid owner/session verifier,
 > Batch 69 authored/runtime verifier, Batch 70 command/history verifier,
 > Batch 71 pointer-lifecycle verifier, Batch 72 reference-aware delete verifier,
 > Batch 73 async-authority verifier, Batch 74 persistence verifier and Batch 75
-> clipboard identity-remap verifier, and Batch 76 owner-reachability verifier.
+> clipboard identity-remap verifier, Batch 76 owner-reachability verifier, and
+> Batch 78 pointer-cancellation verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -31,7 +33,7 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, nine current hybrid pure/browser reliability verifiers and one
+codec verifier, ten current hybrid pure/browser reliability verifiers and one
 current browser smoke.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
@@ -76,6 +78,9 @@ single current gate on their own:
   one-time tombstone、active shell/session/runtime two-phase cleanup、
   deterministic/idempotent reconciliation、tombstoned reopen rejection、
   delayed async stale、graph undo boundary and retained persistence.
+- Batch 78 covers Curve Editor begin-result ownership、pointer id filtering、
+  pointerup commit、pointercancel/blur/hidden/unmount cancellation、Phone Vcam
+  pointer capture release and reuse、Timeline scrub stale-pointer prevention。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -123,6 +128,7 @@ historical regressions.
 | Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
 | Batch 75 | Director project-scoped clipboard identity remap and guarded keyboard routing | `CURRENT_GATE` | 12-scenario pure packet/planner corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` clipboard-remap gate；does not prove LibTV source copy/paste UI、system/cross-project clipboard、whole-project duplicate or real resource transfer |
 | Batch 76 | Director all-canvas owner reachability reconciliation and tombstone cleanup | `CURRENT_GATE` | 9-scenario pure planner corpus + A/B/cross-canvas fresh-page Playwright；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` owner-reachability gate；does not prove durable tombstone、storage/resource deletion、undo restore、whole-project duplicate or source parity |
+| Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation and cleanup | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -163,6 +169,8 @@ LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch75.py
 LIBLIB_BASE_URL=http://localhost:3001 \
   python3 scripts/verify-liblib-batch76.py
+LIBLIB_BASE_URL=http://localhost:3001 \
+  python3 scripts/verify-liblib-batch78.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -347,6 +355,21 @@ This result closes clone-owned memory owner reachability reconciliation, not
 durable tombstone storage、resource cleanup、graph-undo project restore、
 whole-project duplicate or source-exact LibTV deletion/recovery behavior.
 
+Batch 78 pointer-cancellation gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-28 |
+| Implementation checkpoint | current Batch 78 closeout commit |
+| Browser corpus | Curve commit/cancel/pointercancel/blur/hidden/begin-rejected；Phone Vcam pointercancel/blur/close/reuse；Timeline scrub pointercancel/hidden/reuse/stale-move prevention |
+| Runtime boundary | Curve cancel restores baseline and leaves zero history；Phone pose remains runtime-only；Timeline cancel removes stale listeners and leaves Director/graph history untouched |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 78 `runtime-audit.json` only；zero screenshots |
+
+This result closes the clone-owned pointer cancellation slice adjacent to Batch 71
+and Batch 77. It does not prove source-exact LibTV Director cancellation behavior,
+real phone sensors, touchpad hardware or source/provider parity.
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -362,6 +385,7 @@ Batch 67 pure codec gate
   + Batch 74 persistence gate
   + Batch 75 clipboard-remap gate
   + Batch 76 owner-reachability gate
+  + Batch 78 pointer-cancellation gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -408,8 +432,8 @@ supplies the command/history slice；Batch 71 supplies the pointer-lifecycle
 slice；Batch 72 supplies the reference-delete slice；Batch 73 supplies the
 async-authority slice；Batch 74 supplies the browser-local persistence slice；
 Batch 75 supplies the clipboard identity-remap slice；Batch 76 supplies the
-owner-reachability slice；Batch 59 supplies the current WebGL/browser smoke
-seed.
+owner-reachability slice；Batch 78 supplies the pointer-cancellation slice；
+Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
 
@@ -424,6 +448,7 @@ Required future scenarios:
 | durable project persistence | **focused runtime in Batch 74**：versioned owner-scoped envelope、strict V1 restore、project/generation/fingerprint guards、stale save ignore、corrupt/future/mismatch zero-replacement、runtime/UI/resource-byte exclusion and session-only write failure |
 | clipboard identity remap | **focused runtime in Batch 75**：project-scoped typed packet、group/object/track/path closure、all project-local ID remap、internal/external camera policy、stable resource alias、deterministic offset、one-entry paste、reload/system boundary |
 | owner reachability reconciliation | **focused runtime in Batch 76**：all-canvas live owner authority、inactive/active invalidation、two-phase shell/runtime cleanup、repeated idempotency、tombstoned reopen rejection、stale async、graph undo and retained persistence boundary |
+| pointer cancellation and stale-input cleanup | **focused runtime in Batch 78**：Curve begin-result ownership、pointerup commit、pointercancel/blur/hidden/unmount cancel、Phone Vcam capture release/reuse、Timeline scrub stale-pointer prevention |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -441,6 +466,7 @@ ASYNC_AUTHORITY_FOCUSED_PASS
 PERSISTENCE_FOCUSED_PASS
 CLIPBOARD_REMAP_FOCUSED_PASS
 OWNER_REACHABILITY_FOCUSED_PASS
+POINTER_CANCELLATION_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

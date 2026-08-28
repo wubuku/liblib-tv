@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -53,10 +53,22 @@ export function DirectorCurveEditor() {
   const commitDirectorGesture = useDirectorStore(
     (state) => state.commitDirectorGesture,
   );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const svgRef = useRef<SVGSVGElement>(null);
+  const dragCleanupRef = useRef<
+    ((disposition?: "commit" | "cancel") => void) | null
+  >(null);
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
     null;
+
+  useEffect(() => {
+    return () => {
+      dragCleanupRef.current?.();
+    };
+  }, []);
 
   const beginHandleDrag = (
     event: ReactPointerEvent<SVGCircleElement>,
@@ -65,12 +77,18 @@ export function DirectorCurveEditor() {
     if (!selectedTrack) return;
     event.preventDefault();
     event.stopPropagation();
-    beginDirectorGesture({
+    const result = beginDirectorGesture({
       commandKind: "speed-curve",
       targetId: selectedTrack.id,
       fieldScope: `control-${handle}`,
     });
+    if (result.disposition !== "COMMITTED") return;
+
+    const target = event.currentTarget;
+    const pointerId = event.pointerId;
+    let active = true;
     const update = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId !== pointerId) return;
       const svg = svgRef.current;
       if (!svg) return;
       const rect = svg.getBoundingClientRect();
@@ -85,14 +103,49 @@ export function DirectorCurveEditor() {
         (((graph.bottom - graph.top) / graph.height) * rect.height);
       setTrackSpeedCurveControl(selectedTrack.id, handle, [x, y]);
     };
-    update(event.nativeEvent);
-    const end = () => {
+    const cleanup = (disposition: "commit" | "cancel" = "cancel") => {
+      if (!active) return;
+      active = false;
       window.removeEventListener("pointermove", update);
-      window.removeEventListener("pointerup", end);
-      commitDirectorGesture();
+      window.removeEventListener("pointerup", handleUp);
+      window.removeEventListener("pointercancel", handleCancel);
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      target.removeEventListener("lostpointercapture", handleLostPointerCapture);
+      if (target.hasPointerCapture(pointerId)) {
+        target.releasePointerCapture(pointerId);
+      }
+      if (dragCleanupRef.current === cleanup) {
+        dragCleanupRef.current = null;
+      }
+      if (disposition === "commit") {
+        commitDirectorGesture();
+      } else {
+        cancelDirectorGesture();
+      }
     };
+    const handleUp = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId === pointerId) cleanup("commit");
+    };
+    const handleCancel = (pointerEvent: PointerEvent) => {
+      if (pointerEvent.pointerId === pointerId) cleanup("cancel");
+    };
+    const handleBlur = () => cleanup("cancel");
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") cleanup("cancel");
+    };
+    const handleLostPointerCapture = () => cleanup("cancel");
+
+    dragCleanupRef.current?.();
+    dragCleanupRef.current = cleanup;
+    target.setPointerCapture(pointerId);
+    update(event.nativeEvent);
     window.addEventListener("pointermove", update);
-    window.addEventListener("pointerup", end, { once: true });
+    window.addEventListener("pointerup", handleUp);
+    window.addEventListener("pointercancel", handleCancel);
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    target.addEventListener("lostpointercapture", handleLostPointerCapture);
   };
 
   if (!selectedTrack) {

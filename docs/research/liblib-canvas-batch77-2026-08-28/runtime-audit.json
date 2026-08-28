@@ -1,0 +1,41 @@
+{
+  "batch": 77,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:3001",
+  "sourceEvidence": {
+    "navigationAudit": "SOURCE_NAVIGATION_AUDIT_2026-08-28.md",
+    "sourceExactDirectorGizmo": false,
+    "sourceMutation": false
+  },
+  "cloneContract": {
+    "navigation": {
+      "plainWheelPan": true,
+      "middleButtonPan": true,
+      "modifierWheelZoom": true,
+      "selectBlankDrag": "no-op",
+      "persistentHand": true,
+      "temporarySpaceHand": true,
+      "graphUnchanged": true
+    },
+    "mobile": {
+      "viewport": "390x844",
+      "scrollPan": true,
+      "noOverflow": true
+    },
+    "directorDrag": {
+      "selectedObject": "director-prop-mug",
+      "gizmoPointerDrag": true,
+      "authoredRuntimeSynchronized": true,
+      "directorHistoryDelta": 1,
+      "undoRedo": true,
+      "ordinaryGraphUnchanged": true
+    },
+    "directorNoopDrag": {
+      "zeroDistanceDrag": true,
+      "historyUnchanged": true,
+      "gestureCleared": true
+    }
+  },
+  "screenshots": [],
+  "errors": []
+}

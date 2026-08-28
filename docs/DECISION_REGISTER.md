@@ -363,7 +363,8 @@ pose、motion-path anchor/Bezier、path transform 和 free-path draft 的真实
 pointer lifecycle。
 
 **影响：** Batch 70 将 `LIBTV-VR-024` 的同步 command/history slice 提升为
-`HISTORY_FOCUSED_PASS`，Batch 71 提升 pointer lifecycle，Batch 72 提升
+`HISTORY_FOCUSED_PASS`，Batch 71 提升 pointer lifecycle，Batch 78 又补齐
+连续指针输入的取消/失焦/卸载边界，Batch 72 提升
 reference-aware delete，Batch 73 提升 Director async authority，Batch 75 提升
 same-project clipboard remap。相关批次都保留 close/reopen 后同一 project 的 history
 continuity、zero-partial 和普通 graph/history isolation。当前不宣称全部旧 action

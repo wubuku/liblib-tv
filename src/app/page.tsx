@@ -1038,10 +1038,11 @@ export default function Home() {
             snapGrid={[20, 20]}
             onViewportChange={onViewportChange}
             panOnScroll
+            panOnScrollSpeed={1}
             zoomOnScroll
-            panOnDrag={effectivePan}
+            panOnDrag={effectivePan ? [0, 1] : [1]}
             panActivationKeyCode={null}
-            selectionOnDrag={canvasTool === "select" && !effectivePan}
+            selectionOnDrag={false}
             connectionLineStyle={{ stroke: "#09caf5", strokeWidth: 1.5 }}
             nodesDraggable={canvasTool === "select" && !effectivePan}
             nodesConnectable

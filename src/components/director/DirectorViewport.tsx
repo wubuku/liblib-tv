@@ -72,6 +72,7 @@ import {
   type DirectorMotionPathAnchor,
   type DirectorMotionPathHandle,
   type DirectorObject,
+  type DirectorTransform,
   type DirectorTransformMode,
   type DirectorTuple3,
 } from "@/store/directorStore";
@@ -424,6 +425,17 @@ function DirectorViewportGizmoScene({
 }
 /* eslint-enable react-hooks/immutability */
 
+function hasDirectorTransformChanged(
+  current: DirectorTransform,
+  next: DirectorTransform,
+): boolean {
+  return (["position", "rotation", "scale"] as const).some((field) =>
+    current[field].some(
+      (value, axis) => Math.abs(value - next[field][axis]) > 0.0005,
+    ),
+  );
+}
+
 function TablePrimitive({
   color,
   material,
@@ -629,6 +641,9 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const commitDirectorGesture = useDirectorStore(
     (state) => state.commitDirectorGesture,
   );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const selectedMotionPathAnchorId = useDirectorStore(
     (state) => state.timeline.selectedMotionPathAnchorId,
   );
@@ -636,6 +651,9 @@ function SceneObject({ object }: { object: DirectorObject }) {
     (state) => state.timeline.motionPathDraft,
   );
   const groupRef = useRef<Group>(null);
+  const [transformTarget, setTransformTarget] = useState<Group | null>(null);
+  const transformEngagedRef = useRef(false);
+  const transformActiveRef = useRef(false);
   const selected = selectedObjectId === object.id && selectedGroupId === null;
   const owningGroup = groups.find((group) =>
     group.characterIds.includes(object.id),
@@ -644,7 +662,6 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const hideCameraRig =
     object.kind === "camera" &&
     (isCapturing || (viewMode === "camera" && object.id === activeCameraId));
-  if (!object.visible || hideCameraRig) return null;
 
   const material: MeshStandardMaterialParameters = selected
     ? {
@@ -655,11 +672,34 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const rotation = object.transform.rotation.map((value) =>
     MathUtils.degToRad(value),
   ) as [number, number, number];
+  const assignGroupRef = useCallback((group: Group | null) => {
+    groupRef.current = group;
+    setTransformTarget(group);
+  }, []);
 
-  const commitTransform = () => {
+  const restoreTransform = useCallback(() => {
     const group = groupRef.current;
     if (!group) return;
-    const values = {
+    group.position.set(...object.transform.position);
+    group.rotation.set(...rotation);
+    group.scale.set(...object.transform.scale);
+    group.updateMatrixWorld();
+  }, [object.transform.position, object.transform.scale, rotation]);
+
+  const commitTransform = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    if (!transformActiveRef.current) {
+      restoreTransform();
+      return;
+    }
+    transformActiveRef.current = false;
+    const group = groupRef.current;
+    if (!group) {
+      cancelDirectorGesture();
+      return;
+    }
+    const nextTransform: DirectorTransform = {
       position: [group.position.x, group.position.y, group.position.z],
       rotation: [
         MathUtils.radToDeg(group.rotation.x),
@@ -667,9 +707,14 @@ function SceneObject({ object }: { object: DirectorObject }) {
         MathUtils.radToDeg(group.rotation.z),
       ],
       scale: [group.scale.x, group.scale.y, group.scale.z],
-    } as const;
+    };
+    if (!hasDirectorTransformChanged(object.transform, nextTransform)) {
+      restoreTransform();
+      commitDirectorGesture();
+      return;
+    }
     (["position", "rotation", "scale"] as const).forEach((field) => {
-      values[field].forEach((value, axis) => {
+      nextTransform[field].forEach((value, axis) => {
         updateObjectTransform(
           object.id,
           field,
@@ -680,11 +725,40 @@ function SceneObject({ object }: { object: DirectorObject }) {
     });
     recordObjectKeyframe(object.id);
     commitDirectorGesture();
-  };
+  }, [
+    cancelDirectorGesture,
+    commitDirectorGesture,
+    object.id,
+    object.transform,
+    recordObjectKeyframe,
+    restoreTransform,
+    updateObjectTransform,
+  ]);
+
+  const cancelTransform = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    const wasActive = transformActiveRef.current;
+    transformActiveRef.current = false;
+    restoreTransform();
+    if (wasActive) cancelDirectorGesture();
+  }, [cancelDirectorGesture, restoreTransform]);
+
+  useEffect(() => {
+    const handlePointerUp = () => commitTransform();
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", cancelTransform);
+    return () => {
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", cancelTransform);
+    };
+  }, [cancelTransform, commitTransform]);
+
+  if (!object.visible || hideCameraRig) return null;
 
   const content = (
     <group
-      ref={groupRef}
+      ref={assignGroupRef}
       position={object.transform.position}
       rotation={rotation}
       scale={object.transform.scale}
@@ -754,20 +828,26 @@ function SceneObject({ object }: { object: DirectorObject }) {
   }
 
   return (
-    <TransformControls
-      mode={transformMode}
-      size={0.72}
-      onMouseDown={() =>
-        beginDirectorGesture({
-          commandKind: "object-transform",
-          targetId: object.id,
-          fieldScope: transformMode,
-        })
-      }
-      onMouseUp={commitTransform}
-    >
+    <>
+      {transformTarget ? (
+        <TransformControls
+          object={transformTarget}
+          mode={transformMode}
+          size={0.72}
+          onMouseDown={() => {
+            transformEngagedRef.current = true;
+            const result = beginDirectorGesture({
+              commandKind: "object-transform",
+              targetId: object.id,
+              fieldScope: transformMode,
+            });
+            transformActiveRef.current = result.disposition === "COMMITTED";
+          }}
+          onMouseUp={commitTransform}
+        />
+      ) : null}
       {content}
-    </TransformControls>
+    </>
   );
 }
 
@@ -798,22 +878,48 @@ function DirectorGroupTransformRig({
   const commitDirectorGesture = useDirectorStore(
     (state) => state.commitDirectorGesture,
   );
+  const cancelDirectorGesture = useDirectorStore(
+    (state) => state.cancelDirectorGesture,
+  );
   const groupRef = useRef<Group>(null);
+  const [transformTarget, setTransformTarget] = useState<Group | null>(null);
+  const transformEngagedRef = useRef(false);
+  const transformActiveRef = useRef(false);
   const anchor = getDirectorGroupAnchorTransform(objects, group);
-  if (
-    !anchor ||
-    selectedGroupId !== group.id ||
-    isCapturing ||
-    motionPathDraft !== null ||
-    selectedMotionPathAnchorId !== null
-  ) {
-    return null;
-  }
+  const assignGroupRef = useCallback((nextGroup: Group | null) => {
+    groupRef.current = nextGroup;
+    setTransformTarget(nextGroup);
+  }, []);
 
-  const commitTransform = () => {
+  const restoreTransform = useCallback(() => {
     const current = groupRef.current;
-    if (!current) return;
-    const nextTransform = {
+    if (!current || !anchor) return;
+    current.position.set(...anchor.position);
+    current.rotation.set(
+      ...anchor.rotation.map((value) => MathUtils.degToRad(value)) as [
+        number,
+        number,
+        number,
+      ],
+    );
+    current.scale.set(...anchor.scale);
+    current.updateMatrixWorld();
+  }, [anchor]);
+
+  const commitTransform = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    if (!transformActiveRef.current) {
+      restoreTransform();
+      return;
+    }
+    transformActiveRef.current = false;
+    const current = groupRef.current;
+    if (!current || !anchor) {
+      cancelDirectorGesture();
+      return;
+    }
+    const nextTransform: DirectorTransform = {
       position: [
         current.position.x,
         current.position.y,
@@ -826,34 +932,80 @@ function DirectorGroupTransformRig({
       ] as DirectorTuple3,
       scale: [current.scale.x, current.scale.y, current.scale.z] as DirectorTuple3,
     };
+    if (!hasDirectorTransformChanged(anchor, nextTransform)) {
+      restoreTransform();
+      commitDirectorGesture();
+      return;
+    }
     updateGroupTransform(group.id, nextTransform);
     recordGroupKeyframe(group.id);
     commitDirectorGesture();
-  };
+  }, [
+    cancelDirectorGesture,
+    commitDirectorGesture,
+    group.id,
+    anchor,
+    recordGroupKeyframe,
+    restoreTransform,
+    updateGroupTransform,
+  ]);
+
+  const cancelTransform = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    const wasActive = transformActiveRef.current;
+    transformActiveRef.current = false;
+    restoreTransform();
+    if (wasActive) cancelDirectorGesture();
+  }, [cancelDirectorGesture, restoreTransform]);
+
+  useEffect(() => {
+    const handlePointerUp = () => commitTransform();
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", cancelTransform);
+    return () => {
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", cancelTransform);
+    };
+  }, [cancelTransform, commitTransform]);
+
+  if (
+    !anchor ||
+    selectedGroupId !== group.id ||
+    isCapturing ||
+    motionPathDraft !== null ||
+    selectedMotionPathAnchorId !== null
+  ) {
+    return null;
+  }
 
   return (
     <group data-director-group-rig={group.id}>
-      <TransformControls
-        mode={transformMode}
-        size={0.82}
-        onMouseDown={() =>
-          beginDirectorGesture({
-            commandKind: "group-transform",
-            targetId: group.id,
-            fieldScope: transformMode,
-          })
-        }
-        onMouseUp={commitTransform}
-      >
-        <group
-          ref={groupRef}
-          position={anchor.position}
-          rotation={anchor.rotation.map((value) =>
-            MathUtils.degToRad(value),
-          ) as [number, number, number]}
-          scale={anchor.scale}
+      {transformTarget ? (
+        <TransformControls
+          object={transformTarget}
+          mode={transformMode}
+          size={0.82}
+          onMouseDown={() => {
+            transformEngagedRef.current = true;
+            const result = beginDirectorGesture({
+              commandKind: "group-transform",
+              targetId: group.id,
+              fieldScope: transformMode,
+            });
+            transformActiveRef.current = result.disposition === "COMMITTED";
+          }}
+          onMouseUp={commitTransform}
         />
-      </TransformControls>
+      ) : null}
+      <group
+        ref={assignGroupRef}
+        position={anchor.position}
+        rotation={anchor.rotation.map((value) =>
+          MathUtils.degToRad(value),
+        ) as [number, number, number]}
+        scale={anchor.scale}
+      />
     </group>
   );
 }
@@ -905,6 +1057,8 @@ function PathControlPoint({
     (state) => state.cancelDirectorGesture,
   );
   const groupRef = useRef<Group>(null);
+  const [transformTarget, setTransformTarget] = useState<Group | null>(null);
+  const transformEngagedRef = useRef(false);
   const transformActiveRef = useRef(false);
   const selected =
     selectedAnchorId === anchor.id && selectedHandle === handle;
@@ -917,11 +1071,28 @@ function PathControlPoint({
   const position = relative
     ? addTuple(worldAnchor.position, relative)
     : worldAnchor.position;
+  const assignGroupRef = useCallback((group: Group | null) => {
+    groupRef.current = group;
+    setTransformTarget(group);
+  }, []);
 
-  const commit = () => {
+  const restoreTransform = useCallback(() => {
+    const group = groupRef.current;
+    if (!group) return;
+    group.position.set(...position);
+    group.updateMatrixWorld();
+  }, [position]);
+
+  const commit = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    if (!transformActiveRef.current) {
+      restoreTransform();
+      return;
+    }
+    transformActiveRef.current = false;
     const group = groupRef.current;
     if (!group) {
-      transformActiveRef.current = false;
       cancelDirectorGesture();
       return;
     }
@@ -937,7 +1108,6 @@ function PathControlPoint({
         handle,
         worldPosition,
       );
-      transformActiveRef.current = false;
       commitDirectorGesture();
       return;
     }
@@ -946,24 +1116,40 @@ function PathControlPoint({
       anchor.id,
       worldPosition,
     );
-    transformActiveRef.current = false;
     commitDirectorGesture();
-  };
+  }, [
+    anchor.id,
+    cancelDirectorGesture,
+    commitDirectorGesture,
+    handle,
+    path.id,
+    restoreTransform,
+    updateMotionPathAnchorWorldHandle,
+    updateMotionPathAnchorWorldPosition,
+  ]);
+
+  const cancelTransform = useCallback(() => {
+    if (!transformEngagedRef.current) return;
+    transformEngagedRef.current = false;
+    const wasActive = transformActiveRef.current;
+    transformActiveRef.current = false;
+    restoreTransform();
+    if (wasActive) cancelDirectorGesture();
+  }, [cancelDirectorGesture, restoreTransform]);
 
   useEffect(() => {
-    const handlePointerCancel = () => {
-      if (!transformActiveRef.current) return;
-      transformActiveRef.current = false;
-      cancelDirectorGesture();
+    const handlePointerUp = () => commit();
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", cancelTransform);
+    return () => {
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", cancelTransform);
     };
-    window.addEventListener("pointercancel", handlePointerCancel);
-    return () =>
-      window.removeEventListener("pointercancel", handlePointerCancel);
-  }, [cancelDirectorGesture]);
+  }, [cancelTransform, commit]);
 
   const content = (
     <group
-      ref={groupRef}
+      ref={assignGroupRef}
       position={position}
       onClick={(event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
@@ -992,28 +1178,29 @@ function PathControlPoint({
 
   if (!selected) return content;
   return (
-    <TransformControls
-      mode="translate"
-      size={0.62}
-      onMouseDown={() => {
-        const result = beginDirectorGesture({
-          commandKind: handle
-            ? "path-anchor-handle-transform"
-            : "path-anchor-transform",
-          targetId: anchor.id,
-          fieldScope: handle ?? "position",
-        });
-        transformActiveRef.current = result.disposition === "COMMITTED";
-      }}
-      onMouseUp={commit}
-      onPointerCancel={() => {
-        if (!transformActiveRef.current) return;
-        transformActiveRef.current = false;
-        cancelDirectorGesture();
-      }}
-    >
+    <>
+      {transformTarget ? (
+        <TransformControls
+          object={transformTarget}
+          mode="translate"
+          size={0.62}
+          onMouseDown={() => {
+            transformEngagedRef.current = true;
+            const result = beginDirectorGesture({
+              commandKind: handle
+                ? "path-anchor-handle-transform"
+                : "path-anchor-transform",
+              targetId: anchor.id,
+              fieldScope: handle ?? "position",
+            });
+            transformActiveRef.current = result.disposition === "COMMITTED";
+          }}
+          onMouseUp={commit}
+          onPointerCancel={cancelTransform}
+        />
+      ) : null}
       {content}
-    </TransformControls>
+    </>
   );
 }
 

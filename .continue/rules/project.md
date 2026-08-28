@@ -22,6 +22,7 @@ alwaysApply: true
 - [Layer Rules](docs/LAYERS.md)
 - [Quality Rules](docs/QUALITY.md)
 - [Verification Harness](docs/HARNESS.md)
+- [Canvas Navigation](docs/CANVAS_NAVIGATION.md)
 - [Glossary](docs/GLOSSARY.md)
 - [Research Index](docs/research/README.md)
 - [Current Big Picture](docs/BIG_PICTURE.md)
@@ -60,6 +61,9 @@ python3 scripts/verify-docs.py
 - React Flow v12 does not pass `node.style` to custom node props; read store data or `props.measured`.
 - `applyNodeChanges` resets selected state; FrameOS must re-apply `selectedNodeId` after changes.
 - `<Handle>` is the real `+` connection affordance; never add a decorative overlay that blocks dragging.
+- Current LibTV canvas navigation authority is `docs/CANVAS_NAVIGATION.md`; Batch 6
+  marquee is historical, and Batch 77 source runtime evidence governs wheel/middle/
+  `Space`/`H`/`V`/blank-drag behavior.
 - Do not change the LibTV edge flow effect without re-extracting source evidence.
 - `FrameosNodeEditPanel` is DEBUG-only and is not source-site functionality.
 - Director `authoredObjects` is the portable authoring baseline; `objects` is its
@@ -68,6 +72,8 @@ python3 scripts/verify-docs.py
 - TypeScript is strict; do not use `any`. Prefer Tailwind; document dynamic inline styles.
 - Separate source fact, evidence-backed inference and clone-only decision in research docs.
 - Before visual reinspection, search existing `SCREENSHOT_ANALYSIS.md` records.
+- Director `TransformControls` must use explicit object attachment and read back the
+  same Three.js object that was dragged; run Batch 77 after changing this path.
 
 ## 6. Change Protocol
 
@@ -82,6 +88,8 @@ python3 scripts/verify-docs.py
 
 - New formal docs belong in `docs/` and must be linked from `docs/index.md`.
 - New live research belongs in `docs/research/`; active plans belong in `docs/drafts/`.
+- Current LibTV canvas input instructions belong in `docs/CANVAS_NAVIGATION.md`; update
+  it when source-aligned navigation semantics change.
 - Historical batch records remain traceable and must link back to their evidence.
 - Edit `AGENTS.md`, then run `bash scripts/sync-agent-rules.sh`.
 - Edit `.claude/skills/clone-website/SKILL.md`, then run `node scripts/sync-skills.mjs`.

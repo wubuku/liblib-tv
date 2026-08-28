@@ -1,0 +1,56 @@
+{
+  "batch": 78,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:3001",
+  "scope": [
+    "Director curve editor pointer gesture cancellation",
+    "Director phone vcam pose pointer capture lifecycle",
+    "Director timeline scrub stale pointer lifecycle"
+  ],
+  "results": {
+    "curveCommit": {
+      "curveCommit": true,
+      "historyDelta": 1,
+      "gestureCleared": true
+    },
+    "curveCancelPointer": {
+      "curveCancel:pointercancel": true,
+      "baselineRestored": true,
+      "historyDelta": 0,
+      "gestureCleared": true
+    },
+    "curveCancelBlur": {
+      "curveCancel:blur": true,
+      "baselineRestored": true,
+      "historyDelta": 0,
+      "gestureCleared": true
+    },
+    "curveCancelHidden": {
+      "curveCancel:hidden": true,
+      "baselineRestored": true,
+      "historyDelta": 0,
+      "gestureCleared": true
+    },
+    "curveBeginRejected": {
+      "curveBeginRejected": true,
+      "rejectedPointerDidNotConsumeOwner": true,
+      "cleanup": true
+    },
+    "phoneCancelAndReuse": {
+      "phonePointerCancel": true,
+      "phonePointerReuse": true,
+      "phoneBlurCleanup": true,
+      "phoneCloseCleanup": true,
+      "captureReleased": true
+    },
+    "timelineCancelAndReuse": {
+      "timelinePointerCancel": true,
+      "timelineStaleMoveStopped": true,
+      "timelinePointerReuse": true,
+      "timelineVisibilityCleanup": true,
+      "historyUntouched": true
+    }
+  },
+  "screenshots": [],
+  "errors": []
+}

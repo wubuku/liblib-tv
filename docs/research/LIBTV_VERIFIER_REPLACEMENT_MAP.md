@@ -55,6 +55,7 @@
 | 49-50 | Director viewport gizmo and workspace shell | `LOCAL_FIXTURE` + `HISTORICAL_CLONE` | artifact output、focus/storage isolation 和 current runtime rerun | 作为 merge candidate；未完成隔离前不进入日常 gate |
 | 59 | Director asset-library search/preview/add | `LOCAL_FIXTURE` + `CURRENT_GATE` | 无 screenshot write；localhost same-origin current smoke | 作为当前低成本 Director smoke；不证明真实资产或 source parity |
 | 66 | Director project/session/command/history/delete authority | `DESIGN_SPEC_COMPLETE` + `RUNTIME_MISSING` | 新增 strict codec/owner/history/delete verifier family `LIBTV-VR-024` | 保留为下一实施批次；不把 Batch 35-59 历史脚本升级为 authority coverage |
+| 77 | 普通画布导航与 Director TransformControls binding/gesture cleanup | `CURRENT_SOURCE` + `LOCAL_FIXTURE` | 源站登录态 wheel/middle/Space/H/V/modifier audit、current operation guide、real pointer/wheel verifier；不扩张为 source-exact Director visual contract | 作为 current focused gate 保留；旧 Batch 6 空白框选保持 historical，Batch 18 zoom/menu compatibility 已通过环境变量与显式等待修复 |
 
 Batch 34 是 research-only，不是缺失的 verifier；不要为它创建“补跑脚本”以填充编号。
 

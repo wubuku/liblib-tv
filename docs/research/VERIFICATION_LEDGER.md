@@ -35,6 +35,8 @@ Batch 51-54
 Batch 56-60
 Batch 61-65
 Batch 67-76
+Batch 77
+Batch 78
 ```
 
 Batch 34 没有专项 verifier，是导演台代码考古/研究批次。不要使用会隐式跨过 Batch 34 的 `{4..44}` shell glob。
@@ -59,6 +61,10 @@ Batch 75 有 pure clipboard packet/remap verifier 和 fresh-page
 keyboard/history/project-isolation BrowserContext verifier。
 Batch 76 有 pure owner-reachability planner verifier 和 fresh-page
 active/inactive/cross-canvas reconciliation verifier。
+Batch 77 有 source-aligned canvas navigation + Director TransformControls hybrid
+verifier，使用 fresh pages、真实 wheel/mouse pointer 输入和静态 attachment contract。
+Batch 78 有 Director pointer cancellation hybrid verifier，使用 fresh pages、真实
+mouse pointer、pointer capture、gesture/history 和 stale-pointer 输入，不写截图。
 
 ### 2.2 脚本分组台账
 
@@ -99,6 +105,8 @@ active/inactive/cross-canvas reconciliation verifier。
 | Batch 74 | Director browser-local durable project persistence | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch74.mjs` 与 `verify-liblib-batch74.py` 已通过；覆盖 versioned envelope、strict restore、capture byte/runtime/UI exclusion、stale save completion、corrupt/future/owner/project rejection、reload authored restore、A/B key isolation、ordinary graph isolation 和 simulated quota/session-only continuity；不证明普通画布 persistence、remote storage、真实资源 materialization 或 source parity |
 | Batch 75 | Director project-scoped clipboard identity remap | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch75.mjs` 与 `verify-liblib-batch75.py` 已通过；覆盖 typed object/group/track/path closure、object/group/track/path/keyframe/anchor two-pass remap、internal/external camera policy、stable resource alias/conflict、deterministic repeated offset、one-entry paste、exact undo/redo、editable/IME/gesture/busy/viewer guard、A-B-A/reload boundary 和 ordinary graph isolation；不证明 system/cross-project clipboard、whole-project duplicate、real resource transfer 或 source parity |
 | Batch 76 | Director all-canvas owner reachability reconciliation | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch76.mjs` 与 `verify-liblib-batch76.py` 已通过；覆盖 all-canvas live owner、inactive source/canvas tombstone、active shell/session/runtime two-phase cleanup、rename/switch/unrelated isolation、重复幂等、tombstoned reopen reject、delayed async stale、graph undo 不复活 project、retained persistence 和 ordinary graph history；不证明 durable tombstone、storage/resource cleanup、whole-project duplicate 或 source parity |
+| Batch 77 | source-aligned canvas navigation and Director TransformControls binding/gesture cleanup | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch77.py` 已通过；覆盖普通纵/横 wheel 平移、默认中键平移、`Space`/`H` 左键平移、`V` 空白拖动 no-op、`Command`/`Control` wheel 缩放、mobile overflow、真实 Director mug gizmo pointer drag、authored/runtime 同步、one-entry undo/redo、zero-distance zero-history、pointer cleanup、static explicit attachment 和 graph/history isolation；不证明真实触摸板硬件、源站 Director exact DOM/CSS、源站内部实现或真实资产/provider |
+| Batch 78 | Director pointer cancellation and cleanup | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch78.py` 已通过；覆盖 Curve commit/cancel/pointercancel/blur/hidden/begin-rejected、Phone Vcam pointer capture cancel/blur/close/reuse、Timeline scrub cancel/hidden/reuse/stale-move prevention、zero screenshots 和 zero console/page/request errors；不证明源站 Director exact DOM/CSS、真实手机设备或 source parity |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
@@ -122,6 +130,8 @@ Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 | 节点绑定 UI owner 生命周期 | `CLONE_FIXTURE_ONLY`（Batch 58） | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、delete impact matrix | clone 的 `canvasId + nodeId` owner reconciliation、删除/换画布 UI cleanup 已覆盖；源站删除语义、Director workspace/media resource lifecycle 仍未确认 |
 | Director 资源库搜索/预览/加入场景 | `CLONE_FIXTURE_ONLY`（Batch 59） | [`liblib-canvas-batch59-2026-08-27/`](liblib-canvas-batch59-2026-08-27/)、Batch 47/48 model-library contracts | 搜索、preview-only selection、proxy insertion 和 Inspector continuity 已覆盖；真实模型/环境资产、远程同步、生产持久化和认证后 source-exact surface 仍未知 |
 | Director 当前跨批次集成状态 | `HISTORICAL_RECORDED_PASS` + `CURRENT_RELIABILITY_GATES` + `MANIFEST_RECORDED` | [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、[`storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md`](storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md)、Batch 35-50/59/67-76 | 17 个历史脚本仍按成本/副作用/当前价值分级；Batch 59 和 Batch 67-76 形成当前低成本可靠性闸门；不能把历史通过汇总成 source parity，也不能把 Director current gates 推导成 ordinary canvas async/persistence、durable cleanup、whole-project duplicate、remote storage、真实资源或 source-exact persistence |
+| 普通画布导航与 Director gizmo gesture | `CURRENT_SOURCE` + `LOCAL_FIXTURE`（Batch 77） | [`liblib-canvas-batch77-2026-08-28/`](liblib-canvas-batch77-2026-08-28/)、[`CANVAS_NAVIGATION.md`](../CANVAS_NAVIGATION.md)、Batch 77 source navigation audit | wheel/middle/Space/H/V/modifier zoom、mobile overflow、TransformControls 真实拖动与 gesture cleanup 已覆盖；真实触摸板硬件、source-exact Director surface 和真实资源/provider 仍不在范围 |
+| Director pointer cancellation and cleanup | `CLONE_FIXTURE_ONLY`（Batch 78） | [`liblib-canvas-batch78-2026-08-28/`](liblib-canvas-batch78-2026-08-28/)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、Batch 78 `runtime-audit.json` | Curve/Phone Vcam/Timeline 三类 clone pointer lifecycle、Director gesture cancel baseline、capture release、stale move prevention 已覆盖；不证明 LibTV source exact Director pointer behavior、真实触摸板或手机传感器 |
 | `LIBTV-VR-024` Director project/session/command authority | `PROJECT_CODEC_FOCUSED_PASS` + `OWNER_SESSION_FOCUSED_PASS` + `AUTHORED_RUNTIME_FOCUSED_PASS` + `HISTORY_FOCUSED_PASS` + `POINTER_LIFECYCLE_FOCUSED_PASS` + `REFERENCE_DELETE_FOCUSED_PASS` + `ASYNC_AUTHORITY_FOCUSED_PASS` + `PERSISTENCE_FOCUSED_PASS` + `CLIPBOARD_REMAP_FOCUSED_PASS` + `OWNER_REACHABILITY_FOCUSED_PASS` | [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、`LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01`、Batch 67-76 | Batch 67 strict codec、68 owner registry/session、69 authored/runtime、70 command/history、71 pointer lifecycle、72 reference-aware delete、73 Director async、74 browser-local persistence、75 same-project clipboard remap 与 76 all-canvas owner reachability 均有 focused pass；durable tombstone/storage/resource cleanup、ordinary canvas async/persistence、whole-project duplicate、remote storage、真实资源 materialization 和 source parity 仍未实现 |
 | 普通图片双浮层 owner/命中边界 | `CLONE_FIXTURE_ONLY`（Batch 60） | [`liblib-canvas-batch60-2026-08-26/`](liblib-canvas-batch60-2026-08-26/)、[`ImageNode.spec.md`](components/ImageNode.spec.md)、[`ImageEditPanel.spec.md`](components/ImageEditPanel.spec.md) | owner identity、selection migration、既有几何、panel controls 和 active-tool replacement 已覆盖；相邻节点被 panel 覆盖像素的真实源站 routing 未取得 |
 | 普通画布 graph mutation ingress | `STATIC_CONTRACT_ONLY` + connection island `LOCAL_FIXTURE` | [`LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md`](LIBTV_GRAPH_MUTATION_ENTRYPOINT_TRUST_MATRIX.md)、`LIBTV-VR-014` design、Batch 57 | 全 writer/T0-T5 audit 已完成；derived/setter/copy/delete/restore/remote routing runtime 尚未验证或实现 |
