@@ -154,6 +154,12 @@
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
+## Planned Work
+
+| Batch | Focus | Entry |
+|---|---|---|
+| 79 | Director whole-project duplicate: graph + owner/project/document/resource/persistence transaction | [`liblib-canvas-batch79-2026-08-28/`](liblib-canvas-batch79-2026-08-28/README.md) `PLANNED / NOT_IMPLEMENTED`；先建立 pure planner、fixture 和 zero-partial verifier，不把 Batch 75 clipboard paste 当作 whole-project duplicate |
+
 ## Stable Cross-Cutting Research
 
 - [`BEHAVIORS.md`](BEHAVIORS.md)：whole-app interaction map.
