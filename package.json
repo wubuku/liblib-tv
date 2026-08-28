@@ -27,7 +27,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 4317",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

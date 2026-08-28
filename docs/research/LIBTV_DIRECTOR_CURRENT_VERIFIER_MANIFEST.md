@@ -147,31 +147,32 @@ Run the pure codec gate without a dev server:
 python3 scripts/verify-liblib-batch67.py
 ```
 
-Use a same-origin host name with the Next dev server:
+Use the repository-standard `4317` port and a same-origin host name with the
+Next dev server:
 
 ```bash
-npm run dev -- --port 3001
-LIBLIB_BASE_URL=http://localhost:3001 \
+npm run dev
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch68.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch69.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch59.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch70.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch71.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch72.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch73.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch74.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch75.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch76.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch78.py
 ```
 

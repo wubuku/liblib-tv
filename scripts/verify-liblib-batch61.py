@@ -6,7 +6,7 @@ from playwright.sync_api import Page, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:3000")
+URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
 AUDIT_PATH = (
     ROOT
     / "docs"

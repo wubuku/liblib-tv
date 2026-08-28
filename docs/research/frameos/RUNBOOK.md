@@ -10,8 +10,8 @@
 npm run dev
 
 # 2. 打开浏览器
-# 主画布（liblib-tv clone）: http://localhost:3000
-# FrameOS 画布:                  http://localhost:3000/frameos/canvas/demo
+# 主画布（liblib-tv clone）: http://localhost:4317
+# FrameOS 画布:                  http://localhost:4317/frameos/canvas/demo
 
 # 3. 从主页右上角 "FrameOS" 按钮也可进入
 ```

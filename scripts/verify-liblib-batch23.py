@@ -6,7 +6,7 @@ from playwright.sync_api import Locator, Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
-URL = "http://localhost:3000"
+URL = "http://localhost:4317"
 DEFAULT_SCREENSHOT = (
     REFERENCE_DIR
     / "liblib-clone-batch23-segment-reshoot-default-929-2026-08-25.png"

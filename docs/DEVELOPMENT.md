@@ -20,12 +20,20 @@ npm install
 npm run dev
 ```
 
+The project development server intentionally uses the fixed port `4317`. This
+keeps local verification away from the commonly occupied `3000`/`3001` ports
+and prevents accidentally testing an unrelated or stale server. `next dev`
+still accepts an explicit `--port` override when a separate environment
+requires it; update `LIBLIB_BASE_URL` for verifier commands in that case.
+
 | URL | Use |
 |---|---|
-| `http://localhost:3000` | LibTV clone |
-| `http://localhost:3000/frameos/canvas/demo` | FrameOS clone |
+| `http://localhost:4317` | LibTV clone |
+| `http://localhost:4317/frameos/canvas/demo` | FrameOS clone |
 
-The dev server is usually left running while Playwright scripts execute. Use another port only when port 3000 is already occupied by an unrelated server.
+The dev server is usually left running while Playwright scripts execute. Do not
+reuse `3000` or `3001` for routine local work; use an explicit alternate port
+only when `4317` is occupied.
 
 ## Standard Commands
 
@@ -104,11 +112,11 @@ Director reliability batch 至少运行：
 
 ```bash
 python3 scripts/verify-liblib-batch67.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch68.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch69.py
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch59.py
 ```
 

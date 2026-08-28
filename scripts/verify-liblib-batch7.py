@@ -5,7 +5,7 @@ from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
-URL = "http://localhost:3000"
+URL = "http://localhost:4317"
 
 NODE_IDS = {
     "female": "i-lBzmo67AHv",

@@ -5,7 +5,7 @@ from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
-URL = "http://localhost:3000"
+URL = "http://localhost:4317"
 VIDEO_GROUP_ID = "g-EFbbHpwq5w"
 IMAGE_GROUP_ID = "g-245IDFh8sB"
 VIDEO_ID = "v-UGQZzZOpbv"

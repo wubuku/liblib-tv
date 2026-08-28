@@ -16,7 +16,7 @@ SOURCE_AUDIT = (
     / "liblib-live-2026-08-25"
     / "image-node-state-audit.json"
 )
-URL = "http://localhost:3000"
+URL = "http://localhost:4317"
 PLACEHOLDER = "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜"
 
 SLUGS = {

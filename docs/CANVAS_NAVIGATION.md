@@ -136,7 +136,7 @@ nodesDraggable={canvasTool === "select" && !effectivePan}
 本页对应的 focused gate：
 
 ```bash
-LIBLIB_BASE_URL=http://localhost:3001 \
+LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch77.py
 ```
 
@@ -149,4 +149,3 @@ LIBLIB_BASE_URL=http://localhost:3001 \
 - [`SOURCE_NAVIGATION_AUDIT_2026-08-28.md`](research/liblib-canvas-batch77-2026-08-28/SOURCE_NAVIGATION_AUDIT_2026-08-28.md)
 - [`NAVIGATION_GESTURES.spec.md`](research/liblib-canvas-batch6-2026-08-25/NAVIGATION_GESTURES.spec.md)
 - [`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)
-

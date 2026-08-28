@@ -6,7 +6,7 @@ from playwright.sync_api import Page, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:3000")
+URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
 REFERENCE_DIR = ROOT / "docs" / "design-references"
 AUDIT_PATH = ROOT / "docs" / "research" / "liblib-canvas-batch53-2026-08-26" / "runtime-audit.json"
 IMAGE_ID = "i-vxeeCnxySa"

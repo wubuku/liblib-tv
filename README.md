@@ -33,10 +33,13 @@ npm install
 npm run dev
 ```
 
+The development server uses the fixed project port `4317` to avoid accidentally
+connecting to an unrelated service on the common `3000`/`3001` ports.
+
 Open:
 
-- LibTV: `http://localhost:3000`
-- FrameOS: `http://localhost:3000/frameos/canvas/demo`
+- LibTV: `http://localhost:4317`
+- FrameOS: `http://localhost:4317/frameos/canvas/demo`
 
 Verification:
 

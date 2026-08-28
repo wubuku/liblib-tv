@@ -1,7 +1,7 @@
 {
   "batch": 77,
   "status": "SCRIPT_RECORDED_PASS",
-  "baseUrl": "http://localhost:3001",
+  "baseUrl": "http://localhost:4317",
   "sourceEvidence": {
     "navigationAudit": "SOURCE_NAVIGATION_AUDIT_2026-08-28.md",
     "sourceExactDirectorGizmo": false,

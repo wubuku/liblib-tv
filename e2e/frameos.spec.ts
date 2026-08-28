@@ -9,7 +9,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("FrameOS canvas", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:3000/frameos/canvas/demo");
+    await page.goto("http://localhost:4317/frameos/canvas/demo");
     await page.waitForSelector('[data-id="text-1"]');
   });
 

@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIR = ROOT / "docs" / "design-references"
-URL = "http://localhost:3000"
+URL = "http://localhost:4317"
 
 
 def run_desktop(page):

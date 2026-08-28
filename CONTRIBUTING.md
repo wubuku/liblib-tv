@@ -9,7 +9,10 @@ npm install
 npm run dev
 ```
 
-Use `http://localhost:3000` for LibTV and `http://localhost:3000/frameos/canvas/demo` for FrameOS. Node.js 24+ is the project baseline.
+`npm run dev` uses the project development port `4317`. Use
+`http://localhost:4317` for LibTV and
+`http://localhost:4317/frameos/canvas/demo` for FrameOS. Node.js 24+ is the
+project baseline.
 
 ## Before Editing
 

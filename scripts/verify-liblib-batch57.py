@@ -14,7 +14,7 @@ AUDIT_PATH = (
     / "liblib-canvas-batch57-2026-08-27"
     / "runtime-audit.json"
 )
-URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:3000")
+URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
 
 
 def attach_errors(page: Page):
