@@ -1,0 +1,23 @@
+{
+  "batch": 81,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "contract": {
+    "scope": "clone-owned Director strict project JSON import/export",
+    "source_exact": false,
+    "remote_sync": false,
+    "real_asset_materialization": false
+  },
+  "desktop": {
+    "owner_rebound": true,
+    "entity_ids_preserved": true,
+    "capture_runtime_ui_excluded": true,
+    "import_history_undo_redo": true,
+    "file_input_workflow": true,
+    "same_document_noop": true,
+    "invalid_import_zero_partial": true,
+    "download_round_trip": true,
+    "ordinary_graph_unchanged": true
+  },
+  "errors": []
+}

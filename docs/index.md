@@ -84,6 +84,7 @@ graph TD
 - [`research/liblib-canvas-batch76-2026-08-27/`](research/liblib-canvas-batch76-2026-08-27/)：Director 全画布 owner reachability、inactive source/canvas tombstone、active shell/session/runtime 两阶段 cleanup、幂等、stale async 与 graph/persistence 边界 focused pass。
 - [`research/liblib-canvas-batch77-2026-08-28/`](research/liblib-canvas-batch77-2026-08-28/)：Director TransformControls attachment 错位、实际 pointer drag 零提交与 gesture 泄漏的复现、修复和专项验证入口。
 - [`research/liblib-canvas-batch78-2026-08-28/`](research/liblib-canvas-batch78-2026-08-28/)：Director Curve/Phone Vcam/Timeline 三类指针手势的 pointercancel、失焦、页面隐藏、卸载清理与专项验证入口。
+- [`research/liblib-canvas-batch81-2026-08-29/`](research/liblib-canvas-batch81-2026-08-29/)：Director strict project JSON 导入/导出、owner/project 重绑定、history undo/redo、非法输入 zero-partial 和下载/文件选择回路的实施与验证入口。
 - [`research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director 17 个历史 browser verifier、Batch 67-76 current reliability gates、merge candidate/historical-only 分级与 `LIBTV-VR-024` 入口。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。

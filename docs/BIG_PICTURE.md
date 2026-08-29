@@ -187,7 +187,9 @@ StoryAI 借鉴与 Director 当前进展已有独立跨批次权威：固定上�
 运行态复核、证据边界和后续路线见
 [`storyai-3d-director-desk-2026-08-27/`](research/storyai-3d-director-desk-2026-08-27/README.md)。
 当前结论不是“功能未够多”，而是可见能力已经超过上游，下一阶段应优先补
-per-project scene、版本化导入导出/持久化、真实资源加载和统一 Director gate；
+per-project scene、真实资源加载和统一 Director gate；clone-owned 的版本化项目
+持久化、严格 JSON 导入/导出、资源清理和 owner 生命周期 focused pass 已经落地，
+但不能写成 LibTV 原站的 source-exact 行为；
 领域 undo/redo、完整 pointer lifecycle 与 reference-aware delete 已先形成
 clone-owned focused pass。
 Batch 66 已将这项判断进一步固化为 `DEC-040`、两份 Director authority contract、
@@ -231,8 +233,12 @@ begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
   引用 zero-partial reject。Batch 80 又为不可达 Director owner 增加 strict
   browser-local durable tombstone：旧 save 不得复活，active/inactive cleanup
   只有在 durable 成功后才清理 history、capture sidecar 和不再共享的 local
-  descriptor；Batch 59、67-80 当前闸门串行回归和全量项目门禁已通过。普通画布
-  async/persistence、remote storage、真实资源和 source parity 仍未完成；这些
+  descriptor；Batch 81 又增加 strict V1 project JSON import/export：导入前 strict
+  decode，成功后只重绑定当前 owner/project，保留内部 entity/reference identity，
+  排除 capture/runtime/UI bytes，并进入一条可撤销的 Director history；非法文件
+  zero-partial，同文档导入为 no-op。Batch 59、67-81 当前闸门串行回归和全量项目
+  门禁已通过。普通画布 async/persistence、remote storage、真实资源
+  materialization 和 source parity 仍未完成；这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
   source-exact 行为。
 

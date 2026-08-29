@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-80（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-81（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -96,6 +96,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 78 | Director Curve Editor/Phone Vcam/Timeline pointercancel, blur, visibility, unmount cleanup, pointer reuse and stale-pointer prevention |
 | Batch 79 | Director whole-project duplicate: graph/parent/edge and Director project/entity two-pass remap, clean target authority, resource policy and source/target isolation |
 | Batch 80 | Director durable tombstone envelope, save resurrection guard, active/inactive cleanup, capture sidecar cleanup, shared/unshared local resource release and reload reopen rejection |
+| Batch 81 | Director strict project JSON import/export, owner/project rebinding, one-entry history, undo/redo, zero-partial rejection, download/file-input round trip and ordinary graph isolation |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -133,6 +134,13 @@ tombstone pure corpus 和 fresh-page active/inactive owner cleanup、capture sid
 local resource reachability、reload reopen guard 与 zero-diagnostic audit。它只证明
 clone-owned browser-local cleanup contract，不证明 LibTV 原站删除/恢复 UI、remote
 persistence 或真实资源 materialization。
+
+Batch 81 是 Director strict project import/export hybrid gate，默认不写截图；它
+保留 strict V1 document corpus、fresh BrowserContext download/file-input workflow、
+owner/project rebind、capture/runtime/UI exclusion、one-entry history、undo/redo、
+same-document no-op、invalid zero-partial、ordinary graph/history isolation 和零
+console/page/request diagnostics。它只证明 clone-owned local file workflow，不证明
+LibTV 原站存在相同文件格式、导入/导出 UI、remote sync 或真实资源 materialization。
 
 ## Browser Evidence Requirements
 

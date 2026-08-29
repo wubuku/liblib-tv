@@ -7,6 +7,9 @@
 > `PERSISTENCE_FOCUSED_RUNTIME_PASS` /
 > `CLIPBOARD_REMAP_FOCUSED_RUNTIME_PASS` /
 > `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS` /
+> `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS` /
+> `DURABLE_TOMBSTONE_FOCUSED_PASS` /
+> `IMPORT_EXPORT_FOCUSED_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -105,8 +108,15 @@ Director project document
 - Batch 79 已增加 whole-project duplicate 的 graph/Director two-pass identity
   remap、stable resource descriptor policy、fresh missing-document policy、clean
   target authority 和 source/target persistence isolation；
-- durable tombstone、storage/resource cleanup、ordinary canvas persistence、
-  strict import/export、remote persistence 和 source-exact storage 仍未解决。
+- Batch 80 已增加 durable tombstone、save resurrection guard、active/inactive
+  owner cleanup、capture sidecar 清除和 shared/unshared local descriptor
+  reachability policy；
+- Batch 81 已增加 strict V1 project JSON export/import、owner/project rebind、
+  internal entity/reference preservation、capture/runtime/UI exclusion、
+  one-entry history、undo/redo、same-document no-op、invalid zero-partial 和
+  browser download/file-input round trip；
+- ordinary canvas persistence、remote persistence、真实 resource materialization
+  和 source-exact storage 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -756,6 +766,20 @@ document、duplicate、delete和 delayed result。
 - graph undo 不 restore project，strict import/export、真实 resource materialization
   和 source parity 保持独立决策。
 
+### `DIR-PROJECT-I07` Strict Project JSON Transfer
+
+- 状态：`IMPLEMENTED_FOCUSED_PASS`，见 Batch 81；
+- `DirectorProjectDocumentV1` 是唯一可导出的 portable JSON 形状，导入先经过
+  strict decode/normalize，不接受 unknown/future/dangling/non-finite 输入；
+- 成功导入只重绑定当前 active session 的 `projectId` 与 owner，保留 object、
+  group、camera、track、path 和 keyframe 的内部引用；
+- capture descriptors、capture bytes、selection、playback、panel、phone
+  runtime 和 Three.js refs 不进入文件传输；当前导入后清空 capture descriptors；
+- 成功替换是一个 Director semantic history entry，可 undo/redo；同文档为
+  `NOOP`，非法/忙碌/失效输入为 zero-partial；
+- 浏览器 UI 只提供 clone-owned JSON download/file input workflow，不宣称
+  LibTV 原站存在相同文件格式、远程同步或跨设备恢复。
+
 每个 slice 独立计划、fixture、verifier、commit/push。不得以“建立 project document”
 为由一次性重写全部 Director components。
 
@@ -770,6 +794,7 @@ document、duplicate、delete和 delayed result。
 | capture descriptor持久化 | 只存stable locator；否则session-only | resource materialization |
 | storage backend | in-memory first | prototype/product scope |
 | LibTV JSON compatibility | absent | source schema evidence |
+| clone JSON transfer | strict V1 local file，owner rebind，capture/runtime 排除 | source/product evidence |
 
 ## 16. Non-Goals
 
@@ -788,7 +813,9 @@ owner/session 子项已在 Batch 68 升级为
 `OWNER_SESSION_FOCUSED_RUNTIME_PASS`，authored/runtime 子项已在 Batch 69
 升级为 `AUTHORED_RUNTIME_FOCUSED_PASS`，owner reachability 子项已在 Batch 76
 升级为 `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS`，whole-project duplicate 子项
-已在 Batch 79 升级为 `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`：
+已在 Batch 79 升级为 `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`，durable tombstone
+子项已在 Batch 80 升级为 `DURABLE_TOMBSTONE_FOCUSED_PASS`，strict project JSON
+transfer 子项已在 Batch 81 升级为 `IMPORT_EXPORT_FOCUSED_PASS`：
 
 1. 两个 source node 和两个 canvas 已证明 project 不串场；
 2. open/switch/close、same-owner focus、duplicate reset 和 active delete tombstone
@@ -800,7 +827,9 @@ owner/session 子项已在 Batch 68 升级为
    graph undo/persistence retained boundary 已有 focused runtime；
 6. whole-project duplicate 的 graph/document identity remap、resource policy 和
    clean target authority 已有 focused runtime；
-7. focused verifier、`npm run check`、docs check 和实施台账通过。
+7. strict V1 JSON import/export 的 decode/rebind/history/file workflow 已有
+   focused runtime；
+8. focused verifier、`npm run check`、docs check 和实施台账通过。
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
@@ -816,6 +845,6 @@ Batch 74 已关闭 clone-owned Director browser-local durable document persisten
 子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项；
 Batch 76 已关闭 memory-only owner reachability reconciliation 子项；Batch 79 已
 关闭 clone-owned whole-project duplicate 子项；Batch 80 已关闭 clone-owned durable
-tombstone/storage/resource cleanup 子项。它们都不关闭 graph undo restore、
-ordinary canvas async/persistence、strict import/export、remote storage、真实资源或
-source-exact LibTV 子项。
+tombstone/storage/resource cleanup 子项；Batch 81 已关闭 clone-owned strict JSON
+import/export 子项。它们都不关闭 graph undo restore、ordinary canvas
+async/persistence、remote storage、真实资源或 source-exact LibTV 子项。

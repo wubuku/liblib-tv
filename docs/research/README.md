@@ -57,7 +57,7 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
-- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-76 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-81 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
@@ -153,6 +153,7 @@
 | 78 | Director pointer cancellation, cleanup and R3F teardown | [`liblib-canvas-batch78-2026-08-28/`](liblib-canvas-batch78-2026-08-28/) `POINTER_CANCELLATION_AND_R3F_TEARDOWN_RECORDED_PASS`，Curve/Phone Vcam/Timeline 的 pointercancel、blur、visibility、unmount、stale-pointer 防护以及跨 owner/canvas 的 R3F Canvas 异步 teardown 已通过；Batch 59、67-78 当前闸门串行回归、`npm run check` 和 `docs:check` 通过；不改变 phone runtime-only 语义，也不证明源站 Director exact DOM/CSS |
 | 79 | Director whole-project duplicate | [`liblib-canvas-batch79-2026-08-28/`](liblib-canvas-batch79-2026-08-28/) `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`，graph/Director two-pass identity/reference remap、multi-owner project copy、fresh document policy、non-portable resource reject、clean target authority、persistence isolation 和 pure/browser verifier 已通过；不证明 LibTV source duplicate 语义或真实资源复制 |
 | 80 | Director durable tombstone、storage/resource cleanup boundary | [`liblib-canvas-batch80-2026-08-28/`](liblib-canvas-batch80-2026-08-28/) `DURABLE_TOMBSTONE_FOCUSED_PASS`，strict tombstone envelope、save resurrection guard、active/inactive cleanup、capture sidecar 清理、共享/未引用 local resource policy、reload reopen reject 和 pure/browser verifier 已通过；不证明 LibTV source 删除/恢复语义或 remote persistence |
+| 81 | Director strict project import/export and recoverable UI workflow | [`liblib-canvas-batch81-2026-08-29/`](liblib-canvas-batch81-2026-08-29/) `DIRECTOR_IMPORT_EXPORT_FOCUSED_PASS`，strict V1 document export/import、owner/project rebind、capture/runtime/UI exclusion、one-entry history、undo/redo、same-document no-op、invalid zero-partial、download/file-input round trip 和 ordinary graph isolation 已通过；不证明 LibTV source 文件格式或 remote sync |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -161,7 +162,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | Batch | Focus | Entry |
 |---|---|---|
 | 80 | Director durable tombstone、storage/resource cleanup boundary | 已完成；clone-owned durable tombstone、cleanup/release 与 reload gate 已通过，详见 [`liblib-canvas-batch80-2026-08-28/`](liblib-canvas-batch80-2026-08-28/) |
-| 81 | Director strict project import/export and recoverable UI workflow | `PLANNED`；以 V1 document codec 为核心，不引入远端同步 |
+| 81 | Director strict project import/export and recoverable UI workflow | 已完成；strict V1 document codec 到本地文件 workflow 的 clone-owned 闭环，详见 [`liblib-canvas-batch81-2026-08-29/`](liblib-canvas-batch81-2026-08-29/) |
 | 82 | Director real asset/resource lifecycle or panorama vertical slice | `PLANNED`；先选择可验证的本地 stable resource slice |
 | 83 | current verifier manifest consolidation and command feedback gate | `PLANNED`；建立 current manifest 与 typed outcome 到 primary surface 的最小闭环 |
 

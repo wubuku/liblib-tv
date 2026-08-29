@@ -52,6 +52,7 @@
 | DEC-042 | Director browser-local persistence | 只保存 owner-scoped、versioned canonical V1 document；strict reject、stale-save guard 和 storage failure 必须保持当前 session 可用；普通画布、远端同步和真实资源另行建合同 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-043 | Director session clipboard authority | clipboard 是 project-scoped、memory-only typed packet；copy 零 semantic mutation，paste two-pass remap 后一次提交；跨 project、资源冲突和 runtime/capture data 全部拒绝或排除 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-044 | Director owner reachability authority | 全部 canvas 的 live source owner 是 registry reachability 权威；不可达 record 一次性 tombstone，active owner 先关闭 shell/session 再清 runtime projection；graph undo、durable storage 和资源删除不得隐式联动 | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-047 | Director project import/export boundary | 本地项目文件只承载 strict V1 authored document；导入重绑定当前 owner/project，排除 runtime/UI/capture bytes，成功替换为一条 Director history；不宣称 LibTV source schema 或 remote sync | ACTIVE / IMPLEMENTATION_GATE |
 
 ## 2. 决策详情
 
@@ -519,6 +520,32 @@ clone，不宣称 LibTV 原站使用 localStorage、同一 tombstone schema、�
 Director project。
 
 **依据：** [`liblib-canvas-batch80-2026-08-28/`](research/liblib-canvas-batch80-2026-08-28/)、[`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)。
+
+### DEC-047：Director project import/export 只处理 strict V1 authored document
+
+**背景：** Batch 67 已建立 `DirectorProjectDocumentV1` 的 strict codec，Batch 74/80
+又建立了 owner-scoped browser-local persistence、stale-save guard 和 durable
+tombstone。用户仍无法主动导出、备份或在另一个当前 Director session 中恢复
+authored project；直接复制 runtime state 会带入 session、selection、playhead、
+capture bytes 或 Three.js refs。
+
+**决策：** clone-owned project file workflow 只导出当前 active Director session 的
+canonical V1 authored document。导入必须先完成 JSON parse、strict decode、normalize
+和 active-session guard，再只重绑定 document-level `projectId` 与 `owner` 到当前
+session，保持 object/group/camera/track/path/keyframe/anchor/resource 的内部引用
+稳定。capture descriptors 不携带截图 bytes，selection、playhead、panel、phone
+runtime、history、clipboard、generation、session 和 Three.js refs 不进入文件。
+成功导入是一次 semantic replacement，产生一条 Director history 并支持 undo/redo；
+同文档是 `NOOP`，parse/decode/rebind/commit 任一步失败都 zero-partial。
+
+**影响：** Batch 81 将 `LIBTV-VR-024` 增加
+`IMPORT_EXPORT_FOCUSED_PASS`，并验证 download/file-input round trip、owner/project
+rebind、transient exclusion、history 和 ordinary graph isolation。该决策只约束
+clone，不证明 LibTV 原站有相同文件格式、导入/导出控件、owner rebind、history
+语义、remote sync 或真实资源 materialization；文件导入也不能复活 tombstoned
+project 或绕过现有 persistence/session authority。
+
+**依据：** [`liblib-canvas-batch81-2026-08-29/`](research/liblib-canvas-batch81-2026-08-29/)、[`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、[`TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)。
 
 ## 3. 何时可以重审决策
 

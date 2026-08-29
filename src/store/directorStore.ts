@@ -62,7 +62,10 @@ import type {
 } from "@/components/director/directorModelLibrary";
 import {
   createDirectorProjectDocumentV1,
+  decodeDirectorProjectDocument,
+  encodeDirectorProjectDocument,
   normalizeDirectorProjectDocument,
+  rebindDirectorProjectDocumentV1,
   type DirectorProjectOwnerV1,
 } from "@/lib/directorProjectDocument";
 import {
@@ -454,6 +457,8 @@ interface DirectorState {
   lastCommandResult: DirectorCommandResult | null;
 
   openSession: (owner: DirectorProjectOwnerV1) => DirectorProjectOpenResult;
+  exportDirectorProject: () => string | null;
+  importDirectorProject: (raw: string) => DirectorCommandResult;
   closeSession: (
     expectedOwner?: DirectorProjectOwnerV1,
   ) => DirectorProjectCloseResult;
@@ -2312,6 +2317,197 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         });
       }
     }
+    return result;
+  },
+
+  exportDirectorProject: () => {
+    const state = get();
+    const session = directorProjectRegistry.getActiveSession();
+    if (
+      !session ||
+      !state.projectOwner ||
+      !state.projectId ||
+      state.generation === null ||
+      !isSameDirectorProjectOwner(state.projectOwner, session.owner) ||
+      state.projectId !== session.projectId ||
+      state.generation !== session.generation
+    ) {
+      return null;
+    }
+    try {
+      return encodeDirectorProjectDocument(
+        snapshotCurrentDirectorProject(state, session),
+      );
+    } catch {
+      return null;
+    }
+  },
+
+  importDirectorProject: (raw) => {
+    const state = get();
+    const session = directorProjectRegistry.getActiveSession();
+    if (
+      !session ||
+      !state.projectOwner ||
+      !state.projectId ||
+      state.generation === null ||
+      !isSameDirectorProjectOwner(state.projectOwner, session.owner) ||
+      state.projectId !== session.projectId ||
+      state.generation !== session.generation
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (state.history.activeGesture || state.isCapturing) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_IMPORT_BUSY",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw) as unknown;
+    } catch {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_IMPORT_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const decoded = decodeDirectorProjectDocument(parsed);
+    if (!decoded.ok) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_IMPORT_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    let importedDocument: DirectorProjectDocumentV1;
+    let beforeDocument: DirectorProjectDocumentV1;
+    try {
+      importedDocument = rebindDirectorProjectDocumentV1(decoded.document, {
+        projectId: session.projectId,
+        owner: session.owner,
+      });
+      importedDocument = {
+        ...importedDocument,
+        captureDescriptors: [],
+      };
+      beforeDocument = snapshotCurrentDirectorProject(state, session);
+    } catch {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_IMPORT_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      directorDocumentFingerprint(importedDocument) ===
+      directorDocumentFingerprint(beforeDocument)
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const update = directorProjectRegistry.updateActive({
+      owner: session.owner,
+      projectId: session.projectId,
+      generation: session.generation,
+      document: importedDocument,
+      captures: [],
+    });
+    if (update.disposition !== "COMMITTED" || !update.record) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "PROJECT_IMPORT",
+        disposition:
+          update.reason === "OWNER_STALE" ? "STALE" : "REJECTED",
+        reason:
+          update.reason === "OWNER_STALE"
+            ? "DIRECTOR_OWNER_STALE"
+            : "DIRECTOR_IMPORT_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const restored = restoreDirectorProjectState(
+      {
+        ...update.record,
+        document: {
+          ...update.record.document,
+          captureDescriptors: [],
+        },
+        memory: { captures: [] },
+      },
+      session,
+      state.localModelLibrary,
+    );
+    const afterDocument = createDirectorProjectDocumentV1({
+      projectId: session.projectId,
+      owner: session.owner,
+      scene: restored.scene ?? state.scene,
+      objects: restored.authoredObjects ?? state.authoredObjects,
+      groups: restored.groups ?? state.groups,
+      activeCameraId: restored.activeCameraId ?? state.activeCameraId,
+      aspectRatio: restored.aspectRatio ?? state.aspectRatio,
+      timeline: restored.timeline ?? state.timeline,
+      captures: [],
+    });
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "PROJECT_IMPORT",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: "PROJECT_IMPORT",
+      projectId: session.projectId,
+      generation: session.generation,
+      before: beforeDocument,
+      after: afterDocument,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        ...restored,
+        history,
+        clipboard: null,
+        clipboardPasteCount: 0,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    directorProjectPersistence.save({
+      owner: session.owner,
+      projectId: session.projectId,
+      generation: session.generation,
+      document: afterDocument,
+    });
+    rememberDirectorHistory(session.projectId, history);
     return result;
   },
 

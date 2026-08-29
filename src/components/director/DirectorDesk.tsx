@@ -10,8 +10,10 @@ import {
 import {
   ArrowLeft,
   Check,
+  Download,
   FileVideo2,
   ImageIcon,
+  Upload,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -45,6 +47,7 @@ import {
 } from "@/store/directorStore";
 
 type MobilePanel = "tree" | "inspector" | null;
+type DirectorProjectTransferStatus = "idle" | "success" | "error";
 
 function getCurrentDirectorAsyncContext(): DirectorAsyncIngressContextV1 | null {
   const state = useDirectorStore.getState();
@@ -131,6 +134,12 @@ export default function DirectorDesk({
     (state) => state.viewportPanelsCollapsed,
   );
   const openSession = useDirectorStore((state) => state.openSession);
+  const exportDirectorProject = useDirectorStore(
+    (state) => state.exportDirectorProject,
+  );
+  const importDirectorProject = useDirectorStore(
+    (state) => state.importDirectorProject,
+  );
   const closeSession = useDirectorStore((state) => state.closeSession);
   const projectId = useDirectorStore((state) => state.projectId);
   const sessionId = useDirectorStore((state) => state.sessionId);
@@ -178,7 +187,13 @@ export default function DirectorDesk({
   const [videoExportRequest, setVideoExportRequest] =
     useState<DirectorVideoExportRequest | null>(null);
   const [exportedNodeId, setExportedNodeId] = useState<string | null>(null);
+  const [projectTransferStatus, setProjectTransferStatus] =
+    useState<DirectorProjectTransferStatus>("idle");
+  const [projectTransferMessage, setProjectTransferMessage] = useState<
+    string | null
+  >(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
+  const projectImportInputRef = useRef<HTMLInputElement>(null);
   const exportRequestId = useRef(0);
   const exporting = exportStatus === "exporting";
   const phoneVcamRecording = phoneVcamStatus === "recording";
@@ -550,6 +565,73 @@ export default function DirectorDesk({
     [videoExportRequest],
   );
 
+  const exportProjectFile = useCallback(() => {
+    const payload = exportDirectorProject();
+    if (!payload) {
+      setProjectTransferStatus("error");
+      setProjectTransferMessage("当前导演台会话不可导出");
+      return;
+    }
+    const sceneName = scene.name
+      .trim()
+      .replace(/[^\p{L}\p{N}_-]+/gu, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 48);
+    const fileName = `director-project-${sceneName || "project"}.json`;
+    const url = URL.createObjectURL(
+      new Blob([payload], { type: "application/json" }),
+    );
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = fileName;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    setProjectTransferStatus("success");
+    setProjectTransferMessage("项目已导出");
+  }, [exportDirectorProject, scene.name]);
+
+  const importProjectFile = useCallback(
+    async (file: File) => {
+      try {
+        const result = importDirectorProject(await file.text());
+        if (result.disposition === "COMMITTED") {
+          setProjectTransferStatus("success");
+          setProjectTransferMessage("项目已导入");
+          return;
+        }
+        if (result.disposition === "NOOP") {
+          setProjectTransferStatus("success");
+          setProjectTransferMessage("项目内容未变化");
+          return;
+        }
+        setProjectTransferStatus("error");
+        setProjectTransferMessage(
+          result.reason === "DIRECTOR_IMPORT_BUSY"
+            ? "当前操作进行中，请稍后重试"
+            : result.reason === "DIRECTOR_PROJECT_MISSING"
+              ? "导演台会话已失效，请重新打开"
+              : "项目文件无效，未修改当前项目",
+        );
+      } catch {
+        setProjectTransferStatus("error");
+        setProjectTransferMessage("项目文件读取失败，未修改当前项目");
+      }
+    },
+    [importDirectorProject],
+  );
+
+  const handleProjectImportChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.currentTarget.files?.[0] ?? null;
+      event.currentTarget.value = "";
+      if (!file || workspaceBusy) return;
+      void importProjectFile(file);
+    },
+    [importProjectFile, workspaceBusy],
+  );
+
   return (
     <div
       ref={workspaceRef}
@@ -566,6 +648,8 @@ export default function DirectorDesk({
       data-director-last-command={lastCommandResult?.commandKind ?? ""}
       data-director-last-disposition={lastCommandResult?.disposition ?? ""}
       data-director-last-reason={lastCommandResult?.reason ?? ""}
+      data-director-project-io-status={projectTransferStatus}
+      data-director-project-io-message={projectTransferMessage ?? ""}
       data-director-panels-collapsed={viewportPanelsCollapsed}
       role="dialog"
       aria-modal="true"
@@ -658,6 +742,52 @@ export default function DirectorDesk({
             ) : (
               "尚无构图"
             )}
+          </div>
+          <div className="relative">
+            <input
+              ref={projectImportInputRef}
+              type="file"
+              accept=".json,application/json"
+              data-director-project-import-input
+              className="hidden"
+              onChange={handleProjectImportChange}
+            />
+            <button
+              type="button"
+              data-director-project-export
+              aria-label="导出导演台项目"
+              title="导出项目 JSON"
+              disabled={workspaceBusy}
+              onClick={exportProjectFile}
+              className="flex h-8 w-8 items-center justify-center rounded text-[#9d9d9d] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
+            >
+              <Download size={14} />
+            </button>
+          </div>
+          <button
+            type="button"
+            data-director-project-import
+            aria-label="导入导演台项目"
+            title="导入项目 JSON"
+            disabled={workspaceBusy}
+            onClick={() => projectImportInputRef.current?.click()}
+            className="flex h-8 w-8 items-center justify-center rounded text-[#9d9d9d] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
+          >
+            <Upload size={14} />
+          </button>
+          <div
+            data-director-project-io-feedback
+            aria-live="polite"
+            className={cn(
+              "max-w-[120px] truncate px-1 text-[10px]",
+              projectTransferStatus === "error"
+                ? "text-[#ef9292]"
+                : projectTransferStatus === "success"
+                  ? "text-[#9ddbb9]"
+                  : "text-transparent",
+            )}
+          >
+            {projectTransferMessage ?? ""}
           </div>
           <div className="relative">
             <button

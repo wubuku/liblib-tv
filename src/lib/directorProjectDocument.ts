@@ -1880,3 +1880,22 @@ export function encodeDirectorProjectDocument(
 ): string {
   return JSON.stringify(normalizeDirectorProjectDocument(document));
 }
+
+export function rebindDirectorProjectDocumentV1(
+  document: DirectorProjectDocumentV1,
+  target: {
+    projectId: string;
+    owner: DirectorProjectOwnerV1;
+  },
+): DirectorProjectDocumentV1 {
+  const normalized = normalizeDirectorProjectDocument(document);
+  return normalizeDirectorProjectDocument({
+    ...normalized,
+    projectId: target.projectId,
+    owner: {
+      route: "libtv",
+      canvasId: target.owner.canvasId,
+      sourceNodeId: target.owner.sourceNodeId,
+    },
+  });
+}
