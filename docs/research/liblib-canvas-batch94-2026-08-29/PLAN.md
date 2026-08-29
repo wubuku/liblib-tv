@@ -1,6 +1,6 @@
 # Batch 94 计划：Director 焦点与键盘边界
 
-> 状态：`PLANNED`
+> 状态：`IMPLEMENTED` / `FOCUSED_RUNTIME_RECORDED_PASS`
 >
 > 建档日期：2026-08-29。
 >
@@ -139,3 +139,23 @@ git diff --check
 3. `npm run check`、文档检查和 diff 检查通过；
 4. 实施结果和证据边界落档，稳定索引可发现；
 5. commit/push 后 `master == origin/master` 且工作区干净。
+
+## 10. 当前执行记录
+
+2026-08-29 已完成本批代码实施和专项验证：
+
+- `scripts/verify-liblib-batch94.py` 通过；
+- Director Batch 59、67-93 current gates 在固定
+  `http://localhost:4317` 上串行通过；
+- Batch 94 桌面 `1440x900`、移动端 `390x844` 的 console/page/request
+  diagnostics 均为 `0/0/0`；
+- 没有生成截图，也没有重复执行截图识别；
+- 本批只描述 clone-owned Director 焦点边界，不升级为 LibTV 原站
+  source-exact DOM/CSS 或焦点实现证据。
+
+普通画布跨批回归的完整序列已经由 Batch 93 记录并通过。本次为验证
+Batch 94 影响边界而进行的额外 spot check 中，Batch 57、60 和隔离重试的
+Batch 64 通过；后续重复执行在用户要求“Batch 93 后不要再自动循环”后停止，
+Batch 61 处于被中断状态。因此本批不把这次未完成的重复序列写成新的普通画布
+全量通过，详见 [`current-gate-regression.json`](current-gate-regression.json)
+和 [`IMPLEMENTATION.md`](IMPLEMENTATION.md)。

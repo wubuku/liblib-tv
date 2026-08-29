@@ -1,0 +1,118 @@
+{
+  "batch": 94,
+  "date": "2026-08-29",
+  "status": "FOCUSED_RUNTIME_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "cloneCheckpoint": "15e8226",
+  "sourceExact": false,
+  "screenshotsWritten": false,
+  "screenshotRecognition": false,
+  "batch94": {
+    "verifier": "scripts/verify-liblib-batch94.py",
+    "status": "PASS",
+    "desktop": {
+      "viewport": "1440x900",
+      "workspaceFocus": true,
+      "workspaceTabContainment": true,
+      "editableBoundary": true,
+      "closeFocusReturn": true,
+      "escapeFocusReturn": true,
+      "diagnostics": {
+        "consoleErrors": 0,
+        "pageErrors": 0,
+        "requestFailures": 0
+      }
+    },
+    "mobile": {
+      "viewport": "390x844",
+      "treeDrawerFocusContainment": true,
+      "inspectorDrawerFocusContainment": true,
+      "inactiveDrawerInert": true,
+      "collapsedRailsInert": true,
+      "focusReturn": true,
+      "diagnostics": {
+        "consoleErrors": 0,
+        "pageErrors": 0,
+        "requestFailures": 0
+      }
+    }
+  },
+  "directorCurrentGates": {
+    "sequence": [
+      59,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93
+    ],
+    "allPassed": true,
+    "diagnostics": {
+      "testedDirectorBrowsers": "fresh Playwright contexts",
+      "errorsObserved": 0
+    }
+  },
+  "ordinaryCanvas": {
+    "inheritedFromBatch93": {
+      "sequence": [
+        57,
+        60,
+        61,
+        63,
+        64,
+        65,
+        77
+      ],
+      "allPassed": true,
+      "evidence": "../liblib-canvas-batch93-2026-08-29/current-gate-regression.json"
+    },
+    "currentTurnSpotChecks": [
+      {
+        "batch": 57,
+        "status": "PASS"
+      },
+      {
+        "batch": 60,
+        "status": "PASS"
+      },
+      {
+        "batch": 64,
+        "status": "PASS",
+        "mode": "isolated retry",
+        "note": "A longer serial attempt once observed committed instead of the expected stale skip; fresh-process retry passed and no product regression was confirmed."
+      }
+    ],
+    "currentTurnInterrupted": {
+      "batch": 61,
+      "status": "INTERRUPTED_BY_USER_STOP",
+      "note": "A repeated cross-batch command was stopped after the user explicitly required stopping after Batch 93; this is not recorded as a verifier failure."
+    }
+  },
+  "artifactPolicy": {
+    "historicalVerifierArtifactsRestored": true,
+    "screenshotsAdded": false,
+    "screenshotRecognition": false
+  }
+}

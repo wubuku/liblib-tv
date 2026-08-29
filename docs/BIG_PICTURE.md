@@ -201,7 +201,8 @@ codec + Batch 68 owner/session + Batch 69 authored/runtime + Batch 70
 command/history + Batch 71 pointer lifecycle + Batch 72 reference delete +
 Batch 73 async authority + Batch 74 browser-local persistence + Batch 75
 clipboard identity remap + Batch 76 owner reachability + Batch 78 pointer
-cancellation + Batch 59 browser smoke。Batch 68 已建立
+cancellation + Batch 59 browser smoke + Batch 94 focus containment when Director
+focus behavior changes。Batch 68 已建立
 route/canvas/source owner、per-owner in-memory project、fresh session/generation、
 A/B/cross-canvas restore 和 memory capture sidecar，单例跨 node 串场风险已在同步
 focused slice 关闭。Batch 69 又把 portable `authoredObjects` 与当前 R3F/timeline
@@ -248,7 +249,12 @@ budget、owner-scoped lease 和 deferred/final release；Batch 93 最终验证�
 Director 桌面/移动端 shell、R3F、对象树、Inspector、Timeline、close/reopen、
 普通画布跨批 slices 和 Batch 59/67-92 current gates。这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
-  source-exact 行为。
+  source-exact 行为。Batch 94 又补齐 Director workspace 与移动端
+  tree/Inspector drawer 的 Tab/Shift+Tab containment、focus return、editable
+  boundary 和 inactive drawer `aria-hidden`/`inert`，并以桌面/移动端 fresh
+  BrowserContext 记录 `0/0/0` diagnostics。它是 clone-owned focus reliability，
+  不改变普通画布的 selection/focus 合同，也不产生 LibTV source-exact focus
+  证据。
 
 ### 5.2 状态边界
 

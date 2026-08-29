@@ -22,6 +22,7 @@
 > `OBJECT_CAMERA_GROUP_COMMAND_GATE_RECORDED_PASS` /
 > `LOCAL_RESOURCE_LEASE_GATE_RECORDED_PASS` /
 > `FINAL_DESKTOP_MOBILE_REGRESSION_RECORDED_PASS` /
+> `FOCUS_CONTAINMENT_GATE_RECORDED_PASS` /
 > `GOVERNANCE_CLOSEOUT_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
@@ -43,8 +44,9 @@
 > context/cancellation verifier, Batch 87 restore-selection verifier, Batch 88
 > selection/timeline authority verifier, Batch 89 scene-settings/add-camera verifier
 > Batch 90 project/session-scene-command verifier, Batch 91 object/camera/group
-> command verifier, Batch 92 local-resource lifecycle/lease verifier and Batch 93
-> final desktop/mobile and cross-batch regression verifier.
+> command verifier, Batch 92 local-resource lifecycle/lease verifier, Batch 93
+> final desktop/mobile and cross-batch regression verifier, and Batch 94
+> focus-containment verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -219,6 +221,7 @@ historical regressions.
 | Batch 91 | Director object/camera/group command and history boundary | `CURRENT_GATE` | Pure source contract + fresh-page Playwright object/camera/group command, name draft/Enter/blur, reference validation, persistence, one-entry history, invalid/no-op and zero-diagnostic workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` object/camera/group command gate；proves clone-owned mutation boundary，不证明 LibTV source Director command/history/persistence semantics、exact DOM/CSS 或 source parity |
 | Batch 92 | Director local resource lifecycle and session lease | `CURRENT_GATE` | Pure lifecycle contract + fresh-page Playwright local-model materialization, owner-scoped lease, deferred/final release, delete reference cleanup and zero diagnostics；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource lease gate；proves clone-owned session-local resource lifecycle，不证明 LibTV source resource semantics、生产 loader/cache、复杂 FBX/纹理或 remote persistence |
 | Batch 93 | Director final desktop/mobile and cross-batch regression | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` shell/R3F/object-tree/Inspector/Timeline/close-reopen/overflow checks；serial ordinary canvas `57/60/61/63/64/65/77` and Director `59/67-92` gates；writes Batch 93 structured audits and no screenshots | Final clone-owned reliability/governance closeout；不证明 LibTV source Director exact DOM/CSS、project/session/history/resource semantics、remote persistence、触摸板硬件或 source parity |
+| Batch 94 | Director focus containment and keyboard boundary | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` workspace/drawer focus cycle、focus return、editable boundary、ARIA/inert、overflow and zero diagnostics；writes `runtime-audit.json` and `current-gate-regression.json`, no screenshots | Current clone-owned focus-containment gate；不证明 LibTV source Director 的 exact focus trap、`inert`、DOM/CSS 或键盘实现 |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -652,9 +655,30 @@ The Batch 92 local-resource result is recorded in
 | Artifacts | Batch 93 `runtime-audit.json` and `current-gate-regression.json`；no screenshots or screenshot recognition |
 | Governance | current manifest、verification ledger、fixture catalog、traceability、Harness、coverage and documentation hubs updated；full checks passed |
 
-This is the final Batch 93 clone-owned reliability record. It closes the
-requested current regression/governance pass and does not create a Batch 94.
-It does not produce new LibTV source-exact evidence.
+This is the Batch 93 clone-owned desktop/mobile and governance record. It does
+not produce new LibTV source-exact evidence. Batch 94 separately records the
+clone-owned Director focus-containment slice.
+
+### 4.5 Batch 94 focus containment closeout
+
+Batch 94 在固定 `localhost:4317` 上完成 workspace 与移动抽屉焦点边界验证。
+结果见
+[`liblib-canvas-batch94-2026-08-29/runtime-audit.json`](liblib-canvas-batch94-2026-08-29/runtime-audit.json)
+和
+[`liblib-canvas-batch94-2026-08-29/current-gate-regression.json`](liblib-canvas-batch94-2026-08-29/current-gate-regression.json)。
+
+专项覆盖桌面 `Tab`/`Shift+Tab` containment、打开/关闭回焦、输入框边界，以及
+移动端 tree/Inspector 局部循环、非活动抽屉 `aria-hidden`/`inert`、backdrop/
+Escape/close-button 回焦和横向溢出。desktop/mobile console、page、request
+diagnostics 均为 `0/0/0`，没有生成截图或执行截图识别。
+
+Director Batch 59、67-93 current gates 在同一固定服务上重新通过。普通画布
+完整 `57/60/61/63/64/65/77` 序列沿用 Batch 93 的已记录通过结果；本次额外
+spot check 通过 Batch 57、60 和隔离重试的 Batch 64。一次较长重复序列在
+Batch 61 处按用户停止要求中断，不作为 verifier 失败或新的全量通过。
+
+Batch 94 只描述 clone-owned focus reliability，不证明 LibTV 原站的 exact
+focus trap、`inert`、DOM/CSS、快捷键或焦点回收实现。
 
 ## 5. Future Gate Profiles
 
@@ -684,6 +708,7 @@ Batch 67 pure codec gate
   + Batch 91 object/camera/group-command gate
   + Batch 92 local-resource lifecycle/lease gate
   + Batch 59 current browser smoke
+  + Batch 94 focus-containment gate when Director focus behavior changes
   + focused tests for the changed reliability slice
   + npm run check
 ```
@@ -768,6 +793,7 @@ Required future scenarios:
 | Director restore-selection authority | **focused runtime in Batch 87**：undo/redo/cancel preserve-and-repair selection across object tree、Inspector、Viewport and Timeline；invalid object/group/track/path/keyframe/anchor targets are cleared；selection remains outside portable document |
 | Director selection/timeline/TransformControls authority | **focused runtime in Batch 88**：single/multi/group selection normalizes compatible track context；Timeline track/keyframe/path selection drives object/group and Inspector context；finished path drawing restores complete selection；delete/locked/portable boundaries remain clean |
 | Director scene settings/add-camera discoverability | **focused runtime in Batch 89**：场景设置区和对象树/Inspector 双入口、camera object/track/keyframe、active-camera/selection sync、undo/redo、portable export 和 mobile panel geometry；不证明 LibTV source Director add-camera defaults/shot lifecycle |
+| Director focus containment and return | **focused runtime in Batch 94**：workspace Tab/Shift+Tab containment、mobile tree/Inspector local focus scope、inactive drawer `aria-hidden`/`inert`、close/Escape/backdrop focus return and editable boundary；不证明 LibTV source exact focus implementation |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -796,6 +822,7 @@ SELECTION_CRUD_FOCUSED_PASS
 TRANSFORM_CONTEXT_FOCUSED_PASS
 RESTORE_SELECTION_FOCUSED_PASS
 SELECTION_TIMELINE_AUTHORITY_FOCUSED_PASS
+FOCUS_CONTAINMENT_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

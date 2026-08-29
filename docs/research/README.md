@@ -57,7 +57,7 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
-- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-88 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-94 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
 - [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/README.md)：Director undo/redo selection authority、失效选择 repair 和 portable-document 边界。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
@@ -166,7 +166,9 @@
 | 90 | Director project/session diagnostics and scene semantic command | [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，session outcome/lifecycle diagnostics、scene draft + Enter/blur commit、typed scene command、persistence、one-entry history、no-op/reject、undo/redo、mobile Inspector 和 zero diagnostics 已通过；不证明 LibTV source Director project/session/history semantics |
 | 91 | Director object/camera/group command and history boundary | [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，对象属性、相机设置、角色组创建/重命名/变换、draft/commit、no-op/invalid/reference guard、persistence、one-entry history 和 zero diagnostics 已通过；不证明 LibTV source Director command/history semantics |
 | 92 | Director local resource lifecycle and session lease | [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，strict descriptor/decoded-byte budget、owner-scoped request/lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 zero diagnostics 已通过；不证明 LibTV source resource protocol、生产 loader/cache 或 remote persistence |
+| 94 | Director workspace/drawer focus containment, focus return, ARIA/inert and editable keyboard boundary | [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，desktop/mobile workspace 与 tree/Inspector drawer 的 Tab/Shift+Tab containment、focus return、editable boundary、ARIA/inert、overflow 和 zero diagnostics 已通过；不证明 LibTV source Director exact focus trap 或键盘实现 |
 | 93 | Director final desktop/mobile regression and governance closeout | [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/) `FINAL_REGRESSION_RECORDED_PASS`，桌面/移动端 Director shell、R3F、对象树、Inspector、Timeline、抽屉/折叠、close/reopen、普通画布跨批回归、Batch 59/67-92 current gates 和全量文档/项目检查已通过；不证明 LibTV source parity |
+| 94 | Director focus containment and keyboard boundary | [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，workspace 正/反向 Tab 循环、打开/关闭回焦、移动 tree/Inspector 局部循环、非活动抽屉 `aria-hidden`/`inert`、Escape/editable boundary 和 desktop/mobile zero diagnostics 已通过；不证明 LibTV source-exact focus implementation |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -188,6 +190,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 91 | Director object/camera/group command and history boundary | 已完成；对象属性、相机设置、角色组创建/重命名/变换的 typed command、persistence、draft/commit、no-op/invalid/reference guard、one-entry history 和 focused gate 已通过，详见 [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) |
 | 92 | Director local resource lifecycle and session lease | 已完成；strict descriptor/decoded-byte budget、owner-scoped lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 focused gate 已通过，详见 [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) |
 | 93 | Director final desktop/mobile regression and governance closeout | 已完成；桌面/移动端 Director 回归、普通画布跨批回归、Batch 59/67-92 current gates、治理文档和全量检查已通过，详见 [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)；本批完成后按计划停止 |
+| 94 | Director focus containment and keyboard boundary | 已完成；workspace 与移动抽屉焦点边界、回焦、`aria-hidden`/`inert`、Escape/editable 优先级和 desktop/mobile focused verifier 已通过，详见 [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/)；本批完成后按用户要求停止 |
 
 ## Stable Cross-Cutting Research
 
