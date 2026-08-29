@@ -1,0 +1,65 @@
+{
+  "batch": 83,
+  "date": "2026-08-29",
+  "implementationHead": "6c1d4c1",
+  "baseUrl": "http://localhost:4317",
+  "worktree": {
+    "worktrees": 1,
+    "branch": "master",
+    "cleanBeforeDocumentationCloseout": false,
+    "cleanAfterDocumentationCloseout": "pending-closeout-commit"
+  },
+  "gates": [
+    "Batch 59",
+    "Batch 67",
+    "Batch 68",
+    "Batch 69",
+    "Batch 70",
+    "Batch 71",
+    "Batch 72",
+    "Batch 73",
+    "Batch 74",
+    "Batch 75",
+    "Batch 76",
+    "Batch 77",
+    "Batch 78",
+    "Batch 79",
+    "Batch 80",
+    "Batch 81",
+    "Batch 82",
+    "Batch 83",
+    "npm run check",
+    "npm run docs:check",
+    "python3 scripts/verify-docs.py",
+    "git diff --check"
+  ],
+  "status": "RECORDED_PASS",
+  "results": {
+    "currentDirectorGateSerial": true,
+    "batch80FixtureDrift": {
+      "detected": true,
+      "oldFixture": "batch80-shared.glb",
+      "replacementFixture": "batch80-shared.obj",
+      "semanticChange": false
+    },
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0
+  },
+  "artifactPolicy": {
+    "screenshotsWritten": 0,
+    "historicalRuntimeAuditsChanged": false,
+    "batch83RuntimeAudit": "runtime-audit.json"
+  },
+  "sourceParity": {
+    "sourceExact": false,
+    "cloneOwnedDirectorReliability": true,
+    "ordinaryCanvasUnifiedFeedback": false
+  },
+  "notes": [
+    "The serial current-gate result covers Batch 59 and Batch 67-83 on the fixed localhost:4317 server.",
+    "Batch 80 was rerun after replacing only the incompatible .glb fixture with a minimal valid .obj fixture.",
+    "This ledger records clone reliability and does not upgrade any Director behavior to LibTV source parity.",
+    "The closeout document and final worktree state are completed by the closeout commit that adds this ledger."
+  ]
+}

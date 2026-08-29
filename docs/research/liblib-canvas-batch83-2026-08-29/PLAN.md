@@ -1,8 +1,10 @@
 # Batch 83 计划：Director command feedback current gate
 
-> 状态：`IN_PROGRESS`。
+> 状态：`COMPLETED` / `RECORDED_PASS`。
 >
 > 建档日期：2026-08-29。
+>
+> 实施 checkpoint：`6c1d4c1`；结果见本目录 `IMPLEMENTATION.md`。
 >
 > 本批目标是收口 clone-owned Director command result 的可发现性和 current
 > verifier 入口，不新增 LibTV 原站 source-exact 结论。
@@ -86,3 +88,14 @@ primary feedback surface。用户只能从具体 panel 的局部状态或开发�
 - `docs/research/liblib-canvas-batch83-2026-08-29/IMPLEMENTATION.md`
 - `docs/research/liblib-canvas-batch83-2026-08-29/runtime-audit.json`
 - 相关 current manifest、fixture、ledger、harness、hub 和治理文档
+
+## 7. 收口结果
+
+- pure outcome/reason mapping：通过；
+- fresh browser feedback surface：通过；
+- Batch 80 `.glb` -> `.obj` current fixture drift：已修正并记录；
+- Batch 59、67–83 current Director gate：通过；
+- `npm run check`：通过（9 条既有 lint warning，0 error）；
+- `npm run docs:check`、`python3 scripts/verify-docs.py`、`git diff --check`：通过；
+- current-gate regression：已落档；
+- commit/push：待本批最终文档 checkpoint 执行。

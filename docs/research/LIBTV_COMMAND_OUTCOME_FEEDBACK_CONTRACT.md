@@ -645,4 +645,4 @@ Only if source/product evidence requires：
 
 当前最准确的总结是：
 
-> Open Canvas 值得借鉴的不是“到处调用 toast”，而是它已经区分了 transient notification、node status/error、save/conflict surface 和 control busy；其 localized message identity 与无 owner 的 async toast 又提供了明确反例。当前 LibTV clone 有若干更好的局部 reason/owner 形状，但缺少统一 outcome-to-surface authority。后续复刻应先证明 command outcome，再决定反馈落点；不能用 toast 补齐未知 workflow，也不能让 transient UI 污染 graph/history。
+> Open Canvas 值得借鉴的不是“到处调用 toast”，而是它已经区分了 transient notification、node status/error、save/conflict surface 和 control busy；其 localized message identity 与无 owner 的 async toast 又提供了明确反例。当前 LibTV clone 已在 Director 通过 Batch 83 形成 clone-owned typed outcome/reason 到 fixed-header primary surface 的最小闭环，但 ordinary canvas 仍有局部 reason/string/timer islands，缺少统一 owner。后续复刻应先证明 command outcome，再决定反馈落点；不能用 toast 补齐未知 workflow，也不能让 transient UI 污染 graph/history。

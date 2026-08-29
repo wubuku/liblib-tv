@@ -242,7 +242,7 @@
 
 **决策：** 每个用户命令先返回 `COMMITTED / STARTED / COMPLETED / REJECTED / NOOP / FAILED / CANCELED / STALE / CONFLICT / UNKNOWN` 中的稳定 disposition，以及 reason code/args 和 owner。Display copy 只在 presentation adapter 映射。Durable/recoverable state 使用 owner-local persistent surface；field rejection 靠近字段；visible graph result 是 primary；copy/download 等无持续对象的动作才默认适合 transient confirmation。一个 outcome 只有一个 primary visual authority，secondary announcement 不改变语义。Reject/noop/stale/unknown 默认 zero graph/history；stale/duplicate completion 不在当前 canvas 宣告成功。
 
-**影响：** 不因本决策新增全局 LibTV toast，也不复用 FrameOS toast。当前 local-prototype disclosure 与 Director owner surface保持；精确 LibTV toast、invalid Handle style、颜色、文案、timeout 和 modal 仍 source-gated。`COMMAND-FEEDBACK-01`、reason projection、timer/dedupe/aria owner 和 `LIBTV-VR-018` runtime 均需明确编码授权。
+**影响：** 不因本决策新增全局 LibTV toast，也不复用 FrameOS toast。Batch 83 已在 Director owner 内落成 clone-owned reason projection、固定 header primary surface、ARIA、rejection/no-op visibility、committed-success suppression、mobile geometry 和 zero-history feedback boundary；这不改变普通 LibTV route 的 local status/timer islands。精确 LibTV toast、invalid Handle style、颜色、文案、timeout、clear/retry/dedupe 和 modal 仍 source-gated，`COMMAND-FEEDBACK-01` 的普通画布 runtime 仍需独立授权。
 
 **依据：** [`LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md`](research/LIBTV_COMMAND_OUTCOME_FEEDBACK_CONTRACT.md)、[`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)、[`LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md`](research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md)、Open Canvas layout/store/i18n/studio/list/settings fixed chain。
 
