@@ -135,8 +135,8 @@ def main() -> None:
             "id": "batch80-shared-local-model",
             "categoryId": "my-models",
             "name": "Batch 80 shared model",
-            "fileName": "batch80-shared.glb",
-            "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+            "fileName": "batch80-shared.obj",
+            "dataUrl": "data:text/plain;base64,byBiYXRjaDgwLXNoYXJlZAp2IDAgMCAwCnYgMSAwIDAKdiAwIDEgMApmIDEgMiAzCg==",
             "visual": "box",
             "color": "#7db5d8",
         }

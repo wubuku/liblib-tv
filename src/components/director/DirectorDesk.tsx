@@ -8,11 +8,13 @@ import {
   useState,
 } from "react";
 import {
+  AlertTriangle,
   ArrowLeft,
   Check,
   Download,
   FileVideo2,
   ImageIcon,
+  Info,
   Upload,
   X,
 } from "lucide-react";
@@ -37,6 +39,7 @@ import {
   type DirectorAsyncResultEnvelopeV1,
 } from "@/lib/directorAsyncAuthority";
 import { directorDocumentFingerprint } from "@/lib/directorCommandKernel";
+import { getDirectorCommandFeedback } from "@/lib/directorCommandFeedback";
 import { useCanvasStore } from "@/store/canvasStore";
 import {
   getDirectorProjectRegistrySnapshot,
@@ -206,6 +209,10 @@ export default function DirectorDesk({
   const projectOwner = useMemo(
     () => ({ route: "libtv" as const, canvasId, sourceNodeId }),
     [canvasId, sourceNodeId],
+  );
+  const commandFeedback = useMemo(
+    () => getDirectorCommandFeedback(lastCommandResult),
+    [lastCommandResult],
   );
 
   useEffect(() => {
@@ -657,7 +664,10 @@ export default function DirectorDesk({
       tabIndex={-1}
       className="fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-[#151515] text-[#ededed]"
     >
-      <header className="relative z-40 grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.07] bg-[#181818] px-2">
+      <header
+        data-director-header
+        className="relative z-40 grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.07] bg-[#181818] px-2"
+      >
         <div className="flex min-w-0 items-center">
           <button
             type="button"
@@ -674,6 +684,36 @@ export default function DirectorDesk({
           <div className="min-w-0">
             <h1 className="truncate text-xs font-medium text-[#eeeeee]">3D导演台</h1>
             <p className="truncate text-[10px] text-[#666] max-[520px]:hidden">{scene.name}</p>
+          </div>
+          <div
+            data-director-command-feedback
+            data-director-command-feedback-disposition={
+              commandFeedback?.disposition ?? "hidden"
+            }
+            data-director-command-feedback-reason={
+              commandFeedback?.reason ?? ""
+            }
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            className={cn(
+              "ml-3 flex min-w-0 max-w-[220px] items-center gap-1 truncate border-l border-white/10 pl-3 text-[10px]",
+              commandFeedback?.tone === "error"
+                ? "text-[#ef9292]"
+                : commandFeedback?.tone === "warning"
+                  ? "text-[#e5c58b]"
+                  : "text-[#a7b9c5]",
+              !commandFeedback && "invisible",
+            )}
+          >
+            {commandFeedback?.tone === "error" ? (
+              <AlertTriangle size={12} className="shrink-0" aria-hidden="true" />
+            ) : (
+              <Info size={12} className="shrink-0" aria-hidden="true" />
+            )}
+            <span className="truncate">
+              {commandFeedback?.message ?? "无命令反馈"}
+            </span>
           </div>
         </div>
 
