@@ -492,6 +492,11 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
   const hasLockedMember = group.characterIds.some((objectId) =>
     objects.some((object) => object.id === objectId && object.locked),
   );
+  const groupNameInputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const input = groupNameInputRef.current;
+    if (input && document.activeElement !== input) input.value = group.label;
+  }, [group.label]);
   if (!anchor) return null;
 
   const updateField = (
@@ -523,10 +528,14 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
         <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
         <input
           data-director-group-name
-          value={group.label}
-          onChange={(event) =>
-            updateGroup(group.id, { label: event.target.value })
+          ref={groupNameInputRef}
+          defaultValue={group.label}
+          onBlur={(event) =>
+            updateGroup(group.id, { label: event.currentTarget.value })
           }
+          onKeyDown={(event) => {
+            if (event.key === "Enter") event.currentTarget.blur();
+          }}
           className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
         />
       </label>
@@ -1317,17 +1326,24 @@ export function DirectorInspector({
   );
   const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
   const sceneNameInputRef = useRef<HTMLInputElement>(null);
+  const objectNameInputRef = useRef<HTMLInputElement>(null);
   const [cameraTab, setCameraTab] = useState<"properties" | "captures">(
     "properties",
   );
-  useEffect(() => {
-    const input = sceneNameInputRef.current;
-    if (input && document.activeElement !== input) input.value = scene.name;
-  }, [scene.name]);
   const timeline = useDirectorStore((state) => state.timeline);
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
+  useEffect(() => {
+    const input = sceneNameInputRef.current;
+    if (input && document.activeElement !== input) input.value = scene.name;
+  }, [scene.name]);
+  useEffect(() => {
+    const input = objectNameInputRef.current;
+    if (input && document.activeElement !== input && selected) {
+      input.value = selected.name;
+    }
+  }, [selected?.id, selected?.name]);
   const selectedTrack = timeline.tracks.find((track) => {
     if (track.id !== timeline.selectedTrackId) return false;
     return selectedGroup
@@ -1466,11 +1482,16 @@ export function DirectorInspector({
             <label className="block">
               <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
               <input
-                value={selected.name}
+                ref={objectNameInputRef}
+                data-director-object-name
+                defaultValue={selected.name}
                 disabled={selected.locked}
-                onChange={(event) =>
-                  updateObject(selected.id, { name: event.target.value })
+                onBlur={(event) =>
+                  updateObject(selected.id, { name: event.currentTarget.value })
                 }
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") event.currentTarget.blur();
+                }}
                 className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
               />
             </label>

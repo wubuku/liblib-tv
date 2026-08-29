@@ -106,6 +106,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 88 | Director selection/timeline/TransformControls authority, single/multi/group normalization, reverse timeline selection, delete repair, locked zero mutation and mobile geometry |
 | Batch 89 | Director scene settings, ground/grid/background controls, add-camera entrypoints, camera track/keyframe continuity, portable export and mobile geometry |
 | Batch 90 | Director project/session lifecycle diagnostics, scene semantic command, draft/commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector |
+| Batch 91 | Director object/camera/group typed command boundary, name draft/commit, reference validation, persistence, one-entry history, invalid/no-op protection and zero diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -194,6 +195,11 @@ commit、typed scene command、persistence、one-entry history、no-op/rejection
 undo/redo、mobile Inspector 和 zero-diagnostic 断言。它只证明 clone-owned
 project/session 与 scene command 边界，不证明 LibTV 原站 Director project/session、
 history、persistence、文案或 source-exact behavior。
+Batch 91 是 Director object/camera/group command hybrid gate，默认不写截图；它保留
+对象属性、相机设置、角色组创建/重命名/变换、name draft/commit、reference
+validation、persistence、one-entry history、invalid/no-op zero mutation 和
+zero-diagnostic 断言。它只证明 clone-owned mutation boundary，不证明 LibTV 原站
+Director command/history/persistence、文案或 source-exact behavior。
 
 ## Browser Evidence Requirements
 

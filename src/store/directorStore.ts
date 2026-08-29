@@ -101,6 +101,7 @@ import {
   pushDirectorHistory,
   type DirectorCommandResult,
   type DirectorHistoryState,
+  type DirectorSelectionResult,
 } from "@/lib/directorCommandKernel";
 import {
   createDirectorAsyncIdentity,
@@ -545,11 +546,11 @@ interface DirectorState {
   updateGroup: (
     groupId: string,
     patch: Partial<Pick<DirectorCharacterGroup, "label">>,
-  ) => void;
+  ) => DirectorCommandResult;
   updateGroupTransform: (
     groupId: string,
     transform: DirectorTransform,
-  ) => void;
+  ) => DirectorCommandResult;
   setViewMode: (mode: DirectorViewMode) => void;
   setTransformMode: (mode: DirectorTransformMode) => void;
   setAspectRatio: (ratio: DirectorAspectRatio) => void;
@@ -572,7 +573,7 @@ interface DirectorState {
   updateCamera: (
     objectId: string,
     patch: Partial<NonNullable<DirectorObject["camera"]>>,
-  ) => void;
+  ) => DirectorCommandResult;
   applyCharacterPosePreset: (
     objectId: string,
     presetId: DirectorPosePresetId,
@@ -2079,6 +2080,69 @@ function makeDirectorCommandResult(
       input.selectionResult === undefined
         ? getDirectorSelectionResult(state)
         : input.selectionResult,
+  });
+}
+
+interface DirectorMutationCommit {
+  result: DirectorCommandResult;
+  history: DirectorHistoryState;
+}
+
+function commitDirectorMutation(
+  state: DirectorState,
+  input: {
+    commandKind: string;
+    before: DirectorDocumentSnapshot;
+    after: DirectorProjectDocumentV1;
+    captures: DirectorCapture[];
+    selectionResult?: DirectorSelectionResult | null;
+  },
+): DirectorMutationCommit | null {
+  if (state.history.activeGesture) {
+    return {
+      result: makeDirectorCommandResult(state, {
+        commandKind: input.commandKind,
+        disposition: "COMMITTED",
+        projectChanged: true,
+        historyEntries: 0,
+        selectionResult: input.selectionResult,
+      }),
+      history: state.history,
+    };
+  }
+  if (!updateActiveDirectorDocument(state, input.after, input.captures)) {
+    return null;
+  }
+  const result = makeDirectorCommandResult(state, {
+    commandKind: input.commandKind,
+    disposition: "COMMITTED",
+    projectChanged: true,
+    historyEntries: 1,
+    selectionResult: input.selectionResult,
+  });
+  const entry = createDirectorHistoryEntry({
+    commandId: result.commandId,
+    commandKind: input.commandKind,
+    projectId: input.before.projectId,
+    generation: input.before.generation,
+    before: input.before.document,
+    after: input.after,
+  });
+  const history = pushDirectorHistory(state.history, entry);
+  rememberDirectorHistory(input.before.projectId, history);
+  return { result, history };
+}
+
+function staleDirectorMutationResult(
+  state: DirectorState,
+  commandKind: string,
+): DirectorCommandResult {
+  return makeDirectorCommandResult(state, {
+    commandKind,
+    disposition: "STALE",
+    reason: "DIRECTOR_OWNER_STALE",
+    projectChanged: false,
+    historyEntries: 0,
   });
 }
 
@@ -4045,52 +4109,121 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }),
 
   groupSelectedCharacters: () => {
-    let createdGroupId: string | null = null;
-    set((state) => {
-      const assignedIds = new Set(
-        state.groups.flatMap((group) => group.characterIds),
-      );
-      const characterIds = state.selectedObjectIds.filter(
-        (id) =>
-          !assignedIds.has(id) &&
-          state.objects.some(
-            (object) => object.id === id && object.kind === "character",
-          ),
-      );
-      if (characterIds.length < 2) return state;
-      const groupIndex = state.groups.length + 1;
-      const group: DirectorCharacterGroup = {
-        id: `director-character-group-${Date.now()}-${groupIndex}`,
-        label: `角色组${groupIndex}`,
-        characterIds,
-      };
-      createdGroupId = group.id;
-      const selectedObjectId =
-        characterIds[characterIds.length - 1] ?? null;
-      const timeline = normalizeDirectorTimelineSelection(
-        {
-          ...state.timeline,
-          selectedMotionPathId: null,
-          selectedMotionPathAnchorId: null,
-          selectedMotionPathHandle: null,
-          motionPathDraft: null,
-          isPlaying: false,
-        },
-        {
-          selectedObjectId,
-          selectedObjectIds: characterIds,
-          selectedGroupId: group.id,
-        },
-      );
-      return {
-        groups: [...state.groups, group],
+    const state = get();
+    const assignedIds = new Set(
+      state.groups.flatMap((group) => group.characterIds),
+    );
+    const characterIds = state.selectedObjectIds.filter(
+      (id) =>
+        !assignedIds.has(id) &&
+        state.authoredObjects.some(
+          (object) => object.id === id && object.kind === "character",
+        ),
+    );
+    if (characterIds.length < 2) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GROUP_CHARACTERS",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return null;
+    }
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GROUP_CHARACTERS",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return null;
+    }
+    if (
+      state.history.activeGesture ||
+      state.timeline.motionPathDraft ||
+      state.isCapturing ||
+      state.phoneVcam.status === "recording"
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "GROUP_CHARACTERS",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return null;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(state, "GROUP_CHARACTERS");
+      set({ lastCommandResult: result });
+      return null;
+    }
+    const groupIndex = state.groups.length + 1;
+    const group: DirectorCharacterGroup = {
+      id: `director-character-group-${Date.now()}-${groupIndex}`,
+      label: `角色组${groupIndex}`,
+      characterIds,
+    };
+    const selectedObjectId = characterIds[characterIds.length - 1] ?? null;
+    const timeline = normalizeDirectorTimelineSelection(
+      {
+        ...state.timeline,
+        selectedMotionPathId: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+        isPlaying: false,
+      },
+      {
+        selectedObjectId,
+        selectedObjectIds: characterIds,
+        selectedGroupId: group.id,
+      },
+    );
+    const groups = [...state.groups, group];
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: state.authoredObjects,
+      groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    const selectionResult = {
+      selectedObjectId,
+      selectedObjectIds: characterIds,
+      selectedGroupId: group.id,
+    };
+    const commit = commitDirectorMutation(state, {
+      commandKind: "GROUP_CHARACTERS",
+      before,
+      after,
+      captures: state.captures,
+      selectionResult,
+    });
+    if (!commit) {
+      const result = staleDirectorMutationResult(state, "GROUP_CHARACTERS");
+      set({ lastCommandResult: result });
+      return null;
+    }
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        groups,
         selectedObjectId,
         selectedObjectIds: characterIds,
         selectedGroupId: group.id,
         timeline,
-      };
-    });
-    return createdGroupId;
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return group.id;
   },
 
   ungroupSelectedCharacters: () => {
@@ -4522,42 +4655,171 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     return createdObjectId;
   },
 
-  updateGroup: (groupId, patch) =>
-    set((state) => ({
-      groups: state.groups.map((group) =>
-        group.id === groupId ? { ...group, ...patch } : group,
-      ),
-      timeline: patch.label
-        ? {
-            ...state.timeline,
-            tracks: state.timeline.tracks.map((track) =>
-              track.kind === "group" && track.groupId === groupId
-                ? { ...track, label: `${patch.label} · 分组` }
-                : track,
-            ),
-          }
-        : state.timeline,
-    })),
+  updateGroup: (groupId, patch) => {
+    const state = get();
+    const group = state.groups.find((item) => item.id === groupId);
+    const patchKeys = Object.keys(patch) as Array<keyof typeof patch>;
+    const invalidValue =
+      patchKeys.some((key) => key !== "label") ||
+      (patch.label !== undefined &&
+        (typeof patch.label !== "string" || patch.label.trim().length === 0));
+    if (!group) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (invalidValue) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const nextPatch = {
+      ...(patch.label !== undefined ? { label: patch.label.trim() } : {}),
+    };
+    if (
+      Object.keys(nextPatch).length === 0 ||
+      nextPatch.label === group.label
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(state, "UPDATE_GROUP");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const groups = state.groups.map((item) =>
+      item.id === groupId ? { ...item, ...nextPatch } : item,
+    );
+    const timeline = nextPatch.label
+      ? {
+          ...state.timeline,
+          tracks: state.timeline.tracks.map((track) =>
+            track.kind === "group" && track.groupId === groupId
+              ? { ...track, label: `${nextPatch.label} · 分组` }
+              : track,
+          ),
+        }
+      : state.timeline;
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: state.authoredObjects,
+      groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    const commit = commitDirectorMutation(state, {
+      commandKind: "UPDATE_GROUP",
+      before,
+      after,
+      captures: state.captures,
+    });
+    if (!commit) {
+      const result = staleDirectorMutationResult(state, "UPDATE_GROUP");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        groups,
+        timeline,
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return commit.result;
+  },
 
-  updateGroupTransform: (groupId, transform) =>
-    set((state) => {
-      const group = state.groups.find((item) => item.id === groupId);
-      if (!group) return state;
-      if (
-        group.characterIds.some((objectId) =>
-          directorObjectIsLocked(state, objectId),
-        )
-      ) {
-        return rejectLockedDirectorMutation(state, "UPDATE_GROUP_TRANSFORM");
-      }
-      const authoredObjects = resolveCameraRelations(
-        applyDirectorGroupTransform(state.authoredObjects, group, transform),
+  updateGroupTransform: (groupId, transform) => {
+    const state = get();
+    const group = state.groups.find((item) => item.id === groupId);
+    if (!group) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      group.characterIds.some((objectId) =>
+        directorObjectIsLocked(state, objectId),
+      )
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_LOCKED",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const invalidTransform = (["position", "rotation", "scale"] as const).some(
+      (field) =>
+        transform[field].length !== 3 ||
+        transform[field].some((value) => !Number.isFinite(value)) ||
+        (field === "scale" && transform[field].some((value) => value <= 0)),
+    );
+    if (invalidTransform) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(
+        state,
+        "UPDATE_GROUP_TRANSFORM",
       );
-      const existing = state.timeline.tracks.find(
-        (track): track is Extract<DirectorTimelineTrack, { kind: "group" }> =>
-          track.kind === "group" && track.groupId === groupId,
-      );
-      const timeline = existing && state.timeline.autoKeyframe
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const authoredObjects = resolveCameraRelations(
+      applyDirectorGroupTransform(state.authoredObjects, group, transform),
+    );
+    const existing = state.timeline.tracks.find(
+      (track): track is Extract<DirectorTimelineTrack, { kind: "group" }> =>
+        track.kind === "group" && track.groupId === groupId,
+    );
+    const timeline =
+      existing && state.timeline.autoKeyframe
         ? {
             ...state.timeline,
             tracks: state.timeline.tracks.map((track) =>
@@ -4572,16 +4834,73 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             isPlaying: false,
           }
         : state.timeline;
-      return {
-        authoredObjects,
-        objects: projectDirectorRuntimeObjects(
-          authoredObjects,
+    if (
+      directorDocumentFingerprint(
+        createDirectorProjectDocumentV1({
+          projectId: before.projectId,
+          owner: before.document.owner,
+          scene: state.scene,
+          objects: authoredObjects,
+          groups: state.groups,
+          activeCameraId: state.activeCameraId,
+          aspectRatio: state.aspectRatio,
           timeline,
-          state.groups,
-        ),
+          captures: state.captures,
+        }),
+      ) === before.fingerprint
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_GROUP_TRANSFORM",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: authoredObjects,
+      groups: state.groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    const objects = projectDirectorRuntimeObjects(
+      authoredObjects,
+      timeline,
+      state.groups,
+    );
+    const commit = commitDirectorMutation(state, {
+      commandKind: "UPDATE_GROUP_TRANSFORM",
+      before,
+      after,
+      captures: state.captures,
+    });
+    if (!commit) {
+      const result = staleDirectorMutationResult(
+        state,
+        "UPDATE_GROUP_TRANSFORM",
+      );
+      set({ lastCommandResult: result });
+      return result;
+    }
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        authoredObjects,
+        objects,
         timeline,
-      };
-    }),
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return commit.result;
+  },
 
   setViewMode: (mode) =>
     set((state) => {
@@ -4775,6 +5094,28 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({ lastCommandResult: result });
       return result;
     }
+    const patchKeys = Object.keys(patch) as Array<keyof typeof patch>;
+    const invalidValue =
+      patchKeys.some(
+        (key) => !["name", "color", "visible", "locked"].includes(key),
+      ) ||
+      (patch.name !== undefined &&
+        (typeof patch.name !== "string" || patch.name.trim().length === 0)) ||
+      (patch.color !== undefined &&
+        (typeof patch.color !== "string" || patch.color.trim().length === 0)) ||
+      (patch.visible !== undefined && typeof patch.visible !== "boolean") ||
+      (patch.locked !== undefined && typeof patch.locked !== "boolean");
+    if (invalidValue) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
     const changesEditingState =
       patch.name !== undefined || patch.color !== undefined;
     if (object.locked && changesEditingState) {
@@ -4788,9 +5129,15 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({ lastCommandResult: result });
       return result;
     }
-    const hasChange = (Object.keys(patch) as Array<keyof typeof patch>).some(
-      (key) => patch[key] !== object[key],
-    );
+    const normalizedPatch = {
+      ...(patch.name !== undefined ? { name: patch.name.trim() } : {}),
+      ...(patch.color !== undefined ? { color: patch.color.trim() } : {}),
+      ...(patch.visible !== undefined ? { visible: patch.visible } : {}),
+      ...(patch.locked !== undefined ? { locked: patch.locked } : {}),
+    };
+    const hasChange = (
+      Object.keys(normalizedPatch) as Array<keyof typeof normalizedPatch>
+    ).some((key) => normalizedPatch[key] !== object[key]);
     if (!hasChange) {
       const result = makeDirectorCommandResult(state, {
         commandKind: "UPDATE_OBJECT",
@@ -4803,48 +5150,87 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       return result;
     }
 
-    set((current) => {
-      const authoredObjects = current.authoredObjects.map((item) =>
-        item.id === objectId ? { ...item, ...patch } : item,
-      );
-      return {
-        authoredObjects,
-        objects: projectDirectorRuntimeObjects(
-          authoredObjects,
-          current.timeline,
-          current.groups,
-        ),
-        timeline: patch.name
-          ? {
-              ...current.timeline,
-              tracks: current.timeline.tracks.map((track) =>
-                track.objectId === objectId
-                  ? {
-                      ...track,
-                      label: `${patch.name} · ${
-                        track.kind === "camera"
-                          ? "机位"
-                          : track.kind === "group"
-                            ? "分组"
-                            : track.kind === "pose"
-                              ? "姿态"
-                              : "变换"
-                      }`,
-                    }
-                  : track,
-              ),
-            }
-          : current.timeline,
-      };
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(state, "UPDATE_OBJECT");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const authoredObjects = state.authoredObjects.map((item) =>
+      item.id === objectId ? { ...item, ...normalizedPatch } : item,
+    );
+    const timeline = normalizedPatch.name
+      ? {
+          ...state.timeline,
+          tracks: state.timeline.tracks.map((track) =>
+            track.objectId === objectId
+              ? {
+                  ...track,
+                  label: `${normalizedPatch.name} · ${
+                    track.kind === "camera"
+                      ? "机位"
+                      : track.kind === "group"
+                        ? "分组"
+                        : track.kind === "pose"
+                          ? "姿态"
+                          : "变换"
+                  }`,
+                }
+              : track,
+          ),
+        }
+      : state.timeline;
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: authoredObjects,
+      groups: state.groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
     });
-    const result = makeDirectorCommandResult(state, {
+    const commit = commitDirectorMutation(state, {
       commandKind: "UPDATE_OBJECT",
-      disposition: "COMMITTED",
-      projectChanged: true,
-      historyEntries: 1,
+      before,
+      after,
+      captures: state.captures,
     });
-    set({ lastCommandResult: result });
-    return result;
+    if (!commit) {
+      const result = staleDirectorMutationResult(state, "UPDATE_OBJECT");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const objects = projectDirectorRuntimeObjects(
+      authoredObjects,
+      timeline,
+      state.groups,
+    );
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        authoredObjects,
+        objects,
+        timeline,
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return commit.result;
   },
 
   toggleObjectLocked: (objectId) => {
@@ -4984,98 +5370,232 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     });
   },
 
-  updateCamera: (objectId, patch) =>
-    set((state) => {
-      const authoredCamera = state.authoredObjects.find(
-        (object) => object.id === objectId && object.camera,
+  updateCamera: (objectId, patch) => {
+    const state = get();
+    const authoredCamera = state.authoredObjects.find(
+      (object) => object.id === objectId && object.camera,
+    );
+    const runtimeCamera = state.objects.find(
+      (object) => object.id === objectId && object.camera,
+    );
+    if (!authoredCamera?.camera || !runtimeCamera?.camera) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const patchKeys = Object.keys(patch) as Array<keyof typeof patch>;
+    const validKeys = [
+      "fov",
+      "target",
+      "lookAtMode",
+      "lookAtObjectId",
+      "followTargetId",
+      "followOffset",
+      "followView",
+    ] as const;
+    const invalidKey = patchKeys.find((key) => !validKeys.includes(key));
+    const validTuple = (value: unknown): value is DirectorTuple3 =>
+      Array.isArray(value) &&
+      value.length === 3 &&
+      value.every((axis) => typeof axis === "number" && Number.isFinite(axis));
+    const invalidValue =
+      invalidKey !== undefined ||
+      (patch.fov !== undefined &&
+        (typeof patch.fov !== "number" ||
+          !Number.isFinite(patch.fov) ||
+          patch.fov < 20 ||
+          patch.fov > 120)) ||
+      (patch.target !== undefined && !validTuple(patch.target)) ||
+      (patch.followOffset !== undefined && !validTuple(patch.followOffset)) ||
+      (patch.lookAtMode !== undefined &&
+        !["coordinate", "rotation", "object"].includes(patch.lookAtMode)) ||
+      (patch.lookAtObjectId !== undefined &&
+        patch.lookAtObjectId !== null &&
+        typeof patch.lookAtObjectId !== "string") ||
+      (patch.followTargetId !== undefined &&
+        patch.followTargetId !== null &&
+        typeof patch.followTargetId !== "string") ||
+      (patch.followView !== undefined &&
+        !["third-person", "first-person"].includes(patch.followView));
+    if (invalidValue) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const referenceIds = [
+      patch.lookAtObjectId,
+      patch.followTargetId,
+    ].filter((value): value is string => typeof value === "string");
+    if (
+      referenceIds.some(
+        (referenceId) =>
+          referenceId === objectId ||
+          !state.authoredObjects.some(
+            (object) =>
+              object.id === referenceId &&
+              (object.kind === "character" || object.kind === "prop"),
+          ),
+      )
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_REFERENCE_INVALID",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (authoredCamera.locked) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_LOCKED",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const nextCamera = {
+      ...authoredCamera.camera,
+      ...patch,
+      target: patch.target
+        ? ([...patch.target] as DirectorTuple3)
+        : ([...authoredCamera.camera.target] as DirectorTuple3),
+      followOffset: patch.followOffset
+        ? ([...patch.followOffset] as DirectorTuple3)
+        : ([...authoredCamera.camera.followOffset] as DirectorTuple3),
+    };
+    const cameraChange =
+      nextCamera.fov !== authoredCamera.camera.fov ||
+      nextCamera.lookAtMode !== authoredCamera.camera.lookAtMode ||
+      nextCamera.lookAtObjectId !== authoredCamera.camera.lookAtObjectId ||
+      nextCamera.followTargetId !== authoredCamera.camera.followTargetId ||
+      nextCamera.followView !== authoredCamera.camera.followView ||
+      nextCamera.target.some(
+        (value, axis) => value !== authoredCamera.camera!.target[axis],
+      ) ||
+      nextCamera.followOffset.some(
+        (value, axis) => value !== authoredCamera.camera!.followOffset[axis],
       );
-      const runtimeCamera = state.objects.find(
-        (object) => object.id === objectId && object.camera,
-      );
-      if (!authoredCamera?.camera || !runtimeCamera?.camera) return state;
-      if (authoredCamera.locked) {
-        return rejectLockedDirectorMutation(state, "UPDATE_CAMERA");
-      }
-      const authoredObjects = state.authoredObjects.map((object) =>
+    if (!cameraChange) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(state, "UPDATE_CAMERA");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const authoredObjects = state.authoredObjects.map((object) =>
+      object.id === objectId && object.camera
+        ? { ...object, camera: nextCamera }
+        : object,
+    );
+    const nextRuntimeObjects = resolveCameraRelations(
+      state.objects.map((object) =>
         object.id === objectId && object.camera
-          ? {
-              ...object,
-              camera: {
-                ...object.camera,
-                ...patch,
-                target: patch.target
-                  ? ([...patch.target] as DirectorTuple3)
-                  : ([...object.camera.target] as DirectorTuple3),
-                followOffset: patch.followOffset
-                  ? ([...patch.followOffset] as DirectorTuple3)
-                  : ([...object.camera.followOffset] as DirectorTuple3),
-              },
-            }
+          ? { ...object, camera: nextCamera }
           : object,
+      ),
+    );
+    const existing = state.timeline.tracks.find(
+      (track) => track.objectId === objectId && track.kind === "camera",
+    );
+    let timeline = state.timeline;
+    if (existing && state.timeline.autoKeyframe) {
+      const nextRuntimeObject = nextRuntimeObjects.find(
+        (object) => object.id === objectId,
       );
-      const nextRuntimeObjects = resolveCameraRelations(
-        state.objects.map((object) =>
-          object.id === objectId && object.camera
-            ? {
-                ...object,
-                camera: {
-                  ...object.camera,
-                  ...patch,
-                  target: patch.target
-                    ? ([...patch.target] as DirectorTuple3)
-                    : ([...object.camera.target] as DirectorTuple3),
-                  followOffset: patch.followOffset
-                    ? ([...patch.followOffset] as DirectorTuple3)
-                    : ([...object.camera.followOffset] as DirectorTuple3),
-                },
-              }
-            : object,
-        ),
-      );
-      const existing = state.timeline.tracks.find(
-        (track) => track.objectId === objectId && track.kind === "camera",
-      );
-      let timeline = state.timeline;
-      if (existing && state.timeline.autoKeyframe) {
-        const nextRuntimeObject = nextRuntimeObjects.find(
-          (object) => object.id === objectId,
+      if (nextRuntimeObject) {
+        const keyframe = upsertTrackKeyframe(
+          existing,
+          nextRuntimeObject,
+          state.timeline.currentTime,
         );
-        if (nextRuntimeObject) {
-          const result = upsertTrackKeyframe(
-            existing,
-            nextRuntimeObject,
-            state.timeline.currentTime,
-          );
-          timeline = {
-            ...state.timeline,
-            tracks: state.timeline.tracks.map((track) =>
-              track.id === existing.id ? result.track : track,
-            ),
-            selectedTrackId: result.track.id,
-            selectedKeyframeId: result.keyframeId,
-            isPlaying: false,
-          };
-        }
+        timeline = {
+          ...state.timeline,
+          tracks: state.timeline.tracks.map((track) =>
+            track.id === existing.id ? keyframe.track : track,
+          ),
+          selectedTrackId: keyframe.track.id,
+          selectedKeyframeId: keyframe.keyframeId,
+          isPlaying: false,
+        };
       }
-      const selection = getDirectorSelectionResult(state);
-      timeline = normalizeDirectorTimelineSelection(
-        timeline,
-        selection,
-        { preserveTrackEntities: true },
-      );
-      return {
+    }
+    const selection = getDirectorSelectionResult(state);
+    timeline = normalizeDirectorTimelineSelection(timeline, selection, {
+      preserveTrackEntities: true,
+    });
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: authoredObjects,
+      groups: state.groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    const commit = commitDirectorMutation(state, {
+      commandKind: "UPDATE_CAMERA",
+      before,
+      after,
+      captures: state.captures,
+      selectionResult: selection,
+    });
+    if (!commit) {
+      const result = staleDirectorMutationResult(state, "UPDATE_CAMERA");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const objects = projectDirectorRuntimeObjects(
+      authoredObjects,
+      timeline,
+      state.groups,
+    );
+    directorHistorySyncSuspended = true;
+    try {
+      set({
         authoredObjects,
-        objects: projectDirectorRuntimeObjects(
-          authoredObjects,
-          timeline,
-          state.groups,
-        ),
+        objects,
         selectedObjectId: selection.selectedObjectId,
         selectedObjectIds: selection.selectedObjectIds,
         selectedGroupId: selection.selectedGroupId,
         timeline,
-      };
-    }),
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return commit.result;
+  },
 
   applyCharacterPosePreset: (objectId, presetId) =>
     set((state) => {

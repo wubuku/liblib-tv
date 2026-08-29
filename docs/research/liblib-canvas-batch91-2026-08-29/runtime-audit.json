@@ -1,0 +1,33 @@
+{
+  "batch": 91,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "sourceExact": false,
+  "fixture": {
+    "canvasId": "canvas-2",
+    "sourceNodeId": "b-bTLLuU4w5q"
+  },
+  "desktop": {
+    "objectNameDraftCommit": true,
+    "objectVisibilityCommand": true,
+    "cameraCommandPersistence": true,
+    "cameraNoopZeroHistory": true,
+    "cameraInvalidReferenceZeroMutation": true,
+    "groupCreateCommand": true,
+    "groupNameDraftCommit": true,
+    "groupTransformCommand": true,
+    "groupInvalidTransformZeroHistory": true
+  },
+  "history": {
+    "objectName": 1,
+    "objectVisibility": 2,
+    "camera": 3,
+    "group": 9
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0,
+    "details": []
+  }
+}
