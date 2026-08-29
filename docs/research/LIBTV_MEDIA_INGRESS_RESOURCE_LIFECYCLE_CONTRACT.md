@@ -508,6 +508,19 @@ Director paths use the same locator/lease/reachability vocabulary but keep Direc
 - successful graph projection does not revoke while graph/history/preview remains reachable;
 - ordinary LibTV entry components do not import Director store state.
 
+Batch 82 adds a clone-owned Director-only local model materialization slice:
+
+- `DirectorLocalResourceDescriptorV1` records bounded file metadata, provenance and a
+  session-only locator class;
+- `idle/loading/ready/failed/canceled/released` and request/attempt identity are
+  observable through the Director store;
+- OBJ/FBX bytes may be parsed locally with Three.js loaders for a finite prototype
+  path; a parse failure retains the proxy and exposes retry;
+- `File`, `Blob`, data URL, parsed `Object3D` and capture bytes remain outside the
+  portable project document;
+- this does not implement the ordinary LibTV ingress registry, remote materializer,
+  stable cloud asset or production cache.
+
 ## 12. Cohort And Concurrency Contract
 
 ### 12.1 Cohort identity

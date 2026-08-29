@@ -187,7 +187,7 @@ StoryAI 借鉴与 Director 当前进展已有独立跨批次权威：固定上�
 运行态复核、证据边界和后续路线见
 [`storyai-3d-director-desk-2026-08-27/`](research/storyai-3d-director-desk-2026-08-27/README.md)。
 当前结论不是“功能未够多”，而是可见能力已经超过上游，下一阶段应优先补
-per-project scene、真实资源加载和统一 Director gate；clone-owned 的版本化项目
+per-project scene、生产级资源生命周期和统一 Director gate；clone-owned 的版本化项目
 持久化、严格 JSON 导入/导出、资源清理和 owner 生命周期 focused pass 已经落地，
 但不能写成 LibTV 原站的 source-exact 行为；
 领域 undo/redo、完整 pointer lifecycle 与 reference-aware delete 已先形成
@@ -237,8 +237,9 @@ begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
   decode，成功后只重绑定当前 owner/project，保留内部 entity/reference identity，
   排除 capture/runtime/UI bytes，并进入一条可撤销的 Director history；非法文件
   zero-partial，同文档导入为 no-op。Batch 59、67-81 当前闸门串行回归和全量项目
-  门禁已通过。普通画布 async/persistence、remote storage、真实资源
-  materialization 和 source parity 仍未完成；这些
+门禁已通过。普通画布 async/persistence、remote storage、生产级复杂资源
+materialization 和 source parity 仍未完成；Batch 82 只补了 Director session-local
+有限 OBJ/FBX materialization。这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
   source-exact 行为。
 
@@ -340,7 +341,7 @@ AutoLink 也不能继续按 clone 当前的固定候选弹窗理解。当前源�
 
 画布空间也不能继续用同一种 `{x,y}` 理解。Open Canvas 的 Quick Add 会把菜单的 container-local 坐标和节点的 flow 坐标分开，pan/zoom 期间使用 live viewport、结束后才更新稳定 viewport；它同时暴露了 permissive viewport normalization、窄容器 clamp、gesture cleanup 和逐文件 drop 非原子等反例。当前 clone 的 V/H/Space blur/visibility cleanup 是可保留的正面 island；Batch 63 已把 Add Node 与 Character Library 从 browser window center 迁移到 actual React Flow host center；Batch 64 让 Asset drawer open/close/X/Canvas-context 保持旧 host-center flow anchor；Batch 65 又把 desktop/compact preset 限制为首次 bootstrap，用户 viewport 在 breakpoint 和 A/B canvas switch 后由 stored viewport 恢复，stale/invalid callback zero mutation。三批都验证 graph/history/selection 边界，窄桌面工具条碰撞只在 screen space clamp，不改 graph anchor。固定事实见 [`LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md`](research/LIBTV_VIEWPORT_COORDINATE_GESTURE_STATIC_AUDIT_2026-08-27.md)，focused runtime 见 [`liblib-canvas-batch63-2026-08-27/`](research/liblib-canvas-batch63-2026-08-27/)、[`liblib-canvas-batch64-2026-08-27/`](research/liblib-canvas-batch64-2026-08-27/) 与 [`liblib-canvas-batch65-2026-08-27/`](research/liblib-canvas-batch65-2026-08-27/)；正式权威进一步定义 `CLIENT/HOST_LOCAL/FLOW_WORLD/NODE_LOCAL/SCREEN_OVERLAY/MEDIA_NORMALIZED` 六域、actual host frame、`BOOTSTRAP/LIVE/STABLE/TARGET` viewport phase、gesture owner、entry-specific placement、resize reconciliation、`LIBTV-FIX-LOCAL-VIEWPORT-COORDINATE-01` 和 `LIBTV-VR-020`，见 [`LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md`](research/LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT.md)。整体 runtime 仍 partial：viewport/organize/drag/connection transient 仍缺统一 canvas generation/host epoch，完整 live/stable endpoint、browser resize anchor、derived/duplicate/organize/selected-overlay composition 与精确 source add/resize/zoom 行为仍待证。
 
-媒体接入同样不是“选择文件后给 node 写一个 URL”。Open Canvas 固定版本提供了 client/server validation、metadata probe、multipart materialization、digest-key reuse 和 normalized descriptor 的可借路径；它也暴露了 accept/probe classifier drift、node-first placeholder、逐文件部分提交、autosaved running、无 freshness/cancel/resource cleanup 等反例。2026-08-27 LibTV source 只读 DOM 又证明 Add Resource upload、Generated History、风格/特效 Material Library、Canvas/Personal/Agent Asset Manager 是不同资源域，Shot Breakdown 另有单 `video/*` source entry。当前 clone 的 upload/history 仍是 mock，Shot Breakdown 用 component object URL preview 却提前标 ready，Director data/blob locator 仍是独立 island；“我的素材库/预设素材库”不能继续当 current source fact。正式权威将 immutable ingress intent、local bytes/lease、stable asset、node reference、provisional/semantic projection 分权，并定义 ten entry profiles、cohort transaction、last-known-good replace、reachability/release、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` 和 `LIBTV-VR-021`，见 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)。runtime 仍 missing/partial，真实 provider/storage/upload/persistence 保持边界外，精确 source limits/progress/cancel/placement/register/restore 仍待 disposable fixture。
+媒体接入同样不是“选择文件后给 node 写一个 URL”。Open Canvas 固定版本提供了 client/server validation、metadata probe、multipart materialization、digest-key reuse 和 normalized descriptor 的可借路径；它也暴露了 accept/probe classifier drift、node-first placeholder、逐文件部分提交、autosaved running、无 freshness/cancel/resource cleanup 等反例。2026-08-27 LibTV source 只读 DOM 又证明 Add Resource upload、Generated History、风格/特效 Material Library、Canvas/Personal/Agent Asset Manager 是不同资源域，Shot Breakdown 另有单 `video/*` source entry。当前 ordinary clone 的 upload/history 仍是 mock，Shot Breakdown 用 component object URL preview 却提前标 ready；Director 已由 Batch 82 增加独立的 typed local-model resource descriptor、lease/status 和有限 OBJ/FBX materialization，但这仍是 session-local island；“我的素材库/预设素材库”不能继续当 current source fact。正式权威将 immutable ingress intent、local bytes/lease、stable asset、node reference、provisional/semantic projection 分权，并定义 ten entry profiles、cohort transaction、last-known-good replace、reachability/release、`LIBTV-FIX-LOCAL-MEDIA-INGRESS-01` 和 `LIBTV-VR-021`，见 [`LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md`](research/LIBTV_MEDIA_INGRESS_RESOURCE_LIFECYCLE_CONTRACT.md)。ordinary runtime 仍 missing/partial，真实 provider/storage/upload/persistence 保持边界外，精确 source limits/progress/cancel/placement/register/restore 仍待 disposable fixture；生产级 Director cache/provider/复杂依赖也不在 Batch 82 范围。
 
 前台编辑器也不是“打开 panel 后连续写 `updateNodeData`”。Open Canvas 的 inline/rich/bitmap editor 分开 local draft、bitmap history 和 graph save owner，证明 editor 内部试错应与画布语义提交分层；它的 active-draft resync、40 个 full `ImageData` entry、Restore 折叠、close-first JPEG upload、node-ID-only patch 和 caller 忽略 no-op/conflict result 则是明确反例。当前 clone 的 Text、Prompt/config、Annotate、Element、Picture、Subtitle、Range、Reshoot、Camera 与 VideoToolbar 形成十类成熟度不一的 island：有的具备 gesture coalescing/深拷贝 local history，有的 local-only，有的 enabled-looking command 没有 handler，graph gateway 又没有 semantic equality no-op。正式权威将 session/baseline/draft、native/local/graph undo、sync commit、async/resource handoff、close/cancel/focus 和 honest unavailable 分权，并定义 40 条 invariant、`LIBTV-FIX-LOCAL-EDITOR-SESSION-01` 与 `LIBTV-VR-022`，见 [`LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md`](research/LIBTV_EDITOR_SESSION_COMMIT_HISTORY_CONTRACT.md)。runtime 仍 fragmented，精确 source blur/Enter/Escape/outside/restore/save/close 继续等待 disposable fixture；本文档不授权 runtime 修改。
 
@@ -534,9 +535,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 | 画布基础 | Pan/zoom/drag/connect 已由 React Flow 支撑 |
 | 节点交互 | 两条路线都有可操作节点；LibTV 的逐帧拉片/智能剪辑已有专用节点，其余未实现入口使用显式原型映射 |
 | 编辑器命令 | LibTV 的添加、移动模式、缩略图、连线、吸附、缩放、整理、资产、分享、Agent 本地交互、数据驱动分镜模式和一级内容面板已闭环 |
-| 数据生命周期 | 绝大多数画布/Director 状态仍是内存 mock；Batch 48 的 `我的模型` descriptor 例外地写入 clone-owned browser `localStorage`，不等于项目云端持久化；Batch 50 的 workspace collapse 仍是 session-local UI state |
+| 数据生命周期 | 绝大多数画布/Director 状态仍是内存 mock；Batch 48 的 `我的模型` descriptor 例外地写入 clone-owned browser `localStorage`，Batch 82 又在 session 内有限 materialize OBJ/FBX，但两者都不等于项目云端持久化或生产资产；Batch 50 的 workspace collapse 仍是 session-local UI state |
 | AI 能力 | 仅 prompt UI 和计时 generation mock |
-| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-50 Playwright 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
+| 自动化验证 | `npm run check`、文档链接检查和 LibTV Batch 4-33、35-50、52-82 Playwright/pure verifiers 可用；现有 FrameOS E2E 尚未接入默认门禁且选择器已漂移 |
 | 部署 | Next standalone build + Dockerfile / compose，可作为纯前端原型部署 |
 
 当前快照中仍存在的主要原型边界：
@@ -623,8 +624,13 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   dismissal 和移动端边界已记录通过；真实模型/环境资产加载不在有界合同内
 - Batch 48：浏览器本地 FBX/OBJ descriptor、非法扩展名过滤、localStorage
   持久化/刷新恢复、重复加入场景、关联实例清理、桌面/移动端边界和
-  zero-browser-error 已形成 recorded pass；真实模型 mesh loading、上传和云端
-  持久化不在有界合同内
+  zero-browser-error 已形成 recorded pass；该批只覆盖 proxy/catalog，不覆盖
+  真实 mesh loading、上传和云端持久化
+- Batch 82：在 Batch 48 fixture 域补齐 typed local resource descriptor/provenance、
+  attempt freshness、loading/ready/failed/canceled/released、有限 OBJ/FBX
+  materialization、parse-failure proxy retention、retry/cancel/release 和 UI
+  status feedback；生产级 loader/cache、复杂纹理依赖、远程上传和 source-exact
+  资源语义仍未实现
 - Batch 49：Director viewport native coordinate gizmo 的六方向 snapshot、
   Camera mode recovery、path/phone guard、capture hiding 和 dual WebGL bounds
   已形成 recorded pass；不证明 LibTV source-exact renderer/CSS
@@ -653,6 +659,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
   与 Director 真实 TransformControls pointer drag 的专项门禁
 - Batch 78：Director Curve/Phone Vcam/Timeline pointer cancellation，以及跨
   owner/canvas R3F Canvas teardown 的专项门禁
+- Batch 82：Director local resource descriptor/provenance、attempt freshness、
+  finite OBJ/FBX materialization、parse-failure proxy retention、retry/cancel/release
+  和 zero-diagnostic 的专项门禁
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

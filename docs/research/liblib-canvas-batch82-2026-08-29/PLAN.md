@@ -1,8 +1,10 @@
 # Batch 82 计划：Director 本地资源生命周期纵切
 
-> 状态：`PLANNED`。
+> 状态：`COMPLETED` / `RECORDED_PASS`。
 >
 > 建档日期：2026-08-29。
+>
+> 实施 checkpoint：`8c959de`；实施结果见本目录 `IMPLEMENTATION.md`。
 
 ## 1. 任务排序
 
@@ -66,4 +68,3 @@
 - `docs/research/VERIFICATION_LEDGER.md`；
 - `docs/HARNESS.md`、`docs/AGENT_TASK_MAP.md`、`docs/index.md` 或 research index
   若入口需要更新。
-

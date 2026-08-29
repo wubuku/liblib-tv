@@ -3,7 +3,8 @@
 > 建档日期：2026-08-26。
 > 稳定 clone 基线：Batch 60 closeout；普通图片双浮层 owner 连续性和 panel
 > 命中边界已形成 clone-owned 有界合同。Director 资源库搜索、preview-only
-> selection 和 proxy insertion 也已形成有界 clone 合同。真实 mesh loading、
+> selection 和 proxy insertion 也已形成有界 clone 合同。Batch 82 已补齐有限
+> session-local OBJ/FBX materialization，但生产级真实 mesh loading、
 > 远程同步、LibTV 生产持久化和
 > source-exact gizmo renderer 仍不在合同内。
 > 目的：面向后续 LibTV UI/UX 复刻，统一回答“当前真正还差什么、先研究什么、什么已可申请编码、怎样验证”。
@@ -264,7 +265,7 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 | `010` | Agent/Share/Toolbox/History/AddNode resource action 继续使用显式 local feedback。只有源站可见结构/生命周期差距值得继续复刻；不把“按钮可点”升级成真实服务。 |
 | `011` | 冗余 primary booleans、Notification/UserMenu unmounted state、`toggleGrid` 无 caller 已记录。等相关 store 获得编码授权或新入口证据时再清理。 |
 | `012` | Provider、上传、计费、远端任务、账号和协作持久化需要新的产品/后端合同，当前不排入前端 parity 实施。 |
-| `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；真实 mesh loading、远程同步和 LibTV 生产持久化仍不在合同内。后续只读其历史合同，不把 clone-only 结果升级为源站事实。 |
+| `013` | Batch 48 已完成 browser-local model descriptor/persistence、focused verifier、截图台账和成熟度评估；Batch 82 又完成有限 session-local OBJ/FBX materialization、失败保留 proxy 与 resource lifecycle focused verifier。生产 loader/cache、复杂资源、远程同步和 LibTV 生产持久化仍不在合同内；后续不把 clone-only 结果升级为源站事实。 |
 | `014` | media intent、local byte/lease、stable asset、node reference 和 provisional/semantic projection 必须分权；只允许 validation/local preview/fake materializer 的 honest prototype，真实 upload/storage/provider 仍归 `PAR-012 OUT_OF_SCOPE`。 |
 | `015` | foreground editor 的 draft/history/commit/close 必须按 profile/session 分权；当前只允许从一个 equality/drift/honesty island 开始，不统一重写十类 editor。 |
 | `016` | media/output/request/frame/measured/rendition/editor/export 必须分权；先做 ratio-diverse local fixture 和 pure policy，source 未证 portrait/square/video/resize 不进入 parity claim。 |

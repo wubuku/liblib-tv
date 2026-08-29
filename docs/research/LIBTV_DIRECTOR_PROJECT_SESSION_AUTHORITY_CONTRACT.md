@@ -10,6 +10,7 @@
 > `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS` /
 > `DURABLE_TOMBSTONE_FOCUSED_PASS` /
 > `IMPORT_EXPORT_FOCUSED_PASS` /
+> `LOCAL_RESOURCE_MATERIALIZATION_FOCUSED_PASS` /
 > `SOURCE_PARITY_UNKNOWN_OR_PARTIAL`.
 >
 > Scope: LibTV clone Director 的 portable project、owner、session、runtime
@@ -115,8 +116,12 @@ Director project document
   internal entity/reference preservation、capture/runtime/UI exclusion、
   one-entry history、undo/redo、same-document no-op、invalid zero-partial 和
   browser download/file-input round trip；
-- ordinary canvas persistence、remote persistence、真实 resource materialization
-  和 source-exact storage 仍未解决。
+- Batch 82 已增加 Director local model 的 typed resource descriptor/provenance、
+  attempt freshness、loading/ready/failed/canceled/released lifecycle、
+  retry/cancel/lease release、有限 OBJ/FBX 本地 materialization 和 parse-failure
+  proxy retention；portable project JSON 仍排除 File/Blob/data URL/Object3D；
+- ordinary canvas persistence、remote persistence、生产级/复杂真实 resource
+  materialization 和 source-exact storage 仍未解决。
 
 ### 2.2 `STORYAI_UPSTREAM_FACT`
 
@@ -763,8 +768,8 @@ document、duplicate、delete和 delayed result。
 - ordinary graph history 不受影响；
 - Batch 80 已在 durable success 后清理 persistence tombstone、archive、transient
   captures 和 unshared local descriptor；失败保持 session-only；
-- graph undo 不 restore project，strict import/export、真实 resource materialization
-  和 source parity 保持独立决策。
+- graph undo 不 restore project，strict import/export、有限 local resource
+  materialization、生产级资源 provider 和 source parity 保持独立决策。
 
 ### `DIR-PROJECT-I07` Strict Project JSON Transfer
 
@@ -815,7 +820,9 @@ owner/session 子项已在 Batch 68 升级为
 升级为 `OWNER_REACHABILITY_FOCUSED_RUNTIME_PASS`，whole-project duplicate 子项
 已在 Batch 79 升级为 `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`，durable tombstone
 子项已在 Batch 80 升级为 `DURABLE_TOMBSTONE_FOCUSED_PASS`，strict project JSON
-transfer 子项已在 Batch 81 升级为 `IMPORT_EXPORT_FOCUSED_PASS`：
+transfer 子项已在 Batch 81 升级为 `IMPORT_EXPORT_FOCUSED_PASS`，local resource
+materialization 子项已在 Batch 82 升级为
+`LOCAL_RESOURCE_MATERIALIZATION_FOCUSED_PASS`：
 
 1. 两个 source node 和两个 canvas 已证明 project 不串场；
 2. open/switch/close、same-owner focus、duplicate reset 和 active delete tombstone
@@ -829,7 +836,9 @@ transfer 子项已在 Batch 81 升级为 `IMPORT_EXPORT_FOCUSED_PASS`：
    clean target authority 已有 focused runtime；
 7. strict V1 JSON import/export 的 decode/rebind/history/file workflow 已有
    focused runtime；
-8. focused verifier、`npm run check`、docs check 和实施台账通过。
+8. Director local resource descriptor、attempt/lease lifecycle、有限 OBJ/FBX
+   materialization、失败 proxy 保留和 retry/cancel/release 已有 focused runtime；
+9. focused verifier、`npm run check`、docs check 和实施台账通过。
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
@@ -838,7 +847,8 @@ transfer 子项已在 Batch 81 升级为 `IMPORT_EXPORT_FOCUSED_PASS`：
 3. duplicate deep clone/remap 与 resource policy 已在 clone-owned Batch 79 明确，
   但 LibTV source duplicate 语义仍未知；
 4. ordinary canvas graph/document persistence 有独立合同和 fixture；
-5. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
+5. 生产级资源 materialization、stable locator 和远程 persistence 有产品范围；
+   当前 Batch 82 只关闭 clone-owned session-local 有限解析。
 
 Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子项；
 Batch 74 已关闭 clone-owned Director browser-local durable document persistence
@@ -846,5 +856,6 @@ Batch 74 已关闭 clone-owned Director browser-local durable document persisten
 Batch 76 已关闭 memory-only owner reachability reconciliation 子项；Batch 79 已
 关闭 clone-owned whole-project duplicate 子项；Batch 80 已关闭 clone-owned durable
 tombstone/storage/resource cleanup 子项；Batch 81 已关闭 clone-owned strict JSON
-import/export 子项。它们都不关闭 graph undo restore、ordinary canvas
-async/persistence、remote storage、真实资源或 source-exact LibTV 子项。
+import/export 子项；Batch 82 已关闭 clone-owned finite local resource
+materialization 子项。它们都不关闭 graph undo restore、ordinary canvas
+async/persistence、remote storage、生产级复杂资源或 source-exact LibTV 子项。

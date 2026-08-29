@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-81（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-82（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -97,6 +97,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 79 | Director whole-project duplicate: graph/parent/edge and Director project/entity two-pass remap, clean target authority, resource policy and source/target isolation |
 | Batch 80 | Director durable tombstone envelope, save resurrection guard, active/inactive cleanup, capture sidecar cleanup, shared/unshared local resource release and reload reopen rejection |
 | Batch 81 | Director strict project JSON import/export, owner/project rebinding, one-entry history, undo/redo, zero-partial rejection, download/file-input round trip and ordinary graph isolation |
+| Batch 82 | Director local resource descriptor/provenance, attempt freshness, retry/cancel/release, finite OBJ/FBX materialization, parse-failure proxy retention, model-library feedback and zero diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -141,6 +142,13 @@ owner/project rebind、capture/runtime/UI exclusion、one-entry history、undo/r
 same-document no-op、invalid zero-partial、ordinary graph/history isolation 和零
 console/page/request diagnostics。它只证明 clone-owned local file workflow，不证明
 LibTV 原站存在相同文件格式、导入/导出 UI、remote sync 或真实资源 materialization。
+
+Batch 82 是 Director local resource materialization hybrid gate，默认不写截图；它
+保留 typed descriptor/provenance、attempt freshness、retry/cancel/release、valid
+OBJ materialization、parse-failure proxy retention、unsupported-extension
+zero-mutation、UI status feedback 和 zero-diagnostic audit。它只证明 clone-owned
+session-local 的有限 materializer，不证明生产 loader/cache、复杂 FBX/纹理、remote
+persistence 或 LibTV 原站资源语义。
 
 ## Browser Evidence Requirements
 

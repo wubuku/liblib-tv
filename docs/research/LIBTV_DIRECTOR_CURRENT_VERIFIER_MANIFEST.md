@@ -11,6 +11,7 @@
 > `OWNER_REACHABILITY_GATE_RECORDED_PASS` /
 > `POINTER_CANCELLATION_GATE_RECORDED_PASS` /
 > `IMPORT_EXPORT_GATE_RECORDED_PASS` /
+> `LOCAL_RESOURCE_MATERIALIZATION_GATE_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
@@ -23,9 +24,9 @@
 > Batch 73 async-authority verifier, Batch 74 persistence verifier and Batch 75
 > clipboard identity-remap verifier, Batch 76 owner-reachability verifier, and
 > Batch 78 pointer-cancellation verifier, Batch 79 whole-project duplicate verifier,
-> Batch 80 durable tombstone verifier and Batch 81 strict project import/export
-> verifier, including the R3F Canvas teardown regression exposed by the Batch 68
-> cross-owner sequence.
+> Batch 80 durable tombstone verifier, Batch 81 strict project import/export
+> verifier and Batch 82 local resource materialization verifier, including the
+> R3F Canvas teardown regression exposed by the Batch 68 cross-owner sequence.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -93,6 +94,10 @@ single current gate on their own:
 - Batch 81 covers strict project JSON import/export、owner/project rebind、
   transient/runtime exclusion、one-entry history、undo/redo and zero-partial
   file workflow。
+- Batch 82 covers typed local resource descriptor/provenance、loading/ready/
+  failed/canceled/released lifecycle、attempt freshness、retry/cancel/release、
+  finite OBJ/FBX local materialization、proxy retention on parse failure and
+  model-library status feedback。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -145,6 +150,7 @@ historical regressions.
 | Batch 79 | Director whole-project duplicate | `CURRENT_GATE` | Pure Node two-pass planner corpus + fresh-page Playwright duplicate/isolation scenario；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` whole-project duplicate gate；does not prove LibTV source duplicate semantics、remote persistence、capture bytes or real resource loading |
 | Batch 80 | Director durable tombstone、storage/resource cleanup | `CURRENT_GATE` | Pure Node strict tombstone corpus + fresh-page active/inactive owner cleanup、capture sidecar、local resource reachability and reload reopen guard；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` durable-tombstone gate；does not prove LibTV source delete/recovery UI、remote persistence or real resource materialization |
 | Batch 81 | Director strict project JSON import/export | `CURRENT_GATE` | Pure V1 document/rebind corpus + fresh-page BrowserContext download/file-input workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` import/export gate；does not prove LibTV source file format/UI、remote sync or real resource materialization |
+| Batch 82 | Director local resource lifecycle and finite OBJ/FBX materialization | `CURRENT_GATE` | Pure lifecycle corpus + fresh-page local-model materialization workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource gate；proves clone-owned session materialization only，不证明生产 loader/cache、remote persistence 或 LibTV source resource semantics |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -188,6 +194,8 @@ LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch76.py
 LIBLIB_BASE_URL=http://localhost:4317 \
   python3 scripts/verify-liblib-batch78.py
+LIBLIB_BASE_URL=http://localhost:4317 \
+  python3 scripts/verify-liblib-batch82.py
 ```
 
 Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
@@ -387,6 +395,23 @@ This result closes the clone-owned pointer cancellation slice adjacent to Batch 
 and Batch 77. It does not prove source-exact LibTV Director cancellation behavior,
 real phone sensors, touchpad hardware or source/provider parity.
 
+Batch 82 local-resource materialization gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Implementation checkpoint | `8c959de` |
+| Pure corpus | typed descriptor/provenance、idle/loading/ready/failed/canceled/released transitions、stale request、retry、lease retain/release |
+| Browser corpus | valid local OBJ materialization、parse failure with proxy retention、new-attempt retry、unsupported extension zero mutation、cancel/release、model-library status feedback |
+| Runtime boundary | local materialization is session-only；portable project JSON excludes File/Blob/data URL/Object3D/capture bytes；failure never fabricates ready |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 82 `runtime-audit.json` only；zero screenshots |
+
+This result closes the clone-owned finite local OBJ/FBX materialization slice. It
+does not prove production loader/cache、complex FBX texture dependency handling、
+remote persistence、ordinary canvas media ingress or source-exact LibTV resource
+behavior.
+
 ### 4.3 Current-gate serial regression
 
 On 2026-08-29, using the single `localhost:4317` Next dev server, the
@@ -421,6 +446,7 @@ Batch 67 pure codec gate
   + Batch 75 clipboard-remap gate
   + Batch 76 owner-reachability gate
   + Batch 78 pointer-cancellation gate
+  + Batch 82 local-resource materialization gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -471,6 +497,7 @@ owner-reachability slice；Batch 78 supplies the pointer-cancellation slice；
 Batch 79 supplies the whole-project duplicate slice；
 Batch 80 supplies the durable tombstone/storage/resource cleanup slice；
 Batch 81 supplies the strict project import/export slice；
+Batch 82 supplies the finite local resource materialization slice；
 Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
@@ -490,6 +517,7 @@ Required future scenarios:
 | whole-project duplicate | **focused runtime in Batch 79**：graph/parent/edge 与 Director project/entity two-pass remap、multi-owner isolation、fresh-document policy、stable resource descriptor、non-portable reject、clean target authority and source/target persistence isolation |
 | durable tombstone and cleanup | **focused runtime in Batch 80**：strict tombstone envelope、save resurrection guard、stale/malformed/write-failure boundary、active/inactive owner cleanup、capture sidecar clear、shared/unshared local resource reachability、reload reopen rejection and graph/Director history isolation |
 | strict project import/export | **focused runtime in Batch 81**：strict V1 JSON export/import、owner/project rebind、internal reference preservation、capture/runtime/UI exclusion、one-entry history、undo/redo、same-document no-op、invalid zero-partial、download/file-input round trip and ordinary graph/history isolation |
+| finite local resource materialization | **focused runtime in Batch 82**：typed descriptor/provenance、attempt freshness、retry/cancel/release、valid local OBJ/FBX loader path、parse-failure proxy retention、unsupported-extension zero mutation and UI status feedback |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -511,6 +539,7 @@ POINTER_CANCELLATION_FOCUSED_PASS
 WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS
 DURABLE_TOMBSTONE_FOCUSED_PASS
 IMPORT_EXPORT_FOCUSED_PASS
+LOCAL_RESOURCE_MATERIALIZATION_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 
