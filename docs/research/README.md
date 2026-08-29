@@ -163,6 +163,7 @@
 | 87 | Director undo/redo restore selection authority | [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/) `RESTORE_SELECTION_FOCUSED_PASS`，undo/redo/cancel preserve-and-repair、对象树/Inspector/Viewport/Timeline 一致性、失效选择清理、portable document selection exclusion 和 zero diagnostics 已通过；不证明 LibTV source Director undo selection policy 或 source parity |
 | 88 | Director selection/timeline/TransformControls authority | [`liblib-canvas-batch88-2026-08-29/`](liblib-canvas-batch88-2026-08-29/) `SELECTION_TIMELINE_AUTHORITY_FOCUSED_PASS`，单/多/分组选择 normalization、Timeline 反向选择、keyframe/path ownership、delete repair、locked zero mutation、portable boundary、mobile geometry 和 zero diagnostics 已通过；不证明 LibTV source Director selection/Timeline 联动或 source parity |
 | 89 | Director scene settings and add-camera discoverability | [`liblib-canvas-batch89-2026-08-29/`](liblib-canvas-batch89-2026-08-29/) `SCENE_ADD_CAMERA_FOCUSED_PASS`，场景名称、ground/grid 显隐、背景/地面颜色、对象树/Inspector 双入口、新 camera object/track/keyframe、active-camera/selection、undo/redo、portable export、mobile geometry 和 zero diagnostics 已通过；不证明 LibTV source Director add-camera defaults、shot lifecycle 或 source parity |
+| 90 | Director project/session diagnostics and scene semantic command | [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，session outcome/lifecycle diagnostics、scene draft + Enter/blur commit、typed scene command、persistence、one-entry history、no-op/reject、undo/redo、mobile Inspector 和 zero diagnostics 已通过；不证明 LibTV source Director project/session/history semantics |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -180,6 +181,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 87 | Director undo/redo restore selection authority | 已完成；恢复策略显式化、有效选择保留、失效选择 repair、对象树/Inspector/Viewport/Timeline authority 和 portable document exclusion 已通过，详见 [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/) |
 | 88 | Director selection/timeline/TransformControls authority | 已完成；单/多/分组选择 normalization、Timeline 反向选择、keyframe/path ownership、delete repair、locked zero mutation 和 mobile geometry 已通过，详见 [`liblib-canvas-batch88-2026-08-29/`](liblib-canvas-batch88-2026-08-29/) |
 | 89 | Director scene settings and add-camera discoverability | 已完成；场景设置、ground/grid/颜色控件、对象树/Inspector 新增机位入口、camera track/keyframe 连续性和 current gate 已通过，详见 [`liblib-canvas-batch89-2026-08-29/`](liblib-canvas-batch89-2026-08-29/) |
+| 90 | Director project/session diagnostics and scene semantic command | 已完成；session outcome/lifecycle 可观察性、scene draft/commit、typed command、persistence、one-entry history、no-op/reject、undo/redo 和 mobile Inspector focused gate 已通过，详见 [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) |
 
 ## Stable Cross-Cutting Research
 

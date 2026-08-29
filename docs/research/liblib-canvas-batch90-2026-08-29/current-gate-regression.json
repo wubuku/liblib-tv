@@ -1,0 +1,43 @@
+{
+  "batch": 90,
+  "status": "PASS",
+  "date": "2026-08-29",
+  "server": "http://localhost:4317",
+  "scripts": [
+    {"name": "Batch 59", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch59.py", "status": "PASS"},
+    {"name": "Batch 67", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch67.py", "status": "PASS"},
+    {"name": "Batch 68", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch68.py", "status": "PASS"},
+    {"name": "Batch 69", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch69.py", "status": "PASS"},
+    {"name": "Batch 70", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch70.py", "status": "PASS"},
+    {"name": "Batch 71", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch71.py", "status": "PASS"},
+    {"name": "Batch 72", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch72.py", "status": "PASS"},
+    {"name": "Batch 73", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch73.py", "status": "PASS"},
+    {"name": "Batch 74", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch74.py", "status": "PASS"},
+    {"name": "Batch 75", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch75.py", "status": "PASS"},
+    {"name": "Batch 76", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch76.py", "status": "PASS"},
+    {"name": "Batch 77", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch77.py", "status": "PASS"},
+    {"name": "Batch 78", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch78.py", "status": "PASS"},
+    {"name": "Batch 79", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch79.py", "status": "PASS"},
+    {"name": "Batch 80", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch80.py", "status": "PASS"},
+    {"name": "Batch 81", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch81.py", "status": "PASS"},
+    {"name": "Batch 82", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch82.py", "status": "PASS"},
+    {"name": "Batch 83", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch83.py", "status": "PASS"},
+    {"name": "Batch 84", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch84.py", "status": "PASS"},
+    {"name": "Batch 85", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch85.py", "status": "PASS"},
+    {"name": "Batch 86", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch86.py", "status": "PASS"},
+    {"name": "Batch 87", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch87.py", "status": "PASS"},
+    {"name": "Batch 88", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch88.py", "status": "PASS"},
+    {"name": "Batch 89", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch89.py", "status": "PASS"},
+    {"name": "Batch 90", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch90.py", "status": "PASS"}
+  ],
+  "checks": [
+    {"name": "pure/source", "command": "node --experimental-strip-types scripts/verify-liblib-batch90.mjs", "status": "PASS", "assertions": 12},
+    {"name": "fresh-page Playwright", "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch90.py", "status": "PASS", "diagnostics": {"console": 0, "page": 0, "request": 0}},
+    {"name": "npm run check", "command": "npm run check", "status": "PASS", "lintWarnings": 9},
+    {"name": "npm run docs:check", "command": "npm run docs:check", "status": "PASS"},
+    {"name": "documentation links", "command": "python3 scripts/verify-docs.py", "status": "PASS", "markdownFiles": 624, "localTargets": 3693},
+    {"name": "git diff --check", "command": "git diff --check", "status": "PASS"}
+  ],
+  "artifactPolicy": {"screenshotsWritten": 0, "historicalRuntimeAuditsRestored": true},
+  "sourceExact": false
+}

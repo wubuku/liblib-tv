@@ -147,6 +147,10 @@ export default function DirectorDesk({
   const projectId = useDirectorStore((state) => state.projectId);
   const sessionId = useDirectorStore((state) => state.sessionId);
   const generation = useDirectorStore((state) => state.generation);
+  const projectLifecycle = useDirectorStore(
+    (state) => state.projectLifecycle,
+  );
+  const sessionOutcome = useDirectorStore((state) => state.sessionOutcome);
   const history = useDirectorStore((state) => state.history);
   const lastCommandResult = useDirectorStore(
     (state) => state.lastCommandResult,
@@ -649,6 +653,12 @@ export default function DirectorDesk({
       data-director-project-id={projectId ?? ""}
       data-director-session-id={sessionId ?? ""}
       data-director-generation={generation ?? ""}
+      data-director-project-lifecycle={projectLifecycle ?? ""}
+      data-director-session-disposition={sessionOutcome?.disposition ?? ""}
+      data-director-session-reason={sessionOutcome?.reason ?? ""}
+      data-director-session-previous-owner={
+        sessionOutcome?.previousOwnerKey ?? ""
+      }
       data-director-history-past={history.past.length}
       data-director-history-future={history.future.length}
       data-director-active-gesture={history.activeGesture?.gestureId ?? ""}

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Camera,
@@ -1316,9 +1316,14 @@ export function DirectorInspector({
     (state) => state.recordObjectKeyframe,
   );
   const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
+  const sceneNameInputRef = useRef<HTMLInputElement>(null);
   const [cameraTab, setCameraTab] = useState<"properties" | "captures">(
     "properties",
   );
+  useEffect(() => {
+    const input = sceneNameInputRef.current;
+    if (input && document.activeElement !== input) input.value = scene.name;
+  }, [scene.name]);
   const timeline = useDirectorStore((state) => state.timeline);
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
@@ -1777,9 +1782,24 @@ export function DirectorInspector({
                   场景名称
                 </span>
                 <input
+                  ref={sceneNameInputRef}
                   data-director-scene-name
-                  value={scene.name}
-                  onChange={(event) => updateScene({ name: event.target.value })}
+                  defaultValue={scene.name}
+                  onBlur={(event) => {
+                    const nextName = event.currentTarget.value.trim();
+                    if (!nextName) {
+                      event.currentTarget.value = scene.name;
+                      updateScene({ name: "" });
+                      return;
+                    }
+                    event.currentTarget.value = nextName;
+                    updateScene({ name: nextName });
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key !== "Enter") return;
+                    event.preventDefault();
+                    event.currentTarget.blur();
+                  }}
                   className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
                 />
               </label>

@@ -18,6 +18,7 @@
 > `TRANSFORM_CONTEXT_GATE_RECORDED_PASS` /
 > `RESTORE_SELECTION_GATE_RECORDED_PASS` /
 > `SELECTION_TIMELINE_AUTHORITY_GATE_RECORDED_PASS` /
+> `SCENE_COMMAND_GATE_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
@@ -36,8 +37,8 @@
 > Canvas teardown regression exposed by the Batch 68 cross-owner sequence, and
 > Batch 85 selection/CRUD discoverability verifier, Batch 86 transform
 > context/cancellation verifier, Batch 87 restore-selection verifier, Batch 88
-> selection/timeline authority verifier, and Batch 89 scene-settings/add-camera
-> verifier.
+> selection/timeline authority verifier, Batch 89 scene-settings/add-camera verifier
+> and Batch 90 project/session-scene-command verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -133,6 +134,9 @@ single current gate on their own:
 - Batch 89 covers scene-settings discoverability、object-tree/scene-Inspector
   add-camera entrypoints、camera object/track/keyframe creation、active-camera and
   selection authority、undo/redo、portable export boundary and mobile panel geometry。
+- Batch 90 covers project/session lifecycle outcome diagnostics、scene draft/commit、
+  typed scene command、persistence、one-entry history、no-op/rejection、undo/redo
+  and mobile Inspector geometry。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -193,6 +197,7 @@ historical regressions.
 | Batch 87 | Director undo/redo restore selection authority | `CURRENT_GATE` | Pure source contract + fresh-page Playwright object/tree/Inspector/Viewport/Timeline restore workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` restore-selection gate；proves clone-owned preserve-and-repair policy，不证明 LibTV source Director undo selection policy、文案或 CSS |
 | Batch 88 | Director selection/timeline/TransformControls authority | `CURRENT_GATE` | Pure source contract + fresh-page Playwright single/multi/group selection, reverse Timeline selection, keyframe/path ownership, delete repair, locked zero-mutation and mobile workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` selection/timeline authority gate；proves clone-owned normalization and cross-surface consistency，不证明 LibTV source Director selection/Timeline 联动、undo policy、文案或 CSS |
 | Batch 89 | Director scene settings and add-camera discoverability | `CURRENT_GATE` | Pure source contract + fresh-page Playwright scene settings, object-tree/Inspector add-camera entrypoints, camera/track/keyframe creation, active-camera selection, undo/redo, portable export and mobile panel workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene/add-camera gate；proves clone-owned authoring entry and document continuity，不证明 LibTV source Director add-camera defaults、exact DOM/CSS 或 shot lifecycle |
+| Batch 90 | Director project/session diagnostics and scene semantic command | `CURRENT_GATE` | Pure source contract + fresh-page Playwright session outcome/lifecycle diagnostics, scene draft/Enter/blur commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene-command gate；proves clone-owned session observability and command boundary，不证明 LibTV source Director project/session/history/persistence semantics、exact DOM/CSS 或 source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -542,6 +547,21 @@ This result closes the clone-owned scene-settings/add-camera discoverability sli
 It does not prove LibTV source Director camera creation policy, default placement,
 active-camera policy or exact visual treatment.
 
+Batch 90 project/session-scene-command gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Pure corpus | 12 source/contract assertions |
+| Browser corpus | session outcome/lifecycle diagnostics、scene draft/Enter/blur commit、persistence、one-entry history、no-op/rejection、undo/redo and mobile Inspector geometry |
+| Artifact | Batch 90 `runtime-audit.json` and `current-gate-regression.json`；zero screenshots |
+| Diagnostics | zero console/page/request errors |
+| Source boundary | LibTV authenticated Director project/session、history、persistence and exact DOM/CSS remain unknown |
+
+This result closes the clone-owned project/session observability and scene semantic
+command slice. It does not prove LibTV source Director project/session, history or
+persistence semantics.
+
 ### 4.3 Current-gate serial regression
 
 On 2026-08-29, using the single `localhost:4317` Next dev server, the
@@ -592,6 +612,7 @@ Batch 67 pure codec gate
   + Batch 87 restore-selection gate
   + Batch 88 selection/timeline authority gate
   + Batch 89 scene settings/add-camera gate
+  + Batch 90 project/session-scene-command gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check

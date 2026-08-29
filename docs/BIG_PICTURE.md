@@ -240,7 +240,8 @@ begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
 门禁已通过。普通画布 async/persistence、remote storage、生产级复杂资源
 materialization 和 source parity 仍未完成；Batch 82 补了 Director session-local
 有限 OBJ/FBX materialization，Batch 83 又补了 clone-owned Director command
-feedback projection。这些
+feedback projection，Batch 90 又补了 project/session outcome diagnostics 与
+scene semantic command。这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
   source-exact 行为。
 

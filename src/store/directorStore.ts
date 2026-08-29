@@ -75,8 +75,10 @@ import {
   type DirectorProjectCopyRegistrationV1,
   type DirectorProjectCloseResult,
   type DirectorProjectLifecycle,
+  type DirectorProjectOpenDisposition,
   type DirectorProjectOpenResult,
   type DirectorProjectRecordV1,
+  type DirectorProjectRegistryReason,
   type DirectorProjectRegistrySnapshot,
   type DirectorSessionV1,
 } from "@/lib/directorProjectRegistry";
@@ -205,6 +207,13 @@ export interface DirectorScene {
   groundColor: string;
   showGround: boolean;
   showGrid: boolean;
+}
+
+export interface DirectorSessionOutcome {
+  disposition: DirectorProjectOpenDisposition;
+  reason: DirectorProjectRegistryReason | null;
+  previousOwnerKey: string | null;
+  observedAt: string;
 }
 
 export interface DirectorCapture {
@@ -445,6 +454,7 @@ interface DirectorState {
   sessionId: string | null;
   generation: number | null;
   projectLifecycle: DirectorProjectLifecycle | null;
+  sessionOutcome: DirectorSessionOutcome | null;
   scene: DirectorScene;
   authoredObjects: DirectorObject[];
   objects: DirectorObject[];
@@ -546,7 +556,9 @@ interface DirectorState {
   toggleThirds: () => void;
   toggleViewportPanelsCollapsed: () => void;
   setViewportPanelsCollapsed: (collapsed: boolean) => void;
-  updateScene: (patch: Partial<DirectorScene>) => void;
+  updateScene: (
+    patch: Partial<DirectorScene>,
+  ) => DirectorCommandResult;
   updateObject: (
     objectId: string,
     patch: Partial<Pick<DirectorObject, "name" | "color" | "visible" | "locked">>,
@@ -2352,6 +2364,7 @@ function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
     sessionId: null,
     generation: null,
     projectLifecycle: null,
+    sessionOutcome: null,
     scene: createDefaultScene(),
     authoredObjects: cloneObjects(),
     objects: cloneObjects(),
@@ -2649,6 +2662,17 @@ function createRejectedOpenResult(
   };
 }
 
+function createDirectorSessionOutcome(
+  result: DirectorProjectOpenResult,
+): DirectorSessionOutcome {
+  return {
+    disposition: result.disposition,
+    reason: result.reason,
+    previousOwnerKey: result.previousOwnerKey,
+    observedAt: new Date().toISOString(),
+  };
+}
+
 export function getDirectorProjectRegistrySnapshot():
   DirectorProjectRegistrySnapshot {
   return directorProjectRegistry.getSnapshot();
@@ -2661,6 +2685,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   sessionId: null,
   generation: null,
   projectLifecycle: null,
+  sessionOutcome: null,
   scene: createDefaultScene(),
   authoredObjects: cloneObjects(),
   objects: cloneObjects(),
@@ -2691,10 +2716,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     const persisted = directorProjectPersistence.load(owner);
     const activeSession = directorProjectRegistry.getActiveSession();
     if (persisted.reason === "PROJECT_TOMBSTONED") {
-      return createRejectedOpenResult(
+      const result = createRejectedOpenResult(
         "PROJECT_TOMBSTONED",
         activeSession ? createDirectorProjectOwnerKey(activeSession.owner) : null,
       );
+      set({ sessionOutcome: createDirectorSessionOutcome(result) });
+      return result;
     }
     if (
       activeSession &&
@@ -2707,7 +2734,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           activeSession,
         );
       } catch {
-        return createRejectedOpenResult(
+        const result = createRejectedOpenResult(
           "INVALID_DOCUMENT",
           JSON.stringify([
             activeSession.owner.route,
@@ -2715,6 +2742,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             activeSession.owner.sourceNodeId,
           ]),
         );
+        set({ sessionOutcome: createDirectorSessionOutcome(result) });
+        return result;
       }
       const update = directorProjectRegistry.updateActive({
         owner: activeSession.owner,
@@ -2724,7 +2753,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         captures: currentState.captures,
       });
       if (update.disposition !== "COMMITTED") {
-        return createRejectedOpenResult(
+        const result = createRejectedOpenResult(
           update.reason ?? "OWNER_STALE",
           JSON.stringify([
             activeSession.owner.route,
@@ -2732,6 +2761,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             activeSession.owner.sourceNodeId,
           ]),
         );
+        set({ sessionOutcome: createDirectorSessionOutcome(result) });
+        return result;
       }
       directorProjectPersistence.save({
         owner: activeSession.owner,
@@ -2761,6 +2792,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             currentState.localModelLibrary,
           ),
           history: historyForDirectorProject(result.session.projectId),
+          sessionOutcome: createDirectorSessionOutcome(result),
           lastCommandResult: null,
         },
       );
@@ -2772,6 +2804,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           document: result.record.document,
         });
       }
+    } else {
+      set({ sessionOutcome: createDirectorSessionOutcome(result) });
     }
     return result;
   },
@@ -3024,6 +3058,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         sessionId: null,
         generation: null,
         projectLifecycle: null,
+        sessionOutcome: null,
         isCapturing: false,
         timeline: {
           ...state.timeline,
@@ -4586,8 +4621,145 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   setViewportPanelsCollapsed: (collapsed) =>
     set({ viewportPanelsCollapsed: collapsed }),
 
-  updateScene: (patch) =>
-    set((state) => ({ scene: { ...state.scene, ...patch } })),
+  updateScene: (patch) => {
+    const state = get();
+    const sceneKeys = [
+      "name",
+      "backgroundColor",
+      "groundColor",
+      "showGround",
+      "showGrid",
+    ] as const;
+    const patchKeys = Object.keys(patch) as Array<keyof DirectorScene>;
+    const invalidKey = patchKeys.find((key) => !sceneKeys.includes(key));
+    const invalidValue =
+      invalidKey !== undefined ||
+      (patch.name !== undefined &&
+        (typeof patch.name !== "string" || patch.name.trim().length === 0)) ||
+      (patch.backgroundColor !== undefined &&
+        (typeof patch.backgroundColor !== "string" ||
+          patch.backgroundColor.trim().length === 0)) ||
+      (patch.groundColor !== undefined &&
+        (typeof patch.groundColor !== "string" ||
+          patch.groundColor.trim().length === 0)) ||
+      (patch.showGround !== undefined && typeof patch.showGround !== "boolean") ||
+      (patch.showGrid !== undefined && typeof patch.showGrid !== "boolean");
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (state.history.activeGesture) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (invalidValue) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_INVALID_VALUE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const nextScene: DirectorScene = {
+      ...state.scene,
+      ...patch,
+      ...(patch.name !== undefined ? { name: patch.name.trim() } : {}),
+    };
+    const hasChange = sceneKeys.some(
+      (key) => nextScene[key] !== state.scene[key],
+    );
+    if (!hasChange) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: nextScene,
+      objects: state.authoredObjects,
+      groups: state.groups,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline: state.timeline,
+      captures: state.captures,
+    });
+    if (!updateActiveDirectorDocument(state, after, state.captures)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SCENE",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "UPDATE_SCENE",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: "UPDATE_SCENE",
+      projectId: before.projectId,
+      generation: before.generation,
+      before: before.document,
+      after,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(before.projectId, history);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        scene: nextScene,
+        history,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return result;
+  },
 
   updateObject: (objectId, patch) => {
     const state = get();
