@@ -1,0 +1,38 @@
+{
+  "batch": 88,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "contract": {
+    "scope": "clone-owned Director selection/timeline/transform authority",
+    "sourceExact": false,
+    "singleSelectionTrackNormalization": true,
+    "multiSelectionClearsSingleTargetContext": true,
+    "groupTrackNormalization": true,
+    "timelineReverseSelection": true,
+    "deleteAndRestoreRepair": true,
+    "lockedTargetZeroMutation": true,
+    "portableDocumentExcludesSelection": true
+  },
+  "desktop": {
+    "objectSwitchClearsUnrelatedTrackContext": true,
+    "sameObjectPreservesCompatibleTrack": true,
+    "multiSelectionClearsSingleTargetContext": true,
+    "timelineTrackAndKeyframeDriveAllSurfaces": true,
+    "groupTrackDrivesGroupInspector": true,
+    "pathAndAnchorCannotCrossObjectSelection": true,
+    "finishedPathRestoresCompleteSelectionAuthority": true,
+    "deleteRemovesDanglingSelectionContext": true,
+    "lockedTargetPreservesDocumentAndHistory": true,
+    "selectionOnlyStaysOutsideDocumentHistory": true,
+    "mobileWorkspaceWithinViewport": true
+  },
+  "mobile": {
+    "workspaceWithinViewport": true
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0,
+    "details": []
+  }
+}

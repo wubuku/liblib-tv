@@ -1,6 +1,6 @@
 # Batch 88 计划：Director selection、Timeline 与变换目标交叉一致性
 
-> 状态：`IN_PROGRESS`。
+> 状态：`COMPLETED / RECORDED_PASS`。
 >
 > 建档日期：2026-08-29。
 >
@@ -129,10 +129,10 @@ selection、timeline 联动、undo selection 或 locked UI policy。
 
 - [x] 阅读 Batch 84–87 合同、store restore/delete 路径和 Director 组件选择路径；
 - [x] 记录高价值缺口、selection normalization 决策和证据边界；
-- [ ] 实施 timeline/entity selection normalization；
-- [ ] 新增并运行 Batch 88 pure/source verifier；
-- [ ] 新增并运行 Batch 88 fresh-page Playwright verifier；
-- [ ] 运行 Batch 59、67–88 current-gate 回归；
-- [ ] 更新台账、manifest、Harness、索引、coverage 和 Batch 88 实施记录；
-- [ ] 运行全量检查并 commit/push；
-- [ ] 确认工作区干净，报告 5/5 并暂停。
+- [x] 实施 timeline/entity selection normalization；
+- [x] 新增并运行 Batch 88 pure/source verifier；
+- [x] 新增并运行 Batch 88 fresh-page Playwright verifier；
+- [x] 运行 Batch 59、67–88 current-gate 回归；
+- [x] 更新台账、manifest、Harness、索引、coverage 和 Batch 88 实施记录；
+- [x] 运行全量检查并 commit/push；
+- [x] 确认工作区干净，报告 5/5 并暂停。

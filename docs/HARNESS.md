@@ -103,13 +103,14 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 85 | Director object-tree selection context, single/multi-selection count, project-scoped copy, clear zero-history, reference-aware batch delete, mobile discovery and zero diagnostics |
 | Batch 86 | Director transform target context, object/group pointer cancellation and lost-capture cleanup, real gizmo drag, authored/runtime/history continuity, locked rejection, mobile geometry and zero diagnostics |
 | Batch 87 | Director undo/redo selection preservation and repair across object-tree, Inspector, Viewport and Timeline, portable-document selection exclusion and zero diagnostics |
+| Batch 88 | Director selection/timeline/TransformControls authority, single/multi/group normalization, reverse timeline selection, delete repair, locked zero mutation and mobile geometry |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..87}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..88}.py; do
   python3 "$script" || exit 1
 done
 ```
@@ -177,11 +178,13 @@ diagnostics。它只证明 clone-owned selection action bar，不证明 LibTV �
 Director 是否有相同 selection bar、文案、键盘策略或 source-exact behavior。
 
 Batch 86 是 Director transform-context/cancellation hybrid gate，默认不写截图；
-Batch 87 是 Director restore-selection hybrid gate，默认不写截图；
-它保留目标上下文状态、真实 gizmo pointer drag、authoring/runtime/history、
-pointercancel/lost pointer capture、locked rejection、mobile geometry 和
-zero-diagnostic 断言。它只证明 clone-owned Director 变换入口与清理，不证明
-LibTV 原站 Director gizmo placement、目标文案、锁定反馈或 source-exact behavior。
+Batch 87 是 Director restore-selection hybrid gate，默认不写截图；Batch 88 是
+Director selection/timeline authority hybrid gate，默认不写截图。它们保留目标
+上下文、真实 gizmo pointer drag、authoring/runtime/history、pointercancel/lost
+pointer capture、selection normalization、track/keyframe/path ownership、locked
+rejection、mobile geometry 和 zero-diagnostic 断言。它们只证明 clone-owned
+Director 变换与选择入口，不证明 LibTV 原站 Director gizmo placement、目标文案、
+Timeline 联动、undo selection 或 source-exact behavior。
 
 ## Browser Evidence Requirements
 

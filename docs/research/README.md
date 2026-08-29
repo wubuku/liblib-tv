@@ -57,7 +57,7 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
-- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-87 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-88 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
 - [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/README.md)：Director undo/redo selection authority、失效选择 repair 和 portable-document 边界。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。

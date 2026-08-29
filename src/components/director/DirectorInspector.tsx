@@ -1320,12 +1320,12 @@ export function DirectorInspector({
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
-  const selectedTrack = timeline.tracks.find(
-    (track) =>
-      selectedGroup
-        ? track.kind === "group" && track.groupId === selectedGroup.id
-        : track.objectId === selected?.id && track.kind !== "pose",
-  );
+  const selectedTrack = timeline.tracks.find((track) => {
+    if (track.id !== timeline.selectedTrackId) return false;
+    return selectedGroup
+      ? track.kind === "group" && track.groupId === selectedGroup.id
+      : Boolean(selected && track.objectId === selected.id);
+  }) ?? null;
   const selectedPath = selectedTrack?.motionPathId
     ? timeline.motionPaths.find(
         (path) => path.id === selectedTrack.motionPathId,
@@ -1351,6 +1351,7 @@ export function DirectorInspector({
       data-director-inspector-kind={
         selectedGroup ? "group" : selected?.kind ?? "scene"
       }
+      data-director-inspector-track-id={selectedTrack?.id ?? ""}
       className="flex h-full min-h-0 flex-col bg-[#191919]"
     >
       <header className="flex h-12 shrink-0 items-center border-b border-white/[0.07] px-3">

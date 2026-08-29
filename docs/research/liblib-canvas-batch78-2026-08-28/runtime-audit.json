@@ -1,7 +1,7 @@
 {
   "batch": 78,
   "status": "SCRIPT_RECORDED_PASS",
-  "baseUrl": "http://localhost:3001",
+  "baseUrl": "http://localhost:4317",
   "scope": [
     "Director curve editor pointer gesture cancellation",
     "Director phone vcam pose pointer capture lifecycle",

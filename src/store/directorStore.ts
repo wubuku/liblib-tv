@@ -1425,17 +1425,26 @@ function updateCharacterRigAndTimeline(
         track.id === existing.id ? result.track : track,
       )
     : [...state.timeline.tracks, result.track];
-  const timeline = {
-    ...state.timeline,
-    tracks,
-    selectedTrackId: result.track.id,
-    selectedKeyframeId: result.keyframeId,
-    selectedMotionPathId: null,
-    selectedMotionPathAnchorId: null,
-    selectedMotionPathHandle: null,
-    motionPathDraft: null,
-    isPlaying: false,
-  };
+  const selectedObjectIds = [objectId];
+  const timeline = normalizeDirectorTimelineSelection(
+    {
+      ...state.timeline,
+      tracks,
+      selectedTrackId: result.track.id,
+      selectedKeyframeId: result.keyframeId,
+      selectedMotionPathId: null,
+      selectedMotionPathAnchorId: null,
+      selectedMotionPathHandle: null,
+      motionPathDraft: null,
+      isPlaying: false,
+    },
+    {
+      selectedObjectId: objectId,
+      selectedObjectIds,
+      selectedGroupId: null,
+    },
+    { preserveTrackEntities: true },
+  );
   return {
     authoredObjects,
     objects: projectDirectorRuntimeObjects(
@@ -1443,6 +1452,9 @@ function updateCharacterRigAndTimeline(
       timeline,
       state.groups,
     ),
+    selectedObjectId: objectId,
+    selectedObjectIds,
+    selectedGroupId: null,
     timeline,
   };
 }
@@ -1495,6 +1507,148 @@ function getDirectorSelectionResult(
     selectedObjectId: state.selectedObjectId,
     selectedObjectIds: [...state.selectedObjectIds],
     selectedGroupId: state.selectedGroupId,
+  };
+}
+
+interface DirectorEntitySelection {
+  selectedObjectId: string | null;
+  selectedObjectIds: string[];
+  selectedGroupId: string | null;
+}
+
+function directorTimelineTrackMatchesSelection(
+  track: DirectorTimelineTrack | null,
+  selection: DirectorEntitySelection,
+): boolean {
+  if (!track) return false;
+  if (selection.selectedGroupId) {
+    return (
+      track.kind === "group" &&
+      track.groupId === selection.selectedGroupId
+    );
+  }
+  const selectedObjectIds =
+    selection.selectedObjectIds.length > 0
+      ? selection.selectedObjectIds
+      : selection.selectedObjectId
+        ? [selection.selectedObjectId]
+        : [];
+  return (
+    selectedObjectIds.length === 1 &&
+    track.kind !== "group" &&
+    track.objectId === selectedObjectIds[0]
+  );
+}
+
+function chooseDirectorTimelineTrack(
+  timeline: DirectorTimelineState,
+  selection: DirectorEntitySelection,
+): DirectorTimelineTrack | null {
+  const currentTrack = timeline.tracks.find(
+    (track) => track.id === timeline.selectedTrackId,
+  ) ?? null;
+  if (directorTimelineTrackMatchesSelection(currentTrack, selection)) {
+    return currentTrack;
+  }
+  const selectedObjectIds =
+    selection.selectedObjectIds.length > 0
+      ? selection.selectedObjectIds
+      : selection.selectedObjectId
+        ? [selection.selectedObjectId]
+        : [];
+  const objectId =
+    selection.selectedObjectId &&
+    selectedObjectIds.includes(selection.selectedObjectId)
+      ? selection.selectedObjectId
+      : selectedObjectIds[0];
+
+  if (selection.selectedGroupId) {
+    return (
+      timeline.tracks.find(
+        (track) =>
+          track.kind === "group" &&
+          track.groupId === selection.selectedGroupId,
+      ) ?? null
+    );
+  }
+
+  if (selectedObjectIds.length !== 1) return null;
+  return (
+    timeline.tracks.find(
+      (track) =>
+        track.objectId === objectId &&
+        track.kind !== "group" &&
+        track.kind !== "pose",
+    ) ??
+    timeline.tracks.find(
+      (track) => track.objectId === objectId && track.kind !== "group",
+    ) ??
+    null
+  );
+}
+
+interface DirectorTimelineSelectionOptions {
+  preserveTrackEntities?: boolean;
+  fallbackToCompatibleTrack?: boolean;
+}
+
+function normalizeDirectorTimelineSelection(
+  timeline: DirectorTimelineState,
+  selection: DirectorEntitySelection,
+  options: DirectorTimelineSelectionOptions = {},
+): DirectorTimelineState {
+  const currentTrack = timeline.tracks.find(
+    (track) => track.id === timeline.selectedTrackId,
+  ) ?? null;
+  const selectedTrack =
+    options.fallbackToCompatibleTrack === false
+      ? directorTimelineTrackMatchesSelection(currentTrack, selection)
+        ? currentTrack
+        : null
+      : chooseDirectorTimelineTrack(timeline, selection);
+  const selectedTrackChanged =
+    selectedTrack?.id !== timeline.selectedTrackId;
+  const selectedKeyframeId =
+    selectedTrack &&
+    (options.preserveTrackEntities || !selectedTrackChanged) &&
+    timeline.selectedKeyframeId &&
+    selectedTrack.keyframes.some(
+      (keyframe) => keyframe.id === timeline.selectedKeyframeId,
+    )
+      ? timeline.selectedKeyframeId
+      : null;
+  const selectedPath =
+    selectedTrack?.motionPathId
+      ? timeline.motionPaths.find(
+          (path) => path.id === selectedTrack.motionPathId,
+        ) ?? null
+      : null;
+  const selectedMotionPathId =
+    selectedPath &&
+    (options.preserveTrackEntities ||
+      !selectedTrackChanged ||
+      timeline.selectedMotionPathId === selectedPath.id)
+      ? selectedPath.id
+      : null;
+  const selectedMotionPathAnchorId =
+    selectedMotionPathId &&
+    (options.preserveTrackEntities || !selectedTrackChanged) &&
+    timeline.selectedMotionPathAnchorId &&
+    selectedPath?.anchors.some(
+      (anchor) => anchor.id === timeline.selectedMotionPathAnchorId,
+    )
+      ? timeline.selectedMotionPathAnchorId
+      : null;
+
+  return {
+    ...timeline,
+    selectedTrackId: selectedTrack?.id ?? null,
+    selectedKeyframeId,
+    selectedMotionPathId,
+    selectedMotionPathAnchorId,
+    selectedMotionPathHandle: selectedMotionPathAnchorId
+      ? timeline.selectedMotionPathHandle
+      : null,
   };
 }
 
@@ -1794,11 +1948,8 @@ function repairDirectorSelectionState(
       ? state.timeline.selectedMotionPathAnchorId
       : null;
 
-  return {
-    selectedObjectId,
-    selectedObjectIds,
-    selectedGroupId,
-    timeline: {
+  const timeline = normalizeDirectorTimelineSelection(
+    {
       ...restored.timeline,
       currentTime: clampDirectorTimelineTime(
         state.timeline.currentTime,
@@ -1816,6 +1967,19 @@ function repairDirectorSelectionState(
       motionPathDraft: null,
       editorMode: state.timeline.editorMode,
     },
+    {
+      selectedObjectId,
+      selectedObjectIds,
+      selectedGroupId,
+    },
+    { fallbackToCompatibleTrack: false },
+  );
+
+  return {
+    selectedObjectId,
+    selectedObjectIds,
+    selectedGroupId,
+    timeline,
   };
 }
 
@@ -2104,7 +2268,13 @@ function restoreDirectorProjectState(
             ? [defaultSelectedObjectId]
             : [],
           selectedGroupId: null,
-          timeline: restoredTimeline,
+          timeline: normalizeDirectorTimelineSelection(restoredTimeline, {
+            selectedObjectId: defaultSelectedObjectId,
+            selectedObjectIds: defaultSelectedObjectId
+              ? [defaultSelectedObjectId]
+              : [],
+            selectedGroupId: null,
+          }),
         };
   const objects = applyTimelineAtTime(
     authoredObjects,
@@ -2208,9 +2378,7 @@ function projectDirectorDeleteState(
   const selectedTrack =
     (state.timeline.selectedTrackId
       ? trackById.get(state.timeline.selectedTrackId)
-      : null) ??
-    restored.timeline.tracks[0] ??
-    null;
+      : null) ?? null;
   const selectedKeyframeId =
     selectedTrack?.keyframes.some(
       (keyframe) => keyframe.id === state.timeline.selectedKeyframeId,
@@ -2281,11 +2449,6 @@ function projectDirectorDeleteState(
     },
   };
   const authoredObjects = restored.objects;
-  const objects = projectDirectorRuntimeObjects(
-    authoredObjects,
-    timeline,
-    restored.groups,
-  );
 
   const survivingGroup = state.selectedGroupId
     ? groupById.get(state.selectedGroupId)
@@ -2303,6 +2466,17 @@ function projectDirectorDeleteState(
     selectedObjectId = restored.activeCameraId;
     selectedObjectIds = [restored.activeCameraId];
   }
+
+  const normalizedTimeline = normalizeDirectorTimelineSelection(timeline, {
+    selectedObjectId,
+    selectedObjectIds,
+    selectedGroupId,
+  });
+  const objects = projectDirectorRuntimeObjects(
+    authoredObjects,
+    normalizedTimeline,
+    restored.groups,
+  );
 
   const activeCameraChanged =
     state.activeCameraId !== restored.activeCameraId;
@@ -2358,7 +2532,7 @@ function projectDirectorDeleteState(
       activeCaptureId,
       localModelLibrary,
       localModelResources,
-      timeline,
+      timeline: normalizedTimeline,
       phoneVcam: phoneVcamInvalidated
         ? createDefaultPhoneVcamState()
         : state.phoneVcam,
@@ -2377,7 +2551,6 @@ function projectDirectorClipboardPasteState(
 ): Partial<DirectorState> {
   const restored = restoreDirectorProjectRuntimeSnapshotV1(plan.document);
   const pastedTrackIds = new Set(plan.pastedTrackIds);
-  const pastedPathIds = new Set(plan.pastedMotionPathIds);
   const selectedTrack =
     restored.timeline.tracks.find((track) => pastedTrackIds.has(track.id)) ??
     (state.timeline.selectedTrackId
@@ -2387,31 +2560,33 @@ function projectDirectorClipboardPasteState(
       : null) ??
     restored.timeline.tracks[0] ??
     null;
-  const selectedPath =
-    restored.timeline.motionPaths.find((path) => pastedPathIds.has(path.id)) ??
-    (selectedTrack?.motionPathId
-      ? restored.timeline.motionPaths.find(
-          (path) => path.id === selectedTrack.motionPathId,
-        )
-      : null) ??
-    null;
-  const timeline: DirectorTimelineState = {
-    ...restored.timeline,
-    currentTime: clampDirectorTimelineTime(
-      state.timeline.currentTime,
-      restored.timeline.duration,
-    ),
-    isPlaying: false,
-    zoom: state.timeline.zoom,
-    selectedTrackId: selectedTrack?.id ?? null,
-    selectedKeyframeId: selectedTrack?.keyframes[0]?.id ?? null,
-    selectedMotionPathId: selectedPath?.id ?? null,
-    selectedMotionPathAnchorId: null,
-    selectedMotionPathHandle: null,
-    motionPathDraft: null,
-    editorMode: state.timeline.editorMode,
-    cameraMotionPreset: state.timeline.cameraMotionPreset,
-  };
+  const selectedObjectId = plan.selection.selectedObjectId;
+  const selectedObjectIds = [...plan.selection.selectedObjectIds];
+  const timeline = normalizeDirectorTimelineSelection(
+    {
+      ...restored.timeline,
+      currentTime: clampDirectorTimelineTime(
+        state.timeline.currentTime,
+        restored.timeline.duration,
+      ),
+      isPlaying: false,
+      zoom: state.timeline.zoom,
+      selectedTrackId: selectedTrack?.id ?? null,
+      selectedKeyframeId: selectedTrack?.keyframes[0]?.id ?? null,
+      selectedMotionPathId: selectedTrack?.motionPathId ?? null,
+      selectedMotionPathAnchorId: null,
+      selectedMotionPathHandle: null,
+      motionPathDraft: null,
+      editorMode: state.timeline.editorMode,
+      cameraMotionPreset: state.timeline.cameraMotionPreset,
+    },
+    {
+      selectedObjectId,
+      selectedObjectIds,
+      selectedGroupId: plan.selection.selectedGroupId,
+    },
+    { preserveTrackEntities: true },
+  );
   const authoredObjects = restored.objects;
   return {
     authoredObjects,
@@ -2421,8 +2596,8 @@ function projectDirectorClipboardPasteState(
       restored.groups,
     ),
     groups: restored.groups,
-    selectedObjectId: plan.selection.selectedObjectId,
-    selectedObjectIds: [...plan.selection.selectedObjectIds],
+    selectedObjectId,
+    selectedObjectIds,
     selectedGroupId: plan.selection.selectedGroupId,
     activeCameraId: restored.activeCameraId,
     timeline,
@@ -3691,15 +3866,24 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       ) {
         return state;
       }
-      return {
-        selectedObjectId: objectId,
-        selectedObjectIds: objectId ? [objectId] : [],
-        selectedGroupId: null,
-        timeline: {
+      const selectedObjectIds = objectId ? [objectId] : [];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedMotionPathAnchorId: null,
           selectedMotionPathHandle: null,
         },
+        {
+          selectedObjectId: objectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+      );
+      return {
+        selectedObjectId: objectId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     }),
 
@@ -3715,17 +3899,26 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const selectedObjectIds = currentIds.includes(objectId)
         ? currentIds.filter((id) => id !== objectId)
         : [...currentIds, objectId];
-      return {
-        selectedObjectId:
-          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
-        selectedObjectIds,
-        selectedGroupId: null,
-        timeline: {
+      const selectedObjectId =
+        selectedObjectIds[selectedObjectIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedMotionPathAnchorId: null,
           selectedMotionPathHandle: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+      );
+      return {
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     }),
 
@@ -3736,6 +3929,21 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           selectedObjectId: null,
           selectedObjectIds: [],
           selectedGroupId: null,
+          timeline: normalizeDirectorTimelineSelection(
+            {
+              ...state.timeline,
+              selectedMotionPathId: null,
+              selectedMotionPathAnchorId: null,
+              selectedMotionPathHandle: null,
+              motionPathDraft: null,
+              isPlaying: false,
+            },
+            {
+              selectedObjectId: null,
+              selectedObjectIds: [],
+              selectedGroupId: null,
+            },
+          ),
         };
       }
       const group = state.groups.find((item) => item.id === groupId);
@@ -3744,12 +3952,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         state.objects.some((object) => object.id === id),
       );
       if (selectedObjectIds.length === 0) return state;
-      return {
-        selectedObjectId:
-          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
-        selectedObjectIds,
-        selectedGroupId: group.id,
-        timeline: {
+      const selectedObjectId =
+        selectedObjectIds[selectedObjectIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedMotionPathId: null,
           selectedMotionPathAnchorId: null,
@@ -3757,6 +3963,17 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           motionPathDraft: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: group.id,
+        },
+      );
+      return {
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId: group.id,
+        timeline,
       };
     }),
 
@@ -3781,12 +3998,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         characterIds,
       };
       createdGroupId = group.id;
-      return {
-        groups: [...state.groups, group],
-        selectedObjectId: characterIds[characterIds.length - 1] ?? null,
-        selectedObjectIds: characterIds,
-        selectedGroupId: group.id,
-        timeline: {
+      const selectedObjectId =
+        characterIds[characterIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedMotionPathId: null,
           selectedMotionPathAnchorId: null,
@@ -3794,6 +4009,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           motionPathDraft: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds: characterIds,
+          selectedGroupId: group.id,
+        },
+      );
+      return {
+        groups: [...state.groups, group],
+        selectedObjectId,
+        selectedObjectIds: characterIds,
+        selectedGroupId: group.id,
+        timeline,
       };
     });
     return createdGroupId;
@@ -3874,22 +4101,31 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
       createdGroupId = group.id;
       const authoredObjects = [...state.authoredObjects, ...characters];
+      const selectedObjectId =
+        group.characterIds[group.characterIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
+          ...state.timeline,
+          isPlaying: false,
+        },
+        {
+          selectedObjectId,
+          selectedObjectIds: [...group.characterIds],
+          selectedGroupId: group.id,
+        },
+      );
       return {
         authoredObjects,
         objects: projectDirectorRuntimeObjects(
           authoredObjects,
-          state.timeline,
+          timeline,
           state.groups.concat(group),
         ),
         groups: [...state.groups, group],
-        selectedObjectId:
-          group.characterIds[group.characterIds.length - 1] ?? null,
+        selectedObjectId,
         selectedObjectIds: [...group.characterIds],
         selectedGroupId: group.id,
-        timeline: {
-          ...state.timeline,
-          isPlaying: false,
-        },
+        timeline,
       };
     });
     return createdGroupId;
@@ -4047,17 +4283,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
       createdObjectId = objectId;
       const authoredObjects = [...state.authoredObjects, object];
-      return {
-        authoredObjects,
-        objects: projectDirectorRuntimeObjects(
-          authoredObjects,
-          state.timeline,
-          state.groups,
-        ),
-        selectedObjectId: objectId,
-        selectedObjectIds: [objectId],
-        selectedGroupId: null,
-        timeline: {
+      const selectedObjectIds = [objectId];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedMotionPathId: null,
           selectedMotionPathAnchorId: null,
@@ -4065,6 +4293,23 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           motionPathDraft: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId: objectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+      );
+      return {
+        authoredObjects,
+        objects: projectDirectorRuntimeObjects(
+          authoredObjects,
+          timeline,
+          state.groups,
+        ),
+        selectedObjectId: objectId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     });
     return createdObjectId;
@@ -4132,13 +4377,28 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }),
 
   setViewMode: (mode) =>
-    set((state) => ({
-      viewMode: mode,
-      selectedObjectId: mode === "camera" ? state.activeCameraId : state.selectedObjectId,
-      selectedObjectIds:
-        mode === "camera" ? [state.activeCameraId] : state.selectedObjectIds,
-      selectedGroupId: mode === "camera" ? null : state.selectedGroupId,
-    })),
+    set((state) => {
+      const selectedObjectId =
+        mode === "camera" ? state.activeCameraId : state.selectedObjectId;
+      const selectedObjectIds =
+        mode === "camera" ? [state.activeCameraId] : state.selectedObjectIds;
+      const selectedGroupId =
+        mode === "camera" ? null : state.selectedGroupId;
+      return {
+        viewMode: mode,
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId,
+        timeline: normalizeDirectorTimelineSelection(
+          state.timeline,
+          {
+            selectedObjectId,
+            selectedObjectIds,
+            selectedGroupId,
+          },
+        ),
+      };
+    }),
 
   setTransformMode: (mode) => set({ transformMode: mode }),
 
@@ -4349,6 +4609,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           };
         }
       }
+      const selectedObjectIds = [objectId];
+      timeline = normalizeDirectorTimelineSelection(
+        timeline,
+        {
+          selectedObjectId: objectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
       return {
         authoredObjects,
         objects: projectDirectorRuntimeObjects(
@@ -4356,6 +4626,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           timeline,
           state.groups,
         ),
+        selectedObjectId: objectId,
+        selectedObjectIds,
+        selectedGroupId: null,
         timeline,
       };
     });
@@ -4440,6 +4713,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           };
         }
       }
+      const selection = getDirectorSelectionResult(state);
+      timeline = normalizeDirectorTimelineSelection(
+        timeline,
+        selection,
+        { preserveTrackEntities: true },
+      );
       return {
         authoredObjects,
         objects: projectDirectorRuntimeObjects(
@@ -4447,6 +4726,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           timeline,
           state.groups,
         ),
+        selectedObjectId: selection.selectedObjectId,
+        selectedObjectIds: selection.selectedObjectIds,
+        selectedGroupId: selection.selectedGroupId,
         timeline,
       };
     }),
@@ -4557,22 +4839,37 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       }));
       return false;
     }
-    set((current) => ({
-      viewMode: "camera",
-      selectedObjectId: camera.id,
-      timeline: { ...current.timeline, isPlaying: false },
-      phoneVcam: {
-        ...current.phoneVcam,
-        status: "local-ready",
-        hold: false,
-        elevation: 0,
-        pose: { yaw: 0, pitch: 0, roll: 0 },
-        baselineCamera,
-        recordingStartTime: null,
-        sampleCount: 0,
-        error: null,
-      },
-    }));
+    set((current) => {
+      const selectedObjectIds = [camera.id];
+      return {
+        viewMode: "camera",
+        selectedObjectId: camera.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline: normalizeDirectorTimelineSelection(
+          {
+            ...current.timeline,
+            isPlaying: false,
+          },
+          {
+            selectedObjectId: camera.id,
+            selectedObjectIds,
+            selectedGroupId: null,
+          },
+        ),
+        phoneVcam: {
+          ...current.phoneVcam,
+          status: "local-ready",
+          hold: false,
+          elevation: 0,
+          pose: { yaw: 0, pitch: 0, roll: 0 },
+          baselineCamera,
+          recordingStartTime: null,
+          sampleCount: 0,
+          error: null,
+        },
+      };
+    });
     return true;
   },
 
@@ -5000,20 +5297,29 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
     set((current) => {
       const authoredObjects = [...restoredObjects, camera];
-      const timeline: DirectorTimelineState = {
-        ...current.timeline,
-        currentTime: lastSample.time,
-        isPlaying: false,
-        tracks: [...current.timeline.tracks, track],
-        selectedTrackId: trackId,
-        selectedKeyframeId:
-          track.keyframes[track.keyframes.length - 1]?.id ?? null,
-        selectedMotionPathId: null,
-        selectedMotionPathAnchorId: null,
-        selectedMotionPathHandle: null,
-        motionPathDraft: null,
-        editorMode: "timeline",
-      };
+      const selectedObjectIds = [cameraId];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
+          ...current.timeline,
+          currentTime: lastSample.time,
+          isPlaying: false,
+          tracks: [...current.timeline.tracks, track],
+          selectedTrackId: trackId,
+          selectedKeyframeId:
+            track.keyframes[track.keyframes.length - 1]?.id ?? null,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          editorMode: "timeline",
+        },
+        {
+          selectedObjectId: cameraId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
       return {
         authoredObjects,
         objects: projectDirectorRuntimeObjects(
@@ -5022,6 +5328,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           current.groups,
         ),
         selectedObjectId: cameraId,
+        selectedObjectIds,
+        selectedGroupId: null,
         activeCameraId: cameraId,
         viewMode: "camera",
         timeline,
@@ -5142,23 +5450,38 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         track.kind === "group"
           ? state.groups.find((item) => item.id === track.groupId)
           : null;
+      if (track.kind === "group" && !group) return state;
+      if (
+        track.kind !== "group" &&
+        !state.objects.some((object) => object.id === track.objectId)
+      ) {
+        return state;
+      }
       const selectedObjectIds = group
         ? [...group.characterIds]
         : [track.objectId];
+      const selectedObjectId =
+        selectedObjectIds[selectedObjectIds.length - 1] ?? null;
       return {
-        selectedObjectId:
-          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
+        selectedObjectId,
         selectedObjectIds,
         selectedGroupId: group?.id ?? null,
-        timeline: {
-          ...state.timeline,
+        timeline: normalizeDirectorTimelineSelection(
+          {
+            ...state.timeline,
           selectedTrackId: track.id,
           selectedKeyframeId: null,
           selectedMotionPathId: track.motionPathId ?? null,
           selectedMotionPathAnchorId: null,
           selectedMotionPathHandle: null,
           isPlaying: false,
-        },
+          },
+          {
+            selectedObjectId,
+            selectedObjectIds,
+            selectedGroupId: group?.id ?? null,
+          },
+        ),
       };
     }),
 
@@ -5171,21 +5494,22 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         track.kind === "group"
           ? state.groups.find((item) => item.id === track.groupId)
           : null;
+      if (track.kind === "group" && !group) return state;
+      if (
+        track.kind !== "group" &&
+        !state.objects.some((object) => object.id === track.objectId)
+      ) {
+        return state;
+      }
       const selectedObjectIds = group
-        ? [...group.characterIds]
+        ? group.characterIds.filter((objectId) =>
+            state.objects.some((object) => object.id === objectId),
+          )
         : [track.objectId];
-      return {
-        selectedObjectId:
-          selectedObjectIds[selectedObjectIds.length - 1] ?? null,
-        selectedObjectIds,
-        selectedGroupId: group?.id ?? null,
-        objects: applyTimelineAtTime(
-          state.authoredObjects,
-          state.timeline,
-          keyframe.time,
-          state.groups,
-        ),
-        timeline: {
+      const selectedObjectId =
+        selectedObjectIds[selectedObjectIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           currentTime: keyframe.time,
           selectedTrackId: track.id,
@@ -5195,6 +5519,24 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           selectedMotionPathHandle: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: group?.id ?? null,
+        },
+        { preserveTrackEntities: true },
+      );
+      return {
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId: group?.id ?? null,
+        objects: applyTimelineAtTime(
+          state.authoredObjects,
+          timeline,
+          keyframe.time,
+          state.groups,
+        ),
+        timeline,
       };
     }),
 
@@ -5206,6 +5548,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           (!requestedObjectId && group.id === state.selectedGroupId),
       );
       if (requestedGroup) {
+        const selectedObjectIds = [...requestedGroup.characterIds];
+        const selectedObjectId =
+          selectedObjectIds[selectedObjectIds.length - 1] ?? null;
         const existing = state.timeline.tracks.find(
           (track) =>
             track.kind === "group" &&
@@ -5213,15 +5558,25 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         );
         if (existing) {
           return {
-            timeline: {
-              ...state.timeline,
-              selectedTrackId: existing.id,
-              selectedKeyframeId: null,
-              selectedMotionPathId: null,
-              selectedMotionPathAnchorId: null,
-              selectedMotionPathHandle: null,
-              isPlaying: false,
-            },
+            selectedObjectId,
+            selectedObjectIds,
+            selectedGroupId: requestedGroup.id,
+            timeline: normalizeDirectorTimelineSelection(
+              {
+                ...state.timeline,
+                selectedTrackId: existing.id,
+                selectedKeyframeId: null,
+                selectedMotionPathId: existing.motionPathId ?? null,
+                selectedMotionPathAnchorId: null,
+                selectedMotionPathHandle: null,
+                isPlaying: false,
+              },
+              {
+                selectedObjectId,
+                selectedObjectIds,
+                selectedGroupId: requestedGroup.id,
+              },
+            ),
           };
         }
         const track = createTrackForGroup(
@@ -5230,8 +5585,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           state.timeline.currentTime,
         );
         if (!track) return state;
-        return {
-          timeline: {
+        const timeline = normalizeDirectorTimelineSelection(
+          {
             ...state.timeline,
             tracks: [...state.timeline.tracks, track],
             selectedTrackId: track.id,
@@ -5241,33 +5596,60 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             selectedMotionPathHandle: null,
             isPlaying: false,
           },
+          {
+            selectedObjectId,
+            selectedObjectIds,
+            selectedGroupId: requestedGroup.id,
+          },
+          { preserveTrackEntities: true },
+        );
+        return {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: requestedGroup.id,
+          timeline,
         };
       }
       const objectId = requestedObjectId ?? state.selectedObjectId;
       const object = state.objects.find((item) => item.id === objectId);
       if (!object) return state;
+      const selectedObjectIds = [object.id];
+      const selectedObjectId = object.id;
       const existing = state.timeline.tracks.find(
         (track) =>
-          track.objectId === object.id && track.kind !== "pose",
+          track.objectId === object.id &&
+          track.kind !== "group" &&
+          track.kind !== "pose",
       );
       if (existing) {
         return {
-          timeline: {
-            ...state.timeline,
-            selectedTrackId: existing.id,
-            selectedKeyframeId: null,
-            selectedMotionPathId: existing.motionPathId ?? null,
-            selectedMotionPathAnchorId: null,
-            selectedMotionPathHandle: null,
-          },
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+          timeline: normalizeDirectorTimelineSelection(
+            {
+              ...state.timeline,
+              selectedTrackId: existing.id,
+              selectedKeyframeId: null,
+              selectedMotionPathId: existing.motionPathId ?? null,
+              selectedMotionPathAnchorId: null,
+              selectedMotionPathHandle: null,
+              isPlaying: false,
+            },
+            {
+              selectedObjectId,
+              selectedObjectIds,
+              selectedGroupId: null,
+            },
+          ),
         };
       }
       const track = createTrackForObject(
         object,
         state.timeline.currentTime,
       );
-      return {
-        timeline: {
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           tracks: [...state.timeline.tracks, track],
           selectedTrackId: track.id,
@@ -5277,6 +5659,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           selectedMotionPathHandle: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
+      return {
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     }),
 
@@ -5447,8 +5841,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             track.id === existing.id ? result.track : track,
           )
         : [...state.timeline.tracks, result.track];
-      return {
-        timeline: {
+      const selectedObjectIds = [objectId];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           tracks,
           selectedTrackId: result.track.id,
@@ -5458,6 +5853,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           selectedMotionPathHandle: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId: objectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
+      return {
+        selectedObjectId: objectId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     }),
 
@@ -5496,8 +5903,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             track.id === existing.id ? result.track : track,
           )
         : [...state.timeline.tracks, result.track];
-      return {
-        timeline: {
+      const selectedObjectIds = [...group.characterIds];
+      const selectedObjectId =
+        selectedObjectIds[selectedObjectIds.length - 1] ?? null;
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           tracks,
           selectedTrackId: result.track.id,
@@ -5507,6 +5917,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           selectedMotionPathHandle: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId,
+          selectedObjectIds,
+          selectedGroupId: group.id,
+        },
+        { preserveTrackEntities: true },
+      );
+      return {
+        selectedObjectId,
+        selectedObjectIds,
+        selectedGroupId: group.id,
+        timeline,
       };
     }),
 
@@ -5687,14 +6109,27 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         error: null,
       },
     };
+    const selectedObjectIds = [camera.id];
+    const selectedTimeline = normalizeDirectorTimelineSelection(
+      timeline,
+      {
+        selectedObjectId: camera.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+      },
+      { preserveTrackEntities: true },
+    );
     set({
       objects: applyTimelineAtTime(
         state.authoredObjects,
-        timeline,
-        timeline.currentTime,
+        selectedTimeline,
+        selectedTimeline.currentTime,
         state.groups,
       ),
-      timeline,
+      selectedObjectId: camera.id,
+      selectedObjectIds,
+      selectedGroupId: null,
+      timeline: selectedTimeline,
     });
     return true;
   },
@@ -5725,14 +6160,27 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         selectedMotionPathHandle: null,
         motionPathDraft: null,
       };
+      const selectedObjectIds = [object.id];
+      const selectedTimeline = normalizeDirectorTimelineSelection(
+        timeline,
+        {
+          selectedObjectId: object.id,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
       return {
         objects: applyTimelineAtTime(
           state.authoredObjects,
-          timeline,
-          timeline.currentTime,
+          selectedTimeline,
+          selectedTimeline.currentTime,
           state.groups,
         ),
-        timeline,
+        selectedObjectId: object.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline: selectedTimeline,
       };
     }),
 
@@ -5755,10 +6203,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (object.locked) {
         return rejectLockedDirectorMutation(state, "START_PATH_DRAWING");
       }
-      return {
-        viewMode: "director",
-        selectedObjectId: object.id,
-        timeline: {
+      const selectedObjectIds = [object.id];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedTrackId: track.id,
           selectedKeyframeId: null,
@@ -5774,6 +6221,18 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           },
           isPlaying: false,
         },
+        {
+          selectedObjectId: object.id,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+      );
+      return {
+        viewMode: "director",
+        selectedObjectId: object.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
       };
     }),
 
@@ -5892,14 +6351,29 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         anchors,
         points: buildDirectorMotionPathPoints(anchors, false),
       };
-      const timeline = {
-        ...replaceTrackMotionPath(state.timeline, track, path),
-        selectedMotionPathAnchorId: anchors[0]?.id ?? null,
-        selectedMotionPathHandle: null,
-        motionPathDraft: null,
-      };
+      const selectedObjectIds = [draft.objectId];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
+          ...replaceTrackMotionPath(state.timeline, track, path),
+          selectedTrackId: track.id,
+          selectedKeyframeId: null,
+          selectedMotionPathId: path.id,
+          selectedMotionPathAnchorId: anchors[0]?.id ?? null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+        {
+          selectedObjectId: draft.objectId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
       return {
         selectedObjectId: draft.objectId,
+        selectedObjectIds,
+        selectedGroupId: null,
         objects: applyTimelineAtTime(
           state.authoredObjects,
           timeline,
@@ -5931,10 +6405,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (item) => item.motionPathId === pathId,
       );
       if (!path || !anchor || !track) return state;
-      return {
-        selectedObjectId: track.objectId,
-        viewMode: "director",
-        timeline: {
+      const object = state.objects.find((item) => item.id === track.objectId);
+      if (!object) return state;
+      const selectedObjectIds = [object.id];
+      const timeline = normalizeDirectorTimelineSelection(
+        {
           ...state.timeline,
           selectedTrackId: track.id,
           selectedKeyframeId: null,
@@ -5944,6 +6419,19 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           motionPathDraft: null,
           isPlaying: false,
         },
+        {
+          selectedObjectId: object.id,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+        { preserveTrackEntities: true },
+      );
+      return {
+        selectedObjectId: object.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+        viewMode: "director",
+        timeline,
       };
     }),
 

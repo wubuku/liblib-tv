@@ -1,0 +1,69 @@
+{
+  "batch": 88,
+  "status": "CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS",
+  "date": "2026-08-29",
+  "headAtExecution": "b7028d1",
+  "baseUrl": "http://localhost:4317",
+  "sequence": [
+    59,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88
+  ],
+  "result": "all_passed_after_two_regression_fixes",
+  "regressionFindings": [
+    {
+      "batch": 72,
+      "symptom": "reference-closure delete waited for a non-selected member to disappear",
+      "cause": "updateCamera selected the updated camera even when the caller was editing a different target",
+      "fix": "preserve current selection for non-selected camera updates"
+    },
+    {
+      "batch": 87,
+      "symptom": "invalid selected track was replaced by a compatible fallback track during restore repair",
+      "cause": "selection normalization fallback was enabled for preserve-current restore",
+      "fix": "disable compatible-track fallback during restore repair"
+    }
+  ],
+  "coverage": {
+    "directorReliability": true,
+    "ordinaryCanvasNavigation": true,
+    "transformControlsPointerDrag": true,
+    "pointerCancellationAndR3fTeardown": true,
+    "projectSessionHistoryDelete": true,
+    "persistenceClipboardAndResources": true,
+    "lockSelectionTransformRestoreAndTimelineAuthority": true,
+    "ordinaryGraphIsolation": true
+  },
+  "artifacts": {
+    "screenshotsWritten": 0,
+    "historicalScreenshotsRewritten": false,
+    "runtimeAuditsRefreshedByCurrentGateScripts": true,
+    "historicalAuditsRewritten": false
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0
+  },
+  "worktreeAtExecution": "modified; closeout pending"
+}

@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "batch": 75,
-  "baseUrl": "http://localhost:3001",
+  "baseUrl": "http://localhost:4317",
   "pure": {
     "status": "PASS",
     "batch": 75,
