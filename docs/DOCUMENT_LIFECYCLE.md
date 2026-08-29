@@ -138,6 +138,7 @@ current source code + focused current run
 | Batch 48 | `HISTORICAL_CONTRACT` / recorded pass | Director local model-library persistence slice | evidence/archaeology/plan/contract、实现、focused verifier、截图台账和 maturity assessment 已闭环；真实 mesh loading/远程同步仍明确排除。 |
 | Batch 49 | `HISTORICAL_CONTRACT` / recorded pass | Director viewport native coordinate gizmo | 计划、source evidence、spec、实现、截图台账、成熟度和 focused verifier 已闭环；只证明 clone-owned 有界合同，不证明 LibTV source-exact renderer/CSS。 |
 | Batch 50 | `HISTORICAL_CONTRACT` / recorded pass | Director workspace collapse and keyboard boundary | 计划、source evidence、spec、实现、四态截图台账、成熟度和 focused verifier 已闭环；只证明 clone-owned shell/keyboard 合同，不证明 LibTV source-exact shell、完整 focus trap 或 source “全屏”语义。 |
+| Batch 67-96 | `HISTORICAL_CONTRACT` / recorded pass | Director project/session authority、history/delete、async/persistence、resource lifecycle、focus containment、canvas-media handoff 和 multi-camera/Shot authoring | 每个 Batch 目录保留计划、合同、实施与验证 provenance；当前入口以 `LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`、`VERIFICATION_LEDGER.md` 和组件覆盖矩阵为准。Batch 96 的 portable Shot、legacy decode、capture provenance、引用安全删除、clipboard/duplicate remap 只证明 clone-owned 合同，不证明 LibTV source schema、exact DOM/CSS 或远端持久化。 |
 | `research/components/*.spec.md` | `CURRENT_GUIDANCE` 或有界合同 | 对应组件的交互、几何、状态和图事务 | 先查 coverage matrix；旧组件 spec 可被更新的跨切面 source contract 部分取代。 |
 | `research/frameos/` | `CURRENT_RESEARCH` | FrameOS 独立 route/store/UX | 不与 LibTV 组件和 store 合并。 |
 

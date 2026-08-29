@@ -1363,12 +1363,6 @@ function DirectorShotInspector({
   const [startTime, setStartTime] = useState(String(shot.startTime));
   const [endTime, setEndTime] = useState(String(shot.endTime));
 
-  useEffect(() => {
-    setName(shot.name);
-    setStartTime(String(shot.startTime));
-    setEndTime(String(shot.endTime));
-  }, [shot.endTime, shot.id, shot.name, shot.startTime]);
-
   const resetFromStore = () => {
     const current = useDirectorStore
       .getState()
@@ -1766,6 +1760,7 @@ export function DirectorInspector({
               <div className="space-y-3 border-t border-white/[0.07] pt-4">
                 {selectedShot ? (
                   <DirectorShotInspector
+                    key={`${selectedShot.id}:${selectedShot.name}:${selectedShot.startTime}:${selectedShot.endTime}`}
                     shot={selectedShot}
                     duration={timeline.duration}
                   />

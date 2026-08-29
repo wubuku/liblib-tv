@@ -24,7 +24,7 @@
     },
     "initialFocusInsideWorkspace": true,
     "workspaceTabCycle": {
-      "focusableCount": 79,
+      "focusableCount": 80,
       "forwardSamples": [
         {
           "tag": "button",

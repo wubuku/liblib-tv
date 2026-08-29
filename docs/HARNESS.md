@@ -111,13 +111,14 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 93 | Final Director desktop/mobile shell/R3F regression, ordinary canvas cross-batch regression, Batch 59/67-92 current-gate serial run, governance and full repository checks |
 | Batch 94 | Director workspace focus containment, mobile tree/Inspector local focus scopes, focus return, inactive-drawer `aria-hidden`/`inert`, Escape/editable boundary and desktop/mobile diagnostics |
 | Batch 95 | Director direct canvas-image ingress, session-only environment preview, source switching/clearing/stale cleanup, malformed data URL preflight, desktop/mobile and failure-isolation diagnostics |
+| Batch 96 | Director portable multi-camera Shot records, legacy V1 decode, Shot create/switch/update, history undo/redo, capture provenance/gallery, camera delete repair, clipboard/whole-project duplicate remap, reload/import/export and desktop/mobile diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
 Run them serially because they use the same local dev server and write dated visual references:
 
 ```bash
-for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..88}.py; do
+for script in scripts/verify-liblib-batch{4..33}.py scripts/verify-liblib-batch{35..50}.py scripts/verify-liblib-batch52.py scripts/verify-liblib-batch53.py scripts/verify-liblib-batch54.py scripts/verify-liblib-batch56.py scripts/verify-liblib-batch{57..65}.py scripts/verify-liblib-batch{67..96}.py; do
   python3 "$script" || exit 1
 done
 ```

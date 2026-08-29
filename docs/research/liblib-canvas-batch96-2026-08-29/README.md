@@ -1,10 +1,12 @@
 # Batch 96：Director 多机位与 Shot 工作流
 
-> 状态：`PLANNED`
+> 状态：`SCRIPT_RECORDED_PASS`
 >
 > 建档日期：2026-08-29。
 >
 > 上一批 checkpoint：`36ed905`。
+>
+> 代码 checkpoint：`3f897b2`。
 
 本批以导演台为最高优先级，补齐“相机对象”和“镜头组织”之间的最小完整
 纵向体验：每个相机拥有一个可编辑 Shot 记录，用户可以切换当前 Shot、设置
@@ -40,6 +42,24 @@ LibTV 原站的 exact Director schema 或视觉。
 记录复用。新事实来自 DOM、store snapshot、项目 JSON 和纯函数/Playwright
 验证。
 
+## 实施结果
+
+Batch 96 已完成 clone-owned 的多机位/Shot 纵向切片：
+
+- `DirectorShotRecordV1` 进入 portable V1 document；旧文档缺少 `shots` 时仍可
+  解码，并按“一机位一 Shot、覆盖完整 timeline”派生兼容记录；
+- 新增机位以一个 command 同时创建 camera、camera track 和 Shot；
+- Shot 可切换、重命名和编辑时间范围；编辑进入一条可撤销 history，切换不进入
+  history，同值/非法更新分别返回 `NOOP`/`REJECTED`；
+- capture 具备 `shotId` provenance，图库按 Shot 分组并保留 camera 信息；
+- camera/Shot 删除、最后一个 camera 阻断、clipboard remap 和 whole-project
+  duplicate 都保持引用完整性；
+- desktop `1440x900`、mobile `390x844`、reload/import/export 和
+  `0/0/0` browser diagnostics 均通过。
+
+专项 verifier 输出为 `SCRIPT_RECORDED_PASS`，结构化记录见
+[`runtime-audit.json`](runtime-audit.json)。没有生成截图，也没有新增截图识别。
+
 ## 完成定义
 
 1. 旧的 schema V1 文档在缺少 `shots` 时仍能被解码，并派生一机位一默认 Shot。
@@ -53,4 +73,3 @@ LibTV 原站的 exact Director schema 或视觉。
 7. capture gallery 按 Shot 展示，并继续显示相机信息；移动端无横向溢出。
 8. Batch 96 专项 verifier、相邻 current gates、`npm run check`、文档检查通过，
    commit/push 后工作区干净且 `master == origin/master`。
-

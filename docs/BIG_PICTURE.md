@@ -267,6 +267,19 @@ asset registry、panorama 生成或 LibTV 原站的 Three.js/R3F、DOM/CSS 和
 panorama 协议证据；相关实现与边界见
 [`research/liblib-canvas-batch95-2026-08-29/`](research/liblib-canvas-batch95-2026-08-29/)。
 
+Batch 96 又补齐了 Director 多机位与 Shot 的 clone-owned authoring slice：
+camera 继续是 Director object，Shot 作为独立 portable `DirectorShotRecordV1`
+记录 camera、时间范围和 capture provenance；旧 V1 文档缺少 `shots` 时派生
+默认 Shot，新 camera 以一条 command 同时创建 camera、track 和 Shot。Shot
+切换同步 active camera、selection 和 timeline，但不新增 history；名称/时段
+编辑支持一条可撤销 history，同值/非法输入分别 no-op/reject。capture gallery
+按 Shot 分组，camera 删除会修复 Shot、capture provenance、selection 和最后机位
+保护，clipboard/whole-project duplicate 也重写 Shot 引用。该批在
+`1440x900`/`390x844` 和 reload/import/export 上通过，且 diagnostics 为
+`0/0/0`；它不证明 LibTV 原站存在相同 Shot schema、时段语义、DOM/CSS 或
+source parity，详见
+[`research/liblib-canvas-batch96-2026-08-29/`](research/liblib-canvas-batch96-2026-08-29/)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

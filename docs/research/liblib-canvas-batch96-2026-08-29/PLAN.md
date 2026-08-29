@@ -1,6 +1,6 @@
 # Batch 96 计划：Director 多机位与 Shot 工作流
 
-> 状态：`PLANNED`
+> 状态：`COMPLETED`
 >
 > 建档日期：2026-08-29。
 
@@ -85,3 +85,22 @@ capture descriptor 增加可选兼容的 `shotId`，规范化后与 Shot 的 `ca
 完成上述四阶段、专项台账和远端 checkpoint 后停止本批。不得在本批结束后
 自动启动 Batch 97 或继续循环。
 
+## 6. 完成记录
+
+Batch 96 已按 A-D 四阶段完成。代码 checkpoint 为 `3f897b2`；专项
+verifier 为 `scripts/verify-liblib-batch96.py`，结构化结果写入
+[`runtime-audit.json`](runtime-audit.json)。本批没有新增截图或截图识别，
+没有修改 LibTV 原站状态，也没有引入 worktree。
+
+专项结果覆盖：
+
+- V1 旧文档兼容 decode、规范化 Shot export、Shot/camera/reference integrity；
+- Shot 创建、切换、名称与时间范围编辑、同值 no-op、非法值 reject；
+- 一条 history、undo/redo、camera/Shot/capture 删除修复和最后机位阻断；
+- clipboard Shot ID remap、whole-project duplicate、reload/import/export；
+- desktop `1440x900`、mobile `390x844`、无横向溢出和
+  console/page/request `0/0/0` diagnostics。
+
+稳定治理文档已同步到 current manifest、fixture catalog、verification ledger、
+Harness、traceability、Big Picture、Agent Task Map 和研究导航。Batch 96
+完成后按本计划停止，不启动 Batch 97。

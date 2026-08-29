@@ -23,6 +23,7 @@
 > `LOCAL_RESOURCE_LEASE_GATE_RECORDED_PASS` /
 > `FINAL_DESKTOP_MOBILE_REGRESSION_RECORDED_PASS` /
 > `FOCUS_CONTAINMENT_GATE_RECORDED_PASS` /
+> `MULTI_CAMERA_SHOT_GATE_RECORDED_PASS` /
 > `GOVERNANCE_CLOSEOUT_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
@@ -46,7 +47,8 @@
 > Batch 90 project/session-scene-command verifier, Batch 91 object/camera/group
 > command verifier, Batch 92 local-resource lifecycle/lease verifier, Batch 93
 > final desktop/mobile and cross-batch regression verifier, Batch 94
-> focus-containment verifier, and Batch 95 canvas-media ingress verifier.
+> focus-containment verifier, Batch 95 canvas-media ingress verifier, and Batch 96
+> multi-camera/Shot workflow verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -59,7 +61,7 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, twenty-five current hybrid pure/browser reliability verifiers,
+codec verifier, twenty-six current hybrid pure/browser reliability verifiers,
 one current browser smoke and one final Batch 93 desktop/mobile regression
 verifier.
 The historical browser scripts preserve valuable
@@ -160,6 +162,10 @@ single current gate on their own:
   environment preview、source switching/clearing/stale cleanup、portable export
   exclusion and malformed data URL failure isolation；it does not add ordinary
   canvas upload/provider behavior。
+- Batch 96 covers portable multi-camera Shot records、legacy V1 compatibility、
+  Shot selection/editing、capture provenance、camera/Shot delete repair、clipboard
+  and whole-project duplicate remap；it does not add LibTV source-exact Director
+  schema or visual evidence。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -227,6 +233,7 @@ historical regressions.
 | Batch 93 | Director final desktop/mobile and cross-batch regression | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` shell/R3F/object-tree/Inspector/Timeline/close-reopen/overflow checks；serial ordinary canvas `57/60/61/63/64/65/77` and Director `59/67-92` gates；writes Batch 93 structured audits and no screenshots | Final clone-owned reliability/governance closeout；不证明 LibTV source Director exact DOM/CSS、project/session/history/resource semantics、remote persistence、触摸板硬件或 source parity |
 | Batch 94 | Director focus containment and keyboard boundary | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` workspace/drawer focus cycle、focus return、editable boundary、ARIA/inert、overflow and zero diagnostics；writes `runtime-audit.json` and `current-gate-regression.json`, no screenshots | Current clone-owned focus-containment gate；不证明 LibTV source Director 的 exact focus trap、`inert`、DOM/CSS 或键盘实现 |
 | Batch 95 | Director canvas image ingress and session-only environment preview | `CURRENT_GATE` | Pure source contract + fresh BrowserContext desktop/mobile direct-upstream candidate、default/switch/clear/stale、R3F runtime、portable export exclusion and malformed data URL isolation；writes `runtime-audit.json`, no screenshots | Current clone-owned host-handoff gate；不证明 LibTV source panorama protocol、Three.js/R3F implementation、exact DOM/CSS、ordinary canvas upload/provider or remote persistence |
+| Batch 96 | Director multi-camera and Shot workflow | `CURRENT_GATE` | Pure source contract + fresh BrowserContext desktop/mobile legacy decode/export、Shot create/switch/update、history undo/redo、capture provenance/gallery、camera delete repair、last-camera guard、clipboard/whole-project duplicate、reload/import/export and zero diagnostics；writes `runtime-audit.json`, no screenshots | Current clone-owned Shot-authoring gate；不证明 LibTV source Shot schema、camera/time-range semantics、exact DOM/CSS 或 source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -249,7 +256,7 @@ serial because several scripts use browser-local state or WebGL:
 
 ```bash
 npm run dev
-for batch in 59 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92; do
+for batch in 59 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 94 95 96; do
   LIBLIB_BASE_URL=http://localhost:4317 \
     python3 "scripts/verify-liblib-batch${batch}.py" || exit 1
 done
@@ -685,6 +692,24 @@ Batch 61 处按用户停止要求中断，不作为 verifier 失败或新的全�
 Batch 94 只描述 clone-owned focus reliability，不证明 LibTV 原站的 exact
 focus trap、`inert`、DOM/CSS、快捷键或焦点回收实现。
 
+### 4.6 Batch 96 multi-camera and Shot workflow closeout
+
+Batch 96 在固定 `localhost:4317` 上完成 Director 多机位与 Shot authoring
+纵向切片。结果见
+[`liblib-canvas-batch96-2026-08-29/runtime-audit.json`](liblib-canvas-batch96-2026-08-29/runtime-audit.json)
+和
+[`liblib-canvas-batch96-2026-08-29/IMPLEMENTATION.md`](liblib-canvas-batch96-2026-08-29/IMPLEMENTATION.md)。
+
+专项覆盖旧 V1 文档兼容 decode、规范化 Shot export、Shot 创建/切换/名称与时间
+范围更新、单条 history、undo/redo、capture provenance/gallery、camera/Shot
+删除修复、最后机位阻断、clipboard/whole-project duplicate remap、reload/
+import/export、desktop `1440x900`、mobile `390x844` 和横向溢出。desktop/mobile
+console、page、request diagnostics 均为 `0/0/0`；没有生成截图或执行截图识别。
+
+Batch 96 只证明 clone-owned Shot authoring 与 reference integrity，不证明
+LibTV 原站存在相同 Shot schema、camera/time-range semantics、DOM/CSS、视觉
+布局或持久化协议。
+
 ## 5. Future Gate Profiles
 
 ### 5.1 Routine Director reliability batch
@@ -715,6 +740,8 @@ Batch 67 pure codec gate
   + Batch 59 current browser smoke
   + Batch 94 focus-containment gate when Director focus behavior changes
   + Batch 95 canvas-media ingress gate when Director or ImageNode media loading changes
+  + Batch 96 multi-camera/Shot gate when Director camera, timeline, capture
+    provenance, duplicate or delete behavior changes
   + focused tests for the changed reliability slice
   + npm run check
 ```
@@ -772,7 +799,8 @@ Batch 86 supplies the transform target context and pointer-cancellation slice；
 Batch 87 supplies the restore-selection slice；Batch 88 supplies the
 selection/timeline/TransformControls authority slice；Batch 89 supplies the
 scene-settings/add-camera discoverability slice；Batch 59 supplies the
-current WebGL/browser smoke seed.
+current WebGL/browser smoke seed；Batch 96 supplies the portable multi-camera/Shot
+authoring and provenance slice.
 
 Required future scenarios:
 
@@ -799,6 +827,7 @@ Required future scenarios:
 | Director restore-selection authority | **focused runtime in Batch 87**：undo/redo/cancel preserve-and-repair selection across object tree、Inspector、Viewport and Timeline；invalid object/group/track/path/keyframe/anchor targets are cleared；selection remains outside portable document |
 | Director selection/timeline/TransformControls authority | **focused runtime in Batch 88**：single/multi/group selection normalizes compatible track context；Timeline track/keyframe/path selection drives object/group and Inspector context；finished path drawing restores complete selection；delete/locked/portable boundaries remain clean |
 | Director scene settings/add-camera discoverability | **focused runtime in Batch 89**：场景设置区和对象树/Inspector 双入口、camera object/track/keyframe、active-camera/selection sync、undo/redo、portable export 和 mobile panel geometry；不证明 LibTV source Director add-camera defaults/shot lifecycle |
+| Director multi-camera and Shot workflow | **focused runtime in Batch 96**：portable Shot record、legacy V1 decode、camera/Shot create/switch/update、time-range validation、capture provenance/gallery、camera delete repair、last-camera guard、clipboard/whole-project duplicate remap、reload/import/export 和 desktop/mobile diagnostics；不证明 LibTV source Shot schema、时段语义、exact DOM/CSS 或 source parity |
 | Director focus containment and return | **focused runtime in Batch 94**：workspace Tab/Shift+Tab containment、mobile tree/Inspector local focus scope、inactive drawer `aria-hidden`/`inert`、close/Escape/backdrop focus return and editable boundary；不证明 LibTV source exact focus implementation |
 | route isolation | ordinary graph history and Director project history remain independent |
 
@@ -828,6 +857,7 @@ SELECTION_CRUD_FOCUSED_PASS
 TRANSFORM_CONTEXT_FOCUSED_PASS
 RESTORE_SELECTION_FOCUSED_PASS
 SELECTION_TIMELINE_AUTHORITY_FOCUSED_PASS
+MULTI_CAMERA_SHOT_FOCUSED_PASS
 FOCUS_CONTAINMENT_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```

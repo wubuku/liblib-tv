@@ -34,7 +34,7 @@ Batch 35-50
 Batch 51-54
 Batch 56-60
 Batch 61-65
-Batch 67-88
+Batch 67-96
 Batch 77
 Batch 78
 Batch 79-93
@@ -79,6 +79,8 @@ scene-settings/add-camera hybrid verifier，Batch 90 增加 project/session-scen
 command verifier，Batch 91 增加 object/camera/group command verifier，Batch 92
 增加 local-resource lifecycle/lease verifier，Batch 93 增加最终桌面/移动端与
 跨批回归 verifier，Batch 94 增加 Director focus-containment verifier；这些脚本均使用 pure source corpus 或 fresh
+BrowserContext，不写截图。Batch 95 增加 canvas-media ingress verifier，Batch 96
+增加 multi-camera/Shot verifier；两批均使用 pure source corpus 或 fresh
 BrowserContext，不写截图。
 
 ### 2.2 脚本分组台账
@@ -140,6 +142,7 @@ BrowserContext，不写截图。
 | Batch 93 | Director final desktop/mobile and cross-batch regression | `FINAL_REGRESSION_RECORDED_PASS` | `verify-liblib-batch93.py`、普通画布 `57/60/61/63/64/65/77` 与 Director `59/67-92` current gates 已通过；覆盖 desktop/mobile workspace/R3F/tree/Inspector/Timeline、折叠/抽屉、close/reopen、overflow、serial current-gate 和 zero diagnostics；不证明 LibTV source parity |
 | Batch 94 | Director focus containment and keyboard boundary | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch94.py` 已通过；覆盖 desktop/mobile workspace 与 tree/Inspector drawer 的 Tab/Shift+Tab containment、focus return、editable boundary、ARIA/inert、overflow 和 zero diagnostics；不证明 LibTV source Director exact focus trap、inert、DOM/CSS 或键盘实现 |
 | Batch 95 | Director canvas image ingress and session-only environment preview | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch95.py` 已通过；覆盖当前 Director 节点直接上游图片 typed ingress、Inspector 默认/切换/清除、stale source、R3F 非交互环境预览、portable export exclusion、desktop/mobile/failure isolation 和 `0/0/0` diagnostics；不证明 LibTV source-exact panorama UI、Three.js/R3F 实现、ordinary media provider 或 remote persistence |
+| Batch 96 | Director multi-camera and Shot workflow | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch96.py` 已通过；覆盖旧 V1 无 `shots` 兼容 decode、规范化 export、Shot create/switch/update、history undo/redo、capture provenance/gallery、camera/Shot delete repair、last-camera guard、clipboard/whole-project duplicate remap、reload/import/export、desktop/mobile overflow 和 `0/0/0` diagnostics；不证明 LibTV source Shot schema、camera/time-range semantics、exact DOM/CSS 或 source parity |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
@@ -162,7 +165,7 @@ Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 | 普通画布结构连接事务 | `SOURCE_CONTRACT` + `LOCAL_FIXTURE`（Batch 57） | source static audit、Batch 57 `runtime-audit.json`、`LibTVGraphConnection.contract.md` | structural normalize/guard/transaction 已覆盖；Reference、domain compatibility、invalid feedback、import/batch/sync 仍未覆盖 |
 | 节点绑定 UI owner 生命周期 | `CLONE_FIXTURE_ONLY`（Batch 58） | [`liblib-canvas-batch58-2026-08-27/`](liblib-canvas-batch58-2026-08-27/)、[`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)、delete impact matrix | clone 的 `canvasId + nodeId` owner reconciliation、删除/换画布 UI cleanup 已覆盖；源站删除语义、Director workspace/media resource lifecycle 仍未确认 |
 | Director 资源库搜索/预览/加入场景 | `CLONE_FIXTURE_ONLY`（Batch 59） | [`liblib-canvas-batch59-2026-08-27/`](liblib-canvas-batch59-2026-08-27/)、Batch 47/48 model-library contracts | 搜索、preview-only selection、proxy insertion 和 Inspector continuity 已覆盖；真实模型/环境资产、远程同步、生产持久化和认证后 source-exact surface 仍未知 |
-| Director 当前跨批次集成状态 | `HISTORICAL_RECORDED_PASS` + `CURRENT_RELIABILITY_GATES` + `FINAL_REGRESSION_RECORDED_PASS` + `FOCUS_CONTAINMENT_RECORDED_PASS` + `MANIFEST_RECORDED` | [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、[`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)、[`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/)、[`storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md`](storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md)、Batch 35-50/59/67-94 | 历史脚本仍按成本/副作用/当前价值分级；Batch 93 已完成 Director 桌面/移动端、普通画布跨批和 Batch 59/67-92 current gates，Batch 94 又完成 workspace/drawer focus containment 与回焦专项门；不能把历史通过汇总成 source parity，也不能把 Director current gates 推导成 ordinary canvas async/persistence、remote storage、复杂真实资源或 source-exact persistence |
+| Director 当前跨批次集成状态 | `HISTORICAL_RECORDED_PASS` + `CURRENT_RELIABILITY_GATES` + `FINAL_REGRESSION_RECORDED_PASS` + `FOCUS_CONTAINMENT_RECORDED_PASS` + `CANVAS_MEDIA_INGRESS_RECORDED_PASS` + `MULTI_CAMERA_SHOT_RECORDED_PASS` + `MANIFEST_RECORDED` | [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、[`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)、[`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/)、[`liblib-canvas-batch95-2026-08-29/`](liblib-canvas-batch95-2026-08-29/)、[`liblib-canvas-batch96-2026-08-29/`](liblib-canvas-batch96-2026-08-29/)、[`storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md`](storyai-3d-director-desk-2026-08-27/PROGRESS_AUDIT_2026-08-27.md)、Batch 35-50/59/67-96 | 历史脚本仍按成本/副作用/当前价值分级；Batch 93 已完成 Director 桌面/移动端、普通画布跨批和 Batch 59/67-92 current gates，Batch 94 完成 workspace/drawer focus containment，Batch 95 完成 canvas-media session projection，Batch 96 完成 multi-camera/Shot authoring 与 provenance；不能把历史通过汇总成 source parity，也不能把 Director current gates 推导成 ordinary canvas async/persistence、remote storage、复杂真实资源或 source-exact persistence |
 | 普通画布导航与 Director gizmo gesture | `CURRENT_SOURCE` + `LOCAL_FIXTURE`（Batch 77） | [`liblib-canvas-batch77-2026-08-28/`](liblib-canvas-batch77-2026-08-28/)、[`CANVAS_NAVIGATION.md`](../CANVAS_NAVIGATION.md)、Batch 77 source navigation audit | wheel/middle/Space/H/V/modifier zoom、mobile overflow、TransformControls 真实拖动与 gesture cleanup 已覆盖；真实触摸板硬件、source-exact Director surface 和真实资源/provider 仍不在范围 |
 | Director pointer cancellation and R3F teardown | `CLONE_FIXTURE_ONLY`（Batch 78） | [`liblib-canvas-batch78-2026-08-28/`](liblib-canvas-batch78-2026-08-28/)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、Batch 78 `runtime-audit.json`、Batch 68 teardown regression | Curve/Phone Vcam/Timeline 三类 clone pointer lifecycle、Director gesture cancel baseline、capture release、stale move prevention、R3F Canvas async teardown 防护已覆盖；不证明 LibTV source exact Director pointer behavior、真实触摸板或手机传感器 |
 | `LIBTV-VR-024` Director project/session/command authority | `PROJECT_CODEC_FOCUSED_PASS` + `OWNER_SESSION_FOCUSED_PASS` + `AUTHORED_RUNTIME_FOCUSED_PASS` + `HISTORY_FOCUSED_PASS` + `POINTER_LIFECYCLE_FOCUSED_PASS` + `REFERENCE_DELETE_FOCUSED_PASS` + `ASYNC_AUTHORITY_FOCUSED_PASS` + `PERSISTENCE_FOCUSED_PASS` + `CLIPBOARD_REMAP_FOCUSED_PASS` + `OWNER_REACHABILITY_FOCUSED_PASS` + `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS` + `DURABLE_TOMBSTONE_FOCUSED_PASS` + `IMPORT_EXPORT_FOCUSED_PASS` + `LOCAL_RESOURCE_MATERIALIZATION_FOCUSED_PASS` + `COMMAND_FEEDBACK_FOCUSED_PASS` + `LOCK_EDITABILITY_FOCUSED_PASS` + `SELECTION_CRUD_FOCUSED_PASS` + `TRANSFORM_CONTEXT_FOCUSED_PASS` + `RESTORE_SELECTION_FOCUSED_PASS` + `SELECTION_TIMELINE_AUTHORITY_FOCUSED_PASS` + `SCENE_COMMAND_FOCUSED_PASS` + `OBJECT_CAMERA_GROUP_COMMAND_FOCUSED_PASS` + `FINAL_REGRESSION_RECORDED_PASS` | [`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)、[`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)、`LIBTV-FIX-LOCAL-DIRECTOR-AUTHORITY-01`、Batch 67-93 | Batch 67 strict codec、68 owner registry/session、69 authored/runtime、70 command/history、71 pointer lifecycle、72 reference-aware delete、73 Director async、74 browser-local persistence、75 same-project clipboard remap、76 all-canvas owner reachability、79 whole-project duplicate、80 durable tombstone/storage/resource cleanup、81 strict import/export、82 finite local resource materialization、83 command feedback projection、84 locked-target editability、85 selection/CRUD discoverability、86 transform target context/pointer cleanup、87 restore-selection repair、88 selection/timeline/TransformControls authority、89 scene settings/add-camera、90 project/session diagnostics + scene command、91 object/camera/group command boundary、92 local resource owner/lease lifecycle 和 93 final desktop/mobile/cross-batch/governance regression 均有 focused/current recorded pass；ordinary canvas async/persistence、remote storage、复杂真实资源、普通画布统一 feedback 和 source parity 仍未实现 |
@@ -274,6 +277,22 @@ diagnostics 均为 `console/page/request = 0/0/0`；没有生成截图或执行�
 `TextureLoader` 对同一坏输入各自产生浏览器错误。
 该结果只证明 clone-owned session projection，不证明 LibTV 原站的 panorama
 协议、Three.js/R3F 技术、exact DOM/CSS、普通画布真实上传或资源 provider。
+
+### 5.8 Batch 96 multi-camera and Shot closeout
+
+Batch 96 在固定 `localhost:4317` 上完成 Director 多机位与 Shot authoring
+纵向切片，结果见
+[`liblib-canvas-batch96-2026-08-29/runtime-audit.json`](liblib-canvas-batch96-2026-08-29/runtime-audit.json)
+和
+[`liblib-canvas-batch96-2026-08-29/IMPLEMENTATION.md`](liblib-canvas-batch96-2026-08-29/IMPLEMENTATION.md)。
+专项 verifier 覆盖旧 V1 兼容 decode、规范化 export、Shot create/switch/update、
+单条 history、undo/redo、capture provenance/gallery、camera/Shot delete repair、
+最后机位阻断、clipboard/whole-project duplicate remap、reload/import/export、
+desktop/mobile `1440x900`/`390x844`、无横向溢出和 `0/0/0` diagnostics。
+
+本批没有新增截图或截图识别。结果只证明 clone-owned Shot authoring 与引用
+完整性，不证明 LibTV 原站存在相同 Shot schema、camera/time-range semantics、
+DOM/CSS、视觉布局或 source parity。
 
 ## 6. 台账维护规则
 
