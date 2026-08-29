@@ -8,8 +8,10 @@ import {
   ChevronRight,
   Eye,
   EyeOff,
+  Lock,
   Search,
   Trash2,
+  Unlock,
   User,
   Users,
 } from "lucide-react";
@@ -164,6 +166,9 @@ export function DirectorObjectTree() {
     (state) => state.toggleObjectSelection,
   );
   const updateObject = useDirectorStore((state) => state.updateObject);
+  const toggleObjectLocked = useDirectorStore(
+    (state) => state.toggleObjectLocked,
+  );
   const deleteDirectorEntity = useDirectorStore(
     (state) => state.deleteDirectorEntity,
   );
@@ -335,6 +340,23 @@ export function DirectorObjectTree() {
                         )}
                       >
                         {object.visible ? <Eye size={13} /> : <EyeOff size={13} />}
+                      </button>
+                      <button
+                        type="button"
+                        data-director-object-lock={object.id}
+                        data-director-object-locked={object.locked}
+                        aria-label={object.locked ? `解锁${object.name}` : `锁定${object.name}`}
+                        title={object.locked ? "解锁对象" : "锁定对象"}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          toggleObjectLocked(object.id);
+                        }}
+                        className={cn(
+                          "flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover:text-white",
+                          object.locked && "text-[#f0c776]",
+                        )}
+                      >
+                        {object.locked ? <Lock size={13} /> : <Unlock size={13} />}
                       </button>
                       <button
                         type="button"

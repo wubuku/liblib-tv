@@ -1098,6 +1098,9 @@ function DirectorGroupTransformRig({
   const transformEngagedRef = useRef(false);
   const transformActiveRef = useRef(false);
   const anchor = getDirectorGroupAnchorTransform(objects, group);
+  const hasLockedMember = group.characterIds.some((objectId) =>
+    objects.some((object) => object.id === objectId && object.locked),
+  );
   const assignGroupRef = useCallback((nextGroup: Group | null) => {
     groupRef.current = nextGroup;
     setTransformTarget(nextGroup);
@@ -1183,6 +1186,7 @@ function DirectorGroupTransformRig({
 
   if (
     !anchor ||
+    hasLockedMember ||
     selectedGroupId !== group.id ||
     isCapturing ||
     motionPathDraft !== null ||
@@ -1249,6 +1253,11 @@ function PathControlPoint({
   );
   const selectedHandle = useDirectorStore(
     (state) => state.timeline.selectedMotionPathHandle,
+  );
+  const objectLocked = useDirectorStore((state) =>
+    state.objects.some(
+      (object) => object.id === path.objectId && object.locked,
+    ),
   );
   const selectMotionPathAnchor = useDirectorStore(
     (state) => state.selectMotionPathAnchor,
@@ -1388,7 +1397,7 @@ function PathControlPoint({
     </group>
   );
 
-  if (!selected) return content;
+  if (!selected || objectLocked) return content;
   return (
     <>
       {transformTarget ? (

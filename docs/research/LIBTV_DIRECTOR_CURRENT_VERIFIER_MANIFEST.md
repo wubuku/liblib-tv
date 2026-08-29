@@ -13,6 +13,7 @@
 > `IMPORT_EXPORT_GATE_RECORDED_PASS` /
 > `LOCAL_RESOURCE_MATERIALIZATION_GATE_RECORDED_PASS` /
 > `COMMAND_FEEDBACK_GATE_RECORDED_PASS` /
+> `LOCK_EDITABILITY_GATE_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
@@ -26,9 +27,9 @@
 > clipboard identity-remap verifier, Batch 76 owner-reachability verifier, and
 > Batch 78 pointer-cancellation verifier, Batch 79 whole-project duplicate verifier,
 > Batch 80 durable tombstone verifier, Batch 81 strict project import/export
-> verifier, Batch 82 local resource materialization verifier and Batch 83 command
-> feedback verifier, including the
-> R3F Canvas teardown regression exposed by the Batch 68 cross-owner sequence.
+> verifier, Batch 82 local resource materialization verifier, Batch 83 command
+> feedback verifier and Batch 84 lock/editability verifier, including the R3F
+> Canvas teardown regression exposed by the Batch 68 cross-owner sequence.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -104,6 +105,10 @@ single current gate on their own:
   fixed-header status surface、ARIA status semantics、committed-success noise
   suppression、meaningful no-op visibility、mobile geometry and zero-diagnostic
   feedback rendering。
+- Batch 84 covers Director object-tree lock/visibility controls、locked-target
+  Inspector/Viewport/Timeline/Curve edit protection、typed
+  `DIRECTOR_TARGET_LOCKED` rejection、zero document/history mutation and unlock
+  recovery。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -158,6 +163,7 @@ historical regressions.
 | Batch 81 | Director strict project JSON import/export | `CURRENT_GATE` | Pure V1 document/rebind corpus + fresh-page BrowserContext download/file-input workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` import/export gate；does not prove LibTV source file format/UI、remote sync or real resource materialization |
 | Batch 82 | Director local resource lifecycle and finite OBJ/FBX materialization | `CURRENT_GATE` | Pure lifecycle corpus + fresh-page local-model materialization workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource gate；proves clone-owned session materialization only，不证明生产 loader/cache、remote persistence 或 LibTV source resource semantics |
 | Batch 83 | Director command result feedback projection | `CURRENT_GATE` | Pure reason/disposition mapping + fresh-page rejection/commit/no-op/ARIA/mobile workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` command-feedback gate；proves clone-owned foreground feedback only，不证明 LibTV source feedback taxonomy、文案、ARIA、颜色或 placement |
+| Batch 84 | Director object-tree lock/visibility and locked-target edit protection | `CURRENT_GATE` | Pure source contract + fresh-page Playwright lock/Inspector/Viewport/history/mobile workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` lock/editability gate；proves clone-owned lock protection and `DIRECTOR_TARGET_LOCKED` zero-mutation rejection，不证明 LibTV source Director lock UI、文案或 CSS |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -411,6 +417,22 @@ This result closes the clone-owned command-feedback projection slice. It does no
 prove LibTV source feedback taxonomy、exact copy/color/placement、ordinary canvas
 unified feedback or source-exact LibTV behavior.
 
+Batch 84 lock/editability gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Implementation checkpoint | current Batch 84 closeout commit |
+| Pure corpus | object-tree lock contract、locked target guard、Inspector/Viewport/Timeline/Curve source coverage |
+| Browser corpus | object-tree lock/unlock、Inspector disabled controls、direct transform rejection、zero-history rejection、visibility toggle、unlock recovery and mobile discoverability |
+| Runtime boundary | locked objects remain selectable, hideable/showable and deletable；property/transform/camera/pose/group/path/keyframe/curve editing is rejected or disabled |
+| Diagnostics | zero console/page/request errors |
+| Artifact | Batch 84 `runtime-audit.json` only；zero screenshots |
+
+This result closes the clone-owned Director lock/editability slice. It does not
+prove LibTV source Director lock UI、exact copy/color/placement、keyboard policy
+or source-exact Director behavior.
+
 ### 4.3 Current-gate serial regression
 
 On 2026-08-29, using the single `localhost:4317` Next dev server, the
@@ -419,7 +441,7 @@ following current gates were run serially and all passed:
 ```text
 Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
 Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79, Batch 80,
-Batch 81, Batch 82, Batch 83
+Batch 81, Batch 82, Batch 83, Batch 84
 ```
 
 The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
@@ -452,6 +474,7 @@ Batch 67 pure codec gate
   + Batch 78 pointer-cancellation gate
   + Batch 82 local-resource materialization gate
   + Batch 83 command-feedback gate
+  + Batch 84 lock/editability gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -504,6 +527,7 @@ Batch 80 supplies the durable tombstone/storage/resource cleanup slice；
 Batch 81 supplies the strict project import/export slice；
 Batch 82 supplies the finite local resource materialization slice；
 Batch 83 supplies the typed command feedback projection slice；
+Batch 84 supplies the locked-target editability slice；
 Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
@@ -525,6 +549,7 @@ Required future scenarios:
 | strict project import/export | **focused runtime in Batch 81**：strict V1 JSON export/import、owner/project rebind、internal reference preservation、capture/runtime/UI exclusion、one-entry history、undo/redo、same-document no-op、invalid zero-partial、download/file-input round trip and ordinary graph/history isolation |
 | finite local resource materialization | **focused runtime in Batch 82**：typed descriptor/provenance、attempt freshness、retry/cancel/release、valid local OBJ/FBX loader path、parse-failure proxy retention、unsupported-extension zero mutation and UI status feedback |
 | command outcome feedback projection | **focused runtime in Batch 83**：typed disposition/reason mapping、visible Director primary surface、ARIA status semantics、committed-success suppression、meaningful no-op visibility、mobile geometry and zero-history feedback boundary |
+| locked Director editability | **focused runtime in Batch 84**：object-tree lock/visibility controls、locked-target Inspector/Viewport/Timeline/Curve protection、typed rejection、zero document/history mutation and unlock recovery |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:

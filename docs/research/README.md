@@ -57,7 +57,7 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
-- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-83 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-84 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
@@ -156,6 +156,7 @@
 | 81 | Director strict project import/export and recoverable UI workflow | [`liblib-canvas-batch81-2026-08-29/`](liblib-canvas-batch81-2026-08-29/) `DIRECTOR_IMPORT_EXPORT_FOCUSED_PASS`，strict V1 document export/import、owner/project rebind、capture/runtime/UI exclusion、one-entry history、undo/redo、same-document no-op、invalid zero-partial、download/file-input round trip 和 ordinary graph isolation 已通过；不证明 LibTV source 文件格式或 remote sync |
 | 82 | Director local resource lifecycle and finite OBJ/FBX materialization | [`liblib-canvas-batch82-2026-08-29/`](liblib-canvas-batch82-2026-08-29/) `LOCAL_RESOURCE_MATERIALIZATION_FOCUSED_PASS`，typed descriptor/provenance、attempt freshness、retry/cancel/release、valid OBJ materialization、parse-failure proxy retention、unsupported-extension zero mutation、model-library feedback 和 zero diagnostics 已通过；不证明生产 loader/cache、复杂 FBX/纹理、remote persistence 或 LibTV source resource semantics |
 | 83 | Director command outcome feedback projection | [`liblib-canvas-batch83-2026-08-29/`](liblib-canvas-batch83-2026-08-29/) `COMMAND_FEEDBACK_FOCUSED_PASS`，typed disposition/reason 到固定 header status surface、ARIA、committed-success suppression、meaningful no-op、mobile geometry 和 zero-history feedback boundary 已通过；不证明 LibTV source feedback taxonomy 或 ordinary canvas unified feedback |
+| 84 | Director object-tree lock/visibility and locked-target edit protection | [`liblib-canvas-batch84-2026-08-29/`](liblib-canvas-batch84-2026-08-29/) `LOCK_EDITABILITY_FOCUSED_PASS`，lock/unlock、Inspector disabled controls、direct rejection、zero mutation/history、visibility continuity、unlock recovery 和 mobile discovery 已通过；不证明 LibTV source Director lock UI 或 source parity |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -167,6 +168,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 81 | Director strict project import/export and recoverable UI workflow | 已完成；strict V1 document codec 到本地文件 workflow 的 clone-owned 闭环，详见 [`liblib-canvas-batch81-2026-08-29/`](liblib-canvas-batch81-2026-08-29/) |
 | 82 | Director local resource lifecycle and finite OBJ/FBX materialization | 已完成；clone-owned session-local materializer 与 resource lifecycle 已通过，详见 [`liblib-canvas-batch82-2026-08-29/`](liblib-canvas-batch82-2026-08-29/) |
 | 83 | Director command outcome feedback projection | 已完成；current verifier manifest、typed outcome/reason 到 Director primary feedback surface 的 clone-owned 最小闭环已通过，详见 [`liblib-canvas-batch83-2026-08-29/`](liblib-canvas-batch83-2026-08-29/) |
+| 84 | Director object-tree lock/editability | 已完成；current verifier manifest、locked-target UI/store guard、zero mutation/history reject 和 unlock recovery 已通过，详见 [`liblib-canvas-batch84-2026-08-29/`](liblib-canvas-batch84-2026-08-29/) |
 
 ## Stable Cross-Cutting Research
 

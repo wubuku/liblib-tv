@@ -38,6 +38,8 @@ function graphPoint(point: [number, number]) {
 
 export function DirectorCurveEditor() {
   const timeline = useDirectorStore((state) => state.timeline);
+  const objects = useDirectorStore((state) => state.objects);
+  const groups = useDirectorStore((state) => state.groups);
   const setTimelineEditorMode = useDirectorStore(
     (state) => state.setTimelineEditorMode,
   );
@@ -63,6 +65,19 @@ export function DirectorCurveEditor() {
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
     null;
+  const selectedTrackLocked = selectedTrack
+    ? selectedTrack.kind === "group"
+      ? Boolean(
+          groups
+            .find((group) => group.id === selectedTrack.groupId)
+            ?.characterIds.some((objectId) =>
+              objects.some((object) => object.id === objectId && object.locked),
+            ),
+        )
+      : Boolean(
+          objects.find((object) => object.id === selectedTrack.objectId)?.locked,
+        )
+    : false;
 
   useEffect(() => {
     return () => {
@@ -74,7 +89,7 @@ export function DirectorCurveEditor() {
     event: ReactPointerEvent<SVGCircleElement>,
     handle: 1 | 2,
   ) => {
-    if (!selectedTrack) return;
+    if (!selectedTrack || selectedTrackLocked) return;
     event.preventDefault();
     event.stopPropagation();
     const result = beginDirectorGesture({
@@ -181,6 +196,7 @@ export function DirectorCurveEditor() {
     <div
       data-director-curve-editor
       data-director-curve-track-id={selectedTrack.id}
+      data-director-curve-locked={selectedTrackLocked}
       className="flex min-h-0 flex-1 flex-col bg-[#151515]"
     >
       <header className="flex h-8 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.06] px-2">
@@ -201,6 +217,7 @@ export function DirectorCurveEditor() {
             type="button"
             data-director-curve-preset={preset}
             aria-pressed={selectedTrack.speedCurve.preset === preset}
+            disabled={selectedTrackLocked}
             onClick={() => setTrackSpeedCurvePreset(selectedTrack.id, preset)}
             className={cn(
               "h-6 shrink-0 rounded px-2 text-[10px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
@@ -291,6 +308,8 @@ export function DirectorCurveEditor() {
               tabIndex={0}
               aria-label={`贝塞尔控制点 ${handle}`}
               data-director-curve-handle={handle}
+              aria-disabled={selectedTrackLocked}
+              pointerEvents={selectedTrackLocked ? "none" : undefined}
               cx={point.x}
               cy={point.y}
               r="5"

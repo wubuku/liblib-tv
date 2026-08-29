@@ -11,6 +11,7 @@ import {
   Eye,
   EyeOff,
   Images,
+  Lock,
   Plus,
   RotateCcw,
   Route,
@@ -20,6 +21,7 @@ import {
   X,
   ZoomIn,
   ZoomOut,
+  Unlock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -59,6 +61,7 @@ function AxisFields({
   values,
   onChange,
   disabledAxes = [],
+  disabled = false,
   gestureTargetId = null,
   gestureCommandKind = "inspector-transform",
 }: {
@@ -67,6 +70,7 @@ function AxisFields({
   values: DirectorTuple3;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
   disabledAxes?: Array<0 | 1 | 2>;
+  disabled?: boolean;
   gestureTargetId?: string | null;
   gestureCommandKind?: string;
 }) {
@@ -75,6 +79,8 @@ function AxisFields({
     targetId: gestureTargetId,
     fieldScope: field,
   });
+  const isAxisDisabled = (index: number) =>
+    disabled || disabledAxes.includes(index as 0 | 1 | 2);
   return (
     <fieldset className="border-0 p-0">
       <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
@@ -83,7 +89,7 @@ function AxisFields({
           <label
             key={axisLabels[index]}
             className={`flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60 ${
-              disabledAxes.includes(index as 0 | 1 | 2) ? "opacity-45" : ""
+              isAxisDisabled(index) ? "opacity-45" : ""
             }`}
           >
             <span className="mr-1 text-[10px] text-[#666]">{axisLabels[index]}</span>
@@ -93,8 +99,8 @@ function AxisFields({
               data-director-transform-field={field}
               data-director-transform-axis={axisLabels[index].toLowerCase()}
               value={Number(value.toFixed(2))}
-              disabled={disabledAxes.includes(index as 0 | 1 | 2)}
-              {...(disabledAxes.includes(index as 0 | 1 | 2) ? {} : gesture)}
+              disabled={isAxisDisabled(index)}
+              {...(isAxisDisabled(index) ? {} : gesture)}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -483,6 +489,9 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
     (state) => state.recordGroupKeyframe,
   );
   const anchor = getDirectorGroupAnchorTransform(objects, group);
+  const hasLockedMember = group.characterIds.some((objectId) =>
+    objects.some((object) => object.id === objectId && object.locked),
+  );
   if (!anchor) return null;
 
   const updateField = (
@@ -501,6 +510,15 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
       data-director-group-inspector
       className="space-y-4 px-3 py-3"
     >
+      {hasLockedMember ? (
+        <p
+          data-director-locked-hint
+          className="flex items-center gap-1.5 rounded border border-[#f0c776]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#d5b879]"
+        >
+          <Lock size={12} aria-hidden="true" />
+          分组包含已锁定成员，分组变换已停用
+        </p>
+      ) : null}
       <label className="block">
         <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
         <input
@@ -539,6 +557,7 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
               label={label}
               field={field}
               values={anchor[field]}
+              disabled={hasLockedMember}
               gestureTargetId={group.id}
               gestureCommandKind="group-transform"
               onChange={(axis, value) => updateField(field, axis, value)}
@@ -556,6 +575,7 @@ function PathTupleFields({
   kind,
   handle,
   gestureTargetId,
+  disabled = false,
   onChange,
 }: {
   label: string;
@@ -563,6 +583,7 @@ function PathTupleFields({
   kind: "position" | "handle";
   handle?: DirectorMotionPathHandle;
   gestureTargetId: string;
+  disabled?: boolean;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
 }) {
   const gesture = useDirectorGestureBoundary({
@@ -595,7 +616,8 @@ function PathTupleFields({
                 kind === "handle" ? axisLabels[index].toLowerCase() : undefined
               }
               value={Number(value.toFixed(3))}
-              {...gesture}
+              disabled={disabled}
+              {...(disabled ? {} : gesture)}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -613,12 +635,14 @@ function PathTransformFields({
   field,
   values,
   gestureTargetId,
+  disabled = false,
   onChange,
 }: {
   label: string;
   field: keyof DirectorTransform;
   values: DirectorTuple3;
   gestureTargetId: string;
+  disabled?: boolean;
   onChange: (axis: 0 | 1 | 2, value: number) => void;
 }) {
   const gesture = useDirectorGestureBoundary({
@@ -648,7 +672,8 @@ function PathTransformFields({
                 index
               ].toLowerCase()}
               value={Number(value.toFixed(3))}
-              {...gesture}
+              disabled={disabled}
+              {...(disabled ? {} : gesture)}
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
@@ -667,6 +692,7 @@ function MotionPathInspector({
   path: DirectorMotionPath;
 }) {
   const timeline = useDirectorStore((state) => state.timeline);
+  const objects = useDirectorStore((state) => state.objects);
   const renameMotionPath = useDirectorStore(
     (state) => state.renameMotionPath,
   );
@@ -707,6 +733,9 @@ function MotionPathInspector({
     path.anchors.find(
       (anchor) => anchor.id === timeline.selectedMotionPathAnchorId,
     ) ?? null;
+  const objectLocked = objects.some(
+    (object) => object.id === path.objectId && object.locked,
+  );
 
   const updateAnchorTuple = (
     anchor: DirectorMotionPathAnchor,
@@ -731,8 +760,18 @@ function MotionPathInspector({
   return (
     <section
       data-director-motion-path-inspector={path.id}
+      data-director-motion-path-locked={objectLocked}
       className="space-y-3 border-t border-white/[0.07] pt-4"
     >
+      {objectLocked ? (
+        <p
+          data-director-locked-hint
+          className="flex items-center gap-1.5 rounded border border-[#f0c776]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#d5b879]"
+        >
+          <Lock size={12} aria-hidden="true" />
+          所属对象已锁定，轨迹编辑已停用
+        </p>
+      ) : null}
       <div className="flex items-center gap-1.5 text-[11px] text-[#a9a9a9]">
         <Route size={12} className="text-[#5ddcff]" />
         <span>运动轨迹</span>
@@ -746,6 +785,7 @@ function MotionPathInspector({
         <input
           data-director-path-name
           value={path.name}
+          disabled={objectLocked}
           onChange={(event) =>
             renameMotionPath(path.id, event.target.value)
           }
@@ -759,6 +799,7 @@ function MotionPathInspector({
           <input
             type="checkbox"
             checked={path.enabled}
+            disabled={objectLocked}
             onChange={() => toggleMotionPathEnabled(path.id)}
             className="accent-[#09caf5]"
           />
@@ -767,7 +808,7 @@ function MotionPathInspector({
           type="button"
           data-director-toggle-path-closed
           aria-pressed={path.closed}
-          disabled={!path.closed && path.anchors.length < 3}
+          disabled={objectLocked || (!path.closed && path.anchors.length < 3)}
           onClick={() => toggleMotionPathClosed(path.id)}
           className={cn(
             "h-8 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#888] hover:text-white disabled:text-[#454545]",
@@ -783,6 +824,7 @@ function MotionPathInspector({
           label="位置"
           field="position"
           values={path.transform.position}
+          disabled={objectLocked}
           gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(
@@ -797,6 +839,7 @@ function MotionPathInspector({
           label="旋转"
           field="rotation"
           values={path.transform.rotation}
+          disabled={objectLocked}
           gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(
@@ -811,6 +854,7 @@ function MotionPathInspector({
           label="缩放"
           field="scale"
           values={path.transform.scale}
+          disabled={objectLocked}
           gestureTargetId={path.id}
           onChange={(axis, value) =>
             updateMotionPathTransform(path.id, "scale", axis, value)
@@ -820,6 +864,7 @@ function MotionPathInspector({
           <button
             type="button"
             data-director-path-reset-offset
+            disabled={objectLocked}
             onClick={() => resetMotionPathOffset(path.id)}
             className="flex h-8 items-center justify-center gap-1 rounded border border-white/[0.08] bg-[#222] text-[11px] text-[#a7a7a7] hover:text-white"
           >
@@ -829,6 +874,7 @@ function MotionPathInspector({
           <button
             type="button"
             data-director-path-reset
+            disabled={objectLocked}
             onClick={() => resetMotionPath(path.id)}
             className="h-8 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#777] hover:text-white"
           >
@@ -886,6 +932,7 @@ function MotionPathInspector({
                   type="button"
                   data-director-path-anchor-type-option={type}
                   aria-pressed={selectedAnchor.type === type}
+                  disabled={objectLocked}
                   onClick={() =>
                     setMotionPathAnchorType(
                       path.id,
@@ -909,6 +956,7 @@ function MotionPathInspector({
             label="位置"
             kind="position"
             gestureTargetId={selectedAnchor.id}
+            disabled={objectLocked}
             values={selectedAnchor.position}
             onChange={(axis, value) =>
               updateAnchorTuple(
@@ -927,6 +975,7 @@ function MotionPathInspector({
                 kind="handle"
                 handle="in"
                 gestureTargetId={selectedAnchor.id}
+                disabled={objectLocked}
                 values={selectedAnchor.handleIn}
                 onChange={(axis, value) =>
                   updateAnchorTuple(
@@ -942,6 +991,7 @@ function MotionPathInspector({
                 kind="handle"
                 handle="out"
                 gestureTargetId={selectedAnchor.id}
+                disabled={objectLocked}
                 values={selectedAnchor.handleOut}
                 onChange={(axis, value) =>
                   updateAnchorTuple(
@@ -959,6 +1009,7 @@ function MotionPathInspector({
             <button
               type="button"
               data-director-insert-path-anchor
+              disabled={objectLocked}
               onClick={() =>
                 insertMotionPathAnchor(path.id, selectedAnchor.id)
               }
@@ -972,7 +1023,7 @@ function MotionPathInspector({
               data-director-delete-path-anchor
               aria-label="删除锚点"
               title="删除锚点"
-              disabled={path.anchors.length <= 2}
+              disabled={objectLocked || path.anchors.length <= 2}
               onClick={() =>
                 deleteMotionPathAnchor(path.id, selectedAnchor.id)
               }
@@ -1038,6 +1089,7 @@ function PoseControlGroup({
                 groupLabel={group.label}
                 control={control}
                 value={controls[control.key] ?? 0}
+                disabled={character.locked}
                 updateCharacterPoseControl={updateCharacterPoseControl}
               />
             );
@@ -1053,12 +1105,14 @@ function PoseControl({
   groupLabel,
   control,
   value,
+  disabled,
   updateCharacterPoseControl,
 }: {
   characterId: string;
   groupLabel: string;
   control: DirectorPoseControlGroup["controls"][number];
   value: number;
+  disabled: boolean;
   updateCharacterPoseControl: (
     objectId: string,
     key: string,
@@ -1087,7 +1141,8 @@ function PoseControl({
         value={value}
         aria-label={`${groupLabel} ${control.label}`}
         data-director-pose-control={control.key}
-        {...gesture}
+        disabled={disabled}
+        {...(disabled ? {} : gesture)}
         onChange={(event) =>
           updateCharacterPoseControl(
             characterId,
@@ -1116,6 +1171,15 @@ function CharacterPoseInspector({
       data-director-pose-panel
       className="space-y-4 px-3 py-3"
     >
+      {character.locked ? (
+        <p
+          data-director-locked-hint
+          className="flex items-center gap-1.5 rounded border border-[#f0c776]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#d5b879]"
+        >
+          <Lock size={12} aria-hidden="true" />
+          对象已锁定，姿势编辑已停用
+        </p>
+      ) : null}
       <section>
         <div className="mb-2 flex items-center justify-between">
           <h3 className="text-[11px] font-medium text-[#cfcfcf]">姿势预设</h3>
@@ -1139,6 +1203,7 @@ function CharacterPoseInspector({
               type="button"
               data-director-pose-preset={preset.id}
               aria-pressed={rig.posePresetId === preset.id}
+              disabled={character.locked}
               onClick={() =>
                 applyCharacterPosePreset(character.id, preset.id)
               }
@@ -1159,8 +1224,8 @@ function CharacterPoseInspector({
         <p className="mt-1 text-[10px] text-[#686868]">SAM 骨骼姿势</p>
         <div className="mt-2">
           {DIRECTOR_POSE_CONTROL_GROUPS.map((group) => (
-            <PoseControlGroup
-              key={group.id}
+              <PoseControlGroup
+                key={group.id}
               character={character}
               group={group}
             />
@@ -1174,11 +1239,13 @@ function CharacterPoseInspector({
 function CameraFovField({
   objectId,
   fov,
+  disabled,
   updateCamera,
   recordObjectKeyframe,
 }: {
   objectId: string;
   fov: number;
+  disabled: boolean;
   updateCamera: (
     objectId: string,
     patch: Partial<NonNullable<DirectorObject["camera"]>>,
@@ -1204,7 +1271,8 @@ function CameraFovField({
         step="1"
         data-director-camera-fov
         value={fov}
-        {...gesture}
+        disabled={disabled}
+        {...(disabled ? {} : gesture)}
         onChange={(event) => {
           updateCamera(objectId, {
             fov: Number(event.target.value),
@@ -1377,10 +1445,20 @@ export function DirectorInspector({
             <CharacterPoseInspector character={selected} />
           ) : (
           <div className="space-y-4 px-3 py-3">
+            {selected.locked ? (
+              <p
+                data-director-locked-hint
+                className="flex items-center gap-1.5 rounded border border-[#f0c776]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#d5b879]"
+              >
+                <Lock size={12} aria-hidden="true" />
+                对象已锁定，属性与变换编辑已停用
+              </p>
+            ) : null}
             <label className="block">
               <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
               <input
                 value={selected.name}
+                disabled={selected.locked}
                 onChange={(event) =>
                   updateObject(selected.id, { name: event.target.value })
                 }
@@ -1400,6 +1478,22 @@ export function DirectorInspector({
                 {selected.visible ? <Eye size={13} /> : <EyeOff size={13} />}
                 {selected.visible ? "可见" : "已隐藏"}
               </button>
+              <button
+                type="button"
+                data-director-inspector-lock
+                aria-label={selected.locked ? "解锁对象" : "锁定对象"}
+                title={selected.locked ? "解锁对象" : "锁定对象"}
+                onClick={() =>
+                  updateObject(selected.id, { locked: !selected.locked })
+                }
+                className={cn(
+                  "flex h-8 flex-1 items-center justify-center gap-1.5 rounded border border-white/[0.08] bg-[#222] text-xs text-[#bdbdbd] hover:text-white",
+                  selected.locked && "border-[#f0c776]/35 text-[#f0c776]",
+                )}
+              >
+                {selected.locked ? <Lock size={13} /> : <Unlock size={13} />}
+                {selected.locked ? "已锁定" : "未锁定"}
+              </button>
               <label className="relative flex h-8 flex-1 items-center gap-2 rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#bdbdbd]">
                 <span
                   className="h-4 w-4 rounded-sm border border-white/20"
@@ -1410,6 +1504,7 @@ export function DirectorInspector({
                   type="color"
                   aria-label="对象颜色"
                   value={selected.color}
+                  disabled={selected.locked}
                   onChange={(event) =>
                     updateObject(selected.id, { color: event.target.value })
                   }
@@ -1423,6 +1518,7 @@ export function DirectorInspector({
                 label="位置"
                 field="position"
                 values={selected.transform.position}
+                disabled={selected.locked}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
                 onChange={(axis, value) => {
@@ -1434,6 +1530,7 @@ export function DirectorInspector({
                 label="旋转"
                 field="rotation"
                 values={selected.transform.rotation}
+                disabled={selected.locked}
                 disabledAxes={pathControlsRotationY ? [1] : []}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
@@ -1454,6 +1551,7 @@ export function DirectorInspector({
                 label="缩放"
                 field="scale"
                 values={selected.transform.scale}
+                disabled={selected.locked}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
                 onChange={(axis, value) => {
@@ -1468,6 +1566,7 @@ export function DirectorInspector({
                 <CameraFovField
                   objectId={selected.id}
                   fov={selected.camera.fov}
+                  disabled={selected.locked}
                   updateCamera={updateCamera}
                   recordObjectKeyframe={recordObjectKeyframe}
                 />
@@ -1488,6 +1587,7 @@ export function DirectorInspector({
                         ? `object:${selected.camera.lookAtObjectId}`
                         : selected.camera.lookAtMode
                     }
+                    disabled={selected.locked}
                     onChange={(event) => {
                       const value = event.currentTarget.value;
                       if (value.startsWith("object:")) {
@@ -1528,6 +1628,7 @@ export function DirectorInspector({
                       label="注视坐标"
                       field="target"
                       values={selected.camera.target}
+                      disabled={selected.locked}
                       disabledAxes={
                         selected.camera.lookAtMode === "object"
                           ? [0, 1, 2]
@@ -1558,6 +1659,7 @@ export function DirectorInspector({
                   <select
                     data-director-camera-follow-target
                     value={selected.camera.followTargetId ?? ""}
+                    disabled={selected.locked}
                     onChange={(event) =>
                       updateCamera(selected.id, {
                         followTargetId: event.currentTarget.value || null,
@@ -1593,6 +1695,7 @@ export function DirectorInspector({
                         label="跟随偏移"
                         field="followOffset"
                         values={selected.camera.followOffset}
+                        disabled={selected.locked}
                         gestureTargetId={selected.id}
                         gestureCommandKind="camera-follow-offset"
                         onChange={(axis, value) => {
@@ -1623,6 +1726,7 @@ export function DirectorInspector({
                             type="button"
                             data-director-camera-follow-view-option={mode}
                             aria-pressed={selected.camera!.followView === mode}
+                            disabled={selected.locked}
                             onClick={() =>
                               updateCamera(selected.id, {
                                 followView: mode,

@@ -99,6 +99,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 81 | Director strict project JSON import/export, owner/project rebinding, one-entry history, undo/redo, zero-partial rejection, download/file-input round trip and ordinary graph isolation |
 | Batch 82 | Director local resource descriptor/provenance, attempt freshness, retry/cancel/release, finite OBJ/FBX materialization, parse-failure proxy retention, model-library feedback and zero diagnostics |
 | Batch 83 | Director typed command outcome/reason feedback projection, fixed-header status surface, ARIA semantics, committed-success suppression, meaningful no-op visibility, mobile geometry and zero diagnostics |
+| Batch 84 | Director object-tree lock/visibility controls, locked-target Inspector/Viewport/Timeline/Curve protection, typed rejection, zero document/history mutation, unlock recovery and zero diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -158,6 +159,13 @@ meaningful-no-op 可见性、committed-success 抑制、mobile header geometry�
 zero-history feedback boundary 和 zero-diagnostic audit。它只证明 Director
 前台反馈投影，不证明 LibTV 原站 feedback taxonomy、文案、颜色、ARIA 或
 ordinary canvas 的统一 feedback owner。
+
+Batch 84 是 Director lock/editability hybrid gate，默认不写截图；它保留
+对象树 lock/visibility 并列控制、locked target 的 Inspector/Viewport/Timeline/
+Curve 编辑保护、`DIRECTOR_TARGET_LOCKED` 拒绝、zero document/history mutation、
+visibility continuity、unlock recovery 和 mobile discoverability。它只证明
+clone-owned Director 编辑保护，不证明 LibTV 原站 Director 是否有相同 lock
+UI、文案、键盘策略或 source-exact behavior。
 
 ## Browser Evidence Requirements
 

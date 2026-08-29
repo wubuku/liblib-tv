@@ -46,6 +46,7 @@ function formatTimelineTime(seconds: number): string {
 export function DirectorTimeline() {
   const timeline = useDirectorStore((state) => state.timeline);
   const objects = useDirectorStore((state) => state.objects);
+  const groups = useDirectorStore((state) => state.groups);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const setTimelineTime = useDirectorStore((state) => state.setTimelineTime);
@@ -159,6 +160,16 @@ export function DirectorTimeline() {
     selectedTrack?.kind === "group"
       ? undefined
       : objects.find((object) => object.id === selectedTrack?.objectId);
+  const selectedTrackLocked =
+    selectedTrack?.kind === "group"
+      ? Boolean(
+          groups
+            .find((group) => group.id === selectedTrack.groupId)
+            ?.characterIds.some((objectId) =>
+              objects.some((object) => object.id === objectId && object.locked),
+            ),
+        )
+      : Boolean(selectedTrackObject?.locked);
   const cameraFollowActive = Boolean(
     selectedTrackObject?.camera?.followTargetId,
   );
@@ -450,7 +461,8 @@ export function DirectorTimeline() {
             !selectedTrack ||
             selectedTrack.kind === "pose" ||
             selectedTrack.kind === "group" ||
-            cameraFollowActive
+            cameraFollowActive ||
+            selectedTrackLocked
           }
           title={
             cameraFollowActive
@@ -475,7 +487,7 @@ export function DirectorTimeline() {
         <button
           type="button"
           data-director-open-curve-editor
-          disabled={!selectedTrack}
+          disabled={!selectedTrack || selectedTrackLocked}
           aria-pressed={timeline.editorMode === "curve"}
           onClick={() => setTimelineEditorMode("curve")}
           className={cn(
@@ -495,6 +507,7 @@ export function DirectorTimeline() {
               aria-label="启用曲线"
               title="启用曲线"
               aria-pressed={selectedPath.enabled}
+              disabled={selectedTrackLocked}
               onClick={() => toggleMotionPathEnabled(selectedPath.id)}
               className={cn(
                 "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
@@ -511,6 +524,7 @@ export function DirectorTimeline() {
                 aria-label="绑定对象沿路径朝向"
                 title="绑定对象沿路径朝向"
                 aria-pressed={selectedPath.orientToPath}
+                disabled={selectedTrackLocked}
                 onClick={() => toggleMotionPathOrient(selectedPath.id)}
                 className={cn(
                   "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
@@ -527,6 +541,7 @@ export function DirectorTimeline() {
               data-director-delete-motion-path={selectedPath.id}
               aria-label="删除曲线"
               title="删除曲线"
+              disabled={selectedTrackLocked}
               onClick={() => deleteMotionPath(selectedPath.id)}
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d]"
             >
@@ -538,7 +553,9 @@ export function DirectorTimeline() {
           type="button"
           data-director-add-track
           disabled={
-            (!selectedObjectId && !selectedGroupId) || hasSelectedObjectTrack
+            (!selectedObjectId && !selectedGroupId) ||
+            hasSelectedObjectTrack ||
+            selectedTrackLocked
           }
           onClick={() => addTimelineTrack()}
           className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
@@ -549,7 +566,7 @@ export function DirectorTimeline() {
         <button
           type="button"
           data-director-add-keyframe
-          disabled={!selectedTrack}
+          disabled={!selectedTrack || selectedTrackLocked}
           onClick={() => addTimelineKeyframe()}
           className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
         >
@@ -561,7 +578,7 @@ export function DirectorTimeline() {
           data-director-delete-keyframe
           aria-label="删除关键帧"
           title="删除关键帧"
-          disabled={!timeline.selectedKeyframeId}
+          disabled={!timeline.selectedKeyframeId || selectedTrackLocked}
           onClick={() => deleteTimelineKeyframe()}
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
         >
@@ -746,6 +763,7 @@ export function DirectorTimeline() {
               key={tool}
               type="button"
               data-director-motion-path-draw-tool={tool}
+              disabled={selectedTrackLocked}
               onClick={() => {
                 startMotionPathDrawing(tool);
                 const draft =
@@ -787,6 +805,7 @@ export function DirectorTimeline() {
               key={preset}
               type="button"
               data-director-motion-path-preset={preset}
+              disabled={selectedTrackLocked}
               onClick={() => {
                 createMotionPath(preset);
                 setPathMenuLeft(null);

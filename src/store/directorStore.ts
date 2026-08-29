@@ -499,6 +499,7 @@ interface DirectorState {
     source?: "explicit" | "viewport",
   ) => void;
   toggleObjectSelection: (objectId: string) => void;
+  toggleObjectLocked: (objectId: string) => DirectorCommandResult;
   selectGroup: (groupId: string | null) => void;
   groupSelectedCharacters: () => string | null;
   ungroupSelectedCharacters: () => void;
@@ -545,7 +546,10 @@ interface DirectorState {
   toggleViewportPanelsCollapsed: () => void;
   setViewportPanelsCollapsed: (collapsed: boolean) => void;
   updateScene: (patch: Partial<DirectorScene>) => void;
-  updateObject: (objectId: string, patch: Partial<Pick<DirectorObject, "name" | "color" | "visible" | "locked">>) => void;
+  updateObject: (
+    objectId: string,
+    patch: Partial<Pick<DirectorObject, "name" | "color" | "visible" | "locked">>,
+  ) => DirectorCommandResult;
   updateObjectTransform: (
     objectId: string,
     field: keyof DirectorTransform,
@@ -1745,6 +1749,57 @@ function makeDirectorCommandResult(
         ? getDirectorSelectionResult(state)
         : input.selectionResult,
   });
+}
+
+function directorObjectIsLocked(
+  state: DirectorState,
+  objectId: string,
+): boolean {
+  return state.objects.some(
+    (object) => object.id === objectId && object.locked,
+  );
+}
+
+function directorPathTargetIsLocked(
+  state: DirectorState,
+  pathId: string | null | undefined,
+): boolean {
+  const path = state.timeline.motionPaths.find((item) => item.id === pathId);
+  return path ? directorObjectIsLocked(state, path.objectId) : false;
+}
+
+function directorTrackTargetIsLocked(
+  state: DirectorState,
+  trackId: string | null | undefined,
+): boolean {
+  const track = state.timeline.tracks.find((item) => item.id === trackId);
+  if (!track) return false;
+  if (track.kind === "group") {
+    const group = state.groups.find((item) => item.id === track.groupId);
+    return Boolean(
+      group?.characterIds.some((objectId) =>
+        directorObjectIsLocked(state, objectId),
+      ),
+    );
+  }
+  return directorObjectIsLocked(state, track.objectId);
+}
+
+function rejectLockedDirectorMutation(
+  state: DirectorState,
+  commandKind: string,
+): DirectorState {
+  const result = makeDirectorCommandResult(state, {
+    commandKind,
+    disposition: "REJECTED",
+    reason: "DIRECTOR_TARGET_LOCKED",
+    projectChanged: false,
+    historyEntries: 0,
+  });
+  return {
+    ...state,
+    lastCommandResult: result,
+  };
 }
 
 function createDefaultDirectorProjectDocument(
@@ -3893,6 +3948,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       const group = state.groups.find((item) => item.id === groupId);
       if (!group) return state;
+      if (
+        group.characterIds.some((objectId) =>
+          directorObjectIsLocked(state, objectId),
+        )
+      ) {
+        return rejectLockedDirectorMutation(state, "UPDATE_GROUP_TRANSFORM");
+      }
       const authoredObjects = resolveCameraRelations(
         applyDirectorGroupTransform(state.authoredObjects, group, transform),
       );
@@ -3952,22 +4014,63 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   updateScene: (patch) =>
     set((state) => ({ scene: { ...state.scene, ...patch } })),
 
-  updateObject: (objectId, patch) =>
-    set((state) => {
-      const authoredObjects = state.authoredObjects.map((object) =>
-        object.id === objectId ? { ...object, ...patch } : object,
+  updateObject: (objectId, patch) => {
+    const state = get();
+    const object = state.authoredObjects.find((item) => item.id === objectId);
+    if (!object) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const changesEditingState =
+      patch.name !== undefined || patch.color !== undefined;
+    if (object.locked && changesEditingState) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_LOCKED",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const hasChange = (Object.keys(patch) as Array<keyof typeof patch>).some(
+      (key) => patch[key] !== object[key],
+    );
+    if (!hasChange) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    set((current) => {
+      const authoredObjects = current.authoredObjects.map((item) =>
+        item.id === objectId ? { ...item, ...patch } : item,
       );
       return {
         authoredObjects,
         objects: projectDirectorRuntimeObjects(
           authoredObjects,
-          state.timeline,
-          state.groups,
+          current.timeline,
+          current.groups,
         ),
         timeline: patch.name
           ? {
-              ...state.timeline,
-              tracks: state.timeline.tracks.map((track) =>
+              ...current.timeline,
+              tracks: current.timeline.tracks.map((track) =>
                 track.objectId === objectId
                   ? {
                       ...track,
@@ -3976,17 +4079,34 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
                           ? "机位"
                           : track.kind === "group"
                             ? "分组"
-                          : track.kind === "pose"
-                            ? "姿态"
-                            : "变换"
+                            : track.kind === "pose"
+                              ? "姿态"
+                              : "变换"
                       }`,
                     }
                   : track,
               ),
             }
-          : state.timeline,
+          : current.timeline,
       };
-    }),
+    });
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "UPDATE_OBJECT",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+    set({ lastCommandResult: result });
+    return result;
+  },
+
+  toggleObjectLocked: (objectId) => {
+    const object = get().authoredObjects.find((item) => item.id === objectId);
+    if (!object) {
+      return get().updateObject(objectId, { locked: true });
+    }
+    return get().updateObject(objectId, { locked: !object.locked });
+  },
 
   updateObjectTransform: (objectId, field, axis, value) => {
     const state = get();
@@ -4001,6 +4121,17 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         commandKind: "UPDATE_OBJECT_TRANSFORM",
         disposition: "REJECTED",
         reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (authoredObject.locked) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_OBJECT_TRANSFORM",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_LOCKED",
+        projectChanged: false,
+        historyEntries: 0,
       });
       set({ lastCommandResult: result });
       return result;
@@ -4102,6 +4233,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (object) => object.id === objectId && object.camera,
       );
       if (!authoredCamera?.camera || !runtimeCamera?.camera) return state;
+      if (authoredCamera.locked) {
+        return rejectLockedDirectorMutation(state, "UPDATE_CAMERA");
+      }
       const authoredObjects = state.authoredObjects.map((object) =>
         object.id === objectId && object.camera
           ? {
@@ -4175,13 +4309,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }),
 
   applyCharacterPosePreset: (objectId, presetId) =>
-    set((state) =>
-      updateCharacterRigAndTimeline(
+    set((state) => {
+      if (directorObjectIsLocked(state, objectId)) {
+        return rejectLockedDirectorMutation(state, "APPLY_POSE_PRESET");
+      }
+      return updateCharacterRigAndTimeline(
         state,
         objectId,
         applyDirectorPosePreset(presetId),
-      ),
-    ),
+      );
+    }),
 
   updateCharacterPoseControl: (objectId, key, value) =>
     set((state) => {
@@ -4189,6 +4326,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (item) => item.id === objectId && item.kind === "character",
       );
       if (!object) return state;
+      if (object.locked) {
+        return rejectLockedDirectorMutation(state, "UPDATE_POSE_CONTROL");
+      }
       return updateCharacterRigAndTimeline(
         state,
         objectId,
@@ -5023,6 +5163,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         const group = state.groups.find(
           (item) => item.id === track.groupId,
         );
+        if (
+          group?.characterIds.some((objectId) =>
+            directorObjectIsLocked(state, objectId),
+          )
+        ) {
+          return rejectLockedDirectorMutation(state, "ADD_GROUP_KEYFRAME");
+        }
         const transform = group
           ? getDirectorGroupAnchorTransform(state.objects, group)
           : null;
@@ -5048,6 +5195,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (item) => item.id === track?.objectId,
       );
       if (!track || !object) return state;
+      if (object.locked) {
+        return rejectLockedDirectorMutation(state, "ADD_OBJECT_KEYFRAME");
+      }
       const result = upsertTrackKeyframe(
         track,
         object,
@@ -5071,6 +5221,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const keyframeId =
         requestedKeyframeId ?? state.timeline.selectedKeyframeId;
       if (!keyframeId) return state;
+      const owningTrack = state.timeline.tracks.find((track) =>
+        track.keyframes.some((keyframe) => keyframe.id === keyframeId),
+      );
+      if (directorTrackTargetIsLocked(state, owningTrack?.id)) {
+        return rejectLockedDirectorMutation(state, "DELETE_KEYFRAME");
+      }
       const tracks = state.timeline.tracks.map((track) => ({
         ...track,
         keyframes: track.keyframes.filter(
@@ -5129,6 +5285,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (!force && !state.timeline.autoKeyframe) return state;
       const object = state.objects.find((item) => item.id === objectId);
       if (!object) return state;
+      if (object.locked) {
+        return rejectLockedDirectorMutation(state, "RECORD_OBJECT_KEYFRAME");
+      }
       const existing = state.timeline.tracks.find(
         (track) => track.objectId === objectId && track.kind !== "pose",
       );
@@ -5163,6 +5322,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       if (!force && !state.timeline.autoKeyframe) return state;
       const group = state.groups.find((item) => item.id === groupId);
+      if (
+        group?.characterIds.some((objectId) =>
+          directorObjectIsLocked(state, objectId),
+        )
+      ) {
+        return rejectLockedDirectorMutation(state, "RECORD_GROUP_KEYFRAME");
+      }
       const transform = group
         ? getDirectorGroupAnchorTransform(state.objects, group)
         : null;
@@ -5212,6 +5378,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   setTrackSpeedCurvePreset: (trackId, preset) =>
     set((state) => {
+      if (directorTrackTargetIsLocked(state, trackId)) {
+        return rejectLockedDirectorMutation(state, "SET_SPEED_CURVE_PRESET");
+      }
       const tracks = state.timeline.tracks.map((track) =>
         track.id === trackId
           ? { ...track, speedCurve: createDirectorSpeedCurve(preset) }
@@ -5231,6 +5400,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   setTrackSpeedCurveControl: (trackId, handle, point) =>
     set((state) => {
+      if (directorTrackTargetIsLocked(state, trackId)) {
+        return rejectLockedDirectorMutation(state, "SET_SPEED_CURVE_CONTROL");
+      }
       const controlPoint: [number, number] = [
         Math.min(Math.max(Number.isFinite(point[0]) ? point[0] : 0, 0), 1),
         Math.min(Math.max(Number.isFinite(point[1]) ? point[1] : 0, 0), 1),
@@ -5269,6 +5441,17 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       (object) => object.id === track?.objectId && object.camera,
     );
     if (!track || track.kind !== "camera" || !camera?.camera) return false;
+    if (camera.locked) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "APPLY_CAMERA_MOTION_PRESET",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_LOCKED",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return false;
+    }
 
     if (camera.camera.followTargetId) {
       set((current) => ({
@@ -5389,6 +5572,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       ) {
         return state;
       }
+      if (object.locked) {
+        return rejectLockedDirectorMutation(state, "CREATE_MOTION_PATH");
+      }
       const path = createMotionPathForTrack(object, preset);
       const timeline = {
         ...replaceTrackMotionPath(state.timeline, track, path),
@@ -5422,6 +5608,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         object.camera?.followTargetId
       ) {
         return state;
+      }
+      if (object.locked) {
+        return rejectLockedDirectorMutation(state, "START_PATH_DRAWING");
       }
       return {
         viewMode: "director",
@@ -5624,6 +5813,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (anchor) => anchor.id === anchorId,
       );
       if (!currentPath || !currentAnchor) return state;
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "UPDATE_PATH_ANCHOR");
+      }
       const anchors = currentPath.anchors.map((anchor) =>
         anchor.id === anchorId
           ? {
@@ -5663,6 +5855,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (anchor) => anchor.id === anchorId,
       );
       if (!currentPath || !currentAnchor) return state;
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "UPDATE_PATH_ANCHOR_WORLD");
+      }
       const localPosition = inverseTransformDirectorMotionPathPoint(
         finiteTuple(
           position,
@@ -5712,6 +5907,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       );
       if (!currentPath || !currentAnchor || currentAnchor.type === "vertex") {
         return state;
+      }
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "UPDATE_PATH_HANDLE");
       }
       const safeValue = finiteTuple(
         value,
@@ -5777,6 +5975,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (!currentPath || !currentAnchor || currentAnchor.type === "vertex") {
         return state;
       }
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "UPDATE_PATH_HANDLE_WORLD");
+      }
       const worldAnchorPosition = transformDirectorMotionPathPoint(
         currentAnchor.position,
         currentPath.pivot,
@@ -5839,6 +6040,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (path) => path.id === pathId,
       );
       if (!currentPath) return state;
+      if (directorPathTargetIsLocked(state, pathId)) {
+        return rejectLockedDirectorMutation(state, "SET_PATH_ANCHOR_TYPE");
+      }
       const anchors = setDirectorMotionPathAnchorType(
         currentPath.anchors,
         anchorId,
@@ -5879,6 +6083,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (anchor) => anchor.id === anchorId,
       );
       if (!currentPath || index === undefined || index < 0) return state;
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "INSERT_PATH_ANCHOR");
+      }
       const current = currentPath.anchors[index];
       const next =
         currentPath.anchors[index + 1] ??
@@ -5938,6 +6145,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (!currentPath || !anchorId || currentPath.anchors.length <= 2) {
         return state;
       }
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "DELETE_PATH_ANCHOR");
+      }
       const index = currentPath.anchors.findIndex(
         (anchor) => anchor.id === anchorId,
       );
@@ -5980,6 +6190,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       if (!currentPath || (!currentPath.closed && currentPath.anchors.length < 3)) {
         return state;
       }
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "TOGGLE_PATH_CLOSED");
+      }
       const closed = !currentPath.closed;
       const motionPaths = state.timeline.motionPaths.map((path) =>
         path.id === currentPath.id
@@ -6004,14 +6217,19 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }),
 
   renameMotionPath: (pathId, name) =>
-    set((state) => ({
-      timeline: {
-        ...state.timeline,
-        motionPaths: state.timeline.motionPaths.map((path) =>
-          path.id === pathId ? { ...path, name } : path,
-        ),
-      },
-    })),
+    set((state) => {
+      if (directorPathTargetIsLocked(state, pathId)) {
+        return rejectLockedDirectorMutation(state, "RENAME_PATH");
+      }
+      return {
+        timeline: {
+          ...state.timeline,
+          motionPaths: state.timeline.motionPaths.map((path) =>
+            path.id === pathId ? { ...path, name } : path,
+          ),
+        },
+      };
+    }),
 
   updateMotionPathTransform: (pathId, field, axis, value) =>
     set((state) => {
@@ -6019,6 +6237,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (path) => path.id === pathId,
       );
       if (!currentPath) return state;
+      if (directorPathTargetIsLocked(state, pathId)) {
+        return rejectLockedDirectorMutation(state, "UPDATE_PATH_TRANSFORM");
+      }
       const fallback = currentPath.transform[field][axis];
       const finiteValue = Number.isFinite(value) ? value : fallback;
       const nextValue =
@@ -6060,6 +6281,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (path) => path.id === pathId,
       );
       if (!currentPath) return state;
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "RESET_PATH_OFFSET");
+      }
       const motionPaths = state.timeline.motionPaths.map((path) =>
         path.id === currentPath.id
           ? rebuildMotionPath(
@@ -6094,6 +6318,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         (path) => path.id === pathId,
       );
       if (!currentPath) return state;
+      if (directorPathTargetIsLocked(state, currentPath.id)) {
+        return rejectLockedDirectorMutation(state, "RESET_PATH");
+      }
       const anchors = cloneDirectorMotionPathAnchors(
         currentPath.initialAnchors,
       );
@@ -6131,6 +6358,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
       if (!pathId) return state;
+      if (directorPathTargetIsLocked(state, pathId)) {
+        return rejectLockedDirectorMutation(state, "TOGGLE_PATH_ENABLED");
+      }
       const motionPaths = state.timeline.motionPaths.map((path) =>
         path.id === pathId ? { ...path, enabled: !path.enabled } : path,
       );
@@ -6155,6 +6385,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       const pathId = requestedPathId ?? state.timeline.selectedMotionPathId;
       if (!pathId) return state;
+      if (directorPathTargetIsLocked(state, pathId)) {
+        return rejectLockedDirectorMutation(state, "TOGGLE_PATH_ORIENT");
+      }
       const track = state.timeline.tracks.find(
         (item) => item.motionPathId === pathId,
       );
