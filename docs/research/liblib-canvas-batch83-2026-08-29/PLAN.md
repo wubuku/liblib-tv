@@ -98,4 +98,4 @@ primary feedback surface。用户只能从具体 panel 的局部状态或开发�
 - `npm run check`：通过（9 条既有 lint warning，0 error）；
 - `npm run docs:check`、`python3 scripts/verify-docs.py`、`git diff --check`：通过；
 - current-gate regression：已落档；
-- commit/push：待本批最终文档 checkpoint 执行。
+- 文档 closeout commit/push：已完成（`8dd985e`）。

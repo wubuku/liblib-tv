@@ -2,12 +2,13 @@
   "batch": 83,
   "date": "2026-08-29",
   "implementationHead": "6c1d4c1",
+  "documentationCloseoutHead": "8dd985e",
   "baseUrl": "http://localhost:4317",
   "worktree": {
     "worktrees": 1,
     "branch": "master",
     "cleanBeforeDocumentationCloseout": false,
-    "cleanAfterDocumentationCloseout": "pending-closeout-commit"
+    "cleanAfterDocumentationCloseout": true
   },
   "gates": [
     "Batch 59",
@@ -60,6 +61,6 @@
     "The serial current-gate result covers Batch 59 and Batch 67-83 on the fixed localhost:4317 server.",
     "Batch 80 was rerun after replacing only the incompatible .glb fixture with a minimal valid .obj fixture.",
     "This ledger records clone reliability and does not upgrade any Director behavior to LibTV source parity.",
-    "The closeout document and final worktree state are completed by the closeout commit that adds this ledger."
+    "The closeout document and final worktree state are completed by documentation closeout commit 8dd985e."
   ]
 }

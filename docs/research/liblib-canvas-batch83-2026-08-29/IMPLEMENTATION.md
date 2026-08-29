@@ -108,10 +108,9 @@ request errors 均为零；脚本不写截图。
 
 ### 4.5 Closeout checkpoint
 
-代码 checkpoint 为 `6c1d4c1`；本批文档、current-gate regression 和最终工作区
-状态将在 closeout commit 中固定。完成后只保留 `master` 主 worktree，并确认
-`master` 与 `origin/master` 同步、工作区干净、`http://localhost:4317/` 返回
-HTTP 200。
+代码 checkpoint 为 `6c1d4c1`；文档 closeout checkpoint 为 `8dd985e`。完成后
+只保留 `master` 主 worktree，并确认 `master` 与 `origin/master` 同步、工作区
+干净、`http://localhost:4317/` 返回 HTTP 200。
 
 ## 5. 证据边界
 
