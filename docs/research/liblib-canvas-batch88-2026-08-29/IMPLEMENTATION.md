@@ -134,3 +134,6 @@ git diff --check
 | diagnostics | `0 / 0 / 0` |
 | screenshot artifact delta | `0` |
 | source-exact Director claim | `NONE` |
+
+Closeout commit: `306786d`, pushed to `origin/master`; the final master worktree
+was verified clean.

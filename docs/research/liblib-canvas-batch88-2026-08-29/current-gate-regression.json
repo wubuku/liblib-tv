@@ -3,6 +3,7 @@
   "status": "CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS",
   "date": "2026-08-29",
   "headAtExecution": "b7028d1",
+  "closeoutCommit": "306786d",
   "baseUrl": "http://localhost:4317",
   "sequence": [
     59,
@@ -65,5 +66,7 @@
     "pageErrors": 0,
     "requestFailures": 0
   },
-  "worktreeAtExecution": "modified; closeout pending"
+  "worktreeAtExecution": "modified; closeout pending",
+  "worktreeAfterCloseout": "clean",
+  "remoteAfterCloseout": "origin/master"
 }
