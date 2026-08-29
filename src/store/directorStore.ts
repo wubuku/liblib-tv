@@ -1698,6 +1698,127 @@ function updateActiveDirectorDocument(
   return true;
 }
 
+interface DirectorSelectionRepairState {
+  selectedObjectId: string | null;
+  selectedObjectIds: string[];
+  selectedGroupId: string | null;
+  timeline: DirectorTimelineState;
+}
+
+function repairDirectorSelectionState(
+  state: DirectorState,
+  restored: {
+    objects: DirectorObject[];
+    groups: DirectorCharacterGroup[];
+    timeline: DirectorTimelineState;
+  },
+): DirectorSelectionRepairState {
+  const objectIds = new Set(restored.objects.map((object) => object.id));
+  const hadSelection =
+    state.selectedObjectId !== null ||
+    state.selectedObjectIds.length > 0 ||
+    state.selectedGroupId !== null;
+  let selectedObjectIds = state.selectedObjectIds.filter((objectId) =>
+    objectIds.has(objectId),
+  );
+  if (
+    selectedObjectIds.length === 0 &&
+    state.selectedObjectId &&
+    objectIds.has(state.selectedObjectId)
+  ) {
+    selectedObjectIds = [state.selectedObjectId];
+  }
+
+  const selectedGroup = state.selectedGroupId
+    ? restored.groups.find((group) => group.id === state.selectedGroupId) ??
+      null
+    : null;
+  let selectedGroupId = selectedGroup?.id ?? null;
+  if (selectedGroup) {
+    selectedObjectIds = selectedGroup.characterIds.filter((objectId) =>
+      objectIds.has(objectId),
+    );
+    if (selectedObjectIds.length === 0) {
+      selectedGroupId = null;
+    }
+  }
+  if (hadSelection && selectedObjectIds.length === 0) {
+    const fallbackObjectId =
+      restored.objects.find((object) => object.kind === "character")?.id ??
+      restored.objects[0]?.id ??
+      null;
+    selectedObjectIds = fallbackObjectId ? [fallbackObjectId] : [];
+  }
+  const selectedObjectId =
+    selectedObjectIds.includes(state.selectedObjectId ?? "")
+      ? state.selectedObjectId
+      : selectedObjectIds.at(-1) ?? null;
+
+  const selectedTrackId =
+    state.timeline.selectedTrackId &&
+    restored.timeline.tracks.some(
+      (track) => track.id === state.timeline.selectedTrackId,
+    )
+      ? state.timeline.selectedTrackId
+      : null;
+  const selectedTrack = selectedTrackId
+    ? restored.timeline.tracks.find((track) => track.id === selectedTrackId) ??
+      null
+    : null;
+  const selectedKeyframeId =
+    selectedTrack &&
+    state.timeline.selectedKeyframeId &&
+    selectedTrack.keyframes.some(
+      (keyframe) => keyframe.id === state.timeline.selectedKeyframeId,
+    )
+      ? state.timeline.selectedKeyframeId
+      : null;
+  const selectedMotionPathId =
+    state.timeline.selectedMotionPathId &&
+    restored.timeline.motionPaths.some(
+      (path) => path.id === state.timeline.selectedMotionPathId,
+    )
+      ? state.timeline.selectedMotionPathId
+      : null;
+  const selectedPath = selectedMotionPathId
+    ? restored.timeline.motionPaths.find(
+        (path) => path.id === selectedMotionPathId,
+      ) ?? null
+    : null;
+  const selectedMotionPathAnchorId =
+    selectedPath &&
+    state.timeline.selectedMotionPathAnchorId &&
+    selectedPath.anchors.some(
+      (anchor) => anchor.id === state.timeline.selectedMotionPathAnchorId,
+    )
+      ? state.timeline.selectedMotionPathAnchorId
+      : null;
+
+  return {
+    selectedObjectId,
+    selectedObjectIds,
+    selectedGroupId,
+    timeline: {
+      ...restored.timeline,
+      currentTime: clampDirectorTimelineTime(
+        state.timeline.currentTime,
+        restored.timeline.duration,
+      ),
+      isPlaying: false,
+      zoom: Math.min(Math.max(state.timeline.zoom, 0.75), 2.5),
+      selectedTrackId,
+      selectedKeyframeId,
+      selectedMotionPathId,
+      selectedMotionPathAnchorId,
+      selectedMotionPathHandle: selectedMotionPathAnchorId
+        ? state.timeline.selectedMotionPathHandle
+        : null,
+      motionPathDraft: null,
+      editorMode: state.timeline.editorMode,
+    },
+  };
+}
+
 function restoreDirectorDocumentState(
   state: DirectorState,
   document: DirectorProjectDocumentV1,
@@ -1727,6 +1848,8 @@ function restoreDirectorDocumentState(
     },
     session,
     state.localModelLibrary,
+    "preserve-current",
+    state,
   );
 }
 
@@ -1956,19 +2079,39 @@ function restoreDirectorProjectState(
   record: NonNullable<DirectorProjectOpenResult["record"]>,
   session: NonNullable<DirectorProjectOpenResult["session"]>,
   localModelLibrary: DirectorLocalModelLibraryItem[],
+  selectionPolicy: "default" | "preserve-current" = "default",
+  currentState?: DirectorState,
 ): Partial<DirectorState> {
   const restored = restoreDirectorProjectRuntimeSnapshotV1(record.document);
   const authoredObjects = restored.objects;
+  const defaultSelectedObjectId =
+    authoredObjects.find((object) => object.kind === "character")?.id ??
+    authoredObjects[0]?.id ??
+    null;
+  const restoredTimeline = restored.timeline;
+  const selection =
+    selectionPolicy === "preserve-current" && currentState
+      ? repairDirectorSelectionState(
+          currentState,
+          {
+            ...restored,
+            timeline: restoredTimeline,
+          },
+        )
+      : {
+          selectedObjectId: defaultSelectedObjectId,
+          selectedObjectIds: defaultSelectedObjectId
+            ? [defaultSelectedObjectId]
+            : [],
+          selectedGroupId: null,
+          timeline: restoredTimeline,
+        };
   const objects = applyTimelineAtTime(
     authoredObjects,
-    restored.timeline,
-    restored.timeline.currentTime,
+    selection.timeline,
+    selection.timeline.currentTime,
     restored.groups,
   );
-  const selectedObjectId =
-    objects.find((object) => object.kind === "character")?.id ??
-    objects[0]?.id ??
-    null;
   return {
     sourceNodeId: session.owner.sourceNodeId,
     projectOwner: { ...session.owner },
@@ -1980,9 +2123,9 @@ function restoreDirectorProjectState(
     authoredObjects,
     objects,
     groups: restored.groups,
-    selectedObjectId,
-    selectedObjectIds: selectedObjectId ? [selectedObjectId] : [],
-    selectedGroupId: null,
+    selectedObjectId: selection.selectedObjectId,
+    selectedObjectIds: selection.selectedObjectIds,
+    selectedGroupId: selection.selectedGroupId,
     activeCameraId: restored.activeCameraId,
     viewMode: "director",
     transformMode: "translate",
@@ -1994,7 +2137,7 @@ function restoreDirectorProjectState(
     activeCaptureId: null,
     localModelLibrary,
     localModelResources: createDirectorLocalResourceMap(localModelLibrary),
-    timeline: restored.timeline,
+    timeline: selection.timeline,
     phoneVcam: createDefaultPhoneVcamState(),
   };
 }

@@ -57,7 +57,8 @@
 - [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)：本地 baseline、空画布 UI 构造、transaction-derived、Director 和源站只读/disposable fixture 的统一身份与 reset 合同。
 - [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)：`PAR-005` 源站 page shell、baseline、overlay、lifecycle 和 responsive 的只读复核 runbook。
 - [`LIBTV_VERIFIER_REPLACEMENT_MAP.md`](LIBTV_VERIFIER_REPLACEMENT_MAP.md)：历史 clone 断言的保留/降级/替换矩阵、fixture 前提和授权后的迁移顺序。
-- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-86 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director Batch 35-50/59 的 17 个 browser 脚本分级、Batch 67-87 current gates、artifact/storage 成本和 `LIBTV-VR-024` 可靠性入口。
+- [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/README.md)：Director undo/redo selection authority、失效选择 repair 和 portable-document 边界。
 - [`storyai-3d-director-desk-2026-08-27/`](storyai-3d-director-desk-2026-08-27/README.md)：StoryAI 固定上游与当前 Director Desk 的跨批次进展审计、借鉴决策矩阵、证据账本和后续路线图。
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
@@ -159,6 +160,7 @@
 | 84 | Director object-tree lock/visibility and locked-target edit protection | [`liblib-canvas-batch84-2026-08-29/`](liblib-canvas-batch84-2026-08-29/) `LOCK_EDITABILITY_FOCUSED_PASS`，lock/unlock、Inspector disabled controls、direct rejection、zero mutation/history、visibility continuity、unlock recovery 和 mobile discovery 已通过；不证明 LibTV source Director lock UI 或 source parity |
 | 85 | Director object-tree selection context and CRUD discoverability | [`liblib-canvas-batch85-2026-08-29/`](liblib-canvas-batch85-2026-08-29/) `SELECTION_CRUD_FOCUSED_PASS`，selection action bar、single/multi-selection count、project-scoped copy、clear zero-history、reference-aware batch delete、group context、mobile discovery 和 zero diagnostics 已通过；不证明 LibTV source Director selection bar 或 source parity |
 | 86 | Director transform target context and pointer cancellation | [`liblib-canvas-batch86-2026-08-29/`](liblib-canvas-batch86-2026-08-29/) `TRANSFORM_CONTEXT_FOCUSED_PASS`，目标上下文、真实 gizmo drag、authoring/runtime/history、pointercancel/lost capture、locked zero mutation、Inspector position continuity、mobile geometry 和 zero diagnostics 已通过；不证明 LibTV source Director gizmo/target context 或 source parity |
+| 87 | Director undo/redo restore selection authority | [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/) `RESTORE_SELECTION_FOCUSED_PASS`，undo/redo/cancel preserve-and-repair、对象树/Inspector/Viewport/Timeline 一致性、失效选择清理、portable document selection exclusion 和 zero diagnostics 已通过；不证明 LibTV source Director undo selection policy 或 source parity |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -173,6 +175,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 84 | Director object-tree lock/editability | 已完成；current verifier manifest、locked-target UI/store guard、zero mutation/history reject 和 unlock recovery 已通过，详见 [`liblib-canvas-batch84-2026-08-29/`](liblib-canvas-batch84-2026-08-29/) |
 | 85 | Director object-tree selection/CRUD discoverability | 已完成；selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 已通过，详见 [`liblib-canvas-batch85-2026-08-29/`](liblib-canvas-batch85-2026-08-29/) |
 | 86 | Director transform target context and pointer cancellation | 已完成；目标上下文、真实 gizmo drag、pointercancel/lost capture、locked rejection、authoring/runtime/history continuity 和 mobile geometry 已通过，详见 [`liblib-canvas-batch86-2026-08-29/`](liblib-canvas-batch86-2026-08-29/) |
+| 87 | Director undo/redo restore selection authority | 已完成；恢复策略显式化、有效选择保留、失效选择 repair、对象树/Inspector/Viewport/Timeline authority 和 portable document exclusion 已通过，详见 [`liblib-canvas-batch87-2026-08-29/`](liblib-canvas-batch87-2026-08-29/) |
 
 ## Stable Cross-Cutting Research
 
