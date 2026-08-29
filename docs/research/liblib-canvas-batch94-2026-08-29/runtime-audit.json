@@ -1,0 +1,184 @@
+{
+  "batch": 94,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "sourceExact": false,
+  "contract": {
+    "scope": "clone-owned Director focus containment and keyboard boundary",
+    "screenshotsWritten": false,
+    "screenshotRecognition": false,
+    "remoteSync": false
+  },
+  "staticContract": {
+    "workspaceFocusScope": true,
+    "mobileTreeFocusScope": true,
+    "mobileInspectorFocusScope": true,
+    "inertRails": true,
+    "tabContainment": true,
+    "focusReturn": true
+  },
+  "desktop": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "initialFocusInsideWorkspace": true,
+    "workspaceTabCycle": {
+      "focusableCount": 79,
+      "forwardSamples": [
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "返回画布",
+          "dataScope": "workspace",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": null,
+          "dataScope": "workspace",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": null,
+          "dataScope": "workspace",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "导出导演台项目",
+          "dataScope": "workspace",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        }
+      ],
+      "forwardWrapped": true,
+      "reverseFirst": {
+        "tag": "button",
+        "id": "",
+        "ariaLabel": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+        "dataScope": "workspace",
+        "isWorkspace": true,
+        "isCanvasRoot": false
+      },
+      "reverseStayedInside": true
+    },
+    "editableBoundary": true,
+    "closeButtonFocusReturn": true,
+    "escapeFocusReturn": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0,
+      "details": []
+    }
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "treeDrawer": {
+      "scope": "tree",
+      "focusableCount": 20,
+      "initialFocus": true,
+      "tabCycleStayedInside": true,
+      "tabSamples": [
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "新增机位",
+          "dataScope": "tree",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "复制当前选择",
+          "dataScope": "tree",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "删除当前选择",
+          "dataScope": "tree",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "清除当前选择",
+          "dataScope": "tree",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        }
+      ],
+      "inactivePeerIsInert": true,
+      "closeFocusReturn": true,
+      "closeMethod": "backdrop"
+    },
+    "inspectorDrawer": {
+      "scope": "inspector",
+      "focusableCount": 15,
+      "initialFocus": true,
+      "tabCycleStayedInside": true,
+      "tabSamples": [
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": null,
+          "dataScope": "inspector",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "ariaLabel": null,
+          "dataScope": "inspector",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "隐藏对象",
+          "dataScope": "inspector",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "锁定对象",
+          "dataScope": "inspector",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        }
+      ],
+      "inactivePeerIsInert": true,
+      "closeFocusReturn": true,
+      "closeMethod": "escape"
+    },
+    "collapsedRailsAreInert": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0,
+      "details": []
+    }
+  }
+}

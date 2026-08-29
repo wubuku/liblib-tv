@@ -26,6 +26,10 @@ import {
 import { DirectorInspector } from "@/components/director/DirectorInspector";
 import { DirectorObjectTree } from "@/components/director/DirectorObjectTree";
 import { DirectorTimeline } from "@/components/director/DirectorTimeline";
+import {
+  getDirectorFocusableElements,
+  useDirectorFocusContainment,
+} from "@/components/director/useDirectorFocusContainment";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import type {
   DirectorVideoExportRequest,
@@ -200,8 +204,12 @@ export default function DirectorDesk({
     string | null
   >(null);
   const workspaceRef = useRef<HTMLDivElement>(null);
+  const treePanelRef = useRef<HTMLElement>(null);
+  const inspectorPanelRef = useRef<HTMLElement>(null);
+  const mobilePanelReturnRef = useRef<HTMLElement | null>(null);
   const projectImportInputRef = useRef<HTMLInputElement>(null);
   const exportRequestId = useRef(0);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const exporting = exportStatus === "exporting";
   const phoneVcamRecording = phoneVcamStatus === "recording";
   const workspaceBusy = exporting || phoneVcamRecording;
@@ -218,10 +226,40 @@ export default function DirectorDesk({
     () => getDirectorCommandFeedback(lastCommandResult),
     [lastCommandResult],
   );
+  const activeMobileFocusScope =
+    isMobileViewport && activeMobilePanel ? activeMobilePanel : null;
+  const {
+    restoreFocus,
+    returnDisposition,
+  } = useDirectorFocusContainment({
+    rootRef: workspaceRef,
+    initialFocus: "root",
+    returnFocus: true,
+  });
+  useDirectorFocusContainment({
+    rootRef: treePanelRef,
+    enabled: activeMobileFocusScope === "tree",
+    initialFocus: "first",
+    stopPropagation: true,
+  });
+  useDirectorFocusContainment({
+    rootRef: inspectorPanelRef,
+    enabled: activeMobileFocusScope === "inspector",
+    initialFocus: "first",
+    stopPropagation: true,
+  });
 
   useEffect(() => {
     openSession(projectOwner);
   }, [openSession, projectOwner]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 899px)");
+    const update = () => setIsMobileViewport(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -232,11 +270,48 @@ export default function DirectorDesk({
 
   const openMobilePanel = useCallback(
     (panel: Exclude<MobilePanel, null>) => {
+      const activeElement = document.activeElement;
+      if (activeElement instanceof HTMLElement) {
+        mobilePanelReturnRef.current = activeElement;
+      }
       setViewportPanelsCollapsed(false);
       setMobilePanel(panel);
     },
     [setViewportPanelsCollapsed],
   );
+
+  const closeMobilePanel = useCallback(() => {
+    setMobilePanel(null);
+    const target = mobilePanelReturnRef.current;
+    window.requestAnimationFrame(() => {
+      if (target?.isConnected && !target.hasAttribute("disabled")) {
+        target.focus({ preventScroll: true });
+      } else {
+        workspaceRef.current?.focus({ preventScroll: true });
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!activeMobileFocusScope) return;
+    const panel =
+      activeMobileFocusScope === "tree"
+        ? treePanelRef.current
+        : inspectorPanelRef.current;
+    if (!panel) return;
+    const frame = window.requestAnimationFrame(() => {
+      const first = getDirectorFocusableElements(panel)[0];
+      first?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [activeMobileFocusScope]);
+
+  const treeMobileInactive =
+    isMobileViewport &&
+    (activeMobilePanel !== "tree" || viewportPanelsCollapsed);
+  const inspectorMobileInactive =
+    isMobileViewport &&
+    (activeMobilePanel !== "inspector" || viewportPanelsCollapsed);
 
   const closeWorkspace = useCallback(() => {
     if (workspaceBusy) return;
@@ -245,6 +320,7 @@ export default function DirectorDesk({
     }
     closeSession(projectOwner);
     selectNode(exportedNodeId ?? sourceNodeId);
+    restoreFocus();
     onClose();
   }, [
     closeSession,
@@ -252,6 +328,7 @@ export default function DirectorDesk({
     exportedNodeId,
     onClose,
     projectOwner,
+    restoreFocus,
     selectNode,
     sourceNodeId,
     workspaceBusy,
@@ -266,7 +343,13 @@ export default function DirectorDesk({
           target.tagName === "INPUT" ||
           target.tagName === "TEXTAREA" ||
           target.tagName === "SELECT");
-      if (event.isComposing || isEditable) return;
+      if (event.isComposing) return;
+      if (event.key === "Escape" && activeMobilePanel) {
+        event.preventDefault();
+        closeMobilePanel();
+        return;
+      }
+      if (isEditable) return;
 
       const modifier = event.metaKey || event.ctrlKey;
       if (modifier && event.key.toLowerCase() === "c") {
@@ -336,10 +419,6 @@ export default function DirectorDesk({
         cancelDirectorGesture();
         return;
       }
-      if (activeMobilePanel) {
-        setMobilePanel(null);
-        return;
-      }
       if (exportPanelOpen) {
         setExportPanelOpen(false);
         return;
@@ -351,6 +430,7 @@ export default function DirectorDesk({
   }, [
     activeMobilePanel,
     cancelDirectorGesture,
+    closeMobilePanel,
     closeWorkspace,
     copyDirectorSelection,
     deleteDirectorEntity,
@@ -668,6 +748,11 @@ export default function DirectorDesk({
       data-director-project-io-status={projectTransferStatus}
       data-director-project-io-message={projectTransferMessage ?? ""}
       data-director-panels-collapsed={viewportPanelsCollapsed}
+      data-director-focus-scope="workspace"
+      data-director-focus-return={returnDisposition}
+      data-director-focus-state={
+        activeMobileFocusScope ? `mobile-${activeMobileFocusScope}` : "workspace"
+      }
       role="dialog"
       aria-modal="true"
       aria-label="3D导演台工作区"
@@ -886,14 +971,21 @@ export default function DirectorDesk({
             <button
               type="button"
               aria-label="关闭移动端面板"
-              onClick={() => setMobilePanel(null)}
+              onClick={closeMobilePanel}
               className="absolute inset-0 z-20 hidden bg-black/45 max-[899px]:block"
             />
           ) : null}
 
           <aside
+            ref={treePanelRef}
             aria-label="场景对象"
-            aria-hidden={viewportPanelsCollapsed ? "true" : undefined}
+            aria-hidden={
+              viewportPanelsCollapsed || treeMobileInactive ? "true" : undefined
+            }
+            inert={treeMobileInactive || viewportPanelsCollapsed}
+            data-director-focus-scope={
+              activeMobileFocusScope === "tree" ? "tree" : undefined
+            }
             data-director-mobile-panel-state={activeMobilePanel === "tree" ? "open" : "closed"}
             className={cn(
               "absolute inset-y-0 left-0 z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200",
@@ -925,8 +1017,17 @@ export default function DirectorDesk({
           </main>
 
           <aside
+            ref={inspectorPanelRef}
             aria-label="属性"
-            aria-hidden={viewportPanelsCollapsed ? "true" : undefined}
+            aria-hidden={
+              viewportPanelsCollapsed || inspectorMobileInactive
+                ? "true"
+                : undefined
+            }
+            inert={inspectorMobileInactive || viewportPanelsCollapsed}
+            data-director-focus-scope={
+              activeMobileFocusScope === "inspector" ? "inspector" : undefined
+            }
             data-director-mobile-panel-state={activeMobilePanel === "inspector" ? "open" : "closed"}
             className={cn(
               "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
@@ -936,11 +1037,11 @@ export default function DirectorDesk({
                 : "max-[899px]:translate-x-full",
             )}
           >
-          <DirectorInspector
-            activeCapture={activeCapture}
-            onSendCapture={sendCapture}
-            onSendAllCaptures={sendAllCaptures}
-          />
+            <DirectorInspector
+              activeCapture={activeCapture}
+              onSendCapture={sendCapture}
+              onSendAllCaptures={sendAllCaptures}
+            />
           </aside>
         </div>
 
