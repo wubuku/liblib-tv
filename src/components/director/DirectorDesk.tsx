@@ -61,6 +61,54 @@ import {
 type MobilePanel = "tree" | "inspector" | null;
 type DirectorProjectTransferStatus = "idle" | "success" | "error";
 
+function formatDirectorShotRange(startTime: number, endTime: number): string {
+  return `${startTime.toFixed(1)}-${endTime.toFixed(1)}s`;
+}
+
+function DirectorShotBar() {
+  const shots = useDirectorStore((state) => state.shots);
+  const activeShotId = useDirectorStore((state) => state.activeShotId);
+  const selectShot = useDirectorStore((state) => state.selectShot);
+
+  return (
+    <nav
+      data-director-shot-bar
+      data-director-active-shot-id={activeShotId ?? ""}
+      aria-label="导演台镜头"
+      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3"
+    >
+      <span className="shrink-0 text-[10px] uppercase tracking-[0.08em] text-[#666]">
+        镜头
+      </span>
+      <div className="flex min-w-0 items-center gap-1">
+        {shots.map((shot) => {
+          const active = shot.id === activeShotId;
+          return (
+            <button
+              key={shot.id}
+              type="button"
+              data-director-shot-option={shot.id}
+              aria-pressed={active}
+              onClick={() => selectShot(shot.id)}
+              className={cn(
+                "flex h-7 shrink-0 items-center gap-2 rounded border px-2 text-left text-[10px] text-[#858585] hover:text-white",
+                active
+                  ? "border-[#09caf5]/40 bg-[#09caf5]/10 text-[#dffaff]"
+                  : "border-white/[0.07] bg-[#222]",
+              )}
+            >
+              <span className="max-w-[150px] truncate">{shot.name}</span>
+              <span className="tabular-nums text-[#626262]">
+                {formatDirectorShotRange(shot.startTime, shot.endTime)}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
 function getCurrentDirectorAsyncContext(): DirectorAsyncIngressContextV1 | null {
   const state = useDirectorStore.getState();
   if (
@@ -1001,6 +1049,8 @@ export default function DirectorDesk({
           </button>
         </div>
       </header>
+
+      <DirectorShotBar />
 
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="relative min-h-0 flex-1">

@@ -117,12 +117,22 @@ export type DirectorAspectRatioV1 = "16:9" | "9:16" | "1:1";
 export interface DirectorCaptureDescriptorV1 {
   id: string;
   cameraId: string | null;
+  shotId: string | null;
   cameraName: string;
   aspectRatio: DirectorAspectRatioV1;
   width: number;
   height: number;
   createdAt: string;
   resourceRefId: string | null;
+}
+
+export interface DirectorShotRecordV1 {
+  id: string;
+  name: string;
+  cameraId: string;
+  startTime: number;
+  endTime: number;
+  captureIds: string[];
 }
 
 export interface DirectorSpeedCurveDocumentV1 {
@@ -231,6 +241,7 @@ export interface DirectorProjectDocumentV1 {
   scene: DirectorSceneDocumentV1;
   objects: DirectorObjectDocumentV1[];
   groups: DirectorGroupDocumentV1[];
+  shots: DirectorShotRecordV1[];
   activeCameraId: string;
   timeline: DirectorTimelineDocumentV1;
   outputPreferences: {
@@ -250,6 +261,7 @@ export interface DirectorProjectSnapshotInput {
   aspectRatio: DirectorAspectRatioV1;
   timeline: DirectorTimelineState;
   captures?: DirectorCapture[];
+  shots?: DirectorShotRecordV1[];
   resourceRefs?: DirectorResourceReferenceV1[];
 }
 
@@ -461,6 +473,29 @@ function expectExactKeys(
     }
   }
   for (const key of keys) {
+    if (!(key in value)) {
+      fail("INVALID_FIELD", `${path}.${key}`, "required field is missing");
+    }
+  }
+}
+
+function expectExactKeysWithOptional(
+  value: UnknownRecord,
+  requiredKeys: readonly string[],
+  optionalKeys: readonly string[],
+  path: string,
+): void {
+  const allowed = new Set([...requiredKeys, ...optionalKeys]);
+  for (const key of Object.keys(value)) {
+    if (!allowed.has(key)) {
+      fail(
+        "UNKNOWN_FIELD",
+        `${path}.${key}`,
+        `unknown field "${key}"`,
+      );
+    }
+  }
+  for (const key of requiredKeys) {
     if (!(key in value)) {
       fail("INVALID_FIELD", `${path}.${key}`, "required field is missing");
     }
@@ -1127,7 +1162,7 @@ function expectCaptureDescriptor(
   path: string,
 ): DirectorCaptureDescriptorV1 {
   const record = expectRecord(value, path);
-  expectExactKeys(
+  expectExactKeysWithOptional(
     record,
     [
       "id",
@@ -1139,6 +1174,7 @@ function expectCaptureDescriptor(
       "createdAt",
       "resourceRefId",
     ],
+    ["shotId"],
     path,
   );
   const width = expectFiniteNumber(record.width, `${path}.width`);
@@ -1156,6 +1192,10 @@ function expectCaptureDescriptor(
   return {
     id: expectString(record.id, `${path}.id`),
     cameraId: expectNullableString(record.cameraId, `${path}.cameraId`),
+    shotId:
+      record.shotId === undefined
+        ? null
+        : expectNullableString(record.shotId, `${path}.shotId`),
     cameraName: expectString(record.cameraName, `${path}.cameraName`),
     aspectRatio: expectEnum(
       record.aspectRatio,
@@ -1169,6 +1209,55 @@ function expectCaptureDescriptor(
       record.resourceRefId,
       `${path}.resourceRefId`,
     ),
+  };
+}
+
+function deriveDefaultShots(
+  objects: DirectorObjectDocumentV1[],
+  duration: number,
+  captures: DirectorCaptureDescriptorV1[],
+): DirectorShotRecordV1[] {
+  return objects
+    .filter((object) => object.kind === "camera")
+    .map((camera) => ({
+      id: `director-shot-${camera.id}`,
+      name: `${camera.name} · 镜头`,
+      cameraId: camera.id,
+      startTime: 0,
+      endTime: duration,
+      captureIds: captures
+        .filter((capture) => capture.cameraId === camera.id)
+        .map((capture) => capture.id),
+    }));
+}
+
+function expectShot(
+  value: unknown,
+  path: string,
+  duration: number,
+): DirectorShotRecordV1 {
+  const record = expectRecord(value, path);
+  expectExactKeys(
+    record,
+    ["id", "name", "cameraId", "startTime", "endTime", "captureIds"],
+    path,
+  );
+  const startTime = expectFiniteNumber(record.startTime, `${path}.startTime`);
+  const endTime = expectFiniteNumber(record.endTime, `${path}.endTime`);
+  if (startTime < 0 || startTime >= endTime || endTime > duration) {
+    fail(
+      "INVALID_FIELD",
+      path,
+      "shot range must satisfy 0 <= startTime < endTime <= timeline duration",
+    );
+  }
+  return {
+    id: expectString(record.id, `${path}.id`),
+    name: expectString(record.name, `${path}.name`),
+    cameraId: expectString(record.cameraId, `${path}.cameraId`),
+    startTime,
+    endTime,
+    captureIds: expectIdArray(record.captureIds, `${path}.captureIds`),
   };
 }
 
@@ -1187,7 +1276,7 @@ function expectOwner(
 
 function expectDocument(value: unknown): DirectorProjectDocumentV1 {
   const record = expectRecord(value, "$");
-  expectExactKeys(
+  expectExactKeysWithOptional(
     record,
     [
       "schemaVersion",
@@ -1202,6 +1291,7 @@ function expectDocument(value: unknown): DirectorProjectDocumentV1 {
       "resourceRefs",
       "captureDescriptors",
     ],
+    ["shots"],
     "$",
   );
   if (record.schemaVersion !== DIRECTOR_PROJECT_SCHEMA_VERSION) {
@@ -1252,16 +1342,44 @@ function expectDocument(value: unknown): DirectorProjectDocumentV1 {
     expectResourceReference(item, `$.resourceRefs[${index}]`),
   );
   ensureUniqueIds(resourceRefs.map((resource) => resource.id), "$.resourceRefs");
-  const captureDescriptors = expectArray(
+  const parsedCaptureDescriptors = expectArray(
     record.captureDescriptors,
     "$.captureDescriptors",
   ).map((item, index) =>
     expectCaptureDescriptor(item, `$.captureDescriptors[${index}]`),
   );
   ensureUniqueIds(
-    captureDescriptors.map((capture) => capture.id),
+    parsedCaptureDescriptors.map((capture) => capture.id),
     "$.captureDescriptors",
   );
+  const legacyDocument = record.shots === undefined;
+  const shots =
+    legacyDocument
+      ? deriveDefaultShots(objects, duration, parsedCaptureDescriptors)
+      : expectArray(record.shots, "$.shots").map((item, index) =>
+          expectShot(item, `$.shots[${index}]`, duration),
+        );
+  ensureUniqueIds(
+    shots.map((shot) => shot.id),
+    "$.shots",
+  );
+  const shotByCameraId = new Map(
+    shots.map((shot) => [shot.cameraId, shot]),
+  );
+  const captureMembership = new Map(
+    shots.flatMap((shot) =>
+      shot.captureIds.map((captureId) => [captureId, shot.id] as const),
+    ),
+  );
+  const captureDescriptors = parsedCaptureDescriptors.map((capture) => ({
+    ...capture,
+    shotId:
+      capture.shotId ??
+      captureMembership.get(capture.id) ??
+      (legacyDocument
+        ? shotByCameraId.get(capture.cameraId ?? "")?.id ?? null
+        : null),
+  }));
   const motionPaths = expectArray(
     durationRecord.motionPaths,
     "$.timeline.motionPaths",
@@ -1290,6 +1408,7 @@ function expectDocument(value: unknown): DirectorProjectDocumentV1 {
     scene: expectScene(record.scene, "$.scene"),
     objects,
     groups,
+    shots,
     activeCameraId: expectString(record.activeCameraId, "$.activeCameraId"),
     timeline: {
       duration,
@@ -1455,6 +1574,91 @@ function validateReferences(document: DirectorProjectDocumentV1): void {
       `$.captureDescriptors[${captureIndex}].resourceRefId`,
       "capture resource",
     );
+  });
+
+  const shotIds = new Set(document.shots.map((shot) => shot.id));
+  const captureIds = new Set(
+    document.captureDescriptors.map((capture) => capture.id),
+  );
+  const shotCameraIds = new Set<string>();
+  const capturesByShot = new Map<string, string>();
+  document.shots.forEach((shot, shotIndex) => {
+    requireReference(
+      cameraIds,
+      shot.cameraId,
+      `$.shots[${shotIndex}].cameraId`,
+      "shot camera",
+    );
+    if (shotCameraIds.has(shot.cameraId)) {
+      fail(
+        "INVALID_FIELD",
+        `$.shots[${shotIndex}].cameraId`,
+        `camera "${shot.cameraId}" cannot own multiple shots`,
+      );
+    }
+    shotCameraIds.add(shot.cameraId);
+    shot.captureIds.forEach((captureId, captureIndex) => {
+      requireReference(
+        captureIds,
+        captureId,
+        `$.shots[${shotIndex}].captureIds[${captureIndex}]`,
+        "shot capture",
+      );
+      if (capturesByShot.has(captureId)) {
+        fail(
+          "INVALID_FIELD",
+          `$.shots[${shotIndex}].captureIds[${captureIndex}]`,
+          `capture "${captureId}" cannot belong to multiple shots`,
+        );
+      }
+      capturesByShot.set(captureId, shot.id);
+    });
+  });
+  cameraIds.forEach((cameraId) => {
+    if (!shotCameraIds.has(cameraId)) {
+      fail(
+        "INVALID_FIELD",
+        "$.shots",
+        `camera "${cameraId}" must have a shot`,
+      );
+    }
+  });
+  document.captureDescriptors.forEach((capture, captureIndex) => {
+    const shotId = capture.shotId;
+    if (shotId !== null && !shotIds.has(shotId)) {
+      fail(
+        "DANGLING_REFERENCE",
+        `$.captureDescriptors[${captureIndex}].shotId`,
+        `capture shot "${shotId}" does not exist`,
+      );
+    }
+    const membership = capturesByShot.get(capture.id) ?? null;
+    if (shotId !== null && membership !== null && shotId !== membership) {
+      fail(
+        "INVALID_FIELD",
+        `$.captureDescriptors[${captureIndex}].shotId`,
+        "capture shot provenance must match shot membership",
+      );
+    }
+    if (membership !== null && capture.shotId === null) {
+      fail(
+        "INVALID_FIELD",
+        `$.captureDescriptors[${captureIndex}].shotId`,
+        "shot captures must carry matching shot provenance",
+      );
+    }
+    if (
+      capture.cameraId !== null &&
+      capture.shotId !== null &&
+      document.shots.find((shot) => shot.id === capture.shotId)?.cameraId !==
+        capture.cameraId
+    ) {
+      fail(
+        "INVALID_FIELD",
+        `$.captureDescriptors[${captureIndex}].shotId`,
+        "capture shot must belong to the capture camera",
+      );
+    }
   });
 
   const keyframeIds = new Set<string>();
@@ -1800,6 +2004,7 @@ function mapCapture(capture: DirectorCapture): DirectorCaptureDescriptorV1 {
   return {
     id: capture.id,
     cameraId: capture.cameraId,
+    shotId: capture.shotId ?? null,
     cameraName: capture.cameraName,
     aspectRatio: capture.aspectRatio,
     width: capture.width,
@@ -1816,6 +2021,7 @@ export function createDirectorProjectDocumentV1(
     input.objects,
     input.resourceRefs ?? [],
   );
+  const captureDescriptors = (input.captures ?? []).map(mapCapture);
   const document: DirectorProjectDocumentV1 = {
     schemaVersion: DIRECTOR_PROJECT_SCHEMA_VERSION,
     projectId: input.projectId,
@@ -1833,6 +2039,20 @@ export function createDirectorProjectDocumentV1(
     },
     objects: input.objects.map((object) => mapObject(object, resourceRefs)),
     groups: input.groups.map(mapGroup),
+    shots:
+      input.shots?.map((shot) => ({
+        id: shot.id,
+        name: shot.name,
+        cameraId: shot.cameraId,
+        startTime: shot.startTime,
+        endTime: shot.endTime,
+        captureIds: [...shot.captureIds],
+      })) ??
+      deriveDefaultShots(
+        input.objects.map((object) => mapObject(object, resourceRefs)),
+        input.timeline.duration,
+        captureDescriptors,
+      ),
     activeCameraId: input.activeCameraId,
     timeline: {
       duration: input.timeline.duration,
@@ -1845,7 +2065,7 @@ export function createDirectorProjectDocumentV1(
       aspectRatio: input.aspectRatio,
     },
     resourceRefs,
-    captureDescriptors: (input.captures ?? []).map(mapCapture),
+    captureDescriptors,
   };
   return normalizeDirectorProjectDocument(document);
 }

@@ -10,6 +10,7 @@ import {
   type DirectorProjectDocumentV1,
   type DirectorProjectOwnerV1,
   type DirectorResourceReferenceV1,
+  type DirectorShotRecordV1,
   type DirectorTimelineTrackDocumentV1,
 } from "./directorProjectDocument.ts";
 import {
@@ -28,6 +29,7 @@ export type DirectorWholeProjectEntityKind =
   | "path"
   | "anchor"
   | "resource"
+  | "shot"
   | "capture";
 
 export interface DirectorWholeProjectIdFactoryInput {
@@ -92,6 +94,7 @@ export interface DirectorWholeProjectIdMaps {
   paths: Record<string, string>;
   anchors: Record<string, string>;
   resources: Record<string, string>;
+  shots: Record<string, string>;
   captures: Record<string, string>;
 }
 
@@ -140,6 +143,7 @@ interface ProjectMaps {
   pathMap: Map<string, string>;
   anchorMap: Map<string, string>;
   resourceMap: Map<string, string>;
+  shotMap: Map<string, string>;
   captureMap: Map<string, string>;
 }
 
@@ -398,14 +402,35 @@ function mapCapture(
   const id = mapRequired(maps.captureMap, capture.id);
   if (!id) return null;
   const cameraId = mapNullable(maps.objectMap, capture.cameraId);
+  const shotId = mapNullable(maps.shotMap, capture.shotId);
   const resourceRefId = mapNullable(maps.resourceMap, capture.resourceRefId);
   if (
     (capture.cameraId !== null && cameraId === null) ||
+    (capture.shotId !== null && shotId === null) ||
     (capture.resourceRefId !== null && resourceRefId === null)
   ) {
     return null;
   }
-  return { ...capture, id, cameraId, resourceRefId };
+  return { ...capture, id, cameraId, shotId, resourceRefId };
+}
+
+function mapShot(
+  shot: DirectorShotRecordV1,
+  maps: ProjectMaps,
+): DirectorShotRecordV1 | null {
+  const id = mapRequired(maps.shotMap, shot.id);
+  const cameraId = mapRequired(maps.objectMap, shot.cameraId);
+  if (!id || !cameraId) return null;
+  const captureIds = shot.captureIds
+    .filter((captureId) => maps.captureMap.has(captureId))
+    .map((captureId) => mapRequired(maps.captureMap, captureId));
+  if (captureIds.some((captureId) => !captureId)) return null;
+  return {
+    ...shot,
+    id,
+    cameraId,
+    captureIds: captureIds as string[],
+  };
 }
 
 function rewriteDirectorLinkedData(
@@ -514,12 +539,14 @@ function rewriteProjectDocument(
   const captures = source.captureDescriptors
     .filter((capture) => capture.resourceRefId !== null)
     .map((capture) => mapCapture(capture, maps));
+  const shots = source.shots.map((shot) => mapShot(shot, maps));
   if (
     objects.some((object) => !object) ||
     groups.some((group) => !group) ||
     tracks.some((track) => !track) ||
     motionPaths.some((path) => !path) ||
-    captures.some((capture) => !capture)
+    captures.some((capture) => !capture) ||
+    shots.some((shot) => !shot)
   ) {
     return null;
   }
@@ -539,6 +566,7 @@ function rewriteProjectDocument(
     },
     objects: objects as DirectorObjectDocumentV1[],
     groups: groups as DirectorGroupDocumentV1[],
+    shots: shots as DirectorShotRecordV1[],
     activeCameraId,
     timeline: {
       ...source.timeline,
@@ -573,6 +601,7 @@ function createMaps(
   const pathMap = new Map<string, string>();
   const anchorMap = new Map<string, string>();
   const resourceMap = new Map<string, string>();
+  const shotMap = new Map<string, string>();
   const captureMap = new Map<string, string>();
 
   source.resourceRefs.forEach((resource, index) => {
@@ -614,6 +643,10 @@ function createMaps(
     const id = create("capture", capture.id, index);
     if (id) captureMap.set(capture.id, id);
   });
+  source.shots.forEach((shot, index) => {
+    const id = create("shot", shot.id, index);
+    if (id) shotMap.set(shot.id, id);
+  });
 
   const required = [
     [objectMap, source.objects.map((item) => item.id)],
@@ -639,6 +672,7 @@ function createMaps(
         .filter((item) => item.resourceRefId !== null)
         .map((item) => item.id),
     ],
+    [shotMap, source.shots.map((item) => item.id)],
   ] as const;
   if (required.some(([map, ids]) => ids.some((id) => !map.has(id)))) {
     return { maps: null, reason: "DUPLICATE_IDENTITY_ALLOCATION_FAILED" };
@@ -653,6 +687,7 @@ function createMaps(
       pathMap,
       anchorMap,
       resourceMap,
+      shotMap,
       captureMap,
     },
     reason: null,
@@ -799,6 +834,7 @@ export function planDirectorWholeProjectDuplicate(
           paths: {},
           anchors: {},
           resources: {},
+          shots: {},
           captures: {},
         },
         sourceWasFresh: true,
@@ -814,6 +850,7 @@ export function planDirectorWholeProjectDuplicate(
         pathMap: new Map(),
         anchorMap: new Map(),
         resourceMap: new Map(),
+        shotMap: new Map(),
         captureMap: new Map(),
       });
       continue;
@@ -848,6 +885,7 @@ export function planDirectorWholeProjectDuplicate(
         paths: recordFromMap(createdMaps.maps.pathMap),
         anchors: recordFromMap(createdMaps.maps.anchorMap),
         resources: recordFromMap(createdMaps.maps.resourceMap),
+        shots: recordFromMap(createdMaps.maps.shotMap),
         captures: recordFromMap(createdMaps.maps.captureMap),
       },
       sourceWasFresh: false,

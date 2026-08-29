@@ -15,6 +15,7 @@ import type {
   DirectorCharacterRigDocumentV1,
   DirectorProjectDocumentV1,
   DirectorResourceReferenceV1,
+  DirectorShotRecordV1,
   DirectorTimelineTrackDocumentV1,
   DirectorTransformDocumentV1,
 } from "@/lib/directorProjectDocument";
@@ -23,6 +24,7 @@ export interface DirectorProjectRuntimeSnapshotV1 {
   scene: DirectorProjectDocumentV1["scene"];
   objects: DirectorObject[];
   groups: DirectorCharacterGroup[];
+  shots: DirectorShotRecordV1[];
   activeCameraId: string;
   aspectRatio: DirectorProjectDocumentV1["outputPreferences"]["aspectRatio"];
   timeline: DirectorTimelineState;
@@ -237,6 +239,14 @@ export function restoreDirectorProjectRuntimeSnapshotV1(
             },
           }
         : {}),
+    })),
+    shots: document.shots.map((shot) => ({
+      id: shot.id,
+      name: shot.name,
+      cameraId: shot.cameraId,
+      startTime: shot.startTime,
+      endTime: shot.endTime,
+      captureIds: [...shot.captureIds],
     })),
     activeCameraId: document.activeCameraId,
     aspectRatio: document.outputPreferences.aspectRatio,

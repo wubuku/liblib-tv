@@ -110,7 +110,10 @@ import {
   type DirectorAsyncOwnerSnapshotV1,
   type DirectorAsyncResultEnvelopeV1,
 } from "@/lib/directorAsyncAuthority";
-import type { DirectorProjectDocumentV1 } from "@/lib/directorProjectDocument";
+import type {
+  DirectorProjectDocumentV1,
+  DirectorShotRecordV1,
+} from "@/lib/directorProjectDocument";
 import type {
   DirectorDuplicatePersistenceDisposition,
   DirectorWholeProjectCopyPlan,
@@ -222,6 +225,7 @@ export interface DirectorCapture {
   id: string;
   dataUrl: string;
   cameraId: string | null;
+  shotId: string | null;
   cameraName: string;
   aspectRatio: DirectorAspectRatio;
   width: number;
@@ -229,6 +233,8 @@ export interface DirectorCapture {
   createdAt: string;
   sentNodeId?: string;
 }
+
+export type DirectorShotRecord = DirectorShotRecordV1;
 
 export interface DirectorTransformKeyframe {
   id: string;
@@ -461,10 +467,12 @@ interface DirectorState {
   authoredObjects: DirectorObject[];
   objects: DirectorObject[];
   groups: DirectorCharacterGroup[];
+  shots: DirectorShotRecord[];
   selectedObjectId: string | null;
   selectedObjectIds: string[];
   selectedGroupId: string | null;
   activeCameraId: string;
+  activeShotId: string | null;
   viewMode: DirectorViewMode;
   transformMode: DirectorTransformMode;
   aspectRatio: DirectorAspectRatio;
@@ -521,6 +529,11 @@ interface DirectorState {
     spacing: number;
   }) => string | null;
   addDirectorCamera: () => DirectorCommandResult;
+  selectShot: (shotId: string | null) => void;
+  updateShot: (
+    shotId: string,
+    patch: Partial<Pick<DirectorShotRecord, "name" | "startTime" | "endTime">>,
+  ) => DirectorCommandResult;
   hydrateLocalModelLibrary: () => void;
   addLocalModelLibraryItem: (item: DirectorLocalModelLibraryItem) => void;
   startLocalModelResourceLoad: (resourceId: string) => string | null;
@@ -802,6 +815,31 @@ function cloneObjects(): DirectorObject[] {
       ? cloneDirectorCharacterRig(object.characterRig)
       : undefined,
   }));
+}
+
+function createDirectorShotForCamera(
+  camera: DirectorObject,
+  duration: number,
+  index?: number,
+): DirectorShotRecord {
+  const suffix = index === undefined ? "" : `-${index}`;
+  return {
+    id: `director-shot-${camera.id}${suffix}`,
+    name: `${camera.name} · 镜头`,
+    cameraId: camera.id,
+    startTime: 0,
+    endTime: duration,
+    captureIds: [],
+  };
+}
+
+function createDirectorShotsForObjects(
+  objects: DirectorObject[],
+  duration: number,
+): DirectorShotRecord[] {
+  return objects
+    .filter((object) => object.kind === "camera")
+    .map((camera) => createDirectorShotForCamera(camera, duration));
 }
 
 const DIRECTOR_LOCAL_MODEL_LIBRARY_STORAGE_KEY =
@@ -1794,6 +1832,7 @@ function capturesForDirectorDocument(
       return {
         ...capture,
         cameraId: descriptor.cameraId,
+        shotId: descriptor.shotId,
         cameraName: descriptor.cameraName,
         aspectRatio: descriptor.aspectRatio,
         width: descriptor.width,
@@ -2365,6 +2404,7 @@ function snapshotCurrentDirectorProject(
     scene: state.scene,
     objects: state.authoredObjects,
     groups: state.groups,
+    shots: state.shots,
     activeCameraId: state.activeCameraId,
     aspectRatio: state.aspectRatio,
     timeline: state.timeline,
@@ -2386,6 +2426,15 @@ function restoreDirectorProjectState(
     authoredObjects[0]?.id ??
     null;
   const restoredTimeline = restored.timeline;
+  const activeShotId =
+    currentState?.activeShotId &&
+    restored.shots.some((shot) => shot.id === currentState.activeShotId)
+      ? currentState.activeShotId
+      : restored.shots.find(
+            (shot) => shot.cameraId === restored.activeCameraId,
+          )?.id ??
+        restored.shots[0]?.id ??
+        null;
   const selection =
     selectionPolicy === "preserve-current" && currentState
       ? repairDirectorSelectionState(
@@ -2426,10 +2475,12 @@ function restoreDirectorProjectState(
     authoredObjects,
     objects,
     groups: restored.groups,
+    shots: restored.shots,
     selectedObjectId: selection.selectedObjectId,
     selectedObjectIds: selection.selectedObjectIds,
     selectedGroupId: selection.selectedGroupId,
     activeCameraId: restored.activeCameraId,
+    activeShotId,
     viewMode: "director",
     transformMode: "translate",
     aspectRatio: restored.aspectRatio,
@@ -2446,6 +2497,7 @@ function restoreDirectorProjectState(
 }
 
 function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
+  const objects = cloneObjects();
   return {
     sourceNodeId: null,
     projectOwner: null,
@@ -2455,13 +2507,16 @@ function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
     projectLifecycle: null,
     sessionOutcome: null,
     scene: createDefaultScene(),
-    authoredObjects: cloneObjects(),
-    objects: cloneObjects(),
+    authoredObjects: objects,
+    objects,
     groups: [],
     selectedObjectId: "director-character-lead",
     selectedObjectIds: ["director-character-lead"],
     selectedGroupId: null,
     activeCameraId: "director-camera-main",
+    activeShotId:
+      createDirectorShotsForObjects(objects, createDefaultTimeline().duration)[0]
+        ?.id ?? null,
     viewMode: "director",
     transformMode: "translate",
     aspectRatio: "16:9",
@@ -2614,6 +2669,15 @@ function projectDirectorDeleteState(
 
   const activeCameraChanged =
     state.activeCameraId !== restored.activeCameraId;
+  const activeShotId =
+    state.activeShotId &&
+    restored.shots.some((shot) => shot.id === state.activeShotId)
+      ? state.activeShotId
+      : restored.shots.find(
+            (shot) => shot.cameraId === restored.activeCameraId,
+          )?.id ??
+        restored.shots[0]?.id ??
+        null;
   const phoneVcamInvalidated =
     activeCameraChanged ||
     (state.phoneVcam.importedCameraId !== null &&
@@ -2656,7 +2720,9 @@ function projectDirectorDeleteState(
       authoredObjects,
       objects,
       groups: restored.groups,
+      shots: restored.shots,
       activeCameraId: restored.activeCameraId,
+      activeShotId,
       aspectRatio: restored.aspectRatio,
       selectedObjectId,
       selectedObjectIds,
@@ -2729,10 +2795,20 @@ function projectDirectorClipboardPasteState(
       restored.groups,
     ),
     groups: restored.groups,
+    shots: restored.shots,
     selectedObjectId,
     selectedObjectIds,
     selectedGroupId: plan.selection.selectedGroupId,
     activeCameraId: restored.activeCameraId,
+    activeShotId:
+      state.activeShotId &&
+      restored.shots.some((shot) => shot.id === state.activeShotId)
+        ? state.activeShotId
+        : restored.shots.find(
+              (shot) => shot.cameraId === restored.activeCameraId,
+            )?.id ??
+          restored.shots[0]?.id ??
+          null,
     timeline,
   };
 }
@@ -2778,10 +2854,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   authoredObjects: cloneObjects(),
   objects: cloneObjects(),
   groups: [],
+  shots: createDirectorShotsForObjects(cloneObjects(), 8),
   selectedObjectId: "director-character-lead",
   selectedObjectIds: ["director-character-lead"],
   selectedGroupId: null,
   activeCameraId: "director-camera-main",
+  activeShotId: "director-shot-director-camera-main",
   viewMode: "director",
   transformMode: "translate",
   aspectRatio: "16:9",
@@ -2984,6 +3062,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       importedDocument = {
         ...importedDocument,
         captureDescriptors: [],
+        shots: importedDocument.shots.map((shot) => ({
+          ...shot,
+          captureIds: [],
+        })),
       };
       beforeDocument = snapshotCurrentDirectorProject(state, session);
     } catch {
@@ -3047,6 +3129,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: restored.scene ?? state.scene,
       objects: restored.authoredObjects ?? state.authoredObjects,
       groups: restored.groups ?? state.groups,
+      shots: restored.shots ?? state.shots,
       activeCameraId: restored.activeCameraId ?? state.activeCameraId,
       aspectRatio: restored.aspectRatio ?? state.aspectRatio,
       timeline: restored.timeline ?? state.timeline,
@@ -4021,6 +4104,14 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         return state;
       }
       const selectedObjectIds = objectId ? [objectId] : [];
+      const selectedObject = objectId
+        ? state.objects.find((object) => object.id === objectId)
+        : null;
+      const selectedShot =
+        selectedObject?.kind === "camera"
+          ? state.shots.find((shot) => shot.cameraId === selectedObject.id) ??
+            null
+          : null;
       const timeline = normalizeDirectorTimelineSelection(
         {
           ...state.timeline,
@@ -4037,6 +4128,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         selectedObjectId: objectId,
         selectedObjectIds,
         selectedGroupId: null,
+        ...(selectedShot
+          ? {
+              activeCameraId: selectedShot.cameraId,
+              activeShotId: selectedShot.id,
+            }
+          : {}),
         timeline,
       };
     }),
@@ -4210,6 +4307,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: state.authoredObjects,
       groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -4410,6 +4508,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
     const authoredObjects = [...state.authoredObjects, camera];
     const track = createTrackForObject(camera, state.timeline.currentTime);
+    const shot = createDirectorShotForCamera(
+      camera,
+      state.timeline.duration,
+      cameraCount + 1,
+    );
+    const shots = [...state.shots, shot];
     const selectedObjectIds = [camera.id];
     const timeline = normalizeDirectorTimelineSelection(
       {
@@ -4436,6 +4540,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: authoredObjects,
       groups: state.groups,
+      shots,
       activeCameraId: camera.id,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -4480,10 +4585,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           timeline,
           state.groups,
         ),
+        shots,
         selectedObjectId: camera.id,
         selectedObjectIds,
         selectedGroupId: null,
         activeCameraId: camera.id,
+        activeShotId: shot.id,
         timeline,
         history,
         lastCommandResult: result,
@@ -4492,6 +4599,178 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       directorHistorySyncSuspended = false;
     }
     return result;
+  },
+
+  selectShot: (shotId) =>
+    set((state) => {
+      if (shotId === null) {
+        return { activeShotId: null };
+      }
+      const shot = state.shots.find((item) => item.id === shotId);
+      if (!shot || !state.objects.some((object) => object.id === shot.cameraId)) {
+        return state;
+      }
+      const selectedObjectIds = [shot.cameraId];
+      const currentTime = Math.min(
+        Math.max(state.timeline.currentTime, shot.startTime),
+        shot.endTime,
+      );
+      const timeline = normalizeDirectorTimelineSelection(
+        {
+          ...state.timeline,
+          currentTime,
+          selectedMotionPathId: null,
+          selectedMotionPathAnchorId: null,
+          selectedMotionPathHandle: null,
+          motionPathDraft: null,
+          isPlaying: false,
+        },
+        {
+          selectedObjectId: shot.cameraId,
+          selectedObjectIds,
+          selectedGroupId: null,
+        },
+      );
+      return {
+        activeShotId: shot.id,
+        activeCameraId: shot.cameraId,
+        selectedObjectId: shot.cameraId,
+        selectedObjectIds,
+        selectedGroupId: null,
+        timeline,
+      };
+    }),
+
+  updateShot: (shotId, patch) => {
+    const state = get();
+    const shot = state.shots.find((item) => item.id === shotId);
+    const invalidPatchKey = Object.keys(patch).find(
+      (key) => !["name", "startTime", "endTime"].includes(key),
+    );
+    const name =
+      patch.name === undefined ? shot?.name : patch.name.trim();
+    const startTime = patch.startTime ?? shot?.startTime;
+    const endTime = patch.endTime ?? shot?.endTime;
+    if (
+      !shot ||
+      !state.projectId ||
+      state.generation === null ||
+      invalidPatchKey ||
+      typeof name !== "string" ||
+      name.length === 0 ||
+      startTime === undefined ||
+      endTime === undefined ||
+      !Number.isFinite(startTime) ||
+      !Number.isFinite(endTime) ||
+      startTime < 0 ||
+      startTime >= endTime ||
+      endTime > state.timeline.duration
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SHOT",
+        disposition: shot && invalidPatchKey === undefined
+          ? "REJECTED"
+          : "REJECTED",
+        reason: !shot
+          ? "DIRECTOR_TARGET_MISSING"
+          : "DIRECTOR_INVALID_VALUE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (state.history.activeGesture) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SHOT",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const nextShot: DirectorShotRecord = {
+      ...shot,
+      name,
+      startTime,
+      endTime,
+    };
+    if (
+      nextShot.name === shot.name &&
+      nextShot.startTime === shot.startTime &&
+      nextShot.endTime === shot.endTime
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "UPDATE_SHOT",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+        projectChanged: false,
+        historyEntries: 0,
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = staleDirectorMutationResult(state, "UPDATE_SHOT");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const shots = state.shots.map((item) =>
+      item.id === shotId ? nextShot : item,
+    );
+    const timeline = state.activeShotId === shotId
+      ? {
+          ...state.timeline,
+          currentTime: Math.min(
+            Math.max(state.timeline.currentTime, startTime),
+            endTime,
+          ),
+        }
+      : state.timeline;
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: state.authoredObjects,
+      groups: state.groups,
+      shots,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    const commit = commitDirectorMutation(state, {
+      commandKind: "UPDATE_SHOT",
+      before,
+      after,
+      captures: state.captures,
+    });
+    if (!commit) {
+      const result = staleDirectorMutationResult(state, "UPDATE_SHOT");
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const objects = projectDirectorRuntimeObjects(
+      state.authoredObjects,
+      timeline,
+      state.groups,
+    );
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        shots,
+        timeline,
+        objects,
+        history: commit.history,
+        lastCommandResult: commit.result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return commit.result;
   },
 
   hydrateLocalModelLibrary: () =>
@@ -4804,6 +5083,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: state.authoredObjects,
       groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -4916,6 +5196,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           scene: state.scene,
           objects: authoredObjects,
           groups: state.groups,
+          shots: state.shots,
           activeCameraId: state.activeCameraId,
           aspectRatio: state.aspectRatio,
           timeline,
@@ -4937,6 +5218,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: authoredObjects,
       groups: state.groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -5109,6 +5391,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: nextScene,
       objects: state.authoredObjects,
       groups: state.groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline: state.timeline,
@@ -5271,6 +5554,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: authoredObjects,
       groups: state.groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -5631,6 +5915,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       scene: state.scene,
       objects: authoredObjects,
       groups: state.groups,
+      shots: state.shots,
       activeCameraId: state.activeCameraId,
       aspectRatio: state.aspectRatio,
       timeline,
@@ -5706,10 +5991,65 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   setCapturing: (capturing) => set({ isCapturing: capturing }),
 
   addCapture: (capture) =>
-    set((state) => ({
-      captures: [capture, ...state.captures].slice(0, 12),
-      activeCaptureId: capture.id,
-    })),
+    set((state) => {
+      const explicitShot =
+        capture.shotId !== null
+          ? state.shots.find(
+              (shot) =>
+                shot.id === capture.shotId &&
+                shot.cameraId === capture.cameraId,
+            ) ?? null
+          : null;
+      const shotId =
+        explicitShot?.id ??
+        state.shots.find((shot) => shot.cameraId === capture.cameraId)?.id ??
+        (capture.cameraId === state.activeCameraId
+          ? state.activeShotId
+          : null);
+      const normalizedCapture = {
+        ...capture,
+        shotId,
+      };
+      const nextCaptures = [normalizedCapture, ...state.captures]
+        .filter(
+          (item, index, all) =>
+            all.findIndex((candidate) => candidate.id === item.id) === index,
+        )
+        .slice(0, 12);
+      const retainedCaptureIds = new Set(
+        nextCaptures.map((item) => item.id),
+      );
+      const shots = shotId
+        ? state.shots.map((shot) =>
+            shot.id === shotId && !shot.captureIds.includes(capture.id)
+              ? {
+                  ...shot,
+                  captureIds: [
+                    ...shot.captureIds.filter((id) =>
+                      retainedCaptureIds.has(id),
+                    ),
+                    capture.id,
+                  ],
+                }
+              : {
+                  ...shot,
+                  captureIds: shot.captureIds.filter((id) =>
+                    retainedCaptureIds.has(id),
+                  ),
+                },
+          )
+        : state.shots.map((shot) => ({
+            ...shot,
+            captureIds: shot.captureIds.filter((id) =>
+              retainedCaptureIds.has(id),
+            ),
+          }));
+      return {
+        captures: nextCaptures,
+        shots,
+        activeCaptureId: capture.id,
+      };
+    }),
 
   selectCapture: (captureId) =>
     set((state) => ({
@@ -6235,6 +6575,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
     set((current) => {
       const authoredObjects = [...restoredObjects, camera];
+      const shot = createDirectorShotForCamera(
+        camera,
+        current.timeline.duration,
+        current.shots.length + 1,
+      );
+      const shots = [...current.shots, shot];
       const selectedObjectIds = [cameraId];
       const timeline = normalizeDirectorTimelineSelection(
         {
@@ -6265,10 +6611,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           timeline,
           current.groups,
         ),
+        shots,
         selectedObjectId: cameraId,
         selectedObjectIds,
         selectedGroupId: null,
         activeCameraId: cameraId,
+        activeShotId: shot.id,
         viewMode: "camera",
         timeline,
         phoneVcam: {

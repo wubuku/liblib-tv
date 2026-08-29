@@ -32,6 +32,7 @@ export interface DirectorDeleteClosure {
   deletedGroupIds: string[];
   deletedTrackIds: string[];
   deletedPathIds: string[];
+  deletedShotIds: string[];
   deletedCaptureIds: string[];
   deletedResourceIds: string[];
   repairedCameraIds: string[];
@@ -55,6 +56,7 @@ interface DirectorDeleteWorkingState {
   deletedGroupIds: Set<string>;
   deletedTrackIds: Set<string>;
   deletedPathIds: Set<string>;
+  deletedShotIds: Set<string>;
   deletedCaptureIds: Set<string>;
   deletedResourceIds: Set<string>;
   repairedCameraIds: Set<string>;
@@ -67,6 +69,7 @@ function emptyClosure(): DirectorDeleteClosure {
     deletedGroupIds: [],
     deletedTrackIds: [],
     deletedPathIds: [],
+    deletedShotIds: [],
     deletedCaptureIds: [],
     deletedResourceIds: [],
     repairedCameraIds: [],
@@ -85,6 +88,7 @@ function closureFromWorking(
     deletedGroupIds: stableValues(working.deletedGroupIds),
     deletedTrackIds: stableValues(working.deletedTrackIds),
     deletedPathIds: stableValues(working.deletedPathIds),
+    deletedShotIds: stableValues(working.deletedShotIds),
     deletedCaptureIds: stableValues(working.deletedCaptureIds),
     deletedResourceIds: stableValues(working.deletedResourceIds),
     repairedCameraIds: stableValues(working.repairedCameraIds),
@@ -131,6 +135,7 @@ function createWorkingState(
     deletedGroupIds: new Set<string>(),
     deletedTrackIds: new Set<string>(),
     deletedPathIds: new Set<string>(),
+    deletedShotIds: new Set<string>(),
     deletedCaptureIds: new Set<string>(),
     deletedResourceIds: new Set<string>(),
     repairedCameraIds: new Set<string>(),
@@ -305,12 +310,19 @@ function applyObjectClosure(
       };
     }),
     groups,
+    shots: working.document.shots.filter((shot) => {
+      if (!deletedCameraIds.has(shot.cameraId)) return true;
+      working.deletedShotIds.add(shot.id);
+      return false;
+    }),
     activeCameraId: deletedCameraIds.has(working.document.activeCameraId)
       ? survivingCameras[0].id
       : working.document.activeCameraId,
     captureDescriptors: working.document.captureDescriptors.map((capture) =>
       capture.cameraId && deletedCameraIds.has(capture.cameraId)
-        ? { ...capture, cameraId: null }
+        ? { ...capture, cameraId: null, shotId: null }
+        : working.deletedShotIds.has(capture.shotId ?? "")
+          ? { ...capture, shotId: null }
         : capture,
     ),
   };
@@ -416,6 +428,12 @@ function applyCaptureClosure(
     captureDescriptors: working.document.captureDescriptors.filter(
       (capture) => !captureIds.has(capture.id),
     ),
+    shots: working.document.shots.map((shot) => ({
+      ...shot,
+      captureIds: shot.captureIds.filter(
+        (captureId) => !captureIds.has(captureId),
+      ),
+    })),
   };
   return null;
 }

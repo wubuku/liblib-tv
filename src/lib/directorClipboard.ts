@@ -9,6 +9,7 @@ import {
   type DirectorPoseKeyframeDocumentV1,
   type DirectorProjectDocumentV1,
   type DirectorResourceReferenceV1,
+  type DirectorShotRecordV1,
   type DirectorTimelineTrackDocumentV1,
   type DirectorTransformDocumentV1,
   type DirectorTransformKeyframeDocumentV1,
@@ -28,6 +29,7 @@ export interface DirectorClipboardPacketV1 {
   selection: DirectorClipboardSelectionV1;
   objects: DirectorObjectDocumentV1[];
   groups: DirectorProjectDocumentV1["groups"];
+  shots: DirectorShotRecordV1[];
   timeline: {
     tracks: DirectorTimelineTrackDocumentV1[];
     motionPaths: DirectorMotionPathDocumentV1[];
@@ -60,7 +62,8 @@ export type DirectorClipboardEntityKind =
   | "track"
   | "path"
   | "keyframe"
-  | "anchor";
+  | "anchor"
+  | "shot";
 
 export type DirectorClipboardIdFactory = (input: {
   kind: DirectorClipboardEntityKind;
@@ -87,6 +90,7 @@ export interface DirectorClipboardPastePlan {
     paths: Record<string, string>;
     keyframes: Record<string, string>;
     anchors: Record<string, string>;
+    shots: Record<string, string>;
   };
   aliasedResourceIds: string[];
 }
@@ -232,6 +236,7 @@ export function validateDirectorClipboardPacket(
       "selection",
       "objects",
       "groups",
+      "shots",
       "timeline",
       "resourceRefs",
     ]) ||
@@ -251,6 +256,7 @@ export function validateDirectorClipboardPacket(
     ) ||
     !Array.isArray(input.objects) ||
     !Array.isArray(input.groups) ||
+    !Array.isArray(input.shots) ||
     !isRecord(input.timeline) ||
     !hasExactKeys(input.timeline, ["tracks", "motionPaths"]) ||
     !Array.isArray(input.timeline.tracks) ||
@@ -281,6 +287,14 @@ export function validateDirectorClipboardPacket(
       ? rawCamera.id
       : validationCameraId;
   const includesValidationCamera = activeCameraId === validationCameraId;
+  const validationShot: DirectorShotRecordV1 = {
+    id: "__director_clipboard_validation_shot__",
+    name: "Clipboard validation shot",
+    cameraId: validationCameraId,
+    startTime: 0,
+    endTime: 1_000_000_000,
+    captureIds: [],
+  };
   const decoded = decodeDirectorProjectDocument({
     schemaVersion: 1,
     projectId: input.sourceProjectId,
@@ -300,6 +314,9 @@ export function validateDirectorClipboardPacket(
       ? [...input.objects, createValidationCamera(validationCameraId)]
       : input.objects,
     groups: input.groups,
+    shots: includesValidationCamera
+      ? [...input.shots, validationShot]
+      : input.shots,
     activeCameraId,
     timeline: {
       duration: 1_000_000_000,
@@ -377,6 +394,9 @@ export function validateDirectorClipboardPacket(
     },
     objects,
     groups: decoded.document.groups,
+    shots: decoded.document.shots.filter(
+      (shot) => shot.cameraId !== validationCameraId,
+    ),
     timeline: {
       tracks: decoded.document.timeline.tracks,
       motionPaths: decoded.document.timeline.motionPaths,
@@ -458,6 +478,9 @@ export function buildDirectorClipboardPacket(input: {
   const motionPaths = document.timeline.motionPaths.filter((path) =>
     selectedObjectSet.has(path.objectId),
   );
+  const shots = document.shots
+    .filter((shot) => selectedObjectSet.has(shot.cameraId))
+    .map((shot) => ({ ...shot, captureIds: [] }));
   const selectedResourceIds = new Set(
     objects.flatMap((object) =>
       object.assetRefId === null ? [] : [object.assetRefId],
@@ -476,6 +499,7 @@ export function buildDirectorClipboardPacket(input: {
     },
     objects,
     groups,
+    shots,
     timeline: {
       tracks,
       motionPaths,
@@ -747,6 +771,20 @@ function remapPath(input: {
   };
 }
 
+function remapShot(
+  shot: DirectorShotRecordV1,
+  shotIds: Map<string, string>,
+  objectIds: Map<string, string>,
+): DirectorShotRecordV1 {
+  return {
+    ...shot,
+    id: requireMappedId(shotIds, shot.id),
+    cameraId: requireMappedId(objectIds, shot.cameraId),
+    // Captures are session sidecars and are intentionally not copied by object clipboard.
+    captureIds: [],
+  };
+}
+
 export function planDirectorClipboardPaste(input: {
   document: DirectorProjectDocumentV1;
   packet: unknown;
@@ -840,13 +878,21 @@ export function planDirectorClipboardPaste(input: {
     ),
     factory,
   });
+  const shotIds = allocateMap({
+    kind: "shot",
+    sourceIds: packet.shots.map((shot) => shot.id),
+    pasteOrdinal: input.pasteOrdinal,
+    usedIds: new Set(document.shots.map((shot) => shot.id)),
+    factory,
+  });
   if (
     !objectIds ||
     !groupIds ||
     !trackIds ||
     !pathIds ||
     !keyframeIds ||
-    !anchorIds
+    !anchorIds ||
+    !shotIds
   ) {
     return { ok: false, reason: "IDENTITY_ALLOCATION_FAILED" };
   }
@@ -884,10 +930,14 @@ export function planDirectorClipboardPaste(input: {
         offset,
       }),
     );
+    const pastedShots = packet.shots.map((shot) =>
+      remapShot(shot, shotIds, objectIds),
+    );
     const nextDocument = normalizeDirectorProjectDocument({
       ...document,
       objects: [...document.objects, ...pastedObjects],
       groups: [...document.groups, ...pastedGroups],
+      shots: [...document.shots, ...pastedShots],
       activeCameraId: document.activeCameraId,
       timeline: {
         ...document.timeline,
@@ -921,6 +971,7 @@ export function planDirectorClipboardPaste(input: {
           paths: mapToRecord(pathIds),
           keyframes: mapToRecord(keyframeIds),
           anchors: mapToRecord(anchorIds),
+          shots: mapToRecord(shotIds),
         },
         aliasedResourceIds: packet.resourceRefs.map((resource) => resource.id),
       },

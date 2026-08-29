@@ -1865,6 +1865,7 @@ function CaptureController({
             id: `director-capture-${Date.now()}`,
             dataUrl: output.toDataURL("image/png"),
             cameraId: activeCamera?.id ?? null,
+            shotId: useDirectorStore.getState().activeShotId,
             cameraName: activeCamera?.name ?? "导演视角",
             aspectRatio,
             width: output.width,

@@ -33,6 +33,7 @@ import {
   type DirectorMotionPathAnchor,
   type DirectorMotionPathHandle,
   type DirectorObject,
+  type DirectorShotRecord,
   type DirectorTransform,
   type DirectorTuple3,
 } from "@/store/directorStore";
@@ -159,8 +160,9 @@ function CapturePreview({
 function formatCaptureLabel(
   capture: DirectorCapture,
   index: number,
+  prefix = capture.cameraName,
 ): string {
-  return `${capture.cameraName}-截图${String(index + 1).padStart(2, "0")}`;
+  return `${prefix}-截图${String(index + 1).padStart(2, "0")}`;
 }
 
 function DirectorCaptureGallery({
@@ -173,6 +175,8 @@ function DirectorCaptureGallery({
   onSendAllCaptures: () => void;
 }) {
   const activeCaptureId = useDirectorStore((state) => state.activeCaptureId);
+  const shots = useDirectorStore((state) => state.shots);
+  const objects = useDirectorStore((state) => state.objects);
   const selectCapture = useDirectorStore((state) => state.selectCapture);
   const removeCapture = useDirectorStore((state) => state.removeCapture);
   const clearCaptures = useDirectorStore((state) => state.clearCaptures);
@@ -181,29 +185,59 @@ function DirectorCaptureGallery({
   const [confirmClear, setConfirmClear] = useState(false);
   const viewerCapture =
     captures.find((capture) => capture.id === viewerCaptureId) ?? null;
-  const cameraGroups = useMemo(() => {
-    const groups = new Map<string, DirectorCapture[]>();
+  const shotGroups = useMemo(() => {
+    const shotById = new Map(shots.map((shot) => [shot.id, shot]));
+    const cameraById = new Map(
+      objects
+        .filter((object) => object.kind === "camera")
+        .map((object) => [object.id, object]),
+    );
+    const groups = new Map<
+      string,
+      {
+        shotId: string | null;
+        shotName: string;
+        cameraName: string;
+        captures: DirectorCapture[];
+      }
+    >();
     captures.forEach((capture) => {
-      const group = groups.get(capture.cameraName) ?? [];
-      group.push(capture);
-      groups.set(capture.cameraName, group);
+      const shot =
+        (capture.shotId ? shotById.get(capture.shotId) : undefined) ??
+        (capture.cameraId
+          ? shots.find((candidate) => candidate.cameraId === capture.cameraId)
+          : undefined);
+      const cameraName =
+        (capture.cameraId
+          ? cameraById.get(capture.cameraId)?.name
+          : undefined) ?? capture.cameraName;
+      const key =
+        shot?.id ?? `camera:${capture.cameraId ?? "unassigned"}`;
+      const group = groups.get(key) ?? {
+        shotId: shot?.id ?? null,
+        shotName: shot?.name ?? "未分配镜头",
+        cameraName,
+        captures: [],
+      };
+      group.captures.push(capture);
+      groups.set(key, group);
     });
-    return Array.from(groups.entries()).map(([cameraName, groupCaptures]) => {
-      const chronological = [...groupCaptures].sort((left, right) =>
+    return Array.from(groups.entries()).map(([key, group]) => {
+      const chronological = [...group.captures].sort((left, right) =>
         left.createdAt.localeCompare(right.createdAt),
       );
       return {
-        cameraName,
-        captures: groupCaptures,
+        key,
+        ...group,
         labels: new Map(
           chronological.map((capture, index) => [
             capture.id,
-            formatCaptureLabel(capture, index),
+            formatCaptureLabel(capture, index, group.shotName),
           ]),
         ),
       };
     });
-  }, [captures]);
+  }, [captures, objects, shots]);
 
   useEffect(() => {
     if (!viewerCaptureId) return;
@@ -299,7 +333,7 @@ function DirectorCaptureGallery({
         className="flex min-h-0 flex-1 flex-col"
       >
         <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
-        {cameraGroups.length === 0 ? (
+        {shotGroups.length === 0 ? (
           <div
             data-director-capture-empty
             role="status"
@@ -311,27 +345,38 @@ function DirectorCaptureGallery({
           </div>
         ) : (
           <div className="space-y-4">
-            {cameraGroups.map(({ cameraName, captures: groupCaptures, labels }) => (
+            {shotGroups.map(
+              ({
+                key,
+                shotId,
+                shotName,
+                cameraName,
+                captures: groupCaptures,
+                labels,
+              }) => (
               <section
-                key={cameraName}
+                key={key}
                 data-director-capture-group={cameraName}
-                aria-label={`${cameraName}截图`}
+                data-director-capture-group-shot={shotId ?? ""}
+                aria-label={`${shotName} · ${cameraName}截图`}
               >
                 <h3 className="mb-2 text-[11px] text-[#bdbdbd]">
-                  {cameraName}截图
+                  {shotName} · {cameraName}
                 </h3>
                 <div
                   className="grid grid-cols-3 gap-2"
-                  aria-label={`${cameraName}截图列表`}
+                  aria-label={`${shotName}截图列表`}
                 >
                   {groupCaptures.map((capture) => {
-                    const label = labels.get(capture.id) ?? `${cameraName}截图`;
+                    const label =
+                      labels.get(capture.id) ?? `${shotName}截图`;
                     const selected = activeCaptureId === capture.id;
                     return (
                       <article
                         key={capture.id}
                         data-director-capture-item={capture.id}
                         data-director-capture-item-selected={selected}
+                        data-director-capture-shot-id={capture.shotId ?? ""}
                         className="min-w-0"
                       >
                         <button
@@ -411,7 +456,8 @@ function DirectorCaptureGallery({
                   })}
                 </div>
               </section>
-            ))}
+            ),
+            )}
           </div>
         )}
         </div>
@@ -1301,6 +1347,114 @@ function CameraFovField({
   );
 }
 
+function formatDirectorShotRange(startTime: number, endTime: number): string {
+  return `${startTime.toFixed(1)}-${endTime.toFixed(1)}s`;
+}
+
+function DirectorShotInspector({
+  shot,
+  duration,
+}: {
+  shot: DirectorShotRecord;
+  duration: number;
+}) {
+  const updateShot = useDirectorStore((state) => state.updateShot);
+  const [name, setName] = useState(shot.name);
+  const [startTime, setStartTime] = useState(String(shot.startTime));
+  const [endTime, setEndTime] = useState(String(shot.endTime));
+
+  useEffect(() => {
+    setName(shot.name);
+    setStartTime(String(shot.startTime));
+    setEndTime(String(shot.endTime));
+  }, [shot.endTime, shot.id, shot.name, shot.startTime]);
+
+  const resetFromStore = () => {
+    const current = useDirectorStore
+      .getState()
+      .shots.find((candidate) => candidate.id === shot.id);
+    setName(current?.name ?? shot.name);
+    setStartTime(String(current?.startTime ?? shot.startTime));
+    setEndTime(String(current?.endTime ?? shot.endTime));
+  };
+
+  const commitName = () => {
+    const result = updateShot(shot.id, { name });
+    if (result.disposition !== "COMMITTED") resetFromStore();
+  };
+
+  const commitStartTime = () => {
+    const result = updateShot(shot.id, { startTime: Number(startTime) });
+    if (result.disposition !== "COMMITTED") resetFromStore();
+  };
+
+  const commitEndTime = () => {
+    const result = updateShot(shot.id, { endTime: Number(endTime) });
+    if (result.disposition !== "COMMITTED") resetFromStore();
+  };
+
+  return (
+    <section
+      data-director-shot-inspector
+      className="space-y-3 border-b border-white/[0.07] px-3 py-3"
+    >
+      <div className="flex items-center justify-between">
+        <h3 className="text-[11px] font-medium text-[#cfcfcf]">当前镜头</h3>
+        <span
+          data-director-shot-range
+          data-director-shot-id={shot.id}
+          className="text-[10px] tabular-nums text-[#777]"
+        >
+          {formatDirectorShotRange(shot.startTime, shot.endTime)}
+        </span>
+      </div>
+      <label className="block">
+        <span className="mb-1.5 block text-[11px] text-[#777]">镜头名称</span>
+        <input
+          data-director-shot-name
+          value={name}
+          onChange={(event) => setName(event.currentTarget.value)}
+          onBlur={commitName}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") event.currentTarget.blur();
+          }}
+          className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+        />
+      </label>
+      <div className="grid grid-cols-2 gap-1.5">
+        <label className="block">
+          <span className="mb-1.5 block text-[11px] text-[#777]">开始</span>
+          <input
+            data-director-shot-start
+            type="number"
+            min="0"
+            max={duration}
+            step="0.1"
+            value={startTime}
+            onChange={(event) => setStartTime(event.currentTarget.value)}
+            onBlur={commitStartTime}
+            className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-right text-[11px] tabular-nums text-[#d5d5d5] outline-none focus:border-[#09caf5]/60"
+          />
+        </label>
+        <label className="block">
+          <span className="mb-1.5 block text-[11px] text-[#777]">结束</span>
+          <input
+            data-director-shot-end
+            type="number"
+            min="0"
+            max={duration}
+            step="0.1"
+            value={endTime}
+            onChange={(event) => setEndTime(event.currentTarget.value)}
+            onBlur={commitEndTime}
+            className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-right text-[11px] tabular-nums text-[#d5d5d5] outline-none focus:border-[#09caf5]/60"
+          />
+        </label>
+      </div>
+    </section>
+  );
+}
+
 export function DirectorInspector({
   activeCapture,
   onSendCapture,
@@ -1321,6 +1475,7 @@ export function DirectorInspector({
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
   const groups = useDirectorStore((state) => state.groups);
+  const shots = useDirectorStore((state) => state.shots);
   const captures = useDirectorStore((state) => state.captures);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
@@ -1346,6 +1501,10 @@ export function DirectorInspector({
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
   const selected = objects.find((object) => object.id === selectedObjectId) ?? null;
+  const selectedShot =
+    selected?.kind === "camera"
+      ? shots.find((shot) => shot.cameraId === selected.id) ?? null
+      : null;
   useEffect(() => {
     const input = sceneNameInputRef.current;
     if (input && document.activeElement !== input) input.value = scene.name;
@@ -1605,6 +1764,12 @@ export function DirectorInspector({
 
             {selected.camera ? (
               <div className="space-y-3 border-t border-white/[0.07] pt-4">
+                {selectedShot ? (
+                  <DirectorShotInspector
+                    shot={selectedShot}
+                    duration={timeline.duration}
+                  />
+                ) : null}
                 <CameraFovField
                   objectId={selected.id}
                   fov={selected.camera.fov}
