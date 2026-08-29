@@ -1,0 +1,11 @@
+{
+  "batch": 89,
+  "status": "PLANNED",
+  "sourceExact": false,
+  "baseUrl": "http://localhost:4317",
+  "diagnostics": {
+    "consoleErrors": null,
+    "pageErrors": null,
+    "requestFailures": null
+  }
+}
