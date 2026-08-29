@@ -228,10 +228,13 @@ begin-result ownership 与 stale-pointer prevention，并修复跨 owner/canvas
   `duplicateCanvas` 接到 graph/Director whole-project two-pass plan：复制
   authored document、project-local identity 和 stable resource descriptor，清空
   target history/session/runtime/clipboard，并对 local/ephemeral resource 和未知
-  引用 zero-partial reject。Batch 59、67-79 当前闸门串行回归和全量项目门禁已通过。
-  durable tombstone、storage/resource cleanup、strict import/export、普通画布
-  async/persistence、真实资源、remote storage 和 source parity 仍未完成；这些
-  focused pass 不能写成完整 project authority，也不能写成 LibTV source-exact 行为。
+  引用 zero-partial reject。Batch 80 又为不可达 Director owner 增加 strict
+  browser-local durable tombstone：旧 save 不得复活，active/inactive cleanup
+  只有在 durable 成功后才清理 history、capture sidecar 和不再共享的 local
+  descriptor；Batch 59、67-80 当前闸门串行回归和全量项目门禁已通过。普通画布
+  async/persistence、remote storage、真实资源和 source parity 仍未完成；这些
+  focused pass 不能写成完整 backend project authority，也不能写成 LibTV
+  source-exact 行为。
 
 ### 5.2 状态边界
 

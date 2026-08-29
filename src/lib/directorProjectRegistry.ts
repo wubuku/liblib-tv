@@ -539,6 +539,25 @@ export class DirectorProjectRegistry {
     };
   }
 
+  clearTombstonedMemory(
+    owner: DirectorProjectOwnerV1,
+  ): DirectorProjectRecordV1 | null {
+    if (!isValidOwner(owner)) return null;
+    const ownerKey = createDirectorProjectOwnerKey(owner);
+    const record = this.records.get(ownerKey);
+    if (!record || record.lifecycle !== "TOMBSTONED") return null;
+    if (record.memory.captures.length > 0) {
+      this.records.set(ownerKey, {
+        ...record,
+        memory: { captures: [] },
+      });
+    }
+    return cloneRecord(
+      this.records.get(ownerKey) ?? record,
+      this.dependencies.normalizeDocument,
+    );
+  }
+
   registerCopies(
     inputs: readonly DirectorProjectCopyRegistrationV1[],
   ): DirectorProjectCopyRegistrationResult {

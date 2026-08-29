@@ -152,6 +152,7 @@
 | 77 | source-aligned canvas navigation and Director TransformControls binding regression | [`liblib-canvas-batch77-2026-08-28/`](liblib-canvas-batch77-2026-08-28/) `SCRIPT_RECORDED_PASS`，普通 wheel/middle/Space/H/V/blank no-op/modifier zoom 与 mobile overflow 已对齐源站运行态；Director object/group/path explicit attachment、真实 gizmo pointer drag、authored/runtime sync、undo/redo 和 zero-distance cleanup 已通过；不证明源站 Director exact DOM/CSS、真实触摸板硬件或内部实现技术 |
 | 78 | Director pointer cancellation, cleanup and R3F teardown | [`liblib-canvas-batch78-2026-08-28/`](liblib-canvas-batch78-2026-08-28/) `POINTER_CANCELLATION_AND_R3F_TEARDOWN_RECORDED_PASS`，Curve/Phone Vcam/Timeline 的 pointercancel、blur、visibility、unmount、stale-pointer 防护以及跨 owner/canvas 的 R3F Canvas 异步 teardown 已通过；Batch 59、67-78 当前闸门串行回归、`npm run check` 和 `docs:check` 通过；不改变 phone runtime-only 语义，也不证明源站 Director exact DOM/CSS |
 | 79 | Director whole-project duplicate | [`liblib-canvas-batch79-2026-08-28/`](liblib-canvas-batch79-2026-08-28/) `WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS`，graph/Director two-pass identity/reference remap、multi-owner project copy、fresh document policy、non-portable resource reject、clean target authority、persistence isolation 和 pure/browser verifier 已通过；不证明 LibTV source duplicate 语义或真实资源复制 |
+| 80 | Director durable tombstone、storage/resource cleanup boundary | [`liblib-canvas-batch80-2026-08-28/`](liblib-canvas-batch80-2026-08-28/) `DURABLE_TOMBSTONE_FOCUSED_PASS`，strict tombstone envelope、save resurrection guard、active/inactive cleanup、capture sidecar 清理、共享/未引用 local resource policy、reload reopen reject 和 pure/browser verifier 已通过；不证明 LibTV source 删除/恢复语义或 remote persistence |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -159,7 +160,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | Batch | Focus | Entry |
 |---|---|---|
-| 80 | Director durable tombstone、storage/resource cleanup boundary | `PLANNED`；先明确 memory tombstone 与 browser persistence/resource cleanup 的原子边界 |
+| 80 | Director durable tombstone、storage/resource cleanup boundary | 已完成；clone-owned durable tombstone、cleanup/release 与 reload gate 已通过，详见 [`liblib-canvas-batch80-2026-08-28/`](liblib-canvas-batch80-2026-08-28/) |
 | 81 | Director strict project import/export and recoverable UI workflow | `PLANNED`；以 V1 document codec 为核心，不引入远端同步 |
 | 82 | Director real asset/resource lifecycle or panorama vertical slice | `PLANNED`；先选择可验证的本地 stable resource slice |
 | 83 | current verifier manifest consolidation and command feedback gate | `PLANNED`；建立 current manifest 与 typed outcome 到 primary surface 的最小闭环 |

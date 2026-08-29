@@ -1,0 +1,36 @@
+{
+  "batch": 80,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "owners": {
+    "sourceA": {
+      "route": "libtv",
+      "canvasId": "canvas-2",
+      "sourceNodeId": "b-bTLLuU4w5q"
+    },
+    "sourceB": {
+      "route": "libtv",
+      "canvasId": "canvas-2",
+      "sourceNodeId": "script-execution-1787963147601-6sye0g"
+    },
+    "sourceAProjectId": "director-project-1787963147973-1",
+    "sourceBProjectId": "director-project-1787963148587-3"
+  },
+  "activeOwnerCleanup": {
+    "tombstoned": true,
+    "memoryCaptureArchiveCleared": true,
+    "sharedLocalResourceRetained": true,
+    "activeSessionCleared": true,
+    "directorHistoryUnaffected": true
+  },
+  "inactiveOwnerCleanup": {
+    "tombstoned": true,
+    "unreferencedLocalResourceReleased": true,
+    "graphHistoryPreserved": true
+  },
+  "reload": {
+    "bothDurableTombstonesRejectReopen": true,
+    "localModelLibraryEmpty": true
+  },
+  "errors": []
+}

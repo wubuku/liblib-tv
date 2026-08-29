@@ -495,6 +495,31 @@ tombstone/storage/resource cleanup、strict import/export、真实资源 materia
 
 **依据：** [`liblib-canvas-batch79-2026-08-28/`](research/liblib-canvas-batch79-2026-08-28/)、[`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md`](research/LIBTV_DIRECTOR_COMMAND_HISTORY_DELETE_CONTRACT.md)。
 
+### DEC-046：Director owner durable tombstone 成功后才执行 clone-owned cleanup
+
+**背景：** Batch 76 的 memory-only owner tombstone 能阻止当前 registry reopen，
+但刷新后 browser-local persistence 仍可能恢复旧 document；Batch 79 又让一个
+canvas 可以携带多个 Director project，因此删除一个 owner 时必须区分 durable
+删除成功、storage failure 和共享资源引用。
+
+**决策：** clone 为每个 owner 使用严格的 browser-local tombstone envelope。
+合法 tombstone 使 load/open 返回 `PROJECT_TOMBSTONED`，旧 save completion 不得
+覆盖它，重复 tombstone 为幂等。只有 tombstone 已 durable 写入，才清理该 project
+的 history、capture archive 和 registry transient capture sidecar；local model
+descriptor 只有在其他 live 或 session-only project 都不引用时才释放。写失败或
+storage unavailable 返回 session-only 结果，保留旧 document/resource，不伪造
+durable cleanup。
+
+**影响：** Batch 80 将 `LIBTV-VR-024` 增加
+`DURABLE_TOMBSTONE_FOCUSED_PASS`，覆盖 strict envelope、stale/malformed/
+write-failure boundary、active/inactive owner cleanup、shared/unshared local
+resource、reload reopen guard 和 graph/Director history isolation。该决策只约束
+clone，不宣称 LibTV 原站使用 localStorage、同一 tombstone schema、相同删除/
+恢复 UI、账户资产生命周期或 remote persistence。Graph undo 不自动 untombstone
+Director project。
+
+**依据：** [`liblib-canvas-batch80-2026-08-28/`](research/liblib-canvas-batch80-2026-08-28/)、[`LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md`](research/LIBTV_DIRECTOR_PROJECT_SESSION_AUTHORITY_CONTRACT.md)、[`LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)。
+
 ## 3. 何时可以重审决策
 
 只有出现以下事件之一，才需要更新对应决策，而不是在代码中悄悄绕过：

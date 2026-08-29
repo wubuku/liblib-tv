@@ -499,9 +499,15 @@ Batch 76 的 clone runtime 已按该默认实现：
 5. shell teardown 后再清 Director runtime/history/capture/clipboard projection；
 6. ordinary graph delete仍只有原 graph history step；
 7. graph undo恢复 source node，但不自动 untombstone Director project；
-8. persistence envelope、history/capture archive和资源保持。
+8. durable tombstone 成功后清理 persistence load path、history/capture archive 和
+   tombstoned registry transient captures；local resource 只有在其他 live 或
+   session-only project 都不引用时释放；
+9. storage unavailable/write failure 保留 session-only document/resource，不伪造
+   durable cleanup；
+10. graph undo 恢复 source node，但不自动 untombstone Director project。
 
-最终 cascade/tombstone/retain 是 `SOURCE_PRODUCT_DECISION_REQUIRED`。
+Batch 80 已将上述 clone-owned durable tombstone/resource cleanup 通过 focused
+runtime；LibTV source/product 的删除、恢复、提示和远端资源语义仍未确认。
 
 ### 9.6 `DUPLICATE_SOURCE_OR_CANVAS`
 
@@ -568,6 +574,12 @@ interface DirectorProjectStorage {
   校验 document/envelope identity 和 fingerprint；
 - capture descriptor 只有在有 stable `resourceRefId` 时才进入 persisted
   document；当前 data URL capture 因没有 stable locator 而保持 session-only；
+- `lifecycle: "TOMBSTONED"` envelope 是 owner-scoped durable deletion marker；
+  合法 marker 使 load 返回 `PROJECT_TOMBSTONED`，旧 save 不得覆盖，重复写入幂等；
+- tombstone generation 低于当前 persisted document 时拒绝，避免 stale cleanup；
+- Batch 80 的 store coordinator 只有在 tombstone durable 成功后才清理
+  project-local history/capture archive、registry transient capture sidecar 和
+  不再共享的 local model descriptor；
 - `beginSave`/`completeSave` 对同一 owner 的旧 request 产生
   `STALE_IGNORED`，浏览器同步 adapter 同时拒绝低 generation 覆盖；
 - `REJECTED`、`SESSION_ONLY` 和 `STALE_IGNORED` 是 storage outcome，不进入
@@ -738,11 +750,11 @@ document、duplicate、delete和 delayed result。
   runtime/history/capture/clipboard projection cleanup；
 - repeated reconcile不重复增加 generation，rename/switch/unrelated delete不误伤；
 - tombstoned owner reopen拒绝，旧 async completion立即 stale；
-- ordinary graph history、persistence envelope、archive和资源保持；
-- durable tombstone、storage/resource cleanup、graph undo restore 和
-  whole-project duplicate已由 Batch 79 关闭 clone-owned focused slice；durable
-  storage cleanup、strict import/export、真实 resource materialization 和 source
-  parity 保持独立决策。
+- ordinary graph history 不受影响；
+- Batch 80 已在 durable success 后清理 persistence tombstone、archive、transient
+  captures 和 unshared local descriptor；失败保持 session-only；
+- graph undo 不 restore project，strict import/export、真实 resource materialization
+  和 source parity 保持独立决策。
 
 每个 slice 独立计划、fixture、verifier、commit/push。不得以“建立 project document”
 为由一次性重写全部 Director components。
@@ -792,10 +804,10 @@ owner/session 子项已在 Batch 68 升级为
 
 整体 project/session authority 仍不能标记 complete，以下条件尚未满足：
 
-1. durable tombstone、storage/resource cleanup 与 graph undo restore policy 明确；
+1. graph undo restore/recreate policy 与用户可见 delete/recovery feedback 仍未确认；
 2. 普通画布 delayed result 也只写 captured canvas/source/generation；
 3. duplicate deep clone/remap 与 resource policy 已在 clone-owned Batch 79 明确，
-   但 LibTV source duplicate 语义仍未知；
+  但 LibTV source duplicate 语义仍未知；
 4. ordinary canvas graph/document persistence 有独立合同和 fixture；
 5. 真实资源 materialization、stable locator 和远程 persistence 有产品范围。
 
@@ -803,6 +815,7 @@ Batch 73 已关闭 Director capture/export/phone 的 async owner freshness 子�
 Batch 74 已关闭 clone-owned Director browser-local durable document persistence
 子项；Batch 75 已关闭 same-project session clipboard identity-remap 子项；
 Batch 76 已关闭 memory-only owner reachability reconciliation 子项；Batch 79 已
-关闭 clone-owned whole-project duplicate 子项。它们都不关闭 durable
-tombstone/storage/resource cleanup、ordinary canvas async/persistence、strict
-import/export、remote storage、真实资源或 source-exact LibTV 子项。
+关闭 clone-owned whole-project duplicate 子项；Batch 80 已关闭 clone-owned durable
+tombstone/storage/resource cleanup 子项。它们都不关闭 graph undo restore、
+ordinary canvas async/persistence、strict import/export、remote storage、真实资源或
+source-exact LibTV 子项。

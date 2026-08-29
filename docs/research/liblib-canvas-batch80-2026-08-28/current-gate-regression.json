@@ -1,0 +1,39 @@
+{
+  "batch": 80,
+  "date": "2026-08-28",
+  "baseUrl": "http://localhost:4317",
+  "currentDirectorGate": [
+    "Batch 59",
+    "Batch 67",
+    "Batch 68",
+    "Batch 69",
+    "Batch 70",
+    "Batch 71",
+    "Batch 72",
+    "Batch 73",
+    "Batch 74",
+    "Batch 75",
+    "Batch 76",
+    "Batch 77",
+    "Batch 78",
+    "Batch 79",
+    "Batch 80"
+  ],
+  "status": "PASS",
+  "npmCheck": "PASS",
+  "docsCheck": "PASS",
+  "diffCheck": "PASS",
+  "screenshots": 0,
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0
+  },
+  "sourceParity": "UNKNOWN_OR_PARTIAL",
+  "notes": [
+    "Historical runtime audits remain dated records and were not rewritten for this 4317 rerun.",
+    "Batch 80 verifies clone-owned durable tombstone and cleanup semantics only.",
+    "npm run check, npm run docs:check and git diff --check passed.",
+    "The Batch 80 implementation checkpoint is recorded by the closeout commit."
+  ]
+}

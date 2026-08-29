@@ -133,6 +133,7 @@ historical regressions.
 | Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation, cleanup and R3F teardown | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios + cross-owner/canvas teardown regression；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
 
 | Batch 79 | Director whole-project duplicate | `CURRENT_GATE` | Pure Node two-pass planner corpus + fresh-page Playwright duplicate/isolation scenario；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` whole-project duplicate gate；does not prove LibTV source duplicate semantics、remote persistence、capture bytes or real resource loading |
+| Batch 80 | Director durable tombstone、storage/resource cleanup | `CURRENT_GATE` | Pure Node strict tombstone corpus + fresh-page active/inactive owner cleanup、capture sidecar、local resource reachability and reload reopen guard；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` durable-tombstone gate；does not prove LibTV source delete/recovery UI、remote persistence or real resource materialization |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -182,7 +183,7 @@ Do not substitute `127.0.0.1` unless `allowedDevOrigins` explicitly permits it.
 On 2026-08-27, Next 16.2.1 blocked the dev resource request from
 `127.0.0.1`; the page returned HTTP 200 and the Director entry was visible, but
 client hydration did not make the click effective. The same clean server passed
-with `localhost:3001`.
+with `localhost:4317`.
 
 ### 4.2 Current recorded results
 
@@ -204,7 +205,7 @@ Batch 59 browser smoke:
 |---|---|
 | Date | 2026-08-27 |
 | Clone HEAD | `d4bbb41` before Batch 66 closeout |
-| Server | fresh Next dev server, port 3001 |
+| Server | fresh Next dev server, port 4317 |
 | Browser | Playwright Chromium, headless |
 | Desktop | `1440x900`, WebGL nonblank, search/preview/add/tree/Inspector/graph isolation passed |
 | Mobile | `390x844`, WebGL nonblank, panel bounds/no-overflow passed |
@@ -377,12 +378,12 @@ real phone sensors, touchpad hardware or source/provider parity.
 
 ### 4.3 Current-gate serial regression
 
-On 2026-08-28, after restarting the single `localhost:3001` Next dev server, the
+On 2026-08-28, after restarting the single `localhost:4317` Next dev server, the
 following current gates were run serially and all passed:
 
 ```text
 Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
-Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79
+Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79, Batch 80
 ```
 
 The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
@@ -455,6 +456,7 @@ async-authority slice；Batch 74 supplies the browser-local persistence slice；
 Batch 75 supplies the clipboard identity-remap slice；Batch 76 supplies the
 owner-reachability slice；Batch 78 supplies the pointer-cancellation slice；
 Batch 79 supplies the whole-project duplicate slice；
+Batch 80 supplies the durable tombstone/storage/resource cleanup slice；
 Batch 59 supplies the current WebGL/browser smoke seed.
 
 Required future scenarios:
@@ -472,6 +474,7 @@ Required future scenarios:
 | owner reachability reconciliation | **focused runtime in Batch 76**：all-canvas live owner authority、inactive/active invalidation、two-phase shell/runtime cleanup、repeated idempotency、tombstoned reopen rejection、stale async、graph undo and retained persistence boundary |
 | pointer cancellation and stale-input cleanup | **focused runtime in Batch 78**：Curve begin-result ownership、pointerup commit、pointercancel/blur/hidden/unmount cancel、Phone Vcam capture release/reuse、Timeline scrub stale-pointer prevention |
 | whole-project duplicate | **focused runtime in Batch 79**：graph/parent/edge 与 Director project/entity two-pass remap、multi-owner isolation、fresh-document policy、stable resource descriptor、non-portable reject、clean target authority and source/target persistence isolation |
+| durable tombstone and cleanup | **focused runtime in Batch 80**：strict tombstone envelope、save resurrection guard、stale/malformed/write-failure boundary、active/inactive owner cleanup、capture sidecar clear、shared/unshared local resource reachability、reload reopen rejection and graph/Director history isolation |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:
@@ -491,6 +494,7 @@ CLIPBOARD_REMAP_FOCUSED_PASS
 OWNER_REACHABILITY_FOCUSED_PASS
 POINTER_CANCELLATION_FOCUSED_PASS
 WHOLE_PROJECT_DUPLICATE_FOCUSED_PASS
+DURABLE_TOMBSTONE_FOCUSED_PASS
 SOURCE_PARITY_UNKNOWN_OR_PARTIAL
 ```
 

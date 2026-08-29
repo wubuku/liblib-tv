@@ -23,6 +23,15 @@ export interface DirectorProjectStorageEnvelopeV1 {
   document: DirectorProjectDocumentV1;
 }
 
+export interface DirectorProjectStorageTombstoneEnvelopeV1 {
+  storageSchemaVersion: typeof DIRECTOR_PROJECT_STORAGE_SCHEMA_VERSION;
+  lifecycle: "TOMBSTONED";
+  projectId: string;
+  owner: DirectorProjectOwnerV1;
+  generation: number;
+  tombstonedAt: string;
+}
+
 export interface DirectorProjectStorageBackend {
   getItem(key: string): string | null;
   setItem(key: string, value: string): void;
@@ -37,7 +46,8 @@ export type DirectorProjectPersistenceLoadReason =
   | "INVALID_DOCUMENT"
   | "OWNER_MISMATCH"
   | "PROJECT_MISMATCH"
-  | "FINGERPRINT_MISMATCH";
+  | "FINGERPRINT_MISMATCH"
+  | "PROJECT_TOMBSTONED";
 
 export type DirectorProjectPersistenceSaveReason =
   | "STORAGE_UNAVAILABLE"
@@ -45,7 +55,8 @@ export type DirectorProjectPersistenceSaveReason =
   | "STALE_REQUEST"
   | "PROJECT_MISMATCH"
   | "OWNER_MISMATCH"
-  | "INVALID_DOCUMENT";
+  | "INVALID_DOCUMENT"
+  | "PROJECT_TOMBSTONED";
 
 export type DirectorProjectPersistenceStatus =
   | "UNAVAILABLE"
@@ -54,7 +65,8 @@ export type DirectorProjectPersistenceStatus =
   | "SAVED"
   | "SESSION_ONLY"
   | "REJECTED"
-  | "STALE_IGNORED";
+  | "STALE_IGNORED"
+  | "TOMBSTONED";
 
 export interface DirectorProjectPersistenceLoadResult {
   disposition: "MISSING" | "RESTORED" | "REJECTED";
@@ -86,6 +98,28 @@ export interface DirectorProjectPersistenceSaveResult {
   key: string;
   requestId: number;
   envelope: DirectorProjectStorageEnvelopeV1 | null;
+}
+
+export interface DirectorProjectPersistenceTombstoneInput {
+  owner: DirectorProjectOwnerV1;
+  projectId: string;
+  generation: number;
+  tombstonedAt?: string;
+}
+
+export type DirectorProjectPersistenceTombstoneReason =
+  | "STORAGE_UNAVAILABLE"
+  | "WRITE_FAILED"
+  | "STALE_REQUEST"
+  | "PROJECT_MISMATCH"
+  | "OWNER_MISMATCH"
+  | "INVALID_IDENTITY";
+
+export interface DirectorProjectPersistenceTombstoneResult {
+  disposition: "TOMBSTONED" | "ALREADY_TOMBSTONED" | "REJECTED";
+  reason: DirectorProjectPersistenceTombstoneReason | null;
+  key: string;
+  envelope: DirectorProjectStorageTombstoneEnvelopeV1 | null;
 }
 
 export interface DirectorProjectPersistenceRecord {
@@ -209,6 +243,55 @@ function rejectLoad(
     projectId: null,
     generation: null,
     fingerprint: null,
+  };
+}
+
+function decodeTombstoneEnvelope(
+  raw: string,
+  key: string,
+): DirectorProjectStorageTombstoneEnvelopeV1 | null {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw) as unknown;
+  } catch {
+    return null;
+  }
+  if (!isRecord(parsed) || parsed.lifecycle !== "TOMBSTONED") return null;
+  const expectedKeys = [
+    "storageSchemaVersion",
+    "lifecycle",
+    "projectId",
+    "owner",
+    "generation",
+    "tombstonedAt",
+  ] as const;
+  const actualKeys = Object.keys(parsed);
+  if (
+    actualKeys.length !== expectedKeys.length ||
+    actualKeys.some(
+      (candidate) => !(expectedKeys as readonly string[]).includes(candidate),
+    )
+  ) {
+    return null;
+  }
+  if (
+    !isCurrentStorageSchema(parsed.storageSchemaVersion) ||
+    !isNonEmptyString(parsed.projectId) ||
+    !isValidOwner(parsed.owner) ||
+    !isFinitePositiveInteger(parsed.generation) ||
+    !isNonEmptyString(parsed.tombstonedAt)
+  ) {
+    return null;
+  }
+  const expectedKey = createDirectorProjectStorageKey(parsed.owner);
+  if (expectedKey !== key) return null;
+  return {
+    storageSchemaVersion: DIRECTOR_PROJECT_STORAGE_SCHEMA_VERSION,
+    lifecycle: "TOMBSTONED",
+    projectId: parsed.projectId,
+    owner: cloneOwner(parsed.owner),
+    generation: parsed.generation,
+    tombstonedAt: parsed.tombstonedAt,
   };
 }
 
@@ -380,6 +463,19 @@ export class DirectorProjectPersistenceAuthority {
         fingerprint: null,
       };
     }
+    const tombstone = decodeTombstoneEnvelope(raw, key);
+    if (tombstone) {
+      this.remember(owner, {
+        status: "TOMBSTONED",
+        reason: "PROJECT_TOMBSTONED",
+        projectId: tombstone.projectId,
+        generation: tombstone.generation,
+        fingerprint: null,
+        savedAt: tombstone.tombstonedAt,
+        lastRequestId: null,
+      });
+      return rejectLoad(key, "PROJECT_TOMBSTONED");
+    }
     const result = decodeEnvelope(raw, key);
     if (result.disposition === "RESTORED" && result.document) {
       this.remember(owner, {
@@ -485,6 +581,25 @@ export class DirectorProjectPersistenceAuthority {
     try {
       const currentRaw = this.backend.getItem(key);
       if (currentRaw !== null) {
+        const currentTombstone = decodeTombstoneEnvelope(currentRaw, key);
+        if (currentTombstone) {
+          this.remember(input.owner, {
+            status: "TOMBSTONED",
+            reason: "PROJECT_TOMBSTONED",
+            projectId: currentTombstone.projectId,
+            generation: currentTombstone.generation,
+            fingerprint: null,
+            savedAt: currentTombstone.tombstonedAt,
+            lastRequestId: requestId,
+          });
+          return {
+            disposition: "STALE_IGNORED",
+            reason: "PROJECT_TOMBSTONED",
+            key,
+            requestId,
+            envelope: null,
+          };
+        }
         const current = decodeEnvelope(currentRaw, key);
         if (
           current.disposition === "RESTORED" &&
@@ -551,6 +666,138 @@ export class DirectorProjectPersistenceAuthority {
   ): DirectorProjectPersistenceSaveResult {
     const request = this.beginSave(input);
     return this.completeSave(request);
+  }
+
+  tombstone(
+    input: DirectorProjectPersistenceTombstoneInput,
+  ): DirectorProjectPersistenceTombstoneResult {
+    const key = createDirectorProjectStorageKey(input.owner);
+    if (
+      !isValidOwner(input.owner) ||
+      !isNonEmptyString(input.projectId) ||
+      !isFinitePositiveInteger(input.generation)
+    ) {
+      return {
+        disposition: "REJECTED",
+        reason: "INVALID_IDENTITY",
+        key,
+        envelope: null,
+      };
+    }
+    const envelope: DirectorProjectStorageTombstoneEnvelopeV1 = {
+      storageSchemaVersion: DIRECTOR_PROJECT_STORAGE_SCHEMA_VERSION,
+      lifecycle: "TOMBSTONED",
+      projectId: input.projectId,
+      owner: cloneOwner(input.owner),
+      generation: input.generation,
+      tombstonedAt: input.tombstonedAt ?? new Date().toISOString(),
+    };
+    if (!this.backend) {
+      this.remember(input.owner, {
+        status: "UNAVAILABLE",
+        reason: "STORAGE_UNAVAILABLE",
+        projectId: input.projectId,
+        generation: input.generation,
+        fingerprint: null,
+        savedAt: envelope.tombstonedAt,
+        lastRequestId: null,
+      });
+      return {
+        disposition: "REJECTED",
+        reason: "STORAGE_UNAVAILABLE",
+        key,
+        envelope: null,
+      };
+    }
+
+    try {
+      const currentRaw = this.backend.getItem(key);
+      if (currentRaw !== null) {
+        const currentTombstone = decodeTombstoneEnvelope(currentRaw, key);
+        if (currentTombstone) {
+          if (currentTombstone.projectId !== input.projectId) {
+            return {
+              disposition: "REJECTED",
+              reason: "PROJECT_MISMATCH",
+              key,
+              envelope: null,
+            };
+          }
+          this.remember(input.owner, {
+            status: "TOMBSTONED",
+            reason: "PROJECT_TOMBSTONED",
+            projectId: currentTombstone.projectId,
+            generation: currentTombstone.generation,
+            fingerprint: null,
+            savedAt: currentTombstone.tombstonedAt,
+            lastRequestId: null,
+          });
+          return {
+            disposition: "ALREADY_TOMBSTONED",
+            reason: null,
+            key,
+            envelope: currentTombstone,
+          };
+        }
+        const current = decodeEnvelope(currentRaw, key);
+        if (
+          current.disposition === "RESTORED" &&
+          current.generation !== null &&
+          current.generation > input.generation
+        ) {
+          return {
+            disposition: "REJECTED",
+            reason: "STALE_REQUEST",
+            key,
+            envelope: null,
+          };
+        }
+        if (
+          current.disposition === "RESTORED" &&
+          current.document &&
+          !isSameDirectorProjectOwner(current.document.owner, input.owner)
+        ) {
+          return {
+            disposition: "REJECTED",
+            reason: "OWNER_MISMATCH",
+            key,
+            envelope: null,
+          };
+        }
+      }
+      this.backend.setItem(key, JSON.stringify(envelope));
+    } catch {
+      this.remember(input.owner, {
+        status: "SESSION_ONLY",
+        reason: "WRITE_FAILED",
+        projectId: input.projectId,
+        generation: input.generation,
+        fingerprint: null,
+        savedAt: envelope.tombstonedAt,
+        lastRequestId: null,
+      });
+      return {
+        disposition: "REJECTED",
+        reason: "WRITE_FAILED",
+        key,
+        envelope: null,
+      };
+    }
+    this.remember(input.owner, {
+      status: "TOMBSTONED",
+      reason: "PROJECT_TOMBSTONED",
+      projectId: input.projectId,
+      generation: input.generation,
+      fingerprint: null,
+      savedAt: envelope.tombstonedAt,
+      lastRequestId: null,
+    });
+    return {
+      disposition: "TOMBSTONED",
+      reason: null,
+      key,
+      envelope,
+    };
   }
 
   getRecord(owner: DirectorProjectOwnerV1): DirectorProjectPersistenceRecord {

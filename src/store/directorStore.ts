@@ -73,6 +73,7 @@ import {
   type DirectorProjectCloseResult,
   type DirectorProjectLifecycle,
   type DirectorProjectOpenResult,
+  type DirectorProjectRecordV1,
   type DirectorProjectRegistrySnapshot,
   type DirectorSessionV1,
 } from "@/lib/directorProjectRegistry";
@@ -411,6 +412,14 @@ export interface DirectorGestureInput {
 export interface DirectorOwnerReconciliationResult
   extends DirectorOwnerReachabilityPlan {
   appliedTombstoneOwnerKeys: string[];
+  durableCleanup: DirectorOwnerDurableCleanupResult[];
+}
+
+export interface DirectorOwnerDurableCleanupResult {
+  ownerKey: string;
+  disposition: "TOMBSTONED" | "ALREADY_TOMBSTONED" | "SESSION_ONLY";
+  reason: string | null;
+  releasedResourceIds: string[];
 }
 
 interface DirectorState {
@@ -1568,6 +1577,48 @@ function rememberDirectorHistory(
   directorHistoryByProject.set(projectId, cloned);
 }
 
+function localResourceIdsForDocument(
+  document: DirectorProjectDocumentV1,
+): Set<string> {
+  return new Set(
+    document.resourceRefs
+      .filter((resource) => resource.source === "local")
+      .map((resource) => resource.id),
+  );
+}
+
+function localResourceIdsForRecords(
+  records: readonly DirectorProjectRecordV1[],
+): Set<string> {
+  return new Set(
+    records.flatMap((record) => [...localResourceIdsForDocument(record.document)]),
+  );
+}
+
+function releaseLocalModelDescriptors(
+  state: DirectorState,
+  resourceIds: ReadonlySet<string>,
+): {
+  localModelLibrary: DirectorLocalModelLibraryItem[];
+  releasedResourceIds: string[];
+} {
+  const releasedResourceIds = state.localModelLibrary
+    .filter((item) => resourceIds.has(item.id))
+    .map((item) => item.id);
+  if (releasedResourceIds.length === 0) {
+    return {
+      localModelLibrary: state.localModelLibrary,
+      releasedResourceIds,
+    };
+  }
+  const released = new Set(releasedResourceIds);
+  const localModelLibrary = state.localModelLibrary.filter(
+    (item) => !released.has(item.id),
+  );
+  writePersistedLocalModelLibrary(localModelLibrary);
+  return { localModelLibrary, releasedResourceIds };
+}
+
 function updateActiveDirectorDocument(
   state: DirectorState,
   document: DirectorProjectDocumentV1,
@@ -2178,6 +2229,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     const currentState = get();
     const persisted = directorProjectPersistence.load(owner);
     const activeSession = directorProjectRegistry.getActiveSession();
+    if (persisted.reason === "PROJECT_TOMBSTONED") {
+      return createRejectedOpenResult(
+        "PROJECT_TOMBSTONED",
+        activeSession ? createDirectorProjectOwnerKey(activeSession.owner) : null,
+      );
+    }
     if (
       activeSession &&
       !isSameDirectorProjectOwner(activeSession.owner, owner)
@@ -2334,10 +2391,23 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       liveOwners,
       registry: directorProjectRegistry.getSnapshot(),
     });
-    if (plan.tombstoneOwners.length === 0) {
+    const pendingDurableRecords =
+      directorProjectRegistry
+        .getSnapshot()
+        .records.filter(
+          (record) =>
+            record.lifecycle === "TOMBSTONED" &&
+            directorProjectPersistence.getRecord(record.identity.owner)
+              .status !== "TOMBSTONED",
+        );
+    if (
+      plan.tombstoneOwners.length === 0 &&
+      pendingDurableRecords.length === 0
+    ) {
       return {
         ...plan,
         appliedTombstoneOwnerKeys: [],
+        durableCleanup: [],
       };
     }
 
@@ -2352,18 +2422,91 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }
 
     const appliedTombstoneOwnerKeys: string[] = [];
+    const tombstonedRecords: DirectorProjectRecordV1[] = [];
     for (const owner of plan.tombstoneOwners) {
       const result = directorProjectRegistry.tombstone(owner);
-      if (result.disposition === "CLOSED") {
+      if (result.disposition === "CLOSED" && result.record) {
         appliedTombstoneOwnerKeys.push(
           createDirectorProjectOwnerKey(owner),
         );
+        tombstonedRecords.push(result.record);
       }
     }
+
+    const recordsToPersist = [
+      ...tombstonedRecords,
+      ...pendingDurableRecords,
+    ];
+    const durableCleanup: DirectorOwnerDurableCleanupResult[] = [];
+    const durableRecords: DirectorProjectRecordV1[] = [];
+    const sessionOnlyRecords: DirectorProjectRecordV1[] = [];
+    for (const record of recordsToPersist) {
+      const persisted = directorProjectPersistence.tombstone({
+        owner: record.identity.owner,
+        projectId: record.identity.projectId,
+        generation: record.identity.generation,
+      });
+      const durable =
+        persisted.disposition === "TOMBSTONED" ||
+        persisted.disposition === "ALREADY_TOMBSTONED";
+      if (durable) {
+        durableRecords.push(record);
+        directorHistoryByProject.delete(record.identity.projectId);
+        directorCaptureArchives.delete(record.identity.projectId);
+        directorProjectRegistry.clearTombstonedMemory(record.identity.owner);
+      } else {
+        sessionOnlyRecords.push(record);
+      }
+      durableCleanup.push({
+        ownerKey: createDirectorProjectOwnerKey(record.identity.owner),
+        disposition:
+          persisted.disposition === "TOMBSTONED" ||
+          persisted.disposition === "ALREADY_TOMBSTONED"
+            ? persisted.disposition
+            : "SESSION_ONLY",
+        reason: persisted.reason,
+        releasedResourceIds: [],
+      });
+    }
+
+    const durableResourceIds = new Set(
+      durableRecords.flatMap((record) => [
+        ...localResourceIdsForDocument(record.document),
+      ]),
+    );
+    const retainedResourceIds = localResourceIdsForRecords(
+      directorProjectRegistry
+        .getSnapshot()
+        .records.filter((record) => record.lifecycle !== "TOMBSTONED"),
+    );
+    sessionOnlyRecords.forEach((record) => {
+      localResourceIdsForDocument(record.document).forEach((resourceId) =>
+        retainedResourceIds.add(resourceId),
+      );
+    });
+    const releasableResourceIds = new Set(
+      [...durableResourceIds].filter(
+        (resourceId) => !retainedResourceIds.has(resourceId),
+      ),
+    );
+    const released = releaseLocalModelDescriptors(
+      currentState,
+      releasableResourceIds,
+    );
+    if (released.localModelLibrary !== currentState.localModelLibrary) {
+      set({ localModelLibrary: released.localModelLibrary });
+    }
+    durableCleanup.forEach((cleanup, index) => {
+      const record = recordsToPersist[index];
+      cleanup.releasedResourceIds = [
+        ...localResourceIdsForDocument(record.document),
+      ].filter((id) => released.releasedResourceIds.includes(id));
+    });
 
     return {
       ...plan,
       appliedTombstoneOwnerKeys,
+      durableCleanup,
     };
   },
 
@@ -2378,9 +2521,48 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     const record = directorProjectRegistry.getRecord(expectedOwner);
     if (!record || record.lifecycle !== "TOMBSTONED") return false;
 
+    const persisted = directorProjectPersistence.tombstone({
+      owner: record.identity.owner,
+      projectId: record.identity.projectId,
+      generation: record.identity.generation,
+    });
+    const durable =
+      persisted.disposition === "TOMBSTONED" ||
+      persisted.disposition === "ALREADY_TOMBSTONED";
+    let localModelLibrary = state.localModelLibrary;
+    if (durable) {
+      directorHistoryByProject.delete(record.identity.projectId);
+      directorCaptureArchives.delete(record.identity.projectId);
+      directorProjectRegistry.clearTombstonedMemory(record.identity.owner);
+      const retainedResourceIds = localResourceIdsForRecords(
+        directorProjectRegistry
+          .getSnapshot()
+          .records.filter(
+            (candidate) =>
+              candidate.lifecycle !== "TOMBSTONED" &&
+              !isSameDirectorProjectOwner(
+                candidate.identity.owner,
+                expectedOwner,
+              ),
+          ),
+      );
+      const releasableResourceIds = new Set(
+        [...localResourceIdsForDocument(record.document)].filter(
+          (resourceId) => !retainedResourceIds.has(resourceId),
+        ),
+      );
+      localModelLibrary = releaseLocalModelDescriptors(
+        state,
+        releasableResourceIds,
+      ).localModelLibrary;
+    }
+
     directorHistorySyncSuspended = true;
     try {
-      set(createInvalidatedDirectorSessionState());
+      set({
+        ...createInvalidatedDirectorSessionState(),
+        localModelLibrary,
+      });
     } finally {
       directorHistorySyncSuspended = false;
     }

@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-79（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-80（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -95,6 +95,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 77 | source-aligned wheel/middle/Space/H/V canvas navigation, blank-drag no-op, modifier zoom, mobile diagnostics and real Director TransformControls pointer drag/gesture cleanup |
 | Batch 78 | Director Curve Editor/Phone Vcam/Timeline pointercancel, blur, visibility, unmount cleanup, pointer reuse and stale-pointer prevention |
 | Batch 79 | Director whole-project duplicate: graph/parent/edge and Director project/entity two-pass remap, clean target authority, resource policy and source/target isolation |
+| Batch 80 | Director durable tombstone envelope, save resurrection guard, active/inactive cleanup, capture sidecar cleanup, shared/unshared local resource release and reload reopen rejection |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -124,8 +125,14 @@ remote persistence。
 Batch 78 是 Director pointer cancellation hybrid gate，默认不写截图；它保留
 真实 mouse pointer 输入、pointer capture 状态、gesture/history、stale listener
 与跨 owner/canvas R3F Canvas teardown 断言。2026-08-28 已串行复跑 Batch 59、
-67-79，全部通过；这仍是 clone-owned reliability gate，不是源站 Director
+67-80，全部通过；这仍是 clone-owned reliability gate，不是源站 Director
 source parity。
+
+Batch 80 是 Director durable tombstone hybrid gate，默认不写截图；它保留 strict
+tombstone pure corpus 和 fresh-page active/inactive owner cleanup、capture sidecar、
+local resource reachability、reload reopen guard 与 zero-diagnostic audit。它只证明
+clone-owned browser-local cleanup contract，不证明 LibTV 原站删除/恢复 UI、remote
+persistence 或真实资源 materialization。
 
 ## Browser Evidence Requirements
 
