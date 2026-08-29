@@ -124,6 +124,19 @@ import {
   type DirectorDeletePlan,
   type DirectorResourceDeletePolicy,
 } from "@/lib/directorDeletePlanner";
+import {
+  addDirectorLocalResource,
+  beginDirectorLocalResourceLoad,
+  createDirectorLocalResourceDescriptor,
+  createDirectorLocalResourceMap,
+  markDirectorLocalResourceReleased,
+  releaseDirectorLocalResourceLease,
+  retainDirectorLocalResource,
+  retryDirectorLocalResource,
+  settleDirectorLocalResource,
+  type DirectorLocalResourceFailureReason,
+  type DirectorLocalResourceMap,
+} from "@/lib/directorLocalResourceLifecycle";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -449,6 +462,7 @@ interface DirectorState {
   captures: DirectorCapture[];
   activeCaptureId: string | null;
   localModelLibrary: DirectorLocalModelLibraryItem[];
+  localModelResources: DirectorLocalResourceMap;
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
   history: DirectorHistoryState;
@@ -495,6 +509,22 @@ interface DirectorState {
   }) => string | null;
   hydrateLocalModelLibrary: () => void;
   addLocalModelLibraryItem: (item: DirectorLocalModelLibraryItem) => void;
+  startLocalModelResourceLoad: (resourceId: string) => string | null;
+  settleLocalModelResource: (input: {
+    resourceId: string;
+    requestId: string;
+    status: "ready" | "failed" | "canceled";
+    error?: DirectorLocalResourceFailureReason | null;
+    errorMessage?: string | null;
+  }) => boolean;
+  retryLocalModelResource: (resourceId: string) => void;
+  retainLocalModelResource: (resourceId: string) => void;
+  releaseLocalModelResourceLease: (resourceId: string) => void;
+  cancelLocalModelResourceLoad: (
+    resourceId: string,
+    requestId: string,
+  ) => boolean;
+  releaseLocalModelResource: (resourceId: string) => void;
   removeLocalModelLibraryItem: (
     assetId: string,
     policy?: DirectorResourceDeletePolicy,
@@ -1605,6 +1635,7 @@ function releaseLocalModelDescriptors(
   resourceIds: ReadonlySet<string>,
 ): {
   localModelLibrary: DirectorLocalModelLibraryItem[];
+  localModelResources: DirectorLocalResourceMap;
   releasedResourceIds: string[];
 } {
   const releasedResourceIds = state.localModelLibrary
@@ -1613,6 +1644,7 @@ function releaseLocalModelDescriptors(
   if (releasedResourceIds.length === 0) {
     return {
       localModelLibrary: state.localModelLibrary,
+      localModelResources: state.localModelResources,
       releasedResourceIds,
     };
   }
@@ -1620,8 +1652,13 @@ function releaseLocalModelDescriptors(
   const localModelLibrary = state.localModelLibrary.filter(
     (item) => !released.has(item.id),
   );
+  const localModelResources = releasedResourceIds.reduce(
+    (resources, resourceId) =>
+      markDirectorLocalResourceReleased(resources, resourceId),
+    state.localModelResources,
+  );
   writePersistedLocalModelLibrary(localModelLibrary);
-  return { localModelLibrary, releasedResourceIds };
+  return { localModelLibrary, localModelResources, releasedResourceIds };
 }
 
 function updateActiveDirectorDocument(
@@ -1901,6 +1938,7 @@ function restoreDirectorProjectState(
     captures: record.memory.captures.map((capture) => ({ ...capture })),
     activeCaptureId: null,
     localModelLibrary,
+    localModelResources: createDirectorLocalResourceMap(localModelLibrary),
     timeline: restored.timeline,
     phoneVcam: createDefaultPhoneVcamState(),
   };
@@ -1930,6 +1968,8 @@ function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
     isCapturing: false,
     captures: [],
     activeCaptureId: null,
+    localModelLibrary: [],
+    localModelResources: {},
     timeline: createDefaultTimeline(),
     phoneVcam: createDefaultPhoneVcamState(),
     history: createDirectorHistoryState(),
@@ -1943,6 +1983,7 @@ interface DirectorDeleteStateProjection {
   state: Partial<DirectorState>;
   captures: DirectorCapture[];
   localModelLibrary: DirectorLocalModelLibraryItem[];
+  localModelResources: DirectorLocalResourceMap;
   selectionResult: {
     selectedObjectId: string | null;
     selectedObjectIds: string[];
@@ -2091,6 +2132,13 @@ function projectDirectorDeleteState(
         (item) => item.id !== command.resourceId,
       )
     : state.localModelLibrary;
+  const localModelResources = removesLocalLibraryDescriptor
+    ? Object.fromEntries(
+        Object.entries(state.localModelResources).filter(
+          ([resourceId]) => resourceId !== command.resourceId,
+        ),
+      )
+    : state.localModelResources;
 
   const selectionResult = {
     selectedObjectId,
@@ -2111,6 +2159,7 @@ function projectDirectorDeleteState(
       captures,
       activeCaptureId,
       localModelLibrary,
+      localModelResources,
       timeline,
       phoneVcam: phoneVcamInvalidated
         ? createDefaultPhoneVcamState()
@@ -2119,6 +2168,7 @@ function projectDirectorDeleteState(
     },
     captures,
     localModelLibrary,
+    localModelResources,
     selectionResult,
   };
 }
@@ -2223,6 +2273,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   captures: [],
   activeCaptureId: null,
   localModelLibrary: [],
+  localModelResources: {},
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
   history: createDirectorHistoryState(),
@@ -2690,7 +2741,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       releasableResourceIds,
     );
     if (released.localModelLibrary !== currentState.localModelLibrary) {
-      set({ localModelLibrary: released.localModelLibrary });
+      set({
+        localModelLibrary: released.localModelLibrary,
+        localModelResources: released.localModelResources,
+      });
     }
     durableCleanup.forEach((cleanup, index) => {
       const record = recordsToPersist[index];
@@ -2726,6 +2780,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       persisted.disposition === "TOMBSTONED" ||
       persisted.disposition === "ALREADY_TOMBSTONED";
     let localModelLibrary = state.localModelLibrary;
+    let localModelResources = state.localModelResources;
     if (durable) {
       directorHistoryByProject.delete(record.identity.projectId);
       directorCaptureArchives.delete(record.identity.projectId);
@@ -2747,10 +2802,12 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           (resourceId) => !retainedResourceIds.has(resourceId),
         ),
       );
-      localModelLibrary = releaseLocalModelDescriptors(
+      const released = releaseLocalModelDescriptors(
         state,
         releasableResourceIds,
-      ).localModelLibrary;
+      );
+      localModelLibrary = released.localModelLibrary;
+      localModelResources = released.localModelResources;
     }
 
     directorHistorySyncSuspended = true;
@@ -2758,6 +2815,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({
         ...createInvalidatedDirectorSessionState(),
         localModelLibrary,
+        localModelResources,
       });
     } finally {
       directorHistorySyncSuspended = false;
@@ -3323,6 +3381,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const localModelLibrary = state.localModelLibrary.filter(
         (item) => item.id !== command.resourceId,
       );
+      const localModelResources = Object.fromEntries(
+        Object.entries(state.localModelResources).filter(
+          ([resourceId]) => resourceId !== command.resourceId,
+        ),
+      );
       writePersistedLocalModelLibrary(localModelLibrary);
       const result = makeDirectorCommandResult(state, {
         commandKind: command.kind,
@@ -3336,7 +3399,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           },
         ],
       });
-      set({ localModelLibrary, lastCommandResult: result });
+      set({
+        localModelLibrary,
+        localModelResources,
+        lastCommandResult: result,
+      });
       return result;
     }
     const plan = planDirectorDelete(
@@ -3631,10 +3698,20 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   },
 
   hydrateLocalModelLibrary: () =>
-    set({ localModelLibrary: readPersistedLocalModelLibrary() }),
+    set(() => {
+      const localModelLibrary = readPersistedLocalModelLibrary();
+      return {
+        localModelLibrary,
+        localModelResources: createDirectorLocalResourceMap(
+          localModelLibrary,
+        ),
+      };
+    }),
 
   addLocalModelLibraryItem: (item) =>
     set((state) => {
+      const descriptor = createDirectorLocalResourceDescriptor(item);
+      if (!descriptor) return state;
       const items = [
         ...state.localModelLibrary.filter(
           (current) => current.id !== item.id,
@@ -3642,8 +3719,97 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         item,
       ];
       writePersistedLocalModelLibrary(items);
-      return { localModelLibrary: items };
+      return {
+        localModelLibrary: items,
+        localModelResources: addDirectorLocalResource(
+          state.localModelResources,
+          descriptor,
+        ),
+      };
     }),
+
+  startLocalModelResourceLoad: (resourceId) => {
+    let requestId: string | null = null;
+    set((state) => {
+      const nextRequestId = createDirectorAsyncIdentity(
+        "director-local-model-load",
+      );
+      const transition = beginDirectorLocalResourceLoad(
+        state.localModelResources,
+        resourceId,
+        nextRequestId,
+      );
+      if (!transition.accepted || !transition.state) return state;
+      requestId = nextRequestId;
+      return {
+        localModelResources: {
+          ...state.localModelResources,
+          [resourceId]: transition.state,
+        },
+      };
+    });
+    return requestId;
+  },
+
+  settleLocalModelResource: (input) => {
+    let accepted = false;
+    set((state) => {
+      const transition = settleDirectorLocalResource(
+        state.localModelResources,
+        input,
+      );
+      if (!transition.accepted || !transition.state) return state;
+      accepted = true;
+      return {
+        localModelResources: {
+          ...state.localModelResources,
+          [input.resourceId]: transition.state,
+        },
+      };
+    });
+    return accepted;
+  },
+
+  retryLocalModelResource: (resourceId) =>
+    set((state) => ({
+      localModelResources: retryDirectorLocalResource(
+        state.localModelResources,
+        resourceId,
+      ),
+    })),
+
+  retainLocalModelResource: (resourceId) =>
+    set((state) => ({
+      localModelResources: retainDirectorLocalResource(
+        state.localModelResources,
+        resourceId,
+      ),
+    })),
+
+  releaseLocalModelResourceLease: (resourceId) =>
+    set((state) => ({
+      localModelResources: releaseDirectorLocalResourceLease(
+        state.localModelResources,
+        resourceId,
+      ),
+    })),
+
+  cancelLocalModelResourceLoad: (resourceId, requestId) =>
+    get().settleLocalModelResource({
+      resourceId,
+      requestId,
+      status: "canceled",
+      error: "ABORTED",
+      errorMessage: "模型解析已取消",
+    }),
+
+  releaseLocalModelResource: (resourceId) =>
+    set((state) => ({
+      localModelResources: markDirectorLocalResourceReleased(
+        state.localModelResources,
+        resourceId,
+      ),
+    })),
 
   removeLocalModelLibraryItem: (assetId, policy = "BLOCK") =>
     get().deleteDirectorEntity({

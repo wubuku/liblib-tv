@@ -70,6 +70,13 @@ export async function readDirectorLocalModelFiles(
         name: file.name.replace(LOCAL_MODEL_EXTENSION_RE, ""),
         fileName: file.name,
         dataUrl: await readFileAsDataUrl(file),
+        mimeType:
+          file.type ||
+          (file.name.toLocaleLowerCase("en-US").endsWith(".obj")
+            ? "text/plain"
+            : "application/octet-stream"),
+        sizeBytes: file.size,
+        lastModified: file.lastModified,
         visual,
         color: LOCAL_MODEL_COLORS[visual],
       } satisfies DirectorLocalModelLibraryItem;

@@ -1,12 +1,14 @@
 "use client";
 
 import {
+  createContext,
   useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
+  useContext,
   type ChangeEvent,
   type CSSProperties,
 } from "react";
@@ -24,6 +26,7 @@ import {
   PanelRightOpen,
   Plus,
   Rotate3D,
+  RotateCcw,
   Search,
   Scaling,
   Smartphone,
@@ -47,6 +50,7 @@ import {
   DoubleSide,
   Matrix4,
   MathUtils,
+  Object3D,
   PerspectiveCamera,
   Quaternion,
   Vector3,
@@ -63,6 +67,12 @@ import {
   type DirectorAsyncResultEnvelopeV1,
 } from "@/lib/directorAsyncAuthority";
 import { directorDocumentFingerprint } from "@/lib/directorCommandKernel";
+import {
+  DirectorLocalModelAbortError,
+  disposeDirectorLocalModel,
+  materializeDirectorLocalModel,
+} from "@/lib/directorLocalModelMaterializer";
+import type { DirectorLocalResourceStatus } from "@/lib/directorLocalResourceLifecycle";
 import {
   getDirectorProjectRegistrySnapshot,
   useDirectorStore,
@@ -643,6 +653,171 @@ function LibraryPropPrimitive({
   );
 }
 
+const DirectorLocalModelRuntimeContext = createContext<
+  Readonly<Record<string, Object3D>>
+>({});
+
+function DirectorLocalModelResourceLoader({
+  item,
+  onModel,
+}: {
+  item: DirectorLocalModelLibraryItem;
+  onModel: (resourceId: string, model: Object3D | null) => void;
+}) {
+  const resource = useDirectorStore(
+    (state) => state.localModelResources[item.id],
+  );
+  const resourceRef = useRef(resource);
+  const projectId = useDirectorStore((state) => state.projectId);
+  const sessionId = useDirectorStore((state) => state.sessionId);
+  const generation = useDirectorStore((state) => state.generation);
+  const startLoad = useDirectorStore(
+    (state) => state.startLocalModelResourceLoad,
+  );
+  const settleLoad = useDirectorStore(
+    (state) => state.settleLocalModelResource,
+  );
+  const retainResource = useDirectorStore(
+    (state) => state.retainLocalModelResource,
+  );
+  const releaseResourceLease = useDirectorStore(
+    (state) => state.releaseLocalModelResourceLease,
+  );
+  const cancelLoad = useDirectorStore(
+    (state) => state.cancelLocalModelResourceLoad,
+  );
+  const retryNonce = resource?.retryNonce ?? 0;
+  const [model, setModel] = useState<Object3D | null>(null);
+  const modelRef = useRef<Object3D | null>(null);
+  useEffect(() => {
+    resourceRef.current = resource;
+    modelRef.current = model;
+  }, [model, resource]);
+
+  useEffect(() => {
+    const current = resourceRef.current;
+    if (!current || current.status === "released") return;
+    if (current.status === "ready" && modelRef.current === null) {
+      useDirectorStore.getState().retryLocalModelResource(item.id);
+      return;
+    }
+    if (current.status === "loading") return;
+
+    const requestId = startLoad(item.id);
+    if (!requestId) return;
+    retainResource(item.id);
+    const controller = new AbortController();
+    let active = true;
+
+    void materializeDirectorLocalModel(item, controller.signal)
+      .then((nextModel) => {
+        if (!active) {
+          disposeDirectorLocalModel(nextModel);
+          return;
+        }
+        const accepted = settleLoad({
+          resourceId: item.id,
+          requestId,
+          status: "ready",
+        });
+        if (!accepted) {
+          disposeDirectorLocalModel(nextModel);
+          return;
+        }
+        setModel(nextModel);
+        onModel(item.id, nextModel);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        const canceled = error instanceof DirectorLocalModelAbortError;
+        settleLoad({
+          resourceId: item.id,
+          requestId,
+          status: canceled ? "canceled" : "failed",
+          error: canceled ? "ABORTED" : "PARSE_FAILED",
+          errorMessage:
+            error instanceof Error ? error.message : "模型解析失败",
+        });
+      });
+
+    return () => {
+      active = false;
+      controller.abort();
+      cancelLoad(item.id, requestId);
+      releaseResourceLease(item.id);
+      if (modelRef.current) {
+        onModel(item.id, null);
+        disposeDirectorLocalModel(modelRef.current);
+        setModel(null);
+      }
+    };
+  }, [
+    cancelLoad,
+    generation,
+    item,
+    onModel,
+    projectId,
+    retryNonce,
+    releaseResourceLease,
+    retainResource,
+    sessionId,
+    settleLoad,
+    startLoad,
+  ]);
+
+  return null;
+}
+
+function DirectorLocalModelRuntime({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const objects = useDirectorStore((state) => state.objects);
+  const localModelLibrary = useDirectorStore(
+    (state) => state.localModelLibrary,
+  );
+  const [models, setModels] = useState<Record<string, Object3D>>({});
+  const localItems = useMemo(() => {
+    const ids = new Set(
+      objects
+        .filter(
+          (object) =>
+            object.primitive === "library" &&
+            object.librarySource === "local" &&
+            object.libraryAssetId,
+        )
+        .map((object) => object.libraryAssetId as string),
+    );
+    return localModelLibrary.filter((item) => ids.has(item.id));
+  }, [localModelLibrary, objects]);
+  const onModel = useCallback(
+    (resourceId: string, model: Object3D | null) => {
+      setModels((current) => {
+        if (model) return { ...current, [resourceId]: model };
+        if (!(resourceId in current)) return current;
+        const next = { ...current };
+        delete next[resourceId];
+        return next;
+      });
+    },
+    [],
+  );
+
+  return (
+    <DirectorLocalModelRuntimeContext.Provider value={models}>
+      {localItems.map((item) => (
+        <DirectorLocalModelResourceLoader
+          key={item.id}
+          item={item}
+          onModel={onModel}
+        />
+      ))}
+      {children}
+    </DirectorLocalModelRuntimeContext.Provider>
+  );
+}
+
 function SceneObject({ object }: { object: DirectorObject }) {
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
@@ -672,6 +847,15 @@ function SceneObject({ object }: { object: DirectorObject }) {
   );
   const motionPathDraft = useDirectorStore(
     (state) => state.timeline.motionPathDraft,
+  );
+  const localModels = useContext(DirectorLocalModelRuntimeContext);
+  const localModel =
+    object.librarySource === "local" && object.libraryAssetId
+      ? localModels[object.libraryAssetId] ?? null
+      : null;
+  const localModelInstance = useMemo(
+    () => localModel?.clone(true) ?? null,
+    [localModel],
   );
   const groupRef = useRef<Group>(null);
   const [transformTarget, setTransformTarget] = useState<Group | null>(null);
@@ -830,7 +1014,12 @@ function SceneObject({ object }: { object: DirectorObject }) {
       {object.primitive === "camera" ? (
         <CameraPrimitive color={object.color} material={material} />
       ) : null}
-      {object.primitive === "library" && object.libraryVisual ? (
+      {object.primitive === "library" && localModelInstance ? (
+        <primitive object={localModelInstance} />
+      ) : null}
+      {object.primitive === "library" &&
+      object.libraryVisual &&
+      !localModelInstance ? (
         <LibraryPropPrimitive
           color={object.color}
           material={material}
@@ -1491,12 +1680,14 @@ function DirectorScene() {
       {scene.showGrid && !isCapturing ? (
         <gridHelper args={[24, 24, "#59636c", "#3d454c"]} position={[0, 0.006, 0]} />
       ) : null}
-      {objects.map((object) => (
-        <SceneObject key={object.id} object={object} />
-      ))}
-      {groups.map((group) => (
-        <DirectorGroupTransformRig key={group.id} group={group} />
-      ))}
+      <DirectorLocalModelRuntime>
+        {objects.map((object) => (
+          <SceneObject key={object.id} object={object} />
+        ))}
+        {groups.map((group) => (
+          <DirectorGroupTransformRig key={group.id} group={group} />
+        ))}
+      </DirectorLocalModelRuntime>
       <DirectorMotionPaths />
       <DirectorMotionPathDrawingSurface />
     </>
@@ -1818,12 +2009,16 @@ function ModelLibraryCard({
   onPreview,
   selected,
   onDelete,
+  resourceStatus,
+  onRetry,
 }: {
   item: DirectorModelLibraryCardItem;
   onAdd: (item: DirectorModelLibraryCardItem) => void;
   onPreview: (item: DirectorModelLibraryCardItem) => void;
   selected: boolean;
   onDelete?: (item: DirectorLocalModelLibraryItem) => void;
+  resourceStatus?: DirectorLocalResourceStatus;
+  onRetry?: (resourceId: string) => void;
 }) {
   const local = item.categoryId === "my-models";
   const localItem = local ? item : null;
@@ -1871,6 +2066,29 @@ function ModelLibraryCard({
         <Eye size={11} />
       </button>
       <span className="w-full truncate">{item.name}</span>
+      {localItem && resourceStatus ? (
+        <span
+          data-director-model-library-local-status={resourceStatus}
+          className={cn(
+            "max-w-full truncate text-[9px]",
+            resourceStatus === "ready" && "text-[#8fd4a8]",
+            resourceStatus === "loading" && "text-[#f0c776]",
+            (resourceStatus === "failed" || resourceStatus === "canceled") &&
+              "text-[#e59a8c]",
+            resourceStatus === "idle" && "text-[#777]",
+          )}
+        >
+          {resourceStatus === "ready"
+            ? "已加载"
+            : resourceStatus === "loading"
+              ? "加载中"
+              : resourceStatus === "failed"
+                ? "加载失败"
+                : resourceStatus === "canceled"
+                  ? "已取消"
+                  : "待加载"}
+        </span>
+      ) : null}
       {localItem ? (
         <span
           data-director-model-library-local-file-name
@@ -1898,6 +2116,22 @@ function ModelLibraryCard({
       >
         <X size={12} />
       </button>
+      {resourceStatus === "failed" || resourceStatus === "canceled" ? (
+        <button
+          type="button"
+          data-director-model-library-local-retry
+          data-director-model-library-local-asset-id={localItem.id}
+          aria-label={`重试加载模型 ${localItem.name}`}
+          title="重试加载"
+          onClick={(event) => {
+            event.stopPropagation();
+            onRetry?.(localItem.id);
+          }}
+          className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/55 text-[#f0c776] opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#09caf5] hover:bg-black/75 hover:text-white"
+        >
+          <RotateCcw size={11} />
+        </button>
+      ) : null}
     </div>
   );
 }
@@ -1949,6 +2183,9 @@ export function DirectorViewport({
   const localModelLibrary = useDirectorStore(
     (state) => state.localModelLibrary,
   );
+  const localModelResources = useDirectorStore(
+    (state) => state.localModelResources,
+  );
   const hydrateLocalModelLibrary = useDirectorStore(
     (state) => state.hydrateLocalModelLibrary,
   );
@@ -1957,6 +2194,9 @@ export function DirectorViewport({
   );
   const removeLocalModelLibraryItem = useDirectorStore(
     (state) => state.removeLocalModelLibraryItem,
+  );
+  const retryLocalModelResource = useDirectorStore(
+    (state) => state.retryLocalModelResource,
   );
   const selectObject = useDirectorStore((state) => state.selectObject);
   const finishMotionPathDrawing = useDirectorStore(
@@ -2276,6 +2516,25 @@ export function DirectorViewport({
             onFailed={onVideoExportFailed}
           />
         </Canvas>
+      </div>
+
+      <div
+        data-director-local-model-resource-statuses
+        className="sr-only"
+      >
+        {Object.values(localModelResources).map((resource) => (
+          <span
+            key={resource.descriptor.resourceId}
+            data-director-local-model-resource-status={
+              resource.descriptor.resourceId
+            }
+            data-director-local-model-resource-state={resource.status}
+            data-director-local-model-resource-attempt={resource.attempt}
+            data-director-local-model-resource-error={resource.error ?? ""}
+          >
+            {resource.errorMessage ?? resource.status}
+          </span>
+        ))}
       </div>
 
       {!isCapturing ? (
@@ -2628,6 +2887,12 @@ export function DirectorViewport({
                             )
                         : undefined
                     }
+                    resourceStatus={
+                      item.categoryId === "my-models"
+                        ? localModelResources[item.id]?.status
+                        : undefined
+                    }
+                    onRetry={retryLocalModelResource}
                   />
                 ))
               )}

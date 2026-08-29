@@ -1,0 +1,26 @@
+{
+  "batch": 82,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "contract": {
+    "scope": "clone-owned Director local model resource lifecycle",
+    "sourceExact": false,
+    "remoteSync": false,
+    "durableAsset": false
+  },
+  "desktop": {
+    "validObjMaterialization": true,
+    "descriptorProvenance": true,
+    "failedParseKeepsObject": true,
+    "retryCreatesNewAttempt": true,
+    "unsupportedExtensionZeroMutation": true,
+    "cancelAndRelease": true,
+    "uiStatusFeedback": true
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0,
+    "details": []
+  }
+}

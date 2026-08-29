@@ -41,6 +41,9 @@ export interface DirectorLocalModelLibraryItem {
   name: string;
   fileName: string;
   dataUrl: string;
+  mimeType?: string;
+  sizeBytes?: number;
+  lastModified?: number;
   visual: DirectorModelLibraryVisual;
   color: string;
 }
