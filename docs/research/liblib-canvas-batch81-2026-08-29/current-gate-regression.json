@@ -2,7 +2,7 @@
   "batch": 81,
   "date": "2026-08-29",
   "status": "PASS",
-  "head": "pending-closeout",
+  "head": "b4cf7ca",
   "baseUrl": "http://localhost:4317",
   "worktree": {
     "worktrees": 1,
