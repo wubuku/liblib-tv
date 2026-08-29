@@ -1,0 +1,73 @@
+{
+  "batch": 95,
+  "date": "2026-08-29",
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "sourceExact": false,
+  "contract": {
+    "scope": "clone-owned Director canvas image ingress and session-only panorama preview",
+    "screenshotsWritten": false,
+    "screenshotRecognition": false,
+    "remoteUpload": false,
+    "projectDocumentMutation": false
+  },
+  "staticContract": {
+    "typedIngress": true,
+    "directImageBoundary": true,
+    "sessionProjection": true,
+    "inspectorSurface": true,
+    "textureLifecycle": true,
+    "nonInteractiveEnvironment": true,
+    "visibleStatus": true
+  },
+  "desktop": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "directImageInputCount": 4,
+    "defaultProjection": true,
+    "switchProjection": true,
+    "clearProjection": true,
+    "staleSourceClears": true,
+    "projectExportExcludesSessionProjection": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0,
+      "details": []
+    }
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sceneInspectorInputDiscoverable": true,
+    "environmentReady": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0,
+      "details": []
+    }
+  },
+  "textureErrorIsolation": {
+    "objectCountPreserved": true,
+    "workspacePreserved": true,
+    "visibleFailureFeedback": true,
+    "diagnostics": {
+      "consoleErrors": 2,
+      "pageErrors": 0,
+      "requestFailures": 0,
+      "details": [
+        "texture-error-isolation:console:error:Failed to load resource: net::ERR_INVALID_URL",
+        "texture-error-isolation:console:error:Failed to load resource: net::ERR_INVALID_URL"
+      ],
+      "consoleErrorsExpected": true,
+      "consoleErrorReason": "browser texture decode rejection for invalid data URL"
+    }
+  }
+}

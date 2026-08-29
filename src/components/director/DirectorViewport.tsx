@@ -48,11 +48,14 @@ import {
 } from "@react-three/fiber";
 import {
   DoubleSide,
+  BackSide,
   Matrix4,
   MathUtils,
   Object3D,
   PerspectiveCamera,
   Quaternion,
+  Texture,
+  TextureLoader,
   Vector3,
   type Group,
   type MeshStandardMaterialParameters,
@@ -121,6 +124,10 @@ import { createDirectorCharacterRig } from "@/components/director/directorPose";
 import {
   getDirectorGroupAnchorTransform,
 } from "@/components/director/directorGroupMath";
+import type {
+  DirectorCanvasMediaInputV1,
+  DirectorPanoramaRuntimeState,
+} from "@/lib/directorCanvasMediaIngress";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
 const DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT: DirectorViewportSnapshot = {
@@ -1670,7 +1677,75 @@ function DirectorMotionPathDrawingSurface() {
   );
 }
 
-function DirectorScene() {
+function DirectorPanoramaRuntime({
+  input,
+  onStatusChange,
+}: {
+  input: DirectorCanvasMediaInputV1;
+  onStatusChange: (status: Exclude<DirectorPanoramaRuntimeState, "empty">) => void;
+}) {
+  const [texture, setTexture] = useState<Texture | null>(null);
+  const textureRef = useRef<Texture | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    const loader = new TextureLoader();
+    onStatusChange("loading");
+    const loadedTexture = loader.load(
+      input.imageUrl,
+      (nextTexture) => {
+        if (!active) {
+          nextTexture.dispose();
+          return;
+        }
+        textureRef.current = nextTexture;
+        setTexture(nextTexture);
+        onStatusChange("ready");
+      },
+      undefined,
+      () => {
+        if (active) onStatusChange("error");
+      },
+    );
+
+    return () => {
+      active = false;
+      loadedTexture.dispose();
+      if (textureRef.current === loadedTexture) {
+        textureRef.current = null;
+        setTexture(null);
+      }
+    };
+  }, [input.imageUrl, onStatusChange]);
+
+  if (!texture) return null;
+
+  return (
+    <mesh
+      scale={[-1, 1, 1]}
+      frustumCulled={false}
+      raycast={() => undefined}
+    >
+      <sphereGeometry args={[30, 64, 32]} />
+      <meshBasicMaterial
+        map={texture}
+        side={BackSide}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function DirectorScene({
+  panoramaInput,
+  onPanoramaStatusChange,
+}: {
+  panoramaInput: DirectorCanvasMediaInputV1 | null;
+  onPanoramaStatusChange: (
+    status: Exclude<DirectorPanoramaRuntimeState, "empty">,
+  ) => void;
+}) {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
@@ -1680,6 +1755,12 @@ function DirectorScene() {
     <>
       <color attach="background" args={[scene.backgroundColor]} />
       <fog attach="fog" args={[scene.backgroundColor, 9, 24]} />
+      {panoramaInput ? (
+        <DirectorPanoramaRuntime
+          input={panoramaInput}
+          onStatusChange={onPanoramaStatusChange}
+        />
+      ) : null}
       <ambientLight intensity={1.15} />
       <directionalLight
         castShadow
@@ -2165,6 +2246,8 @@ function ModelLibraryCard({
 export function DirectorViewport({
   onOpenTree,
   onOpenInspector,
+  panoramaInput,
+  onPanoramaStatusChange,
   videoExportRequest,
   onVideoExportProgress,
   onVideoExportCompleted,
@@ -2172,6 +2255,8 @@ export function DirectorViewport({
 }: {
   onOpenTree: () => void;
   onOpenInspector: () => void;
+  panoramaInput: DirectorCanvasMediaInputV1 | null;
+  onPanoramaStatusChange: (status: DirectorPanoramaRuntimeState) => void;
   videoExportRequest: DirectorVideoExportRequest | null;
   onVideoExportProgress: (progress: number) => void;
   onVideoExportCompleted: (result: DirectorVideoExportResult) => void;
@@ -2251,6 +2336,10 @@ export function DirectorViewport({
     useState<DirectorViewportSnapshot>(
       DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT,
     );
+  const [panoramaRuntimeState, setPanoramaRuntimeState] =
+    useState<DirectorPanoramaRuntimeState>(
+      panoramaInput ? "loading" : "empty",
+    );
   const viewportSnapshotRef = useRef(viewportSnapshot);
   const [directorCameraCommand, setDirectorCameraCommand] =
     useState<DirectorViewportSnapshot | null>(null);
@@ -2274,6 +2363,13 @@ export function DirectorViewport({
   const phoneVcamRecording = phoneVcamStatus === "recording";
   const viewportGizmoDisabled =
     timeline.motionPathDraft !== null || phoneVcamRecording;
+  const handlePanoramaStatusChange = useCallback(
+    (status: Exclude<DirectorPanoramaRuntimeState, "empty">) => {
+      setPanoramaRuntimeState(status);
+      onPanoramaStatusChange(status);
+    },
+    [onPanoramaStatusChange],
+  );
   const transformContext = useMemo<DirectorTransformContext>(() => {
     if (phoneVcamRecording) {
       return {
@@ -2430,6 +2526,14 @@ export function DirectorViewport({
   useEffect(() => {
     hydrateLocalModelLibrary();
   }, [hydrateLocalModelLibrary]);
+
+  useEffect(() => {
+    const nextState: DirectorPanoramaRuntimeState = panoramaInput
+      ? "loading"
+      : "empty";
+    setPanoramaRuntimeState(nextState);
+    onPanoramaStatusChange(nextState);
+  }, [onPanoramaStatusChange, panoramaInput]);
 
   useEffect(() => {
     if (!modelLibraryOpen) return;
@@ -2630,7 +2734,10 @@ export function DirectorViewport({
             onSnapshot={handleViewportSnapshot}
             viewMode={viewMode}
           />
-          <DirectorScene />
+          <DirectorScene
+            panoramaInput={panoramaInput}
+            onPanoramaStatusChange={handlePanoramaStatusChange}
+          />
           <CaptureController
             request={captureRequest}
             frameRect={frameRect}
@@ -2663,6 +2770,20 @@ export function DirectorViewport({
             {resource.errorMessage ?? resource.status}
           </span>
         ))}
+      </div>
+      <div
+        data-director-panorama-runtime
+        data-director-panorama-state={panoramaRuntimeState}
+        data-director-panorama-source-id={panoramaInput?.sourceNodeId ?? ""}
+        className="sr-only"
+      >
+        {panoramaRuntimeState === "error" ? (
+          <span data-director-panorama-error>
+            画布环境图片加载失败，已保留其他场景对象
+          </span>
+        ) : (
+          panoramaRuntimeState
+        )}
       </div>
 
       {!isCapturing ? (

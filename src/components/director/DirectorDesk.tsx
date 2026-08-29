@@ -31,6 +31,11 @@ import {
   useDirectorFocusContainment,
 } from "@/components/director/useDirectorFocusContainment";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
+import {
+  collectDirectorCanvasMediaInputs,
+  type DirectorCanvasMediaInputV1,
+  type DirectorPanoramaRuntimeState,
+} from "@/lib/directorCanvasMediaIngress";
 import type {
   DirectorVideoExportRequest,
   DirectorVideoExportResult,
@@ -185,7 +190,21 @@ export default function DirectorDesk({
   const createDirectorAnimationExport = useCanvasStore(
     (state) => state.createDirectorAnimationExport,
   );
+  const canvases = useCanvasStore((state) => state.canvases);
   const selectNode = useCanvasStore((state) => state.selectNode);
+  const activeCanvas = useMemo(
+    () => canvases.find((canvas) => canvas.id === canvasId),
+    [canvasId, canvases],
+  );
+  const canvasMediaInputs = useMemo(
+    () => collectDirectorCanvasMediaInputs(activeCanvas, sourceNodeId),
+    [activeCanvas, sourceNodeId],
+  );
+  const [panoramaSourceId, setPanoramaSourceId] = useState<string | null>(
+    null,
+  );
+  const [panoramaRuntimeState, setPanoramaRuntimeState] =
+    useState<DirectorPanoramaRuntimeState>("empty");
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>(null);
   const [exportPanelOpen, setExportPanelOpen] = useState(false);
   const [exportDuration, setExportDuration] = useState(timelineDuration);
@@ -217,6 +236,13 @@ export default function DirectorDesk({
   const activeCapture = useMemo(
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
+  );
+  const selectedPanoramaInput = useMemo<DirectorCanvasMediaInputV1 | null>(
+    () =>
+      canvasMediaInputs.find(
+        (input) => input.sourceNodeId === panoramaSourceId,
+      ) ?? null,
+    [canvasMediaInputs, panoramaSourceId],
   );
   const projectOwner = useMemo(
     () => ({ route: "libtv" as const, canvasId, sourceNodeId }),
@@ -252,6 +278,18 @@ export default function DirectorDesk({
   useEffect(() => {
     openSession(projectOwner);
   }, [openSession, projectOwner]);
+
+  useEffect(() => {
+    setPanoramaSourceId((current) => {
+      if (
+        current &&
+        canvasMediaInputs.some((input) => input.sourceNodeId === current)
+      ) {
+        return current;
+      }
+      return canvasMediaInputs[0]?.sourceNodeId ?? null;
+    });
+  }, [canvasMediaInputs]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 899px)");
@@ -1009,6 +1047,8 @@ export default function DirectorDesk({
             <DirectorViewport
               onOpenTree={() => openMobilePanel("tree")}
               onOpenInspector={() => openMobilePanel("inspector")}
+              panoramaInput={selectedPanoramaInput}
+              onPanoramaStatusChange={setPanoramaRuntimeState}
               videoExportRequest={videoExportRequest}
               onVideoExportProgress={setExportProgress}
               onVideoExportCompleted={completeVideoExport}
@@ -1041,6 +1081,10 @@ export default function DirectorDesk({
               activeCapture={activeCapture}
               onSendCapture={sendCapture}
               onSendAllCaptures={sendAllCaptures}
+              panoramaInputs={canvasMediaInputs}
+              selectedPanoramaSourceId={panoramaSourceId}
+              panoramaRuntimeState={panoramaRuntimeState}
+              onPanoramaSourceChange={setPanoramaSourceId}
             />
           </aside>
         </div>

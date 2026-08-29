@@ -44,6 +44,10 @@ import {
 } from "@/components/director/directorPose";
 import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
 import { useDirectorGestureBoundary } from "@/components/director/useDirectorGestureBoundary";
+import type {
+  DirectorCanvasMediaInputV1,
+  DirectorPanoramaRuntimeState,
+} from "@/lib/directorCanvasMediaIngress";
 
 function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform {
   return {
@@ -1301,10 +1305,18 @@ export function DirectorInspector({
   activeCapture,
   onSendCapture,
   onSendAllCaptures,
+  panoramaInputs,
+  selectedPanoramaSourceId,
+  panoramaRuntimeState,
+  onPanoramaSourceChange,
 }: {
   activeCapture: DirectorCapture | null;
   onSendCapture: (capture: DirectorCapture) => void;
   onSendAllCaptures: () => void;
+  panoramaInputs: DirectorCanvasMediaInputV1[];
+  selectedPanoramaSourceId: string | null;
+  panoramaRuntimeState: DirectorPanoramaRuntimeState;
+  onPanoramaSourceChange: (sourceNodeId: string | null) => void;
 }) {
   const scene = useDirectorStore((state) => state.scene);
   const objects = useDirectorStore((state) => state.objects);
@@ -1882,6 +1894,104 @@ export function DirectorInspector({
                   className="h-6 w-9 rounded border-0 bg-transparent"
                 />
               </label>
+            </section>
+            <section
+              data-director-panorama-input
+              className="space-y-2 border-t border-white/[0.07] pt-3"
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="text-[11px] font-medium text-[#cfcfcf]">
+                  画布环境
+                </h3>
+                <span className="text-[9px] text-[#686868]">Session</span>
+              </div>
+              <p className="text-[10px] leading-4 text-[#686868]">
+                使用当前导演台节点的直接上游图片作为临时全景参考。
+              </p>
+              <select
+                data-director-panorama-source
+                aria-label="画布环境图片"
+                value={selectedPanoramaSourceId ?? ""}
+                onChange={(event) =>
+                  onPanoramaSourceChange(event.currentTarget.value || null)
+                }
+                className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+              >
+                <option value="">不使用画布图片</option>
+                {panoramaInputs.map((input) => (
+                  <option
+                    key={input.sourceNodeId}
+                    value={input.sourceNodeId}
+                    data-director-panorama-source-option={input.sourceNodeId}
+                  >
+                    {input.filename}
+                    {input.sourceKind === "panorama" ? " · 全景" : " · 图片"}
+                  </option>
+                ))}
+              </select>
+              <div
+                data-director-panorama-selection
+                data-director-panorama-source-id={selectedPanoramaSourceId ?? ""}
+                className="flex min-h-7 items-center gap-2 text-[10px] text-[#777]"
+              >
+                <Images size={13} className="shrink-0 text-[#5ddcff]" />
+                <span className="min-w-0 flex-1 truncate">
+                  {selectedPanoramaSourceId
+                    ? panoramaInputs.find(
+                        (input) =>
+                          input.sourceNodeId === selectedPanoramaSourceId,
+                      )?.filename ?? "输入已失效"
+                    : panoramaInputs.length > 0
+                      ? "未选择环境图片"
+                      : "没有可用的直接上游图片"}
+                </span>
+                {selectedPanoramaSourceId ? (
+                  <button
+                    type="button"
+                    data-director-panorama-clear
+                    aria-label="清除画布环境图片"
+                    title="清除环境图片"
+                    onClick={() => onPanoramaSourceChange(null)}
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white"
+                  >
+                    <X size={13} />
+                  </button>
+                ) : null}
+              </div>
+              <div
+                data-director-panorama-status
+                data-director-panorama-state={panoramaRuntimeState}
+                className={cn(
+                  "flex items-center gap-1.5 text-[10px]",
+                  panoramaRuntimeState === "error"
+                    ? "text-[#ef9292]"
+                    : panoramaRuntimeState === "ready"
+                      ? "text-[#9ddbb9]"
+                      : "text-[#777]",
+                )}
+              >
+                <span
+                  className={cn(
+                    "h-1.5 w-1.5 rounded-full",
+                    panoramaRuntimeState === "error"
+                      ? "bg-[#d76767]"
+                      : panoramaRuntimeState === "ready"
+                        ? "bg-[#70c99a]"
+                        : panoramaRuntimeState === "loading"
+                          ? "animate-pulse bg-[#09caf5]"
+                          : "bg-[#555]",
+                  )}
+                />
+                <span>
+                  {panoramaRuntimeState === "ready"
+                    ? "环境预览已加载"
+                    : panoramaRuntimeState === "loading"
+                      ? "正在加载环境预览"
+                      : panoramaRuntimeState === "error"
+                        ? "环境图片加载失败，其他场景对象仍可用"
+                        : "未设置环境预览"}
+                </span>
+              </div>
             </section>
             <section
               data-director-scene-camera-actions
