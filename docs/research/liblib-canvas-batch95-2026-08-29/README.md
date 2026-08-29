@@ -1,6 +1,6 @@
 # Batch 95：Director 画布媒体入口与全景环境预览
 
-> 状态：`PLANNED`
+> 状态：`SCRIPT_RECORDED_PASS`
 >
 > 建档日期：2026-08-29。
 >
@@ -34,4 +34,3 @@ handoff，而不是把普通画布的资源系统或远程上传能力一次性�
 
 本批不需要截图识别。实施和验证只使用 DOM、store snapshot、WebGL canvas
 nonblank 和浏览器 diagnostics；`screenshotsWritten=false`。
-

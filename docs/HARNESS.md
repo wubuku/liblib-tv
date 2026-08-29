@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-89（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-95（中间无脚本的 batch 除外） | script-specific assertions and no unexpected console/page/request errors |
 
 ## LibTV Batch Coverage
 
@@ -110,6 +110,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 92 | Director local resource descriptor/decoded-byte budget, owner-scoped request/lease, deferred/final release, finite OBJ/FBX materialization, retry/cancel and zero diagnostics |
 | Batch 93 | Final Director desktop/mobile shell/R3F regression, ordinary canvas cross-batch regression, Batch 59/67-92 current-gate serial run, governance and full repository checks |
 | Batch 94 | Director workspace focus containment, mobile tree/Inspector local focus scopes, focus return, inactive-drawer `aria-hidden`/`inert`, Escape/editable boundary and desktop/mobile diagnostics |
+| Batch 95 | Director direct canvas-image ingress, session-only environment preview, source switching/clearing/stale cleanup, malformed data URL preflight, desktop/mobile and failure-isolation diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

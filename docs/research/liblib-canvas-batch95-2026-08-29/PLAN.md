@@ -1,6 +1,6 @@
 # Batch 95 计划：Director 画布媒体入口与全景环境预览
 
-> 状态：`PLANNED`
+> 状态：`SCRIPT_RECORDED_PASS`
 >
 > 建档日期：2026-08-29。
 >
@@ -73,7 +73,7 @@ canvas/Director owner、清除后是否释放运行时 texture 等关键边界�
 ### P1：验证与文档
 
 - 新增 Batch 95 Playwright verifier，覆盖候选发现、默认投影、切换/清除、
-  stale source、WebGL nonblank 和 zero diagnostics；
+  stale source、WebGL runtime 和 zero diagnostics；
 - desktop `1440x900`、mobile `390x844` 至少各跑一条关键路径；
 - 不生成截图，不重复截图识别；
 - 更新稳定索引和验证台账。
@@ -106,7 +106,8 @@ canvas/Director owner、清除后是否释放运行时 texture 等关键边界�
    的可渲染图片；
 2. 默认输入、切换、清除和 source stale 都有可观察状态；
 3. R3F 环境球在有效 URL 下渲染，且不覆盖对象选择/变换；
-4. texture load failure 不导致 page/console/request error；
+4. 明显非法 data URL 在进入浏览器加载器前被拒绝；texture load failure 不导致
+   page/request error；
 5. 专项 verifier、相关 Director current gates 和项目质量门通过；
 6. 实施结果、运行时 JSON、稳定索引和证据边界已落档；
 7. commit/push 后 `master == origin/master` 且工作区干净。
@@ -125,4 +126,3 @@ npm run docs:check
 python3 scripts/verify-docs.py
 git diff --check
 ```
-

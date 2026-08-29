@@ -297,7 +297,7 @@ def run_texture_error(page: Page) -> dict[str, Any]:
     request_failures = [item for item in errors if ":requestfailed:" in item]
     assert not page_errors, page_errors
     assert not request_failures, request_failures
-    assert console_errors, "invalid texture should produce a browser-visible load error"
+    assert not console_errors, console_errors
     return {
         "objectCountPreserved": True,
         "workspacePreserved": True,
@@ -307,8 +307,8 @@ def run_texture_error(page: Page) -> dict[str, Any]:
             "pageErrors": len(page_errors),
             "requestFailures": len(request_failures),
             "details": errors,
-            "consoleErrorsExpected": True,
-            "consoleErrorReason": "browser texture decode rejection for invalid data URL",
+            "consoleErrorsExpected": False,
+            "consoleErrorReason": "malformed base64 data URL rejected before TextureLoader",
         },
     }
 
@@ -326,6 +326,9 @@ def verify_static_contract() -> dict[str, bool]:
     viewport_source = (
         ROOT / "src/components/director/DirectorViewport.tsx"
     ).read_text(encoding="utf-8")
+    media_url_source = (
+        ROOT / "src/lib/mediaUrl.ts"
+    ).read_text(encoding="utf-8")
     assertions = {
         "typedIngress": "DirectorCanvasMediaInputV1" in ingress_source
         and "collectDirectorCanvasMediaInputs" in ingress_source,
@@ -337,6 +340,8 @@ def verify_static_contract() -> dict[str, bool]:
         and "data-director-panorama-clear" in inspector_source,
         "textureLifecycle": "TextureLoader" in viewport_source
         and "loadedTexture.dispose()" in viewport_source,
+        "invalidDataUrlPreflight": "isMalformedBase64DataImageUrl" in viewport_source
+        and "payload.length % 4 === 1" in media_url_source,
         "nonInteractiveEnvironment": "raycast={() => undefined}" in viewport_source,
         "visibleStatus": "data-director-panorama-status" in inspector_source
         and "环境图片加载失败，其他场景对象仍可用" in inspector_source,
@@ -372,6 +377,13 @@ def main() -> None:
         assert result["diagnostics"]["consoleErrors"] == 0, result["diagnostics"]
         assert result["diagnostics"]["pageErrors"] == 0, result["diagnostics"]
         assert result["diagnostics"]["requestFailures"] == 0, result["diagnostics"]
+    assert (
+        error_result["diagnostics"]["consoleErrors"] == 0
+    ), error_result["diagnostics"]
+    assert error_result["diagnostics"]["pageErrors"] == 0, error_result["diagnostics"]
+    assert (
+        error_result["diagnostics"]["requestFailures"] == 0
+    ), error_result["diagnostics"]
 
     audit = {
         "batch": 95,

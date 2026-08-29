@@ -9,6 +9,7 @@ import { ImageEditPanel, type ImageEditorHeight } from "@/components/ImageEditPa
 import { ImageToolbar, type ImageToolbarAction } from "@/components/ImageToolbar";
 import { ImageAnnotateSurface } from "@/components/ImageAnnotateSurface";
 import { ImageElementEditMode } from "@/components/ImageElementEditMode";
+import { isMalformedBase64DataImageUrl } from "@/lib/mediaUrl";
 import {
   ImageAnnotateToolbar,
   type ImageAnnotateTool,
@@ -57,6 +58,9 @@ const derivedImageActions: Partial<Record<ImageToolbarAction, { filename: string
 
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture } = data;
+  const hasMalformedImageUrl = imageUrl
+    ? isMalformedBase64DataImageUrl(imageUrl)
+    : false;
   const { zoom } = useViewport();
   const activeCanvasId = useCanvasStore((state) => state.activeCanvasId);
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
@@ -251,7 +255,7 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
       </div>
 
       <div data-image-node-media className="relative h-full w-full overflow-hidden rounded-[3px]">
-        {data.placeholderKind === "panorama" || !imageUrl ? (
+        {data.placeholderKind === "panorama" || !imageUrl || hasMalformedImageUrl ? (
           <div
             data-image-placeholder={data.placeholderKind ?? "empty"}
             className="flex h-full w-full items-center justify-center bg-[#212121] text-[#666]"

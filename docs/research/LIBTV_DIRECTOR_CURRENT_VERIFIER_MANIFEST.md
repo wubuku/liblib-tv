@@ -45,8 +45,8 @@
 > selection/timeline authority verifier, Batch 89 scene-settings/add-camera verifier
 > Batch 90 project/session-scene-command verifier, Batch 91 object/camera/group
 > command verifier, Batch 92 local-resource lifecycle/lease verifier, Batch 93
-> final desktop/mobile and cross-batch regression verifier, and Batch 94
-> focus-containment verifier.
+> final desktop/mobile and cross-batch regression verifier, Batch 94
+> focus-containment verifier, and Batch 95 canvas-media ingress verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -156,6 +156,10 @@ single current gate on their own:
 - Batch 93 covers final Director desktop/mobile shell and R3F regression、
   ordinary canvas cross-batch regression、current-gate serial execution and
   documentation/governance closeout；it does not add product behavior。
+- Batch 95 covers direct upstream canvas-image collection、session-only Director
+  environment preview、source switching/clearing/stale cleanup、portable export
+  exclusion and malformed data URL failure isolation；it does not add ordinary
+  canvas upload/provider behavior。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -222,6 +226,7 @@ historical regressions.
 | Batch 92 | Director local resource lifecycle and session lease | `CURRENT_GATE` | Pure lifecycle contract + fresh-page Playwright local-model materialization, owner-scoped lease, deferred/final release, delete reference cleanup and zero diagnostics；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource lease gate；proves clone-owned session-local resource lifecycle，不证明 LibTV source resource semantics、生产 loader/cache、复杂 FBX/纹理或 remote persistence |
 | Batch 93 | Director final desktop/mobile and cross-batch regression | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` shell/R3F/object-tree/Inspector/Timeline/close-reopen/overflow checks；serial ordinary canvas `57/60/61/63/64/65/77` and Director `59/67-92` gates；writes Batch 93 structured audits and no screenshots | Final clone-owned reliability/governance closeout；不证明 LibTV source Director exact DOM/CSS、project/session/history/resource semantics、remote persistence、触摸板硬件或 source parity |
 | Batch 94 | Director focus containment and keyboard boundary | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` workspace/drawer focus cycle、focus return、editable boundary、ARIA/inert、overflow and zero diagnostics；writes `runtime-audit.json` and `current-gate-regression.json`, no screenshots | Current clone-owned focus-containment gate；不证明 LibTV source Director 的 exact focus trap、`inert`、DOM/CSS 或键盘实现 |
+| Batch 95 | Director canvas image ingress and session-only environment preview | `CURRENT_GATE` | Pure source contract + fresh BrowserContext desktop/mobile direct-upstream candidate、default/switch/clear/stale、R3F runtime、portable export exclusion and malformed data URL isolation；writes `runtime-audit.json`, no screenshots | Current clone-owned host-handoff gate；不证明 LibTV source panorama protocol、Three.js/R3F implementation、exact DOM/CSS、ordinary canvas upload/provider or remote persistence |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -709,6 +714,7 @@ Batch 67 pure codec gate
   + Batch 92 local-resource lifecycle/lease gate
   + Batch 59 current browser smoke
   + Batch 94 focus-containment gate when Director focus behavior changes
+  + Batch 95 canvas-media ingress gate when Director or ImageNode media loading changes
   + focused tests for the changed reliability slice
   + npm run check
 ```

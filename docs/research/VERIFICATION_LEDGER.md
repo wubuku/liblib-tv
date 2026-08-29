@@ -139,6 +139,7 @@ BrowserContext，不写截图。
 | Batch 92 | Director local resource lifecycle and session lease | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch92.mjs` 与 `verify-liblib-batch92.py` 已通过；Batch 82 历史 fresh-page verifier 已按当前 owner/lease 合同适配并通过；覆盖 strict descriptor/decoded-byte budget、owner-scoped request/lease、terminal invariant、deferred/final release、有限 OBJ materialization、失败 proxy、retry/cancel 和 zero diagnostics；不证明 LibTV source resource semantics、生产 loader/cache、复杂 FBX/纹理、remote persistence 或 ordinary canvas media ingress |
 | Batch 93 | Director final desktop/mobile and cross-batch regression | `FINAL_REGRESSION_RECORDED_PASS` | `verify-liblib-batch93.py`、普通画布 `57/60/61/63/64/65/77` 与 Director `59/67-92` current gates 已通过；覆盖 desktop/mobile workspace/R3F/tree/Inspector/Timeline、折叠/抽屉、close/reopen、overflow、serial current-gate 和 zero diagnostics；不证明 LibTV source parity |
 | Batch 94 | Director focus containment and keyboard boundary | `FOCUSED_RUNTIME_RECORDED_PASS` | `verify-liblib-batch94.py` 已通过；覆盖 desktop/mobile workspace 与 tree/Inspector drawer 的 Tab/Shift+Tab containment、focus return、editable boundary、ARIA/inert、overflow 和 zero diagnostics；不证明 LibTV source Director exact focus trap、inert、DOM/CSS 或键盘实现 |
+| Batch 95 | Director canvas image ingress and session-only environment preview | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch95.py` 已通过；覆盖当前 Director 节点直接上游图片 typed ingress、Inspector 默认/切换/清除、stale source、R3F 非交互环境预览、portable export exclusion、desktop/mobile/failure isolation 和 `0/0/0` diagnostics；不证明 LibTV source-exact panorama UI、Three.js/R3F 实现、ordinary media provider 或 remote persistence |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
@@ -257,6 +258,22 @@ console/page/request `0/0/0`。本批没有生成截图或执行截图识别；�
 回归沿用 Batch 93 的已记录结果，不把本次中断的重复序列记为新的全量通过。
 该结果是 clone-owned Director reliability，不证明 LibTV 原站的 exact focus
 trap、`inert`、DOM/CSS、快捷键或焦点回收实现。
+
+### 5.7 Batch 95 canvas-media ingress closeout
+
+Batch 95 在固定 `localhost:4317` 上完成普通画布图片到 Director session-only
+环境预览的纵向切片，结果见
+[`liblib-canvas-batch95-2026-08-29/runtime-audit.json`](liblib-canvas-batch95-2026-08-29/runtime-audit.json)
+和
+[`liblib-canvas-batch95-2026-08-29/IMPLEMENTATION.md`](liblib-canvas-batch95-2026-08-29/IMPLEMENTATION.md)。
+专项 verifier 覆盖 desktop `1440x900`、mobile `390x844`、直接上游图片候选、
+默认/切换/清除、source stale 自动清理、portable project 排除、R3F 环境预览
+ready、横向溢出和非法 base64 data URL 失败隔离。最终 desktop/mobile/failure
+diagnostics 均为 `console/page/request = 0/0/0`；没有生成截图或执行截图识别。
+本批实现了共享的明显非法图片 data URL 预检，避免普通 `ImageNode` 与 Director
+`TextureLoader` 对同一坏输入各自产生浏览器错误。
+该结果只证明 clone-owned session projection，不证明 LibTV 原站的 panorama
+协议、Three.js/R3F 技术、exact DOM/CSS、普通画布真实上传或资源 provider。
 
 ## 6. 台账维护规则
 

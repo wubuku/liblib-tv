@@ -169,6 +169,7 @@
 | 94 | Director workspace/drawer focus containment, focus return, ARIA/inert and editable keyboard boundary | [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，desktop/mobile workspace 与 tree/Inspector drawer 的 Tab/Shift+Tab containment、focus return、editable boundary、ARIA/inert、overflow 和 zero diagnostics 已通过；不证明 LibTV source Director exact focus trap 或键盘实现 |
 | 93 | Director final desktop/mobile regression and governance closeout | [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/) `FINAL_REGRESSION_RECORDED_PASS`，桌面/移动端 Director shell、R3F、对象树、Inspector、Timeline、抽屉/折叠、close/reopen、普通画布跨批回归、Batch 59/67-92 current gates 和全量文档/项目检查已通过；不证明 LibTV source parity |
 | 94 | Director focus containment and keyboard boundary | [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，workspace 正/反向 Tab 循环、打开/关闭回焦、移动 tree/Inspector 局部循环、非活动抽屉 `aria-hidden`/`inert`、Escape/editable boundary 和 desktop/mobile zero diagnostics 已通过；不证明 LibTV source-exact focus implementation |
+| 95 | Director canvas image ingress and session-only environment preview | [`liblib-canvas-batch95-2026-08-29/`](liblib-canvas-batch95-2026-08-29/) `SCRIPT_RECORDED_PASS`，当前 Director 节点直接上游图片的 typed ingress、Inspector 选择/切换/清除、R3F 非交互环境预览、stale source 清理、导出排除和 desktop/mobile/failure `0/0/0` diagnostics 已通过；不证明 LibTV source-exact panorama UI、Three.js/R3F 实现或 ordinary media provider |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -191,6 +192,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 92 | Director local resource lifecycle and session lease | 已完成；strict descriptor/decoded-byte budget、owner-scoped lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 focused gate 已通过，详见 [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) |
 | 93 | Director final desktop/mobile regression and governance closeout | 已完成；桌面/移动端 Director 回归、普通画布跨批回归、Batch 59/67-92 current gates、治理文档和全量检查已通过，详见 [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)；本批完成后按计划停止 |
 | 94 | Director focus containment and keyboard boundary | 已完成；workspace 与移动抽屉焦点边界、回焦、`aria-hidden`/`inert`、Escape/editable 优先级和 desktop/mobile focused verifier 已通过，详见 [`liblib-canvas-batch94-2026-08-29/`](liblib-canvas-batch94-2026-08-29/)；本批完成后按用户要求停止 |
+| 95 | Director canvas image ingress and session-only environment preview | 已完成；普通画布直接上游图片进入 Director session 的 typed projection、R3F 环境预览、错误隔离和 desktop/mobile 专项 verifier 已通过，详见 [`liblib-canvas-batch95-2026-08-29/`](liblib-canvas-batch95-2026-08-29/)；本批完成后停止，不自动启动 Batch 96 |
 
 ## Stable Cross-Cutting Research
 

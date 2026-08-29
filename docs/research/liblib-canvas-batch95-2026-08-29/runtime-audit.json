@@ -17,6 +17,7 @@
     "sessionProjection": true,
     "inspectorSurface": true,
     "textureLifecycle": true,
+    "invalidDataUrlPreflight": true,
     "nonInteractiveEnvironment": true,
     "visibleStatus": true
   },
@@ -59,15 +60,12 @@
     "workspacePreserved": true,
     "visibleFailureFeedback": true,
     "diagnostics": {
-      "consoleErrors": 2,
+      "consoleErrors": 0,
       "pageErrors": 0,
       "requestFailures": 0,
-      "details": [
-        "texture-error-isolation:console:error:Failed to load resource: net::ERR_INVALID_URL",
-        "texture-error-isolation:console:error:Failed to load resource: net::ERR_INVALID_URL"
-      ],
-      "consoleErrorsExpected": true,
-      "consoleErrorReason": "browser texture decode rejection for invalid data URL"
+      "details": [],
+      "consoleErrorsExpected": false,
+      "consoleErrorReason": "malformed base64 data URL rejected before TextureLoader"
     }
   }
 }

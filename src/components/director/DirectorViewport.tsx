@@ -124,6 +124,7 @@ import { createDirectorCharacterRig } from "@/components/director/directorPose";
 import {
   getDirectorGroupAnchorTransform,
 } from "@/components/director/directorGroupMath";
+import { isMalformedBase64DataImageUrl } from "@/lib/mediaUrl";
 import type {
   DirectorCanvasMediaInputV1,
   DirectorPanoramaRuntimeState,
@@ -1689,6 +1690,13 @@ function DirectorPanoramaRuntime({
 
   useEffect(() => {
     let active = true;
+    if (isMalformedBase64DataImageUrl(input.imageUrl)) {
+      onStatusChange("error");
+      return () => {
+        active = false;
+      };
+    }
+
     const loader = new TextureLoader();
     onStatusChange("loading");
     const loadedTexture = loader.load(

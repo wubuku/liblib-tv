@@ -256,6 +256,17 @@ Director 桌面/移动端 shell、R3F、对象树、Inspector、Timeline、close
   不改变普通画布的 selection/focus 合同，也不产生 LibTV source-exact focus
   证据。
 
+Batch 95 又完成了普通画布图片节点到 Director 的最小 host handoff：只收集当前
+`script-execution` 节点的直接上游、已有 `imageUrl` 的图片，使用 typed
+`DirectorCanvasMediaInputV1` 投影到当前 Director session；Inspector 支持默认、
+切换和清除，R3F 使用不可交互的环境球预览，source stale 会自动清除，portable
+project/history/localStorage 不写入该 session-only 选择。普通 `ImageNode` 与
+Director `TextureLoader` 共用明显非法 base64 data URL 预检，故障反馈可见且
+desktop/mobile/failure diagnostics 均为 `0/0/0`。这仍不等于普通画布真实上传、
+asset registry、panorama 生成或 LibTV 原站的 Three.js/R3F、DOM/CSS 和
+panorama 协议证据；相关实现与边界见
+[`research/liblib-canvas-batch95-2026-08-29/`](research/liblib-canvas-batch95-2026-08-29/)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：
