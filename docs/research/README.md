@@ -165,6 +165,7 @@
 | 89 | Director scene settings and add-camera discoverability | [`liblib-canvas-batch89-2026-08-29/`](liblib-canvas-batch89-2026-08-29/) `SCENE_ADD_CAMERA_FOCUSED_PASS`，场景名称、ground/grid 显隐、背景/地面颜色、对象树/Inspector 双入口、新 camera object/track/keyframe、active-camera/selection、undo/redo、portable export、mobile geometry 和 zero diagnostics 已通过；不证明 LibTV source Director add-camera defaults、shot lifecycle 或 source parity |
 | 90 | Director project/session diagnostics and scene semantic command | [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，session outcome/lifecycle diagnostics、scene draft + Enter/blur commit、typed scene command、persistence、one-entry history、no-op/reject、undo/redo、mobile Inspector 和 zero diagnostics 已通过；不证明 LibTV source Director project/session/history semantics |
 | 91 | Director object/camera/group command and history boundary | [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，对象属性、相机设置、角色组创建/重命名/变换、draft/commit、no-op/invalid/reference guard、persistence、one-entry history 和 zero diagnostics 已通过；不证明 LibTV source Director command/history semantics |
+| 92 | Director local resource lifecycle and session lease | [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，strict descriptor/decoded-byte budget、owner-scoped request/lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 zero diagnostics 已通过；不证明 LibTV source resource protocol、生产 loader/cache 或 remote persistence |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -184,6 +185,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 89 | Director scene settings and add-camera discoverability | 已完成；场景设置、ground/grid/颜色控件、对象树/Inspector 新增机位入口、camera track/keyframe 连续性和 current gate 已通过，详见 [`liblib-canvas-batch89-2026-08-29/`](liblib-canvas-batch89-2026-08-29/) |
 | 90 | Director project/session diagnostics and scene semantic command | 已完成；session outcome/lifecycle 可观察性、scene draft/commit、typed command、persistence、one-entry history、no-op/reject、undo/redo 和 mobile Inspector focused gate 已通过，详见 [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) |
 | 91 | Director object/camera/group command and history boundary | 已完成；对象属性、相机设置、角色组创建/重命名/变换的 typed command、persistence、draft/commit、no-op/invalid/reference guard、one-entry history 和 focused gate 已通过，详见 [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) |
+| 92 | Director local resource lifecycle and session lease | 已完成；strict descriptor/decoded-byte budget、owner-scoped lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 focused gate 已通过，详见 [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) |
 
 ## Stable Cross-Cutting Research
 

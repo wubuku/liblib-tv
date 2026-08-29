@@ -677,9 +677,6 @@ function DirectorLocalModelResourceLoader({
   const settleLoad = useDirectorStore(
     (state) => state.settleLocalModelResource,
   );
-  const retainResource = useDirectorStore(
-    (state) => state.retainLocalModelResource,
-  );
   const releaseResourceLease = useDirectorStore(
     (state) => state.releaseLocalModelResourceLease,
   );
@@ -705,7 +702,15 @@ function DirectorLocalModelResourceLoader({
 
     const requestId = startLoad(item.id);
     if (!requestId) return;
-    retainResource(item.id);
+    const leaseOwner = useDirectorStore
+      .getState()
+      .localModelResources[item.id]?.leases.find(
+        (lease) => lease.leaseId === requestId,
+      )?.owner;
+    if (!leaseOwner) {
+      cancelLoad(item.id, requestId);
+      return;
+    }
     const controller = new AbortController();
     let active = true;
 
@@ -721,6 +726,7 @@ function DirectorLocalModelResourceLoader({
           status: "ready",
         });
         if (!accepted) {
+          releaseResourceLease(item.id, requestId, leaseOwner);
           disposeDirectorLocalModel(nextModel);
           return;
         }
@@ -738,13 +744,14 @@ function DirectorLocalModelResourceLoader({
           errorMessage:
             error instanceof Error ? error.message : "模型解析失败",
         });
+        releaseResourceLease(item.id, requestId, leaseOwner);
       });
 
     return () => {
       active = false;
       controller.abort();
-      cancelLoad(item.id, requestId);
-      releaseResourceLease(item.id);
+      cancelLoad(item.id, requestId, leaseOwner);
+      releaseResourceLease(item.id, requestId, leaseOwner);
       if (modelRef.current) {
         onModel(item.id, null);
         disposeDirectorLocalModel(modelRef.current);
@@ -759,7 +766,6 @@ function DirectorLocalModelResourceLoader({
     projectId,
     retryNonce,
     releaseResourceLease,
-    retainResource,
     sessionId,
     settleLoad,
     startLoad,

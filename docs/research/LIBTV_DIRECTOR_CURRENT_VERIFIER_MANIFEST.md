@@ -19,6 +19,8 @@
 > `RESTORE_SELECTION_GATE_RECORDED_PASS` /
 > `SELECTION_TIMELINE_AUTHORITY_GATE_RECORDED_PASS` /
 > `SCENE_COMMAND_GATE_RECORDED_PASS` /
+> `OBJECT_CAMERA_GROUP_COMMAND_GATE_RECORDED_PASS` /
+> `LOCAL_RESOURCE_LEASE_GATE_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
@@ -38,7 +40,8 @@
 > Batch 85 selection/CRUD discoverability verifier, Batch 86 transform
 > context/cancellation verifier, Batch 87 restore-selection verifier, Batch 88
 > selection/timeline authority verifier, Batch 89 scene-settings/add-camera verifier
-> and Batch 90 project/session-scene-command verifier.
+> Batch 90 project/session-scene-command verifier, Batch 91 object/camera/group
+> command verifier and Batch 92 local-resource lifecycle/lease verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -140,6 +143,10 @@ single current gate on their own:
 - Batch 91 covers object/camera/group typed command boundaries、name draft/commit、
   camera reference validation、persistence、one-entry history、invalid/no-op
   protection and zero-diagnostic fresh-page workflow。
+- Batch 92 covers strict local-resource descriptor/decoded-byte validation、
+  owner-scoped request/lease、terminal status/error invariants、deferred/final
+  release、finite OBJ/FBX materialization、parse-failure proxy retention、
+  retry/cancel and zero-diagnostic fresh-page workflow。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -202,6 +209,7 @@ historical regressions.
 | Batch 89 | Director scene settings and add-camera discoverability | `CURRENT_GATE` | Pure source contract + fresh-page Playwright scene settings, object-tree/Inspector add-camera entrypoints, camera/track/keyframe creation, active-camera selection, undo/redo, portable export and mobile panel workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene/add-camera gate；proves clone-owned authoring entry and document continuity，不证明 LibTV source Director add-camera defaults、exact DOM/CSS 或 shot lifecycle |
 | Batch 90 | Director project/session diagnostics and scene semantic command | `CURRENT_GATE` | Pure source contract + fresh-page Playwright session outcome/lifecycle diagnostics, scene draft/Enter/blur commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene-command gate；proves clone-owned session observability and command boundary，不证明 LibTV source Director project/session/history/persistence semantics、exact DOM/CSS 或 source parity |
 | Batch 91 | Director object/camera/group command and history boundary | `CURRENT_GATE` | Pure source contract + fresh-page Playwright object/camera/group command, name draft/Enter/blur, reference validation, persistence, one-entry history, invalid/no-op and zero-diagnostic workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` object/camera/group command gate；proves clone-owned mutation boundary，不证明 LibTV source Director command/history/persistence semantics、exact DOM/CSS 或 source parity |
+| Batch 92 | Director local resource lifecycle and session lease | `CURRENT_GATE` | Pure lifecycle contract + fresh-page Playwright local-model materialization, owner-scoped lease, deferred/final release, delete reference cleanup and zero diagnostics；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource lease gate；proves clone-owned session-local resource lifecycle，不证明 LibTV source resource semantics、生产 loader/cache、复杂 FBX/纹理或 remote persistence |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -566,6 +574,34 @@ This result closes the clone-owned project/session observability and scene seman
 command slice. It does not prove LibTV source Director project/session, history or
 persistence semantics.
 
+Batch 91 object/camera/group command gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Pure corpus | object/camera/group typed command、name draft/commit、reference validation、no-op/invalid and history boundary |
+| Browser corpus | object/camera/group mutation、persistence、one-entry history、invalid/no-op zero mutation and zero diagnostics |
+| Artifact | Batch 91 `runtime-audit.json`；zero screenshots |
+| Source boundary | LibTV authenticated Director command/history/persistence and exact DOM/CSS remain unknown |
+
+This result closes the clone-owned object/camera/group mutation boundary. It does
+not prove LibTV source Director command/history/persistence semantics.
+
+Batch 92 local-resource lifecycle/lease gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Pure corpus | strict descriptor/decoded-byte budget、owner-scoped request/lease、wrong-owner zero mutation、terminal invariant、deferred/final release、released reactivation、retry and materializer budget guard |
+| Browser corpus | ready resource lease、deferred release、delete reference cleanup、final lease release、released state without leases and zero diagnostics |
+| Artifact | Batch 92 `runtime-audit.json`；zero screenshots |
+| Compatibility | Batch 82 historical fresh-page verifier updated for current owner/lease API and `attempt >= 1` lifecycle contract；passed |
+| Source boundary | LibTV authenticated Director resource protocol、loader/cache、lease/session semantics and exact UI remain unknown |
+
+This result closes the clone-owned Director local-resource owner/lease slice. It
+does not prove LibTV source resource semantics, durable assets, production
+materialization or ordinary canvas media ingress.
+
 ### 4.3 Current-gate serial regression
 
 On 2026-08-29, using the single `localhost:4317` Next dev server, the
@@ -575,7 +611,7 @@ following current gates were run serially and all passed:
 Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
 Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79, Batch 80,
 Batch 81, Batch 82, Batch 83, Batch 84, Batch 85, Batch 86, Batch 87,
-Batch 88, Batch 89
+Batch 88, Batch 89, Batch 90, Batch 91, Batch 92
 ```
 
 The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
@@ -591,6 +627,8 @@ serial result is recorded in
 This is a clone reliability result, not LibTV source parity. The Batch 89 scene/add-camera
 result is recorded in
 [`liblib-canvas-batch89-2026-08-29/current-gate-regression.json`](liblib-canvas-batch89-2026-08-29/current-gate-regression.json).
+The Batch 92 local-resource result is recorded in
+[`liblib-canvas-batch92-2026-08-29/runtime-audit.json`](liblib-canvas-batch92-2026-08-29/runtime-audit.json).
 
 ## 5. Future Gate Profiles
 
@@ -618,6 +656,7 @@ Batch 67 pure codec gate
   + Batch 89 scene settings/add-camera gate
   + Batch 90 project/session-scene-command gate
   + Batch 91 object/camera/group-command gate
+  + Batch 92 local-resource lifecycle/lease gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check

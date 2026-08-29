@@ -107,6 +107,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 89 | Director scene settings, ground/grid/background controls, add-camera entrypoints, camera track/keyframe continuity, portable export and mobile geometry |
 | Batch 90 | Director project/session lifecycle diagnostics, scene semantic command, draft/commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector |
 | Batch 91 | Director object/camera/group typed command boundary, name draft/commit, reference validation, persistence, one-entry history, invalid/no-op protection and zero diagnostics |
+| Batch 92 | Director local resource descriptor/decoded-byte budget, owner-scoped request/lease, deferred/final release, finite OBJ/FBX materialization, retry/cancel and zero diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -200,6 +201,15 @@ Batch 91 是 Director object/camera/group command hybrid gate，默认不写截�
 validation、persistence、one-entry history、invalid/no-op zero mutation 和
 zero-diagnostic 断言。它只证明 clone-owned mutation boundary，不证明 LibTV 原站
 Director command/history/persistence、文案或 source-exact behavior。
+
+Batch 92 是 Director local-resource lifecycle hybrid gate，默认不写截图；它保留
+strict descriptor/decoded-byte budget、owner-scoped request/lease、terminal
+status/error invariant、deferred release、最后一个 lease 的 final release、
+有限 OBJ/FBX materialization、parse-failure proxy retention、retry/cancel 和
+zero-diagnostic 断言。Batch 82 历史 verifier 也按当前 owner/lease 合同串行复跑。
+它只证明 clone-owned session-local resource lifecycle，不证明 LibTV 原站资源
+协议、生产 loader/cache、复杂 FBX/纹理、remote persistence 或 ordinary canvas
+media ingress。
 
 ## Browser Evidence Requirements
 

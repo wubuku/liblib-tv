@@ -243,7 +243,8 @@ materialization 和 source parity 仍未完成；Batch 82 补了 Director sessio
 feedback projection，Batch 90 又补了 project/session outcome diagnostics 与
 scene semantic command，Batch 91 又将对象属性、相机设置和角色组的高频
 direct writers 收口到 typed command、persistence、one-entry history 与 name
-draft/commit。这些
+draft/commit，Batch 92 又补了 local resource strict descriptor/decoded-byte
+budget、owner-scoped lease 和 deferred/final release。这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
   source-exact 行为。
 
@@ -674,6 +675,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - Batch 83：Director command outcome/reason projection、ARIA feedback surface、
   committed/no-op/rejected behavior、mobile header geometry 和 zero-history boundary
   的专项门禁
+- Batch 89-92：Director scene/add-camera、project/session-scene command、
+  object/camera/group command 和 local resource owner/lease lifecycle 的专项门禁；
+  均以 clone-owned reliability 为边界，不等价于 LibTV source parity
 - `python3 scripts/verify-liblib-batch4.py` 到 `verify-liblib-batch9.py`：多选/成组、移动/复制、导航手势、整理预览、视频组 hierarchy 和节点浮层锚定全部通过
 - `/` 运行态：10 节点、11 边；边关闭后 DOM 为 0 条，重新开启恢复 11 条
 - 桌面 `929x874`：53% 视口，主工具条 `338x49`，画布控制 `273x40`

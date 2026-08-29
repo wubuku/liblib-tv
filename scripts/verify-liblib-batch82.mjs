@@ -38,25 +38,43 @@ assert.equal(
   null,
 );
 
+const owner = {
+  ownerKey: "libtv:batch82-canvas:batch82-source",
+  projectId: "batch82-project",
+  sessionId: "batch82-session",
+  generation: 1,
+};
+
 let resources = createDirectorLocalResourceMap([validItem]);
 assert.equal(resources[validItem.id]?.status, "idle");
 resources = addDirectorLocalResource(resources, descriptor);
 
-const first = beginDirectorLocalResourceLoad(resources, validItem.id, "request-1");
+const first = beginDirectorLocalResourceLoad(
+  resources,
+  validItem.id,
+  "request-1",
+  owner,
+);
 assert.equal(first.accepted, true);
 assert.equal(first.state?.status, "loading");
 resources = { ...resources, [validItem.id]: first.state };
+resources = retainDirectorLocalResource(resources, validItem.id, {
+  leaseId: "request-1",
+  owner,
+});
 
 const duplicate = beginDirectorLocalResourceLoad(
   resources,
   validItem.id,
   "request-duplicate",
+  owner,
 );
 assert.equal(duplicate.accepted, false);
 
 const stale = settleDirectorLocalResource(resources, {
   resourceId: validItem.id,
   requestId: "request-duplicate",
+  owner,
   status: "ready",
 });
 assert.equal(stale.accepted, false);
@@ -65,22 +83,39 @@ assert.equal(stale.state?.status, "loading");
 const ready = settleDirectorLocalResource(resources, {
   resourceId: validItem.id,
   requestId: "request-1",
+  owner,
   status: "ready",
 });
 assert.equal(ready.accepted, true);
 assert.equal(ready.state?.status, "ready");
 resources = { ...resources, [validItem.id]: ready.state };
+resources = releaseDirectorLocalResourceLease(
+  resources,
+  validItem.id,
+  "request-1",
+  owner,
+);
 
 resources = retryDirectorLocalResource(resources, validItem.id);
 assert.equal(resources[validItem.id]?.status, "idle");
 assert.equal(resources[validItem.id]?.retryNonce, 1);
 
-const second = beginDirectorLocalResourceLoad(resources, validItem.id, "request-2");
+const second = beginDirectorLocalResourceLoad(
+  resources,
+  validItem.id,
+  "request-2",
+  owner,
+);
 assert.equal(second.accepted, true);
 resources = { ...resources, [validItem.id]: second.state };
+resources = retainDirectorLocalResource(resources, validItem.id, {
+  leaseId: "request-2",
+  owner,
+});
 const failed = settleDirectorLocalResource(resources, {
   resourceId: validItem.id,
   requestId: "request-2",
+  owner,
   status: "failed",
   error: "PARSE_FAILED",
   errorMessage: "fixture parse failure",
@@ -88,27 +123,46 @@ const failed = settleDirectorLocalResource(resources, {
 assert.equal(failed.accepted, true);
 assert.equal(failed.state?.error, "PARSE_FAILED");
 resources = { ...resources, [validItem.id]: failed.state };
+resources = releaseDirectorLocalResourceLease(
+  resources,
+  validItem.id,
+  "request-2",
+  owner,
+);
 
 resources = retryDirectorLocalResource(resources, validItem.id);
-const third = beginDirectorLocalResourceLoad(resources, validItem.id, "request-3");
+const third = beginDirectorLocalResourceLoad(
+  resources,
+  validItem.id,
+  "request-3",
+  owner,
+);
 assert.equal(third.accepted, true);
 resources = { ...resources, [validItem.id]: third.state };
+resources = retainDirectorLocalResource(resources, validItem.id, {
+  leaseId: "request-3",
+  owner,
+});
 const canceled = settleDirectorLocalResource(resources, {
   resourceId: validItem.id,
   requestId: "request-3",
+  owner,
   status: "canceled",
   error: "ABORTED",
 });
 assert.equal(canceled.accepted, true);
 assert.equal(canceled.state?.status, "canceled");
 resources = { ...resources, [validItem.id]: canceled.state };
-
-resources = retainDirectorLocalResource(resources, validItem.id);
 assert.equal(resources[validItem.id]?.leaseCount, 1);
 resources = markDirectorLocalResourceReleased(resources, validItem.id);
+assert.equal(resources[validItem.id]?.releaseRequested, true);
 assert.equal(resources[validItem.id]?.status, "canceled");
-resources = releaseDirectorLocalResourceLease(resources, validItem.id);
-resources = markDirectorLocalResourceReleased(resources, validItem.id);
+resources = releaseDirectorLocalResourceLease(
+  resources,
+  validItem.id,
+  "request-3",
+  owner,
+);
 assert.equal(resources[validItem.id]?.status, "released");
 
 console.log(

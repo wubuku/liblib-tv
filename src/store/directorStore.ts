@@ -138,6 +138,7 @@ import {
   retryDirectorLocalResource,
   settleDirectorLocalResource,
   type DirectorLocalResourceFailureReason,
+  type DirectorLocalResourceLeaseOwnerV1,
   type DirectorLocalResourceMap,
 } from "@/lib/directorLocalResourceLifecycle";
 
@@ -531,11 +532,16 @@ interface DirectorState {
     errorMessage?: string | null;
   }) => boolean;
   retryLocalModelResource: (resourceId: string) => void;
-  retainLocalModelResource: (resourceId: string) => void;
-  releaseLocalModelResourceLease: (resourceId: string) => void;
+  retainLocalModelResource: (resourceId: string, leaseId: string) => boolean;
+  releaseLocalModelResourceLease: (
+    resourceId: string,
+    leaseId: string,
+    owner?: DirectorLocalResourceLeaseOwnerV1,
+  ) => boolean;
   cancelLocalModelResourceLoad: (
     resourceId: string,
     requestId: string,
+    owner?: DirectorLocalResourceLeaseOwnerV1,
   ) => boolean;
   releaseLocalModelResource: (resourceId: string) => void;
   removeLocalModelLibraryItem: (
@@ -1833,6 +1839,25 @@ function localResourceIdsForRecords(
   );
 }
 
+function directorLocalResourceLeaseOwner(
+  state: DirectorState,
+): DirectorLocalResourceLeaseOwnerV1 | null {
+  if (
+    !state.projectOwner ||
+    !state.projectId ||
+    !state.sessionId ||
+    state.generation === null
+  ) {
+    return null;
+  }
+  return {
+    ownerKey: createDirectorProjectOwnerKey(state.projectOwner),
+    projectId: state.projectId,
+    sessionId: state.sessionId,
+    generation: state.generation,
+  };
+}
+
 function releaseLocalModelDescriptors(
   state: DirectorState,
   resourceIds: ReadonlySet<string>,
@@ -2614,10 +2639,9 @@ function projectDirectorDeleteState(
       )
     : state.localModelLibrary;
   const localModelResources = removesLocalLibraryDescriptor
-    ? Object.fromEntries(
-        Object.entries(state.localModelResources).filter(
-          ([resourceId]) => resourceId !== command.resourceId,
-        ),
+    ? markDirectorLocalResourceReleased(
+        state.localModelResources,
+        command.resourceId,
       )
     : state.localModelResources;
 
@@ -3885,10 +3909,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       const localModelLibrary = state.localModelLibrary.filter(
         (item) => item.id !== command.resourceId,
       );
-      const localModelResources = Object.fromEntries(
-        Object.entries(state.localModelResources).filter(
-          ([resourceId]) => resourceId !== command.resourceId,
-        ),
+      const localModelResources = markDirectorLocalResourceReleased(
+        state.localModelResources,
+        command.resourceId,
       );
       writePersistedLocalModelLibrary(localModelLibrary);
       const result = makeDirectorCommandResult(state, {
@@ -4505,6 +4528,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   startLocalModelResourceLoad: (resourceId) => {
     let requestId: string | null = null;
     set((state) => {
+      const owner = directorLocalResourceLeaseOwner(state);
+      if (!owner) return state;
       const nextRequestId = createDirectorAsyncIdentity(
         "director-local-model-load",
       );
@@ -4512,14 +4537,25 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         state.localModelResources,
         resourceId,
         nextRequestId,
+        owner,
       );
       if (!transition.accepted || !transition.state) return state;
+      const startedResources = {
+        ...state.localModelResources,
+        [resourceId]: transition.state,
+      };
+      const nextResources = retainDirectorLocalResource(
+        startedResources,
+        resourceId,
+        {
+          leaseId: nextRequestId,
+          owner,
+        },
+      );
+      if (nextResources === startedResources) return state;
       requestId = nextRequestId;
       return {
-        localModelResources: {
-          ...state.localModelResources,
-          [resourceId]: transition.state,
-        },
+        localModelResources: nextResources,
       };
     });
     return requestId;
@@ -4528,9 +4564,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   settleLocalModelResource: (input) => {
     let accepted = false;
     set((state) => {
+      const owner = directorLocalResourceLeaseOwner(state);
+      if (!owner) return state;
       const transition = settleDirectorLocalResource(
         state.localModelResources,
-        input,
+        { ...input, owner },
       );
       if (!transition.accepted || !transition.state) return state;
       accepted = true;
@@ -4552,30 +4590,66 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       ),
     })),
 
-  retainLocalModelResource: (resourceId) =>
-    set((state) => ({
-      localModelResources: retainDirectorLocalResource(
+  retainLocalModelResource: (resourceId, leaseId) => {
+    const owner = directorLocalResourceLeaseOwner(get());
+    if (!owner) return false;
+    let accepted = false;
+    set((state) => {
+      const next = retainDirectorLocalResource(
         state.localModelResources,
         resourceId,
-      ),
-    })),
+        { leaseId, owner },
+      );
+      accepted = next !== state.localModelResources;
+      return { localModelResources: next };
+    });
+    return accepted;
+  },
 
-  releaseLocalModelResourceLease: (resourceId) =>
-    set((state) => ({
-      localModelResources: releaseDirectorLocalResourceLease(
+  releaseLocalModelResourceLease: (resourceId, leaseId, expectedOwner) => {
+    const owner = expectedOwner ?? directorLocalResourceLeaseOwner(get());
+    if (!owner) return false;
+    let accepted = false;
+    set((state) => {
+      const next = releaseDirectorLocalResourceLease(
         state.localModelResources,
         resourceId,
-      ),
-    })),
+        leaseId,
+        owner,
+      );
+      accepted = next !== state.localModelResources;
+      return { localModelResources: next };
+    });
+    return accepted;
+  },
 
-  cancelLocalModelResourceLoad: (resourceId, requestId) =>
-    get().settleLocalModelResource({
-      resourceId,
-      requestId,
-      status: "canceled",
-      error: "ABORTED",
-      errorMessage: "模型解析已取消",
-    }),
+  cancelLocalModelResourceLoad: (resourceId, requestId, expectedOwner) => {
+    const owner = expectedOwner ?? directorLocalResourceLeaseOwner(get());
+    if (!owner) return false;
+    let accepted = false;
+    set((state) => {
+      const transition = settleDirectorLocalResource(
+        state.localModelResources,
+        {
+          resourceId,
+          requestId,
+          owner,
+          status: "canceled",
+          error: "ABORTED",
+          errorMessage: "模型解析已取消",
+        },
+      );
+      if (!transition.accepted || !transition.state) return state;
+      accepted = true;
+      return {
+        localModelResources: {
+          ...state.localModelResources,
+          [resourceId]: transition.state,
+        },
+      };
+    });
+    return accepted;
+  },
 
   releaseLocalModelResource: (resourceId) =>
     set((state) => ({

@@ -119,6 +119,7 @@ def main() -> None:
     invalid_data_url = "data:text/plain;base64," + base64.b64encode(
         b"this is not an obj mesh"
     ).decode("ascii")
+    invalid_bytes = len(b"this is not an obj mesh")
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
@@ -162,6 +163,7 @@ def main() -> None:
             "name": "Batch 82 invalid",
             "fileName": "batch82-invalid.obj",
             "dataUrl": invalid_data_url,
+            "sizeBytes": invalid_bytes,
         }
         unsupported_item = {
             **valid_item,
@@ -182,7 +184,7 @@ def main() -> None:
         page.wait_for_function(
             """(resourceId) =>
               window.__director_store.getState().localModelResources[resourceId]?.status === "ready" &&
-              window.__director_store.getState().localModelResources[resourceId]?.attempt === 1""",
+              window.__director_store.getState().localModelResources[resourceId]?.attempt >= 1""",
             arg=valid_item["id"],
         )
         valid_resource = read_resource(page, valid_item["id"])
@@ -282,6 +284,20 @@ def main() -> None:
         page.evaluate(
             """(resourceId) =>
               window.__director_store.getState().releaseLocalModelResource(resourceId)""",
+            cancel_resource_id,
+        )
+        page.evaluate(
+            """(resourceId) => {
+              const state = window.__director_store.getState();
+              const resource = state.localModelResources[resourceId];
+              const lease = resource?.leases[0];
+              if (!lease) throw new Error("cancel lease missing");
+              state.releaseLocalModelResourceLease(
+                resourceId,
+                lease.leaseId,
+                lease.owner
+              );
+            }""",
             cancel_resource_id,
         )
         assert read_resource(page, cancel_resource_id)["status"] == "released"

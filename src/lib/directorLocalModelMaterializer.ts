@@ -8,6 +8,7 @@ import {
   type BufferGeometry,
 } from "three";
 import type { DirectorLocalModelLibraryItem } from "@/components/director/directorModelLibrary";
+import { DIRECTOR_LOCAL_RESOURCE_MAX_BYTES } from "@/lib/directorLocalResourceLifecycle";
 
 export class DirectorLocalModelAbortError extends Error {
   constructor() {
@@ -80,6 +81,9 @@ export async function materializeDirectorLocalModel(
   }
   const bytes = decodeDataUrl(item.dataUrl);
   if (bytes.byteLength === 0) throw new Error("模型文件为空");
+  if (bytes.byteLength > DIRECTOR_LOCAL_RESOURCE_MAX_BYTES) {
+    throw new Error("本地模型资源超过 25 MiB 限制");
+  }
   throwIfAborted(signal);
 
   const parsed =
