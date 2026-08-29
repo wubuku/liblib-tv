@@ -1,0 +1,29 @@
+{
+  "batch": 85,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "contract": {
+    "scope": "clone-owned Director object-tree selection and CRUD discoverability",
+    "sourceExact": false,
+    "clearSelectionChangesDocument": false,
+    "copyUsesProjectClipboard": true,
+    "batchDeleteUsesReferenceAwareCommand": true
+  },
+  "desktop": {
+    "singleSelectionBar": true,
+    "copyAction": true,
+    "clearAction": true,
+    "shiftMultiSelection": true,
+    "batchDelete": true,
+    "zeroHistoryClear": true
+  },
+  "mobile": {
+    "treeRemainsDiscoverable": true
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0,
+    "details": []
+  }
+}

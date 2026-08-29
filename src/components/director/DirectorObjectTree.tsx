@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import {
   Box,
   Camera,
+  Copy,
   ChevronDown,
   ChevronRight,
   Eye,
@@ -14,6 +15,7 @@ import {
   Unlock,
   User,
   Users,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -166,12 +168,16 @@ export function DirectorObjectTree() {
     (state) => state.toggleObjectSelection,
   );
   const updateObject = useDirectorStore((state) => state.updateObject);
+  const copyDirectorSelection = useDirectorStore(
+    (state) => state.copyDirectorSelection,
+  );
   const toggleObjectLocked = useDirectorStore(
     (state) => state.toggleObjectLocked,
   );
   const deleteDirectorEntity = useDirectorStore(
     (state) => state.deleteDirectorEntity,
   );
+  const clearSelection = useDirectorStore((state) => state.selectObject);
   const groupSelectedCharacters = useDirectorStore(
     (state) => state.groupSelectedCharacters,
   );
@@ -222,6 +228,39 @@ export function DirectorObjectTree() {
     objects.some((object) => object.id === id && object.kind === "character"),
   );
   const canGroup = selectedCharacters.length >= 2 && selectedGroupId === null;
+  const hasSelection =
+    selectedGroupId !== null ||
+    selectedObjectIds.length > 0 ||
+    selectedObjectId !== null;
+  const selectionCount = selectedGroupId
+    ? selectedCharacters.length
+    : selectedObjectIds.length > 0
+      ? selectedObjectIds.length
+      : selectedObjectId
+        ? 1
+        : 0;
+  const deleteSelection = () => {
+    if (selectedGroupId) {
+      deleteDirectorEntity({
+        kind: "DELETE_GROUP",
+        groupId: selectedGroupId,
+        memberPolicy: "UNGROUP",
+      });
+      return;
+    }
+    const objectIds =
+      selectedObjectIds.length > 0
+        ? selectedObjectIds
+        : selectedObjectId
+          ? [selectedObjectId]
+          : [];
+    if (objectIds.length > 0) {
+      deleteDirectorEntity({
+        kind: "DELETE_OBJECTS",
+        objectIds,
+      });
+    }
+  };
 
   return (
     <section data-director-tree className="flex h-full min-h-0 flex-col bg-[#191919]">
@@ -257,6 +296,52 @@ export function DirectorObjectTree() {
           <ChevronRight size={12} /> 解组
         </button>
       </div>
+      {hasSelection ? (
+        <div
+          data-director-selection-toolbar
+          data-director-selection-kind={selectedGroupId ? "group" : "objects"}
+          className="flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2"
+        >
+          <span
+            data-director-selection-count
+            className="min-w-0 flex-1 truncate px-1 text-[10px] tabular-nums text-[#8f8f8f]"
+          >
+            {selectedGroupId
+              ? `分组 · ${selectionCount} 个成员`
+              : `${selectionCount} 个对象已选`}
+          </span>
+          <button
+            type="button"
+            data-director-selection-action="copy"
+            aria-label="复制当前选择"
+            title="复制当前选择"
+            onClick={copyDirectorSelection}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#999] hover:bg-white/[0.06] hover:text-white"
+          >
+            <Copy size={13} />
+          </button>
+          <button
+            type="button"
+            data-director-selection-action="delete"
+            aria-label={selectedGroupId ? "解组并删除当前分组" : "删除当前选择"}
+            title={selectedGroupId ? "解组并删除当前分组" : "删除当前选择"}
+            onClick={deleteSelection}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#999] hover:bg-white/[0.06] hover:text-[#f08d8d]"
+          >
+            <Trash2 size={13} />
+          </button>
+          <button
+            type="button"
+            data-director-selection-action="clear"
+            aria-label="清除当前选择"
+            title="清除当前选择"
+            onClick={() => clearSelection(null)}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#999] hover:bg-white/[0.06] hover:text-white"
+          >
+            <X size={13} />
+          </button>
+        </div>
+      ) : null}
 
       <div className="min-h-0 flex-1 overflow-y-auto py-2">
         {visibleGroups.length > 0 ? (

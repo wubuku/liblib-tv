@@ -100,6 +100,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 82 | Director local resource descriptor/provenance, attempt freshness, retry/cancel/release, finite OBJ/FBX materialization, parse-failure proxy retention, model-library feedback and zero diagnostics |
 | Batch 83 | Director typed command outcome/reason feedback projection, fixed-header status surface, ARIA semantics, committed-success suppression, meaningful no-op visibility, mobile geometry and zero diagnostics |
 | Batch 84 | Director object-tree lock/visibility controls, locked-target Inspector/Viewport/Timeline/Curve protection, typed rejection, zero document/history mutation, unlock recovery and zero diagnostics |
+| Batch 85 | Director object-tree selection context, single/multi-selection count, project-scoped copy, clear zero-history, reference-aware batch delete, mobile discovery and zero diagnostics |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -166,6 +167,12 @@ Curve 编辑保护、`DIRECTOR_TARGET_LOCKED` 拒绝、zero document/history mut
 visibility continuity、unlock recovery 和 mobile discoverability。它只证明
 clone-owned Director 编辑保护，不证明 LibTV 原站 Director 是否有相同 lock
 UI、文案、键盘策略或 source-exact behavior。
+
+Batch 85 是 Director selection/CRUD discoverability hybrid gate，默认不写截图；
+它保留单选/Shift 多选/分组选择的数量投影、project-scoped copy、clear
+zero-history、reference-aware batch delete、mobile tree discovery 和 zero
+diagnostics。它只证明 clone-owned selection action bar，不证明 LibTV 原站
+Director 是否有相同 selection bar、文案、键盘策略或 source-exact behavior。
 
 ## Browser Evidence Requirements
 
