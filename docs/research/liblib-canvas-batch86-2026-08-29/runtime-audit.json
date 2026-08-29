@@ -1,0 +1,31 @@
+{
+  "batch": 86,
+  "status": "SCRIPT_RECORDED_PASS",
+  "baseUrl": "http://localhost:4317",
+  "contract": {
+    "scope": "clone-owned Director transform target discoverability and pointer cancellation",
+    "sourceExact": false,
+    "targetContextProjected": true,
+    "lockedTransformRejected": true,
+    "pointerCancelRestoresBaseline": true,
+    "lostPointerCaptureStaticBoundary": true
+  },
+  "desktop": {
+    "noSelectionContext": true,
+    "objectContextAndInspector": true,
+    "pointerCancelRestoresAndClears": true,
+    "gizmoDragHistoryUndoRedo": true,
+    "lockedContextAndZeroMutation": true,
+    "mobileContextGeometry": true
+  },
+  "mobile": {
+    "contextWithinToolbar": true,
+    "noHorizontalOverflow": true
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0,
+    "details": []
+  }
+}

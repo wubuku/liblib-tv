@@ -1,0 +1,32 @@
+{
+  "batch": 86,
+  "status": "CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS",
+  "date": "2026-08-29",
+  "baseUrl": "http://localhost:4317",
+  "sequence": [59, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86],
+  "result": "all_passed",
+  "coverage": {
+    "directorReliability": true,
+    "ordinaryCanvasNavigation": true,
+    "transformControlsPointerDrag": true,
+    "pointerCancellationAndR3fTeardown": true,
+    "projectSessionHistoryDelete": true,
+    "persistenceClipboardAndResources": true,
+    "lockSelectionAndTransformDiscoverability": true,
+    "ordinaryGraphIsolation": true
+  },
+  "artifacts": {
+    "screenshotsWritten": 0,
+    "batch86RuntimeAudit": "runtime-audit.json",
+    "historicalAuditsRewritten": false
+  },
+  "diagnostics": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "requestFailures": 0
+  },
+  "evidenceBoundary": {
+    "sourceExactDirector": false,
+    "cloneOwnedReliability": true
+  }
+}

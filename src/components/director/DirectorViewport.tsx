@@ -1056,6 +1056,8 @@ function SceneObject({ object }: { object: DirectorObject }) {
             transformActiveRef.current = result.disposition === "COMMITTED";
           }}
           onMouseUp={commitTransform}
+          onPointerCancel={cancelTransform}
+          onLostPointerCapture={cancelTransform}
         />
       ) : null}
       {content}
@@ -1212,6 +1214,8 @@ function DirectorGroupTransformRig({
             transformActiveRef.current = result.disposition === "COMMITTED";
           }}
           onMouseUp={commitTransform}
+          onPointerCancel={cancelTransform}
+          onLostPointerCapture={cancelTransform}
         />
       ) : null}
       <group
@@ -1969,6 +1973,13 @@ const transformTools: Array<{
   { mode: "scale", label: "缩放", Icon: Scaling },
 ];
 
+type DirectorTransformContext = {
+  kind: "none" | "object" | "group" | "path-anchor" | "path-drawing" | "busy";
+  state: "idle" | "editable" | "locked" | "blocked";
+  label: string;
+  detail: string;
+};
+
 function ModelLibraryThumbnail({
   item,
 }: {
@@ -2165,6 +2176,13 @@ export function DirectorViewport({
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
+  const selectedObjectIds = useDirectorStore(
+    (state) => state.selectedObjectIds,
+  );
+  const objects = useDirectorStore((state) => state.objects);
+  const groups = useDirectorStore((state) => state.groups);
   const activeCameraId = useDirectorStore((state) => state.activeCameraId);
   const activeCamera = useDirectorStore((state) =>
     state.objects.find((object) => object.id === activeCameraId),
@@ -2250,6 +2268,101 @@ export function DirectorViewport({
   const phoneVcamRecording = phoneVcamStatus === "recording";
   const viewportGizmoDisabled =
     timeline.motionPathDraft !== null || phoneVcamRecording;
+  const transformContext = useMemo<DirectorTransformContext>(() => {
+    if (phoneVcamRecording) {
+      return {
+        kind: "busy",
+        state: "blocked",
+        label: "虚拟相机录制中",
+        detail: "录制结束后可变换",
+      };
+    }
+    if (isCapturing) {
+      return {
+        kind: "busy",
+        state: "blocked",
+        label: "正在保存构图",
+        detail: "完成后可变换",
+      };
+    }
+    if (timeline.motionPathDraft) {
+      return {
+        kind: "path-drawing",
+        state: "blocked",
+        label: "正在绘制路径",
+        detail: "完成或取消后可变换",
+      };
+    }
+
+    const selectedAnchorId = timeline.selectedMotionPathAnchorId;
+    if (selectedAnchorId) {
+      const selectedPath = timeline.motionPaths.find((path) =>
+        path.anchors.some((anchor) => anchor.id === selectedAnchorId),
+      );
+      const pathObject = selectedPath
+        ? objects.find((object) => object.id === selectedPath.objectId)
+        : null;
+      const locked = Boolean(pathObject?.locked);
+      return {
+        kind: "path-anchor",
+        state: locked ? "locked" : "editable",
+        label: pathObject ? `${pathObject.name} · 路径锚点` : "路径锚点",
+        detail: locked ? "对象已锁定" : "可拖动控制点",
+      };
+    }
+
+    if (selectedGroupId) {
+      const selectedGroup = groups.find((group) => group.id === selectedGroupId);
+      const locked = Boolean(
+        selectedGroup?.characterIds.some((objectId) =>
+          objects.some((object) => object.id === objectId && object.locked),
+        ),
+      );
+      return {
+        kind: "group",
+        state: locked ? "locked" : "editable",
+        label: selectedGroup?.label ?? "分组",
+        detail: locked ? "含锁定成员" : "可变换分组",
+      };
+    }
+
+    const selectedObject = objects.find((object) => object.id === selectedObjectId);
+    if (selectedObject) {
+      return {
+        kind: "object",
+        state: selectedObject.locked ? "locked" : "editable",
+        label: selectedObject.name,
+        detail: selectedObject.locked ? "对象已锁定" : "可拖动三轴控件",
+      };
+    }
+
+    if (selectedObjectIds.length > 1) {
+      return {
+        kind: "none",
+        state: "idle",
+        label: `${selectedObjectIds.length} 个对象`,
+        detail: "多选暂不显示三轴控件",
+      };
+    }
+
+    return {
+      kind: "none",
+      state: "idle",
+      label: "未选择对象",
+      detail: "选择对象后可变换",
+    };
+  }, [
+    groups,
+    isCapturing,
+    objects,
+    phoneVcamRecording,
+    selectedGroupId,
+    selectedObjectId,
+    selectedObjectIds.length,
+    timeline.motionPathDraft,
+    timeline.motionPaths,
+    timeline.selectedMotionPathAnchorId,
+  ]);
 
   const handleViewportSnapshot = useCallback(
     (snapshot: DirectorViewportSnapshot) => {
@@ -2950,6 +3063,47 @@ export function DirectorViewport({
         data-director-viewport-toolbar
         className="absolute bottom-5 left-1/2 z-10 flex h-11 max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-md border border-white/10 bg-[#222]/95 px-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.34)]"
       >
+        <div
+          data-director-transform-context
+          data-director-transform-context-kind={transformContext.kind}
+          data-director-transform-context-state={transformContext.state}
+          data-director-transform-context-target={transformContext.label}
+          aria-label={`${transformContext.label}，${transformContext.detail}`}
+          title={transformContext.detail}
+          className="flex min-w-0 max-w-[154px] shrink-0 items-center gap-1.5 border-r border-white/10 px-1.5 pr-2 text-[10px] max-[520px]:max-w-[112px]"
+        >
+          <Move3D
+            size={14}
+            aria-hidden="true"
+            className={cn(
+              "shrink-0",
+              transformContext.state === "editable" && "text-[#5ddcff]",
+              transformContext.state === "locked" && "text-[#f0c776]",
+              transformContext.state === "blocked" && "text-[#e59a8c]",
+              transformContext.state === "idle" && "text-[#777]",
+            )}
+          />
+          <span className="min-w-0 truncate">
+            <span
+              data-director-transform-context-label
+              className={cn(
+                "block truncate",
+                transformContext.state === "editable" && "text-[#d9f8ff]",
+                transformContext.state === "locked" && "text-[#f0c776]",
+                transformContext.state === "blocked" && "text-[#e59a8c]",
+                transformContext.state === "idle" && "text-[#a0a0a0]",
+              )}
+            >
+              {transformContext.label}
+            </span>
+            <span
+              data-director-transform-context-detail
+              className="block truncate text-[9px] text-[#6f6f6f]"
+            >
+              {transformContext.detail}
+            </span>
+          </span>
+        </div>
         <div className="flex items-center">
           {transformTools.map(({ mode, label, Icon }) => (
             <button
