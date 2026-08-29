@@ -174,6 +174,9 @@ export function DirectorObjectTree() {
   const toggleObjectLocked = useDirectorStore(
     (state) => state.toggleObjectLocked,
   );
+  const addDirectorCamera = useDirectorStore(
+    (state) => state.addDirectorCamera,
+  );
   const deleteDirectorEntity = useDirectorStore(
     (state) => state.deleteDirectorEntity,
   );
@@ -275,6 +278,16 @@ export function DirectorObjectTree() {
             className="min-w-0 flex-1 bg-transparent text-xs text-[#dedede] outline-none placeholder:text-[#666]"
           />
         </label>
+        <button
+          type="button"
+          data-director-add-camera
+          aria-label="新增机位"
+          title="新增机位"
+          onClick={addDirectorCamera}
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-white/[0.08] bg-[#222] text-[#9b9b9b] hover:border-[#09caf5]/40 hover:text-[#dffaff]"
+        >
+          <Camera size={14} />
+        </button>
       </div>
       <div className="flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2">
         <button

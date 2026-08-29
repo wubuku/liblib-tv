@@ -90,6 +90,8 @@ graph TD
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。
+- [`research/liblib-canvas-batch88-2026-08-29/`](research/liblib-canvas-batch88-2026-08-29/)：Director selection/timeline/TransformControls authority、单/多/分组选择 normalization、Timeline 反向选择和 selection repair 的实施与验证入口。
+- [`research/liblib-canvas-batch89-2026-08-29/`](research/liblib-canvas-batch89-2026-08-29/)：Director 场景设置、ground/grid/颜色控件、对象树与 Inspector 新增机位入口、camera track/keyframe 连续性和 focused gate。
 - [`research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md`](research/LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST.md)：Director 历史 browser verifier、Batch 67-88 current reliability gates、merge candidate/historical-only 分级与 `LIBTV-VR-024` 入口。
 - [`research/TRACEABILITY_MATRIX.md`](research/TRACEABILITY_MATRIX.md)：从 LibTV/Open Canvas 主张反查证据、适用范围和不可推出的结论。
 - [`research/VERIFICATION_LEDGER.md`](research/VERIFICATION_LEDGER.md)：Batch verifier、源站合同、clone fixture、fixture 阻塞和并行 WIP 的验证成熟度台账。

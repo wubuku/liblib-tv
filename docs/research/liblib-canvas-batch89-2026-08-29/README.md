@@ -1,6 +1,6 @@
 # Batch 89：Director 场景设置与新增机位
 
-> 状态：`PLANNED`
+> 状态：`RECORDED_PASS`
 >
 > 日期：2026-08-29。
 >

@@ -35,8 +35,9 @@
 > feedback verifier and Batch 84 lock/editability verifier, including the R3F
 > Canvas teardown regression exposed by the Batch 68 cross-owner sequence, and
 > Batch 85 selection/CRUD discoverability verifier, Batch 86 transform
-> context/cancellation verifier, Batch 87 restore-selection verifier, and Batch 88
-> selection/timeline authority verifier.
+> context/cancellation verifier, Batch 87 restore-selection verifier, Batch 88
+> selection/timeline authority verifier, and Batch 89 scene-settings/add-camera
+> verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -129,6 +130,9 @@ single current gate on their own:
 - Batch 88 covers selection/timeline/TransformControls authority、single/multi/group
   normalization、reverse Timeline selection、keyframe/path ownership、delete repair、
   direct write entrypoints and portable document/history boundary。
+- Batch 89 covers scene-settings discoverability、object-tree/scene-Inspector
+  add-camera entrypoints、camera object/track/keyframe creation、active-camera and
+  selection authority、undo/redo、portable export boundary and mobile panel geometry。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -188,6 +192,7 @@ historical regressions.
 | Batch 86 | Director transform target context and pointer cancellation | `CURRENT_GATE` | Pure source contract + fresh-page Playwright target context/gizmo drag/pointercancel/locked rejection/mobile workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` transform-context gate；proves clone-owned transform discoverability and cleanup，不证明 LibTV source Director gizmo/target context、文案或 CSS |
 | Batch 87 | Director undo/redo restore selection authority | `CURRENT_GATE` | Pure source contract + fresh-page Playwright object/tree/Inspector/Viewport/Timeline restore workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` restore-selection gate；proves clone-owned preserve-and-repair policy，不证明 LibTV source Director undo selection policy、文案或 CSS |
 | Batch 88 | Director selection/timeline/TransformControls authority | `CURRENT_GATE` | Pure source contract + fresh-page Playwright single/multi/group selection, reverse Timeline selection, keyframe/path ownership, delete repair, locked zero-mutation and mobile workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` selection/timeline authority gate；proves clone-owned normalization and cross-surface consistency，不证明 LibTV source Director selection/Timeline 联动、undo policy、文案或 CSS |
+| Batch 89 | Director scene settings and add-camera discoverability | `CURRENT_GATE` | Pure source contract + fresh-page Playwright scene settings, object-tree/Inspector add-camera entrypoints, camera/track/keyframe creation, active-camera selection, undo/redo, portable export and mobile panel workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene/add-camera gate；proves clone-owned authoring entry and document continuity，不证明 LibTV source Director add-camera defaults、exact DOM/CSS 或 shot lifecycle |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -522,6 +527,21 @@ This result closes the clone-owned Director selection/timeline/transform authori
 slice. It does not prove LibTV source Director selection/Timeline 联动、exact
 placement、undo selection policy or source-exact behavior.
 
+Batch 89 scene settings/add-camera gate:
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Pure corpus | 11 source/contract assertions |
+| Browser corpus | scene settings、object-tree/Inspector dual entrypoints、camera/track/keyframe、active-camera/selection、undo/redo、portable export and mobile panel geometry |
+| Artifact | Batch 89 `runtime-audit.json` and `current-gate-regression.json`；zero screenshots |
+| Diagnostics | zero console/page/request errors |
+| Source boundary | LibTV authenticated Director add-camera defaults、shot lifecycle and exact DOM/CSS remain unknown |
+
+This result closes the clone-owned scene-settings/add-camera discoverability slice.
+It does not prove LibTV source Director camera creation policy, default placement,
+active-camera policy or exact visual treatment.
+
 ### 4.3 Current-gate serial regression
 
 On 2026-08-29, using the single `localhost:4317` Next dev server, the
@@ -531,7 +551,7 @@ following current gates were run serially and all passed:
 Batch 59, Batch 67, Batch 68, Batch 69, Batch 70, Batch 71, Batch 72,
 Batch 73, Batch 74, Batch 75, Batch 76, Batch 77, Batch 78, Batch 79, Batch 80,
 Batch 81, Batch 82, Batch 83, Batch 84, Batch 85, Batch 86, Batch 87,
-Batch 88
+Batch 88, Batch 89
 ```
 
 The run included the Batch 68 owner-switch/cross-canvas/duplicate/delete sequence
@@ -544,7 +564,9 @@ Batch 81, Batch 82 and Batch 83 passed. Batch 81 additionally verified strict
 project file transfer and ordinary graph/history isolation. The final Batch 88
 serial result is recorded in
 [`liblib-canvas-batch88-2026-08-29/current-gate-regression.json`](liblib-canvas-batch88-2026-08-29/current-gate-regression.json).
-This is a clone reliability result, not LibTV source parity.
+This is a clone reliability result, not LibTV source parity. The Batch 89 scene/add-camera
+result is recorded in
+[`liblib-canvas-batch89-2026-08-29/current-gate-regression.json`](liblib-canvas-batch89-2026-08-29/current-gate-regression.json).
 
 ## 5. Future Gate Profiles
 
@@ -569,6 +591,7 @@ Batch 67 pure codec gate
   + Batch 86 transform-context/cancellation gate
   + Batch 87 restore-selection gate
   + Batch 88 selection/timeline authority gate
+  + Batch 89 scene settings/add-camera gate
   + Batch 59 current browser smoke
   + focused tests for the changed reliability slice
   + npm run check
@@ -625,7 +648,8 @@ Batch 84 supplies the locked-target editability slice；
 Batch 85 supplies the selection/CRUD discoverability slice；
 Batch 86 supplies the transform target context and pointer-cancellation slice；
 Batch 87 supplies the restore-selection slice；Batch 88 supplies the
-selection/timeline/TransformControls authority slice；Batch 59 supplies the
+selection/timeline/TransformControls authority slice；Batch 89 supplies the
+scene-settings/add-camera discoverability slice；Batch 59 supplies the
 current WebGL/browser smoke seed.
 
 Required future scenarios:
@@ -652,6 +676,7 @@ Required future scenarios:
 | Director transform target context and cancellation | **focused runtime in Batch 86**：target context for none/object/group/path/busy states、real object gizmo drag、authored/runtime sync、one-entry history、undo/redo、pointercancel/lost capture cleanup、locked zero mutation and mobile geometry |
 | Director restore-selection authority | **focused runtime in Batch 87**：undo/redo/cancel preserve-and-repair selection across object tree、Inspector、Viewport and Timeline；invalid object/group/track/path/keyframe/anchor targets are cleared；selection remains outside portable document |
 | Director selection/timeline/TransformControls authority | **focused runtime in Batch 88**：single/multi/group selection normalizes compatible track context；Timeline track/keyframe/path selection drives object/group and Inspector context；finished path drawing restores complete selection；delete/locked/portable boundaries remain clean |
+| Director scene settings/add-camera discoverability | **focused runtime in Batch 89**：场景设置区和对象树/Inspector 双入口、camera object/track/keyframe、active-camera/selection sync、undo/redo、portable export 和 mobile panel geometry；不证明 LibTV source Director add-camera defaults/shot lifecycle |
 | route isolation | ordinary graph history and Director project history remain independent |
 
 Until these scenarios exist, `LIBTV-VR-024` status is:

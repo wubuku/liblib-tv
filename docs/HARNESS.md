@@ -17,7 +17,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Typecheck | `npm run typecheck` | `tsc --noEmit` exit 0 |
 | Build | `npm run build` | Next production build succeeds |
 | Full gate | `npm run check` | lint + typecheck + build all succeed |
-| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-87（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
+| LibTV behavior | `python3 scripts/verify-liblib-batch<N>.py`，当前脚本范围为 Batch 4-33、35-50、52-65、67-89（中间无脚本的 batch 除外） | script-specific assertions and no console errors |
 
 ## LibTV Batch Coverage
 
@@ -104,6 +104,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 86 | Director transform target context, object/group pointer cancellation and lost-capture cleanup, real gizmo drag, authored/runtime/history continuity, locked rejection, mobile geometry and zero diagnostics |
 | Batch 87 | Director undo/redo selection preservation and repair across object-tree, Inspector, Viewport and Timeline, portable-document selection exclusion and zero diagnostics |
 | Batch 88 | Director selection/timeline/TransformControls authority, single/multi/group normalization, reverse timeline selection, delete repair, locked zero mutation and mobile geometry |
+| Batch 89 | Director scene settings, ground/grid/background controls, add-camera entrypoints, camera track/keyframe continuity, portable export and mobile geometry |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
@@ -179,12 +180,14 @@ Director 是否有相同 selection bar、文案、键盘策略或 source-exact b
 
 Batch 86 是 Director transform-context/cancellation hybrid gate，默认不写截图；
 Batch 87 是 Director restore-selection hybrid gate，默认不写截图；Batch 88 是
-Director selection/timeline authority hybrid gate，默认不写截图。它们保留目标
-上下文、真实 gizmo pointer drag、authoring/runtime/history、pointercancel/lost
-pointer capture、selection normalization、track/keyframe/path ownership、locked
-rejection、mobile geometry 和 zero-diagnostic 断言。它们只证明 clone-owned
-Director 变换与选择入口，不证明 LibTV 原站 Director gizmo placement、目标文案、
-Timeline 联动、undo selection 或 source-exact behavior。
+Director selection/timeline authority hybrid gate；Batch 89 是 Director
+scene-settings/add-camera hybrid gate，默认不写截图。它们保留目标上下文、真实
+gizmo pointer drag、authoring/runtime/history、pointercancel/lost pointer capture、
+selection normalization、track/keyframe/path ownership、scene settings、camera
+creation、locked rejection、mobile geometry 和 zero-diagnostic 断言。它们只证明
+clone-owned Director 变换、选择和场景入口，不证明 LibTV 原站 Director gizmo
+placement、目标文案、Timeline 联动、add-camera defaults、undo selection 或
+source-exact behavior。
 
 ## Browser Evidence Requirements
 

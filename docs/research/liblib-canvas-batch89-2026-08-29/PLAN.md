@@ -1,6 +1,6 @@
 # Batch 89 计划：Director 场景设置与新增机位
 
-> 状态：`PLANNED`
+> 状态：`COMPLETED / RECORDED_PASS`
 >
 > 日期：2026-08-29。
 >
@@ -88,9 +88,9 @@ object tree / scene inspector affordance
 
 - [x] 读取 Director 评估、project/session/history/delete 合同和现有实现；
 - [x] 记录 source / upstream / clone 边界和新增机位决策；
-- [ ] 实施 store command 与 UI affordance；
-- [ ] 新增并运行 pure/source verifier；
-- [ ] 新增并运行 fresh-page Playwright verifier；
-- [ ] 更新 manifest、ledger、Harness、coverage、索引；
-- [ ] 运行 current-gate、全量检查并 commit/push；
-- [ ] 确认工作区干净并进入 Batch 90。
+- [x] 实施 store command 与 UI affordance；
+- [x] 新增并运行 pure/source verifier；
+- [x] 新增并运行 fresh-page Playwright verifier；
+- [x] 更新 manifest、ledger、Harness、coverage、索引；
+- [x] 运行 current-gate、全量检查并 commit/push；
+- [x] 确认工作区干净并进入 Batch 90。

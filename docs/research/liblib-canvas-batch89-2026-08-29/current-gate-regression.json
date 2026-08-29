@@ -1,6 +1,146 @@
 {
   "batch": 89,
-  "status": "PLANNED",
-  "scripts": [],
-  "checks": []
+  "status": "PASS",
+  "date": "2026-08-29",
+  "server": "http://localhost:4317",
+  "scripts": [
+    {
+      "name": "Batch 59",
+      "command": "python3 scripts/verify-liblib-batch59.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 67",
+      "command": "python3 scripts/verify-liblib-batch67.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 68",
+      "command": "python3 scripts/verify-liblib-batch68.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 69",
+      "command": "python3 scripts/verify-liblib-batch69.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 70",
+      "command": "python3 scripts/verify-liblib-batch70.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 71",
+      "command": "python3 scripts/verify-liblib-batch71.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 72",
+      "command": "python3 scripts/verify-liblib-batch72.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 73",
+      "command": "python3 scripts/verify-liblib-batch73.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 74",
+      "command": "python3 scripts/verify-liblib-batch74.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 75",
+      "command": "python3 scripts/verify-liblib-batch75.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 76",
+      "command": "python3 scripts/verify-liblib-batch76.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 77",
+      "command": "python3 scripts/verify-liblib-batch77.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 78",
+      "command": "python3 scripts/verify-liblib-batch78.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 79",
+      "command": "python3 scripts/verify-liblib-batch79.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 80",
+      "command": "python3 scripts/verify-liblib-batch80.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 81",
+      "command": "python3 scripts/verify-liblib-batch81.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 82",
+      "command": "python3 scripts/verify-liblib-batch82.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 83",
+      "command": "python3 scripts/verify-liblib-batch83.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 84",
+      "command": "python3 scripts/verify-liblib-batch84.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 85",
+      "command": "python3 scripts/verify-liblib-batch85.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 86",
+      "command": "python3 scripts/verify-liblib-batch86.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 87",
+      "command": "python3 scripts/verify-liblib-batch87.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 88",
+      "command": "python3 scripts/verify-liblib-batch88.py",
+      "status": "PASS"
+    },
+    {
+      "name": "Batch 89",
+      "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch89.py",
+      "status": "PASS"
+    }
+  ],
+  "checks": [
+    {
+      "name": "pure/source",
+      "command": "node --experimental-strip-types scripts/verify-liblib-batch89.mjs",
+      "status": "PASS",
+      "assertions": 11
+    },
+    {
+      "name": "fresh-page Playwright",
+      "command": "LIBLIB_BASE_URL=http://localhost:4317 python3 scripts/verify-liblib-batch89.py",
+      "status": "PASS",
+      "diagnostics": {
+        "console": 0,
+        "page": 0,
+        "request": 0
+      }
+    }
+  ]
 }

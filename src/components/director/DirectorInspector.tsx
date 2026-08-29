@@ -1304,6 +1304,9 @@ export function DirectorInspector({
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const updateScene = useDirectorStore((state) => state.updateScene);
+  const addDirectorCamera = useDirectorStore(
+    (state) => state.addDirectorCamera,
+  );
   const updateObject = useDirectorStore((state) => state.updateObject);
   const updateObjectTransform = useDirectorStore(
     (state) => state.updateObjectTransform,
@@ -1761,45 +1764,106 @@ export function DirectorInspector({
           </div>
           )
         ) : (
-          <div className="space-y-4 px-3 py-3">
-            <label className="block">
-              <span className="mb-1.5 block text-[11px] text-[#777]">场景名称</span>
-              <input
-                value={scene.name}
-                onChange={(event) => updateScene({ name: event.target.value })}
-                className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
-              />
-            </label>
-            <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
-              <span>显示地面</span>
-              <input
-                type="checkbox"
-                checked={scene.showGround}
-                onChange={(event) => updateScene({ showGround: event.target.checked })}
-                className="accent-[#09caf5]"
-              />
-            </label>
-            <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
-              <span>显示网格</span>
-              <input
-                type="checkbox"
-                checked={scene.showGrid}
-                onChange={(event) => updateScene({ showGrid: event.target.checked })}
-                className="accent-[#09caf5]"
-              />
-            </label>
-            <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
-              <span>背景颜色</span>
-              <input
-                type="color"
-                aria-label="场景背景颜色"
-                value={scene.backgroundColor}
-                onChange={(event) =>
-                  updateScene({ backgroundColor: event.target.value })
-                }
-                className="h-6 w-9 rounded border-0 bg-transparent"
-              />
-            </label>
+          <div data-director-scene-settings className="space-y-4 px-3 py-3">
+            <section data-director-scene-settings-section>
+              <div className="mb-2 flex items-center justify-between">
+                <h3 className="text-[11px] font-medium text-[#cfcfcf]">
+                  场景设置
+                </h3>
+                <span className="text-[9px] text-[#686868]">Scene</span>
+              </div>
+              <label className="block">
+                <span className="mb-1.5 block text-[11px] text-[#777]">
+                  场景名称
+                </span>
+                <input
+                  data-director-scene-name
+                  value={scene.name}
+                  onChange={(event) => updateScene({ name: event.target.value })}
+                  className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                />
+              </label>
+            </section>
+            <section
+              data-director-scene-display-settings
+              className="space-y-1 border-t border-white/[0.07] pt-3"
+            >
+              <h3 className="text-[11px] font-medium text-[#cfcfcf]">
+                显示
+              </h3>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>显示地面</span>
+                <input
+                  data-director-scene-show-ground
+                  type="checkbox"
+                  checked={scene.showGround}
+                  onChange={(event) =>
+                    updateScene({ showGround: event.target.checked })
+                  }
+                  className="accent-[#09caf5]"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>显示网格</span>
+                <input
+                  data-director-scene-show-grid
+                  type="checkbox"
+                  checked={scene.showGrid}
+                  onChange={(event) =>
+                    updateScene({ showGrid: event.target.checked })
+                  }
+                  className="accent-[#09caf5]"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>背景颜色</span>
+                <input
+                  data-director-scene-background-color
+                  type="color"
+                  aria-label="场景背景颜色"
+                  value={scene.backgroundColor}
+                  onChange={(event) =>
+                    updateScene({ backgroundColor: event.target.value })
+                  }
+                  className="h-6 w-9 rounded border-0 bg-transparent"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>地面颜色</span>
+                <input
+                  data-director-scene-ground-color
+                  type="color"
+                  aria-label="场景地面颜色"
+                  value={scene.groundColor}
+                  onChange={(event) =>
+                    updateScene({ groundColor: event.target.value })
+                  }
+                  className="h-6 w-9 rounded border-0 bg-transparent"
+                />
+              </label>
+            </section>
+            <section
+              data-director-scene-camera-actions
+              className="border-t border-white/[0.07] pt-3"
+            >
+              <div className="mb-2">
+                <h3 className="text-[11px] font-medium text-[#cfcfcf]">
+                  场景机位
+                </h3>
+                <p className="mt-1 text-[10px] leading-4 text-[#686868]">
+                  从当前活动机位复制构图，创建一个可独立编辑的新机位
+                </p>
+              </div>
+              <button
+                type="button"
+                data-director-add-camera
+                onClick={addDirectorCamera}
+                className="flex h-8 w-full items-center justify-center gap-1.5 rounded border border-white/[0.08] bg-[#222] text-[11px] text-[#bdbdbd] hover:border-[#09caf5]/40 hover:text-white"
+              >
+                <Camera size={13} />
+                新增机位
+              </button>
+            </section>
           </div>
         )}
       </div>

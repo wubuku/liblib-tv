@@ -508,6 +508,7 @@ interface DirectorState {
     columns: number;
     spacing: number;
   }) => string | null;
+  addDirectorCamera: () => DirectorCommandResult;
   hydrateLocalModelLibrary: () => void;
   addLocalModelLibraryItem: (item: DirectorLocalModelLibraryItem) => void;
   startLocalModelResourceLoad: (resourceId: string) => string | null;
@@ -1029,6 +1030,37 @@ function createTrackForObject(
         value: cloneTransform(object.transform),
       },
     ],
+  };
+}
+
+function createDirectorCameraFromSource(
+  source: DirectorObject,
+  cameraIndex: number,
+): DirectorObject | null {
+  if (source.kind !== "camera" || !source.camera) return null;
+  const cameraId = createDirectorAsyncIdentity("director-camera");
+  const offsetIndex = Math.max(cameraIndex - 1, 1);
+  const transform = cloneTransform(source.transform);
+  transform.position = [
+    transform.position[0] + 1.35 * offsetIndex,
+    transform.position[1] + 0.18,
+    transform.position[2] - 0.85 * offsetIndex,
+  ];
+  const cameraColors = ["#a8e8f7", "#f2c58a", "#b9a7f5", "#9fd5b1"];
+  return {
+    id: cameraId,
+    name: `机位 ${String(cameraIndex).padStart(2, "0")} · 新镜头`,
+    kind: "camera",
+    primitive: "camera",
+    color: cameraColors[(cameraIndex - 1) % cameraColors.length],
+    visible: true,
+    locked: false,
+    transform,
+    camera: {
+      fov: source.camera.fov,
+      target: [...source.camera.target],
+      ...createDirectorCameraRelation(),
+    },
   };
 }
 
@@ -4129,6 +4161,146 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       };
     });
     return createdGroupId;
+  },
+
+  addDirectorCamera: () => {
+    const state = get();
+    if (!state.projectId || state.generation === null) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_PROJECT_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      state.history.activeGesture ||
+      state.timeline.motionPathDraft ||
+      state.isCapturing ||
+      state.phoneVcam.status === "recording"
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_CAMERA",
+        disposition: "CONFLICT",
+        reason: "DIRECTOR_HISTORY_CONFLICT",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const sourceCamera =
+      state.objects.find((object) => object.id === state.activeCameraId) ??
+      state.authoredObjects.find((object) => object.id === state.activeCameraId);
+    const cameraCount = state.authoredObjects.filter(
+      (object) => object.kind === "camera",
+    ).length;
+    const camera = sourceCamera
+      ? createDirectorCameraFromSource(sourceCamera, cameraCount + 1)
+      : null;
+    if (!camera) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_CAMERA",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_CAMERA",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+
+    const authoredObjects = [...state.authoredObjects, camera];
+    const track = createTrackForObject(camera, state.timeline.currentTime);
+    const selectedObjectIds = [camera.id];
+    const timeline = normalizeDirectorTimelineSelection(
+      {
+        ...state.timeline,
+        tracks: [...state.timeline.tracks, track],
+        selectedTrackId: track.id,
+        selectedKeyframeId: track.keyframes[0]?.id ?? null,
+        selectedMotionPathId: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+        isPlaying: false,
+      },
+      {
+        selectedObjectId: camera.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+      },
+      { preserveTrackEntities: true },
+    );
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: authoredObjects,
+      groups: state.groups,
+      activeCameraId: camera.id,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    if (!updateActiveDirectorDocument(state, after, state.captures)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_CAMERA",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "ADD_CAMERA",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+      selectionResult: {
+        selectedObjectId: camera.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+      },
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: "ADD_CAMERA",
+      projectId: before.projectId,
+      generation: before.generation,
+      before: before.document,
+      after,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(before.projectId, history);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
+        authoredObjects,
+        objects: projectDirectorRuntimeObjects(
+          authoredObjects,
+          timeline,
+          state.groups,
+        ),
+        selectedObjectId: camera.id,
+        selectedObjectIds,
+        selectedGroupId: null,
+        activeCameraId: camera.id,
+        timeline,
+        history,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return result;
   },
 
   hydrateLocalModelLibrary: () =>
