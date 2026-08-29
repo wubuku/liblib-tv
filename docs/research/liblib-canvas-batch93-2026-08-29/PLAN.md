@@ -1,6 +1,6 @@
 # Batch 93 计划：Director 最终跨批回归与治理收口
 
-> 状态：`PLANNED`
+> 状态：`COMPLETED`
 >
 > 建档日期：2026-08-29。
 >
@@ -144,3 +144,9 @@ Batch 93 只有在以下事项全部完成后才可标记完成：
 
 完成后立即停止并等待用户下一步指示。
 
+## 7. Completion Record
+
+Completed on 2026-08-29. The desktop/mobile verifier, ordinary canvas
+cross-batch regression, Director current-gate serial run, governance updates,
+full checks and commit/push are recorded in `IMPLEMENTATION.md`. No Batch 94
+was created.

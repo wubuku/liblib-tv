@@ -244,7 +244,9 @@ feedback projection，Batch 90 又补了 project/session outcome diagnostics 与
 scene semantic command，Batch 91 又将对象属性、相机设置和角色组的高频
 direct writers 收口到 typed command、persistence、one-entry history 与 name
 draft/commit，Batch 92 又补了 local resource strict descriptor/decoded-byte
-budget、owner-scoped lease 和 deferred/final release。这些
+budget、owner-scoped lease 和 deferred/final release；Batch 93 最终验证了
+Director 桌面/移动端 shell、R3F、对象树、Inspector、Timeline、close/reopen、
+普通画布跨批 slices 和 Batch 59/67-92 current gates。这些
   focused pass 不能写成完整 backend project authority，也不能写成 LibTV
   source-exact 行为。
 

@@ -108,6 +108,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 90 | Director project/session lifecycle diagnostics, scene semantic command, draft/commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector |
 | Batch 91 | Director object/camera/group typed command boundary, name draft/commit, reference validation, persistence, one-entry history, invalid/no-op protection and zero diagnostics |
 | Batch 92 | Director local resource descriptor/decoded-byte budget, owner-scoped request/lease, deferred/final release, finite OBJ/FBX materialization, retry/cancel and zero diagnostics |
+| Batch 93 | Final Director desktop/mobile shell/R3F regression, ordinary canvas cross-batch regression, Batch 59/67-92 current-gate serial run, governance and full repository checks |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

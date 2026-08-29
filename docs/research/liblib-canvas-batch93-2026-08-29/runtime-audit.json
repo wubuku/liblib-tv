@@ -1,0 +1,57 @@
+{
+  "batch": 93,
+  "status": "SCRIPT_RECORDED_PASS",
+  "date": "2026-08-29",
+  "baseUrl": "http://localhost:4317",
+  "sourceExact": false,
+  "contract": {
+    "scope": "clone-owned Director final desktop/mobile regression",
+    "screenshotsWritten": false,
+    "screenshotRecognition": false,
+    "remoteSync": false
+  },
+  "staticContract": {
+    "workspaceDiagnosticSurface": true,
+    "mobilePanelStateSurface": true,
+    "objectTreeSurface": true,
+    "timelineSurface": true,
+    "r3fEventSourceBinding": true,
+    "ownerScopedResourceLease": true
+  },
+  "desktop": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "workspace": true,
+    "webglNonblank": true,
+    "objectTree": true,
+    "inspector": true,
+    "timeline": true,
+    "panelsCollapseRestore": true,
+    "closeReopen": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0
+    }
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "workspace": true,
+    "webglNonblank": true,
+    "mobileTreeDrawer": true,
+    "mobileInspectorDrawer": true,
+    "timeline": true,
+    "noHorizontalOverflow": true,
+    "diagnostics": {
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "requestFailures": 0
+    }
+  }
+}

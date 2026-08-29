@@ -88,6 +88,7 @@ graph TD
 - [`research/liblib-canvas-batch81-2026-08-29/`](research/liblib-canvas-batch81-2026-08-29/)：Director strict project JSON 导入/导出、owner/project 重绑定、history undo/redo、非法输入 zero-partial 和下载/文件选择回路的实施与验证入口。
 - [`research/liblib-canvas-batch82-2026-08-29/`](research/liblib-canvas-batch82-2026-08-29/)：Director local resource lifecycle、有限 OBJ/FBX materialization、失败 proxy 保留、retry/cancel/release 与验证入口。
 - [`research/liblib-canvas-batch92-2026-08-29/`](research/liblib-canvas-batch92-2026-08-29/)：Director local resource descriptor/decoded-byte budget、owner-scoped session lease、deferred/final release、materializer hardening、实施结果与验证入口。
+- [`research/liblib-canvas-batch93-2026-08-29/`](research/liblib-canvas-batch93-2026-08-29/)：Director 最终桌面/移动端回归、普通画布跨批回归、current gates、治理收口、结构化审计与停止记录。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。

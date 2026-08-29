@@ -21,6 +21,8 @@
 > `SCENE_COMMAND_GATE_RECORDED_PASS` /
 > `OBJECT_CAMERA_GROUP_COMMAND_GATE_RECORDED_PASS` /
 > `LOCAL_RESOURCE_LEASE_GATE_RECORDED_PASS` /
+> `FINAL_DESKTOP_MOBILE_REGRESSION_RECORDED_PASS` /
+> `GOVERNANCE_CLOSEOUT_RECORDED_PASS` /
 > `CURRENT_GATE_SERIAL_REGRESSION_RECORDED_PASS` /
 > `FULL_HISTORICAL_SUITE_NOT_CURRENTLY_RUN`.
 >
@@ -41,7 +43,8 @@
 > context/cancellation verifier, Batch 87 restore-selection verifier, Batch 88
 > selection/timeline authority verifier, Batch 89 scene-settings/add-camera verifier
 > Batch 90 project/session-scene-command verifier, Batch 91 object/camera/group
-> command verifier and Batch 92 local-resource lifecycle/lease verifier.
+> command verifier, Batch 92 local-resource lifecycle/lease verifier and Batch 93
+> final desktop/mobile and cross-batch regression verifier.
 >
 > Fixture authority:
 > [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md).
@@ -54,8 +57,9 @@
 ## 1. Purpose
 
 The repository has 17 historical Director-focused Playwright scripts, one pure
-codec verifier, twenty-one current hybrid pure/browser reliability verifiers and
-one current browser smoke.
+codec verifier, twenty-five current hybrid pure/browser reliability verifiers,
+one current browser smoke and one final Batch 93 desktop/mobile regression
+verifier.
 The historical browser scripts preserve valuable
 bounded clone behavior, but they were created batch by batch and do not form a
 single current gate on their own:
@@ -147,6 +151,9 @@ single current gate on their own:
   owner-scoped request/lease、terminal status/error invariants、deferred/final
   release、finite OBJ/FBX materialization、parse-failure proxy retention、
   retry/cancel and zero-diagnostic fresh-page workflow。
+- Batch 93 covers final Director desktop/mobile shell and R3F regression、
+  ordinary canvas cross-batch regression、current-gate serial execution and
+  documentation/governance closeout；it does not add product behavior。
 
 This manifest defines which script is cheap and safe enough for a current smoke,
 which scripts are candidates for a future merge gate, and which remain manual
@@ -194,6 +201,7 @@ historical regressions.
 | Batch 74 | Director browser-local durable project persistence、strict envelope restore、stale save and storage failure | `CURRENT_GATE` | Pure Node persistence corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` persistence gate；does not prove ordinary canvas persistence、remote storage、real resources or source parity |
 | Batch 75 | Director project-scoped clipboard identity remap and guarded keyboard routing | `CURRENT_GATE` | 12-scenario pure packet/planner corpus + fresh-page Playwright BrowserContext；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` clipboard-remap gate；does not prove LibTV source copy/paste UI、system/cross-project clipboard、whole-project duplicate or real resource transfer |
 | Batch 76 | Director all-canvas owner reachability reconciliation and tombstone cleanup | `CURRENT_GATE` | 9-scenario pure planner corpus + A/B/cross-canvas fresh-page Playwright；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` owner-reachability gate；does not prove durable tombstone、storage/resource deletion、undo restore、whole-project duplicate or source parity |
+| Batch 77 | Source-aligned canvas navigation and Director TransformControls binding/gesture cleanup | `CURRENT_GATE` | Fresh-page wheel/middle/Space/H/V/modifier input plus real Director gizmo pointer drag and static attachment contract；writes one structured runtime audit and no screenshots | Shared current navigation/Director gesture gate；does not prove real touchpad hardware、LibTV Director exact DOM/CSS or source parity |
 | Batch 78 | Director Curve/Phone Vcam/Timeline pointer cancellation, cleanup and R3F teardown | `CURRENT_GATE` | Static source contract + seven fresh-page Playwright scenarios + cross-owner/canvas teardown regression；writes one structured runtime audit and no screenshots | Current `LIBTV-VR-024` pointer-cancellation gate；does not prove source-exact Director pointer behavior、real phone sensors、touchpad hardware or source parity |
 
 | Batch 79 | Director whole-project duplicate | `CURRENT_GATE` | Pure Node two-pass planner corpus + fresh-page Playwright duplicate/isolation scenario；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` whole-project duplicate gate；does not prove LibTV source duplicate semantics、remote persistence、capture bytes or real resource loading |
@@ -210,6 +218,7 @@ historical regressions.
 | Batch 90 | Director project/session diagnostics and scene semantic command | `CURRENT_GATE` | Pure source contract + fresh-page Playwright session outcome/lifecycle diagnostics, scene draft/Enter/blur commit, persistence, one-entry history, no-op/rejection, undo/redo and mobile Inspector workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` scene-command gate；proves clone-owned session observability and command boundary，不证明 LibTV source Director project/session/history/persistence semantics、exact DOM/CSS 或 source parity |
 | Batch 91 | Director object/camera/group command and history boundary | `CURRENT_GATE` | Pure source contract + fresh-page Playwright object/camera/group command, name draft/Enter/blur, reference validation, persistence, one-entry history, invalid/no-op and zero-diagnostic workflow；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` object/camera/group command gate；proves clone-owned mutation boundary，不证明 LibTV source Director command/history/persistence semantics、exact DOM/CSS 或 source parity |
 | Batch 92 | Director local resource lifecycle and session lease | `CURRENT_GATE` | Pure lifecycle contract + fresh-page Playwright local-model materialization, owner-scoped lease, deferred/final release, delete reference cleanup and zero diagnostics；writes `runtime-audit.json` and no screenshots | Current `LIBTV-VR-024` local-resource lease gate；proves clone-owned session-local resource lifecycle，不证明 LibTV source resource semantics、生产 loader/cache、复杂 FBX/纹理或 remote persistence |
+| Batch 93 | Director final desktop/mobile and cross-batch regression | `CURRENT_GATE` | Fresh BrowserContext desktop `1440x900` + mobile `390x844` shell/R3F/object-tree/Inspector/Timeline/close-reopen/overflow checks；serial ordinary canvas `57/60/61/63/64/65/77` and Director `59/67-92` gates；writes Batch 93 structured audits and no screenshots | Final clone-owned reliability/governance closeout；不证明 LibTV source Director exact DOM/CSS、project/session/history/resource semantics、remote persistence、触摸板硬件或 source parity |
 
 All historical source-shaped scripts and the new reliability gates remain
 `SOURCE_STALE_OR_UNKNOWN` for exact LibTV Director DOM/CSS、project persistence、
@@ -232,7 +241,7 @@ serial because several scripts use browser-local state or WebGL:
 
 ```bash
 npm run dev
-for batch in 59 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88; do
+for batch in 59 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92; do
   LIBLIB_BASE_URL=http://localhost:4317 \
     python3 "scripts/verify-liblib-batch${batch}.py" || exit 1
 done
@@ -629,6 +638,23 @@ result is recorded in
 [`liblib-canvas-batch89-2026-08-29/current-gate-regression.json`](liblib-canvas-batch89-2026-08-29/current-gate-regression.json).
 The Batch 92 local-resource result is recorded in
 [`liblib-canvas-batch92-2026-08-29/runtime-audit.json`](liblib-canvas-batch92-2026-08-29/runtime-audit.json).
+
+### 4.4 Batch 93 final desktop/mobile and governance closeout
+
+| Field | Result |
+|---|---|
+| Date | 2026-08-29 |
+| Verifier | `scripts/verify-liblib-batch93.py` |
+| Desktop | `1440x900` Director workspace、R3F nonblank、object tree、Inspector、Timeline、panel collapse/restore、close/reopen、no overflow |
+| Mobile | `390x844` Director workspace、R3F nonblank、tree/Inspector drawers、Timeline、drawer open/close、no overflow |
+| Cross-batch | ordinary canvas `57/60/61/63/64/65/77` and Director current gates `59/67-92` all passed serially |
+| Diagnostics | desktop/mobile console、page、request failures all `0/0/0` |
+| Artifacts | Batch 93 `runtime-audit.json` and `current-gate-regression.json`；no screenshots or screenshot recognition |
+| Governance | current manifest、verification ledger、fixture catalog、traceability、Harness、coverage and documentation hubs updated；full checks passed |
+
+This is the final Batch 93 clone-owned reliability record. It closes the
+requested current regression/governance pass and does not create a Batch 94.
+It does not produce new LibTV source-exact evidence.
 
 ## 5. Future Gate Profiles
 

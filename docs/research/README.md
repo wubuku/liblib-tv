@@ -166,6 +166,7 @@
 | 90 | Director project/session diagnostics and scene semantic command | [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，session outcome/lifecycle diagnostics、scene draft + Enter/blur commit、typed scene command、persistence、one-entry history、no-op/reject、undo/redo、mobile Inspector 和 zero diagnostics 已通过；不证明 LibTV source Director project/session/history semantics |
 | 91 | Director object/camera/group command and history boundary | [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，对象属性、相机设置、角色组创建/重命名/变换、draft/commit、no-op/invalid/reference guard、persistence、one-entry history 和 zero diagnostics 已通过；不证明 LibTV source Director command/history semantics |
 | 92 | Director local resource lifecycle and session lease | [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) `FOCUSED_RUNTIME_RECORDED_PASS`，strict descriptor/decoded-byte budget、owner-scoped request/lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 zero diagnostics 已通过；不证明 LibTV source resource protocol、生产 loader/cache 或 remote persistence |
+| 93 | Director final desktop/mobile regression and governance closeout | [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/) `FINAL_REGRESSION_RECORDED_PASS`，桌面/移动端 Director shell、R3F、对象树、Inspector、Timeline、抽屉/折叠、close/reopen、普通画布跨批回归、Batch 59/67-92 current gates 和全量文档/项目检查已通过；不证明 LibTV source parity |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -186,6 +187,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 90 | Director project/session diagnostics and scene semantic command | 已完成；session outcome/lifecycle 可观察性、scene draft/commit、typed command、persistence、one-entry history、no-op/reject、undo/redo 和 mobile Inspector focused gate 已通过，详见 [`liblib-canvas-batch90-2026-08-29/`](liblib-canvas-batch90-2026-08-29/) |
 | 91 | Director object/camera/group command and history boundary | 已完成；对象属性、相机设置、角色组创建/重命名/变换的 typed command、persistence、draft/commit、no-op/invalid/reference guard、one-entry history 和 focused gate 已通过，详见 [`liblib-canvas-batch91-2026-08-29/`](liblib-canvas-batch91-2026-08-29/) |
 | 92 | Director local resource lifecycle and session lease | 已完成；strict descriptor/decoded-byte budget、owner-scoped lease、deferred/final release、有限 OBJ/FBX materialization、失败 proxy、retry/cancel 和 focused gate 已通过，详见 [`liblib-canvas-batch92-2026-08-29/`](liblib-canvas-batch92-2026-08-29/) |
+| 93 | Director final desktop/mobile regression and governance closeout | 已完成；桌面/移动端 Director 回归、普通画布跨批回归、Batch 59/67-92 current gates、治理文档和全量检查已通过，详见 [`liblib-canvas-batch93-2026-08-29/`](liblib-canvas-batch93-2026-08-29/)；本批完成后按计划停止 |
 
 ## Stable Cross-Cutting Research
 
