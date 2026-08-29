@@ -200,9 +200,9 @@ export default function DirectorDesk({
     () => collectDirectorCanvasMediaInputs(activeCanvas, sourceNodeId),
     [activeCanvas, sourceNodeId],
   );
-  const [panoramaSourceId, setPanoramaSourceId] = useState<string | null>(
-    null,
-  );
+  const [panoramaSourceId, setPanoramaSourceId] = useState<
+    string | null | undefined
+  >(undefined);
   const [panoramaRuntimeState, setPanoramaRuntimeState] =
     useState<DirectorPanoramaRuntimeState>("empty");
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>(null);
@@ -237,12 +237,23 @@ export default function DirectorDesk({
     () => captures.find((capture) => capture.id === activeCaptureId) ?? null,
     [activeCaptureId, captures],
   );
+  const resolvedPanoramaSourceId = useMemo(
+    () =>
+      panoramaSourceId === undefined
+        ? canvasMediaInputs[0]?.sourceNodeId ?? null
+        : canvasMediaInputs.some(
+              (input) => input.sourceNodeId === panoramaSourceId,
+            )
+          ? panoramaSourceId
+          : null,
+    [canvasMediaInputs, panoramaSourceId],
+  );
   const selectedPanoramaInput = useMemo<DirectorCanvasMediaInputV1 | null>(
     () =>
       canvasMediaInputs.find(
-        (input) => input.sourceNodeId === panoramaSourceId,
+        (input) => input.sourceNodeId === resolvedPanoramaSourceId,
       ) ?? null,
-    [canvasMediaInputs, panoramaSourceId],
+    [canvasMediaInputs, resolvedPanoramaSourceId],
   );
   const projectOwner = useMemo(
     () => ({ route: "libtv" as const, canvasId, sourceNodeId }),
@@ -278,18 +289,6 @@ export default function DirectorDesk({
   useEffect(() => {
     openSession(projectOwner);
   }, [openSession, projectOwner]);
-
-  useEffect(() => {
-    setPanoramaSourceId((current) => {
-      if (
-        current &&
-        canvasMediaInputs.some((input) => input.sourceNodeId === current)
-      ) {
-        return current;
-      }
-      return canvasMediaInputs[0]?.sourceNodeId ?? null;
-    });
-  }, [canvasMediaInputs]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 899px)");
@@ -1082,7 +1081,7 @@ export default function DirectorDesk({
               onSendCapture={sendCapture}
               onSendAllCaptures={sendAllCaptures}
               panoramaInputs={canvasMediaInputs}
-              selectedPanoramaSourceId={panoramaSourceId}
+              selectedPanoramaSourceId={resolvedPanoramaSourceId}
               panoramaRuntimeState={panoramaRuntimeState}
               onPanoramaSourceChange={setPanoramaSourceId}
             />

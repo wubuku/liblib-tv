@@ -92,6 +92,19 @@ R3F、同样的 sphere 投影或同样的 Inspector 入口。
 这里的预检只处理明显非法输入，不等同于完整 MIME、字节签名或图像解码器
 验证；生产级 media ingress/resource provider 仍不在本批范围。
 
+### 3.5 选择状态与 React hooks lint 收口
+
+最终质量门发现 `DirectorDesk` 用 effect 同步修正失效环境输入，会触发
+`react-hooks/set-state-in-effect`。修复后选择状态区分三种情况：
+
+- `undefined`：session 尚未被用户明确设置，派生第一个可用候选；
+- `null`：用户明确清除，不自动重新选择；
+- `string`：保留用户选择；source 失效时派生为空态。
+
+这样保留了默认选择、显式清除和 stale source 清理语义，同时消除了 cascading
+render lint error。该修复没有把 session-only 选择写入 Director document、
+history 或 localStorage。
+
 ## 4. 验证结果
 
 专项脚本：
@@ -115,6 +128,20 @@ LIBLIB_BASE_URL=http://localhost:4317 \
 | 截图 | `screenshotsWritten=false`；未执行截图识别 |
 
 结构化结果见 [`runtime-audit.json`](runtime-audit.json)。
+
+### 4.1 邻接回归
+
+在上述专项验证后，以下现有 current gates 重新通过：
+
+- Batch 94：Director workspace/drawer focus containment；
+- Batch 59：Director asset-library search/preview/add；
+- Batch 82：Director local model materialization；
+- Batch 92：Director resource owner/lease lifecycle；
+- Batch 93：Director final desktop/mobile and cross-batch regression。
+
+Batch 93 刷新了其既有 `runtime-audit.json`，记录了本次 fresh desktop/mobile
+owner、project/session snapshot 和 `0/0/0` diagnostics；它仍是 cross-batch
+reliability evidence，不是新的 source-exact 证据。
 
 ## 5. 与既有边界的关系
 

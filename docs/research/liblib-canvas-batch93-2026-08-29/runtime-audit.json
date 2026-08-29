@@ -1,7 +1,6 @@
 {
   "batch": 93,
   "status": "SCRIPT_RECORDED_PASS",
-  "date": "2026-08-29",
   "baseUrl": "http://localhost:4317",
   "sourceExact": false,
   "contract": {
@@ -23,6 +22,10 @@
       "width": 1440,
       "height": 900
     },
+    "owner": {
+      "canvasId": "canvas-2",
+      "sourceNodeId": "b-bTLLuU4w5q"
+    },
     "workspace": true,
     "webglNonblank": true,
     "objectTree": true,
@@ -31,16 +34,33 @@
     "panelsCollapseRestore": true,
     "closeReopen": true,
     "noHorizontalOverflow": true,
+    "snapshot": {
+      "projectId": "director-project-1787997980689-1",
+      "sessionId": "director-session-1787997981662-3",
+      "generation": 2,
+      "lifecycle": "ACTIVE",
+      "objects": 5,
+      "groups": 0,
+      "tracks": 2,
+      "currentTime": 0,
+      "historyPast": 0,
+      "historyFuture": 0
+    },
     "diagnostics": {
       "consoleErrors": 0,
       "pageErrors": 0,
-      "requestFailures": 0
+      "requestFailures": 0,
+      "details": []
     }
   },
   "mobile": {
     "viewport": {
       "width": 390,
       "height": 844
+    },
+    "owner": {
+      "canvasId": "canvas-2",
+      "sourceNodeId": "b-bTLLuU4w5q"
     },
     "workspace": true,
     "webglNonblank": true,
@@ -51,7 +71,8 @@
     "diagnostics": {
       "consoleErrors": 0,
       "pageErrors": 0,
-      "requestFailures": 0
+      "requestFailures": 0,
+      "details": []
     }
   }
 }
