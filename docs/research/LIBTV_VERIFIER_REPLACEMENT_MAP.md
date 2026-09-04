@@ -156,6 +156,24 @@ skill pixar 选中后 textarea 值 = "皮克斯动画风格"
 | 子菜单 `预设素材库` | 更新为 `特效库`；版本注释内联 | 源站素材库 flyout 为 风格库/特效库；`我的素材库/预设素材库` 早已被 BIG_PICTURE 标记为非 current source fact |
 
 其余 batch15 断言（9 入口、脚本/素材库箭头、资源 status 子串、audio 创建、移动端溢出）未动并复跑通过。
+### 4.z 既有漂移批量归档（Batch 108/110,2026-09-05）
+
+Batch 108 全量串行回归 + 基线 `86673b6` 复跑归因（证据：
+[`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/README.md)）
+确认以下 12 个 verifier 在 Batch 96 收口点即已失败，属**既有漂移**，
+非 Batch 97-107 引入：
+
+```text
+batch6（空白框选，已被 Batch 77 supersede）
+batch9 / batch51（图片工具条旧几何断言，LIBTV-VR-001 替换队列）
+batch40 / batch41 / batch44 / batch46 / batch48 / batch49
+  （Director 早期浏览器 gate，已被 Batch 59、67-96 current gates 取代）
+batch72 / batch74 / batch75（早期 Director pure/浏览器 gate 漂移）
+```
+
+处置（Batch 110）：脚本头已加 `AGED_GATE / HISTORICAL_CONTRACT` 标注，
+状态降级为 `HISTORICAL_CONTRACT`；从当前通过口径中剔除，保留为历史快照
+对照工具。重新启用必须先有新 source/fixture 证据与授权 slice。
 
 ## 5. Replacement Queue
 

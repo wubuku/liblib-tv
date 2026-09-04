@@ -1,3 +1,9 @@
+# AGED_GATE / HISTORICAL_CONTRACT（Batch 108 归因,2026-09-05）：
+# 本 verifier 在基线 86673b6（Batch 96 收口）上同样失败，属既有漂移，
+# 非 Batch 97-107 引入。已被 LIBTV_DIRECTOR_CURRENT_VERIFIER_MANIFEST /
+# Batch 59、67-96 current gates 取代；处置见
+# docs/research/LIBTV_VERIFIER_REPLACEMENT_MAP.md §4.z。
+# 运行仍可用于历史快照对照，不能作为当前合同通过依据。
 #!/usr/bin/env python3
 
 """Verify Batch 75 Director clipboard identity remap."""
