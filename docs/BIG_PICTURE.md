@@ -327,6 +327,11 @@ Batch 103 又把顶栏模式切换对齐同日源站：`工作台`→`工作流`
 replacement 协议迁移。证据见
 [`research/liblib-canvas-batch103-2026-09-05/`](research/liblib-canvas-batch103-2026-09-05/README.md)。
 
+Batch 104 又把故事板主区对齐同日源站空画布观察：列序 文本/图片/视频、
+列头 放大图片/放大视频 按钮（行为未采样，暂无 handler）、空态
+`暂无文本/暂无图片/暂无视频`，关键元素侧栏在关键元素为空时隐藏。证据见
+[`research/liblib-canvas-batch104-2026-09-05/`](research/liblib-canvas-batch104-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

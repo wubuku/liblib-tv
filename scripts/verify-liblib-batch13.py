@@ -67,8 +67,10 @@ def run_desktop(page: Page):
     open_storyboard(page)
     assert page.locator('[data-storyboard-key-group="image"] [data-storyboard-card]').count() == 0
     assert page.locator('[data-storyboard-key-group="text"] [data-storyboard-card]').count() == 0
-    assert page.get_by_text("当前画布暂无图片素材", exact=True).is_visible()
-    assert page.get_by_text("当前画布暂无视频素材", exact=True).is_visible()
+    # Batch 104: 源站 2026-09-05 复核列空态文案为「暂无图片」。
+    assert page.get_by_text("暂无图片", exact=True).is_visible()
+    # Batch 104: 源站 2026-09-05 复核列空态文案为「暂无视频」。
+    assert page.get_by_text("暂无视频", exact=True).is_visible()
 
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch13-storyboard-empty-desktop-929-2026-08-25.png"))
     assert not errors, errors

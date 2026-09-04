@@ -1,0 +1,34 @@
+{
+  "batch": 104,
+  "title": "Storyboard three-section alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "demo:board-visible",
+        "demo:sidebar-visible",
+        "demo:column:script",
+        "demo:column:image",
+        "demo:column:video",
+        "demo:zoom-image",
+        "demo:zoom-video",
+        "demo:column-cards-image",
+        "demo:column-cards-script",
+        "demo:column-cards-video",
+        "empty:sidebar-hidden",
+        "empty:暂无文本",
+        "empty:暂无图片",
+        "empty:暂无视频",
+        "empty:zoom-still-visible",
+        "back:empty-canvas-graph",
+        "boot:demo-count-sane",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

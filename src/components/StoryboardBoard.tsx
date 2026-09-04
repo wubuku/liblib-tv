@@ -152,7 +152,7 @@ function StoryboardColumn({
   selectedNodeId,
   onSelect,
 }: {
-  kind: "image" | "video";
+  kind: "image" | "video" | "script";
   title: string;
   icon: React.ReactNode;
   nodes: Node[];
@@ -164,7 +164,18 @@ function StoryboardColumn({
       <header className="mb-3 flex h-7 items-center gap-2 text-xs text-[#9b9b9b]">
         {icon}
         <span>{title}</span>
-        <span className="ml-auto text-[#5f5f5f]">{nodes.length}</span>
+        {kind !== "script" && (
+          <button
+            type="button"
+            data-storyboard-zoom={kind}
+            title={`放大${title}`}
+            aria-label={`放大${title}`}
+            className="ml-auto flex h-6 items-center rounded-md px-1.5 text-[11px] text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
+          >
+            放大{title}
+          </button>
+        )}
+        {kind !== "script" && <span className="text-[#5f5f5f]">{nodes.length}</span>}
       </header>
       <div className="space-y-3">
         {nodes.length > 0 ? nodes.map((node) => (
@@ -174,7 +185,7 @@ function StoryboardColumn({
             selected={selectedNodeId === node.id}
             onSelect={() => onSelect(node.id)}
           />
-        )) : <EmptyState label={`当前画布暂无${title}素材`} />}
+        )) : <EmptyState label={`暂无${title}`} />}
       </div>
     </section>
   );
@@ -194,7 +205,11 @@ export function StoryboardBoard() {
   return (
     <div data-storyboard-board className="h-full min-w-0 overflow-hidden bg-[#141414] px-4 pb-24 pt-14">
       <div className="flex h-full min-w-0 gap-3">
-        <aside data-storyboard-key-elements className="flex w-[148px] shrink-0 flex-col overflow-y-auto border-r border-white/[0.08] pr-3">
+        <aside data-storyboard-key-elements className={cn(
+          "w-[148px] shrink-0 flex-col overflow-y-auto border-r border-white/[0.08] pr-3",
+          // Batch 104: 源站空画布故事板只有 文本/图片/视频 三组 banner，无侧栏。
+          imageNodes.length === 0 && scriptNodes.length === 0 ? "hidden" : "flex",
+        )}>
           <header className="mb-3 flex min-h-8 items-center justify-between gap-2 text-xs text-[#e4e4e4]">
             <span className="font-medium">关键元素 · 全部</span>
             <ChevronDown size={13} className="text-[#777]" />
@@ -238,7 +253,7 @@ export function StoryboardBoard() {
         </aside>
 
         <section className="min-w-0 flex-1 overflow-x-auto overflow-y-auto">
-          <div className="min-h-full min-w-[432px]">
+          <div className="min-h-full min-w-[636px]">
             <header className="mb-3 flex h-8 items-center justify-between text-xs text-[#e4e4e4]">
               <span className="font-medium">故事板</span>
               <button
@@ -252,6 +267,14 @@ export function StoryboardBoard() {
               </button>
             </header>
             <div className="flex min-h-[calc(100%-44px)] gap-3">
+              <StoryboardColumn
+                kind="script"
+                title="文本"
+                icon={<FileText size={14} />}
+                nodes={scriptNodes}
+                selectedNodeId={selectedNodeId}
+                onSelect={selectStoryboardNode}
+              />
               <StoryboardColumn
                 kind="image"
                 title="图片"
