@@ -102,6 +102,7 @@ graph TD
 - [`research/liblib-canvas-batch105-2026-09-05/`](research/liblib-canvas-batch105-2026-09-05/)：协作跟随状态条：顶部胶囊、淡出默认、会话状态与单层 ESC 退出。
 - [`research/liblib-canvas-batch106-2026-09-05/`](research/liblib-canvas-batch106-2026-09-05/)：项目菜单（logo 下拉）对齐：四项源站命名与分组、本地 status 与专项验证。
 - [`research/liblib-canvas-batch107-2026-09-05/`](research/liblib-canvas-batch107-2026-09-05/)：Skill 标题三文案轮换：换一批 驱动、与 editorMode 解耦。
+- [`research/liblib-canvas-batch108-2026-09-05/`](research/liblib-canvas-batch108-2026-09-05/)：Batch 97-107 对齐系列跨批串行回归：81 项通过、12 项既有漂移经基线归因。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。

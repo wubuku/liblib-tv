@@ -1,0 +1,538 @@
+{
+  "results": [
+    {
+      "verifier": "verify-liblib-batch10",
+      "exit": 0,
+      "seconds": 10
+    },
+    {
+      "verifier": "verify-liblib-batch100",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch101",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch102",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch103",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch104",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch105",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch106",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch107",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch11",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch12",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch13",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch14",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch15",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch16",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch17",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch18",
+      "exit": 0,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch19",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch20",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch21",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch22",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch23",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch24",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch25",
+      "exit": 0,
+      "seconds": 6
+    },
+    {
+      "verifier": "verify-liblib-batch26",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch27",
+      "exit": 0,
+      "seconds": 15
+    },
+    {
+      "verifier": "verify-liblib-batch28",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch29",
+      "exit": 0,
+      "seconds": 7
+    },
+    {
+      "verifier": "verify-liblib-batch30",
+      "exit": 0,
+      "seconds": 7
+    },
+    {
+      "verifier": "verify-liblib-batch31",
+      "exit": 0,
+      "seconds": 10
+    },
+    {
+      "verifier": "verify-liblib-batch32",
+      "exit": 0,
+      "seconds": 7
+    },
+    {
+      "verifier": "verify-liblib-batch33",
+      "exit": 0,
+      "seconds": 8
+    },
+    {
+      "verifier": "verify-liblib-batch35",
+      "exit": 0,
+      "seconds": 11
+    },
+    {
+      "verifier": "verify-liblib-batch36",
+      "exit": 0,
+      "seconds": 13
+    },
+    {
+      "verifier": "verify-liblib-batch37",
+      "exit": 0,
+      "seconds": 22
+    },
+    {
+      "verifier": "verify-liblib-batch38",
+      "exit": 0,
+      "seconds": 26
+    },
+    {
+      "verifier": "verify-liblib-batch39",
+      "exit": 0,
+      "seconds": 21
+    },
+    {
+      "verifier": "verify-liblib-batch4",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch40",
+      "exit": 1,
+      "seconds": 8
+    },
+    {
+      "verifier": "verify-liblib-batch41",
+      "exit": 1,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch42",
+      "exit": 0,
+      "seconds": 16
+    },
+    {
+      "verifier": "verify-liblib-batch43",
+      "exit": 0,
+      "seconds": 15
+    },
+    {
+      "verifier": "verify-liblib-batch44",
+      "exit": 1,
+      "seconds": 36
+    },
+    {
+      "verifier": "verify-liblib-batch45",
+      "exit": 0,
+      "seconds": 28
+    },
+    {
+      "verifier": "verify-liblib-batch46",
+      "exit": 1,
+      "seconds": 6
+    },
+    {
+      "verifier": "verify-liblib-batch47",
+      "exit": 0,
+      "seconds": 12
+    },
+    {
+      "verifier": "verify-liblib-batch48",
+      "exit": 1,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch49",
+      "exit": 1,
+      "seconds": 39
+    },
+    {
+      "verifier": "verify-liblib-batch5",
+      "exit": 0,
+      "seconds": 14
+    },
+    {
+      "verifier": "verify-liblib-batch50",
+      "exit": 0,
+      "seconds": 11
+    },
+    {
+      "verifier": "verify-liblib-batch51",
+      "exit": 1,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch52",
+      "exit": 0,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch53",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch54",
+      "exit": 0,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch56",
+      "exit": 0,
+      "seconds": 7
+    },
+    {
+      "verifier": "verify-liblib-batch57",
+      "exit": 0,
+      "seconds": 13
+    },
+    {
+      "verifier": "verify-liblib-batch58",
+      "exit": 0,
+      "seconds": 26
+    },
+    {
+      "verifier": "verify-liblib-batch59",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch6",
+      "exit": 1,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch60",
+      "exit": 0,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch61",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch62",
+      "exit": 0,
+      "seconds": 13
+    },
+    {
+      "verifier": "verify-liblib-batch63",
+      "exit": 0,
+      "seconds": 7
+    },
+    {
+      "verifier": "verify-liblib-batch64",
+      "exit": 0,
+      "seconds": 10
+    },
+    {
+      "verifier": "verify-liblib-batch65",
+      "exit": 1,
+      "seconds": 8
+    },
+    {
+      "verifier": "verify-liblib-batch67",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch68",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch69",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch7",
+      "exit": 0,
+      "seconds": 6
+    },
+    {
+      "verifier": "verify-liblib-batch70",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch71",
+      "exit": 1,
+      "seconds": 1
+    },
+    {
+      "verifier": "verify-liblib-batch72",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch73",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch74",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch75",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch76",
+      "exit": 1,
+      "seconds": 0
+    },
+    {
+      "verifier": "verify-liblib-batch77",
+      "exit": 0,
+      "seconds": 13
+    },
+    {
+      "verifier": "verify-liblib-batch78",
+      "exit": 0,
+      "seconds": 24
+    },
+    {
+      "verifier": "verify-liblib-batch79",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch8",
+      "exit": 0,
+      "seconds": 11
+    },
+    {
+      "verifier": "verify-liblib-batch80",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch81",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch82",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch83",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch84",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch85",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch86",
+      "exit": 0,
+      "seconds": 6
+    },
+    {
+      "verifier": "verify-liblib-batch87",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch88",
+      "exit": 0,
+      "seconds": 6
+    },
+    {
+      "verifier": "verify-liblib-batch89",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch9",
+      "exit": 1,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch90",
+      "exit": 0,
+      "seconds": 4
+    },
+    {
+      "verifier": "verify-liblib-batch91",
+      "exit": 0,
+      "seconds": 5
+    },
+    {
+      "verifier": "verify-liblib-batch92",
+      "exit": 0,
+      "seconds": 3
+    },
+    {
+      "verifier": "verify-liblib-batch93",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch94",
+      "exit": 0,
+      "seconds": 13
+    },
+    {
+      "verifier": "verify-liblib-batch95",
+      "exit": 0,
+      "seconds": 11
+    },
+    {
+      "verifier": "verify-liblib-batch96",
+      "exit": 0,
+      "seconds": 9
+    },
+    {
+      "verifier": "verify-liblib-batch97",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch98",
+      "exit": 0,
+      "seconds": 2
+    },
+    {
+      "verifier": "verify-liblib-batch99",
+      "exit": 0,
+      "seconds": 2
+    }
+  ],
+  "summary": {
+    "total": 101,
+    "pass_first_run": 81,
+    "env_node_path_fixed": [
+      "batch65",
+      "batch67",
+      "batch68",
+      "batch69",
+      "batch70",
+      "batch71",
+      "batch73",
+      "batch76"
+    ],
+    "pre_existing_drift_at_baseline_86673b6": [
+      "batch6",
+      "batch9",
+      "batch40",
+      "batch41",
+      "batch44",
+      "batch46",
+      "batch48",
+      "batch49",
+      "batch51",
+      "batch72",
+      "batch74",
+      "batch75"
+    ],
+    "baseline_method": "git checkout --detach 86673b6, same serial runner, then return to batch/107 branch"
+  }
+}

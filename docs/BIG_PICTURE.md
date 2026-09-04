@@ -347,6 +347,13 @@ Batch 107 又把 Agent Skill 标题改为三条源站观察文案的轮换（换
 回绕，与 editorMode 解耦）；源站轮换真实驱动仍未知。证据见
 [`research/liblib-canvas-batch107-2026-09-05/`](research/liblib-canvas-batch107-2026-09-05/README.md)。
 
+Batch 108 对 97-107 对齐系列做全量 verifier 串行回归：101 项中 81 项通过；
+batch65/67-76 的失败为 node PATH 环境问题（带 PATH 复跑通过）；batch
+6/9/40/41/44/46/48/49/51/72/74/75 在基线 `86673b6` 同样失败，归因为既有
+漂移（旧 gate 已被 current manifest 取代），待 replacement 协议处置。
+本系列无回归。证据见
+[`research/liblib-canvas-batch108-2026-09-05/`](research/liblib-canvas-batch108-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：
