@@ -33,6 +33,7 @@ import { ImagePreviewOverlay } from "@/components/ImagePreviewOverlay";
 import { AssetManagerPanel } from "@/components/AssetManagerPanel";
 import { AgentDrawer } from "@/components/AgentDrawer";
 import { StoryboardBoard } from "@/components/StoryboardBoard";
+import { CanvasEmptyState } from "@/components/CanvasEmptyState";
 import { ScriptNode } from "@/components/nodes/ScriptNode";
 import { ImageNode } from "@/components/nodes/ImageNode";
 import { TextNode } from "@/components/nodes/TextNode";
@@ -1073,6 +1074,7 @@ export default function Home() {
             )}
           </ReactFlow>
         )}
+        {editorMode === "workbench" && flowNodes.length === 0 && <CanvasEmptyState />}
       </main>
 
       {isAgentOpen && <AgentDrawer />}

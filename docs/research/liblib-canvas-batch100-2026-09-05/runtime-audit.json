@@ -1,0 +1,44 @@
+{
+  "batch": 100,
+  "title": "Empty-canvas state and quick-create chips",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:demo-canvas-no-empty-state",
+        "boot:demo-has-nodes",
+        "empty:visible",
+        "empty:hint",
+        "empty:hint-generate",
+        "empty:no-nodes",
+        "chip:story-script",
+        "chip:character-turnaround",
+        "chip:reference-to-video",
+        "chip:audio-to-video",
+        "chip:video-badges",
+        "chip:local-status",
+        "chip:zero-graph-side-effect",
+        "back:empty-state-hidden",
+        "back:graph-preserved",
+        "back:status-unmounted",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    },
+    {
+      "viewport": "390x844",
+      "checks": [
+        "empty:visible",
+        "mobile:no-horizontal-overflow",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0
+      }
+    }
+  ]
+}

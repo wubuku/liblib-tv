@@ -304,6 +304,12 @@ Batch 99 又把快捷键帮助面板对齐同日快照：创作栏补齐 合并�
 按 2026-09-05 复核显式记录。证据见
 [`research/liblib-canvas-batch99-2026-09-05/`](research/liblib-canvas-batch99-2026-09-05/README.md)。
 
+Batch 100 又为空画布补上同日源站空态：「双击画布 / 自由生成节点」提示与
+故事脚本生成、角色三视图、全能参考生视频、音频生视频四个快捷芯片；clone
+经画布下拉切到既有空画布 `canvas-1` 即可到达，芯片点击只给诚实本地
+status，不接生成服务。证据见
+[`research/liblib-canvas-batch100-2026-09-05/`](research/liblib-canvas-batch100-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

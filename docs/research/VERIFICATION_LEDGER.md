@@ -146,6 +146,7 @@ BrowserContext，不写截图。
 | Batch 97 | Agent drawer current-source alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch97.py` 已通过；覆盖头部动作集合与 disabled 态、源站命名 Skill 卡与换一批、composer 五控件、选择模型菜单单列表双分区 15 项目录与 premium 角标、生成模式菜单默认/切换、Escape 分层、本地 status 与 `0/0/0` diagnostics；batch14 两处断言已按 2026-09-05 源站更新；不证明 LibTV source-exact Drawer DOM/CSS、真实模型调用或服务接入 |
 | Batch 98 | Add-node panel current-source alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch98.py` 已通过；覆盖智能剪辑命名、脚本 NEW/（旧版）Beta flyout 与旧版创建、素材库风格库/特效库 flyout、搜索过滤/清空/空态、上传与生成历史本地 status 和 `0/0/0` diagnostics；batch15 素材库子菜单断言已按 2026-09-05 源站更新；不证明新脚本节点能力、搜索源站样式或真实 media ingress |
 | Batch 99 | Shortcuts help panel copy alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch99.py` 已通过；覆盖四栏条目/顺序、kbd 数量与 suffix、删除位于其他栏、画布节点搜索 `⌘F` 行、Windows 重做移除、关闭行为和 `0/0/0` diagnostics；`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md` 源站快照列已按 2026-09-05 复核刷新；不证明新快捷键运行时 handler、删除源站 keycap 或弹窗精确几何 |
+| Batch 100 | Empty-canvas state and quick-create chips | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch100.py` 已通过；覆盖空态提示与 4 芯片（含 SD 2.5 角标）、芯片本地 status、`canvas-1`/`canvas-2` 切换隔离与 graph 保持、mobile `390x844` 无溢出和 `0/0/0` diagnostics；不证明芯片真实生成流、双击生成 UI 或源站精确视觉 |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果
