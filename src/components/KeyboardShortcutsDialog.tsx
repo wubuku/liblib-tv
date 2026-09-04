@@ -18,11 +18,15 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
   {
     title: "创作",
     items: [
-      { label: "成组", keys: ["G"] },
-      { label: "解组", keys: ["⇧", "G"] },
+      { label: "成组", keys: ["cmd", "G"] },
+      { label: "合并分镜组", keys: ["cmd", "⌥", "G"] },
+      { label: "解组", keys: ["cmd", "⇧", "G"] },
+      { label: "连线", keys: ["cmd", "L"] },
       { label: "复制节点和连线", keys: ["cmd", "D"] },
+      { label: "生成", keys: ["cmd", "Enter"] },
       { label: "新建节点", keys: ["Tab"] },
-      { label: "删除", keys: ["Delete"] },
+      { label: "节点复制", keys: ["Option"], suffix: "+拖动节点" },
+      { label: "创建副本", keys: ["cmd", "Option"], suffix: "+拖动" },
     ],
   },
   {
@@ -51,7 +55,8 @@ const sections: Array<{ title: string; items: ShortcutItem[] }> = [
     items: [
       { label: "撤销", keys: ["cmd", "Z"] },
       { label: "重做", keys: ["cmd", "⇧", "Z"] },
-      { label: "重做（Windows）", keys: ["ctrl", "Y"] },
+      { label: "画布节点搜索", keys: ["cmd", "F"] },
+      { label: "删除", keys: ["Delete"] },
     ],
   },
 ];

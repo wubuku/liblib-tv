@@ -296,6 +296,14 @@ flyout，素材库子菜单按早已登记的缺口改为 `风格库/特效库`�
 ingress 运行时授权。证据与合同见
 [`research/liblib-canvas-batch98-2026-09-05/`](research/liblib-canvas-batch98-2026-09-05/README.md)。
 
+Batch 99 又把快捷键帮助面板对齐同日快照：创作栏补齐 合并分镜组/连线/生成/
+节点复制/创建副本 并全面补上 ⌘ 键帽，删除移到其他栏，其他栏新增
+`画布节点搜索 ⌘F` 并移除 Windows 重做行；运行时 handler 一个未动，
+帮助文案与运行时的差异由
+[`LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md`](research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md)
+按 2026-09-05 复核显式记录。证据见
+[`research/liblib-canvas-batch99-2026-09-05/`](research/liblib-canvas-batch99-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

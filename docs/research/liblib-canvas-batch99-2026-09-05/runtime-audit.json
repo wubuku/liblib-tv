@@ -1,0 +1,46 @@
+{
+  "batch": 99,
+  "title": "Shortcuts help panel alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "column:创作",
+        "column:缩放",
+        "column:移动画布",
+        "column:其他",
+        "creation:成组:kbd",
+        "creation:合并分镜组:kbd",
+        "creation:解组:kbd",
+        "creation:连线:kbd",
+        "creation:复制节点和连线:kbd",
+        "creation:生成:kbd",
+        "creation:新建节点:kbd",
+        "creation:节点复制:kbd",
+        "creation:节点复制:suffix",
+        "creation:创建副本:kbd",
+        "creation:创建副本:suffix",
+        "creation:all-present",
+        "creation:no-delete",
+        "other:撤销:kbd",
+        "other:重做:kbd",
+        "other:画布节点搜索:kbd",
+        "other:删除:kbd",
+        "other:windows-redo-removed",
+        "other:search-key",
+        "other:delete-key",
+        "spot:适应画布:kbd",
+        "spot:整理画布:kbd",
+        "spot:移动:kbd",
+        "spot:抓手工具:kbd",
+        "close",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

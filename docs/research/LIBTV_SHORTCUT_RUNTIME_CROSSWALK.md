@@ -37,16 +37,16 @@
 
 | 命令 | 源站快照 | clone 帮助 | clone 实际处理 | graph/history 副作用 | 结论 |
 |---|---|---|---|---|---|
-| 成组 | `G` | `G` | 无 Meta/Ctrl/Alt 时，`G` 调用 `groupSelectedNodes()` | 至少两个非 group 节点时创建 `storyboard-group`，重写子节点 `parentId`/相对坐标，选择 group，压入一次 history | `SOURCE_ADVERTISED` + `CLONE_HANDLER` |
-| 合并分镜组 | `Option+G` | 无 | 未找到普通工作台 handler | 无 | `SOURCE_ONLY` + `UNVERIFIED_SOURCE`；不能用现有“成组”冒充分镜组合并 |
-| 解组 | `Shift+G` | `Shift+G` | 无 Meta/Ctrl/Alt 时，`Shift+G` 调用 `ungroupSelectedNodes()` | 删除 group、恢复子节点世界坐标、选择 children，压入一次 history | `SOURCE_ADVERTISED` + `CLONE_HANDLER` |
-| 连线 | `L` | 无 | 未找到 `L` handler；当前连接入口是 React Flow `<Handle>` 拖动 | 成功连接时由 `onConnect`/store 添加 edge 并记录 history | `SOURCE_ONLY`；现有 pointer gesture 不能证明 `L` 已复刻 |
-| 复制节点和连线 | 文案为 `D`，原始快照未显示 Meta/Ctrl | `Command+D` | `Meta/Ctrl+D` 且存在选中节点时调用 `duplicateSelectedNodes()` | 复制选中子图及内部 edge，选择副本，压入一次 history | clone 行为存在，但 source modifier 仍是 `UNVERIFIED_SOURCE` |
-| 生成 | `Enter` | 无 | 未找到普通工作台全局生成 handler | 无全局 graph transaction | `SOURCE_ONLY`；局部输入框的 Enter 不能等同于全局生成 |
+| 成组 | `⌘G`（2026-09-05 复核：⌘ 为图标键帽，ARIA 无文本） | `⌘G`（Batch 99 已对齐） | 无 Meta/Ctrl/Alt 时，`G` 调用 `groupSelectedNodes()`；帮助文案与运行时 chord 尚未对齐 | 至少两个非 group 节点时创建 `storyboard-group`，重写子节点 `parentId`/相对坐标，选择 group，压入一次 history | `SOURCE_ADVERTISED` + `CLONE_HANDLER` |
+| 合并分镜组 | `⌘⌥G`（2026-09-05 复核修正旧快照 `Option+G`） | `⌘⌥G`（Batch 99 已对齐，仅文案） | 未找到普通工作台 handler | 无 | `SOURCE_ONLY` + `UNVERIFIED_SOURCE`；不能用现有“成组”冒充分镜组合并 |
+| 解组 | `⌘⇧G`（2026-09-05 复核） | `⌘⇧G`（Batch 99 已对齐） | 无 Meta/Ctrl/Alt 时，`Shift+G` 调用 `ungroupSelectedNodes()`；帮助文案与运行时 chord 尚未对齐 | 删除 group、恢复子节点世界坐标、选择 children，压入一次 history | `SOURCE_ADVERTISED` + `CLONE_HANDLER` |
+| 连线 | `⌘L`（2026-09-05 复核） | `⌘L`（Batch 99 已对齐，仅文案） | 未找到 `L` handler；当前连接入口是 React Flow `<Handle>` 拖动 | 成功连接时由 `onConnect`/store 添加 edge 并记录 history | `SOURCE_ONLY`；现有 pointer gesture 不能证明 `L` 已复刻 |
+| 复制节点和连线 | `⌘D`（2026-09-05 复核确认 modifier） | `⌘D`（Batch 99 已对齐） | `Meta/Ctrl+D` 且存在选中节点时调用 `duplicateSelectedNodes()` | 复制选中子图及内部 edge，选择副本，压入一次 history | clone 行为存在，但 source modifier 仍是 `UNVERIFIED_SOURCE` |
+| 生成 | `⌘Enter`（2026-09-05 复核） | `⌘Enter`（Batch 99 已对齐，仅文案） | 未找到普通工作台全局生成 handler | 无全局 graph transaction | `SOURCE_ONLY`；局部输入框的 Enter 不能等同于全局生成 |
 | 新建节点 | `Tab` | `Tab` | `Tab` 调用 `toggleAddNodePanel()` | 只切换 overlay；选择具体条目后才创建节点 | `SOURCE_ADVERTISED` + `CLONE_HANDLER` |
-| 节点复制 | `Option+拖动节点` | 无 | `onNodeDragStart`/`onNodeDragStop` 未读取 `altKey` | 普通拖动只移动节点并按一次 drag transaction 记录 history | `SOURCE_ONLY` |
-| 创建副本 | `Option+拖动` | 无 | 未找到 Alt-drag clone 分支 | 无 | `SOURCE_ONLY`；与上一行在源站中的对象范围差异仍待 fixture 复核 |
-| 删除 | `Delete`，位于“其他” | `Delete`，位于“创作” | `Delete` 或 `Backspace` 且有选择时调用 `removeSelectedNodes()`；React Flow 默认删除被禁用 | 删除选中节点、后代和相连 edge，清空选择，压入一次 history | 运行语义已实现；分组位置属于帮助信息架构差异 |
+| 节点复制 | `Option+拖动节点`（2026-09-05 复核一致） | `Option+拖动节点`（Batch 99 已对齐） | `onNodeDragStart`/`onNodeDragStop` 未读取 `altKey` | 普通拖动只移动节点并按一次 drag transaction 记录 history | `SOURCE_ONLY` |
+| 创建副本 | `⌘Option+拖动`（2026-09-05 复核修正旧快照） | `⌘Option+拖动`（Batch 99 已对齐，仅文案） | 未找到 Alt-drag clone 分支 | 无 | `SOURCE_ONLY`；与上一行在源站中的对象范围差异仍待 fixture 复核 |
+| 删除 | `Delete`，位于“其他”（2026-09-05 复核确认位置；keycap 被遮挡） | `Delete`，位于“其他”（Batch 99 已对齐；keycap 为 clone 取值） | `Delete` 或 `Backspace` 且有选择时调用 `removeSelectedNodes()`；React Flow 默认删除被禁用 | 删除选中节点、后代和相连 edge，清空选择，压入一次 history | 运行语义已实现；分组位置属于帮助信息架构差异 |
 
 ### 3.1 “复制节点和连线”的准确边界
 
@@ -78,9 +78,10 @@ React Flow 的 `panActivationKeyCode={null}` 和 `deleteKeyCode={[]}` 很关键�
 
 | 命令 | 源站快照 | clone 帮助 | clone 实际处理 | 结论 |
 |---|---|---|---|---|
-| 撤销 | `Z`，快照未证明 modifier | `Command+Z` | `Meta/Ctrl+Z` 调用 `undo()` | clone 存在；source modifier 待复核 |
-| 重做 | `Shift+Z`，快照未证明 Meta/Ctrl | `Command+Shift+Z` | `Meta/Ctrl+Shift+Z` 调用 `redo()` | clone 存在；source modifier 待复核 |
-| Windows 重做 | 源站快照无独立行 | `Ctrl+Y` | handler 实际接受 `Meta+Y` 或 `Ctrl+Y` | `HELP_DRIFT`：帮助写 Windows-only，但 handler 在 macOS 也接受 Command+Y |
+| 撤销 | `⌘Z`（2026-09-05 复核确认 modifier） | `⌘Z`（Batch 99 已对齐） | `Meta/Ctrl+Z` 调用 `undo()` | clone 存在；帮助文案与运行时一致 |
+| 重做 | `⌘⇧Z`（2026-09-05 复核确认 modifier） | `⌘⇧Z`（Batch 99 已对齐） | `Meta/Ctrl+Shift+Z` 调用 `redo()` | clone 存在；帮助文案与运行时一致 |
+| Windows 重做 | 源站快照无独立行；2026-09-05 复核其他栏可见序列（撤销→重做→画布节点搜索→删除）中亦无该行，Batch 99 已从帮助移除 | 无（原 `Ctrl+Y` 行移除） | handler 实际接受 `Meta+Y` 或 `Ctrl+Y` | `CLONE_HANDLER`：运行时保留，帮助不再宣称 |
+| 画布节点搜索 | `⌘F`（2026-09-05 复核新增可见行） | `⌘F`（Batch 99 已对齐） | 未找到普通工作台 `⌘F` handler | `SOURCE_ONLY`：不能把帮助行接到现有节点搜索入口 |
 | Escape | 源站面板无独立行 | 无 | 普通工作台清空选择并关闭顶层 overlays；Director active 时直接返回 | `CLONE_HANDLER`，但不是 source-advertised 快捷键 |
 
 `undo()`/`redo()` 恢复的是当前 canvas 的 nodes/edges snapshot，并清空选择。它们不恢复 viewport、普通 overlay、局部编辑器内部 history 或 Director 独立 store。
