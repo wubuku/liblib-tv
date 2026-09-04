@@ -322,6 +322,11 @@ Batch 102 又把资产抽屉补齐到同日源站控件集合：所有评级/展
 aria 命名对齐；并确认「切换画布关闭资产抽屉」为两端共有行为。证据见
 [`research/liblib-canvas-batch102-2026-09-05/`](research/liblib-canvas-batch102-2026-09-05/README.md)。
 
+Batch 103 又把顶栏模式切换对齐同日源站：`工作台`→`工作流`、`分镜`→
+`故事板`（aria/title，内部 editorMode 值不变），batch11/13/14/17 断言按
+replacement 协议迁移。证据见
+[`research/liblib-canvas-batch103-2026-09-05/`](research/liblib-canvas-batch103-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

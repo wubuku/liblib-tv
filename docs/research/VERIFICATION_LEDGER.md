@@ -149,6 +149,7 @@ BrowserContext，不写截图。
 | Batch 100 | Empty-canvas state and quick-create chips | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch100.py` 已通过；覆盖空态提示与 4 芯片（含 SD 2.5 角标）、芯片本地 status、`canvas-1`/`canvas-2` 切换隔离与 graph 保持、mobile `390x844` 无溢出和 `0/0/0` diagnostics；不证明芯片真实生成流、双击生成 UI 或源站精确视觉 |
 | Batch 101 | Generation-history panel alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch101.py` 已通过；覆盖标题、尺寸 slider、本画布 chip、三 tab 计数、评级本地菜单与收藏过滤、时间倒序/批量操作、空态文案、Escape 与 `0/0/0` diagnostics；工具条入口更名 生成历史；不证明真实历史数据、评级后端或非空态源站样式 |
 | Batch 102 | Asset manager drawer alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch102.py` 已通过；覆盖双 tab、搜索/筛选 aria、评级/展示设置控件与本地 hint、`共 10 节点` 计数、`收起节点侧栏` 关闭、空画布 `画布暂无节点` 和 `0/0/0` diagnostics；不证明评级/展示设置真实语义、资产 tab 空态源站样式或双开精确几何 |
+| Batch 103 | Top-bar mode toggle alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch103.py` 已通过；覆盖 工作流/故事板 aria、pressed 双态、故事板+Agent 联动、工作台往返 graph 保持和 `0/0/0` diagnostics；batch11/13/14/17 aria 断言按 2026-09-05 源站迁移；不证明源站图标形状、几何或内容性「分镜」文案 |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果

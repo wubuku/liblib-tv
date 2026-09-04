@@ -44,7 +44,7 @@ def run_desktop(page: Page):
     assert panel.locator('[data-asset-manager-list="canvas"] [data-asset-manager-item]').count() == 10
     assert panel.locator("[data-asset-manager-item]").first.get_attribute("data-asset-manager-item") == "i-YDfWhFlthe"
     assert panel.locator('[data-asset-manager-item="v-UGQZzZOpbv"]').get_attribute("data-asset-manager-depth") == "1"
-    workbench_box = page.locator('button[aria-label="工作台"]').bounding_box()
+    workbench_box = page.locator('button[aria-label="工作流"]').bounding_box()
     assert workbench_box and workbench_box["x"] >= 260
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch17-asset-tree-desktop-929-2026-08-25.png"))
 
@@ -78,7 +78,8 @@ def run_desktop(page: Page):
 
     panel = open_asset_manager(page)
     assert panel.locator("[data-asset-manager-canvas]").inner_text().strip() == "画布 1"
-    assert panel.locator("[data-asset-manager-empty]").inner_text() == "当前画布暂无节点"
+    # Batch 102/103: 源站 2026-09-05 复核空态文案为「画布暂无节点」。
+    assert panel.locator("[data-asset-manager-empty]").inner_text() == "画布暂无节点"
     panel.locator('[data-asset-manager-tab="assets"]').click()
     assert panel.locator("[data-asset-manager-empty]").inner_text() == "当前画布暂无媒体资产"
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch17-asset-empty-desktop-929-2026-08-25.png"))

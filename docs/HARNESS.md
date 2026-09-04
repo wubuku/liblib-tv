@@ -118,6 +118,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 100 | Empty-canvas state with source hint and four quick-create chips (SD 2.5 badges), pointer-events-safe overlay, honest local chip feedback, canvas-switch reachability and mobile overflow |
 | Batch 101 | Generation-history panel alignment with the 2026-09-05 source audit: title, thumbnail size slider, canvas-scope chip, counted image/video/audio tabs, local rating menu with favorite filter, empty-state copy and toolbar entry rename |
 | Batch 102 | Asset manager drawer alignment with the 2026-09-05 source audit: rating/display controls with honest local hints, exact empty-state copy, footer count + collapse button, search/filter aria naming |
+| Batch 103 | Top-bar mode toggle alignment with the 2026-09-05 source audit: 工作流/故事板 aria naming, pressed-state round trip, batch11/13/14/17 assertion migration (internal editorMode values unchanged) |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

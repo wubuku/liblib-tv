@@ -8,6 +8,7 @@ REFERENCE_DIR = ROOT / "docs" / "design-references"
 URL = "http://localhost:4317"
 
 
+# Batch 103: 源站 2026-09-05 复核将顶栏模式切换更名为 工作流/故事板（aria 已同步）。
 def attach_errors(page: Page):
     errors = []
     page.on(
@@ -80,7 +81,7 @@ def run_mobile(page: Page):
     page.wait_for_timeout(400)
     assert page.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
     assert page.evaluate("document.body.scrollWidth <= document.body.clientWidth")
-    page.locator('button[aria-label="分镜"]').evaluate("(element) => element.click()")
+    page.locator('button[aria-label="故事板"]').evaluate("(element) => element.click()")
     page.wait_for_timeout(120)
     assert page.locator("[data-storyboard-board]").is_visible()
     assert page.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")

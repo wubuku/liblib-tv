@@ -1,0 +1,27 @@
+{
+  "batch": 103,
+  "title": "Top-bar mode toggle alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "names:unique",
+        "boot:workflow-pressed",
+        "boot:storyboard-not-pressed",
+        "boot:old-names-gone",
+        "switch:storyboard-pressed",
+        "switch:workflow-released",
+        "switch:board-visible",
+        "back:workflow-pressed",
+        "back:graph-preserved",
+        "back:board-hidden",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

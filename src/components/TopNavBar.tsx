@@ -87,8 +87,8 @@ export function TopNavBar() {
           isAssetPanelOpen && "ml-[204px]",
         )}>
           <button
-            title="工作台"
-            aria-label="工作台"
+            title="工作流"
+            aria-label="工作流" /* Batch 103: 2026-09-05 源站顶栏为 工作流/故事板 */
             aria-pressed={editorMode === "workbench"}
             onClick={() => setEditorMode("workbench")}
             className={cn(
@@ -99,8 +99,8 @@ export function TopNavBar() {
             <Workflow size={14} />
           </button>
           <button
-            title="分镜"
-            aria-label="分镜"
+            title="故事板"
+            aria-label="故事板"
             aria-pressed={editorMode === "storyboard"}
             onClick={() => setEditorMode("storyboard")}
             className={cn(

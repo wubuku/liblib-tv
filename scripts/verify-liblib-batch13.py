@@ -8,6 +8,7 @@ REFERENCE_DIR = ROOT / "docs" / "design-references"
 URL = "http://localhost:4317"
 
 
+# Batch 103: 源站 2026-09-05 复核将顶栏模式切换更名为 工作流/故事板（aria 已同步）。
 def attach_errors(page: Page):
     errors = []
     page.on(
@@ -26,7 +27,7 @@ def assert_graph(page: Page, nodes: int, edges: int):
 
 
 def open_storyboard(page: Page):
-    page.locator('button[aria-label="分镜"]').evaluate("(element) => element.click()")
+    page.locator('button[aria-label="故事板"]').evaluate("(element) => element.click()")
     page.wait_for_timeout(120)
     assert page.locator("[data-storyboard-board]").is_visible()
     assert page.locator('[data-liblib-overlay="agent"]').count() == 1
@@ -57,7 +58,7 @@ def run_desktop(page: Page):
     assert_graph(page, 10, 11)
     assert page.locator('.react-flow__node[data-id="t-9j2MoccxBj"].selected').count() == 1
 
-    page.locator('button[aria-label="分镜"]').evaluate("(element) => element.click()")
+    page.locator('button[aria-label="故事板"]').evaluate("(element) => element.click()")
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch13-storyboard-desktop-929-2026-08-25.png"))
     page.locator("[data-storyboard-return]").click()
 
