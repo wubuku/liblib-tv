@@ -1,0 +1,29 @@
+{
+  "batch": 102,
+  "title": "Asset manager drawer alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "tabs",
+        "search:aria",
+        "filter:aria",
+        "rating:visible",
+        "display:visible",
+        "rating:hint",
+        "display:hint",
+        "footer:count",
+        "footer:collapse-visible",
+        "collapse:closes",
+        "empty:text",
+        "empty:count",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

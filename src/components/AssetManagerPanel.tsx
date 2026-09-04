@@ -114,6 +114,8 @@ export function AssetManagerPanel({
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("graph");
+  // Batch 102: 源站有 所有评级/展示设置 控件；其菜单语义未采样，clone 给诚实本地 hint。
+  const [hint, setHint] = useState("");
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
   const assetNodes = nodes.filter((node) => node.type === "image" || node.type === "video");
@@ -205,6 +207,7 @@ export function AssetManagerPanel({
           <button
             type="button"
             data-asset-manager-filter={filter}
+            aria-label={`筛选：${activeFilterLabel}`}
             aria-expanded={filterOpen}
             onClick={() => setFilterOpen((open) => !open)}
             className="flex h-7 items-center gap-1 rounded-md px-2 text-xs text-[#d0d0d0] hover:bg-white/[0.07]"
@@ -236,9 +239,25 @@ export function AssetManagerPanel({
         </div>
         <button
           type="button"
+          data-asset-manager-rating
+          onClick={() => setHint("本地原型：评级未接入")}
+          className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+        >
+          所有评级
+        </button>
+        <button
+          type="button"
+          data-asset-manager-display
+          onClick={() => setHint("本地原型：展示设置未接入")}
+          className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+        >
+          展示设置
+        </button>
+        <button
+          type="button"
           data-asset-manager-search
           aria-expanded={searchOpen}
-          aria-label="搜索画布元素"
+          aria-label="搜索节点"
           onClick={() => {
             setSearchOpen((open) => !open);
             if (searchOpen) setQuery("");
@@ -261,11 +280,17 @@ export function AssetManagerPanel({
               autoFocus
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索当前画布"
+              placeholder="搜索节点"
               className="min-w-0 flex-1 bg-transparent text-xs text-[#e0e0e0] outline-none placeholder:text-[#626262]"
             />
           </div>
         </div>
+      )}
+
+      {hint && (
+        <p data-asset-manager-hint className="border-b border-white/[0.05] px-3 py-1.5 text-[10px] leading-4 text-[#75d7e8]">
+          {hint}
+        </p>
       )}
 
       <div data-asset-manager-list={activeTab} className="min-h-0 flex-1 overflow-y-auto px-2 py-2">
@@ -303,13 +328,21 @@ export function AssetManagerPanel({
           </div>
         ) : (
           <div data-asset-manager-empty className="px-2 py-8 text-center text-xs text-[#666]">
-            {activeTab === "assets" ? "当前画布暂无媒体资产" : "当前画布暂无节点"}
+            {activeTab === "assets" ? "当前画布暂无媒体资产" : "画布暂无节点"}
           </div>
         )}
       </div>
 
-      <div className="h-10 border-t border-white/[0.07] px-4 text-xs leading-10 text-[#777]">
-        {activeTab === "assets" ? `共 ${assetNodes.length} 项资产` : `共 ${nodes.length} 节点`}
+      <div className="flex h-10 items-center justify-between border-t border-white/[0.07] px-4 text-xs text-[#777]">
+        <span>{activeTab === "assets" ? `共 ${assetNodes.length} 项资产` : `共 ${nodes.length} 节点`}</span>
+        <button
+          type="button"
+          data-asset-manager-collapse
+          onClick={onClose}
+          className="rounded px-1 hover:text-white"
+        >
+          收起节点侧栏
+        </button>
       </div>
     </aside>
   );

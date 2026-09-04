@@ -117,6 +117,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 99 | Shortcuts help panel copy alignment with the 2026-09-05 source audit: four-column items, keycap counts, suffixes, deletion row placement, canvas-node-search row, Windows-redo removal and crosswalk snapshot refresh (no runtime handler changes) |
 | Batch 100 | Empty-canvas state with source hint and four quick-create chips (SD 2.5 badges), pointer-events-safe overlay, honest local chip feedback, canvas-switch reachability and mobile overflow |
 | Batch 101 | Generation-history panel alignment with the 2026-09-05 source audit: title, thumbnail size slider, canvas-scope chip, counted image/video/audio tabs, local rating menu with favorite filter, empty-state copy and toolbar entry rename |
+| Batch 102 | Asset manager drawer alignment with the 2026-09-05 source audit: rating/display controls with honest local hints, exact empty-state copy, footer count + collapse button, search/filter aria naming |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

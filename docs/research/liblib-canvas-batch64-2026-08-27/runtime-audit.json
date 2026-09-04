@@ -1,7 +1,7 @@
 {
   "batch": 64,
   "date": "2026-08-27",
-  "url": "http://localhost:3000",
+  "url": "http://localhost:4317",
   "scope": "clone-owned Asset drawer host-center anchor preservation",
   "sourceParityClaim": false,
   "screenshotsReused": true,
