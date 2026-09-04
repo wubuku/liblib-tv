@@ -40,7 +40,8 @@ def run_desktop(page: Page):
     first_skill = agent.locator('[data-agent-skill="pixar"]')
     first_skill.click()
     assert first_skill.get_attribute("aria-pressed") == "true"
-    assert agent.locator("textarea").input_value() == "皮克斯动画风格"
+    # Batch 97: 源站 2026-09-05 复核将首张 Skill 卡更名为「皮克斯动画广告」。
+    assert agent.locator("textarea").input_value() == "皮克斯动画广告"
 
     agent.locator("[data-agent-refresh]").click()
     assert agent.locator('[data-agent-skill="character"]').count() == 1
@@ -56,7 +57,8 @@ def run_desktop(page: Page):
 
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch14-agent-desktop-929-2026-08-25.png"))
 
-    agent.get_by_role("button", name="关闭 Agent").click()
+    # Batch 97: 源站 2026-09-05 复核将关闭按钮 aria 收敛为「关闭」。
+    agent.get_by_role("button", name="关闭", exact=True).click()
     assert not agent.is_visible()
     page.get_by_role("button", name="分享").click()
     share = page.locator('[data-liblib-overlay="share"]')

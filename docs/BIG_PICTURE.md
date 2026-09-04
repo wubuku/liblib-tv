@@ -280,6 +280,15 @@ camera 继续是 Director object，Shot 作为独立 portable `DirectorShotRecor
 source parity，详见
 [`research/liblib-canvas-batch96-2026-08-29/`](research/liblib-canvas-batch96-2026-08-29/)。
 
+Batch 97 又把 Agent 抽屉对齐 2026-09-05 登录态源站：头部动作集合（含两个
+disabled 态）、源站命名 Skill 卡与换一批、composer
+添加附件/选择模型/Skill/生成模式/Send 五控件、单列表双分区的选择模型目录
+菜单（图片 7 + 视频 8，premium 角标 6 项）与生成模式菜单（默认自动）。
+菜单均为本地 state，不接真实 Agent/模型调用；模型行选中语义等服务行为仍是
+`SOURCE_UNKNOWN`。证据与合同见
+[`research/liblib-live-2026-09-05/`](research/liblib-live-2026-09-05/README.md)
+与 [`research/liblib-canvas-batch97-2026-09-05/`](research/liblib-canvas-batch97-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：
@@ -295,7 +304,7 @@ source parity，详见
 - 面板显隐
 - grid/minimap/edge/snap 开关
 - 工作台/分镜模式、移动/抓手工具
-- 分享弹层、Agent 抽屉；Agent 内容包含 source-shaped Skill 推荐、通知提示和本地 composer 状态
+- 分享弹层、Agent 抽屉；Agent 内容包含源站命名 Skill 推荐（含换一批）、通知提示、composer 五控件（添加附件/选择模型/Skill/生成模式/Send）、选择模型目录菜单（图片 7 + 视频 8，premium 角标）、生成模式菜单和本地 composer 状态
 - 与 React Flow viewport 同步的 zoom 百分比
 - 当前打开的导演台来源节点 ID；导演台内部场景状态不进入 `uiStore`
 
@@ -707,6 +716,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - Batch 83：Director command outcome/reason projection、ARIA feedback surface、
   committed/no-op/rejected behavior、mobile header geometry 和 zero-history boundary
   的专项门禁
+- Batch 97：Agent 抽屉 2026-09-05 源站对齐（头部/disabled、源站 Skill 卡、
+  composer 控件、模型目录菜单、生成模式菜单、Escape 分层、本地反馈）与
+  `0/0/0` diagnostics 的专项门禁；batch14 两处断言已按 replacement 协议更新
 - Batch 89-92：Director scene/add-camera、project/session-scene command、
   object/camera/group command 和 local resource owner/lease lifecycle 的专项门禁；
   均以 clone-owned reliability 为边界，不等价于 LibTV source parity

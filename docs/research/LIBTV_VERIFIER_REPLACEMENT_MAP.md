@@ -124,6 +124,23 @@ Director 脚本的 domain state 通过 `window.__director_store` 驱动或读取
 - 真实 mesh/FBX/OBJ、摄影机设备、Provider 和远端资源不在当前合同内；
 - Batch 48 已补齐 clone-owned local model 的 setup/teardown、storage boundary 和 focused verifier；这些断言仍只证明 Director prototype。
 - 新增 Director persistence 或 local model fixture 时，必须由 owner 维护 setup/teardown 和 storage boundary，不得把普通 LibTV 的 reset 规则套进来。
+### 4.x `verify-liblib-batch14.py`（Batch 97 更新，2026-09-05）
+
+当前旧断言：
+
+```text
+skill pixar 选中后 textarea 值 = "皮克斯动画风格"
+关闭按钮 aria-label = "关闭 Agent"
+```
+
+2026-09-05 登录态源站复核（[`liblib-live-2026-09-05/README.md`](liblib-live-2026-09-05/README.md) §5）：
+
+| 断言 | 处理 | 依据 |
+|---|---|---|
+| textarea 回填 `皮克斯动画风格` | 更新为 `皮克斯动画广告`；版本注释内联 | 源站第一批 Skill 卡更名为 皮克斯动画广告 `/pixar-animated-ad-creator` |
+| 关闭按钮 `关闭 Agent` | 更新为 `关闭`(exact)；版本注释内联 | 源站抽屉头部关闭按钮 aria 为 `关闭` |
+
+未动的 batch14 断言（4 卡、通知横幅、composer/status 本地预览、分享面板、移动端溢出）继续以历史合同兼容运行并在 Batch 97 复跑通过。Skill 第一批命名按当前源站处理；第二批仍为 clone-shaped 填充，不声称源站目录。
 
 ## 5. Replacement Queue
 
