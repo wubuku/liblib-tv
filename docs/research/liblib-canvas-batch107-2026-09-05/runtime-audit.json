@@ -1,0 +1,22 @@
+{
+  "batch": 107,
+  "title": "Skill headline rotation per 2026-09-05 source observations",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "headline:0",
+        "headline:1",
+        "headline:2",
+        "headline:wraps",
+        "skills:still-4",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

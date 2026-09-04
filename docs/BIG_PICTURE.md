@@ -343,6 +343,10 @@ Batch 106 又按补采样复刻 logo 项目菜单（回到主页/全部项目/�
 verifier 锁定。真实项目操作仍是 SOURCE_UNKNOWN。证据见
 [`research/liblib-canvas-batch106-2026-09-05/`](research/liblib-canvas-batch106-2026-09-05/README.md)。
 
+Batch 107 又把 Agent Skill 标题改为三条源站观察文案的轮换（换一批 驱动，
+回绕，与 editorMode 解耦）；源站轮换真实驱动仍未知。证据见
+[`research/liblib-canvas-batch107-2026-09-05/`](research/liblib-canvas-batch107-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

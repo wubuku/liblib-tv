@@ -122,6 +122,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 104 | Storyboard three-section alignment with the 2026-09-05 source audit: text/image/video column order, zoom column buttons, 暂无 copy, empty-canvas key-elements hiding and batch13 assertion migration |
 | Batch 105 | Collaborative follow banner from the 2026-09-05 computed-style audit: top-center z-305 pill, faded default, uiStore follow session, follow-banner as top single-escape surface (batch62 contract) |
 | Batch 106 | Project menu (logo dropdown) alignment with the 2026-09-05 sampling: four source-named items with grouping divider, honest local statuses, outside-close, tutorial popover lock |
+| Batch 107 | Skill headline rotation per the three 2026-09-05 source-observed copies, driven by 换一批 with wrap and decoupled from editorMode |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

@@ -166,7 +166,6 @@ function AgentModelRow({
 
 export function AgentDrawer() {
   const toggleAgent = useUIStore((state) => state.toggleAgent);
-  const editorMode = useUIStore((state) => state.editorMode);
   const [skillBatch, setSkillBatch] = useState(0);
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
@@ -179,7 +178,7 @@ export function AgentDrawer() {
   const [agentMode, setAgentMode] = useState<AgentModeId>("auto");
   const imageSectionRef = useRef<HTMLDivElement | null>(null);
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
-  const skills = skillBatches[skillBatch];
+  const skills = skillBatches[skillBatch % skillBatches.length];
 
   const handleSkillSelect = (skill: Skill) => {
     setSelectedSkillId(skill.id);
@@ -204,8 +203,13 @@ export function AgentDrawer() {
     section?.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
-  const skillHeadline =
-    editorMode === "storyboard" ? "让 Skill 帮你迈出第一步" : "选一个 Skill，让创作更快一步";
+  // Batch 107: 2026-09-05 源站观察到三种标题（跨会话/模式轮换），clone 以换一批轮换近似。
+  const skillHeadlines = [
+    "选一个 Skill，让创作更快一步",
+    "让 Skill 帮你迈出第一步",
+    "一个 Skill，慢慢打磨你的故事",
+  ];
+  const skillHeadline = skillHeadlines[skillBatch % skillHeadlines.length];
 
   return (
     <aside
@@ -285,7 +289,7 @@ export function AgentDrawer() {
               type="button"
               data-agent-refresh
               onClick={() => {
-                setSkillBatch((value) => (value + 1) % skillBatches.length);
+                setSkillBatch((value) => value + 1);
                 setSelectedSkillId(null);
                 setStatus("");
               }}
