@@ -332,6 +332,12 @@ Batch 104 又把故事板主区对齐同日源站空画布观察：列序 文本
 `暂无文本/暂无图片/暂无视频`，关键元素侧栏在关键元素为空时隐藏。证据见
 [`research/liblib-canvas-batch104-2026-09-05/`](research/liblib-canvas-batch104-2026-09-05/README.md)。
 
+Batch 105 又按同日 computed style 复刻协作跟随横幅：顶部居中 z-[305] 胶囊
+（正在跟随/取消/按 ESC 退出），非跟随态淡出零干扰；会话状态挂 uiStore，
+`follow-banner` 注册为单层 ESC 最高优先 surface（batch62 契约顺延）。
+真实协作与触发入口仍是 SOURCE_UNKNOWN。证据见
+[`research/liblib-canvas-batch105-2026-09-05/`](research/liblib-canvas-batch105-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

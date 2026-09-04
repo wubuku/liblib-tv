@@ -1,0 +1,31 @@
+{
+  "batch": 105,
+  "title": "Follow banner alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:banner-mounted",
+        "boot:hidden",
+        "boot:aria-hidden",
+        "follow:visible",
+        "follow:not-aria-hidden",
+        "follow:text",
+        "follow:tooltip",
+        "follow:cancel-visible",
+        "escape:exits-follow",
+        "priority:add-panel-open",
+        "priority:follow-first",
+        "priority:add-panel-kept",
+        "priority:add-panel-then-closes",
+        "cancel:exits-follow",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

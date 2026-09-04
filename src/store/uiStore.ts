@@ -44,6 +44,7 @@ interface UIState {
   // Panel visibility
   isAddNodePanelOpen: boolean;
   isCanvasDropdownOpen: boolean;
+  isFollowingSession: boolean;
   isAssetPanelOpen: boolean;
   isToolboxPanelOpen: boolean;
   isMaterialPanelOpen: boolean;
@@ -106,6 +107,7 @@ interface UIState {
   toggleEdges: () => void;
   toggleSnapToGrid: () => void;
   setZoomLevel: (zoom: number) => void;
+  setFollowingSession: (value: boolean) => void;
 
   // Close all panels
   closeTopForegroundSurface: () => LibTVBlockingForegroundSurface | null;
@@ -165,6 +167,7 @@ function closeTransientOverlays(
 }
 
 export const useUIStore = create<UIState>((set) => ({
+  isFollowingSession: false,
   isAddNodePanelOpen: false,
   isCanvasDropdownOpen: false,
   isAssetPanelOpen: false,
@@ -356,11 +359,16 @@ export const useUIStore = create<UIState>((set) => ({
 
   setZoomLevel: (zoom: number) => set({ zoomLevel: zoom }),
 
+  // Batch 105: 协作跟随会话（源站顶部落出横幅）；触发来自协作事件，clone 仅暴露状态。
+  setFollowingSession: (value: boolean) => set({ isFollowingSession: value }),
+
   closeTopForegroundSurface: () => {
     let closedSurface: LibTVBlockingForegroundSurface | null = null;
     set((state) => {
       closedSurface = resolveLibTVBlockingForegroundSurface(state);
       switch (closedSurface) {
+        case "follow-banner":
+          return { isFollowingSession: false };
         case "shortcuts":
           return { isShortcutsPanelOpen: false };
         case "canvas-dropdown":

@@ -22,6 +22,7 @@ export interface LibTVSelectionSnapshotInput {
 }
 
 export type LibTVBlockingForegroundSurface =
+  | "follow-banner"
   | "shortcuts"
   | "canvas-dropdown"
   | "add-node"
@@ -32,6 +33,7 @@ export type LibTVBlockingForegroundSurface =
   | "primary-panel";
 
 export interface LibTVForegroundSurfaceSnapshot {
+  isFollowingSession: boolean;
   isShortcutsPanelOpen: boolean;
   isCanvasDropdownOpen: boolean;
   isAddNodePanelOpen: boolean;
@@ -106,6 +108,8 @@ export function isLibTVEditableCommandTarget(
 export function resolveLibTVBlockingForegroundSurface(
   snapshot: LibTVForegroundSurfaceSnapshot,
 ): LibTVBlockingForegroundSurface | null {
+  // Batch 105: 跟随横幅 z-[305] 为最高层；跟随中 ESC 单层退出。
+  if (snapshot.isFollowingSession) return "follow-banner";
   if (snapshot.isShortcutsPanelOpen) return "shortcuts";
   if (snapshot.isCanvasDropdownOpen) return "canvas-dropdown";
   if (snapshot.isAddNodePanelOpen) return "add-node";
