@@ -143,9 +143,18 @@ Agent 抽屉(`original-agent-drawer-workflow.png`)为 dialog 形态:
 - 新「脚本」节点与「脚本(旧版)」的能力差异;
 - 导演台在空项目中的入口行为(带 `NEW` 角标);
 - 多画布项目的画布下拉完整结构、重命名/删除入口;
-- 工具箱预设完整集合与点击行为;素材库/角色库本轮未重新打开(clone 已建模,暂按 2026-08-25/08-26 记录);
+- ~~素材库/角色库本轮未重新打开~~ **2026-09-05 补采样已复核**(见 §13);
 - 跟随模式可见态、Agent 对话运行态、生成历史非空态;
 - demo 10 节点项目与 2026-08-25 基线的节点级 diff。
+
+## 13. 补采样（2026-09-05 晚间,只读）
+
+`SOURCE_FACT`(`original-project-menu.png` / `original-material-flyout.png` / `original-character-library-modal.png`):
+
+- **logo 项目菜单**:回到主页 / 全部项目 /(分隔线)创建新项目 / 删除项目;Escape 不关闭(观察)。已由 Batch 106 对齐(clone 各项为本地 status)。
+- **素材库工具条 flyout**:素材库标题 + 风格库(`NEW`)/ 特效库(`NEW`)。clone MaterialLibraryPanel 两行条目与 NEW 角标一致,无漂移。
+- **角色库模态**:详情区(甜妹/清新少女 + 标签 女主/现代/青年/温柔 + 四张预览图 + 说明文案 + `应用至画布`)+ 底部 角色筛选 / 最近使用 / 横向角色条(甜妹、霸总、温柔熟男、清冷千金、古风男主/女主、恶毒女配、正派长辈父/母、反派长辈…)。clone CharacterLibraryPanel 名单与结构一致,无漂移;详情区标签/说明文案的 clone 覆盖度待后续批次核对。
+- **Agent Skill 标题第三变体**:「一个 Skill,慢慢打磨你的故事」再次观察到,已由 Batch 107 建模为轮换。
 
 ## 截图索引
 
@@ -167,3 +176,6 @@ viewport `1440x900`,除注明外为全屏截图:
 | `original-toolbox-presets.png` | 我的工具箱预设 |
 | `original-shortcuts-dialog.png` | 快捷键弹窗 |
 | `original-publish-share.png` | 发布与分享 popover |
+| `original-project-menu.png` | logo 项目菜单(补采样) |
+| `original-material-flyout.png` | 素材库 flyout(补采样) |
+| `original-character-library-modal.png` | 角色库模态(补采样) |
