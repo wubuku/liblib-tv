@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Bot, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
+import { Bot, ChevronDown, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
@@ -77,6 +77,7 @@ export function TopNavBar() {
         >
           <LibTvMark />
         </Link>
+        <ProjectMenu />
         {!isAssetPanelOpen && (
           <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
             <CanvasTabDropdown />
@@ -143,5 +144,63 @@ export function TopNavBar() {
 
       {isSharePanelOpen && <SharePanel />}
     </nav>
+  );
+}
+
+// Batch 106: 2026-09-05 源站 logo 下拉为 回到主页/全部项目/创建新项目/删除项目；
+// 四项在 clone 中均为本地 status（无路由/项目服务）。
+function ProjectMenu() {
+  const [open, setOpen] = useState(false);
+  const [status, setStatus] = useState("");
+  const menuRef = useRef<HTMLDivElement>(null);
+  const items = ["回到主页", "全部项目", "创建新项目", "删除项目"];
+
+  useEffect(() => {
+    if (!open) return;
+    const handleMouseDown = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false);
+        setStatus("");
+      }
+    };
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => document.removeEventListener("mousedown", handleMouseDown);
+  }, [open]);
+
+  return (
+    <div className="relative" ref={menuRef}>
+      <button
+        type="button"
+        data-project-menu-trigger
+        aria-label="项目菜单"
+        aria-expanded={open}
+        title="项目菜单"
+        onClick={() => setOpen((value) => !value)}
+        className="flex h-8 w-5 items-center justify-center rounded-lg text-[#8c8c8c] hover:text-white"
+      >
+        <ChevronDown size={12} />
+      </button>
+      {open && (
+        <div
+          data-project-menu
+          className="absolute left-0 top-9 w-40 rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[0_18px_48px_rgba(0,0,0,0.5)]"
+        >
+          {items.map((item, index) => (
+            <div key={item}>
+              {(index === 2) && <div className="my-1 h-px bg-white/[0.08]" />}
+              <button
+                type="button"
+                data-project-menu-item={item}
+                onClick={() => setStatus(`本地原型：${item}未接入`)}
+                className="flex h-9 w-full items-center rounded-lg px-2.5 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
+              >
+                {item}
+              </button>
+            </div>
+          ))}
+          {status && <p data-project-menu-status className="px-2.5 pb-1 pt-1 text-[10px] leading-4 text-[#75d7e8]">{status}</p>}
+        </div>
+      )}
+    </div>
   );
 }

@@ -338,6 +338,11 @@ Batch 105 又按同日 computed style 复刻协作跟随横幅：顶部居中 z-
 真实协作与触发入口仍是 SOURCE_UNKNOWN。证据见
 [`research/liblib-canvas-batch105-2026-09-05/`](research/liblib-canvas-batch105-2026-09-05/README.md)。
 
+Batch 106 又按补采样复刻 logo 项目菜单（回到主页/全部项目/创建新项目/
+删除项目，2/2 分组），四项均为诚实本地 status；教程 popover 四项命名经
+verifier 锁定。真实项目操作仍是 SOURCE_UNKNOWN。证据见
+[`research/liblib-canvas-batch106-2026-09-05/`](research/liblib-canvas-batch106-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

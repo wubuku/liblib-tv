@@ -152,6 +152,7 @@ BrowserContext，不写截图。
 | Batch 103 | Top-bar mode toggle alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch103.py` 已通过；覆盖 工作流/故事板 aria、pressed 双态、故事板+Agent 联动、工作台往返 graph 保持和 `0/0/0` diagnostics；batch11/13/14/17 aria 断言按 2026-09-05 源站迁移；不证明源站图标形状、几何或内容性「分镜」文案 |
 | Batch 104 | Storyboard three-section alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch104.py` 已通过；覆盖列序 文本/图片/视频、放大按钮、暂空文案、空画布侧栏隐藏、demo 投影不变和工作台往返 `0/0/0` diagnostics；batch13 空态文案断言已按 2026-09-05 源站更新；不证明放大按钮行为或非空画布源站布局 |
 | Batch 105 | Collaborative follow banner | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch105.py` 已通过；覆盖淡出默认、置态可见、文案、取消退出、ESC 单层优先（添加面板保留）与 `0/0/0` diagnostics；不证明真实协作、跟随视口联动或触发入口 |
+| Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |
 
 Batch 51 的专项脚本仍是历史合同：2026-08-27 在当前代码上因旧
 `900.5px` toolbar 断言失败，而当前 Batch 52 合同已是 `1092.5px`。该结果

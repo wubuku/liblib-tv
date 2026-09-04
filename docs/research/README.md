@@ -25,6 +25,7 @@
 - [`liblib-canvas-batch103-2026-09-05/`](liblib-canvas-batch103-2026-09-05/README.md)：顶栏模式切换对齐 2026-09-05 源站：工作流/故事板 aria 命名、断言迁移与行为不变。
 - [`liblib-canvas-batch104-2026-09-05/`](liblib-canvas-batch104-2026-09-05/README.md)：故事板三组对齐 2026-09-05 源站：文本/图片/视频列序、放大按钮、暂空文案与空画布侧栏隐藏。
 - [`liblib-canvas-batch105-2026-09-05/`](liblib-canvas-batch105-2026-09-05/README.md)：协作跟随状态条：顶部 z-305 胶囊、淡出默认、uiStore 会话状态与单层 ESC 退出。
+- [`liblib-canvas-batch106-2026-09-05/`](liblib-canvas-batch106-2026-09-05/README.md)：项目菜单（logo 下拉）对齐：四项源站命名与分组、本地 status 与教程 popover 锁定。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：LibTV 五项主推能力的源站呈现、clone 缺口、价值排序和后续闸门。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本与当前源站合同的覆盖矩阵及历史断言边界。
@@ -190,6 +191,7 @@
 | 103 | Top-bar mode toggle alignment | [`liblib-canvas-batch103-2026-09-05/`](liblib-canvas-batch103-2026-09-05/) `SCRIPT_RECORDED_PASS`，工作流/故事板命名、pressed 双态与断言迁移已通过；不证明源站图标形状或几何 |
 | 104 | Storyboard three-section alignment | [`liblib-canvas-batch104-2026-09-05/`](liblib-canvas-batch104-2026-09-05/) `SCRIPT_RECORDED_PASS`，三列顺序、放大按钮、暂空文案与空画布侧栏隐藏已通过；不证明放大行为或非空画布源站布局 |
 | 105 | Collaborative follow banner | [`liblib-canvas-batch105-2026-09-05/`](liblib-canvas-batch105-2026-09-05/) `SCRIPT_RECORDED_PASS`，横幅结构、淡出默认、取消与单层 ESC 优先已通过；不证明真实协作或跟随触发 |
+| 106 | Project menu alignment | [`liblib-canvas-batch106-2026-09-05/`](liblib-canvas-batch106-2026-09-05/) `SCRIPT_RECORDED_PASS`，四项命名/分组、本地 status 与教程锁定已通过；不证明真实项目操作 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -216,6 +218,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 96 | Director multi-camera and Shot workflow | 已完成；portable Shot、legacy V1 decode、Shot create/switch/update、capture provenance/gallery、camera/Shot delete repair、clipboard/whole-project duplicate remap、reload/import/export 和 desktop/mobile 专项 verifier 已通过，详见 [`liblib-canvas-batch96-2026-08-29/`](liblib-canvas-batch96-2026-08-29/)；本批完成后停止，不启动 Batch 97 |
 | 97 | Agent drawer current-source alignment | 已完成；头部动作集合、源站 Skill 命名、composer 控件、选择模型目录菜单、生成模式菜单与本地反馈已通过，batch14 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch97-2026-09-05/`](liblib-canvas-batch97-2026-09-05/)；后续批次按用户循环迭代指令继续 |
 | 98 | Add-node panel current-source alignment | 已完成；智能剪辑命名、脚本双入口、素材库风格/特效子菜单、搜索过滤与本地资源反馈已通过，batch15 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch98-2026-09-05/`](liblib-canvas-batch98-2026-09-05/)；循环迭代继续 |
+| 106 | Project menu alignment | 已完成；项目菜单对齐已通过，详见 [`liblib-canvas-batch106-2026-09-05/`](liblib-canvas-batch106-2026-09-05/)；循环迭代继续 |
 | 105 | Collaborative follow banner | 已完成；跟随横幅展示与单层 ESC 合同已通过，详见 [`liblib-canvas-batch105-2026-09-05/`](liblib-canvas-batch105-2026-09-05/)；循环迭代继续 |
 | 104 | Storyboard three-section alignment | 已完成；故事板三组对齐与 batch13 断言迁移已通过，详见 [`liblib-canvas-batch104-2026-09-05/`](liblib-canvas-batch104-2026-09-05/)；循环迭代继续 |
 | 103 | Top-bar mode toggle alignment | 已完成；顶栏模式命名对齐与断言迁移已通过，详见 [`liblib-canvas-batch103-2026-09-05/`](liblib-canvas-batch103-2026-09-05/)；循环迭代继续 |

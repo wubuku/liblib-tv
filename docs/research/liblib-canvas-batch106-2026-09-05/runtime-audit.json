@@ -1,0 +1,30 @@
+{
+  "batch": 106,
+  "title": "Project menu alignment with 2026-09-05 source sampling",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "trigger",
+        "menu:open",
+        "menu:item:回到主页",
+        "menu:item:全部项目",
+        "menu:item:创建新项目",
+        "menu:item:删除项目",
+        "menu:status",
+        "menu:still-open",
+        "outside:closes",
+        "tutorial:使用教程",
+        "tutorial:联系客服",
+        "tutorial:联系销售",
+        "tutorial:关注公众号",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
