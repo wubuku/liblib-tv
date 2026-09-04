@@ -20,6 +20,7 @@
 - [`liblib-canvas-batch98-2026-09-05/`](liblib-canvas-batch98-2026-09-05/README.md)：添加节点面板对齐 2026-09-05 源站：智能剪辑命名、脚本 NEW/旧版双入口、素材库风格/特效子菜单与搜索画布节点。
 - [`liblib-canvas-batch99-2026-09-05/`](liblib-canvas-batch99-2026-09-05/README.md)：快捷键帮助面板对齐 2026-09-05 源站：四栏文案/键帽/suffix 全量对齐与 crosswalk 快照刷新，不改运行时 handler。
 - [`liblib-canvas-batch100-2026-09-05/`](liblib-canvas-batch100-2026-09-05/README.md)：空画布状态与 4 个快捷生成芯片：源站命名/角标、诚实本地反馈与画布切换可达性。
+- [`liblib-canvas-batch101-2026-09-05/`](liblib-canvas-batch101-2026-09-05/README.md)：生成历史模态对齐 2026-09-05 源站：标题、尺寸 slider、本画布 chip、计数 tab、评级本地菜单与空态文案。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：LibTV 五项主推能力的源站呈现、clone 缺口、价值排序和后续闸门。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本与当前源站合同的覆盖矩阵及历史断言边界。
@@ -180,6 +181,7 @@
 | 98 | Add-node panel current-source alignment | [`liblib-canvas-batch98-2026-09-05/`](liblib-canvas-batch98-2026-09-05/) `SCRIPT_RECORDED_PASS`，智能剪辑命名、脚本 NEW/（旧版）Beta flyout、素材库风格库/特效库、搜索画布节点过滤、上传/生成历史本地 status 与 `0/0/0` diagnostics 已通过；不证明新脚本节点能力或真实 media ingress |
 | 99 | Shortcuts help panel copy alignment | [`liblib-canvas-batch99-2026-09-05/`](liblib-canvas-batch99-2026-09-05/) `SCRIPT_RECORDED_PASS`，四栏条目/键帽/suffix、删除行位置、画布节点搜索行与 Windows 重做移除已通过，crosswalk 快照列已刷新；不证明新快捷键运行时 handler |
 | 100 | Empty-canvas state and quick-create chips | [`liblib-canvas-batch100-2026-09-05/`](liblib-canvas-batch100-2026-09-05/) `SCRIPT_RECORDED_PASS`，空态提示、4 芯片与角标、本地 status、画布切换隔离与 mobile 溢出已通过；不证明芯片真实生成流或双击生成 UI |
+| 101 | Generation-history panel alignment | [`liblib-canvas-batch101-2026-09-05/`](liblib-canvas-batch101-2026-09-05/) `SCRIPT_RECORDED_PASS`，标题/滑杆/本画布 chip/计数 tab/评级本地菜单/空态文案与入口更名已通过；不证明真实历史数据或评级后端 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -206,6 +208,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 96 | Director multi-camera and Shot workflow | 已完成；portable Shot、legacy V1 decode、Shot create/switch/update、capture provenance/gallery、camera/Shot delete repair、clipboard/whole-project duplicate remap、reload/import/export 和 desktop/mobile 专项 verifier 已通过，详见 [`liblib-canvas-batch96-2026-08-29/`](liblib-canvas-batch96-2026-08-29/)；本批完成后停止，不启动 Batch 97 |
 | 97 | Agent drawer current-source alignment | 已完成；头部动作集合、源站 Skill 命名、composer 控件、选择模型目录菜单、生成模式菜单与本地反馈已通过，batch14 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch97-2026-09-05/`](liblib-canvas-batch97-2026-09-05/)；后续批次按用户循环迭代指令继续 |
 | 98 | Add-node panel current-source alignment | 已完成；智能剪辑命名、脚本双入口、素材库风格/特效子菜单、搜索过滤与本地资源反馈已通过，batch15 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch98-2026-09-05/`](liblib-canvas-batch98-2026-09-05/)；循环迭代继续 |
+| 101 | Generation-history panel alignment | 已完成；生成历史模态对齐与入口更名已通过，详见 [`liblib-canvas-batch101-2026-09-05/`](liblib-canvas-batch101-2026-09-05/)；循环迭代继续 |
 | 100 | Empty-canvas state and quick-create chips | 已完成；空画布空态与快捷芯片展示、本地反馈与切换隔离已通过，详见 [`liblib-canvas-batch100-2026-09-05/`](liblib-canvas-batch100-2026-09-05/)；循环迭代继续 |
 | 99 | Shortcuts help panel copy alignment | 已完成；帮助面板四栏对齐 2026-09-05 快照、crosswalk 源站列刷新、运行时 handler 未改，详见 [`liblib-canvas-batch99-2026-09-05/`](liblib-canvas-batch99-2026-09-05/)；循环迭代继续 |
 

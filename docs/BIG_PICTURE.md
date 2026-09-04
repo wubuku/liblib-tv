@@ -310,6 +310,13 @@ Batch 100 又为空画布补上同日源站空态：「双击画布 / 自由生�
 status，不接生成服务。证据见
 [`research/liblib-canvas-batch100-2026-09-05/`](research/liblib-canvas-batch100-2026-09-05/README.md)。
 
+Batch 101 又把生成历史模态对齐同日源站：标题从 历史资产 更名 生成历史，
+缩略图 +/− 步进改为 slider，筛选行补 本画布 chip 与 图片/视频/音频 计数
+tab，右控件补 所有评级 本地下拉（含已收藏本地过滤），空态统一
+`暂无历史记录`，底部工具条入口同步更名；仍是本地 mock 数据，不接历史
+服务。证据见
+[`research/liblib-canvas-batch101-2026-09-05/`](research/liblib-canvas-batch101-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

@@ -1,0 +1,36 @@
+{
+  "batch": 101,
+  "title": "Generation-history panel alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "title",
+        "size-control",
+        "slider:resizes-thumbs",
+        "scope-chip",
+        "scope-chip:pressed",
+        "tab:image",
+        "tab:video",
+        "tab:audio",
+        "rating-button",
+        "rating-menu:open",
+        "rating-menu:options",
+        "rating:filter-empty",
+        "rating:button-label",
+        "rating:menu-closed",
+        "rating:all-restores",
+        "sort-button",
+        "batch-button",
+        "empty-tab:text",
+        "escape:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

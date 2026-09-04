@@ -136,7 +136,8 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
         <ToolButton label="角色库" active={activePrimaryPanel === "character"} onClick={() => togglePanel("character")}>
           <UserRound size={17} />
         </ToolButton>
-        <ToolButton label="历史记录" active={activePrimaryPanel === "history"} onClick={() => togglePanel("history")}>
+        {/* Batch 101: 2026-09-05 源站底部工具条该入口名为「生成历史」。 */}
+        <ToolButton label="生成历史" active={activePrimaryPanel === "history"} onClick={() => togglePanel("history")}>
           <History size={17} />
         </ToolButton>
         <ToolButton label="快捷键" active={isShortcutsPanelOpen} onClick={toggleShortcuts}>
