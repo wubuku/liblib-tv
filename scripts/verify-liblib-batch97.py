@@ -137,11 +137,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("model-menu:title", menu.get_by_text("选择模型", exact=True).is_visible())
     check(
         "model-menu:tab-image",
-        menu.locator('[data-agent-model-tab="image"]').get_attribute("aria-pressed") == "true",
+        menu.locator('[data-agent-model-tab="image"]').get_attribute("aria-selected") == "true",
     )
     check(
         "model-menu:tab-video",
-        menu.locator('[data-agent-model-tab="video"]').get_attribute("aria-pressed") == "false",
+        menu.locator('[data-agent-model-tab="video"]').get_attribute("aria-selected") == "false",
     )
     check("model-menu:section-image", menu.get_by_text("图片", exact=True).count() >= 1)
     check("model-menu:section-video", menu.get_by_text("视频", exact=True).count() >= 1)
@@ -171,7 +171,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(200)
     check(
         "model-menu:tab-switch",
-        menu.locator('[data-agent-model-tab="video"]').get_attribute("aria-pressed") == "true",
+        menu.locator('[data-agent-model-tab="video"]').get_attribute("aria-selected") == "true",
     )
 
     page.keyboard.press("Escape")

@@ -289,6 +289,13 @@ disabled 态）、源站命名 Skill 卡与换一批、composer
 [`research/liblib-live-2026-09-05/`](research/liblib-live-2026-09-05/README.md)
 与 [`research/liblib-canvas-batch97-2026-09-05/`](research/liblib-canvas-batch97-2026-09-05/README.md)。
 
+Batch 98 又把添加节点面板对齐同日源站：`视频编辑` 更名 `智能剪辑`，脚本入口
+拆成 `脚本 NEW`（本地 status 占位）与 `脚本（旧版） Beta`（既有创建路径）双
+flyout，素材库子菜单按早已登记的缺口改为 `风格库/特效库`，并新增
+`搜索画布节点` 本地过滤；上传/从生成历史选择仍是本地 status，不构成 media
+ingress 运行时授权。证据与合同见
+[`research/liblib-canvas-batch98-2026-09-05/`](research/liblib-canvas-batch98-2026-09-05/README.md)。
+
 ### 5.2 状态边界
 
 `canvasStore` 管：

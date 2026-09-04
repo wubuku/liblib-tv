@@ -1,0 +1,49 @@
+{
+  "batch": 98,
+  "title": "Add-node panel alignment with 2026-09-05 source audit",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "entries:count",
+        "entries:label:文本",
+        "entries:label:图片",
+        "entries:label:视频",
+        "entries:label:智能剪辑",
+        "entries:label:导演台",
+        "entries:label:逐帧拉片",
+        "entries:label:音频",
+        "entries:label:脚本",
+        "entries:label:素材库",
+        "entries:badge:video-clip",
+        "entries:badge:director",
+        "entries:badge:shot-breakdown",
+        "search:open",
+        "search:filter",
+        "search:empty-hint",
+        "search:clear-restores",
+        "search:toggle-closes",
+        "script-menu:open",
+        "script-menu:new-entry",
+        "script-menu:legacy-entry",
+        "script-menu:new-status",
+        "panel:still-open",
+        "script-menu:legacy-creates",
+        "script-menu:legacy-closes-panel",
+        "script-menu:node-count",
+        "material-menu:open",
+        "material-menu:style",
+        "material-menu:effect",
+        "material-menu:opens-panel",
+        "resource:upload-status",
+        "resource:history-status",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

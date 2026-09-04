@@ -49,7 +49,8 @@ def run_desktop(page: Page):
     panel.locator('[data-add-node-entry="material"]').click()
     submenu = page.locator('[data-add-node-submenu="material"]')
     assert submenu.is_visible()
-    submenu.get_by_role("button", name="预设素材库").click()
+    # Batch 98: 2026-09-05 源站复核将素材库子菜单更名为 风格库/特效库。
+    submenu.get_by_role("button", name="特效库").click()
     assert not page.locator('[data-liblib-overlay="add-node"]').is_visible()
     assert page.locator('[data-liblib-overlay="primary:material"]').is_visible()
 

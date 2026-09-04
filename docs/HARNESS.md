@@ -113,6 +113,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 95 | Director direct canvas-image ingress, session-only environment preview, source switching/clearing/stale cleanup, malformed data URL preflight, desktop/mobile and failure-isolation diagnostics |
 | Batch 96 | Director portable multi-camera Shot records, legacy V1 decode, Shot create/switch/update, history undo/redo, capture provenance/gallery, camera delete repair, clipboard/whole-project duplicate remap, reload/import/export and desktop/mobile diagnostics |
 | Batch 97 | Agent drawer alignment with the 2026-09-05 source audit: header action set with disabled states, source-named Skill cards, composer attachment/model/skill/mode controls, selection-model catalog menu (7 image + 8 video with premium badges), generation mode menu and local status feedback |
+| Batch 98 | Add-node panel alignment with the 2026-09-05 source audit: smart-clip label, script NEW/legacy flyout, material style/effect flyout, canvas-node search filter and local resource statuses |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

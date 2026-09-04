@@ -348,9 +348,9 @@ export function AgentDrawer() {
                   type="button"
                   role="tab"
                   data-agent-model-tab="image"
-                  aria-pressed={activeModelTab === "image"}
+                  aria-selected={activeModelTab === "image"}
                   onClick={() => switchModelTab("image")}
-                  className="flex-1 rounded-md px-2 py-1 text-[11px] text-[#d6d6d6] hover:bg-white/[0.07] aria-pressed:bg-white/[0.12] aria-pressed:text-white"
+                  className="flex-1 rounded-md px-2 py-1 text-[11px] text-[#d6d6d6] hover:bg-white/[0.07] aria-selected:bg-white/[0.12] aria-selected:text-white"
                 >
                   图片
                 </button>
@@ -358,9 +358,9 @@ export function AgentDrawer() {
                   type="button"
                   role="tab"
                   data-agent-model-tab="video"
-                  aria-pressed={activeModelTab === "video"}
+                  aria-selected={activeModelTab === "video"}
                   onClick={() => switchModelTab("video")}
-                  className="flex-1 rounded-md px-2 py-1 text-[11px] text-[#d6d6d6] hover:bg-white/[0.07] aria-pressed:bg-white/[0.12] aria-pressed:text-white"
+                  className="flex-1 rounded-md px-2 py-1 text-[11px] text-[#d6d6d6] hover:bg-white/[0.07] aria-selected:bg-white/[0.12] aria-selected:text-white"
                 >
                   视频
                 </button>

@@ -141,6 +141,21 @@ skill pixar 选中后 textarea 值 = "皮克斯动画风格"
 | 关闭按钮 `关闭 Agent` | 更新为 `关闭`(exact)；版本注释内联 | 源站抽屉头部关闭按钮 aria 为 `关闭` |
 
 未动的 batch14 断言（4 卡、通知横幅、composer/status 本地预览、分享面板、移动端溢出）继续以历史合同兼容运行并在 Batch 97 复跑通过。Skill 第一批命名按当前源站处理；第二批仍为 clone-shaped 填充，不声称源站目录。
+### 4.y `verify-liblib-batch15.py`（Batch 98 更新，2026-09-05）
+
+当前旧断言：
+
+```text
+素材库子菜单点击 "预设素材库" 打开 material 面板
+```
+
+2026-09-05 登录态源站复核（[`liblib-live-2026-09-05/README.md`](liblib-live-2026-09-05/README.md) §3）：
+
+| 断言 | 处理 | 依据 |
+|---|---|---|
+| 子菜单 `预设素材库` | 更新为 `特效库`；版本注释内联 | 源站素材库 flyout 为 风格库/特效库；`我的素材库/预设素材库` 早已被 BIG_PICTURE 标记为非 current source fact |
+
+其余 batch15 断言（9 入口、脚本/素材库箭头、资源 status 子串、audio 创建、移动端溢出）未动并复跑通过。
 
 ## 5. Replacement Queue
 
