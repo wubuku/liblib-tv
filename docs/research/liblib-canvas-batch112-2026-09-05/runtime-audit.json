@@ -1,0 +1,48 @@
+{
+  "batch": 112,
+  "title": "Character filter panel alignment with 2026-09-05 sampling",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "panel:clear",
+        "group:性别",
+        "chip:性别:男",
+        "chip:性别:女",
+        "chip:性别:中性",
+        "group:年龄段",
+        "chip:年龄段:儿童",
+        "chip:年龄段:少年",
+        "chip:年龄段:青年",
+        "chip:年龄段:中年",
+        "chip:年龄段:老年",
+        "group:种族",
+        "chip:种族:人类",
+        "chip:种族:精灵",
+        "chip:种族:兽人",
+        "chip:种族:机械",
+        "chip:种族:其他",
+        "group:时代",
+        "chip:时代:先秦",
+        "chip:时代:古代",
+        "chip:时代:近代",
+        "chip:时代:现代",
+        "chip:时代:未来",
+        "group:culture-unknown",
+        "filter:male-hides-sweet",
+        "filter:male-keeps-bazong",
+        "filter:chip-pressed",
+        "clear:restores-strip",
+        "toggle:closes-panel",
+        "close:modal",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

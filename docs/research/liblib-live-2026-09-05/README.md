@@ -154,6 +154,7 @@ Agent 抽屉(`original-agent-drawer-workflow.png`)为 dialog 形态:
 - **logo 项目菜单**:回到主页 / 全部项目 /(分隔线)创建新项目 / 删除项目;Escape 不关闭(观察)。已由 Batch 106 对齐(clone 各项为本地 status)。
 - **素材库工具条 flyout**:素材库标题 + 风格库(`NEW`)/ 特效库(`NEW`)。clone MaterialLibraryPanel 两行条目与 NEW 角标一致,无漂移。
 - **角色库模态**:详情区(甜妹/清新少女 + 标签 女主/现代/青年/温柔 + 四张预览图 + 说明文案 + `应用至画布`)+ 底部 角色筛选 / 最近使用 / 横向角色条(甜妹、霸总、温柔熟男、清冷千金、古风男主/女主、恶毒女配、正派长辈父/母、反派长辈…)。clone CharacterLibraryPanel 名单与结构一致,无漂移;详情区标签/说明文案的 clone 覆盖度待后续批次核对。
+- **角色筛选面板**（补采样）：`清空筛选` + 分组芯片 `性别（男/女/中性）、年龄段（儿童/少年/青年/中年/老年）、种族（人类/精灵/兽人/机械/其他）、时代（先秦/古代/近代/现代/未来）、文化区域（选项被卡片条遮挡,选项 SOURCE_UNKNOWN）`;面板向上展开。已由 Batch 112 对齐(clone 过滤语义为 CLONE_DECISION)。
 - **Agent Skill 标题第三变体**:「一个 Skill,慢慢打磨你的故事」再次观察到,已由 Batch 107 建模为轮换。
 
 ## 截图索引
@@ -179,3 +180,4 @@ viewport `1440x900`,除注明外为全屏截图:
 | `original-project-menu.png` | logo 项目菜单(补采样) |
 | `original-material-flyout.png` | 素材库 flyout(补采样) |
 | `original-character-library-modal.png` | 角色库模态(补采样) |
+| `original-character-filter-panel.png` | 角色筛选面板(补采样) |
