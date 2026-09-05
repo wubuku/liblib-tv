@@ -1,0 +1,27 @@
+{
+  "batch": 117,
+  "title": "Director node card alignment with 2026-09-06 sampling",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "node:created",
+        "card:title",
+        "card:description",
+        "card:cta",
+        "card:counts",
+        "workspace:opens",
+        "workspace:r3f-canvas",
+        "workspace:closes",
+        "nodes:preserved",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

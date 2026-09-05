@@ -49,7 +49,7 @@ const sourceNodeOrder = [
 
 function nodeLabel(node: Node) {
   const data = node.data as Record<string, unknown>;
-  if (node.type === "script-execution") return "3D导演台";
+  if (node.type === "script-execution") return "导演台";
   if (typeof data.filename === "string") return data.filename;
   if (typeof data.title === "string") return data.title;
   return "未命名节点";

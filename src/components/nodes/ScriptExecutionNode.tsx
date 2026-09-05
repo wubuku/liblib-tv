@@ -39,8 +39,8 @@ function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptEx
           <Clapperboard size={30} strokeWidth={1.2} className="text-[#b6b6b6]" />
         </span>
         <div className="text-center">
-          <p className="text-sm text-[#ededed]">3D导演台</p>
-          <p className="mt-1 text-[11px] text-[#8e8e8e]">搭建3D场景，截图作为构图参考</p>
+          <p className="text-sm text-[#ededed]">导演台</p>
+          <p className="mt-1 text-[11px] text-[#8e8e8e]">在3D空间中搭建场景并进行多视角截图</p>
         </div>
       </div>
       <div className="flex h-[64px] items-center justify-center gap-4 text-[11px] text-[#a9a9a9]">
@@ -59,7 +59,7 @@ function ScriptExecutionNodeComponent({ id, data, selected }: NodeProps<ScriptEx
           }}
           className="nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1 rounded bg-white/[0.08] text-xs text-[#f1f1f1] hover:bg-white/[0.12]"
         >
-          进入导演台 <span>→</span>
+          打开导演台 <span>→</span>
         </button>
       </div>
     </div>
