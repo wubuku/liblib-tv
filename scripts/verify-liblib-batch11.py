@@ -78,7 +78,8 @@ def run_desktop(page: Page):
 
     page.get_by_role("button", name="角色库").click()
     assert_only_overlay(page, "primary:character")
-    page.get_by_role("button", name="关闭角色库").click()
+    # Batch 111: 源站 2026-09-05 复核角色库关闭按钮 aria 为 "close"。
+    page.get_by_role("button", name="close", exact=True).click()
     assert not overlay(page, "primary:character").is_visible()
 
     page.get_by_role("button", name="教程与帮助").click()

@@ -1,0 +1,35 @@
+{
+  "batch": 111,
+  "title": "Character library modal geometry and detail tags alignment",
+  "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "shell:width",
+        "shell:height",
+        "shell:x",
+        "detail:title",
+        "tags:sweet:女主",
+        "tags:sweet:女",
+        "tags:sweet:现代",
+        "tags:sweet:青年",
+        "tags:sweet:温柔",
+        "detail:label:角色立绘",
+        "detail:label:脸部近景",
+        "detail:label:表情参考",
+        "detail:label:三视图",
+        "detail:description",
+        "apply:visible",
+        "strip:filter",
+        "strip:recent",
+        "close:works",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

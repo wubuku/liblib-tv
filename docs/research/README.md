@@ -29,6 +29,7 @@
 - [`liblib-canvas-batch107-2026-09-05/`](liblib-canvas-batch107-2026-09-05/README.md)：Skill 标题三文案轮换（换一批 驱动、与 editorMode 解耦）。
 - [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/README.md)：Batch 97-107 对齐系列跨批串行回归：81 项通过、12 项既有漂移经基线归因。
 - [`liblib-canvas-batch110-2026-09-05/`](liblib-canvas-batch110-2026-09-05/README.md)：12 个既有漂移 verifier 的 AGED_GATE/HISTORICAL_CONTRACT 标注与 replacement map §4.z。
+- [`liblib-canvas-batch111-2026-09-05/`](liblib-canvas-batch111-2026-09-05/README.md)：角色库模态几何与详情标签对齐 2026-09-05 补采样（1304x731、双角色标签、close aria）。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：LibTV 五项主推能力的源站呈现、clone 缺口、价值排序和后续闸门。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本与当前源站合同的覆盖矩阵及历史断言边界。
@@ -198,6 +199,7 @@
 | 107 | Skill headline rotation | [`liblib-canvas-batch107-2026-09-05/`](liblib-canvas-batch107-2026-09-05/) `SCRIPT_RECORDED_PASS`，三条源站标题轮换与回绕已通过；不证明源站轮换驱动 |
 | 108 | 97-107 series cross-batch regression | [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/) `REGRESSION_RECORDED_PASS`，81 项通过、12 项既有漂移经基线 86673b6 归因；无本系列回归 |
 | 110 | Aged-gate deprecation | [`liblib-canvas-batch110-2026-09-05/`](liblib-canvas-batch110-2026-09-05/) `DOCS_RECORDED`，12 个既有漂移 verifier 标注 HISTORICAL_CONTRACT 并登记 replacement map §4.z；无运行时变更 |
+| 111 | Character library modal alignment | [`liblib-canvas-batch111-2026-09-05/`](liblib-canvas-batch111-2026-09-05/) `SCRIPT_RECORDED_PASS`，模态几何、四图列比、双角色标签与 close aria 已通过；不证明其余角色标签或多视口几何 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -225,6 +227,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 97 | Agent drawer current-source alignment | 已完成；头部动作集合、源站 Skill 命名、composer 控件、选择模型目录菜单、生成模式菜单与本地反馈已通过，batch14 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch97-2026-09-05/`](liblib-canvas-batch97-2026-09-05/)；后续批次按用户循环迭代指令继续 |
 | 98 | Add-node panel current-source alignment | 已完成；智能剪辑命名、脚本双入口、素材库风格/特效子菜单、搜索过滤与本地资源反馈已通过，batch15 断言按 2026-09-05 源站更新，详见 [`liblib-canvas-batch98-2026-09-05/`](liblib-canvas-batch98-2026-09-05/)；循环迭代继续 |
 | 110 | Aged-gate deprecation | 已完成；漂移 verifier 标注与登记已通过，详见 [`liblib-canvas-batch110-2026-09-05/`](liblib-canvas-batch110-2026-09-05/)；剩余候选均需 fixture 授权 |
+| 111 | Character library modal alignment | 已完成；角色库模态对齐已通过，详见 [`liblib-canvas-batch111-2026-09-05/`](liblib-canvas-batch111-2026-09-05/)；其余候选需 fixture 授权 |
 | 108 | 97-107 series cross-batch regression | 已完成；跨批回归与漂移归因已记录，详见 [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/)；循环迭代继续 |
 | 107 | Skill headline rotation | 已完成；标题轮换对齐已通过，详见 [`liblib-canvas-batch107-2026-09-05/`](liblib-canvas-batch107-2026-09-05/)；循环迭代继续 |
 | 106 | Project menu alignment | 已完成；项目菜单对齐已通过，详见 [`liblib-canvas-batch106-2026-09-05/`](liblib-canvas-batch106-2026-09-05/)；循环迭代继续 |

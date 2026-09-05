@@ -154,6 +154,7 @@ BrowserContext，不写截图。
 | Batch 105 | Collaborative follow banner | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch105.py` 已通过；覆盖淡出默认、置态可见、文案、取消退出、ESC 单层优先（添加面板保留）与 `0/0/0` diagnostics；不证明真实协作、跟随视口联动或触发入口 |
 | Batch 108 | 97-107 series cross-batch regression | `REGRESSION_RECORDED_PASS` | 串行 101 项 verifier：81 项通过；batch65/67-73/76 为 node PATH 环境修复后通过；batch6/9/40/41/44/46/48/49/51/72/74/75 经基线 `86673b6` 复跑归因为既有漂移（非 97-107 引入）；无本系列回归；旧漂移项待 replacement 协议处置 |
 | Batch 110 | Aged-gate deprecation | `DOCS_RECORDED` | batch6/9/40/41/44/46/48/49/51/72/74/75 脚本头已标 `AGED_GATE / HISTORICAL_CONTRACT`（Batch 108 基线归因为证），replacement map 新增 §4.z；当前通过口径以 current manifest 为准；不改变任何运行时行为 |
+| Batch 111 | Character library modal alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch111.py` 已通过；覆盖模态壳 1304x731@68、四图标签与列比、甜妹标签集、说明模板、应用至画布、close 关闭和 `0/0/0` diagnostics；batch11 关闭按钮断言已按 2026-09-05 源站迁移；不证明其余角色标签、多视口几何或卡片条精确几何 |
 | Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |
 | Batch 107 | Skill headline rotation | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch107.py` 已通过；覆盖三条源站观察标题随 换一批 轮换与回绕、卡片集合不变和 `0/0/0` diagnostics；不证明源站轮换真实驱动 |
 

@@ -43,13 +43,19 @@ const characters = characterNames.map((name, index) => ({
 }));
 
 const detailLabels = ["角色立绘", "脸部近景", "表情参考", "三视图"] as const;
-const defaultTags = ["女主", "女", "现代", "青年", "温柔"];
+
+// Batch 111: 2026-09-05 补采样确认的两个角色标签；其余角色为启发式近似（SOURCE_UNKNOWN）。
+const sampledTags: Record<string, string[]> = {
+  "甜妹/清新少女": ["女主", "女", "现代", "青年", "温柔"],
+  "温柔熟男/理想男友": ["男主", "男", "现代", "青年", "温柔"],
+};
 
 function tagsFor(name: string) {
-  if (name === "甜妹/清新少女") return defaultTags;
+  if (sampledTags[name]) return sampledTags[name];
+  const lead = name.includes("女主") ? "女主" : name.includes("男主") ? "男主" : "角色";
   const gender = name.includes("女") || name.includes("母") || name.includes("千金") ? "女" : name.includes("男") || name.includes("父") ? "男" : "不限";
   const era = name.includes("古风") ? "古风" : "现代";
-  return [name.includes("主") ? "主角" : "角色", gender, era, name.includes("男孩") || name.includes("女孩") ? "儿童" : "青年"];
+  return [lead, gender, era, name.includes("男孩") || name.includes("女孩") ? "儿童" : "青年"];
 }
 
 export function CharacterLibraryPanel({
@@ -82,26 +88,26 @@ export function CharacterLibraryPanel({
       <section
         aria-label="角色库"
         data-liblib-overlay="primary:character"
-        className="flex h-[710px] max-h-[calc(100vh-24px)] w-[793px] max-w-[calc(100vw-24px)] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
+        className="flex h-[min(731px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1304px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
         onMouseDown={(event) => event.stopPropagation()}
       >
         <header className="flex h-14 shrink-0 items-center justify-between px-4">
           <h2 className="text-base font-semibold">角色库</h2>
-          <button type="button" onClick={onClose} aria-label="关闭角色库" className="flex size-8 items-center justify-center rounded-lg text-[#a4a4a4] hover:bg-white/[0.07] hover:text-white">
+          <button type="button" onClick={onClose} aria-label="close" className="flex size-8 items-center justify-center rounded-lg text-[#a4a4a4] hover:bg-white/[0.07] hover:text-white">
             <X size={20} />
           </button>
         </header>
 
         <div className="min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <section className="relative mx-4 h-[400px] min-h-[400px] rounded-xl bg-[#2a2a2a]">
-            <div className="absolute left-4 top-4 flex items-center gap-2">
+          <section className="relative mx-[33px] h-[462px] min-h-[462px] rounded-xl bg-[#2a2a2a]">
+            <div className="absolute left-4 top-[18px] flex items-center gap-2">
               <h3 className="text-sm font-medium">{selected.name}</h3>
               <div className="flex items-center rounded-lg bg-white/[0.06] px-2 py-1 text-[11px] text-[#b5b5b5]">
                 {tags.map((tag) => <span key={tag} className="mr-1 last:mr-0">{tag}</span>)}
               </div>
             </div>
 
-            <div className="absolute left-4 right-4 top-[108px] grid h-[175px] grid-cols-[131px_131px_131px_minmax(0,1fr)] gap-2 max-md:grid-cols-2 max-md:overflow-y-auto">
+            <div className="absolute left-4 right-4 top-[57px] grid h-[301px] grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,2.37fr)] gap-2 max-md:grid-cols-2 max-md:overflow-y-auto">
               {detailLabels.map((label, index) => (
                 <div key={label} className="relative min-w-0 overflow-hidden rounded-lg bg-white">
                   <Image
@@ -116,10 +122,10 @@ export function CharacterLibraryPanel({
               ))}
             </div>
 
-            <p className="absolute bottom-5 left-4 right-[140px] truncate text-xs text-[#858585]">
+            <p className="absolute bottom-[19px] left-4 right-[140px] truncate text-xs text-[#858585]">
               {selected.name}，详见角色全身图、面部特写、表情九宫格与人物呈现板。
             </p>
-            <button type="button" onClick={applyCharacter} className="absolute bottom-4 right-4 flex h-8 w-[109px] items-center justify-center gap-1 rounded-lg bg-white text-sm text-[#242424] hover:bg-[#ededed]">
+            <button type="button" onClick={applyCharacter} className="absolute bottom-[20px] right-4 flex h-8 w-[109px] items-center justify-center gap-1 rounded-lg bg-white text-sm text-[#242424] hover:bg-[#ededed]">
               <Plus size={16} />
               应用至画布
             </button>

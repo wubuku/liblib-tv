@@ -125,6 +125,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 107 | Skill headline rotation per the three 2026-09-05 source-observed copies, driven by 换一批 with wrap and decoupled from editorMode |
 | Batch 108 | Cross-batch serial regression over the full verifier queue for the 97-107 alignment series: 81 pass, node-PATH environment fixes, 12 failures attributed pre-existing at baseline 86673b6 |
 | Batch 110 | Aged-gate deprecation: 12 pre-existing-drift verifiers marked AGED_GATE/HISTORICAL_CONTRACT with replacement-map §4.z (no runtime changes) |
+| Batch 111 | Character library modal alignment with the 2026-09-05 sampled geometry (1304x731@68) and detail tags: fluid shell, 1:1:1:2.37 image columns, sampled tag map, close aria (batch11 assertion migrated) |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 
