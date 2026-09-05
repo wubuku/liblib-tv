@@ -134,6 +134,8 @@ export function VideoGenerationPanel({
   const [audio, setAudio] = useState(true);
   const [count, setCount] = useState(1);
   const [autoLink, setAutoLink] = useState(true);
+  // Batch 125: 源站尝试行选择（本地草稿）。
+  const [attempt, setAttempt] = useState<string | null>(null);
   const [networkSearch, setNetworkSearch] = useState(true);
   const [materialCheck, setMaterialCheck] = useState(true);
   const [prompt, setPrompt] = useState(
@@ -227,6 +229,34 @@ export function VideoGenerationPanel({
           {!isContinuation && autoLink && <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]"><Link2 size={12} />3 个匹配</button>}
         </div>
 
+        {!isContinuation && (
+          <>
+            {/* Batch 125: 源站 2026-09-06 尝试行（5分钟超长视频/首尾帧/首帧）。 */}
+            <div data-video-attempts className="flex h-8 shrink-0 items-center gap-1.5">
+              <span className="text-xs text-[#8a8a8a]">尝试：</span>
+              {["5分钟超长视频", "首尾帧生成视频", "首帧生成视频"].map((label) => (
+                <button
+                  key={label}
+                  type="button"
+                  data-video-attempt={label}
+                  aria-pressed={attempt === label}
+                  onClick={() => setAttempt(attempt === label ? null : label)}
+                  className={cn(
+                    "flex h-7 items-center rounded-full px-2.5 text-xs transition-colors",
+                    attempt === label ? "bg-[#09caf5]/15 text-[#09caf5]" : "text-[#aaa] hover:bg-white/[0.06] hover:text-white",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div data-video-new-feature className="flex h-6 shrink-0 items-center gap-1 text-[11px] text-[#9a9a9a]">
+              <Sparkles size={11} className="text-[#f3b74c]" />
+              新功能：支持真人
+            </div>
+          </>
+        )}
+
         {showProcess ? (
           <LongVideoProcessInfo
             created={submitted}
@@ -291,6 +321,7 @@ export function VideoGenerationPanel({
                   value={prompt}
                   onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
                   aria-label="视频生成提示词"
+                  placeholder="描述你想要生成的画面内容，@引用素材"
                   className="mt-1 min-h-0 flex-1 resize-none rounded-xl bg-black/10 p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
                 />
               </>

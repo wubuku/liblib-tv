@@ -1,0 +1,33 @@
+{
+  "batch": 125,
+  "title": "Video panel attempts row / new-feature bar / placeholder",
+  "evidence": "docs/research/liblib-video-panel-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:visible",
+        "attempts:row",
+        "attempts:label",
+        "attempts:chip:5分钟超长视频",
+        "attempts:chip:首尾帧生成视频",
+        "attempts:chip:首帧生成视频",
+        "attempts:select",
+        "attempts:deselect",
+        "feature:visible",
+        "feature:copy",
+        "prompt:placeholder",
+        "toolbar:参考",
+        "toolbar:标记",
+        "toolbar:特效",
+        "toolbar:角色库",
+        "toolbar:运镜",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
