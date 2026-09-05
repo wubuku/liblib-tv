@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 106 project menu alignment with the 2026-09-05 source audit."""
+"""Verify Batch 121 topbar freshness alignment with the 2026-09-06 source."""
 
 from __future__ import annotations
 
@@ -18,11 +18,9 @@ AUDIT_PATH = (
     ROOT
     / "docs"
     / "research"
-    / "liblib-canvas-batch106-2026-09-05"
+    / "liblib-canvas-batch121-2026-09-06"
     / "runtime-audit.json"
 )
-
-ITEMS = ["回到主页", "全部项目", "创建新项目", "删除项目"]
 
 
 def attach_errors(page: Page) -> list[str]:
@@ -47,51 +45,47 @@ def run_desktop(page: Page) -> dict[str, Any]:
     result: dict[str, Any] = {"viewport": "1440x900", "checks": []}
 
     def check(name: str, ok: bool) -> None:
-        assert ok, f"batch106 check failed: {name}"
+        assert ok, f"batch121 check failed: {name}"
         result["checks"].append(name)
 
     errors = attach_errors(page)
     page.goto(BASE_URL, wait_until="networkidle")
     page.wait_for_timeout(400)
 
-    trigger = page.locator("[data-project-menu-trigger]")
-    check("trigger", trigger.count() == 1)
-    trigger.click()
-    page.wait_for_timeout(200)
-    menu = page.locator("[data-project-menu]")
-    check("menu:open", menu.is_visible())
-    for item in ITEMS:
-        check(f"menu:item:{item}", menu.locator(f"[data-project-menu-item='{item}']").count() == 1)
+    actions = page.locator("[data-liblib-topnav-actions]")
+    check("credits:100", actions.locator("button").filter(has_text="100").count() == 1)
+    check(
+        "membership:button",
+        actions.get_by_text("开通会员", exact=True).count() == 1
+        and actions.get_by_text("限时 45 折", exact=True).count() == 1,
+    )
 
-    menu.locator("[data-project-menu-item='创建新项目']").click()
-    page.wait_for_timeout(150)
-    check("menu:status", "本地原型" in menu.locator("[data-project-menu-status]").inner_text())
-    check("menu:still-open", menu.is_visible())
+    # 教程入口更名
+    tutorial = page.get_by_role("button", name="教程", exact=True)
+    check("tutorial:entry", tutorial.count() == 1)
+    tutorial.click()
+    page.wait_for_timeout(500)
+    check(
+        "tutorial:popover-items",
+        all(page.get_by_text(t, exact=True).count() >= 1 for t in ["使用教程", "联系客服", "联系销售", "关注公众号"]),
+    )
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
 
-    page.get_by_role("button", name="移动", exact=True).click()
-    page.wait_for_timeout(200)
-    check("outside:closes", page.locator("[data-project-menu]").count() == 0)
-
-    # 教程 popover 四项（既有实现，锁定合同）
-    # Batch 121: 入口更名为「教程」。
-    page.get_by_role("button", name="教程", exact=True).click()
-    page.wait_for_timeout(250)
-    for item in ITEMS_TUTORIAL:
-        check(f"tutorial:{item}", page.get_by_text(item, exact=True).is_visible())
+    # 顶栏按钮集合关键项
+    for name in ["发布与分享", "积分超市", "开通会员 限时 45 折", "Agent"]:
+        check(f"topbar:{name}", page.get_by_role("button", name=name, exact=True).count() >= 1)
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
     return result
 
 
-ITEMS_TUTORIAL = ["使用教程", "联系客服", "联系销售", "关注公众号"]
-
-
 def main() -> None:
     audit: dict[str, Any] = {
-        "batch": 106,
-        "title": "Project menu alignment with 2026-09-05 source sampling",
-        "evidence": "docs/research/liblib-live-2026-09-05/README.md",
+        "batch": 121,
+        "title": "Topbar freshness alignment with the 2026-09-06 source",
+        "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
         "results": [],
     }
     with sync_playwright() as playwright:
@@ -104,10 +98,10 @@ def main() -> None:
     AUDIT_PATH.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n")
     checks = audit["results"][0]["checks"]
     print(
-        "Batch 106 verification passed: "
+        "Batch 121 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "Project menu items/grouping, local statuses, outside-close and "
-        "tutorial popover contract recorded in runtime-audit.json."
+        "Credits 100, membership 限时 45 折 entry, 教程 entry rename and "
+        "topbar key buttons recorded in runtime-audit.json."
     )
 
 

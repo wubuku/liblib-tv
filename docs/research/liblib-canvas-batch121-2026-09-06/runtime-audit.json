@@ -1,0 +1,25 @@
+{
+  "batch": 121,
+  "title": "Topbar freshness alignment with the 2026-09-06 source",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "credits:100",
+        "membership:button",
+        "tutorial:entry",
+        "tutorial:popover-items",
+        "topbar:发布与分享",
+        "topbar:积分超市",
+        "topbar:开通会员 限时 45 折",
+        "topbar:Agent",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

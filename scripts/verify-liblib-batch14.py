@@ -61,7 +61,8 @@ def run_desktop(page: Page):
     # Batch 97: 源站 2026-09-05 复核将关闭按钮 aria 收敛为「关闭」。
     agent.get_by_role("button", name="关闭", exact=True).click()
     assert not agent.is_visible()
-    page.get_by_role("button", name="分享").click()
+    # Batch 121: 源站 2026-09-06 顶栏分享按钮 aria 为「发布与分享」。
+    page.get_by_role("button", name="发布与分享").click()
     share = page.locator('[data-liblib-overlay="share"]')
     assert share.is_visible()
     assert share.get_by_text("发布与分享", exact=True).is_visible()

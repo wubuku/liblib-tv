@@ -61,7 +61,8 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="Agent", exact=True).click()
     assert_only_overlay(page, "agent")
 
-    page.get_by_role("button", name="分享", exact=True).click()
+    # Batch 121: 顶栏分享按钮 aria 对齐源站「发布与分享」。
+    page.get_by_role("button", name="发布与分享").click()
     assert_only_overlay(page, "share")
 
     page.get_by_role("button", name="资产管理").click()
@@ -82,7 +83,8 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="close", exact=True).click()
     assert not overlay(page, "primary:character").is_visible()
 
-    page.get_by_role("button", name="教程与帮助").click()
+    # Batch 121: 入口更名为「教程」。
+    page.get_by_role("button", name="教程", exact=True).click()
     assert_only_overlay(page, "primary:tutorial")
 
     page.keyboard.press("Escape")

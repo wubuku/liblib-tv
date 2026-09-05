@@ -143,7 +143,8 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
         <ToolButton label="快捷键" active={isShortcutsPanelOpen} onClick={toggleShortcuts}>
           <Keyboard size={17} />
         </ToolButton>
-        <ToolButton label="教程与帮助" active={activePrimaryPanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
+        {/* Batch 121: 源站 2026-09-06 该入口名为「教程」。 */}
+        <ToolButton label="教程" active={activePrimaryPanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
           <CircleHelp size={17} />
         </ToolButton>
       </div>

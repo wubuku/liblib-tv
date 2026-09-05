@@ -115,9 +115,9 @@ export function TopNavBar() {
         </div>
       </div>
 
-      <div className="pointer-events-auto hidden h-8 items-center gap-2 sm:flex">
+      <div data-liblib-topnav-actions className="pointer-events-auto hidden h-8 items-center gap-2 sm:flex">
         <button
-          aria-label="分享"
+          aria-label="发布与分享"
           aria-expanded={isSharePanelOpen}
           onClick={toggleSharePanel}
           className={cn(
@@ -127,9 +127,24 @@ export function TopNavBar() {
         >
           <Share2 size={15} />
         </button>
-        <button className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]">
+        <button
+          type="button"
+          aria-label="积分超市"
+          title="积分超市"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+        >
           <Zap size={14} className="fill-white" />
-          <span>20</span>
+          <span>100</span>
+        </button>
+        <button
+          type="button"
+          aria-label="开通会员 限时 45 折"
+          title="开通会员 限时 45 折"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+        >
+          <span className="text-[#f5c451]">♦</span>
+          <span className="hidden text-[#f5c451] md:inline">开通会员</span>
+          <span className="rounded bg-[#f5c451]/15 px-1 py-0.5 text-[10px] text-[#f5c451]">限时 45 折</span>
         </button>
         {!isAgentOpen && (
           <button
