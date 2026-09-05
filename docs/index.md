@@ -106,6 +106,7 @@ graph TD
 - [`research/liblib-canvas-batch110-2026-09-05/`](research/liblib-canvas-batch110-2026-09-05/)：12 个既有漂移 verifier 的 AGED_GATE/HISTORICAL_CONTRACT 标注。
 - [`research/liblib-canvas-batch111-2026-09-05/`](research/liblib-canvas-batch111-2026-09-05/)：角色库模态几何与详情标签对齐 2026-09-05 补采样。
 - [`research/liblib-canvas-batch112-2026-09-05/`](research/liblib-canvas-batch112-2026-09-05/)：角色筛选面板对齐 2026-09-05 补采样：五组芯片、清空筛选与本地标签过滤。
+- [`research/liblib-canvas-batch113-2026-09-05/`](research/liblib-canvas-batch113-2026-09-05/)：角色卡片条均匀间距（移除位次特判）。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。

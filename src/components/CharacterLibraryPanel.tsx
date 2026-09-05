@@ -245,7 +245,7 @@ export function CharacterLibraryPanel({
                 {stripIndexes.map((index) => {
                   const character = characters[index];
                   return (
-                  <button key={character.id} type="button" data-character-strip-card={character.name} onClick={() => setSelectedIndex(index)} className={cn("w-[100px] shrink-0 text-left", (index === 3 || index === 4) && "ml-[6px]")}>
+                  <button key={character.id} type="button" data-character-strip-card={character.name} onClick={() => setSelectedIndex(index)} className="w-[100px] shrink-0 text-left">
                     <div className={cn("relative h-[134px] w-[100px] overflow-hidden rounded-lg bg-white", selectedIndex === index && "ring-2 ring-[#09caf5]") }>
                       <Image src={character.imageUrl} alt={character.name} fill sizes="100px" className="object-cover object-top" unoptimized />
                       {selectedIndex === index && <span className="absolute inset-x-0 bottom-0 bg-black/70 px-1.5 py-1 text-[10px] text-white">{character.name}</span>}

@@ -127,6 +127,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 110 | Aged-gate deprecation: 12 pre-existing-drift verifiers marked AGED_GATE/HISTORICAL_CONTRACT with replacement-map §4.z (no runtime changes) |
 | Batch 111 | Character library modal alignment with the 2026-09-05 sampled geometry (1304x731@68) and detail tags: fluid shell, 1:1:1:2.37 image columns, sampled tag map, close aria (batch11 assertion migrated) |
 | Batch 112 | Character filter panel alignment with the 2026-09-05 sampling: five sampled chip groups, clear-all, upward panel anchored to the toggle, local tag-based filtering with 古代 alias (culture group unknown) |
+| Batch 113 | Uniform character strip spacing: removed position-specific margin hack, uniform 19px gap per the 2026-09-05 source screenshot |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

@@ -1,0 +1,19 @@
+{
+  "batch": 113,
+  "title": "Uniform character strip spacing",
+  "evidence": "docs/research/liblib-live-2026-09-05/original-character-library-modal.png",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "strip:cards-visible",
+        "strip:uniform-pitch",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
