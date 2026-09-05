@@ -1,0 +1,24 @@
+{
+  "batch": 126,
+  "title": "Inline advanced settings row in the video panel",
+  "evidence": "docs/research/liblib-video-panel-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "advanced:label",
+        "advanced:label-copy",
+        "advanced:inline-row",
+        "advanced:chip:联网搜索",
+        "advanced:chip:自动校验素材",
+        "advanced:chip:智能引用 AutoLink",
+        "advanced:trigger-removed",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
