@@ -15,7 +15,6 @@ import {
   Link2,
   LoaderCircle,
   Search,
-  Settings2,
   ShieldCheck,
   Sparkles,
   Zap,
@@ -346,10 +345,13 @@ export function VideoGenerationPanel({
               <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongVideo} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
           </div>
-          <button data-video-advanced-trigger type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} aria-label="高级设置" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Settings2 size={14} /></button>
-          {menu === "advanced" && (
-            <AdvancedMenu networkSearch={networkSearch} materialCheck={materialCheck} autoLink={autoLink} onNetworkSearch={setNetworkSearch} onMaterialCheck={setMaterialCheck} onAutoLink={setAutoLink} />
-          )}
+          {/* Batch 126: 源站高级设置内联可见（联网搜索/自动校验素材/智能引用 AutoLink）。 */}
+          <span data-video-advanced-label className="ml-1 shrink-0 text-[11px] text-[#8a8a8a]">高级设置</span>
+          <div data-video-advanced-inline className="flex shrink-0 items-center gap-1">
+            <SwitchRow label="联网搜索" icon={<Search size={12} />} checked={networkSearch} onChange={setNetworkSearch} compact />
+            <SwitchRow label="自动校验素材" icon={<ShieldCheck size={12} />} checked={materialCheck} onChange={setMaterialCheck} compact />
+            <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={12} />} checked={autoLink} onChange={setAutoLink} compact />
+          </div>
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
           <span data-video-credits className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
           <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
@@ -635,7 +637,19 @@ function AdvancedMenu({ networkSearch, materialCheck, autoLink, onNetworkSearch,
   return <div className="absolute bottom-12 right-10 z-50 w-56 rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl"><p className="px-2 pb-1 text-[11px] text-[#777]">高级设置</p><SwitchRow label="联网搜索" icon={<Search size={13} />} checked={networkSearch} onChange={onNetworkSearch} /><SwitchRow label="自动校验素材" icon={<ShieldCheck size={13} />} checked={materialCheck} onChange={onMaterialCheck} /><SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={onAutoLink} /></div>;
 }
 
-function SwitchRow({ label, icon, checked, onChange }: { label: string; icon: React.ReactNode; checked: boolean; onChange: (value: boolean) => void }) {
+function SwitchRow({ label, icon, checked, onChange, compact }: { label: string; icon: React.ReactNode; checked: boolean; onChange: (value: boolean) => void; compact?: boolean }) {
+  if (compact) {
+    return (
+      <label className="flex h-7 cursor-pointer items-center gap-1 rounded-full bg-white/[0.05] px-2 text-[11px] text-[#bbb] hover:bg-white/[0.09]" title={label}>
+        {icon}
+        <span className="max-w-[96px] truncate">{label}</span>
+        <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" />
+        <span className={cn("relative h-3.5 w-7 rounded-full transition-colors", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}>
+          <span className={cn("absolute top-0.5 size-2.5 rounded-full bg-white transition-transform", checked ? "translate-x-[15px]" : "translate-x-0.5")} />
+        </span>
+      </label>
+    );
+  }
   return <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg px-2 text-xs text-[#ccc] hover:bg-white/[0.05]">{icon}<span className="flex-1">{label}</span><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" /><span className={cn("relative h-5 w-9 rounded-full", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}><span className={cn("absolute top-0.5 size-4 rounded-full bg-white transition-transform", checked ? "translate-x-[18px]" : "translate-x-0.5")} /></span></label>;
 }
 
