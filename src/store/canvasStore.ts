@@ -979,11 +979,14 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   removeCanvas: (id: string) => {
     const { canvases, activeCanvasId } = get();
     if (canvases.length <= 1) return;
+    const removedIndex = canvases.findIndex((c) => c.id === id);
     const filtered = canvases.filter((c) => c.id !== id);
+    // Batch 114: 源站删除活动画布后回退到创建序相邻的画布（优先前一个）。
+    const fallbackCanvas = filtered[Math.min(removedIndex, filtered.length - 1)];
     set({
       canvases: filtered,
       activeCanvasId:
-        activeCanvasId === id ? filtered[0].id : activeCanvasId,
+        activeCanvasId === id ? fallbackCanvas.id : activeCanvasId,
       selectedNodeIds: activeCanvasId === id ? [] : get().selectedNodeIds,
       selectedNodeId: activeCanvasId === id ? null : get().selectedNodeId,
       selectedEdgeIds: activeCanvasId === id ? [] : get().selectedEdgeIds,
@@ -1109,7 +1112,10 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const newCanvas: CanvasData = {
       ...source,
       id: targetCanvasId,
-      name: `${source.name} (副本)`,
+      // Batch 114: 源站副本命名为 {名称}副本{序号}（2026-09-06 采样）。
+      name: `${source.name}副本${
+        canvases.filter((c) => c.name.startsWith(`${source.name}副本`)).length + 1
+      }`,
       nodes: planned.plan.targetNodes,
       edges: planned.plan.targetEdges,
       viewport: planned.plan.targetViewport,

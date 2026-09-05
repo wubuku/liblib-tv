@@ -1,0 +1,36 @@
+{
+  "batch": 114,
+  "title": "Multi-canvas dropdown alignment with 2026-09-06 sampling",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "open",
+        "header:create-btn",
+        "order:newest-first",
+        "row:switch-aria",
+        "row:more-aria",
+        "menu:在新窗口打开",
+        "menu:重命名画布",
+        "menu:复制画布",
+        "menu:删除画布",
+        "create:画布3-active",
+        "create:order",
+        "rename:trigger",
+        "duplicate:named",
+        "duplicate:auto-switch",
+        "delete:confirm-visible",
+        "delete:confirm-copy",
+        "delete:cancel-keeps",
+        "delete:fallback-to-测试A",
+        "cleanup:back-to-initial",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

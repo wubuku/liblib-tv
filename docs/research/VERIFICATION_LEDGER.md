@@ -157,6 +157,7 @@ BrowserContext，不写截图。
 | Batch 111 | Character library modal alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch111.py` 已通过；覆盖模态壳 1304x731@68、四图标签与列比、甜妹标签集、说明模板、应用至画布、close 关闭和 `0/0/0` diagnostics；batch11 关闭按钮断言已按 2026-09-05 源站迁移；不证明其余角色标签、多视口几何或卡片条精确几何 |
 | Batch 112 | Character filter panel alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch112.py` 已通过；覆盖五组芯片集合、清空筛选、男芯片过滤（甜妹隐藏/霸总保留）、面板开合与 `0/0/0` diagnostics；文化区域选项与真实筛选服务不证明 |
 | Batch 113 | Uniform character strip spacing | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch113.py` 已通过；前 6 张卡片 x 轴间距一致、`0/0/0` diagnostics；源站精确像素为截图粗读 |
+| Batch 114 | Multi-canvas dropdown alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch114.py` 已通过；覆盖行双按钮结构与 aria、最新在前排序、四项行级菜单、新建画布 3、重命名、副本命名与自动切换、删除确认框文案/取消/fallback 和 `0/0/0` diagnostics；在新窗口打开行为与副本再复制命名不证明 |
 | Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |
 | Batch 107 | Skill headline rotation | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch107.py` 已通过；覆盖三条源站观察标题随 换一批 轮换与回绕、卡片集合不变和 `0/0/0` diagnostics；不证明源站轮换真实驱动 |
 

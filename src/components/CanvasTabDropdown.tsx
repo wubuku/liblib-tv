@@ -27,6 +27,8 @@ export function CanvasTabDropdown() {
   const [editingProjectName, setEditingProjectName] = useState(false);
   const [projectNameDraft, setProjectNameDraft] = useState("");
   const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
+  // Batch 114: 删除画布确认框（源站文案：此操作不可恢复）。
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; name: string } | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const closeDropdown = useCallback(() => {
@@ -35,6 +37,7 @@ export function CanvasTabDropdown() {
     setEditingProjectName(false);
     setProjectNameDraft("");
     setMenuOpenId(null);
+    setPendingDelete(null);
     closeCanvasDropdown();
   }, [closeCanvasDropdown]);
 
@@ -91,9 +94,8 @@ export function CanvasTabDropdown() {
   };
 
   const activeCanvas = canvases.find((c) => c.id === activeCanvasId);
-  const orderedCanvases = activeCanvas
-    ? [activeCanvas, ...canvases.filter((canvas) => canvas.id !== activeCanvasId)]
-    : canvases;
+  // Batch 114: 源站下拉按创建时间倒序（最新在前）。
+  const orderedCanvases = [...canvases].reverse();
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -198,7 +200,7 @@ export function CanvasTabDropdown() {
                 key={canvas.id}
                 data-canvas-row={canvas.id}
                 data-canvas-active={canvas.id === activeCanvasId ? "true" : "false"}
-                className="group flex items-center justify-between px-3 py-2 transition-colors hover:bg-[#353639]"
+                className="group/canvas-row relative flex items-center justify-between px-3 py-2 transition-colors hover:bg-[#353639]"
               >
                 {editingId === canvas.id ? (
                   <input
@@ -206,110 +208,137 @@ export function CanvasTabDropdown() {
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                     onBlur={() => handleRename(canvas.id)}
-                    onKeyDown={(e) =>
-                      e.key === "Enter" && handleRename(canvas.id)
-                    }
-                    className="flex-1 bg-[#363636] text-[#f7f7f7] text-sm px-2 py-1 rounded border border-[#525252] focus:border-[#09caf5] outline-none"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleRename(canvas.id);
+                      if (e.key === "Escape") {
+                        setEditingId(null);
+                        setEditName("");
+                      }
+                    }}
+                    className="min-w-0 flex-1 rounded border border-[#525252] bg-[#363636] px-2 py-1 text-sm text-[#f7f7f7] outline-none focus:border-[#09caf5]"
                     autoFocus
                   />
                 ) : (
                   <button
                     type="button"
+                    aria-label={`切换到画布 ${canvas.name}`}
+                    title={canvas.name}
                     onClick={() => {
                       setActiveCanvas(canvas.id);
                       closeDropdown();
                     }}
-                    className="min-w-0 flex-1 truncate text-left text-sm text-[#f7f7f7]"
+                    className="flex min-w-0 flex-1 items-center gap-2 text-left text-sm text-[#f7f7f7]"
                   >
-                    {canvas.name}
+                    <span className="min-w-0 flex-1 truncate">{canvas.name}</span>
+                    {canvas.id === activeCanvasId && (
+                      <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
                   </button>
                 )}
+                <button
+                  type="button"
+                  aria-label="更多操作"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMenuOpenId(menuOpenId === canvas.id ? null : canvas.id);
+                  }}
+                  className="ml-1 flex size-6 shrink-0 items-center justify-center rounded-lg text-[#919191] opacity-0 transition-opacity hover:bg-[#525252] hover:text-white group-hover/canvas-row:opacity-100 focus-visible:opacity-100"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01" />
+                  </svg>
+                </button>
 
-                {/* More Actions */}
-                <div className="relative flex h-6 w-6 items-center justify-center">
-                  {canvas.id === activeCanvasId && (
-                    <svg
-                      data-canvas-active-check
-                      className="h-4 w-4 text-[#f7f7f7] transition-opacity group-hover:opacity-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
+                {menuOpenId === canvas.id && (
+                  <div className="absolute right-2 top-full z-50 w-36 overflow-hidden rounded-lg border border-[#525252] bg-[#363636] shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        closeDropdown();
+                      }}
+                      className="w-full px-3 py-2 text-left text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  )}
-                  <button
-                    type="button"
-                    data-canvas-row-menu={canvas.id}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setMenuOpenId(
-                        menuOpenId === canvas.id ? null : canvas.id
-                      );
-                    }}
-                    className="absolute inset-0 p-1 opacity-0 transition-all hover:bg-[#525252] group-hover:opacity-100"
-                  >
-                    <svg
-                      className="w-4 h-4 text-[#919191]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      在新窗口打开
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingId(canvas.id);
+                        setEditName(canvas.name);
+                        setMenuOpenId(null);
+                      }}
+                      className="w-full px-3 py-2 text-left text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                      />
-                    </svg>
-                  </button>
-
-                  {menuOpenId === canvas.id && (
-                    <div className="absolute right-0 top-full mt-1 w-36 bg-[#363636] border border-[#525252] rounded-lg shadow-lg overflow-hidden z-50">
+                      重命名画布
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        duplicateCanvas(canvas.id);
+                        closeDropdown();
+                      }}
+                      className="w-full px-3 py-2 text-left text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
+                    >
+                      复制画布
+                    </button>
+                    {canvases.length > 1 && (
                       <button
                         type="button"
                         onClick={() => {
-                          setEditingId(canvas.id);
-                          setEditName(canvas.name);
                           setMenuOpenId(null);
+                          setPendingDelete({ id: canvas.id, name: canvas.name });
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
+                        className="w-full px-3 py-2 text-left text-sm text-[#f55353] hover:bg-[#525252] transition-colors"
                       >
-                        重命名
+                        删除画布
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          duplicateCanvas(canvas.id);
-                          closeDropdown();
-                        }}
-                        className="w-full text-left px-3 py-2 text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
-                      >
-                        复制
-                      </button>
-                      {canvases.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            removeCanvas(canvas.id);
-                            closeDropdown();
-                          }}
-                          className="w-full text-left px-3 py-2 text-sm text-[#f53f3f] hover:bg-[#525252] transition-colors"
-                        >
-                          删除
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {pendingDelete && (
+        <div
+          data-canvas-delete-confirm
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 backdrop-blur-[3px]"
+          onMouseDown={() => setPendingDelete(null)}
+        >
+          <div
+            role="dialog"
+            aria-label="删除画布"
+            className="w-[360px] rounded-xl border border-white/[0.08] bg-[#262626] p-4 shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <h3 className="text-sm font-medium text-[#f0f0f0]">删除画布</h3>
+            <p className="mt-2 text-xs leading-5 text-[#a8a8a8]">
+              确定要删除画布「{pendingDelete.name}」吗？此操作不可恢复。
+            </p>
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setPendingDelete(null)}
+                className="rounded-lg border border-white/[0.1] px-3 py-1.5 text-xs text-[#d8d8d8] hover:bg-white/[0.06]"
+              >
+                取消
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  removeCanvas(pendingDelete.id);
+                  setPendingDelete(null);
+                  closeDropdown();
+                }}
+                className="rounded-lg bg-[#f55353] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#e04545]"
+              >
+                确认
+              </button>
+            </div>
           </div>
         </div>
       )}
