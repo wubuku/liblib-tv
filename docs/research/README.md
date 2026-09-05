@@ -39,6 +39,7 @@
 - [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/README.md)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`liblib-canvas-batch117-2026-09-06/`](liblib-canvas-batch117-2026-09-06/README.md)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
 - [`liblib-canvas-batch119-2026-09-06/`](liblib-canvas-batch119-2026-09-06/README.md)：/project 列表页落地：结构对齐、创建卡、画布卡导航与 logo 菜单 全部项目 路由。
+- [`liblib-canvas-batch122-2026-09-06/`](liblib-canvas-batch122-2026-09-06/README.md)：工具箱预设完整性验证：源站 23 项全量采样与 clone 零缺失比对。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：LibTV 五项主推能力的源站呈现、clone 缺口、价值排序和后续闸门。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本与当前源站合同的覆盖矩阵及历史断言边界。
