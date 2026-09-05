@@ -1,0 +1,31 @@
+{
+  "batch": 119,
+  "title": "/project list page implementation",
+  "evidence": "docs/research/liblib-projects-page-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "page:mounted",
+        "header:back",
+        "header:title",
+        "header:recycle",
+        "header:folder",
+        "create:card",
+        "create:copy",
+        "recycle:status",
+        "create:navigates-to-canvas",
+        "create:new-canvas-active",
+        "menu:navigates-to-project",
+        "menu:page-visible",
+        "card:navigates-back",
+        "card:canvas-1-active",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Bot, ChevronDown, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
@@ -152,6 +153,7 @@ export function TopNavBar() {
 function ProjectMenu() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
+  const router = useRouter();
   const menuRef = useRef<HTMLDivElement>(null);
   const items = ["回到主页", "全部项目", "创建新项目", "删除项目"];
 
@@ -191,7 +193,15 @@ function ProjectMenu() {
               <button
                 type="button"
                 data-project-menu-item={item}
-                onClick={() => setStatus(`本地原型：${item}未接入`)}
+                onClick={() => {
+                  // Batch 119: 全部项目 → /project 列表页（源站路由 /project）。
+                  if (item === "全部项目") {
+                    setOpen(false);
+                    router.push("/project");
+                    return;
+                  }
+                  setStatus(`本地原型：${item}未接入`);
+                }}
                 className="flex h-9 w-full items-center rounded-lg px-2.5 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
               >
                 {item}

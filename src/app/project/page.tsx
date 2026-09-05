@@ -1,0 +1,100 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, FolderPlus, Trash2 } from "lucide-react";
+import { useCanvasStore } from "@/store/canvasStore";
+import { cn } from "@/lib/utils";
+
+// Batch 119: 2026-09-06 采样（liblib-projects-page-2026-09-06）——
+// 「全部项目」页结构对齐；clone 单项目多画布，列表以画布为卡片映射（CLONE_DECISION）。
+export default function ProjectListPage() {
+  const router = useRouter();
+  const { projectName, canvases, activeCanvasId, setActiveCanvas, addCanvas } =
+    useCanvasStore();
+  const [status, setStatus] = useState("");
+  const today = new Date().toISOString().slice(0, 10);
+
+  const openCanvas = (canvasId: string) => {
+    setActiveCanvas(canvasId);
+    router.push("/");
+  };
+
+  return (
+    <main
+      data-project-list-page
+      className="min-h-screen bg-[#141414] px-10 py-6 text-[#ededed]"
+    >
+      <div className="mb-6 flex items-center gap-4">
+        <button
+          type="button"
+          data-project-back
+          onClick={() => router.push("/")}
+          className="flex h-8 items-center gap-1 rounded-lg px-2 text-sm text-[#d8d8d8] hover:bg-white/[0.06] hover:text-white"
+        >
+          <ArrowLeft size={15} />
+          返回
+        </button>
+        <h1 className="text-lg font-medium">全部项目</h1>
+        <div className="ml-auto flex items-center gap-2">
+          <button
+            type="button"
+            data-project-recycle
+            onClick={() => setStatus("本地原型：回收站未接入")}
+            className="flex h-8 items-center gap-1 rounded-lg px-2 text-xs text-[#9a9a9a] hover:bg-white/[0.06] hover:text-white"
+          >
+            <Trash2 size={13} />
+            回收站
+          </button>
+          <button
+            type="button"
+            data-project-new-folder
+            onClick={() => setStatus("本地原型：新建文件夹未接入")}
+            className="flex h-8 items-center gap-1 rounded-lg border border-white/[0.1] px-2.5 text-xs text-[#d8d8d8] hover:border-white/[0.24] hover:text-white"
+          >
+            <FolderPlus size={13} />
+            新建文件夹
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+        <button
+          type="button"
+          data-project-create-card
+          onClick={() => {
+            addCanvas();
+            router.push("/");
+          }}
+          className="flex h-[150px] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.14] bg-white/[0.02] transition-colors hover:border-white/[0.3] hover:bg-white/[0.04]"
+        >
+          <span className="text-sm font-medium text-[#ededed]">开始创作</span>
+          <span className="text-[11px] text-[#8c8c8c]">创建新的视频项目</span>
+        </button>
+        {canvases.map((canvas) => (
+          <button
+            key={canvas.id}
+            type="button"
+            data-project-card={canvas.id}
+            onClick={() => openCanvas(canvas.id)}
+            className={cn(
+              "flex h-[150px] flex-col justify-between rounded-xl border border-white/[0.08] bg-[#1f1f1f] p-4 text-left transition-colors hover:border-white/[0.24]",
+              canvas.id === activeCanvasId && "border-[#09caf5]/50",
+            )}
+          >
+            <span className="text-sm text-[#ededed]">{canvas.name}</span>
+            <span className="text-[11px] text-[#777]">
+              {projectName} · {today}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {status && (
+        <p data-project-list-status className="mt-4 text-xs text-[#75d7e8]">
+          {status}
+        </p>
+      )}
+    </main>
+  );
+}

@@ -113,6 +113,7 @@ graph TD
 - [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
 - [`research/liblib-canvas-batch116-2026-09-06/`](research/liblib-canvas-batch116-2026-09-06/)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`research/liblib-canvas-batch117-2026-09-06/`](research/liblib-canvas-batch117-2026-09-06/)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
+- [`research/liblib-canvas-batch119-2026-09-06/`](research/liblib-canvas-batch119-2026-09-06/)：/project 列表页落地：结构对齐、创建卡、画布卡导航与 logo 菜单 全部项目 路由。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。
