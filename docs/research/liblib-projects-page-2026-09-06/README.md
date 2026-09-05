@@ -32,3 +32,14 @@ clone 无 /project 路由;logo 菜单「全部项目」当前为本地 no-op(Bat
   项目的删除入口保持 `SOURCE_UNKNOWN`,留待用户手动清理（自动化不猜）。
 - 证据:`../liblib-canvas-sampling-2026-09-06/s7-card-controls.png`、
   `../liblib-canvas-sampling-2026-09-06/s7-context-menu.png`。
+
+
+## 回收站采样（Batch 123,2026-09-06）
+
+`SOURCE_FACT`(`../liblib-canvas-sampling-2026-09-06/s10-recycle-bin.png`):
+
+- `/project` 页「回收站」按钮打开回收站面板:`仅显示最近 30 天内删除的内容`。
+- 被删测试项目在列:`未命名项目 2026/09/06 · 剩余 30 天`,带勾选(「已选择 0 项」)
+  与 `恢复` 按钮——**项目删除进入 30 天回收站,可恢复**,并非立即不可逆
+  (修正此前「此操作不可恢复」确认文案的绝对化理解:指超过保留期后)。
+- 批量勾选 + 恢复/删除的完整交互 `SOURCE_UNKNOWN`（未操作）。
