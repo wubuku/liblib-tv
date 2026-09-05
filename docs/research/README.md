@@ -33,6 +33,7 @@
 - [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/README.md)：角色筛选面板对齐 2026-09-05 补采样：五组芯片、清空筛选与本地标签过滤。
 - [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/README.md)：角色卡片条均匀间距（移除位次特判）。
 - [`liblib-canvas-sampling-2026-09-06/`](liblib-canvas-sampling-2026-09-06/README.md)：丢弃式测试项目采样：多画布 CRUD、双击生成流、脚本生成器节点、导演台入口。
+- [`liblib-projects-page-2026-09-06/`](liblib-projects-page-2026-09-06/README.md)：「全部项目」列表页采样：路由 /project、页面分区与孤儿项目披露（研究记录，未实现）。
 - [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/README.md)：多画布下拉对齐 2026-09-06 采样：双按钮行、四项行级菜单、删除确认框、副本命名与 fallback。
 - [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/README.md)：双击画布打开添加节点面板。
 - [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/README.md)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
