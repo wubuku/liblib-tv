@@ -633,9 +633,6 @@ function ParameterSegment({
   );
 }
 
-function AdvancedMenu({ networkSearch, materialCheck, autoLink, onNetworkSearch, onMaterialCheck, onAutoLink }: { networkSearch: boolean; materialCheck: boolean; autoLink: boolean; onNetworkSearch: (value: boolean) => void; onMaterialCheck: (value: boolean) => void; onAutoLink: (value: boolean) => void }) {
-  return <div className="absolute bottom-12 right-10 z-50 w-56 rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl"><p className="px-2 pb-1 text-[11px] text-[#777]">高级设置</p><SwitchRow label="联网搜索" icon={<Search size={13} />} checked={networkSearch} onChange={onNetworkSearch} /><SwitchRow label="自动校验素材" icon={<ShieldCheck size={13} />} checked={materialCheck} onChange={onMaterialCheck} /><SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={onAutoLink} /></div>;
-}
 
 function SwitchRow({ label, icon, checked, onChange, compact }: { label: string; icon: React.ReactNode; checked: boolean; onChange: (value: boolean) => void; compact?: boolean }) {
   if (compact) {
