@@ -222,6 +222,20 @@ export default function Home() {
   const edges = activeCanvas?.edges ?? emptyEdges;
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const flowContainerRef = useRef<HTMLElement | null>(null);
+
+  // Batch 115: 源站空画布双击 = 打开添加节点面板（2026-09-06 采样）。
+  useEffect(() => {
+    const container = flowContainerRef.current;
+    if (!container) return;
+    const handleDoubleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target?.closest(".react-flow__pane")) return;
+      const state = useUIStore.getState();
+      if (!state.isAddNodePanelOpen) state.toggleAddNodePanel();
+    };
+    container.addEventListener("dblclick", handleDoubleClick);
+    return () => container.removeEventListener("dblclick", handleDoubleClick);
+  }, []);
   const assetLayoutOperationRef = useRef(0);
   const assetLayoutFrameRef = useRef<number | null>(null);
   const viewportOwnershipRef = useRef<Map<string, LibTVViewportOwnership>>(

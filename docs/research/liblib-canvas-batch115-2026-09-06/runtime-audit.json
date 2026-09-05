@@ -1,0 +1,23 @@
+{
+  "batch": 115,
+  "title": "Canvas double-click opens add-node panel",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "pane:present",
+        "dblclick:panel-opens",
+        "dblclick:creates-nothing",
+        "dblclick:no-nodes",
+        "escape:closes-panel",
+        "dblclick:reopens",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
