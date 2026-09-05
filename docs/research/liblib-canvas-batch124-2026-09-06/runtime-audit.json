@@ -1,0 +1,30 @@
+{
+  "batch": 124,
+  "title": "Canvas recycle bin (soft delete + restore)",
+  "evidence": "docs/research/liblib-projects-page-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "page:mounted",
+        "panel:opens",
+        "panel:copy",
+        "panel:empty",
+        "delete:canvas2-gone",
+        "menu:navigates",
+        "recycle:lists-canvas2",
+        "recycle:has-restore",
+        "recycle:has-date",
+        "restore:item-gone",
+        "restore:canvas-back-in-list",
+        "restore:content-intact",
+        "restore:canvas-2-active",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

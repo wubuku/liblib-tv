@@ -38,6 +38,7 @@
 - [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/README.md)：双击画布打开添加节点面板。
 - [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/README.md)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`liblib-canvas-batch117-2026-09-06/`](liblib-canvas-batch117-2026-09-06/README.md)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
+- [`liblib-canvas-batch124-2026-09-06/`](liblib-canvas-batch124-2026-09-06/README.md)：画布回收站（软删除+恢复）：/project 回收站面板与内容完整恢复。
 - [`liblib-canvas-batch119-2026-09-06/`](liblib-canvas-batch119-2026-09-06/README.md)：/project 列表页落地：结构对齐、创建卡、画布卡导航与 logo 菜单 全部项目 路由。
 - [`liblib-canvas-batch122-2026-09-06/`](liblib-canvas-batch122-2026-09-06/README.md)：工具箱预设完整性验证：源站 23 项全量采样与 clone 零缺失比对。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
@@ -216,6 +217,7 @@
 | 115 | Canvas double-click add panel | [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) `SCRIPT_RECORDED_PASS`，双击开面板/零创建/Escape/重触发已通过 |
 | 116 | Script-generator node type | [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/) `SCRIPT_RECORDED_PASS`，脚本NEW 创建 脚本生成器、卡片内容与本地交互已通过；真实生成/子界面不证明 |
 | 117 | Director node card alignment | [`liblib-canvas-batch117-2026-09-06/`](liblib-canvas-batch117-2026-09-06/) `SCRIPT_RECORDED_PASS`，卡片文案/工作区进入与关闭已通过；工作区内部结构经采样确认一致 |
+| 124 | Canvas recycle bin | [`liblib-canvas-batch124-2026-09-06/`](liblib-canvas-batch124-2026-09-06/) `SCRIPT_RECORDED_PASS`，软删除/回收站面板/内容完整恢复已通过；30 天自动清除不证明 |
 | 119 | /project list page | [`liblib-canvas-batch119-2026-09-06/`](liblib-canvas-batch119-2026-09-06/) `SCRIPT_RECORDED_PASS`，页面结构/创建卡/画布卡导航与 logo 菜单路由已通过；回收站行为不证明 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
@@ -250,6 +252,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 116 | Script-generator node type | 已完成；脚本生成器节点对齐已通过，详见 [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/)；循环继续：117 导演台入口 |
 | 117 | Director node card alignment | 已完成；导演台节点卡对齐已通过，详见 [`liblib-canvas-batch117-2026-09-06/`](liblib-canvas-batch117-2026-09-06/)；丢弃式采样四项发现全部落地 |
 | 119 | /project list page | 已完成；全部项目页落地已通过，详见 [`liblib-canvas-batch119-2026-09-06/`](liblib-canvas-batch119-2026-09-06/)；循环继续 |
+| 124 | Canvas recycle bin | 已完成；画布回收站落地已通过，详见 [`liblib-canvas-batch124-2026-09-06/`](liblib-canvas-batch124-2026-09-06/)；循环继续 |
 | 113 | Uniform character strip spacing | 已完成；均匀间距对齐已通过，详见 [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/)；其余候选需 fixture 授权 |
 | 112 | Character filter panel alignment | 已完成；筛选面板对齐已通过，详见 [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/)；其余候选需 fixture 授权 |
 | 108 | 97-107 series cross-batch regression | 已完成；跨批回归与漂移归因已记录，详见 [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/)；循环迭代继续 |

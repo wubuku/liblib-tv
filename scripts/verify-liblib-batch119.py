@@ -65,8 +65,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
         and "创建新的视频项目" in page_root.locator("[data-project-create-card]").inner_text(),
     )
 
+    # Batch 124: 回收站升级为真实面板（30 天保留 + 恢复）。
     page_root.locator("[data-project-recycle]").click()
-    check("recycle:status", "本地原型" in page.locator("[data-project-list-status]").inner_text())
+    page.wait_for_timeout(300)
+    check("recycle:panel-opens", page.locator("[data-recycle-panel]").is_visible())
+    page_root.locator("[data-project-recycle]").click()
+    page.wait_for_timeout(300)
 
     # 创建卡 → 新建画布并回画布
     page_root.locator("[data-project-create-card]").click()

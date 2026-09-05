@@ -13,7 +13,7 @@
         "header:folder",
         "create:card",
         "create:copy",
-        "recycle:status",
+        "recycle:panel-opens",
         "create:navigates-to-canvas",
         "create:new-canvas-active",
         "menu:navigates-to-project",

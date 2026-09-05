@@ -162,6 +162,7 @@ BrowserContext，不写截图。
 | Batch 116 | Script-generator node type | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch116.py` 已通过；脚本NEW 创建 脚本生成器（350x350、三尝试/参考图/GVLM 3.1/积分 6）、尝试选择与本地提示词、尺寸样式与 `0/0/0` diagnostics；batch98 两处断言随采样迁移；真实生成/子界面不证明 |
 | Batch 117 | Director node card alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch117.py` 已通过；卡片标题/说明/打开导演台 CTA、工作区经节点按钮进入、Escape 关闭、节点保留和 `0/0/0` diagnostics；工作区内部结构与默认场景经采样确认与 clone 一致 |
 | Batch 119 | /project list page | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch119.py` 已通过；页面结构（返回/全部项目/回收站/新建文件夹/创建卡/画布卡）、创建卡建画布、卡片导航激活、logo 菜单 全部项目 路由和 `0/0/0` diagnostics；回收站行为与源站分页不证明 |
+| Batch 124 | Canvas recycle bin | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch124.py` 已通过；覆盖软删除快照、回收站面板文案/条目/日期/恢复、恢复后内容完整（≥10 节点）与 `0/0/0` diagnostics；batch119 回收站断言随本批迁移；30 天自动清除与 Director 数据恢复完整性不证明 |
 | Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |
 | Batch 107 | Skill headline rotation | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch107.py` 已通过；覆盖三条源站观察标题随 换一批 轮换与回绕、卡片集合不变和 `0/0/0` diagnostics；不证明源站轮换真实驱动 |
 

@@ -263,6 +263,8 @@ export type LibTVCanvasDuplicateResult =
 interface CanvasState {
   projectName: string;
   canvases: CanvasData[];
+  // Batch 124: 画布回收站（源站 /project 回收站 30 天保留 + 恢复）。
+  removedCanvases: Array<CanvasData & { removedAt: string }>;
   activeCanvasId: string;
   selectedNodeIds: string[];
   selectedNodeId: string | null;
@@ -273,6 +275,8 @@ interface CanvasState {
   setProjectName: (name: string) => void;
   addCanvas: (name?: string) => void;
   removeCanvas: (id: string) => void;
+  restoreCanvas: (id: string) => void;
+  purgeRemovedCanvas: (id: string) => void;
   renameCanvas: (id: string, name: string) => void;
   setActiveCanvas: (id: string) => void;
   duplicateCanvas: (id: string) => LibTVCanvasDuplicateResult;
@@ -949,6 +953,7 @@ let canvasCounter = 2;
 export const useCanvasStore = create<CanvasState>((set, get) => ({
   projectName: "未命名项目",
   canvases: [defaultCanvas("canvas-1", "画布 1"), initialCanvas2],
+  removedCanvases: [],
   activeCanvasId: "canvas-2",
   selectedNodeIds: [],
   selectedNodeId: null,
@@ -976,14 +981,44 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     }));
   },
 
+  restoreCanvas: (id: string) => {
+    // Batch 124: 源站回收站「恢复」——画布回列表，不自动切换活动画布。
+    const { removedCanvases } = get();
+    const restored = removedCanvases.find((c) => c.id === id);
+    if (!restored) return;
+    const canvasData: CanvasData = {
+      id: restored.id,
+      name: restored.name,
+      nodes: restored.nodes,
+      edges: restored.edges,
+      viewport: restored.viewport,
+    };
+    set({
+      canvases: [...get().canvases, canvasData],
+      removedCanvases: removedCanvases.filter((c) => c.id !== id),
+    });
+  },
+
+  purgeRemovedCanvas: (id: string) => {
+    set((state) => ({
+      removedCanvases: state.removedCanvases.filter((c) => c.id !== id),
+    }));
+  },
+
   removeCanvas: (id: string) => {
     const { canvases, activeCanvasId } = get();
     if (canvases.length <= 1) return;
     const removedIndex = canvases.findIndex((c) => c.id === id);
+    const removed = canvases.find((c) => c.id === id);
     const filtered = canvases.filter((c) => c.id !== id);
     // Batch 114: 源站删除活动画布后回退到创建序相邻的画布（优先前一个）。
     const fallbackCanvas = filtered[Math.min(removedIndex, filtered.length - 1)];
+    // Batch 124: 软删除——完整快照进回收站（源站 /project 回收站 30 天保留）。
     set({
+      removedCanvases: [
+        ...get().removedCanvases,
+        { ...(removed as CanvasData), removedAt: new Date().toISOString().slice(0, 10) },
+      ],
       canvases: filtered,
       activeCanvasId:
         activeCanvasId === id ? fallbackCanvas.id : activeCanvasId,

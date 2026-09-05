@@ -113,6 +113,7 @@ graph TD
 - [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
 - [`research/liblib-canvas-batch116-2026-09-06/`](research/liblib-canvas-batch116-2026-09-06/)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`research/liblib-canvas-batch117-2026-09-06/`](research/liblib-canvas-batch117-2026-09-06/)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
+- [`research/liblib-canvas-batch124-2026-09-06/`](research/liblib-canvas-batch124-2026-09-06/)：画布回收站（软删除+恢复）：/project 回收站面板与内容完整恢复。
 - [`research/liblib-canvas-batch119-2026-09-06/`](research/liblib-canvas-batch119-2026-09-06/)：/project 列表页落地：结构对齐、创建卡、画布卡导航与 logo 菜单 全部项目 路由。
 - [`research/liblib-canvas-batch122-2026-09-06/`](research/liblib-canvas-batch122-2026-09-06/)：工具箱预设完整性验证（源站 23 项 vs clone 零缺失）。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。

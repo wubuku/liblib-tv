@@ -10,9 +10,17 @@ import { cn } from "@/lib/utils";
 // 「全部项目」页结构对齐；clone 单项目多画布，列表以画布为卡片映射（CLONE_DECISION）。
 export default function ProjectListPage() {
   const router = useRouter();
-  const { projectName, canvases, activeCanvasId, setActiveCanvas, addCanvas } =
-    useCanvasStore();
+  const {
+    projectName,
+    canvases,
+    removedCanvases,
+    activeCanvasId,
+    setActiveCanvas,
+    addCanvas,
+    restoreCanvas,
+  } = useCanvasStore();
   const [status, setStatus] = useState("");
+  const [recycleOpen, setRecycleOpen] = useState(false);
   const today = new Date().toISOString().slice(0, 10);
 
   const openCanvas = (canvasId: string) => {
@@ -40,8 +48,12 @@ export default function ProjectListPage() {
           <button
             type="button"
             data-project-recycle
-            onClick={() => setStatus("本地原型：回收站未接入")}
-            className="flex h-8 items-center gap-1 rounded-lg px-2 text-xs text-[#9a9a9a] hover:bg-white/[0.06] hover:text-white"
+            aria-expanded={recycleOpen}
+            onClick={() => setRecycleOpen((value) => !value)}
+            className={cn(
+              "flex h-8 items-center gap-1 rounded-lg px-2 text-xs hover:bg-white/[0.06]",
+              recycleOpen ? "bg-white/[0.1] text-white" : "text-[#9a9a9a] hover:text-white",
+            )}
           >
             <Trash2 size={13} />
             回收站
@@ -57,6 +69,42 @@ export default function ProjectListPage() {
           </button>
         </div>
       </div>
+
+      {recycleOpen && (
+        <div data-recycle-panel className="mb-6 rounded-xl border border-white/[0.08] bg-[#1f1f1f] p-4">
+          <p className="text-[11px] text-[#8c8c8c]">仅显示最近 30 天内删除的内容</p>
+          {removedCanvases.length === 0 ? (
+            <p data-recycle-empty className="py-4 text-xs text-[#666]">
+              回收站为空
+            </p>
+          ) : (
+            <ul className="mt-2 space-y-2">
+              {removedCanvases.map((canvas) => (
+                <li
+                  key={canvas.id}
+                  data-recycle-item={canvas.id}
+                  className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-2"
+                >
+                  <span className="min-w-0 truncate text-xs text-[#d8d8d8]">
+                    {canvas.name}
+                    <span className="ml-2 text-[10px] text-[#777]">
+                      {canvas.removedAt} · 剩余 30 天
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    data-recycle-restore={canvas.id}
+                    onClick={() => restoreCanvas(canvas.id)}
+                    className="shrink-0 rounded border border-white/[0.14] px-2 py-1 text-[11px] text-[#d8d8d8] hover:border-white/[0.3] hover:text-white"
+                  >
+                    恢复
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
         <button
