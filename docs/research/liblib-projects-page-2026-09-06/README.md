@@ -24,3 +24,11 @@
 
 clone 无 /project 路由;logo 菜单「全部项目」当前为本地 no-op(Batch 106)。
 实现 clone 的项目列表页为**新路由工作**,需单独授权立项;本批仅记录采样。
+
+
+## 补充探针（Batch 120,2026-09-06）
+
+- 卡片 hover 封面区 + 右键上下文菜单均未暴露操作控件;三个孤儿「未命名」
+  项目的删除入口保持 `SOURCE_UNKNOWN`,留待用户手动清理（自动化不猜）。
+- 证据:`../liblib-canvas-sampling-2026-09-06/s7-card-controls.png`、
+  `../liblib-canvas-sampling-2026-09-06/s7-context-menu.png`。
