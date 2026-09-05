@@ -109,6 +109,8 @@ graph TD
 - [`research/liblib-canvas-batch113-2026-09-05/`](research/liblib-canvas-batch113-2026-09-05/)：角色卡片条均匀间距（移除位次特判）。
 - [`research/liblib-canvas-sampling-2026-09-06/`](research/liblib-canvas-sampling-2026-09-06/)：丢弃式测试项目采样：多画布 CRUD、双击生成流、脚本生成器节点、导演台入口。
 - [`research/liblib-canvas-batch114-2026-09-06/`](research/liblib-canvas-batch114-2026-09-06/)：多画布下拉对齐 2026-09-06 采样：双按钮行、四项行级菜单、删除确认框与 fallback。
+- [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
+- [`research/liblib-canvas-batch116-2026-09-06/`](research/liblib-canvas-batch116-2026-09-06/)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`research/liblib-canvas-batch83-2026-08-29/`](research/liblib-canvas-batch83-2026-08-29/)：Director command outcome/reason 到固定 header feedback surface、ARIA、no-op/rejection 可见性、mobile geometry 与 current gate 回归的实施与验证入口。
 - [`research/liblib-canvas-batch84-2026-08-29/`](research/liblib-canvas-batch84-2026-08-29/)：Director 对象树 lock/visibility 并列控制、locked-target 编辑保护、typed rejection、zero mutation 和 unlock recovery 的实施与验证入口。
 - [`research/liblib-canvas-batch85-2026-08-29/`](research/liblib-canvas-batch85-2026-08-29/)：Director 对象树 selection action bar、单选/多选数量、project-scoped copy、clear zero-history、reference-aware batch delete 和 mobile discovery 的实施与验证入口。

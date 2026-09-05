@@ -158,6 +158,8 @@ BrowserContext，不写截图。
 | Batch 112 | Character filter panel alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch112.py` 已通过；覆盖五组芯片集合、清空筛选、男芯片过滤（甜妹隐藏/霸总保留）、面板开合与 `0/0/0` diagnostics；文化区域选项与真实筛选服务不证明 |
 | Batch 113 | Uniform character strip spacing | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch113.py` 已通过；前 6 张卡片 x 轴间距一致、`0/0/0` diagnostics；源站精确像素为截图粗读 |
 | Batch 114 | Multi-canvas dropdown alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch114.py` 已通过；覆盖行双按钮结构与 aria、最新在前排序、四项行级菜单、新建画布 3、重命名、副本命名与自动切换、删除确认框文案/取消/fallback 和 `0/0/0` diagnostics；在新窗口打开行为与副本再复制命名不证明 |
+| Batch 115 | Canvas double-click add panel | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch115.py` 已通过；双击打开面板/不建节点/Escape 关闭/可重复触发和 `0/0/0` diagnostics |
+| Batch 116 | Script-generator node type | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch116.py` 已通过；脚本NEW 创建 脚本生成器（350x350、三尝试/参考图/GVLM 3.1/积分 6）、尝试选择与本地提示词、尺寸样式与 `0/0/0` diagnostics；batch98 两处断言随采样迁移；真实生成/子界面不证明 |
 | Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |
 | Batch 107 | Skill headline rotation | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch107.py` 已通过；覆盖三条源站观察标题随 换一批 轮换与回绕、卡片集合不变和 `0/0/0` diagnostics；不证明源站轮换真实驱动 |
 

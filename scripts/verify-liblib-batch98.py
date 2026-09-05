@@ -116,18 +116,32 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "script-menu:legacy-entry",
         script_menu.locator('[data-add-node-entry="script-legacy"]').inner_text().replace("\n", "").endswith("Beta"),
     )
+    # Batch 116: 源站脚本NEW已可创建节点（脚本生成器），断言随采样更新。
     script_menu.locator('[data-add-node-entry="script-new"]').click()
-    check("script-menu:new-status", "本地原型" in panel.locator("[data-add-node-status]").inner_text())
-    check("panel:still-open", panel.is_visible())
+    page.wait_for_timeout(800)
+    check(
+        "script-menu:new-creates-generator",
+        "脚本生成器"
+        in page.locator(".react-flow__node-script-generator").first.inner_text(),
+    )
+    check(
+        "panel:closes-on-create",
+        not page.locator('[data-liblib-overlay="add-node"]').is_visible(),
+    )
+    panel = open_add_node(page)
+    panel.locator('[data-add-node-entry="script"]').click()
+    page.wait_for_timeout(400)
+    script_menu = page.locator('[data-add-node-submenu="script"]')
     script_menu.locator('[data-add-node-entry="script-legacy"]').click()
     check(
         "script-menu:legacy-creates",
         page.locator(".react-flow__node-script").count() == initial_script_nodes + 1,
     )
     check("script-menu:legacy-closes-panel", not page.locator('[data-liblib-overlay="add-node"]').is_visible())
+    # Batch 116: 脚本NEW 与 脚本（旧版） 各创建一个节点，共 +2。
     check(
         "script-menu:node-count",
-        page.locator(".react-flow__node").count() == initial_nodes + 1,
+        page.locator(".react-flow__node").count() == initial_nodes + 2,
     )
 
     panel = open_add_node(page)

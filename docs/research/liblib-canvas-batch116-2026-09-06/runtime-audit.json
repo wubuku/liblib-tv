@@ -1,0 +1,31 @@
+{
+  "batch": 116,
+  "title": "Script-generator node type",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "flyout:script-new",
+        "node:created",
+        "node:type-registered",
+        "node:title",
+        "node:mode:剧本生成分镜脚本",
+        "node:mode:角色生成分镜脚本",
+        "node:mode:自己编写分镜脚本",
+        "node:reference",
+        "node:model",
+        "node:size-style",
+        "node:size-scaled",
+        "attempt:select",
+        "prompt:editable",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

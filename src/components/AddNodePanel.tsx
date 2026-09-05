@@ -172,7 +172,7 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
           <button
             type="button"
             data-add-node-entry="script-new"
-            onClick={() => setStatus("本地原型：新脚本节点能力未采样")}
+            onClick={() => createNode("script-generator")}
             className="flex h-9 w-full items-center justify-between rounded-lg px-2 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
           >
             脚本

@@ -129,6 +129,8 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 112 | Character filter panel alignment with the 2026-09-05 sampling: five sampled chip groups, clear-all, upward panel anchored to the toggle, local tag-based filtering with 古代 alias (culture group unknown) |
 | Batch 113 | Uniform character strip spacing: removed position-specific margin hack, uniform 19px gap per the 2026-09-05 source screenshot |
 | Batch 114 | Multi-canvas dropdown alignment with the 2026-09-06 disposable-project sampling: switch + hover-gated more button rows, four-item row menu, delete confirm dialog, 副本{n} duplicate naming, newest-first order, creation-adjacent delete fallback |
+| Batch 115 | Canvas double-click opens the add-node panel (2026-09-06 sampling), no node creation, escape/re-trigger |
+| Batch 116 | Script-generator node type (脚本 NEW): 350x350 card with three attempt modes, reference entry, GVLM 3.1 model tag and local prompt; add-panel 脚本NEW now creates the node (batch98 assertions migrated) |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

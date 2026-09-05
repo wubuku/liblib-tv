@@ -3264,6 +3264,7 @@ function getDefaultNodeDimensions(type: string) {
     case "shot-breakdown-result":
       return { width: 1040, height: 680 };
     case "video-clip":
+    case "script-generator":
       return { width: 350, height: 350 };
     case "audio":
       return { width: 350, height: 140 };
@@ -3286,6 +3287,8 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
   switch (type) {
     case "text":
       return { content: "新文本节点" };
+    case "script-generator":
+      return { title: "脚本生成器" };
     case "image":
       return {
         filename: "新图片",

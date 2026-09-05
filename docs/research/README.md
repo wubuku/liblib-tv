@@ -34,6 +34,8 @@
 - [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/README.md)：角色卡片条均匀间距（移除位次特判）。
 - [`liblib-canvas-sampling-2026-09-06/`](liblib-canvas-sampling-2026-09-06/README.md)：丢弃式测试项目采样：多画布 CRUD、双击生成流、脚本生成器节点、导演台入口。
 - [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/README.md)：多画布下拉对齐 2026-09-06 采样：双按钮行、四项行级菜单、删除确认框、副本命名与 fallback。
+- [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/README.md)：双击画布打开添加节点面板。
+- [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/README.md)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`liblib-seedance-2.5-2026-08-25/`](liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核、证据图和实现历史。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：LibTV 五项主推能力的源站呈现、clone 缺口、价值排序和后续闸门。
 - [`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)：现有回归脚本与当前源站合同的覆盖矩阵及历史断言边界。
@@ -207,6 +209,8 @@
 | 112 | Character filter panel alignment | [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/) `SCRIPT_RECORDED_PASS`，五组芯片、清空筛选与本地过滤已通过；文化区域选项不证明 |
 | 113 | Uniform character strip spacing | [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/) `SCRIPT_RECORDED_PASS`，卡片条均匀节奏已通过；源站精确像素为截图粗读 |
 | 114 | Multi-canvas dropdown alignment | [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/) `SCRIPT_RECORDED_PASS`，行结构/行级菜单/确认框/副本命名与 fallback 已通过；在新窗口打开行为不证明 |
+| 115 | Canvas double-click add panel | [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) `SCRIPT_RECORDED_PASS`，双击开面板/零创建/Escape/重触发已通过 |
+| 116 | Script-generator node type | [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/) `SCRIPT_RECORDED_PASS`，脚本NEW 创建 脚本生成器、卡片内容与本地交互已通过；真实生成/子界面不证明 |
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
@@ -236,6 +240,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 110 | Aged-gate deprecation | 已完成；漂移 verifier 标注与登记已通过，详见 [`liblib-canvas-batch110-2026-09-05/`](liblib-canvas-batch110-2026-09-05/)；剩余候选均需 fixture 授权 |
 | 111 | Character library modal alignment | 已完成；角色库模态对齐已通过，详见 [`liblib-canvas-batch111-2026-09-05/`](liblib-canvas-batch111-2026-09-05/)；其余候选需 fixture 授权 |
 | 114 | Multi-canvas dropdown alignment | 已完成；多画布下拉对齐已通过（丢弃式采样解锁），详见 [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/)；循环继续：115 双击生成、116 脚本生成器、117 导演台入口 |
+| 115 | Canvas double-click add panel | 已完成；双击生成入口对齐已通过，详见 [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) |
+| 116 | Script-generator node type | 已完成；脚本生成器节点对齐已通过，详见 [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/)；循环继续：117 导演台入口 |
 | 113 | Uniform character strip spacing | 已完成；均匀间距对齐已通过，详见 [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/)；其余候选需 fixture 授权 |
 | 112 | Character filter panel alignment | 已完成；筛选面板对齐已通过，详见 [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/)；其余候选需 fixture 授权 |
 | 108 | 97-107 series cross-batch regression | 已完成；跨批回归与漂移归因已记录，详见 [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/)；循环迭代继续 |
