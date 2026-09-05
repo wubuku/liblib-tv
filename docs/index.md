@@ -111,6 +111,8 @@ graph TD
 - [`research/liblib-projects-page-2026-09-06/`](research/liblib-projects-page-2026-09-06/)：「全部项目」列表页采样（研究记录，未实现）。
 - [`research/liblib-canvas-batch114-2026-09-06/`](research/liblib-canvas-batch114-2026-09-06/)：多画布下拉对齐 2026-09-06 采样：双按钮行、四项行级菜单、删除确认框与 fallback。
 - [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
+- [`research/liblib-video-panel-2026-09-06/`](research/liblib-video-panel-2026-09-06/)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
+- [`research/liblib-canvas-batch125-2026-09-06/`](research/liblib-canvas-batch125-2026-09-06/)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`research/liblib-canvas-batch116-2026-09-06/`](research/liblib-canvas-batch116-2026-09-06/)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`research/liblib-canvas-batch117-2026-09-06/`](research/liblib-canvas-batch117-2026-09-06/)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
 - [`research/liblib-canvas-batch124-2026-09-06/`](research/liblib-canvas-batch124-2026-09-06/)：画布回收站（软删除+恢复）：/project 回收站面板与内容完整恢复。
