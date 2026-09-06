@@ -204,7 +204,7 @@ export function VideoGenerationPanel({
       style={{ transform: `scale(${1 / zoom})` }}
     >
       <section className="relative flex h-[274px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
-        <div className="flex h-8 shrink-0 items-center gap-1">
+        <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
           {[{ label: "参考", icon: Images }, { label: "标记", icon: AtSign }, { label: "特效", icon: Sparkles }, { label: "角色库", icon: Box }, { label: "运镜", icon: Film, hasMenu: true }].map((item) => {
             const Icon = item.icon;
             if ("hasMenu" in item && item.hasMenu) {
@@ -214,7 +214,7 @@ export function VideoGenerationPanel({
                     type="button"
                     data-yunjing-trigger
                     onClick={() => setYunjingOpen(!yunjingOpen)}
-                    className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                    className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
                   >
                     <Icon size={12} />
                     {item.label}
@@ -259,7 +259,7 @@ export function VideoGenerationPanel({
                 </div>
               );
             }
-            return <button key={item.label} type="button" className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><Icon size={12} />{item.label}</button>;
+            return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><Icon size={12} />{item.label}</button>;
           })}
           {isContinuation && onClearContinuation && (
             <button
@@ -406,7 +406,8 @@ export function VideoGenerationPanel({
           </div>
 
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
-          <span data-video-credits className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
+          {/* Batch 151: 源站积分块 min-w-[85px] justify-end、fg-muted 灰调、数值 12px/15px（2026-09-07 实拍）。 */}
+          <span data-video-credits className="ml-auto flex h-8 min-w-[85px] shrink-0 items-center justify-end gap-1.5 text-[#9a9a9a]"><Zap size={12} fill="currentColor" /><span className="text-[12px] leading-[15px]">{credits}</span></span>
           <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
           <button
             data-video-generate-submit

@@ -1,0 +1,22 @@
+{
+  "batch": 151,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "toolbar:pill-h26",
+        "toolbar:has-pills",
+        "credits:min-w-85",
+        "credits:muted-color",
+        "credits:right-aligned",
+        "credits:135",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

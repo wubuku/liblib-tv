@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Video panel toolbar pills h-26 and credits block aligned to the
+  2026-09-07 round-2 sample (Batch 151): min-w-[85px], right-aligned, muted
+  gray; selection-bound panel confirmed, one-time 尝试 gate and rAF-gated
+  menus recorded for future sampling
 - /project canvas cards open the canvas in a new tab and add-node panel
   container aligned to the sampled source classes (Batch 150, 2026-09-07):
   rounded-2xl, backdrop-blur-[32px], hairline border; batch119 popup

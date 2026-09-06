@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
+- [`liblib-canvas-batch151-2026-09-07/`](liblib-canvas-batch151-2026-09-07/README.md)：采样第二轮 + 工具行/积分块微对齐（面板绑定选中态确认、尝试一次性门控、菜单 rAF 门控）。
 - [`liblib-canvas-batch150-2026-09-07/`](liblib-canvas-batch150-2026-09-07/README.md)：/project 画布卡新开标签 + 添加面板容器视觉（rounded-2xl/backdrop-blur）。
 - [`liblib-canvas-batch149-2026-09-07/`](liblib-canvas-batch149-2026-09-07/README.md)：高级设置纵向列 + 默认模型 2.0（源站 2026-09-07 复采：分组内嵌生成面板、尝试列、积分 135、跟随横幅核对、会话降级根因勘误）。
 - [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/README.md)：回收站勾选与批量恢复：计数、逐项勾选与批量恢复按钮。
@@ -234,6 +235,7 @@
 | 139 | Topbar credits split | [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/) `SCRIPT_RECORDED_PASS`，积分超市/余额 独立入口已通过；商城页行为不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 148 | Project card cover placeholders | [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/) `SCRIPT_RECORDED_PASS`，封面占位图/节点计数已通过；源站封面内容不证明 |
+| 151 | Toolbar/credits micro-alignment (round-2 sample) | [`liblib-canvas-batch151-2026-09-07/`](liblib-canvas-batch151-2026-09-07/) `SCRIPT_RECORDED_PASS`，pill/积分块已通过；尝试门控与菜单选中态待窗口前置复测 |
 | 150 | /project new-tab cards + panel container visuals | [`liblib-canvas-batch150-2026-09-07/`](liblib-canvas-batch150-2026-09-07/) `SCRIPT_RECORDED_PASS`，新标签契约/容器视觉已通过；跨页 store 差异记录在案 |
 | 149 | Advanced settings column + default model 2.0 | [`liblib-canvas-batch149-2026-09-07/`](liblib-canvas-batch149-2026-09-07/) `SCRIPT_RECORDED_PASS`，纵向开关列/触发器缩写/积分 135 已通过；尝试联动冲突待受控复测 |
 | 134 | FrameOS copy/paste clipboard cycle | [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+C→Cmd+V 粘贴副本/undo/重复粘贴已通过 |
@@ -283,6 +285,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 151 | Toolbar/credits micro-alignment | 已完成；工具行与积分块对齐已通过，详见 [`liblib-canvas-batch151-2026-09-07/`](liblib-canvas-batch151-2026-09-07/)；循环继续 |
 | 150 | /project new-tab cards + panel container visuals | 已完成；新标签页导航与面板容器已通过，详见 [`liblib-canvas-batch150-2026-09-07/`](liblib-canvas-batch150-2026-09-07/)；循环继续 |
 | 149 | Advanced settings column + default model 2.0 | 已完成；高级设置纵向列与默认模型 2.0 已通过，详见 [`liblib-canvas-batch149-2026-09-07/`](liblib-canvas-batch149-2026-09-07/)；循环继续 |
 | 146b | Character filter 文化区域 | 已完成；文化区域选项补全已通过，详见 [`liblib-canvas-batch146b-2026-09-07/`](liblib-canvas-batch146b-2026-09-07/)；循环继续 |
