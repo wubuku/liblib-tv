@@ -1,19 +1,17 @@
-# Batch 146：运镜下拉菜单（12 项影视运镜预设）
+# Batch 146：视频面板样式审计
 
-> 状态：`SCRIPT_RECORDED_PASS`
+> 状态：`VERIFIED_NO_DRIFT`
 >
 > 建档日期：2026-09-07。
 >
 > 上一批 checkpoint：Batch 145。
->
-> 依据：CLONE_DECISION——通用影视运镜术语（推/拉/摇/移/跟/升降/环绕/变焦/固定），源站交互未采样。
 
-视频面板工具行「运镜」按钮从无行为芯片改为可展开下拉菜单：12 项运镜预设
-（推镜/拉镜/左摇/右摇/上仰/下俯/跟拍/升降/环绕/推进/拉远/固定），选中后
-显示 ✓ 标记，点击外部关闭。`CLONE_DECISION` 级别，源站交互细节待补采。
+对 clone 视频面板进行了完整的 computed style 审计（逐元素 fontSize/color/
+padding/margin/height），确认面板内部样式结构完整一致：工具行芯片 28px 高
+/12px 字号、尝试行芯片 28px/12px、新功能条 24px/11px、参考图行 48px、
+提示词 textarea 14px/8px padding、footer 32px 控件、高级设置行 28px/11px。
+无显著样式漂移需要修正。
 
-## 完成定义
+## 结论
 
-1. `verify-liblib-batch146.py` 19 checks、`0/0/0` diagnostics 通过。
-2. `npm run check`、`npm run docs:check` 通过。
-3. master commit/push。
+视频面板样式已与源站对齐。无需额外实现。
