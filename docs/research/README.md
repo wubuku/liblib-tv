@@ -42,6 +42,7 @@
 - [`liblib-surface-coverage-2026-09-07/`](liblib-surface-coverage-2026-09-07/README.md)：全表面覆盖矩阵：已对齐/待补采/阻塞 三态路线图（截至 2026-09-07）。
 - [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/README.md)：视频面板积分比例因子落地（16:9→27/s、Auto→46/s，采样校准）。
 - [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/README.md)：顶栏 积分超市/积分余额 拆分（源站顺序对齐）。
+- [`liblib-canvas-batch141-2026-09-07/`](liblib-canvas-batch141-2026-09-07/README.md)：视频模型菜单全量目录落地（35 项采样校准）。
 - [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/README.md)：FrameOS 复制节点落地：Cmd+D 插入副本节点与 undo/redo。
 - [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/README.md)：FrameOS 复制/粘贴剪贴板闭环：Cmd+V 粘贴副本与 undo。
 - [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/README.md)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
@@ -223,6 +224,7 @@
 | 113 | Uniform character strip spacing | [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/) `SCRIPT_RECORDED_PASS`，卡片条均匀节奏已通过；源站精确像素为截图粗读 |
 | 114 | Multi-canvas dropdown alignment | [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/) `SCRIPT_RECORDED_PASS`，行结构/行级菜单/确认框/副本命名与 fallback 已通过；在新窗口打开行为不证明 |
 | 115 | Canvas double-click add panel | [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) `SCRIPT_RECORDED_PASS`，双击开面板/零创建/Escape/重触发已通过 |
+| 141 | Video model menu full catalog | [`liblib-canvas-batch141-2026-09-07/`](liblib-canvas-batch141-2026-09-07/) `SCRIPT_RECORDED_PASS`，35 项采样目录落地与矩阵迁移已通过；premium 完整分布不证明 |
 | 125 | Video panel attempts alignment | [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/) `SCRIPT_RECORDED_PASS`，尝试行三芯片/新功能条/placeholder 对齐已通过；尝试子界面/模型菜单/积分 135 待补采样 |
 | 136 | Recycle bin selection | [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/) `SCRIPT_RECORDED_PASS`，勾选/计数/批量恢复已通过；源站勾选交互不证明 |
 | 135 | Credits ratio factor | [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/) `SCRIPT_RECORDED_PASS`，16:9→135/Auto→230 数据点校准的比例因子已落地；其余比例/模型定价不证明 |
@@ -263,6 +265,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 111 | Character library modal alignment | 已完成；角色库模态对齐已通过，详见 [`liblib-canvas-batch111-2026-09-05/`](liblib-canvas-batch111-2026-09-05/)；其余候选需 fixture 授权 |
 | 114 | Multi-canvas dropdown alignment | 已完成；多画布下拉对齐已通过（丢弃式采样解锁），详见 [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/)；循环继续：115 双击生成、116 脚本生成器、117 导演台入口 |
 | 115 | Canvas double-click add panel | 已完成；双击生成入口对齐已通过，详见 [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) |
+| 141 | Video model menu full catalog | 已完成；模型菜单全量目录落地已通过，详见 [`liblib-canvas-batch141-2026-09-07/`](liblib-canvas-batch141-2026-09-07/)；循环继续 |
 | 125 | Video panel attempts alignment | 已完成；视频面板对齐已通过，详见 [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/)；循环继续 |
 | 116 | Script-generator node type | 已完成；脚本生成器节点对齐已通过，详见 [`liblib-canvas-batch116-2026-09-06/`](liblib-canvas-batch116-2026-09-06/)；循环继续：117 导演台入口 |
 | 117 | Director node card alignment | 已完成；导演台节点卡对齐已通过，详见 [`liblib-canvas-batch117-2026-09-06/`](liblib-canvas-batch117-2026-09-06/)；丢弃式采样四项发现全部落地 |
