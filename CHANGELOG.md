@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-09-07
+
+### Added
+See [Unreleased] below for the complete batch-by-batch record
+(Batches 77-143: Director reliability series, LibTV canvas alignment
+sampled 2026-09-05/06, /project page, recycle bin, video panel alignment,
+FrameOS fixes, coverage matrix and regression sweeps).
+
 ## [Unreleased]
 
 ### Added
