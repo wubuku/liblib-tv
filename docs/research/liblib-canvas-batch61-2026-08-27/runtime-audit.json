@@ -2,7 +2,7 @@
   "batch": 61,
   "date": "2026-08-27",
   "status": "SCRIPT_RECORDED_PASS",
-  "url": "http://localhost:3000",
+  "url": "http://localhost:4317",
   "fixture": "LIBTV-FIX-LOCAL-REACT-FLOW-CHANGES-01",
   "verifier": "LIBTV-VR-016",
   "staticChecks": {
@@ -221,9 +221,12 @@
       "edgeChangeCount": 1
     },
     "history_copy_runtime_sanitation": {
-      "copiedNodeId": "text-1787811683021-wzi9gr",
+      "copiedNodeId": "text-1788710712993-nwjuow",
       "copyCommitRuntimeFields": [],
-      "postMountMeasured": null,
+      "postMountMeasured": {
+        "width": 220,
+        "height": 140
+      },
       "historyRuntimeFields": {
         "nodes": [
           [],

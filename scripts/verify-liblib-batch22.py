@@ -110,7 +110,8 @@ def run_desktop(page: Page):
     assert_close(menu_box["width"], 380)
     assert_close(menu_box["height"], 410)
     assert_close(menu_box["x"] - panel_box["x"], 0)
-    assert_close(menu_box["y"] - panel_box["y"], -176.7)
+    # Batch 126: 高级设置行使模型菜单 y 偏移上移 28px。
+    assert_close(menu_box["y"] - panel_box["y"], -204.7)
     assert_item_matrix(page)
 
     selected = page.locator('[data-video-model-option][aria-pressed="true"]')

@@ -64,27 +64,48 @@ def run_desktop(page: Page):
 
     open_canvas_menu(page)
     menu = page.locator('[data-liblib-overlay="canvas-dropdown"]')
-    menu.locator('[data-canvas-row-menu="canvas-3"]').click()
-    menu.get_by_role("button", name="复制", exact=True).click()
+    # Batch 114: 行结构迁移 — hover 行 + 更多操作按钮；菜单项更名为 画布 动词；副本命名 副本{n}；删除有确认框；fallback 取创建序前一画布。
+    row3 = menu.locator('[data-canvas-row="canvas-3"]')
+    row3.hover()
+    page.wait_for_timeout(250)
+    row3.locator("button[aria-label='更多操作']").click(force=True)
+    page.wait_for_timeout(300)
+    menu.get_by_role("button", name="复制画布", exact=True).click()
+    page.wait_for_timeout(400)
     assert not menu.is_visible()
-    assert trigger.inner_text().strip() == "画布 3 (副本)"
+    print("DEBUG trigger:", repr(trigger.inner_text().strip()))
+    assert trigger.inner_text().strip() == "画布 3副本1"
 
     open_canvas_menu(page)
     menu = page.locator('[data-liblib-overlay="canvas-dropdown"]')
-    menu.locator('[data-canvas-row-menu="canvas-4"]').click()
-    menu.get_by_role("button", name="重命名", exact=True).click()
+    row4 = menu.locator('[data-canvas-row="canvas-4"]')
+    row4.hover()
+    page.wait_for_timeout(250)
+    row4.locator("button[aria-label='更多操作']").click(force=True)
+    page.wait_for_timeout(300)
+    menu.get_by_role("button", name="重命名画布", exact=True).click()
     rename_input = menu.locator('input[type="text"]').last
     rename_input.fill("主画布")
     rename_input.press("Enter")
+    page.wait_for_timeout(300)
     assert not menu.is_visible()
     assert trigger.inner_text().strip() == "主画布"
 
     open_canvas_menu(page)
     menu = page.locator('[data-liblib-overlay="canvas-dropdown"]')
-    menu.locator('[data-canvas-row-menu="canvas-4"]').click()
-    menu.get_by_role("button", name="删除", exact=True).click()
-    assert not menu.is_visible()
-    assert trigger.inner_text().strip() == "画布 1"
+    row4 = menu.locator('[data-canvas-row="canvas-4"]')
+    row4.hover()
+    page.wait_for_timeout(250)
+    row4.locator("button[aria-label='更多操作']").click(force=True)
+    page.wait_for_timeout(300)
+    menu.get_by_role("button", name="删除画布", exact=True).click()
+    page.wait_for_timeout(400)
+    confirm = page.locator("[data-canvas-delete-confirm]")
+    assert confirm.is_visible()
+    confirm.get_by_text("确认", exact=True).click()
+    page.wait_for_timeout(500)
+    # Batch 114: 删除活动画布回退到创建序前一画布（canvas-3，名称 画布 3），不再是画布 1。
+    assert trigger.inner_text().strip() == "画布 3"
 
     open_canvas_menu(page)
     page.keyboard.press("Escape")

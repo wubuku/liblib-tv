@@ -356,13 +356,7 @@ export function VideoGenerationPanel({
               <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongVideo} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
           </div>
-          {/* Batch 126: 源站高级设置内联可见（联网搜索/自动校验素材/智能引用 AutoLink）。 */}
-          <span data-video-advanced-label className="ml-1 shrink-0 text-[11px] text-[#8a8a8a]">高级设置</span>
-          <div data-video-advanced-inline className="flex shrink-0 items-center gap-1">
-            <SwitchRow label="联网搜索" icon={<Search size={12} />} checked={networkSearch} onChange={setNetworkSearch} compact />
-            <SwitchRow label="自动校验素材" icon={<ShieldCheck size={12} />} checked={materialCheck} onChange={setMaterialCheck} compact />
-            <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={12} />} checked={autoLink} onChange={setAutoLink} compact />
-          </div>
+
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
           <span data-video-credits className="ml-auto flex shrink-0 items-center gap-1 text-[#d6a233]"><Zap size={12} fill="currentColor" />{credits}</span>
           <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
@@ -407,6 +401,16 @@ export function VideoGenerationPanel({
             )}
           </button>
         </footer>
+
+        {/* Batch 126: 源站高级设置内联可见（联网搜索/自动校验素材/智能引用 AutoLink）。 */}
+        <div data-video-advanced-inline className="flex h-7 shrink-0 items-center gap-1.5 border-t border-white/[0.07] px-1 text-[11px] text-[#8a8a8a]">
+          <span data-video-advanced-label>高级设置</span>
+          <div className="flex items-center gap-1">
+            <SwitchRow label="联网搜索" icon={<Search size={12} />} checked={networkSearch} onChange={setNetworkSearch} compact />
+            <SwitchRow label="自动校验素材" icon={<ShieldCheck size={12} />} checked={materialCheck} onChange={setMaterialCheck} compact />
+            <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={12} />} checked={autoLink} onChange={setAutoLink} compact />
+          </div>
+        </div>
       </section>
     </div>
   );
