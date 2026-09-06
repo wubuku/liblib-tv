@@ -8,6 +8,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Batches 77-96 (Director reliability series): canvas-viewport freshness,
+  source runtime navigation audit, overlay/multi-zoom alignment, clipboard
+  identity remap, whole-project duplicate, durable tombstones, strict V1
+  import/export, session-local resource materialization, command feedback
+  projection, project/session diagnostics, selection CRUD, transform context,
+  restore selection, selection/timeline authority, scene camera discoverability,
+  semantic commands, object/camera/group command boundary, local resource
+  lifecycle, final desktop/mobile regression, focus containment, canvas-media
+  ingress, multi-camera Shot workflow and authoring integrity. Gated by the
+  Director current verifier manifest; see
+  `docs/research/VERIFICATION_LEDGER.md`.
+- Batches 114-119, 124-126 and 128 (LibTV canvas alignment, sampled
+  2026-09-05/06): multi-canvas dropdown CRUD with row more-menu, delete
+  confirm and creation-adjacent fallback; canvas double-click opens the add
+  panel; shortcuts panel four-column alignment; empty-canvas quick chips;
+  generation-history modal; asset drawer controls; top bar 工作流/故事板
+  naming; storyboard three-section copy; collaboration follow banner; project
+  menu; attempt chips driving settings linkage; inline advanced settings row.
+  Evidence under `docs/research/liblib-canvas-batch1xx-2026-09-*`.
+- /project list page with recycle bin: back/title/recycle/new-folder
+  structure, create card, canvas cards navigating back, recycle panel with
+  30-day copy, per-item restore, selection counter and batch restore
+  (Batches 119, 124, 136).
+- Credits ratio factor calibrated on the 2026-09-06 data points
+  (16:9→135, Auto→230 at 720P·5s·1个) (Batch 135).
+- FrameOS duplicate node insertion and copy/paste clipboard cycle:
+  Cmd+D appends the copy to nodes, Cmd+C/X sync an internal clipboard,
+  Cmd+V pastes a selected copy with history (Batches 133-134).
+- Research records: LibTV live audits (2026-09-05/06) covering the canvas
+  shell, director desk, video generation panel rework, projects page and
+  recycle bin; surface coverage matrix roadmap.
+
+### Fixed
+- FrameOS duplicateNode now inserts the copy into nodes (previously the
+  constructed copy was never added, so Cmd+D did not create a node)
+  (Batch 133).
+- Superseded AdvancedMenu popup removed from the video generation panel
+  footer after the inline advanced settings row landed (Batch 126); footer
+  geometry restored and parameter menu offsets migrated (Batches 21-22 via
+  Batch 131 regression).
+- Canvas dropdown CRUD assertions migrated to the sampled row structure
+  (Batches 114/131).
+
+
+### Added
 - Closed Batch 76 Director owner reachability reconciliation: all-canvas live
   owner planning, one-time inactive source/canvas tombstones, two-phase active
   shell/session/runtime cleanup, idempotency, stale async completion, retained
