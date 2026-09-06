@@ -167,6 +167,7 @@ BrowserContext，不写截图。
 | Batch 149 | 高级设置纵向列 + 默认模型 2.0 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch149.py` 已通过（15 checks）；触发器缩写/菜单选中态/积分 135/纵向列几何/引用槽 48x55，`0` diagnostics |
 | Batch 150 | /project 新开标签 + 面板容器视觉 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch150.py` 已通过（9 checks）；新标签契约/容器圆角/毛玻璃，`0` diagnostics |
 | Batch 151 | 工具行/积分块微对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch151.py` 已通过（7 checks）；pill h26/积分块灰调右对齐/135 回归，`0` diagnostics |
+| Batch 152 | /project 卡副行仅日期 + 覆盖矩阵刷新 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch152.py` 已通过（7 checks）；日期唯一/无前缀/计数保留，`0` diagnostics |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |

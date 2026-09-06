@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 export default function ProjectListPage() {
   const router = useRouter();
   const {
-    projectName,
     canvases,
     removedCanvases,
     activeCanvasId,
@@ -178,8 +177,9 @@ export default function ProjectListPage() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-3">
               <span className="truncate text-sm text-[#ededed]">{canvas.name}</span>
+              {/* Batch 152: 源站卡副行仅日期（2026-09-07 实拍：未命名 + 2026-09-06），无工作区前缀。 */}
               <span className="text-[11px] text-[#777]">
-                {projectName} · {today}
+                {today}
               </span>
             </div>
           </button>

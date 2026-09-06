@@ -1,0 +1,22 @@
+{
+  "batch": 152,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "project:has-cards",
+        "card:has-title",
+        "card:has-date",
+        "card:date-only-line",
+        "card:no-workspace-prefix",
+        "card:node-count",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

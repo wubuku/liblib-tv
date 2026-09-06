@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- /project card sub-line shows date only (Batch 152, 2026-09-07 sample:
+  title + date, no workspace prefix); surface coverage matrix refreshed with
+  the Batch 149-152 re-sampling facts (credits 4th data point, rAF-gated
+  menus, group-embedded panel)
 - Video panel toolbar pills h-26 and credits block aligned to the
   2026-09-07 round-2 sample (Batch 151): min-w-[85px], right-aligned, muted
   gray; selection-bound panel confirmed, one-time 尝试 gate and rAF-gated
