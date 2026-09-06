@@ -117,6 +117,9 @@ export function VideoGenerationPanel({
   const [autoLink, setAutoLink] = useState(true);
   // Batch 125: 源站尝试行选择（本地草稿）。
   const [attempt, setAttempt] = useState<string | null>(null);
+  // Batch 146: 运镜按钮下拉菜单（CLONE_DECISION：通用影视运镜术语，源站交互未采样）。
+  const [yunjingOpen, setYunjingOpen] = useState(false);
+  const [yunjingSelection, setYunjingSelection] = useState<string | null>(null);
   const [networkSearch, setNetworkSearch] = useState(true);
   const [materialCheck, setMaterialCheck] = useState(true);
   const [prompt, setPrompt] = useState(
@@ -198,8 +201,60 @@ export function VideoGenerationPanel({
     >
       <section className="relative flex h-[274px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
         <div className="flex h-8 shrink-0 items-center gap-1">
-          {[{ label: "参考", icon: Images }, { label: "标记", icon: AtSign }, { label: "特效", icon: Sparkles }, { label: "角色库", icon: Box }, { label: "运镜", icon: Film }].map((item) => {
+          {[{ label: "参考", icon: Images }, { label: "标记", icon: AtSign }, { label: "特效", icon: Sparkles }, { label: "角色库", icon: Box }, { label: "运镜", icon: Film, hasMenu: true }].map((item) => {
             const Icon = item.icon;
+            if ("hasMenu" in item && item.hasMenu) {
+              return (
+                <div key={item.label} className="relative">
+                  <button
+                    type="button"
+                    data-yunjing-trigger
+                    onClick={() => setYunjingOpen(!yunjingOpen)}
+                    className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                  >
+                    <Icon size={12} />
+                    {item.label}
+                  </button>
+                  {yunjingOpen && (
+                    <div data-yunjing-menu className="absolute bottom-10 left-0 z-50 w-[280px] rounded-xl border border-white/10 bg-[#292929] p-1.5 shadow-2xl">
+                      <p className="px-2 py-1 text-[11px] text-[#777]">运镜方式</p>
+                      {[
+                        { id: "push-in", label: "推镜", desc: "镜头向主体推进" },
+                        { id: "pull-out", label: "拉镜", desc: "镜头远离主体拉出" },
+                        { id: "pan-left", label: "左摇", desc: "镜头水平向左旋转" },
+                        { id: "pan-right", label: "右摇", desc: "镜头水平向右旋转" },
+                        { id: "tilt-up", label: "上仰", desc: "镜头垂直向上仰视" },
+                        { id: "tilt-down", label: "下俯", desc: "镜头垂直向下俯视" },
+                        { id: "tracking", label: "跟拍", desc: "镜头跟随主体移动" },
+                        { id: "crane", label: "升降", desc: "镜头垂直升降运动" },
+                        { id: "orbit", label: "环绕", desc: "镜头围绕主体环绕" },
+                        { id: "zoom-in", label: "推进", desc: "焦距推近放大主体" },
+                        { id: "zoom-out", label: "拉远", desc: "焦距拉远缩小主体" },
+                        { id: "static", label: "固定", desc: "镜头固定不动" },
+                      ].map((m) => (
+                        <button
+                          key={m.id}
+                          type="button"
+                          data-yunjing-option={m.id}
+                          aria-pressed={yunjingSelection === m.id}
+                          onClick={() => {
+                            setYunjingSelection(yunjingSelection === m.id ? null : m.id);
+                            setYunjingOpen(false);
+                          }}
+                          className={cn(
+                            "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-left text-xs transition-colors",
+                            yunjingSelection === m.id ? "bg-[#09caf5]/15 text-[#09caf5]" : "text-[#ccc] hover:bg-white/[0.06]",
+                          )}
+                        >
+                          <span className="font-medium">{m.label}</span>
+                          {yunjingSelection === m.id && <span className="text-[10px]">✓</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
             return <button key={item.label} type="button" className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><Icon size={12} />{item.label}</button>;
           })}
           {isContinuation && onClearContinuation && (
