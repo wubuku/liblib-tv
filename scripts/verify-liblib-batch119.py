@@ -101,20 +101,28 @@ def run_desktop(page: Page) -> dict[str, Any]:
         page.locator("[data-project-list-page]").is_visible(),
     )
 
-    # 画布卡点击 → 激活并回画布
-    page.evaluate("""() => {
-      const card = document.querySelector("[data-project-card='canvas-1']");
-      if (card) card.click();
-    }""")
-    page.wait_for_timeout(800)
+    # Batch 150: 画布卡点击 → 新标签页打开画布（源站 2026-09-07 实拍），当前页留在 /project。
+    with page.context.expect_page() as popup_info:
+        page.evaluate("""() => {
+          const card = document.querySelector("[data-project-card='canvas-1']");
+          if (card) card.click();
+        }""")
+    popup = popup_info.value
     check(
-        "card:navigates-back",
-        not page.url.endswith("/project"),
+        "card:stays-on-project",
+        page.url.endswith("/project"),
     )
     check(
-        "card:canvas-1-active",
-        page.get_by_role("button", name="画布 1", exact=True).count() == 1,
+        "popup:url-root",
+        popup.url.endswith("/") and not popup.url.endswith("/project"),
     )
+    popup.wait_for_timeout(800)
+    # Batch 150: 新标签页是全新 store（默认活动画布），只断言画布切换器就绪。
+    check(
+        "popup:canvas-trigger-ready",
+        popup.locator("[data-canvas-trigger]").count() == 1,
+    )
+    popup.close()
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

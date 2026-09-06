@@ -144,6 +144,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 141 | Video model menu full catalog (35 items sampled 2026-09-07): scrollable menu container, batch22 matrix/premium assertions migrated |
 | Batch 148 | /project project card cover placeholders: gradient cover area with play icon and node count badge on each canvas card |
 | Batch 149 | Video panel advanced settings vertical column (heading + three 36px rows, right-aligned switches; hidden in process view), default model Seedance 2.0 VIP with abbreviated trigger "2.0", reference slots 48x55 (batch21/22/33 assertions migrated) |
+| Batch 150 | /project canvas card opens the canvas in a new tab (source 2026-09-07; list page stays put) + add-node panel container rounded-2xl/backdrop-blur-[32px]/hairline border (batch119 popup assertion migrated) |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips added to the filter panel (CLONE_DECISION) |

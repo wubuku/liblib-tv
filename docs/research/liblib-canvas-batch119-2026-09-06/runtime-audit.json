@@ -18,8 +18,9 @@
         "create:new-canvas-active",
         "menu:navigates-to-project",
         "menu:page-visible",
-        "card:navigates-back",
-        "card:canvas-1-active",
+        "card:stays-on-project",
+        "popup:url-root",
+        "popup:canvas-trigger-ready",
         "diagnostics:zero"
       ],
       "diagnostics": {

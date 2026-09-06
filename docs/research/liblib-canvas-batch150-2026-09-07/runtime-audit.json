@@ -1,0 +1,24 @@
+{
+  "batch": 150,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "project:page-visible",
+        "project:has-cards",
+        "card:stays-on-project",
+        "popup:on-canvas",
+        "popup:not-project",
+        "addpanel:visible",
+        "addpanel:radius-16",
+        "addpanel:blur-32",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

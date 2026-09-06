@@ -25,9 +25,10 @@ export default function ProjectListPage() {
   const [selectedRemoved, setSelectedRemoved] = useState<string[]>([]);
   const today = new Date().toISOString().slice(0, 10);
 
+  // Batch 150: 源站 2026-09-07 实拍——/project 画布卡点击在新标签页打开画布。
   const openCanvas = (canvasId: string) => {
     setActiveCanvas(canvasId);
-    router.push("/");
+    window.open("/", "_blank");
   };
 
   return (

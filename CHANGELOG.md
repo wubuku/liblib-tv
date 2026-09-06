@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- /project canvas cards open the canvas in a new tab and add-node panel
+  container aligned to the sampled source classes (Batch 150, 2026-09-07):
+  rounded-2xl, backdrop-blur-[32px], hairline border; batch119 popup
+  contract migrated
 - Video panel advanced settings vertical column (Batch 149, source
   2026-09-07 re-sample): 高级设置 heading + three 36px rows with right-aligned
   switches, hidden in the long-video process view; default model moved to

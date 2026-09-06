@@ -92,7 +92,8 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
     <div
       ref={panelRef}
       data-liblib-overlay="add-node"
-      className="fixed bottom-[69px] left-[calc(50%-242px)] z-[62] h-[481px] w-[196px] rounded-xl border border-[#363636] bg-[#262626] p-2 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:bottom-[109px] max-sm:left-3"
+      /* Batch 150: 源站 2026-09-07 容器类——rounded-2xl + backdrop-blur-[32px] + hairline 边框。 */
+      className="fixed bottom-[69px] left-[calc(50%-242px)] z-[62] h-[481px] w-[196px] rounded-2xl border border-white/[0.08] bg-[#262626]/85 p-2 shadow-[0_18px_48px_rgba(0,0,0,0.5)] backdrop-blur-[32px] max-sm:bottom-[109px] max-sm:left-3"
     >
       <div className="flex items-center justify-between px-2 pb-1.5 pt-1">
         <h3 className="text-xs font-medium text-[#9a9a9a]">添加节点</h3>
