@@ -46,57 +46,42 @@ const references = [
 ];
 
 const modelItems = [
-  {
-    id: "2.5",
-    title: "Seedance 2.5",
-    estimate: "2min",
-    premium: true,
-    family: "seedance",
-    description: "最强视频模型，全能参考，30s音画同步",
-  },
-  {
-    id: "2.0 VIP",
-    title: "Seedance 2.0 VIP",
-    estimate: "2min",
-    premium: true,
-    family: "seedance",
-  },
-  {
-    id: "Minimax H3",
-    title: "Minimax H3",
-    estimate: "2min",
-    premium: true,
-    family: "minimax",
-  },
-  {
-    id: "2.0 Fast VIP",
-    title: "Seedance 2.0 Fast VIP",
-    estimate: "2min",
-    premium: true,
-    family: "seedance",
-    description: "最强视频模型快速版，会员专属通道，15s音画同步",
-  },
-  {
-    id: "2.0 Mini",
-    title: "Seedance 2.0 Mini",
-    estimate: "2min",
-    premium: true,
-    family: "seedance",
-  },
-  {
-    id: "Wan 3.0 Prime",
-    title: "Wan 3.0 Prime",
-    estimate: "1min",
-    premium: false,
-    family: "wan",
-  },
-  {
-    id: "Wan 3.0",
-    title: "Wan 3.0",
-    estimate: "3min",
-    premium: false,
-    family: "wan",
-  },
+  // Batch 141: 2026-09-07 源站模型菜单全量采样（35 项,顺序/文案/生成时长对齐）。
+  { id: "2.5", title: "Seedance 2.5", estimate: "2min", premium: true, family: "seedance", description: "最强视频模型，全能参考，30s音画同步" },
+  { id: "2.0 VIP", title: "Seedance 2.0 VIP", estimate: "2min", premium: true, family: "seedance", description: "最强视频模型，会员专属通道，15s音画同步" },
+  { id: "Minimax H3 Max", title: "Minimax H3 Max", estimate: "30s", premium: false, family: "minimax", description: "后训练极速视频生成，支持文生、图生及首尾帧控制" },
+  { id: "Minimax H3", title: "Minimax H3", estimate: "2min", premium: true, family: "minimax", description: "全模态输入，多参数控制，多场景商用级生成" },
+  { id: "2.0 Fast VIP", title: "Seedance 2.0 Fast VIP", estimate: "2min", premium: true, family: "seedance", description: "最强视频模型快速版，会员专属通道，15s音画同步" },
+  { id: "2.0 Mini", title: "Seedance 2.0 Mini", estimate: "2min", premium: true, family: "seedance", description: "最强视频模型mini版，高性价比生成，15s音画同步" },
+  { id: "Wan 3.0 Prime", title: "Wan 3.0 Prime", estimate: "1min", premium: false, family: "wan", description: "超快速生成，全模态参考，超写实高一致性" },
+  { id: "Wan 3.0", title: "Wan 3.0", estimate: "3min", premium: false, family: "wan", description: "全模态参考，支持文档与网页输入，超写实高一致性生成" },
+  { id: "Happy Horse 1.1", title: "Happy Horse 1.1", estimate: "3min", premium: false, family: "happyhorse", description: "阿里最新视频模型，一致性与视听质量更可控" },
+  { id: "Happy Horse 1.0", title: "Happy Horse 1.0", estimate: "3min", premium: false, family: "happyhorse", description: "阿里视频模型，支持多参生成" },
+  { id: "Kling O3", title: "Kling O3", estimate: "3min", premium: false, family: "kling", description: "视频编辑模型、参考一致性、音画同出、多镜头" },
+  { id: "Kling 3.0 Turbo", title: "Kling 3.0 Turbo", estimate: "3min", premium: false, family: "kling", description: "视频生成模型，高质感、支持多镜头" },
+  { id: "Kling 3.0", title: "Kling 3.0", estimate: "3min", premium: false, family: "kling", description: "视频生成模型，高质感、支持多镜头" },
+  { id: "Wan 2.7", title: "Wan 2.7", estimate: "3min", premium: false, family: "wan", description: "全能参考，支持修改视频画面、剧情、环境" },
+  { id: "Kling O1", title: "Kling O1", estimate: "3min", premium: false, family: "kling", description: "可灵一代编辑模型、支持多模态输入" },
+  { id: "Wan 2.6", title: "Wan 2.6", estimate: "3min", premium: false, family: "wan", description: "音画同步，支持多机位镜头，最长可生15秒视频" },
+  { id: "Hailuo 2.3", title: "Hailuo 2.3", estimate: "2min", premium: false, family: "hailuo", description: "善于表达动作、表情、镜头，更高质感" },
+  { id: "Seedance 1.5 Pro", title: "Seedance1.5 Pro", estimate: "2min", premium: false, family: "seedance", description: "音画同步，支持多机位镜头，最长可生12秒视频" },
+  { id: "Seedance 1.0 Pro", title: "Seedance 1.0 Pro", estimate: "2min", premium: false, family: "seedance", description: "高精度提示词理解，40秒生成1080P视频" },
+  { id: "Seedance 1.0 Lite", title: "Seedance 1.0 Lite", estimate: "1min", premium: false, family: "seedance", description: "轻量快速，一键进行日常视频生成" },
+  { id: "Kling 2.6", title: "Kling 2.6", estimate: "2min", premium: false, family: "kling", description: "视频生成模型、直出音画同步" },
+  { id: "Hailuo 02", title: "Hailuo 02", estimate: "2min", premium: false, family: "hailuo", description: "画质稳定，适合打造运动特效场景" },
+  { id: "Vidu Q2", title: "Vidu Q2", estimate: "3min", premium: false, family: "vidu", description: "多图主体参考，精确控制效果佳" },
+  { id: "Vidu Q2 Pro", title: "Vidu Q2 Pro", estimate: "", premium: false, family: "vidu" },
+  { id: "Vidu Q2 Turbo", title: "Vidu Q2 Turbo", estimate: "", premium: false, family: "vidu" },
+  { id: "Vidu Q3 Pro", title: "Vidu Q3 Pro", estimate: "2min", premium: false, family: "vidu", description: "支持主体参考，精确控制效果佳" },
+  { id: "OmniHuman 1.5", title: "OmniHuman 1.5", estimate: "3min", premium: false, family: "omnihuman", description: "多模态数字人视频生成" },
+  { id: "Kling 2.5", title: "Kling 2.5", estimate: "2min", premium: false, family: "kling", description: "速度快、效果稳定、性价比高" },
+  { id: "Wan 2.2", title: "Wan 2.2", estimate: "3min", premium: false, family: "wan", description: "支持特效、玩法千变万化" },
+  { id: "Wan 2.5", title: "Wan 2.5", estimate: "3min", premium: false, family: "wan", description: "支持特效、直出音画同步" },
+  { id: "Pixverse V5.5", title: "Pixverse V5.5", estimate: "3min", premium: false, family: "pixverse", description: "支持特效、玩法丰富" },
+  { id: "Pixverse V5", title: "Pixverse V5", estimate: "3min", premium: false, family: "pixverse", description: "支持特效、玩法丰富" },
+  { id: "Hailuo 2.3 Fast", title: "Hailuo 2.3 Fast", estimate: "1min", premium: false, family: "hailuo", description: "善于表达动作、表情、镜头，更快速" },
+  { id: "Kling 3.0 Motion", title: "Kling3.0 动作迁移", estimate: "8min", premium: false, family: "kling", description: "动作控制模型，需输入1张图片、1条视频" },
+  { id: "Style Video", title: "Style Video", estimate: "2min", premium: false, family: "style", description: "图生视频效果稳定，画面表现力强" },
 ];
 
 const modeItems = [
@@ -424,7 +409,7 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
   return (
     <div
       data-video-model-menu
-      className="absolute bottom-8 -left-[9px] z-50 flex h-[410px] w-[380px] flex-col gap-1 rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl"
+      className="absolute bottom-8 -left-[9px] z-50 flex h-[410px] w-[380px] flex-col gap-1 overflow-y-auto rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl"
     >
       {modelItems.map((item) => {
         const selected = model === item.id;

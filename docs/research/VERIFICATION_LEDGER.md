@@ -167,6 +167,7 @@ BrowserContext，不写截图。
 | Batch 135 | Credits ratio factor | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125/128.py` 复跑通过（积分随联动与比例更新）；16:9→135/Auto→230 两数据点校准比例因子；其余比例/模型定价 `SOURCE_UNKNOWN` |
 | Batch 139 | Topbar credits supermarket split | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch139.py` 已通过；积分超市/积分余额 独立入口、顺序与 `0/0/0` diagnostics；商城页行为不证明 |
 | Batch 136 | Recycle bin selection and batch restore | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch136.py` 已通过；删除→回收站条目/勾选/计数/批量恢复/回列表与 `0/0/0` diagnostics；勾选批量操作源站交互不证明 |
+| Batch 141 | Video model menu full catalog | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch22.py`（矩阵迁移至 35 项采样目录）与 `verify-liblib-batch125/126/128/21.py` 复跑通过；`0/0/0` diagnostics；premium 完整分布不证明 |
 | Batch 133 | FrameOS duplicate node insertion | `SCRIPT_RECORDED_PASS` | `verify-frameos-batch133.py` 已通过；Cmd+D 插入副本节点/副本标题/视觉选中/undo/redo/复制 toast 和 `0/0/0` diagnostics；修复文档记录的缺口 |
 | Batch 134 | FrameOS copy/paste clipboard cycle | `SCRIPT_RECORDED_PASS` | `verify-frameos-batch134.py` 已通过；Cmd+C→Cmd+V 插入选中副本、undo、重复粘贴和 `0/0/0` diagnostics；writeText Promise 拒绝已捕获（修复潜在 pageerror） |
 | Batch 106 | Project menu alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch106.py` 已通过；覆盖四项命名与分组、本地 status、outside-close、教程 popover 四项和 `0/0/0` diagnostics；不证明四项真实跳转/确认流或菜单精确几何 |

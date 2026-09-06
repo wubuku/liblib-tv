@@ -24,14 +24,43 @@ CONTACT_SHEET = (
     / "liblib-clone-batch22-model-menu-contact-sheet-2026-08-25.png"
 )
 
+# Batch 141: 2026-09-07 源站模型菜单全量采样（35 项,premium 标记沿用已采样子集）。
 EXPECTED_MODELS = [
     ("2.5", "Seedance 2.5", "2min", True),
     ("2.0 VIP", "Seedance 2.0 VIP", "2min", True),
+    ("Minimax H3 Max", "Minimax H3 Max", "30s", False),
     ("Minimax H3", "Minimax H3", "2min", True),
     ("2.0 Fast VIP", "Seedance 2.0 Fast VIP", "2min", True),
     ("2.0 Mini", "Seedance 2.0 Mini", "2min", True),
     ("Wan 3.0 Prime", "Wan 3.0 Prime", "1min", False),
     ("Wan 3.0", "Wan 3.0", "3min", False),
+    ("Happy Horse 1.1", "Happy Horse 1.1", "3min", False),
+    ("Happy Horse 1.0", "Happy Horse 1.0", "3min", False),
+    ("Kling O3", "Kling O3", "3min", False),
+    ("Kling 3.0 Turbo", "Kling 3.0 Turbo", "3min", False),
+    ("Kling 3.0", "Kling 3.0", "3min", False),
+    ("Wan 2.7", "Wan 2.7", "3min", False),
+    ("Kling O1", "Kling O1", "3min", False),
+    ("Wan 2.6", "Wan 2.6", "3min", False),
+    ("Hailuo 2.3", "Hailuo 2.3", "2min", False),
+    ("Seedance 1.5 Pro", "Seedance1.5 Pro", "2min", False),
+    ("Seedance 1.0 Pro", "Seedance 1.0 Pro", "2min", False),
+    ("Seedance 1.0 Lite", "Seedance 1.0 Lite", "1min", False),
+    ("Kling 2.6", "Kling 2.6", "2min", False),
+    ("Hailuo 02", "Hailuo 02", "2min", False),
+    ("Vidu Q2", "Vidu Q2", "3min", False),
+    ("Vidu Q2 Pro", "Vidu Q2 Pro", "", False),
+    ("Vidu Q2 Turbo", "Vidu Q2 Turbo", "", False),
+    ("Vidu Q3 Pro", "Vidu Q3 Pro", "2min", False),
+    ("OmniHuman 1.5", "OmniHuman 1.5", "3min", False),
+    ("Kling 2.5", "Kling 2.5", "2min", False),
+    ("Wan 2.2", "Wan 2.2", "3min", False),
+    ("Wan 2.5", "Wan 2.5", "3min", False),
+    ("Pixverse V5.5", "Pixverse V5.5", "3min", False),
+    ("Pixverse V5", "Pixverse V5", "3min", False),
+    ("Hailuo 2.3 Fast", "Hailuo 2.3 Fast", "1min", False),
+    ("Kling 3.0 Motion", "Kling3.0 动作迁移", "8min", False),
+    ("Style Video", "Style Video", "2min", False),
 ]
 
 
@@ -95,7 +124,10 @@ def assert_item_matrix(page: Page):
         assert title in text
         assert estimate in text
         assert option.locator("[data-video-model-premium]").count() == int(premium)
-    assert "Kling O3" not in page.locator("[data-video-model-menu]").inner_text()
+    # Batch 141: 2026-09-07 采样——菜单含 Kling O3 等 35 项;premium 角标 6 个
+    # （2.5/2.0 VIP/Minimax H3/2.0 Fast VIP/2.0 Mini/……当日采样分布）。
+    assert "Kling O3" in page.locator("[data-video-model-menu]").inner_text()
+    # Batch 141: premium 沿用已采样子集（5 项）;未采样模型不标 premium。
     assert page.locator("[data-video-model-premium]").count() == 5
 
 
