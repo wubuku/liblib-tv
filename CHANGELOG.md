@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Evidence batch 153 (source 2026-09-07 round-3): Auto-ratio credits
+  factor confirmed on a direct source data point (Auto/720P/5s/1 -> 230 =
+  5x46), fresh video nodes show no generation panel, and the credits block
+  classes match the Batch 151 implementation verbatim; docs/matrix updates
+  only, no code change
 - /project card sub-line shows date only (Batch 152, 2026-09-07 sample:
   title + date, no workspace prefix); surface coverage matrix refreshed with
   the Batch 149-152 re-sampling facts (credits 4th data point, rAF-gated
