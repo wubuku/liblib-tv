@@ -1,0 +1,26 @@
+{
+  "batch": 147,
+  "title": "Character library filter end-to-end behavior",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "modal:opens",
+        "filter:panel-opens",
+        "filter:性别-label",
+        "filter:chip:男",
+        "filter:chip:女",
+        "filter:chip:中性",
+        "filter:female-has-results",
+        "clear:restores",
+        "filter:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
