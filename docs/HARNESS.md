@@ -133,6 +133,10 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 116 | Script-generator node type (脚本 NEW): 350x350 card with three attempt modes, reference entry, GVLM 3.1 model tag and local prompt; add-panel 脚本NEW now creates the node (batch98 assertions migrated) |
 | Batch 117 | Director node card alignment with the 2026-09-06 sampling: card title/description/打开导演台 copy, workspace entry via node button, escape close (batch50 workspace aria unchanged) |
 | Batch 119 | /project list page: back/title/recycle/new-folder structure, create-card canvas creation, canvas cards navigate+activate, logo-menu 全部项目 real routing |
+| Batch 121 | Topbar freshness alignment with the 2026-09-06 source: credits 100, membership 限时 45 折 entry, 教程 entry rename (batch11 assertion migrated) |
+| Batch 128 | Attempt chips driving settings label: 5分钟超长视频→Auto·300s, 首尾帧→Auto·5s; deselect keeps current settings (CLONE_DECISION) |
+| Batch 131 | Second full verifier serial regression: 99/114 pass, batch16/21 fixed, batch93 flake confirmed, 12 aged gates unchanged |
+| Batch 143 | Video panel default duration 6s→5s alignment (source 16:9·720P·5s·1个), batch21 duration assertions migrated |
 | Batch 124 | Canvas recycle bin: soft delete with full CanvasData snapshot, /project recycle panel (30-day copy, restore), restore without active-canvas switch (batch119 assertion migrated) |
 | Batch 125 | Video panel attempts row (5分钟超长视频/首尾帧/首帧 chips), 新功能：支持真人 bar, prompt placeholder alignment (toolbar/generate flow unchanged) |
 | Batch 135 | Credits ratio factor calibrated on the 2026-09-06 data points (16:9→27/s, Auto→46/s); other ratios unsampled at 46/s |

@@ -164,7 +164,10 @@ BrowserContext，不写截图。
 | Batch 119 | /project list page | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch119.py` 已通过；页面结构（返回/全部项目/回收站/新建文件夹/创建卡/画布卡）、创建卡建画布、卡片导航激活、logo 菜单 全部项目 路由和 `0/0/0` diagnostics；回收站行为与源站分页不证明 |
 | Batch 124 | Canvas recycle bin | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch124.py` 已通过；覆盖软删除快照、回收站面板文案/条目/日期/恢复、恢复后内容完整（≥10 节点）与 `0/0/0` diagnostics；batch119 回收站断言随本批迁移；30 天自动清除与 Director 数据恢复完整性不证明 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
+| Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
+| Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |
 | Batch 135 | Credits ratio factor | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125/128.py` 复跑通过（积分随联动与比例更新）；16:9→135/Auto→230 两数据点校准比例因子；其余比例/模型定价 `SOURCE_UNKNOWN` |
+| Batch 143 | Video panel default duration 6s→5s | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch21.py`（时长迁移后）与 `verify-liblib-batch125.py` 复跑通过；`npm run check` + docs check 通过；batch22 无需迁移 |
 | Batch 139 | Topbar credits supermarket split | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch139.py` 已通过；积分超市/积分余额 独立入口、顺序与 `0/0/0` diagnostics；商城页行为不证明 |
 | Batch 136 | Recycle bin selection and batch restore | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch136.py` 已通过；删除→回收站条目/勾选/计数/批量恢复/回列表与 `0/0/0` diagnostics；勾选批量操作源站交互不证明 |
 | Batch 141 | Video model menu full catalog | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch22.py`（矩阵迁移至 35 项采样目录）与 `verify-liblib-batch125/126/128/21.py` 复跑通过；`0/0/0` diagnostics；premium 完整分布不证明 |
