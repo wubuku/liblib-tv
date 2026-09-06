@@ -21,6 +21,8 @@ export default function ProjectListPage() {
   } = useCanvasStore();
   const [status, setStatus] = useState("");
   const [recycleOpen, setRecycleOpen] = useState(false);
+  // Batch 136: 源站回收站「已选择 0 项」计数 —— clone 实现为逐项勾选 + 恢复。
+  const [selectedRemoved, setSelectedRemoved] = useState<string[]>([]);
   const today = new Date().toISOString().slice(0, 10);
 
   const openCanvas = (canvasId: string) => {
@@ -78,30 +80,63 @@ export default function ProjectListPage() {
               回收站为空
             </p>
           ) : (
-            <ul className="mt-2 space-y-2">
-              {removedCanvases.map((canvas) => (
-                <li
-                  key={canvas.id}
-                  data-recycle-item={canvas.id}
-                  className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-2"
-                >
-                  <span className="min-w-0 truncate text-xs text-[#d8d8d8]">
-                    {canvas.name}
-                    <span className="ml-2 text-[10px] text-[#777]">
-                      {canvas.removedAt} · 剩余 30 天
-                    </span>
-                  </span>
-                  <button
-                    type="button"
-                    data-recycle-restore={canvas.id}
-                    onClick={() => restoreCanvas(canvas.id)}
-                    className="shrink-0 rounded border border-white/[0.14] px-2 py-1 text-[11px] text-[#d8d8d8] hover:border-white/[0.3] hover:text-white"
+            <>
+              <p data-recycle-selection className="mt-1 text-[11px] text-[#9a9a9a]">
+                已选择 {selectedRemoved.length} 项
+              </p>
+              <ul className="mt-2 space-y-2">
+                {removedCanvases.map((canvas) => (
+                  <li
+                    key={canvas.id}
+                    data-recycle-item={canvas.id}
+                    className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-2"
                   >
-                    恢复
-                  </button>
-                </li>
-              ))}
-            </ul>
+                    <span className="flex min-w-0 items-center gap-2">
+                      <input
+                        type="checkbox"
+                        data-recycle-check={canvas.id}
+                        checked={selectedRemoved.includes(canvas.id)}
+                        onChange={(event) =>
+                          setSelectedRemoved((current) =>
+                            event.target.checked
+                              ? [...current, canvas.id]
+                              : current.filter((id) => id !== canvas.id),
+                          )
+                        }
+                        className="size-3.5 shrink-0 accent-[#09caf5]"
+                      />
+                      <span className="min-w-0 truncate text-xs text-[#d8d8d8]">
+                        {canvas.name}
+                        <span className="ml-2 text-[10px] text-[#777]">
+                          {canvas.removedAt} · 剩余 30 天
+                        </span>
+                      </span>
+                    </span>
+                    <button
+                      type="button"
+                      data-recycle-restore={canvas.id}
+                      onClick={() => restoreCanvas(canvas.id)}
+                      className="shrink-0 rounded border border-white/[0.14] px-2 py-1 text-[11px] text-[#d8d8d8] hover:border-white/[0.3] hover:text-white"
+                    >
+                      恢复
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              {selectedRemoved.length > 0 && (
+                <button
+                  type="button"
+                  data-recycle-restore-selected
+                  onClick={() => {
+                    selectedRemoved.forEach((id) => restoreCanvas(id));
+                    setSelectedRemoved([]);
+                  }}
+                  className="mt-2 rounded-lg border border-[#09caf5]/50 px-3 py-1.5 text-[11px] text-[#09caf5] hover:bg-[#09caf5]/10"
+                >
+                  恢复所选 {selectedRemoved.length} 项
+                </button>
+              )}
+            </>
           )}
         </div>
       )}

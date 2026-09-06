@@ -1,0 +1,24 @@
+{
+  "batch": 136,
+  "title": "Recycle bin selection counter and batch restore",
+  "evidence": "docs/research/liblib-projects-page-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:empty",
+        "selection:zero",
+        "checkbox:present",
+        "selection:one",
+        "batch:button",
+        "batch:restored-to-list",
+        "batch:selection-cleared",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -38,6 +38,7 @@
 - [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/README.md)：双击画布打开添加节点面板。
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
+- [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/README.md)：回收站勾选与批量恢复：计数、逐项勾选与批量恢复按钮。
 - [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/README.md)：视频面板积分比例因子落地（16:9→27/s、Auto→46/s，采样校准）。
 - [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/README.md)：FrameOS 复制节点落地：Cmd+D 插入副本节点与 undo/redo。
 - [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/README.md)：FrameOS 复制/粘贴剪贴板闭环：Cmd+V 粘贴副本与 undo。
@@ -221,6 +222,7 @@
 | 114 | Multi-canvas dropdown alignment | [`liblib-canvas-batch114-2026-09-06/`](liblib-canvas-batch114-2026-09-06/) `SCRIPT_RECORDED_PASS`，行结构/行级菜单/确认框/副本命名与 fallback 已通过；在新窗口打开行为不证明 |
 | 115 | Canvas double-click add panel | [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/) `SCRIPT_RECORDED_PASS`，双击开面板/零创建/Escape/重触发已通过 |
 | 125 | Video panel attempts alignment | [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/) `SCRIPT_RECORDED_PASS`，尝试行三芯片/新功能条/placeholder 对齐已通过；尝试子界面/模型菜单/积分 135 待补采样 |
+| 136 | Recycle bin selection | [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/) `SCRIPT_RECORDED_PASS`，勾选/计数/批量恢复已通过；源站勾选交互不证明 |
 | 135 | Credits ratio factor | [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/) `SCRIPT_RECORDED_PASS`，16:9→135/Auto→230 数据点校准的比例因子已落地；其余比例/模型定价不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 134 | FrameOS copy/paste clipboard cycle | [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+C→Cmd+V 粘贴副本/undo/重复粘贴已通过 |
@@ -266,6 +268,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 133 | FrameOS duplicate node insertion | 已完成；FrameOS 复制节点缺口修复已通过，详见 [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/)；循环继续 |
 | 134 | FrameOS copy/paste clipboard cycle | 已完成；FrameOS 复制/粘贴闭环已通过，详见 [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/)；循环继续 |
 | 135 | Credits ratio factor | 已完成；积分比例因子已按当日采样落地，详见 [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/)；循环继续 |
+| 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 113 | Uniform character strip spacing | 已完成；均匀间距对齐已通过，详见 [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/)；其余候选需 fixture 授权 |
 | 112 | Character filter panel alignment | 已完成；筛选面板对齐已通过，详见 [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/)；其余候选需 fixture 授权 |
 | 108 | 97-107 series cross-batch regression | 已完成；跨批回归与漂移归因已记录，详见 [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/)；循环迭代继续 |
