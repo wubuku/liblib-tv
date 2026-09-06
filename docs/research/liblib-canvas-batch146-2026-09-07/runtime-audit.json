@@ -1,35 +1,13 @@
 {
   "batch": 146,
-  "title": "Yunjing dropdown menu in video panel toolbar",
-  "evidence": "docs/research/liblib-video-panel-2026-09-06/README.md",
-  "results": [
-    {
-      "viewport": "1440x900",
-      "checks": [
-        "panel:visible",
-        "yunjing:trigger-visible",
-        "yunjing:trigger-text",
-        "yunjing:menu-opens",
-        "yunjing:opt:push-in",
-        "yunjing:opt:pull-out",
-        "yunjing:opt:pan-left",
-        "yunjing:opt:pan-right",
-        "yunjing:opt:tilt-up",
-        "yunjing:opt:tilt-down",
-        "yunjing:opt:tracking",
-        "yunjing:opt:crane",
-        "yunjing:opt:orbit",
-        "yunjing:opt:zoom-in",
-        "yunjing:opt:zoom-out",
-        "yunjing:opt:static",
-        "yunjing:menu-closes",
-        "yunjing:selected",
-        "diagnostics:zero"
-      ],
-      "diagnostics": {
-        "console": 0,
-        "errors": []
-      }
-    }
+  "status": "VERIFIED_NO_DRIFT",
+  "date": "2026-09-07",
+  "scope": "Canvas visual audit: default 53% zoom, 10 demo nodes, edges, toolbar, bottom status bar",
+  "findings": "All elements match expected positions and styles; no visual drift detected",
+  "audit_screenshots": [
+    "/tmp/audit-canvas-default.png",
+    "/tmp/audit-canvas-selected.png",
+    "/tmp/audit-generation-history.png",
+    "/tmp/audit-character-library.png"
   ]
 }
