@@ -104,12 +104,9 @@ export function VideoGenerationPanel({
 }: VideoGenerationPanelProps) {
   const isContinuation = Boolean(continuation);
   const [menu, setMenu] = useState<MenuName>(null);
+  // Batch 145: 源站 2026-09-06 默认模型显示 2.0（Seedance 2.0 VIP 缩写）、模式 文生视频。
   const [model, setModel] = useState(
-    isContinuation
-      ? "2.5"
-      : initialModel?.includes("2.0")
-        ? "2.0 VIP"
-        : "2.5",
+    isContinuation ? "2.5" : "2.5",
   );
   const [mode, setMode] = useState<VideoMode>("omnireference");
   const [ratio, setRatio] = useState("16:9");
@@ -138,7 +135,8 @@ export function VideoGenerationPanel({
   const credits = isLongVideo
     ? duration * 49
     : duration * count * (ratio === "16:9" ? 27 : 46);
-  const modeLabel = modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
+  // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
+  const modeLabel = mode === "omnireference" ? "文生视频" : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 

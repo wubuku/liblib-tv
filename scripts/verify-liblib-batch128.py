@@ -63,7 +63,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     vg = page.locator("[data-video-generation-panel]")
     settings = page.evaluate("""() => { const b = Array.from(document.querySelectorAll("[data-video-generation-panel] button")).find((x) => x.textContent.includes("· 720P")); return b ? b.textContent.trim() : null; }""")
-    check("boot:default-settings", settings == "16:9 · 720P · 6s · 1个 ·")
+    # Batch 143: 默认时长 6s→5s（源站对齐）。
+    check("boot:default-settings", settings == "16:9 · 720P · 5s · 1个 ·")
 
     attempts = vg.locator("[data-video-attempts]")
     attempts.locator("[data-video-attempt='5分钟超长视频']").click()
