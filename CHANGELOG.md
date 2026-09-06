@@ -39,6 +39,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Research records: LibTV live audits (2026-09-05/06) covering the canvas
   shell, director desk, video generation panel rework, projects page and
   recycle bin; surface coverage matrix roadmap.
+- Recycle bin selection and batch restore on the /project page:
+  per-item checkboxes, 已选择 N 项 counter, batch restore button and empty
+  state after restoring the only item (Batch 136).
+- Topbar 积分超市 / 积分余额 split: two independent entries per the sampled
+  source order (supermarket display-only, balance 100) (Batch 139).
+- Docs: surface coverage matrix roadmap (Batches 118/137), source session
+  degradation notes, credits data points (135@16:9 vs 230@Auto) and formula
+  drift record (Batches 130/132).
 
 ### Fixed
 - FrameOS duplicateNode now inserts the copy into nodes (previously the
