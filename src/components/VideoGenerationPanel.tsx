@@ -30,7 +30,6 @@ type VideoMode = "omnireference" | "image-reference" | "long-video";
 
 interface VideoGenerationPanelProps {
   zoom: number;
-  initialModel?: string;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
   onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
@@ -96,7 +95,6 @@ const modeItems = [
 
 export function VideoGenerationPanel({
   zoom,
-  initialModel,
   initialPrompt,
   continuation,
   onCreateLongVideoProcess,
@@ -104,9 +102,10 @@ export function VideoGenerationPanel({
 }: VideoGenerationPanelProps) {
   const isContinuation = Boolean(continuation);
   const [menu, setMenu] = useState<MenuName>(null);
-  // Batch 145: 源站 2026-09-06 默认模型显示 2.0（Seedance 2.0 VIP 缩写）、模式 文生视频。
+  // Batch 145: 源站默认模型显示 2.0（Seedance 2.0 VIP 缩写）。
+  // Batch 149: 源站 2026-09-07 面板触发器实拍「2.0」，默认落地为 Seedance 2.0 VIP。
   const [model, setModel] = useState(
-    isContinuation ? "2.5" : "2.5",
+    isContinuation ? "2.5" : "2.0 VIP",
   );
   const [mode, setMode] = useState<VideoMode>("omnireference");
   const [ratio, setRatio] = useState("16:9");
@@ -139,7 +138,12 @@ export function VideoGenerationPanel({
     ? duration * 49
     : duration * count * (ratio === "16:9" ? 27 : 46);
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
-  const modeLabel = mode === "omnireference" ? "文生视频" : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
+  // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
+  const modeLabel = isContinuation
+    ? "全能参考"
+    : mode === "omnireference"
+      ? "文生视频"
+      : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 
@@ -362,7 +366,8 @@ export function VideoGenerationPanel({
               <>
                 <div className="mt-1 flex h-12 shrink-0 items-center gap-2">
                   {references.map((reference) => (
-                    <div key={reference.id} className="relative size-12 overflow-hidden rounded-lg border border-white/10">
+                    // Batch 149: 源站引用槽 48×55 cursor-grab（2026-09-07 实拍）。
+                    <div key={reference.id} className="relative h-[55px] w-12 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing">
                       <Image src={reference.image} alt={`${reference.name}参考`} fill sizes="48px" className="object-cover" unoptimized />
                       <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">{reference.id}</span>
                     </div>
@@ -384,7 +389,8 @@ export function VideoGenerationPanel({
         <footer className="mt-1 flex h-9 shrink-0 items-center gap-1 border-t border-white/[0.07] pt-1 text-xs text-[#dfdfdf]">
           <div className="relative">
             <button data-video-model-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">
-              <span className="font-semibold">{model === "2.5" ? "2.5" : model}</span><ChevronDown size={12} className="text-[#777]" />
+              {/* Batch 149: 源站触发器显示缩写名（Seedance 2.0 VIP → 2.0，2026-09-07 实拍）。 */}
+              <span className="font-semibold">{model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="text-[#777]" />
             </button>
             {menu === "model" && <ModelMenu model={model} onSelect={(value) => { setModel(value); setMenu(null); }} />}
           </div>
@@ -444,15 +450,19 @@ export function VideoGenerationPanel({
           </button>
         </footer>
 
-        {/* Batch 126: 源站高级设置内联可见（联网搜索/自动校验素材/智能引用 AutoLink）。 */}
-        <div data-video-advanced-inline className="flex h-7 shrink-0 items-center gap-1.5 border-t border-white/[0.07] px-1 text-[11px] text-[#8a8a8a]">
-          <span data-video-advanced-label>高级设置</span>
-          <div className="flex items-center gap-1">
-            <SwitchRow label="联网搜索" icon={<Search size={12} />} checked={networkSearch} onChange={setNetworkSearch} compact />
-            <SwitchRow label="自动校验素材" icon={<ShieldCheck size={12} />} checked={materialCheck} onChange={setMaterialCheck} compact />
-            <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={12} />} checked={autoLink} onChange={setAutoLink} compact />
+        {/* Batch 126: 源站高级设置内联可见（联网搜索/自动校验素材/智能引用 AutoLink）。
+            Batch 149: 源站 2026-09-07 实拍为「高级设置」标题 + 纵向开关列（行高 36，开关右对齐）；
+            查看过程态隐藏（过程视图独占面板，避免挤压，batch33 契约）。 */}
+        {!showProcess && (
+          <div data-video-advanced-inline className="shrink-0 px-2">
+            <p data-video-advanced-label className="mx-2 pt-3 text-xs font-bold text-neutral-500">高级设置</p>
+            <div className="flex flex-col gap-1 pb-2 pt-1">
+              <SwitchRow label="联网搜索" icon={<Search size={13} />} checked={networkSearch} onChange={setNetworkSearch} />
+              <SwitchRow label="自动校验素材" icon={<ShieldCheck size={13} />} checked={materialCheck} onChange={setMaterialCheck} />
+              <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={setAutoLink} />
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </div>
   );
@@ -691,20 +701,17 @@ function ParameterSegment({
 }
 
 
-function SwitchRow({ label, icon, checked, onChange, compact }: { label: string; icon: React.ReactNode; checked: boolean; onChange: (value: boolean) => void; compact?: boolean }) {
-  if (compact) {
-    return (
-      <label className="flex h-7 cursor-pointer items-center gap-1 rounded-full bg-white/[0.05] px-2 text-[11px] text-[#bbb] hover:bg-white/[0.09]" title={label}>
-        {icon}
-        <span className="max-w-[96px] truncate">{label}</span>
-        <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" />
-        <span className={cn("relative h-3.5 w-7 rounded-full transition-colors", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}>
-          <span className={cn("absolute top-0.5 size-2.5 rounded-full bg-white transition-transform", checked ? "translate-x-[15px]" : "translate-x-0.5")} />
-        </span>
-      </label>
-    );
-  }
-  return <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg px-2 text-xs text-[#ccc] hover:bg-white/[0.05]">{icon}<span className="flex-1">{label}</span><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" /><span className={cn("relative h-5 w-9 rounded-full", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}><span className={cn("absolute top-0.5 size-4 rounded-full bg-white transition-transform", checked ? "translate-x-[18px]" : "translate-x-0.5")} /></span></label>;
+// Batch 149: 源站 2026-09-07 高级设置行为整行 36px（label 左 / 开关右，宽约 38×20）。
+function SwitchRow({ label, icon, checked, onChange }: { label: string; icon: React.ReactNode; checked: boolean; onChange: (value: boolean) => void }) {
+  return (
+    <label className="flex h-9 cursor-pointer items-center justify-between gap-2 rounded-lg px-2 text-[13px] text-[#ccc] hover:bg-white/[0.05]">
+      <span className="flex items-center gap-1.5">{icon}<span className="truncate">{label}</span></span>
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="sr-only" />
+      <span className={cn("relative h-5 w-[38px] shrink-0 rounded-full transition-colors", checked ? "bg-[#09caf5]" : "bg-[#4a4a4a]")}>
+        <span className={cn("absolute top-0.5 size-4 rounded-full bg-white transition-transform", checked ? "translate-x-[18px]" : "translate-x-0.5")} />
+      </span>
+    </label>
+  );
 }
 
 function LongVideoProcessInfo({

@@ -1,0 +1,26 @@
+{
+  "batch": 149,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "model:trigger-short",
+        "model:menu-selected-2.0-vip",
+        "model:menu-closes",
+        "credits:default-135",
+        "advanced:heading-visible",
+        "advanced:heading-copy",
+        "advanced:row-count",
+        "advanced:rows-vertical",
+        "advanced:row-height-36",
+        "advanced:switch-right",
+        "advanced:row:联网搜索",
+        "advanced:row:自动校验素材",
+        "advanced:row:智能引用 AutoLink",
+        "reference:slot-48x55",
+        "errors:empty"
+      ]
+    }
+  ],
+  "passed": true
+}

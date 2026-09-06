@@ -578,7 +578,6 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
         <VideoGenerationPanel
           zoom={zoom}
-          initialModel={model}
           initialPrompt={prompt}
           continuation={continuation}
           onCreateLongVideoProcess={(input: LongVideoProcessInput) =>

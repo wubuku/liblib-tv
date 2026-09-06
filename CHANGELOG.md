@@ -39,6 +39,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Video panel advanced settings vertical column (Batch 149, source
+  2026-09-07 re-sample): 高级设置 heading + three 36px rows with right-aligned
+  switches, hidden in the long-video process view; default model moved to
+  Seedance 2.0 VIP with abbreviated trigger display "2.0"; reference slots
+  48x55 cursor-grab; continuation panel keeps 全能参考 trigger; batch21/22/33
+  assertions migrated, batch21/22 menu y-offsets shifted -27.8
 - Credits ratio factor calibrated on the 2026-09-06 data points
   (16:9→135, Auto→230 at 720P·5s·1个) (Batch 135).
 - FrameOS duplicate node insertion and copy/paste clipboard cycle:

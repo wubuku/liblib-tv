@@ -218,7 +218,8 @@ def run_desktop(page: Page):
     first = nodes.first
     assert first.get_attribute("data-long-video-process-source-id") == source_id
     assert first.get_attribute("data-long-video-process-status") == "pending"
-    assert first.get_attribute("data-long-video-process-model") == "2.5"
+    # Batch 149: 默认模型迁移为 Seedance 2.0 VIP（源站 2026-09-07 触发器实拍「2.0」）。
+    assert first.get_attribute("data-long-video-process-model") == "2.0 VIP"
     assert first.get_attribute("data-long-video-process-ratio") == "16:9"
     assert first.get_attribute("data-long-video-process-resolution") == "720P"
     assert first.get_attribute("data-long-video-process-duration") == "300"

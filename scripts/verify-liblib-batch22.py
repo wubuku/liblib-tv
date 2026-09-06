@@ -143,25 +143,27 @@ def run_desktop(page: Page):
     assert_close(menu_box["height"], 410)
     assert_close(menu_box["x"] - panel_box["x"], 0)
     # Batch 126: 高级设置行使模型菜单 y 偏移上移 28px。
-    assert_close(menu_box["y"] - panel_box["y"], -204.7)
+    assert_close(menu_box["y"] - panel_box["y"], -232.5)
     assert_item_matrix(page)
 
     selected = page.locator('[data-video-model-option][aria-pressed="true"]')
-    assert selected.get_attribute("data-video-model-option") == "2.5"
+    # Batch 149: 默认模型迁移为 Seedance 2.0 VIP（源站 2026-09-07 触发器实拍「2.0」）。
+    assert selected.get_attribute("data-video-model-option") == "2.0 VIP"
     assert page.locator("[data-video-model-description]").inner_text() == (
-        "最强视频模型，全能参考，30s音画同步"
+        "最强视频模型，会员专属通道，15s音画同步"
     )
     assert_close(box(selected)["height"], 58)
     assert_close(
-        box(page.locator('[data-video-model-option="2.0 VIP"]'))["height"],
+        box(page.locator('[data-video-model-option="2.5"]'))["height"],
         48,
     )
     page.screenshot(path=str(DEFAULT_SCREENSHOT))
 
     page.locator('[data-video-model-option="2.0 Fast VIP"]').click(force=True)
     assert page.locator("[data-video-model-menu]").count() == 0
+    # Batch 149: 触发器显示缩写名（Seedance 2.0 Fast VIP → 2.0 Fast，源站 2026-09-07 实拍）。
     assert page.locator("[data-video-model-trigger]").inner_text().startswith(
-        "2.0 Fast VIP"
+        "2.0 Fast"
     )
 
     menu = open_menu(page)
