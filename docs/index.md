@@ -114,6 +114,7 @@ graph TD
 - [`research/liblib-video-panel-2026-09-06/`](research/liblib-video-panel-2026-09-06/)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`research/liblib-canvas-batch125-2026-09-06/`](research/liblib-canvas-batch125-2026-09-06/)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`research/liblib-canvas-batch136-2026-09-06/`](research/liblib-canvas-batch136-2026-09-06/)：回收站勾选与批量恢复：计数、逐项勾选与批量恢复按钮。
+- [`research/liblib-surface-coverage-2026-09-07/`](research/liblib-surface-coverage-2026-09-07/)：全表面覆盖矩阵：已对齐/待补采/阻塞三态路线图。
 - [`research/liblib-canvas-batch135-2026-09-07/`](research/liblib-canvas-batch135-2026-09-07/)：视频面板积分比例因子落地（16:9→27/s、Auto→46/s，采样校准）。
 - [`research/liblib-frameos-batch133-2026-09-06/`](research/liblib-frameos-batch133-2026-09-06/)：FrameOS 复制节点落地：Cmd+D 插入副本节点与 undo/redo。
 - [`research/liblib-frameos-batch134-2026-09-06/`](research/liblib-frameos-batch134-2026-09-06/)：FrameOS 复制/粘贴剪贴板闭环：Cmd+V 粘贴副本与 undo。

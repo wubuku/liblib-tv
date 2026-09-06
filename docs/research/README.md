@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/README.md)：回收站勾选与批量恢复：计数、逐项勾选与批量恢复按钮。
+- [`liblib-surface-coverage-2026-09-07/`](liblib-surface-coverage-2026-09-07/README.md)：全表面覆盖矩阵：已对齐/待补采/阻塞 三态路线图（截至 2026-09-07）。
 - [`liblib-canvas-batch135-2026-09-07/`](liblib-canvas-batch135-2026-09-07/README.md)：视频面板积分比例因子落地（16:9→27/s、Auto→46/s，采样校准）。
 - [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/README.md)：FrameOS 复制节点落地：Cmd+D 插入副本节点与 undo/redo。
 - [`liblib-frameos-batch134-2026-09-06/`](liblib-frameos-batch134-2026-09-06/README.md)：FrameOS 复制/粘贴剪贴板闭环：Cmd+V 粘贴副本与 undo。
