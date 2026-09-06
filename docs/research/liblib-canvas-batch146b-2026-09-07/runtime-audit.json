@@ -1,0 +1,27 @@
+{
+  "batch": "146b",
+  "title": "文化区域 filter options in character library",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "modal:opens",
+        "filter:panel-opens",
+        "culture:label",
+        "culture:华语",
+        "culture:日韩",
+        "culture:欧美",
+        "culture:东南亚",
+        "filter:has-results",
+        "clear:restores",
+        "filter:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

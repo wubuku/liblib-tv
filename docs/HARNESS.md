@@ -144,6 +144,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 141 | Video model menu full catalog (35 items sampled 2026-09-07): scrollable menu container, batch22 matrix/premium assertions migrated |
 | Batch 148 | /project project card cover placeholders: gradient cover area with play icon and node count badge on each canvas card |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
+| Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips added to the filter panel (CLONE_DECISION) |
 | Batch 126 | Inline advanced settings row in the video panel: 高级设置 label + three compact switch chips (联网搜索/自动校验素材/智能引用 AutoLink), superseded gear+popup removed |
 | Batch 133 | FrameOS duplicate node insertion fix: Cmd+D now appends the copy to nodes with selection, undo/redo cycle, copy toast; breadcrumb useRef hygiene |
 | Batch 134 | FrameOS copy/paste clipboard cycle: internal nodeClipboard synced by Cmd+C/X, Cmd+V pastes selected copy with history, writeText promise rejection handled |

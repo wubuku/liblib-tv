@@ -50,7 +50,8 @@ const filterGroups = [
   { key: "年龄段", options: ["儿童", "少年", "青年", "中年", "老年"] },
   { key: "种族", options: ["人类", "精灵", "兽人", "机械", "其他"] },
   { key: "时代", options: ["先秦", "古代", "近代", "现代", "未来"] },
-  { key: "文化区域", options: [] as string[] },
+  // Batch 146: 文化区域选项源站被卡片条遮挡,按中国影视制作常用文化区域分类补全（CLONE_DECISION）。
+  { key: "文化区域", options: ["华语", "日韩", "欧美", "东南亚"] as string[] },
 ] as const;
 
 // 芯片到角色标签的别名（clone 标签用 古风，源站时代芯片为 古代）。
