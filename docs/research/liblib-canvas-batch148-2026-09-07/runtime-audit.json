@@ -1,0 +1,24 @@
+{
+  "batch": 148,
+  "title": "Project card cover placeholders",
+  "evidence": "docs/research/liblib-projects-page-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "page:mounted",
+        "cards:exist",
+        "card0:cover",
+        "card0:node-count",
+        "card1:cover",
+        "card1:node-count",
+        "card1:is-canvas-2",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

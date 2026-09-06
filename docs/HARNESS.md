@@ -142,6 +142,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 135 | Credits ratio factor calibrated on the 2026-09-06 data points (16:9→27/s, Auto→46/s); other ratios unsampled at 46/s |
 | Batch 139 | Topbar 积分超市 / 积分余额 split: two independent entries per the sampled source order (supermarket display-only, balance 100) |
 | Batch 141 | Video model menu full catalog (35 items sampled 2026-09-07): scrollable menu container, batch22 matrix/premium assertions migrated |
+| Batch 148 | /project project card cover placeholders: gradient cover area with play icon and node count badge on each canvas card |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 126 | Inline advanced settings row in the video panel: 高级设置 label + three compact switch chips (联网搜索/自动校验素材/智能引用 AutoLink), superseded gear+popup removed |
 | Batch 133 | FrameOS duplicate node insertion fix: Cmd+D now appends the copy to nodes with selection, undo/redo cycle, copy toast; breadcrumb useRef hygiene |

@@ -113,6 +113,7 @@ graph TD
 - [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
 - [`research/liblib-video-panel-2026-09-06/`](research/liblib-video-panel-2026-09-06/)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`research/liblib-canvas-batch125-2026-09-06/`](research/liblib-canvas-batch125-2026-09-06/)：视频生成面板对齐：尝试行/新功能条/placeholder。
+- [`research/liblib-canvas-batch148-2026-09-07/`](research/liblib-canvas-batch148-2026-09-07/)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
 - [`research/liblib-canvas-batch136-2026-09-06/`](research/liblib-canvas-batch136-2026-09-06/)：回收站勾选与批量恢复：计数、逐项勾选与批量恢复按钮。
 - [`research/liblib-surface-coverage-2026-09-07/`](research/liblib-surface-coverage-2026-09-07/)：全表面覆盖矩阵：已对齐/待补采/阻塞三态路线图。
 - [`research/liblib-canvas-batch135-2026-09-07/`](research/liblib-canvas-batch135-2026-09-07/)：视频面板积分比例因子落地（16:9→27/s、Auto→46/s，采样校准）。
