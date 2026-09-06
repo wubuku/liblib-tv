@@ -279,6 +279,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 146b | Character filter 文化区域 | 已完成；文化区域选项补全已通过，详见 [`liblib-canvas-batch146b-2026-09-07/`](liblib-canvas-batch146b-2026-09-07/)；循环继续 |
 | 113 | Uniform character strip spacing | 已完成；均匀间距对齐已通过，详见 [`liblib-canvas-batch113-2026-09-05/`](liblib-canvas-batch113-2026-09-05/)；其余候选需 fixture 授权 |
 | 112 | Character filter panel alignment | 已完成；筛选面板对齐已通过，详见 [`liblib-canvas-batch112-2026-09-05/`](liblib-canvas-batch112-2026-09-05/)；其余候选需 fixture 授权 |
 | 108 | 97-107 series cross-batch regression | 已完成；跨批回归与漂移归因已记录，详见 [`liblib-canvas-batch108-2026-09-05/`](liblib-canvas-batch108-2026-09-05/)；循环迭代继续 |

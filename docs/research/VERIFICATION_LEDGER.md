@@ -172,6 +172,7 @@ BrowserContext，不写截图。
 | Batch 139 | Topbar credits supermarket split | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch139.py` 已通过；积分超市/积分余额 独立入口、顺序与 `0/0/0` diagnostics；商城页行为不证明 |
 | Batch 136 | Recycle bin selection and batch restore | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch136.py` 已通过；删除→回收站条目/勾选/计数/批量恢复/回列表与 `0/0/0` diagnostics；勾选批量操作源站交互不证明 |
 | Batch 146b | Character filter 文化区域 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch146b.py` 已通过；文化区域四芯片/清空/恢复和 `0/0/0` diagnostics；源站文化区域选项不证明 |
+| Batch 146b | Character filter 文化区域 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch146b.py` 已通过；文化区域四芯片/清空/恢复和 `0/0/0` diagnostics；源站文化区域选项不证明 |
 | Batch 141 | Video model menu full catalog | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch22.py`（矩阵迁移至 35 项采样目录）与 `verify-liblib-batch125/126/128/21.py` 复跑通过；`0/0/0` diagnostics；premium 完整分布不证明 |
 | Batch 133 | FrameOS duplicate node insertion | `SCRIPT_RECORDED_PASS` | `verify-frameos-batch133.py` 已通过；Cmd+D 插入副本节点/副本标题/视觉选中/undo/redo/复制 toast 和 `0/0/0` diagnostics；修复文档记录的缺口 |
 | Batch 134 | FrameOS copy/paste clipboard cycle | `SCRIPT_RECORDED_PASS` | `verify-frameos-batch134.py` 已通过；Cmd+C→Cmd+V 插入选中副本、undo、重复粘贴和 `0/0/0` diagnostics；writeText Promise 拒绝已捕获（修复潜在 pageerror） |
