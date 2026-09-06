@@ -127,10 +127,20 @@ export function TopNavBar() {
         >
           <Share2 size={15} />
         </button>
+        {/* Batch 139: 源站顶栏 积分超市 与 积分余额 为两个独立入口。 */}
         <button
           type="button"
           aria-label="积分超市"
           title="积分超市"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+        >
+          <span className="text-[#f5c451]">🏆</span>
+          <span className="hidden text-[#f5c451] lg:inline">积分超市</span>
+        </button>
+        <button
+          type="button"
+          aria-label="积分余额"
+          title="积分余额"
           className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
         >
           <Zap size={14} className="fill-white" />

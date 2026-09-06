@@ -1,0 +1,22 @@
+{
+  "batch": 139,
+  "title": "Topbar credits supermarket / balance split",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "supermarket:entry",
+        "balance:entry",
+        "balance:value",
+        "membership:entry",
+        "order:supermarket-before-balance",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
