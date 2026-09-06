@@ -114,10 +114,10 @@ def run_desktop(page: Page):
     duration = page.locator("[data-video-duration]")
     assert duration.get_attribute("min") == "4"
     assert duration.get_attribute("max") == "30"
-    assert duration.input_value() == "6"
+    assert duration.input_value() == "5"
     assert page.locator("[data-video-duration-value]").inner_text().replace(
         "\n", ""
-    ) == "6s"
+    ) == "5s"
     page.screenshot(path=str(NORMAL_SCREENSHOT))
 
     page.locator('[data-video-ratio-option="21:9"]').click()

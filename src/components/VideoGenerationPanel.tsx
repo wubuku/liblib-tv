@@ -114,7 +114,7 @@ export function VideoGenerationPanel({
   const [mode, setMode] = useState<VideoMode>("omnireference");
   const [ratio, setRatio] = useState("16:9");
   const [resolution, setResolution] = useState("720P");
-  const [duration, setDuration] = useState(6);
+  const [duration, setDuration] = useState(5);
   const [audio, setAudio] = useState(true);
   const [count, setCount] = useState(1);
   const [autoLink, setAutoLink] = useState(true);
