@@ -148,7 +148,11 @@ export function VideoGenerationPanel({
   const isLongVideo = mode === "long-video";
   const durationMin = isLongVideo ? 30 : 4;
   const durationMax = isLongVideo ? 300 : 30;
-  const credits = isLongVideo ? duration * 49 : duration * 46 * count;
+  // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230，
+  // 比例影响积分；未采样比例沿用 46/s（CLONE_DECISION）。
+  const credits = isLongVideo
+    ? duration * 49
+    : duration * count * (ratio === "16:9" ? 27 : 46);
   const modeLabel = modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
