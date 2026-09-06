@@ -1,0 +1,26 @@
+{
+  "batch": 133,
+  "title": "FrameOS duplicate node insertion",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:nodes",
+        "duplicate:node-added",
+        "duplicate:selected-id",
+        "duplicate:title-copy",
+        "duplicate:visual-selected",
+        "undo:node-removed",
+        "redo:node-back",
+        "toast:copy",
+        "duplicate:title-source",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

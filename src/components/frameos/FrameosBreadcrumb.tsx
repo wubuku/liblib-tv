@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
 import { ArrowDownIcon } from "./icons";
 

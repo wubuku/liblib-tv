@@ -135,6 +135,8 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 119 | /project list page: back/title/recycle/new-folder structure, create-card canvas creation, canvas cards navigate+activate, logo-menu 全部项目 real routing |
 | Batch 124 | Canvas recycle bin: soft delete with full CanvasData snapshot, /project recycle panel (30-day copy, restore), restore without active-canvas switch (batch119 assertion migrated) |
 | Batch 125 | Video panel attempts row (5分钟超长视频/首尾帧/首帧 chips), 新功能：支持真人 bar, prompt placeholder alignment (toolbar/generate flow unchanged) |
+| Batch 126 | Inline advanced settings row in the video panel: 高级设置 label + three compact switch chips (联网搜索/自动校验素材/智能引用 AutoLink), superseded gear+popup removed |
+| Batch 133 | FrameOS duplicate node insertion fix: Cmd+D now appends the copy to nodes with selection, undo/redo cycle, copy toast; breadcrumb useRef hygiene |
 
 The current source-contract coverage and historical assertion boundaries are tracked separately in [`research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md). Batch 9 and Batch 10 remain valid for their dated clone snapshots; they do not silently become coverage for the current `1092.5px` toolbar or structured AutoLink contract.
 

@@ -397,7 +397,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     const newNode: FrameosNode = {
       ...node,
       id: newId,
-      selected: false,
+      selected: true,
       position: { x: node.position.x + 40, y: node.position.y + 40 },
       data: {
         ...node.data,
@@ -407,7 +407,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set((state) => ({
       past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
       future: [],
-      nodes: state.nodes.map((n) => ({ ...n, selected: n.id === newId })),
+      // Batch 133: 修复文档记录的缺口——副本对象此前从未加入 nodes。
+      nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
       selectedNodeId: newId,
     }));
   },

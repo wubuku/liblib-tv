@@ -113,6 +113,7 @@ graph TD
 - [`research/liblib-canvas-batch115-2026-09-06/`](research/liblib-canvas-batch115-2026-09-06/)：双击画布打开添加节点面板。
 - [`research/liblib-video-panel-2026-09-06/`](research/liblib-video-panel-2026-09-06/)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`research/liblib-canvas-batch125-2026-09-06/`](research/liblib-canvas-batch125-2026-09-06/)：视频生成面板对齐：尝试行/新功能条/placeholder。
+- [`research/liblib-frameos-batch133-2026-09-06/`](research/liblib-frameos-batch133-2026-09-06/)：FrameOS 复制节点落地：Cmd+D 插入副本节点与 undo/redo。
 - [`research/liblib-canvas-batch116-2026-09-06/`](research/liblib-canvas-batch116-2026-09-06/)：脚本生成器节点（脚本 NEW）：三尝试/参考图/GVLM 3.1 与本地提示词。
 - [`research/liblib-canvas-batch117-2026-09-06/`](research/liblib-canvas-batch117-2026-09-06/)：导演台节点卡文案对齐 2026-09-06 采样（导演台/描述/打开导演台）。
 - [`research/liblib-canvas-batch124-2026-09-06/`](research/liblib-canvas-batch124-2026-09-06/)：画布回收站（软删除+恢复）：/project 回收站面板与内容完整恢复。
