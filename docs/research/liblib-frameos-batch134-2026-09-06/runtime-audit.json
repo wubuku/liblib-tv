@@ -1,0 +1,23 @@
+{
+  "batch": 134,
+  "title": "FrameOS copy/paste clipboard cycle",
+  "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:nodes",
+        "paste:node-added",
+        "paste:selected-new",
+        "paste:title-kept",
+        "paste:undo",
+        "paste:re-paste",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

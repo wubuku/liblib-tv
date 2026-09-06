@@ -198,13 +198,26 @@ function FrameosCanvasInner() {
         const node = state.nodes.find((n) => n.id === state.selectedNodeId);
         if (node) {
           try {
-            navigator.clipboard.writeText(
-              JSON.stringify({ kind: "frameos-node", node })
-            );
+            void navigator.clipboard
+              .writeText(JSON.stringify({ kind: "frameos-node", node }))
+              .catch(() => {
+                /* mock */
+              });
           } catch {
             /* mock */
           }
+          useFrameosStore.getState().copyNodeToClipboard(node.id);
           showToast(`已复制「${node.data.title}」`, "success");
+        }
+        return;
+      }
+
+      // Batch 134: Cmd/Ctrl + V - 从内部剪贴板粘贴节点副本
+      if ((e.metaKey || e.ctrlKey) && e.key === "v" && !e.isComposing) {
+        const clip = useFrameosStore.getState().nodeClipboard;
+        if (clip) {
+          useFrameosStore.getState().pasteNodeFromClipboard();
+          showToast(`已粘贴「${clip.data.title as string}」`, "success");
         }
         return;
       }
@@ -214,12 +227,15 @@ function FrameosCanvasInner() {
         const node = state.nodes.find((n) => n.id === state.selectedNodeId);
         if (node) {
           try {
-            navigator.clipboard.writeText(
-              JSON.stringify({ kind: "frameos-node", node })
-            );
+            void navigator.clipboard
+              .writeText(JSON.stringify({ kind: "frameos-node", node }))
+              .catch(() => {
+                /* mock */
+              });
           } catch {
             /* mock */
           }
+          useFrameosStore.getState().copyNodeToClipboard(node.id);
           useFrameosStore.getState().requestConfirm({
             kind: "node",
             id: state.selectedNodeId,

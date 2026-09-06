@@ -94,6 +94,9 @@ interface FrameosCanvasState {
   removeNode: (id: string) => void;
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   duplicateNode: (id: string) => void;
+  nodeClipboard: FrameosNode | null;
+  copyNodeToClipboard: (id: string) => void;
+  pasteNodeFromClipboard: () => void;
   toggleMinimap: () => void;
   setPromptValue: (v: string) => void;
   selectNode: (id: string | null) => void;
@@ -280,6 +283,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   minimapPinActive: true,
   promptValue: "",
   selectedNodeId: null,
+  nodeClipboard: null,
   isAddNodeMenuOpen: false,
   isOrganizeMenuOpen: false,
   organizeMode: "grid",
@@ -408,6 +412,32 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
       future: [],
       // Batch 133: 修复文档记录的缺口——副本对象此前从未加入 nodes。
+      nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
+      selectedNodeId: newId,
+    }));
+  },
+
+
+  copyNodeToClipboard: (id) => {
+    const node = get().nodes.find((n) => n.id === id);
+    if (!node) return;
+    set({ nodeClipboard: { ...node, selected: false } });
+  },
+
+  pasteNodeFromClipboard: () => {
+    const clip = get().nodeClipboard;
+    if (!clip) return;
+    const newId = `${clip.type}-${Date.now()}`;
+    const newNode: FrameosNode = {
+      ...clip,
+      id: newId,
+      selected: true,
+      position: { x: clip.position.x + 40, y: clip.position.y + 40 },
+      data: { ...clip.data },
+    };
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
       nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
       selectedNodeId: newId,
     }));
