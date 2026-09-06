@@ -1,0 +1,21 @@
+{
+  "batch": 128,
+  "title": "Attempt chips drive settings linkage",
+  "evidence": "docs/research/liblib-video-panel-2026-09-06/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:default-settings",
+        "linkage:5min",
+        "linkage:shouwei",
+        "deselect:chip-off",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -239,7 +239,18 @@ export function VideoGenerationPanel({
                   type="button"
                   data-video-attempt={label}
                   aria-pressed={attempt === label}
-                  onClick={() => setAttempt(attempt === label ? null : label)}
+                  onClick={() => {
+                    // Batch 128: 源站尝试芯片驱动设置联动（5分钟超长视频 → Auto+300s;首尾帧/首帧 → Auto+5s）。
+                    const next = attempt === label ? null : label;
+                    setAttempt(next);
+                    if (next === "5分钟超长视频") {
+                      setRatio("Auto");
+                      setDuration(300);
+                    } else if (next !== null) {
+                      setRatio("Auto");
+                      setDuration(5);
+                    }
+                  }}
                   className={cn(
                     "flex h-7 items-center rounded-full px-2.5 text-xs transition-colors",
                     attempt === label ? "bg-[#09caf5]/15 text-[#09caf5]" : "text-[#aaa] hover:bg-white/[0.06] hover:text-white",
