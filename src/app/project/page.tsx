@@ -161,13 +161,13 @@ export default function ProjectListPage() {
             data-project-card={canvas.id}
             onClick={() => openCanvas(canvas.id)}
             className={cn(
-              "flex h-[150px] flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#1f1f1f] text-left transition-colors hover:border-white/[0.24]",
+              "group flex h-[150px] flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#1f1f1f] text-left transition-all duration-200 hover:border-white/[0.24] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-0.5",
               canvas.id === activeCanvasId && "border-[#09caf5]/50",
             )}
           >
             {/* Batch 148: 源站项目卡有封面图占位区（渐变色/缩略图）。 */}
-            <div className="relative flex h-[92px] shrink-0 items-center justify-center bg-gradient-to-br from-[#2a3a4a] via-[#1e2e3e] to-[#1a2a3a]">
-              <svg viewBox="0 0 24 24" className="size-6 text-white/20" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <div className="relative flex h-[92px] shrink-0 items-center justify-center bg-gradient-to-br from-[#2a3a4a] via-[#1e2e3e] to-[#1a2a3a] transition-transform duration-300 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" className="size-6 text-white/20 transition-transform duration-300 group-hover:scale-125" fill="none" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>

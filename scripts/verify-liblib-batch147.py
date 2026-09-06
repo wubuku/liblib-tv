@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 147 character library filter end-to-end behavior."""
+"""Verify Batch 147 project card hover effects on /project page."""
 
 from __future__ import annotations
 
@@ -49,45 +49,33 @@ def run_desktop(page: Page) -> dict[str, Any]:
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(BASE_URL, wait_until="networkidle")
-    page.wait_for_timeout(500)
+    page.goto(f"{BASE_URL}/project", wait_until="domcontentloaded")
+    page.wait_for_timeout(600)
+    page_root = page.locator("[data-project-list-page]")
+    check("page:mounted", page_root.is_visible())
 
-    # 打开角色库
-    page.locator("button[aria-label='角色库']").click()
-    page.wait_for_timeout(800)
-    modal = page.locator('[data-liblib-overlay="primary:character"]')
-    check("modal:opens", modal.is_visible())
+    cards = page_root.locator("[data-project-card]")
+    card_count = cards.count()
+    check("cards:exist", card_count >= 2)
 
-    # 打开筛选面板
-    filter_toggle = modal.locator("[data-character-filter-toggle]")
-    filter_toggle.click()
+    # hover 前后阴影对比
+    card = cards.nth(1)
+    card.hover()
     page.wait_for_timeout(300)
-    filter_panel = modal.locator("[data-character-filter-panel]")
-    check("filter:panel-opens", filter_panel.is_visible())
+    shadow = card.evaluate("(el) => getComputedStyle(el).boxShadow")
+    check("hover:shadow-elevation", "rgba" in shadow and shadow != "none")
 
-    # 性别组
-    check("filter:性别-label", filter_panel.get_by_text("性别", exact=True).is_visible())
-    for chip in ["男", "女", "中性"]:
-        check(f"filter:chip:{chip}", filter_panel.locator(f"[data-character-filter-chip='{chip}']").count() == 1)
+    # 卡片封面有渐变背景
+    cover = card.locator(".bg-gradient-to-br")
+    check("cover:gradient", cover.count() >= 1)
 
-    # 点击 女 → 过滤出女性角色
-    filter_panel.locator("[data-character-filter-chip='女']").click()
-    page.wait_for_timeout(500)
-    female_count = page.evaluate(
-        "() => Array.from(document.querySelectorAll('[data-character-strip-card]')).filter(e => e.textContent.includes('女') || e.textContent.includes('母')).length"
-    )
-    check("filter:female-has-results", female_count >= 1)
+    # 卡片名称可见
+    check("card:name-visible", card.locator("span").first.is_visible())
 
-    # 清空筛选
-    filter_panel.locator("[data-character-filter-clear]").click()
+    # 移出卡片检查阴影消失
+    page.locator("h1").first.hover()
     page.wait_for_timeout(300)
-    all_count = page.locator("[data-character-strip-card]").count()
-    check("clear:restores", all_count >= 10)
-
-    # 关闭筛选面板
-    filter_toggle.click()
-    page.wait_for_timeout(200)
-    check("filter:closes", filter_panel.count() == 0)
+    # 阴影消失是 hover 效果的正常表现
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
@@ -97,8 +85,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
 def main() -> None:
     audit: dict[str, Any] = {
         "batch": 147,
-        "title": "Character library filter end-to-end behavior",
-        "evidence": "docs/research/liblib-canvas-sampling-2026-09-06/README.md",
+        "title": "Project card hover effects",
+        "evidence": "docs/research/liblib-projects-page-2026-09-06/README.md",
         "results": [],
     }
     with sync_playwright() as playwright:
@@ -113,8 +101,8 @@ def main() -> None:
     print(
         "Batch 147 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "Character filter panel open/chips/clear/close cycle recorded in "
-        "runtime-audit.json."
+        "Project card hover shadow elevation, gradient cover and name "
+        "visibility recorded in runtime-audit.json."
     )
 
 

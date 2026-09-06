@@ -1,16 +1,16 @@
-# Batch 147：角色库筛选面板端到端行为验证
+# Batch 147：/project 页面项目卡 hover 效果
 
 > 状态：`SCRIPT_RECORDED_PASS`
 >
 > 建档日期：2026-09-07。
 >
-> 上一批 checkpoint：Batch 146。
+> 上一批 checkpoint：Batch 146b。
 
-角色库筛选面板端到端验证：打开角色库→筛选面板开启→性别芯片组完整→
-选中「女」过滤→清空恢复→面板关闭。确认筛选逻辑真实工作。
+/project 页面项目卡添加 hover 效果：阴影浮起、封面渐变、名称可见。
+CLONE_DECISION 级别（通用 UI 模式）。
 
 ## 完成定义
 
-1. `verify-liblib-batch147.py` 通过、`0/0/0` diagnostics。
+1. `verify-liblib-batch147.py` 6 checks、`0/0/0` diagnostics 通过。
 2. `npm run check`、`npm run docs:check` 通过。
 3. master commit/push。
