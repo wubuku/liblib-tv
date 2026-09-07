@@ -165,6 +165,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 169 | Character library modal tab chrome (公共角色库 / Seedance2.0&2.5合规素材库) + Seedance consent gate replicated as local-only state (accept/decline both local; no account action taken on the user's behalf); 素材库 tab shows a local empty state |
 | Batch 170 | Canvas top bar workspace rename input (13px, min-w-30 max-w-100 cursor-text, transparent, left of the canvas chip) bound to projectName; store default renamed 未命名项目 -> 未命名工作区; batch16/17 assertions migrated |
 | Batch 171 | Bottom-left asset bar aligned to sampled geometry: bar items-end gap-2 without padding box, 资产管理 button rounded-lg 13px (94x28), zoom chip rounded-lg 13px (42x28) |
+| Batch 172 | Canvas right-click context menu (blank pane + node): full-screen catcher + menu fixed at the click point, six items 上传/保存到我的资产/添加节点/撤销⌘Z/重做⇧⌘Z/粘贴⌘V with two 0.5px dividers; 保存到我的资产 gated on selection, 撤销/重做 wired to store history; 上传/保存/粘贴 are click-to-close placeholders (no backend) |
 | FrameOS Batch 157 | Context menu verified end-to-end (node: 复制/创建副本/删除, pane: add nodes, Esc close); BEHAVIORS.md stale ❌ row corrected to ✅; stable selectors data-frameos-context-menu/-item added |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |

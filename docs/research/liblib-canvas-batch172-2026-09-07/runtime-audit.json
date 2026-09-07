@@ -1,0 +1,30 @@
+{
+  "batch": 172,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:closed-initial",
+        "menu:opens-on-pane",
+        "menu:width-196",
+        "menu:position-at-click",
+        "menu:six-items-order",
+        "menu:shortcuts",
+        "menu:two-dividers",
+        "menu:blank-canvas-disabled",
+        "menu:escape-closes",
+        "menu:add-node-opens-panel",
+        "node:created",
+        "menu:opens-on-node",
+        "menu:node-state",
+        "undo:removes-node",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

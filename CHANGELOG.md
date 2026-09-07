@@ -47,6 +47,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Bottom-left asset bar aligned to the sampled source geometry
   (Batch 171, 2026-09-07): items-end gap-2 container without a padding
   box, 资产管理 button and zoom chip both rounded-lg at 13px
+- Canvas right-click context menu (Batch 172, source 2026-09-07 CDP
+  re-sample): full-screen catcher + menu fixed at the click point
+  (min-w 196px, p-2, gap-1, rounded-2xl, 0.5px #363636 border), six items
+  上传/保存到我的资产/添加节点/撤销⌘Z/重做⇧⌘Z/粘贴⌘V with two 0.5px
+  dividers; 保存到我的资产 gated on selection and 撤销/重做 wired to the
+  store history; 上传/保存/粘贴 stay click-to-close local placeholders
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

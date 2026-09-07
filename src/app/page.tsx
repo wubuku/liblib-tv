@@ -31,6 +31,10 @@ import { BottomToolbar } from "@/components/BottomToolbar";
 import { KeyboardShortcutsDialog } from "@/components/KeyboardShortcutsDialog";
 import { ImagePreviewOverlay } from "@/components/ImagePreviewOverlay";
 import { AssetManagerPanel } from "@/components/AssetManagerPanel";
+import {
+  CanvasContextMenu,
+  type CanvasContextMenuPosition,
+} from "@/components/CanvasContextMenu";
 import { AgentDrawer } from "@/components/AgentDrawer";
 import { StoryboardBoard } from "@/components/StoryboardBoard";
 import { CanvasEmptyState } from "@/components/CanvasEmptyState";
@@ -191,6 +195,7 @@ export default function Home() {
     setViewport: setStoreViewport,
     activeCanvasId,
     canvases,
+    historyByCanvas,
   } = useCanvasStore();
   const {
     showMinimap,
@@ -245,6 +250,11 @@ export default function Home() {
   );
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
+  // Batch 172: 画布右键菜单位置（视口坐标）；null = 关闭。
+  const [canvasContextMenu, setCanvasContextMenu] = useState<CanvasContextMenuPosition | null>(null);
+  const historyStack = historyByCanvas[activeCanvasId];
+  const canUndo = (historyStack?.past.length ?? 0) > 0;
+  const canRedo = (historyStack?.future.length ?? 0) > 0;
   const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
   const connectionGesture = useRef<{
     nodeId: string | null;
@@ -1005,6 +1015,15 @@ export default function Home() {
               selectElements({ nodeIds: [], edgeIds: [] });
               focusCanvasRoot();
             }}
+            onPaneContextMenu={(event) => {
+              event.preventDefault();
+              setCanvasContextMenu({ x: event.clientX, y: event.clientY });
+            }}
+            onNodeContextMenu={(event, node) => {
+              event.preventDefault();
+              selectNode(node.id);
+              setCanvasContextMenu({ x: event.clientX, y: event.clientY });
+            }}
             onNodeDragStart={(_, node) => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
               if (!currentCanvas) {
@@ -1092,6 +1111,31 @@ export default function Home() {
           </ReactFlow>
         )}
         {editorMode === "workbench" && flowNodes.length === 0 && <CanvasEmptyState />}
+        {canvasContextMenu && (
+          <CanvasContextMenu
+            position={canvasContextMenu}
+            canUndo={canUndo}
+            canRedo={canRedo}
+            hasSelection={selectedNodeIds.length > 0}
+            onClose={() => setCanvasContextMenu(null)}
+            onUpload={() => setCanvasContextMenu(null)}
+            onSaveSelectionToAssets={() => setCanvasContextMenu(null)}
+            onAddNode={() => {
+              const uiState = useUIStore.getState();
+              if (!uiState.isAddNodePanelOpen) uiState.toggleAddNodePanel();
+              setCanvasContextMenu(null);
+            }}
+            onUndo={() => {
+              undo();
+              setCanvasContextMenu(null);
+            }}
+            onRedo={() => {
+              redo();
+              setCanvasContextMenu(null);
+            }}
+            onPaste={() => setCanvasContextMenu(null)}
+          />
+        )}
       </main>
 
       {isAgentOpen && <AgentDrawer />}
