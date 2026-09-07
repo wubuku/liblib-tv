@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Prompt textarea background/rounding removed and the 「3 个匹配」
+  AutoLink popup chip deleted (Batch 166, source 2026-09-07): the sampled
+  prompt region is a plain scroll area and the sampled toolbars contain
+  only the five pills; the chip's advanced popup was already superseded
 - Reference slot row aligned to the sampled source classes (Batch 165):
   flex-wrap, items-start, pl-1, no fixed row height (h-12 previously
   clipped the 55px slots); the 「Auto Link：」summary text removed as

@@ -1,0 +1,21 @@
+{
+  "batch": 166,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "prompt:transparent",
+        "prompt:no-radius",
+        "prompt:editable",
+        "toolbar:no-autolink-chip",
+        "toolbar:pills-intact",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -295,7 +295,8 @@ export function VideoGenerationPanel({
               退出续写模式
             </button>
           )}
-          {!isContinuation && autoLink && <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]"><Link2 size={12} />3 个匹配</button>}
+          {/* Batch 166: 「3 个匹配」AutoLink 芯片移除 —— 2026-09-07 两种面板状态的工具行均只有 5 个 pill，
+              且其打开的 advanced 弹窗已被 Batch 149 内联列取代。 */}
         </div>
 
         {/* Batch 160: 源站 2026-09-07 新建节点整面板实拍无「新功能」条，原 Batch 125 条目移除。 */}
@@ -369,7 +370,7 @@ export function VideoGenerationPanel({
                   onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
                   aria-label="视频生成提示词"
                   placeholder="描述你想要生成的画面内容，@引用素材"
-                  className="mt-1 min-h-0 flex-1 resize-none rounded-xl bg-black/10 p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
+                  className="mt-1 min-h-0 flex-1 resize-none p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
                 />
               </>
             )}
