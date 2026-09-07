@@ -159,7 +159,15 @@ FrameOS fixes, coverage matrix and regression sweeps).
   (Batch 188, source 2026-09-08): the five video panel pills now embed the
   harvested 12x12 SVG paths verbatim (参考 plus-cross, 标记 pin+sparkle,
   特效 camera+lens, 角色库 shield-check, 运镜 video-camera, with their g
-  transforms), replacing the lucide approximations- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
+  transforms), replacing the lucide approximations
+- Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
+  AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
+  wrapping a 1.5px border-current rect with exact per-ratio px dims
+  (16:9 16×9, 9:16 9×16, 21:9 16×7, …) instead of tailwind size classes
+  with a hard-coded active border; an open question records that today's
+  normal-mode menu showed seven tiles including Auto (2.5-model day) vs
+  Batch 175's six-tile sample, with the model-dependency hypothesis
+  unconfirmed and the clone grid unchanged- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):

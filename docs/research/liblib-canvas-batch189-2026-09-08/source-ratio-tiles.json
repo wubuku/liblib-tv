@@ -1,0 +1,72 @@
+[
+ {
+  "label": "Auto",
+  "box": [
+   1230,
+   388,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 12px; height: 9px;\"></span></span>"
+ },
+ {
+  "label": "16:9",
+  "box": [
+   1295,
+   388,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 16px; height: 9px;\"></span></span>"
+ },
+ {
+  "label": "4:3",
+  "box": [
+   1360,
+   388,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 12px; height: 9px;\"></span></span>"
+ },
+ {
+  "label": "1:1",
+  "box": [
+   1424,
+   388,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 12px; height: 12px;\"></span></span>"
+ },
+ {
+  "label": "3:4",
+  "box": [
+   1489,
+   388,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 9px; height: 12px;\"></span></span>"
+ },
+ {
+  "label": "9:16",
+  "box": [
+   1230,
+   458,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 9px; height: 16px;\"></span></span>"
+ },
+ {
+  "label": "21:9",
+  "box": [
+   1295,
+   458,
+   57,
+   62
+  ],
+  "childHtml": "<span class=\"flex size-[17px] items-center justify-center\"><span class=\"flex-none rounded-[2px] border-[1.5px] border-current\" style=\"width: 16px; height: 7px;\"></span></span>"
+ }
+]

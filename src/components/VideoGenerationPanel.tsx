@@ -626,7 +626,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
                   : "border-white/[0.07] bg-white/[0.025] text-[#777] hover:border-white/[0.16] hover:text-[#ddd]",
               )}
             >
-              <AspectRatioGlyph ratio={item} active={ratio === item} />
+              <AspectRatioGlyph ratio={item} />
               <span>{item}</span>
             </button>
           ))}
@@ -703,26 +703,28 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
   );
 }
 
-function AspectRatioGlyph({ ratio, active }: { ratio: string; active: boolean }) {
-  const dimensions: Record<string, string> = {
-    Auto: "h-3.5 w-4",
-    "16:9": "h-3 w-5",
-    "4:3": "h-3.5 w-[18px]",
-    "1:1": "size-3.5",
-    "3:4": "h-[18px] w-3.5",
-    "9:16": "h-5 w-3",
-    "21:9": "h-2.5 w-5",
-  };
+/* Batch 189: 源站比例瓦片字形直采（2026-09-08）——17px 居中盒 + 1.5px
+   border-current 内框，逐比例精确 px（Auto 12×9 / 16:9 16×9 / 4:3 12×9 /
+   1:1 12×12 / 3:4 9×12 / 9:16 9×16 / 21:9 16×7）；颜色随瓦片文字色。 */
+const GLYPH_DIMENSIONS: Record<string, [number, number]> = {
+  Auto: [12, 9],
+  "16:9": [16, 9],
+  "4:3": [12, 9],
+  "1:1": [12, 12],
+  "3:4": [9, 12],
+  "9:16": [9, 16],
+  "21:9": [16, 7],
+};
 
+function AspectRatioGlyph({ ratio }: { ratio: string }) {
+  const [width, height] = GLYPH_DIMENSIONS[ratio] ?? [12, 9];
   return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "block rounded-[2px] border",
-        dimensions[ratio],
-        active ? "border-[#d4d4d4]" : "border-[#6b6b6b]",
-      )}
-    />
+    <span aria-hidden="true" className="flex size-[17px] items-center justify-center">
+      <span
+        className="flex-none rounded-[2px] border-[1.5px] border-current"
+        style={{ width, height }}
+      />
+    </span>
   );
 }
 

@@ -1,0 +1,35 @@
+{
+  "batch": 189,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:open",
+        "tile:16:9:box-17",
+        "tile:16:9:dims",
+        "tile:16:9:border-1-5",
+        "tile:4:3:box-17",
+        "tile:4:3:dims",
+        "tile:4:3:border-1-5",
+        "tile:1:1:box-17",
+        "tile:1:1:dims",
+        "tile:1:1:border-1-5",
+        "tile:3:4:box-17",
+        "tile:3:4:dims",
+        "tile:3:4:border-1-5",
+        "tile:9:16:box-17",
+        "tile:9:16:dims",
+        "tile:9:16:border-1-5",
+        "tile:21:9:box-17",
+        "tile:21:9:dims",
+        "tile:21:9:border-1-5",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

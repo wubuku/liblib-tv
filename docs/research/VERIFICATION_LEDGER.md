@@ -204,6 +204,7 @@ BrowserContext，不写截图。
 | Batch 186 | footer 图标按钮组对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch186.py` 8 checks；顺序/两枚新按钮/两枚直采字形/credits 位次；batch21 改字体无关的触发器相对偏移（三连跑绿）；batch125 补非 toggle 迁移；24 项全量回归绿 |
 | Batch 187 | footer 按钮点击惰性证实 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch187.py` 9 checks；源站点击无弹层/无 toggle/无新层（类名差异仅 hover 噪声）；clone 占位一致，惰性固化为回归合同；186/21/22/125/172/178 回归绿 |
 | Batch 188 | 工具条 pill 图标原字形 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch188.py` 12 checks；五枚 pill svg viewBox/path 与源站直采一致（含 g transform）；22/151/166/172/178/185/186 回归绿 |
+| Batch 189 | 比例瓦片字形结构对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch189.py` 20 checks；17px 盒 + 1.5px border-current 内框逐比例 px 直采；6/7 格模型依赖假设记为开放问题（clone 维持 175/176 合同）；21/22/155/160/175/176/185/186/188 回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |
