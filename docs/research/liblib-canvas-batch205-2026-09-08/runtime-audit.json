@@ -1,0 +1,23 @@
+{
+  "batch": 205,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "filter:image-shows-image",
+        "filter:image-hides-video",
+        "filter:video-shows-video",
+        "filter:video-hides-image",
+        "filter:all-restores",
+        "filter:trigger-label-all",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

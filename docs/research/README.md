@@ -356,6 +356,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 201 | Real skill directory | 已完成；换一批真实 Skill 目录对齐已通过，详见 [`liblib-canvas-batch201-2026-09-08/`](liblib-canvas-batch201-2026-09-08/)；循环继续 |
 | 202 | Asset drawer width | 已完成；资产管理抽屉宽度对齐已通过，详见 [`liblib-canvas-batch202-2026-09-08/`](liblib-canvas-batch202-2026-09-08/)；循环继续 |
 | 204 | Display settings = type filter | 已完成；展示设置类型筛选菜单实装已通过（详见 [`liblib-canvas-batch202-2026-09-08/`](liblib-canvas-batch202-2026-09-08/) 附录）；循环继续 |
+| 205 | Type filter list linkage | 已完成；类型筛选列表联动已通过，详见 [`liblib-canvas-batch205-2026-09-08/`](liblib-canvas-batch205-2026-09-08/)；循环继续 |
 | 203 | Ratings filter menu | 已完成；所有评级筛选菜单实装已通过，详见 [`liblib-canvas-batch203-2026-09-08/`](liblib-canvas-batch203-2026-09-08/)；循环继续 |
 | 189 | Ratio tile glyph structure | 已完成；比例瓦片字形结构对齐已通过，详见 [`liblib-canvas-batch189-2026-09-08/`](liblib-canvas-batch189-2026-09-08/)；循环继续 |
 | 190 | Ratio grid model-dependency retest | 已完成；模型依赖假设否定并统一 7 格，详见 [`liblib-canvas-batch190-2026-09-08/`](liblib-canvas-batch190-2026-09-08/)；循环继续 |

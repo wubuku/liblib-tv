@@ -229,6 +229,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
   2026-09-08): in the drawer's persistent-sidebar form the control opens a
   180×369 menu with ten type options (全部/文本/…/脚本（旧版）) matching
   the add-panel node types; batch102's hint assertions migrated
+- Type filter menu wired to the asset list (Batch 205): ten option labels
+  map to node-type filters (matchesFilter extended), the trigger shows
+  展示设置 on 全部, and the dead hint state was removed
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the

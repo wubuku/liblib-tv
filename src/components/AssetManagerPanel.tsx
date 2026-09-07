@@ -18,7 +18,19 @@ import { useCanvasStore } from "@/store/canvasStore";
 import { cn } from "@/lib/utils";
 
 type AssetManagerTab = "canvas" | "assets";
-type NodeFilter = "all" | "image" | "video" | "text" | "group";
+// Batch 205: 扩展至源站类型菜单的十项（type→node 类型映射见 matchesFilter）。
+type NodeFilter =
+  | "all"
+  | "image"
+  | "video"
+  | "text"
+  | "group"
+  | "audio"
+  | "video-clip"
+  | "script-execution"
+  | "shot-breakdown"
+  | "script"
+  | "script-generator";
 type SortMode = "graph" | "name";
 
 interface AssetManagerPanelProps {
@@ -65,8 +77,15 @@ function NodeTypeIcon({ type }: { type: string | undefined }) {
 
 function matchesFilter(node: Node, filter: NodeFilter) {
   if (filter === "all") return true;
-  if (filter === "image" || filter === "video") return node.type === filter;
+  if (filter === "image") return node.type === "image";
+  if (filter === "video") return node.type === "video";
   if (filter === "text") return node.type === "script" || node.type === "text";
+  if (filter === "audio") return node.type === "audio";
+  if (filter === "video-clip") return node.type === "video-clip";
+  if (filter === "script-execution") return node.type === "script-execution";
+  if (filter === "shot-breakdown") return node.type === "shot-breakdown";
+  if (filter === "script") return node.type === "script";
+  if (filter === "script-generator") return node.type === "script-generator";
   return node.type === "storyboard-group";
 }
 
@@ -115,7 +134,6 @@ export function AssetManagerPanel({
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("graph");
   // Batch 102: 源站有 所有评级/展示设置 控件；其菜单语义未采样，clone 给诚实本地 hint。
-  const [hint, setHint] = useState("");
   // Batch 203: 源站直采评级筛选菜单（6 项：所有评级/1-5）。clipPath 用近似负一星。
   const [ratingsOpen, setRatingsOpen] = useState(false);
   // Batch 204: 源站直采节点类型筛选菜单（10 项，滑杆图标触发）。
@@ -297,6 +315,19 @@ export function AssetManagerPanel({
                   aria-pressed={typeFilter === label}
                   onClick={() => {
                     setTypeFilter(label);
+                    // Batch 205: 类型菜单与列表过滤联动（标签→NodeFilter 映射）。
+                    const mapped: NodeFilter =
+                      label === "全部" ? "all"
+                      : label === "文本" ? "text"
+                      : label === "图片" ? "image"
+                      : label === "视频" ? "video"
+                      : label === "智能剪辑" ? "video-clip"
+                      : label === "导演台" ? "script-execution"
+                      : label === "逐帧拉片" ? "shot-breakdown"
+                      : label === "音频" ? "audio"
+                      : label === "脚本" ? "script-generator"
+                      : "script";
+                    setFilter(mapped);
                     setTypeMenuOpen(false);
                   }}
                   className={cn(
@@ -342,12 +373,6 @@ export function AssetManagerPanel({
             />
           </div>
         </div>
-      )}
-
-      {hint && (
-        <p data-asset-manager-hint className="border-b border-white/[0.05] px-3 py-1.5 text-[10px] leading-4 text-[#75d7e8]">
-          {hint}
-        </p>
       )}
 
       <div data-asset-manager-list={activeTab} className="min-h-0 flex-1 overflow-y-auto px-2 py-2">
