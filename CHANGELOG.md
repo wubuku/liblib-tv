@@ -214,6 +214,14 @@ FrameOS fixes, coverage matrix and regression sweeps).
   artifact) so the clone widened 340→400; clicking a Skill card inserts a
   removable skill-name chip into the chat input while the drawer stays
   open
+- 换一批 real skill directory aligned (Batch 201, source 2026-09-08):
+  four batches harvested via successive rotations — 15 skills total with
+  real path handles (gameplay-pv-builder, xingrannvpin,
+  koreeda-film-aesthetic, wes-anderson-aesthetics, narrative-tvc-creator,
+  eastwood-western-style, high-impact-car-tvc, cinematic-travel-vlog-maker,
+  werewolf-vampire-short-drama, taiwan-new-wave-aesthetic,
+  absurdist-comedy-maker; batch 3 has three cards); the clone-shaped
+  second-batch filler was removed and thumbnails stay local placeholders
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims
