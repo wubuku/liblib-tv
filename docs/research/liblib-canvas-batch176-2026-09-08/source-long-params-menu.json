@@ -1,0 +1,220 @@
+{
+ "box": [
+  1218,
+  396,
+  340,
+  396
+ ],
+ "bg": "rgba(0, 0, 0, 0)",
+ "text": "比例Auto16:94:31:13:49:1621:9清晰度480P720P1080P视频时长因剧情和画面设计，实际时长可能略有差异s生成音频开启关闭",
+ "rows": [
+  {
+   "tag": "BUTTON",
+   "text": "Auto",
+   "box": [
+    1230,
+    436,
+    57,
+    62
+   ],
+   "bg": "rgba(255, 255, 255, 0.1)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "16:9",
+   "box": [
+    1295,
+    436,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "4:3",
+   "box": [
+    1360,
+    436,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "1:1",
+   "box": [
+    1424,
+    436,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "3:4",
+   "box": [
+    1489,
+    436,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "9:16",
+   "box": [
+    1230,
+    506,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "21:9",
+   "box": [
+    1295,
+    506,
+    57,
+    62
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "480P",
+   "box": [
+    1230,
+    604,
+    100,
+    32
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "720P",
+   "box": [
+    1338,
+    604,
+    100,
+    32
+   ],
+   "bg": "rgba(255, 255, 255, 0.1)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "1080P",
+   "box": [
+    1446,
+    604,
+    100,
+    32
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "INPUT",
+   "text": "",
+   "box": [
+    1482,
+    692,
+    48,
+    20
+   ],
+   "bg": "oklab(0.656652 0.0000297725 0.0000131726 / 0.1)",
+   "disabled": false,
+   "aria": null,
+   "min": "30",
+   "max": "300",
+   "val": "300"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "开启",
+   "box": [
+    1230,
+    748,
+    154,
+    32
+   ],
+   "bg": "rgba(255, 255, 255, 0.1)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "关闭",
+   "box": [
+    1392,
+    748,
+    154,
+    32
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "disabled": false,
+   "aria": null,
+   "min": null,
+   "max": null,
+   "val": ""
+  }
+ ]
+}

@@ -77,12 +77,15 @@ def open_params(page: Page):
     return trigger, menu
 
 
-def assert_common_controls(page: Page, expect_ratio_pressed: str | None = "16:9"):
-    # Batch 175: 比例网格 6 格无 Auto（源站实测）；Auto 仅是尝试联动内部状态。
-    assert page.locator("[data-video-ratio-option]").count() == 6
+def assert_common_controls(page: Page, expect_ratio_pressed: str | None = "16:9", long_mode: bool = False):
+    # Batch 175/176: 比例网格普通模式 6 格无 Auto、长模式 7 格含 Auto（源站实测）；
+    # Auto 在普通模式仅是尝试联动内部状态。
+    assert page.locator("[data-video-ratio-option]").count() == (7 if long_mode else 6)
     assert page.locator("[data-video-resolution-option]").count() == 3
     assert page.locator("[data-video-audio-option]").count() == 2
-    if expect_ratio_pressed is None:
+    if long_mode:
+        assert page.locator('[data-video-ratio-option="Auto"]').get_attribute("aria-pressed") == "true"
+    elif expect_ratio_pressed is None:
         assert page.locator('[data-video-ratio-option][aria-pressed="true"]').count() == 0
     else:
         assert page.locator(f'[data-video-ratio-option="{expect_ratio_pressed}"]').get_attribute(
@@ -160,7 +163,7 @@ def run_desktop(page: Page):
     # Batch 126: 高级设置行使弹出菜单 y 偏移上移 28px。
     assert_close(long_box["y"] - panel_box["y"], -196.5)
     # Batch 175: 长模式现走尝试芯片（batch128 联动）——比例 Auto 无格子按下。
-    assert_common_controls(page, expect_ratio_pressed=None)
+    assert_common_controls(page, long_mode=True)
     assert page.locator("[data-video-count-option]").count() == 0
     assert page.locator("[data-video-long-hint]").count() == 1
     duration = page.locator("[data-video-duration]")

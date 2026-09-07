@@ -75,6 +75,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   six tiles without Auto (grid-cols-4, 62px tiles); batch21/33 migrated
   off the mode-menu route with process ratio Auto and duration 300 via the
   batch128 linkage
+- Long-video params menu sampled and aligned (Batch 176, source
+  2026-09-08): the ratio grid gains a seventh Auto tile (selected, five
+  per row) in long mode only; the long hint replaced with the sampled copy
+  因剧情和画面设计，实际时长可能略有差异；the 5分钟超长视频 chip also
+  switches the model to 2.5 (footer direct evidence, matching the long
+  pipeline model); the count section confirmed absent in long mode;
+  batch21 long-phase assertions migrated
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

@@ -1,0 +1,27 @@
+{
+  "batch": 176,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "chip:model-2-5",
+        "chip:mode-long",
+        "chip:auto-300s",
+        "chip:credits-14700",
+        "menu:open-long",
+        "menu:seven-tiles-with-auto",
+        "menu:auto-selected",
+        "menu:tile-62",
+        "menu:duration-30-300",
+        "menu:long-hint-text",
+        "menu:no-count-in-long",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

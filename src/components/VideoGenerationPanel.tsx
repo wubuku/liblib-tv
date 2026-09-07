@@ -157,9 +157,11 @@ export function VideoGenerationPanel({
   if (attempt !== prevAttempt) {
     setPrevAttempt(attempt);
     // Batch 128+160: 源站尝试芯片驱动设置联动——5分钟超长视频整组切换：
-    // mode=超长视频（长视频公式 49/s，页脚实拍 14700）+ Auto+300s；首尾帧/首帧 → Auto+5s。
+    // mode=超长视频（长视频公式 49/s，页脚实拍 14700）+ Auto+300s；
+    // Batch 176: 源站页脚直证长芯片同时把模型切到 2.5（长视频管线模型）。
     if (attempt === "5分钟超长视频") {
       setMode("long-video");
+      setModel("2.5");
       setRatio("Auto");
       setDuration(300);
     } else if (attempt !== null) {
@@ -552,9 +554,11 @@ interface ParamsMenuProps {
 }
 
 function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
-  /* Batch 175: 源站比例网格实测 6 格无 Auto（4 列 57×62 瓦片）；
-     Auto 仅作为尝试联动的内部状态存在。 */
-  const ratios = ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
+  /* Batch 176: 源站长模式直采——比例网格长模式 7 格含 Auto（5 列，Auto 选中），
+     普通模式 6 格无 Auto（4 列）；Auto 在普通模式仅是尝试联动内部状态。 */
+  const ratios = isLongVideo
+    ? ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"]
+    : ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
   const resolutions = ["480P", "720P", "1080P"];
 
   return (
@@ -568,7 +572,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
     >
       <section>
         <p className="mb-2 text-xs text-[#8a8a8a]">比例</p>
-        <div className="grid grid-cols-4 gap-2">
+        <div className={cn("grid gap-2", isLongVideo ? "grid-cols-5" : "grid-cols-4")}>
           {ratios.map((item) => (
             <button
               key={item}
@@ -633,7 +637,8 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
         <div className="mt-1 flex justify-between text-[10px] text-[#606060]"><span>{durationMin}s</span><span>{durationMax}s</span></div>
         {isLongVideo && (
           <p data-video-long-hint className="mt-2 text-[11px] leading-4 text-[#676767]">
-            围绕视频画面设计，支持更长时长的连续场景
+            {/* Batch 176: 源站长模式提示文案直采（2026-09-08）。 */}
+            因剧情和画面设计，实际时长可能略有差异
           </p>
         )}
       </section>
