@@ -148,6 +148,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 151 | Video panel toolbar pills h-26 px-2 and credits block min-w-[85px]/justify-end/muted gray per 2026-09-07 round-2 sample; selection-bound panel and one-time 尝试 gate recorded, menus rAF-gated (unopenable in throttled window) |
 | Batch 152 | /project card sub-line date-only (workspace prefix removed per 2026-09-07 sample) + surface coverage matrix refreshed with Batch 149-152 facts |
 | Batch 153 | Evidence batch: Auto→46/s confirmed on source (230 = 5×46), fresh video nodes show no panel, credits-block classes match Batch 151 implementation; no code change |
+| Batch 154 | Full sweep of all 124 verifiers: 112 pass, 12 aged (exact Batch 108/131 list), 0 unexplained; batch124 migrated to popup contract (Batch 150 consequence), batch93 timing flake documented; never prefix verifiers with `timeout` (Rosetta/PIL dlopen artifact) |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips added to the filter panel (CLONE_DECISION) |

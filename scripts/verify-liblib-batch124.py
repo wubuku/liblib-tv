@@ -114,20 +114,23 @@ def run_desktop(page: Page) -> dict[str, Any]:
         page_root.locator("[data-project-card='canvas-2']").count() == 1,
     )
 
-    # 回画布验证内容完整（节点数量与初始一致；卡片点击为客户端路由）
-    page.evaluate("""() => {
-      const card = document.querySelector("[data-project-card='canvas-2']");
-      if (card) card.click();
-    }""")
-    page.wait_for_timeout(1000)
+    # 回画布验证内容完整（Batch 150: 卡片点击在新标签页打开画布）
+    with page.context.expect_page() as popup_info:
+        page.evaluate("""() => {
+          const card = document.querySelector("[data-project-card='canvas-2']");
+          if (card) card.click();
+        }""")
+    popup = popup_info.value
+    popup.wait_for_timeout(1000)
     check(
         "restore:content-intact",
-        page.locator(".react-flow__node").count() >= 10,
+        popup.locator(".react-flow__node").count() >= 10,
     )
     check(
         "restore:canvas-2-active",
-        page.get_by_role("button", name="画布 2", exact=True).count() == 1,
+        popup.get_by_role("button", name="画布 2", exact=True).count() == 1,
     )
+    popup.close()
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

@@ -39,6 +39,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Full regression sweep across all 124 verifiers (Batch 154): 112 pass,
+  12 aged failures matching the documented Batch 108/131 list exactly,
+  zero unexplained; batch124 recycle verifier migrated to the popup
+  contract after the Batch 150 new-tab change; batch93 director mobile
+  timing flake documented; verifiers must never run under `timeout`
+  (Rosetta/PIL dlopen artifact)
 - Evidence batch 153 (source 2026-09-07 round-3): Auto-ratio credits
   factor confirmed on a direct source data point (Auto/720P/5s/1 -> 230 =
   5x46), fresh video nodes show no generation panel, and the credits block
