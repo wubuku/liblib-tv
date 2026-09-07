@@ -135,6 +135,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   already covered by the passing Batch 59/67-96 current gates, batch6 is
   superseded by Batch 77 navigation evidence, and batch40's failure is a
   fixture media artifact; verifier headers now self-document the triage
+- Mobile 390 breakpoint sweep for the Batch 172-178 surfaces (Batch 185,
+  new verify-liblib-batch185.py, 14 checks): both context-menu variants and
+  the model menu fit the 390 viewport, attempt chips render their glyph
+  icons with the white/10 selected state, and no horizontal overflow —
+  harness notes added for elementFromPoint pane probing and the Meta+0
+  fit-view prerequisite for in-card panels
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
