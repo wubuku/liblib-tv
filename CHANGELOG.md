@@ -186,6 +186,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   re-anchored to top-[444px] and now portals the gallery to document.body
   (a fixed element inside the React Flow transform subtree was being
   coordinate-hijacked)
+- Topnav + bottom-toolbar icons aligned to harvested libtv glyphs
+  (Batch 196, source 2026-09-08): seven icons (workflow, layout-panel,
+  panel-toggle, grid, map, link, magnet) embed the sampled SVG paths
+  verbatim in a new ChromeIcons.tsx; a mapping error (treating the two
+  12px dropdown chevrons as the workspace/canvas pill glyphs) was caught
+  and reverted — the pills' Globe2/Link2 stay lucide since the source does
+  not use iconify there
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims
