@@ -4,8 +4,8 @@
 
 Before: chip set duration=300 while the params slider stayed 4..30 (broken
 half-state: thumb clamped at 30, state value 300). After: params menu opens
-in the long layout (range 30..300); deselecting the chip clamps duration
-back to <=30 (CLONE_DECISION, source cancel linkage unsampled).
+in the long layout (range 30..300); re-clicking the chip keeps it selected
+(Batch 177: source has no same-chip toggle-off).
 """
 
 from __future__ import annotations
@@ -94,15 +94,15 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.locator("[data-video-params-trigger]").click()
     page.wait_for_timeout(200)
 
-    # 取消芯片 → 时长回落 ≤30（标签恢复常规）。
+    # Batch 177: 源站直证同芯片再点不取消（非 toggle）——长布局与 300s 保持。
     attempts.locator("[data-video-attempt='5分钟超长视频']").click()
     page.wait_for_timeout(300)
     label = settings_label(page) or ""
     seconds = int(label.split("·")[2].strip().replace("s", ""))
-    check("deselect:clamp-30", seconds <= 30)
+    check("reclick:duration-stays-300", seconds == 300)
     check(
-        "deselect:chip-off",
-        attempts.locator("[data-video-attempt='5分钟超长视频']").get_attribute("aria-pressed") == "false",
+        "reclick:chip-stays-on",
+        attempts.locator("[data-video-attempt='5分钟超长视频']").get_attribute("aria-pressed") == "true",
     )
 
     check("errors:empty", not errors)

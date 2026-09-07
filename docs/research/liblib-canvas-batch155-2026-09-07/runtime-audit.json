@@ -11,8 +11,8 @@
         "params:max-300",
         "params:min-30",
         "params:value-300",
-        "deselect:clamp-30",
-        "deselect:chip-off",
+        "reclick:duration-stays-300",
+        "reclick:chip-stays-on",
         "errors:empty"
       ],
       "diagnostics": {

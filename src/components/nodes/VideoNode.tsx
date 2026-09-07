@@ -586,7 +586,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               type="button"
               data-video-attempt={label}
               aria-pressed={attempt === label}
-              onClick={() => setAttempt(attempt === label ? null : label)}
+              /* Batch 177: 源站直证同芯片再点不取消（非 toggle），切换需点其它芯片。 */
+              onClick={() => setAttempt(label)}
               className={cn(
                 "flex h-9 w-fit items-center rounded-full bg-white/[0.05] px-3 text-[13px] transition-colors",
                 attempt === label

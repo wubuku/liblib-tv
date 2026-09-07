@@ -82,6 +82,14 @@ FrameOS fixes, coverage matrix and regression sweeps).
   switches the model to 2.5 (footer direct evidence, matching the long
   pipeline model); the count section confirmed absent in long mode;
   batch21 long-phase assertions migrated
+- Model row hover slide + attempt chip no-toggle (Batch 177, source
+  2026-09-08): the row text column slides translate-y-2 → 0 on hover or
+  selection inside the 36px clip column (200ms; the 16px description is
+  revealed without growing the 52px row); attempt chips are not toggles —
+  re-clicking the pressed chip keeps it selected with settings unchanged
+  (clicking another chip switches), and the panel replays the attempt
+  linkage on mount so undo/reselect keeps long mode; batch128/155/160
+  deselect assertions migrated to the current-source contract
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

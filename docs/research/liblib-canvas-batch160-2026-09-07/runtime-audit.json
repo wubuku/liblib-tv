@@ -10,8 +10,8 @@
         "chip:mode-long",
         "chip:credits-14700",
         "chip:params-auto-300",
-        "deselect:mode-back",
-        "deselect:clamp-30",
+        "reclick:mode-still-long",
+        "reclick:params-unchanged",
         "errors:empty"
       ],
       "diagnostics": {

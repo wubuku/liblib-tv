@@ -9,7 +9,7 @@
         "boot:default-settings",
         "linkage:5min",
         "linkage:shouwei",
-        "deselect:chip-off",
+        "reclick:stays-selected",
         "diagnostics:zero"
       ],
       "diagnostics": {

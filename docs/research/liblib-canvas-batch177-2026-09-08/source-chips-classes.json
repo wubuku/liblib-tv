@@ -1,0 +1,17 @@
+[
+ {
+  "text": "5分钟超长视频",
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "style": ""
+ },
+ {
+  "text": "首尾帧生成视频",
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "style": ""
+ },
+ {
+  "text": "首帧生成视频",
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "style": ""
+ }
+]

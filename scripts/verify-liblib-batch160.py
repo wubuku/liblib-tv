@@ -82,13 +82,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "Auto · 720P · 300s" in (vg.locator("[data-video-params-trigger]").inner_text()),
     )
 
-    # 取消芯片 → 回常规模式 + 时长钳制 ≤30
+    # Batch 177: 源站直证同芯片再点不取消（非 toggle）——长模式与设置保持。
     attempts.locator("[data-video-attempt='5分钟超长视频']").click()
     page.wait_for_timeout(400)
-    check("deselect:mode-back", mode.inner_text().strip() == "文生视频")
+    check("reclick:mode-still-long", mode.inner_text().strip() == "超长视频")
     label = vg.locator("[data-video-params-trigger]").inner_text()
-    seconds = int(label.split("·")[2].strip().replace("s", ""))
-    check("deselect:clamp-30", seconds <= 30)
+    check("reclick:params-unchanged", "Auto · 720P · 300s" in label)
 
     check("errors:empty", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

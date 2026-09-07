@@ -192,6 +192,7 @@ BrowserContext，不写截图。
 | Batch 174 | 模型菜单行系统 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch174.py` 已通过（11 checks）；三态直测全行固定 52px/选中白 15%/hover 白 10%/34px 瓦片/描述常驻；batch22 58/48 旧合同迁移为当前源站合同后全过；21/33/149/164-173 回归绿 |
 | Batch 175 | 模式菜单 + 参数菜单对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch175.py` 已通过（13 checks）；菜单仅 5 项/空节点仅文生视频可用/行 32px/比例 6 格无 Auto/62px 瓦片；batch21/33 长视频入口迁移到尝试芯片后全过；22/26/128/149/155/160/165-174 回归绿 |
 | Batch 176 | 长模式参数菜单 + 模型联动 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch176.py` 已通过（12 checks）；长菜单 7 格含 Auto 选中/提示原文/30..300/无数量区/芯片切模型 2.5；batch21 长阶段迁移后全过；22/26/33/128/149/155/160/165-175 回归绿 |
+| Batch 177 | 模型行 hover 滑层 + 芯片非 toggle | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch177.py` 已通过（9 checks）；滑层四类名/hover 归位/行高 52/再点不取消；batch128/155/160 取消合同迁移为保持选中后全过；21/22/26/33/149/165-176 回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |

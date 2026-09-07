@@ -1,0 +1,58 @@
+{
+ "no_hover": {
+  "transform": "none",
+  "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-hover:translate-y-0 group-data-[selected=true]:translate-y-0",
+  "kids": [
+   {
+    "text": "Seedance 2.0 Fast VIP2min",
+    "box": [
+     1056,
+     683,
+     302,
+     20
+    ],
+    "h": "20px",
+    "opacity": "1"
+   },
+   {
+    "text": "最强视频模型快速版，会员专属通道，15s音画同步",
+    "box": [
+     1056,
+     703,
+     302,
+     16
+    ],
+    "h": "16px",
+    "opacity": "1"
+   }
+  ]
+ },
+ "hover": {
+  "transform": "none",
+  "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-hover:translate-y-0 group-data-[selected=true]:translate-y-0",
+  "kids": [
+   {
+    "text": "Seedance 2.0 Fast VIP2min",
+    "box": [
+     1056,
+     683,
+     302,
+     20
+    ],
+    "h": "20px",
+    "opacity": "1"
+   },
+   {
+    "text": "最强视频模型快速版，会员专属通道，15s音画同步",
+    "box": [
+     1056,
+     703,
+     302,
+     16
+    ],
+    "h": "16px",
+    "opacity": "1"
+   }
+  ]
+ }
+}

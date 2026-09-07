@@ -153,7 +153,9 @@ export function VideoGenerationPanel({
 
   // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动用「渲染期调整」
   // （React 官方 prop 变更派生状态模式，避免 effect 内同步 setState）。
-  const [prevAttempt, setPrevAttempt] = useState(attempt);
+  // Batch 177: prevAttempt 以 null 起步——面板重挂载（选择丢失/undo）后
+  // attempt 仍在节点上时，挂载即重放联动（芯片非 toggle，无法靠再点触发）。
+  const [prevAttempt, setPrevAttempt] = useState<string | null>(null);
   if (attempt !== prevAttempt) {
     setPrevAttempt(attempt);
     // Batch 128+160: 源站尝试芯片驱动设置联动——5分钟超长视频整组切换：
@@ -481,12 +483,13 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
             data-video-model-option={item.id}
             type="button"
             aria-pressed={selected}
+            data-selected={selected ? "true" : "false"}
             onClick={() => onSelect(item.id)}
             className={cn(
-              /* Batch 174: 源站行系统实测——所有行固定 h-52（选中/hover 都不
-                 增高），选中背景 white/15%、hover 白 10%，描述常驻但被 36px
-                 列裁剪（不随选中展开）。 */
-              "flex h-[52px] w-full shrink-0 items-center gap-2 rounded-xl px-2 text-left transition-colors hover:bg-white/[0.1]",
+              /* Batch 174/177: 源站行系统实测——所有行固定 h-52（选中/hover 都
+                 不增高），选中背景 white/15%、hover 白 10%；描述常驻 36px 列内，
+                 默认下移 8px 只露 8px，hover 或选中时上滑归位（见下方注释）。 */
+              "group flex h-[52px] w-full shrink-0 items-center gap-2 rounded-xl px-2 text-left transition-colors hover:bg-white/[0.1]",
               selected && "bg-white/[0.15]",
             )}
           >
@@ -494,17 +497,21 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
               <ModelIcon size={15} />
             </span>
             <span className="h-9 min-w-0 flex-1 overflow-hidden pr-1">
-              <span className="flex items-center gap-1.5">
-                <span className="truncate text-sm text-[#efefef]">{item.title}</span>
-                {item.premium && (
-                  <Gem data-video-model-premium size={11} fill="currentColor" className="shrink-0 text-[#f3b74c]" />
+              {/* Batch 177: 源站行内滑层直采——`translate-y-2 group-hover:translate-y-0
+                  group-data-[selected=true]:translate-y-0` + 200ms 过渡。 */}
+              <span className="flex h-full translate-y-2 flex-col justify-start transition-transform duration-200 group-hover:translate-y-0 group-data-[selected=true]:translate-y-0">
+                <span className="flex items-center gap-1.5">
+                  <span className="truncate text-sm text-[#efefef]">{item.title}</span>
+                  {item.premium && (
+                    <Gem data-video-model-premium size={11} fill="currentColor" className="shrink-0 text-[#f3b74c]" />
+                  )}
+                </span>
+                {item.description && (
+                  <span data-video-model-description className="mt-0.5 block truncate text-[11px] leading-[14px] text-[#818181]">
+                    {item.description}
+                  </span>
                 )}
               </span>
-              {item.description && (
-                <span data-video-model-description className="mt-0.5 block truncate text-[11px] leading-[14px] text-[#818181]">
-                  {item.description}
-                </span>
-              )}
             </span>
             <span className="shrink-0 rounded-full bg-white/[0.06] px-2 py-1 text-[10px] text-[#8a8a8a]">
               {item.estimate}

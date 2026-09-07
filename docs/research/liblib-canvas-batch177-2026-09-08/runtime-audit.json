@@ -1,0 +1,24 @@
+{
+  "batch": 177,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "row:slide-classes",
+        "row:group-on-button",
+        "row:data-selected-attr",
+        "row:hover-slide-0",
+        "row:hover-still-52",
+        "row:selected-slide-class",
+        "chip:reclick-no-toggle",
+        "chip:settings-still-long",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

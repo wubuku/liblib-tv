@@ -1,0 +1,26 @@
+{
+ "before": {
+  "chipPressed": null,
+  "chipBox": [
+   1177,
+   447,
+   139,
+   36
+  ],
+  "model": "2.5",
+  "modeLong": true,
+  "params": "Auto · 720P · 300s · 1个 ·"
+ },
+ "after": {
+  "chipPressed": null,
+  "chipBox": [
+   1177,
+   447,
+   139,
+   36
+  ],
+  "model": "2.5",
+  "modeLong": true,
+  "params": "Auto · 720P · 300s · 1个 ·"
+ }
+}
