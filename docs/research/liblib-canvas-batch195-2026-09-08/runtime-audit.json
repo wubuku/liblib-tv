@@ -1,0 +1,23 @@
+{
+  "batch": 195,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "gallery:open-a",
+        "gallery:top-444-a",
+        "gallery:h-centered-a",
+        "gallery:open-b",
+        "gallery:top-444-b",
+        "gallery:h-centered-b",
+        "gallery:stable-across-opens",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

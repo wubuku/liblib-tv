@@ -180,7 +180,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   (verify-liblib-batch193.py, 6 checks), zero code changes; a follow-up material-precondition attempt (Batch 194) failed with a new
   finding — the source effects-gallery anchor is state-dependent (above the
   trigger on 09-07, below it on 09-08), diverging from the clone's fixed
-  bottom-[175px] centering (recorded as an open question)
+  bottom-[175px] centering (recorded as an open question) — that open question was CLOSED in Batch 195 by three-state sampling:
+  the gallery box is identical regardless of trigger position (static
+  screen positioning, top ≈ 444, horizontally centered), so the clone
+  re-anchored to top-[444px] and now portals the gallery to document.body
+  (a fixed element inside the React Flow transform subtree was being
+  coordinate-hijacked)
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

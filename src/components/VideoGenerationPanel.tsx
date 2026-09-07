@@ -1,5 +1,7 @@
 "use client";
 
+import { createPortal } from "react-dom";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -334,10 +336,11 @@ export function VideoGenerationPanel({
             /* Batch 191: 特效库横排（源站 2026-09-08 采样）——屏幕居中悬浮、
                8 卡横排（clone 渲染已采样的 4 张）；卡片 185×235，图区 178×178
                （clone 用渐变占位——源图为远端 webp，仅采到一张 URL）。 */
-            <div
-              data-effects-gallery
-              className="fixed bottom-[175px] left-1/2 z-[70] flex -translate-x-1/2 gap-2 overflow-x-auto"
-            >
+            createPortal(
+              <div
+                data-effects-gallery
+                className="fixed left-1/2 top-[444px] z-[70] flex -translate-x-1/2 gap-2 overflow-x-auto"
+              >
               {[
                 { name: "试妆特写", author: "捏捏AI", credits: 185, gradient: "from-[#5a4a3f] to-[#2b2320]" },
                 { name: "悬浮缓入", author: "捏捏AI", credits: 377, gradient: "from-[#3f4a5a] to-[#20262b]" },
@@ -372,7 +375,9 @@ export function VideoGenerationPanel({
                   </div>
                 </div>
               ))}
-            </div>
+              </div>,
+              document.body,
+            )
           )}
           {isContinuation && onClearContinuation && (
             <button
