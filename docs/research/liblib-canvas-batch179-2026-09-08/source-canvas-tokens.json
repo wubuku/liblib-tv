@@ -1,0 +1,20 @@
+{
+ "vars": {
+  "--canvas-controls-hover": "#ffffff1a",
+  "--canvas-controls-bg": "#262626",
+  "--canvas-controls-border": "#363636",
+  "--canvas-controls-text": "#fff",
+  "--canvas-shadow-menu": "0 8px 32px #00000026,0 2px 8px #0000001a",
+  "--canvas-shadow-dropdown": "0px 4px 10px #00000040,0px 2px 4px #0000004d",
+  "--canvas-shadow-panel": "0px 2px 5px #00000026",
+  "--z-panel": "400",
+  "--z-header": null,
+  "--z-modal": "500",
+  "--fg-default": "#f7f7f7",
+  "--fg-muted": "#919191",
+  "--panel-background": "#262626",
+  "--border-hair": null,
+  "--border-border-default": null
+ },
+ "chip_hover_bg": "rgba(255, 255, 255, 0.1)"
+}

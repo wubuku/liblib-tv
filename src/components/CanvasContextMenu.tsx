@@ -26,7 +26,8 @@ interface CanvasContextMenuProps {
 }
 
 const itemClass =
-  "flex h-8 w-full shrink-0 items-center justify-between rounded-lg px-2 text-[13px] text-[#eeeeee] transition-colors duration-100 disabled:cursor-default disabled:opacity-30 enabled:hover:bg-white/[0.07]";
+  /* Batch 179: 文字对齐源站 token --canvas-controls-text (#fff)。 */
+  "flex h-8 w-full shrink-0 items-center justify-between rounded-lg px-2 text-[13px] text-[var(--canvas-controls-text,#fff)] transition-colors duration-100 disabled:cursor-default disabled:opacity-30 enabled:hover:bg-white/[0.07]";
 
 const shortcutClass = "ml-6 whitespace-nowrap text-xs opacity-40";
 

@@ -594,11 +594,12 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               onClick={() => setAttempt(label)}
               className={cn(
                 /* Batch 178: 源站直采——选中标记为背景 white/10%，文字 #f7f7f7
-                   两态一致，圆角 rounded-lg，行前 14px 图标（lucide 替代）。 */
-                "flex h-9 w-fit items-center gap-2 rounded-lg bg-white/[0.05] px-3 text-[13px] transition-colors",
+                   两态一致，圆角 rounded-lg，行前 14px 图标（lucide 替代）。
+                   Batch 179: hover 背景对齐源站 token --canvas-controls-hover。 */
+                "flex h-9 w-fit items-center gap-2 rounded-lg bg-white/[0.05] px-3 text-[13px] transition-colors hover:bg-[var(--canvas-controls-hover)]",
                 attempt === label
                   ? "bg-white/[0.1] text-[#f7f7f7]"
-                  : "text-[#f7f7f7] hover:bg-white/[0.09]",
+                  : "text-[#f7f7f7]",
               )}
             >
               <Icon size={14} className="shrink-0 opacity-80" />

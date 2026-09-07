@@ -1,0 +1,25 @@
+{
+  "batch": 179,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "token:controls-bg",
+        "token:controls-border",
+        "token:controls-text",
+        "token:controls-hover",
+        "token:shadow-menu",
+        "token:z-panel-modal",
+        "token:fg-default-muted",
+        "chip:hover-alpha-0-1",
+        "menu:item-text-fff",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

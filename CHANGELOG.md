@@ -98,6 +98,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   the mode menu, which clears the chip through the new onAttemptChange prop
   and clamps duration via a functional setMode guard that preserves the
   user's mode choice
+- Canvas token harvest aligned (Batch 179, source 2026-09-08): the sampled
+  :root tokens --canvas-controls-bg/-border/-text/-hover, --z-panel/--z-modal
+  and --fg-default/--fg-muted are now defined in globals.css verbatim; the
+  attempt-chip hover uses --canvas-controls-hover (#ffffff1a) and the
+  context-menu item text uses --canvas-controls-text (#fff); the 素材库
+  consent gate re-probe confirms it still blocks content — nothing was
+  accepted on the user's behalf
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
