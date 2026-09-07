@@ -41,6 +41,7 @@ import { CanvasEmptyState } from "@/components/CanvasEmptyState";
 import { FollowBanner } from "@/components/FollowBanner";
 import { ScriptNode } from "@/components/nodes/ScriptNode";
 import { ScriptGeneratorNode } from "@/components/nodes/ScriptGeneratorNode";
+import { ScriptV2Node } from "@/components/nodes/ScriptV2Node";
 import { ImageNode } from "@/components/nodes/ImageNode";
 import { TextNode } from "@/components/nodes/TextNode";
 import { VideoNode } from "@/components/nodes/VideoNode";
@@ -96,6 +97,7 @@ const nodeTypes = {
   video: VideoNode,
   "script-execution": ScriptExecutionNode,
   "script-generator": ScriptGeneratorNode,
+  "script-v2": ScriptV2Node,
   "storyboard-group": StoryboardGroupNode,
   "shot-breakdown": ShotBreakdownNode,
   "shot-breakdown-result": ShotBreakdownResultNode,

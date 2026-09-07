@@ -1,6 +1,7 @@
 "use client";
 
 import { MousePointerClick } from "lucide-react";
+import { useCanvasStore } from "@/store/canvasStore";
 import { useState } from "react";
 
 // Batch 100: 芯片命名/角标来自 2026-09-05 源站空画布审计；点击流未采样，
@@ -31,7 +32,15 @@ export function CanvasEmptyState() {
             key={chip.id}
             type="button"
             data-canvas-empty-chip={chip.id}
-            onClick={() => setStatus("本地原型：快速生成入口未接入")}
+            onClick={() => {
+              // Batch 207: 源站直证——故事脚本生成芯片成对创建
+              // 预填剧本的 text 节点 + script-v2（脚本生成器）节点。
+              if (chip.id === "story-script") {
+                useCanvasStore.getState().createStoryScriptPair();
+                return;
+              }
+              setStatus("本地原型：快速生成入口未接入");
+            }}
             className="flex h-12 items-center gap-2.5 rounded-xl border border-white/[0.08] bg-[#1d1d1d]/90 px-5 text-sm text-[#ededed] shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-colors hover:border-white/[0.16] hover:bg-[#232323]"
           >
             <span>{chip.label}</span>

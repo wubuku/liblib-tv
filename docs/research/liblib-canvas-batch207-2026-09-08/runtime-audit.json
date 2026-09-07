@@ -1,0 +1,23 @@
+{
+  "batch": 207,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "pair:two-nodes-added",
+        "pair:script-v2-exists",
+        "pair:script-v2-350-at-zoom",
+        "pair:script-v2-title",
+        "pair:text-prefilled",
+        "pair:no-edge",
+        "pair:undo-removes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

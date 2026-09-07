@@ -295,6 +295,7 @@ interface CanvasState {
     data?: Record<string, unknown>,
     options?: DerivedNodeOptions,
   ) => void;
+  createStoryScriptPair: () => void;
   createVideoContinuation: (
     sourceId: string,
     startSeconds: number,
@@ -1193,6 +1194,51 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const position = getLibTVNodePositionForFlowCenter(center, dimensions);
     if (!position) return;
     get().addNodeAtPosition(type, position, data);
+  },
+
+  // Batch 207: 源站「故事脚本生成」芯片直证——成对创建预填剧本的 text 节点
+  // 与 script-v2（脚本生成器）节点，二者间无连线；单条历史（原子动作）。
+  createStoryScriptPair: () => {
+    const { activeCanvasId } = get();
+    const activeCanvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
+    if (!activeCanvas) return;
+    const textDims = getDefaultNodeDimensions("text");
+    const scriptDims = getDefaultNodeDimensions("script-v2");
+    const textPos = getViewportCenterPosition(activeCanvas, textDims);
+    const scriptPos = getViewportCenterPosition(activeCanvas, scriptDims);
+    const textNode: Node = {
+      id: createNodeId("text"),
+      type: "text",
+      position: textPos,
+      width: textDims.width,
+      height: textDims.height,
+      style: textDims,
+      data: { ...getDefaultNodeData("text"), content: "剧本" },
+    };
+    const scriptNode: Node = {
+      id: createNodeId("script-v2"),
+      type: "script-v2",
+      position: { x: scriptPos.x + 350, y: scriptPos.y },
+      width: scriptDims.width,
+      height: scriptDims.height,
+      style: scriptDims,
+      data: { ...getDefaultNodeData("script-v2") },
+    };
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? { ...canvas, nodes: [...canvas.nodes, textNode, scriptNode] }
+            : canvas,
+        ),
+        selectedNodeIds: [textNode.id, scriptNode.id],
+        selectedNodeId: scriptNode.id,
+        selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
   },
 
   addNodeAtPosition: (type: string, position: { x: number; y: number }, data?: Record<string, unknown>) => {
@@ -3300,6 +3346,7 @@ function getDefaultNodeDimensions(type: string) {
       return { width: 1040, height: 680 };
     case "video-clip":
     case "script-generator":
+    case "script-v2":
       return { width: 350, height: 350 };
     case "audio":
       return { width: 350, height: 140 };
@@ -3323,6 +3370,7 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
     case "text":
       return { content: "新文本节点" };
     case "script-generator":
+    case "script-v2":
       return { title: "脚本生成器" };
     case "image":
       return {
