@@ -3,13 +3,10 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
-  AtSign,
-  Box,
   Check,
   ChevronDown,
   Film,
   Gem,
-  Images,
   Settings2,
   Link2,
   LoaderCircle,
@@ -18,6 +15,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { PillIcon } from "@/components/nodes/ToolbarPillIcons";
 import { cn } from "@/lib/utils";
 import type {
   LongVideoProcessInput,
@@ -243,8 +241,8 @@ export function VideoGenerationPanel({
           源站提示词区实测 96px（2026-09-07）。 */}
       <section className="relative flex h-[397px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
         <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
-          {[{ label: "参考", icon: Images }, { label: "标记", icon: AtSign }, { label: "特效", icon: Sparkles }, { label: "角色库", icon: Box }, { label: "运镜", icon: Film, hasMenu: true }].map((item) => {
-            const Icon = item.icon;
+          {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。 */}
+          {[{ label: "参考" }, { label: "标记" }, { label: "特效" }, { label: "角色库" }, { label: "运镜", hasMenu: true }].map((item) => {
             if ("hasMenu" in item && item.hasMenu) {
               return (
                 <div key={item.label} className="relative">
@@ -254,7 +252,7 @@ export function VideoGenerationPanel({
                     onClick={() => setYunjingOpen(!yunjingOpen)}
                     className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
                   >
-                    <Icon size={12} />
+                    <PillIcon label={item.label} />
                     {item.label}
                   </button>
                   {yunjingOpen && (
@@ -297,7 +295,7 @@ export function VideoGenerationPanel({
                 </div>
               );
             }
-            return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><Icon size={12} />{item.label}</button>;
+            return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><PillIcon label={item.label} />{item.label}</button>;
           })}
           {isContinuation && onClearContinuation && (
             <button

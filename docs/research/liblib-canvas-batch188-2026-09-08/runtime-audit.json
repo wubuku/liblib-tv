@@ -1,0 +1,27 @@
+{
+  "batch": 188,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "toolbar:present",
+        "pill:参考:viewbox",
+        "pill:参考:path-harvested",
+        "pill:标记:viewbox",
+        "pill:标记:path-harvested",
+        "pill:特效:viewbox",
+        "pill:特效:path-harvested",
+        "pill:角色库:viewbox",
+        "pill:角色库:path-harvested",
+        "pill:运镜:viewbox",
+        "pill:运镜:path-harvested",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

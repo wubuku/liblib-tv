@@ -154,7 +154,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   2026-09-08): both buttons are click-inert on an empty fresh node — no
   popover, no toggle, no mounted layer (the class diff was hover noise
   only), matching the clone's inert placeholders; the inertness is now a
-  pinned regression contract (verify-liblib-batch187.py, 9 checks)- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
+  pinned regression contract (verify-liblib-batch187.py, 9 checks)
+- Toolbar pill icons aligned to the source iconify (libtv) glyphs
+  (Batch 188, source 2026-09-08): the five video panel pills now embed the
+  harvested 12x12 SVG paths verbatim (参考 plus-cross, 标记 pin+sparkle,
+  特效 camera+lens, 角色库 shield-check, 运镜 video-camera, with their g
+  transforms), replacing the lucide approximations- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):

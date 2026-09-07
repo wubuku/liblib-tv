@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+"""Verify Batch 188: toolbar pills use source iconify glyphs.
+
+Source evidence (2026-09-08 CDP, source-toolbar-pills.json): the five video
+panel toolbar pills lead with 12x12 libtv icons whose viewBoxes are
+`0 0 17 17` (参考, plus-cross), `0 0 16 16` (标记, pin+sparkle), `0 0 16 16`
+(特效, camera+lens), `0 0 16 16` (角色库, shield-check) and `0 0 16 16`
+(运镜, video-camera). The clone embeds the harvested paths verbatim
+(replacing the lucide approximations).
+"""
+
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+from playwright.sync_api import Page, sync_playwright
+
+
+ROOT = Path(__file__).resolve().parents[1]
+BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
+AUDIT_PATH = (
+    ROOT
+    / "docs"
+    / "research"
+    / "liblib-canvas-batch188-2026-09-08"
+    / "runtime-audit.json"
+)
+
+EXPECTED_VIEWBOXES = {
+    "参考": "0 0 17 17",
+    "标记": "0 0 16 16",
+    "特效": "0 0 16 16",
+    "角色库": "0 0 16 16",
+    "运镜": "0 0 16 16",
+}
+
+
+def attach_errors(page: Page) -> list[str]:
+    errors: list[str] = []
+    page.on(
+        "console",
+        lambda message: errors.append(f"console:{message.type}:{message.text}")
+        if message.type == "error"
+        else None,
+    )
+    page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))
+    return errors
+
+
+def run_desktop(page: Page) -> dict[str, Any]:
+    result: dict[str, Any] = {"viewport": "1440x900", "checks": []}
+
+    def check(name: str, ok: bool) -> None:
+        assert ok, f"batch188 check failed: {name}"
+        result["checks"].append(name)
+
+    errors = attach_errors(page)
+    page.goto(BASE_URL, wait_until="networkidle")
+    page.wait_for_timeout(500)
+
+    page.locator('.react-flow__node[data-id="v-UGQZzZOpbv"]').click(force=True)
+    page.wait_for_timeout(400)
+
+    toolbar = page.locator("[data-video-toolbar]")
+    check("toolbar:present", toolbar.count() == 1)
+
+    for label, viewbox in EXPECTED_VIEWBOXES.items():
+        svg = toolbar.locator(f"button:has-text('{label}') svg").first
+        check(f"pill:{label}:viewbox", svg.get_attribute("viewBox") == viewbox)
+        d = svg.locator("path").first.get_attribute("d") or ""
+        check(f"pill:{label}:path-harvested", len(d) > 40)
+
+    check("errors:empty", not errors)
+    result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
+    return result
+
+
+def main() -> None:
+    audit: dict[str, Any] = {"batch": 188, "results": []}
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1440, "height": 900})
+        audit["results"].append(run_desktop(page))
+        browser.close()
+    AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    audit["passed"] = all(r.get("checks") for r in audit["results"])
+    AUDIT_PATH.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n")
+    total = sum(len(r["checks"]) for r in audit["results"])
+    print(f"batch188: OK ({total} checks) -> {AUDIT_PATH}")
+
+
+if __name__ == "__main__":
+    main()
