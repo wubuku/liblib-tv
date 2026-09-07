@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Footer trigger geometry aligned to the sampled source class strings
+  (Batch 164): model trigger min-w-[88px] justify-between with 13px normal
+  text, mode trigger justify-center pl-2 pr-2.5, params justify-between,
+  footer row 32px without a top border; batch21 params-menu x offsets
+  migrated +37
 - Tablet breakpoints 768x1024 and 1024x768 verified after the panel
   growth (Batch 163): no page-level overflow, prompt intact, vertical
   clipping per the accepted canvas-clip contract; tablet phases and

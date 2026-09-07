@@ -105,7 +105,8 @@ def run_desktop(page: Page):
     assert menu.get_attribute("data-video-params-mode") == "normal"
     assert_close(normal_box["width"], 341)
     assert_close(normal_box["height"], 445)
-    assert_close(normal_box["x"] - panel_box["x"], 82)
+    # Batch 164: 模型触发器 min-w-[88px] 使参数菜单 x 右移 +37。
+    assert_close(normal_box["x"] - panel_box["x"], 119)
     # Batch 126: 源站高级设置内联行移到 footer 下方，参数菜单 y 偏移上移 28px。
     assert_close(normal_box["y"] - panel_box["y"], -244.5)
     assert_common_controls(page)
@@ -146,7 +147,7 @@ def run_desktop(page: Page):
     assert menu.get_attribute("data-video-params-mode") == "long"
     assert_close(long_box["width"], 341)
     assert_close(long_box["height"], 397)
-    assert_close(long_box["x"] - panel_box["x"], 90)
+    assert_close(long_box["x"] - panel_box["x"], 127)
     # Batch 126: 高级设置行使弹出菜单 y 偏移上移 28px。
     assert_close(long_box["y"] - panel_box["y"], -196.5)
     assert_common_controls(page)
@@ -174,7 +175,7 @@ def run_mobile(page: Page):
     menu_box = box(menu)
     assert_close(menu_box["width"], 341)
     assert_close(menu_box["height"], 445)
-    assert_close(menu_box["x"] - panel_box["x"], 82)
+    assert_close(menu_box["x"] - panel_box["x"], 119)
     assert menu_box["x"] + menu_box["width"] > 390
     assert_no_overflow(page)
     page.screenshot(path=str(MOBILE_SCREENSHOT))

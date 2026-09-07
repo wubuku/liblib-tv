@@ -377,20 +377,21 @@ export function VideoGenerationPanel({
           </>
         )}
 
-        <footer className="mt-1 flex h-9 shrink-0 items-center gap-1 border-t border-white/[0.07] pt-1 text-xs text-[#dfdfdf]">
+        <footer className="mt-1 flex h-8 shrink-0 items-center gap-1 text-xs text-[#dfdfdf]">
           <div className="relative">
-            <button data-video-model-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">
-              {/* Batch 149: 源站触发器显示缩写名（Seedance 2.0 VIP → 2.0，2026-09-07 实拍）。 */}
-              <span className="font-semibold">{model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="text-[#777]" />
+            <button data-video-model-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 w-auto min-w-[88px] shrink-0 items-center justify-between gap-1 rounded-lg px-2 py-1 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">
+              {/* Batch 149: 源站触发器显示缩写名（Seedance 2.0 VIP → 2.0）。 */}
+              {/* Batch 164: 源站触发器类 min-w-[88px] justify-between、13px 常规字重（2026-09-07 链采样）。 */}
+              <span className="truncate text-[13px]">{model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="shrink-0 text-[#777]" />
             </button>
             {menu === "model" && <ModelMenu model={model} onSelect={(value) => { setModel(value); setMenu(null); }} />}
           </div>
           <div className="relative">
-            <button data-video-mode-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
+            <button data-video-mode-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg py-1 pl-2 pr-2.5 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
             {menu === "mode" && <ModeMenu mode={mode} onSelect={selectMode} />}
           </div>
           <div className="relative min-w-0">
-            <button data-video-params-trigger type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 max-w-[205px] items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
+            <button data-video-params-trigger type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 min-w-0 max-w-[205px] shrink items-center justify-between gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
             {menu === "params" && (
               <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongRange} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
