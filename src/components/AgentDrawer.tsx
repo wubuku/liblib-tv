@@ -30,7 +30,8 @@ interface Skill {
 }
 
 // Batch 97: 第一批为 2026-09-05 源站登录态复核的源站命名与 handle；
-// 第二批仍是 clone-shaped 换一批填充，不代表源站目录。
+// Batch 201: 2026-09-08 直采换一批全部四批真实目录（第四批 3 张），
+// 原 clone-shaped 第二批填充移除；缩略图仍为本地占位（源图为远端图）。
 const skillBatches: Skill[][] = [
   [
     { id: "pixar", title: "皮克斯动画广告", path: "/pixar-animated-ad-creator", image: "/images/scene-coffee-1.png" },
@@ -39,10 +40,21 @@ const skillBatches: Skill[][] = [
     { id: "wuxia", title: "古典武侠电影全流程导演", path: "/hujinquanwuxia", image: "/images/scene-coffee-4.png" },
   ],
   [
-    { id: "character", title: "角色一致性检查", path: "/character-consistency", image: "/images/liblib-panels/character-thumb-03.webp" },
-    { id: "storyboard", title: "分镜节奏优化", path: "/storyboard-rhythm", image: "/images/storyboard-2.png" },
-    { id: "lighting", title: "电影感打光", path: "/cinematic-lighting", image: "/images/liblib-panels/toolbox-08.webp" },
-    { id: "continuity", title: "镜头连续性检查", path: "/shot-continuity", image: "/images/liblib-panels/toolbox-14.webp" },
+    { id: "gameplay-pv", title: "游戏实机PV", path: "/gameplay-pv-builder", image: "/images/scene-coffee-1.png" },
+    { id: "xingrannvpin", title: "精品女频短剧一键成片", path: "/xingrannvpin", image: "/images/scene-coffee-2.png" },
+    { id: "koreeda", title: "是枝裕和电影美学", path: "/koreeda-film-aesthetic", image: "/images/scene-coffee-3.png" },
+    { id: "wes-anderson", title: "韦斯安德森电影美学", path: "/wes-anderson-aesthetics", image: "/images/scene-coffee-4.png" },
+  ],
+  [
+    { id: "narrative-tvc", title: "剧情TVC广告片", path: "/narrative-tvc-creator", image: "/images/scene-coffee-1.png" },
+    { id: "eastwood", title: "伊斯特伍德西部片", path: "/eastwood-western-style", image: "/images/scene-coffee-2.png" },
+    { id: "car-tvc", title: "一键爽感轰炸流汽车TVC", path: "/high-impact-car-tvc", image: "/images/scene-coffee-3.png" },
+    { id: "travel-vlog", title: "旅拍大师", path: "/cinematic-travel-vlog-maker", image: "/images/scene-coffee-4.png" },
+  ],
+  [
+    { id: "werewolf", title: "一键海外狼人吸血鬼短剧", path: "/werewolf-vampire-short-drama", image: "/images/scene-coffee-1.png" },
+    { id: "taiwan-wave", title: "宝岛浪潮电影美学", path: "/taiwan-new-wave-aesthetic", image: "/images/scene-coffee-2.png" },
+    { id: "absurdist", title: "无厘头喜剧", path: "/absurdist-comedy-maker", image: "/images/scene-coffee-3.png" },
   ],
 ];
 

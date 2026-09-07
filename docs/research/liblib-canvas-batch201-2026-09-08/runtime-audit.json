@@ -1,0 +1,22 @@
+{
+  "batch": 201,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "batch:皮克斯动画广告",
+        "batch:游戏实机PV",
+        "batch:剧情TVC广告片",
+        "batch:一键海外狼人吸血鬼短剧",
+        "rotation:wraps-to-batch0",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
