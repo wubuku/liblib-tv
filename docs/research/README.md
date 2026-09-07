@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
+- [`liblib-canvas-batch156-2026-09-07/`](liblib-canvas-batch156-2026-09-07/README.md)：batch93 移动端抽屉关闭点击时序 flake 加固（左/右抽屉外点位）。
 - [`liblib-canvas-batch155-2026-09-07/`](liblib-canvas-batch155-2026-09-07/README.md)：5分钟超长视频芯片时长范围修复（30..300 + 取消钳制）。
 - [`liblib-canvas-batch154-2026-09-07/`](liblib-canvas-batch154-2026-09-07/README.md)：全量回归扫描（124 验证器：112 通过/12 老化/0 未解释；batch124 弹窗迁移；timeout/Rosetta 勘误）。
 - [`liblib-canvas-batch153-2026-09-07/`](liblib-canvas-batch153-2026-09-07/README.md)：采样第三轮 —— Auto 因子证实（230=5×46）、新建节点无面板、积分块类名逐字吻合。
@@ -239,6 +240,7 @@
 | 139 | Topbar credits split | [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/) `SCRIPT_RECORDED_PASS`，积分超市/余额 独立入口已通过；商城页行为不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 148 | Project card cover placeholders | [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/) `SCRIPT_RECORDED_PASS`，封面占位图/节点计数已通过；源站封面内容不证明 |
+| 156 | batch93 drawer-close flake hardening | [`liblib-canvas-batch156-2026-09-07/`](liblib-canvas-batch156-2026-09-07/) `SCRIPT_RECORDED_PASS`，3/3 稳定通过 |
 | 155 | 5min chip duration range fix | [`liblib-canvas-batch155-2026-09-07/`](liblib-canvas-batch155-2026-09-07/) `SCRIPT_RECORDED_PASS`，参数菜单长布局/取消钳制已通过 |
 | 154 | Full verifier sweep (124) | [`liblib-canvas-batch154-2026-09-07/`](liblib-canvas-batch154-2026-09-07/) `SWEEP_RECORDED_PASS`，112 通过/12 老化/0 未解释 |
 | 153 | Auto factor confirmation + panel behavior bounds | [`liblib-canvas-batch153-2026-09-07/`](liblib-canvas-batch153-2026-09-07/) `DOCS_RECORDED`，证据 batch；230=5×46 直证、新建节点无面板 |
@@ -293,6 +295,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 156 | batch93 drawer-close flake hardening | 已完成；flake 加固 3/3 稳定，详见 [`liblib-canvas-batch156-2026-09-07/`](liblib-canvas-batch156-2026-09-07/)；循环继续 |
 | 155 | 5min chip duration range fix | 已完成；芯片时长范围与取消钳制已通过，详见 [`liblib-canvas-batch155-2026-09-07/`](liblib-canvas-batch155-2026-09-07/)；循环继续 |
 | 154 | Full verifier sweep | 已完成；全量扫描已记录，详见 [`liblib-canvas-batch154-2026-09-07/`](liblib-canvas-batch154-2026-09-07/)；循环继续 |
 | 153 | Auto factor confirmation + panel bounds | 已完成；证据 batch 已记录，详见 [`liblib-canvas-batch153-2026-09-07/`](liblib-canvas-batch153-2026-09-07/)；循环继续 |

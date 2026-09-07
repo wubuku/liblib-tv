@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- batch93 mobile drawer-close clicks hardened (Batch 156): overlay click
+  points moved outside the left tree drawer (x=320) and right inspector
+  drawer (x=56), eliminating the intermittent tree-row/drawer intercept
+  timeout; 3/3 stable runs, director 36/43/77 regression green
 - 5分钟超长视频 attempt chip now switches the params duration range to
   30..300 with the long menu layout (Batch 155), fixing the broken
   half-state where a 300s value sat on a 4..30 slider; deselecting the

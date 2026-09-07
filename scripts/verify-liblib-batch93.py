@@ -304,7 +304,10 @@ def run_mobile(page: Page) -> dict[str, Any]:
         "[aria-label='场景对象'][data-director-mobile-panel-state='open']"
     ).wait_for(state="visible")
     assert_locator_no_overflow(tree, "Batch 93 mobile open tree")
-    page.locator("button[aria-label='关闭移动端面板']").click()
+    # Batch 156: 场景对象抽屉在左侧（w-[220px]），点击点取 x=320 避开抽屉与树行拦截（时序 flake）。
+    page.locator("button[aria-label='关闭移动端面板']").click(
+        position={"x": 320, "y": 400}
+    )
     page.locator(
         "[aria-label='场景对象'][data-director-mobile-panel-state='closed']"
     ).wait_for(state="visible")
@@ -316,7 +319,10 @@ def run_mobile(page: Page) -> dict[str, Any]:
     ).wait_for(state="visible")
     assert_locator_no_overflow(inspector, "Batch 93 mobile open inspector")
     assert_no_horizontal_overflow(page, "Batch 93 mobile open inspector")
-    page.locator("button[aria-label='关闭移动端面板']").click()
+    # Batch 156: 属性抽屉在右侧（w-72，x>=102），点击点取 x=56 避开抽屉与行拦截。
+    page.locator("button[aria-label='关闭移动端面板']").click(
+        position={"x": 56, "y": 400}
+    )
 
     phase[0] = "mobile-close"
     page.locator("[data-close-director]").first.click()
