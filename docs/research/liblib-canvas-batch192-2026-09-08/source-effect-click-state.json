@@ -1,0 +1,12 @@
+{
+ "before": {
+  "prompt": null,
+  "credits": "135"
+ },
+ "after": {
+  "prompt": null,
+  "credits": "135"
+ },
+ "cardClsBefore": "hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors",
+ "cardClsAfter": null
+}

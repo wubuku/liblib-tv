@@ -1,0 +1,20 @@
+{
+  "batch": 192,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "gallery:open",
+        "gallery:closes",
+        "node:spawned",
+        "edge:spawned",
+        "node:filename"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

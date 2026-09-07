@@ -167,6 +167,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   cards rendered of eight) that closes on outside mousedown; 运镜/参考/标记
   are click-inert on an empty node per source sampling (the clone's batch146
   运镜 menu contract is kept and the divergence recorded)
+- Effect card click behavior implemented (Batch 192, source 2026-09-08):
+  clicking an effect card closes the gallery and spawns a
+  素材 - 特效 - <名> image node lower-left of the video node with an edge
+  flowing into it (credits unchanged on selection), via
+  addNodeAtPosition + addEdge with explicit source/target handle ids (the
+  graph validator rejects missing handle direction)
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

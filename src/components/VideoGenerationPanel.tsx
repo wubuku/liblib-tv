@@ -29,6 +29,7 @@ interface VideoGenerationPanelProps {
   zoom: number;
   attempt: string | null;
   onAttemptChange?: (value: string | null) => void;
+  onSelectEffect?: (name: string) => void;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
   onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
@@ -99,6 +100,7 @@ export function VideoGenerationPanel({
   zoom,
   attempt,
   onAttemptChange,
+  onSelectEffect,
   initialPrompt,
   continuation,
   onCreateLongVideoProcess,
@@ -345,7 +347,11 @@ export function VideoGenerationPanel({
                 <div
                   key={effect.name}
                   data-effects-card={effect.name}
-                  className="group w-[185px] shrink-0 rounded-lg border border-transparent"
+                  onClick={() => {
+                    onSelectEffect?.(effect.name);
+                    setEffectsOpen(false);
+                  }}
+                  className="group w-[185px] shrink-0 cursor-pointer rounded-lg border border-transparent transition-colors hover:bg-canvas-controls-hover"
                 >
                   <div className={cn("relative aspect-square w-full overflow-hidden rounded-lg bg-gradient-to-b", effect.gradient)}>
                     <div className="absolute inset-x-0 top-0 flex h-8 items-center justify-end p-1.5 opacity-0 transition-opacity group-hover:opacity-100">

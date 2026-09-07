@@ -88,6 +88,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const internalNode = useInternalNode(id);
   const { setCenter } = useReactFlow();
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
+  const addNodeAtPosition = useCanvasStore((state) => state.addNodeAtPosition);
+  const addEdge = useCanvasStore((state) => state.addEdge);
   const createVideoContinuation = useCanvasStore((state) => state.createVideoContinuation);
   const createSubtitleErase = useCanvasStore((state) => state.createSubtitleErase);
   const createAudioSplit = useCanvasStore((state) => state.createAudioSplit);
@@ -620,6 +622,21 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           zoom={zoom}
           attempt={attempt}
           onAttemptChange={setAttempt}
+          onSelectEffect={(name) => {
+            /* Batch 192: 源站直证——点特效卡在视频节点左下生成
+               「素材 - 特效 - <名>」媒体节点并连线（素材 → 视频）。 */
+            const state = useCanvasStore.getState();
+            const source = state.getActiveCanvas()?.nodes.find((n) => n.id === id);
+            if (!source) return;
+            addNodeAtPosition(
+              "image",
+              { x: source.position.x - 240, y: source.position.y + 300 },
+              { filename: `素材 - 特效 - ${name}` },
+            );
+            const materialId = useCanvasStore.getState().getActiveCanvas()?.nodes.at(-1)?.id;
+            if (!materialId) return;
+            addEdge({ id: `e-${materialId}-${id}`, source: materialId, target: id, sourceHandle: "source", targetHandle: "target", type: "default" });
+          }}
           initialPrompt={prompt}
           continuation={continuation}
           onCreateLongVideoProcess={(input: LongVideoProcessInput) =>
