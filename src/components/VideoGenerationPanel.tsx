@@ -84,14 +84,17 @@ const modelItems = [
   { id: "Style Video", title: "Style Video", estimate: "2min", premium: false, family: "style", description: "图生视频效果稳定，画面表现力强" },
 ];
 
+/* Batch 175: 源站模式菜单实采（2026-09-07，空节点）——仅 5 项入菜单，
+   空节点下只有 文生视频 可用；超长视频/视频编辑不再出现在菜单中，
+   仅作为 mode 标签查找项保留（长视频入口走节点卡尝试芯片）。 */
 const modeItems = [
-  { id: "text", label: "文生视频", disabled: true },
-  { id: "omnireference", label: "全能参考", disabled: false },
+  { id: "text", label: "文生视频", disabled: false },
+  { id: "omnireference", label: "全能参考", disabled: true },
   { id: "image", label: "图生视频", disabled: true },
   { id: "first-last", label: "首尾帧", disabled: true },
-  { id: "image-reference", label: "图片参考", disabled: false },
-  { id: "video-edit", label: "视频编辑", disabled: true },
-  { id: "long-video", label: "超长视频", disabled: false, badge: "Beta" },
+  { id: "image-reference", label: "图片参考", disabled: true },
+  { id: "video-edit", label: "视频编辑", disabled: true, inMenu: false },
+  { id: "long-video", label: "超长视频", disabled: true, inMenu: false, badge: "Beta" },
 ] as const;
 
 export function VideoGenerationPanel({
@@ -513,9 +516,32 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
 
 function ModeMenu({ mode, onSelect }: { mode: VideoMode; onSelect: (mode: VideoMode) => void }) {
   return (
-    <div className="absolute bottom-10 left-0 z-50 w-52 rounded-xl border border-white/10 bg-[#292929] p-1.5 shadow-2xl">
-      <p className="px-2 py-1 text-[11px] text-[#777]">视频生成模式</p>
-      {modeItems.map((item) => <button key={item.id} data-video-mode-option={item.id} type="button" disabled={item.disabled} onClick={() => onSelect(item.id as VideoMode)} className={cn("flex h-9 w-full items-center rounded-lg px-2 text-left text-sm", item.disabled ? "cursor-not-allowed text-[#555]" : "text-[#ddd] hover:bg-white/[0.06]", mode === item.id && "bg-white/[0.08] text-white")}><Film size={14} className="mr-2" />{item.label}{"badge" in item && item.badge && <span className="ml-auto rounded bg-[#0d5964] px-1.5 py-0.5 text-[9px] text-[#4de1f4]">{item.badge}</span>}</button>)}
+    /* Batch 175: 源站容器 161 宽 / radius 16 / 锚在触发器上方；行 h-8、
+       选中 bg-white/15（同模型菜单体系）。 */
+    <div className="absolute bottom-8 left-0 z-50 flex w-[161px] flex-col rounded-2xl border border-white/10 bg-[#292929] p-2 shadow-2xl">
+      <p className="px-2 pb-1.5 pt-0.5 text-xs text-[#777]">视频生成模式</p>
+      {modeItems
+        .filter((item) => !("inMenu" in item && item.inMenu === false))
+        .map((item) => (
+          <button
+            key={item.id}
+            data-video-mode-option={item.id}
+            type="button"
+            disabled={item.disabled}
+            onClick={() => onSelect(item.id as VideoMode)}
+            className={cn(
+              "flex h-8 w-full shrink-0 items-center gap-2 rounded-lg px-2 text-left text-sm transition-colors",
+              item.disabled ? "cursor-not-allowed text-[#555]" : "text-[#ddd] hover:bg-white/[0.06]",
+              mode === item.id && "bg-white/[0.15] text-white",
+            )}
+          >
+            <Film size={14} className="mr-2" />
+            {item.label}
+            {"badge" in item && item.badge && (
+              <span className="ml-auto rounded bg-[#0d5964] px-1.5 py-0.5 text-[9px] text-[#4de1f4]">{item.badge}</span>
+            )}
+          </button>
+        ))}
     </div>
   );
 }
@@ -526,7 +552,9 @@ interface ParamsMenuProps {
 }
 
 function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
-  const ratios = ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
+  /* Batch 175: 源站比例网格实测 6 格无 Auto（4 列 57×62 瓦片）；
+     Auto 仅作为尝试联动的内部状态存在。 */
+  const ratios = ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
   const resolutions = ["480P", "720P", "1080P"];
 
   return (
@@ -540,7 +568,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
     >
       <section>
         <p className="mb-2 text-xs text-[#8a8a8a]">比例</p>
-        <div className="grid grid-cols-5 gap-1.5">
+        <div className="grid grid-cols-4 gap-2">
           {ratios.map((item) => (
             <button
               key={item}
@@ -549,7 +577,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
               aria-pressed={ratio === item}
               onClick={() => onRatio(item)}
               className={cn(
-                "flex h-[52px] min-w-0 flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
+                "flex h-[62px] min-w-0 flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
                 ratio === item
                   ? "border-[#7d7d7d] bg-white/[0.1] text-white"
                   : "border-white/[0.07] bg-white/[0.025] text-[#777] hover:border-white/[0.16] hover:text-[#ddd]",

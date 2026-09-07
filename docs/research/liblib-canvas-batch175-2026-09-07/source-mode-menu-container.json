@@ -1,0 +1,24 @@
+{
+ "box": [
+  1236,
+  564,
+  161,
+  229
+ ],
+ "style": "--popover-radius: var(--mantine-radius-md); --popover-shadow: var(--mantine-shadow-md); transition-property: opacity; backface-visibility: hidden; transition-duration: 150ms; transition-timing-functio",
+ "radius": "16px",
+ "bg": "oklab(0.268617 0.000012286 0.00000536442 / 0.95)",
+ "kids": [
+  {
+   "tag": "DIV",
+   "text": "视频生成模式文生视频全能",
+   "box": [
+    1237,
+    564,
+    160,
+    228
+   ],
+   "svg": 5
+  }
+ ]
+}

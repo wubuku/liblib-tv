@@ -1,0 +1,268 @@
+[
+ {
+  "tag": "BUTTON",
+  "text": "16:9",
+  "box": [
+   1431,
+   388,
+   57,
+   62
+  ],
+  "bg": "rgba(255, 255, 255, 0.1)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "4:3",
+  "box": [
+   1496,
+   388,
+   57,
+   62
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "1:1",
+  "box": [
+   1560,
+   388,
+   57,
+   62
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "3:4",
+  "box": [
+   1625,
+   388,
+   57,
+   62
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "9:16",
+  "box": [
+   1366,
+   458,
+   57,
+   62
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "21:9",
+  "box": [
+   1431,
+   458,
+   57,
+   62
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-hair flex flex-1 flex-col items-center justify-center gap-1 rounded-lg bo",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "480P",
+  "box": [
+   1366,
+   556,
+   73,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-border-default border-hair flex flex-1 items-center justify-center whites",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "720P",
+  "box": [
+   1447,
+   556,
+   73,
+   32
+  ],
+  "bg": "rgba(255, 255, 255, 0.1)",
+  "cls": "border-hair flex flex-1 items-center justify-center whitespace-nowrap rounded-lg",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "1080P",
+  "box": [
+   1528,
+   556,
+   73,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-border-default border-hair flex flex-1 items-center justify-center whites",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "1个",
+  "box": [
+   1366,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(255, 255, 255, 0.1)",
+  "cls": "border-hair flex flex-1 items-center justify-center whitespace-nowrap rounded-lg",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "2个",
+  "box": [
+   1474,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-border-default border-hair flex flex-1 items-center justify-center whites",
+  "disabled": false
+ },
+ {
+  "tag": "BUTTON",
+  "text": "4个",
+  "box": [
+   1582,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "cls": "border-border-default border-hair flex flex-1 items-center justify-center whites",
+  "disabled": false
+ },
+ {
+  "text": "开启",
+  "box": [
+   1366,
+   680,
+   154,
+   32
+  ],
+  "bg": "rgba(255, 255, 255, 0.1)",
+  "disabled": false
+ },
+ {
+  "text": "关闭",
+  "box": [
+   1528,
+   680,
+   154,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "disabled": false
+ },
+ {
+  "text": "1个",
+  "box": [
+   1366,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(255, 255, 255, 0.1)",
+  "disabled": false
+ },
+ {
+  "text": "2个",
+  "box": [
+   1474,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "disabled": false
+ },
+ {
+  "text": "4个",
+  "box": [
+   1582,
+   748,
+   100,
+   32
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "disabled": false
+ },
+ {
+  "text": "参考",
+  "box": [
+   1146,
+   655,
+   54,
+   26
+  ],
+  "bg": "rgba(255, 255, 255, 0.05)",
+  "disabled": false
+ },
+ {
+  "text": "标记",
+  "box": [
+   1204,
+   655,
+   54,
+   26
+  ],
+  "bg": "rgba(255, 255, 255, 0.05)",
+  "disabled": false
+ },
+ {
+  "text": "特效",
+  "box": [
+   1262,
+   655,
+   54,
+   26
+  ],
+  "bg": "rgba(255, 255, 255, 0.05)",
+  "disabled": false
+ },
+ {
+  "text": "角色库",
+  "box": [
+   1320,
+   655,
+   66,
+   26
+  ],
+  "bg": "rgba(255, 255, 255, 0.05)",
+  "disabled": false
+ },
+ {
+  "text": "运镜",
+  "box": [
+   1390,
+   655,
+   54,
+   26
+  ],
+  "bg": "rgba(255, 255, 255, 0.05)",
+  "disabled": false
+ }
+]

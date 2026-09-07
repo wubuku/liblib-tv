@@ -1,0 +1,28 @@
+{
+  "batch": 175,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "mode:five-items",
+        "mode:only-text-enabled",
+        "mode:rows-h32",
+        "mode:no-long-video",
+        "mode:trigger-visible",
+        "params:open",
+        "params:six-ratio-tiles",
+        "params:no-auto-tile",
+        "params:ratio-order",
+        "params:tile-62",
+        "params:three-resolutions",
+        "params:audio-count-controls",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -67,6 +67,14 @@ FrameOS fixes, coverage matrix and regression sweeps).
   border, hover white/10%, 34px icon tile, and descriptions present in
   every row clipped by the 36px text column (selected-only expansion
   removed); batch22 height/description assertions migrated
+- Mode and params menus re-sampled in a rendering window and aligned
+  (Batch 175, source 2026-09-07): the mode menu holds exactly five items
+  (超长视频/视频编辑 removed; the long-video entry is the node-card
+  attempt chip), only 文生视频 enabled on an empty node, h-8 rows with
+  white/15% selected state in a 161px container; the params ratio grid is
+  six tiles without Auto (grid-cols-4, 62px tiles); batch21/33 migrated
+  off the mode-menu route with process ratio Auto and duration 300 via the
+  batch128 linkage
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

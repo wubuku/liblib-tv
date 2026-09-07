@@ -77,13 +77,17 @@ def open_params(page: Page):
     return trigger, menu
 
 
-def assert_common_controls(page: Page):
-    assert page.locator("[data-video-ratio-option]").count() == 7
+def assert_common_controls(page: Page, expect_ratio_pressed: str | None = "16:9"):
+    # Batch 175: 比例网格 6 格无 Auto（源站实测）；Auto 仅是尝试联动内部状态。
+    assert page.locator("[data-video-ratio-option]").count() == 6
     assert page.locator("[data-video-resolution-option]").count() == 3
     assert page.locator("[data-video-audio-option]").count() == 2
-    assert page.locator('[data-video-ratio-option="16:9"]').get_attribute(
-        "aria-pressed"
-    ) == "true"
+    if expect_ratio_pressed is None:
+        assert page.locator('[data-video-ratio-option][aria-pressed="true"]').count() == 0
+    else:
+        assert page.locator(f'[data-video-ratio-option="{expect_ratio_pressed}"]').get_attribute(
+            "aria-pressed"
+        ) == "true"
     assert page.locator('[data-video-resolution-option="720P"]').get_attribute(
         "aria-pressed"
     ) == "true"
@@ -133,13 +137,18 @@ def run_desktop(page: Page):
     page.locator('[data-video-count-option="1个"]').click()
     trigger.click(force=True)
     page.locator("[data-video-mode-trigger]").click(force=True)
-    disabled_modes = ["text", "image", "first-last", "video-edit"]
-    enabled_modes = ["omnireference", "image-reference", "long-video"]
-    for mode in disabled_modes:
+    # Batch 175: 源站 2026-09-07 空节点实采——菜单仅 5 项（超长视频/视频编辑
+    # 不入菜单），且只有 文生视频 可用；长视频入口改走节点卡尝试芯片。
+    assert page.locator('[data-video-mode-option="text"]').count() == 1
+    assert not page.locator('[data-video-mode-option="text"]').is_disabled()
+    for mode in ("omnireference", "image", "first-last", "image-reference"):
         assert page.locator(f'[data-video-mode-option="{mode}"]').is_disabled()
-    for mode in enabled_modes:
-        assert not page.locator(f'[data-video-mode-option="{mode}"]').is_disabled()
-    page.locator('[data-video-mode-option="long-video"]').click(force=True)
+    assert page.locator('[data-video-mode-option="long-video"]').count() == 0
+    assert page.locator('[data-video-mode-option="video-edit"]').count() == 0
+    page.locator("[data-video-mode-trigger]").click(force=True)
+    page.wait_for_timeout(200)
+    page.locator("[data-video-attempts]").locator("[data-video-attempt='5分钟超长视频']").click()
+    page.wait_for_timeout(300)
     assert "超长视频" in page.locator("[data-video-mode-trigger]").inner_text()
 
     _, menu = open_params(page)
@@ -150,13 +159,15 @@ def run_desktop(page: Page):
     assert_close(long_box["x"] - panel_box["x"], 127)
     # Batch 126: 高级设置行使弹出菜单 y 偏移上移 28px。
     assert_close(long_box["y"] - panel_box["y"], -196.5)
-    assert_common_controls(page)
+    # Batch 175: 长模式现走尝试芯片（batch128 联动）——比例 Auto 无格子按下。
+    assert_common_controls(page, expect_ratio_pressed=None)
     assert page.locator("[data-video-count-option]").count() == 0
     assert page.locator("[data-video-long-hint]").count() == 1
     duration = page.locator("[data-video-duration]")
     assert duration.get_attribute("min") == "30"
     assert duration.get_attribute("max") == "300"
-    assert duration.input_value() == "30"
+    # Batch 175: 长模式走尝试芯片，联动直接置 300s（batch128 合同）；旧菜单路径的 30s 初值废止。
+    assert duration.input_value() == "300"
     page.screenshot(path=str(LONG_SCREENSHOT))
 
     duration.fill("300")

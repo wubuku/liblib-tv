@@ -329,6 +329,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 172 | Canvas right-click context menu | 已完成；画布右键菜单已通过，详见 [`liblib-canvas-batch172-2026-09-07/`](liblib-canvas-batch172-2026-09-07/)；循环继续 |
 | 173 | Node context menu + model menu selected bg | 已完成；节点右键菜单与选中态已通过，详见 [`liblib-canvas-batch173-2026-09-07/`](liblib-canvas-batch173-2026-09-07/)；循环继续 |
 | 174 | Model menu row system | 已完成；模型菜单行系统对齐已通过，详见 [`liblib-canvas-batch174-2026-09-07/`](liblib-canvas-batch174-2026-09-07/)；循环继续 |
+| 175 | Mode + params menu alignment | 已完成；模式/参数菜单对齐已通过，详见 [`liblib-canvas-batch175-2026-09-07/`](liblib-canvas-batch175-2026-09-07/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |
 | 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |

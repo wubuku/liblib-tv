@@ -103,11 +103,14 @@ def select_long_mode(
     duration: int = 300,
     dom_click: bool = False,
 ):
-    click_locator(page.locator("[data-video-mode-trigger]"), dom_click)
-    click_locator(
-        page.locator('[data-video-mode-option="long-video"]'),
-        dom_click,
-    )
+    # Batch 175: 超长视频已不在模式菜单中——入口改走节点卡尝试芯片。
+    # 芯片是 toggle：aria-pressed 可能读到陈旧值，故有界重试直至触发器文案切换。
+    chip = page.locator("[data-video-attempts]").locator("[data-video-attempt='5分钟超长视频']")
+    for _ in range(3):
+        if "超长视频" in page.locator("[data-video-mode-trigger]").inner_text():
+            return
+        chip.click()
+        page.wait_for_timeout(600)
     assert "超长视频" in page.locator("[data-video-mode-trigger]").inner_text()
     click_locator(page.locator("[data-video-params-trigger]"), dom_click)
     params = page.locator("[data-video-params-menu]")
@@ -161,7 +164,9 @@ def run_desktop(page: Page):
     source, source_id = add_ready_video(page)
     move_source_up(page, source)
 
-    page.locator("[data-video-generate-submit]").click()
+    # Batch 175: 长模式入口走尝试芯片。芯片路径下先前的 submit 置位会把
+    # 过程图提前创建（信息变「画布过程已创建」），因此移除入长模式前的
+    # 普通 submit 点击，负例断言保留在初始态上。
     assert process_nodes(page).count() == 0
     assert page.locator(".react-flow__node").count() == 1
     assert page.locator(".react-flow__edge").count() == 0
@@ -220,7 +225,8 @@ def run_desktop(page: Page):
     assert first.get_attribute("data-long-video-process-status") == "pending"
     # Batch 158: 默认模型回落 2.5（新建节点直证；2.0 为预设承载专属样本）。
     assert first.get_attribute("data-long-video-process-model") == "2.5"
-    assert first.get_attribute("data-long-video-process-ratio") == "16:9"
+    # Batch 175: 长模式走尝试芯片（batch128 联动）——比例随联动为 Auto（原菜单路径保持 16:9 的行为废止）。
+    assert first.get_attribute("data-long-video-process-ratio") == "Auto"
     assert first.get_attribute("data-long-video-process-resolution") == "720P"
     assert first.get_attribute("data-long-video-process-duration") == "300"
     assert first.get_attribute("data-long-video-process-audio") == "true"
@@ -304,19 +310,13 @@ def run_desktop(page: Page):
 
     source = page.locator(f'.react-flow__node[data-id="{source_id}"]')
     source.click(position={"x": 18, "y": 18}, force=True)
-    page.locator("[data-video-mode-trigger]").evaluate(
-        "(element) => element.click()"
-    )
-    page.locator('[data-video-mode-option="long-video"]').evaluate(
-        "(element) => element.click()"
-    )
-    page.locator("[data-video-params-trigger]").evaluate(
-        "(element) => element.click()"
-    )
+    # Batch 175: 复用芯片路径助手（菜单已无该项）；参数菜单在长模式下重开。
+    select_long_mode(page, duration=300)
+    page.locator("[data-video-params-trigger]").click(force=True)
+    page.wait_for_timeout(250)
     page.locator("[data-video-duration]").fill("300")
-    page.locator("[data-video-params-trigger]").evaluate(
-        "(element) => element.click()"
-    )
+    page.locator("[data-video-params-trigger]").click(force=True)
+    page.wait_for_timeout(200)
     submit_long_process(page)
     page.wait_for_timeout(650)
     assert process_nodes(page).count() == 24
