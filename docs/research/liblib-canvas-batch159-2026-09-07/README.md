@@ -20,6 +20,13 @@ clone 此前把尝试行放在面板内（Batch 125 时代决策）；本 batch 
 - 验证器：batch128/155 尝试定位器改页面级（脱离面板作用域）；
   batch21/22 菜单 y 偏移再迁移 -32（面板去掉尝试行后页脚锚点上移）。
 
+## Lint 修正（push 后补）
+
+初次实现把联动放进 `useEffect`，触发 `react-hooks` 新规则
+「effect 内同步 setState 可触发级联渲染」（1 error）。改为 React 官方
+「渲染期按 prop 调整状态」模式（prevAttempt 状态对账），125/128/155 联动
+契约复跑全绿，`npm run check` 回到 0 errors / 8 warnings 基线。
+
 ## 验收
 
 - 相邻回归绿：21 / 22 / 26 / 33 / 100 / 115 / 125 / 128 / 149 / 151 / 152 / 155。

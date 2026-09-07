@@ -149,12 +149,11 @@ export function VideoGenerationPanel({
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 
-  // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动在面板生效。
-  const prevAttemptRef = useRef<string | null>(attempt);
-  useEffect(() => {
-    const prev = prevAttemptRef.current;
-    if (attempt === prev) return;
-    prevAttemptRef.current = attempt;
+  // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动用「渲染期调整」
+  // （React 官方 prop 变更派生状态模式，避免 effect 内同步 setState）。
+  const [prevAttempt, setPrevAttempt] = useState(attempt);
+  if (attempt !== prevAttempt) {
+    setPrevAttempt(attempt);
     // Batch 128: 源站尝试芯片驱动设置联动（5分钟超长视频 → Auto+300s；首尾帧/首帧 → Auto+5s）。
     if (attempt === "5分钟超长视频") {
       setRatio("Auto");
@@ -162,11 +161,11 @@ export function VideoGenerationPanel({
     } else if (attempt !== null) {
       setRatio("Auto");
       setDuration(5);
-    } else if (prev === "5分钟超长视频") {
+    } else if (prevAttempt === "5分钟超长视频") {
       // Batch 155: 取消 5 分钟芯片时长回落到常规范围（CLONE_DECISION，源站未采样取消）。
       setDuration((value) => Math.min(value, 30));
     }
-  }, [attempt]);
+  }
 
   useEffect(() => {
     return () => {
