@@ -177,7 +177,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   pills open no popover with a typed prompt either — the real precondition
   (likely uploaded/generated reference content) remains unsampled; the
   prompt-state inertness is pinned as a regression contract
-  (verify-liblib-batch193.py, 6 checks), zero code changes
+  (verify-liblib-batch193.py, 6 checks), zero code changes; a follow-up material-precondition attempt (Batch 194) failed with a new
+  finding — the source effects-gallery anchor is state-dependent (above the
+  trigger on 09-07, below it on 09-08), diverging from the clone's fixed
+  bottom-[175px] centering (recorded as an open question)
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims
