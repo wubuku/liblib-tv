@@ -87,7 +87,9 @@ def assert_image_anchor(page: Page, node_id: str, expected_panel_height: float):
 
     assert_close(center_x(toolbar_box), center_x(node_box))
     assert_close(node_box["y"] - (toolbar_box["y"] + toolbar_box["height"]), 16)
-    assert_close(toolbar_box["width"], 900.5)
+    # Batch 183: 迁移至 Batch 51/52 源站直采合同 1092.5×49（SCREENSHOT_ANALYSIS 存档），
+    # 900.5 为 Batch 52 前旧值。
+    assert_close(toolbar_box["width"], 1092.5)
     assert_close(toolbar_box["height"], 49)
 
     assert_close(center_x(panel_box), center_x(node_box))
@@ -108,7 +110,9 @@ def assert_video_anchor(page: Page):
     assert_close(center_x(panel_box), center_x(node_box))
     assert_close(panel_box["y"] - (node_box["y"] + node_box["height"]), 16 * zoom)
     assert_close(panel_box["width"], 660)
-    assert_close(panel_box["height"], 274)
+    # Batch 183: 面板高度迁移至 Batch 161 合同 397（高级设置纵向列增高）。
+    # Batch 183: 面板高度 397（Batch 161 视频面板合同）。
+    assert_close(panel_box["height"], 397)
 
     classes = (page.locator("[data-video-generation-panel]").get_attribute("class") or "").split()
     assert {"nodrag", "nowheel", "nopan"}.issubset(classes)
@@ -150,7 +154,8 @@ def run_video_anchor(page: Page):
     errors = attach_error_collection(page)
     organize(page)
     node(page, VIDEO_ID).click(force=True)
-    page.wait_for_timeout(180)
+    # Batch 183: 等待面板挂载稳定（batch21 同款节奏），180ms 会量到过渡态。
+    page.wait_for_timeout(450)
 
     initial_group = box(node(page, VIDEO_GROUP_ID))
     initial_video, initial_panel = assert_video_anchor(page)

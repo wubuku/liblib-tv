@@ -124,6 +124,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   wait_for_function timeout, proving it was a downstream symptom of the
   same save/load regression — zero code changes needed; the aged list is
   now 10
+- batch9/51 geometry triage (Batch 183): the image-toolbar width assertions
+  migrated 900.5 → 1092.5×49 per the Batch 51/52 source screenshot records
+  (pure verifier migration gaps), the video-panel wait moved to 450ms, and
+  a wrong image-panel 274→397 migration was reverted after direct source
+  sampling (empty image panel measures 660×191); batch20 confirmed green —
+  the aged list is now 6 (6/40/41/44/46/48)
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

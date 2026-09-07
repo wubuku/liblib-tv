@@ -1,0 +1,11 @@
+[
+ {
+  "box": [
+   1133,
+   642,
+   660,
+   191
+  ],
+  "cls": "bg-panel-background relative flex w-full flex-col gap-0 overflow-hidden rounded-"
+ }
+]

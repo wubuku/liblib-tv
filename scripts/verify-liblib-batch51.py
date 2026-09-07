@@ -73,7 +73,9 @@ def assert_image_anchor(page: Page, expected_zoom: float | None = None):
 
     assert_close(center_x(toolbar_box), center_x(node_box))
     assert_close(node_box["y"] - (toolbar_box["y"] + toolbar_box["height"]), 10 + 24 * zoom)
-    assert_close(toolbar_box["width"], 900.5)
+    # Batch 183: 迁移至 Batch 51/52 源站直采合同 1092.5×49（SCREENSHOT_ANALYSIS 存档），
+    # 900.5 为 Batch 52 前旧值。
+    assert_close(toolbar_box["width"], 1092.5)
     assert_close(toolbar_box["height"], 49)
 
     assert_close(center_x(panel_box), center_x(node_box))
@@ -190,7 +192,7 @@ def main():
                 "contract": {
                     "toolbar_top_gap": "10 + 24 * zoom",
                     "panel_bottom_gap": "16 * zoom",
-                    "toolbar_size": [900.5, 49],
+                    "toolbar_size": [1092.5, 49],
                     "panel_width": 660,
                 },
                 "measurements": measurements,
