@@ -1,0 +1,22 @@
+{
+  "batch": 165,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "slots:row-present",
+        "slots:row-fits-55",
+        "slots:items-start",
+        "slots:48x55",
+        "slots:no-autolink-text",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

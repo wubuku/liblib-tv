@@ -158,6 +158,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 162 | Mobile 390x844 breakpoint verified after the 397px growth: no page-level overflow, panel vertically in-viewport, prompt intact; verify-liblib-batch161.py extended with a mobile phase + screenshot record |
 | Batch 163 | Tablet breakpoints 768x1024 / 1024x768 verified: no page-level overflow, prompt intact, vertical clipping per accepted contract; tablet phases + screenshots added (verifier now 20 checks) |
 | Batch 164 | Footer triggers aligned to sampled source classes: model min-w-[88px] justify-between 13px normal, mode justify-center pl-2 pr-2.5, params justify-between, footer h-8 without top border; batch21 x offsets migrated +37 |
+| Batch 165 | Reference slot row aligned to sampled classes (flex-wrap items-start pl-1, no fixed height — h-12 clipped 55px slots) and the absent-in-source 「Auto Link：」summary removed |
 | FrameOS Batch 157 | Context menu verified end-to-end (node: 复制/创建副本/删除, pane: add nodes, Esc close); BEHAVIORS.md stale ❌ row corrected to ✅; stable selectors data-frameos-context-menu/-item added |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |

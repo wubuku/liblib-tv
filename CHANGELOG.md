@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Reference slot row aligned to the sampled source classes (Batch 165):
+  flex-wrap, items-start, pl-1, no fixed row height (h-12 previously
+  clipped the 55px slots); the 「Auto Link：」summary text removed as
+  absent in every sampled panel state
 - Footer trigger geometry aligned to the sampled source class strings
   (Batch 164): model trigger min-w-[88px] justify-between with 13px normal
   text, mode trigger justify-center pl-2 pr-2.5, params justify-between,

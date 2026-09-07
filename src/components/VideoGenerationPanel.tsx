@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
   AtSign,
@@ -147,7 +147,6 @@ export function VideoGenerationPanel({
       ? "文生视频"
       : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
-  const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
 
   // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动用「渲染期调整」
   // （React 官方 prop 变更派生状态模式，避免 effect 内同步 setState）。
@@ -352,9 +351,10 @@ export function VideoGenerationPanel({
               </>
             ) : (
               <>
-                {/* Batch 160: 源站新建节点无引用时不渲染槽行（工具行直连提示词）。 */}
+                {/* Batch 160: 源站新建节点无引用时不渲染槽行（工具行直连提示词）。
+                    Batch 165: 源站槽行类 flex-wrap items-start pl-1、无固定高度（h-12 曾裁切 55px 槽）。 */}
                 {references.length > 0 && (
-                <div className="mt-1 flex h-12 shrink-0 items-center gap-2">
+                <div className="mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
                   {references.map((reference) => (
                     // Batch 149: 源站引用槽 48×55 cursor-grab（2026-09-07 实拍）。
                     <div key={reference.id} className="relative h-[55px] w-12 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing">
@@ -362,7 +362,6 @@ export function VideoGenerationPanel({
                       <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">{reference.id}</span>
                     </div>
                   ))}
-                  <p className="ml-1 truncate text-xs text-[#757575]">Auto Link：{referenceSummary}</p>
                 </div>
                 )}
                 <textarea

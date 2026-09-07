@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
+- [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/README.md)：引用槽行布局对齐（flex-wrap/items-start/无固定高，去 Auto Link 汇总）。
 - [`liblib-canvas-batch164-2026-09-07/`](liblib-canvas-batch164-2026-09-07/README.md)：页脚触发器采样类对齐（min-w-88/justify-between/13px、页脚 h-8 无分隔线）。
 - [`liblib-canvas-batch163-2026-09-07/`](liblib-canvas-batch163-2026-09-07/README.md)：平板断点核查（768×1024 / 1024×768，无页面溢出，契约保持）。
 - [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/README.md)：移动端 390×844 断点核查（397px 增高后无溢出/裁切契约保持）。
@@ -248,6 +249,7 @@
 | 139 | Topbar credits split | [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/) `SCRIPT_RECORDED_PASS`，积分超市/余额 独立入口已通过；商城页行为不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 148 | Project card cover placeholders | [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/) `SCRIPT_RECORDED_PASS`，封面占位图/节点计数已通过；源站封面内容不证明 |
+| 165 | Reference slot row layout | [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/) `SCRIPT_RECORDED_PASS`，7 checks 槽行几何 |
 | 164 | Footer trigger class alignment | [`liblib-canvas-batch164-2026-09-07/`](liblib-canvas-batch164-2026-09-07/) `SCRIPT_RECORDED_PASS`，8 checks 触发器几何 |
 | 163 | Tablet breakpoints 768/1024 | [`liblib-canvas-batch163-2026-09-07/`](liblib-canvas-batch163-2026-09-07/) `SCRIPT_RECORDED_PASS`，平板 10 checks + 截图 |
 | 162 | Mobile 390 breakpoint check | [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/) `SCRIPT_RECORDED_PASS`，移动端 6 checks + 截图 |
@@ -311,6 +313,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |
 | 164 | Footer trigger class alignment | 已完成；触发器几何对齐已通过，详见 [`liblib-canvas-batch164-2026-09-07/`](liblib-canvas-batch164-2026-09-07/)；循环继续 |
 | 163 | Tablet breakpoints 768/1024 | 已完成；平板核查已通过，详见 [`liblib-canvas-batch163-2026-09-07/`](liblib-canvas-batch163-2026-09-07/)；循环继续 |
 | 162 | Mobile 390 breakpoint check | 已完成；移动端核查已通过，详见 [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/)；循环继续 |

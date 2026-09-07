@@ -180,6 +180,7 @@ BrowserContext，不写截图。
 | Batch 162 | 移动端 390 断点核查 | `SCRIPT_RECORDED_PASS` | 桌面+移动 10 checks；无页面溢出/提示词完好/截图存档 |
 | Batch 163 | 平板断点核查（768/1024） | `SCRIPT_RECORDED_PASS` | 桌面+移动+平板 20 checks；无页面溢出/提示词完好/截图存档 |
 | Batch 164 | 页脚触发器采样类对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch164.py` 已通过（8 checks）；batch21 x 偏移 +37 迁移 |
+| Batch 165 | 引用槽行布局对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch165.py` 已通过（7 checks）；行高 ≥55/无 Auto Link 文字 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |
