@@ -116,6 +116,9 @@ export function AssetManagerPanel({
   const [sortMode, setSortMode] = useState<SortMode>("graph");
   // Batch 102: 源站有 所有评级/展示设置 控件；其菜单语义未采样，clone 给诚实本地 hint。
   const [hint, setHint] = useState("");
+  // Batch 203: 源站直采评级筛选菜单（6 项：所有评级/1-5）。clipPath 用近似负一星。
+  const [ratingsOpen, setRatingsOpen] = useState(false);
+  const [minRating, setMinRating] = useState<number | null>(null);
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
   const assetNodes = nodes.filter((node) => node.type === "image" || node.type === "video");
@@ -238,14 +241,39 @@ export function AssetManagerPanel({
             </div>
           )}
         </div>
-        <button
-          type="button"
-          data-asset-manager-rating
-          onClick={() => setHint("本地原型：评级未接入")}
-          className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
-        >
-          所有评级
-        </button>
+        <div className="relative shrink-0">
+          <button
+            type="button"
+            data-asset-manager-rating
+            onClick={() => setRatingsOpen(!ratingsOpen)}
+            className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+          >
+            {minRating ? String(minRating) : "所有评级"}
+          </button>
+          {ratingsOpen && (
+            /* Batch 203: 源站菜单直采（180×225，6 项：所有评级/1-5）。 */
+            <div data-asset-manager-rating-menu className="absolute left-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[var(--canvas-shadow-menu)]">
+              {[null, 1, 2, 3, 4, 5].map((value) => (
+                <button
+                  key={value ?? "all"}
+                  type="button"
+                  data-asset-manager-rating-option={value ?? "all"}
+                  aria-pressed={minRating === value}
+                  onClick={() => {
+                    setMinRating(value);
+                    setRatingsOpen(false);
+                  }}
+                  className={cn(
+                    "flex h-8 w-full items-center rounded-lg px-2 text-left text-xs transition-colors",
+                    minRating === value ? "bg-white/[0.1] text-white" : "text-[#ccc] hover:bg-white/[0.06]",
+                  )}
+                >
+                  {value ?? "所有评级"}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
         <button
           type="button"
           data-asset-manager-display

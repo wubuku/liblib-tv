@@ -225,6 +225,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Asset drawer width aligned (Batch 202, source 2026-09-08): the left
   sidebar measures ~280px (clone was 240) while its 画布/资产 tabs, 所有评级
   filter and verbatim empty/counter texts already matched
+- 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
+  a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
+  local-hint placeholder; batch102's hint assertions migrated to the
+  menu-open contract; the min-rating list filtering stays local (source
+  filtering effect unsampled)
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

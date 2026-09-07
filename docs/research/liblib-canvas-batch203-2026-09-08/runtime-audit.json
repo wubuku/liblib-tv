@@ -1,0 +1,23 @@
+{
+  "batch": 203,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "menu:opens",
+        "menu:width-180",
+        "menu:six-options",
+        "menu:labels-verbatim",
+        "menu:selects-3",
+        "menu:reset-all",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

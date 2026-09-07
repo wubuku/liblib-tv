@@ -215,6 +215,7 @@ BrowserContext，不写截图。
 | Batch 199 | Agent 抽屉重采 + 第四句标题 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch199.py` 9 checks；Skill 批次与 97 记录互证一致；横幅文案一致；抽屉宽度开放问题；107 轮换同步后两跑绿 |
 | Batch 200 | 抽屉宽度规则 + Skill 芯片 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch200.py` 9 checks；三档视口 400px 恒定（更正 199 的 427 伪影）；点卡芯片入输入区可移除；22/107/121/172/185/196-199 回归绿 |
 | Batch 202 | 资产管理抽屉重采 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch202.py` 10 checks；宽度 240→280（源站直采）/文案页签已一致；102/114/121/172 回归绿 |
+| Batch 203 | 所有评级筛选菜单实装 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch203.py` 8 checks；菜单 180×225 六项逐字标签/选 3 更新/重置；batch102 hint 断言迁移后全绿；114/121/172 回归绿 |
 | Batch 201 | 换一批真实 Skill 目录 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch201.py` 7 checks；四批 15 Skill 直采（批 3 三张）+ 环绕；107/199/200/172 回归绿 |
 | Batch 189 | 比例瓦片字形结构对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch189.py` 20 checks；17px 盒 + 1.5px border-current 内框逐比例 px 直采；6/7 格模型依赖假设记为开放问题（clone 维持 175/176 合同）；21/22/155/160/175/176/185/186/188 回归绿 |
 | Batch 190 | 比例格模型依赖复测（否定） | `SCRIPT_RECORDED_PASS` | 2.5→2.0 双向直采均 7 格含 Auto，假设否定；clone 网格统一 7 格 grid-cols-5，batch175/21 迁移后全绿；26 项回归绿 |

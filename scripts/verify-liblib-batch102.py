@@ -70,8 +70,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     display = drawer.locator("[data-asset-manager-display]")
     check("rating:visible", rating.is_visible() and rating.inner_text().strip() == "所有评级")
     check("display:visible", display.is_visible() and display.inner_text().strip() == "展示设置")
+    # Batch 203: 所有评级菜单已实装（源站直采 6 项），打开断言取代旧 hint 断言。
     rating.click()
-    check("rating:hint", "本地原型" in drawer.locator("[data-asset-manager-hint]").inner_text())
+    check("rating:menu-opens", drawer.locator("[data-asset-manager-rating-menu]").count() == 1)
+    drawer.locator("[data-asset-manager-rating-option='all']").click()
+    page.wait_for_timeout(200)
     display.click()
     check("display:hint", "展示设置" in drawer.locator("[data-asset-manager-hint]").inner_text())
 
