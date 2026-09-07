@@ -38,7 +38,7 @@ def run_desktop(page: Page):
     page.wait_for_timeout(400)
     panel = open_asset_manager(page)
 
-    assert panel.locator("[data-asset-manager-project]").inner_text() == "未命名项目"
+    assert panel.locator("[data-asset-manager-project]").inner_text() == "未命名工作区"
     assert panel.locator("[data-asset-manager-canvas]").inner_text().strip() == "画布 2"
     assert panel.locator("[data-asset-manager-heading]").inner_text() == "画布元素"
     assert panel.locator('[data-asset-manager-list="canvas"] [data-asset-manager-item]').count() == 10
@@ -93,7 +93,7 @@ def run_mobile(page: Page):
     page.goto(URL, wait_until="networkidle")
     page.wait_for_timeout(400)
     panel = open_asset_manager(page)
-    assert panel.locator("[data-asset-manager-project]").inner_text() == "未命名项目"
+    assert panel.locator("[data-asset-manager-project]").inner_text() == "未命名工作区"
     assert panel.locator("[data-asset-manager-canvas]").inner_text().strip() == "画布 2"
     assert panel.locator("[data-asset-manager-item]").count() == 10
     assert_no_overflow(page)

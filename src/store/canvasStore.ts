@@ -951,7 +951,7 @@ const initialCanvas2: CanvasData = {
 let canvasCounter = 2;
 
 export const useCanvasStore = create<CanvasState>((set, get) => ({
-  projectName: "未命名项目",
+  projectName: "未命名工作区",
   canvases: [defaultCanvas("canvas-1", "画布 1"), initialCanvas2],
   removedCanvases: [],
   activeCanvasId: "canvas-2",

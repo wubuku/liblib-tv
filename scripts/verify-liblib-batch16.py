@@ -41,12 +41,12 @@ def run_desktop(page: Page):
     menu = page.locator('[data-liblib-overlay="canvas-dropdown"]')
     assert menu.locator("[data-canvas-project]").is_visible()
     assert "当前项目" in menu.locator("[data-canvas-project]").inner_text()
-    assert "未命名项目" in menu.locator("[data-canvas-project]").inner_text()
+    assert "未命名工作区" in menu.locator("[data-canvas-project]").inner_text()
     assert menu.locator("[data-canvas-new]").is_visible()
     assert menu.locator('[data-canvas-active="true"]').count() == 1
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch16-canvas-menu-desktop-929-2026-08-25.png"))
 
-    menu.get_by_role("button", name="未命名项目", exact=True).click()
+    menu.get_by_role("button", name="未命名工作区", exact=True).click()
     project_input = menu.locator("[data-canvas-project-input]")
     project_input.fill("咖啡馆项目")
     project_input.press("Enter")

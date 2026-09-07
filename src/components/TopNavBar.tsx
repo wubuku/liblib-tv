@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Bot, ChevronDown, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
+import { useCanvasStore } from "@/store/canvasStore";
 import { cn } from "@/lib/utils";
 
 function LibTvMark() {
@@ -58,6 +59,8 @@ function SharePanel() {
 }
 
 export function TopNavBar() {
+  // Batch 170: 源站 2026-09-07 顶栏画布芯片左侧有工作区名内联输入（min-w-30 max-w-100 cursor-text）。
+  const { projectName, setProjectName } = useCanvasStore();
   const {
     editorMode,
     setEditorMode,
@@ -79,6 +82,13 @@ export function TopNavBar() {
           <LibTvMark />
         </Link>
         <ProjectMenu />
+        <input
+          data-workspace-name
+          value={projectName}
+          onChange={(event) => setProjectName(event.target.value)}
+          aria-label="工作区名称"
+          className="h-[21px] min-w-[30px] max-w-[100px] cursor-text truncate rounded border border-white/[0.12] bg-transparent px-1 text-[13px] text-[#ededed] outline-none hover:border-white/[0.25] focus:border-white/[0.3]"
+        />
         {!isAssetPanelOpen && (
           <div className="rounded-lg bg-[#262626] shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
             <CanvasTabDropdown />

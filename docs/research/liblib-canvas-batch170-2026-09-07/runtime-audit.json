@@ -1,0 +1,23 @@
+{
+  "batch": 170,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "workspace:visible",
+        "workspace:default-value",
+        "workspace:transparent",
+        "workspace:cursor-text",
+        "workspace:max-w-100",
+        "workspace:left-of-chip",
+        "workspace:rename-applied",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
