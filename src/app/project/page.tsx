@@ -53,8 +53,9 @@ export default function ProjectListPage() {
             aria-expanded={recycleOpen}
             onClick={() => setRecycleOpen((value) => !value)}
             className={cn(
-              "flex h-8 items-center gap-1 rounded-lg px-2 text-xs hover:bg-white/[0.06]",
-              recycleOpen ? "bg-white/[0.1] text-white" : "text-[#9a9a9a] hover:text-white",
+              // Batch 167: 源站回收站为实心次级按钮（bg-btn-secondary，h-8）。
+              "flex h-8 items-center gap-1.5 rounded-lg px-3 text-[13px] text-[#ededed] hover:bg-white/[0.12]",
+              recycleOpen ? "bg-white/[0.16]" : "bg-white/[0.08]",
             )}
           >
             <Trash2 size={13} />
@@ -64,7 +65,7 @@ export default function ProjectListPage() {
             type="button"
             data-project-new-folder
             onClick={() => setStatus("本地原型：新建文件夹未接入")}
-            className="flex h-8 items-center gap-1 rounded-lg border border-white/[0.1] px-2.5 text-xs text-[#d8d8d8] hover:border-white/[0.24] hover:text-white"
+            className="flex h-8 items-center gap-1.5 rounded-lg bg-white/[0.08] px-3 text-[13px] text-[#ededed] hover:bg-white/[0.12]"
           >
             <FolderPlus size={13} />
             新建文件夹
@@ -149,10 +150,13 @@ export default function ProjectListPage() {
             addCanvas();
             router.push("/");
           }}
-          className="flex h-[150px] flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.14] bg-white/[0.02] transition-colors hover:border-white/[0.3] hover:bg-white/[0.04]"
+          className="group flex flex-col overflow-hidden rounded-xl text-left transition-colors hover:opacity-90"
         >
-          <span className="text-sm font-medium text-[#ededed]">开始创作</span>
-          <span className="text-[11px] text-[#8c8c8c]">创建新的视频项目</span>
+          {/* Batch 167: 源站创建卡为 aspect-video 封面区 + 下方标题行（非虚线占位卡）。 */}
+          <span className="flex aspect-video w-full shrink-0 items-center justify-center rounded-xl bg-white/[0.04] transition-colors group-hover:bg-white/[0.07]">
+            <span className="text-[14px] font-medium text-[#ededed]">开始创作</span>
+          </span>
+          <span className="truncate px-0.5 py-2.5 text-sm font-medium text-[#9a9a9a]">创建新的视频项目</span>
         </button>
         {canvases.map((canvas) => (
           <button
@@ -161,12 +165,13 @@ export default function ProjectListPage() {
             data-project-card={canvas.id}
             onClick={() => openCanvas(canvas.id)}
             className={cn(
-              "group flex h-[150px] flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#1f1f1f] text-left transition-all duration-200 hover:border-white/[0.24] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-0.5",
+              "group flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#1f1f1f] text-left transition-all duration-200 hover:border-white/[0.24] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-0.5",
               canvas.id === activeCanvasId && "border-[#09caf5]/50",
             )}
           >
             {/* Batch 148: 源站项目卡有封面图占位区（渐变色/缩略图）。 */}
-            <div className="relative flex h-[92px] shrink-0 items-center justify-center bg-gradient-to-br from-[#2a3a4a] via-[#1e2e3e] to-[#1a2a3a] transition-transform duration-300 group-hover:scale-105">
+            {/* Batch 167: 源站封面为 aspect-video（267 宽 → 149 高，卡总高 208）。 */}
+            <div className="relative flex aspect-video w-full shrink-0 items-center justify-center bg-gradient-to-br from-[#2a3a4a] via-[#1e2e3e] to-[#1a2a3a] transition-transform duration-300 group-hover:scale-105">
               <svg viewBox="0 0 24 24" className="size-6 text-white/20 transition-transform duration-300 group-hover:scale-125" fill="none" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -176,7 +181,7 @@ export default function ProjectListPage() {
               </span>
             </div>
             <div className="flex flex-1 flex-col justify-between p-3">
-              <span className="truncate text-sm text-[#ededed]">{canvas.name}</span>
+              <span className="truncate text-[14px] font-medium text-[#ededed]">{canvas.name}</span>
               {/* Batch 152: 源站卡副行仅日期（2026-09-07 实拍：未命名 + 2026-09-06），无工作区前缀。 */}
               <span className="text-[11px] text-[#777]">
                 {today}

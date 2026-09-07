@@ -1,0 +1,29 @@
+{
+  "batch": 167,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "data-project-recycle:visible",
+        "data-project-recycle:filled",
+        "data-project-recycle:h-32",
+        "data-project-new-folder:visible",
+        "data-project-new-folder:filled",
+        "data-project-new-folder:h-32",
+        "create:visible",
+        "create:no-dashed",
+        "create:cover-aspect-video",
+        "create:cover-text",
+        "create:title-row",
+        "card:cover-aspect-video",
+        "card:cover-tall",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

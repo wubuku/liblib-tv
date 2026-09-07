@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- /project secondary surface alignment (Batch 167, source 2026-09-07
+  re-audit): 回收站/新建文件夹 as filled secondary buttons, the create card
+  restructured to an aspect-video cover + title row, canvas card covers
+  aspect-video (~150px, card ~208px) with 14px medium titles; the
+  character-library modal re-sample stays blocked (rAF throttle)
 - Prompt textarea background/rounding removed and the 「3 个匹配」
   AutoLink popup chip deleted (Batch 166, source 2026-09-07): the sampled
   prompt region is a plain scroll area and the sampled toolbars contain
