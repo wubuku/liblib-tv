@@ -173,6 +173,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   flowing into it (credits unchanged on selection), via
   addNodeAtPosition + addEdge with explicit source/target handle ids (the
   graph validator rejects missing handle direction)
+- 参考/标记 pill inertness extended (Batch 193, source 2026-09-08): the
+  pills open no popover with a typed prompt either — the real precondition
+  (likely uploaded/generated reference content) remains unsampled; the
+  prompt-state inertness is pinned as a regression contract
+  (verify-liblib-batch193.py, 6 checks), zero code changes
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

@@ -206,6 +206,7 @@ BrowserContext，不写截图。
 | Batch 188 | 工具条 pill 图标原字形 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch188.py` 12 checks；五枚 pill svg viewBox/path 与源站直采一致（含 g transform）；22/151/166/172/178/185/186 回归绿 |
 | Batch 191 | 特效库横排 + pill 惰性采样 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch191.py` 10 checks；特效库开合/四卡/结构/外部关闭；运镜/参考/标记空节点惰性记录（运镜合同保留）；146/151/166/172/186/188 回归绿 |
 | Batch 192 | 特效卡点击选用行为 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch192.py` 5 checks；点卡生成 素材-特效-名 节点 + 连线指入视频节点（显式 handle 方向）；33/125/172/178/185/186/187/191 回归绿 |
+| Batch 193 | 参考/标记提示词态惰性 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch193.py` 6 checks；提示词前置仍惰性（真实前置未定位）；clone 占位一致，固化为合同；146/151/172/191 回归绿 |
 | Batch 189 | 比例瓦片字形结构对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch189.py` 20 checks；17px 盒 + 1.5px border-current 内框逐比例 px 直采；6/7 格模型依赖假设记为开放问题（clone 维持 175/176 合同）；21/22/155/160/175/176/185/186/188 回归绿 |
 | Batch 190 | 比例格模型依赖复测（否定） | `SCRIPT_RECORDED_PASS` | 2.5→2.0 双向直采均 7 格含 Auto，假设否定；clone 网格统一 7 格 grid-cols-5，batch175/21 迁移后全绿；26 项回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |

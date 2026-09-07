@@ -1,0 +1,21 @@
+{
+  "batch": 193,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "参考:inert",
+        "参考:prompt-preserved",
+        "标记:inert",
+        "标记:prompt-preserved",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
