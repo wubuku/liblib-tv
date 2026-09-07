@@ -1,0 +1,29 @@
+{
+  "batch": 185,
+  "results": [
+    {
+      "viewport": "390x844",
+      "checks": [
+        "chips:visible",
+        "chip:selected-alpha",
+        "chip:icon-svg",
+        "page:no-h-overflow-1",
+        "menu:node-variant",
+        "menu:node-in-viewport",
+        "menu:pane-variant",
+        "menu:pane-in-viewport",
+        "page:no-h-overflow-2",
+        "model:open",
+        "model:within-viewport",
+        "model:row-52",
+        "model:slide-class",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
