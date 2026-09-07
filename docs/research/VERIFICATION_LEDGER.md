@@ -201,6 +201,7 @@ BrowserContext，不写截图。
 | Batch 183 | batch9/51 几何断言核对复活 | `SCRIPT_RECORDED_PASS` | 工具条宽度断言 900.5→1092.5（Batch 51/52 源站直采合同迁移漏项）；视频面板等待 450ms 时序修正；错误的图片面板 397 迁移经源站直采（空态 660×191）回滚保持 274；batch20 确认本就绿；老化名单降至 6 |
 | Batch 184 | 剩余 6 个老化验证器核对 | `TRIAGE_RECORDED` | 逐个失败形态存档并确认 AGED_GATE（现行门已覆盖、batch6 被 Batch 77 取代、batch40 为 fixture 媒体伪影）；零代码改动，脚本头部自文档化；抽样回归绿 |
 | Batch 185 | 172-178 表面 390 断点核查 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch185.py` 14 checks；双变体右键菜单视口内/芯片图标+白10%/滑层保留/无横向溢出；22 移动相位与 161 移动+平板复验绿 |
+| Batch 186 | footer 图标按钮组对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch186.py` 8 checks；顺序/两枚新按钮/两枚直采字形/credits 位次；batch21 改字体无关的触发器相对偏移（三连跑绿）；batch125 补非 toggle 迁移；24 项全量回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |

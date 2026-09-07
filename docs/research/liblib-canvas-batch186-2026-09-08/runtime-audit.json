@@ -1,0 +1,23 @@
+{
+  "batch": 186,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "footer:three-icon-buttons",
+        "footer:order",
+        "footer:sparkle-viewbox",
+        "footer:translate-viewbox",
+        "footer:generate-arrow-viewbox",
+        "footer:credits-between",
+        "footer:generate-title",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

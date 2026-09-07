@@ -13,7 +13,7 @@
         "attempts:chip:首尾帧生成视频",
         "attempts:chip:首帧生成视频",
         "attempts:select",
-        "attempts:deselect",
+        "attempts:reclick-stays-selected",
         "feature:removed",
         "prompt:placeholder",
         "toolbar:参考",

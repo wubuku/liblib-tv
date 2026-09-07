@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowUp,
   AtSign,
   Box,
   Check,
@@ -11,7 +10,7 @@ import {
   Film,
   Gem,
   Images,
-  Languages,
+  Settings2,
   Link2,
   LoaderCircle,
   Search,
@@ -414,8 +413,29 @@ export function VideoGenerationPanel({
 
           {isLongVideo && <button type="button" onClick={() => setShowProcess((show) => !show)} className="h-8 shrink-0 rounded-lg px-2 text-[#09caf5] hover:bg-[#09caf5]/10">{showProcess ? "返回编辑" : "查看过程"}</button>}
           {/* Batch 151: 源站积分块 min-w-[85px] justify-end、fg-muted 灰调、数值 12px/15px（2026-09-07 实拍）。 */}
+          {/* Batch 186: footer 图标按钮组按源站顺序与字形直采对齐
+              （doc-sparkle / 文A 翻译 / lucide settings2 / credits / 生成上箭头；
+                源站按钮无 aria/title，点击语义未采样——保持占位）。 */}
+          <button type="button" data-footer-icon="doc-sparkle" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10.26 1.67c.32 0 .57.25.57.57v.35c0 .32-.25.58-.57.58h-6.1a1 1 0 0 0-1 1v11.66a1 1 0 0 0 1 1h11.67a1 1 0 0 0 1-1v-6.1c0-.3.26-.56.58-.56h.35c.32 0 .57.25.57.57v6.1a2.5 2.5 0 0 1-2.37 2.49H3.97a2.44 2.44 0 0 1-2.3-2.37V4.17a2.5 2.5 0 0 1 2.5-2.5zm3.9 10.91a.75.75 0 0 1 0 1.5H5.84a.75.75 0 0 1 0-1.5zm-2.5-3.33a.75.75 0 0 1 0 1.5H5.84a.75.75 0 0 1 0-1.5zm3.86-8.4c.1-.3.52-.3.63 0l.76 2.05q.05.14.2.2l2.05.75c.29.11.29.52 0 .63l-2.06.76q-.14.05-.2.2l-.75 2.05a.33.33 0 0 1-.63 0l-.76-2.05a.3.3 0 0 0-.2-.2l-2.05-.76a.33.33 0 0 1 0-.63l2.05-.75q.15-.06.2-.2zM10 5.92a.75.75 0 0 1 0 1.5H5.83a.75.75 0 0 1 0-1.5z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]">
+            <svg aria-hidden="true" width="15" height="14" viewBox="0 0 19.71 18" fill="none">
+              <path
+                d="M15.52 7.2c.16 0 .31.1.37.26l3.8 10a.4.4 0 0 1-.38.54h-1.03a.4.4 0 0 1-.37-.27l-.88-2.48h-4.36l-.88 2.48a.4.4 0 0 1-.37.27h-1.03a.4.4 0 0 1-.37-.54l3.79-10a.4.4 0 0 1 .37-.26zM7.7 0c.22 0 .4.18.4.4v1.4H14c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4h-2.21a16 16 0 0 1-1.42 3.33A11 11 0 0 1 8.5 9.54l1.99 2.02c.1.11.14.28.09.42l-.43 1.16a.3.3 0 0 1-.5.1l-2.4-2.46-4.27 4.24a.4.4 0 0 1-.56 0l-.7-.7a.4.4 0 0 1 0-.56L6 9.5q-.79-.8-1.43-1.8-.55-.85-1-1.89a.3.3 0 0 1 .27-.41h1.2a.4.4 0 0 1 .35.22q.39.74.79 1.31.45.65 1.08 1.3.73-.73 1.54-2.08.8-1.33 1.2-2.55H.4a.4.4 0 0 1-.4-.4v-1c0-.22.18-.4.4-.4h5.9V.4c0-.22.18-.4.4-.4zm5.53 13.68h3.24l-1.62-4.59z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button type="button" data-footer-icon="settings2" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]">
+            <Settings2 size={16} />
+          </button>
           <span data-video-credits className="ml-auto flex h-8 min-w-[85px] shrink-0 items-center justify-end gap-1.5 text-[#9a9a9a]"><Zap size={12} fill="currentColor" /><span className="text-[12px] leading-[15px]">{credits}</span></span>
-          <button type="button" aria-label="翻译视频提示词" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"><Languages size={14} /></button>
           <button
             data-video-generate-submit
             data-video-long-submit-state={
@@ -444,6 +464,7 @@ export function VideoGenerationPanel({
                   : "生成视频"
             }
           >
+            {/* Batch 186: 源站生成按钮上箭头（libtv 字形直采）。 */}
             {longVideoSubmitting ? (
               <LoaderCircle
                 data-video-long-submit-spinner
@@ -453,7 +474,12 @@ export function VideoGenerationPanel({
             ) : submitted ? (
               <Check size={15} />
             ) : (
-              <ArrowUp size={15} />
+              <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L10 3.42V17a1 1 0 1 1-2 0V3.41l-6.3 6.3A1 1 0 0 1 .3 8.29z"
+                  fill="currentColor"
+                />
+              </svg>
             )}
           </button>
         </footer>

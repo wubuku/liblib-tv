@@ -77,10 +77,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "attempts:select",
         attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "true",
     )
+    # Batch 177: 源站直证同芯片再点不取消（非 toggle）——保持选中。
     attempts.locator("[data-video-attempt='首帧生成视频']").click()
     check(
-        "attempts:deselect",
-        attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "false",
+        "attempts:reclick-stays-selected",
+        attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "true",
     )
 
     # Batch 160: 源站 2026-09-07 新建节点整面板无「新功能」条 —— 断言其不存在。

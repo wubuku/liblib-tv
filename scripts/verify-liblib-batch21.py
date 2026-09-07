@@ -113,9 +113,13 @@ def run_desktop(page: Page):
     assert_close(normal_box["width"], 341)
     assert_close(normal_box["height"], 445)
     # Batch 164: 模型触发器 min-w-[88px] 使参数菜单 x 右移 +37。
-    assert_close(normal_box["x"] - panel_box["x"], 119)
+    # Batch 186: footer 新增两枚图标按钮后 footer flex 重排，面板相对 x 偏移
+    # 随触发器文字宽度（字体加载）在 119/124.16 间抖动——改为断言 CSS 保证的
+    # 触发器相对偏移（菜单 -left-[68px]），与字体无关。
+    trigger_box = box(trigger)
+    assert_close(normal_box["x"] - trigger_box["x"], -68)
     # Batch 126: 源站高级设置内联行移到 footer 下方，参数菜单 y 偏移上移 28px。
-    assert_close(normal_box["y"] - panel_box["y"], -244.5)
+    assert_close(normal_box["y"] - panel_box["y"], -245)
     assert_common_controls(page)
     assert page.locator("[data-video-count-option]").count() == 3
     assert page.locator("[data-video-long-hint]").count() == 0
@@ -159,7 +163,10 @@ def run_desktop(page: Page):
     assert menu.get_attribute("data-video-params-mode") == "long"
     assert_close(long_box["width"], 341)
     assert_close(long_box["height"], 397)
-    assert_close(long_box["x"] - panel_box["x"], 127)
+    # Batch 186: 同普通相位——改断言触发器相对偏移（长菜单 -left-[60px]），
+    # 规避触发器文字宽度的字体加载抖动。
+    long_trigger_box = box(trigger)
+    assert_close(long_box["x"] - long_trigger_box["x"], -60)
     # Batch 126: 高级设置行使弹出菜单 y 偏移上移 28px。
     assert_close(long_box["y"] - panel_box["y"], -196.5)
     # Batch 175: 长模式现走尝试芯片（batch128 联动）——比例 Auto 无格子按下。

@@ -141,7 +141,15 @@ FrameOS fixes, coverage matrix and regression sweeps).
   icons with the white/10 selected state, and no horizontal overflow —
   harness notes added for elementFromPoint pane probing and the Meta+0
   fit-view prerequisite for in-card panels
-- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
+- Video panel footer icon group aligned (Batch 186, source 2026-09-08):
+  the footer now matches the sampled order params → doc-sparkle → 文A
+  translate → lucide settings2 → credits → generate, with the doc-sparkle
+  and 文A and up-arrow glyphs embedded from harvested libtv paths
+  (settings2 stays lucide — the source uses lucide there too); new buttons
+  are inert placeholders (source click semantics unsampled); batch21's
+  panel-relative menu offsets migrated to font-independent trigger-relative
+  assertions after the footer reflow introduced bimodal font-load jitter;
+  batch125 gained the missed no-toggle chip migration- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):
