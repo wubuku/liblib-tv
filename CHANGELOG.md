@@ -119,6 +119,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   shots[].captureIds when stripping non-portable captures, so director
   projects save and load again; the remaining 9 aged gates stay
   AGED_GATE/HISTORICAL_CONTRACT
+- batch75 timeout root-caused and revived (Batch 182): a falsification
+  test (reverting the Batch 181 persistence fix) reproduces the exact 30s
+  wait_for_function timeout, proving it was a downstream symptom of the
+  same save/load regression — zero code changes needed; the aged list is
+  now 10
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
