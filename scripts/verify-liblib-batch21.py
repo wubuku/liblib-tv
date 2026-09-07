@@ -78,9 +78,9 @@ def open_params(page: Page):
 
 
 def assert_common_controls(page: Page, expect_ratio_pressed: str | None = "16:9", long_mode: bool = False):
-    # Batch 175/176: 比例网格普通模式 6 格无 Auto、长模式 7 格含 Auto（源站实测）；
-    # Auto 在普通模式仅是尝试联动内部状态。
-    assert page.locator("[data-video-ratio-option]").count() == (7 if long_mode else 6)
+    # Batch 190: 模型切换复测（2.5/2.0 双向）——两模式均 7 格含 Auto；
+    # Auto 仅在长模式选中（尝试芯片联动）。
+    assert page.locator("[data-video-ratio-option]").count() == 7
     assert page.locator("[data-video-resolution-option]").count() == 3
     assert page.locator("[data-video-audio-option]").count() == 2
     if long_mode:

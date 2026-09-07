@@ -593,11 +593,9 @@ interface ParamsMenuProps {
 }
 
 function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
-  /* Batch 176: 源站长模式直采——比例网格长模式 7 格含 Auto（5 列，Auto 选中），
-     普通模式 6 格无 Auto（4 列）；Auto 在普通模式仅是尝试联动内部状态。 */
-  const ratios = isLongVideo
-    ? ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"]
-    : ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
+  /* Batch 190: 模型切换复测（2.5→2.0 双向直采）——普通/长模式均为 7 格含
+     Auto（5 列），Batch 176 的「长 7/普 6」分割废止；Auto 仅在长模式选中。 */
+  const ratios = ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
   const resolutions = ["480P", "720P", "1080P"];
 
   return (
@@ -611,7 +609,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
     >
       <section>
         <p className="mb-2 text-xs text-[#8a8a8a]">比例</p>
-        <div className={cn("grid gap-2", isLongVideo ? "grid-cols-5" : "grid-cols-4")}>
+        <div className="grid grid-cols-5 gap-2">
           {ratios.map((item) => (
             <button
               key={item}

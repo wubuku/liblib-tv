@@ -344,6 +344,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 187 | Footer button click inertness | 已完成；footer 按钮点击惰性证实，详见 [`liblib-canvas-batch187-2026-09-08/`](liblib-canvas-batch187-2026-09-08/)；循环继续 |
 | 188 | Toolbar pill glyphs | 已完成；工具条 pill 原字形对齐已通过，详见 [`liblib-canvas-batch188-2026-09-08/`](liblib-canvas-batch188-2026-09-08/)；循环继续 |
 | 189 | Ratio tile glyph structure | 已完成；比例瓦片字形结构对齐已通过，详见 [`liblib-canvas-batch189-2026-09-08/`](liblib-canvas-batch189-2026-09-08/)；循环继续 |
+| 190 | Ratio grid model-dependency retest | 已完成；模型依赖假设否定并统一 7 格，详见 [`liblib-canvas-batch190-2026-09-08/`](liblib-canvas-batch190-2026-09-08/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |
 | 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |

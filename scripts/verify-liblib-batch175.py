@@ -83,13 +83,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.locator("[data-video-params-trigger]").click(force=True)
     page.wait_for_timeout(300)
     check("params:open", page.locator("[data-video-params-menu]").count() == 1)
-    check("params:six-ratio-tiles", page.locator("[data-video-ratio-option]").count() == 6)
-    check("params:no-auto-tile", page.locator('[data-video-ratio-option="Auto"]').count() == 0)
+    # Batch 190: 模型切换复测否定 6 格采样——普通模式同样 7 格含 Auto。
+    check("params:seven-ratio-tiles", page.locator("[data-video-ratio-option]").count() == 7)
+    check("params:auto-tile-present", page.locator('[data-video-ratio-option="Auto"]').count() == 1)
     ids = page.eval_on_selector_all(
         "[data-video-ratio-option]",
         "els => els.map(el => el.getAttribute('data-video-ratio-option'))",
     )
-    check("params:ratio-order", ids == ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9"])
+    check("params:ratio-order", ids == ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"])
     tile = page.locator('[data-video-ratio-option="16:9"]').bounding_box()
     check("params:tile-62", tile is not None and abs(tile["height"] - 62) <= 2)
     check("params:three-resolutions", page.locator("[data-video-resolution-option]").count() == 3)

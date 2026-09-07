@@ -167,7 +167,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   with a hard-coded active border; an open question records that today's
   normal-mode menu showed seven tiles including Auto (2.5-model day) vs
   Batch 175's six-tile sample, with the model-dependency hypothesis
-  unconfirmed and the clone grid unchanged- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
+  unconfirmed and the clone grid unchanged — the hypothesis was REJECTED in Batch 190 by bidirectional sampling
+  (switching 2.5→2.0 still shows seven tiles including Auto), so the ratio
+  grid is now seven tiles (grid-cols-5) in both modes and the Batch 176
+  long/normal split was dropped; batch175/21 ratio assertions migrated- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):
