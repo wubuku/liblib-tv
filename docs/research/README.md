@@ -354,6 +354,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 199 | Agent drawer re-sample | 已完成；Agent 抽屉重采与第四句标题已通过，详见 [`liblib-canvas-batch199-2026-09-08/`](liblib-canvas-batch199-2026-09-08/)；循环继续 |
 | 200 | Drawer width + skill chip | 已完成；抽屉宽度规则与 Skill 芯片行为已通过，详见 [`liblib-canvas-batch200-2026-09-08/`](liblib-canvas-batch200-2026-09-08/)；循环继续 |
 | 201 | Real skill directory | 已完成；换一批真实 Skill 目录对齐已通过，详见 [`liblib-canvas-batch201-2026-09-08/`](liblib-canvas-batch201-2026-09-08/)；循环继续 |
+| 202 | Asset drawer width | 已完成；资产管理抽屉宽度对齐已通过，详见 [`liblib-canvas-batch202-2026-09-08/`](liblib-canvas-batch202-2026-09-08/)；循环继续 |
 | 189 | Ratio tile glyph structure | 已完成；比例瓦片字形结构对齐已通过，详见 [`liblib-canvas-batch189-2026-09-08/`](liblib-canvas-batch189-2026-09-08/)；循环继续 |
 | 190 | Ratio grid model-dependency retest | 已完成；模型依赖假设否定并统一 7 格，详见 [`liblib-canvas-batch190-2026-09-08/`](liblib-canvas-batch190-2026-09-08/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |

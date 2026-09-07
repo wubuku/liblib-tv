@@ -130,7 +130,8 @@ export function AssetManagerPanel({
   const activeFilterLabel = filterOptions.find((option) => option.value === filter)?.label ?? "全部";
 
   return (
-    <aside data-liblib-overlay="asset" className="relative z-50 flex h-screen w-60 shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-12 text-[#e7e7e7]">
+    <aside data-liblib-overlay="asset" // Batch 202: 源站资产管理抽屉实测 ~280 宽（文本右缘 270）。
+      className="relative z-50 flex h-screen w-[280px] shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-12 text-[#e7e7e7]">
       <div data-asset-manager-context className="flex h-11 items-center gap-2 border-b border-white/[0.07] px-3 text-xs">
         <span data-asset-manager-project className="min-w-0 truncate text-[#e4e4e4]">{projectName}</span>
         <span className="h-3 w-px shrink-0 bg-white/10" />

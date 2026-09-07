@@ -1,0 +1,25 @@
+{
+  "batch": 202,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "drawer:width-280",
+        "tabs:canvas",
+        "tabs:assets",
+        "filter:all-ratings",
+        "footer:count-format",
+        "tab:assets-tab-active",
+        "tab:assets-lists-media",
+        "tab:back-to-canvas",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
