@@ -130,8 +130,10 @@ export function VideoGenerationPanel({
   const longVideoSubmitTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongVideo = mode === "long-video";
-  const durationMin = isLongVideo ? 30 : 4;
-  const durationMax = isLongVideo ? 300 : 30;
+  // Batch 155: 5分钟超长视频芯片将时长范围切到 30..300（否则 300s 在 4..30 滑杆上半态）。
+  const isLongRange = isLongVideo || attempt === "5分钟超长视频";
+  const durationMin = isLongRange ? 30 : 4;
+  const durationMax = isLongRange ? 300 : 30;
   // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230，
   // 比例影响积分；未采样比例沿用 46/s（CLONE_DECISION）。
   const credits = isLongVideo
@@ -295,6 +297,9 @@ export function VideoGenerationPanel({
                     } else if (next !== null) {
                       setRatio("Auto");
                       setDuration(5);
+                    } else if (label === "5分钟超长视频") {
+                      // Batch 155: 取消 5 分钟芯片时长回落到常规范围（CLONE_DECISION，源站未采样取消）。
+                      setDuration((value) => Math.min(value, 30));
                     }
                   }}
                   className={cn(
@@ -401,7 +406,7 @@ export function VideoGenerationPanel({
           <div className="relative min-w-0">
             <button data-video-params-trigger type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 max-w-[205px] items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
             {menu === "params" && (
-              <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongVideo} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
+              <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongRange} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
           </div>
 

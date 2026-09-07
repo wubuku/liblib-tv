@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- 5分钟超长视频 attempt chip now switches the params duration range to
+  30..300 with the long menu layout (Batch 155), fixing the broken
+  half-state where a 300s value sat on a 4..30 slider; deselecting the
+  chip clamps duration back to <=30 (CLONE_DECISION, source cancel
+  linkage unsampled); credits formula unchanged
 - Full regression sweep across all 124 verifiers (Batch 154): 112 pass,
   12 aged failures matching the documented Batch 108/131 list exactly,
   zero unexplained; batch124 recycle verifier migrated to the popup

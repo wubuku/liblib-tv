@@ -1,0 +1,25 @@
+{
+  "batch": 155,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:default-settings",
+        "chip:300s-label",
+        "params:menu-open",
+        "params:long-mode",
+        "params:max-300",
+        "params:min-30",
+        "params:value-300",
+        "deselect:clamp-30",
+        "deselect:chip-off",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
