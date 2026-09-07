@@ -1,0 +1,30 @@
+{
+  "batch": 199,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "banner:text",
+        "skill:fourth-headline-added",
+        "skill:four-headlines-rotate",
+        "skill:card-皮克斯动画广告",
+        "skill:card-爆款拉片复刻",
+        "skill:card-新中式美学TVC",
+        "skill:card-古典武侠电影全流程导演",
+        "errors:empty"
+      ],
+      "headlines_seen": [
+        "Skill 就位，ready when you are",
+        "一个 Skill，慢慢打磨你的故事",
+        "让 Skill 帮你迈出第一步",
+        "选一个 Skill，让创作更快一步"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

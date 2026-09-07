@@ -202,6 +202,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   MemberShopGlyph (0 0 16 16, cyan) replacing the ♦ placeholder, BoltGlyph
   (0 0 16 16) and AgentFaceGlyph (0 0 17.58 14) in ChromeIcons.tsx; the
   first harvest was truncated and re-harvested in full
+- Agent drawer re-sampled with a fourth skill headline (Batch 199,
+  source 2026-09-08): 「Skill 就位，ready when you are」 joins the 换一批
+  rotation (batch107 HEADLINES synced); the four-skill first batch matches
+  the clone's batch97 record exactly and the notification banner text
+  already matches; the drawer width difference at 1920 (≈427 vs 340) is
+  recorded as an open question
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

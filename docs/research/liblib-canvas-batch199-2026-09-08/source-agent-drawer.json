@@ -1,0 +1,193 @@
+{
+ "box": [
+  1521,
+  52,
+  400,
+  589
+ ],
+ "bg": "rgba(0, 0, 0, 0)",
+ "border": "0px solid rgb(82, 82, 82)",
+ "ta": [],
+ "texts": [
+  {
+   "tag": "P",
+   "text": "Skill 就位，ready when you are",
+   "box": [
+    1563,
+    461,
+    266,
+    24
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "text": "换一批",
+   "box": [
+    1836,
+    461,
+    68,
+    24
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "text": "皮克斯动画广告/pixar-animated-ad-creator",
+   "box": [
+    1537,
+    497,
+    180,
+    62
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮克斯动画广告/pixar-animated-ad-creator",
+   "box": [
+    1605,
+    510,
+    99,
+    37
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮克斯动画广告",
+   "box": [
+    1605,
+    510,
+    99,
+    20
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "/pixar-animated-ad-creator",
+   "box": [
+    1605,
+    532,
+    99,
+    15
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "text": "爆款拉片复刻/viral-video-replicator",
+   "box": [
+    1724,
+    497,
+    180,
+    62
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "爆款拉片复刻/viral-video-replicator",
+   "box": [
+    1793,
+    510,
+    99,
+    37
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "爆款拉片复刻",
+   "box": [
+    1793,
+    510,
+    99,
+    20
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "/viral-video-replicator",
+   "box": [
+    1793,
+    532,
+    99,
+    15
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "text": "新中式美学TVC/neo-chinese-aesthetic-tvc",
+   "box": [
+    1537,
+    567,
+    180,
+    62
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "新中式美学TVC/neo-chinese-aesthetic-tvc",
+   "box": [
+    1605,
+    580,
+    99,
+    37
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "新中式美学TVC",
+   "box": [
+    1605,
+    580,
+    99,
+    20
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "/neo-chinese-aesthetic-tvc",
+   "box": [
+    1605,
+    602,
+    99,
+    15
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "text": "古典武侠电影全流程导演/hujinquanwuxia",
+   "box": [
+    1724,
+    567,
+    180,
+    62
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "古典武侠电影全流程导演/hujinquanwuxia",
+   "box": [
+    1793,
+    580,
+    99,
+    37
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "古典武侠电影全流程导演",
+   "box": [
+    1793,
+    580,
+    99,
+    20
+   ]
+  },
+  {
+   "tag": "SPAN",
+   "text": "/hujinquanwuxia",
+   "box": [
+    1793,
+    602,
+    99,
+    15
+   ]
+  }
+ ]
+}

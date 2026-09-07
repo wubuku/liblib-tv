@@ -22,10 +22,12 @@ AUDIT_PATH = (
     / "runtime-audit.json"
 )
 
+# Batch 199: 2026-09-08 直采第四句标题加入轮换。
 HEADLINES = [
     "选一个 Skill，让创作更快一步",
     "让 Skill 帮你迈出第一步",
     "一个 Skill，慢慢打磨你的故事",
+    "Skill 就位，ready when you are",
 ]
 
 
