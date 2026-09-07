@@ -232,6 +232,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Type filter menu wired to the asset list (Batch 205): ten option labels
   map to node-type filters (matchesFilter extended), the trigger shows
   展示设置 on 全部, and the dead hint state was removed
+- Empty-canvas chip click behavior sampled (Batch 206, evidence batch):
+  the 故事脚本生成 chip creates a pair — a text node pre-filled with 剧本
+  markdown plus a script-v2 node (脚本生成器, 350×350), a source node type
+  the clone does not implement yet; the chip set itself varies per session
+  (two vs four chips observed)
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the
