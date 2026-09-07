@@ -149,7 +149,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   are inert placeholders (source click semantics unsampled); batch21's
   panel-relative menu offsets migrated to font-independent trigger-relative
   assertions after the footer reflow introduced bimodal font-load jitter;
-  batch125 gained the missed no-toggle chip migration- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
+  batch125 gained the missed no-toggle chip migration
+- Footer doc-sparkle/settings2 click semantics sampled (Batch 187, source
+  2026-09-08): both buttons are click-inert on an empty fresh node — no
+  popover, no toggle, no mounted layer (the class diff was hover noise
+  only), matching the clone's inert placeholders; the inertness is now a
+  pinned regression contract (verify-liblib-batch187.py, 9 checks)- Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):

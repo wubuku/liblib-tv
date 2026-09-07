@@ -1,0 +1,43 @@
+{
+ "before": {
+  "vb": "0 0 24 24",
+  "cls": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center rounded-lg transition-colors bg-btn-ghost-hover",
+  "x": 1524,
+  "y": 793
+ },
+ "after": {
+  "vb": "0 0 24 24",
+  "cls": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center rounded-lg transition-colors hover:bg-btn-ghost-hover",
+  "x": 1524,
+  "y": 793
+ },
+ "floats": [
+  {
+   "box": [
+    0,
+    0,
+    1920,
+    826
+   ],
+   "text": "新对话\n            .canvas-agent-drawer-chat {\n              --"
+  },
+  {
+   "box": [
+    16,
+    774,
+    280,
+    40
+   ],
+   "text": "资产管理100%"
+  },
+  {
+   "box": [
+    873,
+    0,
+    174,
+    34
+   ],
+   "text": "正在跟随取消ESC按 ESC 退出"
+  }
+ ]
+}

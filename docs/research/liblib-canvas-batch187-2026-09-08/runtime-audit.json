@@ -1,0 +1,24 @@
+{
+  "batch": 187,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "buttons:present",
+        "sparkle:no-menu",
+        "sparkle:panel-intact",
+        "settings2:no-menu",
+        "settings2:panel-intact",
+        "state:params-unchanged",
+        "state:credits-visible",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
