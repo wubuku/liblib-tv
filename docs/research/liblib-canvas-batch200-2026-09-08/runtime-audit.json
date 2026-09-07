@@ -1,0 +1,24 @@
+{
+  "batch": 200,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:opens",
+        "drawer:width-400",
+        "chip:appears",
+        "chip:text",
+        "drawer:stays-open",
+        "card:selected",
+        "chip:removable",
+        "drawer:width-400-at-1200",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -223,7 +223,7 @@ export function AgentDrawer() {
           setOpenMenu(null);
         }
       }}
-      className="relative z-50 hidden h-screen w-[340px] shrink-0 flex-col border-l border-white/[0.08] bg-[#1b1b1b] text-[#ededed] sm:flex"
+      className="relative z-50 hidden h-screen w-[400px] shrink-0 flex-col border-l border-white/[0.08] bg-[#1b1b1b] text-[#ededed] sm:flex"
     >
       <header className="flex h-14 shrink-0 items-center border-b border-white/[0.08] px-3">
         <span className="text-sm font-medium text-[#f2f2f2]">新对话</span>
@@ -430,6 +430,23 @@ export function AgentDrawer() {
                   )}
                 </button>
               ))}
+            </div>
+          )}
+
+          {/* Batch 200: 源站直证——点 Skill 卡将 Skill 名以芯片插入输入区，
+              抽屉保持打开；芯片可移除。 */}
+          {selectedSkillId && (
+            <div data-agent-skill-chip className="mb-1 flex w-fit items-center gap-1.5 rounded-md bg-white/[0.06] px-2 py-1 text-xs text-[#e9e9e9]">
+              <span>{skillBatches.flat().find((sk) => sk.id === selectedSkillId)?.title}</span>
+              <button
+                type="button"
+                data-agent-skill-chip-remove
+                aria-label="移除 Skill"
+                onClick={() => setSelectedSkillId(null)}
+                className="text-[#8b8b8b] hover:text-white"
+              >
+                ×
+              </button>
             </div>
           )}
 

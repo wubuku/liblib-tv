@@ -208,6 +208,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   the clone's batch97 record exactly and the notification banner text
   already matches; the drawer width difference at 1920 (≈427 vs 340) is
   recorded as an open question
+- Agent drawer width rule solved and skill chip behavior implemented
+  (Batch 200, source 2026-09-08): the drawer container is a constant 400px
+  at 1920/1680/1440 viewports (correcting Batch 199's 427 measuring
+  artifact) so the clone widened 340→400; clicking a Skill card inserts a
+  removable skill-name chip into the chat input while the drawer stays
+  open
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims
