@@ -64,3 +64,35 @@ export function ChevronDownGlyph({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function ShareNodesGlyph({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path fill="currentColor" d="M10.12.642a2.276 2.276 0 0 1 0 4.55 2.27 2.27 0 0 1-1.647-.708L5.297 6.338a2.28 2.28 0 0 1 0 1.323l3.178 1.852a2.275 2.275 0 1 1-.531.906L4.767 8.567a2.276 2.276 0 1 1 0-3.136l3.176-1.853A2.275 2.275 0 0 1 10.12.642m0 9.216c-.428 0-.804.22-1.023.553a.5.5 0 0 1-.065.109 1.225 1.225 0 1 0 1.088-.661m-7-4.083a1.224 1.224 0 1 0 0 2.45 1.224 1.224 0 0 0 0-2.45m7-4.083a1.224 1.224 0 1 0 0 2.45 1.224 1.224 0 0 0 0-2.45"></path>
+    </svg>
+  );
+}
+
+export function MemberShopGlyph({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <g transform="translate(1.335 2)"><g><path d="M2.3 0C1.48 0 .77.53.54 1.31L.08 2.86c-.37 1.22.6 2.47 2 2.47.62 0 1.2-.24 1.57-.64.37.39.9.64 1.51.64.6 0 1.14-.25 1.5-.64.37.4.9.64 1.51.64s1.15-.25 1.51-.64c.38.4.95.64 1.58.64 1.4 0 2.36-1.25 2-2.47L12.8 1.3A1.8 1.8 0 0 0 11.04 0z" fill="currentColor"></path><path d="M.67 6q.64.33 1.4.33.7 0 1.32-.27a.6.6 0 0 1 .5 0 3 3 0 0 0 2.53.01.6.6 0 0 1 .5 0 3 3 0 0 0 2.52 0 .6.6 0 0 1 .5 0A3.3 3.3 0 0 0 12.67 6v4.16c0 1-.82 1.83-1.84 1.83H2.5a1.83 1.83 0 0 1-1.83-1.83z" fill="currentColor"></path></g></g>
+    </svg>
+  );
+}
+
+export function BoltGlyph({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <g transform="translate(2.935 1.665)"><path d="M7.3.64A.5.5 0 0 0 7 .05a.6.6 0 0 0-.67.14L.13 7.05a.5.5 0 0 0-.08.56c.1.19.3.3.51.3H3.8l-.97 4.11c-.06.24.07.48.3.6.23.1.51.05.68-.14L10 5.62a.5.5 0 0 0 .08-.56.6.6 0 0 0-.51-.31H6.33z" fill="currentColor"></path></g>
+    </svg>
+  );
+}
+
+export function AgentFaceGlyph({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} width="18" height="14" viewBox="0 0 17.5777 14" fill="none">
+      <path d="M6.65708 6.24082L6.39938 7.75909" stroke="currentColor" strokeWidth="2.64444" strokeLinecap="round"></path><path d="M11.4257 6.24082L11.168 7.75909" stroke="currentColor" strokeWidth="2.64444" strokeLinecap="round"></path><path d="M2.75192 2.82378C2.87463 2.82378 2.97001 2.92986 2.95583 3.05175C2.83359 4.10301 2.31923 8.52841 2.05868 10.8056C1.989 11.4143 2.4651 11.9483 3.07786 11.9483H13.28C13.4026 11.9483 13.4978 12.055 13.4839 12.1768L13.2958 13.8182C13.2839 13.9218 13.1962 14 13.092 14H3.07786C1.23961 14 -0.188582 12.3988 0.0203241 10.5725L0.886449 3.00562C0.898308 2.90201 0.986003 2.82378 1.09029 2.82378H2.75192ZM14.4999 0C16.3381 9.54283e-05 17.7663 1.60126 17.5574 3.42754L16.6926 10.977C16.6807 11.0806 16.5931 11.1589 16.4888 11.1589H14.8291C14.7064 11.1589 14.611 11.0527 14.6252 10.9308C14.7467 9.88304 15.2568 5.48479 15.519 3.19445C15.5886 2.58576 15.1125 2.05181 14.4999 2.05171H4.26428C4.14171 2.05171 4.04649 1.94495 4.06044 1.82319L4.24851 0.181815C4.26038 0.0782166 4.34807 0 4.45235 0H14.4999Z" fill="currentColor"></path>
+    </svg>
+  );
+}

@@ -1,0 +1,27 @@
+{
+  "batch": 198,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "credits:bolt-in-dom",
+        "credits:bolt-in-topnav",
+        "chrome:ShareNodesGlyph:defined",
+        "chrome:ShareNodesGlyph:viewbox",
+        "chrome:MemberShopGlyph:defined",
+        "chrome:MemberShopGlyph:viewbox",
+        "chrome:BoltGlyph:defined",
+        "chrome:BoltGlyph:viewbox",
+        "chrome:AgentFaceGlyph:defined",
+        "chrome:AgentFaceGlyph:viewbox",
+        "topnav:uses-glyphs",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,58 @@
+[
+ {
+  "tag": "BUTTON",
+  "text": "",
+  "box": [
+   1457,
+   16,
+   32,
+   32
+  ],
+  "svgVB": "0 0 14 14",
+  "svgCls": "",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" fill=\"none\" viewBox=\"0 0 14 14\"><path fill=\"currentColor\" d=\"M10.12.642a2.276 2.276 0 0 1 0 4.55 2.27 2.27 0 0 1-1.647-.708L5.297 6.338a2.28 2.28 0 0 1 0 1.323l3.178 1.852a2.275 2.275 0 1 1-.531.906L4.767 8.567a2.276 2.276 0 1 1 0-3.136l3.176-1.853A2.275 2.275 0 0 1 10.12.642m0 9.216c-.428 0-.804.22-1.023.553a.5.5 0 0 1-.065.109 1.225 1.225 0 1 0 1.088-.661m-7-4.083a1.224 1.224 0 1 0 0 2.45 1.224 1.224 0 0 0 0-2.45m7-4.083a1.224 1.22",
+  "imgSrc": null
+ },
+ {
+  "tag": "BUTTON",
+  "text": "",
+  "box": [
+   1497,
+   16,
+   32,
+   32
+  ],
+  "svgVB": "0 0 16 16",
+  "svgCls": "iconify iconify--libtv pointer-events-none ",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" style=\"color: var(--nt-cyan-400);\"><g transform=\"translate(1.335 2)\"><g><path d=\"M2.3 0C1.48 0 .77.53.54 1.31L.08 2.86c-.37 1.22.6 2.47 2 2.47.62 0 1.2-.24 1.57-.64.37.39.9.64 1.51.64.6 0 1.14-.25 1.5-.64.37.4.9.64 1.51.64s1.15-.25 1.51-.64c.38.4.95.64 1.58.64 1.4 0 2.36-1.25 2-2.47L12.8 1.3",
+  "imgSrc": null
+ },
+ {
+  "tag": "BUTTON",
+  "text": "100",
+  "box": [
+   1705,
+   16,
+   64,
+   32
+  ],
+  "svgVB": "0 0 16 16",
+  "svgCls": "iconify iconify--libtv pointer-events-none ",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"><g transform=\"translate(2.935 1.665)\"><path d=\"M7.3.64A.5.5 0 0 0 7 .05a.6.6 0 0 0-.67.14L.13 7.05a.5.5 0 0 0-.08.56c.1.19.3.3.51.3H3.8l-.97 4.11c-.06.24.07.48.3.6.23.1.51.05.68-.14L10 5.62a.5.5 0 0 0 .08-.56.6.6 0 0 0-.51-.31H6.33z\" fill=\"currentColor\"></path></g></svg>",
+  "imgSrc": null
+ },
+ {
+  "tag": "BUTTON",
+  "text": "Agent",
+  "box": [
+   1817,
+   16,
+   87,
+   32
+  ],
+  "svgVB": "0 0 17.5777 14",
+  "svgCls": "",
+  "svg": "<svg width=\"17.578\" height=\"14\" viewBox=\"0 0 17.5777 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M6.65708 6.24082L6.39938 7.75909\" stroke=\"currentColor\" stroke-width=\"2.64444\" stroke-linecap=\"round\"></path><path d=\"M11.4257 6.24082L11.168 7.75909\" stroke=\"currentColor\" stroke-width=\"2.64444\" stroke-linecap=\"round\"></path><path d=\"M2.75192 2.82378C2.87463 2.82378 2.97001 2.92986 2.95583 3.05175C2.83359 4.10301 2.31923 8.52841 2.05868 10.8056C1.989 11.4143 2.4651",
+  "imgSrc": null
+ }
+]

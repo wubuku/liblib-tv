@@ -197,6 +197,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   (Batch 197, source 2026-09-08): a 12px ChevronDownGlyph with the sampled
   g transform replaces lucide ChevronDown; the source's data-open
   rotate-180 open-state semantics are recorded as unsampled for the clone
+- Topnav right cluster icons aligned to harvested libtv glyphs
+  (Batch 198, source 2026-09-08): ShareNodesGlyph (0 0 14 14),
+  MemberShopGlyph (0 0 16 16, cyan) replacing the ♦ placeholder, BoltGlyph
+  (0 0 16 16) and AgentFaceGlyph (0 0 17.58 14) in ChromeIcons.tsx; the
+  first harvest was truncated and re-harvested in full
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bot, ChevronRight, Globe2, Link2, Share2, Zap } from "lucide-react";
+import { ChevronRight, Globe2, Link2 } from "lucide-react";
+import { AgentFaceGlyph, BoltGlyph, MemberShopGlyph, ShareNodesGlyph } from "@/components/ChromeIcons";
 import { ChevronDownGlyph } from "@/components/ChromeIcons";
 import { LayoutPanelGlyph, WorkflowGlyph } from "@/components/ChromeIcons";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
@@ -137,7 +138,7 @@ export function TopNavBar() {
             isSharePanelOpen && "bg-[#3b3b3b]",
           )}
         >
-          <Share2 size={15} />
+          <ShareNodesGlyph className="size-[15px] text-current" />
         </button>
         {/* Batch 139: 源站顶栏 积分超市 与 积分余额 为两个独立入口。 */}
         <button
@@ -155,7 +156,7 @@ export function TopNavBar() {
           title="积分余额"
           className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
         >
-          <Zap size={14} className="fill-white" />
+          <BoltGlyph className="size-4 text-current" />
           <span>100</span>
         </button>
         <button
@@ -164,7 +165,8 @@ export function TopNavBar() {
           title="开通会员 限时 45 折"
           className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
         >
-          <span className="text-[#f5c451]">♦</span>
+          {/* Batch 198: 源站会员入口为青色商店图标（--nt-cyan-400）。 */}
+          <MemberShopGlyph className="size-4 text-[#4de1f4]" />
           <span className="hidden text-[#f5c451] md:inline">开通会员</span>
           <span className="rounded bg-[#f5c451]/15 px-1 py-0.5 text-[10px] text-[#f5c451]">限时 45 折</span>
         </button>
@@ -174,7 +176,7 @@ export function TopNavBar() {
             onClick={toggleAgent}
             className="flex h-8 items-center gap-2 rounded-lg bg-[#262626] px-3 text-sm hover:bg-[#333]"
           >
-            <Bot size={16} />
+            <AgentFaceGlyph className="h-[14px] w-[18px] text-current" />
             <span>Agent</span>
           </button>
         )}
