@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- 尝试 suggestion chips moved into the video node card (Batch 159, source
+  2026-09-07 geometry: vertical 36px pills below the preview, panel without
+  an attempts row); attempt state lifted to VideoNode with the settings
+  linkage applied via effect — 128/155 contracts preserved; batch21/22
+  menu y-offsets migrated -32
 - Default model reverted to Seedance 2.5 (Batch 158, controlled
   re-sample after page reload): fresh-node and attempt-node panels both
   show 2.5; the 2.0 sample was preset-carrier-specific; batch128's

@@ -104,6 +104,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
+  const [attempt, setAttempt] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<
     | "generator"
     | "reshoot"
@@ -575,9 +576,34 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         )}
       </div>
 
+      {/* Batch 159: 源站 2026-09-07 尝试建议列在节点卡内（预览下方，纵向 36px pill），面板内不再重复。 */}
+      {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
+        <div data-video-attempts className="flex shrink-0 flex-col gap-1 border-t border-white/[0.07] p-2">
+          <span className="text-xs text-[#8a8a8a]">尝试：</span>
+          {["5分钟超长视频", "首尾帧生成视频", "首帧生成视频"].map((label) => (
+            <button
+              key={label}
+              type="button"
+              data-video-attempt={label}
+              aria-pressed={attempt === label}
+              onClick={() => setAttempt(attempt === label ? null : label)}
+              className={cn(
+                "flex h-9 w-fit items-center rounded-full bg-white/[0.05] px-3 text-[13px] transition-colors",
+                attempt === label
+                  ? "bg-[#09caf5]/15 text-[#09caf5]"
+                  : "text-[#aaa] hover:bg-white/[0.09] hover:text-white",
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
       {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
         <VideoGenerationPanel
           zoom={zoom}
+          attempt={attempt}
           initialPrompt={prompt}
           continuation={continuation}
           onCreateLongVideoProcess={(input: LongVideoProcessInput) =>

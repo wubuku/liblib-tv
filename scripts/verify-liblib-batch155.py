@@ -72,7 +72,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("boot:default-settings", settings_label(page) == "16:9 · 720P · 5s · 1个 ·")
 
     # 点击 5分钟超长视频 → Auto/300s，随后参数菜单应处于长范围（30..300）。
-    attempts = vg.locator("[data-video-attempts]")
+    # Batch 159: 尝试列移至节点卡内（面板外），用页面级定位。
+    attempts = page.locator("[data-video-attempts]")
     attempts.locator("[data-video-attempt='5分钟超长视频']").click()
     page.wait_for_timeout(300)
     check("chip:300s-label", settings_label(page) == "Auto · 720P · 300s · 1个 ·")

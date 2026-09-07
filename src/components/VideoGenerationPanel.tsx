@@ -30,6 +30,7 @@ type VideoMode = "omnireference" | "image-reference" | "long-video";
 
 interface VideoGenerationPanelProps {
   zoom: number;
+  attempt: string | null;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
   onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
@@ -95,6 +96,7 @@ const modeItems = [
 
 export function VideoGenerationPanel({
   zoom,
+  attempt,
   initialPrompt,
   continuation,
   onCreateLongVideoProcess,
@@ -114,8 +116,6 @@ export function VideoGenerationPanel({
   const [audio, setAudio] = useState(true);
   const [count, setCount] = useState(1);
   const [autoLink, setAutoLink] = useState(true);
-  // Batch 125: 源站尝试行选择（本地草稿）。
-  const [attempt, setAttempt] = useState<string | null>(null);
   // Batch 146: 运镜按钮下拉菜单（CLONE_DECISION：通用影视运镜术语，源站交互未采样）。
   const [yunjingOpen, setYunjingOpen] = useState(false);
   const [yunjingSelection, setYunjingSelection] = useState<string | null>(null);
@@ -148,6 +148,25 @@ export function VideoGenerationPanel({
       : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
   const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
   const referenceSummary = useMemo(() => references.map((item) => `${item.name}（图片 ${item.id}）`).join("、"), []);
+
+  // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动在面板生效。
+  const prevAttemptRef = useRef<string | null>(attempt);
+  useEffect(() => {
+    const prev = prevAttemptRef.current;
+    if (attempt === prev) return;
+    prevAttemptRef.current = attempt;
+    // Batch 128: 源站尝试芯片驱动设置联动（5分钟超长视频 → Auto+300s；首尾帧/首帧 → Auto+5s）。
+    if (attempt === "5分钟超长视频") {
+      setRatio("Auto");
+      setDuration(300);
+    } else if (attempt !== null) {
+      setRatio("Auto");
+      setDuration(5);
+    } else if (prev === "5分钟超长视频") {
+      // Batch 155: 取消 5 分钟芯片时长回落到常规范围（CLONE_DECISION，源站未采样取消）。
+      setDuration((value) => Math.min(value, 30));
+    }
+  }, [attempt]);
 
   useEffect(() => {
     return () => {
@@ -278,39 +297,7 @@ export function VideoGenerationPanel({
 
         {!isContinuation && (
           <>
-            {/* Batch 125: 源站 2026-09-06 尝试行（5分钟超长视频/首尾帧/首帧）。 */}
-            <div data-video-attempts className="flex h-8 shrink-0 items-center gap-1.5">
-              <span className="text-xs text-[#8a8a8a]">尝试：</span>
-              {["5分钟超长视频", "首尾帧生成视频", "首帧生成视频"].map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  data-video-attempt={label}
-                  aria-pressed={attempt === label}
-                  onClick={() => {
-                    // Batch 128: 源站尝试芯片驱动设置联动（5分钟超长视频 → Auto+300s;首尾帧/首帧 → Auto+5s）。
-                    const next = attempt === label ? null : label;
-                    setAttempt(next);
-                    if (next === "5分钟超长视频") {
-                      setRatio("Auto");
-                      setDuration(300);
-                    } else if (next !== null) {
-                      setRatio("Auto");
-                      setDuration(5);
-                    } else if (label === "5分钟超长视频") {
-                      // Batch 155: 取消 5 分钟芯片时长回落到常规范围（CLONE_DECISION，源站未采样取消）。
-                      setDuration((value) => Math.min(value, 30));
-                    }
-                  }}
-                  className={cn(
-                    "flex h-7 items-center rounded-full px-2.5 text-xs transition-colors",
-                    attempt === label ? "bg-[#09caf5]/15 text-[#09caf5]" : "text-[#aaa] hover:bg-white/[0.06] hover:text-white",
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+            {/* Batch 159: 尝试列移至 VideoNode 卡内（源站 2026-09-07 实拍：芯片在卡内、面板无尝试行）。 */}
             <div data-video-new-feature className="flex h-6 shrink-0 items-center gap-1 text-[11px] text-[#9a9a9a]">
               <Sparkles size={11} className="text-[#f3b74c]" />
               新功能：支持真人

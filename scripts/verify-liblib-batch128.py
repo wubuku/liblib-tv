@@ -66,7 +66,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # Batch 143: 默认时长 6s→5s（源站对齐）。
     check("boot:default-settings", settings == "16:9 · 720P · 5s · 1个 ·")
 
-    attempts = vg.locator("[data-video-attempts]")
+    # Batch 159: 尝试列移至节点卡内（面板外），用页面级定位。
+    attempts = page.locator("[data-video-attempts]")
     attempts.locator("[data-video-attempt='5分钟超长视频']").click()
     page.wait_for_timeout(300)
     settings = page.evaluate("""() => { const b = Array.from(document.querySelectorAll("[data-video-generation-panel] button")).find((x) => x.textContent.includes("· 720P")); return b ? b.textContent.trim() : null; }""")
