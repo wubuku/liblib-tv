@@ -237,6 +237,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   markdown plus a script-v2 node (脚本生成器, 350×350), a source node type
   the clone does not implement yet; the chip set itself varies per session
   (two vs four chips observed)
+- script-v2 node type implemented (Batch 207, source 2026-09-08): a
+  350×350 脚本生成器 card registered as a new node type with a minimal
+  placeholder body (the source's internal editor/panel remain unsampled);
+  the 故事脚本生成 chip now creates the sampled pair atomically — a text
+  node pre-filled with 剧本 plus the script-v2 node, no edge between them;
+  the Agent-send semantics sampling was shelved (page-hang and
+  account-side session risk)
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the

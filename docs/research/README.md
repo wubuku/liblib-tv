@@ -435,3 +435,4 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - Original and clone screenshots live in [`../design-references/`](../design-references/).
 - Screenshot interpretation is recorded in the nearest batch `SCREENSHOT_ANALYSIS.md`.
 - A screenshot filename containing `final` is not proof that it still matches the current source.
+| 207 | script-v2 node type | 已完成；script-v2 节点类型与成对创建已通过，详见 [`liblib-canvas-batch207-2026-09-08/`](liblib-canvas-batch207-2026-09-08/)；循环继续 |
