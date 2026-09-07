@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- 5分钟超长视频 chip selects the whole long-video mode (Batch 160, source
+  full-panel dump: mode trigger 超长视频, credits 14700 = 300x49); reference
+  slot row now renders only when references exist and the 「新功能」 bar is
+  removed (both absent in the 2026-09-07 panel); batch21/22 offsets -24
 - 尝试 suggestion chips moved into the video node card (Batch 159, source
   2026-09-07 geometry: vertical 36px pills below the preview, panel without
   an attempts row); attempt state lifted to VideoNode with the settings

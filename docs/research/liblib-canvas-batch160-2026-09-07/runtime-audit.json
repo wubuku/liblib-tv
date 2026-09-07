@@ -1,0 +1,24 @@
+{
+  "batch": 160,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:open",
+        "panel:no-new-feature",
+        "panel:slots-present",
+        "chip:mode-long",
+        "chip:credits-14700",
+        "chip:params-auto-300",
+        "deselect:mode-back",
+        "deselect:clamp-30",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

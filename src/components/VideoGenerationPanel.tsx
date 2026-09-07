@@ -154,15 +154,18 @@ export function VideoGenerationPanel({
   const [prevAttempt, setPrevAttempt] = useState(attempt);
   if (attempt !== prevAttempt) {
     setPrevAttempt(attempt);
-    // Batch 128: 源站尝试芯片驱动设置联动（5分钟超长视频 → Auto+300s；首尾帧/首帧 → Auto+5s）。
+    // Batch 128+160: 源站尝试芯片驱动设置联动——5分钟超长视频整组切换：
+    // mode=超长视频（长视频公式 49/s，页脚实拍 14700）+ Auto+300s；首尾帧/首帧 → Auto+5s。
     if (attempt === "5分钟超长视频") {
+      setMode("long-video");
       setRatio("Auto");
       setDuration(300);
     } else if (attempt !== null) {
       setRatio("Auto");
       setDuration(5);
     } else if (prevAttempt === "5分钟超长视频") {
-      // Batch 155: 取消 5 分钟芯片时长回落到常规范围（CLONE_DECISION，源站未采样取消）。
+      // Batch 155/160: 取消 5 分钟芯片回到常规模式并钳制时长（CLONE_DECISION，源站未采样取消）。
+      setMode("omnireference");
       setDuration((value) => Math.min(value, 30));
     }
   }
@@ -294,15 +297,7 @@ export function VideoGenerationPanel({
           {!isContinuation && autoLink && <button type="button" onClick={() => setMenu(menu === "advanced" ? null : "advanced")} className="ml-auto flex h-7 items-center gap-1.5 rounded-full bg-[#09caf5]/10 px-2.5 text-xs text-[#09caf5]"><Link2 size={12} />3 个匹配</button>}
         </div>
 
-        {!isContinuation && (
-          <>
-            {/* Batch 159: 尝试列移至 VideoNode 卡内（源站 2026-09-07 实拍：芯片在卡内、面板无尝试行）。 */}
-            <div data-video-new-feature className="flex h-6 shrink-0 items-center gap-1 text-[11px] text-[#9a9a9a]">
-              <Sparkles size={11} className="text-[#f3b74c]" />
-              新功能：支持真人
-            </div>
-          </>
-        )}
+        {/* Batch 160: 源站 2026-09-07 新建节点整面板实拍无「新功能」条，原 Batch 125 条目移除。 */}
 
         {showProcess ? (
           <LongVideoProcessInfo
@@ -355,6 +350,8 @@ export function VideoGenerationPanel({
               </>
             ) : (
               <>
+                {/* Batch 160: 源站新建节点无引用时不渲染槽行（工具行直连提示词）。 */}
+                {references.length > 0 && (
                 <div className="mt-1 flex h-12 shrink-0 items-center gap-2">
                   {references.map((reference) => (
                     // Batch 149: 源站引用槽 48×55 cursor-grab（2026-09-07 实拍）。
@@ -365,6 +362,7 @@ export function VideoGenerationPanel({
                   ))}
                   <p className="ml-1 truncate text-xs text-[#757575]">Auto Link：{referenceSummary}</p>
                 </div>
+                )}
                 <textarea
                   value={prompt}
                   onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}

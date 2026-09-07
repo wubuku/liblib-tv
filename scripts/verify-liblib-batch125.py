@@ -83,9 +83,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
         attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "false",
     )
 
-    feature = page.locator("[data-video-new-feature]")
-    check("feature:visible", feature.is_visible())
-    check("feature:copy", "新功能：支持真人" in feature.inner_text())
+    # Batch 160: 源站 2026-09-07 新建节点整面板无「新功能」条 —— 断言其不存在。
+    check("feature:removed", page.locator("[data-video-new-feature]").count() == 0)
 
     textarea = vg.locator("textarea")
     check(
