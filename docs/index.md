@@ -55,6 +55,7 @@ graph TD
 ## Research And Evidence
 
 - [`research/README.md`](research/README.md)：研究总入口、路线索引、组件规格、Batch 历史、原始证据。
+- [`research/SESSION_PROGRESS_2026-09-07.md`](research/SESSION_PROGRESS_2026-09-07.md)：循环会话进展留档（Batch 149-171 快照、方法学勘误、阻塞清单、后续方向）。
 - [`research/liblib-live-2026-08-25/`](research/liblib-live-2026-08-25/)：LibTV 当前登录态原站审计。
 - [`research/liblib-seedance-2.5-2026-08-25/`](research/liblib-seedance-2.5-2026-08-25/README.md)：Seedance 2.5 能力背景、原站复核和实现历史。
 - [`research/liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md`](research/liblib-seedance-2.5-2026-08-25/LIBTV_FEATURE_GAP_MATRIX.md)：以 LibTV 当前能力为中心的呈现/缺口/价值总矩阵。

@@ -38,6 +38,7 @@
 - [`liblib-canvas-batch115-2026-09-06/`](liblib-canvas-batch115-2026-09-06/README.md)：双击画布打开添加节点面板。
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
+- [`SESSION_PROGRESS_2026-09-07.md`](SESSION_PROGRESS_2026-09-07.md)：**会话进展留档（2026-09-07）**——Batch 149-171 快照、采样方法学勘误、验证体系状态（124 验证器：112/12/0）、阻塞与后续方向。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
 - [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/README.md)：公共角色库模态页签 + Seedance 承诺书门本地模拟（未代用户同意，伦理边界留档）。
 - [`liblib-canvas-batch168-2026-09-07/`](liblib-canvas-batch168-2026-09-07/README.md)：/project 左侧边栏落地（新建项目/导航行/促销+帮助）。
