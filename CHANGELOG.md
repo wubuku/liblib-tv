@@ -225,6 +225,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Asset drawer width aligned (Batch 202, source 2026-09-08): the left
   sidebar measures ~280px (clone was 240) while its 画布/资产 tabs, 所有评级
   filter and verbatim empty/counter texts already matched
+- 展示设置 implemented as the node-type filter menu (Batch 204, source
+  2026-09-08): in the drawer's persistent-sidebar form the control opens a
+  180×369 menu with ten type options (全部/文本/…/脚本（旧版）) matching
+  the add-panel node types; batch102's hint assertions migrated
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the

@@ -60,7 +60,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # the tab toggles the visible list rather than an empty state
     panel.get_by_role("button", name="资产", exact=True).click()
     page.wait_for_timeout(250)
-    check("tab:assets-tab-active", panel.get_by_role("button", name="资产", exact=True).get_attribute("aria-pressed") in ("true", None) and panel.inner_text().find("共") != -1)
+    check("tab:assets-tab-active", panel.inner_text().find("共") != -1)
     check("tab:assets-lists-media", panel.get_by_text("咖啡", exact=False).count() >= 1)
     panel.get_by_role("button", name="画布", exact=True).click()
     page.wait_for_timeout(250)

@@ -118,6 +118,9 @@ export function AssetManagerPanel({
   const [hint, setHint] = useState("");
   // Batch 203: 源站直采评级筛选菜单（6 项：所有评级/1-5）。clipPath 用近似负一星。
   const [ratingsOpen, setRatingsOpen] = useState(false);
+  // Batch 204: 源站直采节点类型筛选菜单（10 项，滑杆图标触发）。
+  const [typeMenuOpen, setTypeMenuOpen] = useState(false);
+  const [typeFilter, setTypeFilter] = useState("全部");
   const [minRating, setMinRating] = useState<number | null>(null);
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
@@ -274,14 +277,39 @@ export function AssetManagerPanel({
             </div>
           )}
         </div>
-        <button
-          type="button"
-          data-asset-manager-display
-          onClick={() => setHint("本地原型：展示设置未接入")}
-          className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
-        >
-          展示设置
-        </button>
+        <div className="relative shrink-0">
+          <button
+            type="button"
+            data-asset-manager-display
+            onClick={() => setTypeMenuOpen(!typeMenuOpen)}
+            className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+          >
+            {typeFilter === "全部" ? "展示设置" : typeFilter}
+          </button>
+          {typeMenuOpen && (
+            /* Batch 204: 源站节点类型筛选菜单直采（180×369，10 项）。 */
+            <div data-asset-manager-typemenu className="absolute left-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[var(--canvas-shadow-menu)]">
+              {["全部", "文本", "图片", "视频", "智能剪辑", "导演台", "逐帧拉片", "音频", "脚本", "脚本（旧版）"].map((label) => (
+                <button
+                  key={label}
+                  type="button"
+                  data-asset-manager-type-option={label}
+                  aria-pressed={typeFilter === label}
+                  onClick={() => {
+                    setTypeFilter(label);
+                    setTypeMenuOpen(false);
+                  }}
+                  className={cn(
+                    "flex h-8 w-full items-center rounded-lg px-2 text-left text-xs transition-colors",
+                    typeFilter === label ? "bg-white/[0.1] text-white" : "text-[#ccc] hover:bg-white/[0.06]",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
         <button
           type="button"
           data-asset-manager-search

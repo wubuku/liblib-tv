@@ -75,8 +75,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("rating:menu-opens", drawer.locator("[data-asset-manager-rating-menu]").count() == 1)
     drawer.locator("[data-asset-manager-rating-option='all']").click()
     page.wait_for_timeout(200)
+    # Batch 204: 展示设置改为节点类型筛选菜单（源站直采 10 项）。
     display.click()
-    check("display:hint", "展示设置" in drawer.locator("[data-asset-manager-hint]").inner_text())
+    check("display:menu-opens", drawer.locator("[data-asset-manager-typemenu]").count() == 1)
+    check("display:menu-options", drawer.locator("[data-asset-manager-type-option]").count() == 10)
+    drawer.locator("[data-asset-manager-type-option='全部']").click()
+    page.wait_for_timeout(200)
 
     check("footer:count", "共 10 节点" in drawer.inner_text())
     check("footer:collapse-visible", drawer.locator("[data-asset-manager-collapse]").is_visible())
