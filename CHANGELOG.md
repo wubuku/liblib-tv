@@ -112,6 +112,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   --z-panel 400 / --z-modal 500 was evaluated and rejected (source topnav
   sits at z-1000; a clone-wide re-map would touch 10+ components for no
   visible gain — decision recorded in the batch record)
+- Aged-verifier triage and repair (Batch 181): batch49 self-healed (aged
+  list now 11); batch72's fixture gained the shot cascade that Batch 96's
+  shot→camera validation requires; batch74 exposed and fixed a real
+  persistence regression — documentForPersistence now prunes
+  shots[].captureIds when stripping non-portable captures, so director
+  projects save and load again; the remaining 9 aged gates stay
+  AGED_GATE/HISTORICAL_CONTRACT
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

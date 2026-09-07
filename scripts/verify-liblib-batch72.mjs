@@ -321,6 +321,8 @@ assert.equal(
   null,
 );
 
+// Batch 181: Batch 96 引入 shot→camera 存在性校验——删相机需级联删除其
+// 派生 shot（fixture 补齐 shots 过滤，镜像 DELETE_OBJECT 的级联语义）。
 const oneCameraDocument = normalizeDirectorProjectDocument({
   ...fixture,
   objects: fixture.objects.filter((object) => object.id !== "camera-b"),
@@ -330,6 +332,7 @@ const oneCameraDocument = normalizeDirectorProjectDocument({
       (track) => track.objectId !== "camera-b",
     ),
   },
+  shots: fixture.shots.filter((shot) => shot.cameraId !== "camera-b"),
 });
 const lastCameraDelete = plan(oneCameraDocument, {
   kind: "DELETE_OBJECT",

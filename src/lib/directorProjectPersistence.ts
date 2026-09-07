@@ -207,6 +207,14 @@ function documentForPersistence(
     captureDescriptors: normalized.captureDescriptors.filter((capture) =>
       stableCaptureIds.has(capture.id),
     ),
+    // Batch 181: 剥离非持久 capture 后同步剪枝 shot.captureIds，否则 load
+    // 重校验会因 shot→capture 悬挂引用 REJECTED（Batch 96 校验收紧回归）。
+    shots: normalized.shots.map((shot) => ({
+      ...shot,
+      captureIds: shot.captureIds.filter((captureId) =>
+        stableCaptureIds.has(captureId),
+      ),
+    })),
   };
 }
 
