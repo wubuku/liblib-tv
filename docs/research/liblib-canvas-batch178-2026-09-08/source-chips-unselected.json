@@ -1,0 +1,41 @@
+[
+ {
+  "text": "5分钟超长视频",
+  "box": [
+   1177,
+   447,
+   139,
+   36
+  ],
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "bg": "rgba(0, 0, 0, 0)",
+  "color": "rgb(247, 247, 247)",
+  "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv\" width=\"14\" height=\"14\" viewBox=\"0 0 16 16\"><g transform=\"translate(1 1)\"><path d=\"M1.1 4.3a2.94 2.94 0 0 1 4.42.13l1.5 1.7 1.48-1.7.12-.12a2.94 2.94 0 0 1 4.41.12 4 4 0 0 1 0 5.14l-.12.13a2.94 2.94 0 0 1-4.41-.13L7 7.88l-1.48 1.7-.12.13a2.93 2.93 0 0 1-4.3"
+ },
+ {
+  "text": "首尾帧生成视频",
+  "box": [
+   1177,
+   487,
+   144,
+   36
+  ],
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "bg": "rgba(0, 0, 0, 0)",
+  "color": "rgb(247, 247, 247)",
+  "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 20.05 22\"><path d=\"M19.49 15c.75.43.75 1.51 0 1.94l-8.36 4.77c-.68.39-1.52.39-2.21 0L.56 16.94a1.12 1.12 0 0 1 0-1.94l.82-.47 7.54 4.3c.69.4 1.53.4 2.21 0l7.54-4.3zm0-5.12c.75.43.75 1.5 0 1.94l-8.36 "
+ },
+ {
+  "text": "首帧生成视频",
+  "box": [
+   1177,
+   527,
+   130,
+   36
+  ],
+  "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+  "bg": "rgba(0, 0, 0, 0)",
+  "color": "rgb(247, 247, 247)",
+  "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 22 22\"><path d=\"M11.58 0c0 5.76 4.66 10.42 10.42 10.42v1.16A10.4 10.4 0 0 0 11.58 22h-1.16l-.01-.54A10.4 10.4 0 0 0 0 11.58v-1.16c5.76 0 10.42-4.66 10.42-10.42z\" fill=\"currentColor\"></path></svg><spa"
+ }
+]

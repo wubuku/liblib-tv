@@ -31,6 +31,7 @@ type VideoMode = "omnireference" | "image-reference" | "long-video";
 interface VideoGenerationPanelProps {
   zoom: number;
   attempt: string | null;
+  onAttemptChange?: (value: string | null) => void;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
   onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
@@ -100,6 +101,7 @@ const modeItems = [
 export function VideoGenerationPanel({
   zoom,
   attempt,
+  onAttemptChange,
   initialPrompt,
   continuation,
   onCreateLongVideoProcess,
@@ -171,7 +173,8 @@ export function VideoGenerationPanel({
       setDuration(5);
     } else if (prevAttempt === "5分钟超长视频") {
       // Batch 155/160: 取消 5 分钟芯片回到常规模式并钳制时长（CLONE_DECISION，源站未采样取消）。
-      setMode("omnireference");
+      // Batch 178: 功能式守卫——若用户已通过模式菜单另选模式，保留用户选择。
+      setMode((current) => (current === "long-video" ? "omnireference" : current));
       setDuration((value) => Math.min(value, 30));
     }
   }
@@ -186,6 +189,11 @@ export function VideoGenerationPanel({
 
   const selectMode = (nextMode: VideoMode) => {
     if (isContinuation) return;
+    // Batch 178: 源站直证——模式菜单切出超长视频即清除尝试芯片（时长 ≤30 由
+    // 下方钳制与联动分支共同保证）。
+    if (attempt === "5分钟超长视频" && nextMode !== "long-video") {
+      onAttemptChange?.(null);
+    }
     setMode(nextMode);
     setDuration(nextMode === "long-video" ? 30 : Math.min(30, Math.max(4, duration)));
     setShowProcess(false);

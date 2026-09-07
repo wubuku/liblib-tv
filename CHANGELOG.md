@@ -90,6 +90,14 @@ FrameOS fixes, coverage matrix and regression sweeps).
   (clicking another chip switches), and the panel replays the attempt
   linkage on mount so undo/reselect keeps long mode; batch128/155/160
   deselect assertions migrated to the current-source contract
+- Chip selected marker + cancel path (Batch 178, source 2026-09-08): the
+  selected attempt chip is white/10% background with unchanged #f7f7f7
+  text on a rounded-lg pill with a leading 14px icon (lucide substitutes);
+  ESC does not cancel the attempt — it only deselects the node and the
+  attempt persists across reselect (now asserted); the real cancel path is
+  the mode menu, which clears the chip through the new onAttemptChange prop
+  and clamps duration via a functional setMode guard that preserves the
+  user's mode choice
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

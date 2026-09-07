@@ -1,0 +1,20 @@
+{
+ "after_esc": {
+  "chipBg": "rgba(255, 255, 255, 0.1)",
+  "nodeSelected": 0,
+  "modeLong": false,
+  "params": null
+ },
+ "reselected": {
+  "chipBg": "rgba(0, 0, 0, 0)",
+  "nodeSelected": 1,
+  "modeLong": true,
+  "params": "Auto · 720P · 300s · 1个 ·"
+ },
+ "after_mode_switch": {
+  "chipBg": "rgba(0, 0, 0, 0)",
+  "nodeSelected": 1,
+  "modeLong": false,
+  "params": "Auto · 720P · 30s · 1个 ·"
+ }
+}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
-import { AlertTriangle, Camera, CaptionsOff, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
+import { AlertTriangle, Camera, CaptionsOff, Frame, GalleryHorizontalEnd, Infinity as InfinityIcon, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
   Position,
@@ -580,7 +580,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
         <div data-video-attempts className="flex shrink-0 flex-col gap-1 border-t border-white/[0.07] p-2">
           <span className="text-xs text-[#8a8a8a]">尝试：</span>
-          {["5分钟超长视频", "首尾帧生成视频", "首帧生成视频"].map((label) => (
+          {[
+            { label: "5分钟超长视频", Icon: InfinityIcon },
+            { label: "首尾帧生成视频", Icon: GalleryHorizontalEnd },
+            { label: "首帧生成视频", Icon: Frame },
+          ].map(({ label, Icon }) => (
             <button
               key={label}
               type="button"
@@ -589,12 +593,15 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               /* Batch 177: 源站直证同芯片再点不取消（非 toggle），切换需点其它芯片。 */
               onClick={() => setAttempt(label)}
               className={cn(
-                "flex h-9 w-fit items-center rounded-full bg-white/[0.05] px-3 text-[13px] transition-colors",
+                /* Batch 178: 源站直采——选中标记为背景 white/10%，文字 #f7f7f7
+                   两态一致，圆角 rounded-lg，行前 14px 图标（lucide 替代）。 */
+                "flex h-9 w-fit items-center gap-2 rounded-lg bg-white/[0.05] px-3 text-[13px] transition-colors",
                 attempt === label
-                  ? "bg-[#09caf5]/15 text-[#09caf5]"
-                  : "text-[#aaa] hover:bg-white/[0.09] hover:text-white",
+                  ? "bg-white/[0.1] text-[#f7f7f7]"
+                  : "text-[#f7f7f7] hover:bg-white/[0.09]",
               )}
             >
+              <Icon size={14} className="shrink-0 opacity-80" />
               {label}
             </button>
           ))}
@@ -605,6 +612,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
         <VideoGenerationPanel
           zoom={zoom}
           attempt={attempt}
+          onAttemptChange={setAttempt}
           initialPrompt={prompt}
           continuation={continuation}
           onCreateLongVideoProcess={(input: LongVideoProcessInput) =>

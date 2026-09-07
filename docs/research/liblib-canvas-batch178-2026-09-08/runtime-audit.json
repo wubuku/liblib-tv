@@ -1,0 +1,26 @@
+{
+  "batch": 178,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "chip:selected-white-10",
+        "chip:text-f7",
+        "chip:rounded-lg",
+        "chip:has-icon",
+        "cancel:chip-cleared",
+        "cancel:duration-clamped-30",
+        "cancel:mode-label",
+        "reengage:chip-on",
+        "esc:attempt-persists",
+        "esc:mode-still-long",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
