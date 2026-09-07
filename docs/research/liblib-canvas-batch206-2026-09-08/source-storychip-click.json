@@ -1,0 +1,11 @@
+{
+ "nodes_before": 0,
+ "nodes_after": 2,
+ "types": [
+  "text",
+  "script-v2"
+ ],
+ "panel": {
+  "panel": false
+ }
+}

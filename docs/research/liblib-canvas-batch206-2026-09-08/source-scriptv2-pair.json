@@ -1,0 +1,25 @@
+{
+ "nodes": [
+  {
+   "type": "text",
+   "box": [
+    236,
+    258,
+    350,
+    200
+   ],
+   "text": "剧本\n  .markdown-content p { margin: 0 0 0.5em; }\n  .markdown-content h1 { font-si"
+  },
+  {
+   "type": "script-v2",
+   "box": [
+    686,
+    258,
+    350,
+    350
+   ],
+   "text": "脚本生成器"
+  }
+ ],
+ "edges": 0
+}

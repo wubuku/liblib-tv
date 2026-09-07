@@ -1,0 +1,30 @@
+{
+ "chips": [
+  {
+   "text": "故事脚本生成",
+   "box": [
+    628,
+    416,
+    240,
+    56
+   ]
+  },
+  {
+   "text": "角色三视图",
+   "box": [
+    876,
+    416,
+    240,
+    56
+   ]
+  }
+ ],
+ "nodes_before": 0,
+ "nodes_after": 0,
+ "types": [],
+ "panel": {
+  "panel": false,
+  "model": null,
+  "modeLabel": null
+ }
+}
