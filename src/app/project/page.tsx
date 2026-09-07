@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, FolderPlus, Trash2 } from "lucide-react";
+import { ArrowLeft, Bot, FolderPlus, House, Plus, SquareTerminal, Trash2, Trophy } from "lucide-react";
 import { useCanvasStore } from "@/store/canvasStore";
 import { cn } from "@/lib/utils";
 
@@ -33,8 +33,74 @@ export default function ProjectListPage() {
   return (
     <main
       data-project-list-page
-      className="min-h-screen bg-[#141414] px-10 py-6 text-[#ededed]"
+      className="flex min-h-screen bg-[#141414] text-[#ededed]"
     >
+      {/* Batch 168: 源站 /project 左侧边栏（240px sticky：新建项目 + 导航行 + 底部促销/帮助）。 */}
+      <aside
+        data-project-sidebar
+        className="sticky top-0 flex h-screen w-[240px] shrink-0 flex-col justify-between border-r border-white/[0.06] px-4 py-4"
+      >
+        <div className="flex flex-col gap-4">
+          <button
+            type="button"
+            data-sidebar-new-project
+            onClick={() => {
+              addCanvas();
+              window.open("/", "_blank");
+            }}
+            className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm text-[#ededed] hover:bg-white/[0.06]"
+          >
+            <Plus size={16} className="text-[#9a9a9a]" />
+            新建项目
+          </button>
+          <nav className="flex flex-col gap-1" data-sidebar-nav>
+            {[
+              { label: "首页", icon: House, active: false, action: () => setStatus("本地原型：首页未接入") },
+              { label: "项目", icon: SquareTerminal, active: true, action: () => setStatus("") },
+              { label: "LibTV Agent", icon: Bot, active: false, action: () => setStatus("本地原型：LibTV Agent 未接入") },
+              { label: "创作者挑战赛", icon: Trophy, active: false, action: () => setStatus("本地原型：创作者挑战赛未接入") },
+            ].map(({ label, icon: Icon, active, action }) => (
+              <button
+                key={label}
+                type="button"
+                data-sidebar-item={label}
+                aria-current={active ? "page" : undefined}
+                onClick={action}
+                className={cn(
+                  "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm transition-colors",
+                  active ? "bg-white/[0.08] text-white" : "text-[#c9c9c9] hover:bg-white/[0.05] hover:text-white",
+                )}
+              >
+                <Icon size={16} className="text-[#9a9a9a]" />
+                {label}
+              </button>
+            ))}
+          </nav>
+        </div>
+        <div className="flex flex-col gap-3">
+          <button
+            type="button"
+            data-sidebar-promo
+            onClick={() => setStatus("本地原型：积分超市未接入")}
+            className="flex w-full items-center justify-between gap-2 rounded-xl bg-white/[0.05] px-3 py-2.5 text-left hover:bg-white/[0.08]"
+          >
+            <span className="flex shrink-0 flex-col items-start">
+              <span className="w-full truncate text-[13px] font-medium leading-5 text-[#ededed]">SD2.5畅享卡上线</span>
+              <span className="w-full truncate text-[13px] leading-5 text-[#9a9a9a]">积分超市限时抢购</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            data-sidebar-help
+            onClick={() => setStatus("本地原型：帮助未接入")}
+            className="flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm text-[#c9c9c9] hover:bg-white/[0.05] hover:text-white"
+          >
+            <SquareTerminal size={16} className="text-[#9a9a9a]" />
+            帮助
+          </button>
+        </div>
+      </aside>
+      <div className="flex-1 px-10 py-6">
       <div className="mb-6 flex items-center gap-4">
         <button
           type="button"
@@ -196,6 +262,7 @@ export default function ProjectListPage() {
           {status}
         </p>
       )}
+      </div>
     </main>
   );
 }

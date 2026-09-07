@@ -1,0 +1,28 @@
+{
+  "batch": 168,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "sidebar:visible",
+        "sidebar:w-240",
+        "sidebar:new-project",
+        "sidebar:new-project-h36",
+        "sidebar:nav-4",
+        "sidebar:nav-labels",
+        "sidebar:project-active",
+        "sidebar:row-h36",
+        "sidebar:promo",
+        "sidebar:promo-copy",
+        "sidebar:help",
+        "sidebar:content-right",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
