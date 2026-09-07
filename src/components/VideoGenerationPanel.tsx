@@ -478,24 +478,25 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
             aria-pressed={selected}
             onClick={() => onSelect(item.id)}
             className={cn(
-              "flex w-full shrink-0 items-center gap-2 rounded-xl border border-transparent px-2 text-left hover:bg-white/[0.055]",
-              /* Batch 173: 源站选中行实测背景 white/15%（行高 52 不增长的系统留待 hover 采样后整体校）。 */
-              selected && "min-h-[58px] border-[#4a4a4a] bg-white/[0.15]",
-              !selected && "min-h-[48px]",
+              /* Batch 174: 源站行系统实测——所有行固定 h-52（选中/hover 都不
+                 增高），选中背景 white/15%、hover 白 10%，描述常驻但被 36px
+                 列裁剪（不随选中展开）。 */
+              "flex h-[52px] w-full shrink-0 items-center gap-2 rounded-xl px-2 text-left transition-colors hover:bg-white/[0.1]",
+              selected && "bg-white/[0.15]",
             )}
           >
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-[#d9d9d9]">
+            <span className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-[#d9d9d9]">
               <ModelIcon size={15} />
             </span>
-            <span className="min-w-0 flex-1">
+            <span className="h-9 min-w-0 flex-1 overflow-hidden pr-1">
               <span className="flex items-center gap-1.5">
                 <span className="truncate text-sm text-[#efefef]">{item.title}</span>
                 {item.premium && (
                   <Gem data-video-model-premium size={11} fill="currentColor" className="shrink-0 text-[#f3b74c]" />
                 )}
               </span>
-              {selected && item.description && (
-                <span data-video-model-description className="mt-0.5 block truncate text-[11px] text-[#818181]">
+              {item.description && (
+                <span data-video-model-description className="mt-0.5 block truncate text-[11px] leading-[14px] text-[#818181]">
                   {item.description}
                 </span>
               )}

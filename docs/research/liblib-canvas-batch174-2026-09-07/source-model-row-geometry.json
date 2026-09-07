@@ -1,0 +1,64 @@
+{
+ "selected_no_hover": {
+  "row": [
+   1146,
+   444,
+   360,
+   52
+  ],
+  "bg": "rgba(255, 255, 255, 0.15)",
+  "kids": [
+   {
+    "cls": "flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg",
+    "box": [
+     1154,
+     453,
+     34,
+     34
+    ],
+    "text": ""
+   },
+   {
+    "cls": "h-full flex-1 overflow-hidden pr-1",
+    "box": [
+     1192,
+     452,
+     306,
+     36
+    ],
+    "text": "Seedance 2.0 VIP2min最强视频模型，会员专属通道,15s音画同步"
+   }
+  ]
+ },
+ "plain_no_hover": {
+  "row": [
+   1146,
+   388,
+   360,
+   52
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "kids": [
+   {
+    "cls": "flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg",
+    "box": [
+     1154,
+     397,
+     34,
+     34
+    ],
+    "text": ""
+   },
+   {
+    "cls": "h-full flex-1 overflow-hidden pr-1",
+    "box": [
+     1192,
+     396,
+     306,
+     36
+    ],
+    "text": "Seedance 2.52min最强视频模型，全能参考，30s音画同步"
+   }
+  ]
+ }
+}

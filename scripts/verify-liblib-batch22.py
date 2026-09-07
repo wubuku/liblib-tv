@@ -149,13 +149,15 @@ def run_desktop(page: Page):
     selected = page.locator('[data-video-model-option][aria-pressed="true"]')
     # Batch 158: 默认模型回落 Seedance 2.5（新建节点 2.5 + 尝试已选节点 2.5 两个直接样本）。
     assert selected.get_attribute("data-video-model-option") == "2.5"
-    assert page.locator("[data-video-model-description]").inner_text() == (
-        "最强视频模型，全能参考，30s音画同步"
-    )
-    assert_close(box(selected)["height"], 58)
+    assert page.locator(
+        '[data-video-model-option="2.5"] [data-video-model-description]'
+    ).inner_text() == ("最强视频模型，全能参考，30s音画同步")
+    # Batch 174: 源站行系统实测——所有行固定 52px（2026-09-07 三态直测），
+    # 选中不再增高、描述常驻各行（58/48 旧合同废止）。
+    assert_close(box(selected)["height"], 52)
     assert_close(
         box(page.locator('[data-video-model-option="2.0 VIP"]'))["height"],
-        48,
+        52,
     )
     page.screenshot(path=str(DEFAULT_SCREENSHOT))
 
@@ -169,13 +171,9 @@ def run_desktop(page: Page):
     menu = open_menu(page)
     selected = page.locator('[data-video-model-option][aria-pressed="true"]')
     assert selected.get_attribute("data-video-model-option") == "2.0 Fast VIP"
-    assert page.locator("[data-video-model-description]").count() == 1
-    assert page.locator("[data-video-model-description]").inner_text() == (
-        "最强视频模型快速版，会员专属通道，15s音画同步"
-    )
     assert page.locator(
-        '[data-video-model-option="2.5"] [data-video-model-description]'
-    ).count() == 0
+        '[data-video-model-option="2.0 Fast VIP"] [data-video-model-description]'
+    ).inner_text() == ("最强视频模型快速版，会员专属通道，15s音画同步")
     page.screenshot(path=str(FAST_SCREENSHOT))
 
     page.locator("[data-video-model-trigger]").click(force=True)
@@ -244,9 +242,9 @@ def main():
     save_contact_sheet()
     print(
         "Batch22 Playwright verification passed: source-visible seven-model "
-        "matrix, 380x410 geometry, premium/estimate hierarchy, selected-only "
-        "descriptions, Fast selection, params handoff, mobile fit, overflow, "
-        "screenshots, console."
+        "matrix, 380x410 geometry, premium/estimate hierarchy, per-row "
+        "descriptions (Batch 174 row system), Fast selection, params handoff, "
+        "mobile fit, overflow, screenshots, console."
     )
 
 

@@ -61,6 +61,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   row background aligned to the measured white/15%; source default model
   recorded as account-stateful (2.5 and 2.0 VIP observed the same day) —
   the clone default stays 2.5
+- Model menu row system aligned to three-state direct measurement
+  (Batch 174, source 2026-09-07): every row fixed 52px (the 58/48
+  selected/plain growth dropped), selected background white/15% without a
+  border, hover white/10%, 34px icon tile, and descriptions present in
+  every row clipped by the 36px text column (selected-only expansion
+  removed); batch22 height/description assertions migrated
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

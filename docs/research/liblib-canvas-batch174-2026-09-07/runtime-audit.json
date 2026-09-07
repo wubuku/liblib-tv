@@ -1,0 +1,26 @@
+{
+  "batch": 174,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:open",
+        "row:selected-fixed-52",
+        "row:plain-fixed-52",
+        "row:late-fixed-52",
+        "row:selected-white-15",
+        "row:plain-transparent",
+        "row:hover-white-10",
+        "row:icon-tile-34",
+        "row:description-in-dom-2.5",
+        "row:description-in-dom-2.0 VIP",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
