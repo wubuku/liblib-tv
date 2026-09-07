@@ -193,6 +193,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   12px dropdown chevrons as the workspace/canvas pill glyphs) was caught
   and reverted — the pills' Globe2/Link2 stay lucide since the source does
   not use iconify there
+- Canvas dropdown chevron aligned to the harvested libtv glyph
+  (Batch 197, source 2026-09-08): a 12px ChevronDownGlyph with the sampled
+  g transform replaces lucide ChevronDown; the source's data-open
+  rotate-180 open-state semantics are recorded as unsampled for the clone
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

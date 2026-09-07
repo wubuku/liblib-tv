@@ -210,6 +210,7 @@ BrowserContext，不写截图。
 | Batch 194 | 素材前置尝试 + 特效库锚点发现 | `EVIDENCE_RECORDED` | 前置建立再次失败（卡片定位到视口外 y≈912）；新发现源站特效库锚点状态依赖（与 clone 固定锚定分歧，记开放问题）；参考/标记惰性持续成立；191/193/172 复验绿 |
 | Batch 195 | 特效库锚定规则闭环 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch195.py` 8 checks；三态采样盒子恒定 → 静态屏幕定位（推翻 194 结论）；clone portal 到 body + top-444；191/192/193/172-189 回归绿 |
 | Batch 196 | 顶栏/底栏图标原字形 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch196.py` 16 checks；七枚组件定义与 viewBox 合同 + DOM 面板开关存在；一次错误映射（下拉箭头当 pill 图标）当场回滚；22/121/172/188/191 回归绿 |
+| Batch 197 | 画布下拉箭头原字形 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch197.py` 7 checks；g transform/viewBox 直采合同 + TopNavBar 使用；22/121/172/196 回归绿 |
 | Batch 189 | 比例瓦片字形结构对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch189.py` 20 checks；17px 盒 + 1.5px border-current 内框逐比例 px 直采；6/7 格模型依赖假设记为开放问题（clone 维持 175/176 合同）；21/22/155/160/175/176/185/186/188 回归绿 |
 | Batch 190 | 比例格模型依赖复测（否定） | `SCRIPT_RECORDED_PASS` | 2.5→2.0 双向直采均 7 格含 Auto，假设否定；clone 网格统一 7 格 grid-cols-5，batch175/21 迁移后全绿；26 项回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |

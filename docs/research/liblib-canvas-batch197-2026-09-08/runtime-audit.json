@@ -1,0 +1,22 @@
+{
+  "batch": 197,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "chevron:in-dom",
+        "chevron:viewbox",
+        "chevron:in-topnav",
+        "chrome:ChevronDownGlyph:defined",
+        "chrome:ChevronDownGlyph:transform",
+        "topnav:uses-glyph",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

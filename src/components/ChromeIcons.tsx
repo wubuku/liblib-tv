@@ -56,3 +56,11 @@ export function MagnetGlyph({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function ChevronDownGlyph({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} width="12" height="12" viewBox="0 0 16 16" fill="none">
+      <g transform="translate(4.345 5.825)"><path d="M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .57L4.15 4.15a.7.7 0 0 1-1 0L.13 1.1a.4.4 0 0 1 0-.57L.54.12a.4.4 0 0 1 .57 0l2.54 2.54z" fill="currentColor"></path></g>
+    </svg>
+  );
+}

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bot, ChevronDown, ChevronRight, Globe2, Link2, Share2, Zap } from "lucide-react";
+import { Bot, ChevronRight, Globe2, Link2, Share2, Zap } from "lucide-react";
+import { ChevronDownGlyph } from "@/components/ChromeIcons";
 import { LayoutPanelGlyph, WorkflowGlyph } from "@/components/ChromeIcons";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
@@ -216,7 +217,8 @@ function ProjectMenu() {
         onClick={() => setOpen((value) => !value)}
         className="flex h-8 w-5 items-center justify-center rounded-lg text-[#8c8c8c] hover:text-white"
       >
-        <ChevronDown size={12} />
+        {/* Batch 197: 源站下拉箭头原字形（libtv，含 data-open 旋转语义见源类）。 */}
+        <ChevronDownGlyph />
       </button>
       {open && (
         <div
