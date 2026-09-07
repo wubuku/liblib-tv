@@ -64,6 +64,7 @@ export function FrameosContextMenu() {
         }}
       />
       <div
+        data-frameos-context-menu=""
         style={{
           position: "fixed",
           left: state.x,
@@ -92,6 +93,7 @@ export function FrameosContextMenu() {
             <button
               key={i}
               type="button"
+              data-frameos-context-item={item.label}
               onClick={() => {
                 item.onClick?.();
                 closeContextMenu();

@@ -1,0 +1,27 @@
+{
+  "batch": 157,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:nodes",
+        "node:menu-open",
+        "node:item:复制",
+        "node:item:创建副本",
+        "node:item:删除",
+        "node:duplicate-added",
+        "node:menu-closed",
+        "pane:menu-open",
+        "pane:item:add-text",
+        "pane:text-added",
+        "esc:closes-menu",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

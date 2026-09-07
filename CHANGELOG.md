@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- FrameOS context menu verified end-to-end (FrameOS Batch 157): node
+  right-click offers 复制/创建副本/删除 and pane right-click adds nodes,
+  Esc/outside close; BEHAVIORS.md gap table corrected (menu was already
+  implemented); stable data-frameos-context-menu/-item selectors added
 - batch93 mobile drawer-close clicks hardened (Batch 156): overlay click
   points moved outside the left tree drawer (x=320) and right inspector
   drawer (x=56), eliminating the intermittent tree-row/drawer intercept
