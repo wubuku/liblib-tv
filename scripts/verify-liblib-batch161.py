@@ -136,6 +136,57 @@ def run_mobile(page: Page) -> dict[str, Any]:
     return result
 
 
+def run_tablet(page: Page, width: int, height: int) -> dict[str, Any]:
+    """Batch 163: 768/1024 平板断点 —— 无页面级溢出，提示词完好，垂直裁切属既接受契约。"""
+    result: dict[str, Any] = {"viewport": f"{width}x{height}", "checks": []}
+
+    def check(name: str, ok: bool) -> None:
+        assert ok, f"batch163 tablet {width} check failed: {name}"
+        result["checks"].append(name)
+
+    errors = attach_errors(page)
+    page.goto(BASE_URL, wait_until="networkidle")
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="添加节点").click()
+    page.wait_for_timeout(400)
+    overlay = page.locator("[data-liblib-overlay='add-node']")
+    overlay.get_by_role("button", name="视频", exact=True).click()
+    page.wait_for_timeout(1400)
+    page.locator(".react-flow__node-video").first.click()
+    page.wait_for_timeout(600)
+
+    m = page.evaluate("""() => {
+      const panel = document.querySelector("[data-video-generation-panel]");
+      const ta = panel && panel.querySelector("textarea");
+      const sec = panel && panel.querySelector("section");
+      const b = panel ? panel.getBoundingClientRect() : null;
+      return {
+        scrollW: document.documentElement.scrollWidth,
+        innerW: window.innerWidth,
+        panelBottom: b ? Math.round(b.bottom) : 0,
+        sectionH: sec ? Math.round(sec.getBoundingClientRect().height) : 0,
+        taH: ta ? Math.round(ta.getBoundingClientRect().height) : 0,
+      };
+    }""")
+    check("tablet:no-page-overflow", m["scrollW"] <= m["innerW"])
+    check("tablet:panel-height", m["sectionH"] == 397)
+    check("tablet:prompt-intact", 88 <= m["taH"] <= 102)
+    result["measurements"] = m
+
+    shot = (
+        ROOT
+        / "docs"
+        / "design-references"
+        / f"liblib-clone-batch163-video-panel-{width}-2026-09-07.png"
+    )
+    page.screenshot(path=str(shot))
+    check("tablet:screenshot", shot.exists())
+
+    check("errors:empty", not errors)
+    result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
+    return result
+
+
 def main() -> None:
     audit: dict[str, Any] = {"batch": 161, "results": []}
     with sync_playwright() as p:
@@ -144,6 +195,9 @@ def main() -> None:
         audit["results"].append(run_desktop(page))
         mobile_page = browser.new_page(viewport={"width": 390, "height": 844})
         audit["results"].append(run_mobile(mobile_page))
+        for tw, th in [(768, 1024), (1024, 768)]:
+            tablet_page = browser.new_page(viewport={"width": tw, "height": th})
+            audit["results"].append(run_tablet(tablet_page, tw, th))
         browser.close()
     AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
     audit["passed"] = all(r.get("checks") for r in audit["results"])

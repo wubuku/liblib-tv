@@ -40,6 +40,48 @@
         "console": 0,
         "errors": []
       }
+    },
+    {
+      "viewport": "768x1024",
+      "checks": [
+        "tablet:no-page-overflow",
+        "tablet:panel-height",
+        "tablet:prompt-intact",
+        "tablet:screenshot",
+        "errors:empty"
+      ],
+      "measurements": {
+        "scrollW": 768,
+        "innerW": 768,
+        "panelBottom": 641,
+        "sectionH": 397,
+        "taH": 95
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    },
+    {
+      "viewport": "1024x768",
+      "checks": [
+        "tablet:no-page-overflow",
+        "tablet:panel-height",
+        "tablet:prompt-intact",
+        "tablet:screenshot",
+        "errors:empty"
+      ],
+      "measurements": {
+        "scrollW": 1024,
+        "innerW": 1024,
+        "panelBottom": 877,
+        "sectionH": 397,
+        "taH": 95
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
     }
   ],
   "passed": true

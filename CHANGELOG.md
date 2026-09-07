@@ -39,6 +39,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Tablet breakpoints 768x1024 and 1024x768 verified after the panel
+  growth (Batch 163): no page-level overflow, prompt intact, vertical
+  clipping per the accepted canvas-clip contract; tablet phases and
+  screenshots added to verify-liblib-batch161.py (now 20 checks)
 - Mobile 390x844 breakpoint verified after the panel growth (Batch 162):
   no page-level overflow, the 397px panel stays vertically in-viewport and
   the prompt region stays intact; mobile phase + screenshot added to
