@@ -160,6 +160,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   harvested 12x12 SVG paths verbatim (参考 plus-cross, 标记 pin+sparkle,
   特效 camera+lens, 角色库 shield-check, 运镜 video-camera, with their g
   transforms), replacing the lucide approximations
+- Effects gallery implemented and pill popovers sampled (Batch 191, source
+  2026-09-08): the 特效 pill toggles a screen-centered gallery overlay of
+  effect cards (185×235, gradient thumbnails standing in for the remote
+  webp art, hover 收藏, name + 商用 badge + author + credits; four sampled
+  cards rendered of eight) that closes on outside mousedown; 运镜/参考/标记
+  are click-inert on an empty node per source sampling (the clone's batch146
+  运镜 menu contract is kept and the divergence recorded)
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims

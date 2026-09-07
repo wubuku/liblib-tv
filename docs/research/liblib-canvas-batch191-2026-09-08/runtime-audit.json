@@ -1,0 +1,25 @@
+{
+  "batch": 191,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "gallery:closed-initial",
+        "gallery:opens",
+        "gallery:four-cards",
+        "gallery:card-names",
+        "gallery:card-width",
+        "gallery:badge",
+        "gallery:credits",
+        "gallery:closes-on-outside",
+        "yunjing:menu-still-opens",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

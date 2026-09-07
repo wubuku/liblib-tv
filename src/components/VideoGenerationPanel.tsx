@@ -120,6 +120,19 @@ export function VideoGenerationPanel({
   const [autoLink, setAutoLink] = useState(true);
   // Batch 146: 运镜按钮下拉菜单（CLONE_DECISION：通用影视运镜术语，源站交互未采样）。
   const [yunjingOpen, setYunjingOpen] = useState(false);
+  // Batch 191: 特效库横排（源站 2026-09-08 采样）。
+  const [effectsOpen, setEffectsOpen] = useState(false);
+  // Batch 191: 特效库展开时覆盖触发器（源站同构）——外部 mousedown 关闭。
+  useEffect(() => {
+    if (!effectsOpen) return;
+    const handleMouseDown = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-effects-gallery]") || target?.closest("[data-effects-trigger]")) return;
+      setEffectsOpen(false);
+    };
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => document.removeEventListener("mousedown", handleMouseDown);
+  }, [effectsOpen]);
   const [yunjingSelection, setYunjingSelection] = useState<string | null>(null);
   const [networkSearch, setNetworkSearch] = useState(true);
   const [materialCheck, setMaterialCheck] = useState(true);
@@ -242,8 +255,26 @@ export function VideoGenerationPanel({
       <section className="relative flex h-[397px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
         <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
           {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。 */}
-          {[{ label: "参考" }, { label: "标记" }, { label: "特效" }, { label: "角色库" }, { label: "运镜", hasMenu: true }].map((item) => {
+          {[{ label: "参考" }, { label: "标记" }, { label: "特效", hasMenu: true }, { label: "角色库" }, { label: "运镜", hasMenu: true }].map((item) => {
             if ("hasMenu" in item && item.hasMenu) {
+              if (item.label === "特效") {
+                return (
+                  <div key={item.label} className="relative">
+                    <button
+                      type="button"
+                      data-effects-trigger
+                      onClick={() => setEffectsOpen(!effectsOpen)}
+                      className={cn(
+                        "flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white",
+                        effectsOpen && "bg-white/[0.1] text-white",
+                      )}
+                    >
+                      <PillIcon label={item.label} />
+                      {item.label}
+                    </button>
+                  </div>
+                );
+              }
               return (
                 <div key={item.label} className="relative">
                   <button
@@ -297,6 +328,46 @@ export function VideoGenerationPanel({
             }
             return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><PillIcon label={item.label} />{item.label}</button>;
           })}
+          {effectsOpen && (
+            /* Batch 191: 特效库横排（源站 2026-09-08 采样）——屏幕居中悬浮、
+               8 卡横排（clone 渲染已采样的 4 张）；卡片 185×235，图区 178×178
+               （clone 用渐变占位——源图为远端 webp，仅采到一张 URL）。 */
+            <div
+              data-effects-gallery
+              className="fixed bottom-[175px] left-1/2 z-[70] flex -translate-x-1/2 gap-2 overflow-x-auto"
+            >
+              {[
+                { name: "试妆特写", author: "捏捏AI", credits: 185, gradient: "from-[#5a4a3f] to-[#2b2320]" },
+                { name: "悬浮缓入", author: "捏捏AI", credits: 377, gradient: "from-[#3f4a5a] to-[#20262b]" },
+                { name: "微距推镜", author: "可可大王", credits: 659, gradient: "from-[#4a5a3f] to-[#232b20]" },
+                { name: "直升机揭幕", author: "汪往旺", credits: 144, gradient: "from-[#5a3f4a] to-[#2b2026]" },
+              ].map((effect) => (
+                <div
+                  key={effect.name}
+                  data-effects-card={effect.name}
+                  className="group w-[185px] shrink-0 rounded-lg border border-transparent"
+                >
+                  <div className={cn("relative aspect-square w-full overflow-hidden rounded-lg bg-gradient-to-b", effect.gradient)}>
+                    <div className="absolute inset-x-0 top-0 flex h-8 items-center justify-end p-1.5 opacity-0 transition-opacity group-hover:opacity-100">
+                      <button type="button" aria-label="收藏" className="flex size-6 items-center justify-center rounded-lg bg-black/65 text-white hover:bg-black/80">
+                        <svg aria-hidden="true" width="14" height="13" viewBox="0 0 22.13 20.8" fill="none">
+                          <path d="M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.27.18 1.78 1.74.86 2.63l-4.14 4.03.98 5.69c.22 1.26-1.11 2.22-2.24 1.63l-5.11-2.69-5.11 2.69c-1.13.59-2.46-.37-2.24-1.63l.98-5.69L.55 8.44c-1.03-1-.46-2.45 1.1-2.63l5.72-.8L9.65.87z" fill="currentColor" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between px-1 pt-1.5">
+                    <span className="text-[13px] text-[#eeeeee]">{effect.name}</span>
+                    <span className="rounded bg-white/[0.06] px-1 py-0.5 text-[10px] text-[#9a9a9a]">商用</span>
+                  </div>
+                  <div className="flex items-center justify-between px-1 pt-0.5 text-[11px] text-[#8a8a8a]">
+                    <span>{effect.author}</span>
+                    <span className="text-[#c8a86b]">{effect.credits}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           {isContinuation && onClearContinuation && (
             <button
               data-video-continuation-exit

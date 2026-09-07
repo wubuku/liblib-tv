@@ -1,0 +1,18 @@
+{
+ "card": {
+  "box": [
+   966,
+   444,
+   185,
+   235
+  ],
+  "html": "<div class=\"relative flex flex-col items-start justify-between overflow-hidden rounded-lg border border-transparent\" style=\"aspect-ratio: 1 / 1;\"><img alt=\"试妆特写\" class=\"absolute inset-0 size-full object-cover transition-opacity duration-200 opacity-100\" width=\"178\" height=\"178\" decoding=\"async\" loading=\"eager\" fetchpriority=\"high\" src=\"https://libtv-res.liblib.art/tool/cinematic/transition_5.webp\"><div aria-hidden=\"true\" class=\"bg-linear-to-b pointer-events-none absolute inset-x-0 top-0 h-12 from-black/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100\"></div><div class=\"relative flex w-full items-center justify-between p-2\"><div class=\"relative\"><button type=\"button\" class=\"flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0.2)] backdrop-blur-[2px] transition-colors group-hover:bg-black/65\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3 shrink-0 text-white\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\"><g transform=\"translate(0 6.2222) scale(0.888889)\"><path d=\"M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4\" fill=\"currentColor\"></path></g></svg></button></div><button type=\"button\" aria-busy=\"false\" aria-label=\"收藏\" class=\"flex size-6 items-center justify-center rounded-lg transition-[background-color,opacity] bg-black/65 opacity-0 hover:bg-black/80 group-hover:opacity-100\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1.07em\" height=\"1em\" viewBox=\"0 0 22.13 20.8\"><path d=\"M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c"
+ },
+ "rowBox": [
+  177,
+  444,
+  1567,
+  235
+ ],
+ "rowChildren": 8
+}
