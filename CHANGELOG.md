@@ -222,6 +222,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
   werewolf-vampire-short-drama, taiwan-new-wave-aesthetic,
   absurdist-comedy-maker; batch 3 has three cards); the clone-shaped
   second-batch filler was removed and thumbnails stay local placeholders
+- Asset drawer width aligned (Batch 202, source 2026-09-08): the left
+  sidebar measures ~280px (clone was 240) while its 画布/资产 tabs, 所有评级
+  filter and verbatim empty/counter texts already matched
 - Ratio tile glyph structure aligned (Batch 189, source 2026-09-08):
   AspectRatioGlyph rebuilt to the sampled structure — a 17px centering box
   wrapping a 1.5px border-current rect with exact per-ratio px dims
