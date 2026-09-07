@@ -44,6 +44,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
   Seedance commitment gate on the 素材库 tab (both buttons are local state;
   the consent was NOT accepted on the user's behalf during sampling —
   不同意 was clicked to preserve the status quo)
+- Bottom-left asset bar aligned to the sampled source geometry
+  (Batch 171, 2026-09-07): items-end gap-2 container without a padding
+  box, 资产管理 button and zoom chip both rounded-lg at 13px
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

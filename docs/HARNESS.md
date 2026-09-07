@@ -164,6 +164,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 168 | /project left sidebar added (240px sticky: 新建项目, nav rows 首页/项目-active/LibTV Agent/创作者挑战赛, bottom SD2.5 promo + 帮助) per the 2026-09-07 DOM re-audit; unwired entries are local placeholders |
 | Batch 169 | Character library modal tab chrome (公共角色库 / Seedance2.0&2.5合规素材库) + Seedance consent gate replicated as local-only state (accept/decline both local; no account action taken on the user's behalf); 素材库 tab shows a local empty state |
 | Batch 170 | Canvas top bar workspace rename input (13px, min-w-30 max-w-100 cursor-text, transparent, left of the canvas chip) bound to projectName; store default renamed 未命名项目 -> 未命名工作区; batch16/17 assertions migrated |
+| Batch 171 | Bottom-left asset bar aligned to sampled geometry: bar items-end gap-2 without padding box, 资产管理 button rounded-lg 13px (94x28), zoom chip rounded-lg 13px (42x28) |
 | FrameOS Batch 157 | Context menu verified end-to-end (node: 复制/创建副本/删除, pane: add nodes, Esc close); BEHAVIORS.md stale ❌ row corrected to ✅; stable selectors data-frameos-context-menu/-item added |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |

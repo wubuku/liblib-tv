@@ -1,0 +1,23 @@
+{
+  "batch": 171,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "asset:visible",
+        "asset:h-28",
+        "asset:w-94",
+        "asset:rounded-lg",
+        "zoom:h-28",
+        "zoom:rounded-lg",
+        "zoom:label",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

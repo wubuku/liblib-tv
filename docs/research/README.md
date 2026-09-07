@@ -324,7 +324,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 169 | Character library tabs + consent gate | 已完成；页签与承诺书门已通过，详见 [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/)；循环继续 |
 | 168 | /project left sidebar | 已完成；侧边栏落地已通过，详见 [`liblib-canvas-batch168-2026-09-07/`](liblib-canvas-batch168-2026-09-07/)；循环继续 |
 | 169 | Character library tabs + consent gate | 已完成；页签与承诺书门已通过，详见 [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/)；循环继续 |
-| 170 | Top bar workspace rename input | 已完成；工作区输入已通过，详见 [`liblib-canvas-batch170-2026-09-07/`](liblib-canvas-batch170-2026-09-07/)；循环继续 |
+| 171 | Bottom-left asset bar geometry | 已完成；资产管理栏对齐已通过，详见 [`liblib-canvas-batch171-2026-09-07/`](liblib-canvas-batch171-2026-09-07/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |
 | 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |

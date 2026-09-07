@@ -74,7 +74,8 @@ export function BottomToolbar({
   return (
     <div
       className={cn(
-        "fixed bottom-3 z-[60] flex h-10 items-center gap-1 p-1.5 transition-[left]",
+        // Batch 171: 源站栏容器 items-end gap-2、无内边距盒（2026-09-07 采样 280×40）。
+        "fixed bottom-3 z-[60] flex h-10 items-end gap-2 transition-[left]",
         isAssetPanelOpen ? "left-64 max-sm:left-4" : "left-4",
       )}
     >
@@ -84,7 +85,8 @@ export function BottomToolbar({
         aria-pressed={isAssetPanelOpen}
         onClick={onToggleAssetPanel}
         className={cn(
-          "flex h-7 items-center gap-2 rounded-md px-2 text-xs text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
+          // Batch 171: 源站按钮 rounded-lg、13px（实拍 94×28）。
+          "flex h-7 items-center gap-2 rounded-lg px-2 text-[13px] text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
           isAssetPanelOpen && "bg-white/10 text-white",
         )}
       >
@@ -117,7 +119,7 @@ export function BottomToolbar({
           aria-label="缩放选项"
           aria-expanded={isZoomMenuOpen}
           onClick={toggleZoomMenu}
-          className="flex h-7 min-w-10 items-center justify-center rounded-md px-1.5 text-xs tabular-nums text-[#d7d7d7] hover:bg-white/[0.08]"
+          className="flex h-7 min-w-10 items-center justify-center rounded-lg px-1.5 text-[13px] tabular-nums text-[#d7d7d7] hover:bg-white/[0.08]"
         >
           {zoomLevel}%
         </button>

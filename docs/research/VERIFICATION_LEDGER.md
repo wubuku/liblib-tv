@@ -186,6 +186,7 @@ BrowserContext，不写截图。
 | Batch 168 | /project 左侧边栏 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch168.py` 已通过（13 checks）；导航顺序/激活态/促销文案 |
 | Batch 169 | 角色库页签 + 承诺书门模拟 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch169.py` 已通过（12 checks）；承诺书未代用户同意（本地状态模拟） |
 | Batch 170 | 顶栏工作区重命名输入 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch170.py` 已通过（8 checks）；默认名迁移 未命名工作区 |
+| Batch 171 | 左下资产管理栏几何对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch171.py` 已通过（8 checks）；栏 items-end/rounded-lg/13px |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |
