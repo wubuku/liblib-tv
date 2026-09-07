@@ -335,7 +335,7 @@ def assert_target_contract(
     assert_close(target_box["y"], source_box["y"], 1.3)
     panel_box = box(page.locator("[data-video-generation-panel]"))
     assert_close(panel_box["width"], 660)
-    assert_close(panel_box["height"], 274)
+    assert_close(panel_box["height"], 397)
     assert_close(center_x(panel_box), center_x(target_box))
     assert_close(
         panel_box["y"] - (target_box["y"] + target_box["height"]),

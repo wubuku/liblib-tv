@@ -226,7 +226,9 @@ export function VideoGenerationPanel({
       // The bordered node is the containing block, so 17 flow units produce the source's 16-unit outer gap.
       style={{ transform: `scale(${1 / zoom})` }}
     >
-      <section className="relative flex h-[274px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
+      {/* Batch 161: 面板增高至 397px —— Batch 149 纵向开关列后原 274px 已溢出（提示词被压到 16px、高级设置越界 35px）；
+          源站提示词区实测 96px（2026-09-07）。 */}
+      <section className="relative flex h-[397px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
         <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
           {[{ label: "参考", icon: Images }, { label: "标记", icon: AtSign }, { label: "特效", icon: Sparkles }, { label: "角色库", icon: Box }, { label: "运镜", icon: Film, hasMenu: true }].map((item) => {
             const Icon = item.icon;

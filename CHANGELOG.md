@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Video panel grown to 397px (Batch 161): the fixed 274px panel had been
+  overflowing since the Batch 149 advanced column — prompt squeezed to 16px
+  and the advanced section crossing the border by 35px; prompt restored to
+  ~95px matching the source's 96px; measurement assertions added to
+  prevent recurrence; batch21/22/26 height+offset assertions migrated
 - 5分钟超长视频 chip selects the whole long-video mode (Batch 160, source
   full-panel dump: mode trigger 超长视频, credits 14700 = 300x49); reference
   slot row now renders only when references exist and the 「新功能」 bar is

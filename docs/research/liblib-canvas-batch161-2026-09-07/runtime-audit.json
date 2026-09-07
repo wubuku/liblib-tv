@@ -1,0 +1,24 @@
+{
+  "batch": 161,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:height-397",
+        "panel:prompt-96",
+        "panel:no-overflow",
+        "errors:empty"
+      ],
+      "measurements": {
+        "sectionH": 397,
+        "taH": 95,
+        "overflow": -9
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

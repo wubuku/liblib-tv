@@ -98,7 +98,7 @@ def run_desktop(page: Page):
     assert page.get_by_role("button", name="缩放选项").inner_text() == "28%"
     panel_box = box(panel)
     assert_close(panel_box["width"], 660)
-    assert_close(panel_box["height"], 274)
+    assert_close(panel_box["height"], 397)
 
     trigger, menu = open_params(page)
     normal_box = box(menu)
@@ -107,7 +107,7 @@ def run_desktop(page: Page):
     assert_close(normal_box["height"], 445)
     assert_close(normal_box["x"] - panel_box["x"], 82)
     # Batch 126: 源站高级设置内联行移到 footer 下方，参数菜单 y 偏移上移 28px。
-    assert_close(normal_box["y"] - panel_box["y"], -323.5)
+    assert_close(normal_box["y"] - panel_box["y"], -244.5)
     assert_common_controls(page)
     assert page.locator("[data-video-count-option]").count() == 3
     assert page.locator("[data-video-long-hint]").count() == 0
@@ -148,7 +148,7 @@ def run_desktop(page: Page):
     assert_close(long_box["height"], 397)
     assert_close(long_box["x"] - panel_box["x"], 90)
     # Batch 126: 高级设置行使弹出菜单 y 偏移上移 28px。
-    assert_close(long_box["y"] - panel_box["y"], -275.5)
+    assert_close(long_box["y"] - panel_box["y"], -196.5)
     assert_common_controls(page)
     assert page.locator("[data-video-count-option]").count() == 0
     assert page.locator("[data-video-long-hint]").count() == 1
