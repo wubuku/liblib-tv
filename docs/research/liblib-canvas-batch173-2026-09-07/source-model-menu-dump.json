@@ -1,0 +1,495 @@
+{
+ "menuItems": [
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    388,
+    360,
+    52
+   ],
+   "text": "Seedance 2.52min最强视频模型，全能参考，30s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    396,
+    306,
+    36
+   ],
+   "text": "Seedance 2.52min最强视频模型，全能参考，30s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    404,
+    302,
+    36
+   ],
+   "text": "Seedance 2.52min最强视频模型，全能参考，30s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    404,
+    302,
+    20
+   ],
+   "text": "Seedance 2.52min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    404,
+    108,
+    20
+   ],
+   "text": "Seedance 2.5",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    444,
+    360,
+    52
+   ],
+   "text": "Seedance 2.0 VIP2min最强视频模型，会员专属通道,15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(255, 255, 255, 0.15)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    452,
+    306,
+    36
+   ],
+   "text": "Seedance 2.0 VIP2min最强视频模型，会员专属通道,15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    452,
+    302,
+    36
+   ],
+   "text": "Seedance 2.0 VIP2min最强视频模型，会员专属通道,15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    452,
+    302,
+    20
+   ],
+   "text": "Seedance 2.0 VIP2min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    452,
+    134,
+    20
+   ],
+   "text": "Seedance 2.0 VIP",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    612,
+    360,
+    52
+   ],
+   "text": "Seedance 2.0 Fast VIP2min最强视频模型快速版，会员专属通道，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    620,
+    306,
+    36
+   ],
+   "text": "Seedance 2.0 Fast VIP2min最强视频模型快速版，会员专属通道，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    628,
+    302,
+    36
+   ],
+   "text": "Seedance 2.0 Fast VIP2min最强视频模型快速版，会员专属通道，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    628,
+    302,
+    20
+   ],
+   "text": "Seedance 2.0 Fast VIP2min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    628,
+    165,
+    20
+   ],
+   "text": "Seedance 2.0 Fast VIP",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    668,
+    360,
+    52
+   ],
+   "text": "Seedance 2.0 Mini2min最强视频模型mini版，高性价比生成，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    676,
+    306,
+    36
+   ],
+   "text": "Seedance 2.0 Mini2min最强视频模型mini版，高性价比生成，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    684,
+    302,
+    36
+   ],
+   "text": "Seedance 2.0 Mini2min最强视频模型mini版，高性价比生成，15s音画同步",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    684,
+    302,
+    20
+   ],
+   "text": "Seedance 2.0 Mini2min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    684,
+    139,
+    20
+   ],
+   "text": "Seedance 2.0 Mini",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    1340,
+    360,
+    52
+   ],
+   "text": "Seedance1.5 Pro2min音画同步，支持多机位镜头，最长可生12秒视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 0
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1348,
+    306,
+    36
+   ],
+   "text": "Seedance1.5 Pro2min音画同步，支持多机位镜头，最长可生12秒视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 0
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1356,
+    302,
+    36
+   ],
+   "text": "Seedance1.5 Pro2min音画同步，支持多机位镜头，最长可生12秒视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 0
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1356,
+    302,
+    20
+   ],
+   "text": "Seedance1.5 Pro2min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 0
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1356,
+    110,
+    20
+   ],
+   "text": "Seedance1.5 Pro",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 0
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    1396,
+    360,
+    52
+   ],
+   "text": "Seedance 1.0 Pro2min高精度提示词理解，40秒生成1080P视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1404,
+    306,
+    36
+   ],
+   "text": "Seedance 1.0 Pro2min高精度提示词理解，40秒生成1080P视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1412,
+    302,
+    36
+   ],
+   "text": "Seedance 1.0 Pro2min高精度提示词理解，40秒生成1080P视频",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1412,
+    302,
+    20
+   ],
+   "text": "Seedance 1.0 Pro2min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1412,
+    132,
+    20
+   ],
+   "text": "Seedance 1.0 Pro",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  },
+  {
+   "tag": "BUTTON",
+   "box": [
+    1146,
+    1452,
+    360,
+    52
+   ],
+   "text": "Seedance 1.0 Lite1min轻量快速，一键进行日常视频生成",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transition-colors d",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1460,
+    306,
+    36
+   ],
+   "text": "Seedance 1.0 Lite1min轻量快速，一键进行日常视频生成",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "h-full flex-1 overflow-hidden pr-1",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1468,
+    302,
+    36
+   ],
+   "text": "Seedance 1.0 Lite1min轻量快速，一键进行日常视频生成",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y-2 group-h",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1468,
+    302,
+    20
+   ],
+   "text": "Seedance 1.0 Lite1min",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex w-full min-w-0 items-center justify-between gap-2",
+   "svg": 1
+  },
+  {
+   "tag": "DIV",
+   "box": [
+    1192,
+    1468,
+    134,
+    20
+   ],
+   "text": "Seedance 1.0 Lite",
+   "color": "rgb(247, 247, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "cls": "flex min-w-0 items-center gap-1",
+   "svg": 1
+  }
+ ],
+ "containers": []
+}

@@ -1,0 +1,12 @@
+{
+ "box": [
+  1146,
+  388,
+  360,
+  1956
+ ],
+ "cls": "flex flex-col gap-1",
+ "bg": "rgba(0, 0, 0, 0)",
+ "radius": "0px",
+ "overflowY": "visible"
+}

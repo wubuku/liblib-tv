@@ -149,17 +149,25 @@ def run_desktop(page: Page) -> dict[str, Any]:
     added_nodes = page.locator(".react-flow__node").count()
     check("node:created", added_nodes == baseline_nodes + 1)
 
+    # Batch 173 errata: node right-click opens the 7-item node-variant menu
+    # (asserted in batch173); undo is verified on the pane menu here.
     node = page.locator(".react-flow__node-video").first
     node.click(button="right")
     page.wait_for_timeout(400)
-    check("menu:opens-on-node", menu.count() == 1)
     check(
-        "menu:node-state",
-        (not page.locator("[data-canvas-context-item='保存到我的资产']").is_disabled())
-        and (not page.locator("[data-canvas-context-item='撤销']").is_disabled())
-        and page.locator("[data-canvas-context-item='重做']").is_disabled(),
+        "menu:opens-on-node",
+        menu.count() == 1 and menu.get_attribute("data-canvas-context-variant") == "node",
     )
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
 
+    bx, by = blank_point(page)
+    page.mouse.click(bx, by, button="right")
+    page.wait_for_timeout(400)
+    check(
+        "menu:pane-undo-enabled-after-change",
+        menu.count() == 1 and not page.locator("[data-canvas-context-item='撤销']").is_disabled(),
+    )
     page.locator("[data-canvas-context-item='撤销']").click()
     page.wait_for_timeout(500)
     check("undo:removes-node", page.locator(".react-flow__node").count() == baseline_nodes and menu.count() == 0)

@@ -16,7 +16,7 @@
         "menu:add-node-opens-panel",
         "node:created",
         "menu:opens-on-node",
-        "menu:node-state",
+        "menu:pane-undo-enabled-after-change",
         "undo:removes-node",
         "errors:empty"
       ],

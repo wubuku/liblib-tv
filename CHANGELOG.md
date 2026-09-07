@@ -53,6 +53,14 @@ FrameOS fixes, coverage matrix and regression sweeps).
   上传/保存到我的资产/添加节点/撤销⌘Z/重做⇧⌘Z/粘贴⌘V with two 0.5px
   dividers; 保存到我的资产 gated on selection and 撤销/重做 wired to the
   store history; 上传/保存/粘贴 stay click-to-close local placeholders
+- Node right-click context menu (Batch 173, source 2026-09-07 re-sample;
+  corrects the Batch 172 same-menu claim): 保存到我的资产/创建主体
+  (disabled) + 复制节点⌘C/创建副本⌘D/粘贴⌘V/删除⌘⌫/复制到剪贴板 with
+  "?" info glyphs and two dividers; 创建副本 and 删除 wired to the store
+  (删除 deletes without a confirm dialog per source); model menu selected
+  row background aligned to the measured white/15%; source default model
+  recorded as account-stateful (2.5 and 2.0 VIP observed the same day) —
+  the clone default stays 2.5
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

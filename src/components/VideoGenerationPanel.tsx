@@ -479,7 +479,8 @@ function ModelMenu({ model, onSelect }: { model: string; onSelect: (model: strin
             onClick={() => onSelect(item.id)}
             className={cn(
               "flex w-full shrink-0 items-center gap-2 rounded-xl border border-transparent px-2 text-left hover:bg-white/[0.055]",
-              selected && "min-h-[58px] border-[#4a4a4a] bg-white/[0.1]",
+              /* Batch 173: 源站选中行实测背景 white/15%（行高 52 不增长的系统留待 hover 采样后整体校）。 */
+              selected && "min-h-[58px] border-[#4a4a4a] bg-white/[0.15]",
               !selected && "min-h-[48px]",
             )}
           >

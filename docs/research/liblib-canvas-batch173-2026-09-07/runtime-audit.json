@@ -1,0 +1,26 @@
+{
+  "batch": 173,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "node:created",
+        "menu:node-variant",
+        "menu:seven-items-order",
+        "menu:shortcuts",
+        "menu:two-dividers",
+        "menu:disabled-and-glyphs",
+        "menu:escape-closes",
+        "duplicate:adds-node",
+        "delete:removes-node",
+        "model-menu:selected-bg",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -33,7 +33,7 @@ import { ImagePreviewOverlay } from "@/components/ImagePreviewOverlay";
 import { AssetManagerPanel } from "@/components/AssetManagerPanel";
 import {
   CanvasContextMenu,
-  type CanvasContextMenuPosition,
+  type CanvasContextMenuTarget,
 } from "@/components/CanvasContextMenu";
 import { AgentDrawer } from "@/components/AgentDrawer";
 import { StoryboardBoard } from "@/components/StoryboardBoard";
@@ -250,8 +250,8 @@ export default function Home() {
   );
   const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
-  // Batch 172: 画布右键菜单位置（视口坐标）；null = 关闭。
-  const [canvasContextMenu, setCanvasContextMenu] = useState<CanvasContextMenuPosition | null>(null);
+  // Batch 172/173: 画布右键菜单位置与变体（视口坐标）；null = 关闭。
+  const [canvasContextMenu, setCanvasContextMenu] = useState<CanvasContextMenuTarget | null>(null);
   const historyStack = historyByCanvas[activeCanvasId];
   const canUndo = (historyStack?.past.length ?? 0) > 0;
   const canRedo = (historyStack?.future.length ?? 0) > 0;
@@ -1017,12 +1017,12 @@ export default function Home() {
             }}
             onPaneContextMenu={(event) => {
               event.preventDefault();
-              setCanvasContextMenu({ x: event.clientX, y: event.clientY });
+              setCanvasContextMenu({ x: event.clientX, y: event.clientY, variant: "pane" });
             }}
             onNodeContextMenu={(event, node) => {
               event.preventDefault();
               selectNode(node.id);
-              setCanvasContextMenu({ x: event.clientX, y: event.clientY });
+              setCanvasContextMenu({ x: event.clientX, y: event.clientY, variant: "node" });
             }}
             onNodeDragStart={(_, node) => {
               const currentCanvas = useCanvasStore.getState().getActiveCanvas();
@@ -1113,10 +1113,9 @@ export default function Home() {
         {editorMode === "workbench" && flowNodes.length === 0 && <CanvasEmptyState />}
         {canvasContextMenu && (
           <CanvasContextMenu
-            position={canvasContextMenu}
+            target={canvasContextMenu}
             canUndo={canUndo}
             canRedo={canRedo}
-            hasSelection={selectedNodeIds.length > 0}
             onClose={() => setCanvasContextMenu(null)}
             onUpload={() => setCanvasContextMenu(null)}
             onSaveSelectionToAssets={() => setCanvasContextMenu(null)}
@@ -1134,6 +1133,16 @@ export default function Home() {
               setCanvasContextMenu(null);
             }}
             onPaste={() => setCanvasContextMenu(null)}
+            onCopyNode={() => setCanvasContextMenu(null)}
+            onDuplicate={() => {
+              duplicateSelectedNodes();
+              setCanvasContextMenu(null);
+            }}
+            onDelete={() => {
+              removeSelectedNodes();
+              setCanvasContextMenu(null);
+            }}
+            onCopyToClipboard={() => setCanvasContextMenu(null)}
           />
         )}
       </main>
