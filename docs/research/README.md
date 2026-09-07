@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
+- [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/README.md)：移动端 390×844 断点核查（397px 增高后无溢出/裁切契约保持）。
 - [`liblib-canvas-batch161-2026-09-07/`](liblib-canvas-batch161-2026-09-07/README.md)：视频面板增高 397px（修复 274px 溢出，提示词恢复 95px）。
 - [`liblib-canvas-batch160-2026-09-07/`](liblib-canvas-batch160-2026-09-07/README.md)：芯片选长视频模式（14700）+ 引用槽空态条件渲染 + 去新功能条。
 - [`liblib-canvas-batch159-2026-09-07/`](liblib-canvas-batch159-2026-09-07/README.md)：尝试列移入节点卡内（源站位置对齐，面板去重）。
@@ -245,6 +246,7 @@
 | 139 | Topbar credits split | [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/) `SCRIPT_RECORDED_PASS`，积分超市/余额 独立入口已通过；商城页行为不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 148 | Project card cover placeholders | [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/) `SCRIPT_RECORDED_PASS`，封面占位图/节点计数已通过；源站封面内容不证明 |
+| 162 | Mobile 390 breakpoint check | [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/) `SCRIPT_RECORDED_PASS`，移动端 6 checks + 截图 |
 | 161 | Panel height 397px overflow fix | [`liblib-canvas-batch161-2026-09-07/`](liblib-canvas-batch161-2026-09-07/) `SCRIPT_RECORDED_PASS`，测量断言防复发 |
 | 160 | Chip long-video mode + slot empty-state | [`liblib-canvas-batch160-2026-09-07/`](liblib-canvas-batch160-2026-09-07/) `SCRIPT_RECORDED_PASS`，14700 直证 + 去条 |
 | 159 | 尝试列移入节点卡内 | [`liblib-canvas-batch159-2026-09-07/`](liblib-canvas-batch159-2026-09-07/) `SCRIPT_RECORDED_PASS`，卡内纵向芯片 + 面板去重 |
@@ -305,6 +307,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 162 | Mobile 390 breakpoint check | 已完成；移动端核查已通过，详见 [`liblib-canvas-batch162-2026-09-07/`](liblib-canvas-batch162-2026-09-07/)；循环继续 |
 | 161 | Panel height 397px overflow fix | 已完成；溢出修复已通过，详见 [`liblib-canvas-batch161-2026-09-07/`](liblib-canvas-batch161-2026-09-07/)；循环继续 |
 | 160 | Chip long-video mode + slot empty-state | 已完成；整面板实拍对齐已通过，详见 [`liblib-canvas-batch160-2026-09-07/`](liblib-canvas-batch160-2026-09-07/)；循环继续 |
 | 159 | 尝试列移入节点卡内 | 已完成；位置对齐与联动保持已通过，详见 [`liblib-canvas-batch159-2026-09-07/`](liblib-canvas-batch159-2026-09-07/)；循环继续 |

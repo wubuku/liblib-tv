@@ -18,6 +18,28 @@
         "console": 0,
         "errors": []
       }
+    },
+    {
+      "viewport": "390x844",
+      "checks": [
+        "mobile:no-page-overflow",
+        "mobile:panel-height",
+        "mobile:prompt-intact",
+        "mobile:panel-in-viewport-v",
+        "mobile:screenshot",
+        "errors:empty"
+      ],
+      "measurements": {
+        "scrollW": 390,
+        "innerW": 390,
+        "panelBottom": 641,
+        "sectionH": 397,
+        "taH": 95
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
     }
   ],
   "passed": true
