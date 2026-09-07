@@ -130,6 +130,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   a wrong image-panel 274→397 migration was reverted after direct source
   sampling (empty image panel measures 660×191); batch20 confirmed green —
   the aged list is now 6 (6/40/41/44/46/48)
+- Remaining six aged verifiers triaged (Batch 184): per-script failure
+  signatures recorded and all six CONFIRMED AGED_GATE — their surfaces are
+  already covered by the passing Batch 59/67-96 current gates, batch6 is
+  superseded by Batch 77 navigation evidence, and batch40's failure is a
+  fixture media artifact; verifier headers now self-document the triage
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated

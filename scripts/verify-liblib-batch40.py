@@ -4,6 +4,9 @@
 # Batch 59、67-96 current gates 取代；处置见
 # docs/research/LIBTV_VERIFIER_REPLACEMENT_MAP.md §4.z。
 # 运行仍可用于历史快照对照，不能作为当前合同通过依据。
+# Batch 184 核对：失败=HTMLMediaElement.currentTime 赋非有限值（fixture 视频元数据
+# 未加载的媒体伪影，非源站合同差异）。已被 Batch 59/67-96 current gates 取代，
+# 维持 AGED_GATE（LIBTV_VERIFIER_REPLACEMENT_MAP §4.z）。
 from base64 import b64decode
 from io import BytesIO
 from pathlib import Path

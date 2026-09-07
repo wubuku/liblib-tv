@@ -4,6 +4,8 @@
 # Batch 59、67-96 current gates 取代；处置见
 # docs/research/LIBTV_VERIFIER_REPLACEMENT_MAP.md §4.z。
 # 运行仍可用于历史快照对照，不能作为当前合同通过依据。
+# Batch 184 核对：失败=同上类别（Batch 96 后文档 schema 收紧的旧 fixture 契约）。
+# 已被 Batch 59/67-96 current gates 取代（全绿），维持 AGED_GATE（§4.z）。
 from io import BytesIO
 from pathlib import Path
 import json

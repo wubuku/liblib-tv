@@ -338,6 +338,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 181 | Aged verifier repair (72/74) | 已完成；batch72/74 复活与持久化回归修复，详见 [`liblib-canvas-batch181-2026-09-08/`](liblib-canvas-batch181-2026-09-08/)；循环继续 |
 | 182 | batch75 timeout root cause | 已完成；batch75 根因闭环并复活（零代码改动），详见 [`liblib-canvas-batch182-2026-09-08/`](liblib-canvas-batch182-2026-09-08/)；循环继续 |
 | 183 | batch9/51 geometry triage | 已完成；batch9/51 几何断言迁移复活，详见 [`liblib-canvas-batch183-2026-09-08/`](liblib-canvas-batch183-2026-09-08/)；循环继续 |
+| 184 | Aged six triage | 已完成；剩余 6 个老化验证器逐个核对确认 AGED_GATE，详见 [`liblib-canvas-batch184-2026-09-08/`](liblib-canvas-batch184-2026-09-08/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |
 | 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |

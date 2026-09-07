@@ -4,6 +4,8 @@
 # Batch 59、67-96 current gates 取代；处置见
 # docs/research/LIBTV_VERIFIER_REPLACEMENT_MAP.md §4.z。
 # 运行仍可用于历史快照对照，不能作为当前合同通过依据。
+# Batch 184 核对：失败=marquee 选择框不出现——Batch 77 源站运行时证据已取代
+# marquee 语义（AGENTS.md 导航权威），确认 superseded，维持 AGED_GATE（§4.z）。
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
