@@ -4,8 +4,8 @@
     {
       "viewport": "1440x900",
       "checks": [
-        "model:trigger-short",
-        "model:menu-selected-2.0-vip",
+        "model:trigger-default",
+        "model:menu-selected-2.5",
         "model:menu-closes",
         "credits:default-135",
         "advanced:heading-visible",

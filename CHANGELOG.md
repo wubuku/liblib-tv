@@ -39,6 +39,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Default model reverted to Seedance 2.5 (Batch 158, controlled
+  re-sample after page reload): fresh-node and attempt-node panels both
+  show 2.5; the 2.0 sample was preset-carrier-specific; batch128's
+  Auto+300s chip linkage confirmed on source; earlier one-time-gate and
+  no-panel conclusions corrected (chips stay inside the node card beside
+  the floating panel); batch149/22/33 assertions migrated back
 - FrameOS context menu verified end-to-end (FrameOS Batch 157): node
   right-click offers 复制/创建副本/删除 and pane right-click adds nodes,
   Esc/outside close; BEHAVIORS.md gap table corrected (menu was already

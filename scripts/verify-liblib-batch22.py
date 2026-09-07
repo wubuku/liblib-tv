@@ -147,14 +147,14 @@ def run_desktop(page: Page):
     assert_item_matrix(page)
 
     selected = page.locator('[data-video-model-option][aria-pressed="true"]')
-    # Batch 149: 默认模型迁移为 Seedance 2.0 VIP（源站 2026-09-07 触发器实拍「2.0」）。
-    assert selected.get_attribute("data-video-model-option") == "2.0 VIP"
+    # Batch 158: 默认模型回落 Seedance 2.5（新建节点 2.5 + 尝试已选节点 2.5 两个直接样本）。
+    assert selected.get_attribute("data-video-model-option") == "2.5"
     assert page.locator("[data-video-model-description]").inner_text() == (
-        "最强视频模型，会员专属通道，15s音画同步"
+        "最强视频模型，全能参考，30s音画同步"
     )
     assert_close(box(selected)["height"], 58)
     assert_close(
-        box(page.locator('[data-video-model-option="2.5"]'))["height"],
+        box(page.locator('[data-video-model-option="2.0 VIP"]'))["height"],
         48,
     )
     page.screenshot(path=str(DEFAULT_SCREENSHOT))

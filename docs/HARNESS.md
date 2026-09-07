@@ -151,6 +151,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 154 | Full sweep of all 124 verifiers: 112 pass, 12 aged (exact Batch 108/131 list), 0 unexplained; batch124 migrated to popup contract (Batch 150 consequence), batch93 timing flake documented; never prefix verifiers with `timeout` (Rosetta/PIL dlopen artifact) |
 | Batch 155 | 5分钟超长视频 chip switches the params duration range to 30..300 (long layout) and deselect clamps duration to <=30 (CLONE_DECISION); credits formula unchanged |
 | Batch 156 | batch93 mobile drawer-close clicks hardened to drawer-exterior points (left tree drawer w-[220px] -> x=320; right inspector drawer w-72 -> x=56), 3/3 stable runs |
+| Batch 158 | Default model reverted to Seedance 2.5 (fresh node 2.5 + attempt node 2.5 vs preset-carrier-only 2.0); batch128 Auto+300s linkage confirmed by controlled re-test; batch149/22/33 assertions migrated back; corrections recorded for batch151/153 conclusions |
 | FrameOS Batch 157 | Context menu verified end-to-end (node: 复制/创建副本/删除, pane: add nodes, Esc close); BEHAVIORS.md stale ❌ row corrected to ✅; stable selectors data-frameos-context-menu/-item added |
 | Batch 136 | Recycle bin selection: per-item checkboxes, 已选择 N 项 counter, batch restore button; empty state after restoring the only item |
 | Batch 146b | Character filter 文化区域 options: 华语/日韩/欧美/东南亚 four regional chips (CLONE_DECISION) |

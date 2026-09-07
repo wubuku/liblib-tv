@@ -70,15 +70,15 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     vg = page.locator("[data-video-generation-panel]")
 
-    # Batch 149: 默认模型显示缩写「2.0」（菜单项 Seedance 2.0 VIP）。
+    # Batch 158: 默认模型回落 2.5（新建节点/尝试已选节点均为 2.5；2.0 仅预设承载节点样本）。
     trigger = vg.locator("[data-video-model-trigger]")
-    check("model:trigger-short", trigger.inner_text().strip() == "2.0")
+    check("model:trigger-default", trigger.inner_text().strip() == "2.5")
     trigger.click()
     page.wait_for_timeout(300)
     selected = page.locator("[data-video-model-option][aria-pressed='true']")
     check(
-        "model:menu-selected-2.0-vip",
-        selected.get_attribute("data-video-model-option") == "2.0 VIP",
+        "model:menu-selected-2.5",
+        selected.get_attribute("data-video-model-option") == "2.5",
     )
     trigger.click()
     page.wait_for_timeout(200)

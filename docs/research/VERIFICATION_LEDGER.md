@@ -173,6 +173,7 @@ BrowserContext，不写截图。
 | Batch 155 | 5分钟芯片时长范围修复 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch155.py` 已通过（10 checks）；菜单 long 布局/滑杆 30..300/取消钳制，`0` diagnostics |
 | Batch 156 | batch93 抽屉关闭点击加固 | `SCRIPT_RECORDED_PASS` | 连续 3 次通过；根因记录（全屏遮罩中心点落在抽屉内）；导演台 36/43/77 回归绿 |
 | FrameOS Batch 157 | 右键菜单端到端验证 | `SCRIPT_RECORDED_PASS` | `verify-frameos-batch157.py` 已通过（12 checks）；BEHAVIORS.md 陈旧行修正 |
+| Batch 158 | 默认模型回落 2.5 + 勘误 | `SCRIPT_RECORDED_PASS` | batch128 联动受控复现（Auto·300s·2.5）；batch149/22/33 回落迁移后回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |

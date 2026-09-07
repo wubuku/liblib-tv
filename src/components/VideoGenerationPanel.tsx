@@ -102,10 +102,10 @@ export function VideoGenerationPanel({
 }: VideoGenerationPanelProps) {
   const isContinuation = Boolean(continuation);
   const [menu, setMenu] = useState<MenuName>(null);
-  // Batch 145: 源站默认模型显示 2.0（Seedance 2.0 VIP 缩写）。
-  // Batch 149: 源站 2026-09-07 面板触发器实拍「2.0」，默认落地为 Seedance 2.0 VIP。
+  // Batch 158: 默认模型回落 2.5 —— 新建节点（2.5）与尝试已选节点（2.5）两个直接样本
+  // 对阵预设承载节点单个 2.0 样本；2.0 为预设专属配置，非常规默认。
   const [model, setModel] = useState(
-    isContinuation ? "2.5" : "2.0 VIP",
+    isContinuation ? "2.5" : "2.5",
   );
   const [mode, setMode] = useState<VideoMode>("omnireference");
   const [ratio, setRatio] = useState("16:9");
