@@ -39,6 +39,7 @@
 - [`liblib-video-panel-2026-09-06/`](liblib-video-panel-2026-09-06/README.md)：视频生成面板改版采样（尝试行/工具行/2.0/设置芯片/135/新功能条）。
 - [`liblib-canvas-batch125-2026-09-06/`](liblib-canvas-batch125-2026-09-06/README.md)：视频生成面板对齐：尝试行/新功能条/placeholder。
 - [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/README.md)：/project 项目卡封面占位图（渐变色+播放图标+节点计数）。
+- [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/README.md)：公共角色库模态页签 + Seedance 承诺书门本地模拟（未代用户同意，伦理边界留档）。
 - [`liblib-canvas-batch168-2026-09-07/`](liblib-canvas-batch168-2026-09-07/README.md)：/project 左侧边栏落地（新建项目/导航行/促销+帮助）。
 - [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/README.md)：/project 次级表面对齐（实心次级按钮、创建卡封面结构、aspect-video 卡封面）。
 - [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/README.md)：提示词区去底色圆角 + 移除「3 个匹配」死弹窗芯片。
@@ -252,6 +253,7 @@
 | 139 | Topbar credits split | [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/) `SCRIPT_RECORDED_PASS`，积分超市/余额 独立入口已通过；商城页行为不证明 |
 | 133 | FrameOS duplicate node insertion | [`liblib-frameos-batch133-2026-09-06/`](liblib-frameos-batch133-2026-09-06/) `SCRIPT_RECORDED_PASS`，Cmd+D 插入副本/undo/redo/toast 已通过 |
 | 148 | Project card cover placeholders | [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/) `SCRIPT_RECORDED_PASS`，封面占位图/节点计数已通过；源站封面内容不证明 |
+| 169 | Character library tabs + consent gate mock | [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/) `SCRIPT_RECORDED_PASS`，12 checks |
 | 168 | /project left sidebar | [`liblib-canvas-batch168-2026-09-07/`](liblib-canvas-batch168-2026-09-07/) `SCRIPT_RECORDED_PASS`，13 checks |
 | 167 | /project secondary surface alignment | [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/) `SCRIPT_RECORDED_PASS`，14 checks |
 | 166 | Prompt region visual + chip removal | [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/) `SCRIPT_RECORDED_PASS`，6 checks |
@@ -319,6 +321,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 136 | Recycle bin selection | 已完成；回收站勾选与批量恢复已通过，详见 [`liblib-canvas-batch136-2026-09-06/`](liblib-canvas-batch136-2026-09-06/)；循环继续 |
 | 139 | Topbar credits split | 已完成；顶栏积分入口拆分已通过，详见 [`liblib-canvas-batch139-2026-09-07/`](liblib-canvas-batch139-2026-09-07/)；循环继续 |
 | 148 | Project card cover placeholders | 已完成；项目卡封面对齐已通过，详见 [`liblib-canvas-batch148-2026-09-07/`](liblib-canvas-batch148-2026-09-07/)；循环继续 |
+| 169 | Character library tabs + consent gate | 已完成；页签与承诺书门已通过，详见 [`liblib-canvas-batch169-2026-09-07/`](liblib-canvas-batch169-2026-09-07/)；循环继续 |
 | 168 | /project left sidebar | 已完成；侧边栏落地已通过，详见 [`liblib-canvas-batch168-2026-09-07/`](liblib-canvas-batch168-2026-09-07/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |

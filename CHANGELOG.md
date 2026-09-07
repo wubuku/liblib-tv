@@ -39,6 +39,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   structure, create card, canvas cards navigating back, recycle panel with
   30-day copy, per-item restore, selection counter and batch restore
   (Batches 119, 124, 136).
+- Character library modal tab chrome replicated (Batch 169, source
+  2026-09-07): 公共角色库 / Seedance2.0&2.5合规素材库 tabs plus a local-only
+  Seedance commitment gate on the 素材库 tab (both buttons are local state;
+  the consent was NOT accepted on the user's behalf during sampling —
+  不同意 was clicked to preserve the status quo)
 - /project left sidebar added (Batch 168, source 2026-09-07 re-audit):
   240px sticky column with 新建项目, nav rows 首页/项目(active)/LibTV
   Agent/创作者挑战赛, and a bottom SD2.5 promo card + 帮助; unwired

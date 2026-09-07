@@ -82,7 +82,11 @@ export function CharacterLibraryPanel({
   onAddNode,
   onClose,
 }: CharacterLibraryPanelProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+    // Batch 169: 源站 2026-09-07 公共角色库模态采样 —— 页签 chrome + 素材库页签承诺书门（本地模拟）。
+  const [tab, setTab] = useState<"public" | "library">("public");
+  const [consentAcknowledged, setConsentAcknowledged] = useState(false);
+  const [consentOpen, setConsentOpen] = useState(false);
+const [selectedIndex, setSelectedIndex] = useState(0);
   const [recentOnly, setRecentOnly] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState<Record<string, string[]>>({});
@@ -133,17 +137,48 @@ export function CharacterLibraryPanel({
       <section
         aria-label="角色库"
         data-liblib-overlay="primary:character"
-        className="flex h-[min(731px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1304px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
+        className="relative flex h-[min(731px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1304px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <header className="flex h-14 shrink-0 items-center justify-between px-4">
-          <h2 className="text-base font-semibold">角色库</h2>
+        <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/[0.08] px-4">
+          {/* Batch 169: 源站页签 chrome（公共角色库 / Seedance2.0&2.5合规素材库，gap-9 14px）。 */}
+          <div className="flex items-center gap-9 text-[14px]" data-clib-tabs>
+            <button
+              type="button"
+              data-clib-tab="public"
+              onClick={() => setTab("public")}
+              className={cn(
+                "cursor-pointer border-none bg-transparent p-0 transition-colors",
+                tab === "public" ? "font-medium text-[#ededed]" : "text-[#9a9a9a] hover:text-[#d8d8d8]",
+              )}
+            >
+              公共角色库
+            </button>
+            <button
+              type="button"
+              data-clib-tab="library"
+              onClick={() => (consentAcknowledged ? setTab("library") : setConsentOpen(true))}
+              className={cn(
+                "cursor-pointer border-none bg-transparent p-0 transition-colors",
+                tab === "library" ? "font-medium text-[#ededed]" : "text-[#9a9a9a] hover:text-[#d8d8d8]",
+              )}
+            >
+              Seedance2.0&2.5合规素材库
+            </button>
+          </div>
           <button type="button" onClick={onClose} aria-label="close" className="flex size-8 items-center justify-center rounded-lg text-[#a4a4a4] hover:bg-white/[0.07] hover:text-white">
             <X size={20} />
           </button>
         </header>
 
-        <div className="min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* Batch 169: 公共角色库页签承载既有筛选/角色内容；素材库页签本地空态。 */}
+        {tab === "library" && (
+          <div data-clib-library-empty className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 text-center">
+            <p className="text-sm text-[#9a9a9a]">Seedance2.0&2.5 合规素材库</p>
+            <p className="text-xs text-[#777]">本地原型：素材内容未接入</p>
+          </div>
+        )}
+        <div className={cn("min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden", tab !== "public" && "hidden")}>
           <section className="relative mx-[33px] h-[462px] min-h-[462px] rounded-xl bg-[#2a2a2a]">
             <div className="absolute left-4 top-[18px] flex items-center gap-2">
               <h3 className="text-sm font-medium">{selected.name}</h3>
@@ -262,7 +297,45 @@ export function CharacterLibraryPanel({
             </div>
           </section>
         </div>
+      {/* Batch 169: 源站 Seedance2.0 承诺书门（本地模拟：两个按钮均为本地状态，无账号操作）。 */}
+      {consentOpen && (
+        <div data-clib-consent className="absolute inset-0 z-20 flex items-center justify-center rounded-2xl bg-black/40 px-6">
+          <div className="w-[738px] max-w-full rounded-xl bg-[#242424] p-6 shadow-[0_28px_80px_rgba(0,0,0,0.6)]">
+            <p className="text-[13px] leading-6 text-[#ededed]">
+              为保障您依法合规使用Seedance2.0模型所提供的相关服务，请您在使用前务必仔细阅读、充分理解并做出以下承诺：
+            </p>
+            <ol className="mt-3 space-y-2 text-[13px] leading-6 text-[#bdbdbd]">
+              <li>1. 您对即将上传或使用的素材拥有充分合法权益</li>
+              <li>2. 您将自行对所生成内容及使用后果负责</li>
+              <li>3. 如您存在违规使用行为，平台将有权采取限制措施</li>
+            </ol>
+            <div className="mt-4 flex items-center justify-end gap-2">
+              <button
+                type="button"
+                data-clib-consent-decline
+                onClick={() => setConsentOpen(false)}
+                className="flex h-8 items-center rounded-lg border border-white/[0.12] px-3 text-[13px] text-[#d8d8d8] hover:bg-white/[0.06]"
+              >
+                不同意
+              </button>
+              <button
+                type="button"
+                data-clib-consent-accept
+                onClick={() => {
+                  setConsentAcknowledged(true);
+                  setConsentOpen(false);
+                  setTab("library");
+                }}
+                className="flex h-8 items-center rounded-lg bg-[#09caf5] px-3 text-[13px] font-medium text-[#04252b] hover:bg-[#3bd6f2]"
+              >
+                同意并使用
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </section>
+
     </div>
   );
 }

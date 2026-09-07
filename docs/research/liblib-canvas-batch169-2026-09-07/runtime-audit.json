@@ -1,0 +1,27 @@
+{
+  "batch": 169,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "tabs:count-2",
+        "tabs:labels",
+        "tabs:public-active",
+        "tabs:filters-visible",
+        "consent:gate-open",
+        "consent:clauses",
+        "consent:decline-visible",
+        "consent:decline-closes",
+        "consent:still-public-tab",
+        "consent:accept-switches",
+        "consent:library-tab-active",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
