@@ -195,6 +195,7 @@ BrowserContext，不写截图。
 | Batch 177 | 模型行 hover 滑层 + 芯片非 toggle | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch177.py` 已通过（9 checks）；滑层四类名/hover 归位/行高 52/再点不取消；batch128/155/160 取消合同迁移为保持选中后全过；21/22/26/33/149/165-176 回归绿 |
 | Batch 178 | 芯片选中标记 + 取消路径 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch178.py` 已通过（11 checks）；选中白 10%/#f7f7f7/rounded-lg/图标；ESC 不取消（持久合同新增）；模式菜单切出清芯片+钳 30；21-177 全量回归绿 |
 | Batch 179 | canvas token 收割对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch179.py` 已通过（10 checks）；9 项 token 定义与值/hover 用 token/菜单文字 #fff；batch169 承诺书门复验绿；21-178 全量回归绿 |
+| Batch 180 | 芯片图标原字形 + z 评估 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch180.py` 已通过（7 checks）；三枚芯片 svg viewBox/path 与源站直采一致；z 迁移评估记录为维持映射不迁移；21-179 全量回归绿 |
 | Batch 125 | Video panel attempts/new-feature alignment | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch125.py` 已通过；尝试行三芯片选择/取消、新功能条、placeholder 对齐、工具行保留、生成流程与 `0/0/0` diagnostics；尝试子界面/模型菜单/积分 135 不证明 |
 | Batch 128 | Attempt chips driving settings linkage | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch128.py` 已通过；5分钟超长视频→Auto·300s、首尾帧→Auto·5s、deselect 保持设置和 `0/0/0` diagnostics；取消联动源站不证明 |
 | Batch 131 | Second full regression sweep | `REGRESSION_RECORDED_PASS` | 串行 114 项：104 通过、batch16/21 修复、batch93 flake 复跑通过、12 aged gates 归因不变；零新增回归 |

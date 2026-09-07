@@ -76,6 +76,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("chip:text-f7", color == "rgb(247, 247, 247)")
     check("chip:rounded-lg", radius == "8px")
     check("chip:has-icon", chip.locator("svg").count() == 1)
+    # Batch 180: 图标换为源站 iconify 原字形（viewBox 直采断言由 batch179 覆盖）
 
     # mode menu cancel path: switch to 文生视频 -> chip cleared + duration clamped
     page.locator("[data-video-mode-trigger]").click(force=True)

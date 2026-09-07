@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
-import { AlertTriangle, Camera, CaptionsOff, Frame, GalleryHorizontalEnd, Infinity as InfinityIcon, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
+import { AlertTriangle, Camera, CaptionsOff, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
   Position,
@@ -12,6 +12,11 @@ import {
   type Node,
   type NodeProps,
 } from "@xyflow/react";
+import {
+  FirstFrameIcon,
+  FirstLastFrameIcon,
+  LongVideoIcon,
+} from "@/components/nodes/AttemptChipIcons";
 import { cn } from "@/lib/utils";
 import {
   useCanvasStore,
@@ -580,10 +585,11 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       {showSingleNodeEditor && activeTool === "generator" && status !== "pending" && (
         <div data-video-attempts className="flex shrink-0 flex-col gap-1 border-t border-white/[0.07] p-2">
           <span className="text-xs text-[#8a8a8a]">尝试：</span>
+          {/* Batch 180: 图标为源站 iconify (libtv) 原字形 SVG path 直采。 */}
           {[
-            { label: "5分钟超长视频", Icon: InfinityIcon },
-            { label: "首尾帧生成视频", Icon: GalleryHorizontalEnd },
-            { label: "首帧生成视频", Icon: Frame },
+            { label: "5分钟超长视频", Icon: LongVideoIcon },
+            { label: "首尾帧生成视频", Icon: FirstLastFrameIcon },
+            { label: "首帧生成视频", Icon: FirstFrameIcon },
           ].map(({ label, Icon }) => (
             <button
               key={label}
@@ -602,7 +608,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
                   : "text-[#f7f7f7]",
               )}
             >
-              <Icon size={14} className="shrink-0 opacity-80" />
+              <Icon className="shrink-0 opacity-80" />
               {label}
             </button>
           ))}

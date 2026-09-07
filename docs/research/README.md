@@ -334,6 +334,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 177 | Hover slide + chip no-toggle | 已完成；模型行滑层与芯片行为对齐已通过，详见 [`liblib-canvas-batch177-2026-09-08/`](liblib-canvas-batch177-2026-09-08/)；循环继续 |
 | 178 | Chip marker + cancel path | 已完成；芯片选中标记与取消路径对齐已通过，详见 [`liblib-canvas-batch178-2026-09-08/`](liblib-canvas-batch178-2026-09-08/)；循环继续 |
 | 179 | Canvas token harvest | 已完成；canvas token 收割对齐已通过，详见 [`liblib-canvas-batch179-2026-09-08/`](liblib-canvas-batch179-2026-09-08/)；循环继续 |
+| 180 | Chip glyph icons + z evaluation | 已完成；芯片原字形图标与 z 评估已通过，详见 [`liblib-canvas-batch180-2026-09-08/`](liblib-canvas-batch180-2026-09-08/)；循环继续 |
 | 167 | /project secondary surface alignment | 已完成；次级表面对齐已通过，详见 [`liblib-canvas-batch167-2026-09-07/`](liblib-canvas-batch167-2026-09-07/)；循环继续 |
 | 166 | Prompt region visual + chip removal | 已完成；提示词视觉与芯片移除已通过，详见 [`liblib-canvas-batch166-2026-09-07/`](liblib-canvas-batch166-2026-09-07/)；循环继续 |
 | 165 | Reference slot row layout | 已完成；槽行对齐已通过，详见 [`liblib-canvas-batch165-2026-09-07/`](liblib-canvas-batch165-2026-09-07/)；循环继续 |

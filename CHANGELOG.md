@@ -105,6 +105,13 @@ FrameOS fixes, coverage matrix and regression sweeps).
   context-menu item text uses --canvas-controls-text (#fff); the 素材库
   consent gate re-probe confirms it still blocks content — nothing was
   accepted on the user's behalf
+- Attempt chip icons aligned to the source iconify (libtv) glyphs
+  (Batch 180, source 2026-09-08): the three chips now embed the harvested
+  14x14 SVG paths verbatim (viewBoxes 0 0 16 16 / 0 0 20.05 22 / 0 0 22 22)
+  instead of lucide substitutes; the z-scale migration to the source's real
+  --z-panel 400 / --z-modal 500 was evaluated and rejected (source topnav
+  sits at z-1000; a clone-wide re-map would touch 10+ components for no
+  visible gain — decision recorded in the batch record)
 - Canvas top bar workspace rename input (Batch 170, source 2026-09-07):
       13px inline input left of the canvas chip bound to projectName; store
       default renamed 未命名项目 -> 未命名工作区; batch16/17 migrated
