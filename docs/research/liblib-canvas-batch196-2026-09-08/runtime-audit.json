@@ -1,0 +1,31 @@
+{
+  "batch": 196,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "bottombar:panel-toggle-viewbox",
+        "chrome:WorkflowGlyph:defined",
+        "chrome:WorkflowGlyph:viewbox",
+        "chrome:LayoutPanelGlyph:defined",
+        "chrome:LayoutPanelGlyph:viewbox",
+        "chrome:PanelToggleGlyph:defined",
+        "chrome:PanelToggleGlyph:viewbox",
+        "chrome:GridGlyph:defined",
+        "chrome:GridGlyph:viewbox",
+        "chrome:MapGlyph:defined",
+        "chrome:MapGlyph:viewbox",
+        "chrome:LinkGlyph:defined",
+        "chrome:LinkGlyph:viewbox",
+        "chrome:MagnetGlyph:defined",
+        "chrome:MagnetGlyph:viewbox",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

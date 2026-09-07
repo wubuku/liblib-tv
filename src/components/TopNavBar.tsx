@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bot, ChevronDown, ChevronRight, Globe2, LayoutPanelTop, Link2, Share2, Workflow, Zap } from "lucide-react";
+import { Bot, ChevronDown, ChevronRight, Globe2, Link2, Share2, Zap } from "lucide-react";
+import { LayoutPanelGlyph, WorkflowGlyph } from "@/components/ChromeIcons";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
 import { useCanvasStore } from "@/store/canvasStore";
@@ -108,7 +109,7 @@ export function TopNavBar() {
               editorMode === "workbench" && "bg-[#404040] text-white",
             )}
           >
-            <Workflow size={14} />
+            <WorkflowGlyph className="size-[14px] text-current" />
           </button>
           <button
             title="故事板"
@@ -120,7 +121,7 @@ export function TopNavBar() {
               editorMode === "storyboard" && "bg-[#404040] text-white",
             )}
           >
-            <LayoutPanelTop size={14} />
+            <LayoutPanelGlyph className="size-[14px] text-current" />
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { LayoutGrid, Link2, Magnet, Map, PanelLeft } from "lucide-react";
+import { GridGlyph, LinkGlyph, MagnetGlyph, MapGlyph, PanelToggleGlyph } from "@/components/ChromeIcons";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
 
@@ -90,23 +90,23 @@ export function BottomToolbar({
           isAssetPanelOpen && "bg-white/10 text-white",
         )}
       >
-        <PanelLeft size={15} />
+        <PanelToggleGlyph className="size-[15px] text-current" />
         <span>资产管理</span>
       </button>
       <IconButton label="整理画布，Option+Shift+F" onClick={onOrganize}>
-        <LayoutGrid size={15} />
+        <GridGlyph className="size-[15px] text-current" />
       </IconButton>
       <IconButton label="显示缩略图" active={showMinimap} onClick={toggleMinimap}>
-        <Map size={15} />
+        <MapGlyph className="size-[15px] text-current" />
       </IconButton>
       <IconButton label={showEdges ? "隐藏节点连线" : "显示节点连线"} active={showEdges} onClick={toggleEdges}>
-        <Link2 size={15} />
+        <LinkGlyph className="size-[15px] text-current" />
       </IconButton>
       <span
         className="contents sm:max-[850px]:hidden"
       >
         <IconButton label="吸附到网格" active={snapToGrid} onClick={toggleSnapToGrid}>
-          <Magnet size={15} />
+          <MagnetGlyph className="size-[15px] text-current" />
         </IconButton>
       </span>
       <div
