@@ -137,7 +137,8 @@ const [selectedIndex, setSelectedIndex] = useState(0);
       <section
         aria-label="角色库"
         data-liblib-overlay="primary:character"
-        className="relative flex h-[min(731px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1304px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
+        // Batch 212: 源站模态三档视口直采恒 1280×720、水平居中、y=90。
+        className="relative flex h-[min(720px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1280px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
         onMouseDown={(event) => event.stopPropagation()}
       >
         <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/[0.08] px-4">

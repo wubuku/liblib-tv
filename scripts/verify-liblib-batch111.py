@@ -57,9 +57,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     assert modal.is_visible()
 
     rect = modal.evaluate("(el) => { const r = el.getBoundingClientRect(); return { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height) }; }")
-    check("shell:width", abs(rect["w"] - 1304) <= 8)
-    check("shell:height", abs(rect["h"] - 731) <= 8)
-    check("shell:x", abs(rect["x"] - 68) <= 8)
+    # Batch 212: 源站三档视口直采恒 1280×720（1304×731 为 1440 采样旧值）。
+    check("shell:width", abs(rect["w"] - 1280) <= 8)
+    check("shell:height", abs(rect["h"] - 720) <= 8)
+    # Batch 212: 模态水平居中（1440 视口 x=80），y=90 顶部锚定。
+    check("shell:x", abs(rect["x"] - 80) <= 8)
 
     check("detail:title", modal.get_by_text("甜妹/清新少女", exact=True).first.is_visible())
     for tag in ["女主", "女", "现代", "青年", "温柔"]:
@@ -102,7 +104,7 @@ def main() -> None:
     print(
         "Batch 111 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "Modal shell 1304x731@68, detail labels, sampled tag set, description "
+        "Modal shell 1280x720, detail labels, sampled tag set, description "
         "template, apply button and close aria recorded in runtime-audit.json."
     )
 

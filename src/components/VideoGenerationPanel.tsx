@@ -17,6 +17,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { useUIStore } from "@/store/uiStore";
 import { PillIcon } from "@/components/nodes/ToolbarPillIcons";
 import { cn } from "@/lib/utils";
 import type {
@@ -258,9 +259,28 @@ export function VideoGenerationPanel({
           源站提示词区实测 96px（2026-09-07）。 */}
       <section className="relative flex h-[397px] flex-col rounded-2xl border border-[#363636] bg-[#262626] p-2 shadow-[0_22px_60px_rgba(0,0,0,0.52)]">
         <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
-          {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。 */}
-          {[{ label: "参考" }, { label: "标记" }, { label: "特效", hasMenu: true }, { label: "角色库" }, { label: "运镜", hasMenu: true }].map((item) => {
+          {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。
+              Batch 212: 角色库 pill 打开左侧栏角色库面板（对齐源站行为）。 */}
+          {[{ label: "参考" }, { label: "标记" }, { label: "特效", hasMenu: true }, { label: "角色库", hasMenu: true }, { label: "运镜", hasMenu: true }].map((item) => {
             if ("hasMenu" in item && item.hasMenu) {
+              if (item.label === "角色库") {
+                return (
+                  <div key={item.label} className="relative">
+                    <button
+                      type="button"
+                      data-clib-trigger
+                      onClick={() => {
+                        // Batch 212: 角色库 pill 打开左侧栏角色库面板。
+                        useUIStore.getState().setPrimaryPanel("character");
+                      }}
+                      className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                    >
+                      <PillIcon label={item.label} />
+                      {item.label}
+                    </button>
+                  </div>
+                );
+              }
               if (item.label === "特效") {
                 return (
                   <div key={item.label} className="relative">

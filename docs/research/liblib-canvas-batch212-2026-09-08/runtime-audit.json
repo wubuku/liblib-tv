@@ -1,0 +1,21 @@
+{
+  "batch": 212,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "modal:opens",
+        "modal:width-1280",
+        "modal:height-720",
+        "tabs:public",
+        "tabs:compliance",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
