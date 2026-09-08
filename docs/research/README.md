@@ -444,6 +444,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 216 | Reference select mode banner | 已完成；参考选择模式横幅实装已通过，详见 [`liblib-canvas-batch216-2026-09-08/`](liblib-canvas-batch216-2026-09-08/)；循环继续 |
 | 217 | Mark select mode banner | 已完成；标记选择模式横幅实装已通过，详见 [`liblib-canvas-batch217-2026-09-09/`](liblib-canvas-batch217-2026-09-09/)；循环继续 |
 | 218 | Mark select-mode blue card | 已完成；标记选择模式蓝色横幅实装已通过，详见 [`liblib-canvas-batch218-2026-09-09/`](liblib-canvas-batch218-2026-09-09/)；循环继续 |
+| 219 | 剧本 prefill sampling | 已完成；剧本预填采样（部分），详见 [`liblib-canvas-batch219-2026-09-09/`](liblib-canvas-batch219-2026-09-09/)；循环继续 |
 | 209 | Canvas chrome alignment | 已完成；画布 chrome 对齐已通过，详见 [`liblib-canvas-batch209-2026-09-08/`](liblib-canvas-batch209-2026-09-08/)；循环继续 |
 | 210 | Logo dropdown geometry | 已完成；logo 下拉菜单几何对齐已通过，详见 [`liblib-canvas-batch210-2026-09-08/`](liblib-canvas-batch210-2026-09-08/)；循环继续 |
 | 211 | Character library modal re-sample | 已完成；角色库模态重采（尺寸规则开放），详见 [`liblib-canvas-batch211-2026-09-08/`](liblib-canvas-batch211-2026-09-08/)；循环继续 |

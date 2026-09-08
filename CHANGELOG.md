@@ -225,6 +225,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Asset drawer width aligned (Batch 202, source 2026-09-08): the left
   sidebar measures ~280px (clone was 240) while its 画布/资产 tabs, 所有评级
   filter and verbatim empty/counter texts already matched
+- 剧本 prefill sampling (Batch 219, partial): the text node's full
+  markdown prefill content requires edit-mode entry to extract; the clone
+  prefill stays 剧本
 - 参考 pill select mode with guidance banner (Batch 216, source
   2026-09-08): clicking the 参考 pill opens a top-center banner reading
   从画布或资产管理选择参考返回节点 (364×56, portaled to body); MAJOR
