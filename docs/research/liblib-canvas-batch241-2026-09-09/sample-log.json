@@ -1,0 +1,142 @@
+{
+  "models": {
+    "Minimax H3": {
+      "clicked": true,
+      "trigger": "Minimax H3",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "110"
+    },
+    "Wan 3.0": {
+      "clicked": true,
+      "trigger": "Wan 3.0 Prime",
+      "switched": true,
+      "mode": "全能参考",
+      "chip": null,
+      "credits_default": "90"
+    },
+    "Wan 2.6": {
+      "clicked": true,
+      "trigger": "Wan 2.6",
+      "switched": true,
+      "mode": "首帧",
+      "chip": null,
+      "credits_default": "40"
+    },
+    "Wan 2.2": {
+      "clicked": true,
+      "trigger": "Wan 2.2",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "40"
+    },
+    "Wan 2.5": {
+      "clicked": true,
+      "trigger": "Wan 2.5",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "40"
+    },
+    "Kling 3.0": {
+      "clicked": true,
+      "trigger": "Kling 3.0",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "55"
+    },
+    "Kling O1": {
+      "clicked": true,
+      "trigger": "Kling O1",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "35"
+    },
+    "Kling 2.6": {
+      "clicked": true,
+      "trigger": "Kling 2.6",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "50"
+    },
+    "Kling 2.5": {
+      "clicked": true,
+      "trigger": "Kling 2.5",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "15"
+    },
+    "Vidu Q2 Pro": {
+      "clicked": true,
+      "trigger": "Vidu Q2 Pro",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "110"
+    },
+    "Vidu Q2 Turbo": {
+      "clicked": true,
+      "trigger": "Vidu Q2 Turbo",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "80"
+    },
+    "Hailuo 2.3": {
+      "clicked": true,
+      "trigger": "Hailuo 2.3",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits_default": "36"
+    },
+    "Happy Horse 1.1": {
+      "clicked": true,
+      "trigger": "Happy Horse 1.1",
+      "switched": true,
+      "mode": "首帧",
+      "chip": null,
+      "credits_default": "120"
+    },
+    "Happy Horse 1.0": {
+      "clicked": true,
+      "trigger": "Happy Horse 1.0",
+      "switched": true,
+      "mode": "首帧",
+      "chip": null,
+      "credits_default": "192"
+    },
+    "Pixverse V5.5": {
+      "clicked": true,
+      "trigger": null,
+      "switched": false
+    },
+    "Pixverse V5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "OmniHuman 1.5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Kling3.0 动作迁移": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Style Video": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    }
+  },
+  "clean0": 0
+}
