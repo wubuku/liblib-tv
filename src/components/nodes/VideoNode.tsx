@@ -112,6 +112,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
   const [attempt, setAttempt] = useState<string | null>(null);
+  // Batch 215: 特效选用后「特效」pill 文案变「替换」（源站直证）。
+  const [effectApplied, setEffectApplied] = useState(false);
   const [activeTool, setActiveTool] = useState<
     | "generator"
     | "reshoot"
@@ -622,6 +624,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
           zoom={zoom}
           attempt={attempt}
           onAttemptChange={setAttempt}
+          effectApplied={effectApplied}
+          onEffectApplied={() => setEffectApplied(true)}
           onSelectEffect={(name) => {
             /* Batch 192: 源站直证——点特效卡在视频节点左下生成
                「素材 - 特效 - <名>」媒体节点并连线（素材 → 视频）。 */

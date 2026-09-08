@@ -32,6 +32,9 @@ interface VideoGenerationPanelProps {
   zoom: number;
   attempt: string | null;
   onAttemptChange?: (value: string | null) => void;
+  /** Batch 215: 源站直证——特效应用后特效 pill 文案变为「替换」。 */
+  effectApplied?: boolean;
+  onEffectApplied?: () => void;
   onSelectEffect?: (name: string) => void;
   initialPrompt?: string;
   continuation?: VideoContinuationMetadata;
@@ -103,6 +106,8 @@ export function VideoGenerationPanel({
   zoom,
   attempt,
   onAttemptChange,
+  effectApplied,
+  onEffectApplied,
   onSelectEffect,
   initialPrompt,
   continuation,
@@ -261,7 +266,8 @@ export function VideoGenerationPanel({
         <div data-video-toolbar className="flex h-8 shrink-0 items-center gap-1">
           {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。
               Batch 212: 角色库 pill 打开左侧栏角色库面板（对齐源站行为）。 */}
-          {[{ label: "参考" }, { label: "标记" }, { label: "特效", hasMenu: true }, { label: "角色库", hasMenu: true }, { label: "运镜", hasMenu: true }].map((item) => {
+          {/* Batch 215: 源站直证——特效应用后特效 pill 文案变「替换」。 */}
+          {[{ label: "参考" }, { label: "标记" }, { label: effectApplied ? "替换" : "特效", hasMenu: true }, { label: "角色库", hasMenu: true }, { label: "运镜", hasMenu: true }].map((item) => {
             if ("hasMenu" in item && item.hasMenu) {
               if (item.label === "角色库") {
                 return (
@@ -386,6 +392,8 @@ export function VideoGenerationPanel({
                   data-effects-card={effect.name}
                   onClick={() => {
                     onSelectEffect?.(effect.name);
+                    // Batch 215: 特效选用后「特效」pill 文案变「替换」。
+                    onEffectApplied?.();
                     setEffectsOpen(false);
                   }}
                   className="group w-[185px] shrink-0 cursor-pointer rounded-lg border border-transparent transition-colors hover:bg-canvas-controls-hover"

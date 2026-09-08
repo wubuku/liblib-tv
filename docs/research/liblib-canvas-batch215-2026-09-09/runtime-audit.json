@@ -1,0 +1,19 @@
+{
+  "batch": 215,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "toolbar:before-特效",
+        "toolbar:after-替换",
+        "toolbar:no-特效-after",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

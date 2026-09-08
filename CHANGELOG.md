@@ -264,6 +264,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   classes/markers and the pill keeps reading 运镜 after selection — the
   clone's ✓ 已选 marker was removed and the menu now shows no selection
   state, matching the source
+- Effect pill 替换 semantics implemented (Batch 215, source
+  2026-09-08): with an effect material connected the source's 特效 pill
+  relabels to 替换 — the clone now flips the pill label via a new
+  effectApplied flag once an effect is applied; 参考/标记 remain inert
+  even with a material edge (source-verified)
 - Canvas chrome aligned (Batch 209, source 2026-09-08): the source canvas
   renders no minimap, no controls and no react-flow attribution — only
   background dots; the clone's attribution is now hidden via proOptions and
