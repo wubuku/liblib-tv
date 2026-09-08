@@ -1,0 +1,21 @@
+{
+  "batch": 214,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:opens",
+        "menu:23-cards",
+        "menu:no-selection-marker",
+        "menu:closes-on-select",
+        "pill:label-unchanged",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

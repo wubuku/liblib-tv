@@ -259,6 +259,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   with remote webp thumbnails (tool/movement/N.webp), centered names and
   hover favorite buttons — replacing the 12-item clone-shaped text list;
   batch146's preset assertions migrated to the gallery
+- yunjing menu confirmed as a pure launcher (Batch 214, source
+  2026-09-08): selected and unselected motion cards render identical
+  classes/markers and the pill keeps reading 运镜 after selection — the
+  clone's ✓ 已选 marker was removed and the menu now shows no selection
+  state, matching the source
 - Canvas chrome aligned (Batch 209, source 2026-09-08): the source canvas
   renders no minimap, no controls and no react-flow attribution — only
   background dots; the clone's attribution is now hidden via proOptions and

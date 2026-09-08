@@ -357,7 +357,6 @@ export function VideoGenerationPanel({
                             <img alt={m.name} className="size-full object-cover" loading="lazy" src={m.image} />
                           </div>
                           <span className="h-[17px] w-full truncate text-center text-xs text-[#ededed]">{m.name}</span>
-                          {yunjingSelection === m.name && <span className="text-[10px] text-[#09caf5]">✓ 已选</span>}
                         </button>
                       ))}
                     </div>

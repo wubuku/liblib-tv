@@ -1,0 +1,12 @@
+[
+ {
+  "name": "固定镜头",
+  "cls": "group flex w-full cursor-pointer flex-col items-center gap-0.5 rounded",
+  "html": "<div class=\"bg-(--color-neutral-700) relative aspect-square w-full overflow-hidden rounded-[3px]\"><img alt=\"固定镜头\" class=\"size-full object-cover\" loading=\"lazy\" src=\"https://libtv-res.liblib.art/tool/movement/1.webp\"><button type=\"button\" class=\"absolute right-1 top-1 flex size-6 items-center justify"
+ },
+ {
+  "name": "跟随拍摄",
+  "cls": "group flex w-full cursor-pointer flex-col items-center gap-0.5 rounded",
+  "html": "<div class=\"bg-(--color-neutral-700) relative aspect-square w-full overflow-hidden rounded-[3px]\"><img alt=\"跟随拍摄\" class=\"size-full object-cover\" loading=\"lazy\" src=\"https://libtv-res.liblib.art/tool/movement/2.webp\"><button type=\"button\" class=\"absolute right-1 top-1 flex size-6 items-center justify"
+ }
+]
