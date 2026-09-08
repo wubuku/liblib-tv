@@ -134,6 +134,8 @@ export function VideoGenerationPanel({
   const [effectsOpen, setEffectsOpen] = useState(false);
   // Batch 216: 源站直证——参考 pill 进入「选择参考」模式，顶部横幅引导。
   const [refSelectMode, setRefSelectMode] = useState(false);
+  // Batch 217: 标记 pill 同为选择模式横幅（源站 JS 点击直采）。
+  const [markSelectMode, setMarkSelectMode] = useState(false);
   // Batch 191: 特效库展开时覆盖触发器（源站同构）——外部 mousedown 关闭。
   useEffect(() => {
     if (!effectsOpen) return;
@@ -372,6 +374,20 @@ export function VideoGenerationPanel({
                 </div>
               );
             }
+            if (item.label === "标记") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  data-mark-select-trigger
+                  onClick={() => setMarkSelectMode(true)}
+                  className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                >
+                  <PillIcon label={item.label} />
+                  {item.label}
+                </button>
+              );
+            }
             if (item.label === "参考") {
               return (
                 <button
@@ -433,6 +449,18 @@ export function VideoGenerationPanel({
                   </div>
                 </div>
               ))}
+              </div>,
+              document.body,
+            )
+          )}
+          {markSelectMode && (
+            /* Batch 217: 源站直采——标记选择模式横幅（316×56，顶部居中）。 */
+            createPortal(
+              <div
+                data-mark-select-banner
+                className="fixed left-1/2 top-3 z-[80] flex w-[316px] -translate-x-1/2 items-center justify-center rounded-lg bg-[#1d1d1d] px-4 py-3 text-xs text-[#ededed] shadow-[0_10px_28px_rgba(0,0,0,0.45)]"
+              >
+                元素选择模式点击图片选择局部元素返回节点
               </div>,
               document.body,
             )

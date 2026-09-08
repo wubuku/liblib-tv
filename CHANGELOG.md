@@ -231,6 +231,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   correction — earlier mouse clicks at y≈1106 were landing outside the
   visible viewport, so the 参考/标记 inertness conclusions were partly
   invalid and remain open for re-verification via JS clicks
+- 标记 pill element-select mode banner (Batch 217, source
+  2026-09-08): JS-clicking the 标记 pill shows a top-center 316×56 banner
+  reading 元素选择模式/点击图片选择局部元素/返回节点 — the mark pill's
+  select-mode banner mirroring the 参考 pill's; the clone renders it via
+  markSelectMode + data-mark-select-banner
 - 展示设置 implemented as the node-type filter menu (Batch 204, source
   2026-09-08): in the drawer's persistent-sidebar form the control opens a
   180×369 menu with ten type options (全部/文本/…/脚本（旧版）) matching
