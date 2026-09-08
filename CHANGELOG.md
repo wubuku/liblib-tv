@@ -275,6 +275,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   classes/markers and the pill keeps reading 运镜 after selection — the
   clone's ✓ 已选 marker was removed and the menu now shows no selection
   state, matching the source
+
+- Mark select-mode banner rebuilt to the sampled blue mode card
+  (Batch 218, source 2026-09-08/09): 316px rounded-2xl #1F6DFF with a wand
+  icon tile, title 元素选择模式, subtitle 点击图片选择局部元素, a 返回节点
+  button and an × close; batch217's banner assertions migrated
 - Effect pill 替换 semantics implemented (Batch 215, source
   2026-09-08): with an effect material connected the source's 特效 pill
   relabels to 替换 — the clone now flips the pill label via a new
