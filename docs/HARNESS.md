@@ -370,3 +370,4 @@ Selection, prompt, history and debug-mode behavior are documented in [`research/
 - [ ] `npm run check` passes
 - [ ] Documentation and screenshot ledger updated
 - [ ] New formal docs linked from `docs/index.md`
+| Batch 234 | Agent drawer model selector catalog harvested — 15 models (7 image + 8 video) with thumbnails, descriptions, and organized tabs; the model selector button (aria-label=选择模型, 32×32) is in the Agent drawer footer; full JSON catalog saved |

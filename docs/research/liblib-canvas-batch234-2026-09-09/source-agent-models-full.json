@@ -1,0 +1,178 @@
+{
+ "box": [
+  1403,
+  380,
+  370,
+  384
+ ],
+ "cls": "m_38a85659 mantine-Popover-dropdown",
+ "tabs": [],
+ "items": [
+  {
+   "text": "Lib Image最新图片模型、长文本能力突出",
+   "box": [
+    1420,
+    514,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://liblibai-online.liblib.cloud/img/26867b52384f44d6ad5f717dbd710ff7/44e937"
+  },
+  {
+   "text": "General image Pro最强图片编辑模型，一致性好",
+   "box": [
+    1420,
+    573,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://liblibai-online.liblib.cloud/img/26867b52384f44d6ad5f717dbd710ff7/a648ea"
+  },
+  {
+   "text": "General image V2支持联网搜索、文字准确、速度更快",
+   "box": [
+    1420,
+    632,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://liblibai-online.liblib.cloud/img/26867b52384f44d6ad5f717dbd710ff7/a648ea"
+  },
+  {
+   "text": "Seedream 5.0 Pro精准交互式编辑，支持原生多语言排版",
+   "box": [
+    1420,
+    691,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/43df"
+  },
+  {
+   "text": "Style Image V8.2电影感全面升级，精准还原光影、人物与真实材质",
+   "box": [
+    1420,
+    750,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/5380"
+  },
+  {
+   "text": "Style Image V8.1生图更连贯、细节更丰富、美学水准大幅提升",
+   "box": [
+    1420,
+    809,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/5380"
+  },
+  {
+   "text": "Style Image V7最佳美学，电影质感，创意能力强",
+   "box": [
+    1420,
+    868,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/5380"
+  },
+  {
+   "text": "Seedance 2.5最强视频模型，全能参考，30s音画同步",
+   "box": [
+    1420,
+    962,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/43df"
+  },
+  {
+   "text": "Seedance 2.0 VIP最强视频模型，会员专属通道,15s音画同步",
+   "box": [
+    1420,
+    1021,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/43df"
+  },
+  {
+   "text": "Minimax H3全模态输入，多参数控制，多场景商用级生成",
+   "box": [
+    1420,
+    1080,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/7f62"
+  },
+  {
+   "text": "Seedance 2.0 Fast VIP最强视频模型快速版，会员专属通道，15s音画同步",
+   "box": [
+    1420,
+    1139,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/43df"
+  },
+  {
+   "text": "Wan 3.0 Prime超快速生成，全模态参考，超写实高一致性",
+   "box": [
+    1420,
+    1198,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/d031"
+  },
+  {
+   "text": "Wan 3.0全模态参考，支持文档与网页输入，超写实高一致性生成",
+   "box": [
+    1420,
+    1257,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/d031"
+  },
+  {
+   "text": "Kling O3视频编辑模型、参考一致性、音画同出、多镜头",
+   "box": [
+    1420,
+    1316,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/2db4"
+  },
+  {
+   "text": "Kling 3.0视频生成模型，高质感、支持多镜头",
+   "box": [
+    1420,
+    1375,
+    338,
+    57
+   ],
+   "hasThumb": true,
+   "thumbSrc": "https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/2db4"
+  }
+ ],
+ "totalItems": 15
+}

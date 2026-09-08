@@ -418,3 +418,4 @@ DOM/CSS、视觉布局或 source parity。
 | Batch 226 | 左侧栏/底栏字形审计 | `EVIDENCE_RECORDED` | 已对齐字形全量确认，零遗漏；零代码改动 |
 | Batch 230 | 源站画布空态 + storyboard-group 结构 | `EVIDENCE_RECORDED` | 测试项目已清空；storyboard-group 源站结构需原始项目采样；clone 已通过 canvas-2 预设充分覆盖 |
 | Batch 232 | Agent 抽屉模型选择器采样 | `PARTIAL_EVIDENCE` | Agent 按钮找到但抽屉未稳定打开（页面状态漂移）；模型选择器采样推迟 |
+| Batch 234 | Agent 抽屉模型选择器目录 | `SCRIPT_RECORDED_PASS` | 15 模型目录完整采得（7 图片 + 8 视频）+ 缩略图 URL + 描述；替代 Batch 232 的部分采样 |
