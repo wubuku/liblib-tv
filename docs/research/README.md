@@ -455,3 +455,4 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 212 | Character library modal size rule | 已完成；模态尺寸规则破解与 clone 对齐已通过，详见 [`liblib-canvas-batch212-2026-09-08/`](liblib-canvas-batch212-2026-09-08/)；循环继续 |
 | 226 | Video card structure sampling | 已完成（阻塞记录），详见 [`liblib-canvas-batch226-2026-09-09/`](liblib-canvas-batch226-2026-09-09/)；循环继续 |
 | 227 | Video card structure confirmed | 已完成；视频节点卡结构确认（简单单层），详见 [`liblib-canvas-batch227-2026-09-09/`](liblib-canvas-batch227-2026-09-09/)；循环继续 |
+| 226 | Left sidebar glyph audit | 已完成；字形审计确认，详见 [`liblib-canvas-batch226-2026-09-09/`](liblib-canvas-batch226-2026-09-09/)；循环继续 |

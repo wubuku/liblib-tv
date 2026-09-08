@@ -211,6 +211,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 210 | Logo dropdown re-sampled (200×190, four 44px rows 回到主页/全部项目/创建新项目/删除项目 with a divider before 创建新项目 — items verbatim per Batch 106/119); clone geometry aligned w-40→w-[200px], rows h-9→h-11; verify-liblib-batch210.py (6 checks) |
 | Batch 224 | Left sidebar iconify glyph audit — all previously aligned glyphs confirmed current, no new unaligned icons found; stability pass |
 | Batch 225 | Stability confirmation — all key verifiers green (111/146/172/175/185/205/212/213), npm run check baseline, zero source residue |
+| Batch 226 | Left sidebar/bottom bar glyph audit — all previously aligned glyphs confirmed current, no new unaligned icons found; zero code changes |
 | Batch 226 | Video node card structure sampling blocked — source page entered an unstable render state after multiple interaction rounds (node wrapper unreachable); zero code changes |
 | Batch 227 | Video node card confirmed simple single-layer (`node-shell relative` wrapper) after page reload — internal structure fully covered by Batch 149-218 panel work; zero code changes |
 | Batch 212 | Character library modal size rule SOLVED by three-viewport sampling — the modal is a constant 1280×720, horizontally centered, top y=90; clone migrated 1304×731→1280×720 and batch111 assertions migrated; the video panel's 角色库 pill now opens the left-sidebar character panel (useUIStore.setPrimaryPanel) matching the source; verify-liblib-batch212.py (6 checks) |
