@@ -214,6 +214,7 @@ BrowserContext，不写截图。
 | Batch 198 | 顶栏右侧集群原字形 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch198.py` 12 checks；四枚组件定义/viewBox + DOM 闪电定位 + TopNavBar 使用；22/121/172/196/197 回归绿 |
 | Batch 212 | 角色库模态尺寸规则破解 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch212.py` 6 checks；三档视口恒 1280×720 居中/克隆迁移/pill 接线；111（迁移后 19）/112/169/172/22 回归绿 |
 | Batch 223 | 全量回归清扫 | `STABILITY_CONFIRMED` | 175 验证器：155 PASS / 20 已归因 FAIL（全部为历史合同或老化门）；Batch 172-222 零回归 |
+| Batch 224 | 左侧栏字形审计 | `EVIDENCE_RECORDED` | 已对齐字形全量确认/零代码改动；check 基线稳定 |
 | Batch 199 | Agent 抽屉重采 + 第四句标题 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch199.py` 9 checks；Skill 批次与 97 记录互证一致；横幅文案一致；抽屉宽度开放问题；107 轮换同步后两跑绿 |
 | Batch 200 | 抽屉宽度规则 + Skill 芯片 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch200.py` 9 checks；三档视口 400px 恒定（更正 199 的 427 伪影）；点卡芯片入输入区可移除；22/107/121/172/185/196-199 回归绿 |
 | Batch 202 | 资产管理抽屉重采 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch202.py` 10 checks；宽度 240→280（源站直采）/文案页签已一致；102/114/121/172 回归绿 |
