@@ -1,0 +1,21 @@
+{
+  "batch": 210,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:opens",
+        "menu:width-200",
+        "menu:four-items-order",
+        "menu:row-h44",
+        "menu:divider-before-create",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

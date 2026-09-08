@@ -252,6 +252,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   renders no minimap, no controls and no react-flow attribution — only
   background dots; the clone's attribution is now hidden via proOptions and
   its opt-in minimap default already matched
+- Logo dropdown menu geometry aligned (Batch 210, source 2026-09-08):
+  the menu measures 200×190 with four 44px rows (回到主页/全部项目/
+  创建新项目/删除项目 and a divider before 创建新项目) — the clone's
+  w-40/h-9 geometry was updated to w-[200px]/h-11
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the

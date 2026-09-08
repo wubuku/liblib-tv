@@ -225,7 +225,7 @@ function ProjectMenu() {
       {open && (
         <div
           data-project-menu
-          className="absolute left-0 top-9 w-40 rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[0_18px_48px_rgba(0,0,0,0.5)]"
+          className="absolute left-0 top-9 w-[200px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[0_18px_48px_rgba(0,0,0,0.5)]"
         >
           {items.map((item, index) => (
             <div key={item}>
@@ -242,7 +242,7 @@ function ProjectMenu() {
                   }
                   setStatus(`本地原型：${item}未接入`);
                 }}
-                className="flex h-9 w-full items-center rounded-lg px-2.5 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
+                className="flex h-11 w-full items-center rounded-lg px-2.5 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
               >
                 {item}
               </button>
