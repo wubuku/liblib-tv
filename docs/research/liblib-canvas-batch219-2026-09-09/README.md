@@ -1,22 +1,23 @@
-# Batch 219 — 剧本预填内容采样（部分完成，prefill 保持「剧本」）
+# Batch 219 — clone TextNode 对齐为源站 markdown 展示块 + 按钮组
 
-## 尝试与发现
+## 源站事实（Batch 218 直采）
 
-- 目标：采集源站「故事脚本生成」芯片成对创建时 text 节点的完整预填
-  「剧本」markdown 内容。
-- 空画布芯片可开（Batch 206 已证），选中态 text 节点 textContent 含
-  `markdown-content` CSS 类——即渲染层含样式块，真实 prefill 文本被
-  渲染层包裹无法从 textContent 直接提取。
-- 尝试从 textarea `value` 读取：text 节点的 textarea 仅在编辑态
-  （双击进入）出现——未采样到编辑态。
-- 处置：clone 预填维持「剧本」（与 Batch 206 截图文本开头一致），
-  完整 markdown 留待后续双击编辑态采样。
+- text 节点 350×350（源站视觉 759×759 是 zoom 后），
+  `node-shell relative rounded-xl bg-[#171717]`
+- 悬浮标题条（文档图标 +「文本节点」）
+- 「尝试:」标签 + 5 操作按钮（自己编写内容/文生视频/图片反推提示词/
+  文字生音乐/GVLM 3.1）
+- markdown 展示区（无 textarea）
 
-## 清理
+## 实施
 
-- 源站测试节点全部删除（0 残留）。
+- `TextNode.tsx` 重写：移除 textarea 编辑器，改为 350×350 卡片
+  （悬浮标题条 + 尝试按钮组 + markdown 展示区）；
+  `getDefaultNodeData("text")` 预填从「新文本节点」→「剧本」。
 
 ## 验收
 
-- `npm run check`：0 errors（8 warnings 基线）；docs check 通过。
-- 不证明：完整「剧本」markdown 预填内容；script-v2 双击编辑器入口。
+- `npm run check`：0 errors（8 warnings 基线）
+- 回归绿：22 / 102 / 172
+- 不证明：markdown 渲染（当前为纯文本展示）；编辑入口（源站双击
+  编辑器入口未采样）

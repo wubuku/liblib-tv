@@ -1,9 +1,8 @@
 "use client";
 
-import { memo, useRef, useState } from "react";
-import { Handle, Position, type NodeProps, type Node, useReactFlow } from "@xyflow/react";
+import { memo, useState } from "react";
+import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
-import { useCanvasStore } from "@/store/canvasStore";
 
 export interface TextNodeData extends Record<string, unknown> {
   content: string;
@@ -11,87 +10,70 @@ export interface TextNodeData extends Record<string, unknown> {
 
 export type TextNodeType = Node<TextNodeData>;
 
-function TextNodeComponent({ id, data, selected }: NodeProps<TextNodeType>) {
-  const [draft, setDraft] = useState<string | null>(null);
-  const { deleteElements } = useReactFlow();
-  const updateNodeData = useCanvasStore((state) => state.updateNodeData);
-  const nodeRef = useRef<HTMLDivElement>(null);
+/* 源站 text 节点文档图标（0 0 20 20 四行文档，Batch 218 采样）。 */
+function DocGlyph() {
+  return (
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 20 20" fill="none">
+      <path
+        d="M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 1-2.6 2.6H2.6A2.6 2.6 0 0 1 0 17.4V2.6A2.6 2.6 0 0 1 2.6 0zM4 16.26h8v-1.8H4zm0-3.57h12V7.3H4zm0-3.57h12v-1.8H4z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
-  const commitContent = () => {
-    if (draft !== null && draft !== data.content) updateNodeData(id, { content: draft });
-    setDraft(null);
-  };
+/* Batch 218 采样的 5 操作按钮（源站直采）。 */
+const actionButtons = [
+  "自己编写内容",
+  "文生视频",
+  "图片反推提示词",
+  "文字生音乐",
+  "GVLM 3.1",
+] as const;
 
-  const handleDelete = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    deleteElements({ nodes: [{ id }] });
-  };
+/* Batch 218: 源站 text 节点重采——markdown 展示块 + 尝试按钮组（非 textarea
+   编辑器）。759×759，悬浮标题条在 -28px，shell rounded-xl #171717。
+   内容渲染为 markdown（无 textarea——编辑入口未采样）。 */
+function TextNodeComponent({ data }: NodeProps<TextNodeType>) {
+  const [activeAction, setActiveAction] = useState<string | null>(null);
 
   return (
-    <div
-      ref={nodeRef}
-      className={cn(
-        "bg-[#212121] rounded-xl border min-w-[200px] max-w-[300px] overflow-visible flex flex-col group relative",
-        selected ? "border-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.3)]" : "border-[#363636]",
-        "hover:shadow-lg transition-shadow"
-      )}
-    >
-      {/* Delete button - visible when selected */}
-      {selected && (
-        <button
-          onClick={handleDelete}
-          className="absolute -top-2 -right-2 z-10 w-5 h-5 bg-[#f53f3f] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#ff6a6f]"
-          aria-label="Delete node"
-        >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M2 2L8 8M8 2L2 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
-      )}
-
-      <Handle type="target" position={Position.Left} id="target" style={{ width: 20, height: 20 }} />
-      <Handle type="source" position={Position.Right} id="source" style={{ width: 20, height: 20 }} />
-
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-[#363636]">
-        <svg
-          className="w-4 h-4 text-[#919191]"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16m-7 6h7"
-          />
-        </svg>
-        <span className="text-sm font-medium text-[#f7f7f7]">文本</span>
+    <div className="relative" style={{ width: 350 }}>
+      {/* 悬浮标题条（源站：文档图标 + 节点标题） */}
+      <div className="absolute left-0 top-[-28px] flex w-full items-center gap-1 text-[#8f8f8f]">
+        <DocGlyph />
+        <span className="truncate text-[13px]">文本节点</span>
       </div>
-
-      <div className="p-3">
-        {draft !== null ? (
-          <textarea
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            onBlur={commitContent}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                setDraft(null);
-              }
-            }}
-            className="w-full bg-[#363636] text-[#f7f7f7] text-sm p-2 rounded border border-[#525252] focus:border-[#09caf5] outline-none resize-none min-h-[60px]"
-            autoFocus
-          />
-        ) : (
-          <div
-            onClick={() => setDraft(data.content)}
-            className="text-sm text-[#f7f7f7] cursor-text hover:bg-[#363636] p-2 rounded min-h-[60px] whitespace-pre-wrap"
-          >
-            {data.content || "点击编辑文本..."}
-          </div>
-        )}
+      {/* 卡壳 */}
+      <div className="node-shell relative flex h-[350px] w-full flex-col overflow-hidden rounded-xl border border-[#363636] bg-[#171717] p-3">
+        <span className="mb-2 text-[11px] text-[#777]">尝试:</span>
+        <div className="flex flex-wrap gap-1.5">
+          {actionButtons.map((label) => (
+            <button
+              key={label}
+              type="button"
+              data-text-action={label}
+              onClick={() => setActiveAction(label)}
+              className={cn(
+                "flex h-7 items-center rounded-full px-2.5 text-xs transition-colors",
+                activeAction === label
+                  ? "bg-white/[0.1] text-[#f7f7f7]"
+                  : "bg-white/[0.05] text-[#aaa] hover:bg-white/[0.09] hover:text-white",
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {/* markdown 展示区（源站为 markdown 渲染，无 textarea） */}
+        <div className="mt-2 min-h-0 flex-1 overflow-y-auto rounded-lg bg-white/[0.03] p-2">
+          <p className="text-xs leading-5 text-[#a5a5a5]">
+            {data.content || "写下你想讲的故事、场景或角色设定。"}
+          </p>
+        </div>
       </div>
+      <Handle type="target" position={Position.Left} isConnectable />
+      <Handle type="source" position={Position.Right} isConnectable />
     </div>
   );
 }
