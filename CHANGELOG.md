@@ -248,6 +248,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
   2026-09-08): a floating title bar above the card (doc icon + title at
   top −28px) and a rounded-xl #171717 shell matching
   Surface-Panel-background; selecting the node opens no video panel
+- Character library modal size rule solved (Batch 212, source
+  2026-09-08): three-viewport sampling shows the modal is a constant
+  1280×720, horizontally centered with top y=90 — the clone migrated from
+  1304×731 and batch111's geometry assertions were updated; the video
+  panel's 角色库 pill now opens the left-sidebar character panel matching
+  the source
 - Canvas chrome aligned (Batch 209, source 2026-09-08): the source canvas
   renders no minimap, no controls and no react-flow attribution — only
   background dots; the clone's attribution is now hidden via proOptions and
