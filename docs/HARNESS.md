@@ -212,6 +212,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 224 | Left sidebar iconify glyph audit — all previously aligned glyphs confirmed current, no new unaligned icons found; stability pass |
 | Batch 225 | Stability confirmation — all key verifiers green (111/146/172/175/185/205/212/213), npm run check baseline, zero source residue |
 | Batch 226 | Left sidebar/bottom bar glyph audit — all previously aligned glyphs confirmed current, no new unaligned icons found; zero code changes |
+| Batch 230 | Source test project canvas confirmed empty (0 nodes/edges) after cleanup; storyboard-group source-side sampling requires the original project (user confirmation needed); clone StoryboardGroupNode already covered by preset canvas-2 verification |
 | Batch 226 | Video node card structure sampling blocked — source page entered an unstable render state after multiple interaction rounds (node wrapper unreachable); zero code changes |
 | Batch 227 | Video node card confirmed simple single-layer (`node-shell relative` wrapper) after page reload — internal structure fully covered by Batch 149-218 panel work; zero code changes |
 | Batch 228 | Source edge rendering sampling blocked — node connection drag interaction differs from React Flow standard handles (uses + buttons); edge style comparison deferred; zero code changes |

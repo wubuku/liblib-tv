@@ -457,3 +457,4 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 227 | Video card structure confirmed | 已完成；视频节点卡结构确认（简单单层），详见 [`liblib-canvas-batch227-2026-09-09/`](liblib-canvas-batch227-2026-09-09/)；循环继续 |
 | 228 | Edge rendering sampling | 已完成（阻塞记录），详见 [`liblib-canvas-batch228-2026-09-09/`](liblib-canvas-batch228-2026-09-09/)；循环继续 |
 | 226 | Left sidebar glyph audit | 已完成；字形审计确认，详见 [`liblib-canvas-batch226-2026-09-09/`](liblib-canvas-batch226-2026-09-09/)；循环继续 |
+| 230 | Source canvas empty state | 已完成；源站测试项目清零确认，详见 [`liblib-canvas-batch230-2026-09-09/`](liblib-canvas-batch230-2026-09-09/)；循环继续 |

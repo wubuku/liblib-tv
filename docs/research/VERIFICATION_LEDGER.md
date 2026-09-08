@@ -416,3 +416,4 @@ DOM/CSS、视觉布局或 source parity。
 | Batch 227 | 视频节点卡结构确认 | `EVIDENCE_RECORDED` | 刷新后恢复标准渲染态，卡结构简单单层（面板级对齐已充分覆盖）；零代码改动；源站清零 |
 | Batch 228 | 源站连线渲染样式采样 | `EVIDENCE_RECORDED` | 节点连线交互复杂度阻塞（+按钮机制 vs 拖拽 handle）；零代码改动；源站清零 |
 | Batch 226 | 左侧栏/底栏字形审计 | `EVIDENCE_RECORDED` | 已对齐字形全量确认，零遗漏；零代码改动 |
+| Batch 230 | 源站画布空态 + storyboard-group 结构 | `EVIDENCE_RECORDED` | 测试项目已清空；storyboard-group 源站结构需原始项目采样；clone 已通过 canvas-2 预设充分覆盖 |
