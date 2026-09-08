@@ -244,6 +244,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   node pre-filled with 剧本 plus the script-v2 node, no edge between them;
   the Agent-send semantics sampling was shelved (page-hang and
   account-side session risk)
+- script-v2 selected-state internals aligned (Batch 208, source
+  2026-09-08): a floating title bar above the card (doc icon + title at
+  top −28px) and a rounded-xl #171717 shell matching
+  Surface-Panel-background; selecting the node opens no video panel
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the
