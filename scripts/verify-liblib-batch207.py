@@ -73,6 +73,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     zoom = page.evaluate("window.__libtv_store.getState().getActiveCanvas().viewport.zoom")
     check("pair:script-v2-350-at-zoom", abs(script_v2.bounding_box()["height"] - 350 * zoom) <= 3)
     check("pair:script-v2-title", "脚本生成器" in script_v2.inner_text())
+    check("pair:floating-header", script_v2.locator(".absolute.top-\\[-28px\\]").count() == 1)
 
     text_node = page.locator(".react-flow__node-text").last
     check("pair:text-prefilled", "剧本" in text_node.inner_text())

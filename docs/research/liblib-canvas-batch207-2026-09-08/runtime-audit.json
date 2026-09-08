@@ -8,6 +8,7 @@
         "pair:script-v2-exists",
         "pair:script-v2-350-at-zoom",
         "pair:script-v2-title",
+        "pair:floating-header",
         "pair:text-prefilled",
         "pair:no-edge",
         "pair:undo-removes",
