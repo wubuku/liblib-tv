@@ -163,11 +163,15 @@ export function VideoGenerationPanel({
   const isLongRange = isLongVideo || attempt === "5分钟超长视频";
   const durationMin = isLongRange ? 30 : 4;
   const durationMax = isLongRange ? 300 : 30;
-  // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230，
-  // 比例影响积分；未采样比例沿用 46/s（CLONE_DECISION）。
+  // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230。
+  // Batch 236: 源站 2026-09-09 模型对照采样——2.0 VIP·Auto·15s·1个=405（27/s）、
+  // 2.5·Auto·15s·1个=690（46/s）：Auto 溢价仅存在于 2.5。Batch 130 的
+  // 「比例影响积分」结论早于 Batch 176 发现的「长芯片静默切模型 2.5」，
+  // 其 Auto=230 读数按 2.5 态解释后与全部 5 个数据点自洽
+  // （16:9 恒 27/s；Auto 在 2.5 为 46/s、在 2.0 系为 27/s）——证据级推断。
   const credits = isLongVideo
     ? duration * 49
-    : duration * count * (ratio === "16:9" ? 27 : 46);
+    : duration * count * (ratio === "16:9" || model !== "2.5" ? 27 : 46);
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
   const modeLabel = isContinuation
@@ -222,6 +226,25 @@ export function VideoGenerationPanel({
     setDuration(nextMode === "long-video" ? 30 : Math.min(30, Math.max(4, duration)));
     setShowProcess(false);
     setSubmitted(false);
+    setMenu(null);
+  };
+
+  const selectModel = (nextModel: string) => {
+    // Batch 236: 源站 2026-09-09 双向直采——2.5 长视频态下切换模型（2.0 VIP）：
+    // 模式重置 文生视频、时长 300→15、尝试芯片高亮清除；切回 2.5 不恢复长模式。
+    if (isLongVideo && nextModel !== "2.5") {
+      if (attempt === "5分钟超长视频") onAttemptChange?.(null);
+      setMode("omnireference");
+      setDuration(15);
+      setShowProcess(false);
+      setSubmitted(false);
+    }
+    // Batch 236: 4K 仅出现在 2.0 VIP 的清晰度列表（同轮对照采样）；
+    // 切离 2.0 VIP 时的 4K 钳制为 CLONE_DECISION（源站未采样）。
+    if (resolution === "4K" && nextModel !== "2.0 VIP") {
+      setResolution("1080P");
+    }
+    setModel(nextModel);
     setMenu(null);
   };
 
@@ -604,7 +627,7 @@ export function VideoGenerationPanel({
               {/* Batch 164: 源站触发器类 min-w-[88px] justify-between、13px 常规字重（2026-09-07 链采样）。 */}
               <span className="truncate text-[13px]">{model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="shrink-0 text-[#777]" />
             </button>
-            {menu === "model" && <ModelMenu model={model} onSelect={(value) => { setModel(value); setMenu(null); }} />}
+            {menu === "model" && <ModelMenu model={model} onSelect={selectModel} />}
           </div>
           <div className="relative">
             <button data-video-mode-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "mode" ? null : "mode")} className="flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg py-1 pl-2 pr-2.5 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">{modeLabel}<ChevronDown size={12} className="text-[#777]" /></button>
@@ -613,7 +636,7 @@ export function VideoGenerationPanel({
           <div className="relative min-w-0">
             <button data-video-params-trigger type="button" onClick={() => setMenu(menu === "params" ? null : "params")} className="flex h-8 min-w-0 max-w-[205px] shrink items-center justify-between gap-1 rounded-lg px-2 hover:bg-white/[0.06]"><span className="truncate">{settingsLabel}</span><ChevronDown size={12} className="shrink-0 text-[#777]" /></button>
             {menu === "params" && (
-              <ParamsMenu ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongRange} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
+              <ParamsMenu model={model} ratio={ratio} resolution={resolution} duration={duration} durationMin={durationMin} durationMax={durationMax} audio={audio} count={count} isLongVideo={isLongRange} onRatio={setRatio} onResolution={setResolution} onDuration={setDuration} onAudio={setAudio} onCount={setCount} />
             )}
           </div>
 
@@ -796,15 +819,17 @@ function ModeMenu({ mode, onSelect }: { mode: VideoMode; onSelect: (mode: VideoM
 }
 
 interface ParamsMenuProps {
-  ratio: string; resolution: string; duration: number; durationMin: number; durationMax: number; audio: boolean; count: number; isLongVideo: boolean;
+  model: string; ratio: string; resolution: string; duration: number; durationMin: number; durationMax: number; audio: boolean; count: number; isLongVideo: boolean;
   onRatio: (value: string) => void; onResolution: (value: string) => void; onDuration: (value: number) => void; onAudio: (value: boolean) => void; onCount: (value: number) => void;
 }
 
-function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
+function ParamsMenu({ model, ratio, resolution, duration, durationMin, durationMax, audio, count, isLongVideo, onRatio, onResolution, onDuration, onAudio, onCount }: ParamsMenuProps) {
   /* Batch 190: 模型切换复测（2.5→2.0 双向直采）——普通/长模式均为 7 格含
      Auto（5 列），Batch 176 的「长 7/普 6」分割废止；Auto 仅在长模式选中。 */
   const ratios = ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
-  const resolutions = ["480P", "720P", "1080P"];
+  /* Batch 236: 源站 2026-09-09 同轮对照——4K 仅出现在 2.0 VIP 的清晰度
+     列表（4 项），2.5 为 3 项；其它模型族未采样（SOURCE_UNKNOWN）。 */
+  const resolutions = model === "2.0 VIP" ? ["480P", "720P", "1080P", "4K"] : ["480P", "720P", "1080P"];
 
   return (
     <div
@@ -841,7 +866,7 @@ function ParamsMenu({ ratio, resolution, duration, durationMin, durationMax, aud
 
       <section className="mt-3">
         <p className="mb-2 text-xs text-[#8a8a8a]">清晰度</p>
-        <div className="grid grid-cols-3 gap-1 rounded-lg bg-black/20 p-0.5">
+        <div className={cn("grid gap-1 rounded-lg bg-black/20 p-0.5", model === "2.0 VIP" ? "grid-cols-4" : "grid-cols-3")}>
           {resolutions.map((item) => (
             <button
               key={item}

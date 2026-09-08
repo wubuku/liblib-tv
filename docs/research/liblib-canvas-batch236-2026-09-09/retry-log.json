@@ -1,0 +1,53 @@
+{
+  "stages": [
+    {
+      "name": "r0-after-reload",
+      "t": "06:04:54"
+    },
+    {
+      "name": "r0-after-chip",
+      "t": "06:04:58"
+    },
+    {
+      "name": "r1-after-chip",
+      "t": "06:05:01"
+    },
+    {
+      "name": "r2-after-chip",
+      "t": "06:05:04"
+    }
+  ],
+  "nodes_after_reload": 1,
+  "chip_0": [
+    1081.4423828125,
+    1586.2200927734375,
+    200.61376953125,
+    43.3721923828125
+  ],
+  "attempt_0": {
+    "credits": false,
+    "fail": false
+  },
+  "chip_1": [
+    1081.4423828125,
+    1586.2200927734375,
+    200.61376953125,
+    43.3721923828125
+  ],
+  "attempt_1": {
+    "credits": false,
+    "fail": false
+  },
+  "chip_2": [
+    1081.4423828125,
+    1586.2200927734375,
+    200.61376953125,
+    43.3721923828125
+  ],
+  "attempt_2": {
+    "credits": false,
+    "fail": false
+  },
+  "final_has_credits": false,
+  "final_has_model_menu_hint": false
+}

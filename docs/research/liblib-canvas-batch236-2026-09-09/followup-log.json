@@ -1,0 +1,37 @@
+{
+  "stages": [
+    {
+      "name": "f1-after-retry",
+      "t": "06:03:53"
+    }
+  ],
+  "nodes": 1,
+  "retry_0": false,
+  "has_credits_after_retry_0": false,
+  "retry_1": false,
+  "has_credits_after_retry_1": false,
+  "retry_2": false,
+  "has_credits_after_retry_2": false,
+  "panel_hits": [
+    {
+      "tag": "BUTTON",
+      "text": "首帧生成视频",
+      "box": [
+        1007,
+        1742,
+        281,
+        78
+      ]
+    },
+    {
+      "tag": "SPAN",
+      "text": "首帧生成视频",
+      "box": [
+        1081,
+        1759,
+        182,
+        43
+      ]
+    }
+  ]
+}

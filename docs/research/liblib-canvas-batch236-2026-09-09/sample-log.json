@@ -1,0 +1,68 @@
+{
+  "stages": [
+    {
+      "name": "s0-baseline",
+      "t": "06:02:54",
+      "html": "0:"
+    },
+    {
+      "name": "s1-addpanel",
+      "t": "06:02:55",
+      "html": "0:"
+    },
+    {
+      "name": "s2-video-node-created",
+      "t": "06:02:56",
+      "html": "1:"
+    },
+    {
+      "name": "s3-panel",
+      "t": "06:02:58",
+      "html": "1:"
+    },
+    {
+      "name": "s3b-after-attempt",
+      "t": "06:02:59",
+      "html": "1:"
+    },
+    {
+      "name": "s3-model-trigger-notfound",
+      "t": "06:02:59",
+      "html": "1:"
+    }
+  ],
+  "baseline_nodes": 0,
+  "addpanel_open": true,
+  "video_btn_found": true,
+  "video_btn_box": {
+    "x": 991.9921875,
+    "y": 1320.78125,
+    "width": 26,
+    "height": 19.5
+  },
+  "nodes_after_create": {
+    "count": 1,
+    "infos": [
+      {
+        "id": "v-58CHzMrq0s",
+        "selected": true,
+        "box": [
+          953,
+          1198,
+          759,
+          1006
+        ]
+      }
+    ]
+  },
+  "attempt_btn_found": true,
+  "attempt_btn_box": {
+    "x": 1081.4423828125,
+    "y": 1586.2200927734375,
+    "width": 200.61376953125,
+    "height": 43.3721923828125
+  },
+  "panel_has_credits": false,
+  "default_state_hits": [],
+  "model_trigger_found": false
+}

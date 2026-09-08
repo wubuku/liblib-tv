@@ -1,0 +1,38 @@
+{
+  "batch": 236,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "long:model-25",
+        "long:mode",
+        "long:credits-14700",
+        "long:chip-selected",
+        "vip:trigger-20",
+        "vip:mode-reset",
+        "vip:duration-15s",
+        "vip:credits-405",
+        "vip:chip-cleared",
+        "vip:params-open",
+        "vip:4-resolutions",
+        "vip:has-4k",
+        "vip:ratio-7-tiles",
+        "vip:ratio-auto-selected",
+        "back25:trigger",
+        "back25:mode-stays",
+        "back25:credits-690",
+        "back25:3-resolutions",
+        "back25:no-4k",
+        "clamp:4k-selected",
+        "clamp:resolution-1080p",
+        "clamp:credits-690",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
