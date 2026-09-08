@@ -217,6 +217,7 @@ BrowserContext，不写截图。
 | Batch 202 | 资产管理抽屉重采 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch202.py` 10 checks；宽度 240→280（源站直采）/文案页签已一致；102/114/121/172 回归绿 |
 | Batch 204 | 展示设置=节点类型筛选菜单 | `SCRIPT_RECORDED_PASS` | 源站直采 10 项菜单实装（data-asset-manager-typemenu）；batch102 hint 断言迁移（14 checks）；202 资产页签断言适配非空画布 |
 | Batch 205 | 类型筛选列表联动 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch205.py` 8 checks；十项映射/图片视频互斥过滤/全部恢复；102（14）/114/202/22/172 回归绿 |
+| Batch 211 | 角色库模态重采 | `EVIDENCE_RECORDED` | 模态 1280×710 @1920 直采（clone 1304×731@1440）；尺寸规则两视口不可推导，clone 不动；双页签/公共页签行为与 169 一致 |
 | Batch 206 | 空画布芯片点击采样 | `EVIDENCE_RECORDED` | 芯片成对创建 text+script-v2（源站新类型，无连线）；芯片集合随会话变化；script-v2 实装另立批次；源站清零 |
 | Batch 207 | script-v2 节点类型实装 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch207.py` 8 checks；成对创建原子单历史/text 预填剧本/script-v2 350×350 无连线/undo 单次移除；会话发送搁置（挂起+账号残留风险）；100/102/114/205/22/172 回归绿 |
 | Batch 208 | script-v2 选中态内部对齐 | `SCRIPT_RECORDED_PASS` | 悬浮标题条/卡壳 #171717/rounded-xl 直采实装；选中不开面板（与 clone 一致）；batch207 增 floating-header 断言后 9 checks 绿；205/22/100/172 回归绿 |

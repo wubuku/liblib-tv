@@ -255,6 +255,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Logo dropdown menu geometry aligned (Batch 210, source 2026-09-08):
   the menu measures 200×190 with four 44px rows (回到主页/全部项目/
   创建新项目/删除项目 and a divider before 创建新项目) — the clone's
+- Character library modal re-sampled (Batch 211, source 2026-09-08):
+  the modal opens at 1280×710 @1920 vs the clone's 1304×731 (sampled at
+  1440) — the size rule is not derivable from two viewports, so the clone
+  stays unchanged (open question); the public tab and consent gate behave
+  per Batch 169
   w-40/h-9 geometry was updated to w-[200px]/h-11
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
