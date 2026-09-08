@@ -441,6 +441,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 213 | yunjing motion gallery | 已完成；运镜 23 卡画廊实装已通过，详见 [`liblib-canvas-batch213-2026-09-08/`](liblib-canvas-batch213-2026-09-08/)；循环继续 |
 | 214 | yunjing pure launcher | 已完成；运镜菜单纯启动器行为对齐已通过，详见 [`liblib-canvas-batch214-2026-09-09/`](liblib-canvas-batch214-2026-09-09/)；循环继续 |
 | 215 | Effect pill 替换 semantics | 已完成；特效 pill 替换语义对齐已通过，详见 [`liblib-canvas-batch215-2026-09-09/`](liblib-canvas-batch215-2026-09-09/)；循环继续 |
+| 216 | Reference select mode banner | 已完成；参考选择模式横幅实装已通过，详见 [`liblib-canvas-batch216-2026-09-08/`](liblib-canvas-batch216-2026-09-08/)；循环继续 |
 | 209 | Canvas chrome alignment | 已完成；画布 chrome 对齐已通过，详见 [`liblib-canvas-batch209-2026-09-08/`](liblib-canvas-batch209-2026-09-08/)；循环继续 |
 | 210 | Logo dropdown geometry | 已完成；logo 下拉菜单几何对齐已通过，详见 [`liblib-canvas-batch210-2026-09-08/`](liblib-canvas-batch210-2026-09-08/)；循环继续 |
 | 211 | Character library modal re-sample | 已完成；角色库模态重采（尺寸规则开放），详见 [`liblib-canvas-batch211-2026-09-08/`](liblib-canvas-batch211-2026-09-08/)；循环继续 |

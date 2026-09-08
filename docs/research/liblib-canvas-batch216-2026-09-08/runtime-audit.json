@@ -1,0 +1,21 @@
+{
+  "batch": 216,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "banner:closed-initial",
+        "banner:appears",
+        "banner:width-364",
+        "banner:top-center",
+        "banner:text",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

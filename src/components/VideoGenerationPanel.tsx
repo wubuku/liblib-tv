@@ -132,6 +132,8 @@ export function VideoGenerationPanel({
   const [yunjingOpen, setYunjingOpen] = useState(false);
   // Batch 191: 特效库横排（源站 2026-09-08 采样）。
   const [effectsOpen, setEffectsOpen] = useState(false);
+  // Batch 216: 源站直证——参考 pill 进入「选择参考」模式，顶部横幅引导。
+  const [refSelectMode, setRefSelectMode] = useState(false);
   // Batch 191: 特效库展开时覆盖触发器（源站同构）——外部 mousedown 关闭。
   useEffect(() => {
     if (!effectsOpen) return;
@@ -370,6 +372,20 @@ export function VideoGenerationPanel({
                 </div>
               );
             }
+            if (item.label === "参考") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  data-reference-select-trigger
+                  onClick={() => setRefSelectMode(true)}
+                  className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                >
+                  <PillIcon label={item.label} />
+                  {item.label}
+                </button>
+              );
+            }
             return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><PillIcon label={item.label} />{item.label}</button>;
           })}
           {effectsOpen && (
@@ -417,6 +433,19 @@ export function VideoGenerationPanel({
                   </div>
                 </div>
               ))}
+              </div>,
+              document.body,
+            )
+          )}
+          {refSelectMode && (
+            /* Batch 216: 源站直采——参考 pill 进入选择模式，顶部横幅引导
+               「从画布或资产管理选择参考返回节点」（364×56，屏幕顶居中）。 */
+            createPortal(
+              <div
+                data-reference-select-banner
+                className="fixed left-1/2 top-3 z-[80] flex w-[364px] -translate-x-1/2 items-center justify-center rounded-lg bg-[#1d1d1d] px-4 py-3 text-xs text-[#ededed] shadow-[0_10px_28px_rgba(0,0,0,0.45)]"
+              >
+                从画布或资产管理选择参考返回节点
               </div>,
               document.body,
             )

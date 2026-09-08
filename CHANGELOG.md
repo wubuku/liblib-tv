@@ -225,6 +225,12 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - Asset drawer width aligned (Batch 202, source 2026-09-08): the left
   sidebar measures ~280px (clone was 240) while its 画布/资产 tabs, 所有评级
   filter and verbatim empty/counter texts already matched
+- 参考 pill select mode with guidance banner (Batch 216, source
+  2026-09-08): clicking the 参考 pill opens a top-center banner reading
+  从画布或资产管理选择参考返回节点 (364×56, portaled to body); MAJOR
+  correction — earlier mouse clicks at y≈1106 were landing outside the
+  visible viewport, so the 参考/标记 inertness conclusions were partly
+  invalid and remain open for re-verification via JS clicks
 - 展示设置 implemented as the node-type filter menu (Batch 204, source
   2026-09-08): in the drawer's persistent-sidebar form the control opens a
   180×369 menu with ten type options (全部/文本/…/脚本（旧版）) matching
