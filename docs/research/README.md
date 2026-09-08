@@ -437,3 +437,4 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 - A screenshot filename containing `final` is not proof that it still matches the current source.
 | 207 | script-v2 node type | 已完成；script-v2 节点类型与成对创建已通过，详见 [`liblib-canvas-batch207-2026-09-08/`](liblib-canvas-batch207-2026-09-08/)；循环继续 |
 | 208 | script-v2 selected internals | 已完成；script-v2 选中态内部对齐已通过，详见 [`liblib-canvas-batch208-2026-09-08/`](liblib-canvas-batch208-2026-09-08/)；循环继续 |
+| 209 | Canvas chrome alignment | 已完成；画布 chrome 对齐已通过，详见 [`liblib-canvas-batch209-2026-09-08/`](liblib-canvas-batch209-2026-09-08/)；循环继续 |

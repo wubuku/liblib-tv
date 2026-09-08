@@ -1007,6 +1007,8 @@ export default function Home() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             isValidConnection={isValidConnection}
+            /* Batch 209: 源站画布无 attribution（采样 0 实例）。 */
+            proOptions={{ hideAttribution: true }}
             onConnect={onConnect}
             onConnectStart={onConnectStart}
             onConnectEnd={onConnectEnd}

@@ -1,0 +1,20 @@
+{
+  "batch": 209,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "minimap:absent",
+        "attribution:absent",
+        "controls:absent",
+        "background:present",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

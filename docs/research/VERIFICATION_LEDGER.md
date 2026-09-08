@@ -220,6 +220,7 @@ BrowserContext，不写截图。
 | Batch 206 | 空画布芯片点击采样 | `EVIDENCE_RECORDED` | 芯片成对创建 text+script-v2（源站新类型，无连线）；芯片集合随会话变化；script-v2 实装另立批次；源站清零 |
 | Batch 207 | script-v2 节点类型实装 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch207.py` 8 checks；成对创建原子单历史/text 预填剧本/script-v2 350×350 无连线/undo 单次移除；会话发送搁置（挂起+账号残留风险）；100/102/114/205/22/172 回归绿 |
 | Batch 208 | script-v2 选中态内部对齐 | `SCRIPT_RECORDED_PASS` | 悬浮标题条/卡壳 #171717/rounded-xl 直采实装；选中不开面板（与 clone 一致）；batch207 增 floating-header 断言后 9 checks 绿；205/22/100/172 回归绿 |
+| Batch 209 | 画布 chrome 对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch209.py` 5 checks；attribution 隐藏/minimap 默认关/无 controls；22/9/51/172/205 回归绿 |
 | Batch 203 | 所有评级筛选菜单实装 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch203.py` 8 checks；菜单 180×225 六项逐字标签/选 3 更新/重置；batch102 hint 断言迁移后全绿；114/121/172 回归绿 |
 | Batch 201 | 换一批真实 Skill 目录 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch201.py` 7 checks；四批 15 Skill 直采（批 3 三张）+ 环绕；107/199/200/172 回归绿 |
 | Batch 189 | 比例瓦片字形结构对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch189.py` 20 checks；17px 盒 + 1.5px border-current 内框逐比例 px 直采；6/7 格模型依赖假设记为开放问题（clone 维持 175/176 合同）；21/22/155/160/175/176/185/186/188 回归绿 |
