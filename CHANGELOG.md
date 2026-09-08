@@ -254,6 +254,11 @@ FrameOS fixes, coverage matrix and regression sweeps).
   1304×731 and batch111's geometry assertions were updated; the video
   panel's 角色库 pill now opens the left-sidebar character panel matching
   the source
+- yunjing menu rebuilt as a 23-card motion gallery (Batch 213, source
+  2026-09-08): the 运镜 pill now opens a 799px-wide four-column card grid
+  with remote webp thumbnails (tool/movement/N.webp), centered names and
+  hover favorite buttons — replacing the 12-item clone-shaped text list;
+  batch146's preset assertions migrated to the gallery
 - Canvas chrome aligned (Batch 209, source 2026-09-08): the source canvas
   renders no minimap, no controls and no react-flow attribution — only
   background dots; the clone's attribution is now hidden via proOptions and
