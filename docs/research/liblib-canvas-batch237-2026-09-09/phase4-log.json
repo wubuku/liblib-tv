@@ -1,0 +1,24 @@
+{
+  "stages": [
+    {
+      "name": "p4-after-cleanup",
+      "t": "06:35:40"
+    }
+  ],
+  "clean0": 0,
+  "trigger_clicks": [
+    {
+      "target": "Seedance 2.5",
+      "trig": [
+        1306.4329833984375,
+        2205.047607421875,
+        117.0548095703125,
+        32,
+        "2.0 Fast"
+      ]
+    }
+  ],
+  "credits_25_auto_5s": "110",
+  "params_chip": null,
+  "cleanup_final": 0
+}

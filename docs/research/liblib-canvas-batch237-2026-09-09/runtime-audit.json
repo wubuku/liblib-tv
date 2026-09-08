@@ -1,0 +1,30 @@
+{
+  "batch": 237,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "firstframe:mode-全能参考",
+        "firstframe:settings",
+        "firstframe:credits-230",
+        "firstframe:chip-selected",
+        "fast:trigger-label",
+        "fast:credits-110",
+        "fast:2-resolutions",
+        "fast:only-480-720",
+        "fast:720p-selected",
+        "vip:credits-135",
+        "vip:4-resolutions",
+        "clamp:4k-to-1080p",
+        "clamp:credits-230",
+        "clamp:1080p-to-720p",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

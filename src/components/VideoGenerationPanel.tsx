@@ -26,7 +26,7 @@ import type {
 } from "@/store/canvasStore";
 
 type MenuName = "model" | "mode" | "params" | "advanced" | null;
-type VideoMode = "omnireference" | "image-reference" | "long-video";
+type VideoMode = "omnireference" | "image-reference" | "long-video" | "first-frame";
 
 interface VideoGenerationPanelProps {
   zoom: number;
@@ -91,7 +91,9 @@ const modelItems = [
 
 /* Batch 175: 源站模式菜单实采（2026-09-07，空节点）——仅 5 项入菜单，
    空节点下只有 文生视频 可用；超长视频/视频编辑不再出现在菜单中，
-   仅作为 mode 标签查找项保留（长视频入口走节点卡尝试芯片）。 */
+   仅作为 mode 标签查找项保留（长视频入口走节点卡尝试芯片）。
+   Batch 237: 首帧生成视频芯片 → 面板模式触发器显示 全能参考（源站
+   2026-09-09 直采），以 inMenu:false 的 first-frame 查找项承载。 */
 const modeItems = [
   { id: "text", label: "文生视频", disabled: false },
   { id: "omnireference", label: "全能参考", disabled: true },
@@ -100,6 +102,7 @@ const modeItems = [
   { id: "image-reference", label: "图片参考", disabled: true },
   { id: "video-edit", label: "视频编辑", disabled: true, inMenu: false },
   { id: "long-video", label: "超长视频", disabled: true, inMenu: false, badge: "Beta" },
+  { id: "first-frame", label: "全能参考", disabled: true, inMenu: false },
 ] as const;
 
 export function VideoGenerationPanel({
@@ -164,14 +167,16 @@ export function VideoGenerationPanel({
   const durationMin = isLongRange ? 30 : 4;
   const durationMax = isLongRange ? 300 : 30;
   // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230。
-  // Batch 236: 源站 2026-09-09 模型对照采样——2.0 VIP·Auto·15s·1个=405（27/s）、
-  // 2.5·Auto·15s·1个=690（46/s）：Auto 溢价仅存在于 2.5。Batch 130 的
-  // 「比例影响积分」结论早于 Batch 176 发现的「长芯片静默切模型 2.5」，
-  // 其 Auto=230 读数按 2.5 态解释后与全部 5 个数据点自洽
-  // （16:9 恒 27/s；Auto 在 2.5 为 46/s、在 2.0 系为 27/s）——证据级推断。
+  // Batch 236/237: 源站 2026-09-09 模型对照采样——2.0 VIP·Auto·15s=405（27/s）、
+  // 2.5·Auto·15s=690（46/s）、2.0 Fast VIP·Auto·5s=110（22/s）；且 Fast VIP 下
+  // 16:9 与 Auto 同价（110，同轮 A/B）——模型内比例不改变单价，定价为
+  // **模型平价率**。Batch 130 的「比例影响积分」结论早于 Batch 176 发现的
+  // 「长芯片静默切模型 2.5」，其两次读数按 2.0 态（135）与 2.5 态（230）解释后
+  // 与全部数据点自洽。16:9 恒 27/s 的合并式保留 batch149/151 默认态合同
+  // （2.5·16:9·5s 源站直读未采得，SOURCE_UNKNOWN）——证据级推断。
   const credits = isLongVideo
     ? duration * 49
-    : duration * count * (ratio === "16:9" || model !== "2.5" ? 27 : 46);
+    : duration * count * (ratio === "16:9" || model !== "2.5" ? (model === "2.0 Fast VIP" ? 22 : 27) : 46);
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
   const modeLabel = isContinuation
@@ -196,6 +201,12 @@ export function VideoGenerationPanel({
       setModel("2.5");
       setRatio("Auto");
       setDuration(300);
+    } else if (attempt === "首帧生成视频") {
+      // Batch 237: 源站 2026-09-09 直采——首帧芯片后模式触发器显示 全能参考、
+      // Auto·720P·5s·1个、积分 230（2.5·Auto·5s）。
+      setMode("first-frame");
+      setRatio("Auto");
+      setDuration(5);
     } else if (attempt !== null) {
       setRatio("Auto");
       setDuration(5);
@@ -239,10 +250,15 @@ export function VideoGenerationPanel({
       setShowProcess(false);
       setSubmitted(false);
     }
-    // Batch 236: 4K 仅出现在 2.0 VIP 的清晰度列表（同轮对照采样）；
-    // 切离 2.0 VIP 时的 4K 钳制为 CLONE_DECISION（源站未采样）。
-    if (resolution === "4K" && nextModel !== "2.0 VIP") {
-      setResolution("1080P");
+    // Batch 236/237: 清晰度列表随模型（4K 仅 2.0 VIP；Fast VIP 仅 480P/720P）。
+    // 目标列表不含当前清晰度时钳制到不高于原选择的最高项（CLONE_DECISION，
+    // 源站仅直证列表差异，未采样切换时的钳制行为）。
+    const nextResolutions = MODEL_RESOLUTIONS[nextModel] ?? DEFAULT_RESOLUTIONS;
+    if (!nextResolutions.includes(resolution)) {
+      const rank = (value: string) => RESOLUTION_ORDER.indexOf(value);
+      const current = rank(resolution);
+      const candidates = nextResolutions.filter((value) => rank(value) <= current);
+      setResolution(candidates[candidates.length - 1] ?? nextResolutions[0]);
     }
     setModel(nextModel);
     setMenu(null);
@@ -818,6 +834,17 @@ function ModeMenu({ mode, onSelect }: { mode: VideoMode; onSelect: (mode: VideoM
   );
 }
 
+// Batch 236/237: 源站 2026-09-09 同轮对照——清晰度列表随模型：
+// 2.0 VIP 4 项含 4K（p3）、2.5 3 项（p6）、2.0 Fast VIP 仅 480P/720P 2 项；
+// 其它模型族未采样（SOURCE_UNKNOWN），按 3 项缺省。
+const MODEL_RESOLUTIONS: Record<string, string[]> = {
+  "2.5": ["480P", "720P", "1080P"],
+  "2.0 VIP": ["480P", "720P", "1080P", "4K"],
+  "2.0 Fast VIP": ["480P", "720P"],
+};
+const DEFAULT_RESOLUTIONS = ["480P", "720P", "1080P"];
+const RESOLUTION_ORDER = ["480P", "720P", "1080P", "4K"];
+
 interface ParamsMenuProps {
   model: string; ratio: string; resolution: string; duration: number; durationMin: number; durationMax: number; audio: boolean; count: number; isLongVideo: boolean;
   onRatio: (value: string) => void; onResolution: (value: string) => void; onDuration: (value: number) => void; onAudio: (value: boolean) => void; onCount: (value: number) => void;
@@ -827,9 +854,7 @@ function ParamsMenu({ model, ratio, resolution, duration, durationMin, durationM
   /* Batch 190: 模型切换复测（2.5→2.0 双向直采）——普通/长模式均为 7 格含
      Auto（5 列），Batch 176 的「长 7/普 6」分割废止；Auto 仅在长模式选中。 */
   const ratios = ["Auto", "16:9", "4:3", "1:1", "3:4", "9:16", "21:9"];
-  /* Batch 236: 源站 2026-09-09 同轮对照——4K 仅出现在 2.0 VIP 的清晰度
-     列表（4 项），2.5 为 3 项；其它模型族未采样（SOURCE_UNKNOWN）。 */
-  const resolutions = model === "2.0 VIP" ? ["480P", "720P", "1080P", "4K"] : ["480P", "720P", "1080P"];
+  const resolutions = MODEL_RESOLUTIONS[model] ?? DEFAULT_RESOLUTIONS;
 
   return (
     <div
@@ -866,7 +891,7 @@ function ParamsMenu({ model, ratio, resolution, duration, durationMin, durationM
 
       <section className="mt-3">
         <p className="mb-2 text-xs text-[#8a8a8a]">清晰度</p>
-        <div className={cn("grid gap-1 rounded-lg bg-black/20 p-0.5", model === "2.0 VIP" ? "grid-cols-4" : "grid-cols-3")}>
+        <div className={cn("grid grid-cols-3 gap-1 rounded-lg bg-black/20 p-0.5", resolutions.length >= 4 && "grid-cols-4")}>
           {resolutions.map((item) => (
             <button
               key={item}
