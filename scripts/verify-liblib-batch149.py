@@ -5,7 +5,8 @@
 Source evidence: liblib-projects-canvas 2026-09-07 re-sample (external Chrome CDP):
 - 「高级设置」heading + vertical switch rows (h≈36, label left, switch right-aligned)
 - generation footer trigger displays abbreviated model name "2.0" (Seedance 2.0 VIP)
-- credits data point: 2.0 / 16:9 / 720P / 5s / 1个 → 135
+- credits data point (Batch 238 migration): 2.5 / 16:9 / 720P / 5s / 1个 → 230
+  (model flat rate 46/s; the historical 135 reading belongs to 2.0 VIP at 27/s)
 - reference slots 48x55 cursor-grab
 """
 
@@ -84,9 +85,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(200)
     check("model:menu-closes", page.locator("[data-video-model-menu]").count() == 0)
 
-    # 源站 2026-09-07 数据点：2.0 / 16:9 / 720P / 5s / 1个 → 135 积分。
+    # Batch 238 迁移：源站 2026-09-09 决定性 A/B（2.5·16:9·5s = 230 = 2.5·Auto·5s）
+    # 证明定价为模型平价率（2.5→46/s）；batch130 的 135 读数归属 2.0 VIP 态
+    # （27×5），clone 默认模型 2.5 的 16:9·5s 源站真值为 230。
     credits = vg.locator("[data-video-credits]")
-    check("credits:default-135", credits.inner_text().strip().endswith("135"))
+    check("credits:default-230", credits.inner_text().strip().endswith("230"))
 
     # 高级设置纵向列：标题 + 3 行（label 左 / 开关右），行高约 36。
     section = vg.locator("[data-video-advanced-inline]")

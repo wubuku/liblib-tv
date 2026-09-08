@@ -90,8 +90,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("credits:muted-color", cstyle["color"] in ("rgb(154, 154, 154)", "rgb(154,154,154)"))
     check("credits:right-aligned", cstyle["rightGap"] <= 14 or cstyle["justify"] == "flex-end")
 
-    # 积分公式仍成立：默认 5s/1个/16:9 → 135（源站 2026-09-07 数据点）。
-    check("credits:135", credits.inner_text().strip().endswith("135"))
+    # Batch 238 迁移：默认态 5s/1个/16:9 → 230（模型平价率 2.5→46/s，
+    # 源站 2026-09-09 决定性 A/B；135 读数归属 2.0 VIP 态 27×5）。
+    check("credits:230", credits.inner_text().strip().endswith("230"))
 
     check("errors:empty", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

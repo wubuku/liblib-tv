@@ -1,0 +1,26 @@
+{
+  "batch": 238,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "default:credits-230",
+        "ratio:21x9-credits-230",
+        "ratio:169-credits-230",
+        "mini:trigger-label",
+        "mini:credits-80",
+        "mini:2-resolutions",
+        "mini:only-480-720",
+        "vip:credits-135",
+        "back25:credits-230",
+        "fast:credits-110",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

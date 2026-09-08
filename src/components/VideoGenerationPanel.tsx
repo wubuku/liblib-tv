@@ -166,17 +166,15 @@ export function VideoGenerationPanel({
   const isLongRange = isLongVideo || attempt === "5分钟超长视频";
   const durationMin = isLongRange ? 30 : 4;
   const durationMax = isLongRange ? 300 : 30;
-  // Batch 131: 源站 2026-09-06 数据点——16:9·5s·1个=135、Auto·5s·1个=230。
-  // Batch 236/237: 源站 2026-09-09 模型对照采样——2.0 VIP·Auto·15s=405（27/s）、
-  // 2.5·Auto·15s=690（46/s）、2.0 Fast VIP·Auto·5s=110（22/s）；且 Fast VIP 下
-  // 16:9 与 Auto 同价（110，同轮 A/B）——模型内比例不改变单价，定价为
-  // **模型平价率**。Batch 130 的「比例影响积分」结论早于 Batch 176 发现的
-  // 「长芯片静默切模型 2.5」，其两次读数按 2.0 态（135）与 2.5 态（230）解释后
-  // 与全部数据点自洽。16:9 恒 27/s 的合并式保留 batch149/151 默认态合同
-  // （2.5·16:9·5s 源站直读未采得，SOURCE_UNKNOWN）——证据级推断。
+  // Batch 236/237/238: 源站 2026-09-09 决定性 A/B（t4 截图）——2.5·16:9·5s = 230
+  // = 2.5·Auto·5s：模型内比例不改变单价，定价为**模型平价率 × 时长 × 数量**：
+  // 2.5→46/s、2.0 VIP→27/s（405/15s）、2.0 Fast VIP→22/s（110/5s 双比例）、
+  // 2.0 Mini→16/s（80/5s）；长视频管线恒 49/s（14700/300s）。Batch 130 的
+  // 16:9·5s=135 归属 2.0 VIP 态（27×5 精确吻合）——「比例影响积分」结论废止，
+  // 该读数是模型混淆。其余模型族未采样（SOURCE_UNKNOWN），按 27/s 缺省。
   const credits = isLongVideo
     ? duration * 49
-    : duration * count * (ratio === "16:9" || model !== "2.5" ? (model === "2.0 Fast VIP" ? 22 : 27) : 46);
+    : duration * count * (MODEL_RATES[model] ?? 27);
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
   const modeLabel = isContinuation
@@ -834,16 +832,28 @@ function ModeMenu({ mode, onSelect }: { mode: VideoMode; onSelect: (mode: VideoM
   );
 }
 
-// Batch 236/237: 源站 2026-09-09 同轮对照——清晰度列表随模型：
-// 2.0 VIP 4 项含 4K（p3）、2.5 3 项（p6）、2.0 Fast VIP 仅 480P/720P 2 项；
-// 其它模型族未采样（SOURCE_UNKNOWN），按 3 项缺省。
+// Batch 236/237/238: 源站 2026-09-09 同轮对照——清晰度列表随模型：
+// 2.0 VIP 4 项含 4K（p3）、2.5 3 项（p6）、2.0 Fast VIP 仅 480P/720P 2 项、
+// 2.0 Mini 仅 480P/720P 2 项；其它模型族未采样（SOURCE_UNKNOWN），按 3 项缺省。
 const MODEL_RESOLUTIONS: Record<string, string[]> = {
   "2.5": ["480P", "720P", "1080P"],
   "2.0 VIP": ["480P", "720P", "1080P", "4K"],
   "2.0 Fast VIP": ["480P", "720P"],
+  "2.0 Mini": ["480P", "720P"],
 };
 const DEFAULT_RESOLUTIONS = ["480P", "720P", "1080P"];
 const RESOLUTION_ORDER = ["480P", "720P", "1080P", "4K"];
+
+// Batch 238: 源站 2026-09-09 决定性 A/B 直采——模型平价率（积分/s/个）：
+// 2.5→46（230/5s，16:9 与 Auto 同价）、2.0 VIP→27（405/15s）、
+// 2.0 Fast VIP→22（110/5s 双比例）、2.0 Mini→16（80/5s）；长视频恒 49。
+// 未采样模型族按 27/s 缺省（SOURCE_UNKNOWN）。
+const MODEL_RATES: Record<string, number> = {
+  "2.5": 46,
+  "2.0 VIP": 27,
+  "2.0 Fast VIP": 22,
+  "2.0 Mini": 16,
+};
 
 interface ParamsMenuProps {
   model: string; ratio: string; resolution: string; duration: number; durationMin: number; durationMax: number; audio: boolean; count: number; isLongVideo: boolean;
