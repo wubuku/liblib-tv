@@ -1,0 +1,35 @@
+{
+ "shellCls": "node-shell relative",
+ "shellStyle": "overflow: visible; width: fit-content;",
+ "children": [
+  {
+   "tag": "DIV",
+   "cls": "node-floating-ui transition-[transform,opacity] duration-150 ease-out absolute l",
+   "w": 759,
+   "h": 24,
+   "text": "文本节点 2"
+  },
+  {
+   "tag": "STYLE",
+   "cls": "",
+   "w": 0,
+   "h": 0,
+   "text": ".markdown-content p { margin: 0 0 0.5em; }\n  .mark"
+  },
+  {
+   "tag": "DIV",
+   "cls": "group overflow-visible rounded-xl",
+   "w": 759,
+   "h": 759,
+   "text": "尝试：自己编写内容文生视频图片反推提示词文字生音乐"
+  },
+  {
+   "tag": "DIV",
+   "cls": "",
+   "w": 759,
+   "h": 0,
+   "text": "写下你想讲的故事、场景或角色设定。例如：一个来自未来的机器人，在城市屋顶看星星。GVLM 3.16"
+  }
+ ],
+ "allText": "文本节点 2\n  .markdown-content p { margin: 0 0 0.5em; }\n  .markdown-content h1 { font-size: 1.5em; font-weight: 700; margin: 0 0 0.5em; }\n  .markdown-content h2 { font-size: 1.25em; font-weight: 600; margin: 0 0 0.5em; }\n  .markdown-content h3 { font-size: 1.1em; font-weight: 600; margin: 0 0 0.5em; }\n "
+}

@@ -1,29 +1,25 @@
-# Batch 218 — 标记选择模式横幅重采：蓝色模式条实装
+# Batch 218 — text 节点编辑态采样（证据批）
 
-## 源站事实（选中流程截图 + `source-mark-banner-style.json` 存档）
+## 源站事实（`source-text-node-shell.json` / 截图存档）
 
-- 标记选择模式的横幅为**蓝色模式条**（非纯文本）：316×56 顶部居中，
-  蓝底圆角（#1F6DFF 系），含魔棒图标方块、标题「元素选择模式」、
-  副题「点击图片选择局部元素」、**「返回节点」按钮**与 **× 关闭**。
-- 点选图片节点后进入的流程：横幅保持显示（含返回节点/×），图片被
-  高亮选中——元素选择确权未采样（本次图片节点为空态）。
-- clone 原横幅为深底纯文本一行——与源站蓝色模式条不符。
+- text 节点结构（759×759，`node-shell relative overflow:visible width:fit-content`）：
+  1. **悬浮标题条**（759×24）：文档图标 +「文本节点 2」（zoom 补偿）
+  2. **STYLE 元素**：markdown-content CSS（p/h1/h2/h3 样式规则）
+  3. **主内容区**（`group overflow-visible rounded-xl` 759×759）：
+     - 「尝试:」标签
+     - **5 个操作按钮**：自己编写内容 / 文生视频 / 图片反推提示词 / 文字生音乐 / GVLM 3.1
+     - markdown 渲染内容
+- **无 textarea**：text 节点为 markdown 展示块 + 操作按钮，不是 textarea 编辑器
+- 无连线
 
-## 实施
+## 与 clone 对照
 
-- `data-mark-select-banner` 重构：`w-[316px] rounded-2xl bg-[#1F6DFF]
-  p-3 text-white`，含魔棒图标方块、标题/副题两行、`data-mark-select-
-  return`「返回节点」按钮、× 关闭（`get_by_label("关闭")`）。
-- batch217 验证器迁移：横幅结构断言（316 宽/顶部居中/双行文案/
-  返回节点按钮/× 关闭）。
+- clone TextNode 需对齐为：markdown 展示块 + 尝试区按钮组
+- 关键差异：源站 text 节点是 **markdown 渲染 + 按钮组**，非编辑器
+- 「尝试:」按钮组含 AI 功能入口（文生视频/图片反推/文字生音乐/GVLM 3.1）
 
-## 验收
+## 处置
 
-- `verify-liblib-batch218.py`：10 checks（316 宽/顶部居中/双行文案/
-  返回节点按钮/× 关闭/蓝色底/魔棒图标/0 page error）。
-- batch217 迁移后 8 checks 绿（含浮层断言）。
-- 回归绿：216 / 215 / 213 / 22 / 172。
-- `npm run check`：0 errors（8 warnings 基线）；docs check 通过。
-- 不证明：蓝色精确色值（截图目测 #1F6DFF 系）；点选图片局部后的
-  确权交互（空态图片未采样）。
-- 源站测试残留清理：采样节点已删（0 残留）。
+- 证据批：text 节点结构已完整采样（JSON + 截图），clone 实装另立批次
+  （需要 markdown 渲染 + 尝试按钮组实装）。
+- 源站画布已清零。

@@ -1,0 +1,17 @@
+{
+ "cls": "react-flow__node react-flow__node-text nopan selected selectable draggable",
+ "box": [
+  1162,
+  287,
+  759,
+  759
+ ],
+ "textareas": [],
+ "buttons": [
+  "自己编写内容",
+  "文生视频",
+  "图片反推提示词",
+  "文字生音乐",
+  "GVLM 3.1"
+ ]
+}

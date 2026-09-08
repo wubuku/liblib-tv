@@ -1,0 +1,13 @@
+{
+ "wrapperCls": "",
+ "wrapperStyle": "",
+ "children": [
+  {
+   "tag": "DIV",
+   "cls": "node-shell relative",
+   "w": 759,
+   "h": 759,
+   "text": "文本节点 2\n  .markdown-content p { margin: 0"
+  }
+ ]
+}
