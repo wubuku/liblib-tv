@@ -1,0 +1,124 @@
+{
+  "models": {
+    "Minimax H3 Max": {
+      "clicked": true,
+      "trigger": "Minimax H3 Max",
+      "switched": true,
+      "credits": "60"
+    },
+    "Minimax H3": {
+      "clicked": true,
+      "trigger": "Minimax H3 Max",
+      "switched": false
+    },
+    "Wan 3.0 Prime": {
+      "clicked": true,
+      "trigger": "Wan 3.0 Prime",
+      "switched": true,
+      "credits": "45"
+    },
+    "Wan 3.0": {
+      "clicked": true,
+      "trigger": "Wan 3.0 Prime",
+      "switched": false
+    },
+    "Wan 2.6": {
+      "clicked": true,
+      "trigger": "Wan 2.6",
+      "switched": true,
+      "credits": null
+    },
+    "Wan 2.7": {
+      "clicked": true,
+      "trigger": "Wan 2.7",
+      "switched": true,
+      "credits": "65"
+    },
+    "Kling O3": {
+      "clicked": true,
+      "trigger": "Kling O3",
+      "switched": true,
+      "credits": "55"
+    },
+    "Kling 3.0 Turbo": {
+      "clicked": true,
+      "trigger": "Kling 3.0 Turbo",
+      "switched": true,
+      "credits": "60"
+    },
+    "Kling 3.0": {
+      "clicked": true,
+      "trigger": "Kling 3.0 Turbo",
+      "switched": false
+    },
+    "Vidu Q2": {
+      "clicked": true,
+      "trigger": "Vidu Q2",
+      "switched": true,
+      "credits": "40",
+      "resolutions": []
+    },
+    "Vidu Q3 Pro": {
+      "clicked": true,
+      "trigger": "Vidu Q3 Pro",
+      "switched": true,
+      "credits": "50"
+    },
+    "Hailuo 2.3": {
+      "clicked": true,
+      "trigger": "Hailuo 2.3 Fast",
+      "switched": true,
+      "credits": "24"
+    },
+    "Hailuo 02": {
+      "clicked": true,
+      "trigger": "Hailuo 02",
+      "switched": true,
+      "credits": "36"
+    },
+    "Seedance1.5 Pro": {
+      "clicked": true,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": true,
+      "credits": "90",
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ]
+    },
+    "Seedance 1.0 Pro": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    },
+    "Seedance 1.0 Lite": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    },
+    "Happy Horse 1.1": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    },
+    "Pixverse V5.5": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    },
+    "OmniHuman 1.5": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    },
+    "Style Video": {
+      "clicked": false,
+      "trigger": "16:9 · 1080P · 5s · 1个 ·",
+      "switched": false
+    }
+  },
+  "stages": [],
+  "clean0": 0,
+  "baseline_credits": "230"
+}

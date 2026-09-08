@@ -1,0 +1,31 @@
+{
+  "batch": 240,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "h3max:credits-60",
+        "wan3prime:credits-45",
+        "klingo3:credits-55",
+        "viduq2:credits-40",
+        "hailuo02:credits-36",
+        "hailuofast:credits-24",
+        "hailuofast:15s-credits-72",
+        "s15:trigger-label",
+        "s15:default-1080p",
+        "s15:credits-90",
+        "s15:720p-credits-40",
+        "s15:back-1080p-credits-90",
+        "s10pro:default-1080p-kept",
+        "s10pro:credits-75",
+        "back25:credits-230",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

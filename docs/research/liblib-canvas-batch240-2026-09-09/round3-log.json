@@ -1,0 +1,122 @@
+{
+  "models": {
+    "Seedance1.5 Pro (current)": {
+      "trigger": "Seedance1.5 Pro",
+      "mode": "图生视频",
+      "chip": "16:9 · 1080P · 5s · 1个 ·",
+      "credits": "90",
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ],
+      "credits_720p": "40",
+      "chip_720p": "16:9 · 720P · 5s · 1个 ·",
+      "credits_back_1080p": "90"
+    },
+    "Minimax H3": {
+      "clicked": true,
+      "trigger": "Minimax H3",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits": "110"
+    },
+    "Wan 3.0": {
+      "clicked": true,
+      "trigger": "Wan 3.0 Prime",
+      "switched": true,
+      "mode": "全能参考",
+      "chip": null,
+      "credits": "90"
+    },
+    "Kling 3.0": {
+      "clicked": true,
+      "trigger": "Kling 3.0",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits": "55"
+    },
+    "Hailuo 2.3": {
+      "clicked": true,
+      "trigger": "Hailuo 2.3",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits": "36"
+    },
+    "Hailuo 2.3 Fast": {
+      "clicked": true,
+      "trigger": "Hailuo 2.3 Fast",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": null,
+      "credits": "24"
+    },
+    "Seedance 1.0 Pro": {
+      "clicked": true,
+      "trigger": "Seedance 1.0 Pro",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": "16:9 · 1080P · 5s · 1个",
+      "credits": "75",
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ]
+    },
+    "Seedance 1.0 Lite": {
+      "clicked": true,
+      "trigger": "Seedance 1.0 Lite",
+      "switched": true,
+      "mode": "图生视频",
+      "chip": "16:9 · 1080P · 5s · 1个",
+      "credits": "30",
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ]
+    },
+    "Happy Horse 1.1": {
+      "clicked": true,
+      "trigger": "Happy Horse 1.1",
+      "switched": true,
+      "mode": "首帧",
+      "chip": null,
+      "credits": "100"
+    },
+    "Pixverse V5.5": {
+      "clicked": true,
+      "trigger": null,
+      "switched": false
+    },
+    "Pixverse V5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "OmniHuman 1.5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Style Video": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Wan 2.6": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Vidu Q2": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    }
+  }
+}

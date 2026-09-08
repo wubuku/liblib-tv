@@ -174,7 +174,13 @@ export function VideoGenerationPanel({
   // 该读数是模型混淆。其余模型族未采样（SOURCE_UNKNOWN），按 27/s 缺省。
   const credits = isLongVideo
     ? duration * 49
-    : duration * count * (MODEL_RATES[model] ?? 27);
+    : Math.round(
+        duration
+        * count
+        * (resolution === "1080P"
+          ? (MODEL_RATES_1080P[model] ?? MODEL_RATES[model] ?? 27)
+          : (MODEL_RATES[model] ?? 27)),
+      );
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
   const modeLabel = isContinuation
@@ -257,6 +263,12 @@ export function VideoGenerationPanel({
       const current = rank(resolution);
       const candidates = nextResolutions.filter((value) => rank(value) <= current);
       setResolution(candidates[candidates.length - 1] ?? nextResolutions[0]);
+    }
+    // Batch 240: 模型默认清晰度——切入 Seedance 1.5 Pro 即切 1080P（源站
+    // 观察值）；其余模型无缺省定义时保持当前清晰度（钳制规则见上）。
+    const defaultResolution = MODEL_DEFAULT_RESOLUTIONS[nextModel];
+    if (defaultResolution !== undefined && nextResolutions.includes(defaultResolution)) {
+      setResolution(defaultResolution);
     }
     setModel(nextModel);
     setMenu(null);
@@ -654,7 +666,7 @@ export function VideoGenerationPanel({
             <button data-video-model-trigger data-video-continuation-locked={isContinuation || undefined} type="button" disabled={isContinuation} onClick={() => setMenu(menu === "model" ? null : "model")} className="flex h-8 w-auto min-w-[88px] shrink-0 items-center justify-between gap-1 rounded-lg px-2 py-1 hover:bg-white/[0.06] disabled:cursor-default disabled:hover:bg-transparent">
               {/* Batch 149: 源站触发器显示缩写名（Seedance 2.0 VIP → 2.0）。 */}
               {/* Batch 164: 源站触发器类 min-w-[88px] justify-between、13px 常规字重（2026-09-07 链采样）。 */}
-              <span className="truncate text-[13px]">{model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="shrink-0 text-[#777]" />
+              <span className="truncate text-[13px]">{MODEL_TRIGGER_LABELS[model] ?? model.replace(/ VIP$/, "")}</span><ChevronDown size={12} className="shrink-0 text-[#777]" />
             </button>
             {menu === "model" && <ModelMenu model={model} onSelect={selectModel} />}
           </div>
@@ -859,15 +871,47 @@ const MODEL_RESOLUTIONS: Record<string, string[]> = {
 const DEFAULT_RESOLUTIONS = ["480P", "720P", "1080P"];
 const RESOLUTION_ORDER = ["480P", "720P", "1080P", "4K"];
 
-// Batch 238: 源站 2026-09-09 决定性 A/B 直采——模型平价率（积分/s/个）：
+// Batch 238/240: 源站 2026-09-09 直采——模型平价率（积分/s/个，720P 基准）：
 // 2.5→46（230/5s，16:9 与 Auto 同价）、2.0 VIP→27（405/15s）、
 // 2.0 Fast VIP→22（110/5s 双比例）、2.0 Mini→16（80/5s）；长视频恒 49。
+// Batch 240 补采（同轮 16:9·720P·5s·1个 受控读数）：Minimax H3 Max→12、
+// Wan 3.0 Prime→9、Wan 2.7→13、Kling O3→11、Kling 3.0 Turbo→12、
+// Vidu Q2→8、Vidu Q3 Pro→10、Hailuo 2.3 Fast→4.8（24/5s）、Hailuo 02→7.2（36/5s）。
 // 未采样模型族按 27/s 缺省（SOURCE_UNKNOWN）。
 const MODEL_RATES: Record<string, number> = {
   "2.5": 46,
   "2.0 VIP": 27,
   "2.0 Fast VIP": 22,
   "2.0 Mini": 16,
+  "Minimax H3 Max": 12,
+  "Wan 3.0 Prime": 9,
+  "Wan 2.7": 13,
+  "Kling O3": 11,
+  "Kling 3.0 Turbo": 12,
+  "Vidu Q2": 8,
+  "Vidu Q3 Pro": 10,
+  "Hailuo 2.3 Fast": 4.8,
+  "Hailuo 02": 7.2,
+  "Seedance 1.5 Pro": 8,
+};
+// Batch 240: 分辨率影响积分（Seedance 1.5 Pro 同会话 A/B：720P=40 vs
+// 1080P=90，切回可逆）——1080P 受控读数单列表；480P 及其它模型×分辨率
+// 组合未采样（SOURCE_UNKNOWN）。
+const MODEL_RATES_1080P: Record<string, number> = {
+  "Seedance 1.5 Pro": 18,
+  "Seedance 1.0 Pro": 15,
+  "Seedance 1.0 Lite": 6,
+};
+// Batch 240: 模型默认清晰度——切入 Seedance 1.5 Pro 即 1080P（观察值）；
+// 其余模型切换保持当前清晰度（2.0 系多轮直证）。
+const MODEL_DEFAULT_RESOLUTIONS: Record<string, string> = {
+  "Seedance 1.5 Pro": "1080P",
+};
+// Batch 240: 触发器缩写特例——Seedance 1.5 Pro 显示「Seedance1.5」
+// （无空格无 Pro）；其余模型显示全名（Minimax H3 Max 等直证），
+// 2.0 系沿用 replace(/ VIP$/) 缩写。
+const MODEL_TRIGGER_LABELS: Record<string, string> = {
+  "Seedance 1.5 Pro": "Seedance1.5",
 };
 
 interface ParamsMenuProps {

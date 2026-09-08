@@ -1,0 +1,67 @@
+{
+  "models": {
+    "Minimax H3": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Wan 3.0": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Kling 3.0": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Hailuo 2.3": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Hailuo 2.3 Fast": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Seedance 1.0 Pro": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Seedance 1.0 Lite": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Happy Horse 1.1": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Pixverse V5.5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Pixverse V5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "OmniHuman 1.5": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    },
+    "Style Video": {
+      "clicked": false,
+      "trigger": null,
+      "switched": false
+    }
+  },
+  "stages": [],
+  "baseline_credits": "90",
+  "baseline_chip": "16:9 · 1080P · 5s · 1个 ·"
+}
