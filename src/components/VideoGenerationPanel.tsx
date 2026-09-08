@@ -458,9 +458,36 @@ export function VideoGenerationPanel({
             createPortal(
               <div
                 data-mark-select-banner
-                className="fixed left-1/2 top-3 z-[80] flex w-[316px] -translate-x-1/2 items-center justify-center rounded-lg bg-[#1d1d1d] px-4 py-3 text-xs text-[#ededed] shadow-[0_10px_28px_rgba(0,0,0,0.45)]"
+                className="fixed left-1/2 top-3 z-[80] flex w-[316px] -translate-x-1/2 items-center gap-4 rounded-2xl bg-[#1F6DFF] p-3 text-white shadow-[var(--canvas-shadow-panel)]"
               >
-                元素选择模式点击图片选择局部元素返回节点
+                {/* Batch 218: 源站横幅样式直采——蓝底圆角 + 魔棒图标 + 标题/副题
+                    + 返回节点按钮 + × 关闭。 */}
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/20">
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20.6 20.6" fill="none">
+                    <path
+                      d="M7.93 6.82q.41-.07.8.08l11 4.5a1.4 1.4 0 0 1 .53 2.2q-.3.36-.74.46l-4.34 1.04-.05.03-.03.05-1.04 4.34a1.4 1.4 0 0 1-2.66.2L6.9 8.74a1.4 1.4 0 0 1 1.03-1.9M12.6 17.9l.75-3.14a1.9 1.9 0 0 1 1.28-1.37l.13-.04 3.14-.75-8.97-3.67zm-8.55-7.82a.9.9 0 0 1 1.3 1.24l-1.9 2a.9.9 0 0 1-1.3-1.24zM.03 5.66a.9.9 0 0 1 1.1-.63l2.9.8a.9.9 0 0 1-.47 1.74l-2.9-.8a.9.9 0 0 1-.63-1.1m12.05-3.51a.9.9 0 0 1 1.24 1.3l-2 1.9a.9.9 0 0 1-1.24-1.3zM5.66.03a.9.9 0 0 1 1.1.63l.8 2.9a.9.9 0 0 1-1.73.48l-.8-2.9a.9.9 0 0 1 .63-1.1"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className="text-[13px] font-medium">元素选择模式</span>
+                  <span className="text-[11px] opacity-90">点击图片选择局部元素</span>
+                </div>
+                <button
+                  type="button"
+                  data-mark-select-return
+                  className="shrink-0 rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white hover:bg-white/30"
+                >
+                  返回节点
+                </button>
+                <button
+                  type="button"
+                  aria-label="关闭"
+                  className="shrink-0 text-white/80 hover:text-white"
+                >
+                  ×
+                </button>
               </div>,
               document.body,
             )

@@ -1,5 +1,5 @@
 {
-  "batch": 217,
+  "batch": 218,
   "results": [
     {
       "viewport": "1440x900",
@@ -9,6 +9,8 @@
         "banner:width-316",
         "banner:top-center",
         "banner:text",
+        "banner:blue-bg",
+        "banner:wand-icon",
         "banner:return-button",
         "banner:close-button",
         "errors:empty"
