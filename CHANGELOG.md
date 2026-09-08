@@ -228,6 +228,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - 剧本 prefill sampling (Batch 219, partial): the text node's full
   markdown prefill content requires edit-mode entry to extract; the clone
   prefill stays 剧本
+- 剧本 prefill markdown extraction deferred (Batch 220): the
+  empty-canvas chip requires the Agent drawer to have been opened first;
+  the full markdown content needs a reliable Agent-drawer window to sample
 - 参考 pill select mode with guidance banner (Batch 216, source
   2026-09-08): clicking the 参考 pill opens a top-center banner reading
   从画布或资产管理选择参考返回节点 (364×56, portaled to body); MAJOR
