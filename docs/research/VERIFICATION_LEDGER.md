@@ -411,3 +411,4 @@ DOM/CSS、视觉布局或 source parity。
 - 被 fixture 阻塞：使用 `BLOCKED_BY_FIXTURE`，记录所需 fixture，不在共享项目试探；
 - 并行 WIP：保留 `PARALLEL_WIP`，待该开发者的脚本、实施记录和验证结果稳定后再升级；
 - 任何文档变更都运行 `python3 scripts/verify-docs.py`，并只提交自己的路径。
+| Batch 226 | 视频节点卡结构采样 | `EVIDENCE_RECORDED` | 源站多轮交互后状态不稳定，wrapper 不可达；零代码改动；画布清零 |

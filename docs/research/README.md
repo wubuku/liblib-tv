@@ -452,3 +452,4 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 210 | Logo dropdown geometry | 已完成；logo 下拉菜单几何对齐已通过，详见 [`liblib-canvas-batch210-2026-09-08/`](liblib-canvas-batch210-2026-09-08/)；循环继续 |
 | 211 | Character library modal re-sample | 已完成；角色库模态重采（尺寸规则开放），详见 [`liblib-canvas-batch211-2026-09-08/`](liblib-canvas-batch211-2026-09-08/)；循环继续 |
 | 212 | Character library modal size rule | 已完成；模态尺寸规则破解与 clone 对齐已通过，详见 [`liblib-canvas-batch212-2026-09-08/`](liblib-canvas-batch212-2026-09-08/)；循环继续 |
+| 226 | Video card structure sampling | 已完成（阻塞记录），详见 [`liblib-canvas-batch226-2026-09-09/`](liblib-canvas-batch226-2026-09-09/)；循环继续 |
