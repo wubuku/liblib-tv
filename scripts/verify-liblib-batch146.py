@@ -73,11 +73,15 @@ def run_desktop(page: Page) -> dict[str, Any]:
     menu = vg.locator("[data-yunjing-menu]")
     check("yunjing:menu-opens", menu.is_visible())
 
-    option_ids = ["push-in", "pull-out", "pan-left", "pan-right", "tilt-up", "tilt-down", "tracking", "crane", "orbit", "zoom-in", "zoom-out", "static"]
+    # Batch 213: 源站运镜菜单直采为 23 运动卡片画廊（固定镜头/跟随拍摄/…/
+    # 手持拍摄，远端 webp 缩略图），替代 12 项文本占位。
+    option_ids = ["movement-01", "movement-02", "movement-12", "movement-23"]
     for oid in option_ids:
         check(f"yunjing:opt:{oid}", menu.locator(f"[data-yunjing-option='{oid}']").count() == 1)
+    check("yunjing:card-count", menu.locator("[data-yunjing-option]").count() == 23)
+    check("yunjing:card-image", menu.locator("[data-yunjing-option='movement-01'] img").count() == 1)
 
-    menu.locator("[data-yunjing-option='push-in']").click()
+    menu.locator("[data-yunjing-option='movement-01']").click()
     page.wait_for_timeout(500)
     check("yunjing:menu-closes", not menu.is_visible())
 
@@ -85,7 +89,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(300)
     check(
         "yunjing:selected",
-        menu.locator("[data-yunjing-option='push-in']").get_attribute("aria-pressed") == "true",
+        menu.locator("[data-yunjing-option='movement-01']").get_attribute("aria-pressed") == "true",
     )
 
 

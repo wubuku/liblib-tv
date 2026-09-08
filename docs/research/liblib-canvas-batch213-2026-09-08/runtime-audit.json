@@ -1,0 +1,23 @@
+{
+  "batch": 213,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:opens",
+        "menu:23-cards",
+        "menu:starts-fixed",
+        "menu:contains-follow",
+        "menu:contains-handheld",
+        "menu:cards-have-images",
+        "menu:closes-on-select",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}\n

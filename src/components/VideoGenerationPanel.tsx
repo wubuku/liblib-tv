@@ -311,38 +311,53 @@ export function VideoGenerationPanel({
                     {item.label}
                   </button>
                   {yunjingOpen && (
-                    <div data-yunjing-menu className="absolute bottom-10 left-0 z-50 w-[280px] rounded-xl border border-white/10 bg-[#292929] p-1.5 shadow-2xl">
-                      <p className="px-2 py-1 text-[11px] text-[#777]">运镜方式</p>
+                    /* Batch 213: 源站运镜菜单直采——23 运动卡片画廊（189×208，
+                       远端 webp 缩略图按 tool/movement/N.webp 顺序、悬停收藏、
+                       名称居中），替代 clone-shaped 12 项文本菜单。 */
+                    <div data-yunjing-menu className="absolute bottom-10 right-0 z-50 grid max-h-[560px] w-[799px] grid-cols-4 gap-2 overflow-y-auto rounded-xl border border-white/10 bg-[#292929] p-2 shadow-2xl">
                       {[
-                        { id: "push-in", label: "推镜", desc: "镜头向主体推进" },
-                        { id: "pull-out", label: "拉镜", desc: "镜头远离主体拉出" },
-                        { id: "pan-left", label: "左摇", desc: "镜头水平向左旋转" },
-                        { id: "pan-right", label: "右摇", desc: "镜头水平向右旋转" },
-                        { id: "tilt-up", label: "上仰", desc: "镜头垂直向上仰视" },
-                        { id: "tilt-down", label: "下俯", desc: "镜头垂直向下俯视" },
-                        { id: "tracking", label: "跟拍", desc: "镜头跟随主体移动" },
-                        { id: "crane", label: "升降", desc: "镜头垂直升降运动" },
-                        { id: "orbit", label: "环绕", desc: "镜头围绕主体环绕" },
-                        { id: "zoom-in", label: "推进", desc: "焦距推近放大主体" },
-                        { id: "zoom-out", label: "拉远", desc: "焦距拉远缩小主体" },
-                        { id: "static", label: "固定", desc: "镜头固定不动" },
+    { id: "movement-01", name: "固定镜头", image: `https://libtv-res.liblib.art/tool/movement/1.webp` },
+    { id: "movement-02", name: "跟随拍摄", image: `https://libtv-res.liblib.art/tool/movement/2.webp` },
+    { id: "movement-03", name: "盘旋抬升", image: `https://libtv-res.liblib.art/tool/movement/3.webp` },
+    { id: "movement-04", name: "盘旋下降", image: `https://libtv-res.liblib.art/tool/movement/4.webp` },
+    { id: "movement-05", name: "镜头上摇", image: `https://libtv-res.liblib.art/tool/movement/5.webp` },
+    { id: "movement-06", name: "镜头下摇", image: `https://libtv-res.liblib.art/tool/movement/6.webp` },
+    { id: "movement-07", name: "镜头左摇", image: `https://libtv-res.liblib.art/tool/movement/7.webp` },
+    { id: "movement-08", name: "镜头右摇", image: `https://libtv-res.liblib.art/tool/movement/8.webp` },
+    { id: "movement-09", name: "镜头上升", image: `https://libtv-res.liblib.art/tool/movement/9.webp` },
+    { id: "movement-10", name: "镜头下降", image: `https://libtv-res.liblib.art/tool/movement/10.webp` },
+    { id: "movement-11", name: "镜头左移", image: `https://libtv-res.liblib.art/tool/movement/11.webp` },
+    { id: "movement-12", name: "镜头右移", image: `https://libtv-res.liblib.art/tool/movement/12.webp` },
+    { id: "movement-13", name: "镜头前推", image: `https://libtv-res.liblib.art/tool/movement/13.webp` },
+    { id: "movement-14", name: "镜头后移", image: `https://libtv-res.liblib.art/tool/movement/14.webp` },
+    { id: "movement-15", name: "变焦推进", image: `https://libtv-res.liblib.art/tool/movement/15.webp` },
+    { id: "movement-16", name: "变焦拉远", image: `https://libtv-res.liblib.art/tool/movement/16.webp` },
+    { id: "movement-17", name: "柯克变焦", image: `https://libtv-res.liblib.art/tool/movement/17.webp` },
+    { id: "movement-18", name: "环绕拍摄", image: `https://libtv-res.liblib.art/tool/movement/18.webp` },
+    { id: "movement-19", name: "滚筒旋转", image: `https://libtv-res.liblib.art/tool/movement/19.webp` },
+    { id: "movement-20", name: "第一视角", image: `https://libtv-res.liblib.art/tool/movement/20.webp` },
+    { id: "movement-21", name: "无人机", image: `https://libtv-res.liblib.art/tool/movement/21.webp` },
+    { id: "movement-22", name: "高空航拍", image: `https://libtv-res.liblib.art/tool/movement/22.webp` },
+    { id: "movement-23", name: "手持拍摄", image: `https://libtv-res.liblib.art/tool/movement/23.webp` },
                       ].map((m) => (
                         <button
                           key={m.id}
                           type="button"
                           data-yunjing-option={m.id}
-                          aria-pressed={yunjingSelection === m.id}
+                          aria-pressed={yunjingSelection === m.name}
                           onClick={() => {
-                            setYunjingSelection(yunjingSelection === m.id ? null : m.id);
+                            setYunjingSelection(yunjingSelection === m.name ? null : m.name);
                             setYunjingOpen(false);
                           }}
-                          className={cn(
-                            "flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-left text-xs transition-colors",
-                            yunjingSelection === m.id ? "bg-[#09caf5]/15 text-[#09caf5]" : "text-[#ccc] hover:bg-white/[0.06]",
-                          )}
+                          className="group flex w-full cursor-pointer flex-col items-center gap-0.5 rounded p-1 transition-colors hover:bg-white/[0.06]"
                         >
-                          <span className="font-medium">{m.label}</span>
-                          {yunjingSelection === m.id && <span className="text-[10px]">✓</span>}
+                          <div className="relative aspect-square w-full overflow-hidden rounded-[3px] bg-neutral-700">
+                            {/* Batch 213: 源站远端 webp 缩略图（tool/movement/N.webp），保持原生 img。 */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img alt={m.name} className="size-full object-cover" loading="lazy" src={m.image} />
+                          </div>
+                          <span className="h-[17px] w-full truncate text-center text-xs text-[#ededed]">{m.name}</span>
+                          {yunjingSelection === m.name && <span className="text-[10px] text-[#09caf5]">✓ 已选</span>}
                         </button>
                       ))}
                     </div>
