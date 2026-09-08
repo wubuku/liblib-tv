@@ -275,6 +275,9 @@ FrameOS fixes, coverage matrix and regression sweeps).
   2026-09-08): the 运镜 pill now opens a 799px-wide four-column card grid
   with remote webp thumbnails (tool/movement/N.webp), centered names and
   hover favorite buttons — replacing the 12-item clone-shaped text list;
+- Full regression sweep confirmed stability (Batch 223, 175 verifiers):
+  155 pass and 20 pre-existing aged/historical failures (zero new
+  regressions from Batches 172-222)
   batch146's preset assertions migrated to the gallery
 - yunjing menu confirmed as a pure launcher (Batch 214, source
   2026-09-08): selected and unselected motion cards render identical

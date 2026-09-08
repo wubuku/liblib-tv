@@ -444,6 +444,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 216 | Reference select mode banner | 已完成；参考选择模式横幅实装已通过，详见 [`liblib-canvas-batch216-2026-09-08/`](liblib-canvas-batch216-2026-09-08/)；循环继续 |
 | 217 | Mark select mode banner | 已完成；标记选择模式横幅实装已通过，详见 [`liblib-canvas-batch217-2026-09-09/`](liblib-canvas-batch217-2026-09-09/)；循环继续 |
 | 218 | Mark select-mode blue card | 已完成；标记选择模式蓝色横幅实装已通过，详见 [`liblib-canvas-batch218-2026-09-09/`](liblib-canvas-batch218-2026-09-09/)；循环继续 |
+| 223 | Full regression sweep | 已完成；175 验证器全量清扫（155 绿/20 归因），详见 HARNESS/LEDGER；循环继续 |
 | 219 | 剧本 prefill sampling | 已完成；剧本预填采样（部分），详见 [`liblib-canvas-batch219-2026-09-09/`](liblib-canvas-batch219-2026-09-09/)；循环继续 |
 | 220 | Prefill markdown extraction | 已完成（阻塞记录），详见 [`liblib-canvas-batch220-2026-09-09/`](liblib-canvas-batch220-2026-09-09/)；循环继续 |
 | 209 | Canvas chrome alignment | 已完成；画布 chrome 对齐已通过，详见 [`liblib-canvas-batch209-2026-09-08/`](liblib-canvas-batch209-2026-09-08/)；循环继续 |
