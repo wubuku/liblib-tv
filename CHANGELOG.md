@@ -248,6 +248,10 @@ FrameOS fixes, coverage matrix and regression sweeps).
   2026-09-08): a floating title bar above the card (doc icon + title at
   top −28px) and a rounded-xl #171717 shell matching
   Surface-Panel-background; selecting the node opens no video panel
+- Canvas chrome aligned (Batch 209, source 2026-09-08): the source canvas
+  renders no minimap, no controls and no react-flow attribution — only
+  background dots; the clone's attribution is now hidden via proOptions and
+  its opt-in minimap default already matched
 - 所有评级 filter menu implemented (Batch 203, source 2026-09-08):
   a 180×225 six-option menu (所有评级/1-5, verbatim labels) replacing the
   local-hint placeholder; batch102's hint assertions migrated to the
