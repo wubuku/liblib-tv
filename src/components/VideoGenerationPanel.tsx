@@ -607,6 +607,21 @@ export function VideoGenerationPanel({
                   />
                 </div>
               </>
+            ) : attempt === "首帧生成视频" ? (
+              <>
+                {/* Batch 239: 源站 2026-09-09 直采——首帧态面板为 参考槽（角标 1）
+                    + 说明文案，无提示词输入框（a1 截图）。槽图为本地图（源站为
+                    自动创建图片节点的示例图内容，CLONE_DECISION）。 */}
+                <div data-video-firstframe-slot className="mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
+                  <div className="relative h-[55px] w-12 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing">
+                    <Image src="/images/storyboard-2.png" alt="首帧参考" fill sizes="48px" className="object-cover" unoptimized />
+                    <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">1</span>
+                  </div>
+                </div>
+                <p data-video-firstframe-hint className="mt-3 shrink-0 px-2 text-[15px] leading-6 text-[#f0f0f0]">
+                  以当前图为首帧生成视频。
+                </p>
+              </>
             ) : (
               <>
                 {/* Batch 160: 源站新建节点无引用时不渲染槽行（工具行直连提示词）。

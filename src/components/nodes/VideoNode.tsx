@@ -601,7 +601,14 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               data-video-attempt={label}
               aria-pressed={attempt === label}
               /* Batch 177: 源站直证同芯片再点不取消（非 toggle），切换需点其它芯片。 */
-              onClick={() => setAttempt(label)}
+              onClick={() => {
+                setAttempt(label);
+                // Batch 239: 源站 2026-09-09 直采——首帧芯片自动创建图片节点
+                // 并连入视频节点（动作内含防重与选中保持守卫）。
+                if (label === "首帧生成视频") {
+                  useCanvasStore.getState().createFirstFrameReference(id);
+                }
+              }}
               className={cn(
                 /* Batch 178: 源站直采——选中标记为背景 white/10%，文字 #f7f7f7
                    两态一致，圆角 rounded-lg，行前 14px 图标（lucide 替代）。

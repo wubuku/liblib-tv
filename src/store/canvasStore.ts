@@ -296,6 +296,7 @@ interface CanvasState {
     options?: DerivedNodeOptions,
   ) => void;
   createStoryScriptPair: () => void;
+  createFirstFrameReference: (videoNodeId: string) => void;
   createVideoContinuation: (
     sourceId: string,
     startSeconds: number,
@@ -1235,6 +1236,59 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ),
         selectedNodeIds: [textNode.id, scriptNode.id],
         selectedNodeId: scriptNode.id,
+        selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  // Batch 239: 源站 2026-09-09 直采——「首帧生成视频」芯片自动创建图片节点
+  // （视频节点左侧）并以边连入视频节点；事务内保持视频节点选中（面板不关），
+  // 单条历史记录；已存在入边图片节点时跳过（芯片重击/面板重挂载防重）。
+  createFirstFrameReference: (videoNodeId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
+    const video = canvas?.nodes.find((node) => node.id === videoNodeId);
+    if (!canvas || !video) return;
+    const hasImageRef = canvas.edges.some((edge) => {
+      if (edge.target !== videoNodeId) return false;
+      return canvas.nodes.find((node) => node.id === edge.source)?.type === "image";
+    });
+    if (hasImageRef) return;
+    const dimensions = getDefaultNodeDimensions("image");
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const videoPosition = getAbsoluteNodePosition(video, nodesById);
+    const imageNode: Node = {
+      id: createNodeId("image"),
+      type: "image",
+      position: {
+        x: videoPosition.x - dimensions.width - 80,
+        y: videoPosition.y,
+      },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: { ...getDefaultNodeData("image"), filename: "素材 - 首帧参考" },
+    };
+    const newEdge: Edge = {
+      id: `e-${imageNode.id}-${videoNodeId}`,
+      source: imageNode.id,
+      target: videoNodeId,
+      sourceHandle: "source",
+      targetHandle: "target",
+      type: "default",
+    };
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? { ...canvas, nodes: [...canvas.nodes, imageNode], edges: [...canvas.edges, newEdge] }
+            : canvas,
+        ),
+        selectedNodeIds: [videoNodeId],
+        selectedNodeId: videoNodeId,
         selectedEdgeIds: [],
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };

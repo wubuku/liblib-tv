@@ -1,0 +1,26 @@
+{
+  "batch": 239,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "graph:one-node-added",
+        "graph:one-edge-added",
+        "graph:video-selected-panel-open",
+        "panel:slot",
+        "panel:slot-48x55",
+        "panel:hint-text",
+        "panel:no-textarea",
+        "panel:mode-全能参考",
+        "graph:edge-image-to-video",
+        "guard:no-duplicate",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
