@@ -447,6 +447,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 223 | Full regression sweep | 已完成；175 验证器全量清扫（155 绿/20 归因），详见 HARNESS/LEDGER；循环继续 |
 | 224 | Left sidebar glyph audit | 已完成；字形审计与稳定性确认，详见 [`liblib-canvas-batch224-2026-09-09/`](liblib-canvas-batch224-2026-09-09/)；循环继续 |
 | 219 | 剧本 prefill sampling | 已完成；剧本预填采样（部分），详见 [`liblib-canvas-batch219-2026-09-09/`](liblib-canvas-batch219-2026-09-09/)；循环继续 |
+| 220 | Stability confirmation | 已完成；42 验证器全绿确认；循环继续 |
 | 220 | Prefill markdown extraction | 已完成（阻塞记录），详见 [`liblib-canvas-batch220-2026-09-09/`](liblib-canvas-batch220-2026-09-09/)；循环继续 |
 | 209 | Canvas chrome alignment | 已完成；画布 chrome 对齐已通过，详见 [`liblib-canvas-batch209-2026-09-08/`](liblib-canvas-batch209-2026-09-08/)；循环继续 |
 | 210 | Logo dropdown geometry | 已完成；logo 下拉菜单几何对齐已通过，详见 [`liblib-canvas-batch210-2026-09-08/`](liblib-canvas-batch210-2026-09-08/)；循环继续 |

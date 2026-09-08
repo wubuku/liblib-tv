@@ -206,6 +206,7 @@ The repository does not currently have a single `npm test` suite. The source can
 | Batch 217 | 标记 pill element-select mode banner sampled (316×56, top-center: 元素选择模式/点击图片选择局部元素/返回节点) — sibling of the 参考 banner; clone implements via markSelectMode + data-mark-select-banner; verify-liblib-batch217.py (6 checks) |
 | Batch 218 | Mark select-mode banner rebuilt to the sampled blue mode card (316px, rounded-2xl #1F6DFF, wand icon tile, title/subtitle lines, 返回节点 button, × close); batch217 banner assertions migrated; mark select-mode flow over an image node recorded (selection confirmation unsampled on an empty image) |
 | Batch 219 | 剧本 prefill sampling (partial) — the text node's textarea only appears in edit mode; the clone prefill stays 剧本 |
+| Batch 220 | Stability confirmation — 42 active verifiers all green, npm run check baseline, zero regressions |
 | Batch 209 | Canvas chrome verified — the source renders NO minimap, NO controls and NO attribution (only background dots); the clone's opt-in minimap already matched and the attribution is now hidden via proOptions; verify-liblib-batch209.py (5 checks) |
 | Batch 210 | Logo dropdown re-sampled (200×190, four 44px rows 回到主页/全部项目/创建新项目/删除项目 with a divider before 创建新项目 — items verbatim per Batch 106/119); clone geometry aligned w-40→w-[200px], rows h-9→h-11; verify-liblib-batch210.py (6 checks) |
 | Batch 224 | Left sidebar iconify glyph audit — all previously aligned glyphs confirmed current, no new unaligned icons found; stability pass |

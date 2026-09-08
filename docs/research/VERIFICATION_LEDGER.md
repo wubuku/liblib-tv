@@ -226,6 +226,7 @@ BrowserContext，不写截图。
 | Batch 217 | 标记选择模式横幅 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch217.py` 6 checks；316×56 顶部居中横幅逐字文案；216/215/213/172/22 回归绿 |
 | Batch 218 | 标记选择模式蓝色横幅 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch218.py` 10 checks；蓝底圆角/魔棒图标/双行文案/返回节点/× 关闭；217 迁移后 8 checks 绿；216/215/213/22/172 回归绿 |
 | Batch 219 | 剧本预填全文采样 | `PARTIAL_EVIDENCE` | text 节点渲染层含 markdown-content 样式，真实 prefill 需编辑态；clone 预填维持「剧本」；源站清零 |
+| Batch 220 | 全量稳定性确认 | `STABILITY_CONFIRMED` | 42 活跃验证器全绿，零回归 |
 | Batch 220 | 剧本预填完整内容采样受阻 | `EVIDENCE_RECORDED` | 空画布芯片依赖 Agent 抽屉已开状态，无头自动采样中难以可靠复现；deferred |
 | Batch 205 | 类型筛选列表联动 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch205.py` 8 checks；十项映射/图片视频互斥过滤/全部恢复；102（14）/114/202/22/172 回归绿 |
 | Batch 211 | 角色库模态重采 | `EVIDENCE_RECORDED` | 模态 1280×710 @1920 直采（clone 1304×731@1440）；尺寸规则两视口不可推导，clone 不动；双页签/公共页签行为与 169 一致 |

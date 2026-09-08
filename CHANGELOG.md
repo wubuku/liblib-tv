@@ -228,6 +228,8 @@ FrameOS fixes, coverage matrix and regression sweeps).
 - 剧本 prefill sampling (Batch 219, partial): the text node's full
   markdown prefill content requires edit-mode entry to extract; the clone
   prefill stays 剧本
+- Stability confirmation (Batch 220): 42 active verifiers all green,
+  zero regressions from Batches 172-219
 - 剧本 prefill markdown extraction deferred (Batch 220): the
   empty-canvas chip requires the Agent drawer to have been opened first;
   the full markdown content needs a reliable Agent-drawer window to sample
