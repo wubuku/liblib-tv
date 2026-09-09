@@ -1,0 +1,14 @@
+{
+ "chips_before": [
+  "5分钟超长视频",
+  "首尾帧生成视频",
+  "首帧生成视频"
+ ],
+ "chips_after_commit": [],
+ "footer_after_commit": {
+  "credits": "135",
+  "chip": "16:9 · 720P · 5s · 1个 ·",
+  "trig": "2.0"
+ },
+ "final": 0
+}
