@@ -1,0 +1,28 @@
+{
+  "batch": 255,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "initial:no-attempt",
+        "initial:no-image-edge",
+        "commit:node-attempt",
+        "commit:image-edge",
+        "commit:slot-present",
+        "destroy:node-attempt-cleared",
+        "destroy:image-edge-removed",
+        "destroy:slot-gone",
+        "recommit:node-attempt",
+        "recommit:image-edge",
+        "undo:node-attempt-cleared",
+        "undo:image-edge-removed",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

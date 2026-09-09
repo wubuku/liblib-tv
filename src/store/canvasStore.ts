@@ -1252,11 +1252,14 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const canvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
     const video = canvas?.nodes.find((node) => node.id === videoNodeId);
     if (!canvas || !video) return;
+    // Batch 255: attempt 写入合并进同一事务（芯片提交 = 单条历史记录，
+    // 撤销不经过「有 attempt 无图节点」的中间态）。
+    // Batch 246/255: 既有 image→video 边（如预设图）时仅记录 attempt
+    // 状态、跳过图创建（芯片提交语义不因防重丢失）。
     const hasImageRef = canvas.edges.some((edge) => {
       if (edge.target !== videoNodeId) return false;
       return canvas.nodes.find((node) => node.id === edge.source)?.type === "image";
     });
-    if (hasImageRef) return;
     const dimensions = getDefaultNodeDimensions("image");
     const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
     const videoPosition = getAbsoluteNodePosition(video, nodesById);
@@ -1286,7 +1289,24 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       return {
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
-            ? { ...canvas, nodes: [...canvas.nodes, imageNode], edges: [...canvas.edges, newEdge] }
+            ? {
+                ...canvas,
+                nodes: hasImageRef
+                  ? canvas.nodes.map((node) =>
+                      node.id === videoNodeId
+                        ? { ...node, data: { ...node.data, attempt: "首帧生成视频" } }
+                        : node,
+                    )
+                  : [
+                      ...canvas.nodes.map((node) =>
+                        node.id === videoNodeId
+                          ? { ...node, data: { ...node.data, attempt: "首帧生成视频" } }
+                          : node,
+                      ),
+                      imageNode,
+                    ],
+                edges: hasImageRef ? canvas.edges : [...canvas.edges, newEdge],
+              }
             : canvas,
         ),
         selectedNodeIds: [videoNodeId],
@@ -1310,7 +1330,6 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       if (edge.target !== videoNodeId) return false;
       return canvas.nodes.find((node) => node.id === edge.source)?.type === "image";
     });
-    if (hasImageRef) return;
     const dimensions = getDefaultNodeDimensions("image");
     const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
     const videoPosition = getAbsoluteNodePosition(video, nodesById);
@@ -1357,8 +1376,24 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: [...canvas.nodes, firstNode, lastNode],
-                edges: [...canvas.edges, firstEdge, lastEdge],
+                nodes: hasImageRef
+                  ? canvas.nodes.map((node) =>
+                      node.id === videoNodeId
+                        ? { ...node, data: { ...node.data, attempt: "首尾帧生成视频" } }
+                        : node,
+                    )
+                  : [
+                      ...canvas.nodes.map((node) =>
+                        node.id === videoNodeId
+                          ? { ...node, data: { ...node.data, attempt: "首尾帧生成视频" } }
+                          : node,
+                      ),
+                      firstNode,
+                      lastNode,
+                    ],
+                edges: hasImageRef
+                  ? canvas.edges
+                  : [...canvas.edges, firstEdge, lastEdge],
               }
             : canvas,
         ),
@@ -1389,7 +1424,11 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: canvas.nodes.filter((node) => node.id !== edge.source),
+                nodes: canvas.nodes.map((node) =>
+                  node.id === videoNodeId
+                    ? { ...node, data: { ...node.data, attempt: null } }
+                    : node,
+                ).filter((node) => node.id !== edge.source),
                 edges: canvas.edges.filter((item) => item.id !== edge.id),
               }
             : canvas,

@@ -46,6 +46,7 @@ import { VideoGenerationPanel } from "@/components/VideoGenerationPanel";
 import { VideoProcessingToolbar } from "@/components/VideoProcessingToolbar";
 
 export interface VideoNodeData extends Record<string, unknown> {
+  attempt?: string | null;
   filename?: string;
   model?: string;
   status?: "empty" | "failed" | "ready" | "pending";
@@ -87,6 +88,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const { zoom } = useViewport();
   const internalNode = useInternalNode(id);
   const { setCenter } = useReactFlow();
+  const updateNodeData = useCanvasStore((state) => state.updateNodeData);
   const addDerivedNode = useCanvasStore((state) => state.addDerivedNode);
   const addNodeAtPosition = useCanvasStore((state) => state.addNodeAtPosition);
   const addEdge = useCanvasStore((state) => state.addEdge);
@@ -111,7 +113,12 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const clearVideoContinuation = useCanvasStore((state) => state.clearVideoContinuation);
   const selectedNodeCount = useCanvasStore((state) => state.selectedNodeIds.length);
   const showSingleNodeEditor = selected && selectedNodeCount <= 1;
-  const [attempt, setAttempt] = useState<string | null>(null);
+  // Batch 255: 源站 2026-09-10 直采——尝试提交态为节点持久态（去选重选
+  // 后建议不复现），attempt 自组件态迁移至节点数据。
+  const attempt = (data.attempt as string | null | undefined) ?? null;
+  const setAttempt = (label: string | null) => {
+    updateNodeData(id, { attempt: label });
+  };
   // Batch 215: 特效选用后「特效」pill 文案变「替换」（源站直证）。
   const [effectApplied, setEffectApplied] = useState(false);
   const [activeTool, setActiveTool] = useState<
@@ -602,14 +609,14 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
               aria-pressed={attempt === label}
               /* Batch 177: 源站直证同芯片再点不取消（非 toggle），切换需点其它芯片。 */
               onClick={() => {
-                setAttempt(label);
-                // Batch 239: 源站 2026-09-09 直采——首帧芯片自动创建图片节点
-                // 并连入视频节点（动作内含防重与选中保持守卫）。
+                // Batch 255: 首帧/首尾帧芯片由图动作在同一事务内写入
+                // attempt（单条历史记录）；其余芯片走节点数据更新。
                 if (label === "首帧生成视频") {
                   useCanvasStore.getState().createFirstFrameReference(id);
                 } else if (label === "首尾帧生成视频") {
-                  // Batch 252: 首尾帧流——双图片节点 + 双边（batch 251 采样）。
                   useCanvasStore.getState().createFirstLastFrameReference(id);
+                } else {
+                  setAttempt(label);
                 }
               }}
               className={cn(
@@ -652,10 +659,8 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             addEdge({ id: `e-${materialId}-${id}`, source: materialId, target: id, sourceHandle: "source", targetHandle: "target", type: "default" });
           }}
           onDestroyFirstFrame={() => {
-            /* Batch 244: 销毁 = 移除首帧自动创建的图片节点与连线
-               （createFirstFrameReference 的逆操作，CLONE_DECISION）。 */
+            /* Batch 244/255: 销毁动作同事务清除 attempt（逆操作）。 */
             useCanvasStore.getState().destroyFirstFrameReference(id);
-            setAttempt(null);
           }}
           initialPrompt={prompt}
           continuation={continuation}
