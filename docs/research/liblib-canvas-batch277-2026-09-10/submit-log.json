@@ -1,0 +1,17 @@
+{
+ "model_after_switch": {
+  "credits": "30",
+  "trig": "Seedance 1.0 Lite"
+ },
+ "post": {
+  "footer": {
+   "credits": "30",
+   "trig": "Seedance 1.0 Lite"
+  },
+  "snippets": [
+   "开通会员"
+  ]
+ },
+ "late": [],
+ "nodes": 1
+}
