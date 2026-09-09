@@ -4,13 +4,17 @@ import Image from "next/image";
 import type { Node } from "@xyflow/react";
 import {
   ArrowDownAZ,
+  ArrowLeft,
   ChevronDown,
   Clapperboard,
   FileText,
   Folder,
   ImageIcon,
+  List,
+  MoreHorizontal,
   Play,
   Search,
+  Send,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -133,6 +137,8 @@ export function AssetManagerPanel({
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("graph");
+  // Batch 264: 源站工具行右端的列表视图切换（菜单语义未采样，视觉开关）。
+  const [listView, setListView] = useState(false);
   // Batch 102: 源站有 所有评级/展示设置 控件；其菜单语义未采样，clone 给诚实本地 hint。
   // Batch 203: 源站直采评级筛选菜单（6 项：所有评级/1-5）。clipPath 用近似负一星。
   const [ratingsOpen, setRatingsOpen] = useState(false);
@@ -154,8 +160,8 @@ export function AssetManagerPanel({
   const activeFilterLabel = filterOptions.find((option) => option.value === filter)?.label ?? "全部";
 
   return (
-    <aside data-liblib-overlay="asset" // Batch 202: 源站资产管理抽屉实测 ~280 宽（文本右缘 270）。
-      className="relative z-50 flex h-screen w-[280px] shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-12 text-[#e7e7e7]">
+    <aside data-liblib-overlay="asset" // Batch 264: 源站 2026-09-10 重采抽屉宽 320（batch 202 的 ~280 已漂移）。
+      className="relative z-50 flex h-screen w-[320px] shrink-0 flex-col border-r border-white/[0.07] bg-[#171717] pt-12 text-[#e7e7e7]">
       <div data-asset-manager-context className="flex h-11 items-center gap-2 border-b border-white/[0.07] px-3 text-xs">
         <span data-asset-manager-project className="min-w-0 truncate text-[#e4e4e4]">{projectName}</span>
         <span className="h-3 w-px shrink-0 bg-white/10" />
@@ -215,6 +221,19 @@ export function AssetManagerPanel({
         <span data-asset-manager-heading className="text-xs text-[#929292]">
           {activeTab === "assets" ? "画布资产" : "画布元素"}
         </span>
+        <button
+          type="button"
+          data-asset-manager-listview
+          aria-pressed={listView}
+          title="列表视图"
+          onClick={() => setListView((view) => !view)}
+          className={cn(
+            "flex h-6 w-6 items-center justify-center rounded text-[#777] hover:bg-white/[0.07] hover:text-white",
+            listView && "text-[#d7d7d7]",
+          )}
+        >
+          <List size={13} />
+        </button>
         <button
           type="button"
           data-asset-manager-sort={sortMode}
@@ -390,7 +409,7 @@ export function AssetManagerPanel({
                   data-asset-manager-depth={depth}
                   onClick={() => selectNode(node.id)}
                   className={cn(
-                    "flex h-10 w-full items-center gap-2 rounded-lg pr-2 text-left hover:bg-white/[0.06]",
+                    "group flex h-10 w-full items-center gap-2 rounded-lg pr-2 text-left hover:bg-white/[0.06]",
                     depth === 1 ? "pl-7" : "pl-2",
                     selectedNodeId === node.id && "bg-white/[0.09]",
                   )}
@@ -404,6 +423,11 @@ export function AssetManagerPanel({
                     </span>
                   )}
                   <span className="min-w-0 flex-1 truncate text-xs text-[#cfcfcf]">{nodeLabel(node)}</span>
+                  {/* Batch 264: 源站条目悬停操作（… 菜单 / 发送）；点击行为未采样，视觉呈现。 */}
+                  <span className="hidden shrink-0 items-center gap-1 text-[#9a9a9a] group-hover:flex">
+                    <MoreHorizontal size={13} />
+                    <Send size={12} />
+                  </span>
                 </button>
               );
             })}
@@ -415,16 +439,19 @@ export function AssetManagerPanel({
         )}
       </div>
 
-      <div className="flex h-10 items-center justify-between border-t border-white/[0.07] px-4 text-xs text-[#777]">
-        <span>{activeTab === "assets" ? `共 ${assetNodes.length} 项资产` : `共 ${nodes.length} 节点`}</span>
+      <div className="flex h-10 items-center gap-3 border-t border-white/[0.07] px-4 text-xs text-[#777]">
         <button
           type="button"
           data-asset-manager-collapse
+          aria-label="收起节点侧栏"
           onClick={onClose}
-          className="rounded px-1 hover:text-white"
+          className="rounded p-1 hover:text-white"
         >
-          收起节点侧栏
+          <ArrowLeft size={14} />
         </button>
+        <span data-asset-manager-count>
+          {activeTab === "assets" ? `共 ${assetNodes.length} 项资产` : `共 ${nodes.length} 节点`}
+        </span>
       </div>
     </aside>
   );

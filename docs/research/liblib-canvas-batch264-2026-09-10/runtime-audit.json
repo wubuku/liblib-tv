@@ -1,0 +1,27 @@
+{
+  "batch": 264,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:visible",
+        "drawer:width-320",
+        "listview:present",
+        "listview:initial-off",
+        "listview:toggles-on",
+        "entries:present",
+        "entries:hover-actions",
+        "footer:counter",
+        "footer:collapse-aria",
+        "footer:collapse-icon",
+        "footer:collapse-closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
