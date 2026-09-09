@@ -1,0 +1,31 @@
+{
+ "after_create": {
+  "n": 2,
+  "sel": 1
+ },
+ "ctrl+a": {
+  "n": 2,
+  "sel": 1
+ },
+ "ctrl+v": {
+  "n": 2,
+  "sel": 1
+ },
+ "ctrl+z": {
+  "n": 2,
+  "sel": 1
+ },
+ "ctrl+shift+z": {
+  "n": 2,
+  "sel": 1
+ },
+ "ctrl+d": {
+  "n": 2,
+  "sel": 1,
+  "selected_before": 1
+ },
+ "final": {
+  "n": 0,
+  "sel": 0
+ }
+}
