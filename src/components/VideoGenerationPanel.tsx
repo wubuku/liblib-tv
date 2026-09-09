@@ -153,6 +153,7 @@ export function VideoGenerationPanel({
     return () => document.removeEventListener("mousedown", handleMouseDown);
   }, [effectsOpen]);
   const [yunjingSelection, setYunjingSelection] = useState<string | null>(null);
+  const [fastMode, setFastMode] = useState(false);
   const [networkSearch, setNetworkSearch] = useState(true);
   const [materialCheck, setMaterialCheck] = useState(true);
   const [prompt, setPrompt] = useState(
@@ -164,6 +165,11 @@ export function VideoGenerationPanel({
   const longVideoSubmitTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongVideo = mode === "long-video";
+  // Batch 249: 源站 2026-09-09 直采——OmniHuman 1.5 为特殊双输入面板：
+  // 无 pill/提示词（需求槽 图片1/1+音频0/1 替代）、模式触发器=模型名、
+  // 设置芯片「自适应 · 1个」（无比例/清晰度/时长段）、积分 28、
+  // 高级区为 快速模式 + AutoLink。
+  const isOmniHuman = model === "OmniHuman 1.5";
   // Batch 155: 5分钟超长视频芯片将时长范围切到 30..300（否则 300s 在 4..30 滑杆上半态）。
   const isLongRange = isLongVideo || attempt === "5分钟超长视频";
   const durationMin = isLongRange ? 30 : 4;
@@ -176,21 +182,28 @@ export function VideoGenerationPanel({
   // 该读数是模型混淆。其余模型族未采样（SOURCE_UNKNOWN），按 27/s 缺省。
   const credits = isLongVideo
     ? duration * 49
-    : Math.round(
+    : isOmniHuman
+      ? 28
+      : Math.round(
         duration
         * count
-        * (resolution === "1080P"
-          ? (MODEL_RATES_1080P[model] ?? MODEL_RATES[model] ?? 27)
-          : (MODEL_RATES[model] ?? 27)),
-      );
+          * (resolution === "1080P"
+            ? (MODEL_RATES_1080P[model] ?? MODEL_RATES[model] ?? 27)
+            : (MODEL_RATES[model] ?? 27)),
+        );
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
   const modeLabel = isContinuation
     ? "全能参考"
-    : mode === "omnireference"
-      ? "文生视频"
-      : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
-  const settingsLabel = `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
+    : isOmniHuman
+      ? "OmniHuman 1.5"
+      : mode === "omnireference"
+        ? "文生视频"
+        : modeItems.find((item) => item.id === mode)?.label ?? "全能参考";
+  // Batch 249: OmniHuman 设置芯片为「自适应 · 1个」（无比例/清晰度/时长段）。
+  const settingsLabel = isOmniHuman
+    ? "自适应 · 1个"
+    : `${ratio} · ${resolution} · ${duration}s · ${count}个 ·`;
 
   // Batch 159: 尝试芯片移入节点卡内，状态由 VideoNode 持有；联动用「渲染期调整」
   // （React 官方 prop 变更派生状态模式，避免 effect 内同步 setState）。
@@ -322,7 +335,8 @@ export function VideoGenerationPanel({
           {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。
               Batch 212: 角色库 pill 打开左侧栏角色库面板（对齐源站行为）。 */}
           {/* Batch 215: 源站直证——特效应用后特效 pill 文案变「替换」。 */}
-          {[
+          {/* Batch 249: OmniHuman 面板无工具行——需求槽行替代。 */}
+          {!isOmniHuman && [
             { label: "参考" },
             { label: "标记" },
             { label: effectApplied ? "替换" : "特效", hasMenu: true },
@@ -468,6 +482,20 @@ export function VideoGenerationPanel({
             }
             return <button key={item.label} type="button" className="flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"><PillIcon label={item.label} />{item.label}</button>;
           })}
+          {/* Batch 249: OmniHuman 需求槽行——图片 1/1（已满足）+ 音频 0/1
+              （缺失）+ 警示「请提供音频」（源站 omnihuman.png 直采）。 */}
+          {isOmniHuman && (
+            <div data-omnihuman-requirements className="mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
+              <div data-omnihuman-image-slot className="relative h-[55px] w-12 overflow-hidden rounded-lg border border-white/10">
+                <Image src="/images/storyboard-2.png" alt="图片 1/1" fill sizes="48px" className="object-cover" unoptimized />
+                <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">1</span>
+              </div>
+              <div data-omnihuman-audio-slot className="flex h-[55px] w-12 items-center justify-center rounded-lg border border-dashed border-white/[0.16] text-[10px] text-[#666]">
+                音频
+              </div>
+              <p data-omnihuman-audio-warning className="self-center text-xs text-[#f0f0f0]">请提供音频</p>
+            </div>
+          )}
           {effectsOpen && (
             /* Batch 191: 特效库横排（源站 2026-09-08 采样）——屏幕居中悬浮、
                8 卡横排（clone 渲染已采样的 4 张）；卡片 185×235，图区 178×178
@@ -634,6 +662,12 @@ export function VideoGenerationPanel({
                   />
                 </div>
               </>
+            ) : isOmniHuman ? (
+              <>
+                {/* Batch 249: OmniHuman 内容区由需求槽行占据（上方），无提示词
+                    输入框；模式=模型名、芯片=自适应 · 1个（见 footer 标签）。 */}
+                <div className="min-h-0 flex-1" />
+              </>
             ) : attempt === "首帧生成视频" ? (
               <>
                 {/* Batch 239: 源站 2026-09-09 直采——首帧态面板为 参考槽（角标 1）
@@ -786,12 +820,21 @@ export function VideoGenerationPanel({
             查看过程态隐藏（过程视图独占面板，避免挤压，batch33 契约）。 */}
         {!showProcess && (
           <div data-video-advanced-inline className="shrink-0 px-2">
-            <p data-video-advanced-label className="mx-2 pt-3 text-xs font-bold text-neutral-500">高级设置</p>
-            <div className="flex flex-col gap-1 pb-2 pt-1">
-              <SwitchRow label="联网搜索" icon={<Search size={13} />} checked={networkSearch} onChange={setNetworkSearch} />
-              <SwitchRow label="自动校验素材" icon={<ShieldCheck size={13} />} checked={materialCheck} onChange={setMaterialCheck} />
-              <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={setAutoLink} />
-            </div>
+            {isOmniHuman ? (
+              <div data-omnihuman-advanced className="flex flex-col gap-1 pb-2 pt-1">
+                <SwitchRow label="快速模式" icon={<Zap size={13} />} checked={fastMode} onChange={setFastMode} />
+                <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={setAutoLink} />
+              </div>
+            ) : (
+              <>
+                <p data-video-advanced-label className="mx-2 pt-3 text-xs font-bold text-neutral-500">高级设置</p>
+                <div className="flex flex-col gap-1 pb-2 pt-1">
+                  <SwitchRow label="联网搜索" icon={<Search size={13} />} checked={networkSearch} onChange={setNetworkSearch} />
+                  <SwitchRow label="自动校验素材" icon={<ShieldCheck size={13} />} checked={materialCheck} onChange={setMaterialCheck} />
+                  <SwitchRow label="智能引用 AutoLink" icon={<Link2 size={13} />} checked={autoLink} onChange={setAutoLink} />
+                </div>
+              </>
+            )}
           </div>
         )}
       </section>

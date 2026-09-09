@@ -1,0 +1,29 @@
+{
+  "batch": 249,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "omni:mode-trigger",
+        "omni:chip-adaptive",
+        "omni:credits-28",
+        "omni:image-slot",
+        "omni:audio-slot",
+        "omni:audio-warning",
+        "omni:no-pills",
+        "omni:no-textarea",
+        "omni:fast-mode-row",
+        "omni:no-network-search",
+        "back25:chip-standard",
+        "back25:pills-restored",
+        "back25:advanced-restored",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
