@@ -1,0 +1,79 @@
+{
+ "header_dump": {
+  "found": true,
+  "titleBox": [
+   915,
+   1055,
+   91,
+   20
+  ],
+  "row": [
+   {
+    "tag": "DIV",
+    "cls": "react-flow__node react-flow__node-group nopan selectable par",
+    "t": "预设 - 图片高清",
+    "box": [
+     913,
+     1082,
+     2224,
+     1190
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "node-floating-ui transition-[transform,opacity] duration-150",
+    "t": "预设 - 图片高清",
+    "box": [
+     915,
+     1055,
+     91,
+     20
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "",
+    "t": "预设 - 图片高清",
+    "box": [
+     915,
+     1055,
+     91,
+     20
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex w-full min-w-0 items-center gap-1 select-none cursor-po",
+    "t": "预设 - 图片高清",
+    "box": [
+     915,
+     1055,
+     91,
+     20
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+    "t": "预设 - 图片高清",
+    "box": [
+     915,
+     1055,
+     91,
+     20
+    ]
+   },
+   {
+    "tag": "SPAN",
+    "cls": "text-[13px] text-fg-muted cursor-text",
+    "t": "预设 - 图片高清",
+    "box": [
+     915,
+     1055,
+     91,
+     20
+    ]
+   }
+  ]
+ }
+}
