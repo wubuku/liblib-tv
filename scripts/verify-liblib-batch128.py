@@ -76,7 +76,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     attempts.locator("[data-video-attempt='首尾帧生成视频']").click()
     page.wait_for_timeout(300)
     settings = page.evaluate("""() => { const b = Array.from(document.querySelectorAll("[data-video-generation-panel] button")).find((x) => x.textContent.includes("· 720P")); return b ? b.textContent.trim() : null; }""")
-    check("linkage:shouwei", settings == "Auto · 720P · 5s · 1个 ·")
+    # Batch 252 迁移：源站 2026-09-09 直采——首尾帧芯片切模型 2.0、
+    # 模式 全能参考、16:9·720P·5s·1个（原 Auto·720P·5s 为采样前合同）。
+    check("linkage:shouwei", settings == "16:9 · 720P · 5s · 1个 ·")
 
     # Batch 177: 源站直证同芯片再点不取消（非 toggle，长芯片 2026-09-08 实测）——
     # 再点保持选中且设置不变；取消路径源站未采样。
@@ -86,7 +88,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check(
         "reclick:stays-selected",
         attempts.locator("[data-video-attempt='首尾帧生成视频']").get_attribute("aria-pressed") == "true"
-        and settings == "Auto · 720P · 5s · 1个 ·",
+        and settings == "16:9 · 720P · 5s · 1个 ·",
     )
 
     check("diagnostics:zero", not errors)
