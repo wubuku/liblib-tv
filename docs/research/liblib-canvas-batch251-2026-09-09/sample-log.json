@@ -1,0 +1,53 @@
+{
+ "base": {
+  "n": 1,
+  "e": 0,
+  "vids": [
+   "v-CDzQxTZkbb"
+  ],
+  "imgs": [
+   "v-CDzQxTZkbb"
+  ]
+ },
+ "firstlast_clicked": true,
+ "after_firstlast": {
+  "n": 4,
+  "e": 2,
+  "vids": [
+   "v-CDzQxTZkbb"
+  ],
+  "imgs": [
+   "g-euaOSGRJ3X",
+   "i-E8tteFCPwJ",
+   "i-HMpYrIRRvH",
+   "v-CDzQxTZkbb"
+  ]
+ },
+ "panel_firstlast": {
+  "[data-video-firstframe-slot]": 0,
+  "[data-video-firstframe-hint]": 0,
+  "[data-video-model-trigger]": 0,
+  "[data-video-mode-trigger]": 0,
+  "[data-video-params-trigger]": 0,
+  "[data-video-firstframe-destroy]": 0,
+  "modeText": null,
+  "chipText": null,
+  "trigText": null,
+  "chips": [],
+  "textarea": 0
+ },
+ "after_reselect_panel": {
+  "[data-video-firstframe-slot]": 0,
+  "[data-video-firstframe-hint]": 0,
+  "[data-video-model-trigger]": 0,
+  "[data-video-mode-trigger]": 0,
+  "[data-video-params-trigger]": 0,
+  "[data-video-firstframe-destroy]": 0,
+  "modeText": null,
+  "chipText": null,
+  "trigText": null,
+  "chips": [],
+  "textarea": 0
+ },
+ "final_nodes": 0
+}
