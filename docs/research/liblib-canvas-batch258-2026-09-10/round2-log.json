@@ -1,0 +1,60 @@
+{
+ "handles": [
+  {
+   "node": "a-oH3v4jSshZ",
+   "type": "target",
+   "box": [
+    1351,
+    1040
+   ]
+  },
+  {
+   "node": "a-oH3v4jSshZ",
+   "type": "source",
+   "box": [
+    2047,
+    1040
+   ]
+  },
+  {
+   "node": "g-WFd6Fb5XxC",
+   "type": "source",
+   "box": [
+    2423,
+    1220
+   ]
+  },
+  {
+   "node": "i-007FuwNLfa",
+   "type": "target",
+   "box": [
+    435,
+    1256
+   ]
+  },
+  {
+   "node": "i-007FuwNLfa",
+   "type": "source",
+   "box": [
+    1485,
+    1256
+   ]
+  },
+  {
+   "node": "v-tJ8sDAPba9",
+   "type": "target",
+   "box": [
+    1687,
+    1256
+   ]
+  },
+  {
+   "node": "v-tJ8sDAPba9",
+   "type": "source",
+   "box": [
+    2383,
+    1256
+   ]
+  }
+ ]
+}
