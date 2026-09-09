@@ -11,6 +11,8 @@ interface HistoryPanelProps {
 
 // Batch 101: 2026-09-05 源站模态结构——生成历史标题、本画布 chip、
 // 图片/视频/音频计数 tab、所有评级/时间倒序/批量操作；计数沿用 clone 本地 mock。
+// Batch 281: 源站 2026-09-10 重采——scope chips 为「全部画布 + 本画布」
+// 两个（clone 原只有 本画布）；计数为账号态（空账号全 0），clone 沿用 mock。
 const tabs = [
   { id: "image", label: "图片", count: 3 },
   { id: "video", label: "视频", count: 0 },
@@ -30,6 +32,9 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [ratingMenuOpen, setRatingMenuOpen] = useState(false);
   const [ratingFilter, setRatingFilter] = useState<"all" | "favorited">("all");
+  // Batch 281: 源站 scope chips 两个（全部画布/本画布）；视图不随 scope
+  // 变化（本地 mock 数据无画布归属——CLONE_DECISION）。
+  const [scope, setScope] = useState<"all" | "canvas">("canvas");
 
   const toggleFavorite = (id: string) => {
     setFavorites((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
@@ -72,9 +77,25 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
         <div className="flex h-[60px] shrink-0 items-center px-4 max-sm:h-[88px] max-sm:flex-col max-sm:items-stretch max-sm:justify-center max-sm:gap-1">
           <button
             type="button"
-            data-history-scope-chip
-            aria-pressed="true"
-            className="flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-[#3d3d3d] px-3 text-xs text-[#ededed]"
+            data-history-scope-chip="all"
+            aria-pressed={scope === "all"}
+            onClick={() => setScope("all")}
+            className={cn(
+              "flex h-8 shrink-0 items-center gap-1.5 rounded-full px-3 text-xs",
+              scope === "all" ? "bg-[#3d3d3d] text-[#ededed]" : "text-[#9a9a9a] hover:text-white",
+            )}
+          >
+            全部画布
+          </button>
+          <button
+            type="button"
+            data-history-scope-chip="canvas"
+            aria-pressed={scope === "canvas"}
+            onClick={() => setScope("canvas")}
+            className={cn(
+              "flex h-8 shrink-0 items-center gap-1.5 rounded-full px-3 text-xs",
+              scope === "canvas" ? "bg-[#3d3d3d] text-[#ededed]" : "text-[#9a9a9a] hover:text-white",
+            )}
           >
             <Images size={12} aria-hidden />
             本画布

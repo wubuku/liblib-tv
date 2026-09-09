@@ -1,0 +1,29 @@
+{
+  "batch": 281,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "history:open",
+        "scope:all-chip",
+        "scope:canvas-chip",
+        "scope:canvas-default",
+        "scope:all-switchable",
+        "tabs:image",
+        "tabs:video",
+        "tabs:audio",
+        "controls:data-history-rating",
+        "controls:data-history-scope-chip",
+        "controls:sort",
+        "controls:batch",
+        "empty:暂无历史记录",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
