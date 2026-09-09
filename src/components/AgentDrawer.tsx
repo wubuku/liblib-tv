@@ -217,11 +217,13 @@ export function AgentDrawer() {
 
   // Batch 107: 2026-09-05 源站观察到三种标题（跨会话/模式轮换），clone 以换一批轮换近似。
   // Batch 199: 2026-09-08 直采第四种标题。
+  // Batch 273: 2026-09-10 直采第五种标题「每个 Skill，都是一个开场」。
   const skillHeadlines = [
     "选一个 Skill，让创作更快一步",
     "让 Skill 帮你迈出第一步",
     "一个 Skill，慢慢打磨你的故事",
     "Skill 就位，ready when you are",
+    "每个 Skill，都是一个开场",
   ];
   const skillHeadline = skillHeadlines[skillBatch % skillHeadlines.length];
 
