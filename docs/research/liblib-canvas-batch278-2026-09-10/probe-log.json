@@ -1,0 +1,20 @@
+{
+ "hit": {
+  "cx": 1747.5,
+  "cy": 2154.796875,
+  "btnText": "",
+  "topTag": "BUTTON",
+  "hitIsInside": true,
+  "disabled": false,
+  "cls": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+ },
+ "post_cdp": {
+  "sel": 1,
+  "n": 3,
+  "snippets": []
+ },
+ "post_cdp_late": {
+  "n": 3,
+  "snippets": []
+ }
+}
