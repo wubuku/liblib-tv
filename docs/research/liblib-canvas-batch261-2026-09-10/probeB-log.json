@@ -1,0 +1,22 @@
+{
+ "video_targets": [
+  {
+   "cx": 967,
+   "cy": 1544,
+   "cls": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectables",
+   "hid": "target"
+  }
+ ],
+ "probes": [
+  {
+   "target": {
+    "cx": 967,
+    "cy": 1544,
+    "cls": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable connectables",
+    "hid": "target"
+   },
+   "added": []
+  }
+ ],
+ "final": 0
+}
