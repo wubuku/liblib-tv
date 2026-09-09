@@ -1,0 +1,20 @@
+{
+  "batch": 248,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "pills25:all-five",
+        "hh11:only-cankao",
+        "wan26:three-pills",
+        "back25:all-five",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

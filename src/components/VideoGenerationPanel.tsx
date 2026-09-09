@@ -322,7 +322,20 @@ export function VideoGenerationPanel({
           {/* Batch 188: pill 图标为源站 iconify (libtv) 原字形直采。
               Batch 212: 角色库 pill 打开左侧栏角色库面板（对齐源站行为）。 */}
           {/* Batch 215: 源站直证——特效应用后特效 pill 文案变「替换」。 */}
-          {[{ label: "参考" }, { label: "标记" }, { label: effectApplied ? "替换" : "特效", hasMenu: true }, { label: "角色库", hasMenu: true }, { label: "运镜", hasMenu: true }].map((item) => {
+          {[
+            { label: "参考" },
+            { label: "标记" },
+            { label: effectApplied ? "替换" : "特效", hasMenu: true },
+            { label: "角色库", hasMenu: true },
+            { label: "运镜", hasMenu: true },
+          ]
+            .filter(
+              (item) =>
+                !attempt ||
+                MODEL_PILL_SETS[model] === undefined ||
+                MODEL_PILL_SETS[model].includes(item.label.replace(/^替换$/, "特效")),
+            )
+            .map((item) => {
             if ("hasMenu" in item && item.hasMenu) {
               if (item.label === "角色库") {
                 return (
@@ -929,6 +942,16 @@ const MODEL_DEFAULT_RESOLUTIONS: Record<string, string> = {
 // 2.0 系沿用 replace(/ VIP$/) 缩写。
 const MODEL_TRIGGER_LABELS: Record<string, string> = {
   "Seedance 1.5 Pro": "Seedance1.5",
+};
+
+// Batch 248: 源站 2026-09-09 首帧附着态逐模型采样——工具行 pill 集随模型
+// 变化：Happy Horse 系仅 [参考]、Wan 2.6 为 [参考,标记,特效]（模式均为
+// 首帧）；2.5 同态为全 5 pill。Wan 2.2 图生视频态为 [标记,特效,运镜]
+// （clone 无该状态，仅记录）。其余模型缺省全 5（SOURCE_UNKNOWN 分布）。
+const MODEL_PILL_SETS: Record<string, string[]> = {
+  "Happy Horse 1.1": ["参考"],
+  "Happy Horse 1.0": ["参考"],
+  "Wan 2.6": ["参考", "标记", "特效"],
 };
 
 interface ParamsMenuProps {
