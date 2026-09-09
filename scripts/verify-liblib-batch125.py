@@ -64,7 +64,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     panel = page.locator("[data-liblib-overlay='add-node']")
     panel.get_by_role("button", name="视频", exact=True).click()
     page.wait_for_timeout(1200)
-    node = page.locator(".react-flow__node-video").first
+    # Batch 246: 选 LAST 个视频节点 = 添加面板新建的节点。预设画布自带
+    # 一个视频节点（DOM 首位、图中已有 image→video 既有边），`.first` 会
+    # 命中它导致首帧守卫跳过创建、销毁误拆预设边（batch 245 WIP 根因）。
+    node = page.locator(".react-flow__node-video").last
     node.click()
     page.wait_for_timeout(800)
 
