@@ -1,0 +1,26 @@
+{
+  "batch": 268,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:image-selected",
+        "attempts:row",
+        "attempts:tushengtu",
+        "attempts:gaoqing",
+        "tushengtu:pressed",
+        "hd:group-created",
+        "hd:child-ai-generated",
+        "hd:selection-on-group",
+        "hd:two-nodes-added",
+        "persist:group-reselectable",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

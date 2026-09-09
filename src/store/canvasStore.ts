@@ -298,6 +298,7 @@ interface CanvasState {
   createStoryScriptPair: () => void;
   createFirstFrameReference: (videoNodeId: string) => void;
   createFirstLastFrameReference: (videoNodeId: string) => void;
+  createImageHdPreset: (imageNodeId: string) => void;
   destroyFirstFrameReference: (videoNodeId: string) => void;
   createVideoContinuation: (
     sourceId: string,
@@ -1403,6 +1404,59 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
+  },
+
+  // Batch 268: 源站 2026-09-10 直采——「图片高清」芯片为一键预设生成：
+  // 创建「预设 - 图片高清」storyboard-group 容器，内含 AI生成 徽章图片
+  // 节点；选中迁移至容器（源图片节点脱选）；单条历史记录。
+  // 输出边的连接目标源站未采样（batch 267），不实现。
+  createImageHdPreset: (imageNodeId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
+    const source = canvas?.nodes.find((node) => node.id === imageNodeId);
+    if (!canvas || !source) return;
+    const groupId = createNodeId("g");
+    const group: Node = {
+      id: groupId,
+      type: "storyboard-group",
+      position: { x: source.position.x + 320, y: source.position.y - 60 },
+      width: 430,
+      height: 452,
+      style: { width: 430, height: 452, zIndex: -1001 },
+      data: { title: "预设 - 图片高清", variant: "image" },
+    };
+    const child: Node = {
+      id: createNodeId("i"),
+      type: "image",
+      parentId: groupId,
+      position: { x: 40, y: 60 },
+      width: 340,
+      height: 330,
+      style: { width: 340, height: 330 },
+      data: { ...getDefaultNodeData("image"), filename: "图片节点", aiGenerated: true },
+    };
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? { ...canvas, nodes: [...canvas.nodes, group, child] }
+            : canvas,
+        ),
+        selectedNodeIds: [groupId],
+        selectedNodeId: groupId,
+        selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+    // Batch 268: React Flow 的点击选中路由在本 click 处理器之后写回——
+    // 延后一拍把选中迁移到容器（源站行为：源图片节点脱选、容器选中）。
+    setTimeout(() => {
+      const state = get();
+      if (state.selectedNodeId === groupId) return;
+      set({ selectedNodeIds: [groupId], selectedNodeId: groupId, selectedEdgeIds: [] });
+    }, 0);
   },
 
   // Batch 244: 首帧参考销毁——移除视频节点的入边图片节点与连线

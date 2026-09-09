@@ -75,7 +75,13 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
   if (!isAddNodePanelOpen) return null;
 
   const createNode = (type: string) => {
-    onAddNode(type);
+    // Batch 268: 源站 2026-09-10 截图——新建图片节点为空占位（山形图标），
+    // 不带默认示例图；尝试建议行（图生图/图片高清）依赖空态渲染。
+    if (type === "image") {
+      onAddNode(type, { imageUrl: null, watermarkUrl: null });
+    } else {
+      onAddNode(type);
+    }
     closePanel();
   };
 

@@ -22,6 +22,7 @@ import {
 import { useUIStore } from "@/store/uiStore";
 
 export interface ImageNodeData extends Record<string, unknown> {
+  aiGenerated?: boolean;
   filename: string;
   width: number;
   height: number;
@@ -58,6 +59,9 @@ const derivedImageActions: Partial<Record<ImageToolbarAction, { filename: string
 
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
   const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture } = data;
+  // Batch 268: 图片尝试芯片为本地视觉态（源站持久化行为未采样，
+  // 与视频 attempt 的节点持久化不同——CLONE_DECISION）。
+  const [imageAttempt, setImageAttempt] = useState<string | null>(null);
   const hasMalformedImageUrl = imageUrl
     ? isMalformedBase64DataImageUrl(imageUrl)
     : false;
@@ -254,7 +258,49 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         <span className="shrink-0 tabular-nums">{width} × {height}</span>
       </div>
 
+      {/* Batch 263/268: 源站截图——空图片节点内嵌「尝试：」建议行
+          （图生图 / 图片高清）；图片高清为一键预设生成动作（batch 267）。 */}
+      {showSingleNodeEditor && !imageUrl && (
+        <div data-image-attempts className="absolute inset-x-0 top-[38%] z-10 flex flex-col gap-2 px-6">
+          <span className="text-[15px] text-[#8f8f8f]">尝试：</span>
+          <button
+            type="button"
+            data-image-attempt="图生图"
+            aria-pressed={imageAttempt === "图生图"}
+            onClick={() => setImageAttempt("图生图")}
+            className={cn(
+              "flex h-9 w-fit items-center gap-2 rounded-lg px-3 text-[15px] transition-colors hover:bg-white/[0.07]",
+              imageAttempt === "图生图" ? "bg-white/[0.1] text-white" : "text-[#f0f0f0]",
+            )}
+          >
+            <ImageIcon size={15} className="shrink-0 opacity-80" />
+            图生图
+          </button>
+          <button
+            type="button"
+            data-image-attempt="图片高清"
+            aria-pressed={imageAttempt === "图片高清"}
+            onClick={() => {
+              setImageAttempt("图片高清");
+              useCanvasStore.getState().createImageHdPreset(id);
+            }}
+            className={cn(
+              "flex h-9 w-fit items-center gap-2 rounded-lg px-3 text-[15px] transition-colors hover:bg-white/[0.07]",
+              imageAttempt === "图片高清" ? "bg-white/[0.1] text-white" : "text-[#f0f0f0]",
+            )}
+          >
+            <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded border border-current text-[9px] font-bold opacity-80">HD</span>
+            图片高清
+          </button>
+        </div>
+      )}
+
       <div data-image-node-media className="relative h-full w-full overflow-hidden rounded-[3px]">
+        {data.aiGenerated && (
+          <span data-image-ai-generated className="absolute left-2 top-2 z-10 rounded-md bg-black/60 px-1.5 py-0.5 text-[11px] text-white">
+            AI生成
+          </span>
+        )}
         {data.placeholderKind === "panorama" || !imageUrl || hasMalformedImageUrl ? (
           <div
             data-image-placeholder={data.placeholderKind ?? "empty"}
