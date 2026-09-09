@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 125 video panel attempts row / new-feature bar / placeholder."""
+"""Verify Batch 125 video panel attempts row / new-feature bar / placeholder.
+
+Batch 245 migration: the first-frame state no longer shows a prompt
+textarea (batch 239 source fact — slot + hint instead), so the flow now
+asserts the first-frame panel, reverts via the batch-244 销毁 button, and
+only then checks the prompt placeholder + generate flow in the default
+state."""
 
 from __future__ import annotations
 
@@ -82,6 +88,38 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check(
         "attempts:reclick-stays-selected",
         attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "true",
+    )
+
+    # Batch 239 合同：首帧态面板 = 参考槽 + 说明文案，无提示词输入框。
+    check(
+        "firstframe:slot",
+        page.locator("[data-video-firstframe-slot]").count() == 1,
+    )
+    check(
+        "firstframe:hint",
+        page.locator("[data-video-firstframe-hint]").inner_text().strip()
+        == "以当前图为首帧生成视频。",
+    )
+    check(
+        "firstframe:no-textarea",
+        vg.locator("textarea").count() == 0,
+    )
+
+    # Batch 244 合同：悬停槽出现 销毁，点击回退建议态（节点/边回滚、芯片清除）。
+    nodes_before = page.evaluate("() => document.querySelectorAll('.react-flow__node').length")
+    edges_before = page.evaluate("() => document.querySelectorAll('.react-flow__edge').length")
+    destroy = page.locator("[data-video-firstframe-destroy]")
+    check("firstframe:destroy-in-dom", destroy.count() == 1)
+    page.locator("[data-video-firstframe-slot]").hover()
+    page.wait_for_timeout(300)
+    check("firstframe:destroy-hover", destroy.is_visible())
+    destroy.click()
+    page.wait_for_timeout(500)
+    check(
+        "firstframe:destroy-reverts",
+        page.evaluate("() => document.querySelectorAll('.react-flow__node').length") == nodes_before - 1
+        and page.evaluate("() => document.querySelectorAll('.react-flow__edge').length") == edges_before - 1
+        and attempts.locator("[data-video-attempt='首帧生成视频']").get_attribute("aria-pressed") == "false",
     )
 
     # Batch 160: 源站 2026-09-07 新建节点整面板无「新功能」条 —— 断言其不存在。
