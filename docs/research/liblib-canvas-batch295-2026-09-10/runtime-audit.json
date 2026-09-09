@@ -1,0 +1,22 @@
+{
+  "batch": 295,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:open",
+        "search:button",
+        "search:input",
+        "search:no-match-message",
+        "search:no-match-hides-list",
+        "search:clear-restores",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

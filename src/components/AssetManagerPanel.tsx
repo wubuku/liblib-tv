@@ -434,7 +434,12 @@ export function AssetManagerPanel({
           </div>
         ) : (
           <div data-asset-manager-empty className="px-2 py-8 text-center text-xs text-[#666]">
-            {activeTab === "assets" ? "当前画布暂无媒体资产" : "画布暂无节点"}
+            {/* Batch 295: 源站 2026-09-10 直采——搜索无匹配有专属文案。 */}
+            {normalizedQuery
+              ? "当前画布没有相关搜索结果"
+              : activeTab === "assets"
+                ? "当前画布暂无媒体资产"
+                : "画布暂无节点"}
           </div>
         )}
       </div>
