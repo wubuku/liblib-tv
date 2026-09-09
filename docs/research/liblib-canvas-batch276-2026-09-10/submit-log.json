@@ -1,0 +1,14 @@
+{
+ "model_before": "2.5",
+ "model_after": "2.5",
+ "credits_before_submit": "230",
+ "credits_post_submit": "4,714",
+ "post_snippets": [
+  "8个并发任务",
+  "12个并发任务",
+  "20个并发任务",
+  "无限并发任务",
+  "无限并发任务"
+ ],
+ "late_snippets": []
+}
