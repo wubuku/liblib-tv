@@ -297,6 +297,7 @@ interface CanvasState {
   ) => void;
   createStoryScriptPair: () => void;
   createFirstFrameReference: (videoNodeId: string) => void;
+  destroyFirstFrameReference: (videoNodeId: string) => void;
   createVideoContinuation: (
     sourceId: string,
     startSeconds: number,
@@ -1285,6 +1286,38 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
             ? { ...canvas, nodes: [...canvas.nodes, imageNode], edges: [...canvas.edges, newEdge] }
+            : canvas,
+        ),
+        selectedNodeIds: [videoNodeId],
+        selectedNodeId: videoNodeId,
+        selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  // Batch 244: 首帧参考销毁——移除视频节点的入边图片节点与连线
+  // （createFirstFrameReference 的逆操作）；事务内保持视频节点选中，
+  // 单条历史记录；无入边图片节点时为无操作。
+  destroyFirstFrameReference: (videoNodeId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
+    if (!canvas) return;
+    const edge = canvas.edges.find(
+      (item) => item.target === videoNodeId && canvas.nodes.find((node) => node.id === item.source)?.type === "image",
+    );
+    if (!edge) return;
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: canvas.nodes.filter((node) => node.id !== edge.source),
+                edges: canvas.edges.filter((item) => item.id !== edge.id),
+              }
             : canvas,
         ),
         selectedNodeIds: [videoNodeId],

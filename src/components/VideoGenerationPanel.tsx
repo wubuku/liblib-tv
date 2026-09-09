@@ -40,6 +40,7 @@ interface VideoGenerationPanelProps {
   continuation?: VideoContinuationMetadata;
   onCreateLongVideoProcess?: (input: LongVideoProcessInput) => string | null;
   onClearContinuation?: () => void;
+  onDestroyFirstFrame?: () => void;
 }
 
 const defaultPrompt = "起始状态：@陈默（图片 1）充满杀伤力的眼神锁定镜头。动作过程：镜头平滑而缓慢地向他冷厉的双眼推移。他在第1秒开始说出如刀刃般的台词。对白（@陈默，冷酷且有力）：‘当初你离开的时候，怎么没想过我会担心？’结束状态：镜头停止在他充满恨意的双眸。音效：环境音完全静默，只余沉重的台词回响。";
@@ -116,6 +117,7 @@ export function VideoGenerationPanel({
   continuation,
   onCreateLongVideoProcess,
   onClearContinuation,
+  onDestroyFirstFrame,
 }: VideoGenerationPanelProps) {
   const isContinuation = Boolean(continuation);
   const [menu, setMenu] = useState<MenuName>(null);
@@ -624,10 +626,22 @@ export function VideoGenerationPanel({
                 {/* Batch 239: 源站 2026-09-09 直采——首帧态面板为 参考槽（角标 1）
                     + 说明文案，无提示词输入框（a1 截图）。槽图为本地图（源站为
                     自动创建图片节点的示例图内容，CLONE_DECISION）。 */}
-                <div data-video-firstframe-slot className="mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
+                <div data-video-firstframe-slot className="group mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
                   <div className="relative h-[55px] w-12 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing">
                     <Image src="/images/storyboard-2.png" alt="首帧参考" fill sizes="48px" className="object-cover" unoptimized />
                     <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">1</span>
+                    {/* Batch 244: 源站 2026-09-09 截图——槽悬停出现「销毁」按钮；
+                        点击行为（移除自动创建的图片节点与连线）为 CLONE_DECISION。 */}
+                    {onDestroyFirstFrame && (
+                      <button
+                        type="button"
+                        data-video-firstframe-destroy
+                        onClick={onDestroyFirstFrame}
+                        className="absolute inset-0 hidden items-center justify-center bg-black/70 text-[10px] text-white group-hover:flex"
+                      >
+                        销毁
+                      </button>
+                    )}
                   </div>
                 </div>
                 <p data-video-firstframe-hint className="mt-3 shrink-0 px-2 text-[15px] leading-6 text-[#f0f0f0]">

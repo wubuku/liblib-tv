@@ -648,6 +648,12 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             if (!materialId) return;
             addEdge({ id: `e-${materialId}-${id}`, source: materialId, target: id, sourceHandle: "source", targetHandle: "target", type: "default" });
           }}
+          onDestroyFirstFrame={() => {
+            /* Batch 244: 销毁 = 移除首帧自动创建的图片节点与连线
+               （createFirstFrameReference 的逆操作，CLONE_DECISION）。 */
+            useCanvasStore.getState().destroyFirstFrameReference(id);
+            setAttempt(null);
+          }}
           initialPrompt={prompt}
           continuation={continuation}
           onCreateLongVideoProcess={(input: LongVideoProcessInput) =>

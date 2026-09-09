@@ -1,0 +1,30 @@
+{
+  "batch": 244,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:node-added",
+        "setup:edge-added",
+        "panel:slot-present",
+        "destroy:in-dom",
+        "destroy:label",
+        "destroy:visible-on-hover",
+        "destroy:node-removed",
+        "destroy:edge-removed",
+        "destroy:attempt-cleared",
+        "destroy:slot-gone",
+        "destroy:textarea-back",
+        "recreate:node-added",
+        "recreate:edge-added",
+        "recreate:slot-back",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
