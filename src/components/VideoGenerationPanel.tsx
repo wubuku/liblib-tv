@@ -876,7 +876,8 @@ const RESOLUTION_ORDER = ["480P", "720P", "1080P", "4K"];
 // 2.0 Fast VIP→22（110/5s 双比例）、2.0 Mini→16（80/5s）；长视频恒 49。
 // Batch 240 补采（同轮 16:9·720P·5s·1个 受控读数）：Minimax H3 Max→12、
 // Wan 3.0 Prime→9、Wan 2.7→13、Kling O3→11、Kling 3.0 Turbo→12、
-// Vidu Q2→8、Vidu Q3 Pro→10、Hailuo 2.3 Fast→4.8（24/5s）、Hailuo 02→7.2（36/5s）。
+// Vidu Q2→8、Vidu Q3 Pro→10、Hailuo 2.3 Fast→4.8（24/5s）、Hailuo 02→7.2（36/5s）、
+// Pixverse V5.5→12（60/5s，截图芯片直证）、Pixverse V5→9（45/5s，同流程）。
 // 未采样模型族按 27/s 缺省（SOURCE_UNKNOWN）。
 const MODEL_RATES: Record<string, number> = {
   "2.5": 46,
@@ -893,6 +894,8 @@ const MODEL_RATES: Record<string, number> = {
   "Hailuo 2.3 Fast": 4.8,
   "Hailuo 02": 7.2,
   "Seedance 1.5 Pro": 8,
+  "Pixverse V5.5": 12,
+  "Pixverse V5": 9,
 };
 // Batch 240: 分辨率影响积分（Seedance 1.5 Pro 同会话 A/B：720P=40 vs
 // 1080P=90，切回可逆）——1080P 受控读数单列表；480P 及其它模型×分辨率

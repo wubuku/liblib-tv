@@ -126,6 +126,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check("s10pro:credits-75", credits.inner_text().strip().endswith("75"))
 
+    # ---- batch 242 additions: Pixverse rates (60/45 at 16:9·720P·5s)
+    switch_model("Pixverse V5.5")
+    check("pixverse55:credits-60", credits.inner_text().strip().endswith("60"))
+    switch_model("Pixverse V5")
+    check("pixverse5:credits-45", credits.inner_text().strip().endswith("45"))
+
     # ---- back to 2.5: 720P (clamped from 1080P? no — 2.5 keeps current 1080P)
     # batch238 contract: 2.5 Auto/16:9 at 1080P is untabled → falls back to the
     # 27/s default only when untabled; 2.5 is tabled at 46/s → 46*5 = 230

@@ -1,0 +1,39 @@
+{
+  "models": {
+    "Pixverse V5.5": {
+      "clicked": true,
+      "trigger": "Pixverse V5.5",
+      "mode": "文生视频",
+      "chip": null,
+      "credits": "60"
+    },
+    "Pixverse V5": {
+      "clicked": true,
+      "trigger": "Pixverse V5",
+      "mode": "文生视频",
+      "chip": null,
+      "credits": "45"
+    },
+    "OmniHuman 1.5": {
+      "clicked": true,
+      "trigger": "OmniHuman 1.5",
+      "mode": null,
+      "chip": null,
+      "credits": "14"
+    },
+    "Kling3.0 动作迁移": {
+      "clicked": true,
+      "trigger": "OmniHuman 1.5",
+      "mode": null,
+      "chip": null,
+      "credits": "14"
+    },
+    "Style Video": {
+      "clicked": false,
+      "trigger": "OmniHuman 1.5",
+      "mode": null,
+      "chip": null,
+      "credits": "14"
+    }
+  }
+}
