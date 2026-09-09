@@ -48,7 +48,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     all_text = panel.inner_text()
 
     def open_menu_and_pick(label: str) -> None:
-        panel.locator("[data-asset-manager-display]").click()
+        # Batch 298 迁移：类型菜单触发器自 展示设置 迁至 筛选 按钮。
+        panel.locator("[data-asset-manager-filter]").click()
         page.wait_for_timeout(250)
         panel.locator(f"[data-asset-manager-type-option='{label}']").click()
         page.wait_for_timeout(300)

@@ -75,8 +75,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("rating:menu-opens", drawer.locator("[data-asset-manager-rating-menu]").count() == 1)
     drawer.locator("[data-asset-manager-rating-option='all']").click()
     page.wait_for_timeout(200)
-    # Batch 204: 展示设置改为节点类型筛选菜单（源站直采 10 项）。
-    display.click()
+    # Batch 298 迁移：类型筛选菜单自 展示设置 迁至 筛选 按钮（源站 09-10
+    # 直采：展示设置实为视图布局菜单）。
+    drawer.locator("[data-asset-manager-filter]").click(force=True)
     check("display:menu-opens", drawer.locator("[data-asset-manager-typemenu]").count() == 1)
     check("display:menu-options", drawer.locator("[data-asset-manager-type-option]").count() == 10)
     drawer.locator("[data-asset-manager-type-option='全部']").click()

@@ -42,14 +42,6 @@ interface AssetManagerPanelProps {
   onOpenCanvasDropdown: () => void;
 }
 
-const filterOptions: Array<{ value: NodeFilter; label: string }> = [
-  { value: "all", label: "全部" },
-  { value: "image", label: "图片" },
-  { value: "video", label: "视频" },
-  { value: "text", label: "文本" },
-  { value: "group", label: "分组" },
-];
-
 const sourceNodeOrder = [
   "i-YDfWhFlthe",
   "b-bTLLuU4w5q",
@@ -133,7 +125,6 @@ export function AssetManagerPanel({
   } = useCanvasStore();
   const [activeTab, setActiveTab] = useState<AssetManagerTab>("canvas");
   const [filter, setFilter] = useState<NodeFilter>("all");
-  const [filterOpen, setFilterOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("graph");
@@ -145,6 +136,11 @@ export function AssetManagerPanel({
   // Batch 204: 源站直采节点类型筛选菜单（10 项，滑杆图标触发）。
   const [typeMenuOpen, setTypeMenuOpen] = useState(false);
   const [typeFilter, setTypeFilter] = useState("全部");
+  // Batch 298: 源站 2026-09-10 直采——展示设置实为视图布局菜单（列表展示/
+  // 宫格展示/展开全部分组/收起全部分组）；类型筛选菜单迁至 筛选 按钮。
+  const [viewMenuOpen, setViewMenuOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [groupsExpanded, setGroupsExpanded] = useState(true);
   const [minRating, setMinRating] = useState<number | null>(null);
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
@@ -156,8 +152,8 @@ export function AssetManagerPanel({
     if (!normalizedQuery) return true;
     return nodeLabel(node).toLocaleLowerCase("zh-CN").includes(normalizedQuery);
   });
-  const visibleRows = buildTreeRows(filteredNodes, sortMode);
-  const activeFilterLabel = filterOptions.find((option) => option.value === filter)?.label ?? "全部";
+  const visibleRows = buildTreeRows(filteredNodes, sortMode)
+    .filter((row) => groupsExpanded || row.depth === 0);
 
   return (
     <aside data-liblib-overlay="asset" // Batch 264: 源站 2026-09-10 重采抽屉宽 320（batch 202 的 ~280 已漂移）。
@@ -251,31 +247,47 @@ export function AssetManagerPanel({
           <button
             type="button"
             data-asset-manager-filter={filter}
-            aria-label={`筛选：${activeFilterLabel}`}
-            aria-expanded={filterOpen}
-            onClick={() => setFilterOpen((open) => !open)}
+            aria-label={`筛选：${typeFilter}`}
+            aria-expanded={typeMenuOpen}
+            onClick={() => setTypeMenuOpen((open) => !open)}
             className="flex h-7 items-center gap-1 rounded-md px-2 text-xs text-[#d0d0d0] hover:bg-white/[0.07]"
           >
-            {activeFilterLabel}
+            {typeFilter}
             <ChevronDown size={11} />
           </button>
-          {filterOpen && (
-            <div className="absolute right-0 top-8 z-20 w-24 rounded-lg border border-white/10 bg-[#262626] p-1 shadow-xl">
-              {filterOptions.map((option) => (
+          {typeMenuOpen && (
+            /* Batch 204: 源站节点类型筛选菜单直采（180×369，10 项）。
+               Batch 298: 菜单自 展示设置 迁至 筛选 按钮（源站 2026-09-10
+               对照：展示设置实为视图布局菜单）。 */
+            <div data-asset-manager-typemenu className="absolute left-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[var(--canvas-shadow-menu)]">
+              {["全部", "文本", "图片", "视频", "智能剪辑", "导演台", "逐帧拉片", "音频", "脚本", "脚本（旧版）"].map((label) => (
                 <button
-                  key={option.value}
+                  key={label}
                   type="button"
-                  data-asset-manager-filter-option={option.value}
+                  data-asset-manager-type-option={label}
+                  aria-pressed={typeFilter === label}
                   onClick={() => {
-                    setFilter(option.value);
-                    setFilterOpen(false);
+                    setTypeFilter(label);
+                    const mapped: NodeFilter =
+                      label === "全部" ? "all"
+                      : label === "文本" ? "text"
+                      : label === "图片" ? "image"
+                      : label === "视频" ? "video"
+                      : label === "智能剪辑" ? "video-clip"
+                      : label === "导演台" ? "script-execution"
+                      : label === "逐帧拉片" ? "shot-breakdown"
+                      : label === "音频" ? "audio"
+                      : label === "脚本" ? "script-generator"
+                      : "script";
+                    setFilter(mapped);
+                    setTypeMenuOpen(false);
                   }}
                   className={cn(
-                    "h-8 w-full rounded-md px-2 text-left text-xs hover:bg-white/[0.07]",
-                    option.value === filter ? "text-white" : "text-[#a0a0a0]",
+                    "flex h-8 w-full items-center rounded-lg px-2 text-left text-xs transition-colors",
+                    typeFilter === label ? "bg-white/[0.1] text-white" : "text-[#ccc] hover:bg-white/[0.06]",
                   )}
                 >
-                  {option.label}
+                  {label}
                 </button>
               ))}
             </div>
@@ -318,45 +330,60 @@ export function AssetManagerPanel({
           <button
             type="button"
             data-asset-manager-display
-            onClick={() => setTypeMenuOpen(!typeMenuOpen)}
+            aria-expanded={viewMenuOpen}
+            onClick={() => setViewMenuOpen((open) => !open)}
             className="flex h-7 shrink-0 items-center rounded-md px-1.5 text-xs text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
           >
-            {typeFilter === "全部" ? "展示设置" : typeFilter}
+            展示设置
           </button>
-          {typeMenuOpen && (
-            /* Batch 204: 源站节点类型筛选菜单直采（180×369，10 项）。 */
-            <div data-asset-manager-typemenu className="absolute left-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[var(--canvas-shadow-menu)]">
-              {["全部", "文本", "图片", "视频", "智能剪辑", "导演台", "逐帧拉片", "音频", "脚本", "脚本（旧版）"].map((label) => (
+          {viewMenuOpen && (
+            /* Batch 297/298: 源站 2026-09-10 直采（180×167，4 项）——展示设置
+               为视图布局菜单：列表/宫格展示 + 分组展开/收起。类型筛选菜单
+               已迁至 筛选 按钮（batch 204 采样内容保留）。 */
+            <div data-asset-manager-viewmenu className="absolute right-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1 shadow-[var(--canvas-shadow-menu)]">
+              {[
+                { label: "列表展示", value: "list" as const },
+                { label: "宫格展示", value: "grid" as const },
+              ].map((option) => (
                 <button
-                  key={label}
+                  key={option.value}
                   type="button"
-                  data-asset-manager-type-option={label}
-                  aria-pressed={typeFilter === label}
+                  data-asset-manager-view-option={option.value}
+                  aria-pressed={viewMode === option.value}
                   onClick={() => {
-                    setTypeFilter(label);
-                    // Batch 205: 类型菜单与列表过滤联动（标签→NodeFilter 映射）。
-                    const mapped: NodeFilter =
-                      label === "全部" ? "all"
-                      : label === "文本" ? "text"
-                      : label === "图片" ? "image"
-                      : label === "视频" ? "video"
-                      : label === "智能剪辑" ? "video-clip"
-                      : label === "导演台" ? "script-execution"
-                      : label === "逐帧拉片" ? "shot-breakdown"
-                      : label === "音频" ? "audio"
-                      : label === "脚本" ? "script-generator"
-                      : "script";
-                    setFilter(mapped);
-                    setTypeMenuOpen(false);
+                    setViewMode(option.value);
+                    setViewMenuOpen(false);
                   }}
                   className={cn(
                     "flex h-8 w-full items-center rounded-lg px-2 text-left text-xs transition-colors",
-                    typeFilter === label ? "bg-white/[0.1] text-white" : "text-[#ccc] hover:bg-white/[0.06]",
+                    viewMode === option.value ? "bg-white/[0.1] text-white" : "text-[#ccc] hover:bg-white/[0.06]",
                   )}
                 >
-                  {label}
+                  {option.label}
                 </button>
               ))}
+              <button
+                type="button"
+                data-asset-manager-expand-groups
+                onClick={() => {
+                  setGroupsExpanded(true);
+                  setViewMenuOpen(false);
+                }}
+                className="flex h-8 w-full items-center rounded-lg px-2 text-left text-xs text-[#ccc] transition-colors hover:bg-white/[0.06]"
+              >
+                展开全部分组
+              </button>
+              <button
+                type="button"
+                data-asset-manager-collapse-groups
+                onClick={() => {
+                  setGroupsExpanded(false);
+                  setViewMenuOpen(false);
+                }}
+                className="flex h-8 w-full items-center rounded-lg px-2 text-left text-xs text-[#ccc] transition-colors hover:bg-white/[0.06]"
+              >
+                收起全部分组
+              </button>
             </div>
           )}
         </div>
@@ -396,7 +423,7 @@ export function AssetManagerPanel({
 
       <div data-asset-manager-list={activeTab} className="min-h-0 flex-1 overflow-y-auto px-2 py-2">
         {visibleRows.length > 0 ? (
-          <div className="space-y-1">
+          <div className={cn(viewMode === "grid" ? "flex flex-wrap gap-2" : "space-y-1")}>
             {visibleRows.map(({ node, depth }) => {
               const data = node.data as Record<string, unknown>;
               const imageUrl = typeof data.imageUrl === "string" ? data.imageUrl : null;
@@ -409,8 +436,9 @@ export function AssetManagerPanel({
                   data-asset-manager-depth={depth}
                   onClick={() => selectNode(node.id)}
                   className={cn(
-                    "group flex h-10 w-full items-center gap-2 rounded-lg pr-2 text-left hover:bg-white/[0.06]",
-                    depth === 1 ? "pl-7" : "pl-2",
+                    "group flex h-10 items-center gap-2 rounded-lg pr-2 text-left hover:bg-white/[0.06]",
+                    viewMode === "grid" ? "w-[144px] flex-col justify-center" : "w-full",
+                    depth === 1 && viewMode === "list" ? "pl-7" : "pl-2",
                     selectedNodeId === node.id && "bg-white/[0.09]",
                   )}
                 >
