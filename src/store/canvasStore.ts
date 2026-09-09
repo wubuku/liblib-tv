@@ -297,6 +297,7 @@ interface CanvasState {
   ) => void;
   createStoryScriptPair: () => void;
   createFirstFrameReference: (videoNodeId: string) => void;
+  createFirstLastFrameReference: (videoNodeId: string) => void;
   destroyFirstFrameReference: (videoNodeId: string) => void;
   createVideoContinuation: (
     sourceId: string,
@@ -1286,6 +1287,79 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         canvases: state.canvases.map((canvas) =>
           canvas.id === activeCanvasId
             ? { ...canvas, nodes: [...canvas.nodes, imageNode], edges: [...canvas.edges, newEdge] }
+            : canvas,
+        ),
+        selectedNodeIds: [videoNodeId],
+        selectedNodeId: videoNodeId,
+        selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  // Batch 252: 源站 2026-09-09 直采——「首尾帧生成视频」芯片自动创建
+  // 两个图片节点（首帧上/尾帧下，堆叠于视频节点左侧）并各以一条边连入
+  // 视频节点（type default = bezier 曲线，与源站曲线形态一致）；事务内
+  // 保持视频节点选中、单条历史记录；已有入边图片节点时跳过（防重）。
+  createFirstLastFrameReference: (videoNodeId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((canvas) => canvas.id === activeCanvasId);
+    const video = canvas?.nodes.find((node) => node.id === videoNodeId);
+    if (!canvas || !video) return;
+    const hasImageRef = canvas.edges.some((edge) => {
+      if (edge.target !== videoNodeId) return false;
+      return canvas.nodes.find((node) => node.id === edge.source)?.type === "image";
+    });
+    if (hasImageRef) return;
+    const dimensions = getDefaultNodeDimensions("image");
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const videoPosition = getAbsoluteNodePosition(video, nodesById);
+    const leftX = videoPosition.x - dimensions.width - 80;
+    const firstNode: Node = {
+      id: createNodeId("image"),
+      type: "image",
+      position: { x: leftX, y: videoPosition.y - dimensions.height / 2 - 20 },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: { ...getDefaultNodeData("image"), filename: "素材 - 首帧参考" },
+    };
+    const lastNode: Node = {
+      id: createNodeId("image"),
+      type: "image",
+      position: { x: leftX, y: videoPosition.y + dimensions.height / 2 + 20 },
+      width: dimensions.width,
+      height: dimensions.height,
+      style: dimensions,
+      data: { ...getDefaultNodeData("image"), filename: "素材 - 尾帧参考" },
+    };
+    const firstEdge: Edge = {
+      id: `e-${firstNode.id}-${videoNodeId}`,
+      source: firstNode.id,
+      target: videoNodeId,
+      sourceHandle: "source",
+      targetHandle: "target",
+      type: "default",
+    };
+    const lastEdge: Edge = {
+      id: `e-${lastNode.id}-${videoNodeId}`,
+      source: lastNode.id,
+      target: videoNodeId,
+      sourceHandle: "source",
+      targetHandle: "target",
+      type: "default",
+    };
+    set((state) => {
+      const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
+      if (!currentCanvas) return state;
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: [...canvas.nodes, firstNode, lastNode],
+                edges: [...canvas.edges, firstEdge, lastEdge],
+              }
             : canvas,
         ),
         selectedNodeIds: [videoNodeId],

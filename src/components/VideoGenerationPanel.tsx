@@ -45,6 +45,11 @@ interface VideoGenerationPanelProps {
 
 const defaultPrompt = "起始状态：@陈默（图片 1）充满杀伤力的眼神锁定镜头。动作过程：镜头平滑而缓慢地向他冷厉的双眼推移。他在第1秒开始说出如刀刃般的台词。对白（@陈默，冷酷且有力）：‘当初你离开的时候，怎么没想过我会担心？’结束状态：镜头停止在他充满恨意的双眸。音效：环境音完全静默，只余沉重的台词回响。";
 
+// Batch 252: 源站 2026-09-09 直采——首尾帧芯片自动预填的 AI 过渡文案
+// （原样存档作为 clone 的预填样例）。
+const FIRST_LAST_PROMPT =
+  "手从白帆布包中取出青柠气泡水罐的特写，过渡到短发女生在户外草地仰头喝同款气泡水的中景，日系清新治愈风格，明亮自然光，柔和暖调，胶片质感，动作流畅自然";
+
 const references = [
   { id: 1, name: "陈默", image: "/images/scene-coffee-1.png" },
   { id: 2, name: "咖啡", image: "/images/scene-coffee-2.png" },
@@ -226,6 +231,15 @@ export function VideoGenerationPanel({
       setMode("first-frame");
       setRatio("Auto");
       setDuration(5);
+    } else if (attempt === "首尾帧生成视频") {
+      // Batch 252: 源站直采——首尾帧芯片：模型切 2.0、全能参考、
+      // 16:9·720P·5s·1个、提示词预填过渡文案（积分源站 155，clone 公式
+      // 27/s×5=135，漂移记录于 batch 251 README）。
+      setMode("first-frame");
+      setModel("2.0");
+      setRatio("16:9");
+      setDuration(5);
+      setPrompt(FIRST_LAST_PROMPT);
     } else if (attempt !== null) {
       setRatio("Auto");
       setDuration(5);
@@ -667,6 +681,27 @@ export function VideoGenerationPanel({
                 {/* Batch 249: OmniHuman 内容区由需求槽行占据（上方），无提示词
                     输入框；模式=模型名、芯片=自适应 · 1个（见 footer 标签）。 */}
                 <div className="min-h-0 flex-1" />
+              </>
+            ) : attempt === "首尾帧生成视频" ? (
+              <>
+                {/* Batch 252: 源站直采——首尾帧面板为双参考槽（首帧/尾帧）+
+                    预填 AI 过渡文案的提示词框。 */}
+                <div data-video-firstlast-slots className="mt-1 flex w-full min-w-0 shrink-0 flex-wrap items-start gap-2 pl-1">
+                  <div className="relative h-[55px] w-12 overflow-hidden rounded-lg border border-white/10">
+                    <Image src="/images/storyboard-2.png" alt="首帧参考" fill sizes="48px" className="object-cover" unoptimized />
+                    <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">1</span>
+                  </div>
+                  <div className="relative h-[55px] w-12 overflow-hidden rounded-lg border border-white/10">
+                    <Image src="/images/scene-coffee-2.png" alt="尾帧参考" fill sizes="48px" className="object-cover" unoptimized />
+                    <span className="absolute left-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-black/70 text-[9px] text-white">2</span>
+                  </div>
+                </div>
+                <textarea
+                  value={prompt}
+                  onChange={(event) => { setPrompt(event.target.value); setSubmitted(false); }}
+                  aria-label="视频生成提示词"
+                  className="mt-1 min-h-0 flex-1 resize-none p-2 text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30"
+                />
               </>
             ) : attempt === "首帧生成视频" ? (
               <>

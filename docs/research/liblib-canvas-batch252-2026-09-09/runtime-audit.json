@@ -1,0 +1,28 @@
+{
+  "batch": 252,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "graph:two-nodes-added",
+        "graph:two-edges-added",
+        "panel:two-slots",
+        "panel:textarea-present",
+        "panel:prompt-prefilled",
+        "footer:model-2-0",
+        "footer:mode-全能参考",
+        "footer:chip-169-720p-5s",
+        "footer:credits-135",
+        "guard:no-duplicates",
+        "switch25:chip-169",
+        "switch25:credits-230",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

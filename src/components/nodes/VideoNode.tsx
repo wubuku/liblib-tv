@@ -607,6 +607,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
                 // 并连入视频节点（动作内含防重与选中保持守卫）。
                 if (label === "首帧生成视频") {
                   useCanvasStore.getState().createFirstFrameReference(id);
+                } else if (label === "首尾帧生成视频") {
+                  // Batch 252: 首尾帧流——双图片节点 + 双边（batch 251 采样）。
+                  useCanvasStore.getState().createFirstLastFrameReference(id);
                 }
               }}
               className={cn(
