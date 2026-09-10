@@ -258,7 +258,10 @@ export function AssetManagerPanel({
           {typeMenuOpen && (
             /* Batch 204: 源站节点类型筛选菜单直采（180×369，10 项）。
                Batch 298: 菜单自 展示设置 迁至 筛选 按钮（源站 2026-09-10
-               对照：展示设置实为视图布局菜单）。 */
+               对照：展示设置实为视图布局菜单）。
+               Batch 305: 源站筛选选择后并不过滤列表（混合类型全显，
+               batch 304 直采）——clone 的类型过滤联动为超出源站的
+               CLONE_DECISION 附加行为，保留以维持本地 mock 可用性。 */
             <div data-asset-manager-typemenu className="absolute left-0 top-8 z-50 w-[180px] rounded-xl border border-white/[0.08] bg-[#262626] p-1.5 shadow-[var(--canvas-shadow-menu)]">
               {["全部", "文本", "图片", "视频", "智能剪辑", "导演台", "逐帧拉片", "音频", "脚本", "脚本（旧版）"].map((label) => (
                 <button
