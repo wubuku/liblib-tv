@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import type { Node } from "@xyflow/react";
 import { AudioLines, ChevronDown, ImageIcon, Maximize2, MessageSquareText, Play, Scan } from "lucide-react";
@@ -63,7 +64,7 @@ function EmptyColumn({ kind, label }: { kind: string; label: string }) {
   );
 }
 
-function VideoStatusOverlay({ status }: { status: string | null }) {
+function VideoStatusOverlay({ status, onPlay }: { status: string | null; onPlay?: () => void }) {
   const label = status === "pending"
     ? "待确认后生成"
     : status === "failed"
@@ -73,7 +74,17 @@ function VideoStatusOverlay({ status }: { status: string | null }) {
         : null;
   if (status === "ready") {
     return (
-      <span className="flex size-11 items-center justify-center rounded-full bg-black/55 text-white">
+      <span
+        role="button"
+        tabIndex={0}
+        data-storyboard-play
+        aria-label="播放视频"
+        onClick={(event) => {
+          event.stopPropagation();
+          onPlay?.();
+        }}
+        className="flex size-11 cursor-pointer items-center justify-center rounded-full bg-black/55 text-white transition-colors hover:bg-black/75"
+      >
         <Play size={16} fill="currentColor" className="ml-0.5" />
       </span>
     );
@@ -101,6 +112,18 @@ export function StoryboardBoard() {
   const setVideoStatus = (nodeId: string, status: "ready" | "empty") => {
     updateNodeData(nodeId, { status });
   };
+
+  // Batch 337: 视频栏 全部 ∨ 过滤与 ready 播放灯箱——源站选项/行为未采得
+  // （CLONE_DECISION）：过滤按生成状态四态（全部/待确认/已完成/失败），
+  // ready 卡播放钮打开 <video> 灯箱（无源时显示本地原型提示）。
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "ready" | "failed">("all");
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
+  const filterLabel = statusFilter === "all" ? "全部" : statusFilter === "pending" ? "待确认" : statusFilter === "ready" ? "已完成" : "失败";
+  const visibleVideoNodes = statusFilter === "all"
+    ? videoNodes
+    : videoNodes.filter((node) => (str(nodeData(node).status) ?? "empty") === statusFilter);
+  const playingNode = playingVideoId ? videoNodes.find((node) => node.id === playingVideoId) : null;
 
   return (
     <div data-storyboard-board className="h-full min-w-0 overflow-hidden bg-[#141414] p-4 pt-16">
@@ -204,14 +227,43 @@ export function StoryboardBoard() {
         <section data-storyboard-column="video" className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
           <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
             视频
-            <button
-              type="button"
-              data-storyboard-filter="all"
-              className="ml-auto flex h-7 items-center gap-1 rounded-md px-2 text-xs text-[#c9c9c9] hover:bg-white/[0.07]"
-            >
-              全部
-              <ChevronDown size={13} className="text-[#8c8c8c]" />
-            </button>
+            <span className="relative ml-auto">
+              <button
+                type="button"
+                data-storyboard-filter={statusFilter}
+                aria-expanded={filterMenuOpen}
+                onClick={() => setFilterMenuOpen((open) => !open)}
+                className="flex h-7 items-center gap-1 rounded-md px-2 text-xs text-[#c9c9c9] hover:bg-white/[0.07]"
+              >
+                {filterLabel}
+                <ChevronDown size={13} className="text-[#8c8c8c]" />
+              </button>
+              {filterMenuOpen && (
+                <span data-storyboard-filter-menu className="absolute right-0 top-8 z-30 flex w-28 flex-col rounded-lg border border-white/[0.08] bg-[#262626] p-1 shadow-[0_12px_32px_rgba(0,0,0,0.5)]">
+                  {([
+                    ["all", "全部"],
+                    ["pending", "待确认"],
+                    ["ready", "已完成"],
+                    ["failed", "失败"],
+                  ] as const).map(([value, label]) => (
+                    <button
+                      key={value}
+                      type="button"
+                      data-storyboard-filter-option={value}
+                      aria-pressed={statusFilter === value}
+                      onClick={() => {
+                        setStatusFilter(value);
+                        setFilterMenuOpen(false);
+                      }}
+                      className="flex h-8 items-center justify-between rounded-md px-2 text-left text-xs text-[#d4d4d4] hover:bg-white/[0.07]"
+                    >
+                      {label}
+                      {statusFilter === value && <span className="text-[#09caf5]">✓</span>}
+                    </button>
+                  ))}
+                </span>
+              )}
+            </span>
             <button
               type="button"
               data-storyboard-expand="video"
@@ -227,7 +279,7 @@ export function StoryboardBoard() {
               视频
             </div>
             <div className="flex flex-wrap gap-5">
-              {videoNodes.length > 0 ? videoNodes.map((node) => {
+              {visibleVideoNodes.length > 0 ? visibleVideoNodes.map((node) => {
                 const data = nodeData(node);
                 const model = str(data.model);
                 const status = str(data.status);
@@ -250,7 +302,7 @@ export function StoryboardBoard() {
                           <Image src={imageUrl(node) as string} alt="" width={600} height={338} className="absolute inset-0 size-full object-cover opacity-80" unoptimized />
                         )}
                         <span className="relative">
-                          <VideoStatusOverlay status={status} />
+                          <VideoStatusOverlay status={status} onPlay={() => setPlayingVideoId(node.id)} />
                         </span>
                       </span>
                       <span className="flex flex-col gap-2 p-3">
@@ -295,11 +347,43 @@ export function StoryboardBoard() {
                     )}
                   </span>
                 );
-              }) : <EmptyColumn kind="video" label="暂无视频" />}
+              }) : <EmptyColumn kind="video" label={statusFilter === "all" ? "暂无视频" : "该状态下暂无视频"} />}
             </div>
           </div>
         </section>
       </div>
+      {playingNode && (
+        <div
+          data-storyboard-lightbox
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70"
+          onClick={() => setPlayingVideoId(null)}
+        >
+          <div className="flex flex-col items-center gap-3" onClick={(event) => event.stopPropagation()}>
+            {str(nodeData(playingNode).videoUrl) ? (
+              <video
+                data-storyboard-lightbox-player
+                src={str(nodeData(playingNode).videoUrl) as string}
+                controls
+                autoPlay
+                className="max-h-[80vh] w-[80vw] max-w-[960px] rounded-xl bg-black"
+              />
+            ) : (
+              <div className="flex h-64 w-[560px] flex-col items-center justify-center gap-2 rounded-xl bg-[#1b1b1b] text-sm text-[#9a9a9a]">
+                <Play size={22} />
+                本地原型：该视频节点无视频源
+              </div>
+            )}
+            <button
+              type="button"
+              data-storyboard-lightbox-close
+              onClick={() => setPlayingVideoId(null)}
+              className="rounded-lg bg-[#262626] px-3 py-1.5 text-xs text-[#d4d4d4] hover:bg-[#303030]"
+            >
+              关闭
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

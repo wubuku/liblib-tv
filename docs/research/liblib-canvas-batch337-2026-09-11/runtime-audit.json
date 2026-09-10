@@ -1,0 +1,33 @@
+{
+  "batch": 337,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:video-node",
+        "board:visible",
+        "filter:label-all",
+        "filter:menu-opens",
+        "filter:four-options",
+        "filter:active-checkmark",
+        "filter:empty-hint",
+        "filter:label-pending",
+        "filter:label-back-all",
+        "setup:card-ready",
+        "lightbox:opens",
+        "lightbox:placeholder",
+        "lightbox:closes",
+        "lightbox:player",
+        "lightbox:backdrop-closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 1,
+        "errors": [
+          "console:error:Failed to load resource: the server responded with a status of 404 (Not Found)"
+        ]
+      }
+    }
+  ],
+  "passed": true
+}
