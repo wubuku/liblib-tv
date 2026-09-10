@@ -1,0 +1,26 @@
+{
+ "models": {
+  "Pixverse V5.5": {
+   "after": {
+    "credits": "135",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Pixverse V5": {
+   "error": "row missing"
+  },
+  "OmniHuman 1.5": {
+   "after": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Hailuo 2.3 Fast": {
+   "after": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  }
+ },
+ "final": 3
+}
