@@ -1,0 +1,20 @@
+{
+ "nodes_created": {
+  "video": true,
+  "text": false,
+  "total": 1
+ },
+ "initial_list": [
+  "所有评级",
+  "视频节点 15"
+ ],
+ "filter_image": [
+  "所有评级",
+  "视频节点 15"
+ ],
+ "filter_video": [
+  "所有评级",
+  "视频节点 15"
+ ],
+ "final": 0
+}
