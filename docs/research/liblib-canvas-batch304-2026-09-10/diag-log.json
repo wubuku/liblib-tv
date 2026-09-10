@@ -1,0 +1,12 @@
+{
+ "first_created": true,
+ "panel_state": {
+  "panelFound": false,
+  "items": [],
+  "hitTest": null
+ },
+ "second_created_js": {
+  "clicked": false,
+  "nodes": 1
+ }
+}
