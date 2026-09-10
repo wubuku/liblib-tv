@@ -1,0 +1,15 @@
+{
+ "models": {
+  "Style Video": {
+   "opacity": "0.5",
+   "after": {
+    "credits": "135",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Kling3.0 动作迁移": {
+   "error": "row missing"
+  }
+ },
+ "final": 3
+}
