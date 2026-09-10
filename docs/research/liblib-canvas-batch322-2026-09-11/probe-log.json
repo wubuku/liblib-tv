@@ -1,0 +1,364 @@
+{
+ "dropdown_structure": [
+  {
+   "tag": "DIV",
+   "cls": "flex min-h-0 flex-1 flex-col px-4",
+   "box": [
+    0,
+    72,
+    1520,
+    2328
+   ],
+   "t": "音频00:04音频文本暂无文本图"
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative min-h-0 flex-1",
+   "box": [
+    16,
+    72,
+    1488,
+    2328
+   ],
+   "t": "音频00:04音频文本暂无文本图"
+  },
+  {
+   "tag": "DIV",
+   "cls": "absolute left-0 top-0 flex flex-col",
+   "box": [
+    16,
+    72,
+    496,
+    2328
+   ],
+   "t": "音频00:04音频文本暂无文本"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex min-h-0 shrink-0 flex-col overflow-hidden",
+   "box": [
+    16,
+    72,
+    496,
+    156
+   ],
+   "t": "音频00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "rounded-xl assetboard-panel flex flex-col px-4 py-3 min-h-0 flex-1",
+   "box": [
+    16,
+    72,
+    496,
+    156
+   ],
+   "t": "音频00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex items-center justify-between h-5",
+   "box": [
+    33,
+    85,
+    463,
+    20
+   ],
+   "t": "音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex items-center gap-6",
+   "box": [
+    33,
+    84,
+    28,
+    22
+   ],
+   "t": "音频"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "text-[14px] font-medium transition-colors text-[var(--canvas-controls-",
+   "box": [
+    33,
+    84,
+    28,
+    22
+   ],
+   "t": "音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex min-h-0 flex-1 flex-col",
+   "box": [
+    33,
+    105,
+    463,
+    111
+   ],
+   "t": "00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "tiny-scrollbar -ml-1 -mr-4 mt-2 grid min-h-0 flex-1 grid-cols-[repeat(",
+   "box": [
+    29,
+    113,
+    483,
+    103
+   ],
+   "t": "00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "w-full",
+   "box": [
+    33,
+    117,
+    71,
+    95
+   ],
+   "t": "00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative flex w-full flex-col gap-1.5",
+   "box": [
+    33,
+    117,
+    71,
+    95
+   ],
+   "t": "00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "pointer-events-none absolute -inset-1 rounded-lg transition-colors dur",
+   "box": [
+    29,
+    113,
+    79,
+    103
+   ],
+   "t": ""
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "relative flex w-full flex-col gap-1.5 text-left",
+   "box": [
+    33,
+    117,
+    71,
+    95
+   ],
+   "t": "00:04音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative overflow-hidden rounded-lg bg-[var(--Surface-Canva-background",
+   "box": [
+    33,
+    117,
+    71,
+    71
+   ],
+   "t": "00:04"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex size-full flex-col items-center text-[var(--canvas-controls-text-",
+   "box": [
+    33,
+    117,
+    70,
+    70
+   ],
+   "t": "00:04"
+  },
+  {
+   "tag": "svg",
+   "cls": "[object SVGAnimatedString]",
+   "box": [
+    60,
+    138,
+    16,
+    17
+   ],
+   "t": ""
+  },
+  {
+   "tag": "SPAN",
+   "cls": "flex h-[27.78%] shrink-0 items-center text-[11px] leading-none",
+   "box": [
+    52,
+    162,
+    31,
+    19
+   ],
+   "t": "00:04"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "w-full truncate px-1 text-center text-[12px] text-[var(--canvas-contro",
+   "box": [
+    33,
+    193,
+    71,
+    19
+   ],
+   "t": "音频"
+  },
+  {
+   "tag": "DIV",
+   "cls": "shrink-0",
+   "box": [
+    16,
+    228,
+    496,
+    12
+   ],
+   "t": ""
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative min-h-0 flex-1",
+   "box": [
+    16,
+    240,
+    496,
+    2160
+   ],
+   "t": "文本暂无文本"
+  },
+  {
+   "tag": "DIV",
+   "cls": "absolute inset-0 overflow-hidden",
+   "box": [
+    16,
+    240,
+    496,
+    2160
+   ],
+   "t": "文本暂无文本"
+  },
+  {
+   "tag": "DIV",
+   "cls": "rounded-xl assetboard-panel relative flex h-full min-h-0 w-full flex-c",
+   "box": [
+    16,
+    240,
+    496,
+    2160
+   ],
+   "t": "文本暂无文本"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex flex-1 items-center justify-center px-4 py-8 text-center text-[12",
+   "box": [
+    17,
+    285,
+    495,
+    2115
+   ],
+   "t": "暂无文本"
+  },
+  {
+   "tag": "DIV",
+   "cls": "",
+   "box": [
+    0,
+    60,
+    1920,
+    0
+   ],
+   "t": ""
+  },
+  {
+   "tag": "DIV",
+   "cls": "m_38a85659 mantine-Popover-dropdown",
+   "box": [
+    173,
+    54,
+    214,
+    81
+   ],
+   "t": "画布画布 1"
+  },
+  {
+   "tag": "DIV",
+   "cls": "py-2",
+   "box": [
+    173,
+    55,
+    213,
+    80
+   ],
+   "t": "画布画布 1"
+  },
+  {
+   "tag": "DIV",
+   "cls": "flex h-[28px] shrink-0 items-center justify-between gap-2 pl-4 pr-2",
+   "box": [
+    173,
+    63,
+    213,
+    28
+   ],
+   "t": "画布"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "text-fg-subtle text-[13px] font-medium leading-normal",
+   "box": [
+    189,
+    67,
+    26,
+    20
+   ],
+   "t": "画布"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "text-canvas-controls-text flex size-6 shrink-0 items-center justify-ce",
+   "box": [
+    354,
+    65,
+    24,
+    24
+   ],
+   "t": ""
+  }
+ ],
+ "revealed_after_hover": [
+  {
+   "label": "新建画布",
+   "box": [
+    354,
+    65,
+    24,
+    24
+   ]
+  },
+  {
+   "label": "切换到画布 画布 1",
+   "box": [
+    189,
+    102,
+    187,
+    21
+   ]
+  },
+  {
+   "label": "更多操作",
+   "box": [
+    352,
+    101,
+    24,
+    24
+   ]
+  }
+ ],
+ "affordance": null
+}
