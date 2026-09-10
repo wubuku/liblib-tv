@@ -74,12 +74,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # ---- 720P table readings (baseline chip 16:9·720P·5s·1个)
     switch_model("Minimax H3 Max")
     check("h3max:credits-60", credits.inner_text().strip().endswith("60"))
+    # batch 332: batch 240's 45 was the 480P-state reading; source A/B
+    # (2026-09-11) showed 480P=45 vs 720P=90 — table now carries 18/s.
     switch_model("Wan 3.0 Prime")
-    check("wan3prime:credits-45", credits.inner_text().strip().endswith("45"))
+    check("wan3prime:credits-90", credits.inner_text().strip().endswith("90"))
     switch_model("Kling O3")
     check("klingo3:credits-55", credits.inner_text().strip().endswith("55"))
+    # batch 332: 720P-controlled re-read gives 45 (the old 40 was a lower-
+    # resolution state); 1080p tier is 50.
     switch_model("Vidu Q2")
-    check("viduq2:credits-40", credits.inner_text().strip().endswith("40"))
+    check("viduq2:credits-45", credits.inner_text().strip().endswith("45"))
     switch_model("Hailuo 02")
     check("hailuo02:credits-36", credits.inner_text().strip().endswith("36"))
     switch_model("Hailuo 2.3 Fast")

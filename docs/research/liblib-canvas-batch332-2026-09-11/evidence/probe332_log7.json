@@ -1,0 +1,91 @@
+{
+ "started": "2026-09-11 05:02:50",
+ "models": {
+  "Hailuo 2.3 Fast": {
+   "name": "Hailuo 2.3 Fast",
+   "attempts": [
+    {
+     "n": 0,
+     "fail": "trig=Kling 2.5"
+    },
+    {
+     "n": 1,
+     "fail": "menu"
+    },
+    {
+     "n": 2,
+     "fail": "trig=Kling 2.5"
+    },
+    {
+     "n": 3,
+     "fail": "menu"
+    }
+   ],
+   "error": "all attempts failed"
+  },
+  "Vidu Q2 Turbo": {
+   "name": "Vidu Q2 Turbo",
+   "attempts": [
+    {
+     "n": 0,
+     "chip": [
+      "自适应",
+      "1080p",
+      "5s",
+      "1",
+      "80"
+     ]
+    }
+   ],
+   "normalize": [],
+   "chip": [
+    "自适应",
+    "1080p",
+    "5s",
+    "1",
+    "80"
+   ],
+   "chip_second": [
+    "自适应",
+    "1080p",
+    "5s",
+    "1",
+    "80"
+   ],
+   "stable": true,
+   "raw_tail": "视频节点 2 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 Turbo 文生视频 自适应 · 1080p · 5s · 1个 80 高级设置 智能引用 AutoLink"
+  },
+  "Vidu Q2": {
+   "name": "Vidu Q2",
+   "attempts": [
+    {
+     "n": 0,
+     "chip": [
+      "16:9",
+      "1080p",
+      "5s",
+      "1",
+      "50"
+     ]
+    }
+   ],
+   "normalize": [],
+   "chip": [
+    "16:9",
+    "1080p",
+    "5s",
+    "1",
+    "50"
+   ],
+   "chip_second": [
+    "16:9",
+    "1080p",
+    "5s",
+    "1",
+    "50"
+   ],
+   "stable": true,
+   "raw_tail": "视频节点 2 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 文生视频 16:9 · 1080p · 5s · 1个 50 高级设置 智能引用 AutoLink"
+  }
+ }
+}

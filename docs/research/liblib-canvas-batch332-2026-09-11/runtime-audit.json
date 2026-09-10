@@ -1,0 +1,47 @@
+{
+  "batch": 332,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rate:Minimax H3 Max-credits-60",
+        "rate:Minimax H3-credits-110",
+        "rate:Wan 3.0 Prime-credits-90",
+        "rate:Wan 3.0-credits-50",
+        "rate:Wan 2.7-credits-50",
+        "rate:Wan 2.6-credits-50",
+        "rate:Wan 2.2-credits-40",
+        "rate:Wan 2.5-credits-40",
+        "rate:Kling O3-credits-55",
+        "rate:Kling 3.0 Turbo-credits-60",
+        "rate:Kling 3.0-credits-55",
+        "rate:Kling 2.6-credits-50",
+        "rate:Kling 2.5-credits-25",
+        "rate:Kling O1-credits-35",
+        "rate:Vidu Q2-credits-45",
+        "rate:Vidu Q2 Pro-credits-45",
+        "rate:Vidu Q2 Turbo-credits-80",
+        "rate:Vidu Q3 Pro-credits-50",
+        "rate:Happy Horse 1.1-credits-75",
+        "rate:Happy Horse 1.0-credits-80",
+        "rate:Hailuo 2.3-credits-36",
+        "rate:Hailuo 2.3 Fast-credits-24",
+        "rate:Hailuo 02-credits-36",
+        "rate:Pixverse V5.5-credits-60",
+        "rate:Pixverse V5-credits-45",
+        "rate:2.5-credits-230",
+        "wan3prime:480p-credits-90-clone-gap",
+        "wan3prime:720p-credits-90",
+        "hailuo23:15s-credits-108",
+        "hailuo23:back-5s-credits-36",
+        "control:vip-credits-135",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

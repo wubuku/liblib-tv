@@ -1,0 +1,14 @@
+{
+ "name": "Hailuo 2.3 Fast",
+ "steps": [
+  {
+   "wheel": 1,
+   "vis": false
+  },
+  {
+   "wheel": 2,
+   "vis": true
+  }
+ ],
+ "trigger_after": "Vidu Q2"
+}

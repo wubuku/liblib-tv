@@ -983,24 +983,57 @@ const RESOLUTION_ORDER = ["480P", "720P", "1080P", "4K"];
 // Wan 3.0 Prime→9、Wan 2.7→13、Kling O3→11、Kling 3.0 Turbo→12、
 // Vidu Q2→8、Vidu Q3 Pro→10、Hailuo 2.3 Fast→4.8（24/5s）、Hailuo 02→7.2（36/5s）、
 // Pixverse V5.5→12（60/5s，截图芯片直证）、Pixverse V5→9（45/5s，同流程）。
-// 未采样模型族按 27/s 缺省（SOURCE_UNKNOWN）。
+// Batch 332 复测（源站 2026-09-11，受控单变量：逐模型显式归一化 16:9·720P·5s·1个
+// 后读数，双读稳定）改写/补全：
+// - Wan 3.0 Prime 9→18：batch 240 的 45 实为 480P 态（同会话 A/B：480P=45、
+//   720P=90，清晰度决定积分）；
+// - Wan 2.7 13→10：13 为其 1080P 态费率（78/6s=13/s），720P=50（10/s）；
+// - Vidu Q2 8→9：720P=45（旧 40 为低清晰度态读数）；1080p=50（10/s）；
+// - 新入表：Wan 3.0→10（50/5s；2K 态 132/6s=22/s）、Wan 2.6→10（50/5s）、
+//   Wan 2.2/Wan 2.5→8（各 40/5s）、Minimax H3→22（110/5s 与 132/6s@2K 双源一致）、
+//   Kling 3.0→11（55/5s 标准）、Kling 2.6→10（50/5s）、Kling 2.5→5（高品质 25/5s，
+//   标准档 15/5s=3/s 为会话态数据点）、Kling O1→7（35/5s 标准）、
+//   Vidu Q2 Pro→9（45/5s；其 1080p=110/5s=22/s）、Vidu Q2 Turbo→16（80/5s，
+//   1080p 档直证，720P 未采样）、Happy Horse 1.1→15（75/5s；120 为 1080P 态）、
+//   Happy Horse 1.0→16（80/5s；192 为 1080P 态）、Hailuo 2.3→7.2（36/5s，
+//   与 Hailuo 02 同价；直采 36/6s@1080P=6/s 为并列数据点）；
+// - Pixverse V5.5 维持 12：60/5s 复测再证（batch 291/330 的 135 系陈旧读数，
+//   恰为默认模型 2.0 的积分）；Hailuo 2.3 Fast 维持 4.8：batch 330 的 56 与
+//   本轮复测冲突，且其菜单行经三种点击机制均选中相邻模型（源站虚拟化列表
+//   疑似行错位 bug），无法受控采样，维持 batch 240 值并记 SOURCE_UNKNOWN。
+// 未采样模型族按 27/s 缺省（SOURCE_UNKNOWN）。费率随时点可能变化（源站
+// 调价），以 docs/research/liblib-canvas-batch332-2026-09-11/ 证据为准。
 const MODEL_RATES: Record<string, number> = {
   "2.5": 46,
   "2.0 VIP": 27,
   "2.0 Fast VIP": 22,
   "2.0 Mini": 16,
   "Minimax H3 Max": 12,
-  "Wan 3.0 Prime": 9,
-  "Wan 2.7": 13,
+  "Minimax H3": 22,
+  "Wan 3.0 Prime": 18,
+  "Wan 3.0": 10,
+  "Wan 2.7": 10,
+  "Wan 2.6": 10,
+  "Wan 2.2": 8,
+  "Wan 2.5": 8,
   "Kling O3": 11,
   "Kling 3.0 Turbo": 12,
-  "Vidu Q2": 8,
+  "Kling 3.0": 11,
+  "Kling 2.6": 10,
+  "Kling 2.5": 5,
+  "Kling O1": 7,
+  "Vidu Q2": 9,
+  "Vidu Q2 Pro": 9,
+  "Vidu Q2 Turbo": 16,
   "Vidu Q3 Pro": 10,
+  "Hailuo 2.3": 7.2,
   "Hailuo 2.3 Fast": 4.8,
   "Hailuo 02": 7.2,
   "Seedance 1.5 Pro": 8,
   "Pixverse V5.5": 12,
   "Pixverse V5": 9,
+  "Happy Horse 1.1": 15,
+  "Happy Horse 1.0": 16,
 };
 // Batch 240: 分辨率影响积分（Seedance 1.5 Pro 同会话 A/B：720P=40 vs
 // 1080P=90，切回可逆）——1080P 受控读数单列表；480P 及其它模型×分辨率

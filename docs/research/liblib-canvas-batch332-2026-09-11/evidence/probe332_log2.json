@@ -1,0 +1,243 @@
+{
+ "started": "2026-09-11 04:39:04",
+ "models": {
+  "Wan 2.6": {
+   "name": "Wan 2.6",
+   "read": {
+    "trigger": "Wan 2.6",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Wan 2.6 文生视频 16:9 · 1080P · 5s · 1个 · - 高级设置 多镜头 智能引用 AutoLink"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Wan_2.6.png"
+  },
+  "Wan 2.2": {
+   "name": "Wan 2.2",
+   "read": {
+    "trigger": "Wan 2.2",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Wan 2.2 文生视频 16:9 · 720P · 5s · 1个 40 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "720P",
+    "dur": "5s",
+    "count": "1",
+    "credits": "40"
+   },
+   "shot": "/tmp/probe332_shots2/Wan_2.2.png"
+  },
+  "Kling 3.0": {
+   "name": "Kling 3.0",
+   "read": {
+    "trigger": "Kling 3.0",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Kling 3.0 文生视频 16:9 · 标准 · 5s · 1个 · 55 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "标准",
+    "dur": "5s",
+    "count": "1",
+    "credits": "55"
+   },
+   "shot": "/tmp/probe332_shots2/Kling_3.0.png"
+  },
+  "Kling 2.6": {
+   "name": "Kling 2.6",
+   "read": {
+    "trigger": null,
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Kling_2.6.png"
+  },
+  "Kling 2.5": {
+   "name": "Kling 2.5",
+   "read": {
+    "trigger": "Kling 2.5",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Kling 2.5 文生视频 16:9 · 标准 · 5s · 1个 15 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "标准",
+    "dur": "5s",
+    "count": "1",
+    "credits": "15"
+   },
+   "shot": "/tmp/probe332_shots2/Kling_2.5.png"
+  },
+  "Kling O1": {
+   "name": "Kling O1",
+   "read": {
+    "trigger": "Kling O1",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Kling O1 文生视频 16:9 · 标准 · 5s · 1个 35 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "标准",
+    "dur": "5s",
+    "count": "1",
+    "credits": "35"
+   },
+   "shot": "/tmp/probe332_shots2/Kling_O1.png"
+  },
+  "Pixverse V5.5": {
+   "name": "Pixverse V5.5",
+   "read": {
+    "trigger": "Pixverse V5.5",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Pixverse V5.5 文生视频 16:9 · 720P · 5s · 1个 · 60 高级设置 风格 通用 多镜头 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "720P",
+    "dur": "5s",
+    "count": "1",
+    "credits": "60"
+   },
+   "shot": "/tmp/probe332_shots2/Pixverse_V5.5.png"
+  },
+  "Hailuo 2.3 Fast": {
+   "name": "Hailuo 2.3 Fast",
+   "read": {
+    "trigger": "Pixverse V5.5",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Pixverse V5.5 文生视频 16:9 · 720P · 5s · 1个 · 60 高级设置 风格 通用 多镜头 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "720P",
+    "dur": "5s",
+    "count": "1",
+    "credits": "60"
+   },
+   "shot": "/tmp/probe332_shots2/Hailuo_2.3_Fast.png"
+  },
+  "OmniHuman 1.5": {
+   "name": "OmniHuman 1.5",
+   "error": "row missing"
+  },
+  "Hailuo 2.3": {
+   "name": "Hailuo 2.3",
+   "read": {
+    "trigger": "Hailuo 2.3",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Hailuo 2.3 文生视频 自适应 · 1080P · 6s · 1个 36 高级设置 运镜指令 拉近 拉远 左摇 右摇 仰摄 俯摄 推镜 拉镜 左移 右移 上升 下降 抖动 跟摄 静止 智能引用 AutoLink"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Hailuo_2.3.png"
+  },
+  "Wan 2.7": {
+   "name": "Wan 2.7",
+   "read": {
+    "trigger": "Wan 2.7",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Wan 2.7 文生视频 16:9 · 1080P · 6s · 1个 78 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "1080P",
+    "dur": "6s",
+    "count": "1",
+    "credits": "78"
+   },
+   "shot": "/tmp/probe332_shots2/Wan_2.7.png"
+  },
+  "Vidu Q2 Pro": {
+   "name": "Vidu Q2 Pro",
+   "read": {
+    "trigger": "Vidu Q2 Pro",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 Pro 文生视频 自适应 · 1080p · 6s · 1个 132 高级设置 智能引用 AutoLink"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Vidu_Q2_Pro.png"
+  },
+  "Vidu Q2 Turbo": {
+   "name": "Vidu Q2 Turbo",
+   "read": {
+    "trigger": "Vidu Q2 Turbo",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 Turbo 文生视频 自适应 · 1080p · 6s · 1个 96 高级设置 智能引用 AutoLink"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Vidu_Q2_Turbo.png"
+  },
+  "Happy Horse 1.1": {
+   "name": "Happy Horse 1.1",
+   "read": {
+    "trigger": "Happy Horse 1.1",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 角色库 运镜  描述你想要生成的画面内容，@引用素材  Happy Horse 1.1 文生视频 16:9 · 720P · 6s · 1个 90 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "720P",
+    "dur": "6s",
+    "count": "1",
+    "credits": "90"
+   },
+   "shot": "/tmp/probe332_shots2/Happy_Horse_1.1.png"
+  },
+  "Minimax H3": {
+   "name": "Minimax H3",
+   "read": {
+    "trigger": "Minimax H3",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Minimax H3 文生视频 16:9 · 2K · 6s · 1个 132 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "2K",
+    "dur": "6s",
+    "count": "1",
+    "credits": "132"
+   },
+   "shot": "/tmp/probe332_shots2/Minimax_H3.png"
+  },
+  "Wan 3.0": {
+   "name": "Wan 3.0",
+   "read": {
+    "trigger": "Minimax H3",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Minimax H3 文生视频 16:9 · 2K · 6s · 1个 132 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "2K",
+    "dur": "6s",
+    "count": "1",
+    "credits": "132"
+   },
+   "shot": "/tmp/probe332_shots2/Wan_3.0.png"
+  },
+  "Vidu Q2": {
+   "name": "Vidu Q2",
+   "read": {
+    "trigger": "Vidu Q2",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 文生视频 16:9 · 1080p · 6s · 1个 60 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "1080p",
+    "dur": "6s",
+    "count": "1",
+    "credits": "60"
+   },
+   "shot": "/tmp/probe332_shots2/Vidu_Q2.png"
+  },
+  "Pixverse V5": {
+   "name": "Pixverse V5",
+   "read": {
+    "trigger": "Vidu Q2",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜  描述你想要生成的画面内容，@引用素材  Vidu Q2 文生视频 16:9 · 1080p · 6s · 1个 60 高级设置 智能引用 AutoLink"
+   },
+   "chip": {
+    "ratio": "16:9",
+    "res": "1080p",
+    "dur": "6s",
+    "count": "1",
+    "credits": "60"
+   },
+   "shot": "/tmp/probe332_shots2/Pixverse_V5.png"
+  },
+  "Kling O3": {
+   "name": "Kling O3",
+   "read": {
+    "trigger": "Kling O3",
+    "raw": "视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 主体 角色库 运镜  描述你想要生成的画面内容，@引用素材  Kling O3 文生视频 16:9 · 6s · 1个 · 66 高级设置 智能引用 AutoLink"
+   },
+   "chip": null,
+   "shot": "/tmp/probe332_shots2/Kling_O3.png"
+  }
+ }
+}
