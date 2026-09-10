@@ -49,11 +49,11 @@ def run_desktop(page: Page):
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch17-asset-tree-desktop-929-2026-08-25.png"))
 
     panel.locator("[data-asset-manager-filter]").click()
-    panel.locator('[data-asset-manager-filter-option="image"]').click()
+    panel.locator('[data-asset-manager-type-option="图片"]').click()
     assert panel.locator("[data-asset-manager-item]").count() == 5
 
     panel.locator("[data-asset-manager-filter]").click()
-    panel.locator('[data-asset-manager-filter-option="all"]').click()
+    panel.locator('[data-asset-manager-type-option="全部"]').click()
     panel.locator("[data-asset-manager-search]").click()
     search_input = panel.locator("[data-asset-manager-search-input]")
     search_input.fill("分镜视频")

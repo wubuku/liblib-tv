@@ -120,7 +120,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("skill:prompt-fill", agent.locator("textarea").input_value() == "皮克斯动画广告")
 
     agent.locator("[data-agent-refresh]").click()
-    check("skill:refresh", agent.locator('[data-agent-skill="character"]').count() == 1)
+    # Batch 335: batch 201 真采目录后第二批首张为 游戏实机PV（角色三视图已不在目录）。
+    check("skill:refresh", agent.locator('[data-agent-skill="gameplay-pv"]').count() == 1)
     check("skill:refresh-clears-batch-one", agent.locator('[data-agent-skill="pixar"]').count() == 0)
     agent.locator("[data-agent-refresh]").click()
 

@@ -45,7 +45,9 @@ def run_desktop(page: Page):
     assert agent.locator("textarea").input_value() == "皮克斯动画广告"
 
     agent.locator("[data-agent-refresh]").click()
-    assert agent.locator('[data-agent-skill="character"]').count() == 1
+    # Batch 335: batch 201 已将换一批目录替换为源站真采四批（角色三视图
+    # 不在任何批次），第二批首张为 游戏实机PV。
+    assert agent.locator('[data-agent-skill="gameplay-pv"]').count() == 1
     assert agent.locator('[data-agent-skill="pixar"]').count() == 0
 
     agent.locator("[data-agent-notification-enable]").click()

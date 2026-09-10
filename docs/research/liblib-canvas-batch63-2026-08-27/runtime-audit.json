@@ -44,7 +44,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "text-1788914145374-uotrdh",
+              "id": "text-1789082029897-cfl8a0",
               "type": "text",
               "position": {
                 "x": 289.5,
@@ -58,9 +58,9 @@
             }
           ],
           "selectedNodeIds": [
-            "text-1788914145374-uotrdh"
+            "text-1789082029897-cfl8a0"
           ],
-          "selectedNodeId": "text-1788914145374-uotrdh",
+          "selectedNodeId": "text-1789082029897-cfl8a0",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -96,7 +96,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "image-1788914145789-uq9mi4",
+              "id": "image-1789082030298-p6xwis",
               "type": "image",
               "position": {
                 "x": 208.5,
@@ -108,8 +108,8 @@
                 "filename": "新图片",
                 "width": 512,
                 "height": 512,
-                "imageUrl": "/images/scene-coffee-1.png",
-                "watermarkUrl": "/images/watermark.png",
+                "imageUrl": null,
+                "watermarkUrl": null,
                 "editorVariant": "empty",
                 "editorHeight": 191,
                 "generationSettings": "1:1 · 标准画质 · 2K · 1张"
@@ -117,9 +117,9 @@
             }
           ],
           "selectedNodeIds": [
-            "image-1788914145789-uq9mi4"
+            "image-1789082030298-p6xwis"
           ],
-          "selectedNodeId": "image-1788914145789-uq9mi4",
+          "selectedNodeId": "image-1789082030298-p6xwis",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -155,7 +155,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "video-1788914146223-o63xys",
+              "id": "video-1789082030736-uzzbcy",
               "type": "video",
               "position": {
                 "x": 208.5,
@@ -174,9 +174,9 @@
             }
           ],
           "selectedNodeIds": [
-            "video-1788914146223-o63xys"
+            "video-1789082030736-uzzbcy"
           ],
-          "selectedNodeId": "video-1788914146223-o63xys",
+          "selectedNodeId": "video-1789082030736-uzzbcy",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -213,7 +213,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "text-1788914146842-yw9080",
+            "id": "text-1789082031275-xh5g5o",
             "type": "text",
             "position": {
               "x": 289.5,
@@ -227,32 +227,32 @@
           }
         ],
         "selectedNodeIds": [
-          "text-1788914146842-yw9080"
+          "text-1789082031275-xh5g5o"
         ],
-        "selectedNodeId": "text-1788914146842-yw9080",
+        "selectedNodeId": "text-1789082031275-xh5g5o",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
       },
       "placement": {
         "hostRect": {
-          "x": 280,
+          "x": 320,
           "y": 0,
-          "width": 649,
+          "width": 609,
           "height": 874
         },
         "nodeRect": {
-          "x": 429.5,
+          "x": 449.5,
           "y": 347,
           "width": 350,
           "height": 180
         },
         "hostCenter": {
-          "x": 604.5,
+          "x": 624.5,
           "y": 437.0
         },
         "nodeCenter": {
-          "x": 604.5,
+          "x": 624.5,
           "y": 437.0
         },
         "centerError": {
@@ -265,10 +265,10 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1788914147289-62rfzg",
+            "id": "image-1789082031700-2wirl2",
             "type": "image",
             "position": {
-              "x": 348.5,
+              "x": 368.5,
               "y": 293
             },
             "width": 512,
@@ -286,9 +286,9 @@
           }
         ],
         "selectedNodeIds": [
-          "image-1788914147289-62rfzg"
+          "image-1789082031700-2wirl2"
         ],
-        "selectedNodeId": "image-1788914147289-62rfzg",
+        "selectedNodeId": "image-1789082031700-2wirl2",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -324,10 +324,10 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1788914147906-nhabew",
+            "id": "image-1789082032278-lxs2j5",
             "type": "image",
             "position": {
-              "x": 348.5,
+              "x": 368.5,
               "y": 293
             },
             "width": 512,
@@ -345,32 +345,32 @@
           }
         ],
         "selectedNodeIds": [
-          "image-1788914147906-nhabew"
+          "image-1789082032278-lxs2j5"
         ],
-        "selectedNodeId": "image-1788914147906-nhabew",
+        "selectedNodeId": "image-1789082032278-lxs2j5",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
       },
       "placement": {
         "hostRect": {
-          "x": 280,
+          "x": 320,
           "y": 0,
-          "width": 649,
+          "width": 609,
           "height": 874
         },
         "nodeRect": {
-          "x": 348.5,
+          "x": 368.5,
           "y": 293,
           "width": 512,
           "height": 288
         },
         "hostCenter": {
-          "x": 604.5,
+          "x": 624.5,
           "y": 437.0
         },
         "nodeCenter": {
-          "x": 604.5,
+          "x": 624.5,
           "y": 437.0
         },
         "centerError": {
@@ -390,7 +390,7 @@
     "compatibilityAdd": {
       "nodes": [
         {
-          "id": "audio-1788914148409-y00ivq",
+          "id": "audio-1789082032799-wl9rh8",
           "type": "audio",
           "position": {
             "x": 289.5,
@@ -405,9 +405,9 @@
         }
       ],
       "selectedNodeIds": [
-        "audio-1788914148409-y00ivq"
+        "audio-1789082032799-wl9rh8"
       ],
-      "selectedNodeId": "audio-1788914148409-y00ivq",
+      "selectedNodeId": "audio-1789082032799-wl9rh8",
       "selectedEdgeIds": [],
       "pastLength": 1,
       "futureLength": 0
@@ -418,7 +418,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "text-1788914150091-mme5kt",
+            "id": "text-1789082034516-ix2v4v",
             "type": "text",
             "position": {
               "x": 20,
@@ -432,9 +432,9 @@
           }
         ],
         "selectedNodeIds": [
-          "text-1788914150091-mme5kt"
+          "text-1789082034516-ix2v4v"
         ],
-        "selectedNodeId": "text-1788914150091-mme5kt",
+        "selectedNodeId": "text-1789082034516-ix2v4v",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -470,7 +470,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1788914150627-guby5w",
+            "id": "image-1789082035006-57rhdf",
             "type": "image",
             "position": {
               "x": -61,
@@ -482,8 +482,8 @@
               "filename": "新图片",
               "width": 512,
               "height": 512,
-              "imageUrl": "/images/scene-coffee-1.png",
-              "watermarkUrl": "/images/watermark.png",
+              "imageUrl": null,
+              "watermarkUrl": null,
               "editorVariant": "empty",
               "editorHeight": 191,
               "generationSettings": "1:1 · 标准画质 · 2K · 1张"
@@ -491,32 +491,32 @@
           }
         ],
         "selectedNodeIds": [
-          "image-1788914150627-guby5w"
+          "image-1789082035006-57rhdf"
         ],
-        "selectedNodeId": "image-1788914150627-guby5w",
+        "selectedNodeId": "image-1789082035006-57rhdf",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
       },
       "placement": {
         "hostRect": {
-          "x": 280,
+          "x": 320,
           "y": 0,
-          "width": 110,
+          "width": 70,
           "height": 844
         },
         "nodeRect": {
-          "x": 79,
+          "x": 99,
           "y": 278,
           "width": 512,
           "height": 288
         },
         "hostCenter": {
-          "x": 335.0,
+          "x": 355.0,
           "y": 422.0
         },
         "nodeCenter": {
-          "x": 335.0,
+          "x": 355.0,
           "y": 422.0
         },
         "centerError": {

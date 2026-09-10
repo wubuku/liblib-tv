@@ -45,7 +45,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(400)
     panel = page.locator("[data-liblib-overlay='asset']")
     check("drawer:opens", panel.count() == 1)
-    check("drawer:width-280", abs(panel.bounding_box()["width"] - 280) <= 2)
+        # Batch 335: 面板宽度 280 → 320（batch 298 现行源采样）。
+    check("drawer:width-320", abs(panel.bounding_box()["width"] - 320) <= 2)
 
     check("tabs:canvas", panel.get_by_role("button", name="画布", exact=True).count() >= 1)
     check("tabs:assets", panel.get_by_role("button", name="资产", exact=True).count() >= 1)

@@ -23,11 +23,14 @@ AUDIT_PATH = (
 )
 
 # Batch 199: 2026-09-08 直采第四句标题加入轮换。
+# Batch 335: batch 273 直采第五种标题「每个 Skill，都是一个开场」，
+# 抽屉轮换模数从 4 变 5，验证器同步五条。
 HEADLINES = [
     "选一个 Skill，让创作更快一步",
     "让 Skill 帮你迈出第一步",
     "一个 Skill，慢慢打磨你的故事",
     "Skill 就位，ready when you are",
+    "每个 Skill，都是一个开场",
 ]
 
 
@@ -75,6 +78,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     check("headline:wraps", agent.get_by_text(HEADLINES[0], exact=True).is_visible())
     check("skills:still-4", agent.locator("[data-agent-skill]").count() == 4)
+    # Batch 335: 标题五条轮换后（%5），skill 批次（%4）= 5%4 = 第二批。
+    check("skills:second-batch", agent.locator('[data-agent-skill="gameplay-pv"]').count() == 1)
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

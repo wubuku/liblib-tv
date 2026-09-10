@@ -107,11 +107,15 @@ def run_desktop(page: Page):
     shifted_trigger_box = box(trigger)
     shifted_minimap_box = box(minimap)
     assert abs((shifted_trigger_box["x"] - trigger_box["x"]) - 240) <= 1
-    assert abs((shifted_minimap_box["x"] - minimap_box["x"]) - 240) <= 1
+        # Batch 335: 面板改为 320px flex 兄弟（batch 298 现行）后，工具栏位移
+    # 240 不变，小地图随画布 pane 位移 320。
+    assert abs((shifted_minimap_box["x"] - minimap_box["x"]) - 320) <= 1
+    # Batch 335: 两者位移不再相等（240 vs 320），间距扩大 80。
     assert (
         abs(
             (shifted_minimap_box["x"] - shifted_trigger_box["x"])
             - (minimap_box["x"] - trigger_box["x"])
+            - 80
         )
         <= 1
     )

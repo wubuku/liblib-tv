@@ -68,8 +68,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     size_after = first_item.evaluate("(el) => el.getBoundingClientRect().width")
     check("slider:resizes-thumbs", size_after > size_before)
 
-    check("scope-chip", panel.locator("[data-history-scope-chip]").is_visible())
-    check("scope-chip:pressed", panel.locator("[data-history-scope-chip]").get_attribute("aria-pressed") == "true")
+    check("scope-chip", panel.locator("[data-history-scope-chip]").first.is_visible())  # Batch 335: 本画布/全部画布成对芯片
+    check("scope-chip:pressed", panel.locator('[data-history-scope-chip="canvas"]').get_attribute("aria-pressed") == "true")
     for tab_id, label, count in [("image", "图片", "3"), ("video", "视频", "0"), ("audio", "音频", "0")]:
         tab = panel.locator(f"[data-history-tab='{tab_id}']")
         check(f"tab:{tab_id}", tab.is_visible() and count in tab.inner_text())

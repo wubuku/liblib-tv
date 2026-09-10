@@ -5,7 +5,7 @@
       "viewport": "1440x900",
       "checks": [
         "drawer:opens",
-        "drawer:width-280",
+        "drawer:width-320",
         "tabs:canvas",
         "tabs:assets",
         "filter:all-ratings",
