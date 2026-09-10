@@ -102,7 +102,7 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="故事板").click()
     page.wait_for_timeout(150)
     assert_only_overlay(page, "agent")
-    assert page.get_by_text("关键元素 · 全部", exact=True).is_visible()
+    assert page.locator("[data-storyboard-board]").is_visible()  # Batch 334: 三栏资源总览替代关键元素侧栏
 
     page.get_by_role("button", name="工作流", exact=True).click()
     page.wait_for_timeout(150)

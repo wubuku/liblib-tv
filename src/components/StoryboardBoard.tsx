@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import type { Node } from "@xyflow/react";
-import { ChevronDown, FileText, ImageIcon, Play, Workflow } from "lucide-react";
+import { AudioLines, ChevronDown, ImageIcon, Maximize2, MessageSquareText, Play, Scan } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCanvasStore } from "@/store/canvasStore";
-import { useUIStore } from "@/store/uiStore";
 
 type NodeRecord = Record<string, unknown>;
 
@@ -13,29 +12,39 @@ function nodeData(node: Node): NodeRecord {
   return node.data as NodeRecord;
 }
 
+function str(value: unknown): string | null {
+  return typeof value === "string" ? value : null;
+}
+
 function nodeLabel(node: Node): string {
   const data = nodeData(node);
-  if (typeof data.filename === "string") return data.filename;
-  if (typeof data.title === "string") return data.title;
+  const filename = str(data.filename);
+  if (filename) return filename;
+  const title = str(data.title);
+  if (title) return title;
   return node.type ?? "未命名节点";
 }
 
-function nodeDimension(node: Node): string | null {
+// Batch 334: 源站 2026-09-11 故事板视图为全宽三栏资源总览
+// （音频 | 图片 | 视频），无 batch 104 时代的关键元素侧栏与
+// 返回工作台按钮——工作流/故事板切换由顶栏图标对承担
+// （见 docs/research/liblib-canvas-batch334-2026-09-11/）。
+function audioDuration(node: Node): string | null {
+  return str(nodeData(node).duration);
+}
+
+function dimension(node: Node): string | null {
   const data = nodeData(node);
   const width = typeof data.width === "number" ? data.width : null;
   const height = typeof data.height === "number" ? data.height : null;
-  if (width && height) return `${width} × ${height}`;
+  if (width && height) return `${width} x ${height}`;
   return null;
 }
 
 function imageUrl(node: Node): string | null {
-  const data = nodeData(node);
-  return typeof data.imageUrl === "string" ? data.imageUrl : null;
-}
-
-function posterUrl(node: Node): string | null {
-  const data = nodeData(node);
-  return typeof data.posterUrl === "string" ? data.posterUrl : null;
+  const d = nodeData(node);
+  const url = str(d.imageUrl);
+  return url ?? str(d.posterUrl);
 }
 
 function references(node: Node): string[] {
@@ -43,254 +52,221 @@ function references(node: Node): string[] {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
 }
 
-function EmptyState({ label }: { label: string }) {
-  return <div className="flex min-h-24 items-center justify-center rounded-lg border border-dashed border-white/[0.08] px-3 text-center text-[11px] text-[#666]">{label}</div>;
+function EmptyColumn({ kind, label }: { kind: string; label: string }) {
+  return (
+    <div
+      data-storyboard-empty={kind}
+      className="flex min-h-32 items-center justify-center rounded-lg border border-dashed border-white/[0.08] text-xs text-[#666]"
+    >
+      {label}
+    </div>
+  );
 }
 
-function KeyElementCard({
-  node,
-  selected,
-  onSelect,
-}: {
-  node: Node;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  const src = imageUrl(node);
-  const isScript = node.type === "script";
-
-  return (
-    <button
-      type="button"
-      data-storyboard-card={node.id}
-      aria-pressed={selected}
-      onClick={onSelect}
-      className={cn(
-        "flex w-full items-center gap-2 rounded-lg border p-1.5 text-left transition-colors",
-        selected ? "border-[#09caf5]/70 bg-[#09caf5]/10" : "border-white/[0.07] bg-[#222] hover:bg-[#2a2a2a]",
-      )}
-    >
-      <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[#303030] text-[#8d8d8d]">
-        {src ? (
-          <Image src={src} alt="" width={80} height={80} className="size-full object-cover" unoptimized />
-        ) : isScript ? (
-          <FileText size={15} />
-        ) : (
-          <ImageIcon size={15} />
-        )}
+function VideoStatusOverlay({ status }: { status: string | null }) {
+  const label = status === "pending"
+    ? "待确认后生成"
+    : status === "failed"
+      ? "生成失败"
+      : status === "empty"
+        ? "暂无预览"
+        : null;
+  if (status === "ready") {
+    return (
+      <span className="flex size-11 items-center justify-center rounded-full bg-black/55 text-white">
+        <Play size={16} fill="currentColor" className="ml-0.5" />
       </span>
-      <span className="min-w-0 truncate text-[11px] text-[#d7d7d7]">{nodeLabel(node)}</span>
-    </button>
-  );
-}
-
-function StoryboardMediaCard({
-  node,
-  selected,
-  onSelect,
-}: {
-  node: Node;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  const src = imageUrl(node) ?? posterUrl(node);
-  const isVideo = node.type === "video";
-  const refs = references(node);
-  const dimension = nodeDimension(node);
-
+    );
+  }
   return (
-    <button
-      type="button"
-      data-storyboard-card={node.id}
-      aria-pressed={selected}
-      onClick={onSelect}
-      className={cn(
-        "w-full overflow-hidden rounded-lg border text-left transition-colors",
-        selected ? "border-[#09caf5] bg-[#09caf5]/[0.06]" : "border-white/[0.08] bg-[#222] hover:border-white/[0.16]",
-      )}
-    >
-      <div className="relative aspect-video overflow-hidden bg-[#1b1b1b]">
-        {src ? (
-          <Image src={src} alt="" width={420} height={236} className="size-full object-cover" unoptimized />
-        ) : isVideo ? (
-          <div className="flex size-full items-center justify-center text-xs text-[#dd5c65]">
-            <Play size={14} className="mr-1.5" />
-            生成失败
-          </div>
-        ) : (
-          <div className="flex size-full items-center justify-center text-xs text-[#666]">暂无预览</div>
-        )}
-      </div>
-      <div className="space-y-2 p-2.5">
-        <div className="flex items-center justify-between gap-2">
-          <span className="min-w-0 truncate text-xs text-[#e7e7e7]">{nodeLabel(node)}</span>
-          {isVideo && <span className="shrink-0 text-[10px] text-[#dd5c65]">失败</span>}
-        </div>
-        <div className="flex items-center gap-1.5 text-[10px] text-[#777]">
-          <span className="rounded bg-white/[0.06] px-1.5 py-0.5">{isVideo ? "Lib Video" : "Lib Image"}</span>
-          {dimension && <span>{dimension}</span>}
-        </div>
-        {refs.length > 0 && (
-          <div className="flex items-center gap-1.5">
-            {refs.slice(0, 3).map((ref, index) => (
-              <span key={`${ref}-${index}`} className="size-7 overflow-hidden rounded bg-[#303030]">
-                <Image src={ref} alt="" width={56} height={56} className="size-full object-cover" unoptimized />
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </button>
-  );
-}
-
-function StoryboardColumn({
-  kind,
-  title,
-  icon,
-  nodes,
-  selectedNodeId,
-  onSelect,
-}: {
-  kind: "image" | "video" | "script";
-  title: string;
-  icon: React.ReactNode;
-  nodes: Node[];
-  selectedNodeId: string | null;
-  onSelect: (nodeId: string) => void;
-}) {
-  return (
-    <section data-storyboard-column={kind} className="flex min-h-full w-[204px] shrink-0 flex-col border-l border-white/[0.08] pl-3 first:border-l-0 first:pl-0">
-      <header className="mb-3 flex h-7 items-center gap-2 text-xs text-[#9b9b9b]">
-        {icon}
-        <span>{title}</span>
-        {kind !== "script" && (
-          <button
-            type="button"
-            data-storyboard-zoom={kind}
-            title={`放大${title}`}
-            aria-label={`放大${title}`}
-            className="ml-auto flex h-6 items-center rounded-md px-1.5 text-[11px] text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
-          >
-            放大{title}
-          </button>
-        )}
-        {kind !== "script" && <span className="text-[#5f5f5f]">{nodes.length}</span>}
-      </header>
-      <div className="space-y-3">
-        {nodes.length > 0 ? nodes.map((node) => (
-          <StoryboardMediaCard
-            key={node.id}
-            node={node}
-            selected={selectedNodeId === node.id}
-            onSelect={() => onSelect(node.id)}
-          />
-        )) : <EmptyState label={`暂无${title}`} />}
-      </div>
-    </section>
+    <span className="flex flex-col items-center gap-2 text-xs text-[#9d9d9d]">
+      <Play size={18} className="text-[#c9c9c9]" />
+      {label ?? "暂无预览"}
+    </span>
   );
 }
 
 export function StoryboardBoard() {
   const { canvases, activeCanvasId, selectedNodeId, selectNode } = useCanvasStore();
-  const setEditorMode = useUIStore((state) => state.setEditorMode);
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
+  const audioNodes = nodes.filter((node) => node.type === "audio");
   const imageNodes = nodes.filter((node) => node.type === "image");
   const videoNodes = nodes.filter((node) => node.type === "video");
-  const scriptNodes = nodes.filter((node) => node.type === "script");
-
-  const selectStoryboardNode = (nodeId: string) => selectNode(nodeId);
+  const select = (nodeId: string) => selectNode(nodeId);
 
   return (
-    <div data-storyboard-board className="h-full min-w-0 overflow-hidden bg-[#141414] px-4 pb-24 pt-14">
-      <div className="flex h-full min-w-0 gap-3">
-        <aside data-storyboard-key-elements className={cn(
-          "w-[148px] shrink-0 flex-col overflow-y-auto border-r border-white/[0.08] pr-3",
-          // Batch 104: 源站空画布故事板只有 文本/图片/视频 三组 banner，无侧栏。
-          imageNodes.length === 0 && scriptNodes.length === 0 ? "hidden" : "flex",
-        )}>
-          <header className="mb-3 flex min-h-8 items-center justify-between gap-2 text-xs text-[#e4e4e4]">
-            <span className="font-medium">关键元素 · 全部</span>
-            <ChevronDown size={13} className="text-[#777]" />
+    <div data-storyboard-board className="h-full min-w-0 overflow-hidden bg-[#141414] p-4 pt-16">
+      <div className="flex h-full min-w-0 gap-4">
+        {/* 音频栏 */}
+        <section data-storyboard-column="audio" className="flex w-[19%] min-w-[264px] shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
+          <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
+            音频
           </header>
+          <div className="flex-1 space-y-4 overflow-y-auto p-4 pt-1">
+            {audioNodes.length > 0 ? audioNodes.map((node) => (
+              <button
+                key={node.id}
+                type="button"
+                data-storyboard-card={node.id}
+                aria-pressed={selectedNodeId === node.id}
+                onClick={() => select(node.id)}
+                className={cn(
+                  "block w-fit text-left transition-opacity",
+                  selectedNodeId === node.id ? "opacity-100" : "opacity-90 hover:opacity-100",
+                )}
+              >
+                <span className="flex size-24 flex-col items-center justify-center gap-1.5 rounded-xl bg-[#1f1f1f] text-[#b9b9b9]">
+                  <AudioLines size={22} />
+                  <span data-storyboard-audio-duration className="text-[10px] tabular-nums text-[#8b8b8b]">
+                    {audioDuration(node) ?? "00:00"}
+                  </span>
+                </span>
+                <span className="mt-2 block max-w-40 truncate text-xs text-[#c9c9c9]">{nodeLabel(node)}</span>
+              </button>
+            )) : <EmptyColumn kind="audio" label="暂无音频" />}
+          </div>
+        </section>
 
-          <section data-storyboard-key-group="image" className="space-y-2">
-            <div className="flex items-center gap-2 text-[11px] text-[#8c8c8c]">
-              <ImageIcon size={13} />
-              <span>图片</span>
-              <span className="ml-auto text-[#5f5f5f]">{imageNodes.length}</span>
-            </div>
-            <div className="space-y-1.5">
-              {imageNodes.length > 0 ? imageNodes.map((node) => (
-                <KeyElementCard
-                  key={node.id}
-                  node={node}
-                  selected={selectedNodeId === node.id}
-                  onSelect={() => selectStoryboardNode(node.id)}
-                />
-              )) : <EmptyState label="暂无图片元素" />}
-            </div>
-          </section>
-
-          <section data-storyboard-key-group="text" className="mt-5 space-y-2">
-            <div className="flex items-center gap-2 text-[11px] text-[#8c8c8c]">
-              <FileText size={13} />
-              <span>文本</span>
-              <span className="ml-auto text-[#5f5f5f]">{scriptNodes.length}</span>
-            </div>
-            <div className="space-y-1.5">
-              {scriptNodes.length > 0 ? scriptNodes.map((node) => (
-                <KeyElementCard
-                  key={node.id}
-                  node={node}
-                  selected={selectedNodeId === node.id}
-                  onSelect={() => selectStoryboardNode(node.id)}
-                />
-              )) : <EmptyState label="暂无文本元素" />}
-            </div>
-          </section>
-        </aside>
-
-        <section className="min-w-0 flex-1 overflow-x-auto overflow-y-auto">
-          <div className="min-h-full min-w-[636px]">
-            <header className="mb-3 flex h-8 items-center justify-between text-xs text-[#e4e4e4]">
-              <span className="font-medium">故事板</span>
+        {/* 图片栏 */}
+        <section data-storyboard-column="image" className="flex w-[39%] min-w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
+          <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
+            图片
+            <button
+              type="button"
+              data-storyboard-expand="image"
+              aria-label="放大图片栏"
+              className="ml-auto flex size-7 items-center justify-center rounded-md text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
+            >
+              <Maximize2 size={14} />
+            </button>
+          </header>
+          <div className="flex-1 overflow-y-auto p-4 pt-1">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-xs text-[#8b8b8b]">
+                <ImageIcon size={13} />
+                图片
+              </span>
               <button
                 type="button"
-                data-storyboard-return
-                onClick={() => setEditorMode("workbench")}
-                className="flex h-7 items-center gap-1.5 rounded-lg px-2 text-[11px] text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
+                data-storyboard-dialog="image"
+                className="flex h-7 items-center gap-1.5 rounded-md bg-[#262626] px-2 text-xs text-[#c9c9c9] hover:bg-[#303030]"
               >
-                <Workflow size={13} />
-                返回工作台
+                <MessageSquareText size={13} />
+                对话
               </button>
-            </header>
-            <div className="flex min-h-[calc(100%-44px)] gap-3">
-              <StoryboardColumn
-                kind="script"
-                title="文本"
-                icon={<FileText size={14} />}
-                nodes={scriptNodes}
-                selectedNodeId={selectedNodeId}
-                onSelect={selectStoryboardNode}
-              />
-              <StoryboardColumn
-                kind="image"
-                title="图片"
-                icon={<ImageIcon size={14} />}
-                nodes={imageNodes}
-                selectedNodeId={selectedNodeId}
-                onSelect={selectStoryboardNode}
-              />
-              <StoryboardColumn
-                kind="video"
-                title="视频"
-                icon={<Play size={14} />}
-                nodes={videoNodes}
-                selectedNodeId={selectedNodeId}
-                onSelect={selectStoryboardNode}
-              />
+            </div>
+            <div className="flex flex-wrap gap-4">
+              {imageNodes.length > 0 ? imageNodes.map((node) => {
+                const dim = dimension(node);
+                const src = imageUrl(node);
+                return (
+                  <button
+                    key={node.id}
+                    type="button"
+                    data-storyboard-card={node.id}
+                    aria-pressed={selectedNodeId === node.id}
+                    onClick={() => select(node.id)}
+                    className={cn(
+                      "block w-fit text-left",
+                      selectedNodeId === node.id ? "outline outline-1 outline-[#09caf5]" : "",
+                    )}
+                  >
+                    <span className="block h-[132px] w-[99px] overflow-hidden rounded-lg bg-[#1f1f1f]">
+                      {src ? (
+                        <Image src={src} alt="" width={198} height={264} className="size-full object-cover" unoptimized />
+                      ) : (
+                        <span className="flex size-full items-center justify-center text-[#666]">
+                          <ImageIcon size={16} />
+                        </span>
+                      )}
+                    </span>
+                    {dim && (
+                      <span data-storyboard-dimension={node.id} className="mt-2 inline-block rounded bg-[#262626] px-1.5 py-0.5 text-[10px] text-[#9a9a9a]">
+                        {dim}
+                      </span>
+                    )}
+                  </button>
+                );
+              }) : <EmptyColumn kind="image" label="暂无图片" />}
+            </div>
+          </div>
+        </section>
+
+        {/* 视频栏 */}
+        <section data-storyboard-column="video" className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
+          <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
+            视频
+            <button
+              type="button"
+              data-storyboard-filter="all"
+              className="ml-auto flex h-7 items-center gap-1 rounded-md px-2 text-xs text-[#c9c9c9] hover:bg-white/[0.07]"
+            >
+              全部
+              <ChevronDown size={13} className="text-[#8c8c8c]" />
+            </button>
+            <button
+              type="button"
+              data-storyboard-expand="video"
+              aria-label="放大视频栏"
+              className="ml-2 flex size-7 items-center justify-center rounded-md text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
+            >
+              <Scan size={14} />
+            </button>
+          </header>
+          <div className="flex-1 overflow-y-auto p-4 pt-1">
+            <div className="mb-3 flex items-center gap-1.5 text-xs text-[#8b8b8b]">
+              <Play size={13} />
+              视频
+            </div>
+            <div className="flex flex-wrap gap-5">
+              {videoNodes.length > 0 ? videoNodes.map((node) => {
+                const data = nodeData(node);
+                const model = str(data.model);
+                const status = str(data.status);
+                const refs = references(node);
+                return (
+                  <button
+                    key={node.id}
+                    type="button"
+                    data-storyboard-card={node.id}
+                    data-storyboard-video-status={status ?? "empty"}
+                    aria-pressed={selectedNodeId === node.id}
+                    onClick={() => select(node.id)}
+                    className={cn(
+                      "block w-fit overflow-hidden rounded-lg border text-left",
+                      selectedNodeId === node.id ? "border-[#09caf5]" : "border-white/[0.07]",
+                    )}
+                  >
+                    <span className="relative flex aspect-video w-[300px] items-center justify-center overflow-hidden bg-[#161616]">
+                      {imageUrl(node) && (
+                        <Image src={imageUrl(node) as string} alt="" width={600} height={338} className="absolute inset-0 size-full object-cover opacity-80" unoptimized />
+                      )}
+                      <span className="relative">
+                        <VideoStatusOverlay status={status} />
+                      </span>
+                    </span>
+                    <span className="flex flex-col gap-2 p-3">
+                      {model && (
+                        <span data-storyboard-model={node.id} className="inline-flex w-fit items-center gap-1.5 rounded bg-[#262626] px-2 py-1 text-[11px] text-[#d4d4d4]">
+                          <span className="text-[#9a9a9a]">✦</span>
+                          {model}
+                        </span>
+                      )}
+                      {refs.length > 0 && (
+                        <span className="flex items-center gap-1.5">
+                          {refs.slice(0, 3).map((ref, index) => (
+                            <span key={`${ref}-${index}`} className="size-8 overflow-hidden rounded bg-[#262626]">
+                              <Image src={ref} alt="" width={64} height={64} className="size-full object-cover" unoptimized />
+                            </span>
+                          ))}
+                        </span>
+                      )}
+                      <span className="max-w-[276px] truncate text-xs text-[#c9c9c9]">{nodeLabel(node)}</span>
+                    </span>
+                  </button>
+                );
+              }) : <EmptyColumn kind="video" label="暂无视频" />}
             </div>
           </div>
         </section>

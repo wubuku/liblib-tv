@@ -40,8 +40,7 @@ def run_desktop(page: Page):
     assert_graph(page, 10, 11)
 
     open_storyboard(page)
-    assert page.locator('[data-storyboard-key-group="image"] [data-storyboard-card]').count() == 5
-    assert page.locator('[data-storyboard-key-group="text"] [data-storyboard-card]').count() == 1
+    # Batch 334: 故事板重建为三栏资源总览（音频|图片|视频），关键元素侧栏废止。
     assert page.locator('[data-storyboard-column="image"] [data-storyboard-card]').count() == 5
     assert page.locator('[data-storyboard-column="video"] [data-storyboard-card]').count() == 1
 
@@ -49,24 +48,20 @@ def run_desktop(page: Page):
     image_card.click()
     assert image_card.get_attribute("aria-pressed") == "true"
 
-    script_card = page.locator('[data-storyboard-key-group="text"] [data-storyboard-card="t-9j2MoccxBj"]')
-    script_card.click()
-    assert script_card.get_attribute("aria-pressed") == "true"
-
-    page.locator("[data-storyboard-return]").click()
+    page.locator('button[aria-label="工作流"]').click()
     assert not page.locator("[data-storyboard-board]").is_visible()
     assert_graph(page, 10, 11)
-    assert page.locator('.react-flow__node[data-id="t-9j2MoccxBj"].selected').count() == 1
+    assert page.locator('.react-flow__node[data-id="i-YDfWhFlthe"].selected').count() == 1
 
     page.locator('button[aria-label="故事板"]').evaluate("(element) => element.click()")
     page.screenshot(path=str(REFERENCE_DIR / "liblib-clone-batch13-storyboard-desktop-929-2026-08-25.png"))
-    page.locator("[data-storyboard-return]").click()
+    page.locator('button[aria-label="工作流"]').click()
 
     page.get_by_role("button", name="画布 2").click()
     page.locator('[data-liblib-overlay="canvas-dropdown"]').get_by_role("button", name="画布 1").click()
     open_storyboard(page)
-    assert page.locator('[data-storyboard-key-group="image"] [data-storyboard-card]').count() == 0
-    assert page.locator('[data-storyboard-key-group="text"] [data-storyboard-card]').count() == 0
+    # Batch 334: 空画布三栏均显式空态（音频/图片/视频）。
+    assert page.get_by_text("暂无音频", exact=True).is_visible()
     # Batch 104: 源站 2026-09-05 复核列空态文案为「暂无图片」。
     assert page.get_by_text("暂无图片", exact=True).is_visible()
     # Batch 104: 源站 2026-09-05 复核列空态文案为「暂无视频」。

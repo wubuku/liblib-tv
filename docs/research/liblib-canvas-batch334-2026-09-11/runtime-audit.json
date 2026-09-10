@@ -1,0 +1,36 @@
+{
+  "batch": 334,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "board:visible",
+        "columns:audio-visible",
+        "columns:image-visible",
+        "columns:video-visible",
+        "columns:order",
+        "columns:image-wider-than-audio",
+        "legacy:no-key-elements",
+        "legacy:no-return",
+        "legacy:no-zoom-buttons",
+        "video:filter-all",
+        "header:expand-buttons",
+        "image:dialog-button",
+        "image:cards-present",
+        "video:cards-present",
+        "video:status-attr",
+        "image:dimension-format",
+        "audio:empty-state",
+        "workbench:board-hidden",
+        "workbench:reactflow-visible",
+        "storyboard:re-enter-visible",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -58,27 +58,27 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(400)
     demo_nodes = page.locator(".react-flow__node").count()
 
+    # Batch 334: 故事板重建为三栏资源总览（音频|图片|视频），关键元素
+    # 侧栏/返回工作台/放大按钮废止，新增 全部∨ 过滤、对话按钮与展开图标。
     toggle_storyboard(page)
     check("demo:board-visible", page.locator("[data-storyboard-board]").is_visible())
-    check("demo:sidebar-visible", page.locator("[data-storyboard-key-elements]").is_visible())
-    for kind in ["script", "image", "video"]:
+    check("legacy:sidebar-gone", page.locator("[data-storyboard-key-elements]").count() == 0)
+    for kind in ["audio", "image", "video"]:
         check(f"demo:column:{kind}", page.locator(f"[data-storyboard-column='{kind}']").is_visible())
-    check("demo:zoom-image", page.locator("[data-storyboard-zoom='image']").is_visible()
-          and "放大图片" in page.locator("[data-storyboard-zoom='image']").inner_text())
-    check("demo:zoom-video", page.locator("[data-storyboard-zoom='video']").is_visible()
-          and "放大视频" in page.locator("[data-storyboard-zoom='video']").inner_text())
+    check("demo:filter-all", page.locator("[data-storyboard-filter='all']").inner_text().strip() == "全部")
+    check("demo:dialog-button", page.locator("[data-storyboard-dialog='image']").is_visible())
+    check("demo:expand-buttons", page.locator("[data-storyboard-expand='image']").is_visible()
+          and page.locator("[data-storyboard-expand='video']").is_visible())
     check("demo:column-cards-image", page.locator("[data-storyboard-column='image'] [data-storyboard-card]").count() == 5)
-    check("demo:column-cards-script", page.locator("[data-storyboard-column='script'] [data-storyboard-card]").count() == 1)
     check("demo:column-cards-video", page.locator("[data-storyboard-column='video'] [data-storyboard-card]").count() == 1)
 
     page.locator("[data-canvas-trigger]").click()
     page.locator("[data-canvas-row='canvas-1']").get_by_role("button").first.click()
     page.wait_for_timeout(300)
     toggle_storyboard(page)
-    check("empty:sidebar-hidden", not page.locator("[data-storyboard-key-elements]").is_visible())
-    for label in ["暂无文本", "暂无图片", "暂无视频"]:
+    for label in ["暂无音频", "暂无图片", "暂无视频"]:
         check(f"empty:{label}", page.get_by_text(label, exact=True).is_visible())
-    check("empty:zoom-still-visible", page.locator("[data-storyboard-zoom='image']").is_visible())
+    check("empty:filter-still-visible", page.locator("[data-storyboard-filter='all']").is_visible())
 
     page.get_by_role("button", name="工作流", exact=True).click()
     page.wait_for_timeout(400)
