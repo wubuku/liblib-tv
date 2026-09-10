@@ -1,0 +1,22 @@
+{
+ "models": {
+  "Style Video": {
+   "row": [
+    686.828125,
+    2116.5,
+    360,
+    52
+   ],
+   "footer": {
+    "credits": "135",
+    "trig": "1080 × 1446"
+   },
+   "switched": false
+  },
+  "Kling3.0 动作迁移": {
+   "row": null
+  }
+ },
+ "chevron": null,
+ "final": 3
+}
