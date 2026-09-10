@@ -1,0 +1,135 @@
+{
+ "models": {
+  "Wan 2.6": {
+   "name": "Wan 2.6",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Wan 2.7": {
+   "name": "Wan 2.7",
+   "error": "row missing"
+  },
+  "Wan 2.2": {
+   "name": "Wan 2.2",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Wan 2.5": {
+   "name": "Wan 2.5",
+   "error": "row missing"
+  },
+  "Kling 3.0": {
+   "name": "Kling 3.0",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Kling 2.6": {
+   "name": "Kling 2.6",
+   "error": "row missing"
+  },
+  "Kling 2.5": {
+   "name": "Kling 2.5",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Kling O1": {
+   "name": "Kling O1",
+   "error": "row missing"
+  },
+  "Vidu Q2 Pro": {
+   "name": "Vidu Q2 Pro",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Vidu Q2 Turbo": {
+   "name": "Vidu Q2 Turbo",
+   "error": "row missing"
+  },
+  "Hailuo 2.3": {
+   "name": "Hailuo 2.3",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Hailuo 02": {
+   "name": "Hailuo 02",
+   "error": "row missing"
+  },
+  "Seedance 1.0 Pro": {
+   "name": "Seedance 1.0 Pro",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Seedance 1.0 Lite": {
+   "name": "Seedance 1.0 Lite",
+   "error": "row missing"
+  },
+  "Happy Horse 1.1": {
+   "name": "Happy Horse 1.1",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Happy Horse 1.0": {
+   "name": "Happy Horse 1.0",
+   "error": "row missing"
+  },
+  "Pixverse V5.5": {
+   "name": "Pixverse V5.5",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Pixverse V5": {
+   "name": "Pixverse V5",
+   "error": "row missing"
+  },
+  "OmniHuman 1.5": {
+   "name": "OmniHuman 1.5",
+   "footer": {
+    "credits": "56",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Minimax H3": {
+   "name": "Minimax H3",
+   "footer": {
+    "credits": "110",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Minimax H3 Max": {
+   "name": "Minimax H3 Max",
+   "footer": {
+    "credits": "110",
+    "trig": "1080 × 1446"
+   }
+  },
+  "Wan 3.0 Prime": {
+   "name": "Wan 3.0 Prime",
+   "error": "row missing"
+  },
+  "Wan 3.0": {
+   "name": "Wan 3.0",
+   "footer": {
+    "credits": "90",
+    "trig": "1080 × 1446"
+   }
+  }
+ }
+}
