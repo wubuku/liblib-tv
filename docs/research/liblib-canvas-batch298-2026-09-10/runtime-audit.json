@@ -1,0 +1,30 @@
+{
+  "batch": 298,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "drawer:open",
+        "display:label",
+        "view:menu-opens",
+        "view:item-列表展示",
+        "view:item-宫格展示",
+        "view:item-展开全部分组",
+        "view:item-收起全部分组",
+        "view:menu-closes-on-pick",
+        "view:grid-item-card",
+        "groups:collapse-hides-children",
+        "groups:expand-restores",
+        "filter:label",
+        "filter:type-menu",
+        "filter:type-options",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
