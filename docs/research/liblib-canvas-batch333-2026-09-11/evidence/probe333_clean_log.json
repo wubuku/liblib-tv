@@ -1,0 +1,16 @@
+{
+ "attempts": [
+  {
+   "cycle": 0,
+   "fail": "menu"
+  },
+  {
+   "cycle": 1,
+   "fail": "menu"
+  },
+  {
+   "cycle": 2,
+   "fail": "menu"
+  }
+ ]
+}

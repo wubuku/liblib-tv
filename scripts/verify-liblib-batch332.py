@@ -116,14 +116,13 @@ def run_desktop(page: Page) -> dict[str, Any]:
         )
 
     # ---- resolution decides price: source A/B shows Wan 3.0 Prime 480P=45
-    # vs 720P=90. The clone tables only 720P/1080P tiers (SOURCE_CLONE_GAP:
-    # 480P stays on the 720P rate), so 480P still renders 90 here.
+    # vs 720P=90. Batch 333 tables the 480P tier (MODEL_RATES_480P).
     switch_model("Wan 3.0 Prime")
     params_trigger.click()
     page.wait_for_timeout(200)
     page.locator('[data-video-resolution-option="480P"]').click()
     page.wait_for_timeout(200)
-    check("wan3prime:480p-credits-90-clone-gap", credits.inner_text().strip().endswith("90"))
+    check("wan3prime:480p-credits-45", credits.inner_text().strip().endswith("45"))
     page.locator('[data-video-resolution-option="720P"]').click()
     page.wait_for_timeout(200)
     check("wan3prime:720p-credits-90", credits.inner_text().strip().endswith("90"))

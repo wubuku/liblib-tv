@@ -1,0 +1,45 @@
+{
+ "started": "2026-09-11 05:51:38",
+ "steps": {
+  "hailuo_fast": {
+   "name": "Hailuo 2.3 Fast",
+   "error": "menu"
+  },
+  "hailuo_23": {
+   "name": "Hailuo 2.3",
+   "error": "menu"
+  },
+  "480p:Wan 3.0": {
+   "name": "Wan 3.0",
+   "error": "menu"
+  },
+  "480p:Wan 2.6": {
+   "name": "Wan 2.6",
+   "error": "menu"
+  },
+  "480p:Wan 2.7": {
+   "name": "Wan 2.7",
+   "error": "menu"
+  },
+  "480p:Vidu Q2": {
+   "name": "Vidu Q2",
+   "error": "menu"
+  },
+  "480p:Happy Horse 1.1": {
+   "name": "Happy Horse 1.1",
+   "error": "menu"
+  },
+  "480p:Kling 2.6": {
+   "name": "Kling 2.6",
+   "error": "menu"
+  },
+  "480p:Minimax H3": {
+   "name": "Minimax H3",
+   "error": "menu"
+  },
+  "480p:Vidu Q2 Pro": {
+   "name": "Vidu Q2 Pro",
+   "error": "menu"
+  }
+ }
+}

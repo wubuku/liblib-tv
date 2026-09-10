@@ -194,7 +194,9 @@ export function VideoGenerationPanel({
         * count
           * (resolution === "1080P"
             ? (MODEL_RATES_1080P[model] ?? MODEL_RATES[model] ?? 27)
-            : (MODEL_RATES[model] ?? 27)),
+            : resolution === "480P"
+              ? (MODEL_RATES_480P[model] ?? MODEL_RATES[model] ?? 27)
+              : (MODEL_RATES[model] ?? 27)),
         );
   // Batch 145: 源站默认模式显示 文生视频（ omnireference 内部 id 映射到源站 文生视频 显示）。
   // Batch 149: 续写面板锁定的是全能参考（提示文案「仅支持 Seedance 2.5 的全能参考模式」），触发器保留 全能参考。
@@ -1042,6 +1044,13 @@ const MODEL_RATES_1080P: Record<string, number> = {
   "Seedance 1.5 Pro": 18,
   "Seedance 1.0 Pro": 15,
   "Seedance 1.0 Lite": 6,
+};
+// Batch 333: 480P 档费率（源站 2026-09-11 同会话 A/B 直证 Wan 3.0 Prime
+// 480P=45 → 9/s，720P=90）。仅此一模型有受控读数，其余未采样
+// （SOURCE_UNKNOWN）暂回退 720P 表。扩展采样因源站画布模型菜单交互
+// 失效受阻，见 docs/research/liblib-canvas-batch333-2026-09-11/。
+const MODEL_RATES_480P: Record<string, number> = {
+  "Wan 3.0 Prime": 9,
 };
 // Batch 240: 模型默认清晰度——切入 Seedance 1.5 Pro 即 1080P（观察值）；
 // 其余模型切换保持当前清晰度（2.0 系多轮直证）。
