@@ -1,0 +1,41 @@
+{
+ "exit_follow_btn": [
+  1002,
+  17
+ ],
+ "before_exit_follow": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": 0
+ },
+ "after_exit_follow": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": 0
+ },
+ "follow_btn_after": {
+  "label": "退出跟随",
+  "x": 970,
+  "y": 9
+ },
+ "workflow_btn": [
+  265,
+  32
+ ],
+ "after_workflow": {
+  "nodes": 0,
+  "body_head": [
+   "画布 1",
+   "开通会员",
+   "限时 45 折",
+   "100",
+   "Agent",
+   "",
+   "双击画布",
+   "",
+   "自由生成节点",
+   "",
+   "故事脚本生成",
+   "角色三视图"
+  ]
+ },
+ "final_nodes": 0
+}
