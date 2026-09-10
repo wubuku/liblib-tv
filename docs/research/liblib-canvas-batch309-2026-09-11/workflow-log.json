@@ -1,0 +1,167 @@
+{
+ "before_workflow": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": [
+   {
+    "id": "a-jmkB15",
+    "x": 170,
+    "y": 912,
+    "w": 700,
+    "h": 296
+   },
+   {
+    "id": "i-rThqos",
+    "x": 170,
+    "y": 1712,
+    "w": 700,
+    "h": 938
+   },
+   {
+    "id": "v-FM385u",
+    "x": 1070,
+    "y": 912,
+    "w": 1244,
+    "h": 700
+   }
+  ],
+  "edges": 2
+ },
+ "after_workflow": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": [
+   {
+    "id": "a-jmkB15",
+    "x": 170,
+    "y": 912,
+    "w": 700,
+    "h": 296
+   },
+   {
+    "id": "i-rThqos",
+    "x": 170,
+    "y": 1712,
+    "w": 700,
+    "h": 938
+   },
+   {
+    "id": "v-FM385u",
+    "x": 1070,
+    "y": 912,
+    "w": 1244,
+    "h": 700
+   }
+  ],
+  "edges": 2
+ },
+ "layout_diff": {
+  "before": {
+   "transform": "translate(106px, -1236px) scale(2)",
+   "nodes": [
+    {
+     "id": "a-jmkB15",
+     "x": 170,
+     "y": 912,
+     "w": 700,
+     "h": 296
+    },
+    {
+     "id": "i-rThqos",
+     "x": 170,
+     "y": 1712,
+     "w": 700,
+     "h": 938
+    },
+    {
+     "id": "v-FM385u",
+     "x": 1070,
+     "y": 912,
+     "w": 1244,
+     "h": 700
+    }
+   ],
+   "edges": 2
+  },
+  "after": {
+   "transform": "translate(106px, -1236px) scale(2)",
+   "nodes": [
+    {
+     "id": "a-jmkB15",
+     "x": 170,
+     "y": 912,
+     "w": 700,
+     "h": 296
+    },
+    {
+     "id": "i-rThqos",
+     "x": 170,
+     "y": 1712,
+     "w": 700,
+     "h": 938
+    },
+    {
+     "id": "v-FM385u",
+     "x": 1070,
+     "y": 912,
+     "w": 1244,
+     "h": 700
+    }
+   ],
+   "edges": 2
+  }
+ },
+ "restored_storyboard": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": [
+   {
+    "id": "a-jmkB15",
+    "x": 170,
+    "y": 912,
+    "w": 700,
+    "h": 296
+   },
+   {
+    "id": "i-rThqos",
+    "x": 170,
+    "y": 1712,
+    "w": 700,
+    "h": 938
+   },
+   {
+    "id": "v-FM385u",
+    "x": 1070,
+    "y": 912,
+    "w": 1244,
+    "h": 700
+   }
+  ],
+  "edges": 2
+ },
+ "restored": {
+  "transform": "translate(106px, -1236px) scale(2)",
+  "nodes": [
+   {
+    "id": "a-jmkB15",
+    "x": 170,
+    "y": 912,
+    "w": 700,
+    "h": 296
+   },
+   {
+    "id": "i-rThqos",
+    "x": 170,
+    "y": 1712,
+    "w": 700,
+    "h": 938
+   },
+   {
+    "id": "v-FM385u",
+    "x": 1070,
+    "y": 912,
+    "w": 1244,
+    "h": 700
+   }
+  ],
+  "edges": 2
+ },
+ "final": 3
+}
