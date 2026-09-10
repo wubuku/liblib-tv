@@ -1,0 +1,32 @@
+{
+  "batch": 336,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:video-node",
+        "board:video-card",
+        "pending:status-attr",
+        "pending:overlay-text",
+        "pending:overlay-label",
+        "pending:strip-hidden-before-select",
+        "pending:strip-visible",
+        "pending:confirm-label",
+        "pending:cancel-label",
+        "cancel:status-empty",
+        "cancel:overlay-label",
+        "cancel:strip-gone",
+        "confirm:status-ready",
+        "confirm:pending-label-gone",
+        "store:status-ready",
+        "workbench:return",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

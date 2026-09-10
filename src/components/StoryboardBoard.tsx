@@ -87,13 +87,20 @@ function VideoStatusOverlay({ status }: { status: string | null }) {
 }
 
 export function StoryboardBoard() {
-  const { canvases, activeCanvasId, selectedNodeId, selectNode } = useCanvasStore();
+  const { canvases, activeCanvasId, selectedNodeId, selectNode, updateNodeData } = useCanvasStore();
   const activeCanvas = canvases.find((canvas) => canvas.id === activeCanvasId);
   const nodes = activeCanvas?.nodes ?? [];
   const audioNodes = nodes.filter((node) => node.type === "audio");
   const imageNodes = nodes.filter((node) => node.type === "image");
   const videoNodes = nodes.filter((node) => node.type === "video");
   const select = (nodeId: string) => selectNode(nodeId);
+
+  // Batch 336: 待确认生成 确认/取消——源站交互细节未采得（BLOCKED_MANUAL
+  // → CLONE_DECISION）：选中 pending 卡片显示确认条，确认→本地置为
+  // ready（生成完成态），取消→清为 empty。
+  const setVideoStatus = (nodeId: string, status: "ready" | "empty") => {
+    updateNodeData(nodeId, { status });
+  };
 
   return (
     <div data-storyboard-board className="h-full min-w-0 overflow-hidden bg-[#141414] p-4 pt-16">
@@ -226,45 +233,67 @@ export function StoryboardBoard() {
                 const status = str(data.status);
                 const refs = references(node);
                 return (
-                  <button
-                    key={node.id}
-                    type="button"
-                    data-storyboard-card={node.id}
-                    data-storyboard-video-status={status ?? "empty"}
-                    aria-pressed={selectedNodeId === node.id}
-                    onClick={() => select(node.id)}
-                    className={cn(
-                      "block w-fit overflow-hidden rounded-lg border text-left",
-                      selectedNodeId === node.id ? "border-[#09caf5]" : "border-white/[0.07]",
-                    )}
-                  >
-                    <span className="relative flex aspect-video w-[300px] items-center justify-center overflow-hidden bg-[#161616]">
-                      {imageUrl(node) && (
-                        <Image src={imageUrl(node) as string} alt="" width={600} height={338} className="absolute inset-0 size-full object-cover opacity-80" unoptimized />
+                  <span key={node.id} className="block">
+                    <button
+                      type="button"
+                      data-storyboard-card={node.id}
+                      data-storyboard-video-status={status ?? "empty"}
+                      aria-pressed={selectedNodeId === node.id}
+                      onClick={() => select(node.id)}
+                      className={cn(
+                        "block w-fit overflow-hidden rounded-lg border text-left",
+                        selectedNodeId === node.id ? "border-[#09caf5]" : "border-white/[0.07]",
                       )}
-                      <span className="relative">
-                        <VideoStatusOverlay status={status} />
+                    >
+                      <span className="relative flex aspect-video w-[300px] items-center justify-center overflow-hidden bg-[#161616]">
+                        {imageUrl(node) && (
+                          <Image src={imageUrl(node) as string} alt="" width={600} height={338} className="absolute inset-0 size-full object-cover opacity-80" unoptimized />
+                        )}
+                        <span className="relative">
+                          <VideoStatusOverlay status={status} />
+                        </span>
                       </span>
-                    </span>
-                    <span className="flex flex-col gap-2 p-3">
-                      {model && (
-                        <span data-storyboard-model={node.id} className="inline-flex w-fit items-center gap-1.5 rounded bg-[#262626] px-2 py-1 text-[11px] text-[#d4d4d4]">
-                          <span className="text-[#9a9a9a]">✦</span>
-                          {model}
-                        </span>
-                      )}
-                      {refs.length > 0 && (
-                        <span className="flex items-center gap-1.5">
-                          {refs.slice(0, 3).map((ref, index) => (
-                            <span key={`${ref}-${index}`} className="size-8 overflow-hidden rounded bg-[#262626]">
-                              <Image src={ref} alt="" width={64} height={64} className="size-full object-cover" unoptimized />
-                            </span>
-                          ))}
-                        </span>
-                      )}
-                      <span className="max-w-[276px] truncate text-xs text-[#c9c9c9]">{nodeLabel(node)}</span>
-                    </span>
-                  </button>
+                      <span className="flex flex-col gap-2 p-3">
+                        {model && (
+                          <span data-storyboard-model={node.id} className="inline-flex w-fit items-center gap-1.5 rounded bg-[#262626] px-2 py-1 text-[11px] text-[#d4d4d4]">
+                            <span className="text-[#9a9a9a]">✦</span>
+                            {model}
+                          </span>
+                        )}
+                        {refs.length > 0 && (
+                          <span className="flex items-center gap-1.5">
+                            {refs.slice(0, 3).map((ref, index) => (
+                              <span key={`${ref}-${index}`} className="size-8 overflow-hidden rounded bg-[#262626]">
+                                <Image src={ref} alt="" width={64} height={64} className="size-full object-cover" unoptimized />
+                              </span>
+                            ))}
+                          </span>
+                        )}
+                        <span className="max-w-[276px] truncate text-xs text-[#c9c9c9]">{nodeLabel(node)}</span>
+                      </span>
+                    </button>
+                    {/* Batch 336: 确认条为卡片兄弟节点（button 不可嵌套）。 */}
+                    {status === "pending" && selectedNodeId === node.id && (
+                      <span className="mt-2 flex items-center gap-2" data-storyboard-pending-strip={node.id}>
+                        <button
+                          type="button"
+                          data-storyboard-pending-confirm={node.id}
+                          onClick={() => setVideoStatus(node.id, "ready")}
+                          className="flex h-7 items-center rounded-md bg-[#09caf5] px-2.5 text-xs font-medium text-[#141414] hover:bg-[#2ad4f7]"
+                        >
+                          确认生成
+                        </button>
+                        <button
+                          type="button"
+                          data-storyboard-pending-cancel={node.id}
+                          onClick={() => setVideoStatus(node.id, "empty")}
+                          className="flex h-7 items-center rounded-md bg-[#262626] px-2.5 text-xs text-[#c9c9c9] hover:bg-[#303030]"
+                        >
+                          取消
+                        </button>
+                      </span>
+                    )}
+                  </span>
                 );
               }) : <EmptyColumn kind="video" label="暂无视频" />}
             </div>
