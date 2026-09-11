@@ -272,7 +272,8 @@ def run_toolbar_toggle(page: Page):
     open_asset(page)
     opened = snapshot(page)
     opened_geometry = assert_centered(page)
-    assert_viewport(opened["viewport"], -120)
+    # Batch 351: 面板宽 240 → 320（batch 298 现行），居中保持偏移 -120 → -160。
+    assert_viewport(opened["viewport"], -160)
     assert semantic_snapshot(opened) == semantic_snapshot(before), (before, opened)
 
     asset_toggle(page)
@@ -334,8 +335,18 @@ def run_stale_canvas_guard(page: Page):
           return canvas?.viewport || null;
         }"""
     )
-    page.get_by_role("button", name="资产管理", exact=True).dispatch_event("click")
-    page.evaluate("() => window.__libtv_store.getState().setActiveCanvas('canvas-2')")
+    # Batch 351: 开面板与切画布合并进同一 evaluate——布局计划在两帧 rAF
+    # 后才提交，同步切换保证「canvas-changed」skip 路径确定性触发
+    # （旧写法依赖竞态，320px 面板下 rAF 常先提交）。
+    page.evaluate(
+        """() => {
+          const btn = [...document.querySelectorAll('button')].find(
+            (el) => el.getAttribute('aria-label') === '资产管理',
+          );
+          btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          window.__libtv_store.getState().setActiveCanvas('canvas-2');
+        }"""
+    )
     page.wait_for_timeout(220)
     logs = page.evaluate("() => window.__libtv_asset_layout_log")
     assert logs, logs
@@ -397,8 +408,9 @@ def run_desktop(page: Page):
 def run_mobile(page: Page):
     errors = attach_errors(page)
     result = run_toolbar_toggle(page)
-    assert abs(result["opened"]["hostRect"]["width"] - 150) <= 1, result
-    assert_viewport(result["viewportOpen"], -120)
+    # Batch 351: 移动端 host = 390 - 320 = 70（面板全视口 320px）。
+    assert abs(result["opened"]["hostRect"]["width"] - 70) <= 1, result
+    assert_viewport(result["viewportOpen"], -160)
     assert_no_overflow(page)
     assert not errors, errors
     return result
@@ -434,7 +446,7 @@ def main():
         "mobile": mobile_result,
         "acceptance": {
             "maxCenterErrorPx": 1.5,
-            "expectedDrawerViewportDeltaX": -120,
+            "expectedDrawerViewportDeltaX": -160,
             "graphHistorySelectionZeroMutation": True,
             "currentOwnerGuard": True,
             "defaultAddComposition": True,

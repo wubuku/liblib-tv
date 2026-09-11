@@ -96,23 +96,23 @@
       },
       "opened": {
         "hostRect": {
-          "x": 240,
+          "x": 320,
           "y": 0,
-          "width": 689,
+          "width": 609,
           "height": 874
         },
         "nodeRect": {
-          "x": 409.5,
+          "x": 449.5,
           "y": 347,
           "width": 350,
           "height": 180
         },
         "hostCenter": {
-          "x": 584.5,
+          "x": 624.5,
           "y": 437.0
         },
         "nodeCenter": {
-          "x": 584.5,
+          "x": 624.5,
           "y": 437.0
         },
         "centerError": {
@@ -161,7 +161,7 @@
         }
       ],
       "viewportOpen": {
-        "x": -120,
+        "x": -160,
         "y": 0,
         "zoom": 1
       },
@@ -233,13 +233,13 @@
     },
     "defaultAddComposition": {
       "hostRect": {
-        "x": 240,
+        "x": 320,
         "y": 0,
-        "width": 689,
+        "width": 609,
         "height": 874
       },
       "nodeRect": {
-        "x": 409.5,
+        "x": 449.5,
         "y": 347,
         "width": 350,
         "height": 180
@@ -249,7 +249,7 @@
         "y": 0.0
       },
       "viewport": {
-        "x": -120,
+        "x": -160,
         "y": 0,
         "zoom": 1
       }
@@ -284,23 +284,23 @@
     },
     "opened": {
       "hostRect": {
-        "x": 240,
+        "x": 320,
         "y": 0,
-        "width": 150,
+        "width": 70,
         "height": 844
       },
       "nodeRect": {
-        "x": 140,
+        "x": 180,
         "y": 332,
         "width": 350,
         "height": 180
       },
       "hostCenter": {
-        "x": 315.0,
+        "x": 355.0,
         "y": 422.0
       },
       "nodeCenter": {
-        "x": 315.0,
+        "x": 355.0,
         "y": 422.0
       },
       "centerError": {
@@ -349,7 +349,7 @@
       }
     ],
     "viewportOpen": {
-      "x": -120,
+      "x": -160,
       "y": 0,
       "zoom": 1
     },
@@ -361,7 +361,7 @@
   },
   "acceptance": {
     "maxCenterErrorPx": 1.5,
-    "expectedDrawerViewportDeltaX": -120,
+    "expectedDrawerViewportDeltaX": -160,
     "graphHistorySelectionZeroMutation": true,
     "currentOwnerGuard": true,
     "defaultAddComposition": true,

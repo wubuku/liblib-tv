@@ -573,7 +573,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 49 | viewport gizmo 未隐藏（wait 30s 超时） | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
 | 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
 | 61 | 合成语料 fixture reset | ownership-managed 维持（LIBTV-VR-016 focused pass 之外保持） |
-| 64 | viewport {x:-160,y:0,zoom:1} | **MODERNIZATION_DEFERRED（Batch 350 分诊）**：六子流程整体验证器，桌面工具栏段为面板宽度迁移漂移（-120→-160 已验证），但级联贯穿 stale-canvas-guard 布局日志语义（skipped→committed，batch 298 面板 flex 架构变更后果）等处——完整现代化需 6 子流程 × 320px 架构的专项批次；半迁移状态已回滚，维持归档 |
+| 64 | viewport {x:-160,y:0,zoom:1} | **已修复并转绿（Batch 351 专项现代化）**：三处 240→320 面板宽度迁移（桌面/移动 viewport 偏移、mobile host 宽 150→70）+ stale-canvas-guard 竞态确定性化（开面板与切画布合并进同一 evaluate，先于 rAF 提交）——三连跑全绿 |
 | 89 | 移动端面板关闭按钮点击超时 | AGED_GATE 维持并补充归因：现版移动面板生命周期含焦点收纳/自动关闭（后期批次行为），「点击覆盖层关闭」的 batch 89 时代合同被取代；桌面段合同不受影响 |
 
 结论（重申 batch 108/184 处置）：上述验证器保留作历史快照对照，
