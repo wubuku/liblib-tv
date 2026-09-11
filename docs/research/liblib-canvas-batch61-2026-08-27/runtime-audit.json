@@ -221,7 +221,7 @@
       "edgeChangeCount": 1
     },
     "history_copy_runtime_sanitation": {
-      "copiedNodeId": "text-1788892566848-5bv3yc",
+      "copiedNodeId": "text-1789151663863-97vgy9",
       "copyCommitRuntimeFields": [],
       "postMountMeasured": null,
       "historyRuntimeFields": {
@@ -452,26 +452,6 @@
         "result": {
           "status": "applied",
           "code": "APPLIED_TRANSPORT",
-          "expectedActiveCanvasId": "canvas-1",
-          "activeCanvasId": "canvas-1",
-          "nodeChangeCount": 1,
-          "edgeChangeCount": 0
-        }
-      },
-      {
-        "request": {
-          "expectedActiveCanvasId": "canvas-1",
-          "nodeChanges": [
-            {
-              "id": "batch61-node-a",
-              "type": "select",
-              "selected": false
-            }
-          ]
-        },
-        "result": {
-          "status": "applied",
-          "code": "APPLIED_SELECTION",
           "expectedActiveCanvasId": "canvas-1",
           "activeCanvasId": "canvas-1",
           "nodeChangeCount": 1,

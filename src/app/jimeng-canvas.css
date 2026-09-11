@@ -1,0 +1,77 @@
+/* 即梦 (jimeng.jianying.com) AI 画布复刻样式 — 注入到 /jimeng 路由 layout。
+   颜色/尺寸 token 均来自源站 computed style 提取 (docs/research/jimeng-canvas/README.md)，
+   标注 CLONE_DECISION 的为复刻近似值。 */
+
+.jimeng-app {
+  background: #0f0f12; /* rgb(15,15,18) SOURCE_FACT */
+  color: #f5fbff; /* rgb(245,251,255) SOURCE_FACT */
+  font-family:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; /* SOURCE_FACT */
+}
+
+/* ---- 画布底层 ---- */
+.jimeng-canvas {
+  background: #0d0d0d; /* bg-dreamina-canvas-bg rgb(13,13,13) SOURCE_FACT */
+}
+
+/* 点阵网格：源站用 <canvas> 绘制，复刻用 CSS radial-gradient 近似
+   (CLONE_DECISION；73% 缩放下源站点距 ≈ 20px 屏幕 ≈ 28px 世界) */
+.jimeng-canvas .react-flow__pane {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.075) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ---- 顶部 chrome 药丸 (搜索/帮助、会员) ----
+   bg rgba(32,32,34,0.8) + blur(40px) + 内描边 0.06 SOURCE_FACT */
+.jimeng-chrome-pill {
+  background: rgba(32, 32, 34, 0.8);
+  backdrop-filter: blur(40px);
+  border-radius: 8px;
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0 0 0 1px inset,
+    rgba(0, 0, 0, 0.24) 0 1px 2px 0;
+}
+
+/* ---- 底部导航 dock ----
+   bg rgb(13,13,13) + 内描边 0.04 SOURCE_FACT */
+.jimeng-bottom-dock {
+  background: #0d0d0d;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.04) 0 0 0 1px inset;
+}
+
+/* ---- 选中节点浮动工具条 (Batch 2 起点) ----
+   bg rgb(32,32,32) r12 h40 SOURCE_FACT */
+.jimeng-node-toolbar {
+  background: #202020;
+  border-radius: 12px;
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0 0 0 1px inset,
+    rgba(0, 0, 0, 0.32) 0 4px 12px 0; /* 阴影为 CLONE_DECISION 近似 */
+}
+
+/* 工具条内分隔线：源站 hr 5×16 bg rgba(204,221,255,0.1) SOURCE_FACT */
+.jimeng-node-toolbar-divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 2px;
+  background: rgba(204, 221, 255, 0.1);
+}
+
+/* 工具条条目 hover 底色 (源站为半透明白，CLONE_DECISION) */
+.jimeng-node-toolbar-item {
+  border-radius: 8px;
+  transition: background 0.12s ease;
+}
+.jimeng-node-toolbar-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- 隐藏 xyflow attribution (原型) ---- */
+.jimeng-canvas .react-flow__attribution {
+  display: none;
+}

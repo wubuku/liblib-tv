@@ -701,9 +701,17 @@ def run_real_callbacks(page: Page):
     assert after_noop["pastLength"] == history_before_noop
 
     edge = page.locator(f'.react-flow__edge[data-id="{EDGE_AB}"]')
-    page.locator(".react-flow__pane").click(position={"x": 780, "y": 730})
-    page.wait_for_timeout(80)
-    assert state_snapshot(page)["selectedNodeIds"] == []
+    # Batch 356: 硬编码 (780,730) 依赖拖拽后节点恰好不在该处——改为动态
+    # 计算所有节点包围盒右侧之外的空白点。
+    # Batch 356: 三个大 TextNode + 胶囊行已覆盖整个视口，无空白 pane 点
+    # （scan 实证）——setup 改用 store 级取消选中（确定性）；被测交互
+    # 「边透明路径点击选中」仍走真实 UI。
+    page.evaluate(
+        "() => window.__libtv_store.getState().selectElements({ nodeIds: [], edgeIds: [] })"
+    )
+    page.wait_for_timeout(120)
+    pre = state_snapshot(page)
+    assert pre["selectedNodeIds"] == []
     edge.locator('path[stroke="transparent"]').click(force=True)
     page.wait_for_timeout(280)
     edge_selected = state_snapshot(page)
@@ -779,6 +787,9 @@ def run_mobile(page: Page):
     errors = attach_errors(page)
     prepare(page)
     edge = page.locator(f'.react-flow__edge[data-id="{EDGE_AB}"]')
+    # Batch 356: 移动端 390px 下边线在视口外——⌘0 适合屏幕后再点。
+    page.keyboard.press("Meta+0")
+    page.wait_for_timeout(600)
     edge.locator('path[stroke="transparent"]').click(force=True)
     page.wait_for_timeout(100)
     state = state_snapshot(page)
