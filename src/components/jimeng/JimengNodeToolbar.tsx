@@ -96,6 +96,7 @@ export function JimengNodeToolbar({
                     <button
                       key={entry}
                       type="button"
+                      onClick={() => runAction(`${item.label}:${entry}`)}
                       className="flex h-10 w-full items-center gap-2 whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
                     >
                       <Camera size={16} className="shrink-0 text-white/85" />

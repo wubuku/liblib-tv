@@ -69,6 +69,10 @@ export interface JimengCanvasState {
   inferNodeId: string | null;
   enterInfer: (id: string) => void;
   exitInfer: () => void;
+  /** 截取帧-自定义 帧选择器 (Batch 9) */
+  framePickerNodeId: string | null;
+  enterFramePicker: (id: string) => void;
+  exitFramePicker: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -252,4 +256,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   enterInfer: (id) => set({ inferNodeId: id }),
 
   exitInfer: () => set({ inferNodeId: null }),
+
+  framePickerNodeId: null,
+
+  enterFramePicker: (id) => set({ framePickerNodeId: id }),
+
+  exitFramePicker: () => set({ framePickerNodeId: null }),
 }));

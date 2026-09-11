@@ -11,6 +11,7 @@ import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
 import { JimengInferPanel } from "@/components/jimeng/JimengInferPanel";
+import { JimengFramePicker } from "@/components/jimeng/JimengFramePicker";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { JimengVideoEditMode } from "@/components/jimeng/JimengVideoEditMode";
 import { useJimengStore } from "@/store/jimengStore";
@@ -53,10 +54,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const inferNodeId = useJimengStore((s) => s.inferNodeId);
   const enterInfer = useJimengStore((s) => s.enterInfer);
   const exitInfer = useJimengStore((s) => s.exitInfer);
+  const framePickerNodeId = useJimengStore((s) => s.framePickerNodeId);
+  const enterFramePicker = useJimengStore((s) => s.enterFramePicker);
+  const exitFramePicker = useJimengStore((s) => s.exitFramePicker);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
   const inferMode = inferNodeId === id;
+  const framePickerMode = framePickerNodeId === id;
 
   return (
     <div
@@ -75,6 +80,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         <JimengVideoEditMode onSubmit={() => exitEdit()} />
       ) : d.hasMedia && inferMode ? (
         <JimengInferPanel visible data={d} onClose={() => exitInfer()} />
+      ) : d.hasMedia && framePickerMode ? (
+        <JimengFramePicker visible data={d} onClose={() => exitFramePicker()} />
       ) : d.hasMedia ? (
         <JimengNodeToolbar
           visible={selected === true}
@@ -82,12 +89,13 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "局部重拍") enterRepaint(id);
             if (label === "视频编辑") enterEdit(id);
             if (label === "提示词反推") enterInfer(id);
+            if (label === "截取帧:自定义") enterFramePicker(id);
           }}
         />
       ) : null}
       {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
       {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏 */}
-      {!repaintMode && !editMode && !inferMode ? (
+      {!repaintMode && !editMode && !inferMode && !framePickerMode ? (
         <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
           <div className="flex min-w-0 items-center gap-1.5 text-white/70">
             <FileBadgeIcon size={16} />

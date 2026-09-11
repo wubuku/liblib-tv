@@ -6,6 +6,7 @@
 # 运行仍可用于历史快照对照，不能作为当前合同通过依据。
 # Batch 184 核对：失败=marquee 选择框不出现——Batch 77 源站运行时证据已取代
 # marquee 语义（AGENTS.md 导航权威），确认 superseded，维持 AGED_GATE（§4.z）。
+import json
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -48,11 +49,26 @@ def select_with_marquee(page):
     end = (target["x"] + target["width"] + 24, target["y"] + target["height"] + 24)
 
     saw_selection_rect = {"value": False}
+    # Batch 362: selectionOnDrag=false 下框选需 Shift+拖拽（v12 语义）。
+    page.keyboard.down("Shift")
 
     def inspect_drag():
         saw_selection_rect["value"] = page.locator(".react-flow__selection").count() == 1
+        dbg = page.evaluate(
+            """([sx, sy, mx, my]) => {
+              const hitStart = document.elementFromPoint(sx, sy);
+              const hitMid = document.elementFromPoint(mx, my);
+              const fmt = (h) => h ? h.tagName + '|' + String(h.className).slice(0, 45) : 'null';
+              return { start: fmt(hitStart), mid: fmt(hitMid) };
+            }""",
+            [start[0], start[1],
+             start[0] + (end[0] - start[0]) / 2,
+             start[1] + (end[1] - start[1]) / 2],
+        )
+        print("DEBUG6:", json.dumps(dbg), flush=True)
 
     drag(page, start, end, inspect_drag)
+    page.keyboard.up("Shift")
     page.wait_for_timeout(250)
     assert saw_selection_rect["value"], "selection rectangle did not appear"
     assert page.locator(f'.react-flow__node[data-id="{IMAGE_ID}"].selected').count() == 1
