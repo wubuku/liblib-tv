@@ -319,3 +319,38 @@ Required follow-up fixture:
 在没有新的独立 source project、明确写入授权或安全可见 ready-video/process fixture 前，本 runbook 只支持页面壳、已有节点、无副作用浮层和响应式的只读复核。它不能解锁 AutoLink 输入、ready-video 提交、process lifecycle、dirty image action 或 source-only shortcut 的研究。
 
 后续 agent 完成新 run 后，应把结果挂回 [`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md) 的 `PAR-005`，并重新检查 [`LIBTV_RESEARCH_GO_NO_GO.md`](liblib-seedance-2.5-2026-08-25/LIBTV_RESEARCH_GO_NO_GO.md) 和 [`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)。
+
+## 10. 2026-09-12 Run 记录：客户端渲染劣化观察（Batch 358-359 挂接 PAR-005）
+
+> 只读观察，无写入操作；viewport 1920×1150（CDP 覆盖）；账号为既有
+> 登录态共享只读项目（SHARED_READ_ONLY）。
+
+### 10.1 观察到的劣化（`SOURCE_FACT`，2026-09-12）
+
+1. **模型菜单交互失效**（batch 333-352 反复复现）：菜单可打开
+   （双击/单击均可），但滚动后虚拟化窗口重叠、行 DOM 成对出现
+   （同 text 同 y），点击行命中相邻模型或无效果——
+   `elementFromPoint` 命中验证与三种点击机制均无法稳定选中
+   「Hailuo 2.3 Fast」（见 `LIBTV_VERIFIER_REPLACEMENT_MAP.md`
+   §5.z3、`liblib-canvas-batch333/346/352`）；
+2. **节点创建链路损坏**（batch 340 首次实证）：空画布「双击画布」
+   创建菜单渲染到视口左上角原点，全部条目叠在同一坐标
+   （x=33,y=81），点击无法创建节点（`+` 按钮路径同样失效）；
+3. **画布页资源总览水合失败**（batch 356-359 观察）：goto 后
+   bodyLen ≈ 90-311（仅顶栏壳），音频/图片/视频列内容与
+   「待确认后生成」卡不渲染，且多次 reload 不可恢复；
+4. **Agent「正在跟随」横幅**常驻顶栏中央（正在跟随/取消ESC/
+   按 ESC 退出），取消按钮点击不生效，reload 后恢复。
+
+### 10.2 判定与影响
+
+- 判定：客户端 SPA 在共享项目会话中进入不可自愈的劣化态
+  （可能与部署/灰度相关，非本工具侧可修复）；
+- 影响：**BLOCKED_SOURCE 三项**（Hailuo 系条件分解、480P 档批量、
+  Style Video 费率）与故事板 CLONE_DECISION 替换维持阻塞；
+- clone 侧无回归（维护集 46 项 + jimeng batch 1 全绿）。
+
+### 10.3 复测触发条件
+
+任意后续批次可在批次开头重跑 batch 338/340 的恢复探测脚本
+（`RECOVERY: menu-opens` 即恢复）；恢复后按 §8 checklist 补采。
