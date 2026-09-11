@@ -36,7 +36,7 @@ def assert_no_overflow(page: Page):
 
 
 def open_minimap(page: Page):
-    trigger = page.get_by_role("button", name="显示缩略图")
+    trigger = page.get_by_role("button", name="切换小地图")  # Batch 341: 源站 2026-09-11 aria-label 直证
     assert trigger.get_attribute("aria-pressed") == "false"
     trigger.click()
     minimap = page.locator(".liblib-minimap")

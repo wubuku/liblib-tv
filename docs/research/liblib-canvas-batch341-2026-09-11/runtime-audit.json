@@ -1,0 +1,34 @@
+{
+  "batch": 341,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "left:资产管理",
+        "left:整理画布，Option+Shift+F",
+        "left:切换小地图",
+        "left:隐藏节点连线",
+        "left:网格吸附",
+        "left:缩放选项",
+        "center:添加节点",
+        "center:移动",
+        "center:打开工具箱",
+        "center:素材库",
+        "center:角色库",
+        "center:生成历史",
+        "center:快捷键",
+        "center:教程",
+        "drift:显示缩略图-gone",
+        "drift:吸附到网格-gone",
+        "left:order",
+        "zoom:percent-text",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

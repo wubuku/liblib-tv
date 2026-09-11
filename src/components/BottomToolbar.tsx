@@ -96,7 +96,7 @@ export function BottomToolbar({
       <IconButton label="整理画布，Option+Shift+F" onClick={onOrganize}>
         <GridGlyph className="size-[15px] text-current" />
       </IconButton>
-      <IconButton label="显示缩略图" active={showMinimap} onClick={toggleMinimap}>
+      <IconButton label="切换小地图" active={showMinimap} onClick={toggleMinimap}>
         <MapGlyph className="size-[15px] text-current" />
       </IconButton>
       <IconButton label={showEdges ? "隐藏节点连线" : "显示节点连线"} active={showEdges} onClick={toggleEdges}>
@@ -105,7 +105,7 @@ export function BottomToolbar({
       <span
         className="contents sm:max-[850px]:hidden"
       >
-        <IconButton label="吸附到网格" active={snapToGrid} onClick={toggleSnapToGrid}>
+        <IconButton label="网格吸附" active={snapToGrid} onClick={toggleSnapToGrid}>
           <MagnetGlyph className="size-[15px] text-current" />
         </IconButton>
       </span>
