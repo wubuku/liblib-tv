@@ -277,6 +277,9 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 uiStore 部分**无清理对象**——现状即最简形态。剩余 deferred 项为
 unmounted state（组件级），需逐组件审计，另行排队。
 
+**Batch 367 闭环更新**：组件级审计完成——0 候选（src/components
+全部 useState 值均被读取）。**PAR-011 完全闭环，deferred 标记解除**。
+
 ### 4.11 `LIBTV-PAR-010..016`: boundaries
 
 | ID | 当前决策 |
