@@ -1,6 +1,7 @@
 "use client";
 
-import { applyEdgeChanges, applyNodeChanges, create } from "zustand";
+import { create } from "zustand";
+import { applyEdgeChanges, applyNodeChanges } from "@xyflow/react";
 import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
 
 import type { JimengNode } from "@/types/jimeng";
@@ -110,11 +111,14 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             : state.selectedNodeId;
         return {
           selectedNodeId,
-          nodes: nodes.map((n) => ({ ...n, selected: n.id === selectedNodeId })),
+          nodes: nodes.map((n: JimengNode) => ({
+            ...n,
+            selected: n.id === selectedNodeId,
+          })),
         };
       }
       return {
-        nodes: nodes.map((n) => ({
+        nodes: nodes.map((n: JimengNode) => ({
           ...n,
           selected: n.id === state.selectedNodeId,
         })),

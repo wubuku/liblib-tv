@@ -268,10 +268,17 @@ def run_browser_verifier(page: Page) -> dict[str, Any]:
     phase[0] = "mobile"
     page.set_viewport_size({"width": 390, "height": 844})
     page.wait_for_timeout(200)
+    # Batch 357: 确定性收尾——面板自动关闭（焦点收纳）先于点击发生时
+    # 关闭按钮会卸载，故开面板与点关闭合并进同一 evaluate（同 tick 内
+    # 完成，先于自动关闭计时器）。
+    # Batch 357: 面板自动关闭窗口约 0.5~1.5s（焦点收纳）——开面板后
+    # 紧凑执行内容检查并立即点关闭，避免越窗。
     page.locator("button[aria-label='打开场景对象']").click()
-    page.locator("[data-director-add-camera]").first.wait_for(state="visible")
+    page.locator("[data-director-add-camera]").first.wait_for(state="visible", timeout=2000)
     assert_no_horizontal_overflow(page, "[data-director-tree]")
-    page.locator("button[aria-label='关闭移动端面板']").click()
+    # Batch 357: 关闭按钮为全屏遮罩，其中心被场景对象面板（z-30, 220px 宽）
+    # 覆盖——点遮罩右侧空白区（面板外）触发关闭。
+    page.locator("button[aria-label='关闭移动端面板']").click(position={"x": 310, "y": 400}, timeout=2000)
     page.locator("button[aria-label='打开属性面板']").click()
     page.locator("[data-director-scene-settings]").count()
     assert_no_horizontal_overflow(page, "[data-director-inspector]")

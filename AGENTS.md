@@ -44,13 +44,17 @@ python3 scripts/verify-docs.py
 | LibTV components | `src/components/`, `src/components/nodes/` | nodes, panels, dialogs, overlays |
 | FrameOS route | `src/app/frameos/` | independent route and page orchestration |
 | FrameOS state | `src/store/frameosStore.ts` | independent graph/UI/history mock |
+| Jimeng route | `src/app/jimeng/` | Jimeng canvas route and page orchestration |
+| Jimeng state | `src/store/jimengStore.ts` | independent Jimeng graph/UI mock |
+| Jimeng components | `src/components/jimeng/` | Jimeng nodes, toolbars, panels |
+| Jimeng research | `docs/research/jimeng-canvas/` | Jimeng source evidence and tokens |
 | Shared utilities | `src/lib/`, `src/types/` | pure helpers and type contracts |
 | Evidence | `docs/research/`, `docs/design-references/` | source observations and visual records |
 
 ## 5. Hard Constraints
 
 - Read the relevant guide in `node_modules/next/dist/docs/` before changing Next.js APIs.
-- Keep `canvasStore` and `frameosStore` separate; do not add a route `mode` flag.
+- Keep `canvasStore`, `frameosStore` and `jimengStore` separate; do not add a route `mode` flag.
 - React Flow v12 does not pass `node.style` to custom node props; read store data or `props.measured`.
 - `applyNodeChanges` resets selected state; FrameOS must re-apply `selectedNodeId` after changes.
 - `<Handle>` is the real `+` connection affordance; never add a decorative overlay that blocks dragging.

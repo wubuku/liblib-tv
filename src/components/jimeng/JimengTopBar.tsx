@@ -15,7 +15,7 @@ export function JimengTopBar() {
   const project = useJimengStore((s) => s.project);
 
   return (
-    <header className="pointer-events-none absolute left-3 top-[10px] z-30 flex h-10 items-center">
+    <header className="pointer-events-none absolute inset-x-3 top-[10px] z-30 flex h-10 items-center">
       {/* 左侧项目信息 */}
       <div className="pointer-events-auto flex min-w-0 flex-1 items-center gap-4">
         <div className="flex items-center gap-2.5">
