@@ -154,6 +154,14 @@ clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 r
 
 ### 4.5 `LIBTV-PAR-004`: page keyboard and focus ownership
 
+> Batch 374 phase 1（clone 侧盘点）已记录：页级键盘 handler 表、
+> surface 级 Escape/指针隔离、焦点所有权三域（canvas focus-root /
+> Director focus-scope + containment / Agent 无 trap）。
+> gap 清单（源站初始焦点/trap 范围/Escape 优先级链/Director 双
+> aside 对照）见
+> [`liblib-canvas-batch374-2026-09-12/README.md`](liblib-canvas-batch374-2026-09-12/README.md)。
+> 源站侧对照待恢复。
+
 当前 clone runtime 已证明：
 
 - Character/History backdrop 阻断 pointer，但没有 source-exact focus trap；
