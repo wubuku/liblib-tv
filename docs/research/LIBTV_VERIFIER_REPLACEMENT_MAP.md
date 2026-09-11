@@ -562,18 +562,18 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 
 | 验证器 | 失败形态（2026-09-11） | 处置 |
 |---|---|---|
-| 6 | marquee 选框断言 | AGED_GATE 维持（Batch 6 marquee 历史化，AGENTS.md 在档） |
+| 6 | marquee 选框断言 | AGED_GATE 维持（Batch 6 marquee 历史化，AGENTS.md 在档；2026-09-12 复跑仍是「selection rectangle did not appear」） |
 | 29 | 播放器悬停菜单点击超时 | **已修复并转绿（Batch 338）**：菜单 Portal 化逃出节点 stacking context |
 | 39 | timeline currentTime ≤ 0.2 | **已修复并转绿（Batch 346）**：非产品缺陷，系起播延迟的时序抖动——验证器改为轮询至 currentTime>0.2（三连跑确定性通过） |
 | 40 | 截图 byte_size ≤ 10000 | **已修复并转绿（Batch 347）**：两因叠加——①Chrome 147 下 MediaRecorder webm blob loadedmetadata 后 duration=Infinity，二次 seek(Infinity) 抛错（连跑必现）；验证器加标准 duration 强制计算 hack；②webm 尺寸随编码抖动（实测 8813~10432），阈值 10000→8000 |
 | 41 | import transform 漂移 | **已修复并转绿（Batch 348）**：数据层无损坏——authoredObjects 已精确还原校准基线（四层转储实证）；漂移读数来自 objects 运行时投影（导入后活动相机保持 phone-pose 控制态属设计行为）。验证器按 AGENTS.md authoredObjects 基线架构迁至 authored 层断言，三连跑全绿 |
-| 44 | keyframe time 序列 | AGED_GATE 维持 |
+| 44 | keyframe time 序列（line 334） | AGED_GATE 维持（2026-09-12 复跑同点同形失败，非时序抖动） |
 | 46 | 断言（bounded Director） | **已修复并转绿（Batch 349）**：非抖动链——截图条目按钮命名合同漂移（现版为「选择截图 {camera} · 镜头-截图NN」，旧验证器为「-{截图NN}」）；验证器命名迁移后三连跑确定性全绿 |
-| 48 | all(...) 断言 | AGED_GATE 维持 |
-| 49 | viewport gizmo 未隐藏 | AGED_GATE 维持 |
+| 48 | line 224 bare assert | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
+| 49 | viewport gizmo 未隐藏（wait 30s 超时） | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
 | 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
 | 61 | 合成语料 fixture reset | ownership-managed 维持（LIBTV-VR-016 focused pass 之外保持） |
-| 64 | viewport {x:-160,y:0,zoom:1} | ownership-managed 维持（LIBTV-VR-020 Asset host-resize slice 已由 Batch 64 关闭 focused 部分；残余为受控视口外的历史断言） |
+| 64 | viewport {x:-160,y:0,zoom:1} | **MODERNIZATION_DEFERRED（Batch 350 分诊）**：六子流程整体验证器，桌面工具栏段为面板宽度迁移漂移（-120→-160 已验证），但级联贯穿 stale-canvas-guard 布局日志语义（skipped→committed，batch 298 面板 flex 架构变更后果）等处——完整现代化需 6 子流程 × 320px 架构的专项批次；半迁移状态已回滚，维持归档 |
 | 89 | 移动端面板关闭按钮点击超时 | AGED_GATE 维持并补充归因：现版移动面板生命周期含焦点收纳/自动关闭（后期批次行为），「点击覆盖层关闭」的 batch 89 时代合同被取代；桌面段合同不受影响 |
 
 结论（重申 batch 108/184 处置）：上述验证器保留作历史快照对照，
