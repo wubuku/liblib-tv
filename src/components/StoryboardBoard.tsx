@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { Node } from "@xyflow/react";
-import { AudioLines, ChevronDown, ImageIcon, Maximize2, MessageSquareText, Play, Scan } from "lucide-react";
+import { AudioLines, ChevronDown, ImageIcon, Maximize2, MessageSquareText, Minimize2, Play, Scan } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCanvasStore } from "@/store/canvasStore";
 
@@ -119,6 +119,10 @@ export function StoryboardBoard() {
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "ready" | "failed">("all");
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
+  // Batch 344: 展开图标 = 栏宽放大切换（放大/还原）；对话 = 本地状态反馈
+  // （源站目标行为未采得，CLONE_DECISION）。
+  const [expandedColumn, setExpandedColumn] = useState<"image" | "video" | null>(null);
+  const [dialogHint, setDialogHint] = useState(false);
   const filterLabel = statusFilter === "all" ? "全部" : statusFilter === "pending" ? "待确认" : statusFilter === "ready" ? "已完成" : "失败";
   const visibleVideoNodes = statusFilter === "all"
     ? videoNodes
@@ -159,16 +163,29 @@ export function StoryboardBoard() {
         </section>
 
         {/* 图片栏 */}
-        <section data-storyboard-column="image" className="flex w-[39%] min-w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
+        <section
+          data-storyboard-column="image"
+          data-storyboard-expanded={expandedColumn === "image" ? "true" : undefined}
+          className={cn(
+            "flex shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]",
+            expandedColumn === "image"
+              ? "min-w-0 flex-1"
+              : expandedColumn === "video"
+                ? "w-[26%] min-w-[240px]"
+                : "w-[39%] min-w-[360px]",
+          )}
+        >
           <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
             图片
             <button
               type="button"
               data-storyboard-expand="image"
-              aria-label="放大图片栏"
+              aria-expanded={expandedColumn === "image"}
+              aria-label={expandedColumn === "image" ? "还原图片栏" : "放大图片栏"}
+              onClick={() => setExpandedColumn((current) => (current === "image" ? null : "image"))}
               className="ml-auto flex size-7 items-center justify-center rounded-md text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
             >
-              <Maximize2 size={14} />
+              {expandedColumn === "image" ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
             </button>
           </header>
           <div className="flex-1 overflow-y-auto p-4 pt-1">
@@ -177,14 +194,23 @@ export function StoryboardBoard() {
                 <ImageIcon size={13} />
                 图片
               </span>
-              <button
-                type="button"
-                data-storyboard-dialog="image"
-                className="flex h-7 items-center gap-1.5 rounded-md bg-[#262626] px-2 text-xs text-[#c9c9c9] hover:bg-[#303030]"
-              >
-                <MessageSquareText size={13} />
-                对话
-              </button>
+              <span className="flex items-center gap-2">
+                {dialogHint && (
+                  <span data-storyboard-dialog-status className="text-[11px] text-[#75d7e8]">
+                    本地原型：对话未连接
+                  </span>
+                )}
+                <button
+                  type="button"
+                  data-storyboard-dialog="image"
+                  aria-expanded={dialogHint}
+                  onClick={() => setDialogHint((value) => !value)}
+                  className="flex h-7 items-center gap-1.5 rounded-md bg-[#262626] px-2 text-xs text-[#c9c9c9] hover:bg-[#303030]"
+                >
+                  <MessageSquareText size={13} />
+                  对话
+                </button>
+              </span>
             </div>
             <div className="flex flex-wrap gap-4">
               {imageNodes.length > 0 ? imageNodes.map((node) => {
@@ -224,7 +250,14 @@ export function StoryboardBoard() {
         </section>
 
         {/* 视频栏 */}
-        <section data-storyboard-column="video" className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]">
+        <section
+          data-storyboard-column="video"
+          data-storyboard-expanded={expandedColumn === "video" ? "true" : undefined}
+          className={cn(
+            "flex flex-col overflow-hidden rounded-xl border border-white/[0.06] bg-[#181818]",
+            expandedColumn === "image" ? "w-[30%] min-w-[280px] shrink-0" : "min-w-0 flex-1",
+          )}
+        >
           <header className="flex h-12 shrink-0 items-center px-4 text-[15px] text-[#ececec]">
             视频
             <span className="relative ml-auto">
@@ -267,10 +300,12 @@ export function StoryboardBoard() {
             <button
               type="button"
               data-storyboard-expand="video"
-              aria-label="放大视频栏"
+              aria-expanded={expandedColumn === "video"}
+              aria-label={expandedColumn === "video" ? "还原视频栏" : "放大视频栏"}
+              onClick={() => setExpandedColumn((current) => (current === "video" ? null : "video"))}
               className="ml-2 flex size-7 items-center justify-center rounded-md text-[#8c8c8c] hover:bg-white/[0.07] hover:text-white"
             >
-              <Scan size={14} />
+              {expandedColumn === "video" ? <Minimize2 size={14} /> : <Scan size={14} />}
             </button>
           </header>
           <div className="flex-1 overflow-y-auto p-4 pt-1">

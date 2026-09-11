@@ -1,0 +1,36 @@
+{
+  "batch": 344,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "base:widths",
+        "base:expand-image-label",
+        "base:expand-video-label",
+        "base:no-expanded-attr",
+        "expand:image-wider",
+        "expand:video-narrower",
+        "expand:image-attr",
+        "expand:image-aria",
+        "expand:image-restore-label",
+        "restore:image-width",
+        "expand:video-wider",
+        "expand:image-narrower",
+        "expand:video-attr",
+        "expand:video-restore-label",
+        "restore:video-width",
+        "dialog:hint-hidden",
+        "dialog:hint-visible",
+        "dialog:hint-copy",
+        "dialog:aria-expanded",
+        "dialog:hint-toggles-off",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
