@@ -10,6 +10,7 @@ import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
+import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -41,7 +42,11 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   // 播放态由 data.playing 显式驱动 (mock 初始为暂停，与源站提取时一致)
   const playing = d.hasMedia && d.playing === true;
   const addVideoNodeAfter = useJimengStore((s) => s.addVideoNodeAfter);
+  const repaintNodeId = useJimengStore((s) => s.repaintNodeId);
+  const enterRepaint = useJimengStore((s) => s.enterRepaint);
+  const exitRepaint = useJimengStore((s) => s.exitRepaint);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
+  const repaintMode = repaintNodeId === id;
 
   return (
     <div
@@ -49,22 +54,36 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      {/* 选中后弹出的操作工具条 (仅有内容的视频节点；空节点走生成面板) */}
-      {d.hasMedia ? <JimengNodeToolbar visible={selected === true} /> : null}
-      {/* 空节点选中: 下方生成面板 */}
+      {/* 选中后弹出的操作工具条 / 局部重拍编辑态 / 空节点生成面板 */}
+      {d.hasMedia && repaintMode ? (
+        <JimengRepaintPanel
+          visible
+          data={d}
+          onSubmit={() => exitRepaint()}
+        />
+      ) : d.hasMedia ? (
+        <JimengNodeToolbar
+          visible={selected === true}
+          onAction={(label) => {
+            if (label === "局部重拍") enterRepaint(id);
+          }}
+        />
+      ) : null}
       {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
-      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标 */}
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
-        <div className="flex min-w-0 items-center gap-1.5 text-white/70">
-          <FileBadgeIcon size={16} />
-          <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
-            {d.title}
-          </span>
+      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；局部重拍态隐藏 */}
+      {!repaintMode ? (
+        <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
+          <div className="flex min-w-0 items-center gap-1.5 text-white/70">
+            <FileBadgeIcon size={16} />
+            <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
+              {d.title}
+            </span>
+          </div>
+          {d.hasMedia ? (
+            <Tag size={16} className="shrink-0 text-white/40" />
+          ) : null}
         </div>
-        {d.hasMedia ? (
-          <Tag size={16} className="shrink-0 text-white/40" />
-        ) : null}
-      </div>
+      ) : null}
 
       {/* 卡片主体 */}
       <div

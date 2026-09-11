@@ -38,14 +38,16 @@ function JimengFlow() {
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
   const pasteNode = useJimengStore((s) => s.pasteNode);
   const removeNode = useJimengStore((s) => s.removeNode);
+  const exitRepaint = useJimengStore((s) => s.exitRepaint);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
 
   const onPaneClick = useCallback(() => {
     selectNode(null);
+    exitRepaint();
     setContextMenu(null);
-  }, [selectNode]);
+  }, [selectNode, exitRepaint]);
 
   const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
     const e = event as unknown as MouseEvent;

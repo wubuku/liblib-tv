@@ -43,11 +43,22 @@ const ITEMS: ToolbarItem[] = [
   { kind: "action", label: "提示词反推", icon: FileSearch },
 ];
 
-export function JimengNodeToolbar({ visible }: { visible: boolean }) {
+export function JimengNodeToolbar({
+  visible,
+  onAction,
+}: {
+  visible: boolean;
+  onAction?: (label: string) => void;
+}) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const toggleMenu = (label: string) =>
     setOpenMenu((cur) => (cur === label ? null : label));
+
+  const runAction = (label: string) => {
+    setOpenMenu(null);
+    onAction?.(label);
+  };
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Top} offset={36}>
@@ -62,7 +73,7 @@ export function JimengNodeToolbar({ visible }: { visible: boolean }) {
                 onClick={
                   item.kind === "dropdown"
                     ? () => toggleMenu(item.label)
-                    : undefined
+                    : () => runAction(item.label)
                 }
                 className={`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${
                   active ? "bg-white/10" : ""

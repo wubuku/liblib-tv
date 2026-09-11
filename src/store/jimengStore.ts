@@ -57,6 +57,10 @@ export interface JimengCanvasState {
   clipboard: JimengNode | null;
   copyNode: (id: string) => void;
   pasteNode: () => void;
+  /** 局部重拍编辑态 (Batch 5): 进入后节点显示帧条选区 + 重拍面板 */
+  repaintNodeId: string | null;
+  enterRepaint: (id: string) => void;
+  exitRepaint: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -222,4 +226,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       };
       return { nodes: [...state.nodes, copy] };
     }),
+
+  repaintNodeId: null,
+
+  enterRepaint: (id) => set({ repaintNodeId: id }),
+
+  exitRepaint: () => set({ repaintNodeId: null }),
 }));
