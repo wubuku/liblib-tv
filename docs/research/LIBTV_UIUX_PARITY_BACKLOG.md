@@ -258,6 +258,25 @@ Command outcome 与 feedback ownership 已完成独立设计，权威入口是 [
 - delete/undo/retry race、projection recovery 与 blob/temp resource transfer/release；
 - 不伪造真实 provider progress、费用或输出质量。
 
+### 4.10b `LIBTV-PAR-011` addendum: 面板互斥矩阵研究（Batch 366，2026-09-12）
+
+只读代码考古（无 src 变更）结论：
+
+- **主面板互斥**：toolbox / material / character / history / tutorial
+  五个面板经单一 `activePrimaryPanel` 字段天然互斥（toggle 即
+  同字段覆写）——不存在多开可能，无冗余布尔；
+- **独立覆盖层**：add-node / canvas-dropdown / asset / share /
+  agent / notification / user-menu / zoom-menu / shortcuts 为独立
+  布尔维度，部分可与主面板共存（设计允许）；
+- **统一重置**：`closeAllPanels` 通过 `OverlayState` Pick +
+  `closedOverlayState` 常量整体清零（batch 58 owner lifecycle
+  之上的又一层确定性）；
+- **死状态扫描**：57 个字段全部被组件引用（Batch 360 扫描）。
+
+**结论**：PAR-011 的「冗余 boolean/unmounted state deferred」中，
+uiStore 部分**无清理对象**——现状即最简形态。剩余 deferred 项为
+unmounted state（组件级），需逐组件审计，另行排队。
+
 ### 4.11 `LIBTV-PAR-010..016`: boundaries
 
 | ID | 当前决策 |
