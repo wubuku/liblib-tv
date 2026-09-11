@@ -62,11 +62,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("sidebar:new-project-h36", np_box is not None and 32 <= np_box["height"] <= 40)
 
     nav = page.locator("[data-sidebar-nav] button")
-    check("sidebar:nav-4", nav.count() == 4)
+    # Batch 385: 源站 2026-09-12 直采——侧栏新增 Blender 插件 / LibTV
+    # Plugin / 百万积分大包上线 三条目，导航行 4 → 7。
+    check("sidebar:nav-7", nav.count() == 7)
     labels = [nav.nth(i).inner_text().strip() for i in range(nav.count())]
+    # Batch 385: 期望随侧栏三条新条目同步。
     check(
         "sidebar:nav-labels",
-        labels == ["首页", "项目", "LibTV Agent", "创作者挑战赛"],
+        labels == ["首页", "项目", "LibTV Agent", "创作者挑战赛", "Blender 插件", "LibTV Plugin", "百万积分大包上线"],
     )
     active = page.locator("[data-sidebar-item='项目']")
     check(

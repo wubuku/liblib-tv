@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Bot, FolderPlus, House, Plus, SquareTerminal, Trash2, Trophy } from "lucide-react";
+import { ArrowLeft, Bot, Boxes, Coins, FolderPlus, House, Plug, Plus, SquareTerminal, Trash2, Trophy } from "lucide-react";
 import { useCanvasStore } from "@/store/canvasStore";
 import { cn } from "@/lib/utils";
 
@@ -59,6 +59,10 @@ export default function ProjectListPage() {
               { label: "项目", icon: SquareTerminal, active: true, action: () => setStatus("") },
               { label: "LibTV Agent", icon: Bot, active: false, action: () => setStatus("本地原型：LibTV Agent 未接入") },
               { label: "创作者挑战赛", icon: Trophy, active: false, action: () => setStatus("本地原型：创作者挑战赛未接入") },
+              // Batch 385: 源站 2026-09-12 直采——侧栏新增三条目。
+              { label: "Blender 插件", icon: Boxes, active: false, action: () => setStatus("本地原型：Blender 插件未接入") },
+              { label: "LibTV Plugin", icon: Plug, active: false, action: () => setStatus("本地原型：LibTV Plugin 未接入") },
+              { label: "百万积分大包上线", icon: Coins, active: false, action: () => setStatus("本地原型：百万积分大包未接入") },
             ].map(({ label, icon: Icon, active, action }) => (
               <button
                 key={label}
