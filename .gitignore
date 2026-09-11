@@ -61,3 +61,4 @@ camera-button-test.png
 
 # Agent worktree scratch dirs (deleted leftovers)
 .claude/worktrees/agent-*
+__pycache__/
