@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AlertTriangle, Camera, CaptionsOff, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
 import {
   Handle,
@@ -750,40 +751,39 @@ function PlayerFrameCaptureMenu({
   onCapture: (kind: VideoFrameCaptureKind) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuPos, setMenuPos] = useState<{ right: number; bottom: number } | null>(null);
   const items: Array<{ kind: VideoFrameCaptureKind; label: string }> = [
     { kind: "first", label: "截取首帧" },
     { kind: "last", label: "截取尾帧" },
     { kind: "current", label: "截取当前帧" },
   ];
 
+  // Batch 338: 菜单原为节点内 absolute（bottom-full），会溢出节点盒落入
+  // react-flow pane 层——菜单项被 pane 遮挡无法点击（真实产品缺陷）。
+  // 改为 Portal + fixed 定位对齐相机按钮，逃出节点 stacking context。
+  const syncMenuPos = () => {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (rect) setMenuPos({ right: window.innerWidth - rect.right, bottom: window.innerHeight - rect.top });
+  };
+
   return (
     <div
+      ref={triggerRef}
       className="relative shrink-0"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => {
+        syncMenuPos();
+        setOpen(true);
+      }}
+      onMouseLeave={(event) => {
+        // 菜单经 Portal 挂在 body 下，指针移入菜单时 wrapper 的
+        // mouseleave relatedTarget 落在菜单内——保持开启。
+        const next = event.relatedTarget as Element | null;
+        if (next && menuRef.current?.contains(next)) return;
+        setOpen(false);
+      }}
     >
-      <div
-        data-video-player-frame-menu
-        data-state={open ? "open" : "closed"}
-        className={cn(
-          "absolute bottom-full right-0 z-30 flex justify-end pb-2 transition-opacity",
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
-        )}
-      >
-        <div className="flex flex-col gap-1 overflow-hidden rounded-xl border border-white/10 bg-[rgba(26,26,26,0.95)] p-1 shadow-[0_4px_10px_rgba(0,0,0,0.25),0_2px_4px_rgba(0,0,0,0.1)] backdrop-blur-lg">
-          {items.map((item) => (
-            <button
-              key={item.kind}
-              data-video-player-frame-kind={item.kind}
-              type="button"
-              onClick={() => onCapture(item.kind)}
-              className="flex h-8 w-full items-center whitespace-nowrap rounded-lg px-2 text-left text-[13px] text-white/90 transition-colors hover:bg-white/10"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </div>
       <button
         data-video-player-camera
         type="button"
@@ -793,6 +793,31 @@ function PlayerFrameCaptureMenu({
       >
         <Camera size={16} />
       </button>
+      {open && menuPos && createPortal(
+        <div
+          ref={menuRef}
+          data-video-player-frame-menu
+          data-state="open"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+          style={{ position: "fixed", right: menuPos.right, bottom: menuPos.bottom, zIndex: 80 }}
+        >
+          <div className="flex flex-col gap-1 overflow-hidden rounded-xl border border-white/10 bg-[rgba(26,26,26,0.95)] p-1 shadow-[0_4px_10px_rgba(0,0,0,0.25),0_2px_4px_rgba(0,0,0,0.1)] backdrop-blur-lg">
+            {items.map((item) => (
+              <button
+                key={item.kind}
+                data-video-player-frame-kind={item.kind}
+                type="button"
+                onClick={() => onCapture(item.kind)}
+                className="flex h-8 w-full items-center whitespace-nowrap rounded-lg px-2 text-left text-[13px] text-white/90 transition-colors hover:bg-white/10"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 }

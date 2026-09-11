@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -308,6 +309,7 @@ def run_player_menu_action(page: Page):
     _, source_id = add_ready_video(page)
     camera = page.locator("[data-video-player-camera]")
     camera.hover()
+    page.wait_for_timeout(400)
     menu = page.locator("[data-video-player-frame-menu]")
     menu.locator('[data-video-player-frame-kind="first"]').click()
     page.wait_for_timeout(100)
