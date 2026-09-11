@@ -72,7 +72,7 @@
 | 2 | `LIBTV-PAR-002` | Preview/Annotate/Element Edit/Rotate 的 L2 -> L3/L4/graph slice | 5 | 5 | 5 | 3 | `RECORDED_PASS (empty states + bounded rotate graph)` |
 | 3 | `LIBTV-PAR-003` | Auto Link ghost + structured mention | 5 | 4 | 2 | 4 | `BLOCKED_BY_FIXTURE`；design spec complete |
 | 4 | `LIBTV-PAR-004` | Top-level modal/Director 的 keyboard 与 focus ownership | 4 | 3 | 3 | 3 | `RESEARCH_FIRST` |
-| 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `RESEARCH_FIRST` / `PARTIAL_RECORDED` |
+| 5 | `LIBTV-PAR-005` | 当前源站页面壳与主入口只读 freshness refresh | 4 | 3 | 5 | 1 | `PARTIAL_RECORDED`（Batch 359/366：2026-09-12 劣化观察 §10 + 互斥矩阵；复测脚本在库） |
 | 6 | `LIBTV-PAR-006` | Ready-video 顶部处理工具条与 mode replacement | 5 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
 | 7 | `LIBTV-PAR-007` | 快捷键 source-only 命令与 help/handler 一致性 | 4 | 3 | 2 | 4 | `BLOCKED_BY_FIXTURE` |
 | 8 | `LIBTV-PAR-008` | 普通画布 graph transaction 健壮性 | 4 | 5 | 3 | 4 | connection structural slice `RECORDED_PASS`（Batch 57）；document/copy/data/delete/entrypoint authority design complete，runtime 仍 partial |
@@ -173,6 +173,11 @@ clone-owned decision，不证明源站在 panel 覆盖相邻节点时的真实 r
 完整 fixed audit 见 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_STATIC_AUDIT_2026-08-27.md)；正式设计权威是 [`LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md`](LIBTV_SELECTION_FOCUS_COMMAND_CONTEXT_CONTRACT.md)，已定义 node/edge/primary active-session selection、focus zone、surface policy、`HANDLED/CONSUMED/PASS/BLOCKED/NOOP`、one-Escape、focus return、`LIBTV-FIX-LOCAL-SELECTION-FOCUS-CONTEXT-01` 和 `LIBTV-VR-019`。Batch 62 已关闭该合同的高置信 clone slice；下一步只在 source/product 允许时处理 mixed primary、focus trap、target-scoped containment 或更窄的 command-specific edge semantics，不引入全局 modal manager。
 
 ### 4.6 `LIBTV-PAR-005`: source freshness refresh
+
+> Batch 359/366 挂接：2026-09-12 劣化四项观察与复测运行日志见
+> [`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)
+> §10（复测脚本 `scripts/probe-source-recovery.py`；恢复即按 §8
+> checklist 补采）。
 
 2026-08-25 live audit 对 page shell、主入口和 10/11 graph 基线价值很高，但大量实现批次已在其后发生。下一次安全只读复核应回答：
 
