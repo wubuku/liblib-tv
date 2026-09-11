@@ -290,7 +290,7 @@ def run_desktop(page: Page):
           const camera = state.objects.find(
             (object) => object.id === state.phoneVcam.importedCameraId,
           );
-          const source = state.objects.find(
+          const source = state.authoredObjects.find(
             (object) => object.id === sourceCameraId,
           );
           const track = state.timeline.tracks.find(
@@ -332,6 +332,24 @@ def run_desktop(page: Page):
     )
     # Batch 347 实测：imported transform 与 baseline 为实质性位置漂移
     # （[3.24,1.98,4.61] vs [4.45,2.48,6.15]），非浮点舍入——归因维持。
+    # Batch 348: 断言迁至 authoredObjects 层（AGENTS.md：authoredObjects
+    # 为可移植创作基线，objects 是其运行时投影——导入后活动相机保持
+    # phone-pose 控制态属设计行为，投影层含残留姿态不等于数据损坏）。
+    dbg41 = page.evaluate("""(sourceCameraId) => {
+      const state = window.__director_store.getState();
+      const obj = state.objects.find((o) => o.id === sourceCameraId);
+      const auth = state.authoredObjects.find((o) => o.id === sourceCameraId);
+      const track = state.timeline.tracks.find((t) => t.objectId === sourceCameraId && t.kind === 'transform');
+      return {
+        objectsT: obj && obj.transform ? obj.transform.position : null,
+        authoredT: auth && auth.transform ? auth.transform.position : null,
+        baselineT: state.phoneVcam.baselineCamera ? state.phoneVcam.baselineCamera.transform.position : null,
+        pose: state.phoneVcam.pose,
+        trackKeyframes: track ? track.keyframes.length : null,
+        lastKeyframeT: track && track.keyframes.length ? track.keyframes[track.keyframes.length - 1].value.transform.position : null
+      };
+    }""", source_camera_id)
+    print("DEBUG41:", json.dumps(dbg41, ensure_ascii=False), flush=True)
     assert imported["source"]["transform"] == source_baseline["transform"]
     assert imported["source"]["camera"]["target"] == source_baseline["target"]
     assert imported["activeCameraId"] == imported["camera"]["id"]

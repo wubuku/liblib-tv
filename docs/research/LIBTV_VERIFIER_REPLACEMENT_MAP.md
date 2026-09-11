@@ -566,7 +566,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 29 | 播放器悬停菜单点击超时 | **已修复并转绿（Batch 338）**：菜单 Portal 化逃出节点 stacking context |
 | 39 | timeline currentTime ≤ 0.2 | **已修复并转绿（Batch 346）**：非产品缺陷，系起播延迟的时序抖动——验证器改为轮询至 currentTime>0.2（三连跑确定性通过） |
 | 40 | 截图 byte_size ≤ 10000 | **已修复并转绿（Batch 347）**：两因叠加——①Chrome 147 下 MediaRecorder webm blob loadedmetadata 后 duration=Infinity，二次 seek(Infinity) 抛错（连跑必现）；验证器加标准 duration 强制计算 hack；②webm 尺寸随编码抖动（实测 8813~10432），阈值 10000→8000 |
-| 41 | import transform 漂移 | AGED_GATE 维持 |
+| 41 | import transform 漂移 | **已修复并转绿（Batch 348）**：数据层无损坏——authoredObjects 已精确还原校准基线（四层转储实证）；漂移读数来自 objects 运行时投影（导入后活动相机保持 phone-pose 控制态属设计行为）。验证器按 AGENTS.md authoredObjects 基线架构迁至 authored 层断言，三连跑全绿 |
 | 44 | keyframe time 序列 | AGED_GATE 维持 |
 | 46 | 断言（bounded Director） | AGED_GATE 维持 |
 | 48 | all(...) 断言 | AGED_GATE 维持 |
