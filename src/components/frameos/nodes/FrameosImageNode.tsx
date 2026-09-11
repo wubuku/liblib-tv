@@ -44,6 +44,8 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
         }}
       >
         {imageUrl ? (
+          // Batch 345: 画布节点位图按节点尺寸动态缩放，保留 img（FrameOS 路线）。
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imageUrl}
             alt={title}

@@ -18,7 +18,6 @@ export function FrameosGenerationOverlay() {
 
   // currentGeneration 变化时重置 progress/now — 文档推荐的"派生 state 而非 effect"模式
   // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
-  // eslint-disable-next-line react-hooks/refs
   const prevGenRef = useRef(currentGeneration);
   // eslint-disable-next-line react-hooks/refs
   if (prevGenRef.current !== currentGeneration) {

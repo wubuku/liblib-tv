@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFrameosStore } from "@/store/frameosStore";
 
 interface MenuItem {
   label: string;

@@ -1503,11 +1503,14 @@ export function DirectorInspector({
     const input = sceneNameInputRef.current;
     if (input && document.activeElement !== input) input.value = scene.name;
   }, [scene.name]);
+  // Batch 345: DOM 回填只按 id/name 变化触发（activeElement 守卫防打字覆盖），
+  // 故意收窄依赖，不随 selected 其余字段重跑。
   useEffect(() => {
     const input = objectNameInputRef.current;
     if (input && document.activeElement !== input && selected) {
       input.value = selected.name;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected?.id, selected?.name]);
   const selectedTrack = timeline.tracks.find((track) => {
     if (track.id !== timeline.selectedTrackId) return false;

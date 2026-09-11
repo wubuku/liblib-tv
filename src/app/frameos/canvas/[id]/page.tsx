@@ -22,7 +22,6 @@ import { useFrameosStore } from "@/store/frameosStore";
 import { FrameosTextNode } from "@/components/frameos/nodes/FrameosTextNode";
 import { FrameosImageNode } from "@/components/frameos/nodes/FrameosImageNode";
 import { FrameosVideoNode } from "@/components/frameos/nodes/FrameosVideoNode";
-import { DeletableEdge } from "@/components/nodes/DeletableEdge";
 import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
@@ -367,7 +366,8 @@ function FrameosCanvasInner() {
         ],
       });
     },
-    [nodes, duplicateNode, removeNode]
+    // Batch 345: onClick 走 requestConfirm，不直接使用 removeNode。
+    [nodes, duplicateNode]
   );
 
   const onPaneContextMenu = useCallback(

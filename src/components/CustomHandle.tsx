@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Handle, Position, type HandleProps } from "@xyflow/react";
 import { cn } from "@/lib/utils";
 
