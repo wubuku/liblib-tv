@@ -359,6 +359,7 @@ Required follow-up fixture:
 | 2026-09-12 | batch 351/359 探测 | still-broken | PAR-005 §10 记录四项劣化观察 |
 | 2026-09-12 | batch 364/368 探测 | still-broken | 探测脚本入库后首次复测 |
 | 2026-09-12 | batch 369-371 探测 | still-broken | 本批前最后一次重测 |
+| 2026-09-12 | batch 381 探测（脚本已入库） | still-broken | HARNESS.md 增补维护集权威清单 |
 
 ### 10.3 复测触发条件
 

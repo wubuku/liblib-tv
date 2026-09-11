@@ -371,3 +371,20 @@ Selection, prompt, history and debug-mode behavior are documented in [`research/
 - [ ] Documentation and screenshot ledger updated
 - [ ] New formal docs linked from `docs/index.md`
 | Batch 234 | Agent drawer model selector catalog harvested — 15 models (7 image + 8 video) with thumbnails, descriptions, and organized tabs; the model selector button (aria-label=选择模型, 32×32) is in the Agent drawer footer; full JSON catalog saved |
+
+## Maintenance Set（Batch 381 权威清单）
+
+周期性稳定性确认的基线集合（Batch 340 起扩展，Batch 360 起含 jimeng）：
+
+```
+21 22 26 33 100 111 125 128 146 149 151 155 160 165 166 172 173 174
+175 176 177 178 189 191 213 215 218 236 237 238 239 240 244 248 249
+252 255 264 268 281 295 298 332 334 336 337 341
+```
+
+外加：`verify-jimeng-batch1.py`（并行 jimeng 路线合同）、
+`scripts/probe-source-recovery.py`（liblib.tv 恢复探测，still-broken
+时 BLOCKED_SOURCE 维持——见 freshness §10）。
+
+执行约定：**禁止 `timeout` 前缀**（Rosetta 陷阱）；恢复重测在批首
+执行；jimeng 路线文件由并行开发者主导（显式路径暂存，DEC-018）。
