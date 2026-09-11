@@ -180,7 +180,7 @@ def run_desktop(page: Page):
     assert page.locator("[data-director-capture-item-selected='true']").count() == 1
     assert (
         page.locator('[data-director-capture-item="{}"]'.format(state["captures"][0]["id"]))
-        .get_by_role("button", name="选择截图 {}-截图02".format(camera_name))
+        .get_by_role("button", name="选择截图 {} · 镜头-截图02".format(camera_name))  # Batch 349: 现版命名带 · 镜头 段
         .count()
         == 1
     )
@@ -193,7 +193,7 @@ def run_desktop(page: Page):
         '[data-director-capture-item="{}"]'.format(second["id"])
     )
     second_item.get_by_role(
-        "button", name="选择截图 {}-截图01".format(camera_name)
+        "button", name="选择截图 {} · 镜头-截图01".format(camera_name)  # Batch 349: 同上
     ).click()
     assert director_state(page)["activeCaptureId"] == second["id"]
     assert second_item.get_attribute("data-director-capture-item-selected") == "true"

@@ -568,7 +568,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 40 | 截图 byte_size ≤ 10000 | **已修复并转绿（Batch 347）**：两因叠加——①Chrome 147 下 MediaRecorder webm blob loadedmetadata 后 duration=Infinity，二次 seek(Infinity) 抛错（连跑必现）；验证器加标准 duration 强制计算 hack；②webm 尺寸随编码抖动（实测 8813~10432），阈值 10000→8000 |
 | 41 | import transform 漂移 | **已修复并转绿（Batch 348）**：数据层无损坏——authoredObjects 已精确还原校准基线（四层转储实证）；漂移读数来自 objects 运行时投影（导入后活动相机保持 phone-pose 控制态属设计行为）。验证器按 AGENTS.md authoredObjects 基线架构迁至 authored 层断言，三连跑全绿 |
 | 44 | keyframe time 序列 | AGED_GATE 维持 |
-| 46 | 断言（bounded Director） | AGED_GATE 维持 |
+| 46 | 断言（bounded Director） | **已修复并转绿（Batch 349）**：非抖动链——截图条目按钮命名合同漂移（现版为「选择截图 {camera} · 镜头-截图NN」，旧验证器为「-{截图NN}」）；验证器命名迁移后三连跑确定性全绿 |
 | 48 | all(...) 断言 | AGED_GATE 维持 |
 | 49 | viewport gizmo 未隐藏 | AGED_GATE 维持 |
 | 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
