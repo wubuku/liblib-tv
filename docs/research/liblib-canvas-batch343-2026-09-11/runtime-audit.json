@@ -1,0 +1,28 @@
+{
+  "batch": 343,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "supermarket:gone",
+        "entry:发布与分享",
+        "entry:开通会员 限时 45 折",
+        "entry:积分余额",
+        "order:membership-before-balance",
+        "order:share-first",
+        "membership:copy",
+        "balance:copy",
+        "agent:entry",
+        "agent:rightmost",
+        "left:workspace-input",
+        "left:canvas-chip",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

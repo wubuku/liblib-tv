@@ -52,7 +52,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(BASE_URL, wait_until="networkidle")
     page.wait_for_timeout(400)
 
-    check("supermarket:entry", page.get_by_role("button", name="积分超市", exact=True).count() == 1)
+    # Batch 343: 源站 2026-09-11 直证——顶栏已无 积分超市（batch 139 时代
+    # 双入口废止），顺序改为 开通会员 在 积分余额 之前。
+    check("supermarket:entry-gone", page.get_by_role("button", name="积分超市", exact=True).count() == 0)
     check("balance:entry", page.get_by_role("button", name="积分余额", exact=True).count() == 1)
     check(
         "balance:value",
@@ -60,16 +62,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check("membership:entry", page.get_by_role("button", name="开通会员 限时 45 折", exact=True).count() == 1)
 
-    # 顺序：积分超市 在 积分余额 之前（源站顺序）
+    # 顺序：开通会员 在 积分余额 之前（源站顺序）
     order = page.evaluate(
         """() => {
           const btns = Array.from(document.querySelectorAll('button')).map((b, i) => ({ i, label: b.getAttribute('aria-label') || '', x: b.getBoundingClientRect().x }));
-          const sup = btns.find((b) => b.label === '积分超市');
+          const mem = btns.find((b) => b.label === '开通会员 限时 45 折');
           const bal = btns.find((b) => b.label === '积分余额');
-          return sup && bal ? sup.x < bal.x : null;
+          return mem && bal ? mem.x < bal.x : null;
         }"""
     )
-    check("order:supermarket-before-balance", order is True)
+    check("order:membership-before-balance", order is True)
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

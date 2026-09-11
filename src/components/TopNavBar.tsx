@@ -140,25 +140,9 @@ export function TopNavBar() {
         >
           <ShareNodesGlyph className="size-[15px] text-current" />
         </button>
-        {/* Batch 139: 源站顶栏 积分超市 与 积分余额 为两个独立入口。 */}
-        <button
-          type="button"
-          aria-label="积分超市"
-          title="积分超市"
-          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
-        >
-          <span className="text-[#f5c451]">🏆</span>
-          <span className="hidden text-[#f5c451] lg:inline">积分超市</span>
-        </button>
-        <button
-          type="button"
-          aria-label="积分余额"
-          title="积分余额"
-          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
-        >
-          <BoltGlyph className="size-4 text-current" />
-          <span>100</span>
-        </button>
+        {/* Batch 343: 源站 2026-09-11 直证——顶栏已无 积分超市 入口
+            （batch 139 时代双入口废止），顺序为 开通会员 在 积分余额 之前；
+            源站 分享 与 会员 之间的蓝色小图标与圆形头像 SOURCE_UNKNOWN 待采样。 */}
         <button
           type="button"
           aria-label="开通会员 限时 45 折"
@@ -169,6 +153,15 @@ export function TopNavBar() {
           <MemberShopGlyph className="size-4 text-[#4de1f4]" />
           <span className="hidden text-[#f5c451] md:inline">开通会员</span>
           <span className="rounded bg-[#f5c451]/15 px-1 py-0.5 text-[10px] text-[#f5c451]">限时 45 折</span>
+        </button>
+        <button
+          type="button"
+          aria-label="积分余额"
+          title="积分余额"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+        >
+          <BoltGlyph className="size-4 text-current" />
+          <span>100</span>
         </button>
         {!isAgentOpen && (
           <button

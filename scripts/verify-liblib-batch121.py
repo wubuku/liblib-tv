@@ -72,8 +72,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.keyboard.press("Escape")
     page.wait_for_timeout(300)
 
-    # 顶栏按钮集合关键项
-    for name in ["发布与分享", "积分超市", "开通会员 限时 45 折", "Agent"]:
+    # 顶栏按钮集合关键项（Batch 343: 源站 2026-09-11 直证顶栏已无 积分超市）
+    for name in ["发布与分享", "开通会员 限时 45 折", "积分余额", "Agent"]:
         check(f"topbar:{name}", page.get_by_role("button", name=name, exact=True).count() >= 1)
 
     check("diagnostics:zero", not errors)

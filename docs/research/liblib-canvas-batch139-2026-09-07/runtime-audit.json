@@ -6,11 +6,11 @@
     {
       "viewport": "1440x900",
       "checks": [
-        "supermarket:entry",
+        "supermarket:entry-gone",
         "balance:entry",
         "balance:value",
         "membership:entry",
-        "order:supermarket-before-balance",
+        "order:membership-before-balance",
         "diagnostics:zero"
       ],
       "diagnostics": {
