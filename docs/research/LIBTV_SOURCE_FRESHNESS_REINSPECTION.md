@@ -352,5 +352,7 @@ Required follow-up fixture:
 
 ### 10.3 复测触发条件
 
-任意后续批次可在批次开头重跑 batch 338/340 的恢复探测脚本
-（`RECOVERY: menu-opens` 即恢复）；恢复后按 §8 checklist 补采。
+任意后续批次在批次开头运行
+`~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
+（仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
+`still-broken` 则继续等待），恢复后按 §8 checklist 补采。
