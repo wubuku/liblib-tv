@@ -1,0 +1,1 @@
+Batch 65 Playwright verification passed: pure responsive planning, desktop/mobile bootstrap, untouched and user-owned breakpoint behavior, projection echo, per-canvas restore, stale/invalid callback guards, graph/history/selection isolation, overflow and diagnostics.

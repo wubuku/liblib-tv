@@ -350,6 +350,16 @@ Required follow-up fixture:
   Style Video 费率）与故事板 CLONE_DECISION 替换维持阻塞；
 - clone 侧无回归（维护集 46 项 + jimeng batch 1 全绿）。
 
+### 10.2b 复测运行日志
+
+| 日期 | 挂接批次 | 结果 | 备注 |
+|---|---|---|---|
+| 2026-09-11 | batch 333-336 探测 | still-broken | 模型菜单虚拟化重叠 + 创建链路损坏首证 |
+| 2026-09-11 | batch 338/340 探测 | still-broken | 资源总览水合失败（bodyLen≈311）|
+| 2026-09-12 | batch 351/359 探测 | still-broken | PAR-005 §10 记录四项劣化观察 |
+| 2026-09-12 | batch 364/368 探测 | still-broken | 探测脚本入库后首次复测 |
+| 2026-09-12 | batch 369-371 探测 | still-broken | 本批前最后一次重测 |
+
 ### 10.3 复测触发条件
 
 任意后续批次在批次开头运行
