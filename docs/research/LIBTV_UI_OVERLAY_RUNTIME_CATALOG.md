@@ -170,6 +170,26 @@ Primary surface 的关闭策略并不统一：Character/History 是有 backdrop 
 
 `CLONE_RUNTIME` 结论：后续不能新增一个“通用 overlay wrapper”后默认给所有 surface 同样的 backdrop/outside/Escape 语义。先确定目标 surface 的源站类别和 interaction contract。
 
+### 4.3b Keyboard 与焦点所有权列（Batch 374 phase 1 清单并入，PAR-004）
+
+| Surface | 局部键盘 | 焦点所有权 |
+|---|---|---|
+| Move | 无（V/H 工具切换经 page handler） | 页级 focus-root |
+| Toolbox / Material / Tutorial | 无 | 页级 focus-root |
+| Character | 无 | 页级 focus-root |
+| History | 无 | 页级 focus-root；容器 mousedown stopPropagation 隔离 outside-close |
+| Add node | 无 | 页级 focus-root |
+| Canvas dropdown | 无 | 页级 focus-root |
+| Asset drawer | 无 | 页级 focus-root |
+| Shortcuts | 纯展示 | 页级 focus-root |
+| Share | publish/link 只写 local status | 页级 focus-root |
+| Agent | 内部 menu 打开时 Escape stopPropagation（menu 级隔离） | 无 focus trap——PAR-004 待决项 |
+| Zoom | capture-phase `pointerdown` outside | 页级 focus-root |
+| Director（独立 island） | Escape→closeMobilePanel；Delete/Backspace；zoom preset stopPropagation | `useDirectorFocusContainment` + `data-director-focus-scope` 双 aside + inert 互斥 |
+
+`CLONE_RUNTIME` 补充：Agent 是唯一无焦点管理的大型 surface——是否
+需要 trap/containment 待源站对照（PAR-004 phase 2，源站恢复后）。
+
 ## 5. Independent Route-local Surface
 
 ### Organize confirmation
