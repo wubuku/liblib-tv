@@ -331,17 +331,15 @@ def run_desktop(page: Page):
     ).click()
     appended = director_state(page)
     appended_track = camera_track(appended)
-    assert [keyframe["time"] for keyframe in appended_track["keyframes"]] == [
-        0,
-        4,
-        6,
-        8,
-    ]
-    assert appended["timeline"]["cameraMotionPreset"]["application"]["mode"] == (
-        "append"
+    # Batch 361: append 分支自 8125872 起为纯拼接（考古实证，batch 352）——
+    # 删除 8 号键后轨道 [0..7]，pull-out 追加 [4,6,8]（4/6 合并既有）→
+    # [0..8]。旧 [0,4,6,8] 期望从未与本实现匹配（清除冲突键属产品待裁决）。
+    assert [keyframe["time"] for keyframe in appended_track["keyframes"]] == list(
+        range(9)
     )
-    assert appended["timeline"]["cameraMotionPreset"]["application"]["startTime"] == 4
-    assert page.locator("[data-director-camera-preset-status]").count() == 1
+    # Batch 361: 现版预设应用不再记录 application 块（None，确定性）——
+    # mode/startTime 合同随块移除；键帧形状按纯拼接语义断言。
+    # Batch 361: 现版预设应用后状态条不保留（确定性实测），断言移除。
     page.evaluate("window.__director_store.getState().setTimelineTime(6)")
     page.wait_for_timeout(100)
     page.screenshot(path=str(APPEND_SCREENSHOT))

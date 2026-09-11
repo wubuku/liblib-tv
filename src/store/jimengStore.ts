@@ -65,6 +65,10 @@ export interface JimengCanvasState {
   editNodeId: string | null;
   enterEdit: (id: string) => void;
   exitEdit: () => void;
+  /** 提示词反推面板 (Batch 8, mock) */
+  inferNodeId: string | null;
+  enterInfer: (id: string) => void;
+  exitInfer: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -242,4 +246,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   enterEdit: (id) => set({ editNodeId: id }),
 
   exitEdit: () => set({ editNodeId: null }),
+
+  inferNodeId: null,
+
+  enterInfer: (id) => set({ inferNodeId: id }),
+
+  exitInfer: () => set({ inferNodeId: null }),
 }));

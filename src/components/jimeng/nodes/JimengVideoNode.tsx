@@ -10,6 +10,7 @@ import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
+import { JimengInferPanel } from "@/components/jimeng/JimengInferPanel";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { JimengVideoEditMode } from "@/components/jimeng/JimengVideoEditMode";
 import { useJimengStore } from "@/store/jimengStore";
@@ -49,9 +50,13 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const editNodeId = useJimengStore((s) => s.editNodeId);
   const enterEdit = useJimengStore((s) => s.enterEdit);
   const exitEdit = useJimengStore((s) => s.exitEdit);
+  const inferNodeId = useJimengStore((s) => s.inferNodeId);
+  const enterInfer = useJimengStore((s) => s.enterInfer);
+  const exitInfer = useJimengStore((s) => s.exitInfer);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
+  const inferMode = inferNodeId === id;
 
   return (
     <div
@@ -59,7 +64,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      {/* 选中后弹出的操作工具条 / 编辑态 / 空节点生成面板 */}
+      {/* 选中后弹出的操作工具条 / 编辑态 / 反推面板 / 空节点生成面板 */}
       {d.hasMedia && repaintMode ? (
         <JimengRepaintPanel
           visible
@@ -68,12 +73,15 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         />
       ) : d.hasMedia && editMode ? (
         <JimengVideoEditMode onSubmit={() => exitEdit()} />
+      ) : d.hasMedia && inferMode ? (
+        <JimengInferPanel visible data={d} onClose={() => exitInfer()} />
       ) : d.hasMedia ? (
         <JimengNodeToolbar
           visible={selected === true}
           onAction={(label) => {
             if (label === "局部重拍") enterRepaint(id);
             if (label === "视频编辑") enterEdit(id);
+            if (label === "提示词反推") enterInfer(id);
           }}
         />
       ) : null}
