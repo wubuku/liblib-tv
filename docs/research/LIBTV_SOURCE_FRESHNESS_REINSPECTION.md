@@ -362,6 +362,8 @@ Required follow-up fixture:
 | 2026-09-12 | batch 381 探测（脚本已入库） | still-broken | HARNESS.md 增补维护集权威清单 |
 | 2026-09-12 | batch 382 探测 | still-broken | 第八次重测；工作区并行 jimeng WIP（batch 8+）持续 |
 | 2026-09-12 | batch 384 探测 | still-broken | 第九次重测；jimeng 路线 batch 8 后暂无新提交 |
+| 2026-09-12 | batch 390 探测 | still-broken | 第十次重测；49 项维护集全绿 |
+| 2026-09-12 | batch 391 探测 | still-broken | 第十一次重测 |
 
 ### 10.3 复测触发条件
 
