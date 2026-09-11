@@ -53,6 +53,7 @@
 | DEC-043 | Director session clipboard authority | clipboard 是 project-scoped、memory-only typed packet；copy 零 semantic mutation，paste two-pass remap 后一次提交；跨 project、资源冲突和 runtime/capture data 全部拒绝或排除 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-044 | Director owner reachability authority | 全部 canvas 的 live source owner 是 registry reachability 权威；不可达 record 一次性 tombstone，active owner 先关闭 shell/session 再清 runtime projection；graph undo、durable storage 和资源删除不得隐式联动 | ACTIVE / IMPLEMENTATION_GATE |
 | DEC-047 | Director project import/export boundary | 本地项目文件只承载 strict V1 authored document；导入重绑定当前 owner/project，排除 runtime/UI/capture bytes，成功替换为一条 Director history；不宣称 LibTV source schema 或 remote sync | ACTIVE / IMPLEMENTATION_GATE |
+| DEC-048 | 相机运动预设 append 语义 | append 为纯拼接（自 8125872 未变，batch 352 考古）；「清除窗口内冲突键」无源站证据支持，维持 RESEARCH_GATE 待源站恢复采样裁决；验证器已按纯拼接语义断言（batch 361） | RESEARCH_GATE |
 
 ## 2. 决策详情
 
