@@ -172,7 +172,7 @@ React Flow change
 - 整理时调用 `liblibOrganize`，按保存的原站截图重建素材、执行/分镜、分组/视频和剧本的语义拓扑，并显示左下保留/还原卡
 - 组合顶部浮动导航、底部主工具条、底部画布控制、资产/Agent 抽屉和快捷键弹窗；Agent 打开时顶部导航避让右抽屉，资产抽屉打开时项目/画布上下文进入左抽屉且 mode 控件避让其右边界
 - 编排六个不同拓扑的一级入口面板，并保持入口互斥
-- 在工作台与分镜模式之间切换；分镜模式会同步打开 Agent，并将当前画布投影为“关键元素”资源栏与“图片 / 视频”故事板列
+- 在工作台与分镜模式之间切换；分镜模式（Batch 334/362 现行）渲染全宽三栏资源总列（音频 | 图片 | 视频），无“关键元素”侧栏与返回工作台按钮——切换由顶栏图标对承担
 - 从 `3D导演台` 节点按需载入全屏 R3F 工作区；主 React Flow 保持挂载，
   截图通过一个原子 graph transaction 回流为 image node + source edge；
   工作区底部的 typed timeline 可 scrub/playback 并确定性驱动场景与机位；
@@ -410,7 +410,7 @@ Selection、focus 和 keyboard context 也必须分权：Batch 61 已让 node/ed
 
 异步结果是这套 authority 的下一层，而不是一个 generic node patch：committed clone 没有普通画布网络任务或 run store，逐帧拉片、音视频分离、深度/抠像/主体编辑和长视频主要在 component timer 后直接创建 graph。Batch 73 已把 Director capture、animation export 和 phone take import 接到 clone-owned operation/attempt/result authority，并验证 stale/duplicate/invalid 零 mutation 与 export resource exactly-once；它没有把普通 timer 升级成 task backend。Open Canvas 的 descriptor/run/poll/server-patch/revision 结构值得借鉴，但固定实现没有比较 expected current run、source media version 或 field owner，terminal run 与 graph projection 也分成独立写入。当前 operation identity、stale/duplicate disposition、selection/history/resource 收敛、`ASYNC-INGRESS-01` 和 `LIBTV-VR-015` 的设计权威是 [`LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md`](research/LIBTV_ASYNC_RESULT_INGRESS_CONVERGENCE.md)；当前短 timer 只表示 `PROTOTYPE_LATENCY`，不表示真实任务已接通。
 
-这里的“集中”只描述当前有效入口，不代表 `uiStore` 已经没有兼容残留：toolbox/material/character/history/tutorial 仍各保留一组无外部调用者的 boolean/action，Notification/UserMenu 有 state 但没有 mount owner，`toggleGrid` 也没有当前 shell 入口。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
+这里的“集中”只描述当前有效入口。Batch 341 后 LeftSidebar/BottomToolbar 已为 toolbox/material/character/history/tutorial/快捷键/教程提供 shell 入口（Batch 353 修至现版命名）；`uiStore` 57 字段无死字段、主面板经 `activePrimaryPanel` 天然互斥（PAR-011 互斥矩阵，Batch 366 闭环）。逐 surface 的 mount owner、outside/backdrop/Escape 差异、storyboard/Director 边界和节点相对锚点策略统一记录在 [`LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md`](research/LIBTV_UI_OVERLAY_RUNTIME_CATALOG.md)。
 
 资产管理不是账户资产后端。它读取 active canvas，把 `parentId` 投影为一层节点树，并提供本地排序、类型筛选和 label 搜索；`资产` tab 仍只是当前画布 image/video 节点的派生视图。
 
@@ -805,9 +805,9 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 - 选中浮层：Batch 52 图片 node/toolbar/panel 中心误差保持 `0px`，当前 toolbar `1092.5x49`、top gap `10 + 24 * zoom`；图片 panel `660px`、bottom gap `16 * zoom`。Batch 10/11 仍保护历史面板和 overlay lifecycle 合同
 - 平板 `768x900` 与手机 `390x844`：28% 视口；手机主/次工具条分别位于 `y=743/792`
 - minimap：开关后在缩略图按钮上方渲染 `150x110`，资产抽屉打开时与 canvas 同步右移，390px 下避让双工具条；zoom 菜单按原站提供放大/缩小/适合屏幕/50/100/800
-- 资产管理：`240px` 左抽屉，桌面画布从 `929px` 收缩为 `689px`；显示项目/当前画布上下文、10 项 source-order 层级树和本地筛选/搜索
-- Agent：`340px` 右抽屉；分镜模式自动打开，并将当前画布渲染为关键元素栏与图片/视频故事板列
-- 分镜模式：`画布 2` 初始状态为 5 个图片卡、1 个失败视频卡、1 个脚本关键元素；卡片选择、空画布和 `390x844` 内部滚动通过 Batch 13 验证
+- 资产管理：`320px` 左抽屉（Batch 298/353 现行），桌面画布从 `929px` 收缩为 `609px`；显示项目/当前画布上下文、10 项 source-order 层级树和本地筛选/搜索
+- Agent：`340px` 右抽屉；分镜模式（Batch 362 现行）为全宽三栏资源总列（音频 | 图片 | 视频），Agent 经顶栏按钮独立开关
+- 分镜模式：`画布 2` 初始状态为 5 个图片卡、1 个视频卡（三栏资源总列，音频栏空态）；Batch 361 迁移至纯拼接语义后通过 Batch 44/361 验证
 - Agent/share：Agent source-shaped header/2×2 Skill/通知/composer，分享“发布与分享”两项命令和桌面导航避让通过 Batch 14 验证
 - 图片选中态：节点锚定当前 `1092.5x49`、13-action 工具条和 `660px` 编辑面板，包含原站提示词与生成参数；Preview 是独立 page-level overlay
 - 六个主入口面板：桌面锚点与原站一致；角色应用可创建可见节点；`390x844` 无检测到的标签溢出
