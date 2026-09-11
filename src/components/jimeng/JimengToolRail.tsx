@@ -39,7 +39,7 @@ export function JimengToolRail() {
             key={label}
             type="button"
             aria-label={label}
-            className="relative flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/10"
+            className="relative flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.12]"
           >
             <Icon size={20} />
             {beta ? (

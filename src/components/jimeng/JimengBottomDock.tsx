@@ -1,19 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { Columns2, MousePointer2, RefreshCw } from "lucide-react";
 
+import { JimengZoomMenu } from "@/components/jimeng/JimengZoomMenu";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 左下角画布导航 dock — 16,774 164×36 (SOURCE_FACT)。
  * [选择][布局][同步] | 缩放百分比；缩放值来自 store (与 xyflow viewport 同步)。
+ * 点击缩放块弹出缩放菜单 (Batch 7)。
  */
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
+  const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
 
   return (
     <div className="absolute bottom-4 left-4 z-30">
-      <div className="jimeng-bottom-dock flex h-9 w-[164px] items-center gap-1 p-1">
+      <div className="jimeng-bottom-dock relative flex h-9 w-[164px] items-center gap-1 p-1">
         <button
           type="button"
           aria-label="选择工具"
@@ -39,10 +43,12 @@ export function JimengBottomDock() {
         <button
           type="button"
           aria-label="缩放"
+          onClick={() => setZoomMenuOpen((v) => !v)}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"
         >
           {zoomPercent}%
         </button>
+        {zoomMenuOpen ? <JimengZoomMenu onClose={() => setZoomMenuOpen(false)} /> : null}
       </div>
     </div>
   );

@@ -87,17 +87,36 @@
 - 截图: `docs/design-references/jimeng/jimeng-source-video-node-selected-toolbar-1680-2026-09-12.png`、
   `jimeng-source-capture-frame-dropdown-1680-2026-09-12.png`。
 
-## 7. 其他已捕获状态（后续 batch 素材）
+## 7. 编辑态与其他状态（后续 batch 素材）
 
 - 空节点选中生成面板: 见
   `jimeng-source-empty-node-selected-genpanel-1680-2026-09-12.png`。
   面板含 "+" 按钮、占位文案 "上传参考图、输入文字或 @ 主体，描述你想生成的视频"、
   底部模型行（即梦 Seedance 2.0 VIP ✦ ∨ / 16:9 · 720P ✦ · 1 ∨ / 全能参考 ∨ / 4s ∨ /
   @ / ✦56 / 圆形发送钮）。
+  SOURCE_FACT (batch 3 精确提取): 面板本体 form 680×208、rgb(32,32,32)、r20、
+  内边距 17、居中于节点下方 20px；载体同样是 `react-flow__node-toolbar`
+  (position=bottom)；右上角 40×40 展开钮 (icon 24, white/60)。
 - 节点右键菜单: 复制⌘C / 复制副本⌘D / 粘贴⌘V ｜ 保存到主体库 / 下载 ｜
   重做⌘⇧Z(禁用) / 撤销⌘Z / 删除⌫。
-- BLOCKED_BY_FIXTURE: 工具条各项点击后的功能面板（局部重拍、视频编辑等）
-  与生成任务副作用 — 未提取，逐 batch 申请式观察（只读打开即 Esc）。
+- SOURCE_FACT (batch 5): 局部重拍进入编辑态 — 节点标题行隐藏、节点放大 (zoom 101%)、
+  帧条选区 (胶片缩略图 + 白框 4.0s + 两侧拖拽把手)；下方重拍面板变体:
+  参考缩略图 chip (00:06) + "+"、提示词行 chip「00:00—00:04 重拍片段」(蓝色描边) +
+  占位「描述你如何调整这一片段」、即梦 Seedance 2.5 ✦∨ / 6s / @ / ✦ 96/208 /
+  白色可用发送钮。
+- SOURCE_FACT (batch 6): 视频编辑进入局部编辑态 — 标题行与工具条隐藏、节点放大
+  (zoom 145%)、视频自动播放；下方 8 图标工具药丸 (框选/套索/箭头/文字/橡皮擦/定位/
+  分隔/撤销/重做) + 编辑提示条 (铅笔 + 「描述你如何调整视频」+ @ + ✦120/260 +
+  禁用发送钮)。
+- SOURCE_FACT (batch 7): 点击底栏缩放块弹出上方菜单 200×292 rgb(38,38,38) r12:
+  放大视图⌘+ / 缩小视图⌘− / 适配画布⇧1 / 缩放至选中项⇧2 (无选中禁用) ｜
+  缩放至50% / 缩放至100%⌘1 / 缩放至200%；底栏缩放值为可编辑输入框 (复刻只读,
+  CLONE_DECISION)。
+- SOURCE_FACT (batch 7): 顶栏 ? 弹出 240×272 rgb(34,34,34) r12 菜单:
+  帮助中心 / 使用手册 / 快捷键 / AI生成水印设置 / 即梦CLI（顶部含租户名）。
+- SOURCE_FACT (batch 7): 左栏按钮 hover 无 tooltip，仅按钮高亮 rgba(255,255,255,0.12) r8。
+- BLOCKED_BY_FIXTURE: 提示词反推、智能超清、补帧（会提交生成任务消耗积分）；
+  下载（真实文件）、保存到主体库（写库）。复刻侧以 mock 面板呈现 (CLONE_DECISION)。
 
 ## 8. 复刻侧实现映射（CLONE_DECISION）
 

@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { CircleHelp, Search } from "lucide-react";
 
 import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
+import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -13,6 +15,7 @@ import { useJimengStore } from "@/store/jimengStore";
  */
 export function JimengTopBar() {
   const project = useJimengStore((s) => s.project);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   return (
     <header className="pointer-events-none absolute inset-x-3 top-[10px] z-30 flex h-10 items-center">
@@ -42,13 +45,17 @@ export function JimengTopBar() {
           >
             <Search size={16} />
           </button>
-          <button
-            type="button"
-            aria-label="帮助"
-            className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
-          >
-            <CircleHelp size={16} />
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="帮助"
+              onClick={() => setHelpOpen((v) => !v)}
+              className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+            >
+              <CircleHelp size={16} />
+            </button>
+            {helpOpen ? <JimengHelpMenu onClose={() => setHelpOpen(false)} /> : null}
+          </div>
         </div>
 
         <div className="jimeng-chrome-pill pointer-events-auto flex h-9 items-center gap-1 p-1">

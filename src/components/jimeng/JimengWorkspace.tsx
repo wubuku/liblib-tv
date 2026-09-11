@@ -105,15 +105,16 @@ function JimengFlow() {
 }
 
 export function JimengWorkspace() {
+  // chrome 组件 (底栏缩放菜单) 需要 useReactFlow，整体包在 Provider 内
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      <ReactFlowProvider>
+    <ReactFlowProvider>
+      <div className="relative h-screen w-screen overflow-hidden">
         <JimengFlow />
-      </ReactFlowProvider>
-      <JimengTopBar />
-      <JimengToolRail />
-      <JimengBottomDock />
-      <JimengAiButton />
-    </div>
+        <JimengTopBar />
+        <JimengToolRail />
+        <JimengBottomDock />
+        <JimengAiButton />
+      </div>
+    </ReactFlowProvider>
   );
 }
