@@ -36,6 +36,11 @@ export default function ProjectListPage() {
       className="flex min-h-screen bg-[#141414] text-[#ededed]"
     >
       {/* Batch 168: 源站 /project 左侧边栏（240px sticky：新建项目 + 导航行 + 底部促销/帮助）。 */}
+            {/* Batch 386: 源站 2026-09-12 直采——顶部促销横幅（Seedance 2.5 年会员 5 折）。 */}
+      <div data-project-top-banner className="flex h-9 w-full items-center justify-center gap-2 bg-[#f5c451]/10 text-xs text-[#f5c451]">
+        <span>💥 Seedance 2.5 720P 年会员生成限时5折起，低至0.39 元/秒</span>
+        <span className="rounded bg-[#f5c451]/15 px-1.5 py-0.5">年会员最低 4.5 折 限时抢购</span>
+      </div>
       <aside
         data-project-sidebar
         className="sticky top-0 flex h-screen w-[240px] shrink-0 flex-col justify-between border-r border-white/[0.06] px-4 py-4"
@@ -88,10 +93,8 @@ export default function ProjectListPage() {
             onClick={() => setStatus("本地原型：积分超市未接入")}
             className="flex w-full items-center justify-between gap-2 rounded-xl bg-white/[0.05] px-3 py-2.5 text-left hover:bg-white/[0.08]"
           >
-            <span className="flex shrink-0 flex-col items-start">
-              <span className="w-full truncate text-[13px] font-medium leading-5 text-[#ededed]">SD2.5畅享卡上线</span>
-              <span className="w-full truncate text-[13px] leading-5 text-[#9a9a9a]">积分超市限时抢购</span>
-            </span>
+            {/* Batch 386: 源站 2026-09-12 侧栏促销为单行「积分超市限时抢购」。 */}
+            <span className="text-[13px] font-medium leading-5 text-[#ededed]">积分超市限时抢购</span>
           </button>
           <button
             type="button"

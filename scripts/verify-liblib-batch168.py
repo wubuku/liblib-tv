@@ -80,8 +80,13 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("sidebar:row-h36", nav_h is not None and 32 <= nav_h["height"] <= 40)
 
     check("sidebar:promo", page.locator("[data-sidebar-promo]").is_visible())
+    # Batch 386: 源站 2026-09-12 侧栏促销为单行「积分超市限时抢购」，
+    # 顶部促销横幅（Seedance 2.5 年会员 5 折）为新增 surface。
     promo_text = page.locator("[data-sidebar-promo]").inner_text()
-    check("sidebar:promo-copy", "SD2.5畅享卡上线" in promo_text and "积分超市限时抢购" in promo_text)
+    check("sidebar:promo-copy", "积分超市限时抢购" in promo_text)
+    check("top:banner", page.locator("[data-project-top-banner]").is_visible())
+    banner_text = page.locator("[data-project-top-banner]").inner_text()
+    check("top:banner-copy", "Seedance 2.5 720P" in banner_text and "0.39 元/秒" in banner_text)
     check("sidebar:help", page.locator("[data-sidebar-help]").is_visible())
 
     # 内容区仍在侧边栏右侧
