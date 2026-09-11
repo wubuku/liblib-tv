@@ -5,7 +5,6 @@ import {
   BookOpen,
   CircleHelp,
   Command,
-  FileText,
   Stamp,
   Terminal,
 } from "lucide-react";
