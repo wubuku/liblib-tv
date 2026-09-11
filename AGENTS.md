@@ -58,9 +58,10 @@ python3 scripts/verify-docs.py
 - React Flow v12 does not pass `node.style` to custom node props; read store data or `props.measured`.
 - `applyNodeChanges` resets selected state; FrameOS must re-apply `selectedNodeId` after changes.
 - `<Handle>` is the real `+` connection affordance; never add a decorative overlay that blocks dragging.
-- Current LibTV canvas navigation authority is `docs/CANVAS_NAVIGATION.md`; Batch 6
-  marquee is historical, and Batch 77 source runtime evidence governs wheel/middle/
-  `Space`/`H`/`V`/blank-drag behavior.
+- Current LibTV canvas navigation authority is `docs/CANVAS_NAVIGATION.md`; Batch 77
+  source runtime evidence governs wheel/middle/`Space`/`H`/`V`/blank-drag behavior.
+  Blank-drag stays no-op; marquee is Shift+drag (v12 `selectionOnDrag=false`),
+  verifier-covered since Batch 362 (Batch 6 un-aged).
 - Do not change the LibTV edge flow effect without re-extracting source evidence.
 - `FrameosNodeEditPanel` is DEBUG-only and is not source-site functionality.
 - Director `authoredObjects` is the portable authoring baseline; `objects` is its
