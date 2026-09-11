@@ -26,3 +26,11 @@
 - 源站恢复后：BLOCKED_SOURCE 补采与 CLONE_DECISION 替换；
 - jimeng 后续 batch 对照巡检（随其节奏）；
 - 相机运动预设 append 语义的产品裁决跟进（batch 352 记录）。
+
+## 提交范围说明（DEC-018 复核）
+
+本批提交（456c912）因 `git add -A` 意外扫入并行开发者 jimeng 路线的
+13 个文件（JimengGenPanel/JimengVideoEditMode 等源码更新与截图再生
+——均为其 batch 2-8 推进的正常产物，纯增量保留，无覆盖/丢失）。
+后续批次改用显式路径暂存；jimeng 文件的提交归属由并行路线在后续
+批次确认。
