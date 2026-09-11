@@ -72,8 +72,10 @@ function TextNodeComponent({ data }: NodeProps<TextNodeType>) {
           </p>
         </div>
       </div>
-      <Handle type="target" position={Position.Left} isConnectable />
-      <Handle type="source" position={Position.Right} isConnectable />
+      {/* Batch 355: 与其余节点类型对齐补具名把手（data-handleid 可寻址，
+          batch 57 连接合同依赖 source/target 命名）。 */}
+      <Handle type="target" position={Position.Left} id="target" isConnectable />
+      <Handle type="source" position={Position.Right} id="source" isConnectable />
     </div>
   );
 }
