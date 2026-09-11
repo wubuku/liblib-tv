@@ -570,7 +570,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 44 | keyframe time 序列（line 334） | AGED_GATE 维持并完成考古（Batch 352）：期望 [0,4,6,8] 与实测 [0..8] 的差异源于相机运动预设 append 自 8125872 起即为纯拼接（git 考古：8125872→2c6ed22→306786d 从无清除逻辑）——旧合同从未与实现匹配过；现代化需先裁决预设语义（append 是否应清除冲突键），属产品设计问题而非缺陷 |
 | 46 | 断言（bounded Director） | **已修复并转绿（Batch 349）**：非抖动链——截图条目按钮命名合同漂移（现版为「选择截图 {camera} · 镜头-截图NN」，旧验证器为「-{截图NN}」）；验证器命名迁移后三连跑确定性全绿 |
 | 48 | line 224 bare assert | **已修复并转绿（Batch 353）**：模型库持久化 schema 被后续批次扩展（新增 lastModified/mimeType/sizeBytes 元数据）——精确键集断言迁移为超集断言（原字段齐备 + 新元数据存在），三连跑全绿 |
-| 49 | viewport gizmo 未隐藏（wait 30s 超时） | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
+| 49 | viewport gizmo 未隐藏（wait 30s 超时） | **已修复并转绿（Batch 354）**：两处时序抖动——①截图完成后 gizmo 立即重新挂载，wait_for(hidden) 起跑必输→改点击前挂 MutationObserver 确定性记录卸载事件；②轴位切换动画未 settle 即读投影→assert_axis_position 改 settle 轮询。三连跑全绿 |
 | 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
 | 61 | 合成语料 fixture reset | ownership-managed 维持（LIBTV-VR-016 focused pass 之外保持） |
 | 64 | viewport {x:-160,y:0,zoom:1} | **已修复并转绿（Batch 351 专项现代化）**：三处 240→320 面板宽度迁移（桌面/移动 viewport 偏移、mobile host 宽 150→70）+ stale-canvas-guard 竞态确定性化（开面板与切画布合并进同一 evaluate，先于 rAF 提交）——三连跑全绿 |

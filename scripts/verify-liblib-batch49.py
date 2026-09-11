@@ -169,14 +169,28 @@ def gizmo_position(page: Page):
     )
 
 
-def assert_axis_position(page: Page, axis: str):
-    position, target = gizmo_position(page)
-    direction = AXIS_VECTORS[axis]
-    relative = tuple(position[index] - target[index] for index in range(3))
-    radius = math.sqrt(sum(value * value for value in relative))
-    assert radius > 0.1
-    projection = sum(relative[index] * direction[index] for index in range(3))
-    assert projection / radius > 0.99, (axis, position, target)
+def assert_axis_position(page: Page, axis: str, timeout: float = 3.0):
+    # Batch 354: 相机切换轴位有动画过渡——轮询等待 settle，避免读到
+    # 过渡途中的快照（时序抖动）。
+    import time
+    deadline = time.time() + timeout
+    last = None
+    while True:
+        position, target = gizmo_position(page)
+        direction = AXIS_VECTORS[axis]
+        relative = tuple(position[index] - target[index] for index in range(3))
+        radius = math.sqrt(sum(value * value for value in relative))
+        if radius > 0.1:
+            projection = sum(
+                relative[index] * direction[index] for index in range(3)
+            )
+            if projection / radius > 0.99:
+                return
+            last = (axis, position, target)
+        if time.time() > deadline:
+            break
+        page.wait_for_timeout(150)
+    raise AssertionError(("axis not settled", last))
 
 
 def run_desktop(page: Page):
@@ -288,8 +302,31 @@ def run_desktop(page: Page):
     )
     page.wait_for_timeout(120)
 
+    # Batch 354: 截图完成后 gizmo 立即重新挂载——wait_for(hidden) 起跑必输
+    # （时序类）。改为点击前挂 MutationObserver，确定性记录「截图中
+    # gizmo 卸载」事件。
+    page.evaluate(
+        """() => {
+          window.__gizmoDetached = false;
+          const gizmo = document.querySelector('[data-director-viewport-gizmo]');
+          const host = gizmo ? gizmo.parentElement : document.body;
+          window.__gizmoObserver = new MutationObserver(() => {
+            if (!document.querySelector('[data-director-viewport-gizmo]')) {
+              window.__gizmoDetached = true;
+            }
+          });
+          window.__gizmoObserver.observe(host, { childList: true, subtree: true });
+        }"""
+    )
     page.locator("[data-director-capture]").click()
-    page.locator("[data-director-viewport-gizmo]").wait_for(state="hidden")
+    page.wait_for_timeout(1500)
+    gizmo_detached = page.evaluate(
+        """() => {
+          window.__gizmoObserver?.disconnect();
+          return window.__gizmoDetached;
+        }"""
+    )
+    assert gizmo_detached, "viewport gizmo was never hidden during capture"
     page.screenshot(path=str(CAPTURE_HIDDEN_SCREENSHOT))
     page.locator("[data-director-capture-preview]").wait_for(state="visible")
     capture = page.evaluate(
