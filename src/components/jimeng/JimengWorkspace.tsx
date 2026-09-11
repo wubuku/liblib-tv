@@ -39,6 +39,7 @@ function JimengFlow() {
   const pasteNode = useJimengStore((s) => s.pasteNode);
   const removeNode = useJimengStore((s) => s.removeNode);
   const exitRepaint = useJimengStore((s) => s.exitRepaint);
+  const exitEdit = useJimengStore((s) => s.exitEdit);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -46,8 +47,9 @@ function JimengFlow() {
   const onPaneClick = useCallback(() => {
     selectNode(null);
     exitRepaint();
+    exitEdit();
     setContextMenu(null);
-  }, [selectNode, exitRepaint]);
+  }, [selectNode, exitRepaint, exitEdit]);
 
   const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
     const e = event as unknown as MouseEvent;

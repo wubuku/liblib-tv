@@ -61,6 +61,10 @@ export interface JimengCanvasState {
   repaintNodeId: string | null;
   enterRepaint: (id: string) => void;
   exitRepaint: () => void;
+  /** 视频编辑模式 (Batch 6): 工具药丸 + 编辑提示条 */
+  editNodeId: string | null;
+  enterEdit: (id: string) => void;
+  exitEdit: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -232,4 +236,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   enterRepaint: (id) => set({ repaintNodeId: id }),
 
   exitRepaint: () => set({ repaintNodeId: null }),
+
+  editNodeId: null,
+
+  enterEdit: (id) => set({ editNodeId: id }),
+
+  exitEdit: () => set({ editNodeId: null }),
 }));

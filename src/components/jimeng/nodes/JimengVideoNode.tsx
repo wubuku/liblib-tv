@@ -11,6 +11,7 @@ import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
+import { JimengVideoEditMode } from "@/components/jimeng/JimengVideoEditMode";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -45,8 +46,12 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const repaintNodeId = useJimengStore((s) => s.repaintNodeId);
   const enterRepaint = useJimengStore((s) => s.enterRepaint);
   const exitRepaint = useJimengStore((s) => s.exitRepaint);
+  const editNodeId = useJimengStore((s) => s.editNodeId);
+  const enterEdit = useJimengStore((s) => s.enterEdit);
+  const exitEdit = useJimengStore((s) => s.exitEdit);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
   const repaintMode = repaintNodeId === id;
+  const editMode = editNodeId === id;
 
   return (
     <div
@@ -54,24 +59,27 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      {/* 选中后弹出的操作工具条 / 局部重拍编辑态 / 空节点生成面板 */}
+      {/* 选中后弹出的操作工具条 / 编辑态 / 空节点生成面板 */}
       {d.hasMedia && repaintMode ? (
         <JimengRepaintPanel
           visible
           data={d}
           onSubmit={() => exitRepaint()}
         />
+      ) : d.hasMedia && editMode ? (
+        <JimengVideoEditMode onSubmit={() => exitEdit()} />
       ) : d.hasMedia ? (
         <JimengNodeToolbar
           visible={selected === true}
           onAction={(label) => {
             if (label === "局部重拍") enterRepaint(id);
+            if (label === "视频编辑") enterEdit(id);
           }}
         />
       ) : null}
       {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
-      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；局部重拍态隐藏 */}
-      {!repaintMode ? (
+      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏 */}
+      {!repaintMode && !editMode ? (
         <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
           <div className="flex min-w-0 items-center gap-1.5 text-white/70">
             <FileBadgeIcon size={16} />
