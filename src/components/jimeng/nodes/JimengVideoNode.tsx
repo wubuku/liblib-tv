@@ -6,6 +6,7 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 
 /**
  * 即梦视频节点 — 复刻重点 (本地上传视频)。
@@ -42,6 +43,8 @@ export function JimengVideoNode({ data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
+      {/* 选中后弹出的操作工具条 (仅有内容的视频节点；空节点走生成面板) */}
+      {d.hasMedia ? <JimengNodeToolbar visible={selected === true} /> : null}
       {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标 */}
       <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
         <div className="flex min-w-0 items-center gap-1.5 text-white/70">
