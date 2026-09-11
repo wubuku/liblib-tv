@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Maximize2, Pause, Play, Plus, Tag, VolumeX } from "lucide-react";
 import { Handle, Position } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
@@ -8,6 +9,8 @@ import type { JimengVideoNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
+import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 即梦视频节点 — 复刻重点 (本地上传视频)。
@@ -33,10 +36,12 @@ const HANDLE_BASE = {
   borderRadius: 0,
 } as const;
 
-export function JimengVideoNode({ data, selected }: NodeProps) {
+export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const d = data as JimengVideoNodeData;
   // 播放态由 data.playing 显式驱动 (mock 初始为暂停，与源站提取时一致)
   const playing = d.hasMedia && d.playing === true;
+  const addVideoNodeAfter = useJimengStore((s) => s.addVideoNodeAfter);
+  const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
 
   return (
     <div
@@ -131,27 +136,65 @@ export function JimengVideoNode({ data, selected }: NodeProps) {
         )}
       </div>
 
-      {/* 连接热区 (隐形) + "+" 圆钮 (hover/选中显示) */}
+      {/* 连接热区 (隐形) + "+" 圆钮 (hover/选中显示；点击弹「添加节点」菜单) */}
       <Handle
         type="target"
         position={Position.Left}
         className="!z-10"
         style={{ ...HANDLE_BASE, left: -30, top: "50%", transform: "translateY(-50%)" }}
-      />
+      >
+        {/* 证据: 本地上传节点左侧无 "+" (SOURCE_FACT §5)，仅空节点两侧都有 */}
+        {d.source === "empty" ? (
+          <span
+            role="button"
+            aria-label="左侧添加节点"
+            className="absolute left-1/2 top-1/2 hidden size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
+            onClick={(e) => {
+              e.stopPropagation();
+              setInsertMenu((cur) => (cur === "left" ? null : "left"));
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <Plus size={14} />
+          </span>
+        ) : null}
+      </Handle>
       <Handle
         type="source"
         position={Position.Right}
         className="!z-10"
         style={{ ...HANDLE_BASE, right: -30, top: "50%", transform: "translateY(-50%)" }}
-      />
-      {d.source !== "empty" ? null : (
-        <span className="pointer-events-none absolute -left-3 top-1/2 z-20 hidden size-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex">
+      >
+        <span
+          role="button"
+          aria-label="右侧添加节点"
+          className="absolute left-1/2 top-1/2 hidden size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
+          onClick={(e) => {
+            e.stopPropagation();
+            setInsertMenu((cur) => (cur === "right" ? null : "right"));
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
           <Plus size={14} />
         </span>
-      )}
-      <span className="pointer-events-none absolute -right-3 top-1/2 z-20 hidden size-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex">
-        <Plus size={14} />
-      </span>
+      </Handle>
+      {insertMenu ? (
+        <div
+          className="absolute top-1/2 z-[130]"
+          style={
+            insertMenu === "right"
+              ? { left: "100%", marginLeft: 22 }
+              : { right: "100%", marginRight: 22 }
+          }
+        >
+          <JimengInsertMenu
+            onPick={(label) => {
+              if (label === "视频") addVideoNodeAfter(id);
+            }}
+            onClose={() => setInsertMenu(null)}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

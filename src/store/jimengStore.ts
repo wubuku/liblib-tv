@@ -49,6 +49,14 @@ export interface JimengCanvasState {
   onEdgesChange: (changes: EdgeChange[]) => void;
   selectNode: (id: string | null) => void;
   setZoomPercent: (z: number) => void;
+  /** "+" 手柄菜单 → 新建视频节点 (右侧 160 间距) 并连线 (Batch 4) */
+  addVideoNodeAfter: (sourceId: string) => void;
+  removeNode: (id: string) => void;
+  duplicateNode: (id: string) => void;
+  /** 右键菜单 复制/粘贴 (Batch 4) */
+  clipboard: JimengNode | null;
+  copyNode: (id: string) => void;
+  pasteNode: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -135,4 +143,83 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     })),
 
   setZoomPercent: (z) => set({ zoomPercent: Math.round(z) }),
+
+  addVideoNodeAfter: (sourceId) =>
+    set((state) => {
+      const src = state.nodes.find((n) => n.id === sourceId);
+      if (!src) return state;
+      const id = `video-${Date.now()}`;
+      const node: JimengNode = {
+        id,
+        type: "video",
+        position: {
+          x: src.position.x + (src.data.width ?? 569) + 160,
+          y: src.position.y + 44,
+        },
+        data: {
+          title: `视频 ${state.nodes.filter((n) => n.type === "video").length + 1}`,
+          source: "empty",
+          hasMedia: false,
+          width: 569,
+          height: 320,
+        },
+        selected: false,
+      };
+      return {
+        nodes: [...state.nodes, node],
+        edges: [
+          ...state.edges,
+          {
+            id: `e-${sourceId}-${id}`,
+            source: sourceId,
+            target: id,
+          },
+        ],
+      };
+    }),
+
+  removeNode: (id) =>
+    set((state) => ({
+      nodes: state.nodes.filter((n) => n.id !== id),
+      edges: state.edges.filter((e) => e.source !== id && e.target !== id),
+      selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
+    })),
+
+  duplicateNode: (id) =>
+    set((state) => {
+      const src = state.nodes.find((n) => n.id === id);
+      if (!src) return state;
+      const copy: JimengNode = {
+        ...src,
+        id: `video-${Date.now()}`,
+        selected: false,
+        position: { x: src.position.x + 60, y: src.position.y + 60 },
+        data: { ...src.data },
+      };
+      return { nodes: [...state.nodes, copy] };
+    }),
+
+  clipboard: null,
+
+  copyNode: (id) =>
+    set((state) => {
+      const src = state.nodes.find((n) => n.id === id);
+      return src ? { clipboard: { ...src, data: { ...src.data } } } : state;
+    }),
+
+  pasteNode: () =>
+    set((state) => {
+      if (!state.clipboard) return state;
+      const copy: JimengNode = {
+        ...state.clipboard,
+        id: `video-${Date.now()}`,
+        selected: false,
+        position: {
+          x: state.clipboard.position.x + 60,
+          y: state.clipboard.position.y + 60,
+        },
+        data: { ...state.clipboard.data },
+      };
+      return { nodes: [...state.nodes, copy] };
+    }),
 }));

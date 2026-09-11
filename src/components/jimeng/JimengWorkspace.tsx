@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { ReactFlow, ReactFlowProvider } from "@xyflow/react";
-import type { OnMove } from "@xyflow/react";
+import type { NodeMouseHandler, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 import { useJimengStore } from "@/store/jimengStore";
@@ -11,6 +11,10 @@ import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
 import { JimengToolRail } from "@/components/jimeng/JimengToolRail";
 import { JimengBottomDock } from "@/components/jimeng/JimengBottomDock";
 import { JimengAiButton } from "@/components/jimeng/JimengAiButton";
+import {
+  JimengContextMenu,
+} from "@/components/jimeng/JimengContextMenu";
+import type { JimengContextMenuState } from "@/components/jimeng/JimengContextMenu";
 
 /**
  * 即梦画布工作区编排。
@@ -30,8 +34,35 @@ function JimengFlow() {
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
   const setZoomPercent = useJimengStore((s) => s.setZoomPercent);
+  const copyNode = useJimengStore((s) => s.copyNode);
+  const duplicateNode = useJimengStore((s) => s.duplicateNode);
+  const pasteNode = useJimengStore((s) => s.pasteNode);
+  const removeNode = useJimengStore((s) => s.removeNode);
+  const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
+    null,
+  );
 
-  const onPaneClick = useCallback(() => selectNode(null), [selectNode]);
+  const onPaneClick = useCallback(() => {
+    selectNode(null);
+    setContextMenu(null);
+  }, [selectNode]);
+
+  const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
+    const e = event as unknown as MouseEvent;
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY, nodeId: node.id });
+  }, []);
+
+  const onContextMenuAction = useCallback(
+    (action: string) => {
+      if (!contextMenu) return;
+      if (action === "copy") copyNode(contextMenu.nodeId);
+      if (action === "duplicate") duplicateNode(contextMenu.nodeId);
+      if (action === "paste") pasteNode();
+      if (action === "delete") removeNode(contextMenu.nodeId);
+    },
+    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode],
+  );
 
   const onMove = useCallback<OnMove>(
     (_event, viewport) => {
@@ -49,6 +80,7 @@ function JimengFlow() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onPaneClick={onPaneClick}
+        onNodeContextMenu={onNodeContextMenu}
         onMove={onMove}
         defaultViewport={DEFAULT_VIEWPORT}
         minZoom={0.1}
@@ -57,6 +89,13 @@ function JimengFlow() {
         deleteKeyCode={null}
         zoomOnDoubleClick={false}
       />
+      {contextMenu ? (
+        <JimengContextMenu
+          state={contextMenu}
+          onClose={() => setContextMenu(null)}
+          onAction={onContextMenuAction}
+        />
+      ) : null}
     </div>
   );
 }
