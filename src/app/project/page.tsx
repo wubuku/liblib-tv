@@ -227,7 +227,7 @@ export default function ProjectListPage() {
         >
           {/* Batch 167: 源站创建卡为 aspect-video 封面区 + 下方标题行（非虚线占位卡）。 */}
           <span className="flex aspect-video w-full shrink-0 items-center justify-center rounded-xl bg-white/[0.04] transition-colors group-hover:bg-white/[0.07]">
-            <span className="text-[14px] font-medium text-[#ededed]">开始创作</span>
+            <span className="text-[14px] font-medium text-[#ededed]">开始创建</span>
           </span>
           <span className="truncate px-0.5 py-2.5 text-sm font-medium text-[#9a9a9a]">创建新的视频项目</span>
         </button>
