@@ -364,6 +364,7 @@ Required follow-up fixture:
 | 2026-09-12 | batch 384 探测 | still-broken | 第九次重测；jimeng 路线 batch 8 后暂无新提交 |
 | 2026-09-12 | batch 390 探测 | still-broken | 第十次重测；49 项维护集全绿 |
 | 2026-09-12 | batch 391 探测 | still-broken | 第十一次重测 |
+| 2026-09-12 | batch 392-393 探测 | still-broken | 第十二、十三次重测（§3.3 审计/巡检批次） |
 | 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
 
 ### 10.3 复测触发条件
