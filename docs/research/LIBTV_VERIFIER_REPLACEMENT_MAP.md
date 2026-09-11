@@ -569,7 +569,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 41 | import transform 漂移 | **已修复并转绿（Batch 348）**：数据层无损坏——authoredObjects 已精确还原校准基线（四层转储实证）；漂移读数来自 objects 运行时投影（导入后活动相机保持 phone-pose 控制态属设计行为）。验证器按 AGENTS.md authoredObjects 基线架构迁至 authored 层断言，三连跑全绿 |
 | 44 | keyframe time 序列（line 334） | AGED_GATE 维持并完成考古（Batch 352）：期望 [0,4,6,8] 与实测 [0..8] 的差异源于相机运动预设 append 自 8125872 起即为纯拼接（git 考古：8125872→2c6ed22→306786d 从无清除逻辑）——旧合同从未与实现匹配过；现代化需先裁决预设语义（append 是否应清除冲突键），属产品设计问题而非缺陷 |
 | 46 | 断言（bounded Director） | **已修复并转绿（Batch 349）**：非抖动链——截图条目按钮命名合同漂移（现版为「选择截图 {camera} · 镜头-截图NN」，旧验证器为「-{截图NN}」）；验证器命名迁移后三连跑确定性全绿 |
-| 48 | line 224 bare assert | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
+| 48 | line 224 bare assert | **已修复并转绿（Batch 353）**：模型库持久化 schema 被后续批次扩展（新增 lastModified/mimeType/sizeBytes 元数据）——精确键集断言迁移为超集断言（原字段齐备 + 新元数据存在），三连跑全绿 |
 | 49 | viewport gizmo 未隐藏（wait 30s 超时） | AGED_GATE 维持（2026-09-12 复跑同点同形失败） |
 | 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
 | 61 | 合成语料 fixture reset | ownership-managed 维持（LIBTV-VR-016 focused pass 之外保持） |

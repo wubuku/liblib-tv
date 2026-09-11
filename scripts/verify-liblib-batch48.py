@@ -221,9 +221,12 @@ def run_desktop(page: Page):
     }
     assert all(item["categoryId"] == "my-models" for item in persisted)
     assert all(item["dataUrl"].startswith("data:") for item in persisted)
+    # Batch 353: 持久化 schema 后续批次扩展了 lastModified/mimeType/sizeBytes
+    # 元数据字段——改为超集断言（原字段必须齐备 + 新元数据必须存在）。
+    base_fields = {"id", "categoryId", "name", "fileName", "dataUrl", "visual", "color"}
+    meta_fields = {"lastModified", "mimeType", "sizeBytes"}
     assert all(
-        set(item) == {"id", "categoryId", "name", "fileName", "dataUrl", "visual", "color"}
-        for item in persisted
+        base_fields <= set(item) and meta_fields <= set(item) for item in persisted
     )
     assert_inside(panel, page.locator("[data-director-viewport]"))
     page.screenshot(path=str(POPULATED_SCREENSHOT))
