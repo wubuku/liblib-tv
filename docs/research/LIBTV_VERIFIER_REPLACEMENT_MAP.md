@@ -554,3 +554,29 @@ Open Canvas `OC-081..090` 正反面、clone/source dated audit、surface profile
 - 在此之前，最有价值的后续工作仍是文档、纯合同和安全只读证据整理。
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。
+
+## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
+
+Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
+对全部 13 个失败验证器完成逐项再确认，处置如下：
+
+| 验证器 | 失败形态（2026-09-11） | 处置 |
+|---|---|---|
+| 6 | marquee 选框断言 | AGED_GATE 维持（Batch 6 marquee 历史化，AGENTS.md 在档） |
+| 29 | 播放器悬停菜单点击超时 | **已修复并转绿（Batch 338）**：菜单 Portal 化逃出节点 stacking context |
+| 39 | timeline currentTime ≤ 0.2 | AGED_GATE 维持（媒体元数据伪影，batch 184 模式） |
+| 40 | 截图 byte_size ≤ 10000 | AGED_GATE 维持（同上族） |
+| 41 | import transform 漂移 | AGED_GATE 维持 |
+| 44 | keyframe time 序列 | AGED_GATE 维持 |
+| 46 | 断言（bounded Director） | AGED_GATE 维持 |
+| 48 | all(...) 断言 | AGED_GATE 维持 |
+| 49 | viewport gizmo 未隐藏 | AGED_GATE 维持 |
+| 57 | text id 元组断言 | ownership-managed 维持（LIBTV-VR-009 local slice；勿推导完整 parity） |
+| 61 | 合成语料 fixture reset | ownership-managed 维持（LIBTV-VR-016 focused pass 之外保持） |
+| 64 | viewport {x:-160,y:0,zoom:1} | ownership-managed 维持（LIBTV-VR-020 Asset host-resize slice 已由 Batch 64 关闭 focused 部分；残余为受控视口外的历史断言） |
+| 89 | 移动端面板关闭按钮点击超时 | AGED_GATE 维持并补充归因：现版移动面板生命周期含焦点收纳/自动关闭（后期批次行为），「点击覆盖层关闭」的 batch 89 时代合同被取代；桌面段合同不受影响 |
+
+结论（重申 batch 108/184 处置）：上述验证器保留作历史快照对照，
+**不进入当前合同、不做现代化改写**；其替代物为 Batch 59/67-96
+current gates 与各 ownership slice。近期批次（332-338）零回归
+（维护集 45 项全绿为证）。
