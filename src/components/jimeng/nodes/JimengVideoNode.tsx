@@ -87,7 +87,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       ) : null}
       {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
       {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏 */}
-      {!repaintMode && !editMode ? (
+      {!repaintMode && !editMode && !inferMode ? (
         <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
           <div className="flex min-w-0 items-center gap-1.5 text-white/70">
             <FileBadgeIcon size={16} />
