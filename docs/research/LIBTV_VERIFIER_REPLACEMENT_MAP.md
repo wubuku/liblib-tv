@@ -564,7 +564,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 |---|---|---|
 | 6 | marquee 选框断言 | AGED_GATE 维持（Batch 6 marquee 历史化，AGENTS.md 在档） |
 | 29 | 播放器悬停菜单点击超时 | **已修复并转绿（Batch 338）**：菜单 Portal 化逃出节点 stacking context |
-| 39 | timeline currentTime ≤ 0.2 | AGED_GATE 维持（媒体元数据伪影，batch 184 模式） |
+| 39 | timeline currentTime ≤ 0.2 | **已修复并转绿（Batch 346）**：非产品缺陷，系起播延迟的时序抖动——验证器改为轮询至 currentTime>0.2（三连跑确定性通过） |
 | 40 | 截图 byte_size ≤ 10000 | AGED_GATE 维持（同上族） |
 | 41 | import transform 漂移 | AGED_GATE 维持 |
 | 44 | keyframe time 序列 | AGED_GATE 维持 |

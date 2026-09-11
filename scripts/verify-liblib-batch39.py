@@ -311,8 +311,14 @@ def run_desktop(page: Page):
         director_state(page), "director-character-lead"
     )["transform"]["position"]
     page.locator("[data-director-playback]").click()
-    page.wait_for_timeout(320)
-    state = director_state(page)
+    # Batch 346: 起播有延迟，固定 320ms 会采到 <0.2 的边缘值——轮询至超时。
+    import time
+    deadline = time.time() + 5
+    while True:
+        state = director_state(page)
+        if state["timeline"]["currentTime"] > 0.2 or time.time() > deadline:
+            break
+        page.wait_for_timeout(120)
     playing_position = object_by_id(
         state, "director-character-lead"
     )["transform"]["position"]
