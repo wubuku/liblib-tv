@@ -175,6 +175,8 @@ def run_desktop(page: Page):
         ).count()
         == 1
     )
+    # Batch 347 实测：本断言存在抖动链（复跑时 180 过而 182 挂），
+    # 截图条目 UI 状态在多次断言间不稳定——归因维持。
     assert page.locator("[data-director-capture-item-selected='true']").count() == 1
     assert (
         page.locator('[data-director-capture-item="{}"]'.format(state["captures"][0]["id"]))

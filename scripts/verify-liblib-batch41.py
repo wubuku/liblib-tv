@@ -330,6 +330,8 @@ def run_desktop(page: Page):
         first_keyframe["value"]["transform"]["position"]
         != last_keyframe["value"]["transform"]["position"]
     )
+    # Batch 347 实测：imported transform 与 baseline 为实质性位置漂移
+    # （[3.24,1.98,4.61] vs [4.45,2.48,6.15]），非浮点舍入——归因维持。
     assert imported["source"]["transform"] == source_baseline["transform"]
     assert imported["source"]["camera"]["target"] == source_baseline["target"]
     assert imported["activeCameraId"] == imported["camera"]["id"]

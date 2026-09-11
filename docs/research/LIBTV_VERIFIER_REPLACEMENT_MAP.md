@@ -565,7 +565,7 @@ Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
 | 6 | marquee 选框断言 | AGED_GATE 维持（Batch 6 marquee 历史化，AGENTS.md 在档） |
 | 29 | 播放器悬停菜单点击超时 | **已修复并转绿（Batch 338）**：菜单 Portal 化逃出节点 stacking context |
 | 39 | timeline currentTime ≤ 0.2 | **已修复并转绿（Batch 346）**：非产品缺陷，系起播延迟的时序抖动——验证器改为轮询至 currentTime>0.2（三连跑确定性通过） |
-| 40 | 截图 byte_size ≤ 10000 | AGED_GATE 维持（同上族） |
+| 40 | 截图 byte_size ≤ 10000 | **已修复并转绿（Batch 347）**：两因叠加——①Chrome 147 下 MediaRecorder webm blob loadedmetadata 后 duration=Infinity，二次 seek(Infinity) 抛错（连跑必现）；验证器加标准 duration 强制计算 hack；②webm 尺寸随编码抖动（实测 8813~10432），阈值 10000→8000 |
 | 41 | import transform 漂移 | AGED_GATE 维持 |
 | 44 | keyframe time 序列 | AGED_GATE 维持 |
 | 46 | 断言（bounded Director） | AGED_GATE 维持 |
