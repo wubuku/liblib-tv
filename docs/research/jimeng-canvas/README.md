@@ -198,10 +198,16 @@
   （store `applyTrim`：currentTime 重置 + 历史栈入栈，⌘Z 可还原，
   扩展 batch 14 历史栈）；面板确认后关闭，节点时间行反映裁剪后时长
   （源站确认后的节点态未采样，控件语义复刻）。
+- CLONE_DECISION (batch 34): 帧选择器写回节点 — 胶片条点击移动播放头
+  （时间读数跟随）；自定义模式 截取帧 预挂 确认，确认后节点 seek 到
+  所截帧时间（`updateNodeData` currentTime）；首帧/尾帧预设即时可用，
+  确认 seek 到 0/时长。深化 batch 9 帧选择器（预选播放头 → 写回节点）
+  与 batch 10 截取帧下拉语义（源站确认后的节点 seek 态未采样）。
 - 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
   66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
   消息与代码审读转录；§7 原有直采条目止于 batch 27。batch 33 条目同法
-  补录（commit 58edecb，batch 434 对照批）。
+  补录（commit 58edecb，batch 434 对照批）。batch 34 条目同法补录
+  （commit 5422c94，batch 434 对照批）。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
