@@ -5,6 +5,7 @@ import {
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
+  PanOnScrollMode,
 } from "@xyflow/react";
 import type { NodeMouseHandler, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -51,7 +52,7 @@ function JimengFlow() {
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
   const setZoomPercent = useJimengStore((s) => s.setZoomPercent);
-  const { fitView } = useReactFlow();
+  const { fitView, zoomIn, zoomOut, getViewport, setViewport } = useReactFlow();
   const copyNode = useJimengStore((s) => s.copyNode);
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
   const pasteNode = useJimengStore((s) => s.pasteNode);
@@ -133,6 +134,34 @@ function JimengFlow() {
         } else {
           void document.documentElement.requestFullscreen().catch(() => {});
         }
+      } else if (!mod && e.key === "1" && e.shiftKey && !inField) {
+        // 快捷键面板证据: ⇧1 = 适配画布 (Batch 18/21)
+        e.preventDefault();
+        void fitView({ duration: 300 });
+      } else if (mod && e.key === "1") {
+        // 快捷键面板证据: ⌘1 = 缩放至 100% (Batch 21)
+        e.preventDefault();
+        const vp = getViewport();
+        const el = document.querySelector(".jimeng-canvas");
+        const w = el ? el.clientWidth / 2 : 0;
+        const h = el ? el.clientHeight / 2 : 0;
+        setViewport({
+          x: w - (w - vp.x) * (1 / vp.zoom),
+          y: h - (h - vp.y) * (1 / vp.zoom),
+          zoom: 1,
+        });
+      } else if (e.key === "2" && e.shiftKey && !mod && !inField) {
+        // 快捷键面板证据: ⇧2 = 缩放至选中项 (Batch 21)
+        e.preventDefault();
+        void fitView({ duration: 300, maxZoom: 1, padding: 0.4 });
+      } else if (mod && (e.key === "+" || e.key === "=")) {
+        // 快捷键面板证据: ⌘+ 放大 (Batch 21)
+        e.preventDefault();
+        void zoomIn({ duration: 200 });
+      } else if (mod && (e.key === "-" || e.key === "_")) {
+        // 快捷键面板证据: ⌘- 缩小 (Batch 21)
+        e.preventDefault();
+        void zoomOut({ duration: 200 });
       } else if (mod && e.key.toLowerCase() === "c" && selectedNodeId) {
         copyNode(selectedNodeId);
       } else if (mod && e.key.toLowerCase() === "d" && selectedNodeId) {
@@ -161,6 +190,10 @@ function JimengFlow() {
     toolActive,
     setToolActive,
     fitView,
+    zoomIn,
+    zoomOut,
+    getViewport,
+    setViewport,
   ]);
 
   const onMove = useCallback<OnMove>(
@@ -179,6 +212,14 @@ function JimengFlow() {
         edgeTypes={edgeTypes}
         defaultEdgeOptions={{ type: "jimeng" }}
         multiSelectionKeyCode="Shift"
+        /* 导航语义 (SOURCE_FACT, batch 21 提取): 空白左键拖拽不平移；
+           普通滚轮 = 平移 (free)；ctrl+滚轮/触控 pinch = 缩放；
+           中键拖拽平移 (CLONE_DECISION，源站中键行为未验证)。 */
+        panOnDrag={[1]}
+        panOnScroll
+        panOnScrollMode={PanOnScrollMode.Free}
+        zoomOnScroll={false}
+        zoomOnPinch
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onPaneClick={onPaneClick}
