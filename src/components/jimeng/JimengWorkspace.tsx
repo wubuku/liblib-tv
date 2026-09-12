@@ -42,6 +42,7 @@ function JimengFlow() {
   const exitEdit = useJimengStore((s) => s.exitEdit);
   const exitInfer = useJimengStore((s) => s.exitInfer);
   const exitFramePicker = useJimengStore((s) => s.exitFramePicker);
+  const exitTrim = useJimengStore((s) => s.exitTrim);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -52,8 +53,9 @@ function JimengFlow() {
     exitEdit();
     exitInfer();
     exitFramePicker();
+    exitTrim();
     setContextMenu(null);
-  }, [selectNode, exitRepaint, exitEdit, exitInfer, exitFramePicker]);
+  }, [selectNode, exitRepaint, exitEdit, exitInfer, exitFramePicker, exitTrim]);
 
   const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
     const e = event as unknown as MouseEvent;

@@ -69,10 +69,15 @@ export interface JimengCanvasState {
   inferNodeId: string | null;
   enterInfer: (id: string) => void;
   exitInfer: () => void;
-  /** 截取帧-自定义 帧选择器 (Batch 9) */
+  /** 截取帧-自定义 帧选择器 (Batch 9)；mode: first/last 为首帧/尾帧预选 (Batch 10) */
   framePickerNodeId: string | null;
-  enterFramePicker: (id: string) => void;
+  framePickerMode: "first" | "last" | "custom";
+  enterFramePicker: (id: string, mode?: "first" | "last" | "custom") => void;
   exitFramePicker: () => void;
+  /** 视频修剪编辑态 (Batch 10) */
+  trimNodeId: string | null;
+  enterTrim: (id: string) => void;
+  exitTrim: () => void;
 }
 
 const initialNodes: JimengNode[] = [
@@ -258,8 +263,16 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   exitInfer: () => set({ inferNodeId: null }),
 
   framePickerNodeId: null,
+  framePickerMode: "custom",
 
-  enterFramePicker: (id) => set({ framePickerNodeId: id }),
+  enterFramePicker: (id, mode = "custom") =>
+    set({ framePickerNodeId: id, framePickerMode: mode }),
 
   exitFramePicker: () => set({ framePickerNodeId: null }),
+
+  trimNodeId: null,
+
+  enterTrim: (id) => set({ trimNodeId: id }),
+
+  exitTrim: () => set({ trimNodeId: null }),
 }));
