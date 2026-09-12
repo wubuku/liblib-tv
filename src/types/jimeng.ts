@@ -27,6 +27,8 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   playing?: boolean;
   /** 是否静音 (Batch 29；源站卡片默认显示静音图标) */
   muted?: boolean;
+  /** 节点颜色标记 (Batch 31；源站标题 Tag 图标点击弹出五色选择器) */
+  tagColor?: string | null;
   /** 世界尺寸 (源站 video 节点 ≈ 569×320，16:9) */
   width: number;
   height: number;

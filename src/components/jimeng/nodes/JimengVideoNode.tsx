@@ -1,7 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Maximize2, Pause, Play, Plus, Tag, Volume2, VolumeX } from "lucide-react";
+import {
+  Ban,
+  Maximize2,
+  Pause,
+  Play,
+  Plus,
+  Tag,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { Handle, Position } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 
@@ -70,6 +79,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     "left" | "right" | "title" | null
   >(null);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [tagPickerOpen, setTagPickerOpen] = useState(false);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
   const inferMode = inferNodeId === id;
@@ -80,7 +90,11 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const restartPlay = useJimengStore((s) => s.restartPlay);
   const tickPlay = useJimengStore((s) => s.tickPlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
+  const updateNodeData = useJimengStore((s) => s.updateNodeData);
   const onToggleMute = toggleMute;
+
+  // 节点颜色标记 (SOURCE_FACT batch 31: 禁止 + 青/蓝/紫/橙/黄 五色)
+  const TAG_COLORS = ["#3BE8E8", "#3D7BFF", "#9C5BFF", "#F79022", "#FFE14D"];
 
   // 播放中 mock 时间走动 (Batch 15)；播完自停
   useEffect(() => {
@@ -164,7 +178,60 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             </span>
           </div>
           {d.hasMedia ? (
-            <Tag size={16} className="shrink-0 text-white/40" />
+            <span className="relative">
+              <button
+                type="button"
+                aria-label="节点颜色标记"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTagPickerOpen((v) => !v);
+                }}
+                className="flex size-4 items-center justify-center"
+              >
+                {d.tagColor ? (
+                  <span
+                    className="size-3 rounded-full"
+                    style={{ background: d.tagColor }}
+                  />
+                ) : (
+                  <Tag size={16} className="text-white/40" />
+                )}
+              </button>
+              {tagPickerOpen ? (
+                <span
+                  className="nodrag absolute right-0 top-[calc(100%+6px)] z-[130] flex items-center gap-2 rounded-full border border-white/10 bg-[#262626] px-2.5 py-1.5"
+                  role="menu"
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    aria-label="清除颜色标记"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      updateNodeData(id, { tagColor: null });
+                      setTagPickerOpen(false);
+                    }}
+                    className="flex size-4 items-center justify-center rounded-full border border-white/40 text-white/70"
+                  >
+                    <Ban size={10} />
+                  </button>
+                  {TAG_COLORS.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      aria-label={`颜色标记 ${color}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        updateNodeData(id, { tagColor: color });
+                        setTagPickerOpen(false);
+                      }}
+                      className="size-4 rounded-full"
+                      style={{ background: color }}
+                    />
+                  ))}
+                </span>
+              ) : null}
+            </span>
           ) : null}
         </div>
       ) : null}

@@ -98,6 +98,11 @@ export interface JimengCanvasState {
   tickPlay: (id: string, delta: number) => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
+  /** 节点数据 patch (Batch 31: 颜色标记等) */
+  updateNodeData: (
+    id: string,
+    patch: Partial<JimengVideoNodeData>,
+  ) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
     kind: "video" | "image" | "text" | "audio",
@@ -407,6 +412,15 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         if (n.id !== id || n.type !== "video") return n;
         const vd = n.data as JimengVideoNodeData;
         return { ...n, data: { ...vd, muted: !(vd.muted ?? true) } };
+      }),
+    })),
+
+  updateNodeData: (id, patch) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return { ...n, data: { ...vd, ...patch } };
       }),
     })),
 
