@@ -374,9 +374,12 @@ Required follow-up fixture:
 | 2026-09-13 | batch 419 探测 | still-broken | 第二十七次重测 |
 | 2026-09-13 | batch 420 探测 | still-broken | 第二十八次重测 |
 | 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
+| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
 | 2026-09-13 | batch 420 探测 | still-broken | 第二十八次重测 |
 | 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
+| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
 | 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
+| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
 | 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
 | 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
 | 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
