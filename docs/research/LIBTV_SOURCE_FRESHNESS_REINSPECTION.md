@@ -383,6 +383,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-13 | batch 424-432 探测 | still-broken | 第三十二~四十次重测（心跳批次） |
 | 2026-09-13 | batch 433 探测 | still-broken | 第四十一次重测；jimeng batch 28–32 对照同步入 §7 |
 | 2026-09-13 | batch 434 探测 | still-broken | 第四十二次重测；jimeng batch 33 对照同步入 §7 |
+| 2026-09-13 | batch 435 探测 | still-broken | 第四十三次重测；VR-017 INVALID_TARGET 切片关闭（batch 435） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

@@ -1045,6 +1045,11 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   setActiveCanvas: (id: string) => {
+    // Batch 435 (VR-017 INVALID_TARGET slice): unknown target must be a
+    // zero-partial NOOP — writing an invalid active id would leave every
+    // active-canvas consumer (change routing, history, viewport restore)
+    // resolving to undefined.
+    if (!get().canvases.some((canvas) => canvas.id === id)) return;
     set({
       activeCanvasId: id,
       selectedNodeIds: [],

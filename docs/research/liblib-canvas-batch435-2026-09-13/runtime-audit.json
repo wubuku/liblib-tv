@@ -1,0 +1,54 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-017 INVALID_TARGET — setActiveCanvas unknown target zero-partial NOOP",
+  "contract": "docs/research/LIBTV_MULTI_CANVAS_LIFECYCLE_ISOLATION_CONTRACT.md §11.2 scene 9 / §12",
+  "invalid_target_noop": {
+    "baseline": {
+      "activeCanvasId": "canvas-2",
+      "activeResolves": true,
+      "selectedNodeIds": [],
+      "selectedNodeId": null,
+      "selectedEdgeIds": [],
+      "canvases": "[{\"id\":\"canvas-1\",\"name\":\"画布 1\",\"nodes\":[],\"edges\":[]},{\"id\":\"canvas-2\",\"name\":\"画布 2\",\"nodes\":[\"g-245IDFh8sB\",\"g-EFbbHpwq5w\",\"t-9j2MoccxBj\",\"i-1FQ9tErTcC\",\"i-lBzmo67AHv\",\"i-dnwoZQ7jsG\",\"i-vxeeCnxySa\",\"b-bTLLuU4w5q\",\"i-YDfWhFlthe\",\"v-UGQZzZOpbv\"],\"edges\":[\"e-8IgMkf6Vbj\",\"e-abKze5c8Ug\",\"e-AQmdIgKtl2\",\"e-m2wWA2wIBA\",\"e-nlMX3rEjwN\",\"e-OwhsBRzrTz\",\"e-QzX895ot0u\",\"e-VQACH36eJC\",\"e-XmiJkHfFAL\",\"e-xNVTHNFZZl\",\"e-yEqrTOR2Ya\"]}]",
+      "histories": "{}",
+      "canvasIds": [
+        "canvas-1",
+        "canvas-2"
+      ]
+    },
+    "probes": [
+      {
+        "target": "canvas-invalid-target-batch435",
+        "activeCanvasIdUnchanged": true,
+        "selectionPreserved": true,
+        "zeroPartial": true
+      },
+      {
+        "target": "<empty-string>",
+        "activeCanvasIdUnchanged": true,
+        "selectionPreserved": true,
+        "zeroPartial": true
+      }
+    ]
+  },
+  "valid_switch": {
+    "switchedTo": "canvas-1",
+    "selectionCleared": true
+  },
+  "switch_back": {
+    "restoredTo": "canvas-2",
+    "activeResolves": true
+  },
+  "remaining_vr017_gaps": [
+    "demo viewport ownership",
+    "page transaction generation",
+    "late callback",
+    "async/resource isolation"
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
