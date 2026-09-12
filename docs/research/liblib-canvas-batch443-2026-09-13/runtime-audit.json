@@ -1,0 +1,45 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-023 Slice C — editor transform correctness with a colored marker fixture (contain policy, declared baseline)",
+  "baseline": {
+    "mediaId": "/images/scene-coffee-4.png",
+    "width": 1152,
+    "height": 576,
+    "mediaRevision": 1,
+    "fit": "contain"
+  },
+  "transform": {
+    "fit": "contain",
+    "scale": 0.17147215207417807,
+    "renderWidth": 197.53591918945312,
+    "renderHeight": 98.76795959472656,
+    "offsetX": 0.2838287353515625,
+    "offsetY": 0,
+    "frameWidth": 198.10357666015625,
+    "frameHeight": 98.76795959472656,
+    "intrinsicWidth": 1152,
+    "intrinsicHeight": 576
+  },
+  "markerFixture": {
+    "markerNormalized": {
+      "nx": 0.25,
+      "ny": 0.25
+    },
+    "markerVisible": {
+      "vx": 49.667808532714844,
+      "vy": 24.69198989868164
+    },
+    "roundTrip": {
+      "nx": 0.25,
+      "ny": 0.25
+    },
+    "redAtMappedPoint": true,
+    "farCornerUntouched": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

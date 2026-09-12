@@ -464,6 +464,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 442 | VR-023 Slice B：aspect-aware 派生帧政策 | [`liblib-canvas-batch442-2026-09-13/`](liblib-canvas-batch442-2026-09-13/) |
 
+| 443 | VR-023 Slice C：编辑器变换 + 基线修订 + 彩色标记 fixture | [`liblib-canvas-batch443-2026-09-13/`](liblib-canvas-batch443-2026-09-13/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |
