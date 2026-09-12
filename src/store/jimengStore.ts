@@ -98,6 +98,8 @@ export interface JimengCanvasState {
   tickPlay: (id: string, delta: number) => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
+  /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
+  seek: (id: string, fraction: number) => void;
   /** 节点数据 patch (Batch 31: 颜色标记等) */
   updateNodeData: (
     id: string,
@@ -385,11 +387,24 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   togglePlay: (id) =>
     set((state) => ({
-      nodes: state.nodes.map((n) =>
-        n.id === id
-          ? { ...n, data: { ...n.data, playing: !(n.data.playing ?? false) } }
-          : n,
-      ),
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        // 播放到结尾后再点播放 = 从头重播 (控件语义完善, Batch 32)；0.05s 容差
+        const atEnd =
+          (vd.duration ?? 0) > 0 &&
+          (vd.currentTime ?? 0) >= vd.duration! - 0.05;
+        return {
+          ...n,
+          data: {
+            ...vd,
+            playing: !(vd.playing ?? false),
+            ...(atEnd && !(vd.playing ?? false)
+              ? { currentTime: 0, playing: true }
+              : null),
+          },
+        };
+      }),
     })),
 
   // 双击视频卡片 = 从头重播 (SOURCE_FACT batch 24)
@@ -412,6 +427,21 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         if (n.id !== id || n.type !== "video") return n;
         const vd = n.data as JimengVideoNodeData;
         return { ...n, data: { ...vd, muted: !(vd.muted ?? true) } };
+      }),
+    })),
+
+  seek: (id, fraction) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return {
+          ...n,
+          data: {
+            ...vd,
+            currentTime: Math.min(1, Math.max(0, fraction)) * (vd.duration ?? 0),
+          },
+        };
       }),
     })),
 

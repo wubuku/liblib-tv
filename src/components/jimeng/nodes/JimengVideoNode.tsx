@@ -91,6 +91,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const tickPlay = useJimengStore((s) => s.tickPlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  const seek = useJimengStore((s) => s.seek);
   const onToggleMute = toggleMute;
 
   // 节点颜色标记 (SOURCE_FACT batch 31: 禁止 + 青/蓝/紫/橙/黄 五色)
@@ -319,14 +320,24 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
                 <Maximize2 size={13} />
               </button>
             </div>
-            {/* 底边进度条 2px */}
-            <div className="absolute inset-x-0 bottom-0 z-[2] h-[2px] bg-white/25">
-              <div
-                className="h-full bg-white/90"
-                style={{
-                  width: `${Math.min(100, ((d.currentTime ?? 0) / (d.duration || 1)) * 100)}%`,
-                }}
-              />
+            {/* 底边进度条 2px；点击 seek (Batch 32) */}
+            <div
+              className="absolute inset-x-0 bottom-0 z-[2] h-[6px] cursor-pointer bg-transparent"
+              data-testid="video-progress"
+              onClick={(e) => {
+                e.stopPropagation();
+                const r = e.currentTarget.getBoundingClientRect();
+                seek(id, (e.clientX - r.left) / r.width);
+              }}
+            >
+              <div className="absolute inset-x-0 bottom-0 h-[2px] bg-white/25">
+                <div
+                  className="h-full bg-white/90"
+                  style={{
+                    width: `${Math.min(100, ((d.currentTime ?? 0) / (d.duration || 1)) * 100)}%`,
+                  }}
+                />
+              </div>
             </div>
           </>
         ) : (
