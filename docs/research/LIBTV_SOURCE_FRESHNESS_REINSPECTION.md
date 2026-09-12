@@ -378,6 +378,7 @@ Required follow-up fixture:
 | 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
 | 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
 | 2026-09-13 | batch 425-435 探测 | still-broken | 第三十三~四十一次重测（心跳批次） |
+| 2026-09-13 | batch 436 探测 | still-broken | 第四十二次重测 |
 | 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
 | 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
 | 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
