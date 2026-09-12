@@ -7,6 +7,7 @@ import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
 import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
 import { JimengHistoryMenu } from "@/components/jimeng/JimengHistoryMenu";
 import { JimengMemberModal } from "@/components/jimeng/JimengMemberModal";
+import { JimengShortcutsPanel } from "@/components/jimeng/JimengShortcutsPanel";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -21,6 +22,7 @@ export function JimengTopBar() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
   return (
     <>
@@ -66,7 +68,12 @@ export function JimengTopBar() {
             >
               <CircleHelp size={16} />
             </button>
-            {helpOpen ? <JimengHelpMenu onClose={() => setHelpOpen(false)} /> : null}
+            {helpOpen ? (
+              <JimengHelpMenu
+                onClose={() => setHelpOpen(false)}
+                onOpenShortcuts={() => setShortcutsOpen(true)}
+              />
+            ) : null}
           </div>
         </div>
 
@@ -95,6 +102,9 @@ export function JimengTopBar() {
       </div>
       </header>
       {memberOpen ? <JimengMemberModal onClose={() => setMemberOpen(false)} /> : null}
+      {shortcutsOpen ? (
+        <JimengShortcutsPanel onClose={() => setShortcutsOpen(false)} />
+      ) : null}
     </>
   );
 }

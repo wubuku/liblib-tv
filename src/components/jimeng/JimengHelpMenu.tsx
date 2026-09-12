@@ -26,7 +26,13 @@ const HELP_ITEMS: { icon: LucideIcon; label: string }[] = [
   { icon: Terminal, label: "即梦CLI" },
 ];
 
-export function JimengHelpMenu({ onClose }: { onClose: () => void }) {
+export function JimengHelpMenu({
+  onClose,
+  onOpenShortcuts,
+}: {
+  onClose: () => void;
+  onOpenShortcuts?: () => void;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,6 +63,10 @@ export function JimengHelpMenu({ onClose }: { onClose: () => void }) {
           key={label}
           type="button"
           role="menuitem"
+          onClick={() => {
+            if (label === "快捷键") onOpenShortcuts?.();
+            onClose();
+          }}
           className="flex h-11 w-full items-center gap-2.5 rounded-lg px-2.5 text-[13px] text-white/85 hover:bg-white/10"
         >
           <Icon size={16} className="shrink-0 text-white/70" />

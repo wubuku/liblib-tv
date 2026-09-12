@@ -1,7 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ReactFlow, ReactFlowProvider } from "@xyflow/react";
+import {
+  ReactFlow,
+  ReactFlowProvider,
+  useReactFlow,
+} from "@xyflow/react";
 import type { NodeMouseHandler, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
@@ -45,6 +49,7 @@ function JimengFlow() {
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
   const setZoomPercent = useJimengStore((s) => s.setZoomPercent);
+  const { fitView } = useReactFlow();
   const copyNode = useJimengStore((s) => s.copyNode);
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
   const pasteNode = useJimengStore((s) => s.pasteNode);
@@ -109,6 +114,10 @@ function JimengFlow() {
       } else if (mod && e.key.toLowerCase() === "z" && e.shiftKey) {
         e.preventDefault();
         redo();
+      } else if (mod && e.key === "0") {
+        // 快捷键面板证据: ⌘0 = 适配画布 (Batch 18)
+        e.preventDefault();
+        void fitView({ duration: 300 });
       } else if (mod && e.key.toLowerCase() === "c" && selectedNodeId) {
         copyNode(selectedNodeId);
       } else if (mod && e.key.toLowerCase() === "d" && selectedNodeId) {
