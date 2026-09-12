@@ -115,8 +115,13 @@
 - SOURCE_FACT (batch 7): 顶栏 ? 弹出 240×272 rgb(34,34,34) r12 菜单:
   帮助中心 / 使用手册 / 快捷键 / AI生成水印设置 / 即梦CLI（顶部含租户名）。
 - SOURCE_FACT (batch 7): 左栏按钮 hover 无 tooltip，仅按钮高亮 rgba(255,255,255,0.12) r8。
-- BLOCKED_BY_FIXTURE: 提示词反推、智能超清、补帧（会提交生成任务消耗积分）；
-  下载（真实文件）、保存到主体库（写库）。复刻侧以 mock 面板呈现 (CLONE_DECISION)。
+- SOURCE_FACT (batch 9): 截取帧下拉「自定义」→ 节点下方帧选择条: 胶片帧条 (左侧
+  播放头竖线) + 底部行 ▶ 00:00 / 00:06 ｜ 📷 截取帧 ｜ 确认 (未截取禁用，
+  截取后确认可用)。
+- CLONE_DECISION (batch 8): 提示词反推为 mock 面板 (标题 + mock 反推文本 +
+  复制提示词 + 关闭)；源站点击会提交付费推理任务 (BLOCKED_BY_FIXTURE)。
+- BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
+  下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
 ## 8. 复刻侧实现映射（CLONE_DECISION）
 
