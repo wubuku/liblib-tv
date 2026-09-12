@@ -26,12 +26,12 @@ const RAIL_ITEMS: {
   icon: LucideIcon;
   label: string;
   beta?: boolean;
-  insert?: "video" | "image" | "text";
+  insert?: "video" | "image" | "text" | "audio";
 }[] = [
   { icon: Type, label: "文字", insert: "text" },
   { icon: Image, label: "图片", insert: "image" },
   { icon: SquarePlay, label: "视频", insert: "video" },
-  { icon: AudioLines, label: "音频" },
+  { icon: AudioLines, label: "音频", insert: "audio" },
   { icon: LayoutTemplate, label: "分镜" },
   { icon: SquareUser, label: "数字人" },
   { icon: Bot, label: "智能体", beta: true },
@@ -43,7 +43,7 @@ export function JimengToolRail() {
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
   const { screenToFlowPosition } = useReactFlow();
 
-  const insertAtCenter = (kind: "video" | "image" | "text") => {
+  const insertAtCenter = (kind: "video" | "image" | "text" | "audio") => {
     const el = document.querySelector(".jimeng-canvas");
     const position = screenToFlowPosition({
       x: el ? el.clientWidth / 2 : window.innerWidth / 2,

@@ -8,7 +8,7 @@ import type { Node } from "@xyflow/react";
  * 本文件是复刻侧的类型契约（CLONE_DECISION 命名加 Jimeng 前缀）。
  */
 
-export type JimengNodeKind = "video" | "image" | "text";
+export type JimengNodeKind = "video" | "image" | "text" | "audio";
 
 export interface JimengVideoNodeData extends Record<string, unknown> {
   /** 节点标题 (源站: 文件名 / "视频 1") */
@@ -45,7 +45,18 @@ export interface JimengTextNodeData extends Record<string, unknown> {
   height: number;
 }
 
+/** 音频节点 (Batch 19；样式 CLONE_DECISION 波形 mock 400×120) */
+export interface JimengAudioNodeData extends Record<string, unknown> {
+  title: string;
+  duration: number;
+  width: number;
+  height: number;
+}
+
 export type JimengNode = Node<
-  JimengVideoNodeData | JimengImageNodeData | JimengTextNodeData,
+  | JimengVideoNodeData
+  | JimengImageNodeData
+  | JimengTextNodeData
+  | JimengAudioNodeData,
   JimengNodeKind
 >;

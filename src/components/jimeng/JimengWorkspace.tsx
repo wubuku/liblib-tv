@@ -13,6 +13,7 @@ import { useJimengStore } from "@/store/jimengStore";
 import { JimengVideoNode } from "@/components/jimeng/nodes/JimengVideoNode";
 import { JimengImageNode } from "@/components/jimeng/nodes/JimengImageNode";
 import { JimengTextNode } from "@/components/jimeng/nodes/JimengTextNode";
+import { JimengAudioNode } from "@/components/jimeng/nodes/JimengAudioNode";
 import { JimengEdge } from "@/components/jimeng/JimengEdge";
 import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
 import { JimengToolRail } from "@/components/jimeng/JimengToolRail";
@@ -34,6 +35,7 @@ const nodeTypes = {
   video: JimengVideoNode,
   image: JimengImageNode,
   text: JimengTextNode,
+  audio: JimengAudioNode,
 };
 
 const edgeTypes = {

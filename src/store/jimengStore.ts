@@ -90,9 +90,9 @@ export interface JimengCanvasState {
   /** 播放交互 (Batch 15): 切换播放态 / mock 时间走动 */
   togglePlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
-  /** 插入节点 (Batch 17): 左栏 / + 菜单 */
+  /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
-    kind: "video" | "image" | "text",
+    kind: "video" | "image" | "text" | "audio",
     position: { x: number; y: number },
   ) => void;
   /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
@@ -422,6 +422,20 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
               ...base,
               type: "image" as const,
               data: { title: `图片 ${seq}`, width: 480, height: 360 },
+            },
+          ],
+        };
+      }
+      if (kind === "audio") {
+        return {
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "audio" as const,
+              data: { title: `音频 ${seq}`, duration: 15, width: 400, height: 120 },
             },
           ],
         };
