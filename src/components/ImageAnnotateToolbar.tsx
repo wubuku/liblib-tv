@@ -165,9 +165,10 @@ export function ImageAnnotateToolbar({
         <button
           type="button"
           data-image-annotate-save
-          aria-label="保存"
-          title="保存"
-          className="flex h-8 w-[56px] shrink-0 items-center justify-center rounded-lg bg-white text-[13px] text-[#202020] hover:bg-[#ededed]"
+          disabled
+          aria-label="保存（标注保存尚未接入，敬请期待）"
+          title="保存（标注保存尚未接入）"
+          className="flex h-8 w-[56px] shrink-0 items-center justify-center rounded-lg bg-white/[0.14] text-[13px] text-[#8d8d8d] cursor-not-allowed"
         >
           保存
         </button>

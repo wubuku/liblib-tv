@@ -1,0 +1,32 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-022 Slice D — command honesty pass",
+  "catalog": {
+    "element_edit": "EMPTY_EVIDENCE_GATED: tool toggles + disabled undo, no save/submit",
+    "annotate": "BITMAP_EDITOR: stroke width + disabled undo/redo, no save/export",
+    "subtitle_erase": "RECORD_EDITOR: history-gated undo/redo, generate gated by canSubmit",
+    "video_clip": "REQUEST_DRAFT: submit gated by a trimmed prompt"
+  },
+  "element_edit_honest": {
+    "undoDisabled": true,
+    "dishonestCommands": []
+  },
+  "annotate_honest": {
+    "undoRedoDisabled": true,
+    "dishonestCommands": []
+  },
+  "subtitle_honest": {
+    "smartEnabled": true,
+    "regionWithoutRegionsDisabled": true
+  },
+  "clip_submit_honest": {
+    "disabledWithoutPrompt": true,
+    "enabledWithPrompt": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
