@@ -178,33 +178,97 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
 
         {/* 价格卡 */}
         <div className="mt-8 grid grid-cols-4 gap-5">
-          {PLANS.map((plan) => (
-            <div
-              key={plan.name}
-              className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.04] p-5"
-            >
-              <p className="text-[15px] text-white/90">{plan.name}</p>
-              <p className="mt-3 text-white">
-                <span className="text-[15px]">¥</span>
-                <span className="text-[34px] font-semibold leading-none">
-                  {plan.price}
-                </span>
-                <span className="ml-1 text-[12px] text-white/55">每季</span>
-              </p>
-              <p className="mt-2 min-h-[40px] text-[12px] leading-[18px] text-white/45">
-                {plan.sub}
-              </p>
-              <div className="mt-auto rounded-xl bg-white/[0.05] p-3">
-                <p className="flex items-center gap-1 text-[13px] text-white/85">
-                  <VipDiamond size={11} /> {plan.credits}积分每月
-                </p>
-                <p className="mt-1 text-[11px] text-white/40">
-                  换算¥10={plan.rate}积分
-                </p>
-              </div>
-            </div>
+          {PLANS.map((plan, idx) => (
+            <PlanCard key={plan.name} plan={plan} isPremium={idx === 2} />
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * 高级会员卡积分滑块 (Batch 28)。
+ *
+ * 证据 (SOURCE_FACT): 高级会员卡有四档滑块，刻度 6.2K/12.3K/18.5K/27.7K，
+ * 默认选中 12.3K (=12320积分每月)。其余档位的积分数值未提取
+ * (CLONE_DECISION: 按刻度推算 6160/12320/18480/27690)，价格不随档位变化。
+ */
+const SLIDER_STOPS = [
+  { label: "6.2K", credits: 6160 },
+  { label: "12.3K", credits: 12320 },
+  { label: "18.5K", credits: 18480 },
+  { label: "27.7K", credits: 27690 },
+];
+
+function PlanCard({
+  plan,
+  isPremium,
+}: {
+  plan: (typeof PLANS)[number];
+  isPremium: boolean;
+}) {
+  const [stop, setStop] = useState(1);
+  const credits = isPremium ? SLIDER_STOPS[stop].credits : plan.credits;
+
+  return (
+    <div className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.04] p-5">
+      <p className="text-[15px] text-white/90">{plan.name}</p>
+      <p className="mt-3 text-white">
+        <span className="text-[15px]">¥</span>
+        <span className="text-[34px] font-semibold leading-none">
+          {plan.price}
+        </span>
+        <span className="ml-1 text-[12px] text-white/55">每季</span>
+      </p>
+      <p className="mt-2 min-h-[40px] text-[12px] leading-[18px] text-white/45">
+        {plan.sub}
+      </p>
+
+      {isPremium ? (
+        <div className="mb-3">
+          <div className="relative h-1 rounded-full bg-white/[0.12]">
+            <div
+              className="absolute inset-y-0 left-0 rounded-full bg-white/80 transition-all"
+              style={{ width: `${(stop / (SLIDER_STOPS.length - 1)) * 100}%` }}
+            />
+            {SLIDER_STOPS.map((s, i) => (
+              <button
+                key={s.label}
+                type="button"
+                aria-label={`积分档位 ${s.label}`}
+                onClick={() => setStop(i)}
+                className={`absolute top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-colors ${
+                  i === stop
+                    ? "border-white bg-white"
+                    : "border-white/50 bg-[#202020] hover:border-white/80"
+                }`}
+                style={{ left: `${(i / (SLIDER_STOPS.length - 1)) * 100}%` }}
+              />
+            ))}
+          </div>
+          <div className="mt-2 flex justify-between text-[11px] text-white/40">
+            {SLIDER_STOPS.map((s, i) => (
+              <span key={s.label} className={i === stop ? "text-white/80" : ""}>
+                {s.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="mb-3" />
+      )}
+
+      <div className="mt-auto rounded-xl bg-white/[0.05] p-3">
+        <p
+          className="flex items-center gap-1 text-[13px] text-white/85"
+          data-testid="plan-credits"
+        >
+          <VipDiamond size={11} /> {credits}积分每月
+        </p>
+        <p className="mt-1 text-[11px] text-white/40">
+          换算¥10={plan.rate}积分
+        </p>
       </div>
     </div>
   );
