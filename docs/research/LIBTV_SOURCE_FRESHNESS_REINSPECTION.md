@@ -384,6 +384,7 @@ Required follow-up fixture:
 | 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
 | 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
 | 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
+| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
 | 2026-09-12 | batch 397 探测 | still-broken | 第十七次重测 |
 | 2026-09-12 | batch 398 探测 | still-broken | 第十八次重测 |
 | 2026-09-12 | batch 399 探测 | still-broken | 第十九次重测；jimeng 路线仍为 batch 8 |
