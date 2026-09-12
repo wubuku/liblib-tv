@@ -98,6 +98,9 @@ export interface JimengCanvasState {
   togglePlay: (id: string) => void;
   restartPlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
+  /** 编组 (Batch 39): ⌘G 创建编组 / ⌘⇧G 取消编组 (快捷键面板 SOURCE_FACT) */
+  groupSelected: () => void;
+  ungroupSelected: () => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
@@ -178,7 +181,35 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         (c): c is Extract<NodeChange<JimengNode>, { type: "select" }> =>
           c.type === "select",
       );
-      const nodes = applyNodeChanges(changes, state.nodes);
+
+      // 编组联动 (Batch 39): 拖拽编组内节点时，同组节点跟随相同位移
+      const expanded: NodeChange<JimengNode>[] = [...changes];
+      const byId = new Map(state.nodes.map((n) => [n.id, n]));
+      for (const c of changes) {
+        if (c.type !== "position" || !c.position) continue;
+        const src = byId.get(c.id);
+        const gid = src?.groupId;
+        if (!gid || !src) continue;
+        const dx = c.position.x - src.position.x;
+        const dy = c.position.y - src.position.y;
+        for (const other of state.nodes) {
+          if (other.id === c.id || other.groupId !== gid) continue;
+          if (expanded.some((e) => e.type === "position" && e.id === other.id))
+            continue;
+          expanded.push({
+            id: other.id,
+            type: "position",
+            position: {
+              x: other.position.x + dx,
+              y: other.position.y + dy,
+            },
+            dragging: (c as { dragging?: boolean }).dragging,
+          });
+        }
+      }
+      const all = expanded as NodeChange<JimengNode>[];
+
+      const nodes = applyNodeChanges(all, state.nodes);
       if (selectChanges.length > 0) {
         const lastSelected = [...selectChanges]
           .reverse()
@@ -424,8 +455,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     })),
 
   // 双击视频卡片 = 从头重播 (SOURCE_FACT batch 24)
-  restartPlay: (id) =>
-    set((state) => ({
+  restartPlay: (id) =>    set((state) => ({
       nodes: state.nodes.map((n) => {
         if (n.id !== id || n.type !== "video") return n;
         const vd = n.data as JimengVideoNodeData;
@@ -444,6 +474,26 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         const vd = n.data as JimengVideoNodeData;
         return { ...n, data: { ...vd, muted: !(vd.muted ?? true) } };
       }),
+    })),
+
+  groupSelected: () =>
+    set((state) => {
+      const ids = state.nodes.filter((n) => n.selected).map((n) => n.id);
+      if (ids.length < 2) return state;
+      const gid = `group-${Date.now()}`;
+      return {
+        nodes: state.nodes.map((n) =>
+          ids.includes(n.id) ? { ...n, groupId: gid } : n,
+        ),
+      };
+    }),
+
+  ungroupSelected: () =>
+    // CLONE_DECISION: 清除画布上全部编组（源站语义为取消选中组的编组）
+    set((state) => ({
+      nodes: state.nodes.map((n) =>
+        n.groupId ? { ...n, groupId: undefined } : n,
+      ),
     })),
 
   seek: (id, fraction) =>

@@ -88,6 +88,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const pickerMode = framePickerNodeId === id;
   const trimMode = trimNodeId === id;
   const task = tasks.find((t) => t.nodeId === id);
+  const groupId = useJimengStore((s) =>
+    s.nodes.find((n) => n.id === id)?.groupId,
+  );
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const restartPlay = useJimengStore((s) => s.restartPlay);
   const tickPlay = useJimengStore((s) => s.tickPlay);
@@ -122,6 +125,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       className="group relative"
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
+      data-group-id={groupId}
     >
       {/* 选中后弹出的操作工具条 / 编辑态 / 反推面板 / 空节点生成面板 */}
       {d.hasMedia && repaintMode ? (

@@ -65,4 +65,7 @@ export type JimengNode = Node<
   | JimengTextNodeData
   | JimengAudioNodeData,
   JimengNodeKind
->;
+> & {
+  /** 编组 id (Batch 39；同组节点拖拽联动，⌘G/⌘⇧G) */
+  groupId?: string;
+};

@@ -76,6 +76,8 @@ function JimengFlow() {
   const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
   const toolActive = useJimengStore((s) => s.toolActive);
   const setToolActive = useJimengStore((s) => s.setToolActive);
+  const groupSelected = useJimengStore((s) => s.groupSelected);
+  const ungroupSelected = useJimengStore((s) => s.ungroupSelected);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -200,6 +202,14 @@ function JimengFlow() {
         // 快捷键面板证据: ⌘- 缩小 (Batch 21)
         e.preventDefault();
         void zoomOut({ duration: 200 });
+      } else if (mod && e.key.toLowerCase() === "g" && e.shiftKey) {
+        // 快捷键面板证据: ⌘⇧G = 取消编组 (Batch 39)
+        e.preventDefault();
+        ungroupSelected();
+      } else if (mod && e.key.toLowerCase() === "g") {
+        // 快捷键面板证据: ⌘G = 创建编组 (Batch 39)
+        e.preventDefault();
+        groupSelected();
       } else if (mod && e.key.toLowerCase() === "c" && selectedNodeId) {
         copyNode(selectedNodeId);
       } else if (mod && e.key.toLowerCase() === "d" && selectedNodeId) {
@@ -232,6 +242,8 @@ function JimengFlow() {
     zoomOut,
     getViewport,
     setViewport,
+    groupSelected,
+    ungroupSelected,
   ]);
 
   const onMove = useCallback<OnMove>(
