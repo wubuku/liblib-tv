@@ -250,14 +250,14 @@ export default function Home() {
   const viewportOwnershipRef = useRef<Map<string, LibTVViewportOwnership>>(
     new Map([["canvas-2", "bootstrap"]]),
   );
-  const [organizeSnapshot, setOrganizeSnapshot] = useState<{ nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
+  const [organizeSnapshot, setOrganizeSnapshot] = useState<{ canvasId: string; nodes: Node[]; viewport: { x: number; y: number; zoom: number } } | null>(null);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   // Batch 172/173: 画布右键菜单位置与变体（视口坐标）；null = 关闭。
   const [canvasContextMenu, setCanvasContextMenu] = useState<CanvasContextMenuTarget | null>(null);
   const historyStack = historyByCanvas[activeCanvasId];
   const canUndo = (historyStack?.past.length ?? 0) > 0;
   const canRedo = (historyStack?.future.length ?? 0) > 0;
-  const dragHistorySnapshot = useRef<{ snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
+  const dragHistorySnapshot = useRef<{ canvasId: string; snapshot: GraphSnapshot; nodeIds: string[] } | null>(null);
   const connectionGesture = useRef<{
     nodeId: string | null;
     handleId: string | null;
@@ -710,7 +710,7 @@ export default function Home() {
       flowContainerRef.current?.clientWidth ?? window.innerWidth,
     );
 
-    setOrganizeSnapshot({ nodes, viewport: currentViewport });
+    setOrganizeSnapshot({ canvasId: activeCanvasId, nodes, viewport: currentViewport });
     selectNode(null);
     setStoreNodes(organized, { recordHistory: true });
     applyViewportEvent(activeCanvasId, organizedViewport);
@@ -725,11 +725,27 @@ export default function Home() {
 
   const restoreOrganize = () => {
     if (organizeSnapshot) {
-      setStoreNodes(organizeSnapshot.nodes, { recordHistory: true });
-      applyViewportEvent(activeCanvasId, organizeSnapshot.viewport);
+      // Batch 436 (VR-017 Slice B / GC-047): the restore transaction belongs
+      // to the canvas it was armed on — never apply it to a new active canvas.
+      const currentCanvasId = useCanvasStore.getState().activeCanvasId;
+      if (currentCanvasId === organizeSnapshot.canvasId) {
+        setStoreNodes(organizeSnapshot.nodes, { recordHistory: true });
+        applyViewportEvent(organizeSnapshot.canvasId, organizeSnapshot.viewport);
+      }
     }
     setOrganizeSnapshot(null);
   };
+
+  // Batch 436 (VR-017 Slice B / §5.5): page transactions are owner-scoped.
+  // The organize strip derives its visibility from the arming canvas, so it
+  // goes inert the moment another canvas is active; the anonymous holders
+  // are cleared outright on switch because nothing downstream reads them.
+  const liveOrganizeSnapshot =
+    organizeSnapshot?.canvasId === activeCanvasId ? organizeSnapshot : null;
+  useEffect(() => {
+    dragHistorySnapshot.current = null;
+    connectionGesture.current = null;
+  }, [activeCanvasId]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 768px)");
@@ -1036,13 +1052,21 @@ export default function Home() {
               }
               const { selectedNodeIds: selectedIds } = useCanvasStore.getState();
               dragHistorySnapshot.current = {
+                canvasId: currentCanvas.id,
                 snapshot: { nodes: currentCanvas.nodes, edges: currentCanvas.edges },
                 nodeIds: selectedIds.includes(node.id) ? selectedIds : [node.id],
               };
             }}
             onNodeDragStop={(_, node) => {
-              const currentNodes = useCanvasStore.getState().getActiveCanvas()?.nodes ?? [];
+              const state = useCanvasStore.getState();
+              const currentNodes = state.getActiveCanvas()?.nodes ?? [];
               const transaction = dragHistorySnapshot.current;
+              if (transaction && transaction.canvasId !== state.activeCanvasId) {
+                // Batch 436 (VR-017 Slice B / GC-048): a drag baseline armed on
+                // another canvas must not record history against this one.
+                dragHistorySnapshot.current = null;
+                return;
+              }
               if (transaction) {
                 const moved = transaction.nodeIds.some((id) => {
                   const before = transaction.snapshot.nodes.find((item) => item.id === id);
@@ -1164,7 +1188,7 @@ export default function Home() {
         onZoomTo={zoomTo}
       />
 
-      {organizeSnapshot && (
+      {liveOrganizeSnapshot && (
         <div
           data-organize-confirmation
           className="fixed bottom-[53px] left-[49px] z-[72] flex min-h-[88px] w-[168px] flex-col rounded-[10px] border border-white/[0.08] bg-[#262626] p-3 text-xs text-[#dedede] shadow-[0_14px_40px_rgba(0,0,0,0.5)] max-sm:bottom-[106px] max-sm:left-3"

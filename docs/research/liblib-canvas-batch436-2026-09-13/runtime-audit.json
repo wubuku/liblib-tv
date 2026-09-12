@@ -1,0 +1,55 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-017 Slice B — page transaction invalidation (§5.5, GC-047/048)",
+  "implementation": [
+    "organize snapshot + drag baseline carry arming canvasId",
+    "organize strip visibility derives from arming canvas (inert on other canvases)",
+    "restoreOrganize refuses cross-canvas apply",
+    "late cross-canvas drag stop records nothing",
+    "activeCanvasId change clears drag/connection holders (refs)"
+  ],
+  "drag_history_regression": {
+    "nodeId": "g-245IDFh8sB",
+    "before": {
+      "activeCanvasId": "canvas-2",
+      "nodeCount": 10,
+      "positions": "[[\"g-245IDFh8sB\",{\"x\":2112,\"y\":656}],[\"g-EFbbHpwq5w\",{\"x\":2374,\"y\":-12}],[\"t-9j2MoccxBj\",{\"x\":108,\"y\":-125}],[\"i-1FQ9tErTcC\",{\"x\":132,\"y\":273}],[\"i-lBzmo67AHv\",{\"x\":410,\"y\":932}],[\"i-dnwoZQ7jsG\",{\"x\":410,\"y\":1332}],[\"i-vxeeCnxySa\",{\"x\":410,\"y\":1732}],[\"b-bTLLuU4w5q\",{\"x\":1068,\"y\":-187}],[\"i-YDfWhFlthe\",{\"x\":1580,\"y\":-300}],[\"v-UGQZzZOpbv\",{\"x\":62,\"y\":62}]]",
+      "pastLength": 0,
+      "futureLength": 0
+    },
+    "after": {
+      "activeCanvasId": "canvas-2",
+      "nodeCount": 10,
+      "positions": "[[\"g-245IDFh8sB\",{\"x\":2262.1901140684413,\"y\":754.8593155893537}],[\"g-EFbbHpwq5w\",{\"x\":2374,\"y\":-12}],[\"t-9j2MoccxBj\",{\"x\":108,\"y\":-125}],[\"i-1FQ9tErTcC\",{\"x\":132,\"y\":273}],[\"i-lBzmo67AHv\",{\"x\":410,\"y\":932}],[\"i-dnwoZQ7jsG\",{\"x\":410,\"y\":1332}],[\"i-vxeeCnxySa\",{\"x\":410,\"y\":1732}],[\"b-bTLLuU4w5q\",{\"x\":1068,\"y\":-187}],[\"i-YDfWhFlthe\",{\"x\":1580,\"y\":-300}],[\"v-UGQZzZOpbv\",{\"x\":62,\"y\":62}]]",
+      "pastLength": 1,
+      "futureLength": 0
+    }
+  },
+  "organize_switch_cancel": {
+    "organized": {
+      "activeCanvasId": "canvas-2",
+      "nodeCount": 10,
+      "positions": "[[\"g-245IDFh8sB\",{\"x\":1640,\"y\":370}],[\"g-EFbbHpwq5w\",{\"x\":1640,\"y\":940}],[\"t-9j2MoccxBj\",{\"x\":2500,\"y\":0}],[\"i-1FQ9tErTcC\",{\"x\":0,\"y\":900}],[\"i-lBzmo67AHv\",{\"x\":0,\"y\":0}],[\"i-dnwoZQ7jsG\",{\"x\":-85,\"y\":1350}],[\"i-vxeeCnxySa\",{\"x\":-85,\"y\":450}],[\"b-bTLLuU4w5q\",{\"x\":910,\"y\":470}],[\"i-YDfWhFlthe\",{\"x\":820,\"y\":1040}],[\"v-UGQZzZOpbv\",{\"x\":62,\"y\":62}]]",
+      "pastLength": 2,
+      "futureLength": 0
+    },
+    "targetCanvasId": "canvas-1",
+    "targetUntouched": true,
+    "stripInertWhileOtherCanvasActive": true,
+    "ownerScopedRestoreWorksOnArmingCanvas": true
+  },
+  "not_browser_asserted": [
+    "connectionGesture stale window (holder never read; cleared on switch)",
+    "late drag stop cross-canvas branch (React Flow remount closes the window; guarded in code)"
+  ],
+  "remaining_vr017_gaps": [
+    "demo viewport ownership remainder (resize anchor, live/stable endpoint)",
+    "async/resource isolation (Slice E)"
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

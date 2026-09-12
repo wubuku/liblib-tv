@@ -203,11 +203,18 @@
   所截帧时间（`updateNodeData` currentTime）；首帧/尾帧预设即时可用，
   确认 seek 到 0/时长。深化 batch 9 帧选择器（预选播放头 → 写回节点）
   与 batch 10 截取帧下拉语义（源站确认后的节点 seek 态未采样）。
+- CLONE_DECISION (batch 35): 自定义帧捕获确认后将 `capturedFrame` 写入
+  节点数据，卡片左上显示 相机+时间 badge；帧选择器确认传递帧时间
+  （batch 34 链路延续）。
+- CLONE_DECISION (batch 36): badge 交互 — 点击 badge seek 区将节点
+  currentTime 跳到所截帧；badge × 清除所截帧；两者 stopPropagation
+  避免节点选中/拖拽副作用（源站 badge 交互未采样）。
 - 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
   66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
   消息与代码审读转录；§7 原有直采条目止于 batch 27。batch 33 条目同法
   补录（commit 58edecb，batch 434 对照批）。batch 34 条目同法补录
-  （commit 5422c94，batch 434 对照批）。
+  （commit 5422c94，batch 434 对照批）。batch 35/36 条目同法补录
+  （commits 31a954e / 2c39b4b，batch 436 对照批）。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
