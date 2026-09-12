@@ -141,6 +141,29 @@
   四档价格卡 基础¥188 / 标准¥568 / 高级¥1959(划线¥2798, 首季7.1折) /
   超级¥8189(划线¥16999)，卡底 ✦积分每月 (725/2210/12320/54600) + 换算行。
   CLONE_DECISION: 促销倒计时简化为静态渐变条。
+- SOURCE_FACT (batch 18): 帮助菜单「快捷键」打开右侧快捷键面板 (≈242px 宽):
+  通用操作 — 打开/关闭 Agent ⌘/ · 撤销 ⌘Z · 还原 ⌘⇧Z|⌘Y · 移动工具 V ·
+  全屏 F · 创建编组 ⌘G · 取消编组 ⌘⇧G；视图 — 放大 ⌘+ · 缩小 ⌘− ·
+  适配画布 ⇧1|⌘0 · 缩放至100% ⌘1 · 缩放至选中项 ⇧2 · 缩放画布 ⌘ scroll；
+  另有时间线分区 (被截断，BLOCKED_BY_FIXTURE)。
+- SOURCE_FACT (batch 21, 导航语义): 空白左键拖拽**不平移**；普通滚轮 = 垂直平移
+  (free)；ctrl+滚轮 = 缩放 (scale 1→1.2 实测)。中键拖拽平移为 CLONE_DECISION。
+- SOURCE_FACT (batch 22): 点击头像展开与帮助菜单同构的账号菜单 (租户名头 +
+  帮助中心/使用手册/快捷键/AI生成水印设置/即梦CLI)。
+- CLONE_DECISION (batch 14): 撤销/重做历史栈 (past/future 快照，图结构变更时
+  入栈) + 键盘 ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete。
+- CLONE_DECISION (batch 15): 视频播放 mock — 播放/暂停切换 + 0.25s tick 走动
+  + 播完自停。
+- CLONE_DECISION (batch 16): 连线视觉 — bezier rgba(255,255,255,0.32) 1.5px，
+  选中白色 2px；源站 canvas 边的确切视觉 BLOCKED_BY_FIXTURE。
+  多选 = Shift+点击 (multiSelectionKeyCode)。
+- CLONE_DECISION (batch 17/19): 图片节点 480×360 占位 / 文字节点 320×200 mock
+  文本 / 音频节点 400×120 波形 (伪随机 44 条 + 00:15)；左栏 文字/图片/视频/音频
+  点击在画布中央插入对应节点；+ 菜单 图片/文本/音频 在源节点旁创建。
+- CLONE_DECISION (batch 20): V 切换 select/move 工具态 (dock 按钮高亮同步)；
+  F = 浏览器全屏 (源站全屏语义未验证)。
+- CLONE_DECISION (batch 22 实现): 帮助/? 与头像共用单一账号菜单实例，
+  锚定头像下方 (源站两处菜单同构)。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 

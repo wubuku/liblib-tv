@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useReactFlow } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";

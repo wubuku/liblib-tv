@@ -71,6 +71,19 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* ---- 任务 toast 自动消失 (Batch 11/22 lint 修正: CSS 动画替代 effect setState) ---- */
+@keyframes jimeng-toast-hide {
+  0%,
+  82% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 /* ---- 隐藏 xyflow attribution (原型) ---- */
 .jimeng-canvas .react-flow__attribution {
   display: none;
