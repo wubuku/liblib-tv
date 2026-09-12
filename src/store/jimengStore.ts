@@ -55,6 +55,8 @@ export interface JimengCanvasState {
   /** "+" 手柄菜单 → 新建视频节点 (右侧 160 间距) 并连线 (Batch 4) */
   addVideoNodeAfter: (sourceId: string) => void;
   removeNode: (id: string) => void;
+  /** 批量删除选中节点 (Batch 38 多选深化)，单条历史记录 */
+  removeNodes: (ids: string[]) => void;
   duplicateNode: (id: string) => void;
   /** 右键菜单 复制/粘贴 (Batch 4) */
   clipboard: JimengNode | null;
@@ -102,11 +104,8 @@ export interface JimengCanvasState {
   seek: (id: string, fraction: number) => void;
   /** 修剪确认 (Batch 33): 裁剪后的时长写回节点并入撤销栈 (mock: 只改时长数据) */
   applyTrim: (id: string, trimmedDuration: number) => void;
-  /** 节点数据 patch (Batch 31: 颜色标记等) */
-  updateNodeData: (
-    id: string,
-    patch: Partial<JimengVideoNodeData>,
-  ) => void;
+  /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
+  updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
     kind: "video" | "image" | "text" | "audio",
@@ -252,6 +251,21 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       edges: state.edges.filter((e) => e.source !== id && e.target !== id),
       selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
     })),
+
+  // 批量删除选中节点 (Batch 38 多选深化)，单条历史记录
+  removeNodes: (ids) =>
+    set((state) => {
+      if (!ids.length) return state;
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: state.nodes.filter((n) => !ids.includes(n.id)),
+        edges: state.edges.filter(
+          (e) => !ids.includes(e.source) && !ids.includes(e.target),
+        ),
+        selectedNodeId: null,
+      };
+    }),
 
   duplicateNode: (id) =>
     set((state) => {
@@ -469,9 +483,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   updateNodeData: (id, patch) =>
     set((state) => ({
       nodes: state.nodes.map((n) => {
-        if (n.id !== id || n.type !== "video") return n;
-        const vd = n.data as JimengVideoNodeData;
-        return { ...n, data: { ...vd, ...patch } };
+        if (n.id !== id) return n;
+        return { ...n, data: { ...n.data, ...patch } };
       }),
     })),
 

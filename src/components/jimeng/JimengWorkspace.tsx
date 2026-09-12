@@ -63,6 +63,7 @@ function JimengFlow() {
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
   const pasteNode = useJimengStore((s) => s.pasteNode);
   const removeNode = useJimengStore((s) => s.removeNode);
+  const removeNodes = useJimengStore((s) => s.removeNodes);
   const exitRepaint = useJimengStore((s) => s.exitRepaint);
   const exitEdit = useJimengStore((s) => s.exitEdit);
   const exitInfer = useJimengStore((s) => s.exitInfer);
@@ -125,11 +126,18 @@ function JimengFlow() {
       if (action === "copy") copyNode(contextMenu.nodeId);
       if (action === "duplicate") duplicateNode(contextMenu.nodeId);
       if (action === "paste") pasteNode();
-      if (action === "delete") removeNode(contextMenu.nodeId);
+      if (action === "delete") {
+        // 多选时批量删除选中节点 (Batch 38)
+        const selectedIds = nodes
+          .filter((n) => n.selected)
+          .map((n) => n.id);
+        if (selectedIds.length > 1) removeNodes(selectedIds);
+        else removeNode(contextMenu.nodeId);
+      }
       if (action === "undo") undo();
       if (action === "redo") redo();
     },
-    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, undo, redo],
+    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, removeNodes, undo, redo, nodes],
   );
 
   // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace
