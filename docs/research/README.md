@@ -284,6 +284,182 @@
 
 Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATION.md`; additional `*.spec.md`, JSON and screenshot analysis files are the detailed contract.
 
+| 121 | 顶栏新鲜度对齐（2026-09-06 源站） | [`liblib-canvas-batch121-2026-09-06/`](liblib-canvas-batch121-2026-09-06/) |
+| 122 | 工具箱预设完整性验证（采样 vs clone） | [`liblib-canvas-batch122-2026-09-06/`](liblib-canvas-batch122-2026-09-06/) |
+| 126 | 高级设置内联行（视频面板） | [`liblib-canvas-batch126-2026-09-06/`](liblib-canvas-batch126-2026-09-06/) |
+| 128 | 尝试芯片驱动设置联动 | [`liblib-canvas-batch128-2026-09-06/`](liblib-canvas-batch128-2026-09-06/) |
+| 131 | 第二轮全量 verifier 串行回归 + 三项修复 | [`liblib-canvas-batch131-2026-09-06/`](liblib-canvas-batch131-2026-09-06/) |
+| 143 | 视频面板默认时长 6s→5s（源站对齐） | [`liblib-canvas-batch143-2026-09-07/`](liblib-canvas-batch143-2026-09-07/) |
+| 145 | 视频面板默认状态对齐（时长/模式标签） | [`liblib-canvas-batch145-2026-09-07/`](liblib-canvas-batch145-2026-09-07/) |
+| 146 | 视频面板样式审计 | [`liblib-canvas-batch146-2026-09-07/`](liblib-canvas-batch146-2026-09-07/) |
+| 147 | /project 页面项目卡 hover 效果 | [`liblib-canvas-batch147-2026-09-07/`](liblib-canvas-batch147-2026-09-07/) |
+| 170 | 画布顶栏工作区重命名输入（源站 2026-09-07 顶栏采样） | [`liblib-canvas-batch170-2026-09-07/`](liblib-canvas-batch170-2026-09-07/) |
+| 221 | script-v2 编辑器入口采样（部分完成，页面状态阻塞） | [`liblib-canvas-batch221-2026-09-09/`](liblib-canvas-batch221-2026-09-09/) |
+| 222 | 参考选择模式交互采样（部分完成） | [`liblib-canvas-batch222-2026-09-09/`](liblib-canvas-batch222-2026-09-09/) |
+| 225 | 稳定性确认 | [`liblib-canvas-batch225-2026-09-09/`](liblib-canvas-batch225-2026-09-09/) |
+| 233 | 稳定性确认 | [`liblib-canvas-batch233-2026-09-09/`](liblib-canvas-batch233-2026-09-09/) |
+| 235 | Agent 抽屉模型目录一致性确认 | [`liblib-canvas-batch235-2026-09-09/`](liblib-canvas-batch235-2026-09-09/) |
+| 236 | 模型切换长视频态重置 + 4K 随模型 + 积分模型对照（源站 2026-09-09 直采） | [`liblib-canvas-batch236-2026-09-09/`](liblib-canvas-batch236-2026-09-09/) |
+| 237 | 首帧芯片真实行为 + 模型平价率定价 + Fast VIP 清晰度表（源站 2026-09-09 直采） | [`liblib-canvas-batch237-2026-09-09/`](liblib-canvas-batch237-2026-09-09/) |
+| 238 | 模型平价率定价决定性直证 + 2.0 Mini 数据（源站 2026-09-09 直采） | [`liblib-canvas-batch238-2026-09-09/`](liblib-canvas-batch238-2026-09-09/) |
+| 239 | 首帧自动图片节点流复刻（源站 2026-09-09 采样落地） | [`liblib-canvas-batch239-2026-09-09/`](liblib-canvas-batch239-2026-09-09/) |
+| 240 | 模型族平价率补全 + 分辨率定价直证 + 模型默认清晰度（源站 2026-09-09 直采） | [`liblib-canvas-batch240-2026-09-09/`](liblib-canvas-batch240-2026-09-09/) |
+| 241 | 剩余模型数据点补采 + 首帧态页脚变体发现（源站 2026-09-09 直采） | [`liblib-canvas-batch241-2026-09-09/`](liblib-canvas-batch241-2026-09-09/) |
+| 242 | 首帧态模型锁定证伪 + Pixverse 费率 + OmniHuman 数据点（源站 2026-09-09 直采） | [`liblib-canvas-batch242-2026-09-09/`](liblib-canvas-batch242-2026-09-09/) |
+| 243 | 菜单末两行采样受阻记录（Style Video / Kling3.0 动作迁移） | [`liblib-canvas-batch243-2026-09-09/`](liblib-canvas-batch243-2026-09-09/) |
+| 244 | 首帧参考槽「销毁」按钮复刻（源站 2026-09-09 截图落地） | [`liblib-canvas-batch244-2026-09-09/`](liblib-canvas-batch244-2026-09-09/) |
+| 245 | 全量稳定性确认（178 脚本全量跑 + 差分定位 + batch125 合同迁移 WIP） | [`liblib-canvas-batch245-2026-09-09/`](liblib-canvas-batch245-2026-09-09/) |
+| 246 | batch125 WIP 收尾：`.first` 节点选择歧义根因与修复 | [`liblib-canvas-batch246-2026-09-09/`](liblib-canvas-batch246-2026-09-09/) |
+| 247 | 批 125 修复后全量稳定性确认 | [`liblib-canvas-batch247-2026-09-09/`](liblib-canvas-batch247-2026-09-09/) |
+| 248 | 工具行 pill 集随模型分布 + OmniHuman 1.5 特殊面板发现（源站 2026-09-09 直采） | [`liblib-canvas-batch248-2026-09-09/`](liblib-canvas-batch248-2026-09-09/) |
+| 249 | OmniHuman 1.5 特殊面板受控实施（源站 2026-09-09 采样落地） | [`liblib-canvas-batch249-2026-09-09/`](liblib-canvas-batch249-2026-09-09/) |
+| 250 | OmniHuman/pill 集两批功能后全量稳定性确认 | [`liblib-canvas-batch250-2026-09-09/`](liblib-canvas-batch250-2026-09-09/) |
+| 251 | 首尾帧生成视频芯片流采样（源站 2026-09-09 直采） | [`liblib-canvas-batch251-2026-09-09/`](liblib-canvas-batch251-2026-09-09/) |
+| 252 | 首尾帧生成视频芯片流受控实施（源站 2026-09-09 采样落地） | [`liblib-canvas-batch252-2026-09-09/`](liblib-canvas-batch252-2026-09-09/) |
+| 253 | batch 252 后全量稳定性确认 + batch128 合同迁移 | [`liblib-canvas-batch253-2026-09-10/`](liblib-canvas-batch253-2026-09-10/) |
+| 254 | 首尾帧态芯片消失/恢复补采 + 155 读数修正（源站 2026-09-10 直采） | [`liblib-canvas-batch254-2026-09-10/`](liblib-canvas-batch254-2026-09-10/) |
+| 255 | attempt 持久化迁移至节点数据（源站收敛，batch 254 发散收敛） | [`liblib-canvas-batch255-2026-09-10/`](liblib-canvas-batch255-2026-09-10/) |
+| 256 | attempt 迁移后全量稳定性确认 | [`liblib-canvas-batch256-2026-09-10/`](liblib-canvas-batch256-2026-09-10/) |
+| 257 | OmniHuman 音频需求机制发现（源站 2026-09-10 直采） | [`liblib-canvas-batch257-2026-09-10/`](liblib-canvas-batch257-2026-09-10/) |
+| 258 | 音频节点连线配方进展（源站 2026-09-10） | [`liblib-canvas-batch258-2026-09-10/`](liblib-canvas-batch258-2026-09-10/) |
+| 259 | 音频连线迭代：未建立连接 + 多把手假设（源站 2026-09-10） | [`liblib-canvas-batch259-2026-09-10/`](liblib-canvas-batch259-2026-09-10/) |
+| 260 | OmniHuman 音频满足路径探测：无上传供体确认（源站 2026-09-10） | [`liblib-canvas-batch260-2026-09-10/`](liblib-canvas-batch260-2026-09-10/) |
+| 261 | Probe B 定论：单 target 把手，拖拽连线被拒（源站 2026-09-10） | [`liblib-canvas-batch261-2026-09-10/`](liblib-canvas-batch261-2026-09-10/) |
+| 262 | UI 层去选重选验证收敛 + 维护集稳定性确认 | [`liblib-canvas-batch262-2026-09-10/`](liblib-canvas-batch262-2026-09-10/) |
+| 263 | 资产管理抽屉重采漂移 + 图片节点生成面板发现（源站 2026-09-10 直采） | [`liblib-canvas-batch263-2026-09-10/`](liblib-canvas-batch263-2026-09-10/) |
+| 264 | 资产抽屉漂移对齐实施（源站 2026-09-10 采样落地） | [`liblib-canvas-batch264-2026-09-10/`](liblib-canvas-batch264-2026-09-10/) |
+| 265 | 图片节点生成面板采样（部分受控读数，源站 2026-09-10） | [`liblib-canvas-batch265-2026-09-10/`](liblib-canvas-batch265-2026-09-10/) |
+| 266 | 图片面板默认态确证（源站 2026-09-10 直采） | [`liblib-canvas-batch266-2026-09-10/`](liblib-canvas-batch266-2026-09-10/) |
+| 267 | 图片高清芯片定性：一键预设生成动作（源站 2026-09-10 直采） | [`liblib-canvas-batch267-2026-09-10/`](liblib-canvas-batch267-2026-09-10/) |
+| 268 | 图片高清一键预设生成 clone 实施（源站 2026-09-10 采样落地） | [`liblib-canvas-batch268-2026-09-10/`](liblib-canvas-batch268-2026-09-10/) |
+| 269 | 图片高清实施后全量稳定性确认 | [`liblib-canvas-batch269-2026-09-10/`](liblib-canvas-batch269-2026-09-10/) |
+| 270 | 预设容器标题行探测：无折叠控件，标题可编辑（源站 2026-09-10） | [`liblib-canvas-batch270-2026-09-10/`](liblib-canvas-batch270-2026-09-10/) |
+| 272 | CDP 原生事件配方尝试：Style Video / 动作迁移维持 BLOCKED（源站 2026-09-10） | [`liblib-canvas-batch272-2026-09-10/`](liblib-canvas-batch272-2026-09-10/) |
+| 273 | Agent 抽屉重采：第五种 headline 漂移对齐（源站 2026-09-10 直采） | [`liblib-canvas-batch273-2026-09-10/`](liblib-canvas-batch273-2026-09-10/) |
+| 274 | headline 变更后维护集稳定性确认 | [`liblib-canvas-batch274-2026-09-10/`](liblib-canvas-batch274-2026-09-10/) |
+| 275 | 提交后会员付费墙发现（源站 2026-09-10 直采） | [`liblib-canvas-batch275-2026-09-10/`](liblib-canvas-batch275-2026-09-10/) |
+| 276 | 2.5 提交同样被会员门拦截（源站 2026-09-10 直采） | [`liblib-canvas-batch276-2026-09-10/`](liblib-canvas-batch276-2026-09-10/) |
+| 277 | 免费模型切换确证 + 提交未生效（源站 2026-09-10） | [`liblib-canvas-batch277-2026-09-10/`](liblib-canvas-batch277-2026-09-10/) |
+| 278 | 提交深度复核终局：账号态限制确认（源站 2026-09-10） | [`liblib-canvas-batch278-2026-09-10/`](liblib-canvas-batch278-2026-09-10/) |
+| 279 | 维护集稳定性确认 + batch 278 残留清理 | [`liblib-canvas-batch279-2026-09-10/`](liblib-canvas-batch279-2026-09-10/) |
+| 280 | 底部工具栏四大面板全量采样（源站 2026-09-10 直采） | [`liblib-canvas-batch280-2026-09-10/`](liblib-canvas-batch280-2026-09-10/) |
+| 281 | 生成历史面板 scope chips 对齐（源站 2026-09-10 采样落地） | [`liblib-canvas-batch281-2026-09-10/`](liblib-canvas-batch281-2026-09-10/) |
+| 282 | 角色库原型清单对齐确认（对照 batch 280 采样，源站 2026-09-10） | [`liblib-canvas-batch282-2026-09-10/`](liblib-canvas-batch282-2026-09-10/) |
+| 283 | 我的工具箱 vs 运镜菜单：两套独立表面厘清（源站 2026-09-10） | [`liblib-canvas-batch283-2026-09-10/`](liblib-canvas-batch283-2026-09-10/) |
+| 284 | 工具箱「使用」行为：无可见画布变化（源站 2026-09-10） | [`liblib-canvas-batch284-2026-09-10/`](liblib-canvas-batch284-2026-09-10/) |
+| 285 | HistoryPanel scope chips 后全量稳定性确认 | [`liblib-canvas-batch285-2026-09-10/`](liblib-canvas-batch285-2026-09-10/) |
+| 286 | 画布切换下拉采样（源站 2026-09-10 直采） | [`liblib-canvas-batch286-2026-09-10/`](liblib-canvas-batch286-2026-09-10/) |
+| 287 | 画布切换下拉结构对照确认（源站 2026-09-10） | [`liblib-canvas-batch287-2026-09-10/`](liblib-canvas-batch287-2026-09-10/) |
+| 288 | scope chips 后维护集稳定性确认（含新增 batch281） | [`liblib-canvas-batch288-2026-09-10/`](liblib-canvas-batch288-2026-09-10/) |
+| 289 | 素材库工具栏条目实为库快捷弹层（源站 2026-09-10 直采） | [`liblib-canvas-batch289-2026-09-10/`](liblib-canvas-batch289-2026-09-10/) |
+| 290 | 风格库入口点击探测：弹层重现间歇（源站 2026-09-10） | [`liblib-canvas-batch290-2026-09-10/`](liblib-canvas-batch290-2026-09-10/) |
+| 291 | 阻塞项人工采样方案清单（供用户授权/人工操作确认） | [`liblib-canvas-batch291-2026-09-10/`](liblib-canvas-batch291-2026-09-10/) |
+| 292 | 键盘快捷键全量对照（源站 2026-09-10 直采） | [`liblib-canvas-batch292-2026-09-10/`](liblib-canvas-batch292-2026-09-10/) |
+| 293 | clone ⌘A 合同检查：与源站一致（源站 2026-09-10 对照） | [`liblib-canvas-batch293-2026-09-10/`](liblib-canvas-batch293-2026-09-10/) |
+| 294 | 画布表面覆盖盘点与后续批次规划（batch 236–293 总结） | [`liblib-canvas-batch294-2026-09-10/`](liblib-canvas-batch294-2026-09-10/) |
+| 295 | 资产抽屉搜索交互采样 + 无匹配文案对齐（源站 2026-09-10） | [`liblib-canvas-batch295-2026-09-10/`](liblib-canvas-batch295-2026-09-10/) |
+| 296 | 筛选菜单选项集采样受阻（源站 2026-09-10） | [`liblib-canvas-batch296-2026-09-10/`](liblib-canvas-batch296-2026-09-10/) |
+| 297 | 抽屉「展示设置」菜单全量采样（源站 2026-09-10 直采） | [`liblib-canvas-batch297-2026-09-10/`](liblib-canvas-batch297-2026-09-10/) |
+| 298 | 资产抽屉「展示设置」视图布局菜单实施（源站 2026-09-10 采样落地） | [`liblib-canvas-batch298-2026-09-10/`](liblib-canvas-batch298-2026-09-10/) |
+| 299 | 展示设置视图布局菜单实施后全量稳定性确认 | [`liblib-canvas-batch299-2026-09-10/`](liblib-canvas-batch299-2026-09-10/) |
+| 300 | 展示设置视图切换深采样受阻（源站 2026-09-11） | [`liblib-canvas-batch300-2026-09-11/`](liblib-canvas-batch300-2026-09-11/) |
+| 301 | 抽屉双菜单单会话采样确证（源站 2026-09-11 直采） | [`liblib-canvas-batch301-2026-09-11/`](liblib-canvas-batch301-2026-09-11/) |
+| 302 | 抽屉筛选联动采样不确定（源站 2026-09-11） | [`liblib-canvas-batch302-2026-09-11/`](liblib-canvas-batch302-2026-09-11/) |
+| 303 | 双类型节点筛选联动重试：文本节点创建失败（源站 2026-09-11） | [`liblib-canvas-batch303-2026-09-11/`](liblib-canvas-batch303-2026-09-11/) |
+| 304 | 添加面板二次失败根因确诊 + 筛选联动部分验证（源站 2026-09-10） | [`liblib-canvas-batch304-2026-09-10/`](liblib-canvas-batch304-2026-09-10/) |
+| 305 | clone 筛选联动取舍决策入档（源站 2026-09-10 对照） | [`liblib-canvas-batch305-2026-09-11/`](liblib-canvas-batch305-2026-09-11/) |
+| 306 | 顶栏图标点击行为全量扫雷（源站 2026-09-11 直采） | [`liblib-canvas-batch306-2026-09-11/`](liblib-canvas-batch306-2026-09-11/) |
+| 307 | 发布与分享浮层对照确认（源站 2026-09-11 对照 batch 306 采样） | [`liblib-canvas-batch307-2026-09-11/`](liblib-canvas-batch307-2026-09-11/) |
+| 308 | 工作流/退出跟随 深探：空画布下均薄结果（源站 2026-09-11） | [`liblib-canvas-batch308-2026-09-11/`](liblib-canvas-batch308-2026-09-11/) |
+| 309 | 带内容画布的 工作流/故事板 切换：无操作确认 + 添加面板条目漂移发现（源站 2026-09-11） | [`liblib-canvas-batch309-2026-09-11/`](liblib-canvas-batch309-2026-09-11/) |
+| 310 | 维护集稳定性确认 + 待确认生成 占位态重大发现（源站 2026-09-11 直采） | [`liblib-canvas-batch310-2026-09-11/`](liblib-canvas-batch310-2026-09-11/) |
+| 311 | 待确认生成 确认/取消交互：自动化不可达确认（源站 2026-09-11） | [`liblib-canvas-batch311-2026-09-11/`](liblib-canvas-batch311-2026-09-11/) |
+| 312 | 维护集稳定性确认 | [`liblib-canvas-batch312-2026-09-11/`](liblib-canvas-batch312-2026-09-11/) |
+| 314 | CDP 原生全点击序列亦失败：菜单末两行最终定论 BLOCKED（源站 2026-09-11） | [`liblib-canvas-batch314-2026-09-11/`](liblib-canvas-batch314-2026-09-11/) |
+| 315 | clone 侧对齐项盘点确认（音频节点/AI生成 徽章/画布下拉） | [`liblib-canvas-batch315-2026-09-11/`](liblib-canvas-batch315-2026-09-11/) |
+| 316 | 维护集周期性稳定性确认 | [`liblib-canvas-batch316-2026-09-11/`](liblib-canvas-batch316-2026-09-11/) |
+| 317 | 展示设置/生成历史菜单深采不确定 + 需求槽节点内嵌形态证据归档（源站 2026-09-11） | [`liblib-canvas-batch317-2026-09-11/`](liblib-canvas-batch317-2026-09-11/) |
+| 318 | Style Video 切换失败根因确诊：音频素材不兼容拒绝 toast（源站 2026-09-11 直采） | [`liblib-canvas-batch318-2026-09-11/`](liblib-canvas-batch318-2026-09-11/) |
+| 319 | Style Video 禁用态视觉铁证 + 定论维持（源站 2026-09-11 直采） | [`liblib-canvas-batch319-2026-09-11/`](liblib-canvas-batch319-2026-09-11/) |
+| 320 | Style Video 禁用态数值确证：非音频单一因素（源站 2026-09-11） | [`liblib-canvas-batch320-2026-09-11/`](liblib-canvas-batch320-2026-09-11/) |
+| 321 | 展示设置视图切换深采再次不确定（源站 2026-09-11） | [`liblib-canvas-batch321-2026-09-11/`](liblib-canvas-batch321-2026-09-11/) |
+| 322 | 每画布 ∨ 子菜单全采：四项与 clone 逐字一致（源站 2026-09-11 直采） | [`liblib-canvas-batch322-2026-09-11/`](liblib-canvas-batch322-2026-09-11/) |
+| 323 | 生成历史缩放控件采样受阻（源站 2026-09-11） | [`liblib-canvas-batch323-2026-09-11/`](liblib-canvas-batch323-2026-09-11/) |
+| 324 | 生成历史入口深探：按钮存在但覆盖层不打开（源站 2026-09-11） | [`liblib-canvas-batch324-2026-09-11/`](liblib-canvas-batch324-2026-09-11/) |
+| 325 | 维护集周期性稳定性确认 | [`liblib-canvas-batch325-2026-09-11/`](liblib-canvas-batch325-2026-09-11/) |
+| 326 | 抽屉条目「更多操作」菜单采样受阻（源站 2026-09-11） | [`liblib-canvas-batch326-2026-09-11/`](liblib-canvas-batch326-2026-09-11/) |
+| 327 | 抽屉条目「更多操作」单会话重采：定位失败（源站 2026-09-11） | [`liblib-canvas-batch327-2026-09-11/`](liblib-canvas-batch327-2026-09-11/) |
+| 328 | 维护集周期性稳定性确认 | [`liblib-canvas-batch328-2026-09-11/`](liblib-canvas-batch328-2026-09-11/) |
+| 329 | 维护集周期性稳定性确认 | [`liblib-canvas-batch329-2026-09-11/`](liblib-canvas-batch329-2026-09-11/) |
+| 330 | 四模型费率采样：Pixverse V5.5/V5、OmniHuman 1.5、Hailuo 2.3 Fast（源站 2026-09-11 直采） | [`liblib-canvas-batch330-2026-09-11/`](liblib-canvas-batch330-2026-09-11/) |
+| 331 | 大规模费率采样完成：35 模型全覆盖（源站 2026-09-11 直采） | [`liblib-canvas-batch331-2026-09-11/`](liblib-canvas-batch331-2026-09-11/) |
+| 332 | 受控单变量费率复测与入表：MODEL_RATES 改写补全（源站 2026-09-11 直采） | [`liblib-canvas-batch332-2026-09-11/`](liblib-canvas-batch332-2026-09-11/) |
+| 333 | 480P 档建模落地 + 源站模型菜单交互失效记录（`PARTIAL_BLOCKED_SOURCE`） | [`liblib-canvas-batch333-2026-09-11/`](liblib-canvas-batch333-2026-09-11/) |
+| 334 | 故事板视图重建：全宽三栏资源总览（`IMPLEMENTED_VERIFIED`） | [`liblib-canvas-batch334-2026-09-11/`](liblib-canvas-batch334-2026-09-11/) |
+| 335 | 全量验证器清扫与回归归因（`SWEEP_RECORDED`） | [`liblib-canvas-batch335-2026-09-11/`](liblib-canvas-batch335-2026-09-11/) |
+| 336 | 故事板待确认生成卡：确认/取消交互（`CLONE_DECISION` 实装） | [`liblib-canvas-batch336-2026-09-11/`](liblib-canvas-batch336-2026-09-11/) |
+| 337 | 故事板视频栏交互：状态过滤与 ready 播放灯箱（`CLONE_DECISION` 实装） | [`liblib-canvas-batch337-2026-09-11/`](liblib-canvas-batch337-2026-09-11/) |
+| 338 | 播放器截帧悬停菜单不可点击缺陷修复（`PRODUCT_FIX`） | [`liblib-canvas-batch338-2026-09-11/`](liblib-canvas-batch338-2026-09-11/) |
+| 339 | AGED_GATE 家族处置定案：维持历史归档，不现代化（`LEDGER_RECORDED`） | [`liblib-canvas-batch339-2026-09-11/`](liblib-canvas-batch339-2026-09-11/) |
+| 340 | 周期性稳定性确认（`STABILITY_RECORDED`） | [`liblib-canvas-batch340-2026-09-11/`](liblib-canvas-batch340-2026-09-11/) |
+| 341 | 工作流工具栏 chrome 标签对照修正（`IMPLEMENTED_VERIFIED`） | [`liblib-canvas-batch341-2026-09-11/`](liblib-canvas-batch341-2026-09-11/) |
+| 342 | 顶栏 chrome 对照审计（`INVESTIGATION_RECORDED`，实施暂缓） | [`liblib-canvas-batch342-2026-09-11/`](liblib-canvas-batch342-2026-09-11/) |
+| 343 | 顶栏 chrome 修正落地（`IMPLEMENTED_VERIFIED`） | [`liblib-canvas-batch343-2026-09-11/`](liblib-canvas-batch343-2026-09-11/) |
+| 344 | 故事板栏展开切换与图片栏对话反馈（`CLONE_DECISION` 实装） | [`liblib-canvas-batch344-2026-09-11/`](liblib-canvas-batch344-2026-09-11/) |
+| 345 | lint 基线收敛与工作流 chrome 几何巡检（`HYGIENE_RECORDED`） | [`liblib-canvas-batch345-2026-09-11/`](liblib-canvas-batch345-2026-09-11/) |
+| 346 | batch 39 时序抖动修复：确定性轮询（`VERIFIER_FIXED`） | [`liblib-canvas-batch346-2026-09-11/`](liblib-canvas-batch346-2026-09-11/) |
+| 347 | batch 40 连跑必挂根因修复：Chrome 147 duration 伪影（`VERIFIER_FIXED`） | [`liblib-canvas-batch347-2026-09-11/`](liblib-canvas-batch347-2026-09-11/) |
+| 348 | batch 41 导入漂移定案：验证器读错层，数据层无损（`VERIFIER_FIXED`） | [`liblib-canvas-batch348-2026-09-12/`](liblib-canvas-batch348-2026-09-12/) |
+| 349 | batch 46 定案：截图条目命名合同漂移（`VERIFIER_FIXED`） | [`liblib-canvas-batch349-2026-09-12/`](liblib-canvas-batch349-2026-09-12/) |
+| 350 | 剩余 8 项归档失败批量分诊（`TRIAGE_RECORDED`） | [`liblib-canvas-batch350-2026-09-12/`](liblib-canvas-batch350-2026-09-12/) |
+| 351 | batch 64 专项现代化完成（`VERIFIER_FIXED`） | [`liblib-canvas-batch351-2026-09-12/`](liblib-canvas-batch351-2026-09-12/) |
+| 352 | batch 44 考古定案：预设 append 纯拼接自始如此（`ARCHAEOLOGY_RECORDED`） | [`liblib-canvas-batch352-2026-09-12/`](liblib-canvas-batch352-2026-09-12/) |
+| 353 | batch 48 定案：模型库持久化 schema 演进（`VERIFIER_FIXED`） | [`liblib-canvas-batch353-2026-09-12/`](liblib-canvas-batch353-2026-09-12/) |
+| 354 | batch 49 定案：两处时序抖动修复（`VERIFIER_FIXED`） | [`liblib-canvas-batch354-2026-09-12/`](liblib-canvas-batch354-2026-09-12/) |
+| 355 | batch 57 定案：TextNode 把手缺 id（`PRODUCT_FIX`） | [`liblib-canvas-batch355-2026-09-12/`](liblib-canvas-batch355-2026-09-12/) |
+| 356 | batch 61 定案：三处确定性修复（`VERIFIER_FIXED`） | [`liblib-canvas-batch356-2026-09-12/`](liblib-canvas-batch356-2026-09-12/) |
+| 357 | batch 89 定案：遮罩点击命中被面板覆盖（`VERIFIER_FIXED`） | [`liblib-canvas-batch357-2026-09-12/`](liblib-canvas-batch357-2026-09-12/) |
+| 358 | 循环状态确认（`CONFIRMATION_RECORDED`） | [`liblib-canvas-batch358-2026-09-12/`](liblib-canvas-batch358-2026-09-12/) |
+| 360 | 周期性稳定性确认（含 jimeng 路线）（`STABILITY_RECORDED`） | [`liblib-canvas-batch360-2026-09-12/`](liblib-canvas-batch360-2026-09-12/) |
+| 361 | batch 44 现代化完成（`VERIFIER_FIXED`） | [`liblib-canvas-batch361-2026-09-12/`](liblib-canvas-batch361-2026-09-12/) |
+| 362 | batch 6 定案：框选需 Shift（`VERIFIER_FIXED`） | [`liblib-canvas-batch362-2026-09-12/`](liblib-canvas-batch362-2026-09-12/) |
+| 363 | AGENTS.md marquee 注记更新（`DOC_RECORDED`） | [`liblib-canvas-batch363-2026-09-12/`](liblib-canvas-batch363-2026-09-12/) |
+| 365 | jimeng 并行路线对照巡检（`REVIEW_RECORDED`） | [`liblib-canvas-batch365-2026-09-12/`](liblib-canvas-batch365-2026-09-12/) |
+| 366 | PAR-011 面板互斥矩阵研究（`RESEARCH_RECORDED`） | [`liblib-canvas-batch366-2026-09-12/`](liblib-canvas-batch366-2026-09-12/) |
+| 367 | PAR-011 组件级审计闭环（`AUDIT_CLOSED`） | [`liblib-canvas-batch367-2026-09-12/`](liblib-canvas-batch367-2026-09-12/) |
+| 368 | jimeng 后续对照巡检（`REVIEW_RECORDED`） | [`liblib-canvas-batch368-2026-09-12/`](liblib-canvas-batch368-2026-09-12/) |
+| 369 | jimeng 可视化对照抽查（`REVIEW_RECORDED`） | [`liblib-canvas-batch369-2026-09-12/`](liblib-canvas-batch369-2026-09-12/) |
+| 371 | 文档新鲜度巡检：HARNESS/DEVELOPMENT/ARCHITECTURE（`DOC_RECORDED`） | [`liblib-canvas-batch371-2026-09-12/`](liblib-canvas-batch371-2026-09-12/) |
+| 372 | 恢复重测与复测日志表（`CONFIRMATION_RECORDED`） | [`liblib-canvas-batch372-2026-09-12/`](liblib-canvas-batch372-2026-09-12/) |
+| 373 | 全量 sweep 复测：201/202 绿，batch 65 瞬态复验（`SWEEP_RECORDED`） | [`liblib-canvas-batch373-2026-09-12/`](liblib-canvas-batch373-2026-09-12/) |
+| 374 | PAR-004 phase 1：clone 键盘与焦点所有权清单（`RESEARCH_RECORDED`） | [`liblib-canvas-batch374-2026-09-12/`](liblib-canvas-batch374-2026-09-12/) |
+| 375 | PAR-005 状态挂钩（`DOC_RECORDED`） | [`liblib-canvas-batch375-2026-09-12/`](liblib-canvas-batch375-2026-09-12/) |
+| 376 | jimeng batch 2 工具条对照抽查（`REVIEW_RECORDED`） | [`liblib-canvas-batch376-2026-09-12/`](liblib-canvas-batch376-2026-09-12/) |
+| 377 | jimeng batch 3 GenPanel 对照（`REVIEW_RECORDED`） | [`liblib-canvas-batch377-2026-09-12/`](liblib-canvas-batch377-2026-09-12/) |
+| 378 | 相机预设 append 语义入册（`DEC-048 RESEARCH_GATE`） | [`liblib-canvas-batch378-2026-09-12/`](liblib-canvas-batch378-2026-09-12/) |
+| 379 | 心跳验证（`HEARTBEAT_RECORDED`） | [`liblib-canvas-batch379-2026-09-12/`](liblib-canvas-batch379-2026-09-12/) |
+| 380 | jimeng batch 5-8 结构审查（`REVIEW_RECORDED`） | [`liblib-canvas-batch380-2026-09-12/`](liblib-canvas-batch380-2026-09-12/) |
+| 381 | HARNESS 维护集权威清单 + 探测入库（`DOC_RECORDED`） | [`liblib-canvas-batch381-2026-09-12/`](liblib-canvas-batch381-2026-09-12/) |
+| 383 | PAR-004 phase 1 并入权威目录（`DOC_RECORDED`） | [`liblib-canvas-batch383-2026-09-12/`](liblib-canvas-batch383-2026-09-12/) |
+| 385 | /project 列表页新鲜度采样：侧栏三条新条目实装（`SOURCE_FACT` + `IMPLEMENTED`） | [`liblib-canvas-batch385-2026-09-12/`](liblib-canvas-batch385-2026-09-12/) |
+| 386 | /project 顶部促销横幅实装（`SOURCE_FACT` + `IMPLEMENTED`） | [`liblib-canvas-batch386-2026-09-12/`](liblib-canvas-batch386-2026-09-12/) |
+| 387 | 循环确认：/project 变更回归 + jimeng 健康（`CONFIRMATION_RECORDED`） | [`liblib-canvas-batch387-2026-09-12/`](liblib-canvas-batch387-2026-09-12/) |
+| 388 | jimeng 截取帧下拉对照（`REVIEW_RECORDED`） | [`liblib-canvas-batch388-2026-09-12/`](liblib-canvas-batch388-2026-09-12/) |
+| 390 | 周期性稳定性确认（含 jimeng）（`STABILITY_RECORDED`） | [`liblib-canvas-batch390-2026-09-12/`](liblib-canvas-batch390-2026-09-12/) |
+| 393 | OVERLAY catalog §3.3 兼容状态审计（`AUDIT_RECORDED`） | [`liblib-canvas-batch393-2026-09-12/`](liblib-canvas-batch393-2026-09-12/) |
+| 394 | 源站劣化深查结论与循环状态固化（`HOLDING_PATTERN_RECORDED`） | [`liblib-canvas-batch394-2026-09-12/`](liblib-canvas-batch394-2026-09-12/) |
+| 410 | 留档：循环状态与源站劣化维持（`STABILITY_RECORDED`） | [`liblib-canvas-batch410-2026-09-12/`](liblib-canvas-batch410-2026-09-12/) |
+| 412 | jimeng batch 5-8/9 深化对照审计（`REVIEW_RECORDED`） | [`liblib-canvas-batch412-2026-09-12/`](liblib-canvas-batch412-2026-09-12/) |
+| 413 | 恢复重测 + jimeng batch 13 观察（`CONFIRMATION_RECORDED`） | [`liblib-canvas-batch413-2026-09-12/`](liblib-canvas-batch413-2026-09-12/) |
+| 415 | 恢复重测心跳（`CONFIRMATION_RECORDED`） | [`liblib-canvas-batch415-2026-09-12/`](liblib-canvas-batch415-2026-09-12/) |
+| 435 | VR-017 切片：setActiveCanvas invalid target guard（zero-partial NOOP） | [`liblib-canvas-batch435-2026-09-13/`](liblib-canvas-batch435-2026-09-13/) |
+| 436 | VR-017 Slice B：page transaction invalidation（页面级事务按画布作废） | [`liblib-canvas-batch436-2026-09-13/`](liblib-canvas-batch436-2026-09-13/) |
+| 437 | VR-017 Slice E：async/resource isolation（延迟完成按属主画布提交） | [`liblib-canvas-batch437-2026-09-13/`](liblib-canvas-batch437-2026-09-13/) |
+| 438 | VGP §7.2 host resize reconciliation（resize anchor 中心保持） | [`liblib-canvas-batch438-2026-09-13/`](liblib-canvas-batch438-2026-09-13/) |
+| 439 | VGP §6.3/DQ-003 live/stable endpoint phase（逐帧 live、手势端点一次 stable） | [`liblib-canvas-batch439-2026-09-13/`](liblib-canvas-batch439-2026-09-13/) |
+
+| 440 | Batch History 索引补全（追溯债清偿） | [`liblib-canvas-batch440-2026-09-13/`](liblib-canvas-batch440-2026-09-13/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |
