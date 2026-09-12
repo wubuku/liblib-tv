@@ -5,20 +5,26 @@ import { CircleHelp, Search } from "lucide-react";
 
 import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
 import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
+import { JimengHistoryMenu } from "@/components/jimeng/JimengHistoryMenu";
+import { JimengMemberModal } from "@/components/jimeng/JimengMemberModal";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 顶栏 — 绝对定位 left-3 top-[10px] h-10 z-30 (SOURCE_FACT)。
  * 左: Logo + 项目名(13px/500) + 节点数 + 已保存
- * 右: 搜索/帮助药丸(68px) + 会员药丸(161px) + 头像(36px)
+ * 右: 生成历史(⌕)/帮助药丸(68px) + 会员药丸(161px) + 头像(36px)
+ * Batch 13: ⌕ 打开生成历史下拉；会员药丸打开订阅页浮层。
  * mock: 会员积分数值为静态展示。
  */
 export function JimengTopBar() {
   const project = useJimengStore((s) => s.project);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [memberOpen, setMemberOpen] = useState(false);
 
   return (
-    <header className="pointer-events-none absolute inset-x-3 top-[10px] z-30 flex h-10 items-center">
+    <>
+      <header className="pointer-events-none absolute inset-x-3 top-[10px] z-30 flex h-10 items-center">
       {/* 左侧项目信息 */}
       <div className="pointer-events-auto flex min-w-0 flex-1 items-center gap-4">
         <div className="flex items-center gap-2.5">
@@ -38,13 +44,19 @@ export function JimengTopBar() {
       {/* 右侧控制区 */}
       <div className="pointer-events-auto flex h-10 shrink-0 items-center gap-2">
         <div className="jimeng-chrome-pill pointer-events-auto flex h-9 items-center gap-1 p-1">
-          <button
-            type="button"
-            aria-label="搜索"
-            className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
-          >
-            <Search size={16} />
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="生成历史"
+              onClick={() => setHistoryOpen((v) => !v)}
+              className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+            >
+              <Search size={16} />
+            </button>
+            {historyOpen ? (
+              <JimengHistoryMenu onClose={() => setHistoryOpen(false)} />
+            ) : null}
+          </div>
           <div className="relative">
             <button
               type="button"
@@ -59,10 +71,17 @@ export function JimengTopBar() {
         </div>
 
         <div className="jimeng-chrome-pill pointer-events-auto flex h-9 items-center gap-1 p-1">
-          <div className="flex h-7 items-center gap-1 rounded-md px-2 hover:bg-white/10">
-            <VipDiamond size={14} />
-            <span className="text-[13px] font-medium text-[#009EFA]">745</span>
-            <span className="ml-1 text-[13px] text-white/90">基础会员</span>
+          <div className="relative flex h-7 items-center gap-1 rounded-md px-2 hover:bg-white/10">
+            <button
+              type="button"
+              aria-label="会员订阅"
+              onClick={() => setMemberOpen(true)}
+              className="flex items-center gap-1"
+            >
+              <VipDiamond size={14} />
+              <span className="text-[13px] font-medium text-[#009EFA]">745</span>
+              <span className="ml-1 text-[13px] text-white/90">基础会员</span>
+            </button>
           </div>
           {/* 头像 (mock) */}
           <button
@@ -74,6 +93,8 @@ export function JimengTopBar() {
           </button>
         </div>
       </div>
-    </header>
+      </header>
+      {memberOpen ? <JimengMemberModal onClose={() => setMemberOpen(false)} /> : null}
+    </>
   );
 }
