@@ -263,6 +263,8 @@ export default function ProjectListPage() {
           </button>
         ))}
       </div>
+      {/* Batch 411: 源站 2026-09-12 文本直采——卡片后为分页端标记「没有更多了」。 */}
+      <p className="mt-6 text-center text-xs text-[#777]">没有更多了</p>
 
       {status && (
         <p data-project-list-status className="mt-4 text-xs text-[#75d7e8]">

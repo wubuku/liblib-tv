@@ -62,12 +62,15 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const trimNodeId = useJimengStore((s) => s.trimNodeId);
   const enterTrim = useJimengStore((s) => s.enterTrim);
   const exitTrim = useJimengStore((s) => s.exitTrim);
+  const tasks = useJimengStore((s) => s.tasks);
+  const startTask = useJimengStore((s) => s.startTask);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
   const inferMode = inferNodeId === id;
   const pickerMode = framePickerNodeId === id;
   const trimMode = trimNodeId === id;
+  const task = tasks.find((t) => t.nodeId === id);
 
   return (
     <div
