@@ -106,6 +106,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "视频编辑") enterEdit(id);
             if (label === "提示词反推") enterInfer(id);
             if (label === "视频修剪") enterTrim(id);
+            if (label === "智能超清") startTask(id, "upscale");
+            if (label === "补帧") startTask(id, "interpolate");
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
             if (label === "截取帧:首帧") enterFramePicker(id, "first");
             if (label === "截取帧:尾帧") enterFramePicker(id, "last");
@@ -200,6 +202,16 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             </svg>
           </span>
         )}
+
+        {/* mock 任务处理中遮罩 (Batch 11, CLONE_DECISION) */}
+        {task ? (
+          <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55">
+            <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+            <span className="text-[12px] text-white/85">
+              {task.kind === "upscale" ? "智能超清" : "补帧"}处理中…
+            </span>
+          </div>
+        ) : null}
       </div>
 
       {/* 连接热区 (隐形) + "+" 圆钮 (hover/选中显示；点击弹「添加节点」菜单) */}

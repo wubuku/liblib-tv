@@ -78,6 +78,15 @@ export interface JimengCanvasState {
   trimNodeId: string | null;
   enterTrim: (id: string) => void;
   exitTrim: () => void;
+  /** 智能超清/补帧 mock 任务 (Batch 11, CLONE_DECISION — 源站会真实提交付费任务) */
+  tasks: JimengTask[];
+  startTask: (nodeId: string, kind: JimengTask["kind"]) => void;
+}
+
+export interface JimengTask {
+  id: string;
+  nodeId: string;
+  kind: "upscale" | "interpolate";
 }
 
 const initialNodes: JimengNode[] = [
@@ -275,4 +284,14 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   enterTrim: (id) => set({ trimNodeId: id }),
 
   exitTrim: () => set({ trimNodeId: null }),
+
+  tasks: [],
+
+  startTask: (nodeId, kind) =>
+    set((state) => ({
+      tasks: [
+        ...state.tasks,
+        { id: `task-${Date.now()}`, nodeId, kind },
+      ],
+    })),
 }));

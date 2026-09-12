@@ -15,6 +15,7 @@ import {
   JimengContextMenu,
 } from "@/components/jimeng/JimengContextMenu";
 import type { JimengContextMenuState } from "@/components/jimeng/JimengContextMenu";
+import { JimengTaskToast } from "@/components/jimeng/JimengTaskToast";
 
 /**
  * 即梦画布工作区编排。
@@ -106,6 +107,7 @@ function JimengFlow() {
           onAction={onContextMenuAction}
         />
       ) : null}
+      <JimengTaskToast />
     </div>
   );
 }
