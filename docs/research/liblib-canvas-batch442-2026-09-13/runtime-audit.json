@@ -1,0 +1,67 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-023 Slice B — deterministic aspect-aware derived frame policy (landscape fixtures preserved)",
+  "policy": {
+    "landscapeTolerance": "±2% of the generic frame ratio",
+    "frame": "same profile height, width rounded from the intrinsic ratio, clamped to 160..640",
+    "fallback": "generic frame kept outside the clamp; detector flags it again (policy/detector coherence)"
+  },
+  "scenes": [
+    {
+      "label": "square-source-aspect-aware",
+      "source": "src-square",
+      "derivedType": "image",
+      "frame": {
+        "width": 288,
+        "height": 288
+      },
+      "genericConflictFlagged": false
+    },
+    {
+      "label": "portrait-source-aspect-aware",
+      "source": "src-portrait",
+      "derivedType": "image",
+      "frame": {
+        "width": 162,
+        "height": 288
+      },
+      "genericConflictFlagged": false
+    },
+    {
+      "label": "landscape-source-preserves-generic",
+      "source": "src-landscape",
+      "derivedType": "image",
+      "frame": {
+        "width": 512,
+        "height": 288
+      },
+      "genericConflictFlagged": false
+    },
+    {
+      "label": "extreme-ratio-generic-fallback-flagged",
+      "source": "src-extreme",
+      "derivedType": "image",
+      "frame": {
+        "width": 512,
+        "height": 288
+      },
+      "genericConflictFlagged": true
+    },
+    {
+      "label": "video-display-string-portrait",
+      "source": "src-video-portrait",
+      "derivedType": "video",
+      "frame": {
+        "width": 162,
+        "height": 288
+      },
+      "genericConflictFlagged": false
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

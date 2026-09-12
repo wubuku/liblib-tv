@@ -167,3 +167,37 @@ export function detectLibTVDimensionAuthorityConflicts(
 
   return conflicts;
 }
+
+// Batch 442 (VR-023 Slice B): deterministic frame/rendition policy — the
+// generic landscape frame stays for landscape (16:9-class) sources; any
+// other intrinsic ratio derives an aspect-aware frame at the same profile
+// height. Returns null when the generic frame should be kept.
+export interface LibTVNodeIntrinsicDimensions {
+  width: number;
+  height: number;
+}
+
+export function getLibTVNodeIntrinsicDimensions(
+  node: DimensionBearingNode,
+): LibTVNodeIntrinsicDimensions | null {
+  const data = node.data ?? {};
+  const width = typeof data.width === "number" ? data.width : null;
+  const height = typeof data.height === "number" ? data.height : null;
+  if (width && height) return { width, height };
+  return parseLibTVDisplayDimensions(data.resolution);
+}
+
+export function planLibTVAspectAwareDerivedFrame(
+  source: DimensionBearingNode,
+  base: { width: number; height: number },
+): { width: number; height: number } | null {
+  const intrinsic = getLibTVNodeIntrinsicDimensions(source);
+  if (!intrinsic) return null;
+  const ratio = intrinsic.width / intrinsic.height;
+  const baseRatio = base.width / base.height;
+  if (!Number.isFinite(ratio) || ratio <= 0) return null;
+  if (Math.abs(ratio - baseRatio) / baseRatio <= 0.02) return null;
+  const width = Math.round(base.height * ratio);
+  if (width < 160 || width > 640) return null;
+  return { width, height: base.height };
+}

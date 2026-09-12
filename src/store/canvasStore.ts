@@ -20,6 +20,7 @@ import {
   type LibTVSelectionSnapshot,
 } from "@/lib/libtvSelectionCommandContext";
 import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement";
+import { planLibTVAspectAwareDerivedFrame } from "@/lib/libtvMediaDimensionAuthority";
 import {
   planDirectorWholeProjectDuplicate,
   type DirectorWholeProjectDuplicateFailureReason,
@@ -1553,7 +1554,9 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const source = canvas?.nodes.find((node) => node.id === sourceId);
     if (!canvas || !source) return;
 
-    const dimensions = options?.dimensions ?? getDefaultNodeDimensions(type);
+    const dimensions =
+      options?.dimensions ??
+      getDerivedFrameDimensions(type, source);
     const offset = options?.offset ?? { x: 120, y: 0 };
     const sourceWidth = source.width ?? (Number(source.style?.width) || 350);
     const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
@@ -1836,7 +1839,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       background: "背景音",
     };
     const audioDimensions = getDefaultNodeDimensions("audio");
-    const videoDimensions = getDefaultNodeDimensions("video");
+    const videoDimensions = getDerivedFrameDimensions("video", source);
     const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
     const sourcePosition = getAbsoluteNodePosition(source, nodesById);
     const audioNodeId = createNodeId("audio-split");
@@ -1980,7 +1983,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               0,
               durationSeconds > 0 ? durationSeconds : Math.max(0, captureSeconds),
             );
-    const dimensions = getDefaultNodeDimensions("image");
+    const dimensions = getDerivedFrameDimensions("image", source);
     const position = findAvailableRightSlot(
       source,
       canvas.nodes,
@@ -2079,7 +2082,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       typeof source.data.resolution === "string"
         ? source.data.resolution
         : "1280 × 720";
-    const dimensions = getDefaultNodeDimensions("video");
+    const dimensions = getDerivedFrameDimensions("video", source);
     const position = findAvailableRightSlot(
       source,
       canvas.nodes,
@@ -2443,7 +2446,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ? source.data.resolution
         : "1280 × 720";
     const mediaDimensions = parseVideoResolution(resolution);
-    const dimensions = getDefaultNodeDimensions("video");
+    const dimensions = getDerivedFrameDimensions("video", source);
     const position = findAvailableRightSlot(
       source,
       canvas.nodes,
@@ -2554,7 +2557,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ? source.data.resolution
         : "1280 × 720";
     const mediaDimensions = parseVideoResolution(resolution);
-    const dimensions = getDefaultNodeDimensions("video");
+    const dimensions = getDerivedFrameDimensions("video", source);
     const position = findAvailableRightSlot(
       source,
       canvas.nodes,
@@ -3666,6 +3669,21 @@ function getDirectorAnimationExportNodeDimensions(
   if (aspectRatio === "9:16") return { width: 324, height: 576 };
   if (aspectRatio === "1:1") return { width: 420, height: 420 };
   return { width: 512, height: 288 };
+}
+
+// Batch 442 (VR-023 Slice B): derived image/video frames become
+// aspect-aware for non-landscape sources (same profile height, width
+// rounded from the intrinsic ratio, clamped); the generic landscape frame
+// stays for 16:9-class sources and every non-media node type.
+function getDerivedFrameDimensions(
+  type: string,
+  source: Node | undefined,
+): { width: number; height: number } {
+  const generic = getDefaultNodeDimensions(type);
+  if (source && (type === "image" || type === "video")) {
+    return planLibTVAspectAwareDerivedFrame(source, generic) ?? generic;
+  }
+  return generic;
 }
 
 function getDefaultNodeData(type: string): Record<string, unknown> {

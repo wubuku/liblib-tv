@@ -148,7 +148,7 @@ def run_derived_generic_frame_detection(page: Page):
         for c in conflicts_before
         if c["kind"] == "derived-frame-generic-default"
     }
-    result_id = page.evaluate(
+    derived_result = page.evaluate(
         """() => {
           const state = window.__libtv_store.getState();
           const canvas = state.getActiveCanvas();
@@ -162,10 +162,27 @@ def run_derived_generic_frame_detection(page: Page):
               ) / genericRatio > 0.02,
           );
           if (!image) return null;
-          return state.createSmartMatting(image.id);
+          const nodeId = state.createSmartMatting(image.id);
+          if (!nodeId) return null;
+          const fresh = window.__libtv_store.getState();
+          const freshCanvas = fresh.canvases.find(
+            (item) => item.id === 'canvas-2',
+          );
+          const derived = freshCanvas.nodes.find(
+            (node) => node.id === nodeId,
+          );
+          return derived
+            ? {
+                id: nodeId,
+                width: derived.width,
+                height: derived.height,
+                sourceWidth: image.data.width,
+                sourceHeight: image.data.height,
+              }
+            : null;
         }"""
     )
-    assert result_id, (
+    assert derived_result, (
         "fixture needs an image node whose intrinsic ratio differs from the "
         "generic 512x288 frame"
     )
@@ -177,19 +194,37 @@ def run_derived_generic_frame_detection(page: Page):
         for c in conflicts_after
         if c["kind"] == "derived-frame-generic-default"
     }
-    assert result_id in flagged_after, (
-        result_id,
-        "derived node with generic 512x288 frame from a 1:1 source must be "
-        "flagged",
+    # Batch 442 (Slice B): the aspect-aware frame policy resolves the
+    # generic-frame conflict for in-clamp ratios; the frame must now be
+    # sized from the source ratio instead of the generic 512x288.
+    assert derived_result["id"] not in flagged_after, (
+        derived_result,
+        "aspect-aware policy must resolve the generic-frame conflict",
     )
+    expected_width = round(
+        288 * derived_result["sourceWidth"] / derived_result["sourceHeight"]
+    )
+    if 160 <= expected_width <= 640:
+        assert (
+            derived_result["width"] == expected_width
+            and derived_result["height"] == 288
+        ), (
+            derived_result,
+            "Slice B frame policy must size the frame from the source ratio",
+        )
+        frame_disposition = "aspect-aware"
+    else:
+        assert (
+            derived_result["width"] == 512 and derived_result["height"] == 288
+        ), derived_result
+        frame_disposition = "generic-fallback-extreme-ratio"
     return {
-        "derivedNodeId": result_id,
-        "flagged": True,
-        "newConflictKinds": sorted(
-            c["kind"]
-            for c in conflicts_after
-            if c["nodeId"] == result_id
-        ),
+        "derivedNodeId": derived_result["id"],
+        "frame": {
+            "width": derived_result["width"],
+            "height": derived_result["height"],
+        },
+        "frameDisposition": frame_disposition,
         "previouslyFlaggedCount": len(flagged_before),
     }
 
