@@ -212,13 +212,18 @@
 - CLONE_DECISION (batch 37): 进度条指针拖拽 scrub — 按下即进入拖拽，
   连续跟随更新 currentTime；nodrag 类防止 xyflow 节点拖拽劫持指针
   （scrub 中途失效的根因）；普通点击 seek 回归保持。
+- CLONE_DECISION (batch 38): Shift+点击多选；右键菜单 删除 一条历史
+  批量移除全部选中节点（`removeNodes`）；文字节点双击进入行内 textarea
+  编辑（Enter/Esc 处理；local-only mock）；`updateNodeData` 泛化为
+  任意节点类型。
 - 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
   66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
   消息与代码审读转录；§7 原有直采条目止于 batch 27。batch 33 条目同法
   补录（commit 58edecb，batch 434 对照批）。batch 34 条目同法补录
   （commit 5422c94，batch 434 对照批）。batch 35/36 条目同法补录
   （commits 31a954e / 2c39b4b，batch 436 对照批）。batch 37 条目同法
-  补录（commit 5f6da13，batch 437 对照批）。
+  补录（commit 5f6da13，batch 437 对照批）。batch 38 条目同法补录
+  （commit d4d69b5，batch 438 对照批）。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 

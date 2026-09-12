@@ -138,7 +138,10 @@ interface LibTVViewportOwnerLogEntry {
     | "projection-echo"
     | "canvas-changed"
     | "invalid-viewport"
-    | "canvas-unavailable";
+    | "canvas-unavailable"
+    | "resize-anchor"
+    | "resize-anchor-not-applicable"
+    | "breakpoint-flip-delegated";
   ownership: LibTVViewportOwnership | null;
   viewport: LibTVViewport | null;
 }
@@ -827,6 +830,84 @@ export default function Home() {
       media.removeEventListener("change", applyResponsiveViewport);
     };
   }, [activeCanvasId, setStoreViewport, setZoomLevel]);
+
+  // Batch 438 (viewport contract §7.2): host resize reconciliation — preserve
+  // the flow point under the old host center at the new host center, zoom
+  // unchanged. Declared clone-only anchor policy; applies only to stable
+  // (user-owned) viewports, and breakpoint flips stay delegated to the
+  // batch-65 responsive authority above.
+  useEffect(() => {
+    const host = flowContainerRef.current;
+    if (!host || typeof ResizeObserver === "undefined") return;
+    const media = window.matchMedia("(max-width: 768px)");
+    let lastRect = host.getBoundingClientRect();
+    let lastMatches = media.matches;
+    let frame = 0;
+    const observer = new ResizeObserver(() => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const nextRect = host.getBoundingClientRect();
+        const oldWidth = lastRect.width;
+        const oldHeight = lastRect.height;
+        lastRect = nextRect;
+        const matches = media.matches;
+        const breakpointFlipped = matches !== lastMatches;
+        lastMatches = matches;
+        if (
+          nextRect.width === 0 ||
+          nextRect.height === 0 ||
+          (Math.abs(nextRect.width - oldWidth) < 1 &&
+            Math.abs(nextRect.height - oldHeight) < 1)
+        ) {
+          return;
+        }
+        const canvasId = useCanvasStore.getState().activeCanvasId;
+        const ownership =
+          viewportOwnershipRef.current.get(canvasId) ??
+          (canvasId === "canvas-2" ? "bootstrap" : "stable");
+        const live = flowRef.current?.getViewport();
+        if (
+          breakpointFlipped ||
+          ownership !== "stable" ||
+          !live ||
+          !Number.isFinite(live.zoom) ||
+          live.zoom <= 0
+        ) {
+          window.__libtv_viewport_owner_log.push({
+            canvasId,
+            status: "skipped",
+            reason: breakpointFlipped
+              ? "breakpoint-flip-delegated"
+              : "resize-anchor-not-applicable",
+            ownership,
+            viewport: null,
+          });
+          return;
+        }
+        const oldCenterFlowX = (oldWidth / 2 - live.x) / live.zoom;
+        const oldCenterFlowY = (oldHeight / 2 - live.y) / live.zoom;
+        const nextViewport = {
+          x: nextRect.width / 2 - oldCenterFlowX * live.zoom,
+          y: nextRect.height / 2 - oldCenterFlowY * live.zoom,
+          zoom: live.zoom,
+        };
+        flowRef.current?.setViewport(nextViewport);
+        setStoreViewport(nextViewport);
+        window.__libtv_viewport_owner_log.push({
+          canvasId,
+          status: "committed",
+          reason: "resize-anchor",
+          ownership: "stable",
+          viewport: { ...nextViewport },
+        });
+      });
+    });
+    observer.observe(host);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [setStoreViewport]);
 
   useEffect(() => {
     const handleActiveImageSurfaceKeyDown = (event: KeyboardEvent) => {

@@ -831,8 +831,10 @@ Batch 63 implemented Slice A's finite host/placement subset and Slice B's
 default-add host authority. Batch 64 implemented the Asset drawer subset of
 `§7.2` host-resize reconciliation. Batch 65 implemented the responsive
 bootstrap/stored-viewport subset of Slice C plus a current-canvas callback
-guard. Full live/stable endpoint compression、browser resize anchor、generic
-generation/host epoch and other slices remain separately gated.
+guard. Batch 438 implemented `§7.2`'s browser resize anchor for stable
+ownership (center preservation, breakpoint flips delegated to the batch-65
+authority, decisions logged). Full live/stable endpoint compression and
+generic generation/host epoch remain separately gated.
 
 ### Slice A: pure spatial model
 

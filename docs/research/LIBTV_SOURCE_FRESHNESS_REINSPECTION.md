@@ -386,6 +386,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-13 | batch 435 探测 | still-broken | 第四十三次重测；VR-017 INVALID_TARGET 切片关闭（batch 435） |
 | 2026-09-13 | batch 436 探测 | still-broken | 第四十四次重测；VR-017 Slice B 关闭（batch 436） |
 | 2026-09-13 | batch 437 探测 | still-broken | 第四十五次重测；VR-017 Slice E 关闭（batch 437） |
+| 2026-09-13 | batch 438 探测 | still-broken | 第四十六次重测；VGP §7.2 resize anchor 关闭（batch 438） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

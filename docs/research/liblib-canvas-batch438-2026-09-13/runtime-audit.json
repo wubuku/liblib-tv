@@ -1,0 +1,45 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VGP §7.2 host resize reconciliation — declared center-preservation anchor policy over batch-65 bootstrap/stable owner",
+  "bootstrap_resize_skipped": {
+    "skipEntries": 1,
+    "committedEntries": 0
+  },
+  "resize_anchor_center_preserved": {
+    "preViewport": {
+      "x": -583.8,
+      "y": 20.80000000000001,
+      "zoom": 0.526
+    },
+    "postViewport": {
+      "x": -453.79999999999995,
+      "y": 80.80000000000001,
+      "zoom": 0.526
+    },
+    "preHost": {
+      "width": 1100,
+      "height": 820
+    },
+    "postHost": {
+      "width": 1360,
+      "height": 940
+    },
+    "centerFlowDelta": [
+      0.0,
+      0.0
+    ]
+  },
+  "stored_viewport_survives_switch": {
+    "restoredViewport": {
+      "x": -453.79999999999995,
+      "y": 80.80000000000001,
+      "zoom": 0.526
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
