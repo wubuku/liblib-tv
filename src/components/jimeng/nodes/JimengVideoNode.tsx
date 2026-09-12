@@ -300,6 +300,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
                 addNodeAt("image", { x: d.width + 200, y: 0 });
               if (label === "文本")
                 addNodeAt("text", { x: d.width + 200, y: 120 });
+              if (label === "音频")
+                addNodeAt("audio", { x: d.width + 200, y: 240 });
             }}
             onClose={() => setInsertMenu(null)}
           />

@@ -66,6 +66,8 @@ function JimengFlow() {
   const past = useJimengStore((s) => s.past);
   const future = useJimengStore((s) => s.future);
   const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
+  const toolActive = useJimengStore((s) => s.toolActive);
+  const setToolActive = useJimengStore((s) => s.setToolActive);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -120,6 +122,17 @@ function JimengFlow() {
         // 快捷键面板证据: ⌘0 = 适配画布 (Batch 18)
         e.preventDefault();
         void fitView({ duration: 300 });
+      } else if (!mod && e.key.toLowerCase() === "v" && !inField) {
+        // 快捷键面板证据: V = 移动工具 (Batch 20)
+        setToolActive(toolActive === "select" ? "move" : "select");
+      } else if (!mod && e.key.toLowerCase() === "f" && !inField) {
+        // 快捷键面板证据: F = 全屏 (Batch 20, CLONE_DECISION 浏览器全屏)
+        e.preventDefault();
+        if (document.fullscreenElement) {
+          void document.exitFullscreen();
+        } else {
+          void document.documentElement.requestFullscreen().catch(() => {});
+        }
       } else if (mod && e.key.toLowerCase() === "c" && selectedNodeId) {
         copyNode(selectedNodeId);
       } else if (mod && e.key.toLowerCase() === "d" && selectedNodeId) {
@@ -145,6 +158,9 @@ function JimengFlow() {
     pasteNode,
     removeNode,
     selectedNodeId,
+    toolActive,
+    setToolActive,
+    fitView,
   ]);
 
   const onMove = useCallback<OnMove>(

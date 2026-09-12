@@ -13,6 +13,8 @@ import { useJimengStore } from "@/store/jimengStore";
  */
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
+  const toolActive = useJimengStore((s) => s.toolActive);
+  const setToolActive = useJimengStore((s) => s.setToolActive);
   const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
 
   return (
@@ -21,7 +23,12 @@ export function JimengBottomDock() {
         <button
           type="button"
           aria-label="选择工具"
-          className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+          onClick={() => setToolActive("select")}
+          className={`flex size-7 items-center justify-center rounded-md ${
+            toolActive === "select"
+              ? "bg-white/10 text-white"
+              : "text-white/85 hover:bg-white/10"
+          }`}
         >
           <MousePointer2 size={16} />
         </button>

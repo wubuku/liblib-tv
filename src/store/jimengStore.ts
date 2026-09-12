@@ -87,6 +87,9 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
+  toolActive: "select" | "move";
+  setToolActive: (tool: "select" | "move") => void;
   /** 播放交互 (Batch 15): 切换播放态 / mock 时间走动 */
   togglePlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
@@ -359,6 +362,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   aiDrawerOpen: false,
 
   setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
+
+  toolActive: "select",
+
+  setToolActive: (tool) => set({ toolActive: tool }),
 
   togglePlay: (id) =>
     set((state) => ({
