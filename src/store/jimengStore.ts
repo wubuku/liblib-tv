@@ -4,7 +4,10 @@ import { create } from "zustand";
 import { applyEdgeChanges, applyNodeChanges } from "@xyflow/react";
 import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
 
-import type { JimengNode } from "@/types/jimeng";
+import type {
+  JimengNode,
+  JimengVideoNodeData,
+} from "@/types/jimeng";
 
 /**
  * 即梦画布复刻的独立 store。
@@ -87,6 +90,11 @@ export interface JimengCanvasState {
   /** 播放交互 (Batch 15): 切换播放态 / mock 时间走动 */
   togglePlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
+  /** 插入节点 (Batch 17): 左栏 / + 菜单 */
+  addNodeAt: (
+    kind: "video" | "image" | "text",
+    position: { x: number; y: number },
+  ) => void;
   /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
   past: { nodes: JimengNode[]; edges: Edge[] }[];
   future: { nodes: JimengNode[]; edges: Edge[] }[];
@@ -364,13 +372,76 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   tickPlay: (id, delta) =>
     set((state) => ({
       nodes: state.nodes.map((n) => {
-        if (n.id !== id || !(n.data.playing ?? false)) return n;
-        const dur = n.data.duration ?? 0;
-        const cur = (n.data.currentTime ?? 0) + delta;
+        const vd = n.data as JimengVideoNodeData;
+        if (n.id !== id || !(vd.playing ?? false)) return n;
+        const dur = vd.duration ?? 0;
+        const cur = (vd.currentTime ?? 0) + delta;
         if (dur > 0 && cur >= dur) {
-          return { ...n, data: { ...n.data, currentTime: dur, playing: false } };
+          return { ...n, data: { ...vd, currentTime: dur, playing: false } };
         }
-        return { ...n, data: { ...n.data, currentTime: cur } };
+        return { ...n, data: { ...vd, currentTime: cur } };
       }),
     })),
+
+  addNodeAt: (kind, position) =>
+    set((state) => {
+      const id = `${kind}-${Date.now()}`;
+      const seq = state.nodes.filter((n) => n.type === kind).length + 1;
+      const base = {
+        id,
+        position,
+        selected: false,
+      } as const;
+      if (kind === "video") {
+        return {
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "video" as const,
+              data: {
+                title: `视频 ${seq}`,
+                source: "empty" as const,
+                hasMedia: false,
+                width: 569,
+                height: 320,
+              },
+            },
+          ],
+        };
+      }
+      if (kind === "image") {
+        return {
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "image" as const,
+              data: { title: `图片 ${seq}`, width: 480, height: 360 },
+            },
+          ],
+        };
+      }
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [
+          ...state.nodes,
+          {
+            ...base,
+            type: "text" as const,
+            data: {
+              title: `文本 ${seq}`,
+              text: "双击编辑文字（mock 占位）",
+              width: 320,
+              height: 200,
+            },
+          },
+        ],
+      };
+    }),
 }));

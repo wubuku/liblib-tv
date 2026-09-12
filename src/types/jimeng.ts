@@ -30,4 +30,22 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   height: number;
 }
 
-export type JimengNode = Node<JimengVideoNodeData, JimengNodeKind>;
+/** 图片节点 (Batch 17；尺寸 CLONE_DECISION 480×360) */
+export interface JimengImageNodeData extends Record<string, unknown> {
+  title: string;
+  width: number;
+  height: number;
+}
+
+/** 文字节点 (Batch 17；尺寸 CLONE_DECISION 320×200) */
+export interface JimengTextNodeData extends Record<string, unknown> {
+  title: string;
+  text: string;
+  width: number;
+  height: number;
+}
+
+export type JimengNode = Node<
+  JimengVideoNodeData | JimengImageNodeData | JimengTextNodeData,
+  JimengNodeKind
+>;

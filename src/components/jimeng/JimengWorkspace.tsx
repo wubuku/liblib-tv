@@ -7,6 +7,8 @@ import "@xyflow/react/dist/style.css";
 
 import { useJimengStore } from "@/store/jimengStore";
 import { JimengVideoNode } from "@/components/jimeng/nodes/JimengVideoNode";
+import { JimengImageNode } from "@/components/jimeng/nodes/JimengImageNode";
+import { JimengTextNode } from "@/components/jimeng/nodes/JimengTextNode";
 import { JimengEdge } from "@/components/jimeng/JimengEdge";
 import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
 import { JimengToolRail } from "@/components/jimeng/JimengToolRail";
@@ -26,6 +28,8 @@ import { JimengAiDrawer } from "@/components/jimeng/JimengAiDrawer";
  */
 const nodeTypes = {
   video: JimengVideoNode,
+  image: JimengImageNode,
+  text: JimengTextNode,
 };
 
 const edgeTypes = {

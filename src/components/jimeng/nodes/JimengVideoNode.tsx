@@ -64,6 +64,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const exitTrim = useJimengStore((s) => s.exitTrim);
   const tasks = useJimengStore((s) => s.tasks);
   const startTask = useJimengStore((s) => s.startTask);
+  const addNodeAt = useJimengStore((s) => s.addNodeAt);
   const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
@@ -295,6 +296,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           <JimengInsertMenu
             onPick={(label) => {
               if (label === "视频") addVideoNodeAfter(id);
+              if (label === "图片")
+                addNodeAt("image", { x: d.width + 200, y: 0 });
+              if (label === "文本")
+                addNodeAt("text", { x: d.width + 200, y: 120 });
             }}
             onClose={() => setInsertMenu(null)}
           />
