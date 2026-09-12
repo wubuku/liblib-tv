@@ -1,0 +1,36 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-017 Slice E — async/resource isolation (§5.7, GC-056)",
+  "implementation": [
+    "createAudioSplit/createDepthMotionCapture/createSmartMatting/createPictureEdit resolve the canvas owning the source node",
+    "selection writes scoped to the active canvas only",
+    "batch-268 deferred selection migration guarded by arming canvas and node ownership",
+    "pending simulated tasks cancel on canvas switch (unmount cleanup, declared disposition)"
+  ],
+  "declared_canvas_commit": {
+    "sourceNodeId": "i-vxeeCnxySa",
+    "ownerCanvas": "canvas-2",
+    "activeDuringCommit": "canvas-1",
+    "ownerGainedNodeEdgeHistory": true,
+    "activeCanvasUntouched": true,
+    "selectionNotStolen": true
+  },
+  "stale_disposition": {
+    "sourceNodeId": "ghost-node-batch437",
+    "returnedNull": true
+  },
+  "switch_cancels_pending_task": {
+    "sourceNodeId": "video-1789246322466-tywiq7",
+    "disposition": "canceled_on_switch (unmount cleanup, declared)",
+    "ownerCanvasUntouchedAfterSwitchAndReturn": true
+  },
+  "remaining_vr017_gaps": [
+    "demo viewport ownership remainder (resize anchor, live/stable endpoint)"
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

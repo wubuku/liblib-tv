@@ -1460,6 +1460,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     setTimeout(() => {
       const state = get();
       if (state.selectedNodeId === groupId) return;
+      // Batch 437 (VR-017 Slice E / GC-056): the deferred selection
+      // migration only commits while the arming canvas is still active
+      // and still owns the group node.
+      if (
+        state.activeCanvasId !== activeCanvasId ||
+        !state.canvases
+          .find((canvas) => canvas.id === activeCanvasId)
+          ?.nodes.some((node) => node.id === groupId)
+      ) {
+        return;
+      }
       set({ selectedNodeIds: [groupId], selectedNodeId: groupId, selectedEdgeIds: [] });
     }, 0);
   },
@@ -1795,9 +1806,14 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   createAudioSplit: (sourceId: string, mode: AudioSplitMode) => {
-    const { activeCanvasId } = get();
-    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    // Batch 437 (VR-017 Slice E / §5.7 GC-056): this action completes a
+    // delayed timer, so it commits to the canvas that still owns the source
+    // node — never to whichever canvas is active when the timer fires.
+    const canvas = get().canvases.find((item) =>
+      item.nodes.some((node) => node.id === sourceId),
+    );
     const source = canvas?.nodes.find((node) => node.id === sourceId);
+    const { activeCanvasId } = get();
     if (!canvas || !source) return null;
 
     const sourceLabel =
@@ -1895,12 +1911,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
     set((state) => {
       const currentCanvas = state.canvases.find(
-        (item) => item.id === activeCanvasId,
+        (item) => item.id === canvas.id,
       );
       if (!currentCanvas) return state;
       return {
         canvases: state.canvases.map((item) =>
-          item.id === activeCanvasId
+          item.id === canvas.id
             ? {
                 ...item,
                 nodes: [...item.nodes, audioNode, silentVideoNode],
@@ -1908,9 +1924,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               }
             : item,
         ),
-        selectedNodeIds: [silentVideoNodeId],
-        selectedNodeId: silentVideoNodeId,
-        selectedEdgeIds: [],
+        ...(canvas.id === activeCanvasId
+          ? {
+              selectedNodeIds: [silentVideoNodeId],
+              selectedNodeId: silentVideoNodeId,
+              selectedEdgeIds: [],
+            }
+          : {}),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
@@ -2034,9 +2054,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     resolution: DepthMotionCaptureResolution,
     requestedDurationSeconds: number,
   ) => {
-    const { activeCanvasId } = get();
-    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    // Batch 437 (VR-017 Slice E / §5.7 GC-056): delayed timer completion —
+    // commit to the canvas owning the source node (see createAudioSplit).
+    const canvas = get().canvases.find((item) =>
+      item.nodes.some((node) => node.id === sourceId),
+    );
     const source = canvas?.nodes.find((node) => node.id === sourceId);
+    const { activeCanvasId } = get();
     if (!canvas || !source) return null;
 
     const sourceLabel =
@@ -2099,12 +2123,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
     set((state) => {
       const currentCanvas = state.canvases.find(
-        (item) => item.id === activeCanvasId,
+        (item) => item.id === canvas.id,
       );
       if (!currentCanvas) return state;
       return {
         canvases: state.canvases.map((item) =>
-          item.id === activeCanvasId
+          item.id === canvas.id
             ? {
                 ...item,
                 nodes: [...item.nodes, targetNode],
@@ -2112,9 +2136,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               }
             : item,
         ),
-        selectedNodeIds: [sourceId],
-        selectedNodeId: sourceId,
-        selectedEdgeIds: [],
+        ...(canvas.id === activeCanvasId
+          ? {
+              selectedNodeIds: [sourceId],
+              selectedNodeId: sourceId,
+              selectedEdgeIds: [],
+            }
+          : {}),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
@@ -2387,9 +2415,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   },
 
   createSmartMatting: (sourceId: string) => {
-    const { activeCanvasId } = get();
-    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    // Batch 437 (VR-017 Slice E / §5.7 GC-056): delayed timer completion —
+    // commit to the canvas owning the source node (see createAudioSplit).
+    const canvas = get().canvases.find((item) =>
+      item.nodes.some((node) => node.id === sourceId),
+    );
     const source = canvas?.nodes.find((node) => node.id === sourceId);
+    const { activeCanvasId } = get();
     if (!canvas || !source) return null;
 
     const sourceLabel =
@@ -2462,12 +2494,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
     set((state) => {
       const currentCanvas = state.canvases.find(
-        (item) => item.id === activeCanvasId,
+        (item) => item.id === canvas.id,
       );
       if (!currentCanvas) return state;
       return {
         canvases: state.canvases.map((item) =>
-          item.id === activeCanvasId
+          item.id === canvas.id
             ? {
                 ...item,
                 nodes: [...item.nodes, targetNode],
@@ -2475,9 +2507,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               }
             : item,
         ),
-        selectedNodeIds: [sourceId],
-        selectedNodeId: sourceId,
-        selectedEdgeIds: [],
+        ...(canvas.id === activeCanvasId
+          ? {
+              selectedNodeIds: [sourceId],
+              selectedNodeId: sourceId,
+              selectedEdgeIds: [],
+            }
+          : {}),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });
@@ -2490,9 +2526,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     mode: PictureEditAction,
     marks: PictureEditMark[],
   ) => {
-    const { activeCanvasId } = get();
-    const canvas = get().canvases.find((item) => item.id === activeCanvasId);
+    // Batch 437 (VR-017 Slice E / §5.7 GC-056): delayed timer completion —
+    // commit to the canvas owning the source node (see createAudioSplit).
+    const canvas = get().canvases.find((item) =>
+      item.nodes.some((node) => node.id === sourceId),
+    );
     const source = canvas?.nodes.find((node) => node.id === sourceId);
+    const { activeCanvasId } = get();
     if (!canvas || !source || marks.length === 0) return null;
 
     const sourceLabel =
@@ -2587,12 +2627,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
     set((state) => {
       const currentCanvas = state.canvases.find(
-        (item) => item.id === activeCanvasId,
+        (item) => item.id === canvas.id,
       );
       if (!currentCanvas) return state;
       return {
         canvases: state.canvases.map((item) =>
-          item.id === activeCanvasId
+          item.id === canvas.id
             ? {
                 ...item,
                 nodes: [...item.nodes, targetNode],
@@ -2600,9 +2640,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               }
             : item,
         ),
-        selectedNodeIds: [sourceId],
-        selectedNodeId: sourceId,
-        selectedEdgeIds: [],
+        ...(canvas.id === activeCanvasId
+          ? {
+              selectedNodeIds: [sourceId],
+              selectedNodeId: sourceId,
+              selectedEdgeIds: [],
+            }
+          : {}),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });

@@ -209,12 +209,16 @@
 - CLONE_DECISION (batch 36): badge 交互 — 点击 badge seek 区将节点
   currentTime 跳到所截帧；badge × 清除所截帧；两者 stopPropagation
   避免节点选中/拖拽副作用（源站 badge 交互未采样）。
+- CLONE_DECISION (batch 37): 进度条指针拖拽 scrub — 按下即进入拖拽，
+  连续跟随更新 currentTime；nodrag 类防止 xyflow 节点拖拽劫持指针
+  （scrub 中途失效的根因）；普通点击 seek 回归保持。
 - 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
   66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
   消息与代码审读转录；§7 原有直采条目止于 batch 27。batch 33 条目同法
   补录（commit 58edecb，batch 434 对照批）。batch 34 条目同法补录
   （commit 5422c94，batch 434 对照批）。batch 35/36 条目同法补录
-  （commits 31a954e / 2c39b4b，batch 436 对照批）。
+  （commits 31a954e / 2c39b4b，batch 436 对照批）。batch 37 条目同法
+  补录（commit 5f6da13，batch 437 对照批）。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
