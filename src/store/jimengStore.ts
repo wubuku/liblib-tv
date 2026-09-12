@@ -144,27 +144,21 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   onNodesChange: (changes) =>
     set((state) => {
-      // xyflow applyNodeChanges 会重写 selected 标志 (AGENTS.md 约束)；
-      // 选中态以 store.selectedNodeId 为单一来源：selection change 先流入 store，
-      // 其余 change 应用后再按 selectedNodeId 回填 selected 标志。
-      const selectChange = changes.find(
+      // xyflow applyNodeChanges 会重写 selected 标志 (AGENTS.md 约束)。
+      // 有 select change 时忠实应用 xyflow 的选择结果 (支持 shift 多选，
+      // Batch 16)；selectedNodeId 仅记录主选节点。无 select change 时
+      // (拖拽等) 以 selectedNodeId 回填单选标志 (多选拖拽折叠为主选，
+      // 原型可接受)。
+      const selectChanges = changes.filter(
         (c): c is Extract<NodeChange<JimengNode>, { type: "select" }> =>
           c.type === "select",
       );
       const nodes = applyNodeChanges(changes, state.nodes);
-      if (selectChange) {
-        const selectedNodeId = selectChange.selected
-          ? selectChange.id
-          : state.selectedNodeId === selectChange.id
-            ? null
-            : state.selectedNodeId;
-        return {
-          selectedNodeId,
-          nodes: nodes.map((n: JimengNode) => ({
-            ...n,
-            selected: n.id === selectedNodeId,
-          })),
-        };
+      if (selectChanges.length > 0) {
+        const lastSelected = [...selectChanges]
+          .reverse()
+          .find((c) => c.selected);
+        return { nodes, selectedNodeId: lastSelected ? lastSelected.id : null };
       }
       return {
         nodes: nodes.map((n: JimengNode) => ({

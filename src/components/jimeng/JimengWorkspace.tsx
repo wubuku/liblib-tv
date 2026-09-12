@@ -7,6 +7,7 @@ import "@xyflow/react/dist/style.css";
 
 import { useJimengStore } from "@/store/jimengStore";
 import { JimengVideoNode } from "@/components/jimeng/nodes/JimengVideoNode";
+import { JimengEdge } from "@/components/jimeng/JimengEdge";
 import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
 import { JimengToolRail } from "@/components/jimeng/JimengToolRail";
 import { JimengBottomDock } from "@/components/jimeng/JimengBottomDock";
@@ -25,6 +26,10 @@ import { JimengAiDrawer } from "@/components/jimeng/JimengAiDrawer";
  */
 const nodeTypes = {
   video: JimengVideoNode,
+};
+
+const edgeTypes = {
+  jimeng: JimengEdge,
 };
 
 const DEFAULT_VIEWPORT = { x: -60.6, y: 1.3, zoom: 0.7299 };
@@ -140,6 +145,9 @@ function JimengFlow() {
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        defaultEdgeOptions={{ type: "jimeng" }}
+        multiSelectionKeyCode="Shift"
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onPaneClick={onPaneClick}
