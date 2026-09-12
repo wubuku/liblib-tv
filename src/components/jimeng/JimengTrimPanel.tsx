@@ -21,8 +21,8 @@ export function JimengTrimPanel({
 }: {
   visible: boolean;
   data: JimengVideoNodeData;
-  /** 确认修剪: 回传裁剪后的时长（秒）(Batch 33 真实联动) */
-  onConfirm: (trimmedDuration: number) => void;
+  /** 确认修剪: 回传裁剪后的时长与新起点秒数 (Batch 33/44 真实联动) */
+  onConfirm: (trimmedDuration: number, startOffset: number) => void;
 }) {
   const duration = data.duration ?? 0;
   const trackRef = useRef<HTMLDivElement>(null);
@@ -123,7 +123,7 @@ export function JimengTrimPanel({
           </div>
           <button
             type="button"
-            onClick={() => onConfirm(trimmed)}
+            onClick={() => onConfirm(trimmed, range.start * duration)}
             className="h-9 rounded-lg bg-white px-5 text-[13px] font-medium text-black hover:bg-white/90"
           >
             确认

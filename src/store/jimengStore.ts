@@ -110,8 +110,12 @@ export interface JimengCanvasState {
   toggleMute: (id: string) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
   seek: (id: string, fraction: number) => void;
-  /** 修剪确认 (Batch 33): 裁剪后的时长写回节点并入撤销栈 (mock: 只改时长数据) */
-  applyTrim: (id: string, trimmedDuration: number) => void;
+  /** 修剪确认 (Batch 33/44): 裁剪后的时长与新起点写回节点并入撤销栈 */
+  applyTrim: (
+    id: string,
+    trimmedDuration: number,
+    startOffset?: number,
+  ) => void;
   /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
@@ -524,7 +528,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       }),
     })),
 
-  applyTrim: (id, trimmedDuration) =>
+  applyTrim: (id, trimmedDuration, startOffset = 0) =>
     set((state) => ({
       past: [...state.past, { nodes: state.nodes, edges: state.edges }],
       future: [],
@@ -536,7 +540,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           data: {
             ...vd,
             duration: Math.max(0.1, trimmedDuration),
-            currentTime: 0,
+            currentTime: startOffset,
             playing: false,
           },
         };

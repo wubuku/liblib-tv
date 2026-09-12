@@ -155,8 +155,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         <JimengTrimPanel
           visible
           data={d}
-          onConfirm={(trimmedDuration) => {
-            applyTrim(id, trimmedDuration);
+          onConfirm={(trimmedDuration, startOffset) => {
+            applyTrim(id, trimmedDuration, startOffset);
             exitTrim();
           }}
         />
