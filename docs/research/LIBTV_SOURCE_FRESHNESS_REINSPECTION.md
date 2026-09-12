@@ -392,6 +392,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-13 | batch 441 探测 | still-broken | 第四十九次重测；VR-023 Slice A 关闭（batch 441） |
 | 2026-09-13 | batch 442 探测 | still-broken | 第五十次重测；VR-023 Slice B 关闭（batch 442） |
 | 2026-09-13 | batch 443 探测 | still-broken | 第五十一次重测；VR-023 Slice C 关闭（batch 443） |
+| 2026-09-13 | batch 444 探测 | still-broken | 第五十二次重测；VR-023 Slice D 关闭（batch 444） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

@@ -181,6 +181,24 @@ export function getLibTVNodeIntrinsicDimensions(
   node: DimensionBearingNode,
 ): LibTVNodeIntrinsicDimensions | null {
   const data = node.data ?? {};
+  // Batch 444 (VR-023 Slice D): per-output metadata wins when present —
+  // the selected output's declared dimensions are the intrinsic authority.
+  const outputs = data.outputs;
+  const selectedOutputId = data.selectedOutputId;
+  if (Array.isArray(outputs) && typeof selectedOutputId === "string") {
+    for (const entry of outputs) {
+      if (
+        entry &&
+        typeof entry === "object" &&
+        (entry as Record<string, unknown>).outputId === selectedOutputId
+      ) {
+        const out = entry as Record<string, unknown>;
+        const width = typeof out.width === "number" ? out.width : null;
+        const height = typeof out.height === "number" ? out.height : null;
+        if (width && height) return { width, height };
+      }
+    }
+  }
   const width = typeof data.width === "number" ? data.width : null;
   const height = typeof data.height === "number" ? data.height : null;
   if (width && height) return { width, height };

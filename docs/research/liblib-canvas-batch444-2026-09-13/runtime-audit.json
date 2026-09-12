@@ -1,0 +1,24 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-023 Slice D — mixed-ratio output fixture: per-output identities, selection reflow, no history integration",
+  "scenes": {
+    "output_selection_reflow": {
+      "square": "288x288",
+      "portrait": "162x288",
+      "wide": "512x288",
+      "selectedOutputIdRecorded": true
+    },
+    "unknown_output_noop": {
+      "returnedFalse": true,
+      "zeroPartial": true
+    },
+    "history_untouched": true,
+    "detector_coherent": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

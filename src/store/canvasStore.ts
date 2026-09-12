@@ -384,6 +384,11 @@ interface CanvasState {
   undo: () => void;
   redo: () => void;
 
+  /** Batch 444 (VR-023 Slice D): select a per-output rendition identity and
+   * reflow the node frame from its declared intrinsic ratio. Rendition state
+   * only — no graph history entry. False when the node/output is unknown. */
+  selectNodeOutput: (nodeId: string, outputId: string) => boolean;
+
   // Viewport actions
   setViewport: (viewport: { x: number; y: number; zoom: number }) => void;
 
@@ -3578,6 +3583,72 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         c.id === activeCanvasId ? { ...c, viewport } : c
       ),
     }));
+  },
+
+  // Batch 444 (VR-023 Slice D): per-output rendition identity selection with
+  // frame reflow from the newly selected intrinsic ratio. Rendition state —
+  // deliberately no graph history entry (contract: history integration out
+  // of scope for this slice). Unknown node/output is a stable false NOOP.
+  selectNodeOutput: (nodeId: string, outputId: string) => {
+    const { activeCanvasId } = get();
+    const canvas = get().canvases.find((c) => c.id === activeCanvasId);
+    const node = canvas?.nodes.find((n) => n.id === nodeId);
+    if (!canvas || !node) return false;
+    const data = node.data as Record<string, unknown>;
+    const outputs = Array.isArray(data.outputs) ? data.outputs : null;
+    if (!outputs) return false;
+    let selected: { width: number; height: number } | null = null;
+    for (const entry of outputs) {
+      if (
+        entry &&
+        typeof entry === "object" &&
+        (entry as Record<string, unknown>).outputId === outputId
+      ) {
+        const out = entry as Record<string, unknown>;
+        const width = typeof out.width === "number" ? out.width : null;
+        const height = typeof out.height === "number" ? out.height : null;
+        if (width && height) selected = { width, height };
+      }
+    }
+    if (!selected) return false;
+
+    const frameHeight =
+      node.height ?? Number(node.style?.height) ?? 288;
+    const ratio = selected.width / selected.height;
+    let frameWidth = node.width ?? Number(node.style?.width) ?? 512;
+    if (Number.isFinite(ratio) && ratio > 0) {
+      const derived = Math.round(frameHeight * ratio);
+      if (derived >= 160 && derived <= 640) frameWidth = derived;
+    }
+
+    set((state) => ({
+      canvases: state.canvases.map((c) =>
+        c.id !== activeCanvasId
+          ? c
+          : {
+              ...c,
+              nodes: c.nodes.map((n) =>
+                n.id !== nodeId
+                  ? n
+                  : {
+                      ...n,
+                      width: frameWidth,
+                      height: frameHeight,
+                      style: {
+                        ...(n.style ?? {}),
+                        width: frameWidth,
+                        height: frameHeight,
+                      },
+                      data: {
+                        ...(n.data as Record<string, unknown>),
+                        selectedOutputId: outputId,
+                      },
+                    },
+              ),
+            },
+      ),
+    }));
+    return true;
   },
 
   getActiveCanvas: () => {

@@ -216,6 +216,15 @@
   批量移除全部选中节点（`removeNodes`）；文字节点双击进入行内 textarea
   编辑（Enter/Esc 处理；local-only mock）；`updateNodeData` 泛化为
   任意节点类型。
+- SOURCE_FACT (batch 39, 交叉一致): 快捷键面板已记载 创建编组 ⌘G /
+  取消编组 ⌘⇧G（与 §7 batch 18 面板条目一致）。复刻: groupSelected
+  给 ≥2 选中节点分配共享 groupId，拖拽组内节点整组联动（onNodesChange
+  按 groupId delta 展开 position）；⌘⇧G 清除全部 groupId
+  （CLONE_DECISION: 原型级全局解组）；节点包装器暴露 data-group-id。
+- CLONE_DECISION (batch 40): 生成面板提示词为真实 textarea，有文字时
+  send 可用并提交 mock toast「生成任务已提交」（全局 toast store，
+  JimengTaskToast 2.5s 自动清除）；startTask 同时推送 mock toast
+  （batch 11 回归保持）。
 - 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
   66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
   消息与代码审读转录；§7 原有直采条目止于 batch 27。batch 33 条目同法
@@ -223,7 +232,8 @@
   （commit 5422c94，batch 434 对照批）。batch 35/36 条目同法补录
   （commits 31a954e / 2c39b4b，batch 436 对照批）。batch 37 条目同法
   补录（commit 5f6da13，batch 437 对照批）。batch 38 条目同法补录
-  （commit d4d69b5，batch 438 对照批）。
+  （commit d4d69b5，batch 438 对照批）。batch 39/40 条目同法补录
+  （commits 8c03eef / 9454fd8，batch 444 对照批）。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
