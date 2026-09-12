@@ -375,6 +375,7 @@ Required follow-up fixture:
 | 2026-09-12 | batch 401 探测 | still-broken | 第二十一次重测 |
 | 2026-09-12 | batch 402 探测 | still-broken | 第二十二次重测 |
 | 2026-09-12 | batch 403 探测 | still-broken | 第二十三次重测 |
+| 2026-09-12 | batch 404 探测 | still-broken | 第二十四次重测 |
 | 2026-09-12 | batch 395 探测 | still-broken | 第十四次重测 |
 | 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
 | 2026-09-12 | batch 393 探测 | still-broken | 第十三次重测 |
