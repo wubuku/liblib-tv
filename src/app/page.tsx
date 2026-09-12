@@ -22,6 +22,19 @@ import "@xyflow/react/dist/style.css";
 
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import {
+  LIBTV_EDITOR_PROFILES,
+  getLibTVProfileInvariantViolations,
+  normalizeLibTVEditorValue,
+  pushLibTVLocalHistory,
+  reduceLibTVEditorSession,
+  type LibTVEditorProfile,
+  type LibTVEditorSessionSnapshot,
+  type LibTVEditorSessionEvent,
+  type LibTVEditorSessionResult,
+  type LibTVLocalHistoryBudget,
+  type LibTVLocalHistoryEntry,
+} from "@/lib/libtvEditorSession";
+import {
   classifyLibTVDimensionField,
   detectLibTVDimensionAuthorityConflicts,
   makeLibTVEditorBaseline,
@@ -175,6 +188,26 @@ declare global {
     __libtv_parse_display_dimensions?: (
       value: unknown,
     ) => { width: number; height: number } | null;
+    __libtv_editor_profiles?: Record<string, LibTVEditorProfile>;
+    __libtv_editor_profile_violations?: (profile: LibTVEditorProfile) => string[];
+    __libtv_editor_normalize?: (
+      profile: LibTVEditorProfile,
+      value: string,
+    ) => string;
+    __libtv_editor_session_reduce?: (
+      snapshot: LibTVEditorSessionSnapshot,
+      event: LibTVEditorSessionEvent,
+    ) => LibTVEditorSessionResult;
+    __libtv_editor_local_history_push?: (
+      history: readonly LibTVLocalHistoryEntry[],
+      entry: LibTVLocalHistoryEntry,
+      budget?: LibTVLocalHistoryBudget,
+    ) => LibTVLocalHistoryEntry[];
+    __libtv_editor_local_history_entry?: (
+      kind: string,
+      at: number,
+      value: string,
+    ) => { kind: string; at: number; value: string };
     __libtv_annotate_fit_mapping?: () => {
       baseline: {
         mediaId: string;
@@ -606,6 +639,13 @@ export default function Home() {
     };
     window.__libtv_classify_dimension_field = classifyLibTVDimensionField;
     window.__libtv_parse_display_dimensions = parseLibTVDisplayDimensions;
+    // Batch 445 (VR-022 Slice A): pure editor session model diagnostics.
+    window.__libtv_editor_profiles = LIBTV_EDITOR_PROFILES;
+    window.__libtv_editor_profile_violations = getLibTVProfileInvariantViolations;
+    window.__libtv_editor_normalize = normalizeLibTVEditorValue;
+    window.__libtv_editor_session_reduce = reduceLibTVEditorSession;
+    window.__libtv_editor_local_history_push = pushLibTVLocalHistory;
+    window.__libtv_editor_local_history_entry = (kind, at, value) => ({ kind, at, value });
     // Batch 443 (VR-023 Slice C): fit-transform mapping for the open
     // annotate editor — declared intrinsic plane to visible frame.
     window.__libtv_annotate_fit_mapping = () => {
@@ -640,6 +680,12 @@ export default function Home() {
       delete window.__libtv_classify_dimension_field;
       delete window.__libtv_parse_display_dimensions;
       delete window.__libtv_annotate_fit_mapping;
+      delete window.__libtv_editor_profiles;
+      delete window.__libtv_editor_profile_violations;
+      delete window.__libtv_editor_normalize;
+      delete window.__libtv_editor_session_reduce;
+      delete window.__libtv_editor_local_history_push;
+      delete window.__libtv_editor_local_history_entry;
     };
   }, []);
 

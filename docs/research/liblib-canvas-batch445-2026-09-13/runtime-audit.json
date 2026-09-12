@@ -1,0 +1,79 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-022 Slice A — pure editor profile/session/history model",
+  "profile_registry": {
+    "profileCount": 10,
+    "violations": []
+  },
+  "profile_invariants": {
+    "gated": [
+      "evidence-gated profile exposes an acceptance command"
+    ],
+    "multiline": [
+      "multiline inline editor may not use bare Enter as commit unless the source contract reserves it"
+    ],
+    "live": [
+      "live inspector must coalesce graph history"
+    ]
+  },
+  "session_state_machine": {
+    "openedState": "OPEN_CLEAN",
+    "dirtyState": "OPEN_DIRTY",
+    "dirtyFlag": true,
+    "committingState": "COMMITTING_SYNC",
+    "acceptedState": "ACCEPTED",
+    "cancelledState": "DISPOSING",
+    "disposedState": "CLOSED",
+    "noOpEditOutcome": "handled-noop",
+    "noOpEditState": "OPEN_CLEAN",
+    "cleanCommit": {
+      "snapshot": {
+        "state": "OPEN_CLEAN",
+        "profileId": "INLINE_SCALAR",
+        "baseline": "标题",
+        "draft": "标题",
+        "dirty": false
+      },
+      "outcome": "rejected-transition",
+      "reason": "commit requires a dirty session"
+    },
+    "doubleOpen": {
+      "snapshot": {
+        "state": "OPEN_CLEAN",
+        "profileId": "INLINE_SCALAR",
+        "baseline": "标题",
+        "draft": "标题",
+        "dirty": false
+      },
+      "outcome": "rejected-transition",
+      "reason": "session already open"
+    },
+    "invalidatedState": "INVALIDATED",
+    "staleCommit": {
+      "snapshot": {
+        "state": "INVALIDATED",
+        "profileId": "INLINE_SCALAR",
+        "baseline": "标题",
+        "draft": "新标题",
+        "dirty": true
+      },
+      "outcome": "rejected-transition",
+      "reason": "commit requires a dirty session"
+    }
+  },
+  "normalization_noop": {
+    "scalarTrim": "标题",
+    "multilineKept": "  保留  "
+  },
+  "history_budget_coalescing": {
+    "coalescedLength": 2,
+    "coalescedLast": "abc",
+    "budgetedLength": 50
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
