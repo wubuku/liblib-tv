@@ -14,6 +14,7 @@ import {
   type ReactFlowInstance,
   type OnConnectEnd,
   type OnConnectStart,
+  type OnMoveEnd,
   BackgroundVariant,
   SelectionMode,
 } from "@xyflow/react";
@@ -141,7 +142,8 @@ interface LibTVViewportOwnerLogEntry {
     | "canvas-unavailable"
     | "resize-anchor"
     | "resize-anchor-not-applicable"
-    | "breakpoint-flip-delegated";
+    | "breakpoint-flip-delegated"
+    | "live-frame";
   ownership: LibTVViewportOwnership | null;
   viewport: LibTVViewport | null;
 }
@@ -458,7 +460,13 @@ export default function Home() {
     (
       expectedCanvasId: string,
       viewport: LibTVViewport,
+      options?: { live?: boolean },
     ): LibTVViewportEventResult => {
+      // Batch 439 (VGP §6.3/DQ-003): per-frame events update the live
+      // projection only; the stable store commit lands once per gesture on
+      // the move end (or immediately for explicit no-animation commands,
+      // which keep the default stable path).
+      const liveFrame = options?.live === true;
       const log = (
         status: LibTVViewportOwnerLogEntry["status"],
         reason: LibTVViewportOwnerLogEntry["reason"],
@@ -498,10 +506,14 @@ export default function Home() {
         return log("committed", "projection-echo", ownership);
       }
 
-      viewportOwnershipRef.current.set(expectedCanvasId, "stable");
       setFlowViewport(viewport);
-      setStoreViewport(viewport);
       setZoomLevel(Math.round(viewport.zoom * 100));
+      if (liveFrame) {
+        return log("committed", "live-frame", ownership);
+      }
+
+      viewportOwnershipRef.current.set(expectedCanvasId, "stable");
+      setStoreViewport(viewport);
       return log("committed", "viewport-accepted", "stable");
     },
     [setStoreViewport, setZoomLevel],
@@ -509,6 +521,13 @@ export default function Home() {
 
   const onViewportChange = useCallback(
     (viewport: LibTVViewport) => {
+      applyViewportEvent(activeCanvasId, viewport, { live: true });
+    },
+    [activeCanvasId, applyViewportEvent],
+  );
+
+  const onMoveEnd = useCallback<OnMoveEnd>(
+    (_event, viewport) => {
       applyViewportEvent(activeCanvasId, viewport);
     },
     [activeCanvasId, applyViewportEvent],
@@ -1183,6 +1202,7 @@ export default function Home() {
             snapToGrid={snapToGrid}
             snapGrid={[20, 20]}
             onViewportChange={onViewportChange}
+            onMoveEnd={onMoveEnd}
             panOnScroll
             panOnScrollSpeed={1}
             zoomOnScroll

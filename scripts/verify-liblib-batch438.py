@@ -119,8 +119,13 @@ def run_bootstrap_resize_skipped(page: Page):
 
 def run_resize_anchor_center_preserved(page: Page):
     page.mouse.move(550, 420)
-    page.mouse.wheel(0, 240)
-    page.wait_for_timeout(420)
+    # Multiple wheel ticks: xyflow's panOnScroll handler fires the gesture
+    # end (and thus the batch-439 stable ownership flip) 150ms after the
+    # LAST wheel tick only — a single tick never completes the gesture.
+    for _ in range(5):
+        page.mouse.wheel(0, 48)
+        page.wait_for_timeout(60)
+    page.wait_for_timeout(650)
     assert ownership(page) == "stable", "wheel pan must grant stable ownership"
 
     pre_viewport = stored_viewport(page)

@@ -833,8 +833,10 @@ default-add host authority. Batch 64 implemented the Asset drawer subset of
 bootstrap/stored-viewport subset of Slice C plus a current-canvas callback
 guard. Batch 438 implemented `§7.2`'s browser resize anchor for stable
 ownership (center preservation, breakpoint flips delegated to the batch-65
-authority, decisions logged). Full live/stable endpoint compression and
-generic generation/host epoch remain separately gated.
+authority, decisions logged). Batch 439 implemented the `§6.3`/DQ-003
+live/stable endpoint phase split for gestures (per-frame live, one stable
+commit on move end; explicit commands keep the immediate stable commit).
+Generic generation/host epoch remains separately gated.
 
 ### Slice A: pure spatial model
 

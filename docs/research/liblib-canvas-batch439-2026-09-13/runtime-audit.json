@@ -1,0 +1,23 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VGP §6.3/DQ-003 — live per frame, stable on move end; explicit commands keep the immediate stable commit",
+  "bootstrap_pan_endpoint": {
+    "liveFrameEntries": 5,
+    "stableEndpointEntries": 1,
+    "ownershipFlippedToStable": true,
+    "storeWrittenAtEndpoint": true
+  },
+  "explicit_command_still_stable": {
+    "result": {
+      "status": "committed",
+      "reason": "viewport-accepted"
+    },
+    "storeWritten": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
