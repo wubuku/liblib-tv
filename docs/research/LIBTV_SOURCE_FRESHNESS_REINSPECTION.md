@@ -352,6 +352,11 @@ Required follow-up fixture:
 
 ### 10.2b 复测运行日志
 
+batch 433（对照批）重建本表：先前的追加脚本产生过整段重复行，并混入
+早于实际执行的「预写行」（batch 433-436 / 第四十二次——这些探测从未
+运行，无对应提交；已删除）。历史行按批次号排序、逐次去重后保留；
+第 N 次标注存在两套序列（见表后说明），按各批 commit message 原样保留。
+
 | 日期 | 挂接批次 | 结果 | 备注 |
 |---|---|---|---|
 | 2026-09-11 | batch 333-336 探测 | still-broken | 模型菜单虚拟化重叠 + 创建链路损坏首证 |
@@ -364,138 +369,25 @@ Required follow-up fixture:
 | 2026-09-12 | batch 384 探测 | still-broken | 第九次重测；jimeng 路线 batch 8 后暂无新提交 |
 | 2026-09-12 | batch 390 探测 | still-broken | 第十次重测；49 项维护集全绿 |
 | 2026-09-12 | batch 391 探测 | still-broken | 第十一次重测 |
-| 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
-| 2026-09-12 | batch 393 探测 | still-broken | 第十三次重测 |
 | 2026-09-12 | batch 392-393 探测 | still-broken | 第十二、十三次重测（§3.3 审计/巡检批次） |
 | 2026-09-12 | batch 394-396 探测 | still-broken | 第十四~十六次重测（心跳/巡检/对照批次） |
-| 2026-09-12 | batch 416 探测 | still-broken | 第二十四次重测 |
-| 2026-09-13 | batch 417 探测 | still-broken | 第二十五次重测 |
-| 2026-09-13 | batch 418 探测 | still-broken | 第二十六次重测 |
-| 2026-09-13 | batch 419 探测 | still-broken | 第二十七次重测 |
-| 2026-09-13 | batch 420 探测 | still-broken | 第二十八次重测 |
-| 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
-| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
-| 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 420 探测 | still-broken | 第二十八次重测 |
-| 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
-| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
-| 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 421 探测 | still-broken | 第二十九次重测 |
-| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
-| 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 422 探测 | still-broken | 第三十次重测 |
-| 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 423 探测 | still-broken | 第三十一次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 424 探测 | still-broken | 第三十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 425-435 探测 | still-broken | 第三十三~四十一次重测（心跳批次） |
-| 2026-09-13 | batch 436 探测 | still-broken | 第四十二次重测 |
-| 2026-09-13 | batch 425 探测 | still-broken | 第三十三次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 426 探测 | still-broken | 第三十四次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 427 探测 | still-broken | 第三十五次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 428 探测 | still-broken | 第三十六次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 429 探测 | still-broken | 第三十七次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 430 探测 | still-broken | 第三十八次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 431 探测 | still-broken | 第三十九次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
-| 2026-09-13 | batch 432 探测 | still-broken | 第四十次重测 |
 | 2026-09-12 | batch 397 探测 | still-broken | 第十七次重测 |
 | 2026-09-12 | batch 398 探测 | still-broken | 第十八次重测 |
 | 2026-09-12 | batch 399 探测 | still-broken | 第十九次重测；jimeng 路线仍为 batch 8 |
-| 2026-09-12 | batch 400 探测 | still-broken | 第二十次重测 |
-| 2026-09-12 | batch 401 探测 | still-broken | 第二十一次重测 |
-| 2026-09-12 | batch 402 探测 | still-broken | 第二十二次重测 |
-| 2026-09-12 | batch 403 探测 | still-broken | 第二十三次重测 |
-| 2026-09-12 | batch 404 探测 | still-broken | 第二十四次重测 |
-| 2026-09-12 | batch 405 探测 | still-broken | 第二十五次重测 |
-| 2026-09-12 | batch 406 探测 | still-broken | 第二十六次重测 |
-| 2026-09-12 | batch 407 探测 | still-broken | 第二十七次重测 |
-| 2026-09-12 | batch 408 探测 | still-broken | 第二十八次重测 |
-| 2026-09-12 | batch 409 探测 | still-broken | 第二十九次重测 |
+| 2026-09-12 | batch 400-403 探测 | still-broken | 第二十~二十三次重测（心跳批次） |
+| 2026-09-12 | batch 404-409 探测 | still-broken | 第二十四~二十九次重测（心跳批次） |
 | 2026-09-12 | batch 410 探测 | still-broken | 第三十次重测（留档批） |
 | 2026-09-12 | batch 413-414 探测 | still-broken | 第三十一~三十二次重测；jimeng 验证器覆盖已扩至 batch 13 |
-| 2026-09-12 | batch 395 探测 | still-broken | 第十四次重测 |
-| 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
-| 2026-09-12 | batch 393 探测 | still-broken | 第十三次重测 |
+| 2026-09-12 | batch 416 探测 | still-broken | 第二十四次重测（此起标注序列重置，见表后说明） |
+| 2026-09-12 | batch 417-423 探测 | still-broken | 第二十五~三十一次重测（心跳批次） |
+| 2026-09-13 | batch 424-432 探测 | still-broken | 第三十二~四十次重测（心跳批次） |
+| 2026-09-13 | batch 433 探测 | still-broken | 第四十一次重测；jimeng batch 28–32 对照同步入 §7 |
+
+序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
+batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
+batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
+执行一次探测、结果全部 still-broken，绝对次数以提交链为准。本表后续行
+沿用序列 B 继续计数。
 
 ### 10.3 复测触发条件
 
