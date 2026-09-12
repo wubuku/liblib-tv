@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUp, AtSign, ChevronDown, Maximize2, Plus } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
+import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
 
 /**
@@ -19,6 +21,17 @@ import { VipDiamond } from "@/components/jimeng/icons";
  * mock: 提示词不可输入、下拉不开合 (Batch 5 接 store)。
  */
 export function JimengGenPanel({ visible }: { visible: boolean }) {
+  // Batch 40: 提示词可输入；发送后 pushToast (mock，不产生真实任务)
+  const [prompt, setPrompt] = useState("");
+  const pushToast = useJimengStore((s) => s.pushToast);
+  const canSend = prompt.trim().length > 0;
+
+  const send = () => {
+    if (!canSend) return;
+    setPrompt("");
+    pushToast("生成任务已提交（mock）");
+  };
+
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={20}>
       <div className="relative h-[208px] w-[680px]">
@@ -35,7 +48,13 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
 
         <form
           className="flex h-full w-full flex-col justify-between rounded-[20px] bg-[#202020] p-[17px]"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (canSend) {
+              pushToast("生成任务已提交（mock）");
+              setPrompt("");
+            }
+          }}
         >
           {/* 素材栏 */}
           <div className="flex h-12 w-full items-center">
@@ -48,16 +67,15 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
             </button>
           </div>
 
-          {/* 提示词占位区 */}
+          {/* 提示词输入区 (Batch 40: 可编辑) */}
           <div className="flex w-full items-start">
-            <p className="text-[13px] leading-[22px] text-white/35">
-              上传参考图、输入文字或{" "}
-              <span className="inline-flex items-center gap-0.5 rounded bg-white/[0.08] px-1 text-white/60">
-                <AtSign size={11} />
-                主体
-              </span>{" "}
-              ，描述你想生成的视频
-            </p>
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="上传参考图、输入文字或 @ 主体，描述你想生成的视频"
+              rows={2}
+              className="w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none placeholder:text-white/35"
+            />
           </div>
 
           {/* 底部控制行 */}
@@ -109,10 +127,14 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
                 56
               </span>
               <button
-                type="button"
+                type="submit"
                 aria-label="生成"
-                disabled
-                className="flex size-8 items-center justify-center rounded-full bg-white/[0.16] text-white/20"
+                disabled={!canSend}
+                className={`flex size-8 items-center justify-center rounded-full ${
+                  canSend
+                    ? "bg-white text-black hover:bg-white/90"
+                    : "bg-white/[0.16] text-white/20"
+                }`}
               >
                 <ArrowUp size={15} />
               </button>

@@ -47,6 +47,11 @@ export interface JimengCanvasState {
   /** 底栏缩放百分比显示 */
   zoomPercent: number;
 
+  /** 全局 toast 文本 (Batch 40: 生成面板发送等 mock 反馈) */
+  toast: string | null;
+  pushToast: (text: string) => void;
+  clearToast: () => void;
+
   // ───── Actions ─────
   onNodesChange: (changes: NodeChange<JimengNode>[]) => void;
   onEdgesChange: (changes: EdgeChange[]) => void;
@@ -234,6 +239,12 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     })),
 
   setZoomPercent: (z) => set({ zoomPercent: Math.round(z) }),
+
+  toast: null,
+
+  pushToast: (text) => set({ toast: text }),
+
+  clearToast: () => set({ toast: null }),
 
   addVideoNodeAfter: (sourceId) =>
     set((state) => {
