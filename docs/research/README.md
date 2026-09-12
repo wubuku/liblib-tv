@@ -460,6 +460,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 440 | Batch History 索引补全（追溯债清偿） | [`liblib-canvas-batch440-2026-09-13/`](liblib-canvas-batch440-2026-09-13/) |
 
+| 441 | VR-023 Slice A：尺寸权威分类 + 冲突可观测 | [`liblib-canvas-batch441-2026-09-13/`](liblib-canvas-batch441-2026-09-13/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |

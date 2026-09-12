@@ -22,6 +22,13 @@ import "@xyflow/react/dist/style.css";
 
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import {
+  classifyLibTVDimensionField,
+  detectLibTVDimensionAuthorityConflicts,
+  parseLibTVDisplayDimensions,
+  type LibTVDimensionConflict,
+  type LibTVDimensionFieldClassification,
+} from "@/lib/libtvMediaDimensionAuthority";
+import {
   getDirectorProjectRegistrySnapshot,
   useDirectorStore,
 } from "@/store/directorStore";
@@ -157,6 +164,15 @@ declare global {
   interface Window {
     __libtv_asset_layout_log: LibTVAssetLayoutLogEntry[];
     __libtv_viewport_owner_log: LibTVViewportOwnerLogEntry[];
+    __libtv_detect_dimension_conflicts?: (
+      canvasId?: string,
+    ) => LibTVDimensionConflict[];
+    __libtv_classify_dimension_field?: (
+      field: string,
+    ) => LibTVDimensionFieldClassification;
+    __libtv_parse_display_dimensions?: (
+      value: unknown,
+    ) => { width: number; height: number } | null;
     __libtv_apply_viewport_event?: (
       expectedCanvasId: string,
       viewport: LibTVViewport,
@@ -542,6 +558,37 @@ export default function Home() {
       delete window.__libtv_get_viewport_ownership;
     };
   }, [applyViewportEvent]);
+
+  // Batch 441 (VR-023 Slice A): dimension-authority conflict diagnostics —
+  // read-only observation over the canvas graph; no visual or state change.
+  useEffect(() => {
+    window.__libtv_detect_dimension_conflicts = (canvasId?: string) => {
+      const state = useCanvasStore.getState();
+      const canvas = state.canvases.find(
+        (item) => item.id === (canvasId ?? state.activeCanvasId),
+      );
+      if (!canvas) return [];
+      const byId = new Map(canvas.nodes.map((node) => [node.id, node]));
+      const conflicts: LibTVDimensionConflict[] = [];
+      for (const node of canvas.nodes) {
+        const sourceEdge = canvas.edges.find(
+          (edge) => edge.target === node.id,
+        );
+        const source = sourceEdge ? byId.get(sourceEdge.source) : undefined;
+        conflicts.push(
+          ...detectLibTVDimensionAuthorityConflicts(node, source),
+        );
+      }
+      return conflicts;
+    };
+    window.__libtv_classify_dimension_field = classifyLibTVDimensionField;
+    window.__libtv_parse_display_dimensions = parseLibTVDisplayDimensions;
+    return () => {
+      delete window.__libtv_detect_dimension_conflicts;
+      delete window.__libtv_classify_dimension_field;
+      delete window.__libtv_parse_display_dimensions;
+    };
+  }, []);
 
   const addNodeAtHostCenter = useCallback(
     (type: string, data?: Record<string, unknown>) => {

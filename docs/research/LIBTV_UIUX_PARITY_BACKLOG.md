@@ -83,7 +83,7 @@
 | - | `LIBTV-PAR-013` | Batch 48 local model-library persistence | 4 | 4 | 4 | 4 | `RECORDED_PASS` |
 | - | `LIBTV-PAR-014` | 媒体接入、asset/reference 与 temporary resource lifecycle correctness | 5 | 4 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime missing/partial、source parity partial |
 | - | `LIBTV-PAR-015` | foreground editor session、local history、commit/close 与 inert-control honesty | 5 | 5 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime fragmented、source parity partial |
-| - | `LIBTV-PAR-016` | media output、aspect、node frame、surface rendition、measurement 与 editor-coordinate correctness | 5 | 5 | 2 | 5 | `DESIGN_FIRST`；static/design complete，runtime fragmented、source ratio-diverse parity gated |
+| - | `LIBTV-PAR-016` | media output、aspect、node frame、surface rendition、measurement 与 editor-coordinate correctness | 5 | 5 | 2 | 5 | `DESIGN_FIRST`；Batch 441 关闭 Slice A（尺寸权威分类 + 三类冲突诊断观测化）；Slice B/C/D 待实施，source ratio-diverse parity gated |
 | - | `LIBTV-DIR-000` | Batch 49 Director viewport native coordinate gizmo | 4 | 4 | 5 | 2 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-001` | Batch 50 Director workspace keyboard/focus ownership and panel collapse | 4 | 3 | 5 | 3 | `RECORDED_PASS` |
 | - | `LIBTV-DIR-002` | Batch 59 Director asset-library search/preview/add-object flow | 4 | 2 | 5 | 2 | `RECORDED_PASS`；clone-owned，source exact blocked by authentication |

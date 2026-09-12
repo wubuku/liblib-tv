@@ -1,0 +1,62 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-023 Slice A — dimension-authority classification and observable conflicts (GI-102), diagnostics only",
+  "pure_classification": {
+    "width": {
+      "field": "width",
+      "authority": "intrinsic",
+      "kind": "dimensions"
+    },
+    "resolution": {
+      "field": "resolution",
+      "authority": "intrinsic",
+      "kind": "display-string"
+    },
+    "generationSettings": {
+      "field": "generationSettings",
+      "authority": "request",
+      "kind": "display-string"
+    },
+    "editorHeight": {
+      "field": "editorHeight",
+      "authority": "unknown",
+      "kind": "scalar"
+    },
+    "mystery": {
+      "field": "mystery",
+      "authority": "unknown",
+      "kind": "unknown"
+    },
+    "parsed": {
+      "width": 1280,
+      "height": 720
+    },
+    "parsedAlt": {
+      "width": 622,
+      "height": 350
+    },
+    "parsedJunk": null
+  },
+  "fixture_scan_readonly": {
+    "total": 6,
+    "byKind": {
+      "request-display-string-only": 5,
+      "intrinsic-display-string-only": 1
+    }
+  },
+  "derived_generic_frame_detection": {
+    "derivedNodeId": "smart-matting-1789250255836-0sii7m",
+    "flagged": true,
+    "newConflictKinds": [
+      "derived-frame-generic-default",
+      "intrinsic-display-string-only"
+    ],
+    "previouslyFlaggedCount": 0
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
