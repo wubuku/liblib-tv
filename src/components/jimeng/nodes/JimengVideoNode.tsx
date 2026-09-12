@@ -194,7 +194,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         >
           <div className="flex min-w-0 items-center gap-1.5 text-white/70">
             <FileBadgeIcon size={16} />
-            <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
+            <span
+              className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]"
+              title={d.title}
+            >
               {d.title}
             </span>
           </div>
