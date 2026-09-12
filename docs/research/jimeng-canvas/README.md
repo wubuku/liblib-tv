@@ -168,6 +168,10 @@
   (时间重置 00:00、进入播放态)；双击节点标题行 = 打开「添加节点」菜单的
   **extended 版** — 在 + 手柄菜单的 7 项之后追加「从资产库添加」「本地上传」。
   复刻: restartPlay + JimengInsertMenu extended；Escape 关闭菜单。
+- SOURCE_FACT (batch 25): 空白画布右键弹出菜单: 新建节点 > (子菜单)、
+  粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族。
+  复刻: 子菜单 hover 展开 (源站子菜单展开态未提取，CLONE_DECISION)，
+  子菜单项在右键位置插入节点 (screenToFlowPosition)。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 

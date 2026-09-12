@@ -26,6 +26,10 @@ import {
 import type { JimengContextMenuState } from "@/components/jimeng/JimengContextMenu";
 import { JimengTaskToast } from "@/components/jimeng/JimengTaskToast";
 import { JimengAiDrawer } from "@/components/jimeng/JimengAiDrawer";
+import {
+  JimengPaneContextMenu,
+} from "@/components/jimeng/JimengPaneContextMenu";
+import type { JimengPaneMenuState } from "@/components/jimeng/JimengPaneContextMenu";
 
 /**
  * 即梦画布工作区编排。
@@ -52,7 +56,9 @@ function JimengFlow() {
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
   const setZoomPercent = useJimengStore((s) => s.setZoomPercent);
-  const { fitView, zoomIn, zoomOut, getViewport, setViewport } = useReactFlow();
+  const { fitView, zoomIn, zoomOut, getViewport, setViewport, screenToFlowPosition } =
+    useReactFlow();
+  const addNodeAt = useJimengStore((s) => s.addNodeAt);
   const copyNode = useJimengStore((s) => s.copyNode);
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
   const pasteNode = useJimengStore((s) => s.pasteNode);
@@ -72,6 +78,10 @@ function JimengFlow() {
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
+  const [paneMenu, setPaneMenu] = useState<
+    (JimengPaneMenuState & { flowX: number; flowY: number }) | null
+  >(null);
+  const clipboard = useJimengStore((s) => s.clipboard);
 
   const onPaneClick = useCallback(() => {
     selectNode(null);
@@ -81,13 +91,33 @@ function JimengFlow() {
     exitFramePicker();
     exitTrim();
     setContextMenu(null);
+    setPaneMenu(null);
   }, [selectNode, exitRepaint, exitEdit, exitInfer, exitFramePicker, exitTrim]);
+
+  // 空白右键菜单 (SOURCE_FACT batch 25): 记录屏幕坐标 + 对应画布坐标
+  const onPaneContextMenu = useCallback(
+    (event: React.MouseEvent | MouseEvent) => {
+      event.preventDefault();
+      const e = event as MouseEvent;
+      const flow = screenToFlowPosition({ x: e.clientX, y: e.clientY });
+      setPaneMenu({ x: e.clientX, y: e.clientY, flowX: flow.x, flowY: flow.y });
+    },
+    [screenToFlowPosition],
+  );
 
   const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
     const e = event as unknown as MouseEvent;
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY, nodeId: node.id });
   }, []);
+
+  const onPaneInsert = useCallback(
+    (kind: "video" | "image" | "text" | "audio") => {
+      if (!paneMenu) return;
+      addNodeAt(kind, { x: paneMenu.flowX, y: paneMenu.flowY });
+    },
+    [paneMenu, addNodeAt],
+  );
 
   const onContextMenuAction = useCallback(
     (action: string) => {
@@ -223,6 +253,7 @@ function JimengFlow() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onPaneClick={onPaneClick}
+        onPaneContextMenu={onPaneContextMenu}
         onNodeContextMenu={onNodeContextMenu}
         onMove={onMove}
         defaultViewport={DEFAULT_VIEWPORT}
@@ -239,6 +270,19 @@ function JimengFlow() {
           canRedo={future.length > 0}
           onClose={() => setContextMenu(null)}
           onAction={onContextMenuAction}
+        />
+      ) : null}
+      {paneMenu ? (
+        <JimengPaneContextMenu
+          state={paneMenu}
+          canUndo={past.length > 0}
+          canRedo={future.length > 0}
+          clipboard={clipboard !== null}
+          onClose={() => setPaneMenu(null)}
+          onInsert={onPaneInsert}
+          onPaste={pasteNode}
+          onUndo={undo}
+          onRedo={redo}
         />
       ) : null}
       <JimengTaskToast />
