@@ -15,22 +15,22 @@
       "width": 929,
       "height": 874
     },
-    "source_node_id": "text-1789160687661-j5tgp7",
-    "target_node_id": "text-1789160688044-otb5g8",
+    "source_node_id": "text-1789169216946-knq7ax",
+    "target_node_id": "text-1789169217306-cwuo2o",
     "edge": {
-      "id": "e-text-1789160687661-j5tgp7-text-1789160688044-otb5g8-1789160688612",
-      "source": "text-1789160687661-j5tgp7",
+      "id": "e-text-1789169216946-knq7ax-text-1789169217306-cwuo2o-1789169217757",
+      "source": "text-1789169216946-knq7ax",
       "sourceHandle": "source",
-      "target": "text-1789160688044-otb5g8",
+      "target": "text-1789169217306-cwuo2o",
       "targetHandle": "target"
     },
     "history_before": 4,
     "history_after": 5,
     "selection_before": [
-      "text-1789160688044-otb5g8"
+      "text-1789169217306-cwuo2o"
     ],
     "selection_after": [
-      "text-1789160688044-otb5g8"
+      "text-1789169217306-cwuo2o"
     ],
     "selection_after_redo": []
   },
@@ -39,33 +39,33 @@
       "width": 390,
       "height": 844
     },
-    "source_node_id": "text-1789160691044-psw30q",
-    "target_node_id": "text-1789160691446-pc1i4i",
+    "source_node_id": "text-1789169219986-6smjtb",
+    "target_node_id": "text-1789169220303-c388uu",
     "edge": {
-      "id": "e-text-1789160691044-psw30q-text-1789160691446-pc1i4i-1789160692089",
-      "source": "text-1789160691044-psw30q",
+      "id": "e-text-1789169219986-6smjtb-text-1789169220303-c388uu-1789169220798",
+      "source": "text-1789169219986-6smjtb",
       "sourceHandle": "source",
-      "target": "text-1789160691446-pc1i4i",
+      "target": "text-1789169220303-c388uu",
       "targetHandle": "target"
     },
     "history_before": 4,
     "history_after": 5,
     "selection_before": [
-      "text-1789160691446-pc1i4i"
+      "text-1789169220303-c388uu"
     ],
     "selection_after": [
-      "text-1789160691446-pc1i4i"
+      "text-1789169220303-c388uu"
     ],
     "selection_after_redo": []
   },
   "target_start": {
-    "source_node_id": "text-1789160694447-qbhchq",
-    "target_node_id": "text-1789160694860-ss53r9",
+    "source_node_id": "text-1789169223051-mgfrd3",
+    "target_node_id": "text-1789169223347-rk68vc",
     "edge": {
-      "id": "e-text-1789160694447-qbhchq-text-1789160694860-ss53r9-1789160695329",
-      "source": "text-1789160694447-qbhchq",
+      "id": "e-text-1789169223051-mgfrd3-text-1789169223347-rk68vc-1789169223817",
+      "source": "text-1789169223051-mgfrd3",
       "sourceHandle": "source",
-      "target": "text-1789160694860-ss53r9",
+      "target": "text-1789169223347-rk68vc",
       "targetHandle": "target"
     },
     "target_start_result_after_existing_edge": {
@@ -75,14 +75,14 @@
   },
   "rejections": {
     "node_ids": [
-      "text-1789160697285-6yd19m",
-      "text-1789160697722-w2wb96",
-      "text-1789160698185-hvypcu"
+      "text-1789169225500-z29wke",
+      "text-1789169225863-autkm8",
+      "text-1789169226194-u9j3wb"
     ],
     "baseline": {
       "nodes": [
         {
-          "id": "text-1789160697285-6yd19m",
+          "id": "text-1789169225500-z29wke",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -90,7 +90,7 @@
           }
         },
         {
-          "id": "text-1789160697722-w2wb96",
+          "id": "text-1789169225863-autkm8",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -98,7 +98,7 @@
           }
         },
         {
-          "id": "text-1789160698185-hvypcu",
+          "id": "text-1789169226194-u9j3wb",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -108,24 +108,24 @@
       ],
       "edges": [
         {
-          "id": "e-text-1789160697285-6yd19m-text-1789160697722-w2wb96-1789160698830",
-          "source": "text-1789160697285-6yd19m",
+          "id": "e-text-1789169225500-z29wke-text-1789169225863-autkm8-1789169226719",
+          "source": "text-1789169225500-z29wke",
           "sourceHandle": "source",
-          "target": "text-1789160697722-w2wb96",
+          "target": "text-1789169225863-autkm8",
           "targetHandle": "target"
         },
         {
-          "id": "e-text-1789160697722-w2wb96-text-1789160698185-hvypcu-1789160699363",
-          "source": "text-1789160697722-w2wb96",
+          "id": "e-text-1789169225863-autkm8-text-1789169226194-u9j3wb-1789169227182",
+          "source": "text-1789169225863-autkm8",
           "sourceHandle": "source",
-          "target": "text-1789160698185-hvypcu",
+          "target": "text-1789169226194-u9j3wb",
           "targetHandle": "target"
         }
       ],
       "selectedNodeIds": [
-        "text-1789160698185-hvypcu"
+        "text-1789169226194-u9j3wb"
       ],
-      "selectedNodeId": "text-1789160698185-hvypcu",
+      "selectedNodeId": "text-1789169226194-u9j3wb",
       "pastLength": 8,
       "futureLength": 0
     },
@@ -145,7 +145,7 @@
     "after_rejected_store_submit": {
       "nodes": [
         {
-          "id": "text-1789160697285-6yd19m",
+          "id": "text-1789169225500-z29wke",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -153,7 +153,7 @@
           }
         },
         {
-          "id": "text-1789160697722-w2wb96",
+          "id": "text-1789169225863-autkm8",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -161,7 +161,7 @@
           }
         },
         {
-          "id": "text-1789160698185-hvypcu",
+          "id": "text-1789169226194-u9j3wb",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -171,24 +171,24 @@
       ],
       "edges": [
         {
-          "id": "e-text-1789160697285-6yd19m-text-1789160697722-w2wb96-1789160698830",
-          "source": "text-1789160697285-6yd19m",
+          "id": "e-text-1789169225500-z29wke-text-1789169225863-autkm8-1789169226719",
+          "source": "text-1789169225500-z29wke",
           "sourceHandle": "source",
-          "target": "text-1789160697722-w2wb96",
+          "target": "text-1789169225863-autkm8",
           "targetHandle": "target"
         },
         {
-          "id": "e-text-1789160697722-w2wb96-text-1789160698185-hvypcu-1789160699363",
-          "source": "text-1789160697722-w2wb96",
+          "id": "e-text-1789169225863-autkm8-text-1789169226194-u9j3wb-1789169227182",
+          "source": "text-1789169225863-autkm8",
           "sourceHandle": "source",
-          "target": "text-1789160698185-hvypcu",
+          "target": "text-1789169226194-u9j3wb",
           "targetHandle": "target"
         }
       ],
       "selectedNodeIds": [
-        "text-1789160698185-hvypcu"
+        "text-1789169226194-u9j3wb"
       ],
-      "selectedNodeId": "text-1789160698185-hvypcu",
+      "selectedNodeId": "text-1789169226194-u9j3wb",
       "pastLength": 8,
       "futureLength": 0
     }

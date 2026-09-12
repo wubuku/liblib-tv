@@ -1,0 +1,2 @@
+DEBUG6: {"start": "DIV|flex h-[49px] w-[1092.5px] items-center justi", "mid": "IMG|object-cover transition-[filter] duration-300"}
+Batch6 Playwright verification passed: marquee selection, H/V tools, Space temporary pan, input guard, blur reset, mobile overflow.
