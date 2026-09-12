@@ -90,8 +90,9 @@ export interface JimengCanvasState {
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
   toolActive: "select" | "move";
   setToolActive: (tool: "select" | "move") => void;
-  /** 播放交互 (Batch 15): 切换播放态 / mock 时间走动 */
+  /** 播放交互 (Batch 15/24): 切换播放态 / mock 时间走动 / 双击从头重播 */
   togglePlay: (id: string) => void;
+  restartPlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
@@ -374,6 +375,20 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ? { ...n, data: { ...n.data, playing: !(n.data.playing ?? false) } }
           : n,
       ),
+    })),
+
+  // 双击视频卡片 = 从头重播 (SOURCE_FACT batch 24)
+  restartPlay: (id) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        if (!vd.hasMedia) return n;
+        return {
+          ...n,
+          data: { ...vd, currentTime: 0, playing: true },
+        };
+      }),
     })),
 
   tickPlay: (id, delta) =>

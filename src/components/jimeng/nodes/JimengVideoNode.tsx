@@ -65,7 +65,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const tasks = useJimengStore((s) => s.tasks);
   const startTask = useJimengStore((s) => s.startTask);
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
-  const [insertMenu, setInsertMenu] = useState<"left" | "right" | null>(null);
+  const [insertMenu, setInsertMenu] = useState<
+    "left" | "right" | "title" | null
+  >(null);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
   const inferMode = inferNodeId === id;
@@ -73,6 +75,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const trimMode = trimNodeId === id;
   const task = tasks.find((t) => t.nodeId === id);
   const togglePlay = useJimengStore((s) => s.togglePlay);
+  const restartPlay = useJimengStore((s) => s.restartPlay);
   const tickPlay = useJimengStore((s) => s.tickPlay);
 
   // 播放中 mock 时间走动 (Batch 15)；播完自停
@@ -81,6 +84,16 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     const timer = window.setInterval(() => tickPlay(id, 0.25), 250);
     return () => window.clearInterval(timer);
   }, [playing, id, tickPlay]);
+
+  // 插入菜单 Escape 关闭 (Batch 24)
+  useEffect(() => {
+    if (!insertMenu) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setInsertMenu(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [insertMenu]);
 
   return (
     <div
@@ -125,13 +138,20 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         />
       ) : null}
       {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
-      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏 */}
+      {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏。
+          双击标题 = 「添加节点」菜单 extended 版 (SOURCE_FACT batch 24) */}
       {!repaintMode &&
       !editMode &&
       !inferMode &&
       !pickerMode &&
       !trimMode ? (
-        <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left">
+        <div
+          className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left"
+          onDoubleClick={(e) => {
+            e.stopPropagation();
+            setInsertMenu((cur) => (cur === "title" ? null : "title"));
+          }}
+        >
           <div className="flex min-w-0 items-center gap-1.5 text-white/70">
             <FileBadgeIcon size={16} />
             <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
@@ -144,7 +164,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         </div>
       ) : null}
 
-      {/* 卡片主体 */}
+      {/* 卡片主体；双击 = 从头重播 (SOURCE_FACT batch 24) */}
       <div
         className="relative h-full w-full overflow-hidden rounded-lg"
         style={{
@@ -154,6 +174,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             selected === true
               ? "0 0 0 1.5px rgba(255,255,255,0.92)"
               : undefined,
+        }}
+        onDoubleClick={() => {
+          if (d.hasMedia) restartPlay(id);
         }}
       >
         {d.hasMedia && d.poster ? (
@@ -286,14 +309,17 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       </Handle>
       {insertMenu ? (
         <div
-          className="absolute top-1/2 z-[130]"
+          className="absolute z-[130]"
           style={
             insertMenu === "right"
-              ? { left: "100%", marginLeft: 22 }
-              : { right: "100%", marginRight: 22 }
+              ? { left: "100%", top: "50%", marginLeft: 22 }
+              : insertMenu === "left"
+                ? { right: "100%", top: "50%", marginRight: 22 }
+                : { left: "18%", top: 8 }
           }
         >
           <JimengInsertMenu
+            extended={insertMenu === "title"}
             onPick={(label) => {
               if (label === "视频") addVideoNodeAfter(id);
               if (label === "图片")
