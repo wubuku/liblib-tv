@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRight, X } from "lucide-react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
@@ -49,7 +49,34 @@ const PLANS = [
 
 const TABS = ["连续包年 限时5折", "连续包月", "连续包季 7折", "单月购买"] as const;
 
+/** 促销倒计时：源站提取时显示 02天00时27分11秒 (SOURCE_FACT screenshot 34)，
+ * 复刻以该剩余量起跳实时递减 (CLONE_DECISION：真实截止时间不可知)。 */
+const PROMO_INITIAL_SECONDS = 2 * 86400 + 0 * 3600 + 27 * 60 + 11;
+
+function useCountdown() {
+  const [remaining, setRemaining] = useState(PROMO_INITIAL_SECONDS);
+  useEffect(() => {
+    const timer = window.setInterval(
+      () => setRemaining((r) => (r > 0 ? r - 1 : 0)),
+      1000,
+    );
+    return () => window.clearInterval(timer);
+  }, []);
+  const d = Math.floor(remaining / 86400);
+  const h = Math.floor((remaining % 86400) / 3600);
+  const m = Math.floor((remaining % 3600) / 60);
+  const s = remaining % 60;
+  return [
+    { value: String(d).padStart(2, "0"), unit: "天" },
+    { value: String(h).padStart(2, "0"), unit: "小时" },
+    { value: String(m).padStart(2, "0"), unit: "分钟" },
+    { value: String(s).padStart(2, "0"), unit: "秒" },
+  ];
+}
+
 export function JimengMemberModal({ onClose }: { onClose: () => void }) {
+  const countdown = useCountdown();
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -105,7 +132,7 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        {/* 促销横幅 (简化 CLONE_DECISION) */}
+        {/* 促销横幅 (倒计时卡为 SOURCE_FACT batch 13/26；起跳值 CLONE_DECISION) */}
         <div className="mt-8 flex items-center justify-between rounded-2xl bg-gradient-to-r from-[#3D7BFF] via-[#69B6FF] to-[#F7B267] px-8 py-7">
           <div>
             <p className="text-[22px] font-semibold text-white">
@@ -115,9 +142,19 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
               会员低至5折 + 积分消耗4.7折
             </p>
           </div>
-          <span className="rounded-md bg-white/90 px-3 py-1 text-[13px] font-medium text-[#1A1A1A]">
-            Seedance2.5 触底价
-          </span>
+          <div className="flex items-center gap-2.5">
+            {countdown.map(({ value, unit }) => (
+              <div
+                key={unit}
+                className="flex w-[62px] flex-col items-center rounded-xl bg-white/95 py-2"
+              >
+                <span className="text-[26px] font-semibold leading-7 text-[#1A1A1A] tabular-nums">
+                  {value}
+                </span>
+                <span className="text-[11px] text-[#4A4A4A]">{unit}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <p className="mt-10 text-center text-[18px] text-white/90">
