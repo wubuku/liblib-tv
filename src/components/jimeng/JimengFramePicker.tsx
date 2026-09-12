@@ -1,46 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Camera, Play } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
 
 /**
- * 截取帧 帧选择器 (Batch 9；Batch 10 支持 首帧/尾帧 预选)。
+ * 截取帧 帧选择器 (Batch 9/34)。
  *
  * 证据 (SOURCE_FACT): 源站从截取帧下拉选「自定义」后，节点下方出现选择条:
- * 胶片帧条 (左侧播放头竖线) + 底部行: ▶ 00:00 / 00:06 ｜ 📷 截取帧 ｜ 确认 (未截取禁用，
- * 截取后确认可用)。
- * 首帧/尾帧 (CLONE_DECISION): 播放头预选到 0 / 末尾，确认直接可用。
- * mock: 帧条为海报 repeat-x；点击「截取帧」后「确认」可用；确认后关闭。
+ * 胶片帧条 (播放头竖线) + 底部行: ▶ 00:00 / 00:06 ｜ 📷 截取帧 ｜ 确认 (未截取禁用，
+ * 截取后确认可用)。首帧/尾帧预选播放头并直接可用 (CLONE_DECISION)。
+ * Batch 34: 点击帧条可移动播放头，确认把帧号写回节点 currentTime。
  */
 export function JimengFramePicker({
   visible,
   data,
   mode = "custom",
-  onClose,
+  onConfirm,
 }: {
   visible: boolean;
   data: JimengVideoNodeData;
   mode?: "first" | "last" | "custom";
-  onClose: () => void;
+  onConfirm: (frameTime: number) => void;
 }) {
-  const [captured, setCaptured] = useState(false);
-  // 首帧/尾帧已确定帧位置，无需先截取
-  const preset = mode !== "custom";
-  const confirmed = captured || preset;
-  const time = mode === "last" ? (data.duration ?? 0) : 0;
-  const playheadLeft = mode === "last" ? "calc(98% - 2px)" : "2%";
+  const duration = data.duration ?? 0;
+  // 自定义模式默认播放头在起点；首帧/尾帧由 mode 预选 (Batch 34)
+  const [frac, setFrac] = useState(mode === "last" ? 1 : 0);
+  const [captured, setCaptured] = useState(mode !== "custom");
+  const stripRef = useRef<HTMLDivElement>(null);
+
+  const confirmed = mode === "custom" ? captured : true;
+  const time = frac * duration;
 
   const fmt = (s: number) =>
     `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
+  const clickStrip = (clientX: number) => {
+    const r = stripRef.current?.getBoundingClientRect();
+    if (!r || r.width === 0) return;
+    setFrac(Math.min(1, Math.max(0, (clientX - r.left) / r.width)));
+  };
+
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
       <div className="w-[640px] rounded-2xl bg-[#1A1A1A] p-3 shadow-[0_4px_16px_rgba(0,0,0,0.32)]">
-        {/* 帧条 + 播放头 */}
-        <div className="relative h-14 overflow-hidden rounded-md border border-white/10">
+        {/* 帧条 + 播放头 (点击移动) */}
+        <div
+          ref={stripRef}
+          className="relative h-14 cursor-pointer overflow-hidden rounded-md border border-white/10"
+          onClick={(e) => {
+            if (mode === "custom") clickStrip(e.clientX);
+          }}
+        >
           <div
             className="absolute inset-0 opacity-85"
             style={
@@ -55,15 +68,15 @@ export function JimengFramePicker({
           />
           <span
             className="absolute inset-y-0 w-0.5 bg-white"
-            style={{ left: playheadLeft }}
+            style={{ left: `${frac * 100}%` }}
           />
         </div>
 
         <div className="mt-2.5 flex items-center justify-between">
           <div className="flex items-center gap-2 text-white">
             <Play size={13} fill="currentColor" />
-            <span className="text-[12px] tabular-nums">
-              {fmt(time)} / {fmt(data.duration ?? 0)}
+            <span className="text-[12px] tabular-nums" data-testid="frame-readout">
+              {fmt(time)} / {fmt(duration)}
             </span>
           </div>
           {mode === "custom" ? (
@@ -81,7 +94,7 @@ export function JimengFramePicker({
           <button
             type="button"
             disabled={!confirmed}
-            onClick={onClose}
+            onClick={() => onConfirm(time)}
             className={`h-9 rounded-lg px-4 text-[13px] ${
               confirmed
                 ? "bg-white text-black hover:bg-white/90"

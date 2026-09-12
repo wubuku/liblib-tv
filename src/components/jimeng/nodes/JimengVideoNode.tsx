@@ -137,7 +137,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           visible
           data={d}
           mode={framePickerMode}
-          onClose={() => exitFramePicker()}
+          onConfirm={(frameTime) => {
+            updateNodeData(id, { currentTime: frameTime });
+            exitFramePicker();
+          }}
         />
       ) : d.hasMedia && trimMode ? (
         <JimengTrimPanel
