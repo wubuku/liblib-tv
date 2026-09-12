@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Maximize2, Pause, Play, Plus, Tag, VolumeX } from "lucide-react";
 import { Handle, Position } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
@@ -71,6 +71,15 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const pickerMode = framePickerNodeId === id;
   const trimMode = trimNodeId === id;
   const task = tasks.find((t) => t.nodeId === id);
+  const togglePlay = useJimengStore((s) => s.togglePlay);
+  const tickPlay = useJimengStore((s) => s.tickPlay);
+
+  // 播放中 mock 时间走动 (Batch 15)；播完自停
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setInterval(() => tickPlay(id, 0.25), 250);
+    return () => window.clearInterval(timer);
+  }, [playing, id, tickPlay]);
 
   return (
     <div
@@ -154,21 +163,39 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               alt={d.title}
               className="absolute inset-0 h-full w-full object-cover"
             />
-            {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT */}
-            <span className="absolute left-1/2 top-1/2 z-[1] flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white">
+            {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT；点击切换播放 */}
+            <button
+              type="button"
+              aria-label={playing ? "暂停" : "播放"}
+              onClick={(e) => {
+                e.stopPropagation();
+                togglePlay(id);
+              }}
+              className="absolute left-1/2 top-1/2 z-[1] flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/75"
+            >
               {playing ? (
                 <Pause size={14} fill="currentColor" />
               ) : (
                 <Play size={14} fill="currentColor" />
               )}
-            </span>
+            </button>
             {/* 底部控制条 */}
             <div className="absolute inset-x-0 bottom-0 z-[1] flex items-center gap-1.5 bg-gradient-to-t from-black/55 to-transparent px-2.5 pb-2 pt-5 text-white">
-              {playing ? (
-                <Pause size={12} fill="currentColor" />
-              ) : (
-                <Play size={12} fill="currentColor" />
-              )}
+              <button
+                type="button"
+                aria-label={playing ? "底部暂停" : "底部播放"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePlay(id);
+                }}
+                className="flex items-center"
+              >
+                {playing ? (
+                  <Pause size={12} fill="currentColor" />
+                ) : (
+                  <Play size={12} fill="currentColor" />
+                )}
+              </button>
               <span className="text-[11px] leading-none tabular-nums">
                 {formatTime(d.currentTime ?? 0)} / {formatTime(d.duration ?? 0)}
               </span>

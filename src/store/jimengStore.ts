@@ -84,6 +84,9 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 播放交互 (Batch 15): 切换播放态 / mock 时间走动 */
+  togglePlay: (id: string) => void;
+  tickPlay: (id: string, delta: number) => void;
   /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
   past: { nodes: JimengNode[]; edges: Edge[] }[];
   future: { nodes: JimengNode[]; edges: Edge[] }[];
@@ -354,4 +357,26 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   aiDrawerOpen: false,
 
   setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
+
+  togglePlay: (id) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) =>
+        n.id === id
+          ? { ...n, data: { ...n.data, playing: !(n.data.playing ?? false) } }
+          : n,
+      ),
+    })),
+
+  tickPlay: (id, delta) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || !(n.data.playing ?? false)) return n;
+        const dur = n.data.duration ?? 0;
+        const cur = (n.data.currentTime ?? 0) + delta;
+        if (dur > 0 && cur >= dur) {
+          return { ...n, data: { ...n.data, currentTime: dur, playing: false } };
+        }
+        return { ...n, data: { ...n.data, currentTime: cur } };
+      }),
+    })),
 }));
