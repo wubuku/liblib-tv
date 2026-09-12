@@ -201,3 +201,103 @@ export function planLibTVAspectAwareDerivedFrame(
   if (width < 160 || width > 640) return null;
   return { width, height: base.height };
 }
+
+// Batch 443 (VR-023 Slice C): fit-transform mapping between the declared
+// full-media plane (intrinsic) and the editor's visible frame (contract §7).
+
+export type LibTVFitMode = "cover" | "contain";
+
+export interface LibTVFitTransform {
+  fit: LibTVFitMode;
+  scale: number;
+  renderWidth: number;
+  renderHeight: number;
+  offsetX: number;
+  offsetY: number;
+  frameWidth: number;
+  frameHeight: number;
+  intrinsicWidth: number;
+  intrinsicHeight: number;
+}
+
+export function planLibTVFitTransform(input: {
+  intrinsicWidth: number;
+  intrinsicHeight: number;
+  frameWidth: number;
+  frameHeight: number;
+  fit: LibTVFitMode;
+  positionX?: number;
+  positionY?: number;
+}): LibTVFitTransform | null {
+  const { intrinsicWidth, intrinsicHeight, frameWidth, frameHeight, fit } =
+    input;
+  const positionX = input.positionX ?? 0.5;
+  const positionY = input.positionY ?? 0.5;
+  if (
+    intrinsicWidth <= 0 ||
+    intrinsicHeight <= 0 ||
+    frameWidth <= 0 ||
+    frameHeight <= 0
+  ) {
+    return null;
+  }
+  const scales = [frameWidth / intrinsicWidth, frameHeight / intrinsicHeight];
+  const scale = fit === "cover" ? Math.max(...scales) : Math.min(...scales);
+  const renderWidth = intrinsicWidth * scale;
+  const renderHeight = intrinsicHeight * scale;
+  return {
+    fit,
+    scale,
+    renderWidth,
+    renderHeight,
+    offsetX: (frameWidth - renderWidth) * positionX,
+    offsetY: (frameHeight - renderHeight) * positionY,
+    frameWidth,
+    frameHeight,
+    intrinsicWidth,
+    intrinsicHeight,
+  };
+}
+
+export function libTVVisiblePointToIntrinsic(
+  visible: { vx: number; vy: number },
+  transform: LibTVFitTransform,
+): { nx: number; ny: number } {
+  const ix = (visible.vx - transform.offsetX) / transform.scale;
+  const iy = (visible.vy - transform.offsetY) / transform.scale;
+  return { nx: ix / transform.intrinsicWidth, ny: iy / transform.intrinsicHeight };
+}
+
+export function libTVIntrinsicPointToVisible(
+  normalized: { nx: number; ny: number },
+  transform: LibTVFitTransform,
+): { vx: number; vy: number } {
+  return {
+    vx: transform.offsetX + normalized.nx * transform.intrinsicWidth * transform.scale,
+    vy: transform.offsetY + normalized.ny * transform.intrinsicHeight * transform.scale,
+  };
+}
+
+export interface LibTVEditorBaseline {
+  mediaId: string;
+  width: number;
+  height: number;
+  mediaRevision: number;
+  fit: LibTVFitMode;
+}
+
+export function makeLibTVEditorBaseline(input: {
+  mediaId: string;
+  width: number;
+  height: number;
+  mediaRevision: number;
+  fit: LibTVFitMode;
+}): LibTVEditorBaseline {
+  return {
+    mediaId: input.mediaId,
+    width: input.width,
+    height: input.height,
+    mediaRevision: input.mediaRevision,
+    fit: input.fit,
+  };
+}

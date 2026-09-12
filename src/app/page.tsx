@@ -24,7 +24,9 @@ import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import {
   classifyLibTVDimensionField,
   detectLibTVDimensionAuthorityConflicts,
+  makeLibTVEditorBaseline,
   parseLibTVDisplayDimensions,
+  planLibTVFitTransform,
   type LibTVDimensionConflict,
   type LibTVDimensionFieldClassification,
 } from "@/lib/libtvMediaDimensionAuthority";
@@ -173,6 +175,27 @@ declare global {
     __libtv_parse_display_dimensions?: (
       value: unknown,
     ) => { width: number; height: number } | null;
+    __libtv_annotate_fit_mapping?: () => {
+      baseline: {
+        mediaId: string;
+        width: number;
+        height: number;
+        mediaRevision: number;
+        fit: string;
+      };
+      transform: {
+        fit: string;
+        scale: number;
+        renderWidth: number;
+        renderHeight: number;
+        offsetX: number;
+        offsetY: number;
+        frameWidth: number;
+        frameHeight: number;
+        intrinsicWidth: number;
+        intrinsicHeight: number;
+      };
+    } | null;
     __libtv_apply_viewport_event?: (
       expectedCanvasId: string,
       viewport: LibTVViewport,
@@ -583,10 +606,40 @@ export default function Home() {
     };
     window.__libtv_classify_dimension_field = classifyLibTVDimensionField;
     window.__libtv_parse_display_dimensions = parseLibTVDisplayDimensions;
+    // Batch 443 (VR-023 Slice C): fit-transform mapping for the open
+    // annotate editor — declared intrinsic plane to visible frame.
+    window.__libtv_annotate_fit_mapping = () => {
+      const annotate = useUIStore.getState().imageAnnotate;
+      if (!annotate) return null;
+      const surface = document.querySelector(
+        "[data-image-annotate-canvas]",
+      );
+      const rect = surface?.getBoundingClientRect();
+      if (!rect || rect.width <= 0 || rect.height <= 0) return null;
+      const transform = planLibTVFitTransform({
+        intrinsicWidth: annotate.width,
+        intrinsicHeight: annotate.height,
+        frameWidth: rect.width,
+        frameHeight: rect.height,
+        fit: annotate.fit,
+      });
+      if (!transform) return null;
+      return {
+        baseline: makeLibTVEditorBaseline({
+          mediaId: annotate.imageUrl,
+          width: annotate.width,
+          height: annotate.height,
+          mediaRevision: annotate.mediaRevision,
+          fit: annotate.fit,
+        }),
+        transform,
+      };
+    };
     return () => {
       delete window.__libtv_detect_dimension_conflicts;
       delete window.__libtv_classify_dimension_field;
       delete window.__libtv_parse_display_dimensions;
+      delete window.__libtv_annotate_fit_mapping;
     };
   }, []);
 

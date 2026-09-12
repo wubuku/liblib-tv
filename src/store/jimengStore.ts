@@ -428,6 +428,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         ...state.tasks,
         { id: `task-${Date.now()}`, nodeId, kind },
       ],
+      // mock 任务提交同步 toast 反馈 (Batch 11/40)
+      toast: `${kind === "upscale" ? "智能超清" : "补帧"}任务已提交（mock），处理中…`,
     })),
 
   aiDrawerOpen: false,

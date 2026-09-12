@@ -58,7 +58,7 @@ const derivedImageActions: Partial<Record<ImageToolbarAction, { filename: string
 };
 
 export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
-  const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture } = data;
+  const { filename, width, height, imageUrl, watermarkUrl, frameCapture, directorCapture, mediaRevision } = data;
   // Batch 268: 图片尝试芯片为本地视觉态（源站持久化行为未采样，
   // 与视频 attempt 的节点持久化不同——CLONE_DECISION）。
   const [imageAttempt, setImageAttempt] = useState<string | null>(null);
@@ -113,6 +113,8 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         imageUrl,
         width,
         height,
+        mediaRevision: typeof mediaRevision === "number" ? mediaRevision : 1,
+        fit: "contain",
       });
       return;
     }

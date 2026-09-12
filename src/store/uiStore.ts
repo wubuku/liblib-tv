@@ -29,6 +29,9 @@ export interface ImageAnnotateState {
   imageUrl: string;
   width: number;
   height: number;
+  /** Batch 443 (VR-023 Slice C): declared full-media plane baseline. */
+  mediaRevision: number;
+  fit: "cover" | "contain";
 }
 
 export interface ImageElementEditState {

@@ -3703,6 +3703,7 @@ function getDefaultNodeData(type: string): Record<string, unknown> {
         editorVariant: "empty",
         editorHeight: 191,
         generationSettings: "1:1 · 标准画质 · 2K · 1张",
+        mediaRevision: 1,
       };
     case "video":
       return {
