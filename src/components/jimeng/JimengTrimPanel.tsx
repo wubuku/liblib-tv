@@ -17,11 +17,12 @@ import type { JimengVideoNodeData } from "@/types/jimeng";
 export function JimengTrimPanel({
   visible,
   data,
-  onClose,
+  onConfirm,
 }: {
   visible: boolean;
   data: JimengVideoNodeData;
-  onClose: () => void;
+  /** 确认修剪: 回传裁剪后的时长（秒）(Batch 33 真实联动) */
+  onConfirm: (trimmedDuration: number) => void;
 }) {
   const duration = data.duration ?? 0;
   const trackRef = useRef<HTMLDivElement>(null);
@@ -41,6 +42,7 @@ export function JimengTrimPanel({
         : { start: prev.start, end: Math.max(f, prev.start + 0.05) },
     );
   };
+  const trimmed = (range.end - range.start) * duration;
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -72,7 +74,7 @@ export function JimengTrimPanel({
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] text-white"
             data-testid="trim-duration"
           >
-            {((range.end - range.start) * duration).toFixed(1)}s
+            {trimmed.toFixed(1)}s
           </span>
           <span
             role="slider"
@@ -121,7 +123,7 @@ export function JimengTrimPanel({
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => onConfirm(trimmed)}
             className="h-9 rounded-lg bg-white px-5 text-[13px] font-medium text-black hover:bg-white/90"
           >
             确认

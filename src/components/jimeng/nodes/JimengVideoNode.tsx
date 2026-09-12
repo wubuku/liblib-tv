@@ -92,6 +92,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const toggleMute = useJimengStore((s) => s.toggleMute);
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
   const seek = useJimengStore((s) => s.seek);
+  const applyTrim = useJimengStore((s) => s.applyTrim);
   const onToggleMute = toggleMute;
 
   // 节点颜色标记 (SOURCE_FACT batch 31: 禁止 + 青/蓝/紫/橙/黄 五色)
@@ -139,7 +140,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           onClose={() => exitFramePicker()}
         />
       ) : d.hasMedia && trimMode ? (
-        <JimengTrimPanel visible data={d} onClose={() => exitTrim()} />
+        <JimengTrimPanel
+          visible
+          data={d}
+          onConfirm={(trimmedDuration) => {
+            applyTrim(id, trimmedDuration);
+            exitTrim();
+          }}
+        />
       ) : d.hasMedia ? (
         <JimengNodeToolbar
           visible={selected === true}

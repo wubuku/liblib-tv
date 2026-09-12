@@ -100,6 +100,8 @@ export interface JimengCanvasState {
   toggleMute: (id: string) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
   seek: (id: string, fraction: number) => void;
+  /** 修剪确认 (Batch 33): 裁剪后的时长写回节点并入撤销栈 (mock: 只改时长数据) */
+  applyTrim: (id: string, trimmedDuration: number) => void;
   /** 节点数据 patch (Batch 31: 颜色标记等) */
   updateNodeData: (
     id: string,
@@ -440,6 +442,25 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           data: {
             ...vd,
             currentTime: Math.min(1, Math.max(0, fraction)) * (vd.duration ?? 0),
+          },
+        };
+      }),
+    })),
+
+  applyTrim: (id, trimmedDuration) =>
+    set((state) => ({
+      past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return {
+          ...n,
+          data: {
+            ...vd,
+            duration: Math.max(0.1, trimmedDuration),
+            currentTime: 0,
+            playing: false,
           },
         };
       }),
