@@ -15,6 +15,7 @@ import { JimengFramePicker } from "@/components/jimeng/JimengFramePicker";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { JimengTrimPanel } from "@/components/jimeng/JimengTrimPanel";
 import { JimengVideoEditMode } from "@/components/jimeng/JimengVideoEditMode";
+import { JimengVideoPreview } from "@/components/jimeng/JimengVideoPreview";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -68,6 +69,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const [insertMenu, setInsertMenu] = useState<
     "left" | "right" | "title" | null
   >(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
   const inferMode = inferNodeId === id;
@@ -131,6 +133,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "视频修剪") enterTrim(id);
             if (label === "智能超清") startTask(id, "upscale");
             if (label === "补帧") startTask(id, "interpolate");
+            if (label === "全屏预览") setPreviewOpen(true);
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
             if (label === "截取帧:首帧") enterFramePicker(id, "first");
             if (label === "截取帧:尾帧") enterFramePicker(id, "last");
@@ -225,7 +228,17 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               </span>
               <span className="flex-1" />
               <VolumeX size={13} />
-              <Maximize2 size={13} />
+              <button
+                type="button"
+                aria-label="全屏预览"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPreviewOpen(true);
+                }}
+                className="flex items-center"
+              >
+                <Maximize2 size={13} />
+              </button>
             </div>
             {/* 底边进度条 2px */}
             <div className="absolute inset-x-0 bottom-0 z-[2] h-[2px] bg-white/25">
@@ -332,6 +345,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             onClose={() => setInsertMenu(null)}
           />
         </div>
+      ) : null}
+      {/* 全屏播放器 (Batch 27) */}
+      {previewOpen ? (
+        <JimengVideoPreview
+          nodeId={id}
+          data={d}
+          onClose={() => setPreviewOpen(false)}
+        />
       ) : null}
     </div>
   );

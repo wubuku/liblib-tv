@@ -172,6 +172,10 @@
   粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族。
   复刻: 子菜单 hover 展开 (源站子菜单展开态未提取，CLONE_DECISION)，
   子菜单项在右键位置插入节点 (screenToFlowPosition)。
+- SOURCE_FACT (batch 27, 全屏播放器): 点击卡片右下角全屏图标 (或工具条 ⤢) 进入
+  全屏播放器 — 全屏黑底、媒体铺满、左下 播放/暂停 + 时长、右下 静音 + 退出全屏，
+  无画布 chrome；Esc 退出。复刻经 portal 挂 body (React Flow 视口 transform
+  会劫持 fixed 定位)。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
