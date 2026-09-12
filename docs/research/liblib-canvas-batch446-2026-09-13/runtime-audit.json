@@ -1,0 +1,29 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-022 Slice B — equality-aware graph commit adapter",
+  "accepted": {
+    "normalized": true,
+    "oneHistoryEntry": true
+  },
+  "noOp": {
+    "zeroHistory": true,
+    "zeroMutation": true
+  },
+  "conflict": {
+    "reason": "SCOPED_FIELD_DRIFTED",
+    "draftPreservedNotOverwritten": true
+  },
+  "stale": {
+    "oldGenerationRejected": true,
+    "freshGenerationAccepted": true
+  },
+  "invalidOwner": {
+    "reason": "OWNER_MISSING"
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

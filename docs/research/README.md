@@ -470,6 +470,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 445 | VR-022 Slice A：纯编辑器 profile/session/history 模型 | [`liblib-canvas-batch445-2026-09-13/`](liblib-canvas-batch445-2026-09-13/) |
 
+| 446 | VR-022 Slice B：equality-aware graph commit adapter | [`liblib-canvas-batch446-2026-09-13/`](liblib-canvas-batch446-2026-09-13/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |

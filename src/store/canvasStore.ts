@@ -22,6 +22,12 @@ import {
 import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement";
 import { planLibTVAspectAwareDerivedFrame } from "@/lib/libtvMediaDimensionAuthority";
 import {
+  getLibTVEditorProfile,
+  planLibTVEditorSessionCommit,
+  type LibTVEditorCommitRequest,
+  type LibTVEditorCommitResult,
+} from "@/lib/libtvEditorSession";
+import {
   planDirectorWholeProjectDuplicate,
   type DirectorWholeProjectDuplicateFailureReason,
 } from "@/lib/directorWholeProjectDuplicate";
@@ -267,6 +273,8 @@ interface CanvasState {
   // Batch 124: 画布回收站（源站 /project 回收站 30 天保留 + 恢复）。
   removedCanvases: Array<CanvasData & { removedAt: string }>;
   activeCanvasId: string;
+  /** Batch 446 (VR-022 Slice B): monotonic per-successful-switch epoch. */
+  canvasGeneration: number;
   selectedNodeIds: string[];
   selectedNodeId: string | null;
   selectedEdgeIds: string[];
@@ -388,6 +396,11 @@ interface CanvasState {
    * reflow the node frame from its declared intrinsic ratio. Rendition state
    * only — no graph history entry. False when the node/output is unknown. */
   selectNodeOutput: (nodeId: string, outputId: string) => boolean;
+  /** Batch 446 (VR-022 Slice B): equality-aware editor session commit —
+   * named result; zero history for no-op/reject, one for accepted. */
+  submitLibTVEditorSessionCommit: (
+    request: LibTVEditorCommitRequest,
+  ) => LibTVEditorCommitResult;
 
   // Viewport actions
   setViewport: (viewport: { x: number; y: number; zoom: number }) => void;
@@ -966,6 +979,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   canvases: [defaultCanvas("canvas-1", "画布 1"), initialCanvas2],
   removedCanvases: [],
   activeCanvasId: "canvas-2",
+  canvasGeneration: 1,
   selectedNodeIds: [],
   selectedNodeId: null,
   selectedEdgeIds: [],
@@ -1056,12 +1070,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     // active-canvas consumer (change routing, history, viewport restore)
     // resolving to undefined.
     if (!get().canvases.some((canvas) => canvas.id === id)) return;
-    set({
+    set((state) => ({
       activeCanvasId: id,
+      canvasGeneration: state.canvasGeneration + 1,
       selectedNodeIds: [],
       selectedNodeId: null,
       selectedEdgeIds: [],
-    });
+    }));
   },
 
   duplicateCanvas: (id: string): LibTVCanvasDuplicateResult => {
@@ -3649,6 +3664,71 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       ),
     }));
     return true;
+  },
+
+  // Batch 446 (VR-022 Slice B): equality-aware editor session commit —
+  // validates owner/generation/fingerprint, commits the normalized draft
+  // with exactly one history entry on accept, zero mutation otherwise.
+  submitLibTVEditorSessionCommit: (
+    request,
+  ): LibTVEditorCommitResult => {
+    const state = get();
+    const canvas = state.canvases.find(
+      (c) => c.id === state.activeCanvasId,
+    );
+    const node = canvas?.nodes.find((n) => n.id === request.nodeId);
+    const raw =
+      node && node.data
+        ? (node.data as Record<string, unknown>)[request.field]
+        : undefined;
+    const plan = planLibTVEditorSessionCommit(request, {
+      canvasId: state.activeCanvasId,
+      canvasGeneration: state.canvasGeneration,
+      nodeExists: Boolean(node) && Boolean(canvas),
+      currentFieldValue: typeof raw === "string" ? raw : "",
+    });
+    if (plan.status !== "accepted") {
+      return {
+        status: plan.status,
+        reason: plan.reason,
+        historyPushed: false,
+        normalizedDraft: plan.normalizedDraft,
+        normalizedCurrent: plan.normalizedCurrent,
+      };
+    }
+    set((s) => {
+      const currentCanvas = s.canvases.find(
+        (c) => c.id === state.activeCanvasId,
+      );
+      if (!currentCanvas) return s;
+      return {
+        canvases: s.canvases.map((c) =>
+          c.id !== currentCanvas.id
+            ? c
+            : {
+                ...c,
+                nodes: c.nodes.map((n) =>
+                  n.id !== request.nodeId
+                    ? n
+                    : {
+                        ...n,
+                        data: {
+                          ...(n.data as Record<string, unknown>),
+                          [request.field]: plan.normalizedDraft,
+                        },
+                      },
+                ),
+              },
+        ),
+        historyByCanvas: pushHistory(s.historyByCanvas, currentCanvas),
+      };
+    });
+    return {
+      status: "accepted",
+      historyPushed: true,
+      normalizedDraft: plan.normalizedDraft,
+      normalizedCurrent: plan.normalizedCurrent,
+    };
   },
 
   getActiveCanvas: () => {

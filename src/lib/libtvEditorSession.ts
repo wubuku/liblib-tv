@@ -414,3 +414,109 @@ export function pushLibTVLocalHistory(
     : [...history, entry];
   return next.slice(-budget.maxEntries);
 }
+
+// Batch 446 (VR-022 Slice B): equality-aware graph commit adapter planner —
+// owner/generation/fingerprint validation with named outcomes; the caller
+// applies graph mutation only on "accepted".
+
+export interface LibTVEditorCommitRequest {
+  profileId: LibTVEditorProfileId;
+  nodeId: string;
+  expectedCanvasId: string;
+  expectedCanvasGeneration: number;
+  field: string;
+  baselineValue: string;
+  draftValue: string;
+}
+
+export interface LibTVEditorCommitObservation {
+  canvasId: string;
+  canvasGeneration: number;
+  nodeExists: boolean;
+  currentFieldValue: string;
+}
+
+export type LibTVEditorCommitStatus =
+  | "accepted"
+  | "no-op"
+  | "stale"
+  | "invalid-owner"
+  | "conflict";
+
+export interface LibTVEditorCommitPlan {
+  status: LibTVEditorCommitStatus;
+  reason?: string;
+  normalizedDraft: string;
+  normalizedCurrent: string;
+}
+
+export interface LibTVEditorCommitResult {
+  status: LibTVEditorCommitStatus;
+  reason?: string;
+  historyPushed: boolean;
+  normalizedDraft: string;
+  normalizedCurrent: string;
+}
+
+export function planLibTVEditorSessionCommit(
+  request: LibTVEditorCommitRequest,
+  observation: LibTVEditorCommitObservation,
+): LibTVEditorCommitPlan {
+  const profile = LIBTV_EDITOR_PROFILES[request.profileId];
+  const normalizedDraft = normalizeLibTVEditorValue(
+    profile,
+    request.draftValue,
+  );
+  const normalizedCurrent = normalizeLibTVEditorValue(
+    profile,
+    observation.currentFieldValue,
+  );
+  if (!observation.nodeExists) {
+    return {
+      status: "invalid-owner",
+      reason: "OWNER_MISSING",
+      normalizedDraft,
+      normalizedCurrent,
+    };
+  }
+  if (observation.canvasId !== request.expectedCanvasId) {
+    return {
+      status: "stale",
+      reason: "CANVAS_CHANGED",
+      normalizedDraft,
+      normalizedCurrent,
+    };
+  }
+  if (observation.canvasGeneration !== request.expectedCanvasGeneration) {
+    return {
+      status: "stale",
+      reason: "GENERATION_CHANGED",
+      normalizedDraft,
+      normalizedCurrent,
+    };
+  }
+  const normalizedBaseline = normalizeLibTVEditorValue(
+    profile,
+    request.baselineValue,
+  );
+  if (normalizedDraft === normalizedCurrent) {
+    return {
+      status: "no-op",
+      reason:
+        normalizedDraft === normalizedBaseline
+          ? "DRAFT_EQUALS_BASELINE"
+          : "DRAFT_EQUALS_CURRENT",
+      normalizedDraft,
+      normalizedCurrent,
+    };
+  }
+  if (normalizedCurrent !== normalizedBaseline) {
+    return {
+      status: "conflict",
+      reason: "SCOPED_FIELD_DRIFTED",
+      normalizedDraft,
+      normalizedCurrent,
+    };
+  }
+  return { status: "accepted", normalizedDraft, normalizedCurrent };
+}
