@@ -369,6 +369,7 @@ Required follow-up fixture:
 | 2026-09-12 | batch 392-393 探测 | still-broken | 第十二、十三次重测（§3.3 审计/巡检批次） |
 | 2026-09-12 | batch 394-396 探测 | still-broken | 第十四~十六次重测（心跳/巡检/对照批次） |
 | 2026-09-12 | batch 416 探测 | still-broken | 第二十四次重测 |
+| 2026-09-13 | batch 417 探测 | still-broken | 第二十五次重测 |
 | 2026-09-12 | batch 397 探测 | still-broken | 第十七次重测 |
 | 2026-09-12 | batch 398 探测 | still-broken | 第十八次重测 |
 | 2026-09-12 | batch 399 探测 | still-broken | 第十九次重测；jimeng 路线仍为 batch 8 |
