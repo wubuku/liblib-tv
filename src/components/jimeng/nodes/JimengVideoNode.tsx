@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   Ban,
+  Camera,
   Maximize2,
   Pause,
   Play,
@@ -138,7 +139,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           data={d}
           mode={framePickerMode}
           onConfirm={(frameTime) => {
-            updateNodeData(id, { currentTime: frameTime });
+            updateNodeData(id, {
+              currentTime: frameTime,
+              capturedFrame: frameTime,
+            });
             exitFramePicker();
           }}
         />
@@ -271,6 +275,16 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               alt={d.title}
               className="absolute inset-0 h-full w-full object-cover"
             />
+            {/* 截取帧徽章 (Batch 35) */}
+            {d.capturedFrame != null ? (
+              <span
+                className="absolute left-2 top-2 z-[2] flex items-center gap-1 rounded bg-black/60 px-1.5 py-0.5 text-[11px] text-white"
+                data-testid="captured-frame-badge"
+              >
+                <Camera size={10} />
+                {formatTime(d.capturedFrame)}
+              </span>
+            ) : null}
             {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT；点击切换播放 */}
             <button
               type="button"
