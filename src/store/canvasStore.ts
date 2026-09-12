@@ -22,10 +22,12 @@ import {
 import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement";
 import { planLibTVAspectAwareDerivedFrame } from "@/lib/libtvMediaDimensionAuthority";
 import {
+  fingerprintLibTVEditorRecords,
   getLibTVEditorProfile,
   planLibTVEditorSessionCommit,
   type LibTVEditorCommitRequest,
   type LibTVEditorCommitResult,
+  type LibTVRecordEditorSubmitResult,
 } from "@/lib/libtvEditorSession";
 import {
   planDirectorWholeProjectDuplicate,
@@ -318,7 +320,7 @@ interface CanvasState {
     sourceId: string,
     mode: SubtitleEraseMode,
     regions: SubtitleEraseRegion[],
-  ) => string | null;
+  ) => LibTVRecordEditorSubmitResult;
   createAudioSplit: (
     sourceId: string,
     mode: AudioSplitMode,
@@ -342,7 +344,7 @@ interface CanvasState {
     sourceId: string,
     mode: PictureEditAction,
     marks: PictureEditMark[],
-  ) => string | null;
+  ) => LibTVRecordEditorSubmitResult;
   createDirectorCapture: (
     sourceNodeId: string,
     capture: Omit<DirectorCaptureMetadata, "sourceNodeId" | "edgeId"> & {
@@ -1730,7 +1732,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const canvas = get().canvases.find((item) => item.id === activeCanvasId);
     const source = canvas?.nodes.find((node) => node.id === sourceId);
     if (!canvas || !source || (mode === "region" && regions.length === 0)) {
-      return null;
+      return { status: "rejected", targetId: null };
     }
 
     const sourceLabel =
@@ -1763,6 +1765,32 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         height: clampNumber(region.height, 0, 1 - relY),
       };
     });
+    // Batch 447 (VR-022 Slice C): RECORD_EDITOR one-acceptance path — an
+    // identical resubmit is a no-op returning the existing target instead
+    // of duplicating nodes and history.
+    const requestFingerprint = fingerprintLibTVEditorRecords({
+      mode,
+      regions: normalizedRegions,
+    });
+    const existingTarget = canvas.nodes.find((node) => {
+      const record = node.data as Record<string, unknown> | undefined;
+      if (!record || record.generatorType !== "SUBTITLE_ERASE") return false;
+      const meta = record.subtitleErase as
+        | (SubtitleEraseMetadata & { regions: unknown })
+        | undefined;
+      if (!meta || meta.sourceNodeId !== sourceId || meta.mode !== mode) {
+        return false;
+      }
+      return (
+        fingerprintLibTVEditorRecords({
+          mode: meta.mode,
+          regions: meta.regions,
+        }) === requestFingerprint
+      );
+    });
+    if (existingTarget) {
+      return { status: "no-op", targetId: existingTarget.id };
+    }
     const subtitleErase: SubtitleEraseMetadata = {
       sourceNodeId: sourceId,
       sourceLabel,
@@ -1825,7 +1853,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       };
     });
 
-    return targetId;
+    return { status: "accepted", targetId };
   },
 
   createAudioSplit: (sourceId: string, mode: AudioSplitMode) => {
@@ -2556,7 +2584,9 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     );
     const source = canvas?.nodes.find((node) => node.id === sourceId);
     const { activeCanvasId } = get();
-    if (!canvas || !source || marks.length === 0) return null;
+    if (!canvas || !source || marks.length === 0) {
+      return { status: "rejected", targetId: null };
+    }
 
     const sourceLabel =
       typeof source.data.filename === "string"
@@ -2600,6 +2630,31 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         ? { ...mark.replacement }
         : undefined,
     }));
+    // Batch 447 (VR-022 Slice C): RECORD_EDITOR one-acceptance path —
+    // identical resubmit (mode + normalized marks) is a no-op.
+    const requestFingerprint = fingerprintLibTVEditorRecords({
+      mode,
+      marks: normalizedMarks,
+    });
+    const existingTarget = canvas.nodes.find((node) => {
+      const record = node.data as Record<string, unknown> | undefined;
+      if (!record || record.generatorType !== "PICTURE_EDIT") return false;
+      const meta = record.pictureEdit as
+        | (PictureEditMetadata & { marks: unknown })
+        | undefined;
+      if (!meta || meta.sourceNodeId !== sourceId || meta.mode !== mode) {
+        return false;
+      }
+      return (
+        fingerprintLibTVEditorRecords({
+          mode: meta.mode,
+          marks: meta.marks,
+        }) === requestFingerprint
+      );
+    });
+    if (existingTarget) {
+      return { status: "no-op", targetId: existingTarget.id };
+    }
     const pictureEdit: PictureEditMetadata = {
       sourceNodeId: sourceId,
       sourceLabel,
@@ -2674,7 +2729,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       };
     });
 
-    return targetId;
+    return { status: "accepted", targetId };
   },
 
   createDirectorCapture: (

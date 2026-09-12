@@ -1,0 +1,20 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-022 Slice C — RECORD_EDITOR one-acceptance path (subtitle-erase / picture-edit idempotent submissions)",
+  "subtitle_resubmit_noop": {
+    "firstAccepted": true,
+    "secondNoOpSameTarget": true,
+    "singleNodeEdgeHistory": true
+  },
+  "different_mode_accepts": true,
+  "picture_resubmit_noop": {
+    "firstAccepted": true,
+    "secondNoOpSameTarget": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

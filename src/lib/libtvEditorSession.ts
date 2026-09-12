@@ -415,6 +415,27 @@ export function pushLibTVLocalHistory(
   return next.slice(-budget.maxEntries);
 }
 
+// Batch 447 (VR-022 Slice C): RECORD_EDITOR one-acceptance path — stable
+// record fingerprints so an identical resubmit is a no-op, not a duplicate.
+export function fingerprintLibTVEditorRecords(value: unknown): string {
+  return JSON.stringify(value, (_key, entry) => {
+    if (entry && typeof entry === "object" && !Array.isArray(entry)) {
+      return Object.keys(entry as Record<string, unknown>)
+        .sort()
+        .reduce<Record<string, unknown>>((acc, key) => {
+          acc[key] = (entry as Record<string, unknown>)[key];
+          return acc;
+        }, {});
+    }
+    return entry;
+  });
+}
+
+export interface LibTVRecordEditorSubmitResult {
+  status: "accepted" | "no-op" | "rejected";
+  targetId: string | null;
+}
+
 // Batch 446 (VR-022 Slice B): equality-aware graph commit adapter planner —
 // owner/generation/fingerprint validation with named outcomes; the caller
 // applies graph mutation only on "accepted".
