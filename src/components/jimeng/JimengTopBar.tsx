@@ -68,12 +68,6 @@ export function JimengTopBar() {
             >
               <CircleHelp size={16} />
             </button>
-            {helpOpen ? (
-              <JimengHelpMenu
-                onClose={() => setHelpOpen(false)}
-                onOpenShortcuts={() => setShortcutsOpen(true)}
-              />
-            ) : null}
           </div>
         </div>
 
@@ -90,15 +84,27 @@ export function JimengTopBar() {
               <span className="ml-1 text-[13px] text-white/90">基础会员</span>
             </button>
           </div>
-          {/* 头像 (mock) */}
-          <button
-            type="button"
-            aria-label="账号"
-            className="ml-0.5 flex size-7 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#FF8A7A] to-[#E4489B] text-[11px] text-white"
-          >
-            梦
-          </button>
+          {/* 头像 (mock)；点击展开与帮助菜单同构的账号菜单 (SOURCE_FACT batch 22)。
+              单一菜单实例锚定在头像下方，帮助/? 与头像共用 helpOpen。 */}
+          <div className="relative ml-0.5">
+            <button
+              type="button"
+              aria-label="账号菜单"
+              onClick={() => setHelpOpen((v) => !v)}
+              className="flex size-7 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#FF8A7A] to-[#E4489B] text-[11px] text-white"
+            >
+              梦
+            </button>
+          </div>
         </div>
+        {helpOpen ? (
+          <div className="absolute right-3 top-[46px]">
+            <JimengHelpMenu
+              onClose={() => setHelpOpen(false)}
+              onOpenShortcuts={() => setShortcutsOpen(true)}
+            />
+          </div>
+        ) : null}
       </div>
       </header>
       {memberOpen ? <JimengMemberModal onClose={() => setMemberOpen(false)} /> : null}
