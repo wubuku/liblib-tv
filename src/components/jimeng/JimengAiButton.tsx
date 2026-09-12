@@ -2,11 +2,16 @@
 
 import { Waves } from "lucide-react";
 
+import { useJimengStore } from "@/store/jimengStore";
+
 /**
  * 右下角「与 AI 对话」按钮 — 1548,778 120×36 (SOURCE_FACT)。
  * bg rgba(39,39,39,0.72) + 顶部高光渐变叠加 (渐变色值截断，CLONE_DECISION 近似)。
+ * 点击展开 AI 对话抽屉 (Batch 12)。
  */
 export function JimengAiButton() {
+  const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);
+
   return (
     <div className="absolute bottom-3 right-3 z-30 flex flex-col items-end">
       <div className="relative inline-flex h-9 items-center justify-center overflow-hidden rounded-lg bg-[rgba(39,39,39,0.72)]">
@@ -20,6 +25,7 @@ export function JimengAiButton() {
         />
         <button
           type="button"
+          onClick={() => setAiDrawerOpen(true)}
           className="relative z-[1] inline-flex h-[34px] w-[118px] items-center justify-center gap-1 whitespace-nowrap text-[13px] font-medium text-white"
         >
           <Waves size={16} className="text-[#7FD8C9]" />

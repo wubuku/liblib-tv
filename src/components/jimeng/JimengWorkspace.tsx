@@ -16,6 +16,7 @@ import {
 } from "@/components/jimeng/JimengContextMenu";
 import type { JimengContextMenuState } from "@/components/jimeng/JimengContextMenu";
 import { JimengTaskToast } from "@/components/jimeng/JimengTaskToast";
+import { JimengAiDrawer } from "@/components/jimeng/JimengAiDrawer";
 
 /**
  * 即梦画布工作区编排。
@@ -113,6 +114,9 @@ function JimengFlow() {
 }
 
 export function JimengWorkspace() {
+  const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
+  const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);
+
   // chrome 组件 (底栏缩放菜单) 需要 useReactFlow，整体包在 Provider 内
   return (
     <ReactFlowProvider>
@@ -121,7 +125,10 @@ export function JimengWorkspace() {
         <JimengTopBar />
         <JimengToolRail />
         <JimengBottomDock />
-        <JimengAiButton />
+        {aiDrawerOpen ? null : <JimengAiButton />}
+        {aiDrawerOpen ? (
+          <JimengAiDrawer onClose={() => setAiDrawerOpen(false)} />
+        ) : null}
       </div>
     </ReactFlowProvider>
   );

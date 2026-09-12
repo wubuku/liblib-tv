@@ -81,6 +81,9 @@ export interface JimengCanvasState {
   /** 智能超清/补帧 mock 任务 (Batch 11, CLONE_DECISION — 源站会真实提交付费任务) */
   tasks: JimengTask[];
   startTask: (nodeId: string, kind: JimengTask["kind"]) => void;
+  /** 「与 AI 对话」右侧抽屉 (Batch 12) */
+  aiDrawerOpen: boolean;
+  setAiDrawerOpen: (open: boolean) => void;
 }
 
 export interface JimengTask {
@@ -294,4 +297,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         { id: `task-${Date.now()}`, nodeId, kind },
       ],
     })),
+
+  aiDrawerOpen: false,
+
+  setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
 }));
