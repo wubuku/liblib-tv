@@ -52,8 +52,9 @@ def main() -> None:
                     gapBelow: r ? Math.round(r.y - nr.bottom) : null,
                     centered: r ? Math.abs((r.x + r.width / 2) - (nr.x + nr.width / 2)) < 3 : null,
                     hasPlus: !!tb.querySelector('button[aria-label="上传参考图"]'),
-                    hasMentionChip: tb.textContent.includes('主体'),
-                    placeholder: tb.textContent.includes('上传参考图、输入文字或'),
+                    hasMentionChip: !!tb.querySelector('textarea[placeholder*="@ 主体"]')
+                        || tb.textContent.includes('主体'),
+                    placeholder: !!tb.querySelector('textarea[placeholder*="上传参考图"]'),
                     selectors: ['即梦 Seedance 2.0 VIP', '16:9 · 720P', '全能参考', '4s']
                         .map(s => tb.textContent.includes(s)),
                     credits56: tb.textContent.includes('56'),
