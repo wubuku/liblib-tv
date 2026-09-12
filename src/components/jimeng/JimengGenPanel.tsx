@@ -8,6 +8,20 @@ import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
 
 /**
+ * 模型列表 (Batch 41, SOURCE_FACT: 源站模型下拉提取的 8 项，名称+描述)。
+ */
+const MODELS = [
+  { name: "即梦 Seedance 2.5", desc: "最强模型，支持 50个参考，新增视频编辑、超长生成" },
+  { name: "即梦 Seedance 2.0 mini", desc: "极致性价比，相近的体验，比Fast更快的推理速度" },
+  { name: "即梦 Seedance 2.0 Fast VIP", desc: "极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）" },
+  { name: "即梦 Seedance 2.0 VIP", desc: "全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）" },
+  { name: "即梦 Seedance 1.0 Fast", desc: "Pro级表现，加量不加价" },
+  { name: "MiniMax H3", desc: "开源视频生成模型" },
+  { name: "HappyHorse 1.1", desc: "国产视频生成模型" },
+  { name: "Wan 3.0", desc: "Wan系列最新视频模型" },
+];
+
+/**
  * 空视频节点选中后下方弹出的视频生成面板 (Batch 3)。
  *
  * 证据 (SOURCE_FACT, docs/research/jimeng-canvas/README.md §7):
@@ -23,6 +37,9 @@ import { VipDiamond } from "@/components/jimeng/icons";
 export function JimengGenPanel({ visible }: { visible: boolean }) {
   // Batch 40: 提示词可输入；发送后 pushToast (mock，不产生真实任务)
   const [prompt, setPrompt] = useState("");
+  // Batch 41: 模型下拉 (SOURCE_FACT batch 41 提取的 8 项模型)
+  const [modelOpen, setModelOpen] = useState(false);
+  const [model, setModel] = useState("即梦 Seedance 2.0 VIP");
   const pushToast = useJimengStore((s) => s.pushToast);
   const canSend = prompt.trim().length > 0;
 
@@ -81,14 +98,49 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
           {/* 底部控制行 */}
           <div className="flex h-8 w-full items-center justify-between gap-1">
             <div className="flex min-w-0 items-center gap-1">
-              <button
-                type="button"
-                className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[13px] text-white/90 hover:bg-white/[0.08]"
-              >
-                即梦 Seedance 2.0 VIP
-                <VipDiamond size={12} />
-                <ChevronDown size={12} className="text-white/60" />
-              </button>
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="选择模型"
+                  onClick={() => setModelOpen((v) => !v)}
+                  className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[13px] text-white/90 hover:bg-white/[0.08]"
+                >
+                  {model}
+                  <VipDiamond size={12} />
+                  <ChevronDown size={12} className="text-white/60" />
+                </button>
+                {modelOpen ? (
+                  <div
+                    className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-[10px] border border-white/[0.06] p-1.5"
+                    style={{ background: "rgb(38,38,38)" }}
+                    role="listbox"
+                    aria-label="模型列表"
+                  >
+                    {MODELS.map((m) => (
+                      <button
+                        key={m.name}
+                        type="button"
+                        role="option"
+                        aria-selected={model === m.name}
+                        onClick={() => {
+                          setModel(m.name);
+                          setModelOpen(false);
+                        }}
+                        className={`flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10 ${
+                          model === m.name ? "bg-white/[0.08]" : ""
+                        }`}
+                      >
+                        <span className="text-[13px] font-medium text-white">
+                          {m.name}
+                        </span>
+                        <span className="text-[12px] leading-4 text-white/45">
+                          {m.desc}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
               <button
                 type="button"
                 className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[13px] text-white/90 hover:bg-white/[0.08]"
