@@ -367,11 +367,19 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
                 <Maximize2 size={13} />
               </button>
             </div>
-            {/* 底边进度条 2px；点击 seek (Batch 32) */}
+            {/* 底边进度条 2px；点击 seek (Batch 32)、按住拖拽 scrub (Batch 37)。
+                nodrag: 阻止 xyflow 节点拖拽抢占指针 (否则 scrub 中途失效) */}
             <div
-              className="absolute inset-x-0 bottom-0 z-[2] h-[6px] cursor-pointer bg-transparent"
+              className="nodrag absolute inset-x-0 bottom-0 z-[2] h-[8px] cursor-pointer bg-transparent"
               data-testid="video-progress"
-              onClick={(e) => {
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+                const r = e.currentTarget.getBoundingClientRect();
+                seek(id, (e.clientX - r.left) / r.width);
+              }}
+              onPointerMove={(e) => {
+                if (!(e.buttons & 1)) return;
                 e.stopPropagation();
                 const r = e.currentTarget.getBoundingClientRect();
                 seek(id, (e.clientX - r.left) / r.width);
