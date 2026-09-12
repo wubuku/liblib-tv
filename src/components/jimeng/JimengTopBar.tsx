@@ -19,10 +19,13 @@ import { useJimengStore } from "@/store/jimengStore";
  */
 export function JimengTopBar() {
   const project = useJimengStore((s) => s.project);
+  const renameProject = useJimengStore((s) => s.renameProject);
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  // 单击项目名 = 行内重命名 (SOURCE_FACT batch 29)
+  const [editingName, setEditingName] = useState(false);
 
   return (
     <>
@@ -31,9 +34,35 @@ export function JimengTopBar() {
       <div className="pointer-events-auto flex min-w-0 flex-1 items-center gap-4">
         <div className="flex items-center gap-2.5">
           <JimengLogo />
-          <span className="text-[13px] font-medium leading-[22px] text-white">
-            {project.name}
-          </span>
+          {editingName ? (
+            <input
+              autoFocus
+              defaultValue={project.name}
+              aria-label="项目名"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  const v = (e.target as HTMLInputElement).value.trim();
+                  if (v) renameProject(v);
+                  setEditingName(false);
+                }
+                if (e.key === "Escape") setEditingName(false);
+              }}
+              onBlur={(e) => {
+                const v = e.target.value.trim();
+                if (v) renameProject(v);
+                setEditingName(false);
+              }}
+              className="w-32 rounded-md border border-[#009EFA]/70 bg-transparent px-1.5 py-0.5 text-[13px] font-medium text-white outline-none"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setEditingName(true)}
+              className="text-[13px] font-medium leading-[22px] text-white"
+            >
+              {project.name}
+            </button>
+          )}
         </div>
         <span className="text-[13px] leading-[22px] text-white/40">
           节点{project.nodeCount}

@@ -87,6 +87,8 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
+  renameProject: (name: string) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
   toolActive: "select" | "move";
   setToolActive: (tool: "select" | "move") => void;
@@ -94,6 +96,8 @@ export interface JimengCanvasState {
   togglePlay: (id: string) => void;
   restartPlay: (id: string) => void;
   tickPlay: (id: string, delta: number) => void;
+  /** 静音切换 (Batch 29) */
+  toggleMute: (id: string) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
     kind: "video" | "image" | "text" | "audio",
@@ -124,6 +128,7 @@ const initialNodes: JimengNode[] = [
       poster: MOCK_POSTER,
       duration: 6,
       currentTime: 2,
+      muted: true,
       width: 569,
       height: 320,
     },
@@ -364,6 +369,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
 
+  renameProject: (name) =>
+    set((state) => ({
+      project: { ...state.project, name },
+    })),
+
   toolActive: "select",
 
   setToolActive: (tool) => set({ toolActive: tool }),
@@ -388,6 +398,15 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...n,
           data: { ...vd, currentTime: 0, playing: true },
         };
+      }),
+    })),
+
+  toggleMute: (id) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return { ...n, data: { ...vd, muted: !(vd.muted ?? true) } };
       }),
     })),
 

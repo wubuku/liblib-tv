@@ -25,6 +25,8 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   currentTime?: number;
   /** 是否播放中 (mock 初始为暂停态，与源站提取一致) */
   playing?: boolean;
+  /** 是否静音 (Batch 29；源站卡片默认显示静音图标) */
+  muted?: boolean;
   /** 世界尺寸 (源站 video 节点 ≈ 569×320，16:9) */
   width: number;
   height: number;

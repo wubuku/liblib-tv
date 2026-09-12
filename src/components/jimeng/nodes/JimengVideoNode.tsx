@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Maximize2, Pause, Play, Plus, Tag, VolumeX } from "lucide-react";
+import { Maximize2, Pause, Play, Plus, Tag, Volume2, VolumeX } from "lucide-react";
 import { Handle, Position } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 
@@ -79,6 +79,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const restartPlay = useJimengStore((s) => s.restartPlay);
   const tickPlay = useJimengStore((s) => s.tickPlay);
+  const toggleMute = useJimengStore((s) => s.toggleMute);
+  const onToggleMute = toggleMute;
 
   // 播放中 mock 时间走动 (Batch 15)；播完自停
   useEffect(() => {
@@ -227,7 +229,17 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
                 {formatTime(d.currentTime ?? 0)} / {formatTime(d.duration ?? 0)}
               </span>
               <span className="flex-1" />
-              <VolumeX size={13} />
+              <button
+                type="button"
+                aria-label={d.muted ? "取消静音" : "静音"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleMute(id);
+                }}
+                className="flex items-center"
+              >
+                {d.muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+              </button>
               <button
                 type="button"
                 aria-label="全屏预览"
