@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ReactFlow, ReactFlowProvider } from "@xyflow/react";
 import type { NodeMouseHandler, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -45,6 +45,11 @@ function JimengFlow() {
   const exitInfer = useJimengStore((s) => s.exitInfer);
   const exitFramePicker = useJimengStore((s) => s.exitFramePicker);
   const exitTrim = useJimengStore((s) => s.exitTrim);
+  const undo = useJimengStore((s) => s.undo);
+  const redo = useJimengStore((s) => s.redo);
+  const past = useJimengStore((s) => s.past);
+  const future = useJimengStore((s) => s.future);
+  const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -72,9 +77,55 @@ function JimengFlow() {
       if (action === "duplicate") duplicateNode(contextMenu.nodeId);
       if (action === "paste") pasteNode();
       if (action === "delete") removeNode(contextMenu.nodeId);
+      if (action === "undo") undo();
+      if (action === "redo") redo();
     },
-    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode],
+    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, undo, redo],
   );
+
+  // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const mod = e.metaKey || e.ctrlKey;
+      const target = e.target as HTMLElement | null;
+      const inField =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if (inField) return;
+      if (mod && e.key.toLowerCase() === "z" && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      } else if (mod && e.key.toLowerCase() === "z" && e.shiftKey) {
+        e.preventDefault();
+        redo();
+      } else if (mod && e.key.toLowerCase() === "c" && selectedNodeId) {
+        copyNode(selectedNodeId);
+      } else if (mod && e.key.toLowerCase() === "d" && selectedNodeId) {
+        e.preventDefault();
+        duplicateNode(selectedNodeId);
+      } else if (mod && e.key.toLowerCase() === "v") {
+        pasteNode();
+      } else if (
+        (e.key === "Delete" || e.key === "Backspace") &&
+        selectedNodeId
+      ) {
+        e.preventDefault();
+        removeNode(selectedNodeId);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [
+    undo,
+    redo,
+    copyNode,
+    duplicateNode,
+    pasteNode,
+    removeNode,
+    selectedNodeId,
+  ]);
 
   const onMove = useCallback<OnMove>(
     (_event, viewport) => {
@@ -104,6 +155,8 @@ function JimengFlow() {
       {contextMenu ? (
         <JimengContextMenu
           state={contextMenu}
+          canUndo={past.length > 0}
+          canRedo={future.length > 0}
           onClose={() => setContextMenu(null)}
           onAction={onContextMenuAction}
         />

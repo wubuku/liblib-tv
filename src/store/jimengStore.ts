@@ -84,6 +84,11 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
+  past: { nodes: JimengNode[]; edges: Edge[] }[];
+  future: { nodes: JimengNode[]; edges: Edge[] }[];
+  undo: () => void;
+  redo: () => void;
 }
 
 export interface JimengTask {
@@ -199,6 +204,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         selected: false,
       };
       return {
+        past: [
+          ...state.past,
+          { nodes: state.nodes, edges: state.edges },
+        ],
+        future: [],
         nodes: [...state.nodes, node],
         edges: [
           ...state.edges,
@@ -213,6 +223,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   removeNode: (id) =>
     set((state) => ({
+      past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+      future: [],
       nodes: state.nodes.filter((n) => n.id !== id),
       edges: state.edges.filter((e) => e.source !== id && e.target !== id),
       selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
@@ -229,7 +241,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         position: { x: src.position.x + 60, y: src.position.y + 60 },
         data: { ...src.data },
       };
-      return { nodes: [...state.nodes, copy] };
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [...state.nodes, copy],
+      };
     }),
 
   clipboard: null,
@@ -253,7 +269,44 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         },
         data: { ...state.clipboard.data },
       };
-      return { nodes: [...state.nodes, copy] };
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [...state.nodes, copy],
+      };
+    }),
+
+  past: [],
+  future: [],
+
+  undo: () =>
+    set((state) => {
+      const prev = state.past[state.past.length - 1];
+      if (!prev) return state;
+      return {
+        past: state.past.slice(0, -1),
+        future: [
+          { nodes: state.nodes, edges: state.edges },
+          ...state.future,
+        ],
+        nodes: prev.nodes,
+        edges: prev.edges,
+      };
+    }),
+
+  redo: () =>
+    set((state) => {
+      const next = state.future[0];
+      if (!next) return state;
+      return {
+        past: [
+          ...state.past,
+          { nodes: state.nodes, edges: state.edges },
+        ],
+        future: state.future.slice(1),
+        nodes: next.nodes,
+        edges: next.edges,
+      };
     }),
 
   repaintNodeId: null,

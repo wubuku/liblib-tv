@@ -18,10 +18,14 @@ export interface JimengContextMenuState {
 
 export function JimengContextMenu({
   state,
+  canUndo = false,
+  canRedo = false,
   onClose,
   onAction,
 }: {
   state: JimengContextMenuState;
+  canUndo?: boolean;
+  canRedo?: boolean;
   onClose: () => void;
   onAction: (action: string) => void;
 }) {
@@ -54,8 +58,8 @@ export function JimengContextMenu({
     { label: "粘贴", shortcut: "⌘ V", action: "paste" },
     { label: "保存到主体库", action: "save-to-library" },
     { label: "下载", action: "download" },
-    { label: "重做", shortcut: "⌘ ⇧ Z", disabled: true },
-    { label: "撤销", shortcut: "⌘ Z", action: "undo" },
+    { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo" },
+    { label: "撤销", shortcut: "⌘ Z", disabled: !canUndo, action: "undo" },
     { label: "删除", shortcut: "⌫", action: "delete", danger: true },
   ];
 
