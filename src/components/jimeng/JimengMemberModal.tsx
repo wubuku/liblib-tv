@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronRight, X } from "lucide-react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
@@ -209,7 +209,16 @@ function PlanCard({
   isPremium: boolean;
 }) {
   const [stop, setStop] = useState(1);
+  const trackRef = useRef<HTMLDivElement>(null);
   const credits = isPremium ? SLIDER_STOPS[stop].credits : plan.credits;
+
+  // 拖动跟随: 指针按住/滑过轨道时吸附最近档位 (Batch 30)
+  const dragTo = (clientX: number) => {
+    const r = trackRef.current?.getBoundingClientRect();
+    if (!r || r.width === 0) return;
+    const ratio = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    setStop(Math.round(ratio * (SLIDER_STOPS.length - 1)));
+  };
 
   return (
     <div className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.04] p-5">
@@ -227,11 +236,25 @@ function PlanCard({
 
       {isPremium ? (
         <div className="mb-3">
-          <div className="relative h-1 rounded-full bg-white/[0.12]">
-            <div
-              className="absolute inset-y-0 left-0 rounded-full bg-white/80 transition-all"
-              style={{ width: `${(stop / (SLIDER_STOPS.length - 1)) * 100}%` }}
-            />
+          <div
+            ref={trackRef}
+            className="relative h-4 cursor-pointer"
+            onPointerDown={(e) => {
+              // 点在档位按钮上时交给按钮自身 onClick，不启动拖拽
+              if ((e.target as HTMLElement).closest("button")) return;
+              e.currentTarget.setPointerCapture(e.pointerId);
+              dragTo(e.clientX);
+            }}
+            onPointerMove={(e) => {
+              if (e.buttons & 1) dragTo(e.clientX);
+            }}
+          >
+            <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/[0.12]">
+              <div
+                className="absolute inset-y-0 left-0 rounded-full bg-white/80 transition-all"
+                style={{ width: `${(stop / (SLIDER_STOPS.length - 1)) * 100}%` }}
+              />
+            </div>
             {SLIDER_STOPS.map((s, i) => (
               <button
                 key={s.label}

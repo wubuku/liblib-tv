@@ -48,10 +48,10 @@ def main() -> None:
                 return {
                     full: r.width >= window.innerWidth - 2 && r.height >= window.innerHeight - 2,
                     bg: getComputedStyle(d).backgroundColor,
-                    time: d.textContent.includes('00:02 / 00:06'),
-                    exit: !!d.querySelector('button[aria-label="退出全屏预览"]'),
-                    play: !!d.querySelector('button[aria-label="全屏播放"], button[aria-label="全屏暂停"]'),
-                    mute: !!d.querySelector('button[aria-label="静音"]'),
+                time: d.textContent.includes('00:02 / 00:06'),
+                exit: !!d.querySelector('button[aria-label="退出全屏预览"]'),
+                play: !!d.querySelector('button[aria-label="全屏播放"], button[aria-label="全屏暂停"]'),
+                mute: !!d.querySelector('button[aria-label*="静音"]'),
                 };
             }"""
         )

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Maximize2, Pause, Play, VolumeX } from "lucide-react";
+import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
 import { useJimengStore } from "@/store/jimengStore";
@@ -30,7 +30,9 @@ export function JimengVideoPreview({
   onClose: () => void;
 }) {
   const playing = data.playing === true;
+  const muted = data.muted !== false;
   const togglePlay = useJimengStore((s) => s.togglePlay);
+  const toggleMute = useJimengStore((s) => s.toggleMute);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -75,10 +77,11 @@ export function JimengVideoPreview({
       <div className="absolute bottom-5 right-6 flex items-center gap-4 text-white">
         <button
           type="button"
-          aria-label="静音"
+          aria-label={muted ? "取消静音" : "静音"}
+          onClick={() => toggleMute(nodeId)}
           className="flex items-center"
         >
-          <VolumeX size={18} />
+          {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
         <button
           type="button"
