@@ -153,7 +153,7 @@
 - CLONE_DECISION (batch 14): 撤销/重做历史栈 (past/future 快照，图结构变更时
   入栈) + 键盘 ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete。
 - CLONE_DECISION (batch 15): 视频播放 mock — 播放/暂停切换 + 0.25s tick 走动
-  + 播完自停。
+  + 播完自停。（batch 32 起「播完自停」被「播完重放」取代，见下。）
 - CLONE_DECISION (batch 16): 连线视觉 — bezier rgba(255,255,255,0.32) 1.5px，
   选中白色 2px；源站 canvas 边的确切视觉 BLOCKED_BY_FIXTURE。
   多选 = Shift+点击 (multiSelectionKeyCode)。
@@ -176,6 +176,27 @@
   全屏播放器 — 全屏黑底、媒体铺满、左下 播放/暂停 + 时长、右下 静音 + 退出全屏，
   无画布 chrome；Esc 退出。复刻经 portal 挂 body (React Flow 视口 transform
   会劫持 fixed 定位)。
+- SOURCE_FACT (batch 28, 订阅页高级卡): 4 停点积分滑杆 tick 标签
+  6.2K/12.3K/18.5K/27.7K，默认 12.3K ↔ 12320积分每月（与 batch 13 订阅页
+  高级卡 ✦12320 交叉一致）。CLONE_DECISION: 点击停点更新积分读数，其余
+  停点积分为外推值；价格跨停点不变（未提取）。
+- SOURCE_FACT (batch 29): 单击顶栏项目名 = 行内重命名编辑器（Enter 提交 /
+  Esc 取消）；视频卡片静音按钮切换 muted（源站卡片默认静音，按钮标签
+  描述动作）。
+- CLONE_DECISION (batch 30): 高级卡滑杆轨道支持指针拖拽 snap-to-stop
+  （停点按钮保留自身点击，capture 在按钮上跳过）；全屏预览静音图标联动
+  节点 muted 态（源站语义已验证：默认静音、Unmute video ↔ Mute video）。
+- SOURCE_FACT (batch 31): 视频节点标题 Tag 图标点击弹出颜色标记选择器
+  （禁止/清除 + 青/蓝/紫/橙/黄 五色），选中即标记节点。
+  CLONE_DECISION: 修剪面板手柄可拖拽 + 实时时长标签（源站拖拽几何未
+  逐帧提取）。
+- CLONE_DECISION (batch 32): 控件语义完善 — 播放到结尾后再点播放 = 从头
+  重播（0.05s 容差），与 batch 24 双击重播语义一致，取代 batch 15
+  「播完自停」；进度条可点击 seek（6px 热区、2px 视觉条不变；源站是否
+  支持点击 seek 未采样）。
+- 记录说明（batch 433 对照批）: batch 28–32 由并行开发者实现（commits
+  66094ad / e20b453 / 97c3ce3 / 77f0a6c / 0e18d9a），以上条目自其提交
+  消息与代码审读转录；§7 原有直采条目止于 batch 27。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
@@ -185,5 +206,6 @@
 - Store: `src/store/jimengStore.ts`（与 canvasStore/frameosStore 隔离；
   选中态以 `selectedNodeId` 单一来源回填，规避 applyNodeChanges 重置问题）。
 - 样式: `src/app/jimeng-canvas.css`（token 表见 §3）；组件 `src/components/jimeng/`。
-- 验证: `scripts/verify-jimeng-batch1.py`（dev server 4317；截图入
-  `docs/design-references/jimeng/`）。
+- 验证: `scripts/verify-jimeng-batch1.py` … `verify-jimeng-batch32.py`
+  （每批一个验证器；dev server 4317；截图入 `docs/design-references/jimeng/`。
+  batch 1 在 LibTV 维护集内；batch 2+ 验证器由并行路线开发者维护）。
