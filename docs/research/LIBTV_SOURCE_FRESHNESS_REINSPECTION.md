@@ -367,6 +367,7 @@ Required follow-up fixture:
 | 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
 | 2026-09-12 | batch 393 探测 | still-broken | 第十三次重测 |
 | 2026-09-12 | batch 392-393 探测 | still-broken | 第十二、十三次重测（§3.3 审计/巡检批次） |
+| 2026-09-12 | batch 395 探测 | still-broken | 第十四次重测 |
 | 2026-09-12 | batch 392 探测 | still-broken | 第十二次重测 |
 | 2026-09-12 | batch 393 探测 | still-broken | 第十三次重测 |
 
