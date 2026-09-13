@@ -591,10 +591,12 @@ Batch 459 全量扫描（维护集外 146 项：137 通过 / 9 失败 / 0 未解
 out-click 无效已定位为真实竞态——连续动画 setViewport 的两个 move-end
 交错提交，旧命令端点覆盖新值；已按 viewport 合同 §6.4 修复（onMoveEnd
 提交时读取当前 live viewport，最新命令恒胜出，batch 463），三连跑全绿。
-64 再老化点已精化：toolbar-toggle 打开抽屉时 host 中心取到窗口中心
-（centerError.x = -160 = 抽屉宽度）——属 placement 审计范围，待专项
-批次处理。（batch 463 修复曾因工作区还原操作被误回退，已重新应用并
-三连跑确认。）
+64 再老化点已精化（batch 464 专项调研）：toolbar-toggle 打开抽屉后
+recenter 被「viewport-changed」守卫跳过（抽屉 CSS 过渡期间 live
+viewport 漂移），随后 move-end 自愈把补偿落到位（centerError 收敛
+0,0、viewport=-160 实测）——strict 即时断言与过渡期时序冲突。该
+验证器流程与四代 viewport 演进深度交织，需按现行合同整体重写而非
+补丁；重写前维持 AGED_GATE（现行行为经手测确认正确）。
 
 ## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
 
