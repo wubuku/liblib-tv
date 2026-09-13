@@ -111,6 +111,8 @@ def run_accepted_cohort(page: Page):
 
     status = page.locator("[data-add-node-status]")
     assert "已添加 2 个资源" in status.inner_text(), status.inner_text()
+    # Batch 468 (VR-018 Slice B): the accepted status carries the positive tone
+    assert status.get_attribute("data-status-tone") == "positive", status
 
     cohort = page.evaluate(
         """() => {
@@ -175,6 +177,8 @@ def run_rejected_reason_surfaces(page: Page):
     page.wait_for_timeout(320)
     status = page.locator("[data-add-node-status]")
     assert "MEDIA_TYPE_AMBIGUOUS" in status.inner_text(), status.inner_text()
+    # Batch 468 (VR-018 Slice B): the rejected status carries the diagnostic tone
+    assert status.get_attribute("data-status-tone") == "diagnostic", status
     after = page.evaluate(
         """() => {
           const state = window.__libtv_store.getState();

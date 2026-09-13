@@ -119,3 +119,25 @@ export function projectLibTVCommandFeedback(
       return { disposition: "pending", announce: false };
   }
 }
+
+// Batch 468 (VR-018 Slice B): explicit disposition formatting for status
+// lines — the copy stays with the owning surface; the tone is the stable
+// projection of the outcome.
+export type LibTVCommandStatusTone =
+  | "neutral"
+  | "positive"
+  | "diagnostic";
+
+export function formatLibTVCommandStatus(
+  projection: LibTVCommandFeedbackProjection,
+  copy: string,
+): { text: string; tone: LibTVCommandStatusTone } {
+  switch (projection.disposition) {
+    case "success":
+      return { text: copy, tone: "positive" };
+    case "error":
+      return { text: copy, tone: "diagnostic" };
+    default:
+      return { text: copy, tone: "neutral" };
+  }
+}
