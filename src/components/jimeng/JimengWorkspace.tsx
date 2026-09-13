@@ -220,6 +220,11 @@ function JimengFlow() {
         selectAll();
       } else if (e.key === "Escape") {
         selectNode(null);
+        exitRepaint();
+        exitEdit();
+        exitInfer();
+        exitFramePicker();
+        exitTrim();
         closePreview();
       } else if (mod && e.key.toLowerCase() === "g" && e.shiftKey) {
         // 快捷键面板证据: ⌘⇧G = 取消编组 (Batch 39)
@@ -266,6 +271,11 @@ function JimengFlow() {
     selectAll,
     selectNode,
     closePreview,
+    exitRepaint,
+    exitEdit,
+    exitInfer,
+    exitFramePicker,
+    exitTrim,
   ]);
 
   const onMove = useCallback<OnMove>(
