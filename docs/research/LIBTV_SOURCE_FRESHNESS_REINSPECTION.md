@@ -407,6 +407,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 456 探测 | still-broken | 第六十四次重测；VR-021 Slice F 关闭（batch 456） |
 | 2026-09-14 | batch 457 探测 | still-broken | 第六十五次重测；jimeng 49–51 对照同步（batch 457） |
 | 2026-09-14 | batch 458 探测 | still-broken | 第六十六次重测；jimeng 52 对照同步（batch 458） |
+| 2026-09-14 | batch 459 探测 | still-broken | 第六十七次重测；全量验证器扫描（batch 459） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

@@ -1,0 +1,19 @@
+{
+  "sweep": "146 non-maintenance-set liblib verifiers (batch 154 pattern)",
+  "result": {
+    "pass": 137,
+    "fail": 9,
+    "unexplained": 0
+  },
+  "aged": {
+    "15": "upload entry superseded by batch 453 file chooser",
+    "98": "upload entry superseded by batch 453 file chooser",
+    "53": "annotate save renamed by batch 448 honesty pass",
+    "65": "bootstrap log tail changed by batch 439 endpoint phase",
+    "119": "/project label renamed 开始创作→开始创建",
+    "167": "/project label renamed 开始创作→开始创建",
+    "18": "zoom geometry drift (viewport/rendition evolution)",
+    "27": "centering tolerance drift (viewport/rendition evolution)",
+    "64": "centering drift (viewport/rendition evolution)"
+  }
+}
