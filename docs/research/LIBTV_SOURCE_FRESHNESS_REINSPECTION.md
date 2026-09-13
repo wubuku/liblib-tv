@@ -415,6 +415,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 466 探测 | still-broken | 第七十四次重测；live 相 ownership 翻转精化（batch 466） |
 | 2026-09-14 | batch 467 探测 | still-broken | 第七十五次重测；VR-018 Slice A 关闭（batch 467） |
 | 2026-09-14 | batch 468 探测 | still-broken | 第七十六次重测；VR-018 Slice B 子项（batch 468） |
+| 2026-09-14 | batch 469 探测 | still-broken | 第七十七次重测；jimeng 57 审计对照（batch 469） |
 | 2026-09-14 | batch 459 探测 | still-broken | 第六十七次重测；全量验证器扫描（batch 459） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；

@@ -238,7 +238,8 @@
   （commits 215c86b / db2f1f5 / 622563e，batch 457 对照批）。
   batch 52 条目同法补录（commit ee6d1c5，batch 458 对照批）。
   batch 53 条目同法补录（batch 460 对照批）。batch 56 条目同法补录
-  （commit ddfbb9e，batch 465 对照批）。
+  （commit ddfbb9e，batch 465 对照批）。batch 57 审计 + Escape 修复
+  条目同法补录（commits b23f4dd / 9cde67f，batch 469 对照批）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -272,6 +273,10 @@
 - 复刻 (batch 53, mock 任务生命周期收口): startTask 任务 4s 后自动
   完成——处理中蒙层（spinner + 处理中）清除，mock 任务生命周期闭合
   （验证器含任务中/完成后两态断言）。
+- 复刻 (batch 57, 全交互审计): 零控制台错误的完整交互审计；审计发现
+  的 Escape 修复——workspace Escape 分支统一清除 repaint/edit/infer/
+  framePicker/trim 编辑态（SOURCE_FACT-verified UX：源站 Esc 退出编辑
+  态；此前 editNodeId 残留会阻塞 视频编辑 后的工具条恢复）。
 - 复刻 (batch 52): 多选复制/粘贴——右键菜单 复制 复制全部选中节点
   （单个走原路径）；剪贴板泛化为 {nodes, edges} 并保留内部连线；
   粘贴经 id 重映射恢复相对布局；pasteNode 更名 pasteNodes（单条
