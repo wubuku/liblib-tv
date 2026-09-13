@@ -122,6 +122,8 @@ export interface JimengCanvasState {
     trimmedDuration: number,
     startOffset?: number,
   ) => void;
+  /** 生成面板发送 (Batch 50)：空节点进入生成中，3s 后完成变为有内容节点 (mock) */
+  generateInto: (id: string, prompt: string) => void;
   /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
@@ -255,6 +257,41 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   pushToast: (text) => set({ toast: text }),
 
   clearToast: () => set({ toast: null }),
+
+  generateInto: (id, prompt) => {
+    // mock 生成：立即进入生成中，3s 后完成填充 mock 内容 (CLONE_DECISION)
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return {
+          ...n,
+          data: { ...vd, generating: true, prompt },
+        };
+      }),
+    }));
+    window.setTimeout(() => {
+      set((state) => ({
+        nodes: state.nodes.map((n) => {
+          if (n.id !== id || n.type !== "video") return n;
+          const vd = n.data as JimengVideoNodeData;
+          return {
+            ...n,
+            data: {
+              ...vd,
+              generating: false,
+              hasMedia: true,
+              source: "generated",
+              poster: MOCK_POSTER,
+              duration: 6,
+              currentTime: 0,
+              playing: false,
+            },
+          };
+        }),
+      }));
+    }, 3000);
+  },
 
   addVideoNodeAfter: (sourceId) =>
     set((state) => {

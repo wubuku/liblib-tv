@@ -31,6 +31,10 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   tagColor?: string | null;
   /** 已截取的帧号 (秒，Batch 35；null = 无截取帧) */
   capturedFrame?: number | null;
+  /** 生成中 (Batch 50)：发送生成任务后的处理态 (mock) */
+  generating?: boolean;
+  /** 生成时的提示词 (Batch 50 mock) */
+  prompt?: string;
   /** 世界尺寸 (源站 video 节点 ≈ 569×320，16:9) */
   width: number;
   height: number;

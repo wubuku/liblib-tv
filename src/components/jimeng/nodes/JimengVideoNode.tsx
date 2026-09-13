@@ -184,7 +184,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           }}
         />
       ) : null}
-      {!d.hasMedia ? <JimengGenPanel visible={selected === true} /> : null}
+      {!d.hasMedia ? (
+        <JimengGenPanel visible={selected === true} nodeId={id} />
+      ) : null}
       {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏。
           双击标题 = 「添加节点」菜单 extended 版 (SOURCE_FACT batch 24) */}
       {!repaintMode &&
@@ -426,13 +428,19 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           </span>
         )}
 
-        {/* mock 任务处理中遮罩 (Batch 11, CLONE_DECISION) */}
+        {/* mock 任务处理中遮罩 (Batch 11, CLONE_DECISION)；生成中遮罩 (Batch 50) */}
         {task ? (
           <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55">
             <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
             <span className="text-[12px] text-white/85">
               {task.kind === "upscale" ? "智能超清" : "补帧"}处理中…
             </span>
+          </div>
+        ) : null}
+        {d.generating ? (
+          <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55">
+            <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+            <span className="text-[12px] text-white/85">生成中…</span>
           </div>
         ) : null}
       </div>

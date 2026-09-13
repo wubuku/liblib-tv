@@ -34,9 +34,16 @@ const MODELS = [
  * - 右上角 40×40 展开钮 (icon 24, white/60)
  * mock: 提示词不可输入、下拉不开合 (Batch 5 接 store)。
  */
-export function JimengGenPanel({ visible }: { visible: boolean }) {
-  // Batch 40: 提示词可输入；发送后 pushToast (mock，不产生真实任务)
+export function JimengGenPanel({
+  visible,
+  nodeId,
+}: {
+  visible: boolean;
+  nodeId: string;
+}) {
+  // Batch 40/50: 提示词可输入；发送 → generateInto (mock 全流程)
   const [prompt, setPrompt] = useState("");
+  const generateInto = useJimengStore((s) => s.generateInto);
   // Batch 41: 模型下拉 (SOURCE_FACT batch 41 提取的 8 项模型)
   const [modelOpen, setModelOpen] = useState(false);
   const [model, setModel] = useState("即梦 Seedance 2.0 VIP");
@@ -68,10 +75,10 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
           className="flex h-full w-full flex-col justify-between rounded-[20px] bg-[#202020] p-[17px]"
           onSubmit={(e) => {
             e.preventDefault();
-            if (canSend) {
-              pushToast("生成任务已提交（mock）");
-              setPrompt("");
-            }
+            if (!canSend) return;
+            generateInto(nodeId, prompt);
+            pushToast("生成任务已提交（mock）");
+            setPrompt("");
           }}
         >
           {/* 素材栏 */}
