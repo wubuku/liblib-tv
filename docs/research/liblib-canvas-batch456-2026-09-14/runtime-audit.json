@@ -1,0 +1,31 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice F — Director data/blob convergence (byte budget, workspace lease, delete/undo composition)",
+  "scenes": {
+    "ok": "director-capture-1789319231426-3vyk5g",
+    "okNodeHasImage": "data:image/png;base64,AAAA",
+    "oversized": null,
+    "estimator": {
+      "small": 3,
+      "empty": 0,
+      "padOne": 2
+    }
+  },
+  "lease_scene": {
+    "ledgerBefore": {
+      "leaseCount": 1,
+      "releasedCount": 0
+    },
+    "ledgerAfterDelete": {
+      "leaseCount": 1,
+      "releasedCount": 1
+    },
+    "nodeRestored": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

@@ -92,6 +92,19 @@ export class LibTVMediaLeaseLedger {
     return this.leases.get(leaseId) ?? null;
   }
 
+  /** Batch 456: release every lease owned by `ownerId` (delete/lifecycle
+   * composition). Each lease honors exactly-once release semantics. */
+  releaseForOwner(ownerId: string): number {
+    let released = 0;
+    for (const lease of this.leases.values()) {
+      if (lease.ownerId === ownerId && lease.releasedAt === null) {
+        this.release(lease.leaseId);
+        released += 1;
+      }
+    }
+    return released;
+  }
+
   list(): readonly LibTVMediaLease[] {
     return Array.from(this.leases.values());
   }
@@ -163,3 +176,18 @@ export class LibTVFakeMaterializer {
     };
   }
 }
+
+// Batch 456 (VR-021 Slice F): byte budget accounting for data-URL media —
+// an estimate of the DECODED byte count from the base64 payload.
+export function estimateLibTVDataUrlBytes(dataUrl: string): number {
+  const comma = dataUrl.indexOf(",");
+  if (!dataUrl.startsWith("data:") || comma === -1) return 0;
+  const base64 = dataUrl.slice(comma + 1);
+  if (base64.length === 0) return 0;
+  const padding = base64.endsWith("==") ? 2 : base64.endsWith("=") ? 1 : 0;
+  return Math.max(0, Math.floor((base64.length * 3) / 4) - padding);
+}
+
+// Clone-only budget for the DIRECTOR_BROWSER_EXPORT profile (NOT a source
+// limit — §8.2).
+export const LIBTV_DIRECTOR_EXPORT_BUDGET_BYTES = 8 * 1024 * 1024;

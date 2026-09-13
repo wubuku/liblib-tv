@@ -35,6 +35,8 @@ import {
   type LibTVLocalFileDescriptor,
 } from "@/lib/libtvMediaIngress";
 import {
+  estimateLibTVDataUrlBytes,
+  LIBTV_DIRECTOR_EXPORT_BUDGET_BYTES,
   LibTVFakeMaterializer,
   LibTVMediaLeaseLedger,
 } from "@/lib/libtvMediaLease";
@@ -2782,9 +2784,24 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const source = canvas?.nodes.find((node) => node.id === sourceId);
     if (!canvas || !source || !capture.dataUrl) return null;
 
+    // Batch 456 (VR-021 Slice F): data/blob convergence — the capture's
+    // decoded byte count must fit the clone-only director export budget,
+    // and the bytes acquire a DIRECTOR_WORKSPACE lease keyed to the node
+    // (released exactly once when the node is deleted).
+    const captureBytes = estimateLibTVDataUrlBytes(capture.dataUrl);
+    if (captureBytes > LIBTV_DIRECTOR_EXPORT_BUDGET_BYTES) {
+      return null;
+    }
+
     const dimensions = getDefaultNodeDimensions("image");
     const position = findAvailableRightSlot(source, canvas.nodes, dimensions, 100);
     const targetId = createNodeId("director-capture");
+    directorLeaseLedger.acquire({
+      resourceId: capture.captureId,
+      resourceClass: "LOCAL_BYTES",
+      ownerKind: "DIRECTOR_WORKSPACE",
+      ownerId: `${canvas.id}/${targetId}`,
+    });
     const edgeId = `e-${sourceId}-${targetId}`;
     const directorCapture: DirectorCaptureMetadata = {
       sourceNodeId: sourceId,
@@ -3158,6 +3175,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       const currentCanvas = state.canvases.find((canvas) => canvas.id === activeCanvasId);
       if (!currentCanvas || !currentCanvas.nodes.some((node) => node.id === nodeId)) return state;
       const removedIds = withDescendantIds(currentCanvas.nodes, [nodeId]);
+      // Batch 456 (VR-021 Slice F): delete/lifecycle composition — director
+      // capture bytes release their workspace leases exactly once when the
+      // owning node leaves the graph (delete/undo composition: undo restores
+      // the bytes in graph state; the lease is not resurrected).
+      for (const removedId of removedIds) {
+        directorLeaseLedger.releaseForOwner(`${activeCanvasId}/${removedId}`);
+      }
       const nextSelectedNodeIds = state.selectedNodeIds.filter((id) => !removedIds.has(id));
       const nextEdges = currentCanvas.edges.filter(
         (edge) => !removedIds.has(edge.source) && !removedIds.has(edge.target),
@@ -4046,6 +4070,9 @@ declare global {
       result: LibTVReactFlowChangeRoutingResult;
     }>;
     __libtv_capture_selection: () => LibTVSelectionSnapshot;
+    __libtv_director_lease_release_counts: (
+      ownerId: string,
+    ) => { leaseCount: number; releasedCount: number };
   }
 }
 
@@ -4056,6 +4083,17 @@ if (typeof window !== "undefined") {
     useCanvasStore.getState().routeReactFlowChanges(request);
   window.__libtv_capture_selection = () =>
     useCanvasStore.getState().getSelectionSnapshot();
+  // Batch 456 (VR-021 Slice F): director workspace lease audit.
+  window.__libtv_director_lease_release_counts = (ownerId: string) => {
+    const owned = directorLeaseLedger
+      .list()
+      .filter((lease) => lease.ownerId === ownerId);
+    return {
+      leaseCount: owned.length,
+      releasedCount: owned.filter((lease) => lease.releasedAt !== null)
+        .length,
+    };
+  };
   window.__libtv_validate_connection = (proposal) => {
     const canvas = useCanvasStore.getState().getActiveCanvas();
     return validateLibTVGraphConnection(
@@ -4107,6 +4145,10 @@ function getDirectorAnimationExportNodeDimensions(
 const ingressFixtureMaterializer = new LibTVFakeMaterializer(
   new LibTVMediaLeaseLedger(),
 );
+
+// Batch 456 (VR-021 Slice F): Director workspace lease ledger — data/blob
+// convergence for director captures (LOCAL_BYTES class, byte-budgeted).
+const directorLeaseLedger = new LibTVMediaLeaseLedger();
 
 // Batch 442 (VR-023 Slice B): derived image/video frames become
 // aspect-aware for non-landscape sources (same profile height, width

@@ -29,6 +29,7 @@ import {
   type LibTVShotSourceEvent,
 } from "@/lib/libtvMediaIngress";
 import {
+  estimateLibTVDataUrlBytes,
   LibTVFakeMaterializer,
   LibTVMediaLeaseLedger,
   type LibTVFakeLocator,
@@ -271,6 +272,7 @@ declare global {
       record: LibTVShotSourceRecord,
       event: LibTVShotSourceEvent,
     ) => LibTVShotSourceRecord;
+    __libtv_estimate_data_url_bytes?: (dataUrl: string) => number;
     __libtv_annotate_fit_mapping?: () => {
       baseline: {
         mediaId: string;
@@ -715,6 +717,9 @@ export default function Home() {
     window.__libtv_media_ingress_validate = validateLibTVMediaIngressIntent;
     // Batch 455 (VR-021 Slice E): shot source lifecycle reducer diagnostics.
     window.__libtv_shot_source_reduce = reduceLibTVShotSourceLifecycle;
+    // Batch 456 (VR-021 Slice F): director byte estimator + lease audit.
+    window.__libtv_estimate_data_url_bytes = estimateLibTVDataUrlBytes;
+
     // Batch 451 (VR-021 Slice B): instance-scoped lease ledger + fake
     // materializer diagnostics (pure, deterministic, no network).
     window.__libtv_media_lease_ledger_new = () => new LibTVMediaLeaseLedger();
@@ -763,6 +768,8 @@ export default function Home() {
       delete window.__libtv_media_ingress_profiles;
       delete window.__libtv_media_ingress_validate;
       delete window.__libtv_shot_source_reduce;
+      delete window.__libtv_estimate_data_url_bytes;
+
       delete window.__libtv_media_lease_ledger_new;
       delete window.__libtv_media_materializer_new;
     };
