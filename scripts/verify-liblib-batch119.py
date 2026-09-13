@@ -61,7 +61,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("create:card", page_root.locator("[data-project-create-card]").is_visible())
     check(
         "create:copy",
-        "开始创作" in page_root.locator("[data-project-create-card]").inner_text()
+        "开始创建" in page_root.locator("[data-project-create-card]").inner_text()
         and "创建新的视频项目" in page_root.locator("[data-project-create-card]").inner_text(),
     )
 

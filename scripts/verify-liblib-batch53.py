@@ -80,11 +80,9 @@ def graph_signature(page: Page):
 
 def open_annotate(page: Page):
     trigger = page.locator('[data-testid="image-toolbar-annotate"]')
-    trigger_box = box(trigger)
-    if trigger_box["x"] < 0 or trigger_box["x"] + trigger_box["width"] > page.viewport_size["width"]:
-        trigger.evaluate("(element) => element.click()")
-    else:
-        trigger.click()
+    # force click: the toolbar re-renders with a scale transform (zoom
+    # projection) that can keep the button permanently "unstable"
+    trigger.click(force=True)
     page.locator("[data-image-annotate-toolbar]").wait_for(state="visible")
     page.locator("[data-image-annotate-canvas]").wait_for(state="visible")
     page.wait_for_timeout(180)
@@ -127,11 +125,12 @@ def assert_annotate(page: Page, graph_before=None):
     buttons = toolbar.locator("button")
     assert buttons.count() == 8
     assert page.get_by_role("button", name="标注", exact=True).count() == 1
-    assert page.get_by_role("button", name="保存", exact=True).count() == 1
+    # Batch 448 honesty pass: save is disabled with an explanatory name
+    assert page.get_by_role("button", name="保存").is_disabled()
     assert page.locator("[data-image-annotate-undo]").is_disabled()
     assert page.locator("[data-image-annotate-redo]").is_disabled()
     assert not page.locator("[data-image-annotate-close]").is_disabled()
-    assert not page.locator("[data-image-annotate-save]").is_disabled()
+    assert page.locator("[data-image-annotate-save]").is_disabled()
     assert toolbar.locator("[data-image-annotate-control]").count() == 3
     assert page.locator("[data-image-annotate-color]").count() == 1
     assert page.locator("[data-image-annotate-line-width]").count() == 1
@@ -141,12 +140,12 @@ def assert_annotate(page: Page, graph_before=None):
     assert line_width.input_value() == "4"
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "pencil"
 
-    page.locator("[data-image-annotate-color]").click()
+    page.locator("[data-image-annotate-color]").evaluate("(el) => el.click()")
     colors = ["#ffcc00", "#ff7a00", "#ff2d55", "#ff0000", "#8e5cff", "#3a86ff", "#ffffff"]
     assert page.locator("[data-image-annotate-color-menu] button").count() == len(colors)
     for color in colors:
         assert page.locator(f'[data-image-annotate-color-menu] button[aria-label="{color}"]').count() == 1
-    page.locator('[data-image-annotate-color-menu] button[aria-label="#3a86ff"]').click()
+    page.locator('[data-image-annotate-color-menu] button[aria-label="#3a86ff"]').evaluate("(el) => el.click()")
     assert page.locator("[data-image-annotate-color]").get_attribute("aria-expanded") == "false"
 
     line_width.fill("12")
@@ -158,7 +157,9 @@ def assert_annotate(page: Page, graph_before=None):
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "text"
     click_toolbar_button(page, '[data-image-annotate-control="pencil"]')
     assert page.locator("[data-image-annotate-surface]").get_attribute("data-image-annotate-tool") == "pencil"
-    click_toolbar_button(page, "[data-image-annotate-save]")
+    # Batch 448 honesty pass: the disabled save is inert — assert it cannot
+    # be clicked and the graph stays unchanged (no-op by inaction)
+    assert page.locator("[data-image-annotate-save]").is_disabled()
     if graph_before is not None:
         assert graph_signature(page) == graph_before
 

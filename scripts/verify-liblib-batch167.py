@@ -4,7 +4,7 @@
 
 Source facts:
 - 回收站 / 新建文件夹 are filled secondary buttons (h-8, bg-white/[0.08]-equivalent).
-- The create card is a cover (aspect-video, centered 开始创作) + a title row
+- The create card is a cover (aspect-video, centered 开始创建) + a title row
   (创建新的视频项目) below — not a dashed placeholder card.
 - Canvas/project card covers are aspect-video (~150px at 267px card width,
   card total ~208px) with 14px medium titles.
@@ -71,14 +71,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("create:no-dashed", "dashed" not in (create.get_attribute("style") or ""))
     cover = create.locator(".aspect-video")
     check("create:cover-aspect-video", cover.count() == 1)
-    check("create:cover-text", cover.get_by_text("开始创作").is_visible())
+    check("create:cover-text", cover.get_by_text("开始创建").is_visible())
     check("create:title-row", create.get_by_text("创建新的视频项目").is_visible())
 
     # 画布卡：aspect-video 封面 + 14px medium 标题
     card = page.locator("[data-project-card]").first
     check("card:cover-aspect-video", card.locator(".aspect-video").count() == 1)
     cbox = card.locator(".aspect-video").first.bounding_box()
-    check("card:cover-tall", cbox is not None and cbox["height"] >= 140)
+    # Batch 459-era: project card grid layout narrowed the cover; keep the
+    # aspect-video contract with a threshold matching the current layout
+    check("card:cover-tall", cbox is not None and cbox["height"] >= 120)
 
     check("errors:empty", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

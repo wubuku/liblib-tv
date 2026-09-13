@@ -203,8 +203,15 @@ def run_fresh_bootstrap(browser, width: int, height: int, expected):
     assert snapshot["activeCanvasId"] == "canvas-2", snapshot
     assert_viewport(snapshot["activeViewport"], expected)
     assert snapshot["ownership"] == {"canvas-2": "bootstrap"}, snapshot
-    assert snapshot["log"][-1]["reason"] == "bootstrap-applied", snapshot
-    assert snapshot["log"][-1]["ownership"] == "bootstrap", snapshot
+    # Batch 439 endpoint phase: per-frame live events may append after the
+    # bootstrap commit — require bootstrap-applied to be present, and the
+    # bootstrap event itself to carry bootstrap ownership.
+    bootstrap_entries = [
+        entry for entry in snapshot["log"]
+        if entry["reason"] == "bootstrap-applied"
+    ]
+    assert bootstrap_entries, snapshot
+    assert bootstrap_entries[0]["ownership"] == "bootstrap", snapshot
     assert snapshot["zoomLabel"] == f"{round(expected['zoom'] * 100)}%", snapshot
     assert_no_overflow(page)
     assert not errors, errors
@@ -282,7 +289,15 @@ def run_user_owned_breakpoint(browser):
     assert_viewport(compact_host["activeViewport"], stable["activeViewport"])
     assert compact_host["ownership"]["canvas-2"] == "stable", compact_host
     assert compact_host["graph"] == before["graph"], (before, compact_host)
-    assert compact_host["log"][-1]["reason"] == "stable-restored", compact_host
+    # Batch 456 resize observer: a breakpoint flip logs the delegation skip
+    # after the batch-65 stable-restored commit — both are valid tails.
+    assert compact_host["log"][-1]["reason"] in (
+        "stable-restored",
+        "breakpoint-flip-delegated",
+    ), compact_host
+    assert any(
+        entry["reason"] == "stable-restored" for entry in compact_host["log"]
+    ), compact_host
     assert_no_overflow(page)
     assert not errors, errors
     page.close()
