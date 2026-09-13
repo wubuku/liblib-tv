@@ -237,6 +237,7 @@
   条目同法补录（batch 452 对照批）。batch 49/50/51 条目同法补录
   （commits 215c86b / db2f1f5 / 622563e，batch 457 对照批）。
   batch 52 条目同法补录（commit ee6d1c5，batch 458 对照批）。
+  batch 53 条目同法补录（batch 460 对照批）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -260,6 +261,9 @@
   完成出 poster + 00:00/00:06（source: 'generated'）。
 - 测试 (batch 51): 生成完成后新节点工具条行为验证——7 项 + 分隔线、
   title tag、时间行、gen panel 消失；NodeToolbar portal 作用域入档。
+- 复刻 (batch 53, mock 任务生命周期收口): startTask 任务 4s 后自动
+  完成——处理中蒙层（spinner + 处理中）清除，mock 任务生命周期闭合
+  （验证器含任务中/完成后两态断言）。
 - 复刻 (batch 52): 多选复制/粘贴——右键菜单 复制 复制全部选中节点
   （单个走原路径）；剪贴板泛化为 {nodes, edges} 并保留内部连线；
   粘贴经 id 重映射恢复相对布局；pasteNode 更名 pasteNodes（单条

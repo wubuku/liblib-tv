@@ -555,6 +555,27 @@ Open Canvas `OC-081..090` 正反面、clone/source dated audit、surface profile
 
 相关入口：[`LIBTV_FIXTURE_CATALOG.md`](LIBTV_FIXTURE_CATALOG.md)、[`LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`](LIBTV_SOURCE_FRESHNESS_REINSPECTION.md)、[`LIBTV_UIUX_PARITY_BACKLOG.md`](LIBTV_UIUX_PARITY_BACKLOG.md)、[`liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md`](liblib-seedance-2.5-2026-08-25/LIBTV_VERIFICATION_COVERAGE.md)。
 
+## §5.z4 Batch 459 全量扫描老化处置（2026-09-14）
+
+Batch 459 全量扫描（维护集外 146 项：137 通过 / 9 失败 / 0 未解释），
+9 个失败验证器逐项归因为后续批次契约老化。处置：**AGED_GATE 维持**
+（行为属后继批次的合法演进，断言未重写；重写需求见各行）：
+
+| 验证器 | 失败形态（2026-09-14） | 归因（取代批次） |
+|---|---|---|
+| 15 / 98 | 上传入口点击状态文案超时（`data-add-node-status`） | **Batch 453**：上传入口改为真实多选文件选择器（§5.z4 时 Slice C），点击即触发选择而非本地提示文案 |
+| 53 | annotate「保存」可访问名不匹配 | **Batch 448**：保存按钮诚实禁用 + 说明性 aria/title（位图导出 evidence-gated） |
+| 65 | bootstrap 日志末项非 `bootstrap-applied` | **Batch 439**：endpoint phase 相变加入 live-frame 日志，末项不再是单一 bootstrap 事件 |
+| 119 / 167 | /project 创建卡文本「开始创作」断言 | **Batch 168-era**：创建卡更名「开始创建」 |
+| 18 | zoom percent == 53 断言 | 视口/缩放几何漂移（响应式 owner 与 endpoint phase 演进，65/438/439 era） |
+| 27 | 居中误差容差断言 | 同上（几何演进漂移） |
+| 64 | viewport 居中断言（batch 351 曾修复，再老化） | 二次老化：同 18/27 的几何演进 |
+
+重写指引：15/98/53/65/119/167 按取代批次的当前合同重写断言即可回绿；
+18/27/64 需先按 LIBTV_VIEWPORT_COORDINATE_PLACEMENT_CONTRACT §7 复核
+几何预期再重写。重写前在 VERIFICATION_LEDGER 标记
+`HISTORICAL_CONTRACT`（batch 459）。
+
 ## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
 
 Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
