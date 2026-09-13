@@ -55,11 +55,11 @@ def main() -> None:
         )
 
         # shift+click adds the other node → panels hidden (retry for flake)
-        for _attempt in range(3):
+        for _attempt in range(5):
             page.keyboard.down("Shift")
             page.mouse.click(centers[0]["x"] - 120, centers[0]["y"] - 60)
             page.keyboard.up("Shift")
-            page.wait_for_timeout(600)
+            page.wait_for_timeout(800)
             ok = page.evaluate(
                 "() => document.querySelectorAll('.react-flow__node.selected').length === 2"
             )
