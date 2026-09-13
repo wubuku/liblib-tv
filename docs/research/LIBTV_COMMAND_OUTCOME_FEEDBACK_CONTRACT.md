@@ -582,6 +582,13 @@ Verifier ID: `LIBTV-VR-018`。
 - preserve existing action-specific selectors/timing where source-backed；
 - prevent one action from clearing another action's error。
 
+> Batch 472 合规审计：VideoNode 的三组反馈状态（frameFeedback /
+> pictureEditFeedback / depthMotionFeedback）为组件本地 useState——
+> 节点绑定由组件构造保证；各反馈计时器相互独立，无跨动作清除路径；
+> canvas 切换时组件卸载取消计时器（batch 449）。即 Slice C 的
+> 「owner 绑定 + 防交叉清除」不变量按构造成立，无需额外运行时代码；
+> DOM 渲染层面的反馈仅按 activeTool 显示对应面板，状态本身隔离。
+
 ### Slice D — Async/Director composition
 
 - reuse operation/result owner from async contract；
