@@ -60,8 +60,9 @@ function JimengFlow() {
     useReactFlow();
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
   const copyNode = useJimengStore((s) => s.copyNode);
+  const copyNodes = useJimengStore((s) => s.copyNodes);
   const duplicateNode = useJimengStore((s) => s.duplicateNode);
-  const pasteNode = useJimengStore((s) => s.pasteNode);
+  const pasteNodes = useJimengStore((s) => s.pasteNodes);
   const removeNode = useJimengStore((s) => s.removeNode);
   const removeNodes = useJimengStore((s) => s.removeNodes);
   const pushToast = useJimengStore((s) => s.pushToast);
@@ -128,9 +129,14 @@ function JimengFlow() {
   const onContextMenuAction = useCallback(
     (action: string) => {
       if (!contextMenu) return;
-      if (action === "copy") copyNode(contextMenu.nodeId);
+      if (action === "copy") {
+        // 多选时复制全部选中节点 (Batch 52)
+        const sel = nodes.filter((n) => n.selected).map((n) => n.id);
+        if (sel.length > 1) copyNodes(sel);
+        else copyNode(contextMenu.nodeId);
+      }
       if (action === "duplicate") duplicateNode(contextMenu.nodeId);
-      if (action === "paste") pasteNode();
+      if (action === "paste") pasteNodes();
       if (action === "delete") {
         // 多选时批量删除选中节点 (Batch 38)
         const selectedIds = nodes
@@ -144,7 +150,7 @@ function JimengFlow() {
       if (action === "save-to-library") pushToast("已保存到主体库（mock）");
       if (action === "download") pushToast("视频下载已开始（mock）");
     },
-    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, removeNodes, undo, redo, nodes, pushToast],
+    [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, nodes, pushToast],
   );
 
   // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace
@@ -228,7 +234,7 @@ function JimengFlow() {
         e.preventDefault();
         duplicateNode(selectedNodeId);
       } else if (mod && e.key.toLowerCase() === "v") {
-        pasteNode();
+        pasteNodes();
       } else if (
         (e.key === "Delete" || e.key === "Backspace") &&
         selectedNodeId
@@ -244,7 +250,7 @@ function JimengFlow() {
     redo,
     copyNode,
     duplicateNode,
-    pasteNode,
+    pasteNodes,
     removeNode,
     selectedNodeId,
     toolActive,
@@ -315,7 +321,7 @@ function JimengFlow() {
           clipboard={clipboard !== null}
           onClose={() => setPaneMenu(null)}
           onInsert={onPaneInsert}
-          onPaste={pasteNode}
+          onPaste={pasteNodes}
           onUndo={undo}
           onRedo={redo}
         />

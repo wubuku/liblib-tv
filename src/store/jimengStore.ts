@@ -63,10 +63,11 @@ export interface JimengCanvasState {
   /** 批量删除选中节点 (Batch 38 多选深化)，单条历史记录 */
   removeNodes: (ids: string[]) => void;
   duplicateNode: (id: string) => void;
-  /** 右键菜单 复制/粘贴 (Batch 4) */
-  clipboard: JimengNode | null;
+  /** 右键菜单 复制/粘贴 (Batch 4/52: 泛化为多节点剪贴板，含内部连线) */
+  clipboard: { nodes: JimengNode[]; edges: Edge[] } | null;
   copyNode: (id: string) => void;
-  pasteNode: () => void;
+  copyNodes: (ids: string[]) => void;
+  pasteNodes: () => void;
   /** 局部重拍编辑态 (Batch 5): 进入后节点显示帧条选区 + 重拍面板 */
   repaintNodeId: string | null;
   enterRepaint: (id: string) => void;
@@ -376,31 +377,52 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   clipboard: null,
 
-  copyNode: (id) =>
-    set((state) => {
-      const src = state.nodes.find((n) => n.id === id);
-      return src ? { clipboard: { ...src, data: { ...src.data } } } : state;
-    }),
+  copyNode: (id) => {
+    const src = useJimengStore.getState().nodes.find((n) => n.id === id);
+    if (!src) return;
+    useJimengStore.setState({
+      clipboard: { nodes: [src], edges: [] },
+    });
+  },
 
-  pasteNode: () =>
-    set((state) => {
-      if (!state.clipboard) return state;
-      const copy: JimengNode = {
-        ...state.clipboard,
-        id: `video-${Date.now()}`,
-        selected: false,
-        position: {
-          x: state.clipboard.position.x + 60,
-          y: state.clipboard.position.y + 60,
-        },
-        data: { ...state.clipboard.data },
-      };
-      return {
-        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
-        future: [],
-        nodes: [...state.nodes, copy],
-      };
-    }),
+  copyNodes: (ids) => {
+    const state = useJimengStore.getState();
+    const nodes = state.nodes.filter((n) => ids.includes(n.id));
+    if (!nodes.length) return;
+    const idSet = new Set(nodes.map((n) => n.id));
+    const edges = state.edges.filter(
+      (e) => idSet.has(e.source) && idSet.has(e.target),
+    );
+    useJimengStore.setState({ clipboard: { nodes, edges } });
+  },
+
+  pasteNodes: () => {
+    const clip = useJimengStore.getState().clipboard;
+    if (!clip || !clip.nodes.length) return;
+    const state = useJimengStore.getState();
+    const idMap = new Map(clip.nodes.map((n) => [n.id, `${n.type}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`]));
+    const offsetX = 60;
+    const offsetY = 60;
+    const newNodes = clip.nodes.map((n) => ({
+      ...n,
+      id: idMap.get(n.id)!,
+      selected: false,
+      position: { x: n.position.x + offsetX, y: n.position.y + offsetY },
+      data: { ...n.data },
+    }));
+    const newEdges = clip.edges.map((e) => ({
+      ...e,
+      id: `e-${idMap.get(e.source)}-${idMap.get(e.target)}`,
+      source: idMap.get(e.source)!,
+      target: idMap.get(e.target)!,
+    }));
+    useJimengStore.setState({
+      past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: [...state.nodes, ...newNodes],
+      edges: [...state.edges, ...newEdges],
+    });
+  },
 
   past: [],
   future: [],
