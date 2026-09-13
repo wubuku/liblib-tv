@@ -365,6 +365,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               <button
                 type="button"
                 aria-label={d.muted ? "取消静音" : "静音"}
+                title={d.muted ? "取消静音" : "静音"}
                 onClick={(e) => {
                   e.stopPropagation();
                   onToggleMute(id);
@@ -376,6 +377,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               <button
                 type="button"
                 aria-label="全屏预览"
+                title="全屏"
                 onClick={(e) => {
                   e.stopPropagation();
                   openPreview(id);
