@@ -1,0 +1,98 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice A — pure ingress descriptors, entry-profile registry, ordered validation with stable reasons",
+  "scenes": {
+    "profileCount": 10,
+    "gatedCardinality": 10,
+    "accepted": {
+      "status": "accepted",
+      "reasons": [],
+      "family": "image"
+    },
+    "empty": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_EMPTY"
+      ],
+      "family": null
+    },
+    "unknownProfile": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_ENTRY_PROFILE_INVALID"
+      ],
+      "family": null
+    },
+    "cardinality": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_CARDINALITY_EXCEEDED"
+      ],
+      "family": "image"
+    },
+    "staleCanvas": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_CANVAS_STALE"
+      ],
+      "family": "image"
+    },
+    "missingCanvas": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_TARGET_MISSING"
+      ],
+      "family": "image"
+    },
+    "invalidDescriptor": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_SOURCE_DESCRIPTOR_INVALID"
+      ],
+      "family": "image"
+    },
+    "emptyFile": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_EMPTY"
+      ],
+      "family": "image"
+    },
+    "ambiguousType": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_TYPE_AMBIGUOUS"
+      ],
+      "family": "unknown"
+    },
+    "unsupportedFamily": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_TYPE_UNSUPPORTED"
+      ],
+      "family": "director-model"
+    },
+    "oversized": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_SIZE_EXCEEDED"
+      ],
+      "family": "image"
+    },
+    "orderedReasons": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_CANVAS_STALE",
+        "MEDIA_EMPTY",
+        "MEDIA_SOURCE_DESCRIPTOR_INVALID"
+      ],
+      "family": "image"
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

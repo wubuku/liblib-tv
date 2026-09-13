@@ -478,6 +478,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 449 | VR-022 Slice E：fake operation acceptor 请求移交 | [`liblib-canvas-batch449-2026-09-13/`](liblib-canvas-batch449-2026-09-13/) |
 
+| 450 | VR-021 Slice A：纯 ingress 描述符/注册表/有序校验 | [`liblib-canvas-batch450-2026-09-13/`](liblib-canvas-batch450-2026-09-13/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |

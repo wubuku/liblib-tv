@@ -22,6 +22,10 @@ import "@xyflow/react/dist/style.css";
 
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import {
+  LIBTV_MEDIA_INGRESS_PROFILES,
+  validateLibTVMediaIngressIntent,
+} from "@/lib/libtvMediaIngress";
+import {
   LIBTV_EDITOR_PROFILES,
   getLibTVProfileInvariantViolations,
   normalizeLibTVEditorValue,
@@ -208,6 +212,33 @@ declare global {
       at: number,
       value: string,
     ) => { kind: string; at: number; value: string };
+    __libtv_media_ingress_profiles?: Record<
+      string,
+      {
+        profileId: string;
+        cardinalityMin: number;
+        cardinalityMax: number | null;
+        target: string;
+        projectionPolicy: string;
+      }
+    >;
+    __libtv_media_ingress_validate?: (input: {
+      profileId: string;
+      descriptors: readonly {
+        kind: "LOCAL_FILE";
+        name: string;
+        declaredMimeType: string;
+        sizeBytes: number;
+        lastModified: number;
+      }[];
+      canvasExists: boolean;
+      canvasGeneration: number;
+      expectedCanvasGeneration: number;
+    }) => {
+      status: "accepted" | "rejected";
+      reasons: string[];
+      family: string | null;
+    };
     __libtv_annotate_fit_mapping?: () => {
       baseline: {
         mediaId: string;
@@ -646,6 +677,10 @@ export default function Home() {
     window.__libtv_editor_session_reduce = reduceLibTVEditorSession;
     window.__libtv_editor_local_history_push = pushLibTVLocalHistory;
     window.__libtv_editor_local_history_entry = (kind, at, value) => ({ kind, at, value });
+    // Batch 450 (VR-021 Slice A): media-ingress registry + ordered
+    // validation diagnostics (pure).
+    window.__libtv_media_ingress_profiles = LIBTV_MEDIA_INGRESS_PROFILES;
+    window.__libtv_media_ingress_validate = validateLibTVMediaIngressIntent;
     // Batch 443 (VR-023 Slice C): fit-transform mapping for the open
     // annotate editor — declared intrinsic plane to visible frame.
     window.__libtv_annotate_fit_mapping = () => {
@@ -686,6 +721,8 @@ export default function Home() {
       delete window.__libtv_editor_session_reduce;
       delete window.__libtv_editor_local_history_push;
       delete window.__libtv_editor_local_history_entry;
+      delete window.__libtv_media_ingress_profiles;
+      delete window.__libtv_media_ingress_validate;
     };
   }, []);
 
