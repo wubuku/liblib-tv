@@ -105,7 +105,7 @@ export function JimengAudioNode({ data, selected }: NodeProps) {
           ))}
         </div>
         <span className="shrink-0 text-[11px] tabular-nums text-white/55">
-          {fmt(d.duration)}
+          {fmt(Math.round((progress / 100) * (d.duration ?? 0)))} / {fmt(d.duration)}
         </span>
       </div>
 
