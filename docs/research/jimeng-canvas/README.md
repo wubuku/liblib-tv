@@ -233,7 +233,22 @@
   （commits 31a954e / 2c39b4b，batch 436 对照批）。batch 37 条目同法
   补录（commit 5f6da13，batch 437 对照批）。batch 38 条目同法补录
   （commit d4d69b5，batch 438 对照批）。batch 39/40 条目同法补录
-  （commits 8c03eef / 9454fd8，batch 444 对照批）。
+  （commits 8c03eef / 9454fd8，batch 444 对照批）。batch 41–43/46/47
+  条目同法补录（batch 452 对照批）。
+- SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
+  8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
+  MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
+  listbox，选中更新文案并关闭。
+- SOURCE_FACT (batch 42, 组合菜单): 比例按钮打开组合菜单——选择比例
+  21:9/16:9/4:3/1:1/3:4/9:16、选择分辨率 720P/1080P/4K、选择生成数量
+  1-4；全能参考切换 首尾帧/全能参考。CLONE_DECISION: 时长选项 4s 为
+  提取值、8s/12s 为外推。三个选择器可点且状态更新。
+- 测试 (batch 43, 无新行为): 高级滑杆拖拽端到端覆盖——拖到端点
+  27690 / 起始 6160 并在释放后保持（batch 28 拖拽跟随实现的验证批）。
+- CLONE_DECISION (batch 46 语义演进, 见 §9): ⌘A 全选 + Escape 取消
+  选择并关闭全屏预览（previewNodeId 提升到 store 修复 Escape 竞态）。
+- 复刻 (batch 47, mock): 音频节点播放交互——播放切换波形点亮推进、
+  暂停冻结、播完自停归零。
 - SOURCE_FACT (batch 44): 修剪面板起点把手向右拖动 → 左侧时间读数前进、
   选区时长缩短 —— 与我方实现语义一致 (只读验证，源站把手几何未逐帧提取)。
 - CLONE_DECISION (batch 44 实现): applyTrim 接受起点偏移，确认修剪后节点
@@ -269,6 +284,6 @@
 - Store: `src/store/jimengStore.ts`（与 canvasStore/frameosStore 隔离；
   选中态以 `selectedNodeId` 单一来源回填，规避 applyNodeChanges 重置问题）。
 - 样式: `src/app/jimeng-canvas.css`（token 表见 §3）；组件 `src/components/jimeng/`。
-- 验证: `scripts/verify-jimeng-batch1.py` … `verify-jimeng-batch32.py`
+- 验证: `scripts/verify-jimeng-batch1.py` … `verify-jimeng-batch48.py`
   （每批一个验证器；dev server 4317；截图入 `docs/design-references/jimeng/`。
   batch 1 在 LibTV 维护集内；batch 2+ 验证器由并行路线开发者维护）。
