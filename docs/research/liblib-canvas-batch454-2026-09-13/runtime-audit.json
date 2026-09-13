@@ -1,0 +1,82 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice D — generated-history/registered-asset reference attach (stable references, per-surface provenance, skip-duplicates, one transaction per attach)",
+  "scenes": {
+    "before": {
+      "nodeCount": 0,
+      "pastLength": 0,
+      "provenance": [],
+      "referenceCount": 0
+    },
+    "first": {
+      "status": "accepted",
+      "attached": [
+        "hist-1",
+        "hist-2",
+        "reg-1"
+      ],
+      "skipped": [],
+      "after": {
+        "nodeCount": 3,
+        "pastLength": 1,
+        "provenance": [
+          "REGISTERED_ASSET_ATTACH"
+        ],
+        "referenceCount": 3
+      }
+    },
+    "resubmit": {
+      "status": "accepted",
+      "attached": [
+        "reg-2"
+      ],
+      "skipped": [
+        "hist-1",
+        "hist-2",
+        "reg-1"
+      ],
+      "after": {
+        "nodeCount": 4,
+        "pastLength": 2,
+        "provenance": [
+          "REGISTERED_ASSET_ATTACH"
+        ],
+        "referenceCount": 4
+      }
+    },
+    "cardinality": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_CARDINALITY_EXCEEDED"
+      ],
+      "after": {
+        "nodeCount": 4,
+        "pastLength": 2,
+        "provenance": [
+          "REGISTERED_ASSET_ATTACH"
+        ],
+        "referenceCount": 4
+      }
+    },
+    "stale": {
+      "status": "rejected",
+      "reasons": [
+        "MEDIA_CANVAS_STALE"
+      ],
+      "after": {
+        "nodeCount": 4,
+        "pastLength": 2,
+        "provenance": [
+          "REGISTERED_ASSET_ATTACH"
+        ],
+        "referenceCount": 4
+      }
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

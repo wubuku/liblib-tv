@@ -30,6 +30,7 @@ import {
   type LibTVRecordEditorSubmitResult,
 } from "@/lib/libtvEditorSession";
 import {
+  LIBTV_MEDIA_INGRESS_PROFILES,
   validateLibTVMediaIngressIntent,
   type LibTVLocalFileDescriptor,
 } from "@/lib/libtvMediaIngress";
@@ -416,6 +417,24 @@ interface CanvasState {
     status: "accepted" | "rejected";
     reasons: string[];
     cohortId: string | null;
+    nodeIds: string[];
+  };
+  /** Batch 454 (VR-021 Slice D): attach generated-history/registered-asset
+   * references — STABLE_ASSET_REFERENCE nodes, one graph transaction,
+   * already-referenced assetIds are skipped. */
+  attachAssetReferences: (
+    profileId: "GENERATED_HISTORY_ATTACH" | "REGISTERED_ASSET_ATTACH",
+    assets: readonly {
+      assetId: string;
+      renderUrl: string;
+      mediaFamily: "image" | "video";
+    }[],
+    expectedCanvasGeneration: number,
+  ) => {
+    status: "accepted" | "rejected";
+    reasons: string[];
+    attachedAssetIds: string[];
+    skippedAssetIds: string[];
     nodeIds: string[];
   };
   /** Batch 446 (VR-022 Slice B): equality-aware editor session commit —
@@ -3815,6 +3834,114 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       status: "accepted",
       reasons: [],
       cohortId,
+      nodeIds: created.map((node) => node.id),
+    };
+  },
+
+  // Batch 454 (VR-021 Slice D): reference attach for generated-history and
+  // registered-asset surfaces — STABLE_ASSET_REFERENCE locators, provenance
+  // preserved per surface, one graph transaction per attach, already-
+  // referenced assetIds skipped without mutation.
+  attachAssetReferences: (profileId, assets, expectedCanvasGeneration) => {
+    const state = get();
+    // reference attach validates canvas/target only — the §8.1 file-upload
+    // order does not apply (no byte transfer, §5 CANVAS_MEDIA_REFERENCE).
+    const reasons: string[] = [];
+    if (!state.canvases.some((c) => c.id === state.activeCanvasId)) {
+      reasons.push("MEDIA_TARGET_MISSING");
+    } else if (state.canvasGeneration !== expectedCanvasGeneration) {
+      reasons.push("MEDIA_CANVAS_STALE");
+    }
+    if (reasons.length > 0) {
+      return {
+        status: "rejected",
+        reasons,
+        attachedAssetIds: [],
+        skippedAssetIds: [],
+        nodeIds: [],
+      };
+    }
+    const cardMax =
+      LIBTV_MEDIA_INGRESS_PROFILES[profileId].cardinalityMax;
+    if (cardMax !== null && assets.length > cardMax) {
+      return {
+        status: "rejected",
+        reasons: ["MEDIA_CARDINALITY_EXCEEDED"],
+        attachedAssetIds: [],
+        skippedAssetIds: [],
+        nodeIds: [],
+      };
+    }
+    const currentCanvas = state.canvases.find(
+      (c) => c.id === state.activeCanvasId,
+    );
+    const referenced = new Set(
+      (currentCanvas?.nodes ?? []).flatMap((node) => {
+        const ref = (node.data as Record<string, unknown> | undefined)
+          ?.mediaReference as { assetId?: string } | undefined;
+        return ref && typeof ref.assetId === "string" ? [ref.assetId] : [];
+      }),
+    );
+    const attachedAssets = assets.filter(
+      (asset) => !referenced.has(asset.assetId),
+    );
+    const skippedAssetIds = assets
+      .filter((asset) => referenced.has(asset.assetId))
+      .map((asset) => asset.assetId);
+    if (attachedAssets.length === 0) {
+      return {
+        status: "accepted",
+        reasons: [],
+        attachedAssetIds: [],
+        skippedAssetIds,
+        nodeIds: [],
+      };
+    }
+    const cohortId = `attach-${Date.now()}`;
+    const created: Node[] = attachedAssets.map((asset, index) => {
+      const dimensions = getDefaultNodeDimensions(
+        asset.mediaFamily === "video" ? "video" : "image",
+      );
+      return {
+        id: createNodeId("asset-reference"),
+        type: asset.mediaFamily === "video" ? "video" : "image",
+        position: { x: 60 + index * 40, y: 60 + index * 340 },
+        width: dimensions.width,
+        height: dimensions.height,
+        style: dimensions,
+        data: {
+          filename: asset.assetId,
+          imageUrl: asset.mediaFamily === "image" ? asset.renderUrl : null,
+          posterUrl: asset.mediaFamily === "video" ? asset.renderUrl : undefined,
+          status: asset.mediaFamily === "video" ? "ready" : undefined,
+          mediaRevision: 1,
+          mediaReference: {
+            assetId: asset.assetId,
+            locatorClass: "STABLE_ASSET_REFERENCE",
+            provenance: profileId,
+          },
+          ingressCohortId: cohortId,
+          ingressIndex: index,
+        },
+      };
+    });
+    set((s) => {
+      const canvas = s.canvases.find(
+        (c) => c.id === state.activeCanvasId,
+      );
+      if (!canvas) return s;
+      return {
+        canvases: s.canvases.map((c) =>
+          c.id !== canvas.id ? c : { ...c, nodes: [...c.nodes, ...created] },
+        ),
+        historyByCanvas: pushHistory(s.historyByCanvas, canvas),
+      };
+    });
+    return {
+      status: "accepted",
+      reasons: [],
+      attachedAssetIds: attachedAssets.map((asset) => asset.assetId),
+      skippedAssetIds,
       nodeIds: created.map((node) => node.id),
     };
   },
