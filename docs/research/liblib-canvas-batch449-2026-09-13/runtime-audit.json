@@ -1,0 +1,28 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-022 Slice E — fake operation acceptor with frozen descriptor and owner re-validation at completion",
+  "accepted_completion": {
+    "before": {
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "pastLength": 1
+    },
+    "after": {
+      "nodeCount": 2,
+      "edgeCount": 1,
+      "pastLength": 2
+    },
+    "completed": true
+  },
+  "switch_cancels_pending": {
+    "cancelled": true,
+    "ownerCanvasNodesUnchanged": true,
+    "historyUntouched": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

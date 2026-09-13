@@ -2,6 +2,10 @@
 
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react";
+import {
+  acceptLibTVOperation,
+  type LibTVOperationHandle,
+} from "@/lib/libtvOperationHandoff";
 import { createPortal } from "react-dom";
 import { AlertTriangle, Camera, CaptionsOff, Play, ScanLine, Volume2, VolumeX } from "lucide-react";
 import {
@@ -150,7 +154,7 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const [pictureEditMode, setPictureEditMode] =
     useState<PictureEditAction | null>(null);
   const [pictureEditSubmitting, setPictureEditSubmitting] = useState(false);
-  const audioSplitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const audioSplitOpRef = useRef<LibTVOperationHandle | null>(null);
   const frameFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
@@ -158,9 +162,9 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
     useRef<ReturnType<typeof setTimeout> | null>(null);
   const depthMotionFeedbackTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
-  const mattingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pictureEditTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const depthMotionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mattingOpRef = useRef<LibTVOperationHandle | null>(null);
+  const pictureEditOpRef = useRef<LibTVOperationHandle | null>(null);
+  const depthMotionOpRef = useRef<LibTVOperationHandle | null>(null);
   const subtitleMode: SubtitleEraseMode | null =
     activeTool === "subtitle-smart"
       ? "smart"
@@ -170,8 +174,16 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
 
   useEffect(() => {
     return () => {
-      if (audioSplitTimerRef.current) {
-        clearTimeout(audioSplitTimerRef.current);
+      // Batch 449 (VR-022 Slice E): operation handles cancel on unmount —
+      // a canvas switch (React Flow remount) cancels pending simulated tasks
+      // (declared disposition, contract §5.7).
+      for (const handle of [
+        audioSplitOpRef.current,
+        mattingOpRef.current,
+        pictureEditOpRef.current,
+        depthMotionOpRef.current,
+      ]) {
+        handle?.cancel();
       }
       if (frameFeedbackTimerRef.current) {
         clearTimeout(frameFeedbackTimerRef.current);
@@ -181,15 +193,6 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
       }
       if (depthMotionFeedbackTimerRef.current) {
         clearTimeout(depthMotionFeedbackTimerRef.current);
-      }
-      if (mattingTimerRef.current) {
-        clearTimeout(mattingTimerRef.current);
-      }
-      if (pictureEditTimerRef.current) {
-        clearTimeout(pictureEditTimerRef.current);
-      }
-      if (depthMotionTimerRef.current) {
-        clearTimeout(depthMotionTimerRef.current);
       }
     };
   }, []);
@@ -231,13 +234,24 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   };
 
   const startAudioSplit = (mode: AudioSplitMode) => {
-    if (audioSplittingMode || audioSplitTimerRef.current) return;
+    if (audioSplittingMode || audioSplitOpRef.current) return;
     setAudioSplittingMode(mode);
-    audioSplitTimerRef.current = setTimeout(() => {
-      audioSplitTimerRef.current = null;
-      createAudioSplit(id, mode);
-      setAudioSplittingMode(null);
-    }, 600);
+    const canvasId = useCanvasStore.getState().activeCanvasId;
+    audioSplitOpRef.current = acceptLibTVOperation({
+      kind: "audio-split",
+      canvasId,
+      nodeId: id,
+      delayMs: 600,
+      isOwnerCurrent: () =>
+        useCanvasStore
+          .getState()
+          .canvases.some((c) => c.nodes.some((n) => n.id === id)),
+      task: () => {
+        audioSplitOpRef.current = null;
+        createAudioSplit(id, mode);
+        setAudioSplittingMode(null);
+      },
+    });
   };
 
   const openDepthMotionCapture = () => {
@@ -259,14 +273,25 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   };
 
   const submitDepthMotionCapture = () => {
-    if (depthMotionSubmitting || depthMotionTimerRef.current) return;
+    if (depthMotionSubmitting || depthMotionOpRef.current) return;
     setDepthMotionSubmitting(true);
-    depthMotionTimerRef.current = setTimeout(() => {
-      depthMotionTimerRef.current = null;
-      createDepthMotionCapture(id, depthMotionResolution, durationSeconds);
-      setDepthMotionSubmitting(false);
-      setActiveTool("generator");
-    }, 520);
+    const canvasId = useCanvasStore.getState().activeCanvasId;
+    depthMotionOpRef.current = acceptLibTVOperation({
+      kind: "depth-motion",
+      canvasId,
+      nodeId: id,
+      delayMs: 520,
+      isOwnerCurrent: () =>
+        useCanvasStore
+          .getState()
+          .canvases.some((c) => c.nodes.some((n) => n.id === id)),
+      task: () => {
+        depthMotionOpRef.current = null;
+        createDepthMotionCapture(id, depthMotionResolution, durationSeconds);
+        setDepthMotionSubmitting(false);
+        setActiveTool("generator");
+      },
+    });
   };
 
   const captureFrame = (kind: VideoFrameCaptureKind) => {
@@ -324,28 +349,50 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   };
 
   const submitSmartMatting = () => {
-    if (mattingSubmitting || mattingTimerRef.current) return;
+    if (mattingSubmitting || mattingOpRef.current) return;
     setMattingSubmitting(true);
-    mattingTimerRef.current = setTimeout(() => {
-      mattingTimerRef.current = null;
-      createSmartMatting(id);
-      setMattingSubmitting(false);
-      setActiveTool("generator");
-    }, 480);
+    const canvasId = useCanvasStore.getState().activeCanvasId;
+    mattingOpRef.current = acceptLibTVOperation({
+      kind: "smart-matting",
+      canvasId,
+      nodeId: id,
+      delayMs: 480,
+      isOwnerCurrent: () =>
+        useCanvasStore
+          .getState()
+          .canvases.some((c) => c.nodes.some((n) => n.id === id)),
+      task: () => {
+        mattingOpRef.current = null;
+        createSmartMatting(id);
+        setMattingSubmitting(false);
+        setActiveTool("generator");
+      },
+    });
   };
 
   const submitPictureEdit = (marks: PictureEditMark[]) => {
-    if (pictureEditSubmitting || pictureEditTimerRef.current || !pictureEditMode) {
+    if (pictureEditSubmitting || pictureEditOpRef.current || !pictureEditMode) {
       return;
     }
     setPictureEditSubmitting(true);
-    pictureEditTimerRef.current = setTimeout(() => {
-      pictureEditTimerRef.current = null;
-      createPictureEdit(id, pictureEditMode, marks);
-      setPictureEditSubmitting(false);
-      setPictureEditMode(null);
-      setActiveTool("generator");
-    }, 520);
+    const canvasId = useCanvasStore.getState().activeCanvasId;
+    pictureEditOpRef.current = acceptLibTVOperation({
+      kind: "picture-edit",
+      canvasId,
+      nodeId: id,
+      delayMs: 520,
+      isOwnerCurrent: () =>
+        useCanvasStore
+          .getState()
+          .canvases.some((c) => c.nodes.some((n) => n.id === id)),
+      task: () => {
+        pictureEditOpRef.current = null;
+        createPictureEdit(id, pictureEditMode, marks);
+        setPictureEditSubmitting(false);
+        setPictureEditMode(null);
+        setActiveTool("generator");
+      },
+    });
   };
 
   return (
