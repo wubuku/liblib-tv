@@ -495,7 +495,16 @@
           "filename": "图片4",
           "imageUrl": "/images/scene-coffee-4.png",
           "width": 1152,
-          "height": 576
+          "height": 576,
+          "mediaRevision": 1,
+          "fit": "contain",
+          "sessionBaseline": {
+            "mediaId": "/images/scene-coffee-4.png",
+            "width": 1152,
+            "height": 576,
+            "mediaRevision": 1,
+            "fit": "contain"
+          }
         },
         "imageElementEdit": null,
         "activeDirectorNodeId": null,
@@ -966,7 +975,16 @@
           "filename": "图片4",
           "imageUrl": "/images/scene-coffee-4.png",
           "width": 1152,
-          "height": 576
+          "height": 576,
+          "mediaRevision": 1,
+          "fit": "contain",
+          "sessionBaseline": {
+            "mediaId": "/images/scene-coffee-4.png",
+            "width": 1152,
+            "height": 576,
+            "mediaRevision": 1,
+            "fit": "contain"
+          }
         },
         "imageElementEdit": null,
         "activeDirectorNodeId": null,

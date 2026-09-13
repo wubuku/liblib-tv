@@ -44,7 +44,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "text-1789160795541-k8ek72",
+              "id": "text-1789342351530-qyty2k",
               "type": "text",
               "position": {
                 "x": 289.5,
@@ -58,9 +58,9 @@
             }
           ],
           "selectedNodeIds": [
-            "text-1789160795541-k8ek72"
+            "text-1789342351530-qyty2k"
           ],
-          "selectedNodeId": "text-1789160795541-k8ek72",
+          "selectedNodeId": "text-1789342351530-qyty2k",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -96,7 +96,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "image-1789160795946-j0wpwf",
+              "id": "image-1789342351971-bk1d8t",
               "type": "image",
               "position": {
                 "x": 208.5,
@@ -112,14 +112,15 @@
                 "watermarkUrl": null,
                 "editorVariant": "empty",
                 "editorHeight": 191,
-                "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+                "generationSettings": "1:1 · 标准画质 · 2K · 1张",
+                "mediaRevision": 1
               }
             }
           ],
           "selectedNodeIds": [
-            "image-1789160795946-j0wpwf"
+            "image-1789342351971-bk1d8t"
           ],
-          "selectedNodeId": "image-1789160795946-j0wpwf",
+          "selectedNodeId": "image-1789342351971-bk1d8t",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -155,7 +156,7 @@
         "graph": {
           "nodes": [
             {
-              "id": "video-1789160796392-ri4hyk",
+              "id": "video-1789342352408-1soqum",
               "type": "video",
               "position": {
                 "x": 208.5,
@@ -174,9 +175,9 @@
             }
           ],
           "selectedNodeIds": [
-            "video-1789160796392-ri4hyk"
+            "video-1789342352408-1soqum"
           ],
-          "selectedNodeId": "video-1789160796392-ri4hyk",
+          "selectedNodeId": "video-1789342352408-1soqum",
           "selectedEdgeIds": [],
           "pastLength": 1,
           "futureLength": 0
@@ -213,7 +214,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "text-1789160797017-k46j81",
+            "id": "text-1789342353028-dm9qcx",
             "type": "text",
             "position": {
               "x": 289.5,
@@ -227,9 +228,9 @@
           }
         ],
         "selectedNodeIds": [
-          "text-1789160797017-k46j81"
+          "text-1789342353028-dm9qcx"
         ],
-        "selectedNodeId": "text-1789160797017-k46j81",
+        "selectedNodeId": "text-1789342353028-dm9qcx",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -265,10 +266,10 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1789160797492-6ldoj5",
+            "id": "image-1789342353578-qtsgmq",
             "type": "image",
             "position": {
-              "x": 368.5,
+              "x": 208.5,
               "y": 293
             },
             "width": 512,
@@ -281,14 +282,15 @@
               "watermarkUrl": "/images/watermark.png",
               "editorVariant": "empty",
               "editorHeight": 191,
-              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张",
+              "mediaRevision": 1
             }
           }
         ],
         "selectedNodeIds": [
-          "image-1789160797492-6ldoj5"
+          "image-1789342353578-qtsgmq"
         ],
-        "selectedNodeId": "image-1789160797492-6ldoj5",
+        "selectedNodeId": "image-1789342353578-qtsgmq",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -324,10 +326,10 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1789160798063-sb9d81",
+            "id": "image-1789342354228-83jh2x",
             "type": "image",
             "position": {
-              "x": 368.5,
+              "x": 208.5,
               "y": 293
             },
             "width": 512,
@@ -340,14 +342,15 @@
               "watermarkUrl": "/images/watermark.png",
               "editorVariant": "empty",
               "editorHeight": 191,
-              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张",
+              "mediaRevision": 1
             }
           }
         ],
         "selectedNodeIds": [
-          "image-1789160798063-sb9d81"
+          "image-1789342354228-83jh2x"
         ],
-        "selectedNodeId": "image-1789160798063-sb9d81",
+        "selectedNodeId": "image-1789342354228-83jh2x",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -390,7 +393,7 @@
     "compatibilityAdd": {
       "nodes": [
         {
-          "id": "audio-1789160798625-k6jcji",
+          "id": "audio-1789342354792-goo5bz",
           "type": "audio",
           "position": {
             "x": 289.5,
@@ -405,9 +408,9 @@
         }
       ],
       "selectedNodeIds": [
-        "audio-1789160798625-k6jcji"
+        "audio-1789342354792-goo5bz"
       ],
-      "selectedNodeId": "audio-1789160798625-k6jcji",
+      "selectedNodeId": "audio-1789342354792-goo5bz",
       "selectedEdgeIds": [],
       "pastLength": 1,
       "futureLength": 0
@@ -418,7 +421,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "text-1789160800453-5e3aot",
+            "id": "text-1789342357023-mbvzui",
             "type": "text",
             "position": {
               "x": 20,
@@ -432,9 +435,9 @@
           }
         ],
         "selectedNodeIds": [
-          "text-1789160800453-5e3aot"
+          "text-1789342357023-mbvzui"
         ],
-        "selectedNodeId": "text-1789160800453-5e3aot",
+        "selectedNodeId": "text-1789342357023-mbvzui",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0
@@ -470,7 +473,7 @@
       "graph": {
         "nodes": [
           {
-            "id": "image-1789160801000-pbqh7v",
+            "id": "image-1789342357627-klexvx",
             "type": "image",
             "position": {
               "x": -61,
@@ -486,14 +489,15 @@
               "watermarkUrl": null,
               "editorVariant": "empty",
               "editorHeight": 191,
-              "generationSettings": "1:1 · 标准画质 · 2K · 1张"
+              "generationSettings": "1:1 · 标准画质 · 2K · 1张",
+              "mediaRevision": 1
             }
           }
         ],
         "selectedNodeIds": [
-          "image-1789160801000-pbqh7v"
+          "image-1789342357627-klexvx"
         ],
-        "selectedNodeId": "image-1789160801000-pbqh7v",
+        "selectedNodeId": "image-1789342357627-klexvx",
         "selectedEdgeIds": [],
         "pastLength": 1,
         "futureLength": 0

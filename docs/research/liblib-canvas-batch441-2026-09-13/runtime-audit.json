@@ -46,12 +46,12 @@
     }
   },
   "derived_generic_frame_detection": {
-    "derivedNodeId": "smart-matting-1789250255836-0sii7m",
-    "flagged": true,
-    "newConflictKinds": [
-      "derived-frame-generic-default",
-      "intrinsic-display-string-only"
-    ],
+    "derivedNodeId": "smart-matting-1789341972530-mpgrgj",
+    "frame": {
+      "width": 576,
+      "height": 288
+    },
+    "frameDisposition": "aspect-aware",
     "previouslyFlaggedCount": 0
   },
   "errors": {

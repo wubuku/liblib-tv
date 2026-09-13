@@ -67,6 +67,17 @@
           "y": 260.8,
           "zoom": 0.526
         }
+      },
+      {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap",
+        "viewport": {
+          "x": -583.8,
+          "y": 260.8,
+          "zoom": 0.526
+        }
       }
     ],
     "graph": {
@@ -264,6 +275,17 @@
         "canvasId": "canvas-2",
         "status": "committed",
         "reason": "bootstrap-applied",
+        "ownership": "bootstrap",
+        "viewport": {
+          "x": 17,
+          "y": 128,
+          "zoom": 0.28
+        }
+      },
+      {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
         "ownership": "bootstrap",
         "viewport": {
           "x": 17,
@@ -468,6 +490,17 @@
           "canvasId": "canvas-2",
           "status": "committed",
           "reason": "bootstrap-applied",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "projection-echo",
           "ownership": "bootstrap",
           "viewport": {
             "x": -583.8,
@@ -681,6 +714,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "bootstrap-applied",
           "ownership": "bootstrap",
           "viewport": {
@@ -688,6 +732,13 @@
             "y": 128,
             "zoom": 0.28
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "bootstrap",
+          "viewport": null
         }
       ],
       "graph": {
@@ -895,6 +946,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "bootstrap-applied",
           "ownership": "bootstrap",
           "viewport": {
@@ -902,6 +964,13 @@
             "y": 128,
             "zoom": 0.28
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "bootstrap",
+          "viewport": null
         },
         {
           "canvasId": "canvas-2",
@@ -913,6 +982,13 @@
             "y": 260.8,
             "zoom": 0.526
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "bootstrap",
+          "viewport": null
         }
       ],
       "graph": {
@@ -1116,6 +1192,17 @@
           "canvasId": "canvas-2",
           "status": "committed",
           "reason": "bootstrap-applied",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "projection-echo",
           "ownership": "bootstrap",
           "viewport": {
             "x": -583.8,
@@ -1351,6 +1438,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "bootstrap-applied",
           "ownership": "bootstrap",
           "viewport": {
@@ -1358,6 +1456,13 @@
             "y": 128,
             "zoom": 0.28
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "bootstrap",
+          "viewport": null
         }
       ],
       "graph": {
@@ -1567,100 +1672,111 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
-          "ownership": "stable",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
           "viewport": {
-            "x": -583.4578985511307,
-            "y": 260.8575009780509,
-            "zoom": 0.5261741619987486
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -579.3116782115146,
-            "y": 261.5544045589346,
-            "zoom": 0.5285055948444191
+            "x": -583.7963052225994,
+            "y": 260.80062102430406,
+            "zoom": 0.5260018676087325
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -569.4550417972687,
-            "y": 263.2111243301739,
-            "zoom": 0.5365409234004973
+            "x": -581.4246008286343,
+            "y": 261.19926102641864,
+            "zoom": 0.5272637620345162
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -559.859579000261,
-            "y": 264.8239456073204,
-            "zoom": 0.5610083032552259
+            "x": -571.9738495200352,
+            "y": 262.7877589569492,
+            "zoom": 0.5340125149098389
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -566.7725239451859,
-            "y": 263.6620063730404,
-            "zoom": 0.5934464734485135
+            "x": -561.388657283959,
+            "y": 264.56693559722066,
+            "zoom": 0.5509928714337253
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -576.7811098331506,
-            "y": 261.97974668262793,
-            "zoom": 0.6141202913375704
+            "x": -564.9092414037295,
+            "y": 263.97518998823125,
+            "zoom": 0.5885370657622748
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -582.353862969537,
-            "y": 261.0430691069041,
-            "zoom": 0.6236569576118253
+            "x": -576.913625681922,
+            "y": 261.9574731993183,
+            "zoom": 0.6143581832207279
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.5842759387335,
-            "y": 260.83625925745986,
-            "zoom": 0.6256534052251194
+            "x": -581.7812157032733,
+            "y": 261.1393206077299,
+            "zoom": 0.6227159031920526
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.795969544914,
-            "y": 260.8006774455654,
-            "zoom": 0.6259935335449954
+            "x": -582.9615708738049,
+            "y": 260.94092455598167,
+            "zoom": 0.6246472577166854
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "live-frame",
+          "ownership": "stable",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.626
           }
         },
         {
@@ -1880,100 +1996,111 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
-          "ownership": "stable",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
           "viewport": {
-            "x": -583.4578985511307,
-            "y": 260.8575009780509,
-            "zoom": 0.5261741619987486
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -579.3116782115146,
-            "y": 261.5544045589346,
-            "zoom": 0.5285055948444191
+            "x": -583.7963052225994,
+            "y": 260.80062102430406,
+            "zoom": 0.5260018676087325
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -569.4550417972687,
-            "y": 263.2111243301739,
-            "zoom": 0.5365409234004973
+            "x": -581.4246008286343,
+            "y": 261.19926102641864,
+            "zoom": 0.5272637620345162
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -559.859579000261,
-            "y": 264.8239456073204,
-            "zoom": 0.5610083032552259
+            "x": -571.9738495200352,
+            "y": 262.7877589569492,
+            "zoom": 0.5340125149098389
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -566.7725239451859,
-            "y": 263.6620063730404,
-            "zoom": 0.5934464734485135
+            "x": -561.388657283959,
+            "y": 264.56693559722066,
+            "zoom": 0.5509928714337253
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -576.7811098331506,
-            "y": 261.97974668262793,
-            "zoom": 0.6141202913375704
+            "x": -564.9092414037295,
+            "y": 263.97518998823125,
+            "zoom": 0.5885370657622748
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -582.353862969537,
-            "y": 261.0430691069041,
-            "zoom": 0.6236569576118253
+            "x": -576.913625681922,
+            "y": 261.9574731993183,
+            "zoom": 0.6143581832207279
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.5842759387335,
-            "y": 260.83625925745986,
-            "zoom": 0.6256534052251194
+            "x": -581.7812157032733,
+            "y": 261.1393206077299,
+            "zoom": 0.6227159031920526
           }
         },
         {
           "canvasId": "canvas-2",
           "status": "committed",
-          "reason": "viewport-accepted",
+          "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.795969544914,
-            "y": 260.8006774455654,
-            "zoom": 0.6259935335449954
+            "x": -582.9615708738049,
+            "y": 260.94092455598167,
+            "zoom": 0.6246472577166854
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "live-frame",
+          "ownership": "stable",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.626
           }
         },
         {
@@ -1997,6 +2124,13 @@
             "y": 260.8,
             "zoom": 0.626
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "stable",
+          "viewport": null
         }
       ],
       "graph": {
@@ -2211,6 +2345,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "viewport-accepted",
           "ownership": "stable",
           "viewport": {
@@ -2224,6 +2369,17 @@
           "status": "committed",
           "reason": "stable-restored",
           "ownership": "stable",
+          "viewport": {
+            "x": 111,
+            "y": 222,
+            "zoom": 1.25
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "canvas-changed",
+          "ownership": null,
           "viewport": {
             "x": 111,
             "y": 222,
@@ -2437,6 +2593,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "viewport-accepted",
           "ownership": "stable",
           "viewport": {
@@ -2457,9 +2624,38 @@
           }
         },
         {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "canvas-changed",
+          "ownership": null,
+          "viewport": {
+            "x": 111,
+            "y": 222,
+            "zoom": 1.25
+          }
+        },
+        {
           "canvasId": "canvas-1",
           "status": "committed",
           "reason": "stable-restored",
+          "ownership": "stable",
+          "viewport": {
+            "x": 111,
+            "y": 222,
+            "zoom": 1.25
+          }
+        },
+        {
+          "canvasId": "canvas-1",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "stable",
+          "viewport": null
+        },
+        {
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "viewport-accepted",
           "ownership": "stable",
           "viewport": {
             "x": 111,
@@ -2674,6 +2870,17 @@
         {
           "canvasId": "canvas-2",
           "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
           "reason": "viewport-accepted",
           "ownership": "stable",
           "viewport": {
@@ -2694,9 +2901,38 @@
           }
         },
         {
+          "canvasId": "canvas-2",
+          "status": "skipped",
+          "reason": "canvas-changed",
+          "ownership": null,
+          "viewport": {
+            "x": 111,
+            "y": 222,
+            "zoom": 1.25
+          }
+        },
+        {
           "canvasId": "canvas-1",
           "status": "committed",
           "reason": "stable-restored",
+          "ownership": "stable",
+          "viewport": {
+            "x": 111,
+            "y": 222,
+            "zoom": 1.25
+          }
+        },
+        {
+          "canvasId": "canvas-1",
+          "status": "skipped",
+          "reason": "breakpoint-flip-delegated",
+          "ownership": "stable",
+          "viewport": null
+        },
+        {
+          "canvasId": "canvas-1",
+          "status": "committed",
+          "reason": "viewport-accepted",
           "ownership": "stable",
           "viewport": {
             "x": 111,
@@ -2927,6 +3163,17 @@
             "y": 260.8,
             "zoom": 0.526
           }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "projection-echo",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
         }
       ],
       "graph": {
@@ -3124,6 +3371,17 @@
           "canvasId": "canvas-2",
           "status": "committed",
           "reason": "bootstrap-applied",
+          "ownership": "bootstrap",
+          "viewport": {
+            "x": -583.8,
+            "y": 260.8,
+            "zoom": 0.526
+          }
+        },
+        {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "projection-echo",
           "ownership": "bootstrap",
           "viewport": {
             "x": -583.8,
