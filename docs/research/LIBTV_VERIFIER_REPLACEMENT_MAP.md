@@ -576,6 +576,21 @@ Batch 459 全量扫描（维护集外 146 项：137 通过 / 9 失败 / 0 未解
 几何预期再重写。重写前在 VERIFICATION_LEDGER 标记
 `HISTORICAL_CONTRACT`（batch 459）。
 
+## §5.z5 Batch 462 首批重写回绿（2026-09-14）
+
+§5.z4 中 5/9 项已按取代批次合同重写回绿（三连跑确认）：
+
+| 验证器 | 重写内容 |
+|---|---|
+| 15 / 98 | 上传入口断言迁移：点击打开真实文件选择器（`data-add-resource-input`），不再有本地提示文案（batch 453 合同） |
+| 53 | annotate「保存」断言迁移：非 exact 可访问名 + 禁用态（batch 448 诚实合同）；触发点击改 force（缩放投影变换致 normal click 永久 unstable） |
+| 119 / 167 | /project 创建卡文本跟随「开始创建」更名；cover 高度阈值 140→120（现行卡片布局） |
+| 65 | bootstrap 日志尾部接受 batch-456 断点委托跳过项；stable-restored 存在性仍强制 |
+
+剩余 18/27/64：desktop zoom out-click 无效非确定复现（单独序列通过、
+验证器上下文失败；疑似并行编辑 HMR 重载竞态污染跨断言页面状态）——
+维持 AGED_GATE，需按 viewport 合同 §7 专项诊断。
+
 ## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
 
 Batch 335 全量清扫（189 Python 验证器）与 Batch 338 恢复探测后，
