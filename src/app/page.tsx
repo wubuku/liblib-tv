@@ -26,6 +26,11 @@ import {
   validateLibTVMediaIngressIntent,
 } from "@/lib/libtvMediaIngress";
 import {
+  LibTVFakeMaterializer,
+  LibTVMediaLeaseLedger,
+  type LibTVFakeLocator,
+} from "@/lib/libtvMediaLease";
+import {
   LIBTV_EDITOR_PROFILES,
   getLibTVProfileInvariantViolations,
   normalizeLibTVEditorValue,
@@ -238,6 +243,26 @@ declare global {
       status: "accepted" | "rejected";
       reasons: string[];
       family: string | null;
+    };
+    __libtv_media_lease_ledger_new?: () => LibTVMediaLeaseLedger;
+    __libtv_media_materializer_new?: (
+      ledger: LibTVMediaLeaseLedger,
+    ) => {
+      materialize: (input: {
+        canvasId: string;
+        nodeId: string;
+        contentFingerprint: string;
+      }) => (
+        plan: {
+          outcome: "ok" | "fail" | "stale";
+          isOwnerCurrent?: () => boolean;
+        },
+      ) => {
+        status: string;
+        reason?: string;
+        locator?: LibTVFakeLocator;
+        leaseId?: string;
+      };
     };
     __libtv_annotate_fit_mapping?: () => {
       baseline: {
@@ -681,6 +706,11 @@ export default function Home() {
     // validation diagnostics (pure).
     window.__libtv_media_ingress_profiles = LIBTV_MEDIA_INGRESS_PROFILES;
     window.__libtv_media_ingress_validate = validateLibTVMediaIngressIntent;
+    // Batch 451 (VR-021 Slice B): instance-scoped lease ledger + fake
+    // materializer diagnostics (pure, deterministic, no network).
+    window.__libtv_media_lease_ledger_new = () => new LibTVMediaLeaseLedger();
+    window.__libtv_media_materializer_new = (ledger) =>
+      new LibTVFakeMaterializer(ledger);
     // Batch 443 (VR-023 Slice C): fit-transform mapping for the open
     // annotate editor — declared intrinsic plane to visible frame.
     window.__libtv_annotate_fit_mapping = () => {
@@ -723,6 +753,8 @@ export default function Home() {
       delete window.__libtv_editor_local_history_entry;
       delete window.__libtv_media_ingress_profiles;
       delete window.__libtv_media_ingress_validate;
+      delete window.__libtv_media_lease_ledger_new;
+      delete window.__libtv_media_materializer_new;
     };
   }, []);
 

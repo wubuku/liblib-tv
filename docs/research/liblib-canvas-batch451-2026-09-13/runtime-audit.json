@@ -1,0 +1,37 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice B — instance-scoped lease ledger + fake materializer with deterministic ok/duplicate/fail/stale outcomes",
+  "scenes": {
+    "exactlyOnce": {
+      "first": "released",
+      "second": "already-released",
+      "releasedAt": 200,
+      "releaseCount": 2
+    },
+    "transfer": {
+      "transferOk": false,
+      "transferL2": true,
+      "transferredAt": 400,
+      "ownerKind": "GRAPH_REFERENCE_REGISTRY",
+      "transferReleased": false
+    },
+    "materializer": {
+      "okStatus": "materialized",
+      "okLeaseId": "lease-3",
+      "dupStatus": "duplicate",
+      "sameLocator": true,
+      "failedStatus": "failed",
+      "failedReason": "MEDIA_MATERIALIZATION_FAILED",
+      "staleStatus": "superseded",
+      "staleReason": "MEDIA_ATTEMPT_SUPERSEDED",
+      "ledgerLeaseCount": 3,
+      "leaseCountBeforeMaterialize": 2
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
