@@ -101,6 +101,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const applyTrim = useJimengStore((s) => s.applyTrim);
   const onToggleMute = toggleMute;
   const previewNodeId = useJimengStore((s) => s.previewNodeId);
+  const soloSelected =
+    useJimengStore((s) => s.nodes.filter((n) => n.selected).length) === 1;
   const openPreview = useJimengStore((s) => s.openPreview);
   const closePreview = useJimengStore((s) => s.closePreview);
   const previewOpen = previewNodeId === id;
@@ -167,7 +169,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         />
       ) : d.hasMedia ? (
         <JimengNodeToolbar
-          visible={selected === true}
+          visible={selected === true && soloSelected}
           onAction={(label) => {
             if (label === "局部重拍") enterRepaint(id);
             if (label === "视频编辑") enterEdit(id);
