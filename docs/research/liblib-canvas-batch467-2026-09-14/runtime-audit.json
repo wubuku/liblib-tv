@@ -1,0 +1,37 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-018 Slice A — command feedback inventory and reason projection",
+  "catalogSize": 9,
+  "projection": {
+    "accepted": {
+      "disposition": "success",
+      "announce": true
+    },
+    "noOp": {
+      "disposition": "inert",
+      "announce": false
+    },
+    "rejected": {
+      "disposition": "error",
+      "announce": true
+    },
+    "stale": {
+      "disposition": "error",
+      "announce": true
+    },
+    "invalidTarget": {
+      "disposition": "error",
+      "announce": true
+    },
+    "conflict": {
+      "disposition": "error",
+      "announce": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
