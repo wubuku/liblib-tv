@@ -1,0 +1,35 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice E — shot source lifecycle (§9.2 states, frozen sourceRef, aggregate reset)",
+  "lifecycle_unit": {
+    "previewState": "LOCAL_PREVIEW",
+    "previewRef": {
+      "mediaId": "poster-a.png",
+      "mediaRevision": 1
+    },
+    "materializingState": "MATERIALIZING",
+    "durableState": "DURABLE_READY",
+    "sessionState": "SESSION_READY",
+    "failedState": "FAILED",
+    "failedReason": "DECODE_ERROR",
+    "changedState": "LOCAL_PREVIEW",
+    "changedReason": "SOURCE_CHANGED_RESET",
+    "changedRefMediaId": "poster-b.png",
+    "badStart": "NOT_IN_LOCAL_PREVIEW",
+    "badDurable": "NOT_MATERIALIZING"
+  },
+  "fixture_local_preview": {
+    "status": "local-preview",
+    "sourceRef": {
+      "mediaId": "/images/scene-coffee-4.png",
+      "mediaRevision": 1
+    },
+    "sourceName": "视频节点 5-片段重拍"
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

@@ -8,7 +8,13 @@ import { cn } from "@/lib/utils";
 import { useCanvasStore } from "@/store/canvasStore";
 import type { ShotBreakdownDimension } from "@/lib/shotBreakdownResults";
 
-type BreakdownStatus = "empty" | "ready" | "running" | "complete" | "failed";
+type BreakdownStatus =
+  | "empty"
+  | "local-preview"
+  | "ready"
+  | "running"
+  | "complete"
+  | "failed";
 
 export interface ShotBreakdownNodeData extends Record<string, unknown> {
   title?: string;
@@ -151,7 +157,17 @@ function ShotBreakdownNodeComponent({ id, data, selected }: NodeProps<ShotBreakd
             if (!file) return;
             if (localPreviewUrl) URL.revokeObjectURL(localPreviewUrl);
             setLocalPreviewUrl(URL.createObjectURL(file));
-            updateNodeData(id, { status: "ready", sourceName: file.name, sourceDuration: 30 });
+            // Batch 455 (VR-021 Slice E): a component URL alone is
+            // LOCAL_PREVIEW, never durable readiness (§9.2).
+            updateNodeData(id, {
+              status: "local-preview",
+              sourceName: file.name,
+              sourceDuration: 30,
+              sourceRef: {
+                mediaId: file.name,
+                mediaRevision: 1,
+              },
+            });
             setSourceMenuOpen(false);
           }}
         />

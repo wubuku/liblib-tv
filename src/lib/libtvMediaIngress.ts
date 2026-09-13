@@ -247,3 +247,88 @@ export function validateLibTVMediaIngressIntent(
         : null,
   };
 }
+
+// Batch 455 (VR-021 Slice E): Shot source lifecycle — §9.2 states with a
+// frozen source identity and aggregate reset on source change. Pure reducer.
+
+export type LibTVShotSourceState =
+  | "EMPTY"
+  | "LOCAL_PREVIEW"
+  | "MATERIALIZING"
+  | "DURABLE_READY"
+  | "SESSION_READY"
+  | "FAILED";
+
+export interface LibTVShotSourceRecord {
+  state: LibTVShotSourceState;
+  sourceRef: { mediaId: string; mediaRevision: number } | null;
+  reason?: string;
+}
+
+export type LibTVShotSourceEvent =
+  | { type: "preview-acquired"; mediaId: string; mediaRevision: number }
+  | { type: "materialize-started" }
+  | { type: "materialized-durable" }
+  | { type: "materialize-failed"; reason: string }
+  | { type: "session-acquired" }
+  | { type: "reset" };
+
+const SHOT_EMPTY: LibTVShotSourceRecord = { state: "EMPTY", sourceRef: null };
+
+export function reduceLibTVShotSourceLifecycle(
+  record: LibTVShotSourceRecord,
+  event: LibTVShotSourceEvent,
+): LibTVShotSourceRecord {
+  const reject = (reason: string): LibTVShotSourceRecord => ({
+    ...record,
+    reason,
+  });
+  switch (event.type) {
+    case "preview-acquired": {
+      // aggregate reset: a NEW source identity restarts the lifecycle
+      const sourceChanged =
+        record.sourceRef !== null &&
+        (record.sourceRef.mediaId !== event.mediaId ||
+          record.sourceRef.mediaRevision !== event.mediaRevision);
+      if (record.state === "MATERIALIZING" && !sourceChanged) {
+        return reject("MATERIALIZE_IN_PROGRESS");
+      }
+      return {
+        state: "LOCAL_PREVIEW",
+        sourceRef: {
+          mediaId: event.mediaId,
+          mediaRevision: event.mediaRevision,
+        },
+        reason: sourceChanged ? "SOURCE_CHANGED_RESET" : undefined,
+      };
+    }
+    case "materialize-started": {
+      if (record.state !== "LOCAL_PREVIEW") {
+        return reject("NOT_IN_LOCAL_PREVIEW");
+      }
+      return { ...record, state: "MATERIALIZING" };
+    }
+    case "materialized-durable": {
+      if (record.state !== "MATERIALIZING") {
+        return reject("NOT_MATERIALIZING");
+      }
+      return { ...record, state: "DURABLE_READY" };
+    }
+    case "materialize-failed": {
+      if (record.state !== "MATERIALIZING") {
+        return reject("NOT_MATERIALIZING");
+      }
+      return { ...record, state: "FAILED", reason: event.reason };
+    }
+    case "session-acquired": {
+      if (record.state !== "DURABLE_READY") {
+        return reject("NOT_DURABLE_READY");
+      }
+      return { ...record, state: "SESSION_READY" };
+    }
+    case "reset":
+      return { ...SHOT_EMPTY };
+    default:
+      return reject("UNKNOWN_EVENT");
+  }
+}

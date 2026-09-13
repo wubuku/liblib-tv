@@ -200,7 +200,13 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
   const createBreakdown = () => {
     addDerivedNode(id, "shot-breakdown", {
       title: `逐帧拉片 · ${filename}`,
-      status: "ready",
+      // Batch 455 (VR-021 Slice E): graph-derived source starts at
+      // LOCAL_PREVIEW with a frozen source identity (§9.2).
+      status: "local-preview",
+      sourceRef: {
+        mediaId: posterUrl ?? filename,
+        mediaRevision: typeof data.mediaRevision === "number" ? data.mediaRevision : 1,
+      },
       sourceName: filename,
       sourceDuration: durationSeconds,
       sourcePosterUrl: posterUrl ?? "/images/scene-coffee-4.png",

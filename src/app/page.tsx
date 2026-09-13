@@ -23,7 +23,10 @@ import "@xyflow/react/dist/style.css";
 import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
 import {
   LIBTV_MEDIA_INGRESS_PROFILES,
+  reduceLibTVShotSourceLifecycle,
   validateLibTVMediaIngressIntent,
+  type LibTVShotSourceRecord,
+  type LibTVShotSourceEvent,
 } from "@/lib/libtvMediaIngress";
 import {
   LibTVFakeMaterializer,
@@ -264,6 +267,10 @@ declare global {
         leaseId?: string;
       };
     };
+    __libtv_shot_source_reduce?: (
+      record: LibTVShotSourceRecord,
+      event: LibTVShotSourceEvent,
+    ) => LibTVShotSourceRecord;
     __libtv_annotate_fit_mapping?: () => {
       baseline: {
         mediaId: string;
@@ -706,6 +713,8 @@ export default function Home() {
     // validation diagnostics (pure).
     window.__libtv_media_ingress_profiles = LIBTV_MEDIA_INGRESS_PROFILES;
     window.__libtv_media_ingress_validate = validateLibTVMediaIngressIntent;
+    // Batch 455 (VR-021 Slice E): shot source lifecycle reducer diagnostics.
+    window.__libtv_shot_source_reduce = reduceLibTVShotSourceLifecycle;
     // Batch 451 (VR-021 Slice B): instance-scoped lease ledger + fake
     // materializer diagnostics (pure, deterministic, no network).
     window.__libtv_media_lease_ledger_new = () => new LibTVMediaLeaseLedger();
@@ -753,6 +762,7 @@ export default function Home() {
       delete window.__libtv_editor_local_history_entry;
       delete window.__libtv_media_ingress_profiles;
       delete window.__libtv_media_ingress_validate;
+      delete window.__libtv_shot_source_reduce;
       delete window.__libtv_media_lease_ledger_new;
       delete window.__libtv_media_materializer_new;
     };
