@@ -1,7 +1,7 @@
 "use client";
 
 import { Handle, Position } from "@xyflow/react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengAudioNodeData } from "@/types/jimeng";
@@ -19,6 +19,24 @@ function fmt(s: number) {
 
 export function JimengAudioNode({ data, selected }: NodeProps) {
   const d = data as JimengAudioNodeData;
+  // 播放交互 (Batch 47): 点击播放钮推进波形进度，播完自停 (CLONE_DECISION mock)
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setInterval(() => {
+      setProgress((p) => {
+        const next = p + 4;
+        if (next >= 100) {
+          setPlaying(false);
+          return 0;
+        }
+        return next;
+      });
+    }, 120);
+    return () => window.clearInterval(timer);
+  }, [playing]);
 
   const bars = useMemo(() => {
     const heights: number[] = [];
@@ -54,16 +72,34 @@ export function JimengAudioNode({ data, selected }: NodeProps) {
               : "0 0 0 1px rgba(255,255,255,0.06) inset",
         }}
       >
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-white/80">
-          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-            <path d="M4 2v10l7-5Z" fill="currentColor" />
-          </svg>
-        </span>
+        <button
+          type="button"
+          aria-label={playing ? "暂停音频" : "播放音频"}
+          onClick={() => {
+            if (progress >= 100) setProgress(0);
+            setPlaying((v) => !v);
+          }}
+          className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-white/80 hover:bg-white/[0.16]"
+        >
+          {playing ? (
+            <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden>
+              <path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor" />
+            </svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+              <path d="M4 2v10l7-5Z" fill="currentColor" />
+            </svg>
+          )}
+        </button>
         <div className="flex h-10 flex-1 items-center gap-[3px] overflow-hidden">
           {bars.map((h, i) => (
             <span
               key={i}
-              className="w-[3px] shrink-0 rounded-full bg-[#7FD8C9]/70"
+              className={`w-[3px] shrink-0 rounded-full ${
+                playing && (i / bars.length) * 100 <= progress
+                  ? "bg-[#7FD8C9]"
+                  : "bg-[#7FD8C9]/40"
+              }`}
               style={{ height: h }}
             />
           ))}
