@@ -491,15 +491,23 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   tasks: [],
 
-  startTask: (nodeId, kind) =>
+  startTask: (nodeId, kind) => {
+    const id = `task-${Date.now()}`;
     set((state) => ({
       tasks: [
         ...state.tasks,
-        { id: `task-${Date.now()}`, nodeId, kind },
+        { id, nodeId, kind },
       ],
       // mock 任务提交同步 toast 反馈 (Batch 11/40)
       toast: `${kind === "upscale" ? "智能超清" : "补帧"}任务已提交（mock），处理中…`,
-    })),
+    }));
+    // mock 生命周期 (Batch 53)：4s 后自动完成并清除任务
+    window.setTimeout(() => {
+      useJimengStore.setState((state) => ({
+        tasks: state.tasks.filter((t) => t.id !== id),
+      }));
+    }, 4000);
+  },
 
   aiDrawerOpen: false,
 
