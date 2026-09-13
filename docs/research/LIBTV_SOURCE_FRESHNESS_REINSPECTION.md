@@ -434,3 +434,6 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 `~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
 （仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
 `still-broken` 则继续等待），恢复后按 §8 checklist 补采。
+| 2026-09-14 | batch 461 探测 | still-broken | 第七十二次重测；§5.z5 老化重写 53/65/119/167（batch 461） |
+| 2026-09-14 | batch 474 探测 | still-broken | 第八十五次重测；VR-022 会话基线捕获（batch 474） |
+| 2026-09-14 | batch 475 探测 | still-broken | 第八十六次重测；jimeng 61 对照同步（batch 475） |
