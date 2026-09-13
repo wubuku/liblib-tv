@@ -1,0 +1,36 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice C — Add Resource multi-file vertical slice (source-shaped chooser, provisional cohort, one accepted graph transaction, fixture materializer)",
+  "accepted_cohort": {
+    "before": {
+      "nodeCount": 0,
+      "pastLength": 0,
+      "generation": 2
+    },
+    "cohort": {
+      "addedCount": 2,
+      "cohortIds": [
+        "cohort-1789314093053"
+      ],
+      "urls": [
+        "blob:fixture-1",
+        "blob:fixture-2"
+      ],
+      "pastLength": 1
+    }
+  },
+  "rejected_reason_surfaces": {
+    "reasonSurfaced": "MEDIA_TYPE_AMBIGUOUS",
+    "zeroMutation": true
+  },
+  "stale_generation_zero_mutation": {
+    "reason": "MEDIA_CANVAS_STALE",
+    "zeroMutation": true
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

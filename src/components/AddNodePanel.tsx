@@ -16,6 +16,8 @@ import {
   Video,
 } from "lucide-react";
 import { useUIStore } from "@/store/uiStore";
+import { useCanvasStore } from "@/store/canvasStore";
+import type { LibTVLocalFileDescriptor } from "@/lib/libtvMediaIngress";
 
 interface NodeEntry {
   type: string;
@@ -50,6 +52,7 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [status, setStatus] = useState("");
+  const resourceInputRef = useRef<HTMLInputElement>(null);
   const closePanel = useCallback(() => {
     setMaterialSubmenuOpen(false);
     setScriptSubmenuOpen(false);
@@ -87,6 +90,32 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
 
   const openMaterialLibrary = () => {
     setPrimaryPanel("material");
+  };
+
+  // Batch 453 (VR-021 Slice C): Add Resource cohort entry — File objects
+  // are reduced to LOCAL_FILE descriptors before touching the store; the
+  // actual bytes never enter graph state.
+  const submitResourceFiles = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const descriptors: LibTVLocalFileDescriptor[] = Array.from(files).map(
+      (file) => ({
+        kind: "LOCAL_FILE" as const,
+        name: file.name,
+        declaredMimeType: file.type,
+        sizeBytes: file.size,
+        lastModified: file.lastModified,
+      }),
+    );
+    const generation = useCanvasStore.getState().canvasGeneration;
+    const result = useCanvasStore
+      .getState()
+      .addResourceCohort(descriptors, generation);
+    if (result.status === "accepted") {
+      setStatus(`已添加 ${result.nodeIds.length} 个资源`);
+      window.setTimeout(closePanel, 600);
+    } else {
+      setStatus(result.reasons.join(" · "));
+    }
   };
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -214,10 +243,22 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
 
       <div className="my-2 h-px bg-white/[0.08]" />
       <h3 className="px-2 pb-1.5 text-xs font-medium text-[#9a9a9a]">添加资源</h3>
-      <button type="button" data-add-node-resource="upload" onClick={() => setStatus("本地原型：上传服务未连接")} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
+      <button type="button" data-add-node-resource="upload" onClick={() => resourceInputRef.current?.click()} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
         <Upload size={15} />
         <span>上传</span>
       </button>
+      <input
+        ref={resourceInputRef}
+        type="file"
+        multiple
+        accept="image/png,image/jpeg,image/webp"
+        data-add-resource-input
+        className="sr-only"
+        onChange={(event) => {
+          submitResourceFiles(event.target.files);
+          event.target.value = "";
+        }}
+      />
       <button type="button" data-add-node-resource="history" onClick={() => setStatus("本地原型：生成历史未连接")} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
         <FolderOpen size={15} />
         <span>从生成历史选择</span>

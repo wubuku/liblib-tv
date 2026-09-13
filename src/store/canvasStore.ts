@@ -30,6 +30,14 @@ import {
   type LibTVRecordEditorSubmitResult,
 } from "@/lib/libtvEditorSession";
 import {
+  validateLibTVMediaIngressIntent,
+  type LibTVLocalFileDescriptor,
+} from "@/lib/libtvMediaIngress";
+import {
+  LibTVFakeMaterializer,
+  LibTVMediaLeaseLedger,
+} from "@/lib/libtvMediaLease";
+import {
   planDirectorWholeProjectDuplicate,
   type DirectorWholeProjectDuplicateFailureReason,
 } from "@/lib/directorWholeProjectDuplicate";
@@ -398,6 +406,18 @@ interface CanvasState {
    * reflow the node frame from its declared intrinsic ratio. Rendition state
    * only — no graph history entry. False when the node/output is unknown. */
   selectNodeOutput: (nodeId: string, outputId: string) => boolean;
+  /** Batch 453 (VR-021 Slice C): Add Resource multi-file cohort — validate,
+   * materialize via the local fixture materializer and create one node per
+   * file in a single accepted-success graph transaction. */
+  addResourceCohort: (
+    descriptors: readonly LibTVLocalFileDescriptor[],
+    expectedCanvasGeneration: number,
+  ) => {
+    status: "accepted" | "rejected";
+    reasons: string[];
+    cohortId: string | null;
+    nodeIds: string[];
+  };
   /** Batch 446 (VR-022 Slice B): equality-aware editor session commit —
    * named result; zero history for no-op/reject, one for accepted. */
   submitLibTVEditorSessionCommit: (
@@ -3721,6 +3741,84 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     return true;
   },
 
+  // Batch 453 (VR-021 Slice C): Add Resource multi-file cohort — ordered
+  // validation, fixture materialization and ONE accepted-success graph
+  // transaction (single history entry for the whole cohort). Rejection is
+  // a stable-reason, zero-mutation outcome.
+  addResourceCohort: (descriptors, expectedCanvasGeneration) => {
+    const state = get();
+    const validation = validateLibTVMediaIngressIntent({
+      profileId: "ADD_RESOURCE_MULTI",
+      descriptors,
+      canvasExists: state.canvases.some(
+        (c) => c.id === state.activeCanvasId,
+      ),
+      canvasGeneration: state.canvasGeneration,
+      expectedCanvasGeneration,
+    });
+    if (validation.status === "rejected") {
+      return {
+        status: "rejected",
+        reasons: validation.reasons,
+        cohortId: null,
+        nodeIds: [],
+      };
+    }
+    const cohortId = `cohort-${Date.now()}`;
+    const canvasId = state.activeCanvasId;
+    const created: Node[] = descriptors.map((descriptor, index) => {
+      const settle = ingressFixtureMaterializer.materialize({
+        canvasId,
+        nodeId: `${cohortId}-${index}`,
+        contentFingerprint: `${descriptor.name}:${descriptor.sizeBytes}:${descriptor.lastModified}`,
+      });
+      const outcome = settle({ outcome: "ok" });
+      const locator =
+        outcome.status === "materialized" || outcome.status === "duplicate"
+          ? outcome.locator
+          : null;
+      const dimensions = getDefaultNodeDimensions("image");
+      return {
+        id: createNodeId("add-resource"),
+        type: "image",
+        position: { x: 60 + index * 40, y: 60 + index * 340 },
+        width: dimensions.width,
+        height: dimensions.height,
+        style: dimensions,
+        data: {
+          filename: descriptor.name,
+          // fixture locator — real bytes never enter graph state (§6.2)
+          imageUrl: locator ? locator.renderUrl : null,
+          watermarkUrl: null,
+          editorVariant: "empty",
+          mediaRevision: 1,
+          ingressCohortId: cohortId,
+          ingressIndex: index,
+        },
+      };
+    });
+    set((s) => {
+      const currentCanvas = s.canvases.find(
+        (c) => c.id === state.activeCanvasId,
+      );
+      if (!currentCanvas) return s;
+      return {
+        canvases: s.canvases.map((c) =>
+          c.id !== currentCanvas.id
+            ? c
+            : { ...c, nodes: [...c.nodes, ...created] },
+        ),
+        historyByCanvas: pushHistory(s.historyByCanvas, currentCanvas),
+      };
+    });
+    return {
+      status: "accepted",
+      reasons: [],
+      cohortId,
+      nodeIds: created.map((node) => node.id),
+    };
+  },
+
   // Batch 446 (VR-022 Slice B): equality-aware editor session commit —
   // validates owner/generation/fingerprint, commits the normalized draft
   // with exactly one history entry on accept, zero mutation otherwise.
@@ -3876,6 +3974,12 @@ function getDirectorAnimationExportNodeDimensions(
   if (aspectRatio === "1:1") return { width: 420, height: 420 };
   return { width: 512, height: 288 };
 }
+
+// Batch 453 (VR-021 Slice C): instance-scoped fixture materializer for the
+// Add Resource cohort entry — deterministic locators, no provider/network.
+const ingressFixtureMaterializer = new LibTVFakeMaterializer(
+  new LibTVMediaLeaseLedger(),
+);
 
 // Batch 442 (VR-023 Slice B): derived image/video frames become
 // aspect-aware for non-landscape sources (same profile height, width
