@@ -587,6 +587,10 @@ Batch 459 全量扫描（维护集外 146 项：137 通过 / 9 失败 / 0 未解
 | 119 / 167 | /project 创建卡文本跟随「开始创建」更名；cover 高度阈值 140→120（现行卡片布局） |
 | 65 | bootstrap 日志尾部接受 batch-456 断点委托跳过项；stable-restored 存在性仍强制 |
 
+Batch 466 精化：live-frame 的 ownership 标注改为翻转后值（bootstrap
+相的首个 live 事件即结束该相），439 验证器断言随之放宽——live-frame
+存在 + 端点 viewport-accepted(stable) 仍强制。
+
 剩余 18/64：batch 463 修复后 27 已回绿（同根因）。18 的 desktop
 out-click 无效已定位为真实竞态——连续动画 setViewport 的两个 move-end
 交错提交，旧命令端点覆盖新值；已按 viewport 合同 §6.4 修复（onMoveEnd

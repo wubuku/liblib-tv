@@ -646,7 +646,11 @@ export default function Home() {
       setFlowViewport(viewport);
       setZoomLevel(Math.round(viewport.zoom * 100));
       if (liveFrame) {
-        return log("committed", "live-frame", ownership);
+        // Batch 466: live activity in the bootstrap phase ends that phase —
+        // ownership flips to stable immediately even though the stored
+        // (stable) viewport value still lands via the move-end commit.
+        viewportOwnershipRef.current.set(expectedCanvasId, "stable");
+        return log("committed", "live-frame", "stable");
       }
 
       viewportOwnershipRef.current.set(expectedCanvasId, "stable");

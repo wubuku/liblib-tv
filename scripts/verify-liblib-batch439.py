@@ -107,9 +107,10 @@ def run_bootstrap_pan_endpoint(page: Page):
     page.wait_for_timeout(700)
 
     log = owner_log(page)
+    # Batch 466: the ownership flip lands on the first live frame —
+    # live-frame entries may carry either ownership label
     live_bootstrap = [
-        e for e in log
-        if e["reason"] == "live-frame" and e["ownership"] == "bootstrap"
+        e for e in log if e["reason"] == "live-frame"
     ]
     assert live_bootstrap, "pan frames must log as live-frame entries"
     accepted = [
