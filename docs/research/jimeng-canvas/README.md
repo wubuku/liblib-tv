@@ -234,7 +234,8 @@
   补录（commit 5f6da13，batch 437 对照批）。batch 38 条目同法补录
   （commit d4d69b5，batch 438 对照批）。batch 39/40 条目同法补录
   （commits 8c03eef / 9454fd8，batch 444 对照批）。batch 41–43/46/47
-  条目同法补录（batch 452 对照批）。
+  条目同法补录（batch 452 对照批）。batch 49/50/51 条目同法补录
+  （commits 215c86b / db2f1f5 / 622563e，batch 457 对照批）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -249,6 +250,15 @@
   选择并关闭全屏预览（previewNodeId 提升到 store 修复 Escape 竞态）。
 - 复刻 (batch 47, mock): 音频节点播放交互——播放切换波形点亮推进、
   暂停冻结、播完自停归零。
+- 复刻 (batch 49, 诚实反馈补全): 工具条 下载 / 保存到主体库 补 mock
+  toast 反馈（真实下载/写库维持 BLOCKED_BY_FIXTURE）——工具条 9 项
+  自此全部有 UX 反馈。决策记录（用户指正）: 订阅页 tab 切换半成品
+  回退——当前登录用户已是会员，订阅计费非复刻重心。
+- 复刻 (batch 50, 生成流程闭环): 生成面板 生成 提交 generateInto(id,
+  prompt)——节点进入 generating（spinner 蒙层 + 生成中），3s mock
+  完成出 poster + 00:00/00:06（source: 'generated'）。
+- 测试 (batch 51): 生成完成后新节点工具条行为验证——7 项 + 分隔线、
+  title tag、时间行、gen panel 消失；NodeToolbar portal 作用域入档。
 - SOURCE_FACT (batch 44): 修剪面板起点把手向右拖动 → 左侧时间读数前进、
   选区时长缩短 —— 与我方实现语义一致 (只读验证，源站把手几何未逐帧提取)。
 - CLONE_DECISION (batch 44 实现): applyTrim 接受起点偏移，确认修剪后节点
