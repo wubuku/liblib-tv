@@ -237,7 +237,8 @@
   条目同法补录（batch 452 对照批）。batch 49/50/51 条目同法补录
   （commits 215c86b / db2f1f5 / 622563e，batch 457 对照批）。
   batch 52 条目同法补录（commit ee6d1c5，batch 458 对照批）。
-  batch 53 条目同法补录（batch 460 对照批）。
+  batch 53 条目同法补录（batch 460 对照批）。batch 56 条目同法补录
+  （commit ddfbb9e，batch 465 对照批）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -252,6 +253,13 @@
   选择并关闭全屏预览（previewNodeId 提升到 store 修复 Escape 竞态）。
 - 复刻 (batch 47, mock): 音频节点播放交互——播放切换波形点亮推进、
   暂停冻结、播完自停归零。
+- SOURCE_FACT (batch 56, 框选语义): 空白左键拖拽绘制 marquee 框选，
+  释放选中框内节点——即梦空白拖拽是框选而非平移（与 LibTV 画布的
+  空白拖拽 no-op + Shift+拖拽框选语义相反，跨站点差异记录）。复刻:
+  selectionOnDrag 启用、panOnDrag 保持中键；onNodesChange 重构为
+  xyflow 持有 selected 旗标、store 仅镜像 selectedNodeId（修复
+  marquee/store 选中竞态）；batch 56 验证器断言 marquee 选中 ≥2 且
+  中键拖拽仍平移。
 - 复刻 (batch 49, 诚实反馈补全): 工具条 下载 / 保存到主体库 补 mock
   toast 反馈（真实下载/写库维持 BLOCKED_BY_FIXTURE）——工具条 9 项
   自此全部有 UX 反馈。决策记录（用户指正）: 订阅页 tab 切换半成品
