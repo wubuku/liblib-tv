@@ -492,6 +492,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 459 | 全量验证器扫描（146 项：137 通过 / 9 老化） | [`liblib-canvas-batch459-2026-09-14/`](liblib-canvas-batch459-2026-09-14/) |
 
+| 467 | VR-018 Slice A：命令反馈目录 + reason 投影 | [`liblib-canvas-batch467-2026-09-14/`](liblib-canvas-batch467-2026-09-14/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |
