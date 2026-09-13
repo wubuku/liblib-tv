@@ -166,6 +166,15 @@ def main():
 
         assert baseline["mediaId"] and baseline["mediaRevision"] >= 1, baseline
         assert baseline["fit"] == "contain"
+        # Batch 474 (VR-022 Slice E): the frozen session baseline must match
+        # the declared plane (media identity + revision + fit policy)
+        session = page.evaluate(
+            "() => window.__libtv_ui_store.getState().imageAnnotate.sessionBaseline"
+        )
+        assert session is not None, "session baseline must be captured at open"
+        assert session["mediaId"] == baseline["mediaId"], session
+        assert session["mediaRevision"] == baseline["mediaRevision"]
+        assert session["fit"] == "contain"
         assert transform["fit"] == "contain"
         assert transform["intrinsicWidth"] == baseline["width"]
         assert transform["intrinsicHeight"] == baseline["height"]

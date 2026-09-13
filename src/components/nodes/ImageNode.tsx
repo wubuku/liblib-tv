@@ -115,6 +115,13 @@ export function ImageNode({ id, data, selected }: NodeProps<ImageNodeType>) {
         height,
         mediaRevision: typeof mediaRevision === "number" ? mediaRevision : 1,
         fit: "contain",
+        sessionBaseline: {
+          mediaId: imageUrl,
+          width,
+          height,
+          mediaRevision: typeof mediaRevision === "number" ? mediaRevision : 1,
+          fit: "contain",
+        },
       });
       return;
     }

@@ -32,6 +32,15 @@ export interface ImageAnnotateState {
   /** Batch 443 (VR-023 Slice C): declared full-media plane baseline. */
   mediaRevision: number;
   fit: "cover" | "contain";
+  /** Batch 474 (VR-022 Slice E): frozen editor session baseline —
+   * media identity + declared plane + revision at open time. */
+  sessionBaseline: {
+    mediaId: string;
+    width: number;
+    height: number;
+    mediaRevision: number;
+    fit: "cover" | "contain";
+  };
 }
 
 export interface ImageElementEditState {
