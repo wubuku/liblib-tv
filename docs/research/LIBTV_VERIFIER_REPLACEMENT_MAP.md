@@ -587,9 +587,14 @@ Batch 459 全量扫描（维护集外 146 项：137 通过 / 9 失败 / 0 未解
 | 119 / 167 | /project 创建卡文本跟随「开始创建」更名；cover 高度阈值 140→120（现行卡片布局） |
 | 65 | bootstrap 日志尾部接受 batch-456 断点委托跳过项；stable-restored 存在性仍强制 |
 
-剩余 18/27/64：desktop zoom out-click 无效非确定复现（单独序列通过、
-验证器上下文失败；疑似并行编辑 HMR 重载竞态污染跨断言页面状态）——
-维持 AGED_GATE，需按 viewport 合同 §7 专项诊断。
+剩余 18/64：batch 463 修复后 27 已回绿（同根因）。18 的 desktop
+out-click 无效已定位为真实竞态——连续动画 setViewport 的两个 move-end
+交错提交，旧命令端点覆盖新值；已按 viewport 合同 §6.4 修复（onMoveEnd
+提交时读取当前 live viewport，最新命令恒胜出，batch 463），三连跑全绿。
+64 再老化点已精化：toolbar-toggle 打开抽屉时 host 中心取到窗口中心
+（centerError.x = -160 = 抽屉宽度）——属 placement 审计范围，待专项
+批次处理。（batch 463 修复曾因工作区还原操作被误回退，已重新应用并
+三连跑确认。）
 
 ## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
 

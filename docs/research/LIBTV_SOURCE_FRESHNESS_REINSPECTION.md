@@ -409,6 +409,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 458 探测 | still-broken | 第六十六次重测；jimeng 52 对照同步（batch 458） |
 | 2026-09-14 | batch 460 探测 | still-broken | 第六十八次重测；§5.z4 老化处置 + jimeng 53 对照（batch 460） |
 | 2026-09-14 | batch 462 探测 | still-broken | 第七十次重测；§5.z5 老化重写首批 5/9 回绿（batch 462） |
+| 2026-09-14 | batch 463 探测 | still-broken | 第七十一次重测；viewport §6.4 move-end 竞态修复（batch 463） |
 | 2026-09-14 | batch 459 探测 | still-broken | 第六十七次重测；全量验证器扫描（batch 459） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
