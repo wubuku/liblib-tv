@@ -122,6 +122,7 @@ export function JimengNodeToolbar({
         <button
           type="button"
           aria-label="下载"
+          onClick={() => onAction?.("下载")}
           className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
         >
           <Download size={16} />

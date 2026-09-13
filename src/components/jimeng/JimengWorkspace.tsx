@@ -64,6 +64,7 @@ function JimengFlow() {
   const pasteNode = useJimengStore((s) => s.pasteNode);
   const removeNode = useJimengStore((s) => s.removeNode);
   const removeNodes = useJimengStore((s) => s.removeNodes);
+  const pushToast = useJimengStore((s) => s.pushToast);
   const exitRepaint = useJimengStore((s) => s.exitRepaint);
   const exitEdit = useJimengStore((s) => s.exitEdit);
   const exitInfer = useJimengStore((s) => s.exitInfer);
@@ -140,8 +141,10 @@ function JimengFlow() {
       }
       if (action === "undo") undo();
       if (action === "redo") redo();
+      if (action === "save-to-library") pushToast("已保存到主体库（mock）");
+      if (action === "download") pushToast("视频下载已开始（mock）");
     },
-    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, removeNodes, undo, redo, nodes],
+    [contextMenu, copyNode, duplicateNode, pasteNode, removeNode, removeNodes, undo, redo, nodes, pushToast],
   );
 
   // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace

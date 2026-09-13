@@ -96,6 +96,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const tickPlay = useJimengStore((s) => s.tickPlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  const pushToast = useJimengStore((s) => s.pushToast);
   const seek = useJimengStore((s) => s.seek);
   const applyTrim = useJimengStore((s) => s.applyTrim);
   const onToggleMute = toggleMute;
@@ -174,6 +175,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "视频修剪") enterTrim(id);
             if (label === "智能超清") startTask(id, "upscale");
             if (label === "补帧") startTask(id, "interpolate");
+            if (label === "下载") pushToast("视频下载已开始（mock）");
+            if (label === "保存到主体库") pushToast("已保存到主体库（mock）");
             if (label === "全屏预览") openPreview(id);
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
             if (label === "截取帧:首帧") enterFramePicker(id, "first");
