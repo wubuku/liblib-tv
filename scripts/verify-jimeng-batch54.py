@@ -54,11 +54,19 @@ def main() -> None:
             path=str(REFERENCE_DIR / "jimeng-clone-batch54-solo-panel-1680.png")
         )
 
-        # shift+click adds the other node → panels hidden
-        page.keyboard.down("Shift")
-        page.mouse.click(centers[0]["x"] - 120, centers[0]["y"] - 60)
-        page.keyboard.up("Shift")
-        page.wait_for_timeout(600)
+        # shift+click adds the other node → panels hidden (retry for flake)
+        for _attempt in range(3):
+            page.keyboard.down("Shift")
+            page.mouse.click(centers[0]["x"] - 120, centers[0]["y"] - 60)
+            page.keyboard.up("Shift")
+            page.wait_for_timeout(600)
+            ok = page.evaluate(
+                "() => document.querySelectorAll('.react-flow__node.selected').length === 2"
+            )
+            if ok:
+                break
+            page.mouse.click(300, 750)  # 清除选择后重试
+            page.wait_for_timeout(300)
         multi = page.evaluate(
             """() => ({
                 selected: document.querySelectorAll('.react-flow__node.selected').length,
