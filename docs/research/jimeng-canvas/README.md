@@ -276,6 +276,10 @@
   悬停显示浏览器原生提示) —— 源站只读提取证实同构。
 - SOURCE_FACT (batch 48 提取/验证): 文字节点行内编辑提交写回 store
   (updateNodeData 泛化为任意节点类型)；编辑内容在选择切换后保持。
+- SOURCE_FACT (batch 55, 框选语义): 源站 Shift+左键拖拽空白画布绘制白色细线
+  框选矩形 (marquee)；释放后选区内节点选中。复刻: xyflow v12 默认
+  selectionKeyCode=Shift 绘制相同矩形 ✓；但释放后的节点选中应用在复刻侧
+  未生效 (已知偏差，待排查 onNodesChange select 路径与 xyflow 内部同步)。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
@@ -294,6 +298,10 @@
   verifier 需在无并发编辑窗口内运行；GitHub 推送在本地代理 (127.0.0.1
   :1234/1235) 离线时可用 `git -c http.proxy= -c https.proxy=
   -c http.version=HTTP/1.1 push` 直连重试。
+- SOURCE_FACT (batch 55, 框选语义): 源站 Shift+左键拖拽空白画布绘制白色细线
+  框选矩形 (marquee)；释放后选区内节点选中。复刻: xyflow v12 默认
+  selectionKeyCode=Shift 绘制相同矩形 ✓；但释放后的节点选中应用在复刻侧
+  未生效 (已知偏差，待排查 onNodesChange select 路径与 xyflow 内部同步)。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
