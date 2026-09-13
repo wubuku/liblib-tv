@@ -92,7 +92,7 @@ export function JimengGenPanel({
             </button>
           </div>
 
-          {/* 提示词输入区 (Batch 40: 可编辑) */}
+          {/* 提示词输入区 (Batch 40: 可编辑；Batch 60 占位含 @ 主体) */}
           <div className="flex w-full items-start">
             <textarea
               value={prompt}

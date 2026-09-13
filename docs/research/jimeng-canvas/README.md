@@ -240,6 +240,9 @@
   batch 53 条目同法补录（batch 460 对照批）。batch 56 条目同法补录
   （commit ddfbb9e，batch 465 对照批）。batch 57 审计 + Escape 修复
   条目同法补录（commits b23f4dd / 9cde67f，batch 469 对照批）。
+  batch 59 测试条目同法补录（commit 6c23ef9，batch 472 对照批）。
+- 测试 (batch 59, 无新行为): 订阅滑杆刻度标签验证——6.2K/12.3K/
+  18.5K/27.7K 刻度与 27690 端点值断言（batch 28/30/43 合同的复核）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
