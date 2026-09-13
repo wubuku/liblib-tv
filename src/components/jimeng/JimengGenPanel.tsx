@@ -50,12 +50,6 @@ export function JimengGenPanel({ visible }: { visible: boolean }) {
   const pushToast = useJimengStore((s) => s.pushToast);
   const canSend = prompt.trim().length > 0;
 
-  const send = () => {
-    if (!canSend) return;
-    setPrompt("");
-    pushToast("生成任务已提交（mock）");
-  };
-
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={20}>
       <div className="relative h-[208px] w-[680px]">

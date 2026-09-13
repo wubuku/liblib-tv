@@ -6,6 +6,7 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengTextNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 文字节点 (Batch 17/38)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)，
@@ -22,9 +23,11 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     if (editing) taRef.current?.focus();
   }, [editing]);
 
+  const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  // Batch 48: 提交写回 store (mock 文字节点真实联动)
   const commit = () => {
     setEditing(false);
-    // mock: 编辑内容仅存于节点本地状态，未写回全局 store (CLONE_DECISION)
+    updateNodeData(id, { text: draft });
   };
 
   return (

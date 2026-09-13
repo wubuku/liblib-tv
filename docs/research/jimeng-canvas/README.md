@@ -234,6 +234,32 @@
   补录（commit 5f6da13，batch 437 对照批）。batch 38 条目同法补录
   （commit d4d69b5，batch 438 对照批）。batch 39/40 条目同法补录
   （commits 8c03eef / 9454fd8，batch 444 对照批）。
+- SOURCE_FACT (batch 44): 修剪面板起点把手向右拖动 → 左侧时间读数前进、
+  选区时长缩短 —— 与我方实现语义一致 (只读验证，源站把手几何未逐帧提取)。
+- CLONE_DECISION (batch 44 实现): applyTrim 接受起点偏移，确认修剪后节点
+  currentTime 落在新起点并入撤销栈。
+- CLONE_DECISION (batch 45): 标题 span 带原生 title 属性 (完整文件名，
+  悬停显示浏览器原生提示) —— 源站只读提取证实同构。
+- SOURCE_FACT (batch 48 提取/验证): 文字节点行内编辑提交写回 store
+  (updateNodeData 泛化为任意节点类型)；编辑内容在选择切换后保持。
+- BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
+  下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
+
+## 9. 阶段性留档 (batch 44-48)
+
+- Batch 44: 修剪起点把手拖动 + 起点偏移语义 (applyTrim 三参)。
+- Batch 45: 节点标题原生悬停提示 (title 属性)。
+- Batch 46: ⌘A 全选 + Escape 取消选择；修复全屏预览 Escape 竞态
+  (previewNodeId 提升到 store —— workspace 取消选择处理先于预览自身
+  监听器运行，本地状态驱动会导致预览无法用 Escape 关闭)。
+- Batch 47: 音频节点播放交互 (波形点亮推进/暂停冻结/播完自停归零)。
+- Batch 48: 文字节点行内编辑提交写回 store (updateNodeData 泛化)。
+- 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
+  npm run check (lint + typecheck + build) 通过。
+- 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，
+  verifier 需在无并发编辑窗口内运行；GitHub 推送在本地代理 (127.0.0.1
+  :1234/1235) 离线时可用 `git -c http.proxy= -c https.proxy=
+  -c http.version=HTTP/1.1 push` 直连重试。
 - BLOCKED_BY_FIXTURE: 智能超清、补帧（会提交生成任务消耗积分）；
   下载（真实文件）、保存到主体库（写库）→ 工具条上保留按钮但无功能面板。
 
