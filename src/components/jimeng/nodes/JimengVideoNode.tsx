@@ -80,7 +80,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const [insertMenu, setInsertMenu] = useState<
     "left" | "right" | "title" | null
   >(null);
-  const [previewOpen, setPreviewOpen] = useState(false);
+
   const [tagPickerOpen, setTagPickerOpen] = useState(false);
   const repaintMode = repaintNodeId === id;
   const editMode = editNodeId === id;
@@ -99,6 +99,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const seek = useJimengStore((s) => s.seek);
   const applyTrim = useJimengStore((s) => s.applyTrim);
   const onToggleMute = toggleMute;
+  const previewNodeId = useJimengStore((s) => s.previewNodeId);
+  const openPreview = useJimengStore((s) => s.openPreview);
+  const closePreview = useJimengStore((s) => s.closePreview);
+  const previewOpen = previewNodeId === id;
 
   // 节点颜色标记 (SOURCE_FACT batch 31: 禁止 + 青/蓝/紫/橙/黄 五色)
   const TAG_COLORS = ["#3BE8E8", "#3D7BFF", "#9C5BFF", "#F79022", "#FFE14D"];
@@ -170,7 +174,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "视频修剪") enterTrim(id);
             if (label === "智能超清") startTask(id, "upscale");
             if (label === "补帧") startTask(id, "interpolate");
-            if (label === "全屏预览") setPreviewOpen(true);
+            if (label === "全屏预览") openPreview(id);
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
             if (label === "截取帧:首帧") enterFramePicker(id, "first");
             if (label === "截取帧:尾帧") enterFramePicker(id, "last");
@@ -367,7 +371,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
                 aria-label="全屏预览"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setPreviewOpen(true);
+                  openPreview(id);
                 }}
                 className="flex items-center"
               >
@@ -503,7 +507,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         <JimengVideoPreview
           nodeId={id}
           data={d}
-          onClose={() => setPreviewOpen(false)}
+          onClose={() => closePreview()}
         />
       ) : null}
     </div>

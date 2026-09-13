@@ -79,6 +79,7 @@ function JimengFlow() {
   const groupSelected = useJimengStore((s) => s.groupSelected);
   const ungroupSelected = useJimengStore((s) => s.ungroupSelected);
   const selectAll = useJimengStore((s) => s.selectAll);
+  const closePreview = useJimengStore((s) => s.closePreview);
   const [contextMenu, setContextMenu] = useState<JimengContextMenuState | null>(
     null,
   );
@@ -209,6 +210,7 @@ function JimengFlow() {
         selectAll();
       } else if (e.key === "Escape") {
         selectNode(null);
+        closePreview();
       } else if (mod && e.key.toLowerCase() === "g" && e.shiftKey) {
         // 快捷键面板证据: ⌘⇧G = 取消编组 (Batch 39)
         e.preventDefault();
@@ -253,6 +255,7 @@ function JimengFlow() {
     ungroupSelected,
     selectAll,
     selectNode,
+    closePreview,
   ]);
 
   const onMove = useCallback<OnMove>(

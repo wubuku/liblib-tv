@@ -108,6 +108,10 @@ export interface JimengCanvasState {
   ungroupSelected: () => void;
   /** 全选 (Batch 46): ⌘A */
   selectAll: () => void;
+  /** 全屏预览 (Batch 46): store 驱动，Escape/pane 点击统一关闭 */
+  previewNodeId: string | null;
+  openPreview: (id: string) => void;
+  closePreview: () => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
@@ -520,6 +524,12 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       nodes: state.nodes.map((n) => ({ ...n, selected: true })),
       selectedNodeId: null,
     })),
+
+  previewNodeId: null,
+
+  openPreview: (id) => set({ previewNodeId: id }),
+
+  closePreview: () => set({ previewNodeId: null }),
 
   seek: (id, fraction) =>
     set((state) => ({
