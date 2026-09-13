@@ -236,6 +236,7 @@
   （commits 8c03eef / 9454fd8，batch 444 对照批）。batch 41–43/46/47
   条目同法补录（batch 452 对照批）。batch 49/50/51 条目同法补录
   （commits 215c86b / db2f1f5 / 622563e，batch 457 对照批）。
+  batch 52 条目同法补录（commit ee6d1c5，batch 458 对照批）。
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -259,6 +260,10 @@
   完成出 poster + 00:00/00:06（source: 'generated'）。
 - 测试 (batch 51): 生成完成后新节点工具条行为验证——7 项 + 分隔线、
   title tag、时间行、gen panel 消失；NodeToolbar portal 作用域入档。
+- 复刻 (batch 52): 多选复制/粘贴——右键菜单 复制 复制全部选中节点
+  （单个走原路径）；剪贴板泛化为 {nodes, edges} 并保留内部连线；
+  粘贴经 id 重映射恢复相对布局；pasteNode 更名 pasteNodes（单条
+  历史入栈）。
 - SOURCE_FACT (batch 44): 修剪面板起点把手向右拖动 → 左侧时间读数前进、
   选区时长缩短 —— 与我方实现语义一致 (只读验证，源站把手几何未逐帧提取)。
 - CLONE_DECISION (batch 44 实现): applyTrim 接受起点偏移，确认修剪后节点
