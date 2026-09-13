@@ -18,6 +18,10 @@ import {
 import { useUIStore } from "@/store/uiStore";
 import { useCanvasStore } from "@/store/canvasStore";
 import type { LibTVLocalFileDescriptor } from "@/lib/libtvMediaIngress";
+import {
+  formatLibTVCommandStatus,
+  projectLibTVCommandFeedback,
+} from "@/lib/libtvCommandFeedback";
 
 interface NodeEntry {
   type: string;
@@ -51,14 +55,17 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
   const [scriptSubmenuOpen, setScriptSubmenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
   const resourceInputRef = useRef<HTMLInputElement>(null);
   const closePanel = useCallback(() => {
     setMaterialSubmenuOpen(false);
     setScriptSubmenuOpen(false);
     setSearchOpen(false);
     setSearchQuery("");
-    setStatus("");
+    setStatus({ text: "", tone: "neutral" });
     toggleAddNodePanel();
   }, [toggleAddNodePanel]);
 
@@ -111,10 +118,20 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
       .getState()
       .addResourceCohort(descriptors, generation);
     if (result.status === "accepted") {
-      setStatus(`已添加 ${result.nodeIds.length} 个资源`);
+      setStatus(
+        formatLibTVCommandStatus(
+          projectLibTVCommandFeedback("accepted"),
+          `已添加 ${result.nodeIds.length} 个资源`,
+        ),
+      );
       window.setTimeout(closePanel, 600);
     } else {
-      setStatus(result.reasons.join(" · "));
+      setStatus(
+        formatLibTVCommandStatus(
+          projectLibTVCommandFeedback("rejected"),
+          result.reasons.join(" · "),
+        ),
+      );
     }
   };
 
@@ -259,11 +276,25 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
           event.target.value = "";
         }}
       />
-      <button type="button" data-add-node-resource="history" onClick={() => setStatus("本地原型：生成历史未连接")} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
+      <button type="button" data-add-node-resource="history" onClick={() => setStatus({ text: "本地原型：生成历史未连接", tone: "neutral" })} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
         <FolderOpen size={15} />
         <span>从生成历史选择</span>
       </button>
-      {status && <p data-add-node-status className="mt-2 px-2 text-[10px] leading-4 text-[#75d7e8]">{status}</p>}
+      {status && (
+        <p
+          data-add-node-status
+          data-status-tone={status.tone}
+          className={`mt-2 px-2 text-[10px] leading-4 ${
+            status.tone === "diagnostic"
+              ? "text-[#ff9c8e]"
+              : status.tone === "positive"
+                ? "text-[#8fe8b4]"
+                : "text-[#75d7e8]"
+          }`}
+        >
+          {status.text}
+        </p>
+      )}
     </div>
   );
 }
