@@ -190,26 +190,18 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   onNodesChange: (changes) =>
     set((state) => {
-      // xyflow applyNodeChanges 会重写 selected 标志 (AGENTS.md 约束)。
-      // 有 select change 时忠实应用 xyflow 的选择结果 (支持 shift 多选，
-      // Batch 16)；selectedNodeId 仅记录主选节点。无 select change 时
-      // (拖拽等) 以 selectedNodeId 回填单选标志 (多选拖拽折叠为主选，
-      // 原型可接受)。
-      const selectChanges = changes.filter(
-        (c): c is Extract<NodeChange<JimengNode>, { type: "select" }> =>
-          c.type === "select",
-      );
-
-      // 编组联动 (Batch 39): 拖拽编组内节点时，同组节点跟随相同位移
+      // Batch 56 重构: selected 标志完全交由 xyflow 内部管理 (marquee/
+      // shift+click 天然支持多选)，store 仅镜像 selectedNodeId 供消费方。
+      // 编组联动 (Batch 39): 拖拽编组内节点时，同组节点跟随相同位移。
       const expanded: NodeChange<JimengNode>[] = [...changes];
       const byId = new Map(state.nodes.map((n) => [n.id, n]));
       for (const c of changes) {
         if (c.type !== "position" || !c.position) continue;
-        const src = byId.get(c.id);
-        const gid = src?.groupId;
-        if (!gid || !src) continue;
-        const dx = c.position.x - src.position.x;
-        const dy = c.position.y - src.position.y;
+        const srcNode = byId.get(c.id);
+        const gid = srcNode?.groupId;
+        if (!gid || !srcNode) continue;
+        const dx = c.position.x - srcNode.position.x;
+        const dy = c.position.y - srcNode.position.y;
         for (const other of state.nodes) {
           if (other.id === c.id || other.groupId !== gid) continue;
           if (expanded.some((e) => e.type === "position" && e.id === other.id))
@@ -225,21 +217,21 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           });
         }
       }
-      const all = expanded as NodeChange<JimengNode>[];
-
-      const nodes = applyNodeChanges(all, state.nodes);
-      if (selectChanges.length > 0) {
-        const lastSelected = [...selectChanges]
-          .reverse()
-          .find((c) => c.selected);
-        return { nodes, selectedNodeId: lastSelected ? lastSelected.id : null };
-      }
-      return {
-        nodes: nodes.map((n: JimengNode) => ({
-          ...n,
-          selected: n.id === state.selectedNodeId,
-        })),
-      };
+      const nodes = applyNodeChanges(expanded, state.nodes);
+      const lastSelect = [...changes]
+        .reverse()
+        .find(
+          (c): c is Extract<NodeChange<JimengNode>, { type: "select" }> =>
+            c.type === "select",
+        );
+      const selectedNodeId = lastSelect
+        ? lastSelect.selected
+          ? lastSelect.id
+          : state.selectedNodeId === lastSelect.id
+            ? null
+            : state.selectedNodeId
+        : state.selectedNodeId;
+      return { nodes, selectedNodeId };
     }),
 
   onEdgesChange: (changes) =>

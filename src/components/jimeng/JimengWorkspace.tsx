@@ -283,9 +283,10 @@ function JimengFlow() {
         edgeTypes={edgeTypes}
         defaultEdgeOptions={{ type: "jimeng" }}
         multiSelectionKeyCode="Shift"
-        /* 导航语义 (SOURCE_FACT, batch 21 提取): 空白左键拖拽不平移；
-           普通滚轮 = 平移 (free)；ctrl+滚轮/触控 pinch = 缩放；
-           中键拖拽平移 (CLONE_DECISION，源站中键行为未验证)。 */
+        /* 导航语义 (SOURCE_FACT, batch 21/55 提取): 空白左键拖拽 = 框选
+           (marquee selection, 不平移)；普通滚轮 = 平移 (free)；
+           ctrl+滚轮/触控 pinch = 缩放；中键拖拽平移 (CLONE_DECISION)。 */
+        selectionOnDrag
         panOnDrag={[1]}
         panOnScroll
         panOnScrollMode={PanOnScrollMode.Free}
