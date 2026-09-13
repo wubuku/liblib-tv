@@ -106,6 +106,8 @@ export interface JimengCanvasState {
   /** 编组 (Batch 39): ⌘G 创建编组 / ⌘⇧G 取消编组 (快捷键面板 SOURCE_FACT) */
   groupSelected: () => void;
   ungroupSelected: () => void;
+  /** 全选 (Batch 46): ⌘A */
+  selectAll: () => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
@@ -511,6 +513,12 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       nodes: state.nodes.map((n) =>
         n.groupId ? { ...n, groupId: undefined } : n,
       ),
+    })),
+
+  selectAll: () =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => ({ ...n, selected: true })),
+      selectedNodeId: null,
     })),
 
   seek: (id, fraction) =>
