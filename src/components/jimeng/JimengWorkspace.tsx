@@ -6,6 +6,7 @@ import {
   ReactFlowProvider,
   useReactFlow,
   PanOnScrollMode,
+  SelectionMode,
 } from "@xyflow/react";
 import type { NodeMouseHandler, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -287,6 +288,8 @@ function JimengFlow() {
            (marquee selection, 不平移)；普通滚轮 = 平移 (free)；
            ctrl+滚轮/触控 pinch = 缩放；中键拖拽平移 (CLONE_DECISION)。 */
         selectionOnDrag
+        selectionMode={SelectionMode.Partial}
+        elementsSelectable
         panOnDrag={[1]}
         panOnScroll
         panOnScrollMode={PanOnScrollMode.Free}

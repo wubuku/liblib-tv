@@ -45,6 +45,7 @@ def main() -> None:
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch56-marquee-1680.png")
         )
+        print(f"[diag] after drag: selected={selected}")
 
         # deselect
         page.keyboard.press("Escape")
