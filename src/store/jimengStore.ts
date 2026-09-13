@@ -51,6 +51,9 @@ export interface JimengCanvasState {
   toast: string | null;
   pushToast: (text: string) => void;
   clearToast: () => void;
+  /** 生成面板设置 (Batch 61: 持久化到 store) */
+  genModel: string;
+  setGenModel: (model: string) => void;
 
   // ───── Actions ─────
   onNodesChange: (changes: NodeChange<JimengNode>[]) => void;
@@ -250,6 +253,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   pushToast: (text) => set({ toast: text }),
 
   clearToast: () => set({ toast: null }),
+
+  genModel: "即梦 Seedance 2.0 VIP",
+
+  setGenModel: (model) => set({ genModel: model }),
 
   generateInto: (id, prompt) => {
     // mock 生成：立即进入生成中，3s 后完成填充 mock 内容 (CLONE_DECISION)

@@ -44,9 +44,10 @@ export function JimengGenPanel({
   // Batch 40/50: 提示词可输入；发送 → generateInto (mock 全流程)
   const [prompt, setPrompt] = useState("");
   const generateInto = useJimengStore((s) => s.generateInto);
-  // Batch 41: 模型下拉 (SOURCE_FACT batch 41 提取的 8 项模型)
+  // Batch 41/61: 模型下拉，选择持久化到 store
   const [modelOpen, setModelOpen] = useState(false);
-  const [model, setModel] = useState("即梦 Seedance 2.0 VIP");
+  const model = useJimengStore((s) => s.genModel);
+  const setGenModel = useJimengStore((s) => s.setGenModel);
   // Batch 42: 比例/分辨率/数量 + 参考模式 + 时长 (SOURCE_FACT batch 42 提取)
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [ratio, setRatio] = useState("16:9");
@@ -131,7 +132,7 @@ export function JimengGenPanel({
                         role="option"
                         aria-selected={model === m.name}
                         onClick={() => {
-                          setModel(m.name);
+                          setGenModel(m.name);
                           setModelOpen(false);
                         }}
                         className={`flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10 ${
