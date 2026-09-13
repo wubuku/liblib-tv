@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-018 Slice D — duplicate export suppression (stale/duplicate completion announcement suppressed)",
+  "scenes": {
+    "first": "director-animation-export-1789336626302-uswff3",
+    "duplicate": "director-animation-export-1789336626302-uswff3",
+    "missing": null,
+    "nodeCount": 2,
+    "edgeCount": 1,
+    "pastLength": 1
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

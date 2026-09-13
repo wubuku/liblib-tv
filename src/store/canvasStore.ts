@@ -2880,6 +2880,22 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       return null;
     }
 
+    // Batch 470 (VR-018 Slice D): duplicate export suppression — the same
+    // exportId resolves to the existing node instead of a second copy
+    // (stale/duplicate completion announcement suppressed).
+    const existingExportNode = canvas.nodes.find(
+      (node) =>
+        (node.data as Record<string, unknown>)
+          ?.directorAnimationExport !== undefined &&
+        (
+          (node.data as Record<string, unknown>)
+            .directorAnimationExport as DirectorAnimationExportMetadata
+        ).exportId === animation.exportId,
+    );
+    if (existingExportNode) {
+      return existingExportNode.id;
+    }
+
     const dimensions = getDirectorAnimationExportNodeDimensions(
       animation.aspectRatio,
     );
