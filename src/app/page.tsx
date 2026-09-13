@@ -857,73 +857,105 @@ export default function Home() {
       }
 
       const capturedCanvasId = activeCanvasId;
-      assetLayoutFrameRef.current = window.requestAnimationFrame(() => {
-        assetLayoutFrameRef.current = window.requestAnimationFrame(() => {
-          assetLayoutFrameRef.current = null;
-          const log = (reason: LibTVAssetLayoutLogEntry["reason"]) => {
-            window.__libtv_asset_layout_log.push({
-              operationId,
-              canvasId: capturedCanvasId,
-              status: reason === "committed" ? "committed" : "skipped",
-              reason,
-            });
-          };
+      // Batch 464 (§7.1/§7.2): drawer width animates via CSS transition —
+      // a double-rAF measurement catches a mid-transition host rect. Stabilize
+      // instead: commit once the host rect holds constant for two frames.
+      let prevRect: {
+        left: number;
+        top: number;
+        width: number;
+        height: number;
+      } | null = null;
+      let stabilizedFrames = 0;
+      const stabilize = () => {
+        assetLayoutFrameRef.current = null;
+        const log = (reason: LibTVAssetLayoutLogEntry["reason"]) => {
+          window.__libtv_asset_layout_log.push({
+            operationId,
+            canvasId: capturedCanvasId,
+            status: reason === "committed" ? "committed" : "skipped",
+            reason,
+          });
+        };
 
-          if (assetLayoutOperationRef.current !== operationId) {
-            log("operation-superseded");
-            return;
-          }
-          if (useCanvasStore.getState().activeCanvasId !== capturedCanvasId) {
-            log("canvas-changed");
-            return;
-          }
-          if (flowRef.current !== instance) {
-            log("instance-changed");
-            return;
-          }
-          if (!sameViewport(instance.getViewport(), capturedViewport)) {
-            log("viewport-changed");
-            return;
-          }
+        if (assetLayoutOperationRef.current !== operationId) {
+          log("operation-superseded");
+          return;
+        }
+        if (useCanvasStore.getState().activeCanvasId !== capturedCanvasId) {
+          log("canvas-changed");
+          return;
+        }
+        if (flowRef.current !== instance) {
+          log("instance-changed");
+          return;
+        }
+        // Batch 464: no viewport-changed guard here — the drawer transition
+        // legitimately drifts the live viewport while the host resizes, and
+        // this operation owns the recenter (computed fresh from the final
+        // host rect + the pre-drawer flow anchor).
 
-          const nextHost =
-            flowContainerRef.current?.querySelector<HTMLElement>(
-              "[data-libtv-react-flow-host]",
-            ) ?? null;
-          if (!nextHost) {
-            log("host-unavailable");
-            return;
-          }
-          const nextHostRect = nextHost.getBoundingClientRect();
-          if (
-            Math.abs(nextHostRect.left - oldHostRect.left) <= 0.5 &&
-            Math.abs(nextHostRect.top - oldHostRect.top) <= 0.5 &&
-            Math.abs(nextHostRect.width - oldHostRect.width) <= 0.5 &&
-            Math.abs(nextHostRect.height - oldHostRect.height) <= 0.5
-          ) {
-            log("host-unchanged");
-            return;
-          }
+        const nextHost =
+          flowContainerRef.current?.querySelector<HTMLElement>(
+            "[data-libtv-react-flow-host]",
+          ) ?? null;
+        if (!nextHost) {
+          log("host-unavailable");
+          return;
+        }
+        const nextHostRect = nextHost.getBoundingClientRect();
+        if (
+          Math.abs(nextHostRect.left - oldHostRect.left) <= 0.5 &&
+          Math.abs(nextHostRect.top - oldHostRect.top) <= 0.5 &&
+          Math.abs(nextHostRect.width - oldHostRect.width) <= 0.5 &&
+          Math.abs(nextHostRect.height - oldHostRect.height) <= 0.5
+        ) {
+          log("host-unchanged");
+          return;
+        }
 
-          const targetViewport = getLibTVViewportForFlowAtHostCenter(
-            flowAnchor,
-            {
-              left: nextHostRect.left,
-              top: nextHostRect.top,
-              width: nextHostRect.width,
-              height: nextHostRect.height,
-            },
-            capturedViewport.zoom,
-          );
-          if (!targetViewport) {
-            log("invalid-target");
-            return;
-          }
+        if (
+          prevRect &&
+          Math.abs(nextHostRect.left - prevRect.left) <= 0.5 &&
+          Math.abs(nextHostRect.top - prevRect.top) <= 0.5 &&
+          Math.abs(nextHostRect.width - prevRect.width) <= 0.5 &&
+          Math.abs(nextHostRect.height - prevRect.height) <= 0.5
+        ) {
+          stabilizedFrames += 1;
+        } else {
+          stabilizedFrames = 0;
+        }
+        prevRect = {
+          left: nextHostRect.left,
+          top: nextHostRect.top,
+          width: nextHostRect.width,
+          height: nextHostRect.height,
+        };
+        if (stabilizedFrames < 2) {
+          assetLayoutFrameRef.current =
+            window.requestAnimationFrame(stabilize);
+          return;
+        }
 
-          applyViewportEvent(capturedCanvasId, targetViewport);
-          log("committed");
-        });
-      });
+        const targetViewport = getLibTVViewportForFlowAtHostCenter(
+          flowAnchor,
+          {
+            left: nextHostRect.left,
+            top: nextHostRect.top,
+            width: nextHostRect.width,
+            height: nextHostRect.height,
+          },
+          capturedViewport.zoom,
+        );
+        if (!targetViewport) {
+          log("invalid-target");
+          return;
+        }
+
+        applyViewportEvent(capturedCanvasId, targetViewport);
+        log("committed");
+      };
+      assetLayoutFrameRef.current = window.requestAnimationFrame(stabilize);
     },
     [activeCanvasId, applyViewportEvent],
   );
