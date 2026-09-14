@@ -424,28 +424,15 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 470 探测 | still-broken | 第七十八次重测；VR-018 Slice D 子项（batch 470） |
 | 2026-09-14 | batch 469 探测 | still-broken | 第七十七次重测；jimeng 57 审计对照（batch 469） |
 | 2026-09-14 | batch 459 探测 | still-broken | 第六十七次重测；全量验证器扫描（batch 459） |
-
-序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
-batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
-batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
-执行一次探测、结果全部 still-broken，绝对次数以提交链为准。本表后续行
-沿用序列 B 继续计数。
-
-### 10.3 复测触发条件
-
-任意后续批次在批次开头运行
-`~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
-（仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
-`still-broken` 则继续等待），恢复后按 §8 checklist 补采。
 | 2026-09-14 | batch 461 探测 | still-broken | 第七十二次重测；§5.z5 老化重写 53/65/119/167（batch 461） |
 | 2026-09-14 | batch 474 探测 | still-broken | 第八十五次重测；VR-022 会话基线捕获（batch 474） |
 | 2026-09-14 | batch 475 探测 | still-broken | 第八十六次重测；jimeng 61 对照同步（batch 475） |
-| 2026-09-14 | batch 482 探测 | still-broken | 第九十二次重测；影响面验证器点检（batch 482） |
-| 2026-09-15 | batch 483 探测 | still-broken | 第九十三次重测；全量维护集新鲜运行（batch 483） |
-| 2026-09-15 | batch 484 探测 | still-broken | 第九十四次重测；维护集新鲜运行 + jimeng 62 确认已自行录入（batch 484） |
 | 2026-09-14 | batch 476 探测 | still-broken | 第八十七次重测；全量复扫部分 193/216（batch 476） |
 | 2026-09-15 | batch 477 探测 | still-broken | 第八十八次重测；clip 面板 disposition（batch 477） |
 | 2026-09-14 | batch 481 探测 | still-broken | 第九十一次重测；全量修复在位审计（batch 481） |
+| 2026-09-14 | batch 482 探测 | still-broken | 第九十二次重测；影响面验证器点检（batch 482） |
+| 2026-09-15 | batch 483 探测 | still-broken | 第九十三次重测；全量维护集新鲜运行（batch 483） |
+| 2026-09-15 | batch 484 探测 | still-broken | 第九十四次重测；维护集新鲜运行 + jimeng 62 确认已自行录入（batch 484） |
 | 2026-09-15 | batch 485 探测 | still-broken | 第九十五次重测；jimeng 63 对照同步（batch 485） |
 | 2026-09-15 | batch 486 探测 | still-broken | 第九十六次重测；最新验证器稳定点检（batch 486） |
 | 2026-09-15 | batch 487 探测 | still-broken | 第九十七次重测；freshness 行修复（batch 487） |
@@ -455,37 +442,30 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-15 | batch 491 探测 | still-broken | 第一百零一次重测；全量维护集运行（batch 491） |
 | 2026-09-15 | batch 492 探测 | still-broken | 第一百零二次重测；jimeng 66 对照同步（batch 492） |
 | 2026-09-15 | batch 493 探测 | still-broken | 第一百零三次重测；freshness 完整性确认（batch 493） |
-| 2026-09-15 | batch 496 探测 | still-broken | 第一百零六次重测；VR-018 Slice B 子项（batch 496） |
 | 2026-09-15 | batch 494 探测 | still-broken | 第一百零四次重测；全量维护集运行（batch 494） |
-| 2026-09-15 | batch 495 探测 | still-broken | 第一百零五次重测；jimeng 72/73 自行录入确认（batch 495） |
-| 2026-09-15 | batch 495 探测 | still-broken | 第一百零五次重测；jimeng 67 对照同步（batch 495） |
-| 2026-09-15 | batch 497 探测 | still-broken | 第一百零七次重测（batch 497） |
-| 2026-09-15 | batch 498 探测 | still-broken | 第一百零八次重测（batch 498） |
-| 2026-09-15 | batch 499 探测 | still-broken | 第一百零九次重测（batch 499） |
-| 2026-09-15 | batch 500 探测 | still-broken | 第一百次重测；VR-018 Slice B 子项（batch 500） |
-| 2026-09-15 | batch 501 探测 | still-broken | 第一百零一次重测；VR-018 Slice B 剩余（batch 501） |
-| 2026-09-15 | batch 502 探测 | still-broken | 第一百零二次重测；全量维护集（batch 502） |
-| 2026-09-15 | batch 503 探测 | still-broken | 第一百零三次重测；jimeng 64 对照同步（batch 503） |
-| 2026-09-15 | batch 504 探测 | still-broken | 第一百零四次重测；jimeng 65 对照同步（batch 504） |
-| 2026-09-15 | batch 505 探测 | still-broken | 第一百零五次重测；jimeng 66 对照同步（batch 505） |
-| 2026-09-15 | batch 506 探测 | still-broken | 第一百零六次重测；VR-022 Slice E 会话基线捕获（batch 506） |
-| 2026-09-15 | batch 507 探测 | still-broken | 第一百零七次重测；§5.z5 batch 64 稳定性五连绿（batch 507） |
-| 2026-09-15 | batch 508 探测 | still-broken | 第一百零八次重测；§5.z5 batch 64 台账精化（batch 508） |
-| 2026-09-15 | batch 509 探测 | still-broken | 第一百零九次重测；§5.z5 batch 64 稳定性确认（batch 509） |
-| 2026-09-15 | batch 510 探测 | still-broken | 第一百一十次重测；§5.z5 batch 64 五连绿确认（batch 510） |
-| 2026-09-15 | batch 511 探测 | still-broken | 第一百一十一次重测；全量修复在位审计（batch 511） |
-| 2026-09-15 | batch 512 探测 | still-broken | 第一百一十二次重测；影响面验证器点检（batch 512） |
-| 2026-09-15 | batch 478 探测 | still-broken | 第一百零八次重测；VR-018 Slice B 子项（batch 478） |
-| 2026-09-15 | batch 479 探测 | still-broken | 第一百零九次重测；batch 64 placement 收尾（batch 479） |
-| 2026-09-15 | batch 480 探测 | still-broken | 第一百次重测；batch 64 稳定性五连绿确认（batch 480） |
-| 2026-09-15 | batch 481 探测 | still-broken | 第一百零一次重测；全量修复在位审计（batch 481） |
-| 2026-09-15 | batch 482 探测 | still-broken | 第一百零二次重测；影响面验证器点检（batch 482） |
-| 2026-09-15 | batch 483 探测 | still-broken | 第一百零三次重测；全量维护集新鲜运行（batch 483） |
-| 2026-09-15 | batch 484 探测 | still-broken | 第一百零四次重测；维护集 + jimeng 62 确认自行录入（batch 484） |
-| 2026-09-15 | batch 485 探测 | still-broken | 第一百零五次重测；jimeng 63 对照同步（batch 485） |
-| 2026-09-15 | batch 486 探测 | still-broken | 第一百零六次重测；最新验证器稳定点检（batch 486） |
-| 2026-09-15 | batch 498 探测 | still-broken | 第一百零八次重测；VR-018 Slice B 子项（batch 498） |
-| 2026-09-15 | batch 499 探测 | still-broken | 第一百零九次重测；batch 478 补录（batch 499） |
-| 2026-09-15 | batch 500 探测 | still-broken | 第一百次重测；VR-018 Slice B 剩余（batch 500） |
-| 2026-09-15 | batch 493 探测 | still-broken | 第一百零三次重测；全量修复在位审计通过（batch 493） |
-| 2026-09-15 | batch 496 探测 | still-broken | 第一百零六次重测；jimeng 73 自行录入确认（batch 496） |
+| 2026-09-15 | batch 495 探测 | still-broken | 第一百零五次重测；jimeng 67 对照同步 + 72/73 自行录入确认（batch 495） |
+| 2026-09-15 | batch 496 探测 | still-broken | 第一百零六次重测；VR-018 Slice B 子项 + jimeng 73 自行录入确认（batch 496） |
+| 2026-09-15 | batch 497 探测 | still-broken | 第一百一十三次重测；jimeng 74 对照同步（batch 497；序数按提交 ed2ae39 自记补记，行曾缺失） |
+| 2026-09-14 | batch 498 探测 | still-broken | 第一百一十九次重测；10.2b 台账尾部修复——EOF 孤儿行并入去重、剔除 498–512 backfill 幻影行（batch 498） |
+
+序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
+batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
+batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
+执行一次探测、结果全部 still-broken，绝对次数以提交链为准。本表后续行
+沿用序列 B 继续计数。
+
+2026-09-14 台账修复（batch 498）：文件尾曾堆积一段追加在 §10.3 之后的孤儿行
+（batch 461–512 区间，含重复副本与计数冲突），已并入上表去重。其中
+batch 498–512 的行来自 backfill 预登记提交（0eb82d6、aab2888），提交链中
+不存在对应循环批次提交，全部剔除；batch 497 的序数按提交 ed2ae39 自记的
+113th 补记（该提交只改了 jimeng README，台账行曾缺失）。114th–118th 在
+台账与提交链中均无痕迹，按心跳指令流计数保留序数空缺，119th 锚定于
+batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期标注误差，
+不再回填。
+
+### 10.3 复测触发条件
+
+任意后续批次在批次开头运行
+`~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
+（仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
+`still-broken` 则继续等待），恢复后按 §8 checklist 补采。
