@@ -38,7 +38,7 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[210] flex items-center justify-center">
       <div
-        className="absolute inset-0 bg-black/50"
+        className="absolute inset-0 bg-black/55"
         onClick={onClose}
         aria-hidden
       />
