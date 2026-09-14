@@ -102,6 +102,16 @@ export const LIBTV_COMMAND_FEEDBACK_CATALOG: readonly LibTVCommandSurface[] = [
     commands: ["agent-submit", "attachment-open", "skill-open"],
     profile: "REQUEST_DRAFT",
   },
+  // Batch 504 (VR-018 catalog completeness): the project menu's local
+  // status line joins the inventory; 全部项目 navigates and presents no
+  // command feedback.
+  {
+    surfaceId: "project-menu",
+    component: "TopNavBar.ProjectMenu",
+    feedbackKind: "status-line",
+    commands: ["project-open", "project-create", "project-delete", "project-list (navigates)"],
+    profile: "INLINE_SCALAR",
+  },
 ];
 
 // §9.2: a no-op must never be presented as success — inert is its own

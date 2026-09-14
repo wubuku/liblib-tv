@@ -1,0 +1,25 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-018 catalog completeness — project menu status line carries explicit disposition tones; nav item stays silent",
+  "scenes": {
+    "project_home_diagnostic": {
+      "text": "本地原型：回到主页未接入",
+      "tone": "diagnostic"
+    },
+    "project_create_diagnostic": {
+      "text": "本地原型：创建新项目未接入",
+      "tone": "diagnostic"
+    },
+    "project_list_silent_nav": {
+      "menuVisible": false,
+      "statusElement": false,
+      "path": "/project"
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

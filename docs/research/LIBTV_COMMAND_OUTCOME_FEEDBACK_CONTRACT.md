@@ -587,6 +587,12 @@ Verifier ID: `LIBTV-VR-018`。
 > （Agent 的 async run/progress 仍归 async 合同岛）。
 > 清除语义：输入/换一批/Skill 选择清空为 inert 空行（neutral 常驻
 > DOM，与既有两 surface 的恒真对象模式一致）。
+>
+> Batch 504 catalog 收尾一致性：§2.2 清单精神下最后一个呈现命令结果的
+> 常规 surface——ProjectMenu 状态行——同样 disposition 化
+> （prototype-unavailable 项 → diagnostic；全部项目 为导航项静默，
+> 不产生反馈）。catalog 增补 project-menu。至此 catalog 内全部
+> status-line surface 均带显式 disposition tone。
 
 ### Slice C — Node feedback ownership
 

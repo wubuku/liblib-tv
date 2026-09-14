@@ -221,7 +221,13 @@ export function TopNavBar() {
 // 四项在 clone 中均为本地 status（无路由/项目服务）。
 function ProjectMenu() {
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState("");
+  // Batch 504 (VR-018 catalog completeness): local status line carries an
+  // explicit disposition tone; prototype-unavailable items project
+  // diagnostic while the navigating item presents no feedback.
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
   const router = useRouter();
   const menuRef = useRef<HTMLDivElement>(null);
   const items = ["回到主页", "全部项目", "创建新项目", "删除项目"];
@@ -231,7 +237,7 @@ function ProjectMenu() {
     const handleMouseDown = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setOpen(false);
-        setStatus("");
+        setStatus({ text: "", tone: "neutral" });
       }
     };
     document.addEventListener("mousedown", handleMouseDown);
@@ -270,7 +276,12 @@ function ProjectMenu() {
                     router.push("/project");
                     return;
                   }
-                  setStatus(`本地原型：${item}未接入`);
+                  setStatus(
+                    formatLibTVCommandStatus(
+                      projectLibTVCommandFeedback("rejected"),
+                      `本地原型：${item}未接入`,
+                    ),
+                  );
                 }}
                 className="flex h-11 w-full items-center rounded-lg px-2.5 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]"
               >
@@ -278,7 +289,21 @@ function ProjectMenu() {
               </button>
             </div>
           ))}
-          {status && <p data-project-menu-status className="px-2.5 pb-1 pt-1 text-[10px] leading-4 text-[#75d7e8]">{status}</p>}
+          {status && (
+            <p
+              data-project-menu-status
+              data-status-tone={status.tone}
+              className={`px-2.5 pb-1 pt-1 text-[10px] leading-4 ${
+                status.tone === "diagnostic"
+                  ? "text-[#ff9c8e]"
+                  : status.tone === "positive"
+                    ? "text-[#8fe8b4]"
+                    : "text-[#75d7e8]"
+              }`}
+            >
+              {status.text}
+            </p>
+          )}
         </div>
       )}
     </div>
