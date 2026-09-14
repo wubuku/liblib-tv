@@ -496,6 +496,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 468 | VR-018 Slice B 子项：AddNodePanel 状态 disposition 化 | [`liblib-canvas-batch468-2026-09-14/`](liblib-canvas-batch468-2026-09-14/) |
 
+| 480 | batch 64 稳定性五连绿确认 + §5.z5 精化 | [`liblib-canvas-batch480-2026-09-14/`](liblib-canvas-batch480-2026-09-14/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |

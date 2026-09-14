@@ -417,6 +417,8 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 468 探测 | still-broken | 第七十六次重测；VR-018 Slice B 子项（batch 468） |
 | 2026-09-14 | batch 471 探测 | still-broken | 第七十九次重测；jimeng 58 对照同步（batch 471） |
 | 2026-09-14 | batch 472 探测 | still-broken | 第八十次重测；jimeng 59 对照同步（batch 472） |
+| 2026-09-14 | batch 480 探测 | still-broken | 第九十次重测；batch 64 稳定性五连绿确认（batch 480） |
+| 2026-09-14 | batch 479 探测 | still-broken | 第八十九次重测；jimeng 57 同步收尾（batch 479） |
 | 2026-09-14 | batch 478 探测 | still-broken | 第八十八次重测；最新验证器稳定点检（batch 478） |
 | 2026-09-14 | batch 473 探测 | still-broken | 第八十一次重测；VR-018 Slice C 合规审计（batch 473） |
 | 2026-09-14 | batch 470 探测 | still-broken | 第七十八次重测；VR-018 Slice D 子项（batch 470） |

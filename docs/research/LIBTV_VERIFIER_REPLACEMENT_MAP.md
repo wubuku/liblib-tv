@@ -595,12 +595,11 @@ Batch 466 精化：live-frame 的 ownership 标注改为翻转后值（bootstrap
 out-click 无效已定位为真实竞态——连续动画 setViewport 的两个 move-end
 交错提交，旧命令端点覆盖新值；已按 viewport 合同 §6.4 修复（onMoveEnd
 提交时读取当前 live viewport，最新命令恒胜出，batch 463），三连跑全绿。
-64 再老化点已精化（batch 464 专项调研）：toolbar-toggle 打开抽屉后
-recenter 被「viewport-changed」守卫跳过（抽屉 CSS 过渡期间 live
-viewport 漂移），随后 move-end 自愈把补偿落到位（centerError 收敛
-0,0、viewport=-160 实测）——strict 即时断言与过渡期时序冲突。该
-验证器流程与四代 viewport 演进深度交织，需按现行合同整体重写而非
-补丁；重写前维持 AGED_GATE（现行行为经手测确认正确）。
+64 再老化点已精化并回绿（batch 464/480）：抽屉过渡期的 recenter 由
+布局动作的 viewport-changed 守卫跳过后，可经 move-end 自愈把补偿落
+到位（§6.4 live-viewport 提交）；连续五次运行全绿，抖动窗已过。
+（batch 463 修复曾因工作区还原操作被误回退，已重新应用并三连跑
+确认。）
 
 ## §5.z3 Batch 335/338 全量清扫再确认（2026-09-11）
 
