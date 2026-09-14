@@ -20,6 +20,10 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useUIStore } from "@/store/uiStore";
+import {
+  formatLibTVCommandStatus,
+  projectLibTVCommandFeedback,
+} from "@/lib/libtvCommandFeedback";
 import { cn } from "@/lib/utils";
 
 interface Skill {
@@ -183,7 +187,13 @@ export function AgentDrawer() {
   const [prompt, setPrompt] = useState("");
   const [showNotification, setShowNotification] = useState(true);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
-  const [status, setStatus] = useState("");
+  // Batch 501 (VR-018 Slice B): local status line carries an explicit
+  // disposition tone; submit accepts at the local preview boundary while
+  // unavailable affordances project diagnostics.
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
   const [openMenu, setOpenMenu] = useState<"model" | "mode" | null>(null);
   const [activeModelTab, setActiveModelTab] = useState<AgentModelKind>("image");
   const [selectedModelIds, setSelectedModelIds] = useState<string[]>([]);
@@ -195,12 +205,17 @@ export function AgentDrawer() {
   const handleSkillSelect = (skill: Skill) => {
     setSelectedSkillId(skill.id);
     setPrompt(skill.title);
-    setStatus("");
+    setStatus({ text: "", tone: "neutral" });
   };
 
   const handleSubmit = () => {
     if (!prompt.trim()) return;
-    setStatus("本地预览已提交，未连接 Agent 服务");
+    setStatus(
+      formatLibTVCommandStatus(
+        projectLibTVCommandFeedback("accepted"),
+        "本地预览已提交，未连接 Agent 服务",
+      ),
+    );
   };
 
   const toggleModel = (modelId: string) => {
@@ -307,7 +322,7 @@ export function AgentDrawer() {
               onClick={() => {
                 setSkillBatch((value) => value + 1);
                 setSelectedSkillId(null);
-                setStatus("");
+                setStatus({ text: "", tone: "neutral" });
               }}
               className="flex shrink-0 items-center gap-1 rounded-md px-1.5 py-1 text-[10px] text-[#888] hover:bg-white/[0.07] hover:text-white"
             >
@@ -468,19 +483,40 @@ export function AgentDrawer() {
             value={prompt}
             onChange={(event) => {
               setPrompt(event.target.value);
-              setStatus("");
+              setStatus({ text: "", tone: "neutral" });
             }}
             placeholder="开始你的创作，或者 @ 引用工作流/节点/资源"
             className="h-16 w-full resize-none bg-transparent px-1 text-xs leading-5 outline-none placeholder:text-[#666]"
           />
-          {status && <p data-agent-status className="px-1 pb-1 text-[10px] text-[#75d7e8]">{status}</p>}
+          {status && (
+            <p
+              data-agent-status
+              data-status-tone={status.tone}
+              className={`px-1 pb-1 text-[10px] leading-4 ${
+                status.tone === "diagnostic"
+                  ? "text-[#ff9c8e]"
+                  : status.tone === "positive"
+                    ? "text-[#8fe8b4]"
+                    : "text-[#75d7e8]"
+              }`}
+            >
+              {status.text}
+            </p>
+          )}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-0.5 text-[#888]">
               <button
                 type="button"
                 title="添加附件"
                 aria-label="添加附件"
-                onClick={() => setStatus("本地预览：附件上传未接入")}
+                onClick={() =>
+                  setStatus(
+                    formatLibTVCommandStatus(
+                      projectLibTVCommandFeedback("rejected"),
+                      "本地预览：附件上传未接入",
+                    ),
+                  )
+                }
                 className="flex size-7 items-center justify-center rounded-md hover:bg-white/[0.08] hover:text-white"
               >
                 <Plus size={15} />
@@ -502,7 +538,14 @@ export function AgentDrawer() {
                 type="button"
                 title="Skill"
                 aria-label="Skill"
-                onClick={() => setStatus("本地预览：Skill 面板未接入")}
+                onClick={() =>
+                  setStatus(
+                    formatLibTVCommandStatus(
+                      projectLibTVCommandFeedback("rejected"),
+                      "本地预览：Skill 面板未接入",
+                    ),
+                  )
+                }
                 className="flex size-7 items-center justify-center rounded-md hover:bg-white/[0.08] hover:text-white"
               >
                 <Bookmark size={14} />

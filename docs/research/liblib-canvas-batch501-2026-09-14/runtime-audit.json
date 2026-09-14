@@ -1,0 +1,36 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-018 Slice B remaining — Share overlay + Agent drawer status lines carry explicit disposition tones",
+  "scenes": {
+    "share_publish_diagnostic": {
+      "text": "本地原型：发布服务未连接",
+      "tone": "diagnostic"
+    },
+    "share_link_diagnostic": {
+      "text": "本地原型：分享链接服务未连接",
+      "tone": "diagnostic"
+    },
+    "agent_attachment_diagnostic": {
+      "text": "本地预览：附件上传未接入",
+      "tone": "diagnostic"
+    },
+    "agent_skill_diagnostic": {
+      "text": "本地预览：Skill 面板未接入",
+      "tone": "diagnostic"
+    },
+    "agent_typing_clears": {
+      "text": "",
+      "tone": "neutral"
+    },
+    "agent_submit_positive": {
+      "text": "本地预览已提交，未连接 Agent 服务",
+      "tone": "positive"
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

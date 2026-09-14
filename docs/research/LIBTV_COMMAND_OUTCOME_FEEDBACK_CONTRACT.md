@@ -576,6 +576,18 @@ Verifier ID: `LIBTV-VR-018`。
 - declare clear/edit/close behavior；
 - preserve source geometry and prototype copy boundary。
 
+> Batch 501 完成注记（Slice B 收口）：四个 surface 全部 disposition 化——
+> AddNodePanel（batch 467/493）、VideoClipEditPanel（batch 477）此前已迁；
+> 本批迁 Share overlay（TopNavBar.SharePanel，publish/link 均
+> prototype-unavailable → rejected → diagnostic）与 AgentDrawer
+> （submit 为本地预览边界受理 → accepted → positive；附件/Skill 未接入
+> → rejected → diagnostic）。tone 经 `formatLibTVCommandStatus` 从
+> `projectLibTVCommandFeedback` 投影，copy 与几何保持源站/原边界不变；
+> catalog 增补 share-overlay 与 agent-drawer-status 两个 surface
+> （Agent 的 async run/progress 仍归 async 合同岛）。
+> 清除语义：输入/换一批/Skill 选择清空为 inert 空行（neutral 常驻
+> DOM，与既有两 surface 的恒真对象模式一致）。
+
 ### Slice C — Node feedback ownership
 
 - bind timer/retry to canvas + node + command attempt；

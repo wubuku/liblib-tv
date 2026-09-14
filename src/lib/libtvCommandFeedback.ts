@@ -84,6 +84,24 @@ export const LIBTV_COMMAND_FEEDBACK_CATALOG: readonly LibTVCommandSurface[] = [
     commands: ["annotate-save (evidence-gated disabled)"],
     profile: "BITMAP_EDITOR",
   },
+  // Batch 501 (VR-018 Slice B remaining): the Share overlay and the Agent
+  // drawer's local status line join the inventory. Agent async run/progress
+  // stays under the async-contract island; only the local status line is
+  // catalogued here.
+  {
+    surfaceId: "share-overlay",
+    component: "TopNavBar.SharePanel",
+    feedbackKind: "status-line",
+    commands: ["share-publish", "share-link"],
+    profile: "INLINE_SCALAR",
+  },
+  {
+    surfaceId: "agent-drawer-status",
+    component: "AgentDrawer",
+    feedbackKind: "status-line",
+    commands: ["agent-submit", "attachment-open", "skill-open"],
+    profile: "REQUEST_DRAFT",
+  },
 ];
 
 // §9.2: a no-op must never be presented as success — inert is its own

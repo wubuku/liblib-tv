@@ -10,6 +10,10 @@ import { LayoutPanelGlyph, WorkflowGlyph } from "@/components/ChromeIcons";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
 import { useUIStore } from "@/store/uiStore";
 import { useCanvasStore } from "@/store/canvasStore";
+import {
+  formatLibTVCommandStatus,
+  projectLibTVCommandFeedback,
+} from "@/lib/libtvCommandFeedback";
 import { cn } from "@/lib/utils";
 
 function LibTvMark() {
@@ -21,7 +25,12 @@ function LibTvMark() {
 }
 
 function SharePanel() {
-  const [status, setStatus] = useState("");
+  // Batch 501 (VR-018 Slice B): share commands are prototype-unavailable —
+  // honest local disclosure, projected as diagnostic; no remote success copy.
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
 
   return (
     <div data-liblib-overlay="share" className="pointer-events-auto absolute right-[164px] top-10 min-h-[166px] w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#262626] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.48)]">
@@ -29,7 +38,14 @@ function SharePanel() {
       <button
         type="button"
         data-share-action="publish"
-        onClick={() => setStatus("本地原型：发布服务未连接")}
+        onClick={() =>
+          setStatus(
+            formatLibTVCommandStatus(
+              projectLibTVCommandFeedback("rejected"),
+              "本地原型：发布服务未连接",
+            ),
+          )
+        }
         className="flex min-h-[62px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]"
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
@@ -44,7 +60,14 @@ function SharePanel() {
       <button
         type="button"
         data-share-action="link"
-        onClick={() => setStatus("本地原型：分享链接服务未连接")}
+        onClick={() =>
+          setStatus(
+            formatLibTVCommandStatus(
+              projectLibTVCommandFeedback("rejected"),
+              "本地原型：分享链接服务未连接",
+            ),
+          )
+        }
         className="flex min-h-[62px] w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-white/[0.06]"
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#343434] text-[#f7f7f7]">
@@ -56,7 +79,21 @@ function SharePanel() {
         </span>
         <ChevronRight size={16} className="text-[#737373]" />
       </button>
-      {status && <p data-share-status className="px-3 pb-1 text-[10px] text-[#75d7e8]">{status}</p>}
+      {status && (
+        <p
+          data-share-status
+          data-status-tone={status.tone}
+          className={`px-3 pb-1 text-[10px] leading-4 ${
+            status.tone === "diagnostic"
+              ? "text-[#ff9c8e]"
+              : status.tone === "positive"
+                ? "text-[#8fe8b4]"
+                : "text-[#75d7e8]"
+          }`}
+        >
+          {status.text}
+        </p>
+      )}
     </div>
   );
 }
