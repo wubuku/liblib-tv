@@ -488,3 +488,4 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-15 | batch 499 探测 | still-broken | 第一百零九次重测；batch 478 补录（batch 499） |
 | 2026-09-15 | batch 500 探测 | still-broken | 第一百次重测；VR-018 Slice B 剩余（batch 500） |
 | 2026-09-15 | batch 493 探测 | still-broken | 第一百零三次重测；全量修复在位审计通过（batch 493） |
+| 2026-09-15 | batch 496 探测 | still-broken | 第一百零六次重测；jimeng 73 自行录入确认（batch 496） |
