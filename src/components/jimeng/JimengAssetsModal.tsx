@@ -20,6 +20,9 @@ import { X } from "lucide-react";
  */
 const FILTERS = ["图片", "视频", "音频", "文档"] as const;
 
+// Batch 75 (SOURCE_FACT 75-assets-deep.json): 空态文案跟随筛选切换
+// (图片/视频/音频 实证「暂无X素材」；文档 未捕获，按同模式外推)；
+// 主体 tab 固定「暂无主体素材」。
 const EMPTY_TEXT: Record<string, string> = {
   资产: "暂无图片素材",
   主体: "暂无主体素材",
@@ -143,7 +146,7 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-[14px] text-white/35" data-testid="assets-empty">
-              {EMPTY_TEXT[tab]}
+              {tab === "资产" ? `暂无${filter}素材` : EMPTY_TEXT[tab]}
             </span>
           </div>
         </div>
