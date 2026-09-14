@@ -241,12 +241,16 @@
   （commit ddfbb9e，batch 465 对照批）。batch 57 审计 + Escape 修复
   条目同法补录（commits b23f4dd / 9cde67f，batch 469 对照批）。
   batch 59 测试条目同法补录（commit 6c23ef9，batch 472 对照批）。
+  batch 66 条目同法补录（commit b6df166 的前置提交，batch 492 对照批）。
   batch 61 加固/63/64/65 条目同法补录（commits 3089788 / 11dc070 /
   0ae72ca / 1b98d79，batch 488 对照批）。
 - 复刻/加固 (batch 61): workspace Escape 分支统一调用全部退出动作
   （repaint/edit/infer/framePicker/trim）；多选重试等待 800ms 加固。
 - 测试 (batch 59, 无新行为): 订阅滑杆刻度标签验证——6.2K/12.3K/
   18.5K/27.7K 刻度与 27690 端点值断言（batch 28/30/43 合同的复核）。
+- SOURCE_FACT (batch 66, 保存态门控下载): 跨截图证据——顶栏显示 已保存
+  时下载可用，保存中… 时下载禁用（白/20 样式）且隐藏提示
+  导出前请保存画布；统一规则覆盖单选工具条/多选工具条/右键菜单。
 - SOURCE_FACT (batch 62, 截取帧 首帧/尾帧 直出图片节点): 源站选中视频
   节点 → 工具条 截取帧 → 首帧 后不打开帧选择器，而是直接异步产出
   带画面的 image 节点（截图 62-frame-menu.png / 62-first-frame-result.png /
