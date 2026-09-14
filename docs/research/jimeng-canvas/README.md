@@ -508,6 +508,12 @@
   文本即 时间/筛选) (78-skeleton-hover.json)。复刻: 骨架网格参数对齐
   (630px 右对齐 grid、aspect-square、gap 2px)、图标钮 group-hover
   tooltip 药丸 (此前仅原生 title)。
+- Batch 86 (观察, 只读验证): 卡片 Seek 滑杆无 thumb (纯 track+fill
+  药丸，拖拽中亦无)，拖到中点时间正确变 00:03/00:06 (与我方 scrub
+  一致)；全屏播放器静音钮语义 Unmute video ↔ Mute video toggle
+  (与我方 取消静音/静音 一致，aria 文案差异为 CLONE_DECISION 中文
+  界面)。退出全屏后卡片控制条未发现 静音 aria (源站卡片控件再度
+  变化，留档)。证据: 86-seek-hover/drag.png、86-thumb-mute.json。
 - Batch 79 (遮罩实证): 资产库模态背景遮罩采样 — 画布 rgb(13,13,13) 处
   开模态后四点均 (6,6,6)，反推 alpha ≈ 0.54，复刻由 bg-black/50 修正为
   bg-black/55。

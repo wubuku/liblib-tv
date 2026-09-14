@@ -1,0 +1,82 @@
+{
+ "thumb": [
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    940,
+    259,
+    16,
+    16
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  },
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    941,
+    260,
+    13,
+    13
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  },
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    941,
+    260,
+    13,
+    13
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  },
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    878,
+    570,
+    16,
+    16
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  },
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    880,
+    571,
+    12,
+    13
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  },
+  {
+   "cls": "[object SVGAnimatedString]",
+   "rect": [
+    922,
+    570,
+    16,
+    16
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none"
+  }
+ ],
+ "time_after_drag": "00:03/00:06",
+ "mute_toggle": {
+  "before": "Unmute video",
+  "after": "Mute video"
+ },
+ "card_mute_after_fs_unmute": null
+}
