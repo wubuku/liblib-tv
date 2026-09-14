@@ -498,6 +498,8 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 
 | 480 | batch 64 稳定性五连绿确认 + §5.z5 精化 | [`liblib-canvas-batch480-2026-09-14/`](liblib-canvas-batch480-2026-09-14/) |
 
+| 488 | jimeng 61–65 对照同步 + §7 补录 | [`liblib-canvas-batch488-2026-09-15/`](liblib-canvas-batch488-2026-09-15/) |
+
 ## Planned Work
 
 | Batch | Focus | Entry |

@@ -241,6 +241,10 @@
   （commit ddfbb9e，batch 465 对照批）。batch 57 审计 + Escape 修复
   条目同法补录（commits b23f4dd / 9cde67f，batch 469 对照批）。
   batch 59 测试条目同法补录（commit 6c23ef9，batch 472 对照批）。
+  batch 61 加固/63/64/65 条目同法补录（commits 3089788 / 11dc070 /
+  0ae72ca / 1b98d79，batch 488 对照批）。
+- 复刻/加固 (batch 61): workspace Escape 分支统一调用全部退出动作
+  （repaint/edit/infer/framePicker/trim）；多选重试等待 800ms 加固。
 - 测试 (batch 59, 无新行为): 订阅滑杆刻度标签验证——6.2K/12.3K/
   18.5K/27.7K 刻度与 27690 端点值断言（batch 28/30/43 合同的复核）。
 - SOURCE_FACT (batch 62, 截取帧 首帧/尾帧 直出图片节点): 源站选中视频
@@ -251,6 +255,19 @@
   + 数字后缀）。复刻: captureFrame(id, 'first'|'last') 同步产出 image
   节点（poster=视频海报、标题「<源标题> 首帧/尾帧」、右侧 80 间距起
   逐节点右移避让、lineage 连线、入撤销栈）；自定义 仍走帧选择器。
+- SOURCE_FACT (batch 63, 布局菜单实项): 布局 dropdown 实际项为
+  宫格布局 / 智能布局（batch 62 的 auto-arrange 猜测被源站证据取代；
+  算法 CLONE_DECISION: grid ceil(√n) 列 / 行）。编组在源站创建真实
+  编组卡片（「编组 N」标题 + 面板 + 白边框 + 角点手柄，取消选中后
+  可见）；编组选中工具条切换为 解除编组 ｜ 布局∨ ｜ 背景色 ｜
+  下载(disabled)。复刻: JimengGroupFrames 视觉层叠加 groupId 模型
+  （batch 39 架构保留）+ 工具条变体切换 + groupNames 入 store。
+- SOURCE_FACT (batch 64, 多选右键菜单变体): ≥2 选中时右键菜单切换为
+  多选变体（含 解除编组/编组 等多选项）。复刻: JimengContextMenu
+  变体分支。
+- 测试 (batch 65, 语义锁定): 编组交互语义锁定——成员单选、间隙拖拽
+  惰性、编组 N 编号连续性（member solo-select / inert gap drag /
+  编组 N numbering）。
 - SOURCE_FACT (batch 62, 多选组合工具条): ≥2 节点选中时，选区包围盒
   上方 36px 居中出现组合工具条——rgb(32,32,32) r12 h40（与单选工具条
   同族载体），内容「N 节点」标签 rgba(255,255,255,0.5) 13px ｜分隔线｜
