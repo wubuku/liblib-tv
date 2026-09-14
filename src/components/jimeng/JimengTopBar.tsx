@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { CircleHelp, Search } from "lucide-react";
+import { History, Search } from "lucide-react";
 
 import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
 import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
 import { JimengHistoryMenu } from "@/components/jimeng/JimengHistoryMenu";
+import { JimengSearchOverlay } from "@/components/jimeng/JimengSearchOverlay";
 import { JimengMemberModal } from "@/components/jimeng/JimengMemberModal";
 import { JimengShortcutsPanel } from "@/components/jimeng/JimengShortcutsPanel";
 import { useJimengStore } from "@/store/jimengStore";
@@ -32,6 +33,7 @@ export function JimengTopBar() {
   const renameProject = useJimengStore((s) => s.renameProject);
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
   // 单击项目名 = 行内重命名 (SOURCE_FACT batch 29)
@@ -88,25 +90,39 @@ export function JimengTopBar() {
           <div className="relative">
             <button
               type="button"
-              aria-label="生成历史"
-              onClick={() => setHistoryOpen((v) => !v)}
-              className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+              aria-label="搜索"
+              data-testid="topbar-search"
+              onClick={() => {
+                setHistoryOpen(false);
+                setSearchOpen((v) => !v);
+              }}
+              className={`flex size-7 items-center justify-center rounded-md ${
+                searchOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+              }`}
             >
               <Search size={16} />
             </button>
-            {historyOpen ? (
-              <JimengHistoryMenu onClose={() => setHistoryOpen(false)} />
+            {searchOpen ? (
+              <JimengSearchOverlay onClose={() => setSearchOpen(false)} />
             ) : null}
           </div>
           <div className="relative">
             <button
               type="button"
-              aria-label="帮助"
-              onClick={() => setHelpOpen((v) => !v)}
-              className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+              aria-label="生成历史"
+              onClick={() => {
+                setSearchOpen(false);
+                setHistoryOpen((v) => !v);
+              }}
+              className={`flex size-7 items-center justify-center rounded-md ${
+                historyOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+              }`}
             >
-              <CircleHelp size={16} />
+              <History size={16} />
             </button>
+            {historyOpen ? (
+              <JimengHistoryMenu onClose={() => setHistoryOpen(false)} />
+            ) : null}
           </div>
         </div>
 
@@ -124,11 +140,13 @@ export function JimengTopBar() {
             </button>
           </div>
           {/* 头像 (mock)；点击展开与帮助菜单同构的账号菜单 (SOURCE_FACT batch 22)。
-              单一菜单实例锚定在头像下方，帮助/? 与头像共用 helpOpen。 */}
+              Batch 96: 源站该钮 aria 为 用户菜单，且展开的是个人资料弹层
+              (西卡文案馆/积分详情，对齐留待后续批次)；帮助/? 钮已从源站
+              顶栏移除，故本栏不再渲染 帮助。 */}
           <div className="relative ml-0.5">
             <button
               type="button"
-              aria-label="账号菜单"
+              aria-label="用户菜单"
               onClick={() => setHelpOpen((v) => !v)}
               className="flex size-7 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#FF8A7A] to-[#E4489B] text-[11px] text-white"
             >

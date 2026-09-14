@@ -30,7 +30,8 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2200)
 
-        page.locator('button[aria-label="帮助"]').click()
+        # batch 96: 帮助 钮已移除，快捷键入口改走 头像(用户菜单) 共用实例
+        page.locator('button[aria-label="用户菜单"]').click()
         page.wait_for_timeout(500)
         page.locator('[role="menuitem"]', has_text="快捷键").click()
         page.wait_for_timeout(700)

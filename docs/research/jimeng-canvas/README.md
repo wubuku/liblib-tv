@@ -495,6 +495,14 @@
   / 94-zoom-menu.json)，早期记录的 放大视图⌘+/缩小视图⌘− 菜单项已
   从源站菜单移除 (⌘± 快捷键仍在)。复刻: JimengZoomMenu 移除这两项
   (batch 7 verifier 同步)，源站画布缩放已还原 100%。
+- Batch 96 (顶栏演进对齐): 源站顶栏现为 [搜索(canvas-search)][生成历史
+  (canvas-history)]｜[Credits 基础会员][用户菜单]——帮助/? 钮已移除，
+  用户菜单 展开个人资料弹层 (西卡文案馆/基础会员/到期 2026.10.12/
+  积分详情 725，96-user-menu.png)。复刻: 顶栏 pill 改为 搜索+生成历史
+  双钮 (History 图标)、帮助 钮移除 (JimengHelpMenu 暂留组件文件，
+  由头像共用实例继续承载)、账号菜单 aria 改 用户菜单、新增最小
+  JimengSearchOverlay (输入框+暂无搜索结果，内容 BLOCKED_BY_FIXTURE——
+  33-search-overlay.png 实为生成历史面板，搜索覆盖层从未被捕获)。
 - Batch 93: 显示连线开关 + 验证器 (经 + 手柄插视频建边 → 隐/显断言)。
 - SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
   源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
