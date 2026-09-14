@@ -37,6 +37,7 @@ export function JimengVideoPreview({
   const muted = data.muted !== false;
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
+  const seek = useJimengStore((s) => s.seek);
 
   // Batch 80 (SOURCE_FACT): 进入全屏即自动静音播放，退出暂停
   // eslint-disable-next-line react-hooks/exhaustive-deps -- 仅进入/退出时执行
@@ -71,6 +72,31 @@ export function JimengVideoPreview({
           className="absolute inset-0 h-full w-full object-contain"
         />
       ) : null}
+
+      {/* Batch 85 (SOURCE_FACT): 全宽 5px 进度条 (12px 命中区)，可点击 seek */}
+      <div
+        className="absolute inset-x-0 bottom-0 z-[1] flex h-3 cursor-pointer items-center"
+        data-testid="preview-progress"
+        onPointerDown={(e) => {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+          const r = e.currentTarget.getBoundingClientRect();
+          seek(nodeId, (e.clientX - r.left) / r.width);
+        }}
+        onPointerMove={(e) => {
+          if (!(e.buttons & 1)) return;
+          const r = e.currentTarget.getBoundingClientRect();
+          seek(nodeId, (e.clientX - r.left) / r.width);
+        }}
+      >
+        <div className="h-[5px] w-full rounded-[25px] bg-white/[0.16]">
+          <div
+            className="h-full rounded-[25px] bg-white/[0.96]"
+            style={{
+              width: `${Math.min(100, ((data.currentTime ?? 0) / (data.duration || 1)) * 100)}%`,
+            }}
+          />
+        </div>
+      </div>
 
       {/* 底部控制条 36px (SOURCE_FACT batch 80): 左 Play + 时间分列，
           右 Unmute + 退出全屏 */}

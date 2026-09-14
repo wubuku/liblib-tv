@@ -517,6 +517,12 @@
   右下 丢弃修改 (灰底 white/10)/保留并同步 (白底黑字主按钮)，遮罩
   black/55。复刻: JimengOfflineDialog + store offlineDialogOpen；
   触发经 dev window hook (复刻侧无真实离线态)；两按钮均 mock toast
+- SOURCE_FACT (batch 85, 进度条演进): 视频卡片进度条由 2px 演进为
+  5px 药丸 (track white/16% r25、fill white/96%，全卡宽)；全屏播放
+  器底部有全宽 5px 可 seek 进度条 (12px 命中区) (85-seek.json)。
+  复刻: 卡片进度条参数对齐；JimengVideoPreview 新增可 seek 进度条
+  (此前缺失)。
+- Batch 85: 进度条对齐 + 验证器 (卡片样式断言 + 预览 50% seek)。
   反馈后关闭；Escape 统一分支关闭。
 - SOURCE_FACT (batch 80, 全屏播放器): 点全屏进入浏览器 Fullscreen API
   (aria Exit browser full screen)，覆盖层 bg rgba(0,0,0,0.6) 透出画布，

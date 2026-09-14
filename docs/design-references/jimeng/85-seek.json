@@ -1,0 +1,77 @@
+{
+ "card_seek": [
+  {
+   "cls": "relative grow cursor-pointer overflow-hidden data-",
+   "rect": [
+    391,
+    602,
+    569,
+    5
+   ],
+   "bg": "rgba(255, 255, 255, 0.16)",
+   "radius": "25px",
+   "aria": null,
+   "role": null
+  },
+  {
+   "cls": "absolute h-full bg-canvas-video-node-player-progre",
+   "rect": [
+    391,
+    602,
+    138,
+    5
+   ],
+   "bg": "rgba(255, 255, 255, 0.96)",
+   "radius": "0px",
+   "aria": null,
+   "role": null
+  }
+ ],
+ "fs_progress": [
+  {
+   "tag": "SPAN",
+   "role": null,
+   "cls": "flex touch-none select-none cursor-point",
+   "rect": [
+    0,
+    924,
+    1920,
+    12
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "ariaMax": null,
+   "ariaNow": null
+  },
+  {
+   "tag": "SPAN",
+   "role": null,
+   "cls": "relative grow cursor-pointer overflow-hi",
+   "rect": [
+    0,
+    931,
+    1920,
+    5
+   ],
+   "bg": "rgba(255, 255, 255, 0.16)",
+   "radius": "25px",
+   "ariaMax": null,
+   "ariaNow": null
+  },
+  {
+   "tag": "SPAN",
+   "role": null,
+   "cls": "absolute h-full bg-canvas-video-node-pla",
+   "rect": [
+    0,
+    931,
+    997,
+    5
+   ],
+   "bg": "rgba(255, 255, 255, 0.96)",
+   "radius": "0px",
+   "ariaMax": null,
+   "ariaNow": null
+  }
+ ]
+}

@@ -175,9 +175,11 @@ export function JimengVideoMediaCard({
               seek(id, (e.clientX - r.left) / r.width);
             }}
           >
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-white/25">
+            {/* Batch 85 (SOURCE_FACT 85-seek.json): track 5px white/16 r25,
+                fill white/96 */}
+            <div className="absolute inset-x-0 bottom-0 h-[5px] rounded-[25px] bg-white/[0.16]">
               <div
-                className="h-full bg-white/90"
+                className="h-full rounded-[25px] bg-white/[0.96]"
                 style={{
                   width: `${Math.min(100, ((d.currentTime ?? 0) / (d.duration || 1)) * 100)}%`,
                 }}
