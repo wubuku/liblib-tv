@@ -1,0 +1,22 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-021 Slice D UI — generated-history fixture picker wired to attachAssetReferences (fixture data, labeled)",
+  "scenes": {
+    "picker_visible": true,
+    "attach_accepted": {
+      "addedCount": 1,
+      "reference": {
+        "assetId": "fixture-hist-0",
+        "locatorClass": "STABLE_ASSET_REFERENCE",
+        "provenance": "GENERATED_HISTORY_ATTACH"
+      },
+      "statusText": "已从生成历史添加资源"
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
