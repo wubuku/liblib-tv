@@ -25,6 +25,7 @@ export function JimengContextMenu({
   state,
   canUndo = false,
   canRedo = false,
+  canDownload = true,
   multi = false,
   onClose,
   onAction,
@@ -32,6 +33,8 @@ export function JimengContextMenu({
   state: JimengContextMenuState;
   canUndo?: boolean;
   canRedo?: boolean;
+  /** Batch 66: 画布已保存时才可下载 (导出前请保存画布) */
+  canDownload?: boolean;
   multi?: boolean;
   onClose: () => void;
   onAction: (action: string) => void;
@@ -68,8 +71,8 @@ export function JimengContextMenu({
         { label: "编组", action: "group" },
         {
           label: "下载",
-          disabled: true,
-          title: "导出前请保存画布",
+          disabled: !canDownload,
+          title: canDownload ? undefined : "导出前请保存画布",
         },
         { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo" },
         { label: "撤销", shortcut: "⌘ Z", disabled: !canUndo, action: "undo" },
@@ -80,7 +83,12 @@ export function JimengContextMenu({
         { label: "复制副本", shortcut: "⌘ D", action: "duplicate" },
         { label: "粘贴", shortcut: "⌘ V", action: "paste" },
         { label: "保存到主体库", action: "save-to-library" },
-        { label: "下载", action: "download" },
+        {
+          label: "下载",
+          disabled: !canDownload,
+          action: canDownload ? "download" : undefined,
+          title: canDownload ? undefined : "导出前请保存画布",
+        },
         { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo" },
         { label: "撤销", shortcut: "⌘ Z", disabled: !canUndo, action: "undo" },
         { label: "删除", shortcut: "⌫", action: "delete", danger: true },

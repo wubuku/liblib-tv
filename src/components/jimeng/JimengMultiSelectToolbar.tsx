@@ -56,6 +56,8 @@ export function JimengMultiSelectToolbar() {
   const [layoutOpen, setLayoutOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const lastRef = useRef("");
+  // Batch 66: 下载受保存状态门控 (保存中… 禁用 + 提示)
+  const saved = useJimengStore((s) => s.project.saved);
 
   const visible = selectedCount >= 2 && !editingActive;
 
@@ -253,10 +255,15 @@ export function JimengMultiSelectToolbar() {
       <button
         type="button"
         data-testid="multi-download"
-        disabled
+        disabled={!saved}
         aria-label="下载"
-        title="导出前请保存画布"
-        className="jimeng-node-toolbar-item flex size-8 cursor-not-allowed items-center justify-center text-white/20"
+        title={saved ? undefined : "导出前请保存画布"}
+        onClick={() => {
+          if (saved) useJimengStore.getState().pushToast("视频下载已开始（mock）");
+        }}
+        className={`jimeng-node-toolbar-item flex size-8 items-center justify-center ${
+          saved ? "text-white" : "cursor-not-allowed text-white/20"
+        }`}
       >
         <Download size={16} />
       </button>

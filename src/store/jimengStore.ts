@@ -162,6 +162,22 @@ export interface JimengTask {
   kind: "upscale" | "interpolate";
 }
 
+// Batch 66 (SOURCE_FACT): 顶栏 保存中…/已保存 + 下载按钮 导出前请保存画布
+// 门控 — 任何内容变更为未保存态，mock 自动保存 1.2s 后恢复已保存。
+let saveTimer: number | null = null;
+function markDirty(state: JimengCanvasState): {
+  project: JimengCanvasState["project"];
+} {
+  if (saveTimer !== null) window.clearTimeout(saveTimer);
+  saveTimer = window.setTimeout(() => {
+    saveTimer = null;
+    useJimengStore.setState((s) =>
+      s.project.saved ? s : { project: { ...s.project, saved: true } },
+    );
+  }, 2000);
+  return { project: { ...state.project, saved: false } };
+}
+
 const initialNodes: JimengNode[] = [
   {
     id: "video-local-1",
@@ -251,7 +267,16 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             ? null
             : state.selectedNodeId
         : state.selectedNodeId;
-      return { nodes, selectedNodeId };
+      // Batch 66 (SOURCE_FACT): 画布有未保存变更时顶栏 保存中…，
+      // 自动保存后 已保存；下载按钮被 导出前请保存画布 门控。
+      const contentChanged = changes.some(
+        (c) => c.type === "position" || c.type === "remove" || c.type === "add",
+      );
+      return {
+        nodes,
+        selectedNodeId,
+        ...(contentChanged ? markDirty(state) : null),
+      };
     }),
 
   onEdgesChange: (changes) =>
@@ -278,6 +303,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   generateInto: (id, prompt) => {
     // mock 生成：立即进入生成中，3s 后完成填充 mock 内容 (CLONE_DECISION)
     set((state) => ({
+      ...markDirty(state),
       nodes: state.nodes.map((n) => {
         if (n.id !== id || n.type !== "video") return n;
         const vd = n.data as JimengVideoNodeData;
@@ -289,6 +315,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     }));
     window.setTimeout(() => {
       set((state) => ({
+        ...markDirty(state),
         nodes: state.nodes.map((n) => {
           if (n.id !== id || n.type !== "video") return n;
           const vd = n.data as JimengVideoNodeData;
@@ -332,6 +359,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         selected: false,
       };
       return {
+        ...markDirty(state),
         past: [
           ...state.past,
           { nodes: state.nodes, edges: state.edges },
@@ -351,6 +379,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   removeNode: (id) =>
     set((state) => ({
+      ...markDirty(state),
       past: [...state.past, { nodes: state.nodes, edges: state.edges }],
       future: [],
       nodes: state.nodes.filter((n) => n.id !== id),
@@ -396,6 +425,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         selected: false,
       };
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: [...state.nodes, node],
@@ -421,6 +451,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         cursor += (n.data.width ?? 569) + 80;
       }
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: state.nodes.map((n) => ({
@@ -450,6 +481,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         });
       });
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: state.nodes.map((n) => ({
@@ -464,6 +496,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     set((state) => {
       if (!ids.length) return state;
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: state.nodes.filter((n) => !ids.includes(n.id)),
@@ -486,6 +519,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         data: { ...src.data },
       };
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: [...state.nodes, copy],
@@ -534,6 +568,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       target: idMap.get(e.target)!,
     }));
     useJimengStore.setState({
+      ...markDirty(state),
       past: [...state.past, { nodes: state.nodes, edges: state.edges }],
       future: [],
       nodes: [...state.nodes, ...newNodes],
@@ -632,6 +667,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   renameProject: (name) =>
     set((state) => ({
+      ...markDirty(state),
       project: { ...state.project, name },
     })),
 
@@ -691,6 +727,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       // Batch 63 (SOURCE_FACT): 源站编组生成「编组 N」标题卡片
       const seq = Object.keys(state.groupNames).length + 1;
       return {
+        ...markDirty(state),
         nodes: state.nodes.map((n) =>
           ids.includes(n.id) ? { ...n, groupId: gid } : n,
         ),
@@ -701,6 +738,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   ungroupSelected: () =>
     // CLONE_DECISION: 清除画布上全部编组（源站语义为取消选中组的编组）
     set((state) => ({
+      ...markDirty(state),
       nodes: state.nodes.map((n) =>
         n.groupId ? { ...n, groupId: undefined } : n,
       ),
@@ -712,7 +750,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       const next = { ...state.groupColors };
       if (color === null) delete next[groupId];
       else next[groupId] = color;
-      return { groupColors: next };
+      return { ...markDirty(state), groupColors: next };
     }),
 
   selectAll: () =>
@@ -744,6 +782,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   applyTrim: (id, trimmedDuration, startOffset = 0) =>
     set((state) => ({
+      ...markDirty(state),
       past: [...state.past, { nodes: state.nodes, edges: state.edges }],
       future: [],
       nodes: state.nodes.map((n) => {
@@ -763,6 +802,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   updateNodeData: (id, patch) =>
     set((state) => ({
+      ...markDirty(state),
       nodes: state.nodes.map((n) => {
         if (n.id !== id) return n;
         return { ...n, data: { ...n.data, ...patch } };
@@ -794,6 +834,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       } as const;
       if (kind === "video") {
         return {
+          ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
           nodes: [
@@ -814,6 +855,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       }
       if (kind === "image") {
         return {
+          ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
           nodes: [
@@ -828,6 +870,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       }
       if (kind === "audio") {
         return {
+          ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
           nodes: [
@@ -841,6 +884,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         };
       }
       return {
+        ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
         nodes: [

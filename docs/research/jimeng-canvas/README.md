@@ -332,6 +332,17 @@
   (其悬浮于节点之上、可拖拽移动整个选区——源站选择容器是交互层，
   我方 outline 为 pointer-events:none CLONE_DECISION)，需原生鼠标
   事件绕过 actionability 检查。
+- SOURCE_FACT (batch 66, 保存状态门控下载): 三张对照截图揭示统一规律 —
+  顶栏 已保存 时单选工具条下载可用（62-first-frame-result.png 图标亮色、
+  62-frame-menu-status.png「节点 2 ｜ 已保存」）；顶栏 保存中… 时多选
+  工具条下载禁用 rgba(255,255,255,0.2)（62-multiselect.png）且带隐藏
+  提示「导出前请保存画布」。CLONE_DECISION: 单选工具条在 保存中… 的
+  状态未被源站捕获（自动保存太快），统一规则为 下载受保存状态门控，
+  应用于 单选工具条 / 多选工具条 / 右键菜单 三处下载钮。复刻: store
+  markDirty（内容变更 → project.saved=false，mock 自动保存 2s → true；
+  选中/播放/静音不脏化），JimengTopBar 已有 已保存/保存中… 渲染。
+  测试注: 拖拽 2px 低于 xyflow 阈值不触发 position 变更，验证器以
+  30px 往返拖拽制造脏态（净位移 0，容差放宽至 2.5px）。
 
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
@@ -409,6 +420,10 @@
 - Batch 64: 多选右键菜单变体 (复制/复制副本/粘贴｜编组｜下载禁｜
   重做/撤销/删除，无 保存到主体库)；多选 复制副本=copyNodes+pasteNodes。
   证据: docs/design-references/jimeng/64-*.png / 64-*.json。
+- Batch 66: 下载按钮保存状态门控 (保存中… 禁用+提示 / 已保存 可用)；
+  markDirty + 2s mock 自动保存；覆盖 单选工具条/多选工具条/右键菜单。
+  证据: docs/design-references/jimeng/62-frame-menu-status.png 等 +
+  verify-jimeng-batch66.py。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，

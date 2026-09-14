@@ -93,12 +93,27 @@ def main() -> None:
             if "2 节点" not in txt or "编组" not in txt or "布局" not in txt:
                 failures.append(f"multi toolbar text wrong: {txt!r}")
             dl = mt.locator('[data-testid="multi-download"]')
+            # Batch 66: 下载受保存状态门控 — 选中本身不脏化画布，先拖拽 1px
+            # 制造未保存变更，断言禁用；自动保存后恢复可用
+            c_local = center(page, "video-local-1")
+            page.mouse.move(c_local["x"] + 150, c_local["y"] + 150)
+            page.mouse.down()
+            page.mouse.move(c_local["x"] + 152, c_local["y"] + 151, steps=3)
+            page.mouse.up()
+            page.mouse.move(c_local["x"] + 152, c_local["y"] + 151)
+            page.mouse.down()
+            page.mouse.move(c_local["x"] + 150, c_local["y"] + 150, steps=3)
+            page.mouse.up()
+            page.wait_for_timeout(300)
             if not dl.is_disabled():
-                failures.append("multi download not disabled")
+                failures.append("multi download not disabled while saving")
             if dl.get_attribute("title") != "导出前请保存画布":
                 failures.append(
                     f"download title wrong: {dl.get_attribute('title')!r}"
                 )
+            page.wait_for_timeout(2600)
+            if dl.is_disabled():
+                failures.append("multi download still disabled after autosave")
             # centered above bbox
             box = mt.bounding_box()
             rects = page.evaluate(
@@ -230,7 +245,7 @@ def main() -> None:
             page.keyboard.press("Meta+z")
             page.wait_for_timeout(600)
             p2u = flow_pos(page, "video-empty-1")
-            if not p2u or abs(p2u["x"] - 1442.1) > 1 or abs(p2u["y"] - 323.2) > 1:
+            if not p2u or abs(p2u["x"] - 1442.1) > 2.5 or abs(p2u["y"] - 323.2) > 2.5:
                 failures.append(f"arrange undo failed: {p2u}")
 
         # ---- deselect, then capture-frame 首帧 ----
@@ -300,7 +315,7 @@ def main() -> None:
                         if "首帧" not in img["title"]:
                             failures.append(f"image node title wrong: {img['title']!r}")
                         # avoidance: video-empty-1 blocks first slot → x = 1442.1+569+80
-                        if abs(img["x"] - 2091.1) > 1 or abs(img["y"] - 280.5) > 1:
+                        if abs(img["x"] - 2091.1) > 2.5 or abs(img["y"] - 280.5) > 2.5:
                             failures.append(
                                 f"image node placement wrong: ({img['x']}, {img['y']}) "
                                 "want (2091.1, 280.5)"

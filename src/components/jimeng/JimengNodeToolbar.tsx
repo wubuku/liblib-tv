@@ -16,6 +16,7 @@ import {
 import { NodeToolbar, Position } from "@xyflow/react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 选中视频节点后上方弹出的操作工具条 (复刻重心, Batch 2)。
@@ -26,7 +27,9 @@ import { VipDiamond } from "@/components/jimeng/icons";
  *   提示词反推 ｜分隔线｜ 全屏 / 下载；✦=VIP rgb(0,158,250) 14×14
  * - 条目 13px/400 白色 + 16×16 前置图标；尾部图标钮 32×32 r8
  * - 截取帧下拉: rgb(38,38,38) r12，项 首帧/尾帧/自定义，锚在按钮下方居中
- * mock: 条目点击暂无功能面板 (Batch 5+)，仅截取帧下拉可开合。
+ * Batch 66 (SOURCE_FACT): 下载受保存状态门控 — 保存中… 禁用 (rgba
+ * white/20 + title 导出前请保存画布)，已保存 可用 (62-first-frame-result
+ * 下载亮色 vs 62-multiselect 下载灰暗)。
  */
 
 type ToolbarItem =
@@ -51,6 +54,7 @@ export function JimengNodeToolbar({
   onAction?: (label: string) => void;
 }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const saved = useJimengStore((s) => s.project.saved);
 
   const toggleMenu = (label: string) =>
     setOpenMenu((cur) => (cur === label ? null : label));
@@ -122,8 +126,14 @@ export function JimengNodeToolbar({
         <button
           type="button"
           aria-label="下载"
-          onClick={() => onAction?.("下载")}
-          className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
+          title={saved ? undefined : "导出前请保存画布"}
+          disabled={!saved}
+          onClick={() => {
+            if (saved) onAction?.("下载");
+          }}
+          className={`jimeng-node-toolbar-item flex size-8 items-center justify-center ${
+            saved ? "text-white" : "cursor-not-allowed text-white/20"
+          }`}
         >
           <Download size={16} />
         </button>

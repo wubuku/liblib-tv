@@ -93,6 +93,8 @@ function JimengFlow() {
     (JimengPaneMenuState & { flowX: number; flowY: number }) | null
   >(null);
   const clipboard = useJimengStore((s) => s.clipboard);
+  // Batch 66: 保存状态门控下载 (导出前请保存画布)
+  const saved = useJimengStore((s) => s.project.saved);
 
   const onPaneClick = useCallback(() => {
     selectNode(null);
@@ -334,6 +336,7 @@ function JimengFlow() {
           state={contextMenu}
           canUndo={past.length > 0}
           canRedo={future.length > 0}
+          canDownload={saved}
           multi={nodes.filter((n) => n.selected).length > 1}
           onClose={() => setContextMenu(null)}
           onAction={onContextMenuAction}

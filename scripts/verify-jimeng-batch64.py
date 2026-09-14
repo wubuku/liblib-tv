@@ -63,6 +63,20 @@ def main() -> None:
             failures.append(f"multi-select failed: selected={selected}")
 
         # ---- right-click on first selected node ----
+        # Batch 66: 先拖拽 1px 制造未保存变更 (选中本身不脏化)，
+        # 断言菜单 下载 在保存中… 禁用
+        c_local = center("video-local-1")
+        page.mouse.move(c_local["x"] + 150, c_local["y"] + 150)
+        page.mouse.down()
+        page.mouse.move(c_local["x"] + 180, c_local["y"] + 150, steps=5)
+        page.mouse.up()
+        page.wait_for_timeout(100)
+        c_local = center("video-local-1")
+        page.mouse.move(c_local["x"] + 180, c_local["y"] + 150)
+        page.mouse.down()
+        page.mouse.move(c_local["x"] + 150, c_local["y"] + 150, steps=5)
+        page.mouse.up()
+        page.wait_for_timeout(200)
         c1 = center("video-local-1")
         page.mouse.click(c1["x"] + 140, c1["y"] + 130, button="right")
         page.wait_for_timeout(700)
@@ -144,7 +158,7 @@ def main() -> None:
 
         # ---- single-select right-click keeps original menu ----
         page.mouse.click(300, 750)
-        page.wait_for_timeout(300)
+        page.wait_for_timeout(2500)  # Batch 66: 等待自动保存，下载恢复可用
         c1 = center("video-local-1")
         page.mouse.click(c1["x"], c1["y"])
         page.wait_for_timeout(400)
