@@ -105,6 +105,9 @@ export interface JimengCanvasState {
       复刻侧无真实离线态，经 dev window hook 触发 */
   offlineDialogOpen: boolean;
   setOfflineDialog: (open: boolean) => void;
+  /** 小地图开关 (Batch 91, SOURCE_FACT 底部 dock 小地图按钮) */
+  minimapOpen: boolean;
+  setMinimapOpen: (open: boolean) => void;
   /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
   renameProject: (name: string) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
@@ -716,6 +719,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   offlineDialogOpen: false,
 
   setOfflineDialog: (open) => set({ offlineDialogOpen: open }),
+
+  minimapOpen: false,
+
+  setMinimapOpen: (open) => set({ minimapOpen: open }),
 
   renameProject: (name) =>
     set((state) => ({

@@ -473,6 +473,13 @@
   图片节点工具条与首帧/尾帧源站行为提取持续受阻，直到资源被
   平台恢复或重新上传。我方截取帧/进度条/播放器实现维持既有
   batch 62-85 合同不变。
+- SOURCE_FACT (batch 91, 小地图): 底部 dock 演进为 [选择工具][小地图]
+  ｜缩放百分比 (91-minimap.json——布局 已并入多选工具条、同步 由自动
+  保存取代)；小地图 点击切换左下 164×154 rgb(13,13,13) r8 面板
+  (内 156×114 white/8% r6 地图区)。
+- Batch 91 (复刻): dock 重构为上述布局 + xyflow <MiniMap> 面板
+  (pannable、nodeColor 灰、mask 黑/45) + 验证器 (布局/尺寸/开关)。
+  21 批旧 布局/同步 dock 钮移除记录在案 (站点演进)。
 - SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
   源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
   节点 3 (62-multiselect.png 顶栏) → 编组后 节点 3 (63-after-group.png,

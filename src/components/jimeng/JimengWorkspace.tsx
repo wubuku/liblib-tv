@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import {
+  MiniMap,
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
@@ -99,6 +100,7 @@ function JimengFlow() {
   const setAssetsOpen = useJimengStore((s) => s.setAssetsOpen);
   const offlineDialogOpen = useJimengStore((s) => s.offlineDialogOpen);
   const setOfflineDialog = useJimengStore((s) => s.setOfflineDialog);
+  const minimapOpen = useJimengStore((s) => s.minimapOpen);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -341,7 +343,31 @@ function JimengFlow() {
         proOptions={{ hideAttribution: true }}
         deleteKeyCode={null}
         zoomOnDoubleClick={false}
-      />
+      >
+        {/* 小地图 (Batch 91, SOURCE_FACT): dock 切换，位于 dock 上方 */}
+        {minimapOpen ? (
+          <div
+            data-testid="jimeng-minimap-panel"
+            className="absolute bottom-14 left-4 z-[30] rounded-lg p-2"
+            style={{ background: "rgb(13,13,13)", width: 164, height: 154 }}
+          >
+            <MiniMap
+              pannable
+              zoomable={false}
+              style={{
+                width: 156,
+                height: 114,
+                background: "rgba(255,255,255,0.08)",
+                borderRadius: 6,
+              }}
+              maskColor="rgba(0,0,0,0.45)"
+              nodeColor={() => "#4a4a4a"}
+              nodeStrokeColor="transparent"
+              className="!rounded-md"
+            />
+          </div>
+        ) : null}
+      </ReactFlow>
       {contextMenu ? (
         <JimengContextMenu
           state={contextMenu}

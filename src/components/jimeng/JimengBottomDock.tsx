@@ -1,20 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Columns2, MousePointer2, RefreshCw } from "lucide-react";
+import { Map, MousePointer2 } from "lucide-react";
 
 import { JimengZoomMenu } from "@/components/jimeng/JimengZoomMenu";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 左下角画布导航 dock — 16,774 164×36 (SOURCE_FACT)。
- * [选择][布局][同步] | 缩放百分比；缩放值来自 store (与 xyflow viewport 同步)。
- * 点击缩放块弹出缩放菜单 (Batch 7)。
+ * Batch 91 (SOURCE_FACT 91-minimap.json): dock 演进为 [选择工具][小地图] |
+ * 缩放百分比 (布局 已并入多选工具条、同步 由自动保存取代——均站点演进)；
+ * 小地图 点击切换左上 MiniMap 面板 (164×154 rgb(13,13,13) r8，内
+ * 156×114 white/8% r6)。
  */
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
   const toolActive = useJimengStore((s) => s.toolActive);
   const setToolActive = useJimengStore((s) => s.setToolActive);
+  const minimapOpen = useJimengStore((s) => s.minimapOpen);
+  const setMinimapOpen = useJimengStore((s) => s.setMinimapOpen);
   const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
 
   return (
@@ -34,17 +38,14 @@ export function JimengBottomDock() {
         </button>
         <button
           type="button"
-          aria-label="布局"
-          className="flex size-7 items-center justify-center rounded-md text-white/85 hover:bg-white/10"
+          aria-label="小地图"
+          data-testid="dock-minimap"
+          onClick={() => setMinimapOpen(!minimapOpen)}
+          className={`flex size-7 items-center justify-center rounded-md ${
+            minimapOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+          }`}
         >
-          <Columns2 size={16} />
-        </button>
-        <button
-          type="button"
-          aria-label="同步"
-          className="flex size-7 items-center justify-center rounded-md bg-white/10 text-white"
-        >
-          <RefreshCw size={16} />
+          <Map size={16} />
         </button>
         <span className="mx-1 h-3 w-px shrink-0 bg-white/10" />
         <button

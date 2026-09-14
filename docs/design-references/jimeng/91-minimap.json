@@ -1,0 +1,29 @@
+{
+ "minimap": [
+  {
+   "cls": "dreamina-canvas-navigation-dock box-border flex h-workspace-chrome-con",
+   "rect": [
+    16,
+    766,
+    164,
+    154
+   ],
+   "bg": "rgb(13, 13, 13)",
+   "radius": "8px",
+   "border": "0px solid rgb(229, 231, 235)"
+  },
+  {
+   "cls": "react-flow__panel react-flow__minimap dreamina-canvas-minimap-map rela",
+   "rect": [
+    20,
+    770,
+    156,
+    114
+   ],
+   "bg": "rgba(255, 255, 255, 0.08)",
+   "radius": "6px",
+   "border": "0px solid rgb(229, 231, 235)"
+  }
+ ],
+ "closed_on_toggle": true
+}
