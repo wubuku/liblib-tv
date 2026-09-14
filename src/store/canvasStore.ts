@@ -23,7 +23,6 @@ import { getLibTVNodePositionForFlowCenter } from "@/lib/libtvViewportPlacement"
 import { planLibTVAspectAwareDerivedFrame } from "@/lib/libtvMediaDimensionAuthority";
 import {
   fingerprintLibTVEditorRecords,
-  getLibTVEditorProfile,
   planLibTVEditorSessionCommit,
   type LibTVEditorCommitRequest,
   type LibTVEditorCommitResult,

@@ -682,7 +682,7 @@ export default function Home() {
   );
 
   const onMoveEnd = useCallback<OnMoveEnd>(
-    (_event, _viewport) => {
+    () => {
       // Batch 463 (viewport §6.4): the gesture's event viewport can be stale
       // when a newer command interrupted it — commit the instance's CURRENT
       // live viewport so the newest command always wins.
