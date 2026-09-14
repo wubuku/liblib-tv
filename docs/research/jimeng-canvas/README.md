@@ -276,6 +276,27 @@
   「视频播放失败」+ 重试按钮错误态（62-first-frame-result.png 中央
   文案与 hover 提示）；复刻侧 media 为本地 data URI 无失效路径，
   留档待 mock 触发器批次再实现。
+- SOURCE_FACT (batch 63, 布局菜单): 多选工具条「布局」下拉为两项——
+  宫格布局 / 智能布局（63-layout-menu.png，项 172×38 白字 13px）。
+  CLONE_DECISION: 排列算法未运行提取（运行会改动用户画布内容位置），
+  复刻语义为 宫格=ceil(√n) 列网格、智能=单行 (y 对齐、间距 80)。
+- SOURCE_FACT (batch 63, 编组卡片与解除编组): 源站 编组 创建真实
+  group 父节点（react-flow__node-group，aria-label「组 node: 编组 N」，
+  顶栏节点计数 +1）：卡片含「编组 N」标题（图标+文字，卡片左上方），
+  面板比成员包围盒大一圈（~64px 边距）bg 略亮于画布，失焦仍可见；
+  选中时白描边 + 四角圆形手柄。编组选中后多选工具条切换为
+  「解除编组 ｜ 布局∨ ｜ 背景色 ｜ ↓(禁用)」（63-after-group.png /
+  63-group-selected-toolbar）。复刻: 保留 groupId 标记模型 (batch 39
+  架构 CLONE_DECISION)，以 JimengGroupFrames 视觉层近似卡片
+  (标题+面板+描边+四角手柄，pointer-events:none，面板绘制于画布上方
+  — 成员卡片上的着色极浅)；工具条按选中集是否同组切换 编组/解除编组
+  + 背景色；groupSelected 记录 groupNames「编组 N」。
+- SOURCE_FACT (batch 63, 背色调色板): 背景色 钮弹出 rgb(38,38,38)
+  横排 6 格圆角面板——无颜色 + 青绿 #25C3D9 / 靛蓝 #656FF8 /
+  紫 #B55CF8 / 橙 #FB883A / 黄 #FDD135（63-palette-zoom.png 像素采样；
+  与 batch 31 节点标记五色同族但色值不同）。复刻: setGroupColor
+  (无颜色=清除)，tint 以 16% 透明度混合进组卡片面板 (实色混合比例
+  未提取，CLONE_DECISION)。
 
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
@@ -346,6 +367,10 @@
   多选组合工具条 (N 节点/编组/布局∨/禁用下载) + nodesselection-rect
   覆写 (dashed white/20 r40) + 双端选中蓝色连线；gen panel 多选隐藏。
   证据: docs/design-references/jimeng/62-*.png / 62*.json。
+- Batch 63: 布局菜单 宫格布局/智能布局；编组卡片视觉层 (编组 N 标题+
+  面板+描边+四角手柄) + 工具条 解除编组/背景色 变体 + 调色板
+  (无颜色+5 色) + groupNames/groupColors store。
+  证据: docs/design-references/jimeng/63-*.png / 63-*.json。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，

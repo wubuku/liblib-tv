@@ -1,0 +1,50 @@
+{
+ "baseline_positions": [
+  {
+   "id": "node_c6kc51g2v7",
+   "cls": "react-flow__node-video",
+   "x": 675.555,
+   "y": 280.5
+  },
+  {
+   "id": "node_eftc9q6caa",
+   "cls": "react-flow__node-video",
+   "x": 1442.11,
+   "y": 323.221
+  }
+ ],
+ "bgcolor_palette": [
+  {
+   "rect": [
+    917,
+    173,
+    214,
+    40
+   ],
+   "bg": "rgb(38, 38, 38)",
+   "radius": "12px",
+   "text": "无颜色青绿色靛蓝色紫色橙色黄色",
+   "swatches": []
+  },
+  {
+   "rect": [
+    812,
+    131,
+    296,
+    40
+   ],
+   "bg": "rgb(32, 32, 32)",
+   "radius": "12px",
+   "text": "解除编组布局背景色导出前请保存画布",
+   "swatches": []
+  }
+ ],
+ "group_selected_toolbar": [
+  "解除编组布局背景色导出前请保存画布"
+ ],
+ "final": {
+  "nodes": 2,
+  "groups": 0,
+  "selected": 0
+ }
+}

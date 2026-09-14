@@ -138,9 +138,17 @@ export interface JimengCanvasState {
   /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
       右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
   captureFrame: (sourceId: string, frame: "first" | "last") => void;
-  /** 布局-自动排列 (Batch 62, CLONE_DECISION — 源站「布局」下拉内容未提取):
-      选中节点排成一行 (y 对齐选区最小值)，单条历史 */
+  /** 布局-智能布局 (Batch 63, SOURCE_FACT 菜单项/CLONE_DECISION 语义):
+      选中节点按 x 排成一行 (y 对齐选区最小值)，单条历史 */
   arrangeSelected: () => void;
+  /** 布局-宫格布局 (Batch 63, SOURCE_FACT 菜单项/CLONE_DECISION 语义):
+      选中节点按 x 排成 ceil(√n) 列网格，单条历史 */
+  arrangeSelectedGrid: () => void;
+  /** 组背景色 (Batch 63, SOURCE_FACT 背景色调色板: 无颜色+青绿/靛蓝/紫/橙/黄) */
+  groupColors: Record<string, string>;
+  setGroupColor: (groupId: string, color: string | null) => void;
+  /** 组显示名 (Batch 63, SOURCE_FACT: 源站编组生成「编组 N」标题卡片) */
+  groupNames: Record<string, string>;
   /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
   past: { nodes: JimengNode[]; edges: Edge[] }[];
   future: { nodes: JimengNode[]; edges: Edge[] }[];
@@ -196,6 +204,9 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   selectedNodeId: null,
 
   zoomPercent: 73,
+
+  groupColors: {},
+  groupNames: {},
 
   onNodesChange: (changes) =>
     set((state) => {
@@ -395,7 +406,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       };
     }),
 
-  // 布局-自动排列 (Batch 62, CLONE_DECISION): 选中节点按 x 排序后
+  // 布局-智能布局 (Batch 63; 前 batch 62 自动排列): 选中节点按 x 排序后
   // 排成一行 (y 对齐选区最小值，间距 80)
   arrangeSelected: () =>
     set((state) => {
@@ -409,6 +420,35 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         positions.set(n.id, { x: cursor, y: minY });
         cursor += (n.data.width ?? 569) + 80;
       }
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: state.nodes.map((n) => ({
+          ...n,
+          position: positions.get(n.id) ?? n.position,
+        })),
+      };
+    }),
+
+  // 布局-宫格布局 (Batch 63, SOURCE_FACT 菜单项 / CLONE_DECISION 排列语义):
+  // 按 x 排序后填充 ceil(√n) 列网格 (行内 y 对齐、列距 80、行距 80)
+  arrangeSelectedGrid: () =>
+    set((state) => {
+      const sel = state.nodes.filter((n) => n.selected);
+      if (sel.length < 2) return state;
+      const minX = Math.min(...sel.map((n) => n.position.x));
+      const minY = Math.min(...sel.map((n) => n.position.y));
+      const ordered = [...sel].sort((a, b) => a.position.x - b.position.x);
+      const cols = Math.ceil(Math.sqrt(ordered.length));
+      const positions = new Map<string, { x: number; y: number }>();
+      ordered.forEach((n, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        positions.set(n.id, {
+          x: minX + col * ((n.data.width ?? 569) + 80),
+          y: minY + row * ((n.data.height ?? 320) + 80),
+        });
+      });
       return {
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
@@ -648,10 +688,13 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       const ids = state.nodes.filter((n) => n.selected).map((n) => n.id);
       if (ids.length < 2) return state;
       const gid = `group-${Date.now()}`;
+      // Batch 63 (SOURCE_FACT): 源站编组生成「编组 N」标题卡片
+      const seq = Object.keys(state.groupNames).length + 1;
       return {
         nodes: state.nodes.map((n) =>
           ids.includes(n.id) ? { ...n, groupId: gid } : n,
         ),
+        groupNames: { ...state.groupNames, [gid]: `编组 ${seq}` },
       };
     }),
 
@@ -662,6 +705,15 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         n.groupId ? { ...n, groupId: undefined } : n,
       ),
     })),
+
+  // 组背景色 (Batch 63): color=null 表示 无颜色
+  setGroupColor: (groupId, color) =>
+    set((state) => {
+      const next = { ...state.groupColors };
+      if (color === null) delete next[groupId];
+      else next[groupId] = color;
+      return { groupColors: next };
+    }),
 
   selectAll: () =>
     set((state) => ({

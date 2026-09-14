@@ -203,12 +203,12 @@ def main() -> None:
         if any(gids):
             failures.append(f"ungroup did not clear: {gids}")
 
-        # ---- 布局 → 自动排列 ----
+        # ---- 布局 → 智能布局 (batch 63 改名: 原「自动排列」) ----
         mt.locator('[data-testid="multi-layout"]').click()
         page.wait_for_timeout(400)
-        arrange = page.locator('[data-testid="multi-arrange"]')
+        arrange = page.locator('[data-testid="multi-arrange-smart"]')
         if arrange.count() != 1:
-            failures.append("布局 dropdown missing 自动排列")
+            failures.append("布局 dropdown missing 智能布局")
         else:
             arrange.click()
             page.wait_for_timeout(600)
