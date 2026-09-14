@@ -464,3 +464,13 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-15 | batch 500 探测 | still-broken | 第一百次重测；VR-018 Slice B 子项（batch 500） |
 | 2026-09-15 | batch 501 探测 | still-broken | 第一百零一次重测；VR-018 Slice B 剩余（batch 501） |
 | 2026-09-15 | batch 502 探测 | still-broken | 第一百零二次重测；全量维护集（batch 502） |
+| 2026-09-15 | batch 503 探测 | still-broken | 第一百零三次重测；jimeng 64 对照同步（batch 503） |
+| 2026-09-15 | batch 504 探测 | still-broken | 第一百零四次重测；jimeng 65 对照同步（batch 504） |
+| 2026-09-15 | batch 505 探测 | still-broken | 第一百零五次重测；jimeng 66 对照同步（batch 505） |
+| 2026-09-15 | batch 506 探测 | still-broken | 第一百零六次重测；VR-022 Slice E 会话基线捕获（batch 506） |
+| 2026-09-15 | batch 507 探测 | still-broken | 第一百零七次重测；§5.z5 batch 64 稳定性五连绿（batch 507） |
+| 2026-09-15 | batch 508 探测 | still-broken | 第一百零八次重测；§5.z5 batch 64 台账精化（batch 508） |
+| 2026-09-15 | batch 509 探测 | still-broken | 第一百零九次重测；§5.z5 batch 64 稳定性确认（batch 509） |
+| 2026-09-15 | batch 510 探测 | still-broken | 第一百一十次重测；§5.z5 batch 64 五连绿确认（batch 510） |
+| 2026-09-15 | batch 511 探测 | still-broken | 第一百一十一次重测；全量修复在位审计（batch 511） |
+| 2026-09-15 | batch 512 探测 | still-broken | 第一百一十二次重测；影响面验证器点检（batch 512） |
