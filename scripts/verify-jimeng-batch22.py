@@ -29,7 +29,8 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2200)
 
-        page.locator('button[aria-label="账号菜单"]').click()
+        # batch 96: 源站该钮 aria 已改为 用户菜单
+        page.locator('button[aria-label="用户菜单"]').click()
         page.wait_for_timeout(600)
         # two menus share structure; after avatar click the LAST one is the
         # account menu anchored under the avatar

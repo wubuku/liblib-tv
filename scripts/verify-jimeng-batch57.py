@@ -118,7 +118,8 @@ def main() -> None:
             'button[aria-label="生成历史"]').click())
         step("生成历史关", lambda: page.locator(
             'button[aria-label="生成历史"]').click())
-        step("帮助开", lambda: page.locator('button[aria-label="帮助"]').click())
+        # batch 96: 帮助 钮已移除，帮助菜单改走 头像(用户菜单) 共用实例
+        step("帮助开", lambda: page.locator('button[aria-label="用户菜单"]').click())
         page.keyboard.press("Escape")
         step("会员开", lambda: page.locator('button[aria-label="会员订阅"]').click())
         step("会员关", lambda: page.locator(

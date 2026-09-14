@@ -595,6 +595,12 @@
   5px 药丸 (track white/16% r25、fill white/96%，全卡宽)；全屏播放
   器底部有全宽 5px 可 seek 进度条 (12px 命中区) (85-seek.json)。
   复刻: 卡片进度条参数对齐；JimengVideoPreview 新增可 seek 进度条
+- Batch 106 (回归方法修正 + 隐藏失败清零): 发现早期轮转/全量扫描用
+「末行文本匹配」判定，locator 超时失败的末行是 call log 而被误报
+  ok——batch 99/101 两轮「全绿」各掩盖了 1-2 个超时失败。改用
+  退出码判定重跑 1..96，暴露并修复 batch 22 (账号菜单→用户菜单)
+  与 batch 57 (帮助→用户菜单头像路径) 两处 stale 引用；82 verifier
+  现为真实的全绿。
   (此前缺失)。
 - Batch 85: 进度条对齐 + 验证器 (卡片样式断言 + 预览 50% seek)。
   反馈后关闭；Escape 统一分支关闭。
