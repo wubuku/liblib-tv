@@ -48,7 +48,7 @@ def main() -> None:
                 return {
                     full: r.width >= window.innerWidth - 2 && r.height >= window.innerHeight - 2,
                     bg: getComputedStyle(d).backgroundColor,
-                time: d.textContent.includes('00:02 / 00:06'),
+                time: d.textContent.includes('00:02') && d.textContent.includes('00:06'),
                 exit: !!d.querySelector('button[aria-label="退出全屏预览"]'),
                 play: !!d.querySelector('button[aria-label="全屏播放"], button[aria-label="全屏暂停"]'),
                 mute: !!d.querySelector('button[aria-label*="静音"]'),
@@ -60,8 +60,8 @@ def main() -> None:
         else:
             if not state["full"]:
                 failures.append("preview is not full-viewport")
-            if state["bg"] != "rgb(0, 0, 0)":
-                failures.append(f"backdrop: {state['bg']}")
+            if "0.6" not in state["bg"]:
+                failures.append(f"backdrop: {state['bg']} (want black/60)")
             if not state["time"]:
                 failures.append("time readout missing")
             if not (state["exit"] and state["play"] and state["mute"]):

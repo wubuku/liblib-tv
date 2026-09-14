@@ -511,6 +511,14 @@
 - Batch 79 (遮罩实证): 资产库模态背景遮罩采样 — 画布 rgb(13,13,13) 处
   开模态后四点均 (6,6,6)，反推 alpha ≈ 0.54，复刻由 bg-black/50 修正为
   bg-black/55。
+- SOURCE_FACT (batch 80, 全屏播放器): 点全屏进入浏览器 Fullscreen API
+  (aria Exit browser full screen)，覆盖层 bg rgba(0,0,0,0.6) 透出画布，
+  进入即自动静音播放 (aria Play <节点标题> / Unmute video)；底部
+  36px 控制条：Play 16px + 当前/时长时间分列 + Unmute/Exit 36×36
+  (80-preview.png)。复刻: JimengVideoPreview 背景改 black/60、
+  进入自动播放/退出暂停、控制条 36px + 16px 图标 + 时间分列；
+  浏览器 Fullscreen API 以应用内覆盖层近似 (CLONE_DECISION)。
+- Batch 80: 全屏播放器对齐 (black/60 背景、自动静音播放、36px 控制条、时间分列) + 验证器 (27 verifier 合同同步)。
 - 观测 (batch 77, 重试播放行为): 源站 重试播放视频 点击后错误横幅清除，
   但资源已死时视频进入「00:00 / 00:00」无时长空载态（中央播放圆钮
   消失、截取帧 下拉不再弹出）——媒体类提取（图片节点工具条）继续
