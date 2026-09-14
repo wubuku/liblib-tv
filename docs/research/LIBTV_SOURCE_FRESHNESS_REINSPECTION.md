@@ -455,6 +455,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 504 探测 | still-broken | 第一百二十五次重测；VR-018 catalog 收尾——ProjectMenu 状态 disposition 化（106 回归绿，batch504 verifier PASS）（batch 504） |
 | 2026-09-14 | batch 505 探测 | still-broken | 第一百二十六次重测；VR-018 全扫收口——CanvasEmptyState 芯片 disposition 化 + graph result 零反馈（batch 505） |
 | 2026-09-14 | batch 506 探测 | still-broken | 第一百二十七次重测；全量维护集新鲜运行 68/68（67 liblib + jimeng1，原生 shell；回写 fixture 已恢复）；jimeng 99/100 自行录入确认（batch 506） |
+| 2026-09-14 | batch 507 探测 | still-broken | 第一百二十八次重测；BIG_PICTURE §命令反馈段时效更新——VR-018 status-line 面已收口、graph connection 静默 reject 为唯一未决（BLOCKED_SOURCE）（batch 507） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
