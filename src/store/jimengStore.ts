@@ -98,6 +98,9 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
+  assetsOpen: boolean;
+  setAssetsOpen: (open: boolean) => void;
   /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
   renameProject: (name: string) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
@@ -666,6 +669,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   aiDrawerOpen: false,
 
   setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
+
+  assetsOpen: false,
+
+  setAssetsOpen: (open) => set({ assetsOpen: open }),
 
   renameProject: (name) =>
     set((state) => ({

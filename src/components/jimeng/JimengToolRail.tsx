@@ -43,6 +43,7 @@ const RAIL_ITEMS: {
 
 export function JimengToolRail() {
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
+  const setAssetsOpen = useJimengStore((s) => s.setAssetsOpen);
   const { screenToFlowPosition } = useReactFlow();
 
   // Batch 68: 按节点默认尺寸的一半回退，保证插入点为视口中心
@@ -79,6 +80,8 @@ export function JimengToolRail() {
             aria-label={label}
             onClick={() => {
               if (insert) insertAtCenter(insert);
+              // Batch 72 (SOURCE_FACT): 资产库 打开模态
+              if (label === "资产库") setAssetsOpen(true);
             }}
             className="relative flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.12]"
           >

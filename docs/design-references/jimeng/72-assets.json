@@ -1,0 +1,28 @@
+{
+ "assets_panel": [
+  {
+   "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "rect": [
+    292,
+    287,
+    569,
+    320
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "text": "sb_518102884867410fb...20260622155459-tf5q21 resource: 1 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "cls": "pointer-events-none absolute bottom-4 left-4 top-[72px] z-canvas-chrome flex items-center",
+   "rect": [
+    16,
+    72,
+    160,
+    848
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "text": "文本图片视频音频时间线主体导演台资产库上传上传"
+  }
+ ]
+}

@@ -478,6 +478,22 @@
 - Batch 71: 编组计数语义补齐 — 每个编组使顶栏 节点{N} +1
   (nodes.length + groupId 去重数，SOURCE_FACT 63-after-group.png
   节点 3 = 2 卡片 + 1 组)；解除编组回落。verify-jimeng-batch71.py。
+- Batch 72: 资产库模态 (双 tab/筛选/搜索/骨架网格/空态/禁用确认) +
+  Escape 统一关闭。证据: docs/design-references/jimeng/72-*.png +
+  72-assets.json。
+- Batch 69b: 全量回归 1..68 二次全绿（含 62/64 合同更新后），截图刷新
+  (commit 3306154)。
+- SOURCE_FACT (batch 72, 资产库模态): 左栏 资产库 点击打开居中模态 —
+  801×620, bg rgb(26,26,26), r20；顶部 资产(active white/8%)/主体 双 tab +
+  右上 ×；筛选 图片(active 下划线)/视频/音频/文档 (58×36, inactive
+  white/70) + 搜索输入 200×36 + 时间/筛选 图标钮 28×28；空态
+  「暂无图片素材」 white/35 叠骨架网格；底栏 已选择 0 个素材 white/60 +
+  确认钮 80×36 (bg white/16% text white/20 禁用)（72-assets-panel.png /
+  72-assets.json）。隐藏英文 aria「Import assets / Choose assets from
+  Dreamina」入档未渲染。复刻: JimengAssetsModal + store assetsOpen；
+  主体/其它筛选空态文案外推 (CLONE_DECISION)。实现注: 模态自身
+  window Escape 监听在真实按键下失效（合成事件可触发，原因未定），
+  改由 workspace 统一 Escape 分支关闭 (batch 57 先例)。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，
