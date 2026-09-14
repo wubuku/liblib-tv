@@ -1,0 +1,41 @@
+{
+ "group_created": 1,
+ "A_member_click": {
+  "nodes": [
+   "node_c6kc51g2v7"
+  ],
+  "multiToolbar": false
+ },
+ "B_gap_drag": {
+  "before": [
+   {
+    "id": "node_c6kc51g2v7",
+    "x": 675.555,
+    "y": 280.5
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "x": 1442.11,
+    "y": 323.221
+   }
+  ],
+  "after": [
+   {
+    "id": "node_c6kc51g2v7",
+    "x": 675.555,
+    "y": 280.5
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "x": 1442.11,
+    "y": 323.221
+   }
+  ],
+  "moved": false
+ },
+ "final": {
+  "nodes": 2,
+  "groups": 0,
+  "selected": 0
+ }
+}
