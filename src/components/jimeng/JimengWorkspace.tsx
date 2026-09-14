@@ -133,20 +133,28 @@ function JimengFlow() {
   const onContextMenuAction = useCallback(
     (action: string) => {
       if (!contextMenu) return;
+      // 多选判定 (Batch 64): 右键时选中数 >1 即多选菜单语义
+      const selIds = nodes.filter((n) => n.selected).map((n) => n.id);
+      const multi = selIds.length > 1;
       if (action === "copy") {
         // 多选时复制全部选中节点 (Batch 52)
-        const sel = nodes.filter((n) => n.selected).map((n) => n.id);
-        if (sel.length > 1) copyNodes(sel);
+        if (multi) copyNodes(selIds);
         else copyNode(contextMenu.nodeId);
       }
-      if (action === "duplicate") duplicateNode(contextMenu.nodeId);
+      if (action === "duplicate") {
+        // 多选 复制副本 (Batch 64): 剪贴板中转 + 相对布局粘贴
+        if (multi) {
+          copyNodes(selIds);
+          pasteNodes();
+        } else {
+          duplicateNode(contextMenu.nodeId);
+        }
+      }
+      if (action === "group") groupSelected();
       if (action === "paste") pasteNodes();
       if (action === "delete") {
         // 多选时批量删除选中节点 (Batch 38)
-        const selectedIds = nodes
-          .filter((n) => n.selected)
-          .map((n) => n.id);
-        if (selectedIds.length > 1) removeNodes(selectedIds);
+        if (multi) removeNodes(selIds);
         else removeNode(contextMenu.nodeId);
       }
       if (action === "undo") undo();
@@ -154,7 +162,7 @@ function JimengFlow() {
       if (action === "save-to-library") pushToast("已保存到主体库（mock）");
       if (action === "download") pushToast("视频下载已开始（mock）");
     },
-    [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, nodes, pushToast],
+    [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, groupSelected, nodes, pushToast],
   );
 
   // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace
@@ -326,6 +334,7 @@ function JimengFlow() {
           state={contextMenu}
           canUndo={past.length > 0}
           canRedo={future.length > 0}
+          multi={nodes.filter((n) => n.selected).length > 1}
           onClose={() => setContextMenu(null)}
           onAction={onContextMenuAction}
         />

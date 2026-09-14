@@ -297,6 +297,16 @@
   与 batch 31 节点标记五色同族但色值不同）。复刻: setGroupColor
   (无颜色=清除)，tint 以 16% 透明度混合进组卡片面板 (实色混合比例
   未提取，CLONE_DECISION)。
+- SOURCE_FACT (batch 64, 多选右键菜单): ≥2 选中时右键节点弹多选变体菜单
+  (rgb(38,38,38) 200×340)——复制⌘C / 复制副本⌘D / 粘贴⌘V ｜ 编组 ｜
+  下载(禁用，隐藏提示「导出前请保存画布」) ｜ 重做⌘⇧Z / 撤销⌘Z /
+  删除⌫；无 保存到主体库 项 (64-multiselect-contextmenu.png)。
+  复刻: JimengContextMenu multi 变体；多选 复制副本 = 剪贴板中转
+  copyNodes+pasteNodes (相对布局 +60 偏移，单条历史)；编组 接
+  groupSelected。提取备注: 源站多选时右键被 nodesselection-rect 拦截
+  (其悬浮于节点之上、可拖拽移动整个选区——源站选择容器是交互层，
+  我方 outline 为 pointer-events:none CLONE_DECISION)，需原生鼠标
+  事件绕过 actionability 检查。
 
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
@@ -371,6 +381,9 @@
   面板+描边+四角手柄) + 工具条 解除编组/背景色 变体 + 调色板
   (无颜色+5 色) + groupNames/groupColors store。
   证据: docs/design-references/jimeng/63-*.png / 63-*.json。
+- Batch 64: 多选右键菜单变体 (复制/复制副本/粘贴｜编组｜下载禁｜
+  重做/撤销/删除，无 保存到主体库)；多选 复制副本=copyNodes+pasteNodes。
+  证据: docs/design-references/jimeng/64-*.png / 64-*.json。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，
