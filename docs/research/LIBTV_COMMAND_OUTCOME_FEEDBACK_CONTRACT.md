@@ -593,6 +593,13 @@ Verifier ID: `LIBTV-VR-018`。
 > （prototype-unavailable 项 → diagnostic；全部项目 为导航项静默，
 > 不产生反馈）。catalog 增补 project-menu。至此 catalog 内全部
 > status-line surface 均带显式 disposition tone。
+>
+> Batch 505 全扫收口：对 liblib 组件 `useState("")` 裸状态行的全扫
+> 发现最后一个漏网面 CanvasEmptyState（空画布快速芯片），已 disposition
+> 化（不可用芯片 → diagnostic；story-script 成对建节点为 graph result，
+> 按 §17 保持零反馈）。catalog 增补 canvas-empty-chips。全扫中其余
+> `useState("")` 命中均为输入草稿（prompt/query/draft），非状态行；
+> SegmentReshootPanel intent 归 RECORD_EDITOR/异步合同管辖。
 
 ### Slice C — Node feedback ownership
 

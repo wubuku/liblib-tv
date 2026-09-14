@@ -1,0 +1,22 @@
+{
+  "url": "http://localhost:4317",
+  "status": "SCRIPT_RECORDED_PASS",
+  "slice": "VR-018 sweep closure — empty-canvas quick chips: unavailable disclosure projects diagnostic, graph result stays feedback-free",
+  "scenes": {
+    "quick_generate_diagnostic": {
+      "text": "本地原型：快速生成入口未接入",
+      "tone": "diagnostic"
+    },
+    "story_script_graph_result": {
+      "textNodes": 1,
+      "scriptNodes": 1,
+      "emptyStateGone": true,
+      "statusElement": false
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

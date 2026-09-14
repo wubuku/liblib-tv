@@ -3,6 +3,10 @@
 import { MousePointerClick } from "lucide-react";
 import { useCanvasStore } from "@/store/canvasStore";
 import { useState } from "react";
+import {
+  formatLibTVCommandStatus,
+  projectLibTVCommandFeedback,
+} from "@/lib/libtvCommandFeedback";
 
 // Batch 100: 芯片命名/角标来自 2026-09-05 源站空画布审计；点击流未采样，
 // clone 只提供诚实本地反馈，不伪造生成。
@@ -14,7 +18,13 @@ const quickChips = [
 ];
 
 export function CanvasEmptyState() {
-  const [status, setStatus] = useState("");
+  // Batch 505 (VR-018 catalog completeness): the empty-canvas quick chips
+  // surface joins the catalog — unavailable entries project diagnostic,
+  // while the story-script pair is a graph result and stays feedback-free.
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
 
   return (
     <div
@@ -39,7 +49,12 @@ export function CanvasEmptyState() {
                 useCanvasStore.getState().createStoryScriptPair();
                 return;
               }
-              setStatus("本地原型：快速生成入口未接入");
+              setStatus(
+                formatLibTVCommandStatus(
+                  projectLibTVCommandFeedback("rejected"),
+                  "本地原型：快速生成入口未接入",
+                ),
+              );
             }}
             className="flex h-12 items-center gap-2.5 rounded-xl border border-white/[0.08] bg-[#1d1d1d]/90 px-5 text-sm text-[#ededed] shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-colors hover:border-white/[0.16] hover:bg-[#232323]"
           >
@@ -53,8 +68,18 @@ export function CanvasEmptyState() {
         ))}
       </div>
       {status && (
-        <p data-canvas-empty-status className="pointer-events-auto text-xs text-[#75d7e8]">
-          {status}
+        <p
+          data-canvas-empty-status
+          data-status-tone={status.tone}
+          className={`pointer-events-auto text-xs leading-4 ${
+            status.tone === "diagnostic"
+              ? "text-[#ff9c8e]"
+              : status.tone === "positive"
+                ? "text-[#8fe8b4]"
+                : "text-[#75d7e8]"
+          }`}
+        >
+          {status.text}
         </p>
       )}
     </div>

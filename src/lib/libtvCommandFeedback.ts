@@ -112,6 +112,16 @@ export const LIBTV_COMMAND_FEEDBACK_CATALOG: readonly LibTVCommandSurface[] = [
     commands: ["project-open", "project-create", "project-delete", "project-list (navigates)"],
     profile: "INLINE_SCALAR",
   },
+  // Batch 505 (sweep closure): the empty-canvas quick chips surface.
+  // The story-script chip produces a graph result (zero feedback); the
+  // remaining chips are prototype-unavailable disclosures.
+  {
+    surfaceId: "canvas-empty-chips",
+    component: "CanvasEmptyState",
+    feedbackKind: "status-line",
+    commands: ["quick-generate", "story-script-pair (graph result)"],
+    profile: "INLINE_SCALAR",
+  },
 ];
 
 // §9.2: a no-op must never be presented as success — inert is its own
