@@ -140,6 +140,9 @@ export interface JimengCanvasState {
     kind: "video" | "image" | "text" | "audio",
     position: { x: number; y: number },
   ) => void;
+  /** 本地上传 (Batch 73, SOURCE_FACT): 上传文件 → 本地视频节点
+      (标题=文件名, mock 海报)，单文件单条历史 */
+  addLocalUpload: (name: string, position: { x: number; y: number }) => void;
   /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
       右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
   captureFrame: (sourceId: string, frame: "first" | "last") => void;
@@ -438,6 +441,36 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...state.edges,
           { id: `e-${sourceId}-${id}`, source: sourceId, target: id },
         ],
+      };
+    }),
+
+  // 本地上传 (Batch 73): 文件名即节点标题 (源站上传节点标题为
+  // sb_... 文件名形态)，mock 海报 + 6s 时长
+  addLocalUpload: (name, position) =>
+    set((state) => {
+      const id = `video-${Date.now()}`;
+      const node: JimengNode = {
+        id,
+        type: "video",
+        position,
+        data: {
+          title: name,
+          source: "local-upload",
+          hasMedia: true,
+          poster: MOCK_POSTER,
+          duration: 6,
+          currentTime: 0,
+          muted: true,
+          width: 569,
+          height: 320,
+        },
+        selected: false,
+      };
+      return {
+        ...markDirty(state),
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [...state.nodes, node],
       };
     }),
 

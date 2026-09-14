@@ -481,6 +481,15 @@
 - Batch 72: 资产库模态 (双 tab/筛选/搜索/骨架网格/空态/禁用确认) +
   Escape 统一关闭。证据: docs/design-references/jimeng/72-*.png +
   72-assets.json。
+- SOURCE_FACT (batch 73, 左栏标签飞出 + 本地上传): 悬停左栏时图标右侧
+  显示标签飞出层 (73-upload-panel.png: 文本/图片/…/上传 与图标逐行
+  对齐)。上传 点击打开系统多选文件选择器 (filechooser multiple 实证)，
+  选中文件即为本地上传视频节点 (现有节点标题 sb_... 即文件名形态)。
+  复刻: rail group-hover 标签飞出层；隐藏 file input (multiple,
+  accept video/image) → addLocalUpload —— 文件名为标题、mock 海报、
+  6s、本地上传视频节点落于视口中心 (多文件斜向错开)，入撤销栈。
+- Batch 73: 左栏飞出标签 + 本地上传闭环验证器
+  (filechooser set_files → 节点创建 → 撤销)。
 - Batch 69b: 全量回归 1..68 二次全绿（含 62/64 合同更新后），截图刷新
   (commit 3306154)。
 - SOURCE_FACT (batch 72, 资产库模态): 左栏 资产库 点击打开居中模态 —
