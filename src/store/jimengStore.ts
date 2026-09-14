@@ -101,6 +101,10 @@ export interface JimengCanvasState {
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
   setAssetsOpen: (open: boolean) => void;
+  /** 离线编辑冲突对话框 (Batch 82, SOURCE_FACT 81-after-reload-state.png)；
+      复刻侧无真实离线态，经 dev window hook 触发 */
+  offlineDialogOpen: boolean;
+  setOfflineDialog: (open: boolean) => void;
   /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
   renameProject: (name: string) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
@@ -706,6 +710,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   assetsOpen: false,
 
   setAssetsOpen: (open) => set({ assetsOpen: open }),
+
+  offlineDialogOpen: false,
+
+  setOfflineDialog: (open) => set({ offlineDialogOpen: open }),
 
   renameProject: (name) =>
     set((state) => ({

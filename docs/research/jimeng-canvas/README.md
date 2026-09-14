@@ -511,6 +511,13 @@
 - Batch 79 (遮罩实证): 资产库模态背景遮罩采样 — 画布 rgb(13,13,13) 处
   开模态后四点均 (6,6,6)，反推 alpha ≈ 0.54，复刻由 bg-black/50 修正为
   bg-black/55。
+- SOURCE_FACT (batch 82, 离线编辑冲突对话框复刻): 81-after-reload-state.png
+  的对话框落地 — 居中 545px 模态 rgb(25,25,25) r16：标题 发现离线编辑、
+  正文 你在离线状态下对当前画布做了修改，这些修改尚未同步到服务器。、
+  右下 丢弃修改 (灰底 white/10)/保留并同步 (白底黑字主按钮)，遮罩
+  black/55。复刻: JimengOfflineDialog + store offlineDialogOpen；
+  触发经 dev window hook (复刻侧无真实离线态)；两按钮均 mock toast
+  反馈后关闭；Escape 统一分支关闭。
 - SOURCE_FACT (batch 80, 全屏播放器): 点全屏进入浏览器 Fullscreen API
   (aria Exit browser full screen)，覆盖层 bg rgba(0,0,0,0.6) 透出画布，
   进入即自动静音播放 (aria Play <节点标题> / Unmute video)；底部

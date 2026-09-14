@@ -35,6 +35,7 @@ import { JimengMultiSelectToolbar } from "@/components/jimeng/JimengMultiSelectT
 import { JimengSelectionOutline } from "@/components/jimeng/JimengSelectionOutline";
 import { JimengGroupFrames } from "@/components/jimeng/JimengGroupFrames";
 import { JimengAssetsModal } from "@/components/jimeng/JimengAssetsModal";
+import { JimengOfflineDialog } from "@/components/jimeng/JimengOfflineDialog";
 
 /**
  * 即梦画布工作区编排。
@@ -96,6 +97,8 @@ function JimengFlow() {
   const clipboard = useJimengStore((s) => s.clipboard);
   const assetsOpen = useJimengStore((s) => s.assetsOpen);
   const setAssetsOpen = useJimengStore((s) => s.setAssetsOpen);
+  const offlineDialogOpen = useJimengStore((s) => s.offlineDialogOpen);
+  const setOfflineDialog = useJimengStore((s) => s.setOfflineDialog);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -244,6 +247,7 @@ function JimengFlow() {
         exitTrim();
         closePreview();
         setAssetsOpen(false);
+        setOfflineDialog(false);
       } else if (mod && e.key.toLowerCase() === "g" && e.shiftKey) {
         // 快捷键面板证据: ⌘⇧G = 取消编组 (Batch 39)
         e.preventDefault();
@@ -290,6 +294,7 @@ function JimengFlow() {
     selectNode,
     closePreview,
     setAssetsOpen,
+    setOfflineDialog,
     exitRepaint,
     exitEdit,
     exitInfer,
@@ -357,6 +362,9 @@ function JimengFlow() {
       <JimengSelectionOutline />
       <JimengMultiSelectToolbar />
       {assetsOpen ? <JimengAssetsModal onClose={() => setAssetsOpen(false)} /> : null}
+      {offlineDialogOpen ? (
+        <JimengOfflineDialog onClose={() => setOfflineDialog(false)} />
+      ) : null}
       {paneMenu ? (
         <JimengPaneContextMenu
           state={paneMenu}
