@@ -677,4 +677,23 @@ Only if source/product evidence requires：
 
 当前最准确的总结是：
 
-> Open Canvas 值得借鉴的不是“到处调用 toast”，而是它已经区分了 transient notification、node status/error、save/conflict surface 和 control busy；其 localized message identity 与无 owner 的 async toast 又提供了明确反例。当前 LibTV clone 已在 Director 通过 Batch 83 形成 clone-owned typed outcome/reason 到 fixed-header primary surface 的最小闭环，但 ordinary canvas 仍有局部 reason/string/timer islands，缺少统一 owner。后续复刻应先证明 command outcome，再决定反馈落点；不能用 toast 补齐未知 workflow，也不能让 transient UI 污染 graph/history。
+> Open Canvas 值得借鉴的不是“到处调用 toast”，而是它已经区分了 transient notification、node status/error、save/conflict surface 和 control busy；其 localized message identity 与无 owner 的 async toast 又提供了明确反例。Director 已由 Batch 83 形成 clone-owned typed outcome/reason 到 fixed-header primary surface 的最小闭环；ordinary canvas 的 status-line surfaces 已由 batch 467-505 收口进 catalog + 投影（disposition tone 全覆盖），VideoNode timer 由 owner 绑定构造保证（batch 472 审计）。仍未决的是 graph connection 的反馈投影（BLOCKED_SOURCE，等待源站恢复采样）与确定性 fixture（`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01`，fake-clock harness 未建）；不能用 toast 补齐未知 workflow，也不能让 transient UI 污染 graph/history。
+
+### 18.1 完成度审计（2026-09-14，batch 509）
+
+| §18 标准 | 现状 | 证据 |
+|---|---|---|
+| 目标命令有 disposition/reason/owner/primary surface/clear-retry | status-line surfaces ✅；graph connection ❌ | `libtvCommandFeedback.ts`（11 surface）；§16 batch 501/504/505 注记 |
+| reason 与 display copy 分离 | ✅ | `projectLibTVCommandFeedback` → `formatLibTVCommandStatus`，copy 留在 owning surface |
+| reject/noop/stale/unknown 零 graph/history residue | ✅（status-line 面） | batch 501/504/505 verifier 断言；batch 100 zero-graph-side-effect |
+| durable failure/conflict 有持续 recovery surface | ✅（Director scope） | Batch 83/470 progress/error/retry surface |
+| visible result 不靠 generic success toast | ✅ | story-script pair 零反馈（batch 505）；§17 Reject 清单执行 |
+| timer/retry/duplicate/switch/delete/unmount/burst 确定性复现 | 部分 ✅：owner 绑定/防交叉/卸载清除按构造成立 | batch 472 审计、batch 449；确定性 fake-clock fixture ❌ |
+| prototype 不宣称真实 provider/保存/计费/远端任务 | ✅ | copy 原样保留诚实披露（batch 501/504/505 未改文案） |
+| LibTV/FrameOS route 隔离 | ✅ | 未复用 FrameOS toast；catalog 仅 liblib 组件 |
+| exact source presentation 只由 current source evidence 决定 | ✅（gating 生效中） | toast/invalid style/timeout 维持 BLOCKED_SOURCE |
+| `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 与 `LIBTV-VR-018` 通过 | ❌ / 部分 | FIX fixture `RUNTIME_MISSING`；VR-018 status-line 切片关闭（467/470/472/473 + 501/504/505），connection 面未决 |
+| `npm run check` + 相关 browser regression | ✅ | 每批门禁 + batch 11/14/97/100/106/121/343 回归绿 |
+| 研究/实施/验证/commit 落档 | ✅ | batch 498-509 freshness 台账与 batch 目录 |
+
+> 裁决：§18 整门**尚未全过**——差距收敛为两项：① graph connection 反馈投影（BLOCKED_SOURCE，等待采样裁决 surface 与呈现）；② `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 确定性 fixture。二者都不阻塞现有 status-line 合同的继续有效。
