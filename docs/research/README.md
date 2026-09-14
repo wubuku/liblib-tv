@@ -457,48 +457,41 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 437 | VR-017 Slice E：async/resource isolation（延迟完成按属主画布提交） | [`liblib-canvas-batch437-2026-09-13/`](liblib-canvas-batch437-2026-09-13/) |
 | 438 | VGP §7.2 host resize reconciliation（resize anchor 中心保持） | [`liblib-canvas-batch438-2026-09-13/`](liblib-canvas-batch438-2026-09-13/) |
 | 439 | VGP §6.3/DQ-003 live/stable endpoint phase（逐帧 live、手势端点一次 stable） | [`liblib-canvas-batch439-2026-09-13/`](liblib-canvas-batch439-2026-09-13/) |
-
 | 440 | Batch History 索引补全（追溯债清偿） | [`liblib-canvas-batch440-2026-09-13/`](liblib-canvas-batch440-2026-09-13/) |
-
 | 441 | VR-023 Slice A：尺寸权威分类 + 冲突可观测 | [`liblib-canvas-batch441-2026-09-13/`](liblib-canvas-batch441-2026-09-13/) |
-
 | 442 | VR-023 Slice B：aspect-aware 派生帧政策 | [`liblib-canvas-batch442-2026-09-13/`](liblib-canvas-batch442-2026-09-13/) |
-
 | 443 | VR-023 Slice C：编辑器变换 + 基线修订 + 彩色标记 fixture | [`liblib-canvas-batch443-2026-09-13/`](liblib-canvas-batch443-2026-09-13/) |
-
 | 444 | VR-023 Slice D：混合比例输出 fixture（per-output 身份 + 选择重排） | [`liblib-canvas-batch444-2026-09-13/`](liblib-canvas-batch444-2026-09-13/) |
-
 | 445 | VR-022 Slice A：纯编辑器 profile/session/history 模型 | [`liblib-canvas-batch445-2026-09-13/`](liblib-canvas-batch445-2026-09-13/) |
-
 | 446 | VR-022 Slice B：equality-aware graph commit adapter | [`liblib-canvas-batch446-2026-09-13/`](liblib-canvas-batch446-2026-09-13/) |
-
 | 447 | VR-022 Slice C：RECORD_EDITOR 单验收路径幂等 | [`liblib-canvas-batch447-2026-09-13/`](liblib-canvas-batch447-2026-09-13/) |
-
 | 448 | VR-022 Slice D：命令诚实度 pass | [`liblib-canvas-batch448-2026-09-13/`](liblib-canvas-batch448-2026-09-13/) |
-
 | 449 | VR-022 Slice E：fake operation acceptor 请求移交 | [`liblib-canvas-batch449-2026-09-13/`](liblib-canvas-batch449-2026-09-13/) |
-
 | 450 | VR-021 Slice A：纯 ingress 描述符/注册表/有序校验 | [`liblib-canvas-batch450-2026-09-13/`](liblib-canvas-batch450-2026-09-13/) |
-
 | 451 | VR-021 Slice B：租约台账 + fake materializer | [`liblib-canvas-batch451-2026-09-13/`](liblib-canvas-batch451-2026-09-13/) |
-
 | 453 | VR-021 Slice C：Add Resource 多文件纵切 | [`liblib-canvas-batch453-2026-09-13/`](liblib-canvas-batch453-2026-09-13/) |
-
 | 454 | VR-021 Slice D：生成历史/注册资产引用 attach | [`liblib-canvas-batch454-2026-09-13/`](liblib-canvas-batch454-2026-09-13/) |
-
 | 455 | VR-021 Slice E：Shot 源生命周期 | [`liblib-canvas-batch455-2026-09-14/`](liblib-canvas-batch455-2026-09-14/) |
-
 | 456 | VR-021 Slice F：Director data/blob 收敛 | [`liblib-canvas-batch456-2026-09-14/`](liblib-canvas-batch456-2026-09-14/) |
-
 | 459 | 全量验证器扫描（146 项：137 通过 / 9 老化） | [`liblib-canvas-batch459-2026-09-14/`](liblib-canvas-batch459-2026-09-14/) |
-
+| 460 | §5.z4 老化验证器处置（9 项 AGED_GATE 归因）+ jimeng 53 同步 | [`liblib-canvas-batch460-2026-09-14/`](liblib-canvas-batch460-2026-09-14/) |
+| 461 | §5.z5 首批重写：batch 53/65/119/167 回绿 | [`liblib-canvas-batch461-2026-09-14/`](liblib-canvas-batch461-2026-09-14/) |
+| 462 | §5.z5 续：batch 15/98 重写回绿 + 台账 | [`liblib-canvas-batch462-2026-09-14/`](liblib-canvas-batch462-2026-09-14/) |
+| 463 | viewport §6.4 move-end 竞态修复（18/27 回绿） | [`liblib-canvas-batch463-2026-09-14/`](liblib-canvas-batch463-2026-09-14/) |
+| 464 | batch 64 placement 审计 + 抽屉 recenter 稳定化 | [`liblib-canvas-batch464-2026-09-14/`](liblib-canvas-batch464-2026-09-14/) |
+| 465 | jimeng 56 对照同步（marquee 跨站点语义） | [`liblib-canvas-batch465-2026-09-14/`](liblib-canvas-batch465-2026-09-14/) |
+| 466 | live 相 ownership 翻转精化（65/438/439 回绿） | [`liblib-canvas-batch466-2026-09-14/`](liblib-canvas-batch466-2026-09-14/) |
 | 467 | VR-018 Slice A：命令反馈目录 + reason 投影 | [`liblib-canvas-batch467-2026-09-14/`](liblib-canvas-batch467-2026-09-14/) |
-
 | 468 | VR-018 Slice B 子项：AddNodePanel 状态 disposition 化 | [`liblib-canvas-batch468-2026-09-14/`](liblib-canvas-batch468-2026-09-14/) |
-
+| 469 | jimeng 57 审计对照同步 | [`liblib-canvas-batch469-2026-09-14/`](liblib-canvas-batch469-2026-09-14/) |
+| 470 | VR-018 Slice D：Director 导出重复完成抑制 | [`liblib-canvas-batch470-2026-09-14/`](liblib-canvas-batch470-2026-09-14/) |
+| 474 | VR-022 Slice E：BITMAP_EDITOR 会话基线捕获（annotate） | [`liblib-canvas-batch474-2026-09-14/`](liblib-canvas-batch474-2026-09-14/) |
+| 476 | 全量验证器复扫（部分：193/216，1 已知抖动 / 1 被中止） | [`liblib-canvas-batch476-2026-09-14/`](liblib-canvas-batch476-2026-09-14/) |
+| 478 | VR-021 Slice D UI：生成历史 fixture picker（batch478 verifier + 归档） | [`liblib-canvas-batch478-2026-09-14/`](liblib-canvas-batch478-2026-09-14/) |
 | 480 | batch 64 稳定性五连绿确认 + §5.z5 精化 | [`liblib-canvas-batch480-2026-09-14/`](liblib-canvas-batch480-2026-09-14/) |
-
+| 485 | jimeng 63 对照同步（布局菜单实项 + 编组卡片）+ 心跳 | [`liblib-canvas-batch485-2026-09-15/`](liblib-canvas-batch485-2026-09-15/) |
 | 488 | jimeng 61–65 对照同步 + §7 补录 | [`liblib-canvas-batch488-2026-09-15/`](liblib-canvas-batch488-2026-09-15/) |
+| 501 | VR-018 Slice B 收口：Share + Agent 状态 disposition 化 | [`liblib-canvas-batch501-2026-09-14/`](liblib-canvas-batch501-2026-09-14/) |
 
 ## Planned Work
 
