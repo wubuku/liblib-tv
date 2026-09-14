@@ -27,6 +27,10 @@ import {
 } from "@/lib/libtvCommandFeedback";
 import { runLibTVCommandFeedbackFixtureScenes } from "@/lib/libtvCommandFeedbackFixture";
 import {
+  parseLibTVGraphDocument,
+  runLibTVGraphDocumentPureCorpus,
+} from "@/lib/libtvGraphDocument";
+import {
   LIBTV_MEDIA_INGRESS_PROFILES,
   reduceLibTVShotSourceLifecycle,
   validateLibTVMediaIngressIntent,
@@ -230,6 +234,14 @@ declare global {
       string,
       { ok: boolean; detail?: unknown }
     >;
+    __libtv_graph_document_corpus?: () => Record<
+      string,
+      { ok: boolean; detail?: unknown }
+    >;
+    __libtv_graph_document_parse?: (
+      input: string | unknown,
+      policies?: import("@/lib/libtvGraphDocument").GraphDocumentPolicies,
+    ) => { status: string; reason?: string };
     __libtv_media_ingress_profiles?: Record<
       string,
       {
@@ -752,6 +764,9 @@ export default function Home() {
     // deterministic fixture world + §13.2 scene runner (pure).
     window.__libtv_command_feedback_fixture_scenes =
       runLibTVCommandFeedbackFixtureScenes;
+    // Batch 513 (VR-010 Slice A): pure graph-document codec corpus.
+    window.__libtv_graph_document_corpus = runLibTVGraphDocumentPureCorpus;
+    window.__libtv_graph_document_parse = parseLibTVGraphDocument;
     // Batch 456 (VR-021 Slice F): director byte estimator + lease audit.
     window.__libtv_estimate_data_url_bytes = estimateLibTVDataUrlBytes;
 
@@ -806,6 +821,8 @@ export default function Home() {
       delete window.__libtv_command_feedback_catalog;
       delete window.__libtv_project_command_feedback;
       delete window.__libtv_command_feedback_fixture_scenes;
+      delete window.__libtv_graph_document_corpus;
+      delete window.__libtv_graph_document_parse;
       delete window.__libtv_estimate_data_url_bytes;
 
       delete window.__libtv_media_lease_ledger_new;

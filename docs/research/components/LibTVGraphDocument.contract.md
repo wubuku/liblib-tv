@@ -291,7 +291,7 @@ Open Canvas 的 `200 nodes / 400 edges` 不能直接填入 `DOCUMENT_LIMIT_EXCEE
 
 ### 9.1 Fixture identity
 
-`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 是未来 deterministic document/snapshot fixture。当前状态：`DESIGN_SPEC_COMPLETE / RUNTIME_MISSING`。
+`LIBTV-FIX-LOCAL-GRAPH-DOCUMENT-01` 是未来 deterministic document/snapshot fixture。当前状态：`DESIGN_SPEC_COMPLETE / PURE_CODEC_RECORDED_PASS`——纯层已由 batch 513 落地（`src/lib/libtvGraphDocument.ts`：严格 V1 读侧、写侧 runtime 白名单、§7.2 全 14 个稳定 reason、注入式 edge-policy/media-budget/limits 政策、§9.2 纯 corpus 10/10，verify-liblib-batch513.py）；browser 层（§9.3/§10.2，Slice B/C/D）仍未建。
 
 它包含纯 payload corpus 和 fresh Page browser case；不能依赖共享源站或 Director store。
 

@@ -461,6 +461,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 510 探测 | still-broken | 第一百三十一次重测；FIX-01 确定性 fixture runtime 落地（PURE_RUNTIME_RECORDED_PASS，15 场景）——§18 差距收敛为 connection 反馈一项；jimeng 101 自行录入确认（batch 510） |
 | 2026-09-14 | batch 511 探测 | still-broken | 第一百三十二次重测；FIXTURE_CATALOG 状态核对审计——6 项 RUNTIME_MISSING 升级 FOCUSED_RUNTIME_PARTIAL（VR-016/017/019/021/022/023 聚焦闭环证据），其余维持（batch 511） |
 | 2026-09-14 | batch 512 探测 | still-broken | 第一百三十三次重测；全量维护集新鲜运行 69/69（67 liblib + jimeng1 + batch510，覆盖 page.tsx window 挂载改动；回写已恢复）（batch 512） |
+| 2026-09-14 | batch 513 探测 | still-broken | 第一百三十四次重测；VR-010 Slice A——纯 graph-document codec + §9.2 corpus 10/10（PURE_CODEC_RECORDED_PASS）（batch 513） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

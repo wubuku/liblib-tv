@@ -1,0 +1,48 @@
+{
+  "url": "http://localhost:4317",
+  "status": "PURE_CODEC_RECORDED_PASS",
+  "slice": "VR-010 Slice A — pure graph-document codec, strict V1 reader, runtime-field writer whitelist, §9.2 pure corpus",
+  "scenes": {
+    "document_corpus": {
+      "empty_v1_ready_round_trip": {
+        "ok": true
+      },
+      "demo_v1_semantics_retained": {
+        "ok": true
+      },
+      "group_v1_parent_resolved": {
+        "ok": true
+      },
+      "future_version_unsupported": {
+        "ok": true
+      },
+      "duplicate_and_dangling_reasons": {
+        "ok": true
+      },
+      "invalid_parent_cycle_reasons": {
+        "ok": true
+      },
+      "blob_media_non_portable": {
+        "ok": true
+      },
+      "oversized_embedded_media_rejected": {
+        "ok": true
+      },
+      "edge_policy_unresolved": {
+        "ok": true
+      },
+      "document_limit_exceeded": {
+        "ok": true
+      }
+    },
+    "malformed_json": {
+      "status": "reject",
+      "reason": "MALFORMED_JSON"
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
