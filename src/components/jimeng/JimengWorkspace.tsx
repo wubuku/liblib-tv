@@ -153,6 +153,7 @@ function JimengFlow() {
         }
       }
       if (action === "group") groupSelected();
+      if (action === "ungroup") ungroupSelected();
       if (action === "paste") pasteNodes();
       if (action === "delete") {
         // 多选时批量删除选中节点 (Batch 38)
@@ -164,7 +165,7 @@ function JimengFlow() {
       if (action === "save-to-library") pushToast("已保存到主体库（mock）");
       if (action === "download") pushToast("视频下载已开始（mock）");
     },
-    [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, groupSelected, nodes, pushToast],
+    [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, groupSelected, ungroupSelected, nodes, pushToast],
   );
 
   // 键盘快捷键 (Batch 14): ⌘Z/⌘⇧Z/⌘C/⌘D/⌘V/Delete|Backspace
@@ -338,6 +339,10 @@ function JimengFlow() {
           canRedo={future.length > 0}
           canDownload={saved}
           multi={nodes.filter((n) => n.selected).length > 1}
+          grouped={(() => {
+            const sel = nodes.filter((n) => n.selected);
+            return sel.length > 1 && sel.every((n) => n.groupId);
+          })()}
           onClose={() => setContextMenu(null)}
           onAction={onContextMenuAction}
         />

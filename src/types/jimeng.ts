@@ -35,6 +35,10 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   generating?: boolean;
   /** 生成时的提示词 (Batch 50 mock) */
   prompt?: string;
+  /** 媒体加载失败态 (Batch 67, SOURCE_FACT 67-cap-state.png): 资源失效后
+      显示 视频播放失败 + 重试播放视频；复刻侧无自然失效路径，
+      由 setMediaError 驱动 (测试经 dev window hook) */
+  mediaError?: boolean;
   /** 世界尺寸 (源站 video 节点 ≈ 569×320，16:9) */
   width: number;
   height: number;

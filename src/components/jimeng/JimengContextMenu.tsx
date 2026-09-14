@@ -27,6 +27,7 @@ export function JimengContextMenu({
   canRedo = false,
   canDownload = true,
   multi = false,
+  grouped = false,
   onClose,
   onAction,
 }: {
@@ -36,6 +37,10 @@ export function JimengContextMenu({
   /** Batch 66: 画布已保存时才可下载 (导出前请保存画布) */
   canDownload?: boolean;
   multi?: boolean;
+  /** Batch 67 (CLONE_DECISION): 选中集已属同一编组时 编组→解除编组
+      (源站该变体被 nodesselection-rect 拦截无法提取，与多选工具条的
+      编组/解除编组切换保持一致) */
+  grouped?: boolean;
   onClose: () => void;
   onAction: (action: string) => void;
 }) {
@@ -68,7 +73,9 @@ export function JimengContextMenu({
         { label: "复制", shortcut: "⌘ C", action: "copy" },
         { label: "复制副本", shortcut: "⌘ D", action: "duplicate" },
         { label: "粘贴", shortcut: "⌘ V", action: "paste" },
-        { label: "编组", action: "group" },
+        grouped
+          ? { label: "解除编组", action: "ungroup" }
+          : { label: "编组", action: "group" },
         {
           label: "下载",
           disabled: !canDownload,

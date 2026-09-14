@@ -118,6 +118,8 @@ export interface JimengCanvasState {
   closePreview: () => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
+  /** 媒体失效态 (Batch 67, SOURCE_FACT 视频播放失败+重试): 触发/清除 */
+  setMediaError: (id: string, error: boolean) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
   seek: (id: string, fraction: number) => void;
   /** 修剪确认 (Batch 33/44): 裁剪后的时长与新起点写回节点并入撤销栈 */
@@ -719,6 +721,16 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       }),
     })),
 
+  // 媒体失效态 (Batch 67): 不脏化画布 (非文档内容)
+  setMediaError: (id, error) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        return { ...n, data: { ...vd, mediaError: error } };
+      }),
+    })),
+
   groupSelected: () =>
     set((state) => {
       const ids = state.nodes.filter((n) => n.selected).map((n) => n.id);
@@ -903,3 +915,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       };
     }),
 }));
+
+// Batch 67: dev/test 专用 — 验证器经 window hook 驱动 mock 态
+// (如 setMediaError)；生产构建不挂载。
+if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
+  (window as unknown as Record<string, unknown>).__jimengStore =
+    useJimengStore;
+}

@@ -347,6 +347,20 @@
   选中/播放/静音不脏化），JimengTopBar 已有 已保存/保存中… 渲染。
   测试注: 拖拽 2px 低于 xyflow 阈值不触发 position 变更，验证器以
   30px 往返拖拽制造脏态（净位移 0，容差放宽至 2.5px）。
+- SOURCE_FACT (batch 67, 媒体失效态实现): 源站视频资源彻底失效后
+  完整错误态可见（67-cap-state.png）——海报上方居中「视频播放失败」
+  12px white/85 + 白底药丸钮「重试播放视频」（黑字 12px，hover 变暗）。
+  复刻: mediaError data 旗标 + setMediaError action（不脏化画布），
+  覆盖层渲染于海报上方（任务/生成中遮罩优先）；重试点击清除错误并
+  从头重播。触发途径: 复刻侧无自然失效路径，测试经 dev-only
+  window.__jimengStore hook 驱动（生产构建不挂载）。
+- CLONE_DECISION (batch 67, 已编组选中右键菜单变体): 选中集为同一编组
+  时右键菜单 编组→解除编组。源站提取两次被 nodesselection-rect 拦截
+  （67-image-grouped.json grouped_contextmenu 为空），语义与多选工具条
+  的 编组/解除编组 切换保持一致。提取备注: 源站 截取帧 下拉在视频
+  失效后不再弹出（资源依赖），媒体相关提取通道自此受限。
+  图片节点工具条提取（经 首帧 造图后选中）同因受阻，留档待源视频
+  可播放窗口再试。
 
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
@@ -428,6 +442,9 @@
   markDirty + 2s mock 自动保存；覆盖 单选工具条/多选工具条/右键菜单。
   证据: docs/design-references/jimeng/62-frame-menu-status.png 等 +
   verify-jimeng-batch66.py。
+- Batch 67: 视频播放失败错误态 (mediaError + 重试播放视频 药丸) +
+  已编组选中右键菜单 解除编组 变体 + dev-only store window hook。
+  证据: docs/design-references/jimeng/67-*.png + 67-image-grouped.json。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，

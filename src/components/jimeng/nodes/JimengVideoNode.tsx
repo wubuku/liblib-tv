@@ -96,6 +96,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const restartPlay = useJimengStore((s) => s.restartPlay);
   const tickPlay = useJimengStore((s) => s.tickPlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
+  const setMediaError = useJimengStore((s) => s.setMediaError);
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
   const pushToast = useJimengStore((s) => s.pushToast);
   const seek = useJimengStore((s) => s.seek);
@@ -449,6 +450,27 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55">
             <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
             <span className="text-[12px] text-white/85">生成中…</span>
+          </div>
+        ) : null}
+        {/* 媒体失效态 (Batch 67, SOURCE_FACT 67-cap-state.png): 视频播放失败
+            + 白底 重试播放视频 药丸钮；点击重试清除错误并从头重播 */}
+        {d.mediaError && !task && !d.generating ? (
+          <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2.5 rounded-lg">
+            <span className="text-[12px] text-white/85" data-testid="media-error-text">
+              视频播放失败
+            </span>
+            <button
+              type="button"
+              data-testid="media-error-retry"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMediaError(id, false);
+                restartPlay(id);
+              }}
+              className="nodrag rounded-lg bg-white px-3 py-1.5 text-[12px] font-medium text-[#151515] hover:bg-white/90"
+            >
+              重试播放视频
+            </button>
           </div>
         ) : null}
       </div>
