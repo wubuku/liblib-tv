@@ -49,11 +49,15 @@ def main() -> None:
             path=str(REFERENCE_DIR / "jimeng-clone-batch75-filter-empty.png")
         )
 
-        # 主体 tab keeps its own empty text
+        # 主体 tab (batch 76 SOURCE_FACT): 筛选为单个 全部，空态 没有可用主体
         page.locator('[data-testid="assets-tab-主体"]').click()
         page.wait_for_timeout(300)
-        if empty_text() != "暂无主体素材":
+        if empty_text() != "没有可用主体":
             failures.append(f"主体 tab empty: {empty_text()!r}")
+        if not page.locator('[data-testid="assets-filter-全部"]').count():
+            failures.append("主体 tab missing 全部 filter")
+        if page.locator('[data-testid="assets-filter-图片"]').count():
+            failures.append("主体 tab should not show 资产 filters")
 
         ctx.close()
 

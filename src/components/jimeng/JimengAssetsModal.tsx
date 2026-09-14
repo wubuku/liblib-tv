@@ -21,17 +21,19 @@ import { X } from "lucide-react";
 const FILTERS = ["图片", "视频", "音频", "文档"] as const;
 
 // Batch 75 (SOURCE_FACT 75-assets-deep.json): 空态文案跟随筛选切换
-// (图片/视频/音频 实证「暂无X素材」；文档 未捕获，按同模式外推)；
-// 主体 tab 固定「暂无主体素材」。
-const EMPTY_TEXT: Record<string, string> = {
-  资产: "暂无图片素材",
-  主体: "暂无主体素材",
-};
+// (图片/视频/音频 实证「暂无X素材」；文档 同模式)。
+// Batch 76 (SOURCE_FACT 76-subject-deep.json): 主体 tab 筛选行为单个
+// 「全部」，空态为「没有可用主体」(此前「暂无主体素材」外推修正)。
 
 export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<"资产" | "主体">("资产");
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("图片");
   // Escape 关闭走 workspace 统一 Escape 分支 (Batch 57 先例)
+
+  const isSubject = tab === "主体";
+  const activeFilter = isSubject ? "全部" : filter;
+  const filters: string[] = isSubject ? ["全部"] : [...FILTERS];
+  const emptyText = isSubject ? "没有可用主体" : `暂无${filter}素材`;
 
   return (
     <div className="fixed inset-0 z-[210] flex items-center justify-center">
@@ -81,20 +83,20 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
         {/* 筛选行 */}
         <div className="mt-3 flex items-center">
           <div className="flex items-center gap-1">
-            {FILTERS.map((f) => (
+            {(filters as string[]).map((f) => (
               <button
                 key={f}
                 type="button"
                 data-testid={`assets-filter-${f}`}
-                onClick={() => setFilter(f)}
+                onClick={() => !isSubject && setFilter(f as (typeof FILTERS)[number])}
                 className={`relative flex h-9 items-center rounded-lg px-3.5 text-[13px] font-medium ${
-                  filter === f
+                  activeFilter === f
                     ? "text-white"
                     : "text-white/70 hover:text-white"
                 }`}
               >
                 {f}
-                {filter === f ? (
+                {activeFilter === f ? (
                   <span className="absolute inset-x-3.5 bottom-0.5 h-[2px] rounded-full bg-white" />
                 ) : null}
               </button>
@@ -146,7 +148,7 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-[14px] text-white/35" data-testid="assets-empty">
-              {tab === "资产" ? `暂无${filter}素材` : EMPTY_TEXT[tab]}
+              {emptyText}
             </span>
           </div>
         </div>

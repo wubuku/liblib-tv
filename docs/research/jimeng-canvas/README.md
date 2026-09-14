@@ -492,6 +492,15 @@
   修正)。时间/筛选 图标钮的弹出层未捕获 (点击无可见变化，留档)。
 - Batch 75: 资产库筛选空态跟随 + 验证器 (四种筛选切换断言 +
   主体 tab 固定文案)。
+- SOURCE_FACT (batch 76, 主体 tab 实际内容): 主体 tab 用单个「全部」
+  筛选替换 图片/视频/音频/文档 行 (白色 active + 下划线)；空态为
+  「没有可用主体」 white/35 (76-subject-deep.json / 76-subject-tab.png，
+  修正 batch 75 的「暂无主体素材」外推)；确认钮保持禁用；资产 tab
+  转为 inactive white/70。文档筛选空态实证「暂无文档素材」
+  (batch 75 外推正确)。复刻: 主体 tab 渲染 全部 单筛选 + 独立空态，
+  切回资产 tab 恢复四筛选。
+- Batch 76: 主体 tab 全部筛选 + 没有可用主体 空态 + 验证器
+  (75 verifier 同步更新合同)。
 - SOURCE_FACT (batch 73, 左栏标签飞出 + 本地上传): 悬停左栏时图标右侧
   显示标签飞出层 (73-upload-panel.png: 文本/图片/…/上传 与图标逐行
   对齐)。上传 点击打开系统多选文件选择器 (filechooser multiple 实证)，
