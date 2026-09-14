@@ -20,8 +20,15 @@ import { useJimengStore } from "@/store/jimengStore";
 export function JimengTopBar() {
   const project = useJimengStore((s) => s.project);
   // Batch 70 (SOURCE_FACT): 节点计数随画布实时变化 (源站建 image/组 后
-  // 顶栏 节点 2→3)；组节点计数差异见 README (我方组为标记模型)
-  const nodeCount = useJimengStore((s) => s.nodes.length);
+  // 顶栏 节点 2→3)
+  // Batch 71 (SOURCE_FACT 63-after-group.png): 编组后 节点 3 = 2 卡片 +
+  // 1 组节点 — 每个编组使计数 +1
+  const nodeCount = useJimengStore((s) => {
+    const groups = new Set(
+      s.nodes.filter((n) => n.groupId).map((n) => n.groupId),
+    );
+    return s.nodes.length + groups.size;
+  });
   const renameProject = useJimengStore((s) => s.renameProject);
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);

@@ -475,6 +475,9 @@
   编组不使计数 +1 (源站 +1)。
 - Batch 70: 顶栏 节点{N} 实时映射 + 验证器 (插入/撤销/截取帧 计数断言)。
   证据: verify-jimeng-batch70.py + jimeng-clone-batch70-node-count.png。
+- Batch 71: 编组计数语义补齐 — 每个编组使顶栏 节点{N} +1
+  (nodes.length + groupId 去重数，SOURCE_FACT 63-after-group.png
+  节点 3 = 2 卡片 + 1 组)；解除编组回落。verify-jimeng-batch71.py。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，
