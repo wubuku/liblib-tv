@@ -74,7 +74,8 @@ def main() -> None:
             failures.append(f"zoom after 缩放至100%: {zoom_text}")
 
         # ── help menu ──
-        page.locator('button[aria-label="帮助"]').click()
+        # batch 96: 帮助 钮已移除，帮助菜单改走 头像(用户菜单) 共用实例
+        page.locator('button[aria-label="用户菜单"]').click()
         page.wait_for_timeout(600)
         hm = page.evaluate(
             """() => {
