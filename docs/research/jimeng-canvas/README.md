@@ -467,6 +467,12 @@
   证据: docs/design-references/jimeng/68-*.png / 68-rail.json。
 - Batch 69: 全量质量门 — verify 1..68 全绿 (60 verifier + 老式 1/2/3/5/6)，
   截图刷新入库 (commit 3306154)。
+- BLOCKED_BY_FIXTURE 再确认 (batch 90): 离线同步完成 + 播放激活后
+  复探 截取帧 下拉——仍不展开；且播放交互后视频再次进入
+  「视频播放失败」态，形成「重试→可播一次→再失效」循环。
+  图片节点工具条与首帧/尾帧源站行为提取持续受阻，直到资源被
+  平台恢复或重新上传。我方截取帧/进度条/播放器实现维持既有
+  batch 62-85 合同不变。
 - SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
   源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
   节点 3 (62-multiselect.png 顶栏) → 编组后 节点 3 (63-after-group.png,
