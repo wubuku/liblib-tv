@@ -512,6 +512,16 @@
   药丸，拖拽中亦无)，拖到中点时间正确变 00:03/00:06 (与我方 scrub
   一致)；全屏播放器静音钮语义 Unmute video ↔ Mute video toggle
   (与我方 取消静音/静音 一致，aria 文案差异为 CLONE_DECISION 中文
+- SOURCE_FACT (batch 87, 节点重命名): 标题行即 Rename 按钮 (aria
+  "Rename <标题>")——点击打开行内 input (300px、预填现名、white/70)，
+  Enter 提交并全局生效 (Seek aria 同步)，⌘Z 可撤销 (87-rename-open.png)。
+  主体: Add tags 24×24 (batch 31 颜色标记同位)。
+- Batch 87 (复刻): JimengVideoTitleRow 点击标题进入行内重命名
+  (renameNode 单条历史入撤销栈、Enter/失焦提交、Escape 取消、
+  双击仍开插入菜单并退出重命名态) + 验证器。
+  对照: 源站卡片控制条按钮集 播放(Pause)/Mute video/Enter browser
+  full screen 与我方 播放/静音/全屏 结构一致 (aria 文案英文 vs
+  中文为 CLONE_DECISION)。
   界面)。退出全屏后卡片控制条未发现 静音 aria (源站卡片控件再度
   变化，留档)。证据: 86-seek-hover/drag.png、86-thumb-mute.json。
 - Batch 79 (遮罩实证): 资产库模态背景遮罩采样 — 画布 rgb(13,13,13) 处

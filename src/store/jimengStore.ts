@@ -139,6 +139,8 @@ export interface JimengCanvasState {
   generateInto: (id: string, prompt: string) => void;
   /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
+  /** 节点重命名 (Batch 87, SOURCE_FACT 标题行即 Rename 按钮)：入撤销栈 */
+  renameNode: (id: string, title: string) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
     kind: "video" | "image" | "text" | "audio",
@@ -866,6 +868,19 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       nodes: state.nodes.map((n) => {
         if (n.id !== id) return n;
         return { ...n, data: { ...n.data, ...patch } };
+      }),
+    })),
+
+  // 节点重命名 (Batch 87, SOURCE_FACT: 源站标题行即 Rename 按钮，
+  // ⌘Z 可撤销) — 单条历史
+  renameNode: (id, title) =>
+    set((state) => ({
+      ...markDirty(state),
+      past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id) return n;
+        return { ...n, data: { ...n.data, title } };
       }),
     })),
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Ban, Tag } from "lucide-react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
@@ -31,23 +32,67 @@ export function JimengVideoTitleRow({
   onDblClick: () => void;
 }) {
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  const renameNode = useJimengStore((s) => s.renameNode);
+  // Batch 87 (SOURCE_FACT): 点击标题进入行内重命名 (源站标题行即
+  // Rename 按钮，aria "Rename <标题>"，Enter 提交、⌘Z 可撤销)
+  const [renaming, setRenaming] = useState(false);
+  const [draft, setDraft] = useState(d.title);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (renaming) inputRef.current?.select();
+  }, [renaming]);
+
+  const commit = () => {
+    const next = draft.trim();
+    if (renaming && next && next !== d.title) renameNode(id, next);
+    setRenaming(false);
+  };
 
   return (
     <div
       className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left"
       onDoubleClick={(e) => {
         e.stopPropagation();
+        // 双击打开插入菜单时退出重命名态 (单双击共存)
+        setRenaming(false);
         onDblClick();
       }}
     >
       <div className="flex min-w-0 items-center gap-1.5 text-white/70">
         <FileBadgeIcon size={16} />
-        <span
-          className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]"
-          title={d.title}
-        >
-          {d.title}
-        </span>
+        {renaming ? (
+          <input
+            ref={inputRef}
+            value={draft}
+            data-testid="node-rename-input"
+            onChange={(e) => setDraft(e.target.value)}
+            onBlur={commit}
+            onKeyDown={(e) => {
+              e.stopPropagation();
+              if (e.key === "Enter") commit();
+              if (e.key === "Escape") {
+                setDraft(d.title);
+                setRenaming(false);
+              }
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            className="max-w-full truncate whitespace-nowrap rounded border border-white/30 bg-transparent px-1 text-[13px] leading-[22px] text-white/70 outline-none"
+          />
+        ) : (
+          <span
+            className="max-w-full cursor-text truncate whitespace-nowrap text-[13px] leading-[22px]"
+            title={d.title}
+            data-testid="node-title-text"
+            onClick={(e) => {
+              e.stopPropagation();
+              setDraft(d.title);
+              setRenaming(true);
+            }}
+          >
+            {d.title}
+          </span>
+        )}
       </div>
       {d.hasMedia ? (
         <span className="relative">
