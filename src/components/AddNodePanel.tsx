@@ -60,6 +60,27 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
     tone: "neutral",
   });
   const resourceInputRef = useRef<HTMLInputElement>(null);
+  // Batch 478 (VR-021 Slice D): fixture generated-history assets — local
+  // fixture data only, no account/backend claim (contract boundary).
+  const historyAssets = [
+    { assetId: "fixture-hist-0", renderUrl: "/images/scene-coffee-1.png", mediaFamily: "image" as const },
+    { assetId: "fixture-hist-1", renderUrl: "/images/scene-coffee-4.png", mediaFamily: "image" as const },
+  ];
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const attachFixtureAsset = (index: number) => {
+    const asset = historyAssets[index];
+    if (!asset) return;
+    const generation = useCanvasStore.getState().canvasGeneration;
+    const result = useCanvasStore
+      .getState()
+      .attachAssetReferences("GENERATED_HISTORY_ATTACH", [asset], generation);
+    if (result.status === "rejected") {
+      setStatus({ text: result.reasons.join(" · "), tone: "diagnostic" });
+    } else {
+      setHistoryOpen(false);
+      setStatus({ text: "已从生成历史添加资源", tone: "positive" });
+    }
+  };
   const closePanel = useCallback(() => {
     setMaterialSubmenuOpen(false);
     setScriptSubmenuOpen(false);
@@ -276,10 +297,24 @@ export function AddNodePanel({ onAddNode }: AddNodePanelProps) {
           event.target.value = "";
         }}
       />
-      <button type="button" data-add-node-resource="history" onClick={() => setStatus({ text: "本地原型：生成历史未连接", tone: "neutral" })} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
+      <button type="button" data-add-node-resource="history" onClick={() => setHistoryOpen((open) => !open)} className="flex h-8 w-full items-center gap-2.5 rounded-lg px-2 text-sm text-[#eeeeee] hover:bg-white/[0.07]">
         <FolderOpen size={15} />
         <span>从生成历史选择</span>
       </button>
+      {historyOpen && (
+        <div
+          data-add-node-submenu="history"
+          className="absolute left-[calc(100%+8px)] top-[286px] w-44 rounded-xl border border-[#363636] bg-[#262626] p-1.5 shadow-[0_18px_48px_rgba(0,0,0,0.5)] max-sm:left-3 max-sm:top-[calc(100%+8px)]"
+        >
+          <p className="px-2 py-1.5 text-[11px] text-[#888]">生成历史（fixture 数据）</p>
+          <button type="button" data-history-asset="0" onClick={() => attachFixtureAsset(0)} className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]">
+            <ImageIcon size={13} /> 咖啡馆漫步 · 成品
+          </button>
+          <button type="button" data-history-asset="1" onClick={() => attachFixtureAsset(1)} className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#e8e8e8] hover:bg-white/[0.07]">
+            <ImageIcon size={13} /> 城市夜景 · 成品
+          </button>
+        </div>
+      )}
       {status && (
         <p
           data-add-node-status
