@@ -43,6 +43,8 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
 /** 图片节点 (Batch 17；尺寸 CLONE_DECISION 480×360) */
 export interface JimengImageNodeData extends Record<string, unknown> {
   title: string;
+  /** 截取帧落图 (Batch 62)：源站 首帧/尾帧 直接产出带画面的图片节点 */
+  poster?: string;
   width: number;
   height: number;
 }

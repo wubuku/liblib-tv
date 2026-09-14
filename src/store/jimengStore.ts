@@ -135,6 +135,12 @@ export interface JimengCanvasState {
     kind: "video" | "image" | "text" | "audio",
     position: { x: number; y: number },
   ) => void;
+  /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
+      右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
+  captureFrame: (sourceId: string, frame: "first" | "last") => void;
+  /** 布局-自动排列 (Batch 62, CLONE_DECISION — 源站「布局」下拉内容未提取):
+      选中节点排成一行 (y 对齐选区最小值)，单条历史 */
+  arrangeSelected: () => void;
   /** 撤销/重做历史栈 (Batch 14)；仅记录图结构变更，不含选中态 */
   past: { nodes: JimengNode[]; edges: Edge[] }[];
   future: { nodes: JimengNode[]; edges: Edge[] }[];
@@ -340,6 +346,78 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       edges: state.edges.filter((e) => e.source !== id && e.target !== id),
       selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
     })),
+
+  // 截取帧 首帧/尾帧 (Batch 62): 源站点击下拉项后直接异步产出带画面的
+  // image 节点 (62-first-frame-result / 62-multiselect 截图证据)，不打开
+  // 帧选择器 (选择器仅 自定义 使用)。落点为源节点右侧 80 间距，与现有
+  // 节点重叠时继续右移避让 (源站实测落点即避让后的空位)。
+  captureFrame: (sourceId, frame) =>
+    set((state) => {
+      const src = state.nodes.find((n) => n.id === sourceId);
+      if (!src || src.type !== "video") return state;
+      const v = src.data as JimengVideoNodeData;
+      if (!v.hasMedia) return state;
+      const w = v.width ?? 569;
+      const h = v.height ?? 320;
+      const rowOverlap = (n: (typeof state.nodes)[number], x: number) =>
+        x < n.position.x + (n.data.width ?? 569) &&
+        x + w > n.position.x &&
+        src.position.y < n.position.y + (n.data.height ?? 320) &&
+        src.position.y + h > n.position.y;
+      let x = src.position.x + w + 80;
+      for (let guard = 0; guard < state.nodes.length + 1; guard += 1) {
+        const blocker = state.nodes.find((n) => rowOverlap(n, x));
+        if (!blocker) break;
+        x = blocker.position.x + (blocker.data.width ?? 569) + 80;
+      }
+      const label = frame === "first" ? "首帧" : "尾帧";
+      const id = `image-${Date.now()}`;
+      const node: JimengNode = {
+        id,
+        type: "image",
+        position: { x, y: src.position.y },
+        data: {
+          title: `${v.title} ${label}`,
+          poster: v.poster,
+          width: w,
+          height: h,
+        },
+        selected: false,
+      };
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [...state.nodes, node],
+        edges: [
+          ...state.edges,
+          { id: `e-${sourceId}-${id}`, source: sourceId, target: id },
+        ],
+      };
+    }),
+
+  // 布局-自动排列 (Batch 62, CLONE_DECISION): 选中节点按 x 排序后
+  // 排成一行 (y 对齐选区最小值，间距 80)
+  arrangeSelected: () =>
+    set((state) => {
+      const sel = state.nodes.filter((n) => n.selected);
+      if (sel.length < 2) return state;
+      const minY = Math.min(...sel.map((n) => n.position.y));
+      const ordered = [...sel].sort((a, b) => a.position.x - b.position.x);
+      const positions = new Map<string, { x: number; y: number }>();
+      let cursor = Math.min(...ordered.map((n) => n.position.x));
+      for (const n of ordered) {
+        positions.set(n.id, { x: cursor, y: minY });
+        cursor += (n.data.width ?? 569) + 80;
+      }
+      return {
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: state.nodes.map((n) => ({
+          ...n,
+          position: positions.get(n.id) ?? n.position,
+        })),
+      };
+    }),
 
   // 批量删除选中节点 (Batch 38 多选深化)，单条历史记录
   removeNodes: (ids) =>

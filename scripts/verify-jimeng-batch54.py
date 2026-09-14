@@ -70,7 +70,7 @@ def main() -> None:
         multi = page.evaluate(
             """() => ({
                 selected: document.querySelectorAll('.react-flow__node.selected').length,
-                panels: [...document.querySelectorAll('.jimeng-node-toolbar')]
+                panels: [...document.querySelectorAll('.jimeng-node-toolbar:not([data-testid="jimeng-multi-toolbar"])')]
                     .filter(t => t.getBoundingClientRect().height > 20).length,
                 genTextarea: [...document.querySelectorAll('textarea')]
                     .some(t => t.placeholder.includes('上传参考图')),

@@ -1,10 +1,10 @@
 """Jimeng clone batch 10 verifier — 视频修剪 trim mode + 首帧/尾帧 presets.
 
-Contract:
+Contract (首帧/尾帧 semantics updated by batch 62 source evidence):
 - 视频修剪 opens a trim bar: filmstrip with BOTH end brackets, duration label
   (6.0s), time row, white ENABLED 确认; confirming exits.
-- 截取帧 dropdown 首帧 opens the frame picker with playhead at start, time
-  00:00 and ENABLED 确认 (preset); 尾帧 shows 00:06 and playhead at end.
+- 截取帧 首帧/尾帧 DIRECTLY create image nodes (poster + 「… 首帧/尾帧」
+  titles) instead of opening the frame picker; the picker is 自定义-only.
 """
 
 import os
@@ -79,32 +79,21 @@ def main() -> None:
         page.locator("button", has_text="确认").first.click()
         page.wait_for_timeout(500)
 
-        # ── 首帧 preset ──
+        # ── 首帧 (batch 62 语义演进): 直接产出 image 节点，不开帧选择器 ──
         open_trim_dropdown_item(page, "首帧")
         first = page.evaluate(
             """() => {
-                const bar = [...document.querySelectorAll('form,div')]
-                    .find(d => d.textContent.includes('00:00 / 00:06')
-                               && d.textContent.includes('确认'));
-                if (!bar) return null;
-                const confirm = [...bar.querySelectorAll('button')]
-                    .find(b => b.textContent.trim() === '确认');
-                const head = bar.querySelector('span.absolute.inset-y-0');
-                return {
-                    confirmEnabled: confirm ? !confirm.disabled : false,
-                    captureBtn: [...bar.querySelectorAll('button')]
-                        .some(b => b.textContent.includes('截取帧')),
-                    playheadLeft: head ? head.style.left : null,
-                };
+                const nodes = [...document.querySelectorAll('.react-flow__node-image')];
+                const el = nodes[nodes.length - 1] ?? null;
+                return {count: nodes.length,
+                        hasPoster: el ? !!el.querySelector('img') : false,
+                        title: el ? (el.textContent || '').trim() : null};
             }"""
         )
-        if not first:
-            failures.append("首帧 picker did not open")
-        else:
-            if not first["confirmEnabled"]:
-                failures.append("首帧 确认 should be enabled (preset)")
-            if first["captureBtn"]:
-                failures.append("首帧 picker should not show 截取帧 button")
+        if first["count"] < 1:
+            failures.append("首帧 did not create an image node (batch 62 semantics)")
+        elif not first["hasPoster"] or not first["title"] or "首帧" not in first["title"]:
+            failures.append(f"首帧 image node wrong: {first}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch10-first-frame-1680.png")
         )
@@ -112,22 +101,22 @@ def main() -> None:
         page.mouse.click(300, 700)
         page.wait_for_timeout(400)
 
-        # ── 尾帧 preset ──
+        # ── 尾帧 (batch 62 语义演进): 直接产出第二个 image 节点 ──
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(600)
         open_trim_dropdown_item(page, "尾帧")
         last = page.evaluate(
             """() => {
-                const bar = [...document.querySelectorAll('form,div')]
-                    .find(d => d.textContent.includes('00:06 / 00:06')
-                               && d.textContent.includes('确认'));
-                if (!bar) return null;
-                const head = bar.querySelector('span.absolute.inset-y-0');
-                return {time: true, playheadLeft: head ? head.style.left : null};
+                const nodes = [...document.querySelectorAll('.react-flow__node-image')];
+                const el = nodes[nodes.length - 1] ?? null;
+                return {count: nodes.length,
+                        title: el ? (el.textContent || '').trim() : null};
             }"""
         )
-        if not last:
-            failures.append("尾帧 picker did not show 00:06 / 00:06")
+        if last["count"] < 2:
+            failures.append("尾帧 did not create a second image node (batch 62)")
+        elif not last["title"] or "尾帧" not in last["title"]:
+            failures.append(f"尾帧 image node title wrong: {last}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch10-last-frame-1680.png")
         )

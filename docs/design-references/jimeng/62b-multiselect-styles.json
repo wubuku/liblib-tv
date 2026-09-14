@@ -1,0 +1,196 @@
+{
+ "error_state": [],
+ "multi_toolbar": [
+  {
+   "cls": "-ml-workspace-title-details-overlap flex items-center rounded-dreamina-tooltip bg-workspace-chrome-t",
+   "rect": [
+    48,
+    12,
+    172,
+    36
+   ],
+   "bg": "color(srgb 0.0509804 0.0509804 0.0509804 / 0.4)",
+   "radius": "8px",
+   "boxShadow": "none",
+   "text": "测试项目节点2保存中...",
+   "html": "<div class=\"-ml-workspace-title-details-overlap flex items-center rounded-dreamina-tooltip bg-workspace-chrome-title-details pl-workspace-title-details-inline-start pr-workspace-title-details-inline-end backdrop-blur-workspace-chrome-title-details\" style=\"flex:0 1 auto;gap:6px;height:36px;max-width:calc(100% - 36px);min-width:0\" data-testid=\"canvas-title-details\"><button data-testid=\"canvas-project-title-trigger\" title=\"测试项目\" aria-busy=\"false\" aria-label=\"Canvas title: 测试项目\" class=\"inline-flex items-center gap-1 whitespace-nowrap motion-safe:transition-colors motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&amp;_svg]:shrink-0 active:bg-transparent disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled aria-disabled:bg-transparent aria-disabled:text-dreamina-button-secondary-text-disabled aria-disabled:hover:bg-transparent aria-disabled:active:bg-transparent aria-disabled:hover:text-dreamina-button-secondary-text-disabled aria-disabled:active:text-dreamina-button-secondary-text-disabled box-border h-workspace-title-control w-workspace-tit"
+  },
+  {
+   "cls": "nodrag box-border flex max-w-full select-none items-center gap-canvas-selection-toolbar-gap rounded-",
+   "rect": [
+    832,
+    171,
+    256,
+    40
+   ],
+   "bg": "rgb(32, 32, 32)",
+   "radius": "12px",
+   "boxShadow": "none",
+   "text": "2 节点编组布局导出前请保存画布",
+   "html": "<div data-testid=\"selection-context-toolbar\" aria-label=\"Selection actions\" aria-orientation=\"horizontal\" class=\"nodrag box-border flex max-w-full select-none items-center gap-canvas-selection-toolbar-gap rounded-canvas-selection-toolbar border-dreamina border-dreamina-stroke-secondary bg-canvas-selection-toolbar p-canvas-selection-toolbar-inset text-dreamina-on-media-text-primary backdrop-blur-canvas-selection-toolbar nopan overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden\" role=\"toolbar\" style=\"height: 40px;\"><span class=\"flex h-canvas-selection-toolbar-control shrink-0 items-center rounded-canvas-selection-toolbar-control px-canvas-selection-toolbar-control-inline text-[13px] font-normal leading-canvas-selection-toolbar-control text-white/50\" data-testid=\"selection-context-toolbar-count\">2 节点</span><hr aria-orientation=\"vertical\" class=\"box-border h-canvas-selection-toolbar-divider w-canvas-selection-toolbar-divider shrink-0 border-0 bg-canvas-selection-toolbar-divider bg-clip-content p-canvas-selection-toolbar-divider-inset\" data-toolbar-separator=\"selection-count\"><button data-roving-toolbar-item=\"true\" data-toolbar-value=\"batch-group\" "
+  }
+ ],
+ "selection_bbox": [
+  {
+   "tag": "DIV",
+   "cls": "react-flow__nodesselection-rect",
+   "rect": [
+    252,
+    247,
+    1418,
+    445
+   ],
+   "border": "1px dashed rgba(255, 255, 255, 0.2)",
+   "radius": "40px",
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "pos": "absolute"
+  }
+ ],
+ "edges_selected": [],
+ "multi_items": [
+  {
+   "tag": "SPAN",
+   "text": "2 节点",
+   "rect": [
+    837,
+    175,
+    54,
+    32
+   ],
+   "color": "rgba(255, 255, 255, 0.5)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "编组",
+   "rect": [
+    900,
+    175,
+    62,
+    32
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "",
+   "rect": [
+    908,
+    183,
+    16,
+    16
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "编组",
+   "rect": [
+    928,
+    180,
+    26,
+    22
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "布局",
+   "rect": [
+    964,
+    175,
+    78,
+    32
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "",
+   "rect": [
+    972,
+    183,
+    16,
+    16
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "布局",
+   "rect": [
+    992,
+    180,
+    26,
+    22
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "",
+   "rect": [
+    1051,
+    175,
+    32,
+    32
+   ],
+   "color": "rgba(255, 255, 255, 0.2)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "",
+   "rect": [
+    1059,
+    183,
+    16,
+    16
+   ],
+   "color": "rgba(255, 255, 255, 0.2)",
+   "font": "13px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "导出前请保存画布",
+   "rect": [
+    836,
+    190,
+    1,
+    1
+   ],
+   "color": "rgb(255, 255, 255)",
+   "font": "14px/400",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  }
+ ],
+ "final": {
+  "0": 0,
+  "2": 2
+ }
+}

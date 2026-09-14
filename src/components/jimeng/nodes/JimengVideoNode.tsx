@@ -71,6 +71,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const framePickerMode = useJimengStore((s) => s.framePickerMode);
   const enterFramePicker = useJimengStore((s) => s.enterFramePicker);
   const exitFramePicker = useJimengStore((s) => s.exitFramePicker);
+  const captureFrame = useJimengStore((s) => s.captureFrame);
   const trimNodeId = useJimengStore((s) => s.trimNodeId);
   const enterTrim = useJimengStore((s) => s.enterTrim);
   const exitTrim = useJimengStore((s) => s.exitTrim);
@@ -181,13 +182,16 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "保存到主体库") pushToast("已保存到主体库（mock）");
             if (label === "全屏预览") openPreview(id);
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
-            if (label === "截取帧:首帧") enterFramePicker(id, "first");
-            if (label === "截取帧:尾帧") enterFramePicker(id, "last");
+            // Batch 62 (SOURCE_FACT): 源站 首帧/尾帧 直接产出图片节点
+            if (label === "截取帧:首帧") captureFrame(id, "first");
+            if (label === "截取帧:尾帧") captureFrame(id, "last");
           }}
         />
       ) : null}
       {!d.hasMedia ? (
-        <JimengGenPanel visible={selected === true} nodeId={id} />
+        // 多选时不显示生成面板 (SOURCE_FACT batch 62: 62-multiselect 截图
+        // 中多选无 gen panel)，与单选工具条同用 soloSelected 门控
+        <JimengGenPanel visible={selected === true && soloSelected} nodeId={id} />
       ) : null}
       {/* 标题行 (卡片上方 32px)：文件徽标 + 标题 + 右侧图标；编辑态隐藏。
           双击标题 = 「添加节点」菜单 extended 版 (SOURCE_FACT batch 24) */}

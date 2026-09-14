@@ -37,13 +37,22 @@ export function JimengImageNode({ data, selected }: NodeProps) {
               : undefined,
         }}
       >
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
-            <rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="1.3" />
-            <circle cx="7" cy="7.5" r="1.6" fill="currentColor" />
-            <path d="m4 15 4.5-5 3 3.4L14 10.5l2.5 3" stroke="currentColor" strokeWidth="1.3" fill="none" />
-          </svg>
-        </span>
+        {d.poster ? (
+          // eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报
+          <img
+            src={d.poster}
+            alt={d.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+              <rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="1.3" />
+              <circle cx="7" cy="7.5" r="1.6" fill="currentColor" />
+              <path d="m4 15 4.5-5 3 3.4L14 10.5l2.5 3" stroke="currentColor" strokeWidth="1.3" fill="none" />
+            </svg>
+          </span>
+        )}
       </div>
 
       <Handle

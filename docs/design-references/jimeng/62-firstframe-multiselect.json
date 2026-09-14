@@ -1,0 +1,231 @@
+{
+ "A_baseline": {
+  "count": 2,
+  "nodes": [
+   {
+    "id": "node_c6kc51g2v7",
+    "cls": "react-flow__node-video",
+    "rect": [
+     292,
+     287,
+     569,
+     320
+    ]
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "cls": "react-flow__node-video",
+    "rect": [
+     1059,
+     329,
+     569,
+     320
+    ]
+   }
+  ],
+  "toolbar": []
+ },
+ "B_selected": {
+  "count": 2,
+  "nodes": [
+   {
+    "id": "node_c6kc51g2v7",
+    "cls": "react-flow__node-video",
+    "rect": [
+     292,
+     287,
+     569,
+     320
+    ]
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "cls": "react-flow__node-video",
+    "rect": [
+     1059,
+     329,
+     569,
+     320
+    ]
+   }
+  ],
+  "toolbar": [
+   "",
+   "",
+   "局部重拍智能超清视频编辑截取帧补帧视频修剪提示词反推导出前请保存画布"
+  ]
+ },
+ "B_after_first": {
+  "count": 2,
+  "nodes": [
+   {
+    "id": "node_c6kc51g2v7",
+    "cls": "react-flow__node-video",
+    "rect": [
+     292,
+     287,
+     569,
+     320
+    ]
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "cls": "react-flow__node-video",
+    "rect": [
+     1059,
+     329,
+     569,
+     320
+    ]
+   }
+  ],
+  "toolbar": [
+   "",
+   "",
+   "截取帧局部重拍智能超清视频编辑截取帧补帧视频修剪提示词反推导出前请保存画布"
+  ]
+ },
+ "B_overlays": [
+  {
+   "cls": "absolute inset-0",
+   "rect": [
+    0,
+    0,
+    1920,
+    936
+   ],
+   "text": "2 nodes, 0 edges, 1 selected. Editable. Reconnecting to room. 已保存.sb_518102884867410fb...20260622155"
+  },
+  {
+   "cls": "absolute inset-0 opacity-workspace-chrome-visible",
+   "rect": [
+    0,
+    0,
+    1920,
+    936
+   ],
+   "text": "2 nodes, 0 edges, 1 selected. Editable. Reconnecting to room. 已保存.sb_518102884867410fb...20260622155"
+  },
+  {
+   "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+   "rect": [
+    0,
+    0,
+    1920,
+    936
+   ],
+   "text": "2 nodes, 0 edges, 1 selected. Editable. Reconnecting to room. 已保存.sb_518102884867410fb...20260622155"
+  },
+  {
+   "cls": "react-flow__renderer",
+   "rect": [
+    0,
+    0,
+    1920,
+    936
+   ],
+   "text": "sb_518102884867410fb...20260622155459-tf5q2视频播放失败重试播放视频视频播放失败1 resource: 1 ready, 0 processing, 0 fa"
+  },
+  {
+   "cls": "react-flow__pane",
+   "rect": [
+    0,
+    0,
+    1920,
+    936
+   ],
+   "text": "sb_518102884867410fb...20260622155459-tf5q2视频播放失败重试播放视频视频播放失败1 resource: 1 ready, 0 processing, 0 fa"
+  },
+  {
+   "cls": "react-flow__viewport xyflow__viewport react-flow__container",
+   "rect": [
+    -383,
+    6,
+    1920,
+    936
+   ],
+   "text": "sb_518102884867410fb...20260622155459-tf5q2视频播放失败重试播放视频视频播放失败1 resource: 1 ready, 0 processing, 0 fa"
+  },
+  {
+   "cls": "react-flow__nodes",
+   "rect": [
+    -383,
+    6,
+    1920,
+    936
+   ],
+   "text": "sb_518102884867410fb...20260622155459-tf5q2视频播放失败重试播放视频视频播放失败1 resource: 1 ready, 0 processing, 0 fa"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-video nopan selected selectable draggable",
+   "rect": [
+    292,
+    287,
+    569,
+    320
+   ],
+   "text": "sb_518102884867410fb...20260622155459-tf5q2视频播放失败重试播放视频视频播放失败1 resource: 1 ready, 0 processing, 0 fa"
+  },
+  {
+   "cls": "absolute inset-0",
+   "rect": [
+    292,
+    287,
+    569,
+    320
+   ],
+   "text": "视频播放失败重试播放视频视频播放失败"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "rect": [
+    1059,
+    329,
+    569,
+    320
+   ],
+   "text": "视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  }
+ ],
+ "D_multiselect": {
+  "count": 3,
+  "nodes": [
+   {
+    "id": "node_c6kc51g2v7",
+    "cls": "react-flow__node-video",
+    "rect": [
+     292,
+     287,
+     569,
+     320
+    ]
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "cls": "react-flow__node-video",
+    "rect": [
+     1059,
+     329,
+     569,
+     320
+    ]
+   },
+   {
+    "id": "node_d2saxrpcgw",
+    "cls": "react-flow__node-image",
+    "rect": [
+     1708,
+     287,
+     569,
+     320
+    ]
+   }
+  ],
+  "toolbar": [
+   "",
+   "2 节点编组布局导出前请保存画布",
+   ""
+  ]
+ },
+ "D_selected_count": 2
+}

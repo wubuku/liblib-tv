@@ -88,3 +88,16 @@
 .jimeng-canvas .react-flow__attribution {
   display: none;
 }
+
+/* ---- 多选包围盒 (Batch 62) ----
+   SOURCE_FACT: 源站即 xyflow nodesselection-rect，覆写为
+   bg rgba(255,255,255,0.04) + 1px dashed rgba(255,255,255,0.2) + r40
+   (62b-multiselect-styles.json computed style 提取)。
+   v12 原生 rect 仅 marquee 后渲染；shift+click 路径由
+   JimengSelectionOutline 补齐 (同款样式)。 */
+.jimeng-canvas .react-flow__nodesselection-rect,
+.jimeng-selection-outline {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+}

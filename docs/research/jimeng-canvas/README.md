@@ -243,6 +243,40 @@
   batch 59 测试条目同法补录（commit 6c23ef9，batch 472 对照批）。
 - 测试 (batch 59, 无新行为): 订阅滑杆刻度标签验证——6.2K/12.3K/
   18.5K/27.7K 刻度与 27690 端点值断言（batch 28/30/43 合同的复核）。
+- SOURCE_FACT (batch 62, 截取帧 首帧/尾帧 直出图片节点): 源站选中视频
+  节点 → 工具条 截取帧 → 首帧 后不打开帧选择器，而是直接异步产出
+  带画面的 image 节点（截图 62-frame-menu.png / 62-first-frame-result.png /
+  62-multiselect.png；点击后约 2-5s 节点出现，位于同行下一空位——
+  实测落点 x=1708 即源节点右侧避让同行节点后的空位；标题为源资产名
+  + 数字后缀）。复刻: captureFrame(id, 'first'|'last') 同步产出 image
+  节点（poster=视频海报、标题「<源标题> 首帧/尾帧」、右侧 80 间距起
+  逐节点右移避让、lineage 连线、入撤销栈）；自定义 仍走帧选择器。
+- SOURCE_FACT (batch 62, 多选组合工具条): ≥2 节点选中时，选区包围盒
+  上方 36px 居中出现组合工具条——rgb(32,32,32) r12 h40（与单选工具条
+  同族载体），内容「N 节点」标签 rgba(255,255,255,0.5) 13px ｜分隔线｜
+  编组（16 图标+文字）布局（16 图标+文字+下拉箭头，按钮宽 78 vs 编组
+  62）｜分隔线｜ 下载图标钮 32×32 禁用态 rgba(255,255,255,0.2) + 视觉
+  隐藏提示「导出前请保存画布」（62b-multiselect-styles.json 精确
+  computed style）。同截图证实多选时不渲染空节点生成面板。
+- SOURCE_FACT (batch 62, 选区包围盒与连接线): 多选包围盒样式 =
+  bg rgba(255,255,255,0.04) + 1px dashed rgba(255,255,255,0.2) +
+  border-radius 40px，几何为选中卡片包围盒四周外扩 40px
+  （62b-multiselect-styles.json computed style + 截图几何）。
+  CLONE_DECISION: xyflow v12 原生 nodesselection-rect 仅 marquee 结束后
+  渲染，shift+click 多选无（源站两种方式均显示）——复刻侧 CSS 覆写
+  原生路径 + JimengSelectionOutline 组件补齐 shift+click 路径；
+  outline 仅视觉 (pointer-events:none)，源站包围盒可拖拽整体移动未复刻。
+  两卡片间隙在双端节点同时选中时出现 1px 蓝色连接段（截图像素采样
+  合成值 ≈ rgb(35,108,172)；单选/无选同位置无连线；源站无
+  .react-flow__edge DOM，连线宿主元素未定位）。复刻: JimengEdge
+  双端 selected 时 stroke rgb(35,108,172) 1px。多选工具条
+  编组=groupSelected；布局 下拉内容源站未提取（CLONE_DECISION: 复刻
+  提供「自动排列」——选中节点按 x 排成一行，y 对齐选区最小值，单条历史）。
+- 观测 (batch 62, 未复刻): 源站视频节点在媒体 URL 失效后呈现
+  「视频播放失败」+ 重试按钮错误态（62-first-frame-result.png 中央
+  文案与 hover 提示）；复刻侧 media 为本地 data URI 无失效路径，
+  留档待 mock 触发器批次再实现。
+
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
   MiniMax H3、HappyHorse 1.1、Wan 3.0）各带 name + description；点击开
@@ -308,6 +342,10 @@
   监听器运行，本地状态驱动会导致预览无法用 Escape 关闭)。
 - Batch 47: 音频节点播放交互 (波形点亮推进/暂停冻结/播完自停归零)。
 - Batch 48: 文字节点行内编辑提交写回 store (updateNodeData 泛化)。
+- Batch 62: 截取帧 首帧/尾帧 直出图片节点 (captureFrame 避让落位)；
+  多选组合工具条 (N 节点/编组/布局∨/禁用下载) + nodesselection-rect
+  覆写 (dashed white/20 r40) + 双端选中蓝色连线；gen panel 多选隐藏。
+  证据: docs/design-references/jimeng/62-*.png / 62*.json。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，

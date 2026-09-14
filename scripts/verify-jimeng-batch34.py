@@ -4,8 +4,8 @@ Contract:
 - 截取帧-自定义: clicking the filmstrip moves the playhead and time readout;
   截取帧 arms 确认; confirming writes the frame time to the node's
   currentTime (node time row shows the captured position).
-- 首帧: picker opens at 00:00 with 确认 enabled; confirming seeks the node
-  to 00:00.
+- 首帧 (batch 62 semantics): directly creates an image node (poster +
+  「… 首帧」 title) instead of opening the frame picker.
 """
 
 import os
@@ -90,22 +90,21 @@ def main() -> None:
             path=str(REFERENCE_DIR / "jimeng-clone-batch34-frame-capture-1680.png")
         )
 
-        # ── 首帧 preset ──
+        # ── 首帧 (batch 62 语义演进): 直接产出 image 节点，不开选择器 ──
         open_picker(page, "首帧")
-        state = page.evaluate(
+        first = page.evaluate(
             """() => {
-                const bar = [...document.querySelectorAll('form,div')]
-                    .find(d => d.textContent.includes('00:00 / 00:06')
-                               && d.textContent.includes('确认'));
-                const confirm = [...(bar?.querySelectorAll('button') ?? [])]
-                    .find(b => b.textContent.trim() === '确认');
-                return {open: !!bar, confirmEnabled: confirm ? !confirm.disabled : false};
+                const nodes = [...document.querySelectorAll('.react-flow__node-image')];
+                const el = nodes[nodes.length - 1] ?? null;
+                return {count: nodes.length,
+                        hasPoster: el ? !!el.querySelector('img') : false,
+                        title: el ? (el.textContent || '').trim() : null};
             }"""
         )
-        if not state["open"]:
-            failures.append("首帧 picker did not open")
-        elif not state["confirmEnabled"]:
-            failures.append("首帧 确认 should be enabled immediately")
+        if first["count"] < 1:
+            failures.append("首帧 did not create an image node (batch 62 semantics)")
+        elif not first["hasPoster"] or not first["title"] or "首帧" not in first["title"]:
+            failures.append(f"首帧 image node wrong: {first}")
         page.keyboard.press("Escape")
         page.wait_for_timeout(300)
         page.mouse.click(300, 700)

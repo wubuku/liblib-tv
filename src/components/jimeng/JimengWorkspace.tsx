@@ -31,6 +31,8 @@ import {
   JimengPaneContextMenu,
 } from "@/components/jimeng/JimengPaneContextMenu";
 import type { JimengPaneMenuState } from "@/components/jimeng/JimengPaneContextMenu";
+import { JimengMultiSelectToolbar } from "@/components/jimeng/JimengMultiSelectToolbar";
+import { JimengSelectionOutline } from "@/components/jimeng/JimengSelectionOutline";
 
 /**
  * 即梦画布工作区编排。
@@ -327,6 +329,9 @@ function JimengFlow() {
           onAction={onContextMenuAction}
         />
       ) : null}
+      {/* 多选组合工具条 + 包围盒 (Batch 62): ≥2 选中时替代单选工具条 */}
+      <JimengSelectionOutline />
+      <JimengMultiSelectToolbar />
       {paneMenu ? (
         <JimengPaneContextMenu
           state={paneMenu}
