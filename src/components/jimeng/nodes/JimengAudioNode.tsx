@@ -6,6 +6,7 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengAudioNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 
 /**
  * 音频节点 (Batch 19)。样式为 CLONE_DECISION (源站音频节点未提取):
@@ -17,7 +18,7 @@ function fmt(s: number) {
   ).padStart(2, "0")}`;
 }
 
-export function JimengAudioNode({ data, selected }: NodeProps) {
+export function JimengAudioNode({ id, data, selected }: NodeProps) {
   const d = data as JimengAudioNodeData;
   // 播放交互 (Batch 47): 点击播放钮推进波形进度，播完自停 (CLONE_DECISION mock)
   const [playing, setPlaying] = useState(false);
@@ -56,9 +57,7 @@ export function JimengAudioNode({ data, selected }: NodeProps) {
     >
       <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
         <FileBadgeIcon size={16} />
-        <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
-          {d.title}
-        </span>
+        <JimengNodeTitle id={id} title={d.title} />
       </div>
 
       <div

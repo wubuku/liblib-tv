@@ -5,12 +5,13 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengImageNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 
 /**
  * 图片节点 (Batch 17)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)，
  * 尺寸/占位为 CLONE_DECISION (源站图片节点未提取)。
  */
-export function JimengImageNode({ data, selected }: NodeProps) {
+export function JimengImageNode({ id, data, selected }: NodeProps) {
   const d = data as JimengImageNodeData;
 
   return (
@@ -21,9 +22,7 @@ export function JimengImageNode({ data, selected }: NodeProps) {
     >
       <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
         <FileBadgeIcon size={16} />
-        <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
-          {d.title}
-        </span>
+        <JimengNodeTitle id={id} title={d.title} />
       </div>
 
       <div

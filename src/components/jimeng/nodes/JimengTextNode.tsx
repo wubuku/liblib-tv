@@ -6,6 +6,7 @@ import { Type } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengTextNodeData } from "@/types/jimeng";
+import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -39,9 +40,7 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     >
       <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
         <Type size={16} />
-        <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
-          {d.title}
-        </span>
+        <JimengNodeTitle id={id} title={d.title} />
       </div>
 
       <div

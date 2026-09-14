@@ -519,6 +519,11 @@
 - Batch 87 (复刻): JimengVideoTitleRow 点击标题进入行内重命名
   (renameNode 单条历史入撤销栈、Enter/失焦提交、Escape 取消、
   双击仍开插入菜单并退出重命名态) + 验证器。
+- Batch 88 (重命名全节点扩展): 源站文本节点标题同为 Rename 按钮
+  ("Rename 文本 1" + Add tags 实证)——复刻将行内重命名抽为共享
+  JimengNodeTitle 组件，应用于 视频/文本/音频/图片 全部节点标题行；
+  验证器覆盖 文本/音频 重命名 + 撤销链 (重命名与插入各占一条历史)。
+  证据: 88 文本重命名截图。
   对照: 源站卡片控制条按钮集 播放(Pause)/Mute video/Enter browser
   full screen 与我方 播放/静音/全屏 结构一致 (aria 文案英文 vs
   中文为 CLONE_DECISION)。
