@@ -35,7 +35,8 @@ def main() -> None:
             """() => [...document.querySelectorAll('.jimeng-bottom-dock button')]
                 .map(b => b.getAttribute('aria-label'))"""
         )
-        if labels != ["选择工具", "小地图", "缩放"]:
+        # batch 93: dock 增加显示连线钮
+        if labels != ["选择工具", "小地图", "显示连线", "缩放"]:
             failures.append(f"dock buttons: {labels}")
 
         if not page.locator('[data-testid="jimeng-minimap-panel"]').count():

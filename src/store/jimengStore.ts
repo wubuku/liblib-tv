@@ -108,6 +108,9 @@ export interface JimengCanvasState {
   /** 小地图开关 (Batch 91, SOURCE_FACT 底部 dock 小地图按钮) */
   minimapOpen: boolean;
   setMinimapOpen: (open: boolean) => void;
+  /** 连线显隐 (Batch 93, SOURCE_FACT dock 显示连线 canvas-dock-lines) */
+  edgesVisible: boolean;
+  setEdgesVisible: (visible: boolean) => void;
   /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
   renameProject: (name: string) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
@@ -723,6 +726,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   minimapOpen: false,
 
   setMinimapOpen: (open) => set({ minimapOpen: open }),
+
+  edgesVisible: true,
+
+  setEdgesVisible: (visible) => set({ edgesVisible: visible }),
 
   renameProject: (name) =>
     set((state) => ({

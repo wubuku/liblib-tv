@@ -101,6 +101,7 @@ function JimengFlow() {
   const offlineDialogOpen = useJimengStore((s) => s.offlineDialogOpen);
   const setOfflineDialog = useJimengStore((s) => s.setOfflineDialog);
   const minimapOpen = useJimengStore((s) => s.minimapOpen);
+  const edgesVisible = useJimengStore((s) => s.edgesVisible);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -315,7 +316,7 @@ function JimengFlow() {
     <div className="jimeng-canvas relative h-full w-full">
       <ReactFlow
         nodes={nodes}
-        edges={edges}
+        edges={edgesVisible ? edges : []}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         defaultEdgeOptions={{ type: "jimeng" }}

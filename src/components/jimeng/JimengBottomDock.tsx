@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Map, MousePointer2 } from "lucide-react";
+import { Map, MousePointer2, Spline } from "lucide-react";
 
 import { JimengZoomMenu } from "@/components/jimeng/JimengZoomMenu";
 import { useJimengStore } from "@/store/jimengStore";
@@ -19,6 +19,8 @@ export function JimengBottomDock() {
   const setToolActive = useJimengStore((s) => s.setToolActive);
   const minimapOpen = useJimengStore((s) => s.minimapOpen);
   const setMinimapOpen = useJimengStore((s) => s.setMinimapOpen);
+  const edgesVisible = useJimengStore((s) => s.edgesVisible);
+  const setEdgesVisible = useJimengStore((s) => s.setEdgesVisible);
   const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
 
   return (
@@ -46,6 +48,18 @@ export function JimengBottomDock() {
           }`}
         >
           <Map size={16} />
+        </button>
+        {/* Batch 93 (SOURCE_FACT canvas-dock-lines): 连线显隐开关 */}
+        <button
+          type="button"
+          aria-label="显示连线"
+          data-testid="dock-edges"
+          onClick={() => setEdgesVisible(!edgesVisible)}
+          className={`flex size-7 items-center justify-center rounded-md ${
+            edgesVisible ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+          }`}
+        >
+          <Spline size={16} />
         </button>
         <span className="mx-1 h-3 w-px shrink-0 bg-white/10" />
         <button
