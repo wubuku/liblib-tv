@@ -9,8 +9,10 @@ import { useJimengStore } from "@/store/jimengStore";
  * 缩放百分比菜单 (Batch 7)。
  *
  * 证据 (SOURCE_FACT): 点击底栏缩放块弹出上方菜单 200×292 rgb(38,38,38) r12:
- * 放大视图⌘+ / 缩小视图⌘− / 适配画布⇧1 / 缩放至选中项⇧2 (无选中禁用) ｜分隔｜
- * 缩放至50% / 缩放至100%⌘1 / 缩放至200%。
+ * Batch 94 (SOURCE_FACT 94-zoom-menu.png): 菜单为 5 项 — 适配画布⇧1 /
+ * 缩放至选中项⇧2 (无选中禁用) ｜分隔｜ 缩放至50% / 缩放至100%⌘1 /
+ * 缩放至200%。早期记录的 放大视图/缩小视图 菜单项已不在源站菜单中
+ * (⌘+/⌘− 快捷键仍在，站点演进移除) ｜分隔｜ 结构保留。
  * 功能接 xyflow: zoomIn/zoomOut/fitView/setViewport。
  * CLONE_DECISION: 源站缩放值为可编辑输入框，复刻先只读显示。
  */
@@ -18,8 +20,6 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
   const {
-    zoomIn,
-    zoomOut,
     fitView,
     setViewport,
     getViewport,
@@ -56,8 +56,6 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     disabled?: boolean;
     run: () => void;
   }[] = [
-    { label: "放大视图", shortcut: "⌘ +", run: () => void zoomIn() },
-    { label: "缩小视图", shortcut: "⌘ -", run: () => void zoomOut() },
     { label: "适配画布", shortcut: "⇧ 1", run: () => void fitView({ duration: 300 }) },
     {
       label: "缩放至选中项",

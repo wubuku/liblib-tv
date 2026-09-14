@@ -37,7 +37,7 @@ def main() -> None:
         zm = page.evaluate(
             """() => {
                 const m = [...document.querySelectorAll('[role="menu"]')]
-                    .find(m => m.textContent.includes('放大视图'));
+                    .find(m => m.textContent.includes('适配画布'));
                 if (!m) return null;
                 return {
                     items: [...m.querySelectorAll('[role="menuitem"]')].map(b => ({
@@ -51,12 +51,13 @@ def main() -> None:
             failures.append("zoom menu did not open")
         else:
             labels = [i["label"].strip() for i in zm["items"]]
-            want = ["放大视图", "缩小视图", "适配画布", "缩放至选中项", "缩放至50%", "缩放至100%", "缩放至200%"]
+            # batch 94: 源站菜单已移除 放大视图/缩小视图
+            want = ["适配画布", "缩放至选中项", "缩放至50%", "缩放至100%", "缩放至200%"]
             if len(labels) != len(want) or not all(
                 l.startswith(w) for l, w in zip(labels, want)
             ):
                 failures.append(f"zoom items: {labels}")
-            zsel = zm["items"][3]
+            zsel = zm["items"][1]  # batch 94: 缩放至选中项 现为第 2 项
             if not zsel["disabled"]:
                 failures.append("缩放至选中项 should be disabled without selection")
         page.screenshot(

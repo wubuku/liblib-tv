@@ -490,6 +490,11 @@
   (canvas-dock-lines)/Zoom options；显示连线 为连线显隐开关。
   复刻: store edgesVisible + dock Spline 图标钮 + JimengFlow
   edges 条件渲染；图标用 lucide Spline 近似 (CLONE_DECISION)。
+- Batch 94 (缩放菜单一致性): 源站缩放菜单为 5 项 — 适配画布⇧1/
+  缩放至选中项⇧2/缩放至50%/缩放至100%⌘1/缩放至200% (94-zoom-menu.png
+  / 94-zoom-menu.json)，早期记录的 放大视图⌘+/缩小视图⌘− 菜单项已
+  从源站菜单移除 (⌘± 快捷键仍在)。复刻: JimengZoomMenu 移除这两项
+  (batch 7 verifier 同步)，源站画布缩放已还原 100%。
 - Batch 93: 显示连线开关 + 验证器 (经 + 手柄插视频建边 → 隐/显断言)。
 - SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
   源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
