@@ -480,6 +480,11 @@
 - Batch 91 (复刻): dock 重构为上述布局 + xyflow <MiniMap> 面板
   (pannable、nodeColor 灰、mask 黑/45) + 验证器 (布局/尺寸/开关)。
   21 批旧 布局/同步 dock 钮移除记录在案 (站点演进)。
+- Batch 92 (小地图语义实证 + 对齐): 源站小地图 拖拽平移画布 ✓、
+  滚轮缩放画布 ✓ (92-minimap-sem.json viewport transform 前后对比)；
+  地图区即 portal 目标 canvas-minimap-portal-target 156×114。
+  复刻: MiniMap zoomable 由 false 修正为开启 (pannable 原本一致) +
+  验证器 (拖拽/滚轮 viewport 变化断言)。
 - SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
   源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
   节点 3 (62-multiselect.png 顶栏) → 编组后 节点 3 (63-after-group.png,

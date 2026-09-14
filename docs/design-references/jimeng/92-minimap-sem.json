@@ -1,0 +1,13 @@
+{
+ "markers_html": "<div data-testid=\"canvas-minimap-portal-target\" class=\"flex-none pointer-events-none\" style=\"height:114px;width:156px\"><div class=\"dreamina-canvas-minimap-surface [&amp;[data-state=open]_.dreamina-canvas-minimap-map]:pointer-events-auto [&amp;[data-state=open]]:pointer-events-auto [&amp;[data-state=open]]:opacity-[1] box-border w-[156px] h-[114px] pointer-events-none [background:transparent] [border:0] opacity-[0] [transition:opacity_var(--dreamina-motion-duration-element)_var(--dreamina-motion-",
+ "drag_pans_canvas": {
+  "before": "translate(-482.107px, 6.13961px) scale(1)",
+  "after": "translate(-1001.03px, -364.426px) scale(1)",
+  "changed": true
+ },
+ "wheel_zooms_canvas": {
+  "before": "translate(-1001.03px, -364.426px) scale(1)",
+  "after": "translate(-1775.14px, -693.022px) scale(1.39474)",
+  "changed": true
+ }
+}

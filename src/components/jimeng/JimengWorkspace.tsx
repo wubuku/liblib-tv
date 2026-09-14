@@ -344,7 +344,8 @@ function JimengFlow() {
         deleteKeyCode={null}
         zoomOnDoubleClick={false}
       >
-        {/* 小地图 (Batch 91, SOURCE_FACT): dock 切换，位于 dock 上方 */}
+        {/* 小地图 (Batch 91/92, SOURCE_FACT): dock 切换，位于 dock 上方；
+            拖拽平移画布、滚轮缩放画布 (92-minimap-sem.json) */}
         {minimapOpen ? (
           <div
             data-testid="jimeng-minimap-panel"
@@ -353,7 +354,7 @@ function JimengFlow() {
           >
             <MiniMap
               pannable
-              zoomable={false}
+              zoomable
               style={{
                 width: 156,
                 height: 114,
