@@ -455,3 +455,5 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-15 | batch 491 探测 | still-broken | 第一百零一次重测；全量维护集运行（batch 491） |
 | 2026-09-15 | batch 492 探测 | still-broken | 第一百零二次重测；jimeng 66 对照同步（batch 492） |
 | 2026-09-15 | batch 493 探测 | still-broken | 第一百零三次重测；freshness 完整性确认（batch 493） |
+| 2026-09-15 | batch 494 探测 | still-broken | 第一百零四次重测；全量维护集运行（batch 494） |
+| 2026-09-15 | batch 495 探测 | still-broken | 第一百零五次重测；jimeng 67 对照同步（batch 495） |

@@ -241,6 +241,7 @@
   （commit ddfbb9e，batch 465 对照批）。batch 57 审计 + Escape 修复
   条目同法补录（commits b23f4dd / 9cde67f，batch 469 对照批）。
   batch 59 测试条目同法补录（commit 6c23ef9，batch 472 对照批）。
+  batch 67 条目同法补录（commit a069c8e，batch 495 对照批）。
   batch 66 条目同法补录（commit b6df166 的前置提交，batch 492 对照批）。
   batch 61 加固/63/64/65 条目同法补录（commits 3089788 / 11dc070 /
   0ae72ca / 1b98d79，batch 488 对照批）。
@@ -248,6 +249,11 @@
   （repaint/edit/infer/framePicker/trim）；多选重试等待 800ms 加固。
 - 测试 (batch 59, 无新行为): 订阅滑杆刻度标签验证——6.2K/12.3K/
   18.5K/27.7K 刻度与 27690 端点值断言（batch 28/30/43 合同的复核）。
+- SOURCE_FACT (batch 67, 媒体错误状态): 源视频资源完全过期后完整错误
+  态可见——海报上 视频播放失败 文案 + 白色 重试播放视频 pill。复刻:
+  mediaError 旗标 + setMediaError 动作（不污染文档脏状态）；蒙层渲染
+  于海报上方（task/generating 蒙层优先）；重试清除错误并重启播放。
+  clone 无自然失败路径——测试直接驱动状态。
 - SOURCE_FACT (batch 66, 保存态门控下载): 跨截图证据——顶栏显示 已保存
   时下载可用，保存中… 时下载禁用（白/20 样式）且隐藏提示
   导出前请保存画布；统一规则覆盖单选工具条/多选工具条/右键菜单。
