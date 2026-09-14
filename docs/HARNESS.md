@@ -389,5 +389,7 @@ Selection, prompt, history and debug-mode behavior are documented in [`research/
 执行约定：**禁止 `timeout` 前缀**（Rosetta 陷阱）；**禁止从 x86_64
 （Rosetta）父进程以 subprocess 启动验证器**——子进程继承 x86_64 切片，
 venv 内 arm64 PIL 无法加载（batch 499 实证：21/22/26/33 四项 ImportError，
-需原生 shell 直启）；恢复重测在批首执行；jimeng 路线文件由并行开发者
+需原生 shell 直启）；**验证器运行会回写截图与 runtime-audit.json 到入库
+路径**——全量维护集运行后须按显式路径恢复非本批 fixture（DEC-018）；
+恢复重测在批首执行；jimeng 路线文件由并行开发者
 主导（显式路径暂存，DEC-018）。
