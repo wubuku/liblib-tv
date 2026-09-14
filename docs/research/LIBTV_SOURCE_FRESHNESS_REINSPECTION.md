@@ -443,3 +443,9 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-14 | batch 482 探测 | still-broken | 第九十二次重测；影响面验证器点检（batch 482） |
 | 2026-09-15 | batch 483 探测 | still-broken | 第九十三次重测；全量维护集新鲜运行（batch 483） |
 | 2026-09-15 | batch 484 探测 | still-broken | 第九十四次重测；维护集新鲜运行 + jimeng 62 确认已自行录入（batch 484） |
+| 2026-09-14 | batch 476 探测 | still-broken | 第八十七次重测；全量复扫部分 193/216（batch 476） |
+| 2026-09-15 | batch 477 探测 | still-broken | 第八十八次重测；clip 面板 disposition（batch 477） |
+| 2026-09-14 | batch 481 探测 | still-broken | 第九十一次重测；全量修复在位审计（batch 481） |
+| 2026-09-15 | batch 485 探测 | still-broken | 第九十五次重测；jimeng 63 对照同步（batch 485） |
+| 2026-09-15 | batch 486 探测 | still-broken | 第九十六次重测；最新验证器稳定点检（batch 486） |
+| 2026-09-15 | batch 487 探测 | still-broken | 第九十七次重测；freshness 行修复（batch 487） |
