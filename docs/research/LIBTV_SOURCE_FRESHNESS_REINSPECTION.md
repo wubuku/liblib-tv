@@ -450,6 +450,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 499 探测 | still-broken | 第一百二十次重测；全量维护集新鲜运行 67/67（PIL 四项 21/22/26/33 经原生 shell 复跑，x86_64 父进程 subprocess 继承陷阱入 HARNESS 执行约定）（batch 499） |
 | 2026-09-14 | batch 500 探测 | still-broken | 第一百二十一次重测；jimeng 96 自行录入确认 + 13/14/18/96 独立点检全绿（fixture 回写已按约定恢复）（batch 500） |
 | 2026-09-14 | batch 501 探测 | still-broken | 第一百二十二次重测；VR-018 Slice B 收口——Share overlay + AgentDrawer 状态 disposition 化（batch 501） |
+| 2026-09-14 | batch 502 探测 | still-broken | 第一百二十三次重测；jimeng 98 自行录入确认 + batch 501 影响面巡检（11/14/97/121/343 全绿，回写已恢复）（batch 502） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
