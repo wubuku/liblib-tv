@@ -28,20 +28,34 @@ const RAIL_ITEMS: {
   beta?: boolean;
   insert?: "video" | "image" | "text" | "audio";
 }[] = [
-  { icon: Type, label: "文字", insert: "text" },
+  // Batch 68 (SOURCE_FACT): 标签对齐源站 aria-label 提取
+  // (68-rail.json: 文本/图片/视频/音频/时间线/主体/导演台/资产库/上传)
+  { icon: Type, label: "文本", insert: "text" },
   { icon: Image, label: "图片", insert: "image" },
   { icon: SquarePlay, label: "视频", insert: "video" },
   { icon: AudioLines, label: "音频", insert: "audio" },
-  { icon: LayoutTemplate, label: "分镜" },
-  { icon: SquareUser, label: "数字人" },
-  { icon: Bot, label: "智能体", beta: true },
-  { icon: Folder, label: "素材库" },
+  { icon: LayoutTemplate, label: "时间线" },
+  { icon: SquareUser, label: "主体" },
+  { icon: Bot, label: "导演台", beta: true },
+  { icon: Folder, label: "资产库" },
   { icon: Upload, label: "上传" },
 ];
 
 export function JimengToolRail() {
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
   const { screenToFlowPosition } = useReactFlow();
+
+  // Batch 68: 按节点默认尺寸的一半回退，保证插入点为视口中心
+  // (SOURCE_FACT 68-newnode-selected.png: 文本节点创建于视口中心)
+  const HALF_SIZE: Record<
+    "video" | "image" | "text" | "audio",
+    { w: number; h: number }
+  > = {
+    video: { w: 284.5, h: 160 },
+    image: { w: 240, h: 180 },
+    text: { w: 164, h: 170 },
+    audio: { w: 200, h: 60 },
+  };
 
   const insertAtCenter = (kind: "video" | "image" | "text" | "audio") => {
     const el = document.querySelector(".jimeng-canvas");
@@ -50,8 +64,8 @@ export function JimengToolRail() {
       y: el ? el.clientHeight / 2 : window.innerHeight / 2,
     });
     addNodeAt(kind, {
-      x: position.x - 280,
-      y: position.y - 160,
+      x: position.x - HALF_SIZE[kind].w,
+      y: position.y - HALF_SIZE[kind].h,
     });
   };
 

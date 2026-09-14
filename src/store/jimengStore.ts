@@ -906,9 +906,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             type: "text" as const,
             data: {
               title: `文本 ${seq}`,
-              text: "双击编辑文字（mock 占位）",
-              width: 320,
-              height: 200,
+              // 占位提示在组件层渲染 (Batch 68 SOURCE_FACT 双击编辑文本)
+              text: "",
+              width: 328,
+              height: 340,
             },
           },
         ],

@@ -367,6 +367,17 @@
   失效后不再弹出（资源依赖），媒体相关提取通道自此受限。
   图片节点工具条提取（经 首帧 造图后选中）同因受阻，留档待源视频
   可播放窗口再试。
+- SOURCE_FACT (batch 68, 左栏 aria-label + 文本节点默认): 左栏按钮
+  aria-label 依次为 文本/图片/视频/音频/时间线/主体/导演台(Beta)/
+  资产库/上传（68-rail.json）——修正此前 文字/分镜/数字人/智能体/
+  素材库 的近似标签。点击 文本 在视口中心创建文本节点（标题 文本 1、
+  选中无工具条、占位 双击编辑文本 (white/40)、T 字形标题图标、
+  实测 ~328×340 (68-newnode-selected.png)）。复刻: 标签对齐、
+  insertAtCenter 按各节点默认尺寸的一半回退（原硬编码 -280/-160 使
+  非视频节点偏心）、文本节点默认尺寸/占位/图标/空态色对齐。
+  测试注: batch 38 的多选首击落在视频中央播放圆钮上
+  (stopPropagation 吞掉点击)，验证器改点 (中心-120,+40)；撤销恢复的
+  选中节点 z 升高会遮挡后续交互，补空白点击清除选择。
 
 - SOURCE_FACT (batch 41, 生成面板模型选择): 源站模型选择下拉已提取——
   8 个模型（Seedance 2.5 / 2.0 mini / 2.0 Fast VIP / 2.0 VIP / 1.0 Fast、
@@ -451,6 +462,9 @@
 - Batch 67: 视频播放失败错误态 (mediaError + 重试播放视频 药丸) +
   已编组选中右键菜单 解除编组 变体 + dev-only store window hook。
   证据: docs/design-references/jimeng/67-*.png + 67-image-grouped.json。
+- Batch 68: 左栏标签对齐 aria-label (文本/时间线/主体/导演台/资产库) +
+  文本节点默认值 (328×340、双击编辑文本、Type 图标、视口中心插入)。
+  证据: docs/design-references/jimeng/68-*.png / 68-rail.json。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，

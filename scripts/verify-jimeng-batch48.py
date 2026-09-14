@@ -30,7 +30,7 @@ def main() -> None:
         page.wait_for_timeout(2500)
 
         # insert a 文字 node and edit it
-        page.locator('aside button[aria-label="文字"]').click()
+        page.locator('aside button[aria-label="文本"]').click()
         page.wait_for_timeout(800)
         text_node = page.locator(".react-flow__node-text").first
         text_node.dblclick(position={"x": 100, "y": 60})

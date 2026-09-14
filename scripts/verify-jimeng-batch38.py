@@ -41,23 +41,33 @@ def main() -> None:
         page.wait_for_timeout(2500)
 
         # insert a 文字 node via rail (so we have 3 nodes: video/video-empty/text)
-        page.locator('aside button[aria-label="文字"]').click()
+        page.locator('aside button[aria-label="文本"]').click()
         page.wait_for_timeout(800)
         base_count = page.evaluate(
             "() => document.querySelectorAll('.react-flow__node').length"
         )
 
         # ── multi-select delete ──
+        # (retry loop: batch 54 known timing flake on shift+click multi-select)
         centers = node_centers(page)
-        page.mouse.click(centers[0]["x"], centers[0]["y"])
-        page.wait_for_timeout(300)
-        page.keyboard.down("Shift")
-        page.mouse.click(centers[1]["x"], centers[1]["y"])
-        page.keyboard.up("Shift")
-        page.wait_for_timeout(400)
-        selected = page.evaluate(
-            "() => document.querySelectorAll('.react-flow__node.selected').length"
-        )
+        selected = 0
+        for _attempt in range(3):
+            page.mouse.click(300, 750)
+            page.wait_for_timeout(300)
+            centers = node_centers(page)
+            # 避开卡片正中央的播放圆钮 (点击会被 stopPropagation 吞掉，
+            # 节点不会被选中)
+            page.mouse.click(centers[0]["x"] - 120, centers[0]["y"] + 40)
+            page.wait_for_timeout(300)
+            page.keyboard.down("Shift")
+            page.mouse.click(centers[1]["x"] - 120, centers[1]["y"] + 40)
+            page.keyboard.up("Shift")
+            page.wait_for_timeout(600)
+            selected = page.evaluate(
+                "() => document.querySelectorAll('.react-flow__node.selected').length"
+            )
+            if selected == 2:
+                break
         if selected != 2:
             failures.append(f"multi-selected: {selected} (want 2)")
 
@@ -80,6 +90,10 @@ def main() -> None:
         )
         if restored != base_count:
             failures.append(f"nodes after ⌘Z: {restored} (want {assert_count})")
+        # 清除选择: 撤销恢复的选中节点 z 升高会遮挡文字节点，
+        # 导致其 dblclick 被视频海报拦截
+        page.mouse.click(300, 750)
+        page.wait_for_timeout(400)
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch38-multidelete-1680.png")
         )

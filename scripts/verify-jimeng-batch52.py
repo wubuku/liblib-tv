@@ -30,7 +30,7 @@ def main() -> None:
         page.wait_for_timeout(2500)
 
         # insert a 文字 node so we have 3 nodes (video/video-empty/text)
-        page.locator('aside button[aria-label="文字"]').click()
+        page.locator('aside button[aria-label="文本"]').click()
         page.wait_for_timeout(800)
         base = page.evaluate(
             "() => document.querySelectorAll('.react-flow__node').length"

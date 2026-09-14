@@ -2,15 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Handle, Position } from "@xyflow/react";
+import { Type } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengTextNodeData } from "@/types/jimeng";
-import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
- * 文字节点 (Batch 17/38)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)，
- * 尺寸/样式为 CLONE_DECISION (源站文字节点未提取)。
+ * 文字节点 (Batch 17/38/68)。结构与视频节点同族 (SOURCE_FACT §5 骨架)。
+ * Batch 68 (SOURCE_FACT): 标题图标 T 字形、选中无工具条、占位
+ * 「双击编辑文本」、默认 328×340 (68-newnode-selected.png 实测)。
  * Batch 38: 双击卡片进入行内编辑，Enter/失焦提交。
  */
 export function JimengTextNode({ id, data, selected }: NodeProps) {
@@ -37,7 +38,7 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
       data-jimeng-node-selected={selected || undefined}
     >
       <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
-        <FileBadgeIcon size={16} />
+        <Type size={16} />
         <span className="max-w-full truncate whitespace-nowrap text-[13px] leading-[22px]">
           {d.title}
         </span>
@@ -75,8 +76,12 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
             className="h-full w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none"
           />
         ) : (
-          <p className="text-[13px] leading-[22px] whitespace-pre-wrap text-white/85">
-            {draft || d.text}
+          <p
+            className={`text-[13px] leading-[22px] whitespace-pre-wrap ${
+              draft || d.text ? "text-white/85" : "text-white/40"
+            }`}
+          >
+            {draft || d.text || "双击编辑文本"}
           </p>
         )}
       </div>

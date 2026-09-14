@@ -56,7 +56,7 @@ def main() -> None:
         # rail inserts: 图片 / 文字 / 视频 (inserted at canvas center)
         page.locator('aside button[aria-label="图片"]').click()
         page.wait_for_timeout(800)
-        page.locator('aside button[aria-label="文字"]').click()
+        page.locator('aside button[aria-label="文本"]').click()
         page.wait_for_timeout(800)
         page.locator('aside button[aria-label="视频"]').click()
         page.wait_for_timeout(800)

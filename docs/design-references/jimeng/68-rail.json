@@ -1,0 +1,77 @@
+{
+ "rail": [
+  {
+   "x": 40,
+   "y": 321,
+   "label": "文本"
+  },
+  {
+   "x": 40,
+   "y": 363,
+   "label": "图片"
+  },
+  {
+   "x": 40,
+   "y": 405,
+   "label": "视频"
+  },
+  {
+   "x": 40,
+   "y": 447,
+   "label": "音频"
+  },
+  {
+   "x": 40,
+   "y": 489,
+   "label": "时间线"
+  },
+  {
+   "x": 40,
+   "y": 531,
+   "label": "主体"
+  },
+  {
+   "x": 40,
+   "y": 573,
+   "label": "导演台"
+  },
+  {
+   "x": 40,
+   "y": 629,
+   "label": "资产库"
+  },
+  {
+   "x": 40,
+   "y": 671,
+   "label": "上传上传"
+  },
+  {
+   "x": 34,
+   "y": 902,
+   "label": "选择工具"
+  },
+  {
+   "x": 66,
+   "y": 902,
+   "label": "小地图"
+  }
+ ],
+ "after_click": [
+  {
+   "id": "node_c6kc51g2v7",
+   "cls": "react-flow__node-video",
+   "sel": false
+  },
+  {
+   "id": "node_eftc9q6caa",
+   "cls": "react-flow__node-video",
+   "sel": false
+  },
+  {
+   "id": "node_abaj9e49d2",
+   "cls": "react-flow__node-text",
+   "sel": true
+  }
+ ],
+ "new_toolbar": []
+}
