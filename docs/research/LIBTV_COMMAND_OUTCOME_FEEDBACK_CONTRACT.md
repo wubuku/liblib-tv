@@ -688,12 +688,12 @@ Only if source/product evidence requires：
 | reject/noop/stale/unknown 零 graph/history residue | ✅（status-line 面） | batch 501/504/505 verifier 断言；batch 100 zero-graph-side-effect |
 | durable failure/conflict 有持续 recovery surface | ✅（Director scope） | Batch 83/470 progress/error/retry surface |
 | visible result 不靠 generic success toast | ✅ | story-script pair 零反馈（batch 505）；§17 Reject 清单执行 |
-| timer/retry/duplicate/switch/delete/unmount/burst 确定性复现 | 部分 ✅：owner 绑定/防交叉/卸载清除按构造成立 | batch 472 审计、batch 449；确定性 fake-clock fixture ❌ |
+| timer/retry/duplicate/switch/delete/unmount/burst 确定性复现 | ✅：owner 绑定/防交叉/卸载清除按构造成立（batch 472/449）；确定性复现由 FIX-01 runtime 承载（batch 510，15/15 场景） | `libtvCommandFeedbackFixture.ts` + verify-liblib-batch510.py |
 | prototype 不宣称真实 provider/保存/计费/远端任务 | ✅ | copy 原样保留诚实披露（batch 501/504/505 未改文案） |
 | LibTV/FrameOS route 隔离 | ✅ | 未复用 FrameOS toast；catalog 仅 liblib 组件 |
 | exact source presentation 只由 current source evidence 决定 | ✅（gating 生效中） | toast/invalid style/timeout 维持 BLOCKED_SOURCE |
-| `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 与 `LIBTV-VR-018` 通过 | ❌ / 部分 | FIX fixture `RUNTIME_MISSING`；VR-018 status-line 切片关闭（467/470/472/473 + 501/504/505），connection 面未决 |
+| `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 与 `LIBTV-VR-018` 通过 | FIX-01 ✅ `PURE_RUNTIME_RECORDED_PASS`（batch 510）；VR-018 status-line 切片关闭（467/470/472/473 + 501/504/505），connection 面未决 | batch 510 runtime-audit；§16 注记 |
 | `npm run check` + 相关 browser regression | ✅ | 每批门禁 + batch 11/14/97/100/106/121/343 回归绿 |
-| 研究/实施/验证/commit 落档 | ✅ | batch 498-509 freshness 台账与 batch 目录 |
+| 研究/实施/验证/commit 落档 | ✅ | batch 498-510 freshness 台账与 batch 目录 |
 
-> 裁决：§18 整门**尚未全过**——差距收敛为两项：① graph connection 反馈投影（BLOCKED_SOURCE，等待采样裁决 surface 与呈现）；② `LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 确定性 fixture。二者都不阻塞现有 status-line 合同的继续有效。
+> 裁决（batch 509 初审、batch 510 修订）：§18 差距收敛为**一项**——graph connection 反馈投影（BLOCKED_SOURCE，等待源站恢复采样 surface 与呈现）；`LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01` 已由 batch 510 以确定性纯模块 runtime 关闭（`PURE_RUNTIME_RECORDED_PASS`，15 场景 + §13.3 不变量；视觉几何继续由 browser 验证器承载）。该项不阻塞现有 status-line 合同的继续有效。

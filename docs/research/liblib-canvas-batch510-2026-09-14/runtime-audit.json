@@ -1,0 +1,58 @@
+{
+  "url": "http://localhost:4317",
+  "status": "PURE_RUNTIME_RECORDED_PASS",
+  "slice": "VR-018 §13 LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01 runtime — deterministic fixture world, 15 scenes, §13.3 reset assertions",
+  "scenes": {
+    "connection_allow_reject": {
+      "ok": true
+    },
+    "field_reject_edit_retry": {
+      "ok": true
+    },
+    "prototype_unavailable": {
+      "ok": true
+    },
+    "node_guard_timer_replacement": {
+      "ok": true
+    },
+    "visible_graph_result": {
+      "ok": true
+    },
+    "started_progress_completed": {
+      "ok": true
+    },
+    "retry_stale_then_success": {
+      "ok": true
+    },
+    "switch_canvas_terminal": {
+      "ok": true
+    },
+    "delete_owner_orphan": {
+      "ok": true
+    },
+    "panel_close_local_vs_background": {
+      "ok": true
+    },
+    "duplicate_terminal_suppressed": {
+      "ok": true
+    },
+    "burst_bounded_aggregation": {
+      "ok": true
+    },
+    "undo_redo_no_feedback_replay": {
+      "ok": true
+    },
+    "long_message_bound": {
+      "ok": true
+    },
+    "route_isolation_libtv_owners": {
+      "ok": true
+    }
+  },
+  "route_isolation_static": "no FrameOS reference in fixture module",
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

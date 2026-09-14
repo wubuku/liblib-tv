@@ -25,6 +25,7 @@ import {
   LIBTV_COMMAND_FEEDBACK_CATALOG,
   projectLibTVCommandFeedback,
 } from "@/lib/libtvCommandFeedback";
+import { runLibTVCommandFeedbackFixtureScenes } from "@/lib/libtvCommandFeedbackFixture";
 import {
   LIBTV_MEDIA_INGRESS_PROFILES,
   reduceLibTVShotSourceLifecycle,
@@ -225,6 +226,10 @@ declare global {
       at: number,
       value: string,
     ) => { kind: string; at: number; value: string };
+    __libtv_command_feedback_fixture_scenes?: () => Record<
+      string,
+      { ok: boolean; detail?: unknown }
+    >;
     __libtv_media_ingress_profiles?: Record<
       string,
       {
@@ -743,6 +748,10 @@ export default function Home() {
     // Batch 467 (VR-018 Slice A): command feedback catalog + projection.
     window.__libtv_command_feedback_catalog = LIBTV_COMMAND_FEEDBACK_CATALOG;
     window.__libtv_project_command_feedback = projectLibTVCommandFeedback;
+    // Batch 510 (VR-018 §13): LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01 runtime —
+    // deterministic fixture world + §13.2 scene runner (pure).
+    window.__libtv_command_feedback_fixture_scenes =
+      runLibTVCommandFeedbackFixtureScenes;
     // Batch 456 (VR-021 Slice F): director byte estimator + lease audit.
     window.__libtv_estimate_data_url_bytes = estimateLibTVDataUrlBytes;
 
@@ -796,6 +805,7 @@ export default function Home() {
       delete window.__libtv_shot_source_reduce;
       delete window.__libtv_command_feedback_catalog;
       delete window.__libtv_project_command_feedback;
+      delete window.__libtv_command_feedback_fixture_scenes;
       delete window.__libtv_estimate_data_url_bytes;
 
       delete window.__libtv_media_lease_ledger_new;

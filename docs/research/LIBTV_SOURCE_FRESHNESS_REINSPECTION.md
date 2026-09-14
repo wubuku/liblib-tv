@@ -458,6 +458,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 507 探测 | still-broken | 第一百二十八次重测；BIG_PICTURE §命令反馈段时效更新——VR-018 status-line 面已收口、graph connection 静默 reject 为唯一未决（BLOCKED_SOURCE）（batch 507） |
 | 2026-09-14 | batch 508 探测 | still-broken | 第一百二十九次重测；TRACEABILITY TR-040 行时效化——VR-018 状态面收口 + connection 未决 + FIX fixture 维持 RUNTIME_MISSING（batch 508） |
 | 2026-09-14 | batch 509 探测 | still-broken | 第一百三十次重测；VR-018 §18 完成度逐条审计——差距收敛为 connection 反馈（BLOCKED_SOURCE）+ FIX-01 确定性 fixture 两项（batch 509） |
+| 2026-09-14 | batch 510 探测 | still-broken | 第一百三十一次重测；FIX-01 确定性 fixture runtime 落地（PURE_RUNTIME_RECORDED_PASS，15 场景）——§18 差距收敛为 connection 反馈一项；jimeng 101 自行录入确认（batch 510） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
