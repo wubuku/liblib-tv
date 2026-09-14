@@ -447,6 +447,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-15 | batch 496 探测 | still-broken | 第一百零六次重测；VR-018 Slice B 子项 + jimeng 73 自行录入确认（batch 496） |
 | 2026-09-15 | batch 497 探测 | still-broken | 第一百一十三次重测；jimeng 74 对照同步（batch 497；序数按提交 ed2ae39 自记补记，行曾缺失） |
 | 2026-09-14 | batch 498 探测 | still-broken | 第一百一十九次重测；10.2b 台账尾部修复——EOF 孤儿行并入去重、剔除 498–512 backfill 幻影行（batch 498） |
+| 2026-09-14 | batch 499 探测 | still-broken | 第一百二十次重测；全量维护集新鲜运行 67/67（PIL 四项 21/22/26/33 经原生 shell 复跑，x86_64 父进程 subprocess 继承陷阱入 HARNESS 执行约定）（batch 499） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
