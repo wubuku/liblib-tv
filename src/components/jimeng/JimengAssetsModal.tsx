@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 
-import { useJimengStore } from "@/store/jimengStore";
-
 /**
  * 资产库模态框 (Batch 72)。
  *

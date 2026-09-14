@@ -481,6 +481,10 @@
 - Batch 72: 资产库模态 (双 tab/筛选/搜索/骨架网格/空态/禁用确认) +
   Escape 统一关闭。证据: docs/design-references/jimeng/72-*.png +
   72-assets.json。
+- Batch 74 (重构, 无行为变更): JimengVideoNode (556 行) 拆分为
+  JimengVideoTitleRow (标题行+颜色标记) + JimengVideoMediaCard
+  (海报/控制条/进度/遮罩/错误态) + 编排器；门: tsc/lint/build +
+  视频节点相关 20 个 verifier 全绿。
 - SOURCE_FACT (batch 73, 左栏标签飞出 + 本地上传): 悬停左栏时图标右侧
   显示标签飞出层 (73-upload-panel.png: 文本/图片/…/上传 与图标逐行
   对齐)。上传 点击打开系统多选文件选择器 (filechooser multiple 实证)，
