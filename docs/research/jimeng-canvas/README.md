@@ -465,6 +465,16 @@
 - Batch 68: 左栏标签对齐 aria-label (文本/时间线/主体/导演台/资产库) +
   文本节点默认值 (328×340、双击编辑文本、Type 图标、视口中心插入)。
   证据: docs/design-references/jimeng/68-*.png / 68-rail.json。
+- Batch 69: 全量质量门 — verify 1..68 全绿 (60 verifier + 老式 1/2/3/5/6)，
+  截图刷新入库 (commit 3306154)。
+- SOURCE_FACT (batch 70, 顶栏节点计数): 顶栏 节点{N} 随画布实时变化 —
+  源站截图链: 基线 节点 2 (62-frame-menu-status.png) → 建 image 节点后
+  节点 3 (62-multiselect.png 顶栏) → 编组后 节点 3 (63-after-group.png,
+  组节点计数 +1)。复刻: JimengTopBar 节点数改为 store nodes.length
+  实时映射。CLONE_DECISION: 我方编组为 groupId 标记模型 (无组节点)，
+  编组不使计数 +1 (源站 +1)。
+- Batch 70: 顶栏 节点{N} 实时映射 + 验证器 (插入/撤销/截取帧 计数断言)。
+  证据: verify-jimeng-batch70.py + jimeng-clone-batch70-node-count.png。
 - 回归状态: verify-jimeng-batch1..48 共 48 个 verifier 全部 PASS；
   npm run check (lint + typecheck + build) 通过。
 - 环境备注: dev server Fast Refresh 会在文件编辑后重置页面 store 状态，
