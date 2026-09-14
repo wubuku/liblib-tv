@@ -25,7 +25,10 @@ export function VideoClipEditPanel({
   mode,
 }: VideoClipEditPanelProps) {
   const [prompt, setPrompt] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<{ text: string; tone: "neutral" | "positive" | "diagnostic" }>({
+    text: "",
+    tone: "neutral",
+  });
 
   return (
     <div
@@ -38,7 +41,7 @@ export function VideoClipEditPanel({
         <button
           type="button"
           data-video-clip-reference
-          onClick={() => setStatus("请先连接视频节点后添加参考")}
+          onClick={() => setStatus({ text: "请先连接视频节点后添加参考", tone: "neutral" })}
           className="flex h-[26px] w-fit items-center rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white"
         >
           +参考
@@ -46,7 +49,7 @@ export function VideoClipEditPanel({
         <button
           type="button"
           aria-label="展开智能剪辑编辑器"
-          onClick={() => setStatus("本地原型：展开编辑器未连接")}
+          onClick={() => setStatus({ text: "本地原型：展开编辑器未连接", tone: "neutral" })}
           className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white"
         >
           <Expand size={15} />
@@ -58,7 +61,7 @@ export function VideoClipEditPanel({
           value={prompt}
           onChange={(event) => {
             setPrompt(event.target.value);
-            setStatus("");
+            setStatus({ text: "", tone: "neutral" });
           }}
           placeholder="描述想剪成什么效果"
           className="mt-3 min-h-0 flex-1 resize-none bg-transparent text-sm leading-6 text-[#ededed] outline-none selection:bg-[#09caf5]/30 placeholder:text-[#5e5e5e]"
@@ -88,9 +91,10 @@ export function VideoClipEditPanel({
           {status && (
             <span
               data-video-clip-status
+              data-status-tone={status.tone}
               className="max-w-52 truncate pb-2 text-[11px] text-[#75d7e8]"
             >
-              {status}
+              {status.text}
             </span>
           )}
           <button
@@ -98,7 +102,7 @@ export function VideoClipEditPanel({
             data-video-clip-submit
             aria-label="发送"
             disabled={!prompt.trim()}
-            onClick={() => setStatus("已创建本地智能剪辑任务")}
+            onClick={() => setStatus({ text: "已创建本地智能剪辑任务", tone: "positive" })}
             className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#d9d9d9] text-[#303030] hover:bg-white disabled:bg-white/[0.08] disabled:text-[#555]"
           >
             <ArrowUp size={17} />
