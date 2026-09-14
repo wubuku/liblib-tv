@@ -501,6 +501,13 @@
   切回资产 tab 恢复四筛选。
 - Batch 76: 主体 tab 全部筛选 + 没有可用主体 空态 + 验证器
   (75 verifier 同步更新合同)。
+- Batch 77: 全量回归 1..76 全绿（72 verifier），截图刷新 (commit 5add09c)。
+- SOURCE_FACT (batch 78, 资产库骨架格与图标 tooltip): 空态骨架格
+  124×124、5 列、间距 2px、bg white/4%、r2 (右对齐 630px 网格区)；
+  时间/筛选 图标钮 hover 显示 radix 式 tooltip 药丸 (56×36, 按钮下方,
+  文本即 时间/筛选) (78-skeleton-hover.json)。复刻: 骨架网格参数对齐
+  (630px 右对齐 grid、aspect-square、gap 2px)、图标钮 group-hover
+  tooltip 药丸 (此前仅原生 title)。
 - 观测 (batch 77, 重试播放行为): 源站 重试播放视频 点击后错误横幅清除，
   但资源已死时视频进入「00:00 / 00:00」无时长空载态（中央播放圆钮
   消失、截取帧 下拉不再弹出）——媒体类提取（图片节点工具条）继续

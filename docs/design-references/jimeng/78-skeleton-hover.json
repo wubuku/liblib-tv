@@ -1,0 +1,119 @@
+{
+ "skeleton_cells": [
+  {
+   "rect": [
+    709,
+    404,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  },
+  {
+   "rect": [
+    835,
+    404,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  },
+  {
+   "rect": [
+    961,
+    404,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  },
+  {
+   "rect": [
+    1087,
+    404,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  },
+  {
+   "rect": [
+    1213,
+    404,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  },
+  {
+   "rect": [
+    709,
+    530,
+    124,
+    124
+   ],
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "radius": "2px",
+   "border": "0px solid rgb(229, 231, 235)",
+   "cls": "aspect-square w-full rounded-canvas-asset-library-card bg-dr"
+  }
+ ],
+ "gap_x": 2,
+ "hover_时间": {
+  "before": 574,
+  "after": 553,
+  "new": [
+   {
+    "cls": "z-[120] overflow-hidden motion-safe:data-[state=delayed-open",
+    "rect": [
+     1253,
+     270,
+     56,
+     36
+    ],
+    "text": "时间"
+   }
+  ]
+ },
+ "hover_筛选": {
+  "before": 574,
+  "after": 556,
+  "new": [
+   {
+    "cls": "z-[120] overflow-hidden motion-safe:data-[state=delayed-open",
+    "rect": [
+     1253,
+     270,
+     56,
+     36
+    ],
+    "text": "时间"
+   },
+   {
+    "cls": "z-[120] overflow-hidden motion-safe:data-[state=delayed-open",
+    "rect": [
+     1290,
+     270,
+     56,
+     36
+    ],
+    "text": "筛选"
+   }
+  ]
+ }
+}

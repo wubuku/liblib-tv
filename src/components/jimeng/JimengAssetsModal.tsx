@@ -113,36 +113,46 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
             </svg>
             <span className="text-[13px] text-white/40">搜索</span>
           </div>
-          <button
-            type="button"
-            aria-label="时间"
-            title="时间"
-            className="ml-2 flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]"
-          >
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M2 6.5h12M5.5 2v2M10.5 2v2" stroke="currentColor" strokeWidth="1.2" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            aria-label="筛选"
-            title="筛选"
-            className="ml-1 flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]"
-          >
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path d="M2.5 4h11M4.5 8h7M6.5 12h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-          </button>
+          {/* Batch 78 (SOURCE_FACT): hover 显示 radix 式 tooltip 药丸 (按钮下方) */}
+          {(["时间", "筛选"] as const).map((label, i) => (
+            <div key={label} className={`group/tip relative ${i === 0 ? "ml-2" : "ml-1"}`}>
+              <button
+                type="button"
+                aria-label={label}
+                title={label}
+                className="flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]"
+              >
+                {label === "时间" ? (
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+                    <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.2" />
+                    <path d="M2 6.5h12M5.5 2v2M10.5 2v2" stroke="currentColor" strokeWidth="1.2" />
+                  </svg>
+                ) : (
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+                    <path d="M2.5 4h11M4.5 8h7M6.5 12h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                )}
+              </button>
+              <span
+                data-testid={`assets-tip-${label}`}
+                className="pointer-events-none absolute left-1/2 top-full z-[130] mt-1 flex h-9 w-14 -translate-x-1/2 items-center justify-center rounded-lg text-[13px] text-white opacity-0 transition-opacity duration-100 group-hover/tip:opacity-100"
+                style={{ background: "rgb(38,38,38)" }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
         </div>
 
         {/* 素材网格骨架 + 空态 */}
         <div className="relative mt-3 flex-1 overflow-hidden rounded-xl">
-          <div className="grid h-full grid-cols-6 grid-rows-4 gap-1.5">
-            {Array.from({ length: 24 }).map((_, i) => (
+          {/* Batch 78 (SOURCE_FACT): 骨架格 124×124、5 列、间距 2px、
+              bg white/4%、r2 */}
+          <div className="ml-auto grid h-full w-[630px] grid-cols-5 gap-[2px] overflow-hidden">
+            {Array.from({ length: 20 }).map((_, i) => (
               <div
                 key={i}
-                className="rounded-lg border border-white/[0.05] bg-white/[0.03]"
+                className="aspect-square rounded-[2px] bg-white/[0.04]"
               />
             ))}
           </div>

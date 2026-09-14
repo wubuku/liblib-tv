@@ -84,11 +84,12 @@ def main() -> None:
                 path=str(REFERENCE_DIR / "jimeng-clone-batch72-assets-modal.png")
             )
 
-            # 主体 tab → empty text switches
+            # 主体 tab → empty text switches (batch 76 SOURCE_FACT 修正:
+            # 没有可用主体，非 暂无主体素材)
             page.locator('[data-testid="assets-tab-主体"]').click()
             page.wait_for_timeout(400)
             empty2 = page.locator('[data-testid="assets-empty"]').inner_text()
-            if empty2 != "暂无主体素材":
+            if empty2 != "没有可用主体":
                 failures.append(f"主体 empty text: {empty2!r}")
             page.locator('[data-testid="assets-tab-资产"]').click()
             page.wait_for_timeout(300)
