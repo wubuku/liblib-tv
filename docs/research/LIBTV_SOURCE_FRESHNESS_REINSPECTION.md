@@ -474,3 +474,15 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 | 2026-09-15 | batch 510 探测 | still-broken | 第一百一十次重测；§5.z5 batch 64 五连绿确认（batch 510） |
 | 2026-09-15 | batch 511 探测 | still-broken | 第一百一十一次重测；全量修复在位审计（batch 511） |
 | 2026-09-15 | batch 512 探测 | still-broken | 第一百一十二次重测；影响面验证器点检（batch 512） |
+| 2026-09-15 | batch 478 探测 | still-broken | 第一百零八次重测；VR-018 Slice B 子项（batch 478） |
+| 2026-09-15 | batch 479 探测 | still-broken | 第一百零九次重测；batch 64 placement 收尾（batch 479） |
+| 2026-09-15 | batch 480 探测 | still-broken | 第一百次重测；batch 64 稳定性五连绿确认（batch 480） |
+| 2026-09-15 | batch 481 探测 | still-broken | 第一百零一次重测；全量修复在位审计（batch 481） |
+| 2026-09-15 | batch 482 探测 | still-broken | 第一百零二次重测；影响面验证器点检（batch 482） |
+| 2026-09-15 | batch 483 探测 | still-broken | 第一百零三次重测；全量维护集新鲜运行（batch 483） |
+| 2026-09-15 | batch 484 探测 | still-broken | 第一百零四次重测；维护集 + jimeng 62 确认自行录入（batch 484） |
+| 2026-09-15 | batch 485 探测 | still-broken | 第一百零五次重测；jimeng 63 对照同步（batch 485） |
+| 2026-09-15 | batch 486 探测 | still-broken | 第一百零六次重测；最新验证器稳定点检（batch 486） |
+| 2026-09-15 | batch 498 探测 | still-broken | 第一百零八次重测；VR-018 Slice B 子项（batch 498） |
+| 2026-09-15 | batch 499 探测 | still-broken | 第一百零九次重测；batch 478 补录（batch 499） |
+| 2026-09-15 | batch 500 探测 | still-broken | 第一百次重测；VR-018 Slice B 剩余（batch 500） |
