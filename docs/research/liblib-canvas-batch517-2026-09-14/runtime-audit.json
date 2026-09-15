@@ -1,0 +1,26 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "GRAPH-DELETE focused fixture — structural closure, selection invalidation, zero-partial undo/redo (plain node scene)",
+  "scenes": {
+    "plain_delete_closure": {
+      "nodeRemoved": true,
+      "sourceSurvives": true,
+      "edgeClosure": true,
+      "edgeExistedBefore": true,
+      "oneHistoryStep": true
+    },
+    "selection_invalidated": {
+      "selectionNoLongerHoldsDeleted": true
+    },
+    "undo_redo_zero_partial": {
+      "undo_restores_node_and_edge": true,
+      "redo_removes_again": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
