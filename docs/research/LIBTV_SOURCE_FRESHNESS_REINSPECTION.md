@@ -482,6 +482,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 531 探测 | still-broken | 第一百五十二次重测；liblib 验证器编号缺口审计（254 个脚本）——缺口段全部对应 docs-only/观察批次与 jimeng 共号空间，最新脚本为 batch 527，无异常（batch 531） |
 | 2026-09-14 | batch 532 探测 | still-broken | 第一百五十三次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，扩容清单首次全量执行；回写 14 项显式恢复）（batch 532） |
 | 2026-09-14 | batch 533 探测 | still-broken | 第一百五十四次重测；巡检批次——并行开发者 harness 重捕获 batch80 截图进行中（WIP 保留），无新落库需同步（batch 533） |
+| 2026-09-14 | batch 534 探测 | still-broken | 第一百五十五次重测；Batch History 索引补 batch 527 行（524 增量后的遗漏）（batch 534） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

@@ -502,6 +502,7 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 518 | GRAPH-ENTRYPOINT focused fixture：跨入口一致性聚焦验收 | [`liblib-canvas-batch518-2026-09-14/`](liblib-canvas-batch518-2026-09-14/) |
 | 521 | GRAPH-DELETE derived-reference 场景聚焦验收 + batch 520 勘误 | [`liblib-canvas-batch521-2026-09-14/`](liblib-canvas-batch521-2026-09-14/) |
 | 522 | GRAPH-DELETE shot 聚合场景聚焦验收 | [`liblib-canvas-batch522-2026-09-14/`](liblib-canvas-batch522-2026-09-14/) |
+| 527 | GRAPH-DELETE canvas 场景聚焦验收 | [`liblib-canvas-batch527-2026-09-14/`](liblib-canvas-batch527-2026-09-14/) |
 | 501 | VR-018 Slice B 收口：Share + Agent 状态 disposition 化 | [`liblib-canvas-batch501-2026-09-14/`](liblib-canvas-batch501-2026-09-14/) |
 
 ## Planned Work
