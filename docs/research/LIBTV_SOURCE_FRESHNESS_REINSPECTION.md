@@ -462,6 +462,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 511 探测 | still-broken | 第一百三十二次重测；FIXTURE_CATALOG 状态核对审计——6 项 RUNTIME_MISSING 升级 FOCUSED_RUNTIME_PARTIAL（VR-016/017/019/021/022/023 聚焦闭环证据），其余维持（batch 511） |
 | 2026-09-14 | batch 512 探测 | still-broken | 第一百三十三次重测；全量维护集新鲜运行 69/69（67 liblib + jimeng1 + batch510，覆盖 page.tsx window 挂载改动；回写已恢复）（batch 512） |
 | 2026-09-14 | batch 513 探测 | still-broken | 第一百三十四次重测；VR-010 Slice A——纯 graph-document codec + §9.2 corpus 10/10（PURE_CODEC_RECORDED_PASS）（batch 513） |
+| 2026-09-14 | batch 514 探测 | still-broken | 第一百三十五次重测；VR-010 Slice B——history isolation focused browser 层 4 场景；发现空栈 undo 的 viewport 回写异常（BLOCKED_SOURCE 留档）（batch 514） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

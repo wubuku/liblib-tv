@@ -1,0 +1,36 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "VR-010 Slice B — history isolation, focused browser layer (§10.2): one command one step, content restore without stale selection, viewport own domain, future cleared by new command",
+  "scenes": {
+    "one_command_one_step": {
+      "nodeDelta": 1,
+      "pastDelta": 1,
+      "futureEmpty": true,
+      "mediaReference": {
+        "assetId": "fixture-hist-0",
+        "locatorClass": "STABLE_ASSET_REFERENCE"
+      }
+    },
+    "undo_redo_content_restore": {
+      "undone": true,
+      "redonePastDelta": 1,
+      "restoredAssetId": "fixture-hist-0"
+    },
+    "viewport_own_domain": {
+      "zoomChangedViewport": true,
+      "zoomNotInHistory": true
+    },
+    "viewport_undo_echo_finding": "empty-stack undo reverted the committed zoom (0.426→0.526) — observed, not asserted; VGP reconciliation open question (BLOCKED_SOURCE for source evidence)",
+    "new_command_clears_future": {
+      "futureAfterUndo": 1,
+      "futureClearedByNewCommand": true,
+      "netOneStep": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
