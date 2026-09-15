@@ -472,6 +472,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 521 探测 | still-broken | 第一百四十二次重测；GRAPH-DELETE derived-reference 场景聚焦验收 4 场景 + **勘误 batch 520**——no-op 实为防重守卫非 fixture 门，派生场景已可驱动并已验收（batch 521） |
 | 2026-09-14 | batch 522 探测 | still-broken | 第一百四十三次重测；GRAPH-DELETE shot 聚合场景聚焦验收——cohort 创建带反向引用、删除 breakdown 后 cohort 存活、零残缺 undo（batch 522） |
 | 2026-09-14 | batch 523 探测 | still-broken | 第一百四十四次重测；long-video process cohort 探针确认（LongVideoProcessInput 单事务 12 节点/一步 history；删除与已验收 removeNode 合同同径未单列场景）（batch 523） |
+| 2026-09-14 | batch 524 探测 | still-broken | 第一百四十五次重测；Batch History 索引增量补全——504–522 共 11 个新批次目录入索引（batch 524） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

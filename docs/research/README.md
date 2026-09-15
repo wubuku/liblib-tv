@@ -491,6 +491,17 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 480 | batch 64 稳定性五连绿确认 + §5.z5 精化 | [`liblib-canvas-batch480-2026-09-14/`](liblib-canvas-batch480-2026-09-14/) |
 | 485 | jimeng 63 对照同步（布局菜单实项 + 编组卡片）+ 心跳 | [`liblib-canvas-batch485-2026-09-15/`](liblib-canvas-batch485-2026-09-15/) |
 | 488 | jimeng 61–65 对照同步 + §7 补录 | [`liblib-canvas-batch488-2026-09-15/`](liblib-canvas-batch488-2026-09-15/) |
+| 504 | VR-018 catalog 收尾一致性：ProjectMenu 状态 disposition 化 | [`liblib-canvas-batch504-2026-09-14/`](liblib-canvas-batch504-2026-09-14/) |
+| 505 | VR-018 全扫收口：CanvasEmptyState 快速芯片 disposition 化 | [`liblib-canvas-batch505-2026-09-14/`](liblib-canvas-batch505-2026-09-14/) |
+| 510 | VR-018 §13：LIBTV-FIX-LOCAL-COMMAND-FEEDBACK-01 runtime | [`liblib-canvas-batch510-2026-09-14/`](liblib-canvas-batch510-2026-09-14/) |
+| 513 | VR-010 Slice A：纯 graph-document codec + §9.2 确定性 corpus | [`liblib-canvas-batch513-2026-09-14/`](liblib-canvas-batch513-2026-09-14/) |
+| 514 | VR-010 Slice B：history isolation focused browser 层 | [`liblib-canvas-batch514-2026-09-14/`](liblib-canvas-batch514-2026-09-14/) |
+| 515 | VR-012 focused fixture：默认 node-data 注册表聚焦验收 | [`liblib-canvas-batch515-2026-09-14/`](liblib-canvas-batch515-2026-09-14/) |
+| 516 | SUBGRAPH-COPY focused fixture：duplicate 子图拷贝聚焦验收 | [`liblib-canvas-batch516-2026-09-14/`](liblib-canvas-batch516-2026-09-14/) |
+| 517 | GRAPH-DELETE focused fixture：plain 删除场景聚焦验收 | [`liblib-canvas-batch517-2026-09-14/`](liblib-canvas-batch517-2026-09-14/) |
+| 518 | GRAPH-ENTRYPOINT focused fixture：跨入口一致性聚焦验收 | [`liblib-canvas-batch518-2026-09-14/`](liblib-canvas-batch518-2026-09-14/) |
+| 521 | GRAPH-DELETE derived-reference 场景聚焦验收 + batch 520 勘误 | [`liblib-canvas-batch521-2026-09-14/`](liblib-canvas-batch521-2026-09-14/) |
+| 522 | GRAPH-DELETE shot 聚合场景聚焦验收 | [`liblib-canvas-batch522-2026-09-14/`](liblib-canvas-batch522-2026-09-14/) |
 | 501 | VR-018 Slice B 收口：Share + Agent 状态 disposition 化 | [`liblib-canvas-batch501-2026-09-14/`](liblib-canvas-batch501-2026-09-14/) |
 
 ## Planned Work
