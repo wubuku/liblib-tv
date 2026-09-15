@@ -5,16 +5,27 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengImageNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { JimengImageNodeToolbar } from "@/components/jimeng/JimengImageNodeToolbar";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
- * 图片节点 (Batch 17)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)，
- * 尺寸/占位为 CLONE_DECISION (源站图片节点未提取)。
+ * 图片节点 (Batch 17)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)；
+ * 批 195 补源站图片节点提取: 569×320 同视频卡、选中工具条见
+ * JimengImageNodeToolbar。
  */
 export function JimengImageNode({ id, data, selected }: NodeProps) {
   const d = data as JimengImageNodeData;
+  const pushToast = useJimengStore((s) => s.pushToast);
+  const soloSelected =
+    useJimengStore((s) => s.nodes.filter((n) => n.selected).length) === 1;
 
   return (
+    <>
+      <JimengImageNodeToolbar
+        visible={selected === true && soloSelected}
+        onAction={(label) => pushToast(`${label}（mock）`)}
+      />
     <div
       className="group relative"
       style={{ width: d.width, height: d.height }}
@@ -84,6 +95,7 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
           transform: "translateY(-50%)",
         }}
       />
-    </div>
+      </div>
+    </>
   );
 }

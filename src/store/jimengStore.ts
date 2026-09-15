@@ -437,7 +437,9 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         type: "image",
         position: { x, y: src.position.y },
         data: {
-          title: `${v.title} ${label}`,
+          // 批 195 SOURCE_FACT: 源站产出节点标题为「{视频标题}_{首帧|尾帧}」
+          // (下划线连接, aria-label 「图片 node: sb_...-tf5q2_」)
+          title: `${v.title}_${label}`,
           poster: v.poster,
           width: w,
           height: h,

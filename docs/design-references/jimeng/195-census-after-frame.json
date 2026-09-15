@@ -1,0 +1,38 @@
+{
+ "nodes": [
+  {
+   "id": "node_c6kc51g2v7",
+   "cls": "react-flow__node-video",
+   "label": "视频 node: sb_518102884867410fb2175d43068dca4f_cgt-20260622155459-tf5q2",
+   "rect": [
+    676,
+    308,
+    569,
+    320
+   ]
+  },
+  {
+   "id": "node_eftc9q6caa",
+   "cls": "react-flow__node-video",
+   "label": "视频 node: 视频 1",
+   "rect": [
+    1245,
+    351,
+    569,
+    320
+   ]
+  },
+  {
+   "id": "node_4hb55477n8",
+   "cls": "react-flow__node-image",
+   "label": "图片 node: sb_518102884867410fb2175d43068dca4f_cgt-20260622155459-tf5q2_",
+   "rect": [
+    1894,
+    308,
+    569,
+    320
+   ]
+  }
+ ],
+ "edges": 1
+}

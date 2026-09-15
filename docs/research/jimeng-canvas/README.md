@@ -84,6 +84,19 @@
 - SOURCE_FACT: 截取帧下拉菜单: `rgb(38,38,38)` r12，146×130，菜单项
   首帧 / 尾帧 / 自定义（16px 图标 + 13px 文本，行高约 44px），锚在按钮下方 8px
   （`top-[calc(100%+8px)]`），z-[120]。
+- SOURCE_FACT (batch 195 复测): 截取帧下拉恢复可展开（首帧/尾帧/自定义三项不变，
+  可见菜单 73×65 @ 按钮下方 6px、行距 21px、13px 白字；146×130 为其外层缩放
+  容器）。视频工具条 7 条目几何复测一致（局部重拍 106 / 智能超清 106 /
+  视频编辑 106 / 截取帧 91 / 补帧 80 / 视频修剪 88 / 提示词反推 101，panel
+  775×40，条目间距 2px）。
+- SOURCE_FACT (batch 195, 图片节点工具条): 截取帧产出的图片节点（569×320，
+  同视频卡尺寸；标题「{视频标题}_{首帧|尾帧}」下划线连接）选中后上方弹出自有
+  工具条——面板与节点同宽（569×40）、同深色药丸；条目 智能改图✦ / 扩图 /
+  智能超清 / 抠图 / 多角度 / 工具∨（仅智能改图带 14×14 VIP 菱标；智能超清
+  此处无 VIP 标，区别于视频工具条；工具带 12×12 下拉箭头）；无分隔线、
+  无全屏/下载尾钮。产出图片节点带血缘连线（video→image 1 条）且落点为行内
+  右移避让后的空位（+80 间距）。工具∨ 菜单项未捕获（单击未展开，
+  BLOCKED_BY_EXTRACTION）。
 - 截图: `docs/design-references/jimeng/jimeng-source-video-node-selected-toolbar-1680-2026-09-12.png`、
   `jimeng-source-capture-frame-dropdown-1680-2026-09-12.png`。
 
@@ -489,6 +502,18 @@
   "/"使用技能/@添加主体/Agent 协作 + @ 行内 chip + 底行
   +/使用技能/@/白色圆形发送钮)——与我方 JimengAiDrawer (batch 12)
   结构一致，无实现差距；batch 12 verifier 回归通过。
+- Batch 195 (图片节点工具条复刻, 阻塞解除): 源站 截取帧 下拉恢复展开
+  （batch 84/90/100 受阻判定解除），补齐等待多轮的图片节点工具条提取
+  （195-toolbar.json / 195-dropdown.json / 195-image-toolbar-full.json /
+  195-census-after-frame.json，几何级证据；源站截图受页面持续渲染影响
+  未获取，BLOCKED_BY_EXTRACTION 备注）并复刻:
+  新增 `JimengImageNodeToolbar`（6 条目契约见 §6 batch 195 SOURCE_FACT，
+  VIP/下拉箭头/无下载尾钮差异全部落地）；`captureFrame` 产出标题改为
+  源站下划线约定 `「{视频标题}_{首帧|尾帧}」`；图片节点选中显示自有工具条
+  (JimengImageNode 接线, soloSelected 门控, 各项 pushToast mock)。
+  验证: verify-jimeng-batch97.py 新增（首帧→图片节点→工具条契约→撤销还原），
+  受影响面回归 batch 2/34/62/66/70/82 全 PASS，npm run check 通过。
+  工具∨ 菜单项与源站截图仍缺，后续轮次补提。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
