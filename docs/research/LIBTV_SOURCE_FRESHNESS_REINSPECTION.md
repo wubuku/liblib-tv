@@ -478,6 +478,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 527 探测 | still-broken | 第一百四十八次重测；GRAPH-DELETE canvas 场景聚焦验收——软删快照/history 清理/相邻回退/restore 恢复；四组场景全部验收完毕（batch 527） |
 | 2026-09-14 | batch 528 探测 | still-broken | 第一百四十九次重测；HARNESS 维护集权威清单扩容——fixture/聚焦验收家族 10 项（510–527）纳入基线，10/10 全绿（batch 528） |
 | 2026-09-14 | batch 529 探测 | still-broken | 第一百五十次重测；全量 `npm run check` 门补跑全绿（0 errors；nvm PATH 陷阱入 HARNESS 约定）（batch 529） |
+| 2026-09-14 | batch 530 探测 | still-broken | 第一百五十一次重测；jimeng 归档声明核对——82 验证器脚本计数精确吻合、编号缺口全与「观察批次无验证器」既录一致、抽样 91/92/93 全绿；整表 restore 纪律违规再现（回滚并行 PNG batch53，可由其 harness 重生成），commit message 披露（batch 530） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
