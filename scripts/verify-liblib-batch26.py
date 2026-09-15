@@ -79,8 +79,17 @@ def assert_no_overflow(page: Page):
 
 def switch_to_empty_canvas(page: Page):
     page.goto(URL, wait_until="domcontentloaded")
-    page.wait_for_timeout(600)
-    page.locator("[data-canvas-trigger]").click()
+    # Batch 544 hardening: wait for the app hydration marker before
+    # clicking — a pre-hydration click on the trigger is silently dropped
+    # (observed as canvas-dropdown timeouts while the parallel harness
+    # loads the shared dev server).
+    page.wait_for_function("() => Boolean(window.__libtv_store)")
+    page.wait_for_timeout(400)
+    for _ in range(3):
+        page.locator("[data-canvas-trigger]").click()
+        if page.locator('[data-canvas-row="canvas-1"]').count() > 0:
+            break
+        page.wait_for_timeout(500)
     page.locator('[data-canvas-row="canvas-1"] button').first.click()
     page.wait_for_timeout(180)
     assert page.locator(".react-flow__node").count() == 0

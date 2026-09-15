@@ -492,6 +492,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 541 探测 | still-broken | 第一百六十二次重测；batch 26 观察续采样 2/2 通过（并行 harness 静默窗口），累计 F3P4 支持并发争用假说，维持观察；本批零回写（batch 541） |
 | 2026-09-16 | batch 542 探测 | still-broken | 第一百六十三次重测；到期全量维护集新鲜运行 78/78（含 batch 26 本轮通过——静默窗口内 F 未复现）；并行 harness 8 张 PNG 静默窗口重捕获已归零，本运行 14 项回写显式恢复（batch 542） |
 | 2026-09-16 | batch 543 探测 | still-broken | 第一百六十四次重测；巡检批次——并行 harness 重捕获恢复活跃（batch16 截图 WIP 保留），无新落库需同步；维护集未到期（batch 543） |
+| 2026-09-16 | batch 544 探测 | still-broken | 第一百六十五次重测；batch 26 抖动根治——预水合点击落空定性 + 验证器加固（水合标记等待 + 点击重试，逆向条件 3/3 绿）入 VERIFICATION_LEDGER；维护集未到期（batch 544） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …

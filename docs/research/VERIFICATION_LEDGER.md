@@ -200,6 +200,7 @@ BrowserContext，不写截图。
 | Batch 182 | batch75 超时根因闭环 | `SCRIPT_RECORDED_PASS` | 可证伪实验：还原 Batch 181 持久化修复精确复现 30s 超时，恢复即全绿——下游症状定性成立，零代码改动复活；老化名单降至 10；72/74/89-96 与画布 21-180 复跑绿 |
 | Batch 183 | batch9/51 几何断言核对复活 | `SCRIPT_RECORDED_PASS` | 工具条宽度断言 900.5→1092.5（Batch 51/52 源站直采合同迁移漏项）；视频面板等待 450ms 时序修正；错误的图片面板 397 迁移经源站直采（空态 660×191）回滚保持 274；batch20 确认本就绿；老化名单降至 6 |
 | Batch 184 | 剩余 6 个老化验证器核对 | `TRIAGE_RECORDED` | 逐个失败形态存档并确认 AGED_GATE（现行门已覆盖、batch6 被 Batch 77 取代、batch40 为 fixture 媒体伪影）；零代码改动，脚本头部自文档化；抽样回归绿 |
+| Batch 544 | batch 26 画布下拉超时抖动根治 | `HARDENING_RECORDED` | 根因：`domcontentloaded`+固定 600ms 后点击触发器，React 预水合点击被静默丢弃（并行 harness 加载共用 dev server 时高发，539/540 观察项收口）；验证器改为等待 `window.__libtv_store` 水合标记 + 触发点击重试×3，逆向条件下 3/3 绿；零产品代码改动 |
 | Batch 185 | 172-178 表面 390 断点核查 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch185.py` 14 checks；双变体右键菜单视口内/芯片图标+白10%/滑层保留/无横向溢出；22 移动相位与 161 移动+平板复验绿 |
 | Batch 186 | footer 图标按钮组对齐 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch186.py` 8 checks；顺序/两枚新按钮/两枚直采字形/credits 位次；batch21 改字体无关的触发器相对偏移（三连跑绿）；batch125 补非 toggle 迁移；24 项全量回归绿 |
 | Batch 187 | footer 按钮点击惰性证实 | `SCRIPT_RECORDED_PASS` | `verify-liblib-batch187.py` 9 checks；源站点击无弹层/无 toggle/无新层（类名差异仅 hover 噪声）；clone 占位一致，惰性固化为回归合同；186/21/22/125/172/178 回归绿 |
