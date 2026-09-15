@@ -1,0 +1,26 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "GRAPH-DELETE shot/process aggregate scene — breakdown deletion against its surviving result cohort (inverse-ref behavior documented as observed)",
+  "scenes": {
+    "complete_creates_cohort": {
+      "resultCount": 4,
+      "backRefsAllPointAtBreakdown": true,
+      "oneStepComplete": true
+    },
+    "breakdown_delete_cohort_survives": {
+      "cohortSurvives": true,
+      "zeroDangling": true,
+      "oneStepDelete": true
+    },
+    "undo_zero_partial": {
+      "breakdownRestored": true,
+      "futureHasRedo": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
