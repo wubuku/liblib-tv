@@ -513,6 +513,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 562 探测 | still-broken | 第一百八十三次重测；巡检批次——工作区净、无新落库；维护集约 batch 564 到期（batch 562） |
 | 2026-09-16 | batch 563 探测 | still-broken | 第一百八十四次重测；巡检批次——工作区净、无新落库；维护集下批到期（batch 563） |
 | 2026-09-16 | batch 564 探测 | still-broken | 第一百八十五次重测；到期全量维护集新鲜运行 78/78；并行 harness batch53 截图 WIP 保留（batch 564） |
+| 2026-09-16 | batch 565 探测 | still-broken | 第一百八十六次重测；巡检批次——并行 harness 重捕获持续（batch11/14/53/57 WIP 保留），无新落库；维护集未到期（batch 565） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
