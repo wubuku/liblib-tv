@@ -508,6 +508,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 557 探测 | still-broken | 第一百七十八次重测；巡检批次——并行开发者自行提交 ec1db8a（jimeng batch 153，49–96 回归绿 + 截图刷新），10 张脏 fixture 归零；维护集下批到期（batch 557） |
 | 2026-09-16 | batch 558 探测 | still-broken | 第一百七十九次重测；到期全量维护集新鲜运行 78/78；13 项 liblib 回写显式恢复（并行 6 项 jimeng-clone-batch* 路径剔除保留）（batch 558） |
 | 2026-09-16 | batch 559 探测 | still-broken | 第一百八十次重测；巡检批次——6 个并行拥有路径状态不变（保留）；无新落库；维护集未到期（batch 559） |
+| 2026-09-16 | batch 560 探测 | still-broken | 第一百八十一次重测；巡检批次——并行自行落库 33796ce（jimeng batch 154，1–48 回归绿 + 截图刷新），工作区归零；维护集未到期（batch 560） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
