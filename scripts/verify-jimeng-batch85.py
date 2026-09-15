@@ -86,6 +86,13 @@ def main() -> None:
                 failures.append(f"preview hit area: {bar2['h']} want 12")
             if bar2["trackH"] != "5px":
                 failures.append(f"preview track: {bar2['trackH']} want 5px")
+            # 先暂停自动播放 (batch 80 autoplay)，避免读取时走表干扰 seek 断言
+            page.evaluate(
+                """() => { const s = window.__jimengStore.getState();
+                    const n = s.nodes.find(n => n.id === 'video-local-1');
+                    if (n.data.playing) s.togglePlay('video-local-1'); }"""
+            )
+            page.wait_for_timeout(300)
             # seek to 50%
             r = page.locator('[data-testid="preview-progress"]').bounding_box()
             page.mouse.click(r["x"] + r["width"] * 0.5, r["y"] + r["height"] / 2)
