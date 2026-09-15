@@ -34,6 +34,7 @@ import {
   parseLibTVGraphDocument,
   runLibTVGraphDocumentPureCorpus,
 } from "@/lib/libtvGraphDocument";
+import { planLibTVReactFlowChanges } from "@/lib/libtvReactFlowChangeRouting";
 import {
   LIBTV_MEDIA_INGRESS_PROFILES,
   reduceLibTVShotSourceLifecycle,
@@ -247,6 +248,10 @@ declare global {
       policies?: import("@/lib/libtvGraphDocument").GraphDocumentPolicies,
     ) => { status: string; reason?: string };
     __libtv_default_node_data?: (type: string) => Record<string, unknown>;
+    __libtv_change_routing_plan?: (
+      snapshot: import("@/lib/libtvReactFlowChangeRouting").LibTVReactFlowChangeRoutingSnapshot,
+      request: import("@/lib/libtvReactFlowChangeRouting").LibTVReactFlowChangeRoutingRequest,
+    ) => unknown;
     __libtv_media_ingress_profiles?: Record<
       string,
       {
@@ -774,6 +779,8 @@ export default function Home() {
     window.__libtv_graph_document_parse = parseLibTVGraphDocument;
     // Batch 515 (VR-012 focused fixture): default node-data registry probe.
     window.__libtv_default_node_data = (type: string) => getDefaultNodeData(type);
+    // Batch 518 (VR-014 focused fixture): change-routing planner probe.
+    window.__libtv_change_routing_plan = planLibTVReactFlowChanges;
     // Batch 456 (VR-021 Slice F): director byte estimator + lease audit.
     window.__libtv_estimate_data_url_bytes = estimateLibTVDataUrlBytes;
 
@@ -831,6 +838,7 @@ export default function Home() {
       delete window.__libtv_graph_document_corpus;
       delete window.__libtv_graph_document_parse;
       delete window.__libtv_default_node_data;
+      delete window.__libtv_change_routing_plan;
       delete window.__libtv_estimate_data_url_bytes;
 
       delete window.__libtv_media_lease_ledger_new;

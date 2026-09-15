@@ -466,6 +466,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 515 探测 | still-broken | 第一百三十六次重测；VR-012 focused fixture——默认 node-data 注册表 11 类型聚焦验收（style/effect 额外分支 STATIC_FACT 留档）（batch 515） |
 | 2026-09-14 | batch 516 探测 | still-broken | 第一百三十七次重测；SUBGRAPH-COPY focused fixture——duplicate 新身份/内部边重映射/外部边不剥离/一步 undo（batch 516） |
 | 2026-09-14 | batch 517 探测 | still-broken | 第一百三十八次重测；GRAPH-DELETE focused fixture——plain 场景边闭合/选择失效/零残缺 undo-redo（batch 517） |
+| 2026-09-14 | batch 518 探测 | still-broken | 第一百三十九次重测；GRAPH-ENTRYPOINT focused fixture——同一提案跨入口一致性（T 门拒绝零残缺 vs 命令受理一步）（batch 518） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
