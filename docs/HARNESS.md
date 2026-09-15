@@ -398,5 +398,7 @@ fixture/聚焦验收家族（Batch 510–527，确定性 corpus 与真实动作�
 venv 内 arm64 PIL 无法加载（batch 499 实证：21/22/26/33 四项 ImportError，
 需原生 shell 直启）；**验证器运行会回写截图与 runtime-audit.json 到入库
 路径**——全量维护集运行后须按显式路径恢复非本批 fixture（DEC-018）；
-恢复重测在批首执行；jimeng 路线文件由并行开发者
+恢复重测在批首执行；**npm 系命令需先加载 nvm node**
+（`export PATH="$HOME/.nvm/versions/node/v24.6.0/bin:$PATH"`——部分
+shell 会话默认无 node，batch 529 实证）；jimeng 路线文件由并行开发者
 主导（显式路径暂存，DEC-018）。
