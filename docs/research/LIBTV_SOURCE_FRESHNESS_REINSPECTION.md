@@ -476,6 +476,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 525 探测 | still-broken | 第一百四十六次重测；留档批次——用户下达留档暂停指令，到期维护集运行中止（下次循环重跑），中止产生的 6 个回写 fixture 已恢复（batch 525） |
 | 2026-09-14 | batch 526 探测 | still-broken | 第一百四十七次重测；补跑到期全量维护集 67/67（batch 26 连跑抖动、单跑两次复绿）+ jimeng1 + b510/513/514/521/522；jimeng 111–113 已自行归档 §10（batch 526） |
 | 2026-09-14 | batch 527 探测 | still-broken | 第一百四十八次重测；GRAPH-DELETE canvas 场景聚焦验收——软删快照/history 清理/相邻回退/restore 恢复；四组场景全部验收完毕（batch 527） |
+| 2026-09-14 | batch 528 探测 | still-broken | 第一百四十九次重测；HARNESS 维护集权威清单扩容——fixture/聚焦验收家族 10 项（510–527）纳入基线，10/10 全绿（batch 528） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
