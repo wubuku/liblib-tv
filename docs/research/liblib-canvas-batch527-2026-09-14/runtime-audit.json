@@ -1,0 +1,29 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "GRAPH-DELETE canvas scene — soft-delete recycle snapshot, history cleanup, adjacent fallback with selection clear, restore recovers graph",
+  "scenes": {
+    "delete_canvas_cleanup": {
+      "registryDropped": true,
+      "recycleSnapshot": true,
+      "historyCleaned": true,
+      "victimHadHistory": true,
+      "countRestored": true
+    },
+    "delete_active_fallback": {
+      "activeChanged": true,
+      "activeExists": true,
+      "selectionCleared": true
+    },
+    "restore_recovers_graph": {
+      "backInRegistry": true,
+      "graphIntact": true,
+      "removedShrunk": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
