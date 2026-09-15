@@ -1,0 +1,23 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "VR-012 focused fixture — default node-data registry completeness (11 runtime types), determinism, JSON safety, runtime-key hygiene",
+  "scenes": {
+    "registry_completeness": {
+      "types": 11,
+      "missing": []
+    },
+    "defaults_deterministic": "green",
+    "defaults_json_safe": "green",
+    "defaults_no_runtime_keys": "green",
+    "known_extra_branches_findings": [
+      "style",
+      "effect"
+    ]
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

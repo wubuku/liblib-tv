@@ -4180,7 +4180,7 @@ function getDerivedFrameDimensions(
   return generic;
 }
 
-function getDefaultNodeData(type: string): Record<string, unknown> {
+export function getDefaultNodeData(type: string): Record<string, unknown> {
   switch (type) {
     case "text":
       return { content: "新文本节点" };

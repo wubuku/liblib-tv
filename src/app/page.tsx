@@ -20,7 +20,11 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { useCanvasStore, type GraphSnapshot } from "@/store/canvasStore";
+import {
+  getDefaultNodeData,
+  useCanvasStore,
+  type GraphSnapshot,
+} from "@/store/canvasStore";
 import {
   LIBTV_COMMAND_FEEDBACK_CATALOG,
   projectLibTVCommandFeedback,
@@ -242,6 +246,7 @@ declare global {
       input: string | unknown,
       policies?: import("@/lib/libtvGraphDocument").GraphDocumentPolicies,
     ) => { status: string; reason?: string };
+    __libtv_default_node_data?: (type: string) => Record<string, unknown>;
     __libtv_media_ingress_profiles?: Record<
       string,
       {
@@ -767,6 +772,8 @@ export default function Home() {
     // Batch 513 (VR-010 Slice A): pure graph-document codec corpus.
     window.__libtv_graph_document_corpus = runLibTVGraphDocumentPureCorpus;
     window.__libtv_graph_document_parse = parseLibTVGraphDocument;
+    // Batch 515 (VR-012 focused fixture): default node-data registry probe.
+    window.__libtv_default_node_data = (type: string) => getDefaultNodeData(type);
     // Batch 456 (VR-021 Slice F): director byte estimator + lease audit.
     window.__libtv_estimate_data_url_bytes = estimateLibTVDataUrlBytes;
 
@@ -823,6 +830,7 @@ export default function Home() {
       delete window.__libtv_command_feedback_fixture_scenes;
       delete window.__libtv_graph_document_corpus;
       delete window.__libtv_graph_document_parse;
+      delete window.__libtv_default_node_data;
       delete window.__libtv_estimate_data_url_bytes;
 
       delete window.__libtv_media_lease_ledger_new;
