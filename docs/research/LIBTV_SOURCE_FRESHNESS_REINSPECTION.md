@@ -485,6 +485,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 534 探测 | still-broken | 第一百五十五次重测；Batch History 索引补 batch 527 行（524 增量后的遗漏）（batch 534） |
 | 2026-09-14 | batch 535 探测 | still-broken | 第一百五十六次重测；巡检批次——并行 harness 截图重捕获持续（batch40/80，WIP 保留），无新落库需同步（batch 535） |
 | 2026-09-15 | batch 536 探测 | still-broken | 第一百五十七次重测；到期全量维护集新鲜运行 78/78；恢复清单误含并行 batch40/80 两张 WIP 截图（第三次同类违规，可由其 harness 重生成），commit 披露并重申恢复前须剔除已知并行路径（batch 536） |
+| 2026-09-16 | batch 537 探测 | still-broken | 第一百五十八次重测；巡检批次——工作区净、无新落库需同步；维护集未到期（上次 batch 536）（batch 537） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
