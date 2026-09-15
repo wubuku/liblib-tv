@@ -1,0 +1,28 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "SUBGRAPH-COPY focused fixture — duplicateGraphSelection: new identity, data deep-equal, selection moved, internal-edge remap, external-edge detachment, one-step undo",
+  "scenes": {
+    "single_copy_new_identity": {
+      "copyHasNewId": true,
+      "dataDeepEqual": true,
+      "sourceIntact": true,
+      "selectionMovedToCopy": true,
+      "oneHistoryStep": true
+    },
+    "internal_external_edges": {
+      "internalEdgeCountBetweenCopyAndSource": 0,
+      "externalEdgesToNeighbor": 0,
+      "pastStepsSinceWithEdge": 1
+    },
+    "undo_one_step": {
+      "cohortRemoved": true,
+      "sourceSurvives": true
+    }
+  },
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}

@@ -464,6 +464,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-14 | batch 513 探测 | still-broken | 第一百三十四次重测；VR-010 Slice A——纯 graph-document codec + §9.2 corpus 10/10（PURE_CODEC_RECORDED_PASS）（batch 513） |
 | 2026-09-14 | batch 514 探测 | still-broken | 第一百三十五次重测；VR-010 Slice B——history isolation focused browser 层 4 场景；发现空栈 undo 的 viewport 回写异常（BLOCKED_SOURCE 留档）（batch 514） |
 | 2026-09-14 | batch 515 探测 | still-broken | 第一百三十六次重测；VR-012 focused fixture——默认 node-data 注册表 11 类型聚焦验收（style/effect 额外分支 STATIC_FACT 留档）（batch 515） |
+| 2026-09-14 | batch 516 探测 | still-broken | 第一百三十七次重测；SUBGRAPH-COPY focused fixture——duplicate 新身份/内部边重映射/外部边不剥离/一步 undo（batch 516） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
