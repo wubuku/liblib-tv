@@ -534,6 +534,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 583 探测 | still-broken | 第二百零五次重测；巡检批次——并行 6 项脏 fixture 状态不变（保留）；无新落库；维护集约 batch 588 到期（batch 583） |
 | 2026-09-16 | batch 584 探测 | still-broken | 第二百零六次重测；巡检批次——并行 6 项脏 fixture 状态不变（保留）；无新落库；维护集约 batch 588 到期（batch 584） |
 | 2026-09-16 | batch 585 探测 | still-broken | 第二百零七次重测；巡检批次——并行 6 项脏 fixture 状态不变（保留）；无新落库；维护集约 batch 588 到期（batch 585） |
+| 2026-09-16 | batch 586 探测 | still-broken | 第二百零八次重测；巡检批次——并行 6 项脏 fixture 状态不变（保留）；无新落库；维护集约 batch 588 到期（batch 586） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
