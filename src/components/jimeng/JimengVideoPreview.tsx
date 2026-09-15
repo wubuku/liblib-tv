@@ -40,7 +40,7 @@ export function JimengVideoPreview({
   const seek = useJimengStore((s) => s.seek);
 
   // Batch 80 (SOURCE_FACT): 进入全屏即自动静音播放，退出暂停
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- 仅进入/退出时执行
+  // (仅进入/退出时执行，依赖保持为空)
   useEffect(() => {
     if (!playing) togglePlay(nodeId);
     return () => {
@@ -48,6 +48,7 @@ export function JimengVideoPreview({
         useJimengStore.getState().togglePlay(nodeId);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
