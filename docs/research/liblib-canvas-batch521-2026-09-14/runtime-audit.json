@@ -1,0 +1,31 @@
+{
+  "url": "http://localhost:4317",
+  "status": "FOCUSED_BROWSER_RECORDED_PASS",
+  "slice": "GRAPH-DELETE derived-reference scene — creation transaction, anti-duplicate guard, source deletion with surviving derived image, zero-partial undo",
+  "scenes": {
+    "derived_create_transaction": {
+      "nodeDelta": 1,
+      "edgeDelta": 1,
+      "pastDelta": 1
+    },
+    "anti_duplicate_guard": {
+      "skipped": false,
+      "nodeDelta": 0
+    },
+    "source_delete_derived_survives": {
+      "derivedSurvivesAsIndependentNode": true,
+      "oneStepDelete": true,
+      "futureEmpty": true
+    },
+    "undo_zero_partial": {
+      "videoRestored": true,
+      "edgeRestored": true
+    }
+  },
+  "correction": "batch 520 BLOCKED_BY_FIXTURE conclusion reversed — the no-op was the batch 246/255 anti-duplicate guard, not a missing media fixture",
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  }
+}
