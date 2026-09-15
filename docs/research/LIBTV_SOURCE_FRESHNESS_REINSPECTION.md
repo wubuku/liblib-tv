@@ -563,6 +563,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 612 探测 | still-broken | 第二百三十五次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 612） |
 | 2026-09-16 | batch 613 探测 | still-broken | 第二百三十六次重测；巡检批次——工作区状态不变（3 项并行 WIP 保留）；无新落库；维护集约 batch 618 到期（batch 613） |
 | 2026-09-16 | batch 614 探测 | still-broken | 第二百三十七次重测；巡检批次——工作区状态不变（3 项并行 WIP 保留）；无新落库；维护集约 batch 618 到期（batch 614） |
+| 2026-09-16 | batch 615 探测 | still-broken | 第二百三十八次重测；巡检批次——工作区状态不变（3 项并行 WIP 保留）；无新落库；维护集约 batch 618 到期（batch 615） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
