@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUp, AtSign, ChevronDown, Plus } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
@@ -15,7 +16,9 @@ import type { JimengVideoNodeData } from "@/types/jimeng";
  * 参考缩略图 chip (00:06) + "+"、提示词行含 chip「00:00—00:04 重拍片段」(蓝色描边)
  * + 占位「描述你如何调整这一片段」、底部 即梦 Seedance 2.5 ✦∨ / 6s / @ /
  * ✦ 96/208 积分 / 白色可用发送钮。
- * mock: 选区窗口为静态 4.0s；发送钮可点但仅关闭编辑态 (无真实任务)。
+ * 批 214 SOURCE_FACT: 选区 aria「Selected duration: 4.0s」；提示词可输入，
+ * 空提示时发送钮灰 (白/[0.16]) 带「Prompt is required」提示。
+ * mock: 选区窗口为静态 4.0s；发送仅关闭编辑态 (无真实任务)。
  */
 export function JimengRepaintPanel({
   visible,
@@ -26,6 +29,11 @@ export function JimengRepaintPanel({
   data: JimengVideoNodeData;
   onSubmit: () => void;
 }) {
+  // 批 214 SOURCE_FACT: 提示词可输入，空提示时发送钮为禁用样式
+  // (「Prompt is required」)；有提示词后白色可用
+  const [prompt, setPrompt] = useState("");
+  const canSend = prompt.trim().length > 0;
+
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={20}>
       <div className="flex w-[680px] flex-col gap-3">
@@ -44,7 +52,10 @@ export function JimengRepaintPanel({
             }
           />
           {/* 白框选区窗口 (静态 4.0s) */}
-          <div className="absolute inset-y-0 left-[2%] w-[52%] border-2 border-white/90 rounded-md">
+          <div
+            className="absolute inset-y-0 left-[2%] w-[52%] border-2 border-white/90 rounded-md"
+            aria-label="Selected duration: 4.0s"
+          >
             <span className="absolute right-2 top-1/2 -translate-y-1/2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] text-white">
               4.0s
             </span>
@@ -58,6 +69,7 @@ export function JimengRepaintPanel({
           className="flex h-[150px] w-full flex-col justify-between rounded-[20px] bg-[#202020] p-[17px]"
           onSubmit={(e) => {
             e.preventDefault();
+            if (!canSend) return;
             onSubmit();
           }}
         >
@@ -84,8 +96,8 @@ export function JimengRepaintPanel({
             </button>
           </div>
 
-          <p className="flex items-center gap-1.5 text-[13px] leading-[22px] text-white/35">
-            <span className="inline-flex items-center gap-1 rounded border border-[#009EFA]/60 bg-[#009EFA]/10 px-1.5 py-0.5 text-white/80">
+          <div className="flex items-center gap-1.5 text-[13px] leading-[22px]">
+            <span className="inline-flex shrink-0 items-center gap-1 rounded border border-[#009EFA]/60 bg-[#009EFA]/10 px-1.5 py-0.5 text-white/80">
               <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
                 <rect
                   x="1"
@@ -100,8 +112,13 @@ export function JimengRepaintPanel({
               </svg>
               00:00—00:04 重拍片段
             </span>
-            描述你如何调整这一片段
-          </p>
+            <input
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="描述你如何调整这一片段"
+              className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
+            />
+          </div>
 
           <div className="flex h-8 w-full items-center justify-between">
             <div className="flex items-center gap-1">
@@ -134,8 +151,13 @@ export function JimengRepaintPanel({
               </span>
               <button
                 type="submit"
-                aria-label="生成"
-                className="flex size-9 items-center justify-center rounded-full bg-white text-black"
+                aria-label={canSend ? "生成" : "Prompt is required"}
+                title={canSend ? undefined : "Prompt is required"}
+                className={`flex size-9 items-center justify-center rounded-full ${
+                  canSend
+                    ? "bg-white text-black hover:bg-white/90"
+                    : "bg-white/[0.16] text-white/45"
+                }`}
               >
                 <ArrowUp size={16} />
               </button>

@@ -653,6 +653,13 @@
   batch 10 结构一致；新细节——时长标签含「Selected duration: 」前缀
   (Selected duration: 6.1s)。JimengTrimPanel 标签对齐；batch 31/33
   verifier 的时长解析改为剥离前缀后比较，31/33/10/44 回归 PASS。
+- Batch 214 (重拍态复验 + 提示词门控): 源站局部重拍态最新采样
+  (214-source-repaint.png / 214-repaint.json): 面板 680×264，帧条选区
+  aria「Selected duration: 4.0s」，发送钮空提示时灰 (白/[0.16]) 带
+  「Prompt is required」，布局与 clone batch 5 一致。复刻:
+  JimengRepaintPanel 提示词可输入 (原静态占位)、发送钮按提示词门控
+  (空=灰+Prompt is required，有提示词=白色)、选区补 aria。
+  batch 5 verifier 更新为批 214 契约，5/23 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

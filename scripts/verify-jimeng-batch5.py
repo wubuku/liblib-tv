@@ -38,15 +38,14 @@ def main() -> None:
 
         state = page.evaluate(
             """() => {
-                const film = document.querySelector('[aria-label="生成"][type="submit"]')
-                    ? [...document.querySelectorAll('form')].find(f =>
-                        f.textContent.includes('重拍片段'))
-                    : null;
+                const film = [...document.querySelectorAll('form')].find(f =>
+                    f.textContent.includes('重拍片段')) ?? null;
                 const title = [...document.querySelectorAll('.react-flow__node-video span')]
                     .some(s => s.textContent.includes('sb_518102884867410fb'));
                 if (!film) return {panel: false};
                 const r = film.getBoundingClientRect();
-                const send = film.querySelector('button[aria-label="生成"]');
+                // batch 214: empty prompt → gray send with「Prompt is required」
+                const send = film.querySelector('button[type="submit"]');
                 return {
                     panel: true,
                     width: Math.round(r.width),
@@ -55,6 +54,7 @@ def main() -> None:
                     duration6s: film.textContent.includes('6s'),
                     credits: film.textContent.includes('96') && film.textContent.includes('208'),
                     sendEnabled: send ? !send.disabled : false,
+                    sendEmptyAria: send ? send.getAttribute('aria-label') === 'Prompt is required' : false,
                     sendWhite: send ? getComputedStyle(send).backgroundColor === 'rgb(255, 255, 255)' : false,
                     filmstrip: !!film.closest('div').querySelector('div[class*="border-2"]'),
                     titleHidden: !title,
@@ -63,6 +63,10 @@ def main() -> None:
         )
         if not state.get("panel"):
             failures.append("repaint panel did not open")
+        elif state.get("sendEmptyAria") is not True:
+            failures.append(
+                f"empty-prompt send aria: {state.get('sendEmptyAria')}"
+            )
         else:
             if not state["chip"]:
                 failures.append("重拍片段 chip missing")
@@ -72,8 +76,11 @@ def main() -> None:
                 failures.append("6s duration missing")
             if not state["credits"]:
                 failures.append("credits 96/208 missing")
-            if not state["sendEnabled"] or not state["sendWhite"]:
-                failures.append("send button not enabled/white")
+            # batch 214: empty prompt → gray disabled-style (not white)
+            if state["sendWhite"]:
+                failures.append("send should be gray with empty prompt")
+            if state["sendEnabled"] is not True:
+                failures.append("send button should stay clickable in mock")
             if not state["filmstrip"]:
                 failures.append("filmstrip selection window missing")
             if not state["titleHidden"]:
