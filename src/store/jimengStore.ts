@@ -973,10 +973,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     set((state) => {
       const id = `${kind}-${Date.now()}`;
       const seq = state.nodes.filter((n) => n.type === kind).length + 1;
+      // 批 236 SOURCE_FACT: 源站插入的节点立即处于选中态
       const base = {
         id,
         position,
-        selected: false,
+        selected: true,
       } as const;
       if (kind === "video") {
         return {
@@ -1024,7 +1025,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             {
               ...base,
               type: "audio" as const,
-              data: { title: `音频 ${seq}`, duration: 15, width: 400, height: 120 },
+              data: { title: `音频 ${seq}`, duration: 15, width: 368, height: 368 },
             },
           ],
         };
