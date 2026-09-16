@@ -874,6 +874,8 @@
   可用态 (预填存在)。复刻: store 新增 aiDrawerRefChip (poster+label)，
   openAiDrawer 支持携带，JimengAiDrawer 输入区上方渲染引用 chip。
   batch 8/12 回归 PASS。零源站触碰 (纯截图离线分析)。
+- Batch 270 (全量质量门): 退出码全量扫 verify-jimeng-batch1..103 ——
+  90 verifier 零失败，截图随扫刷新入库。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
