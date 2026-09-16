@@ -71,9 +71,10 @@ def main() -> None:
         select_node1()
         step("提示词反推", lambda: page.locator(
             '.jimeng-node-toolbar button', has_text="提示词反推").click())
-        page.wait_for_timeout(300)
-        step("关闭反推", lambda: page.locator(
-            'button[aria-label="关闭反推面板"]').click())
+        page.wait_for_timeout(600)
+        # 批 216: 反推打开 AI 抽屉，Esc 关闭
+        step("关闭 AI 抽屉", lambda: page.keyboard.press("Escape"))
+        page.wait_for_timeout(400)
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(400)
         step("下载 toast", lambda: page.locator(
