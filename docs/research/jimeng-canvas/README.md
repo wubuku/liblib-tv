@@ -514,6 +514,14 @@
   验证: verify-jimeng-batch97.py 新增（首帧→图片节点→工具条契约→撤销还原），
   受影响面回归 batch 2/34/62/66/70/82 全 PASS，npm run check 通过。
   工具∨ 菜单项与源站截图仍缺，后续轮次补提。
+- Batch 196 (工具∨ 菜单补提失败 + 轮转): 图片工具条「工具∨」以三种触发路径
+  （真实坐标 click / hover 1.5s / JS pointer+mouse 事件分派）均未展开菜单——
+  在当前源站状态（上传视频空闲 + 断线重连恢复后）判定 BLOCKED_BY_EXTRACTION，
+  clone 维持箭头视觉 + toast mock。另: 该页面状态下截图捕获必挂
+  （playwright 高层 Page.screenshot 与 raw CDP Page.captureScreenshot 均超时，
+  疑似视频元素持续解码占用合成器），源站截图留待页面空闲态再取。
+  两轮变异周期均完整还原（画布回到 2 视频节点基线）。
+  回归: batch 49-64 段 14/14 PASS（今日改动未覆盖面），零失败。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
