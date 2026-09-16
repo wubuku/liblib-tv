@@ -84,7 +84,8 @@ def main() -> None:
                     : null;
             }"""
         )
-        if sub != ["文本", "图片", "视频", "音频"]:
+        # 批 221: 子菜单 10 项 (添加节点表头 + 6 个仅展示 mock 项)
+        if sub != ["文本", "图片", "视频", "音频", "时间线", "主体", "导演台", "从资产库添加", "本地上传"]:
             failures.append(f"insert submenu: {sub}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch25-pane-menu-1680.png")
