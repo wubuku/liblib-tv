@@ -51,6 +51,12 @@ export interface JimengImageNodeData extends Record<string, unknown> {
   poster?: string;
   width: number;
   height: number;
+  /**
+   * 截取帧产出后的瞬态上传进度 (Batch 197 SOURCE_FACT: 源站产出瞬间
+   * 节点呈现「正在上传图片 0%」，约 1-2s 内完成转常规态)。
+   * 缺省 = 非上传态；100 = 完成（组件按 <100 判定显隐）。
+   */
+  uploadProgress?: number;
 }
 
 /** 文字节点 (Batch 17；尺寸 CLONE_DECISION 320×200) */

@@ -63,6 +63,18 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
             </svg>
           </span>
         )}
+        {/* 截取帧产出瞬态 (Batch 197 SOURCE_FACT「正在上传图片 0%」)；
+            布局为 CLONE_DECISION (源站仅文本级证据) */}
+        {typeof d.uploadProgress === "number" && d.uploadProgress < 100 ? (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-black/45"
+            data-jimeng-image-uploading=""
+          >
+            <span className="text-[13px] text-white/90">
+              正在上传图片 {d.uploadProgress}%
+            </span>
+          </div>
+        ) : null}
       </div>
 
       <Handle

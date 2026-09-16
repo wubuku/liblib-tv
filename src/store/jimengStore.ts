@@ -5,6 +5,7 @@ import { applyEdgeChanges, applyNodeChanges } from "@xyflow/react";
 import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
 
 import type {
+  JimengImageNodeData,
   JimengNode,
   JimengVideoNodeData,
 } from "@/types/jimeng";
@@ -443,9 +444,27 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           poster: v.poster,
           width: w,
           height: h,
+          // 批 197 SOURCE_FACT: 产出瞬间为「正在上传图片 0%」瞬态
+          uploadProgress: 0,
         },
         selected: false,
       };
+      // 批 197: mock 上传进度 (源站 1-2s 内完成)。直接 setState,
+      // 不再走 markDirty (进度变化不产生新的脏态/撤销步)。
+      const advance = (progress: number) =>
+        useJimengStore.setState((cur) => ({
+          nodes: cur.nodes.map((n) =>
+            n.id === id
+              ? {
+                  ...n,
+                  data: { ...(n.data as JimengImageNodeData), uploadProgress: progress },
+                }
+              : n,
+          ),
+        }));
+      window.setTimeout(() => advance(46), 500);
+      window.setTimeout(() => advance(100), 1000);
+      // 上传态消隐由组件侧以 uploadProgress < 100 判定 (100 = 完成)
       return {
         ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
