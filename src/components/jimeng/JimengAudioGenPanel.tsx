@@ -14,14 +14,38 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 批 245 SOURCE_FACT: 「音频生成」下拉两项 音频生成/音乐生成 (192×76，
  * 36px 行)。批 248 SOURCE_FACT: 「Seed TTS」下拉为两行式菜单项——
  * 标题 Seed TTS + 描述「上百个预设音色，让你玩转人声配音」(392×72)。
- * 直爽女大 (音色) 下拉未采样 (chevron 视觉 mock)。
+ * 批 250 SOURCE_FACT: 「直爽女大」(音色) 下拉——「全音色」头 + 性别/
+ * 年龄/语言/声音特点 4 筛选 + 3 列音色网格 (直爽女大✓/低音炮/英气飒姐/
+ * 阳光小男孩/纯净女声/温柔软妹/黛玉/明媚女声/含蓄女声/紫薇/猴哥/
+ * 蜡笔小新/八戒Pro/动漫海绵/聪慧群仔，每项 ▶+名称，选中带勾)。
  */
+/** 批 250 SOURCE_FACT: 音色网格 3 列 × 5+ 行 (可滚动，已采样可见 15 项) */
+const VOICES = [
+  "直爽女大",
+  "低音炮",
+  "英气飒姐",
+  "阳光小男孩",
+  "纯净女声",
+  "温柔软妹",
+  "黛玉",
+  "明媚女声",
+  "含蓄女声",
+  "紫薇",
+  "猴哥",
+  "蜡笔小新",
+  "八戒Pro",
+  "动漫海绵",
+  "聪慧群仔",
+];
+
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
   const [genKind, setGenKind] = useState("音频生成");
   const [genOpen, setGenOpen] = useState(false);
   const [ttsOpen, setTtsOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
+  const [voice, setVoice] = useState("直爽女大");
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -121,14 +145,68 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   </div>
                 ) : null}
               </div>
-              <button
-                type="button"
-                aria-label="选择音色"
-                className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-              >
-                直爽女大
-                <ChevronDown size={12} className="text-white/60" />
-              </button>
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="选择音色"
+                  onClick={() => setVoiceOpen((v) => !v)}
+                  className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                >
+                  {voice}
+                  <ChevronDown size={12} className="text-white/60" />
+                </button>
+                {voiceOpen ? (
+                  <div
+                    className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3"
+                    style={{ background: "rgb(38,38,38)" }}
+                    role="listbox"
+                    aria-label="全音色"
+                  >
+                    <p className="pb-2 text-[13px] text-white/80">全音色</p>
+                    <div className="flex gap-1.5 pb-2">
+                      {["性别", "年龄", "语言", "声音特点"].map((f) => (
+                        <button
+                          key={f}
+                          type="button"
+                          className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                        >
+                          {f}
+                          <ChevronDown size={10} className="text-white/50" />
+                        </button>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-3 gap-1">
+                      {VOICES.map((v) => (
+                        <button
+                          key={v}
+                          type="button"
+                          role="option"
+                          aria-selected={voice === v}
+                          onClick={() => {
+                            setVoice(v);
+                            setVoiceOpen(false);
+                          }}
+                          className={`flex h-9 items-center gap-2 rounded-lg px-2 text-[13px] ${
+                            voice === v
+                              ? "bg-white/[0.12] text-white"
+                              : "text-white/85 hover:bg-white/[0.06]"
+                          }`}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden className="shrink-0 text-white/60">
+                            <path d="M4 2v10l7-5Z" fill="currentColor" />
+                          </svg>
+                          {v}
+                          {voice === v ? (
+                            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden className="ml-auto shrink-0 text-white/80">
+                              <path d="M2 6.5 4.8 9 10 3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                            </svg>
+                          ) : null}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
