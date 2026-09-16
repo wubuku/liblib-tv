@@ -52,7 +52,7 @@ def main() -> None:
         label = page.evaluate(
             "() => document.querySelector('[data-testid=\"trim-duration\"]')?.textContent"
         )
-        if not label or not (2.0 <= float(label.replace("s", "")) <= 4.5):
+        if not label or not (2.0 <= float(label.replace("s", "").replace("Selected duration: ", "")) <= 4.5):
             failures.append(f"trimmed label after drag: {label}")
 
         # confirm

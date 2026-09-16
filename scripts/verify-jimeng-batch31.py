@@ -102,7 +102,7 @@ def main() -> None:
         d1 = page.evaluate(
             "() => document.querySelector('[data-testid=\"trim-duration\"]')?.textContent"
         )
-        if not d0 or not d1 or float(d1.replace("s", "")) >= float(d0.replace("s", "")):
+        if not d0 or not d1 or float(d1.split(": ")[-1].replace("s", "")) >= float(d0.split(": ")[-1].replace("s", "")):
             failures.append(f"trim duration did not decrease: {d0} → {d1}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch31-trim-drag-1680.png")

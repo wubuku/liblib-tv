@@ -648,6 +648,11 @@
   ——零漂移，无需改动。
 - Batch 212 (全量质量门): 退出码全量扫 verify-jimeng-batch1..101 ——
   87 verifier 零失败 (含新增 99/100/101)，截图随扫刷新入库。
+- Batch 213 (修剪态复验 + 标签对齐): 源站视频修剪条最新采样
+  (213-source-trim.png / 213-trim-bar.json): 562×100，布局与 clone
+  batch 10 结构一致；新细节——时长标签含「Selected duration: 」前缀
+  (Selected duration: 6.1s)。JimengTrimPanel 标签对齐；batch 31/33
+  verifier 的时长解析改为剥离前缀后比较，31/33/10/44 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

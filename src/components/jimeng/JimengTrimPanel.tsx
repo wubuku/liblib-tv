@@ -74,7 +74,8 @@ export function JimengTrimPanel({
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] text-white"
             data-testid="trim-duration"
           >
-            {trimmed.toFixed(1)}s
+            {/* 批 213 SOURCE_FACT: 标签含「Selected duration: 」前缀 */}
+            Selected duration: {trimmed.toFixed(1)}s
           </span>
           <span
             role="slider"
