@@ -126,7 +126,8 @@ def main() -> None:
                 l.startswith(w) for l, w in zip(labels, want)
             ):
                 failures.append(f"context items: {labels}")
-            redo = next((i for i in cm["items"] if i["label"] == "重做"), None)
+            # 批 221: 禁用重做行附「无需重做操作」提示，text 以「重做」开头
+            redo = next((i for i in cm["items"] if i["label"].startswith("重做")), None)
             if not redo or not redo["disabled"]:
                 failures.append("重做 not disabled")
             page.screenshot(
