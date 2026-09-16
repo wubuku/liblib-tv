@@ -36,11 +36,16 @@ def main() -> None:
             """() => {
                 const n = document.querySelector('.react-flow__node-audio');
                 if (!n) return null;
+                const r = n.getBoundingClientRect();
                 return {
                     title: n.textContent.includes('音频'),
-                    duration: n.textContent.includes('00:15'),
-                    bars: n.querySelectorAll('span.rounded-full').length,
+                    bars: n.querySelectorAll('.flex.items-center.gap-1 > span.rounded-full').length,
                     handles: n.querySelectorAll('.react-flow__handle').length,
+                    w: Math.round(r.width),
+                    h: Math.round(r.height),
+                    selected: n.classList.contains('selected'),
+                    genPanel: [...document.querySelectorAll('form')]
+                        .some(f => !!f.querySelector('textarea[placeholder*="请输入你想生成的说话内容"]')),
                 };
             }"""
         )
@@ -49,12 +54,18 @@ def main() -> None:
         else:
             if not state["title"]:
                 failures.append("audio title missing")
-            if not state["duration"]:
-                failures.append("audio duration label missing")
-            if state["bars"] < 20:
-                failures.append(f"waveform bars: {state['bars']}")
+            # 批 239: 居中 5 柱波形图标 (旧横条播放器已按源站实测移除)
+            if state["bars"] != 5:
+                failures.append(f"waveform glyph bars: {state['bars']} != 5")
             if state["handles"] < 2:
                 failures.append("handles missing")
+            # 批 236: 世界 368×368 (0.7299 缩放下 ~269)
+            if abs(state["w"] - 269) > 10 or abs(state["h"] - 269) > 10:
+                failures.append(f"audio card size: {state['w']}x{state['h']} want ~269")
+            if not state["selected"]:
+                failures.append("inserted audio node should be selected")
+            if not state["genPanel"]:
+                failures.append("audio gen panel missing when selected")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch19-audio-node-1680.png")
         )

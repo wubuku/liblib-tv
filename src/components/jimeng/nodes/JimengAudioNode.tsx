@@ -1,53 +1,26 @@
 "use client";
 
 import { Handle, Position } from "@xyflow/react";
-import { useEffect, useMemo, useState } from "react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengAudioNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { JimengAudioGenPanel } from "@/components/jimeng/JimengAudioGenPanel";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 
 /**
- * 音频节点 (Batch 19)。样式为 CLONE_DECISION (源站音频节点未提取):
- * 视频节点同族骨架 + 波形条 mock (伪随机高度) + 底部时长。
+ * 音频节点 (Batch 19；批 236/239 源站采样对齐)。
+ *
+ * 证据 (SOURCE_FACT 236-audio-node.json / 236-source-audio-node.png):
+ * 卡片 368×368 方形，内部仅居中的 5 柱波形图标 (white/40)，
+ * 无常驻播放控件；选中态下方弹出音频生成面板
+ * (JimengAudioGenPanel: 占位「请输入你想生成的说话内容」+
+ * 音频生成/Seed TTS/直爽女大 三选择器 + ✦1 + 禁用发送)。
+ * 标题行 FileBadgeIcon + 「音频 1」；插入即选中 (批 236)。
+ * 批 19/47 的横条播放器为旧视觉，已按源站实测移除。
  */
-function fmt(s: number) {
-  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(
-    Math.floor(s % 60),
-  ).padStart(2, "0")}`;
-}
-
 export function JimengAudioNode({ id, data, selected }: NodeProps) {
   const d = data as JimengAudioNodeData;
-  // 播放交互 (Batch 47): 点击播放钮推进波形进度，播完自停 (CLONE_DECISION mock)
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (!playing) return;
-    const timer = window.setInterval(() => {
-      setProgress((p) => {
-        const next = p + 4;
-        if (next >= 100) {
-          setPlaying(false);
-          return 0;
-        }
-        return next;
-      });
-    }, 120);
-    return () => window.clearInterval(timer);
-  }, [playing]);
-
-  const bars = useMemo(() => {
-    const heights: number[] = [];
-    let seed = 7;
-    for (let i = 0; i < 44; i += 1) {
-      seed = (seed * 31 + 17) % 23;
-      heights.push(8 + ((seed * 5) % 26));
-    }
-    return heights;
-  }, []);
 
   return (
     <div
@@ -61,7 +34,7 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
       </div>
 
       <div
-        className="relative flex h-full w-full items-center gap-3 overflow-hidden rounded-lg px-4"
+        className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg"
         style={{
           background:
             "linear-gradient(to right bottom, rgb(30,30,32), rgb(22,22,24))",
@@ -71,42 +44,19 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
               : "0 0 0 1px rgba(255,255,255,0.06) inset",
         }}
       >
-        <button
-          type="button"
-          aria-label={playing ? "暂停音频" : "播放音频"}
-          onClick={() => {
-            if (progress >= 100) setProgress(0);
-            setPlaying((v) => !v);
-          }}
-          className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-white/80 hover:bg-white/[0.16]"
-        >
-          {playing ? (
-            <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden>
-              <path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor" />
-            </svg>
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-              <path d="M4 2v10l7-5Z" fill="currentColor" />
-            </svg>
-          )}
-        </button>
-        <div className="flex h-10 flex-1 items-center gap-[3px] overflow-hidden">
-          {bars.map((h, i) => (
+        {/* 批 236 SOURCE_FACT: 居中 5 柱波形图标 */}
+        <span className="flex items-center gap-1 text-white/40" aria-hidden>
+          {[12, 20, 28, 20, 12].map((h, i) => (
             <span
               key={i}
-              className={`w-[3px] shrink-0 rounded-full ${
-                playing && (i / bars.length) * 100 <= progress
-                  ? "bg-[#7FD8C9]"
-                  : "bg-[#7FD8C9]/40"
-              }`}
+              className="w-[3px] rounded-full bg-current"
               style={{ height: h }}
             />
           ))}
-        </div>
-        <span className="shrink-0 text-[11px] tabular-nums text-white/55">
-          {fmt(Math.round((progress / 100) * (d.duration ?? 0)))} / {fmt(d.duration)}
         </span>
       </div>
+
+      <JimengAudioGenPanel visible={selected === true} />
 
       <Handle
         type="target"
