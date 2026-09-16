@@ -63,6 +63,9 @@ export interface JimengTextNodeData extends Record<string, unknown> {
   text: string;
   width: number;
   height: number;
+  /** 卡片背景色 (批 241 SOURCE_FACT: 文本节点选中工具条含「背景色」
+   *  调色板——无 + 青绿/靛蓝/紫/橙/黄 六格)；null = 默认深色 */
+  bgColor?: string | null;
 }
 
 /** 音频节点 (Batch 19；样式 CLONE_DECISION 波形 mock 400×120) */

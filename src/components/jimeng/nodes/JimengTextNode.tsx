@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Handle, Position } from "@xyflow/react";
+import { NodeToolbar, Position as TBPosition } from "@xyflow/react";
 import {
   Bold,
   ChevronDown,
+  Download,
   Italic,
   List,
   ListOrdered,
   Maximize2,
+  Square,
   Strikethrough,
   Type,
   Underline,
@@ -27,12 +30,26 @@ import { useJimengStore } from "@/store/jimengStore";
  * Batch 241 (SOURCE_FACT, 241-source-text-edit.png): 编辑态卡上方出现
  * 富文本工具条——字体 T∨ / 无序列表 / 有序列表 / 加粗 B / 删除线 S /
  * 斜体 I / 下划线 U / 展开钮 (按钮为视觉 mock，未接真实格式化)。
+ * Batch 241b (SOURCE_FACT, 243-source-font-menu.png): 选中(非编辑)态
+ * 另有工具条 背景色(调色板: 无+青绿/靛蓝/紫/橙/黄 六格) / 展开钮 /
+ * 下载——「选中无工具条」的批 68 观察已被源站演进推翻。
  */
 export function JimengTextNode({ id, data, selected }: NodeProps) {
   const d = data as JimengTextNodeData;
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(d.text);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
+
+  // 批 241b SOURCE_FACT: 调色板 无 + 青绿/靛蓝/紫/橙/黄 (色值为 CLONE_DECISION)
+  const BG_COLORS: { label: string; value: string | null }[] = [
+    { label: "无", value: null },
+    { label: "青绿", value: "#4ECDE6" },
+    { label: "靛蓝", value: "#6B7CFF" },
+    { label: "紫", value: "#A46BFF" },
+    { label: "橙", value: "#FF9A4D" },
+    { label: "黄", value: "#FFD44D" },
+  ];
 
   useEffect(() => {
     if (editing) taRef.current?.focus();
@@ -56,10 +73,72 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
         <JimengNodeTitle id={id} title={d.title} />
       </div>
 
+      {/* 批 241b SOURCE_FACT: 选中(非编辑)态工具条 背景色/展开/下载 */}
+      <NodeToolbar isVisible={selected === true && !editing} position={TBPosition.Top} offset={36}>
+        <div className="jimeng-node-toolbar relative flex h-10 select-none items-center gap-1 px-1.5">
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="背景色"
+              onClick={() => setPaletteOpen((v) => !v)}
+              className="jimeng-node-toolbar-item flex h-8 items-center gap-1.5 whitespace-nowrap px-2 text-[13px] text-white"
+            >
+              <Square size={13} />
+              背景色
+            </button>
+            {paletteOpen ? (
+              <div
+                className="absolute right-0 top-full z-[140] mt-2 flex items-center gap-1.5 rounded-xl px-2.5 py-2"
+                style={{ background: "rgb(38,38,38)" }}
+                role="menu"
+                aria-label="背景色调色板"
+              >
+                {BG_COLORS.map(({ label, value }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    role="menuitem"
+                    aria-label={`背景色 ${label}`}
+                    onClick={() => {
+                      updateNodeData(id, { bgColor: value });
+                      setPaletteOpen(false);
+                    }}
+                    className="flex size-5 items-center justify-center rounded-full"
+                    style={{
+                      background: value ?? "transparent",
+                      border: value ? "none" : "1.5px solid rgba(255,255,255,0.5)",
+                    }}
+                  >
+                    {value === null ? <span className="text-[10px] leading-none text-white/60">∅</span> : null}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <button
+            type="button"
+            aria-label="展开文本面板"
+            onClick={() => setPaletteOpen(false)}
+            className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
+          >
+            <Maximize2 size={15} />
+          </button>
+          <button
+            type="button"
+            aria-label="下载"
+            className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
+          >
+            <Download size={15} />
+          </button>
+        </div>
+      </NodeToolbar>
+
       <div
         className="h-full w-full overflow-hidden rounded-lg p-4"
         style={{
-          background: "linear-gradient(to right bottom, rgb(30,30,32), rgb(22,22,24))",
+          background:
+            d.bgColor ??
+            "linear-gradient(to right bottom, rgb(30,30,32), rgb(22,22,24))",
           boxShadow:
             selected === true
               ? "0 0 0 1.5px rgba(255,255,255,0.92)"

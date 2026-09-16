@@ -775,6 +775,15 @@
   onMouseDown 防失焦)。verify-jimeng-batch103.py 新增 (8 按钮契约 +
   Escape 退出)，38/68 回归 PASS。
 - Batch 242 (轮转回归): batch 65-101 段 25/25 PASS。
+- Batch 243 (文本节点选中工具条落地): 源站最新截图
+  (243-source-font-menu.png) 显示文本节点选中(非编辑)态自有工具条
+  「背景色｜展开钮｜下载」——批 68「选中无工具条」已被源站演进推翻；
+  背景色打开六格调色板 (无+青绿/靛蓝/紫/橙/黄，色值为 CLONE_DECISION)。
+  复刻: JimengTextNode 选中态 NodeToolbar + bgColor 字段
+  (选色写回卡片背景、无=默认深色渐变)。字体∨下拉列表仍未采样
+  (定位落在背景色钮，BLOCKED_BY_EXTRACTION 遗留)。
+  verify-jimeng-batch104.py 新增 (工具条/调色板/选色写回/无复位)，
+  68 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
