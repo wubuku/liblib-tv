@@ -68,6 +68,7 @@ export function JimengContextMenu({
     action?: string;
     danger?: boolean;
     title?: string;
+    hint?: string;
   }[] = multi
     ? [
         { label: "复制", shortcut: "⌘ C", action: "copy" },
@@ -81,7 +82,7 @@ export function JimengContextMenu({
           disabled: !canDownload,
           title: canDownload ? undefined : "导出前请保存画布",
         },
-        { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo" },
+        { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo", hint: "无需重做操作" },
         { label: "撤销", shortcut: "⌘ Z", disabled: !canUndo, action: "undo" },
         { label: "删除", shortcut: "⌫", action: "delete", danger: true },
       ]
@@ -96,7 +97,7 @@ export function JimengContextMenu({
           action: canDownload ? "download" : undefined,
           title: canDownload ? undefined : "导出前请保存画布",
         },
-        { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo" },
+        { label: "重做", shortcut: "⌘ ⇧ Z", disabled: !canRedo, action: "redo", hint: "无需重做操作" },
         { label: "撤销", shortcut: "⌘ Z", disabled: !canUndo, action: "undo" },
         { label: "删除", shortcut: "⌫", action: "delete", danger: true },
       ];
@@ -105,7 +106,7 @@ export function JimengContextMenu({
     <div
       ref={ref}
       role="menu"
-      className="fixed z-[200] w-44 rounded-xl p-2"
+      className="fixed z-[200] w-48 rounded-xl p-2"
       style={{
         left: state.x,
         top: state.y,
@@ -130,7 +131,7 @@ export function JimengContextMenu({
                 if (row.action) onAction(row.action);
                 onClose();
               }}
-              className={`flex h-11 w-full items-center justify-between rounded-lg px-2.5 text-[13px] ${
+              className={`flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-[13px] ${
                 row.disabled
                   ? "cursor-default text-white/30"
                   : row.danger
@@ -140,7 +141,13 @@ export function JimengContextMenu({
             >
               {row.label}
               {row.shortcut ? (
-                <span className="text-[12px] text-white/45">{row.shortcut}</span>
+                <span className="text-[12px] text-white/45">
+                  {row.shortcut}
+                  {/* 批 221 SOURCE_FACT: 无可重做操作时附提示 */}
+                  {row.hint && row.disabled ? (
+                    <span className="ml-1 text-white/30">{row.hint}</span>
+                  ) : null}
+                </span>
               ) : null}
             </button>
           </div>
