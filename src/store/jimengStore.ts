@@ -1043,8 +1043,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
               title: `文本 ${seq}`,
               // 占位提示在组件层渲染 (Batch 68 SOURCE_FACT 双击编辑文本)
               text: "",
-              width: 328,
-              height: 340,
+              width: 368,
+              height: 368,
             },
           },
         ],

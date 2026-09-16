@@ -1,0 +1,15 @@
+{
+ "total": 3,
+ "cls": "node-text",
+ "aria": "文本 node: 文本 1",
+ "size": [
+  368,
+  368
+ ],
+ "leaves": [
+  "双击编辑文本",
+  "文本 1"
+ ],
+ "editing": false,
+ "sel": true
+}

@@ -82,10 +82,10 @@ def main() -> None:
             else:
                 if "文本" not in text["title"]:
                     failures.append(f"text title: {text['title']!r}")
-                # 0.7299 初始缩放下的屏幕尺寸 (世界 328×340)
-                if abs(text["w"] - 239) > 8 or abs(text["h"] - 248) > 8:
+                # 0.7299 初始缩放下的屏幕尺寸 (世界 368×368, 批 238 SOURCE_FACT)
+                if abs(text["w"] - 269) > 8 or abs(text["h"] - 269) > 8:
                     failures.append(
-                        f"text size: {text['w']}x{text['h']} want ~239x248"
+                        f"text size: {text['w']}x{text['h']} want ~269x269"
                     )
                 if text["placeholder"] != "双击编辑文本":
                     failures.append(f"text placeholder: {text['placeholder']!r}")
