@@ -46,11 +46,11 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [ttsOpen, setTtsOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
-  // 批 254/255 SOURCE_FACT: 筛选下拉选项 (语言未采样，维持 stub)
-  const FILTERS: { label: string; options: string[] | null }[] = [
+  // 批 254/255/257 SOURCE_FACT: 筛选下拉选项 (均已在源站采样)
+  const FILTERS: { label: string; options: string[] }[] = [
     { label: "性别", options: ["全部 性别", "男", "女"] },
     { label: "年龄", options: ["全部 年龄", "幼儿", "少年", "青年", "中年", "老年"] },
-    { label: "语言", options: null },
+    { label: "语言", options: ["全部 语言", "普通话", "中文方言", "英文"] },
     {
       label: "声音特点",
       options: ["全部 声音特点", "适合旁白", "情景演绎", "多情感", "适合口播", "知名 IP"],
