@@ -587,6 +587,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 636 探测 | still-broken | 第二百五十九次重测；巡检批次——工作区状态不变（5 项并行 WIP 保留）；无新落库；维护集约 batch 638 到期（batch 636） |
 | 2026-09-16 | batch 637 探测 | still-broken | 第二百六十次重测；巡检批次——并行自行落库 jimeng 195（截取帧下拉恢复，jimeng 路线解除 BLOCKED_BY_FIXTURE）；liblib 路线仍 still-broken（batch 637） |
 | 2026-09-16 | batch 638 探测 | still-broken | 第二百六十一次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 638） |
+| 2026-09-16 | batch 639 探测 | still-broken | 第二百六十二次重测；巡检批次——工作区状态不变（7 项并行 WIP 保留）；无新落库；维护集约 batch 644 到期（batch 639） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
