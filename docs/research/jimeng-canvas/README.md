@@ -862,6 +862,10 @@
   tagColor)——对应批 263 采样的「Add tags」悬停钮。bgColor/tagColor
   字段入 JimengAudioNodeData。batch 19/47 回归 PASS。
 - Batch 265 (轮转回归): batch 65-101 段 25/25 PASS。
+- Batch 266 (抽屉预填 chip 采样未遂): 反推打开抽屉后页面 evaluate
+  超时 (drawer 渲染阻塞采样)，行内 chip (视频反解 skill chip/视频引用
+  chip) 的精确样式未取得——219 截图已示其存在，clone 以纯文本预填
+  近似维持。现场已完整还原 (2 节点/抽屉关闭/无选中)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
