@@ -89,7 +89,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="选择生成类型"
+                  aria-label={`创作类型: ${genKind}`}
                   onClick={() => setGenOpen((v) => !v)}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -126,7 +126,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="选择音色模型"
+                  aria-label="选择模型: Seed TTS"
                   onClick={() => setTtsOpen((v) => !v)}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -159,7 +159,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="选择音色"
+                  aria-label={`音色: ${voice}`}
                   onClick={() => setVoiceOpen((v) => !v)}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
