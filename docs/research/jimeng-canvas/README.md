@@ -797,6 +797,12 @@
   接入批 245 采样的两项下拉 (音频生成/音乐生成，192×76 36px 行，
   可切换)；Seed TTS/直爽女大 维持 chevron mock。batch 19 回归 PASS。
 - Batch 247 (轮转回归): batch 1-33 段 33/33 PASS。
+- Batch 248 (Seed TTS 下拉采样落地): 源站「Seed TTS」下拉为两行式
+  菜单项——标题 Seed TTS + 描述「上百个预设音色，让你玩转人声配音」
+  (392×72，248-audio-selectors2.json / 248-source-Seed TTS.png)。
+  JimengAudioGenPanel Seed TTS 选择器接入该下拉 (单选项，点击收起)；
+  直爽女大 (音色) 下拉仍未采样。⌘Z 还原协议执行良好 (1 次还原，
+  id 核对通过)。batch 19 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
