@@ -1,0 +1,86 @@
+{
+ "rail": [
+  {
+   "label": "文本",
+   "y": 301,
+   "beta": false
+  },
+  {
+   "label": "图片",
+   "y": 343,
+   "beta": false
+  },
+  {
+   "label": "视频",
+   "y": 385,
+   "beta": false
+  },
+  {
+   "label": "音频",
+   "y": 427,
+   "beta": false
+  },
+  {
+   "label": "时间线",
+   "y": 469,
+   "beta": false
+  },
+  {
+   "label": "主体",
+   "y": 511,
+   "beta": false
+  },
+  {
+   "label": "导演台",
+   "y": 553,
+   "beta": false
+  },
+  {
+   "label": "资产库",
+   "y": 609,
+   "beta": false
+  },
+  {
+   "label": "上传",
+   "y": 651,
+   "beta": false
+  }
+ ],
+ "dock": [
+  {
+   "aria": "选择工具",
+   "x": 20,
+   "w": 28,
+   "h": 28,
+   "text": ""
+  },
+  {
+   "aria": "小地图",
+   "x": 52,
+   "w": 28,
+   "h": 28,
+   "text": ""
+  },
+  {
+   "aria": "显示连线",
+   "x": 84,
+   "w": 28,
+   "h": 28,
+   "text": ""
+  },
+  {
+   "aria": "Zoom options, 63",
+   "x": 128,
+   "w": 48,
+   "h": 28,
+   "text": "63%"
+  },
+  {
+   "aria": "与 AI 对话",
+   "x": 1789,
+   "w": 118,
+   "h": 34,
+   "text": ""
+  }
+ ]
+}
