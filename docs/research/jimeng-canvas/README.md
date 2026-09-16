@@ -536,6 +536,14 @@
   并行 heartbeat 自动化 (batch 637-639) 与本轮提交交错合入，
   jimeng 面无冲突。npm run check 于 batch 197 已过 (此后 jimeng
   树无代码变化，不重复执行)。
+- Batch 199 (截图阻塞定论 + docs 门禁): 源站页面截图第三种路径
+  (raw CDP + clip 小区域 + captureBeyondViewport=false, 子进程 20s
+  硬超时) 仍必挂——连同 playwright 高层与 raw CDP 全帧共三种路径
+  均超时，当前页面态 (视频持续解码) 下源站截图正式定论
+  BLOCKED_BY_EXTRACTION，后续仅在页面空闲态复测。图片工具条源站
+  截图缺口随之维持几何级 JSON 证据。
+  环境: 本轮 `npm run dev` 绑定 4317 (verifier 依赖端口)，由本循环
+  持有；verify-docs.py 通过 (1003 files / 4398 links)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
