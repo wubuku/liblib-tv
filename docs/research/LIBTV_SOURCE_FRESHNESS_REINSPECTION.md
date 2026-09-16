@@ -609,6 +609,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 652 探测 | still-broken | 第二百八十五次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 652） |
 | 2026-09-16 | batch 652 探测 | still-broken | 第二百七十五次重测；静默窗口补跑全量维护集 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 652） |
 | 2026-09-16 | batch 653 探测 | still-broken | 第二百七十六次重测；巡检批次——并行 harness 持续活跃（batch34/99/100 自定义拾取器迭代 + 10 项 WIP 保留）；无新落库需同步；维护集未到期（batch 653） |
+| 2026-09-16 | batch 653 探测 | still-broken | 第二百五十六次重测；巡检批次——并行自行落库 jimeng 211（rail/dock 逐项验证零漂移），54 张截图刷新 WIP 保留；无新落库需同步；维护集未到期（batch 653） |
 | 2026-09-16 | batch 654 探测 | still-broken | 第二百七十七次重测；巡检批次——并行自行落库 jimeng 204（自定义截帧标题采样），2 张并行截图 WIP 保留；无新落库需同步；维护集未到期（batch 654） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
