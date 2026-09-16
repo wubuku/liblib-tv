@@ -732,6 +732,8 @@
 - Batch 231 (无效连接 toast 落地): 批 230 采样的「无法连接这些节点」
   toast 接入 clone——JimengWorkspace 新增 onConnectEnd，连接拖拽以
   invalid 结束时 pushToast。batch 57 交互审计回归 PASS。
+- Batch 232 (全量质量门): 退出码全量扫 verify-jimeng-batch1..101 ——
+  87 verifier 零失败，截图随扫刷新入库。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
