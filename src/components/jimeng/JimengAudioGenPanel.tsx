@@ -46,6 +46,17 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [ttsOpen, setTtsOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
+  // 批 254/255 SOURCE_FACT: 筛选下拉选项 (语言未采样，维持 stub)
+  const FILTERS: { label: string; options: string[] | null }[] = [
+    { label: "性别", options: ["全部 性别", "男", "女"] },
+    { label: "年龄", options: ["全部 年龄", "幼儿", "少年", "青年", "中年", "老年"] },
+    { label: "语言", options: null },
+    {
+      label: "声音特点",
+      options: ["全部 声音特点", "适合旁白", "情景演绎", "多情感", "适合口播", "知名 IP"],
+    },
+  ];
+  const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -164,15 +175,52 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   >
                     <p className="pb-2 text-[13px] text-white/80">全音色</p>
                     <div className="flex gap-1.5 pb-2">
-                      {["性别", "年龄", "语言", "声音特点"].map((f) => (
-                        <button
-                          key={f}
-                          type="button"
-                          className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
-                        >
-                          {f}
-                          <ChevronDown size={10} className="text-white/50" />
-                        </button>
+                      {FILTERS.map(({ label, options }) => (
+                        <div key={label} className="relative">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setFilterSel((m) => ({
+                                ...m,
+                                [label]: m[label] === undefined ? null : m[label],
+                              }))
+                            }
+                            className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                          >
+                            {filterSel[label] ?? label}
+                            <ChevronDown size={10} className="text-white/50" />
+                          </button>
+                          {options ? (
+                            <div
+                              className="absolute bottom-[calc(100%+6px)] left-0 z-[150] w-[150px] rounded-xl p-1.5"
+                              style={{ background: "rgb(38,38,38)" }}
+                              role="listbox"
+                              aria-label={`筛选 ${label}`}
+                            >
+                              {options.map((opt) => (
+                                <button
+                                  key={opt}
+                                  type="button"
+                                  role="option"
+                                  aria-selected={(filterSel[label] ?? label) === opt}
+                                  onClick={() =>
+                                    setFilterSel((m) => ({
+                                      ...m,
+                                      [label]: opt.startsWith("全部") ? label : opt,
+                                    }))
+                                  }
+                                  className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
+                                    (filterSel[label] ?? label) === opt
+                                      ? "bg-white/[0.10] text-white"
+                                      : "text-white/85 hover:bg-white/10"
+                                  }`}
+                                >
+                                  {opt}
+                                </button>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
                       ))}
                     </div>
                     <div className="grid grid-cols-3 gap-1">
