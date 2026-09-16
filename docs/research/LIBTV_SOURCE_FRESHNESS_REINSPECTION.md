@@ -685,6 +685,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-17 | batch 678 探测 | still-broken | 第三百零二次重测；巡检批次——工作区状态不变（7 项并行 WIP 保留）；无新落库；维护集未到期（batch 678） |
 | 2026-09-17 | batch 679 探测 | still-broken | 第三百零三次重测；巡检批次——工作区状态不变（8 项并行 WIP 保留）；无新落库；维护集未到期（batch 679） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 273（batch 255 筛选截图补充），工作区净；维护集约 batch 649 到期（batch 680） |
+| 2026-09-17 | batch 681 探测 | still-broken | 第三百零五次重测；巡检批次——并行自行落库 jimeng 274（skills 弹出层采样 BLOCKED_BY_RENDERER），工作区净；维护集未到期（batch 681） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
