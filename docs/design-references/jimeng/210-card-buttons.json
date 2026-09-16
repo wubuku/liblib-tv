@@ -1,0 +1,62 @@
+[
+ {
+  "aria": "Rename sb_518102884867410fb2175d43068dca4f_cgt-20260622155459-tf5q2",
+  "rect": [
+   20,
+   -32,
+   299,
+   32
+  ],
+  "svgs": 0
+ },
+ {
+  "aria": "Add tags",
+  "rect": [
+   335,
+   -32,
+   24,
+   24
+  ],
+  "svgs": 1
+ },
+ {
+  "aria": "Create connected node after sb_518102884867410fb2175d43068dca4f_cgt-20260622155459-tf5q2",
+  "rect": [
+   369,
+   76,
+   36,
+   36
+  ],
+  "svgs": 0
+ },
+ {
+  "aria": "Pause sb_518102884867410fb2175d43068dca4f_cgt-20260622155459-tf5q2",
+  "rect": [
+   15,
+   179,
+   10,
+   10
+  ],
+  "svgs": 1
+ },
+ {
+  "aria": "Mute video",
+  "rect": [
+   301,
+   172,
+   23,
+   23
+  ],
+  "svgs": 1
+ },
+ {
+  "aria": "Enter browser full screen",
+  "rect": [
+   329,
+   172,
+   23,
+   23
+  ],
+  "svgs": 1
+ }
+]

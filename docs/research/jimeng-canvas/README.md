@@ -635,6 +635,13 @@
   (208-video-card.png——静止卡仅中央播放钮)，媒体卡补 group-hover 门控；
   batch 16 断言随批 208 连线证据更新 (rgb(0,142,229)/1px)。
   验证: verify-jimeng-batch101.py 新增；batch 15/16/97 回归 PASS。
+- Batch 210 (视觉比对 + +钮尺寸对齐): 源站视频工具条/截取帧下拉最新
+  截图 (210-source-video-toolbar.png / 210-source-capture-dropdown.png)
+  与 clone 并排比对——工具条条目/VIP 菱标/尾钮、卡片控制条
+  (Pause/时间/Mute video/Enter browser full screen, 210-card-buttons.json)
+  全部一致，无漂移。微调: 源站「Create connected node」+ 圆钮 36×36
+  (clone 原 24px)，左右两侧 + 钮放大至 size-9、图标 16。batch
+  14/16/17/20/24 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

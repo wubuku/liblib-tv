@@ -208,14 +208,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           <span
             role="button"
             aria-label="左侧添加节点"
-            className="absolute left-1/2 top-1/2 hidden size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
+            className="absolute left-1/2 top-1/2 hidden size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
             onClick={(e) => {
               e.stopPropagation();
               setInsertMenu((cur) => (cur === "left" ? null : "left"));
             }}
             onMouseDown={(e) => e.stopPropagation()}
           >
-            <Plus size={14} />
+            <Plus size={16} />
           </span>
         ) : null}
       </Handle>
@@ -228,14 +228,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         <span
           role="button"
           aria-label="右侧添加节点"
-          className="absolute left-1/2 top-1/2 hidden size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
+          className="absolute left-1/2 top-1/2 hidden size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
           onClick={(e) => {
             e.stopPropagation();
             setInsertMenu((cur) => (cur === "right" ? null : "right"));
           }}
           onMouseDown={(e) => e.stopPropagation()}
         >
-          <Plus size={14} />
+          <Plus size={16} />
         </span>
       </Handle>
       {insertMenu ? (
