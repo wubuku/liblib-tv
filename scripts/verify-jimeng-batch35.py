@@ -1,8 +1,9 @@
-"""Jimeng clone batch 35 verifier — captured-frame badge on the node.
+"""Jimeng clone batch 35 verifier — custom capture produces an image node.
 
-Contract: after capturing a frame in the custom picker (strip click at ~70%,
-截取帧, 确认), the node card shows a badge with the camera icon and the
-captured time (00:04).
+Contract (updated batch 205; the old card-badge behavior was a mis-sampling
+corrected in batch 203/204): after capturing a frame in the custom picker
+(strip click at ~70%, 截取帧, 确认), the picker closes and an image node
+titled「{video}_截帧_1」is produced — no card badge exists.
 """
 
 import os
@@ -33,7 +34,7 @@ def main() -> None:
             "() => !!document.querySelector('[data-testid=\"captured-frame-badge\"]')"
         )
         if badge_before:
-            failures.append("badge visible before any capture")
+            failures.append("captured-frame badge must not exist (removed batch 205)")
 
         node1 = page.locator('.react-flow__node[data-id="video-local-1"]')
         node1.click(position={"x": 200, "y": 100})
@@ -58,21 +59,22 @@ def main() -> None:
         page.locator("button", has_text="确认").last.click()
         page.wait_for_timeout(700)
 
-        badge = page.evaluate(
+        img = page.evaluate(
             """() => {
-                const b = document.querySelector('[data-testid="captured-frame-badge"]');
-                if (!b) return null;
-                return {text: b.textContent.trim(),
-                        cam: !!b.querySelector('svg')};
+                const nodes = [...document.querySelectorAll('.react-flow__node-image')];
+                const el = nodes[nodes.length - 1] ?? null;
+                return {count: nodes.length,
+                        hasPoster: el ? !!el.querySelector('img') : false,
+                        title: el ? (el.textContent || '').trim().slice(0, 60) : null};
             }"""
         )
-        if not badge:
-            failures.append("captured-frame badge did not appear")
+        if img["count"] != 1:
+            failures.append(f"confirm did not produce image node: {img['count']}")
         else:
-            if "00:04" not in badge["text"]:
-                failures.append(f"badge text: {badge['text']!r} (want 00:04)")
-            if not badge["cam"]:
-                failures.append("badge camera icon missing")
+            if not img["hasPoster"]:
+                failures.append("produced image node has no poster")
+            if "_截帧_1" not in (img["title"] or ""):
+                failures.append(f"title wrong: {img['title']!r} (want …_截帧_1)")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch35-frame-badge-1680.png")
         )
@@ -84,7 +86,7 @@ def main() -> None:
         for f in failures:
             print(" -", f)
         raise SystemExit(1)
-    print("PASS: jimeng batch 35 frame badge contract")
+    print("PASS: jimeng batch 35 custom capture → image node contract")
 
 
 if __name__ == "__main__":

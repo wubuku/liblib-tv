@@ -1,6 +1,6 @@
 "use client";
 
-import { Camera, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react";
+import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 import type { JimengTask } from "@/store/jimengStore";
 import type { JimengVideoNodeData } from "@/types/jimeng";
@@ -64,37 +64,6 @@ export function JimengVideoMediaCard({
             alt={d.title}
             className="absolute inset-0 h-full w-full object-cover"
           />
-          {/* 截取帧徽章 (Batch 35/36): 点击跳转到截取帧，× 清除 */}
-          {d.capturedFrame != null ? (
-            <span
-              className="absolute left-2 top-2 z-[2] flex items-center overflow-hidden rounded bg-black/60 text-[11px] text-white"
-              data-testid="captured-frame-badge"
-            >
-              <button
-                type="button"
-                aria-label="跳转到截取帧"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  seek(id, (d.capturedFrame ?? 0) / (d.duration || 1));
-                }}
-                className="flex items-center gap-1 px-1.5 py-0.5 hover:bg-black/40"
-              >
-                <Camera size={10} />
-                {formatTime(d.capturedFrame)}
-              </button>
-              <button
-                type="button"
-                aria-label="清除截取帧"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateNodeData(id, { capturedFrame: null });
-                }}
-                className="px-1 py-0.5 hover:bg-black/40"
-              >
-                <X size={10} />
-              </button>
-            </span>
-          ) : null}
           {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT；点击切换播放 */}
           <button
             type="button"

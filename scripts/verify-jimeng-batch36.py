@@ -55,30 +55,31 @@ def main() -> None:
 
         capture_frame(page)
 
-        # click badge seek area → node time jumps to 00:04
-        page.locator('button[aria-label="跳转到截取帧"]').click()
-        page.wait_for_timeout(500)
-        t = page.evaluate(
-            """() => {
-                const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
-                const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ 00:06/);
-                return m ? m[1] : null;
-            }"""
+        # batch 203/205 semantics: picker closes; no badge ever appears;
+        # the produced image node is removed by undo
+        picker_gone = page.evaluate(
+            """() => ![...document.querySelectorAll('form,div')]
+                .some(d => d.querySelector('[data-testid="frame-readout"]')
+                          && d.textContent.includes('确认'))"""
         )
-        if t != "00:04":
-            failures.append(f"badge seek: {t} (want 00:04)")
+        if not picker_gone:
+            failures.append("picker did not close after 确认")
+        badge = page.evaluate(
+            "() => !!document.querySelector('[data-testid=\"captured-frame-badge\"]')"
+        )
+        if badge:
+            failures.append("captured-frame badge appeared (must stay removed)")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch36-badge-seek-1680.png")
         )
 
-        # clear via ×
-        page.locator('button[aria-label="清除截取帧"]').click()
-        page.wait_for_timeout(500)
-        gone = page.evaluate(
-            "() => !document.querySelector('[data-testid=\"captured-frame-badge\"]')"
+        page.keyboard.press("Meta+z")
+        page.wait_for_timeout(600)
+        imgs = page.evaluate(
+            "() => document.querySelectorAll('.react-flow__node-image').length"
         )
-        if not gone:
-            failures.append("badge did not clear")
+        if imgs != 0:
+            failures.append(f"undo did not remove image node: {imgs} left")
 
         ctx.close()
 
@@ -87,7 +88,7 @@ def main() -> None:
         for f in failures:
             print(" -", f)
         raise SystemExit(1)
-    print("PASS: jimeng batch 36 badge interactions contract")
+    print("PASS: jimeng batch 36 capture post-conditions contract")
 
 
 if __name__ == "__main__":
