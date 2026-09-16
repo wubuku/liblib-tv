@@ -11,11 +11,15 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 占位「请输入你想生成的说话内容」+ 右上展开钮；底行三选择器:
  * 音频生成∨ / Seed TTS∨ / 直爽女大∨ (12-13px 白字) + 右侧 ✦1 +
  * 灰色圆形发送钮 (禁用样式)。
- * mock: 选择器仅 chevron 视觉，发送在无内容时禁用样式，可点时 pushToast。
+ * 批 245 SOURCE_FACT: 「音频生成」下拉两项 音频生成/音乐生成 (192×76，
+ * 36px 行)；Seed TTS/直爽女大 下拉未采样 (chevron 视觉 mock)。
+ * mock: 发送在无内容时禁用样式。
  */
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
+  const [genKind, setGenKind] = useState("音频生成");
+  const [genOpen, setGenOpen] = useState(false);
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -44,7 +48,45 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
 
           <div className="flex h-8 w-full items-center justify-between">
             <div className="flex min-w-0 items-center gap-1">
-              {["音频生成", "Seed TTS", "直爽女大"].map((s) => (
+              {/* 批 245 SOURCE_FACT: 音频生成下拉两项 */}
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="选择生成类型"
+                  onClick={() => setGenOpen((v) => !v)}
+                  className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                >
+                  {genKind}
+                  <ChevronDown size={12} className="text-white/60" />
+                </button>
+                {genOpen ? (
+                  <div
+                    className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5"
+                    style={{ background: "rgb(38,38,38)" }}
+                    role="listbox"
+                    aria-label="生成类型"
+                  >
+                    {["音频生成", "音乐生成"].map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        role="option"
+                        aria-selected={genKind === opt}
+                        onClick={() => {
+                          setGenKind(opt);
+                          setGenOpen(false);
+                        }}
+                        className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
+                          genKind === opt ? "bg-white/[0.10] text-white" : "text-white/85 hover:bg-white/10"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              {["Seed TTS", "直爽女大"].map((s) => (
                 <button
                   key={s}
                   type="button"
