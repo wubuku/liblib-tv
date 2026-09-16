@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { Handle, Position } from "@xyflow/react";
+import { Ban, Tag } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengAudioNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
+import { TAG_COLORS } from "@/components/jimeng/nodes/JimengVideoTitleRow";
 import { JimengAudioGenPanel } from "@/components/jimeng/JimengAudioGenPanel";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 音频节点 (Batch 19；批 236/239 源站采样对齐)。
@@ -21,6 +25,9 @@ import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
  */
 export function JimengAudioNode({ id, data, selected }: NodeProps) {
   const d = data as JimengAudioNodeData;
+  // 批 263 SOURCE_FACT: 音频标题行悬停出现 Add tags (颜色标记选色盘)
+  const [tagPickerOpen, setTagPickerOpen] = useState(false);
+  const updateNodeData = useJimengStore((s) => s.updateNodeData);
 
   return (
     <div
@@ -28,9 +35,65 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
-        <FileBadgeIcon size={16} />
-        <JimengNodeTitle id={id} title={d.title} />
+      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between gap-1.5 text-left text-white/70">
+        <div className="flex min-w-0 items-center gap-1.5">
+          <FileBadgeIcon size={16} />
+          <JimengNodeTitle id={id} title={d.title} />
+        </div>
+        <span className="relative">
+          <button
+            type="button"
+            aria-label="节点颜色标记"
+            onClick={(e) => {
+              e.stopPropagation();
+              setTagPickerOpen((v) => !v);
+            }}
+            className="flex size-4 items-center justify-center opacity-0 group-hover:opacity-100"
+          >
+            {d.tagColor ? (
+              <span
+                className="size-3 rounded-full"
+                style={{ background: d.tagColor }}
+              />
+            ) : (
+              <Tag size={16} className="text-white/40" />
+            )}
+          </button>
+          {tagPickerOpen ? (
+            <span
+              className="nodrag absolute right-0 top-[calc(100%+6px)] z-[130] flex items-center gap-2 rounded-full border border-white/10 bg-[#262626] px-2.5 py-1.5"
+              role="menu"
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                aria-label="清除颜色标记"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateNodeData(id, { tagColor: null });
+                  setTagPickerOpen(false);
+                }}
+                className="flex size-4 items-center justify-center rounded-full border border-white/40 text-white/70"
+              >
+                <Ban size={10} />
+              </button>
+              {TAG_COLORS.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  aria-label={`颜色标记 ${color}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    updateNodeData(id, { tagColor: color });
+                    setTagPickerOpen(false);
+                  }}
+                  className="size-4 rounded-full"
+                  style={{ background: color }}
+                />
+              ))}
+            </span>
+          ) : null}
+        </span>
       </div>
 
       <div

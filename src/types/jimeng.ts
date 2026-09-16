@@ -74,6 +74,8 @@ export interface JimengAudioNodeData extends Record<string, unknown> {
   duration: number;
   width: number;
   height: number;
+  /** 颜色标记 (批 263 SOURCE_FACT: 音频标题行悬停出现 Add tags，同视频) */
+  tagColor?: string | null;
 }
 
 export type JimengNode = Node<

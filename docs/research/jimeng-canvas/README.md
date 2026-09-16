@@ -857,6 +857,10 @@
   「Add tags」按钮，无播放控件——确认批 239 移除播放钮正确。
   音频节点标题行的 Add tags (标签选择器) 为 clone 未覆盖项 (视频节点
   batch 31 已有)，待后续批次补齐。⌘Z 还原协议执行良好 (1 次还原)。
+- Batch 264 (音频 Add tags 落地): 音频节点标题行补齐颜色标记选色盘
+  (悬停出现 Tag 钮，禁止+五色，复用 batch 31 TAG_COLORS；选色写回
+  tagColor)——对应批 263 采样的「Add tags」悬停钮。bgColor/tagColor
+  字段入 JimengAudioNodeData。batch 19/47 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
