@@ -183,7 +183,7 @@ def main() -> None:
                 else:
                     if not result["hasPoster"]:
                         failures.append("produced image node has no poster")
-                    if "_自定义" not in (result["title"] or ""):
+                    if "_截帧_1" not in (result["title"] or ""):
                         failures.append(f"custom title wrong: {result['title']!r}")
 
                 edges = page.evaluate(

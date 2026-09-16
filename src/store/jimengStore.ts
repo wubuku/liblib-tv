@@ -431,11 +431,25 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         if (!blocker) break;
         x = blocker.position.x + (blocker.data.width ?? 569) + 80;
       }
-      // 批 203 SOURCE_FACT: 自定义帧经帧选择器「确认」后同样直出图片节点
-      // (确认行为采样: 选择器关闭 + 新 image 节点, 而非写回 currentTime)；
-      // 自定义产出标题后缀为 CLONE_DECISION (源站该标题未采样)。
+      // 批 204 SOURCE_FACT: 自定义帧产出标题「{视频}_截帧_{N}」(aria
+      // 「图片 node: sb_...-tf5q2_截帧_1」)；N 为计数器，重复截取递增
+      // (源站计数口径未采样，mock 按「同源已有截帧节点数 + 1」)
+      const customIndex =
+        frame === "custom"
+          ? state.nodes.filter(
+              (n) =>
+                n.type === "image" &&
+                ((n.data as JimengImageNodeData).title ?? "").startsWith(
+                  `${v.title}_截帧_`,
+                ),
+            ).length + 1
+          : null;
       const label =
-        frame === "first" ? "首帧" : frame === "last" ? "尾帧" : "自定义";
+        frame === "first"
+          ? "首帧"
+          : frame === "last"
+            ? "尾帧"
+            : `截帧_${customIndex}`;
       const id = `image-${Date.now()}`;
       const node: JimengNode = {
         id,

@@ -96,7 +96,7 @@ def main() -> None:
         )
         if img_custom["count"] < 1:
             failures.append("确认 did not produce an image node (batch 203 semantics)")
-        elif "_自定义" not in (img_custom["title"] or ""):
+        elif "_截帧_" not in (img_custom["title"] or ""):
             failures.append(f"custom capture title wrong: {img_custom['title']!r}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch34-frame-capture-1680.png")
