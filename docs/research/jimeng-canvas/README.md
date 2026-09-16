@@ -544,6 +544,21 @@
   截图缺口随之维持几何级 JSON 证据。
   环境: 本轮 `npm run dev` 绑定 4317 (verifier 依赖端口)，由本循环
   持有；verify-docs.py 通过 (1003 files / 4398 links)。
+- Batch 200 (§10 留档修复): 修复 cf1848c 引入的 §10 逐字符竖排损坏
+  (656-1592 行 937 行重组为 26 行可读文本，无良好历史副本可还原)，
+  快照内容刷新至 batch-200 状态 (84 verifier、图片工具条/上传瞬态
+  已落地、受阻面重列)；全库扫描确认无其他文件同类损坏。
+- Batch 201 (探针环境诊断 + 自定义帧选择器复验未遂):
+  当日点击/截图间歇失效的根因定位——探针 Chrome 窗口曾退化为
+  960×90 的 fullscreen 条带 (innerWidth/innerHeight 即 960/90，
+  y>90 的所有坐标 elementFromPoint 返回 null)，Browser.setWindowBounds
+  恢复 1680×960 后点击命中恢复；窗口恢复后 raw CDP 截图仍挂
+  (合成器 wedged，疑视频解码占用)，截图 BLOCKED 判定不变。
+  另: reload 后 workspace-preparing-state 遮罩期间点击全部无效，
+  须轮询待其消失。截取帧下拉可打开，但点「自定义」行未展开
+  帧选择器 (源站行为待复验；batch 9/10 提取证据与我方
+  JimengFramePicker 实现维持有效)。两轮变异周期均完整还原
+  (2 视频节点基线)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
