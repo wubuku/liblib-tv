@@ -1010,7 +1010,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             {
               ...base,
               type: "image" as const,
-              data: { title: `图片 ${seq}`, width: 480, height: 360 },
+              data: { title: `图片 ${seq}`, width: 320, height: 320 },
             },
           ],
         };
