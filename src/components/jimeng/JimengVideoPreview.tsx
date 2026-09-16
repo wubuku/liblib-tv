@@ -127,6 +127,20 @@ export function JimengVideoPreview({
         >
           {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
+        {/* 批 218 SOURCE_FACT: 音量滑杆 (细线 + 圆点)；静态 60% 为 CLONE_DECISION */}
+        <span
+          className="mr-1 flex h-4 w-16 items-center"
+          role="slider"
+          aria-label="音量"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={60}
+        >
+          <span className="h-px w-full bg-white/40">
+            <span className="block h-px w-[60%] bg-white" />
+          </span>
+          <span className="-ml-1.5 size-2 rounded-full bg-white" />
+        </span>
         <button
           type="button"
           aria-label="退出全屏预览"

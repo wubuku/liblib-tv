@@ -673,6 +673,12 @@
   enterInfer + openAiDrawer(预填)；JimengInferPanel 渲染移除 (组件保留)；
   工作区 Escape 分支补抽屉关闭。batch 8 verifier 改写为新契约
   (抽屉打开+预填+无旧面板+Escape 关闭)，8/12/30/40/97/101 回归 PASS。
+- Batch 218 (全屏预览复验 + 音量滑杆): 源站全屏预览最新采样
+  (218-source-fullscreen.png)——控制条为 ⏸ + 0:01/0:06 ｜ 音量滑杆
+  (细线+圆点) + 🔊 + 退出全屏，右上角 X 关闭钮；视频 cover 铺满、
+  底部细进度线。新增细节: 静音钮旁的**音量滑杆** (batch 80 未记载)。
+  复刻: JimengVideoPreview 控制条补静态音量滑杆 (60%，
+  CLONE_DECISION)；batch 80/32 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
