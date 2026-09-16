@@ -641,6 +641,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-17 | batch 646 探测 | still-broken | 第二百九十次重测；巡检批次——工作区状态不变（6 项并行 WIP 保留）；并行自行落库 jimeng 260；无新落库需同步；维护集未到期（batch 646） |
 | 2026-09-17 | batch 647 探测 | still-broken | 第二百九十一次重测；巡检批次——并行自行落库 jimeng 261（rail 图片插入 320×320 采样对齐），工作区净；无新落库需同步；维护集约 batch 678 到期（batch 647） |
 | 2026-09-17 | batch 648 探测 | still-broken | 第二百九十二次重测；巡检批次——工作区状态不变（3 项并行 WIP 保留）；无新落库；维护集约 batch 678 到期（batch 648） |
+| 2026-09-17 | batch 649 探测 | still-broken | 第二百九十三次重测；巡检批次——工作区状态不变（3 项并行 WIP 保留）；无新落库；维护集约 batch 678 到期（batch 649） |
 | 2026-09-17 | batch 646 探测 | still-broken | 第二百九十次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 646） |
 | 2026-09-17 | batch 647 探测 | still-broken | 第二百九十一次重测；巡检批次——并行自行落库 jimeng 248（Seed TTS 下拉采样），1 项 batch1-default WIP 保留；无新落库需同步；维护集未到期（batch 647） |
 | 2026-09-17 | batch 648 探测 | still-broken | 第二百九十二次重测；巡检批次——并行自行落库 jimeng 250（声音下拉网格采样），工作区净；维护集约 batch 665 到期（batch 648） |
