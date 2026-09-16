@@ -1,9 +1,10 @@
-"""Jimeng clone batch 8 verifier — 提示词反推 mock panel.
+"""Jimeng clone batch 8 verifier — 提示词反推 → AI drawer flow (batch 216).
 
-Contract: clicking 提示词反推 in the toolbar opens a mock panel (title,
-mock inferred prompt, copy button, close ×); close button returns to the
-toolbar state; pane click also exits. Marked CLONE_DECISION — the source
-site submits a paid inference task (BLOCKED_BY_FIXTURE).
+Contract (updated per 216-source-infer.png): clicking 提示词反推 no longer
+opens a mock panel — the node zooms in and the AI drawer opens with the
+prefilled 视频反解 prompt「用 视频反解 反推出 {video title} 的提示词，并
+创建文本节点，方便我拉片复刻」. Marked CLONE_DECISION where the drawer
+mock does not submit anything.
 """
 
 import os
@@ -34,43 +35,38 @@ def main() -> None:
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(700)
         page.locator(".jimeng-node-toolbar button", has_text="提示词反推").click()
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(900)
 
         state = page.evaluate(
             """() => {
-                const copyBtn = [...document.querySelectorAll('button')]
-                    .find(b => b.textContent.includes('复制提示词'));
-                const panel = copyBtn
-                    ? copyBtn.closest('div[class*="rounded"]')
-                    : null;
+                const drawer = document.querySelector('aside[aria-label="AI 对话"]');
+                const input = drawer?.querySelector('input');
                 return {
-                    open: !!panel && panel.textContent.includes('mock 反推结果'),
-                    hasClose: !!document.querySelector('button[aria-label="关闭反推面板"]'),
-                    hasCopy: !!copyBtn,
+                    drawerOpen: !!drawer,
+                    prefill: input ? input.value : null,
+                    noMockPanel: ![...document.querySelectorAll('form,div')]
+                        .some(d => d.textContent.includes('mock 反推结果')),
                 };
             }"""
         )
-        if not state["open"]:
-            failures.append("infer panel did not open")
+        if not state["drawerOpen"]:
+            failures.append("AI drawer did not open on 提示词反推")
         else:
-            if not state["hasClose"]:
-                failures.append("infer panel close button missing")
-            if not state["hasCopy"]:
-                failures.append("infer panel copy button missing")
+            if not state["prefill"] or "用 视频反解 反推出" not in state["prefill"]:
+                failures.append(f"drawer prefill wrong: {state['prefill']!r}")
+            if not state["noMockPanel"]:
+                failures.append("old mock infer panel must stay removed")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch8-infer-panel-1680.png")
         )
 
-        # close button exits
-        page.locator('button[aria-label="关闭反推面板"]').click()
+        page.keyboard.press("Escape")
         page.wait_for_timeout(500)
         closed = page.evaluate(
-            "() => ![...document.querySelectorAll('div')]"
-            ".some(d => d.textContent.includes('mock 反推结果')"
-            " && d.querySelector('button[aria-label=\\'复制提示词\\']'))"
+            "() => !document.querySelector('aside[aria-label=\"AI 对话\"]')"
         )
         if not closed:
-            failures.append("infer panel did not close")
+            failures.append("AI drawer did not close on Escape")
 
         ctx.close()
 
@@ -79,7 +75,7 @@ def main() -> None:
         for f in failures:
             print(" -", f)
         raise SystemExit(1)
-    print("PASS: jimeng batch 8 infer panel contract")
+    print("PASS: jimeng batch 8 infer → AI drawer contract")
 
 
 if __name__ == "__main__":

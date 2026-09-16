@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useJimengStore } from "@/store/jimengStore";
 import {
   ArrowUp,
   AtSign,
@@ -30,7 +31,10 @@ const SKILL_CHIPS = [
 ];
 
 export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
-  const [input, setInput] = useState("");
+  // 批 216: 预填提示词 (提示词反推 → 视频反解)；由工作区以 prefill 为
+  // key 重挂载本组件带入初始值
+  const prefill = useJimengStore((s) => s.aiDrawerPrefill);
+  const [input, setInput] = useState(prefill ?? "");
 
   return (
     <aside

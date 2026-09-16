@@ -665,6 +665,14 @@
   自动播放均与 batch 6 一致；两处演进——提示条左端图标由铅笔改为**回形针**，
   积分数值 120/260 → **144/312** (随配置变动的动态值)。复刻对齐
   JimengVideoEditMode；batch 6 verifier 断言同步更新，6/12 回归 PASS。
+- Batch 216 (提示词反推行为演进复刻): 源站提示词反推已不再是 mock 面板
+  (216-source-infer.png)——点击后节点放大暂停，右侧打开 AI 抽屉并预填
+  「用 视频反解 反推出 {视频标题} 的提示词，并创建文本节点，方便我拉片
+  复刻」。复刻: store 新增 aiDrawerPrefill/openAiDrawer；JimengAiDrawer
+  以 prefill 为 key 重挂载带入初始值；JimengVideoNode 提示词反推 →
+  enterInfer + openAiDrawer(预填)；JimengInferPanel 渲染移除 (组件保留)；
+  工作区 Escape 分支补抽屉关闭。batch 8 verifier 改写为新契约
+  (抽屉打开+预填+无旧面板+Escape 关闭)，8/12/30/40/97/101 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

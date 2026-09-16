@@ -99,6 +99,9 @@ export interface JimengCanvasState {
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
+  /** 批 216: 打开抽屉时的预填提示词 (提示词反推 → 视频反解流程) */
+  aiDrawerPrefill: string | null;
+  openAiDrawer: (prefill?: string) => void;
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
   setAssetsOpen: (open: boolean) => void;
@@ -752,7 +755,15 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   aiDrawerOpen: false,
 
-  setAiDrawerOpen: (open) => set({ aiDrawerOpen: open }),
+  aiDrawerPrefill: null,
+
+  setAiDrawerOpen: (open) =>
+    set((state) => ({
+      aiDrawerOpen: open,
+      aiDrawerPrefill: open ? state.aiDrawerPrefill : null,
+    })),
+
+  openAiDrawer: (prefill) => set({ aiDrawerOpen: true, aiDrawerPrefill: prefill ?? null }),
 
   assetsOpen: false,
 

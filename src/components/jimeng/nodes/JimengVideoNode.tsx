@@ -9,7 +9,6 @@ import type { JimengVideoNodeData } from "@/types/jimeng";
 import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
-import { JimengInferPanel } from "@/components/jimeng/JimengInferPanel";
 import { JimengFramePicker } from "@/components/jimeng/JimengFramePicker";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { JimengTrimPanel } from "@/components/jimeng/JimengTrimPanel";
@@ -52,7 +51,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const exitEdit = useJimengStore((s) => s.exitEdit);
   const inferNodeId = useJimengStore((s) => s.inferNodeId);
   const enterInfer = useJimengStore((s) => s.enterInfer);
-  const exitInfer = useJimengStore((s) => s.exitInfer);
+  const openAiDrawer = useJimengStore((s) => s.openAiDrawer);
   const framePickerNodeId = useJimengStore((s) => s.framePickerNodeId);
   const framePickerMode = useJimengStore((s) => s.framePickerMode);
   const enterFramePicker = useJimengStore((s) => s.enterFramePicker);
@@ -79,7 +78,6 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     s.nodes.find((n) => n.id === id)?.groupId,
   );
   const tickPlay = useJimengStore((s) => s.tickPlay);
-  const updateNodeData = useJimengStore((s) => s.updateNodeData);
   const pushToast = useJimengStore((s) => s.pushToast);
   const applyTrim = useJimengStore((s) => s.applyTrim);
   const previewNodeId = useJimengStore((s) => s.previewNodeId);
@@ -122,8 +120,6 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         />
       ) : d.hasMedia && editMode ? (
         <JimengVideoEditMode onSubmit={() => exitEdit()} />
-      ) : d.hasMedia && inferMode ? (
-        <JimengInferPanel visible data={d} onClose={() => exitInfer()} />
       ) : d.hasMedia && pickerMode ? (
         <JimengFramePicker
           visible
@@ -151,7 +147,14 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           onAction={(label) => {
             if (label === "局部重拍") enterRepaint(id);
             if (label === "视频编辑") enterEdit(id);
-            if (label === "提示词反推") enterInfer(id);
+            // 批 216 SOURCE_FACT: 提示词反推 → 节点放大暂停 + 打开 AI 抽屉
+            // 并预填 视频反解 提示词 (原 mock 反推面板已被该流程取代)
+            if (label === "提示词反推") {
+              enterInfer(id);
+              openAiDrawer(
+                `用 视频反解 反推出 ${d.title} 的提示词，并创建文本节点，方便我拉片复刻`,
+              );
+            }
             if (label === "视频修剪") enterTrim(id);
             if (label === "智能超清") startTask(id, "upscale");
             if (label === "补帧") startTask(id, "interpolate");

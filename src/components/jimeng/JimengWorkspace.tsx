@@ -62,6 +62,8 @@ function JimengFlow() {
   const onNodesChange = useJimengStore((s) => s.onNodesChange);
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
+  const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
+  const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);
   const setZoomPercent = useJimengStore((s) => s.setZoomPercent);
   const { fitView, zoomIn, zoomOut, getViewport, setViewport, screenToFlowPosition } =
     useReactFlow();
@@ -242,6 +244,9 @@ function JimengFlow() {
         e.preventDefault();
         selectAll();
       } else if (e.key === "Escape") {
+        if (aiDrawerOpen) {
+          setAiDrawerOpen(false);
+        }
         selectNode(null);
         exitRepaint();
         exitEdit();
@@ -414,6 +419,7 @@ function JimengFlow() {
 export function JimengWorkspace() {
   const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
   const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);
+  const aiDrawerPrefill = useJimengStore((s) => s.aiDrawerPrefill);
 
   // chrome 组件 (底栏缩放菜单) 需要 useReactFlow，整体包在 Provider 内
   return (
@@ -425,7 +431,10 @@ export function JimengWorkspace() {
         <JimengBottomDock />
         {aiDrawerOpen ? null : <JimengAiButton />}
         {aiDrawerOpen ? (
-          <JimengAiDrawer onClose={() => setAiDrawerOpen(false)} />
+          <JimengAiDrawer
+            key={aiDrawerPrefill ?? "drawer"}
+            onClose={() => setAiDrawerOpen(false)}
+          />
         ) : null}
       </div>
     </ReactFlowProvider>
