@@ -153,6 +153,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
               enterInfer(id);
               openAiDrawer(
                 `用 视频反解 反推出 ${d.title} 的提示词，并创建文本节点，方便我拉片复刻`,
+                d.poster ? { poster: d.poster, label: d.title } : undefined,
               );
             }
             if (label === "视频修剪") enterTrim(id);

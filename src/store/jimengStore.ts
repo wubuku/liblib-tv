@@ -101,7 +101,9 @@ export interface JimengCanvasState {
   setAiDrawerOpen: (open: boolean) => void;
   /** 批 216: 打开抽屉时的预填提示词 (提示词反推 → 视频反解流程) */
   aiDrawerPrefill: string | null;
-  openAiDrawer: (prefill?: string) => void;
+  /** 批 269 SOURCE_FACT: 预填携带的视频引用 chip (缩略图+截断标题) */
+  aiDrawerRefChip: { poster: string; label: string } | null;
+  openAiDrawer: (prefill?: string, refChip?: { poster: string; label: string }) => void;
   /** 批 219 SOURCE_FACT: 抽屉草稿跨关闭保留 (源站重开后预填仍在) */
   aiDrawerDraft: string;
   setAiDrawerDraft: (draft: string) => void;
@@ -760,13 +762,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   aiDrawerPrefill: null,
 
+  aiDrawerRefChip: null,
+
   setAiDrawerOpen: (open) =>
     set((state) => ({
       aiDrawerOpen: open,
       aiDrawerPrefill: open ? state.aiDrawerPrefill : null,
+      aiDrawerRefChip: open ? state.aiDrawerRefChip : null,
     })),
 
-  openAiDrawer: (prefill) => set({ aiDrawerOpen: true, aiDrawerPrefill: prefill ?? null }),
+  openAiDrawer: (prefill, refChip) =>
+    set({ aiDrawerOpen: true, aiDrawerPrefill: prefill ?? null, aiDrawerRefChip: refChip ?? null }),
 
   aiDrawerDraft: "",
 

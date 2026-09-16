@@ -868,6 +868,12 @@
   近似维持。现场已完整还原 (2 节点/抽屉关闭/无选中)。
 - Batch 267 (轮转回归): batch 1-33 段 33/33 PASS。
 - Batch 268 (轮转回归): batch 49-64 段 14/14 PASS。
+- Batch 269 (抽屉引用 chip 落地): 基于 219 已有截图裁剪分析
+  (269-drawer-chips-crop.png，无需触碰源站)——预填文本中嵌入视频引用
+  chip (缩略图 + 截断标题 sb_51...tf5q2)，出现两次；抽屉发送钮为白色
+  可用态 (预填存在)。复刻: store 新增 aiDrawerRefChip (poster+label)，
+  openAiDrawer 支持携带，JimengAiDrawer 输入区上方渲染引用 chip。
+  batch 8/12 回归 PASS。零源站触碰 (纯截图离线分析)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

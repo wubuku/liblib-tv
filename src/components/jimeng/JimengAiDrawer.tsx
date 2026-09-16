@@ -34,6 +34,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   // 批 216: 预填提示词 (提示词反推 → 视频反解)；由工作区以 prefill 为
   // key 重挂载本组件带入初始值。批 219: 草稿跨关闭保留——优先取已存草稿
   const prefill = useJimengStore((s) => s.aiDrawerPrefill);
+  const refChip = useJimengStore((s) => s.aiDrawerRefChip);
   const draft = useJimengStore((s) => s.aiDrawerDraft);
   const setAiDrawerDraft = useJimengStore((s) => s.setAiDrawerDraft);
   const [input, setInput] = useState(draft || prefill || "");
@@ -102,6 +103,18 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
               placeholder="输入想法、剧本或上传参考，支持 “ / ” 使用技能，"
               className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
             />
+            {refChip ? (
+              <span className="mr-1 inline-flex items-center gap-1 rounded bg-white/[0.10] px-1 py-0.5 align-middle">
+                <img
+                  src={refChip.poster}
+                  alt=""
+                  className="h-4 w-6 rounded-sm object-cover"
+                />
+                <span className="max-w-[80px] truncate text-[12px] text-white/85">
+                  {refChip.label}
+                </span>
+              </span>
+            ) : null}
             <span className="mt-1 inline-flex items-center gap-1 rounded bg-white/[0.08] px-1 text-white/55">
               <AtSign size={10} />
               添加主体
