@@ -105,8 +105,9 @@ def main() -> None:
                         .filter(t => t.getBoundingClientRect().height > 20
                             && getComputedStyle(t).visibility !== 'hidden').length"""
                 )
-                if tb != 0:
-                    failures.append(f"text node has visible toolbar: {tb}")
+                # 批 241b: 源站演进后文本节点选中态自有工具条
+                # (背景色/展开/下载)，不再断言「无工具条」
+                pass
                 page.screenshot(
                     path=str(REFERENCE_DIR / "jimeng-clone-batch68-text-node.png")
                 )
