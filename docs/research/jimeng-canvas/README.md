@@ -679,6 +679,12 @@
   底部细进度线。新增细节: 静音钮旁的**音量滑杆** (batch 80 未记载)。
   复刻: JimengVideoPreview 控制条补静态音量滑杆 (60%，
   CLONE_DECISION)；batch 80/32 回归 PASS。
+- Batch 219 (多选工具条复验 + 抽屉草稿持久化): 源站 shift+双选未编组
+  节点 → 多选条「2 节点｜编组｜布局∨｜下载图标钮」(219-multiselect-toolbar.json
+  / 219-source-multiselect.png)——与 clone 完全一致 (背景色钮仅编组态出现，
+  batch 63 契约，非漂移)，零改动。对齐的小差距: AI 抽屉草稿在源站跨
+  关闭保留 (重开仍见上次反推预填)——store 新增 aiDrawerDraft，
+  JimengAiDrawer 输入即写草稿、初始化优先取草稿。batch 8/12 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

@@ -32,9 +32,11 @@ const SKILL_CHIPS = [
 
 export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   // 批 216: 预填提示词 (提示词反推 → 视频反解)；由工作区以 prefill 为
-  // key 重挂载本组件带入初始值
+  // key 重挂载本组件带入初始值。批 219: 草稿跨关闭保留——优先取已存草稿
   const prefill = useJimengStore((s) => s.aiDrawerPrefill);
-  const [input, setInput] = useState(prefill ?? "");
+  const draft = useJimengStore((s) => s.aiDrawerDraft);
+  const setAiDrawerDraft = useJimengStore((s) => s.setAiDrawerDraft);
+  const [input, setInput] = useState(draft || prefill || "");
 
   return (
     <aside
@@ -93,7 +95,10 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           <p className="min-h-[44px] text-[13px] leading-[22px] text-white/35">
             <input
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setAiDrawerDraft(e.target.value);
+              }}
               placeholder="输入想法、剧本或上传参考，支持 “ / ” 使用技能，"
               className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
             />

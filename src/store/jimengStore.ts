@@ -102,6 +102,9 @@ export interface JimengCanvasState {
   /** 批 216: 打开抽屉时的预填提示词 (提示词反推 → 视频反解流程) */
   aiDrawerPrefill: string | null;
   openAiDrawer: (prefill?: string) => void;
+  /** 批 219 SOURCE_FACT: 抽屉草稿跨关闭保留 (源站重开后预填仍在) */
+  aiDrawerDraft: string;
+  setAiDrawerDraft: (draft: string) => void;
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
   setAssetsOpen: (open: boolean) => void;
@@ -764,6 +767,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     })),
 
   openAiDrawer: (prefill) => set({ aiDrawerOpen: true, aiDrawerPrefill: prefill ?? null }),
+
+  aiDrawerDraft: "",
+
+  setAiDrawerDraft: (draft) => set({ aiDrawerDraft: draft }),
 
   assetsOpen: false,
 
