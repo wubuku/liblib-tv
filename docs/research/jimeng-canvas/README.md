@@ -729,6 +729,9 @@
   toast；文本/图片/音频呈灰态、视频高亮)。合成点击未真正插入节点，
   文本节点插入采样仍未遂 (batch 68 证据维持)；无效连接 toast 文案
   已留档。clone 插入菜单保持「总是可插入 + 建边」语义 (CLONE_DECISION)。
+- Batch 231 (无效连接 toast 落地): 批 230 采样的「无法连接这些节点」
+  toast 接入 clone——JimengWorkspace 新增 onConnectEnd，连接拖拽以
+  invalid 结束时 pushToast。batch 57 交互审计回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

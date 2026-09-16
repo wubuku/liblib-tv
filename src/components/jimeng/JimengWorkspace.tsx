@@ -9,7 +9,7 @@ import {
   PanOnScrollMode,
   SelectionMode,
 } from "@xyflow/react";
-import type { NodeMouseHandler, OnMove } from "@xyflow/react";
+import type { NodeMouseHandler, OnConnectEnd, OnMove } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 import { useJimengStore } from "@/store/jimengStore";
@@ -128,6 +128,13 @@ function JimengFlow() {
     },
     [screenToFlowPosition],
   );
+
+  // 批 230 SOURCE_FACT: 无效连接尝试 → toast「无法连接这些节点」
+  const onConnectEndHandler = useCallback<OnConnectEnd>((_event, state) => {
+    if (state.isValid === false) {
+      useJimengStore.getState().pushToast("无法连接这些节点");
+    }
+  }, []);
 
   const onNodeContextMenu = useCallback<NodeMouseHandler>((event, node) => {
     const e = event as unknown as MouseEvent;
@@ -284,6 +291,8 @@ function JimengFlow() {
   }, [
     undo,
     redo,
+    aiDrawerOpen,
+    setAiDrawerOpen,
     copyNode,
     duplicateNode,
     pasteNodes,
@@ -339,6 +348,7 @@ function JimengFlow() {
         zoomOnPinch
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        onConnectEnd={onConnectEndHandler}
         onPaneClick={onPaneClick}
         onPaneContextMenu={onPaneContextMenu}
         onNodeContextMenu={onNodeContextMenu}
