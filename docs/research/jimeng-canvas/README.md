@@ -861,6 +861,7 @@
   (悬停出现 Tag 钮，禁止+五色，复用 batch 31 TAG_COLORS；选色写回
   tagColor)——对应批 263 采样的「Add tags」悬停钮。bgColor/tagColor
   字段入 JimengAudioNodeData。batch 19/47 回归 PASS。
+- Batch 265 (轮转回归): batch 65-101 段 25/25 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
