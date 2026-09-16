@@ -32,7 +32,7 @@ export function JimengSearchOverlay({ onClose }: { onClose: () => void }) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-[calc(100%+8px)] w-[380px] rounded-xl p-4"
+      className="absolute right-0 top-[calc(100%+8px)] w-[242px] rounded-xl p-2"
       style={{ background: "rgb(38,38,38)" }}
       role="dialog"
       aria-label="搜索"
@@ -42,9 +42,9 @@ export function JimengSearchOverlay({ onClose }: { onClose: () => void }) {
         autoFocus
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="搜索"
+        placeholder="搜索节点..."
         data-testid="jimeng-search-input"
-        className="w-full rounded-lg bg-white/[0.06] px-3 py-2 text-[13px] text-white placeholder:text-white/40 outline-none"
+        className="w-full rounded-lg bg-white/[0.06] px-3 py-1 text-[13px] text-white placeholder:text-white/40 outline-none"
       />
       <p className="mt-6 mb-2 text-center text-[13px] text-white/35" data-testid="search-empty">
         暂无搜索结果

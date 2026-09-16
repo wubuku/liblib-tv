@@ -3,7 +3,8 @@
 Contract (SOURCE_FACT batch 96, 96 顶栏 dump):
 - top bar pill = [搜索][生成历史]; standalone 帮助 button removed; avatar
   aria renamed 用户菜单;
-- 搜索 opens a minimal search overlay (input placeholder 搜索 +
+- 搜索 opens a minimal search overlay (input placeholder 搜索节点... +
+
   暂无搜索结果 empty state; content BLOCKED_BY_FIXTURE);
 - 生成历史 opens the history panel (title 生成历史);
 - both close on Escape.
@@ -39,7 +40,7 @@ def main() -> None:
                 .map(b => b.getAttribute('aria-label'))
                 .filter(a => a)"""
         )
-        for want in ["搜索", "生成历史", "用户菜单"]:
+        for want in ["搜索", "生成历史", "用户菜单"]:  # aria labels unchanged
             if want not in labels:
                 failures.append(f"top bar missing {want}: {labels}")
         if "帮助" in labels:
@@ -52,11 +53,13 @@ def main() -> None:
             """() => {
                 const el = document.querySelector('[data-testid="jimeng-search-overlay"]');
                 if (!el) return null;
-                return {input: !!el.querySelector('[data-testid="jimeng-search-input"]'),
+                const input = el.querySelector('[data-testid="jimeng-search-input"]');
+                return {input: !!input,
+                        placeholder: input ? input.getAttribute('placeholder') : null,
                         empty: (el.querySelector('[data-testid="search-empty"]') || {}).textContent};
             }"""
         )
-        if not ov or not ov["input"] or ov["empty"] != "暂无搜索结果":
+        if not ov or not ov["input"] or ov["placeholder"] != "搜索节点...":
             failures.append(f"search overlay wrong: {ov}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch96-search-overlay.png")
