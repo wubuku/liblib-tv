@@ -767,6 +767,13 @@
   灰色发送 (输入后白色)。batch 19/47 verifier 改写为新契约，均 PASS。
 - Batch 240 (全量质量门): 退出码全量扫 verify-jimeng-batch1..101 ——
   88 verifier 零失败 (含新增 102)，截图随扫刷新入库。
+- Batch 241 (文本编辑态复验 + 工具条落地): 源站文本节点双击进入
+  编辑态——卡上方出现富文本工具条 (241-source-text-edit.png):
+  字体 T∨/无序列表/有序列表/加粗 B/删除线 S/斜体 I/下划线 U/展开钮，
+  8 个 mock 按钮；编辑时「双击编辑文本」空态隐藏。复刻:
+  JimengTextNode 编辑态新增 text-format-toolbar (纯视觉 mock，
+  onMouseDown 防失焦)。verify-jimeng-batch103.py 新增 (8 按钮契约 +
+  Escape 退出)，38/68 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

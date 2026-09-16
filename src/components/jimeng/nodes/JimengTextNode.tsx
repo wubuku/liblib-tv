@@ -2,7 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Handle, Position } from "@xyflow/react";
-import { Type } from "lucide-react";
+import {
+  Bold,
+  ChevronDown,
+  Italic,
+  List,
+  ListOrdered,
+  Maximize2,
+  Strikethrough,
+  Type,
+  Underline,
+} from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengTextNodeData } from "@/types/jimeng";
@@ -14,6 +24,9 @@ import { useJimengStore } from "@/store/jimengStore";
  * Batch 68 (SOURCE_FACT): 标题图标 T 字形、选中无工具条、占位
  * 「双击编辑文本」、默认 328×340 (68-newnode-selected.png 实测)。
  * Batch 38: 双击卡片进入行内编辑，Enter/失焦提交。
+ * Batch 241 (SOURCE_FACT, 241-source-text-edit.png): 编辑态卡上方出现
+ * 富文本工具条——字体 T∨ / 无序列表 / 有序列表 / 加粗 B / 删除线 S /
+ * 斜体 I / 下划线 U / 展开钮 (按钮为视觉 mock，未接真实格式化)。
  */
 export function JimengTextNode({ id, data, selected }: NodeProps) {
   const d = data as JimengTextNodeData;
@@ -57,6 +70,37 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
           setEditing(true);
         }}
       >
+        {/* 批 241 SOURCE_FACT: 编辑态富文本工具条 (视觉 mock) */}
+        {editing ? (
+          <div
+            className="absolute bottom-full left-1/2 z-[130] mb-2 flex -translate-x-1/2 items-center gap-0.5 rounded-xl bg-[#262626] p-1"
+            role="toolbar"
+            aria-label="文本格式"
+            data-testid="text-format-toolbar"
+          >
+            {[
+              { label: "字体", node: <Type size={14} />, chevron: true },
+              { label: "无序列表", node: <List size={14} /> },
+              { label: "有序列表", node: <ListOrdered size={14} /> },
+              { label: "加粗", node: <Bold size={14} /> },
+              { label: "删除线", node: <Strikethrough size={14} /> },
+              { label: "斜体", node: <Italic size={14} /> },
+              { label: "下划线", node: <Underline size={14} /> },
+              { label: "展开编辑", node: <Maximize2 size={12} /> },
+            ].map(({ label, node: icon, chevron }) => (
+              <button
+                key={label}
+                type="button"
+                aria-label={label}
+                onMouseDown={(e) => e.preventDefault()}
+                className="flex h-7 items-center gap-0.5 rounded-md px-1.5 text-white/85 hover:bg-white/10"
+              >
+                {icon}
+                {chevron ? <ChevronDown size={10} className="text-white/60" /> : null}
+              </button>
+            ))}
+          </div>
+        ) : null}
         {editing ? (
           <textarea
             ref={taRef}
