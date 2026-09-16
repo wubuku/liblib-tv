@@ -774,6 +774,7 @@
   JimengTextNode 编辑态新增 text-format-toolbar (纯视觉 mock，
   onMouseDown 防失焦)。verify-jimeng-batch103.py 新增 (8 按钮契约 +
   Escape 退出)，38/68 回归 PASS。
+- Batch 242 (轮转回归): batch 65-101 段 25/25 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
