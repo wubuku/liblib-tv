@@ -1,0 +1,32 @@
+{
+ "toolbars": [
+  {
+   "w": 564,
+   "h": 116,
+   "y": 457,
+   "text": "00:00/00:06截取帧确认请至少截取 1 帧"
+  }
+ ],
+ "confirmEls": [
+  {
+   "rect": [
+    831,
+    525,
+    82,
+    36
+   ],
+   "chain": [
+    "flex justify-end overflow-hidd",
+    "[&>*]:min-w-0 min-w-0 h-[2.25r",
+    "rounded-canvas-media-tool-pane",
+    "DIV"
+   ]
+  }
+ ],
+ "film": [
+  {
+   "cls": "",
+   "text": "!function(){var e=\"5"
+  }
+ ]
+}

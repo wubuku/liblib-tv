@@ -7,11 +7,14 @@ import { NodeToolbar, Position } from "@xyflow/react";
 import type { JimengVideoNodeData } from "@/types/jimeng";
 
 /**
- * 截取帧 帧选择器 (Batch 9/34)。
+ * 截取帧 帧选择器 (Batch 9/34；Batch 202 几何对齐)。
  *
- * 证据 (SOURCE_FACT): 源站从截取帧下拉选「自定义」后，节点下方出现选择条:
- * 胶片帧条 (播放头竖线) + 底部行: ▶ 00:00 / 00:06 ｜ 📷 截取帧 ｜ 确认 (未截取禁用，
- * 截取后确认可用)。首帧/尾帧预选播放头并直接可用 (CLONE_DECISION)。
+ * 证据 (SOURCE_FACT): 源站从截取帧下拉选「自定义」后，节点下方出现选择条
+ * (202-custom-picker.json): 面板与节点同宽 (564×116)；胶片帧条 540×54
+ * (64×36 缩略图平铺) + 底部行 (h36): ▶ 00:00/00:06 (12px) ｜ 📷 截取帧
+ * (89×36) ｜ 未截取时提示「请至少截取 1 帧」(12px) + 确认 (82×36 r8，
+ * 禁用态 bg 白/16 + 字 白/20)；截取后确认可用 (batch 9)。
+ * 首帧/尾帧预选播放头并直接可用 (CLONE_DECISION)。
  * Batch 34: 点击帧条可移动播放头，确认把帧号写回节点 currentTime。
  */
 export function JimengFramePicker({
@@ -45,11 +48,15 @@ export function JimengFramePicker({
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
-      <div className="w-[640px] rounded-2xl bg-[#1A1A1A] p-3 shadow-[0_4px_16px_rgba(0,0,0,0.32)]">
-        {/* 帧条 + 播放头 (点击移动) */}
+      {/* 批 202 SOURCE_FACT: 面板与节点同宽 (源站 564 @ 节点 569) */}
+      <div
+        className="rounded-2xl bg-[#1A1A1A] p-3 shadow-[0_4px_16px_rgba(0,0,0,0.32)]"
+        style={{ width: Math.max(data.width ?? 569, 480) }}
+      >
+        {/* 帧条 + 播放头 (点击移动)；源站帧条 540×54 (批 202) */}
         <div
           ref={stripRef}
-          className="relative h-14 cursor-pointer overflow-hidden rounded-md border border-white/10"
+          className="relative h-[54px] cursor-pointer overflow-hidden rounded-md border border-white/10"
           onClick={(e) => {
             if (mode === "custom") clickStrip(e.clientX);
           }}
@@ -72,7 +79,7 @@ export function JimengFramePicker({
           />
         </div>
 
-        <div className="mt-2.5 flex items-center justify-between">
+        <div className="mt-2.5 flex h-9 items-center justify-between">
           <div className="flex items-center gap-2 text-white">
             <Play size={13} fill="currentColor" />
             <span className="text-[12px] tabular-nums" data-testid="frame-readout">
@@ -91,18 +98,27 @@ export function JimengFramePicker({
           ) : (
             <span />
           )}
-          <button
-            type="button"
-            disabled={!confirmed}
-            onClick={() => onConfirm(time)}
-            className={`h-9 rounded-lg px-4 text-[13px] ${
-              confirmed
-                ? "bg-white text-black hover:bg-white/90"
-                : "cursor-default bg-white/[0.10] text-white/35"
-            }`}
-          >
-            确认
-          </button>
+          <div className="flex items-center gap-2.5">
+            {/* 批 202 SOURCE_FACT: 未截取时确认左侧提示「请至少截取 1 帧」
+                (12px；透明度为 CLONE_DECISION，源站仅容器级色值) */}
+            {mode === "custom" && !confirmed ? (
+              <span className="text-[12px] text-white/40" data-testid="frame-hint">
+                请至少截取 1 帧
+              </span>
+            ) : null}
+            <button
+              type="button"
+              disabled={!confirmed}
+              onClick={() => onConfirm(time)}
+              className={`h-9 rounded-lg px-4 text-[13px] ${
+                confirmed
+                  ? "bg-white text-black hover:bg-white/90"
+                  : "cursor-default bg-white/[0.16] text-white/20"
+              }`}
+            >
+              确认
+            </button>
+          </div>
         </div>
       </div>
     </NodeToolbar>
