@@ -717,6 +717,10 @@
   「搜索节点...」(clone 原「搜索」)、面板 242px 宽 (clone 原 380px)、
   输入行更紧凑 (~26px)。JimengSearchOverlay 三项对齐；batch 96 verifier
   断言同步更新 (占位符按属性断言)，96 回归 PASS。
+- Batch 228 (+ 钮行为复验): 源站选中节点「Create connected node」+ 圆钮
+  点击 → 打开「添加节点」子菜单 (228-plus-menu.json / 228-source-plus-menu.png:
+  添加节点表头 + 文本/图片/视频/音频/时间线/… 项)——与 clone
+  JimengInsertMenu (表头 + 9 项) 同族一致，无需改动。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
