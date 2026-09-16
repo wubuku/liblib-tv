@@ -600,6 +600,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-16 | batch 649 探测 | still-broken | 第二百七十二次重测；巡检批次——并行自行落库 jimeng 200/201 归档（探针环境诊断 + 自定义拾取器复验延后），工作区归零；维护集未到期（batch 649） |
 | 2026-09-16 | batch 650 探测 | still-broken | 第二百七十三次重测；巡检批次——并行 JimengFramePicker.tsx 编辑中（WIP 保留），维护集顺延至其落库后；无新落库（batch 650） |
 | 2026-09-16 | batch 651 探测 | still-broken | 第二百七十四次重测；巡检批次——并行 harness 活动持续，维护集维持顺延；无新落库（batch 651） |
+| 2026-09-16 | batch 652 探测 | still-broken | 第二百七十五次重测；静默窗口补跑全量维护集 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 652） |
 
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
