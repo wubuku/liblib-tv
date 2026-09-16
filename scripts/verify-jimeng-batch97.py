@@ -1,11 +1,12 @@
 """Jimeng clone batch 97 verifier — image node toolbar (Batch 195 replication).
 
-Contract (SOURCE_FACT, 195 source extraction):
+Contract (SOURCE_FACT 195/208; tail buttons corrected by 208 screenshot):
 - 截取帧 首帧 creates image node titled 「{video title}_首帧」 (underscore,
   aria 「图片 node: sb_..._」 form) with poster and lineage edge.
 - Selecting the image node shows its own toolbar — same dark pill, node-wide —
-  with EXACTLY: 智能改图(VIP✦) / 扩图 / 智能超清 / 抠图 / 多角度 / 工具∨.
-  No divider, no 全屏预览 / 下载 tail buttons (differs from video toolbar);
+  with EXACTLY: 智能改图(VIP✦) / 扩图 / 智能超清 / 抠图 / 多角度 / 工具∨
+  ｜ divider ｜ 全屏预览 + 下载 tail icon buttons (208 screenshot — the
+  195 "no tail buttons" conclusion missed text-less icon buttons);
   智能超清 carries NO vip diamond here (differs from video toolbar).
 - 智能改图 has 2 svgs (icon + vip diamond), 工具 has 2 svgs (icon + chevron),
   plain items 1 svg.
@@ -154,13 +155,25 @@ def main() -> None:
             if not tb:
                 failures.append("image node toolbar not visible after selection")
             else:
-                labels = [b["label"] for b in tb["btns"]]
+                labels = [b["label"] for b in tb["btns"] if b["label"]]
                 if labels != EXPECTED_ITEMS:
                     failures.append(f"image toolbar items wrong: {labels}")
-                if tb["hasDivider"]:
-                    failures.append("image toolbar must not have a divider")
-                if "下载" in tb["text"] or "全屏预览" in tb["text"]:
-                    failures.append("image toolbar must not carry 下载/全屏预览")
+                if not tb["hasDivider"]:
+                    failures.append("image toolbar must have the tail divider")
+                tail = page.evaluate(
+                    """() => {
+                        const t = [...document.querySelectorAll('.react-flow__node-toolbar')]
+                            .sort((a,b) => b.getBoundingClientRect().width - a.getBoundingClientRect().width)[0];
+                        return {
+                            fs: !!t.querySelector('button[aria-label="全屏预览"]'),
+                            dl: !!t.querySelector('button[aria-label="下载"]'),
+                        };
+                    }"""
+                )
+                if not (tail["fs"] and tail["dl"]):
+                    failures.append(
+                        f"image toolbar tail buttons missing: {tail}"
+                    )
                 svg_by_label = {b["label"]: b["svgs"] for b in tb["btns"]}
                 if svg_by_label.get("智能改图") != 2:
                     failures.append(
@@ -202,7 +215,7 @@ def main() -> None:
         for f in failures:
             print("  -", f)
         raise SystemExit(1)
-    print("PASS batch 97: image node toolbar (6 items, vip/chevron, no download)")
+    print("PASS batch 97: image node toolbar (6 items + divider/fullscreen/download tail)")
 
 
 if __name__ == "__main__":

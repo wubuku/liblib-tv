@@ -1,0 +1,33 @@
+{
+ "edges": [],
+ "handles": [
+  {
+   "w": 41,
+   "h": 82,
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(30, 30, 30)",
+   "radius": "0px"
+  },
+  {
+   "w": 41,
+   "h": 82,
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(30, 30, 30)",
+   "radius": "0px"
+  },
+  {
+   "w": 41,
+   "h": 82,
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(30, 30, 30)",
+   "radius": "0px"
+  },
+  {
+   "w": 41,
+   "h": 82,
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(30, 30, 30)",
+   "radius": "0px"
+  }
+ ]
+}

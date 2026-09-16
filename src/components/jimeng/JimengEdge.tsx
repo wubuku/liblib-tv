@@ -4,14 +4,14 @@ import { BaseEdge, getBezierPath, useInternalNode } from "@xyflow/react";
 import type { EdgeProps } from "@xyflow/react";
 
 /**
- * 即梦连线 (Batch 16/62)。
+ * 即梦连线 (Batch 16/62；Batch 208 真实视觉采样)。
  *
- * SOURCE_FACT: 源站的边由 canvas 层绘制 (无 .react-flow__edge DOM)，确切视觉
- * 无法在不动用户画布的情况下提取 (BLOCKED_BY_FIXTURE)。
- * SOURCE_FACT (batch 62, 截图像素采样): 多选相邻节点时，两卡片间隙出现
- * 1px 蓝色连接段 (合成后 ≈ rgb(35,108,172))；单选/无选状态同位置无连线。
- * CLONE_DECISION: 用 xyflow bezier 边近似 — 常态 rgba(255,255,255,0.32) 1.5px，
- * 双端节点同时选中时蓝色 rgb(35,108,172) 1px，边自身选中白色 2px。
+ * SOURCE_FACT (batch 208, 208-edges.json): 画布出现真实边 DOM——未选中边
+ * stroke rgb(0,142,229) 1px 直线无虚线；截图 (208-source-image-toolbar.png)
+ * 显示为细蓝线 + 端点小 + 圆 (悬停态推断，未 DOM 采样)。
+ * SOURCE_FACT (batch 62): 双端节点同时选中时 ≈ rgb(35,108,172)。
+ * CLONE_DECISION: 常态 rgb(0,142,229) 1px (批 208 实测)，双端选中
+ * rgb(35,108,172) 1px (批 62)，边自身选中白色 2px。
  */
 export function JimengEdge({
   id,
@@ -42,7 +42,7 @@ export function JimengEdge({
     ? "rgba(255,255,255,0.9)"
     : bothEndsSelected
       ? "rgb(35,108,172)"
-      : "rgba(255,255,255,0.32)";
+      : "rgb(0,142,229)";
 
   return (
     <BaseEdge
@@ -50,7 +50,7 @@ export function JimengEdge({
       path={path}
       style={{
         stroke,
-        strokeWidth: selected ? 2 : bothEndsSelected ? 1 : 1.5,
+        strokeWidth: selected ? 2 : 1,
       }}
     />
   );
