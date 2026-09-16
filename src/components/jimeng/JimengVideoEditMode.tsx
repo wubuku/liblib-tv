@@ -6,7 +6,7 @@ import {
   Eraser,
   Lasso,
   MapPin,
-  Pencil,
+  Paperclip,
   Redo2,
   Square,
   Type,
@@ -22,7 +22,8 @@ import { VipDiamond } from "@/components/jimeng/icons";
  * 证据 (SOURCE_FACT, docs/design-references/jimeng/jimeng-clone-batch6-*.png):
  * 点击工具条「视频编辑」后: 节点标题行与工具条隐藏，节点下方出现
  * 1) 编辑工具药丸: 框选/套索/箭头/文字/橡皮/定位/撤销/重做 8 个 16px 图标钮；
- * 2) 编辑提示条: 铅笔图标 + 占位「描述你如何调整视频」+ @ + ✦120/260 + 禁用发送钮。
+ * 2) 编辑提示条: 回形针图标 + 占位「描述你如何调整视频」+ @ + ✦144/312 + 禁用发送钮
+ *    (批 215 复测: 左端为回形针非铅笔，积分数值随配置变动为动态值)。
  * 源站同时放大节点 (zoom 145%) — 复刻暂不自动缩放 (CLONE_DECISION)。
  */
 const EDIT_TOOLS: { icon: LucideIcon; label: string }[] = [
@@ -63,7 +64,7 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
           onSubmit();
         }}
       >
-        <Pencil size={15} className="shrink-0 text-white/60" />
+        <Paperclip size={15} className="shrink-0 text-white/60" />
         <span className="flex-1 text-[13px] text-white/35">
           描述你如何调整视频
         </span>
@@ -76,7 +77,7 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         </button>
         <span className="inline-flex items-center gap-1 text-[12px] font-medium text-white/70">
           <VipDiamond size={12} />
-          120<span className="text-white/40">/260</span>
+          144<span className="text-white/40">/312</span>
           <VipDiamond size={12} />
         </span>
         <button

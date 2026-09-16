@@ -2,7 +2,7 @@
 
 Contract: selecting the media node and clicking 视频编辑 enters edit mode —
 title hidden, edit tool pill with 8 tools, edit prompt bar with placeholder
-描述你如何调整视频, credits 120/260, disabled send; pane click exits.
+描述你如何调整视频, credits 144/312, disabled send; pane click exits.
 """
 
 import os
@@ -48,7 +48,7 @@ def main() -> None:
                     open: true,
                     tools: want.filter(w => tools.includes(w)),
                     placeholder: bar.textContent.includes('描述你如何调整视频'),
-                    credits: bar.textContent.includes('120') && bar.textContent.includes('260'),
+                    credits: bar.textContent.includes('144') && bar.textContent.includes('312'),
                     sendDisabled: send ? send.disabled : null,
                 };
             }"""
@@ -61,7 +61,7 @@ def main() -> None:
             if not state["placeholder"]:
                 failures.append("edit prompt placeholder missing")
             if not state["credits"]:
-                failures.append("credits 120/260 missing")
+                failures.append("credits 144/312 missing")
             if state["sendDisabled"] is not True:
                 failures.append("send button should be disabled")
         page.screenshot(
