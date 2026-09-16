@@ -82,7 +82,7 @@ def main() -> None:
                         if (!bar) return null;
                         const panel = bar.firstElementChild;
                         const pr = (panel || bar).getBoundingClientRect();
-                        const strip = bar.querySelector('.relative');
+                        const strip = bar.querySelector('[data-testid="frame-strip"]');
                         const hint = document.querySelector('[data-testid="frame-hint"]');
                         const confirm = [...bar.querySelectorAll('button')]
                             .find(b => b.textContent.trim() === '确认');
@@ -132,7 +132,7 @@ def main() -> None:
                         """() => {
                             const bar = [...document.querySelectorAll('.react-flow__node-toolbar')]
                                 .find(t => (t.textContent || '').includes('确认'));
-                            const strip = bar.querySelector('.relative');
+                            const strip = bar.querySelector('[data-testid="frame-strip"]');
                             const r = strip.getBoundingClientRect();
                             return {x: r.x + r.width * 0.5, y: r.y + r.height / 2};
                         }"""

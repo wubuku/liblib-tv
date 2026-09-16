@@ -1,0 +1,20 @@
+{
+ "afterConfirm": {
+  "picker": null,
+  "card": [],
+  "census": [
+   {
+    "id": "node_c6kc51g2v7",
+    "cls": "node-video"
+   },
+   {
+    "id": "node_eftc9q6caa",
+    "cls": "node-video"
+   },
+   {
+    "id": "node_j5vfzyzqsc",
+    "cls": "node-image"
+   }
+  ]
+ }
+}

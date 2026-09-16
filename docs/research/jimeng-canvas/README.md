@@ -570,6 +570,21 @@
   提示、确认禁用态修正为 bg 白/16 + 字 白/20、帧条高 54px。
   验证: verify-jimeng-batch99.py 新增 (面板宽/提示/禁用样式/截取门控/
   确认关闭)；batch 9/10/34 回归 PASS；npm run check 通过。
+- Batch 203 (确认行为采样 + 语义修正): 源站帧选择器完整交互链采样
+  (203-picker-interaction.json / 203-picker-confirm.json)——初始
+  readout 00:00/00:06 + 提示 + 确认样式门控 (白/20, 无 disabled 属性)；
+  帧条点击 → readout 00:03/00:06 (60%→3.6s 取整)；截取帧 → 提示消失 +
+  确认变白底深字 rgb(26,26,26)；确认 → 选择器关闭 + **直出该帧图片
+  节点** (非写回 currentTime——batch 34 旧「写回」语义系误采样，修正)。
+  复刻: captureFrame 扩展 custom 分支 (标题「{视频}_自定义」，该标题
+  后缀源站未采样为 CLONE_DECISION)，JimengFramePicker onConfirm 改为
+  产出图片节点 (原 capturedFrame/currentTime 写回移除，媒体卡
+  capturedFrame 徽标暂留待更清晰证据)；帧条补 data-testid=frame-strip
+  (verifier 稳定定位——旧 .relative 选择器命中全屏外壳导致点击反选)。
+  验证: verify-jimeng-batch100.py 新增 (全链路: 下拉→自定义→帧条→截取→
+  确认→图片节点+连线→撤销)；batch 9/10/34/62/97/98/99 回归 7/7 PASS。
+  探针备注: 源站视口持续向上漂移致工具栏滑出屏幕，操作前先 Shift+1
+  适配画布 (batch 7 快捷键)；多次「下拉未展开」实为该漂移下的点击落空。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

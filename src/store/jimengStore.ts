@@ -158,7 +158,7 @@ export interface JimengCanvasState {
   addLocalUpload: (name: string, position: { x: number; y: number }) => void;
   /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
       右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
-  captureFrame: (sourceId: string, frame: "first" | "last") => void;
+  captureFrame: (sourceId: string, frame: "first" | "last" | "custom") => void;
   /** 布局-智能布局 (Batch 63, SOURCE_FACT 菜单项/CLONE_DECISION 语义):
       选中节点按 x 排成一行 (y 对齐选区最小值)，单条历史 */
   arrangeSelected: () => void;
@@ -431,7 +431,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         if (!blocker) break;
         x = blocker.position.x + (blocker.data.width ?? 569) + 80;
       }
-      const label = frame === "first" ? "首帧" : "尾帧";
+      // 批 203 SOURCE_FACT: 自定义帧经帧选择器「确认」后同样直出图片节点
+      // (确认行为采样: 选择器关闭 + 新 image 节点, 而非写回 currentTime)；
+      // 自定义产出标题后缀为 CLONE_DECISION (源站该标题未采样)。
+      const label =
+        frame === "first" ? "首帧" : frame === "last" ? "尾帧" : "自定义";
       const id = `image-${Date.now()}`;
       const node: JimengNode = {
         id,

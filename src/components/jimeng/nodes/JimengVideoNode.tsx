@@ -129,11 +129,10 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           visible
           data={d}
           mode={framePickerMode}
-          onConfirm={(frameTime) => {
-            updateNodeData(id, {
-              currentTime: frameTime,
-              capturedFrame: frameTime,
-            });
+          onConfirm={() => {
+            // 批 203 SOURCE_FACT: 源站「确认」= 选择器关闭 + 直出该帧的
+            // 图片节点 (非写回 currentTime——batch 34 旧语义已修正)
+            captureFrame(id, "custom");
             exitFramePicker();
           }}
         />

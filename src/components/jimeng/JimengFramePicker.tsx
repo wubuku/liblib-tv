@@ -56,6 +56,7 @@ export function JimengFramePicker({
         {/* 帧条 + 播放头 (点击移动)；源站帧条 540×54 (批 202) */}
         <div
           ref={stripRef}
+          data-testid="frame-strip"
           className="relative h-[54px] cursor-pointer overflow-hidden rounded-md border border-white/10"
           onClick={(e) => {
             if (mode === "custom") clickStrip(e.clientX);

@@ -1,11 +1,12 @@
-"""Jimeng clone batch 34 verifier — frame capture writes back to the node.
+"""Jimeng clone batch 34 verifier — frame capture contract (batch 203 semantics).
 
-Contract:
+Contract (updated per 203 source sampling):
 - 截取帧-自定义: clicking the filmstrip moves the playhead and time readout;
-  截取帧 arms 确认; confirming writes the frame time to the node's
-  currentTime (node time row shows the captured position).
+  截取帧 arms 确认; confirming CLOSES the picker and directly produces an
+  image node titled「…_自定义」(source behavior — the old currentTime
+  write-back was a mis-sampling, corrected in batch 203).
 - 首帧 (batch 62 semantics): directly creates an image node (poster +
-  「… 首帧」 title) instead of opening the frame picker.
+  「…_首帧」 title) instead of opening the frame picker.
 """
 
 import os
@@ -77,15 +78,26 @@ def main() -> None:
             failures.append("确认 still disabled after capture")
         page.locator("button", has_text="确认").last.click()
         page.wait_for_timeout(600)
-        node_time = page.evaluate(
+        # batch 203 semantics: confirm → picker closed + image node「…_自定义」
+        picker_gone = page.evaluate(
+            """() => ![...document.querySelectorAll('form,div')]
+                .some(d => d.querySelector('[data-testid="frame-readout"]')
+                          && d.textContent.includes('确认'))"""
+        )
+        if not picker_gone:
+            failures.append("picker did not close after 确认")
+        img_custom = page.evaluate(
             """() => {
-                const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
-                const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ 00:06/);
-                return m ? m[1] : null;
+                const nodes = [...document.querySelectorAll('.react-flow__node-image')];
+                const el = nodes[nodes.length - 1] ?? null;
+                return {count: nodes.length,
+                        title: el ? (el.textContent || '').trim().slice(0, 60) : null};
             }"""
         )
-        if node_time != "00:04":
-            failures.append(f"node currentTime after confirm: {node_time} (want 00:04)")
+        if img_custom["count"] < 1:
+            failures.append("确认 did not produce an image node (batch 203 semantics)")
+        elif "_自定义" not in (img_custom["title"] or ""):
+            failures.append(f"custom capture title wrong: {img_custom['title']!r}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch34-frame-capture-1680.png")
         )

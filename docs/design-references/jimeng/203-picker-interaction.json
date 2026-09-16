@@ -1,0 +1,20 @@
+{
+ "before": {
+  "confirmDisabled": false,
+  "color": "rgba(255, 255, 255, 0.2)",
+  "readout": "00:00/00:06",
+  "hint": true
+ },
+ "afterStrip": {
+  "confirmDisabled": false,
+  "color": "rgba(255, 255, 255, 0.2)",
+  "readout": "00:03/00:06",
+  "hint": true
+ },
+ "afterCapture": {
+  "confirmDisabled": false,
+  "color": "rgb(26, 26, 26)",
+  "readout": "00:03/00:06",
+  "hint": false
+ }
+}
