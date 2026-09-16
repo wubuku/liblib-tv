@@ -2,7 +2,9 @@
 
 Contract:
 - Adding a node via the + menu creates a jimeng-typed edge drawn as a bezier
-  path (stroke rgba(255,255,255,0.32)); clicking the edge selects it (white).
+  path (stroke rgb(0,142,229) — batch 208 source sampling; the old
+  rgba(255,255,255,0.32)/1.5px was CLONE_DECISION before real edge DOM
+  appeared); clicking the edge selects it (white).
 - Shift+click multi-selects two nodes (both carry .selected) — multiSelection
   key set to Shift (CLONE_DECISION).
 """
@@ -58,9 +60,9 @@ def main() -> None:
         if not edge:
             failures.append("edge path not rendered")
         else:
-            if edge["stroke"] != "rgba(255, 255, 255, 0.32)":
+            if edge["stroke"] != "rgb(0, 142, 229)":
                 failures.append(f"edge stroke: {edge['stroke']}")
-            if edge["width"] != "1.5px":
+            if edge["width"] != "1px":
                 failures.append(f"edge width: {edge['width']}")
 
         # multi-select: click node1, then shift+click the empty node

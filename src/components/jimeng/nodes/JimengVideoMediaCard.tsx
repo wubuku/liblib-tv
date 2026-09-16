@@ -43,7 +43,7 @@ export function JimengVideoMediaCard({
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden rounded-lg"
+      className="group relative h-full w-full overflow-hidden rounded-lg"
       style={{
         background:
           "linear-gradient(to right bottom, rgb(34,34,34), rgb(20,20,20))",
@@ -80,8 +80,15 @@ export function JimengVideoMediaCard({
               <Play size={14} fill="currentColor" />
             )}
           </button>
-          {/* 底部控制条 */}
-          <div className="absolute inset-x-0 bottom-0 z-[1] flex items-center gap-1.5 bg-gradient-to-t from-black/55 to-transparent px-2.5 pb-2 pt-5 text-white">
+          {/* 底部控制条 (批 208 SOURCE_FACT: 未选中静止卡仅中央播放钮可见，
+              控制条悬停/选中/播放时显示) */}
+          <div
+            className={`absolute inset-x-0 bottom-0 z-[1] flex items-center gap-1.5 bg-gradient-to-t from-black/55 to-transparent px-2.5 pb-2 pt-5 text-white transition-opacity duration-150 ${
+              playing || selected === true
+                ? "opacity-100"
+                : "opacity-0 group-hover:opacity-100"
+            }`}
+          >
             <button
               type="button"
               aria-label={playing ? "底部暂停" : "底部播放"}
