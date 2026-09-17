@@ -107,6 +107,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [genKind, setGenKind] = useState("音频生成");
   const [genOpen, setGenOpen] = useState(false);
   const [ttsOpen, setTtsOpen] = useState(false);
+  const [musicOpen, setMusicOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
@@ -194,15 +195,41 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
 
               {genKind === "音乐生成" ? (
                 <>
-                  {/* 批 294 SOURCE_FACT: 音乐生成态 模型位 SeedMusic 1.0 Preview */}
-                  <button
-                    type="button"
-                    aria-label="选择模型: SeedMusic 1.0 Preview"
-                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-                  >
-                    SeedMusic 1.0 Preview
-                    <ChevronDown size={12} className="text-white/60" />
-                  </button>
+                  {/* 批 294/295 SOURCE_FACT: 模型位 SeedMusic 两行式下拉 */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      aria-label="选择模型: SeedMusic 1.0 Preview"
+                      onClick={() => setMusicOpen((v) => !v)}
+                      className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                    >
+                      SeedMusic 1.0 Preview
+                      <ChevronDown size={12} className="text-white/60" />
+                    </button>
+                    {musicOpen ? (
+                      <div
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
+                        style={{ background: "rgb(38,38,38)" }}
+                        role="listbox"
+                        aria-label="音乐模型"
+                      >
+                        <button
+                          type="button"
+                          role="option"
+                          aria-selected
+                          onClick={() => setMusicOpen(false)}
+                          className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
+                        >
+                          <span className="text-[13px] font-medium text-white">
+                            SeedMusic 1.0 Preview
+                          </span>
+                          <span className="text-[12px] leading-4 text-white/45">
+                            细腻风格控制与多语种演唱，人声表现更自然
+                          </span>
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
                   {/* 批 294 SOURCE_FACT: 音乐生成态 第三位变 120s 时长 */}
                   <button
                     type="button"

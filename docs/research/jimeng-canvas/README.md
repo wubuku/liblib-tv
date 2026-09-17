@@ -975,6 +975,13 @@
   SeedMusic 1.0 Preview+120s chevron stub)。面板整体重写消除
   先前 patch 的 JSX 结构损伤。batch 19/47 回归 PASS。
   现场已还原 (3 次撤销)。
+- Batch 295 (SeedMusic 下拉采样落地): 音乐生成态模型下拉为两行式
+  菜单项——标题 SeedMusic 1.0 Preview + 描述「细腻风格控制与多语种
+  演唱，人声表现更自然」(392×72，295-music-selectors.json /
+  295-source-seedmusic-menu.png)。JimengAudioGenPanel 音乐生成态
+  模型位接入该下拉；120s 时长下拉未采样 (chevron stub，面板在
+  SeedMusic 菜单 Escape 后失焦)。batch 19/47 回归 PASS。
+  现场已还原 (2 次撤销)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
