@@ -724,6 +724,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-18 | batch 717 探测 | still-broken | 第三百四十一次重测；到期全量维护集新鲜运行 78/78（15 项回写按显式路径恢复，batch1/batch19 两张截图按并行路径剔除恢复；并行自行落库 jimeng 293——audio gen 面板高度 196、Current price 1.1，工作区净）（batch 717） |
 | 2026-09-18 | batch 718 探测 | still-broken | 第三百四十二次重测；巡检批次——并行 WIP JimengAudioGenPanel.tsx 在途（保留不动），无新落库批次；维护集未到期（batch 718，距全量约 6 批） |
 | 2026-09-18 | batch 719 探测 | still-broken | 第三百四十三次重测；巡检批次——并行 WIP 仍在途（保留不动），无新落库批次；维护集未到期（batch 719，距全量约 5 批） |
+| 2026-09-18 | batch 720 探测 | still-broken | 第三百四十四次重测；巡检批次——并行 WIP 仍在途（保留不动），无新落库批次；维护集未到期（batch 720，距全量约 4 批） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
