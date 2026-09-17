@@ -19,23 +19,47 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 阳光小男孩/纯净女声/温柔软妹/黛玉/明媚女声/含蓄女声/紫薇/猴哥/
  * 蜡笔小新/八戒Pro/动漫海绵/聪慧群仔，每项 ▶+名称，选中带勾)。
  */
-/** 批 250 SOURCE_FACT: 音色网格 3 列 × 5+ 行 (可滚动，已采样可见 15 项) */
-const VOICES = [
-  "直爽女大",
-  "低音炮",
-  "英气飒姐",
-  "阳光小男孩",
-  "纯净女声",
-  "温柔软妹",
-  "黛玉",
-  "明媚女声",
-  "含蓄女声",
-  "紫薇",
-  "猴哥",
-  "蜡笔小新",
-  "八戒Pro",
-  "动漫海绵",
-  "聪慧群仔",
+/**
+ * 音色清单 (批 278/282 SOURCE_FACT: 性别筛选实测 男 18 / 女 18，共 36；
+ * 全部视图首屏 15 项，完整清单可能更长——CLONE_DECISION 截止于此采样)。
+ */
+const VOICES: { name: string; gender: "男" | "女" }[] = [
+  { name: "直爽女大", gender: "女" },
+  { name: "英气飒姐", gender: "女" },
+  { name: "纯净女声", gender: "女" },
+  { name: "温柔软妹", gender: "女" },
+  { name: "黛玉", gender: "女" },
+  { name: "明媚女声", gender: "女" },
+  { name: "含蓄女声", gender: "女" },
+  { name: "紫薇", gender: "女" },
+  { name: "糯音女孩", gender: "女" },
+  { name: "TVB女声Pro", gender: "女" },
+  { name: "优雅女声", gender: "女" },
+  { name: "狐媚姐姐", gender: "女" },
+  { name: "将门女将", gender: "女" },
+  { name: "成熟御姐", gender: "女" },
+  { name: "灵动甜妹", gender: "女" },
+  { name: "慈祥奶奶", gender: "女" },
+  { name: "妩媚熟女", gender: "女" },
+  { name: "正气女声", gender: "女" },
+  { name: "低音炮", gender: "男" },
+  { name: "阳光小男孩", gender: "男" },
+  { name: "猴哥", gender: "男" },
+  { name: "蜡笔小新", gender: "男" },
+  { name: "八戒Pro", gender: "男" },
+  { name: "动漫海绵", gender: "男" },
+  { name: "聪慧胖仔", gender: "男" },
+  { name: "憨萌福娃", gender: "男" },
+  { name: "爽快小哥", gender: "男" },
+  { name: "低沉大叔", gender: "男" },
+  { name: "飒爽少侠", gender: "男" },
+  { name: "权威精英男", gender: "男" },
+  { name: "呆萌小男孩", gender: "男" },
+  { name: "威严老爷子", gender: "男" },
+  { name: "深夜博客", gender: "男" },
+  { name: "成熟总裁", gender: "男" },
+  { name: "皇上", gender: "男" },
+  { name: "老实小哥", gender: "男" },
 ];
 
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
@@ -224,7 +248,12 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                       ))}
                     </div>
                     <div className="grid grid-cols-3 gap-1">
-                      {VOICES.map((v) => (
+                      {VOICES.filter(
+                        (v) =>
+                          !filterSel["性别"] ||
+                          filterSel["性别"] === "性别" ||
+                          v.gender === filterSel["性别"],
+                      ).map(({ name: v }) => (
                         <button
                           key={v}
                           type="button"
