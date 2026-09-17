@@ -1027,6 +1027,10 @@
   的演进。复刻: JimengAudioGenPanel 占位改叠加层渲染 (textarea 保持
   可用，placeholder 属性移除)，batch 19 定位改用 textContent。
   batch 19 回归 PASS。现场已还原 (1 次撤销)。
+- Batch 305 (双模式验证器适配): verify-jimeng-batch105 断言更新至
+  叠加层占位机制 (占位文本从 overlay div 读取，面板定位改用
+  textarea[aria-label=音频生成提示词])——双模式 (音频 196/说话内容、
+  音乐 144/音乐) 断言双向 PASS。batch 19/47 回归 PASS。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

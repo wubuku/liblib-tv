@@ -39,13 +39,14 @@ def main() -> None:
             return page.evaluate(
                 """() => {
                     const f = [...document.querySelectorAll('form')].find(f =>
-                        f.querySelector('textarea[placeholder*="请输入你想生成"]'));
+                        f.querySelector('textarea[aria-label="音频生成提示词"]'));
                     if (!f) return null;
                     const r = f.getBoundingClientRect();
                     const ta = f.querySelector('textarea');
+                    const overlay = f.querySelector('div.pointer-events-none');
                     return {
                         h: Math.round(r.height),
-                        placeholder: ta ? ta.getAttribute('placeholder') : null,
+                        placeholder: overlay ? overlay.textContent.trim() : null,
                         hasSeedTts: !!f.querySelector('button[aria-label="选择模型: Seed TTS"]'),
                         hasSeedMusic: !!f.querySelector('button[aria-label="选择模型: SeedMusic 1.0 Preview"]'),
                         hasVoice: !!f.querySelector('button[aria-label^="音色: "]'),
