@@ -1021,6 +1021,12 @@
 - Batch 303 (演进监测轻扫): 视频工具条零漂移 (775×40 七条目一致)。
   音频面板 dump 未命中 (探针时序，非源站漂移——批 301 契约仍新，
   后续轮次重试)。
+- Batch 304 (输入元素演进确认 + 叠加层占位落地): 页面级 dump 确认
+  源站音频面板输入已从 textarea+placeholder 切换为 contenteditable
+  (editables: 2 / textareas: 0，占位以真实元素渲染)——批 301→303 之间
+  的演进。复刻: JimengAudioGenPanel 占位改叠加层渲染 (textarea 保持
+  可用，placeholder 属性移除)，batch 19 定位改用 textContent。
+  batch 19 回归 PASS。现场已还原 (1 次撤销)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

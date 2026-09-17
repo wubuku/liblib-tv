@@ -147,22 +147,27 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
         </button>
 
         <form
-          className="flex w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
+          className="relative flex w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
           style={{
             height: genKind === "音乐生成" ? 144 : 196,
           }}
           onSubmit={(e) => e.preventDefault()}
         >
+          {/* 批 304 SOURCE_FACT: 源站输入为 contenteditable (占位以真实
+              元素渲染)——clone 以叠加层占位近似，textarea 保持可用 */}
+          {!canSend ? (
+            <div className="pointer-events-none absolute inset-x-4 top-4 flex items-start text-[13px] leading-[22px] text-white/35">
+              {genKind === "音乐生成"
+                ? "请输入你想生成的音乐"
+                : "请输入你想生成的说话内容"}
+            </div>
+          ) : null}
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder={
-              genKind === "音乐生成"
-                ? "请输入你想生成的音乐"
-                : "请输入你想生成的说话内容"
-            }
+            aria-label="音频生成提示词"
             rows={2}
-            className="w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none placeholder:text-white/35"
+            className="w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none"
           />
 
           <div className="flex h-8 w-full items-center justify-between">

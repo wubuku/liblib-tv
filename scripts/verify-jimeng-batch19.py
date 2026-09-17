@@ -45,7 +45,7 @@ def main() -> None:
                     h: Math.round(r.height),
                     selected: n.classList.contains('selected'),
                     genPanel: [...document.querySelectorAll('form')]
-                        .some(f => !!f.querySelector('textarea[placeholder*="请输入你想生成的说话内容"]')),
+                        .some(f => f.textContent.includes('请输入你想生成')),
                 };
             }"""
         )
