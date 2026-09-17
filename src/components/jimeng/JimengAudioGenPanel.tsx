@@ -23,7 +23,11 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 音色清单 (批 278/282 SOURCE_FACT: 性别筛选实测 男 18 / 女 18，共 36；
  * 全部视图首屏 15 项，完整清单可能更长——CLONE_DECISION 截止于此采样)。
  */
-const VOICES: { name: string; gender: "男" | "女"; lang?: "英文" }[] = [
+const VOICES: {
+  name: string;
+  gender: "男" | "女";
+  lang?: "英文" | "中文方言";
+}[] = [
   { name: "Bill", gender: "男", lang: "英文" },
   { name: "Sarah", gender: "女", lang: "英文" },
   { name: "Liam", gender: "男", lang: "英文" },
@@ -32,6 +36,14 @@ const VOICES: { name: string; gender: "男" | "女"; lang?: "英文" }[] = [
   { name: "Callum", gender: "男", lang: "英文" },
   { name: "Chris", gender: "男", lang: "英文" },
   { name: "Daniel", gender: "男", lang: "英文" },
+  // 批 287 SOURCE_FACT: 中文方言 维度采样的 8 音色 (磁性男主播 双属)
+  { name: "真人播客男", gender: "男", lang: "中文方言" },
+  { name: "台湾腔甜妹", gender: "女", lang: "中文方言" },
+  { name: "天津小哥", gender: "男", lang: "中文方言" },
+  { name: "台湾男生", gender: "男", lang: "中文方言" },
+  { name: "春日部姐姐", gender: "女", lang: "中文方言" },
+  { name: "蜡笔小妮", gender: "女", lang: "中文方言" },
+  { name: "桃花庵主", gender: "男", lang: "中文方言" },
   // 批 286 SOURCE_FACT: 适合口播 维度采样的 8 音色 (性别为推断)
   { name: "灵动女声", gender: "女" },
   { name: "温柔女声", gender: "女" },
