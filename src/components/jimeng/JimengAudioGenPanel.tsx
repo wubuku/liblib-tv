@@ -8,7 +8,9 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
  *
  * 证据 (SOURCE_FACT, 236-source-audio-node.png 及后续采样):
- * - 面板 680×196 (批 293 演进，原 176)，占位「请输入你想生成的说话内容」
+ * - 面板 680 宽，高度/占位随模式适配 (批 301 SOURCE_FACT):
+ *   音频生成 196 /「请输入你想生成的说话内容」；
+ *   音乐生成 144 /「请输入你想生成的音乐」
  *   + 右上展开钮
  * - 底行三选择器 (批 277 aria: 创作类型:/选择模型:/音色:):
  *   音频生成∨ (批 245: 音频生成/音乐生成 两项) ·
@@ -145,13 +147,20 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
         </button>
 
         <form
-          className="flex h-[196px] w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
+          className="flex w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
+          style={{
+            height: genKind === "音乐生成" ? 144 : 196,
+          }}
           onSubmit={(e) => e.preventDefault()}
         >
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="请输入你想生成的说话内容"
+            placeholder={
+              genKind === "音乐生成"
+                ? "请输入你想生成的音乐"
+                : "请输入你想生成的说话内容"
+            }
             rows={2}
             className="w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none placeholder:text-white/35"
           />
