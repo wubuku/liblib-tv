@@ -16,8 +16,9 @@ import { NodeToolbar, Position } from "@xyflow/react";
  *   直爽女大∨ (批 250/278/282: 全音色网格 + 四筛选，性别真实过滤)
  * - 批 294: 切换 音乐生成 后选择器整组变化——模型位 SeedMusic 1.0
  *   Preview、第三位变 120s 时长
- * - 右侧「Current price 1.1」价格签 (批 293 演进，原 ✦1，70px 裁切) +
- *   灰色圆形发送钮 (空提示 aria「请输入提示词」)
+ * - 右侧「Current price」价格签 (批 293 演进，70px 裁切) + 灰色圆形
+ *   发送钮 (空提示 aria「请输入提示词」)。批 297: 价格随模式变动——
+ *   音频生成 1.1 / 音乐生成 6.6 (297-price-diff.json)。
  * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
  */
 
@@ -414,11 +415,13 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
-              {/* 批 293 SOURCE_FACT: 价格区演进为「Current price 1.1」
-                  (70px 裁切容器，同批 206 生成面板形态) */}
+              {/* 批 293/297 SOURCE_FACT: 价格随模式变动
+                  (音频生成 1.1 / 音乐生成 6.6，70px 裁切容器) */}
               <span className="flex h-8 w-[70px] items-center overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
                 <span className="shrink-0 text-white/[0.6]">Current price</span>
-                <span className="shrink-0">1.1</span>
+                <span className="shrink-0">
+                  {genKind === "音乐生成" ? "6.6" : "1.1"}
+                </span>
               </span>
               <button
                 type="button"
