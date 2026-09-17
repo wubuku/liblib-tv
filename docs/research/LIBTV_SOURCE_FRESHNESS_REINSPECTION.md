@@ -753,6 +753,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-18 | batch 746 探测 | still-broken | 第三百七十次重测；巡检批次——并行 batch53 截图 WIP 在途（保留不动），无新落库批次；维护集未到期（batch 746，距全量约 6 批） |
 | 2026-09-18 | batch 747 探测 | still-broken | 第三百七十一次重测；巡检批次——并行 WIP 截图增至两张（batch53/batch63，保留不动），无新落库批次；维护集未到期（batch 747，距全量约 5 批） |
 | 2026-09-18 | batch 748 探测 | still-broken | 第三百七十二次重测；巡检批次——并行 WIP 截图增至三张（batch53/batch63/batch96，保留不动），无新落库批次；维护集未到期（batch 748，距全量约 4 批） |
+| 2026-09-18 | batch 749 探测 | still-broken | 第三百七十三次重测；巡检批次——并行自行落库 jimeng 306（audio 面板 overlay 变更后 rotation 49-64 + 65-101 绿 39/39），README WIP 已吸收，三张截图 WIP 仍在途（保留不动）；维护集未到期（batch 749，距全量约 3 批） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
