@@ -5,25 +5,25 @@ import { ArrowUp, ChevronDown, Maximize2 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
 /**
- * 音频节点选中态下方弹出的音频生成面板 (Batch 239)。
+ * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
  *
- * 证据 (SOURCE_FACT, 236-source-audio-node.png): 面板 680×~176，
- * 占位「请输入你想生成的说话内容」+ 右上展开钮；底行三选择器:
- * 音频生成∨ / Seed TTS∨ / 直爽女大∨ (12-13px 白字) + 右侧
- * 「Current price 1.1」价格签 (批 293 演进，原 ✦1) + 灰色圆形发送钮
- * (空提示时 aria「请输入提示词」)。
- * 批 245 SOURCE_FACT: 「音频生成」下拉两项 音频生成/音乐生成 (192×76，
- * 36px 行)。批 248 SOURCE_FACT: 「Seed TTS」下拉为两行式菜单项——
- * 标题 Seed TTS + 描述「上百个预设音色，让你玩转人声配音」(392×72)。
- * 批 250 SOURCE_FACT: 「直爽女大」(音色) 下拉——「全音色」头 + 性别/
- * 年龄/语言/声音特点 4 筛选 + 3 列音色网格 (直爽女大✓/低音炮/英气飒姐/
- * 阳光小男孩/纯净女声/温柔软妹/黛玉/明媚女声/含蓄女声/紫薇/猴哥/
- * 蜡笔小新/八戒Pro/动漫海绵/聪慧群仔，每项 ▶+名称，选中带勾)。
+ * 证据 (SOURCE_FACT, 236-source-audio-node.png 及后续采样):
+ * - 面板 680×196 (批 293 演进，原 176)，占位「请输入你想生成的说话内容」
+ *   + 右上展开钮
+ * - 底行三选择器 (批 277 aria: 创作类型:/选择模型:/音色:):
+ *   音频生成∨ (批 245: 音频生成/音乐生成 两项) ·
+ *   Seed TTS∨ (批 248: 两行式菜单项 Seed TTS + 上百个预设音色描述) ·
+ *   直爽女大∨ (批 250/278/282: 全音色网格 + 四筛选，性别真实过滤)
+ * - 批 294: 切换 音乐生成 后选择器整组变化——模型位 SeedMusic 1.0
+ *   Preview、第三位变 120s 时长
+ * - 右侧「Current price 1.1」价格签 (批 293 演进，原 ✦1，70px 裁切) +
+ *   灰色圆形发送钮 (空提示 aria「请输入提示词」)
+ * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
  */
-/**
- * 音色清单 (批 278/282 SOURCE_FACT: 性别筛选实测 男 18 / 女 18，共 36；
- * 全部视图首屏 15 项，完整清单可能更长——CLONE_DECISION 截止于此采样)。
- */
+
+/** 批 278/282/285 SOURCE_FACT: 音色清单 男 18 / 女 18；批 285: 英文 8；
+ *  批 286: 适合口播 维度 8 音色；批 287: 中文方言 7 新音色 (磁性男主播双属)。
+ *  完整目录可能更长 (CLONE_DECISION 截止于此采样)。 */
 const VOICES: {
   name: string;
   gender: "男" | "女";
@@ -37,23 +37,6 @@ const VOICES: {
   { name: "Callum", gender: "男", lang: "英文" },
   { name: "Chris", gender: "男", lang: "英文" },
   { name: "Daniel", gender: "男", lang: "英文" },
-  // 批 287 SOURCE_FACT: 中文方言 维度采样的 8 音色 (磁性男主播 双属)
-  { name: "真人播客男", gender: "男", lang: "中文方言" },
-  { name: "台湾腔甜妹", gender: "女", lang: "中文方言" },
-  { name: "天津小哥", gender: "男", lang: "中文方言" },
-  { name: "台湾男生", gender: "男", lang: "中文方言" },
-  { name: "春日部姐姐", gender: "女", lang: "中文方言" },
-  { name: "蜡笔小妮", gender: "女", lang: "中文方言" },
-  { name: "桃花庵主", gender: "男", lang: "中文方言" },
-  // 批 286 SOURCE_FACT: 适合口播 维度采样的 8 音色 (性别为推断)
-  { name: "灵动女声", gender: "女" },
-  { name: "温柔女声", gender: "女" },
-  { name: "知性熟女", gender: "女" },
-  { name: "Vlog配音", gender: "女" },
-  { name: "活泼女声", gender: "女" },
-  { name: "清醒语录", gender: "女" },
-  { name: "磁性男主播", gender: "男" },
-  { name: "清晰语录", gender: "女" },
   { name: "直爽女大", gender: "女" },
   { name: "英气飒姐", gender: "女" },
   { name: "纯净女声", gender: "女" },
@@ -72,6 +55,13 @@ const VOICES: {
   { name: "慈祥奶奶", gender: "女" },
   { name: "妩媚熟女", gender: "女" },
   { name: "正气女声", gender: "女" },
+  { name: "灵动女声", gender: "女" },
+  { name: "温柔女声", gender: "女" },
+  { name: "知性熟女", gender: "女" },
+  { name: "Vlog配音", gender: "女" },
+  { name: "活泼女声", gender: "女" },
+  { name: "清醒语录", gender: "女" },
+  { name: "清晰语录", gender: "女" },
   { name: "低音炮", gender: "男" },
   { name: "阳光小男孩", gender: "男" },
   { name: "猴哥", gender: "男" },
@@ -90,6 +80,25 @@ const VOICES: {
   { name: "成熟总裁", gender: "男" },
   { name: "皇上", gender: "男" },
   { name: "老实小哥", gender: "男" },
+  { name: "磁性男主播", gender: "男" },
+  { name: "真人播客男", gender: "男", lang: "中文方言" },
+  { name: "台湾腔甜妹", gender: "女", lang: "中文方言" },
+  { name: "天津小哥", gender: "男", lang: "中文方言" },
+  { name: "台湾男生", gender: "男", lang: "中文方言" },
+  { name: "春日部姐姐", gender: "女", lang: "中文方言" },
+  { name: "蜡笔小妮", gender: "女", lang: "中文方言" },
+  { name: "桃花庵主", gender: "男", lang: "中文方言" },
+];
+
+/** 批 254/255/257 SOURCE_FACT: 筛选下拉选项 (均已在源站采样) */
+const FILTERS: { label: string; options: string[] }[] = [
+  { label: "性别", options: ["全部 性别", "男", "女"] },
+  { label: "年龄", options: ["全部 年龄", "幼儿", "少年", "青年", "中年", "老年"] },
+  { label: "语言", options: ["全部 语言", "普通话", "中文方言", "英文"] },
+  {
+    label: "声音特点",
+    options: ["全部 声音特点", "适合旁白", "情景演绎", "多情感", "适合口播", "知名 IP"],
+  },
 ];
 
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
@@ -100,17 +109,22 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [ttsOpen, setTtsOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
-  // 批 254/255/257 SOURCE_FACT: 筛选下拉选项 (均已在源站采样)
-  const FILTERS: { label: string; options: string[] }[] = [
-    { label: "性别", options: ["全部 性别", "男", "女"] },
-    { label: "年龄", options: ["全部 年龄", "幼儿", "少年", "青年", "中年", "老年"] },
-    { label: "语言", options: ["全部 语言", "普通话", "中文方言", "英文"] },
-    {
-      label: "声音特点",
-      options: ["全部 声音特点", "适合旁白", "情景演绎", "多情感", "适合口播", "知名 IP"],
-    },
-  ];
+  // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
   const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
+
+  const visibleVoices = VOICES.filter(
+    (v) =>
+      (!filterSel["性别"] ||
+        filterSel["性别"] === "性别" ||
+        v.gender === filterSel["性别"]) &&
+      (!filterSel["语言"] ||
+        filterSel["语言"] === "语言" ||
+        (filterSel["语言"] === "英文"
+          ? v.lang === "英文"
+          : filterSel["语言"] === "中文方言"
+            ? v.lang === "中文方言"
+            : v.lang !== "英文" && v.lang !== "中文方言")),
+  );
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -177,143 +191,165 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   </div>
                 ) : null}
               </div>
-              <div className="relative">
-                <button
-                  type="button"
-                  aria-label="选择模型: Seed TTS"
-                  onClick={() => setTtsOpen((v) => !v)}
-                  className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-                >
-                  Seed TTS
-                  <ChevronDown size={12} className="text-white/60" />
-                </button>
-                {ttsOpen ? (
-                  <div
-                    className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
-                    style={{ background: "rgb(38,38,38)" }}
-                    role="listbox"
-                    aria-label="音色模型"
+
+              {genKind === "音乐生成" ? (
+                <>
+                  {/* 批 294 SOURCE_FACT: 音乐生成态 模型位 SeedMusic 1.0 Preview */}
+                  <button
+                    type="button"
+                    aria-label="选择模型: SeedMusic 1.0 Preview"
+                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                   >
-                    {/* 批 248 SOURCE_FACT: 两行式菜单项 标题+描述 */}
+                    SeedMusic 1.0 Preview
+                    <ChevronDown size={12} className="text-white/60" />
+                  </button>
+                  {/* 批 294 SOURCE_FACT: 音乐生成态 第三位变 120s 时长 */}
+                  <button
+                    type="button"
+                    aria-label="选择时长: 120s"
+                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                  >
+                    120s
+                    <ChevronDown size={12} className="text-white/60" />
+                  </button>
+                </>
+              ) : (
+                <>
+                  {/* 批 248 SOURCE_FACT: Seed TTS 两行式下拉 */}
+                  <div className="relative">
                     <button
                       type="button"
-                      role="option"
-                      aria-selected
-                      onClick={() => setTtsOpen(false)}
-                      className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
+                      aria-label="选择模型: Seed TTS"
+                      onClick={() => setTtsOpen((v) => !v)}
+                      className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
-                      <span className="text-[13px] font-medium text-white">Seed TTS</span>
-                      <span className="text-[12px] leading-4 text-white/45">
-                        上百个预设音色，让你玩转人声配音
-                      </span>
+                      Seed TTS
+                      <ChevronDown size={12} className="text-white/60" />
                     </button>
-                  </div>
-                ) : null}
-              </div>
-              <div className="relative">
-                <button
-                  type="button"
-                  aria-label={`音色: ${voice}`}
-                  onClick={() => setVoiceOpen((v) => !v)}
-                  className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-                >
-                  {voice}
-                  <ChevronDown size={12} className="text-white/60" />
-                </button>
-                {voiceOpen ? (
-                  <div
-                    className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3"
-                    style={{ background: "rgb(38,38,38)" }}
-                    role="listbox"
-                    aria-label="全音色"
-                  >
-                    <p className="pb-2 text-[13px] text-white/80">全音色</p>
-                    <div className="flex gap-1.5 pb-2">
-                      {FILTERS.map(({ label, options }) => (
-                        <div key={label} className="relative">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setFilterSel((m) => ({
-                                ...m,
-                                [label]: m[label] === undefined ? null : m[label],
-                              }))
-                            }
-                            className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
-                          >
-                            {filterSel[label] ?? label}
-                            <ChevronDown size={10} className="text-white/50" />
-                          </button>
-                          {options ? (
-                            <div
-                              className="absolute bottom-[calc(100%+6px)] left-0 z-[150] w-[150px] rounded-xl p-1.5"
-                              style={{ background: "rgb(38,38,38)" }}
-                              role="listbox"
-                              aria-label={`筛选 ${label}`}
-                            >
-                              {options.map((opt) => (
-                                <button
-                                  key={opt}
-                                  type="button"
-                                  role="option"
-                                  aria-selected={(filterSel[label] ?? label) === opt}
-                                  onClick={() =>
-                                    setFilterSel((m) => ({
-                                      ...m,
-                                      [label]: opt.startsWith("全部") ? label : opt,
-                                    }))
-                                  }
-                                  className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
-                                    (filterSel[label] ?? label) === opt
-                                      ? "bg-white/[0.10] text-white"
-                                      : "text-white/85 hover:bg-white/10"
-                                  }`}
-                                >
-                                  {opt}
-                                </button>
-                              ))}
-                            </div>
-                          ) : null}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="grid grid-cols-3 gap-1">
-                      {VOICES.filter(
-                        (v) =>
-                          !filterSel["性别"] ||
-                          filterSel["性别"] === "性别" ||
-                          v.gender === filterSel["性别"],
-                      ).map(({ name: v }) => (
+                    {ttsOpen ? (
+                      <div
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
+                        style={{ background: "rgb(38,38,38)" }}
+                        role="listbox"
+                        aria-label="音色模型"
+                      >
                         <button
-                          key={v}
                           type="button"
                           role="option"
-                          aria-selected={voice === v}
-                          onClick={() => {
-                            setVoice(v);
-                            setVoiceOpen(false);
-                          }}
-                          className={`flex h-9 items-center gap-2 rounded-lg px-2 text-[13px] ${
-                            voice === v
-                              ? "bg-white/[0.12] text-white"
-                              : "text-white/85 hover:bg-white/[0.06]"
-                          }`}
+                          aria-selected
+                          onClick={() => setTtsOpen(false)}
+                          className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
                         >
-                          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden className="shrink-0 text-white/60">
-                            <path d="M4 2v10l7-5Z" fill="currentColor" />
-                          </svg>
-                          {v}
-                          {voice === v ? (
-                            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden className="ml-auto shrink-0 text-white/80">
-                              <path d="M2 6.5 4.8 9 10 3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                            </svg>
-                          ) : null}
+                          <span className="text-[13px] font-medium text-white">Seed TTS</span>
+                          <span className="text-[12px] leading-4 text-white/45">
+                            上百个预设音色，让你玩转人声配音
+                          </span>
                         </button>
-                      ))}
-                    </div>
+                      </div>
+                    ) : null}
                   </div>
-                ) : null}
-              </div>
+                  {/* 批 250/278/282 SOURCE_FACT: 音色下拉 (全音色网格 + 四筛选) */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      aria-label={`音色: ${voice}`}
+                      onClick={() => setVoiceOpen((v) => !v)}
+                      className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                    >
+                      {voice}
+                      <ChevronDown size={12} className="text-white/60" />
+                    </button>
+                    {voiceOpen ? (
+                      <div
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3"
+                        style={{ background: "rgb(38,38,38)" }}
+                        role="listbox"
+                        aria-label="全音色"
+                      >
+                        <p className="pb-2 text-[13px] text-white/80">全音色</p>
+                        <div className="flex gap-1.5 pb-2">
+                          {FILTERS.map(({ label, options }) => (
+                            <div key={label} className="relative">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setFilterSel((m) => ({
+                                    ...m,
+                                    [label]: m[label] === undefined ? null : m[label],
+                                  }))
+                                }
+                                className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                              >
+                                {filterSel[label] ?? label}
+                                <ChevronDown size={10} className="text-white/50" />
+                              </button>
+                              {options ? (
+                                <div
+                                  className="absolute bottom-[calc(100%+6px)] left-0 z-[150] w-[150px] rounded-xl p-1.5"
+                                  style={{ background: "rgb(38,38,38)" }}
+                                  role="listbox"
+                                  aria-label={`筛选 ${label}`}
+                                >
+                                  {options.map((opt) => (
+                                    <button
+                                      key={opt}
+                                      type="button"
+                                      role="option"
+                                      aria-selected={(filterSel[label] ?? label) === opt}
+                                      onClick={() =>
+                                        setFilterSel((m) => ({
+                                          ...m,
+                                          [label]: opt.startsWith("全部") ? label : opt,
+                                        }))
+                                      }
+                                      className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
+                                        (filterSel[label] ?? label) === opt
+                                          ? "bg-white/[0.10] text-white"
+                                          : "text-white/85 hover:bg-white/10"
+                                      }`}
+                                    >
+                                      {opt}
+                                    </button>
+                                  ))}
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-3 gap-1">
+                          {visibleVoices.map(({ name: v }) => (
+                            <button
+                              key={v}
+                              type="button"
+                              role="option"
+                              aria-selected={voice === v}
+                              onClick={() => {
+                                setVoice(v);
+                                setVoiceOpen(false);
+                              }}
+                              className={`flex h-9 items-center gap-2 rounded-lg px-2 text-[13px] ${
+                                voice === v
+                                  ? "bg-white/[0.12] text-white"
+                                  : "text-white/85 hover:bg-white/[0.06]"
+                              }`}
+                            >
+                              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden className="shrink-0 text-white/60">
+                                <path d="M4 2v10l7-5Z" fill="currentColor" />
+                              </svg>
+                              {v}
+                              {voice === v ? (
+                                <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden className="ml-auto shrink-0 text-white/80">
+                                  <path d="M2 6.5 4.8 9 10 3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                                </svg>
+                              ) : null}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">

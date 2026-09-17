@@ -967,6 +967,14 @@
   「Current price 1.1」(70px 裁切，同批 206 形态) + 空提示发送钮
   aria「请输入提示词」。复刻: JimengAudioGenPanel 高度与价格签对齐。
   batch 19/47 回归 PASS。现场已还原 (1 次撤销)。
+- Batch 294 (音乐生成态选择器组切换落地): 批 294 采样确认切换
+  音乐生成 后选择器整组变化——模型位 SeedMusic 1.0 Preview、音色位
+  变 120s 时长 (294-price-dynamics.json：价格区在两种态下均为
+  Current price 形态)。复刻: JimengAudioGenPanel 按 genKind 条件
+  渲染两组选择器 (音频生成=Seed TTS 两行式+音色下拉；音乐生成=
+  SeedMusic 1.0 Preview+120s chevron stub)。面板整体重写消除
+  先前 patch 的 JSX 结构损伤。batch 19/47 回归 PASS。
+  现场已还原 (3 次撤销)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
