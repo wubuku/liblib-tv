@@ -108,6 +108,9 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [genOpen, setGenOpen] = useState(false);
   const [ttsOpen, setTtsOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
+  // 批 296 SOURCE_FACT: 时长分段条 (60-360s，当前 120s)
+  const [durOpen, setDurOpen] = useState(false);
+  const [duration, setDuration] = useState(120);
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
@@ -230,15 +233,46 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                       </div>
                     ) : null}
                   </div>
-                  {/* 批 294 SOURCE_FACT: 音乐生成态 第三位变 120s 时长 */}
-                  <button
-                    type="button"
-                    aria-label="选择时长: 120s"
-                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-                  >
-                    120s
-                    <ChevronDown size={12} className="text-white/60" />
-                  </button>
+                  {/* 批 296 SOURCE_FACT: 时长水平分段条 (60-360s) */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      aria-label={`选择时长: ${duration}s`}
+                      onClick={() => setDurOpen((v) => !v)}
+                      className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                    >
+                      {duration}s
+                      <ChevronDown size={12} className="text-white/60" />
+                    </button>
+                    {durOpen ? (
+                      <div
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] flex h-11 w-[368px] items-center rounded-xl px-3"
+                        style={{ background: "rgb(38,38,38)" }}
+                        role="listbox"
+                        aria-label="音乐时长"
+                      >
+                        {[60, 120, 180, 240, 300, 360].map((s) => (
+                          <button
+                            key={s}
+                            type="button"
+                            role="option"
+                            aria-selected={duration === s}
+                            onClick={() => {
+                              setDuration(s);
+                              setDurOpen(false);
+                            }}
+                            className={`flex h-9 flex-1 items-center justify-center rounded-lg text-[12px] ${
+                              duration === s
+                                ? "bg-white/[0.14] text-white"
+                                : "text-white/70 hover:bg-white/[0.06]"
+                            }`}
+                          >
+                            {s}
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 </>
               ) : (
                 <>
