@@ -9,8 +9,9 @@ import { NodeToolbar, Position } from "@xyflow/react";
  *
  * 证据 (SOURCE_FACT, 236-source-audio-node.png): 面板 680×~176，
  * 占位「请输入你想生成的说话内容」+ 右上展开钮；底行三选择器:
- * 音频生成∨ / Seed TTS∨ / 直爽女大∨ (12-13px 白字) + 右侧 ✦1 +
- * 灰色圆形发送钮 (禁用样式)。
+ * 音频生成∨ / Seed TTS∨ / 直爽女大∨ (12-13px 白字) + 右侧
+ * 「Current price 1.1」价格签 (批 293 演进，原 ✦1) + 灰色圆形发送钮
+ * (空提示时 aria「请输入提示词」)。
  * 批 245 SOURCE_FACT: 「音频生成」下拉两项 音频生成/音乐生成 (192×76，
  * 36px 行)。批 248 SOURCE_FACT: 「Seed TTS」下拉为两行式菜单项——
  * 标题 Seed TTS + 描述「上百个预设音色，让你玩转人声配音」(392×72)。
@@ -125,7 +126,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
         </button>
 
         <form
-          className="flex h-[176px] w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
+          className="flex h-[196px] w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
           onSubmit={(e) => e.preventDefault()}
         >
           <textarea
@@ -316,12 +317,16 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-dreamina-number text-[12px] font-medium text-white/60">
-                ✦ 1
+              {/* 批 293 SOURCE_FACT: 价格区演进为「Current price 1.1」
+                  (70px 裁切容器，同批 206 生成面板形态) */}
+              <span className="flex h-8 w-[70px] items-center overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
+                <span className="shrink-0 text-white/[0.6]">Current price</span>
+                <span className="shrink-0">1.1</span>
               </span>
               <button
                 type="button"
-                aria-label="生成语音"
+                aria-label={canSend ? "生成语音" : "请输入提示词"}
+                title={canSend ? undefined : "请输入提示词"}
                 onClick={() => {
                   if (canSend) {
                     // mock: 音频生成流程未接入 (BLOCKED_BY_FIXTURE)
