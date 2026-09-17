@@ -23,7 +23,15 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * 音色清单 (批 278/282 SOURCE_FACT: 性别筛选实测 男 18 / 女 18，共 36；
  * 全部视图首屏 15 项，完整清单可能更长——CLONE_DECISION 截止于此采样)。
  */
-const VOICES: { name: string; gender: "男" | "女" }[] = [
+const VOICES: { name: string; gender: "男" | "女"; lang?: "英文" }[] = [
+  { name: "Bill", gender: "男", lang: "英文" },
+  { name: "Sarah", gender: "女", lang: "英文" },
+  { name: "Liam", gender: "男", lang: "英文" },
+  { name: "George", gender: "男", lang: "英文" },
+  { name: "Lily", gender: "女", lang: "英文" },
+  { name: "Callum", gender: "男", lang: "英文" },
+  { name: "Chris", gender: "男", lang: "英文" },
+  { name: "Daniel", gender: "男", lang: "英文" },
   { name: "直爽女大", gender: "女" },
   { name: "英气飒姐", gender: "女" },
   { name: "纯净女声", gender: "女" },
