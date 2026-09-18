@@ -834,6 +834,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-18 | batch 827 探测 | still-broken | 第四百五十一次重测；巡检批次——并行自行落库 jimeng 343（rotation 34-48 绿 15/15，后续焦点转向 LibTV），batch40 截图 WIP 仍在途（保留不动）；维护集未到期（batch 827，距全量约 2 批） |
 | 2026-09-18 | batch 828 探测 | still-broken | 第四百五十二次重测；巡检批次——并行自行落库 jimeng 344（liblib 侧 clone health 采样 6/7 过，记录 batch 65 ownership KeyError；jimeng 截图刷新），工作区净；下批（batch 829）执行到期全量维护集新鲜运行并复核 batch 65 KeyError |
 | 2026-09-18 | batch 829 探测 | still-broken | 第四百五十三次重测；到期全量维护集新鲜运行 78/78；复核并行报告的 batch 65 KeyError——判定为验证器时序竞态而非 clone 行为回归（canvas-1 ownership 由切换恢复 "stable-restored" 提交异步注册，负载下提交晚于一次性断言读取即 KeyError；batch 466 当时确认绿、此后产品侧无相关变更），最小修复为复用文件内既有 `wait_for_owner` 轮询后再采集快照（`verify-liblib-batch65.py` run_canvas_restore），修复后 3 连绿；20 项回写按显式路径恢复，batch1/39/23/57 截图按并行路径剔除恢复（batch 829） |
+| 2026-09-19 | batch 830 探测 | still-broken | 第四百五十四次重测；巡检批次——并行自行落库 jimeng 348（rotation 1-33 + 49-64 绿 47/47），工作区净；维护集未到期（batch 830，距全量约 6 批） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
