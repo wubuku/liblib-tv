@@ -51,6 +51,9 @@ def main() -> None:
                         hasSeedMusic: !!f.querySelector('button[aria-label="选择模型: SeedMusic 1.0 Preview"]'),
                         hasVoice: !!f.querySelector('button[aria-label^="音色: "]'),
                         has120s: !!f.querySelector('button[aria-label="选择时长: 120s"]'),
+                        priceCompact: (
+                            (f.querySelector('span[title^="Current price"]') || {"textContent": ""}).textContent || ""
+                        ).trim().slice(0, 1),
                     };
                 }"""
             )
@@ -67,6 +70,9 @@ def main() -> None:
                 failures.append("audio-mode selectors missing (Seed TTS / 音色)")
             if st["hasSeedMusic"] or st["has120s"]:
                 failures.append("music-only selectors visible in audio mode")
+            # Batch 368: compact price tag shows integer part (1.1 -> 1)
+            if st["priceCompact"] != "1":
+                failures.append(f"audio-mode compact price: {st['priceCompact']!r} != '1'")
 
         # switch to 音乐生成
         page.locator('button[aria-label="创作类型: 音频生成"]').click()
@@ -86,6 +92,9 @@ def main() -> None:
                 failures.append("music-mode selectors missing (SeedMusic / 120s)")
             if st2["hasSeedTts"] or st2["hasVoice"]:
                 failures.append("audio-mode selectors visible in music mode")
+            # Batch 368: compact price tag shows integer part (6.6 -> 6)
+            if st2["priceCompact"] != "6":
+                failures.append(f"music-mode compact price: {st2['priceCompact']!r} != '6'")
 
         # Batch 367: duration control is a continuous slider popover
         # (SOURCE_FACT 367e/367f: title 选择音乐生成时长, free 0-360s track,

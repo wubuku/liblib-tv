@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowUp, ChevronDown, Maximize2 } from "lucide-react";
+import { ArrowUp, ChevronDown, Maximize2, Sparkle } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
 /**
@@ -26,10 +26,10 @@ import { NodeToolbar, Position } from "@xyflow/react";
  *   弹出层在多次点选间保持打开；触发钮呈胶囊 bg，打开时 chevron 翻上。
  *   批 367f: 时长跨节点持久——新插入节点继承上次设定 (341s 实测)，
  *   非固定 120s 默认。
- * - 右侧「Current price」价格签 (批 293 演进，70px 裁切) + 灰色圆形
- *   发送钮 (空提示 aria「请输入提示词」)。批 297: 价格随模式变动——
- *   音频生成 1.1 / 音乐生成 6.6 (297-price-diff.json)。批 367e: 价格与
- *   时长无关 (53s-341s 恒 6.6)。
+ * - 右侧价格签 (批 293 70px 裁切 → 批 368 演进为紧凑态「✦ + 整数」：
+ *   音乐 6 / 音频 1，精确值 6.6/1.1 保留在 1px 裁切 span 与 title) +
+ *   灰色圆形发送钮 (空提示 aria「请输入提示词」)。批 297: 值随模式
+ *   变动；批 367e: 与时长无关 (53s-341s 恒 6.6)。
  * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
  */
 
@@ -526,13 +526,19 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
-              {/* 批 293/297 SOURCE_FACT: 价格随模式变动
-                  (音频生成 1.1 / 音乐生成 6.6，70px 裁切容器)。
-                  批 367e: 价格与时长无关 (53s-341s 恒 6.6) */}
-              <span className="flex h-8 w-[70px] items-center overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
-                <span className="shrink-0 text-white/[0.6]">Current price</span>
-                <span className="shrink-0">
-                  {genKind === "音乐生成" ? "6.6" : "1.1"}
+              {/* 批 368 SOURCE_FACT (368-price-row.json): 价格签已演进为
+                  紧凑态「✦ + 整数」(音乐 6 / 音频 1)——精确值「Current price
+                  6.6/1.1」仍在 DOM 但被裁至 1px 不可见 (推翻批 293 的 70px
+                  裁切展示与批 367 的滚动裁切猜想，hover 无展开反应)。
+                  批 297: 值随模式变动；批 367e: 与时长无关 */}
+              <span
+                className="flex h-8 items-center gap-1.5 text-[13px] text-white/85"
+                title={`Current price ${genKind === "音乐生成" ? "6.6" : "1.1"}`}
+              >
+                <Sparkle size={12} className="fill-current text-white/70" />
+                {genKind === "音乐生成" ? 6 : 1}
+                <span className="w-px overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
+                  Current price {genKind === "音乐生成" ? "6.6" : "1.1"}
                 </span>
               </span>
               <button

@@ -1162,6 +1162,20 @@
   渐隐)，判读为滚动裁切所致，留待后续采样。回归: batch 105 扩展滑杆
   断言，音频相关 11 verifier PASS；npm run check 通过。现场已还原
   (1-7 次撤销，367e 崩溃后补恢复核对 BASE_IDS)。
+- Batch 368 (价格签紧凑态解谱 + 落地): 解决批 367 疑点并推翻两个旧
+  判读——价格签已演进为**紧凑态「✦ + 整数」**：音乐生成 可见
+  star 12×12 + 「6」，音频生成 可见 star + 「1」；精确值「Current
+  price 6.6/1.1」仍在 DOM 但被裁至 1px 宽不可见 (368-price-row.json /
+  368c-price-tts.png)。批 293「70px 裁切展示 Current price」与批 367
+  「滚动裁切」两判读均不成立：参数行滚动容器 client 571 = scrollWidth
+  571 无溢出无 mask；hover 价格区/发送钮均无展开反应 (368b-price-
+  hover.png)——为稳定折叠态非交互动画。发送钮旁同样存在裁至 1px 的
+  「生成」文本叶 (角色未定，留档不 replicate)。复刻: JimengAudioGenPanel
+  价格签改为 Sparkle 12px + 整数 (随 genKind 6/1)，精确值移入 title 与
+  1px 裁切 span (镜像源站 DOM 结构)。另: 批 367f 时长持久二次确证
+  (本批三次插入节点均直接继承 音乐生成 + 341s)。回归: batch 105 扩展
+  双模式紧凑价格断言，音频相关 11 verifier PASS；npm run check 通过。
+  现场已还原 (1-3 次撤销)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。
