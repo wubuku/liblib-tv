@@ -29,7 +29,9 @@ import { NodeToolbar, Position } from "@xyflow/react";
  * - 右侧价格签 (批 293 70px 裁切 → 批 368 演进为紧凑态「✦ + 整数」：
  *   音乐 6 / 音频 1，精确值 6.6/1.1 保留在 1px 裁切 span 与 title) +
  *   灰色圆形发送钮 (空提示 aria「请输入提示词」)。批 297: 值随模式
- *   变动；批 367e: 与时长无关 (53s-341s 恒 6.6)。
+ *   变动；批 367e: 与时长无关 (53s-341s 恒 6.6)。批 370 SOURCE_FACT:
+ *   发送钮空态 bg rgba(255,255,255,0.16) → 非空输入态 rgb(250,250,250)
+ *   白色激活，「生成」裁切叶两态均保持折叠。
  * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
  */
 
@@ -552,7 +554,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                 }}
                 className={`flex size-8 items-center justify-center rounded-full ${
                   canSend
-                    ? "bg-white text-black hover:bg-white/90"
+                    ? "bg-[#fafafa] text-black hover:bg-white/90"
                     : "bg-white/[0.16] text-white/20"
                 }`}
               >
