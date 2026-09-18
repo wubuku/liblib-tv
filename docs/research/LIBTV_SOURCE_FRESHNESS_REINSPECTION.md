@@ -832,6 +832,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-18 | batch 825 探测 | still-broken | 第四百四十九次重测；巡检批次——并行自行落库 jimeng 342（rotation 20-33 绿 14/14），工作区净；维护集未到期（batch 825，距全量约 4 批） |
 | 2026-09-18 | batch 826 探测 | still-broken | 第四百五十次重测；巡检批次——无并行新落库，batch40 截图 WIP 在途（保留不动）；维护集未到期（batch 826，距全量约 3 批） |
 | 2026-09-18 | batch 827 探测 | still-broken | 第四百五十一次重测；巡检批次——并行自行落库 jimeng 343（rotation 34-48 绿 15/15，后续焦点转向 LibTV），batch40 截图 WIP 仍在途（保留不动）；维护集未到期（batch 827，距全量约 2 批） |
+| 2026-09-18 | batch 828 探测 | still-broken | 第四百五十二次重测；巡检批次——并行自行落库 jimeng 344（liblib 侧 clone health 采样 6/7 过，记录 batch 65 ownership KeyError；jimeng 截图刷新），工作区净；下批（batch 829）执行到期全量维护集新鲜运行并复核 batch 65 KeyError |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
