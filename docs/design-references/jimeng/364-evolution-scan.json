@@ -1,0 +1,23 @@
+{
+ "A_toolbar": {
+  "text": "局部重拍智能超清视频编辑截取帧补帧视频修剪提示词反推",
+  "size": [
+   775,
+   40
+  ]
+ },
+ "B_context_menu": {
+  "panel": [
+   192,
+   324
+  ],
+  "text": "复制⌘ C复制副本⌘ D粘贴⌘ V保存到主体库下载重做⌘ ⇧ Z无需重做操作撤销⌘ Z删除⌫"
+ },
+ "C_audio_panel": {
+  "size": [
+   680,
+   144
+  ],
+  "text": "请输入你想生成的音乐音乐生成SeedMusic 1.0 Preview120sCurrent price 6.6生成请输入提示词"
+ }
+}
