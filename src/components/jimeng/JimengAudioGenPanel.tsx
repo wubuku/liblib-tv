@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowUp, ChevronDown, Maximize2 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
@@ -17,12 +17,27 @@ import { NodeToolbar, Position } from "@xyflow/react";
  *   Seed TTS∨ (批 248: 两行式菜单项 Seed TTS + 上百个预设音色描述) ·
  *   直爽女大∨ (批 250/278/282: 全音色网格 + 四筛选，性别真实过滤)
  * - 批 294: 切换 音乐生成 后选择器整组变化——模型位 SeedMusic 1.0
- *   Preview、第三位变 120s 时长
+ *   Preview、第三位变时长触发钮
+ * - 批 367 SOURCE_FACT (367e/367f/367-duration-slider.png): 时长控件实为
+ *   连续自由滑杆弹出层——标题「选择音乐生成时长」+ 0-360s 连续滑轨
+ *   (thumb 4×16 白色竖条, 刻度 0/60/120/180/240/300/360 10px white/35
+ *   在轨下方, 首标签左对齐轨起点末标签右对齐轨终点) + 右侧数值输入框
+ *   (数字 + 灰 s 后缀)。点轨取任意秒数 (53/108/165/224/286/341 实测)，
+ *   弹出层在多次点选间保持打开；触发钮呈胶囊 bg，打开时 chevron 翻上。
+ *   批 367f: 时长跨节点持久——新插入节点继承上次设定 (341s 实测)，
+ *   非固定 120s 默认。
  * - 右侧「Current price」价格签 (批 293 演进，70px 裁切) + 灰色圆形
  *   发送钮 (空提示 aria「请输入提示词」)。批 297: 价格随模式变动——
- *   音频生成 1.1 / 音乐生成 6.6 (297-price-diff.json)。
+ *   音频生成 1.1 / 音乐生成 6.6 (297-price-diff.json)。批 367e: 价格与
+ *   时长无关 (53s-341s 恒 6.6)。
  * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
  */
+
+/** 批 367f SOURCE_FACT: 音乐时长跨节点持久 (模块级，非 per-node 状态) */
+let persistedMusicDuration = 120;
+
+/** 批 367 SOURCE_FACT: 滑杆刻度 (轨上刻度点 + 轨下标签行共用) */
+const DURATION_TICKS = [0, 60, 120, 180, 240, 300, 360];
 
 /** 批 278/282/285 SOURCE_FACT: 音色清单 男 18 / 女 18；批 285: 英文 8；
  *  批 286: 适合口播 维度 8 音色；批 287: 中文方言 7 新音色 (磁性男主播双属)。
@@ -111,9 +126,17 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [genOpen, setGenOpen] = useState(false);
   const [ttsOpen, setTtsOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
-  // 批 296 SOURCE_FACT: 时长分段条 (60-360s，当前 120s)
+  // 批 367 SOURCE_FACT: 时长连续滑杆弹出层 (0-360s 自由值)
   const [durOpen, setDurOpen] = useState(false);
-  const [duration, setDuration] = useState(120);
+  const [duration, setDurationState] = useState(persistedMusicDuration);
+  const [durDraft, setDurDraft] = useState<string | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef(false);
+  const setDuration = (s: number) => {
+    const clamped = Math.min(360, Math.max(0, Math.round(s)));
+    persistedMusicDuration = clamped;
+    setDurationState(clamped);
+  };
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
@@ -248,43 +271,117 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                       </div>
                     ) : null}
                   </div>
-                  {/* 批 296 SOURCE_FACT: 时长水平分段条 (60-360s) */}
+                  {/* 批 367 SOURCE_FACT: 时长触发钮 (胶囊 bg，打开时 chevron 翻上) */}
                   <div className="relative">
                     <button
                       type="button"
                       aria-label={`选择时长: ${duration}s`}
                       onClick={() => setDurOpen((v) => !v)}
-                      className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                      className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
+                        durOpen ? "bg-white/[0.08]" : ""
+                      }`}
                     >
                       {duration}s
-                      <ChevronDown size={12} className="text-white/60" />
+                      <ChevronDown
+                        size={12}
+                        className={`text-white/60 transition-transform ${
+                          durOpen ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
                     {durOpen ? (
                       <div
-                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] flex h-11 w-[368px] items-center rounded-xl px-3"
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[368px] rounded-xl p-3"
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="音乐时长"
                       >
-                        {[60, 120, 180, 240, 300, 360].map((s) => (
-                          <button
-                            key={s}
-                            type="button"
-                            role="option"
-                            aria-selected={duration === s}
-                            onClick={() => {
-                              setDuration(s);
-                              setDurOpen(false);
-                            }}
-                            className={`flex h-9 flex-1 items-center justify-center rounded-lg text-[12px] ${
-                              duration === s
-                                ? "bg-white/[0.14] text-white"
-                                : "text-white/70 hover:bg-white/[0.06]"
-                            }`}
-                          >
-                            {s}
-                          </button>
-                        ))}
+                        <p className="pb-2 text-[12px] text-white/45">
+                          选择音乐生成时长
+                        </p>
+                        <div className="flex items-center gap-3">
+                          <div className="min-w-0 flex-1">
+                            <div
+                              ref={trackRef}
+                              className="relative h-4 cursor-pointer"
+                              style={{ touchAction: "none" }}
+                              onPointerDown={(e) => {
+                                draggingRef.current = true;
+                                e.currentTarget.setPointerCapture(e.pointerId);
+                                const r =
+                                  e.currentTarget.getBoundingClientRect();
+                                setDuration(
+                                  ((e.clientX - r.left) / r.width) * 360,
+                                );
+                              }}
+                              onPointerMove={(e) => {
+                                if (!draggingRef.current) return;
+                                const r =
+                                  e.currentTarget.getBoundingClientRect();
+                                setDuration(
+                                  ((e.clientX - r.left) / r.width) * 360,
+                                );
+                              }}
+                              onPointerUp={(e) => {
+                                draggingRef.current = false;
+                                e.currentTarget.releasePointerCapture(
+                                  e.pointerId,
+                                );
+                              }}
+                            >
+                              <span className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/[0.14]" />
+                              {DURATION_TICKS.map((s) => (
+                                <span
+                                  key={s}
+                                  className="absolute top-1/2 h-1 w-px -translate-y-1/2 bg-white/25"
+                                  style={{ left: `${(s / 360) * 100}%` }}
+                                />
+                              ))}
+                              <span
+                                className="absolute left-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/40"
+                                style={{ width: `${(duration / 360) * 100}%` }}
+                              />
+                              <span
+                                role="slider"
+                                aria-valuenow={duration}
+                                className="absolute top-1/2 h-4 w-1 -translate-x-1/2 -translate-y-1/2 rounded-[11px] border border-white/40 bg-white"
+                                style={{ left: `${(duration / 360) * 100}%` }}
+                              />
+                            </div>
+                            <div className="flex justify-between pt-1 text-[10px] leading-[18px] text-white/35">
+                              {DURATION_TICKS.map((s) => (
+                                <span key={s}>{s}</span>
+                              ))}
+                            </div>
+                          </div>
+                          {/* 批 367 SOURCE_FACT: 数值输入框 (数字 + 灰 s 后缀) */}
+                          <div className="flex h-9 w-[90px] shrink-0 items-center gap-1 rounded-lg bg-white/[0.06] px-2.5">
+                            <input
+                              value={durDraft ?? String(duration)}
+                              inputMode="numeric"
+                              aria-label="音乐时长秒数"
+                              onChange={(e) =>
+                                setDurDraft(
+                                  e.target.value.replace(/[^\d]/g, ""),
+                                )
+                              }
+                              onBlur={() => {
+                                if (durDraft !== null) {
+                                  const n = parseInt(durDraft, 10);
+                                  if (!Number.isNaN(n)) setDuration(n);
+                                  setDurDraft(null);
+                                }
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") e.currentTarget.blur();
+                              }}
+                              className="min-w-0 flex-1 bg-transparent text-[15px] text-white outline-none"
+                            />
+                            <span className="shrink-0 text-[12px] text-white/45">
+                              s
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     ) : null}
                   </div>
@@ -430,7 +527,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
 
             <div className="flex h-8 shrink-0 items-center gap-2">
               {/* 批 293/297 SOURCE_FACT: 价格随模式变动
-                  (音频生成 1.1 / 音乐生成 6.6，70px 裁切容器) */}
+                  (音频生成 1.1 / 音乐生成 6.6，70px 裁切容器)。
+                  批 367e: 价格与时长无关 (53s-341s 恒 6.6) */}
               <span className="flex h-8 w-[70px] items-center overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
                 <span className="shrink-0 text-white/[0.6]">Current price</span>
                 <span className="shrink-0">

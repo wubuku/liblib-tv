@@ -1141,6 +1141,27 @@
   右键菜单 192×324 八行、音频面板 680×144 (音乐生成态 SeedMusic 1.0
   Preview / 120s / Current price 6.6)。与批 364 一致，无需改动
   (366-evolution-scan.json)。
+- Batch 367 (时长滑杆深挖 + 落地): 推翻批 296「水平分段条」判定——
+  音乐生成态时长控件实为**连续自由滑杆弹出层**：标题「选择音乐生成
+  时长」+ 0-360s 连续滑轨 (thumb 4×16 白色竖条 role=slider、轨上 60s
+  间隔刻度点、轨下 0..360 刻度行 10px rgba(255,255,255,0.35)、首标签
+  左对齐轨起点末标签右对齐轨终点，轨宽 ~248px) + 右侧数值输入框
+  (白色数字 + 灰 s 后缀, 隐藏原生 input)。点轨取任意秒数 (53/108/165/
+  224/286/341 实测，367e-price-map.json)，弹出层跨点选保持打开，触发
+  标签实时跟随；触发钮呈胶囊 bg、打开时 chevron 翻上 (367-duration-
+  slider.png / 367-popover-zoom.png)。**价格与时长无关** (53s-341s 恒
+  6.6)——关闭批 298/299/350 三度未遂的「时长→价格映射」
+  BLOCKED_BY_INTERACTION。批 367f: 时长跨节点持久 (新插入节点继承
+  上次设定 341s，非固定 120s；批 297 的 genKind 用户级持久化同族)。
+  复刻: JimengAudioGenPanel 分段条 → 连续滑杆 (点轨/拖拽/数值输入
+  三通道，clamp 0-360)，模块级 persistedMusicDuration 落地持久语义，
+  触发钮胶囊 + chevron 旋转。SeedMusic 下拉复测单选项 392×72 与批 295
+  复刻一致，零改动。疑点留档: 价格位截图视觉「✦ 6」与 textContent
+  「Current price 6.6」并存——参数行实为横向滚动容器
+  (data-slot=generation-parameter-overflow, overflow-x-auto + mask
+  渐隐)，判读为滚动裁切所致，留待后续采样。回归: batch 105 扩展滑杆
+  断言，音频相关 11 verifier PASS；npm run check 通过。现场已还原
+  (1-7 次撤销，367e 崩溃后补恢复核对 BASE_IDS)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

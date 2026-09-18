@@ -87,6 +87,66 @@ def main() -> None:
             if st2["hasSeedTts"] or st2["hasVoice"]:
                 failures.append("audio-mode selectors visible in music mode")
 
+        # Batch 367: duration control is a continuous slider popover
+        # (SOURCE_FACT 367e/367f: title 选择音乐生成时长, free 0-360s track,
+        # 7 tick labels 0..360, numeric input; price stays 6.6 regardless)
+        page.locator('button[aria-label="选择时长: 120s"]').click()
+        page.wait_for_timeout(300)
+        slider = page.evaluate(
+            """() => {
+                const pop = [...document.querySelectorAll('div[role="listbox"][aria-label="音乐时长"]')][0];
+                if (!pop) return null;
+                const th = pop.querySelector('[role="slider"]');
+                const labels = [...pop.querySelectorAll('div.flex span')].filter(
+                    s => s.parentElement.className.includes('justify-between'));
+                const input = pop.querySelector('input');
+                return {
+                    title: (pop.querySelector('p') || {}).textContent || null,
+                    valnow: th ? th.getAttribute('aria-valuenow') : null,
+                    ticks: labels.map(s => s.textContent.trim()),
+                    inputValue: input ? input.value : null,
+                };
+            }"""
+        )
+        if not slider:
+            failures.append("duration slider popover missing")
+        else:
+            if slider["title"] != "选择音乐生成时长":
+                failures.append(f"slider title: {slider['title']!r}")
+            if slider["valnow"] != "120":
+                failures.append(f"slider aria-valuenow: {slider['valnow']!r} != 120")
+            if slider["ticks"] != ["0", "60", "120", "180", "240", "300", "360"]:
+                failures.append(f"slider ticks: {slider['ticks']}")
+            if slider["inputValue"] != "120":
+                failures.append(f"slider input value: {slider['inputValue']!r}")
+
+        # click mid-track -> free value ~180 (±40), trigger label follows, price fixed 6.6
+        box = page.locator('div[role="listbox"][aria-label="音乐时长"] .relative.h-4').bounding_box()
+        if box:
+            page.mouse.click(box["x"] + box["width"] * 0.5, box["y"] + box["height"] / 2)
+            page.wait_for_timeout(300)
+            after = page.evaluate(
+                """() => {
+                    const th = document.querySelector('div[role="listbox"][aria-label="音乐时长"] [role="slider"]');
+                    const trigger = document.querySelector('button[aria-label^="选择时长:"]');
+                    const f = [...document.querySelectorAll('form')].find(f =>
+                        f.querySelector('textarea[aria-label="音频生成提示词"]'));
+                    const m = f ? (f.textContent || '').match(/Current price\\s*([\\d.]+)/) : null;
+                    return {valnow: th ? th.getAttribute('aria-valuenow') : null,
+                            trigger: trigger ? trigger.getAttribute('aria-label') : null,
+                            price: m ? m[1] : null};
+                }"""
+            )
+            v = int(after["valnow"])
+            if abs(v - 180) > 40:
+                failures.append(f"mid-track click valuenow {v} not ~180")
+            if after["trigger"] != f"选择时长: {v}s":
+                failures.append(f"trigger label not following: {after['trigger']!r}")
+            if after["price"] != "6.6":
+                failures.append(f"price changed with duration: {after['price']!r}")
+        else:
+            failures.append("slider track box not found")
+
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch105-music-mode.png")
         )

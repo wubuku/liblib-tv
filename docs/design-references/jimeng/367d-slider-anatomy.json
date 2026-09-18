@@ -1,0 +1,552 @@
+{
+ "anatomy": [
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "inline-flex shrink-0 items-center text-current",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    742,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "svg",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    742,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "path",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    4,
+    2
+   ],
+   "xy": [
+    745,
+    770
+   ],
+   "text": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-nowrap motion-safe:transition-col",
+   "size": [
+    170,
+    32
+   ],
+   "xy": [
+    762,
+    755
+   ],
+   "text": "SeedMusic 1.0 Preview"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "overflow-hidden truncate",
+   "size": [
+    138,
+    20
+   ],
+   "xy": [
+    772,
+    761
+   ],
+   "text": "SeedMusic 1.0 Preview"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "inline-flex shrink-0 items-center text-current",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    914,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "svg",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    914,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "path",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    4,
+    2
+   ],
+   "xy": [
+    916,
+    770
+   ],
+   "text": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-nowrap motion-safe:transition-col",
+   "size": [
+    57,
+    32
+   ],
+   "xy": [
+    934,
+    755
+   ],
+   "text": "120s"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "overflow-hidden truncate",
+   "size": [
+    25,
+    20
+   ],
+   "xy": [
+    944,
+    761
+   ],
+   "text": "120s"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "inline-flex shrink-0 items-center text-current",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    973,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "svg",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    10,
+    10
+   ],
+   "xy": [
+    973,
+    766
+   ],
+   "text": ""
+  },
+  {
+   "tag": "path",
+   "role": "",
+   "cls": "[object SVGAnimatedString]",
+   "size": [
+    4,
+    2
+   ],
+   "xy": [
+    976,
+    770
+   ],
+   "text": ""
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "flex w-full items-center gap-dreamina-tooltip-inline",
+   "size": [
+    368,
+    44
+   ],
+   "xy": [
+    778,
+    687
+   ],
+   "text": "060120180240300360s"
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "flex flex-1 flex-col gap-dreamina-tooltip-block",
+   "size": [
+    250,
+    44
+   ],
+   "xy": [
+    778,
+    687
+   ],
+   "text": "060120180240300360"
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "relative h-dreamina-tooltip-inline w-full",
+   "size": [
+    250,
+    16
+   ],
+   "xy": [
+    778,
+    687
+   ],
+   "text": ""
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden bg-dreamin",
+   "size": [
+    250,
+    12
+   ],
+   "xy": [
+    778,
+    689
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "flex w-full touch-none select-none items-center cursor-pointer transition-opacity data-[di",
+   "size": [
+    229,
+    16
+   ],
+   "xy": [
+    799,
+    687
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-3 bg-tra",
+   "size": [
+    229,
+    12
+   ],
+   "xy": [
+    799,
+    689
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute h-full bg-white/40",
+   "size": [
+    63,
+    12
+   ],
+   "xy": [
+    799,
+    689
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    4,
+    16
+   ],
+   "xy": [
+    860,
+    687
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "slider",
+   "cls": "group/thumb relative block h-4 w-1 cursor-pointer rounded-[11px] border border-white/40 bg",
+   "size": [
+    4,
+    16
+   ],
+   "xy": [
+    860,
+    687
+   ],
+   "text": ""
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "absolute left-0 top-1/2 -translate-y-1/2 cursor-not-allowed bg-dreamina-text-disabled h-ca",
+   "size": [
+    21,
+    12
+   ],
+   "xy": [
+    778,
+    689
+   ],
+   "text": ""
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "pointer-events-none absolute inset-0",
+   "size": [
+    250,
+    16
+   ],
+   "xy": [
+    778,
+    687
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute inset-y-[37.5%] left-[var(--music-duration-mark-position)] -translate-x-1/2 borde",
+   "size": [
+    1,
+    4
+   ],
+   "xy": [
+    819,
+    693
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute inset-y-[37.5%] left-[var(--music-duration-mark-position)] -translate-x-1/2 borde",
+   "size": [
+    1,
+    4
+   ],
+   "xy": [
+    861,
+    693
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute inset-y-[37.5%] left-[var(--music-duration-mark-position)] -translate-x-1/2 borde",
+   "size": [
+    1,
+    4
+   ],
+   "xy": [
+    903,
+    693
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute inset-y-[37.5%] left-[var(--music-duration-mark-position)] -translate-x-1/2 borde",
+   "size": [
+    1,
+    4
+   ],
+   "xy": [
+    944,
+    693
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "absolute inset-y-[37.5%] left-[var(--music-duration-mark-position)] -translate-x-1/2 borde",
+   "size": [
+    1,
+    4
+   ],
+   "xy": [
+    986,
+    693
+   ],
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    7,
+    18
+   ],
+   "xy": [
+    778,
+    713
+   ],
+   "text": "0"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    13,
+    18
+   ],
+   "xy": [
+    809,
+    713
+   ],
+   "text": "60"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    16,
+    18
+   ],
+   "xy": [
+    845,
+    713
+   ],
+   "text": "120"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    17,
+    18
+   ],
+   "xy": [
+    885,
+    713
+   ],
+   "text": "180"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    19,
+    18
+   ],
+   "xy": [
+    925,
+    713
+   ],
+   "text": "240"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    19,
+    18
+   ],
+   "xy": [
+    967,
+    713
+   ],
+   "text": "300"
+  },
+  {
+   "tag": "SPAN",
+   "role": "",
+   "cls": "",
+   "size": [
+    18,
+    18
+   ],
+   "xy": [
+    1010,
+    713
+   ],
+   "text": "360"
+  },
+  {
+   "tag": "DIV",
+   "role": "",
+   "cls": "relative ml-dreamina-tooltip-block basis-1/4 shrink-0",
+   "size": [
+    92,
+    36
+   ],
+   "xy": [
+    1054,
+    691
+   ],
+   "text": "s"
+  },
+  {
+   "tag": "INPUT",
+   "role": "",
+   "cls": "h-8 w-full border-solid border-octo-border px-2 transition-colors disabled:cursor-not-allo",
+   "size": [
+    92,
+    36
+   ],
+   "xy": [
+    1054,
+    691
+   ],
+   "text": ""
+  }
+ ],
+ "sliders": [
+  {
+   "tag": "SPAN",
+   "role": "slider",
+   "cls": "group/thumb relative block h-4 w-1 cursor-pointer rounded-[11px] border border-white/40 bg",
+   "size": [
+    4,
+    16
+   ],
+   "xy": [
+    860,
+    687
+   ],
+   "val": "120"
+  }
+ ]
+}

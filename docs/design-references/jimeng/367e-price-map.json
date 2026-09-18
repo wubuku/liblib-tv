@@ -1,0 +1,63 @@
+{
+ "track": {
+  "note": "thumb 4x16 at (860,687) aria-valuenow=120; linear fit x~778..1028 -> 0..360s (~1.44 s/px); free integer values confirmed"
+ },
+ "results": [
+  {
+   "clicked_tick_s": 0,
+   "after": {
+    "thumb": "120",
+    "price": "6.6",
+    "label": "120s"
+   }
+  },
+  {
+   "clicked_tick_s": 60,
+   "after": {
+    "thumb": "53",
+    "price": "6.6",
+    "label": "53s"
+   }
+  },
+  {
+   "clicked_tick_s": 120,
+   "after": {
+    "thumb": "108",
+    "price": "6.6",
+    "label": "108s"
+   }
+  },
+  {
+   "clicked_tick_s": 180,
+   "after": {
+    "thumb": "165",
+    "price": "6.6",
+    "label": "165s"
+   }
+  },
+  {
+   "clicked_tick_s": 240,
+   "after": {
+    "thumb": "224",
+    "price": "6.6",
+    "label": "224s"
+   }
+  },
+  {
+   "clicked_tick_s": 300,
+   "after": {
+    "thumb": "286",
+    "price": "6.6",
+    "label": "286s"
+   }
+  },
+  {
+   "clicked_tick_s": 360,
+   "after": {
+    "thumb": "341",
+    "price": "6.6",
+    "label": "341s"
+   }
+  }
+ ]
+}
