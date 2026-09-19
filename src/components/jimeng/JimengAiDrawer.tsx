@@ -40,7 +40,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
 
   return (
     <aside
-      className="absolute inset-y-3 right-3 z-40 flex w-[410px] flex-col rounded-2xl border border-white/[0.06] bg-[#1E1E1E]"
+      className="absolute inset-y-3 right-3 z-40 flex w-[398px] flex-col rounded-2xl border border-white/[0.06] bg-[#1E1E1E]"
       role="dialog"
       aria-label="AI 对话"
     >
@@ -70,12 +70,12 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       {/* 居中空态 */}
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6">
         <p className="text-[24px] text-white/85">探索更多专业创作模式</p>
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
           {SKILL_CHIPS.map((chip) => (
             <button
               key={chip}
               type="button"
-              className="rounded-full bg-white/[0.06] px-3 py-1.5 text-[13px] text-white/80 hover:bg-white/[0.12]"
+              className="flex h-9 items-center rounded-full bg-white/[0.06] px-4 text-[13px] text-white/80 hover:bg-white/[0.12]"
             >
               {chip}
             </button>

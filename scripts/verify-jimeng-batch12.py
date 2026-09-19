@@ -55,7 +55,8 @@ def main() -> None:
             failures.append("AI drawer did not open")
         else:
             x, y, w, h = drawer["rect"]
-            if abs(w - 410) > 6 or h < 700:
+            # Batch 391 SOURCE_FACT: panel width 398 (batch 381 measurement)
+            if abs(w - 398) > 6 or h < 700:
                 failures.append(f"drawer size: {w}x{h}")
             if not drawer["header"] or not drawer["empty"]:
                 failures.append("drawer header/empty-state missing")
