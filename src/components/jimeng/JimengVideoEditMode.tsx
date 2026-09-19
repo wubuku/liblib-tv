@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   ArrowUpRight,
   AtSign,
@@ -45,6 +46,8 @@ const EDIT_TOOLS: { icon: LucideIcon; label: string }[] = [
 ];
 
 export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
+  // 批 375 SOURCE_FACT: 点击工具钮进入 active 态 (bg white/[0.08])，无子菜单
+  const [activeTool, setActiveTool] = useState<string | null>(null);
   return (
     <div className="absolute top-full left-1/2 z-20 mt-3 flex -translate-x-1/2 flex-col items-center gap-3">
       {/* 编辑工具药丸 (批 373: 双分隔线——橡皮擦 后、标记 后) */}
@@ -54,7 +57,12 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
             <button
               type="button"
               aria-label={label}
-              className="flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/10"
+              onClick={() =>
+                setActiveTool((cur) => (cur === label ? null : label))
+              }
+              className={`flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/10 ${
+                activeTool === label ? "bg-white/[0.08]" : ""
+              }`}
             >
               <Icon size={16} />
             </button>
