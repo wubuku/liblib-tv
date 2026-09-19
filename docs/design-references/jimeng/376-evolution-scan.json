@@ -1,0 +1,79 @@
+{
+ "A_toolbar": {
+  "size": [
+   1000,
+   40
+  ],
+  "text": "局部重拍智能超清视频编辑截取帧补帧视频修剪提示词反推",
+  "vipCandidates": [
+   {
+    "tag": "SPAN",
+    "size": [
+     16,
+     16
+    ],
+    "fill": null,
+    "cls": "flex shrink-0 items-center justify-cente"
+   },
+   {
+    "tag": "svg",
+    "size": [
+     16,
+     16
+    ],
+    "fill": "none",
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "size": [
+     14,
+     14
+    ],
+    "fill": null,
+    "cls": "inline-flex shrink-0 items-center justif"
+   },
+   {
+    "tag": "svg",
+    "size": [
+     14,
+     14
+    ],
+    "fill": "none",
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "size": [
+     16,
+     16
+    ],
+    "fill": null,
+    "cls": "flex shrink-0 items-center justify-cente"
+   },
+   {
+    "tag": "svg",
+    "size": [
+     16,
+     16
+    ],
+    "fill": "rgb(255, 255, 255)",
+    "cls": "size-[18px] fill-current"
+   }
+  ]
+ },
+ "B_menu": {
+  "size": [
+   192,
+   324
+  ],
+  "text": "复制⌘ C复制副本⌘ D粘贴⌘ V保存到主体库下载重做⌘ ⇧ Z无需重做操作撤销⌘ Z删除⌫"
+ },
+ "C_audio": {
+  "size": [
+   680,
+   196
+  ],
+  "text": "请输入你想生成的说话内容音频生成Seed TTS直爽女大Current price 1.1生成请输入提示词"
+ }
+}
