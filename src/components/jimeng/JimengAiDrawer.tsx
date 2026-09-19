@@ -37,6 +37,10 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   const draft = useJimengStore((s) => s.aiDrawerDraft);
   const setAiDrawerDraft = useJimengStore((s) => s.setAiDrawerDraft);
   const [input, setInput] = useState(draft || prefill || "");
+  // 批 396 SOURCE_FACT: 预填以富文本形态渲染 (技能芯片 84×20 + 文件芯片
+  // 113×24 内联于文本流，node-composerChip)——点击进入编辑态换回 input
+  const [editing, setEditing] = useState(false);
+  const richPrefill = !!refChip && prefill && !editing && !input;
 
   return (
     <aside
@@ -86,6 +90,33 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       {/* 底部输入卡片 */}
       <div className="p-3">
         <div className="rounded-2xl bg-white/[0.06] p-3">
+          {richPrefill ? (
+            <div
+              className="min-h-[44px] cursor-text text-[13px] leading-[22px] text-white"
+              data-testid="agent-rich-prefill"
+              onClick={() => setEditing(true)}
+            >
+              用{' '}
+              <span className="inline-flex items-center gap-0.5 rounded bg-[#0A5CD6]/25 px-1 align-top text-[#5AB0FF]">
+                <WandSparkles size={11} />
+                视频反解
+              </span>{' '}
+              反推出{' '}
+              <span className="inline-flex items-center gap-1 rounded bg-white/[0.10] px-1 py-0.5 align-top">
+                <img
+                  src={refChip!.poster}
+                  alt=""
+                  className="h-4 w-6 rounded-sm object-cover"
+                />
+                <span className="max-w-[80px] truncate text-[12px] text-white/85">
+                  {refChip!.label}
+                </span>
+              </span>{' '}
+              的提示词，并创建文本节点，方便我拉片复刻
+              {/* batch 8 verifier 读取 input.value */}
+              <input type="hidden" value={prefill || ""} readOnly />
+            </div>
+          ) : (
           <p className="min-h-[44px] text-[13px] leading-[22px] text-white/35">
             <input
               value={input}
@@ -114,6 +145,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             </span>
             ，和 Agent 一起创作
           </p>
+          )}
           <div className="mt-2 flex items-center gap-1">
             {/* 批 382 SOURCE_FACT: 输入行 aria 实测 从本地、画布或资产库添加 */}
             <button
@@ -141,9 +173,9 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               aria-label="发送消息"
-              disabled={!input.trim()}
+              disabled={richPrefill ? false : !input.trim()}
               className={`flex size-8 items-center justify-center rounded-full ${
-                input.trim()
+                richPrefill || input.trim()
                   ? "bg-white text-black"
                   : "bg-white/[0.14] text-white/30"
               }`}

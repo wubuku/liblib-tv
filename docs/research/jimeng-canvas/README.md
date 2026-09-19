@@ -1377,6 +1377,14 @@
 - Batch 392 (Agent 输入行尺寸精修): 按批 382 实测 (全行 32×32)
   将 从本地、画布或资产库添加 / 引用参考 两钮 size-7→size-8；
   发送消息 已是 32。回归: 12 PASS；npm run check 通过。
+- Batch 396 (Agent 输入行富文本预填落地): 源站输入区解剖 (contenteditable
+  357×84)——预填文案为富文本流: 内联技能芯片「视频反解」84×20 与
+  文件芯片「sb_51…tf5q2」113×24 (node-composerChip 类，透明底由内层
+  着色) 穿插纯文本。复刻: JimengAiDrawer 新增富显示形态 (refChip +
+  prefill 且未编辑时渲染 内联蓝调技能芯片 + 缩略图文件芯片，点击
+  进入编辑态换回 input)；隐藏 input 保留 prefill 值供 verifier/无障碍；
+  发送钮富显示态视为有内容激活。回归: 8/12 PASS；npm run check
+  通过。
 - Batch 394 (新建会话钮交互采样): 点击 新建会话 无可视变化 (会话为
   空时无对话可重置)，输入草稿保留；另证批 381 的预填文案在源站
   跨会话持久存留于输入区。clone 新建会话钮维持 inert (无会话列表
