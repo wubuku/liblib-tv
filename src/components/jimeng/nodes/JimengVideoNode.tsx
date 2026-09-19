@@ -233,6 +233,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         selected={selected === true}
         playing={playing}
         task={task}
+        minimal={editMode}
       />
 
       {/* 连接热区 (隐形) + "+" 圆钮 (hover/选中显示；点击弹「添加节点」菜单) */}

@@ -38,7 +38,7 @@ def main() -> None:
         state = page.evaluate(
             """() => {
                 const bar = [...document.querySelectorAll('form')]
-                    .find(f => f.textContent.includes('描述你如何调整视频'));
+                    .find(f => f.querySelector('input[placeholder="描述你如何调整视频"]'));
                 if (!bar) return {open: false};
                 const tools = [...document.querySelectorAll('button[aria-label]')]
                     .map(b => b.getAttribute('aria-label'));
@@ -47,12 +47,14 @@ def main() -> None:
                 return {
                     open: true,
                     tools: want.filter(w => tools.includes(w)),
-                    placeholder: bar.textContent.includes('描述你如何调整视频'),
+                    placeholder: !!bar.querySelector('input[placeholder="描述你如何调整视频"]'),
                     // Batch 373 SOURCE_FACT: 价格签为「✦ 144 分/次」(旧 144/312 已推翻)
                     credits: bar.textContent.includes('144') && bar.textContent.includes('分/次'),
                     uploadBtn: !!bar.querySelector('button[aria-label="上传参考内容"]'),
                     citeBtn: !!bar.querySelector('button[aria-label="引用参考"]'),
-                    sendDisabled: send ? send.disabled : null,
+                    // Batch 377 SOURCE_FACT: 空态发送钮不禁用，仅灰底 white/16
+                    // Tailwind 4 计算色可能为 oklab 格式，容错匹配 0.16 alpha
+                    sendGrey: send ? (/0\.16\)/.test(getComputedStyle(send).backgroundColor)) : null,
                 };
             }"""
         )
@@ -67,8 +69,8 @@ def main() -> None:
                 failures.append("credits 144 分/次 missing")
             if not state["uploadBtn"] or not state["citeBtn"]:
                 failures.append("upload/cite buttons missing")
-            if state["sendDisabled"] is not True:
-                failures.append("send button should be disabled")
+            if state["sendGrey"] is not True:
+                failures.append("send button should be grey with empty prompt")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch6-video-edit-mode-1680.png")
         )
@@ -77,8 +79,7 @@ def main() -> None:
         page.mouse.click(300, 700)
         page.wait_for_timeout(600)
         exited = page.evaluate(
-            "() => ![...document.querySelectorAll('form')]"
-            ".some(f => f.textContent.includes('描述你如何调整视频'))"
+            "() => !document.querySelector('form input[placeholder=描述你如何调整视频]')"
         )
         if not exited:
             failures.append("edit mode did not exit on pane click")

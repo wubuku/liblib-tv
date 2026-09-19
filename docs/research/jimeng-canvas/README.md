@@ -1273,6 +1273,17 @@
   680×196 为音频生成态——模式自适应契约 ✓ (364/366 采到 144 为
   音乐生成态，差异来自 genKind 状态而非漂移，同批 370 判读)。
   无需改动。现场已还原 (1 次撤销)。
+- Batch 377 (编辑提示条输入态 + 卡面简化落地): 采样编辑模式非空
+  输入态——占位消失、发送钮 aria 恒为「生成」，空态 bg white/16
+  且 disabled:false (灰但可点) → 有文案 bg rgb(250,250,250) 激活
+  (377-edit-prompt-typed.png，与批 370 音频面板同族)；卡面控件
+  采样确认编辑态仅剩 +钮与 播放/暂停 (无 Mute/全屏，印证批 373)。
+  复刻: JimengVideoEditMode 占位 span → 真实 input + 发送钮双态
+  (空灰 #fafafa 激活，submit 有文案时退出编辑态)；JimengVideoMediaCard
+  新增 minimal prop (editMode 时隐藏 静音/全屏)。batch 6 verifier
+  最小跟进 (占位定位改 input[placeholder]、发送态断言按新证据、
+  Tailwind 4 oklab 计算色容错匹配)。回归: 6/2/32/37/51/57/105
+  PASS；npm run check 通过。现场已还原 (0 次撤销)。
 - Batch 98 (收尾): 订阅管理页与促销弹窗已关闭 (再想想/页面×)，
   画布基线保持 2 节点、缩放 100%；视口平移残留为视图状态非内容
   变化，不再扰动。截取帧下拉复探仍未展开 (维持 batch 84 判定)。

@@ -48,6 +48,9 @@ const EDIT_TOOLS: { icon: LucideIcon; label: string }[] = [
 export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
   // 批 375 SOURCE_FACT: 点击工具钮进入 active 态 (bg white/[0.08])，无子菜单
   const [activeTool, setActiveTool] = useState<string | null>(null);
+  // 批 377 SOURCE_FACT: 提示条可输入；发送钮空态白/16、有文案 #fafafa
+  const [prompt, setPrompt] = useState("");
+  const canSend = prompt.trim().length > 0;
   return (
     <div className="absolute top-full left-1/2 z-20 mt-3 flex -translate-x-1/2 flex-col items-center gap-3">
       {/* 编辑工具药丸 (批 373: 双分隔线——橡皮擦 后、标记 后) */}
@@ -88,9 +91,12 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         >
           <Paperclip size={15} />
         </button>
-        <span className="flex-1 text-[13px] text-white/35">
-          描述你如何调整视频
-        </span>
+        <input
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="描述你如何调整视频"
+          className="min-w-0 flex-1 bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
+        />
         <button
           type="button"
           aria-label="引用参考"
@@ -113,8 +119,11 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         <button
           type="submit"
           aria-label="生成"
-          disabled
-          className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/[0.16] text-white/25"
+          className={`flex size-9 shrink-0 items-center justify-center rounded-full ${
+            canSend
+              ? "bg-[#fafafa] text-black hover:bg-white/90"
+              : "bg-white/[0.16] text-white/25"
+          }`}
         >
           <ArrowUpRight size={15} className="-rotate-45" />
         </button>

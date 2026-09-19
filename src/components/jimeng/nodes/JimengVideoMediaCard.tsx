@@ -27,12 +27,15 @@ export function JimengVideoMediaCard({
   selected,
   playing,
   task,
+  minimal = false,
 }: {
   id: string;
   d: JimengVideoNodeData;
   selected: boolean;
   playing: boolean;
   task?: JimengTask;
+  /** 批 377 SOURCE_FACT: 编辑态卡面隐藏 静音/全屏 钮 (377 采样 cardBtns) */
+  minimal?: boolean;
 }) {
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const restartPlay = useJimengStore((s) => s.restartPlay);
@@ -109,6 +112,8 @@ export function JimengVideoMediaCard({
               {formatTime(d.currentTime ?? 0)} / {formatTime(d.duration ?? 0)}
             </span>
             <span className="flex-1" />
+            {!minimal ? (
+            <>
             <button
               type="button"
               aria-label={d.muted ? "取消静音" : "静音"}
@@ -133,6 +138,8 @@ export function JimengVideoMediaCard({
             >
               <Maximize2 size={13} />
             </button>
+            </>
+            ) : null}
           </div>
           {/* 底边进度条 2px；点击 seek (Batch 32)、按住拖拽 scrub (Batch 37)。
               nodrag: 阻止 xyflow 节点拖拽抢占指针 (否则 scrub 中途失效) */}
