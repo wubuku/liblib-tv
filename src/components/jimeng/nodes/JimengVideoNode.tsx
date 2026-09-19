@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Plus } from "lucide-react";
-import { Handle, Position } from "@xyflow/react";
+import { Handle, Position, useReactFlow } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
@@ -104,6 +104,44 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [insertMenu]);
 
+  // 批 373 SOURCE_FACT: 编辑态 Escape 退出 (无历史入栈)；
+  // 进入时画布自动 zoom 176% 聚焦节点，退出还原视口 (373b)
+  const rf = useReactFlow();
+  const prevViewportRef = useRef<{
+    x: number;
+    y: number;
+    zoom: number;
+  } | null>(null);
+  useEffect(() => {
+    if (editMode && prevViewportRef.current === null) {
+      const bounds = document
+        .querySelector(".react-flow")
+        ?.getBoundingClientRect();
+      const node = rf.getNodes().find((n) => n.id === id);
+      if (bounds && node) {
+        prevViewportRef.current = rf.getViewport();
+        const z = 1.76;
+        rf.setViewport({
+          x: bounds.width / 2 - (node.position.x + d.width / 2) * z,
+          y: bounds.height / 2 - (node.position.y + d.height / 2) * z,
+          zoom: z,
+        });
+      }
+    }
+    if (!editMode && prevViewportRef.current) {
+      rf.setViewport(prevViewportRef.current);
+      prevViewportRef.current = null;
+    }
+  }, [editMode, id, d.width, d.height, rf]);
+  useEffect(() => {
+    if (!editMode) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") exitEdit();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [editMode, exitEdit]);
+
   return (
     <div
       className="group relative"
@@ -174,9 +212,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         // 中多选无 gen panel)，与单选工具条同用 soloSelected 门控
         <JimengGenPanel visible={selected === true && soloSelected} nodeId={id} />
       ) : null}
-      {/* 标题行 (卡片上方 32px)；编辑态隐藏。双击 = 「添加节点」菜单。
-          批 372 SOURCE_FACT: 修剪态标题行保持可见 (372-video-trim.png) */}
-      {!repaintMode && !editMode && !inferMode && !pickerMode ? (
+      {/* 标题行 (卡片上方 32px)；编辑/反推/帧选择/修剪态隐藏仅 repaint；
+          批 373 SOURCE_FACT: 编辑态与修剪态标题行均保持可见 */}
+      {!repaintMode && !inferMode && !pickerMode ? (
         <JimengVideoTitleRow
           id={id}
           d={d}

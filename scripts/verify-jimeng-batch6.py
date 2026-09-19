@@ -42,13 +42,16 @@ def main() -> None:
                 if (!bar) return {open: false};
                 const tools = [...document.querySelectorAll('button[aria-label]')]
                     .map(b => b.getAttribute('aria-label'));
-                const want = ['框选','套索','箭头','文字','橡皮擦','定位','撤销','重做'];
+                const want = ['矩形','画笔','箭头','文字','橡皮擦','标记','撤销','重做'];
                 const send = bar.querySelector('button[aria-label="生成"]');
                 return {
                     open: true,
                     tools: want.filter(w => tools.includes(w)),
                     placeholder: bar.textContent.includes('描述你如何调整视频'),
-                    credits: bar.textContent.includes('144') && bar.textContent.includes('312'),
+                    // Batch 373 SOURCE_FACT: 价格签为「✦ 144 分/次」(旧 144/312 已推翻)
+                    credits: bar.textContent.includes('144') && bar.textContent.includes('分/次'),
+                    uploadBtn: !!bar.querySelector('button[aria-label="上传参考内容"]'),
+                    citeBtn: !!bar.querySelector('button[aria-label="引用参考"]'),
                     sendDisabled: send ? send.disabled : null,
                 };
             }"""
@@ -61,7 +64,9 @@ def main() -> None:
             if not state["placeholder"]:
                 failures.append("edit prompt placeholder missing")
             if not state["credits"]:
-                failures.append("credits 144/312 missing")
+                failures.append("credits 144 分/次 missing")
+            if not state["uploadBtn"] or not state["citeBtn"]:
+                failures.append("upload/cite buttons missing")
             if state["sendDisabled"] is not True:
                 failures.append("send button should be disabled")
         page.screenshot(
