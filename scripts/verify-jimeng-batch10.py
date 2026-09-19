@@ -49,12 +49,12 @@ def main() -> None:
             """() => {
                 const form = [...document.querySelectorAll('form,div')]
                     .find(d => d.querySelector('button') &&
-                              d.textContent.includes('00:00 / 00:06') &&
+                              /\\d{2}:\\d{2} \\/ 00:06/.test(d.textContent) &&
                               d.textContent.includes('确认'));
                 if (!form) return null;
                 const confirm = [...form.querySelectorAll('button')]
                     .find(b => b.textContent.trim() === '确认');
-                const brackets = form.querySelectorAll('span.h-7').length;
+                const brackets = form.querySelectorAll('span.h-12').length;
                 return {
                     open: true,
                     confirmWhite: confirm ? getComputedStyle(confirm).backgroundColor === 'rgb(255, 255, 255)' : false,

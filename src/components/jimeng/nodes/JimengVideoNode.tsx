@@ -174,12 +174,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         // 中多选无 gen panel)，与单选工具条同用 soloSelected 门控
         <JimengGenPanel visible={selected === true && soloSelected} nodeId={id} />
       ) : null}
-      {/* 标题行 (卡片上方 32px)；编辑态隐藏。双击 = 「添加节点」菜单 */}
-      {!repaintMode &&
-      !editMode &&
-      !inferMode &&
-      !pickerMode &&
-      !trimMode ? (
+      {/* 标题行 (卡片上方 32px)；编辑态隐藏。双击 = 「添加节点」菜单。
+          批 372 SOURCE_FACT: 修剪态标题行保持可见 (372-video-trim.png) */}
+      {!repaintMode && !editMode && !inferMode && !pickerMode ? (
         <JimengVideoTitleRow
           id={id}
           d={d}
