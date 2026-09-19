@@ -5,10 +5,9 @@ import { useJimengStore } from "@/store/jimengStore";
 import {
   ArrowUp,
   AtSign,
-  History,
-  Maximize2,
   PanelRightClose,
   Plus,
+  SquarePen,
   WandSparkles,
 } from "lucide-react";
 
@@ -49,19 +48,13 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between px-4 py-3">
         <span className="text-[14px] text-white/90">新会话</span>
         <div className="flex items-center gap-1">
+          {/* 批 381 SOURCE_FACT: 头部实为 [新建会话][收起] 两钮 (aria 实测) */}
           <button
             type="button"
-            aria-label="历史会话"
+            aria-label="新建会话"
             className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
           >
-            <History size={15} />
-          </button>
-          <button
-            type="button"
-            aria-label="展开"
-            className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
-          >
-            <Maximize2 size={14} />
+            <SquarePen size={15} />
           </button>
           <button
             type="button"
@@ -76,7 +69,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
 
       {/* 居中空态 */}
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6">
-        <p className="text-[20px] text-white/85">探索更多专业创作模式</p>
+        <p className="text-[24px] text-white/85">探索更多专业创作模式</p>
         <div className="flex flex-wrap items-center justify-center gap-2">
           {SKILL_CHIPS.map((chip) => (
             <button
