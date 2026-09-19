@@ -59,7 +59,11 @@ def main() -> None:
                     f.textContent.includes('上传参考图') && f.textContent.includes('即梦 Seedance'));
                 const node = document.querySelector('.react-flow__node[data-id="video-empty-1"]');
                 const hasTagIcon = !!node?.querySelector('button[aria-label="节点颜色标记"]');
-                const time = node?.textContent.match(/(\\d\\d:\\d\\d) \\/ (\\d\\d:\\d\\d)/);
+                // Batch 373/374 SOURCE_FACT: 卡面时间为无前导零分格式「0:00 / 0:06」；
+                // 直接取卡面 tabular-nums 时间 span（标题「视频 10」会污染全文扫描）
+                const timeEl = node?.querySelector('span.tabular-nums');
+                const tm = timeEl ? timeEl.textContent.match(/(\d{1,2}:\d{2}) \/ (\d{1,2}:\d{2})/) : null;
+                const time = tm;
                 return {
                     toolbar: !!tb,
                     missing,
@@ -84,7 +88,7 @@ def main() -> None:
                 failures.append("gen panel still visible on generated node")
             if not state["nodeSelected"]:
                 failures.append("generated node not selected")
-        if state["time"] != "00:00 / 00:06":
+        if state["time"] != "0:00 / 0:06":
             failures.append(f"time row: {state['time']!r}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch51-generated-toolbar-1680.png")

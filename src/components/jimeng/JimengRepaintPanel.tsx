@@ -56,7 +56,7 @@ export function JimengRepaintPanel({
             className="absolute inset-y-0 left-[2%] w-[52%] border-2 border-white/90 rounded-md"
             aria-label="Selected duration: 4.0s"
           >
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] text-white">
+            <span className="absolute right-2 top-1/2 -translate-y-1/2 rounded bg-black/60 px-1.5 py-0.5 text-[12px] text-white">
               4.0s
             </span>
             <span className="absolute -left-1 top-1/2 h-6 w-1.5 -translate-y-1/2 rounded-full bg-white" />
@@ -110,7 +110,7 @@ export function JimengRepaintPanel({
                 />
                 <path d="M3 1v10M9 1v10" stroke="currentColor" />
               </svg>
-              00:00—00:04 重拍片段
+              00:00–00:04 重拍片段
             </span>
             <input
               value={prompt}
@@ -145,10 +145,7 @@ export function JimengRepaintPanel({
               </button>
             </div>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-[12px] font-medium text-white/60">
-                <VipDiamond size={12} />
-                96<span className="text-white/40">/208</span>
-              </span>
+              {/* 批 374 SOURCE_FACT: 空态提示行无积分签 (旧 ✦96/208 已不在) */}
               <button
                 type="submit"
                 aria-label={canSend ? "生成" : "Prompt is required"}

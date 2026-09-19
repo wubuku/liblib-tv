@@ -49,10 +49,9 @@ def main() -> None:
                 return {
                     panel: true,
                     width: Math.round(r.width),
-                    chip: film.textContent.includes('00:00—00:04 重拍片段'),
+                    chip: film.textContent.includes('00:00–00:04 重拍片段'),
                     seedance25: film.textContent.includes('即梦 Seedance 2.5'),
                     duration6s: film.textContent.includes('6s'),
-                    credits: film.textContent.includes('96') && film.textContent.includes('208'),
                     sendEnabled: send ? !send.disabled : false,
                     sendEmptyAria: send ? send.getAttribute('aria-label') === 'Prompt is required' : false,
                     sendWhite: send ? getComputedStyle(send).backgroundColor === 'rgb(255, 255, 255)' : false,
@@ -74,8 +73,6 @@ def main() -> None:
                 failures.append("Seedance 2.5 selector missing")
             if not state["duration6s"]:
                 failures.append("6s duration missing")
-            if not state["credits"]:
-                failures.append("credits 96/208 missing")
             # batch 214: empty prompt → gray disabled-style (not white)
             if state["sendWhite"]:
                 failures.append("send should be gray with empty prompt")

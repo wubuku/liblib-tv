@@ -44,7 +44,7 @@ def main() -> None:
             """() => {
                 const tb = [...document.querySelectorAll('.react-flow__node-toolbar')]
                     .find(t => t.textContent.includes('确认'));
-                return tb?.textContent.match(/(\\d\\d:\\d\\d) \\/ /)?.[1];
+                return tb?.querySelector('span.tabular-nums')?.textContent.match(/(\\d{1,2}:\\d{2}) \\/ /)?.[1];
             }"""
         )
 
@@ -70,14 +70,14 @@ def main() -> None:
                 const tb = [...document.querySelectorAll('.react-flow__node-toolbar')]
                     .find(t => t.textContent.includes('确认'));
                 const dur = document.querySelector('[data-testid="trim-duration"]')?.textContent;
-                const t = tb?.textContent.match(/(\\d\\d:\\d\\d) \\/ /)?.[1];
+                const t = tb?.querySelector('span.tabular-nums')?.textContent.match(/(\\d{1,2}:\\d{2}) \\/ /)?.[1];
                 const h = tb?.querySelector('[aria-label="修剪起点"]');
                 return {dur, t, hx: h ? Math.round(h.getBoundingClientRect().x) : null};
             }"""
         )
         if d0 == state["dur"]:
             failures.append(f"duration label unchanged: {d0}")
-        if state["t"] == "00:00" or state["t"] is None:
+        if state["t"] == "0:00" or state["t"] is None:
             failures.append(f"start time did not advance: {state['t']}")
         if state["hx"] is None:
             failures.append("start handle missing after drag")
@@ -88,13 +88,13 @@ def main() -> None:
         node_time = page.evaluate(
             """() => {
                 const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
-                const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ (\\d\\d:\\d\\d)/);
+                const m = n.querySelector('span.tabular-nums').textContent.match(/(\\d{1,2}:\\d{2}) \\/ (\\d{1,2}:\\d{2})/);
                 return m ? {cur: m[1], dur: m[2]} : null;
             }"""
         )
         if not node_time:
             failures.append("node time row missing after confirm")
-        elif node_time["cur"] == "00:00":
+        elif node_time["cur"] == "0:00":
             failures.append("node start time should reflect the new start offset")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch44-start-handle-1680.png")

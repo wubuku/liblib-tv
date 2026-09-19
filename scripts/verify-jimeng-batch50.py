@@ -63,14 +63,14 @@ def main() -> None:
                 const n = document.querySelector('.react-flow__node[data-id="video-empty-1"]');
                 return {
                     spinner: !!n.querySelector('.animate-spin'),
-                    time: n.textContent.match(/(\\d\\d:\\d\\d) \\/ 00:06/)?.[1],
+                    time: n.querySelector('span.tabular-nums')?.textContent.match(/(\\d{1,2}:\\d{2}) \\/ 0:06/)?.[1],
                     hasToolbar: !!n.querySelector('.jimeng-node-toolbar'),
                 };
             }"""
         )
         if done["spinner"]:
             failures.append("generating overlay still present after completion")
-        if done["time"] != "00:00":
+        if done["time"] != "0:00":
             failures.append(f"completed time: {done['time']!r} (want 00:00)")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch50-completed-1680.png")

@@ -24,7 +24,7 @@ def read_time(page) -> str:
     return page.evaluate(
         """() => {
             const n = document.querySelector('.react-flow__node-video');
-            const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ /);
+            const m = n.querySelector('span.tabular-nums').textContent.match(/(\\d{1,2}:\\d{2}) \\/ /);
             return m ? m[1] : null;
         }"""
     )
@@ -57,8 +57,8 @@ def main() -> None:
         page.mouse.click(bar["x"], bar["y"])
         page.wait_for_timeout(400)
         t_end = read_time(page)
-        if t_end not in ("00:05", "00:06"):
-            failures.append(f"seek to end: {t_end} (want 00:05/00:06)")
+        if t_end not in ("0:05", "0:06"):
+            failures.append(f"seek to end: {t_end} (want 0:05/0:06)")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch32-seek-end-1680.png")
         )
@@ -74,8 +74,8 @@ def main() -> None:
         page.mouse.click(node_center["x"], node_center["y"])
         page.wait_for_timeout(600)
         t0 = read_time(page)
-        if t0 != "00:00":
-            failures.append(f"replay at end: {t0} (want 00:00)")
+        if t0 != "0:00":
+            failures.append(f"replay at end: {t0} (want 0:00)")
         playing = page.evaluate(
             "() => !!document.querySelector('.react-flow__node-video button[aria-label=\"暂停\"]')"
         )
@@ -99,8 +99,8 @@ def main() -> None:
         page.mouse.click(bar["x"], bar["y"])
         page.wait_for_timeout(400)
         t_mid = read_time(page)
-        if t_mid not in ("00:02", "00:03"):
-            failures.append(f"seek 50%: {t_mid} (want 00:02/00:03)")
+        if t_mid not in ("0:02", "0:03"):
+            failures.append(f"seek 50%: {t_mid} (want 0:02/0:03)")
 
         ctx.close()
 

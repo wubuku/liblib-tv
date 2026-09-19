@@ -61,7 +61,7 @@ def main() -> None:
         node_time = page.evaluate(
             """() => {
                 const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
-                const m = n.textContent.match(/00:00 \\/ (\\d\\d:\\d\\d)/);
+                const m = n.querySelector('span.tabular-nums').textContent.match(/0:00 \\/ (\\d{1,2}:\\d{2})/);
                 return m ? m[1] : null;
             }"""
         )
@@ -87,7 +87,8 @@ def main() -> None:
         restored = page.evaluate(
             """() => {
                 const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
-                return n.textContent.includes("00:06");
+                // Batch 374 SOURCE_FACT: 卡面时间为无前导零分格式「0:06」
+                return n.textContent.includes("0:06");
             }"""
         )
         if not restored:

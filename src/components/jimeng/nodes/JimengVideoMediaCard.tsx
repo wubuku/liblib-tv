@@ -7,9 +7,10 @@ import type { JimengVideoNodeData } from "@/types/jimeng";
 import { useJimengStore } from "@/store/jimengStore";
 
 function formatTime(s: number): string {
+  // 批 373/374 SOURCE_FACT: 卡面播放药丸为无前导零分格式「0:04 / 0:06」
   const m = Math.floor(s / 60);
   const sec = Math.floor(s % 60);
-  return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  return `${m}:${String(sec).padStart(2, "0")}`;
 }
 
 /**

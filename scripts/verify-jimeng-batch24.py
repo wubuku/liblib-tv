@@ -40,14 +40,14 @@ def main() -> None:
             """() => {
                 const n = document.querySelector('.react-flow__node[data-id="video-local-1"]');
                 const pause = n.querySelector('button[aria-label="暂停"], button[aria-label="底部暂停"]');
-                const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ /);
+                const m = n.querySelector('span.tabular-nums').textContent.match(/(\\d{1,2}:\\d{2}) \\/ /);
                 return {pauseShown: !!pause && pause.offsetParent !== null,
                         time: m ? m[1] : null};
             }"""
         )
         if not playing["pauseShown"]:
             failures.append("video not playing after card dblclick")
-        if playing["time"] not in ("00:00", "00:01"):
+        if playing["time"] not in ("0:00", "0:01"):
             failures.append(f"time after dblclick: {playing['time']} (want 00:00/00:01)")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch24-dblclick-replay-1680.png")

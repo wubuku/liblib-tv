@@ -33,7 +33,7 @@ def read_time(page) -> str:
     return page.evaluate(
         """() => {
             const n = document.querySelector('.react-flow__node-video');
-            const m = n.textContent.match(/(\\d\\d:\\d\\d) \\/ /);
+            const m = n.querySelector('span.tabular-nums').textContent.match(/(\\d{1,2}:\\d{2}) \\/ /);
             return m ? m[1] : null;
         }"""
     )
@@ -63,11 +63,11 @@ def main() -> None:
         page.wait_for_timeout(400)
 
         t_end = read_time(page)
-        if t_end != "00:04":
+        if t_end != "0:04":
             failures.append(f"after scrub to 75%: {t_end} (want 00:04)")
         # scrub updated continuously: mid-drag readout should not have stayed
         # at 00:00 (start) — accept 00:01..00:03
-        if t_mid not in ("00:01", "00:02", "00:03"):
+        if t_mid not in ("0:01", "0:02", "0:03"):
             failures.append(f"mid-drag time: {t_mid}")
         page.screenshot(
             path=str(REFERENCE_DIR / "jimeng-clone-batch37-scrub-1680.png")
@@ -78,7 +78,7 @@ def main() -> None:
         page.mouse.click(point["x"], point["y"])
         page.wait_for_timeout(400)
         t_click = read_time(page)
-        if t_click not in ("00:05", "00:06"):
+        if t_click not in ("0:05", "0:06"):
             failures.append(f"click seek regression: {t_click}")
 
         ctx.close()
