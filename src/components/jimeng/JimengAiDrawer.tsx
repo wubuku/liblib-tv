@@ -115,9 +115,10 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             ，和 Agent 一起创作
           </p>
           <div className="mt-2 flex items-center gap-1">
+            {/* 批 382 SOURCE_FACT: 输入行 aria 实测 从本地、画布或资产库添加 */}
             <button
               type="button"
-              aria-label="添加"
+              aria-label="从本地、画布或资产库添加"
               className="flex size-7 items-center justify-center rounded-md text-white/75 hover:bg-white/10"
             >
               <Plus size={16} />
@@ -131,7 +132,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             </button>
             <button
               type="button"
-              aria-label="提及主体"
+              aria-label="引用参考"
               className="flex size-7 items-center justify-center rounded-md text-white/75 hover:bg-white/10"
             >
               <AtSign size={14} />
@@ -139,7 +140,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <span className="flex-1" />
             <button
               type="button"
-              aria-label="发送"
+              aria-label="发送消息"
               disabled={!input.trim()}
               className={`flex size-8 items-center justify-center rounded-full ${
                 input.trim()

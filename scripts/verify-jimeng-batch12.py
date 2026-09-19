@@ -45,7 +45,7 @@ def main() -> None:
                         .map(c => d.textContent.includes(c)),
                     placeholder: !!d.querySelector('input[placeholder*="输入想法"]'),
                     sendDisabled: (() => {
-                        const b = d.querySelector('button[aria-label="发送"]');
+                        const b = d.querySelector('button[aria-label="发送消息"]');
                         return b ? b.disabled : null;
                     })(),
                 };
