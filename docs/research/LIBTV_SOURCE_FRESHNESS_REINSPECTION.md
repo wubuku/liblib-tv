@@ -898,6 +898,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-20 | batch 891 探测 | still-broken | 第五百一十五次重测；巡检批次——无并行新落库，五件 WIP 仍在途（保留不动）；下批（batch 892）执行到期全量维护集新鲜运行 |
 | 2026-09-20 | batch 892 探测 | still-broken | 第五百一十六次重测；到期全量维护集新鲜运行 77/78——jimeng1 预期失败（并行开发者未提交 WIP 使工具栏 9→20 键、aiButton 移除，verify-jimeng-batch1 断言过期；其域内 batch12/57/8 验证器同步修改中，按 DEC-018 不代改），67 项 liblib + 10 fixture 全绿；12 项 liblib 回写按显式路径恢复（batch 892） |
 | 2026-09-20 | batch 893 探测 | still-broken | 第五百一十七次重测；巡检批次——并行自行落库 jimeng 398（恢复复测第十八次仍 broken），WIP 增至约一百零六件（大规模采样持续在途，保留不动）；jimeng1 复测条件未到（batch 398 未更新 batch1 断言）；维护集未到期（batch 893，距全量约 5 批） |
+| 2026-09-20 | batch 894 探测 | still-broken | 第五百一十八次重测；巡检批次——并行 WIP 增至约一百一十五件（保留不动）；并行开发者已在其 WIP 中更新 verify-jimeng-batch1 断言（工具栏 20 键），我方复测 jimeng1 PASS——batch 892 的预期失败已解除，下批（batch 899）全量维护集恢复 78/78 基线（batch 894） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
