@@ -306,12 +306,19 @@ export function JimengGenPanel({
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
-              {/* 批 206 SOURCE_FACT: 「Current price」标签 + ✦56.56，
-                  70px 裁切容器——源站自身即截断显示 */}
-              <span className="flex h-8 w-[70px] items-center overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
-                <span className="shrink-0 text-white/[0.6]">Current price</span>
-                <VipDiamond size={9} />
-                <span className="shrink-0">56.56</span>
+              {/* 批 384 SOURCE_FACT (384-empty-gen-panel.json): 价格签已演进
+                  为紧凑态「✦ + 整数」(56)——精确值「Current price 56.56」
+                  为 1px 裁切隐藏叶 (与批 368 音频面板同族)；激活态 #fafafa
+                  同批 370 */}
+              <span
+                className="flex h-8 items-center gap-1.5 text-[13px] text-white/85"
+                title="Current price 56.56"
+              >
+                <VipDiamond size={12} />
+                56
+                <span className="w-px overflow-hidden whitespace-nowrap text-[12px] text-white/[0.6]">
+                  Current price 56.56
+                </span>
               </span>
               <button
                 type="submit"
