@@ -758,7 +758,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     }, 4000);
   },
 
-  aiDrawerOpen: false,
+  // 批 398 SOURCE_FACT: Agent 面板常驻 (381: Escape 不关闭)，默认展开
+  aiDrawerOpen: true,
 
   aiDrawerPrefill: null,
 

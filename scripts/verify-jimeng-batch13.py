@@ -32,6 +32,13 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2200)
 
+        # Batch 398 SOURCE_FACT: Agent 面板常驻——本验证器不测面板，
+        # 载入后先收起以避免遮挡画布交互
+        _collapse = page.locator('button[aria-label="收起"]')
+        if _collapse.count():
+            _collapse.click()
+            page.wait_for_timeout(400)
+
         # ── history dropdown ──
         page.locator('button[aria-label="生成历史"]').click()
         page.wait_for_timeout(600)

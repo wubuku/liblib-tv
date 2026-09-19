@@ -32,6 +32,13 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2500)
 
+        # Batch 398 SOURCE_FACT: Agent 面板常驻——本验证器不测面板，
+        # 载入后先收起以避免遮挡画布/顶栏交互
+        collapse = page.locator('button[aria-label="收起"]')
+        if collapse.count():
+            collapse.click()
+            page.wait_for_timeout(400)
+
         node1 = page.locator('.react-flow__node[data-id="video-local-1"]')
 
         def ensure_selected() -> None:
@@ -91,6 +98,11 @@ def main() -> None:
             '.react-flow__node[data-id="video-local-1"] button[aria-label="暂停"]').first.click())
 
         # 3. 空节点生成面板发送
+        # Batch 398: 提示词反推 步骤会重新展开常驻面板——空节点交互前再收起
+        collapse2 = page.locator('button[aria-label="收起"]')
+        if collapse2.count():
+            collapse2.click()
+            page.wait_for_timeout(400)
         page.locator('.react-flow__node[data-id="video-empty-1"]').click(
             position={"x": 200, "y": 100}
         )

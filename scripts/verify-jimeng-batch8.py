@@ -60,13 +60,14 @@ def main() -> None:
             path=str(REFERENCE_DIR / "jimeng-clone-batch8-infer-panel-1680.png")
         )
 
+        # Batch 398 SOURCE_FACT: Agent 面板常驻——Escape 不关闭面板
         page.keyboard.press("Escape")
         page.wait_for_timeout(500)
-        closed = page.evaluate(
-            "() => !document.querySelector('aside[aria-label=\"AI 对话\"]')"
+        still_open = page.evaluate(
+            "() => !!document.querySelector('aside[aria-label=\"AI 对话\"]')"
         )
-        if not closed:
-            failures.append("AI drawer did not close on Escape")
+        if not still_open:
+            failures.append("persistent AI drawer should stay open on Escape")
 
         ctx.close()
 

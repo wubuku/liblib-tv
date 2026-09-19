@@ -251,9 +251,7 @@ function JimengFlow() {
         e.preventDefault();
         selectAll();
       } else if (e.key === "Escape") {
-        if (aiDrawerOpen) {
-          setAiDrawerOpen(false);
-        }
+        // 批 398 SOURCE_FACT: Agent 面板常驻——Escape 不关闭 (381 实测)
         selectNode(null);
         exitRepaint();
         exitEdit();

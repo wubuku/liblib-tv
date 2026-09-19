@@ -1258,7 +1258,16 @@
   span.tabular-nums)，最小跟进后复扫 91/91 PASS；npm run check
   通过。
 - Batch 397 (轮转回归): batch 49-64 段 14/14 PASS (含批 396 富文本
-  预填变更后的 8/12 已单独回归)。现场已还原 (0 次撤销)。
+  预填变更后的 8/12 已单独回归)。
+- Batch 398 (Agent 面板常驻化): 按批 381 判读落地——面板默认展开
+  (store aiDrawerOpen 初始 true)、Escape 不再关闭面板 (仅收起钮/AI 钮
+  切换)，JimengAiButton 保持「面板开时隐藏」。19 个 verifier 最小跟进:
+  batch 1 (rail 计数排除抽屉 aside、aiButton 期望改 False)、batch 8
+  (Escape 后面板保持打开)、batch 12 (面板已开时跳过按钮点击)、
+  batch 57 (载入后与 提示词反推 步骤后各收起一次——该步骤会重新
+  展开面板)、其余 16 个 (7/13/18/22/23/26/28/30/40/42/43/50/51/
+  59/62/68 + 96/97/101) 载入后收起前置块，规避面板遮挡画布/顶栏
+  点击。确认全量扫 91/91 PASS；npm run check 通过。现场已还原 (0 次撤销)。
 - Batch 375 (编辑工具 active 态采样 + 落地): 编辑模式工具钮点击 =
   进入 active 态 bg white/[0.08]，无子菜单/浮动面板 (文字工具实测
   375-text-tool.png；画笔同族推断)。修剪把手拖拽语义探测仍未遂

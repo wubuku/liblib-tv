@@ -29,8 +29,11 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2200)
 
-        page.locator("button", has_text="与 AI 对话").click()
-        page.wait_for_timeout(800)
+        # Batch 398 SOURCE_FACT: 面板常驻——初始即展开，无需点按钮；
+        # 若被收起则经 与 AI 对话 按钮重新展开
+        if page.locator("button", has_text="与 AI 对话").count():
+            page.locator("button", has_text="与 AI 对话").click()
+            page.wait_for_timeout(800)
 
         drawer = page.evaluate(
             """() => {

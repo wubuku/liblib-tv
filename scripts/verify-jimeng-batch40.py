@@ -29,6 +29,13 @@ def main() -> None:
         page.goto(CANVAS_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2500)
 
+        # Batch 398 SOURCE_FACT: Agent 面板常驻——本验证器不测面板，
+        # 载入后先收起以避免遮挡画布交互
+        _collapse = page.locator('button[aria-label="收起"]')
+        if _collapse.count():
+            _collapse.click()
+            page.wait_for_timeout(400)
+
         # open the gen panel on the empty node
         page.locator('.react-flow__node[data-id="video-empty-1"]').click(
             position={"x": 200, "y": 100}
