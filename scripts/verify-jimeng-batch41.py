@@ -34,7 +34,7 @@ def main() -> None:
             position={"x": 200, "y": 100}
         )
         page.wait_for_timeout(700)
-        page.locator('button[aria-label="选择模型"]').click()
+        page.locator('button[aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"]').click()
         page.wait_for_timeout(600)
 
         menu = page.evaluate(
@@ -68,7 +68,7 @@ def main() -> None:
         page.wait_for_timeout(500)
         after = page.evaluate(
             """() => ({
-                text: !!document.querySelector('button[aria-label="选择模型"]')
+                text: !!document.querySelector('button[aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"]')
                     ?.textContent.includes('即梦 Seedance 2.0 mini'),
                 closed: !document.querySelector('[role="listbox"][aria-label="模型列表"]'),
             })"""
