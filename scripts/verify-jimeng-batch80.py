@@ -42,7 +42,7 @@ def main() -> None:
         page.wait_for_timeout(700)
         page.evaluate(
             """() => [...document.querySelectorAll('.react-flow__node-toolbar button')]
-                .find(b => b.getAttribute('aria-label') === '全屏预览')?.click()"""
+                .find(b => b.getAttribute('aria-label') === '全屏')?.click()"""
         )
         page.wait_for_timeout(900)
 

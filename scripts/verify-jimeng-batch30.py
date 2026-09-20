@@ -81,7 +81,7 @@ def main() -> None:
         node1 = page.locator(".react-flow__node-video").first
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(500)
-        page.locator('.jimeng-node-toolbar button[aria-label="全屏预览"]').click()
+        page.locator('.jimeng-node-toolbar button[aria-label="全屏"]').click()
         page.wait_for_timeout(700)
         mute0 = page.evaluate(
             """() => {

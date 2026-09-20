@@ -117,7 +117,7 @@ def main() -> None:
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(400)
         step("新节点全屏预览开", lambda: page.locator(
-            '.jimeng-node-toolbar button[aria-label="全屏预览"]').click())
+            '.jimeng-node-toolbar button[aria-label="全屏"]').click())
         page.wait_for_timeout(300)
         step("全屏预览关", lambda: page.locator(
             'button[aria-label="退出全屏预览"]').click())

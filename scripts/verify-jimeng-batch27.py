@@ -36,7 +36,7 @@ def main() -> None:
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(600)
         page.locator(
-            '.jimeng-node-toolbar button[aria-label="全屏预览"]'
+            '.jimeng-node-toolbar button[aria-label="全屏"]'
         ).click()
         page.wait_for_timeout(700)
 

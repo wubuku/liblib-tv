@@ -60,7 +60,8 @@ def main() -> None:
             failures.append(f"toolbar missing labels: {after['missing']}")
         if after["vipCount"] != 4:
             failures.append(f"vip diamond count: want 4, got {after['vipCount']}")
-        if after["iconButtons"] != ["全屏预览", "下载"]:
+        # Batch 409 SOURCE_FACT: 尾钮 aria 实测 全屏/下载
+        if after["iconButtons"] != ["全屏", "下载"]:
             failures.append(f"tail icon buttons: {after['iconButtons']}")
         if not after["divider"]:
             failures.append("divider missing")

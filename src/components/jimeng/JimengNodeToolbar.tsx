@@ -117,7 +117,7 @@ export function JimengNodeToolbar({
 
         <button
           type="button"
-          aria-label="全屏预览"
+          aria-label="全屏"
           onClick={() => onAction?.("全屏预览")}
           className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
         >
