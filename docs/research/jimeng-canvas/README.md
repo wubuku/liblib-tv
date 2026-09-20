@@ -1282,7 +1282,15 @@
   下一任务规划 (Batch 402): 空视频节点生成面板选择器行 aria 对齐
   采样——对照音频面板 aria 模式 (创作类型:/选择模型: 等，批 277)，
   实测源站「即梦 Seedance 2.0 VIP / 16:9 / 720P / 1 / 全能参考 /
-  4s」各触发钮的 aria-label 并落地 clone。现场已还原 (0 次撤销)。
+  4s」各触发钮的 aria-label 并落地 clone。
+- Batch 402 (空节点面板选择器 aria 对齐): 源站实测选择器行 aria
+  契约——「选择模型: 即梦 Seedance 2.0 VIP, Standard-only model」
+  「视频尺寸选项: 16:9 · 720P · 1, Standard-only model」(比例+分辨率
+  +数量合并单触发钮)「生成模式: 全能参考」「选择视频生成时长: 4s」，
+  行内另有 引用参考 32×32 图标钮与 生成 发送钮。复刻: JimengGenPanel
+  四处触发钮/菜单 aria 更新为该契约。batch 42 verifier 定位串最小
+  跟进 (触发钮+listbox aria)。回归: 40/42/50/51 PASS；npm run
+  check 通过。现场已还原 (0 次撤销)。
 - Batch 375 (编辑工具 active 态采样 + 落地): 编辑模式工具钮点击 =
   进入 active 态 bg white/[0.08]，无子菜单/浮动面板 (文字工具实测
   375-text-tool.png；画笔同族推断)。修剪把手拖拽语义探测仍未遂

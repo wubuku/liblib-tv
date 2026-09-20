@@ -43,11 +43,11 @@ def main() -> None:
         page.wait_for_timeout(700)
 
         # ratio/resolution/count combined menu
-        page.locator('button[aria-label="比例分辨率数量"]').click()
+        page.locator('button[aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"]').click()
         page.wait_for_timeout(600)
         menu = page.evaluate(
             """() => {
-                const m = document.querySelector('[role="listbox"][aria-label="比例分辨率数量"]');
+                const m = document.querySelector('[role="listbox"][aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"]');
                 if (!m) return null;
                 return m.textContent.replace(/\\s+/g, ' ');
             }"""
@@ -65,7 +65,7 @@ def main() -> None:
         page.locator('[role="option"]', has_text="1080P").click()
         page.wait_for_timeout(400)
         btn_text = page.evaluate(
-            """() => document.querySelector('button[aria-label="比例分辨率数量"]')
+            """() => document.querySelector('button[aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"]')
                 ?.textContent.replace(/\\s+/g, ' ')"""
         )
         if "1080P" not in (btn_text or ""):
@@ -75,24 +75,24 @@ def main() -> None:
         )
 
         # reference toggle
-        page.locator('button[aria-label="参考模式"]').click()
+        page.locator('button[aria-label="生成模式: 全能参考"]').click()
         page.wait_for_timeout(500)
         page.locator('[role="option"]', has_text="首尾帧").click()
         page.wait_for_timeout(400)
         ref_text = page.evaluate(
-            """() => document.querySelector('button[aria-label="参考模式"]')
+            """() => document.querySelector('button[aria-label="生成模式: 全能参考"]')
                 ?.textContent.trim()"""
         )
         if ref_text != "首尾帧":
             failures.append(f"reference toggle: {ref_text!r}")
 
         # duration menu
-        page.locator('button[aria-label="时长"]').click()
+        page.locator('button[aria-label="选择视频生成时长: 4s"]').click()
         page.wait_for_timeout(500)
         page.locator('[role="option"]', has_text="8s").click()
         page.wait_for_timeout(400)
         dur_text = page.evaluate(
-            """() => document.querySelector('button[aria-label="时长"]')
+            """() => document.querySelector('button[aria-label="选择视频生成时长: 4s"]')
                 ?.textContent.trim()"""
         )
         if dur_text != "8s":

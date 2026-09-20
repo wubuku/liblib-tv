@@ -125,7 +125,7 @@ export function JimengGenPanel({
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="选择模型"
+                  aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"
                   onClick={() => setModelOpen((v) => !v)}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -169,7 +169,7 @@ export function JimengGenPanel({
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="比例分辨率数量"
+                  aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"
                   onClick={() => setOpenMenu(openMenu === "ratio" ? null : "ratio")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -183,7 +183,7 @@ export function JimengGenPanel({
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] flex w-[334px] gap-4 rounded-[10px] border border-white/[0.06] p-3"
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
-                    aria-label="比例分辨率数量"
+                    aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"
                   >
                     {[
                       { title: "选择比例", key: "ratio", options: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] },
@@ -224,7 +224,7 @@ export function JimengGenPanel({
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="参考模式"
+                  aria-label="生成模式: 全能参考"
                   onClick={() => setOpenMenu(openMenu === "ref" ? null : "ref")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -236,7 +236,7 @@ export function JimengGenPanel({
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
-                    aria-label="参考模式"
+                    aria-label="生成模式: 全能参考"
                   >
                     {["首尾帧", "全能参考"].map((opt) => (
                       <button
@@ -262,7 +262,7 @@ export function JimengGenPanel({
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="时长"
+                  aria-label="选择视频生成时长: 4s"
                   onClick={() => setOpenMenu(openMenu === "dur" ? null : "dur")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -274,7 +274,7 @@ export function JimengGenPanel({
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[120px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
-                    aria-label="时长"
+                    aria-label="选择视频生成时长: 4s"
                   >
                     {["4s", "8s", "12s"].map((opt) => (
                       <button
