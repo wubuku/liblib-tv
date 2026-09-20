@@ -1440,6 +1440,13 @@
 - Batch 414 (轮转回归): batch 34-48 段 15/15 PASS。
 - Batch 415 (轮转回归): batch 49-64 段 14/14 PASS。
 - Batch 416 (轮转回归): batch 65-101 段 25/25 PASS。
+- Batch 417 (上传失败态建模评估留档): 评估批 406 留档的源站失败态
+  (「重试上传」「图片上传失败」+ 重试钮) 是否建模——CLONE_DECISION:
+  不建模。理由: 失败态仅在真实网络失败时出现，clone 本地上传 mock
+  恒成功，失败路径无原型 UX 价值；证据已留档 (406-image-toolbar.png)，
+  如需可后续扩展 uploadProgress = -1 语义。决定已写入
+  jimengStore.captureFrame 注释。回归: 34/35/62 PASS；npm run check
+  通过。
 - Batch 412 (上传链路恢复 + 图像节点工具条采样闭环): BLOCKED_BY_
   NETWORK 解除——首帧产物上传成功 (标题「…_首帧」，无失败态)，
   图像节点选中态工具条首次采样成功: **566×40，条目 智能改图 / 扩图

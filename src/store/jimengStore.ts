@@ -491,6 +491,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       window.setTimeout(() => advance(46), 500);
       window.setTimeout(() => advance(100), 1000);
       // 上传态消隐由组件侧以 uploadProgress < 100 判定 (100 = 完成)
+      // CLONE_DECISION (批 417 评估, 406 留档): 源站存在上传失败态
+      // (「重试上传」「图片上传失败」+ 重试钮，406-image-toolbar.png)，
+      // 但该态仅在真实网络失败时出现；clone 本地上传 mock 恒成功，
+      // 不建模失败路径 (失败态 UI 证据已留档，如需可后续扩展
+      // uploadProgress = -1 语义)。
       return {
         ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
