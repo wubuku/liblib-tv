@@ -1293,7 +1293,9 @@
   check 通过。
 - Batch 403 (空节点面板行内钮 aria 对齐): 批 402 采样的行内图标钮
   落地——JimengGenPanel 提及主体 → 引用参考 (aria 实测)。
-  回归: 40/42/50/51/57 PASS；npm run check 通过。现场已还原 (0 次撤销)。
+  回归: 40/42/50/51/57 PASS；npm run check 通过。
+- Batch 404 (轮转回归): batch 49-64 段 14/14 PASS (batch 61 定位串
+  最小跟进——「选择模型」触发钮 aria 同批 402 契约)。现场已还原 (0 次撤销)。
 - Batch 375 (编辑工具 active 态采样 + 落地): 编辑模式工具钮点击 =
   进入 active 态 bg white/[0.08]，无子菜单/浮动面板 (文字工具实测
   375-text-tool.png；画笔同族推断)。修剪把手拖拽语义探测仍未遂

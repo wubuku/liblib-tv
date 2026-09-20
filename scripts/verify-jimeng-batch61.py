@@ -33,7 +33,7 @@ def main() -> None:
             position={"x": 200, "y": 100}
         )
         page.wait_for_timeout(700)
-        page.locator('button[aria-label="选择模型"]').click()
+        page.locator('button[aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"]').click()
         page.wait_for_timeout(500)
         page.locator('[role="option"]', has_text="即梦 Seedance 2.0 mini").click()
         page.wait_for_timeout(500)
@@ -49,7 +49,7 @@ def main() -> None:
         page.wait_for_timeout(700)
         model_text = page.evaluate(
             """() => {
-                const btn = document.querySelector('button[aria-label="选择模型"]');
+                const btn = document.querySelector('button[aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"]');
                 return btn?.textContent.trim() ?? null;
             }"""
         )
