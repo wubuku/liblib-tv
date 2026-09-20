@@ -296,9 +296,10 @@ export function JimengGenPanel({
                   </div>
                 ) : null}
               </div>
+              {/* 批 403 SOURCE_FACT: 行内图标钮 aria 实测 引用参考 */}
               <button
                 type="button"
-                aria-label="提及主体"
+                aria-label="引用参考"
                 className="flex size-8 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
               >
                 <AtSign size={15} />
