@@ -15,6 +15,7 @@
 - [`task-inventory.yml`](task-inventory.yml)：任务范围、频率、影响和覆盖状态。
 - [`PROGRESS.md`](PROGRESS.md)：探索、编写和验证进度。
 - [`AUDIT.md`](AUDIT.md)：真实浏览器回走审计。
+- [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md)：按证据类型记录的源站观察与截图识图台账。
 - [`screenshots/manifest.yml`](screenshots/manifest.yml)：正式截图登记与哈希。
 - [`TEST_MEDIA_ASSETS.md`](TEST_MEDIA_ASSETS.md)：已获授权的本地图片、音频、视频测试输入及付费生成禁令。
 

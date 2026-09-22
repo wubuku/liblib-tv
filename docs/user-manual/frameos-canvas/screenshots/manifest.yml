@@ -1,1 +1,34 @@
-screenshots: []
+screenshots:
+  - file: screenshots/01-create-first-node-empty-state.png
+    task_id: create-first-node
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-22T20:14:55+08:00
+    verified_locator: 'role=button name="文本"'
+    visible_text: 文本
+    alt: 空画布中央高亮“文本”创作入口
+    sha256: 618404c81447bd390c2975203f0a6f9019d498ec242a4083b3399ea99e11768e
+  - file: screenshots/02-canvas-context-left-rail.png
+    task_id: canvas-context
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-22T20:15:09+08:00
+    verified_locator: 'button[aria-label="添加节点"]'
+    visible_text: 添加节点
+    alt: 左侧工具栏高亮“添加节点”入口
+    sha256: 4e9e182f5f74aa626f7f275427e508d8dac44348fc3b0540aaeedd6af85d262e
+  - file: screenshots/03-navigate-canvas-toolbar.png
+    task_id: navigate-canvas
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-22T20:15:09+08:00
+    verified_locator: 'button[aria-label="缩小"]'
+    visible_text: 缩小
+    alt: 左下画布工具条高亮“缩小”按钮
+    sha256: 1917f85ddb19a7e94ec166cdfa96b03f7132b7f9cfe05ad96792633eab595a35

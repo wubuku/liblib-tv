@@ -15,9 +15,9 @@
 
 | 阶段 | 状态 | 产出 |
 |---|---|---|
-| 方法论移植 | 进行中 | `.agents/skills/web-studio-user-manual/` |
-| 候选任务确认 | 进行中 | `task-inventory.yml` |
-| 真实浏览器取证 | 未开始 | 逐任务 DOM/ARIA/交互记录 |
+| 方法论移植 | 已完成 | `.agents/skills/web-studio-user-manual/` |
+| 候选任务确认 | 已完成 | `task-inventory.yml`，用户授权 Agent 自行定级 |
+| 真实浏览器取证 | 准备就绪 | `SOURCE_OBSERVATIONS.md` readiness smoke；正式逐任务取证尚未开始 |
 | 正式正文与截图 | 未开始 | `10-tasks/`、`screenshots/manifest.yml` |
 | Gate A 机械审计 | 未开始 | `audit_manual.py --phase gate-a` |
 | Gate B 回走审计 | 未开始 | `AUDIT.md`、`audit_manual.py --phase final` |
@@ -25,3 +25,9 @@
 ## 恢复入口
 
 从本文件读取当前阶段，再打开 [`task-inventory.yml`](task-inventory.yml) 和 [`AUDIT.md`](AUDIT.md)；不要依赖会话记忆恢复任务状态。
+
+## 准备就绪检查
+
+- 方法论、优先级规则、浏览器取证、截图和 Gate A/Gate B 规则均已随技能自包含落地。
+- 任务库存、成本红线、测试媒体路径、截图 hash 和观察证据均已留档。
+- 下一步从 `create-first-node` 开始逐任务探索；在获得新指令前停止。
