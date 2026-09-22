@@ -41,9 +41,7 @@ const ITEMS: ToolbarItem[] = [
   { kind: "action", label: "智能超清", icon: Sparkles, vip: true },
   { kind: "action", label: "视频编辑", icon: Clapperboard, vip: true },
   { kind: "dropdown", label: "截取帧", icon: Camera, menu: ["首帧", "尾帧", "自定义"] },
-  { kind: "action", label: "补帧", icon: Diamond, vip: true },
   { kind: "action", label: "视频修剪", icon: Scissors },
-  { kind: "action", label: "提示词反推", icon: FileSearch },
 ];
 
 export function JimengNodeToolbar({
@@ -54,6 +52,9 @@ export function JimengNodeToolbar({
   onAction?: (label: string) => void;
 }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // 批 484 SOURCE_FACT: 工具下拉 (预设 hover→补帧子菜单 + 提示词反推)
+  const [toolOpen, setToolOpen] = useState(false);
+  const [presetOpen, setPresetOpen] = useState(false);
   const saved = useJimengStore((s) => s.project.saved);
 
   const toggleMenu = (label: string) =>
@@ -112,6 +113,67 @@ export function JimengNodeToolbar({
             </div>
           );
         })}
+
+        {/* 批 484 SOURCE_FACT: 工具下拉——预设 (hover 展开补帧子菜单)
+            + 提示词反推；主条目已收缩为六项 (670×40) */}
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => {
+              setToolOpen((v) => !v);
+              setPresetOpen(false);
+            }}
+            className={`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${
+              toolOpen ? "bg-white/10" : ""
+            }`}
+          >
+            工具
+            <ChevronDown size={12} className="ml-0.5 shrink-0 text-white/70" />
+          </button>
+          {toolOpen ? (
+            <div
+              className="absolute left-1/2 top-full z-[120] mt-2 -translate-x-1/2 rounded-xl p-1"
+              style={{ background: "rgb(38,38,38)" }}
+            >
+              <div
+                className="relative"
+                onMouseEnter={() => setPresetOpen(true)}
+                onMouseLeave={() => setPresetOpen(false)}
+              >
+                <button
+                  type="button"
+                  className="flex h-7 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
+                >
+                  预设
+                </button>
+                {presetOpen ? (
+                  <div
+                    className="absolute bottom-full left-0 z-[130] mb-1 rounded-xl p-1"
+                    style={{ background: "rgb(38,38,38)" }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => runAction("补帧")}
+                      className="flex h-9 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
+                    >
+                      <Diamond size={16} className="mr-1 shrink-0 text-white/85" />
+                      补帧
+                      <VipDiamond size={14} />
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+              <button
+                type="button"
+                onClick={() => runAction("提示词反推")}
+                className="flex h-9 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
+              >
+                <FileSearch size={16} className="mr-1 shrink-0 text-white/85" />
+                提示词反推
+              </button>
+            </div>
+          ) : null}
+        </div>
 
         <span className="jimeng-node-toolbar-divider mx-0.5" aria-hidden />
 

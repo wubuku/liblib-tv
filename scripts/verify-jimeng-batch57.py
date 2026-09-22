@@ -76,6 +76,9 @@ def main() -> None:
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(400)
         select_node1()
+        # Batch 484 SOURCE_FACT: 提示词反推 moved into 工具 dropdown
+        step("打开工具下拉", lambda: page.locator(
+            '.jimeng-node-toolbar button', has_text="工具").click())
         step("提示词反推", lambda: page.locator(
             '.jimeng-node-toolbar button', has_text="提示词反推").click())
         page.wait_for_timeout(600)

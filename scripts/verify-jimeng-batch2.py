@@ -32,7 +32,7 @@ def main() -> None:
         def toolbar_state() -> dict:
             return page.evaluate(
                 """() => {
-                    const labels = ['局部重拍','智能超清','视频编辑','截取帧','补帧','视频修剪','提示词反推'];
+                    const labels = ['局部重拍','智能超清','视频编辑','截取帧','视频修剪','工具'];
                     const tbs = [...document.querySelectorAll('.jimeng-node-toolbar')];
                     const tb = tbs[0];
                     return {
@@ -58,8 +58,9 @@ def main() -> None:
             failures.append("toolbar not visible after node selection")
         if after["missing"]:
             failures.append(f"toolbar missing labels: {after['missing']}")
-        if after["vipCount"] != 4:
-            failures.append(f"vip diamond count: want 4, got {after['vipCount']}")
+        # Batch 484 SOURCE_FACT: 补帧 moved into 工具 dropdown — 3 on-bar diamonds
+        if after["vipCount"] != 3:
+            failures.append(f"vip diamond count: want 3, got {after['vipCount']}")
         # Batch 409 SOURCE_FACT: 尾钮 aria 实测 全屏/下载
         if after["iconButtons"] != ["全屏", "下载"]:
             failures.append(f"tail icon buttons: {after['iconButtons']}")

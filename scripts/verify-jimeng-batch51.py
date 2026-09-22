@@ -60,7 +60,7 @@ def main() -> None:
             """() => {
                 const tb = [...document.querySelectorAll('.jimeng-node-toolbar')]
                     .find(t => t.textContent.includes('局部重拍'));
-                const labels = ['局部重拍','智能超清','视频编辑','截取帧','补帧','视频修剪','提示词反推'];
+                const labels = ['局部重拍','智能超清','视频编辑','截取帧','视频修剪','工具'];
                 const missing = labels.filter(l => !tb || !tb.textContent.includes(l));
                 const genPanel = [...document.querySelectorAll('form')].some(f =>
                     f.textContent.includes('上传参考图') && f.textContent.includes('即梦 Seedance'));
