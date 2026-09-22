@@ -1711,6 +1711,8 @@
 - Batch 510 (全量质量门): 退出码全量扫 verify-jimeng-batch1..105 ——
   91 verifier 零失败，截图随扫刷新入库。下一批规划 (Batch 511):
   1-19 段新回归轮起点。
+- Batch 511 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
+  规划 (Batch 512): 20-33 段回归续行。
 - Batch 391 (Agent 面板空态布局精修): 按批 381 实测校准
   JimengAiDrawer——面板宽 410→398；技能芯片 h-9 (36px)、px-4、
   gap 8px (行距实测 44px = 36 + 8)，三行居中 wrap 与源一致
