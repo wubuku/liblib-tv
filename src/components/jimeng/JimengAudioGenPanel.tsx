@@ -134,6 +134,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [genKind, setGenKind] = useState("音频生成");
   const [genOpen, setGenOpen] = useState(false);
   const [ttsOpen, setTtsOpen] = useState(false);
+  // 批 487 SOURCE_FACT: 全能配音下拉 192×36 单选项
+  const [dubOpen, setDubOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
   // 批 367 SOURCE_FACT: 时长连续滑杆弹出层 (0-360s 自由值)
   const [durOpen, setDurOpen] = useState(false);
@@ -451,14 +453,37 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     ) : null}
                   </div>
                   {/* 批 485 SOURCE_FACT: 音频生成: 全能配音 触发钮 + 引用参考 24×24 */}
-                  <button
-                    type="button"
-                    aria-label="音频生成: 全能配音"
-                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
-                  >
-                    全能配音
-                    <ChevronDown size={12} className="text-white/60" />
-                  </button>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      aria-label="音频生成: 全能配音"
+                      onClick={() => setDubOpen((v) => !v)}
+                      className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
+                        dubOpen ? "bg-white/[0.08]" : ""
+                      }`}
+                    >
+                      全能配音
+                      <ChevronDown size={12} className="text-white/60" />
+                    </button>
+                    {dubOpen ? (
+                      <div
+                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5"
+                        style={{ background: "rgb(38,38,38)" }}
+                        role="listbox"
+                        aria-label="音频生成模式"
+                      >
+                        <button
+                          type="button"
+                          role="option"
+                          aria-selected
+                          onClick={() => setDubOpen(false)}
+                          className="flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] text-white bg-white/[0.10]"
+                        >
+                          全能配音
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
                   <button
                     type="button"
                     aria-label="引用参考"
