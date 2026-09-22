@@ -1,0 +1,153 @@
+manual_version: 1
+target:
+  app: frameos
+  url: 'https://www.frameos.cn/#/canvas/01M34E48BEEVEQXR93Y8N70Y5N/01M34E4AKBTXT72KFD3MCYZ6NV'
+  audience:
+    - logged-in-canvas-creator
+  depth: thorough
+scope_authorization:
+  user_confirmed: true
+  note: 用户明确要求先探索画布并编写 FrameOS 画布功能手册，再考虑复刻。
+tasks:
+  - id: create-first-node
+    title: 从空画布创建第一种节点
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: 空态 CTA 提供 文本、图片、视频、音频、3D导演台、上传文件。
+      - type: source-interaction
+        note: 待验证点击后的节点、选中态和面板反馈。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/create-first-node.md
+  - id: navigate-canvas
+    title: 拖动画布并控制缩放
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: 左下工具条提供 画布小地图、缩小、100%、放大、适应画布、搜索节点、一键整理、选择整理方式。
+      - type: source-interaction
+        note: 待验证鼠标、触摸板和快捷键行为。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/navigate-canvas.md
+  - id: edit-selected-node
+    title: 选中节点并编辑其内容与参数
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: 空态尚未出现节点，待创建节点后验证选中态、浮动工具和 Prompt 面板。
+      - type: source-interaction
+        note: 待验证选中、拖动、编辑和提交前反馈。
+    preconditions:
+      - 画布中已有可编辑节点
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/edit-selected-node.md
+  - id: connect-nodes
+    title: 连接两个节点并检查连线状态
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: full
+    evidence:
+      - type: source-interaction
+        note: 待验证 Handle 连接、临时连线、成功连线和失败反馈。
+    preconditions:
+      - 画布中已有两个可连接节点
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/connect-nodes.md
+  - id: duplicate-delete-history
+    title: 复制、删除并恢复画布节点
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: high
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: 顶部存在 撤销、重做 控件，初始为 disabled。
+      - type: source-interaction
+        note: 待验证右键菜单、快捷键、删除和历史按钮。
+    preconditions:
+      - 画布中已有至少一个节点
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/duplicate-delete-history.md
+  - id: organize-and-search
+    title: 搜索节点并整理画布布局
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: 左下存在 搜索节点、一键整理、选择整理方式。
+      - type: source-interaction
+        note: 待验证搜索结果、整理菜单、整理结果和撤销边界。
+    preconditions:
+      - 画布中已有多个节点
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/organize-and-search.md
+  - id: canvas-context
+    title: 切换画布上下文并添加内容
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: breadcrumb 包含 测试作品、测试项目、画布 1；左侧含 添加节点、查看项目资产、从素材库选择、本地上传。
+      - type: source-interaction
+        note: 待验证各级下拉、菜单动作和菜单关闭规则。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/canvas-context.md
+  - id: help-and-shortcuts
+    title: 打开帮助并使用画布快捷键
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: 右上存在 使用教程，左侧存在 帮助。
+      - type: source-interaction
+        note: 待验证帮助面板、快捷键名称和实际结果。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: pending
+    manual_pages:
+      - 10-tasks/help-and-shortcuts.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "LibTV + FrameOS 用户手册"
+  short_description: "面向 LibTV/FrameOS 画布的真实浏览器中文用户手册生成与回走校验流程"
+  default_prompt: "Use $web-studio-user-manual to create a task-oriented end-user manual for the requested LibTV or FrameOS canvas with verified browser steps and annotated screenshots."
