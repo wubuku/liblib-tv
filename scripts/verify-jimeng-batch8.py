@@ -34,6 +34,9 @@ def main() -> None:
         node1 = page.locator(".react-flow__node-video").first
         node1.click(position={"x": 200, "y": 100})
         page.wait_for_timeout(700)
+        # Batch 484 SOURCE_FACT: 提示词反推 moved into 工具 dropdown
+        page.locator(".jimeng-node-toolbar button", has_text="工具").click()
+        page.wait_for_timeout(400)
         page.locator(".jimeng-node-toolbar button", has_text="提示词反推").click()
         page.wait_for_timeout(900)
 
