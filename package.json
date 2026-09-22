@@ -28,6 +28,7 @@
   },
   "scripts": {
     "dev": "next dev --port 4317",
+    "dev:restart": "bash scripts/restart-dev.sh",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

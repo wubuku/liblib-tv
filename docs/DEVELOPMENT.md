@@ -35,11 +35,91 @@ The dev server is usually left running while Playwright scripts execute. Do not
 reuse `3000` or `3001` for routine local work; use an explicit alternate port
 only when `4317` is occupied.
 
+### One-command restart
+
+When an old Next.js dev process is still holding the port, use the restart
+wrapper. It only terminates listeners that can be traced back to this project;
+an unrelated process is reported and left untouched.
+
+```bash
+# Restart the default project port.
+npm run dev:restart
+
+# Use a less common port for this session.
+npm run dev:restart -- 4387
+npm run dev:restart -- --port 4387
+DEV_PORT=4387 npm run dev:restart
+```
+
+When using a non-default port, point browser verifiers at the same origin:
+
+```bash
+LIBLIB_BASE_URL=http://localhost:4387 python3 scripts/verify-liblib-batch<N>.py
+```
+
+### When a canvas suddenly appears non-interactive
+
+A listening port or an HTTP `200` response does not prove that the current
+browser page has a healthy React/React Flow runtime. A stale Next.js child
+process, a half-updated HMR page, or an old browser context can leave the shell
+visible while nodes or event handlers are missing. Use this order before
+changing canvas code:
+
+1. Restart only this project's server:
+
+   ```bash
+   npm run dev:restart
+   ```
+
+2. Confirm the listener belongs to this checkout:
+
+   ```bash
+   lsof -nP -iTCP:4317 -sTCP:LISTEN
+   ps -axo pid,ppid,lstart,command | rg 'next (dev|server)|next-server'
+   ```
+
+   `scripts/restart-dev.sh` refuses to kill an unrelated process that owns the
+   port. Choose another port instead of killing an unknown listener.
+
+3. Open a **new browser context** at `http://localhost:4317`, not only a
+   previously open tab. Use the same `localhost` origin for HMR and verifier
+   runs; switching between `localhost` and `127.0.0.1` can introduce a
+   development-only HMR cross-origin warning.
+
+4. Check runtime consistency in the browser before diagnosing a regression:
+
+   - LibTV: `.react-flow__node` and `.react-flow__edge` should agree with
+     `window.__libtv_store.getState().getActiveCanvas()`.
+   - FrameOS: `.react-flow__node` and `.react-flow__edge` should agree with
+     `window.__frameos_store.getState().nodes` and `.edges`.
+   - A page with only the shell, toolbar, or dot grid is not a passing canvas.
+
+5. Run the route-specific interaction gates:
+
+   ```bash
+   LIBLIB_BASE_URL=http://localhost:4317 \
+     python3 scripts/verify-liblib-batch77.py
+   LIBLIB_BASE_URL=http://localhost:4317 \
+     python3 scripts/verify-frameos-batch157.py
+   ```
+
+   These gates use real Playwright input. Batch 77 checks LibTV pan, zoom,
+   selection, `H`/`V`/`Space`, mobile overflow, and Director pointer behavior;
+   Batch 157 checks FrameOS node rendering, context menus, duplicate/add,
+   undo, and Escape dismissal.
+
+This incident was reproduced once with an old server/browser state and did not
+reproduce after a fresh project-owned restart and fresh browser context. The
+2026-09-22 checkpoint passed both route gates with no page, console, or request
+errors. Do not label this class of symptom a code regression until the fresh
+context and route gates fail.
+
 ## Standard Commands
 
 | Command | Purpose |
 |---|---|
 | `npm run dev` | Next.js development server |
+| `npm run dev:restart` | Stop this project's stale dev server and start a fresh one |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript strict check |
 | `npm run build` | production build |

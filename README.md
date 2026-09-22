@@ -36,6 +36,13 @@ npm run dev
 The development server uses the fixed project port `4317` to avoid accidentally
 connecting to an unrelated service on the common `3000`/`3001` ports.
 
+If a stale project dev process is holding the port, restart it with:
+
+```bash
+npm run dev:restart
+npm run dev:restart -- 4387
+```
+
 Open:
 
 - LibTV: `http://localhost:4317`

@@ -8,6 +8,12 @@
 >
 > **当前 LibTV 原站基线**：[`research/liblib-live-2026-08-25/README.md`](research/liblib-live-2026-08-25/README.md) 汇总了本轮登录态原站复核、结构化抽取、缺口分级和价值排序。旧 LibTV research 文档表示更早的采样时点。
 
+> **2026-09-22 运行基线**：曾出现“两个画布几乎不接受 UX 行为”的表面症状。排查发现旧
+> Next dev/HMR 状态与旧浏览器上下文会造成假回归外观；重启本项目持有的 `4317` 服务、
+> 使用全新浏览器上下文后，LibTV 与 FrameOS 节点/边均恢复渲染。LibTV Batch 77
+> 导航与 Director 指针门、FrameOS Batch 157 交互门均通过。以后先按
+> [`DEVELOPMENT.md`](DEVELOPMENT.md) 的 stale-server 诊断顺序核对运行态，再判断代码回归。
+
 ## 1. 项目本质
 
 这是一个面向 **AI 画布产品逆向研究** 的前端原型仓库，不是 LibTV 或 FrameOS 的完整业务系统。
@@ -720,6 +726,11 @@ React Flow v12 不会把 `node.style` 作为自定义节点 prop 传入。节点
 
 ## 12. 本轮验证基线
 
+- 2026-09-22 fresh-server checkpoint：项目专属 `4317` Next dev 服务重启后，
+  全新 Playwright context 下 `/` 与 `/frameos/canvas/demo` 都渲染节点和边；
+  LibTV 通过节点选择/拖动、普通滚轮平移、中键平移以及正式 Batch 77；
+  FrameOS 通过节点选择/拖动、添加节点菜单以及正式 Batch 157。该 checkpoint
+  说明当日的“大规模交互失效”不能仅凭旧 tab 或旧 dev server 复现。
 - `npm run check`：lint、typecheck、production build 通过；lint 有 9 个既有 warning，集中在 FrameOS 和 `CustomHandle`
 - `python3 scripts/verify-liblib-batch9.py`、`batch15.py`、`batch21.py`、
   `batch26.py` 到 `batch33.py`、`batch35.py` 到 `batch48.py` 串行通过：浮层、Add Node、Seedance 参数、
