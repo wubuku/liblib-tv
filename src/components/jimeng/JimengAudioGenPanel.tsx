@@ -1,7 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowUp, ChevronDown, Maximize2, Sparkle } from "lucide-react";
+import {
+  ArrowUp,
+  ChevronDown,
+  Maximize2,
+  Plus,
+  Quote,
+  Sparkle,
+} from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
 /**
@@ -174,17 +181,32 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
         <form
           className="relative flex w-full flex-col justify-between rounded-[20px] bg-[#202020] p-4"
           style={{
-            height: genKind === "音乐生成" ? 144 : 196,
+            // 批 485 SOURCE_FACT: 音频生成 204 (SeedAudio 1.0 改版)
+            height: genKind === "音乐生成" ? 144 : 204,
           }}
           onSubmit={(e) => e.preventDefault()}
         >
           {/* 批 304 SOURCE_FACT: 源站输入为 contenteditable (占位以真实
               元素渲染)——clone 以叠加层占位近似，textarea 保持可用 */}
+          {/* 批 485 SOURCE_FACT: 添加参考 48×48 (音频生成态左上) */}
+          {genKind === "音频生成" ? (
+            <button
+              type="button"
+              aria-label="添加参考"
+              className="mb-2 flex size-12 items-center justify-center rounded-xl bg-white/[0.06] text-white/80 hover:bg-white/10"
+            >
+              <Plus size={20} />
+            </button>
+          ) : null}
           {!canSend ? (
-            <div className="pointer-events-none absolute inset-x-4 top-4 flex items-start text-[13px] leading-[22px] text-white/35">
+            <div
+              className={`pointer-events-none absolute inset-x-4 flex items-start text-[13px] leading-[22px] text-white/35 ${
+                genKind === "音频生成" ? "top-[72px]" : "top-4"
+              }`}
+            >
               {genKind === "音乐生成"
                 ? "请输入你想生成的音乐"
-                : "请输入你想生成的说话内容"}
+                : "输入台词并描述声音，可上传参考音频，通过 @ 引用多个音色，使用时间戳编排人声、音效与配乐。"}
             </div>
           ) : null}
           <textarea
@@ -390,15 +412,18 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                 </>
               ) : (
                 <>
-                  {/* 批 248 SOURCE_FACT: Seed TTS 两行式下拉 */}
+                  {/* 批 485 SOURCE_FACT: 模型位 SeedAudio 1.0 (New 标记) */}
                   <div className="relative">
                     <button
                       type="button"
-                      aria-label="选择模型: Seed TTS"
+                      aria-label="选择模型: SeedAudio 1.0, New"
                       onClick={() => setTtsOpen((v) => !v)}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
-                      Seed TTS
+                      SeedAudio 1.0
+                      <span className="text-[10px] font-medium text-[#5AB0FF]">
+                        New
+                      </span>
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
                     {ttsOpen ? (
@@ -415,23 +440,41 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                           onClick={() => setTtsOpen(false)}
                           className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
                         >
-                          <span className="text-[13px] font-medium text-white">Seed TTS</span>
+                          <span className="text-[13px] font-medium text-white">
+                            SeedAudio 1.0
+                          </span>
                           <span className="text-[12px] leading-4 text-white/45">
-                            上百个预设音色，让你玩转人声配音
+                            通过引用多个音色，使用时间戳编排人声、音效与配乐
                           </span>
                         </button>
                       </div>
                     ) : null}
                   </div>
+                  {/* 批 485 SOURCE_FACT: 音频生成: 全能配音 触发钮 + 引用参考 24×24 */}
+                  <button
+                    type="button"
+                    aria-label="音频生成: 全能配音"
+                    className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
+                  >
+                    全能配音
+                    <ChevronDown size={12} className="text-white/60" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="引用参考"
+                    className="flex size-6 items-center justify-center text-white/80 hover:bg-white/[0.08]"
+                  >
+                    <Quote size={13} />
+                  </button>
                   {/* 批 250/278/282 SOURCE_FACT: 音色下拉 (全音色网格 + 四筛选) */}
                   <div className="relative">
                     <button
                       type="button"
-                      aria-label={`音色: ${voice}`}
+                      aria-label="音色: 音色库"
                       onClick={() => setVoiceOpen((v) => !v)}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
-                      {voice}
+                      音色库
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
                     {voiceOpen ? (
@@ -523,29 +566,53 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                       </div>
                     ) : null}
                   </div>
+                  {/* 批 485 SOURCE_FACT: 引用参考 32×32 (音色库之后) */}
+                  <button
+                    type="button"
+                    aria-label="引用参考"
+                    className="flex size-8 shrink-0 items-center justify-center text-white/80 hover:bg-white/[0.08]"
+                  >
+                    <Quote size={15} />
+                  </button>
                 </>
               )}
             </div>
 
             <div className="flex h-8 shrink-0 items-center gap-2">
-              {/* 批 368 SOURCE_FACT (368-price-row.json): 价格签已演进为
-                  紧凑态「✦ + 整数」(音乐 6 / 音频 1)——精确值「Current price
-                  6.6/1.1」仍在 DOM 但被裁至 1px 不可见 (推翻批 293 的 70px
-                  裁切展示与批 367 的滚动裁切猜想，hover 无展开反应)。
-                  批 297: 值随模式变动；批 367e: 与时长无关 */}
-              <span
-                className="flex h-8 items-center gap-1.5 text-[13px] text-white/85"
-                title={`Current price ${genKind === "音乐生成" ? "6.6" : "1.1"}`}
-              >
-                <Sparkle size={12} className="fill-current text-white/70" />
-                {genKind === "音乐生成" ? 6 : 1}
-                <span className="w-px overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
-                  Current price {genKind === "音乐生成" ? "6.6" : "1.1"}
+              {/* 批 485 SOURCE_FACT (483c-audio-panel.png): 音频生成态为
+                  折扣价格签——可见 ✦12 (white/70) + 24 原价划线 (white/35)
+                  + 「显示折扣详情」钮 (aria)，隐藏叶 Current price 12.
+                  Original …；音乐生成态维持批 368 契约 (✦ 6，待重采样) */}
+              {genKind === "音频生成" ? (
+                <button
+                  type="button"
+                  aria-label="显示折扣详情"
+                  className="flex h-5 shrink-0 items-center gap-1 text-white/70"
+                >
+                  <Sparkle size={12} className="fill-current" />
+                  <span className="text-[13px]">12</span>
+                  <span className="text-[10px] text-white/35 line-through">
+                    24
+                  </span>
+                  <span className="w-px overflow-hidden whitespace-nowrap text-[12px]">
+                    Current price 12. Original 24
+                  </span>
+                </button>
+              ) : (
+                <span
+                  className="flex h-8 items-center gap-1.5 text-[13px] text-white/85"
+                  title="Current price 6.6"
+                >
+                  <Sparkle size={12} className="fill-current text-white/70" />
+                  6
+                  <span className="w-px overflow-hidden whitespace-nowrap text-[12px] text-white/[0.69]">
+                    Current price 6.6
+                  </span>
                 </span>
-              </span>
+              )}
               <button
                 type="button"
-                aria-label={canSend ? "生成语音" : "请输入提示词"}
+                aria-label={canSend ? "生成" : "请输入提示词"}
                 title={canSend ? undefined : "请输入提示词"}
                 onClick={() => {
                   if (canSend) {

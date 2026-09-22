@@ -47,13 +47,15 @@ def main() -> None:
                     return {
                         h: Math.round(r.height),
                         placeholder: overlay ? overlay.textContent.trim() : null,
-                        hasSeedTts: !!f.querySelector('button[aria-label="选择模型: Seed TTS"]'),
+                        hasSeedAudio: !!f.querySelector('button[aria-label="选择模型: SeedAudio 1.0, New"]'),
                         hasSeedMusic: !!f.querySelector('button[aria-label="选择模型: SeedMusic 1.0 Preview"]'),
                         hasVoice: !!f.querySelector('button[aria-label^="音色: "]'),
                         has120s: !!f.querySelector('button[aria-label="选择时长: 120s"]'),
+                        // Batch 485: audio shows discount tag (12/24), music keeps 6
                         priceCompact: (
-                            (f.querySelector('span[title^="Current price"]') || {"textContent": ""}).textContent || ""
-                        ).trim().slice(0, 1),
+                            (f.querySelector('button[aria-label="显示折扣详情"]') ||
+                             f.querySelector('span[title^="Current price"]') || {"textContent": ""}).textContent || ""
+                        ).trim().slice(0, 2),
                     };
                 }"""
             )
@@ -62,17 +64,19 @@ def main() -> None:
         if not st:
             failures.append("audio gen panel missing")
         else:
-            if st["placeholder"] != "请输入你想生成的说话内容":
+            # Batch 485 SOURCE_FACT: SeedAudio 1.0 改版——新引导文案/高 204/
+            # 全能配音/音色库/折扣价格签 12
+            if st["placeholder"] != "输入台词并描述声音，可上传参考音频，通过 @ 引用多个音色，使用时间戳编排人声、音效与配乐。":
                 failures.append(f"audio-mode placeholder: {st['placeholder']!r}")
-            if abs(st["h"] - 196) > 4:
-                failures.append(f"audio-mode height {st['h']} != 196")
-            if not st["hasSeedTts"] or not st["hasVoice"]:
-                failures.append("audio-mode selectors missing (Seed TTS / 音色)")
+            if abs(st["h"] - 204) > 4:
+                failures.append(f"audio-mode height {st['h']} != 204")
+            if not st["hasSeedAudio"] or not st["hasVoice"]:
+                failures.append("audio-mode selectors missing (SeedAudio / 音色)")
             if st["hasSeedMusic"] or st["has120s"]:
                 failures.append("music-only selectors visible in audio mode")
-            # Batch 368: compact price tag shows integer part (1.1 -> 1)
-            if st["priceCompact"] != "1":
-                failures.append(f"audio-mode compact price: {st['priceCompact']!r} != '1'")
+            # Batch 485: audio-mode discount price tag shows 12
+            if st["priceCompact"] != "12":
+                failures.append(f"audio-mode compact price: {st['priceCompact']!r} != '12'")
 
         # switch to 音乐生成
         page.locator('button[aria-label="创作类型: 音频生成"]').click()
@@ -90,10 +94,10 @@ def main() -> None:
                 failures.append(f"music-mode height {st2['h']} != 144")
             if not st2["hasSeedMusic"] or not st2["has120s"]:
                 failures.append("music-mode selectors missing (SeedMusic / 120s)")
-            if st2["hasSeedTts"] or st2["hasVoice"]:
+            if st2["hasSeedAudio"] or st2["hasVoice"]:
                 failures.append("audio-mode selectors visible in music mode")
-            # Batch 368: compact price tag shows integer part (6.6 -> 6)
-            if st2["priceCompact"] != "6":
+            # Batch 368/485: music price tag shows 6 (audio uses discount tag)
+            if not st2["priceCompact"].startswith("6"):
                 failures.append(f"music-mode compact price: {st2['priceCompact']!r} != '6'")
 
         # Batch 367: duration control is a continuous slider popover
@@ -166,7 +170,7 @@ def main() -> None:
         page.locator('button[role="option"]', has_text="音频生成").click()
         page.wait_for_timeout(500)
         st3 = panel_state()
-        if not st3 or st3["placeholder"] != "请输入你想生成的说话内容":
+        if not st3 or "输入台词并描述声音" not in (st3["placeholder"] or ""):
             failures.append(f"revert placeholder wrong: {st3 and st3['placeholder']!r}")
 
         ctx.close()

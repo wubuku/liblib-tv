@@ -44,8 +44,10 @@ def main() -> None:
                     w: Math.round(r.width),
                     h: Math.round(r.height),
                     selected: n.classList.contains('selected'),
+                    // Batch 485: SeedAudio 面板占位为引导文案 (音频生成态)
                     genPanel: [...document.querySelectorAll('form')]
-                        .some(f => f.textContent.includes('请输入你想生成')),
+                        .some(f => f.textContent.includes('输入台词并描述声音')
+                                || f.textContent.includes('请输入你想生成')),
                 };
             }"""
         )
