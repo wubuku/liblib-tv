@@ -19,7 +19,7 @@ tasks:
       - type: source-ui
         note: 空态 CTA 提供 文本、图片、视频、音频、3D导演台、上传文件。
       - type: source-interaction
-        note: 待验证点击后的节点、选中态和面板反馈。
+        note: 已观察点击 文本 后空态消失，出现 文本节点1；撤销变为 enabled、重做仍 disabled；尚未 Gate B 回走。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -37,7 +37,7 @@ tasks:
       - type: source-ui
         note: 左下工具条提供 画布小地图、缩小、100%、放大、适应画布、搜索节点、一键整理、选择整理方式。
       - type: source-interaction
-        note: 待验证鼠标、触摸板和快捷键行为。
+        note: 缩放按钮显示值观察到 100% -> 87% -> 100%；触摸板、鼠标手势和快捷键尚未独立回走。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -53,9 +53,9 @@ tasks:
     coverage: flagship
     evidence:
       - type: source-ui
-        note: 空态尚未出现节点，待创建节点后验证选中态、浮动工具和 Prompt 面板。
+        note: 已观察选中节点的上下浮层和图片 Prompt 面板；文本编辑使用 textarea.text-edit；面板标签见 SOURCE_OBSERVATIONS.md。
       - type: source-interaction
-        note: 待验证选中、拖动、编辑和提交前反馈。
+        note: 文本双击进入 textarea，点击画布空白处失焦提交；Escape 未提交/取消；尚未 Gate B 回走。
     preconditions:
       - 画布中已有可编辑节点
     routes:
@@ -71,7 +71,7 @@ tasks:
     coverage: full
     evidence:
       - type: source-interaction
-        note: 待验证 Handle 连接、临时连线、成功连线和失败反馈。
+        note: 已观察文本右 Handle 到图片左 Handle 成功连接，边数量 0 -> 1；失败、删除和非法连接尚未验证。
     preconditions:
       - 画布中已有两个可连接节点
     routes:
@@ -89,7 +89,7 @@ tasks:
       - type: source-ui
         note: 顶部存在 撤销、重做 控件，初始为 disabled。
       - type: source-interaction
-        note: 待验证右键菜单、快捷键、删除和历史按钮。
+        note: 已观察节点右键菜单的 复制/创建副本/删除、画布菜单和撤销状态变化；持久化与完整 undo/redo 尚未验证。
     preconditions:
       - 画布中已有至少一个节点
     routes:
@@ -107,7 +107,7 @@ tasks:
       - type: source-ui
         note: 左下存在 搜索节点、一键整理、选择整理方式。
       - type: source-interaction
-        note: 待验证搜索结果、整理菜单、整理结果和撤销边界。
+        note: 输入 图片 后显示 图片节点1；已读取三种整理方式菜单文字；整理结果和撤销边界尚未验证。
     preconditions:
       - 画布中已有多个节点
     routes:
@@ -125,7 +125,7 @@ tasks:
       - type: source-ui
         note: breadcrumb 包含 测试作品、测试项目、画布 1；左侧含 添加节点、查看项目资产、从素材库选择、本地上传。
       - type: source-interaction
-        note: 待验证各级下拉、菜单动作和菜单关闭规则。
+        note: 已观察 breadcrumb 和左栏入口文字；各级下拉、切换、菜单动作和关闭规则尚未完整回走。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -143,7 +143,7 @@ tasks:
       - type: source-ui
         note: 右上存在 使用教程，左侧存在 帮助。
       - type: source-interaction
-        note: 待验证帮助面板、快捷键名称和实际结果。
+        note: 已观察“快捷键”帮助分组和手势声明，并观察教程外链标题；快捷键实际结果尚未逐项验证。
     preconditions:
       - 已登录并打开一个画布
     routes:
