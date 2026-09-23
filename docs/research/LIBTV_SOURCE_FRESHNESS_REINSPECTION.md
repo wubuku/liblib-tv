@@ -1030,6 +1030,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1103 巡检 | still-broken | 第六百五十四次重测；到期全量维护集新鲜运行 76/78 首跑——batch26/33 于并行 FrameosPaneAddMenu 重构瞬态编译窗口失败（Module not found 污染共享 chunk），窗口闭合后双双复测 PASS，78/78 达成；16 项 liblib 回写恢复，其中 1 项为并行已暂存文件被 pathspec 报错拦截、原样保留（DEC-018）；并行落库 jimeng 556 full gate 91/91（batch 1103） |
 | 2026-09-25 | batch 1108 巡检 | still-broken | 第六百五十五次重测；巡检批次——并行落库 jimeng 557（rotation 1-19 绿 19/19，新轮开启），de74f08b 同笔收编 FrameosPaneAddMenu 移除重构（组件 -122 行、page.tsx 引用清零）frameos 侧闭环；1 件手册文档暂存 + 5 件 jimeng PNG WIP 保留不动；batch 1110 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1110 巡检 | still-broken | 第六百五十六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；11 项 liblib 回写 fixture 显式恢复，jimeng-clone-batch* 5 件剔除保留（DEC-018）；并行 frameos 183 验证脚本已现身 WIP（batch 1110） |
+| 2026-09-25 | batch 1115 巡检 | still-broken | 第六百五十七次重测；巡检批次——并行 rotation 三连落 jimeng 558/559/560（segment 20-33 绿 14/14、34-48 绿 15/15、49-64 绿 14/14），frameos 183 仍 untracked WIP 保留不动；batch 1117 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
