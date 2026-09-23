@@ -1,0 +1,24 @@
+{
+  "batch": 196,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "tile:聚焦",
+        "tile:聚焦:vertical-shape",
+        "tile:故事版",
+        "tile:故事版:vertical-shape",
+        "tile:参考",
+        "tile:参考:vertical-shape",
+        "regression:chips",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

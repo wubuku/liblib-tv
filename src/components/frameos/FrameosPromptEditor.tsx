@@ -196,13 +196,9 @@ export function FrameosPromptEditor() {
           gap: 4,
         }}
       >
-        <MiniBtn
-          icon="⌖"
-          label="聚焦"
-          onClick={() => setFocusModeNodeId(sel.id)}
-        />
-        <MiniBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
-        <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
+        <TileBtn icon="⌖" label="聚焦" onClick={() => setFocusModeNodeId(sel.id)} />
+        <TileBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
+        <TileBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
         {incomingEdges.map((e) => {
           const src = nodes.find((n) => n.id === e.source);
           return (
@@ -421,6 +417,52 @@ export function FrameosPromptEditor() {
         </button>
       </div>
     </div>
+  );
+}
+
+function TileBtn({
+  icon,
+  label,
+  onClick,
+}: {
+  icon: string;
+  label: string;
+  onClick?: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+      style={{
+        display: "inline-flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        width: 46,
+        height: 42,
+        borderRadius: 8,
+        border: "none",
+        background: "transparent",
+        color: "#C2C2C2",
+        fontSize: 11,
+        cursor: "pointer",
+        transition: "background 0.15s, color 0.15s",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+        e.currentTarget.style.color = "#FFFFFF";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "transparent";
+        e.currentTarget.style.color = "#C2C2C2";
+      }}
+    >
+      <span style={{ fontSize: 14, lineHeight: "16px" }}>{icon}</span>
+      <span>{label}</span>
+    </button>
   );
 }
 
