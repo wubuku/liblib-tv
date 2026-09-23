@@ -1018,6 +1018,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1067 心跳批次 | still-broken | 第六百四十二次重测；巡检批次——并行连落 frameos 176（复制图片 menu item 按图片内容门控）+ jimeng 541（rotation 34-48 绿 15/15；计划 segment 49-64），工作区净；batch 1068 前后到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1068 心跳批次 | still-broken | 第六百四十三次重测；巡检批次——并行自行落库 jimeng 543（rotation 65-101 绿 25/25——round closed；计划 batch 544 全量门），工作区净；batch 1068/1075 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1070 心跳批次 | still-broken | 第六百四十四次重测；巡检批次——并行自行落库 frameos 177（立即删除 + help icons + 键盘审计），工作区净；batch 1075 前后到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1072 巡检 | still-broken | 第六百四十五次重测；巡检批次——并行连落 jimeng 545（rotation 1-19 绿 19/19；计划 segment 20-33）+ frameos 178（per-type context menu shape 锁定），工作区净；batch 1075 前后到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
