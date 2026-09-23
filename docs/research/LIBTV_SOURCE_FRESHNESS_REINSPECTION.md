@@ -1049,6 +1049,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1171 巡检 | still-broken | 第六百七十三次重测（回退路径首次常态使用）；巡检批次——并行 rotation 四连落 jimeng 574-577（full gate 后新轮已开至 segment 34-48 绿 15/15）+ frameos 199 文档；frameos 200 仍 WIP 保留不动；batch 1173 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1173 巡检 | still-broken | 第六百七十四次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；13 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 新重构 WIP（ConfirmDialog 删除 + Edge/store 修改），jimeng PNG WIP 3 件（batch 1173） |
 | 2026-09-25 | batch 1178 巡检 | still-broken | 第六百七十五次重测；巡检批次——并行落库 frameos 201 文档（IMPLEMENTATION differences 表刷新）+ jimeng 578/579（rotation 49-64 绿 14/14、65-101 绿 25/25，round closed，580 full gate 已规划）；ConfirmDialog 重构仍 WIP 保留不动；batch 1180 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1180 巡检 | still-broken | 第六百七十六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 9 分钟，零失败零瞬态）；15 项 liblib 回写 fixture 显式恢复（1 项并行 untracked frameos 204 证据目录正确跳过）；并行 frameos 已推进至 204 活跃 WIP（ImageNode + store）（batch 1180） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
