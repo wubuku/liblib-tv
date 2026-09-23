@@ -5,8 +5,10 @@ Run: ~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py
 Output line `RECOVERY: menu-opens` = source model menu recovered
 (proceed with BLOCKED_SOURCE sampling per
 docs/research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md §10.3);
-`RECOVERY: still-broken` = keep waiting. Requires the CDP browser on
-port 9222 with the logged-in liblib.tv session (user-approved).
+`RECOVERY: still-broken` = keep waiting. Prefers the CDP browser on
+port 9222 with the logged-in liblib.tv session (user-approved); if
+unavailable, falls back to a playwright-managed headless persistent
+context on the same profile.
 
 Probes: reload canvas -> create a fresh video node via the add-node
 menu -> click the model trigger up to 3 times -> check for the
@@ -21,9 +23,21 @@ def native_click(page, x, y):
     page.mouse.down(); page.wait_for_timeout(55); page.mouse.up()
 
 with sync_playwright() as p:
-    browser = p.chromium.connect_over_cdp("http://localhost:9222")
-    ctx = browser.contexts[0]
-    page = next(pg for pg in ctx.pages if "liblib.tv" in pg.url)
+    try:
+        browser = p.chromium.connect_over_cdp("http://localhost:9222", timeout=15000)
+        ctx = browser.contexts[0]
+        page = next(pg for pg in ctx.pages if "liblib.tv" in pg.url)
+    except Exception:
+        # CDP browser unavailable — fall back to a playwright-managed
+        # headless persistent context reusing the same profile so the
+        # logged-in session (user-approved) is preserved.
+        browser = p.chromium.launch_persistent_context(
+            "/Users/yangjiefeng/libtv-cdp-profile",
+            headless=True,
+            args=["--no-first-run", "--no-default-browser-check"],
+        )
+        ctx = browser
+        page = ctx.new_page()
     page.bring_to_front()
     page.goto("https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(20000)
