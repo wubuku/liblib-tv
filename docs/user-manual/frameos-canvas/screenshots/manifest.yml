@@ -32,3 +32,179 @@ screenshots:
     visible_text: 缩小
     alt: 左下画布工具条高亮“缩小”按钮
     sha256: 1917f85ddb19a7e94ec166cdfa96b03f7132b7f9cfe05ad96792633eab595a35
+  - file: screenshots/04-edit-selected-node.png
+    task_id: edit-selected-node
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-22T23:39:56+08:00
+    verified_locator: 'textarea.text-edit'
+    visible_text: FrameOS 手册测试文本
+    alt: 文本节点双击后进入 textarea 编辑态（已裁剪账户区域）
+    sha256: 339e23ce009730d72a3d081f96e3ebe38af8d6a02b834bc12bbd9f2e2a162653
+  - file: screenshots/05-connect-nodes.png
+    task_id: connect-nodes
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-22T23:39:56+08:00
+    verified_locator: '.vue-flow__edge'
+    visible_text: 文本节点1
+    alt: 文本节点与图片节点之间的连线结果（已裁剪账户区域）
+    sha256: 73e9a044d845fcb03344438b64259e50d70f3f19ea84458fc6955e37f8360706
+  - file: screenshots/06-add-node-menu.png
+    task_id: create-first-node
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T00:24:23+08:00
+    verified_locator: 'text=图片（添加节点菜单项）'
+    visible_text: 图片
+    alt: “添加节点”菜单展开并高亮“图片”项，含添加节点与添加资源两组入口
+    sha256: 9e59601f242fc4f4b4476f6496f21839726fecd73ad3aeb79848df36ec1a19e4
+  - file: screenshots/07-create-image-node-result.png
+    task_id: create-first-node
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T00:25:43+08:00
+    verified_locator: '.vue-flow__node 图片节点2'
+    visible_text: 图片节点2
+    alt: 菜单创建“图片节点2”后自动选中并展开图片 Prompt 面板
+    sha256: 1ca8e014353a9808c7a0f10700e5a4f59839322f7ac3a15785555b6c09639744
+  - file: screenshots/08-select-text-node.png
+    task_id: edit-selected-node
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T00:39:12+08:00
+    verified_locator: '.vue-flow__node.selected 文本节点1'
+    visible_text: 文本节点1
+    alt: 文本节点选中态：蓝色边框、左右连接点与上方“全屏查看/下载”浮动工具条
+    sha256: a61d36314c176ae2c62e788c10dec277a14a44136ce2aacba2696594d41056fd
+  - file: screenshots/09-image-node-panel.png
+    task_id: edit-selected-node
+    step: 3
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T00:41:45+08:00
+    verified_locator: 'button[aria-label="删除连线"]'
+    visible_text: 删除连线
+    alt: 图片节点选中态：聚焦/故事版/参考工具、已连接文本引用芯片与 Seedream 5.0 Pro 参数面板
+    sha256: e1557e19ee9671fe93bc04d4ab75b34dec240ddf76cfd2dfcdba64708872dcb3
+  - file: screenshots/10-reconnect-nodes.png
+    task_id: connect-nodes
+    step: 3
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T00:45:56+08:00
+    verified_locator: '.vue-flow__edge（文本→图片）'
+    visible_text: 图片节点1
+    alt: 从文本节点右侧连接点拖到图片节点左侧连接点后重建的虚线连线
+    sha256: 31fb8cc4b05390b840809e2035b3b1be963d83f1115645c414cb2faca4a0384a
+  - file: screenshots/11-node-context-menu.png
+    task_id: duplicate-delete-history
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:00:52+08:00
+    verified_locator: '.menu-item 创建副本'
+    visible_text: 创建副本
+    alt: 图片节点右键菜单：复制 ⌘C、复制图片（禁用）、创建副本 ⌘D、重新生成（禁用）、删除 ⌫
+    sha256: 49daeb550f7dcc42cadd9719055d09a4c0274d92e1c714255cd5725c91aa66f0
+  - file: screenshots/12-search-nodes.png
+    task_id: organize-and-search
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:17:25+08:00
+    verified_locator: 'input[placeholder="搜索节点名称"]'
+    visible_text: 搜索节点名称
+    alt: 搜索框输入“图片”后列出三个图片节点结果
+    sha256: 9bbf0e35d207f4b3258ef55a7e30ea129c2d2818f4fc675be2b381c133fac9db
+  - file: screenshots/13-grid-organize.png
+    task_id: organize-and-search
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:30:13+08:00
+    verified_locator: 'button[aria-label="一键整理 · 网格整理"]'
+    visible_text: 一键整理 · 网格整理
+    alt: 点击网格整理后节点布局归位并适配视口（缩放 112%）
+    sha256: e3010f95d9e5fb1eab735084b757438fca85e7f5ffde4d392996c8b30ec89536
+  - file: screenshots/14-organize-options.png
+    task_id: organize-and-search
+    step: 3
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:32:07+08:00
+    verified_locator: 'text=网格整理（整理方式菜单）'
+    visible_text: 按连线横向
+    alt: 整理方式菜单：按连线横向、按连线纵向、网格整理（当前选中带勾标）
+    sha256: 341d4dd4d1d25052690d5644a77b612517619ea8ca9f9df6c6a2003e0bc28a6d
+  - file: screenshots/15-canvas-breadcrumb-dropdown.png
+    task_id: canvas-context
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:56:50+08:00
+    verified_locator: 'button 画布 1 下拉面板'
+    visible_text: 画布 1
+    alt: 面包屑“画布 1”下拉：画布列表、节点计数、新建入口与重命名/删除操作
+    sha256: 8b6da37ff70f48b72a98cc7384807df5671edcba6c10fcb3ec08119d86062c9a
+  - file: screenshots/16-project-assets-panel.png
+    task_id: canvas-context
+    step: 3
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T01:58:53+08:00
+    verified_locator: '.project-assets-view-panel'
+    visible_text: 项目资产
+    alt: “项目资产”面板：角色/物品/环境分类、资产搜索框与空态提示
+    sha256: dc6b44e62cf28aa7d6b8ee1ade5fff53c2cf9ca748d83c8b84c964acccb7b035
+  - file: screenshots/17-asset-library.png
+    task_id: canvas-context
+    step: 4
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T02:02:35+08:00
+    verified_locator: 'text=选择素材 对话框'
+    visible_text: 选择素材
+    alt: “选择素材”对话框：目录树（他人项目名已模糊遮蔽）、类型筛选、批量操作与本地上传
+    sha256: 17c0a47278c9b5abb65439d3c347e61bc036659265d523cb71086c3fdf07aa1f
+  - file: screenshots/18-help-shortcuts.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T02:06:54+08:00
+    verified_locator: '.shortcuts-panel'
+    visible_text: 快捷键
+    alt: 帮助面板“快捷键”：创作与缩放分组的逐项快捷键声明
+    sha256: 85b393c36f990fc16b46c147c6d7e48d20ca203f2b26bd6ff75382730205d24e
+  - file: screenshots/19-focus-mode-and-addmenu.png
+    task_id: help-and-shortcuts
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T02:18:47+08:00
+    verified_locator: 'text=聚焦模式 节点浮层'
+    visible_text: 聚焦模式
+    alt: 图片节点“聚焦模式”提示（局部框选）与双击空白处打开的“选择节点类型”菜单
+    sha256: d58e1e433e50ad2090a301a9faf67bc85a1c68e73bd2fa81cf68165634195675

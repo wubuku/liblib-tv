@@ -19,7 +19,7 @@ tasks:
       - type: source-ui
         note: 空态 CTA 提供 文本、图片、视频、音频、3D导演台、上传文件。
       - type: source-interaction
-        note: 已观察点击 文本 后空态消失，出现 文本节点1；撤销变为 enabled、重做仍 disabled；尚未 Gate B 回走。
+        note: 2026-09-23 已回走：添加节点菜单（含添加资源组）点击 图片 创建 图片节点2，自动选中并展开 Prompt 面板，撤销可用；双击空白打开“选择节点类型”菜单。截图 06/07。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -37,7 +37,7 @@ tasks:
       - type: source-ui
         note: 左下工具条提供 画布小地图、缩小、100%、放大、适应画布、搜索节点、一键整理、选择整理方式。
       - type: source-interaction
-        note: 缩放按钮显示值观察到 100% -> 87% -> 100%；触摸板、鼠标手势和快捷键尚未独立回走。
+        note: 2026-09-23 已回走：缩小/放大约 13% 步进、适应画布 273%→100%、⌘0 重置、小地图开关实测；左键拖动空白不平移（与帮助声明不一致）；滚轮/触摸板/空格拖动环境限制未验证。截图 03/13。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -53,9 +53,9 @@ tasks:
     coverage: flagship
     evidence:
       - type: source-ui
-        note: 已观察选中节点的上下浮层和图片 Prompt 面板；文本编辑使用 textarea.text-edit；面板标签见 SOURCE_OBSERVATIONS.md。
+        note: 文本节点选中态仅有 全屏查看/下载 工具条；图片节点面板含 聚焦/故事版/参考、删除连线、替换参考、Seedream 5.0 Pro、2K·16:9、高级设置与积分显示。
       - type: source-interaction
-        note: 文本双击进入 textarea，点击画布空白处失焦提交；Escape 未提交/取消；尚未 Gate B 回走。
+        note: 2026-09-23 已回走：双击进入 textarea、点击空白提交（节点文本更新 + 撤销可用）、Escape 不提交不取消；聚焦按钮进入“聚焦模式”（局部框选，非视口缩放）。截图 04/08/09/19。
     preconditions:
       - 画布中已有可编辑节点
     routes:
@@ -71,7 +71,7 @@ tasks:
     coverage: full
     evidence:
       - type: source-interaction
-        note: 已观察文本右 Handle 到图片左 Handle 成功连接，边数量 0 -> 1；失败、删除和非法连接尚未验证。
+        note: 2026-09-23 已回走：删除连线按钮 1→0、Handle 拖拽重建 0→1（新边实例，text_out→prompt_in）、空白处释放取消连接；撤销可恢复被删节点并连带恢复连线。截图 05/10。
     preconditions:
       - 画布中已有两个可连接节点
     routes:
@@ -87,9 +87,9 @@ tasks:
     coverage: full
     evidence:
       - type: source-ui
-        note: 顶部存在 撤销、重做 控件，初始为 disabled。
+        note: 右键菜单逐字：复制 ⌘C、复制图片（禁用）、创建副本 ⌘D、重新生成（禁用）、删除 ⌫（红色）。
       - type: source-interaction
-        note: 已观察节点右键菜单的 复制/创建副本/删除、画布菜单和撤销状态变化；持久化与完整 undo/redo 尚未验证。
+        note: 2026-09-23 已回走：创建副本命名（副本）偏移(+30,+30)不复制连线；⌘D/⌫/⌘Z/⌘⇧Z 实测生效，撤销恢复删除节点并连带恢复边；⌘V 粘贴环境限制未验证；内容跨刷新持久、撤销历史不跨会话。截图 11。
     preconditions:
       - 画布中已有至少一个节点
     routes:
@@ -105,9 +105,9 @@ tasks:
     coverage: full
     evidence:
       - type: source-ui
-        note: 左下存在 搜索节点、一键整理、选择整理方式。
+        note: 左下存在 搜索节点、一键整理、选择整理方式；整理菜单三种方式逐字，当前方式带勾标。
       - type: source-interaction
-        note: 输入 图片 后显示 图片节点1；已读取三种整理方式菜单文字；整理结果和撤销边界尚未验证。
+        note: 2026-09-23 已回走：搜索“图片”列出全部图片节点、无匹配显示“无匹配节点”、点击结果选中并缩放聚焦（100%→273%）；网格整理微调布局并适配视口（100%→112%）、撤销可用。截图 12/13/14。
     preconditions:
       - 画布中已有多个节点
     routes:
@@ -123,9 +123,9 @@ tasks:
     coverage: full
     evidence:
       - type: source-ui
-        note: breadcrumb 包含 测试作品、测试项目、画布 1；左侧含 添加节点、查看项目资产、从素材库选择、本地上传。
+        note: 面包屑三级下拉（画布列表含新建/重命名/删除与节点计数）；项目资产面板（角色/物品/环境）；选择素材对话框（类型筛选、批量操作、本地上传，文件 input accept 含 image/video/audio/txt/docx/pdf）。
       - type: source-interaction
-        note: 已观察 breadcrumb 和左栏入口文字；各级下拉、切换、菜单动作和关闭规则尚未完整回走。
+        note: 2026-09-23 已观察：三级下拉打开与 Escape 关闭、资产面板与素材库对话框打开关闭；下拉/树中的切换、重命名、删除、实际上传均未执行。用户真实项目名已去敏。截图 02/15/16/17。
     preconditions:
       - 已登录并打开一个画布
     routes:
@@ -141,9 +141,9 @@ tasks:
     coverage: concise
     evidence:
       - type: source-ui
-        note: 右上存在 使用教程，左侧存在 帮助。
+        note: 帮助面板“快捷键”全量逐字：创作/缩放/移动画布/其他四组（含 ⌘X、⌘F、M、?、⌘+/⌘−、⌘S、⌥拖动复制）。
       - type: source-interaction
-        note: 已观察“快捷键”帮助分组和手势声明，并观察教程外链标题；快捷键实际结果尚未逐项验证。
+        note: 2026-09-23 实测生效：⌘D、⌫、⌘Z、⌘⇧Z、⌘F、⌘0、Esc 取消选中；双击空白添加节点菜单。未验证（环境限制）：⌘V、M、?、双击节点聚焦、滚轮与触摸板手势。截图 18/19。
     preconditions:
       - 已登录并打开一个画布
     routes:
