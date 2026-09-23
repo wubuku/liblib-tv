@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { NodeProps } from "@xyflow/react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import { ImageNodeIcon, Upload2Icon } from "../icons";
@@ -9,6 +10,8 @@ import { useFrameosStore } from "@/store/frameosStore";
 export function FrameosImageNode(props: NodeProps<FrameosNode>) {
   const { id, data, selected } = props;
   const { title, imageUrl } = data;
+  // Batch 204: 内容图片 hover 视觉 (蒙层 + 1.02 缩放, BEHAVIORS 原有采样行为)
+  const [hovered, setHovered] = useState(false);
 
   // 直接读 store 里的 node 来判断方向 (xyflow v12 不会把 style 字段作为 props 传过来,
   // 它会自己 measure, 而 measure 的尺寸就是按我们传过去的 style 渲染的)
@@ -34,6 +37,8 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
     >
       <div
         className="card-body"
+        onMouseEnter={() => imageUrl && setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
           flex: 1,
           position: "relative",
@@ -41,8 +46,22 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
           borderRadius: 10,
           overflow: "hidden",
           minHeight: 0,
+          transform: hovered && imageUrl ? "scale(1.02)" : "scale(1)",
+          transition: "transform 0.15s",
         }}
       >
+        {imageUrl && hovered && (
+          <div
+            data-frameos-image-hover-mask
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(13,13,13,0.35)",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          />
+        )}
         {imageUrl ? (
           // Batch 345: 画布节点位图按节点尺寸动态缩放，保留 img（FrameOS 路线）。
           // eslint-disable-next-line @next/next/no-img-element

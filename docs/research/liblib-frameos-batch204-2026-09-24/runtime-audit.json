@@ -1,0 +1,19 @@
+{
+  "batch": 204,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:content-image",
+        "hover:mask-appears",
+        "leave:mask-clears",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
