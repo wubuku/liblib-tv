@@ -1,0 +1,26 @@
+{
+  "batch": 158,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:nodes",
+        "text:exists",
+        "text:toolbar-opens",
+        "text:toolbar-two-buttons",
+        "text:toolbar-fullscreen-view",
+        "text:toolbar-download",
+        "text:no-prompt-editor",
+        "text:dblclick-textarea",
+        "text:blank-click-exits-edit",
+        "media:prompt-editor-still-shows",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

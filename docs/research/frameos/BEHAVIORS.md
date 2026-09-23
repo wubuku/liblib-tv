@@ -27,7 +27,7 @@
 | Breadcrumb "默认作品" | click | 弹出 4 个项目下拉（mock 数据） + 新建项目 |
 | Breadcrumb "咖啡馆对峙" | click | 弹出当前项目下场景下拉 + 新建场景 |
 | Breadcrumb "画布 1" | click | 弹出画布下拉 + 新建画布 |
-| ToolRail "添加节点" | click | 弹出 3 种节点类型菜单（文本/图片/视频），点击后新建并自动选中 |
+| ToolRail "添加节点" | click | 弹出 8 种节点类型菜单（文本/图片/视频/角色/场景/音频/风格/批量，标题“选择节点类型”），点击后新建并自动选中 |
 | ToolRail "从素材库选择" | click | console.log（mock） |
 | ToolRail "本地上传" | click | console.log（mock） |
 | ToolRail "帮助" | click | 打开 `FrameosHelpPanel` |
@@ -52,8 +52,8 @@
 
 | 面板 | 出现条件 | 位置 | 内容 |
 |---|---|---|---|
-| `FrameosNodeFloatingToolbar` | 节点选中 | 节点正上方 57px 处，居中 | 下载/收藏 + 按节点类型的工具（图片：超清/720/改图/宫格切分；视频：超清/改图；文本：超清）+ 关闭 |
-| `FrameosPromptEditor` | 节点选中 | 节点正下方 12px 处，居中 | 节点缩略图 + contenteditable 输入框 + 模型/1K/16:9/更多参数下拉 + 60 积分 + 提交按钮 |
+| `FrameosNodeFloatingToolbar` | 节点选中 | 节点正上方 57px 处，居中 | 文本：恰好两个 icon 按钮 **全屏查看/下载**（2026-09-23 源站实测，Batch 158）；图片：下载/收藏 + 超清/720全景/改图/宫格切分；视频：下载/收藏 + 查看历史/超清/去字幕（审核未通过时无查看历史） |
+| `FrameosPromptEditor` | 选中图片/视频等非文本节点 | 节点正下方 12px 处，居中 | 节点缩略图 + contenteditable 输入框 + 模型/1K/16:9/更多参数下拉 + 60 积分 + 提交按钮。**文本节点选中时不渲染**（2026-09-23 源站实测，Batch 158） |
 | `FrameosNodeEditPanel` | **调试模式** + 节点选中 | 节点右侧 12px（或左侧如右边空间不够） | 节点 ID / X,Y 坐标 / 按类型的参数表单 / 快捷操作（复制/锁定/删除） |
 
 边界碰撞：所有面板有 `window.innerWidth/Height` 检查，节点靠右时面板左偏，靠下时面板上移。

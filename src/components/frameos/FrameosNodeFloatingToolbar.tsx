@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
-import { DownloadIcon, StarIcon } from "./icons";
+import { DownloadIcon, FullscreenExitIcon, StarIcon } from "./icons";
 
 /**
  * FrameOS 节点浮动工具条 - 与 frameos.cn 完全对齐:
  * - 选中节点时浮动到节点正上方 + 居中
- * - 内容根据节点类型变化:
- *    - 文本: [下载]
+ * - 内容根据节点类型变化 (2026-09-23 源站复核):
+ *    - 文本: [全屏查看, 下载] (两个 icon 按钮, 无文字)
  *    - 图片: [下载, 收藏, 超清, 720全景, 改图, 宫格切分]
  *    - 视频: [下载, 收藏, 查看历史, 超清, 去字幕]
  *    - 视频 (审核未通过): [下载, 收藏, 超清, 去字幕]
@@ -24,7 +24,11 @@ function getActionsForNode(node: { type?: string; data?: { reviewFailed?: boolea
   if (!node) return [];
   switch (node.type) {
     case "text":
-      return [{ label: "下载", aria: "下载" }];
+      // 2026-09-23 源站实测: 选中文本节点只有 全屏查看 / 下载 两个 icon 按钮
+      return [
+        { label: "", aria: "全屏查看" },
+        { label: "", aria: "下载" },
+      ];
     case "image":
       return [
         { label: "", aria: "下载" },
@@ -142,13 +146,16 @@ export function FrameosNodeFloatingToolbar() {
       }}
     >
       {actions.map((a, i) => {
-        // 前两个为 icon-only (下载 / 收藏)
+        // 前两个为 icon-only (下载 / 收藏 / 全屏查看)
         const isIconOnly = !a.label;
         const aria = a.aria ?? a.label;
-        // 文本节点只有下载, 不显示收藏/查看历史
+        // 文本节点只有 全屏查看/下载, 不显示收藏/查看历史
         const isDownload = aria === "下载";
         const isFavorite = aria === "收藏";
-        const onClick = isDownload ? onDownload : (a.onClick ?? (() => window.alert(`${a.label || aria} (mock)`)));
+        const isFullscreenView = aria === "全屏查看";
+        const onClick = isDownload
+          ? onDownload
+          : (a.onClick ?? (() => window.alert(`${a.label || aria} (mock)`)));
         return (
           <button
             key={i}
@@ -187,6 +194,7 @@ export function FrameosNodeFloatingToolbar() {
           >
             {isDownload && <DownloadIcon size={14} />}
             {isFavorite && <StarIcon size={14} />}
+            {isFullscreenView && <FullscreenExitIcon size={14} />}
             {!isIconOnly && <span>{a.label}</span>}
           </button>
         );

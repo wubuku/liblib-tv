@@ -8,7 +8,7 @@ import {
 
 /**
  * FrameOS 画布底部 prompt 编辑面板 - 与 frameos.cn 视觉对齐
- * - 仅在选中节点时显示
+ * - 仅在选中节点时显示; 文本节点选中时不显示 (源站 2026-09-23 实测)
  * - 上方小型工具条: 聚焦 / 故事版 / 删除连线 (与 frameos.cn 一致)
  * - prompt 输入框 + 全屏按钮
  * - 模型 / 分辨率 / 比例 / 参数 / 步数 + 蓝色生成按钮
@@ -28,6 +28,8 @@ export function FrameosPromptEditor() {
 
   if (!selectedNodeId) return null;
   const sel = nodes.find((n) => n.id === selectedNodeId);
+  // 2026-09-23 源站实测: 选中文本节点不出现 prompt 面板 (只有 全屏查看/下载 工具条)
+  if (!sel || sel.type === "text") return null;
 
   const isRunning = currentGeneration?.status === "running";
 
