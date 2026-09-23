@@ -43,7 +43,6 @@ import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
-import { FrameosPaneAddMenu } from "@/components/frameos/FrameosPaneAddMenu";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -170,10 +169,6 @@ function FrameosCanvasInner() {
         }
         if (state.isNodeSearchOpen) {
           state.closeNodeSearch();
-          return;
-        }
-        if (state.paneMenuAt) {
-          state.setPaneMenuAt(null);
           return;
         }
         if (state.isHelpOpen) {
@@ -452,8 +447,7 @@ function FrameosCanvasInner() {
           {
             label: "添加节点",
             onClick: () => {
-              const e = event as React.MouseEvent | MouseEvent;
-              setPaneMenuAt({ x: e.clientX, y: e.clientY });
+              useFrameosStore.getState().toggleAddNodeMenu();
             },
           },
           {
@@ -644,8 +638,6 @@ function FrameosCanvasInner() {
       {/* 节点搜索面板 (源站: 工具条按钮 / ⌘F, 结果点击选中并缩放聚焦) */}
       <FrameosNodeSearch />
 
-      {/* 双击空白处的选择节点类型菜单 (源站 §13.2) */}
-      <FrameosPaneAddMenu />
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
       <FrameosPromptEditor />
