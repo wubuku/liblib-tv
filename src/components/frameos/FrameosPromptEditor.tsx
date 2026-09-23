@@ -30,6 +30,8 @@ export function FrameosPromptEditor() {
   const removeEdge = useFrameosStore((s) => s.removeEdge);
   const setFocusModeNodeId = useFrameosStore((s) => s.setFocusModeNodeId);
   const setRefSelectTargetId = useFrameosStore((s) => s.setRefSelectTargetId);
+  const storyboardMode = useFrameosStore((s) => s.storyboardMode);
+  const toggleStoryboardMode = useFrameosStore((s) => s.toggleStoryboardMode);
   // Batch 180: 面板跟随选中节点 (源站: 面板在节点下方 12px, 随节点/缩放移动)
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
   // Batch 190: 全屏编辑态 (编辑器居中放大)
@@ -80,7 +82,7 @@ export function FrameosPromptEditor() {
   };
 
   // 2026-09-23 源站面板默认模型 Seedream 5.0 Pro; 其余条目为历史 mock 选项
-  const modelOptions = ["Seedream 5.0 Pro", "帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
+  const modelOptions = ["Seedream 5.0 Pro", "帧界 O2.5", "帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
 
   if (isFullscreenEdit) {
     return (
@@ -127,7 +129,11 @@ export function FrameosPromptEditor() {
         <textarea
           value={promptValue}
           onChange={(e) => setPromptValue(e.target.value)}
-          placeholder="描述你想要的图像，@引用素材"
+          placeholder={
+            storyboardMode
+              ? "描述一个 10-15 秒内能演完的小剧情片段，系统会整理为 4-8 个连续分镜，内容过长时会自动提炼关键剧情。提供角色三视图、美术设定图及准确的需求描述，生成效果会更好。"
+              : "描述你想要的图像，@引用素材"
+          }
           style={{
             width: "100%",
             height: 320,
@@ -198,7 +204,12 @@ export function FrameosPromptEditor() {
         }}
       >
         <TileBtn icon="⌖" label="聚焦" onClick={() => setFocusModeNodeId(sel.id)} />
-        <TileBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
+        <TileBtn
+          icon="❒"
+          label="故事版"
+          active={storyboardMode}
+          onClick={toggleStoryboardMode}
+        />
         <TileBtn icon="＋" label="参考" onClick={() => setRefSelectTargetId(sel.id)} />
         {incomingEdges.map((e) => {
           const src = nodes.find((n) => n.id === e.source);
@@ -283,7 +294,11 @@ export function FrameosPromptEditor() {
         <textarea
           value={promptValue}
           onChange={(e) => setPromptValue(e.target.value)}
-          placeholder="描述你想要的图像，@引用素材"
+          placeholder={
+            storyboardMode
+              ? "描述一个 10-15 秒内能演完的小剧情片段，系统会整理为 4-8 个连续分镜，内容过长时会自动提炼关键剧情。提供角色三视图、美术设定图及准确的需求描述，生成效果会更好。"
+              : "描述你想要的图像，@引用素材"
+          }
           rows={3}
           style={{
             width: "100%",
@@ -335,7 +350,7 @@ export function FrameosPromptEditor() {
         }}
       >
         <Dropdown
-          value={selectedModel}
+          value={storyboardMode ? "帧界 O2.5" : selectedModel}
           onChange={setSelectedModel}
           options={modelOptions}
         />
@@ -377,9 +392,13 @@ export function FrameosPromptEditor() {
           >
             ¥
           </span>
-          <span>60</span>
-          <span style={{ color: "#A3A3A3" }}>30</span>
-          <span style={{ color: "#F5A623" }}>5折</span>
+          <span>{storyboardMode ? "100" : "60"}</span>
+          {!storyboardMode && (
+            <>
+              <span style={{ color: "#A3A3A3" }}>30</span>
+              <span style={{ color: "#F5A623" }}>5折</span>
+            </>
+          )}
         </div>
         <button
           type="button"
@@ -424,10 +443,12 @@ export function FrameosPromptEditor() {
 function TileBtn({
   icon,
   label,
+  active,
   onClick,
 }: {
   icon: string;
   label: string;
+  active?: boolean;
   onClick?: () => void;
 }) {
   return (
@@ -445,9 +466,11 @@ function TileBtn({
         width: 46,
         height: 42,
         borderRadius: 8,
-        border: "none",
-        background: "transparent",
-        color: "#C2C2C2",
+        border: active
+          ? "1px solid rgba(96,165,250,0.6)"
+          : "1px solid transparent",
+        background: active ? "rgba(59,130,246,0.16)" : "transparent",
+        color: active ? "#60A5FA" : "#C2C2C2",
         fontSize: 11,
         cursor: "pointer",
         transition: "background 0.15s, color 0.15s",

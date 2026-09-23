@@ -1,0 +1,22 @@
+{
+  "batch": 198,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "tile:visible",
+        "default:model",
+        "storyboard:placeholder",
+        "storyboard:model",
+        "storyboard:reverts",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

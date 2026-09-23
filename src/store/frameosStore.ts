@@ -84,6 +84,7 @@ interface FrameosCanvasState {
   isProjectAssetsPanelOpen: boolean;
   paneMenuAt: { x: number; y: number } | null;
   refSelectTargetId: string | null;
+  storyboardMode: boolean;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
   generations: Generation[];
@@ -125,6 +126,7 @@ interface FrameosCanvasState {
   toggleProjectAssetsPanel: () => void;
   setPaneMenuAt: (at: { x: number; y: number } | null) => void;
   setRefSelectTargetId: (id: string | null) => void;
+  toggleStoryboardMode: () => void;
   toggleNodeSearch: () => void;
   closeNodeSearch: () => void;
   requestConfirm: (c: PendingConfirm | null) => void;
@@ -317,6 +319,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isProjectAssetsPanelOpen: false,
   paneMenuAt: null,
   refSelectTargetId: null,
+  storyboardMode: false,
   pendingConfirm: null,
   past: [],
   future: [],
@@ -583,6 +586,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   toggleProjectAssetsPanel: () => set((state) => ({ isProjectAssetsPanelOpen: !state.isProjectAssetsPanelOpen })),
   setPaneMenuAt: (at) => set({ paneMenuAt: at }),
   setRefSelectTargetId: (id) => set({ refSelectTargetId: id }),
+  toggleStoryboardMode: () => set((state) => ({ storyboardMode: !state.storyboardMode })),
   toggleNodeSearch: () => set((state) => ({ isNodeSearchOpen: !state.isNodeSearchOpen })),
   closeNodeSearch: () => set({ isNodeSearchOpen: false }),
 
