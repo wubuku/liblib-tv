@@ -1081,3 +1081,37 @@ batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期�
 `~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
 （仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
 `still-broken` 则继续等待），恢复后按 §8 checklist 补采。
+
+### 10.3a 用户提供的真实测试资产（2026-09-24 登记，本地未入库）
+
+用户授权用于源站画布功能探索的真实媒体资产（均位于本地
+`~/Downloads/`，不提交仓库、不复制入库）。用途：上传至源站作为
+参考图/项目资产，以充分探索画布的媒体入口、节点编排与预览链路。
+
+**硬约束：不得在源站实际触发真实的图片生成与视频生成动作**——生成
+需付费且价格较高。探索仅限上传、编排、预览等免费链路。
+
+图片（10 项）：
+
+- `~/Downloads/生成蓝色手机图片-2.png`（3.7M）
+- `~/Downloads/55dd39e3-5024-47ec-9971-4d35be848a65.png`（2.1M）
+- `~/Downloads/febfe81e-88af-4cd9-8d72-580d54e8ef20.png`（1.9M）
+- `~/Downloads/黑白电影质感咖啡厅俯视场景生成-2.png`（3.9M）
+- `~/Downloads/黑白电影质感咖啡厅俯视场景生成.png`（4.0M）
+- `~/Downloads/53b684be-5370-487c-b366-418424c22d25.png`（3.3M）
+- `~/Downloads/项目资产_咖啡馆对峙/角色图片/陈默_01KT17FN.png`（1.7M）
+- `~/Downloads/项目资产_咖啡馆对峙/角色图片/林小婉_01KT17FN.png`（2.3M）
+- `~/Downloads/生成普通路人感年轻女性照片.png`（3.5M）
+- `~/Downloads/生成王嘉尔风格人物照片.png`（4.3M）
+
+音频（2 项）：
+
+- `~/Downloads/voice_converted_1779790519790.wav`（1.1M）
+- `~/Downloads/separated_vocals_1778861280890.wav`（2.2M）
+
+视频（2 项）：
+
+- `~/Downloads/S83·镜2.mp4`（792K）
+- `~/Downloads/S109·镜2.mp4`（1.1M）
+
+2026-09-25 复核：14 项全部在盘核实存在（大小见上）。
