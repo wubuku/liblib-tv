@@ -1,0 +1,19 @@
+{
+  "batch": 189,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:node",
+        "resize:grows",
+        "resize:undo-restores",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -47,6 +47,45 @@ export function FrameosNodeShell({
 }: FrameosNodeShellProps) {
   const { id } = nodeProps;
   const updateNodeData = useFrameosStore((s) => s.updateNodeData);
+  // Batch 189: 尺寸来自 store style (resize 手柄实时更新), 组件随 store 重渲染
+  const liveW = useFrameosStore((s) => {
+    const n = s.nodes.find((x) => x.id === id);
+    return (n?.style?.width as number) ?? undefined;
+  });
+  const liveH = useFrameosStore((s) => {
+    const n = s.nodes.find((x) => x.id === id);
+    return (n?.style?.height as number) ?? undefined;
+  });
+  const beginResize = useFrameosStore((s) => s.beginResize);
+  const resizeNode = useFrameosStore((s) => s.resizeNode);
+  const handleRef = useRef<HTMLDivElement>(null);
+
+  // Batch 189: resize 手柄的原生 mousedown 必须在目标阶段拦截,
+  // 否则 xyflow 的节点拖拽 (wrapper 层监听) 会抢先生效。
+  useEffect(() => {
+    const el = handleRef.current;
+    if (!el) return undefined;
+    const onMouseDown = (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const startW = liveW ?? width ?? 300;
+      const startH = liveH ?? height ?? 169;
+      const sx = e.clientX;
+      const sy = e.clientY;
+      beginResize(id);
+      const onMove = (ev: MouseEvent) => {
+        resizeNode(id, Math.max(200, startW + (ev.clientX - sx)), Math.max(120, startH + (ev.clientY - sy)));
+      };
+      const onUp = () => {
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup", onUp);
+      };
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup", onUp);
+    };
+    el.addEventListener("mousedown", onMouseDown);
+    return () => el.removeEventListener("mousedown", onMouseDown);
+  }, [id, liveW, liveH, width, height, beginResize, resizeNode]);
   const [editing, setEditing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -82,8 +121,8 @@ export function FrameosNodeShell({
     <div
       className={`node-card-wrap is-${kind} is-embedded${selected ? " is-selected" : ""}`}
       style={{
-        width: width ?? undefined,
-        height: height ?? undefined,
+        width: liveW ?? width ?? undefined,
+        height: liveH ?? height ?? undefined,
         position: "relative",
       }}
     >
@@ -146,8 +185,8 @@ export function FrameosNodeShell({
         style={{
           backgroundColor: "transparent",
           borderRadius: "10px",
-          width: width ?? "100%",
-          height: height ?? "100%",
+          width: liveW ?? width ?? "100%",
+          height: liveH ?? height ?? "100%",
           display: "flex",
           flexDirection: "column",
           position: "relative",
@@ -182,6 +221,7 @@ export function FrameosNodeShell({
             hover 节点时由 CSS .frameos-canvas .node-card-wrap:hover .resize-handle 显示) */}
         {showResizeHandle && (
           <div
+            ref={handleRef}
             className="resize-handle"
             aria-label="拖拽调整大小"
             data-node-id={id}
