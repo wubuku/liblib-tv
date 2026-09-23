@@ -16,13 +16,14 @@ export LIBLIB_BASE_URL="$BASE_URL"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-# 全量清单 (与 BEHAVIORS/验证器基线一致; batch168 已随源站新版本退役)
-ALL_BATCHES="133 134 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180"
-# batch168: 源站新版本已移除双击空白菜单, 验证器已退役 — 除非清单中则跳过
+# 全量清单: 动态发现 scripts/verify-frameos-batch*.py (Batch 194 起自维护);
+# batch168 已随源站新版本退役, 如残留脚本则跳过
+RETIRED="168"
 if [ "$#" -gt 0 ]; then
   BATCHES="$*"
 else
-  BATCHES=$(echo "$ALL_BATCHES" | tr ' ' '\n' | grep -vx 168 | tr '\n' ' ')
+  BATCHES=$(ls "$ROOT"/scripts/verify-frameos-batch*.py 2>/dev/null \
+    | sed -E 's/.*batch([0-9]+)\.py/\1/' | sort -n | tr '\n' ' ')
 fi
 
 pass=0
@@ -34,6 +35,12 @@ for b in $BATCHES; do
     echo "skip batch$b (no verifier)"
     continue
   fi
+  for r in $RETIRED; do
+    if [ "$b" = "$r" ]; then
+      echo "skip batch$b (retired)"
+      continue 2
+    fi
+  done
   if out=$("$PY" "$script" 2>&1); then
     pass=$((pass + 1))
     echo "PASS batch$b"
