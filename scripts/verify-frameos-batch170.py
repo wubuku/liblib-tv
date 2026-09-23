@@ -62,9 +62,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(300)
     menu = page.locator("[data-frameos-context-menu]")
     check("node:menu-opens", menu.is_visible())
+    # Batch 176 起: 复制图片 仅在节点无内容时禁用; demo 的 image-1 有内容 → 可点
     for item, disabled in [
         ("复制", False),
-        ("复制图片", True),
+        ("复制图片", False),
         ("创建副本", False),
         ("重新生成", True),
         ("删除", False),
@@ -76,7 +77,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
             (row.get_attribute("disabled") is not None) == disabled,
         )
     edges_before = page.evaluate("window.__frameos_store.getState().edges.length")
-    menu.locator("[data-frameos-context-item='复制图片']").click(force=True)
+    menu.locator("[data-frameos-context-item='重新生成']").click(force=True)
     page.wait_for_timeout(300)
     check(
         "node:disabled-row-inert",

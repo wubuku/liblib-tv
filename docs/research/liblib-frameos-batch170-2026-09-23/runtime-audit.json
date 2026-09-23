@@ -8,7 +8,7 @@
         "node:item:复制",
         "node:item:复制:disabled=false",
         "node:item:复制图片",
-        "node:item:复制图片:disabled=true",
+        "node:item:复制图片:disabled=false",
         "node:item:创建副本",
         "node:item:创建副本:disabled=false",
         "node:item:重新生成",
