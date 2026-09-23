@@ -348,6 +348,12 @@ The screenshot ledger rule is important: do not spend visual recognition budget 
 
 ## FrameOS Checks
 
+统一入口（Batch 184 起）：`bash scripts/run-frameos-verifiers.sh [批次...]` —
+串行运行全部帧界面板验证器并汇总；默认跳过已退役的 batch168（源站新版本移除
+双击空白菜单，Batch 182）。需要 dev server 运行在 4317 端口。
+
+
+
 The FrameOS route can be tested manually at `/frameos/canvas/demo`. Its older `e2e/frameos.spec.ts` describes intended interactions but is not part of the default npm scripts and may require Playwright test dependencies. Do not claim it passed unless it has actually been run.
 
 Use the browser console diagnostic:
