@@ -282,10 +282,9 @@ function FrameosCanvasInner() {
         return;
       }
 
-      // Cmd/Ctrl + A - 全选 (mock, 留接口)
+      // Cmd/Ctrl + A - 画布上阻止浏览器原生全选 (Batch 188; 输入框内已在上方 early-return 放行)
       if ((e.metaKey || e.ctrlKey) && e.key === "a") {
-        // 阻止浏览器原生 select-all (画布不要求节点全选, 这是编辑器入口)
-        // 这里直接 return 让浏览器原生效, 不开启节点全选
+        e.preventDefault();
         return;
       }
 

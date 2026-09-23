@@ -1,0 +1,18 @@
+{
+  "batch": 188,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "canvas:cmd-a-no-selection",
+        "input:cmd-a-selects-all",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
