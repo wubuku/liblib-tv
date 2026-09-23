@@ -87,3 +87,25 @@ screenshots:
     visible_text: 小地图
     alt: 开启后 dock 上方出现小地图面板（当前画布 4 节点的缩略位置）
     sha256: fb0b0d3bb6f9ec71d22bfc180e710a2d17fc7ce545a4f11dc71f7e9cf2b603d9
+  - file: screenshots/09-connect-nodes-edge-created.png
+    task_id: connect-nodes
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:13:22+08:00
+    verified_locator: '.react-flow__edge.react-flow__edge-reference (aria: Reference connection from … to …)'
+    visible_text: 视频 1
+    alt: 从 sb_ 视频节点拖到「视频 1」左缘后生成的蓝色参考连线（状态行 1 edge）
+    sha256: 099bf58014634ae8db5affe30dc19750e74af539110b0c6067e2bf8525add4f0
+  - file: screenshots/10-use-node-toolbar-tools-menu.png
+    task_id: use-node-toolbar
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:17:56+08:00
+    verified_locator: '选中视频节点的 react-flow__node-toolbar 内「工具」按钮'
+    visible_text: 深度动作捕捉
+    alt: 带媒体视频节点的浮动工具条（局部重拍✦/智能超清✦/视频编辑✦/截取帧/视频修剪/工具）与「工具」下拉（编辑：补帧、深度动作捕捉；预设：提示词反推）
+    sha256: c99b22a36da8f8bad605d8889da498ad13d2b52f4f05939048eb029eeb95ef9c
