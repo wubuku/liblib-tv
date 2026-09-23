@@ -1046,6 +1046,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1159 巡检 | still-broken | 第六百七十次重测；到期全量维护集新鲜运行首跑 77/78——batch125 TargetClosedError 瞬态（浏览器上下文中途关闭，基础设施级），复测 PASS 后 78/78 达成；14 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 197 仍活跃（frameosStore 修改中）（batch 1159） |
 | 2026-09-25 | batch 1164 巡检 | still-broken | 第六百七十一次重测；环境事件——9222 CDP 浏览器已死，chromium-1179/1161 完整二进制 GUI/headless 启动均挂起（无 DevToolsActivePort、导航死、三版本复现，系统无崩溃报告），headless_shell 可启动；probe 脚本最小回退（CDP 15s 超时后 playwright 托管 headless 持久上下文复用原 profile 登录态），探测恢复并得出 still-broken；并行落库 jimeng 572/573（round closed，574 full gate 已规划）+ frameos 196（batch 1164） |
 | 2026-09-25 | batch 1166 巡检 | still-broken | 第六百七十二次重测；到期全量维护集新鲜运行首跑 61/78——后段 17 项（batch450 起）于并行 WIP 编译破损窗口失败（4317 返回 500，约 1 分钟后自愈），窗口闭合后 17 项全部复测 PASS，78/78 达成；15 项 liblib 回写恢复、1 项并行 untracked（frameos 200 证据目录）正确跳过；并行已推进至 frameos 200（batch 1166） |
+| 2026-09-25 | batch 1171 巡检 | still-broken | 第六百七十三次重测（回退路径首次常态使用）；巡检批次——并行 rotation 四连落 jimeng 574-577（full gate 后新轮已开至 segment 34-48 绿 15/15）+ frameos 199 文档；frameos 200 仍 WIP 保留不动；batch 1173 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
