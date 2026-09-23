@@ -70,16 +70,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.keyboard.press("Meta+z")
     page.wait_for_timeout(400)
 
-    # 画布空白右键 → 添加文本节点
+    # 画布空白右键 → 源站五项菜单 (Batch 170 起逐字)
     pane = page.locator(".react-flow__pane")
     pane.click(button="right", position={"x": 700, "y": 500})
     page.wait_for_timeout(300)
     check("pane:menu-open", menu.is_visible())
-    check(
-        "pane:item:add-text",
-        menu.locator("[data-frameos-context-item='添加文本节点']").is_visible(),
-    )
-    menu.locator("[data-frameos-context-item='添加文本节点']").click()
+    for item in ["添加节点", "上传文件", "粘贴", "整理", "重置"]:
+        check(f"pane:item:{item}", menu.locator(f"[data-frameos-context-item='{item}']").is_visible())
+    menu.locator("[data-frameos-context-item='添加节点']").click()
+    page.wait_for_timeout(400)
+    # 添加节点 → 打开 选择节点类型 面板, 点 文本 创建
+    pane_menu = page.locator("[data-frameos-pane-add-menu]")
+    check("pane:type-menu-opens", pane_menu.is_visible())
+    pane_menu.get_by_text("文本", exact=True).click()
     page.wait_for_timeout(600)
     check("pane:text-added", page.locator(".react-flow__node").count() == nodes_before + 1)
     page.keyboard.press("Meta+z")

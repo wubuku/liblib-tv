@@ -12,7 +12,12 @@
         "node:duplicate-added",
         "node:menu-closed",
         "pane:menu-open",
-        "pane:item:add-text",
+        "pane:item:添加节点",
+        "pane:item:上传文件",
+        "pane:item:粘贴",
+        "pane:item:整理",
+        "pane:item:重置",
+        "pane:type-menu-opens",
         "pane:text-added",
         "esc:closes-menu",
         "errors:empty"
