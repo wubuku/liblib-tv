@@ -1,0 +1,30 @@
+{
+  "batch": 183,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "image:editor",
+        "image:header:聚焦",
+        "image:header:故事版",
+        "image:header:参考",
+        "image:header:删除连线",
+        "image:header:替换参考",
+        "image:header:全屏编辑",
+        "image:header:高级设置",
+        "image:chips",
+        "breadcrumb:header",
+        "breadcrumb:rename-delete",
+        "help:verbatim-rows",
+        "organize:three-options",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -495,7 +495,10 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   },
 
   updateNodeData: (id, patch) => {
+    // Batch 203: 内容修改入撤销历史 (文本编辑提交/图片替换等, 每次提交一条)
     set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
       nodes: state.nodes.map((n) =>
         n.id === id
           ? { ...n, data: { ...n.data, ...patch } }
