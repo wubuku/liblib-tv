@@ -30,6 +30,7 @@
 | ToolRail "添加节点" | click | 弹出 8 种节点类型菜单（文本/图片/视频/角色/场景/音频/风格/批量，标题“选择节点类型”），点击后新建并自动选中 |
 | ToolRail "从素材库选择" | click | console.log（mock） |
 | ToolRail "本地上传" | click | console.log（mock） |
+| ToolRail "模板" (2026-09-23 源站新增, Batch 162) | click | 开关 `FrameosTemplatePanel`：页签 公共模板/企业模板/我的模板（公共模板默认激活）+ 模板卡片（30s小说切片/九宫格大师分镜/大师电影分镜/时间凝固流光/暂别×视角×特效镜头大全/360度旋转展示）；卡片应用保持 mock（源站未采样） |
 | ToolRail "帮助" | click | 打开 `FrameosHelpPanel` |
 
 ## 节点交互

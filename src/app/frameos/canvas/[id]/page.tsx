@@ -41,6 +41,7 @@ import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGui
 import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloatingToolbar";
 import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
+import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -555,6 +556,9 @@ function FrameosCanvasInner() {
 
       {/* 聚焦模式 (原站: 图片节点面板点聚焦 → 局部框选模式) */}
       <FrameosFocusMode />
+
+      {/* 模板面板 (原站 2026-09-23 新增的左栏「模板」入口) */}
+      <FrameosTemplatePanel />
 
     </div>
   );

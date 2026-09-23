@@ -7,6 +7,7 @@ import {
   QuestionIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
+import { TemplateRailEntry } from "./FrameosTemplatePanel";
 import { useViewport } from "@xyflow/react";
 
 const NODE_TYPES = [
@@ -227,6 +228,7 @@ export function FrameosToolRail() {
             input.click();
           }}
         />
+        <TemplateRailEntry />
         <Divider />
         <RailButton
           label="帮助 (?)"

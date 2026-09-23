@@ -1,0 +1,31 @@
+{
+  "batch": 162,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rail:template-button",
+        "panel:initially-closed",
+        "panel:opens",
+        "panel:tab:公共模板",
+        "panel:tab:企业模板",
+        "panel:tab:我的模板",
+        "panel:card:30s小说切片",
+        "panel:card:九宫格大师分镜",
+        "panel:card:大师电影分镜",
+        "panel:card:时间凝固流光",
+        "panel:card:暂别×视角×特效镜头大全",
+        "panel:card:360度旋转展示",
+        "panel:toggles-closed",
+        "panel:close-button",
+        "rail:help-still-last",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
