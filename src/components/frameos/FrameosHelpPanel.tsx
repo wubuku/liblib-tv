@@ -11,7 +11,8 @@ import { CloseIcon } from "./icons";
 
 interface Shortcut {
   label: string;
-  keys: string[];
+  keys?: string[];
+  desc?: string;
 }
 
 interface Section {
@@ -19,36 +20,39 @@ interface Section {
   rows: Shortcut[];
 }
 
+// 2026-09-23 源站逐字对齐 (SOURCE_OBSERVATIONS §13.9, Batch 166)
 const SECTIONS: Section[] = [
   {
     title: "创作",
     rows: [
+      { label: "双击空白", desc: "双击空白处添加节点" },
       { label: "复制", keys: ["⌘", "C"] },
       { label: "剪切", keys: ["⌘", "X"] },
       { label: "粘贴", keys: ["⌘", "V"] },
       { label: "原地复制", keys: ["⌘", "D"] },
-      { label: "拖拽复制", keys: ["⌥"] },
-      { label: "全选", keys: ["⌘", "A"] },
+      { label: "拖拽复制", desc: "⌥ 拖动节点" },
       { label: "保存", keys: ["⌘", "S"] },
     ],
   },
   {
     title: "缩放",
     rows: [
+      { label: "双击节点", desc: "双击节点聚焦填满视口" },
       { label: "放大", keys: ["⌘", "+"] },
       { label: "缩小", keys: ["⌘", "−"] },
       { label: "重置视图", keys: ["⌘", "0"] },
-      { label: "触控板", keys: [] },
-      { label: "鼠标滚轮", keys: ["⌘"] },
+      { label: "触控板", desc: "双指捏合" },
+      { label: "鼠标滚轮", desc: "⌘ 滚轮" },
     ],
   },
   {
     title: "移动画布",
     rows: [
       { label: "空格拖动", keys: ["Space"] },
-      { label: "触控板", keys: [] },
-      { label: "鼠标", keys: [] },
-      { label: "滚轮", keys: [] },
+      { label: "左键拖动" },
+      { label: "触控板", desc: "双指平移" },
+      { label: "鼠标中键 / 右键拖动" },
+      { label: "滚轮", desc: "滚轮平移" },
     ],
   },
   {
@@ -57,6 +61,7 @@ const SECTIONS: Section[] = [
       { label: "撤销", keys: ["⌘", "Z"] },
       { label: "重做", keys: ["⌘", "⇧", "Z"] },
       { label: "删除", keys: ["⌫"] },
+      { label: "搜索节点", keys: ["⌘", "F"] },
       { label: "小地图", keys: ["M"] },
       { label: "帮助", keys: ["?"] },
       { label: "取消选中", keys: ["Esc"] },
@@ -244,13 +249,13 @@ export function FrameosHelpPanel() {
                   >
                     <span style={{ color: "#C2C2C2", fontSize: 13 }}>{row.label}</span>
                     <span
-                      aria-label={row.keys.join(" ")}
-                      style={{ display: "inline-flex", gap: 4 }}
+                      aria-label={row.desc ?? row.keys?.join(" ") ?? ""}
+                      style={{ display: "inline-flex", gap: 4, alignItems: "center" }}
                     >
-                      {row.keys.length === 0 ? (
-                        <span style={{ color: "#5A5A5A", fontSize: 11 }}>—</span>
-                      ) : (
-                        row.keys.map((k, i) => (
+                      {row.desc ? (
+                        <span style={{ color: "#A3A3A3", fontSize: 12 }}>{row.desc}</span>
+                      ) : row.keys && row.keys.length > 0 ? (
+                        row.keys!.map((k, i) => (
                           <kbd
                             key={i}
                             style={{
@@ -274,7 +279,7 @@ export function FrameosHelpPanel() {
                             {k}
                           </kbd>
                         ))
-                      )}
+                      ) : null}
                     </span>
                   </li>
                 ))}

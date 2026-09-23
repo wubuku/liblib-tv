@@ -1,0 +1,54 @@
+{
+  "batch": 166,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "help:opens-with-question",
+        "help:title-快捷键",
+        "help:group:创作",
+        "help:group:缩放",
+        "help:group:移动画布",
+        "help:group:其他",
+        "help:row:双击空白",
+        "help:row:双击空白处添加节点",
+        "help:row:复制",
+        "help:row:剪切",
+        "help:row:粘贴",
+        "help:row:原地复制",
+        "help:row:拖拽复制",
+        "help:row:⌥ 拖动节点",
+        "help:row:保存",
+        "help:row:双击节点",
+        "help:row:双击节点聚焦填满视口",
+        "help:row:放大",
+        "help:row:缩小",
+        "help:row:重置视图",
+        "help:row:触控板",
+        "help:row:双指捏合",
+        "help:row:鼠标滚轮",
+        "help:row:⌘ 滚轮",
+        "help:row:空格拖动",
+        "help:row:左键拖动",
+        "help:row:双指平移",
+        "help:row:鼠标中键 / 右键拖动",
+        "help:row:滚轮平移",
+        "help:row:撤销",
+        "help:row:重做",
+        "help:row:删除",
+        "help:row:搜索节点",
+        "help:row:小地图",
+        "help:row:帮助",
+        "help:row:取消选中",
+        "help:no-source-absent-全选",
+        "help:close-x",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
