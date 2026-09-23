@@ -175,3 +175,69 @@ screenshots:
     visible_text: 编组 1
     alt: 编组后出现的「编组 1」组卡片，组工具条含 解除编组/布局/背景色/下载
     sha256: 1b0e3648e9aba919a3065c0ea989b93e3bad3fbaade66fdb02448c20e1794c24
+  - file: screenshots/17-audio-node-voice-panel.png
+    task_id: audio-node-voice
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:46:51+08:00
+    verified_locator: '选中音频节点的 react-flow__node-toolbar（680×204 生成面板）'
+    visible_text: SeedAudio 1.0
+    alt: 音频节点生成面板：SeedAudio 1.0（New）/ 全能配音 / 音色库 / ✦12（原价24，积分5折）/ 生成禁用
+    sha256: 32b2e8a499bfb38779a6f68cbdc95427b2b5659f65db4e1324f2c6096afc32e2
+  - file: screenshots/18-assets-and-upload-modal.png
+    task_id: assets-and-upload
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 裁剪视图 1050x700
+    locale: zh-CN
+    captured_at: 2026-09-23T23:48:38+08:00
+    verified_locator: 'rail 资产库按钮打开的模态'
+    visible_text: Import assets
+    alt: 资产库模态：Import assets 标题、资产/主体/图片/视频/音频/文档/时间页签、底部已选计数与确认
+    sha256: 4f91b8c4288092aecde555d9206b7bb92692c2cab417a3165092620e9c623628
+  - file: screenshots/19-ai-agent-drawer.png
+    task_id: ai-agent-drawer
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 裁剪视图 520x884
+    locale: zh-CN
+    captured_at: 2026-09-23T23:49:21+08:00
+    verified_locator: '右下「与 AI 对话」按钮打开的右侧抽屉'
+    visible_text: 新会话
+    alt: AI 对话抽屉：新会话头、五个技能 chips、底部输入卡（未发送）
+    sha256: 8e45eab50cf0693fd0b8265a2eb7ef7573b27ee11219364a71c3cc1c45555b71
+  - file: screenshots/20-canvas-context-generation-history.png
+    task_id: canvas-context
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 裁剪视图 720x500
+    locale: zh-CN
+    captured_at: 2026-09-23T23:49:55+08:00
+    verified_locator: '顶栏「生成历史」按钮下拉'
+    visible_text: 生成历史
+    alt: 生成历史下拉：全部/图片/视频/音频页签与暂无生成历史空态
+    sha256: 8b437ae06e1e4233864de76ceace970ee4fc2e13462f0f4613a51bb285800e42
+  - file: screenshots/21-canvas-context-search-overlay.png
+    task_id: canvas-context
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 裁剪视图 920x400
+    locale: zh-CN
+    captured_at: 2026-09-23T23:50:23+08:00
+    verified_locator: '顶栏「搜索」按钮浮层'
+    visible_text: 搜索节点...
+    alt: 搜索浮层：搜索节点... 输入框、类型筛选计数、编号结果列表
+    sha256: 5a2a252d1ad42160b004775141501e9be5e0031c17f02cc50c752a06b01b4d15
+  - file: screenshots/22-help-and-shortcuts-panel.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 裁剪视图 470x884
+    locale: zh-CN
+    captured_at: 2026-09-23T23:50:54+08:00
+    verified_locator: '用户菜单 → 快捷键 面板'
+    visible_text: 快捷键
+    alt: 快捷键面板全量：通用操作/视图/时间线/文本编辑 四组
+    sha256: 539803ec753ef37f09992bb195095573ae724ff40497fe495b6c3915f1cdcb60
