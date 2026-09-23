@@ -93,16 +93,14 @@ export function FrameosHelpPanel() {
         className="frameos-shortcuts-panel"
         style={{
           position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 640,
-          maxWidth: "calc(100vw - 32px)",
-          maxHeight: "calc(100vh - 64px)",
+          top: 108,
+          left: 72,
+          width: 320,
+          height: 540,
           background: "#1C1C1C",
           border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: 16,
-          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+          borderRadius: 14,
+          boxShadow: "0 12px 36px rgba(0,0,0,0.5)",
           zIndex: 4001,
           display: "flex",
           flexDirection: "column",
@@ -180,10 +178,10 @@ export function FrameosHelpPanel() {
           style={{
             flex: 1,
             overflowY: "auto",
-            padding: "20px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 20,
+            padding: "12px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
           }}
         >
           {SECTIONS.map((section) => (

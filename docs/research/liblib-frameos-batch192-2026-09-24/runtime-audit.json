@@ -1,0 +1,22 @@
+{
+  "batch": 192,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "help:opens",
+        "panel:left-anchored",
+        "help:single-column",
+        "help:row:搜索节点",
+        "help:row:取消选中",
+        "help:close-x",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
