@@ -1954,6 +1954,8 @@
   侧本批零改动 (折扣签形态已按 485 落地)。
 - Batch 589 (视频上传链路探索，账本素材实战): 用「S83·镜2.mp4」经
   左栏 上传 钮 + file chooser 上传——**立即创建 video 节点** (550×316
+- Batch 590 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
+  规划 (Batch 591): 20-33 段回归续行。
   屏幕)，poster 图存在、无 <video> 元素 (与 clone poster 模型一致)；
   标题带资源处理状态行并实时演进:「S83·镜2」+「1 resource: 0 ready,
   1 processing, 0 failed.」→「1 ready, 0 processing, 0 failed.」
