@@ -42,6 +42,7 @@ import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
+import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -637,6 +638,9 @@ function FrameosCanvasInner() {
 
       {/* 节点搜索面板 (源站: 工具条按钮 / ⌘F, 结果点击选中并缩放聚焦) */}
       <FrameosNodeSearch />
+
+      {/* 空画布状态 (源站: 选择一种方式开始创作 + 六个 CTA) */}
+      <FrameosEmptyState />
 
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}

@@ -1,0 +1,26 @@
+{
+  "batch": 187,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "empty:state-shows",
+        "empty:title",
+        "empty:cta:文本",
+        "empty:cta:图片",
+        "empty:cta:视频",
+        "empty:cta:音频",
+        "empty:cta:3D导演台",
+        "empty:cta:上传文件",
+        "empty:text-created-disappears",
+        "empty:returns-after-undo",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

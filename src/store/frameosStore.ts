@@ -262,6 +262,10 @@ const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
     nodes: initialNodes,
     edges: initialEdges,
   },
+  "测试作品/测试项目/画布 3": {
+    nodes: [],
+    edges: [],
+  },
   "测试作品/测试项目/画布 2": {
     nodes: [
       {
