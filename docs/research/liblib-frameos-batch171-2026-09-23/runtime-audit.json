@@ -1,0 +1,23 @@
+{
+  "batch": 171,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:video-node",
+        "video:toolbar-opens",
+        "video:toolbar-two-buttons",
+        "video:toolbar-fullscreen-view",
+        "video:toolbar-download",
+        "regression:video-prompt-editor",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

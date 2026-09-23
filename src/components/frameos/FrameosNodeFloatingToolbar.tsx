@@ -10,8 +10,7 @@ import { DownloadIcon, FullscreenExitIcon, StarIcon } from "./icons";
  * - 内容根据节点类型变化 (2026-09-23 源站复核):
  *    - 文本: [全屏查看, 下载] (两个 icon 按钮, 无文字)
  *    - 图片: [下载, 收藏, 超清, 720全景, 改图, 宫格切分]
- *    - 视频: [下载, 收藏, 查看历史, 超清, 去字幕]
- *    - 视频 (审核未通过): [下载, 收藏, 超清, 去字幕]
+ *    - 视频: [全屏查看, 下载] (2026-09-23 源站实测, 与文本一致)
  * - 视觉: 圆角 8px, 背景 rgba(24,24,24,0.8), 1px hairline border, blur
  */
 interface ToolbarAction {
@@ -38,18 +37,12 @@ function getActionsForNode(node: { type?: string; data?: { reviewFailed?: boolea
         { label: "改图" },
         { label: "宫格切分" },
       ];
-    case "video": {
-      const base: ToolbarAction[] = [
+    case "video":
+      // 2026-09-23 源站实测: 选中视频节点同样只有 全屏查看/下载 两个 icon 按钮
+      return [
+        { label: "", aria: "全屏查看" },
         { label: "", aria: "下载" },
-        { label: "", aria: "收藏" },
       ];
-      if (!node.data?.reviewFailed) base.push({ label: "", aria: "查看历史" });
-      base.push(
-        { label: "超清" },
-        { label: "去字幕" },
-      );
-      return base;
-    }
     default:
       return [{ label: "", aria: "下载" }];
   }
