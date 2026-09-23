@@ -1,0 +1,19 @@
+{
+  "batch": 181,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:two-nodes",
+        "drag:guide-appears",
+        "drag:guide-clears-after-drop",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

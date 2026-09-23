@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrameosStore } from "@/store/frameosStore";
-import { useStoreApi } from "@xyflow/react";
+import { useStoreApi, useViewport } from "@xyflow/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
@@ -10,16 +10,20 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * - 当任一节点 dragging 状态变化时重算 guide
  * - 被拖动节点与其他节点中心/边 < 8px (画布坐标系) 时显示蓝色虚线
  * - 与原站 frameos.cn 拖动时显示对齐线一致
+ *
+ * Batch 181: 辅助线换算为屏幕坐标 (世界坐标 × zoom + pan), 并提供
+ * data-frameos-alignment-guide 标记供测试; 事件驱动逻辑保持不变。
  */
 const SNAP_THRESHOLD = 8;
 
 interface Guide {
   orientation: "horizontal" | "vertical";
-  position: number;
+  position: number; // 世界坐标
 }
 
 export function FrameosAlignmentGuides() {
   const nodes = useFrameosStore((s) => s.nodes);
+  const { x: panX, y: panY, zoom } = useViewport();
   const [guides, setGuides] = useState<Guide[]>([]);
   const storeApi = useStoreApi();
 
@@ -83,12 +87,13 @@ export function FrameosAlignmentGuides() {
 useEffect(() => {
   const unsubscribe = storeApi.subscribe((state) => {
     const lookup = state.nodeLookup as
-      | Map<string, { id: string; internals?: { dragging?: boolean } }>
+      | Map<string, { id: string; dragging?: boolean }>
       | undefined;
     if (!lookup) return;
     const next = new Set<string>();
     for (const n of lookup.values()) {
-      if (n.internals?.dragging) next.add(n.id);
+      // xyflow v12: dragging 是内部节点对象上的顶层属性
+      if (n.dragging) next.add(n.id);
     }
     const prev = draggingRef.current;
     if (
@@ -113,6 +118,10 @@ useEffect(() => {
 }, [nodes, compute]);
 /* eslint-enable react-hooks/set-state-in-effect */
 
+  // 世界坐标 → 屏幕坐标 (fixed 定位需要屏幕坐标)
+  const toScreen = (worldPos: number) => worldPos * zoom + (panY ?? 0);
+  const toScreenX = (worldPos: number) => worldPos * zoom + (panX ?? 0);
+
   return (
     <>
       {guides.map((g, i) => {
@@ -120,11 +129,12 @@ useEffect(() => {
           return (
             <div
               key={`h-${i}-${g.position}`}
+              data-frameos-alignment-guide="horizontal"
               style={{
                 position: "fixed",
                 left: 0,
                 right: 0,
-                top: g.position,
+                top: toScreen(g.position),
                 height: 0,
                 borderTop: "1px dashed rgba(59,130,246,0.7)",
                 pointerEvents: "none",
@@ -136,11 +146,12 @@ useEffect(() => {
           return (
             <div
               key={`v-${i}-${g.position}`}
+              data-frameos-alignment-guide="vertical"
               style={{
                 position: "fixed",
                 top: 0,
                 bottom: 0,
-                left: g.position,
+                left: toScreenX(g.position),
                 width: 0,
                 borderLeft: "1px dashed rgba(59,130,246,0.7)",
                 pointerEvents: "none",
