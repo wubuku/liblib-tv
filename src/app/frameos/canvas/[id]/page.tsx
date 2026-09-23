@@ -385,9 +385,32 @@ function FrameosCanvasInner() {
               showToast(`已复制「${n.data.title}」`, "success");
             },
           },
-          // Batch 170 对齐 2026-09-23 源站: 图片节点菜单含两个禁用项
+          // Batch 170 对齐 2026-09-23 源站: 图片节点菜单含 复制图片/重新生成;
+          // Batch 176: 复制图片仅在节点有内容时可点 (源站空图片节点上为禁用,
+          // 有图可点为推断——源站只采样过空节点), 重新生成恒禁用
           ...(n.type === "image"
-            ? [{ label: "复制图片", disabled: true }]
+            ? [
+                {
+                  label: "复制图片",
+                  disabled: !(n.data as { imageUrl?: string }).imageUrl,
+                  onClick: () => {
+                    const url = (n.data as { imageUrl?: string }).imageUrl;
+                    if (!url) return;
+                    const finish = () => showToast("已复制图片", "success");
+                    try {
+                      navigator.clipboard
+                        .writeText(url)
+                        .then(finish)
+                        .catch(() => {
+                          /* 剪贴板权限不可用时静默 (mock) */
+                          finish();
+                        });
+                    } catch {
+                      finish();
+                    }
+                  },
+                },
+              ]
             : []),
           {
             label: "创建副本",

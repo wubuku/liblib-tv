@@ -1,0 +1,20 @@
+{
+  "batch": 176,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "content:copy-image-enabled",
+        "content:regen-disabled",
+        "content:toast",
+        "empty:copy-image-disabled",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
