@@ -42,6 +42,7 @@ import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloa
 import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
+import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -151,6 +152,10 @@ function FrameosCanvasInner() {
           state.setFocusModeNodeId(null);
           return;
         }
+        if (state.isNodeSearchOpen) {
+          state.closeNodeSearch();
+          return;
+        }
         if (state.isHelpOpen) {
           state.closeHelp();
           return;
@@ -171,6 +176,13 @@ function FrameosCanvasInner() {
       if (e.key === "?" || (e.shiftKey && e.key === "/")) {
         e.preventDefault();
         toggleHelp();
+        return;
+      }
+
+      // Cmd/Ctrl + F - 搜索节点 (源站: 工具条按钮 / ⌘F)
+      if ((e.metaKey || e.ctrlKey) && (e.key === "f" || e.key === "F")) {
+        e.preventDefault();
+        state.toggleNodeSearch();
         return;
       }
 
@@ -550,6 +562,9 @@ function FrameosCanvasInner() {
 
       {/* 选中节点时的浮动工具条 (原站: 节点上方水平 AI 操作 + 下载) */}
       <FrameosNodeFloatingToolbar />
+
+      {/* 节点搜索面板 (源站: 工具条按钮 / ⌘F, 结果点击选中并缩放聚焦) */}
+      <FrameosNodeSearch />
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
       <FrameosPromptEditor />

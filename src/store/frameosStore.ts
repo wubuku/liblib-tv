@@ -80,6 +80,7 @@ interface FrameosCanvasState {
   isDebugMode: boolean;
   focusModeNodeId: string | null;
   isTemplatePanelOpen: boolean;
+  isNodeSearchOpen: boolean;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
   generations: Generation[];
@@ -115,6 +116,8 @@ interface FrameosCanvasState {
   toggleDebugMode: () => void;
   setFocusModeNodeId: (id: string | null) => void;
   toggleTemplatePanel: () => void;
+  toggleNodeSearch: () => void;
+  closeNodeSearch: () => void;
   requestConfirm: (c: PendingConfirm | null) => void;
 
   startGeneration: (opts: {
@@ -296,6 +299,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isDebugMode: false,
   focusModeNodeId: null,
   isTemplatePanelOpen: false,
+  isNodeSearchOpen: false,
   pendingConfirm: null,
   past: [],
   future: [],
@@ -533,6 +537,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   toggleDebugMode: () => set((state) => ({ isDebugMode: !state.isDebugMode })),
   setFocusModeNodeId: (id) => set({ focusModeNodeId: id }),
   toggleTemplatePanel: () => set((state) => ({ isTemplatePanelOpen: !state.isTemplatePanelOpen })),
+  toggleNodeSearch: () => set((state) => ({ isNodeSearchOpen: !state.isNodeSearchOpen })),
+  closeNodeSearch: () => set({ isNodeSearchOpen: false }),
 
   requestConfirm: (c: PendingConfirm | null) => set({ pendingConfirm: c }),
 

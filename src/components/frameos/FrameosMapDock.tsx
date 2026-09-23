@@ -8,6 +8,7 @@ import {
   FullscreenExitIcon,
   LayoutGridIcon,
   ArrowDownIcon,
+  SearchIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
 import { useReactFlow, useViewport } from "@xyflow/react";
@@ -93,6 +94,8 @@ export function FrameosMapDock() {
   const { x: vpX, y: vpY, zoom: vpZoom } = useViewport();
   const setNodes = useFrameosStore((s) => s.setNodes);
   const { zoomIn, zoomOut, fitView } = useReactFlow();
+  const isNodeSearchOpen = useFrameosStore((s) => s.isNodeSearchOpen);
+  const toggleNodeSearch = useFrameosStore((s) => s.toggleNodeSearch);
   const organizeRef = useRef<HTMLDivElement>(null);
 
   // 视口尺寸 (浏览器 only; SSR 时为 0, 客户端 mount 后由 effect 更新)
@@ -307,6 +310,12 @@ export function FrameosMapDock() {
           onClick={() => {
             fitView({ duration: 200, padding: 0.1 });
           }}
+        />
+        <DockBtn
+          label="搜索节点"
+          icon={<SearchIcon size={16} />}
+          onClick={toggleNodeSearch}
+          active={isNodeSearchOpen}
         />
         <Divider />
         <DockBtn

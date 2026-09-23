@@ -1,0 +1,25 @@
+{
+  "batch": 163,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "search:opens",
+        "search:placeholder",
+        "search:filters",
+        "search:no-match",
+        "search:result-selects",
+        "search:zoom-focus",
+        "search:esc-closes",
+        "search:cmdf-opens",
+        "regression:fit-view",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

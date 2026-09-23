@@ -16,6 +16,7 @@
 | CanvasMapDock (缩小/放大) | click | XYFlow `zoomIn/zoomOut({duration:200})` + 更新 `zoomPercent` |
 | CanvasMapDock (适应画布) | click | XYFlow `fitView({duration:200, padding:0.1})` + `zoomPercent=100` |
 | CanvasMapDock (一键整理) | click | `runOrganize('grid')` 实际重排节点 |
+| CanvasMapDock (搜索节点, 2026-09-23 源站实测, Batch 163) | click / ⌘F | 开关节点搜索面板：输入框占位“搜索节点名称”、按名称/内容实时过滤、无匹配显示“无匹配节点”、点击结果选中并缩放聚焦（100%→273%，× / Esc 关闭） |
 | CanvasMapDock (选择整理方式下拉) | click | 弹出 3 选项菜单（按连线横向/纵向/网格） |
 | DebugToggle (右下角) | click | 切换 `isDebugMode`（默认 false） |
 | 全屏编辑遮罩 (PromptBar 全屏时) | click | 退出全屏 |
