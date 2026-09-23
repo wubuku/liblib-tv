@@ -1009,6 +1009,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-24 | batch 1039 心跳批次 | still-broken | 第六百三十一次重测；巡检批次——并行连落 frameos 167（add-node menu 逐字对齐）+ jimeng 529（定价交叉核对：audio 12/24、video 56 均匹配；image gen panel Seedream 5.0 Lite 3/张 记录为 gap），五件并行 WIP 在途（保留不动）；batch 1038/1045 到期执行 78 项全量新鲜运行 |
 | 2026-09-24 | batch 1041 心跳批次 | still-broken | 第六百三十二次重测；巡检批次——并行连落 frameos 168（双击空白面板 add-node menu）+ jimeng 530（image gen panel：Seedream 5.0 Lite、合并尺寸触发器、3/张 定价、空图节点接线），四件并行 WIP 在途（保留不动）；batch 1038/1045 到期执行 78 项全量新鲜运行 |
 | 2026-09-24 | batch 1043 心跳批次 | still-broken | 第六百三十三次重测；巡检批次——并行自行落库 frameos 169（使用教程 top-bar 按钮 + edge dash 审计），六件并行 WIP 在途（保留不动）；batch 1038/1045 到期执行 78 项全量新鲜运行 |
+| 2026-09-24 | batch 1045/1049 心跳批次 | still-broken | 第六百三十四/三十五次重测；巡检批次——并行连落 jimeng 524–527（tool dropdown 六项合同、motion-capture mock、copy-title (2) 后缀、定价交叉核对），WIP 转为 jimeng 截图 + frameos 组件十二件（保留不动）；下批（batch 1049/1052 前后）到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
