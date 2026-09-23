@@ -1,1 +1,23 @@
-screenshots: []
+screenshots:
+  - file: screenshots/01-create-first-node-rail.png
+    task_id: create-first-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T18:58:20+08:00
+    verified_locator: 'button[aria-label="文本"]'
+    visible_text: 文本
+    alt: 画布基线全貌，左侧工具栏高亮「文本」入口（左栏 9 项两组布局）
+    sha256: 902589689bc0808c89ff284449cf04f8af773375a6d4e840e2210fa22cea381e
+  - file: screenshots/02-create-first-node-text-created.png
+    task_id: create-first-node
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T19:00:26+08:00
+    verified_locator: '.react-flow__node.react-flow__node-text.selected'
+    visible_text: 双击编辑文本
+    alt: 点击「文本」后新建的文本节点「文本 1」自动选中，上方工具条含 背景色/全屏/下载
+    sha256: cc8d9b1a6b26b271d0fd9cbded6dd53f61a588526faf0a5d5f0986e1d2848dfd
