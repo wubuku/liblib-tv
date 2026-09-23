@@ -1053,6 +1053,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1185 巡检 | still-broken | 第六百七十七次重测；巡检批次——并行落库 frameos 202（ConfirmDialog 死代码清理，重构闭环）+ 203（图片替换按钮可撤销）；frameos 204 仍活跃 WIP，jimeng 580 full gate 未落，4 件 jimeng PNG 保留不动；batch 1187 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1187 巡检 | still-broken | 第六百七十八次重测；到期全量维护集新鲜运行首跑 57/78——后段 21 项（batch446 起）于长瞬态窗口失败（页面内 store 全局 undefined，HMR 持续热更所致），窗口闭合后 21 项全部复测 PASS，78/78 达成；12 项 liblib 回写恢复、1 项并行 untracked（frameos 205）正确跳过；并行已推进至 frameos 205（新组件 FrameosFullscreenText）（batch 1187） |
 | 2026-09-25 | batch 1192 巡检 | still-broken | 第六百七十九次重测；巡检批次——并行落库 jimeng 580 full gate（91/91，新轮 581 已开：1-19 绿 19/19）+ frameos 205（全屏查看，WIP 闭环）；工作区仅剩 frameosStore 修改（206 进行中）保留不动；batch 1194 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1194 巡检 | still-broken | 第六百八十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 206 活跃 WIP（Breadcrumb + store + 验证脚本）（batch 1194） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
