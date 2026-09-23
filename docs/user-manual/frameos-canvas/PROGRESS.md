@@ -7,19 +7,20 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-23（第二轮）。
+- 最后整理日期：2026-09-23（Gate B 完成）。
 - 当前目标：为已登录的 FrameOS 画布创作者编写中文、任务导向、可回走验证的最终用户手册。
 - 当前专项目录：`docs/user-manual/frameos-canvas/`。
 - 当前源站：
   `https://www.frameos.cn/#/canvas/01M34E48BEEVEQXR93Y8N70Y5N/01M34E4AKBTXT72KFD3MCYZ6NV`
 - 当前源站身份：用户登录态下的普通画布创作者；测试画布为“画布 1”。
-- 本轮已完成：正式手册正文 12 个文件全部写成（`00-quickstart.md`、8 个
-  `10-tasks/*.md`、`20-reference.md`、`30-concepts.md`、`90-troubleshooting.md`）；
-  8 个任务置为 `documented`；**Gate A 通过**（8 tasks / 17 Markdown / 19 images OK）；
-  `verify-docs.py`、`git diff --check`、`npm run check` 通过。
-- 本轮未完成：**Gate B 真实浏览器回走**（登录态浏览器标签页已被关闭，需用户重新
-  提供登录会话）与 final audit。
-- 本轮暂停原因：Gate B 需要用户重新打开并登录帧界画布。
+- 本轮已完成：**Gate B 真实浏览器回走全部 8 个任务通过**（结果与证据见
+  `AUDIT.md`；2 个 Minor 已修复：搜索聚焦动画延迟措辞、新增“模板”入口与面板）；
+  8 个任务全部置为 `verified`；**final audit 通过**（8 tasks / 17 Markdown / 20
+  images OK）；截图 20 登记；`SOURCE_OBSERVATIONS.md` 追加 §14；`verify-docs.py`、
+  `git diff --check`、`npm run check` 通过。
+- 本轮未完成：无。手册首次版本交付完成。
+- 后续维护入口：源站 UI 变化时，按 `AUDIT.md` 未覆盖清单与 `SOURCE_OBSERVATIONS.md`
+  §13.12 自动化备忘做增量更新；只重拍/重走受影响任务。
 
 ## 2. 范围与安全边界
 

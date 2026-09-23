@@ -24,7 +24,7 @@ tasks:
       - 已登录并打开一个画布
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/create-first-node.md
   - id: navigate-canvas
@@ -42,7 +42,7 @@ tasks:
       - 已登录并打开一个画布
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/navigate-canvas.md
   - id: edit-selected-node
@@ -60,7 +60,7 @@ tasks:
       - 画布中已有可编辑节点
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/edit-selected-node.md
   - id: connect-nodes
@@ -76,7 +76,7 @@ tasks:
       - 画布中已有两个可连接节点
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/connect-nodes.md
   - id: duplicate-delete-history
@@ -94,7 +94,7 @@ tasks:
       - 画布中已有至少一个节点
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/duplicate-delete-history.md
   - id: organize-and-search
@@ -112,7 +112,7 @@ tasks:
       - 画布中已有多个节点
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/organize-and-search.md
   - id: canvas-context
@@ -130,7 +130,7 @@ tasks:
       - 已登录并打开一个画布
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/canvas-context.md
   - id: help-and-shortcuts
@@ -148,6 +148,6 @@ tasks:
       - 已登录并打开一个画布
     routes:
       - '#/canvas/:workspaceId/:canvasId'
-    status: documented
+    status: verified
     manual_pages:
       - 10-tasks/help-and-shortcuts.md

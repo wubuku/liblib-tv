@@ -208,3 +208,14 @@ screenshots:
     visible_text: 聚焦模式
     alt: 图片节点“聚焦模式”提示（局部框选）与双击空白处打开的“选择节点类型”菜单
     sha256: d58e1e433e50ad2090a301a9faf67bc85a1c68e73bd2fa81cf68165634195675
+  - file: screenshots/20-template-panel.png
+    task_id: canvas-context
+    step: 5
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-23T03:33:00+08:00
+    verified_locator: 'button[aria-label="模板"] 面板'
+    visible_text: 公共模板
+    alt: 模板面板：公共模板 / 企业模板 / 我的模板页签与模板卡片
+    sha256: 3b690267df4c9bd30fbaa77dd6ecb1409fe98e00280fd60ef97a6ac316eec635
