@@ -17,6 +17,7 @@ interface Shortcut {
 
 interface Section {
   title: string;
+  icon: string;
   rows: Shortcut[];
 }
 
@@ -24,6 +25,7 @@ interface Section {
 const SECTIONS: Section[] = [
   {
     title: "创作",
+    icon: "✎",
     rows: [
       { label: "双击空白", desc: "双击空白处添加节点" },
       { label: "复制", keys: ["⌘", "C"] },
@@ -36,6 +38,7 @@ const SECTIONS: Section[] = [
   },
   {
     title: "缩放",
+    icon: "◎",
     rows: [
       { label: "双击节点", desc: "双击节点聚焦填满视口" },
       { label: "放大", keys: ["⌘", "+"] },
@@ -47,6 +50,7 @@ const SECTIONS: Section[] = [
   },
   {
     title: "移动画布",
+    icon: "✥",
     rows: [
       { label: "空格拖动", keys: ["Space"] },
       { label: "左键拖动" },
@@ -57,6 +61,7 @@ const SECTIONS: Section[] = [
   },
   {
     title: "其他",
+    icon: "⚙",
     rows: [
       { label: "撤销", keys: ["⌘", "Z"] },
       { label: "重做", keys: ["⌘", "⇧", "Z"] },
@@ -201,6 +206,7 @@ export function FrameosHelpPanel() {
               >
                 <span
                   aria-hidden
+                  data-frameos-help-icon={section.title}
                   style={{
                     width: 22,
                     height: 22,
@@ -213,7 +219,7 @@ export function FrameosHelpPanel() {
                     fontSize: 12,
                   }}
                 >
-                  ✎
+                  {section.icon}
                 </span>
                 <span
                   style={{

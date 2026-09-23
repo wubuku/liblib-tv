@@ -30,7 +30,6 @@ import { FrameosNodeEditPanel } from "@/components/frameos/FrameosNodeEditPanel"
 import { FrameosHelpPanel } from "@/components/frameos/FrameosHelpPanel";
 import { FrameosMaterialLibrary } from "@/components/frameos/FrameosMaterialLibrary";
 import { FrameosSidePanel } from "@/components/frameos/FrameosSidePanel";
-import { FrameosConfirmDialog } from "@/components/frameos/FrameosConfirmDialog";
 import {
   FrameosContextMenu,
   openContextMenu,
@@ -274,11 +273,8 @@ function FrameosCanvasInner() {
             /* mock */
           }
           useFrameosStore.getState().copyNodeToClipboard(node.id);
-          useFrameosStore.getState().requestConfirm({
-            kind: "node",
-            id: state.selectedNodeId,
-            name: (node.data.title as string) || "",
-          });
+          // Batch 177 对齐源站: 剪切立即删除, 无确认框
+          useFrameosStore.getState().removeNode(state.selectedNodeId);
         }
         return;
       }
@@ -322,12 +318,12 @@ function FrameosCanvasInner() {
         return;
       }
 
-      // Delete / Backspace - 弹确认对话框
+      // Delete / Backspace - 立即删除 (Batch 177 对齐源站: 无确认框)
       if ((e.key === "Delete" || e.key === "Backspace") && state.selectedNodeId) {
         e.preventDefault();
         const node = state.nodes.find((n) => n.id === state.selectedNodeId);
         if (node) {
-          state.requestConfirm({ kind: "node", id: node.id, name: node.data.title as string });
+          state.removeNode(state.selectedNodeId);
         }
         return;
       }
@@ -427,13 +423,14 @@ function FrameosCanvasInner() {
             danger: true,
             shortcut: "⌫",
             onClick: () => {
-              useFrameosStore.getState().requestConfirm({ kind: "node", id: node.id, name: n.data.title as string });
+              // Batch 177 对齐源站: 菜单删除立即执行
+              useFrameosStore.getState().removeNode(node.id);
             },
           },
         ],
       });
     },
-    // Batch 345: onClick 走 requestConfirm，不直接使用 removeNode。
+    // Batch 177: 右键删除立即执行 (源站无确认框)。
     [nodes, duplicateNode]
   );
 
@@ -618,8 +615,6 @@ function FrameosCanvasInner() {
       {/* 帮助面板 */}
       <FrameosHelpPanel />
 
-      {/* 确认对话框 (删除节点/边) */}
-      <FrameosConfirmDialogShell />
 
       {/* 素材库面板 (从 FrameosToolRail 触发) */}
       <FrameosMaterialLibrary />
@@ -665,50 +660,6 @@ function FrameosCanvasInner() {
       <FrameosProjectAssetsPanel />
 
     </div>
-  );
-}
-
-function FrameosConfirmDialogShell() {
-  const pendingConfirm = useFrameosStore((s) => s.pendingConfirm);
-  const requestConfirm = useFrameosStore((s) => s.requestConfirm);
-  const removeNode = useFrameosStore((s) => s.removeNode);
-  const removeEdge = useFrameosStore((s) => s.removeEdge);
-
-  if (!pendingConfirm) return null;
-
-  const handleConfirm = () => {
-    if (pendingConfirm.kind === "node") {
-      removeNode(pendingConfirm.id);
-      window.dispatchEvent(
-        new CustomEvent("frameos-toast", {
-          detail: { message: `已删除「${pendingConfirm.name}」`, variant: "warning" },
-        })
-      );
-    } else {
-      removeEdge(pendingConfirm.id);
-      window.dispatchEvent(
-        new CustomEvent("frameos-toast", {
-          detail: { message: "已删除连线", variant: "warning" },
-        })
-      );
-    }
-    requestConfirm(null);
-  };
-
-  return (
-    <FrameosConfirmDialog
-      open={!!pendingConfirm}
-      title={pendingConfirm.kind === "node" ? "删除节点" : "删除连线"}
-      message={
-        pendingConfirm.kind === "node"
-          ? `确认删除「${pendingConfirm.name}」？此操作可通过 Ctrl+Z 撤销。`
-          : "确认删除这条连线？此操作可通过 Ctrl+Z 撤销。"
-      }
-      confirmLabel="删除"
-      danger
-      onConfirm={handleConfirm}
-      onCancel={() => requestConfirm(null)}
-    />
   );
 }
 

@@ -1,0 +1,27 @@
+{
+  "batch": 177,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "ctx:menu-opens",
+        "ctx:delete-immediate",
+        "ctx:no-confirm-dialog",
+        "undo:restores",
+        "help:opens",
+        "help:icon:创作",
+        "help:icon:缩放",
+        "help:icon:移动画布",
+        "help:icon:其他",
+        "help:icons-distinct",
+        "audit:cmdf",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
