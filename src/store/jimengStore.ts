@@ -188,7 +188,8 @@ export interface JimengCanvasState {
 export interface JimengTask {
   id: string;
   nodeId: string;
-  kind: "upscale" | "interpolate";
+  // 批 528 SOURCE_FACT (用户手册): 深度动作捕捉 为工具下拉编辑组付费项
+  kind: "upscale" | "interpolate" | "motion-capture";
 }
 
 // Batch 66 (SOURCE_FACT): 顶栏 保存中…/已保存 + 下载按钮 导出前请保存画布
@@ -239,6 +240,13 @@ const initialNodes: JimengNode[] = [
     selected: false,
   },
 ];
+
+
+// 批 528 SOURCE_FACT (用户手册 create-first-node 实测): 副本命名用「 (2)」后缀
+const withCopyTitle = (data: Record<string, unknown>): Record<string, unknown> =>
+  typeof data.title === "string"
+    ? { ...data, title: `${data.title} (2)` }
+    : data;
 
 export const useJimengStore = create<JimengCanvasState>((set) => ({
   project: { name: "测试项目", nodeCount: 2, saved: true },
@@ -609,6 +617,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       };
     }),
 
+
+
   duplicateNode: (id) =>
     set((state) => {
       const src = state.nodes.find((n) => n.id === id);
@@ -618,7 +628,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         id: `video-${Date.now()}`,
         selected: false,
         position: { x: src.position.x + 60, y: src.position.y + 60 },
-        data: { ...src.data },
+        data: withCopyTitle(src.data) as typeof src.data,
       };
       return {
         ...markDirty(state),
@@ -661,7 +671,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       id: idMap.get(n.id)!,
       selected: false,
       position: { x: n.position.x + offsetX, y: n.position.y + offsetY },
-      data: { ...n.data },
+      data: withCopyTitle(n.data) as typeof n.data,
     }));
     const newEdges = clip.edges.map((e) => ({
       ...e,
@@ -753,7 +763,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         { id, nodeId, kind },
       ],
       // mock 任务提交同步 toast 反馈 (Batch 11/40)
-      toast: `${kind === "upscale" ? "智能超清" : "补帧"}任务已提交（mock），处理中…`,
+      toast: `${kind === "upscale" ? "智能超清" : kind === "motion-capture" ? "深度动作捕捉" : "补帧"}任务已提交（mock），处理中…`,
     }));
     // mock 生命周期 (Batch 53)：4s 后自动完成并清除任务
     window.setTimeout(() => {

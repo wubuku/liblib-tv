@@ -197,6 +197,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             if (label === "视频修剪") enterTrim(id);
             if (label === "智能超清") startTask(id, "upscale");
             if (label === "补帧") startTask(id, "interpolate");
+            // 批 528 SOURCE_FACT (用户手册): 工具下拉编辑组付费项，执行行为
+            // 未采样 (BLOCKED_BY_FIXTURE)——mock 任务与 智能超清/补帧 同族
+            if (label === "深度动作捕捉") startTask(id, "motion-capture");
             if (label === "下载") pushToast("视频下载已开始（mock）");
             if (label === "保存到主体库") pushToast("已保存到主体库（mock）");
             if (label === "全屏预览") openPreview(id);

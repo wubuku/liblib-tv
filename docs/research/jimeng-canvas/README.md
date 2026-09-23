@@ -1753,6 +1753,17 @@
   director/videoEditing 三个 unimplemented 类型引发类型收窄报错，
   按规则做最小修复（类型断言，拦截逻辑未动）。回归: 2/8/51/57
   PASS；npm run check 通过。
+- Batch 528 (深度动作捕捉 mock 接入 + 手册事实核对): (1) 工具下拉
+  「深度动作捕捉」接入 mock 任务通路——JimengTask kind 扩充
+  motion-capture，toast「深度动作捕捉任务已提交（mock），处理中…」，
+  执行行为未采样维持 BLOCKED_BY_FIXTURE；(2) 手册事实核对：
+  导航语义（空白拖拽=框选 selectionOnDrag、滚轮=平移 panOnScroll
+  Free、Ctrl+滚轮=缩放）clone 已与手册一致（CANVAS_NAVIGATION/
+  批 36/56 血统）；副本命名补齐「 (2)」后缀 (duplicateNode +
+  pasteNodes，手册 create-first-node 实测)；tiptap 富文本维持
+  textarea mock (CLONE_DECISION，批 17/38/68 血统)。verifier:
+  batch 52 (copy/paste 契约) 未受后缀影响仍 PASS。回归: 2/8/19/
+  52/57/105 PASS；npm run check 通过。
 - Batch 523 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
   规划 (Batch 524): 20-33 段回归续行。
 - Batch 524 (轮转回归): batch 20-33 段 14/14 PASS (续行)。下一批
