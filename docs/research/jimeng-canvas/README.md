@@ -1775,6 +1775,15 @@
   音频面板式猜测返工)。另: 模型清单「Seedance 2.5 (样片模式)」
   为手册新证 (clone 模型下拉无样片模式项，留待采样)。clone 侧
   本批零改动。
+- Batch 531 (模型清单补采 + 下拉交互二次未遂留档): 尝试 CDP 合成
+  点击展开 空视频节点 选择模型 下拉与 图片尺寸选项 下拉——均未捕获
+  选项叶 (二次未遂，与批 385 同型，BLOCKED_BY_INTERACTION，531b-
+  models-sizes.json 仅页 chrome)。改用手册 20-reference 模型清单
+  落地: JimengGenPanel MODELS 首位新增「即梦 Seedance 2.5 样片模式」
+  (手册实证条目；desc 未采样 CLONE_DECISION「样片模式，快速预览
+  镜头效果」)。图片尺寸选项集维持单选项 stub (BLOCKED_BY_
+  INTERACTION)。回归: 40/42/61 PASS；npm run check 通过。现场已
+  还原 (1 次 undo)。
 - Batch 530 (图片生成面板采样落地): CDP 源站采样空图片节点生成面板
   (530-image-panel.png / 530-image-panel.json)——680×208，占位「上传
   参考图、输入文字或主体，描述你想生成的图片」，左上 添加参考 48×48，

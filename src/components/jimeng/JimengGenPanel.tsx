@@ -11,6 +11,12 @@ import { VipDiamond } from "@/components/jimeng/icons";
  * 模型列表 (Batch 41, SOURCE_FACT: 源站模型下拉提取的 8 项，名称+描述)。
  */
 const MODELS = [
+  // 批 531 SOURCE_FACT (用户手册 20-reference): 模型清单首项为
+  // Seedance 2.5 (样片模式)——desc 未采样 CLONE_DECISION
+  {
+    name: "即梦 Seedance 2.5 样片模式",
+    desc: "样片模式，快速预览镜头效果",
+  },
   { name: "即梦 Seedance 2.5", desc: "最强模型，支持 50个参考，新增视频编辑、超长生成" },
   { name: "即梦 Seedance 2.0 mini", desc: "极致性价比，相近的体验，比Fast更快的推理速度" },
   { name: "即梦 Seedance 2.0 Fast VIP", desc: "极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）" },
