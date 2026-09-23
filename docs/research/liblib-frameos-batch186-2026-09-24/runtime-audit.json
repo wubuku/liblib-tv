@@ -1,0 +1,18 @@
+{
+  "batch": 186,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:vertical-option",
+        "organize:vertical-layers-text-above-image",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
