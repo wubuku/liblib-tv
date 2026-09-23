@@ -1,0 +1,21 @@
+{
+  "batch": 200,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "ref:outline-appears",
+        "ref:bar-opens",
+        "ref:exit-clears-outline",
+        "ref:bar-closed",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

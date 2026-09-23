@@ -593,6 +593,7 @@ export function FrameosRefSelectBar() {
   const setRefSelectTargetId = useFrameosStore((s) => s.setRefSelectTargetId);
   if (!refSelectTargetId) return null;
   return (
+    <>
     <div
       data-frameos-ref-select-bar
       style={{
@@ -662,6 +663,19 @@ export function FrameosRefSelectBar() {
       >
         ×
       </button>
-    </div>
+      </div>
+      {/* 画布虚线框选线索 (源站: 参考选择模式下画布四周出现蓝色虚线框) */}
+      <div
+        data-frameos-ref-select-outline
+        style={{
+          position: "fixed",
+          inset: 6,
+          border: "2px dashed rgba(59,130,246,0.8)",
+          borderRadius: 12,
+          pointerEvents: "none",
+          zIndex: 2890,
+        }}
+      />
+    </>
   );
 }
