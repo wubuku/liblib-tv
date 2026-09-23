@@ -383,7 +383,12 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set((state) => ({ edges: [...state.edges, edge] })),
 
   removeEdge: (id) =>
-    set((state) => ({ edges: state.edges.filter((e) => e.id !== id) })),
+    // Batch 159: 删除连线入历史栈——源站撤销可恢复被删连线
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      edges: state.edges.filter((e) => e.id !== id),
+    })),
 
   removeNode: (id) =>
     set((state) => ({

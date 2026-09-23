@@ -1,0 +1,29 @@
+{
+  "batch": 159,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:image-node",
+        "boot:edges-present",
+        "image:editor-opens",
+        "image:header:聚焦",
+        "image:header:故事版",
+        "image:header:参考",
+        "image:header:删除连线",
+        "image:header:替换参考",
+        "image:chips-match-incoming",
+        "chip:remove-deletes-edge",
+        "delete-edges:clears-incoming",
+        "undo:edges-restored",
+        "text:guard-still-on",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

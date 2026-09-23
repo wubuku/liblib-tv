@@ -63,8 +63,9 @@
 | 元素 | 触发 | 状态 |
 |---|---|---|
 | 边 | hover | 变粗（4px）+ flowing pulse 1.6s linear infinite + 剪刀删除按钮出现 |
-| 边 | click 剪刀 | 从 store 删除该边（`removeEdge`） |
+| 边 | click 剪刀 | 从 store 删除该边（`removeEdge`，Batch 159 起入撤销历史） |
 | 拖 handle 创建连接 | drag from handle | 临时蓝色虚线 + handle 蓝色光晕（来自 CSS） |
+| PromptEditor 头部 (2026-09-23 源站实测, Batch 159) | 选中图片/视频节点 | 工具行 = 聚焦/故事版/参考 + 每条入边一枚引用芯片 (T 图标 + × 移除单条边) + 删除连线 (清空全部入边) / 替换参考；芯片删除与删除连线均可撤销 |
 
 ## 键盘快捷键
 

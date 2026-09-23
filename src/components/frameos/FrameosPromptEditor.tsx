@@ -2,6 +2,7 @@
 
 import { useFrameosStore } from "@/store/frameosStore";
 import {
+  CloseIcon,
   FullscreenExitIcon,
   ArrowDownIcon,
 } from "./icons";
@@ -24,7 +25,8 @@ export function FrameosPromptEditor() {
   const setSelectedModel = useFrameosStore((s) => s.setSelectedModel);
   const currentGeneration = useFrameosStore((s) => s.currentGeneration);
   const startGeneration = useFrameosStore((s) => s.startGeneration);
-  const removeNode = useFrameosStore((s) => s.removeNode);
+  const edges = useFrameosStore((s) => s.edges);
+  const removeEdge = useFrameosStore((s) => s.removeEdge);
 
   if (!selectedNodeId) return null;
   const sel = nodes.find((n) => n.id === selectedNodeId);
@@ -32,13 +34,10 @@ export function FrameosPromptEditor() {
   if (!sel || sel.type === "text") return null;
 
   const isRunning = currentGeneration?.status === "running";
-
-  // 删除节点 (mock)
-  const onDeleteNode = () => {
-    if (!sel) return;
-    if (window.confirm(`确认删除「${sel.data.title}」？`)) {
-      removeNode(sel.id);
-    }
+  // 源站语义: 引用 = 连线; 面板头部展示每个上游节点的引用芯片
+  const incomingEdges = edges.filter((e) => e.target === sel.id);
+  const removeIncomingEdges = () => {
+    for (const e of incomingEdges) removeEdge(e.id);
   };
 
   const modelOptions = ["帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
@@ -67,9 +66,11 @@ export function FrameosPromptEditor() {
         animation: "frameos-pop-in 0.2s ease-out",
       }}
     >
-      {/* 顶部小工具条: 聚焦 / 故事版 / 删除连线 */}
+      {/* 顶部工具行: 聚焦 / 故事版 / 参考 + 上游引用芯片 + 删除连线 / 替换参考
+          (2026-09-23 源站实测: 芯片 = 上游节点图标 + 移除 ×; 删除连线移除全部入边) */}
       <div
         className="prompt-top-actions"
+        data-frameos-prompt-top-actions
         style={{
           display: "flex",
           alignItems: "center",
@@ -80,32 +81,80 @@ export function FrameosPromptEditor() {
           icon="⌖"
           label="聚焦"
           onClick={() => {
-            if (sel) {
-              const id = sel.id;
-              const el = document.querySelector(`.react-flow__node[data-id="${CSS.escape(id)}"]`);
-              el?.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
+            const el = document.querySelector(`.react-flow__node[data-id="${CSS.escape(sel.id)}"]`);
+            el?.scrollIntoView({ behavior: "smooth", block: "center" });
           }}
         />
         <MiniBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
-        <MiniBtn icon="⊘" label="删除连线" onClick={onDeleteNode} />
-        {sel?.data?.imageUrl && (
-          <div
-            style={{
-              marginLeft: 10,
-              width: 36,
-              height: 36,
-              borderRadius: 8,
-              border: "2px solid #60A5FA",
-              overflow: "hidden",
-              backgroundImage: `url(${sel.data.imageUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-            aria-label="引用素材"
-            title="引用素材"
-          />
-        )}
+        <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
+        {incomingEdges.map((e) => {
+          const src = nodes.find((n) => n.id === e.source);
+          return (
+            <div
+              key={e.id}
+              className="frameos-ref-chip"
+              data-frameos-ref-chip
+              title={`引用 ${src?.data.title ?? "上游节点"}`}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+                height: 36,
+                padding: "0 6px",
+                borderRadius: 8,
+                border: "1px solid rgba(96,165,250,0.6)",
+                background: "rgba(59,130,246,0.10)",
+                marginLeft: 4,
+              }}
+            >
+              <span
+                aria-hidden
+                style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: 4,
+                  background: "rgba(59,130,246,0.35)",
+                  color: "#FFFFFF",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                T
+              </span>
+              <button
+                type="button"
+                data-frameos-ref-remove
+                aria-label="移除引用"
+                title="移除引用"
+                onClick={() => removeEdge(e.id)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 16,
+                  height: 16,
+                  border: "none",
+                  background: "transparent",
+                  color: "#A3A3A3",
+                  cursor: "pointer",
+                  padding: 0,
+                }}
+              >
+                <CloseIcon size={12} />
+              </button>
+            </div>
+          );
+        })}
+        <div style={{ flex: 1 }} />
+        <MiniBtn
+          icon="⊘"
+          label="删除连线"
+          onClick={removeIncomingEdges}
+        />
+        <MiniBtn icon="⧉" label="替换参考" onClick={() => window.alert("替换参考 (mock)")} />
       </div>
 
       {/* prompt textarea */}
