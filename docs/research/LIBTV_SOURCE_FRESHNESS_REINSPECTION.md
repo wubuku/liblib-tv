@@ -1004,6 +1004,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-24 | batch 1029 心跳批次 | still-broken | 第六百二十六次重测；巡检批次——并行自行落库 frameos 162（template rail entry + template panel），五件 frameos WIP 已吸收，工作区净；距 batch 1031 上次全量维护集约 3 批到期（batch 1038/1045 执行 78 项全量） |
 | 2026-09-24 | batch 1031 心跳批次 | still-broken | 第六百二十七次重测；巡检批次——并行自行落库 frameos 163（node search 搜索节点），工作区净；距 batch 1031 上次全量维护集约 2 批到期（batch 1038/1045 执行 78 项全量） |
 | 2026-09-24 | batch 1033 心跳批次 | still-broken | 第六百二十八次重测；巡检批次——并行连落 frameos 164（breadcrumb drift 追平）/165（project assets rail entry + panel），1 件并行 WIP 在途（保留不动）；batch 1038/1045 到期执行 78 项全量新鲜运行 |
+| 2026-09-24 | batch 1035 心跳批次 | still-broken | 第六百二十九次重测；巡检批次——并行连落 frameos 166（help panel content drift 追平）+ jimeng 527（tool dropdown 两组合同：edit 组插值/动作捕捉、preset 组提示词推理——按手册证据）+ 最小 frameos 类型修复，工作区净；batch 1038/1045 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
