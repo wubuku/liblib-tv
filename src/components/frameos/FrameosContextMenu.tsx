@@ -8,6 +8,7 @@ interface MenuItem {
   shortcut?: string;
   danger?: boolean;
   separator?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -93,7 +94,9 @@ export function FrameosContextMenu() {
               key={i}
               type="button"
               data-frameos-context-item={item.label}
+              disabled={item.disabled}
               onClick={() => {
+                if (item.disabled) return;
                 item.onClick?.();
                 closeContextMenu();
               }}
@@ -106,13 +109,18 @@ export function FrameosContextMenu() {
                 borderRadius: 6,
                 border: "none",
                 background: "transparent",
-                color: item.danger ? "#EF4444" : "#E0E0E0",
+                color: item.disabled
+                  ? "#5A5A5A"
+                  : item.danger
+                  ? "#EF4444"
+                  : "#E0E0E0",
                 fontSize: 13,
-                cursor: "pointer",
+                cursor: item.disabled ? "not-allowed" : "pointer",
                 textAlign: "left",
                 transition: "background 0.15s",
               }}
               onMouseEnter={(e) => {
+                if (item.disabled) return;
                 e.currentTarget.style.background = item.danger
                   ? "rgba(239,68,68,0.12)"
                   : "rgba(255,255,255,0.05)";

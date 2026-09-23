@@ -141,6 +141,16 @@ export function FrameosMapDock() {
     setNodes(laid);
   };
 
+  // 空白右键菜单「整理」经事件触发同一布局逻辑 (Batch 170)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const mode = (e as CustomEvent<{ mode: typeof organizeMode }>).detail?.mode;
+      if (mode) runOrganize(mode);
+    };
+    window.addEventListener("frameos:run-organize", handler);
+    return () => window.removeEventListener("frameos:run-organize", handler);
+  });
+
   return (
     <div
       className="canvas-map-dock"

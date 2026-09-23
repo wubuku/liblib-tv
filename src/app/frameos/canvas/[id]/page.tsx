@@ -63,7 +63,6 @@ function FrameosCanvasInner() {
   const setEdges = useFrameosStore((s) => s.setEdges);
   const addEdge = useFrameosStore((s) => s.addEdge);
   const removeEdge = useFrameosStore((s) => s.removeEdge);
-  const setPaneMenuAt = useFrameosStore((s) => s.setPaneMenuAt);
   const removeNode = useFrameosStore((s) => s.removeNode);
   const duplicateNode = useFrameosStore((s) => s.duplicateNode);
   const selectNode = useFrameosStore((s) => s.selectNode);
@@ -127,6 +126,8 @@ function FrameosCanvasInner() {
   const onPaneClick = useCallback(() => {
     selectNode(null);
   }, [selectNode]);
+
+  const setPaneMenuAt = useFrameosStore((s) => s.setPaneMenuAt);
 
   // 双击空白处打开「选择节点类型」菜单 (Batch 168)
   useEffect(() => {
@@ -384,6 +385,10 @@ function FrameosCanvasInner() {
               showToast(`已复制「${n.data.title}」`, "success");
             },
           },
+          // Batch 170 对齐 2026-09-23 源站: 图片节点菜单含两个禁用项
+          ...(n.type === "image"
+            ? [{ label: "复制图片", disabled: true }]
+            : []),
           {
             label: "创建副本",
             shortcut: "⌘D",
@@ -392,6 +397,7 @@ function FrameosCanvasInner() {
               showToast(`已创建「${n.data.title}」副本`, "success");
             },
           },
+          ...(n.type === "image" ? [{ label: "重新生成", disabled: true }] : []),
           { separator: true, label: "" },
           {
             label: "删除",
@@ -421,29 +427,63 @@ function FrameosCanvasInner() {
       openContextMenu({
         x: (event as React.MouseEvent).clientX,
         y: (event as React.MouseEvent).clientY,
+        // Batch 170 对齐 2026-09-23 源站: 空白菜单五项逐字
         items: [
           {
-            label: "添加文本节点",
-            onClick: () => useFrameosStore.getState().addNode("text", opts),
+            label: "添加节点",
+            onClick: () => {
+              const e = event as React.MouseEvent | MouseEvent;
+              setPaneMenuAt({ x: e.clientX, y: e.clientY });
+            },
           },
           {
-            label: "添加图片节点",
-            onClick: () => useFrameosStore.getState().addNode("image", opts),
+            label: "上传文件",
+            onClick: () => {
+              const input = document.createElement("input");
+              input.type = "file";
+              input.accept = "image/*,video/*";
+              input.multiple = true;
+              input.onchange = () => {
+                for (let i = 0; i < input.files!.length; i++) {
+                  const file = input.files![i];
+                  const type = file.type.startsWith("image/")
+                    ? "image"
+                    : file.type.startsWith("video/")
+                    ? "video"
+                    : null;
+                  if (type) {
+                    useFrameosStore.getState().addNode(type, opts);
+                  }
+                }
+              };
+              input.click();
+            },
           },
           {
-            label: "添加视频节点",
-            onClick: () => useFrameosStore.getState().addNode("video", opts),
+            label: "粘贴",
+            shortcut: "⌘V",
+            onClick: () => useFrameosStore.getState().pasteNodeFromClipboard(),
           },
-          { separator: true, label: "" },
           {
-            label: "适应画布",
-            shortcut: "0",
-            onClick: () => fitView({ duration: 200, padding: 0.15 }),
+            label: "整理",
+            onClick: () =>
+              window.dispatchEvent(
+                new CustomEvent("frameos:run-organize", {
+                  detail: {
+                    mode: useFrameosStore.getState().organizeMode,
+                  },
+                })
+              ),
+          },
+          {
+            label: "重置",
+            shortcut: "⌘0",
+            onClick: () => fitView({ duration: 200, padding: 0.1 }),
           },
         ],
       });
     },
-    [fitView, panX, panY, zoom]
+    [fitView, panX, panY, zoom, setPaneMenuAt]
   );
 
   return (

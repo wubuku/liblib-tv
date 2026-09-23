@@ -1,0 +1,35 @@
+{
+  "batch": 170,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "node:menu-opens",
+        "node:item:复制",
+        "node:item:复制:disabled=false",
+        "node:item:复制图片",
+        "node:item:复制图片:disabled=true",
+        "node:item:创建副本",
+        "node:item:创建副本:disabled=false",
+        "node:item:重新生成",
+        "node:item:重新生成:disabled=true",
+        "node:item:删除",
+        "node:item:删除:disabled=false",
+        "node:disabled-row-inert",
+        "pane:item:添加节点",
+        "pane:item:上传文件",
+        "pane:item:粘贴",
+        "pane:item:整理",
+        "pane:item:重置",
+        "pane:organize-runs",
+        "pane:reset-runs",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
