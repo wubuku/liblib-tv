@@ -1,0 +1,21 @@
+{
+  "batch": 174,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "connect:handles-found",
+        "connect:edge-created",
+        "undo:connection-removed",
+        "redo:connection-restored",
+        "regression:ref-chips",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

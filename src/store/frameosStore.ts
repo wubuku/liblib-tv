@@ -397,7 +397,12 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   },
 
   addEdge: (edge) =>
-    set((state) => ({ edges: [...state.edges, edge] })),
+    // Batch 174: 连线创建入撤销历史 (与源站全局撤销栈一致)
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      edges: [...state.edges, edge],
+    })),
 
   removeEdge: (id) =>
     // Batch 159: 删除连线入历史栈——源站撤销可恢复被删连线
