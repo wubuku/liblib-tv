@@ -92,6 +92,7 @@ interface FrameosCanvasState {
   setBreadcrumb: (b: Partial<FrameosCanvasState["breadcrumb"]>) => void;
   setNodes: (nodes: FrameosNode[]) => void;
   setEdges: (edges: Edge[]) => void;
+  organizeNodes: (laid: FrameosNode[]) => void;
   addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
   updateEdgeData: (id: string, patch: Record<string, unknown>) => void;
@@ -330,6 +331,13 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
 
   setNodes: (nodes) => set({ nodes }),
   setEdges: (edges) => set({ edges }),
+  // Batch 175: 整理入撤销历史 (源站整理可撤销)
+  organizeNodes: (laid) =>
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: laid,
+    })),
 
   addNode: (type, opts) => {
     const id = `${type}-${Date.now()}`;

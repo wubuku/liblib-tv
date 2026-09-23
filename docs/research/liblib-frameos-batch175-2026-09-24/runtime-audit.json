@@ -1,0 +1,19 @@
+{
+  "batch": 175,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "pre:zoomed-in",
+        "organize:refits-viewport",
+        "organize:undo-restores",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

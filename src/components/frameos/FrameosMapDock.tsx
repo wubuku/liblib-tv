@@ -96,6 +96,7 @@ export function FrameosMapDock() {
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const isNodeSearchOpen = useFrameosStore((s) => s.isNodeSearchOpen);
   const toggleNodeSearch = useFrameosStore((s) => s.toggleNodeSearch);
+  const organizeNodes = useFrameosStore((s) => s.organizeNodes);
   const organizeRef = useRef<HTMLDivElement>(null);
 
   // 视口尺寸 (浏览器 only; SSR 时为 0, 客户端 mount 后由 effect 更新)
@@ -138,7 +139,9 @@ export function FrameosMapDock() {
         position: { x: offsetX, y: offsetY + i * cellH },
       }));
     }
-    setNodes(laid);
+    organizeNodes(laid);
+    // 2026-09-23 源站实测 (§13.7): 整理后视口自动适配 (Batch 175)
+    fitView({ duration: 200, padding: 0.1 });
   };
 
   // 空白右键菜单「整理」经事件触发同一布局逻辑 (Batch 170)
