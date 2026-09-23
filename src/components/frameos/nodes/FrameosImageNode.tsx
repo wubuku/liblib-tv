@@ -92,6 +92,13 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
               const input = document.createElement("input");
               input.type = "file";
               input.accept = "image/*";
+              input.onchange = () => {
+                const file = input.files?.[0];
+                if (!file) return;
+                // 原型: 本地对象 URL 预览替换内容 (无后端持久化)
+                const url = URL.createObjectURL(file);
+                useFrameosStore.getState().updateNodeData(id, { imageUrl: url });
+              };
               input.click();
             }}
             style={{

@@ -1,0 +1,19 @@
+{
+  "batch": 203,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "replace:src-changed",
+        "replace:object-url",
+        "undo:restores-image",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
