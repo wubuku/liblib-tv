@@ -1,0 +1,27 @@
+{
+  "batch": 160,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:image-node",
+        "image:editor-opens",
+        "footer:model-seedream",
+        "footer:combined-tier",
+        "footer:no-legacy-dropdowns",
+        "footer:advanced-settings",
+        "footer:credits-60-30-5zhe",
+        "footer:generate-visible",
+        "footer:generate-running-disables",
+        "regression:header-chips",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

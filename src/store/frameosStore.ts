@@ -287,7 +287,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isAddNodeMenuOpen: false,
   isOrganizeMenuOpen: false,
   organizeMode: "grid",
-  selectedModel: "帧界 O2",
+  selectedModel: "Seedream 5.0 Pro",
   isHelpOpen: false,
   isDebugMode: false,
   pendingConfirm: null,

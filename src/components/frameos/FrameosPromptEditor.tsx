@@ -40,9 +40,8 @@ export function FrameosPromptEditor() {
     for (const e of incomingEdges) removeEdge(e.id);
   };
 
-  const modelOptions = ["帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
-  const resolutionOptions = ["512", "1K", "2K", "4K"];
-  const ratioOptions = ["1:1", "4:3", "3:2", "16:9", "9:16", "21:9"];
+  // 2026-09-23 源站面板默认模型 Seedream 5.0 Pro; 其余条目为历史 mock 选项
+  const modelOptions = ["Seedream 5.0 Pro", "帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
 
   return (
     <div
@@ -212,7 +211,7 @@ export function FrameosPromptEditor() {
         </button>
       </div>
 
-      {/* 下行: 模型 / 分辨率 / 比例 / 参数 + 步数 + 生成按钮 */}
+      {/* 下行 (2026-09-23 源站实测): 模型 / 档位合并 chip / 高级设置 + 积分 60·30·5折 + 生成按钮 */}
       <div
         className="prompt-bottom-controls"
         style={{
@@ -226,13 +225,12 @@ export function FrameosPromptEditor() {
           onChange={setSelectedModel}
           options={modelOptions}
         />
-        <Dropdown value="1K" onChange={() => {}} options={resolutionOptions} />
-        <Dropdown value="16:9" onChange={() => {}} options={ratioOptions} />
         <Dropdown
-          value="更多参数"
-          onChange={() => window.alert("更多参数 (mock)")}
-          options={["更多参数", "风格预设", "种子", "采样步数"]}
+          value="2K · 16:9"
+          onChange={() => {}}
+          options={["1K · 16:9", "2K · 16:9", "2K · 9:16", "4K · 16:9"]}
         />
+        <MiniBtn icon="⚙" label="高级设置" onClick={() => window.alert("高级设置 (mock)")} />
         <div style={{ flex: 1 }} />
         <div
           style={{
@@ -248,8 +246,26 @@ export function FrameosPromptEditor() {
             cursor: "pointer",
           }}
         >
+          <span
+            aria-hidden
+            style={{
+              width: 14,
+              height: 14,
+              borderRadius: 9999,
+              background: "#F5A623",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 9,
+              color: "#5A3A00",
+              fontWeight: 700,
+            }}
+          >
+            ¥
+          </span>
           <span>60</span>
-          <ArrowDownIcon size={12} color="#A3A3A3" />
+          <span style={{ color: "#A3A3A3" }}>30</span>
+          <span style={{ color: "#F5A623" }}>5折</span>
         </div>
         <button
           type="button"
