@@ -1,0 +1,20 @@
+{
+  "batch": 209,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "image:real-photo-swap",
+        "video:replace-blob",
+        "video:play-btn-present",
+        "undo:image-restored",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
