@@ -1741,6 +1741,18 @@
 - Batch 522 (全量质量门): 退出码全量扫 verify-jimeng-batch1..105 ——
   91 verifier 零失败，截图随扫刷新入库。下一批规划 (Batch 523):
   1-19 段新回归轮起点。
+- Batch 527 (工具下拉两组结构落地，依据用户手册实测证据): 参照
+  docs/user-manual/jimeng-canvas/（并行路线 2026-09-23 实测）修正
+  批 484 的「预设 hover→补帧子菜单」误构——工具下拉实为**两组**：
+  「编辑」组 = 补帧(VIP) + **深度动作捕捉**（新条目，旧研究从未
+  出现）；「预设」组 = 提示词反推。落地: JimengNodeToolbar 下拉改
+  两组布局（组标签 编辑/预设 + 三直击项，移除 presetOpen 子菜单
+  状态）；深度动作捕捉为付费动作，执行行为未采样 (BLOCKED_BY_
+  FIXTURE)，clone 以 runAction 通路预留 (待 JimengVideoNode 后续
+  接 mock)。另: 并行开发者在 FrameosToolRail 新增 model3d/
+  director/videoEditing 三个 unimplemented 类型引发类型收窄报错，
+  按规则做最小修复（类型断言，拦截逻辑未动）。回归: 2/8/51/57
+  PASS；npm run check 通过。
 - Batch 523 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
   规划 (Batch 524): 20-33 段回归续行。
 - Batch 524 (轮转回归): batch 20-33 段 14/14 PASS (续行)。下一批

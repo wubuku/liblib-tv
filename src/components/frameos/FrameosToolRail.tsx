@@ -11,15 +11,16 @@ import { TemplateRailEntry } from "./FrameosTemplatePanel";
 import { ProjectAssetsRailEntry } from "./FrameosProjectAssetsPanel";
 import { useViewport } from "@xyflow/react";
 
+// 2026-09-23 源站菜单逐字 (SOURCE_OBSERVATIONS §13.2): 添加节点 = 7 类短标签;
+// 角色节点/场景节点/风格节点/批量节点 不在源站菜单中, 已从菜单移除 (类型保留兼容旧数据)
 const NODE_TYPES = [
-  { type: "text" as const, title: "文本节点", desc: "纯文本描述，可连接到任意节点", icon: "T" },
-  { type: "image" as const, title: "图片节点", desc: "输入图片，可用作参考或输出", icon: "🖼" },
-  { type: "video" as const, title: "视频节点", desc: "视频素材或生成的视频", icon: "🎬" },
-  { type: "character" as const, title: "角色节点", desc: "人物角色，含形象 + 描述", icon: "👤" },
-  { type: "scene" as const, title: "场景节点", desc: "剧本/分镜的场景描述", icon: "🎬" },
-  { type: "audio" as const, title: "音频节点", desc: "背景音乐 / 配音 / 音效", icon: "🎵" },
-  { type: "style" as const, title: "风格节点", desc: "画面风格参数 (色调/光影/笔触)", icon: "🎨" },
-  { type: "batch" as const, title: "批量节点", desc: "批量生成多个相似内容", icon: "📦" },
+  { type: "text" as const, title: "文本", desc: "", icon: "T" },
+  { type: "image" as const, title: "图片", desc: "", icon: "🖼" },
+  { type: "video" as const, title: "视频", desc: "", icon: "🎬" },
+  { type: "audio" as const, title: "音频", desc: "", icon: "🎵" },
+  { title: "3D模型", desc: "", icon: "🧊", unimplemented: true },
+  { title: "3D导演台", desc: "", icon: "🎛", unimplemented: true },
+  { title: "视频剪辑台", desc: "", icon: "🎞", unimplemented: true },
 ];
 
 interface RailButtonProps {
@@ -189,7 +190,18 @@ export function FrameosToolRail() {
                     icon={<span style={{ fontSize: 16 }}>{nt.icon}</span>}
                     title={nt.title}
                     desc={nt.desc}
-                    onClick={() => addNode(nt.type, addNodeOpts)}
+                    onClick={() => {
+                      if ("unimplemented" in nt && nt.unimplemented) {
+                        window.alert(`${nt.title} 节点 (mock，本原型未实现)`);
+                        return;
+                      }
+                      // minimal fix: unimplemented kinds are intercepted above;
+                      // store signature only accepts the implemented kinds
+                      addNode(
+                        nt.type as "text" | "image" | "video" | "audio",
+                        addNodeOpts,
+                      );
+                    }}
                   />
                 ))}
               </div>
@@ -287,9 +299,11 @@ function NodeTypeItem({
       >
         {icon}
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center" }}>
         <div style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 500 }}>{title}</div>
-        <div style={{ color: "#7A7A7A", fontSize: 12, marginTop: 2 }}>{desc}</div>
+        {desc ? (
+          <div style={{ color: "#7A7A7A", fontSize: 12, marginTop: 2 }}>{desc}</div>
+        ) : null}
       </div>
     </div>
   );

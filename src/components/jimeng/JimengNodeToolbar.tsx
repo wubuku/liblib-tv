@@ -9,6 +9,7 @@ import {
   Download,
   FileSearch,
   Maximize2,
+  PersonStanding,
   Scan,
   Scissors,
   Sparkles,
@@ -52,9 +53,9 @@ export function JimengNodeToolbar({
   onAction?: (label: string) => void;
 }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  // 批 484 SOURCE_FACT: 工具下拉 (预设 hover→补帧子菜单 + 提示词反推)
+  // 批 527 SOURCE_FACT (用户手册 use-node-toolbar 2026-09-23 实测):
+  // 工具下拉分两组——「编辑」: 补帧(VIP)/深度动作捕捉；「预设」: 提示词反推
   const [toolOpen, setToolOpen] = useState(false);
-  const [presetOpen, setPresetOpen] = useState(false);
   const saved = useJimengStore((s) => s.project.saved);
 
   const toggleMenu = (label: string) =>
@@ -119,10 +120,7 @@ export function JimengNodeToolbar({
         <div className="relative">
           <button
             type="button"
-            onClick={() => {
-              setToolOpen((v) => !v);
-              setPresetOpen(false);
-            }}
+            onClick={() => setToolOpen((v) => !v)}
             className={`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${
               toolOpen ? "bg-white/10" : ""
             }`}
@@ -135,34 +133,25 @@ export function JimengNodeToolbar({
               className="absolute left-1/2 top-full z-[120] mt-2 -translate-x-1/2 rounded-xl p-1"
               style={{ background: "rgb(38,38,38)" }}
             >
-              <div
-                className="relative"
-                onMouseEnter={() => setPresetOpen(true)}
-                onMouseLeave={() => setPresetOpen(false)}
+              <p className="px-2.5 pb-1 pt-1.5 text-[11px] text-white/40">编辑</p>
+              <button
+                type="button"
+                onClick={() => runAction("补帧")}
+                className="flex h-9 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
               >
-                <button
-                  type="button"
-                  className="flex h-7 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
-                >
-                  预设
-                </button>
-                {presetOpen ? (
-                  <div
-                    className="absolute bottom-full left-0 z-[130] mb-1 rounded-xl p-1"
-                    style={{ background: "rgb(38,38,38)" }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => runAction("补帧")}
-                      className="flex h-9 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
-                    >
-                      <Diamond size={16} className="mr-1 shrink-0 text-white/85" />
-                      补帧
-                      <VipDiamond size={14} />
-                    </button>
-                  </div>
-                ) : null}
-              </div>
+                <Diamond size={16} className="mr-1 shrink-0 text-white/85" />
+                补帧
+                <VipDiamond size={14} />
+              </button>
+              <button
+                type="button"
+                onClick={() => runAction("深度动作捕捉")}
+                className="flex h-9 w-full items-center whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
+              >
+                <PersonStanding size={16} className="mr-1 shrink-0 text-white/85" />
+                深度动作捕捉
+              </button>
+              <p className="px-2.5 pb-1 pt-1.5 text-[11px] text-white/40">预设</p>
               <button
                 type="button"
                 onClick={() => runAction("提示词反推")}
