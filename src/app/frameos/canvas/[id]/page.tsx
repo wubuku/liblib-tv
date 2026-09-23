@@ -43,6 +43,7 @@ import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
+import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -117,9 +118,23 @@ function FrameosCanvasInner() {
 
   const onNodeClick = useCallback(
     (_: React.MouseEvent, node: { id: string }) => {
+      // Batch 197: 参考选择模式下, 点击节点 = 加为参考 (建立连线) 并退出模式
+      const st = useFrameosStore.getState();
+      if (st.refSelectTargetId && st.refSelectTargetId !== node.id) {
+        addEdge({
+          id: `e-${node.id}-${st.refSelectTargetId}-${Date.now()}`,
+          source: node.id,
+          target: st.refSelectTargetId,
+          type: "default",
+          sourceHandle: "right",
+          targetHandle: "left",
+        });
+        st.setRefSelectTargetId(null);
+        return;
+      }
       selectNode(node.id);
     },
-    [selectNode]
+    [selectNode, addEdge]
   );
 
   const onPaneClick = useCallback(() => {
@@ -170,6 +185,10 @@ function FrameosCanvasInner() {
         }
         if (state.isNodeSearchOpen) {
           state.closeNodeSearch();
+          return;
+        }
+        if (state.refSelectTargetId) {
+          state.setRefSelectTargetId(null);
           return;
         }
         if (state.isHelpOpen) {
@@ -640,6 +659,9 @@ function FrameosCanvasInner() {
 
       {/* 空画布状态 (源站: 选择一种方式开始创作 + 六个 CTA) */}
       <FrameosEmptyState />
+
+      {/* 参考选择模式顶栏 (源站: 面板「参考」→ 从画布选择参考) */}
+      <FrameosRefSelectBar />
 
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}

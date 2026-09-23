@@ -83,6 +83,7 @@ interface FrameosCanvasState {
   isNodeSearchOpen: boolean;
   isProjectAssetsPanelOpen: boolean;
   paneMenuAt: { x: number; y: number } | null;
+  refSelectTargetId: string | null;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
   generations: Generation[];
@@ -93,6 +94,8 @@ interface FrameosCanvasState {
   setNodes: (nodes: FrameosNode[]) => void;
   setEdges: (edges: Edge[]) => void;
   organizeNodes: (laid: FrameosNode[]) => void;
+  beginResize: (id: string) => void;
+  resizeNode: (id: string, w: number, h: number) => void;
   addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
   updateEdgeData: (id: string, patch: Record<string, unknown>) => void;
@@ -121,6 +124,7 @@ interface FrameosCanvasState {
   toggleTemplatePanel: () => void;
   toggleProjectAssetsPanel: () => void;
   setPaneMenuAt: (at: { x: number; y: number } | null) => void;
+  setRefSelectTargetId: (id: string | null) => void;
   toggleNodeSearch: () => void;
   closeNodeSearch: () => void;
   requestConfirm: (c: PendingConfirm | null) => void;
@@ -312,6 +316,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   isNodeSearchOpen: false,
   isProjectAssetsPanelOpen: false,
   paneMenuAt: null,
+  refSelectTargetId: null,
   pendingConfirm: null,
   past: [],
   future: [],
@@ -341,6 +346,20 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
       future: [],
       nodes: laid,
+    })),
+  // Batch 189: resize 手柄 — 按下时入历史一次, 拖动过程实时更新尺寸 (不入历史)
+  beginResize: (id) =>
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+    })),
+  resizeNode: (id, w, h) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) =>
+        n.id === id
+          ? { ...n, style: { ...(n.style ?? {}), width: w, height: h } }
+          : n
+      ),
     })),
 
   addNode: (type, opts) => {
@@ -563,6 +582,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   toggleTemplatePanel: () => set((state) => ({ isTemplatePanelOpen: !state.isTemplatePanelOpen })),
   toggleProjectAssetsPanel: () => set((state) => ({ isProjectAssetsPanelOpen: !state.isProjectAssetsPanelOpen })),
   setPaneMenuAt: (at) => set({ paneMenuAt: at }),
+  setRefSelectTargetId: (id) => set({ refSelectTargetId: id }),
   toggleNodeSearch: () => set((state) => ({ isNodeSearchOpen: !state.isNodeSearchOpen })),
   closeNodeSearch: () => set({ isNodeSearchOpen: false }),
 

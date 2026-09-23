@@ -29,6 +29,7 @@ export function FrameosPromptEditor() {
   const edges = useFrameosStore((s) => s.edges);
   const removeEdge = useFrameosStore((s) => s.removeEdge);
   const setFocusModeNodeId = useFrameosStore((s) => s.setFocusModeNodeId);
+  const setRefSelectTargetId = useFrameosStore((s) => s.setRefSelectTargetId);
   // Batch 180: 面板跟随选中节点 (源站: 面板在节点下方 12px, 随节点/缩放移动)
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
   // Batch 190: 全屏编辑态 (编辑器居中放大)
@@ -198,7 +199,7 @@ export function FrameosPromptEditor() {
       >
         <TileBtn icon="⌖" label="聚焦" onClick={() => setFocusModeNodeId(sel.id)} />
         <TileBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
-        <TileBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
+        <TileBtn icon="＋" label="参考" onClick={() => setRefSelectTargetId(sel.id)} />
         {incomingEdges.map((e) => {
           const src = nodes.find((n) => n.id === e.source);
           return (
@@ -555,6 +556,89 @@ function Dropdown({
       </select>
       <span>{value}</span>
       <ArrowDownIcon size={10} color="#A3A3A3" />
+    </div>
+  );
+}
+
+/**
+ * FrameOS 参考选择模式顶栏 (2026-09-24 源站实测, Batch 197):
+ * 面板头部点「参考」进入——蓝色顶栏「从画布选择参考 / 返回节点 / ×」,
+ * 点击画布上其他节点即加为参考 (建立连线); Esc / 返回节点 / × 退出。
+ */
+export function FrameosRefSelectBar() {
+  const refSelectTargetId = useFrameosStore((s) => s.refSelectTargetId);
+  const setRefSelectTargetId = useFrameosStore((s) => s.setRefSelectTargetId);
+  if (!refSelectTargetId) return null;
+  return (
+    <div
+      data-frameos-ref-select-bar
+      style={{
+        position: "fixed",
+        top: 8,
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 2950,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "8px 12px",
+        background: "#3B82F6",
+        borderRadius: 10,
+        color: "#FFFFFF",
+        fontSize: 13,
+        boxShadow: "0 8px 24px rgba(59,130,246,0.4)",
+      }}
+    >
+      <span
+        aria-hidden
+        style={{
+          width: 18,
+          height: 18,
+          borderRadius: 4,
+          background: "rgba(255,255,255,0.25)",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 11,
+        }}
+      >
+        ◧
+      </span>
+      <span>从画布选择参考</span>
+      <button
+        type="button"
+        data-frameos-ref-select-back
+        onClick={() => setRefSelectTargetId(null)}
+        style={{
+          height: 28,
+          padding: "0 10px",
+          borderRadius: 6,
+          border: "1px solid rgba(255,255,255,0.4)",
+          background: "transparent",
+          color: "#FFFFFF",
+          fontSize: 12,
+          cursor: "pointer",
+        }}
+      >
+        返回节点
+      </button>
+      <button
+        type="button"
+        aria-label="关闭参考选择"
+        onClick={() => setRefSelectTargetId(null)}
+        style={{
+          width: 22,
+          height: 22,
+          borderRadius: 6,
+          border: "none",
+          background: "transparent",
+          color: "#FFFFFF",
+          fontSize: 14,
+          cursor: "pointer",
+        }}
+      >
+        ×
+      </button>
     </div>
   );
 }

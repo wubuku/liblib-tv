@@ -1,0 +1,23 @@
+{
+  "batch": 197,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "ref:tile",
+        "ref:bar-opens",
+        "ref:bar-buttons",
+        "ref:edge-created",
+        "ref:mode-exits",
+        "ref:undo-removes-edge",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
