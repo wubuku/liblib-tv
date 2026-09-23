@@ -1,0 +1,32 @@
+{
+  "batch": 168,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:opens",
+        "menu:anchored-near-click",
+        "menu:header",
+        "menu:item:文本",
+        "menu:item:图片",
+        "menu:item:视频",
+        "menu:item:音频",
+        "menu:item:3D模型",
+        "menu:item:3D导演台",
+        "menu:item:视频剪辑台",
+        "menu:no-resource-group",
+        "menu:text-created",
+        "menu:auto-closed",
+        "menu:reopens",
+        "menu:audio-mock-no-node",
+        "menu:esc-closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

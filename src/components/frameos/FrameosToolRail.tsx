@@ -13,7 +13,7 @@ import { useViewport } from "@xyflow/react";
 
 // 2026-09-23 源站菜单逐字 (SOURCE_OBSERVATIONS §13.2): 添加节点 = 7 类短标签;
 // 角色节点/场景节点/风格节点/批量节点 不在源站菜单中, 已从菜单移除 (类型保留兼容旧数据)
-const NODE_TYPES = [
+export const NODE_TYPES = [
   { type: "text" as const, title: "文本", desc: "", icon: "T" },
   { type: "image" as const, title: "图片", desc: "", icon: "🖼" },
   { type: "video" as const, title: "视频", desc: "", icon: "🎬" },

@@ -44,6 +44,7 @@ import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
+import { FrameosPaneAddMenu } from "@/components/frameos/FrameosPaneAddMenu";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -62,6 +63,7 @@ function FrameosCanvasInner() {
   const setEdges = useFrameosStore((s) => s.setEdges);
   const addEdge = useFrameosStore((s) => s.addEdge);
   const removeEdge = useFrameosStore((s) => s.removeEdge);
+  const setPaneMenuAt = useFrameosStore((s) => s.setPaneMenuAt);
   const removeNode = useFrameosStore((s) => s.removeNode);
   const duplicateNode = useFrameosStore((s) => s.duplicateNode);
   const selectNode = useFrameosStore((s) => s.selectNode);
@@ -126,6 +128,19 @@ function FrameosCanvasInner() {
     selectNode(null);
   }, [selectNode]);
 
+  // 双击空白处打开「选择节点类型」菜单 (Batch 168)
+  useEffect(() => {
+    const paneEl = document.querySelector(".react-flow__pane") as HTMLElement | null;
+    const onPaneDblClick = (e: MouseEvent) => {
+      // 双击节点时事件会冒泡到 pane: 只响应空白处双击
+      const target = e.target as Element | null;
+      if (target && target.closest(".react-flow__node")) return;
+      setPaneMenuAt({ x: e.clientX, y: e.clientY });
+    };
+    paneEl?.addEventListener("dblclick", onPaneDblClick);
+    return () => paneEl?.removeEventListener("dblclick", onPaneDblClick);
+  }, [setPaneMenuAt]);
+
   // 监听 DeletableEdge 的删除事件
   useEffect(() => {
     const handler = (e: Event) => {
@@ -155,6 +170,10 @@ function FrameosCanvasInner() {
         }
         if (state.isNodeSearchOpen) {
           state.closeNodeSearch();
+          return;
+        }
+        if (state.paneMenuAt) {
+          state.setPaneMenuAt(null);
           return;
         }
         if (state.isHelpOpen) {
@@ -566,6 +585,9 @@ function FrameosCanvasInner() {
 
       {/* 节点搜索面板 (源站: 工具条按钮 / ⌘F, 结果点击选中并缩放聚焦) */}
       <FrameosNodeSearch />
+
+      {/* 双击空白处的选择节点类型菜单 (源站 §13.2) */}
+      <FrameosPaneAddMenu />
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
       <FrameosPromptEditor />
