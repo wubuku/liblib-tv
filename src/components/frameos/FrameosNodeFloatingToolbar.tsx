@@ -148,6 +148,23 @@ export function FrameosNodeFloatingToolbar() {
         const isFullscreenView = aria === "全屏查看";
         const onClick = isDownload
           ? onDownload
+          : isFullscreenView
+          ? () => {
+              // Batch 205: 全屏查看 = 文本内容全屏阅读浮层 (推断实现)
+              const content =
+                (selectedNode?.data as { content?: string })?.content ??
+                (selectedNode?.data as { title?: string })?.title ??
+                "";
+              window.dispatchEvent(
+                new CustomEvent("frameos:fullscreen-text", {
+                  detail: {
+                    title:
+                      (selectedNode?.data as { title?: string })?.title ?? "",
+                    content,
+                  },
+                })
+              );
+            }
           : (a.onClick ?? (() => window.alert(`${a.label || aria} (mock)`)));
         return (
           <button

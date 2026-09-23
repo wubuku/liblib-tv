@@ -44,6 +44,7 @@ import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel"
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
 import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
+import { FrameosFullscreenText } from "@/components/frameos/FrameosFullscreenText";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -662,6 +663,9 @@ function FrameosCanvasInner() {
 
       {/* 参考选择模式顶栏 (源站: 面板「参考」→ 从画布选择参考) */}
       <FrameosRefSelectBar />
+
+      {/* 全屏文本查看浮层 (Batch 205) */}
+      <FrameosFullscreenText />
 
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
