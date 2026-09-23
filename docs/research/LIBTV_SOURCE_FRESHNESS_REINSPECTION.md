@@ -1026,6 +1026,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1089 巡检 | still-broken | 第六百五十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 7 分钟，零失败零瞬态）；13 项 liblib 回写 fixture 显式恢复，jimeng-clone-batch* 剔除保留；并行 frameos 181（alignment guides）活跃 WIP 保留不动（batch 1089） |
 | 2026-09-25 | batch 1094 巡检 | still-broken | 第六百五十一次重测；巡检批次——并行新轮 rotation 三连落 jimeng 551/552/553（segment 1-19 绿 19/19、20-33 绿 14/14、34-48 绿 15/15），frameos 181（alignment guides）仍 WIP 保留不动；batch 1096 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1096 巡检 | still-broken | 第六百五十二次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；15 项 liblib 回写 fixture 显式恢复，jimeng-clone-batch* 5 件剔除保留（DEC-018）（batch 1096） |
+| 2026-09-25 | batch 1101 巡检 | still-broken | 第六百五十三次重测；巡检批次——并行无新落库（jimeng 556 full gate 未落、frameos 182 未始），5 件 jimeng 截图 WIP 保留不动；batch 1103 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
