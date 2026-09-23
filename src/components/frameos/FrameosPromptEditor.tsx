@@ -36,7 +36,7 @@ export function FrameosPromptEditor() {
 
   useEffect(() => {
     if (!selectedNodeId || !sel || sel.type === "text") {
-      setPos(null);
+      // 无选中/文本节点时组件返回 null, 陈旧 pos 无需清理 (避免 effect 内同步 setState)
       return undefined;
     }
     let raf = 0;
