@@ -121,6 +121,44 @@ export function FrameosAppHeader() {
             <span>LibTV</span>
           </Link>
 
+          {/* 使用教程 (2026-09-23 源站实测: 顶栏 ? 图标 + 文字, 打开外部飞书文档; URL 未采样 → mock) */}
+          <button
+            type="button"
+            aria-label="使用教程"
+            title="使用教程"
+            data-frameos-tutorial-button
+            onClick={() => window.alert("使用教程：外部飞书文档 (mock)")}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              height: 36,
+              padding: "0 12px",
+              borderRadius: 8,
+              background: "rgba(20,20,20,0.6)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "#E0E0E0",
+              fontSize: 13,
+              cursor: "pointer",
+              transition: "background 0.15s, border-color 0.15s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(20,20,20,0.9)";
+              e.currentTarget.style.borderColor = "rgba(96,165,250,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(20,20,20,0.6)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.8.31-1.4.9-1.4 1.67v.5" />
+              <path d="M12 17h.01" />
+            </svg>
+            <span>使用教程</span>
+          </button>
+
           {/* undo / redo 浮动按钮组 (原站右上) */}
           <div
             className="hd-undo-redo"

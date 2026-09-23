@@ -1,0 +1,21 @@
+{
+  "batch": 169,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "tutorial:visible",
+        "tutorial:label",
+        "tutorial:mock-dialog",
+        "regression:undo-state",
+        "edge:dashed",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
