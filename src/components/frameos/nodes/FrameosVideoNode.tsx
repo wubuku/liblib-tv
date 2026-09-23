@@ -116,7 +116,9 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
           </div>
         )}
 
-        {/* 中心播放/暂停按钮 - hover 时显示 */}
+        {/* 中心播放/暂停按钮 - 仅对有内容的视频节点渲染
+            (2026-09-23 源站实测: 空视频节点为纯图标, 无播放按钮/徽章) */}
+        {videoUrl ? (
         <button
           type="button"
           aria-label={isPlaying ? "暂停视频" : "播放视频"}
@@ -160,8 +162,10 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
         >
           {isPlaying ? <PauseFillIcon size={20} /> : <PlayFillIcon size={20} />}
         </button>
+        ) : null}
 
-        {/* 右上角替换内容按钮 - 始终可见 (与原站 frameos.cn 一致) */}
+        {/* 右上角替换内容按钮 - 仅对有内容的视频节点渲染 (同上) */}
+        {imageUrl ? (
         <div
           className="card-body-actions"
           style={{
@@ -219,6 +223,7 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
             <Upload2Icon size={12} />
           </button>
         </div>
+        ) : null}
       </div>
     </FrameosNodeShell>
   );

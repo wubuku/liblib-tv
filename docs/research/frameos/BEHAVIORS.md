@@ -49,7 +49,7 @@
 | 任意节点 | drag end | 位置写回 store（不入 history stack） |
 | 文本节点 | 输入 | contenteditable 实时写 `promptValue` |
 | 视频节点 | click 中心播放按钮 | 切换 `isPlaying` → 内嵌 `<video>` 元素，错误自动 fallback 到封面 |
-| 视频节点 | hover | 中心播放按钮 hover scale 1.1 + 显示时长徽章 "00:05" |
+| 视频节点 | hover | **仅对有内容的视频节点**：中心播放按钮 + 替换按钮；空视频节点为纯图标无任何按钮/徽章（2026-09-23 源站实测, Batch 173；时长徽章 “00:05” 为过期描述，已移除） |
 | 视频/图片节点 | click 替换按钮 (右上角) | 触发 `<input type="file">` 文件选择（无后端） |
 | 任意节点 | Delete / Backspace 键 | 从 store 删除该节点 + 关联的边 |
 

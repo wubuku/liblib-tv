@@ -1,0 +1,22 @@
+{
+  "batch": 173,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:video-node",
+        "content-video:play-visible",
+        "content-video:replace-visible",
+        "empty-video:play-hidden",
+        "empty-video:replace-hidden",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
