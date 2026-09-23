@@ -1,0 +1,36 @@
+{
+  "batch": 212,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "lib:opens",
+        "lib:text:选择素材",
+        "lib:text:从素材库选择图片或视频作为生成参考",
+        "lib:text:分类",
+        "lib:text:工具箱素材",
+        "lib:text:画布素材",
+        "lib:text:上传素材",
+        "lib:text:批量操作",
+        "lib:text:+ 本地上传",
+        "lib:text:添加参考素材",
+        "lib:text:取消",
+        "lib:search-placeholder",
+        "lib:filter:全部",
+        "lib:filter:图片",
+        "lib:filter:视频",
+        "lib:filter:音频",
+        "lib:filter:3D",
+        "lib:cards-render",
+        "lib:footer-selected",
+        "lib:closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
