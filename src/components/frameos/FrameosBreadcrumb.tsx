@@ -72,6 +72,7 @@ export function FrameosBreadcrumb() {
           <DropdownItem
             key={w.id}
             label={w.name}
+            count={`${w.projects.length} 项目`}
             selected={w.name === breadcrumb.project}
             onClick={() => {
               setBreadcrumb({ project: w.name, scene: w.projects[0], canvas: "画布 1" });
@@ -332,10 +333,12 @@ function DropdownHeader({ label }: { label: string }) {
 
 function DropdownItem({
   label,
+  count,
   selected,
   onClick,
 }: {
   label: string;
+  count?: string;
   selected?: boolean;
   onClick?: () => void;
 }) {
@@ -363,6 +366,13 @@ function DropdownItem({
       }}
     >
       <span>{label}</span>
+      {count && (
+        <span
+          style={{ color: selected ? "#60A5FA" : "#A3A3A3", fontSize: 12, marginLeft: "auto" }}
+        >
+          {count}
+        </span>
+      )}
       {selected && (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <path
