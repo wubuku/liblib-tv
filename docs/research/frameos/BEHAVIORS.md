@@ -43,7 +43,7 @@
 
 | 节点 | 触发 | 状态 |
 |---|---|---|
-| 任意节点 | hover | 右下角 resize-handle 渐显（视频节点除外）；图片节点 hover 蒙层 + 缩放 1.02 + 预览/编辑按钮 |
+| 任意节点 | hover | 右下角 resize-handle 渐显（视频节点除外）；图片节点仅在**已有内容**时 hover 显示右上角 替换内容 按钮——空图片节点 hover 无任何按钮（2026-09-23 源站实测, Batch 172 修正过期的 hover 蒙层描述） |
 | 任意节点 | click | selected 状态：蓝色边框 + 4px 光晕 + 左右 handle 显现（14×14 白色圆 + 蓝边） |
 | 任意节点 | drag | 自由拖动（XYFlow 内建） + **floating-toolbar 和 PromptBar 用 `transition: left 0.15s` 平滑跟随** |
 | 任意节点 | drag end | 位置写回 store（不入 history stack） |

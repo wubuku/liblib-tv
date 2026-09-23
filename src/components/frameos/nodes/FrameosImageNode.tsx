@@ -71,7 +71,9 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
           </div>
         )}
 
-        {/* 右上角替换内容按钮 - 始终可见 (与原站 frameos.cn 一致) */}
+        {/* 右上角替换内容按钮 - 仅对已有内容的图片节点显示
+            (2026-09-23 源站实测: 空图片节点 hover 无任何按钮) */}
+        {imageUrl ? (
         <div
           className="card-body-actions"
           style={{
@@ -120,6 +122,7 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
             <Upload2Icon size={12} />
           </button>
         </div>
+        ) : null}
       </div>
     </FrameosNodeShell>
   );

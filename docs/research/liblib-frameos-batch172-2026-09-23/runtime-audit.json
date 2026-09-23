@@ -1,0 +1,21 @@
+{
+  "batch": 172,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:content-image",
+        "content-image:hover-replace-visible",
+        "boot:empty-image-prepared",
+        "empty-image:no-replace-button",
+        "regression:empty-image-prompt-editor",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
