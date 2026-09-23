@@ -6,6 +6,7 @@ import type { NodeProps } from "@xyflow/react";
 import type { JimengImageNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { JimengImageNodeToolbar } from "@/components/jimeng/JimengImageNodeToolbar";
+import { JimengImageGenPanel } from "@/components/jimeng/JimengImageGenPanel";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { useJimengStore } from "@/store/jimengStore";
 
@@ -22,10 +23,16 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
 
   return (
     <>
-      <JimengImageNodeToolbar
-        visible={selected === true && soloSelected}
-        onAction={(label) => pushToast(`${label}（mock）`)}
-      />
+      {/* 批 530 SOURCE_FACT: 空图片节点 (无 poster) 选中弹图片生成面板；
+          带画面节点维持批 208 加工工具条 */}
+      {d.poster ? (
+        <JimengImageNodeToolbar
+          visible={selected === true && soloSelected}
+          onAction={(label) => pushToast(`${label}（mock）`)}
+        />
+      ) : (
+        <JimengImageGenPanel visible={selected === true && soloSelected} />
+      )}
     <div
       className="group relative"
       style={{ width: d.width, height: d.height }}
