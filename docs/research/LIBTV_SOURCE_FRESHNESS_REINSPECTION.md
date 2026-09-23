@@ -998,6 +998,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-24 | batch 1058 探测 | still-broken | 第六百一十九次重测；探测中断后恢复——CDP 浏览器（9222+持久 profile）被关闭后重启，期间 localhost→IPv6 解析致 connect 挂起，改用 127.0.0.1 确认服务正常后探测成功；结果仍 still-broken；并行 WIP 保留不动（batch 1058） |
 | 2026-09-24 | batch 969+ 心跳批次 | still-broken | 第六百二十次重测；浏览器再次被关闭后自主重启（持久 profile 登录态保留），用户确认 libTV 已登录；探测成功执行，结果仍 still-broken（batch 969+ 心跳序列） |
 | 2026-09-24 | batch 970+ 心跳批次 | still-broken | 第六百二十一次重测；巡检批次——并行连落 jimeng 手册批次（text-edit/dup-delete/marquee-group 证据 + playback/audio/assets/ai-drawer/context/shortcuts 证据，截图 13-22 已吸收），工作区净；下批（约 batch 976/983 前后）到期执行全量维护集新鲜运行（78 项） |
+| 2026-09-24 | batch 1023 心跳批次 | still-broken | 第六百二十三次重测；巡检批次——并行自行落库 jimeng 158（frameos text-node selection UI 追平）+ frameos 手册补充，十件并行 WIP 在途（保留不动）；距 batch 1031 上次全量维护集约 5 批到期（batch 1038/1045 执行 78 项全量） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
