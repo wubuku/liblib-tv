@@ -1,0 +1,305 @@
+manual_version: 1
+target:
+  app: jimeng
+  url: 'https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>'
+  audience:
+    - logged-in-canvas-creator
+  depth: thorough
+scope_authorization:
+  user_confirmed: false
+  note: >-
+    用户已于 2026-09-23 要求按 FrameOS 画布手册（docs/user-manual/frameos-canvas/）的同一
+    方法编写即梦画布手册，并先建立工作账本。以下 13 个候选任务来自快速扫描
+    （docs/research/jimeng-canvas/README.md 的源站取证记录 + 复刻实现面），尚未通过
+    SKILL 第 2 节的“高频/重要任务确认门”。用户确认候选清单或授权 Agent 按提案定级后，
+    才能进入正式浏览器探索、截图与成稿；届时把本字段改为 true 并核对任务范围。
+  safety_boundary: >-
+    即梦画布中大量按钮会提交按积分计费的真实生成任务（发送生成、局部重拍、智能超清、
+    补帧、提示词反推、智能改图、配音/音乐生成等）。全部探索与回走只允许记录入口、
+    面板与参数到“点击执行前一步”，不得真正提交；充值、订阅管理、账户页一律不在范围内。
+tasks:
+  - id: create-first-node
+    title: 在画布中创建新节点（含本地上传）
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索（2026-09-12 提取）：左栏 文本/图片/视频/音频/智能体(Beta) 图标；有内容节点
+          边缘 + 手柄菜单（图片/文本/音频，本地上传节点仅右侧）；空白右键 新建节点 子菜单；
+          双击标题行打开扩展插入菜单（追加 从资产库添加/本地上传）；左栏悬停标签飞出层，
+          上传 打开系统多选文件选择器（filechooser multiple 实证）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md §4/§5、batch 17/19/24/25/73/228。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/create-first-node.md
+  - id: navigate-canvas
+    title: 平移、缩放与控制画布视图
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：底部 dock 缩放块弹出菜单逐字（放大视图⌘+/缩小视图⌘−/适配画布⇧1/
+          缩放至选中项⇧2(无选中禁用)/缩放至50%/缩放至100%⌘1/缩放至200%）；小地图支持
+          pan/zoom；缩放值为可编辑输入框。
+      - type: source-interaction
+        note: >-
+          候选线索（batch 21）：空白左键拖拽不平移；普通滚轮=垂直平移；ctrl+滚轮=缩放
+          （实测 1→1.2）。与 FrameOS 源站行为不同，正文必须逐项实测回走，不得互相抄。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md §4、batch 7/21/91/92/94。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/navigate-canvas.md
+  - id: use-node-toolbar
+    title: 选中节点并使用浮动工具条
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：视频节点工具条 9 项逐字（局部重拍✦/智能超清✦/视频编辑✦/截取帧∨/
+          补帧✦/视频修剪/提示词反推｜全屏/下载，✦=VIP）；图片节点工具条 6 项（智能改图✦/
+          扩图/智能超清/抠图/多角度/工具∨）；截取帧下拉（首帧/尾帧/自定义）；多选组合
+          工具条（N 节点/编组/解除编组/布局 宫格·智能/背景色/禁用下载）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md §6、batch 195/219/272/372/406/412。
+    preconditions:
+      - 画布中已有可选中节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/use-node-toolbar.md
+  - id: prepare-generation
+    title: 填写生成面板并确认生成参数（发送前停止）
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: critical
+    coverage: flagship
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：空节点选中弹出生成面板（占位文案 上传参考图、输入文字或 @ 主体…；
+          底部模型行 即梦 Seedance 2.0 VIP✦∨ / 16:9·720P✦ / 数量∨ / 全能参考∨ / 时长∨ /
+          @ / ✦积分读数 / 发送钮）；面板 form 680×208、右上角展开钮。
+      - type: source-research-lead
+        note: >-
+          docs/research/jimeng-canvas/README.md §7、batch 3/384/40-43/61。注意：模型/比例/
+          时长菜单的部分几何细节来自复刻侧实现记录，成稿前必须在源站重提。
+    preconditions:
+      - 已登录并打开一个画布
+      - 已确认本任务只记录到“点击发送前一步”，不执行真实生成
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/prepare-generation.md
+  - id: edit-text-node
+    title: 创建与编辑文本节点
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：文本节点占位 320×200 级别（复刻值）；双击进入编辑态；字体菜单
+          （batch 243）；节点行内重命名适用于全部节点类型（batch 88）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 230/234/238/241/243/38/48/88。
+    preconditions:
+      - 画布中已有或可创建文本节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/edit-text-node.md
+  - id: media-playback
+    title: 预览与播放视频节点
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：卡片控件（播放/时间 00:02/00:06/静音/全屏、底部进度条 5px 药丸演进）；
+          全屏播放器（自动静音播放、底部控制条、Esc 退出）；双击卡片=从头重播；
+          媒体失效态与 重试播放（资源已死时进入 00:00/00:00 空载态）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 24/27/29/77/80/81/85/86/87。
+    preconditions:
+      - 画布中已有带媒体的视频节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/media-playback.md
+  - id: audio-node-voice
+    title: 配置音频节点（配音、声音库与音乐模式）
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：音频节点 400×120 波形与选择器（batch 245）；Seed TTS 声音菜单与
+          性别/年龄/声音特点/语言/方言筛选（batch 248-289）；音乐模式 SeedMusic 与时长
+          价格联动（batch 295-299）；配音菜单与预设子菜单（batch 483/486）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 245-299/483/486/487。
+    preconditions:
+      - 画布中已有或可创建音频节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/audio-node-voice.md
+  - id: duplicate-delete-history
+    title: 复制、粘贴、删除节点并撤销重做
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: high
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：节点右键菜单逐字（复制⌘C/复制副本⌘D/粘贴⌘V｜保存到主体库/下载｜
+          重做⌘⇧Z/撤销⌘Z/删除⌫）；空白右键（新建节点>/粘贴⌘V/重做/撤销）；多选右键
+          变体；历史面板（batch 96/224）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md §7、batch 221/222/224/64/96。
+    preconditions:
+      - 画布中已有至少一个节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/duplicate-delete-history.md
+  - id: organize-group-layout
+    title: 编组、排列与整理画布布局
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：快捷键 创建编组⌘G/取消编组⌘⇧G；多选组合工具条的 布局(宫格·智能)/
+          背景色调色板；编组卡片视觉与成员交互；dock 的 布局/同步 按钮；节点颜色标记
+          （禁止/清除+青/蓝/紫/橙/黄）；连线显隐开关。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 31/62/63/65/67/71/93/219/272。
+    preconditions:
+      - 画布中已有多个节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/organize-group-layout.md
+  - id: assets-and-upload
+    title: 使用资产库并插入或上传素材
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：资产库模态（batch 72/75/76，主体 tab、文档筛选）；节点右键 保存到主体库；
+          插入菜单 图片/视频/音频（batch 260/261/263 hover）；本地上传（多选文件选择器，
+          上传瞬态 正在上传图片 N%）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 72/73/75/76/225/260/261/263。
+    preconditions:
+      - 已登录并打开一个画布
+      - 本地上传仅使用 TEST_MEDIA_ASSETS.md 登记的授权文件
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/assets-and-upload.md
+  - id: ai-agent-drawer
+    title: 使用「与 AI 对话」智能体抽屉
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：全高右侧抽屉 ≈410px（新会话/历史/展开/收起）；空态 探索更多专业创作
+          模式 + 技能 chips（/视频反解/创作分镜/全流程广告片导演/剧本开发/剧情短片）；
+          底部输入卡片；⌘/ 打开或关闭 Agent。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 12/114/381/394。
+    preconditions:
+      - 已登录并打开一个画布
+      - 只记录入口、空态与输入框；不向 Agent 发送任何会触发生成的消息
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/ai-agent-drawer.md
+  - id: canvas-context
+    title: 管理画布上下文（重命名、生成历史、保存与离线冲突）
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：单击顶栏项目名=行内重命名（Enter 提交/Esc 取消）；顶栏 ⌕=生成历史
+          下拉（tabs 全部/图片/视频/音频）；保存态指示（保存中/已保存）；「发现离线编辑」
+          冲突对话框（丢弃修改/保留并同步）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 13/29/66/82/96/224。
+    preconditions:
+      - 已登录并打开一个画布
+      - 离线冲突对话框只在只读层面观察，不丢弃用户数据
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/canvas-context.md
+  - id: help-and-shortcuts
+    title: 打开帮助菜单并使用画布快捷键
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: low
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: >-
+          候选线索：顶栏 ? 菜单逐字（帮助中心/使用手册/快捷键/AI生成水印设置/即梦CLI，
+          顶部含租户名）；快捷键面板（通用操作：打开/关闭 Agent ⌘/·撤销⌘Z·还原⌘⇧Z|⌘Y·
+          移动工具 V·全屏 F·创建编组⌘G·取消编组⌘⇧G；视图：放大⌘+·缩小⌘−·适配画布⇧1|⌘0·
+          缩放至100%⌘1·缩放至选中项⇧2·缩放画布⌘ scroll；时间线分区曾被截断）。
+      - type: source-research-lead
+        note: docs/research/jimeng-canvas/README.md、batch 7/18/22/224。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/help-and-shortcuts.md
