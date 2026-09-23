@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
 import {
   CloseIcon,
@@ -28,11 +29,45 @@ export function FrameosPromptEditor() {
   const edges = useFrameosStore((s) => s.edges);
   const removeEdge = useFrameosStore((s) => s.removeEdge);
   const setFocusModeNodeId = useFrameosStore((s) => s.setFocusModeNodeId);
+  // Batch 180: 面板跟随选中节点 (源站: 面板在节点下方 12px, 随节点/缩放移动)
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
 
-  if (!selectedNodeId) return null;
-  const sel = nodes.find((n) => n.id === selectedNodeId);
-  // 2026-09-23 源站实测: 选中文本节点不出现 prompt 面板 (只有 全屏查看/下载 工具条)
-  if (!sel || sel.type === "text") return null;
+  const sel = selectedNodeId ? nodes.find((n) => n.id === selectedNodeId) : undefined;
+
+  useEffect(() => {
+    if (!selectedNodeId || !sel || sel.type === "text") {
+      setPos(null);
+      return undefined;
+    }
+    let raf = 0;
+    const tick = () => {
+      const el = document.querySelector(
+        `.react-flow__node[data-id="${CSS.escape(selectedNodeId)}"]`
+      );
+      if (!el) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      const r = el.getBoundingClientRect();
+      const width = 480;
+      const left = Math.max(
+        12,
+        Math.min(r.left + r.width / 2 - width / 2, window.innerWidth - width - 12),
+      );
+      const top = Math.min(r.bottom + 12, window.innerHeight - 200);
+      setPos((prev) => {
+        if (prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5) {
+          return prev;
+        }
+        return { left, top };
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [selectedNodeId, sel]);
+
+  if (!selectedNodeId || !sel || sel.type === "text") return null;
 
   const isRunning = currentGeneration?.status === "running";
   // 源站语义: 引用 = 连线; 面板头部展示每个上游节点的引用芯片
@@ -49,8 +84,8 @@ export function FrameosPromptEditor() {
       className="frameos-prompt-editor"
       style={{
         position: "fixed",
-        right: 12,
-        bottom: 80,
+        left: pos ? pos.left : 12,
+        top: pos ? pos.top : 12,
         width: 480,
         maxWidth: "calc(100vw - 24px)",
         background: "rgba(20,20,20,0.85)",

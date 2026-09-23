@@ -1,0 +1,22 @@
+{
+  "batch": 180,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "panel:below-node",
+        "panel:horizontally-near-node",
+        "node:moved",
+        "panel:follows",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
