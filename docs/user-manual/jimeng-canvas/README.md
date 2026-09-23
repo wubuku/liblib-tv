@@ -5,17 +5,26 @@
 
 ## 当前状态
 
-- 目标源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>`
+- 目标源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f`（测试项目）
 - 目标角色：已登录的普通画布创作者
 - 深度：`thorough`
 - 方法：由 `.agents/skills/web-studio-user-manual/` 的任务优先级、运行时取证、
-  截图和回走审计流程管理，与 [`frameos-canvas`](../frameos-canvas/README.md)
-  手册同一套规范。
+  截图和回走审计流程管理，与 frameos-canvas 手册同一套规范。
 - 证据边界：只有当前登录态浏览器中实际观察到的 DOM、ARIA、交互结果和安全网络
   证据才写入正文；`docs/research/jimeng-canvas/` 的复刻研究只作为候选线索，
   其中的 `CLONE_DECISION` 永远不是源站事实。
 - 安全边界：不执行任何真实生成或按积分计费的操作；生成类任务只记录到
-  “点击执行前一步”。
+  「点击执行前一步」。
+- 进度：2026-09-23 完成 14 个任务的全量取证（22 张截图）与正文编写；
+  任务状态 `documented`，Gate B 回走进行中。
+
+## 手册正文
+
+- [快速上手](00-quickstart.md)
+- 任务指南（`10-tasks/`）：创建节点、平移缩放、连接节点、节点工具条、
+  准备生成、文本节点、复制删除撤销、资产库与上传、播放预览、编组整理、
+  音频配音、AI 对话抽屉、画布上下文、帮助快捷键
+- [参考速查](20-reference.md) ｜ [核心概念](30-concepts.md) ｜ [排障](90-troubleshooting.md)
 
 ## 入口
 

@@ -10,13 +10,14 @@
 - 最后整理日期：2026-09-23。
 - 当前目标：为已登录的即梦（jimeng.jianying.com）AI 画布创作者编写中文、任务导向、
   可回走验证的最终用户手册；方法与本仓库
-  [`docs/user-manual/frameos-canvas/`](../frameos-canvas/PROGRESS.md) 完全一致。
+  `docs/user-manual/frameos-canvas/` 完全一致。
 - 当前专项目录：`docs/user-manual/jimeng-canvas/`（本目录）。
 - 当前源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>`（具体画布
   project-id 由用户提供的登录会话决定，首次取证时回填）。
-- 当前状态：**确认门已过（2026-09-23 用户授权 Agent 定级）**，14 个任务与优先级
-  已定稿（`scope_authorization.user_confirmed: true`）；已弹出有头浏览器等待用户
-  登录即梦。用户登录并示意继续后，即可开始探索、截图、记录与编写。
+- 当前状态：**手册已完成（2026-09-23）**。14 个任务全部 `verified`；正文 19 页
+  （00-quickstart、10-tasks/×14、20-reference、30-concepts、90-troubleshooting）、
+  22 张登记截图；Gate A 与 final 审计通过；Gate B 关键流程当日回走通过；
+  画布基线（2 节点 0 连线）已恢复并「已保存」。
 - 优先级原则（用户授权）：FrameOS 等价功能 或 视频/参考图生成常识关键功能 =
   重要、优先。据此旗舰层 5 项：create-first-node、navigate-canvas、connect-nodes
   （补录的等价任务）、use-node-toolbar、prepare-generation。
@@ -211,3 +212,13 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 当前可安全暂停：账本已建立，未做任何浏览器操作，未产生任何扣费风险。下一次
 继续的唯一推荐入口是本文件第 8 节 A（确认门）；确认门未通过前，不得开始正式
 浏览器探索、截图或成稿。
+
+## 11. 完成记录（2026-09-23）
+
+- 14 个任务状态：`verified`（见 `AUDIT.md` 结果表与限制披露）。
+- 质量门：Gate A OK、final OK（14 tasks / 23 Markdown / 22 images）、
+  Gate B 关键流程回走通过（创建/导航/连线/生成面板/删除撤销）。
+- 未覆盖项与环境限制在 `AUDIT.md`「未覆盖与已接受限制」全量披露；
+  正文各页以「已验证说明」小节逐页划分 实测/声明/待验证。
+- 后续增量维护入口：源站改版时按第 8 节 C 重走受影响任务，重拍截图并更新
+  manifest 哈希；改版监测可复用 docs/design-references/jimeng/ 的进化巡逻扫描。
