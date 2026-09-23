@@ -14,14 +14,17 @@
 - 当前专项目录：`docs/user-manual/jimeng-canvas/`（本目录）。
 - 当前源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>`（具体画布
   project-id 由用户提供的登录会话决定，首次取证时回填）。
-- 当前状态：**快速扫描与账本建立已完成；正停在 SKILL 第 2 节“高频/重要任务确认门”**。
-  13 个候选任务已写入 [`task-inventory.yml`](task-inventory.yml)
-  （`scope_authorization.user_confirmed: false`），等待用户确认或授权 Agent 定级。
+- 当前状态：**确认门已过（2026-09-23 用户授权 Agent 定级）**，14 个任务与优先级
+  已定稿（`scope_authorization.user_confirmed: true`）；已弹出有头浏览器等待用户
+  登录即梦。用户登录并示意继续后，即可开始探索、截图、记录与编写。
+- 优先级原则（用户授权）：FrameOS 等价功能 或 视频/参考图生成常识关键功能 =
+  重要、优先。据此旗舰层 5 项：create-first-node、navigate-canvas、connect-nodes
+  （补录的等价任务）、use-node-toolbar、prepare-generation。
 - 尚未发生：正式浏览器探索、正式截图、手册正文、Gate A、Gate B。
 - 2026-09-23 补充：已完成复刻材料评估（见第 5 节与
   [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md) §1.1），发现源站 09-21→09-23
-  存在活跃改版（视频工具条「补帧/提示词反推」撤为「工具」入口）。这不改变暂停点
-  （仍在确认门），但探索顺序上把「当日基线盘点」列为第 C 步的第一项。
+  存在活跃改版（视频工具条「补帧/提示词反推」撤为「工具」入口）。探索顺序上把
+  「当日基线盘点」列为第 C 步的第一项。
 
 ## 2. 范围与安全边界
 
@@ -91,10 +94,10 @@
 
 | 阶段 | 状态 | 当前产物 | 下一步 |
 |---|---|---|---|
-| 快速扫描 | 已完成 | `task-inventory.yml` 13 个候选任务 + 本文件第 5 节 | 无 |
-| 候选任务确认门 | **待用户** | `scope_authorization.user_confirmed: false` | 用户确认清单或授权定级 |
-| 浏览器会话准备 | 未开始 | 无 | 用户提供已登录的即梦画布会话（见第 8 节 B） |
-| 逐任务探索取证 | 未开始 | `SOURCE_OBSERVATIONS.md` 仅有骨架与候选线索索引 | 确认门后按优先级逐任务取证 |
+| 快速扫描 | 已完成 | `task-inventory.yml` + 本文件第 5 节 | 无 |
+| 候选任务确认门 | 已完成（用户授权定级） | 14 个任务、`user_confirmed: true`、优先级原则入档 | 无 |
+| 浏览器会话准备 | **进行中** | 有头浏览器已打开即梦登录页 | 等用户登录并示意开始 |
+| 逐任务探索取证 | 未开始 | `SOURCE_OBSERVATIONS.md` 仅有骨架与候选线索索引 | 登录后按第 8 节 C 顺序取证 |
 | 截图 manifest | 未开始 | `screenshots/manifest.yml` 为空表 | 探索时同步登记 |
 | 正式手册正文 | 未开始 | `10-tasks/` 为空 | 取证后编写 |
 | Gate A / Gate B / final | 未开始 | `AUDIT.md` 空结果表 | 正文完成后依序执行 |
@@ -143,30 +146,39 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 
 ## 8. 下一次接力的精确执行顺序
 
-### A. 确认门（阻塞项）
+### A. 确认门（已完成，2026-09-23）
 
-向用户提交候选任务表（见 `task-inventory.yml`，13 项），并问：
+用户授权 Agent 按以下原则定级：FrameOS（帧界）手册中存在相同或等价任务的功能、
+或视频生成/参考图生成常识中的关键功能 = 重要、优先。已据此定稿 14 个任务并补录
+`connect-nodes`（FrameOS 等价任务，源站连线交互从未被系统取证）。
 
-1. 哪些任务是每天/每周必做的？建议的 13 项是否要合并/删减？
-2. 哪些低频但高代价的操作（如离线冲突处理）必须重点写？
-3. `prepare-generation` 只写到“发送前一步”是否接受？
-4. 深度是否维持 `thorough`？
+### B. 浏览器会话（进行中）
 
-用户确认后把 `scope_authorization.user_confirmed` 改为 `true`，按确认结果增删任务。
+已用有头浏览器打开 `https://jimeng.jianying.com/`，等待用户登录。用户示意继续后：
+回填第 1 节的 project-id 与画布上下文，更新 `AUDIT.md` 审计基线，然后进入 C。
 
-### B. 浏览器会话准备
+### C. 逐任务探索取证（定稿顺序）
 
-请用户像 FrameOS 一轮那样提供一个已登录的即梦画布会话：用有头浏览器打开
-`https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>` 并停留在一个打开的
-画布上（或指定此前用过的 CDP attach 方式，端口 9333）。开始前回填第 1 节的
-project-id 与画布上下文，更新 `AUDIT.md` 审计基线。
+1. **当日基线盘点**（新增，因 09-21→09-23 已确认改版）：对画布做一次 DOM 巡检，
+   重建「A 视频工具条 / B 节点右键菜单 / C 音频生成面板 / D 上传节点」当日快照，
+   逐字记录「工具」菜单内容（旧证据中 补帧/提示词反推 已不是一级条目）；
+2. `create-first-node`（旗舰）
+3. `navigate-canvas`（旗舰）
+4. `connect-nodes`（旗舰，补录任务：Handle 拖拽连线、选中、删除）
+5. `use-node-toolbar`（旗舰，先视频节点后图片/多选工具条，含「工具」菜单展开）
+6. `prepare-generation`（旗舰，只到发送前一步）
+7. `edit-text-node`（完整）
+8. `duplicate-delete-history`（完整）
+9. `assets-and-upload`（完整，本地上传仅用 TEST_MEDIA_ASSETS 授权文件）
+10. `media-playback`（完整）
+11. `organize-group-layout`（完整）
+12. `audio-node-voice`（完整，生成类按钮只记录不点击）
+13. `ai-agent-drawer`（简明，不发送任何消息）
+14. `canvas-context`（简明）
+15. `help-and-shortcuts`（简明）
 
-### C. 逐任务探索取证
-
-按确认后的优先级（建议先 flagship：create-first-node → navigate-canvas →
-use-node-toolbar → prepare-generation）逐任务取证；每个任务产出：
-入口/原子动作/成功判据/取消路径 + DOM/网络证据 + 步骤截图；全部写入
-`SOURCE_OBSERVATIONS.md` 并同步 manifest。遇到扣费边界立即停止并记录按钮状态。
+每个任务产出：入口/原子动作/成功判据/取消路径 + DOM/网络证据 + 步骤截图；全部
+写入 `SOURCE_OBSERVATIONS.md` 并同步 manifest。遇到扣费边界立即停止并记录按钮状态。
 
 ### D. 编写正文
 

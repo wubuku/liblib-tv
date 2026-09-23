@@ -6,13 +6,16 @@ target:
     - logged-in-canvas-creator
   depth: thorough
 scope_authorization:
-  user_confirmed: false
+  user_confirmed: true
   note: >-
-    用户已于 2026-09-23 要求按 FrameOS 画布手册（docs/user-manual/frameos-canvas/）的同一
-    方法编写即梦画布手册，并先建立工作账本。以下 13 个候选任务来自快速扫描
-    （docs/research/jimeng-canvas/README.md 的源站取证记录 + 复刻实现面），尚未通过
-    SKILL 第 2 节的“高频/重要任务确认门”。用户确认候选清单或授权 Agent 按提案定级后，
-    才能进入正式浏览器探索、截图与成稿；届时把本字段改为 true 并核对任务范围。
+    用户于 2026-09-23 授权 Agent 按以下原则定级，不再逐项确认：若该功能在 FrameOS
+    （帧界）手册中存在相同或等价任务，或按视频生成/参考图生成的常识判断为关键功能，
+    即为重要功能、优先编写。据此：旗舰层 = create-first-node / navigate-canvas /
+    connect-nodes / use-node-toolbar / prepare-generation（前 5 个优先探索与成稿）；
+    完整 how-to 层 = edit-text-node / duplicate-delete-history / assets-and-upload /
+    media-playback / organize-group-layout / audio-node-voice；简明层 =
+    ai-agent-drawer / canvas-context / help-and-shortcuts。探索顺序（含当日基线
+    盘点）见 PROGRESS.md 第 8 节 C。connect-nodes 为定级时补录的等价任务。
   safety_boundary: >-
     即梦画布中大量按钮会提交按积分计费的真实生成任务（发送生成、局部重拍、智能超清、
     补帧、提示词反推、智能改图、配音/音乐生成等）。全部探索与回走只允许记录入口、
@@ -65,6 +68,31 @@ tasks:
     status: pending
     manual_pages:
       - 10-tasks/navigate-canvas.md
+  - id: connect-nodes
+    title: 连接节点并理解连线在创作流中的作用
+    role: logged-in-canvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: source-research-lead
+        note: >-
+          定级时补录（FrameOS 等价任务 + 参考图→视频连线是生成常识关键环节）。候选线索：
+          源站边由全屏 canvas 层绘制（无 .react-flow__edge DOM，README §2）；
+          + 手柄出现在节点左右边缘中点（README §5，空节点两侧、本地上传节点仅右侧）；
+          复刻侧 batch 208 提取过 edges.json、batch 44 提取过 start-handle；
+          多选时双端选中连线呈蓝色（batch 62）。
+      - type: source-drift-alert
+        note: >-
+          源站连线交互从未被复刻研究系统取证（边不可 DOM 选择）。正式探索必须实测：
+          从 Handle 拖拽连线、点击选中、删除连线的入口与行为，逐项当日取证。
+    preconditions:
+      - 画布中已有至少两个可连接节点
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: pending
+    manual_pages:
+      - 10-tasks/connect-nodes.md
   - id: use-node-toolbar
     title: 选中节点并使用浮动工具条
     role: logged-in-canvas-creator
@@ -235,14 +263,15 @@ tasks:
     title: 使用资产库并插入或上传素材
     role: logged-in-canvas-creator
     frequency: common
-    impact: medium
+    impact: high
     coverage: full
     evidence:
-      - type: source-ui
+      - type: source-research-lead
         note: >-
-          候选线索：资产库模态（batch 72/75/76，主体 tab、文档筛选）；节点右键 保存到主体库；
-          插入菜单 图片/视频/音频（batch 260/261/263 hover）；本地上传（多选文件选择器，
-          上传瞬态 正在上传图片 N%）。
+          影响定级为 high 的理由：本地上传参考图是视频/图片生成的常识关键输入。
+          候选线索：资产库模态（batch 72/75/76，主体 tab、文档筛选）；节点右键
+          保存到主体库；插入菜单 图片/视频/音频（batch 260/261/263 hover）；
+          本地上传（多选文件选择器，上传瞬态 正在上传图片 N%）。
       - type: source-research-lead
         note: docs/research/jimeng-canvas/README.md、batch 72/73/75/76/225/260/261/263。
     preconditions:
