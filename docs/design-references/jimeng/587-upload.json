@@ -1,0 +1,14 @@
+{
+ "node": {
+  "type": "react-flow__node-image",
+  "title": "正在上传图片 87%生成蓝色手机图片-2",
+  "size": [
+   316,
+   316
+  ],
+  "hasImg": true,
+  "imgSrc": "blob:https://jimeng.jianying.com/3c15efae-c92a-45fa-a80a-be0",
+  "selected": true
+ },
+ "toolbar": ""
+}
