@@ -1,0 +1,21 @@
+{
+  "batch": 190,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "panel:opens",
+        "fullscreen:opens",
+        "panel:hides",
+        "fullscreen:closes",
+        "mini:shares-value",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

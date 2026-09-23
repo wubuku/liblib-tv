@@ -31,6 +31,8 @@ export function FrameosPromptEditor() {
   const setFocusModeNodeId = useFrameosStore((s) => s.setFocusModeNodeId);
   // Batch 180: 面板跟随选中节点 (源站: 面板在节点下方 12px, 随节点/缩放移动)
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
+  // Batch 190: 全屏编辑态 (编辑器居中放大)
+  const [isFullscreenEdit, setIsFullscreenEdit] = useState(false);
 
   const sel = selectedNodeId ? nodes.find((n) => n.id === selectedNodeId) : undefined;
 
@@ -78,6 +80,88 @@ export function FrameosPromptEditor() {
 
   // 2026-09-23 源站面板默认模型 Seedream 5.0 Pro; 其余条目为历史 mock 选项
   const modelOptions = ["Seedream 5.0 Pro", "帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
+
+  if (isFullscreenEdit) {
+    return (
+      <div
+        data-frameos-fullscreen-editor
+        style={{
+          position: "fixed",
+          left: "50%",
+          transform: "translateX(-50%)",
+          top: 80,
+          width: 720,
+          maxWidth: "calc(100vw - 32px)",
+          background: "rgba(20,20,20,0.97)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          borderRadius: 14,
+          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+          zIndex: 3000,
+          padding: 14,
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 600 }}>全屏编辑</span>
+          <button
+            type="button"
+            aria-label="退出全屏编辑"
+            onClick={() => setIsFullscreenEdit(false)}
+            style={{
+              width: 26,
+              height: 26,
+              borderRadius: 6,
+              border: "none",
+              background: "transparent",
+              color: "#A3A3A3",
+              fontSize: 15,
+              cursor: "pointer",
+            }}
+          >
+            ×
+          </button>
+        </div>
+        <textarea
+          value={promptValue}
+          onChange={(e) => setPromptValue(e.target.value)}
+          placeholder="描述你想要的图像，@引用素材"
+          style={{
+            width: "100%",
+            height: 320,
+            background: "#0D0D0D",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 10,
+            color: "#FFFFFF",
+            fontSize: 14,
+            padding: 12,
+            outline: "none",
+            resize: "none",
+          }}
+        />
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button
+            type="button"
+            aria-label="完成全屏编辑"
+            onClick={() => setIsFullscreenEdit(false)}
+            style={{
+              height: 32,
+              padding: "0 16px",
+              borderRadius: 8,
+              border: "none",
+              background: "#3B82F6",
+              color: "#FFFFFF",
+              fontSize: 13,
+              cursor: "pointer",
+            }}
+          >
+            完成
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -221,7 +305,7 @@ export function FrameosPromptEditor() {
           type="button"
           aria-label="全屏编辑"
           title="全屏编辑"
-          onClick={() => window.alert("全屏编辑 (mock)")}
+          onClick={() => setIsFullscreenEdit(true)}
           style={{
             position: "absolute",
             right: 8,
