@@ -1036,6 +1036,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1124 巡检 | still-broken | 第六百六十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；14 项 liblib 回写 fixture 显式恢复；并行 frameos 推进至 186（验证脚本 untracked WIP），jimeng PNG WIP 2 件（batch 1124） |
 | 2026-09-25 | batch 1129 巡检 | still-broken | 第六百六十一次重测；巡检批次——并行三连落 jimeng 562 full gate（91/91，新轮 563 已开：1-19 绿 19/19）+ frameos 185（horizontal organize，183/184 追进落库）；frameos 183/186 脚本与两证据目录仍 untracked WIP 保留不动；batch 1131 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1131 巡检 | still-broken | 第六百六十二次重测；到期全量维护集新鲜运行首跑 77/78——batch295 drawer:open 单项瞬态失败（src 与上轮全绿一致，无人改动 liblib src），复测 PASS 后 78/78 达成，我方未跟踪 fail.png 残留已清理；12 项 liblib 回写恢复、2 项并行 untracked 正确跳过；并行 frameos 188 活跃 WIP（page.tsx + 脚本 + 证据目录）（batch 1131） |
+| 2026-09-25 | batch 1136 巡检 | still-broken | 第六百六十三次重测；巡检批次——并行落库 frameos 187（空画布状态）+ 188（cmd-A 不再选中页面文本，上轮 WIP 闭环）+ jimeng 566（rotation 49-64 绿 14/14，564/565 追进）；frameos 183 脚本与证据目录长期 untracked 保留不动；batch 1138 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
