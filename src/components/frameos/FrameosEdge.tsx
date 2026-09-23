@@ -6,7 +6,7 @@ import { BaseEdge, getBezierPath, type EdgeProps } from "@xyflow/react";
  * FrameOS 边 - 与 frameos.cn 完全对齐:
  * - 始终蓝色虚线 (rgba(59,130,246,0.42) 7px-5px), 持续流动动画
  * - 没有文字标签 (原站边不带 label)
- * - 没有删除按钮 (用户通过 FrameosConfirmDialog / DELETE 键删)
+ * - 没有删除按钮 (删除连线通过选中节点的面板或 DELETE 键删)
  * - 没有按 kind 的不同颜色 (原站统一蓝)
  */
 export function FrameosEdge({

@@ -26,15 +26,8 @@ interface Generation {
   prompt: string;
 }
 
-interface PendingConfirm {
-  kind: "node" | "edge";
-  id: string;
-  name: string;
-}
-
 interface FrameosCanvasState {
   // 待确认操作 (删除节点/边时弹窗)
-  pendingConfirm: PendingConfirm | null;
 
   // 画布名（顶部 breadcrumb 显示）
   breadcrumb: { project: string; scene: string; canvas: string };
@@ -99,7 +92,6 @@ interface FrameosCanvasState {
   resizeNode: (id: string, w: number, h: number) => void;
   addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
-  updateEdgeData: (id: string, patch: Record<string, unknown>) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
@@ -129,7 +121,6 @@ interface FrameosCanvasState {
   toggleStoryboardMode: () => void;
   toggleNodeSearch: () => void;
   closeNodeSearch: () => void;
-  requestConfirm: (c: PendingConfirm | null) => void;
 
   startGeneration: (opts: {
     prompt: string;
@@ -320,7 +311,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   paneMenuAt: null,
   refSelectTargetId: null,
   storyboardMode: false,
-  pendingConfirm: null,
   past: [],
   future: [],
   canvasData: MOCK_CANVASES,
@@ -514,16 +504,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     }));
   },
 
-  updateEdgeData: (id, patch) => {
-    set((state) => ({
-      edges: state.edges.map((e) =>
-        e.id === id
-          ? { ...e, data: { ...(e.data ?? {}), ...patch } }
-          : e
-      ),
-    }));
-  },
-
   toggleMinimap: () =>
     set((state) => ({ showMinimap: !state.showMinimap })),
   setPromptValue: (v) => set({ promptValue: v }),
@@ -589,8 +569,6 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   toggleStoryboardMode: () => set((state) => ({ storyboardMode: !state.storyboardMode })),
   toggleNodeSearch: () => set((state) => ({ isNodeSearchOpen: !state.isNodeSearchOpen })),
   closeNodeSearch: () => set({ isNodeSearchOpen: false }),
-
-  requestConfirm: (c: PendingConfirm | null) => set({ pendingConfirm: c }),
 
   startGeneration: (opts) => {
     const id = `gen-${Date.now()}`;
