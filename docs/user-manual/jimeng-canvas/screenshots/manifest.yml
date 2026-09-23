@@ -131,3 +131,47 @@ screenshots:
     visible_text: 选择模型
     alt: 模型菜单五项（Seedance 2.5 样片模式/2.5/2.0 mini/2.0 Fast VIP/2.0 VIP 当前✓）
     sha256: b7252b52cbad37957c5e827186ee996f6a11cd4d83f32ae0e7af4ff77bc9ee62
+  - file: screenshots/13-edit-text-node-editing.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (裁剪视图 900x400)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:34:32+08:00
+    verified_locator: '.tiptap.ProseMirror (contenteditable)'
+    visible_text: 手册测试文本
+    alt: 双击文本节点进入 tiptap 编辑态并输入「手册测试文本」
+    sha256: 7da357fb6cb5408bca5aa925fcfe770a25c246f89524a7d8eb74115f0bfcc5f7
+  - file: screenshots/14-duplicate-delete-history-context-menu.png
+    task_id: duplicate-delete-history
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:36:30+08:00
+    verified_locator: '节点右键 [role=menu]'
+    visible_text: 复制副本
+    alt: 文本节点右键菜单（复制⌘C/复制副本⌘D/粘贴⌘V/下载/重做(禁)/撤销⌘Z/删除⌫）
+    sha256: 3724e01ed874dcb737a2f800f756332ac176acedef635e7e19a3d7d4f3a4125c
+  - file: screenshots/15-organize-group-multiselect-toolbar.png
+    task_id: organize-group-layout
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:41:05+08:00
+    verified_locator: '多选 react-flow__node-toolbar（N 节点/编组/布局）'
+    visible_text: 编组
+    alt: 空白拖拽框选 5 个节点后顶部出现的多选工具条（N 节点/编组/布局∨/下载）
+    sha256: 2a6b400f3061fa3338b25e7b08e55540bb6b5c284bcff4e1a7cf1f5f9b089563
+  - file: screenshots/16-organize-group-group-card.png
+    task_id: organize-group-layout
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:42:51+08:00
+    verified_locator: '.react-flow__node-group (aria: Group 编组 1, 5 members)'
+    visible_text: 编组 1
+    alt: 编组后出现的「编组 1」组卡片，组工具条含 解除编组/布局/背景色/下载
+    sha256: 1b0e3648e9aba919a3065c0ea989b93e3bad3fbaade66fdb02448c20e1794c24
