@@ -18,6 +18,10 @@
   13 个候选任务已写入 [`task-inventory.yml`](task-inventory.yml)
   （`scope_authorization.user_confirmed: false`），等待用户确认或授权 Agent 定级。
 - 尚未发生：正式浏览器探索、正式截图、手册正文、Gate A、Gate B。
+- 2026-09-23 补充：已完成复刻材料评估（见第 5 节与
+  [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md) §1.1），发现源站 09-21→09-23
+  存在活跃改版（视频工具条「补帧/提示词反推」撤为「工具」入口）。这不改变暂停点
+  （仍在确认门），但探索顺序上把「当日基线盘点」列为第 C 步的第一项。
 
 ## 2. 范围与安全边界
 
@@ -107,7 +111,15 @@
 - 已知受阻面（探索时先复测再决定是否可写）：工具∨ 菜单项从未展开
   （BLOCKED_BY_EXTRACTION）；截取帧下拉在部分会话不展开（batch 81/84 判定源站侧
   变化/缺陷）；智能超清/补帧真实流程因积分副作用从未执行。
-- 候选任务 → 线索批次的对照索引见 [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md) 第 1 节。
+- 候选任务 → 线索批次的对照索引见 [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md) 第 1 节；
+  四类复刻材料（研究 README、45 张源站截图、23 份进化巡逻扫描、91 个验证器 +
+  40 个复刻组件）的用途与边界地图见同文件 §1.1。
+- **已确认漂移**：巡逻扫描显示源站 09-21→09-23 之间改版——视频工具条一级条目
+  由 7 项（含 补帧/提示词反推）变为 6 项 +「工具」入口（775→670 宽），节点右键
+  菜单禁用项出现「无需重做操作/无需撤销操作」提示。`task-inventory.yml` 的
+  use-node-toolbar / duplicate-delete-history / audio-node-voice 已挂 drift-alert。
+  这印证了「正式取证必须当日重提」的原则，也说明旧线索只能缩小探索范围、
+  不能直接当事实引用。
 
 ## 6. 截图状态
 

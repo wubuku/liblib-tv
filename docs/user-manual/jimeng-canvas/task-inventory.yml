@@ -80,6 +80,13 @@ tasks:
           工具条（N 节点/编组/解除编组/布局 宫格·智能/背景色/禁用下载）。
       - type: source-research-lead
         note: docs/research/jimeng-canvas/README.md §6、batch 195/219/272/372/406/412。
+      - type: source-drift-alert
+        note: >-
+          2026-09-23 巡逻扫描（docs/design-references/jimeng/483-evolution-scan.json）
+          显示工具条一级条目变为 局部重拍/智能超清/视频编辑/截取帧/视频修剪/工具
+          （670×40），补帧与提示词反推不再是一级条目（对照 09-21 扫描 425/432/439
+          仍为 7 项 775×40）。正式取证必须先重提完整工具条并展开「工具」菜单，
+          再写正文；上方 9 项清单只作历史参照。
     preconditions:
       - 画布中已有可选中节点
     routes:
@@ -166,6 +173,11 @@ tasks:
           价格联动（batch 295-299）；配音菜单与预设子菜单（batch 483/486）。
       - type: source-research-lead
         note: docs/research/jimeng-canvas/README.md、batch 245-299/483/486/487。
+      - type: source-drift-alert
+        note: >-
+          413/425/432/439 扫描（09-21）C 槽提供音频生成面板较新逐字：请输入你想
+          生成的说话内容 / 音频生成 / Seed TTS / 直爽女大 / Current price 1.1 /
+          生成；「生成」为扣费边界按钮，只记录不点击。
     preconditions:
       - 画布中已有或可创建音频节点
     routes:
@@ -187,6 +199,10 @@ tasks:
           变体；历史面板（batch 96/224）。
       - type: source-research-lead
         note: docs/research/jimeng-canvas/README.md §7、batch 221/222/224/64/96。
+      - type: source-drift-alert
+        note: >-
+          483 扫描（2026-09-23）B 槽显示禁用的 重做/撤销 项带提示文本
+          「无需重做操作」「无需撤销操作」（09-21 扫描无）；取证时按当日 DOM 逐字。
     preconditions:
       - 画布中已有至少一个节点
     routes:
