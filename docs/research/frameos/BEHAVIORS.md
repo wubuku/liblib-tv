@@ -13,6 +13,7 @@
 | TopNavBar "FrameOS" 链接 | click | 跳转到 `/frameos/canvas/demo`（**liblib-tv 主页** 添加的入口） |
 | HistoryDock (撤销/重做) | click | 接入 store 的 history stack；按钮在无可撤销时 disabled |
 | CanvasMapDock (画布小地图钉) | click toggle | minimap 显隐（**简化为** `showMinimap` flag） |
+| CanvasMapDock 小地图拖拽 (2026-09-24 源站实测, Batch 179) | 在小地图内拖拽 | 视口随拖拽平移（光标下的世界点成为视口中心）；mini-node 点击仍为选中 + 聚焦 |
 | CanvasMapDock (缩小/放大) | click | XYFlow `zoomIn/zoomOut({duration:200})` + 更新 `zoomPercent` |
 | CanvasMapDock (适应画布) | click | XYFlow `fitView({duration:200, padding:0.1})` + `zoomPercent=100` |
 | CanvasMapDock (一键整理) | click | `runOrganize('grid')` 实际重排节点 |

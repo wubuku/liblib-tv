@@ -93,7 +93,36 @@ export function FrameosMapDock() {
   // 画布视口 (用于 minimap viewport 框)
   const { x: vpX, y: vpY, zoom: vpZoom } = useViewport();
   const setNodes = useFrameosStore((s) => s.setNodes);
-  const { zoomIn, zoomOut, fitView } = useReactFlow();
+  const { zoomIn, zoomOut, fitView, setViewport } = useReactFlow();
+  const minimapRef = useRef<HTMLDivElement>(null);
+
+  // Batch 179: 小地图拖拽平移视口 (2026-09-24 源站实测: 源站 minimap 支持拖拽 pan)
+  const onMinimapMouseDown = (e: React.MouseEvent) => {
+    if (!minimapRef.current) return;
+    e.preventDefault();
+    const rect = minimapRef.current.getBoundingClientRect();
+    const scale = 0.06;
+    const zoom = vpZoom;
+    // 把小地图光标下的世界点设为视口中心: vpOffset = screenCenter - world * zoom
+    const panTo = (clientX: number, clientY: number) => {
+      const worldX = (clientX - rect.x) / scale;
+      const worldY = (clientY - rect.y) / scale;
+      setViewport(
+        {
+          x: viewportSize.w / 2 - worldX * zoom,
+          y: viewportSize.h / 2 - worldY * zoom,
+          zoom,
+        },
+        { duration: 0 },
+      );
+    };
+    panTo(e.clientX, e.clientY);
+    const onMove = (ev: MouseEvent) => panTo(ev.clientX, ev.clientY);
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  };
   const isNodeSearchOpen = useFrameosStore((s) => s.isNodeSearchOpen);
   const toggleNodeSearch = useFrameosStore((s) => s.toggleNodeSearch);
   const organizeNodes = useFrameosStore((s) => s.organizeNodes);
@@ -177,6 +206,8 @@ export function FrameosMapDock() {
           }}
         >
           <div
+            ref={minimapRef}
+            onMouseDown={onMinimapMouseDown}
             className="minimap"
             style={{
               width: 160,
