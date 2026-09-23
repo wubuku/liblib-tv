@@ -1042,6 +1042,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1145 巡检 | still-broken | 第六百六十六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；14 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 191 仍活跃（frameosStore + runner 脚本修改中），jimeng PNG WIP 2 件（batch 1145） |
 | 2026-09-25 | batch 1150 巡检 | still-broken | 第六百六十七次重测；巡检批次——并行落库 jimeng 568 full gate（91/91，新轮 569 已开：1-19 绿 19/19）+ frameos 193 文档（new-version double-click-focus 无效留痕）；frameosStore/runner 仍修改中（194 进行中）保留不动；batch 1152 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1152 巡检 | still-broken | 第六百六十八次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 194 仍活跃（frameosStore 修改中），runner 脚本已收编，jimeng PNG WIP 回落至 1 件（batch 1152） |
+| 2026-09-25 | batch 1157 巡检 | still-broken | 第六百六十九次重测；巡检批次——并行 rotation 双连落 jimeng 570（20-33 绿 14/14）+ 571（34-48 绿 15/15），frameos 196（prompt panel header tiles，194/195 追进落库）；frameosStore 仍修改中（197 进行中）保留不动；batch 1159 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
