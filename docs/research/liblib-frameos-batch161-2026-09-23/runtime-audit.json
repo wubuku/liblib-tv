@@ -1,0 +1,25 @@
+{
+  "batch": 161,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "focus:overlay-opens",
+        "focus:topbar-opens",
+        "focus:overlay-copy",
+        "focus:topbar-buttons",
+        "focus:exit-closes",
+        "focus:re-enter",
+        "focus:esc-closes",
+        "focus:back-closes",
+        "regression:text-guard",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

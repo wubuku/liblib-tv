@@ -78,6 +78,7 @@ interface FrameosCanvasState {
 
   // 调试模式（开启后节点点击会弹出右侧"节点详情"面板）
   isDebugMode: boolean;
+  focusModeNodeId: string | null;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
   generations: Generation[];
@@ -111,6 +112,7 @@ interface FrameosCanvasState {
   toggleHelp: () => void;
   closeHelp: () => void;
   toggleDebugMode: () => void;
+  setFocusModeNodeId: (id: string | null) => void;
   requestConfirm: (c: PendingConfirm | null) => void;
 
   startGeneration: (opts: {
@@ -290,6 +292,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   selectedModel: "Seedream 5.0 Pro",
   isHelpOpen: false,
   isDebugMode: false,
+  focusModeNodeId: null,
   pendingConfirm: null,
   past: [],
   future: [],
@@ -525,6 +528,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   closeHelp: () => set({ isHelpOpen: false }),
 
   toggleDebugMode: () => set((state) => ({ isDebugMode: !state.isDebugMode })),
+  setFocusModeNodeId: (id) => set({ focusModeNodeId: id }),
 
   requestConfirm: (c: PendingConfirm | null) => set({ pendingConfirm: c }),
 

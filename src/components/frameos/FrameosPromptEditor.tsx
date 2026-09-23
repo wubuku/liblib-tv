@@ -27,6 +27,7 @@ export function FrameosPromptEditor() {
   const startGeneration = useFrameosStore((s) => s.startGeneration);
   const edges = useFrameosStore((s) => s.edges);
   const removeEdge = useFrameosStore((s) => s.removeEdge);
+  const setFocusModeNodeId = useFrameosStore((s) => s.setFocusModeNodeId);
 
   if (!selectedNodeId) return null;
   const sel = nodes.find((n) => n.id === selectedNodeId);
@@ -79,10 +80,7 @@ export function FrameosPromptEditor() {
         <MiniBtn
           icon="⌖"
           label="聚焦"
-          onClick={() => {
-            const el = document.querySelector(`.react-flow__node[data-id="${CSS.escape(sel.id)}"]`);
-            el?.scrollIntoView({ behavior: "smooth", block: "center" });
-          }}
+          onClick={() => setFocusModeNodeId(sel.id)}
         />
         <MiniBtn icon="❒" label="故事版" onClick={() => window.alert("故事版 (mock)")} />
         <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />

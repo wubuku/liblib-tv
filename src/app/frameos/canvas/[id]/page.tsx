@@ -40,6 +40,7 @@ import { FrameosGenerationOverlay } from "@/components/frameos/FrameosGeneration
 import { FrameosAlignmentGuides } from "@/components/frameos/FrameosAlignmentGuides";
 import { FrameosNodeFloatingToolbar } from "@/components/frameos/FrameosNodeFloatingToolbar";
 import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
+import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -145,6 +146,10 @@ function FrameosCanvasInner() {
 
       // Escape - 多级退出
       if (e.key === "Escape") {
+        if (state.focusModeNodeId) {
+          state.setFocusModeNodeId(null);
+          return;
+        }
         if (state.isHelpOpen) {
           state.closeHelp();
           return;
@@ -547,6 +552,9 @@ function FrameosCanvasInner() {
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
       <FrameosPromptEditor />
+
+      {/* 聚焦模式 (原站: 图片节点面板点聚焦 → 局部框选模式) */}
+      <FrameosFocusMode />
 
     </div>
   );
