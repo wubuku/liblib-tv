@@ -1764,6 +1764,17 @@
   textarea mock (CLONE_DECISION，批 17/38/68 血统)。verifier:
   batch 52 (copy/paste 契约) 未受后缀影响仍 PASS。回归: 2/8/19/
   52/57/105 PASS；npm run check 通过。
+- Batch 529 (手册价格实拍核对): 逐项核对 docs/user-manual/jimeng-
+  canvas/20-reference.md 价格契约与 clone——(1) 音频 ✦12 原 24 五折 ✓
+  (批 485 折扣签完全一致)；(2) 视频无参考 4s ✦56 ✓ (批 384 落地)；
+  带 6s 参考 ✦140（实时变动）——clone 未建模参考附着态，CLONE_
+  DECISION 不落地 (参考态结构未采样)；(3) **缺口发现**: 图片节点
+  生成面板（Seedream 5.0 Lite，1:1·2K，✦3/张，手册 20-reference
+  节点表）clone 缺失——JimengImageNode 仅有加工工具条 (批 208)，
+  无图片生成面板；留档为后续批任务 (结构细节需源站采样，避免
+  音频面板式猜测返工)。另: 模型清单「Seedance 2.5 (样片模式)」
+  为手册新证 (clone 模型下拉无样片模式项，留待采样)。clone 侧
+  本批零改动。
 - Batch 523 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
   规划 (Batch 524): 20-33 段回归续行。
 - Batch 524 (轮转回归): batch 20-33 段 14/14 PASS (续行)。下一批
