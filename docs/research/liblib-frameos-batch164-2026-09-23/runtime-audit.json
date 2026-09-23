@@ -1,0 +1,29 @@
+{
+  "batch": 164,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "crumb:测试作品",
+        "crumb:测试项目",
+        "crumb:画布 1",
+        "canvas:dropdown-opens",
+        "canvas:header",
+        "canvas:new-entry",
+        "canvas:current-option",
+        "canvas:node-count",
+        "canvas:rename-delete",
+        "canvas:switch-loads-canvas2",
+        "canvas:switch-back",
+        "canvas:outside-closes",
+        "work:lists-works",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

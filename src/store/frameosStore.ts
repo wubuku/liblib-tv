@@ -252,11 +252,12 @@ const initialEdges: Edge[] = [
 
 // 几个 mock canvas 用于 breadcrumb 切换演示
 const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
-  "默认作品/咖啡馆对峙/画布 1": {
+  // Batch 164: 演示上下文对齐 2026-09-23 源站 (测试作品/测试项目/画布 1)
+  "测试作品/测试项目/画布 1": {
     nodes: initialNodes,
     edges: initialEdges,
   },
-  "默认作品/咖啡馆对峙/画布 2": {
+  "测试作品/测试项目/画布 2": {
     nodes: [
       {
         id: "demo-text-1",
@@ -268,7 +269,7 @@ const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
     ],
     edges: [],
   },
-  "默认作品/海边告白/画布 1": {
+  "测试作品/备用项目/画布 1": {
     nodes: [
       {
         id: "demo-image-1",
@@ -283,7 +284,7 @@ const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
 };
 
 export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
-  breadcrumb: { project: "默认作品", scene: "咖啡馆对峙", canvas: "画布 1" },
+  breadcrumb: { project: "测试作品", scene: "测试项目", canvas: "画布 1" },
   nodes: initialNodes,
   edges: initialEdges,
   showMinimap: true,

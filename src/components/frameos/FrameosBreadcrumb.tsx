@@ -4,26 +4,41 @@ import { useState } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
 import { ArrowDownIcon } from "./icons";
 
-const MOCK_PROJECTS = [
-  { id: "p1", name: "默认作品", scenes: ["咖啡馆对峙", "海边告白", "办公室对话"] },
-  { id: "p2", name: "短剧项目A", scenes: ["开场", "高潮", "结尾"] },
-  { id: "p3", name: "电商demo", scenes: ["产品展示", "模特出镜"] },
-  { id: "p4", name: "广告片系列", scenes: ["钩子版", "场景版"] },
+const MOCK_WORKS = [
+  { id: "w1", name: "测试作品", projects: ["测试项目", "备用项目"] },
+  { id: "w2", name: "短剧作品A", projects: ["开场项目", "高潮项目"] },
+  { id: "w3", name: "电商作品B", projects: ["产品展示"] },
 ];
 
-const MOCK_CANVASES = ["画布 1", "画布 2", "分镜图", "流程图"];
-
 /**
- * FrameOS 顶部 breadcrumb 栏 (位于 AppHeader 下方居中)
- * 展开菜单 / 默认作品 / 咖啡馆对峙 / 画布 1 — 每个都支持下拉
+ * FrameOS 顶部 breadcrumb 栏 (2026-09-23 源站实测对齐, Batch 164):
+ * - 测试作品 / 测试项目 / 画布 1 三级, 各自下拉
+ * - 画布下拉: 标题"画布" + 「+」新建入口 + 画布列表 (当前项高亮带勾, 右侧节点数)
+ *   + 底部 重命名 / 删除 操作行 (源站形态; 操作结果未验证 → mock)
+ * - 作品/项目下拉: 列表 + 当前项高亮
  */
 export function FrameosBreadcrumb() {
   const breadcrumb = useFrameosStore((s) => s.breadcrumb);
   const setBreadcrumb = useFrameosStore((s) => s.setBreadcrumb);
+  const canvasData = useFrameosStore((s) => s.canvasData);
+  const nodes = useFrameosStore((s) => s.nodes);
 
+  const [workOpen, setWorkOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
-  const [sceneOpen, setSceneOpen] = useState(false);
   const [canvasOpen, setCanvasOpen] = useState(false);
+
+  const work = MOCK_WORKS.find((w) => w.name === breadcrumb.project) ?? MOCK_WORKS[0];
+
+  const canvasNames = Array.from(
+    new Set([
+      ...Object.keys(canvasData)
+        .filter((k) =>
+          k.startsWith(`${breadcrumb.project}/${breadcrumb.scene}/`)
+        )
+        .map((k) => k.split("/")[2]),
+      breadcrumb.canvas,
+    ]),
+  );
 
   return (
     <div
@@ -41,56 +56,54 @@ export function FrameosBreadcrumb() {
         pointerEvents: "auto",
       }}
     >
-      {/* 展开菜单 */}
+      {/* 展开菜单 + 作品 */}
       <Crumb
         label={breadcrumb.project}
-        open={projectOpen}
+        open={workOpen}
         onToggle={() => {
-          setProjectOpen((v) => !v);
-          setSceneOpen(false);
+          setWorkOpen((v) => !v);
+          setProjectOpen(false);
           setCanvasOpen(false);
         }}
-        onClose={() => setProjectOpen(false)}
+        onClose={() => setWorkOpen(false)}
       >
-        {MOCK_PROJECTS.map((p) => (
+        <DropdownHeader label="作品" />
+        {MOCK_WORKS.map((w) => (
           <DropdownItem
-            key={p.id}
-            label={p.name}
-            selected={p.name === breadcrumb.project}
+            key={w.id}
+            label={w.name}
+            selected={w.name === breadcrumb.project}
             onClick={() => {
-              setBreadcrumb({ project: p.name, scene: p.scenes[0] });
-              setProjectOpen(false);
+              setBreadcrumb({ project: w.name, scene: w.projects[0], canvas: "画布 1" });
+              setWorkOpen(false);
             }}
           />
         ))}
-        <Divider />
-        <DropdownItem label="+ 新建项目" onClick={() => setProjectOpen(false)} />
       </Crumb>
 
       <Slash />
       <Crumb
         label={breadcrumb.scene}
-        open={sceneOpen}
+        open={projectOpen}
         onToggle={() => {
-          setSceneOpen((v) => !v);
-          setProjectOpen(false);
+          setProjectOpen((v) => !v);
+          setWorkOpen(false);
           setCanvasOpen(false);
         }}
-        onClose={() => setSceneOpen(false)}
+        onClose={() => setProjectOpen(false)}
       >
-        {MOCK_PROJECTS.find((p) => p.name === breadcrumb.project)?.scenes.map((s) => (
+        <DropdownHeader label="项目" />
+        {work.projects.map((s) => (
           <DropdownItem
             key={s}
             label={s}
             selected={s === breadcrumb.scene}
             onClick={() => {
-              setBreadcrumb({ scene: s });
-              setSceneOpen(false);
+              setBreadcrumb({ scene: s, canvas: "画布 1" });
+              setProjectOpen(false);
             }}
           />
         ))}
-        <Divider />
-        <DropdownItem label="+ 新建场景" onClick={() => setSceneOpen(false)} />
       </Crumb>
 
       <Slash />
@@ -99,25 +112,128 @@ export function FrameosBreadcrumb() {
         open={canvasOpen}
         onToggle={() => {
           setCanvasOpen((v) => !v);
+          setWorkOpen(false);
           setProjectOpen(false);
-          setSceneOpen(false);
         }}
         onClose={() => setCanvasOpen(false)}
       >
-        {MOCK_CANVASES.map((c) => (
-          <DropdownItem
-            key={c}
-            label={c}
-            selected={c === breadcrumb.canvas}
-            onClick={() => {
-              setBreadcrumb({ canvas: c });
-              setCanvasOpen(false);
+        <div
+          data-frameos-canvas-dropdown
+          style={{ minWidth: 220 }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "6px 10px",
+              color: "#A3A3A3",
+              fontSize: 12,
             }}
-          />
-        ))}
-        <Divider />
-        <DropdownItem label="+ 新建画布" onClick={() => setCanvasOpen(false)} />
+          >
+            <span>画布</span>
+            <span
+              title="新建画布"
+              style={{ cursor: "pointer", fontSize: 14, color: "#C2C2C2" }}
+            >
+              +
+            </span>
+          </div>
+          {MOCK_WORKS.find((w) => w.name === breadcrumb.project)?.projects.map(
+            () => null,
+          )}
+          {canvasNames.map((name) => (
+            <CanvasOption
+              key={name}
+              label={name}
+              nodeCount={
+                name === breadcrumb.canvas
+                  ? nodes.length
+                  : canvasData[
+                      `${breadcrumb.project}/${breadcrumb.scene}/${name}`
+                    ]?.nodes.length ?? 0
+              }
+              selected={name === breadcrumb.canvas}
+              onClick={() => {
+                setBreadcrumb({ canvas: name });
+                setCanvasOpen(false);
+              }}
+            />
+          ))}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+              padding: "8px 10px",
+              color: "#C2C2C2",
+              fontSize: 13,
+            }}
+          >
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => window.alert("重命名画布 (mock，未验证)")}
+            >
+              重命名
+            </span>
+            <span style={{ color: "#3A3A3A" }}>|</span>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => window.alert("删除画布 (mock，未验证)")}
+            >
+              删除
+            </span>
+          </div>
+        </div>
       </Crumb>
+    </div>
+  );
+}
+
+function CanvasOption({
+  label,
+  nodeCount,
+  selected,
+  onClick,
+}: {
+  label: string;
+  nodeCount: number;
+  selected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      data-frameos-canvas-option={label}
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 8,
+        padding: "8px 10px",
+        borderRadius: 6,
+        background: selected ? "rgba(59,130,246,0.16)" : "transparent",
+        color: selected ? "#60A5FA" : "#FFFFFF",
+        fontSize: 13,
+        cursor: "pointer",
+      }}
+    >
+      <span>{label}</span>
+      <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: selected ? "#60A5FA" : "#A3A3A3", fontSize: 12 }}>
+        {nodeCount} 节点
+        {selected && (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5 12l5 5L20 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </span>
     </div>
   );
 }
@@ -200,6 +316,20 @@ function Crumb({
   );
 }
 
+function DropdownHeader({ label }: { label: string }) {
+  return (
+    <div
+      style={{
+        padding: "6px 10px",
+        color: "#A3A3A3",
+        fontSize: 12,
+      }}
+    >
+      {label}
+    </div>
+  );
+}
+
 function DropdownItem({
   label,
   selected,
@@ -245,18 +375,6 @@ function DropdownItem({
         </svg>
       )}
     </div>
-  );
-}
-
-function Divider() {
-  return (
-    <div
-      style={{
-        height: 1,
-        background: "rgba(255,255,255,0.08)",
-        margin: "4px 0",
-      }}
-    />
   );
 }
 
