@@ -1068,6 +1068,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1236 巡检 | still-broken | 第六百九十二次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；13 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 213 活跃 WIP（新组件 FrameosAudioNode + page/PromptEditor/NodeShell 修改）（batch 1236） |
 | 2026-09-25 | batch 1241 巡检 | still-broken | 第六百九十三次重测；巡检批次——并行源站探索实质推进：jimeng 587（上传流程实测——即传即建图片节点 blob src+标题内进度百分比，clone 197 模型确认）+ 588（音频添加引用需真实手势 BLOCKED_BY_INTERACTION；折扣链叶节点 12/24/5 折留痕）；frameos 213 仍活跃 WIP 保留不动；batch 1243 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1243 巡检 | still-broken | 第六百九十四次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 213 持续活跃 WIP（AudioNode + ToolRail 加入修改）（batch 1243） |
+| 2026-09-25 | batch 1248 巡检 | still-broken | 第六百九十五次重测；巡检批次——并行源站探索续推进：jimeng 589（视频上传流程实测——即传即建视频节点含封面帧+资源状态标题行+六项工具栏确认）+ 590（新轮 rotation 1-19 绿 19/19）；frameos 213 仍活跃 WIP 保留不动；batch 1250 到期执行 78 项全量新鲜运行 |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
