@@ -1843,6 +1843,9 @@
   rail 双击致双节点插入 + 清理期 undo 复活致空视频节点一度丢失，
   连续 ⌘Z 16 次恢复基线 (BASE_IDS 核对)。回归: 34/35/105 PASS；
   npm run check 通过。
+- Batch 550 (全量质量门): 退出码全量扫 verify-jimeng-batch1..105 ——
+  91 verifier 零失败，截图随扫刷新入库。下一批规划 (Batch 551):
+  1-19 段新回归轮起点。
 - Batch 523 (轮转回归): batch 1-19 段 19/19 PASS (续行)。下一批
   规划 (Batch 524): 20-33 段回归续行。
 - Batch 524 (轮转回归): batch 20-33 段 14/14 PASS (续行)。下一批
