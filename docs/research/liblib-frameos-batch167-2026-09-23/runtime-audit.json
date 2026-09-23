@@ -1,0 +1,33 @@
+{
+  "batch": 167,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:opens",
+        "menu:item:文本",
+        "menu:item:图片",
+        "menu:item:视频",
+        "menu:item:音频",
+        "menu:item:3D模型",
+        "menu:item:3D导演台",
+        "menu:item:视频剪辑台",
+        "menu:absent:角色节点",
+        "menu:absent:场景节点",
+        "menu:absent:风格节点",
+        "menu:absent:批量节点",
+        "menu:group-header",
+        "menu:unimplemented-no-node",
+        "menu:esc-closes",
+        "menu:text-creates",
+        "menu:resource-group",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

@@ -17,7 +17,7 @@ const NODE_TYPES = [
   { type: "text" as const, title: "文本", desc: "", icon: "T" },
   { type: "image" as const, title: "图片", desc: "", icon: "🖼" },
   { type: "video" as const, title: "视频", desc: "", icon: "🎬" },
-  { type: "audio" as const, title: "音频", desc: "", icon: "🎵" },
+  { title: "音频", desc: "", icon: "🎵", unimplemented: true },
   { title: "3D模型", desc: "", icon: "🧊", unimplemented: true },
   { title: "3D导演台", desc: "", icon: "🎛", unimplemented: true },
   { title: "视频剪辑台", desc: "", icon: "🎞", unimplemented: true },
@@ -107,6 +107,27 @@ export function FrameosToolRail() {
   const toggleHelp = useFrameosStore((s) => s.toggleHelp);
   const { x: panX, y: panY, zoom } = useViewport();
 
+  const openFilePicker = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*,video/*";
+    input.multiple = true;
+    input.onchange = () => {
+      for (let i = 0; i < input.files!.length; i++) {
+        const file = input.files![i];
+        const type = file.type.startsWith("image/")
+          ? "image"
+          : file.type.startsWith("video/")
+          ? "video"
+          : null;
+        if (type) {
+          useFrameosStore.getState().addNode(type, addNodeOpts);
+        }
+      }
+    };
+    input.click();
+  };
+
   const addNodeOpts = {
     panX,
     panY,
@@ -182,11 +203,11 @@ export function FrameosToolRail() {
                     marginBottom: 4,
                   }}
                 >
-                  选择节点类型
+                  添加节点
                 </div>
                 {NODE_TYPES.map((nt) => (
                   <NodeTypeItem
-                    key={nt.type}
+                    key={nt.title}
                     icon={<span style={{ fontSize: 16 }}>{nt.icon}</span>}
                     title={nt.title}
                     desc={nt.desc}
@@ -204,6 +225,23 @@ export function FrameosToolRail() {
                     }}
                   />
                 ))}
+                <div
+                  style={{
+                    color: "#A3A3A3",
+                    fontSize: 12,
+                    padding: "8px 10px",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    marginTop: 4,
+                  }}
+                >
+                  添加资源
+                </div>
+                <NodeTypeItem
+                  icon={<UploadCloudIcon size={16} />}
+                  title="上传文件"
+                  desc=""
+                  onClick={openFilePicker}
+                />
               </div>
             </>
           )}
@@ -221,26 +259,7 @@ export function FrameosToolRail() {
         <RailButton
           label="本地上传"
           icon={<UploadCloudIcon size={18} />}
-          onClick={() => {
-            const input = document.createElement("input");
-            input.type = "file";
-            input.accept = "image/*,video/*";
-            input.multiple = true;
-            input.onchange = () => {
-              for (let i = 0; i < input.files!.length; i++) {
-                const file = input.files![i];
-                const type = file.type.startsWith("image/")
-                  ? "image"
-                  : file.type.startsWith("video/")
-                  ? "video"
-                  : null;
-                if (type) {
-                  useFrameosStore.getState().addNode(type);
-                }
-              }
-            };
-            input.click();
-          }}
+          onClick={openFilePicker}
         />
         <TemplateRailEntry />
         <Divider />
