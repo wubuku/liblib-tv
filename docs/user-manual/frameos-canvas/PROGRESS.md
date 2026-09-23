@@ -7,19 +7,19 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-23。
+- 最后整理日期：2026-09-23（第二轮）。
 - 当前目标：为已登录的 FrameOS 画布创作者编写中文、任务导向、可回走验证的最终用户手册。
 - 当前专项目录：`docs/user-manual/frameos-canvas/`。
 - 当前源站：
   `https://www.frameos.cn/#/canvas/01M34E48BEEVEQXR93Y8N70Y5N/01M34E4AKBTXT72KFD3MCYZ6NV`
 - 当前源站身份：用户登录态下的普通画布创作者；测试画布为“画布 1”。
-- 本轮已完成（2026-09-23）：对 8 个纳入任务完成一轮真实浏览器逐项回走取证；新增
-  截图 06-19 并与 01-05 全部登记进 manifest；全部新证据写入
-  `SOURCE_OBSERVATIONS.md` 第 13 节；画布测试数据已清理，恢复会话前基线
-  （文本节点1“FrameOS 手册测试文本” + 图片节点1 + 1 条连线）。
-- 本轮未完成：正式手册正文（`00-quickstart.md`、`10-tasks/*.md`、`20-reference.md`、
-  `30-concepts.md`、`90-troubleshooting.md`）、Gate A、Gate B、最终机械审计。
-- 本轮暂停原因：用户要求先收尾留档、提交推送，等待下一步指示。
+- 本轮已完成：正式手册正文 12 个文件全部写成（`00-quickstart.md`、8 个
+  `10-tasks/*.md`、`20-reference.md`、`30-concepts.md`、`90-troubleshooting.md`）；
+  8 个任务置为 `documented`；**Gate A 通过**（8 tasks / 17 Markdown / 19 images OK）；
+  `verify-docs.py`、`git diff --check`、`npm run check` 通过。
+- 本轮未完成：**Gate B 真实浏览器回走**（登录态浏览器标签页已被关闭，需用户重新
+  提供登录会话）与 final audit。
+- 本轮暂停原因：Gate B 需要用户重新打开并登录帧界画布。
 
 ## 2. 范围与安全边界
 
@@ -86,10 +86,10 @@
 | 第一轮取证（文本编辑/连接） | 已完成 | `SOURCE_OBSERVATIONS.md` §2-8、截图 04-05 | 已并入第二轮汇总 |
 | 第二轮逐任务回走取证 | 已完成 | `SOURCE_OBSERVATIONS.md` §13、截图 06-19 | 正文写作时区分“已执行/声明/未验证” |
 | 截图 manifest | 已完成 | manifest 登记 01-19（含真实 SHA-256） | 截图重拍时同步更新哈希与正文引用 |
-| 正式手册正文 | 未开始 | `10-tasks/` 仍为空 | 按第 8 节 B 顺序逐页编写 |
-| Gate A | 未开始 | `AUDIT.md` 仍为空结果表 | 正文完成后先把任务改 `documented` 再运行 |
-| Gate B | 未开始 | `AUDIT.md` | 按 8 个任务逐项回走（第二轮记录可作路线图，不可替代回走） |
-| 最终检查与提交 | 本轮已做留档提交 | git log | Gate B 后再跑 verify-docs、`npm run check`、提交推送 |
+| 正式手册正文 | 已完成 | `00-quickstart.md` + 8 个 how-to + reference/concepts/troubleshooting | Gate B 发现问题时修订 |
+| Gate A | 已通过 | gate-a OK（8 tasks / 17 Markdown / 19 images） | 修订正文后重跑 |
+| Gate B | 未开始 | `AUDIT.md` 结果表为回走占位 | 需用户重新提供登录态浏览器；按第 8 节 C 逐项回走 |
+| 最终检查与提交 | 随轮次执行 | git log | Gate B 通过后任务置 verified/excluded，跑 final audit 再提交推送 |
 
 ## 5. 已取得的源站证据
 
@@ -142,52 +142,48 @@ manifest 已登记 01-19（全部含真实 SHA-256、任务、步骤、locator �
 
 ## 8. 下一次接力的精确执行顺序
 
-### A. 编写正文
+### A. Gate B（唯一剩余阶段）
 
-依次创建以下文件，每个 how-to 必须包含：适用角色、目标、前置条件、入口、原子步骤、
-成功判据、取消/恢复、相关任务：
+正文与 Gate A 已完成。下次接力只需完成 Gate B：
 
-- `00-quickstart.md`
-- `10-tasks/create-first-node.md`
-- `10-tasks/navigate-canvas.md`
-- `10-tasks/edit-selected-node.md`
-- `10-tasks/connect-nodes.md`
-- `10-tasks/duplicate-delete-history.md`
-- `10-tasks/organize-and-search.md`
-- `10-tasks/canvas-context.md`
-- `10-tasks/help-and-shortcuts.md`
-- `20-reference.md`
-- `30-concepts.md`
-- `90-troubleshooting.md`
+1. 请用户在有头浏览器中重新登录帧界并打开画布
+   `#/canvas/01M34E48BEEVEQXR93Y8N70Y5N/01M34E4AKBTXT72KFD3MCYZ6NV`。
+2. 更新 `AUDIT.md` 审计基线 commit 为当时 HEAD。
+3. 依据手册（而不是记忆）逐条回走 8 个任务：
+   `create-first-node`、`navigate-canvas`、`edit-selected-node`、`connect-nodes`、
+   `duplicate-delete-history`、`organize-and-search`、`canvas-context`、
+   `help-and-shortcuts`。每条任务把结果、级别、证据和修复写入 `AUDIT.md`。
+4. 回走中发现手册与实际不一致时：修订正文、重跑 Gate A、再重走受影响流程。
+5. 全部通过后把任务置为 `verified`（或带 `exclusion_reason` 的 `excluded`），运行：
 
-正文必须区分三类内容：已在源站真实执行的动作（§13 各 interaction fact）；帮助面板
-声明但未独立执行的手势/快捷键（§13.9 未验证清单）；尚未验证的功能或限制（上传、
-生成、面包屑切换动作等）。写作前先读 §13.12 自动化备忘，避免把环境限制写成产品缺陷。
+   ```bash
+   python3 .agents/skills/web-studio-user-manual/scripts/audit_manual.py \
+     docs/user-manual/frameos-canvas --phase final
+   ```
 
-### B. Gate A
+6. 最终质量门与提交：
 
-1. 将 8 个任务改为 `documented`，确认每个 `manual_pages` 文件存在、core/flagship 任务
-   有 manifest 截图。
-2. 运行 Gate A；修复所有机械问题后才开始 Gate B。
+   ```bash
+   python3 scripts/verify-docs.py
+   npm run check
+   git diff --check
+   ```
 
-### C. Gate B
+   确认无敏感截图、无占位文本、无错误链接后提交并推送。
 
-1. 使用已登录的有头浏览器，从手册入口逐条回走 8 个任务；结果、级别、证据和修复写入
-   `AUDIT.md`（开始时更新审计基线 commit）。
-2. 未独立执行的声明不得写成 `verified`。
-3. 最终将任务改为 `verified` 或带原因的 `excluded`，运行 final audit。
+### B. 自动化环境备忘
 
-### D. 最终质量门与保存
+回走时先读 `SOURCE_OBSERVATIONS.md` §13.12：本应用对 Playwright 定位器 click 会挂起
+（用坐标点击）；locator.evaluate 在隔离世界；drag/scroll 可能超时但已生效（以 DOM
+状态为准）；cua 无右键（用合成 contextmenu 事件）；节点虚拟化会隐藏视口外节点；
+合成键盘事件不携带剪贴板数据、⌘A 行为不定。
 
-```bash
-python3 scripts/verify-docs.py
-npm run check
-git diff --check
-git status --short --branch
-```
+### C. 历史背景（已完成，勿重做）
 
-确认无敏感截图、无占位文本、无错误链接后，再提交并推送。若工作区同时存在其他
-开发者的文档 WIP，先阅读并保留，不要用 destructive Git 命令覆盖。
+- 第一轮取证（2026-09-22）：readiness smoke、文本编辑、连接，见 `SOURCE_OBSERVATIONS.md`
+  §1-9；
+- 第二轮取证（2026-09-23）：8 任务逐项回走取证，见 §13；
+- 截图 01-19 均已登记 manifest，勿重复拍摄。
 
 ## 9. 当前 Git 工作区快照
 

@@ -12,6 +12,18 @@
 
 ## 入口
 
+- [`00-quickstart.md`](00-quickstart.md)：最短路径上手（创建两个节点并连线）。
+- [`10-tasks/create-first-node.md`](10-tasks/create-first-node.md)：创建节点。
+- [`10-tasks/navigate-canvas.md`](10-tasks/navigate-canvas.md)：移动视野与缩放。
+- [`10-tasks/edit-selected-node.md`](10-tasks/edit-selected-node.md)：编辑选中的节点。
+- [`10-tasks/connect-nodes.md`](10-tasks/connect-nodes.md)：连接与删除连线。
+- [`10-tasks/duplicate-delete-history.md`](10-tasks/duplicate-delete-history.md)：复制、删除与撤销恢复。
+- [`10-tasks/organize-and-search.md`](10-tasks/organize-and-search.md)：搜索节点与整理布局。
+- [`10-tasks/canvas-context.md`](10-tasks/canvas-context.md)：面包屑、项目资产与素材入口。
+- [`10-tasks/help-and-shortcuts.md`](10-tasks/help-and-shortcuts.md)：帮助与快捷键总表。
+- [`20-reference.md`](20-reference.md)：界面分区与菜单文字速查。
+- [`30-concepts.md`](30-concepts.md)：画布核心概念。
+- [`90-troubleshooting.md`](90-troubleshooting.md)：按症状排障。
 - [`task-inventory.yml`](task-inventory.yml)：任务范围、频率、影响和覆盖状态。
 - [`PROGRESS.md`](PROGRESS.md)：探索、编写和验证进度。
 - [`AUDIT.md`](AUDIT.md)：真实浏览器回走审计。
@@ -19,4 +31,4 @@
 - [`screenshots/manifest.yml`](screenshots/manifest.yml)：正式截图登记与哈希。
 - [`TEST_MEDIA_ASSETS.md`](TEST_MEDIA_ASSETS.md)：已获授权的本地图片、音频、视频测试输入及付费生成禁令。
 
-手册正文按用户目标放在 `10-tasks/`；未完成 Gate A/Gate B 的任务不会写成已验证功能。
+正文区分“已验证 / 产品声明 / 未验证”三类内容；Gate B 回走完成前，任务不会标为 `verified`。
