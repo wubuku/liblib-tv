@@ -995,6 +995,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-24 | batch 1053 巡检 | still-broken | 第六百一十六次重测；巡检批次——并行自行落库 jimeng 手册批次两件（clone-materials map 91 验证器 + priorities finalized 14 任务），五件并行 WIP 在途（保留不动）；维护集未到期（batch 1053，距全量约 4 批） |
 | 2026-09-24 | batch 1054 巡检 | still-broken | 第六百一十七次重测；巡检批次——并行自行落库 jimeng navigate-canvas 证据（滚轮/ctrl 滚轮/空白拖拽 + 缩放菜单/minimap；截图 07-08），1 件并行 WIP 在途（保留不动）；维护集未到期（batch 1054，距全量约 3 批） |
 | 2026-09-24 | batch 1056 巡检 | still-broken | 第六百一十八次重测；巡检批次——并行自行落库 jimeng connect-nodes + video toolbar 证据（参考边 DOM 修正旧 no-DOM、Backspace/cmdZ、+菜单自动连线、工具菜单新增 深度动作捕捉；截图 09-10），1 件并行 WIP 在途（保留不动）；维护集未到期（batch 1056，距全量约 2 批） |
+| 2026-09-24 | batch 1058 探测 | still-broken | 第六百一十九次重测；探测中断后恢复——CDP 浏览器（9222+持久 profile）被关闭后重启，期间 localhost→IPv6 解析致 connect 挂起，改用 127.0.0.1 确认服务正常后探测成功；结果仍 still-broken；并行 WIP 保留不动（batch 1058） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
