@@ -65,3 +65,25 @@ screenshots:
     visible_text: 资产库
     alt: 鼠标悬停时左侧工具栏展开为图标+文字标签（文本/图片/…/资产库/上传）
     sha256: 69a98c096035927387ae1df1bd27489c6f1d007edcf18bc31d66c3c9f71b5c5f
+  - file: screenshots/07-navigate-canvas-zoom-menu.png
+    task_id: navigate-canvas
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:07:53+08:00
+    verified_locator: 'button[aria-label^="Zoom options"] 弹出菜单'
+    visible_text: 适配画布
+    alt: 底部缩放按钮弹出视图菜单（放大/缩小/适配画布/缩放至选中项/50%/100%/200%）
+    sha256: b675932319d2991286efcec46e591860ad6b68ae4e6dc817c73d01bc3ff3fe92
+  - file: screenshots/08-navigate-canvas-minimap.png
+    task_id: navigate-canvas
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:09:13+08:00
+    verified_locator: 'button[aria-label="小地图"] (aria-pressed=true)'
+    visible_text: 小地图
+    alt: 开启后 dock 上方出现小地图面板（当前画布 4 节点的缩略位置）
+    sha256: fb0b0d3bb6f9ec71d22bfc180e710a2d17fc7ce545a4f11dc71f7e9cf2b603d9
