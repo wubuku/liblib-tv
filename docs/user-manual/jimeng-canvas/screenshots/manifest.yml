@@ -109,3 +109,25 @@ screenshots:
     visible_text: 深度动作捕捉
     alt: 带媒体视频节点的浮动工具条（局部重拍✦/智能超清✦/视频编辑✦/截取帧/视频修剪/工具）与「工具」下拉（编辑：补帧、深度动作捕捉；预设：提示词反推）
     sha256: c99b22a36da8f8bad605d8889da498ad13d2b52f4f05939048eb029eeb95ef9c
+  - file: screenshots/11-prepare-generation-panel.png
+    task_id: prepare-generation
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:22:36+08:00
+    verified_locator: '选中空视频节点的 react-flow__node-toolbar（680×208 生成面板）'
+    visible_text: 上传参考图、输入文字或
+    alt: 空视频节点生成面板：输入提示词后「生成」可用，参数行 Seedance 2.0 VIP/16:9·720P/全能参考/4s/✦56
+    sha256: cf3058eff6924d3091b157ef6700a9dfb5deb9d0b6c163c09ea8c0dd19082f10
+  - file: screenshots/12-prepare-generation-model-menu.png
+    task_id: prepare-generation
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (裁剪视图 1000x484)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:30:37+08:00
+    verified_locator: '生成面板「选择模型」按钮弹出菜单'
+    visible_text: 选择模型
+    alt: 模型菜单五项（Seedance 2.5 样片模式/2.5/2.0 mini/2.0 Fast VIP/2.0 VIP 当前✓）
+    sha256: b7252b52cbad37957c5e827186ee996f6a11cd4d83f32ae0e7af4ff77bc9ee62
