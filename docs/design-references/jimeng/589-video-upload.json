@@ -1,0 +1,36 @@
+{
+ "state0": {
+  "type": "react-flow__node-video",
+  "title": "S83·镜21 resource: 0 ready, 1 processing, 0 failed. Selected.",
+  "size": [
+   550,
+   316
+  ],
+  "hasImg": true,
+  "hasVideo": false,
+  "selected": true
+ },
+ "state1": {
+  "type": "react-flow__node-video",
+  "title": "S83·镜21 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "size": [
+   550,
+   316
+  ],
+  "hasImg": true,
+  "hasVideo": false,
+  "selected": true
+ },
+ "state2": {
+  "type": "react-flow__node-video",
+  "title": "S83·镜21 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "size": [
+   550,
+   316
+  ],
+  "hasImg": true,
+  "hasVideo": false,
+  "selected": true
+ },
+ "toolbar": "局部重拍智能超清视频编辑截取帧视频修剪工具"
+}
