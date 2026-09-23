@@ -1,7 +1,7 @@
 """Jimeng clone batch 41 verifier — model dropdown in the generation panel.
 
 SOURCE_FACT (batch 41): the gen panel model selector opens a dropdown with
-8 models (name + description), extracted from the source site.
+9 models (name + description; sample-mode added per manual), extracted from the source site.
 Contract: selecting the empty node, clicking the model selector opens the
 list; picking 即梦 Seedance 2.0 mini updates the selector text and closes.
 """
@@ -51,11 +51,12 @@ def main() -> None:
             failures.append("model dropdown did not open")
         else:
             names = [m["name"] for m in menu]
+            # Batch 531 SOURCE_FACT (用户手册 20-reference): 首位新增 样片模式
             want = [
-                "即梦 Seedance 2.5", "即梦 Seedance 2.0 mini",
-                "即梦 Seedance 2.0 Fast VIP", "即梦 Seedance 2.0 VIP",
-                "即梦 Seedance 1.0 Fast", "MiniMax H3",
-                "HappyHorse 1.1", "Wan 3.0",
+                "即梦 Seedance 2.5 样片模式", "即梦 Seedance 2.5",
+                "即梦 Seedance 2.0 mini", "即梦 Seedance 2.0 Fast VIP",
+                "即梦 Seedance 2.0 VIP", "即梦 Seedance 1.0 Fast",
+                "MiniMax H3", "HappyHorse 1.1", "Wan 3.0",
             ]
             if names != want:
                 failures.append(f"model names: {names}")
