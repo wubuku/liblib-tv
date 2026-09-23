@@ -21,3 +21,47 @@ screenshots:
     visible_text: 双击编辑文本
     alt: 点击「文本」后新建的文本节点「文本 1」自动选中，上方工具条含 背景色/全屏/下载
     sha256: cc8d9b1a6b26b271d0fd9cbded6dd53f61a588526faf0a5d5f0986e1d2848dfd
+  - file: screenshots/03-create-first-node-image-genpanel.png
+    task_id: create-first-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T22:58:42+08:00
+    verified_locator: '.react-flow__node.react-flow__node-image.selected'
+    visible_text: 上传参考图、输入文字或
+    alt: 新建图片节点「图片 1」自动选中并弹出生成面板（Seedream 5.0 Lite、1:1·2K、3/张）
+    sha256: 4406a32a0ae54e22552fe24f29b583a4d71383e3405445db1a0ba44624605b46
+  - file: screenshots/04-create-first-node-plus-menu.png
+    task_id: create-first-node
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:01:22+08:00
+    verified_locator: 'button[aria-label="Create connected node after 图片 1"]'
+    visible_text: 添加节点
+    alt: 点击节点边缘 + 手柄弹出的「添加节点」菜单（含时间线/主体/导演台与连接注记）
+    sha256: e2072bd41c4cb2e68591b7e42850831ce1487373d3ec7163c51ad437e0542854
+  - file: screenshots/05-create-first-node-pane-menu.png
+    task_id: create-first-node
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:03:12+08:00
+    verified_locator: '空白处右键菜单 新建节点 子菜单'
+    visible_text: 从资产库添加
+    alt: 空白右键「新建节点」展开的子菜单（含 从资产库添加/本地上传）
+    sha256: 164474d62e1ad51e036f0aba657d7de0bae5fd428765f1a2d81480ffbe48d79d
+  - file: screenshots/06-create-first-node-rail-flyout.png
+    task_id: create-first-node
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
+    locale: zh-CN
+    captured_at: 2026-09-23T23:03:56+08:00
+    verified_locator: '左栏容器 hover 展开态 (160px 标签栏)'
+    visible_text: 资产库
+    alt: 鼠标悬停时左侧工具栏展开为图标+文字标签（文本/图片/…/资产库/上传）
+    sha256: 69a98c096035927387ae1df1bd27489c6f1d007edcf18bc31d66c3c9f71b5c5f
