@@ -43,6 +43,7 @@ import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
+import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
   text: FrameosTextNode,
@@ -574,6 +575,9 @@ function FrameosCanvasInner() {
 
       {/* 模板面板 (原站 2026-09-23 新增的左栏「模板」入口) */}
       <FrameosTemplatePanel />
+
+      {/* 项目资产面板 (原站: 左栏「查看项目资产」) */}
+      <FrameosProjectAssetsPanel />
 
     </div>
   );

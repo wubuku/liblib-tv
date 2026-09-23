@@ -8,6 +8,7 @@ import {
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
 import { TemplateRailEntry } from "./FrameosTemplatePanel";
+import { ProjectAssetsRailEntry } from "./FrameosProjectAssetsPanel";
 import { useViewport } from "@xyflow/react";
 
 const NODE_TYPES = [
@@ -196,6 +197,7 @@ export function FrameosToolRail() {
           )}
         </div>
 
+        <ProjectAssetsRailEntry />
         <Divider />
         <RailButton
           label="从素材库选择"

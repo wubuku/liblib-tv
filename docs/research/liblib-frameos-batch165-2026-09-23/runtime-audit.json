@@ -1,0 +1,28 @@
+{
+  "batch": 165,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rail:button",
+        "rail:order",
+        "panel:initially-closed",
+        "panel:opens",
+        "panel:tab:角色",
+        "panel:tab:物品",
+        "panel:tab:环境",
+        "panel:search-placeholder",
+        "panel:empty-state",
+        "panel:close-x",
+        "panel:toggles-open",
+        "panel:toggles-closed",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

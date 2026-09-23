@@ -29,6 +29,7 @@
 | Breadcrumb "测试项目" | click | 项目下拉（项目列表 + 当前项高亮） |
 | Breadcrumb "画布 1" | click | 画布下拉（Batch 164 对齐源站：画布 头 + 「+」新建入口 + 画布行带节点数与当前勾标 + 重命名/删除操作行；切换画布按 key 加载 mock 数据） |
 | ToolRail "添加节点" | click | 弹出 8 种节点类型菜单（文本/图片/视频/角色/场景/音频/风格/批量，标题“选择节点类型”），点击后新建并自动选中 |
+| ToolRail "查看项目资产" (2026-09-23 源站实测, Batch 165) | click | 开关 `FrameosProjectAssetsPanel`：标题 项目资产，页签 角色/物品/环境（角色默认激活），搜索占位 “搜索资产名称...”，空态 “暂无已生成的资产图”，× 关闭 |
 | ToolRail "从素材库选择" | click | console.log（mock） |
 | ToolRail "本地上传" | click | console.log（mock） |
 | ToolRail "模板" (2026-09-23 源站新增, Batch 162) | click | 开关 `FrameosTemplatePanel`：页签 公共模板/企业模板/我的模板（公共模板默认激活）+ 模板卡片（30s小说切片/九宫格大师分镜/大师电影分镜/时间凝固流光/暂别×视角×特效镜头大全/360度旋转展示）；卡片应用保持 mock（源站未采样） |
