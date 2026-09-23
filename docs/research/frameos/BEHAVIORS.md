@@ -14,6 +14,7 @@
 | HistoryDock (撤销/重做) | click | 接入 store 的 history stack；按钮在无可撤销时 disabled |
 | CanvasMapDock (画布小地图钉) | click toggle | minimap 显隐（**简化为** `showMinimap` flag） |
 | CanvasMapDock 小地图拖拽 (2026-09-24 源站实测, Batch 179) | 在小地图内拖拽 | 视口随拖拽平移（光标下的世界点成为视口中心）；mini-node 点击仍为选中 + 聚焦 |
+| 指针交互配置 (Batch 191/195 文档对齐) | ReactFlow props | panOnDrag=[1,2]（鼠标中键/右键拖动平移，对应帮助声明）；panOnScroll+zoomOnScroll（滚轮缩放）；multiSelectionKeyCode=Shift/Meta/Control（多选管道已通，工具条未实现） |
 | CanvasMapDock (缩小/放大) | click | XYFlow `zoomIn/zoomOut({duration:200})` + 更新 `zoomPercent` |
 | CanvasMapDock (适应画布) | click | XYFlow `fitView({duration:200, padding:0.1})` + `zoomPercent=100` |
 | CanvasMapDock (一键整理) | click | `runOrganize('grid')` 实际重排节点 |
