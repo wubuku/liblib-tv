@@ -1,7 +1,7 @@
 "use client";
 
 import type { NodeProps } from "@xyflow/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import {
   FilmNodeIcon,
@@ -18,7 +18,36 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
   const [isPlaying, setIsPlaying] = useState(false);
   const [, setIsHovered] = useState(false); // 占位, 保留 onMouseEnter/Leave 用于未来 hover-only UI
   const [videoError, setVideoError] = useState(false);
+  // Batch 225: 内容视频节点左下角时长徽章 (源站 00:04 样式, 读 metadata);
+  // 仅真视频源 (blob:/扩展名) 可读时长, jpg 封面 mock 不显示徽章。
+  // 用 detached <video> 拉元数据 — display:none 元素在 Chromium 里不触发加载
+  const [durationLabel, setDurationLabel] = useState<string | null>(null);
   const videoUrl = imageUrl ? imageUrl.replace(/\?x-oss-process=.*$/, "") : undefined;
+  const isVideoSource =
+    !!videoUrl &&
+    (videoUrl.startsWith("blob:") ||
+      /\.(mp4|webm|mov|m4v)(\?|$)/i.test(videoUrl));
+
+  const formatDuration = (seconds: number): string => {
+    if (!Number.isFinite(seconds) || seconds < 0) return "00:00";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    if (!isVideoSource || !videoUrl) return undefined;
+    const probe = document.createElement("video");
+    probe.preload = "metadata";
+    probe.muted = true;
+    probe.onloadedmetadata = () =>
+      setDurationLabel(formatDuration(probe.duration));
+    probe.src = videoUrl;
+    return () => {
+      probe.onloadedmetadata = null;
+      probe.removeAttribute("src");
+    };
+  }, [isVideoSource, videoUrl]);
 
   const titleRight = reviewFailed ? (
     <span
@@ -45,7 +74,9 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
       titleIcon={<FilmNodeIcon size={12} />}
       titleRight={titleRight}
       selected={selected}
-      showLeftHandle
+      // Batch 225: 内容视频节点仅右侧 handle (2026-09-25 源站实测);
+      // 空视频节点保留左右 handle
+      showLeftHandle={!imageUrl}
       showRightHandle
       showResizeHandle={false}
       nodeProps={{ id, data } as unknown as NodeProps<FrameosNode>}
@@ -116,6 +147,27 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
           </div>
         )}
 
+        {/* 左下角时长徽章 (Batch 225 源站 00:04 样式; 元数据经上方 effect 读取) */}
+        {imageUrl && !isPlaying && isVideoSource && durationLabel && (
+          <span
+            data-frameos-video-duration
+            style={{
+              position: "absolute",
+              left: 8,
+              bottom: 8,
+              padding: "1px 6px",
+              borderRadius: 4,
+              background: "rgba(0,0,0,0.65)",
+              color: "#E0E0E0",
+              fontSize: 11,
+              fontVariantNumeric: "tabular-nums",
+              zIndex: 1,
+            }}
+          >
+            {durationLabel}
+          </span>
+        )}
+
         {/* 中心播放/暂停按钮 - 仅对有内容的视频节点渲染
             (2026-09-23 源站实测: 空视频节点为纯图标, 无播放按钮/徽章) */}
         {videoUrl ? (
@@ -164,13 +216,14 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
         </button>
         ) : null}
 
-        {/* 右上角替换内容按钮 - 仅对有内容的视频节点渲染 (同上) */}
+        {/* 右下角替换内容按钮 - 仅对有内容的视频节点渲染
+            (Batch 225 源站截图: 视频节点替换按钮位于右下角, 与图片节点右上角不同) */}
         {imageUrl ? (
         <div
           className="card-body-actions"
           style={{
             position: "absolute",
-            top: 6,
+            bottom: 6,
             right: 6,
             zIndex: 1,
           }}

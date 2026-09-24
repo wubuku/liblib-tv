@@ -69,6 +69,15 @@ def run_desktop(page: Page) -> dict[str, Any]:
         })()"""
     )
     page.wait_for_timeout(400)
+    # Batch 225: 内容图片节点仅右 handle (2026-09-25 源站实测), 清空内容恢复左 handle 供连线
+    page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const img = [...s.nodes].reverse().find((n) => n.type === "image");
+          s.updateNodeData(img.id, { imageUrl: null });
+        })()"""
+    )
+    page.wait_for_timeout(300)
 
     # 找文本节点的右 handle 和新图片节点的左 handle, 真实拖拽连线
     handles = page.evaluate(
@@ -122,7 +131,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
         page.evaluate("window.__frameos_store.getState().edges.length") == edges_created,
     )
 
-    # 回归: 引用芯片 (batch159) 依旧工作 — 选中 image-1 应有芯片
+    # 回归: 引用芯片 (batch159) 依旧工作 — Batch 225 起面板仅空媒体节点显示,
+    # 先清空 image-1 内容再选中
+    page.evaluate(
+        "window.__frameos_store.getState().updateNodeData('image-1', { imageUrl: null })"
+    )
+    page.wait_for_timeout(300)
     image_node = page.locator(".react-flow__node-image").first
     image_node.click(position={"x": 60, "y": 30})
     page.wait_for_timeout(300)

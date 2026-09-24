@@ -29,7 +29,9 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
       title={title}
       titleIcon={<ImageNodeIcon size={12} />}
       selected={selected}
-      showLeftHandle
+      // Batch 225: 内容图片节点仅右侧 handle (2026-09-25 源站实测);
+      // 空图片节点保留左右 handle
+      showLeftHandle={!imageUrl}
       showRightHandle
       nodeProps={{ id, data } as unknown as NodeProps<FrameosNode>}
       width={isPortrait ? 225 : 300}

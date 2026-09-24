@@ -122,8 +122,17 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(300)
     check("text:blank-click-exits-edit", text_node.locator("textarea").count() == 0)
 
-    # 回归: 图片/视频节点选中仍然显示 prompt 面板
+    # 回归: 媒体节点面板 — Batch 225 起仅空媒体节点显示面板
+    # (2026-09-25 源站实测: 内容媒体选中只显示富工具条), 先清空内容再选中
     media_selector = ensure_media_node(page, nodes_before)
+    page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const img = s.nodes.find((n) => n.type === 'image');
+          if (img) s.updateNodeData(img.id, { imageUrl: null });
+        })()"""
+    )
+    page.wait_for_timeout(300)
     page.locator(media_selector).first.click()
     page.wait_for_timeout(400)
     check("media:prompt-editor-still-shows", page.locator(".frameos-prompt-editor").is_visible())

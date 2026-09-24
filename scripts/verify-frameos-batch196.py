@@ -53,6 +53,13 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
     page.wait_for_timeout(1200)
 
+    # Batch 225: 面板仅空图片节点显示 (2026-09-25 源站实测: 内容图片选中
+    # 只显示富工具条无面板), 故先清空 image-1 内容再验证面板
+    page.evaluate(
+        "window.__frameos_store.getState().updateNodeData('image-1', { imageUrl: null })"
+    )
+    page.wait_for_timeout(300)
+
     image_node = page.locator(".react-flow__node-image").first
     image_node.click(position={"x": 60, "y": 30})
     page.wait_for_timeout(400)

@@ -56,22 +56,44 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("boot:video-node", video.count() == 1)
     video.click(position={"x": 60, "y": 30})  # 避开中心播放按钮
     page.wait_for_timeout(400)
+    # Batch 225 更新 (2026-09-25 源站实测): 内容视频工具条 = 九项
+    # 全屏查看/下载/收藏/剪辑/裁剪/音视频分离/超清/去字幕/片段重拍
     toolbar = page.locator(".frameos-floating-toolbar-new")
     check("video:toolbar-opens", toolbar.is_visible())
     buttons = toolbar.locator("button")
-    check("video:toolbar-two-buttons", buttons.count() == 2)
-    check(
-        "video:toolbar-fullscreen-view",
-        buttons.nth(0).get_attribute("aria-label") == "全屏查看",
-    )
-    check(
-        "video:toolbar-download",
-        buttons.nth(1).get_attribute("aria-label") == "下载",
-    )
+    check("video:toolbar-nine-buttons", buttons.count() == 9)
+    expected = [
+        "全屏查看",
+        "下载",
+        "收藏",
+        "剪辑",
+        "裁剪",
+        "音视频分离",
+        "超清",
+        "去字幕",
+        "片段重拍",
+    ]
+    for idx, name in enumerate(expected):
+        check(
+            f"video:toolbar-item-{idx}-{name}",
+            buttons.nth(idx).get_attribute("aria-label") == name,
+        )
 
-    # 回归: 视频节点仍渲染 PromptEditor; 文本节点不渲染
+    # Batch 225 回归: 内容视频节点无 PromptEditor (源站实测); 文本节点不渲染
     check(
-        "regression:video-prompt-editor",
+        "regression:content-video-no-prompt-editor",
+        page.locator(".frameos-prompt-editor").count() == 0
+        or not page.locator(".frameos-prompt-editor").first.is_visible(),
+    )
+    # 空视频节点保留面板 (清空内容后选中)
+    page.evaluate(
+        "window.__frameos_store.getState().updateNodeData('video-1', { imageUrl: null })"
+    )
+    page.wait_for_timeout(300)
+    video.click(position={"x": 60, "y": 30})
+    page.wait_for_timeout(400)
+    check(
+        "regression:empty-video-prompt-editor",
         page.locator(".frameos-prompt-editor").is_visible(),
     )
     text = page.locator(".react-flow__node-text").first

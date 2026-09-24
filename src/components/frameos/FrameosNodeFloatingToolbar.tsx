@@ -1,21 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useFrameosStore } from "@/store/frameosStore";
-import { DownloadIcon, FullscreenExitIcon, StarIcon } from "./icons";
+import {
+  AudioIcon,
+  DownloadIcon,
+  FilmNodeIcon,
+  FullscreenExitIcon,
+  HdIcon,
+  ScissorsIcon,
+  StarIcon,
+  SubtractIcon,
+  TextNodeIcon,
+} from "./icons";
 
 /**
  * FrameOS 节点浮动工具条 - 与 frameos.cn 完全对齐:
  * - 选中节点时浮动到节点正上方 + 居中
- * - 内容根据节点类型变化 (2026-09-23 源站复核):
- *    - 文本: [全屏查看, 下载] (两个 icon 按钮, 无文字)
- *    - 图片: [下载, 收藏, 超清, 720全景, 改图, 宫格切分]
- *    - 视频: [全屏查看, 下载] (2026-09-23 源站实测, 与文本一致)
+ * - 内容按节点类型与内容状态区分 (Batch 220/222/225):
+ *    - 文本: [全屏查看, 下载] (两个 icon 按钮)
+ *    - 空图片: 无工具条; 内容图片: 十项富工具条
+ *    - 空视频: [全屏查看, 下载]; 内容视频: 九项 (2026-09-25 源站实测)
+ *    - 内容音频: [下载, 收藏]; 空音频: [下载]
  * - 视觉: 圆角 8px, 背景 rgba(24,24,24,0.8), 1px hairline border, blur
  */
 interface ToolbarAction {
   label: string;
   aria?: string;
+  icon?: ReactNode;
   onClick?: () => void;
 }
 
@@ -33,7 +45,7 @@ function getActionsForNode(
     case "image":
       // 2026-09-24 源站实测: 有内容的图片节点选中显示富工具条
       // (⛶全屏 / 下载 / ⭐收藏 / 超清 / 720全景 / 打光 / 改图 / 裁剪 / 标注 / 宫格切分∨);
-      // 空图片节点选中无工具条 (Batch 172 hover/selection 采样)
+      // 空图片节点无工具条 (Batch 172/225 空态复测)
       if (!node.data?.imageUrl) return [];
       return [
         { label: "", aria: "全屏查看" },
@@ -48,10 +60,25 @@ function getActionsForNode(
         { label: "宫格切分 ∨" },
       ];
     case "video":
-      // 2026-09-23 源站实测: 选中视频节点同样只有 全屏查看/下载 两个 icon 按钮
+      // 2026-09-25 源站实测 (Batch 225, 新版本): 内容视频节点工具条 = 全屏查看/
+      // 下载/收藏/剪辑/裁剪/音视频分离/超清/去字幕/片段重拍 九项;
+      // 空视频节点保留 2026-09-23 采样的 全屏查看/下载 两项
+      if (!node.data?.imageUrl) {
+        return [
+          { label: "", aria: "全屏查看" },
+          { label: "", aria: "下载" },
+        ];
+      }
       return [
         { label: "", aria: "全屏查看" },
         { label: "", aria: "下载" },
+        { label: "", aria: "收藏" },
+        { label: "剪辑", icon: <ScissorsIcon size={12} /> },
+        { label: "裁剪", icon: <SubtractIcon size={12} /> },
+        { label: "音视频分离", icon: <AudioIcon size={12} /> },
+        { label: "超清", icon: <HdIcon size={12} /> },
+        { label: "去字幕", icon: <TextNodeIcon size={12} /> },
+        { label: "片段重拍", icon: <FilmNodeIcon size={12} /> },
       ];
     case "audio":
       // 2026-09-25 源站实测 (Batch 222): 内容音频节点工具条 = 下载/收藏 两个
@@ -232,6 +259,7 @@ export function FrameosNodeFloatingToolbar() {
             {isDownload && <DownloadIcon size={14} />}
             {isFavorite && <StarIcon size={14} />}
             {isFullscreenView && <FullscreenExitIcon size={14} />}
+            {!isIconOnly && a.icon}
             {!isIconOnly && <span>{a.label}</span>}
           </button>
         );

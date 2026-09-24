@@ -44,8 +44,10 @@ export function FrameosPromptEditor() {
       !selectedNodeId ||
       !sel ||
       sel.type === "text" ||
-      // Batch 222: 内容音频节点无面板 (源站实测), 空音频保留音频面板
-      (sel.type === "audio" && !!sel.data.audioUrl)
+      // Batch 225: 内容媒体节点无面板 (2026-09-25 源站实测: 有内容的图片/视频
+      // 选中只显示富工具条); 空节点保留生成面板; 内容音频同 (Batch 222)
+      (sel.type === "audio" && !!sel.data.audioUrl) ||
+      ((sel.type === "image" || sel.type === "video") && !!sel.data.imageUrl)
     ) {
       // 无选中/文本节点时组件返回 null, 陈旧 pos 无需清理 (避免 effect 内同步 setState)
       return undefined;
@@ -82,8 +84,9 @@ export function FrameosPromptEditor() {
     !selectedNodeId ||
     !sel ||
     sel.type === "text" ||
-    // Batch 222: 内容音频节点无面板 (源站实测)
-    (sel.type === "audio" && !!sel.data.audioUrl)
+    // Batch 225: 内容媒体节点无面板 (源站实测); 内容音频同 Batch 222
+    (sel.type === "audio" && !!sel.data.audioUrl) ||
+    ((sel.type === "image" || sel.type === "video") && !!sel.data.imageUrl)
   )
     return null;
 

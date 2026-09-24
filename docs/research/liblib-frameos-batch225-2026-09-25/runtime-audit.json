@@ -1,0 +1,41 @@
+{
+  "batch": 225,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:video-node",
+        "content:left-handle-gone",
+        "content:right-handle-kept",
+        "content:toolbar-opens",
+        "content:toolbar-nine-buttons",
+        "content:toolbar-item-0-全屏查看",
+        "content:toolbar-item-1-下载",
+        "content:toolbar-item-2-收藏",
+        "content:toolbar-item-3-剪辑",
+        "content:toolbar-item-4-裁剪",
+        "content:toolbar-item-5-音视频分离",
+        "content:toolbar-item-6-超清",
+        "content:toolbar-item-7-去字幕",
+        "content:toolbar-item-8-片段重拍",
+        "content:video-no-panel",
+        "content:replace-button",
+        "empty:prompt-panel-opens",
+        "empty:both-handles",
+        "empty:toolbar-two-buttons",
+        "image:content-no-panel",
+        "image:content-right-handle-only",
+        "upload:video-node",
+        "upload:duration-badge",
+        "upload:badge-time-format",
+        "upload:right-handle-only",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

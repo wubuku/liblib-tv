@@ -167,6 +167,7 @@ const nodeY = node.position.y * zoom + panY;
 | 撤销/重做 | ✅（用 Vue history stack） | ✅（用 Zustand `past` / `future`；连线创建/删除 Batch 174 起入栈） |
 | 节点替换内容 | ✅ 文件选择 | ✅ 文件选择（点 `replace-btn` 触发 `<input type="file">`） |
 | 节点类型 | 7 类：文本/图片/视频/音频/3D模型/3D导演台/视频剪辑台 | 菜单 7 类逐字（Batch 167）；全部有渲染器：3D导演台/视频剪辑台（Batch 221）、音频空态/内容态（Batch 213/222，内容态含播放器行与替换内容） |
+| 内容/空媒体节点语义 | 内容媒体选中=富工具条+无面板+仅右 handle；空节点=生成面板+双 handle（2026-09-25 新版实测） | ✅ 一致（Batch 225：守卫+handle 门控+视频九项工具条/时长徽章/右下替换按钮） |
 | 模型选择器 | Seedream 5.0 Pro 等多个模型 | 6 模型（mock，默认 Seedream 5.0 Pro，Batch 160） |
 | 提交 prompt | 调 API | no-op |
 | 添加节点 | 左栏菜单 + 空态 CTA；~~双击空白~~（2026-09-24 新版本已移除） | 菜单 7 类逐字 + 空态 CTA（Batch 187）；双击空白入口已同步移除（Batch 182） |

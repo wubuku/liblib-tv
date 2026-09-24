@@ -88,10 +88,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
             ok = expected in (buttons.nth(idx).inner_text() or "")
         check(f"image:toolbar-item-{idx}-{expected}", ok)
 
-    # 内容图片选中仍打开 PromptEditor (Batch 172 守卫回归)
+    # Batch 225 语义更新: 内容图片选中无 PromptEditor (2026-09-25 源站实测:
+    # 内容媒体节点只显示富工具条; 面板仅空节点显示)
     check(
-        "regression:content-image-prompt-editor",
-        page.locator(".frameos-prompt-editor").is_visible(),
+        "regression:content-image-no-prompt-editor",
+        page.locator(".frameos-prompt-editor").count() == 0
+        or not page.locator(".frameos-prompt-editor").first.is_visible(),
     )
 
     # 2) 移除内容 → 工具条消失
