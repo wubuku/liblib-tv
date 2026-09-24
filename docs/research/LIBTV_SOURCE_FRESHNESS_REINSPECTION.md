@@ -1073,6 +1073,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1255 巡检 | still-broken | 第六百九十七次重测；巡检批次——并行落库 frameos 213（音频节点渲染器+音频 prompt 面板，WIP 闭环）+ 214 文档（BEHAVIORS 音频行+覆盖矩阵）+ jimeng 593 演进扫描（登录后三表面零漂移）；仅 runner 脚本 1 件 WIP 保留不动；batch 1257 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1257 巡检 | still-broken | 第六百九十八次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；15 项 liblib 回写 fixture 显式恢复（零跳过）；并行 frameos 215 活跃 WIP（新组件 Frameos3DModelNode + page/NodeShell/types 修改）（batch 1257） |
 | 2026-09-25 | batch 1262 巡检 | still-broken | 第六百九十九次重测；巡检批次——并行 rotation 双连落 jimeng 594（34-48 绿 15/15）+ 595（49-64 绿 14/14）+ frameos 215 runner 重试机制落库；3DModelNode 仍活跃 WIP 保留不动；batch 1264 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1264 巡检 | still-broken | 第七百次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；13 项 liblib 回写 fixture 显式恢复（1 项并行 untracked frameos 216 证据目录正确跳过）；并行 frameos 216 活跃 WIP 扩面（3DModelNode + ToolRail + store/types + 旧验证器修订）（batch 1264） |
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
