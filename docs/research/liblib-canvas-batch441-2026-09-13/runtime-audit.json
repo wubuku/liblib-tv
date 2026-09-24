@@ -41,12 +41,12 @@
   "fixture_scan_readonly": {
     "total": 6,
     "byKind": {
-      "request-display-string-only": 5,
-      "intrinsic-display-string-only": 1
+      "intrinsic-display-string-only": 1,
+      "request-display-string-only": 5
     }
   },
   "derived_generic_frame_detection": {
-    "derivedNodeId": "smart-matting-1790280006334-wvb4z1",
+    "derivedNodeId": "smart-matting-1790282051603-5i5uhx",
     "frame": {
       "width": 576,
       "height": 288
