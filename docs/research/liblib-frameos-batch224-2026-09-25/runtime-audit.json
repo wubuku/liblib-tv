@@ -1,0 +1,37 @@
+{
+  "batch": 224,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "library:opens",
+        "library:tree:全部素材",
+        "library:tree:我的收藏",
+        "library:tree:测试作品",
+        "library:tree:测试项目",
+        "library:tree:工具箱素材",
+        "library:tree:画布素材",
+        "library:tree:上传素材",
+        "library:filter-favorite",
+        "library:filter-creator",
+        "library:filter-time",
+        "footer:add-disabled-at-zero",
+        "library:audio-card",
+        "library:duration-badge",
+        "footer:add-enabled",
+        "footer:selected-count",
+        "library:closes-after-add",
+        "add:node-created",
+        "add:title-from-asset",
+        "add:audio-content",
+        "add:player-rendered",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
