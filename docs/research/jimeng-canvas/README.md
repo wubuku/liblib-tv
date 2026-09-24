@@ -1925,6 +1925,9 @@
   (SeedAudio 1.0 全引导文案 + Current price 12，与批 485 契约吻合)。
   无需改动 (593-evolution-scan.json)。现场已还原 (1 次 undo)。
   下一批规划 (Batch 594): 34-48 段回归续行。
+- Batch 597 (全量质量门): 退出码全量扫 verify-jimeng-batch1..105 ——
+  91 verifier 零失败，截图随扫刷新入库。下一批规划 (Batch 598):
+  1-19 段新回归轮起点。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批
