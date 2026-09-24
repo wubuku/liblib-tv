@@ -22,6 +22,7 @@ import { useFrameosStore } from "@/store/frameosStore";
 import { FrameosTextNode } from "@/components/frameos/nodes/FrameosTextNode";
 import { FrameosImageNode } from "@/components/frameos/nodes/FrameosImageNode";
 import { FrameosVideoNode } from "@/components/frameos/nodes/FrameosVideoNode";
+import { FrameosAudioNode } from "@/components/frameos/nodes/FrameosAudioNode";
 import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
@@ -51,6 +52,7 @@ const nodeTypes = {
   text: FrameosTextNode,
   image: FrameosImageNode,
   video: FrameosVideoNode,
+  audio: FrameosAudioNode,
 };
 
 const edgeTypes = {

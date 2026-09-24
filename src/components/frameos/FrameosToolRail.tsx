@@ -17,7 +17,7 @@ export const NODE_TYPES = [
   { type: "text" as const, title: "文本", desc: "", icon: "T" },
   { type: "image" as const, title: "图片", desc: "", icon: "🖼" },
   { type: "video" as const, title: "视频", desc: "", icon: "🎬" },
-  { title: "音频", desc: "", icon: "🎵", unimplemented: true },
+  { type: "audio" as const, title: "音频", desc: "", icon: "🎵" },
   { title: "3D模型", desc: "", icon: "🧊", unimplemented: true },
   { title: "3D导演台", desc: "", icon: "🎛", unimplemented: true },
   { title: "视频剪辑台", desc: "", icon: "🎞", unimplemented: true },

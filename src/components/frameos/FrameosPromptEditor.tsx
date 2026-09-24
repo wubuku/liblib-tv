@@ -74,6 +74,117 @@ export function FrameosPromptEditor() {
 
   if (!selectedNodeId || !sel || sel.type === "text") return null;
 
+  // Batch 213: 音频节点专属面板 (源站采样: 参考 按钮 + 描述音乐/配音/音效
+  // 占位 + BGM S6 模型 + 参数 下拉 + 积分 100 + ↑ 生成按钮)
+  if (sel.type === "audio") {
+    const audioModel = "BGM S6";
+    return (
+      <div
+        className="frameos-prompt-editor frameos-prompt-editor--audio"
+        style={{
+          position: "fixed",
+          left: pos ? pos.left : 12,
+          top: pos ? pos.top : 12,
+          width: 480,
+          maxWidth: "calc(100vw - 24px)",
+          background: "rgba(20,20,20,0.85)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255,255,255,0.06)",
+          borderRadius: 14,
+          boxShadow: "0 12px 36px rgba(0,0,0,0.5)",
+          zIndex: 2500,
+          display: "flex",
+          flexDirection: "column",
+          padding: 10,
+          gap: 8,
+        }}
+      >
+        <div
+          className="prompt-top-actions"
+          style={{ display: "flex", gap: 4 }}
+        >
+          <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
+        </div>
+        <textarea
+          defaultValue=""
+          placeholder="描述音乐 / 配音 / 音效"
+          rows={2}
+          style={{
+            width: "100%",
+            minHeight: 52,
+            background: "#0D0D0D",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: 10,
+            outline: "none",
+            color: "#FFFFFF",
+            fontSize: 13,
+            fontFamily: "inherit",
+            resize: "vertical",
+            padding: "8px 10px",
+          }}
+        />
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <Dropdown value={audioModel} onChange={() => {}} options={["BGM S6", "BGM S5", "配音音色 A"]} />
+          <Dropdown value="参数" onChange={() => {}} options={["参数", "节奏", "音量"]} />
+          <div style={{ flex: 1 }} />
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "0 10px",
+              height: 32,
+              borderRadius: 8,
+              color: "#E0E0E0",
+              fontSize: 13,
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius: 9999,
+                background: "#F5A623",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 9,
+                color: "#5A3A00",
+                fontWeight: 700,
+              }}
+            >
+              ¥
+            </span>
+            <span>100</span>
+          </div>
+          <button
+            type="button"
+            aria-label="生成音频"
+            title="生成"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 16,
+              background: "#3B82F6",
+              border: "none",
+              color: "#FFFFFF",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: 14,
+              boxShadow: "0 4px 12px rgba(59,130,246,0.5)",
+            }}
+          >
+            ↑
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const isRunning = currentGeneration?.status === "running";
   // 源站语义: 引用 = 连线; 面板头部展示每个上游节点的引用芯片
   const incomingEdges = edges.filter((e) => e.target === sel.id);

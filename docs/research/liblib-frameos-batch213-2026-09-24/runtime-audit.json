@@ -1,0 +1,26 @@
+{
+  "batch": 213,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "audio:node-created",
+        "audio:selected",
+        "audio:panel-opens",
+        "audio:panel:参考",
+        "audio:panel:BGM S6",
+        "audio:panel:参数",
+        "audio:panel:100",
+        "audio:panel:desc-placeholder",
+        "audio:panel:generate-btn",
+        "undo:audio-removed",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
