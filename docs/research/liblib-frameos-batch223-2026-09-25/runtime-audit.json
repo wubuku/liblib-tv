@@ -1,0 +1,29 @@
+{
+  "batch": 223,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "png:node-created",
+        "png:type-image",
+        "png:title-from-filename",
+        "png:blob-cover",
+        "png:selected",
+        "png:floating-title",
+        "wav:node-created",
+        "wav:type-audio",
+        "wav:title-from-filename",
+        "wav:blob-audio",
+        "wav:player-rendered",
+        "multi:two-created",
+        "multi:ids-unique",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

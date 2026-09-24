@@ -2,6 +2,7 @@
 
 import { useFrameosStore } from "@/store/frameosStore";
 import { useViewport } from "@xyflow/react";
+import { openLocalUploadPicker } from "@/lib/frameosUpload";
 import {
   TextNodeIcon,
   ImageNodeIcon,
@@ -16,7 +17,7 @@ import {
  * - 画布无节点时居中显示 标题「选择一种方式开始创作」+ 六个 CTA:
  *   文本 / 图片 / 视频 / 音频 / 3D导演台 / 上传文件
  * - 文本/图片/视频/音频/3D导演台 点击即创建对应节点 (Batch 221: 导演台渲染器已实现);
- *   上传文件 打开系统文件选择 (行为同左栏 本地上传)
+ *   上传文件 打开系统文件选择 (Batch 223: 按 MIME 建带内容节点, 行为同左栏 本地上传)
  */
 
 const CTAS: {
@@ -80,6 +81,17 @@ export function FrameosEmptyState() {
             onClick={() => {
               if (cta.mock) {
                 window.alert(`${cta.label} (mock，本原型未实现)`);
+                return;
+              }
+              if (cta.label === "上传文件") {
+                // Batch 223: 与左栏 本地上传 同一行为 (按 MIME 建带内容节点)
+                openLocalUploadPicker({
+                  panX,
+                  panY,
+                  zoom,
+                  viewportWidth: window.innerWidth,
+                  viewportHeight: window.innerHeight,
+                });
                 return;
               }
               addNode(cta.type!, {

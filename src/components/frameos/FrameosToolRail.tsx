@@ -7,6 +7,7 @@ import {
   QuestionIcon,
 } from "./icons";
 import { useFrameosStore } from "@/store/frameosStore";
+import { openLocalUploadPicker } from "@/lib/frameosUpload";
 import { TemplateRailEntry } from "./FrameosTemplatePanel";
 import { ProjectAssetsRailEntry } from "./FrameosProjectAssetsPanel";
 import { useViewport } from "@xyflow/react";
@@ -109,24 +110,8 @@ export function FrameosToolRail() {
   const { x: panX, y: panY, zoom } = useViewport();
 
   const openFilePicker = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*,video/*";
-    input.multiple = true;
-    input.onchange = () => {
-      for (let i = 0; i < input.files!.length; i++) {
-        const file = input.files![i];
-        const type = file.type.startsWith("image/")
-          ? "image"
-          : file.type.startsWith("video/")
-          ? "video"
-          : null;
-        if (type) {
-          useFrameosStore.getState().addNode(type, addNodeOpts);
-        }
-      }
-    };
-    input.click();
+    // Batch 223: 本地上传真实接线 (按 MIME 建带内容节点, 标题=文件名去扩展名)
+    openLocalUploadPicker(addNodeOpts);
   };
 
   const addNodeOpts = {

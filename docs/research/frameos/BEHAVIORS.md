@@ -37,7 +37,7 @@
 | ToolRail "添加节点" (Batch 167 对齐源站逐字) | click | 弹出菜单：组「添加节点」7 项短标签 文本/图片/视频/音频/3D模型/3D导演台/视频剪辑台，全部创建真实节点（Batch 221 起 3D导演台/视频剪辑台渲染器实现；音频为图标卡片，Batch 213）+ 组「添加资源」上传文件（触发系统文件选择，行为与本地上传一致） |
 | ToolRail "查看项目资产" (2026-09-23 源站实测, Batch 165) | click | 开关 `FrameosProjectAssetsPanel`：标题 项目资产，页签 角色/物品/环境（角色默认激活），搜索占位 “搜索资产名称...”，空态 “暂无已生成的资产图”，× 关闭 |
 | ToolRail "从素材库选择" | click | console.log（mock） |
-| ToolRail "本地上传" | click | console.log（mock） |
+| ToolRail "本地上传" | click | Batch 223 起真实接线：文件选择（image/video/audio，多选）→ 按 MIME 建带内容节点（图片→imageUrl、音频→audioUrl、视频→imageUrl 封面），标题 = 文件名去扩展名（2026-09-25 探针采样对齐）；空态 上传文件 CTA 同行为 |
 | ToolRail "模板" (2026-09-23 源站新增, Batch 162) | click | 开关 `FrameosTemplatePanel`：页签 公共模板/企业模板/我的模板（公共模板默认激活）+ 模板卡片（30s小说切片/九宫格大师分镜/大师电影分镜/时间凝固流光/暂别×视角×特效镜头大全/360度旋转展示）；卡片应用保持 mock（源站未采样） |
 | ToolRail "帮助" | click | 打开 `FrameosHelpPanel` |
 

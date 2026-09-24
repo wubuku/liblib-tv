@@ -90,7 +90,7 @@ interface FrameosCanvasState {
   organizeNodes: (laid: FrameosNode[]) => void;
   beginResize: (id: string) => void;
   resizeNode: (id: string, w: number, h: number) => void;
-  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch" | "model3d" | "director3d" | "videoEdit", opts?: AddNodeOpts) => void;
+  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch" | "model3d" | "director3d" | "videoEdit", opts?: AddNodeOpts) => string;
   addEdge: (edge: Edge) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
@@ -252,6 +252,9 @@ const initialEdges: Edge[] = [
   },
 ];
 
+// Batch 223: addNode 生成的 id 计数器 (防同毫秒多文件上传 id 冲突)
+let addNodeIdCounter = 0;
+
 // 几个 mock canvas 用于 breadcrumb 切换演示
 const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
   // Batch 164: 演示上下文对齐 2026-09-23 源站 (测试作品/测试项目/画布 1)
@@ -356,7 +359,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     })),
 
   addNode: (type, opts) => {
-    const id = `${type}-${Date.now()}`;
+    // Batch 223: 返回新节点 id (本地上传需随即写入内容); 计数器防同毫秒多文件 id 冲突
+    const id = `${type}-${Date.now()}-${++addNodeIdCounter}`;
     const typeMeta: Record<string, { title: string; w: number; h: number; emoji: string; imageUrl?: string }> = {
       text: { title: "文本", w: 300, h: 200, emoji: "T" },
       image: { title: "图片", w: 300, h: 169, emoji: "🖼", imageUrl: "/images/frameos/node-image-1.png" },
@@ -421,6 +425,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       isAddNodeMenuOpen: false,
       selectedNodeId: id,
     }));
+    return id;
   },
 
   addEdge: (edge) =>
