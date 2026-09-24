@@ -1098,6 +1098,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1374 巡检 | still-broken | 第七百三十一次重测；巡检批次——并行落库 jimeng 638 rotation（20-33 segment 绿 14/14，636/637 追进）+ chore 收编 batch455/456 工件；2 件并行 WIP 保留不动；batch 1376 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1376 巡检 | still-broken | 第七百三十二次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1376） |
 | 2026-09-25 | batch 1381 巡检 | still-broken | 第七百三十三次重测；巡检批次——并行 chore 收编 batch453/455/456 再生成工件（确定性再生成+收编节奏已常态）；3 件 jimeng PNG WIP 保留不动；batch 1383 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1383 巡检 | still-broken | 第七百三十四次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1383） |
 | 2026-09-25 | batch 1283 巡检 | still-broken | 第七百零五次重测；巡检批次——并行 rotation 双连落 jimeng 598（1-19 绿 19/19）+ 599（20-33 绿 14/14）+ frameos 218 文档（合成上传注入不持久留痕，上传流保持未验证）；工作区干净；batch 1285 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1285 巡检 | still-broken | 第七百零六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；1 件 jimeng PNG 并行 WIP 保留不动（batch 1285） |
 | 2026-09-25 | batch 1290 巡检 | still-broken | 第七百零七次重测；巡检批次——并行 rotation 落 jimeng 600/601（segment 34-48、49-64 全绿，602 已规划）+ 重要结论修正 b6388e12（上传流 DataTransfer 注入确实持久化——画布素材 2 份副本，推翻 frameos 218 早前非持久结论）；1 件 jimeng PNG WIP 保留不动；batch 1292 到期执行 78 项全量新鲜运行 |
