@@ -1086,6 +1086,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1327 巡检 | still-broken | 第七百一十八次重测；到期全量维护集新鲜运行首跑 77/78——batch298 drawer:open 单项瞬态（与 batch 1131 同签名），复测 PASS 后 78/78 达成；回写零残留（工作区完全干净）；同轮完成导演台 3D 控制台深度采样（场景树/角色属性/机位面板/FOV/视角切换，48a52996）（batch 1327） |
 | 2026-09-25 | batch 1332 巡检 | still-broken | 第七百一十九次重测；巡检批次——并行落库 jimeng 622 rotation（49-64 segment 绿 14/14）+ 57d63e9a 收编 batch455/456 重建工件；工作区干净；batch 1334 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1339 巡检 | still-broken | 第七百二十一次重测；巡检批次——并行落库 jimeng 623 rotation（65-101 绿 25/25，round sweep complete）；5 件 jimeng PNG WIP 保留不动；batch 1341 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1341 巡检 | still-broken | 第七百二十二次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；本轮截图与库内字节一致零回写；工作区完全干净；探索第四轮素材库子菜单/逐帧拉片节点已入库 915e4a3e（batch 1341） |
 | 2026-09-25 | batch 1283 巡检 | still-broken | 第七百零五次重测；巡检批次——并行 rotation 双连落 jimeng 598（1-19 绿 19/19）+ 599（20-33 绿 14/14）+ frameos 218 文档（合成上传注入不持久留痕，上传流保持未验证）；工作区干净；batch 1285 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1285 巡检 | still-broken | 第七百零六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；1 件 jimeng PNG 并行 WIP 保留不动（batch 1285） |
 | 2026-09-25 | batch 1290 巡检 | still-broken | 第七百零七次重测；巡检批次——并行 rotation 落 jimeng 600/601（segment 34-48、49-64 全绿，602 已规划）+ 重要结论修正 b6388e12（上传流 DataTransfer 注入确实持久化——画布素材 2 份副本，推翻 frameos 218 早前非持久结论）；1 件 jimeng PNG WIP 保留不动；batch 1292 到期执行 78 项全量新鲜运行 |
