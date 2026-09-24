@@ -17,7 +17,7 @@
         "image:toolbar-item-7-裁剪",
         "image:toolbar-item-8-标注",
         "image:toolbar-item-9-宫格切分 ∨",
-        "regression:content-image-prompt-editor",
+        "regression:content-image-no-prompt-editor",
         "empty-image:toolbar-hidden",
         "regression:empty-image-prompt-editor",
         "text:toolbar-opens",
