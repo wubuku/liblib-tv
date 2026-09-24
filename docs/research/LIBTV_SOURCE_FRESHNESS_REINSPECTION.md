@@ -1144,3 +1144,12 @@ batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期�
 - `~/Downloads/S109·镜2.mp4`（1.1M）
 
 2026-09-25 复核：14 项全部在盘核实存在（大小见上）。
+
+2026-09-25 有头浏览器恢复：根因为 playwright 完整版浏览器二进制
+（chromium-1234 Chrome for Testing 151）从未下载（headless 一直走独立
+headless_shell 二进制故未暴露）；经用户提供的代理
+（127.0.0.1:9981）完成下载，playwright 托管有头持久上下文成功启动且
+登录态跨重启保留。源站画布实测采样见
+`docs/research/liblib-source-exploration-2026-09-25/NOTES.md`
+（添加节点菜单全目录、导演台节点卡片、图片模型目录、缩放/撤销行为；
+仅免费链路，未触发真实生成）。
