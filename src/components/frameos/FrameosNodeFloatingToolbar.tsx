@@ -19,7 +19,9 @@ interface ToolbarAction {
   onClick?: () => void;
 }
 
-function getActionsForNode(node: { type?: string; data?: { reviewFailed?: boolean } } | undefined): ToolbarAction[] {
+function getActionsForNode(
+  node: { type?: string; data?: { reviewFailed?: boolean; imageUrl?: string } } | undefined
+): ToolbarAction[] {
   if (!node) return [];
   switch (node.type) {
     case "text":
@@ -29,13 +31,21 @@ function getActionsForNode(node: { type?: string; data?: { reviewFailed?: boolea
         { label: "", aria: "下载" },
       ];
     case "image":
+      // 2026-09-24 源站实测: 有内容的图片节点选中显示富工具条
+      // (⛶全屏 / 下载 / ⭐收藏 / 超清 / 720全景 / 打光 / 改图 / 裁剪 / 标注 / 宫格切分∨);
+      // 空图片节点选中无工具条 (Batch 172 hover/selection 采样)
+      if (!node.data?.imageUrl) return [];
       return [
+        { label: "", aria: "全屏查看" },
         { label: "", aria: "下载" },
         { label: "", aria: "收藏" },
         { label: "超清" },
         { label: "720全景" },
+        { label: "打光" },
         { label: "改图" },
-        { label: "宫格切分" },
+        { label: "裁剪" },
+        { label: "标注" },
+        { label: "宫格切分 ∨" },
       ];
     case "video":
       // 2026-09-23 源站实测: 选中视频节点同样只有 全屏查看/下载 两个 icon 按钮
@@ -78,9 +88,15 @@ export function FrameosNodeFloatingToolbar() {
         return;
       }
       const r = el.getBoundingClientRect();
-      // 视觉宽度根据动作数估算
+      // 视觉宽度按动作逐项估算 (icon ≈40px, 文本项 ≈ 字数*12 + 内边距)
       const actions = getActionsForNode(selectedNode);
-      const w = Math.max(38, actions.length * 76);
+      const w = Math.max(
+        38,
+        actions.reduce(
+          (acc, a) => acc + (a.label ? a.label.length * 12 + 26 : 40) + 4,
+          8
+        )
+      );
       const left = r.left + r.width / 2 - w / 2;
       // frameos.cn 测得 toolbar 高度 38 + 与节点垂直 gap 19 = 节点上方 57px
       const TOOLBAR_HEIGHT = 38;
@@ -101,6 +117,8 @@ export function FrameosNodeFloatingToolbar() {
   if (!selectedNode || !pos) return null;
 
   const actions = getActionsForNode(selectedNode);
+  // 空图片节点等无动作场景不渲染工具条 (源站: 空图片节点选中无工具条)
+  if (actions.length === 0) return null;
   const onDownload = () => {
     const url = (selectedNode.data as { imageUrl?: string }).imageUrl ?? (selectedNode.data as { content?: string }).content;
     if (!url || !url.startsWith("http")) {
@@ -148,9 +166,10 @@ export function FrameosNodeFloatingToolbar() {
         const isFullscreenView = aria === "全屏查看";
         const onClick = isDownload
           ? onDownload
-          : isFullscreenView
+          : isFullscreenView && selectedNode.type !== "image"
           ? () => {
-              // Batch 205: 全屏查看 = 文本内容全屏阅读浮层 (推断实现)
+              // Batch 205: 全屏查看 = 文本内容全屏阅读浮层 (推断实现);
+              // 图片节点的 ⛶ 全屏查看源站行为未细采样, 走 mock 提示
               const content =
                 (selectedNode?.data as { content?: string })?.content ??
                 (selectedNode?.data as { title?: string })?.title ??

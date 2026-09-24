@@ -1,0 +1,36 @@
+{
+  "batch": 220,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:content-image",
+        "image:toolbar-opens",
+        "image:toolbar-ten-buttons",
+        "image:toolbar-item-0-全屏查看",
+        "image:toolbar-item-1-下载",
+        "image:toolbar-item-2-收藏",
+        "image:toolbar-item-3-超清",
+        "image:toolbar-item-4-720全景",
+        "image:toolbar-item-5-打光",
+        "image:toolbar-item-6-改图",
+        "image:toolbar-item-7-裁剪",
+        "image:toolbar-item-8-标注",
+        "image:toolbar-item-9-宫格切分 ∨",
+        "regression:content-image-prompt-editor",
+        "empty-image:toolbar-hidden",
+        "regression:empty-image-prompt-editor",
+        "text:toolbar-opens",
+        "text:toolbar-two-buttons",
+        "text:toolbar-fullscreen-view",
+        "text:toolbar-download",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

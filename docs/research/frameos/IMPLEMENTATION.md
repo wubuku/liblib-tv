@@ -66,11 +66,11 @@ const nodeY = node.position.y * zoom + panY;
 
 ### 2.6 工具栏按钮（floating-toolbar）**按节点类型显示不同内容**
 
-- 文本节点：下载、收藏、超清
-- 视频节点：下载、收藏、超清、改图
-- 图片节点：下载、收藏、超清、720全景、改图、宫格切分
+- 文本节点：全屏查看、下载（2026-09-23 源站实测）
+- 视频节点：全屏查看、下载（2026-09-23 源站实测）
+- 有内容图片节点：全屏查看、下载、收藏、超清、720全景、打光、改图、裁剪、标注、宫格切分∨（2026-09-24 源站实测，Batch 220）；空图片节点不显示工具条
 
-按钮目前是 no-op（console.log），需要接入时改 `FrameosNodeFloatingToolbar.tsx` 里的 `onClick`。
+非下载按钮目前是 no-op（mock alert），需要接入时改 `FrameosNodeFloatingToolbar.tsx` 里的 `onClick`。
 
 ---
 
