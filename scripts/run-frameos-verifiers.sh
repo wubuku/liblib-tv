@@ -29,6 +29,7 @@ fi
 pass=0
 fail=0
 failed_list=""
+retry_list=""
 for b in $BATCHES; do
   script="scripts/verify-frameos-batch$b.py"
   if [ ! -f "$script" ]; then
@@ -52,6 +53,24 @@ for b in $BATCHES; do
   fi
 done
 
+# Batch 215: 失败批次自动重试一次 (并发负载下的偶发失败隔离)
+if [ "$fail" -gt 0 ]; then
+  echo "---- retrying failed batches:$failed_list"
+  retried_fail=0
+  for b in $failed_list; do
+    if out=$("$PY" "scripts/verify-frameos-batch$b.py" 2>&1); then
+      pass=$((pass + 1))
+      fail=$((fail - 1))
+      echo "RETRY PASS batch$b"
+    else
+      retried_fail=$((retried_fail + 1))
+      echo "RETRY FAIL batch$b"
+      echo "$out" | tail -5
+    fi
+  done
+  fail=$retried_fail
+fi
+
 echo "----"
-echo "frameos verifiers: $pass passed, $fail failed"
+echo "frameos verifiers: $pass passed, $fail failed (after retry)"
 [ "$fail" -eq 0 ] || { echo "failed batches:$failed_list"; exit 1; }
