@@ -83,16 +83,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
         check(f"menu:absent:{item}", item not in menu_container)
     check("menu:group-header", "添加节点" in menu_container)
 
-    # 3D模型 → mock 提示 (dialog 自动 dismiss), 不创建节点
+    # 3D模型 → 创建 model3d 节点 (Batch 216 起实现渲染器)
     nodes_pre_click = page.locator(".react-flow__node").count()
     page.get_by_text("3D模型", exact=True).click()
     page.wait_for_timeout(400)
     nodes_post = page.locator(".react-flow__node").count()
     check(
-        "menu:unimplemented-no-node",
-        nodes_post == nodes_pre_click,
-    ) if nodes_post == nodes_pre_click else (_ for _ in ()).throw(
-        AssertionError(f"batch167: nodes {nodes_pre_click}->{nodes_post}")
+        "menu:model3d-creates-node",
+        nodes_post == nodes_pre_click + 1,
     )
 
     # Esc 关闭菜单
@@ -105,12 +103,13 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
 
     # 文本仍可创建 (实现中的类型; 音频/3D 等均 mock)
+    n_before_text = page.locator(".react-flow__node").count()
     open_menu(page)
     page.get_by_text("文本", exact=True).click()
     page.wait_for_timeout(600)
     check(
         "menu:text-creates",
-        page.locator(".react-flow__node").count() == nodes_pre_click + 1,
+        page.locator(".react-flow__node").count() == n_before_text + 1,
     )
     page.keyboard.press("Meta+z")
     page.wait_for_timeout(300)

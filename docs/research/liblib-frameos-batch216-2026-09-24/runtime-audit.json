@@ -1,0 +1,20 @@
+{
+  "batch": 216,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "model3d:created",
+        "model3d:selected",
+        "model3d:box-icon",
+        "undo:removes-model3d",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

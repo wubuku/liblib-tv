@@ -7,6 +7,7 @@ export type FrameosNodeKind =
   | "character"
   | "scene"
   | "audio"
+  | "model3d"
   | "style"
   | "batch";
 

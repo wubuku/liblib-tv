@@ -25,7 +25,7 @@ export interface FrameosNodeShellProps {
   // 是否显示缩放手柄（图片节点有，视频节点没有）
   showResizeHandle?: boolean;
   // 节点类型（用于 className 标记 is-text/is-video/is-image）
-  kind: "text" | "image" | "video" | "audio";
+  kind: "text" | "image" | "video" | "audio" | "model3d";
   width?: number;
   height?: number;
   nodeProps: NodeProps;
