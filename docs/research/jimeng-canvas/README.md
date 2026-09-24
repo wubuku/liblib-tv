@@ -1958,6 +1958,8 @@
   规划 (Batch 591): 20-33 段回归续行。
 - Batch 591 (轮转回归): batch 20-33 段 14/14 PASS (续行)。下一批
   规划 (Batch 592): 34-48 段回归续行。
+- Batch 592 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
+  规划 (Batch 593): 49-64 段回归续行。
   屏幕)，poster 图存在、无 <video> 元素 (与 clone poster 模型一致)；
   标题带资源处理状态行并实时演进:「S83·镜2」+「1 resource: 0 ready,
   1 processing, 0 failed.」→「1 ready, 0 processing, 0 failed.」
