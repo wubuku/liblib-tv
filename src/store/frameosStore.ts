@@ -90,7 +90,7 @@ interface FrameosCanvasState {
   organizeNodes: (laid: FrameosNode[]) => void;
   beginResize: (id: string) => void;
   resizeNode: (id: string, w: number, h: number) => void;
-  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch" | "model3d", opts?: AddNodeOpts) => void;
+  addNode: (type: "text" | "image" | "video" | "character" | "scene" | "audio" | "style" | "batch" | "model3d" | "director3d" | "videoEdit", opts?: AddNodeOpts) => void;
   addEdge: (edge: Edge) => void;
   removeEdge: (id: string) => void;
   removeNode: (id: string) => void;
@@ -367,6 +367,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       style: { title: "风格", w: 200, h: 200, emoji: "🎨" },
       batch: { title: "批量", w: 240, h: 160, emoji: "📦" },
       model3d: { title: "3D模型", w: 300, h: 200, emoji: "🧊" },
+      director3d: { title: "3D导演台", w: 300, h: 200, emoji: "🎛" },
+      videoEdit: { title: "视频剪辑台", w: 300, h: 200, emoji: "🎞" },
     };
     const meta = typeMeta[type] ?? typeMeta.text;
     const count = get().nodes.filter((n) => n.type === type).length + 1;

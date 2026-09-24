@@ -1,0 +1,31 @@
+{
+  "batch": 221,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "director:node-created",
+        "director:kind-class",
+        "director:enter-button",
+        "director:enter-visible",
+        "director:enter-text",
+        "director:click-mock-dialog",
+        "editdesk:kind-class",
+        "editdesk:enter-button",
+        "editdesk:enter-visible",
+        "regression:editdesk-select-toolbar",
+        "editdesk:click-mock-dialog",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": [],
+        "dialogs": [
+          "进入导演台 (mock，目标工作台页未实现)",
+          "进入剪辑台 (mock，目标工作台页未实现)"
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

@@ -24,6 +24,7 @@ import { FrameosImageNode } from "@/components/frameos/nodes/FrameosImageNode";
 import { FrameosVideoNode } from "@/components/frameos/nodes/FrameosVideoNode";
 import { FrameosAudioNode } from "@/components/frameos/nodes/FrameosAudioNode";
 import { Frameos3DModelNode } from "@/components/frameos/nodes/Frameos3DModelNode";
+import { FrameosWorkspaceNode } from "@/components/frameos/nodes/FrameosWorkspaceNode";
 import { FrameosEdge } from "@/components/frameos/FrameosEdge";
 import { FrameosAppHeader } from "@/components/frameos/FrameosAppHeader";
 import { FrameosToolRail } from "@/components/frameos/FrameosToolRail";
@@ -55,6 +56,8 @@ const nodeTypes = {
   video: FrameosVideoNode,
   audio: FrameosAudioNode,
   model3d: Frameos3DModelNode,
+  director3d: FrameosWorkspaceNode,
+  videoEdit: FrameosWorkspaceNode,
 };
 
 const edgeTypes = {

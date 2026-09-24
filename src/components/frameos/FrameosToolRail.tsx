@@ -13,14 +13,15 @@ import { useViewport } from "@xyflow/react";
 
 // 2026-09-23 源站菜单逐字 (SOURCE_OBSERVATIONS §13.2): 添加节点 = 7 类短标签;
 // 角色节点/场景节点/风格节点/批量节点 不在源站菜单中, 已从菜单移除 (类型保留兼容旧数据)
+// Batch 221: 3D导演台/视频剪辑台 节点渲染器已实现, 移除 unimplemented 拦截
 export const NODE_TYPES = [
   { type: "text" as const, title: "文本", desc: "", icon: "T" },
   { type: "image" as const, title: "图片", desc: "", icon: "🖼" },
   { type: "video" as const, title: "视频", desc: "", icon: "🎬" },
   { type: "audio" as const, title: "音频", desc: "", icon: "🎵" },
   { type: "model3d" as const, title: "3D模型", desc: "", icon: "🧊" },
-  { title: "3D导演台", desc: "", icon: "🎛", unimplemented: true },
-  { title: "视频剪辑台", desc: "", icon: "🎞", unimplemented: true },
+  { type: "director3d" as const, title: "3D导演台", desc: "", icon: "🎛" },
+  { type: "videoEdit" as const, title: "视频剪辑台", desc: "", icon: "🎞" },
 ];
 
 interface RailButtonProps {
@@ -212,14 +213,15 @@ export function FrameosToolRail() {
                     title={nt.title}
                     desc={nt.desc}
                     onClick={() => {
-                      if ("unimplemented" in nt && nt.unimplemented) {
-                        window.alert(`${nt.title} 节点 (mock，本原型未实现)`);
-                        return;
-                      }
-                      // minimal fix: unimplemented kinds are intercepted above;
-                      // store signature only accepts the implemented kinds
                       addNode(
-                        nt.type as "text" | "image" | "video" | "audio",
+                        nt.type as
+                          | "text"
+                          | "image"
+                          | "video"
+                          | "audio"
+                          | "model3d"
+                          | "director3d"
+                          | "videoEdit",
                         addNodeOpts,
                       );
                     }}

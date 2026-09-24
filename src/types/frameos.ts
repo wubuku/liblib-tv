@@ -8,6 +8,8 @@ export type FrameosNodeKind =
   | "scene"
   | "audio"
   | "model3d"
+  | "director3d"
+  | "videoEdit"
   | "style"
   | "batch";
 

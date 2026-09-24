@@ -15,21 +15,21 @@ import {
  * FrameOS 空画布状态 (2026-09-23 源站实测, SOURCE_OBSERVATIONS §1.1 / 截图 01):
  * - 画布无节点时居中显示 标题「选择一种方式开始创作」+ 六个 CTA:
  *   文本 / 图片 / 视频 / 音频 / 3D导演台 / 上传文件
- * - 文本/图片/视频/音频 点击即创建对应节点; 3D导演台 在本原型未实现 → mock;
+ * - 文本/图片/视频/音频/3D导演台 点击即创建对应节点 (Batch 221: 导演台渲染器已实现);
  *   上传文件 打开系统文件选择 (行为同左栏 本地上传)
  */
 
 const CTAS: {
   label: string;
   icon: React.ReactNode;
-  type?: "text" | "image" | "video" | "audio";
+  type?: "text" | "image" | "video" | "audio" | "director3d";
   mock?: boolean;
 }[] = [
   { label: "文本", icon: <TextNodeIcon size={16} />, type: "text" },
   { label: "图片", icon: <ImageNodeIcon size={16} />, type: "image" },
   { label: "视频", icon: <FilmNodeIcon size={16} />, type: "video" },
   { label: "音频", icon: <AudioIcon size={16} />, type: "audio" },
-  { label: "3D导演台", icon: <LayoutGridIcon size={16} />, mock: true },
+  { label: "3D导演台", icon: <LayoutGridIcon size={16} />, type: "director3d" },
   { label: "上传文件", icon: <UploadCloudIcon size={16} />, mock: true },
 ];
 
