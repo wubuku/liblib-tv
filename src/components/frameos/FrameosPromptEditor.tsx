@@ -40,7 +40,13 @@ export function FrameosPromptEditor() {
   const sel = selectedNodeId ? nodes.find((n) => n.id === selectedNodeId) : undefined;
 
   useEffect(() => {
-    if (!selectedNodeId || !sel || sel.type === "text") {
+    if (
+      !selectedNodeId ||
+      !sel ||
+      sel.type === "text" ||
+      // Batch 222: 内容音频节点无面板 (源站实测), 空音频保留音频面板
+      (sel.type === "audio" && !!sel.data.audioUrl)
+    ) {
       // 无选中/文本节点时组件返回 null, 陈旧 pos 无需清理 (避免 effect 内同步 setState)
       return undefined;
     }
@@ -72,7 +78,14 @@ export function FrameosPromptEditor() {
     return () => cancelAnimationFrame(raf);
   }, [selectedNodeId, sel]);
 
-  if (!selectedNodeId || !sel || sel.type === "text") return null;
+  if (
+    !selectedNodeId ||
+    !sel ||
+    sel.type === "text" ||
+    // Batch 222: 内容音频节点无面板 (源站实测)
+    (sel.type === "audio" && !!sel.data.audioUrl)
+  )
+    return null;
 
   // Batch 213: 音频节点专属面板 (源站采样: 参考 按钮 + 描述音乐/配音/音效
   // 占位 + BGM S6 模型 + 参数 下拉 + 积分 100 + ↑ 生成按钮)

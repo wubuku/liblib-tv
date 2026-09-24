@@ -1,0 +1,34 @@
+{
+  "batch": 222,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:audio-created",
+        "empty:prompt-panel-opens",
+        "inject:audio-url-set",
+        "content:audio-wrap",
+        "content:visual-icon",
+        "content:player-row",
+        "content:play-button",
+        "content:current-time",
+        "content:duration-label",
+        "content:seek-slider",
+        "content:replace-button",
+        "content:left-handle-gone",
+        "content:right-handle-kept",
+        "selected:toolbar-opens",
+        "selected:toolbar-two-buttons",
+        "selected:download",
+        "selected:favorite",
+        "selected:no-prompt-panel",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

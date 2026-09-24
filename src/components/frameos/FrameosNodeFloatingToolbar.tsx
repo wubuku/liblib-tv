@@ -20,7 +20,7 @@ interface ToolbarAction {
 }
 
 function getActionsForNode(
-  node: { type?: string; data?: { reviewFailed?: boolean; imageUrl?: string } } | undefined
+  node: { type?: string; data?: { reviewFailed?: boolean; imageUrl?: string; audioUrl?: string } } | undefined
 ): ToolbarAction[] {
   if (!node) return [];
   switch (node.type) {
@@ -52,6 +52,14 @@ function getActionsForNode(
       return [
         { label: "", aria: "全屏查看" },
         { label: "", aria: "下载" },
+      ];
+    case "audio":
+      // 2026-09-25 源站实测 (Batch 222): 内容音频节点工具条 = 下载/收藏 两个
+      // icon 按钮 (无全屏查看); 空音频节点同 default
+      if (!node.data?.audioUrl) return [{ label: "", aria: "下载" }];
+      return [
+        { label: "", aria: "下载" },
+        { label: "", aria: "收藏" },
       ];
     default:
       return [{ label: "", aria: "下载" }];
