@@ -2222,6 +2222,20 @@
   docs/design-references/jimeng/。下一批规划 (Batch 687):
   空视频节点面板漂移核对——对照 clone 现行面板补齐 16:9·720P/
   全能参考/4s 契约; 引用参考按钮通路再试。
+- Batch 687 (漂移核对 + 引用参考再试): 漂移核对结论=零漂移——
+  Batch 686 源站实测 aria 标签与 clone JimengGenPanel 逐字一致
+  (视频尺寸选项: 16:9 · 720P · 1, Standard-only model / 生成模式:
+  全能参考 / 选择视频生成时长: 4s / 引用参考 / 生成), 批 42/403
+  SOURCE_FACT 对 2026-09-26 线上源站仍现行。引用参考通路破解:
+  点击不开模态, 而是切换行内参考条——展开 主体/图片/视频/音频
+  四类别标签 + 添加参考钮 + 展开视频生成器入口 (批 403 的单
+  图标钮系简化建模, 展开条为新增复刻项); 标签内容因画布无图片
+  节点而空, 深采存疑。截图 4 张 (ref-strip-tabs / ref-tab-img /
+  ref-collapsed / baseline-clean-2026-09-26) 入
+  docs/design-references/jimeng/。探针误建的空音频节点已删,
+  恢复 2 节点基线并已保存。下一批规划 (Batch 688): 复刻引用
+  参考展开条——JimengGenPanel 增 主体/图片/视频/音频 标签 +
+  添加参考图标钮 (SOURCE_FACT), 配套验证器断言。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批
