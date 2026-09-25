@@ -49,6 +49,7 @@ import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
 import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFullscreenText } from "@/components/frameos/FrameosFullscreenText";
 import { FrameosImageLightbox } from "@/components/frameos/FrameosImageLightbox";
+import { FrameosGroupToolbar } from "@/components/frameos/FrameosGroupToolbar";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -91,13 +92,21 @@ function FrameosCanvasInner() {
     (changes: NodeChange[]) => {
       isLocalChange.current = true;
       const updated = applyNodeChanges(changes, nodes) as typeof nodes;
+      // Batch 229: 框选等多选 select 变更直接生效, 并把 selectedNodeId 同步为
+      // 最后一个选中节点 (无选中则清空); 其余变更维持单选重应用逻辑
+      if (changes.some((c) => c.type === "select")) {
+        const lastSelected = [...updated].reverse().find((n) => n.selected);
+        setNodes(updated);
+        selectNode(lastSelected?.id ?? null);
+        return;
+      }
       // 重新应用 store 的 selected 状态 (xyflow 的 applyNodeChanges 会清掉 selected)
       const selectedId = useFrameosStore.getState().selectedNodeId;
       setNodes(
         updated.map((n) => (n.id === selectedId ? { ...n, selected: true } : n))
       );
     },
-    [nodes, setNodes]
+    [nodes, setNodes, selectNode]
   );
 
   const onEdgesChange = useCallback(
@@ -698,6 +707,7 @@ function FrameosCanvasInner() {
       {/* 全屏文本查看浮层 (Batch 205) */}
       <FrameosFullscreenText />
       <FrameosImageLightbox />
+      <FrameosGroupToolbar />
 
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}

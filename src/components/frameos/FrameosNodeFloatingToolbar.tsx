@@ -115,6 +115,14 @@ export function FrameosNodeFloatingToolbar() {
     }
     let raf = 0;
     const tick = () => {
+      // Batch 229: 多选 (框选) 时单节点工具条隐藏, 由 FrameosGroupToolbar 接管
+      const multiSelected =
+        document.querySelectorAll(".react-flow__node.selected").length > 1;
+      if (multiSelected) {
+        setPos((prev) => (prev === null ? prev : null));
+        raf = requestAnimationFrame(tick);
+        return;
+      }
       const el = document.querySelector(
         `.react-flow__node[data-id="${CSS.escape(selectedNodeId)}"]`
       );
