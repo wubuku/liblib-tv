@@ -59,42 +59,27 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
-    # 找到画布内两个节点的包围区域做框选 (起点取节点群上方的空白 pane 区,
-    # 避开顶部栏与节点本体)
+    # 框选 image-1 + image-2 两个节点 (包围盒较小, 留出框外空白供后续点击)
     boxes = page.evaluate(
         """(() => {
-          const nodes = [...document.querySelectorAll('.react-flow__node')].map((n) => n.getBoundingClientRect());
-          const minX = Math.min(...nodes.map((r) => r.left)) - 30;
-          const minY = Math.min(...nodes.map((r) => r.top)) - 30;
-          const maxX = Math.max(...nodes.map((r) => r.right)) + 30;
-          const maxY = Math.max(...nodes.map((r) => r.bottom)) + 30;
+          const a = document.querySelector('.react-flow__node[data-id=\\'image-1\\']')?.getBoundingClientRect();
+          const b = document.querySelector('.react-flow__node[data-id=\\'image-2\\']')?.getBoundingClientRect();
+          const targets = [a, b].filter(Boolean);
+          if (targets.length < 2) {
+            const all = [...document.querySelectorAll('.react-flow__node')].map((n) => n.getBoundingClientRect()).slice(0, 2);
+            targets.push(...all);
+          }
+          const minX = Math.min(...targets.map((r) => r.left)) - 15;
+          const minY = Math.min(...targets.map((r) => r.top)) - 15;
+          const maxX = Math.max(...targets.map((r) => r.right)) + 15;
+          const maxY = Math.max(...targets.map((r) => r.bottom)) + 15;
           return {
-            start: { x: Math.max(200, minX), y: Math.max(120, minY) },
-            end: { x: Math.min(1400, maxX), y: Math.min(860, maxY) },
+            start: { x: minX, y: minY },
+            end: { x: maxX, y: maxY },
+            blank: { x: Math.max(20, minX - 120), y: minY + 40 },
           };
         })()"""
     )
-    # 确保起点是空白 pane (不在节点/小地图等浮层上), 遍历候选点
-    adjusted = page.evaluate(
-        """((pos) => {
-          const cands = [
-            pos,
-            { x: 320, y: 860 },
-            { x: 150, y: 400 },
-            { x: 1050, y: 130 },
-            { x: 480, y: 130 },
-          ];
-          for (const c of cands) {
-            const el = document.elementFromPoint(c.x, c.y);
-            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('[class*=minimap]') && !el?.closest('button')) {
-              return c;
-            }
-          }
-          return pos;
-        })""",
-        boxes["start"],
-    )
-    boxes["start"] = adjusted
 
     # 1) 框选 → 多选 + 成组工具条
     page.mouse.move(boxes["start"]["x"], boxes["start"]["y"])
@@ -126,16 +111,18 @@ def run_desktop(page: Page) -> dict[str, Any]:
         or not page.locator(".frameos-floating-toolbar-new").first.is_visible(),
     )
 
-    # 3) 点空白 pane (选区外) → 清除多选, 成组工具条消失
+    # 3) 点空白 pane (选区包围盒外) → 清除多选, 成组工具条消失
     blank = page.evaluate(
-        """(() => {
-          const cands = [{ x: 150, y: 400 }, { x: 480, y: 130 }, { x: 1050, y: 130 }, { x: 320, y: 860 }];
+        """((cand) => {
+          const rect = document.querySelector('.react-flow__nodesselection-rect')?.getBoundingClientRect();
+          const cands = [cand, { x: 150, y: 400 }, { x: 480, y: 130 }, { x: 1050, y: 130 }, { x: 320, y: 860 }];
           for (const c of cands) {
             const el = document.elementFromPoint(c.x, c.y);
-            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('[class*=minimap]')) return c;
+            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('.react-flow__nodesselection-rect') && !el?.closest('[class*=minimap]')) return c;
           }
-          return { x: 150, y: 400 };
-        })()"""
+          return cand;
+        })""",
+        boxes["blank"],
     )
     page.mouse.click(blank["x"], blank["y"])
     page.wait_for_timeout(500)
