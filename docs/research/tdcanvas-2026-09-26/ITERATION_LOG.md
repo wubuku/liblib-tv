@@ -139,6 +139,24 @@
 2. **§3 图片/音频内容区收尾核验 10/10**：`ImageNodeContent`（含 batch 根分支）、`BatchFrame` 包裹、`EmptyImageContent` 空态上传、batch 根独立空态、`AudioNodeContent`、`ImageContent` 主图组件、批量 props 类型、批量数量按钮、按钮事件 stopPropagation、历史面板版本缩略。
 3. **抽检台账（累计）**：351 + 10 = **361 处行号/路径引用，十轮，5 处问题均已修正**；另 4 处 UPSTREAM §4 块锚点、全包 § / 卡号 / 计数三项校验已固化为脚本可随时复跑。
 
+## v14 — 2026-09-26（REPORT 最终一致性复核）
+
+1. **两项校验复跑全绿**：`scripts/check-tdcanvas-research.py`（§ 引用 / 卡号 / 矩阵 / 计数）与 `scripts/verify-docs.py`（1057 文件 / 4631 链接）。
+2. **发现并修正 REPORT.md 两处 v2 之前旧口径**（归属审计完成后未回写）：
+   - §6 证据边界「未与上游 diff…归属只是未证实的推断」→ 改为「上游归属已完成 diff 审计」，并给出继承/原创/双向演化的结论要点与审计文档指针；
+   - §7.1 建议「clone 上游为 submodule 做 diff 审计」→ 该动作已完成，改为「上游独立立项」建议（与 ITERATION_LOG 待决队列一致）。
+3. 复核其余 REPORT 断言与包内状态一致（§2 架构定性、§3 输入语义分歧、§4 机制清单与矩阵行对应、§5 反面教材与 REJECT 行对应、§7.2/7.3 卡号引用于 v10 已修正）。
+4. 待用户输入项保持标注：① 上游 infinite-canvas 独立立项；② 运行时审计授权。
+
+## v15 — 2026-09-26（第十轮：残余引用增量核验 + 队列复核）
+
+1. **双校验复跑全绿**（自检脚本 + verify-docs 1057 文件 / 4631 链接）。
+2. **残余引用核验 46/46 命中，零漂移**：
+   - §1/§2（16 处）：`CanvasNodeData`/`CanvasNodePort` 类型、`initialViewport {0,0,1}` 与 create/import 引用（:37/:84/:103）、`uploadImage/uploadMediaFile`、`useThemeStore` persist、`syncDesktopWindowTheme`、`importLegacyCachedMedia`、viewport useState（:248）、`screenToCanvas`（:493）、初始居中（:481）、`CANVAS_GRID_STEP=16` 与状态镜像（:149-153）、`snapToGrid` 默认关（:266）、辅助线视口反算。
+   - §3-§6（30 处）：捕获阶段选中（:1325）、duplicate 接线（:3918）、`handleResumeAitudou`（:2257）、`canvasImageOperationSource`（:4125）、右键菜单视口 clamp、图片操作源 blob 化注释、`requestAitudou` apiKey、`extractAitudouOutputs`、`transformAngleDataUrl`（遗留）/`upscaleDataUrl`、journal key 与清除、agent token 校验（http:526）、`activateClient`/`resolveResult`（session:314/371）、中文工具描述表（schemas:120）、claude JSON Lines 管道、workspace 初始化、`setAgentCanvasContext`（bridge:92）、插件 persist（:41）、Comfy 媒体上传（execution:102）、`inspectInputs`/`isRecommendedCanvasInput`、`find_available_port`/`detect_environment_at`、media_cache 临时文件/重命名提交/旧迁移字节校验、lib.rs 闪屏揭示与 4s/10s 兜底。
+3. **ITERATION_LOG 队列复核**：剩余两项（上游独立立项 / 运行时审计授权）均为用户输入门控，保持待决标注；其余可自主推进项已全部消化。
+4. **抽检台账（累计）**：361 + 46 = **407 处行号/路径引用，十一轮，5 处问题均已修正**；三项固化校验（自检脚本）+ verify-docs 双绿。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
@@ -153,3 +171,5 @@
 - 2026-09-26 v10：三方结论一致性复核（修正 REPORT 卡号错位 TD-03/06/08 → TD-03/TD-15/TD-06、更新 CATALOG 过时台账）+ 低频引用核验 24/24（行号累计 253 处）。
 - 2026-09-26 v11：README 锚点表同步（上游行「归属 diff 待做」→「已完成」）+ 第七/八轮 §3/§8 低频引用核验 53/53 零漂移（行号累计 306 处）。
 - 2026-09-26 v12：第九轮 §4/§5/§6 剩余引用核验 45/45（1 处路径归属修正：agent-event-formatters 实为 components/agent/ 而非 lib/agent/）+ UPSTREAM §4 四个块锚点复核一致（行号累计 355 处）。
+- 2026-09-26 v14：REPORT 最终一致性复核——修正 §6 归属未证实旧表述与 §7.1 已完成建议（均同步至 UPSTREAM_DIFF_AUDIT 完成态）；两项校验复跑全绿。
+- 2026-09-26 v15：残余引用增量核验 46/46 零漂移（§1/§2 坐标与存储 16 处 + §3-§6 收尾 30 处；行号累计 407 处）；ITERATION_LOG 队列复核——两项均属用户输入门控，保持待决标注。

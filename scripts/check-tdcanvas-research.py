@@ -111,6 +111,22 @@ def main() -> int:
     if actual_cards != EXPECTED_CARDS:
         problems.append(f"实际模式卡数 {actual_cards} != 声明 {EXPECTED_CARDS}")
 
+    # 4. INTERACTION_CATALOG ↔ ADOPTION 对齐
+    cat = read("INTERACTION_CATALOG.md")
+    adapt_marks = cat.count("候选 ADAPT")
+    summary_adapt = re.search(r"- `ADAPT`（候选[^）]*）：(.+)$", summary, re.M)
+    adapt_ids = re.findall(r"#(\d+)", summary_adapt.group(1)) if summary_adapt else []
+    if adapt_marks != len(adapt_ids):
+        problems.append(
+            f"INTERACTION_CATALOG「候选 ADAPT」标记数 {adapt_marks} 与矩阵 ADAPT 行数 {len(adapt_ids)} 不一致"
+        )
+    for sec in ["5.1", "5.2", "5.3", "5.4", "6.1", "6.2", "6.3"]:
+        if f"UPSTREAM §{sec}" not in body:
+            problems.append(f"ADOPTION 矩阵缺少对 UPSTREAM §{sec} 的采纳行覆盖")
+    for up in sorted(re.findall(r"^## (UP-\d{2})", pc, re.M)):
+        if f"| {up} |" not in ad and f"UP-{up[-2:]}" not in ad:
+            problems.append(f"上游参考卡 {up} 在 ADOPTION 矩阵中无对应行")
+
     if problems:
         print("TDCanvas 调研包自检：发现问题")
         for p in problems:

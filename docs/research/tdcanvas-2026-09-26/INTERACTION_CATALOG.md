@@ -41,7 +41,7 @@
 | 拖入分组 | 拖到 Group 上 | 中心点包含判定，pad=24 收进并写 groupId；实时高亮 | `canvas-node-geometry.ts:16-47` | 中 |
 | hover 工具条 | hover/唯一选中 | info/retry/存资产/下载/编辑/字号±/上传替换/图片快捷工具（可自定义）/插件注入；节点顶上方定位 | `canvas-node-hover-toolbar.tsx:145-196`；`canvas-node-toolbar-position.ts:3-10` | 高 |
 | 节点信息 | info 按钮 | Modal：ID/类型/尺寸/位置/状态/路径/批量数/提示词/错误/原始 JSON（脱敏） | `canvas-node-hover-toolbar.tsx:274-367` | 中 |
-| 图片历史 | 节点右上历史按钮（≥2 条） | 版本面板；切换回写节点 metadata | `canvas-node.tsx:916-1037`；`canvas-image-history.ts:34-48` | 高 |
+| 图片历史 | 节点右上历史按钮（≥2 条） | 版本面板；切换回写节点 metadata | `canvas-node.tsx:916-1037`；`canvas-image-history.ts:34-48` | 高（候选 ADAPT） |
 | 大图预览 | 双击图片/侧栏 Eye | antd Modal 纯 img contain（无缩放平移） | `project.tsx:3953-3963` | 低 |
 
 ## 3. 连线与引用

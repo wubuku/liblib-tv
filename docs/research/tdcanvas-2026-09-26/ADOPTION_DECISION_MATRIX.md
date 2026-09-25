@@ -26,12 +26,12 @@
 | 18 | 屏幕空间氛围网格/视差 | §1.6 | 低 | 低 | 低 | `DEFER` | 纯视觉可选项；优先级低于 parity backlog |
 | 19 | comfyui-local：工作流 JSON→动态端口宏节点 | §6.3 | 中 | 高相关（FrameOS 生成节点范式） | 低 | `ADOPT_METHOD` | 「外部运行时封装为带动态端口的节点」范式适用于 FrameOS runner 节点；沙化启动（loopback+参数白名单）是安全基线 |
 | 20 | 项目封面数据推导 + viewport 存文档 | §2.6 | 相关（多画布） | 相关 | 低 | `ADOPT_METHOD` | 对照 `VR-017` lifecycle 的两个细节决策点 |
-| 21 | canvas-proxy 本地 CORS 转发方法（上游） | UPSTREAM §5.2/§6.2 | 相关（开发态代理场景） | 低 | 低 | `ADOPT_METHOD` | 借「路径内嵌目标 + 双向头剥离 + SSE 透传 + 身份探测」的最小代理方法；引入需 SSRF/白名单合同（对照 #3） |
-| 22 | Group 资源集合展平语义（上游） | UPSTREAM §5.3 | 相关（引用槽/多选生成） | 中 | 中 | `RESEARCH_ONLY` | 「组=引用打包单位」与 clone 引用语义互补，但需源站「组引用」fixture；须与 `LibTVGraphConnection`/`AutoLink` 合同对齐 |
-| 23 | model-plugin BYOK 脚本层（上游） | UPSTREAM §5.4 | 低（clone 无 BYOK 需求） | 低 | 低 | `RESEARCH_ONLY` | poll/onDelta 运行时抽象可借鉴；主线程 `new Function` + apiKey 裸注入为安全反面，照搬即 #13 同罪 |
-| 24 | prompt-source 开放 JSON 约定（继承） | UPSTREAM §6.1 | 相关（提示词库扩展性） | 低 | 低 | `ADOPT_METHOD` | 「一个 JSON 数组即可挂接自定义提示词源」的契约 + 签名变化刷新/失败回落缓存策略可参照；需先定源信任边界 |
-| 25 | selection/pan 双模式 + 临时工具反转（上游） | UPSTREAM §6.3 | 不适用（语义相反） | 不适用 | 不适用 | `REJECT_TRANSPLANT` | 同 #12：clone 输入权威是 `CANVAS_NAVIGATION.md`+Batch 77 证据，上游形态不构成源站证据 |
-| 26 | 多选浮动工具条成组族（上游） | UPSTREAM §5.1 | 相关（多选交互） | 中 | 中 | `DEFER` | 与 #10 分组同批评估；成组守卫/GC 细节清单可直接进 fixture 模板 |
+| 21 | canvas-proxy 本地 CORS 转发方法（上游） | UPSTREAM §5.2/§6.2（UP-02）| 相关（开发态代理场景） | 低 | 低 | `ADOPT_METHOD` | 借「路径内嵌目标 + 双向头剥离 + SSE 透传 + 身份探测」的最小代理方法；引入需 SSRF/白名单合同（对照 #3） |
+| 22 | Group 资源集合展平语义（上游） | UPSTREAM §5.3（UP-03）| 相关（引用槽/多选生成） | 中 | 中 | `RESEARCH_ONLY` | 「组=引用打包单位」与 clone 引用语义互补，但需源站「组引用」fixture；须与 `LibTVGraphConnection`/`AutoLink` 合同对齐 |
+| 23 | model-plugin BYOK 脚本层（上游） | UPSTREAM §5.4（UP-04）| 低（clone 无 BYOK 需求） | 低 | 低 | `RESEARCH_ONLY` | poll/onDelta 运行时抽象可借鉴；主线程 `new Function` + apiKey 裸注入为安全反面，照搬即 #13 同罪 |
+| 24 | prompt-source 开放 JSON 约定（继承） | UPSTREAM §6.1（UP-05）| 相关（提示词库扩展性） | 低 | 低 | `ADOPT_METHOD` | 「一个 JSON 数组即可挂接自定义提示词源」的契约 + 签名变化刷新/失败回落缓存策略可参照；需先定源信任边界 |
+| 25 | selection/pan 双模式 + 临时工具反转（上游） | UPSTREAM §6.3（UP-06）| 不适用（语义相反） | 不适用 | 不适用 | `REJECT_TRANSPLANT` | 同 #12：clone 输入权威是 `CANVAS_NAVIGATION.md`+Batch 77 证据，上游形态不构成源站证据 |
+| 26 | 多选浮动工具条成组族（上游） | UPSTREAM §5.1（UP-01）| 相关（多选交互） | 中 | 中 | `DEFER` | 与 #10 分组同批评估；成组守卫/GC 细节清单可直接进 fixture 模板 |
 
 ## 汇总
 

@@ -54,11 +54,11 @@ TDCanvas 是「**零画布库依赖的手写 DOM 画布 + 本地优先（local-f
 ## 6. 证据边界
 
 - 本文全部为**静态源码阅读**结论（锁定 `16b3127`），未运行应用、未采样 DOM/网络；手感类断言（动画/命中半径）未经实机复核。
-- **未与上游 `basketikun/infinite-canvas` diff**：上游约 7k star（官网 canvas.best），本项目从未调研过；TDCanvas 的 canvas-agent、插件系统、画布内核大概率承自上游，Tauri 桌面化/Aitudou 管线/媒体缓存/主题/comfyui-local 大概率为 TDCanvas 新增——该归属判断目前只是**未证实的推断**，如需精确归属应补充上游对照（见 ITERATION_LOG 下一证据队列）。
+- **上游归属已完成 diff 审计**（[UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)，上游基准 `dab19ad`/v0.19.0）：注册表/插件加载器/小地图/Agent 通道/Group/主题承自上游，任务状态机/批量堆叠/图片历史/无线引用/对齐辅助线/氛围层/Aitudou/Tauri 为 TDCanvas 原创；上游比 TDCanvas 更新（两仓双向演化），上游独有机制见审计 §5/§6。
 - 本地工作副本 origin 是 fork（`wubuku/TDCanvas`）；研究基准= upstream 提交 `16b3127`，与 fork 无关。
 
 ## 7. 建议的后续动作（不执行，等待授权）
 
-1. 如需精确区分继承/原创：clone `basketikun/infinite-canvas` 为 submodule 做一次 diff 审计（成本：一次调研批次）。
+1. 上游 `basketikun/infinite-canvas` 独立立项（其 selection 体系其余部分、canvas-proxy 部署形态、prompt-source 生态等值得单独一包；机制级归属已见 UPSTREAM_DIFF_AUDIT §5/§6）。
 2. 若 LibTV 要补「拖线到空白建节点」「几何分组」「图片历史 pinned 引用」任一能力，先按项目协议走 `LIBTV_UIUX_PARITY_BACKLOG` 的 Par 编号与 verifier 流程，模式卡见 PATTERN_CARDS TD-03 / TD-15 / TD-06（pinned 亦见 TD-09）。
 3. FrameOS/Jimeng 如需 Agent 化（无头操作画布），优先评估 TDCanvas 的「快照上报 + SSE 回传」桥接形态而非 MCP 直连（PATTERN_CARDS TD-11）。
