@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { NodeProps } from "@xyflow/react";
+import { useViewport } from "@xyflow/react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import { ImageNodeIcon, Upload2Icon } from "../icons";
 import type { FrameosNode } from "@/types/frameos";
@@ -10,6 +11,11 @@ import { useFrameosStore } from "@/store/frameosStore";
 export function FrameosImageNode(props: NodeProps<FrameosNode>) {
   const { id, data, selected } = props;
   const { title, imageUrl } = data;
+  // Batch 236: 替换按钮随画布缩放 (源站 30px * canvas-zoom 实测)
+  const { zoom } = useViewport();
+  const btnSize = Math.max(14, Math.round(30 * zoom));
+  const iconSize = Math.max(9, Math.round(12 * zoom));
+  const inset = Math.max(3, Math.round(6 * zoom));
   // Batch 204: 内容图片 hover 视觉 (蒙层 + 1.02 缩放, BEHAVIORS 原有采样行为)
   const [hovered, setHovered] = useState(false);
 
@@ -99,8 +105,8 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
           className="card-body-actions"
           style={{
             position: "absolute",
-            top: 6,
-            right: 6,
+            top: inset,
+            right: inset,
             zIndex: 2,
           }}
         >
@@ -123,8 +129,8 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
               input.click();
             }}
             style={{
-              width: 22,
-              height: 22,
+              width: btnSize,
+              height: btnSize,
               borderRadius: 6,
               background: "rgba(0,0,0,0.7)",
               border: "1px solid rgba(255,255,255,0.12)",
@@ -147,7 +153,7 @@ export function FrameosImageNode(props: NodeProps<FrameosNode>) {
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
-            <Upload2Icon size={12} />
+            <Upload2Icon size={iconSize} />
           </button>
         </div>
         ) : null}
