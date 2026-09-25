@@ -1137,6 +1137,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1514 巡检（循环重启） | still-broken | 第七百七十一次重测；用户重新激活循环目标（真实测试资产清单重申——§10.3a 已在档）；巡检批次——并行 checkpoint（d4fe2aa9，frameos 225 记录）已收编；有头浏览器重启（登录态+6 节点画布持久化确认）；工作区净；batch 1516 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1516 巡检 | still-broken | 第七百七十二次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1516） |
 | 2026-09-25 | batch 1521 巡检 | still-broken | 第七百七十三次重测；巡检批次——并行落库 frameos 226（内容感知右键菜单：内容媒体设为资产图/空与非媒体重新生成/双分隔线）+ jimeng 684 full gate（91/91 追认）；工作区净（frameos lightbox 截图 untracked）；batch 1523 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1523 巡检 | still-broken | 第七百七十四次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1523） |
 | 2026-09-25 | batch 1439 巡检 | still-broken | 第七百五十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1439） |
 | 2026-09-25 | batch 1283 巡检 | still-broken | 第七百零五次重测；巡检批次——并行 rotation 双连落 jimeng 598（1-19 绿 19/19）+ 599（20-33 绿 14/14）+ frameos 218 文档（合成上传注入不持久留痕，上传流保持未验证）；工作区干净；batch 1285 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1285 巡检 | still-broken | 第七百零六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，原生 shell 顺序执行约 8 分钟，零失败零瞬态）；12 项 liblib 回写 fixture 显式恢复（零跳过）；1 件 jimeng PNG 并行 WIP 保留不动（batch 1285） |
