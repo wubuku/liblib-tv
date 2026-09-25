@@ -60,5 +60,5 @@ TDCanvas 是「**零画布库依赖的手写 DOM 画布 + 本地优先（local-f
 ## 7. 建议的后续动作（不执行，等待授权）
 
 1. 如需精确区分继承/原创：clone `basketikun/infinite-canvas` 为 submodule 做一次 diff 审计（成本：一次调研批次）。
-2. 若 LibTV 要补「拖线到空白建节点」「几何分组」「图片历史 pinned 引用」任一能力，先按项目协议走 `LIBTV_UIUX_PARITY_BACKLOG` 的 Par 编号与 verifier 流程，模式卡见 PATTERN_CARDS TD-03/06/08。
+2. 若 LibTV 要补「拖线到空白建节点」「几何分组」「图片历史 pinned 引用」任一能力，先按项目协议走 `LIBTV_UIUX_PARITY_BACKLOG` 的 Par 编号与 verifier 流程，模式卡见 PATTERN_CARDS TD-03 / TD-15 / TD-06（pinned 亦见 TD-09）。
 3. FrameOS/Jimeng 如需 Agent 化（无头操作画布），优先评估 TDCanvas 的「快照上报 + SSE 回传」桥接形态而非 MCP 直连（PATTERN_CARDS TD-11）。
