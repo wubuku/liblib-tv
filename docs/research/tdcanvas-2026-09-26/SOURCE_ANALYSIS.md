@@ -361,7 +361,58 @@ port mousedown（`canvas-node.tsx:485/498`）→ `handleConnectStart`（`project
 ## 7. 证据边界与未决问题
 
 - 全部结论来自**静态源码阅读**（锁定 `16b3127`），未做运行时审计（无浏览器 DOM/网络采样）；行为断言（如动画时长、命中半径手感）未经实机复核。
-- **未与上游 `basketikun/infinite-canvas` 做 diff**：哪些机制是上游继承、哪些是 TDCanvas 原创（Tauri 桌面化、Aitudou 管线、媒体缓存、主题、comfyui-local 集成等大概率是新增）未经上游对照证实；上游本身约 7k star、官网 canvas.best，本项目此前**未调研过**该上游。
-- 已发现的死代码/未接线：Aitudou 节点类型（NODE_SPECS 有、未注册）、`importProject`（API 有、无 UI）、mask-edit 对话框（无引用）、`transformAngleDataUrl`（无调用方）。
-- `chatSessions`（画布 AI 助手会话）数据模型已进项目文档，但其面板交互细节（local-agent-panel 之外是否另有轻量助手）未深挖。
+- **未与上游 `basketikun/infinite-canvas` 做 diff** → 已在 v2 完成，见 [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)：机制归属（继承 vs 原创）已建立，且发现上游（v0.19.0）比 TDCanvas（v0.14.0）更新，两仓双向演化。
+- 已发现的死代码/未接线：Aitudou 节点类型（NODE_SPECS 有、未注册）、`importProject`（API 有、无 UI）、mask-edit 对话框（无引用）、`transformAngleDataUrl`（无调用方）、**chatSessions（v2 证实：完整数据链但无任何聊天 UI，见 §8.1）**。
+- ~~`chatSessions` 助手面板未深挖~~ → v2 已覆盖（§8.1）；首页/资产库/提示词库/侧栏/Rust 命令面/i18n/lightbox 已覆盖（§8.2-8.8）。
 - 行号随上游演进而老化；引用前应 `git log -1` 复核 HEAD 是否仍为 `16b3127`。
+
+## 8. v2 补遗：周边表面
+
+### 8.1 chatSessions 画布 AI 助手 = 无 UI 的遗留子系统（v2 关键发现）
+
+- 类型齐备：`CanvasAssistantReference`/`CanvasAssistantImage`/`CanvasAssistantMessage`（role 含 user/assistant/system/tool/error，带 references）/`CanvasAssistantSession`（`types/canvas.ts:205-231`）。
+- 数据链完整：挂在每个项目（`use-canvas-store.ts:17, 34, 79`）；打开项目经 `hydrateAssistantImages` 把 base64 落盘 image-storage（`project.tsx:376-394`）；纳入 undo 历史（`:129-130, 1228-1229`）；删除节点/清空画布参与孤儿图片回收（`:890, 1022, 318-320`）。
+- **但全库无任何聊天 UI 消费它**：不存在会话列表/创建/切换/发送组件；`insertAssistantImage/insertAssistantText`（`project.tsx:3453-3491`）唯一调用方是资产插入 `handleAssetInsert`（`:3494-3520`）。
+- 真实 AI 助手走 Agent 体系（`use-agent-store.ts:5-27`；`local-agent-panel.tsx` SSE + `use-agent-bridge.ts:43-74` applyOps 回写），与 chatSessions 无交集。
+
+### 8.2 首页（`pages/canvas/index.tsx`）
+
+- `?mode=new` 自动建项目、`?mode=recent` 进最近项目、`choose` 透传给 agent 面板；new/recent 渲染 "opening" 过渡（`:30-57`）。
+- 分区：hero（kicker/标题/创建按钮 + 最近项目背景 showcase）+ 最近项目区（多选时批量导出/批量删除，否则「删除全部」；空态）（`:104-197`）+ 删除确认弹窗（`:200`）；指针驱动氛围光 CSS 变量（`:68-91`）。
+- 卡片操作：打开/多选 checkbox/导出/重命名/删除/统计行 nodes+connections/更新时间（`canvas-project-card.tsx:27-105`）。
+- showcase = 纯装饰演示壳（`canvas-home-showcase.tsx:26-150`：轨道流光 SVG、12 粒子、假 prompt/reference 浮窗、带 "live" 徽标的结果卡内嵌真实最近项目缩略；IntersectionObserver 可见时才播动画）。
+- preview = SVG 线框图：前 18 节点归一化到 100×62、连线最多 24 条贝塞尔、image/video 渐变高亮（`canvas-project-preview.tsx:28-84`）。
+
+### 8.3 资产库
+
+- `AssetKind = text|image|video`（`use-asset-store.ts:10`）；API：addAsset/updateAsset/removeAsset（删后触发 cleanup）/replaceAssets/cleanupImages（`:77-100`）；persist `tdcanvas:asset_store`，读取时做 dataUrl→storageKey 迁移（`:41-67`）。
+- 存为资产入口五路：节点 hover 工具栏「加入资产」（`project.tsx:2407-2456`）、侧栏上传、提示词页存文本、Agent 站点工具（`agent-site-tools.ts:155-178`）、资产管理页。
+- 插入画布 `handleAssetInsert`：text→文本节点、video→规格节点、image→`uploadImage`+读元数据+视口中心建图节点（`project.tsx:3494-3520`）。
+- 管理页 `pages/assets/index.tsx`：keyword/kind 过滤、分页、Drawer 表单、批量下载 zip、导入导出（`asset-transfer.ts`，唯一使用 readZip 的地方）。
+
+### 8.4 提示词库
+
+- 源模型：用户自建 JSON 源（name/url），**`DEFAULT_PROMPT_SOURCES = []` 无内置预设**（`prompt-source-presets.ts:23`）；刷新间隔档 [0,30,60,360,1440] 分钟（`use-prompt-source-store.ts:18`）；builtIn 源不可覆盖/删除。
+- 取数：每源 localforage 缓存 `prompt-source:{id}`，TTL 1h，过期或签名变化后台刷新、失败回落旧缓存（`prompts.ts:48-124`）；60s 心跳调度器只刷到期源（`use-prompt-source-scheduler.ts:13-32`）。
+- 画布内入口：节点 prompt 面板书本按钮 → PromptSelectDialog 选词回填（`canvas-prompt-library.tsx:10-30`）；独立页 `pages/prompts/index.tsx` 分类/标签/无限滚动/存为资产。
+
+### 8.5 侧栏 canvas tab（`canvas-side-panel.tsx:157-296`）
+
+- 类型过滤（all/image/video/text/audio/config/group）+ 关键字搜索（title+content+prompt）；单击聚焦、图片 Eye 大图预览、右缘状态点（success/loading/error）；多选模式 + 全选/清空 + 批量导出 `exportCanvasNodes`。
+- 面板宽度指针拖拽 220–480px、持久化 `tdcanvas:side-panel-width`；首次访问默认收起（`tdcanvas:compact-shell-v1`）。
+
+### 8.6 Rust 命令面（`src-tauri/src/lib.rs`，media_cache 之外）
+
+- `frontend_ready` / `splash_animation_complete`：闪屏揭示主窗（4s 动画兜底/10s 强制揭示，`:57-71, 176-190`）。
+- `open_downloads_directory`（平台 explorer/open/xdg-open，`:73-89`）；`open_aitudou_registration`（打开注册页，`:91-107`）；`allow_download_directory`（把自定义下载目录加入 fs scope，`:109-137`）；`cache_remote_media` / `import_legacy_cached_media`。
+- 无剪贴板/自定义更新器命令（updater 用官方插件 + `desktop-updater` feature）；插件注册 http/dialog/fs/process + `tdcanvas_comfyui_local`（`:143-154`）。
+- 前端封装 `desktop-runtime.ts`：`platformFetch` 桌面走 tauri http、`desktopFileUrl`=convertFileSrc（`asset://`）、`readDesktopFileBlob`、`syncDesktopWindowTheme`、`saveBlobToDownloads`（自动防重名 + 自定义下载目录 `tdcanvas:download-directory`）。
+
+### 8.7 i18n
+
+- 仅 zh-CN（默认）与 en-US；`tdcanvas:locale`；顶栏「中/EN」切换（`user-status-actions.tsx:53-57`）；zh-CN 1867 行 / en-US 1909 行，canvas 命名空间 ≈540 key 为最大段（`i18n/index.ts:12-25`）。
+
+### 8.8 图片大图预览
+
+- 双击图片 → antd Modal 纯 `<img>` contain 预览（maxHeight 80vh），**无缩放/平移/对比**（`project.tsx:3953-3963`）。
+- `use-image-editor-viewport`（1–4x、指针锚缩放、Space/中键平移、fit）的真实消费方是 crop/split/mask 三个编辑对话框，非 lightbox。

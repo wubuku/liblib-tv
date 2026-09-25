@@ -122,7 +122,9 @@
 - [`open-canvas-2026-08-26/`](open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态分层、subgraph identity、stale-safe result ingress、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、spatial、media/resource、editor session 和 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
 - [`tdcanvas-2026-09-26/`](tdcanvas-2026-09-26/README.md)：AICoderTudou/TDCanvas（桌面端 AI 无限画布，基于 basketikun/infinite-canvas 二次开发）锁定提交 `16b3127` 的深度源码调研：零画布库手写内核、local-first 持久化与媒体缓存、节点注册表、Aitudou 生成任务状态机、本地 Agent 通道与插件系统。
-- [`tdcanvas-2026-09-26/SOURCE_ANALYSIS.md`](tdcanvas-2026-09-26/SOURCE_ANALYSIS.md)：TDCanvas 模块级源码证据（渲染内核/状态与持久化/节点体系/交互与生成流/Agent/插件与 comfyui-local，全部 file:line 对齐锁定提交）。
+- [`tdcanvas-2026-09-26/SOURCE_ANALYSIS.md`](tdcanvas-2026-09-26/SOURCE_ANALYSIS.md)：TDCanvas 模块级源码证据（渲染内核/状态与持久化/节点体系/交互与生成流/Agent/插件与 comfyui-local + 周边表面补遗，全部 file:line 对齐锁定提交）。
+- [`tdcanvas-2026-09-26/UPSTREAM_DIFF_AUDIT.md`](tdcanvas-2026-09-26/UPSTREAM_DIFF_AUDIT.md)：TDCanvas 相对上游 `basketikun/infinite-canvas` 的机制归属审计（继承/原创/上游独有，机械 diff 证据；两仓双向演化，上游 v0.19.0 更新）。
+- [`tdcanvas-2026-09-26/INTERACTION_CATALOG.md`](tdcanvas-2026-09-26/INTERACTION_CATALOG.md)：TDCanvas 用户可达交互目录（视口手势/节点生命周期/连线引用/生成工作流/周边表面 + 快捷键全表），每项带触发、行为、file:line 与 clone 相关性分级。
 - [`tdcanvas-2026-09-26/PATTERN_CARDS.md`](tdcanvas-2026-09-26/PATTERN_CARDS.md)：15 张 TDCanvas 可迁移模式卡（手写内核、输入语义分歧、几何命中、统一 applyOps 指令集、任务状态机、媒体生命周期等），区分上游事实、机制拆解、clone 启发与验证门槛。
 - [`tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md`](tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md)：TDCanvas 20 项机制对 LibTV/FrameOS/Jimeng 的采纳决策矩阵（方法借鉴/候选改造/仅研究/暂缓/拒绝移植）。
 - [`components/`](components/)：LibTV 组件规格，包括节点、面板、工具条和对话框。

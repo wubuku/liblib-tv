@@ -24,10 +24,12 @@ TDCanvas 是 TDTV 的桌面端 AI 无限画布（Tauri 2 + Vite + React 19 + Ant
 ## Read Order
 
 1. [REPORT.md](REPORT.md)：面向项目决策的完整结论与反面教材。
-2. [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md)：固定版本的模块级源码证据（渲染内核/状态/节点/交互生成/Agent/插件，全部 file:line）。
-3. [PATTERN_CARDS.md](PATTERN_CARDS.md)：15 张可迁移模式卡（TD-01..15），区分上游事实、机制拆解、clone 启发与验证门槛。
-4. [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)：20 项机制到 ADOPT_METHOD / ADAPT / RESEARCH_ONLY / DEFER / REJECT 的决策矩阵。
-5. [ITERATION_LOG.md](ITERATION_LOG.md)：调研包版本史、覆盖面缺口与下一证据队列。
+2. [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md)：固定版本的模块级源码证据（渲染内核/状态/节点/交互生成/Agent/插件 + v2 周边表面补遗，全部 file:line）。
+3. [INTERACTION_CATALOG.md](INTERACTION_CATALOG.md)：用户可达交互目录（触发→行为→证据→clone 相关性）与快捷键全表。
+4. [PATTERN_CARDS.md](PATTERN_CARDS.md)：15 张可迁移模式卡（TD-01..15），区分上游事实、机制拆解、clone 启发与验证门槛。
+5. [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)：与上游 `basketikun/infinite-canvas` 的机制归属审计（继承/原创/上游独有，机械 diff 证据）。
+6. [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)：20 项机制到 ADOPT_METHOD / ADAPT / RESEARCH_ONLY / DEFER / REJECT 的决策矩阵。
+7. [ITERATION_LOG.md](ITERATION_LOG.md)：调研包版本史、覆盖面缺口与下一证据队列。
 
 ## 当前结论摘要
 
@@ -38,4 +40,4 @@ TDCanvas 是 TDTV 的桌面端 AI 无限画布（Tauri 2 + Vite + React 19 + Ant
 - **生成管线**：连线=上游引用语义（@mention 标签、pinned、连线/objects 双模式互斥）；Aitudou 任务 8 相位状态机（partial 部分成功、attention 等参数、本地停止≠远端取消且明示计费、提交即写 journal 刷新恢复、节点级守卫防重复计费）；批量输出两代表（旧管线 batch 堆叠 / 新管线兄弟节点阵列）；图片后处理 crop/split/upscale 本地 Canvas 2D，angle 走 AI，mask-edit 是未接线死代码。
 - **扩展通道**：canvas-agent 独立进程（loopback HTTP 17371 + 随机 token + Origin 白名单；Codex 走 app-server stdio JSON-RPC、Claude 走 CLI stream-json，双入口收敛到 30 个高级工具→8 种 `CanvasAgentOp` 原语）；网页持续上报快照、写操作经 SSE 回传并在网页侧二次确认（协议版本握手=5）。插件=无沙箱 ESM 主页面直执行（SECURITY 自认取舍）+ 宿主能力注入 + **与 Agent 共用 applyOps**；comfyui-local 演示完整闭环（API Format JSON→object_info 推导动态端口→沙化启动 ComfyUI→结果节点回填）。
 - **对本项目的价值排序**：生成任务生命周期与媒体资源生命周期（对照 `VR-007`/`VR-015`/`VR-021`）> 统一画布指令集（Agent/插件共用 applyOps，Director 之外的 Agent 化参考）> 拖线到空白建节点/批量堆叠/图片历史 pinned（候选 ADAPT，需源站 fixture）> 手写内核与输入语义（对照研究，REJECT 移植）。
-- **证据边界**：全部为静态阅读（锁定 `16b3127`）；未与上游 infinite-canvas diff，机制归属（继承 vs 原创）未证实；`chatSessions` 助手面板、首页/资产库/提示词库、Rust 命令面待补（见 ITERATION_LOG 队列）。
+- **证据边界**：全部为静态阅读（锁定 `16b3127`）；上游归属已完成 diff 审计（`UPSTREAM_DIFF_AUDIT.md`：注册表/插件加载器/小地图/Agent 通道/Group/主题继承自 infinite-canvas，任务状态机/批量堆叠/图片历史/无线引用/对齐辅助线/氛围层/Aitudou/Tauri 为 TDCanvas 原创；上游 v0.19.0 比 TDCanvas v0.14.0 更新，两仓双向演化）；`chatSessions` 已定性为**无 UI 的遗留子系统**（数据链全就绪、零聊天 UI，真实助手走 agent 面板）；上游自身（selection-toolbar/canvas-proxy/Group 资源集合）是否独立立项待定（见 ITERATION_LOG v2 队列）。

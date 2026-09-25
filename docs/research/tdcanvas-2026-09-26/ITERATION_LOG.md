@@ -33,6 +33,31 @@
 | Q4 | Rust 命令面盘点 | 附录表 | invoke() 调用点全部映射到 lib.rs command |
 | Q5 | 若上游发新版本：按 UPSTREAM_VERSION_IMPACT 协议（借鉴 open-canvas 包同名片）重审主张 | 版本影响审计 | claims 重核完成 |
 
+## v2 — 2026-09-26（上游归属审计 + 周边表面补遗）
+
+**动作与产出**：
+1. **上游 diff 审计**（ITERATION_LOG v1 Q1 提前完成）：浅克隆 `basketikun/infinite-canvas` main（基准 `dab19ad`，2026-09-23，v0.19.0——**比 TDCanvas v0.14.0 更新**）到 /tmp 做机械对照，落档 [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)。关键修正：node-registry/plugin-loader/小地图逐字节相同（继承）；Agent 通道/Group/主题/i18n/wheel=zoom 承自上游；任务状态机、批量堆叠、图片历史、objectReferences、对齐辅助线、氛围层、Aitudou、Tauri/comfyui 为 TDCanvas 原创；上游独有 `canvas-selection-toolbar`、`canvas-node-reference-bar`（Group 资源集合）、`canvas-proxy`、Space=临时工具（被 TDCanvas 移除）。PATTERN_CARDS 的归属表述以审计表为准。
+2. **周边表面补遗**（v1 Q2/Q3/Q4 完成）：SOURCE_ANALYSIS 新增 §8——chatSessions 证实为**无 UI 遗留子系统**（数据链全就绪、零聊天 UI，真实助手走 agent 面板）；首页/showcase/preview、资产库（五路存为资产入口）、提示词库（无内置预设源、TTL 1h 缓存）、侧栏 canvas tab、Rust 命令面（7 个命令）、i18n（canvas 段 ≈540 key）、图片预览仅为纯 Modal（编辑器视口 hook 服务于三个对话框）。
+
+**结论修订**：REPORT.md §6 的「上游归属未证实」已解决；`chatSessions` 从「待深挖」改为「已定性为遗留子系统」。
+
+**剩余缺口（v3 候选队列）**：
+1. 上游 `infinite-canvas` 自身作为独立研究对象（selection-toolbar 多选浮动工具条、canvas-proxy BYOK 渠道、Group 资源集合、prompt-source OpenAI 兼容层；上游 v0.19.0 可能还有 TDCanvas 没有的新机制）——是否立项等用户决定。
+2. TDCanvas 与上游的 `project.tsx`/`canvas-node.tsx` 逐段 diff（3456/955 行差异的语义分类，当前只做了机制级归属）。
+3. 运行时审计（启动 desktop:dev 或 web dev，采样 DOM/网络/交互手感）——需要用户环境授权。
+
+## v3 — 2026-09-26（引用抽检 + 交互目录）
+
+1. **引用质量抽检**：对包内 12 处跨文件关键引用（wheel handler、Space 禁用、10000×10000 SVG、280px 裁剪、persist 防抖、history `slice(-49)`、端口等分公式、`MAX_CANVAS_IMAGE_HISTORY=24`、`MAX_MEDIA_BYTES` 1GB、phase 枚举、`DEFAULT_PORT=17371`、插件 Blob import）逐一 `sed -n` 比对原文，**12/12 一致**。
+2. **新增 [INTERACTION_CATALOG.md](INTERACTION_CATALOG.md)**：6 组交互表（视口手势 10 项 / 节点生命周期 18 项 / 连线与引用 7 项 / 生成工作流 12 项 / 周边表面 9 项）+ 键盘快捷键全表，每项带触发→行为→file:line→clone 相关性分级。
+
+**剩余缺口（v4 候选队列）**：
+1. 上游 `infinite-canvas` 自身作为独立研究对象（selection-toolbar 多选浮动工具条、canvas-proxy BYOK 渠道、Group 资源集合、prompt-source OpenAI 兼容层；上游 v0.19.0 可能还有 TDCanvas 没有的新机制）——是否立项等用户决定。
+2. TDCanvas 与上游的 `project.tsx`/`canvas-node.tsx` 逐段 diff（3456/955 行差异的语义分类，当前只做了机制级归属）。
+3. 运行时审计（启动 desktop:dev 或 web dev，采样 DOM/网络/交互手感）——需要用户环境授权。
+
 ## 维护记录
 
-- 2026-09-26 v1：首轮落档（本条）。
+- 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
+- 2026-09-26 v2：上游归属审计（UPSTREAM_DIFF_AUDIT.md）+ 周边表面补遗（SOURCE_ANALYSIS §8）+ 结论修订。
+- 2026-09-26 v3：引用抽检 12/12 通过 + INTERACTION_CATALOG.md（56 项交互 + 快捷键全表）。
