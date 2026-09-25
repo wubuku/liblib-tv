@@ -1,0 +1,19 @@
+{
+  "batch": 237,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "zoom100:title-approx-12",
+        "zoomout:title-shrinks",
+        "zoomout:title-floor",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
