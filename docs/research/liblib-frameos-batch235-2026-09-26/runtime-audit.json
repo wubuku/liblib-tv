@@ -1,0 +1,22 @@
+{
+  "batch": 235,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "create:3D导演台",
+        "create:视频剪辑台",
+        "search:opens",
+        "search:director-listed",
+        "search:result-clicked",
+        "search:director-selected",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
