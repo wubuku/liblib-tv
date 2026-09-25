@@ -5,7 +5,7 @@
       "viewport": "1440x900",
       "checks": [
         "content:copy-image-enabled",
-        "content:regen-disabled",
+        "content:set-asset-row",
         "content:toast",
         "empty:copy-image-disabled",
         "errors:empty"

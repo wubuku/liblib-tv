@@ -59,7 +59,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
-    # 框选 image-1 + image-2 两个节点 (包围盒较小, 留出框外空白供后续点击)
+    # 框选 image-1 + image-2 两个节点 (包围盒较小, 留出框外空白供后续点击);
+    # 起点沿 bbox 顶边扫描, 必须落在纯 pane 上 (不能撞节点/缩放手柄/浮层)
     boxes = page.evaluate(
         """(() => {
           const a = document.querySelector('.react-flow__node[data-id=\\'image-1\\']')?.getBoundingClientRect();
@@ -69,13 +70,24 @@ def run_desktop(page: Page) -> dict[str, Any]:
             const all = [...document.querySelectorAll('.react-flow__node')].map((n) => n.getBoundingClientRect()).slice(0, 2);
             targets.push(...all);
           }
-          const minX = Math.min(...targets.map((r) => r.left)) - 15;
-          const minY = Math.min(...targets.map((r) => r.top)) - 15;
-          const maxX = Math.max(...targets.map((r) => r.right)) + 15;
-          const maxY = Math.max(...targets.map((r) => r.bottom)) + 15;
+          const minX = Math.min(...targets.map((r) => r.left));
+          const minY = Math.min(...targets.map((r) => r.top));
+          const maxX = Math.max(...targets.map((r) => r.right));
+          const maxY = Math.max(...targets.map((r) => r.bottom));
+          // 沿包围盒上方 25px 的水平线扫描, 找到纯 pane 起点
+          let start = null;
+          for (let x = minX - 20; x <= maxX; x += 12) {
+            const y = minY - 25;
+            const el = document.elementFromPoint(x, y);
+            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('.resize-handle') && !el?.closest('[class*=minimap]') && !el?.closest('button')) {
+              start = { x, y };
+              break;
+            }
+          }
+          if (!start) start = { x: 150, y: 400 };
           return {
-            start: { x: minX, y: minY },
-            end: { x: maxX, y: maxY },
+            start,
+            end: { x: maxX + 15, y: maxY + 15 },
             blank: { x: Math.max(20, minX - 120), y: minY + 40 },
           };
         })()"""

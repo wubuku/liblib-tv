@@ -1,0 +1,23 @@
+{
+  "batch": 229,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "marquee:multi-selected",
+        "group:toolbar-opens",
+        "group:btn-grouping",
+        "group:btn-batch-download",
+        "group:floating-toolbar-hidden",
+        "single:group-toolbar-gone",
+        "single:cleared",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
