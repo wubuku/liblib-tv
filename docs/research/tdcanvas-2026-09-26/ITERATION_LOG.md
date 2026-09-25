@@ -118,6 +118,14 @@
 
 **剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
 
+## v11 — 2026-09-26（README 状态一致性 + §3/§8 低频引用核验）
+
+1. **README.md 与包内状态一致性复核**：发现锚点表「上游的上游」行仍是 v2 之前的旧表述（「本项目未调研过，归属 diff 待做」），与 UPSTREAM_DIFF_AUDIT 已完成的事实矛盾——已改为「归属 diff 已完成，见 UPSTREAM_DIFF_AUDIT.md」。其余结论摘要各断言（8 相位、10000×10000、280px、24 条、17371、协议版本=5、chatSessions 无 UI）逐一与当前包内状态核对一致；Read Order 7 项与实际文件一一对应。
+2. **第七/八轮低频引用核验 53 处，零漂移**：
+   - §3 节点体系 25 处：`NODE_DEFAULT_SIZE`/Aitudou 规格遗留、`builtinResource` 与内置注册数组、`FALLBACK_SPEC`、双击分发、磨砂玻璃判定、类型渲染表、缺插件占位、Group 内容、`ImageInfoBar`、resize limits/`fitMediaNodeGeometry`、工厂三函数、`snapNodesIntoGroup`/`findContainingGroupId`、组计数 memo、`createNode` 面板策略、hover 工具条拖拽隐藏、历史切换几何、剪贴板文本节点、快捷工具 storage key、工具自定义 effect。
+   - §8 周边表面 28 处：助手会话水合与清理、删除确认弹窗、showcase IntersectionObserver/轨道 SVG、preview 24 连线上限与布局函数、资产类型与 persist key、提示词源调度/间隔档/刷新回落、prompts 页存资产、侧栏拖宽/三 tab/聚焦/全选、语言切换、编辑器视口 1–4x 与指针锚、top-bar 汉堡/双击改名、DockTip、agent EventSource、journal 提交、`saveNodeAsset`、资产页过滤。
+3. **抽检台账（累计）**：12+9+15+79+31+83+24+53 = **306 处行号引用，八轮，3 处问题（1 漂移/1 悬空 §/1 卡号错位）+ 1 处 README 状态过时，均已修正**。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
@@ -130,3 +138,4 @@
 - 2026-09-26 v8：上游机制回填——PATTERN_CARDS 增上游参考卡 UP-01..06、ADOPTION 矩阵增 #21-26（合计 26 行），包内计数与索引描述同步。
 - 2026-09-26 v9：第六轮抽检 83/83 零漂移 + § 交叉引用校验修正 1 处悬空引用（行号累计 229 处）。
 - 2026-09-26 v10：三方结论一致性复核（修正 REPORT 卡号错位 TD-03/06/08 → TD-03/TD-15/TD-06、更新 CATALOG 过时台账）+ 低频引用核验 24/24（行号累计 253 处）。
+- 2026-09-26 v11：README 锚点表同步（上游行「归属 diff 待做」→「已完成」）+ 第七/八轮 §3/§8 低频引用核验 53/53 零漂移（行号累计 306 处）。

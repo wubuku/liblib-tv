@@ -321,7 +321,7 @@ port mousedown（`canvas-node.tsx:485/498`）→ `handleConnectStart`（`project
 3. 协议版本握手：SSE `hello` 事件 `protocolVersion`，两端常量 5，不匹配断开（`session.ts:26`；`local-agent-panel.tsx:71, 361-371`）。
 4. 多标签页：turn 期间绑定发起标签页，按焦点序激活（`session.ts:72-74, 310-319`）。
 5. 事件全集：hello/ping（15s 心跳）/codex_state/tool_call/codex_approval/agent_event/agent_bootstrap/conversation_changed/workspace_changed/chat_message/agent_log/skills_changed；断线重连可重放运行中 turn 快照（上限 240 条，`session.ts:386-433`）。
-6. **写操作二次确认**：`canvas_apply_ops`/`canvas_create_attachment_nodes` 挂起 pendingTool 等用户批准（`agent-event-formatters.ts:493-495`；`local-agent-panel.tsx:782-794`）；Codex 自身审批透传 `codex_approval` 由网页代答；权限模式 request|automatic|full。
+6. **写操作二次确认**：`canvas_apply_ops`/`canvas_create_attachment_nodes` 挂起 pendingTool 等用户批准（`components/agent/agent-event-formatters.ts:493-495`；`local-agent-panel.tsx:782-794`）；Codex 自身审批透传 `codex_approval` 由网页代答；权限模式 request|automatic|full。
 
 ### 5.4 操作指令集（与插件共享）
 

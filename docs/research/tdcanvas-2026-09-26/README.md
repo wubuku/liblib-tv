@@ -12,7 +12,7 @@
 | 锁定提交 | `16b31273633f983cdbd8de05694ec36d471b2650`（2026-09-15） |
 | 版本 | `v0.14.0` |
 | 上游目录 | `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（本地工作副本；**未建 submodule**，与 open-canvas 包协议不同，见 ITERATION_LOG v1） |
-| 上游的上游 | `basketikun/infinite-canvas`（约 7k star，官网 canvas.best；本项目**未调研过**，归属 diff 待做） |
+| 上游的上游 | `basketikun/infinite-canvas`（约 7k star，官网 canvas.best；归属 diff 已完成，见 [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)） |
 | 观察日期 | 2026-09-26 |
 | 证据形态 | 静态源码阅读（未运行、未采样 DOM/网络） |
 | 实施边界 | 研究和报告；等待用户明确授权后才编码 |
