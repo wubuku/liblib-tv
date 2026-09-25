@@ -75,6 +75,14 @@
 
 **剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项（§5 已覆盖其四个独有机制，独立包可聚焦剩余面：selection 体系其余部分、prompt-source 运行时、Docker 部署形态等）；② 运行时审计（需启动用户环境授权）。
 
+## v6 — 2026-09-26（第四轮引用抽检：INTERACTION_CATALOG 全量覆盖）
+
+- **范围**：INTERACTION_CATALOG.md 六张交互表中前三轮未抽检的全部条目 + 快捷键全表（guard `:1737-1739` 与键位分支 `:1744/:1746/:1753/:1759/:1768/:1774/:1780/:1788/:1807`）+ §4 生成管线 12 处（含 `pollAitudouSubmission :567`、`confirmStopAitudouPolling :2353`、`createAitudouOutputNode :4081`、输出签名去重 `:2096`、journal `:71`、反推提示词 `:2462` 等）。
+- **结果**：79/79 命中，**零行号漂移，无需修正**。一处复核确认：`canvas-resource-references.ts:174-190` 的 pinned 语义由 `resolveCanvasObjectReferenceResource` 内 `:176`（`versionMode==="pinned"` 查 imageHistory）实现，原表述准确。
+- **抽检台账（累计）**：v1 期 12 + v2 期 9 + v5 期 15 + v6 期 79 = **115 处，四轮 100% 一致**；INTERACTION_CATALOG 头部已标注抽检状态。
+
+**剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
@@ -82,3 +90,4 @@
 - 2026-09-26 v3：引用抽检 12/12 通过 + INTERACTION_CATALOG.md（56 项交互 + 快捷键全表）。
 - 2026-09-26 v4：diff 语义分类（§4）+ 上游独有机制速览（§5）+ 二轮引用抽检 9/9。
 - 2026-09-26 v5：§5 深化为 §5.1-5.4 逐机制完整分析（四个源文件精读）+ 三轮引用抽检 15/15（累计 36/36）。
+- 2026-09-26 v6：第四轮引用抽检 INTERACTION_CATALOG 全量 79/79 零漂移（累计 115 处），目录头部标注抽检台账。
