@@ -56,7 +56,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
+    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
     # 找到画布内两个节点的包围区域做框选 (起点取节点群上方的空白 pane 区,
