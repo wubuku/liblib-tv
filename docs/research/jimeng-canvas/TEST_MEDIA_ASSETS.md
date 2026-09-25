@@ -19,7 +19,7 @@
 | voice_converted_1779790519790.wav | audio | 0372dc0b6d3811fe | 1155884 | 见上 |
 | separated_vocals_1778861280890.wav | audio | a95d62d5a7dff827 | 2306092 | 见上 |
 | S83·镜2.mp4 | video | 3ae8d33d45acf488 | 809635 | 见上 |
-| S109·镜2.mp4 | video | 28b58d8e2b64d702 | 1155068 | 见上 |
+| S109·镜2.mp4 | video | 28b58d8e2b64d702 | 1155068 | 见上；Batch 685 已上传探索（2026-09-25，节点 node_368n1s9n4r，处理后已删恢复基线） |
 
 ## 使用约定
 

@@ -201,6 +201,20 @@ export function FrameosNodeFloatingToolbar() {
         const isFullscreenView = aria === "全屏查看";
         const onClick = isDownload
           ? onDownload
+          : isFullscreenView && selectedNode.type === "image"
+          ? () => {
+              // Batch 227: 图片 ⛶全屏查看 = 灯箱浮层 (源站 .lightbox-chrome 采样)
+              const imageUrl = (selectedNode?.data as { imageUrl?: string })?.imageUrl;
+              if (!imageUrl) return;
+              window.dispatchEvent(
+                new CustomEvent("frameos:image-lightbox", {
+                  detail: {
+                    title: (selectedNode?.data as { title?: string })?.title ?? "",
+                    imageUrl,
+                  },
+                })
+              );
+            }
           : isFullscreenView && selectedNode.type !== "image"
           ? () => {
               // Batch 205: 全屏查看 = 文本内容全屏阅读浮层 (推断实现);

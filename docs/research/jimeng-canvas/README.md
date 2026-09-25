@@ -2191,6 +2191,19 @@
   此处补记)。本轮 679-683 段次回归 + 本门全绿收口。下一批规划
   (Batch 685): 素材账本剩余项上传探索优先 (S109·镜2.mp4 /
   separated_vocals wav / 8 图; 浏览器若未登录先弹窗请用户登录)。
+- Batch 685 (源站上传探索): S109·镜2.mp4 上传采样完成。上传钮
+  (aria=上传) + file chooser → 建 node_368n1s9n4r (标题=文件名
+  去扩展名, 处理秒级 ready, 自动选中)。选中工具条实测六条目
+  (局部重拍/智能超清/视频编辑/截取帧/视频修剪 + 工具下拉) 与
+  视频播放控件 (Pause/Unmute/浏览器全屏) 并存, 零漂移。工具下拉
+  首次实测采到: 编辑组=补帧/深度动作捕捉, 预设组=提示词反推,
+  与 Batch 527 落地完全一致 (此前 BLOCKED_BY_INTERACTION 悬案
+  转实测确认)。新导航事实: 选中节点 Delete 键无效, Backspace
+  才删除。探索后已删节点恢复 2 节点基线并已保存。截图 4 张
+  (early/toolbar/toolmenu/restored-2026-09-25) 入
+  docs/design-references/jimeng/。下一批规划 (Batch 686):
+  素材账本续行——8 张图片经空节点 上传参考图 通路采样,
+  separated_vocals wav 视音频面板真实手势条件再试。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批

@@ -48,6 +48,7 @@ import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
 import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
 import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFullscreenText } from "@/components/frameos/FrameosFullscreenText";
+import { FrameosImageLightbox } from "@/components/frameos/FrameosImageLightbox";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -692,6 +693,7 @@ function FrameosCanvasInner() {
 
       {/* 全屏文本查看浮层 (Batch 205) */}
       <FrameosFullscreenText />
+      <FrameosImageLightbox />
 
 
       {/* 选中节点时的底部 prompt 编辑面板 (原站: 描述你想要的图像, @引用素材) */}
