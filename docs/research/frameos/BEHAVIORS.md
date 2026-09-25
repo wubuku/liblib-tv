@@ -67,6 +67,7 @@
 | `FrameosNodeEditPanel` | **调试模式** + 节点选中 | 节点右侧 12px（或左侧如右边空间不够） | 节点 ID / X,Y 坐标 / 按类型的参数表单 / 快捷操作（复制/锁定/删除） |
 | `FrameosImageLightbox` (Batch 227 图片 / 230 视频) | 内容图片/视频工具条 ⛶全屏查看 | 全屏浮层（近黑背景） | 图片：居中 contain（可缩放）+ 顶部 [放大/缩小/重置/下载]；视频：真视频源渲染 `<video controls>` 播放器（无缩放钮），封面源渲染封面图；右上 × 关闭；Esc 关闭（Batch 227 源站采样；视频为同族推断） |
 | `FrameosGroupToolbar` (Batch 229) | 框选选中 ≥2 节点 | 选中集合包围盒上方 15px，水平居中 | `.group-toolbar` 形态：[成组 | 批量下载]（高 36）；多选时单节点工具条隐藏；点选区包围盒外空白清除。成组/批量下载为 mock（源站点击效果未采样） |
+| 工具条 下载 (Batch 231) | 点击 | 触发浏览器下载 | 内容节点按 imageUrl/audioUrl 下载（接受 http/blob:/根相对路径，文件名=节点标题）；无可下载源时 alert 提示 |
 
 边界碰撞：所有面板有 `window.innerWidth/Height` 检查，节点靠右时面板左偏，靠下时面板上移。
 

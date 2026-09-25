@@ -163,14 +163,26 @@ export function FrameosNodeFloatingToolbar() {
   // 空图片节点等无动作场景不渲染工具条 (源站: 空图片节点选中无工具条)
   if (actions.length === 0) return null;
   const onDownload = () => {
-    const url = (selectedNode.data as { imageUrl?: string }).imageUrl ?? (selectedNode.data as { content?: string }).content;
-    if (!url || !url.startsWith("http")) {
+    // Batch 231: 音频节点走 audioUrl (源站内容音频 下载 即下载音频文件);
+    // 接受 http(s)/blob:/根相对路径 (素材库资产与上传 blob 均可下载)
+    const data = selectedNode.data as {
+      imageUrl?: string;
+      audioUrl?: string;
+    };
+    const url = data.audioUrl ?? data.imageUrl;
+    const downloadable =
+      !!url &&
+      (url.startsWith("http") ||
+        url.startsWith("blob:") ||
+        url.startsWith("/"));
+    if (!downloadable) {
       window.alert("该节点没有可下载的源文件");
       return;
     }
     const a = document.createElement("a");
     a.href = url;
-    a.download = selectedNode.id;
+    a.download =
+      (selectedNode.data as { title?: string }).title || selectedNode.id;
     a.target = "_blank";
     document.body.appendChild(a);
     a.click();

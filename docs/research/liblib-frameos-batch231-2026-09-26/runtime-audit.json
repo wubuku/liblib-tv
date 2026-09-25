@@ -1,0 +1,19 @@
+{
+  "batch": 231,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "audio:download-fires",
+        "audio:filename-from-title",
+        "image:download-fires",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
