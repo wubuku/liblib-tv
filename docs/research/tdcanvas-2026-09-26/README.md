@@ -31,6 +31,8 @@ TDCanvas 是 TDTV 的桌面端 AI 无限画布（Tauri 2 + Vite + React 19 + Ant
 6. [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)：26 项机制到 ADOPT_METHOD / ADAPT / RESEARCH_ONLY / DEFER / REJECT 的决策矩阵。
 7. [ITERATION_LOG.md](ITERATION_LOG.md)：调研包版本史、覆盖面缺口与下一证据队列。
 
+> 自检：`python3 scripts/check-tdcanvas-research.py`（只读）——校验 § 交叉引用、TD/UP 卡号解析、ADOPTION 矩阵行号与汇总分桶、模式卡/矩阵计数声明的一致性。
+
 ## 当前结论摘要
 
 - **架构**：无 reactflow/konva/fabric 等画布库；`ViewportTransform {x,y,k}` 单一 transform 层 + DOM div 节点 + 锚定世界原点的固定 10000×10000 SVG 连线层（贝塞尔、流动光效）；280px 外扩视口裁剪虚拟化；小地图纯 div 实现。状态是「薄 store（仅项目文档 CRUD+persist）+ 4242 行页面编排」；undo/redo 是页面级全量快照双栈（180ms 防抖合并、拖拽暂停、上限 50）。

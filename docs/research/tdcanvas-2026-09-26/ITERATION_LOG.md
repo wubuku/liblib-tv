@@ -126,6 +126,19 @@
    - §8 周边表面 28 处：助手会话水合与清理、删除确认弹窗、showcase IntersectionObserver/轨道 SVG、preview 24 连线上限与布局函数、资产类型与 persist key、提示词源调度/间隔档/刷新回落、prompts 页存资产、侧栏拖宽/三 tab/聚焦/全选、语言切换、编辑器视口 1–4x 与指针锚、top-bar 汉堡/双击改名、DockTip、agent EventSource、journal 提交、`saveNodeAsset`、资产页过滤。
 3. **抽检台账（累计）**：12+9+15+79+31+83+24+53 = **306 处行号引用，八轮，3 处问题（1 漂移/1 悬空 §/1 卡号错位）+ 1 处 README 状态过时，均已修正**。
 
+## v12 — 2026-09-26（第九轮：SOURCE_ANALYSIS §4/§5/§6 剩余引用 + UPSTREAM §4 锚点复核）
+
+1. **§4 生成管线剩余 20 处核验全中**：`AitudouOperationDefinition` 契约类型、官方 base/本地代理前缀常量（`aitudou.ts:6-8`）、`resolveAitudouApiBase`、`resolveAitudouChannel`、面板价格加载 effect、`HIDDEN_VIDEO_MODEL_PREFIXES`、`aitudouNativeModels/aitudouNativeParameterDefinitions`、composer 上下文（`canvas-node-generation.ts:58`）、旧版 mention 同步、`labelForKind`、`updateAitudouSubmission`、`finishAitudouResult`、`applyAitudouResultToSource`、`aitudouOutputNodeType`、旧管线并行目标/流式文本、`extractAitudouButtons`、`cropImageNode`、`splitDataUrl`。
+2. **§5/§6 剩余 25 处中 24 处命中、1 处路径归属修正**：协议版本=5 双端常量（local-agent-panel `:71`）、握手不匹配断开（`:361`）、权限模式切换与 `permissionMode` 解析（http.ts:454）、Codex 审批端点（:401）、`spawn app-server --stdio`（codex-client:71）与 `codexBin()` 解析（:894）、config 首启随机 token（config.ts:21）、`CanvasSnapshot` 类型（types.ts:7）、agent-store localStorage 键（:98）、`addAsset` 站点工具、semver 对比、插件管理器警示横幅、`definePlugin` 重载、`collectConnectedValues`、Comfy `/upload/image` 端点——全部一致；**唯一修正**：`isCanvasWriteTool` 的文件路径实为 `web/src/components/agent/agent-event-formatters.ts`（`:493-495` 内容吻合），SOURCE_ANALYSIS §5.3 已更正目录归属。
+3. **UPSTREAM_DIFF_AUDIT §4 语义分类表锚点复核 4/4**：TD `project.tsx:1935`（handleConfigNodeChange，Aitudou 配置区起）、`:3984+`（组件闭合后尾部辅助区）、`canvas-node.tsx:577`（MediaGeneratingContent）、`:890`（批量 UI 区）——与「最大连续块」判读表述一致。
+4. **抽检台账（累计）**：306 + 45 = **351 处行号/路径引用，九轮，4 处问题均已修正**；另有 4 处 UPSTREAM §4 块锚点复核一致（合计 355 处核验）。
+
+## v13 — 2026-09-26（自检脚本固化 + §3 内容区收尾核验）
+
+1. **新增可复跑自检脚本 `scripts/check-tdcanvas-research.py`**（项目 scripts 目录，只读）：合并三项包内校验——① § 交叉引用解析（SOURCE_ANALYSIS 58 标题 / UPSTREAM_AUDIT 13 标题）；② TD/UP 卡号解析（21 张卡）；③ ADOPTION 矩阵行号连续性、逐行决策与汇总分桶一致（ADAPT 按「行」去重统计，#6 双决策单行）、README 计数声明（21 张 / 26 项）。复跑结果：**全部通过**（退出码 0）。
+2. **§3 图片/音频内容区收尾核验 10/10**：`ImageNodeContent`（含 batch 根分支）、`BatchFrame` 包裹、`EmptyImageContent` 空态上传、batch 根独立空态、`AudioNodeContent`、`ImageContent` 主图组件、批量 props 类型、批量数量按钮、按钮事件 stopPropagation、历史面板版本缩略。
+3. **抽检台账（累计）**：351 + 10 = **361 处行号/路径引用，十轮，5 处问题均已修正**；另 4 处 UPSTREAM §4 块锚点、全包 § / 卡号 / 计数三项校验已固化为脚本可随时复跑。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
@@ -139,3 +152,4 @@
 - 2026-09-26 v9：第六轮抽检 83/83 零漂移 + § 交叉引用校验修正 1 处悬空引用（行号累计 229 处）。
 - 2026-09-26 v10：三方结论一致性复核（修正 REPORT 卡号错位 TD-03/06/08 → TD-03/TD-15/TD-06、更新 CATALOG 过时台账）+ 低频引用核验 24/24（行号累计 253 处）。
 - 2026-09-26 v11：README 锚点表同步（上游行「归属 diff 待做」→「已完成」）+ 第七/八轮 §3/§8 低频引用核验 53/53 零漂移（行号累计 306 处）。
+- 2026-09-26 v12：第九轮 §4/§5/§6 剩余引用核验 45/45（1 处路径归属修正：agent-event-formatters 实为 components/agent/ 而非 lib/agent/）+ UPSTREAM §4 四个块锚点复核一致（行号累计 355 处）。
