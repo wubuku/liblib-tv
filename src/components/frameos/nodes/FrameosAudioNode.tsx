@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import type { NodeProps } from "@xyflow/react";
+import { useViewport } from "@xyflow/react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import { AudioIcon, PlayFillIcon, PauseFillIcon, Upload2Icon } from "../icons";
 import type { FrameosNode } from "@/types/frameos";
@@ -23,6 +24,11 @@ function formatTime(seconds: number): string {
 
 export function FrameosAudioNode({ id, data, selected }: NodeProps<FrameosNode>) {
   const { title, audioUrl } = data;
+  // Batch 236: 替换按钮随画布缩放 (源站 30px * canvas-zoom 实测)
+  const { zoom } = useViewport();
+  const btnSize = Math.max(14, Math.round(30 * zoom));
+  const iconSize = Math.max(9, Math.round(12 * zoom));
+  const inset = Math.max(3, Math.round(6 * zoom));
   const [, setIsHovered] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -164,7 +170,7 @@ export function FrameosAudioNode({ id, data, selected }: NodeProps<FrameosNode>)
             className="card-body-actions"
             style={{
               position: "absolute",
-              top: 6,
+              top: inset,
               right: 6,
               zIndex: 2,
             }}
@@ -187,8 +193,8 @@ export function FrameosAudioNode({ id, data, selected }: NodeProps<FrameosNode>)
                 input.click();
               }}
               style={{
-                width: 22,
-                height: 22,
+                width: btnSize,
+                height: btnSize,
                 borderRadius: 6,
                 background: "rgba(0,0,0,0.7)",
                 border: "1px solid rgba(255,255,255,0.12)",
@@ -211,7 +217,7 @@ export function FrameosAudioNode({ id, data, selected }: NodeProps<FrameosNode>)
                 e.currentTarget.style.transform = "scale(1)";
               }}
             >
-              <Upload2Icon size={12} />
+              <Upload2Icon size={iconSize} />
             </button>
           </div>
         )}

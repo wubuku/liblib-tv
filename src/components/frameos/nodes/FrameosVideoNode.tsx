@@ -1,6 +1,7 @@
 "use client";
 
 import type { NodeProps } from "@xyflow/react";
+import { useViewport } from "@xyflow/react";
 import { useEffect, useState } from "react";
 import { FrameosNodeShell } from "./FrameosNodeShell";
 import {
@@ -15,6 +16,11 @@ import { useFrameosStore } from "@/store/frameosStore";
 
 export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>) {
   const { title, imageUrl, reviewFailed } = data;
+  // Batch 236: 替换按钮随画布缩放 (源站 30px * canvas-zoom 实测)
+  const { zoom } = useViewport();
+  const btnSize = Math.max(14, Math.round(30 * zoom));
+  const iconSize = Math.max(9, Math.round(12 * zoom));
+  const inset = Math.max(3, Math.round(6 * zoom));
   const [isPlaying, setIsPlaying] = useState(false);
   const [, setIsHovered] = useState(false); // 占位, 保留 onMouseEnter/Leave 用于未来 hover-only UI
   const [videoError, setVideoError] = useState(false);
@@ -223,7 +229,7 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
           className="card-body-actions"
           style={{
             position: "absolute",
-            bottom: 6,
+            bottom: inset,
             right: 6,
             zIndex: 1,
           }}
@@ -249,8 +255,8 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
               input.click();
             }}
             style={{
-              width: 22,
-              height: 22,
+              width: btnSize,
+              height: btnSize,
               borderRadius: 6,
               background: "rgba(0,0,0,0.7)",
               border: "1px solid rgba(255,255,255,0.12)",
@@ -273,7 +279,7 @@ export function FrameosVideoNode({ id, data, selected }: NodeProps<FrameosNode>)
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
-            <Upload2Icon size={12} />
+            <Upload2Icon size={iconSize} />
           </button>
         </div>
         ) : null}
