@@ -21,7 +21,7 @@
     "returnedNull": true
   },
   "switch_cancels_pending_task": {
-    "sourceNodeId": "video-1790369950188-e49nys",
+    "sourceNodeId": "video-1790373107294-bq68rr",
     "disposition": "canceled_on_switch (unmount cleanup, declared)",
     "ownerCanvasUntouchedAfterSwitchAndReturn": true
   },
