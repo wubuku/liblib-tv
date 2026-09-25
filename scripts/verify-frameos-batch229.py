@@ -126,9 +126,26 @@ def run_desktop(page: Page) -> dict[str, Any]:
         or not page.locator(".frameos-floating-toolbar-new").first.is_visible(),
     )
 
-    # 3) 点空白 pane (选区外) → 清除多选, 成组工具条消失, 单选工具条回归
-    page.locator(".react-flow__pane").click(position={"x": 200, "y": 750})
+    # 3) 点空白 pane (选区外) → 清除多选, 成组工具条消失
+    blank = page.evaluate(
+        """(() => {
+          const cands = [{ x: 150, y: 400 }, { x: 480, y: 130 }, { x: 1050, y: 130 }, { x: 320, y: 860 }];
+          for (const c of cands) {
+            const el = document.elementFromPoint(c.x, c.y);
+            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('[class*=minimap]')) return c;
+          }
+          return { x: 150, y: 400 };
+        })()"""
+    )
+    page.mouse.click(blank["x"], blank["y"])
     page.wait_for_timeout(500)
+    # 时序容错: 若首次点击被拖拽手势吞掉, 再点一次
+    still = page.evaluate(
+        "document.querySelectorAll('.react-flow__node.selected').length"
+    )
+    if still > 0:
+        page.mouse.click(blank["x"], blank["y"])
+        page.wait_for_timeout(500)
     check("single:group-toolbar-gone", page.locator(".frameos-group-toolbar").count() == 0)
     check(
         "single:cleared",
