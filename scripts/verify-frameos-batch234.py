@@ -96,12 +96,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
     group_tb = page.locator(".frameos-group-toolbar")
     check("group:toolbar-opens", group_tb.is_visible())
 
-    # 批量下载 → 两次下载事件
-    with page.expect_download() as dl1:
-        group_tb.locator("button[aria-label='批量下载']").click()
-    with page.expect_download() as dl2:
-        pass
-    check("batch:two-downloads", dl1.value.suggested_filename is not None and dl2.value.suggested_filename is not None)
+    # 批量下载 → 一次点击触发多个下载 (事件监听收集)
+    downloads: list[Any] = []
+    page.on("download", lambda d: downloads.append(d))
+    group_tb.locator("button[aria-label='批量下载']").click()
+    page.wait_for_timeout(1500)
+    check(
+        "batch:two-downloads",
+        len(downloads) == 2
+        and all(d.suggested_filename for d in downloads),
+    )
     check(
         "batch:toast-count",
         page.locator("[class*=toast], [class*=Toast]").first.is_visible(),
