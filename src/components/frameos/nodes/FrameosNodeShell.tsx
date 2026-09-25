@@ -129,8 +129,17 @@ export function FrameosNodeShell({
         position: "relative",
       }}
     >
-      {/* Floating title - 绝对定位到节点顶部上方 — 双击可重命名 */}
-      <div className="node-floating-title" style={{ fontSize: titleFontSize }}>
+      {/* Floating title - 绝对定位到节点顶部上方 — 双击可重命名
+          (Batch 237: 偏移/高/行高/字号整体 × zoom, 源站实测) */}
+      <div
+        className="node-floating-title"
+        style={{
+          top: `${-22 * zoom}px`,
+          height: `${20 * zoom}px`,
+          lineHeight: `${20 * zoom}px`,
+          fontSize: titleFontSize,
+        }}
+      >
         <div className="node-floating-title__left">
           <i className="node-floating-title__icon">{titleIcon}</i>
           {editing ? (
