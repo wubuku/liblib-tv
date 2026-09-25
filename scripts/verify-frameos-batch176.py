@@ -54,7 +54,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
     page.wait_for_timeout(1200)
 
-    # 有内容的图片节点 → 复制图片 可点
+    # 有内容的图片节点 → 复制图片 可点 (Batch 226: 内容菜单中间行改为
+    # 设置为资产图, 重新生成只在空/非媒体节点出现)
     image_node = page.locator(".react-flow__node-image").first
     image_node.click(button="right")
     page.wait_for_timeout(300)
@@ -62,9 +63,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     copy_img = menu.locator("[data-frameos-context-item='复制图片']")
     check("content:copy-image-enabled", copy_img.get_attribute("disabled") is None)
     check(
-        "content:regen-disabled",
-        menu.locator("[data-frameos-context-item='重新生成']").get_attribute("disabled")
-        is not None,
+        "content:set-asset-row",
+        menu.locator("[data-frameos-context-item='设置为资产图']").count() == 1,
     )
     copy_img.click()
     page.wait_for_timeout(300)
