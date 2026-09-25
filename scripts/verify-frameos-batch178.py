@@ -56,7 +56,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     menu = page.locator("[data-frameos-context-menu]")
 
-    # 文本节点: 三行
+    # 文本节点: Batch 226 起四行 (非媒体统一带 重新生成禁用行, 2026-09-25 源站
+    # 3D导演台菜单采样推断)
     page.locator(".react-flow__node-text").first.click(button="right")
     page.wait_for_timeout(300)
     check("text:menu-opens", menu.is_visible())
@@ -66,15 +67,20 @@ def run_desktop(page: Page) -> dict[str, Any]:
         )
         for i in range(menu.locator("[data-frameos-context-item]").count())
     ]
-    check("text:three-rows", len(text_labels) == 3)
+    check("text:four-rows", len(text_labels) == 4)
     check(
         "text:rows-exact",
-        text_labels == ["复制", "创建副本", "删除"],
+        text_labels == ["复制", "创建副本", "重新生成", "删除"],
+    )
+    regen = menu.locator("[data-frameos-context-item='重新生成']")
+    check(
+        "text:regen-disabled",
+        regen.get_attribute("disabled") is not None,
     )
     page.keyboard.press("Escape")
     page.wait_for_timeout(200)
 
-    # 图片节点: 五行 (含两个禁用)
+    # 图片节点 (内容态): 五行 = 复制/复制图片/创建副本/设置为资产图/删除
     image_node = page.locator(".react-flow__node-image").first
     image_node.click(button="right")
     page.wait_for_timeout(300)
@@ -87,7 +93,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("image:five-rows", len(img_labels) == 5)
     check(
         "image:rows-exact",
-        img_labels == ["复制", "复制图片", "创建副本", "重新生成", "删除"],
+        img_labels == ["复制", "复制图片", "创建副本", "设置为资产图", "删除"],
     )
     page.keyboard.press("Escape")
     page.wait_for_timeout(200)

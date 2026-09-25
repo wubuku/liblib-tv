@@ -1,0 +1,27 @@
+{
+  "batch": 226,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "content-image:menu-opens",
+        "content-image:rows",
+        "content-image:set-asset-enabled",
+        "content-image:click-no-error",
+        "content-image:menu-closes",
+        "empty-image:rows",
+        "empty-image:copy-image-disabled",
+        "empty-image:regen-disabled",
+        "director:rows",
+        "director:regen-disabled",
+        "director:delete-danger",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

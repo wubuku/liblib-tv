@@ -56,24 +56,48 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(1200)
     nodes_before = page.locator(".react-flow__node").count()
 
-    # 图片节点右键: 五行, 复制图片/重新生成 禁用且点击无效果
+    # 图片节点右键: Batch 226 起 内容图片菜单 = 复制/复制图片/创建副本/
+    # 设置为资产图/删除 (全部可点); 空图片菜单才有 重新生成(禁用)
     image_node = page.locator(".react-flow__node-image").first
     image_node.click(button="right")
     page.wait_for_timeout(300)
     menu = page.locator("[data-frameos-context-menu]")
     check("node:menu-opens", menu.is_visible())
-    # Batch 176 起: 复制图片 仅在节点无内容时禁用; demo 的 image-1 有内容 → 可点
+    # demo 的 image-1 有内容 → 内容形态
     for item, disabled in [
         ("复制", False),
         ("复制图片", False),
         ("创建副本", False),
-        ("重新生成", True),
+        ("设置为资产图", False),
         ("删除", False),
     ]:
         row = menu.locator(f"[data-frameos-context-item='{item}']")
         check(f"node:item:{item}", row.is_visible())
         check(
             f"node:item:{item}:disabled={str(disabled).lower()}",
+            (row.get_attribute("disabled") is not None) == disabled,
+        )
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(200)
+    # 清空内容 → 空形态: 复制图片/重新生成 禁用且点击无效果
+    page.evaluate(
+        "window.__frameos_store.getState().updateNodeData('image-1', { imageUrl: null })"
+    )
+    page.wait_for_timeout(300)
+    image_node.click(button="right")
+    page.wait_for_timeout(300)
+    menu = page.locator("[data-frameos-context-menu]")
+    for item, disabled in [
+        ("复制", False),
+        ("复制图片", True),
+        ("创建副本", False),
+        ("重新生成", True),
+        ("删除", False),
+    ]:
+        row = menu.locator(f"[data-frameos-context-item='{item}']")
+        check(f"node:empty-item:{item}", row.is_visible())
+        check(
+            f"node:empty-item:{item}:disabled={str(disabled).lower()}",
             (row.get_attribute("disabled") is not None) == disabled,
         )
     edges_before = page.evaluate("window.__frameos_store.getState().edges.length")

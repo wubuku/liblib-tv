@@ -384,6 +384,15 @@ function FrameosCanvasInner() {
       event.preventDefault();
       const n = nodes.find((x) => x.id === node.id);
       if (!n) return;
+      // Batch 226 对齐 2026-09-25 源站: 菜单中间行按内容态区分 —
+      // 有内容的图片/视频 → 设置为资产图; 空媒体/非媒体 → 重新生成(恒禁用);
+      // 中间行两侧各一条分隔线。复制图片仍按内容门控 (Batch 176)。
+      const mediaUrl =
+        (n.data as { imageUrl?: string }).imageUrl ??
+        (n.type === "audio"
+          ? (n.data as { audioUrl?: string }).audioUrl
+          : undefined);
+      const hasContent = !!mediaUrl;
       openContextMenu({
         x: event.clientX,
         y: event.clientY,
@@ -403,14 +412,13 @@ function FrameosCanvasInner() {
               showToast(`已复制「${n.data.title}」`, "success");
             },
           },
-          // Batch 170 对齐 2026-09-23 源站: 图片节点菜单含 复制图片/重新生成;
-          // Batch 176: 复制图片仅在节点有内容时可点 (源站空图片节点上为禁用,
-          // 有图可点为推断——源站只采样过空节点), 重新生成恒禁用
+          // Batch 170 对齐 2026-09-23 源站: 图片节点菜单含 复制图片;
+          // Batch 176: 复制图片仅在节点有内容时可点
           ...(n.type === "image"
             ? [
                 {
                   label: "复制图片",
-                  disabled: !(n.data as { imageUrl?: string }).imageUrl,
+                  disabled: !hasContent,
                   onClick: () => {
                     const url = (n.data as { imageUrl?: string }).imageUrl;
                     if (!url) return;
@@ -438,7 +446,18 @@ function FrameosCanvasInner() {
               showToast(`已创建「${n.data.title}」副本`, "success");
             },
           },
-          ...(n.type === "image" ? [{ label: "重新生成", disabled: true }] : []),
+          { separator: true, label: "" },
+          ...(hasContent
+            ? [
+                {
+                  label: "设置为资产图",
+                  onClick: () => {
+                    // Batch 226: 源站点击效果未采样, mock 提示
+                    showToast("已设置为资产图 (mock)", "success");
+                  },
+                },
+              ]
+            : [{ label: "重新生成", disabled: true }]),
           { separator: true, label: "" },
           {
             label: "删除",
