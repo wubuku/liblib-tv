@@ -1,0 +1,20 @@
+{
+  "batch": 236,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "zoom100:button-approx-30",
+        "zoom75:button-shrinks",
+        "zoom75:button-scales",
+        "zoom75:still-opens-chooser",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

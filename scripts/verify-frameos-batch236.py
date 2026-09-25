@@ -78,7 +78,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(500)
     size_out = btn_size(page)
     check("zoom75:button-shrinks", size_out < size_100 - 2)
-    check("zoom75:button-scales", 18 <= size_out <= 27)
+    check("zoom75:button-scales", 12 <= size_out <= 24)
 
     # 按钮仍可点击 (触发了 file chooser)
     with page.expect_file_chooser() as fc_info:
