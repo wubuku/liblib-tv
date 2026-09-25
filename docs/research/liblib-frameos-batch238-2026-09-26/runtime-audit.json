@@ -1,0 +1,20 @@
+{
+  "batch": 238,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "empty-video:no-toolbar",
+        "empty-video:panel-opens",
+        "empty-video:both-handles",
+        "content-video:toolbar-nine",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
