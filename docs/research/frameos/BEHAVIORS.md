@@ -11,7 +11,8 @@
 | AppHeader (下载桌面端) | click | console.log（mock） |
 | AppHeader (金币/积分) | hover/click | 静态显示（无展开） |
 | TopNavBar "FrameOS" 链接 | click | 跳转到 `/frameos/canvas/demo`（**liblib-tv 主页** 添加的入口） |
-| HistoryDock (撤销/重做) | click | 接入 store 的 history stack；按钮在无可撤销时 disabled |
+| HistoryDock (撤销/重做) | click | 接入 store 的 history stack；按钮在无可撤销时 disabled。Batch 232 起**节点拖动也入栈**（拖动手势开始时快照一次） |
+| 多选批量拖拽 (2026-09-26 源站实测, Batch 232) | 框选后拖动任一选中节点 | 全部选中节点同步移动同一增量；⌘Z 恢复原位（源站实测一致） |
 | CanvasMapDock (画布小地图钉) | click toggle | minimap 显隐（**简化为** `showMinimap` flag） |
 | CanvasMapDock 小地图拖拽 (2026-09-24 源站实测, Batch 179) | 在小地图内拖拽 | 视口随拖拽平移（光标下的世界点成为视口中心）；mini-node 点击仍为选中 + 聚焦 |
 | 指针交互配置 (Batch 191/195 文档对齐) | ReactFlow props | panOnDrag=[1,2]（鼠标中键/右键拖动平移，对应帮助声明）；panOnScroll+zoomOnScroll（滚轮缩放）；multiSelectionKeyCode=Shift/Meta/Control（多选管道已通，工具条未实现） |
