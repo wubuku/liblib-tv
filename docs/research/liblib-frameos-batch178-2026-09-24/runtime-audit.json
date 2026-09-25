@@ -5,8 +5,9 @@
       "viewport": "1440x900",
       "checks": [
         "text:menu-opens",
-        "text:three-rows",
+        "text:four-rows",
         "text:rows-exact",
+        "text:regen-disabled",
         "image:five-rows",
         "image:rows-exact",
         "errors:empty"
