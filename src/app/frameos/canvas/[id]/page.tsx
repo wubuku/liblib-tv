@@ -385,15 +385,15 @@ function FrameosCanvasInner() {
       event.preventDefault();
       const n = nodes.find((x) => x.id === node.id);
       if (!n) return;
-      // Batch 226 对齐 2026-09-25 源站: 菜单中间行按内容态区分 —
-      // 有内容的图片/视频 → 设置为资产图; 空媒体/非媒体 → 重新生成(恒禁用);
-      // 中间行两侧各一条分隔线。复制图片仍按内容门控 (Batch 176)。
-      const mediaUrl =
-        (n.data as { imageUrl?: string }).imageUrl ??
-        (n.type === "audio"
-          ? (n.data as { audioUrl?: string }).audioUrl
-          : undefined);
-      const hasContent = !!mediaUrl;
+      // Batch 226/228 对齐 2026-09-25 源站逐类采样:
+      // - 内容图片: 复制/复制图片/创建副本/(线)/设置为资产图/(线)/删除
+      // - 空图片: 复制/复制图片(禁)/创建副本/(线)/重新生成(禁)/(线)/删除
+      // - 非媒体(文本/导演台等): 复制/创建副本/(线)/重新生成(禁)/(线)/删除
+      // - 视频(内容实测)/音频: 复制/创建副本/(线)/删除 — 无中间行
+      const imageUrl = (n.data as { imageUrl?: string }).imageUrl;
+      const isImage = n.type === "image";
+      const hasMenuMiddleRow = isImage || !["video", "audio"].includes(n.type ?? "");
+      const imageHasContent = !!imageUrl;
       openContextMenu({
         x: event.clientX,
         y: event.clientY,
@@ -419,7 +419,7 @@ function FrameosCanvasInner() {
             ? [
                 {
                   label: "复制图片",
-                  disabled: !hasContent,
+                  disabled: !imageHasContent,
                   onClick: () => {
                     const url = (n.data as { imageUrl?: string }).imageUrl;
                     if (!url) return;
@@ -447,19 +447,23 @@ function FrameosCanvasInner() {
               showToast(`已创建「${n.data.title}」副本`, "success");
             },
           },
-          { separator: true, label: "" },
-          ...(hasContent
+          ...(hasMenuMiddleRow
             ? [
-                {
-                  label: "设置为资产图",
-                  onClick: () => {
-                    // Batch 226: 源站点击效果未采样, mock 提示
-                    showToast("已设置为资产图 (mock)", "success");
-                  },
-                },
+                { separator: true, label: "" },
+                ...(isImage && imageHasContent
+                  ? [
+                      {
+                        label: "设置为资产图",
+                        onClick: () => {
+                          // Batch 226: 源站点击效果未采样, mock 提示
+                          showToast("已设置为资产图 (mock)", "success");
+                        },
+                      },
+                    ]
+                  : [{ label: "重新生成", disabled: true }]),
+                { separator: true, label: "" },
               ]
-            : [{ label: "重新生成", disabled: true }]),
-          { separator: true, label: "" },
+            : [{ separator: true, label: "" }]),
           {
             label: "删除",
             danger: true,

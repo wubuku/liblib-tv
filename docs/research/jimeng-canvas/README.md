@@ -2204,6 +2204,24 @@
   docs/design-references/jimeng/。下一批规划 (Batch 686):
   素材账本续行——8 张图片经空节点 上传参考图 通路采样,
   separated_vocals wav 视音频面板真实手势条件再试。
+- Batch 686 (源站上传探索): 空视频节点面板实测源真相——视频
+  尺寸选项 16:9·720P·1 (Standard-only model)、生成模式「全能
+  参考」、时长 4s、引用参考、生成 (clone 空视频节点面板漂移
+  核对项)。面板 file input 直传 3 图未生成参考缩略, 而是各建
+  独立图片节点 (标题=文件名去扩展名)——「引用参考」应为另路
+  (从既有节点/资产库选取), 待后续采样。多选工具条新证据:
+  智能超清/抠图/编组/布局/下载/Create connected node after
+  selected nodes。左栏「音频」钮直接建空音频节点; 选中面板契约
+  与实现一致 (SeedAudio 1.0 New/全能配音/音色库/12·24 折扣签/
+  添加参考/引用参考)。「添加参考」真实鼠标点击仍不开 chooser
+  ——BLOCKED_BY_INTERACTION 对 CDP 事件成立; 共享 file input
+  直传 wav 建独立音频节点 (时长徽章 00:00:13), 音频上传链路
+  采样完成。删除语义细化: 节点 mouse 点击选中后 Backspace 生效,
+  焦点漂移时 Backspace 空操作。4 素材账本标记已探索, 探索后
+  恢复 2 节点基线并已保存。截图 12 张入
+  docs/design-references/jimeng/。下一批规划 (Batch 687):
+  空视频节点面板漂移核对——对照 clone 现行面板补齐 16:9·720P/
+  全能参考/4s 契约; 引用参考按钮通路再试。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批
