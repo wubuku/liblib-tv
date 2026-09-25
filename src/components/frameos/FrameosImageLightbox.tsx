@@ -4,22 +4,27 @@ import { useEffect, useState } from "react";
 import { CloseIcon, DownloadIcon } from "./icons";
 
 /**
- * FrameOS 图片灯箱 (Batch 227, 源站采样对齐 2026-09-25):
+ * FrameOS 图片/视频灯箱 (Batch 227 图片 / Batch 230 视频扩展, 源站采样对齐):
  * 内容图片工具条 ⛶全屏查看 打开全屏灯箱 `.lightbox-chrome` 形态 —
  * 近黑背景 + 居中 contain 图片 + 顶部中央 [放大 缩小 重置 | 下载] + 右上 × 关闭;
  * Esc 关闭。源站按钮无 aria-label, 克隆补充供测试。
- * 事件: window "frameos:image-lightbox" { title, imageUrl }
+ * Batch 230: 视频节点 ⛶ 打开同族灯箱, 真视频源 (blob:/扩展名) 渲染
+ * <video controls> 播放, 图片封面源渲染封面图。
+ * 事件: window "frameos:image-lightbox" { title, imageUrl, videoUrl? }
  */
 export function FrameosImageLightbox() {
-  const [state, setState] = useState<{ title: string; imageUrl: string } | null>(
-    null
-  );
+  const [state, setState] = useState<{
+    title: string;
+    imageUrl: string;
+    videoUrl?: string;
+  } | null>(null);
   const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
     const open = (e: Event) => {
-      const detail = (e as CustomEvent<{ title: string; imageUrl: string }>)
-        .detail;
+      const detail = (
+        e as CustomEvent<{ title: string; imageUrl: string; videoUrl?: string }>
+      ).detail;
       if (!detail?.imageUrl) return;
       setZoom(1);
       setState(detail);
@@ -41,8 +46,8 @@ export function FrameosImageLightbox() {
 
   const onDownload = () => {
     const a = document.createElement("a");
-    a.href = state.imageUrl;
-    a.download = state.title || "image";
+    a.href = state.videoUrl ?? state.imageUrl;
+    a.download = state.title || "media";
     a.target = "_blank";
     document.body.appendChild(a);
     a.click();
@@ -77,7 +82,7 @@ export function FrameosImageLightbox() {
       }}
       onClick={() => setState(null)}
     >
-      {/* 顶部中央控制条: 放大/缩小/重置 | 下载 */}
+      {/* 顶部中央控制条: 图片 → 放大/缩小/重置 | 下载; 视频 → 下载 (Batch 230) */}
       <div
         data-frameos-lightbox-toolbar
         onClick={(e) => e.stopPropagation()}
@@ -97,6 +102,8 @@ export function FrameosImageLightbox() {
           zIndex: 2,
         }}
       >
+        {!state.videoUrl && (
+          <>
         <button
           type="button"
           aria-label="放大"
@@ -129,6 +136,8 @@ export function FrameosImageLightbox() {
             margin: "0 6px",
           }}
         />
+          </>
+        )}
         <button type="button" aria-label="下载" style={iconBtnStyle} onClick={onDownload}>
           <DownloadIcon size={15} />
         </button>
@@ -162,20 +171,35 @@ export function FrameosImageLightbox() {
         <CloseIcon size={15} />
       </button>
 
-      {/* 居中图片 (contain, 缩放) */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={state.imageUrl}
-        alt={state.title}
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          maxWidth: "92vw",
-          maxHeight: "88vh",
-          objectFit: "contain",
-          transform: `scale(${zoom})`,
-          transition: "transform 0.15s ease-out",
-        }}
-      />
+      {/* 居中媒体: 真视频源 → 播放器; 否则图片 (contain, 缩放) */}
+      {state.videoUrl ? (
+        <video
+          src={state.videoUrl}
+          controls
+          autoPlay
+          loop
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            maxWidth: "92vw",
+            maxHeight: "88vh",
+            display: "block",
+          }}
+        />
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={state.imageUrl}
+          alt={state.title}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            maxWidth: "92vw",
+            maxHeight: "88vh",
+            objectFit: "contain",
+            transform: `scale(${zoom})`,
+            transition: "transform 0.15s ease-out",
+          }}
+        />
+      )}
     </div>
   );
 }
