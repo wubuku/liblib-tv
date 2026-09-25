@@ -92,12 +92,12 @@ function FrameosCanvasInner() {
     (changes: NodeChange[]) => {
       isLocalChange.current = true;
       const updated = applyNodeChanges(changes, nodes) as typeof nodes;
-      // Batch 229: 框选等多选 select 变更直接生效, 并把 selectedNodeId 同步为
-      // 最后一个选中节点 (无选中则清空); 其余变更维持单选重应用逻辑
+      // Batch 229: 框选等多选 select 变更直接生效, 只同步 selectedNodeId
+      // (不能用 selectNode — 它的单选不变量会清掉框选的多选状态)
       if (changes.some((c) => c.type === "select")) {
         const lastSelected = [...updated].reverse().find((n) => n.selected);
         setNodes(updated);
-        selectNode(lastSelected?.id ?? null);
+        useFrameosStore.setState({ selectedNodeId: lastSelected?.id ?? null });
         return;
       }
       // 重新应用 store 的 selected 状态 (xyflow 的 applyNodeChanges 会清掉 selected)
@@ -106,7 +106,7 @@ function FrameosCanvasInner() {
         updated.map((n) => (n.id === selectedId ? { ...n, selected: true } : n))
       );
     },
-    [nodes, setNodes, selectNode]
+    [nodes, setNodes]
   );
 
   const onEdgesChange = useCallback(

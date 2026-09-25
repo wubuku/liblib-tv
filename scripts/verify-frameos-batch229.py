@@ -126,15 +126,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
         or not page.locator(".frameos-floating-toolbar-new").first.is_visible(),
     )
 
-    # 3) 点单个节点 → 回到单选, 成组工具条消失
-    node = page.locator(".react-flow__node").first
-    node.click(position={"x": 30, "y": 20})
+    # 3) 点空白 pane (选区外) → 清除多选, 成组工具条消失, 单选工具条回归
+    page.locator(".react-flow__pane").click(position={"x": 200, "y": 750})
     page.wait_for_timeout(500)
     check("single:group-toolbar-gone", page.locator(".frameos-group-toolbar").count() == 0)
-
-    # 清理: 点空白清空选择
-    page.locator(".react-flow__pane").click(position={"x": 60, "y": 500})
-    page.wait_for_timeout(300)
+    check(
+        "single:cleared",
+        page.evaluate("document.querySelectorAll('.react-flow__node.selected').length") == 0,
+    )
 
     check("errors:empty", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
