@@ -56,8 +56,17 @@
 2. TDCanvas 与上游的 `project.tsx`/`canvas-node.tsx` 逐段 diff（3456/955 行差异的语义分类，当前只做了机制级归属）。
 3. 运行时审计（启动 desktop:dev 或 web dev，采样 DOM/网络/交互手感）——需要用户环境授权。
 
+## v4 — 2026-09-26（diff 语义分类 + 上游独有机制 + 二轮引用抽检）
+
+1. **逐文件语义分类**（v2/v3 队列 #2）：`project.tsx`（3456 行差异）与 `canvas-node.tsx`（955 行）全量 hunk 关键词粗分类 + 最大连续块人工判读，落档 UPSTREAM_DIFF_AUDIT §4。要点：Aitudou 管线 +495 行大块纯新增；批量 UI 约 425+115 行；objectReferences 替换上游 Group 引用逻辑；图片历史为纯新增。
+2. **上游独有机制速览**（UPSTREAM_DIFF_AUDIT §5）：canvas-proxy（npm 本地 CORS 转发）、Group 资源集合展平（`getGroupResourceNodes`）、Space/Ctrl 临时工具、model-plugin 用户自建模插件模板——TDCanvas 移除/替换的四个上游机制。
+3. **二轮引用抽检**：§8 补遗的 9 处引用逐一比对，**9/9 一致**（累计 21/21）。
+
+**剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
 - 2026-09-26 v2：上游归属审计（UPSTREAM_DIFF_AUDIT.md）+ 周边表面补遗（SOURCE_ANALYSIS §8）+ 结论修订。
 - 2026-09-26 v3：引用抽检 12/12 通过 + INTERACTION_CATALOG.md（56 项交互 + 快捷键全表）。
+- 2026-09-26 v4：diff 语义分类（§4）+ 上游独有机制速览（§5）+ 二轮引用抽检 9/9。
