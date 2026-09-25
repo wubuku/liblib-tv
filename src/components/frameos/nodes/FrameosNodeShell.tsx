@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
-import { Handle, Position, type NodeProps } from "@xyflow/react";
+import { Handle, Position, useViewport, type NodeProps } from "@xyflow/react";
 import { useFrameosStore } from "@/store/frameosStore";
 
 /**
@@ -47,6 +47,9 @@ export function FrameosNodeShell({
 }: FrameosNodeShellProps) {
   const { id } = nodeProps;
   const updateNodeData = useFrameosStore((s) => s.updateNodeData);
+  // Batch 237: 浮动标题字号随画布缩放 (源站 69% 时 9.07px = 12 × zoom 实测)
+  const { zoom } = useViewport();
+  const titleFontSize = Math.max(7, Math.round(12 * zoom * 10) / 10);
   // Batch 189: 尺寸来自 store style (resize 手柄实时更新), 组件随 store 重渲染
   const liveW = useFrameosStore((s) => {
     const n = s.nodes.find((x) => x.id === id);
@@ -127,7 +130,7 @@ export function FrameosNodeShell({
       }}
     >
       {/* Floating title - 绝对定位到节点顶部上方 — 双击可重命名 */}
-      <div className="node-floating-title">
+      <div className="node-floating-title" style={{ fontSize: titleFontSize }}>
         <div className="node-floating-title__left">
           <i className="node-floating-title__icon">{titleIcon}</i>
           {editing ? (
@@ -151,7 +154,7 @@ export function FrameosNodeShell({
                 border: "1px solid rgba(96,165,250,0.5)",
                 borderRadius: 3,
                 color: "#FFFFFF",
-                fontSize: 12,
+                fontSize: titleFontSize,
                 fontWeight: 500,
                 fontFamily: "inherit",
                 padding: "0 4px",
