@@ -1,0 +1,28 @@
+{
+  "batch": 227,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "boot:content-image",
+        "lightbox:opens",
+        "lightbox:image-rendered",
+        "lightbox:image-is-node-cover",
+        "lightbox:btn-放大",
+        "lightbox:btn-缩小",
+        "lightbox:btn-重置缩放",
+        "lightbox:btn-下载",
+        "lightbox:btn-关闭灯箱",
+        "lightbox:zoom-changes",
+        "lightbox:zoom-resets",
+        "lightbox:esc-closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

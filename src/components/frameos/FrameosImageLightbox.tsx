@@ -94,6 +94,7 @@ export function FrameosImageLightbox() {
           borderRadius: 10,
           background: "rgba(28,28,28,0.85)",
           border: "1px solid rgba(255,255,255,0.08)",
+          zIndex: 2,
         }}
       >
         <button
@@ -155,6 +156,7 @@ export function FrameosImageLightbox() {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
+          zIndex: 2,
         }}
       >
         <CloseIcon size={15} />
