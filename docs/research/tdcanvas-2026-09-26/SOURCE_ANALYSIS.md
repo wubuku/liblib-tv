@@ -99,7 +99,7 @@ TDCanvas/
 
 ### 1.9 视口持久化与性能
 
-- viewport 是项目文档字段（`use-canvas-store.ts:10-23`），变化后 500ms 防抖 `updateProject`（`project.tsx:449-459`）；进入项目恢复（`:384`）。
+- viewport 是项目文档字段（`use-canvas-store.ts:10-23`），变化后 500ms 防抖 `updateProject`（`project.tsx:448-460`）；进入项目恢复（`:384`）。
 - 性能：视口裁剪虚拟化（只渲染与视口外扩 280px 相交的节点，`project.tsx:617-628`）；平移/拖拽/氛围光 rAF 合帧；节点 `contain: layout style`；SVG 层 `translateZ(0)`；连线不裁剪（`project.tsx:3703-3709`）。
 
 ## 2. 状态模型与持久化
@@ -144,7 +144,7 @@ export type CanvasConnection = {
 
 ### 2.4 持久化三级漏斗
 
-1. 页面 effect：文档字段任一变化直写 `updateProject`（`project.tsx:440-443`）；viewport 单独 500ms 防抖（`:445-459`）。
+1. 页面 effect：文档字段任一变化直写 `updateProject`（`project.tsx:440-443`）；viewport 单独 500ms 防抖（`:448-460`）。
 2. store persist 自定义 storage：**400ms 防抖 + 同引用去重**（`use-canvas-store.ts:51-60`）。
 3. localforage IndexedDB（库名 `tdcanvas`/store `app_state`，读写失败回退 localStorage；`localforage-storage.ts:4-33`）。key：`tdcanvas:canvas_store`、`tdcanvas:asset_store`、`tdcanvas:plugin_store`、`tdcanvas:ai_config_store`、`tdcanvas:theme_store`。
 - 二进制独立 objectStore：`image_files`（`image:<nanoid>`→Blob）、`media_files`（`file:<nanoid>`→Blob）；`agent_chat_messages`、`prompt_cache`、`tdcanvas-plugins`（插件沙箱库）、`workflow_library`（ComfyUI）。

@@ -26,11 +26,17 @@
 | 18 | 屏幕空间氛围网格/视差 | §1.6 | 低 | 低 | 低 | `DEFER` | 纯视觉可选项；优先级低于 parity backlog |
 | 19 | comfyui-local：工作流 JSON→动态端口宏节点 | §6.3 | 中 | 高相关（FrameOS 生成节点范式） | 低 | `ADOPT_METHOD` | 「外部运行时封装为带动态端口的节点」范式适用于 FrameOS runner 节点；沙化启动（loopback+参数白名单）是安全基线 |
 | 20 | 项目封面数据推导 + viewport 存文档 | §2.6 | 相关（多画布） | 相关 | 低 | `ADOPT_METHOD` | 对照 `VR-017` lifecycle 的两个细节决策点 |
+| 21 | canvas-proxy 本地 CORS 转发方法（上游） | UPSTREAM §5.2/§6.2 | 相关（开发态代理场景） | 低 | 低 | `ADOPT_METHOD` | 借「路径内嵌目标 + 双向头剥离 + SSE 透传 + 身份探测」的最小代理方法；引入需 SSRF/白名单合同（对照 #3） |
+| 22 | Group 资源集合展平语义（上游） | UPSTREAM §5.3 | 相关（引用槽/多选生成） | 中 | 中 | `RESEARCH_ONLY` | 「组=引用打包单位」与 clone 引用语义互补，但需源站「组引用」fixture；须与 `LibTVGraphConnection`/`AutoLink` 合同对齐 |
+| 23 | model-plugin BYOK 脚本层（上游） | UPSTREAM §5.4 | 低（clone 无 BYOK 需求） | 低 | 低 | `RESEARCH_ONLY` | poll/onDelta 运行时抽象可借鉴；主线程 `new Function` + apiKey 裸注入为安全反面，照搬即 #13 同罪 |
+| 24 | prompt-source 开放 JSON 约定（继承） | UPSTREAM §6.1 | 相关（提示词库扩展性） | 低 | 低 | `ADOPT_METHOD` | 「一个 JSON 数组即可挂接自定义提示词源」的契约 + 签名变化刷新/失败回落缓存策略可参照；需先定源信任边界 |
+| 25 | selection/pan 双模式 + 临时工具反转（上游） | UPSTREAM §6.3 | 不适用（语义相反） | 不适用 | 不适用 | `REJECT_TRANSPLANT` | 同 #12：clone 输入权威是 `CANVAS_NAVIGATION.md`+Batch 77 证据，上游形态不构成源站证据 |
+| 26 | 多选浮动工具条成组族（上游） | UPSTREAM §5.1 | 相关（多选交互） | 中 | 中 | `DEFER` | 与 #10 分组同批评估；成组守卫/GC 细节清单可直接进 fixture 模板 |
 
 ## 汇总
 
-- `ADOPT_METHOD`：#1 #2 #7 #9 #16 #17 #19 #20（借方法，均不改 runtime，进入对应合同的下次修订评审输入）。
+- `ADOPT_METHOD`：#1 #2 #7 #9 #16 #17 #19 #20 #21 #24（借方法，均不改 runtime，进入对应合同的下次修订评审输入）。
 - `ADAPT`（候选，需源站 fixture + 授权）：#4 图片历史 pinned、#5 批量堆叠、#6 拖线到空白建节点。
-- `RESEARCH_ONLY`：#3 媒体桌面缓存、#8 Agent 协议、#11 手写内核。
-- `DEFER`：#10 分组、#18 氛围网格。
-- `REJECT_TRANSPLANT`：#12 输入语义、#13 无沙箱插件、#14 巨型页面、#15 无版本迁移。
+- `RESEARCH_ONLY`：#3 媒体桌面缓存、#8 Agent 协议、#11 手写内核、#22 Group 资源集合、#23 BYOK 脚本层。
+- `DEFER`：#10 分组、#18 氛围网格、#26 多选成组工具条。
+- `REJECT_TRANSPLANT`：#12 输入语义、#13 无沙箱插件、#14 巨型页面、#15 无版本迁移、#25 双模式+临时反转。

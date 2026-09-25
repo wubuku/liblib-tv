@@ -26,9 +26,9 @@ TDCanvas 是 TDTV 的桌面端 AI 无限画布（Tauri 2 + Vite + React 19 + Ant
 1. [REPORT.md](REPORT.md)：面向项目决策的完整结论与反面教材。
 2. [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md)：固定版本的模块级源码证据（渲染内核/状态/节点/交互生成/Agent/插件 + v2 周边表面补遗，全部 file:line）。
 3. [INTERACTION_CATALOG.md](INTERACTION_CATALOG.md)：用户可达交互目录（触发→行为→证据→clone 相关性）与快捷键全表。
-4. [PATTERN_CARDS.md](PATTERN_CARDS.md)：15 张可迁移模式卡（TD-01..15），区分上游事实、机制拆解、clone 启发与验证门槛。
-5. [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)：与上游 `basketikun/infinite-canvas` 的机制归属审计（继承/原创/上游独有，机械 diff 证据）。
-6. [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)：20 项机制到 ADOPT_METHOD / ADAPT / RESEARCH_ONLY / DEFER / REJECT 的决策矩阵。
+4. [PATTERN_CARDS.md](PATTERN_CARDS.md)：21 张模式卡 = TDCanvas 机制卡 TD-01..15 + 上游参考卡 UP-01..06，区分上游事实、机制拆解、clone 启发与验证门槛。
+5. [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)：与上游 `basketikun/infinite-canvas` 的机制归属审计（继承/原创/上游独有，机械 diff 证据 + 上游机制逐个精读 §5/§6）。
+6. [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)：26 项机制到 ADOPT_METHOD / ADAPT / RESEARCH_ONLY / DEFER / REJECT 的决策矩阵。
 7. [ITERATION_LOG.md](ITERATION_LOG.md)：调研包版本史、覆盖面缺口与下一证据队列。
 
 ## 当前结论摘要

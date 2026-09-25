@@ -106,3 +106,27 @@
 - **变量文档** `getPluginVariables`（`:166-190`）：17 个变量按能力 scoping（如 `reasoningEffort/onDelta/messages` 仅 text，`videos/audios` 仅 video）。
 - **模板库** `getPluginTemplates`（`:224-975`）：**8 个模板 = 4 能力 × {OpenAI, Gemini}**（`:230, :325, :439, :560, :722, :779, :850, :907`）；OpenAI 图像模板结构：JSDoc `@returns {Promise<string[]>}` → `request({method:"post",...})` → 遍历 `data.data[]` 取 url；i2i 分支把参考图转 FormData（`image[]` 字段，多图/单图字段名切换）（`:230-330` 区域）。`normalizePluginImages`（`:977`）归一化返回值。
 - **TDCanvas 对比**：整层被移除，以固定 Aitudou 后端替代（`aitudou.ts` 1003 行 + 静态 `AITUDOU_MODEL_PROFILES` 目录）；TD 失去了 BYOK 脚本扩展能力，换来统一的任务状态机与计费守护。
+
+## 6. 上游其余机制补遗（v7；行号对齐上游基准 `dab19ad`）
+
+> 本章补齐 §2 归属表未单列的三个上游机制。归属标注：prompt-source 与 local-proxy 为**两仓同源的继承机制**（非上游独有），selection/tool 体系为**上游形态（TDCanvas 重写）**。
+
+### 6.1 prompt-source 运行时（继承，两仓同源）
+
+- **JSON 约定**（`web/src/services/api/prompt-source-runtime.ts`，119 行）：`RawPrompt` 18 字段，含生成提示 `imageMode/imageModel/imageSize/imageCount`（`:4-18`）；`runPromptSource`（`:31-50`）：URL 必填 → `fetch(no-store)` → `parseJsonSource` 要求**根为数组**，builtIn 源为空即报错；`normalizeItems`（`:52-119`）：`title+prompt` 必填否则丢弃，id 缺省 `${source.id}-${leftPad(index+1)}`，按 id 去重。
+- **服务层**（`web/src/services/api/prompts.ts`）：`Prompt = RawPrompt & {sourceId,...}`（`:8`）；`fetchPrompts` 关键字/tag/分类/分页（`:139`）；`refreshSource/refreshAllSources/refreshDueSources`（`:162-185`）与状态查询（`:187`）；每源 localforage 缓存 TTL 1h（TDCanvas 侧同源实现，`prompts.ts:48-49` 已核）。
+- **归属证据**：TDCanvas 保留同名机制（`use-prompt-source-store`、`prompt-source-presets`、`prompts.ts`），差异仅在 TDCanvas 的 `DEFAULT_PROMPT_SOURCES=[]` 无内置预设；上游挂接 model-plugin 的 imageMode/imageModel 提示与外部源 CORS 场景（见 §6.2）。
+
+### 6.2 local-proxy 挂接（继承，两仓同源；上游深度更高）
+
+- **连通性探测**（`web/src/services/api/local-proxy.ts`，12 行）：`testLocalProxy` 请求代理根路径，读取其身份 JSON（`{proxy, version}`，即 canvas-proxy `:100-103` 的版本响应）作为可达性校验（`:4-11`）。
+- **URL 包装**（`web/src/stores/use-config-store.ts`）：`normalizeLocalProxyUrl`（trim、去尾斜杠、缺省补 `http://`，`:483-487`）；`withLocalProxy`（`:490-496`）——仅当 `proxyEnabled` 且目标为 `^https?://` 时前缀代理地址，且 `url.startsWith(base)` 时防双重包装；**`buildApiUrl`（`:474-479`）对所有 OpenAI 兼容调用先补 `/v1` 再过 withLocalProxy**——即启用代理后全部模型流量走本地转发。
+- **消费点**：model-plugin 绝对路径 `pluginUrl`（`model-plugin.ts:43-45`）、视频 blob 拉取（`video.ts:199, 267`）以及一切 `buildApiUrl` 调用。
+- **TDCanvas 形态**：机制保留但角色弱化——桌面端 Tauri http 插件绕过 CORS 使代理非必需，`/tdtv-api` 仅服务 Web 开发态；proxy 配置面收窄。
+
+### 6.3 selection/tool 体系其余部分（上游形态，TDCanvas 重写）
+
+- **显式工具模式**：`InfiniteCanvas` props 声明 `tool: "select" | "pan"`（`infinite-canvas.tsx:11`），事件回调全部注入（onCanvasMouseDown/Deselect/DoubleClick/ContextMenu/Drop，`:12-17`）——surface 是纯表现层。
+- **临时工具反转**：`temporaryTool = event.ctrlKey || isSpacePressed`，`activeTool = temporaryTool ? (tool==="select" ? "pan" : "select") : tool`（`:114-115` 渲染分支、`:206-207` 手势分支）——**按住 Space 或 Ctrl 把当前工具反转**（select 态下 Space+拖=平移；pan 态下 Ctrl+拖=选择），与 TDCanvas「Space 完全禁用 + ctrl 固定框选」的硬编码语义不同。
+- **按键状态机**：Space/Control 的 keydown/keyup 维护 `isSpacePressed/isControlPressed`，带 input/textarea/contenteditable 守卫与 window blur 复位（`:52-74`）。
+- **TDCanvas 重写对照**：`td-canvas-surface.tsx` 移除 `tool` prop 与反转逻辑，手势语义固定（wheel=zoom、空白左键=平移、ctrl+空白=框选、Space 只 preventDefault，见 SOURCE_ANALYSIS §1.2）；上游的 select/pan 双模式 UI（工具切换器）随之消失。

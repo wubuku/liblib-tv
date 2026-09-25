@@ -1,6 +1,7 @@
 # TDCanvas 可迁移模式卡
 
 > 每张卡四层：**TD 事实**（源码已核对，file:line 见 SOURCE_ANALYSIS 对应节）、**机制拆解**、**对本项目（LibTV/FrameOS/Jimeng clone）的启发**、**验证门槛**（若未来被授权采纳，clone 侧必须先具备的证据/fixture）。
+> TD-01..15 为 TDCanvas 机制卡；**UP-01..06 为上游参考卡**（机制属于上游 `basketikun/infinite-canvas`，精读证据见 [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md) §5/§6，行号对齐上游基准 `dab19ad`）。
 > 本文件只描述模式与启发，**不构成实现授权**。
 
 ---
@@ -61,7 +62,7 @@
 
 ## TD-10 项目封面数据推导 + viewport 即文档
 
-- **TD 事实**：封面筛 `sourceOrigin==="generated"`，优先级 imageHistory>outputs>content，取最新 completedAt，注释「用户可能正看旧版本，封面保持最新」（`canvas-home.ts:23-56`）；`CanvasProject.viewport` 字段 + 500ms 防抖保存 + 进入恢复（`project.tsx:445-459, 384`）。
+- **TD 事实**：封面筛 `sourceOrigin==="generated"`，优先级 imageHistory>outputs>content，取最新 completedAt，注释「用户可能正看旧版本，封面保持最新」（`canvas-home.ts:23-56`）；`CanvasProject.viewport` 字段 + 500ms 防抖保存 + 进入恢复（`project.tsx:448-460, 384`）。
 - **启发**：「封面=最新生成物而非截图」与「viewport 存进项目文档」都是多画布 lifecycle（`VR-017`）的细节决策点。
 - **验证门槛**：对照 clone Batch 16/58/65 的 per-canvas viewport 存取现状。
 
@@ -97,3 +98,45 @@
 - **图片历史签名去重**：FNV-1a `image-version-<base36>`、24 条上限（`canvas-image-history.ts`）。
 - **系统剪贴板兜底**：内部剪贴板空时图→图片节点、文→文本节点（`project.tsx:1716-1733`）。
 - **防重复计费守卫**与**不确定中断三正则**（TD-07 内）。
+
+---
+
+# 上游参考卡（UP-01..06，`basketikun/infinite-canvas`）
+
+> 这些机制在 TDCanvas 中被继承、弱化或移除（归属判定见 UPSTREAM_DIFF_AUDIT §2/§5/§6）；列出是因为它们对 clone 仍有独立参考价值。
+
+## UP-01 多选浮动工具条与成组操作族（TDCanvas 已移除）
+
+- **上游事实**：`CanvasSelectionToolbar` = 选中包围盒虚线轮廓（SELECTION_PAD=14）+ 两按钮浮动条（Group/Ungroup），`showToolbar` 随拖拽/缩放隐藏（`canvas-selection-toolbar.tsx:11-68`；`project.tsx:3282-3290`）；三入口（工具条/右键/Cmd+G±Shift，`project.tsx:1593-1606, 3325-3326`）；操作族：包裹矩形（顶部留标题 padding）、嵌套组扁平化、空组 GC、解组选中还原（`canvas-node-geometry.ts:58-125`）。
+- **启发**：「多选即出浮动操作条」是多选交互的轻量形态；成组操作族的守卫与 GC 细节（≥2 成员、不全属同组、空壳回收）是任何分组功能的必备清单。
+- **验证门槛**：需源站多选/成组 fixture；与 clone TD-15 分组（DEFER）同批评估。
+
+## UP-02 canvas-proxy 本地 CORS 转发方法
+
+- **上游事实**：零依赖 Node http 服务（默认 `127.0.0.1:23210`），目标 URL 内嵌路径（decodeURI 还原 + `//` 修复 + `^https?://` 校验），双向头剥离 + 宽松 CORS 注入，SSE 逐块透传与断连 destroy，状态即打日志、失败 502/根路径版本 JSON（`canvas-proxy/index.js:35-132`）；客户端 `buildApiUrl` 全量过代理（`use-config-store.ts:474-496`）。
+- **启发**：本地开发态转发代理的**最小完备实现**（对照 clone 未来任何「浏览器直连第三方 API 被 CORS 拦截」的场景）；「身份 JSON 兼作连通性探测」是干净的握手设计（`local-proxy.ts:4-11`）。
+- **验证门槛**：仅方法借鉴（ADOPT_METHOD）；引入任何代理需先有 SSRF/白名单合同（对照 TD-09 的 Rust 中继校验）。
+
+## UP-03 Group 资源集合语义（TDCanvas 移除，改 objectReferences）
+
+- **上游事实**：`getGroupResourceNodes` 只取组内有资源的成员（`canvas-resource-references.ts:96-98`）；持有资源的组获得「可引用节点」资格（`:83-89`）；输入解析时组**展平为成员资源**并按 id 去重（`:91-94`）；三级管线 Config 优先（`:53-81`）。
+- **启发**：「分组同时是引用打包单位」让用户可以用一个组把若干素材一次性挂到下游——与 clone 引用槽/AutoLink 的批处理语义互补；「资源资格判定集中在一个 `resourceKind` 函数」也值得对照（`TD canvas-node-registry resource()` 是同构设计）。
+- **验证门槛**：需源站「组引用」fixture；若 clone 引入，须与 `LibTVGraphConnection`/`LibTVAutoLink` 合同对齐组→引用的展开顺序。
+
+## UP-04 model-plugin BYOK 脚本层（TDCanvas 移除，换固定后端）
+
+- **上游事实**：每能力（image/video/audio/text）用户可编辑 JS 脚本；`new Function` 17 参数注入（prompt/images/.../http/request/poll/sleep/signal/onDelta）+ `"use strict"` 异步包裹（`model-plugin.ts:113-164`）；17 变量能力 scoping 文档（`:166-190`）；模板库 4 能力 × {OpenAI, Gemini}（`:224-975`）；`normalizePluginImages` 归一化（`:977`）。
+- **启发**：「以脚本接入任意兼容模型」+「poll/onDelta 把轮询与流式抽象为运行时能力」是 BYOK 形态的完整参照；模板即教学（OpenAI/Gemini 两协议族覆盖常见拓扑）。
+- **验证门槛**：**安全反面**——主线程 `new Function`、apiKey 进脚本作用域，无沙箱（同 TD-12 否决理由）；clone 若做 BYOK 必须 iframe/Worker + 能力白名单，且密钥不得裸注入。
+
+## UP-05 prompt-source 开放 JSON 约定（两仓同源继承）
+
+- **上游事实**：`RawPrompt` 18 字段含生成提示 imageMode/imageModel/imageSize/imageCount（`prompt-source-runtime.ts:4-18`）；根必须为数组、`title+prompt` 必填否则丢弃、id 缺省 `${source.id}-序号` 并按 id 去重（`:31-119`）；每源缓存 TTL 1h + 到期刷新（`prompts.ts:139-195`）。
+- **启发**：「用户可自建提示词源」的开放数据契约很小（一个 JSON 数组）却能挂接生成参数提示——对照 clone 提示词库的扩展性设计；「签名变化才后台刷新、失败回落旧缓存」的缓存策略（TD 已继承）可直接复用。
+- **验证门槛**：clone 引入需先定源信任边界（远程 JSON 渲染/注入面）。
+
+## UP-06 selection/pan 双模式与临时工具反转（TDCanvas 重写为固定手势）
+
+- **上游事实**：surface 声明 `tool: "select"|"pan"`（`infinite-canvas.tsx:11`）；`temporaryTool = ctrl||space` 把当前工具**反转**（`:114-115, 206-207`）——select 态 Space+拖=平移、pan 态 Ctrl+拖=选择；按键状态机带输入守卫与 blur 复位（`:52-74`）。
+- **启发**：与 TD-02/TD-12 合并阅读——同一产品类别存在「固定手势」「显式双模式+临时反转」两种输入合同；clone 的 `CANVAS_NAVIGATION.md` 权威属于后者之外的第三种（React Flow 惯例）。
+- **验证门槛**：REJECT 移植（同 ADOPTION #12）；仅作输入语义对照研究。

@@ -81,6 +81,20 @@
 - **结果**：79/79 命中，**零行号漂移，无需修正**。一处复核确认：`canvas-resource-references.ts:174-190` 的 pinned 语义由 `resolveCanvasObjectReferenceResource` 内 `:176`（`versionMode==="pinned"` 查 imageHistory）实现，原表述准确。
 - **抽检台账（累计）**：v1 期 12 + v2 期 9 + v5 期 15 + v6 期 79 = **115 处，四轮 100% 一致**；INTERACTION_CATALOG 头部已标注抽检状态。
 
+## v7 — 2026-09-26（第五轮引用抽检：PATTERN_CARDS/ADOPTION + 上游机制补遗 §6）
+
+1. **第五轮抽检**：PATTERN_CARDS TD-04..15 与 ADOPTION 引用的 TDCanvas 侧未核验条目 31 处（canvas-plugin/node-registry/ports/resource-refs/node-generation/aitudou batch/handleRunAitudou/批量/恢复链/资产回收/agent http+session/plugin-runtime/comfy execution/历史栈/网格/辅助线/历史签名等）。**发现 1 处漂移并已修正**：viewport 500ms 防抖保存实际位于 `project.tsx:448-460`（原写 445-459），SOURCE_ANALYSIS §1.9/§2.4 与 PATTERN_CARDS TD-10 共 3 处同步更正；其余 30/30 命中（含复核 `isAitudouPollingUncertain :4185`、`recoverRuntimeDiskCopy :121`、`batchMotionById :664`、`http.ts:422/509`、`session.ts:26/436`）。
+2. **新增 UPSTREAM_DIFF_AUDIT §6「上游其余机制补遗」**（三个机制，源文件精读）：§6.1 prompt-source 运行时（JSON 约定 18 字段含生成提示、title+prompt 必填、id 缺省与去重；归属=两仓同源继承）；§6.2 local-proxy 挂接（testLocalProxy 身份探测、normalizeLocalProxyUrl/withLocalProxy 防双包、buildApiUrl 全量过代理；归属=继承但上游深度更高）；§6.3 selection/tool 体系（`tool: "select"|"pan"` 显式模式 + Space/Ctrl **临时工具反转**语义 + 按键状态机；归属=上游形态被 TDCanvas 重写为固定手势）。§2 表未列归属的缺口由此补齐。
+3. **抽检台账（累计）**：12+9+15+79+31 = **146 处，五轮，仅 1 处漂移并已修正**（修正后 100% 一致）。
+
+**剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项（§5/§6 已覆盖其独有与继承机制的主要面）；② 运行时审计（需启动用户环境授权）。
+
+## v8 — 2026-09-26（上游机制回填模式卡与采纳矩阵）
+
+1. **PATTERN_CARDS 新增上游参考卡 UP-01..06**（与 TD 卡同四层结构，证据引 UPSTREAM_DIFF_AUDIT §5/§6）：UP-01 多选浮动工具条与成组操作族、UP-02 canvas-proxy 本地 CORS 转发方法、UP-03 Group 资源集合语义、UP-04 model-plugin BYOK 脚本层（含安全反面）、UP-05 prompt-source 开放 JSON 约定、UP-06 selection/pan 双模式与临时工具反转。文件头部声明 TD/UP 两系与上游基准。
+2. **ADOPTION_DECISION_MATRIX 新增 #21-26**：#21 canvas-proxy 方法 `ADOPT_METHOD`、#22 Group 资源集合 `RESEARCH_ONLY`、#23 BYOK 脚本层 `RESEARCH_ONLY`（安全反面同 #13）、#24 prompt-source 约定 `ADOPT_METHOD`、#25 双模式+临时反转 `REJECT_TRANSPLANT`（同 #12）、#26 多选成组工具条 `DEFER`（与 #10 同批）。汇总行已更新为 26 项（ADOPT_METHOD 10 / ADAPT 3 / RESEARCH_ONLY 5 / DEFER 3 / REJECT 5）。
+3. **一致性同步**：包 README Read Order、docs/research/README.md、docs/index.md 的模式卡数量（15→21）与矩阵行数（20→26）描述全部更新；REPORT.md 引用的 TD-03/06/08/11 卡号不受影响。
+
 **剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
 
 ## 维护记录
@@ -91,3 +105,5 @@
 - 2026-09-26 v4：diff 语义分类（§4）+ 上游独有机制速览（§5）+ 二轮引用抽检 9/9。
 - 2026-09-26 v5：§5 深化为 §5.1-5.4 逐机制完整分析（四个源文件精读）+ 三轮引用抽检 15/15（累计 36/36）。
 - 2026-09-26 v6：第四轮引用抽检 INTERACTION_CATALOG 全量 79/79 零漂移（累计 115 处），目录头部标注抽检台账。
+- 2026-09-26 v7：第五轮抽检 31 处、发现并修正 viewport 防抖行号漂移 3 处（累计 146 处）；新增 §6 上游机制补遗（prompt-source/local-proxy/selection 体系）。
+- 2026-09-26 v8：上游机制回填——PATTERN_CARDS 增上游参考卡 UP-01..06、ADOPTION 矩阵增 #21-26（合计 26 行），包内计数与索引描述同步。
