@@ -223,6 +223,28 @@ export function FrameosNodeFloatingToolbar() {
                 })
               );
             }
+          : isFullscreenView && selectedNode.type === "video"
+          ? () => {
+              // Batch 230: 视频 ⛶全屏查看 = 灯箱 (真视频源播放, 图片封面源显封面);
+              // 源站视频灯箱未单独采样, 与 Batch 227 图片灯箱同族推断
+              const data = selectedNode?.data as {
+                title?: string;
+                imageUrl?: string;
+              };
+              if (!data?.imageUrl) return;
+              const isVideoSource =
+                data.imageUrl.startsWith("blob:") ||
+                /\.(mp4|webm|mov|m4v)(\?|$)/i.test(data.imageUrl);
+              window.dispatchEvent(
+                new CustomEvent("frameos:image-lightbox", {
+                  detail: {
+                    title: data.title ?? "",
+                    imageUrl: data.imageUrl,
+                    videoUrl: isVideoSource ? data.imageUrl : undefined,
+                  },
+                })
+              );
+            }
           : isFullscreenView && selectedNode.type !== "image"
           ? () => {
               // Batch 205: 全屏查看 = 文本内容全屏阅读浮层 (推断实现);

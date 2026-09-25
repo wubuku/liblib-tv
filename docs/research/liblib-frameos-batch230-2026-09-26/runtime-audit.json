@@ -1,0 +1,27 @@
+{
+  "batch": 230,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "cover:lightbox-opens",
+        "cover:image-mode",
+        "cover:video-absent",
+        "cover:zoom-buttons",
+        "cover:download-button",
+        "upload:lightbox-opens",
+        "upload:video-player",
+        "upload:img-absent",
+        "upload:no-zoom",
+        "upload:download-button",
+        "esc:closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
