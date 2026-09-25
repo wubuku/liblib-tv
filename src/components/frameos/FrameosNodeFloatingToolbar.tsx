@@ -60,15 +60,9 @@ function getActionsForNode(
         { label: "宫格切分 ∨" },
       ];
     case "video":
-      // 2026-09-25 源站实测 (Batch 225, 新版本): 内容视频节点工具条 = 全屏查看/
-      // 下载/收藏/剪辑/裁剪/音视频分离/超清/去字幕/片段重拍 九项;
-      // 空视频节点保留 2026-09-23 采样的 全屏查看/下载 两项
-      if (!node.data?.imageUrl) {
-        return [
-          { label: "", aria: "全屏查看" },
-          { label: "", aria: "下载" },
-        ];
-      }
+      // 2026-09-26 源站实测 (Batch 238): 空视频节点选中无工具条 (与空图片
+      // 一致); 内容视频九项 (Batch 225)
+      if (!node.data?.imageUrl) return [];
       return [
         { label: "", aria: "全屏查看" },
         { label: "", aria: "下载" },

@@ -173,6 +173,9 @@ graph TD
 - [`research/open-canvas-2026-08-26/`](research/open-canvas-2026-08-26/README.md)：ZeroLu/open-canvas 固定版本 submodule、官网运行态和深度源码调研。
 - [`research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md`](research/open-canvas-2026-08-26/OPEN_CANVAS_PATTERN_CARDS.md)：十三类可迁移模式卡，覆盖浮层几何、typed input、状态/身份、异步、framework change routing、多画布 lifecycle、command feedback、selection/focus/context、空间、media/resource、editor session 与 media rendition authority，并区分上游启发、LibTV 证据和 clone 验证闸门。
 - [`research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md`](research/open-canvas-2026-08-26/ADOPTION_DECISION_MATRIX.md)：上游机制到 LibTV parity、fixture、verifier 和授权边界的采纳决策总表。
+- [`research/tdcanvas-2026-09-26/`](research/tdcanvas-2026-09-26/README.md)：AICoderTudou/TDCanvas 桌面端 AI 无限画布锁定提交 `16b3127`（v0.14.0）的深度源码调研；含手写画布内核、local-first 持久化、生成任务状态机、Agent 通道与插件系统。
+- [`research/tdcanvas-2026-09-26/PATTERN_CARDS.md`](research/tdcanvas-2026-09-26/PATTERN_CARDS.md)：TDCanvas 15 张可迁移模式卡，区分上游事实、机制拆解、clone 启发与验证门槛。
+- [`research/tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md`](research/tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md)：TDCanvas 机制对 LibTV/FrameOS/Jimeng 的采纳决策矩阵。
 - [`research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：高价值上游启发转为 LibTV 单 slice 的证据、身份、事务、surface、fixture 和 verifier 交接蓝图。
 - [`research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和超长视频的正交状态、身份、fixture、stale/retry 与 `VR-007` 合同。
 - [`research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、authoring controls、clone state、请求 descriptor 与真实 runner 的分层审计。
