@@ -101,14 +101,20 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.on("download", lambda d: downloads.append(d))
     group_tb.locator("button[aria-label='批量下载']").click()
     page.wait_for_timeout(1500)
+    media_nodes = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          return s.nodes.filter((n) => n.selected && (n.data.imageUrl || n.data.audioUrl)).length;
+        })()"""
+    )
     check(
-        "batch:two-downloads",
-        len(downloads) == 2
+        "batch:downloads-match-media",
+        len(downloads) == media_nodes and media_nodes >= 2
         and all(d.suggested_filename for d in downloads),
     )
     check(
         "batch:toast-count",
-        page.locator("[class*=toast], [class*=Toast]").first.is_visible(),
+        page.get_by_text("已开始下载").count() > 0,
     )
 
     check("errors:empty", not errors)

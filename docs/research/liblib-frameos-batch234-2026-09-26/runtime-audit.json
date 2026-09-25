@@ -1,0 +1,20 @@
+{
+  "batch": 234,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "marquee:multi-selected",
+        "group:toolbar-opens",
+        "batch:downloads-match-media",
+        "batch:toast-count",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
