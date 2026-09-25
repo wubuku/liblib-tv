@@ -1,0 +1,26 @@
+{
+  "batch": 239,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "video:panel-opens",
+        "video:tab-全能参考",
+        "video:tab-首尾帧",
+        "video:tab-视频编辑",
+        "video:tab-switches",
+        "video:placeholder",
+        "video:wan3-model",
+        "video:spec",
+        "video:credits-300",
+        "video:generate-button",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

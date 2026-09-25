@@ -36,6 +36,10 @@ export function FrameosPromptEditor() {
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
   // Batch 190: 全屏编辑态 (编辑器居中放大)
   const [isFullscreenEdit, setIsFullscreenEdit] = useState(false);
+  // Batch 239: 视频面板生成模式 (顶层 hook, 面板分支内只读)
+  const [videoMode, setVideoMode] = useState<"全能参考" | "首尾帧" | "视频编辑">(
+    "全能参考"
+  );
 
   const sel = selectedNodeId ? nodes.find((n) => n.id === selectedNodeId) : undefined;
 
@@ -177,6 +181,148 @@ export function FrameosPromptEditor() {
           <button
             type="button"
             aria-label="生成音频"
+            title="生成"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 16,
+              background: "#3B82F6",
+              border: "none",
+              color: "#FFFFFF",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: 14,
+              boxShadow: "0 4px 12px rgba(59,130,246,0.5)",
+            }}
+          >
+            ↑
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Batch 239: 视频节点专属面板 (2026-09-26 源站采样 .bottom-generator.mode-video):
+  // 参考 tile + 模式 tabs [全能参考(默认)|首尾帧|视频编辑] + 占位
+  // "描述你想要的视频，@引用素材" + Wan 3.0 + 16:9·720p·5s + 积分 300
+  if (sel.type === "video") {
+    return (
+      <div
+        className="frameos-prompt-editor frameos-prompt-editor--video"
+        style={{
+          position: "fixed",
+          left: pos ? pos.left : 12,
+          top: pos ? pos.top : 12,
+          width: 660,
+          maxWidth: "calc(100vw - 24px)",
+          background: "rgba(20,20,20,0.85)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255,255,255,0.06)",
+          borderRadius: 14,
+          boxShadow: "0 12px 36px rgba(0,0,0,0.5)",
+          zIndex: 2500,
+          display: "flex",
+          flexDirection: "column",
+          padding: 10,
+          gap: 8,
+        }}
+      >
+        <div className="prompt-top-actions" style={{ display: "flex", gap: 4 }}>
+          <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
+        </div>
+        <div style={{ display: "flex", gap: 4 }}>
+          {(["全能参考", "首尾帧", "视频编辑"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              aria-label={`视频模式 ${m}`}
+              onClick={() => setVideoMode(m)}
+              style={{
+                height: 28,
+                padding: "0 12px",
+                borderRadius: 6,
+                border: "none",
+                background: videoMode === m ? "rgba(59,130,246,0.25)" : "rgba(255,255,255,0.06)",
+                color: videoMode === m ? "#FFFFFF" : "#A3A3A3",
+                fontSize: 12,
+                cursor: "pointer",
+              }}
+            >
+              {m}
+            </button>
+          ))}
+        </div>
+        <textarea
+          defaultValue=""
+          placeholder="描述你想要的视频，@引用素材"
+          rows={2}
+          style={{
+            width: "100%",
+            minHeight: 52,
+            background: "#0D0D0D",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: 10,
+            outline: "none",
+            color: "#FFFFFF",
+            fontSize: 13,
+            fontFamily: "inherit",
+            resize: "vertical",
+            padding: "8px 10px",
+          }}
+        />
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <Dropdown value="Wan 3.0" onChange={() => {}} options={["Wan 3.0"]} />
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              height: 32,
+              padding: "0 10px",
+              borderRadius: 8,
+              color: "#A3A3A3",
+              fontSize: 12,
+            }}
+          >
+            16:9 · 720p · 5s
+          </span>
+          <div style={{ flex: 1 }} />
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "0 10px",
+              height: 32,
+              borderRadius: 8,
+              color: "#E0E0E0",
+              fontSize: 13,
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius: 9999,
+                background: "#F5A623",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 9,
+                color: "#5A3A00",
+                fontWeight: 700,
+              }}
+            >
+              ¥
+            </span>
+            <span>300</span>
+          </div>
+          <button
+            type="button"
+            aria-label="生成视频"
             title="生成"
             style={{
               width: 32,
