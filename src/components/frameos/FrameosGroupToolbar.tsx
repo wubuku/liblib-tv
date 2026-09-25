@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useFrameosStore } from "@/store/frameosStore";
 import { DownloadIcon } from "./icons";
 import { showToast } from "./FrameosToast";
 
@@ -8,7 +9,8 @@ import { showToast } from "./FrameosToast";
  * FrameOS 多选成组工具条 (Batch 229, 源站采样对齐 2026-09-25):
  * 空白拖拽框选 ≥2 节点时, 在选中集合包围盒上方 15px 处显示 `.group-toolbar`
  * 形态工具条 — [成组 (ri-group-line) | 批量下载 (ri-download-2-line)]，高 36。
- * 成组点击效果源站未采样到 (采样时工具条在视口外), 克隆 mock 提示。
+ * 成组点击效果源站未采样到 (采样时工具条滚出视口), 克隆 mock 提示。
+ * 批量下载 (Batch 234): 逐个下载选中节点的媒体 (imageUrl/audioUrl)。
  * 单选时不显示 (单选走 FrameosNodeFloatingToolbar)。
  */
 export function FrameosGroupToolbar() {
@@ -58,6 +60,38 @@ export function FrameosGroupToolbar() {
   }, []);
 
   if (!pos) return null;
+
+  const batchDownload = () => {
+    // Batch 234: 批量下载 = 逐个下载选中节点的媒体 (标签语义直译;
+    // 源站点击效果未采样)。跳过无媒体节点。
+    const selected = [
+      ...document.querySelectorAll(".react-flow__node.selected"),
+    ];
+    const store = useFrameosStore.getState();
+    let count = 0;
+    for (const el of selected) {
+      const id = el.getAttribute("data-id");
+      const node = store.nodes.find((n) => n.id === id);
+      if (!node) continue;
+      const url =
+        (node.data as { imageUrl?: string }).imageUrl ??
+        (node.data as { audioUrl?: string }).audioUrl;
+      if (!url) continue;
+      const a = document.createElement("a");
+      a.href = url;
+      a.download =
+        (node.data as { title?: string }).title || node.id;
+      a.target = "_blank";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      count += 1;
+    }
+    showToast(
+      count > 0 ? `已开始下载 ${count} 个素材` : "选中节点没有可下载的素材",
+      count > 0 ? "success" : "danger"
+    );
+  };
 
   const btnStyle = {
     display: "inline-flex",
@@ -121,7 +155,7 @@ export function FrameosGroupToolbar() {
         style={btnStyle}
         onClick={(e) => {
           e.stopPropagation();
-          showToast("批量下载 (mock)", "success");
+          batchDownload();
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = "rgba(255,255,255,0.08)";
