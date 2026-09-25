@@ -102,6 +102,7 @@ interface FrameosCanvasState {
   toggleMinimap: () => void;
   setPromptValue: (v: string) => void;
   selectNode: (id: string | null) => void;
+  pushHistory: () => void;
   toggleAddNodeMenu: () => void;
   closeAddNodeMenu: () => void;
   toggleOrganizeMenu: () => void;
@@ -529,6 +530,16 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       })),
     }));
   },
+
+  // Batch 232: 节点拖动等外部手势的撤销快照 (拖动开始时调用一次)
+  pushHistory: () =>
+    set((state) => ({
+      past: [
+        ...state.past.slice(-19),
+        { nodes: state.nodes, edges: state.edges },
+      ],
+      future: [],
+    })),
 
   toggleAddNodeMenu: () =>
     set((state) => ({ isAddNodeMenuOpen: !state.isAddNodeMenuOpen })),

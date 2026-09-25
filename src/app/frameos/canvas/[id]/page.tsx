@@ -87,11 +87,30 @@ function FrameosCanvasInner() {
 
   // 防止 store <-> flow 同步循环
   const isLocalChange = useRef(false);
+  // Batch 232: 每次拖动手势入撤销栈一次
+  const dragSnapshotted = useRef(false);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
       isLocalChange.current = true;
       const updated = applyNodeChanges(changes, nodes) as typeof nodes;
+      // Batch 232: 拖动开始时快照一次 (拖动结束复位标记), 让 ⌘Z 可撤销移动
+      const posChanges = changes.filter(
+        (c): c is NodeChange & { type: "position"; dragging?: boolean } =>
+          c.type === "position"
+      );
+      if (posChanges.length > 0) {
+        if (
+          !dragSnapshotted.current &&
+          posChanges.some((c) => c.dragging === true)
+        ) {
+          useFrameosStore.getState().pushHistory();
+          dragSnapshotted.current = true;
+        }
+        if (posChanges.some((c) => c.dragging === false)) {
+          dragSnapshotted.current = false;
+        }
+      }
       // Batch 229: 框选等多选 select 变更直接生效, 只同步 selectedNodeId
       // (不能用 selectNode — 它的单选不变量会清掉框选的多选状态)
       if (changes.some((c) => c.type === "select")) {

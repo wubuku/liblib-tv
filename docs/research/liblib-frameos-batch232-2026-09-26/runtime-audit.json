@@ -1,0 +1,20 @@
+{
+  "batch": 232,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "marquee:multi-selected",
+        "drag:both-moved",
+        "drag:same-delta",
+        "undo:restores-positions",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
