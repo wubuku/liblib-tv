@@ -62,12 +62,47 @@
 
 > 方法局限：关键词分类对「其他」（project.tsx 2014 行）分辨率不足；上表最大块为人工判读，未逐行归类。
 
-## 5. 上游独有机制速览（TDCanvas 移除/替换的部分）
+## 5. 上游独有机制深度分析（v5 深化；行号对齐上游基准 `dab19ad`）
 
-1. **canvas-proxy**（`canvas-proxy/`，npm 包 `@basketikun/canvas-proxy`）：本地 CORS 转发代理（默认 `127.0.0.1:23210`），目标地址内嵌路径（`/https://api.openai.com/...`），纯转发不改写/不校验 Key/SSE 透传。TDCanvas 以 Rust `platformFetch`（tauri http）+ `/tdtv-api` 代理 + media_cache 中继替代，并删除该组件。
-2. **Group 资源集合**（`canvas-resource-references.ts:84-96`）：`getGroupResourceNodes` 把 Group 节点在生成输入解析时**展平为其成员资源**——分组同时是引用打包单位；配套 `canvas-node-reference-bar.tsx`（引用条）与多选工具条的 group/ungroup 按钮（`canvas-selection-toolbar.tsx` 的 `canvas.nodeToolbar.group/ungroup`）。TDCanvas 保留了 groupId 几何分组但**移除了资源集合语义**，改用 objectReferences。
-3. **Space/Ctrl = 临时工具**（`infinite-canvas.tsx:114,206`）：按住 Space 或 Ctrl 临时切换工具（配合多选工具条）；TDCanvas 改为禁用 Space + ctrl 框选。
-4. **model-plugin 用户自建模插件**（`services/api/model-plugin.ts:113-230`）：按能力（capability）提供 JS 模板（OpenAI 模板等）、变量注入、authoring prompt——用户可用代码接入任意 OpenAI 兼容模型。TDCanvas 以固定 Aitudou 后端替换，未保留该 BYOK 扩展层。
-5. **prompt-source OpenAI 兼容运行时**（`prompt-source-runtime.ts`、`local-proxy.ts`）：与 TDCanvas 的同名机制同源，但上游还挂接 model-plugin 生态。
+### 5.1 canvas-selection-toolbar：多选浮动工具条与分组操作族
 
-> 对本项目的补充启发：上游的「Group=资源集合展平」「用户自建模插件模板」「本地转发代理」是与 TDCanvas 增量互补的另一组可迁移机制；是否对上游独立立项见 ITERATION_LOG v2 队列 #1。
+**组件本体**（`web/src/components/canvas/canvas-selection-toolbar.tsx`，85 行，全文精读）：
+- Props：`nodes/viewport/showToolbar/canGroup/canUngroup/onGroup/onUngroup`（`:13-29`）；选中 <2 节点直接返回 null（`:32`）。
+- 双重视觉：① 选中包围盒轮廓——`nodeBounds + SELECTION_PAD(14)` 换算屏幕坐标，SVG 圆角矩形（rx=16、虚线 `7 5`、`theme.canvas.selectionFill/Stroke`、z-[65]）（`:11, 34-58`）；② 浮动工具条——白色胶囊（h-12、rounded-18、投影），水平居中于包围盒、`-translate-y-full` 悬于其上 8px（z-[70]），`onMouseDown/PointerDown` stopPropagation 防拖穿（`:59-68`）。
+- **按钮全集只有 2 个**：Group（lucide `Group` 图标，`canGroup` 时）与 Ungroup（`Ungroup` 图标，`canUngroup` 时）；各带 antd Tooltip（top、0.2s 延迟、白底自定义样式）（`:66-67`）；`SelectionAction` 按钮结构（icon+label+hover 灰底）（`:74-85`）。没有对齐/分布/删除等多选操作——上游多选工具条只做分组。
+
+**接线与入口**（`web/src/pages/canvas/project.tsx`）：
+- `canGroupSelection/canUngroupSelection` 由 `canGroupSelectedNodes/canUngroupSelectedNodes` 计算（`:735-736`）；组件渲染于 `:3282-3290`，`showToolbar={!isNodeDragging && !isNodeResizing}`（拖拽/缩放中隐藏按钮、保留包围盒轮廓）（`:3284`）；**右键菜单**在 `contextMenu.type==="node"` 时暴露同两个动作（`:3325-3326`）；**键盘** Cmd/Ctrl+G 分组、+Shift 解组（含 canX 守卫 + preventDefault，`:1593-1606`）。
+
+**分组操作族**（`web/src/lib/canvas/canvas-node-geometry.ts`）：
+- `collectGroupMemberNodes`：选中节点 + 选中组的成员（剔除组壳本身）（`:58`）；`getGroupWrapRect`：成员包围盒 + 双侧/底部 GROUP_WRAP_PADDING、**顶部更大 padding**（供标题）（`:63-71`）。
+- 守卫：`canGroupSelectedNodes` 需 ≥2 成员且不全属同一组（`:73-78`）；`canUngroupSelectedNodes` 需选中含组壳或组成员（`:80-82`）；`emptyGroupIds` 回收空组（`:87-91`）。
+- `applyGroupSelection`：给成员写 `groupId` → **扁平化被选中的组壳** → 组节点插入到首个成员的下标处 → 连同空组一起清理连接与组壳 → 返回选中组壳（`:96-106`）；`applyUngroupSelection`：清除选中组壳与成员的 groupId → 清理空壳 → 选中还原为释放的成员（`:108-125`）。
+- **TDCanvas 对比**：组件文件删除（grep 0 命中）、Cmd+G 删除（`key==="g"` 0 命中）；分组创建方式从「选中→自动包裹矩形」改为「先建空 Group 节点→拖入成员（中心点包含判定）」，解组能力整体移除，仅保留拖入/拖出的 `findGroupDropTarget/snapNodesIntoGroup/findContainingGroupId`。
+
+### 5.2 canvas-proxy：本地 CORS 转发协议（`canvas-proxy/index.js`，132 行，全文精读）
+
+- **部署形态**：零依赖 Node `http` 服务的 npm bin（`npx @basketikun/canvas-proxy@latest`）；默认 `127.0.0.1:23210`，`--port/--host` 或 `PORT/HOST` 覆盖（`:120-132`）。
+- **目标解析 `readTarget`**（`:35-47`）：取首字符后的整个路径作为目标 URL；`decodeURI` 还原浏览器对路径的转义但保留刻意的 `encodeURIComponent`；正则 `^(https?:)\/*/` 修复被合并的 `//`；必须通过 `^https?:\/\/[^/]` 校验否则视为版本查询。
+- **头策略**：请求侧剥离逐跳头与代理特征头 host/connection/content-length/accept-encoding/origin/referer/sec-fetch-*（`:17, 49-56`）；响应侧剥离框架头 content-encoding/content-length/transfer-encoding/connection/keep-alive 与既有 access-control-*（`:19, 58-65`）；注入宽松 CORS `*`（max-age 86400，`:8-14`）；OPTIONS 直接 204（`:94-98`）。
+- **转发行为**：非 GET/HEAD 先缓冲 body（`:26-33, 77`）；`fetch(target, {redirect:"follow"})`（`:78`）；响应体经 `Readable.fromWeb` + pipe **逐块透传**（SSE 文本生成不缓冲），客户端断开即 destroy（`:85-89`）；状态行到达即打一行转发日志（时间/方法/目标/状态码/耗时，`:72-74, 79, 107`）；失败返回 502 JSON，若头已发出则 destroy（`:108-116`）；根路径返回 `{app, proxy, version, usage}` 版本 JSON（`:100-103`）。
+- **客户端挂接**：`withLocalProxy(url)`（`web/src/stores/use-config-store.ts:490`）在配置启用本地代理时包裹绝对 URL；model-plugin 的 `pluginUrl` 对 `^https?:` 路径强制走它（`model-plugin.ts:43-45`）；视频 blob 拉取同样包裹（`video.ts:199, 267`）。
+- **TDCanvas 替代**：删除该组件；桌面端以 Tauri http 插件（`platformFetch`）直连 + `/tdtv-api` 开发代理 + Rust `media_cache` 下载中继（含 SSRF 校验）组合替代。
+
+### 5.3 Group 资源集合：`getGroupResourceNodes` 数据流（`web/src/lib/canvas/canvas-resource-references.ts`，147 行，全文精读）
+
+- **资源资格** `resourceKind`（`:140-147`）：Image/Video/Audio 需 `metadata.content`、Text 需 `content||prompt`；插件节点经 `definition.resource(node).kind` 声明。
+- **组=资源包**：`getGroupResourceNodes(groupId, nodes)` = `metadata.groupId===groupId` 且有资源的成员（`:96-98`）；`hasGroupResources`（`:83-85`）→ `isCanvasReferenceNode`（`:87-89`）——**Group 节点只有持有资源成员时才算"可引用节点"**，才能被连线当作上游。
+- **展平**：`expandGroupResourceNodes` 把输入列表中的 Group 替换为其资源成员并按 id 去重（`:91-94`）。
+- **解析管线** `getMentionResourceNodes`（`:53-60`）：① 若节点连向 Config 节点 → 改用 Config 的输入（剔除自身）（`getConnectedConfigInputNodes :77-81`）；② 否则用自身入边的上游（`getContextInputNodes :70-75`，经 isCanvasReferenceNode 过滤）；③ 都没有则用自身；①② 每层都做组展平。`getGenerationResourceNodes`（`:62-68`）同管线但不展平（原始输入）。
+- **标签与序列化**：`labelResourceNodes` 按 image/video/audio/text 各自计数生成「图片 N」类标签（`labelForKind :123-128`，图片用 `imageReferenceLabel`）；`resolveCanvasReferenceImages`（`:29-51`）把图片引用解析为 `{id:"canvas:<nodeId>", dataUrl, width, height, ...}` 供生成 payload。
+- **TDCanvas 对比**：Config 路由保留（TD `canvas-resource-references.ts:72, 86, 110` 的 `getConnectedConfigResourceInputs`）；**组展平删除**（TD 中 `getGroupResourceNodes/expandGroupResourceNodes` 0 命中），引用打包职责由 TD 原创的 `objectReferences`（16 个文件）承担；TD 的 Group 恢复为纯视觉容器（无 port、禁与组建连）。
+
+### 5.4 model-plugin：用户自建模型脚本层（`web/src/services/api/model-plugin.ts`，993 行）
+
+- **定位**：把「任意 OpenAI/Gemini 兼容模型」以**用户可编辑的 JS 脚本**接入四种能力（image/video/audio/text）；消费方为 `image.ts/video.ts/audio.ts` 生成服务与 `components/layout/model-script-editor.tsx` 脚本编辑器。
+- **执行模型**（`runModelPlugin :113-164`）：`new Function` 注入 17 个位置参数 + `"use strict"` 异步 IIFE 包裹用户脚本（`:117-135`）——**主线程执行、无沙箱，apiKey 直接进入脚本作用域**；AbortError/axios 取消透传，其余错误包装为 i18n 消息（`:136-145`）。
+- **注入运行时**：`http {url,post,get}`（axios 实现，支持 json/blob/text/arraybuffer responseType 与 FormData，`:8-18, 50-77`）；绝对 URL 经 `withLocalProxy` 强制走本地代理（`:43-45`）；`request` 通用 axios；`poll {intervalMs,timeoutMs}` 轮询助手（`:20`）；`sleep/signal/onDelta`（流式文本回调）。
+- **变量文档** `getPluginVariables`（`:166-190`）：17 个变量按能力 scoping（如 `reasoningEffort/onDelta/messages` 仅 text，`videos/audios` 仅 video）。
+- **模板库** `getPluginTemplates`（`:224-975`）：**8 个模板 = 4 能力 × {OpenAI, Gemini}**（`:230, :325, :439, :560, :722, :779, :850, :907`）；OpenAI 图像模板结构：JSDoc `@returns {Promise<string[]>}` → `request({method:"post",...})` → 遍历 `data.data[]` 取 url；i2i 分支把参考图转 FormData（`image[]` 字段，多图/单图字段名切换）（`:230-330` 区域）。`normalizePluginImages`（`:977`）归一化返回值。
+- **TDCanvas 对比**：整层被移除，以固定 Aitudou 后端替代（`aitudou.ts` 1003 行 + 静态 `AITUDOU_MODEL_PROFILES` 目录）；TD 失去了 BYOK 脚本扩展能力，换来统一的任务状态机与计费守护。

@@ -64,9 +64,21 @@
 
 **剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
 
+## v5 — 2026-09-26（上游独有机制逐个深化 + 三轮引用抽检）
+
+1. **§5 深化为逐机制完整分析**（4 个机制，全部精读源文件后落档，见 UPSTREAM_DIFF_AUDIT §5.1-5.4）：
+   - **canvas-selection-toolbar**（85 行全文）：仅 Group/Ungroup 两按钮的多选工具条 + 虚线包围盒双重视觉；接线三入口（工具条/右键/Cmd+G±Shift）；分组操作族六函数（包裹矩形顶部留标题 padding、扁平化嵌套组、空组 GC、选中还原）；TD 对比：删除组件与 Cmd+G，分组改为「先建空组再拖入」。
+   - **canvas-proxy**（132 行全文）：目标内嵌路径协议（decodeURI+`//`修复+https 校验）、双向头剥离清单、宽松 CORS 注入、SSE 逐块透传与断连 destroy、状态即打日志、502/版本 JSON；客户端 `withLocalProxy`（use-config-store.ts:490）挂接点；TD 以 Tauri http + media_cache 中继替代。
+   - **Group 资源集合**（147 行全文）：`resourceKind` 资格 → `getGroupResourceNodes` 成员筛选 → `isCanvasReferenceNode` 连线资格 → `expandGroupResourceNodes` 展平去重 → Config 路由优先的三级解析管线 → 「图片 N」标签序列化 → `resolveCanvasReferenceImages` dataUrl 化；TD 对比：Config 路由保留、组展平删除（objectReferences 替代）、Group 退回纯视觉容器。
+   - **model-plugin**（993 行骨架+关键段）：`new Function` 17 参数无沙箱执行（apiKey 入作用域）、http/request/poll/sleep/signal/onDelta 注入运行时、17 变量能力 scoping 文档、**8 模板 = 4 能力 × {OpenAI, Gemini}**；TD 以固定 Aitudou 后端替换、失去 BYOK 脚本层。
+2. **第三轮引用抽检**：对本轮新写入的 15 处引用逐一 `sed` 比对，**15/15 一致**（三轮累计 36/36）。
+
+**剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项（§5 已覆盖其四个独有机制，独立包可聚焦剩余面：selection 体系其余部分、prompt-source 运行时、Docker 部署形态等）；② 运行时审计（需启动用户环境授权）。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
 - 2026-09-26 v2：上游归属审计（UPSTREAM_DIFF_AUDIT.md）+ 周边表面补遗（SOURCE_ANALYSIS §8）+ 结论修订。
 - 2026-09-26 v3：引用抽检 12/12 通过 + INTERACTION_CATALOG.md（56 项交互 + 快捷键全表）。
 - 2026-09-26 v4：diff 语义分类（§4）+ 上游独有机制速览（§5）+ 二轮引用抽检 9/9。
+- 2026-09-26 v5：§5 深化为 §5.1-5.4 逐机制完整分析（四个源文件精读）+ 三轮引用抽检 15/15（累计 36/36）。
