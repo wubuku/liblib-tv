@@ -1168,6 +1168,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1626 巡检 | still-broken | 第八百零三次重测；巡检批次——并行落库 jimeng 728 rotation（49-64 绿 14/14）+ chore（tdcanvas 研究链接索引更新）；3 件 jimeng PNG WIP 保留不动；batch 1628 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1628 巡检 | still-broken | 第八百零四次重测；到期全量维护集新鲜运行首跑 77/78——batch514 TargetClosed 单项瞬态（与 batch 1131 同签名），复测 PASS 后 78/78 达成；回写恢复工作区净（batch 1628） |
 | 2026-09-25 | batch 1633 巡检 | still-broken | 第八百零五次重测；巡检批次——并行落库 jimeng 730 full quality gate（92 验证器绿：91 首跑 + batch49 瞬态重跑）+ frameos 238 文档（空视频工具栏按新版本采样移除）+ tdcanvas 研究目录扩容（INTERACTION_CATALOG 等活跃 WIP 保留不动）；有头浏览器重启（登录态+7 节点持久化确认）；batch 1635 到期执行 78 项全量新鲜运行 |
+| 2026-09-25 | batch 1635 巡检 | still-broken | 第八百零六次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1635） |
 | 2026-09-25 | batch 1551 巡检 | still-broken | 第七百八十二次重测；到期全量维护集新鲜运行首跑 67/78——11 项（batch21–151）于资源争用窗口失败（有头 explorer 浏览器与套件并发、networkidle 超时），杀浏览器释放资源后后续项全绿，11 项重跑 PASS 后 78/78 达成；回写恢复工作区净（batch 1551） |
 | 2026-09-25 | batch 1439 巡检 | still-broken | 第七百五十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1439） |
 | 2026-09-25 | batch 1283 巡检 | still-broken | 第七百零五次重测；巡检批次——并行 rotation 双连落 jimeng 598（1-19 绿 19/19）+ 599（20-33 绿 14/14）+ frameos 218 文档（合成上传注入不持久留痕，上传流保持未验证）；工作区干净；batch 1285 到期执行 78 项全量新鲜运行 |
