@@ -64,6 +64,11 @@ export function JimengGenPanel({
   const [count, setCount] = useState("1");
   const [reference, setReference] = useState("全能参考");
   const [duration, setDuration] = useState("4s");
+  // Batch 688 SOURCE_FACT (2026-09-26 实测): 引用参考点击不开模态,
+  // 切换行内参考条——展开 主体/图片/视频/音频 标签 + 添加参考钮 +
+  // 搜索框 (placeholder 搜索主体、图片、视频); 再点收合
+  const [refStripOpen, setRefStripOpen] = useState(false);
+  const [refTab, setRefTab] = useState("主体");
   const pushToast = useJimengStore((s) => s.pushToast);
   const canSend = prompt.trim().length > 0;
 
@@ -93,13 +98,53 @@ export function JimengGenPanel({
         >
           {/* 素材栏 */}
           <div className="flex h-12 w-full items-center">
-            <button
-              type="button"
-              aria-label="上传参考图"
-              className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
-            >
-              <Plus size={20} />
-            </button>
+            {refStripOpen ? (
+              /* Batch 688 引用参考展开条 (SOURCE_FACT 2026-09-26):
+                  原位替换素材栏行, 零面板位移——CLONE_DECISION
+                  (源站为整面板长高展开, 展开态布局部分遮挡未采全) */
+              <div
+                className="flex h-12 w-full items-center gap-1.5"
+                data-testid="ref-strip"
+              >
+                <button
+                  type="button"
+                  aria-label="添加参考"
+                  className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
+                >
+                  <Plus size={20} />
+                </button>
+                <div className="flex shrink-0 items-center gap-1">
+                  {["主体", "图片", "视频", "音频"].map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      aria-pressed={refTab === tab}
+                      onClick={() => setRefTab(tab)}
+                      className={`flex h-7 items-center rounded-full px-2.5 text-[12px] ${
+                        refTab === tab
+                          ? "bg-white/[0.14] text-white"
+                          : "text-white/70 hover:bg-white/[0.08]"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  placeholder="搜索主体、图片、视频"
+                  className="h-8 min-w-0 flex-1 rounded-lg bg-white/[0.06] px-2.5 text-[12px] text-white outline-none placeholder:text-white/35"
+                />
+              </div>
+            ) : (
+              <button
+                type="button"
+                aria-label="上传参考图"
+                className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
+              >
+                <Plus size={20} />
+              </button>
+            )}
           </div>
 
           {/* 提示词输入区 (Batch 40: 可编辑)。批 206: 占位 14px + @主体
@@ -302,11 +347,16 @@ export function JimengGenPanel({
                   </div>
                 ) : null}
               </div>
-              {/* 批 403 SOURCE_FACT: 行内图标钮 aria 实测 引用参考 */}
+              {/* 批 403 SOURCE_FACT: 行内图标钮 aria 实测 引用参考;
+                  批 688 SOURCE_FACT (2026-09-26): 点击切换行内参考条 */}
               <button
                 type="button"
                 aria-label="引用参考"
-                className="flex size-8 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
+                aria-pressed={refStripOpen}
+                onClick={() => setRefStripOpen((v) => !v)}
+                className={`flex size-8 items-center justify-center rounded-lg hover:bg-white/[0.08] ${
+                  refStripOpen ? "bg-white/[0.14] text-white" : "text-white/80"
+                }`}
               >
                 <AtSign size={15} />
               </button>

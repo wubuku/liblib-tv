@@ -1,0 +1,21 @@
+{
+  "batch": 228,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "video:menu-opens",
+        "video:rows",
+        "audio:menu-opens",
+        "audio:rows",
+        "image:rows",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}
