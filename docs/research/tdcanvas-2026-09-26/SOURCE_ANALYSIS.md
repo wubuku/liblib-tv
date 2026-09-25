@@ -55,7 +55,7 @@ TDCanvas/
 - 框选 = **ctrl/cmd+左键拖空白**（surface 路由 `:97-102` → `project.tsx:1270-1302`；矩形相交判定 `project.tsx:1506`；shift 为加选）。
 - Fit 视图按可见节点包围盒算 k（clamp 0.05–1），280ms easeOutCubic 动画（`project.tsx:1136-1174`）；focusNode 450ms、k clamp 0.05–1.5（`:1176-1203`）。
 - antd 弹层与 `[data-canvas-no-zoom]` 内滚轮不缩放不阻止默认滚动（`td-canvas-surface.tsx:71, 93, 200-212`）。
-- 无键盘 +/-/0 缩放快捷键（`project.tsx:1735-1807` 键位表见 §4.9）。
+- 无键盘 +/-/0 缩放快捷键（`project.tsx:1735-1807` 键位表见 [INTERACTION_CATALOG.md](INTERACTION_CATALOG.md) §6）。
 
 ### 1.3 渲染技术
 

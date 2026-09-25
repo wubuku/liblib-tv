@@ -97,6 +97,14 @@
 
 **剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
 
+## v9 — 2026-09-26（第六轮抽检：SOURCE_ANALYSIS 结构锚点 + § 交叉引用校验）
+
+1. **§ 交叉引用一致性校验**（脚本化）：提取包内全部 `§x.y` 引用（目标为 SOURCE_ANALYSIS 58 个编号标题、UPSTREAM_AUDIT 13 个），发现并修正 1 处悬空引用——SOURCE_ANALYSIS §1.2 的「键位表见 §4.9」改为指向 [INTERACTION_CATALOG.md](INTERACTION_CATALOG.md) §6（快捷键全表实际落档处）。
+2. **第六轮行号抽检 83 处**（此前未直接核验的结构锚点）：§1 渲染层 23 处（ViewportTransform 类型、transform 层 `:241-246`、节点 transform `:312-318`、贝塞尔曲率/命中层/选中描边/ActiveConnectionPath、流动光效 CSS、小地图 240×160/±500/视口框/着色、氛围层密度分档、theme token、port 解析与兼容、连线显隐分支、命中常量 40/32、window 收尾、runningWorkflowNodeIds、组逆序查找）；§2/§4 30 处（store 六锚点、localforage 三 store、导出单节点、showcase/封面、hydrate 两级、persistAitudouRunResult、runAitudouOperation/prepare/upload/错误脱敏、协议归一化与 pollPath、模型目录 123、变体匹配/Seedream 几何/引用注入、尺寸表、裁剪与 4096 上限）；§5/§6 30 处（工具枚举/op zod schema/编译器/生成流 ops/MCP 回环/claude spawn/session 状态与回传/CanvasAgentOp 8 原语及应用/媒体缓存 Web 前缀与 Rust 三锚/lib.rs 目录/插件注册表/事件总线/插件 storage/上下文/加载三路/Comfy 注册与动态端口/工作流解析与固化/Tauri 启动收敛与参数白名单）。**83/83 命中，零漂移**（一处误判复核：`local-media-cache.ts:120` 确为 `LOCAL_MEDIA_CACHE_FILE_PREFIX`）。
+3. **抽检台账（累计）**：12+9+15+79+31+83 = **229 处行号引用，六轮，仅 1 处漂移（v7 已修正）+1 处悬空 § 引用（本轮已修正）**；修正后包内引用 100% 一致。
+
+**剩余队列**（均需用户输入，暂列为待决）：① 上游 infinite-canvas 独立立项；② 运行时审计（需启动用户环境授权）。
+
 ## 维护记录
 
 - 2026-09-26 v1：首轮落档（5 专题并行调研 + 6 文档）。
@@ -107,3 +115,4 @@
 - 2026-09-26 v6：第四轮引用抽检 INTERACTION_CATALOG 全量 79/79 零漂移（累计 115 处），目录头部标注抽检台账。
 - 2026-09-26 v7：第五轮抽检 31 处、发现并修正 viewport 防抖行号漂移 3 处（累计 146 处）；新增 §6 上游机制补遗（prompt-source/local-proxy/selection 体系）。
 - 2026-09-26 v8：上游机制回填——PATTERN_CARDS 增上游参考卡 UP-01..06、ADOPTION 矩阵增 #21-26（合计 26 行），包内计数与索引描述同步。
+- 2026-09-26 v9：第六轮抽检 83/83 零漂移 + § 交叉引用校验修正 1 处悬空引用（行号累计 229 处）。
