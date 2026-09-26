@@ -12,8 +12,10 @@ import { useUIStore } from "@/store/uiStore";
 // 10 列分镜表格（镜号/时长/画面描述/景别/光影氛围/对白旁白/音效/运镜/
 // 最终提示词/操作），首行 1/5s，空单元格左上角 + 号；最终提示词列显示
 // 「待生成提示词」；底部 + 添加镜头 与 → 下一步：准备资产。
-// 「下一步」的目标步骤未采样（SOURCE_UNCERTAIN），按钮仅为可视态；
-// 全部编辑为本地草稿，不触发任何 AI 生成。
+// Batch 532: 2026-09-27 CDP 补采（截图 40/41）——第 2 步为 角色/场景/道具
+// 三组新增虚线卡 + 「资产已生成，如再次生成将会覆盖…」提示；第 3 步为
+// 同表格「最终提示词」列高亮 + 一键合成全部提示词；无上一步按钮；
+// 下一步推进为本地导航；一键合成不触发真实生成（付费 AI 动作）。
 
 interface StoryboardRow {
   shot: number;
@@ -97,6 +99,10 @@ export function StoryboardScriptEditor() {
   const isOpen = useUIStore((state) => state.isStoryboardEditorOpen);
   const close = useUIStore((state) => state.closeStoryboardEditor);
   const [rows, setRows] = useState<StoryboardRow[]>(initialRows);
+  // Batch 532: 2026-09-27 CDP 补采（截图 40/41）——下一步可推进到
+  // 准备资产（角色/场景/道具 新增卡 + 覆盖提示）与合成提示词
+  // （最终提示词列高亮 + 一键合成全部提示词）；源站无上一步按钮。
+  const [step, setStep] = useState(1);
 
   if (!isOpen) return null;
 
@@ -114,23 +120,28 @@ export function StoryboardScriptEditor() {
     >
       <div className="flex items-start justify-center gap-16 pt-5">
         {[
-          { step: 1, title: "确认镜头", subtitle: `${rows.length}个镜头待核对`, active: true },
-          { step: 2, title: "准备资产", subtitle: "暂无资产", active: false },
-          { step: 3, title: "合成提示词", subtitle: `0/${rows.length} 已合成`, active: false },
+          { step: 1, title: "确认镜头", subtitle: `${rows.length}个镜头待核对` },
+          { step: 2, title: "准备资产", subtitle: "暂无资产" },
+          { step: 3, title: "合成提示词", subtitle: `0/${rows.length} 已合成` },
         ].map((item, index) => (
           <div key={item.step} className="flex items-center gap-16">
             {index > 0 && <span className="h-px w-28 bg-white/10" />}
-            <div className="flex items-center gap-2.5">
+            <div
+              className={cn(
+                "flex items-center gap-2.5 rounded-xl px-3 py-1.5",
+                item.step === step && "bg-white/[0.07]",
+              )}
+            >
               <span
                 className={cn(
                   "flex size-7 items-center justify-center rounded-full text-sm",
-                  item.active ? "bg-[#e8e8e8] text-[#1a1a1a]" : "border border-white/15 text-[#8c8c8c]",
+                  item.step === step ? "bg-[#e8e8e8] text-[#1a1a1a]" : "border border-white/15 text-[#8c8c8c]",
                 )}
               >
                 {item.step}
               </span>
               <span className="leading-tight">
-                <span className={cn("block text-sm", item.active ? "text-[#ededed]" : "text-[#8c8c8c]")}>
+                <span className={cn("block text-sm", item.step === step ? "text-[#ededed]" : "text-[#8c8c8c]")}>
                   {item.title}
                 </span>
                 <span className="block text-[11px] text-[#6e6e6e]">{item.subtitle}</span>
@@ -152,17 +163,37 @@ export function StoryboardScriptEditor() {
         </button>
       </div>
 
-      <div className="mt-5 flex-1 overflow-auto px-6 pb-16">
-        <div className="min-w-[1180px] rounded-md border border-white/[0.06]">
-          <div className="flex bg-[#1a1a1a] text-xs text-[#a5a5a5]">
-            <span className="w-[4%] px-2 py-2.5 text-center">镜号</span>
-            <span className="w-[4%] px-2 py-2.5 text-center">时长</span>
-            {textColumns.map((column) => (
-              <span key={column.key} className={cn("border-l border-white/[0.06] px-2 py-2.5", column.width)}>{column.label}</span>
-            ))}
-            <span className="w-[8%] border-l border-white/[0.06] px-2 py-2.5">最终提示词</span>
-            <span className="w-[5%] border-l border-white/[0.06] px-2 py-2.5 text-center">操作</span>
-          </div>
+      {step === 2 ? (
+        <div className="mt-5 flex-1 overflow-auto px-6 pb-16">
+          {["角色", "场景", "道具"].map((group) => (
+            <div key={group} data-storyboard-asset-group={group} className="mb-6">
+              <h3 className="text-sm text-[#d8d8d8]">{group}</h3>
+              <button
+                type="button"
+                data-storyboard-asset-add
+                aria-label={`新增${group}资产`}
+                className="mt-2 flex h-[190px] w-[195px] flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] text-[#8c8c8c] hover:border-white/[0.28] hover:text-[#c0c0c0]"
+              >
+                <span className="text-2xl leading-none">+</span>
+                <span className="text-xs">新增</span>
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-5 flex-1 overflow-auto px-6 pb-16">
+          <div className="min-w-[1180px] rounded-md border border-white/[0.06]">
+            <div className="flex bg-[#1a1a1a] text-xs text-[#a5a5a5]">
+              <span className="w-[4%] px-2 py-2.5 text-center">镜号</span>
+              <span className="w-[4%] px-2 py-2.5 text-center">时长</span>
+              {textColumns.map((column) => (
+                <span key={column.key} className={cn("border-l border-white/[0.06] px-2 py-2.5", column.width)}>{column.label}</span>
+              ))}
+              <span className={cn("w-[8%] border-l border-white/[0.06] px-2 py-2.5", step === 3 && "bg-white/[0.08] text-[#ededed]")}>
+                最终提示词
+              </span>
+              <span className="w-[5%] border-l border-white/[0.06] px-2 py-2.5 text-center">操作</span>
+            </div>
           {rows.map((row) => (
             <div key={row.shot} data-storyboard-row={row.shot} className="flex border-t border-white/[0.06]">
               <span className="w-[4%] py-3 text-center text-xs text-[#d0d0d0]">{row.shot}</span>
@@ -184,40 +215,71 @@ export function StoryboardScriptEditor() {
               </span>
             </div>
           ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="flex items-center justify-between px-6 py-4">
-        <button
-          type="button"
-          data-storyboard-add-shot
-          onClick={() =>
-            setRows((current) => [
-              ...current,
-              {
-                shot: current.length + 1,
-                duration: "5s",
-                description: "",
-                shotSize: "",
-                lighting: "",
-                dialogue: "",
-                soundEffect: "",
-                cameraMove: "",
-              },
-            ])
-          }
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-[#d8d8d8] hover:bg-white/[0.06]"
-        >
-          <span className="text-base leading-none">+</span> 添加镜头
-        </button>
-        <button
-          type="button"
-          data-storyboard-next-step
-          title="下一步：准备资产（源站后续步骤未采样）"
-          className="flex items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a] hover:bg-white"
-        >
-          → 下一步：准备资产
-        </button>
+        {step === 2 ? (
+          <span data-storyboard-asset-notice className="flex items-center gap-1.5 text-xs text-[#8c8c8c]">
+            <span className="text-[#3fbf7f]">✓</span> 资产已生成，如再次生成将会覆盖之前的图片/场景/道具等资产
+          </span>
+        ) : (
+          <button
+            type="button"
+            data-storyboard-add-shot
+            onClick={() =>
+              setRows((current) => [
+                ...current,
+                {
+                  shot: current.length + 1,
+                  duration: "5s",
+                  description: "",
+                  shotSize: "",
+                  lighting: "",
+                  dialogue: "",
+                  soundEffect: "",
+                  cameraMove: "",
+                },
+              ])
+            }
+            className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-[#d8d8d8] hover:bg-white/[0.06]"
+          >
+            <span className="text-base leading-none">+</span> 添加镜头
+          </button>
+        )}
+        {step === 1 && (
+          <button
+            type="button"
+            data-storyboard-next-step
+            data-storyboard-next="assets"
+            onClick={() => setStep(2)}
+            className="flex items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a] hover:bg-white"
+          >
+            → 下一步：准备资产
+          </button>
+        )}
+        {step === 2 && (
+          <button
+            type="button"
+            data-storyboard-next-step
+            data-storyboard-next="prompts"
+            onClick={() => setStep(3)}
+            className="flex items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a] hover:bg-white"
+          >
+            → 下一步：合成提示词
+          </button>
+        )}
+        {step === 3 && (
+          <button
+            type="button"
+            data-storyboard-synthesize-all
+            title="一键合成全部提示词（真实合成为付费 AI 动作，clone 不触发）"
+            className="flex items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a] hover:bg-white"
+          >
+            一键合成全部提示词
+          </button>
+        )}
       </div>
     </div>
   );

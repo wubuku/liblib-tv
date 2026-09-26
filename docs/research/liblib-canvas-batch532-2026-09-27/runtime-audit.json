@@ -1,0 +1,32 @@
+{
+  "batch": 532,
+  "title": "Storyboard editor step navigation (steps 2/3)",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §11 update + screenshots 40/41 (CDP 2026-09-27)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "editor:opens",
+        "step2:group:角色",
+        "step2:group:场景",
+        "step2:group:道具",
+        "step2:add-card",
+        "step2:override-notice",
+        "step2:next-label",
+        "step2:no-add-shot",
+        "step3:table-returns",
+        "step3:synthesize-all",
+        "step3:add-shot",
+        "step3:no-next",
+        "step3:pending-pill",
+        "step3:synth-inert",
+        "step3:escape-closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
