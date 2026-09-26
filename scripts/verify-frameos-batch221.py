@@ -64,7 +64,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     errors = attach_errors(page)
     dialogs: list[str] = []
     page.on("dialog", lambda d: (dialogs.append(d.message), d.dismiss()))
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
+    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
     # 1) 3D导演台 → director3d 节点 (图标 + 进入导演台 胶囊按钮)

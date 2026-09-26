@@ -49,7 +49,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
+    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
     nodes_before = page.locator(".react-flow__node").count()

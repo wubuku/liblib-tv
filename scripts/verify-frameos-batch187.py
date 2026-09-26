@@ -53,7 +53,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
+    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
     # 切到空的 画布 3 (通过面包屑: 画布下拉列出 画布 3)

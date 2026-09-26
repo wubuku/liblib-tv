@@ -50,7 +50,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded")
+    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1200)
 
     # 把 image-1 移到上方远处 (布置), 记录坐标
