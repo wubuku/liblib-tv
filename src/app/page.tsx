@@ -1326,6 +1326,11 @@ export default function Home() {
         }
       }
       if (event.key === "Escape") {
+        if (uiState.isFollowingSession) {
+          event.preventDefault();
+          uiState.setFollowingSession(false);
+          return;
+        }
         const selection = useCanvasStore.getState().getSelectionSnapshot();
         if (selection.kind !== "none") {
           event.preventDefault();

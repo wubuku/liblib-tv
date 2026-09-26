@@ -1,0 +1,30 @@
+{
+  "batch": 528,
+  "title": "Script-generator attempt entries drive follow session",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §11/round-8 (单击入口 → 正在跟随/取消ESC，未展开子流程)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "initial:no-follow",
+        "panel:open",
+        "node:created",
+        "attempt:aria-pressed",
+        "follow:banner-visible",
+        "follow:banner-text",
+        "follow:no-subflow",
+        "cancel:banner-hidden",
+        "cancel:entry-cleared",
+        "reclick:banner-visible",
+        "escape:banner-hidden",
+        "escape:entry-cleared",
+        "prompt:editable",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

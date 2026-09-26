@@ -9,6 +9,7 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import { cn } from "@/lib/utils";
+import { useUIStore } from "@/store/uiStore";
 
 export interface ScriptGeneratorNodeData extends Record<string, unknown> {
   title?: string;
@@ -22,6 +23,9 @@ export type ScriptGeneratorNodeType = Node<
 // Batch 116: 2026-09-06 丢弃式采样（liblib-canvas-sampling-2026-09-06 §3）——
 // 三种尝试模式、参考图入口、提示词与 GVLM 3.1 模型为源站观察；
 // 生成服务不存在，本地仅维护选择与草稿。
+// Batch 528: 2026-09-27 第五/八轮源站采样（liblib-source-exploration-2026-09-25
+// NOTES §11/§140）——单击尝试入口仅选中/跟随节点（正在跟随/取消ESC），未展开子流程；
+// clone 将跟随态与入口选择同步，再点同项或取消/ESC 退出。
 const attemptModes = [
   "剧本生成分镜脚本",
   "角色生成分镜脚本",
@@ -36,6 +40,17 @@ function ScriptGeneratorNodeComponent({
 }: NodeProps<ScriptGeneratorNodeType>) {
   const [attempt, setAttempt] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
+  const isFollowingSession = useUIStore((state) => state.isFollowingSession);
+  const setFollowingSession = useUIStore((state) => state.setFollowingSession);
+
+  // Batch 528: 入口高亮与跟随态同步——横幅取消/ESC 结束跟随即视为无选中入口。
+  const activeAttempt = isFollowingSession ? attempt : null;
+
+  const toggleAttempt = (mode: string) => {
+    const next = activeAttempt === mode ? null : mode;
+    setAttempt(next);
+    setFollowingSession(next !== null);
+  };
 
   return (
     <div
@@ -62,11 +77,11 @@ function ScriptGeneratorNodeComponent({
             key={mode}
             type="button"
             data-script-generator-attempt={mode}
-            aria-pressed={attempt === mode}
-            onClick={() => setAttempt(attempt === mode ? null : mode)}
+            aria-pressed={activeAttempt === mode}
+            onClick={() => toggleAttempt(mode)}
             className={cn(
               "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs transition-colors",
-              attempt === mode
+              activeAttempt === mode
                 ? "bg-[#09caf5]/15 text-[#09caf5]"
                 : "bg-white/[0.04] text-[#d8d8d8] hover:bg-white/[0.08]",
             )}
