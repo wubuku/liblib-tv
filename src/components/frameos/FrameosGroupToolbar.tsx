@@ -14,7 +14,7 @@ import { showToast } from "./FrameosToast";
  * 单选时不显示 (单选走 FrameosNodeFloatingToolbar)。
  */
 export function FrameosGroupToolbar() {
-  const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(
     null
   );
 
@@ -38,20 +38,15 @@ export function FrameosGroupToolbar() {
         maxX = Math.max(maxX, r.right);
         minY = Math.min(minY, r.top);
       }
-      const width = 163;
-      const left = (minX + maxX) / 2 - width / 2;
       const TOOLBAR_HEIGHT = 36;
       const GAP = 15;
       const top = minY - (TOOLBAR_HEIGHT + GAP);
       setPos((prev) => {
-        if (
-          prev &&
-          Math.abs(prev.left - left) < 0.5 &&
-          Math.abs(prev.top - top) < 0.5
-        ) {
+        if (prev && Math.abs(prev.left - minX) < 0.5 && Math.abs(prev.top - top) < 0.5) {
           return prev;
         }
-        return { left, top, width };
+        // left = 选中集合包围盒左缘; 工具条用 translateX(-50%) 以内容宽度居中
+        return { left: minX, top };
       });
       raf = requestAnimationFrame(tick);
     };
@@ -116,7 +111,7 @@ export function FrameosGroupToolbar() {
         position: "fixed",
         left: pos.left,
         top: pos.top,
-        width: pos.width,
+        transform: "translateX(-50%)",
         height: 36,
         background: "rgba(24,24,24,0.85)",
         backdropFilter: "blur(6px)",
