@@ -1188,6 +1188,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-25 | batch 1693 巡检 | still-broken | 第八百二十二714 rotation；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1693） |
 | 2026-09-25 | batch 1698 巡检 | still-broken | 第八百二十三次重测；巡检批次——并行无新落库，tdcanvas-canvas 用户手册目录扩容（AUDIT/PROGRESS/SOURCE_OBSERVATIONS/screenshots/task-inventory untracked WIP）保留不动；batch 1700 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1700 巡检 | still-broken | 第八百二十四次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1700） |
+| 2026-09-25 | batch 1705 巡检 | still-broken | 第八百二十五次重测；巡检批次——并行落库 frameos 246（内容媒体语义更新任务清单证据）+ jimeng 759 rotation（65-101 绿 25/25，round sweep complete）；工作区干净；batch 1707 到期执行 78 项全量新鲜运行 |
 | 2026-09-25 | batch 1551 巡检 | still-broken | 第七百八十二次重测；到期全量维护集新鲜运行首跑 67/78——11 项（batch21–151）于资源争用窗口失败（有头 explorer 浏览器与套件并发、networkidle 超时），杀浏览器释放资源后后续项全绿，11 项重跑 PASS 后 78/78 达成；回写恢复工作区净（batch 1551） |
 | 2026-09-25 | batch 1439 巡检 | still-broken | 第七百五十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1439） |
 | 2026-09-25 | batch 1283 巡检 | still-broken | 第七百零五次重测；巡检批次——并行 rotation 双连落 jimeng 598（1-19 绿 19/19）+ 599（20-33 绿 14/14）+ frameos 218 文档（合成上传注入不持久留痕，上传流保持未验证）；工作区干净；batch 1285 到期执行 78 项全量新鲜运行 |
