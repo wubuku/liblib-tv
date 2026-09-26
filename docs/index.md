@@ -42,6 +42,7 @@ graph TD
 | [`QUALITY.md`](QUALITY.md) | TypeScript、React Flow、证据、截图和文档质量规则 |
 | [`HARNESS.md`](HARNESS.md) | lint/typecheck/build、Batch Playwright 和文档链接检查 |
 | [`CANVAS_NAVIGATION.md`](CANVAS_NAVIGATION.md) | 当前 LibTV 普通画布拖动、缩放、鼠标和 macOS 触摸板操作权威 |
+| [`CANVAS_TEST_MEDIA.md`](CANVAS_TEST_MEDIA.md) | 源站画布探索授权的真实测试媒体清单（上传可用；生成付费禁触发） |
 | [`GLOSSARY.md`](GLOSSARY.md) | 产品、画布、React Flow 和研究术语 |
 | [`BIG_PICTURE.md`](BIG_PICTURE.md) | 当前系统的详细认知和原型边界 |
 | [`DOCUMENTATION_PLAN.md`](DOCUMENTATION_PLAN.md) | 文档体系迁移和维护计划 |

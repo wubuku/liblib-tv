@@ -77,6 +77,10 @@ python3 scripts/verify-docs.py
 - TypeScript is strict; do not use `any`. Prefer Tailwind; document dynamic inline styles.
 - Separate source fact, evidence-backed inference and clone-only decision in research docs.
 - Before visual reinspection, search existing `SCREENSHOT_ANALYSIS.md` records.
+- Source-site canvas exploration that needs real uploads must use the authorized
+  test media in `docs/CANVAS_TEST_MEDIA.md`; uploading is allowed, but never
+  trigger real video/image generation (paid, expensive) or enter billing pages
+  without separate user confirmation.
 - Director `TransformControls` must use explicit object attachment and read back the
   same Three.js object that was dragged; run Batch 77 after changing this path.
 

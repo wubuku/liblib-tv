@@ -1,5 +1,7 @@
 # FrameOS 测试媒体素材登记
 
+> 权威登记与使用边界见 [docs/CANVAS_TEST_MEDIA.md](../../CANVAS_TEST_MEDIA.md)（agents 常青入口）；本文件是该手册轮次的使用记录。
+
 ## 使用边界
 
 - 这些文件仅用于 FrameOS 画布上传、节点预览、参考图挂载、连接和编辑交互验证。
