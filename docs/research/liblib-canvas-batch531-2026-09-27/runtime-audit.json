@@ -1,0 +1,47 @@
+{
+  "batch": 531,
+  "title": "Self-write storyboard script editor overlay",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §11 update + screenshot 38-script-selfwrite-clicked.png (CDP 2026-09-27)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "gen-entry:follow-banner",
+        "gen-entry:no-editor",
+        "editor:opens",
+        "editor:no-follow",
+        "editor:token:确认镜头",
+        "editor:token:准备资产",
+        "editor:token:合成提示词",
+        "editor:token:1个镜头待核对",
+        "editor:token:暂无资产",
+        "editor:token:0/1 已合成",
+        "editor:token:0/3 完成后可批量生成视频",
+        "editor:token:镜号",
+        "editor:token:时长",
+        "editor:token:画面描述",
+        "editor:token:景别",
+        "editor:token:光影氛围",
+        "editor:token:对白/旁白",
+        "editor:token:音效",
+        "editor:token:运镜",
+        "editor:token:最终提示词",
+        "editor:token:操作",
+        "editor:token:待生成提示词",
+        "editor:token:添加镜头",
+        "editor:token:下一步：准备资产",
+        "editor:first-row",
+        "cell:edit-commits",
+        "add-shot:row2",
+        "add-shot:counter",
+        "escape:closes",
+        "close-button:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

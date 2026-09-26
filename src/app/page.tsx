@@ -89,6 +89,7 @@ import { AgentDrawer } from "@/components/AgentDrawer";
 import { StoryboardBoard } from "@/components/StoryboardBoard";
 import { CanvasEmptyState } from "@/components/CanvasEmptyState";
 import { FollowBanner } from "@/components/FollowBanner";
+import { StoryboardScriptEditor } from "@/components/StoryboardScriptEditor";
 import { ScriptNode } from "@/components/nodes/ScriptNode";
 import { ScriptGeneratorNode } from "@/components/nodes/ScriptGeneratorNode";
 import { ScriptV2Node } from "@/components/nodes/ScriptV2Node";
@@ -1618,6 +1619,7 @@ export default function Home() {
 
       {isAgentOpen && <AgentDrawer />}
 
+      <StoryboardScriptEditor />
       <FollowBanner />
 
       <LeftSidebar onAddNode={addNodeAtHostCenter} />

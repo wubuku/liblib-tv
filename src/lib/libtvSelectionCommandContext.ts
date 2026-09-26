@@ -30,7 +30,8 @@ export type LibTVBlockingForegroundSurface =
   | "share"
   | "notification"
   | "user-menu"
-  | "primary-panel";
+  | "primary-panel"
+  | "storyboard-editor";
 
 export interface LibTVForegroundSurfaceSnapshot {
   isFollowingSession: boolean;
@@ -42,6 +43,7 @@ export interface LibTVForegroundSurfaceSnapshot {
   isNotificationOpen: boolean;
   isUserMenuOpen: boolean;
   activePrimaryPanel: string | null;
+  isStoryboardEditorOpen: boolean;
 }
 
 function uniqueAvailableIds(
@@ -110,6 +112,8 @@ export function resolveLibTVBlockingForegroundSurface(
 ): LibTVBlockingForegroundSurface | null {
   // Batch 105: 跟随横幅 z-[305] 为最高层；跟随中 ESC 单层退出。
   if (snapshot.isFollowingSession) return "follow-banner";
+  // Batch 531: 自写分镜编辑器为全屏阻塞面，优先于普通面板关闭。
+  if (snapshot.isStoryboardEditorOpen) return "storyboard-editor";
   if (snapshot.isShortcutsPanelOpen) return "shortcuts";
   if (snapshot.isCanvasDropdownOpen) return "canvas-dropdown";
   if (snapshot.isAddNodePanelOpen) return "add-node";

@@ -26,6 +26,8 @@ export type ScriptGeneratorNodeType = Node<
 // Batch 528: 2026-09-27 第五/八轮源站采样（liblib-source-exploration-2026-09-25
 // NOTES §11/§140）——单击尝试入口仅选中/跟随节点（正在跟随/取消ESC），未展开子流程；
 // clone 将跟随态与入口选择同步，再点同项或取消/ESC 退出。
+// Batch 531: 2026-09-27 CDP 补采（同目录截图 38）修正 round-8 结论——
+// 「自己编写分镜脚本」入口实际打开全屏分镜脚本编辑器；前两个入口保持跟随合同。
 const attemptModes = [
   "剧本生成分镜脚本",
   "角色生成分镜脚本",
@@ -42,11 +44,17 @@ function ScriptGeneratorNodeComponent({
   const [prompt, setPrompt] = useState("");
   const isFollowingSession = useUIStore((state) => state.isFollowingSession);
   const setFollowingSession = useUIStore((state) => state.setFollowingSession);
+  const openStoryboardEditor = useUIStore((state) => state.openStoryboardEditor);
 
   // Batch 528: 入口高亮与跟随态同步——横幅取消/ESC 结束跟随即视为无选中入口。
   const activeAttempt = isFollowingSession ? attempt : null;
 
   const toggleAttempt = (mode: string) => {
+    // Batch 531: 自写入口不进入跟随，直接打开全屏分镜脚本编辑器。
+    if (mode === "自己编写分镜脚本") {
+      openStoryboardEditor();
+      return;
+    }
     const next = activeAttempt === mode ? null : mode;
     setAttempt(next);
     setFollowingSession(next !== null);

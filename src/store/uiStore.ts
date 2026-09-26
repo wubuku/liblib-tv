@@ -70,6 +70,7 @@ interface UIState {
   isUserMenuOpen: boolean;
   isSharePanelOpen: boolean;
   isAgentOpen: boolean;
+  isStoryboardEditorOpen: boolean;
   isZoomMenuOpen: boolean;
   activePrimaryPanel: PrimaryPanel | null;
   editorMode: "workbench" | "storyboard";
@@ -106,6 +107,8 @@ interface UIState {
   closeZoomMenu: () => void;
   togglePrimaryPanel: (panel: PrimaryPanel) => void;
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
+  openStoryboardEditor: () => void;
+  closeStoryboardEditor: () => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
   setCanvasTool: (tool: "select" | "pan") => void;
   openDirectorDesk: (nodeId: string, canvasId: string) => void;
@@ -143,6 +146,7 @@ type OverlayState = Pick<
   | "isUserMenuOpen"
   | "isSharePanelOpen"
   | "isAgentOpen"
+  | "isStoryboardEditorOpen"
   | "isZoomMenuOpen"
   | "activePrimaryPanel"
   | "imagePreview"
@@ -164,6 +168,7 @@ const closedOverlayState: OverlayState = {
   isUserMenuOpen: false,
   isSharePanelOpen: false,
   isAgentOpen: false,
+  isStoryboardEditorOpen: false,
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   imagePreview: null,
@@ -195,6 +200,7 @@ export const useUIStore = create<UIState>((set) => ({
   isUserMenuOpen: false,
   isSharePanelOpen: false,
   isAgentOpen: false,
+  isStoryboardEditorOpen: false,
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   editorMode: "workbench",
@@ -316,6 +322,14 @@ export const useUIStore = create<UIState>((set) => ({
       activePrimaryPanel: panel,
     })),
 
+  openStoryboardEditor: () =>
+    set((state) => ({
+      ...closeTransientOverlays(state),
+      isStoryboardEditorOpen: true,
+    })),
+
+  closeStoryboardEditor: () => set({ isStoryboardEditorOpen: false }),
+
   setEditorMode: (mode) =>
     set({
       ...closedOverlayState,
@@ -397,6 +411,8 @@ export const useUIStore = create<UIState>((set) => ({
           return { isNotificationOpen: false };
         case "user-menu":
           return { isUserMenuOpen: false };
+        case "storyboard-editor":
+          return { isStoryboardEditorOpen: false };
         case "primary-panel":
           return {
             activePrimaryPanel: null,
