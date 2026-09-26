@@ -44,8 +44,12 @@ def run_desktop(page: Page):
     # Batch 453: upload opens a real file chooser — no status on click
     panel.locator('[data-add-node-resource="upload"]').click()
     assert panel.locator("[data-add-resource-input]").count() == 1
+    # Batch 529 re-apply (batch 462 pattern): history entry follows the
+    # batch-478 fixture-picker contract — click opens the fixture submenu.
     panel.locator('[data-add-node-resource="history"]').click()
-    assert "生成历史未连接" in panel.locator("[data-add-node-status]").inner_text()
+    assert panel.locator('[data-add-node-submenu="history"]').is_visible()
+    # Toggle the submenu closed so it cannot intercept the material entry click.
+    panel.locator('[data-add-node-resource="history"]').click()
 
     panel.locator('[data-add-node-entry="material"]').click()
     submenu = page.locator('[data-add-node-submenu="material"]')

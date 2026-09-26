@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { type PrimaryPanel, useUIStore } from "@/store/uiStore";
 import { AddNodePanel } from "./AddNodePanel";
 import { MaterialLibraryPanel } from "./MaterialLibraryPanel";
+import { LibraryShowcasePanel } from "./LibraryShowcasePanel";
 import { ToolboxPanel } from "./ToolboxPanel";
 import { CharacterLibraryPanel } from "./CharacterLibraryPanel";
 import { HistoryPanel } from "./HistoryPanel";
@@ -152,7 +153,15 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
       {isAddNodePanelOpen && <AddNodePanel onAddNode={onAddNode} />}
       {activePrimaryPanel === "move" && <MoveMenu onSelect={selectTool} />}
       {activePrimaryPanel === "toolbox" && <ToolboxPanel onClose={() => setPrimaryPanel(null)} />}
-      {activePrimaryPanel === "material" && <MaterialLibraryPanel onClose={() => setPrimaryPanel(null)} />}
+      {activePrimaryPanel === "material" && (
+        <MaterialLibraryPanel onOpenLibrary={(panel) => setPrimaryPanel(panel)} />
+      )}
+      {activePrimaryPanel === "style-library" && (
+        <LibraryShowcasePanel variant="style" onClose={() => setPrimaryPanel(null)} />
+      )}
+      {activePrimaryPanel === "effects-library" && (
+        <LibraryShowcasePanel variant="effects" onClose={() => setPrimaryPanel(null)} />
+      )}
       {activePrimaryPanel === "character" && (
         <CharacterLibraryPanel
           onAddNode={onAddNode}

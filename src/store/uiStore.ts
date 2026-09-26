@@ -10,7 +10,9 @@ export type PrimaryPanel =
   | "material"
   | "character"
   | "history"
-  | "tutorial";
+  | "tutorial"
+  | "style-library"
+  | "effects-library";
 
 export interface ImagePreviewState {
   canvasId: string;

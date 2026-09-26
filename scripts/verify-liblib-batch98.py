@@ -159,7 +159,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # Batch 453: upload opens a real file chooser — no status on click
     check("resource:upload-chooser", panel.locator("[data-add-resource-input]").count() == 1)
     panel.locator('[data-add-node-resource="history"]').click()
-    check("resource:history-status", "生成历史未连接" in panel.locator("[data-add-node-status]").inner_text())
+    # Batch 529 re-apply (batch 462 pattern): history entry follows the
+    # batch-478 fixture-picker contract — click opens the fixture submenu.
+    check(
+        "resource:history-submenu",
+        page.locator('[data-add-node-submenu="history"]').is_visible(),
+    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

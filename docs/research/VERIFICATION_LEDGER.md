@@ -420,3 +420,5 @@ DOM/CSS、视觉布局或 source parity。
 | Batch 230 | 源站画布空态 + storyboard-group 结构 | `EVIDENCE_RECORDED` | 测试项目已清空；storyboard-group 源站结构需原始项目采样；clone 已通过 canvas-2 预设充分覆盖 |
 | Batch 232 | Agent 抽屉模型选择器采样 | `PARTIAL_EVIDENCE` | Agent 按钮找到但抽屉未稳定打开（页面状态漂移）；模型选择器采样推迟 |
 | Batch 234 | Agent 抽屉模型选择器目录 | `SCRIPT_RECORDED_PASS` | 15 模型目录完整采得（7 图片 + 8 视频）+ 缩略图 URL + 描述；替代 Batch 232 的部分采样 |
+| Batch 528 | 脚本生成器入口跟随接线 | `SCRIPT_RECORDED_PASS` | 源站第五/八轮采样（exploration NOTES §140）单击尝试入口仅选中/跟随（正在跟随/取消ESC）；clone 接通 batch 105 FollowBanner：入口点击→跟随态，取消/ESC 退出，无子流程；`verify-liblib-batch528.py` 14 检查 + batch 116 回归绿 |
+| Batch 529 | 素材库风格库/特效库大版面浮层 | `SCRIPT_RECORDED_PASS` | 源站第六/七/八轮采样（exploration NOTES §132-145 + 截图 31/32/34/35）；clone 新增 LibraryShowcasePanel 双变体：广场页签/分类行/商用卡/本地搜索/暂无素材空态；缩略图为 CLONE_DECISION 渐变占位；附带 batch 462 先例 aged 再对齐——batch 15/98 的「生成历史未连接」断言迁移至 batch 478 fixture 子菜单合同；`verify-liblib-batch529.py` 24 检查 + batch 11/15/98/116/478 回归绿 |

@@ -1,17 +1,20 @@
 "use client";
 
 import { Aperture, Box } from "lucide-react";
+import type { PrimaryPanel } from "@/store/uiStore";
 
 interface MaterialLibraryPanelProps {
-  onClose: () => void;
+  onOpenLibrary: (panel: Extract<PrimaryPanel, "style-library" | "effects-library">) => void;
 }
 
+// Batch 529: 2026-09-27 源站采样——两入口分别打开风格库/特效库大版面浮层
+// （liblib-source-exploration-2026-09-25 NOTES §108/§132/§137）。
 const entries = [
-  { label: "风格库", description: "新增风格节点", icon: Box },
-  { label: "特效库", description: "新增特效节点", icon: Aperture },
+  { label: "风格库", description: "新增风格节点", icon: Box, target: "style-library" },
+  { label: "特效库", description: "新增特效节点", icon: Aperture, target: "effects-library" },
 ] as const;
 
-export function MaterialLibraryPanel({ onClose }: MaterialLibraryPanelProps) {
+export function MaterialLibraryPanel({ onOpenLibrary }: MaterialLibraryPanelProps) {
   return (
     <section
       aria-label="素材库"
@@ -26,7 +29,7 @@ export function MaterialLibraryPanel({ onClose }: MaterialLibraryPanelProps) {
             <button
               key={entry.label}
               type="button"
-              onClick={onClose}
+              onClick={() => onOpenLibrary(entry.target)}
               className="flex h-[52px] w-full items-center gap-2 rounded-xl px-2 text-left hover:bg-white/[0.06]"
             >
               <span className="flex size-8 shrink-0 items-center justify-center text-[#ededed]">

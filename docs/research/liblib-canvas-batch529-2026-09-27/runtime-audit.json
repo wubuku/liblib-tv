@@ -1,0 +1,40 @@
+{
+  "batch": 529,
+  "title": "Material library showcase panels (风格库/特效库)",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §132-145 + screenshots 31/32/34/35",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "material:open",
+        "style:opens",
+        "style:material-replaced",
+        "style:plaza-tab",
+        "style:category:推荐",
+        "style:category:摄影写真",
+        "style:category:电商营销",
+        "style:category:动漫游戏",
+        "style:category:小说推文",
+        "style:commercial-filter",
+        "style:card-count",
+        "style:seedream-card",
+        "style:commercial-badge",
+        "style:search-filter",
+        "style:favorites-empty",
+        "style:close",
+        "effects:opens",
+        "effects:plaza-tab",
+        "effects:recommend-row",
+        "effects:card-count",
+        "effects:bee-card",
+        "effects:recent-empty",
+        "effects:escape-closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
