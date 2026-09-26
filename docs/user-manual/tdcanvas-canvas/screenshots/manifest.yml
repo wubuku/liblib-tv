@@ -1,0 +1,22 @@
+# TDCanvas 手册截图登记（manifest）
+
+> schema 对齐 frameos-canvas/screenshots/manifest.yml：每张正式截图必须
+> 文件存在 + 本表登记 + 正文描述性 alt 引用 + 真实 SHA-256 四者齐备。
+> 约定：文件名 `NN-task-slug-step.png`（NN=任务序号，对应 task-inventory id 顺序）；
+> viewport 固定 1440×900；登记时间 ISO 日期；sha256 用 `shasum -a 256` 计算。
+> 状态：scaffold——尚无正式截图（逐任务探索阶段开始后填充）。
+
+screenshots: []
+# 示例条目（正式启用后按此格式追加）：
+# - id: 01-create-canvas-project-empty-home
+#   file: 01-create-canvas-project-empty-home.png
+#   task: create-canvas-project
+#   step: 打开 /canvas 空态首页（hero + 快捷创作芯片）
+#   route: /canvas
+#   viewport: 1440x900
+#   theme: dark
+#   locale: zh-CN
+#   captured_at: '2026-09-26'
+#   locator_evidence: 'button 新建画布 / heading 从一张画布开始'
+#   sha256: <64-hex>
+#   alt: TDCanvas 首页空态，中央为「从一张画布开始」与「新建画布」按钮

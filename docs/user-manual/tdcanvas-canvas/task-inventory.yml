@@ -1,0 +1,225 @@
+# TDCanvas 画布用户手册 · 任务实施账本
+
+manual_version: 1
+target:
+  app: tdcanvas
+  url: 'http://localhost:3000/canvas'
+  app_repo: '/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas'
+  app_version: 'v0.14.0（锁定提交 16b31273633f983cdbd8de05694ec36d471b2650）'
+  audience:
+    - tdcanvas-desktop-web-creator
+  depth: thorough
+scope_authorization:
+  user_confirmed: true
+  note: 用户明确要求编写 TDCanvas 用户手册并先准备工作文档；任务优先级由 Agent 依调研包证据自行定级，候选表在 PROGRESS.md 中持续可见，用户可随时要求重排。
+safety:
+  paid_actions_forbidden: true
+  note: 生成类动作（图片/视频/音频/反推提示词/AI 角度）涉及 Aitudou API 按量计费——手册正文可描述流程（标注来源），回走验证只到付费边界前一步；全程不配置 API Key、不启动 ComfyUI 环境。
+evidence_base:
+  - docs/research/tdcanvas-2026-09-26/SOURCE_ANALYSIS.md
+  - docs/research/tdcanvas-2026-09-26/INTERACTION_CATALOG.md
+  - docs/research/tdcanvas-2026-09-26/RUNTIME_AUDIT.md
+  - docs/research/tdcanvas-2026-09-26/UPSTREAM_DIFF_AUDIT.md
+  - docs/research/tdcanvas-2026-09-26/TEST_ASSETS.md
+  - TDCanvas 仓官方文档（canvas-node-manual / canvas-shortcuts / quick-start / features；注意滞后差异）
+tasks:
+  - id: create-canvas-project
+    title: 创建画布项目并认识工作区
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: runtime
+        note: 2026-09-26 ?mode=new 自动创建 /canvas/:id、默认标题 TDCanvas 2、空态引导与 Dock 结构截图核实。
+    preconditions:
+      - 已启动 TDCanvas web（localhost:3000）
+    routes:
+      - '/canvas'
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 00-quickstart.md
+      - 10-tasks/create-canvas-project.md
+  - id: navigate-canvas
+    title: 平移、缩放与小地图导航
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: runtime
+        note: 2026-09-26 重置视图 100%→77% clamp 实测；滚轮缩放语义与静态/官方文档一致。
+    preconditions:
+      - 已打开一个画布项目
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/navigate-canvas.md
+  - id: create-nodes
+    title: 用快捷芯片与双击菜单创建各类节点
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: runtime
+        note: 2026-09-26 图片创作芯片→空图片节点+原生面板自动打开；双击空白菜单 文本/图片/视频/音频/组/ComfyUI 工作流/上传素材 逐字核实。
+    preconditions:
+      - 已打开一个画布项目
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/create-nodes.md
+  - id: upload-materials
+    title: 上传本地图片、音频与视频素材
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: runtime
+        note: 2026-09-26 真实 PNG（1.7MB/3.9MB）经全局 input 管线注入：空节点原地替换、非空新建+聚焦；accept 白名单与 50MB 上限逐字取证。
+      - type: static
+        note: 拖放 40px 阶梯错位、sourceOrigin upload 标记、文件选择器上传到空节点原地替换类型。
+    preconditions:
+      - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/upload-materials.md
+  - id: edit-nodes
+    title: 重命名、缩放与编辑节点内容
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: 双击重命名（≤64 字符）、四角手柄缩放（220×160–1600×1200、图片/视频锁比）、文本双击编辑、节点信息 Modal。
+    preconditions:
+      - 画布中已有节点
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/edit-nodes.md
+  - id: connect-references
+    title: 连线引用与无线引用两种接法
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: runtime
+        note: 2026-09-26 端口拖拽连线（贝塞尔即时生成、related 高亮）实测成功。
+      - type: static
+        note: 拖线到空白弹创建菜单、@mention chip 序列化、objects 模式清空连线、pinned 版本引用。
+    preconditions:
+      - 画布中已有两个节点
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/connect-references.md
+  - id: generate-images
+    title: 发起图片生成并理解任务状态
+    role: tdcanvas-creator
+    frequency: core
+    impact: high
+    coverage: full
+    evidence:
+      - type: static
+        note: 入口/面板参数/8 相位状态机/批量堆叠/图片历史 24 条/停止≠取消/journal 恢复/防重复计费守卫。
+      - type: boundary
+        note: 付费动作——回走验证只到「生成前一步」（入口存在性、面板字段、禁用态），不点击运行；正文标注证据来源。
+    preconditions:
+      - 已在配置页填写 Aitudou API Key（手册描述前提，验证环境不配置）
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/generate-images.md
+  - id: image-operations
+    title: 裁剪、切图与放大（本地图片处理）
+    role: tdcanvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: static
+        note: crop/split/upscale 为本地 Canvas2D（免费），产物建子节点并连线；upscale 1K/2K/4K≤4096；angle 走 AI（付费，仅描述）。
+    preconditions:
+      - 画布中有已上传图片的节点
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/image-operations.md
+  - id: organize-canvas
+    title: 分组、外观与画布整理
+    role: tdcanvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: static
+        note: 组创建/拖入/成员联动；背景 dots/lines/blank、明暗主题、交互模式切换、连线显隐、网格吸附；对齐辅助线 7px。
+    preconditions:
+      - 画布中已有多个节点
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/organize-canvas.md
+  - id: undo-persistence
+    title: 撤销重做与自动保存
+    role: tdcanvas-creator
+    frequency: common
+    impact: high
+    coverage: full
+    evidence:
+      - type: static
+        note: 快照双栈（180ms 合并/拖拽合并/上限 50）；三级持久化漏斗；viewport 属项目文档；刷新后恢复管线。
+    preconditions:
+      - 画布中已有可变更内容
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/undo-persistence.md
+  - id: project-management
+    title: 管理画布项目（列表/重命名/导出/删除）
+    role: tdcanvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: static
+        note: 首页列表 updatedAt 倒序、卡片操作、封面数据推导、多选导出 zip（projects.json v3）、删除确认。
+    preconditions:
+      - 已有至少一个画布项目
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/project-management.md
+  - id: shortcuts-help
+    title: 快捷键与帮助
+    role: tdcanvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    evidence:
+      - type: static
+        note: 键位全集（Cmd/Ctrl+Z/Y/A/C/V/Delete/Escape 等）；官方快捷键文档与源码一致；缩放 Dock 快捷键弹窗入口。
+    preconditions:
+      - 已打开一个画布项目
+    routes:
+      - '/canvas/:id'
+    status: planned
+    manual_pages:
+      - 10-tasks/shortcuts-help.md
