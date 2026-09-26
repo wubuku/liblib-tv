@@ -106,9 +106,10 @@ tasks:
       - 画布中已有节点
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
     manual_pages:
       - 10-tasks/edit-nodes.md
+    review_note: 2026-09-27 运行时走查完成（双击标题重命名、双击编辑文字追加、删除→历史flyout撤销恢复、信息面板字段核实）；缩放手柄拖拽精度不足留待 Gate B 补验；发现多标签同项目编辑互相覆盖（已写入手册排障）。
   - id: connect-references
     title: 连线引用与无线引用两种接法
     role: tdcanvas-creator

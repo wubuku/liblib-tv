@@ -77,3 +77,15 @@ screenshots:
     locator_evidence: '组标题 组 + 0 个节点 徽标 / 文本节点 我的第一段画布文字 / 空音频节点 / 空视频节点 + 选择本地文件'
     sha256: 361b452630a6fb52aae3981ce6870d7f06f2646f9a4ad124115fbe1f70fb86b2
     alt: 画布 54% 缩放下并排显示 组（虚线框）、文本、音频、视频四类节点
+  - id: 04-edit-nodes-info-modal
+    file: 04-edit-nodes-info-modal.png
+    task: edit-nodes
+    step: 组节点悬浮工具条点击「信息」打开节点信息面板（信息/JSON 双页签）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '面板标题 节点信息 / 字段 ID group-1790455580577-odgs7、名称 组、尺寸 760 x 480、位置 -180,-40、状态 idle'
+    sha256: 31a82b7df6e2119c0b7f8d11324cf53479ad916e23d97d852ea6dccf73834a52
+    alt: 节点信息弹窗，显示组节点的 ID、名称、类型、尺寸、位置与状态字段，右上角有信息与 JSON 页签切换

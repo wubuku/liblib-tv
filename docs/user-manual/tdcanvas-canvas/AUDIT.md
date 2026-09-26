@@ -16,6 +16,7 @@
 | ~~Minor~~ | 新项目默认标题编号：2026-09-27 清数据实测为「TDCanvas 1」，确认编号=全局递增计数（此前 2 为残留计数） | 无 | 已结（正文 00-quickstart/create-canvas-project 按实测表述） |
 | Minor | 悬浮工具条在节点偏左时不做视口 clamp（左端按钮可被视口裁切） | 宽屏影响小 | 手册不承诺工具条始终完整可见 |
 | Major(环境) | Playwright locator 点击被画布覆盖层拦截；page.evaluate 通道不稳定 | 仅影响自动化回走，不影响真人 | 回走一律 CUA 坐标路径 + locator("body").evaluate |
+| Major(产品) | 同项目多标签同时编辑：后保存方用旧状态覆盖另一方修改（如文字丢失），无冲突保护 | 多标签用户可能丢内容 | 已写入 90-troubleshooting 候选与 edit-nodes 页「已知限制」；产品级修复不在手册范围 |
 
 ## 未覆盖清单（交付报告中须列出的已知限制）
 
