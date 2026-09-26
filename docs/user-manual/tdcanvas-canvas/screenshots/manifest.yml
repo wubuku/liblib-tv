@@ -2,21 +2,54 @@
 
 > schema 对齐 frameos-canvas/screenshots/manifest.yml：每张正式截图必须
 > 文件存在 + 本表登记 + 正文描述性 alt 引用 + 真实 SHA-256 四者齐备。
-> 约定：文件名 `NN-task-slug-step.png`（NN=任务序号，对应 task-inventory id 顺序）；
-> viewport 固定 1440×900；登记时间 ISO 日期；sha256 用 `shasum -a 256` 计算。
-> 状态：scaffold——尚无正式截图（逐任务探索阶段开始后填充）。
+> viewport 固定 1280×720（dark / zh-CN）；`captured_at` 为拍摄日期。
 
-screenshots: []
-# 示例条目（正式启用后按此格式追加）：
-# - id: 01-create-canvas-project-empty-home
-#   file: 01-create-canvas-project-empty-home.png
-#   task: create-canvas-project
-#   step: 打开 /canvas 空态首页（hero + 快捷创作芯片）
-#   route: /canvas
-#   viewport: 1440x900
-#   theme: dark
-#   locale: zh-CN
-#   captured_at: '2026-09-26'
-#   locator_evidence: 'button 新建画布 / heading 从一张画布开始'
-#   sha256: <64-hex>
-#   alt: TDCanvas 首页空态，中央为「从一张画布开始」与「新建画布」按钮
+screenshots:
+  - id: 01-create-canvas-project-empty-home
+    file: 01-create-canvas-project-empty-home.png
+    task: create-canvas-project
+    step: 打开 /canvas 首页空态（hero「从一张画布开始」+ 新建画布按钮 + 最近画布空区）
+    route: /canvas
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: 'button 新建画布 / heading 从一张画布开始 / 本机工作区 · 0 个画布'
+    sha256: d1ea52d7528a7d51120f981a0a56b0d06ddbab1afb7f18cbbf2a59761eaf53e6
+    alt: TDCanvas 首页空态，左上为「从一张画布开始」标题与紫色「新建画布」按钮，下方「最近画布」区显示还没有画布
+  - id: 01-create-canvas-project-empty-canvas
+    file: 01-create-canvas-project-empty-canvas.png
+    task: create-canvas-project
+    step: 新建后进入画布编辑页（空态引导 + 快捷创作芯片 + 左侧 Dock + 缩放 Dock）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '双击画布，自由创作 / 快捷创作组 文字创作 图片创作 视频创作 音频创作 上传素材 / 打开小地图 网格吸附 重置视图'
+    sha256: 232dff9a89fa25f98e435573d98691f9451a205ccc25d28b24220d2b8e6d7f98
+    alt: 新建的 TDCanvas 1 画布，中央提示「双击画布，自由创作」与五个快捷芯片，左侧竖直工具栏，左下缩放控件
+  - id: 00-quickstart-first-text-node
+    file: 00-quickstart-first-text-node.png
+    task: quickstart
+    step: 文字创作芯片创建文本节点，双击输入文字并点击空白提交后的成果
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '文本节点标题 文本 / 内容「我的第一段画布文字」/ 右上 生图 按钮'
+    sha256: 3facd3d79a1fd8109ea06ddf3b9e28faf850e4f4c8040f575eae1cdf28b2661c
+    alt: 画布上已有一个文本节点，内容为「我的第一段画布文字」，节点右上角有「生图」按钮
+  - id: 13-project-management-home-with-card
+    file: 13-project-management-home-with-card.png
+    task: project-management
+    step: 创建项目后回到首页，最近画布区出现项目卡（标题/节点连线计数/更新时间），右上 showcase 同步
+    route: /canvas
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线 / 更新于 09/27 00:04 / 删除全部'
+    sha256: f2c835f65da48908c858f47679aac760767bc5bd4b15fecd1ecd148666ac7cb1
+    alt: TDCanvas 首页「最近画布」区显示 TDCanvas 1 项目卡，卡片信息为 1 个节点 0 条连线

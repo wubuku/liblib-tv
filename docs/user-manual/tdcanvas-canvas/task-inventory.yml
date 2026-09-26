@@ -37,10 +37,11 @@ tasks:
     routes:
       - '/canvas'
       - '/canvas/:id'
-    status: planned
+    status: drafted
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md
+    review_note: 2026-09-27 运行时走查完成（清数据首启→新建→空画布→首页项目卡），截图 3 张入 manifest；Gate B 待全量回走。
   - id: navigate-canvas
     title: 平移、缩放与小地图导航
     role: tdcanvas-creator

@@ -13,7 +13,7 @@
 
 | 级别 | 描述 | 影响 | 处置 |
 |---|---|---|---|
-| Minor | 新项目默认标题为「TDCanvas 2」（0 画布时新建即为 2），编号规则未查证 | 手册措辞避免写死「TDCanvas 1」 | 手册用「自动命名的项目标题」表述，待查证后更新 |
+| ~~Minor~~ | 新项目默认标题编号：2026-09-27 清数据实测为「TDCanvas 1」，确认编号=全局递增计数（此前 2 为残留计数） | 无 | 已结（正文 00-quickstart/create-canvas-project 按实测表述） |
 | Minor | 悬浮工具条在节点偏左时不做视口 clamp（左端按钮可被视口裁切） | 宽屏影响小 | 手册不承诺工具条始终完整可见 |
 | Major(环境) | Playwright locator 点击被画布覆盖层拦截；page.evaluate 通道不稳定 | 仅影响自动化回走，不影响真人 | 回走一律 CUA 坐标路径 + locator("body").evaluate |
 

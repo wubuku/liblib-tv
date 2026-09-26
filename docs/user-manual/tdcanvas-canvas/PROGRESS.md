@@ -12,6 +12,7 @@
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
 - 本轮已完成：五份工作文档就绪（本文件、task-inventory、SOURCE_OBSERVATIONS、TEST_MEDIA_ASSETS、screenshots/manifest 骨架）；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代，414 处核验引用）与一次真实素材运行时探索（RUNTIME_AUDIT.md）可作为任务探索底稿。
+- **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **下一步（按序）**：
   1. 重启 dev server（见 §4），按 task-inventory 顺序逐任务探索：每任务先 DOM/网络取证，再按需截图入 manifest；
   2. 每完成一个任务即写对应 `10-tasks/*.md` 与 `00-quickstart.md`，状态 planned→drafted；
@@ -75,7 +76,7 @@
 | 快速扫描（调研包 47 轮 + 官方文档） | 完成 |
 | 确认门（候选表自行定级，标注待复核） | 完成（PROGRESS §1 可重排） |
 | 工作文档冻结 | 完成（本目录五件套） |
-| 逐任务探索 + 10-tasks 成稿 | 未开始（12 任务 planned） |
+| 逐任务探索 + 10-tasks 成稿 | 进行中（create-canvas-project drafted + 00-quickstart 完成；其余 11 任务 planned） |
 | 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 未开始 |
 | Gate A | 未开始 |
 | Gate B 回走 + AUDIT.md | 未开始 |
