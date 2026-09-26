@@ -53,3 +53,27 @@ screenshots:
     locator_evidence: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线 / 更新于 09/27 00:04 / 删除全部'
     sha256: f2c835f65da48908c858f47679aac760767bc5bd4b15fecd1ecd148666ac7cb1
     alt: TDCanvas 首页「最近画布」区显示 TDCanvas 1 项目卡，卡片信息为 1 个节点 0 条连线
+  - id: 03-create-nodes-double-click-menu
+    file: 03-create-nodes-double-click-menu.png
+    task: create-nodes
+    step: 双击画布空白弹出「选择节点」菜单（注册表驱动：文本/图片/视频/音频/组/ComfyUI 工作流/上传素材）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '菜单标题 选择节点 / 逐项 文本 图片 视频 音频 组 ComfyUI 工作流 上传素材'
+    sha256: 5ecf232fdcd69bc5ef61faec57f8453e1b6a0edfbab5f8dae907d0fdd602c840
+    alt: 双击画布空白处后弹出「选择节点」菜单，列出七种可创建项
+  - id: 03-create-nodes-all-types
+    file: 03-create-nodes-all-types.png
+    task: create-nodes
+    step: 依次创建 组/文本/音频/视频 四类节点后重置视图的全览（54%）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '组标题 组 + 0 个节点 徽标 / 文本节点 我的第一段画布文字 / 空音频节点 / 空视频节点 + 选择本地文件'
+    sha256: 361b452630a6fb52aae3981ce6870d7f06f2646f9a4ad124115fbe1f70fb86b2
+    alt: 画布 54% 缩放下并排显示 组（虚线框）、文本、音频、视频四类节点

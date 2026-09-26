@@ -13,6 +13,7 @@
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
 - 本轮已完成：五份工作文档就绪（本文件、task-inventory、SOURCE_OBSERVATIONS、TEST_MEDIA_ASSETS、screenshots/manifest 骨架）；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代，414 处核验引用）与一次真实素材运行时探索（RUNTIME_AUDIT.md）可作为任务探索底稿。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
+- **Batch M1（2026-09-27）**：create-nodes 完成运行时取证与成稿——双击菜单七项逐字截图、文字/视频/音频/组四类空节点创建实测、54% 全览截图；manifest +2（sha256）；inventory 状态 drafted。**并行协作者提示**：检测到另一会话在 navigate-canvas 上有 WIP 截图（02-navigate-canvas-zoom-in-wheel.png，未提交），本 batch 未触碰该任务与其文件。重置视图新发现：有选中节点时=聚焦选中（k≤1.5），无选中时=fit 全部（k≤1）。
 - **下一步（按序）**：
   1. 重启 dev server（见 §4），按 task-inventory 顺序逐任务探索：每任务先 DOM/网络取证，再按需截图入 manifest；
   2. 每完成一个任务即写对应 `10-tasks/*.md` 与 `00-quickstart.md`，状态 planned→drafted；

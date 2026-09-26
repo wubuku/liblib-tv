@@ -71,9 +71,10 @@ tasks:
       - 已打开一个画布项目
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
     manual_pages:
       - 10-tasks/create-nodes.md
+    review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。
   - id: upload-materials
     title: 上传本地图片、音频与视频素材
     role: tdcanvas-creator
