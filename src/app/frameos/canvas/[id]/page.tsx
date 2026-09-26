@@ -344,30 +344,8 @@ function FrameosCanvasInner() {
         return;
       }
 
-      // 方向键 - 移动选中节点 (Shift = 10px, 默认 1px)
-      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key) && state.selectedNodeId) {
-        e.preventDefault();
-        const step = e.shiftKey ? 10 : 1;
-        const dx = e.key === "ArrowLeft" ? -step : e.key === "ArrowRight" ? step : 0;
-        const dy = e.key === "ArrowUp" ? -step : e.key === "ArrowDown" ? step : 0;
-        const selId = state.selectedNodeId;
-        useFrameosStore.getState().setNodes(
-          state.nodes.map(n => n.id === selId
-            ? { ...n, position: { x: n.position.x + dx, y: n.position.y + dy } }
-            : n)
-        );
-        return;
-      }
-
-      // Tab - 切换选中下一个节点
-      if (e.key === "Tab" && state.nodes.length > 0) {
-        e.preventDefault();
-        const ids = state.nodes.map(n => n.id);
-        const cur = ids.indexOf(state.selectedNodeId ?? "");
-        const next = ids[(cur + 1 + ids.length) % ids.length];
-        useFrameosStore.getState().selectNode(next);
-        return;
-      }
+      // Batch 247: 移除 方向键移动/Tab循环选中 — 源站实测均无此行为
+      // (2026-09-26: 方向键不移动选中节点, Tab 不切换选中), 不发明行为
 
       // Delete / Backspace - 立即删除 (Batch 177 对齐源站: 无确认框)
       if ((e.key === "Delete" || e.key === "Backspace") && state.selectedNodeId) {
