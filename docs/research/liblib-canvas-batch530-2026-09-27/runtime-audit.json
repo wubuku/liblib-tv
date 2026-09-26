@@ -1,0 +1,39 @@
+{
+  "batch": 530,
+  "title": "Image node model trigger menu",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §3 + screenshot 03b-image-model-menu.png",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "node:created",
+        "editor:open",
+        "chip:default-label",
+        "chip:collapsed",
+        "menu:opens",
+        "menu:seven-models",
+        "chip:expanded",
+        "menu:duration:lib-image-2-5-pro",
+        "menu:duration:lib-image-2-5-fast",
+        "menu:duration:lib-image",
+        "menu:duration:general-image-pro",
+        "menu:duration:general-image-v2",
+        "menu:duration:seedream-5-0-pro",
+        "menu:duration:qwen-image-3-0",
+        "menu:qwen-new-badge",
+        "menu:selected-description",
+        "select:menu-closes",
+        "select:chip-updates",
+        "reopen:menu",
+        "restore:chip-default",
+        "toggle:expand",
+        "toggle:collapse",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

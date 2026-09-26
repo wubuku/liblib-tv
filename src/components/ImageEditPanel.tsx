@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ImageModelMenu, imageModels } from "@/components/ImageModelMenu";
 
 type ImageEditorVariant = "empty" | "prompt" | "referenced" | "tool" | "panorama";
 export type ImageEditorHeight = 191 | 211 | 252 | 274;
@@ -84,6 +85,10 @@ function StandardImageEditPanel({
   const [references, setReferences] = useState(initialReferences);
   const [showAutoLink, setShowAutoLink] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // Batch 530: 模型触发菜单（源站 2026-09-25 截图 03b）——默认选中 Lib Image 2.5 Pro，
+  // 芯片展示当前模型名；选择仅更新本地草稿，不触发生成。
+  const [model, setModel] = useState(imageModels[0]);
+  const [modelMenuOpen, setModelMenuOpen] = useState(false);
   const resolvedPanelHeight =
     panelHeight ?? (variant === "empty" ? 191 : variant === "prompt" ? 211 : 274);
   const canSuggest = prompt.trim().length > 0 && references.length === 0;
@@ -176,9 +181,28 @@ function StandardImageEditPanel({
         />
 
         <footer className="pointer-events-none mt-2 flex h-[41px] shrink-0 items-end gap-1 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
-          <button data-image-editor-model type="button" className="pointer-events-auto flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
-            <Link2 size={14} className="text-[#9a9a9a]" /><span>Lib Image</span><ChevronDown size={12} className="text-[#777]" />
-          </button>
+          <div className="pointer-events-auto relative">
+            {modelMenuOpen && (
+              <ImageModelMenu
+                selectedId={model.id}
+                onSelect={(next) => {
+                  setModel(next);
+                  setModelMenuOpen(false);
+                }}
+              />
+            )}
+            <button
+              data-image-editor-model
+              type="button"
+              onClick={() => setModelMenuOpen((open) => !open)}
+              aria-expanded={modelMenuOpen}
+              className="flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]"
+            >
+              <Link2 size={14} className="text-[#9a9a9a]" />
+              <span>{model.name}</span>
+              <ChevronDown size={12} className={cn("text-[#777] transition-transform", modelMenuOpen && "rotate-180")} />
+            </button>
+          </div>
           <span className="h-4 w-px bg-white/10" />
           <button data-image-editor-settings type="button" className="pointer-events-auto flex h-8 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
             <RectangleHorizontal size={14} className="text-[#9a9a9a]" />

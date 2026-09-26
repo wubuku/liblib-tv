@@ -30,6 +30,8 @@
   - General image V2（25s）支持联网搜索、文字准确、速度更快
   - Seedream 5.0 Pro（20s）精准交互式编…（截断）
 - 图片模型菜单 ≠ 视频模型菜单：探测脚本检获的 "Seedance 2.5" 行属于**视频节点**菜单。
+（clone 侧 batch 530 已按本观察克隆模型触发菜单：7 行含截图 03b 补采的
+Qwen image 3.0（上新，60s），芯片名随选择同步，见 `liblib-canvas-batch530-2026-09-27/README.md`。）
 
 ## 4. 导演台节点（复刻重点，`10-director-card-100.png`）
 
