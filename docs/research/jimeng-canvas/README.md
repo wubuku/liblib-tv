@@ -2625,6 +2625,29 @@
   对齐——JimengGenPanel 引用参考重构为 @ 自动补全弹层 (可能@的
   内容 + 四类别下钻 + chip 行 + 添加参考三选项 + 从画布点选),
   配套验证器; 素材账本剩余 9 项视进度插入。
+- Batch 792 (复刻实施): JimengGenPanel 引用参考重构为 @ 自动补全
+  弹层, 对齐批 791 SOURCE_FACT——引用参考钮点击 = 提示框插入
+  "@" + 开「可能@的内容」弹层 (data-testid=ref-menu: 候选区画布
+  媒体节点行 + 添加参考分区 主体/图片/视频/音频 四行 aria-pressed
+  + 右箭头); 类别行点击下钻 ref-submenu (48px 行 + 32px 缩略图,
+  视频行 mm:ss 时长徽章 00:06, 空类别「暂无相关节点」; 视频子
+  菜单含 展开视频生成器 钮); 点行插入引用 chip (素材栏行变
+  ref-chip-row: 44×44 缩略图块 + Remove 16×16 角标 aria
+  「Reference material: {名称}」, 多 chip 堆叠 + 添加参考钮),
+  chip poster 缺省用类型图标 (CLONE_DECISION: clone 节点缩略图
+  不全); 插入后剥离提示框尾部 "@" 并收弹层; 批 688 行内条实现
+  移除 (搜索框一并撤销——791 证实该「搜索框」实为提示框
+  placeholder 的误读)。留待后续批: 添加参考三选项菜单 (上传参考
+  内容/从资产库添加/从画布选择) + 从画布点选模式。验证器:
+  verify-jimeng-batch688.py 重写对齐弹层契约 (原行内条断言被
+  791 真态替代); 新增 verify-jimeng-batch792.py (rail 上传建节点
+  → 弹层候选/视频下钻徽章/图片空态/插 chip/剥 @/Remove 还原);
+  邻域回归 3/40/41/42/61 全绿 + npm run check 通过。截图
+  jimeng-clone-batch688-ref-strip-1680 (刷新) +
+  batch792-ref-submenu/ref-chip-1680。下一批规划 (Batch 793):
+  添加参考 48×48 三选项菜单 (上传参考内容/从资产库添加/从画布
+  选择) + 从画布点选模式复刻 (蓝色描边 + 顶部 pill), 配套验证
+  器; 素材账本剩余 9 项视进度插入。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批

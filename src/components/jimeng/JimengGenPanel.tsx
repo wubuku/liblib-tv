@@ -1,11 +1,52 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUp, AtSign, ChevronDown, Maximize2, Plus } from "lucide-react";
+import {
+  ArrowUp,
+  AtSign,
+  AudioLines,
+  ChevronDown,
+  ChevronRight,
+  Image as ImageIcon,
+  Maximize2,
+  Play,
+  Plus,
+  User,
+  X,
+} from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
+
+/**
+ * 引用 chip (Batch 792 SOURCE_FACT 2026-09-27: 选中画布节点后插入
+ * 提示框的 node-composerChip——48×48 缩略图 + 名称 + Remove 角标)。
+ */
+interface RefChip {
+  id: string;
+  name: string;
+  kind: "image" | "video" | "audio";
+  poster?: string;
+  /** 视频秒数 → 左下 mm:ss 徽章 (源站 00:06) */
+  duration?: number;
+}
+
+const REF_CATEGORIES = ["主体", "图片", "视频", "音频"] as const;
+type RefCategory = (typeof REF_CATEGORIES)[number];
+
+const CATEGORY_ICONS: Record<RefCategory, typeof User> = {
+  主体: User,
+  图片: ImageIcon,
+  视频: Play,
+  音频: AudioLines,
+};
+
+function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
 
 /**
  * 模型列表 (Batch 41, SOURCE_FACT: 源站模型下拉提取的 8 项，名称+描述)。
@@ -64,11 +105,52 @@ export function JimengGenPanel({
   const [count, setCount] = useState("1");
   const [reference, setReference] = useState("全能参考");
   const [duration, setDuration] = useState("4s");
-  // Batch 688 SOURCE_FACT (2026-09-26 实测): 引用参考点击不开模态,
-  // 切换行内参考条——展开 主体/图片/视频/音频 标签 + 添加参考钮 +
-  // 搜索框 (placeholder 搜索主体、图片、视频); 再点收合
-  const [refStripOpen, setRefStripOpen] = useState(false);
-  const [refTab, setRefTab] = useState("主体");
+  // Batch 792 SOURCE_FACT (2026-09-27 深采, 替代批 688 行内条方案):
+  // 引用参考钮 → 提示框插入 "@" + 弹「可能@的内容」自动补全弹层
+  // (候选区 + 添加参考分区: 主体/图片/视频/音频 四行下钻)；点子菜单
+  // 行 → 插入引用 chip (48×48 缩略图 + 名称 + Remove 角标)；chip 行
+  // 横向堆叠于素材栏。添加参考三选项菜单/从画布点选留待后续批。
+  const [refMenuOpen, setRefMenuOpen] = useState(false);
+  const [refSubmenu, setRefSubmenu] = useState<RefCategory | null>(null);
+  const [refChips, setRefChips] = useState<RefChip[]>([]);
+  const jimengNodes = useJimengStore((s) => s.nodes);
+  const mediaNodes = jimengNodes
+    .filter(
+      (n): n is typeof n & { type: "image" | "video" | "audio" } =>
+        n.type === "image" || n.type === "video" || n.type === "audio",
+    )
+    .map((n) => {
+      const data = n.data as { title?: string; poster?: string; duration?: number };
+      return {
+        id: n.id,
+        kind: n.type,
+        name: data.title ?? n.id,
+        poster: data.poster,
+        duration: data.duration,
+      };
+    });
+  const insertChip = (node: (typeof mediaNodes)[number]) => {
+    setRefChips((chips) =>
+      chips.some((c) => c.id === node.id)
+        ? chips
+        : [...chips, { id: node.id, name: node.name, kind: node.kind, poster: node.poster, duration: node.duration }],
+    );
+    setPrompt((p) => p.replace(/@$/, ""));
+    setRefMenuOpen(false);
+    setRefSubmenu(null);
+  };
+  const submenuNodes =
+    refSubmenu === null
+      ? []
+      : mediaNodes.filter((n) =>
+          refSubmenu === "主体"
+            ? false
+            : refSubmenu === "图片"
+              ? n.kind === "image"
+              : refSubmenu === "视频"
+                ? n.kind === "video"
+                : n.kind === "audio",
+        );
   const pushToast = useJimengStore((s) => s.pushToast);
   const canSend = prompt.trim().length > 0;
 
@@ -98,14 +180,38 @@ export function JimengGenPanel({
         >
           {/* 素材栏 */}
           <div className="flex h-12 w-full items-center">
-            {refStripOpen ? (
-              /* Batch 688 引用参考展开条 (SOURCE_FACT 2026-09-26):
-                  原位替换素材栏行, 零面板位移——CLONE_DECISION
-                  (源站为整面板长高展开, 展开态布局部分遮挡未采全) */
-              <div
-                className="flex h-12 w-full items-center gap-1.5"
-                data-testid="ref-strip"
-              >
+            {refChips.length > 0 ? (
+              /* Batch 792 SOURCE_FACT: 引用 chip 行 (48×48 缩略图 +
+                  Remove 角标) + 添加参考钮, 横向堆叠 */
+              <div className="flex h-12 w-full items-center gap-1.5" data-testid="ref-chip-row">
+                {refChips.map((chip) => (
+                  <div
+                    key={chip.id}
+                    className="relative size-11 shrink-0 rounded-xl border border-white/10 bg-white/[0.06]"
+                    aria-label={`Reference material: ${chip.name}`}
+                  >
+                    {chip.poster ? (
+                      <img src={chip.poster} alt="" className="size-full rounded-xl object-cover" />
+                    ) : (
+                      <span className="flex size-full items-center justify-center text-white/50">
+                        {chip.kind === "image" ? <ImageIcon size={18} /> : chip.kind === "video" ? <Play size={18} /> : <AudioLines size={18} />}
+                      </span>
+                    )}
+                    {chip.kind === "video" && chip.duration ? (
+                      <span className="absolute bottom-0.5 left-0.5 rounded bg-black/70 px-1 text-[9px] leading-[14px] text-white/90">
+                        {formatDuration(chip.duration)}
+                      </span>
+                    ) : null}
+                    <button
+                      type="button"
+                      aria-label={`Remove ${chip.name}`}
+                      onClick={() => setRefChips((chips) => chips.filter((c) => c.id !== chip.id))}
+                      className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-[#2a2a2a] text-white/70 ring-1 ring-white/15 hover:text-white"
+                    >
+                      <X size={10} />
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
                   aria-label="添加参考"
@@ -113,28 +219,6 @@ export function JimengGenPanel({
                 >
                   <Plus size={20} />
                 </button>
-                <div className="flex shrink-0 items-center gap-1">
-                  {["主体", "图片", "视频", "音频"].map((tab) => (
-                    <button
-                      key={tab}
-                      type="button"
-                      aria-pressed={refTab === tab}
-                      onClick={() => setRefTab(tab)}
-                      className={`flex h-7 items-center rounded-full px-2.5 text-[12px] ${
-                        refTab === tab
-                          ? "bg-white/[0.14] text-white"
-                          : "text-white/70 hover:bg-white/[0.08]"
-                      }`}
-                    >
-                      {tab}
-                    </button>
-                  ))}
-                </div>
-                <input
-                  type="text"
-                  placeholder="搜索主体、图片、视频"
-                  className="h-8 min-w-0 flex-1 rounded-lg bg-white/[0.06] px-2.5 text-[12px] text-white outline-none placeholder:text-white/35"
-                />
               </div>
             ) : (
               <button
@@ -145,6 +229,103 @@ export function JimengGenPanel({
                 <Plus size={20} />
               </button>
             )}
+            {refMenuOpen ? (
+              /* Batch 792 SOURCE_FACT: 「可能@的内容」@ 自动补全弹层
+                  (批 688 行内条方案已被源站真态替代) */
+              <div
+                className="absolute bottom-[calc(100%-8px)] left-0 z-[140] flex w-[336px] rounded-[10px] border border-white/[0.06] p-1.5"
+                style={{ background: "rgb(38,38,38)" }}
+                data-testid="ref-menu"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="px-2.5 pb-1 pt-1.5 text-[12px] text-white/40">可能@的内容</p>
+                  {mediaNodes.map((node) => (
+                    <button
+                      key={node.id}
+                      type="button"
+                      onClick={() => insertChip(node)}
+                      className="flex h-10 w-full items-center gap-2 rounded-lg px-2.5 text-left hover:bg-white/10"
+                    >
+                      {node.poster ? (
+                        <img src={node.poster} alt="" className="size-8 shrink-0 rounded-md object-cover" />
+                      ) : (
+                        <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-white/[0.08] text-white/55">
+                          {node.kind === "image" ? <ImageIcon size={14} /> : node.kind === "video" ? <Play size={14} /> : <AudioLines size={14} />}
+                        </span>
+                      )}
+                      <span className="min-w-0 flex-1 truncate text-[13px] text-white/90">{node.name}</span>
+                    </button>
+                  ))}
+                  <p className="px-2.5 pb-1 pt-2 text-[12px] text-white/40">添加参考</p>
+                  {REF_CATEGORIES.map((cat) => {
+                    const Icon = CATEGORY_ICONS[cat];
+                    return (
+                      <button
+                        key={cat}
+                        type="button"
+                        aria-pressed={refSubmenu === cat}
+                        onClick={() => setRefSubmenu((cur) => (cur === cat ? null : cat))}
+                        className={`flex h-10 w-full items-center gap-2 rounded-lg px-2.5 text-left hover:bg-white/10 ${
+                          refSubmenu === cat ? "bg-white/[0.10]" : ""
+                        }`}
+                      >
+                        <Icon size={15} className="shrink-0 text-white/70" />
+                        <span className="min-w-0 flex-1 truncate text-[13px] text-white/90">{cat}</span>
+                        <ChevronRight size={14} className="shrink-0 text-white/40" />
+                      </button>
+                    );
+                  })}
+                </div>
+                {refSubmenu !== null ? (
+                  /* Batch 792 SOURCE_FACT: 类别下钻子菜单 (48px 行 +
+                      32px 缩略图 + 视频时长徽章; 空类别「暂无相关节点」) */
+                  <div
+                    className="ml-1 flex w-[248px] flex-col rounded-[10px] border border-white/[0.06] p-1.5"
+                    style={{ background: "rgb(38,38,38)" }}
+                    data-testid="ref-submenu"
+                  >
+                    {submenuNodes.length > 0 ? (
+                      submenuNodes.map((node) => (
+                        <button
+                          key={node.id}
+                          type="button"
+                          onClick={() => insertChip(node)}
+                          className="relative flex h-12 w-full items-center gap-2 rounded-lg px-1.5 text-left hover:bg-white/10"
+                        >
+                          {node.poster ? (
+                            <img src={node.poster} alt="" className="size-8 shrink-0 rounded-md object-cover" />
+                          ) : (
+                            <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-white/[0.08] text-white/55">
+                              {node.kind === "image" ? <ImageIcon size={14} /> : node.kind === "video" ? <Play size={14} /> : <AudioLines size={14} />}
+                            </span>
+                          )}
+                          <span className="min-w-0 flex-1 truncate text-[13px] text-white/90">{node.name}</span>
+                          {node.kind === "video" && node.duration ? (
+                            <span className="shrink-0 rounded bg-black/70 px-1 text-[9px] leading-[14px] text-white/90">
+                              {formatDuration(node.duration)}
+                            </span>
+                          ) : null}
+                        </button>
+                      ))
+                    ) : (
+                      <div className="flex h-16 items-center justify-center text-[13px] text-white/45">
+                        暂无相关节点
+                      </div>
+                    )}
+                    {refSubmenu === "视频" ? (
+                      /* Batch 791 SOURCE_FACT: 视频子菜单的 展开视频生成器 入口 */
+                      <button
+                        type="button"
+                        aria-label="展开视频生成器"
+                        className="mt-auto flex size-10 items-center justify-center self-end rounded-lg text-white/60 hover:bg-white/10"
+                      >
+                        <Maximize2 size={16} />
+                      </button>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </div>
 
           {/* 提示词输入区 (Batch 40: 可编辑)。批 206: 占位 14px + @主体
@@ -348,14 +529,19 @@ export function JimengGenPanel({
                 ) : null}
               </div>
               {/* 批 403 SOURCE_FACT: 行内图标钮 aria 实测 引用参考;
-                  批 688 SOURCE_FACT (2026-09-26): 点击切换行内参考条 */}
+                  批 792 SOURCE_FACT (2026-09-27 深采): 点击 = 提示框
+                  插入 "@" + 弹「可能@的内容」自动补全弹层 */}
               <button
                 type="button"
                 aria-label="引用参考"
-                aria-pressed={refStripOpen}
-                onClick={() => setRefStripOpen((v) => !v)}
+                aria-pressed={refMenuOpen}
+                onClick={() => {
+                  setPrompt((p) => (p.endsWith("@") ? p : `${p}@`));
+                  setRefSubmenu(null);
+                  setRefMenuOpen((v) => !v);
+                }}
                 className={`flex size-8 items-center justify-center rounded-lg hover:bg-white/[0.08] ${
-                  refStripOpen ? "bg-white/[0.14] text-white" : "text-white/80"
+                  refMenuOpen ? "bg-white/[0.14] text-white" : "text-white/80"
                 }`}
               >
                 <AtSign size={15} />
