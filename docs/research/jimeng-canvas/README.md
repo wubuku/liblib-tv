@@ -2593,6 +2593,38 @@
   下一批规划 (Batch 791): 视浏览器/登录态做源站「引用参考」展开
   条四标签内容深采 (若不可用则回落新回归轮 1-19 段起点); 素材
   账本剩余 9 项上传探索视进度插入。
+- Batch 791 (源站深采·引用参考全链路): 重大证据修正——「引用
+  参考」实为 @ 自动补全弹层, 非行内标签条。(1) 环境异常: 源画布
+  空视频节点 node_eftc9q6caa 在探查间隙被外部因素删除 (本批仅发
+  单次左键; 画布 Room connected 协同态, 疑并行会话/远端变更),
+  已用工具栏「视频」重建 node_jh6m2rmdwq 作基线第二节点。
+  (2) SOURCE_FACT (2026-09-27): 点面板 chips 行 引用参考 32×32 →
+  提示框 contenteditable 插入 "@" 字符 + 弹「可能@的内容」弹层:
+  候选区 (画布节点行 32px 缩略图+名称) + 「添加参考」分区 (主体/
+  图片/视频/音频 四行, 前置图标+右箭头下钻; 批 687 所见「四类别
+  标签」实为此弹层行)。类别下钻子菜单: 48px 行 (32px 缩略图 +
+  名称, 视频行加 00:06 时长徽章); 空类别弹「暂无相关节点」空态
+  卡; 视频子菜单含 展开视频生成器 40×40 钮 (aria 实测)。点子
+  菜单行 → 插入引用 chip (node-composerChip, draggable): 48×48
+  缩略图+名称, 右上 24×24 Remove 角标, aria「Reference material:
+  {名称}」(视频加 ", duration 6s"), 多 chip 横向堆叠; 上传中灰块
+  +价格区「正在上传参考图片…」, 完成 "Reference image ready"。
+  提示框 placeholder「@搜索主体、图片、视频」, 空内容显「使用」
+  示例卡 (@图片1 模仿 @视频1 的动作, 音色参考 @音频1)。chip 行
+  添加参考 48×48 → 三选项菜单: 上传参考内容 / 从资产库添加 /
+  从画布选择; 从画布选择 → 点选模式 (整画布蓝色描边 + 顶部蓝
+  pill「◎ 从画布选择 ×」, 点节点后变「◎ 添加完成」+插 chip)。
+  (3) 漂移: 批 688 clone 行内标签条方案与源态结构不同 (原
+  CLONE_DECISION 已声明), 本批确认真态留档为对齐候选。(4) 恢复:
+  chip 移除/提示清空/上传图片节点删除, 画布 2 节点已保存 (第二
+  节点 id 变为 node_jh6m2rmdwq)。截图 11 张 source-{ref-strip-
+  open,ref-menu-subject,ref-menu-image,ref-picked,ref-chip-
+  uploaded,addref-3menu,addref-fromcanvas,addref-picked-canvas,
+  ref-menu-video,ref-menu-audio,ref-menu-reopen}-2026-09-27 入
+  docs/design-references/jimeng/。下一批规划 (Batch 792): 复刻
+  对齐——JimengGenPanel 引用参考重构为 @ 自动补全弹层 (可能@的
+  内容 + 四类别下钻 + chip 行 + 添加参考三选项 + 从画布点选),
+  配套验证器; 素材账本剩余 9 项视进度插入。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批
