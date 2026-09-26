@@ -358,6 +358,23 @@ function FrameosCanvasInner() {
       }
 
       // +/-/0 - 缩放控制
+      // Batch 248: 源站帮助声明 ⌘+ / ⌘− / ⌘0 (带修饰键), 裸键为克隆既有实现,
+      // 两者均支持 (metaKey 分支 preventDefault 阻止浏览器页面缩放)
+      if ((e.metaKey || e.ctrlKey) && (e.key === "+" || e.key === "=")) {
+        e.preventDefault();
+        zoomIn({ duration: 150 });
+        return;
+      }
+      if ((e.metaKey || e.ctrlKey) && (e.key === "-" || e.key === "_")) {
+        e.preventDefault();
+        zoomOut({ duration: 150 });
+        return;
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === "0") {
+        e.preventDefault();
+        fitView({ duration: 200, padding: 0.1 });
+        return;
+      }
       if (e.key === "+" || e.key === "=") {
         zoomIn({ duration: 150 });
         return;
