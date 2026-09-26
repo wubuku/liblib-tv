@@ -1,7 +1,7 @@
 # TDCanvas 交互目录
 
 > 覆盖用户可达交互的触发 → 行为 → 证据（file:line，对齐 `16b3127`）→ 对 clone 的相关性。
-> 引用质量：全部 6 表 + 快捷键全表已于 2026-09-26 完成逐条抽检（第四轮本文件 79/79 命中；包内行号引用累计 229 处 / 六轮，仅 1 处漂移已修正），台账见 ITERATION_LOG v6/v9。
+> 引用质量：全部 6 表 + 快捷键全表已完成逐条抽检（本文件 79/79 命中；包内累计引用台账以 ITERATION_LOG 维护记录为准，不在此处硬编码以免过时）。
 > 机制细节见 [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md)；归属（继承/原创）见 [UPSTREAM_DIFF_AUDIT.md](UPSTREAM_DIFF_AUDIT.md)；采纳判断见 [ADOPTION_DECISION_MATRIX.md](ADOPTION_DECISION_MATRIX.md)。
 > 相关性图例：`高`=LibTV/Jimeng 已有对应面或 parity backlog 方向；`中`=FrameOS/未来能力；`低`=对照研究。
 

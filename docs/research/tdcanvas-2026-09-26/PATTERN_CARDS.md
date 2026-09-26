@@ -53,6 +53,7 @@
 - **TD 事实**：count>1 时建 batch root（isBatchRoot/batchChildIds/primaryImageId/imageBatchExpanded）+ N child，root↔source、root→child 连线；空节点原地替换；堆叠帧动效、展开/收起、设主图（`project.tsx:2819-3239, 664-676, 1870-1921`）；批量子图随拖动/删除联动（`:845-870, 1343-1352`）；Aitudou 新管线改为「多输出各建独立节点 + 6 个一列」并防重复建节点（`:4081-4123, 2096-2103`）。
 - **启发**：同一产品里并存两种多结果表达（堆叠 vs 兄弟节点阵列），切换点（旧管线 vs 新管线）本身是产品演进样本；对照 LibTV 生成历史/多尝试的节点表达决策。
 - **验证门槛**：需 source 端多结果 fixture；与 `SUBGRAPH-COPY`（descendant closure）联动测试。
+- **基线后演化**（UPSTREAM_DIFF_AUDIT §7.1）：基线 `16b3127` 之后，上游已在复制路径补 `batchChildIds` 经 idMap 的重映射（`canvas-node-duplication.ts`），批量模型从此在复制/粘贴中存活。
 
 ## TD-09 媒体资源生命周期（双轨制 + 稳定本地地址 + hydrate 恢复链）
 

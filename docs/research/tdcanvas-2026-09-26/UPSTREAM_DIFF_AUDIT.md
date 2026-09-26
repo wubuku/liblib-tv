@@ -130,3 +130,32 @@
 - **临时工具反转**：`temporaryTool = event.ctrlKey || isSpacePressed`，`activeTool = temporaryTool ? (tool==="select" ? "pan" : "select") : tool`（`:114-115` 渲染分支、`:206-207` 手势分支）——**按住 Space 或 Ctrl 把当前工具反转**（select 态下 Space+拖=平移；pan 态下 Ctrl+拖=选择），与 TDCanvas「Space 完全禁用 + ctrl 固定框选」的硬编码语义不同。
 - **按键状态机**：Space/Control 的 keydown/keyup 维护 `isSpacePressed/isControlPressed`，带 input/textarea/contenteditable 守卫与 window blur 复位（`:52-74`）。
 - **TDCanvas 重写对照**：`td-canvas-surface.tsx` 移除 `tool` prop 与反转逻辑，手势语义固定（wheel=zoom、空白左键=平移、ctrl+空白=框选、Space 只 preventDefault，见 SOURCE_ANALYSIS §1.2）；上游的 select/pan 双模式 UI（工具切换器）随之消失。
+
+## 7. 基线后增量：TDCanvas `16b3127..d05cf612`（v20，2026-09-26 探测并落档）
+
+> 维护态探测发现 TDCanvas upstream 已前移至 `d05cf612`（2026-09-25，Merge PR #2），基线后 3 个提交、51 文件、+1392/-150。以下为增量调研结论（行号对齐 `upstream/main` 树）。包内其余引用仍对齐锁定基线 `16b3127`，不受影响。
+
+### 7.1 c7a0364 preserve canvas inputs and workflow run history（2026-09-15）
+
+- **运行历史持久化（Rust）**：`run_result_path(directory, filename, prompt_id, item_index)` 为每次运行的每个输出按 `prompt_id + item_index` 生成独立结果文件（video 走专门分支），运行结果不再互相覆盖（`tauri-plugin/src/lib.rs`）。
+- **结果节点绑定（web）**：`result-nodes.ts` 新增 `ComfyResultBinding {sourceNodeId, workflowId, outputId, resourceType, itemIndex}` 与 `createComfyResultNodes`——按工作流输出口逐一生成结果节点并按 `fromPortId` 连线，携带 `promptId/itemIndexes`。
+- **复制泛化**：新文件 `canvas-node-duplication.ts` 把复制抽为纯函数并返回 `idMap`，`remapDuplicatedMetadata` 经 idMap 重映射 `batchChildIds`（含测试）——批量堆叠模型（TD-08）从此在复制/粘贴路径存活。
+- **右键菜单新增「清除输入」**（Unplug 图标，`canClearInputs/onClearInputs`）。
+- **工程过程**：引入 openspec 目录（specs/changes/tasks），变更走提案-规范-任务流。
+
+### 7.2 7e2142e restore ComfyUI combo dropdowns（2026-09-16）
+
+- `workflow-inspector.ts` 新增 `inputEnumValues(spec)`：此前仅在 `spec[0]` 为数组时判定枚举；现在同时解析 `COMBO` 字符串型声明的 `spec[1].options`——修复工作流节点 combo 下拉丢失（`inferInputValueType` 的 enum 判定同步改走该函数），新增 68 行测试。
+
+### 7.3 422dff6 share ComfyUI queue across canvas tabs（2026-09-16）
+
+- **Rust**：新增 `attach_environment` 命令（含权限清单），第二标签页可挂接运行中环境；读取 `/queue` 并以 `cancel_action` 区分 `queue_pending/queue_running` 决定中断动作；重排队走 `POST /queue`（`tauri-plugin/src/lib.rs` +155）。
+- **Web**：`canvas-workspace-tabs-model.ts` 增加每 tab 挂接状态（+10），`canvas-workspace-tabs.tsx` 挂接 UI（+63）；`web/src-tauri/src/lib.rs` 注册命令（+19）。
+
+### 7.4 对包内结论的影响
+
+1. **TD-08 批量堆叠**：上游已在复制路径补 idMap 重映射——PATTERN_CARDS TD-08 卡已加演化注记；ADOPTION #5 的评估基础不变。
+2. **ADOPTION #19（comfyui 方法借鉴）**：队列跨 tab 共享 + 运行历史持久化使该方法借鉴的价值上调（多标签/多会话场景的队列编排与结果溯源有现成范式）。
+3. **SOURCE_ANALYSIS §6.3**：comfyui-local 机制描述仍成立（基线态）；上述三点为基线后增量，若重定基线至 `d05cf612` 需增补。
+4. **无需改写包内既有 file:line 引用**：全部引用对齐锁定基线 `16b3127`，本地工作副本未动。
+

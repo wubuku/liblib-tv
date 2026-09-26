@@ -127,6 +127,22 @@ def main() -> int:
         if f"（{up}）" not in body:
             problems.append(f"上游参考卡 {up} 在 ADOPTION 矩阵中无对应行")
 
+    # 5. 基线哈希防混淆（上游前移后防止锁定基线被误写）
+    KNOWN_FULL_HASHES = {
+        "16b31273633f983cdbd8de05694ec36d471b2650",  # TDCanvas 锁定基线
+        "dab19adc0847e32e39b7fc8ff90cb392561fb826",  # infinite-canvas 审计基准
+    }
+    for f in sorted(PKG.glob("*.md")):
+        for i, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+            for m in re.finditer(r"\b[0-9a-f]{40}\b", line):
+                if m.group(0) not in KNOWN_FULL_HASHES:
+                    problems.append(f"异常 40 位哈希: {f.name}:{i} {m.group(0)[:12]}…")
+            if re.search(r"\bd05cf612\b", line) and re.search(r"锁定提交|研究基线", line):
+                problems.append(f"基线混淆风险: {f.name}:{i} 把 d05cf612 写作锁定提交/研究基线")
+    n_base = sum(1 for f in PKG.glob("*.md") if re.search(r"\b16b3127\b", f.read_text(encoding="utf-8")))
+    if n_base < 3:
+        problems.append(f"锁定基线 16b3127 的锚定文件过少: {n_base}（应至少 README/SOURCE_ANALYSIS/INTERACTION_CATALOG 三处）")
+
     if problems:
         print("TDCanvas 调研包自检：发现问题")
         for p in problems:
