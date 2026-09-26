@@ -1,6 +1,17 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
-> **状态更新 (2026-09-26 深夜, Batch 250 收尾)**：226-249 已全部完成推送。
+> **状态更新 (2026-09-27, Batch 251 收尾)**：**成组阻塞项已解除**——合成 pointer
+> 事件恢复框选后 `el.click()` 采样到完整成组行为（详见
+> `docs/research/liblib-frameos-batch251-2026-09-27/GROUP_OBSERVATIONS.md`）：
+> 分组覆盖层 `.canvas-group`（成员 bbox+28、rgba(c,.16)/rgba(c,.9)/r12、组N 标签、
+> 四角手柄）、展开工具栏六键（切换背景色/排列方式│整组执行/存为模板/解组/批量下载）、
+> 10 色板弹层（is-current 蓝环）、排列菜单（水平=按原 Y 一行、间距40、对齐盒左上+28）、
+> 分组拖拽全员跟随、解组保持成员位置（源站解组后工具栏残留=bug，克隆正确隐藏）。
+> 克隆实现：store groups/selectedGroupId + FrameosGroupCanvas（viewport 首子层）+
+> FrameosGroupToolbar 双模式（多选成组真实现；多选工具条几何修正为 bbox 居中）。
+> verifier batch251 37/37 PASS，回归 229/232/234 全绿。采样后源站画布已复原
+> （解组+逐节点拖回，≤3px，刷新确认持久化）。
+> **历史状态 (2026-09-26 深夜, Batch 250 收尾)**：226-249 已全部完成推送。
 > 本日新增：241 手册同步(4866c588)、242 成组工具条换行修复+克隆渲染记录5张(ff2803ff)、
 > 243 手册PROGRESS刷新(adf06372)、244 验证器90s goto加固(经归档)、246 证据注记(35bef7d1)、
 > 245 帮助面板复检无漂移(acf9debd)、247 移除发明行为方向键/Tab(5ca726f5)、

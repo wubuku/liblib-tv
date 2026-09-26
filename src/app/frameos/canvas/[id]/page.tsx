@@ -50,6 +50,7 @@ import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFullscreenText } from "@/components/frameos/FrameosFullscreenText";
 import { FrameosImageLightbox } from "@/components/frameos/FrameosImageLightbox";
 import { FrameosGroupToolbar } from "@/components/frameos/FrameosGroupToolbar";
+import { FrameosGroupCanvas } from "@/components/frameos/FrameosGroupCanvas";
 import { FrameosProjectAssetsPanel } from "@/components/frameos/FrameosProjectAssetsPanel";
 
 const nodeTypes = {
@@ -116,7 +117,11 @@ function FrameosCanvasInner() {
       if (changes.some((c) => c.type === "select")) {
         const lastSelected = [...updated].reverse().find((n) => n.selected);
         setNodes(updated);
-        useFrameosStore.setState({ selectedNodeId: lastSelected?.id ?? null });
+        // Batch 251: 框选同时清除分组选中 (节点/分组选择互斥)
+        useFrameosStore.setState({
+          selectedNodeId: lastSelected?.id ?? null,
+          selectedGroupId: null,
+        });
         return;
       }
       // 重新应用 store 的 selected 状态 (xyflow 的 applyNodeChanges 会清掉 selected)
@@ -664,6 +669,9 @@ function FrameosCanvasInner() {
           color="rgba(255,255,255,0.07)"
         />
       </ReactFlowAny>
+
+      {/* 画布分组覆盖层 (源站: 分组渲染在节点层后方, flow 坐标) */}
+      <FrameosGroupCanvas />
 
       {/* 顶部浮动元素 */}
       <FrameosAppHeader />

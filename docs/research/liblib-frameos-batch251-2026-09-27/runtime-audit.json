@@ -1,0 +1,52 @@
+{
+  "batch": 251,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "marquee:multi-selected",
+        "multi:toolbar-opens",
+        "multi:toolbar-centered-on-bbox",
+        "group:element-created",
+        "group:name-组1",
+        "group:store-selected",
+        "group:handles-4-when-selected",
+        "group:nodes-deselected",
+        "group:members-match-selection",
+        "group:label-selected-cls",
+        "group:toolbar-switches",
+        "group:toolbar-切换背景色",
+        "group:toolbar-排列方式",
+        "group:toolbar-text-整组执行",
+        "group:toolbar-text-存为模板",
+        "group:toolbar-text-解组",
+        "group:toolbar-text-批量下载",
+        "group:批量下载-title-count",
+        "color:popover-opens",
+        "color:swatches-10",
+        "color:default-aria",
+        "color:bg-red",
+        "color:border-red",
+        "color:store-hex",
+        "color:popover-closed",
+        "arrange:menu-opens",
+        "arrange:items-3",
+        "arrange:horizontal-same-y",
+        "arrange:horizontal-gap-40",
+        "arrange:group-box-recomputed",
+        "drag:group-moved",
+        "drag:members-follow",
+        "ungroup:store-empty",
+        "ungroup:element-gone",
+        "ungroup:toolbar-hides",
+        "ungroup:members-keep-positions",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

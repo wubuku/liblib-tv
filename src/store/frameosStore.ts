@@ -26,6 +26,35 @@ interface Generation {
   prompt: string;
 }
 
+// Batch 251: 画布分组 (源站 2026-09-27 采样, docs/research/liblib-frameos-batch251-2026-09-27)
+export interface FrameosGroup {
+  id: string;
+  name: string; // 组1, 组2 …
+  color: string; // hex, 驱动 bg/border/手柄/色点
+  memberIds: string[];
+  // flow 坐标 (成员 bbox + PADDING)
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export const FRAMEOS_GROUP_PADDING = 28;
+export const FRAMEOS_GROUP_ARRANGE_GAP = 40;
+// 源站调色板顺序 (aria-label: 首位「默认色」, 其余「背景色 #xxx」)
+export const FRAMEOS_GROUP_COLORS = [
+  "#64748b",
+  "#ef4444",
+  "#f97316",
+  "#eab308",
+  "#22c55e",
+  "#14b8a6",
+  "#3b82f6",
+  "#6366f1",
+  "#ec4899",
+  "#9ca3af",
+];
+
 interface FrameosCanvasState {
   // 待确认操作 (删除节点/边时弹窗)
 
@@ -55,6 +84,10 @@ interface FrameosCanvasState {
 
   // 当前选中的节点（控制 prompt bar 显示 + 节点高亮）
   selectedNodeId: string | null;
+
+  // Batch 251: 画布分组 (成组创建的覆盖层) 与选中分组
+  groups: FrameosGroup[];
+  selectedGroupId: string | null;
 
   // 添加节点菜单（点击 + 号弹出）
   isAddNodeMenuOpen: boolean;
@@ -102,6 +135,12 @@ interface FrameosCanvasState {
   toggleMinimap: () => void;
   setPromptValue: (v: string) => void;
   selectNode: (id: string | null) => void;
+  createGroup: (memberIds: string[]) => string | null;
+  selectGroup: (id: string | null) => void;
+  ungroup: (id: string) => void;
+  setGroupColor: (id: string, color: string) => void;
+  arrangeGroup: (id: string, mode: "grid" | "horizontal" | "vertical") => void;
+  moveGroup: (id: string, dx: number, dy: number) => void;
   pushHistory: () => void;
   toggleAddNodeMenu: () => void;
   closeAddNodeMenu: () => void;
@@ -301,6 +340,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   minimapPinActive: true,
   promptValue: "",
   selectedNodeId: null,
+  groups: [],
+  selectedGroupId: null,
   nodeClipboard: null,
   isAddNodeMenuOpen: false,
   isOrganizeMenuOpen: false,
@@ -328,8 +369,10 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     set((state) => ({
       breadcrumb: newBreadcrumb,
       canvasData: { ...state.canvasData, [key]: data },
-      // 切换画布时清除选中
+      // 切换画布时清除选中 (分组属于画布, 一并清空)
       selectedNodeId: null,
+      selectedGroupId: null,
+      groups: [],
       nodes: data.nodes,
       edges: data.edges,
     }));
@@ -523,6 +566,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   selectNode: (id) => {
     set((state) => ({
       selectedNodeId: id,
+      // Batch 251: 节点选择与分组选择互斥
+      selectedGroupId: null,
       // 同步给 xyflow 的 selected 字段 (让 xyflow 的 selected prop 传到节点组件)
       nodes: state.nodes.map((n) => ({
         ...n,
@@ -530,6 +575,150 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       })),
     }));
   },
+
+  // Batch 251: 成组 — 分组盒 = 成员 bbox + 28 (源站实测), 名称「组N」自动编号
+  createGroup: (memberIds) => {
+    const members = get().nodes.filter((n) => memberIds.includes(n.id));
+    if (members.length < 2) return null;
+    const minX = Math.min(...members.map((n) => n.position.x));
+    const minY = Math.min(...members.map((n) => n.position.y));
+    const maxX = Math.max(
+      ...members.map((n) => n.position.x + ((n.style?.width as number) ?? 300))
+    );
+    const maxY = Math.max(
+      ...members.map((n) => n.position.y + ((n.style?.height as number) ?? 200))
+    );
+    const id = `group-${Date.now()}`;
+    const group: FrameosGroup = {
+      id,
+      name: `组${get().groups.length + 1}`,
+      color: FRAMEOS_GROUP_COLORS[0],
+      memberIds: members.map((n) => n.id),
+      x: minX - FRAMEOS_GROUP_PADDING,
+      y: minY - FRAMEOS_GROUP_PADDING,
+      w: maxX - minX + FRAMEOS_GROUP_PADDING * 2,
+      h: maxY - minY + FRAMEOS_GROUP_PADDING * 2,
+    };
+    set((state) => ({
+      groups: [...state.groups, group],
+      selectedGroupId: id,
+      selectedNodeId: null,
+      nodes: state.nodes.map((n) => ({ ...n, selected: false })),
+    }));
+    return id;
+  },
+
+  selectGroup: (id) =>
+    set((state) => ({
+      selectedGroupId: id,
+      selectedNodeId: null,
+      nodes: state.nodes.map((n) => ({ ...n, selected: false })),
+    })),
+
+  // 解组: 分组移除, 成员位置保持 (源站实测); 无 toast
+  ungroup: (id) =>
+    set((state) => ({
+      groups: state.groups.filter((g) => g.id !== id),
+      selectedGroupId:
+        state.selectedGroupId === id ? null : state.selectedGroupId,
+    })),
+
+  setGroupColor: (id, color) =>
+    set((state) => ({
+      groups: state.groups.map((g) => (g.id === id ? { ...g, color } : g)),
+    })),
+
+  // 排列: 水平 = 按原 Y 排序一行排开, 间距 40, 内容对齐分组左上 + 28 (源站实测);
+  // 垂直按 X 对称推断; 宫格列数 ceil(√n) 行优先 (克隆决策, 源站参数未采样)。
+  // 分组盒重算 = 新内容 bbox + 28。
+  arrangeGroup: (id, mode) => {
+    const group = get().groups.find((g) => g.id === id);
+    if (!group) return;
+    const members = get().nodes.filter((n) => group.memberIds.includes(n.id));
+    if (members.length === 0) return;
+    const sizeOf = (n: FrameosNode) => ({
+      w: ((n.style?.width as number | undefined) ?? 300),
+      h: ((n.style?.height as number | undefined) ?? 200),
+    });
+    const sorted = [...members].sort((a, b) => {
+      if (mode === "vertical") return a.position.x - b.position.x;
+      return (
+        a.position.y - b.position.y || a.position.x - b.position.x
+      );
+    });
+    const cols =
+      mode === "horizontal"
+        ? sorted.length
+        : mode === "vertical"
+        ? 1
+        : Math.ceil(Math.sqrt(sorted.length));
+    const originX = group.x + FRAMEOS_GROUP_PADDING;
+    const originY = group.y + FRAMEOS_GROUP_PADDING;
+    const positions = new Map<string, { x: number; y: number }>();
+    let cursorX = originX;
+    let cursorY = originY;
+    let rowH = 0;
+    sorted.forEach((n, i) => {
+      const s = sizeOf(n);
+      if (mode === "vertical") {
+        positions.set(n.id, { x: originX, y: cursorY });
+        cursorY += s.h + FRAMEOS_GROUP_ARRANGE_GAP;
+      } else {
+        if (i > 0 && i % cols === 0) {
+          cursorX = originX;
+          cursorY += rowH + FRAMEOS_GROUP_ARRANGE_GAP;
+          rowH = 0;
+        }
+        positions.set(n.id, { x: cursorX, y: cursorY });
+        cursorX += s.w + FRAMEOS_GROUP_ARRANGE_GAP;
+        rowH = Math.max(rowH, s.h);
+      }
+    });
+    const minX = Math.min(...sorted.map((n) => (positions.get(n.id) ?? n.position).x));
+    const minY = Math.min(...sorted.map((n) => (positions.get(n.id) ?? n.position).y));
+    const maxX = Math.max(
+      ...sorted.map((n) => (positions.get(n.id) ?? n.position).x + sizeOf(n).w)
+    );
+    const maxY = Math.max(
+      ...sorted.map((n) => (positions.get(n.id) ?? n.position).y + sizeOf(n).h)
+    );
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: state.nodes.map((n) => {
+        const p = positions.get(n.id);
+        return p ? { ...n, position: p } : n;
+      }),
+      groups: state.groups.map((g) =>
+        g.id === id
+          ? {
+              ...g,
+              x: minX - FRAMEOS_GROUP_PADDING,
+              y: minY - FRAMEOS_GROUP_PADDING,
+              w: maxX - minX + FRAMEOS_GROUP_PADDING * 2,
+              h: maxY - minY + FRAMEOS_GROUP_PADDING * 2,
+            }
+          : g
+      ),
+    }));
+  },
+
+  // 分组拖拽: 分组矩形与全部成员同步位移 (源站实测 +60,+40 一致)
+  moveGroup: (id, dx, dy) =>
+    set((state) => {
+      const group = state.groups.find((g) => g.id === id);
+      if (!group) return state;
+      return {
+        groups: state.groups.map((g) =>
+          g.id === id ? { ...g, x: g.x + dx, y: g.y + dy } : g
+        ),
+        nodes: state.nodes.map((n) =>
+          group.memberIds.includes(n.id)
+            ? { ...n, position: { x: n.position.x + dx, y: n.position.y + dy } }
+            : n
+        ),
+      };
+    }),
 
   // Batch 232: 节点拖动等外部手势的撤销快照 (拖动开始时调用一次)
   pushHistory: () =>
@@ -564,6 +753,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       nodes: prev.nodes,
       edges: prev.edges,
       selectedNodeId: null,
+      selectedGroupId: null,
     });
   },
   redo: () => {
@@ -576,6 +766,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       nodes: next.nodes,
       edges: next.edges,
       selectedNodeId: null,
+      selectedGroupId: null,
     });
   },
 
