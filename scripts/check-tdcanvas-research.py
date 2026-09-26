@@ -133,6 +133,8 @@ def main() -> int:
         "dab19adc0847e32e39b7fc8ff90cb392561fb826",  # infinite-canvas 审计基准
     }
     for f in sorted(PKG.glob("*.md")):
+        if f.name == "ITERATION_LOG.md":
+            continue  # 日志中的历史/待决描述（如「重定基线至 d05cf612」）不参与基线守卫
         for i, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
             for m in re.finditer(r"\b[0-9a-f]{40}\b", line):
                 if m.group(0) not in KNOWN_FULL_HASHES:
@@ -156,4 +158,37 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if "--probe" in sys.argv:
+        # 维护态漂移探测：比较远端 HEAD 与包内已知哈希（需要网络）。
+        import subprocess
+
+        KNOWN = {
+            "TDCanvas (AICoderTudou/TDCanvas)": {
+                "url": "https://github.com/AICoderTudou/TDCanvas.git",
+                "baseline": "16b3127",       # 包内锁定研究基线
+                "last_seen": "d05cf612",     # 上次探测到的上游 HEAD（v19/v20）
+            },
+            "infinite-canvas (basketikun/infinite-canvas)": {
+                "url": "https://github.com/basketikun/infinite-canvas.git",
+                "baseline": "dab19ad",       # UPSTREAM_DIFF_AUDIT 审计基准
+                "last_seen": "dab19ad",
+            },
+        }
+        ok = True
+        for name, cfg in KNOWN.items():
+            out = subprocess.run(
+                ["git", "ls-remote", cfg["url"], "HEAD"],
+                capture_output=True, text=True,
+            ).stdout
+            head = out.split()[0] if out.split() else ""
+            if head.startswith(cfg["last_seen"]):
+                print(f"[未变] {name}: {cfg['last_seen']}")
+            elif head.startswith(cfg["baseline"]):
+                print(f"[回到基线] {name}: {cfg['baseline']}")
+            elif head:
+                print(f"[已前移] {name}: {cfg['last_seen']} → {head[:12]}…（超出包内已知范围，需增量调研）")
+                ok = False
+            else:
+                print(f"[探测失败] {name}: 无网络或仓库不可达")
+        sys.exit(0 if ok else 1)
     sys.exit(main())
