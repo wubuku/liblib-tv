@@ -79,6 +79,11 @@ export function DirectorIconRail() {
   // Batch 540: 源站 rail「添加机位」为直接动作（点击无面板）——
   // 与场景树「新增机位」同源，接通 directorStore.addDirectorCamera。
   const addDirectorCamera = useDirectorStore((state) => state.addDirectorCamera);
+  // Batch 541: 添加角色 flyout——群众 (3x3) 接通本地等效 addCrowdArray
+  // （与 DirectorViewport 群众面板同默认 3/3/1.2）；预设体型项为本地等效
+  // 占位（store 无单角色变体加建），点击仅回显本地提示，不生成 3D 模型。
+  const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
+  const [characterAck, setCharacterAck] = useState<string | null>(null);
 
   const select = (id: string) => {
     if (id === "ai-import") {
@@ -89,10 +94,33 @@ export function DirectorIconRail() {
       addDirectorCamera();
       return;
     }
+    setOpenFlyout(null);
+    if (id === "add-character") {
+      // 仅 add-character 自身打开 flyout；由 handleCharacterOption 控制关闭。
+      setOpenFlyout("add-character");
+      return;
+    }
     setActive(id);
-    setOpenFlyout(
-      id === "add-character" || id === "panorama" || id === "aspect-ratio" ? id : null,
-    );
+    if (id === "panorama" || id === "aspect-ratio") {
+      setOpenFlyout(id);
+    }
+  };
+
+  const handleCharacterOption = (itemId: string, label: string) => {
+    if (itemId === "crowd-3x3") {
+      addCrowdArray({ rows: 3, columns: 3, spacing: 1.2 });
+      setCharacterAck("已加入群众 (3x3)（本地等效）");
+      setOpenFlyout(null);
+      window.setTimeout(() => setCharacterAck(null), 2000);
+      return;
+    }
+    if (itemId === "local-upload" || itemId === "geometry") {
+      setOpenFlyout(null);
+      return;
+    }
+    setCharacterAck(`预设角色「${label}」为本地等效占位`);
+    setOpenFlyout(null);
+    window.setTimeout(() => setCharacterAck(null), 2000);
   };
 
   return (
@@ -132,6 +160,7 @@ export function DirectorIconRail() {
                       key={item.id}
                       type="button"
                       data-director-character-option={item.id}
+                      onClick={() => handleCharacterOption(item.id, item.label)}
                       className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
                     >
                       <span className="min-w-0 flex-1 truncate">{item.label}</span>
@@ -209,6 +238,15 @@ export function DirectorIconRail() {
       >
         <HelpCircle size={16} />
       </button>
+      {characterAck && (
+        <span
+          data-director-character-ack
+          aria-live="polite"
+          className="absolute bottom-14 left-[calc(100%+8px)] whitespace-nowrap rounded-full bg-black/70 px-2.5 py-1 text-[11px] text-[#9ddbb9]"
+        >
+          {characterAck}
+        </span>
+      )}
       {aiImportOpen && <DirectorAiImportModal onClose={() => setAiImportOpen(false)} />}
     </div>
   );

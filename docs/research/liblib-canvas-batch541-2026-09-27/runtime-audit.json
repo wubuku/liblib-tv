@@ -1,0 +1,25 @@
+{
+  "batch": 541,
+  "title": "Character flyout presets local-equivalent actions",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-23 (batch 537)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "flyout:opens",
+        "crowd:objects-increase",
+        "crowd:ack",
+        "crowd:flyout-closes",
+        "preset:ack",
+        "preset:no-3d-spawn",
+        "preset:flyout-closes",
+        "ack:auto-dismiss",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
