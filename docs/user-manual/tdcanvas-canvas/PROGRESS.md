@@ -88,6 +88,19 @@
 | final audit + 交付报告 | 未开始 |
 
 - **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
+- **Batch M7（2026-09-28）Gate B 完成**：按手册从入口重走 12 任务全部通过（AUDIT.md 回走结论表）；回走中新发现 Minor 缺陷（上传无内容嗅探）已记录并即时清理；**final audit 通过**（12 任务全部 verified，exit 0）。手册 v1 交付完成。
+- **Batch M8（2026-09-28）**：generate-images 补充真实 S109 上传回走与伪装扩展名缺陷发现（已入 AUDIT 与排障）；Gate B 结论表落档；final audit 通过。
+
+## 交付报告（v1，2026-09-28）
+
+- **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
+- **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
+- **覆盖率**：task-inventory 12/12 任务 verified（1 个 generate-images 为描述型，付费边界前验证）。
+- **验证密度**：26 张截图（manifest 全字段+sha256）、12 任务 Gate B 回走、五项自检 + verify-docs + final audit 三门禁。
+- **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作。
+- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄精确拖拽在低缩放下较难（Gate B 补验项）。
+- **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
+
 ## 收尾留档 — 2026-09-27（用户指示收尾，循环暂停）
 
 1. **已完成**：工作文档五件套 + AUDIT 骨架；quickstart + 3 个旗舰任务成稿（create-canvas-project / create-nodes / edit-nodes，均运行时走查）；generate-images 占位（付费边界，描述型）；6 个任务占位页；截图 8 张入 manifest（sha256）；多标签覆盖真实缺陷已入 AUDIT 与手册排障。
