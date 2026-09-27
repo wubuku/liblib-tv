@@ -1,5 +1,11 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **⌥拖拽复制已采样并实现 (2026-09-28, Batch 257)**：源站实测（合成 alt+drag）=
+> 原节点留在拖拽落点 + 同题副本偏移 (+20,+15) 自动选中。此前"不可采样"结论推翻。
+> 克隆：store.duplicateNodeAt + onNodeDragStop altKey 分支；verifier batch257
+> 10/10 PASS（副本/偏移/选中/两级撤销）。手册 duplicate-delete-history 与
+> help-and-shortcuts 已更新为实测。
+
 > **全量回归 (2026-09-28, Batch 256)**：`run-frameos-verifiers.sh` 67/67 PASS
 > （Batch 251-253 分组功能与共享辅助重构后全量无回归）。
 

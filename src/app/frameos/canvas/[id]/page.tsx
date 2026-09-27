@@ -613,6 +613,15 @@ function FrameosCanvasInner() {
         // 自绘 minimap (FrameosMapDock) 处理节点点击, ReactFlow 内置 minimap 已禁用.
         // v12 的 onMinimapNodeClick 既未定义又不支持, 删除避免 React 警告.
         onNodeClick={onNodeClick}
+        // Batch 257: ⌥拖拽复制 (源站实测: 原节点留在落点, 同题副本偏移 +20,+15)
+        onNodeDragStop={(event, node) => {
+          if (!(event as MouseEvent).altKey) return;
+          const st = useFrameosStore.getState();
+          st.duplicateNodeAt(node.id, {
+            x: node.position.x + 20,
+            y: node.position.y + 15,
+          });
+        }}
         onNodeMouseEnter={(_, n) => {
           if (isConnecting) setHoveredTargetId(n.id);
         }}

@@ -1,0 +1,25 @@
+{
+  "batch": 257,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:node-found",
+        "alt:count-plus-one",
+        "alt:copy-created",
+        "alt:original-moved-to-drop",
+        "alt:copy-offset-20-15",
+        "alt:same-title",
+        "alt:copy-selected",
+        "undo:copy-removed",
+        "undo:move-reverted",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

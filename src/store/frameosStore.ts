@@ -129,6 +129,7 @@ interface FrameosCanvasState {
   removeNode: (id: string) => void;
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   duplicateNode: (id: string) => void;
+  duplicateNodeAt: (id: string, position: { x: number; y: number }) => string | null;
   nodeClipboard: FrameosNode | null;
   copyNodeToClipboard: (id: string) => void;
   pasteNodeFromClipboard: () => void;
@@ -525,6 +526,27 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     const node = get().nodes.find((n) => n.id === id);
     if (!node) return;
     set({ nodeClipboard: { ...node, selected: false } });
+  },
+
+  // Batch 257: ⌥拖拽复制 — 原节点留在拖拽落点, 同题副本偏移 (+20,+15) (源站实测)
+  duplicateNodeAt: (id, position) => {
+    const node = get().nodes.find((n) => n.id === id);
+    if (!node) return null;
+    const newId = `${node.type}-${Date.now()}-alt`;
+    const newNode: FrameosNode = {
+      ...node,
+      id: newId,
+      selected: true,
+      position,
+      data: { ...node.data },
+    };
+    set((state) => ({
+      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      future: [],
+      nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
+      selectedNodeId: newId,
+    }));
+    return newId;
   },
 
   pasteNodeFromClipboard: () => {
