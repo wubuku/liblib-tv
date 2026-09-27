@@ -61,6 +61,7 @@ import type {
   DirectorModelLibraryVisual,
 } from "@/components/director/directorModelLibrary";
 import {
+  type DirectorSceneDocumentV1,
   createDirectorProjectDocumentV1,
   decodeDirectorProjectDocument,
   encodeDirectorProjectDocument,
@@ -212,6 +213,16 @@ export interface DirectorScene {
   groundColor: string;
   showGround: boolean;
   showGrid: boolean;
+  /** Batch 548: 源站截图 18/45 全景背景「天空颜色 #060608」。 */
+  skyColor: string;
+  /** Batch 548: 源站「角色标签」开关（默认开）。 */
+  showCharacterLabels: boolean;
+  /** Batch 548: 源站「网格吸附」开关（默认关）。 */
+  snapToGrid: boolean;
+  /** Batch 548: 源站「高斯地面吸附」开关（默认开）。 */
+  gaussianGroundSnap: boolean;
+  /** Batch 548: 源站「地面…透明度 0.40」。 */
+  groundOpacity: number;
 }
 
 export interface DirectorSessionOutcome {
@@ -433,6 +444,19 @@ function createDefaultScene(): DirectorScene {
     groundColor: "#30343a",
     showGround: true,
     showGrid: true,
+    skyColor: "#060608",
+    showCharacterLabels: true,
+    snapToGrid: false,
+    gaussianGroundSnap: true,
+    groundOpacity: 0.4,
+  };
+}
+
+// Batch 548: 旧 V1 文档缺省新字段时按默认场景兜底。
+function normalizeRestoredScene(scene: DirectorSceneDocumentV1): DirectorScene {
+  return {
+    ...createDefaultScene(),
+    ...scene,
   };
 }
 
@@ -2471,7 +2495,7 @@ function restoreDirectorProjectState(
     sessionId: session.sessionId,
     generation: session.generation,
     projectLifecycle: "ACTIVE",
-    scene: restored.scene,
+    scene: normalizeRestoredScene(restored.scene),
     authoredObjects,
     objects,
     groups: restored.groups,
@@ -2716,7 +2740,7 @@ function projectDirectorDeleteState(
   };
   return {
     state: {
-      scene: restored.scene,
+      scene: normalizeRestoredScene(restored.scene),
       authoredObjects,
       objects,
       groups: restored.groups,
@@ -5304,6 +5328,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       "groundColor",
       "showGround",
       "showGrid",
+      "skyColor",
+      "showCharacterLabels",
+      "snapToGrid",
+      "gaussianGroundSnap",
+      "groundOpacity",
     ] as const;
     const patchKeys = Object.keys(patch) as Array<keyof DirectorScene>;
     const invalidKey = patchKeys.find((key) => !sceneKeys.includes(key));

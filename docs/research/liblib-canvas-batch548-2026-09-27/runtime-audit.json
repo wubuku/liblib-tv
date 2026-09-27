@@ -1,0 +1,26 @@
+{
+  "batch": 548,
+  "title": "Scene display settings extension",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshots 18/45",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "defaults:sky-color",
+        "defaults:labels-on",
+        "defaults:snap-off",
+        "defaults:gaussian-on",
+        "defaults:opacity",
+        "toggle:character-labels",
+        "toggle:snap-to-grid",
+        "toggle:gaussian-snap",
+        "opacity:persistent",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

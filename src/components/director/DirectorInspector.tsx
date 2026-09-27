@@ -2093,6 +2093,73 @@ export function DirectorInspector({
                   className="h-6 w-9 rounded border-0 bg-transparent"
                 />
               </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>天空颜色</span>
+                <input
+                  data-director-scene-sky-color
+                  type="color"
+                  aria-label="天空颜色"
+                  value={scene.skyColor ?? "#060608"}
+                  onChange={(event) =>
+                    updateScene({ skyColor: event.target.value })
+                  }
+                  className="h-6 w-9 rounded border-0 bg-transparent"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>角色标签</span>
+                <input
+                  data-director-scene-character-labels
+                  type="checkbox"
+                  checked={scene.showCharacterLabels ?? true}
+                  onChange={(event) =>
+                    updateScene({ showCharacterLabels: event.target.checked })
+                  }
+                  className="accent-[#09caf5]"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>网格吸附</span>
+                <input
+                  data-director-scene-snap-to-grid
+                  type="checkbox"
+                  checked={scene.snapToGrid ?? false}
+                  onChange={(event) =>
+                    updateScene({ snapToGrid: event.target.checked })
+                  }
+                  className="accent-[#09caf5]"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>高斯地面吸附</span>
+                <input
+                  data-director-scene-gaussian-snap
+                  type="checkbox"
+                  checked={scene.gaussianGroundSnap ?? true}
+                  onChange={(event) =>
+                    updateScene({ gaussianGroundSnap: event.target.checked })
+                  }
+                  className="accent-[#09caf5]"
+                />
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>地面透明度</span>
+                <input
+                  data-director-scene-ground-opacity
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  aria-label="地面透明度"
+                  value={scene.groundOpacity ?? 0.4}
+                  onChange={(event) =>
+                    updateScene({
+                      groundOpacity: Number(event.target.value),
+                    })
+                  }
+                  className="ml-2 w-28 accent-[#09caf5]"
+                />
+              </label>
             </section>
             <section
               data-director-panorama-input

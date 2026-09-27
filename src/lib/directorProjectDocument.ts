@@ -110,6 +110,12 @@ export interface DirectorSceneDocumentV1 {
   groundColor: string;
   showGround: boolean;
   showGrid: boolean;
+  /** Batch 548: 旧版本 V1 文档可缺省，restore 时按 createDefaultScene 兜底。 */
+  skyColor?: string;
+  showCharacterLabels?: boolean;
+  snapToGrid?: boolean;
+  gaussianGroundSnap?: boolean;
+  groundOpacity?: number;
 }
 
 export type DirectorAspectRatioV1 = "16:9" | "9:16" | "1:1";
@@ -1108,9 +1114,18 @@ function expectScene(
   path: string,
 ): DirectorSceneDocumentV1 {
   const record = expectRecord(value, path);
-  expectExactKeys(
+  // Batch 548: 显示扩展字段（skyColor 等）向后兼容——旧 V1 文档缺省时
+  // 由 restore 侧 createDefaultScene 兜底。
+  expectExactKeysWithOptional(
     record,
     ["name", "backgroundColor", "groundColor", "showGround", "showGrid"],
+    [
+      "skyColor",
+      "showCharacterLabels",
+      "snapToGrid",
+      "gaussianGroundSnap",
+      "groundOpacity",
+    ],
     path,
   );
   return {
@@ -1122,6 +1137,36 @@ function expectScene(
     groundColor: expectString(record.groundColor, `${path}.groundColor`),
     showGround: expectBoolean(record.showGround, `${path}.showGround`),
     showGrid: expectBoolean(record.showGrid, `${path}.showGrid`),
+    ...(record.skyColor === undefined
+      ? {}
+      : { skyColor: expectString(record.skyColor, `${path}.skyColor`) }),
+    ...(record.showCharacterLabels === undefined
+      ? {}
+      : {
+          showCharacterLabels: expectBoolean(
+            record.showCharacterLabels,
+            `${path}.showCharacterLabels`,
+          ),
+        }),
+    ...(record.snapToGrid === undefined
+      ? {}
+      : { snapToGrid: expectBoolean(record.snapToGrid, `${path}.snapToGrid`) }),
+    ...(record.gaussianGroundSnap === undefined
+      ? {}
+      : {
+          gaussianGroundSnap: expectBoolean(
+            record.gaussianGroundSnap,
+            `${path}.gaussianGroundSnap`,
+          ),
+        }),
+    ...(record.groundOpacity === undefined
+      ? {}
+      : {
+          groundOpacity: expectFiniteNumber(
+            record.groundOpacity,
+            `${path}.groundOpacity`,
+          ),
+        }),
   };
 }
 
