@@ -1,5 +1,8 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **全量回归三 (2026-09-28, Batch 280)**：`run-frameos-verifiers.sh` 69/69 PASS
+> （套件新增 batch279 裁剪态）。
+
 > **裁剪态已实现 (2026-09-28, Batch 279)**：内容图工具条 裁剪 → 进入裁剪态
 > （控制条 退出裁剪/宽高比自由/480×480 输入/确认裁剪 + 8 手柄 + 三分格参考线，
 > 按源站 cico-root 采样）。确认=mock alert 并退出；验证器 batch279 14/14 PASS。
