@@ -2737,6 +2737,24 @@
   下一批规划 (Batch 812): 视源站浏览器/登录态做素材账本剩余项
   上传探索 (voice_converted wav 优先, S83 复采次之; 若不可用
   则回落新回归轮 1-19 段起点)。
+- Batch 812 (源站探索·音频上传链路): 上传 voice_converted wav
+  成功 (node_yc89v5a6vt, 标题缩略 voice_...519790)。(1) SOURCE_FACT
+  (2026-09-27): 上传音频节点为方形卡 121×121@38%——卡内全宽白
+  波形 (选中态加蓝色播放头竖线) + 标题行「» voice_...519790」+
+  tag 图标 + 左下时长徽章 00:00:12; 选中悬浮工具条仅两项:
+  音频修剪 (波形图标) | 分隔线 | 下载 (aria 另见 Rename/Add
+  tags/Play/Create connected node, 系节点内控件)。(2) 音频修剪
+  面板 = 底部悬浮裁剪条 (非模态): 全宽白描边圆角波形条 + 左右
+  拖拽手柄 + 条内右侧精确时长 12.04s; 下行左 ▶ + 「00:00 /
+  00:12」(aria Play selected range) + 右白色 pill 确认钮 (未点
+  击, 避免改动素材)。(3) 教训: 工具条钮必须以实时 DOM 坐标点击
+  (固定坐标在工具条重渲染后落空, 会造成空白反选)。(4) 恢复:
+  Escape 退出修剪 → 删 wav 节点 → 2 节点基线已保存。账本
+  voice_converted 标记已探索。截图 source-wav-voiceconverted-
+  {uploaded,selected}-2026-09-27 + source-audio-trim-panel-
+  2026-09-27 入 docs/design-references/jimeng/。下一批规划
+  (Batch 813): 新回归轮 1-19 段起点; 账本剩余 8 项 (7 图 +
+  S83 复采) 视进度插入。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批

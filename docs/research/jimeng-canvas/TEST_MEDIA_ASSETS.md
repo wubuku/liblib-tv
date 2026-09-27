@@ -16,7 +16,7 @@
 | 项目资产_咖啡馆对峙/角色图片/林小婉_01KT17FN.png | image | f796f211a55b0ffe | 2398875 | 见上 |
 | 生成普通路人感年轻女性照片.png | image | e8a46dcdca7969b8 | 3689429 | 见上 |
 | 生成王嘉尔风格人物照片.png | image | bb31064406c3acc9 | 4459317 | 见上；Batch 686 已上传探索（同上，已删恢复基线） |
-| voice_converted_1779790519790.wav | audio | 0372dc0b6d3811fe | 1155884 | 见上 |
+| voice_converted_1779790519790.wav | audio | 0372dc0b6d3811fe | 1155884 | 见上；Batch 812 已上传探索（2026-09-27，节点 node_yc89v5a6vt，时长 00:00:12/精确 12.04s，选中工具条 音频修剪+下载，修剪面板底部悬浮条已采样，已删恢复基线） |
 | separated_vocals_1778861280890.wav | audio | a95d62d5a7dff827 | 2306092 | 见上；Batch 686 经共享 file input 建独立音频节点（时长徽章 00:00:13，已删恢复基线）；「添加参考」真手势通路仍 BLOCKED_BY_INTERACTION |
 | S83·镜2.mp4 | video | 3ae8d33d45acf488 | 809635 | 见上 |
 | S109·镜2.mp4 | video | 28b58d8e2b64d702 | 1155068 | 见上；Batch 685 已上传探索（2026-09-25，节点 node_368n1s9n4r，处理后已删恢复基线） |
