@@ -5,8 +5,11 @@ import {
   ArrowDownToLine,
   Clapperboard,
   HelpCircle,
+  History,
   Image as ImageIcon,
+  Sparkles,
   Proportions,
+  Upload,
   UserRoundPlus,
   Layers,
 } from "lucide-react";
@@ -19,12 +22,16 @@ import { cn } from "@/lib/utils";
 // 底部帮助（? 圆钮）。仅场景（场景树）与添加角色 flyout 在 clone 有实现；
 // 添加机位为直接动作（无面板采样），其余面板未采样（SOURCE_UNCERTAIN）
 // 做视觉切换不导航（CLONE_DECISION）。
+// Batch 538: 2026-09-27 已存截图转录——全景图 flyout = 本地上传/历史记录/
+// AI 生成（44-director-rail-25）；选择画幅比例 = 自适应（默认激活）/
+// 21:9/16:9/4:3/1:1/3:4/9:16 七卡单选（44-director-rail-26）。
+// AI 生成/AI 识图为付费 AI 动作，clone 仅可视不触发。
 const railEntries = [
   { id: "scene", label: "场景", icon: Layers, kind: "panel" },
   { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "flyout" },
   { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "action" },
-  { id: "panorama", label: "全景图", icon: ImageIcon, kind: "panel" },
-  { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "panel" },
+  { id: "panorama", label: "全景图", icon: ImageIcon, kind: "flyout" },
+  { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "flyout" },
   { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "panel" },
 ] as const;
 
@@ -43,13 +50,34 @@ const characterFlyout = [
   { id: "geometry", label: "几何模型", kind: "submenu" as const },
 ];
 
+// 全景图 flyout（截图 44-director-rail-25 转录）。
+const panoramaFlyout = [
+  { id: "local-upload", label: "本地上传", icon: Upload },
+  { id: "history", label: "历史记录", icon: History },
+  { id: "ai-generate", label: "AI 生成", icon: Sparkles },
+] as const;
+
+// 选择画幅比例（截图 44-director-rail-26 转录）：七卡单选，自适应默认。
+const aspectRatios = [
+  "自适应",
+  "21:9",
+  "16:9",
+  "4:3",
+  "1:1",
+  "3:4",
+  "9:16",
+] as const;
+
 export function DirectorIconRail() {
   const [active, setActive] = useState<string>("scene");
-  const [characterFlyoutOpen, setCharacterFlyoutOpen] = useState(false);
+  const [openFlyout, setOpenFlyout] = useState<string | null>(null);
+  const [aspectRatio, setAspectRatio] = useState<string>("自适应");
 
   const select = (id: string) => {
     setActive(id);
-    setCharacterFlyoutOpen(id === "add-character");
+    setOpenFlyout(
+      id === "add-character" || id === "panorama" || id === "aspect-ratio" ? id : null,
+    );
   };
 
   return (
@@ -78,7 +106,7 @@ export function DirectorIconRail() {
               >
                 <Icon size={16} />
               </button>
-              {entry.id === "add-character" && characterFlyoutOpen && (
+              {entry.id === "add-character" && openFlyout === "add-character" && (
                 <div
                   data-director-character-flyout
                   aria-label="添加角色"
@@ -95,6 +123,60 @@ export function DirectorIconRail() {
                       {item.kind === "submenu" && (
                         <span aria-hidden="true" className="text-[10px] text-[#777]">›</span>
                       )}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {entry.id === "panorama" && openFlyout === "panorama" && (
+                <div
+                  data-director-panorama-flyout
+                  aria-label="全景图"
+                  className="absolute left-[calc(100%+8px)] top-0 z-40 w-[130px] rounded-xl border border-white/10 bg-[#242424] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+                >
+                  {panoramaFlyout.map((item) => {
+                    const ItemIcon = item.icon;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        data-director-panorama-option={item.id}
+                        className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
+                      >
+                        <ItemIcon size={13} className="shrink-0 text-[#9a9a9a]" />
+                        <span className="truncate">{item.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+              {entry.id === "aspect-ratio" && openFlyout === "aspect-ratio" && (
+                <div
+                  data-director-aspect-flyout
+                  aria-label="选择画幅比例"
+                  className="absolute left-[calc(100%+8px)] top-0 z-40 grid w-[210px] grid-cols-2 gap-1.5 rounded-xl border border-white/10 bg-[#242424] p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+                >
+                  {aspectRatios.map((ratio) => (
+                    <button
+                      key={ratio}
+                      type="button"
+                      data-director-aspect-option={ratio}
+                      aria-pressed={aspectRatio === ratio}
+                      onClick={() => setAspectRatio(ratio)}
+                      className={cn(
+                        "flex h-[64px] flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
+                        aspectRatio === ratio
+                          ? "border-[#09caf5]/60 text-[#09caf5]"
+                          : "border-white/10 text-[#b5b5b5] hover:border-white/25",
+                      )}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "block rounded-sm border",
+                          ratio === "自适应" ? "h-3 w-5" : ratio === "21:9" ? "h-2 w-6" : ratio === "16:9" ? "h-2.5 w-5" : ratio === "4:3" ? "h-3.5 w-4.5" : ratio === "1:1" ? "h-4 w-4" : ratio === "3:4" ? "h-4.5 w-3.5" : "h-5 w-2.5",
+                        )}
+                      />
+                      {ratio}
                     </button>
                   ))}
                 </div>

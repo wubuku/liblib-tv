@@ -1,0 +1,36 @@
+{
+  "batch": 538,
+  "title": "Director rail panorama & aspect-ratio flyouts",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshots 44-director-rail-25/26 (CDP transcription)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rail:visible",
+        "panorama:opens",
+        "panorama:item:本地上传",
+        "panorama:item:历史记录",
+        "panorama:item:AI 生成",
+        "panorama:closes",
+        "aspect:opens",
+        "aspect:option:自适应",
+        "aspect:option:21:9",
+        "aspect:option:16:9",
+        "aspect:option:4:3",
+        "aspect:option:1:1",
+        "aspect:option:3:4",
+        "aspect:option:9:16",
+        "aspect:default-fit",
+        "aspect:switch-16-9",
+        "aspect:fit-inactive",
+        "scene:flyout-closes",
+        "scene:tree-present",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
