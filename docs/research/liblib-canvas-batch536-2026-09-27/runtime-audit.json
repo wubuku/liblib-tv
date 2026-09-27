@@ -1,0 +1,30 @@
+{
+  "batch": 536,
+  "title": "Director desk left icon rail",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 18-director-console-opened.png",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rail:visible",
+        "rail:six-entries",
+        "rail:entry:layers",
+        "rail:entry:characters",
+        "rail:entry:cameras",
+        "rail:entry:frames",
+        "rail:entry:folders",
+        "rail:entry:import",
+        "rail:layers-active-default",
+        "rail:characters-active",
+        "rail:layers-inactive",
+        "rail:tree-still-present",
+        "rail:layers-reactivated",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

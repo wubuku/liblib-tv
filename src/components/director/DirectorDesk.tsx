@@ -32,6 +32,7 @@ import {
 } from "@/components/director/useDirectorFocusContainment";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromptBar";
+import { DirectorIconRail } from "@/components/director/DirectorIconRail";
 import {
   collectDirectorCanvasMediaInputs,
   type DirectorCanvasMediaInputV1,
@@ -1076,7 +1077,7 @@ export default function DirectorDesk({
             }
             data-director-mobile-panel-state={activeMobilePanel === "tree" ? "open" : "closed"}
             className={cn(
-              "absolute inset-y-0 left-0 z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200",
+              "absolute inset-y-0 left-[46px] z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200 max-[899px]:left-0",
               viewportPanelsCollapsed && "min-[900px]:hidden",
               activeMobilePanel === "tree"
                 ? "max-[899px]:translate-x-0"
@@ -1086,12 +1087,14 @@ export default function DirectorDesk({
             <DirectorObjectTree />
           </aside>
 
+          <DirectorIconRail />
+
           <main
             className={cn(
               "absolute inset-y-0 min-w-0 max-[899px]:inset-x-0",
               viewportPanelsCollapsed
                 ? "inset-x-0"
-                : "left-[220px] right-[288px]",
+                : "left-[266px] right-[288px]",
             )}
           >
             <DirectorViewport
