@@ -2790,6 +2790,9 @@
   已复采 (视频类账本清零, 剩 7 图)。截图 source-s83-{uploaded,
   selected}-2026-09-27 入 docs/design-references/jimeng/。下一批
   规划 (Batch 820): 新回归轮 1-19 段起点; 剩余 7 图视进度插入。
+- Batch 820 (轮转回归): batch 1-19 段 19/19 PASS (新回归轮起点)。
+  下一批规划 (Batch 821): 20-33 段回归续行; 剩余 7 图视段次
+  进度插入。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批
