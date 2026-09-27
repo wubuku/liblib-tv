@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useViewport } from "@xyflow/react";
 import { useFrameosStore, type FrameosGroup } from "@/store/frameosStore";
+import { showToast } from "./FrameosToast";
 
 /**
  * FrameOS 画布分组覆盖层 (Batch 251, 源站采样 2026-09-27):
@@ -12,6 +13,9 @@ import { useFrameosStore, type FrameosGroup } from "@/store/frameosStore";
  * 标签 top:-24 含文件夹图标 + 「组N」(12px rgb(163,163,163));
  * 选中态四角手柄 12×12 外偏 -6px。
  * 交互: pointerdown 选中分组; 拖拽带动全部成员同步位移 (非成员不动)。
+ * Batch 261: 选中态右缘出现「批量连线」端口 (24px 圆, right:-12, 垂直居中,
+ * bg rgba(48,54,66,0.96) / border 1.5px rgba(255,255,255,0.88)) — 源站点击后
+ * 进入连线态但完整提交语义未采样到, 克隆以 mock toast 呈现。
  */
 
 function hexToRgba(hex: string, alpha: number): string {
@@ -134,6 +138,31 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
             }}
           />
         ))}
+      {selected && (
+        <button
+          type="button"
+          aria-label="批量连线"
+          className="frameos-group-batch-connect-port"
+          style={{
+            position: "absolute",
+            width: 24,
+            height: 24,
+            right: -12,
+            top: "50%",
+            marginTop: -12,
+            borderRadius: "50%",
+            background: "rgba(48,54,66,0.96)",
+            border: "1.5px solid rgba(255,255,255,0.88)",
+            cursor: "pointer",
+            padding: 0,
+          }}
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            showToast("批量连线 (mock)", "success");
+          }}
+        />
+      )}
     </div>
   );
 }

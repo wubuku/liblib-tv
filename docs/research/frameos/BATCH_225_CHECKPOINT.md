@@ -1,5 +1,11 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **批量连线端口已对齐 (2026-09-28, Batch 261)**：`.canvas-batch-selection-chrome`
+> (批量选区层, 同矩形/淡边框/pointer-events:none) 右缘带 24px 圆形「批量连线」
+> 端口 (right:-12 垂直居中)。点击进连线态但提交语义未采样到（未产生边）——克隆
+> 渲染端口 + mock toast，不发明行为。滚轮=平移再获佐证。verifier batch251 扩至
+> 49/49 PASS。
+
 > **分组角点手柄=装饰 (2026-09-28, Batch 258)**：源站实测 NW 手柄（真实拖拽 +
 > 合成事件双路径）拖 30px 零变化——`.canvas-group__handle--*` 无行为语义，
 > 克隆装饰性实现即正确。采样后已解组复原。

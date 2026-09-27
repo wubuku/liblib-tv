@@ -130,6 +130,34 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check("group:label-selected-cls", grp and "is-selected" in grp["cls"])
 
+    # ── 3b. 批量连线端口 (Batch 261 源站采样: 选中分组右缘 24px 圆形端口) ──
+    port = page.evaluate(
+        """(() => {
+          const p = document.querySelector('.frameos-group-batch-connect-port');
+          if (!p) return null;
+          const cs = getComputedStyle(p);
+          const r = p.getBoundingClientRect();
+          const grpR = document.querySelector('[data-frameos-group]')?.getBoundingClientRect();
+          return {
+            visible: p.offsetParent !== null,
+            size: { w: Math.round(r.width), h: Math.round(r.height) },
+            bg: cs.backgroundColor,
+            border: cs.borderColor,
+            radius: cs.borderRadius,
+            verticallyCentered: grpR ? Math.abs((r.y + r.height / 2) - (grpR.y + grpR.height / 2)) < 3 : false,
+            rightOverlap: grpR ? Math.abs((r.right - grpR.right) - 12) < 3 : false,
+          };
+        })()"""
+    )
+    check("port:exists-visible", port and port["visible"])
+    check("port:24px-circle", port and port["size"]["w"] == 24 and port["size"]["h"] == 24 and port["radius"] == "50%")
+    check("port:style", port and "48, 54, 66" in port["bg"] and "255, 255, 255" in port["border"])
+    check("port:right-edge-centered", port and port["verticallyCentered"] and port["rightOverlap"])
+    page.locator("button[aria-label='批量连线']").click()
+    page.wait_for_timeout(400)
+    check("port:click-mock-toast", page.get_by_text("批量连线 (mock)").count() > 0)
+    page.wait_for_timeout(2600)
+
     # ── 3. 展开工具栏 ──
     gt_group = page.locator(".frameos-group-toolbar--group")
     check("group:toolbar-switches", gt_group.is_visible())
