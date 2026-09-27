@@ -77,3 +77,17 @@ def marquee_select(
     page.wait_for_timeout(wait_ms)
     selected_ids = page.evaluate(_SELECTED_IDS_JS)
     return boxes, selected_ids
+
+
+def attach_errors(page: Page) -> list[str]:
+    """挂接 console/pageerror/dialog 监听, 返回错误收集列表 (各 verifier 共用)。"""
+    errors: list[str] = []
+    page.on(
+        "console",
+        lambda message: errors.append(f"console:{message.type}:{message.text}")
+        if message.type == "error"
+        else None,
+    )
+    page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))
+    page.on("dialog", lambda d: d.dismiss())
+    return errors

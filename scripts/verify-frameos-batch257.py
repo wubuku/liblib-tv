@@ -23,6 +23,8 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
+from frameos_verify_common import attach_errors
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -34,18 +36,6 @@ AUDIT_PATH = (
     / "runtime-audit.json"
 )
 
-
-def attach_errors(page: Page) -> list[str]:
-    errors: list[str] = []
-    page.on(
-        "console",
-        lambda message: errors.append(f"console:{message.type}:{message.text}")
-        if message.type == "error"
-        else None,
-    )
-    page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))
-    page.on("dialog", lambda d: d.dismiss())
-    return errors
 
 
 def run_desktop(page: Page) -> dict[str, Any]:
