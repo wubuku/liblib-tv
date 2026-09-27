@@ -13,6 +13,7 @@
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
 - 本轮已完成：五份工作文档就绪（本文件、task-inventory、SOURCE_OBSERVATIONS、TEST_MEDIA_ASSETS、screenshots/manifest 骨架）；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代，414 处核验引用）与一次真实素材运行时探索（RUNTIME_AUDIT.md）可作为任务探索底稿。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
+- **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
 - **Batch M4（2026-09-27）**：connect-references + navigate-canvas + organize-canvas 三任务成稿——拖线到空白的上下文生成菜单（按上游类型变化，新发现）、滚轮缩放/平移/小地图开合与点击导航、组拖入与外观面板四组设置；并行会话遗留 WIP 判定弃置（实为首页截图错置文件名），未收编。manifest +6。
 - **Batch M3（2026-09-27）**：upload-materials + image-operations 成稿——真实图片(3.9MB)/视频(809KB)/音频(1.1MB)经 input 管线注入全成功（原生播放器节点 + toast「已添加 1 个素材节点…」逐字）；行为细节：有选中节点时上传仍新建节点；裁剪全流程回走（2048×2048 原图、1:1 默认 1556、比例预设七项、Cropped Image 子节点+连线）。manifest +4。
 - **Batch M2（2026-09-27）**：edit-nodes 成稿——双击标题重命名、双击/工具条编辑文字、删除→历史 flyout 撤销恢复、信息面板（ID/尺寸/位置/状态 + JSON 页签）全部运行时证实；**发现真实缺陷：同项目多标签同时编辑会互相覆盖（无冲突保护），已写入手册排障章与 AUDIT**；缩放手柄拖拽取证精度不足，留 Gate B。manifest +1。

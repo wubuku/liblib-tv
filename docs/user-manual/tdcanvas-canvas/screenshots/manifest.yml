@@ -209,3 +209,39 @@ screenshots:
     locator_evidence: '画布输入模式 连线模式 无线模式 / 主题模式 浅色 深色 / 网格样式 点 线 空白 / 图片信息 开关'
     sha256: 67e46aab3775f6a0184f3090c65047489a3b32fdb1dd1b0e8173a1ec32057af5
     alt: 画布外观面板展开，显示输入模式、主题模式、网格样式与图片信息开关
+  - id: 11-shortcuts-help-modal
+    file: 11-shortcuts-help-modal.png
+    task: shortcuts-help
+    step: 点击顶栏「快捷键」打开帮助弹窗（键位与官方文档逐字一致）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '弹窗标题 快捷键 / 键位 拖动画布 滚轮 Ctrl/Cmd+拖动 Cmd+A C/V Z Shift+Z Y Delete Esc 等'
+    sha256: 9f7f29e3e551e0d075a1b6ae552d18798e9232122138837bcd01cb2798d9b804
+    alt: 快捷键帮助弹窗，逐条列出平移、缩放、框选、全选、复制粘贴、撤销重做、删除与取消的键位
+  - id: 13-project-card-hover-actions
+    file: 13-project-card-hover-actions.png
+    task: project-management
+    step: 首页悬停项目卡显示下载/重命名/删除操作与多选框
+    route: /canvas
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '项目卡 TDCanvas 1 / 8 个节点 · 1 条连线 / 更新于 09/28 01:10 / 悬停按钮 下载 重命名 删除'
+    sha256: 3763c1e36b1dd393ecf3c8aa1846024beec60f6a854c16522f1efe467be80b59
+    alt: 首页项目卡悬停态，右上显示下载、重命名、删除三个操作按钮，卡片信息为 8 个节点 1 条连线
+  - id: 09-generate-images-panel
+    file: 09-generate-images-panel.png
+    task: generate-images
+    step: 新建空图片节点的生成面板（文生图模式、参数 1K/2K、模型 Seedream V5 Pro、参考素材区）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '面板 文生图 自动识别 / 模式 文生图 输入 仅文本输入 参数 1K/2K / 模型下拉 Seedream V5 Pro / 描述框 描述你想生成或编辑的画面'
+    sha256: 78dfb8ae66bc667616b0d1d794e9b5477a021f13c474a713bebb776353ac0f8f
+    alt: 空图片节点与下方展开的文生图生成面板，含参考素材区、描述输入框与 Seedream V5 Pro 模型选择
