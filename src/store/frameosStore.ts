@@ -111,6 +111,8 @@ interface FrameosCanvasState {
   paneMenuAt: { x: number; y: number } | null;
   refSelectTargetId: string | null;
   storyboardMode: boolean;
+  // Batch 279: 裁剪态 (内容图工具条 裁剪 进入; 源站 cico-root 采样)
+  croppingNodeId: string | null;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
   generations: Generation[];
@@ -161,6 +163,7 @@ interface FrameosCanvasState {
   setPaneMenuAt: (at: { x: number; y: number } | null) => void;
   setRefSelectTargetId: (id: string | null) => void;
   toggleStoryboardMode: () => void;
+  setCroppingNode: (id: string | null) => void;
   toggleNodeSearch: () => void;
   closeNodeSearch: () => void;
 
@@ -360,6 +363,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   paneMenuAt: null,
   refSelectTargetId: null,
   storyboardMode: false,
+  croppingNodeId: null,
   past: [],
   future: [],
   canvasData: MOCK_CANVASES,
@@ -811,6 +815,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   setPaneMenuAt: (at) => set({ paneMenuAt: at }),
   setRefSelectTargetId: (id) => set({ refSelectTargetId: id }),
   toggleStoryboardMode: () => set((state) => ({ storyboardMode: !state.storyboardMode })),
+  setCroppingNode: (id) => set({ croppingNodeId: id }),
   toggleNodeSearch: () => set((state) => ({ isNodeSearchOpen: !state.isNodeSearchOpen })),
   closeNodeSearch: () => set({ isNodeSearchOpen: false }),
 

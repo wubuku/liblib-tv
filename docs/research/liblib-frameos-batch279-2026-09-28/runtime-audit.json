@@ -1,0 +1,29 @@
+{
+  "batch": 279,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:toolbar-opens",
+        "crop:bar-opens",
+        "crop:normal-toolbar-hidden",
+        "crop:exit-btn",
+        "crop:aspect-btn",
+        "crop:confirm-btn",
+        "crop:size-inputs-480",
+        "crop:8-handles",
+        "crop:thirds-guides",
+        "crop:confirm-exits",
+        "crop:re-enter",
+        "crop:exit-closes",
+        "crop:normal-toolbar-back",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

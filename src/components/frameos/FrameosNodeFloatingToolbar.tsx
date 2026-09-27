@@ -90,7 +90,13 @@ function getActionsForNode(
 export function FrameosNodeFloatingToolbar() {
   const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
   const nodes = useFrameosStore((s) => s.nodes);
-  const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null);
+  const croppingNodeId = useFrameosStore((s) => s.croppingNodeId);
+  const [pos, setPos] = useState<{
+    left: number;
+    top: number;
+    width: number;
+    nodeRect: { left: number; top: number; width: number; height: number };
+  } | null>(null);
 
   const selectedNode = selectedNodeId
     ? nodes.find((n) => n.id === selectedNodeId)
@@ -140,10 +146,13 @@ export function FrameosNodeFloatingToolbar() {
       const VERTICAL_GAP = 19;
       const top = r.top - (TOOLBAR_HEIGHT + VERTICAL_GAP);
       setPos((prev) => {
-        if (prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5 && Math.abs(prev.width - w) < 0.5) {
-          return prev;
+        if (prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5 && Math.abs(prev.width - w) < 0.5 && prev.nodeRect) {
+          const nr = prev.nodeRect;
+          if (Math.abs(nr.left - r.left) < 0.5 && Math.abs(nr.top - r.top) < 0.5 && Math.abs(nr.width - r.width) < 0.5 && Math.abs(nr.height - r.height) < 0.5) {
+            return prev;
+          }
         }
-        return { left, top, width: w };
+        return { left, top, width: w, nodeRect: { left: r.left, top: r.top, width: r.width, height: r.height } };
       });
       raf = requestAnimationFrame(tick);
     };
@@ -156,6 +165,167 @@ export function FrameosNodeFloatingToolbar() {
   const actions = getActionsForNode(selectedNode);
   // 空图片节点等无动作场景不渲染工具条 (源站: 空图片节点选中无工具条)
   if (actions.length === 0) return null;
+
+  // ── Batch 279: 裁剪态 (源站 cico-root 采样: 节点下方控制条 + 节点上 8 手柄 + 三分格) ──
+  if (croppingNodeId === selectedNodeId) {
+    const nr = pos.nodeRect;
+    const nrRight = nr.left + nr.width;
+    const barTop = nr.top + nr.height + 14;
+    const barLeft = Math.max(12, nr.left - 46);
+    const handles: Array<{ x: number; y: number }> = [];
+    const cx = nr.left + nr.width / 2;
+    const cy = nr.top + nr.height / 2;
+    const pts = [
+      [nr.left, nr.top], [cx, nr.top], [nrRight, nr.top],
+      [nr.left, cy], [nrRight, cy],
+      [nr.left, nr.top + nr.height], [cx, nr.top + nr.height], [nrRight, nr.top + nr.height],
+    ];
+    for (const [hx, hy] of pts) handles.push({ x: hx, y: hy });
+    return (
+      <>
+        {/* 裁剪区三分格参考线 */}
+        <div
+          aria-hidden
+          className="frameos-crop-guides"
+          style={{
+            position: "fixed",
+            left: nr.left,
+            top: nr.top,
+            width: nr.width,
+            height: nr.height,
+            pointerEvents: "none",
+            zIndex: 2790,
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.35) 1px, transparent 1px)," +
+              "linear-gradient(to bottom, rgba(255,255,255,0.35) 1px, transparent 1px)," +
+              "linear-gradient(to right, rgba(255,255,255,0.35) 1px, transparent 1px)," +
+              "linear-gradient(to bottom, rgba(255,255,255,0.35) 1px, transparent 1px)",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 1px, 1px 100%, 100% 1px, 1px 100%",
+            backgroundPosition: `0 ${nr.height / 3}px, ${nr.width / 3}px 0, 0 ${(nr.height * 2) / 3}px, ${(nr.width * 2) / 3}px 0`,
+            border: "1.5px solid rgba(255,255,255,0.9)",
+          }}
+        />
+        {handles.map((h, i) => (
+          <div
+            key={i}
+            aria-label="调整裁剪区域"
+            style={{
+              position: "fixed",
+              left: h.x - 5,
+              top: h.y - 5,
+              width: 10,
+              height: 10,
+              background: "rgba(48,54,66,0.96)",
+              border: "1.5px solid rgba(255,255,255,0.88)",
+              borderRadius: 2,
+              pointerEvents: "none",
+              zIndex: 2791,
+            }}
+          />
+        ))}
+        <div
+          className="frameos-crop-bar"
+          style={{
+            position: "fixed",
+            left: barLeft,
+            top: barTop,
+            zIndex: 2800,
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            height: 44,
+            padding: "0 10px",
+            background: "rgba(24,24,24,0.95)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 10,
+            animation: "frameos-pop-in 0.15s ease-out",
+          }}
+        >
+          <button
+            type="button"
+            aria-label="退出裁剪"
+            title="退出裁剪"
+            onClick={() => useFrameosStore.getState().setCroppingNode(null)}
+            style={{
+              width: 26,
+              height: 26,
+              border: "none",
+              background: "transparent",
+              color: "#E0E0E0",
+              fontSize: 14,
+              cursor: "pointer",
+            }}
+          >
+            ×
+          </button>
+          <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,0.1)" }} />
+          <button
+            type="button"
+            aria-label="宽高比"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+              height: 28,
+              padding: "0 8px",
+              border: "none",
+              background: "transparent",
+              color: "#E0E0E0",
+              fontSize: 12,
+              cursor: "pointer",
+            }}
+            onClick={() => window.alert("宽高比 (mock)")}
+          >
+            <span aria-hidden style={{ fontSize: 12 }}>⛶</span>
+            宽高比<b style={{ fontWeight: 500, marginLeft: 2 }}>自由</b>
+            <span aria-hidden style={{ fontSize: 10 }}>∨</span>
+          </button>
+          <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,0.1)" }} />
+          <input
+            aria-label="裁剪宽度"
+            defaultValue={480}
+            style={{
+              width: 46, height: 28, textAlign: "center", fontSize: 12,
+              color: "#E0E0E0", background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6,
+            }}
+          />
+          <span style={{ color: "#9CA3AF", fontSize: 12 }}>x</span>
+          <input
+            aria-label="裁剪高度"
+            defaultValue={480}
+            style={{
+              width: 46, height: 28, textAlign: "center", fontSize: 12,
+              color: "#E0E0E0", background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6,
+            }}
+          />
+          <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,0.1)" }} />
+          <button
+            type="button"
+            onClick={() => {
+              window.alert("已确认裁剪 (mock)");
+              useFrameosStore.getState().setCroppingNode(null);
+            }}
+            style={{
+              height: 30,
+              padding: "0 14px",
+              border: "none",
+              borderRadius: 8,
+              background: "#3B82F6",
+              color: "#fff",
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            ✓ 确认裁剪
+          </button>
+        </div>
+      </>
+    );
+  }
   const onDownload = () => {
     // Batch 231: 音频节点走 audioUrl (源站内容音频 下载 即下载音频文件);
     // 接受 http(s)/blob:/根相对路径 (素材库资产与上传 blob 均可下载)
@@ -268,6 +438,11 @@ export function FrameosNodeFloatingToolbar() {
                   },
                 })
               );
+            }
+          : aria === "裁剪"
+          ? () => {
+              // Batch 279: 裁剪 = 进入裁剪态 (源站 cico-root 采样: 控制条 + 8 手柄)
+              useFrameosStore.getState().setCroppingNode(selectedNode.id);
             }
           : (a.onClick ?? (() => window.alert(`${a.label || aria} (mock)`)));
         return (
