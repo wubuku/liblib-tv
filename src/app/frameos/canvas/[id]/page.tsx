@@ -635,8 +635,9 @@ function FrameosCanvasInner() {
         edgeTypes={edgeTypes}
         fitView
         fitViewOptions={{ padding: 0.15, includeHiddenNodes: false, minZoom: 1, maxZoom: 1 }}
-        minZoom={0.1}
-        maxZoom={2}
+        // Batch 288: 缩放边界对齐源站实测 (ctrl+滚轮探得 15%–500%; 原为 10%–200%)
+        minZoom={0.15}
+        maxZoom={5}
         panOnScroll
         zoomOnScroll
         panOnDrag={[1, 2]}
