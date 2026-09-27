@@ -1253,6 +1253,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-28 | batch 2023 全量 | still-broken | 第八百五十六次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 547 切换机位下拉后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 2023） |
 | 2026-09-28 | batch 2029 巡检 | still-broken | 第八百五十七次重测；巡检批次——batch 2023 全量闭环（e23bc706）；并行 beeftv/jimeng WIP 保留不动 |
 | 2026-09-28 | batch 2036 巡检 | still-broken | 第八百五十八次重测；巡检批次——并行 beeftv/jimeng WIP 13 件保留不动；batch 547 已闭环（7421c71e） |
+| 2026-09-28 | batch 2043 全量 | still-broken | 第八百五十九次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 547/548 导演台扩展后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 2043） |
 | 2026-09-28 | batch 1963 全量 | still-broken | 第八百四十五次重测；中断续跑 78/78 全绿（零瞬态零复测；覆盖 batch 542 后回归；并行 811 套件 94/94 完毕后资源窗口清空）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 1963 续跑） |
 | 2026-09-25 | batch 1551 巡检 | still-broken | 第七百八十二次重测；到期全量维护集新鲜运行首跑 67/78——11 项（batch21–151）于资源争用窗口失败（有头 explorer 浏览器与套件并发、networkidle 超时），杀浏览器释放资源后后续项全绿，11 项重跑 PASS 后 78/78 达成；回写恢复工作区净（batch 1551） |
 | 2026-09-25 | batch 1439 巡检 | still-broken | 第七百五十次重测；到期全量维护集新鲜运行 78/78（67 liblib + 10 fixture 家族 + jimeng1，零失败零瞬态）；回写恢复工作区净（batch 1439） |
