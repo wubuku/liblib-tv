@@ -1,0 +1,22 @@
+{
+  "batch": 549,
+  "title": "Scene display fields wired into the viewport renderer",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 18 (角色A floating label)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "label:visible-default",
+        "label:hidden-off",
+        "label:restored",
+        "sky:store-persist",
+        "opacity:store-persist",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

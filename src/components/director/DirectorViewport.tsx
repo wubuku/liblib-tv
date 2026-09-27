@@ -36,6 +36,7 @@ import {
 import {
   GizmoHelper,
   GizmoViewport,
+  Html,
   Line,
   OrbitControls,
   TransformControls,
@@ -858,6 +859,10 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const recordObjectKeyframe = useDirectorStore(
     (state) => state.recordObjectKeyframe,
   );
+  // Batch 549: 源站「角色标签」开关控制角色头顶名称浮标（截图 18 角色A）。
+  const showCharacterLabels = useDirectorStore(
+    (state) => state.scene.showCharacterLabels ?? true,
+  );
   const beginDirectorGesture = useDirectorStore(
     (state) => state.beginDirectorGesture,
   );
@@ -1005,11 +1010,29 @@ function SceneObject({ object }: { object: DirectorObject }) {
       }}
     >
       {object.primitive === "character" ? (
-        <DirectorMannequin
-          color={object.color}
-          material={material}
-          rig={object.characterRig ?? createDirectorCharacterRig()}
-        />
+        <>
+          <DirectorMannequin
+            color={object.color}
+            material={material}
+            rig={object.characterRig ?? createDirectorCharacterRig()}
+          />
+          {showCharacterLabels ? (
+            <Html
+              position={[0, 2.35, 0]}
+              center
+              distanceFactor={8}
+              style={{ pointerEvents: "none" }}
+              zIndexRange={[40, 0]}
+            >
+              <span
+                data-director-character-label={object.name}
+                className="whitespace-nowrap rounded bg-black/60 px-1.5 py-0.5 text-sm font-medium text-white"
+              >
+                {object.name}
+              </span>
+            </Html>
+          ) : null}
+        </>
       ) : null}
       {object.primitive === "table" ? (
         <TablePrimitive color={object.color} material={material} />
@@ -1772,7 +1795,14 @@ function DirectorScene({
 
   return (
     <>
-      <color attach="background" args={[scene.backgroundColor]} />
+      {/* Batch 549: 源站「天空颜色」为全景缺席时的天幕底色；全景存在时仍以
+          场景背景色兜底（全景球覆盖其上）。 */}
+      <color
+        attach="background"
+        args={[
+          panoramaInput ? scene.backgroundColor : (scene.skyColor ?? scene.backgroundColor),
+        ]}
+      />
       <fog attach="fog" args={[scene.backgroundColor, 9, 24]} />
       {panoramaInput ? (
         <DirectorPanoramaRuntime
@@ -1793,7 +1823,12 @@ function DirectorScene({
       {scene.showGround ? (
         <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
           <planeGeometry args={[32, 32]} />
-          <meshStandardMaterial color={scene.groundColor} roughness={0.94} />
+          <meshStandardMaterial
+            color={scene.groundColor}
+            roughness={0.94}
+            transparent
+            opacity={scene.groundOpacity ?? 0.4}
+          />
         </mesh>
       ) : null}
       {scene.showGrid && !isCapturing ? (
