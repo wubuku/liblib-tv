@@ -1,0 +1,20 @@
+{
+  "batch": 546,
+  "title": "AI import history tab lists local model library",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-27 (batch 539); history content with entries unsampled — local-equivalent CLONE_DECISION",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "history:fresh-empty",
+        "history:lists-model",
+        "history:file-name",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

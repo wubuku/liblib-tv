@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDirectorStore } from "@/store/directorStore";
 
 // Batch 539: 2026-09-27 已存截图转录（liblib-source-exploration-2026-09-25
 // 44-director-rail-27.png）——rail「AI 识图导入」打开的居中模态：
@@ -32,6 +33,9 @@ const coverageOptions = [
 export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<"upload" | "history">("upload");
   const [coverage, setCoverage] = useState<string>("insert");
+  const localModelLibrary = useDirectorStore(
+    (state) => state.localModelLibrary,
+  );
 
   return (
     <div
@@ -138,9 +142,28 @@ export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
           ) : (
             <div
               data-director-ai-import-history
-              className="mt-4 flex h-[240px] items-center justify-center rounded-lg border border-dashed border-white/[0.14] text-xs text-[#777]"
+              className="mt-4 min-h-[240px] rounded-lg border border-dashed border-white/[0.14]"
             >
-              暂无历史记录
+              {localModelLibrary.length === 0 ? (
+                <div className="flex h-[240px] items-center justify-center text-xs text-[#777]">
+                  暂无历史记录
+                </div>
+              ) : (
+                <ul className="divide-y divide-white/[0.06]">
+                  {localModelLibrary.map((item) => (
+                    <li
+                      key={item.id}
+                      data-director-ai-import-history-item={item.id}
+                      className="flex items-center gap-2 px-3 py-2.5 text-xs text-[#d8d8d8]"
+                    >
+                      <span className="min-w-0 flex-1 truncate">{item.name}</span>
+                      <span className="shrink-0 text-[10px] text-[#777]">
+                        {item.fileName}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
         </div>
