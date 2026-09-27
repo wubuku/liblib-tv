@@ -1,0 +1,23 @@
+{
+  "batch": 542,
+  "title": "Character flyout 本地上传 to local model library pipeline",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-23 (batch 537)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "flyout:opens",
+        "upload:file-chooser",
+        "upload:library-gains-two",
+        "upload:ack",
+        "upload:flyout-closed",
+        "ack:auto-dismiss",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

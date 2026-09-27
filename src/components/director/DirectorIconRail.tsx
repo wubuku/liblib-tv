@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type ChangeEvent } from "react";
 import {
   ArrowDownToLine,
   Clapperboard,
@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
 import { DirectorAiImportModal } from "@/components/director/DirectorAiImportModal";
+import { readDirectorLocalModelFiles } from "@/components/director/directorLocalModelImport";
 
 // Batch 536: 2026-09-27 源站采样（liblib-source-exploration-2026-09-25
 // NOTES §8 + 截图 18）——3D 导演台最左窄图标栏（约 46px）。
@@ -83,7 +84,35 @@ export function DirectorIconRail() {
   // （与 DirectorViewport 群众面板同默认 3/3/1.2）；预设体型项为本地等效
   // 占位（store 无单角色变体加建），点击仅回显本地提示，不生成 3D 模型。
   const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
+  // Batch 542: 本地上传 复用导演台本地模型库导入管线（batch 537 采样菜单项；
+  // 与 DirectorViewport 模型库导入同 readDirectorLocalModelFiles 管线）。
+  const addLocalModelLibraryItem = useDirectorStore(
+    (state) => state.addLocalModelLibraryItem,
+  );
+  const characterUploadInputRef = useRef<HTMLInputElement | null>(null);
   const [characterAck, setCharacterAck] = useState<string | null>(null);
+
+  const flashCharacterAck = (message: string) => {
+    setCharacterAck(message);
+    window.setTimeout(() => setCharacterAck(null), 2000);
+  };
+
+  const handleCharacterUploadChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const input = event.currentTarget;
+    try {
+      const items = await readDirectorLocalModelFiles(input.files ?? []);
+      if (items.length === 0) {
+        flashCharacterAck("未选择可用模型文件");
+        return;
+      }
+      items.forEach(addLocalModelLibraryItem);
+      flashCharacterAck(`已导入 ${items.length} 个本地模型至模型库`);
+    } finally {
+      input.value = "";
+    }
+  };
 
   const select = (id: string) => {
     if (id === "ai-import") {
@@ -114,7 +143,12 @@ export function DirectorIconRail() {
       window.setTimeout(() => setCharacterAck(null), 2000);
       return;
     }
-    if (itemId === "local-upload" || itemId === "geometry") {
+    if (itemId === "local-upload") {
+      setOpenFlyout(null);
+      characterUploadInputRef.current?.click();
+      return;
+    }
+    if (itemId === "geometry") {
       setOpenFlyout(null);
       return;
     }
@@ -238,6 +272,15 @@ export function DirectorIconRail() {
       >
         <HelpCircle size={16} />
       </button>
+      <input
+        ref={characterUploadInputRef}
+        type="file"
+        accept=".glb,.gltf,.fbx,.obj"
+        multiple
+        aria-label="导入本地角色模型"
+        className="hidden"
+        onChange={handleCharacterUploadChange}
+      />
       {characterAck && (
         <span
           data-director-character-ack
