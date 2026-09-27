@@ -7,11 +7,11 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-26（工作文档准备完成，等待逐任务探索与成稿）。
+- 最后整理日期：2026-09-28（**手册 v1 交付完成**：12 任务 verified、Gate A/B/final 全通过；进入维护态）。
 - 当前目标：为 TDCanvas（桌面端 AI 无限画布，v0.14.0）的普通创作者编写中文、任务导向、可回走验证的用户手册。
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
-- 本轮已完成：五份工作文档就绪（本文件、task-inventory、SOURCE_OBSERVATIONS、TEST_MEDIA_ASSETS、screenshots/manifest 骨架）；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代，414 处核验引用）与一次真实素材运行时探索（RUNTIME_AUDIT.md）可作为任务探索底稿。
+- 本轮已完成：12 个任务全部运行时走查并 verified；Gate A（12 tasks/22 Markdown/26 images）与 Gate B（12/12 回走）、final audit 全通过；引用抽检累计 407+ 处、5 处问题全部修正；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
 - **Batch M4（2026-09-27）**：connect-references + navigate-canvas + organize-canvas 三任务成稿——拖线到空白的上下文生成菜单（按上游类型变化，新发现）、滚轮缩放/平移/小地图开合与点击导航、组拖入与外观面板四组设置；并行会话遗留 WIP 判定弃置（实为首页截图错置文件名），未收编。manifest +6。
@@ -96,9 +96,9 @@
 - **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
 - **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
 - **覆盖率**：task-inventory 12/12 任务 verified（1 个 generate-images 为描述型，付费边界前验证）。
-- **验证密度**：26 张截图（manifest 全字段+sha256）、12 任务 Gate B 回走、五项自检 + verify-docs + final audit 三门禁。
+- **验证密度**：26 张截图（manifest 全字段+sha256）、12 任务 Gate B 回走（发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属）、五项自检 + verify-docs + final audit 三门禁全绿。
 - **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作。
-- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄精确拖拽在低缩放下较难（Gate B 补验项）。
+- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
 
 - **Batch M11（2026-09-28，维护轮）**：navigate-canvas.md 实测细节扩充——缩放锚点分野（滚轮=鼠标锚/滑杆=视口中心锚）、滚轮步进 ±10%、滑杆对数刻度实操提示、重置视图双行为补实测百分比（聚焦 156%/fit 54–100%）、并行会话错置截图（02-zoom-in-wheel 实为首页）判定与防误用说明入册。
