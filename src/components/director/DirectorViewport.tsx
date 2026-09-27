@@ -863,6 +863,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
   const showCharacterLabels = useDirectorStore(
     (state) => state.scene.showCharacterLabels ?? true,
   );
+  const snapToGrid = useDirectorStore((state) => state.scene.snapToGrid ?? false);
   const beginDirectorGesture = useDirectorStore(
     (state) => state.beginDirectorGesture,
   );
@@ -1093,6 +1094,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
         <TransformControls
           object={transformTarget}
           mode={transformMode}
+          translationSnap={snapToGrid ? 0.5 : null}
           size={0.72}
           onMouseDown={() => {
             transformEngagedRef.current = true;
@@ -1118,6 +1120,9 @@ function DirectorGroupTransformRig({
 }: {
   group: DirectorCharacterGroup;
 }) {
+  const snapToGrid = useDirectorStore(
+    (state) => state.scene.snapToGrid ?? false,
+  );
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const objects = useDirectorStore((state) => state.objects);
   const transformMode = useDirectorStore((state) => state.transformMode);
@@ -1251,6 +1256,7 @@ function DirectorGroupTransformRig({
         <TransformControls
           object={transformTarget}
           mode={transformMode}
+          translationSnap={snapToGrid ? 0.5 : null}
           size={0.82}
           onMouseDown={() => {
             transformEngagedRef.current = true;
@@ -1300,6 +1306,9 @@ function PathControlPoint({
   worldAnchor: DirectorMotionPathAnchor;
   handle: DirectorMotionPathHandle | null;
 }) {
+  const snapToGrid = useDirectorStore(
+    (state) => state.scene.snapToGrid ?? false,
+  );
   const selectedAnchorId = useDirectorStore(
     (state) => state.timeline.selectedMotionPathAnchorId,
   );
@@ -1456,6 +1465,7 @@ function PathControlPoint({
         <TransformControls
           object={transformTarget}
           mode="translate"
+          translationSnap={snapToGrid ? 0.5 : null}
           size={0.62}
           onMouseDown={() => {
             transformEngagedRef.current = true;

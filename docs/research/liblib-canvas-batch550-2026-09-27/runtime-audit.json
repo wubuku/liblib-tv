@@ -1,0 +1,21 @@
+{
+  "batch": 550,
+  "title": "网格吸附 drives TransformControls translation snap",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 45 (3D 场景 panel)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "default:off",
+        "toggle:on",
+        "toggle:persistent-after-select",
+        "toggle:off-again",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
