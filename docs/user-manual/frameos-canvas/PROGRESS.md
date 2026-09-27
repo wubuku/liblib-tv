@@ -237,3 +237,17 @@ manifest 已登记 01-19（全部含真实 SHA-256、任务、步骤、locator �
 **截图未重拍**：分组交互暂无手册截图，需要时从
 `docs/design-references/frameos/frameos-clone-batch251-group-red-toolbar-1440.png`
 （克隆）与 `source-batch251-*.png`（源站）取材并按 manifest 登记。
+
+## 13. 2026-09-28 手册补充（FrameOS 复刻循环 Batch 259/263/266）
+
+克隆 Batch 251-262 完成画布分组全链路（成组/颜色/排列/拖拽/解组/重命名/右键菜单/
+批量连线端口，采样与验收见 `docs/research/liblib-frameos-batch25{1,2}-2026-09-27/`
+与 checkpoint），手册同步：
+
+- Batch 259：截图 21/22（成组工具条、背景色板）入册并登记 manifest（含 SHA-256），
+  `group-and-ungroup.md` 内嵌。
+- Batch 263：`group-and-ungroup.md` 新增 重命名分组 / 分组右键菜单 / 批量连线端口
+  三节（均标注 mock 边界）。
+- Batch 266：`20-reference.md` 新增「分组（成组后）」速查节
+  （工具条六键/右键三项/端口/装饰手柄）。
+- task-inventory.yml：group-and-ungroup 条目已登记（Batch 254）。
