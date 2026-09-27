@@ -139,6 +139,7 @@ interface FrameosCanvasState {
   createGroup: (memberIds: string[]) => string | null;
   selectGroup: (id: string | null) => void;
   ungroup: (id: string) => void;
+  renameGroup: (id: string, name: string) => void;
   setGroupColor: (id: string, color: string) => void;
   arrangeGroup: (id: string, mode: "grid" | "horizontal" | "vertical") => void;
   moveGroup: (id: string, dx: number, dy: number) => void;
@@ -643,6 +644,14 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       groups: state.groups.filter((g) => g.id !== id),
       selectedGroupId:
         state.selectedGroupId === id ? null : state.selectedGroupId,
+    })),
+
+  // Batch 262: 组重命名 (源站: 双击标签 → 内联输入 → Enter 提交)
+  renameGroup: (id, name) =>
+    set((state) => ({
+      groups: state.groups.map((g) =>
+        g.id === id ? { ...g, name: name.trim() || g.name } : g
+      ),
     })),
 
   setGroupColor: (id, color) =>

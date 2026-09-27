@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useViewport } from "@xyflow/react";
 import { useFrameosStore, type FrameosGroup } from "@/store/frameosStore";
 import { showToast } from "./FrameosToast";
+import { openContextMenu } from "./FrameosContextMenu";
 
 /**
  * FrameOS 画布分组覆盖层 (Batch 251, 源站采样 2026-09-27):
@@ -45,7 +46,9 @@ const HANDLES = ["nw", "ne", "sw", "se"] as const;
 function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean }) {
   const selectGroup = useFrameosStore((s) => s.selectGroup);
   const moveGroup = useFrameosStore((s) => s.moveGroup);
+  const renameGroup = useFrameosStore((s) => s.renameGroup);
   const { zoom } = useViewport();
+  const [renaming, setRenaming] = useState(false);
   const dragRef = useRef<{ sx: number; sy: number; lastX: number; lastY: number; pushed: boolean } | null>(null);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -102,6 +105,35 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
       }}
       onPointerDown={onPointerDown}
       onMouseDown={(e) => e.stopPropagation()}
+      onContextMenu={(e) => {
+        // Batch 262: 分组右键菜单 (源站: 复制⌘C / 创建副本⌘D / 删除⌫; 点击效果未采样)
+        e.preventDefault();
+        e.stopPropagation();
+        selectGroup(group.id);
+        openContextMenu({
+          x: e.clientX,
+          y: e.clientY,
+          items: [
+            {
+              label: "复制",
+              shortcut: "⌘C",
+              onClick: () => showToast("已复制分组 (mock)", "success"),
+            },
+            {
+              label: "创建副本",
+              shortcut: "⌘D",
+              onClick: () => showToast("已创建分组副本 (mock)", "success"),
+            },
+            { separator: true, label: "" },
+            {
+              label: "删除",
+              danger: true,
+              shortcut: "⌫",
+              onClick: () => showToast("已删除分组 (mock)", "success"),
+            },
+          ],
+        });
+      }}
     >
       <div
         className="frameos-canvas-group-label"
@@ -117,9 +149,51 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
           lineHeight: "20px",
           color: "rgb(163,163,163)",
         }}
+        onPointerDown={(e) => e.stopPropagation()}
+        onDoubleClick={(e) => {
+          // Batch 262: 双击标签进入内联重命名 (源站: input.canvas-group__rename-input)
+          e.stopPropagation();
+          setRenaming(true);
+        }}
       >
         <FolderIcon />
-        <span className="frameos-canvas-group-name">{group.name}</span>
+        {renaming ? (
+          <input
+            className="frameos-group-rename-input"
+            defaultValue={group.name}
+            autoFocus
+            style={{
+              width: 90,
+              height: 20,
+              fontSize: 12,
+              color: "rgb(163,163,163)",
+              background: "rgba(24,24,24,0.9)",
+              border: "1px solid rgba(255,255,255,0.16)",
+              borderRadius: 4,
+              padding: "0 4px",
+              outline: "none",
+            }}
+            onPointerDown={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+            onDoubleClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => {
+              e.stopPropagation();
+              if (e.key === "Enter") {
+                renameGroup(group.id, e.currentTarget.value);
+                setRenaming(false);
+              } else if (e.key === "Escape") {
+                setRenaming(false);
+              }
+            }}
+            onBlur={(e) => {
+              renameGroup(group.id, e.currentTarget.value);
+              setRenaming(false);
+            }}
+          />
+        ) : (
+          <span className="frameos-canvas-group-name">{group.name}</span>
+        )}
       </div>
       {selected &&
         HANDLES.map((pos) => (

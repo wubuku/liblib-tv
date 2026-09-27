@@ -101,6 +101,8 @@
 - **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄精确拖拽在低缩放下较难（Gate B 补验项）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
 
+- **Batch M8（2026-09-28，维护轮）**：三门禁复跑全绿（调研包自检五项 / final audit / verify-docs 1111 文件）；90-troubleshooting 多标签覆盖条目补充四步实测复现步骤；缩放手柄精确验证留待下次打开画布时在 100% 缩放下补做（低缩放下手柄仅约 15px，CUA 定位困难——操作指引：滑杆拖至 100% 后选中节点，手柄在角部约 28px）。
+
 ## 收尾留档 — 2026-09-27（用户指示收尾，循环暂停）
 
 1. **已完成**：工作文档五件套 + AUDIT 骨架；quickstart + 3 个旗舰任务成稿（create-canvas-project / create-nodes / edit-nodes，均运行时走查）；generate-images 占位（付费边界，描述型）；6 个任务占位页；截图 8 张入 manifest（sha256）；多标签覆盖真实缺陷已入 AUDIT 与手册排障。

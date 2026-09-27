@@ -30,8 +30,7 @@
         "flyout:item:群众 (3x3)",
         "flyout:item:几何模型",
         "flyout:closes",
-        "rail:add-camera-active",
-        "rail:scene-inactive",
+        "rail:scene-stays-active",
         "rail:tree-still-present",
         "diagnostics:zero"
       ],

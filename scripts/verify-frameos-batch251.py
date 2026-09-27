@@ -158,6 +158,50 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("port:click-mock-toast", page.get_by_text("批量连线 (mock)").count() > 0)
     page.wait_for_timeout(2600)
 
+    # ── 3c. 组重命名 (Batch 262 源站采样: 双击标签 → 内联 input → Enter) ──
+    # (标签可能被其他节点卡片遮挡, 用页面内派发 dblclick)
+    page.evaluate(
+        """(() => {
+          const label = document.querySelector('.frameos-canvas-group-name');
+          const r = label.getBoundingClientRect();
+          const x = r.x + r.width / 2, y = r.y + r.height / 2;
+          const opt = { bubbles: true, cancelable: true, view: window };
+          label.dispatchEvent(new MouseEvent('dblclick', { ...opt, clientX: x, clientY: y, button: 0 }));
+        })()"""
+    )
+    page.wait_for_timeout(300)
+    rename_input = page.locator(".frameos-group-rename-input")
+    check("rename:input-appears", rename_input.count() == 1)
+    rename_input.fill("探测组A")
+    rename_input.press("Enter")
+    page.wait_for_timeout(400)
+    name_after = page.evaluate(
+        "document.querySelector('.frameos-canvas-group-name')?.textContent"
+    )
+    check("rename:committed", name_after == "探测组A")
+
+    # ── 3d. 分组右键菜单 (Batch 262 源站采样: 复制⌘C / 创建副本⌘D / 删除⌫) ──
+    page.locator("[data-frameos-group]").click(button="right")
+    page.wait_for_timeout(400)
+    ctx_menu = page.locator("[data-frameos-context-menu]")
+    check("ctx:menu-opens", ctx_menu.is_visible())
+    for label in ["复制", "创建副本", "删除"]:
+        check(
+            f"ctx:item-{label}",
+            ctx_menu.locator(f"[data-frameos-context-item='{label}']").count() == 1,
+        )
+    page.mouse.click(10, 10)  # 点击遮罩关闭右键菜单 (Escape 会触发页面级取消选中)
+    page.wait_for_timeout(300)
+    # 重新选中分组 (后续调色板/排列检查需要展开工具条)
+    page.evaluate(
+        """(() => {
+          const g = document.querySelector('[data-frameos-group]');
+          g.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, cancelable: true, pointerId: 99, pointerType: 'mouse', isPrimary: true, clientX: 200, clientY: 300, button: 0, buttons: 1, view: window }));
+          g.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, cancelable: true, pointerId: 99, pointerType: 'mouse', isPrimary: true, clientX: 200, clientY: 300, button: 0, buttons: 0, view: window }));
+        })()"""
+    )
+    page.wait_for_timeout(400)
+
     # ── 3. 展开工具栏 ──
     gt_group = page.locator(".frameos-group-toolbar--group")
     check("group:toolbar-switches", gt_group.is_visible())

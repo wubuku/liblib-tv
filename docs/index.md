@@ -178,6 +178,9 @@ graph TD
 - [`research/tdcanvas-2026-09-26/PATTERN_CARDS.md`](research/tdcanvas-2026-09-26/PATTERN_CARDS.md)：21 张模式卡（TDCanvas TD-01..15 + 上游参考卡 UP-01..06），区分上游事实、机制拆解、clone 启发与验证门槛。
 - [`research/tdcanvas-2026-09-26/RUNTIME_AUDIT.md`](research/tdcanvas-2026-09-26/RUNTIME_AUDIT.md)：TDCanvas web 运行时审计（真实素材非付费路径）。\n- [`research/tdcanvas-2026-09-26/TEST_ASSETS.md`](research/tdcanvas-2026-09-26/TEST_ASSETS.md)：运行时探索素材登记表与安全红线。
 - [`research/tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md`](research/tdcanvas-2026-09-26/ADOPTION_DECISION_MATRIX.md)：TDCanvas 及其上游 26 项机制对 LibTV/FrameOS/Jimeng 的采纳决策矩阵。
+- [`research/beeftv-canvas-2026-09-27/`](research/beeftv-canvas-2026-09-27/README.md)：glanderness/BeefTV（AI 影视创作工作台）锁定提交 `85c9686`（v1.5.7）的画布深度源码调研；含三频率双轨视口、预算化虚拟化、两阶段事务持久化、防重复计费四层、CanvasOperation 指令集、Agent 三路合并、LibTV 导入与像素捕获夹具、交互目录与快捷键全表。
+- [`research/beeftv-canvas-2026-09-27/PATTERN_CARDS.md`](research/beeftv-canvas-2026-09-27/PATTERN_CARDS.md)：45 张模式卡（BF-01..45），区分源码事实、机制拆解、clone 启发与验证门槛。
+- [`research/beeftv-canvas-2026-09-27/ADOPTION_DECISION_MATRIX.md`](research/beeftv-canvas-2026-09-27/ADOPTION_DECISION_MATRIX.md)：BeefTV 44 项机制对 LibTV/FrameOS/Jimeng 的采纳决策矩阵（方法借鉴 15 / 候选改造 8 / 仅研究 16 / 暂缓 3 / 拒绝移植 2）。
 - [`research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md`](research/open-canvas-2026-08-26/LIBTV_IMPLEMENTATION_HANDOFF_BLUEPRINT.md)：高价值上游启发转为 LibTV 单 slice 的证据、身份、事务、surface、fixture 和 verifier 交接蓝图。
 - [`research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_PROCESS_RESULT_STATE_MATRIX.md)：逐帧拉片、片段重拍和超长视频的正交状态、身份、fixture、stale/retry 与 `VR-007` 合同。
 - [`research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md`](research/open-canvas-2026-08-26/LIBTV_MODEL_CAPABILITY_PROJECTION_MATRIX.md)：模型目录、authoring controls、clone state、请求 descriptor 与真实 runner 的分层审计。
