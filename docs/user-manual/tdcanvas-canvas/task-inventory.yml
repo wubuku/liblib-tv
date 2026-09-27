@@ -90,7 +90,8 @@ tasks:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
+    review_note: 2026-09-27 运行时走查完成（真实视频 809KB 与音频 1.1MB 注入成功，原生播放器节点 + toast 逐字；图片 3.9MB 同路径成功）；行为细节——有选中节点时上传仍新建节点而非替换。
     manual_pages:
       - 10-tasks/upload-materials.md
   - id: edit-nodes
@@ -159,7 +160,8 @@ tasks:
       - 画布中有已上传图片的节点
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
+    review_note: 2026-09-27 裁剪全流程回走（对话框字段逐字 → 拖拽调整 → 确认 → Cropped Image 子节点+连线）；切图/放大入口存在，全参数留 Gate B。
     manual_pages:
       - 10-tasks/image-operations.md
   - id: organize-canvas

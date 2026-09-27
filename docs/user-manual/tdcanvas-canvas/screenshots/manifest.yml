@@ -89,3 +89,51 @@ screenshots:
     locator_evidence: '面板标题 节点信息 / 字段 ID group-1790455580577-odgs7、名称 组、尺寸 760 x 480、位置 -180,-40、状态 idle'
     sha256: 31a82b7df6e2119c0b7f8d11324cf53479ad916e23d97d852ea6dccf73834a52
     alt: 节点信息弹窗，显示组节点的 ID、名称、类型、尺寸、位置与状态字段，右上角有信息与 JSON 页签切换
+  - id: 05-upload-materials-video-audio
+    file: 05-upload-materials-video-audio.png
+    task: upload-materials
+    step: 注入真实视频（S83·镜2.mp4）与音频（voice_converted.wav）后，两类播放器节点与「替换音频」工具条
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '视频节点 S83·镜2.mp4 原生播放器 0:00/0:04 / 音频节点 voice_converted.wav 播放器 0:00/0:12 / 工具条 替换音频'
+    sha256: d21fddc62b3fa666048bc27c217a7a2a23258708f325bbc3626c7757d0402d64
+    alt: 画布上同时存在带原生播放器的视频节点与音频节点，音频节点处于选中态
+  - id: 05-upload-materials-image
+    file: 05-upload-materials-image.png
+    task: upload-materials
+    step: 注入真实图片（生成蓝色手机图片-2.png）后新建图片节点，悬浮工具条展开完整图片集
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '绿色 toast 已添加 1 个素材节点，可连接到生图或生视频节点 / 工具条 信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多'
+    sha256: a26af7050a5991e0681977b675bd7332130cd6907dfc781902cea2c266b3069f
+    alt: 新上传的手机图片节点被选中，顶部悬浮工具条展开全部图片操作
+  - id: 06-image-operations-crop-dialog
+    file: 06-image-operations-crop-dialog.png
+    task: image-operations
+    step: 悬浮工具条「裁剪」打开裁剪图片对话框（裁剪框 + 比例预设 + 重置/取消/确认裁剪）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '标题 裁剪图片 / 裁剪尺寸 1556 x 1556 比例 1:1 原图 2048 x 2048 / 比例预设 自由 固定 原图 1:1 4:3 16:9 9:16 / 按钮 重置 取消 确认裁剪'
+    sha256: ca937d1099d887b7e72b2ea076c214d4b94572fac139451783551f7cca94977b
+    alt: 裁剪图片对话框，图片上叠加 1:1 裁剪框，底部显示裁剪尺寸与比例预设
+  - id: 06-image-operations-crop-result
+    file: 06-image-operations-crop-result.png
+    task: image-operations
+    step: 确认裁剪后右侧自动创建 Cropped Image 子节点并连线
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '子节点标题 Cropped Image / 原图与子节点之间的贝塞尔连线 / 下方参考图详情面板'
+    sha256: a1fb39345fb0df216e9df039a3f1ad98aa97140fb68f75ed4cd247ce5b010da4
+    alt: 裁剪完成后画布上原图右侧出现 Cropped Image 子节点，两者之间有连线
