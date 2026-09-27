@@ -75,38 +75,49 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     rail = page.locator("[data-director-icon-rail]")
     check("rail:visible", rail.is_visible())
+    # Batch 537 migration: DOM-verified rail labels (scene/add-character/
+    # add-camera/panorama/aspect-ratio/ai-import + help) replace the 536
+    # inferred set (layers/characters/...).
     entries = rail.locator("[data-director-rail-entry]")
-    check("rail:six-entries", entries.count() == 6)
-    for entry_id in ["layers", "characters", "cameras", "frames", "folders", "import"]:
+    check("rail:seven-entries", entries.count() == 7)
+    for entry_id in ["scene", "add-character", "add-camera", "panorama", "aspect-ratio", "ai-import", "help"]:
         check(
             f"rail:entry:{entry_id}",
             rail.locator(f"[data-director-rail-entry='{entry_id}']").is_visible(),
         )
     check(
-        "rail:layers-active-default",
-        rail.locator("[data-director-rail-entry='layers']").get_attribute("aria-pressed") == "true",
+        "rail:scene-active-default",
+        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "true",
     )
+    check(
+        "rail:label-scene",
+        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-label") == "场景",
+    )
+
+    # 添加角色 flyout（batch 537 采样菜单）
+    rail.locator("[data-director-rail-entry='add-character']").click()
+    page.wait_for_timeout(200)
+    flyout = page.locator("[data-director-character-flyout]")
+    check("flyout:opens", flyout.is_visible())
+    flyout_text = flyout.inner_text()
+    for token in ["本地上传", "标准男性", "标准女性", "健硕", "纤细", "少年", "儿童", "宽厚", "二头身", "群众 (3x3)", "几何模型"]:
+        check(f"flyout:item:{token}", token in flyout_text)
+    rail.locator("[data-director-rail-entry='scene']").click()
+    page.wait_for_timeout(150)
+    check("flyout:closes", page.locator("[data-director-character-flyout]").count() == 0)
 
     # 点击其他入口：激活态迁移，场景树仍在（无导航面板）
-    rail.locator("[data-director-rail-entry='characters']").click()
+    rail.locator("[data-director-rail-entry='add-camera']").click()
     page.wait_for_timeout(150)
     check(
-        "rail:characters-active",
-        rail.locator("[data-director-rail-entry='characters']").get_attribute("aria-pressed") == "true",
+        "rail:add-camera-active",
+        rail.locator("[data-director-rail-entry='add-camera']").get_attribute("aria-pressed") == "true",
     )
     check(
-        "rail:layers-inactive",
-        rail.locator("[data-director-rail-entry='layers']").get_attribute("aria-pressed") == "false",
+        "rail:scene-inactive",
+        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "false",
     )
     check("rail:tree-still-present", page.locator("[aria-label='场景对象']").first.is_visible())
-
-    # 回到图层激活态
-    rail.locator("[data-director-rail-entry='layers']").click()
-    page.wait_for_timeout(150)
-    check(
-        "rail:layers-reactivated",
-        rail.locator("[data-director-rail-entry='layers']").get_attribute("aria-pressed") == "true",
-    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
