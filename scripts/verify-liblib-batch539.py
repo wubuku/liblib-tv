@@ -128,13 +128,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(150)
     check("history:empty-placeholder", "暂无历史记录" in modal.inner_text())
 
-    # ✕ 关闭 + 背景点击关闭（重开验证）
+    # ✕ 关闭 → 重开（force 规避模态卸载瞬间的遮挡重试）→ 背景点击关闭
     modal.locator("[data-director-ai-import-close]").click()
     page.wait_for_timeout(200)
     check("close:x", page.locator("[data-director-ai-import-modal]").count() == 0)
-    page.locator("[data-director-rail-entry='ai-import']").click()
-    page.wait_for_timeout(200)
-    page.locator("[data-director-ai-import-backdrop]").click(position={"x": 30, "y": 30})
+    page.locator("[data-director-rail-entry='ai-import']").click(force=True)
+    page.wait_for_timeout(250)
+    check("reopen:modal", page.locator("[data-director-ai-import-modal]").is_visible())
+    page.locator("[data-director-ai-import-backdrop]").click(position={"x": 1150, "y": 650})
     page.wait_for_timeout(200)
     check("close:backdrop", page.locator("[data-director-ai-import-modal]").count() == 0)
 

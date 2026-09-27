@@ -1,0 +1,33 @@
+{
+  "batch": 539,
+  "title": "Director AI image-recognition import modal",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-27 (transcription)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "modal:opens",
+        "modal:title",
+        "modal:tab-upload-active",
+        "modal:dropzone:点击上传图片",
+        "modal:dropzone:拖拽本地图片至此",
+        "modal:dropzone:上传后画布将新连",
+        "coverage:insert-default",
+        "coverage:override-selected",
+        "coverage:insert-inactive",
+        "coverage:details",
+        "generate:disabled",
+        "footer:notice",
+        "history:empty-placeholder",
+        "close:x",
+        "reopen:modal",
+        "close:backdrop",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
