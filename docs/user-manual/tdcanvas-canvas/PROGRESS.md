@@ -83,3 +83,11 @@
 | Gate A | 未开始 |
 | Gate B 回走 + AUDIT.md | 未开始 |
 | final audit + 交付报告 | 未开始 |
+
+## 收尾留档 — 2026-09-27（用户指示收尾，循环暂停）
+
+1. **已完成**：工作文档五件套 + AUDIT 骨架；quickstart + 3 个旗舰任务成稿（create-canvas-project / create-nodes / edit-nodes，均运行时走查）；generate-images 占位（付费边界，描述型）；6 个任务占位页；截图 8 张入 manifest（sha256）；多标签覆盖真实缺陷已入 AUDIT 与手册排障。
+2. **进度**：12 任务中 3 drafted + 1 描述型占位 + 8 planned（占位页有大纲）。
+3. **恢复入口**：按 §1「下一步」顺序执行；每 batch 遵循 规划→实施→验收→commit→push 循环；素材注入方法见 TEST_MEDIA_ASSETS.md。
+4. **红线不变**：不触发真实生成、不配置 API Key、不启动 ComfyUI、不用 stash/丢弃他人工作区修改。
+5. **待用户输入**：任务优先级重排（当前 Agent 自行定级）；多标签覆盖缺陷复现素材如需入排障章另行授权。
