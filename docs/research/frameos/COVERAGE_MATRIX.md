@@ -25,7 +25,9 @@
 | 小地图开关 | ✅ | batch169 截图佐证 |
 | 小地图内拖拽平移视口 | ✅ | batch179 |
 | 滚轮平移 | ✅（Batch 261 实测：wheel 平移视口, deltaX/deltaY 生效、系数约 0.5） | 克隆 panOnScroll 行为一致 |
-| ⌘滚轮缩放/触控板/空格/中键右键拖动 | ⚪ | 源站未采样（自动化限制） |
+| ⌘滚轮缩放（ctrl+wheel，15%–500%，光标锚定） | ✅（Batch 288 实测） | 克隆 minZoom/maxZoom 已修为 0.15/5 |
+| 空格拖动 / 中键拖动 / 右键拖动平移 | ✅（Batch 289 实测：translate 1:1 跟随，Space 下不触发框选） | 克隆 panOnDrag=[1,2] + 默认 panActivationKeyCode=Space |
+| 触控板手势 | ⚪ | 环境限制 |
 | 左键拖动空白不平移 | ✅（负向观察） | batch179 前置采样 |
 
 ## edit-selected-node
