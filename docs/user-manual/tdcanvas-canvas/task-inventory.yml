@@ -37,7 +37,7 @@ tasks:
     routes:
       - '/canvas'
       - '/canvas/:id'
-    status: drafted
+    status: documented
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md
@@ -55,7 +55,7 @@ tasks:
       - 已打开一个画布项目
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 滚轮缩放 54→85 鼠标锚、空白拖拽平移、小地图开合与点击导航全部运行时取证；重置视图双行为（有选中=聚焦/无选中=fit）已记录。并行会话遗留的同名 WIP 截图实为首页截图（文件名错置），未收编。
     manual_pages:
       - 10-tasks/navigate-canvas.md
@@ -72,7 +72,7 @@ tasks:
       - 已打开一个画布项目
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     manual_pages:
       - 10-tasks/create-nodes.md
     review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。
@@ -91,7 +91,7 @@ tasks:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 运行时走查完成（真实视频 809KB 与音频 1.1MB 注入成功，原生播放器节点 + toast 逐字；图片 3.9MB 同路径成功）；行为细节——有选中节点时上传仍新建节点而非替换。
     manual_pages:
       - 10-tasks/upload-materials.md
@@ -108,7 +108,7 @@ tasks:
       - 画布中已有节点
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     manual_pages:
       - 10-tasks/edit-nodes.md
     review_note: 2026-09-27 运行时走查完成（双击标题重命名、双击编辑文字追加、删除→历史flyout撤销恢复、信息面板字段核实）；缩放手柄拖拽精度不足留待 Gate B 补验；发现多标签同项目编辑互相覆盖（已写入手册排障）。
@@ -127,7 +127,7 @@ tasks:
       - 画布中已有两个节点
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 拖线到空白弹「利用画布节点生成」上下文菜单（按视频上游给出 文本/图片/视频生成+音频参考 四项）运行时取证；连线建立/删除/撤销此前已证。@mention chip 留 Gate B。
     manual_pages:
       - 10-tasks/connect-references.md
@@ -146,7 +146,7 @@ tasks:
       - 已在配置页填写 Aitudou API Key（手册描述前提，验证环境不配置）
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 描述型成稿（付费红线）：生成面板字段运行时取证（模式/输入/参数 1K/2K/模型 Seedream V5 Pro/参考素材区），状态机与停止≠取消来自源码+官方文档；运行点击未执行。
     manual_pages:
       - 10-tasks/generate-images.md
@@ -163,7 +163,7 @@ tasks:
       - 画布中有已上传图片的节点
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 裁剪全流程回走（对话框字段逐字 → 拖拽调整 → 确认 → Cropped Image 子节点+连线）；切图/放大入口存在，全参数留 Gate B。
     manual_pages:
       - 10-tasks/image-operations.md
@@ -180,7 +180,7 @@ tasks:
       - 画布中已有多个节点
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 组拖入（成员计数徽标）、外观面板四组设置运行时取证；对齐辅助线与网格吸附细节留 Gate B。
     manual_pages:
       - 10-tasks/organize-canvas.md
@@ -197,7 +197,7 @@ tasks:
       - 画布中已有可变更内容
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 历史 flyout（撤销/重做/画布更改会自动保存）与刷新持久化多次实测；清空画布确认弹窗截图未捕获（静态描述），快捷键撤销在 IAB 自动化下不稳定（真人环境正常）。
     manual_pages:
       - 10-tasks/undo-persistence.md
@@ -214,7 +214,7 @@ tasks:
       - 已有至少一个画布项目
     routes:
       - '/canvas'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 首页卡片悬停操作（下载/重命名/删除）与多选、封面预览运行时取证；导出 zip 与删除确认弹窗为静态取证。
     manual_pages:
       - 10-tasks/project-management.md
@@ -231,7 +231,7 @@ tasks:
       - 已打开一个画布项目
     routes:
       - '/canvas/:id'
-    status: drafted
+    status: documented
     review_note: 2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。
     manual_pages:
       - 10-tasks/shortcuts-help.md

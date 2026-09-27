@@ -1,247 +1,313 @@
-# TDCanvas 手册截图登记（manifest）
-
-> schema 对齐 frameos-canvas/screenshots/manifest.yml：每张正式截图必须
-> 文件存在 + 本表登记 + 正文描述性 alt 引用 + 真实 SHA-256 四者齐备。
-> viewport 固定 1280×720（dark / zh-CN）；`captured_at` 为拍摄日期。
-
 screenshots:
-  - id: 01-create-canvas-project-empty-home
-    file: 01-create-canvas-project-empty-home.png
-    task: create-canvas-project
-    step: 打开 /canvas 首页空态（hero「从一张画布开始」+ 新建画布按钮 + 最近画布空区）
-    route: /canvas
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: 'button 新建画布 / heading 从一张画布开始 / 本机工作区 · 0 个画布'
-    sha256: d1ea52d7528a7d51120f981a0a56b0d06ddbab1afb7f18cbbf2a59761eaf53e6
-    alt: TDCanvas 首页空态，左上为「从一张画布开始」标题与紫色「新建画布」按钮，下方「最近画布」区显示还没有画布
-  - id: 01-create-canvas-project-empty-canvas
-    file: 01-create-canvas-project-empty-canvas.png
-    task: create-canvas-project
-    step: 新建后进入画布编辑页（空态引导 + 快捷创作芯片 + 左侧 Dock + 缩放 Dock）
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '双击画布，自由创作 / 快捷创作组 文字创作 图片创作 视频创作 音频创作 上传素材 / 打开小地图 网格吸附 重置视图'
-    sha256: 232dff9a89fa25f98e435573d98691f9451a205ccc25d28b24220d2b8e6d7f98
-    alt: 新建的 TDCanvas 1 画布，中央提示「双击画布，自由创作」与五个快捷芯片，左侧竖直工具栏，左下缩放控件
-  - id: 00-quickstart-first-text-node
-    file: 00-quickstart-first-text-node.png
-    task: quickstart
+
+  - file: screenshots/00-quickstart-first-text-node.png
+    task_id: create-nodes
     step: 文字创作芯片创建文本节点，双击输入文字并点击空白提交后的成果
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '文本节点标题 文本 / 内容「我的第一段画布文字」/ 右上 生图 按钮'
+    verified_locator: '文本节点标题 文本 / 内容 我的第一段画布文字 / 右上 生图 按钮'
+    visible_text: '我的第一段画布文字'
+    alt: 画布上已有一个文本节点，内容为「我的第一段画布文字」，右上角有生图按钮
     sha256: 3facd3d79a1fd8109ea06ddf3b9e28faf850e4f4c8040f575eae1cdf28b2661c
-    alt: 画布上已有一个文本节点，内容为「我的第一段画布文字」，节点右上角有「生图」按钮
-  - id: 13-project-management-home-with-card
-    file: 13-project-management-home-with-card.png
-    task: project-management
-    step: 创建项目后回到首页，最近画布区出现项目卡（标题/节点连线计数/更新时间），右上 showcase 同步
-    route: /canvas
+
+  - file: screenshots/01-create-canvas-project-empty-home.png
+    task_id: create-canvas-project
+    step: 打开 /canvas 首页空态（hero + 新建画布按钮 + 最近画布空区）
+    route: '/canvas'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线 / 更新于 09/27 00:04 / 删除全部'
-    sha256: f2c835f65da48908c858f47679aac760767bc5bd4b15fecd1ecd148666ac7cb1
-    alt: TDCanvas 首页「最近画布」区显示 TDCanvas 1 项目卡，卡片信息为 1 个节点 0 条连线
-  - id: 03-create-nodes-double-click-menu
-    file: 03-create-nodes-double-click-menu.png
-    task: create-nodes
-    step: 双击画布空白弹出「选择节点」菜单（注册表驱动：文本/图片/视频/音频/组/ComfyUI 工作流/上传素材）
-    route: /canvas/:id
+    verified_locator: 'button 新建画布 / heading 从一张画布开始 / 本机工作区 · 0 个画布'
+    visible_text: '从一张画布开始'
+    alt: TDCanvas 首页空态，标题与紫色新建画布按钮，最近画布区显示还没有画布
+    sha256: d1ea52d7528a7d51120f981a0a56b0d06ddbab1afb7f18cbbf2a59761eaf53e6
+
+  - file: screenshots/01-create-canvas-project-empty-canvas.png
+    task_id: create-canvas-project
+    step: 新建后进入画布编辑页（空态引导 + 快捷创作芯片 + 左侧 Dock + 缩放 Dock）
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '菜单标题 选择节点 / 逐项 文本 图片 视频 音频 组 ComfyUI 工作流 上传素材'
-    sha256: 5ecf232fdcd69bc5ef61faec57f8453e1b6a0edfbab5f8dae907d0fdd602c840
-    alt: 双击画布空白处后弹出「选择节点」菜单，列出七种可创建项
-  - id: 03-create-nodes-all-types
-    file: 03-create-nodes-all-types.png
-    task: create-nodes
-    step: 依次创建 组/文本/音频/视频 四类节点后重置视图的全览（54%）
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '组标题 组 + 0 个节点 徽标 / 文本节点 我的第一段画布文字 / 空音频节点 / 空视频节点 + 选择本地文件'
-    sha256: 361b452630a6fb52aae3981ce6870d7f06f2646f9a4ad124115fbe1f70fb86b2
-    alt: 画布 54% 缩放下并排显示 组（虚线框）、文本、音频、视频四类节点
-  - id: 04-edit-nodes-info-modal
-    file: 04-edit-nodes-info-modal.png
-    task: edit-nodes
-    step: 组节点悬浮工具条点击「信息」打开节点信息面板（信息/JSON 双页签）
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '面板标题 节点信息 / 字段 ID group-1790455580577-odgs7、名称 组、尺寸 760 x 480、位置 -180,-40、状态 idle'
-    sha256: 31a82b7df6e2119c0b7f8d11324cf53479ad916e23d97d852ea6dccf73834a52
-    alt: 节点信息弹窗，显示组节点的 ID、名称、类型、尺寸、位置与状态字段，右上角有信息与 JSON 页签切换
-  - id: 05-upload-materials-video-audio
-    file: 05-upload-materials-video-audio.png
-    task: upload-materials
-    step: 注入真实视频（S83·镜2.mp4）与音频（voice_converted.wav）后，两类播放器节点与「替换音频」工具条
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '视频节点 S83·镜2.mp4 原生播放器 0:00/0:04 / 音频节点 voice_converted.wav 播放器 0:00/0:12 / 工具条 替换音频'
-    sha256: d21fddc62b3fa666048bc27c217a7a2a23258708f325bbc3626c7757d0402d64
-    alt: 画布上同时存在带原生播放器的视频节点与音频节点，音频节点处于选中态
-  - id: 05-upload-materials-image
-    file: 05-upload-materials-image.png
-    task: upload-materials
-    step: 注入真实图片（生成蓝色手机图片-2.png）后新建图片节点，悬浮工具条展开完整图片集
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '绿色 toast 已添加 1 个素材节点，可连接到生图或生视频节点 / 工具条 信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多'
-    sha256: a26af7050a5991e0681977b675bd7332130cd6907dfc781902cea2c266b3069f
-    alt: 新上传的手机图片节点被选中，顶部悬浮工具条展开全部图片操作
-  - id: 06-image-operations-crop-dialog
-    file: 06-image-operations-crop-dialog.png
-    task: image-operations
-    step: 悬浮工具条「裁剪」打开裁剪图片对话框（裁剪框 + 比例预设 + 重置/取消/确认裁剪）
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '标题 裁剪图片 / 裁剪尺寸 1556 x 1556 比例 1:1 原图 2048 x 2048 / 比例预设 自由 固定 原图 1:1 4:3 16:9 9:16 / 按钮 重置 取消 确认裁剪'
-    sha256: ca937d1099d887b7e72b2ea076c214d4b94572fac139451783551f7cca94977b
-    alt: 裁剪图片对话框，图片上叠加 1:1 裁剪框，底部显示裁剪尺寸与比例预设
-  - id: 06-image-operations-crop-result
-    file: 06-image-operations-crop-result.png
-    task: image-operations
-    step: 确认裁剪后右侧自动创建 Cropped Image 子节点并连线
-    route: /canvas/:id
-    viewport: 1280x720
-    theme: dark
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    locator_evidence: '子节点标题 Cropped Image / 原图与子节点之间的贝塞尔连线 / 下方参考图详情面板'
-    sha256: a1fb39345fb0df216e9df039a3f1ad98aa97140fb68f75ed4cd247ce5b010da4
-    alt: 裁剪完成后画布上原图右侧出现 Cropped Image 子节点，两者之间有连线
-  - id: 02-navigate-canvas-wheel-zoom
-    file: 02-navigate-canvas-wheel-zoom.png
-    task: navigate-canvas
+    verified_locator: '双击画布，自由创作 / 文字创作 图片创作 视频创作 音频创作 上传素材'
+    visible_text: '双击画布，自由创作'
+    alt: 新建的 TDCanvas 1 画布，中央提示双击画布自由创作与五个快捷芯片
+    sha256: 232dff9a89fa25f98e435573d98691f9451a205ccc25d28b24220d2b8e6d7f98
+
+  - file: screenshots/02-navigate-canvas-wheel-zoom.png
+    task_id: navigate-canvas
     step: 画布上滚动滚轮缩放（54%→85%，以鼠标位置为锚）
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '缩放滑杆 85% / 图片节点随滚轮放大'
-    sha256: 5beba521e424619b3a87933edd30fbd3b2c8d0b92d6c5ec6aa3340a22bfc1fef
+    verified_locator: '缩放滑杆 85% / 图片节点随滚轮放大'
+    visible_text: '85%'
     alt: 滚轮缩放后画布放大到 85%，图片节点围绕鼠标位置放大
-  - id: 02-navigate-canvas-minimap-open
-    file: 02-navigate-canvas-minimap-open.png
-    task: navigate-canvas
+    sha256: 5beba521e424619b3a87933edd30fbd3b2c8d0b92d6c5ec6aa3340a22bfc1fef
+
+  - file: screenshots/02-navigate-canvas-pan-minimap.png
+    task_id: navigate-canvas
+    step: 空白处拖拽平移视野（拖动后节点整体位移）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '节点位移 / 视口内容变化'
+    visible_text: '节点位移'
+    alt: 空白处拖拽后画布视野平移，节点整体位移
+    sha256: 6f9c03e4dea96e5d329d90424cb1d62fb11fed785cd8c87eafd2b03feba31c42
+
+  - file: screenshots/02-navigate-canvas-minimap-open.png
+    task_id: navigate-canvas
     step: 点击「打开小地图」后左下角出现小地图面板（节点色块 + 白色视口框）
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '小地图面板 240x160 / 按钮状态 关闭小地图'
-    sha256: 65088ff22f181428b5b2fceab71d2b8785c8c00175e3a70468c7448fd75327ab
+    verified_locator: '小地图面板 240x160 / 按钮状态 关闭小地图'
+    visible_text: '关闭小地图'
     alt: 左下角打开的小地图面板，显示按类型着色的节点色块与白色视口框
-  - id: 02-navigate-canvas-minimap-nav
-    file: 02-navigate-canvas-minimap-nav.png
-    task: navigate-canvas
+    sha256: 65088ff22f181428b5b2fceab71d2b8785c8c00175e3a70468c7448fd75327ab
+
+  - file: screenshots/02-navigate-canvas-minimap-nav.png
+    task_id: navigate-canvas
     step: 点击小地图右上区域后主画布视口跳转（Cropped Image 节点进入视野）
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: 'Cropped Image 标题进入视野 / 小地图白色视口框移动到点击区域'
+    verified_locator: 'Cropped Image 标题进入视野 / 小地图白色视口框移动到点击区域'
+    visible_text: 'Cropped Image'
+    alt: 点击小地图右上方后主画布视野跳转到 Cropped Image 节点区域
     sha256: dc0b1dc1358c9b31be577514d803fbf04bbf6f030d317ac1b05a8d2946048c0e
-    alt: 点击小地图右上方后，主画布视野跳转到 Cropped Image 节点区域
-  - id: 07-connect-references-drop-menu
-    file: 07-connect-references-drop-menu.png
-    task: connect-references
-    step: 从视频节点输出口拖线到空白处松手，弹出「利用画布节点生成」上下文菜单
-    route: /canvas/:id
+
+  - file: screenshots/02-navigate-canvas-zoom-in-wheel.png
+    task_id: project-management
+    step: （并行会话遗留，实为首页全景：项目卡 TDCanvas 1 与 1 个节点 · 0 条连线）
+    route: '/canvas'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '菜单标题 利用画布节点生成 / 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
-    sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
-    alt: 拖线到空白处松手后，右下角弹出「利用画布节点生成」菜单，含文本生成、图片生成、视频生成、音频参考四项
-  - id: 04-organize-canvas-group-member
-    file: 04-organize-canvas-group-member.png
-    task: organize-canvas
-    step: 拖动图片节点进入组虚线框范围
-    route: /canvas/:id
+    verified_locator: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线'
+    visible_text: 'TDCanvas 1'
+    alt: TDCanvas 首页全景，最近画布区显示 TDCanvas 1 项目卡（并行会话错置文件名的遗留，保留原文件）
+    sha256: 94ddc74e9f5d52dd8f38ae6766b2d96dc35f8c8f92bd9108c9825d32345ed03f
+
+  - file: screenshots/03-create-nodes-all-types.png
+    task_id: create-nodes
+    step: 依次创建 组/文本/音频/视频 四类节点后重置视图的全览（54%）
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: 'phone.png 节点移动到组虚线框范围内'
-    sha256: d2fbb5e367ae2be4b1292028a7ee2ecab7c86348e6c8134f6ab2d0a8218712b2
-    alt: 图片节点被拖入组的虚线框范围内
-  - id: 04-organize-canvas-appearance
-    file: 04-organize-canvas-appearance.png
-    task: organize-canvas
+    verified_locator: '组标题 组 + 0 个节点 徽标 / 文本节点 我的第一段画布文字 / 空音频节点 / 空视频节点 + 选择本地文件'
+    visible_text: '空音频节点'
+    alt: 画布 54% 缩放下并排显示组（虚线框）、文本、音频、视频四类节点
+    sha256: 361b452630a6fb52aae3981ce6870d7f06f2646f9a4ad124115fbe1f70fb86b2
+
+  - file: screenshots/03-create-nodes-double-click-menu.png
+    task_id: create-nodes
+    step: 双击画布空白弹出「选择节点」菜单（注册表驱动七项）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '菜单标题 选择节点 / 逐项 文本 图片 视频 音频 组 ComfyUI 工作流 上传素材'
+    visible_text: '选择节点'
+    alt: 双击画布空白处后弹出选择节点菜单，列出七种可创建项
+    sha256: 5ecf232fdcd69bc5ef61faec57f8453e1b6a0edfbab5f8dae907d0fdd602c840
+
+  - file: screenshots/04-edit-nodes-info-modal.png
+    task_id: edit-nodes
+    step: 组节点悬浮工具条点击「信息」打开节点信息面板（信息/JSON 双页签）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '面板标题 节点信息 / ID group-1790455580577-odgs7 尺寸 760 x 480 状态 idle'
+    visible_text: '节点信息'
+    alt: 节点信息弹窗，显示组节点的 ID、名称、类型、尺寸、位置与状态字段
+    sha256: 31a82b7df6e2119c0b7f8d11324cf53479ad916e23d97d852ea6dccf73834a52
+
+  - file: screenshots/04-edit-nodes-resize.png
+    task_id: edit-nodes
+    step: 拖拽节点位置的过程记录（缩放手柄拖拽精度留 Gate B）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '节点整体位移'
+    visible_text: '节点'
+    alt: 拖拽节点后节点位移的过程记录
+    sha256: 08e1bdeaefdfef0016b3afa70f3a5744744f4d48f743b64021eaed24f5531cab
+
+  - file: screenshots/04-organize-canvas-appearance.png
+    task_id: organize-canvas
     step: 左侧 Dock「画布外观」面板展开（输入模式/主题模式/网格样式/图片信息）
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '画布输入模式 连线模式 无线模式 / 主题模式 浅色 深色 / 网格样式 点 线 空白 / 图片信息 开关'
-    sha256: 67e46aab3775f6a0184f3090c65047489a3b32fdb1dd1b0e8173a1ec32057af5
+    verified_locator: '画布输入模式 连线模式 无线模式 / 主题模式 浅色 深色 / 网格样式 点 线 空白 / 图片信息 开关'
+    visible_text: '图片信息'
     alt: 画布外观面板展开，显示输入模式、主题模式、网格样式与图片信息开关
-  - id: 11-shortcuts-help-modal
-    file: 11-shortcuts-help-modal.png
-    task: shortcuts-help
-    step: 点击顶栏「快捷键」打开帮助弹窗（键位与官方文档逐字一致）
-    route: /canvas/:id
+    sha256: 67e46aab3775f6a0184f3090c65047489a3b32fdb1dd1b0e8173a1ec32057af5
+
+  - file: screenshots/04-organize-canvas-group-member.png
+    task_id: organize-canvas
+    step: 拖动图片节点进入组虚线框范围
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '弹窗标题 快捷键 / 键位 拖动画布 滚轮 Ctrl/Cmd+拖动 Cmd+A C/V Z Shift+Z Y Delete Esc 等'
-    sha256: 9f7f29e3e551e0d075a1b6ae552d18798e9232122138837bcd01cb2798d9b804
-    alt: 快捷键帮助弹窗，逐条列出平移、缩放、框选、全选、复制粘贴、撤销重做、删除与取消的键位
-  - id: 13-project-card-hover-actions
-    file: 13-project-card-hover-actions.png
-    task: project-management
-    step: 首页悬停项目卡显示下载/重命名/删除操作与多选框
-    route: /canvas
+    verified_locator: 'phone.png 节点移动到组虚线框范围内'
+    visible_text: '生成蓝色手机'
+    alt: 图片节点被拖入组的虚线框范围内
+    sha256: d2fbb5e367ae2be4b1292028a7ee2ecab7c86348e6c8134f6ab2d0a8218712b2
+
+  - file: screenshots/05-upload-materials-video-audio.png
+    task_id: upload-materials
+    step: 注入真实视频（S83·镜2.mp4）与音频（voice_converted.wav）后，两类播放器节点与「替换音频」工具条
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '项目卡 TDCanvas 1 / 8 个节点 · 1 条连线 / 更新于 09/28 01:10 / 悬停按钮 下载 重命名 删除'
-    sha256: 3763c1e36b1dd393ecf3c8aa1846024beec60f6a854c16522f1efe467be80b59
-    alt: 首页项目卡悬停态，右上显示下载、重命名、删除三个操作按钮，卡片信息为 8 个节点 1 条连线
-  - id: 09-generate-images-panel
-    file: 09-generate-images-panel.png
-    task: generate-images
+    verified_locator: '视频节点 S83·镜2.mp4 原生播放器 0:00/0:04 / 音频节点 voice_converted.wav 播放器 0:00/0:12 / 工具条 替换音频'
+    visible_text: '替换音频'
+    alt: 画布上同时存在带原生播放器的视频节点与音频节点，音频节点处于选中态
+    sha256: d21fddc62b3fa666048bc27c217a7a2a23258708f325bbc3626c7757d0402d64
+
+  - file: screenshots/05-upload-materials-image.png
+    task_id: upload-materials
+    step: 注入真实图片（生成蓝色手机图片-2.png）后新建图片节点，悬浮工具条展开完整图片集
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '绿色 toast 已添加 1 个素材节点，可连接到生图或生视频节点 / 工具条 信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多'
+    visible_text: '已添加 1 个素材节点'
+    alt: 新上传的手机图片节点被选中，顶部悬浮工具条展开全部图片操作
+    sha256: a26af7050a5991e0681977b675bd7332130cd6907dfc781902cea2c266b3069f
+
+  - file: screenshots/06-image-operations-crop-dialog.png
+    task_id: image-operations
+    step: 悬浮工具条「裁剪」打开裁剪图片对话框（裁剪框 + 比例预设 + 重置/取消/确认裁剪）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '标题 裁剪图片 / 裁剪尺寸 1556 x 1556 比例 1:1 原图 2048 x 2048 / 按钮 重置 取消 确认裁剪'
+    visible_text: '确认裁剪'
+    alt: 裁剪图片对话框，图片上叠加 1:1 裁剪框，底部显示裁剪尺寸与比例预设
+    sha256: ca937d1099d887b7e72b2ea076c214d4b94572fac139451783551f7cca94977b
+
+  - file: screenshots/06-image-operations-crop-result.png
+    task_id: image-operations
+    step: 确认裁剪后右侧自动创建 Cropped Image 子节点并连线
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '子节点标题 Cropped Image / 原图与子节点之间的贝塞尔连线 / 下方参考图详情面板'
+    visible_text: 'Cropped Image'
+    alt: 裁剪完成后画布上原图右侧出现 Cropped Image 子节点，两者之间有连线
+    sha256: a1fb39345fb0df216e9df039a3f1ad98aa97140fb68f75ed4cd247ce5b010da4
+
+  - file: screenshots/07-connect-references-drop-menu.png
+    task_id: connect-references
+    step: 从视频节点输出口拖线到空白处松手，弹出「利用画布节点生成」上下文菜单
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '菜单标题 利用画布节点生成 / 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
+    visible_text: '利用画布节点生成'
+    alt: 拖线到空白处松手后弹出利用画布节点生成菜单，含文本生成、图片生成、视频生成、音频参考四项
+    sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
+
+  - file: screenshots/09-generate-images-create-menu.png
+    task_id: generate-images
+    step: 双击画布空白弹出「选择节点」菜单（注册表驱动）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '菜单标题 选择节点 / 逐项 文本 图片 视频 音频 组 ComfyUI 工作流 上传素材'
+    visible_text: '选择节点'
+    alt: 双击画布空白处后弹出选择节点菜单
+    sha256: 78802784f5abb53b23cd0e8acb5fe5323f3004cfa309c59893dcbfcbe6e3f72e
+
+  - file: screenshots/09-generate-images-panel.png
+    task_id: generate-images
     step: 新建空图片节点的生成面板（文生图模式、参数 1K/2K、模型 Seedream V5 Pro、参考素材区）
-    route: /canvas/:id
+    route: '/canvas/:id'
     viewport: 1280x720
-    theme: dark
     locale: zh-CN
     captured_at: '2026-09-27'
-    locator_evidence: '面板 文生图 自动识别 / 模式 文生图 输入 仅文本输入 参数 1K/2K / 模型下拉 Seedream V5 Pro / 描述框 描述你想生成或编辑的画面'
-    sha256: 78dfb8ae66bc667616b0d1d794e9b5477a021f13c474a713bebb776353ac0f8f
+    verified_locator: '面板 文生图 自动识别 / 模式 文生图 输入 仅文本输入 参数 1K/2K / 模型下拉 Seedream V5 Pro / 描述框 描述你想生成或编辑的画面'
+    visible_text: '描述你想生成或编辑的画面'
     alt: 空图片节点与下方展开的文生图生成面板，含参考素材区、描述输入框与 Seedream V5 Pro 模型选择
+    sha256: 78dfb8ae66bc667616b0d1d794e9b5477a021f13c474a713bebb776353ac0f8f
+
+  - file: screenshots/10-undo-persistence-clear-confirm.png
+    task_id: undo-persistence
+    step: 点击「清空画布」红色图标后的画布状态（确认弹窗未弹出，取证不完整）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '节点仍完整保留 / 清空画布图标红色待确认态'
+    visible_text: '清空画布'
+    alt: 点击清空画布图标后的画布状态，节点仍完整保留
+    sha256: 976ff304e252fa77657063b22a73126320fd71142f49e15f1987870471302316
+
+  - file: screenshots/10-undo-persistence-history-flyout.png
+    task_id: undo-persistence
+    step: 左侧 Dock「历史」flyout（撤销/重做按钮 + 画布更改会自动保存提示）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '历史 flyout 撤销 重做 / 画布更改会自动保存'
+    visible_text: '撤销'
+    alt: 历史 flyout 面板显示撤销重做按钮与画布更改会自动保存提示
+    sha256: f62d9b162a75202fd2488238e4f8f61f77fc25879ab7b60ac97610b70a6b1bdd
+
+  - file: screenshots/11-shortcuts-help-modal.png
+    task_id: shortcuts-help
+    step: 点击顶栏「快捷键」打开帮助弹窗（键位与官方文档逐字一致）
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '弹窗标题 快捷键 / 键位 拖动画布 滚轮 Ctrl/Cmd+拖动 Cmd+A C/V Z Shift+Z Y Delete Esc 等'
+    visible_text: '快捷键'
+    alt: 快捷键帮助弹窗，逐条列出平移缩放框选全选复制粘贴撤销重做删除与取消的键位
+    sha256: 9f7f29e3e551e0d075a1b6ae552d18798e9232122138837bcd01cb2798d9b804
+
+  - file: screenshots/13-project-card-hover-actions.png
+    task_id: project-management
+    step: 首页悬停项目卡显示下载/重命名/删除操作与多选框
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '项目卡 TDCanvas 1 / 8 个节点 · 1 条连线 / 更新于 09/28 01:10 / 悬停按钮 下载 重命名 删除'
+    visible_text: 'TDCanvas 1'
+    alt: 首页项目卡悬停态，右上显示下载重命名删除三个操作按钮
+    sha256: 3763c1e36b1dd393ecf3c8aa1846024beec60f6a854c16522f1efe467be80b59
+
+  - file: screenshots/13-project-management-home-with-card.png
+    task_id: project-management
+    step: 创建项目后回到首页，最近画布区出现项目卡，右上 showcase 同步
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    verified_locator: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线 / 删除全部'
+    visible_text: 'TDCanvas 1'
+    alt: 首页最近画布区显示 TDCanvas 1 项目卡与删除全部按钮
+    sha256: f2c835f65da48908c858f47679aac760767bc5bd4b15fecd1ecd148666ac7cb1

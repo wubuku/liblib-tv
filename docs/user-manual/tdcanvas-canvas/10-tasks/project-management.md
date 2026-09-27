@@ -17,6 +17,8 @@
 
 ![首页项目卡与悬停操作](../screenshots/13-project-card-hover-actions.png)
 
+![首页全景：项目卡 TDCanvas 1 与 1 个节点 0 条连线](../screenshots/02-navigate-canvas-zoom-in-wheel.png)
+
 ## 重命名
 
 两种方式：

@@ -33,6 +33,8 @@
 
 ![小地图点击后视口跳转](../screenshots/02-navigate-canvas-minimap-nav.png)
 
+![空白处拖拽平移视野](../screenshots/02-navigate-canvas-pan-minimap.png)
+
 ## 成功判据
 
 - 滚轮滚动时缩放百分比（左下角）实时变化，且画面围绕鼠标位置缩放；

@@ -14,6 +14,8 @@
 3. 按需调整：模型（默认按引用自动匹配，如 Seedream V5 Pro）、比例与分辨率（1K/2K）、数量。
 4. 点击发送按钮开始生成。
 
+![双击空白弹出的创建菜单](../screenshots/09-generate-images-create-menu.png)
+
 ![空图片节点与生成面板](../screenshots/09-generate-images-panel.png)
 
 ## 生成中与结果

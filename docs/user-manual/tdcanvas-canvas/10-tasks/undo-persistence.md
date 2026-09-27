@@ -13,6 +13,8 @@
 
 ![历史 flyout 与撤销](../screenshots/10-undo-persistence-history-flyout.png)
 
+![点击清空画布图标后的状态](../screenshots/10-undo-persistence-clear-confirm.png)
+
 实测行为：
 
 - 撤销/重做覆盖：节点与连线增删改、节点移动与缩放、文字编辑、背景模式与输入模式切换；

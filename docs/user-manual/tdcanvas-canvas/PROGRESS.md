@@ -87,6 +87,7 @@
 | Gate B 回走 + AUDIT.md | 未开始 |
 | final audit + 交付报告 | 未开始 |
 
+- **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
 ## 收尾留档 — 2026-09-27（用户指示收尾，循环暂停）
 
 1. **已完成**：工作文档五件套 + AUDIT 骨架；quickstart + 3 个旗舰任务成稿（create-canvas-project / create-nodes / edit-nodes，均运行时走查）；generate-images 占位（付费边界，描述型）；6 个任务占位页；截图 8 张入 manifest（sha256）；多标签覆盖真实缺陷已入 AUDIT 与手册排障。
