@@ -1,5 +1,10 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **分组右键菜单 + 重命名已对齐 (2026-09-28, Batch 262)**：源站分组右键 =
+> 复制⌘C/创建副本⌘D/删除⌫（点击效果未采样→mock）；双击标签内联重命名
+> （实测 组1→探测组A）。克隆实现 renameGroup + 内联 input + 分组 contextmenu；
+> verifier batch251 扩至 55/55 PASS。
+
 > **批量连线端口已对齐 (2026-09-28, Batch 261)**：`.canvas-batch-selection-chrome`
 > (批量选区层, 同矩形/淡边框/pointer-events:none) 右缘带 24px 圆形「批量连线」
 > 端口 (right:-12 垂直居中)。点击进连线态但提交语义未采样到（未产生边）——克隆
