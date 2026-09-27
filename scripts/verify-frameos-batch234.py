@@ -21,6 +21,8 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
+from frameos_verify_common import marquee_select
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -57,38 +59,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
     page.wait_for_timeout(1500)
 
-    # 框选 image-1 + image-2 (同 batch229/232 几何)
-    boxes = page.evaluate(
-        """(() => {
-          const a = document.querySelector('.react-flow__node[data-id=\\'image-1\\']')?.getBoundingClientRect();
-          const b = document.querySelector('.react-flow__node[data-id=\\'image-2\\']')?.getBoundingClientRect();
-          const targets = [a, b].filter(Boolean);
-          if (targets.length < 2) {
-            const all = [...document.querySelectorAll('.react-flow__node')].map((n) => n.getBoundingClientRect()).slice(0, 2);
-            targets.push(...all);
-          }
-          const minX = Math.min(...targets.map((r) => r.left));
-          const minY = Math.min(...targets.map((r) => r.top));
-          const maxX = Math.max(...targets.map((r) => r.right));
-          const maxY = Math.max(...targets.map((r) => r.bottom));
-          let start = null;
-          for (let x = minX - 20; x <= maxX; x += 12) {
-            const y = minY - 25;
-            const el = document.elementFromPoint(x, y);
-            if (el?.closest('.react-flow__pane') && !el?.closest('.react-flow__node') && !el?.closest('.resize-handle') && !el?.closest('[class*=minimap]') && !el?.closest('button')) {
-              start = { x, y };
-              break;
-            }
-          }
-          if (!start) start = { x: 150, y: 400 };
-          return { start, end: { x: maxX + 15, y: maxY + 15 } };
-        })()"""
-    )
-    page.mouse.move(boxes["start"]["x"], boxes["start"]["y"])
-    page.mouse.down()
-    page.mouse.move(boxes["end"]["x"], boxes["end"]["y"], steps=8)
-    page.mouse.up()
-    page.wait_for_timeout(500)
+    # 框选 image-1 + image-2 (同 batch229/232 几何; Batch 253 起用共享辅助)
+    boxes, _ = marquee_select(page, ["image-1", "image-2"])
     selected = page.evaluate(
         "document.querySelectorAll('.react-flow__node.selected').length"
     )
