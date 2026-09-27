@@ -296,6 +296,8 @@ const initialEdges: Edge[] = [
 
 // Batch 223: addNode 生成的 id 计数器 (防同毫秒多文件上传 id 冲突)
 let addNodeIdCounter = 0;
+// Batch 272: createGroup 同理 — 同毫秒连建两组会产生重复 id (React key 冲突)
+let groupIdCounter = 0;
 
 // 几个 mock canvas 用于 breadcrumb 切换演示
 const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
@@ -611,7 +613,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     const maxY = Math.max(
       ...members.map((n) => n.position.y + ((n.style?.height as number) ?? 200))
     );
-    const id = `group-${Date.now()}`;
+    const id = `group-${Date.now()}-${++groupIdCounter}`;
     const group: FrameosGroup = {
       id,
       name: `组${get().groups.length + 1}`,

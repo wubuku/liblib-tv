@@ -399,7 +399,58 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check("ungroup:members-keep-positions", kept and abs(kept["x"] - member_before_ungroup["x"]) < 0.01 and abs(kept["y"] - member_before_ungroup["y"]) < 0.01)
 
-    check("errors:empty", not errors)
+    # ── 8. 双分组场景 (Batch 272 加固: 编号 组1/组2、独立选中、各自解组) ──
+    page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const idsA = s.nodes.slice(0, 2).map((n) => n.id);
+          const idsB = s.nodes.slice(2, 4).map((n) => n.id);
+          s.createGroup(idsA);
+          s.createGroup(idsB);
+        })()"""
+    )
+    page.wait_for_timeout(500)
+    two = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const els = [...document.querySelectorAll('[data-frameos-group]')];
+          return {
+            groupCount: s.groups.length,
+            names: s.groups.map((g) => g.name),
+            elCount: els.length,
+            selectedId: s.selectedGroupId,
+          };
+        })()"""
+    )
+    check("two:groups-created", two and two["groupCount"] == 2 and two["elCount"] == 2)
+    check("two:numbered-组1-组2", two and two["names"][0] == "组1" and two["names"][1] == "组2")
+    # 切换选中到第一组
+    page.evaluate(
+        """(() => { const s = window.__frameos_store.getState(); s.selectGroup(s.groups[0].id); })()"""
+    )
+    page.wait_for_timeout(300)
+    switched = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          return { selected: s.selectedGroupId === s.groups[0].id, selectedCls: document.querySelector('[data-frameos-group]')?.className.includes('is-selected') };
+        })()"""
+    )
+    check("two:select-switches", switched and switched["selected"] and switched["selectedCls"])
+    page.evaluate(
+        """(() => { const s = window.__frameos_store.getState(); s.groups.forEach((g) => s.ungroup(g.id)); })()"""
+    )
+    page.wait_for_timeout(400)
+    cleared = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          return { groups: s.groups.length, els: document.querySelectorAll('[data-frameos-group]').length };
+        })()"""
+    )
+    check("two:all-ungrouped", cleared and cleared["groups"] == 0 and cleared["els"] == 0)
+
+    if errors:
+        raise AssertionError(f"batch251 console/page errors: {errors[:3]}")
+    result["checks"].append("errors:empty")
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
     return result
 

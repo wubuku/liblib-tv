@@ -58,6 +58,10 @@
         "ungroup:element-gone",
         "ungroup:toolbar-hides",
         "ungroup:members-keep-positions",
+        "two:groups-created",
+        "two:numbered-组1-组2",
+        "two:select-switches",
+        "two:all-ungrouped",
         "errors:empty"
       ],
       "diagnostics": {
