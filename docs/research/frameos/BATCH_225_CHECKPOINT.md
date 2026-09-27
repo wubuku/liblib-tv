@@ -1,5 +1,14 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **状态更新 (2026-09-27 晚, Batch 252 收尾)**：宫格/垂直排列补采完成
+> （`docs/research/liblib-frameos-batch252-2026-09-27/ARRANGE_OBSERVATIONS.md`）：
+> 宫格=按原Y排序 ceil(√n) 列行优先 2×2 确认（与克隆一致）；**垂直=同样按 Y 排序**
+> （推翻克隆按 X 推断，已改 `arrangeGroup`）；间距 40/对齐盒+28 规则全面确认。
+> ⚠️ 源站同步 bug：对同一分组连续两次排列 ops（<10s）会**永久丢节点**（服务端不再
+> 返回，撤销不可用）；已按记录修复测试画布（补建两节点+拖回基准 ≤9px）。后续采样
+> 禁止对同一分组连续快速排列。素材库「添加参考素材」确认为新建内容节点（iframe
+> 弹层需真实坐标点击，资产在「画布素材」目录）。verifier batch251 扩至 44/44 PASS。
+
 > **状态更新 (2026-09-27, Batch 251 收尾)**：**成组阻塞项已解除**——合成 pointer
 > 事件恢复框选后 `el.click()` 采样到完整成组行为（详见
 > `docs/research/liblib-frameos-batch251-2026-09-27/GROUP_OBSERVATIONS.md`）：
@@ -13,19 +22,12 @@
 > （解组+逐节点拖回，≤3px，刷新确认持久化）。
 > **历史状态 (2026-09-26 深夜, Batch 250 收尾)**：226-249 已全部完成推送。
 
-## Batch 252 进行中（下一棒从这里接手）
+## Batch 252 已完成（本段为计划存档）
 
-**主题：源站「宫格/垂直排列」参数补采**（Batch 251 只采到水平排列）。计划：
-在源站用干净画布（画布切换弹层 `.canvas-switcher-pop`，经「画布 1」面包屑打开，
-显示节点数/重命名/删除）建草稿节点 → 成组 → 点 排列方式 → 采 宫格/垂直 的
-列数/间距/对齐规则 → 校正 clone `arrangeGroup`（当前垂直=按 X 排序、宫格=ceil(√n)
-行优先均为推断值，见 frameosStore.ts 注释）→ 更新 verifier。
-
-已探测：`.canvas-switcher-pop` 能打开（首次真实点击成功），但合成 click 对该
-触发器 toggle 不稳定（连续调用时弹层时开时关）；未新建画布、未改源站数据。
-建议下一棒用 `tab.cua.click` 点面包屑 (287,83)（1200px 视口坐标）后 800ms 再读
-`.canvas-switcher-pop`，找「新建画布」入口；或直接在画布 1 采样后按 Batch 251 的
-「解组+拖回原位」手法复原。
+**主题：源站「宫格/垂直排列」参数补采**——已在同日完成（见顶部状态更新与
+`docs/research/liblib-frameos-batch252-2026-09-27/ARRANGE_OBSERVATIONS.md`）。
+采样在画布 1 直接进行（Batch 251 的解组+拖回复原手法），未新建画布；
+画布切换弹层 toggle 不稳定的问题因此绕过。
 
 ## Batch 253 候选
 

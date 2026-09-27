@@ -263,7 +263,74 @@ def run_desktop(page: Page) -> dict[str, Any]:
         and abs((post["my"] - pre["my"]) - dy) < 0.01,
     )
 
+    # ── 6b. 宫格排列 (Batch 252 采样对齐: 按原 Y 排序, ceil(√n) 列行优先, 间距 40) ──
+    gt_group.locator("button[aria-label='排列方式']").click()
+    page.wait_for_timeout(300)
+    page.locator(".frameos-group-arrange-pop").get_by_text("宫格排列", exact=True).click()
+    page.wait_for_timeout(500)
+    grid = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const g = s.groups[0];
+          const members = s.nodes.filter((n) => g.memberIds.includes(n.id));
+          const rows = [...new Set(members.map((n) => n.position.y))].sort((a, b) => a - b);
+          const row1 = members.filter((n) => n.position.y === rows[0]);
+          const row2 = members.filter((n) => n.position.y === rows[1]);
+          const gap = (a, b) => b - a;
+          const xs1 = row1.map((n) => n.position.x).sort((a, b) => a - b);
+          const w1 = Math.max(...row1.map((n) => n.style.width || 300));
+          return {
+            rowCount: rows.length,
+            row1Count: row1.length,
+            row2Count: row2.length,
+            colGap: xs1.length > 1 ? xs1[1] - xs1[0] - (row1.find((n) => n.position.x === xs1[0]).style.width || 300) : null,
+            rowPitch: rows.length > 1 ? rows[1] - rows[0] - w1 : null,
+            boxW: g.w,
+          };
+        })()"""
+    )
+    check("arrange2:grid-two-rows", grid and grid["rowCount"] == 2)
+    check("arrange2:grid-row-counts", grid and grid["row1Count"] == 2 and grid["row2Count"] == 1)
+    check("arrange2:grid-col-gap-40", grid and grid["colGap"] is not None and abs(grid["colGap"] - 40) < 0.01)
+    check("arrange2:grid-row-pitch-40", grid and grid["rowPitch"] is not None and abs(grid["rowPitch"] - 40) < 0.01)
+
+    # ── 6c. 垂直排列 (Batch 252 源站实测: 同样按原 Y 排序, 单列, 间距 40) ──
+    gt_group.locator("button[aria-label='排列方式']").click()
+    page.wait_for_timeout(300)
+    page.locator(".frameos-group-arrange-pop").get_by_text("垂直排列", exact=True).click()
+    page.wait_for_timeout(500)
+    vert = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const g = s.groups[0];
+          const members = s.nodes.filter((n) => g.memberIds.includes(n.id));
+          const xs = [...new Set(members.map((n) => n.position.x))];
+          const ys = members.map((n) => n.position.y).sort((a, b) => a - b);
+          const gaps = ys.slice(1).map((y, i) => y - ys[i] - (members.find((n) => n.position.y === ys[i]).style.height || 200));
+          return {
+            colCount: xs.length,
+            boxW: g.w,
+            maxW: Math.max(...members.map((n) => n.style.width || 300)),
+            gaps,
+          };
+        })()"""
+    )
+    check("arrange2:vertical-single-column", vert and vert["colCount"] == 1)
+    check(
+        "arrange2:vertical-gap-40",
+        vert and all(abs(gp - 40) < 0.01 for gp in vert["gaps"]) and len(vert["gaps"]) >= 2,
+    )
+    check("arrange2:vertical-box-w", vert and abs(vert["boxW"] - (vert["maxW"] + 56)) < 1)
+
     # ── 7. 解组 ──
+    member_before_ungroup = page.evaluate(
+        """(() => {
+          const s = window.__frameos_store.getState();
+          const m = s.nodes.find((n) => n.id === %s);
+          return { x: m.position.x, y: m.position.y };
+        })()"""
+        % json.dumps(pre["mid"])
+    )
     gt_group.get_by_text("解组", exact=True).click()
     page.wait_for_timeout(400)
     ungrouped = page.evaluate(
@@ -284,7 +351,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "window.__frameos_store.getState().nodes.find((n) => n.id === %s).position"
         % json.dumps(pre["mid"])
     )
-    check("ungroup:members-keep-positions", kept and abs(kept["x"] - (pre["mx"] + dx)) < 0.01)
+    check("ungroup:members-keep-positions", kept and abs(kept["x"] - member_before_ungroup["x"]) < 0.01 and abs(kept["y"] - member_before_ungroup["y"]) < 0.01)
 
     check("errors:empty", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

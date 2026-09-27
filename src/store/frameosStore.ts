@@ -628,9 +628,9 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       groups: state.groups.map((g) => (g.id === id ? { ...g, color } : g)),
     })),
 
-  // 排列: 水平 = 按原 Y 排序一行排开, 间距 40, 内容对齐分组左上 + 28 (源站实测);
-  // 垂直按 X 对称推断; 宫格列数 ceil(√n) 行优先 (克隆决策, 源站参数未采样)。
-  // 分组盒重算 = 新内容 bbox + 28。
+  // 排列: 均按原 Y 排序 (Batch 252 源站实测: 垂直排列同样按 Y 而非 X)。
+  // 水平 = 一行排开; 垂直 = 单列; 宫格 = ceil(√n) 列行优先 (源站 4 成员采样 2×2 确认)。
+  // 间距 40 (行距按行内最高成员), 内容对齐分组左上 + 28, 分组盒重算 = 新内容 bbox + 28。
   arrangeGroup: (id, mode) => {
     const group = get().groups.find((g) => g.id === id);
     if (!group) return;
@@ -640,12 +640,10 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       w: ((n.style?.width as number | undefined) ?? 300),
       h: ((n.style?.height as number | undefined) ?? 200),
     });
-    const sorted = [...members].sort((a, b) => {
-      if (mode === "vertical") return a.position.x - b.position.x;
-      return (
+    const sorted = [...members].sort(
+      (a, b) =>
         a.position.y - b.position.y || a.position.x - b.position.x
-      );
-    });
+    );
     const cols =
       mode === "horizontal"
         ? sorted.length
