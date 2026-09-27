@@ -1,0 +1,23 @@
+{
+  "batch": 543,
+  "title": "Director viewport reset-view button",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 18-director-console-opened.png",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "gizmo:visible",
+        "reset:visible",
+        "reset:label",
+        "reset:below-gizmo",
+        "reset:desk-open",
+        "reset:gizmo-still",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

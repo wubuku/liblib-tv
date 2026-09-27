@@ -362,10 +362,12 @@ function getDirectorViewportGizmoButtonStyle(
 function DirectorViewportGizmo({
   disabled,
   onAxisSelect,
+  onResetView,
   snapshot,
 }: {
   disabled: boolean;
   onAxisSelect: (axis: DirectorViewportAxisId) => void;
+  onResetView: () => void;
   snapshot: DirectorViewportSnapshot;
 }) {
   const { eventSourceRef, setEventSource } = useDirectorCanvasEventSource();
@@ -378,6 +380,15 @@ function DirectorViewportGizmo({
       data-director-viewport-gizmo-target={snapshot.target.join(",")}
       className="absolute right-5 top-5 z-20 h-20 w-20"
     >
+      {/* Batch 543: 源站截图 18——gizmo 正下方「重置视角」按钮，恢复导演台默认机位。 */}
+      <button
+        type="button"
+        data-director-reset-view
+        onClick={onResetView}
+        className="absolute right-0 top-[calc(100%+8px)] whitespace-nowrap rounded border border-white/10 bg-[#262626]/90 px-2 py-1 text-[11px] text-[#c9c9c9] hover:text-white"
+      >
+        重置视角
+      </button>
       <div
         ref={setEventSource}
         className="pointer-events-none absolute inset-0 drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]"
@@ -2352,6 +2363,11 @@ export function DirectorViewport({
   const viewportSnapshotRef = useRef(viewportSnapshot);
   const [directorCameraCommand, setDirectorCameraCommand] =
     useState<DirectorViewportSnapshot | null>(null);
+  // Batch 543: 源站截图 18——重置视角恢复导演台默认机位（新对象触发
+  // CameraController 重新应用快照）。
+  const handleResetDirectorView = () => {
+    setDirectorCameraCommand({ ...DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT });
+  };
   const [captureRequest, setCaptureRequest] =
     useState<DirectorAsyncOperationDescriptorV1 | null>(null);
   const captureRequestSequence = useRef(0);
@@ -2799,6 +2815,7 @@ export function DirectorViewport({
         <DirectorViewportGizmo
           disabled={viewportGizmoDisabled}
           onAxisSelect={handleViewportAxisSelect}
+          onResetView={handleResetDirectorView}
           snapshot={viewportSnapshot}
         />
       ) : null}
