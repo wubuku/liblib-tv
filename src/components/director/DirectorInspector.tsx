@@ -1488,6 +1488,7 @@ export function DirectorInspector({
   const [poseObjectId, setPoseObjectId] = useState<string | null>(null);
   const sceneNameInputRef = useRef<HTMLInputElement>(null);
   const objectNameInputRef = useRef<HTMLInputElement>(null);
+  const selectShot = useDirectorStore((state) => state.selectShot);
   const [cameraTab, setCameraTab] = useState<"properties" | "captures">(
     "properties",
   );
@@ -1663,6 +1664,41 @@ export function DirectorInspector({
                 className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
               />
             </label>
+
+            {selected.kind === "camera" ? (
+              <label className="mt-3 block">
+                <span className="mb-1.5 block text-[11px] text-[#777]">切换机位</span>
+                <select
+                  data-director-camera-switch
+                  value={
+                    shots.find((shot) => shot.cameraId === selected.id)?.id ?? ""
+                  }
+                  onChange={(event) => {
+                    if (event.currentTarget.value) {
+                      selectShot(event.currentTarget.value);
+                    }
+                  }}
+                  className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                >
+                  {objects
+                    .filter((object) => object.kind === "camera")
+                    .map((camera) => {
+                      const shot = shots.find(
+                        (candidate) => candidate.cameraId === camera.id,
+                      );
+                      return (
+                        <option
+                          key={camera.id}
+                          value={shot?.id ?? ""}
+                          disabled={!shot}
+                        >
+                          {camera.name}
+                        </option>
+                      );
+                    })}
+                </select>
+              </label>
+            ) : null}
 
             <div className="flex items-center gap-2">
               <button
