@@ -1,5 +1,8 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **全量回归二 (2026-09-28, Batch 264)**：`run-frameos-verifiers.sh` 68/68 PASS
+> （套件含新增 batch257 ⌥拖拽复制；batch169 重试后通过——既知瞬态）。
+
 > **分组右键菜单 + 重命名已对齐 (2026-09-28, Batch 262)**：源站分组右键 =
 > 复制⌘C/创建副本⌘D/删除⌫（点击效果未采样→mock）；双击标签内联重命名
 > （实测 组1→探测组A）。克隆实现 renameGroup + 内联 input + 分组 contextmenu；
