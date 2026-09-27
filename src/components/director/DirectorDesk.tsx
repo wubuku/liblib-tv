@@ -31,6 +31,7 @@ import {
   useDirectorFocusContainment,
 } from "@/components/director/useDirectorFocusContainment";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
+import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromptBar";
 import {
   collectDirectorCanvasMediaInputs,
   type DirectorCanvasMediaInputV1,
@@ -1103,6 +1104,7 @@ export default function DirectorDesk({
               onVideoExportCompleted={completeVideoExport}
               onVideoExportFailed={failVideoExport}
             />
+            <DirectorScenePromptBar />
           </main>
 
           <aside

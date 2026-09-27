@@ -1,0 +1,24 @@
+{
+  "batch": 535,
+  "title": "Director desk scene prompt bar",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 18-director-console-opened.png",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "bar:visible",
+        "bar:placeholder",
+        "mode:active:cursor",
+        "mode:active:camera",
+        "mode:active:hand",
+        "submit:local-ack",
+        "submit:draft-kept",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
