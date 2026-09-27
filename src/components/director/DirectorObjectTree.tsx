@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Box,
   Camera,
@@ -187,7 +187,39 @@ export function DirectorObjectTree() {
   const ungroupSelectedCharacters = useDirectorStore(
     (state) => state.ungroupSelectedCharacters,
   );
+  const pasteDirectorClipboard = useDirectorStore(
+    (state) => state.pasteDirectorClipboard,
+  );
   const [query, setQuery] = useState("");
+  // Batch 544: 源站截图 47——场景树条目右键菜单：打组/显示隐藏/锁定解锁/
+  // 创建副本/删除；动作全部接既有 store 同源实现。
+  const [contextMenu, setContextMenu] = useState<{
+    objectId: string;
+    x: number;
+    y: number;
+  } | null>(null);
+  const contextMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!contextMenu) return;
+    const close = (event: MouseEvent) => {
+      if (contextMenuRef.current?.contains(event.target as Node)) return;
+      setContextMenu(null);
+    };
+    const esc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setContextMenu(null);
+    };
+    window.addEventListener("mousedown", close);
+    window.addEventListener("keydown", esc);
+    return () => {
+      window.removeEventListener("mousedown", close);
+      window.removeEventListener("keydown", esc);
+    };
+  }, [contextMenu]);
+
+  const contextMenuObject = contextMenu
+    ? objects.find((object) => object.id === contextMenu.objectId)
+    : null;
 
   const groupedCharacterIds = useMemo(
     () => new Set(groups.flatMap((group) => group.characterIds)),
@@ -413,6 +445,16 @@ export function DirectorObjectTree() {
                           selectObject(object.id);
                         }
                       }}
+                      onContextMenu={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        selectObject(object.id);
+                        setContextMenu({
+                          objectId: object.id,
+                          x: event.clientX,
+                          y: event.clientY,
+                        });
+                      }}
                       className={cn(
                         "group flex h-8 cursor-default items-center gap-2 border-l-2 px-2 text-xs",
                         selected
@@ -480,6 +522,79 @@ export function DirectorObjectTree() {
           ))
         )}
       </div>
+
+      {contextMenu && contextMenuObject && (
+        <div
+          ref={contextMenuRef}
+          data-director-tree-context-menu
+          style={{ left: contextMenu.x, top: contextMenu.y }}
+          className="fixed z-[120] w-[128px] rounded-lg border border-white/10 bg-[#242424] py-1 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+        >
+          {(
+            [
+              {
+                id: "group",
+                label: "打组",
+                icon: Users,
+                run: () => groupSelectedCharacters(),
+              },
+              {
+                id: "visibility",
+                label: contextMenuObject.visible ? "显示/隐藏" : "显示/隐藏",
+                icon: contextMenuObject.visible ? Eye : EyeOff,
+                run: () =>
+                  updateObject(contextMenuObject.id, {
+                    visible: !contextMenuObject.visible,
+                  }),
+              },
+              {
+                id: "lock",
+                label: contextMenuObject.locked ? "锁定/解锁" : "锁定/解锁",
+                icon: contextMenuObject.locked ? Lock : Unlock,
+                run: () => toggleObjectLocked(contextMenuObject.id),
+              },
+              {
+                id: "duplicate",
+                label: "创建副本",
+                icon: Copy,
+                run: () => {
+                  copyDirectorSelection();
+                  pasteDirectorClipboard();
+                },
+              },
+              {
+                id: "delete",
+                label: "删除",
+                icon: Trash2,
+                run: () =>
+                  deleteDirectorEntity({
+                    kind: "DELETE_OBJECT",
+                    objectId: contextMenuObject.id,
+                  }),
+              },
+            ] as Array<{
+              id: string;
+              label: string;
+              icon: typeof Users;
+              run: () => unknown;
+            }>
+          ).map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              data-director-tree-context-action={item.id}
+              onClick={() => {
+                item.run();
+                setContextMenu(null);
+              }}
+              className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
+            >
+              <item.icon size={13} className="shrink-0 text-[#9a9a9a]" />
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

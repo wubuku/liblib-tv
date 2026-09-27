@@ -1,0 +1,28 @@
+{
+  "batch": 544,
+  "title": "Scene-tree entry context menu",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 47-director-rightclick-tree (CDP 2026-09-28)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "row:present",
+        "menu:opens",
+        "menu:item:group",
+        "menu:item:visibility",
+        "menu:item:lock",
+        "menu:item:duplicate",
+        "menu:item:delete",
+        "visibility:toggles",
+        "lock:toggles",
+        "duplicate:objects-increase",
+        "escape:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
