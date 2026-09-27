@@ -25,6 +25,8 @@
 | `FrameosConfirmDialog` | `FrameosConfirmDialog.tsx` | 删除节点/边的确认弹窗 | `pendingConfirm`, `requestConfirm()` |
 | `FrameosGenerationOverlay` | `FrameosGenerationOverlay.tsx` | 全屏生成中遮罩 | — |
 | `FrameosAlignmentGuides` | `FrameosAlignmentGuides.tsx` | 节点拖动时的对齐辅助线 | — |
+| `FrameosGroupCanvas` | `FrameosGroupCanvas.tsx` | 画布分组覆盖层（portal 进 viewport 首子层，flow 坐标，节点后方）：盒/标签/角点手柄/批量连线端口；拖拽带动成员 | `groups`, `selectedGroupId`, `selectGroup`, `moveGroup`, `renameGroup` (useViewport) |
+| `FrameosGroupToolbar` | `FrameosGroupToolbar.tsx` | 双模式成组工具条：多选 [成组\|批量下载] / 分组选中 [切换背景色\|排列方式\|整组执行\|存为模板\|解组\|批量下载] + 两个弹层 | `groups`, `selectedGroupId`, `createGroup`, `ungroup`, `setGroupColor`, `arrangeGroup` (useViewport) |
 | `icons` | `icons.tsx` | 18+ 内联 SVG 图标 | — |
 
 ## 节点组件

@@ -74,6 +74,17 @@ const nodeY = node.position.y * zoom + panY;
 
 ---
 
+### 2.7 分组（Batch 251-262）— 覆盖层而非父容器
+
+分组**不重挂载节点**（源站实测：成组后节点仍是 `.vue-flow__nodes` 的兄弟节点）。
+克隆实现为独立覆盖层 `FrameosGroupCanvas`：portal 进 `.react-flow__viewport` 的
+首子层（渲染在节点后方），以 **flow 坐标**绝对定位（继承视口 transform，无需手动
+换算 pan/zoom）。分组盒 = 成员包围盒 + 28px（源站实测值）。拖拽分组 =
+`moveGroup(id, dx, dy)` 同时平移分组矩形与全部成员；排列 = `arrangeGroup`
+（三种模式均按原 Y 排序，间距 40，盒重算）。工具条 `FrameosGroupToolbar` 双模式：
+多选态（≥2 选中）出 [成组|批量下载]，分组态出六键展开条，两态都锚定包围盒上方
+15px、水平居中。分组不在撤销栈内（past/future 只含 nodes/edges）——已知简化。
+
 ## 3. 状态机（`frameosStore`）
 
 | 字段 | 类型 | 说明 |
