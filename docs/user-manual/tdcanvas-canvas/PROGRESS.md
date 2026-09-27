@@ -124,4 +124,8 @@
 3. **恢复入口**：按 §1「下一步」顺序执行；每 batch 遵循 规划→实施→验收→commit→push 循环；素材注入方法见 TEST_MEDIA_ASSETS.md。
 4. **红线不变**：不触发真实生成、不配置 API Key、不启动 ComfyUI、不用 stash/丢弃他人工作区修改。
 5. **待用户输入**：任务优先级重排（当前 Agent 自行定级）；多标签覆盖缺陷复现素材如需入排障章另行授权。
+- **Batch M18（2026-09-28，维护轮）**：站点预览实测（http.server 4173 双页 curl 200）；**skill 更新落档**——.agents/skills/web-studio-user-manual/SKILL.md 新增「§9 手册网站构建与发布（VitePress）」：必备四件表、srcExclude/截图引用/脱敏三要点、验收标准、已验证实例指针；三门禁复跑全绿。
+
+
+
 - 2026-09-28 M16：例行维护轮——三门禁复跑全绿（自检五项/final audit/verify-docs 1115 文件），无新增增量，无包内改动；待决两项 ①③ 保持标注。

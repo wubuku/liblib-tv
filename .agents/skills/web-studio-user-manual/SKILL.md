@@ -187,3 +187,33 @@ python3 "<skill-dir>/scripts/audit_manual.py" docs/user-manual/frameos-canvas --
 - 最终报告列出目标版本/URL、角色、深度、覆盖率、未覆盖项和已知限制。
 
 除非用户另行要求，不因生成手册而修改产品代码、提交 Git、合并或 push。
+
+## 9. 手册网站构建与发布（VitePress，可选增量）
+
+手册的交付主体是本目录 Markdown 文档集；当用户需要"可浏览的网站"时，按以下模式将其构建为 VitePress 静态站点。**已验证的完整实例**：`docs/user-manual/tdcanvas-canvas/`（config / build-site.sh / PUBLISH.md 可直接复制改名复用）。
+
+### 必备四件（复制改名即用）
+
+| 文件 | 职责 |
+|---|---|
+| `build-site.sh` | 六步一键构建：环境检查→依赖安装→内容清单→清理旧产物→`npx vitepress build`→产物校验（页面数/截图数比对/总体积/`.md` 残留链接检查），任一步失败立即退出 |
+| `.vitepress/config.mjs` | zh-CN、本地中文搜索（`⌘K`，无外部服务）、侧边栏分组、`rewrites: README.md → index.md`（README 作首页）、`srcExclude` 排除内部账本 |
+| `package.json` | 仅 `vitepress` 一个 devDependency |
+| `PUBLISH.md` | 构建/预览/发布（rsync 到任意静态服务器）、子路径 `base` 改法、运维 FAQ、VitePress vs MkDocs/mdBook/Docsify/Docusaurus 选型对比 |
+
+### 关键配置要点
+
+- **srcExclude 必须排除内部账本**：AUDIT.md、PROGRESS.md、task-inventory.yml、TEST_MEDIA_ASSETS.md、SOURCE_OBSERVATIONS.md 等一律不进 dist；
+- **每个 manifest 截图必须被至少一个 md 引用**，否则构建会静默丢弃（build 脚本第 6 步有计数比对告警）；
+- **发布截图脱敏**：手册截图常含测试素材（真人脸/AI 生成图），对外发布前审查 dist 内图片；
+- **子路径部署**：改 `base: '/子路径/'` 后重新构建；
+- 本地预览：`./build-site.sh --preview`（:4173）。
+
+### 验收
+
+- `./build-site.sh` 六步全绿、dist 页面数与截图数与源一致、无 `.md` 残留链接；
+- 构建产物（dist/cache/node_modules）不入库，目录内放 `.gitignore` 忽略。
+
+### 已验证实例
+
+- `docs/user-manual/tdcanvas-canvas/`：TDCanvas 用户手册 19 页 / 26 图 / 14M dist，构建 1.55s（2026-09-28）。
