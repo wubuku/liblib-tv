@@ -55,7 +55,8 @@ tasks:
       - 已打开一个画布项目
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
+    review_note: 2026-09-27 滚轮缩放 54→85 鼠标锚、空白拖拽平移、小地图开合与点击导航全部运行时取证；重置视图双行为（有选中=聚焦/无选中=fit）已记录。并行会话遗留的同名 WIP 截图实为首页截图（文件名错置），未收编。
     manual_pages:
       - 10-tasks/navigate-canvas.md
   - id: create-nodes
@@ -126,7 +127,8 @@ tasks:
       - 画布中已有两个节点
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
+    review_note: 2026-09-27 拖线到空白弹「利用画布节点生成」上下文菜单（按视频上游给出 文本/图片/视频生成+音频参考 四项）运行时取证；连线建立/删除/撤销此前已证。@mention chip 留 Gate B。
     manual_pages:
       - 10-tasks/connect-references.md
   - id: generate-images
@@ -177,7 +179,8 @@ tasks:
       - 画布中已有多个节点
     routes:
       - '/canvas/:id'
-    status: planned
+    status: drafted
+    review_note: 2026-09-27 组拖入（成员计数徽标）、外观面板四组设置运行时取证；对齐辅助线与网格吸附细节留 Gate B。
     manual_pages:
       - 10-tasks/organize-canvas.md
   - id: undo-persistence

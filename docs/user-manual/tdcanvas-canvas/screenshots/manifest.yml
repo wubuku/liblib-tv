@@ -137,3 +137,75 @@ screenshots:
     locator_evidence: '子节点标题 Cropped Image / 原图与子节点之间的贝塞尔连线 / 下方参考图详情面板'
     sha256: a1fb39345fb0df216e9df039a3f1ad98aa97140fb68f75ed4cd247ce5b010da4
     alt: 裁剪完成后画布上原图右侧出现 Cropped Image 子节点，两者之间有连线
+  - id: 02-navigate-canvas-wheel-zoom
+    file: 02-navigate-canvas-wheel-zoom.png
+    task: navigate-canvas
+    step: 画布上滚动滚轮缩放（54%→85%，以鼠标位置为锚）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '缩放滑杆 85% / 图片节点随滚轮放大'
+    sha256: 5beba521e424619b3a87933edd30fbd3b2c8d0b92d6c5ec6aa3340a22bfc1fef
+    alt: 滚轮缩放后画布放大到 85%，图片节点围绕鼠标位置放大
+  - id: 02-navigate-canvas-minimap-open
+    file: 02-navigate-canvas-minimap-open.png
+    task: navigate-canvas
+    step: 点击「打开小地图」后左下角出现小地图面板（节点色块 + 白色视口框）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '小地图面板 240x160 / 按钮状态 关闭小地图'
+    sha256: 65088ff22f181428b5b2fceab71d2b8785c8c00175e3a70468c7448fd75327ab
+    alt: 左下角打开的小地图面板，显示按类型着色的节点色块与白色视口框
+  - id: 02-navigate-canvas-minimap-nav
+    file: 02-navigate-canvas-minimap-nav.png
+    task: navigate-canvas
+    step: 点击小地图右上区域后主画布视口跳转（Cropped Image 节点进入视野）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: 'Cropped Image 标题进入视野 / 小地图白色视口框移动到点击区域'
+    sha256: dc0b1dc1358c9b31be577514d803fbf04bbf6f030d317ac1b05a8d2946048c0e
+    alt: 点击小地图右上方后，主画布视野跳转到 Cropped Image 节点区域
+  - id: 07-connect-references-drop-menu
+    file: 07-connect-references-drop-menu.png
+    task: connect-references
+    step: 从视频节点输出口拖线到空白处松手，弹出「利用画布节点生成」上下文菜单
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '菜单标题 利用画布节点生成 / 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
+    sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
+    alt: 拖线到空白处松手后，右下角弹出「利用画布节点生成」菜单，含文本生成、图片生成、视频生成、音频参考四项
+  - id: 04-organize-canvas-group-member
+    file: 04-organize-canvas-group-member.png
+    task: organize-canvas
+    step: 拖动图片节点进入组虚线框范围
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: 'phone.png 节点移动到组虚线框范围内'
+    sha256: d2fbb5e367ae2be4b1292028a7ee2ecab7c86348e6c8134f6ab2d0a8218712b2
+    alt: 图片节点被拖入组的虚线框范围内
+  - id: 04-organize-canvas-appearance
+    file: 04-organize-canvas-appearance.png
+    task: organize-canvas
+    step: 左侧 Dock「画布外观」面板展开（输入模式/主题模式/网格样式/图片信息）
+    route: /canvas/:id
+    viewport: 1280x720
+    theme: dark
+    locale: zh-CN
+    captured_at: '2026-09-27'
+    locator_evidence: '画布输入模式 连线模式 无线模式 / 主题模式 浅色 深色 / 网格样式 点 线 空白 / 图片信息 开关'
+    sha256: 67e46aab3775f6a0184f3090c65047489a3b32fdb1dd1b0e8173a1ec32057af5
+    alt: 画布外观面板展开，显示输入模式、主题模式、网格样式与图片信息开关
