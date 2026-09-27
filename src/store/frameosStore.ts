@@ -415,8 +415,10 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     const id = `${type}-${Date.now()}-${++addNodeIdCounter}`;
     const typeMeta: Record<string, { title: string; w: number; h: number; emoji: string; imageUrl?: string }> = {
       text: { title: "文本", w: 300, h: 200, emoji: "T" },
-      image: { title: "图片", w: 300, h: 169, emoji: "🖼", imageUrl: "/images/frameos/node-image-1.png" },
-      video: { title: "视频", w: 300, h: 169, emoji: "🎬", imageUrl: "/images/frameos/node-vid-cover-1.jpg" },
+      // Batch 291: 新建图片/视频为**空节点**（源站实测: 创建后自动选中并展开提示
+      // 词面板, 内容经上传/素材库/生成填入）, 不再预置示例图
+      image: { title: "图片", w: 300, h: 169, emoji: "🖼" },
+      video: { title: "视频", w: 300, h: 169, emoji: "🎬" },
       character: { title: "角色", w: 200, h: 240, emoji: "👤" },
       scene: { title: "场景", w: 300, h: 200, emoji: "🎬" },
       audio: { title: "音频", w: 300, h: 80, emoji: "🎵" },

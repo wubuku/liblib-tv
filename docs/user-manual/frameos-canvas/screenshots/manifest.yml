@@ -93,11 +93,12 @@ screenshots:
     route: '#/canvas/:workspaceId/:canvasId'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: 2026-09-23T00:41:45+08:00
+    captured_at: 2026-09-28T07:33:14+08:00
     verified_locator: 'button[aria-label="删除连线"]'
     visible_text: 删除连线
     alt: 图片节点选中态：聚焦/故事版/参考工具、已连接文本引用芯片与 Seedream 5.0 Pro 参数面板
-    sha256: e1557e19ee9671fe93bc04d4ab75b34dec240ddf76cfd2dfcdba64708872dcb3
+    sha256: 67e1bd511fab351ade320081fc397ff5e2c251dd46502cca6aa781b01f6ed2f7
+    recheck_note: 2026-09-28 重拍以对齐 Batch 220-225 内容媒体语义与 Batch 291 空节点创建语义
   - file: screenshots/10-reconnect-nodes.png
     task_id: connect-nodes
     step: 3
@@ -115,11 +116,12 @@ screenshots:
     route: '#/canvas/:workspaceId/:canvasId'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: 2026-09-23T01:00:52+08:00
+    captured_at: 2026-09-28T07:33:14+08:00
     verified_locator: '.menu-item 创建副本'
     visible_text: 创建副本
     alt: 图片节点右键菜单：复制 ⌘C、复制图片（禁用）、创建副本 ⌘D、重新生成（禁用）、删除 ⌫
-    sha256: 49daeb550f7dcc42cadd9719055d09a4c0274d92e1c714255cd5725c91aa66f0
+    sha256: b94249401db2145900500425f795463fab613fdd9fefde115eda220adda53422
+    recheck_note: 2026-09-28 重拍以对齐 Batch 220-225 内容媒体语义与 Batch 291 空节点创建语义
   - file: screenshots/12-search-nodes.png
     task_id: organize-and-search
     step: 1

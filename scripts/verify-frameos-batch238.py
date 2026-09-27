@@ -88,7 +88,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.evaluate(
         """(() => {
           const s = window.__frameos_store.getState();
-          s.addNode('video', { panX: 0, panY: 0, zoom: 1, viewportWidth: 1440, viewportHeight: 900 });
+          const id = s.addNode('video', { panX: 0, panY: 0, zoom: 1, viewportWidth: 1440, viewportHeight: 900 });
+          // Batch 291: 新建视频为空节点 — 注入内容使其成为内容视频
+          s.updateNodeData(id, { imageUrl: '/images/frameos/node-vid-cover-1.jpg' });
         })()"""
     )
     page.wait_for_timeout(500)
