@@ -1,0 +1,30 @@
+{
+  "batch": 533,
+  "title": "Script-v2 progress-card body and editor re-entry",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §11 update + screenshot 39 (CDP 2026-09-27)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "node:created",
+        "node:title-207-contract",
+        "node:step:确认镜头",
+        "node:step:准备资产",
+        "node:step:合成提示词",
+        "node:step:1",
+        "node:step:2",
+        "node:step:3",
+        "open:editor",
+        "open:table",
+        "escape:closes",
+        "reopen:editor",
+        "close-button:closes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
