@@ -219,3 +219,25 @@ screenshots:
     visible_text: 公共模板
     alt: 模板面板：公共模板 / 企业模板 / 我的模板页签与模板卡片
     sha256: 3b690267df4c9bd30fbaa77dd6ecb1409fe98e00280fd60ef97a6ac316eec635
+  - file: screenshots/21-group-created-toolbar.png
+    task_id: group-and-ungroup
+    step: 2
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-28T02:15:36+08:00
+    verified_locator: '[data-frameos-group] .frameos-canvas-group-name'
+    visible_text: 组1
+    alt: 框选两节点成组后画布出现“组1”分组框，上方展开六键分组工具条
+    sha256: 577c1409c2606330ed6c352026314ac35798f284051136083860aff34a3178f2
+  - file: screenshots/22-group-color-popover.png
+    task_id: group-and-ungroup
+    step: 3
+    route: '#/canvas/:workspaceId/:canvasId'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-09-28T02:15:36+08:00
+    verified_locator: '.frameos-group-color-pop'
+    visible_text: 默认色
+    alt: 分组工具条左端弹出十色背景色板，当前颜色带蓝环
+    sha256: 7b50d2592d55309c3e633e96284b6252040d711ec59241e64631bfb6990e260e
