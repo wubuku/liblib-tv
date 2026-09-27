@@ -1,5 +1,9 @@
 # FrameOS Clone Loop Checkpoint — Batch 225 收尾 (2026-09-25)
 
+> **帮助面板复核 (2026-09-28, Batch 275)**：源站帮助面板仍为快捷键四组
+> （创作/缩放/移动画布/其他），无操作指南/成组内容——克隆 FrameosHelpPanel
+> 结构逐字一致，无漂移。
+
 > **全量回归二 (2026-09-28, Batch 264)**：`run-frameos-verifiers.sh` 68/68 PASS
 > （套件含新增 batch257 ⌥拖拽复制；batch169 重试后通过——既知瞬态）。
 
