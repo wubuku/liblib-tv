@@ -14,6 +14,7 @@ import {
   Layers,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DirectorAiImportModal } from "@/components/director/DirectorAiImportModal";
 
 // Batch 536: 2026-09-27 源站采样（liblib-source-exploration-2026-09-25
 // NOTES §8 + 截图 18）——3D 导演台最左窄图标栏（约 46px）。
@@ -32,7 +33,7 @@ const railEntries = [
   { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "action" },
   { id: "panorama", label: "全景图", icon: ImageIcon, kind: "flyout" },
   { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "flyout" },
-  { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "panel" },
+  { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "modal" },
 ] as const;
 
 // 添加角色 flyout 菜单（截图 44-director-rail-23 DOM/视觉转录）。
@@ -72,8 +73,14 @@ export function DirectorIconRail() {
   const [active, setActive] = useState<string>("scene");
   const [openFlyout, setOpenFlyout] = useState<string | null>(null);
   const [aspectRatio, setAspectRatio] = useState<string>("自适应");
+  // Batch 539: AI 识图导入 打开居中模态。
+  const [aiImportOpen, setAiImportOpen] = useState(false);
 
   const select = (id: string) => {
+    if (id === "ai-import") {
+      setAiImportOpen(true);
+      return;
+    }
     setActive(id);
     setOpenFlyout(
       id === "add-character" || id === "panorama" || id === "aspect-ratio" ? id : null,
@@ -194,6 +201,7 @@ export function DirectorIconRail() {
       >
         <HelpCircle size={16} />
       </button>
+      {aiImportOpen && <DirectorAiImportModal onClose={() => setAiImportOpen(false)} />}
     </div>
   );
 }

@@ -110,6 +110,14 @@ export interface JimengCanvasState {
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
   setAssetsOpen: (open: boolean) => void;
+  /** 引用参考「从画布选择」点选模式 (Batch 793, SOURCE_FACT 2026-09-27:
+      面板发起, 整画布蓝色描边 + 顶部 pill, workspace 拦截节点点击) */
+  refPicking: boolean;
+  pickedRefNodeId: string | null;
+  startRefPicking: () => void;
+  cancelRefPicking: () => void;
+  pickRefNode: (id: string) => void;
+  clearPickedRefNode: () => void;
   /** 离线编辑冲突对话框 (Batch 82, SOURCE_FACT 81-after-reload-state.png)；
       复刻侧无真实离线态，经 dev window hook 触发 */
   offlineDialogOpen: boolean;
@@ -797,6 +805,13 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   assetsOpen: false,
 
   setAssetsOpen: (open) => set({ assetsOpen: open }),
+  // Batch 793: 从画布选择点选模式 (面板发起, workspace 拦截节点点击)
+  refPicking: false,
+  pickedRefNodeId: null,
+  startRefPicking: () => set({ refPicking: true, pickedRefNodeId: null }),
+  cancelRefPicking: () => set({ refPicking: false, pickedRefNodeId: null }),
+  pickRefNode: (id) => set({ refPicking: false, pickedRefNodeId: id }),
+  clearPickedRefNode: () => set({ pickedRefNodeId: null }),
 
   offlineDialogOpen: false,
 

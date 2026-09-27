@@ -36,8 +36,8 @@
         "material-menu:style",
         "material-menu:effect",
         "material-menu:opens-panel",
-        "resource:upload-status",
-        "resource:history-status",
+        "resource:upload-chooser",
+        "resource:history-submenu",
         "diagnostics:zero"
       ],
       "diagnostics": {

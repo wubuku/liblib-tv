@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
   AtSign,
@@ -8,13 +8,16 @@ import {
   ChevronDown,
   ChevronRight,
   Image as ImageIcon,
+  LayoutGrid,
   Maximize2,
   Play,
   Plus,
+  Scan,
+  SquarePen,
   User,
   X,
 } from "lucide-react";
-import { NodeToolbar, Position } from "@xyflow/react";
+import { NodeToolbar, Position, useReactFlow } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
@@ -109,11 +112,22 @@ export function JimengGenPanel({
   // 引用参考钮 → 提示框插入 "@" + 弹「可能@的内容」自动补全弹层
   // (候选区 + 添加参考分区: 主体/图片/视频/音频 四行下钻)；点子菜单
   // 行 → 插入引用 chip (48×48 缩略图 + 名称 + Remove 角标)；chip 行
-  // 横向堆叠于素材栏。添加参考三选项菜单/从画布点选留待后续批。
+  // 横向堆叠于素材栏。
   const [refMenuOpen, setRefMenuOpen] = useState(false);
   const [refSubmenu, setRefSubmenu] = useState<RefCategory | null>(null);
   const [refChips, setRefChips] = useState<RefChip[]>([]);
+  // Batch 793 SOURCE_FACT: chip 行 添加参考钮 → 三选项菜单 (上传参考
+  // 内容 / 从资产库添加 / 从画布选择)；从画布选择进入点选模式
+  const [addRefMenuOpen, setAddRefMenuOpen] = useState(false);
+  const uploadInputRef = useRef<HTMLInputElement>(null);
   const jimengNodes = useJimengStore((s) => s.nodes);
+  const pushToast = useJimengStore((s) => s.pushToast);
+  const setAssetsOpen = useJimengStore((s) => s.setAssetsOpen);
+  const startRefPicking = useJimengStore((s) => s.startRefPicking);
+  const pickedRefNodeId = useJimengStore((s) => s.pickedRefNodeId);
+  const clearPickedRefNode = useJimengStore((s) => s.clearPickedRefNode);
+  const { screenToFlowPosition } = useReactFlow();
+  const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
   const mediaNodes = jimengNodes
     .filter(
       (n): n is typeof n & { type: "image" | "video" | "audio" } =>
@@ -139,6 +153,17 @@ export function JimengGenPanel({
     setRefMenuOpen(false);
     setRefSubmenu(null);
   };
+  // Batch 793: 点选模式选中节点 → 插 chip + 「添加完成」提示
+  useEffect(() => {
+    if (pickedRefNodeId === null) return;
+    const node = mediaNodes.find((n) => n.id === pickedRefNodeId);
+    if (node) {
+      insertChip(node);
+      pushToast("添加完成");
+    }
+    clearPickedRefNode();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mediaNodes 随渲染重建，仅在 pickedRefNodeId 变化时消费
+  }, [pickedRefNodeId]);
   const submenuNodes =
     refSubmenu === null
       ? []
@@ -151,7 +176,6 @@ export function JimengGenPanel({
                 ? n.kind === "video"
                 : n.kind === "audio",
         );
-  const pushToast = useJimengStore((s) => s.pushToast);
   const canSend = prompt.trim().length > 0;
 
   return (
@@ -212,13 +236,50 @@ export function JimengGenPanel({
                     </button>
                   </div>
                 ))}
-                <button
-                  type="button"
-                  aria-label="添加参考"
-                  className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
-                >
-                  <Plus size={20} />
-                </button>
+                <div className="relative shrink-0">
+                  <button
+                    type="button"
+                    aria-label="添加参考"
+                    aria-pressed={addRefMenuOpen}
+                    onClick={() => setAddRefMenuOpen((v) => !v)}
+                    className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
+                  >
+                    <Plus size={20} />
+                  </button>
+                  {addRefMenuOpen ? (
+                    /* Batch 793 SOURCE_FACT: 三选项菜单 */
+                    <div
+                      className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[232px] rounded-[10px] border border-white/[0.06] p-1"
+                      style={{ background: "rgb(38,38,38)" }}
+                      data-testid="addref-menu"
+                    >
+                      {[
+                        { label: "上传参考内容", icon: SquarePen },
+                        { label: "从资产库添加", icon: LayoutGrid },
+                        { label: "从画布选择", icon: Scan },
+                      ].map(({ label, icon: Icon }) => (
+                        <button
+                          key={label}
+                          type="button"
+                          onClick={() => {
+                            setAddRefMenuOpen(false);
+                            if (label === "上传参考内容") {
+                              uploadInputRef.current?.click();
+                            } else if (label === "从资产库添加") {
+                              setAssetsOpen(true);
+                            } else {
+                              startRefPicking();
+                            }
+                          }}
+                          className="flex h-[38px] w-full items-center gap-2 rounded-lg px-2.5 text-left text-[13px] text-white/90 hover:bg-white/10"
+                        >
+                          <Icon size={15} className="shrink-0 text-white/70" />
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
             ) : (
               <button
@@ -577,6 +638,30 @@ export function JimengGenPanel({
               </button>
             </div>
           </div>
+          {/* Batch 793: 上传参考内容 的隐藏文件入口 (同左栏上传链路) */}
+          <input
+            ref={uploadInputRef}
+            type="file"
+            multiple
+            accept="video/*,image/*,audio/*"
+            className="hidden"
+            data-testid="panel-upload-input"
+            onChange={(e) => {
+              const files = Array.from(e.target.files ?? []);
+              const el = document.querySelector(".jimeng-canvas");
+              const center = screenToFlowPosition({
+                x: el ? el.clientWidth / 2 : window.innerWidth / 2,
+                y: el ? el.clientHeight / 2 : window.innerHeight / 2,
+              });
+              files.forEach((file, i) => {
+                addLocalUpload(file.name, {
+                  x: center.x - 284.5 + i * 40,
+                  y: center.y - 160 + i * 40,
+                });
+              });
+              e.target.value = "";
+            }}
+          />
         </form>
       </div>
     </NodeToolbar>

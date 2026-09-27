@@ -2648,6 +2648,30 @@
   添加参考 48×48 三选项菜单 (上传参考内容/从资产库添加/从画布
   选择) + 从画布点选模式复刻 (蓝色描边 + 顶部 pill), 配套验证
   器; 素材账本剩余 9 项视进度插入。
+- Batch 793 (复刻实施): 添加参考三选项菜单 + 从画布点选模式
+  落地, 对齐批 791 SOURCE_FACT——(1) chip 行 添加参考钮加
+  aria-pressed, 点击弹三选项菜单 (data-testid=addref-menu, 232px:
+  上传参考内容 SquarePen / 从资产库添加 LayoutGrid / 从画布选择
+  Scan, 38px 行)。(2) 上传参考内容 → 面板内隐藏文件入口
+  (data-testid=panel-upload-input, 复用 addLocalUpload 画布中心
+  落点, 同左栏上传链路)。(3) 从资产库添加 → setAssetsOpen 打开
+  批 72 资产库模态。(4) 从画布选择 → store 新增 refPicking/
+  pickedRefNodeId + start/cancel/pick/clear 四动作; JimengWorkspace
+  订阅 refPicking: 画布容器加 ring-2 ring-inset ring-[#0A5CD6]
+  蓝色内描边 + 顶部蓝 pill 横幅 (data-testid=canvas-pick-banner,
+  Scan 图标 + 从画布选择 + 取消从画布选择 ×), onNodeClick 拦截
+  点选 (pickRefNode 后面板插 chip + pushToast「添加完成」
+  CLONE_DECISION: 源站为 pill 文案切换, clone 用 toast), Escape
+  分支追加 cancelRefPicking。验证器 verify-jimeng-batch793.py:
+  三选项齐备/资产库开合/面板上传建节点/横幅+描边/横幅取消/
+  点选插 chip; 教训留档: 验证器不可用 Escape 关模态 (会反选节点
+  卸载生成面板), 须用模态自带关闭钮; 上传步骤后菜单仍开, 再点
+  添加参考是关闭非打开。邻域回归 3/40/42/61/73/688/792 全绿 +
+  npm run check 通过。截图 batch793-{addref-menu,canvas-picking,
+  picked-chip}-1680。下一批规划 (Batch 794): 新回归轮 1-19 段
+  起点 (距批 790 全量门已积 791-793 三批实现/深采); 素材账本
+  剩余 9 项 (7 图 + voice_converted wav + S83 复采) 上传探索
+  视进度插入。
 - Batch 577 (轮转回归): batch 34-48 段 15/15 PASS (续行)。下一批
   规划 (Batch 578): 49-64 段回归续行。
 - Batch 578 (轮转回归): batch 49-64 段 14/14 PASS (续行)。下一批

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Scan, X } from "lucide-react";
 import {
   MiniMap,
   ReactFlow,
@@ -104,6 +105,10 @@ function JimengFlow() {
   const setOfflineDialog = useJimengStore((s) => s.setOfflineDialog);
   const minimapOpen = useJimengStore((s) => s.minimapOpen);
   const edgesVisible = useJimengStore((s) => s.edgesVisible);
+  // Batch 793 SOURCE_FACT: 引用参考「从画布选择」点选模式
+  const refPicking = useJimengStore((s) => s.refPicking);
+  const pickRefNode = useJimengStore((s) => s.pickRefNode);
+  const cancelRefPicking = useJimengStore((s) => s.cancelRefPicking);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -261,6 +266,7 @@ function JimengFlow() {
         closePreview();
         setAssetsOpen(false);
         setOfflineDialog(false);
+        cancelRefPicking();
       } else if (mod && e.key.toLowerCase() === "g" && e.shiftKey) {
         // 快捷键面板证据: ⌘⇧G = 取消编组 (Batch 39)
         e.preventDefault();
@@ -315,6 +321,7 @@ function JimengFlow() {
     exitInfer,
     exitFramePicker,
     exitTrim,
+    cancelRefPicking,
   ]);
 
   const onMove = useCallback<OnMove>(
@@ -324,8 +331,22 @@ function JimengFlow() {
     [setZoomPercent],
   );
 
+  // Batch 793 SOURCE_FACT: 点选模式下点击节点 = 选中为引用 (不改变画布选择)
+  const onNodeClick = useCallback<NodeMouseHandler>(
+    (_event, node) => {
+      if (refPicking) {
+        pickRefNode(node.id);
+      }
+    },
+    [refPicking, pickRefNode],
+  );
+
   return (
-    <div className="jimeng-canvas relative h-full w-full">
+    <div
+      className={`jimeng-canvas relative h-full w-full ${
+        refPicking ? "ring-2 ring-inset ring-[#0A5CD6]" : ""
+      }`}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edgesVisible ? edges : []}
@@ -348,6 +369,7 @@ function JimengFlow() {
         onEdgesChange={onEdgesChange}
         onConnectEnd={onConnectEndHandler}
         onPaneClick={onPaneClick}
+        onNodeClick={onNodeClick}
         onPaneContextMenu={onPaneContextMenu}
         onNodeContextMenu={onNodeContextMenu}
         onMove={onMove}
@@ -383,6 +405,25 @@ function JimengFlow() {
           </div>
         ) : null}
       </ReactFlow>
+      {/* Batch 793 SOURCE_FACT: 点选模式顶部 pill「从画布选择 ×」 */}
+      {refPicking ? (
+        <div
+          data-testid="canvas-pick-banner"
+          className="absolute left-1/2 top-5 z-[200] flex h-10 -translate-x-1/2 items-center gap-2 rounded-full px-4 text-[14px] text-white"
+          style={{ background: "#0A5CD6" }}
+        >
+          <Scan size={16} />
+          从画布选择
+          <button
+            type="button"
+            aria-label="取消从画布选择"
+            onClick={cancelRefPicking}
+            className="ml-1 flex size-5 items-center justify-center rounded-full hover:bg-white/20"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      ) : null}
       {contextMenu ? (
         <JimengContextMenu
           state={contextMenu}
