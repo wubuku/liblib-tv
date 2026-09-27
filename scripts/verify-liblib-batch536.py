@@ -106,16 +106,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(150)
     check("flyout:closes", page.locator("[data-director-character-flyout]").count() == 0)
 
-    # 点击其他入口：激活态迁移，场景树仍在（无导航面板）
+    # Batch 540 migration: 添加机位 is a direct action sharing
+    # addDirectorCamera with the scene tree — it must NOT steal the rail's
+    # active state (scene stays active) and opens no panels.
     rail.locator("[data-director-rail-entry='add-camera']").click()
-    page.wait_for_timeout(150)
+    page.wait_for_timeout(200)
     check(
-        "rail:add-camera-active",
-        rail.locator("[data-director-rail-entry='add-camera']").get_attribute("aria-pressed") == "true",
-    )
-    check(
-        "rail:scene-inactive",
-        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "false",
+        "rail:scene-stays-active",
+        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "true",
     )
     check("rail:tree-still-present", page.locator("[aria-label='场景对象']").first.is_visible())
 

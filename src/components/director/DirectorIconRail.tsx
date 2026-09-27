@@ -14,6 +14,7 @@ import {
   Layers,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDirectorStore } from "@/store/directorStore";
 import { DirectorAiImportModal } from "@/components/director/DirectorAiImportModal";
 
 // Batch 536: 2026-09-27 源站采样（liblib-source-exploration-2026-09-25
@@ -75,10 +76,17 @@ export function DirectorIconRail() {
   const [aspectRatio, setAspectRatio] = useState<string>("自适应");
   // Batch 539: AI 识图导入 打开居中模态。
   const [aiImportOpen, setAiImportOpen] = useState(false);
+  // Batch 540: 源站 rail「添加机位」为直接动作（点击无面板）——
+  // 与场景树「新增机位」同源，接通 directorStore.addDirectorCamera。
+  const addDirectorCamera = useDirectorStore((state) => state.addDirectorCamera);
 
   const select = (id: string) => {
     if (id === "ai-import") {
       setAiImportOpen(true);
+      return;
+    }
+    if (id === "add-camera") {
+      addDirectorCamera();
       return;
     }
     setActive(id);

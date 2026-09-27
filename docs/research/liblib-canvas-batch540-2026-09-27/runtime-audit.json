@@ -1,0 +1,23 @@
+{
+  "batch": 540,
+  "title": "Rail add-camera wired to scene-tree camera action",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + batch 537 rail DOM enumeration",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "camera:tree-gains-entry",
+        "camera:count-increments",
+        "camera:no-flyout",
+        "camera:no-modal",
+        "camera:scene-still-active",
+        "camera:tree-button-also-increments",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
