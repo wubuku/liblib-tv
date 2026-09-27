@@ -5674,6 +5674,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({ lastCommandResult: result });
       return result;
     }
+    // Batch 551: 源站「高斯地面吸附」开——模型底面贴地。clone 本地等效：
+    // 角色对象 Y 不低于地面（y=0）；机位不参与（截图 45 吸附开启时机位
+    // Y 仍 2.2，源站证据）。
+    const groundedValue =
+      state.scene.gaussianGroundSnap &&
+      authoredObject.kind === "character" &&
+      field === "position" &&
+      axis === 1
+        ? Math.max(value, 0)
+        : value;
     set((state) => {
       const authoredObjects = state.authoredObjects.map((object) =>
         object.id === objectId
@@ -5681,7 +5691,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
               ...object,
               transform: {
                 ...object.transform,
-                [field]: updateTuple(object.transform[field], axis, value),
+                [field]: updateTuple(
+                  object.transform[field],
+                  axis,
+                  groundedValue,
+                ),
               },
             }
           : object,

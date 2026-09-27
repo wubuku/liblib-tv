@@ -1,0 +1,22 @@
+{
+  "batch": 551,
+  "title": "Gaussian ground snap clamps object Y",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 45 (3D 场景 panel)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "default:on",
+        "clamp:negative-flattened",
+        "clamp:positive-kept",
+        "off:free-y",
+        "toggle:restored",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
