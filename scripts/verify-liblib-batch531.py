@@ -129,8 +129,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(250)
     check("escape:closes", page.locator("[data-storyboard-editor]").count() == 0)
 
-    # ✕ 按钮亦可关闭（重开验证）
-    node.locator(f"[data-script-generator-attempt='{SELF_WRITE}']").click()
+    # ✕ 按钮亦可关闭（重开验证；batch 534 后节点已转进度卡，
+    # 按源站流程以「打开脚本节点 →」重入）
+    node.locator("[data-script-generator-open-storyboard]").click()
     page.wait_for_timeout(250)
     editor = page.locator("[data-storyboard-editor]")
     editor.locator("[data-storyboard-close]").click()

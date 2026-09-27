@@ -1,0 +1,27 @@
+{
+  "batch": 534,
+  "title": "Storyboard session ↔ script-generator node conversion",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §11 update + screenshot 39 (CDP 2026-09-27)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "fresh:entries-visible",
+        "fresh:follow-works",
+        "session:editor-opens",
+        "session:editor-closed",
+        "converted:entries-gone",
+        "converted:steps",
+        "converted:open-button",
+        "persistent:after-panel-toggle",
+        "reentry:editor-opens",
+        "reentry:close-button",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

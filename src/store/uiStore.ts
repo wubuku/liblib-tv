@@ -71,6 +71,7 @@ interface UIState {
   isSharePanelOpen: boolean;
   isAgentOpen: boolean;
   isStoryboardEditorOpen: boolean;
+  storyboardSessionNodeId: string | null;
   isZoomMenuOpen: boolean;
   activePrimaryPanel: PrimaryPanel | null;
   editorMode: "workbench" | "storyboard";
@@ -109,6 +110,7 @@ interface UIState {
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   openStoryboardEditor: () => void;
   closeStoryboardEditor: () => void;
+  setStoryboardSessionNode: (nodeId: string | null) => void;
   setEditorMode: (mode: "workbench" | "storyboard") => void;
   setCanvasTool: (tool: "select" | "pan") => void;
   openDirectorDesk: (nodeId: string, canvasId: string) => void;
@@ -169,6 +171,8 @@ const closedOverlayState: OverlayState = {
   isSharePanelOpen: false,
   isAgentOpen: false,
   isStoryboardEditorOpen: false,
+  // storyboardSessionNodeId 有意不在 closedOverlayState 重置——
+  // 会话转换是节点持久形态（batch 534），不随其他面板开关回退。
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   imagePreview: null,
@@ -201,6 +205,7 @@ export const useUIStore = create<UIState>((set) => ({
   isSharePanelOpen: false,
   isAgentOpen: false,
   isStoryboardEditorOpen: false,
+  storyboardSessionNodeId: null,
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   editorMode: "workbench",
@@ -327,6 +332,10 @@ export const useUIStore = create<UIState>((set) => ({
       ...closeTransientOverlays(state),
       isStoryboardEditorOpen: true,
     })),
+
+  // Batch 534: 源站实测（截图 39）——自写会话后脚本生成器卡转为进度卡；
+  // clone 以会话节点 id 记录该转换（持久，不随编辑器关闭回退）。
+  setStoryboardSessionNode: (nodeId) => set({ storyboardSessionNodeId: nodeId }),
 
   closeStoryboardEditor: () => set({ isStoryboardEditorOpen: false }),
 
