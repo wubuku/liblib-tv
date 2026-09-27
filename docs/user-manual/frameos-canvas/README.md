@@ -19,6 +19,7 @@
 - [`10-tasks/connect-nodes.md`](10-tasks/connect-nodes.md)：连接与删除连线。
 - [`10-tasks/duplicate-delete-history.md`](10-tasks/duplicate-delete-history.md)：复制、删除与撤销恢复。
 - [`10-tasks/organize-and-search.md`](10-tasks/organize-and-search.md)：搜索节点与整理布局。
+- [`10-tasks/group-and-ungroup.md`](10-tasks/group-and-ungroup.md)：多节点成组、换色、排列与解组。
 - [`10-tasks/canvas-context.md`](10-tasks/canvas-context.md)：面包屑、项目资产与素材入口。
 - [`10-tasks/help-and-shortcuts.md`](10-tasks/help-and-shortcuts.md)：帮助与快捷键总表。
 - [`20-reference.md`](20-reference.md)：界面分区与菜单文字速查。

@@ -135,6 +135,25 @@ tasks:
     status: verified
     manual_pages:
       - 10-tasks/canvas-context.md
+  - id: group-and-ungroup
+    title: 把多个节点成组并统一移动/排列/解组
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: high
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: 2026-09-27 源站采样（Batch 251/252）：框选≥2 节点出现 成组/批量下载 工具条；成组后分组框「组1」+ 展开工具条 切换背景色/排列方式│整组执行/存为模板/解组/批量下载（title 打包下载 N 个文件）。
+      - type: source-interaction
+        note: 源站实测：成组盒=成员bbox+28、宫格 2×2 行优先按原Y排序、水平/垂直均按原Y排序间距40、分组拖拽全员跟随、解组保持位置。克隆 Batch 251/252 实现并经 verify-frameos-batch251.py 44/44 校验。
+    preconditions:
+      - 已登录并打开一个画布
+      - 画布中已有至少两个节点
+    routes:
+      - '#/canvas/:workspaceId/:canvasId'
+    status: verified
+    manual_pages:
+      - 10-tasks/group-and-ungroup.md
   - id: help-and-shortcuts
     title: 打开帮助并使用画布快捷键
     role: logged-in-canvas-creator

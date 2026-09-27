@@ -221,3 +221,19 @@ manifest 已登记 01-19（全部含真实 SHA-256、任务、步骤、locator �
 **截图未重拍**：截图 08/09/11 等仍为更新前 UI 的画面，与现行界面的差异以
 `SOURCE_OBSERVATIONS.md` §15-16 与 `docs/design-references/frameos/` 下
 2026-09-25/26 的采样/克隆截图为准；重拍需按 manifest 逐张核对新版状态。
+
+## 12. 2026-09-28 手册补充（FrameOS 复刻循环 Batch 254）
+
+克隆侧 Batch 251-253 完成画布分组功能（成组/背景色/排列/拖拽/解组，采样与验收见
+`docs/research/liblib-frameos-batch25{1,2}-2026-09-27/`），本手册补充：
+
+- 新增 `10-tasks/group-and-ungroup.md`：成组/换色/排列/解组全流程；
+  已按克隆实际行为校准——`⌘Z` 不覆盖分组、原型为内存态（刷新不保留）、
+  整组执行为付费入口无效果、存为模板 mock。
+- `task-inventory.yml` 追加 group-and-ungroup 任务条目（status: verified，
+  证据指向 Batch 251/252 采样与 44/44 verifier）。
+- `navigate-canvas.md` 的框选段保持不变（"成组 / 批量下载"工具条描述已兼容）。
+
+**截图未重拍**：分组交互暂无手册截图，需要时从
+`docs/design-references/frameos/frameos-clone-batch251-group-red-toolbar-1440.png`
+（克隆）与 `source-batch251-*.png`（源站）取材并按 manifest 登记。
