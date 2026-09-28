@@ -1342,6 +1342,7 @@ batch 498–512 的行来自 backfill 预登记提交（0eb82d6、aab2888），�
 batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期标注误差，
 | 2026-09-29 | batch 2396 巡检 | still-broken | 第九百零九次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；batch 573 双对齐已闭环（51be5816） |
 不再回填。
+| 2026-09-29 | batch 2416 巡检 | still-broken | 第九百一十次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 5 件保留不动；batch 574 菱形采样已闭环（2b1a5f57） |
 
 ### 10.3 复测触发条件
 
