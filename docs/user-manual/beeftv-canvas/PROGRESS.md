@@ -25,6 +25,7 @@
 | 16 | 上游 v1.6.6 增量修订（generate-video/troubleshooting/local-runtime/README + 版本口径 v1.5.9→v1.6.6） | ✅ 完成（监控轮，commit 860dfc5c） |
 | 17 | v1.6.6 重摄（composer 界面未漂移，09 sha256 更新）+ 发布前预览走查（首页/quickstart/generate-video/troubleshooting 四页渲染与图片均正常；README 发布状态行与账本死链修正） | ✅ 完成 |
 | 17b | 发布产物保鲜重建（收纳 16-25 号新截图与 v1.6.6 修订四页） | ✅ 完成（28+ 页 / 14 图 / 无 .md 残留链接） |
+| 17c | SKILL §8 最终报告 FINAL-REPORT.md（目标版本/角色/深度/覆盖率/未覆盖项/已知限制） | ✅ 完成 |
 | 17c | excluded 任务开放条件系统化（12 项，供后续接手者按表解锁） | ✅ 完成 |
 | 18 | 可达升级两例：plugins-management / troubleshooting 升 verified | ✅ 完成（excluded 13→12） |
 
