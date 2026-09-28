@@ -11,8 +11,8 @@
 | 3 | （已并入 Batch 2） | — |
 | 4 | generate-video / media-versions 已成稿；undo-history-versions / organize-canvas 全文 | ✅ 完成（Batch 3） |
 | 5 | shortcuts-help + 20-reference.md（快捷键全表/导演台键位/路由/REST 端点/本地进程） | ✅ 完成（Batch 3） |
-| 6 | 时间线三篇（timeline-editing / subtitle-highlights / timeline-export） | ⏳ 待做 |
-| 7 | 导演台三篇（director-basics / director-keyframes-record / director-rig-bones） | ⏳ 待做 |
+| 6a | 时间线三篇（timeline-editing / subtitle-highlights / timeline-export） | ✅ 完成（Batch 4） |
+| 6b | 导演台三篇（director-basics / director-keyframes-record / director-rig-bones） | ✅ 完成（Batch 4） |
 | 8 | cloud-agent + agent-memory-skills + plugins-management | ⏳ 待做 |
 | 9 | local-runtime + 30-concepts.md + 90-troubleshooting.md | ⏳ 待做 |
 | 10 | 本地起 BeefTV（vite :3000 + go server）真实截图补齐 manifest | ⏳ 待做 |

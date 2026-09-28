@@ -208,7 +208,7 @@ tasks:
         note: 八插槽工作台（时间线/预览/检查器/素材/字幕/转写/导出/AI 编辑）；12 黄金 op；96px/秒基准、缩放 0.02-4；吸附与同毫秒全量。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/timeline-editing.md
   - id: subtitle-highlights
@@ -222,7 +222,7 @@ tasks:
         note: 批 30 条/并发 3 worker 池；文本自证模型（源文本变更即失效）；SRT 序号归一 idx+1；重分段断点优先级。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/subtitle-highlights.md
   - id: timeline-export
@@ -236,7 +236,7 @@ tasks:
         note: ffmpeg.wasm 同源内核（不依赖 CDN）；ISO-BMFF 手工校验防空壳 MP4；白膜录制首错即停 + 时长探针；62min 超时/3s 轮询。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/timeline-export.md
   # —— 导演台 ——
@@ -251,7 +251,7 @@ tasks:
         note: ShotInspector 焦距 12-200mm/光圈 f/0.7-32/焦点 0.1-200m/时长 0.5-60s/fps 24|25|30/景别 6 档/运镜 10 种；H 键显隐（与画布 H 平移语义不同）。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/director-basics.md
   - id: director-keyframes-record
@@ -265,7 +265,7 @@ tasks:
         note: 双 playhead 纪律；关键帧 200 层快照栈；白膜录制 timeslice 250ms、首错即停、时长探针 ≥max(0.25s,50%)。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/director-keyframes-record.md
   - id: director-rig-bones
@@ -279,7 +279,7 @@ tasks:
         note: rig 推断 ≥8 骨映射；映射失败退占位人偶；21 姿势 union、UI 20 钮。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/director-rig-bones.md
   # —— 云 Agent 与技能 ——
