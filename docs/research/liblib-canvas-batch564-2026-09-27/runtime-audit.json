@@ -1,0 +1,25 @@
+{
+  "batch": 564,
+  "title": "Camera follow-target ↔ preset-motion linkage",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §12 + screenshot 47 (跟随目标 field)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "preset:enabled-initial",
+        "follow:set",
+        "preset:disabled-while-following",
+        "error:span-visible",
+        "preset:re-enabled",
+        "error:span-gone",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 1,
+        "errors": [
+          "console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+        ]
+      }
+    }
+  ]
+}
