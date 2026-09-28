@@ -1320,6 +1320,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
 | 2026-09-29 | batch 2316 巡检 | still-broken | 第八百九十九次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；batch 567 证据批已闭环（83adcb23） |
 batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
+| 2026-09-29 | batch 2303 全量 | still-broken | 第九百次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 568 时间输入后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP 与再生成工件（batch 2303） |
 执行一次探测、结果全部 still-broken，绝对次数以提交链为准。本表后续行
 沿用序列 B 继续计数。
 
