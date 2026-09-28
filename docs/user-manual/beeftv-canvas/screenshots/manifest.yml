@@ -143,3 +143,27 @@ screenshots:
     visible_text: '上传'
     alt: '添加节点菜单的导入资源段：上传 / 从生成历史选择 / 素材库'
     sha256: 52ae87a86bc0b64bc8aee1714ad6d59173b1e0a89736f3dc15875f51c28507ee
+
+  - file: screenshots/14-reference-picker.png
+    task_id: prompts-and-mentions
+    step: '视频节点「参考内容」素材选择器（媒体类型过滤/分类/取消/插入已选素材）'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 参考内容 / 这个分类还没有素材 / button 插入已选素材'
+    visible_text: '参考内容'
+    alt: '视频节点的引用素材选择器：左侧媒体类型与分类过滤，空态提示先在素材库添加素材'
+    sha256: 8aaa490f42ec733af5c03967b527fa577ec4ed4f1364729d421da69ee5eaece1
+
+  - file: screenshots/15-quick-create-connected.png
+    task_id: connect-references
+    step: '拖线松手在空白弹出「引用该节点生成」快速创建菜单（虚线预览）'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 引用该节点生成 / button 视频 / 虚线连线预览'
+    visible_text: '引用该节点生成'
+    alt: '从文本节点拖出的虚线连线与快速创建菜单：文本/图片/视频/音频/智能剪辑/导演台/脚本'
+    sha256: 6e6efaa1801fa78b3dd5c1ae642d13df80feba7b90bf9a24ba7768960e49f3dd
