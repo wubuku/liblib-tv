@@ -276,3 +276,15 @@ screenshots:
     visible_text: '视频剪辑'
     alt: '视频处理下拉菜单展开：视频剪辑、画面裁切、深度动作捕捉三个菜单项，背景为上传的视频首帧画面'
     sha256: 4e063bf78a421e9e2a1f434b7755b244a7550bd85f85d27a782275b7e7a3523e
+
+  - file: screenshots/25-search-modal.png
+    task_id: create-nodes
+    step: '「搜索画布节点」modal：搜索框（节点/章节/镜头/模型或标签）+ 最近编辑 3 个节点条目（缩略图/尺寸/时长/创建与编辑时间戳）+ ↑↓选择 Enter 定位'
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 搜索画布节点 / searchbox 搜索节点名称 / 最近编辑 3 个节点 / S83-jing2.mp4 视频节点 864×496 · 4秒'
+    visible_text: '搜索画布节点'
+    alt: '搜索画布节点弹窗：顶部搜索框，最近编辑 3 个节点（S83-jing2.mp4 视频节点 864×496·4秒带首帧缩略图、文本节点 1、视频节点 1），每条含创建与编辑时间戳'
+    sha256: 410cfe387552dfc65277a55370dac0f3aebfd37116e0a6eb60b2f6261e5cb2ed

@@ -44,6 +44,8 @@
 
 ![添加节点菜单（列表形态，右上角搜索）](../screenshots/03-add-node-menu.png)
 
+![搜索画布节点 modal：最近编辑条目含缩略图与时间戳](../screenshots/25-search-modal.png)
+
 ## 重命名
 
 - 普通节点：鼠标悬停标题，点击标题（出现铅笔图标）进入编辑；Enter 提交、Esc 取消；**清空内容会自动回退为原标题**。
