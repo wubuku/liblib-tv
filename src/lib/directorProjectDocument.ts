@@ -119,6 +119,8 @@ export interface DirectorSceneDocumentV1 {
   sceneScale?: number;
   sceneTranslate?: [number, number, number];
   sceneRotate?: [number, number, number];
+  /** Batch 563: 地面高度，缺省兜底同上。 */
+  groundHeight?: number;
   showCharacterLabels?: boolean;
   snapToGrid?: boolean;
   gaussianGroundSnap?: boolean;
@@ -1137,6 +1139,7 @@ function expectScene(
       "sceneScale",
       "sceneTranslate",
       "sceneRotate",
+      "groundHeight",
     ],
     path,
   );
@@ -1213,6 +1216,14 @@ function expectScene(
             record.sceneRotate,
             `${path}.sceneRotate`,
           ) as [number, number, number],
+        }),
+    ...(record.groundHeight === undefined
+      ? {}
+      : {
+          groundHeight: expectFiniteNumber(
+            record.groundHeight,
+            `${path}.groundHeight`,
+          ),
         }),
   };
 }

@@ -2202,6 +2202,27 @@ export function DirectorInspector({
                   className="accent-[#09caf5]"
                 />
               </label>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>地面高度</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-ground-height
+                    type="range"
+                    min={-2}
+                    max={2}
+                    step={0.1}
+                    aria-label="地面高度"
+                    value={scene.groundHeight ?? 0}
+                    onChange={(event) =>
+                      updateScene({ groundHeight: Number(event.target.value) })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {(scene.groundHeight ?? 0).toFixed(1)}
+                  </span>
+                </span>
+              </label>
               <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
                 <span>地面透明度</span>
                 <input

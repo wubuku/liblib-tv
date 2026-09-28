@@ -233,6 +233,8 @@ export interface DirectorScene {
   sceneTranslate: [number, number, number];
   /** Batch 559: 源站「场景旋转 XYZ」（度）。 */
   sceneRotate: [number, number, number];
+  /** Batch 563: 源站「地面…高度 0.0」（截图 52 补采，batch 548 遗漏）。 */
+  groundHeight: number;
 }
 
 export interface DirectorSessionOutcome {
@@ -464,6 +466,7 @@ function createDefaultScene(): DirectorScene {
     sceneScale: 1,
     sceneTranslate: [0, 0, 0],
     sceneRotate: [0, 0, 0],
+    groundHeight: 0,
   };
 }
 
@@ -5466,6 +5469,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       "sceneScale",
       "sceneTranslate",
       "sceneRotate",
+      "groundHeight",
     ] as const;
     const patchKeys = Object.keys(patch) as Array<keyof DirectorScene>;
     const invalidKey = patchKeys.find((key) => !sceneKeys.includes(key));

@@ -1851,7 +1851,11 @@ function DirectorScene({
       />
       <directionalLight position={[-5, 3, 2]} intensity={1.2} color="#95c8ff" />
       {scene.showGround ? (
-        <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
+        <mesh
+          receiveShadow
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, (scene.groundHeight ?? 0) - 0.01, 0]}
+        >
           <planeGeometry args={[32, 32]} />
           <meshStandardMaterial
             color={scene.groundColor}
