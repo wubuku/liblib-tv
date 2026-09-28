@@ -512,13 +512,18 @@ export function DirectorTimeline() {
           <Plus size={13} />
           新建轨道
         </button>
+        {/* Batch 573: 源站 CDP 枚举（截图 55，24px 图标钮 aria-label 自动帧，
+            无文字）——自动帧 toggle 对齐为图标钮；batch 36 的 data 属性与
+            aria-pressed 合同保留。 */}
         <button
           type="button"
           data-director-auto-keyframe
+          aria-label="自动帧"
+          title="自动帧"
           aria-pressed={timeline.autoKeyframe}
           onClick={toggleAutoKeyframe}
           className={cn(
-            "flex h-7 shrink-0 items-center gap-1.5 rounded px-2 text-[11px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
+            "flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
             timeline.autoKeyframe && "bg-white/[0.07] text-[#5ddcff]",
           )}
         >
@@ -528,7 +533,6 @@ export function DirectorTimeline() {
               timeline.autoKeyframe && "bg-current",
             )}
           />
-          自动关键帧
         </button>
         <button
           ref={presetTriggerRef}

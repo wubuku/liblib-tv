@@ -165,7 +165,7 @@ export function DirectorIconRail({
     <div
       data-director-icon-rail
       aria-label="导演台资源栏"
-      className="absolute inset-y-0 left-0 z-30 flex w-[46px] flex-col items-center gap-1 border-r border-white/[0.07] bg-[#1a1a1a] py-3"
+      className="absolute inset-y-0 left-0 z-30 hidden w-[46px] flex-col items-center gap-1 border-r border-white/[0.07] bg-[#1a1a1a] py-3 min-[900px]:flex"
     >
       <div className="flex flex-col items-center gap-1">
         {railEntries.map((entry) => {
