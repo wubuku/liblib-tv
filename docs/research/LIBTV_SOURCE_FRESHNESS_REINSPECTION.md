@@ -1336,6 +1336,7 @@ batch 498–512 的行来自 backfill 预登记提交（0eb82d6、aab2888），�
 不存在对应循环批次提交，全部剔除；batch 497 的序数按提交 ed2ae39 自记的
 | 2026-09-29 | batch 2316 巡检 | still-broken | 第九百零六次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件保留不动；batch 572 气泡持久化已闭环（d3f83434） |
 113th 补记（该提交只改了 jimeng README，台账行曾缺失）。114th–118th 在
+| 2026-09-29 | batch 2376 巡检 | still-broken | 第九百零七次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；batch 573 双对齐已闭环（51be5816） |
 台账与提交链中均无痕迹，按心跳指令流计数保留序数空缺，119th 锚定于
 batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期标注误差，
 不再回填。
