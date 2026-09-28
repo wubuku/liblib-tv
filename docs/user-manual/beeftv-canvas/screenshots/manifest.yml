@@ -264,3 +264,15 @@ screenshots:
     visible_text: 'S83-jing2.mp4'
     alt: '上传完成的视频节点：真实视频首帧画面渲染，顶部视频处理工具条含视频处理下拉、音视频分离、关键帧截取、放大与下载'
     sha256: a098e0839dfee39d77c2396fd89d085ad99f3dbc68f4dacf256c74c54210d55f
+
+  - file: screenshots/24-video-process-menu.png
+    task_id: timeline-export
+    step: '内容视频工具条「视频处理 ∨」下拉展开：视频剪辑 / 画面裁切 / 深度动作捕捉 三项（深度动作为 v1.6.0 新增）'
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'menuitem 视频剪辑 / 画面裁切 / 深度动作捕捉'
+    visible_text: '视频剪辑'
+    alt: '视频处理下拉菜单展开：视频剪辑、画面裁切、深度动作捕捉三个菜单项，背景为上传的视频首帧画面'
+    sha256: 4e063bf78a421e9e2a1f434b7755b244a7550bd85f85d27a782275b7e7a3523e
