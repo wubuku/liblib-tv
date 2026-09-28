@@ -7,6 +7,7 @@ import {
   ChartSpline,
   Circle,
   DiamondPlus,
+  Info,
   Minus,
   Move3D,
   Pause,
@@ -942,6 +943,23 @@ export function DirectorTimeline() {
                         className="shrink-0 text-[#5ddcff]"
                         aria-label="已绑定运动轨迹"
                       />
+                    ) : track.kind === "camera" ? (
+                      /* Batch 557: 源站截图 48——主机位轨道行右侧「ⓘ 绘制轨迹」
+                         affordance；点击选中该轨道并打开运动路径菜单。 */
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        data-director-track-draw-trail={track.id}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          selectTimelineTrack(track.id);
+                          togglePathMenu();
+                        }}
+                        className="flex shrink-0 cursor-pointer items-center gap-0.5 text-[10px] text-[#696969] hover:text-[#5ddcff]"
+                      >
+                        <Info size={11} />
+                        绘制轨迹
+                      </span>
                     ) : null}
                   </button>
                   {selected ? (
