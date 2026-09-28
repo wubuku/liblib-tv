@@ -1,0 +1,22 @@
+{
+  "batch": 565,
+  "title": "Panorama background linkage end-to-end",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshots 45/48",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "empty:select-empty",
+        "linkage:select-auto-picks",
+        "linkage:connected-label",
+        "linkage:label-text",
+        "linkage:status-ready",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
