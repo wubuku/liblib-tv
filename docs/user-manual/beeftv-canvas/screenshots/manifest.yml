@@ -312,3 +312,15 @@ screenshots:
     visible_text: '视频节点 1'
     alt: '有内容视频节点完整渲染：真实视频画面带播放按钮覆盖，左下小地图同步显示节点缩略'
     sha256: 163385b443d877729876a2a56dac7e63d388e7d8b8801c1d753455b50f20fe38
+
+  - file: screenshots/27-project-ops-menu.png
+    task_id: undo-history-versions
+    step: '项目卡「···」操作菜单展开六项：打开/重命名/修改封面/创建副本/移至文件夹＞/删除项目'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 打开 / 重命名 / 修改封面 / 创建副本 / 移至文件夹 / 删除项目'
+    visible_text: '重命名'
+    alt: '项目卡操作菜单展开：打开、重命名、修改封面、创建副本、移至文件夹（子菜单）、删除项目六个菜单项'
+    sha256: 893710f35a4bd474781222261a5ec9ee0771243735e58a9d97544647eceb0d05
