@@ -49,6 +49,8 @@
 - 任务进入与图片一致的徽章/耗时/浮层跟踪（见 [generate-images.md](generate-images.md)）；
 - **网关超时（524）等「提交不确定」情形不会自动重试**——请先到任务中心确认实际结果，再决定是否重发，避免重复扣费。
 
+![视频设置规格弹层：分辨率/尺寸/宽高比/秒数](../screenshots/18-spec-popover.png)
+
 ## 任务 ID 只证明创建成功
 
 部分 Seedance 2.5 任务要到消费阶段才返回参数错误。遇到 `InvalidParameter.TaskTypeConstraint` 时，核对最终发送的 `ratio`、`duration` 和每个素材的 role（包括省略的字段）；外层包装错误（如 `fail_to_fetch_task`）不能覆盖内部的具体参数原因。

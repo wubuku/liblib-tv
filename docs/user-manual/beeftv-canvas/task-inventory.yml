@@ -180,8 +180,8 @@ tasks:
         note: Alt+Shift+F 自适应整理（选择感知）；frame/folder 折叠语义；light/dark/custom 三主题（v1.5.8 起浅色回摆）；Alt+L 无关。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 整理按钮运行时未走查；页面基于源码静态证据（Alt+Shift+F 与右键入口已定位）
+    status: verified
+    review_note: 浅色模式切换运行时实证（17-light-mode.png）；整理/Frame 分组小节为源码静态证据（Batch 251-262 采样）
     manual_pages:
       - 10-tasks/organize-canvas.md
   - id: shortcuts-help
