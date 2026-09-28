@@ -71,11 +71,12 @@ screenshots:
     route: '#/canvas/:workspaceId/:canvasId'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: 2026-09-23T00:25:43+08:00
+    captured_at: 2026-09-29T00:38:23+08:00
     verified_locator: '.vue-flow__node 图片节点2'
     visible_text: 图片节点2
     alt: 菜单创建“图片节点2”后自动选中并展开图片 Prompt 面板
-    sha256: 1ca8e014353a9808c7a0f10700e5a4f59839322f7ac3a15785555b6c09639744
+    sha256: ea4646a29cfb1e555008f8b139418067d6c3e6938fd877ef76b81bd04644a00b
+    recheck_note: 2026-09-29 重拍以对齐 Batch 291 空节点创建语义（新建图片节点为空态并展开面板）
   - file: screenshots/08-select-text-node.png
     task_id: edit-selected-node
     step: 1
