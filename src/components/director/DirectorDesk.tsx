@@ -1087,7 +1087,7 @@ export default function DirectorDesk({
             <DirectorObjectTree />
           </aside>
 
-          <DirectorIconRail />
+          <DirectorIconRail onPanoramaSourceChange={setPanoramaSourceId} />
 
           <main
             className={cn(

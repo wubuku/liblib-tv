@@ -31,7 +31,13 @@ const coverageOptions = [
   },
 ] as const;
 
-export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
+export function DirectorAiImportModal({
+  onClose,
+  onPanoramaSourceChange,
+}: {
+  onClose: () => void;
+  onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
+}) {
   const [tab, setTab] = useState<"upload" | "history">("upload");
   const [coverage, setCoverage] = useState<string>("insert");
   const imageInputRef = useRef<HTMLInputElement | null>(null);
@@ -69,6 +75,11 @@ export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
           sourceHandle: "source",
           targetHandle: "target",
         });
+      }
+      // Batch 562: 源站「自动替换当前图源」——新节点即设为全景源
+      // （经 DirectorDesk 提升的 selectedPanoramaSourceId）。
+      if (imageNode && onPanoramaSourceChange) {
+        onPanoramaSourceChange(imageNode.id);
       }
       setUploadNote("已创建图片节点并连接到导演台（本地等效）");
     };

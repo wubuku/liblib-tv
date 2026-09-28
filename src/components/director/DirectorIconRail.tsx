@@ -71,7 +71,11 @@ const aspectRatios = [
   "9:16",
 ] as const;
 
-export function DirectorIconRail() {
+export function DirectorIconRail({
+  onPanoramaSourceChange,
+}: {
+  onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
+} = {}) {
   const [active, setActive] = useState<string>("scene");
   const [openFlyout, setOpenFlyout] = useState<string | null>(null);
   const [aspectRatio, setAspectRatio] = useState<string>("自适应");
@@ -290,7 +294,12 @@ export function DirectorIconRail() {
           {characterAck}
         </span>
       )}
-      {aiImportOpen && <DirectorAiImportModal onClose={() => setAiImportOpen(false)} />}
+      {aiImportOpen && (
+        <DirectorAiImportModal
+          onClose={() => setAiImportOpen(false)}
+          onPanoramaSourceChange={onPanoramaSourceChange}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,23 @@
+{
+  "batch": 562,
+  "title": "AI import upload auto-selects the panorama source",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-27 (batch 539/554)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "source:empty-before",
+        "modal:opens",
+        "source:auto-selected",
+        "source:points-at-new-node",
+        "panorama:connected-label",
+        "close:x",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
