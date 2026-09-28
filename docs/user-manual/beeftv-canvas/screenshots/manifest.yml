@@ -228,3 +228,15 @@ screenshots:
     visible_text: '个人资产库'
     alt: '浅色模式个人资产库页：类型过滤标签（全部/文本/图片/视频/音频 各0）、当前暂无资产提示与上传资产按钮，右侧生成历史侧栏'
     sha256: f3947e81558e0d5ffe45f0b1dd095856ba65954d1ca2968ba3fe1ddb5257b2a3
+
+  - file: screenshots/21-model-config-full.png
+    task_id: plugins-management
+    step: '「本地模型渠道」配置页全貌：拉取全部/新增渠道、BeefAPI 卡片（连接/拉取模型/编辑/未连接）、四类默认模型选择器（生图/视频/文本/音频，均尚未配置）'
+    route: '/settings?section=channels'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 本地模型渠道 / button 连接 BeefAPI / heading 默认生图模型 / heading 默认视频模型'
+    visible_text: '本地模型渠道'
+    alt: '模型配置页全貌：顶部拉取全部与新增渠道按钮，BeefAPI 渠道卡片显示 OpenAI 兼容·已保存 0 个模型·未连接，下方默认生图/视频/文本/音频模型四类选择器均尚未配置'
+    sha256: c05ab42f958faf4dbc5099aa681c583fae719f0cbb7f433fc04fc11d4c09fd4c
