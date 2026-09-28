@@ -1283,6 +1283,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-28 | batch 2223 全量 | still-broken | 第八百八十六次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 557 绘制轨迹 affordance 后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP（batch 2223） |
 | 2026-09-29 | batch 2243 全量 | still-broken | 第八百八十八次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 558 渲染端夹紧后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP（batch 2243） |
 | 2026-09-29 | batch 2249 巡检 | still-broken | 第八百八十九次重测；巡检批次——batch 2243 全量闭环（3aaaa384）；并行 beeftv user-manual 7 件 WIP 保留不动 |
+| 2026-09-29 | batch 2256 巡检 | still-broken | 第八百九十次重测；巡检批次——并行 beeftv user-manual 7 件/jimeng WIP 18 件脏文件保留不动；batch 558 已闭环（6f2fd9f1） |
 | 2026-09-28 | batch 2229 巡检 | still-broken | 第八百八十七次重测；巡检批次——batch 2223 全量闭环（61101fac）；并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动 |
 | 2026-09-29 | batch 2236 巡检 | still-broken | 第八百八十七次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 5 件保留不动；batch 557 已闭环（c03dd146） |
 | 2026-09-28 | batch 1963 全量 | still-broken | 第八百四十五次重测；中断续跑 78/78 全绿（零瞬态零复测；覆盖 batch 542 后回归；并行 811 套件 94/94 完毕后资源窗口清空）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 1963 续跑） |
