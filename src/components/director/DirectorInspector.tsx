@@ -24,6 +24,7 @@ import {
   Unlock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DirectorCameraMotionTab } from "@/components/director/DirectorCameraMotionTab";
 import {
   useDirectorStore,
   type DirectorCameraLookAtMode,
@@ -1489,9 +1490,11 @@ export function DirectorInspector({
   const sceneNameInputRef = useRef<HTMLInputElement>(null);
   const objectNameInputRef = useRef<HTMLInputElement>(null);
   const selectShot = useDirectorStore((state) => state.selectShot);
-  const [cameraTab, setCameraTab] = useState<"properties" | "captures">(
-    "properties",
-  );
+  // Batch 563: 源站截图 50/51——摄像机面板三页签 属性 | 运动轨迹(NEW) | 截图；
+  // 运动轨迹页签承载 虚拟相机（扫码连接 + 录制/重试）与 预设运镜/创建运动轨迹。
+  const [cameraTab, setCameraTab] = useState<
+    "properties" | "motion" | "captures"
+  >("properties");
   const timeline = useDirectorStore((state) => state.timeline);
   const selectedGroup =
     groups.find((group) => group.id === selectedGroupId) ?? null;
@@ -1607,7 +1610,8 @@ export function DirectorInspector({
           {(
             [
               ["properties", "属性"],
-              ["captures", "摄像机截图"],
+              ["motion", "运动轨迹"],
+              ["captures", "截图"],
             ] as const
           ).map(([tab, label]) => (
             <button
@@ -1617,11 +1621,19 @@ export function DirectorInspector({
               aria-pressed={cameraTab === tab}
               onClick={() => setCameraTab(tab)}
               className={cn(
-                "rounded text-[11px] text-[#777] hover:text-white",
+                "relative rounded text-[11px] text-[#777] hover:text-white",
                 cameraTab === tab && "bg-[#292929] text-[#d9d9d9]",
               )}
             >
               {label}
+              {tab === "motion" ? (
+                <span
+                  data-director-camera-motion-new
+                  className="absolute -top-2 right-0 rounded-full bg-[#09caf5] px-1 text-[8px] font-medium text-[#0d2c33]"
+                >
+                  NEW
+                </span>
+              ) : null}
             </button>
           ))}
         </nav>
@@ -1629,7 +1641,9 @@ export function DirectorInspector({
 
       <div className="min-h-0 flex-1 overflow-y-auto">
         {selectedGroup ? null : selected ? (
-          selected.kind === "camera" && cameraTab === "captures" ? (
+          selected.kind === "camera" && cameraTab === "motion" ? (
+            <DirectorCameraMotionTab cameraName={selected.name} />
+          ) : selected.kind === "camera" && cameraTab === "captures" ? (
             <DirectorCaptureGallery
               captures={captures}
               onSendCapture={onSendCapture}

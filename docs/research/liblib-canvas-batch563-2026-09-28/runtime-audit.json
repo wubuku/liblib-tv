@@ -1,0 +1,35 @@
+{
+  "batch": 563,
+  "title": "Camera panel three tabs + 运动轨迹 (NEW) tab",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §12 + screenshots 50/51 (CDP 2026-09-29)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "tabs:three",
+        "tabs:motion-present",
+        "tabs:motion-new-badge",
+        "properties:active-default",
+        "motion:section-visible",
+        "motion:wifi-hint",
+        "motion:qr",
+        "record:disabled-before-connect",
+        "record:idle-label",
+        "qr:connected-label",
+        "record:enabled-after-connect",
+        "record:recording-state",
+        "record:label-recording",
+        "retry:visible",
+        "preset:hint-button",
+        "create-path:hint-button",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 1,
+        "errors": [
+          "console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+        ]
+      }
+    }
+  ]
+}
