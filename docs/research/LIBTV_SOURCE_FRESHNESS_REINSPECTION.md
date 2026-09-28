@@ -1293,6 +1293,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-29 | batch 2296 巡检 | still-broken | 第八百九十六次重测；巡检批次——batch 562 自动替换图源已闭环（cab74748）；并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动 |
 | 2026-09-29 | batch 2306 巡检 | still-broken | 第八百九十七次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 1 件保留不动；batch 562 已闭环（cab74748） |
 | 2026-09-29 | batch 2311 巡检 | still-broken | 第八百九十八次重测；巡检批次——并行落库 jimeng batch 920 regression closes（67f4b7f1）+ package-lock 更新；batch 563 已闭环（c2d42c84） |
+| 2026-09-29 | batch 2253 全量 | still-broken | 第八百八十九次重测（批次窗口续记）；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 564 验证批后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 2253 窗口） |
 | 2026-09-28 | batch 2229 巡检 | still-broken | 第八百八十七次重测；巡检批次——batch 2223 全量闭环（61101fac）；并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动 |
 | 2026-09-29 | batch 2236 巡检 | still-broken | 第八百八十七次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 5 件保留不动；batch 557 已闭环（c03dd146） |
 | 2026-09-28 | batch 1963 全量 | still-broken | 第八百四十五次重测；中断续跑 78/78 全绿（零瞬态零复测；覆盖 batch 542 后回归；并行 811 套件 94/94 完毕后资源窗口清空）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng WIP（batch 1963 续跑） |
