@@ -451,11 +451,29 @@ export function DirectorTimeline() {
         >
           <Repeat2 size={14} />
         </button>
-        <span
+        {/* Batch 568: 源站时间输入为可编辑框（截图 48/55：0.00 / 10.00 两个
+            带边框输入）——当前时间输入 Enter/blur 后经 setTimelineTime seek。 */}
+        <input
           data-director-timeline-time={timeline.currentTime.toFixed(3)}
-          className="w-[108px] shrink-0 text-center text-[11px] tabular-nums text-[#a7a7a7]"
+          aria-label="当前时间（秒）"
+          defaultValue={formatTimelineTime(timeline.currentTime)}
+          key={timeline.currentTime.toFixed(3)}
+          onKeyDown={(event) => {
+            if (event.key !== "Enter") return;
+            const parsed = Number(event.currentTarget.value);
+            if (Number.isFinite(parsed)) {
+              setTimelineTime(
+                Math.min(Math.max(parsed, 0), timeline.duration),
+              );
+            }
+          }}
+          className="h-7 w-[64px] shrink-0 rounded border border-white/[0.12] bg-[#222] px-2 text-center text-[11px] tabular-nums text-[#a7a7a7] outline-none focus:border-[#09caf5]/60"
+        />
+        <span className="shrink-0 text-[11px] text-[#a7a7a7]">/</span>
+        <span
+          data-director-timeline-duration
+          className="w-[52px] shrink-0 text-center text-[11px] tabular-nums text-[#a7a7a7]"
         >
-          {formatTimelineTime(timeline.currentTime)} /{" "}
           {formatTimelineTime(timeline.duration)}
         </span>
         <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />

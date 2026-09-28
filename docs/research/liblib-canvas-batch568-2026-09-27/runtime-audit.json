@@ -1,0 +1,22 @@
+{
+  "batch": 568,
+  "title": "Timeline current-time editable input",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §12/§13 + screenshots 48/55",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "time:input-visible",
+        "duration:label-visible",
+        "seek:store-time",
+        "seek:clamped",
+        "seek:negative-clamped",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
