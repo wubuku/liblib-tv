@@ -39,7 +39,7 @@
 | cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
 | agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
 | local-runtime | 本机启动 framefield-local-runtime | 启动后回走深度/线稿/姿态 |
-| concepts-architecture | 不适用回走（概念页无操作步骤）；内容已随源码审查闭环 | 可随时出 excluded（保持 excluded 亦准确） |
+| ~~concepts-architecture~~ | 内容一致性审查已通过，已升级 **verified**（Batch 18） | 已升级 |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |
 
 ## 方法论适配说明（相对 SKILL 的差异）

@@ -378,8 +378,8 @@ tasks:
     evidence:
       - type: static
         note: live/committed 双轨三频率；storageRevision 三方 rebase；实体补丁栈/Agent 快照/后端版本三层历史。
-    status: excluded
-    exclusion_reason: 概念解释页，无操作步骤，不适用回走
+    status: verified
+    review_note: 概念页无 UI 操作步骤，回走等价于内容与源码证据一致性审查——三层能力分布/多选编组/生成落账事务等全部小节均源自调研包 702 处断言已审查证据（Batch 251-262/BF-41/42），一致性通过
     manual_pages:
       - 30-concepts.md
   - id: troubleshooting
