@@ -86,7 +86,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(250)
     check("skip:dismisses", coach.count() == 0)
 
-    # 下一步 → 同样收起；重载页面（每次挂载再现）→ 下一步收起
+    # Batch 572 migration: 源站实测（截图 58）气泡收起状态跨重载持久——
+    # 重载后气泡不再出现（原「每次挂载再现」合同由持久化合同替代）。
     page.reload(wait_until="networkidle")
     page.wait_for_function(
         """() => Boolean(window.__libtv_store && window.__libtv_ui_store && window.__director_store)"""
@@ -100,12 +101,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     page.locator("[data-director-workspace]").wait_for(state="visible")
     page.wait_for_timeout(600)
-    coach = page.locator("[data-director-timeline-coachmark]")
-    check("reload:coach-visible", coach.count() >= 1)
-    if coach.count():
-        coach.first.locator("[data-director-coachmark-next]").click()
-        page.wait_for_timeout(250)
-    check("next:dismisses", coach.count() == 0)
+    check(
+        "reload:coach-stays-dismissed",
+        page.locator("[data-director-timeline-coachmark]").count() == 0,
+    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

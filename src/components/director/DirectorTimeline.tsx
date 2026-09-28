@@ -69,7 +69,23 @@ export function DirectorTimeline() {
   // Batch 556: 源站截图 48——时间线打开时的 1/5 引导气泡（请选择一个
   // 角色或者摄像机后，可新建轨道 + 跳过/下一步）；步骤 2-5 未采样，
   // 跳过/下一步均收起气泡（CLONE_DECISION）。
-  const [coachDismissed, setCoachDismissed] = useState(false);
+  // Batch 572: 源站实测（截图 58，batch 571）——气泡收起状态跨重载持久
+  // （浏览器重启后仍收起）；clone 以 localStorage 对齐该持久化语义。
+  const [coachDismissed, setCoachDismissed] = useState(() => {
+    try {
+      return window.localStorage.getItem("director-timeline-coach-dismissed") === "1";
+    } catch {
+      return false;
+    }
+  });
+  const dismissCoach = () => {
+    setCoachDismissed(true);
+    try {
+      window.localStorage.setItem("director-timeline-coach-dismissed", "1");
+    } catch {
+      /* storage 不可用时仅会话内收起 */
+    }
+  };
   const advanceTimeline = useDirectorStore((state) => state.advanceTimeline);
   const toggleTimelineLoop = useDirectorStore(
     (state) => state.toggleTimelineLoop,
@@ -384,7 +400,7 @@ export function DirectorTimeline() {
               <button
                 type="button"
                 data-director-coachmark-skip
-                onClick={() => setCoachDismissed(true)}
+                onClick={dismissCoach}
                 className="rounded-lg px-2 py-1 text-xs text-[#8c8c8c] hover:bg-white/[0.06] hover:text-white"
               >
                 跳过
@@ -392,7 +408,7 @@ export function DirectorTimeline() {
               <button
                 type="button"
                 data-director-coachmark-next
-                onClick={() => setCoachDismissed(true)}
+                onClick={dismissCoach}
                 className="rounded-full bg-[#e8e8e8] px-3 py-1 text-xs text-[#1a1a1a] hover:bg-white"
               >
                 下一步
