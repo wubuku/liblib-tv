@@ -165,7 +165,7 @@ tasks:
         note: 实体差异补丁栈（180ms 合并、上限 50）；云端/本地草稿双 tab、恢复前自动备份；回收站软删除 200 条、恢复/彻底删除二段确认。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/undo-history-versions.md
   - id: organize-canvas
@@ -179,7 +179,7 @@ tasks:
         note: Alt+Shift+F 自适应整理（选择感知）；frame/folder 折叠语义；light/dark/custom 三主题（v1.5.8 起浅色回摆）；Alt+L 无关。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/organize-canvas.md
   - id: shortcuts-help
@@ -193,7 +193,7 @@ tasks:
         note: '? 打开快捷键中心（四分类）；canvas-shortcuts.ts 文案与代码有一处已知相反（V 键，上游 bug 已记录）。'
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/shortcuts-help.md
   # —— 时间线剪辑 ——
@@ -351,7 +351,7 @@ tasks:
     evidence:
       - type: static
         note: use-canvas-keyboard 全表；REST 端点清单（tasks/agent/resources/skills/memories）。
-    status: planned
+    status: written-static
     manual_pages:
       - 20-reference.md
   - id: concepts-architecture

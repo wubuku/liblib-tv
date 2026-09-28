@@ -9,8 +9,8 @@
 | 1 | 脚手架：task-inventory（29 候选任务）/PROGRESS/AUDIT/SOURCE_OBSERVATIONS/README | ✅ 完成（commit 2836f442） |
 | 2 | 00-quickstart + create-nodes / navigate-canvas / upload-materials / connect-references / prompts-and-mentions / generate-images / media-versions / undo-history-versions（占位） | ✅ 静态成稿（8 页，占位 1） |
 | 3 | （已并入 Batch 2） | — |
-| 4 | generate-video / organize-canvas 全文；media-versions 已成稿；undo-history-versions 占位转全 | ⏳ 待做 |
-| 5 | shortcuts-help + 20-reference.md（快捷键全表/路由/端点） | ⏳ 待做 |
+| 4 | generate-video / media-versions 已成稿；undo-history-versions / organize-canvas 全文 | ✅ 完成（Batch 3） |
+| 5 | shortcuts-help + 20-reference.md（快捷键全表/导演台键位/路由/REST 端点/本地进程） | ✅ 完成（Batch 3） |
 | 6 | 时间线三篇（timeline-editing / subtitle-highlights / timeline-export） | ⏳ 待做 |
 | 7 | 导演台三篇（director-basics / director-keyframes-record / director-rig-bones） | ⏳ 待做 |
 | 8 | cloud-agent + agent-memory-skills + plugins-management | ⏳ 待做 |
