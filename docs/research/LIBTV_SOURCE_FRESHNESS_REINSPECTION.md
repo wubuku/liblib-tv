@@ -1322,6 +1322,7 @@ batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 
 batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
 | 2026-09-29 | batch 2303 全量 | still-broken | 第九百次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 568 时间输入后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP 与再生成工件（batch 2303） |
 执行一次探测、结果全部 still-broken，绝对次数以提交链为准。本表后续行
+| 2026-09-29 | batch 2316 巡检 | still-broken | 第九百零一次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件保留不动；batch 568 已闭环（a2741eb7） |
 沿用序列 B 继续计数。
 
 2026-09-14 台账修复（batch 498）：文件尾曾堆积一段追加在 §10.3 之后的孤儿行
