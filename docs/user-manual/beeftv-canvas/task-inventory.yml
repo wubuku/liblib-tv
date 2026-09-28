@@ -5,7 +5,7 @@ target:
   app: beeftv
   url: 'http://localhost:3000（本地 web dev，vite；生产为自托管站点）'
   app_repo: '/Users/yangjiefeng/Documents/glanderness/BeefTV'
-  app_version: 'v1.5.9（公共最新发布；调研锚点 v1.5.7/85c9686，差异见调研包 §35：浅色模式与素材限制对齐）'
+  app_version: 'v1.6.6（公共最新发布；截图摄于 v1.5.7 构建，v1.5.9→v1.6.6 差异已审计并回写章节）'
   audience:
     - beeftv-creator
     - beeftv-agent-user

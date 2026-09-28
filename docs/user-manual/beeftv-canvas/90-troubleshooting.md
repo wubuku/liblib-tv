@@ -16,6 +16,28 @@
 原因：参考素材的尺寸/宽高比/大小/时长超出当前模型能力。
 处理：更换或裁剪素材；或在渠道设置里切换能力匹配的模型。
 
+### 审核失败：先分清「内容违规」还是「版权/真人限制」
+
+审核错误要对照官方错误码区分输入与输出、文字与媒体：
+
+- `SensitiveContentDetected` 本身**不代表真人**；同错误族的 `PolicyViolation` 表示**版权限制**；
+- 只有输入图片/视频的 `PrivacyInformation` 才提示真人形象，`DeepFake` 提示伪造内容审核；
+- `ContentSecurityDetectionError` 表示**审核服务内部失败**，不能当成你的内容违规；
+- 调整提示词或更换参考素材后可新建任务（原任务不受影响）。
+
+### 额度与频控：不要一律「稍后再试」
+
+| 错误 | 含义 | 处理 |
+|---|---|---|
+| `SetLimitExceeded` | 渠道配置的用量上限 | 检查并调整渠道用量/预算 |
+| `AccountOverdueError` / `ServiceOverdue` | 供应商**欠费**（不是你的权限问题） | 联系渠道方处理欠费 |
+| `InflightBatchsizeExceeded` | 并发数限制 | 降低同时提交的任务数 |
+| 模型路由临时不可用 | 可操作的服务端错误（v1.6.5 起） | 稍后重试或换模型，提示会给出方向 |
+
+### Seedance 报 TaskTypeConstraint
+
+参数与任务模式不兼容：核对最终发送的 `ratio`、`duration` 与每个素材的 role（详见 [generate-video.md](10-tasks/generate-video.md) 的任务模式表）。任务 ID 只证明创建成功。
+
 ### 提交后一直转圈 / 结果未知（524 等）
 
 原因：网关超时属于「提交不确定」——服务端可能仍在执行。

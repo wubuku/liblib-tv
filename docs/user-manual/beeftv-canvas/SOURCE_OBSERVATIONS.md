@@ -26,6 +26,12 @@
 - v1.5.9：视频生成**素材限制校验与错误提示**对齐（video-validation +90 行、generation-error +98 行、后端 16 文件同主题）。
 - 涉及章节：organize-canvas（外观）、generate-video（素材限制）、90-troubleshooting（错误文案）。
 
-## 上游在途分支（不影响当前手册）
+## v1.5.9 → v1.6.6 增量审计（Batch 9，2026-09-29）
 
-`codex/depth-action-video-preview`（深度动作捕捉 + 桌面更新，140 文件未合入 main）——监控中，合入后触发增量审计。
+上游发布 v1.6.6（9 提交 / 205 文件 / +6953−10507，含 depth-action 分支合入）：
+- v1.6.0：深度动作捕捉 + 稳定视频预览合入；旧桌面 Agent 退场（v1.6.2 架构收敛）；
+- v1.6.1：审核/版权/额度失败分类精确化（moderation_input/moderation_reference/quota_limit 等）；
+- v1.6.3-6.6：Seedance 2.5 任务模式约束、参考能力保留、轮询错误码保留（新增官方页 seedance-task-constraints.mdx）；
+- 新后端域：`backend/internal/depthruntime`（深度素材服务端拉取与校验）。
+手册已回写：generate-video（任务模式/三层限制/TaskTypeConstraint）、90-troubleshooting（审核/额度/路由三类）、local-runtime（后端 depthruntime 注记）、README 版本行。
+截图摄于 v1.5.7 构建；v1.6.x 界面差异（视频参数/错误文案）已用文字标注，下一轮重摄时更新。
