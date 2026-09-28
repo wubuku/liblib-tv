@@ -240,3 +240,15 @@ screenshots:
     visible_text: '本地模型渠道'
     alt: '模型配置页全貌：顶部拉取全部与新增渠道按钮，BeefAPI 渠道卡片显示 OpenAI 兼容·已保存 0 个模型·未连接，下方默认生图/视频/文本/音频模型四类选择器均尚未配置'
     sha256: c05ab42f958faf4dbc5099aa681c583fae719f0cbb7f433fc04fc11d4c09fd4c
+
+  - file: screenshots/22-settings-channels.png
+    task_id: plugins-management
+    step: '「本地模型渠道」设置页（浅色滚动前视图）：BeefAPI 渠道与四类默认模型选择器（均尚未配置）'
+    route: '/settings?section=channels'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 本地模型渠道 / button 连接 BeefAPI / heading 默认生图模型 / heading 默认音频模型'
+    visible_text: '本地模型渠道'
+    alt: '设置页渠道区：BeefAPI 渠道（OpenAI 兼容·已保存 0 个模型·未连接）与默认生图/视频/文本/音频模型四类选择器'
+    sha256: cf4d022d33dc88c4632338fe4ba606a87073d6df104747fe5a110efba546ac91

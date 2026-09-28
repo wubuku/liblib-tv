@@ -15,6 +15,8 @@
 
 内置插件随应用发布，可在插件页启停；AI 审美批改和剪辑工作台属于「应用型插件」，与系统协议插件区分。
 
+![本地模型渠道配置页（渠道区滚动前视图）](../screenshots/22-settings-channels.png)
+
 ![本地模型渠道配置页全貌：BeefAPI 卡片与四类默认模型选择器](../screenshots/21-model-config-full.png)
 
 ## 模型渠道配置（运行时实证）
