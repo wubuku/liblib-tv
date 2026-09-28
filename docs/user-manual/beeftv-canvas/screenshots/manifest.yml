@@ -1,3 +1,145 @@
-# BeefTV 用户手册 · 截图清单
-# 每张截图：任务、步骤、路由、视口、定位证据、时间。Batch 10 本地起服后填充。
-screenshots: []
+screenshots:
+
+  - file: screenshots/01-home.png
+    task_id: quickstart-first-canvas
+    step: '首页：新建画布创作 + 七个创作能力入口 + 最近项目空态'
+    route: '/'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 新建画布创作 / BeefTV Agent 正在开发 / 智能剪辑 即将开放 / v1.5.7'
+    visible_text: '新建画布创作'
+    alt: 'BeefTV 首页：顶部「新建画布创作」卡片，下方自由画布/视频生成/图片生成/音频生成等入口，左下 v1.5.7'
+    sha256: 01f935482fa58aad2d0fa868100a17fc3897cba315e5621a7b778c453c67657b
+
+  - file: screenshots/02-canvas-empty.png
+    task_id: quickstart-first-canvas
+    step: '画布空态：双击画布自由生成节点 + 底部工具栏 + 100% 缩放'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'generic 双击画布 · 自由生成节点 / toolbar 画布工具 / button 打开素材空间 共 0 项'
+    visible_text: '双击画布 · 自由生成节点'
+    alt: '空画布工作区：中央提示「双击画布 · 自由生成节点」，底部工具栏与视图控制，缩放 100%'
+    sha256: b4d5024ee0853089dd5820920ef07f42b89b48903efb53aee28a37aa782cf2d5
+
+  - file: screenshots/03-add-node-menu.png
+    task_id: create-nodes
+    step: '双击空白弹出「添加节点」列表菜单（创作节点 + 导入资源，搜索在右上）'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 添加节点 / button 文本 / button 智能剪辑 正在开发 / heading 导入资源'
+    visible_text: '添加节点'
+    alt: '添加节点菜单：创作节点（文本/图片/视频/音频/智能剪辑/导演台/逐帧拉片/脚本均标正在开发）与导入资源（上传/从生成历史选择/素材库）'
+    sha256: 52ae87a86bc0b64bc8aee1714ad6d59173b1e0a89736f3dc15875f51c28507ee
+
+  - file: screenshots/04-text-node.png
+    task_id: create-nodes
+    step: '创建「文本节点 1」后的选中态：节点工具栏与左右「+」连接轨道'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'generic 文本节点 1 / button 放大编辑 / 左右圆形加号轨道'
+    visible_text: '文本节点 1'
+    alt: '画布上的文本节点 1，上方工具栏（文本生成/放大编辑/生图/文本调整），左右两侧加号连接轨道'
+    sha256: 9cfbfa270af47a127284bbb7c5de00d5e0b52d607d7b84bb62b1a6e140de1a6a
+
+  - file: screenshots/05-shortcuts-center.png
+    task_id: shortcuts-help
+    step: '「画布快捷键」中心：搜索、四分类计数与快捷键列表'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 画布快捷键 / 共 24 个快捷键 / 全部 24 常用 4 视图与导航 7 选择与连接 6 编辑与文件 7'
+    visible_text: '共 24 个快捷键'
+    alt: '画布快捷键弹窗：左侧分类（全部 24/常用 4/视图与导航 7/选择与连接 6/编辑与文件 7），右侧条目如搜索画布节点 Ctrl/Cmd+F、整理画布 Option+Shift+F'
+    sha256: d84038e51c5623f3deedfc4da2f5a33c9e7178fab702e7e7253f79fe8f98a918
+
+  - file: screenshots/06-minimap.png
+    task_id: navigate-canvas
+    step: '小地图开启：左下角视口矩形与节点色块，底部按钮「切换小地图」'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 切换小地图 / 文本节点 1 色块'
+    visible_text: '切换小地图'
+    alt: '画布左下角小地图显示当前视口矩形与文本节点色块，工具栏可见「切换小地图」提示'
+    sha256: 6898e41add9b586a0ffe84052ddb8951d7b2cc14a646bf9332ee7150deb66fa0
+
+  - file: screenshots/07-version-history.png
+    task_id: undo-history-versions
+    step: '版本记录侧栏：本机备份条目（基于 v2，1 个节点 · 0 条连线）'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 版本记录 / 本机备份 / 基于 v2'
+    visible_text: '本机备份'
+    alt: '右侧版本记录抽屉：一条「本机备份 基于 v2」条目，时间与节点/连线计数'
+    sha256: 1bfc5393be1f06908c87e7a930537037dcff0bc9d2a3ffbb18f4031083f01897
+
+  - file: screenshots/08-prompt-editor.png
+    task_id: prompts-and-mentions
+    step: '「放大编辑」全屏编辑器：顶栏「已保存在本地」自动保存指示'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: '已保存在本地 / 100% / 关闭按钮'
+    visible_text: '已保存在本地'
+    alt: '放大编辑全屏模式，顶栏显示已保存在本地、历史与缩放控制'
+    sha256: ed73e4c814b36a84759b8db496e2106d87c18e335f21b2eac09ef6ce795578ff
+
+  - file: screenshots/09-image-node.png
+    task_id: generate-video
+    step: '视频节点生成 composer：提示词框、模型 2.0、720P·1:1·6s'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'textbox 描述你想要生成的画面内容，@引用素材 / 720P · 1:1 · 6s'
+    visible_text: '描述你想要生成的画面内容，@引用素材'
+    alt: '选中视频节点后底部生成 composer：提示词输入、模型 2.0 与 720P·1:1·6s 参数'
+    sha256: 2c3803ac2b34411aa3192590a655f3c75bd39a0ee02036979191f6be9f448af1
+
+  - file: screenshots/11-connect-rails.png
+    task_id: connect-references
+    step: '选中文本节点时左右两侧的「+」连接轨道'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'generic 文本节点 1 / 左右圆形加号轨道'
+    visible_text: '文本节点 1'
+    alt: '选中的文本节点左右两侧显示加号连接轨道'
+    sha256: 9cfbfa270af47a127284bbb7c5de00d5e0b52d607d7b84bb62b1a6e140de1a6a
+
+  - file: screenshots/12-generate-entry.png
+    task_id: generate-images
+    step: '文本节点工具栏的「生图」入口（从文本直接发起图片生成）'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 生图 / toolbar 文本生成 放大编辑'
+    visible_text: '生图'
+    alt: '选中文本节点上方工具栏：文本生成 / 放大编辑 / 生图 / 文本调整'
+    sha256: 9cfbfa270af47a127284bbb7c5de00d5e0b52d607d7b84bb62b1a6e140de1a6a
+
+  - file: screenshots/13-upload-entry.png
+    task_id: upload-materials
+    step: '「添加节点」菜单「导入资源」段的「上传」入口'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 上传 / heading 导入资源'
+    visible_text: '上传'
+    alt: '添加节点菜单的导入资源段：上传 / 从生成历史选择 / 素材库'
+    sha256: 52ae87a86bc0b64bc8aee1714ad6d59173b1e0a89736f3dc15875f51c28507ee

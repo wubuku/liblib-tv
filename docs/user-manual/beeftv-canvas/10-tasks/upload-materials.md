@@ -11,6 +11,8 @@
 1. 「添加节点」菜单 → **导入资源 → 上传**；
 2. 空白右键菜单 → **上传到这里**（导入到点击位置附近）。
 
+![添加节点菜单的「上传」入口](../screenshots/13-upload-entry.png)
+
 ## 支持的文件类型
 
 `image/*`、`video/*`、`audio/mpeg`、`audio/wav`、`audio/x-wav`、`.mp3`、`.wav`、`.txt`、`.md`、`.markdown`，可多选。
