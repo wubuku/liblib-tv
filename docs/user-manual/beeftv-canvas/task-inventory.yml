@@ -39,7 +39,7 @@ tasks:
     routes:
       - '/'
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 00-quickstart.md
   - id: navigate-canvas
@@ -53,7 +53,7 @@ tasks:
         note: wheel 1.1 系数缩放 0.05-2、触控板平移、pinch 中点锚、纯 DOM 小地图（240×160、≤24 缩略图）；INTERACTION_CATALOG §1/§8。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/navigate-canvas.md
   - id: create-nodes
@@ -67,7 +67,7 @@ tasks:
         note: CanvasNodeType 枚举恰 18 类 + PluginCanvasNodeType 开放扩展；五处创建入口；创建菜单 grid/list 双形态、list 默认隐藏三个高级项。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/create-nodes.md
   - id: upload-materials
@@ -81,7 +81,7 @@ tasks:
         note: accept 十类白名单；三层存储（IndexedDB/直传/50MB 分片会话每片 8MB）；X-Idempotency-Key 幂等；无内容哈希去重（同文件两次=两份）。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/upload-materials.md
   - id: connect-references
@@ -95,7 +95,7 @@ tasks:
         note: hover 侧栏「+」端口 80px 热区；56px 圆形吸附；松手空白/点 pin 弹「引用该节点生成」快速创建；Alt+L 批量连线（>1 选中）；无端点重连。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/connect-references.md
   - id: prompts-and-mentions
@@ -109,7 +109,7 @@ tasks:
         note: '@mention 命中→composer 模式（mention 集合取代自动连线）；composerContent/prompt 双字段不能互相覆盖；optimize_prompt 五字段输出契约。'
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/prompts-and-mentions.md
   - id: generate-images
@@ -123,7 +123,7 @@ tasks:
         note: 四层防重复计费（同指纹二次确认「可能再次消耗积分」）；count>1=root+N 子节点；首张回填 primaryImageId；刷新按 taskId 对账恢复。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/generate-images.md
   - id: generate-video
@@ -151,7 +151,7 @@ tasks:
         note: 共享 versionOfNodeId + "A".."Z" label + primary 标志；重生成自动切 primary。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/media-versions.md
   - id: undo-history-versions
