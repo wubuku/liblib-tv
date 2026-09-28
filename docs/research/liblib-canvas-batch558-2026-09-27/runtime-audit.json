@@ -1,0 +1,23 @@
+{
+  "batch": 558,
+  "title": "Gaussian ground snap render-side character Y clamp",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 45 (3D 场景 panel)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "clamp:authored-zero",
+        "clamp:runtime-zero",
+        "render:survives",
+        "off:authored-free",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 1,
+        "errors": [
+          "console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+        ]
+      }
+    }
+  ]
+}

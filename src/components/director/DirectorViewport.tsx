@@ -864,6 +864,11 @@ function SceneObject({ object }: { object: DirectorObject }) {
     (state) => state.scene.showCharacterLabels ?? true,
   );
   const snapToGrid = useDirectorStore((state) => state.scene.snapToGrid ?? false);
+  // Batch 558: 源站「高斯地面吸附」开——角色渲染位置 Y 不低于地面（与
+  // authored 层夹紧合同一致，修复 runtime 投影覆盖导致的视觉偏差）。
+  const gaussianGroundSnap = useDirectorStore(
+    (state) => state.scene.gaussianGroundSnap ?? true,
+  );
   const beginDirectorGesture = useDirectorStore(
     (state) => state.beginDirectorGesture,
   );
@@ -994,10 +999,14 @@ function SceneObject({ object }: { object: DirectorObject }) {
 
   if (!object.visible || hideCameraRig) return null;
 
+  const renderPosition =
+    gaussianGroundSnap && object.kind === "character"
+      ? ([object.transform.position[0], Math.max(object.transform.position[1], 0), object.transform.position[2]] as typeof object.transform.position)
+      : object.transform.position;
   const content = (
     <group
       ref={assignGroupRef}
-      position={object.transform.position}
+      position={renderPosition}
       rotation={rotation}
       scale={object.transform.scale}
       onClick={(event: ThreeEvent<MouseEvent>) => {
