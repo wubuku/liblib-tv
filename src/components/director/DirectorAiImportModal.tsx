@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type ChangeEvent } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
+import { useCanvasStore } from "@/store/canvasStore";
 
 // Batch 539: 2026-09-27 已存截图转录（liblib-source-exploration-2026-09-25
 // 44-director-rail-27.png）——rail「AI 识图导入」打开的居中模态：
@@ -33,6 +34,46 @@ const coverageOptions = [
 export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<"upload" | "history">("upload");
   const [coverage, setCoverage] = useState<string>("insert");
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadNote, setUploadNote] = useState<string | null>(null);
+
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const input = event.currentTarget;
+    const file = input.files?.[0];
+    input.value = "";
+    if (!file || !file.type.startsWith("image/")) {
+      setUploadNote("未选择可用图片");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = String(reader.result);
+      const canvasStore = useCanvasStore.getState();
+      canvasStore.addNode("image", {
+        imageUrl: dataUrl,
+        filename: file.name,
+      });
+      const activeCanvas = useCanvasStore
+        .getState()
+        .canvases.find((c) => c.id === useCanvasStore.getState().activeCanvasId);
+      const imageNode = activeCanvas?.nodes
+        .filter((node) => node.type === "image")
+        .at(-1);
+      const sourceNodeId = useDirectorStore.getState().projectOwner
+        ?.sourceNodeId;
+      if (imageNode && sourceNodeId) {
+        useCanvasStore.getState().addEdge({
+          id: `edge-${imageNode.id}-${sourceNodeId}`,
+          source: imageNode.id,
+          target: sourceNodeId,
+          sourceHandle: "source",
+          targetHandle: "target",
+        });
+      }
+      setUploadNote("已创建图片节点并连接到导演台（本地等效）");
+    };
+    reader.readAsDataURL(file);
+  };
   const localModelLibrary = useDirectorStore(
     (state) => state.localModelLibrary,
   );
@@ -92,7 +133,16 @@ export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
             <>
               <div
                 data-director-ai-import-dropzone
-                className="mt-4 flex h-[240px] flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] px-6 text-center"
+                role="button"
+                tabIndex={0}
+                aria-label="点击上传图片"
+                onClick={() => imageInputRef.current?.click()}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    imageInputRef.current?.click();
+                  }
+                }}
+                className="mt-4 flex h-[240px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] px-6 text-center hover:border-white/[0.3]"
               >
                 <p className="text-sm text-[#c9c9c9]">
                   <span className="cursor-pointer text-[#ededed] underline underline-offset-2">点击上传图片</span>
@@ -103,6 +153,23 @@ export function DirectorAiImportModal({ onClose }: { onClose: () => void }) {
                 </p>
               </div>
 
+              <input
+                ref={imageInputRef}
+                type="file"
+                accept="image/*"
+                aria-label="选择本地图片"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+              {uploadNote && (
+                <p
+                  data-director-ai-import-upload-note
+                  aria-live="polite"
+                  className="mt-2 text-[11px] text-[#9ddbb9]"
+                >
+                  {uploadNote}
+                </p>
+              )}
               <p className="mt-4 text-xs text-[#b5b5b5]">选择是否覆盖场景</p>
               <div className="mt-2 grid grid-cols-2 gap-2">
                 {coverageOptions.map((option) => (

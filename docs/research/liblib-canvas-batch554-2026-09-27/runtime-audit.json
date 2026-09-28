@@ -1,0 +1,22 @@
+{
+  "batch": 554,
+  "title": "AI import dropzone upload creates a connected image node",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot 44-director-rail-27 (batch 539 transcription)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "modal:opens",
+        "canvas:image-node-added",
+        "canvas:edge-to-director",
+        "upload:ack",
+        "close:x",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
