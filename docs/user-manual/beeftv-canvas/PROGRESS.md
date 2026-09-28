@@ -24,6 +24,7 @@
 | 15 | VitePress 站点（四件套适配，构建 28 页 / 11 图 / 2.8M / 1.51s，无 .md 残留链接） | ✅ 完成（Batch 8） |
 | 16 | 上游 v1.6.6 增量修订（generate-video/troubleshooting/local-runtime/README + 版本口径 v1.5.9→v1.6.6） | ✅ 完成（监控轮，commit 860dfc5c） |
 | 17 | v1.6.6 重摄（composer 界面未漂移，09 sha256 更新）+ 发布前预览走查（首页/quickstart/generate-video/troubleshooting 四页渲染与图片均正常；README 发布状态行与账本死链修正） | ✅ 完成 |
+| 17b | 发布产物保鲜重建（收纳 16-25 号新截图与 v1.6.6 修订四页） | ✅ 完成（28+ 页 / 14 图 / 无 .md 残留链接） |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |
 
 ## 方法论适配说明（相对 SKILL 的差异）
