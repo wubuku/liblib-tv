@@ -2283,6 +2283,34 @@ export function DirectorInspector({
               data-director-panorama-input
               className="space-y-2 border-t border-white/[0.07] pt-3"
             >
+              {/* Batch 561: 源站截图 45/48——全景背景区：已连接全景图 状态
+                  与「请将图片节点连接到导演台左侧输入口」提示框。 */}
+              <h3 className="text-[11px] font-medium text-[#cfcfcf]">
+                全景背景
+              </h3>
+              {panoramaRuntimeState === "ready" && (
+                <p
+                  data-director-panorama-connected
+                  className="text-[10px] text-[#9ddbb9]"
+                >
+                  已连接全景图
+                </p>
+              )}
+              {panoramaInputs.length === 0 && (
+                <div
+                  data-director-panorama-hint
+                  className="flex items-center gap-1.5 rounded-lg border border-dashed border-white/[0.12] px-3 py-2.5 text-[10px] leading-4 text-[#686868]"
+                >
+                  <span
+                    className={cn(
+                      "flex size-3.5 shrink-0 items-center justify-center rounded-full border border-current text-[8px]",
+                    )}
+                  >
+                    !
+                  </span>
+                  请将图片节点连接到导演台左侧输入口
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 <h3 className="text-[11px] font-medium text-[#cfcfcf]">
                   画布环境
