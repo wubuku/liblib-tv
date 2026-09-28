@@ -15,7 +15,7 @@
 | 多选批量拖拽 (2026-09-26 源站实测, Batch 232) | 框选后拖动任一选中节点 | 全部选中节点同步移动同一增量；⌘Z 恢复原位（源站实测一致） |
 | CanvasMapDock (画布小地图钉) | click toggle | minimap 显隐（**简化为** `showMinimap` flag） |
 | CanvasMapDock 小地图拖拽 (2026-09-24 源站实测, Batch 179) | 在小地图内拖拽 | 视口随拖拽平移（光标下的世界点成为视口中心）；mini-node 点击仍为选中 + 聚焦 |
-| 指针交互配置 (Batch 191/195 文档对齐) | ReactFlow props | panOnDrag=[1,2]（鼠标中键/右键拖动平移，对应帮助声明）；panOnScroll+zoomOnScroll（滚轮缩放）；multiSelectionKeyCode=Shift/Meta/Control（多选管道已通，工具条未实现） |
+| 指针交互配置 (Batch 191/195 文档对齐) | ReactFlow props | panOnDrag=[1,2]（鼠标中键/右键拖动平移，对应帮助声明）；panOnScroll+zoomOnScroll（滚轮缩放）；multiSelectionKeyCode=Shift/Meta/Control（多选管道 + FrameosGroupToolbar 双模式工具条均已实现，Batch 251-262） |
 | CanvasMapDock (缩小/放大) | click | XYFlow `zoomIn/zoomOut({duration:200})` + 更新 `zoomPercent` |
 | CanvasMapDock (适应画布) | click | XYFlow `fitView({duration:200, padding:0.1})` + `zoomPercent=100` |
 | CanvasMapDock (一键整理) | click | `runOrganize('grid')` 实际重排节点 |
@@ -156,7 +156,7 @@
 | 边上的文字标签 | ✅ 已实现（"作为 prompt"/"参考视频"/"提取文本" 等） |
 | 节点多选 + Group | ✅ 已实现全链路（Batch 251-262，见上方新增行为表） |
 | 右键菜单 | ✅ 已实现并验证（节点按类型/内容态差异含 复制图片/设置为资产图/重新生成禁用 等，Batch 157/226/238；空白处：添加节点/上传/粘贴/整理/重置；Esc/外部关闭） |
-| 拖动时节点对齐辅助线 | ❌ |
+| 拖动时节点对齐辅助线 | ✅ 已实现并接线（FrameosAlignmentGuides，canvas/page.tsx:725） |
 | 真实 API 提交 prompt | ❌ submit 按钮 `disabled` 直到有输入 |
 | 节点文件名/时间戳显示 | ❌ |
 | 视频节点内嵌播放的真实控制条 | 部分（用浏览器原生 `<video controls>`） |

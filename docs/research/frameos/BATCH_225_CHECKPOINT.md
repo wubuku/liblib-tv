@@ -163,3 +163,25 @@
   clone-probe-shot.mp4 两个库内资产（画布节点均已删除，库资产无入口删除或未采样到）。
 - 测试媒体（用户授权，仅上传探索、严禁真实生成）：见 goal 附件清单
   （10 图 + 2 wav + 2 mp4），已记录于 TEST_MEDIA_ASSETS.md。
+
+
+## Batch 326（2026-09-29）：源站恢复确认 + 过期账本行修正
+
+**源站恢复（重大）**：batch 301-308 记录的源站故障结束——7 节点对账态完整回归
+（3D导演台/视频剪辑台/图片节点1/2/3/生成蓝色手机图片-2×2），蓝色参考虚线完好，
+「进入剪辑台」入口在位。batch 301-308 的"0 节点"实为 500% 缩放停留误判。
+**源站依赖采样队列解冻**：剪辑台编辑器采样、内容图片工具条 ⛶全屏查看采样、
+裁剪确认行为采样、分组端口提交语义采样——均可恢复（保持不触发真实生成）。
+
+**过期账本行修正（4 处，引证在案）**：
+- IMPLEMENTATION §7「模型选择器 6 模型（mock）」→ Batch 299 已更新为源站
+  14 模型清单（Seedream 5.0 Pro/帧界 O2.5 系/O2/G2/G Pro/Lite/M8.2 等）。
+- IMPLEMENTATION §7「参考选择模式 真实框选未实现」→ 源站实测为**点击节点加参考**
+  （Batch 197 采样，非框选）；克隆 Batch 197 已同款实现，行删除。
+- BEHAVIORS「多选管道已通，工具条未实现」→ FrameosGroupToolbar 双模式工具条
+  已全链路实现（Batch 251-262，verifier batch251 59 项），行更新。
+- BEHAVIORS「拖动时节点对齐辅助线 ❌」→ FrameosAlignmentGuides 已实现并在
+  canvas/page.tsx:725 接线，行更新为 ✅。
+
+验证基线：`scripts/run-frameos-verifiers.sh` **70/70 PASS**（Batch 326 复跑）。
+证据：recovery-batch326-nodelist.png / recovery-batch326-fit.png。
