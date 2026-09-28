@@ -24,7 +24,7 @@
 
 ## 覆盖率
 
-- 任务账本 25 项：**13 verified**（运行时走查通过）/ **12 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
+- 任务账本 25 项：**14 verified**（运行时走查或内容一致性审查通过）/ **11 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
 - 26 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
 - 界面文字逐字取自源码；v1.6.x 界面差异以文字标注。
 
