@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """BeefTV 调研包自检脚本（docs/research/beeftv-canvas-2026-09-27）。
 
-复跑四项包内一致性校验（只读，不修改任何文档）：
+复跑六项包内一致性校验（只读，不修改任何文档）：
 1. § 交叉引用：包内 `§x[.y]` 引用必须能解析到 SOURCE_ANALYSIS.md 的编号标题。
 2. BF 卡号：包内 `BF-xx` 引用必须能解析到 PATTERN_CARDS.md 的 `## BF-xx` 卡标题。
 3. ADOPTION 矩阵：行号连续（1..44）；逐行决策（第 4 列）与「分桶汇总」表的
    数量与行号清单双向一致；每个被引用的 BF 卡都存在；每张卡都被矩阵至少引用一次。
 4. 计数声明：README 中声明的模式卡数（45）与矩阵行数（44）与实际一致；
-   索引（docs/research/README.md、docs/index.md）中包含本包条目；
-   锁定提交锚点 `85c9686` 无异值混淆。
+   索引（docs/research/README.md、docs/index.md）中包含本包条目。
+5. 锁定提交锚点 `85c9686` 无异值混淆。
+6. SOURCE_ANALYSIS 结构防撞（v82 轮新增）：编号标题不得重复（§32.60/§32.61
+   曾被末两节误用撞号）；`| N |` 台账行号不得重复（末两节行号曾误从 262 重新
+   起算，与既有行碰撞）。
 
 用法：python3 scripts/check-beeftv-research.py
 退出码：0 = 全部通过；1 = 存在问题（逐条打印）。
@@ -150,6 +153,20 @@ def main() -> int:
             for m in re.finditer(r"锁定提交 `([0-9a-f]{7,40})", line):
                 if not m.group(1).startswith(LOCKED_SHORT):
                     problems.append(f"锁定提交锚点异常: {f.name}:{i} {m.group(1)}")
+
+    # 6. SOURCE_ANALYSIS 结构防撞：编号标题与台账行号均不得重复
+    sa_text = read("SOURCE_ANALYSIS.md")
+    seen_headings: set[str] = set()
+    for n in re.findall(r"^#{1,3}\s+(\d+(?:\.\d+)?)[.、\s]", sa_text, re.M):
+        if n in seen_headings:
+            problems.append(f"SOURCE_ANALYSIS 编号标题重复: §{n}")
+        seen_headings.add(n)
+    seen_rows: set[int] = set()
+    for n in re.findall(r"^\| (\d+) \|", sa_text, re.M):
+        k = int(n)
+        if k in seen_rows:
+            problems.append(f"SOURCE_ANALYSIS 台账行号重复: {k}")
+        seen_rows.add(k)
 
     if problems:
         print("check-beeftv-research: 存在问题")

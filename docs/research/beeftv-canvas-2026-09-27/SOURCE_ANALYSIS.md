@@ -495,7 +495,7 @@ window 捕获阶段监听（:238-239）。全表见 INTERACTION_CATALOG §9；�
 
 - **设计意图**（`backend/internal/protocol/expression.go:12-14` 包注释）：「Manifest expressions are JSON values with a deliberately small set of $-prefixed operators. They can construct provider payloads **without running plugin code or exposing host objects**.」——这是 BF-41「上传物=纯数据、执行=宿主引擎」安全姿态的引擎级落实。
 - **表达式求值**（`evaluateManifestValue` :15-67）：JSON 值递归求值；单键 `$` 前缀对象视为算子；`"${path}"` 整串取路径值；数组求值时**静默丢弃 nil 项**（:32-34）。路径遍历 `manifestPathValue`（:520-540）支持点号+数组下标，**miss 静默返回 nil 不报错**——「响应字段缺失」被当作空值而非异常。`{{path}}` 字符串插值（:503-518）供 URL/模板串用。
-- **算子全集（36 个）**：
+- **算子全集（45 个）**（v97 勘误：原记 36 个；按多名单 case 全量展开实测 45 唯一算子名——`$coalesce,$default`、`$map,$filter`、`$eq,$ne,…,$and,$or` 等共享分支是此前漏计主因）：
   - 数据：`$ref`、`$literal`、`${path}`、`{{path}}` 插值
   - 流程：`$coalesce`/`$default`（首个非空）、`$if`、`$switch`、`$omitEmpty`（空则剔除字段）
   - 字符串：`$concat`、`$split`、`$lower/$upper/$trim/$toString/$toInt/$toFloat/$toBool`、`$json`（序列化）、`$dataMime/$dataPayload`（data URL 拆解）
@@ -733,7 +733,7 @@ window 捕获阶段监听（:238-239）。全表见 INTERACTION_CATALOG §9；�
 
 ## 35. 上游前移差异审计（v1.5.7 → v1.5.9，v22 补充）
 
-> 本包研究锚点**维持锁定 `85c9686`/v1.5.7 不变**；本节记录锁定之后上游的前移（2026-09-28 fetch：新增 tag `v1.5.8`/`v1.5.9` 与分支 `codex/video-alignment-20260927`），并标注对本包断言的影响。方法：`git log/diff 85c9686..v1.5.9`（恰好 2 个提交：e8cf506 浅色模式、e2fd1d3 视频素材限制对齐；42 文件 +1590/-477）。
+> 本包研究锚点**维持锁定 `85c9686`/v1.5.7 不变**；本节记录锁定之后上游的前移（2026-09-28 fetch：新增 tag `v1.5.8`/`v1.5.9` 与分支 `codex/video-alignment-20260927`），并标注对本包断言的影响。方法：`git log/diff 85c9686..v1.5.9`（恰好 2 个提交：e8cf506 浅色模式、e2fd1d3 视频素材限制对齐）。**v87 勘误（重跑核对）**：端点恒等（`v1.5.7^{commit}`==`85c9686c87a4…`、`v1.5.9^{commit}`==`e2fd1d3f78fa…`）而 diff 为确定性——实测总量 **62 文件 +2057/-849**（原误记 42 文件 +1590/-477）；分段：`85c9686..v1.5.8` = 23 文件 +234/-177（backend 0 文件），`e8cf506..e2fd1d3` = 41 文件 +1824/-673（含 backend 16 文件）。
 
 ### 35.1 v1.5.8「工作区和画布支持浅色模式」
 
@@ -748,7 +748,7 @@ window 捕获阶段监听（:238-239）。全表见 INTERACTION_CATALOG §9；�
 
 - 主要落点在前端生成链路的**视频参考素材校验与错误文案**：`video-validation.ts`（+82）、`generation-error.ts`（+98）、`model-capabilities.ts`（±97）、`video-provider-seedance.ts`（简化 -85）、`video-provider-newapi.ts`（±8）、`generation-task.ts`（+13）。
 - 对本包的影响标注：§9.3 的失败语义（审核类失败指纹阻止重试、提交不确定相位）在锁定提交内成立；v1.5.9 把「参考素材不符合模型限制」的失败原因显式化到错误提示层——方向与 §9.3 的 `generationErrorCode` 体系一致，属增强而非语义反转，未核对到与本包断言冲突的点。
-- 后端 `backend/internal` 无 diff（本次前移为纯前端发布）。
+- 后端 `backend/internal` **有 diff**（v87 勘误：原记「无 diff/纯前端发布」不成立）：**16 文件 +1106/-165**——model_capability.go、provider.go、provider_protocol.go、provider_video.go、provider_video_options.go、video_reference_constraints.go（新增）、resource.go、generation/provider_error.go、generation/types.go、repository.go 及 6 个测试文件；性质为「素材限制与错误提示」的**服务端对应实现**（视频参考约束校验 + provider 错误分类/脱敏正则表 gofmt 对齐），与前端 v1.5.9 同主题。本包断言锚定 `85c9686`，不受此 diff 影响；§35.2 前端逐文件行数（+82/+98/±97/-85/±8/+13）经核为「插入+删除总变更行数」口径，与实测 numstat 一致。
 
 ### 35.3 处置
 
@@ -997,7 +997,924 @@ window 捕获阶段监听（:238-239）。全表见 INTERACTION_CATALOG §9；�
 | 112 | §10.2 表情本地合成模式 | ✅ `provider-mask \| local-composite` 双模式 + 「当前渠道不支持蒙版，使用脸部裁切与本地羽化融合」降级文案（canvas-emotion.ts:43,54,241） |
 - **累计**：十四轮共 112 处直接抽查 + 此前 13 处 = **125 处断言抽查全部吻合**；精确化累计 2 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第十四轮检查）。
 
-## 33. 导演台 workbench 编排层精读（v18 补充，包作者全文 942 行）
+### 32.14 第十五轮定点抽查（v36 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 113 | §4.3 四角手柄偏移 14px/热区 28px | ✅ `size-7`（28px）+ `-left-[14px]` 系列偏移（canvas-node.tsx:697-706） |
+| 114 | §23.3 关键帧 upsert epsilon | ✅ 具名常量 `DIRECTOR_KEYFRAME_EPSILON = 0.001` + 插入后按时间排序（director-scene.ts:89-96） |
+| 115 | §19 小地图空场景兜底 | ✅ worldBounds 回落 `x:-500, y:-500, w:1000, h:1000`、scale 0.16（canvas-mini-map.tsx:29） |
+| 116 | §28.1 `load` 清除挂起保存定时器并复位全部状态字段 | ✅ 逐行吻合（editor-store.ts:119-125） |
+| 117 | §29.3 `directResourceURL` 仅限 local 资源 | ✅ nil→「资源不存在」、非 ready→「尚未上传完成」、Provider≠local→「资源不在本地存储中」三重守卫（resource.go:77-90） |
+| 118 | §9.2 生成结果几何居中调整（locked 跳过） | ✅ `locked → {}`，否则 width/height + 中心对齐 position（canvas-generation-task-sync.ts:211-217） |
+- **累计**：十五轮共 118 处直接抽查 + 此前 13 处 = **131 处断言抽查全部吻合**；精确化累计 2 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第十五轮检查）。
+
+### 32.15 第十六轮定点抽查（v37 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 119 | §16 sandbox 占位文案 | ✅ 「插件节点等待隔离运行时」逐字（canvas-node-content.tsx:92-97） |
+| 120 | §12.2 分镜就绪门禁 | ✅ 画风节点（workflowKind=styleboard + stylePresetId + prompt）缺失即抛「请先设置项目画风」；角色卡版本未同步抛含角色名的错误；**注释补充**：standalone 角色设计图也用 workflowKind=character，仅绑定 characterAssetId 者参与校验（canvas-storyboard-context.ts:19-30） |
+| 121 | §25.1 worker 全局槽位租约 | ✅ `s.coordinator.AcquireLease(ctx, "workers", workerConcurrency, workerSlotLeaseDuration)`（task_worker.go:72-74） |
+| 122 | §13.1 Agent 刷新合并 | ✅ `mergeAgentCanvasEditor` 只合并服务端变更字段（注释「dragging/editing other nodes can continue while Agent media tasks complete」，use-canvas-project-lifecycle.ts:258-266） |
+| 123 | §19 小地图拖拽两段 | ✅ 拖拽中 `onViewportPreviewChange` 实时预览（canvas-mini-map.tsx:132） |
+| 124 | §8.4 版本导出排除本机笔画 | ✅ 注释逐字「Drawing strokes are not versioned; never mix today's local strokes into an old snapshot」+ `includeLocalDrawings: false`（canvas-version-history.tsx:173-175） |
+- **累计**：十六轮共 124 处直接抽查 + 此前 13 处 = **137 处断言抽查全部吻合**；精确化累计 2 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第十六轮检查）。
+
+### 32.16 第十七轮定点抽查（v39 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 125 | §10.2 裁切无 crop 时中心方裁 | ✅ `Math.min(width,height)` 中心取方（canvas-image-data.ts:35-44） |
+| 126 | §16 本地模式渠道目录回落 4 个内置 OpenAI 兼容协议 | ✅ `BUILTIN_OPENAI_PROTOCOLS` = chat-completion/openai-response/openai-image/newapi（plugin-catalog.ts:47-52） |
+| 127 | §25.3 ApiCallLog `UpstreamURL` 仅 scheme://host+path | ✅ `req.URL.Scheme + "://" + req.URL.Host + req.URL.Path`（provider_http_client.go:439），Query 不入库 |
+| 128 | §28.5 AI 预览卡 96 字符截断 | ✅ `brief.slice(0, 96)` + 省略号（editor-ai-assistant.tsx:40） |
+| 129 | §9.3 孤立 loading 判定五条件 | ✅ status=loading 且无 content 且无 taskId 且无 pending continuation 且无在途请求才标记中断（use-canvas-generation.ts:524-532） |
+| 130 | §12.2 分镜物化 120px 间距 | ✅ 两处 `scriptNode.position.x + width + 120`（use-canvas-storyboard.ts:267,350） |
+- **累计**：十七轮共 130 处直接抽查 + 此前 13 处 = **143 处断言抽查全部吻合**；精确化累计 2 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第十七轮检查）。
+
+### 32.17 第十八轮定点抽查（v40 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 131 | §6.2 吸附半径常量 | ✅ `CONNECTION_SNAP_RADIUS = 56`，使用处 `/ scale`（use-canvas-connection-controller.ts:61,461） |
+| 132 | §9.2 重试 clientOperationId 哈希 | ✅ 精确化：`"retry:" + hex(SHA-256("generation-retry\0" + attemptGroupId + "\0" + retryOf))`——实际输入含 `generation-retry\0` 前缀（canvas-project-generation.ts:154-161） |
+| 133 | §10.3 音轨提取四级回退 | ✅ aac copy → `libmp3lame` → `mp3` → wav 输出类型逐级尝试（canvas-video-segment.ts:105-119） |
+| 134 | §16 插件宿主权限断言 | ✅ 无 `ai.text` 权限抛「插件没有调用文本模型的权限」（plugin-host.ts:17-18） |
+| 135 | §4.2 插件节点定义转换 | ✅ `defaultMetadata: { pluginId, pluginNodeId, pluginData:{} }` + `minSize = min(defaultSize, 220×160)` + icon null（node-definition.ts:62-77） |
+| 136 | §5.1 生成模式约束中文报错 | ✅ 「图片生成节点不能连接参考视频/音频」（canvas-connection-policy.ts:44-45） |
+- **精确化第 3 处**（上表 #144）。**累计**：十八轮共 144 处直接抽查 + 此前 13 处 = **149 处断言抽查全部吻合**；同轮上游增量检查：v1.5.9 之后仍无新提交（第十八轮检查）。
+
+### 32.18 第十九轮定点抽查（v41 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 137 | §9.4 批量表行经连线同步 | ✅ `batchInputColumns(node, connectionsRef.current)` + 行内容 JSON 相同则跳过更新（use-canvas-batch-table.ts:77-90） |
+| 138 | §10.2 裁切矩形归一化 0-1 + minSize 钳制 | ✅ `clamp(crop.x + dx, 0, 1 - crop.width)` / `minSize` 下限（canvas-node-crop-dialog.tsx:122-138） |
+| 139 | §16 `unregisterPlugin` 三段清理 | ✅ 注销节点定义 + 插件插槽 + 注册表条目（plugin-registry.ts:73-77） |
+| 140 | §22.6 插槽解析排序 | ✅ priority 降序 → 注册序升序稳定排序（editor-slot-registry.ts:89-93） |
+| 141 | §8.4 版本预览节点 id 前缀 | ✅ `` `version-preview:${id}` ``（canvas-version-preview.tsx:22） |
+| 142 | §12.1 导演台孤儿节点修复 | ✅ 注释逐字「绝不在用户没选过的情况下塞演员进去」+ empty 模板兜底（use-canvas-director.ts:107-109） |
+- **累计**：十九轮共 150 处直接抽查 + 此前 13 处 = **155 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第十九轮检查）。
+
+### 32.19 第二十轮定点抽查（v42 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 143 | §4.5 `canFolderContain` 除 frame 全收 | ✅ `node.type !== CanvasNodeType.Frame`（canvas-frame.ts:23-25） |
+| 144 | §29.1 Mask 场景强制内嵌 | ✅ `input.Mask != nil → return false` + 注释「遮罩场景不能改发 URL」（provider.go:455-458） |
+| 145 | §16 插件注册校验 | ✅ kebab-case ID、apiVersion 白名单 v1/v2、权限去重、v1/v2 各自贡献断言（plugin-registry.ts:18-28） |
+| 146 | §10.3 ffmpeg 参数注释 | ✅ `-ss` 在 `-i` 后防关键帧落点；**增补细节**：整段去音「MP4 在 ss=0 时仍可能写出无 mdat 的空文件」+ `-map 0:V:0` 跳过 attached pic（canvas-video-segment-args.ts:1-5） |
+| 147 | §12.1 摆场模式能力收窄 | ✅ `layout: { timeline:false, keyframes:false, bones:false, cameraTools:false, renderModes:["beauty","clay"] }`（director-modes.ts:27） |
+| 148 | §28.4 素材分类默认 | ✅ `defaultAssetCategoryForKind(kind)`（editor-asset-ingest.tsx:10,362） |
+- **累计**：二十轮共 156 处直接抽查 + 此前 13 处 = **161 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十轮检查）。
+
+### 32.20 第二十一轮定点抽查（v43 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 149 | §4.5 Kahn 拓扑分层 | ✅ 入度/出边表 + 注释「Kahn 拓扑分层让依赖方向保持从左到右；环形连接留在第一层，避免布局死循环」（canvas-layout.ts:45-60） |
+| 150 | §6.2 连线侧创建不重叠摆位 | ✅ `placeConnectedNodeWithoutOverlap` 在位，`gap = 36` 垂直间距（水平 96px 间距在其后段，:69-80） |
+| 151 | §10.1 远程图片导入 | ✅ `shouldImportRemoteImage` → `importResourceFromUrl(input, "image", { idempotencyKey: storageKey })`，尺寸缺省 1024（image-storage.ts:36-50） |
+| 152 | §8.4 版本预览空动作表 | ✅ `noAction`/`readOnlyActions` 常量 + `version-preview:` 前缀（canvas-version-preview.tsx:20-22） |
+| 153 | §4.5 媒体泳道 | ✅ `layoutCanvasNodesByMediaType` 按 `LANE_ORDER` 分泳道、泳道内按 y/x 排序（canvas-layout.ts:112-120） |
+| 154 | §10.1 远程导入幂等 | ✅ `idempotencyKey: storageKey` 随导入传入（:37） |
+- **累计**：二十一轮共 162 处直接抽查 + 此前 13 处 = **167 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十一轮检查）。
+
+### 32.21 第二十二轮定点抽查（v44 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 155 | §6.2 连线侧创建水平 96px | ✅ target 侧落点 `source.position.x - 96 - size.width` + gap 重叠检测（use-canvas-connection-controller.ts:82-92） |
+| 156 | §9.1 `NODE_STATUS_LOADING = "loading"` 模块内常量 | ✅ 定位于 canvas-media-generation-executors.ts:14（此前仅以字面量记录，本轮补常量定位） |
+| 157 | §16 插件存储前缀 | ✅ `infinite-canvas:plugin-storage:` + pluginId（plugin-storage.ts:4-8，二轮确认） |
+| 158 | §28.6 转写字幕 nodeId | ✅ `` `transcription:${selected.id}` ``（editor-transcription.tsx:96） |
+| 159 | §22.6 fail-closed 原因枚举 | ✅ `"plugin-not-registered" \| "missing-permission"` + missing 字段（plugin-permission-check.ts:23,45,49） |
+| 160 | §9.5 生成组避让下/右双方向 | ✅ `resolveCollisions(…, "down"/"right")` + 距离短者胜 + 注释「避免生成组覆盖已有节点」（canvas-generation-layout.ts:68-80） |
+- **累计（勘定）**：§32 台账物理行数 160（awk 逐节清点）+ pre-ledger 13 处（v1 5 + v9 4 + v13 3 + v16 1）= **173 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十二轮检查）。注：台账行号因多轮追加存在空洞（物理行数为准）。
+
+### 32.22 第二十三轮定点抽查（v45 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 161 | §28.4 素材批量插入并行 | ✅ `Promise.all(payloads.map(...))` + 统一选中新建节点（use-canvas-upload.ts:732-738） |
+| 162 | §25.1 取消对账上限 41 次 | ✅ `providerCancellationMaxAttempts = 41`（provider_task_cancellation.go:20） |
+| 163 | §4.1 素材分类推断 | ✅ `declaredCanvasNodeAssetCategory`（显式声明优先）+ `canvasNodeAssetCategory`（canvas-node-asset.ts:167-175） |
+| 164 | §4.3 标题按钮可访问性 | ✅ `aria-label="编辑节点名称：{title}"` + hover 铅笔图标（canvas-node.tsx:795-797） |
+| 165 | §12.1 导演台输出资产同步 | ✅ `ensureCanvasNodeAsset({ canvasId, domainProjectId, node, source:"canvas-manual" })`（use-canvas-director.ts:205） |
+| 166 | §26.2 技能变更广播 | ✅ `window.dispatchEvent(new Event("canvas-skills-changed"))`（api/skills.ts:176） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十三轮检查）。
+
+### 32.23 第二十四轮定点抽查（v46 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 167 | §4.5 自动布局排除项与分支 | ✅ 排除 locked/Frame、候选 <2 返回空、有连线走拓扑/无连线走媒体类型分泳道（canvas-layout.ts:136-142） |
+| 168 | §28.1 `scheduleSave` isDirty 门控 | ✅ 未注入保存层保持 dirty、定时器到期检查 isDirty 才落盘（editor-store.ts:95-102） |
+| 169 | §28.2 手势状态 useRef | ✅ `gestureRef = useRef<GestureState \| null>(null)`（editor-timeline-panel.tsx:608） |
+| 170 | §22.6 八插槽 priority 全 0 | ✅ 计数 8（editor-shell.tsx:17-38） |
+| 171 | §23.3 mixer 循环模式 | ✅ `setLoop(motion?.loop ? LoopRepeat : LoopOnce, loop ? Infinity : 1)`（director-viewport.tsx:834） |
+| 172 | §2.3 触控板启发式细节 | ✅ `rawAbsY >= 80` + 整除性检验（infinite-canvas.tsx:200-202） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十四轮检查）。
+
+### 32.24 第二十五轮定点抽查（v47 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 173 | §10.2 标注撤销历史模型 | ✅ push/undo/redo 纯函数三元组（canvas-image-annotation-model.ts:15-17） |
+| 174 | §12.2 分镜 100 行上限执行 | ✅ :20（>100 抛错含 Agent 工具指引）与 :59（>=100 拒绝加行）双重执法 |
+| 175 | §16 内置插件注册顺序 | ✅ eagle → prompt-optimizer → workflows → ai-art-critique → media-conversion → editor-shell（builtin/index.ts 副作用 import 顺序即优先级） |
+| 176 | §25.3 文本 SSE 断点续传游标 | ✅ `queryTaskTextReplay(after)` :291-292 与 `Last-Event-ID → ?after=` :440 两路游标 |
+| 177 | §2.4 背景模式枚举 | ✅ `"dots" \| "lines" \| "blank"`（canvas-theme.ts:2） |
+| 178 | §4.2 NODE_SPECS 逐类型 metadata 默认 | ✅ 如 image `{ content:"", status:"idle" }`（constant/canvas.ts:36-40） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十五轮检查）。
+
+### 32.25 第二十六轮定点抽查（v48 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 179 | §16 本地模式渠道目录回落过滤 | ✅ `workspaceCapabilities().local && scope === "user.custom-channel"` → 按 capability 过滤内置协议（plugin-catalog.ts:29-31） |
+| 180 | §22.2 优化器系统提示边界 | ✅ 「提示词导演」定位 + 「不擅自改变用户明确写出的主体、身份、动作、数量、时代、地点、画幅比例或安全边界」逐字（prompt-optimizer.ts:71-73） |
+| 181 | §26.3 技能 provenance→metadata 映射 | ✅ skillIds/skillVersions/skillFiles 三键（skill-runtime.ts:127-134） |
+| 182 | §28.1 `load` 全量复位 | ✅ 清保存定时器 + 复位 history/inPreview/isDirty/selectedClipId/transportMs 等全部字段（editor-store.ts:119-125） |
+| 183 | §2.3 双击守卫三选择器 | ✅ `closest("[data-node-id],[data-connection-id],[data-canvas-no-zoom]")` 命中即不触发画布双击（infinite-canvas.tsx:439-442） |
+| 184 | §12.2 分镜物化五态 | ✅ `nodePipelineState` missing/success/loading/error/idle（canvas-storyboard-progress.ts:63-69） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十六轮检查）。
+
+### 32.26 第二十七轮定点抽查（v49 补充，5 处新样本，5/5 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 185 | §8.2 Agent 变更摘要按 op.type 计数 | ✅ `counts[op.type]` 归约（canvas-operation-contract.ts:238-241） |
+| 186 | §3.1 文件夹 localStorage 键 | ✅ `CANVAS_FOLDERS_KEY = "infinite-canvas:canvas_folders"`（use-canvas-store.ts:70，二轮确认） |
+| 187 | §28.6 SRT 导入固定 nodeId | ✅ `DEFAULT_SRT_NODE_ID = "srt-import"`（editor-subtitle-tools.tsx:14） |
+| 188 | §16 插件权限去重抛错 | ✅ 「插件权限不能重复」（plugin-registry.ts:25） |
+| 189 | §9.6 普通视频 promptOnly 判定 | ✅ `promptOnly = mode === "video" && !usesWorkflowProvider` + 注释「显式 @文本 引用仍会展开为真实内容」（use-canvas-generation-executor.ts:152-154） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十七轮检查）。
+
+### 32.27 第二十八轮定点抽查（v50 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 190 | §9.4 批量入队去重 | ✅ 活跃批次项（waiting/submitting/queued/running）的 nodeId 集合过滤可用目标（use-canvas-generation-batches.ts:64-65） |
+| 191 | §16 插件上传仅进后端 | ✅ `uploadPlugin` POST /plugins FormData，前端不注册执行（plugins.ts:45-50） |
+| 192 | §11.1 运行中插话端点 | ✅ `POST /agent/runs/:id/interjections` 返回 `{accepted, pending}`（agent.ts:149）；面板失败文案「插话没有送达」（panel:463） |
+| 193 | §4.5 泳道顺序 | ✅ `LANE_ORDER = ["text", "image", "video", "audio"]`（canvas-layout.ts:11） |
+| 194 | §9.2 任务反查节点双源 | ✅ `clientContext?.nodeId \|\| input.metadata?.nodeId`（canvas-generation-task-sync.ts:27-29） |
+| 195 | §2.4 画布外观默认读取 | ✅ `readCanvasAppearanceDefault`（canvas-appearance.ts:111） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十八轮检查）。
+
+### 32.28 第二十九轮定点抽查（v51 补充，6 处新样本，6/6 吻合；按点名域：骨骼分层/asset-ingest/图片工具）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 196 | §23.3 骨骼分层优先级 | ✅ 头注释逐字「静置/姿势或动作片段 -> 静态覆盖 -> 骨骼关键帧」+ 实现吻合（低到高：rest×poseDelta 或 motion → override → 关键帧插值；无关键帧返回 override）（director-animation-semantics.ts:86-97） |
+| 197 | §28.4 上传前时长探测 | ✅ `probeMediaDurationMs(file)` 来自 `@/lib/media-metadata`，逐文件调用（editor-asset-ingest.tsx:11,353） |
+| 198 | §10.2 放大 high 算法逐倍 step-upscale | ✅ `algorithm === "high" ? drawStepUpscale : drawResize` + `resolveUpscaleSize` 4096 钳制（canvas-image-data.ts:105-115） |
+| 199 | §12.1 导演台模板 5 种 | ✅ `empty/monologue/dialogue/blocking/product` 五模板含中文描述与摘要（「空场景：只有摄影机和三点布光」等，director-templates.ts:19-34） |
+| 200 | §10.2 裁切无 crop 中心方裁 | ✅ `Math.min(width,height)` 中心取方（canvas-image-data.ts:35-44，二轮确认） |
+| 201 | §23.2 白膜材质跳过集 | ✅ `userData.directorActor` mesh 跳过 + ShaderMaterial（drei Grid/Line）跳过，注释「由组件自身 useFrame 逐帧读写 uniforms」（director-clay-materials.ts:7-16） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第二十九轮检查）。
+
+### 32.29 第三十轮定点抽查（v52 补充，6 处新样本，6/6 吻合；按点名域：视频工具/AI 助手链/技能运行时）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 202 | §10.3 输出健全性校验按 kind 分支 | ✅ audio 查 soun/wave/mpeg、video 查 vide，错误文案中文逐字（canvas-video-segment-args.ts:40-52）；`buildRemoveAudioArgs` 头注释「整段可复制画面；部分区间必须重编码，不能 stream copy」（增补） |
+| 203 | §10.3 mergeVideos | ✅ 至少 2 个视频 + `loadFFmpeg` + storageKey 优先/远程兜底取 Blob（canvas-video-merge.ts:51-63） |
+| 204 | §28.5 applyPlan 逐条 dispatch | ✅ for..of → dispatch + 预览卡整卡替换为汇报 + 历史记录「已提交 N 条指令：op 列表」（editor-ai-assistant.tsx:104-115） |
+| 205 | §28.5 failTurn 重试回喂 | ✅ 原因截断 MAX_VISIBLE_RAW + `RETRY_MODIFY_PREFIX` + 「请只输出修正后的命令 JSON。」（:125-135） |
+| 206 | §28.5 空 commands = 纯问答 | ✅ reasoning 可见 + 入历史 + 早返回（:185-191） |
+| 207 | §10.3 提音首选 aac copy | ✅ 注释「大多数 MP4 音轨本身就是 AAC；优先直接复制，避免无谓的整段重编码」（canvas-video-segment.ts:105-107） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十轮检查）。
+
+### 32.30 第三十一轮定点抽查（v53 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 208 | §6.2 批量连线规划 | ✅ `planBatchConnections({sourceNodeIds, targetNodeId, …})` + `batchSourceRestriction` 逐源资格过滤（use-canvas-connection-controller.ts:216-224） |
+| 209 | §25.1 路由失败切换 | ✅ for 循环内 markDispatching → processTask → finishAttempt → `nextRouteAttemptAfterFailure`（task_route_executor.go:80-95） |
+| 210 | §28.2 SlotStack 红色诊断条 | ✅ title 逐字「插件 X 缺少 Y，已按 fail-closed 拒绝渲染」（editor.tsx:70） |
+| 211 | §4.5 spread 散开算法 | ✅ `scale/minGap` 可选项 + 原点取 min x/y（canvas-layout.ts:151-159） |
+| 212 | §9.1 结果回填 fallback 链 | ✅ `applyStoredTaskResult → applyRecoveredGenerationTaskResultToNodes` + `persistCanvasGenerationEffect({effectKey})`（use-canvas-generation.ts:293-300） |
+| 213 | §2.4 CanvasTheme 浅/深双主题 | ✅ `canvas:` 节分别位于 :6 与 :73（canvas-theme.ts） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十一轮检查）。
+
+### 32.31 第三十二轮定点抽查（v54 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 214 | §8.2 节点重叠警告 | ✅ `findCanvasNodeOverlaps` 候选两两逐对检测（canvas-operation-contract.ts:206-219） |
+| 215 | §10.1 上传进度按文件字节归一 | ✅ `Math.min(file.size, file.size * loaded / total)`（resources.ts:157-159） |
+| 216 | §10.2 表情合成双位图加载 + 区域/人脸盒钳制 | ✅ `loadImageBitmap` ×2 + `clampEditRegion/clampFaceBox`（canvas-emotion.ts:241-248） |
+| 217 | §4.2 插件 maxInputCount 透传 | ✅ `maxInputCount: contribution.maxInputCount`（node-definition.ts:74） |
+| 218 | §26.3 技能文件搜索端点 | ✅ `GET /skills/:id/search?q=`（api/skills.ts:210-211） |
+| 219 | §13.3 两步导入交互 | ✅ 「读取画布」→「确认导入」按钮 + 「等待确认导入」Tag（libtv-import-dialog.tsx:115-169） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十二轮检查）。
+
+### 32.32 第三十三轮定点抽查（v55 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 220 | §8.2 opLabel 中文标签 | ✅ 新增节点/更新节点/删除节点/删除连线/连接（canvas-operation-contract.ts:385-391） |
+| 221 | §25.2 CreationRun epoch 租约 | ✅ `ExpectedEpoch != run.ExecutionEpoch` 冲突检测 + `ExecutionEpoch++`/`ExecutionOwner` + 45s 租约（creation.go:200-206） |
+| 222 | §12.1 35mm 全画幅换算 | ✅ `directorFocalLengthToFov = 2·atan(36/(2f))·180/π` + 注释「摄影机检查器与场景模板共用」（director-scene.ts:75-78） |
+| 223 | §9.1 bindGenerationTask 节点写入 | ✅ 按 targetNodeId 映射写入（use-canvas-generation.ts:259-266） |
+| 224 | §10.1 批量上传网格常量 | ✅ `BATCH_UPLOAD_COLUMNS = 3` / 列距 380 / 行距 300（use-canvas-upload.ts:49-51） |
+| 225 | §23.3 drawStepUpscale 倍增循环 | ✅ `while (sourceWidth*2 < width && …)` 逐倍放大（canvas-image-data.ts:128+） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十三轮检查）。
+
+### 32.33 第三十四轮定点抽查（v56 补充，6 处新样本，6/6 域确认）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 226 | §9.3 孤儿中断标记文案 | ✅ 「页面刷新后找不到对应任务，请重新生成。」（use-canvas-generation.ts:410） |
+| 227 | §16 declarative 只读字段列表 | ✅ 遍历 `schema.properties` 键名渲染 label+值（canvas-node-content.tsx:99-105） |
+| 228 | §25.3 任务列表游标翻页（域确认） | ✅ 本轮 :340-348 命中 safeTaskLogStage；nextCursor 翻页逻辑在 listGenerationTasks 别处（v13 证据） |
+| 229 | §28.2 时间轴标签列 192px | ✅ `LABEL_COLUMN_PX = 192`（editor-timeline-panel.tsx:30） |
+| 230 | §10.2 标注合成两次 drawImage | ✅ 源图 + 标注层各一次（canvas-node-annotation-dialog.tsx:75） |
+| 231 | §12.1 导演提示词段落结构 | ✅ 镜头设计/摄影机/角色颜色映射（「严格按颜色识别角色，不交换人物身份」）/空间调度分段拼接（director-prompt-compiler.ts:30-40） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十四轮检查）。
+
+### 32.34 第三十五轮定点抽查（v57 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 232 | §6.2 快速菜单世界坐标跟随 | ✅ `subscribeCanvasViewportPreview` 订阅 + `update(viewport)` 实时重算（workspace-overlays.ts:203-205） |
+| 233 | §10.2 蒙版重绘 count 处理 | ✅ `requestedCount = max(1, count \|\| 1)` + :244 处固定 count:1 分支（use-canvas-media-tools.ts:786） |
+| 234 | §25.2 CreationGuard 校验 | ✅ `validateCreationGuard(current, req.CreationGuard)` 先于 submission 重读（creation.go:755-757） |
+| 235 | §28.2 trim 左右缘吸附交替 | ✅ leftSnap/rightSnap 距离比较 + rightAltStart 回退（editor-timeline-panel.tsx:660-667，v13 摘要的展开） |
+| 236 | §9.4 批量并发钳制 1-10 | ✅ `Math.max(1, Math.min(10, Math.floor(options.concurrency)))`（use-canvas-generation-batches.ts:78） |
+| 237 | §10.2 蒙版模型能力校验 | ✅ `selectedImageProfile?.references.maskSupported` 检查（:761）+ 表情编辑同源（:1018） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十五轮检查）。
+
+### 32.35 第二十八轮定点抽查（v58 补充，6 处新样本，6/6 吻合；覆盖此前未抽样分支）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 238 | §12.2 分镜视频首帧门禁 | ✅ 「请先生成并检查选中镜头的首帧」+「N 个选中镜头还没有可用首帧，请全部生成并检查后再确认」（use-canvas-storyboard.ts:495-496） |
+| 239 | §6.2 快速创建禁用原因（虚拟节点） | ✅ `getConnectionCreateDisabledReason` 含 Config×RunningHub 插件启停与 batchSourceNodeIds 分支（use-canvas-connection-controller.ts:439-446） |
+| 240 | §10.1 媒体直传永久失败当场抛出 | ✅ ResourceUploadError.permanent 即抛 + 注释「永久性失败必须当场暴露，不能混进稍后自动同步」（file-storage.ts:118-121） |
+| 241 | §25.1 重试业务门禁 | ✅ `submission_unknown`/`CategorySubmissionUncertain` 拒绝重试（task_lifecycle.go:60） |
+| 242 | §2.4 画布外观默认键 v2 | ✅ `infinite-canvas:canvas-appearance-default:v2`（scopedLocalStorage，canvas-appearance.ts:35,112） |
+| 243 | §9.4 图片批量子任务 count 强制 "1" | ✅ `config: { ...generationConfig, count: "1" }`（canvas-image-generation-executor.ts:198） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十六轮检查）。
+
+### 32.36 第三十七轮定点抽查（v66 补充，5 处新样本，5/5 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 244 | §28.1 手势三分 | ✅ `previewGesture` 置 `inPreview: true`；`commitGesture` 要求 inPreview 才入历史（editor-store.ts:163-175） |
+| 245 | §29.3 出站禁用头清单 | ✅ authorization/proxy-authorization/cookie/set-cookie/host/content-type/connection/keep-alive/transfer-encoding/te/trailer/upgrade/forwarded/x-goog-api-key + `x-canvas-`/`x-forwarded-` 前缀（outbound.go:242-248） |
+| 246 | §23.2 GLTF 加载所有权 | ✅ 头注释逐字「被采纳（adopt）时绝不能释放 source——共享资源随 owned clone 的最终 cleanup 一并释放；只有未被采纳的晚到/失效 generation 才需要释放」（director-resources.ts:45-54） |
+| 247 | §30 高亮 runner 进度字段 | ✅ `processedEntries`/`percent` 进度回调（subtitle-highlight-runner.ts:10-12,44） |
+| 248 | §23.4 草稿键 scope 化 | ✅ `scopedStorageKey("director-scene-draft:" + fixedSceneId, scope)`（director-save.ts:136） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十七轮检查）。
+
+### 32.37 第三十六轮定点抽查（v65 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 249 | §25.3 waitForGenerationTask 双路 | ✅ `shouldUseTaskTextEvents` 走文本事件，否则 2s 轮询 + timeoutMs 上限 + consecutiveFailures 计数（task-center.ts:375-385） |
+| 250 | §12.2 引用节点集合按 characterAssetId 匹配 | ✅ `characterAssetIds` 集合 → workflowKind=character 且 assetId 命中的画布节点 id（canvas-storyboard-materializer.ts:7-22） |
+| 251 | §28.2 插槽注册 HMR 幂等 | ✅ `registerEditorSlot` 先 `unregisterEditorSlot(pluginId, slot)` 再 push，order 自增，返回只卸载自身的闭包（editor-slot-registry.ts:46-61） |
+| 252 | §25.3 日志载荷 128KB 上限 | ✅ `maxAPICallPayloadBytes = 128 << 10`（api_call_payload.go:16） |
+| 253 | §30 SRT 序号非法归一 | ✅ 序列化时 `Number.isInteger(entry.index) && entry.index > 0 ? entry.index : idx + 1`（srt-parser.ts:36-45） |
+| 254 | §26.3 技能运行时单例 | ✅ `createSkillRuntime()` 工厂 + `skillRuntime` 共享单例（skill-runtime.ts:136-158） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十六轮检查）。
+
+### 32.38 第三十八轮定点抽查（v67 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 255 | §28.1 saveChain 串行保存 | ✅ `saveChain` promise 链 + `performSave` + `setSaveError` 归一（editor-store.ts:76-86） |
+| 256 | §25.3 safeProviderLogError | ✅ HTTP 错误只留「上游 HTTP %d」状态码，其余 truncateRunes 500（provider_http_client.go:473-479） |
+| 257 | §23.2 rig ready 阈值 | ✅ `boneMap.length >= 8 ? "ready" : "unmapped"`（director-viewport.tsx:1031，inferDirectorRig :1005） |
+| 258 | §26.3 交付适配器注册表 | ✅ `deliveryAdapters` Record 现仅 linked-context 一键（skill-runtime.ts:143-146） |
+| 259 | §12.2 空 rows 中文错误逐字 | ✅ 「分镜节点必须包含真实镜头行。请使用 canvas_create_workflow 的 script.shots…不能仅填正文」（canvas-storyboard-operations.ts:20） |
+| 260 | §23.2 readCameraTransform | ✅ `usableContext()?.camera` → position/rotation/scale，不可用返回 null（director-viewport.tsx:140-143） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十八轮检查）。
+
+### 32.39 第三十轮定点抽查（v59 补充，6 处新样本，6/6 吻合；含未读文件 chapter-asset-breakdown）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 261 | §12.2 `inspectStoryboardReadiness` | ✅ blockingReason 捕获上下文异常 + styleReady 判定 + 逐行 incomplete 检测（durationSeconds/videoMotionPrompt）（canvas-storyboard-context.ts:49-70） |
+| 262 | §4.1 素材分类三级回退 | ✅ 显式 assetCategory → workflowKind 映射（character→character/scene→environment/styleboard→material）→ undefined（canvas-node-asset.ts:175-185） |
+| 263 | §9.4 活跃批次节点去重 | ✅ `activeGenerationBatchNodeIds` 按 mode 过滤 + 活跃状态集合（batch 模块） |
+| 264 | §25.3 日志脱敏落点 | ✅ `ResponseBody: SanitizeAPICallPayload(responseBody, "")` 逐行确认（provider_http_client.go:440） |
+| 265 | chapter-asset-breakdown.ts（27 行，fail-closed JSON 校验） | ✅ characters/scenes/props 三数组强制 + name/description/prompt 逐字段校验 + 中文错误（章节资产提取域） |
+| 266 | §30 SRT 时间戳解析容错 | ✅ `timeToMs` split 解析 + 块级跳过（srt-parser.ts:5-34，二轮确认） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十七轮检查）。
+
+### 32.40 第三十一轮定点抽查（v60 补充，6 处新样本，6/6 吻合；覆盖 worker/CloudAgent/导出/迁移/角度）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 267 | §25.1 worker 2s tick | ✅ `time.NewTicker(2 * time.Second)` 两处（task_worker.go:44,109） |
+| 268 | §25.2 CloudAgent 幂等主键 | ✅ `cloudAgentID = "ag" + hex(sha256(userID + "\x00" + key)[:16])`（cloud_agent.go:215-218） |
+| 269 | §28.6 导出轮询超时 | ✅ `timeoutMs: 62 * 60 * 1000` + `intervalMs: 3000`（editor-export.tsx:59-60） |
+| 270 | §3.x 本地迁移脚本 | ✅ `normalizeLocalCanvasProject` 剥离 `remoteContentHash` 等 hosted 标记、保留本地实际工作（local-workspace-migration.ts:1-30） |
+| 271 | §10.2 角度节点走后端生成 | ✅ `runBackendCanvasGenerationTask` 于 use-canvas-media-tools.ts:842（AI 角度非本地处理） |
+| 272 | §4.5 泳道顺序 | ✅ `LANE_ORDER = ["text","image","video","audio"]`（canvas-layout.ts:11，二轮确认） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十一轮检查）。
+
+### 32.41 第三十二轮定点抽查（v61 补充，6 处新样本，6/6 域确认）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 273 | §29.3 出站头限额 | ✅ `maxOutboundHeaderCount = 32`（outbound.go:22）+ 16KB 总大小（:162） |
+| 274 | §23.3 姿势标签 21 项映射 | ✅ `directorPoseLabel` Record 全 21 项（neutral..phone，director-scene.ts:264） |
+| 275 | §23.2 SkeletonHelper 挂载即清理 | ✅ `useMemo` 创建 + `disposeDirectorHelper` 卸载清理（viewport:686-687） |
+| 276 | §25.2 CreationRun ItemKey 去重 | ✅ ItemKey 命中时 RequestHash/ProposalVersion 不一致 → `ErrCreationConflict`，一致 → 复用旧项（creation.go:575-583） |
+| 277 | §2.1 双 ignore 选择器清单 | ✅ WHEEL（含 data-canvas-wheel-scroll/picker）与 POINTER（含 data-connection-create-menu）两表分离（infinite-canvas.tsx:31-34） |
+| 278 | §4.1 素材下载回退（域部分确认） | ✓ canvas-node-asset.ts 无 publicUrl/download 字样——该回退位于 eagle/上传链路而非节点转换；§4.1 表述范围已限定为转换函数本身 |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十二轮检查）。
+
+### 32.42 第三十三轮定点抽查（v62 补充，6 处新样本，6/6 吻合；导出链/CreationRun/视频工具）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 279 | §28.6 collectRenderSources 去重 | ✅ `seen` 集合按 nodeId 去重 + directMedia 才参与 + video/image 限定（editor-export.tsx:24-37） |
+| 280 | §28.6 renderRemote 内联预览 | ✅ 完成态渲染 `<video src=resourceFileUrl(resourceId)>` + 下载链接（editor-export.tsx:199-206） |
+| 281 | §28.6 渲染计划前 8 步展示 | ✅ `plan.steps.slice(0, 8)` 逐条 kind 徽标（editor-export.tsx:131-137） |
+| 282 | §25.2 ProposalVersion 单调锁 | ✅ 字段 int64 + `req.ProposalVersion <= run.ApprovedProposalVersion` 拒绝（creation.go:28,263） |
+| 283 | §10.3 merge concat 回退与清理 | ✅ `-c copy` 失败回退 libx264+aac+faststart；finally 逐文件 deleteFile（canvas-video-merge.ts:76-86） |
+| 284 | §9.4 activeTaskLimit 来源 | ✅ `useUserStore.runtimeLimits.activeTaskLimit`（use-canvas-generation-batches.ts:35） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十三轮检查）。
+
+### 32.43 第三十四轮定点抽查（v63 补充，6 处新样本，6/6 吻合；editor 接线/后端任务路由）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 285 | §28.1 saveTimeline 键 | ✅ `EDITOR_TIMELINE_KEY:${projectId}`（scoped localforage，editor.tsx:322-330） |
+| 286 | §25.3 文本增量双路由 | ✅ 后端注册 `POST/GET /tasks/:id/text-deltas`（routes.go:124,144）；前端 SSE 路径名为 `text-events`——同域双端点并存，命名差异已记录 |
+| 287 | §25.1 失败后路由切换 | ✅ `finishTaskRouteAttempt` → `nextRouteAttemptAfterFailure`（task_route_executor.go:92-95） |
+| 288 | §28.6 exportLocalMp4 wasm 兜底 | ✅ `exportTimelineToMp4(project, sources, {onProgress})` running 态守卫（editor-export.tsx:93-105） |
+| 289 | §27.1 引导一次性写锁 | ✅ `tryEnter(): boolean` / `release()` 幂等释放（director-onboarding.ts:221-231） |
+| 290 | §28.6 requiresLibass 双落点 | ✅ 字段声明 :26 + 置 true :191（timeline-to-ffmpeg.ts） |
+- **累计（勘定）**：台账 **297 行**（本节 6 行计入后物理总数）+ pre-ledger 13 处 = **310 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十四轮检查）。
+
+### 32.44 第三十五轮定点抽查（v64 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 291 | §25.2/§29.2 protectTaskSecrets 递归加密 | ✅ `func (s *Service) protectTaskSecrets(value interface{}) error`（secret_store.go:112） |
+| 292 | §10.4 agent-debug-export 位置勘定 | ✅ `lib/canvas/agent-debug-export.ts`（非 services/diagnostics；此前 B2 查找路径偏差已修正） |
+| 293 | §2.4 命名皮肤在 Go 后端 | ✅ 青瓷工作室 studio-indigo / 霓光紫境 brand-violet 于 appearance_skins.go:111,145（cloneAppearanceSkin(classic)），暖柿纸境同类；前端 skin-themes.ts 不含中文名（主题 ID 为英文键） |
+| 294 | §11.1 Agent 记忆前端 | ✅ `services/api/agent-memories.ts` + `pages/settings/agent-memory-pane.tsx` 在位（remember_lesson 审批/压缩的前端面） |
+| 295 | §9.4 批量表行构建 | ✅ `batchInputColumns` + `createBatchRowsFromColumns` 于 use-canvas-batch-table.ts:85（笛卡尔组合在 canvas-batch-table lib 内） |
+| 296 | §23.2 共享 clay 材质 | ✅ 注释「恢复时销毁共享的 clay 材质」（director-clay-materials.ts:4-6，二轮确认） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十五轮检查）。
+
+### 32.45 第三十六轮定点抽查（v65 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 297 | §4.3 标题空值回滚 | ✅ `next` 为空 → `setTitleDraft(data.title)` 回滚且不进编辑态（canvas-node.tsx:288-293） |
+| 298 | §16 workflows 三能力贡献 | ✅ image/video/audio 映射「图片/视频/音频」中文标签（workflows.ts:16-24） |
+| 299 | §23.3 poseQuaternion 欧拉→四元数 | ✅ `setFromEuler(new Euler(x,y,z)).toArray()`（director-scene.ts:270-272，armsDown z+1.28 二轮确认） |
+| 300 | §9.4 费用确认弹窗 | ✅ modal.confirm 含模型名/并发上限/「可能消耗积分或产生外部模型费用」（use-canvas-batch-table.ts:140-149） |
+| 301 | §9.3 不可重试类别枚举 | ✅ submission_unknown + [submission_uncertain/timeout/download_failed/results_missing/partial_success]（canvas-generation-failure.ts:57） |
+| 302 | §13.1 删除后兄弟画布导航 + 草稿清理 | ✅ `listCanvasWorkspaceProjectCanvases` 找非自身兄弟 + `readCanvasSyncDrafts` 清理（use-canvas-project-lifecycle.ts:328-334） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十六轮检查）。
+
+### 32.46 第三十七轮定点抽查（v66 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 303 | §12.1 运镜首尾关键帧生成 | ✅ `upsertDirectorKeyframe(keyframes, 0, start)` + `(keyframes, endTime, end)` 双 upsert（director-animation-semantics.ts:136-140） |
+| 304 | §25.1 取消不确定三态文案 | ✅ 「上游未返回任务 ID」「读取上游取消配置失败」「当前上游协议不支持取消」（provider_task_cancellation.go:74-82） |
+| 305 | §12.2 分镜提示词模板元数据 | ✅ `storyboardPromptTemplateMetadata(target.row, "video")` 展开进视频节点 metadata（use-canvas-storyboard.ts:432） |
+| 306 | §28.2 标签列 sticky + 注释 | ✅ ruler sticky top-0 + :97 注释「标签列 sticky 固定后，滚动到最右端时…」（editor-timeline-panel.tsx:97,400） |
+| 307 | §11.1 localSeq 字段 | ✅ `localSeq?: number` :90 + 本地计数器 :187（快照仅驱动 UI，不作续传游标） |
+| 308 | §9.1 NODE_STATUS_ERROR 具名常量 | ✅ `const NODE_STATUS_ERROR = "error" as const`（canvas-image-generation-executor.ts:21） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十七轮检查）。
+
+### 32.47 第四十轮定点抽查（v68 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 309 | §23.2 disposeDirectorMaterials | ✅ Set 去重后先 textures 后 materials 释放（director-resources.ts:5-29） |
+| 310 | §25.3 EstimatedCostMicros 无写入点 | ✅ 仅 models_channel.go:113 字段声明，grep 无非测试写入（「上游调用只做用量审计」二轮确认） |
+| 311 | §4.3 双击分发批次根优先 | ✅ isBatchRoot → onToggleBatch + stopPropagation；Image+content 次分支（canvas-node.tsx:390-396） |
+| 312 | §25.1 租约续期 15s ticker | ✅ `time.NewTicker(15 * time.Second)` + renew 5s 超时（task_worker.go:147-155） |
+| 313 | §23.4 保存状态投影 | ✅ `DirectorSaveProgress = Omit<Snapshot,"scene">` + idle 默认 + 注释「订阅回调必须走它」(director-save-wiring.ts:8-25) |
+| 314 | §9.2 结果几何居中 locked 跳过 | ✅ `locked → {}` 否则宽高 + 中心对齐 position（canvas-generation-task-sync.ts:211-217，二轮确认） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十轮检查）。
+
+### 32.48 第四十一轮定点抽查（v69 补充，6 处新样本，6/6 吻合；聚焦尚未逐行覆盖域）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 315 | §23.2 capture 归一状态机 | ✅ `reduceDirectorCapture` register/lost/restored/reset 四事件；restored 只清丢失标记、需 renderer 重新登记（director-recovery.ts:73-84） |
+| 316 | §10.2 angle-scene 双模式 | ✅ camera/skybox 双模式、orbitRadius 75/sightLine 67、tilt 增量按模式反号（canvas-angle-scene.tsx:17-18,52,108） |
+| 317 | §25.2 终态协调器 | ✅ ensureFailedAttemptLogged → Stage=任务失败 → userFacingMessage → markTerminalState → finalizeReplay → logger 全链（task_terminal.go:116-126） |
+| 318 | §30 runner worker 池 | ✅ 共享游标 + firstError 短路 + signal abort 三守卫（subtitle-highlight-runner.ts:50-75） |
+| 319 | §23.2 失败角标通知 | ✅ 「N 个 3D 模型加载失败」+「已用占位人偶继续显示场景」+ 重试加载（viewport:183-195） |
+| 320 | §27.1 requireScope 归一守卫 | ✅ trim 后空值抛错 + `storage ?? localForageStorageForScope(normalizedScope)`（director-onboarding.ts:185-191） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十一轮检查）。
+
+### 32.49 第四十二轮定点抽查（v70 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 321 | §23.2 失败登记表信号语义 | ✅ 仅 `error` 登记 retry，ready/loading/unmounted 一律移除（注释「不能残留不存在对象的 Retry」）（director-recovery.ts:55-67） |
+| 322 | §25.1 渠道并发信号量 | ✅ `slots := make(chan struct{}, maxChannelConcurrencyLimit)`（task_worker.go:62） |
+| 323 | §23.2 repro 环境快照脱敏 | ✅ `safeReproText`：bearer 模式 + 凭证键值对 → `[REDACTED]`（director-repro-runtime.ts:47-53） |
+| 324 | §30 runner 双守卫 | ✅ `firstError.current \|\| options.signal?.aborted` 双短路（subtitle-highlight-runner.ts:60,93） |
+| 325 | §23.2 重试回调接线 | ✅ `onLoadStateChange` → `upsertDirectorFailedLoad(current, id, signal, retryLoad)`（director-viewport.tsx:117-119） |
+| 326 | §25.1 派发 CAS | ✅ `WHERE dispatch_state='not_sent'` UPDATE；RowsAffected≠1 → ErrCreationConflict（logical_models.go:252-262） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十二轮检查）。
+
+### 32.50 第三十九轮定点抽查（v67 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 327 | §8.2 opLabel 余段 | ✅ set_viewport「调整视图」/ select_nodes「选择节点」/ run_generation「触发生成」（canvas-operation-contract.ts:391-394） |
+| 328 | §10.4 agent-debug-export 深读 | ✅ 21 行递归脱敏：敏感键正则（authorization/cookie/api-key/token/password/secret/headers）→ [REDACTED]；Bearer/sk- 模式；data: → [MEDIA OMITTED]（canvas/agent-debug-export.ts:5-21，位于 lib/canvas 非 services——修正早期表述） |
+| 329 | §25.3 requestKind 分类 | ✅ GET+content/download → download；GET → poll；repair 路径 → repair；其余 → create（provider_http_client.go:481-492） |
+| 330 | §8.3 FNV-1a 快照哈希 | ✅ offset 2166136261 + Math.imul ×16777619 + hex 8 位补零（canvas-operation-contract.ts:378-383） |
+| 331 | §25.3 SSE watchdog 逐事件重置 | ✅ `touch()` 每事件重置 120s 定时器 + `Last-Event-ID` 头（agent.ts:207-212） |
+| 332 | §4.1 时间戳多级兜底链 | ✅ createdAt: node→taskCreatedAt→folder.createdAt→fallback；updatedAt 更含 drawingUpdatedAt/subtitleUpdatedAt/taskCompletedAt（canvas-node-timestamps.ts:23-37） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第三十九轮检查）。
+
+### 32.51 第四十三轮定点抽查（v71 补充，5 处新样本，5/5 吻合；provider 域/SRT 域/插槽接线/锁定期勘定）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 333 | §25.2 AttemptNumber 防重复创建门禁 | ✅ 「旧任务已尝试执行但缺少提交记录，为避免重复创建上游任务已停止自动重发」+ DispatchState not_sent/accepted 初始化（provider_submission.go:24-34） |
+| 334 | §30 重分段断点标点集 | ✅ `CJK_PUNCTUATION = "，。；！？、："` + `LATIN_PUNCTUATION = ",.;!?:"`（srt-resegment.ts:8-9） |
+| 335 | §22.6 emitChange 接线 | ✅ 函数 :28 + registerEditorSlot 内 :59 调用（HMR 幂等重注册后广播） |
+| 336 | §16 渠道目录 capability 过滤参数 | ✅ `capability?: ProtocolCapability` 可选过滤（plugin-catalog.ts:22,28-30） |
+| 337 | §35 v1.5.7 锁定期勘定 | ✅ canvas-appearance.ts（85c9686）grep 无 `"light"` —— v1.5.8 引入 light 的差异审计与源码一致 |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十三轮检查）。
+
+### 32.52 第四十四轮定点抽查（v72 补充，5 处新样本，5/5 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 338 | §12.1 cameraMoveTransform 十运镜偏移表 | ✅ push_in [0,0,-2] / orbit_left [-2.5,0,-1.5] / handheld [0.18,0.08,-0.15] 等全表（workbench:937-942） |
+| 339 | §10.3 merge 进度三段 + concat.txt | ✅ reading 45% 标度 → `file 'x'` 清单 writeFile → encoding 55% → concat -c copy 首选（canvas-video-merge.ts:69-75） |
+| 340 | §9.2 resetGenerationTaskMetadata 清旧绑定 | ✅ 注释「失败节点再次提交前必须移除旧任务绑定，否则批次调度会把它误判为仍在处理」+ errorDetails/generationErrorCode 清空（canvas-project-generation.ts:187-193） |
+| 341 | §10.1 批量上传网格坐标 | ✅ originX 居中于列数 + 行列取模布点（use-canvas-upload.ts:371-376,734） |
+| 342 | §28.6 local 导出态机 | ✅ done → percent 100 +「导出完成，已开始下载」；error → phase error + percent 0（editor-export.tsx:105-117） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十四轮检查）。
+
+### 32.53 第四十八轮定点抽查（v79 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 343 | §23.2 collectObject3DResources | ✅ root.traverse 逐 mesh 收集 geometry/material（含 dispose 能力守卫与数组材质展开）（director-resources.ts:62-77） |
+| 344 | §25.3 ensureFailedProviderAttemptLogged | ✅ `HasAPICallLogForTask` 先查、无日志才补审计（task_api_call_log.go:16-30） |
+| 345 | §28.6 导出轮询常量 | ✅ `timeoutMs: 62 * 60 * 1000` + `intervalMs: 3000`（editor-export.tsx:59-60） |
+| 346 | §30 吸附排序与同毫秒 | ✅ `candidates.sort` 距离排序 + `sameMsTargets` 同毫秒全量返回（timeline-snap.ts:57-60） |
+| 347 | §23.2 preview 门控语义注释 | ✅ 头注释「记录『失败的那个 URL』而不是布尔标记」+ URL 相等性判断（director-preview.ts:42-51） |
+| 348 | §25.3 finalizeReplay 定义 | ✅ `taskTerminalCoordinator.finalizeReplay(task, status, message)`（task_terminal.go:202） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十八轮检查）。
+
+### 32.54 第四十九轮定点抽查（v80 补充，5 处新样本，5/5 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 349 | §23.2 directorCaptureUsable | ✅ `state.registered && !state.contextLost`（director-recovery.ts:85-87） |
+| 350 | §28.x flushSave 实现 | ✅ 清定时器 + `isDirty && saveTimeline` 才 performSave（editor-store.ts:191-197） |
+| 351 | §23.2 失败角标重试循环 | ✅ `Object.values(failedLoads).forEach((retryLoad) => retryLoad())`（director-viewport.tsx:191） |
+| 352 | §25.3 shouldUseTaskTextEvents | ✅ `Boolean(options?.onTextDelta \|\| options?.useTextEvents)`（task-center.ts:371-372） |
+| 353 | §30 SRT 序列化序号归一 | ✅ `entry.index > 0 ? entry.index : idx + 1`（srt-parser.ts:62） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十九轮检查）。
+
+### 32.55 第五十轮定点抽查（v81 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 354 | §25.1 worker draining 双守卫 | ✅ dispatch 入口与 tick 内各检一次 `s.IsDraining()`（task_worker.go:50,64） |
+| 355 | §28.x saveChain 尾段 | ✅ 成功置 saving:false/isDirty:false/lastSavedAt；失败置 saveError + **保留 isDirty** 供重试（editor-store.ts:86-92） |
+| 356 | §2.4 canvasThemes 仅 light/dark 双键 | ✅ `canvasThemes = { light: {…}, dark: {…} }`（canvas-theme.ts:4,5,72）——皮肤三命名主题在 Go 后端（§32.41），前端仅双主题 |
+| 357 | §22.2 优化器 strict 工具 | ✅ `additionalProperties: false` + 全字段 required（prompt-optimizer.ts:33-34） |
+| 358 | §9.3 不可重试判定含 input 空 | ✅ 有 input 时判定类别枚举；无 input → true（默认不可重试）（canvas-generation-failure.ts:57-58） |
+| 359 | §26.3 技能文件端点 | ✅ `GET /skills/:id/files` 返回 SkillPackageFile[]（api/skills.ts:199） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第五十轮检查）。
+
+### 32.56 第四十五轮定点抽查（v73 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 360 | §25.1 渠道并发上限来源 | ✅ `maxChannelConcurrencyLimit = platform.MaxChannelConcurrencyLimit`（platform_bridge.go:257，平台桥接统一取值） |
+| 361 | §9.6 素材输入边顺序唯一源 | ✅ 注释逐字「连接数组是引用编号的唯一顺序源；只替换相关输入边所在槽位，避免改变主链和其他节点的连线顺序」（canvas-resource-references.ts:429-433） |
+| 362 | §30 高亮 LLM 形状守卫 | ✅ `isSubtitleHighlightLLMResult` 逐字段类型守卫（subtitle-highlight-service.ts:8-20） |
+| 363 | §34 reconcileImageBatchRoot 定位 | ✅ `export function reconcileImageBatchRoot(root, nodes)`（canvas-image-batch-retry.ts:135） |
+| 364 | §25.3 错误文本截断 500 | ✅ `truncateRunes(err.Error(), 500)`（provider_http_client.go:478） |
+| 365 | §4.1 素材挂载负载形状 | ✅ `{assetId, category: canvasNodeAssetCategory(node), title}`（canvas-node-asset.ts:24） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第七十三轮检查）。
+
+### 32.57 第四十六轮定点抽查（v74 补充，6 处新样本，6/6 吻合；按点名域）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 366 | §26.2 agent-memories.ts 全貌（144 行） | ✅ AgentMemory{status pending/approved/rejected}、Bundle、ImportResult、CompactInterval off/daily/weekly/monthly、CompactStatus idle/queued/running/succeeded/failed（api/agent-memories.ts:3-55） |
+| 367 | §22.6 useEditorSlots 消费方 | ✅ hook 在 editor-slot-registry.ts:39；editor.tsx:20,231 消费（previewSlots 等 8 槽订阅） |
+| 368 | §25.1 续租失败支路 | ✅ `RenewTaskLease(taskID, leaseOwner, 45s)` err → `leaseLost <- err` + cancel 放弃任务（task_worker.go:156-163） |
+| 369 | §4.1 素材 URL 解析落点 | ✅ `resolveMediaUrl(storageKey)` 于 project-asset-sync.ts:256,311,358（图/视频/音频三处） |
+| 370 | §30 批切片默认 30 | ✅ `batchSize = Math.max(1, options.batchSize ?? 30)` + `entries.slice(i, i += batchSize)`（subtitle-highlight-runner.ts:33,39） |
+| 371 | §2.3 shift 横滚降级 | ✅ `shift+absX<1 → panX=deltaY` 且纵向清零（infinite-canvas.tsx:204-212） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十六轮检查）。
+
+### 32.58 第四十八轮定点抽查（v75 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 372 | §26.2 记忆端点全集 | ✅ GET/POST /agent/memories + decide/DELETE/export/import 六端点，超时 15s/30s 分级（agent-memories.ts:104-131） |
+| 373 | §23.2 复现夹具确定性 | ✅ `createDirectorReproScene` 固定 FIXTURE_SCENE_ID/背景 #d8dde3/environmentIntensity 0.7/fixtureObject 字面量（director-repro-fixture.ts:42-60） |
+| 374 | §25.2 TaskID 复用分支 | ✅ `fresh.TaskID != nil → TaskForUser → task = existing, return nil`；未批准/已撤销 → creationConflict（creation.go:761-770） |
+| 375 | §4.1 firstValidDate 链 | ✅ `firstValidDate(createdAt, taskCreatedAt, folder.createdAt, fallback)`；updatedAt 链更含 drawing/subtitle/taskCompletedAt（canvas-node-timestamps.ts:8-21） |
+| 376 | §2.4 背景默认 dots | ✅ `DEFAULT_CANVAS_BACKGROUND_MODE: "dots"`（canvas-appearance.ts:30） |
+| 377 | §30 重映射索引 | ✅ `target.text.indexOf(highlightText)` → entryIndex/start/end；找不到 → dropped（subtitle-highlights.ts:48-54） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十八轮检查）。
+
+### 32.59 第四十五轮定点抽查（v76 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 378 | §28.1 手势三函数 | ✅ previewGesture 置 inPreview；commitGesture 守卫后 pushEditorHistory + isDirty；cancelGesture 回退（editor-store.ts:163-189） |
+| 379 | §25.2 ApproveProposalVersion 单调 | ✅ :263 `<= run.ApprovedProposalVersion` 拒绝、:264 同版本同 hash 幂等通过、:275 推进 |
+| 380 | §30 递归切分 front/back | ✅ frontText/backText 递归 splitLongEntry + 最小时长约束应用（srt-resegment.ts:107-121） |
+| 381 | §28.6 exportLocalMp4 错误态 | ✅ catch → phase error/percent 0/detail 透出错误消息（editor-export.tsx:106-117） |
+| 382 | §12.2 text_to_video 节点构造 | ✅ 既有节点复用 + 新建 Video 节点均带 storyboardPromptTemplateMetadata/shotIndex/workflowKind=shot/seconds（use-canvas-storyboard.ts:365,370） |
+| 383 | §25.2 finalizeReplay 通道 | ✅ 结构体字段 finalizeReplay func(string, TaskStatus) error + :50 调用（task_terminal.go:44,50） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第七十六轮检查）。
+
+### 32.60 第四十六轮定点抽查（v77 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 384 | §28.x useEditorSlots 消费 | ✅ editor.tsx:20 import；:231-232 previewSlots/timelineSlots 订阅（8 槽 8 处 hook） |
+| 385 | §25.3 Agent SSE 路由（域说明） | ✓ routes.go 中 /events 未命中——Agent SSE 路由在 cloud agent handler 别处注册；前端 agent.ts:212 已证实 `?after=` 游标与 Last-Event-ID 用法 |
+| 386 | §23.2 normalizeModel | ✅ 最大边缩放 2 + 中心归零 + 落地 y + shadow 标志（director-viewport.tsx:953-970，二轮确认） |
+| 387 | §30 editor store flushSave | ✅ :52 类型 + :191 实现（editor-store.ts） |
+| 388 | §23.4 草稿恢复弹窗文案 | ✅ title/content/okText/cancelText 逐字 + `closable:false`/`keyboard:false`（workbench:173-178） |
+| 389 | §2.3 wheel preventDefault | ✅ `event.preventDefault(); interactingRef.current = true;`（infinite-canvas.tsx:197-199） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十六轮检查）。
+
+### 32.61 第四十七轮定点抽查（v78 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 390 | §23.2 disposeDirectorObject3D | ✅ `collectObject3DResources → disposeCollected`：textures→materials→geometries，Set 去重一次释放 + 注释「`<primitive>` 不会代为释放，必须由 owner 显式调用」（director-resources.ts:70-101） |
+| 391 | §28.x 卸载 flushSave | ✅ 注释「避免最后几次操作丢失」/「必须留下错误证据，不能假装已保存」+ isDirty 保留待重试（editor.tsx:369-377） |
+| 392 | §25.2 路由回退三支 | ✅ 备用路由不可用→log warn break；nextAttempt nil→break；否则 `task.RouteID` 对齐 + log「上游未创建任务，切换备用能力路由」（task_route_executor.go:96-112） |
+| 393 | §23.2 恢复序列三步 | ✅ `onAvailability("restored") → onRegister(readContext()) → invalidate?`（director-recovery.ts:96-100） |
+| 394 | §30 SRT 多行文本 | ✅ `lines.slice(2).join("\n")` 保留多行字幕正文（srt-parser.ts:33） |
+| 395 | §16 EditorPluginPermission 三值 + Omit 技巧 | ✅ `timeline.read/timeline.command/export.run`；Omit permissions 注释（「否则数组交叉类型会被归约为 v1」plugin-types.ts:26-28） |
+- **累计（勘定）**：台账（当时累计见文末勘定）；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（第四十七轮检查）。
+
+### 32.62 定点抽查（v79 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 396 | §25.1 worker 槽位获取/释放 | ✅ `slots <- struct{}{}` 获取 + `defer <-slots` 释放 + `globalSlot.Release()`（task_worker.go:92-100） |
+| 397 | §28.x dispatch 手势期拒绝 | ✅ inPreview 时 saveError「cannot dispatch while a gesture preview is active」（editor-store.ts:129-134） |
+| 398 | §23.2 gizmo 尺寸 | ✅ 对象 gizmo `size={0.8}` :599；骨骼 gizmo `size={0.55}` rotate :880 |
+| 399 | §25.3 text-deltas GET 处理器 | ✅ currentUser → `taskTextEventCursor(c)` 解析游标 → fail 400（routes.go:144-152） |
+| 400 | §23.2 gridVisible 条件网格 | ✅ `scene.gridVisible ? <Grid infiniteGrid fadeDistance={40} …/> : null`（director-viewport.tsx:431） |
+| 401 | §28.6 远端结果内联 | ✅ `<video src={resourceFileUrl(resourceId)}>` + 下载链接（editor-export.tsx:201-206） |
+- **累计（勘定）**：台账 **401 行** + pre-ledger 13 处 = **414 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v79 轮增量检查）。
+
+### 32.63 定点抽查（v80 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 402 | §25.2 批量批准 1-20 项上限 | ✅ `len(req.SubmissionIDs) == 0 \|\| > 20` → BadAuthRequest「请选择 1 到 20 项生成任务」（creation.go:634-636） |
+| 403 | §25.2 批准前置指纹复验 | ✅ 写事务前 `prepareCreationTask` 重算 + `ConfigHash != creationSubmissionOutput(*item).Execution.ConfigHash` → creationConflict「执行配置已变化，请重新准备并确认」（creation.go:651-653） |
+| 404 | §28.x undo/redo 同守卫 | ✅ undo/redo 均取 `{project, history, inPreview}` 且 inPreview 拒绝（与 dispatch 同守卫，editor-store.ts:128-135） |
+| 405 | §23.2 环境强度系数 | ✅ 默认场景 `environmentIntensity: 0.7`（director-scene.ts:20）+ 视口 `ambientLight intensity = ×0.35`（director-viewport.tsx:429） |
+| 406 | §30 递归切分 back 条目 | ✅ `backEntry { index, startMs: splitPointMs, endMs: entry.endMs, text: backText }` + front/back 递归（srt-resegment.ts:100-112） |
+| 407 | §16 插件宿主存储注入 | ✅ `pluginStorageFor` 于 plugin-host.ts:2 import（作用域隔离的 storage 服务注入宿主上下文） |
+- **累计（勘定）**：台账 **407 行** + pre-ledger 13 处 = **420 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v80 轮增量检查）。
+
+### 32.64 定点抽查（v82 补充，6 处新样本，6/6 吻合）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 408 | §30 高亮解析空回退双支 | ✅ 非 object payload → `return []`（subtitle-highlight-service.ts:21-23）；非法项或 `shouldHighlight=false` 被 flatMap 丢弃（:28-31）；`isSubtitleHighlightLLMResult` 五字段守卫 entryIndex/shouldHighlight/highlightText/start/end 全部 Number.isFinite/typeof 校验（:16-17） |
+| 409 | §16 编辑器壳 manifest 声明面 | ✅ `surfaces: ["fullscreen"]`（:22）+ `permissions: ["timeline.read", "timeline.command", "export.run"]`（:23）+ 描述句「注册时间线、预览、检查器、素材、字幕、转写、导出和 AI 编辑八个工作台插槽」（:20）（editor-shell.tsx） |
+| 410 | §25.3 Agent SSE 拨号守卫 | ✅ 默认 120s idle watchdog（`options.timeoutMs ?? 120_000`，注释「run is durable…generous idle watchdog is safer than aborting」agent.ts:203-208）；连接态 failures>0 → "reconnecting"（:209）；retry-after 解析（数字秒或 HTTP 日期）且 >300s → cancel + disconnected 终止（:214-219）；4xx 除 408/429 不重试直接终止（:220-223） |
+| 411 | §25.2 终态适配器三函数注入（补强 383 行） | ✅ `taskTerminalServiceAdapter{finalizeReplay, writeLog, registerOutput}` 三函数字段（:43-47）+ `newTaskTerminalCoordinator` 注入 `s.finalizeTaskTextReplay / s.log / s.RegisterTaskOutputFromTask`（task_terminal.go:61-65） |
+| 412 | §27 导演台上手引导并发纪律（补强） | ✅ run() 拿锁同一刻捕获 `const gate = gateRef.current`，release 只作用捕获实例（注释「绝不在 .then/.catch/.finally 里重新读取 gateRef.current」canvas-director-onboarding.tsx:52-54,84-101）；scope/enabled 变化**整体替换新 gate 实例**而非 release 旧实例（:66-68，防误放新一代锁）；reset 失败补读持久进度（:126-137） |
+| 413 | §26 技能运行时预算与提及识别（补强） | ✅ 四 profile（canvas/creation/shortDrama/director）统一 linked-context / maxSkills 4 / maxContextChars 32_000 / maxLinkedFilesPerSkill 3（skill-runtime.ts:19-24）；`@[skill:id]` 正则（:89）+ 自然 `@//name` 提及需边界符（含中文标点，:272-290）；linked 文件按相关性打分 + 「先/必须…读取」required 正则优先排序（:212-220） |
+- **累计（勘定）**：台账 **413 行** + pre-ledger 13 处 = **426 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v82 轮增量检查）。
+
+### 32.65 定点抽查（v83 补充，6 处新样本，6/6 吻合）
+
+> v83 轮先行清算：v82 轮「遗留勘误」经逐项回源比对确认为**误报**——v79/v80（第四十八、四十九轮）条目所述断言全部已有落档行：collectObject3DResources→390、HasAPICallLogForTask→344、snap 距离排序+同毫秒→346、preview 门控注释→347、directorCaptureUsable→349、failedLoads 角标重试→351、shouldUseTaskTextEvents→352、SRT 序号归一→253/353、flushSave 实现→387、导出常量 62min/3s→269。零丢失，无需补录。
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 414 | §26 技能上下文预算分摊 | ✅ `perSkillBudget = Math.max(1, Math.floor(input.config.maxContextChars / input.selectedSkills.length))` 按选中均摊（skill-runtime.ts:163）；SKILL.md 二进制守卫抛「技能「…」的 SKILL.md 不是文本文件」（:177） |
+| 415 | §26 技能截断后缀逐字 | ✅ boundedText 截断尾注「（文件内容超过本轮技能上下文预算，已在此处截断。）」且 `maxChars - suffix.length` 预留后缀长度（skill-runtime.ts:239-244） |
+| 416 | §26 linked 文本白名单 | ✅ `TEXT_FILE_EXTENSIONS` 八扩展名 .md/.mdx/.txt/.json/.yaml/.yml/.toml/.csv（:90）+ `isLinkedContextTextFile` 排除 `scripts/`、`assets/` 前缀与 image/video/audio/binary 四 kind（:223-228） |
+| 417 | §27 引导非阻塞与播报（补强） | ✅ 硬约束注释「非阻塞。不是 dialog，没有遮罩，不抢焦点……用 role="region" 而不是 role="dialog"」（:19-23）；步骤切换 `aria-live="polite"`（:191）；「第 N 步 / 共 M 步」文本承担真实进度、进度点 aria-hidden 纯装饰（:187,195-196）；restartSignal 变化触发 reset（:158-164）（canvas-director-onboarding.tsx） |
+| 418 | §25.3 SSE content-type 守卫 | ✅ `!response.body || !response.headers.get("content-type")?.includes("text/event-stream")` → throw AgentStreamError（agent.ts:230）；请求侧 `Accept: text/event-stream` + `Last-Event-ID` 双头（:211） |
+| 419 | §16 编辑器壳八插槽全枚举 | ✅ `contributes.editorSlots` 八项 slot 名 timeline-panel / preview-renderer / inspector / asset-ingest / subtitle-tool / transcription-provider / export-renderer / ai-assistant，priority 全 0（editor-shell.tsx:29-36） |
+- **累计（勘定）**：台账 **419 行** + pre-ledger 13 处 = **432 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v83 轮增量检查）。
+
+### 32.66 定点抽查（v84 补充，6 处新样本，6/6 吻合；含交互目录抽样复验与卡↔矩阵交叉核对）
+
+> v84 轮方法说明：INTERACTION_CATALOG 抽 4 项（§1 pinch/§3 尺寸手柄/§4 连线命中/§7 @mention）回源复验；PATTERN_CARDS↔ADOPTION_DECISION_MATRIX 理由列抽 3 对交叉核对（BF-39↔行 37、BF-44↔行 42、BF-45↔行 43），均一致：BF-39 卡面六项子证据是矩阵行 37 标题三项的超集（无矛盾，决策 RESEARCH_ONLY 与卡面「仅作对照证据」门槛一致）；BF-44/BF-45 卡面机制拆解与矩阵理由逐项对应（下表 424/425 行附源码锚）。
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 420 | 交互目录 §1 复验：双指 pinch 以两指中点为锚 | ✅ `centerX = (first.x + second.x) / 2 - rect.left`、`centerY` 同构（infinite-canvas.tsx:268-269）；两指 entry 提取 :259-262 + `pinch.active` 移动跟踪 :326-330 |
+| 421 | 交互目录 §3 复验：四角手柄 + freeResize 锁比例让位 | ✅ 四角 `<ResizeHandle corner=…>` 仅 `!readOnly && !locked && (isSelected \|\| hovered)` 渲染（canvas-node.tsx:575-580），四角 `-left-[14px]`/`-top-[14px]` 等 14px 外偏（:699-702）；`freeResize?: boolean`（types/canvas.ts:270）+ 锁比例工具 `active: (node) => !node.metadata?.freeResize`（canvas-image-toolbar-tools.tsx:71） |
+| 422 | 交互目录 §4 复验：连线 16px 透明命中层 | ✅ 命中 path `stroke="transparent"` + `strokeWidth="16"`（canvas-connections.tsx:77-78） |
+| 423 | 交互目录 §7 复验：@mention 不可解析报错 + composer 分支 | ✅ `assertResolvableGenerationMentions(prompt, mentionInputs)`（canvas-node-generation.ts:88，不可解析即抛错）+ `hasExplicitResourceMention` → `buildComposerGenerationContext` composer 模式分支（:89-97） |
+| 424 | 卡↔矩阵交叉：BF-44 ↔ 矩阵行 42 | ✅ 卡面「scope 键 `director-scene-draft:` + 300ms 防抖排空 + baseUpdatedAt 基线 + 显式抛错不降级」↔ 矩阵行 42「本地草稿 + 防抖排空循环 + revision 确认 + baseUpdatedAt 基线恢复 / ADOPT_METHOD」逐项一致；源码锚 `debounceMs = 300`（director-save.ts:130）、`scopedStorageKey("director-scene-draft:" + …, scope)`（:136）、baseUpdatedAt 校验 :98/:113 |
+| 425 | 卡↔矩阵交叉：BF-45 ↔ 矩阵行 43 | ✅ 卡面「11 白名单稳定码 + 常量 message + 15 条手工复现矩阵」↔ 矩阵行 43「白名单诊断 + 确定性复现夹具与 15 条手工矩阵 / ADOPT_METHOD（与 verifier/稳定码文化同构）」一致；源码锚 `DIRECTOR_DIAGNOSTIC_CODES` 恰 11 项（director-diagnostics.ts:13-25）+ 复现矩阵物理计数恰 15 条 `{id,group,title,steps,expected}`（director-repro-fixture.ts:113 起） |
+- **累计（勘定）**：台账 **425 行** + pre-ledger 13 处 = **438 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v84 轮增量检查）。
+
+### 32.67 定点抽查（v85 补充，6 处新样本，6/6 吻合；交互目录剩余章节抽样复验）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 426 | 交互目录 §2 复验：快捷键文案与代码相反（上游自身文案 bug） | ✅ `id: "box-select-tool"` 但 title「切换移动工具」/ description「按 V 或从底部工具菜单切换到移动工具，在空白处拖动可框选节点」（canvas-shortcuts.ts:117-123）——目录「以代码为准」注记逐字成立 |
+| 427 | 交互目录 §5 复验：删除优先删选中连线 + Backspace 浏览器拦截 | ✅ `event.preventDefault(); event.stopPropagation();` 注释「browser-level history…look like the whole canvas vanished」+ `if (selectedConnectionId) deleteConnection(...)` 先于 nodes，注释「Treat the explicitly selected edge as the primary target」（use-canvas-keyboard.ts:193-207） |
+| 428 | 交互目录 §5 复验：重命名 Enter 提交 / Escape 取消 / 空值回滚 | ✅ Enter→`blur()`、Escape→`onCancel()`（canvas-node.tsx:789-790）；`commitTitle` 内 `titleDraft.trim()` 空值 → `setTitleDraft(data.title)` 回滚原题（:288-292）；草稿态 :150-151/:195-196 |
+| 429 | 交互目录 §6 复验：菜单位置避让 Agent 面板与视口边缘 | ✅ `.canvas-agent-panel` getBoundingClientRect 取左缘 + `clamp(menu.x, 12, Math.max(12, rightEdge))` + 注释「destructive action stays inside the viewport」（canvas-context-menu.tsx:495-505） |
+| 430 | 交互目录 §8 复验：任务浮层 2s/10s 自适应轮询 + 窗口事件即时刷新 | ✅ `refetchInterval: (current) => (current.state.data?.length ? 2_000 : 10_000)` + `refetchOnWindowFocus: true`（use-canvas-active-tasks.ts:18-19）；`canvas:task-created/cancelled/updated` 三事件 refetch（:22-31）；另证实 `isInternalAgentTask` 过滤 cloud_agent 任务 + `slice(0, 5)` 截断（:16,44-46）——比目录记载更细 |
+| 431 | 交互目录 §9 复验：按键保护条件三条 | ✅ 节点工具条内忽略 `.canvas-node-toolbar, .canvas-node-toolbar-menu`（:94）；文本编辑目标（input/textarea/select/contenteditable）放行（:97）；`[data-canvas-no-zoom]` 控件仅放行 `metaKey\|\|ctrlKey` 的 C/V（:131-132）（use-canvas-keyboard.ts） |
+- **累计（勘定）**：台账 **431 行** + pre-ledger 13 处 = **444 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v85 轮增量检查）。
+
+### 32.68 定点抽查（v86 补充，6 处新样本，6/6 吻合；§33-34 编排层抽样复验 + 结论面计数同步核验）
+
+> v86 轮方法说明：REPORT.md/README.md 结论面计数同步核验通过——两文件均**不携带**累计抽查总数（仅 REPORT.md:65 与 README.md:20 的「5 处/关键断言抽查（见 ITERATION_LOG v1）」v1 历史表述），累计口径 444→450 仅存于 §32 勘定行与 ITERATION_LOG 队列，无陈旧漂移。
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 432 | §33.1 复验：mirrorDraft 非用户改动注释 | ✅ 「用于取消预览、idle pagehide、卸载兜底 —— 这些都不是新的用户改动。」（canvas-director-workbench.tsx:126，§33.1 所引 :124-146 注释带内） |
+| 433 | §33.2 复验：快捷键执行器返回值=执行才 preventDefault | ✅ 注释逐字「返回值表示「动作真的执行了」，只有执行了才 preventDefault：没有选中对象时的 Delete 仍然交还给浏览器。」+ `runShortcut = (…): boolean`（:519-525） |
+| 434 | §33.2 复验：关键帧双 playhead 纪律 | ✅ 注释逐字「写入关键帧的目的时间用吸附值；取值/显示/手势起点一律用 raw playhead，否则处在两个帧格之间时 AutoKey OFF 的增量会从错误起点计算而产生漂移。」+ `snappedPlayhead = snapDirectorTime(playhead, activeShot?.fps \|\| 24)`（:200-203） |
+| 435 | §33.4 复验：DirectorPose 21 值 + UI 20 钮 + 景别 6/运镜 10 | ✅ `DirectorPose` union 物理计数恰 **21**（neutral + 20，types/director.ts:12）；`poseOptions` 恰 **20** 钮且不含 neutral（:919-925，neutral 经「重置姿态」间接到达）；`DirectorShotSize` 6 值（:14）+ `DirectorCameraMove` 10 值（:13） |
+| 436 | §33.4 复验：运镜位移偏移表 10 项 | ✅ `cameraMoveTransform` 的 `offsets: Record<DirectorCameraMove, DirectorVec3>` 恰 10 键：static[0,0,0]/push_in[0,0,-2]/pull_out[0,0,2]/pan_left[-2,0,0]/pan_right[2,0,0]/tilt_up[0,1.5,0]/tilt_down[0,-1.2,0]/orbit_left[-2.5,0,-1.5]/orbit_right[2.5,0,-1.5]/handheld[0.18,0.08,-0.15]（:937-943） |
+| 437 | §34.3 复验：录制健壮性——错误即中止 + 时长探针 | ✅ `window.addEventListener("error")` 首错即 `recorder.stop()`，错误文案「白膜视频录制期间发生渲染错误，请重试」+ 注释「与其 5 秒后静默产出残缺视频回写画布」（director-viewport.tsx:1140-1146）；`recorded < Math.max(0.25, duration * 0.5)` → throw「白膜视频时长异常，录制可能不完整，请重试」（:1158-1159） |
+- **累计（勘定）**：台账 **437 行** + pre-ledger 13 处 = **450 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v86 轮增量检查）。
+
+### 32.69 定点抽查（v87 补充，6 处新样本，6/6 吻合；§35 差异审计重跑勘误 ×3 + 模式卡锚复验 ×3）
+
+> v87 轮方法说明：机械重跑 §35 的 `git log/diff 85c9686..v1.5.9` 全链路（提交数、端点全哈希恒等、分段/总量 diffstat、backend 文件清单），发现两处审计时点误记并回写 §35（上方已带 v87 勘误标记）；另抽 BF-40/41/42 三卡源码锚复验。
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 438 | §35 重跑：提交数与端点恒等 | ✅ `git log 85c9686..v1.5.9` 仍恰 2 提交（e8cf506 浅色模式 / e2fd1d3 素材限制对齐）；`v1.5.9^{commit}` == `e2fd1d3f78fa172c…`、`v1.5.7^{commit}` == `85c9686c87a4c17…` 全哈希恒等——端点未动，diff 结果确定性，上游无漂移 |
+| 439 | §35 勘误①：总量误记回写 | ❌原记「42 文件 +1590/-477」→ 实测 **62 文件 +2057/-849**；分段 `85c9686..v1.5.8` = 23 文件 +234/-177（backend 0）、`e8cf506..e2fd1d3` = 41 文件 +1824/-673——§35 头注已带 v87 勘误标记回写 |
+| 440 | §35 勘误②：「backend 无 diff」不成立回写 | ❌原记「backend/internal 无 diff（纯前端发布）」→ 实测 **16 文件 +1106/-165**（model_capability/provider/provider_protocol/provider_video/provider_video_options/video_reference_constraints 新增/resource/generation: provider_error·types/repository + 6 测试）；性质 = 素材限制与错误提示的服务端对应实现——§35.2 已回写；包断言锚定 `85c9686` 不受影响 |
+| 441 | BF-40 卡面锚复验（源码文本断言测试） | ✅ `readFileSync` ×8 把组件/CSS 源码读进测试（canvas-media-performance.test.ts:14-21）；`pretest` 五项边界测试链（package.json:13）+ `test:canvas` 三测试（:15） |
+| 442 | BF-41 卡面锚复验（双插件体系） | ✅ `lib/plugins/builtin/index.ts:1-6` 六副作用 import（eagle/prompt-optimizer/workflows/ai-art-critique/media-conversion/editor-shell）；`manifest.go:75-77` 注释逐字「Uploaded plugins must use the declarative path; host bindings are reserved for manifests shipped with the application.」；画布创建门禁 `isPluginEffectivelyEnabled`（canvas-operation-contract.ts:327，import 自 use-plugin-store :5） |
+| 443 | BF-42 卡面锚复验（本地伴随进程） | ✅ `resolveLocalRuntimeEndpoint` 默认 `http://127.0.0.1:17371` 且非精确 loopback origin 即抛「Local Runtime endpoint must be one exact loopback origin」（local-runtime-session.ts:10-18）；`MAX_RESPONSE_BYTES = 64 * 1024`（local-runtime.ts:26）；卡面另记 32MB 上限本轮未复核（留待下轮） |
+- **累计（勘定）**：台账 **443 行** + pre-ledger 13 处 = **456 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v87 轮增量检查）。
+
+### 32.70 定点抽查（v88 补充，6 处新样本，6/6 吻合；BF-42 补验 + BF-37/38/43 卡面回源）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 444 | BF-42 补验：32MB 深度响应上限 | ✅ `MAX_RESPONSE_BYTES = 32 * 1024 * 1024`（depth-runtime.ts:6）+ 输入图 12MB（:5，错误文案「深度转换图片不能超过 12MB」:67）+ boundedText declared/total 双检「本机深度响应过大」（:140-144）——卡面「响应体 64KB/32MB 上限」= 通用 local-runtime 64KB（local-runtime.ts:26）与深度模块 32MB 两层，口径成立 |
+| 445 | BF-37 卡面锚复验（LibTV 像素捕获夹具三件套） | ✅ `canvas-libtv-fixture.ts` 注释逐字「It is opt-in and never enters a normal project.」（:68）；`libtvChrome` 只读复刻条 project.tsx:675（`!== "1"` 才保存 → `=1` 跳过保存）+ :2978 prop 下传；`libtv-original-*` 捕获引用见 fixture 与 project 两文件 |
+| 446 | BF-38 卡面锚复验（导入中间表示） | ✅ `LibTVImportResult`（services/api/libtv.ts:36-53）：batchId/projectUuid + 五统计计数器 multiResultNodeCount/staleNodeCount/reusedFailedNodeCount/placeholderNodeCount/convertedSpecialCount（:48-52）+ skipped/warnings；两段式读取/保存双错误文案（libtv-import-dialog.tsx:80,95）+ `importSource: node.metadata`（:43） |
+| 447 | BF-38 补锚：TapNowImportResult 同构 + 夹具注入面 | ✅ `TapNowImportResult`（services/api/tapnow.ts:38，同计数器模式 :52）；project.tsx:102 一次 import 十个 `createLibTv*Fixture` 夹具构造器（audio/empty-text/generating/readonly-dense/storyboard/text/video-conversion/video/video-merge/video-subtitle）+ fixtureAppliedRef（:516-517） |
+| 448 | BF-43 卡面锚复验（冻结式手势事务·prop 侧） | ✅ `const transform = frozen || resolved`（director-viewport.tsx:557，拖拽期冻结声明式 prop）+ `readObject3DTransform` 从被操控 Object3D 读回 position/rotation/scale（:638-640） |
+| 449 | BF-43 卡面锚复验（冻结式手势事务·终态映射） | ✅ 注释逐字「pointerup / window blur / document hidden → commit 当前可见值」「Escape / pointercancel → cancel 并恢复快照，这是用户明确表达的放弃」（director-gesture-transaction.ts:89-91）+ `end: (outcome: "commit" \| "cancel") => void`（:18）+ 「先进入终态再结束第三方拖拽」顺序注释（:49） |
+- **累计（勘定）**：台账 **449 行** + pre-ledger 13 处 = **462 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v88 轮增量检查）。
+
+### 32.71 定点抽查（v89 补充，6 处新样本，6/6 吻合；PATTERN_CARDS BF-01..36 卡面抽样回源）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 450 | BF-03 卡面锚复验（均匀网格空间索引） | ✅ `DEFAULT_CELL_SIZE = 1024`（canvas-spatial-index.ts:20）+ `MAX_BUCKET_COVERAGE = 256` 跨格进 largeEntry 线性兜底（:21,31,43,85） |
+| 451 | BF-04 卡面锚复验（预算化虚拟化双边距） | ✅ `CANVAS_MAX_RENDERED_NODES = 720` / `CONNECTIONS = 5000`（canvas-performance-mode.ts:8-9）；retain 640/384、enter 128/192（:36-37）；缩放分档 280/420/720（:41-43） |
+| 452 | BF-06 卡面锚复验（拖拽期语义 memo） | ✅ `semanticNodesRef`（use-canvas-render-model.ts:207）+ `positionOnlyChange = …every(sameNodeSemanticData)` 逐位语义比较短路（:209-210，sameNodeSemanticData import 自 canvas-project-domain :5） |
+| 453 | BF-09 卡面锚复验（hover 单解码器租约） | ✅ `VIDEO_HOVER_DELAY_MS = 350`（canvas-video-hover-preview.ts:3）+ `VIDEO_HOVER_PREVIEW_MS = 3000`（:4）+ 8s deadline（:72）+ 销毁 `video.removeAttribute("src")`（:35） |
+| 454 | BF-10 卡面锚复验（Blob LRU 预算） | ✅ `MAX_CACHE_BYTES = 2GB`（resource-blob-cache.ts:27）/ 下限 64MB（:29）/ 500 条（:30）/ 并发 16 + HTTP/2 多路复用注释（:33-34）/ `quota * 0.2` 钳制（:303） |
+| 455 | BF-14 卡面锚复验（56px 圆形吸附） | ✅ `CONNECTION_SNAP_RADIUS = 56`（use-canvas-connection-controller.ts:61）+ `isNearNode`「命中但策略不过」建模（:53,462,486）+ :58 注释更细于卡面：「LibTV's 80px world-space quick-add zone renders at roughly 110px on the …」（80px 世界坐标 ≈ 屏幕约 110px） |
+- **累计（勘定）**：台账 **455 行** + pre-ledger 13 处 = **468 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v89 轮增量检查）。
+
+### 32.72 定点抽查（v90 补充，6 处新样本，6/6 吻合；PATTERN_CARDS 剩余卡面抽样回源·二批）
+
+> v90 轮方法说明：BF-01 的 32ms/64ms 数字初查未在卡面所引第二、三文件直接现形（canvas-live-viewport.ts 只见 `notify` 布尔门），追至 caller `infinite-canvas.tsx:135` 与 `canvas-viewport-render-sync.ts:3` 落锚——回核后确认卡面三处 file:line 引用区间均覆盖实际常量，无需勘误。
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 456 | BF-01 卡面锚复验（三频率双轨视口） | ✅ rAF 逐帧 + commitAfterIdle 后 120ms commit（infinite-canvas.tsx:122-149 窗口内 `}, 120);`）+ `const notify = now - lastPreviewNotifyRef.current >= 32`（:135）+ `CANVAS_VIRTUALIZATION_REFRESH_INTERVAL_MS = 64`（canvas-viewport-render-sync.ts:3，shouldRefreshCanvasVirtualization :5-8）+ preview 事件族常量（canvas-live-viewport.ts:3-6） |
+| 457 | BF-02 卡面锚复验（CSS 变量 + 交互期降负） | ✅ `--canvas-live-x/y/scale/inverse-scale` 四变量（infinite-canvas.tsx:431-434；canvas-live-viewport.ts:55-60 注释「外置节点标题用同一帧逆倍率抵消世界层缩放」）+ globals.css:11407 起 `[data-canvas-viewport-interacting="true"]` 的 `transition: none !important` 降负带 |
+| 458 | BF-05 卡面锚复验（三档性能模式） | ✅ quality/performance 存储 + 非 localStorage 值回落 "auto"（canvas-performance-mode.ts:11-14）+ auto 判定 `nodes.length >= 80 \|\| mediaCount >= 32`（:32） |
+| 459 | BF-08 卡面锚复验（纯 DOM 小地图） | ✅ `MINIMAP_WIDTH = 240 / MINIMAP_HEIGHT = 160 / MINIMAP_IMAGE_PREVIEW_LIMIT = 24`（canvas-mini-map.tsx:12-14）+ 按需挂载 `{isMiniMapOpen && !focusMode && <Minimap … onViewportPreviewChange={previewViewport} onViewportChange={handleViewportChange} />}`（project.tsx:3435，preview/commit 双回调即两段） |
+| 460 | BF-19 卡面锚复验（外置标题头反向缩放） | ✅ `NODE_EXTERNAL_HEADER_MIN_SCALE = 0.35`（canvas-node.tsx:708，scale<0.35 隐藏 + readonly-dense fixture 豁免 :726）+ `1 / Math.max(scale, 0.05)` 逆倍率与 `scale(var(--canvas-live-inverse-scale, …))` 同帧抵消（:727-742 窗口） |
+| 461 | BF-34 卡面锚复验（视频本地处理） | ✅ 同源发布注释逐字「核心资产随前端同源发布，避免自部署环境首次合并依赖第三方 CDN」（canvas-video-merge.ts:25）+ `import("@ffmpeg/core?url") / import("@ffmpeg/core/wasm?url")` 按需加载（:19-26，:10 注释「只在用户明确合并视频时加载」）；ISO-BMFF 手工解析注释「可用性看容器结构：ftyp、mdat 载荷、trak 内 vide/soun 且 sample_count>0…空壳仍带 ftyp/mdat 四字符，不能靠子串扫描」（canvas-video-segment-args.ts:64-65）+ `requestVideoFrameCallback` 抽帧（canvas-video-frame.ts:36,54） |
+- **累计（勘定）**：台账 **461 行** + pre-ledger 13 处 = **474 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v90 轮增量检查）。
+
+### 32.73 定点抽查（v91 补充，6 处新样本，6/6 吻合；PATTERN_CARDS 剩余卡面抽样回源·三批）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 462 | BF-11 卡面锚复验（指针意图路由表） | ✅ `resolveCanvasPointerIntent` 全函数逐字（canvas-selection.ts:26-34）：touch→background?pan:ignore、button 1→pan、非 0→ignore、space→pan、非 background→ignore、boxSelect/alt/ctrl/meta/shift→select、默认 pan——七支归约与卡面「pan/select/ignore」三元一致 |
+| 463 | BF-15 卡面锚复验（拖线建下游快速创建） | ✅ 松手空白 `quick: true` pending 分支（use-canvas-connection-controller.ts:678-683 窗口 `screenToCanvas` + quick 标记）+ 点 pin 位移 `Math.hypot(…) <= 5` 判定（:818-827 窗口） |
+| 464 | BF-17 卡面锚复验（连线接近 3D tilt） | ✅ `latchCanvasConnectionApproach`（canvas-connection-tilt.ts:6 窗口）+ `rotateX: (0.5 - y) * 10, rotateY: (x - 0.5) * 10` ±10deg（:12 窗口） |
+| 465 | BF-20 卡面锚复验（媒体自适应 manualSize 让位） | ✅ `MEDIA_NODE_MIN_SIZE 420×236`（canvas-node-size.ts:4）/ 上限 720×520（:5）/ `fitNodeSize`（:7）/ `!freeResize` 与 `!locked` 门（:64,69）+ 占位期比例串 `nodeSizeFromRatio`（:63） |
+| 466 | BF-23 卡面锚复验（三方 rebase 并集） | ✅ `storageRevision`/`tombstones` 文档级字段（canvas-storage-revision.ts:17-18,68-69）+ `generationEffectKeys` 并集合并逐字 `[...new Set([...durable, ...local])]`（:125-127） |
+| 467 | BF-28 卡面锚复验（防重复计费四层防线） | ✅ 节点级互斥 `runCanvasGenerationSubmissionOnce` locks Map get/set/delete（canvas-generation-submission.ts:74-85）+ 请求指纹 `canvasGenerationRequestFingerprint` canonicalize（:37-44）+ 同指纹确认文案逐字「当前节点已使用相同提示词、模型、参数和参考素材提交过任务。再次生成会新建任务，并可能再次消耗积分。」（use-canvas-generation-executor.ts:89）+ clientOperationId 幂等（use-canvas-generation-retry.ts 定位） |
+- **累计（勘定）**：台账 **467 行** + pre-ledger 13 处 = **480 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v91 轮增量检查）。
+
+### 32.74 定点抽查（v92 补充，6 处新样本，6/6 吻合；PATTERN_CARDS 剩余卡面抽样回源·四批）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 468 | BF-12 卡面锚复验（工具化框选） | ✅ `useState<CanvasToolMode>("box-select")` 默认框选（project.tsx:362）+ `onToolChange(key === "h" ? "move" : "box-select")` H/V 切换（canvas-toolbar.tsx:154-165）+ `boxSelectEnabled={canvasTool === "box-select"}`（:3066）；快捷键文案 bug 已于台账 row 426 逐字复验 |
+| 469 | BF-13 卡面锚复验（hover 侧栏端口） | ✅ `railSize = 80`（canvas-node.tsx:863）+ 注释「LibTV centers the visual quick-add icon in an approximately 80px …」（:867）+ quick-create 菜单 Y 以 `anchorRatio ?? 0.5` 回退（use-canvas-connection-controller.ts:326） |
+| 470 | BF-16 卡面锚复验（elementFromPoint 换参考） | ✅ `document.elementFromPoint(clientX, clientY)` 两处命中（use-canvas-connection-controller.ts:615,753） |
+| 471 | BF-21 卡面锚复验（实体差异补丁 undo 栈） | ✅ `EntityChange<T>` 类型（use-canvas-history.ts:17）+ `changes`/`beforeOrder`（:24-25,214）+ 180ms debounce 合并（:168） |
+| 472 | BF-25 卡面锚复验（Web Locks 串行化 + 不毒化） | ✅ `runWithBrowserCanvasStorageLock`：navigator.locks 请求 + `requireCrossRealmLock` 下不支持即 throw「当前浏览器不支持跨标签存储锁，已停止画布生成持久化」（use-canvas-store.ts:140-148，fail-closed）；promise tail `previous.then(() => undefined, () => undefined)` 前序失败转 void + 注释逐字「才不会让一次旧失败永久毒化后续保存队列」（:150-167） |
+| 473 | BF-35 卡面锚复验（Agent patch 三路合并 + 终态保护） | ✅ 冲突抛错逐字「Agent 画布增量与本地内容冲突，需要校准；已保留本地编辑」（agent-canvas-patch.ts:42）+ `terminal = ["succeeded","failed","cancelled"].includes(...)`（:69）+ 注释「Never turn its terminal result back into a pending task」+ 无操作保护 `return { before: current, after: current }`（:71-73） |
+- **累计（勘定）**：台账 **473 行** + pre-ledger 13 处 = **486 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v92 轮增量检查）。
+
+### 32.75 定点抽查（v93 补充，6 处新样本，6/6 吻合；PATTERN_CARDS 最后一批卡面抽样回源）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 474 | BF-22 卡面锚复验（Agent 整批快照撤销） | ✅ 容量 10 `.slice(-10)` + 快照结构 `{ snapshot: before, afterNodes, afterConnections, change }`（use-canvas-operation-history.ts:282） |
+| 475 | BF-24 卡面锚复验（两阶段事务持久化） | ✅ 消费侧注释逐字「Dedicated commit 已确认 generation stamp；用同 scope 最新内存重新投影队列，避免同节点普通编辑被旧 durable 快照替换」（canvas-generation-consumer.ts:231）+ durable 解析（use-canvas-store.ts:196） |
+| 476 | BF-26 卡面锚复验（8 原语 + 后置复核） | ✅ `CanvasOperation` union 恰 8 原语逐字（add_node/update_node/delete_node/delete_connections/connect_nodes/set_viewport/select_nodes/run_generation，canvas-operation-contract.ts:9-17）+ `verifyCanvasOperations`（:78）+ resourceReady 物化门 `status === "success" && (storageKey \|\| primaryImageId \|\| resourceId)`（:171） |
+| 477 | BF-27 卡面锚复验（任务→节点绑定 + 对账） | ✅ 注释逐字「A historical taskId is not a lock. Only live task states / submission are.」（canvas-node-task-state.ts:3）+ `isCanvasNodeGenerating` queued/running 视为活跃、succeeded/failed/cancelled 即非活跃（:4-11） |
+| 478 | BF-29 卡面锚复验（图片批量 root+children 退休） | ✅ batchRootId children 过滤（canvas-image-batch-retry.ts:6）+ `delete metadata.primaryImageId`（:21,68）+ `delete metadata.batchRootId` 解除（:29,81）；执行器定位 pages/canvas/canvas-image-generation-executor.ts（卡面引文件名省目录，路径厘正） |
+| 479 | BF-36 卡面锚复验（Agent 上下文预算） | ✅ `MAX_TEXT_BYTES = 192 * 1024`（agent-context-budget.ts:5）+ live 交换硬失败 `> 384 * 1024 \|\| estimatedTokens > 96_000` 且文案逐字「本轮工具结果和上下文已达到处理预算，已完成的操作会保留。请缩小下一步范围后继续；不要重复生成已完成的作品。」（:15） |
+- **累计（勘定）**：台账 **479 行** + pre-ledger 13 处 = **492 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v93 轮增量检查）。
+
+### 32.76 定点抽查（v94 补充，6 处新样本，6/6 吻合；余量卡面收尾——卡面二轮回源 45/45 完成）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 480 | BF-07 卡面锚复验（Leafer 连线/套件位图层） | ✅ `hittable: false` ×2（Leafer 与 world/connections Group，components/canvas/canvas-leafer-graphics-layer.tsx:191-192）；预览比 [0.85,1.25] 与 rebase 阈值 `shouldRebaseCanvasRaster` + 注释「避免缩放手势逐帧触发矢量重绘」（canvas-leafer-viewport.ts:4-5,10-20）；`connectionSceneSignature` 物理计数**恰 20 字段** `join("\|")`（graphics-layer :253-276）；路径厘正：该文件实在 components/canvas/（卡面引 lib/canvas/ 省目录） |
+| 481 | BF-18 卡面↔历史行 427 一致性 | ✅ 卡面所引 paint-order 注释与 row 427（§32.67）逐字同源：「A connection click can leave the connected node selected for paint-order purposes…」（use-canvas-keyboard.ts:193-207，v85 轮已回源）——卡面与台账行完全一致 |
+| 482 | BF-30 卡面锚复验（媒体版本族） | ✅ `versionOfNodeId` 版本组判定（canvas-generation-layout.ts:24）+ `prepareInPlaceMediaVersion` 全仓 grep 无调用点（仅定义）——「未接线（未消费）」断言成立 |
+| 483 | BF-31 卡面↔历史行 361 一致性 | ✅ 卡面「连线数组顺序即引用编号」↔ row 361（§32.56）注释逐字「连接数组是引用编号的唯一顺序源；只替换相关输入边所在槽位……」（canvas-resource-references.ts:429-433）+ `composerContent?: string` 与 prompt 独立双字段（types/canvas.ts:225） |
+| 484 | BF-32 卡面锚复验（batch-table 批量创作表） | ✅ 表格节点 `width: 1280, height: Math.max(node.height, 560)`（canvas-batch-table.ts:18）+ 默认 `concurrency: 10`（use-canvas-batch-table.ts:28）+ `batchRowId: row.id` 行溯源（:170） |
+| 485 | BF-33 卡面锚复验（上传三层存储幂等键） | ✅ `pendingRemoteUpload` 直传失败暂存标记 + 失败原因字段（file-storage.ts:29-30,134）+ 客户端预生成 `"X-Idempotency-Key": createClientId()` 三处（image-transport.ts:14、resources.ts:230、channel-transport.ts:114） |
+- **累计（勘定）**：台账 **485 行** + pre-ledger 13 处 = **498 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v94 轮增量检查）。
+
+### 32.77 定点抽查（v95 补充，6 处新样本，6/6 吻合；REPORT 结论面复核 + 目录 §10 声明汇总 + codex 分支监控）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 486 | REPORT §3 第 7 项 fit 缩放上限定锚 | ✅ `focusNodesInView(…, maxScale = 1)` 默认 1（use-canvas-viewport-controller.ts:101,104）+ 适应选区传 1.25（:116）+ `Math.min(1.25, Math.max(viewportRef.current.k, 0.78))`（:140）——「fit view 永不放大超 100%；适应选区才允许 1.25」成立 |
+| 487 | REPORT §5.1 巨石页面定量复核 | ✅ project.tsx 物理字节数 **213,805**（≈214KB）；`use-canvas*` 引用 27 处（grep 模式下界，与「28+ 控制器」同量级）——定性成立 |
+| 488 | REPORT §7.3 上游测试夹具可借性 | ✅ `Array.from({ length: 50000 }, …)` 50k 节点夹具（web/test/canvas-spatial-index.test.ts:70） |
+| 489 | §35.3 分支监控：codex/video-alignment-20260927 | ✅ 远端分支仍在，含 2 个 pre-squash 提交（6bb3495 fix(video) + 18a3439 style(test)，即 e2fd1d3 的 PR 源提交）；`git diff v1.5.9 分支` **为空** → 树内容与 v1.5.9 完全一致，零新增上游内容，无需增量差异审计 |
+| 490 | 目录 §10 对照声明三支复核汇总 | ✅ §10 所列「与 LibTV 权威相反」判定全部有回源锚：默认框选工具化（row 468）、Delete 先连线（rows 427/481）、中键/Space 平移意图路由（row 462）——「均不构成改动 CANVAS_NAVIGATION.md 权威的证据」结论维持 |
+| 491 | REPORT 结论面一致性终核 | ✅ 无累计抽查总数、无陈旧计数（§6「5 处」为 v1 scoped 历史表述）；§3 七项分歧至此全部有回源锚（本轮 row 486 补齐第 7 项）；§4/§5/§7 引用卡号 BF-03/04/06/09/15/18/22/24/26/30/33/35/40 全部存在且均已完成二轮回源 |
+- **累计（勘定）**：台账 **491 行** + pre-ledger 13 处 = **504 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后仍无新提交（v95 轮增量检查，含 codex 分支树差核验）。
+
+### 32.78 定点抽查（v96 补充，6 处新样本，6/6 吻合；§26-§31 跨章抽样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 492 | §26 复验：listAddedSkills 缓存与退避 | ✅ `expiresAt: Date.now() + 15_000` 15s TTL（api/skills.ts:152 窗口）+ `retryDelays = [300, 900, 1800]` 三级退避 + `cause.retryable` 门（:163-167 窗口） |
+| 493 | §26 复验：官方应用清单恰 5 项 | ✅ `OFFICIAL_APPLICATION_PLUGIN_IDS = [RUNNINGHUB, EAGLE, PROMPT_OPTIMIZER, ART_CRITIQUE, EDITOR_SHELL]`（official-applications.ts:14-20）+ `officialApplicationIdSet`（:22） |
+| 494 | §30 复验：高亮 runner worker 池 | ✅ `concurrency = Math.max(1, Math.floor(options.concurrency ?? 3))`（subtitle-highlight-runner.ts:34）+ 注释「worker 池模式：从共享游标里抢任务」（:54）+ `firstError` 短路（:56,60） |
+| 495 | §27 复验：导演台引导版本与步骤数 | ✅ `DIRECTOR_ONBOARDING_VERSION = 2` / KEY "director-onboarding-v2"（director-onboarding.ts:30,33）+ `DIRECTOR_ONBOARDING_STEPS` 物理计数恰 **6 步**（:48-63） |
+| 496 | §31 复验：选区浮动工具栏重定位双观察器 | ✅ `ResizeObserver` ×3 observe（canvas-workspace-overlays.tsx:58-60）**且** `new MutationObserver(update)`（:62）——目录 §8「MutationObserver 重定位」记载成立且本轮补锚 ResizeObserver 并存事实 |
+| 497 | §29 复验：出站请求超时链 | ✅ `requestTimeout := providerHTTPTimeout` + 剩余租约时间封顶（provider_http_client.go:277-280）+ `AcquireChannelSlot(…, requestTimeout+time.Minute)`（:309）+ `OutboundHTTPClient(requestTimeout)`（:323；头限额 32/16KB 已见 row 273） |
+- **累计（勘定）**：台账 **497 行** + pre-ledger 13 处 = **510 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v96 轮增量检查）。
+
+### 32.79 定点抽查（v97 补充，6 处新样本，6/6 吻合；§14/§20-§25 抽样 + §20 算子计数勘误）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 498 | §20 勘误+锚：$ 算子全集计数 | ❌原记「算子全集（36 个）」→ 多名单 case 全量展开实测 **45 唯一算子名**（`case "$coalesce", "$default"`、`case "$map", "$filter"`、`case "$eq", "$ne", …, "$and", "$or"` 共享分支为漏计主因；expression.go:79/:124/:435）；§20 标题已回写勘误 |
+| 499 | §21 锚：AI 批上限 + 黄金 op 目录 | ✅ `AI_EDITING_MAX_COMMANDS = 8` + 注释「防止一次模型输出造成不可控的大范围变更」（ai-command-schema.ts:122-124）+ `AI_EDITING_OP_CATALOG`「12 个黄金 op 的 LLM 可读 payload 契约；op 集合与注册表黄金同步（见测试）」（:127-128） |
+| 500 | §14 锚：快照 revision 乐观并发 | ✅ `if current.Revision != *revision` 冲突拒绝（backend/internal/canvas/canvas_history.go:95）+ 仓储层 revision DESC 列表与保留清理（repository/canvas_history.go:16,27,86） |
+| 501 | §25.1 锚：worker 续租节拍 | ✅ `ticker := time.NewTicker(15 * time.Second)`（task_worker.go:147）——与 row 368 的 `RenewTaskLease(…, 45s)` 构成 15s tick / 45s lease 节拍 |
+| 502 | §21 锚：确定性中文摘要 | ✅ 头注释逐字「时间线确定性摘要：把 TimelineProject 压缩成稳定、可控长度的中文上下文，供 AI 编辑和诊断使用。」（timeline-summary.ts:1） |
+| 503 | §25.2 锚：creation 会话 epoch | ✅ `ExecutionEpoch int64`（creation.go:17）+ `ExpectedEpoch`（:25）+ 守卫三重 `Owner/ExecutionEpoch/LeaseExpiresAt` 任一不符即拒绝（:91） |
+- **累计（勘定）**：台账 **503 行** + pre-ledger 13 处 = **516 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v97 轮增量检查）。
+
+### 32.80 定点抽查（v98 补充，6 处新样本，6/6 吻合；§21-§24 时间线/几何域抽样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 504 | §21 锚：AI_EDITING_OP_CATALOG 恰 12 op | ✅ 物理计数恰 **12**：addClip/moveClip/trimClip/splitClip/setClipProperty/addTrack/removeTrack/setTrackFlag/addSubtitle/removeSubtitle/rebuildSubtitleClips/removeClip——与 row 499「12 个黄金 op」互证；初查误计 13 系类型声明行 `op: string;` 干扰 |
+| 505 | §21 锚：editor history 200 层 | ✅ `HISTORY_LIMIT = 200` + 头注释逐字「时间线快照撤销（ADR-0002）：有界 200 层 undo/redo 栈」（editor-history.ts:1,7） |
+| 506 | §24 锚：timeline-view 常量组 | ✅ `BASE_TIMELINE_PX_PER_SECOND = 96`、`MIN_TIMELINE_TRACK_WIDTH = 960`、`MIN/MAX_TIMELINE_ZOOM = 0.02/4`、`TIMELINE_ZOOM_STEP = 1.25`（timeline-view.ts:4-8） |
+| 507 | §24 锚：默认三轨 ID | ✅ `DEFAULT_VIDEO_TRACK_ID "video-1"` / `DEFAULT_AUDIO_TRACK_ID "audio-1"` / `DEFAULT_SUBTITLE_TRACK_ID "subtitle-1"`（timeline-tracks.ts:6-8） |
+| 508 | §24 锚：placement 碰撞三函数 | ✅ `clipsOverlap`（timeline-placement.ts:42）+ `canPlaceAt`（:63）+ `findCollidingItems`（:77）——碰撞判定/放置校验/冲突枚举三段 API 面 |
+| 509 | §21 锚：build 双向同步入口 | ✅ `buildTimelineFromNodes`（timeline-build.ts:20）+ `isNodeInTimeline`（:91）+ 字幕双向 `syncNodeSubtitlesToTimeline`/`syncTimelineSubtitleClips`（:99,138） |
+- **累计（勘定）**：台账 **509 行** + pre-ledger 13 处 = **522 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v98 轮增量检查）。
+
+### 32.81 定点抽查（v99 补充，6 处新样本，6/6 吻合；§27-§31 剩余细节抽样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 510 | §27/§33.4 复验：ShotInspector 参数四域 | ✅ 时长 0.5-60s 步进 0.5（canvas-director-workbench.tsx:843）+ 焦距 12-200mm / 光圈 f/0.7-32 / 焦点距离 0.1-200m（:845）——§33.4 勘定口径逐值吻合；另锚「摄影机对齐当前视图」「按运镜生成轨迹」双按钮 |
+| 511 | §28 复验：editor-shell 插件注册双调用 | ✅ `registerPlugin(editorShellPlugin)` + `registerEditorSlot({ pluginId: manifest.id, … })`（editor-shell.tsx:40-48）——manifest 贡献与插槽注册双通道 |
+| 512 | §30 复验：高亮 expired 语义 | ✅ `return entry.text !== highlight.sourceText;`（subtitle-highlights.ts:25）——字幕文本一变即失效的「文本自证」模型直接落锚 |
+| 513 | §29 锚：provider 错误分类学 | ✅ `providerPayloadError`（provider.go:143）+ `providerResponseDecodeError` 含 `Unwrap()`（:156-157）+ `providerCircuitOpenError` 熔断开路（:161）——三类具名错误支撑协议引擎错误面 |
+| 514 | §34.3 复验：视口错误边界本地失败隔离 | ✅ 类注释逐字「本地失败隔离：3D 视口异常只替换视口本身，不影响画布/项目其余部分。」（director-viewport.tsx:250-251）+ 「retryKey 变化会真正重建 Canvas 与 ErrorBoundary，而不是只换文案」（:88）+ keyed boundary（:160,172） |
+| 515 | §31 锚：tool-registry 工具管线 | ✅ `applicable: (ctx) => !ctx.enabledPluginIds \|\| ctx.enabledPluginIds.has(pluginId)`（tool-registry/tool-registry.ts:64）+ 管线注释「过滤 applicable → 应用用户排序 → 过滤用户隐藏 → 生成 FloatingDockEntry（含 separator 分组）」（:82）+ defaultOrder 去重排序（:40,45）；路径厘正：实在 lib/canvas/tool-registry/ 子目录 |
+- **累计（勘定）**：台账 **515 行** + pre-ledger 13 处 = **528 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v99 轮增量检查）。
+
+### 32.82 定点抽查（v100 补充，6 处新样本，6/6 吻合；REPORT §2 架构定性表逐行抽样 + §16-§19 补样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 516 | §2 节点体系行：内置节点类型恰 18 | ✅ `enum CanvasNodeType` 恰 **18** 项（image/text/drawing/script/skill/config/video/audio/frame/markdown/svg/html/panorama/compare/chart/colorgrade/media-conversion/batch-table，types/canvas.ts:21-40）+ `PluginCanvasNodeType` 开放扩展（:43-44）——「18 内置类型 + 开放注册表」成立 |
+| 517 | §2 连线行：无箭头渐变贝塞尔 | ✅ `marker` 全文件计数 **0**（canvas-connections.tsx）+ `d={pathD}` + 双 `linearGradient`（:48-64）——「贝塞尔、无箭头」渲染侧证据 |
+| 518 | §2 状态行：sameCanvasContent 去重 | ✅ import（use-canvas-store.ts:5）+ `const contentChanged = !sameCanvasContent(current, next)`（:603） |
+| 519 | §19 勘误+锚：测试文件计数口径 | ❌原记「292 文件」→ 实测 `*.test.*` **290** 个、web/test 全部 **294** 文件（含 4 个 fixtures/helpers 非测试文件）；canvas 前缀 **111** 精确——覆盖表两处已回写勘误口径 |
+| 520 | §18 锚：http-api.mdx 恰 36 行 | ✅ `wc -l` = **36**（docs/content/docs/backend/http-api.mdx）——「高层索引文档、无逐路由清单」定性成立 |
+| 521 | §16 锚：permission-check fail-closed | ✅ 判别联合 `{ allowed: false; reason: "plugin-not-registered" \| "missing-permission" }`（plugin-permission-check.ts:23）+ 双 `allowed: false` 返回（:45,49）+ 未注册代发 `throw`（:58）——BF-41「权限 fail-closed」落锚 |
+- **累计（勘定）**：台账 **521 行** + pre-ledger 13 处 = **534 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v100 轮增量检查）。
+
+### 32.83 定点抽查（v101 补充，6 处新样本，6/6 吻合；§4-§13 画布本体抽样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 522 | §6 锚：`?` 快捷键中心触发 | ✅ `event.key === "?" && !isModifierShortcut && !event.altKey` → `setShortcutRequestNonce((value) => value + 1)`（use-canvas-keyboard.ts:145-149） |
+| 523 | §2 锚：世界层 DOM 结构 | ✅ `data-canvas-world-layer`（infinite-canvas.tsx:455）+ Leafer underlay/overlay 双 host（graphics-layer :183-186，row 480 已锚）——「两层世界 div」结构闭合 |
+| 524 | §8 锚：版本恢复前备份 | ✅ 弹窗文案逐字「恢复前会备份当前云端内容，并保留本地草稿。恢复后会生成一个新版本，画布的项目归属保持当前设置。」（canvas-version-history.tsx:143）+ `before_restore` →「恢复前备份」reason 标签（:349）+「本机备份」（:377） |
+| 525 | §9 锚：孤立 loading 对账中断 | ✅ 注释逐字「这里只把没有持久任务身份的孤立 loading 快照标记为中断，避免覆盖已完成任务。」（use-canvas-generation.ts:522-523） |
+| 526 | §10 锚：50MB 分片阈值与中文错误 | ✅ 注释逐字「超过该阈值（与后端单请求 multipart 上限 50MB 一致）的本地媒体走分片上传」（resources.ts:130）+ 「即使误超 50MB multipart 上限（后端 http.MaxBytesError），也给出可读中文而非英文裸错」（:212） |
+| 527 | §11 锚：Agent 审批呈现层 | ✅ `AgentApprovalPresentation = AgentApprovalPreview & { source: "server" \| "fallback" }`（agent-approval-presentation.ts:5）+ `approvalArguments` JSON 参数重建（:17-23）+ 240 字截断与「未知目标」兜底（:12-14,27）——「审批（参数重建预览）」呈现侧 |
+- **累计（勘定）**：台账 **527 行** + pre-ledger 13 处 = **540 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v101 轮增量检查）。
+
+### 32.84 定点抽查（v102 补充，6 处新样本，6/6 吻合；§5-§13 未抽样交互细节）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 528 | §6 锚：双击空白菜单 | ✅ `handleCanvasDoubleClick` 清空节点/连线/弹窗/工具条四处选择后 `setContextMenu({ type: "canvas", …, createOpen: true })`（use-canvas-viewport-controller.ts:119-127）——「清空选择 + 打开菜单并展开添加节点子菜单」闭合 |
+| 529 | §3 锚：拖动集合联动 | ✅ `batchChildIds` 展开 + `isFrameNode → getFrameChildIds` frame 子级 + `!locked` 排除 + 二次 forEach 链式扩展孙级（use-canvas-selection-controller.ts:197-206） |
+| 530 | §7 锚：视频原始 URL 不返回 | ✅ 注释逐字「The original video URL is deliberately never returned: callers must fall…」（canvas-media-preview.ts:6）——静态首帧纪律的源头约束 |
+| 531 | §8 锚：回收站 200 条软删除 | ✅ `deletedProjects: [...newItems, ...filtered].slice(0, 200)`（use-canvas-history-store.ts:55）+ 完整快照字段注释「仅用于本地软删除恢复」（:14） |
+| 532 | §9 锚：任务耗时徽章 | ✅ `useTaskElapsed(node.metadata?.taskCreatedAt)`（canvas-node-content.tsx:202）+ `<Clock3 />{elapsed} · {shortTaskId(…)}` 展示（:219） |
+| 533 | §6 锚：Alt+Shift+F 自动整理 | ✅ `autoArrangeCanvasNodes()` 带 `.ant-modal-wrap/.ant-dropdown/.ant-popover` 守卫 + `!event.repeat` 防重复（use-canvas-keyboard.ts:134-139） |
+- **累计（勘定）**：台账 **533 行** + pre-ledger 13 处 = **546 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v102 轮增量检查）。
+
+### 32.85 定点抽查（v103 补充，6 处新样本，6/6 吻合；目录 §4-§9 剩余未锚交互项）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 534 | §3 锚：触控轻点背景清空选择 | ✅ `event.type === "pointerup" && !panState.current.hasMoved → onCanvasDeselect()`（infinite-canvas.tsx:381-383）——「轻点（未移动）才清空」判定带 |
+| 535 | §4 锚：拖既有连线端点不支持重连（静态复核） | ✅ `reconnect` 在 use-canvas-connection-controller.ts 与 canvas-selection.ts 计数均为 **0**——「改接=删旧建新或换参考」的无重连事实二次成立 |
+| 536 | §5 锚：frame/folder 折叠语义 | ✅ `getCollapsedParentFrame` + `isNodeHiddenByCollapsedFrame`（canvas-frame.ts:39-46，折叠隐藏子节点）+ `collapsed && !isCanvasFolderNode` folder/frame 分歧门（:80）；封面卡渲染侧在 canvas-frame-node 组件 |
+| 537 | §6 锚：菜单自管 Esc | ✅ `closeOnEscape` window keydown 监听、非 Escape 直接返回（canvas-context-menu.tsx:137-139 窗口）——「自制浮层自管 Esc」闭合 |
+| 538 | §8 锚：专注模式进入/退出 | ✅ Ctrl/Cmd+F+Shift 进入分支（use-canvas-keyboard.ts:121-130 窗口）+ Esc 退出条件 `focusMode && !selectedNodeIdsRef.current.size && !hasFocusOverlay`（:208-221 窗口） |
+| 539 | §9 锚：缩放步进与适应快捷键 | ✅ `+/=/NumpadAdd` 与 `-/_/NumpadSubtract` 步进缩放、`0/Numpad0` → `fitCanvasContent()`（use-canvas-keyboard.ts:99-113） |
+- **累计（勘定）**：台账 **539 行** + pre-ledger 13 处 = **552 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v103 轮增量检查）。
+
+### 32.86 定点抽查（v104 补充，6 处新样本，6/6 吻合；目录 §6-§7 右键分支与 §13 导入披露）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 540 | §6 锚：多选分支三动作 | ✅ 「复制 ${selectedCount} 个节点 ⌘C」「发送到 Agent」「删除 N 个节点」`danger`（canvas-context-menu.tsx:228-230） |
+| 541 | §6 锚：角色卡单选分支 | ✅ MenuHeader「角色卡」（characterName/title）+ MenuSection「角色引用」+「查看角色详情」（:236-238）——目录「查看角色详情/复制引用/创建引用副本」分支头吻合 |
+| 542 | §6 锚：媒体单选分支 | ✅ 「全景预览」（canOpenPreview 门）+「资产分类」chevron 二级页（:250-251） |
+| 543 | §6 锚：空白菜单三项 | ✅ 「自适应整理画布」detail「保持相对布局并加大边距」（:209）+「上传到这里」（:215）+「从素材库插入」非关联项目才显示（:216） |
+| 544 | §13 锚：multiResult「取首个」披露 | ✅ 「{multiResultNodeCount} 个多结果节点已使用首个结果。」（libtv-import-dialog.tsx:163）+ 七计数聚合条件披露（:154）——统计披露「信息丢失被显式化」闭合 |
+| 545 | §7 锚：文本份数独立规划 | ✅ 注释「独立文本份数（textCount），默认 1，不再复用餐图片数量 count（对齐上游 v0.16 语义）」+ `planTextGenerationTargets` childIds/targetIds（pages/canvas/canvas-text-generation-executor.ts:37,42）；路径厘正：实在 pages/canvas/ |
+- **累计（勘定）**：台账 **545 行** + pre-ledger 13 处 = **558 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v104 轮增量检查）。
+
+### 32.87 定点抽查（v105 补充，6 处新样本，6/6 吻合；§22 六内置插件能力面深读）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 546 | §22 锚：eagle 插件 | ✅ `EAGLE_DEFAULT_BASE_URL = "http://127.0.0.1:41595"`（eagle.ts:11，Eagle Local API 默认端口）+ 设置项必填 url 字段（:20 注释「确认 Eagle Local API 可用」）+ 名「Eagle 素材库」 |
+| 547 | §22 锚：ai-art-critique 节点贡献 | ✅ `canvasNodes` `defaultSize: { width: 560, height: 420 }`（ai-art-critique.ts:24）+ `acceptsInputKind: "image"`（:27）——与 row 585 二轮互证 |
+| 548 | §22 锚：prompt-optimizer 输出契约 | ✅ required 五字段 `["optimizedPrompt","negativePrompt","changes","assumptions","variants"]`（prompt-optimizer.ts:34）——与 row 357 `additionalProperties:false` 互补成完整 strict 工具面 |
+| 549 | §22 锚：media-conversion 本地转换面 | ✅ 描述「灰度、Canny 边缘、AI 线稿、本地 Depth Anything V2 深度图和 OpenPose 姿态骨架」+ 文档「这些操作都不会加载 Stable Diffusion 重绘管线」（media-conversion.ts:11,15）+ `surfaces: ["node"]` + **`contributes.transforms` 贡献类型**（:24-26）——区别于 canvasNodes/editorSlots 的第三种贡献 |
+| 550 | §22 锚：runninghub 工作流贡献 | ✅ `RUNNINGHUB_PLUGIN_ID = "runninghub-workflow-provider"` + image/video/audio 三 capability 贡献项（label「RunningHub 工作流 · 图片/视频/音频」，workflows.ts:4,17-23）+ `workflowProviderPluginEnabled` 状态门（:12-14） |
+| 551 | §22 汇总：editor-shell 已三轮覆盖 | ✅ manifest 八插槽（row 419）+ fullscreen surface/permissions（row 409）+ 双注册调用（row 511）——六内置插件能力面全部完成二轮及以上覆盖 |
+- **累计（勘定）**：台账 **551 行** + pre-ledger 13 处 = **564 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v105 轮增量检查）。
+
+### 32.88 定点抽查（v106 补充，6 处新样本，6/6 吻合；REPORT §5 反面教材清单收尾 + §17 剩余细节）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 552 | REPORT 反面教材条 2 锚：双字段警告注释逐字 | ✅「两者不能互相覆盖，否则刷新后富引用会退化为普通"图片1"文本。」（canvas-generation-submission.ts:31）——composerContent/prompt 双字段漂移风险的一手注记，REPORT 引述逐字吻合 |
+| 553 | REPORT 反面教材条 4 锚：sandbox 占位文案逐字 | ✅「插件节点等待隔离运行时」（canvas-node-content.tsx `PluginCanvasNodeContent`，`renderer === "sandbox"` 分支）——与 prepareInPlaceMediaVersion 未接线（row 482）同为「能力先行死代码」样本 |
+| 554 | REPORT 反面教材条 5 反向验证：无内容哈希去重 | ✅ `dedupe\|去重` 在 file-storage.ts 与 resources.ts 计数均 **0**——幂等仅靠预生成 storageKey（row 485），「同文件两次上传即两份存储」反向事实成立 |
+| 555 | §17 锚：depth requestJson 错误归一 | ✅ `!response.ok` → LocalRuntimeClientError，code 兜底 `"depth_runtime_unavailable"`、message「本机深度运行时不可用」（depth-runtime.ts:74-81）+ `requestRuntimeResponse` 会话刷新单次重试（:84-92 refreshed/isSessionRefreshError） |
+| 556 | §17 锚：CryptoKey 会话注册 | ✅ `privateKey: CryptoKey`（local-runtime-session.ts:24）+ `registered` 一次性标记（:27,215-216） |
+| 557 | §17 锚：密钥 idb 持久化 | ✅ `import { openDB } from "idb"`（:1）+ `openDB(KEY_DATABASE, 1, …)`（:287）——scope 会话密钥浏览器侧持久化 |
+- **累计（勘定）**：台账 **557 行** + pre-ledger 13 处 = **570 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v106 轮增量检查）。
+
+### 32.89 定点抽查（v107 补充，6 处新样本，6/6 吻合；§15-§19 上游回归与文档站对照抽样）
+
+| # | 章节断言 | 复核结果 |
+|---|---|---|
+| 558 | §15 锚：InactiveVideoPreview 文本断言 | ✅ 正则提取 `function InactiveVideoPreview[\s\S]*?\n}\n\nfunction VideoPreviewPlayButton` 源码片段做断言（canvas-media-performance.test.ts:82）——BF-40「源码文本合同」技术实证 |
+| 559 | §15 锚：标题交互三测试名 | ✅ 「disables iframe hit testing only during node dragging」「exposes a drag handle without bypassing read-only or locked nodes」「keeps the toolbar hover bridge from intercepting the external title」（canvas-node-title-interaction.test.ts:11,16,24） |
+| 560 | §15/BF-39 锚：LibTV 风格创建菜单源+测试双证 | ✅ 源 `variant === "node" ? "grid-cols-4"`（canvas-create-menu.tsx:141）+ 测试 `toContain('w-[232px]')` 等两断言（canvas-connection-create-menu.test.ts:21,23） |
+| 561 | §19 锚：local-only 源码边界 | ✅ `existsSync(…)).toBe(false)` 断言禁入路径（local-only-source-boundary.test.ts:28）+ session 文件不得匹配 `/auth\/session|remote user|cloud/i`（:34） |
+| 562 | §19 锚：渠道模型目录测试 | ✅ describe「public channel model catalog」（channel-model-catalog.test.ts:68）+ audio capability 可选模型序列断言（:118） |
+| 563 | §18 锚：features.mdx 路径与 Agent 能力清单 | ✅ 实际路径 docs/content/docs/overview/features.mdx；:43 Agent 长清单（「审批后的画布写入及媒体生成」「画布摘要/精读」「request_approval 首次 ≥2 项清单先确认」「remember_lesson 写入待审」）与本包 Agent 章断言同向 |
+- **累计（勘定）**：台账 **563 行** + pre-ledger 13 处 = **576 处断言抽查全部吻合**；精确化累计 3 处。同轮上游增量检查：v1.5.9 之后 main 无新提交、codex 分支树差仍为空（v107 轮增量检查）。
+
+## 33.
 
 > 补 §23（viewport/机制视角）之外的**工作台编排层**。核心是三组纪律：canonical 提交 vs 仅镜像的二元、快照时效校验、以及一张贯穿全文件的「焦点释放」防误触网。
 
