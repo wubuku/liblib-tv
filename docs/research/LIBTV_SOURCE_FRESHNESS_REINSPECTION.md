@@ -1314,6 +1314,7 @@ batch 433（对照批）重建本表：先前的追加脚本产生过整段重�
 | 2026-09-17 | batch 680 探测 | still-broken | 第三百零四次重测；巡检批次——并行自行落库 jimeng 232（全量 1..101 绿 + 截图刷新），工作区净；维护集未到期（batch 680） |
 | 2026-09-16 | batch 645 探测 | still-broken | 第二百七十八次重测；到期全量维护集新鲜运行 78/78（batch 26 扫内通过）；仅 liblib 路径回写恢复（jimeng-clone-batch* 并行路径剔除保留）（batch 645） |
 
+| 2026-09-29 | batch 2306 续巡检 | still-broken | 第八百九十八次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件+package-lock 保留不动；batch 566 已闭环（a2c28b54） |
 序列说明：batch 397–414 行使用序列 A（batch 413-414 = 第三十一、三十二次）；
 batch 416 起各批 commit message 改用序列 B（batch 416 = 第二十四次 …
 batch 432 = 第四十次）。两序列不连续是历史标注误差——每次心跳批次恰好
