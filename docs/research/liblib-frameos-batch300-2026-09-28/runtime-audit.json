@@ -1,0 +1,27 @@
+{
+  "batch": 300,
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "spec:value-btn-2K-16:9",
+        "spec:popover-opens",
+        "spec:res-1K-2K",
+        "spec:aspect-16:9",
+        "spec:aspect-9:16",
+        "spec:aspect-21:9",
+        "spec:aspect-4:3",
+        "spec:aspect-3:4",
+        "spec:aspect-1:1",
+        "spec:value-1K-9:16",
+        "spec:popover-closes",
+        "errors:empty"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ],
+  "passed": true
+}

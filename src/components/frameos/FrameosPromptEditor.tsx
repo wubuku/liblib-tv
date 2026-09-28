@@ -36,6 +36,10 @@ export function FrameosPromptEditor() {
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
   // Batch 190: 全屏编辑态 (编辑器居中放大)
   const [isFullscreenEdit, setIsFullscreenEdit] = useState(false);
+  // Batch 300: 规格二维选择（源站实测: 分辨率 [1K,2K] + 宽高比 [16:9,9:16,21:9,4:3,3:4,1:1]）
+  const [specRes, setSpecRes] = useState("2K");
+  const [specAspect, setSpecAspect] = useState("16:9");
+  const [specOpen, setSpecOpen] = useState(false);
   // Batch 239: 视频面板生成模式 (顶层 hook, 面板分支内只读)
   const [videoMode, setVideoMode] = useState<"全能参考" | "首尾帧" | "视频编辑">(
     "全能参考"
@@ -628,11 +632,114 @@ export function FrameosPromptEditor() {
           onChange={setSelectedModel}
           options={modelOptions}
         />
-        <Dropdown
-          value="2K · 16:9"
-          onChange={() => {}}
-          options={["1K · 16:9", "2K · 16:9", "2K · 9:16", "4K · 16:9"]}
-        />
+        <div style={{ position: "relative" }}>
+          <button
+            type="button"
+            aria-label="规格"
+            data-frameos-spec-value={`${specRes} · ${specAspect}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSpecOpen(!specOpen);
+            }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+              height: 32,
+              padding: "0 10px",
+              border: "none",
+              background: "transparent",
+              color: "#E0E0E0",
+              fontSize: 12,
+              cursor: "pointer",
+            }}
+          >
+            {`${specRes} · ${specAspect}`}
+            <span aria-hidden style={{ fontSize: 10 }}>∨</span>
+          </button>
+          {specOpen && (
+            <div
+              aria-hidden
+              style={{ position: "fixed", inset: 0, zIndex: 40 }}
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                setSpecOpen(false);
+              }}
+            />
+          )}
+          {specOpen && (
+            <div
+              data-frameos-spec-pop
+              style={{
+                position: "absolute",
+                bottom: "calc(100% + 6px)",
+                left: 0,
+                zIndex: 50,
+                background: "rgba(24,24,24,0.95)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 10,
+                boxShadow: "0 25px 50px -12px rgba(0,0,0,0.6)",
+                padding: 10,
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+                minWidth: 190,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ fontSize: 11, color: "#9CA3AF" }}>分辨率</div>
+              <div style={{ display: "flex", gap: 6 }}>
+                {["1K", "2K"].map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSpecRes(r);
+                    }}
+                    style={{
+                      flex: 1,
+                      height: 28,
+                      fontSize: 12,
+                      border: "1px solid " + (specRes === r ? "#3B82F6" : "rgba(255,255,255,0.12)"),
+                      borderRadius: 6,
+                      background: specRes === r ? "rgba(59,130,246,0.15)" : "transparent",
+                      color: specRes === r ? "#93C5FD" : "#E0E0E0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+              <div style={{ fontSize: 11, color: "#9CA3AF" }}>宽高比</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {["16:9", "9:16", "21:9", "4:3", "3:4", "1:1"].map((a) => (
+                  <button
+                    key={a}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSpecAspect(a);
+                    }}
+                    style={{
+                      height: 26,
+                      padding: "0 8px",
+                      fontSize: 12,
+                      border: "1px solid " + (specAspect === a ? "#3B82F6" : "rgba(255,255,255,0.12)"),
+                      borderRadius: 6,
+                      background: specAspect === a ? "rgba(59,130,246,0.15)" : "transparent",
+                      color: specAspect === a ? "#93C5FD" : "#E0E0E0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {a}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
         <MiniBtn icon="⚙" label="高级设置" onClick={() => window.alert("高级设置 (mock)")} />
         <div style={{ flex: 1 }} />
         <div
