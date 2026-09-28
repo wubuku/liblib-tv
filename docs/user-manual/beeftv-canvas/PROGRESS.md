@@ -25,6 +25,20 @@
 | 16 | 上游 v1.6.6 增量修订（generate-video/troubleshooting/local-runtime/README + 版本口径 v1.5.9→v1.6.6） | ✅ 完成（监控轮，commit 860dfc5c） |
 | 17 | v1.6.6 重摄（composer 界面未漂移，09 sha256 更新）+ 发布前预览走查（首页/quickstart/generate-video/troubleshooting 四页渲染与图片均正常；README 发布状态行与账本死链修正） | ✅ 完成 |
 | 17b | 发布产物保鲜重建（收纳 16-25 号新截图与 v1.6.6 修订四页） | ✅ 完成（28+ 页 / 14 图 / 无 .md 残留链接） |
+| 17c | excluded 任务开放条件系统化（12 项，供后续接手者按表解锁） | ✅ 完成 |
+| 18 | 可达升级两例：plugins-management / troubleshooting 升 verified | ✅ 完成（excluded 13→12） |
+
+### excluded 任务开放条件表（12 项，2026-09-29 快照）
+
+| 任务 | 开放条件 | 升级路径 |
+|---|---|---|
+| media-versions | 真实生成产生版本族（付费） | 生成 ≥2 版后回走版本切换/对比 |
+| timeline-editing / subtitle-highlights / timeline-export | 时间线编辑器入口开放（当前视频处理下拉仅三项且无剪辑台跳转实可达；面板未挂载） | 入口开放后回走八面板 |
+| director-basics / director-keyframes-record / director-rig-bones | 导演台入口解禁（当前「正在开发」） | 解禁后回走检查器/关键帧/白膜 |
+| cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
+| agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
+| local-runtime | 本机启动 framefield-local-runtime | 启动后回走深度/线稿/姿态 |
+| concepts-architecture | 不适用回走（概念页无操作步骤）；内容已随源码审查闭环 | 可随时出 excluded（保持 excluded 亦准确） |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |
 
 ## 方法论适配说明（相对 SKILL 的差异）
