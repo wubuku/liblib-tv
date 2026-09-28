@@ -355,7 +355,8 @@ export function FrameosPromptEditor() {
   };
 
   // 2026-09-23 源站面板默认模型 Seedream 5.0 Pro; 其余条目为历史 mock 选项
-  const modelOptions = ["Seedream 5.0 Pro", "帧界 O2.5", "帧界 O2", "帧界 v1.5", "Stable Diffusion XL", "Midjourney v6"];
+  // Batch 299: 源站模型下拉 14 项实测清单（顺序一致）
+  const modelOptions = ["Seedream 5.0 Pro", "帧界 O2.5", "帧界 O2.5 体验版", "帧界 O2.5 Fast", "帧界 O2.5 Fast 体验版", "帧界 O2", "帧界 O2 体验版", "帧界 G2", "帧界 G Pro", "Seedream 5.0 Pro 国际版", "Seedream 5.0 Lite", "Seedream 5.0 Lite 国际版", "帧界 M8.2", "帧界 M8.2 体验版"];
 
   if (isFullscreenEdit) {
     return (

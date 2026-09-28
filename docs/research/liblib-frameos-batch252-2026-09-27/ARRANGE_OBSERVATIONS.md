@@ -148,3 +148,14 @@ meta+click 连首个节点都不产生选中（sel=0）。至此 框选/Shift �
 空格拖动 = React Flow `panActivationKeyCode` 默认 Space ✓；ctrl+滚轮缩放 ✓。
 导航区（滚轮/⌘滚轮/空格/中键右键拖动）全部实测闭合，唯触控板手势仍为 ⚪（环境限制）。
 源站视口 translate 未能精确复原（适应画布点击未生效），为纯视图状态，不影响画布内容。
+
+## Batch 299 (2026-09-28 深夜): 模型下拉 14 项实测
+
+空图片节点提示面板 → 模型下拉展开，完整选项（顺序一致）：
+Seedream 5.0 Pro / 帧界 O2.5 / 帧界 O2.5 体验版 / 帧界 O2.5 Fast / 帧界 O2.5 Fast
+体验版 / 帧界 O2 / 帧界 O2 体验版 / 帧界 G2 / 帧界 G Pro / Seedream 5.0 Pro 国际版 /
+Seedream 5.0 Lite / Seedream 5.0 Lite 国际版 / 帧界 M8.2 / 帧界 M8.2 体验版。
+
+克隆 modelOptions 已更新为此 14 项（原 6 项含源站没有的 Stable Diffusion XL 与
+Midjourney v6）。规格下拉仅部分采样（可见 1K / 2K 分辨率式选项，完整列表与
+宽高比结构未捕获）——克隆规格选项暂保持不变并标注待采样。测试节点已清理。
