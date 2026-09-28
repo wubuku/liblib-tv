@@ -1,0 +1,380 @@
+# BeefTV 画布用户手册 · 任务实施账本
+
+manual_version: 1
+target:
+  app: beeftv
+  url: 'http://localhost:3000（本地 web dev，vite；生产为自托管站点）'
+  app_repo: '/Users/yangjiefeng/Documents/glanderness/BeefTV'
+  app_version: 'v1.5.9（公共最新发布；调研锚点 v1.5.7/85c9686，差异见调研包 §35：浅色模式与素材限制对齐）'
+  audience:
+    - beeftv-creator
+    - beeftv-agent-user
+    - beef-admin
+  depth: thorough
+scope_authorization:
+  user_confirmed: true
+  note: 用户以 /goal 指令要求编写 BeefTV 用户手册并明确「不要停下来询问」——视为对「Agent 依证据自行定级」的常设授权；候选表在本文件与 PROGRESS.md 持续可见，用户可随时要求重排。
+safety:
+  paid_actions_forbidden: true
+  note: 生成类动作（图片/视频/音频生成、AI 审美批改等）经云端渠道按量计费——手册正文可描述流程（来源为源码证据），验证只到付费边界前一步；全程不配置 Provider API Key、不触发真实生成。
+evidence_base:
+  - docs/research/beeftv-canvas-2026-09-27/SOURCE_ANALYSIS.md（35 章，702 处断言抽查 100% 吻合）
+  - docs/research/beeftv-canvas-2026-09-27/INTERACTION_CATALOG.md（交互目录 10 节）
+  - docs/research/beeftv-canvas-2026-09-27/PATTERN_CARDS.md（45 张模式卡）
+  - docs/research/beeftv-canvas-2026-09-27/ITERATION_LOG.md（128 轮迭代史）
+  - BeefTV 仓源码（锁定 85c9686，工作树 v1.5.9）
+tasks:
+  # —— 画布核心（普通创作者） ——
+  - id: quickstart-first-canvas
+    title: 快速开始：注册后创建第一张画布并放置节点
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: project.tsx 画布入口、空白右键/双击/底部工具栏五处创建入口（INTERACTION_CATALOG §5）；待运行时核实。
+    preconditions:
+      - 已启动 BeefTV web 并登录
+    routes:
+      - '/'
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 00-quickstart.md
+  - id: navigate-canvas
+    title: 平移、缩放与小地图导航
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: wheel 1.1 系数缩放 0.05-2、触控板平移、pinch 中点锚、纯 DOM 小地图（240×160、≤24 缩略图）；INTERACTION_CATALOG §1/§8。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/navigate-canvas.md
+  - id: create-nodes
+    title: 创建各类节点（图/文/视频/音频/Frame/批量表等 18 类）
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: CanvasNodeType 枚举恰 18 类 + PluginCanvasNodeType 开放扩展；五处创建入口；创建菜单 grid/list 双形态、list 默认隐藏三个高级项。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/create-nodes.md
+  - id: upload-materials
+    title: 上传本地图片、视频、音频
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: accept 十类白名单；三层存储（IndexedDB/直传/50MB 分片会话每片 8MB）；X-Idempotency-Key 幂等；无内容哈希去重（同文件两次=两份）。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/upload-materials.md
+  - id: connect-references
+    title: 连线引用：拖线、吸附、快速创建与批量连线
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: hover 侧栏「+」端口 80px 热区；56px 圆形吸附；松手空白/点 pin 弹「引用该节点生成」快速创建；Alt+L 批量连线（>1 选中）；无端点重连。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/connect-references.md
+  - id: prompts-and-mentions
+    title: '提示词与 @mention（composer 双模式、提示词优化器）'
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: '@mention 命中→composer 模式（mention 集合取代自动连线）；composerContent/prompt 双字段不能互相覆盖；optimize_prompt 五字段输出契约。'
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/prompts-and-mentions.md
+  - id: generate-images
+    title: 发起图片生成：任务状态、批量 root+children 与重试
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: 四层防重复计费（同指纹二次确认「可能再次消耗积分」）；count>1=root+N 子节点；首张回填 primaryImageId；刷新按 taskId 对账恢复。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/generate-images.md
+  - id: generate-video
+    title: 发起视频生成与素材限制校验
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: video-validation 素材校验（尺寸/比例/大小/时长按模型能力）；524 归入提交不确定相位不自动重试。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/generate-video.md
+  - id: media-versions
+    title: 媒体版本族与重试（versionOfNodeId/primary 标志）
+    role: beeftv-creator
+    frequency: standard
+    impact: medium
+    coverage: standard
+    evidence:
+      - type: static
+        note: 共享 versionOfNodeId + "A".."Z" label + primary 标志；重生成自动切 primary。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/media-versions.md
+  - id: undo-history-versions
+    title: 撤销重做、版本历史与回收站
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: 实体差异补丁栈（180ms 合并、上限 50）；云端/本地草稿双 tab、恢复前自动备份；回收站软删除 200 条、恢复/彻底删除二段确认。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/undo-history-versions.md
+  - id: organize-canvas
+    title: 整理画布、Frame 分组与外观（主题/背景/浅色模式）
+    role: beeftv-creator
+    frequency: standard
+    impact: medium
+    coverage: standard
+    evidence:
+      - type: static
+        note: Alt+Shift+F 自适应整理（选择感知）；frame/folder 折叠语义；light/dark/custom 三主题（v1.5.8 起浅色回摆）；Alt+L 无关。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/organize-canvas.md
+  - id: shortcuts-help
+    title: 快捷键与帮助中心
+    role: beeftv-creator
+    frequency: standard
+    impact: medium
+    coverage: brief
+    evidence:
+      - type: static
+        note: '? 打开快捷键中心（四分类）；canvas-shortcuts.ts 文案与代码有一处已知相反（V 键，上游 bug 已记录）。'
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/shortcuts-help.md
+  # —— 时间线剪辑 ——
+  - id: timeline-editing
+    title: 时间线剪辑器：轨道、片段、字幕与预览
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: 八插槽工作台（时间线/预览/检查器/素材/字幕/转写/导出/AI 编辑）；12 黄金 op；96px/秒基准、缩放 0.02-4；吸附与同毫秒全量。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/timeline-editing.md
+  - id: subtitle-highlights
+    title: 字幕关键词高亮与 SRT 导入导出
+    role: beeftv-creator
+    frequency: standard
+    impact: medium
+    coverage: standard
+    evidence:
+      - type: static
+        note: 批 30 条/并发 3 worker 池；文本自证模型（源文本变更即失效）；SRT 序号归一 idx+1；重分段断点优先级。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/subtitle-highlights.md
+  - id: timeline-export
+    title: 时间线导出 MP4 与白膜视频录制
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: ffmpeg.wasm 同源内核（不依赖 CDN）；ISO-BMFF 手工校验防空壳 MP4；白膜录制首错即停 + 时长探针；62min 超时/3s 轮询。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/timeline-export.md
+  # —— 导演台 ——
+  - id: director-basics
+    title: 导演台入门：镜头、运镜与检查器
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: ShotInspector 焦距 12-200mm/光圈 f/0.7-32/焦点 0.1-200m/时长 0.5-60s/fps 24|25|30/景别 6 档/运镜 10 种；H 键显隐（与画布 H 平移语义不同）。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/director-basics.md
+  - id: director-keyframes-record
+    title: 关键帧动画与白膜视频录制
+    role: beeftv-creator
+    frequency: standard
+    impact: high
+    coverage: standard
+    evidence:
+      - type: static
+        note: 双 playhead 纪律；关键帧 200 层快照栈；白膜录制 timeslice 250ms、首错即停、时长探针 ≥max(0.25s,50%)。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/director-keyframes-record.md
+  - id: director-rig-bones
+    title: 角色骨骼与姿势（rig 推断、骨骼控制器）
+    role: beeftv-creator
+    frequency: rare
+    impact: medium
+    coverage: brief
+    evidence:
+      - type: static
+        note: rig 推断 ≥8 骨映射；映射失败退占位人偶；21 姿势 union、UI 20 钮。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/director-rig-bones.md
+  # —— 云 Agent 与技能 ——
+  - id: cloud-agent
+    title: 云端 Agent：发起任务、审批与插话
+    role: beeftv-agent-user
+    frequency: standard
+    impact: high
+    coverage: flagship
+    evidence:
+      - type: static
+        note: run 创建/SSE 流/审批七操作预览/插话 20s/取消 15s；上下文预算 192KB、超 384KB 硬失败。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/cloud-agent.md
+  - id: agent-memory-skills
+    title: 'Agent 记忆与技能（批准、压缩、@技能）'
+    role: beeftv-agent-user
+    frequency: standard
+    impact: medium
+    coverage: standard
+    evidence:
+      - type: static
+        note: '记忆六端点（decide/export/import/compact 30s）；压缩 off/daily/weekly/monthly；技能四 profile 预算 4 个/32k 字/3 文件；@[skill:id] 提及。'
+    routes:
+      - '/canvas'
+      - '/settings'
+    status: planned
+    manual_pages:
+      - 10-tasks/agent-memory-skills.md
+  # —— 插件与扩展 ——
+  - id: plugins-management
+    title: 插件管理（六内置：工作流/审美批改/优化器/Eagle/媒体转换/剪辑台）
+    role: beef-admin
+    frequency: standard
+    impact: medium
+    coverage: standard
+    evidence:
+      - type: static
+        note: 前端六内置编译期插件；上传插件只能走声明式协议（宿主绑定保留给随应用发布）；sandbox renderer 占位「插件节点等待隔离运行时」；Eagle 经后端代理不直连。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/plugins-management.md
+  - id: local-runtime
+    title: 本地伴随进程（framefield-local-runtime：深度/线稿/姿态）
+    role: beeftv-creator
+    frequency: rare
+    impact: medium
+    coverage: brief
+    evidence:
+      - type: static
+        note: 127.0.0.1:17371 强制精确 loopback；挑战-签名会话；64KB/32MB 响应上限；媒体转换「不加载 SD 重绘管线」。
+    routes:
+      - '/canvas'
+    status: planned
+    manual_pages:
+      - 10-tasks/local-runtime.md
+  # —— 参考/概念/排障 ——
+  - id: reference-shortcuts-urls
+    title: 参考：快捷键全表、路由与端点
+    role: beeftv-creator
+    frequency: reference
+    impact: medium
+    coverage: reference
+    evidence:
+      - type: static
+        note: use-canvas-keyboard 全表；REST 端点清单（tasks/agent/resources/skills/memories）。
+    status: planned
+    manual_pages:
+      - 20-reference.md
+  - id: concepts-architecture
+    title: 概念：双轨视口、任务对账、三层历史与云端 Agent
+    role: beeftv-creator
+    frequency: reference
+    impact: low
+    coverage: reference
+    evidence:
+      - type: static
+        note: live/committed 双轨三频率；storageRevision 三方 rebase；实体补丁栈/Agent 快照/后端版本三层历史。
+    status: planned
+    manual_pages:
+      - 30-concepts.md
+  - id: troubleshooting
+    title: 排障：生成失败、恢复弹窗、会话与诊断
+    role: beeftv-creator
+    frequency: reference
+    impact: high
+    coverage: reference
+    evidence:
+      - type: static
+        note: 失败分类与不可重试判定；恢复弹窗「远端失败本地草稿已保留」vs「远端和本地都未保存」；诊断 11 白名单稳定码；15 条复现矩阵。
+    status: planned
+    manual_pages:
+      - 90-troubleshooting.md
