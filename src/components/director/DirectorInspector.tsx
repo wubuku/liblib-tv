@@ -70,6 +70,7 @@ function AxisFields({
   disabled = false,
   gestureTargetId = null,
   gestureCommandKind = "inspector-transform",
+  keyframedAxes = [],
 }: {
   label: string;
   field: keyof DirectorTransform | "target" | "followOffset";
@@ -79,6 +80,7 @@ function AxisFields({
   disabled?: boolean;
   gestureTargetId?: string | null;
   gestureCommandKind?: string;
+  keyframedAxes?: Array<0 | 1 | 2>;
 }) {
   const gesture = useDirectorGestureBoundary({
     commandKind: gestureCommandKind,
@@ -99,6 +101,15 @@ function AxisFields({
             }`}
           >
             <span className="mr-1 text-[10px] text-[#666]">{axisLabels[index]}</span>
+            {keyframedAxes.includes(index as 0 | 1 | 2) ? (
+              /* Batch 575: 源站截图 60——该轴存在关键帧时输入右侧的青色菱形标记 */
+              <span
+                data-director-keyframed-axis={field}
+                data-director-keyframed-axis-index={index}
+                aria-label={`${axisLabels[index]} 轴已有关键帧`}
+                className="mr-0.5 size-1.5 shrink-0 rotate-45 rounded-[1px] bg-[#09caf5]"
+              />
+            ) : null}
             <input
               type="number"
               step={field === "rotation" ? 1 : 0.1}
@@ -1503,6 +1514,33 @@ export function DirectorInspector({
     selected?.kind === "camera"
       ? shots.find((shot) => shot.cameraId === selected.id) ?? null
       : null;
+  // Batch 575: 源站截图 60——摄像机面板 位置 X/Y/Z 输入右侧的青色菱形
+  // 轴标记（该轴在当前播放头时间存在关键帧）。autoKeyframe 提交后
+  // recordObjectKeyframe 落轨道，此处从变换轨道反查三轴。
+  const keyframedAxes = useMemo(() => {
+    if (!selected) return [];
+    const track = timeline.tracks.find(
+      (candidate) =>
+        candidate.objectId === selected.id &&
+        (candidate.kind === "transform" || candidate.kind === "camera"),
+    );
+    if (!track) return [];
+    const axes: Array<0 | 1 | 2> = [];
+    (["position", "rotation", "scale"] as const).forEach((field, fieldIndex) => {
+      const hasKey = track.keyframes.some((keyframe) => {
+        // 相机轨道关键帧 value 形如 { transform, target, fov }；变换轨道
+        // keyframe.value 即 DirectorTransform。
+        const values = (keyframe.value as unknown as Record<string, unknown>)
+          ?.transform as unknown as Record<string, unknown> | undefined;
+        return (
+          Math.abs(keyframe.time - timeline.currentTime) < 0.001 &&
+          Array.isArray(values?.[field])
+        );
+      });
+      if (hasKey) axes.push(fieldIndex as 0 | 1 | 2);
+    });
+    return axes;
+  }, [selected, timeline]);
   useEffect(() => {
     const input = sceneNameInputRef.current;
     if (input && document.activeElement !== input) input.value = scene.name;
@@ -1769,6 +1807,7 @@ export function DirectorInspector({
                 disabled={selected.locked}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
+                keyframedAxes={keyframedAxes}
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "position", axis, value);
                   recordObjectKeyframe(selected.id);

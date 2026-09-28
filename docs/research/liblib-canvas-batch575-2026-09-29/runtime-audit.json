@@ -1,0 +1,20 @@
+{
+  "batch": 575,
+  "title": "Per-axis keyframe diamond badges in the camera panel",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §16 + screenshot 60 (batch 574 sampling)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "camera:added",
+        "badge:three-initial",
+        "badge:three-after-commit",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
