@@ -252,3 +252,15 @@ screenshots:
     visible_text: '本地模型渠道'
     alt: '设置页渠道区：BeefAPI 渠道（OpenAI 兼容·已保存 0 个模型·未连接）与默认生图/视频/文本/音频模型四类选择器'
     sha256: cf4d022d33dc88c4632338fe4ba606a87073d6df104747fe5a110efba546ac91
+
+  - file: screenshots/23-upload-toolbar.png
+    task_id: upload-materials
+    step: '真实上传完成后：S83-jing2.mp4 节点（首帧画面渲染）+ 顶部视频处理工具条（视频处理∨/音视频分离/关键帧截取∨/放大/下载）'
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'S83-jing2.mp4 / button 音视频分离 / button 关键帧截取 / 视频处理'
+    visible_text: 'S83-jing2.mp4'
+    alt: '上传完成的视频节点：真实视频首帧画面渲染，顶部视频处理工具条含视频处理下拉、音视频分离、关键帧截取、放大与下载'
+    sha256: a098e0839dfee39d77c2396fd89d085ad99f3dbc68f4dacf256c74c54210d55f
