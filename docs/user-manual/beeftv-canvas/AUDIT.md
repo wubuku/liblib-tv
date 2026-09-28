@@ -9,6 +9,7 @@
 |---|---|---|
 | Batch 1 | （无正文） | 账本建立，空表 |
 | Batch 6-7 | 全部 25 任务（11 verified / 14 excluded 带原因） | Gate B 完成：核心路径真实回走通过；运行时受限任务以源码证据成稿并显式排除 |
+| Batch 9 后续轮 | plugins-management / troubleshooting 升级 verified | 渠道配置页双图运行时实证 + 画布加载条目运行时实测；excluded 降至 12（媒体版本/时间线三篇/导演台三篇/云 Agent/记忆技能/本地进程/概念等，均为面板禁用或付费边界） |
 
 ## 发现记录
 

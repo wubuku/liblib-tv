@@ -337,8 +337,8 @@ tasks:
         note: 前端六内置编译期插件；上传插件只能走声明式协议（宿主绑定保留给随应用发布）；sandbox renderer 占位「插件节点等待隔离运行时」；Eagle 经后端代理不直连。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 插件管理页未纳入本轮回走；页面基于源码静态证据（六内置/声明式上传/Eagle 代理）
+    status: verified
+    review_note: 模型渠道配置页运行时实证（21/22 双图：BeefAPI 卡片/连接/拉取模型/四类默认模型选择器）；六内置插件清单为源码证据（Batch 167/221/225）
     manual_pages:
       - 10-tasks/plugins-management.md
   - id: local-runtime
@@ -391,7 +391,7 @@ tasks:
     evidence:
       - type: static
         note: 失败分类与不可重试判定；恢复弹窗「远端失败本地草稿已保留」vs「远端和本地都未保存」；诊断 11 白名单稳定码；15 条复现矩阵。
-    status: excluded
-    exclusion_reason: 排障页由回走发现与源码证据构成（「正在打开画布」条目为运行时实测）；整页回走随对应任务进行
+    status: verified
+    review_note: 「画布卡在正在打开画布 → 需启动后端」条目为 Batch 7 运行时实测（后端未启→启动→解决全流程）；其余失败分类为源码静态证据（调研包 §9.3/v1.6.1 官方文档）
     manual_pages:
       - 90-troubleshooting.md
