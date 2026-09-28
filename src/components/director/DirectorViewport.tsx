@@ -1725,9 +1725,13 @@ function DirectorMotionPathDrawingSurface() {
 function DirectorPanoramaRuntime({
   input,
   onStatusChange,
+  panoramaRotation,
+  panoramaSphereRadius,
 }: {
   input: DirectorCanvasMediaInputV1;
   onStatusChange: (status: Exclude<DirectorPanoramaRuntimeState, "empty">) => void;
+  panoramaRotation: number;
+  panoramaSphereRadius: number;
 }) {
   const [texture, setTexture] = useState<Texture | null>(null);
   const textureRef = useRef<Texture | null>(null);
@@ -1772,13 +1776,18 @@ function DirectorPanoramaRuntime({
 
   if (!texture) return null;
 
+  // Batch 555: 源站「全景球 水平旋转/球形半径」（截图 45/48）接入渲染；
+  // 半径默认 30 保持 clone 现渲染（源站示值 60，SOURCE_DIFF）。
+  const rotationRadians = panoramaRotation * (Math.PI / 180);
+  const sphereRadius = panoramaSphereRadius;
   return (
     <mesh
       scale={[-1, 1, 1]}
+      rotation={[0, rotationRadians, 0]}
       frustumCulled={false}
       raycast={() => undefined}
     >
-      <sphereGeometry args={[30, 64, 32]} />
+      <sphereGeometry args={[sphereRadius, 64, 32]} />
       <meshBasicMaterial
         map={texture}
         side={BackSide}
@@ -1818,6 +1827,8 @@ function DirectorScene({
         <DirectorPanoramaRuntime
           input={panoramaInput}
           onStatusChange={onPanoramaStatusChange}
+          panoramaRotation={scene.panoramaRotation ?? 0}
+          panoramaSphereRadius={scene.panoramaSphereRadius ?? 30}
         />
       ) : null}
       <ambientLight intensity={1.15} />

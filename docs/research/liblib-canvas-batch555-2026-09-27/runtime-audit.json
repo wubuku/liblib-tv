@@ -1,0 +1,23 @@
+{
+  "batch": 555,
+  "title": "Panorama sphere rotation & radius controls",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshots 45/48",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "defaults:rotation",
+        "defaults:radius",
+        "sliders:visible",
+        "rotation:persist",
+        "radius:persist",
+        "radius:label-updates",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

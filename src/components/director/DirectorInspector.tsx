@@ -2107,6 +2107,52 @@ export function DirectorInspector({
                 />
               </label>
               <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+                <span>全景球 水平旋转</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-panorama-rotation
+                    type="range"
+                    min={0}
+                    max={360}
+                    step={1}
+                    aria-label="全景球水平旋转"
+                    value={scene.panoramaRotation ?? 0}
+                    onChange={(event) =>
+                      updateScene({
+                        panoramaRotation: Number(event.target.value),
+                      })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {scene.panoramaRotation ?? 0}°
+                  </span>
+                </span>
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>全景球 球形半径</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-panorama-radius
+                    type="range"
+                    min={10}
+                    max={100}
+                    step={1}
+                    aria-label="全景球球形半径"
+                    value={scene.panoramaSphereRadius ?? 30}
+                    onChange={(event) =>
+                      updateScene({
+                        panoramaSphereRadius: Number(event.target.value),
+                      })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {scene.panoramaSphereRadius ?? 30}
+                  </span>
+                </span>
+              </label>
+              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
                 <span>角色标签</span>
                 <input
                   data-director-scene-character-labels

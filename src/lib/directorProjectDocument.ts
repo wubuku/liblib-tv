@@ -112,6 +112,9 @@ export interface DirectorSceneDocumentV1 {
   showGrid: boolean;
   /** Batch 548: 旧版本 V1 文档可缺省，restore 时按 createDefaultScene 兜底。 */
   skyColor?: string;
+  /** Batch 555: 全景球旋转（度）与球形半径，缺省兜底同上。 */
+  panoramaRotation?: number;
+  panoramaSphereRadius?: number;
   showCharacterLabels?: boolean;
   snapToGrid?: boolean;
   gaussianGroundSnap?: boolean;
@@ -1125,6 +1128,8 @@ function expectScene(
       "snapToGrid",
       "gaussianGroundSnap",
       "groundOpacity",
+      "panoramaRotation",
+      "panoramaSphereRadius",
     ],
     path,
   );
@@ -1165,6 +1170,22 @@ function expectScene(
           groundOpacity: expectFiniteNumber(
             record.groundOpacity,
             `${path}.groundOpacity`,
+          ),
+        }),
+    ...(record.panoramaRotation === undefined
+      ? {}
+      : {
+          panoramaRotation: expectFiniteNumber(
+            record.panoramaRotation,
+            `${path}.panoramaRotation`,
+          ),
+        }),
+    ...(record.panoramaSphereRadius === undefined
+      ? {}
+      : {
+          panoramaSphereRadius: expectFiniteNumber(
+            record.panoramaSphereRadius,
+            `${path}.panoramaSphereRadius`,
           ),
         }),
   };

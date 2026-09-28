@@ -223,6 +223,10 @@ export interface DirectorScene {
   gaussianGroundSnap: boolean;
   /** Batch 548: 源站「地面…透明度 0.40」。 */
   groundOpacity: number;
+  /** Batch 555: 源站「全景球 水平旋转」（度，默认 0）。 */
+  panoramaRotation: number;
+  /** Batch 555: 源站「全景球 球形半径」（clone 渲染现值 30，源站示值 60）。 */
+  panoramaSphereRadius: number;
 }
 
 export interface DirectorSessionOutcome {
@@ -449,6 +453,8 @@ function createDefaultScene(): DirectorScene {
     snapToGrid: false,
     gaussianGroundSnap: true,
     groundOpacity: 0.4,
+    panoramaRotation: 0,
+    panoramaSphereRadius: 30,
   };
 }
 
@@ -5446,6 +5452,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       "snapToGrid",
       "gaussianGroundSnap",
       "groundOpacity",
+      "panoramaRotation",
+      "panoramaSphereRadius",
     ] as const;
     const patchKeys = Object.keys(patch) as Array<keyof DirectorScene>;
     const invalidKey = patchKeys.find((key) => !sceneKeys.includes(key));
