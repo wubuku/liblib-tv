@@ -459,3 +459,4 @@ DOM/CSS、视觉布局或 source parity。
 | Batch 566 | 地面高度字段端到端 | `SCRIPT_RECORDED_PASS` | CDP 补采（截图 52 地面区）：地面含 高度 0.0 滑杆（batch 548 遗漏）；clone DirectorScene additive groundHeight（默认 0，-2..2 滑杆），V1 optional 兼容解码，地面 mesh Y 接线（保持网格层叠 -0.01 偏移）；正负值均持久化；`verify-liblib-batch566.py` 6 检查 + batch 548/558/70 回归绿 |
 | Batch 567 | 时间线控制簇对齐确认 | `EVIDENCE_RECORDED` | CDP 补采（截图 55，aria-label 枚举）：源站控制簇 = 播放/自动帧/循环播放 + 时间输入 + 新建轨道（1/5 引导跨重载持久），无独立添加关键帧按钮——clone 的添加关键帧/删除关键帧为 clone 侧扩展（既有文档），控制簇与 clone 对齐确认；lane 点击/双击无新交互；零代码改动 |
 | Batch 568 | 时间线当前时间可编辑输入 | `SCRIPT_RECORDED_PASS` | 源站证据（552/567 截图 48/55：时间输入为可编辑带边框框）：clone 时间显示升级为 input（Enter 后 setTimelineTime seek，钳制 [0, duration]，currentTime 变更时显示同步），时长只读 label 拆分；`verify-liblib-batch568.py` 6 检查 + batch 553/556/70 回归绿 |
+| Batch 570 | 自动帧关键帧生成对齐确认 | `EVIDENCE_RECORDED` | CDP 补采（截图 57）：自动帧开 + 摄像机位置改值 → 主机位轨道下生成 位置子行 + 关键帧菱形 + 元组 3.3,2.2,10 + 视口相机同步 + 注视旋转重算——与 clone 既有自动关键帧实现行为对齐确认；零代码改动 |
