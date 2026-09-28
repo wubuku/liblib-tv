@@ -1330,6 +1330,7 @@ batch 432 = 第四十次）。两序列不连续是历史标注误差——每�
 2026-09-14 台账修复（batch 498）：文件尾曾堆积一段追加在 §10.3 之后的孤儿行
 | 2026-09-29 | batch 2349 巡检 | still-broken | 第九百零四次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；batch 570 证据批已闭环（24fc1cac） |
 （batch 461–512 区间，含重复副本与计数冲突），已并入上表去重。其中
+| 2026-09-29 | batch 2366 巡检 | still-broken | 第九百零五次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件保留不动；batch 571 持久化发现已闭环（6a2bff68） |
 batch 498–512 的行来自 backfill 预登记提交（0eb82d6、aab2888），提交链中
 不存在对应循环批次提交，全部剔除；batch 497 的序数按提交 ed2ae39 自记的
 113th 补记（该提交只改了 jimeng README，台账行曾缺失）。114th–118th 在
