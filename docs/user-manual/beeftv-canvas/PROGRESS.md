@@ -12,12 +12,16 @@
 | 4 | generate-video / media-versions 已成稿；undo-history-versions / organize-canvas 全文 | ✅ 完成（Batch 3） |
 | 5 | shortcuts-help + 20-reference.md（快捷键全表/导演台键位/路由/REST 端点/本地进程） | ✅ 完成（Batch 3） |
 | 6a | 时间线三篇（timeline-editing / subtitle-highlights / timeline-export） | ✅ 完成（Batch 4） |
-| 6b | 导演台三篇（director-basics / director-keyframes-record / director-rig-bones） | ✅ 完成（Batch 4） |
+| 6b | 导演台三篇 | ✅ 完成（Batch 4） |
+| 6c | Gate B 前置：全部 24 页成稿 | ✅ 完成（Batch 5） |
 | 8a | cloud-agent / agent-memory-skills / plugins-management | ✅ 完成（Batch 5） |
 | 8b | local-runtime + 30-concepts.md + 90-troubleshooting.md | ✅ 完成（Batch 5） |
 | 10 | 本地起 BeefTV（vite :3000 + go server）真实截图补齐 manifest | ⏳ 待做 |
 | 11 | Gate A 机械审计 + 修订 | ⏳ 待做 |
-| 12 | Gate B 回走审计 + 最终审计 + VitePress 站点（复制 tdcanvas 四件套） | ⏳ 待做 |
+| 12 | 本地起服真实截图 + Gate A | ✅ 完成（Batch 6，commit a94130ac：25 tasks / 30 md / 12→14 images） |
+| 13 | Gate B 回走审计（15 项走查：缩放步进/拖线快速创建/快捷键中心/小地图/版本记录/composer 等）+ AUDIT.md + 修复（排障页新增「正在打开画布」条目） | ✅ 完成（Batch 7：11 verified / 14 excluded 带原因） |
+| 14 | --phase final 最终审计 | ✅ OK（25 tasks / 31 md / 14 images） |
+| 15 | VitePress 站点（四件套适配，构建 28 页 / 11 图 / 2.8M / 1.51s，无 .md 残留链接） | ✅ 完成（Batch 8） |
 
 ## 方法论适配说明（相对 SKILL 的差异）
 
