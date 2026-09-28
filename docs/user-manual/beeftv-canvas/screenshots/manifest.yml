@@ -204,3 +204,15 @@ screenshots:
     visible_text: '视频设置'
     alt: '视频设置弹层：分辨率 480P/720P(选中)/1080P/2K/4K，尺寸 W720×H720，宽高比六选一(1:1 选中)，秒数滑杆 1-15s 当前 6 秒'
     sha256: d5146c4ebb3136c6263aae996d91932154d8034eedf7ee1c0df7890ef84c32e4
+
+  - file: screenshots/19-recycle-dialog.png
+    task_id: undo-history-versions
+    step: '回收站弹窗：空态「回收站是空的」+ 底部 全选/彻底删除/恢复 操作行'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'heading 回收站 / 回收站是空的 / button 全选 / 彻底删除 / 恢复'
+    visible_text: '回收站是空的'
+    alt: '回收站弹窗空态：标题回收站，中央提示回收站是空的，底部全选复选框与彻底删除、恢复按钮'
+    sha256: f6aed22d46f099bb88b3bb4ba9db4a7329d5cf09f9a467132cbef640de2022a3
