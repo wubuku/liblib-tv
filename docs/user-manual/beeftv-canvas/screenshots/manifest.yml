@@ -106,7 +106,7 @@ screenshots:
     verified_locator: 'textbox 描述你想要生成的画面内容，@引用素材 / 720P · 1:1 · 6s'
     visible_text: '描述你想要生成的画面内容，@引用素材'
     alt: '选中视频节点后底部生成 composer：提示词输入、模型 2.0 与 720P·1:1·6s 参数'
-    sha256: 2c3803ac2b34411aa3192590a655f3c75bd39a0ee02036979191f6be9f448af1
+    sha256: 7a389bf7a7aba86653be897c52899617887bd50b6379a77b0296ff97e2f4534f
 
   - file: screenshots/11-connect-rails.png
     task_id: connect-references
@@ -167,3 +167,4 @@ screenshots:
     visible_text: '引用该节点生成'
     alt: '从文本节点拖出的虚线连线与快速创建菜单：文本/图片/视频/音频/智能剪辑/导演台/脚本'
     sha256: 6e6efaa1801fa78b3dd5c1ae642d13df80feba7b90bf9a24ba7768960e49f3dd
+# reshoot: 09-image-node.png 于 v1.6.6 构建重摄（2026-09-29），composer 布局/参数区与 v1.5.7 一致；01-home 因首页动画截图表面超时保留 v1.5.7 版本（v1.6.x 变更清单外）。
