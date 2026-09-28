@@ -17,6 +17,10 @@
 
 `image/*`、`video/*`、`audio/mpeg`、`audio/wav`、`audio/x-wav`、`.mp3`、`.wav`、`.txt`、`.md`、`.markdown`，可多选。
 
+![个人资产库页：类型过滤与上传资产空态 CTA](../screenshots/20-assets-page.png)
+
+素材也可从侧栏「资产」页（个人资产库）统一管理，再经「添加节点 → 素材库」放入画布。
+
 ## 存储行为（了解即可，系统自动处理）
 
 - **小文件（≤50MB）**：单请求直传；
