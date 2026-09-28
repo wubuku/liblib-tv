@@ -1,0 +1,25 @@
+{
+  "batch": 556,
+  "title": "Timeline onboarding coachmark",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §12 + screenshot 48-director-timeline-open.png (batch 552)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "coach:visible",
+        "coach:token:请选择一个角色或者摄像机后",
+        "coach:token:可新建轨道",
+        "coach:token:1/5",
+        "coach:buttons",
+        "skip:dismisses",
+        "reload:coach-visible",
+        "next:dismisses",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

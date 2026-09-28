@@ -65,6 +65,10 @@ export function DirectorTimeline() {
   );
   const trackCreatable =
     selectedObjectKind === "character" || selectedObjectKind === "camera";
+  // Batch 556: 源站截图 48——时间线打开时的 1/5 引导气泡（请选择一个
+  // 角色或者摄像机后，可新建轨道 + 跳过/下一步）；步骤 2-5 未采样，
+  // 跳过/下一步均收起气泡（CLONE_DECISION）。
+  const [coachDismissed, setCoachDismissed] = useState(false);
   const advanceTimeline = useDirectorStore((state) => state.advanceTimeline);
   const toggleTimelineLoop = useDirectorStore(
     (state) => state.toggleTimelineLoop,
@@ -364,6 +368,38 @@ export function DirectorTimeline() {
       data-director-timeline-mode={timeline.editorMode}
       className="relative flex h-[196px] shrink-0 flex-col overflow-visible border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]"
     >
+      {!coachDismissed && (
+        <div
+          data-director-timeline-coachmark
+          role="status"
+          className="absolute bottom-3 left-3 z-30 w-[300px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+        >
+          <p className="text-xs leading-5 text-[#d8d8d8]">
+            请选择一个角色或者摄像机后，可新建轨道
+          </p>
+          <div className="mt-2 flex items-center justify-between">
+            <span className="text-[11px] text-[#777]">1/5</span>
+            <span className="flex items-center gap-2">
+              <button
+                type="button"
+                data-director-coachmark-skip
+                onClick={() => setCoachDismissed(true)}
+                className="rounded-lg px-2 py-1 text-xs text-[#8c8c8c] hover:bg-white/[0.06] hover:text-white"
+              >
+                跳过
+              </button>
+              <button
+                type="button"
+                data-director-coachmark-next
+                onClick={() => setCoachDismissed(true)}
+                className="rounded-full bg-[#e8e8e8] px-3 py-1 text-xs text-[#1a1a1a] hover:bg-white"
+              >
+                下一步
+              </button>
+            </span>
+          </div>
+        </div>
+      )}
       <header
         data-director-timeline-controls
         className="flex h-10 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2"
