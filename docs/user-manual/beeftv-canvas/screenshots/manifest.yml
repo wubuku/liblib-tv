@@ -288,3 +288,15 @@ screenshots:
     visible_text: '搜索画布节点'
     alt: '搜索画布节点弹窗：顶部搜索框，最近编辑 3 个节点（S83-jing2.mp4 视频节点 864×496·4秒带首帧缩略图、文本节点 1、视频节点 1），每条含创建与编辑时间戳'
     sha256: 410cfe387552dfc65277a55370dac0f3aebfd37116e0a6eb60b2f6261e5cb2ed
+
+  - file: screenshots/25-video-node-selected.png
+    task_id: upload-materials
+    step: '有内容视频节点选中态全貌：真实视频画面渲染 + 顶部处理工具条（视频处理/音视频分离/关键帧截取/放大/下载）'
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'S83-jing2.mp4 / 视频处理 / 音视频分离 / 关键帧截取 / 放大 / 下载'
+    visible_text: 'S83-jing2.mp4'
+    alt: '有内容视频节点选中态：真实视频画面完整渲染，顶部处理工具条含视频处理下拉、音视频分离、关键帧截取、放大与下载按钮'
+    sha256: bf58ecfd74473e6e976a9c827adc583b62c38fb6959dfbb53af2191e40b0fefa
