@@ -13,8 +13,8 @@
 | 5 | shortcuts-help + 20-reference.md（快捷键全表/导演台键位/路由/REST 端点/本地进程） | ✅ 完成（Batch 3） |
 | 6a | 时间线三篇（timeline-editing / subtitle-highlights / timeline-export） | ✅ 完成（Batch 4） |
 | 6b | 导演台三篇（director-basics / director-keyframes-record / director-rig-bones） | ✅ 完成（Batch 4） |
-| 8 | cloud-agent + agent-memory-skills + plugins-management | ⏳ 待做 |
-| 9 | local-runtime + 30-concepts.md + 90-troubleshooting.md | ⏳ 待做 |
+| 8a | cloud-agent / agent-memory-skills / plugins-management | ✅ 完成（Batch 5） |
+| 8b | local-runtime + 30-concepts.md + 90-troubleshooting.md | ✅ 完成（Batch 5） |
 | 10 | 本地起 BeefTV（vite :3000 + go server）真实截图补齐 manifest | ⏳ 待做 |
 | 11 | Gate A 机械审计 + 修订 | ⏳ 待做 |
 | 12 | Gate B 回走审计 + 最终审计 + VitePress 站点（复制 tdcanvas 四件套） | ⏳ 待做 |

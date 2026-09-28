@@ -294,7 +294,7 @@ tasks:
         note: run 创建/SSE 流/审批七操作预览/插话 20s/取消 15s；上下文预算 192KB、超 384KB 硬失败。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/cloud-agent.md
   - id: agent-memory-skills
@@ -309,7 +309,7 @@ tasks:
     routes:
       - '/canvas'
       - '/settings'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/agent-memory-skills.md
   # —— 插件与扩展 ——
@@ -324,7 +324,7 @@ tasks:
         note: 前端六内置编译期插件；上传插件只能走声明式协议（宿主绑定保留给随应用发布）；sandbox renderer 占位「插件节点等待隔离运行时」；Eagle 经后端代理不直连。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/plugins-management.md
   - id: local-runtime
@@ -338,7 +338,7 @@ tasks:
         note: 127.0.0.1:17371 强制精确 loopback；挑战-签名会话；64KB/32MB 响应上限；媒体转换「不加载 SD 重绘管线」。
     routes:
       - '/canvas'
-    status: planned
+    status: written-static
     manual_pages:
       - 10-tasks/local-runtime.md
   # —— 参考/概念/排障 ——
@@ -363,7 +363,7 @@ tasks:
     evidence:
       - type: static
         note: live/committed 双轨三频率；storageRevision 三方 rebase；实体补丁栈/Agent 快照/后端版本三层历史。
-    status: planned
+    status: written-static
     manual_pages:
       - 30-concepts.md
   - id: troubleshooting
@@ -375,6 +375,6 @@ tasks:
     evidence:
       - type: static
         note: 失败分类与不可重试判定；恢复弹窗「远端失败本地草稿已保留」vs「远端和本地都未保存」；诊断 11 白名单稳定码；15 条复现矩阵。
-    status: planned
+    status: written-static
     manual_pages:
       - 90-troubleshooting.md
