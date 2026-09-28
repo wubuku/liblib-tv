@@ -115,6 +115,10 @@ export interface DirectorSceneDocumentV1 {
   /** Batch 555: 全景球旋转（度）与球形半径，缺省兜底同上。 */
   panoramaRotation?: number;
   panoramaSphereRadius?: number;
+  /** Batch 559: 场景变换，缺省兜底同上。 */
+  sceneScale?: number;
+  sceneTranslate?: [number, number, number];
+  sceneRotate?: [number, number, number];
   showCharacterLabels?: boolean;
   snapToGrid?: boolean;
   gaussianGroundSnap?: boolean;
@@ -1130,6 +1134,9 @@ function expectScene(
       "groundOpacity",
       "panoramaRotation",
       "panoramaSphereRadius",
+      "sceneScale",
+      "sceneTranslate",
+      "sceneRotate",
     ],
     path,
   );
@@ -1187,6 +1194,25 @@ function expectScene(
             record.panoramaSphereRadius,
             `${path}.panoramaSphereRadius`,
           ),
+        }),
+    ...(record.sceneScale === undefined
+      ? {}
+      : { sceneScale: expectFiniteNumber(record.sceneScale, `${path}.sceneScale`) }),
+    ...(record.sceneTranslate === undefined
+      ? {}
+      : {
+          sceneTranslate: expectTuple3(
+            record.sceneTranslate,
+            `${path}.sceneTranslate`,
+          ) as [number, number, number],
+        }),
+    ...(record.sceneRotate === undefined
+      ? {}
+      : {
+          sceneRotate: expectTuple3(
+            record.sceneRotate,
+            `${path}.sceneRotate`,
+          ) as [number, number, number],
         }),
   };
 }

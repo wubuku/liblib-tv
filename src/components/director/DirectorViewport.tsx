@@ -1864,6 +1864,17 @@ function DirectorScene({
       {scene.showGrid && !isCapturing ? (
         <gridHelper args={[24, 24, "#59636c", "#3d454c"]} position={[0, 0.006, 0]} />
       ) : null}
+      {/* Batch 559: 源站「场景变换」——缩放/平移/旋转作用于场景内容
+          （对象与分组；地面/网格/灯光为辅助不参与）。 */}
+      <group
+        scale={scene.sceneScale ?? 1}
+        position={[...(scene.sceneTranslate ?? [0, 0, 0])]}
+        rotation={[
+          (scene.sceneRotate?.[0] ?? 0) * (Math.PI / 180),
+          (scene.sceneRotate?.[1] ?? 0) * (Math.PI / 180),
+          (scene.sceneRotate?.[2] ?? 0) * (Math.PI / 180),
+        ]}
+      >
       <DirectorLocalModelRuntime>
         {objects.map((object) => (
           <SceneObject key={object.id} object={object} />
@@ -1872,6 +1883,7 @@ function DirectorScene({
           <DirectorGroupTransformRig key={group.id} group={group} />
         ))}
       </DirectorLocalModelRuntime>
+      </group>
       <DirectorMotionPaths />
       <DirectorMotionPathDrawingSurface />
     </>

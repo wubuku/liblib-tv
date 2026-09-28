@@ -2208,6 +2208,78 @@ export function DirectorInspector({
               </label>
             </section>
             <section
+              data-director-scene-transform
+              className="space-y-2 border-b border-white/[0.07] pb-3"
+            >
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>场景缩放</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-scale
+                    type="range"
+                    min={0.5}
+                    max={3}
+                    step={0.1}
+                    aria-label="场景缩放"
+                    value={scene.sceneScale ?? 1}
+                    onChange={(event) =>
+                      updateScene({ sceneScale: Number(event.target.value) })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-10 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {Math.round((scene.sceneScale ?? 1) * 100)}%
+                  </span>
+                </span>
+              </label>
+              <div className="space-y-1 text-xs text-[#bcbcbc]">
+                <span className="block">场景平移</span>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => (
+                    <input
+                      key={axisLabel}
+                      data-director-scene-translate={axisIndex}
+                      type="number"
+                      step={0.1}
+                      aria-label={`场景平移 ${axisLabel}`}
+                      value={(scene.sceneTranslate ?? [0, 0, 0])[axisIndex]}
+                      onChange={(event) => {
+                        const next = [
+                          ...(scene.sceneTranslate ?? [0, 0, 0]),
+                        ] as [number, number, number];
+                        next[axisIndex] = Number(event.target.value);
+                        updateScene({ sceneTranslate: next });
+                      }}
+                      className="h-7 w-full rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-1 text-xs text-[#bcbcbc]">
+                <span className="block">场景旋转</span>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => (
+                    <input
+                      key={axisLabel}
+                      data-director-scene-rotate={axisIndex}
+                      type="number"
+                      step={1}
+                      aria-label={`场景旋转 ${axisLabel}`}
+                      value={(scene.sceneRotate ?? [0, 0, 0])[axisIndex]}
+                      onChange={(event) => {
+                        const next = [
+                          ...(scene.sceneRotate ?? [0, 0, 0]),
+                        ] as [number, number, number];
+                        next[axisIndex] = Number(event.target.value);
+                        updateScene({ sceneRotate: next });
+                      }}
+                      className="h-7 w-full rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+            <section
               data-director-panorama-input
               className="space-y-2 border-t border-white/[0.07] pt-3"
             >

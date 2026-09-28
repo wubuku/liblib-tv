@@ -227,6 +227,12 @@ export interface DirectorScene {
   panoramaRotation: number;
   /** Batch 555: 源站「全景球 球形半径」（clone 渲染现值 30，源站示值 60）。 */
   panoramaSphereRadius: number;
+  /** Batch 559: 源站「场景缩放」（倍率；源站会话示值 300%）。 */
+  sceneScale: number;
+  /** Batch 559: 源站「场景平移 XYZ」。 */
+  sceneTranslate: [number, number, number];
+  /** Batch 559: 源站「场景旋转 XYZ」（度）。 */
+  sceneRotate: [number, number, number];
 }
 
 export interface DirectorSessionOutcome {
@@ -455,6 +461,9 @@ function createDefaultScene(): DirectorScene {
     groundOpacity: 0.4,
     panoramaRotation: 0,
     panoramaSphereRadius: 30,
+    sceneScale: 1,
+    sceneTranslate: [0, 0, 0],
+    sceneRotate: [0, 0, 0],
   };
 }
 
@@ -5454,6 +5463,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       "groundOpacity",
       "panoramaRotation",
       "panoramaSphereRadius",
+      "sceneScale",
+      "sceneTranslate",
+      "sceneRotate",
     ] as const;
     const patchKeys = Object.keys(patch) as Array<keyof DirectorScene>;
     const invalidKey = patchKeys.find((key) => !sceneKeys.includes(key));

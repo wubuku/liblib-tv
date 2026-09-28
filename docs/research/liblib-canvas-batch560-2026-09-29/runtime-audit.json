@@ -1,0 +1,23 @@
+{
+  "batch": 560,
+  "title": "Scene transform (scale/translate/rotate) controls",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshots 45/48",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "section:visible",
+        "scale:persist",
+        "scale:label",
+        "translate:persist",
+        "rotate:persist",
+        "translate:others-default",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
