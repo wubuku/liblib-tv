@@ -1340,6 +1340,7 @@ batch 498–512 的行来自 backfill 预登记提交（0eb82d6、aab2888），�
 台账与提交链中均无痕迹，按心跳指令流计数保留序数空缺，119th 锚定于
 | 2026-09-29 | batch 2383 全量 | still-broken | 第九百零八次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 573 双对齐后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP（batch 2383） |
 batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期标注误差，
+| 2026-09-29 | batch 2396 巡检 | still-broken | 第九百零九次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；batch 573 双对齐已闭环（51be5816） |
 不再回填。
 
 ### 10.3 复测触发条件
