@@ -82,10 +82,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 合并档位 chip "2K · 16:9"; 旧的独立 1K / 16:9 下拉移除
     footer_text = editor.locator(".prompt-bottom-controls").inner_text()
     check("footer:combined-tier", "2K · 16:9" in footer_text)
+    # Batch 300: 规格改为二维弹层（非 select），面板仅剩模型 1 个原生 select
     check(
         "footer:no-legacy-dropdowns",
-        editor.locator("select").count() == 2,
+        editor.locator("select").count() == 1,
     )
+    page.click("button[data-frameos-spec-value]")
+    page.wait_for_timeout(400)
+    check(
+        "footer:spec-popover-2D",
+        page.evaluate("!!document.querySelector('[data-frameos-spec-pop]')"),
+    )
+    page.locator(".frameos-prompt-editor").click(position={"x": 20, "y": 15})
+    page.wait_for_timeout(300)
 
     # 高级设置按钮
     check(
