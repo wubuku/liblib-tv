@@ -554,6 +554,9 @@ interface DirectorState {
   }) => string | null;
   addDirectorCamera: () => DirectorCommandResult;
   selectShot: (shotId: string | null) => void;
+  // Batch 553: 源站时间线「+ 新建轨道」（截图 48）——为选中的角色/摄像机
+  // 创建变换轨道。
+  createTrackForSelectedObject: () => DirectorCommandResult;
   updateShot: (
     shotId: string,
     patch: Partial<Pick<DirectorShotRecord, "name" | "startTime" | "endTime">>,
@@ -4615,6 +4618,116 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         selectedGroupId: null,
         activeCameraId: camera.id,
         activeShotId: shot.id,
+        timeline,
+        history,
+        lastCommandResult: result,
+      });
+    } finally {
+      directorHistorySyncSuspended = false;
+    }
+    return result;
+  },
+
+  // Batch 553: 源站时间线「+ 新建轨道」——为选中的角色/摄像机创建变换
+  // 轨道并选中（截图 48 onboarding：请选择一个角色或者摄像机后可新建轨道）。
+  createTrackForSelectedObject: () => {
+    const state = get();
+    const selected = state.authoredObjects.find(
+      (object) => object.id === state.selectedObjectId,
+    );
+    if (
+      !selected ||
+      (selected.kind !== "character" && selected.kind !== "camera")
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_TRACK",
+        disposition: "REJECTED",
+        reason: "DIRECTOR_TARGET_MISSING",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    if (
+      state.timeline.tracks.some((track) => track.objectId === selected.id)
+    ) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_TRACK",
+        disposition: "NOOP",
+        reason: "DIRECTOR_COMMAND_NO_CHANGE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const before = getDirectorDocumentSnapshot(state);
+    if (!before) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_TRACK",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const track = createTrackForObject(selected, state.timeline.currentTime);
+    const timeline = normalizeDirectorTimelineSelection(
+      {
+        ...state.timeline,
+        tracks: [...state.timeline.tracks, track],
+        selectedTrackId: track.id,
+        selectedKeyframeId: track.keyframes[0]?.id ?? null,
+        selectedMotionPathId: null,
+        selectedMotionPathAnchorId: null,
+        selectedMotionPathHandle: null,
+        motionPathDraft: null,
+        isPlaying: false,
+      },
+      {
+        selectedObjectId: selected.id,
+        selectedObjectIds: [selected.id],
+        selectedGroupId: null,
+      },
+      { preserveTrackEntities: true },
+    );
+    const after = createDirectorProjectDocumentV1({
+      projectId: before.projectId,
+      owner: before.document.owner,
+      scene: state.scene,
+      objects: state.authoredObjects,
+      groups: state.groups,
+      shots: state.shots,
+      activeCameraId: state.activeCameraId,
+      aspectRatio: state.aspectRatio,
+      timeline,
+      captures: state.captures,
+    });
+    if (!updateActiveDirectorDocument(state, after, state.captures)) {
+      const result = makeDirectorCommandResult(state, {
+        commandKind: "ADD_TRACK",
+        disposition: "STALE",
+        reason: "DIRECTOR_OWNER_STALE",
+      });
+      set({ lastCommandResult: result });
+      return result;
+    }
+    const result = makeDirectorCommandResult(state, {
+      commandKind: "ADD_TRACK",
+      disposition: "COMMITTED",
+      projectChanged: true,
+      historyEntries: 1,
+    });
+    const entry = createDirectorHistoryEntry({
+      commandId: result.commandId,
+      commandKind: "ADD_TRACK",
+      projectId: before.projectId,
+      generation: before.generation,
+      before: before.document,
+      after,
+    });
+    const history = pushDirectorHistory(state.history, entry);
+    rememberDirectorHistory(before.projectId, history);
+    directorHistorySyncSuspended = true;
+    try {
+      set({
         timeline,
         history,
         lastCommandResult: result,

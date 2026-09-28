@@ -10,11 +10,11 @@ import {
   Minus,
   Move3D,
   Pause,
+  Plus,
   PenTool,
   PersonStanding,
   Pencil,
   Play,
-  Plus,
   RectangleHorizontal,
   Repeat2,
   Route,
@@ -53,6 +53,18 @@ export function DirectorTimeline() {
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
   );
+  // Batch 552/553: 源站「+ 新建轨道」（截图 48）——为选中的角色/摄像机
+  // 创建变换轨道；无合格选中时禁用（源站 onboarding 提示需先选择）。
+  const selectedObjectKind = useDirectorStore((state) =>
+    state.selectedObjectId
+      ? state.objects.find((o) => o.id === state.selectedObjectId)?.kind
+      : undefined,
+  );
+  const createTrackForSelectedObject = useDirectorStore(
+    (state) => state.createTrackForSelectedObject,
+  );
+  const trackCreatable =
+    selectedObjectKind === "character" || selectedObjectKind === "camera";
   const advanceTimeline = useDirectorStore((state) => state.advanceTimeline);
   const toggleTimelineLoop = useDirectorStore(
     (state) => state.toggleTimelineLoop,
@@ -410,6 +422,25 @@ export function DirectorTimeline() {
           {formatTimelineTime(timeline.duration)}
         </span>
         <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
+        <button
+          type="button"
+          data-director-add-track
+          aria-label="新建轨道"
+          title={
+            trackCreatable
+              ? "新建轨道"
+              : "请选择一个角色或者摄像机后，可新建轨道"
+          }
+          disabled={!trackCreatable}
+          onClick={() => createTrackForSelectedObject()}
+          className={cn(
+            "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
+            trackCreatable && "text-[#bcbcbc]",
+          )}
+        >
+          <Plus size={13} />
+          新建轨道
+        </button>
         <button
           type="button"
           data-director-auto-keyframe
