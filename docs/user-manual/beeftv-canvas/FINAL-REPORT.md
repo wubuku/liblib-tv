@@ -34,7 +34,7 @@
 |---|---|---|
 | 付费边界 | media-versions | 版本族需真实生成产生 |
 | 入口未开放 | subtitle-highlights | 字幕轨需视频节点有字幕数据（视频节点工具条无字幕入口，结构性缺口） |
-| 面板禁用 | cloud-agent、agent-memory-skills | BeefTV Agent 面板「正在开发」 |
+| 面板未挂载 | cloud-agent、agent-memory-skills | 旧桌面 Agent 退场：交互组件无引用点、设置页无记忆/技能分区（后端 API 在位待新入口） |
 | 进程未启动 | local-runtime | 本环境为 Web 自托管：桌面端 v1.6.12 起自动下载深度组件，Web 模式仍需本机伴随进程 |
 
 ## 已知限制

@@ -51,8 +51,8 @@
 | ~~timeline-editing~~ | 已于 Batch 31 经音频节点升级 **verified**（截图 38） | 已升级 |
 | ~~timeline-export~~ | 已于 Batch 32 升级 **verified**（导出成片实测） | 已升级 |
 | subtitle-highlights | 视频节点工具条无字幕入口（字幕工具注册但同属非视频分支渲染，结构性缺口）；字幕轨数据需视频节点已有字幕 | 等视频分支接入字幕工具，或经其他路径给视频节点产生字幕数据 |
-| cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
-| agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
+| cloud-agent | 旧面板组件未挂载（v1.6.x 退场）；等新 Agent 入口接入（后端 /agent/runs 等已在位） | 入口挂载后回走发起/审批/插话/取消 |
+| agent-memory-skills | 设置页无记忆/技能分区（随旧 Agent 退场） | 新分区挂载后回走批准/压缩/技能 @ |
 | local-runtime | 本机启动 framefield-local-runtime（v1.6.12 起 Windows 桌面端改为首次使用自动下载签名组件；本环境为 Web 自托管，仍需本机进程） | Web 模式：启动伴随进程后回走深度/线稿/姿态；桌面端：安装组件后回走 |
 | ~~concepts-architecture~~ | 内容一致性审查已通过，已升级 **verified**（Batch 18） | 已升级 |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |

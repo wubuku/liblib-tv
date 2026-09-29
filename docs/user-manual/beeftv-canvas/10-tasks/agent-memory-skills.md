@@ -2,6 +2,8 @@
 
 > 适用角色：Agent 用户 ｜ 管理员可代管（不能代批）。
 
+> 状态注记（v1.6.14 源码核查，Batch 33）：「设置 → Agent 记忆」分区在当前版本不存在（设置页仅渠道/默认模型/提示词偏好/RunningHub/诊断五区）；记忆与技能面板随旧桌面 Agent 一并退场，`POST /agent/memories/compact` 等 API 保留。本篇按后端契约与历史面板结构成稿，入口开放后回走。
+
 ## Agent 记忆
 
 - **写入**：Agent 用 remember_lesson 写入「待审」记忆；

@@ -173,6 +173,13 @@
 - **subtitle-highlights 维持 excluded 并细化为结构性缺口**：字幕工具（编辑字幕）在源码注册于 primary 组，但视频节点同样走硬编码分支不渲染——与「进入剪辑」同源；字幕轨数据需视频节点已有字幕，当前 UI 无入口。
 - 视口虚拟化提醒：重载后音频节点再次离场，需「适合屏幕」两次才能回归视口（首次点击后仍无几何，二次点击后 anchorFound=true）。
 
+## 环境记录十六（Batch 33，2026-09-30，Agent 面板门控核查轮）
+
+- **上游**：main 仍 852961a/v1.6.14；depth-action 分叉未合流。
+- **Agent 门控核查（源码级）**：`canvas-creative-interaction.tsx`（旧创意交互面板，含审批/重生成卡片）在 v1.6.14 **无任何引用点**——孤儿组件；设置页五区（渠道/默认模型/提示词偏好/RunningHub/诊断）**无记忆与技能分区**。两项 excluded 的性质由「面板禁用」修正为「**组件未挂载/已随旧桌面 Agent 退场**」（README v1.6.x「旧桌面 Agent 退场」条目的具体落地）。
+- **回写**：cloud-agent.md / agent-memory-skills.md 各加状态注记；task-inventory 两项 exclusion_reason、PROGRESS 开放条件表、FINAL-REPORT excluded 表同步——升级路径统一为「等新 Agent 入口挂载（后端 /agent/runs、/agent/memories/compact 等 API 已在位）」。
+- 账本口径不变：25 任务 / 32 md / 39 images / 20 verified / 5 excluded。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
