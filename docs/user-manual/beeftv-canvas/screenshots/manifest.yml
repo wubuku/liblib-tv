@@ -504,3 +504,15 @@ screenshots:
     visible_text: '局部重绘'
     alt: '插入的资产成为画布图片节点并选中，上方图片节点工具条完整可见，素材空间当前画布计数变为 1'
     sha256: 6d912f0773b1b923e4db6cc910cdd7bf7861b74efbc0d69178037658bca38926
+
+  - file: screenshots/43-new-clip-node.png
+    task_id: timeline-editing
+    step: '生成新片段完成：组装 MP4 作为新视频节点「音频-新片段」回画布（含内容与视频工具条）'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 播放 音频-新片段 / generic 音频-新片段'
+    visible_text: '音频-新片段'
+    alt: '画布上生成的新视频节点「音频-新片段」：含组装后的视频画面与播放器，选中显示视频处理工具条'
+    sha256: 33be7586337485850c7e36ca6eb960384c8ec05cadc433ac52d1bae90024f64c
