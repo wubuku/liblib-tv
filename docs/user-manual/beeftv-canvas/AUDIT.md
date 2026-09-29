@@ -317,6 +317,13 @@
   - **agent-host/**：随包 CLI（bun），发行/升级/本地安装带 beeftv，运行时发现免猜端口与桌面令牌；`backend/internal/agentops/*` 运营注册表。
 - **升级意义**：cloud-agent 与 agent-memory-skills 的回走路径清晰——分支合流随版本发布后，按「助手侧栏（与版本记录互斥）→ composer 发起 → @ 引用 → 回合/按轮撤销 → 记忆/技能设置」顺序回走即可升级两任务。
 
+## 环境记录三十九（Batch 81，2026-09-30，dist 时效微验证轮）
+
+- **上游**：main 仍 852961a/v1.6.14；三支分叉/分支无新变化。
+- **发现并修复 dist 静默过期**：mtime 精确比对发现三个页面（shortcuts-help/subtitle-highlights/upload-materials）在最后一次站点构建**之后**被编辑（Batch 61/67/73 的编辑流漏跑了 build-site.sh）——已重建（28 页）并验证 :4173 预览同步（新增内容 HTML 命中）。
+- **流程教训（入 skill §9 候选）**：编辑非排除页面后必须重建 dist；srcExclude 的账本文件（AUDIT/PROGRESS）变更不触发该义务。
+- 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
