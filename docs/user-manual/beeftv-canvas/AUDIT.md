@@ -180,6 +180,15 @@
 - **回写**：cloud-agent.md / agent-memory-skills.md 各加状态注记；task-inventory 两项 exclusion_reason、PROGRESS 开放条件表、FINAL-REPORT excluded 表同步——升级路径统一为「等新 Agent 入口挂载（后端 /agent/runs、/agent/memories/compact 等 API 已在位）」。
 - 账本口径不变：25 任务 / 32 md / 39 images / 20 verified / 5 excluded。
 
+## 环境记录十七（Batch 34，2026-09-30，字幕轨走查轮）
+
+- **上游**：main 仍 852961a/v1.6.14；depth-action 分叉未合流。
+- **字幕数据路径发现**：画布 URL 官方夹具 `?fixture=libtv-video-subtitle` 注入带字幕数据的视频节点「视频结果｜字幕样片」（两条字幕：风从稻田吹来 0–2.2s / 镜头保持冷色自然光 2.4–4.8s + subtitleStyle）——普通 UI 之外唯一能让视频节点持有字幕数据的路径（另见 canvas-libtv-fixture 的跨产品导入种子）。
+- **S 轨渲染实证**：夹具注入后打开多轨时间线，S 字幕 1 轨自动出现两条字幕片段（定位与时长正确，总时长 00:24.0 · 6 个片段 · 3 条轨道，截图 40）；字幕片段**无独立片段编辑面板**（与视频/音频片段不同，其编辑在未接线的字幕弹窗内）。
+- **subtitle-highlights 维持 excluded、条件细化**：缺的是字幕编辑弹窗入口（新建/导入 SRT/高亮设置，primary 组不渲染于视频节点的结构性缺口），S 轨渲染与数据通路已实证；highlight 判定调计费模型的源码口径不变。
+- **审计器护栏生效一次**：截图 40 未嵌入 md 时 final 审计即时报错（skill §9「manifest 截图必须被 md 引用」的实测验证），嵌入后转绿。
+- 走查后以「取消」退出弹窗（未保存）。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |

@@ -468,3 +468,15 @@ screenshots:
     visible_text: '进入剪辑'
     alt: '画布上的音频节点：标题「音频」，播放器显示 12 秒时长与波形，工具条有进入剪辑与下载'
     sha256: 7314ed68a7e39f18b3c1e362ffa3ae6ceb2d8c821d50f40fc6bec0853ee20b33
+
+  - file: screenshots/40-subtitle-track.png
+    task_id: subtitle-highlights
+    step: '多轨时间线 S 字幕轨：字幕夹具视频节点（视频结果｜字幕样片）的字幕数据自动转字幕片段（风从稻田吹来/镜头保持冷色自然光）'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 多轨时间线 / generic 风从稻田吹来 / generic 镜头保持冷色自然光 / generic 总时长 00:24.0 · 6 个片段 · 3 条轨道'
+    visible_text: '字幕 1'
+    alt: '多轨时间线：V 轨有 S83 与字幕样片两个视频片段，S 字幕轨出现两条字幕片段（风从稻田吹来、镜头保持冷色自然光）'
+    sha256: fd21957600c7166e3b7fe6aab908e29af0ddd1b7765224d6d0749b0f8445466a
