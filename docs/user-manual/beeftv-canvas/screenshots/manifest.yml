@@ -480,3 +480,27 @@ screenshots:
     visible_text: '字幕 1'
     alt: '多轨时间线：V 轨有 S83 与字幕样片两个视频片段，S 字幕轨出现两条字幕片段（风从稻田吹来、镜头保持冷色自然光）'
     sha256: fd21957600c7166e3b7fe6aab908e29af0ddd1b7765224d6d0749b0f8445466a
+
+  - file: screenshots/41-asset-tray.png
+    task_id: upload-materials
+    step: '素材空间抽屉：素材库 1/当前画布 0 页签、搜索图片素材、白膜资产卡（拖入画布或点击插入）'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 素材库 1 / button 当前画布 0 / searchbox 搜索图片素材'
+    visible_text: '素材库'
+    alt: '画布左下素材空间抽屉：素材库与当前画布页签、搜索框与资产卡（含插入按钮）'
+    sha256: 0e62af037c04105dae7f6839be5e95ec9616ce683ab54f7725c6a5de648cbb72
+
+  - file: screenshots/42-asset-inserted.png
+    task_id: upload-materials
+    step: '点击插入后：资产转为画布图片节点（选中态展示局部重绘/人像调整/视角调整/图片工具/图片设置工具条），当前画布 0→1'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 当前画布 1 / button 局部重绘 / button 人像调整'
+    visible_text: '局部重绘'
+    alt: '插入的资产成为画布图片节点并选中，上方图片节点工具条完整可见，素材空间当前画布计数变为 1'
+    sha256: 6d912f0773b1b923e4db6cc910cdd7bf7861b74efbc0d69178037658bca38926
