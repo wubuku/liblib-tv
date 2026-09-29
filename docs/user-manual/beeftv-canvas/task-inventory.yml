@@ -200,19 +200,18 @@ tasks:
       - 10-tasks/shortcuts-help.md
   # —— 时间线剪辑 ——
   - id: timeline-editing
-    title: 时间线剪辑器：轨道、片段、字幕与预览
+    title: 时间线剪辑器：轨道、片段与预览
     role: beeftv-creator
     frequency: common
     impact: high
     coverage: full
-    review_note: 时间线面板需启用剪辑工作台面板；运行时截图在面板可达后补齐。
+    review_note: Batch 31 运行时走查（v1.6.14）：经音频节点「进入剪辑」打开多轨时间线弹窗——V/A/S 三轨、画布素材自动铺轨、片段编辑面板（在播放头分割/起点/时长/源内起止）、删除片段选中解禁；八面板插槽的完整插件化布局仍以后续版本为准（页面已加实测布局节）。
     evidence:
-      - type: static
-        note: 八插槽工作台（时间线/预览/检查器/素材/字幕/转写/导出/AI 编辑）；12 黄金 op；96px/秒基准、缩放 0.02-4；吸附与同毫秒全量。
+      - type: runtime
+        note: 弹窗结构/自动铺轨/片段选中编辑实测（截图 38）；轨道参数（96px/s、缩放 2%-400% 等）维持源码证据。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 时间线面板需启用剪辑工作台面板，本机未启用；页面基于源码静态证据
+    status: verified
     manual_pages:
       - 10-tasks/timeline-editing.md
   - id: subtitle-highlights

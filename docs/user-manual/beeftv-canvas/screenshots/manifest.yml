@@ -444,3 +444,15 @@ screenshots:
     visible_text: '从生成历史选择'
     alt: '生成历史弹窗：标题「从生成历史选择」，搜索框占位「搜索提示词或模型」，空态「暂无可插入的生成结果」，背景画布压暗'
     sha256: e597977308278560571ca5222c86f477acff705a0f0e6c103716426190e37268
+
+  - file: screenshots/38-timeline-dialog.png
+    task_id: timeline-editing
+    step: '多轨时间线弹窗（经音频节点「进入剪辑」）：V/A/S 三轨、画布素材自动铺轨、导出成片与片段编辑面板'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 多轨时间线 轨道编辑与素材编排 / button 导出成片 / generic 片段编辑'
+    visible_text: '多轨时间线'
+    alt: '多轨时间线弹窗：视频 1 轨有 S83 片段、音频 1 轨有音频片段、字幕 1 轨为空，顶部导出成片/生成新片段/保存按钮'
+    sha256: 95f54a3af13bfa1c3eef870eb535f63b9ad8aba8107d1387ac3ccd841be3778b

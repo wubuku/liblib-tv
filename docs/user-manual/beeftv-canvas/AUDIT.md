@@ -157,6 +157,14 @@
 - **skill 沉淀**：`web-studio-user-manual/SKILL.md` §9 新增 beeftv-canvas 已验证实例 + 「预览服务器缓存文件清单」运维坑条目。
 - 搜索关键词命中验证因浏览器面板被占用未完成（弹窗打开已验证）；不影响交付结论。
 
+## 环境记录十四（Batch 31，2026-09-30，时间线弹窗走查轮）
+
+- **上游**：main 仍 852961a/v1.6.14；depth-action 分叉未合流。
+- **音频上传注入经验**：授权测试音频（CANVAS_TEST_MEDIA #voice_converted.wav）拷入 web/public 后，DataTransfer→input.files+change 事件在 React 文件输入上**未触发 onChange**（两次尝试均静默）；改用 **DataTransfer DropEvent 派发到 #canvas-main**（dragenter/dragover/drop 序列）成功——节点默认标题「音频」（未取文件名，与视频节点行为不同，记录为差异观察）。节点创建后因视口外被虚拟化卸载，小地图仍可见，「适合屏幕」后回归视口。
+- **多轨时间线弹窗走查**：音频节点工具条「进入剪辑」（v1.6.7+ 注册的工具，仅非视频节点渲染）→ 弹窗「多轨时间线 轨道编辑与素材编排」：V/A/S 三轨（带锁定钮）、画布素材自动铺轨（S83 0–4s 入 V 轨、音频铺满 A 轨）、导出成片/生成新片段/删除片段（选中前禁用）/取消/保存；点选片段出现「片段编辑」面板（在播放头分割/起点/时长/源内起止）。**timeline-editing 升 verified（19 verified / 6 excluded）**。
+- 字幕轨提示「字幕片段来自视频节点的字幕数据」（S83 无字幕，subtitle-highlights 维持 excluded）；导出成片未点（timeline-export 维持 excluded）。
+- 走查后以「取消」退出弹窗（未保存编排）；测试音频文件已从 web/public 清理。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
