@@ -2,15 +2,15 @@ screenshots:
 
   - file: screenshots/01-home.png
     task_id: quickstart-first-canvas
-    step: '首页：新建画布创作 + 七个创作能力入口 + 最近项目空态'
+    step: '首页（v1.6.14 重摄）：新建画布创作 + 七个创作能力入口 + 最近项目'
     route: '/'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: 'button 新建画布创作 / BeefTV Agent 正在开发 / 智能剪辑 即将开放 / v1.5.7'
+    captured_at: '2026-09-30'
+    verified_locator: 'button 新建画布创作 / v1.6.14'
     visible_text: '新建画布创作'
-    alt: 'BeefTV 首页：顶部「新建画布创作」卡片，下方自由画布/视频生成/图片生成/音频生成等入口，左下 v1.5.7'
-    sha256: 01f935482fa58aad2d0fa868100a17fc3897cba315e5621a7b778c453c67657b
+    alt: 'BeefTV 首页：顶部「新建画布创作」卡片，下方自由画布/视频生成/图片生成/音频生成等入口，左下 v1.6.14'
+    sha256: 50db8b3a0d57ce702d3bd43bccfbda87d036fa5caae74433ecd21d07487d2398
 
   - file: screenshots/02-canvas-empty.png
     task_id: quickstart-first-canvas
