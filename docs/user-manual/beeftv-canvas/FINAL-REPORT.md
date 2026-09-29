@@ -25,7 +25,7 @@
 ## 覆盖率
 
 - 任务账本 25 项：**14 verified**（运行时走查或内容一致性审查通过）/ **11 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
-- 26 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
+- 28 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
 - 界面文字逐字取自源码；v1.6.x 界面差异以文字标注。
 
 ## 未覆盖项（12 项 excluded 摘要）
@@ -40,14 +40,14 @@
 
 ## 已知限制
 
-1. **webview 点击不可靠**（与帧界 batch 292 同源）：部分下拉/菜单点击落空，剪辑台内部、版本记录 v1.6.6 侧栏的运行时走查受阻，生成历史弹窗已有 DOM 结构取证（Batch 19）但截图待补，视频模型下拉仅有文本采样——均已记录于 AUDIT.md，环境改善后可补；
+1. **webview 点击不可靠**（与帧界 batch 292 同源）：部分下拉/菜单点击落空，剪辑台内部的运行时走查受阻；生成历史弹窗（Batch 19 DOM 取证 + Batch 20 截图 28）与版本记录 v1.6.6 侧栏（Batch 20 重摄 07）已补齐；视频模型下拉清单为条件渲染面板（popover:59），点击链路过长，暂以 Batch 299 源站 14 模型采样文字替代——均记录于 AUDIT.md；
 2. **视频模型下拉清单**：受同上限制暂以 Batch 299 源站 14 模型采样文字替代（当前值「2.0」已实证）；
 3. **生成操作**：按量计费，全部流程止于付费边界前一步（安全红线）；
 4. **depth-action 分叉**：`codex/depth-action-video-preview`（163 文件，备发布 v1.6.0）与 main 并行——合流后按双向差异审计修订手册对应章节。
 
 ## 审计状态
 
-- Gate A：OK（25 tasks / 31 Markdown / 26 images）；
+- Gate A：OK（25 tasks / 32 Markdown / 28 images）；
 - Gate B：15+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
-- `--phase final`：OK（25 tasks / 31 Markdown files / 26 images）；
-- verify-docs.py：1165 文件 4834 链接全绿。
+- `--phase final`：OK（25 tasks / 32 Markdown files / 28 images）；
+- verify-docs.py：1168 文件 4834 链接全绿（Batch 20 复验）。

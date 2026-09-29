@@ -74,15 +74,15 @@ screenshots:
 
   - file: screenshots/07-version-history.png
     task_id: undo-history-versions
-    step: '版本记录侧栏：本机备份条目（基于 v2，1 个节点 · 0 条连线）'
+    step: '版本记录侧栏（v1.6.6 重摄）：本机备份条目（基于 v6，3 个节点 · 0 条连线）'
     route: '/canvas'
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    verified_locator: 'heading 版本记录 / 本机备份 / 基于 v2'
+    verified_locator: 'heading 版本记录 / 本机备份 / 基于 v6 / 3 个节点 · 0 条连线'
     visible_text: '本机备份'
-    alt: '右侧版本记录抽屉：一条「本机备份 基于 v2」条目，时间与节点/连线计数'
-    sha256: 1bfc5393be1f06908c87e7a930537037dcff0bc9d2a3ffbb18f4031083f01897
+    alt: '右侧版本记录抽屉：一条「本机备份 基于 v6」条目，时间与「3 个节点 · 0 条连线」计数，画布仍在左侧可见'
+    sha256: 86ef0a71105cc8b7a0d568c02ea2379a03c9dbe2124c41f2bb161e2d937bd155
 
   - file: screenshots/08-prompt-editor.png
     task_id: prompts-and-mentions
@@ -324,3 +324,15 @@ screenshots:
     visible_text: '重命名'
     alt: '项目卡操作菜单展开：打开、重命名、修改封面、创建副本、移至文件夹（子菜单）、删除项目六个菜单项'
     sha256: 893710f35a4bd474781222261a5ec9ee0771243735e58a9d97544647eceb0d05
+
+  - file: screenshots/28-generation-history-modal.png
+    task_id: create-nodes
+    step: '生成历史弹窗：标题「从生成历史选择」+ 搜索框（占位「搜索提示词或模型」）+ 空态「暂无可插入的生成结果」'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'dialog 从生成历史选择 / textbox 搜索生成历史 / generic 暂无可插入的生成结果'
+    visible_text: '从生成历史选择'
+    alt: '生成历史弹窗：标题「从生成历史选择」，搜索框占位「搜索提示词或模型」，空态「暂无可插入的生成结果」，背景画布压暗'
+    sha256: e597977308278560571ca5222c86f477acff705a0f0e6c103716426190e37268

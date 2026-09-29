@@ -29,6 +29,7 @@
 | 17c | excluded 任务开放条件系统化（12 项，供后续接手者按表解锁） | ✅ 完成 |
 | 18 | 可达升级两例：plugins-management / troubleshooting 升 verified | ✅ 完成（excluded 13→12） |
 | 19 | 监控轮：上游无变化（main v1.6.6 / depth-action 5 提交未合流）；生成历史弹窗首次点开并 DOM 取证（回写 create-nodes）；local-runtime 可达性评估（二进制不在仓库，维持 excluded） | ✅ 完成（AUDIT 环境记录四） |
+| 20 | 监控轮：上游无变化；补拍两张受阻截图——版本记录侧栏 v1.6.6 重摄（07）+ 生成历史弹窗新增（28，嵌入 create-nodes）；模型下拉确认为条件渲染结构性受阻（源码 popover:59） | ✅ 完成（AUDIT 环境记录五） |
 
 ### excluded 任务开放条件表（12 项，2026-09-29 快照）
 

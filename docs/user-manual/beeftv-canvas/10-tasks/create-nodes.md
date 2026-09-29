@@ -44,6 +44,8 @@
 
 > 实测（生成历史弹窗，运行时 DOM 取证）：点击「从生成历史选择」打开同名弹窗，含搜索框（占位文案「搜索提示词或模型」）；没有可复用结果时显示空态「暂无可插入的生成结果」。底栏工具条的「生成历史」按钮打开的是同一弹窗。
 
+![生成历史弹窗：搜索框与空态](../screenshots/28-generation-history-modal.png)
+
 ![添加节点菜单（列表形态，右上角搜索）](../screenshots/03-add-node-menu.png)
 
 ![搜索画布节点 modal：最近编辑条目含缩略图与时间戳](../screenshots/25-search-modal.png)
