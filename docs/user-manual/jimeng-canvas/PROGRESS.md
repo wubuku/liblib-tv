@@ -238,3 +238,6 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 - 坑与修复：bash 中 `$VAR` 紧跟全角括号时变量名会吞入多字节首字节报
   unbound variable——脚本内变量后一律用 ASCII 标点或空格分隔（已修复）。
 - 发布前须按 PUBLISH.md 完成截图脱敏审查（截图文稿帧含 AI 生成人物画面）。
+- 收尾补记（2026-09-24）：`npm run lint` 会扫描磁盘上各手册站点的 `.vitepress/dist`
+  构建产物导致误报——已在 `eslint.config.mjs` 的 globalIgnores 增加
+  `docs/user-manual/**/.vitepress/{dist,cache}/**`；`npm run check` 重新全绿。
