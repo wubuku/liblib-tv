@@ -456,3 +456,15 @@ screenshots:
     visible_text: '多轨时间线'
     alt: '多轨时间线弹窗：视频 1 轨有 S83 片段、音频 1 轨有音频片段、字幕 1 轨为空，顶部导出成片/生成新片段/保存按钮'
     sha256: 95f54a3af13bfa1c3eef870eb535f63b9ad8aba8107d1387ac3ccd841be3778b
+
+  - file: screenshots/39-audio-node-player.png
+    task_id: upload-materials
+    step: '音频节点内容态：播放器（0:00/0:12）与波形可视化，选中工具条「进入剪辑/下载」，标题保持默认「音频」'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'group 音频播放控件 / button 进入剪辑 / generic 0:00/0:12'
+    visible_text: '进入剪辑'
+    alt: '画布上的音频节点：标题「音频」，播放器显示 12 秒时长与波形，工具条有进入剪辑与下载'
+    sha256: 7314ed68a7e39f18b3c1e362ffa3ae6ceb2d8c821d50f40fc6bec0853ee20b33

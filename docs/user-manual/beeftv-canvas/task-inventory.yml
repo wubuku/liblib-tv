@@ -235,16 +235,16 @@ tasks:
     frequency: common
     impact: high
     coverage: full
+    review_note: Batch 32 运行时走查（v1.6.14）：多轨时间线弹窗「导出成片」——有视频片段时启用，ffmpeg.wasm 本地合成 + 浏览器下载（节点标题.mp4）+「成片导出完成」提示；白膜录制已于 Batch 28 走查（导出白膜→素材空间+封面更新）。
     evidence:
-      - type: static
-        note: ffmpeg.wasm 同源内核（不依赖 CDN）；ISO-BMFF 手工校验防空壳 MP4；白膜录制首错即停 + 时长探针；62min 超时/3s 轮询。
+      - type: runtime
+        note: 导出成片实测（成功提示 DOM 取证）；导出面板/62 分钟轮询为旧版口径保留在页面参考节。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 导出需真实时间线内容；页面基于源码静态证据（ffmpeg.wasm 同源/ISO-BMFF 校验）
+    status: verified
     manual_pages:
       - 10-tasks/timeline-export.md
-  # —— 导演台 ——
+
   - id: director-basics
     title: 导演台入门：镜头、运镜与检查器
     role: beeftv-creator
