@@ -301,6 +301,12 @@
 - **shortcuts-help.md 对齐**（Batch 45 漂移的同源页面）：V/H 行语义精确化（移动工具+空白拖动框选）；「已知文案差异」注记改写为「V 键语义说明」——v1.6.14 实测面板文案与行为已一致（旧版不一致记录保留为历史）；05 截图标注重摄。
 - 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
+## 环境记录三十七（Batch 73，2026-09-30，字幕渲染机制源码闭合轮）
+
+- **上游**：main 仍 852961a/v1.6.14；三支分叉/分支无新变化。
+- **字幕渲染机制源码闭合**（替代 Batch 55 未遂的视觉取证）：`canvas-node-content.tsx` VideoNodeContent 读取节点 `subtitleEntries`/`subtitleStyle`，播放时经 video `timeupdate` 事件按 currentTime 渲染字幕条——数据（夹具注入）→ S 轨（运行时实证）→ 播放叠加（源码机制）三层链路闭合。subtitle-highlights.md 已补该源码锚定行。
+- 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |

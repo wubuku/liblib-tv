@@ -6,6 +6,8 @@
 
 ![S 字幕轨：夹具视频节点的字幕数据自动转字幕片段](../screenshots/40-subtitle-track.png)
 
+播放叠加机制（源码锚定）：视频节点内容组件读取 `subtitleEntries` 与 `subtitleStyle`，播放时经 video 的 `timeupdate` 事件按当前时间渲染对应字幕条——数据与渲染管线在位，仅缺创建/编辑字幕数据的 UI 入口。
+
 > 适用角色：所有用户 ｜ 高亮判定调用 AI 模型（按量计费）。
 
 ## 目标
