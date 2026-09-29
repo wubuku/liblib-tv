@@ -320,10 +320,22 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    verified_locator: 'button 打开 / 重命名 / 修改封面 / 创建副本 / 移至文件夹 / 删除项目'
+    verified_locator: 'button 打开 / 重命名 / 修改封面 / 创建副本 / 移动至文件夹 / 删除项目'
     visible_text: '重命名'
-    alt: '项目卡操作菜单展开：打开、重命名、修改封面、创建副本、移至文件夹（子菜单）、删除项目六个菜单项'
+    alt: '项目卡操作菜单展开：打开、重命名、修改封面、创建副本、移动至文件夹（子菜单）、删除项目六个菜单项'
     sha256: 893710f35a4bd474781222261a5ec9ee0771243735e58a9d97544647eceb0d05
+
+  - file: screenshots/29-recycle-filled.png
+    task_id: undo-history-versions
+    step: '回收站（有条目）：被删项目卡带删除时间；勾选前「彻底删除/恢复」均为禁用态'
+    route: '/project'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'dialog 回收站 / checkbox 选择 未命名项目 / button 彻底删除 [disabled] / button 恢复 [disabled]'
+    visible_text: '回收站'
+    alt: '回收站弹窗含一条被删项目（未命名项目，删除时间），底部全选与禁用态的彻底删除/恢复按钮'
+    sha256: 9b78c3ede311b4cb676f74215fe65882fc48887f8f79770ffc971ad11dd97b3e
 
   - file: screenshots/28-generation-history-modal.png
     task_id: create-nodes
