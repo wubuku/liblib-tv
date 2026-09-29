@@ -217,3 +217,8 @@ python3 "<skill-dir>/scripts/audit_manual.py" docs/user-manual/frameos-canvas --
 ### 已验证实例
 
 - `docs/user-manual/tdcanvas-canvas/`：TDCanvas 用户手册 19 页 / 26 图 / 14M dist，构建 1.55s（2026-09-28）。
+- `docs/user-manual/beeftv-canvas/`：BeefTV 用户手册 28 页 / 37 图源（dist 34 图被引用）/ 8.2M dist，构建 3.37s（2026-09-30）；浏览器实测：页面 200、侧边栏分组、内容页图片 4/4 加载、本地搜索弹窗可开。
+
+### 运维坑：预览服务器缓存文件清单
+
+`vite preview`（含 `build-site.sh --preview`）底层 sirv 在**启动时缓存文件清单**——构建产物更新后（新增/改哈希的资产）旧预览进程会对其返回 404。**每次重新构建后必须重启预览进程**，或改用无缓存静态服务器（`python3 -m http.server 4173 -d .vitepress/dist`）。诊断特征：磁盘上文件存在、页面引用哈希一致、但 HTTP 404。
