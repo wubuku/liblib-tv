@@ -528,3 +528,15 @@ screenshots:
     visible_text: '画布外观'
     alt: '画布外观面板：主题模式三选一、空间网格点线空白三态、网格吸附 16px 与显示连线开关'
     sha256: 200b0c1ae2ff74035d79a3aef76baba062e4541386037534d3a273e788068dc8
+
+  - file: screenshots/45-subtitle-overlay.png
+    task_id: subtitle-highlights
+    step: '字幕播放叠加实证：夹具视频节点播放中，字幕条「风从稻田吹来」渲染在画面底部（0-2.2s 字幕窗口内定格）'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: '字幕条 风从稻田吹来（视频画面底部叠加）'
+    visible_text: '风从稻田吹来'
+    alt: '画布多节点视图：视频节点播放中，画面底部渲染字幕条「风从稻田吹来」（23% 缩放，自动整理后布局）'
+    sha256: 056a93a8c529bc12a16bf42baa35d36309d9379c8b851b8e6110bbf2f979dd76
