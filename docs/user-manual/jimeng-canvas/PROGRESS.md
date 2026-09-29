@@ -222,3 +222,19 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
   正文各页以「已验证说明」小节逐页划分 实测/声明/待验证。
 - 后续增量维护入口：源站改版时按第 8 节 C 重走受影响任务，重拍截图并更新
   manifest 哈希；改版监测可复用 docs/design-references/jimeng/ 的进化巡逻扫描。
+
+## 12. 手册网站构建（2026-09-24）
+
+按 skill §9（TDCanvas 实战沉淀模式）为手册构建 VitePress 静态站点：
+
+- 新增站点四件套：`build-site.sh`（六步一键构建+产物校验）、
+  `.vitepress/config.mjs`（zh-CN、本地中文搜索、侧边栏按任务分组、
+  srcExclude 排除内部账本、README→index 首页改写）、`package.json`（仅
+  vitepress devDependency）、`PUBLISH.md`（构建/预览/发布/脱敏审查/运维 FAQ）；
+  另有 `.gitignore`（dist/cache/node_modules 不入库）。
+- 构建实测：六步全绿——dist 20 页 HTML（19 内容页+404）、22 张截图全部经
+  引用进入 dist/assets（哈希命名，逐链接 200）、无 .md 残留链接、总体积 12M；
+  `python3 -m http.server` 预览实测首页/任务页/参考页 200、站点标题正确。
+- 坑与修复：bash 中 `$VAR` 紧跟全角括号时变量名会吞入多字节首字节报
+  unbound variable——脚本内变量后一律用 ASCII 标点或空格分隔（已修复）。
+- 发布前须按 PUBLISH.md 完成截图脱敏审查（截图文稿帧含 AI 生成人物画面）。
