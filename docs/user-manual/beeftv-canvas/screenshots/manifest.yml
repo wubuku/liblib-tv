@@ -50,15 +50,15 @@ screenshots:
 
   - file: screenshots/05-shortcuts-center.png
     task_id: shortcuts-help
-    step: '「画布快捷键」中心：搜索、四分类计数与快捷键列表'
+    step: '画布快捷键中心（v1.6.14 重摄）：搜索框 + 五分类（全部 24/常用 4/视图与导航 7/选择与连接 6/编辑与文件 7）+ 快捷键卡片'
     route: '/canvas'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: 'heading 画布快捷键 / 共 24 个快捷键 / 全部 24 常用 4 视图与导航 7 选择与连接 6 编辑与文件 7'
-    visible_text: '共 24 个快捷键'
-    alt: '画布快捷键弹窗：左侧分类（全部 24/常用 4/视图与导航 7/选择与连接 6/编辑与文件 7），右侧条目如搜索画布节点 Ctrl/Cmd+F、整理画布 Option+Shift+F'
-    sha256: d84038e51c5623f3deedfc4da2f5a33c9e7178fab702e7e7253f79fe8f98a918
+    captured_at: '2026-09-30'
+    verified_locator: 'banner 画布快捷键 / button 全部 24 / 共 24 个快捷键'
+    visible_text: '画布快捷键'
+    alt: '画布快捷键中心弹窗：搜索框、五分类导航与快捷键卡片列表，底部共 24 个快捷键'
+    sha256: 5a6713f7ae5210f6c2803d75ddf8d5e0683c1bb49de4f423dd1560fdf14ed333
 
   - file: screenshots/06-minimap.png
     task_id: navigate-canvas
