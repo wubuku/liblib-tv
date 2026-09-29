@@ -183,15 +183,15 @@ screenshots:
 
   - file: screenshots/17-light-mode.png
     task_id: organize-canvas
-    step: '浅色模式切换后的项目列表（侧栏底部按钮变为「深色模式」）'
+    step: '浅色主题画布（v1.6.14 重摄）：白底点网格，画布外观面板浅色选中'
     route: '/canvas'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: '深色模式 / v1.6.6 / 全部项目'
-    visible_text: '浅色模式'
-    alt: 'v1.6.x 浅色模式运行时实证：整页切换为浅色主题，侧栏底部切换按钮变为「深色模式」'
-    sha256: 2775fed8a0c24ade53581fbdd5bb69ae887a3baac6ccac663479743700944215
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 画布外观 / button 浅色 [selected]'
+    visible_text: '浅色'
+    alt: '浅色主题下的画布：白底点网格，视频与音频节点清晰可辨，画布外观面板显示浅色选中'
+    sha256: 65b422c692a5c74b077d27c473c41589bed685f93f7a91caa7d121d2c85eb478
 
   - file: screenshots/18-spec-popover.png
     task_id: generate-video
