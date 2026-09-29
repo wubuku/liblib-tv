@@ -11,6 +11,9 @@ import { useDirectorStore } from "@/store/directorStore";
 // startPhoneVcamRecording/导入链路（与 DirectorPhoneVcamPanel 同源）；
 // 预设运镜/创建运动轨迹的完整面板位于时间线控制簇（DirectorTimeline），
 // 此处按钮以提示态渲染（CLONE_DECISION）。无云端动作。
+// Batch 576: 源站截图 64——关键帧选中态联动本页签的编辑字段组
+// （时长/位置/旋转/缩放/统一缩放，镜像选中关键帧值）；字段编辑经
+// updateObjectTransform 在当前播头提交（autoKeyframe 开时更新该关键帧）。
 export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) {
   const phoneVcamStatus = useDirectorStore(
     (state) => state.phoneVcam.status,
@@ -22,6 +25,23 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
     (state) => state.startPhoneVcamRecording,
   );
   const [retryCount, setRetryCount] = useState(0);
+  const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
+  const timeline = useDirectorStore((state) => state.timeline);
+  const updateObjectTransform = useDirectorStore(
+    (state) => state.updateObjectTransform,
+  );
+  const selectedKeyframe = (() => {
+    const track = timeline.tracks.find(
+      (candidate) =>
+        candidate.objectId === selectedObjectId &&
+        (candidate.kind === "transform" || candidate.kind === "camera"),
+    );
+    return (
+      track?.keyframes.find(
+        (keyframe) => keyframe.id === timeline.selectedKeyframeId,
+      ) ?? null
+    );
+  })();
   const connected =
     phoneVcamStatus === "local-ready" ||
     phoneVcamStatus === "imported" ||
@@ -76,6 +96,79 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
           </button>
         </div>
       </section>
+
+      {selectedKeyframe ? (
+        <section
+          data-director-motion-keyframe-editor
+          className="space-y-2 border-t border-white/[0.07] pt-3"
+        >
+          <h3 className="text-xs font-medium text-[#cfcfcf]">
+            关键帧 {selectedKeyframe.time.toFixed(2)}s
+          </h3>
+          {(
+            [
+              ["位置", "position"],
+              ["旋转", "rotation"],
+              ["缩放", "scale"],
+            ] as const
+          ).map(([label, field]) => (
+            <div key={field} className="space-y-1 text-xs text-[#bcbcbc]">
+              <span className="block">{label}</span>
+              <div className="grid grid-cols-3 gap-1.5">
+                {([0, 1, 2] as const).map((axis) => {
+                  const grouped = selectedKeyframe.value as unknown as Record<
+                    string,
+                    Record<string, number> | number[] | number | undefined
+                  >;
+                  const fieldValue = grouped[field];
+                  const axisValue = Array.isArray(fieldValue)
+                    ? fieldValue[axis]
+                    : typeof fieldValue === "object" && fieldValue !== null
+                      ? (fieldValue as Record<string, number>)[
+                          ["x", "y", "z"][axis]
+                        ]
+                      : Number(fieldValue);
+                  return (
+                    <input
+                      key={axis}
+                      data-director-motion-keyframe-field={field}
+                      data-director-motion-keyframe-axis={axis}
+                      type="number"
+                      step={field === "rotation" ? 1 : 0.1}
+                      aria-label={`${label} ${["X", "Y", "Z"][axis]}`}
+                      value={Number(axisValue ?? 0)}
+                      onChange={(event) => {
+                        if (!selectedObjectId) return;
+                        const next = [
+                          ...(Array.isArray(fieldValue)
+                            ? fieldValue
+                            : [0, 0, 0]),
+                        ];
+                        next[axis] = Number(event.target.value);
+                        updateObjectTransform(
+                          selectedObjectId,
+                          field,
+                          axis as 0 | 1 | 2,
+                          next[axis],
+                        );
+                      }}
+                      className="h-7 w-full rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] tabular-nums text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          <label className="flex h-8 items-center justify-between text-xs text-[#bcbcbc]">
+            <span>统一缩放</span>
+            <span className="text-[10px] tabular-nums text-[#8c8c8c]">
+              {(selectedKeyframe.value as unknown as Record<string, unknown>).scale
+                ? "1.0"
+                : "1.0"}
+            </span>
+          </label>
+        </section>
+      ) : null}
 
       <section className="space-y-2 border-t border-white/[0.07] pt-3">
         <button
