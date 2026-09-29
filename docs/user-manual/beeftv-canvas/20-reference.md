@@ -60,9 +60,20 @@
 | `POST /resources/uploads` | 大文件分片上传会话 |
 | `POST /agent/memories/compact` | 记忆压缩 |
 | `GET /skills/:id/files` | 技能包文件列表 |
-| `POST /canvas-projects/:id/import/libtv` ｜ `/import/tapnow` | 跨产品导入 |
+| ~~`/api/canvas-projects/:id/import/libtv|tapnow`~~ | 跨产品导入（**v1.6.x 已下线**；v1.6.14 运行时路由核对无此组） |
 | `/api/plugins/eagle/*` | Eagle 资源代理（后端转发） |
 | `/runtime/session/*`（127.0.0.1:17371） | 本地伴随进程会话（challenge/exchange） |
+
+### v1.6.14 运行时核对新增（Batch 43，GIN 路由全量比对）
+
+| 端点 | 用途 |
+|---|---|
+| `GET /api/tasks/:id/logs` | 任务日志（v1.6.14 任务详情实时刷新后端） |
+| `POST /api/tasks/:id/retry` | 任务重试 |
+| `GET /api/tasks/:id/text-deltas·text-events·text-replay-complete` | 文本生成流式增量/事件/回放 |
+| `POST /api/timeline/renders` · `POST /api/timeline/transcriptions` | 时间线渲染与**转写**（服务端转写入口在位） |
+| `GET/POST /api/depth-captures` | 深度捕捉产物存取 |
+| `/api/creation-runs/*`（claim/execute/heartbeat/proposal-approve/canvas-commit 等） | Agent 创作运行后端契约（含付费提议审批；前端入口未挂载，API 先行） |
 
 ## 本地伴随进程
 
