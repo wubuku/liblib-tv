@@ -1352,6 +1352,7 @@ batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期�
 任意后续批次在批次开头运行
 | 2026-09-29 | batch 2466 巡检 | still-broken | 第九百零五次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件保留不动；batch 579 菱形 seek 已闭环（0771563d） |
 `~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
+| 2026-09-29 | batch 2466 续巡检 | still-broken | 第九百零六次重测；巡检批次——菱形拖拽采样 INCONCLUSIVE（NOTES §16 续）；并行 beeftv/jimeng WIP 保留不动 |
 （仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
 `still-broken` 则继续等待），恢复后按 §8 checklist 补采。
 
