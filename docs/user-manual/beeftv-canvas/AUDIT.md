@@ -307,6 +307,16 @@
 - **字幕渲染机制源码闭合**（替代 Batch 55 未遂的视觉取证）：`canvas-node-content.tsx` VideoNodeContent 读取节点 `subtitleEntries`/`subtitleStyle`，播放时经 video `timeupdate` 事件按 currentTime 渲染字幕条——数据（夹具注入）→ S 轨（运行时实证）→ 播放叠加（源码机制）三层链路闭合。subtitle-highlights.md 已补该源码锚定行。
 - 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
+## 环境记录三十八（Batch 76，2026-09-30，Agent 分支源码预览审计轮）
+
+- **上游**：main 仍 852961a/v1.6.14；Agent 分支 28 提交在途；depth-action 未合流。
+- **Agent 分支源码预览**（仅入内部账本，未发布事实不入手册正文）：
+  - **新 UI**：`canvas-assistant-sidebar.tsx`（助手侧栏，挂载于 project.tsx；「画布右侧只有一个栏位：助手和版本记录互斥」）+ `canvas-assistant-composer/turn/highlight/copy` + `use-canvas-assistant.ts`（412 行）；
+  - **@ 菜单覆盖整张画布**（不只生成输入资源节点）；助手只接受当前画布的选中项；
+  - **记忆/技能后端**：`cloud_agent_memory_compact.go`、`skills/seed/skills.json`（技能种子）、`skills_bridge.go`、handler/repository 全套在位；
+  - **agent-host/**：随包 CLI（bun），发行/升级/本地安装带 beeftv，运行时发现免猜端口与桌面令牌；`backend/internal/agentops/*` 运营注册表。
+- **升级意义**：cloud-agent 与 agent-memory-skills 的回走路径清晰——分支合流随版本发布后，按「助手侧栏（与版本记录互斥）→ composer 发起 → @ 引用 → 回合/按轮撤销 → 记忆/技能设置」顺序回走即可升级两任务。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
