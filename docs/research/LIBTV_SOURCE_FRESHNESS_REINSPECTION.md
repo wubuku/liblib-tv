@@ -1348,6 +1348,7 @@ batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期�
 ### 10.3 复测触发条件
 | 2026-09-29 | batch 2436 巡检 | still-broken | 第九百一十二次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 4 件保留不动；batch 575 轴向标记已闭环（0f426c08） |
 
+| 2026-09-29 | batch 2453 全量 | still-broken | 第九百次重测；到期全量维护集新鲜运行 78/78 全绿（零瞬态零复测；覆盖 batch 579 菱形点击 seek 后回归）；回写恢复 delta 为 0，脏文件仅并行 beeftv/jimeng/tdcanvas-manual WIP（batch 2453） |
 任意后续批次在批次开头运行
 `~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
 （仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
