@@ -88,6 +88,23 @@
 - **本轮同步排除的路径**：cua 坐标点击节点主体不产生选中态；`.react-flow__node` 包装元素不存在（BeefTV 为自绘画布，非 React Flow 实现）；`拖动节点` 柄为 0×0 锚点（opacity 0，hover 才展开），force click 亦超时。
 - **项目卡画布操作菜单走查**：未开始（收到收尾指令，留待下轮）。
 
+## 增量审计记录（Batch 22，2026-09-29，v1.6.6→v1.6.13）
+
+上游一次性发布 6 个版本（v1.6.7–v1.6.13，10 提交/201 文件，其中测试 60+；`depth-runtime-v2` 组件 tag 同步发布）。逐项审计 CHANGELOG 与 diff 后回写五页：
+
+| 版本 | 用户可感知变化 | 回写位置 |
+|---|---|---|
+| v1.6.7 | Seedance 2.0 标准/2.5 参考视频生成的**画幅比风险付费确认**；首帧/编辑/延长「跟随源媒体」界面明示；实测画幅比不符保留视频+提示 | generate-video.md 任务模式节 |
+| v1.6.8 | 时长已知仍读视频实际尺寸；不可读/超范围提交前拒绝；像素超限错误指明参考/实际/允许范围 | generate-video.md 素材限制 + troubleshooting |
+| v1.6.9 | 企业 Seedance profile 存包名致「接口未安装」误报；自动修复已有配置+旧别名兼容 | troubleshooting「接口未安装」条 |
+| v1.6.10 | 参考视频帧率检查（普通/分片/混合 MP4）；帧率/编码/访问错误指引在任务历史重载后仍在 | generate-video.md + troubleshooting |
+| v1.6.11 | Wan 3.0 本地参考图误拒修复；统一企业视频合同；不支持的参考类型/数量提交前拒绝 | generate-video.md 素材限制 |
+| v1.6.12/13 | **Windows x64 深度视频运行时**（签名可选组件、CPU 已测/CUDA 社区预览+一次回退、断点续传、进程树取消）；导演台扩展（场景控制/相机跟随/画幅框/截图与全景历史）；桌面更新周期检查+一键安装 | local-runtime.md + director-basics.md + troubleshooting |
+
+- 版本口径三处同步：FINAL-REPORT（手册对应版本/源码锚点/已知限制 depth-action 行）、PROGRESS 开放条件表 local-runtime 行；
+- **local-runtime 开放条件语义变化**：Windows 桌面端不再要求手动启动进程（自动下载组件），但本环境为 Web 自托管，开放条件本体不变——任务维持 excluded；
+- depth-action 分叉（5 提交）仍未合流；v1.6.12/13 的深度运行时为另一条实现路径，合流审计时需重点核对视频预览稳定性是否被覆盖。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |

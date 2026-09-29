@@ -31,6 +31,7 @@
 | 19 | 监控轮：上游无变化（main v1.6.6 / depth-action 5 提交未合流）；生成历史弹窗首次点开并 DOM 取证（回写 create-nodes）；local-runtime 可达性评估（二进制不在仓库，维持 excluded） | ✅ 完成（AUDIT 环境记录四） |
 | 20 | 监控轮：上游无变化；补拍两张受阻截图——版本记录侧栏 v1.6.6 重摄（07）+ 生成历史弹窗新增（28，嵌入 create-nodes）；模型下拉确认为条件渲染结构性受阻（源码 popover:59） | ✅ 完成（AUDIT 环境记录五） |
 | 21 | 监控轮（收尾轮）：上游无变化；模型下拉重试失败但定位根因——视频节点 1/文本节点 1 被 S83 大节点遮挡（锚点坐标证实），自动整理与快捷键均未能重排；项目卡菜单走查未开始 | ✅ 部分完成，如实留档（AUDIT 环境记录六） |
+| 22 | 上游增量修订 v1.6.6→v1.6.13（10 提交/201 文件）：generate-video（付费风险确认/素材校验强化 v1.6.8-11/任务模式跟随注记）、troubleshooting（画幅比确认/读不出与帧率/接口未安装/深度组件下载）、local-runtime（Windows 深度运行时）、director-basics（v1.6.13 扩展注记）、版本口径三处、开放条件表同步 | ✅ 完成（AUDIT 增量审计记录） |
 
 ### excluded 任务开放条件表（12 项，2026-09-29 快照）
 
@@ -41,7 +42,7 @@
 | director-basics / director-keyframes-record / director-rig-bones | 导演台入口解禁（当前「正在开发」） | 解禁后回走检查器/关键帧/白膜 |
 | cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
 | agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
-| local-runtime | 本机启动 framefield-local-runtime | 启动后回走深度/线稿/姿态 |
+| local-runtime | 本机启动 framefield-local-runtime（v1.6.12 起 Windows 桌面端改为首次使用自动下载签名组件；本环境为 Web 自托管，仍需本机进程） | Web 模式：启动伴随进程后回走深度/线稿/姿态；桌面端：安装组件后回走 |
 | ~~concepts-architecture~~ | 内容一致性审查已通过，已升级 **verified**（Batch 18） | 已升级 |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |
 
