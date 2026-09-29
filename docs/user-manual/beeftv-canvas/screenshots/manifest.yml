@@ -516,3 +516,15 @@ screenshots:
     visible_text: '音频-新片段'
     alt: '画布上生成的新视频节点「音频-新片段」：含组装后的视频画面与播放器，选中显示视频处理工具条'
     sha256: 33be7586337485850c7e36ca6eb960384c8ec05cadc433ac52d1bae90024f64c
+
+  - file: screenshots/44-appearance-panel.png
+    task_id: concepts-architecture
+    step: '画布外观面板：主题模式（浅色/深色/自定义）、空间网格（点/线/空白）、网格吸附 16px、显示连线'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 画布外观 / button 切换到浅色主题 / radio 点 [checked] / switch 显示连线 [checked]'
+    visible_text: '画布外观'
+    alt: '画布外观面板：主题模式三选一、空间网格点线空白三态、网格吸附 16px 与显示连线开关'
+    sha256: 200b0c1ae2ff74035d79a3aef76baba062e4541386037534d3a273e788068dc8
