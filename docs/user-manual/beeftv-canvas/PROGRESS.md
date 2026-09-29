@@ -28,6 +28,7 @@
 | 17c | SKILL §8 最终报告 FINAL-REPORT.md（目标版本/角色/深度/覆盖率/未覆盖项/已知限制） | ✅ 完成 |
 | 17c | excluded 任务开放条件系统化（12 项，供后续接手者按表解锁） | ✅ 完成 |
 | 18 | 可达升级两例：plugins-management / troubleshooting 升 verified | ✅ 完成（excluded 13→12） |
+| 19 | 监控轮：上游无变化（main v1.6.6 / depth-action 5 提交未合流）；生成历史弹窗首次点开并 DOM 取证（回写 create-nodes）；local-runtime 可达性评估（二进制不在仓库，维持 excluded） | ✅ 完成（AUDIT 环境记录四） |
 
 ### excluded 任务开放条件表（12 项，2026-09-29 快照）
 
