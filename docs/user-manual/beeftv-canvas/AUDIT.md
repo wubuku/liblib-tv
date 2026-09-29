@@ -118,6 +118,15 @@
 - **回写内容**：深度组件下载与桌面更新共用代理选择规则（显式环境代理优先 → Windows/macOS 系统静态代理，含排除地址；改系统代理后重试即生效）——回写 local-runtime.md（代理环境注记）与 troubleshooting（下载失败排查条）。
 - 账本口径不变：25 任务 / 32 md / 29 images。
 
+## 环境记录九（Batch 26，2026-09-29，导演台升级轮）
+
+- **上游**：main 无新提交（69fbf9b 后 0）；depth-action 分叉未合流；`codex/depth-system-proxy` 分支即 PR #47 源（内容已在 main）。
+- **工作树升级**：BeefTV 检出 detached 5b1c060(v1.6.6)→69fbf9b(v1.6.13)；web/package.json、bun.lock、go.mod 零变化（无需装依赖）；Go 后端重启至新源码。可随时 `git checkout 5b1c060` 还原。
+- **导演台解禁双证**：源码 `add-node-menu-tools.tsx` 移除 CANVAS_DEVELOPING_LABEL/disabledReason（v1.6.7 区间内）；运行时菜单「导演台」无禁用态（截图 30，与三项置灰对照）。
+- **完整走查链**：菜单→「选择镜头模板」五款（31）→画布创建「镜头 1」节点（32）→「打开导演台」进 3D 工作台（33，摆场：场景树三点布光/3D 场景参数/全景背景/6 步引导）→摄影机模式摄像机检查器（34：名称/切换机位/位置/跟随目标/注视目标/FOV 54.4/镜头高级参数折叠）→动画模式时间轴（35：镜头总轨/Camera Cut/主摄影机 Transform·焦距·景深；点「记录」实测生成 0.00s 关键帧）→添加演员→姿态模式 rig（36：49 根骨骼/骨骼控制/姿势预设 20 钮/动作片段/角色颜色 6 色/骨骼视图）。
+- **三任务升级 verified（18 verified / 7 excluded）**：director-basics / director-keyframes-record / director-rig-bones；页面向运行时口径改写（旧 ShotInspector 焦距/光圈表已被 FOV+注视+跟随结构取代，按实测重写）。
+- 已知残留：白膜「导出白膜」完整录制流程未走查（按钮在位）；「应用到镜头」未点（防覆盖画布状态）；工作台引导卡未跳完（不影响面板走查）。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |

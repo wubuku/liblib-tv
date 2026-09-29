@@ -18,25 +18,24 @@
 |---|---|---|
 | beeftv-creator（普通创作者） | 画布核心九篇 + 整理/历史/快捷键 | 旗舰/完整 |
 | beeftv-creator（进阶） | 时间线剪辑三篇 | 旗舰/标准 |
-| beeftv-creator（导演台） | 导演台三篇 | 旗舰/标准/简明 |
+| beeftv-creator（导演台） | 导演台三篇（Batch 26 起运行时实证） | 旗舰/标准/简明 |
 | beeftv-agent-user | 云端 Agent + 记忆技能 | 旗舰/标准 |
 | beef-admin | 插件管理 + 本地伴随进程 | 标准/简明 |
 
 ## 覆盖率
 
-- 任务账本 25 项：**14 verified**（运行时走查或内容一致性审查通过）/ **11 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
-- 29 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
-- 界面文字逐字取自源码；v1.6.x 界面差异以文字标注。
+- 任务账本 25 项：**18 verified**（运行时走查或内容一致性审查通过；Batch 26 起含导演台三篇）/ **7 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
+- 36 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
+- 界面文字逐字取自源码与运行时 DOM；v1.6.x 界面差异以文字标注。
 
-## 未覆盖项（12 项 excluded 摘要）
+## 未覆盖项（7 项 excluded 摘要）
 
 | 类别 | 任务 | 原因 |
 |---|---|---|
 | 付费边界 | media-versions | 版本族需真实生成产生 |
-| 入口未开放 | timeline 三篇、director 三篇 | 时间线面板/导演台入口「正在开发」 |
+| 入口未开放 | timeline 三篇 | 时间线剪辑面板入口未挂载（视频处理下拉仅三项） |
 | 面板禁用 | cloud-agent、agent-memory-skills | BeefTV Agent 面板「正在开发」 |
-| 进程未启动 | local-runtime | 本环境为 Web 自托管（非桌面端）：v1.6.12 起 Windows 桌面端首次使用自动下载深度组件，Web 模式仍需本机伴随进程（开放条件表已同步） |
-| 概念页 | concepts-architecture | 无操作步骤，不适用回走 |
+| 进程未启动 | local-runtime | 本环境为 Web 自托管：桌面端 v1.6.12 起自动下载深度组件，Web 模式仍需本机伴随进程 |
 
 ## 已知限制
 
@@ -47,7 +46,7 @@
 
 ## 审计状态
 
-- Gate A：OK（25 tasks / 32 Markdown / 29 images）；
+- Gate A：OK（25 tasks / 32 Markdown / 36 images）；
 - Gate B：15+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
-- `--phase final`：OK（25 tasks / 32 Markdown files / 29 images）；
-- verify-docs.py：1169 文件全绿（Batch 23 复验）。
+- `--phase final`：OK（25 tasks / 32 Markdown files / 36 images）；
+- verify-docs.py：1169 文件全绿（Batch 26 复验）。

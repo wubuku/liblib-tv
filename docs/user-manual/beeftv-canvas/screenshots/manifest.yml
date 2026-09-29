@@ -337,6 +337,90 @@ screenshots:
     alt: '回收站弹窗含一条被删项目（未命名项目，删除时间），底部全选与禁用态的彻底删除/恢复按钮'
     sha256: 9b78c3ede311b4cb676f74215fe65882fc48887f8f79770ffc971ad11dd97b3e
 
+  - file: screenshots/30-director-entry.png
+    task_id: director-basics
+    step: '添加节点菜单（v1.6.13）：导演台已解禁（无禁用态），与智能剪辑/逐帧拉片/脚本的「正在开发」灰显对照'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 导演台（无 disabled）/ button 智能剪辑 正在开发 [disabled]'
+    visible_text: '导演台'
+    alt: '添加节点菜单：创作节点段中「导演台」全亮可用，智能剪辑/逐帧拉片/脚本仍标「正在开发」置灰'
+    sha256: 0a49820a0c632c91228dc878c0c52f5a6524d6d029fa2fd3ab9d6a363dac0914
+
+  - file: screenshots/31-director-templates.png
+    task_id: director-basics
+    step: '选择镜头模板弹窗：空场景/单人对白/双人对话/人物走位/产品道具镜头五款'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'dialog 选择镜头模板 / button 空场景 摄影机 + 布光'
+    visible_text: '选择镜头模板'
+    alt: '选择镜头模板弹窗：五款模板卡片各带演员数与机位说明'
+    sha256: 6696732a5fbba465536c0f894dc77b82bf893570288812828b441627a5719f3c
+
+  - file: screenshots/32-shot-node.png
+    task_id: director-basics
+    step: '选模板后在画布创建「镜头 1」节点：空态卡（在3D空间中搭建场景并进行多视角截图）+ 打开导演台按钮 + 场景描述输入'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 打开导演台 / textbox 场景描述'
+    visible_text: '在3D空间中搭建场景并进行多视角截图'
+    alt: '画布上的镜头 1 节点：空态卡带打开导演台按钮，下方场景描述输入框'
+    sha256: bf4e44c0ae1f1cef245322c7d187f86a5139aef281c2ebc69f49ec83075e924e
+
+  - file: screenshots/33-director-workbench.png
+    task_id: director-basics
+    step: '导演工作台总览（摆场模式）：四模式页签/场景树（主摄影机+三点布光）/3D 场景参数/全景背景/上手引导'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'navigation 导演台模式 摆场 姿态 动画 摄影机 / button 导出白膜 / button 应用到镜头'
+    visible_text: '3D导演台'
+    alt: '导演工作台：左侧场景树与灯光，中央 3D 视口与引导卡，右侧 3D 场景/全景背景参数'
+    sha256: 35466f0974c122a3e8597eb3ef35454f817fe06b559ca2328d00cb9feb82a88c
+
+  - file: screenshots/34-camera-inspector.png
+    task_id: director-basics
+    step: '摄影机模式：摄像机检查器（名称/切换机位/位置 XYZ/跟随目标/注视目标与坐标/FOV 54.4/镜头高级参数）'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'generic 摄像机检查器 / tab 属性 / slider 视野角度 (FOV)'
+    visible_text: '摄像机检查器'
+    alt: '摄影机模式：右侧摄像机检查器含位置、跟随目标、注视坐标与 FOV 滑杆，视口显示主摄影机'
+    sha256: 886904a4ea2c314d382ae5d9c8c5186a1fc227c6f44115a730e6e7ddf56e4d2b
+
+  - file: screenshots/35-animation-timeline.png
+    task_id: director-keyframes-record
+    step: '动画模式：时间轴（播放/自动关键帧/吸附/记录、镜头总轨/Camera Cut/主摄影机 Transform·焦距·景深轨道）'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'button 自动关键帧 / button 记录 / button ◈ 镜头总轨 / button ⌾ 主摄影机'
+    visible_text: '自动关键帧'
+    alt: '动画模式：底部时间轴含轨道区（镜头总轨、Camera Cut、主摄影机）与自动关键帧/吸附/记录控件，0.00s/5.00s·24fps'
+    sha256: 3b7b06b93620b591ec105498f6cce8b56612f914093858b868b8b1e70fb2e15c
+
+  - file: screenshots/36-pose-panel.png
+    task_id: director-rig-bones
+    step: '姿态模式：演员 1 白模入场景，右侧姿势预设/角色颜色，时间轴新增演员 1 动作片段轨'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-29'
+    verified_locator: 'generic 角色绑定 49 根骨骼 / combobox 骨骼控制 / 姿势预设 20 按钮'
+    visible_text: '姿势预设'
+    alt: '姿态模式：视口中演员白模带骨骼，右侧演员变换与姿势预设面板，时间轴出现演员 1 动作片段轨'
+    sha256: d8d56b970dec1631b52aee528fb0bf0cb2f17f2f305ad1d4792b5bbcb9468df6
+
   - file: screenshots/28-generation-history-modal.png
     task_id: create-nodes
     step: '生成历史弹窗：标题「从生成历史选择」+ 搜索框（占位「搜索提示词或模型」）+ 空态「暂无可插入的生成结果」'

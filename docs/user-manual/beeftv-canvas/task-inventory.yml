@@ -252,14 +252,13 @@ tasks:
     frequency: common
     impact: high
     coverage: full
-    review_note: 导演台入口在本版标记「正在开发」（禁用），无法运行时取证；页面基于源码静态证据，合入后升级。
+    review_note: Batch 26 运行时走查通过（v1.6.13：入口解禁→模板→镜头节点→工作台→四模式→摄像机检查器）；检查器已重构为 FOV 直输（旧焦距/光圈表述按运行时修正）。
     evidence:
-      - type: static
-        note: ShotInspector 焦距 12-200mm/光圈 f/0.7-32/焦点 0.1-200m/时长 0.5-60s/fps 24|25|30/景别 6 档/运镜 10 种；H 键显隐（与画布 H 平移语义不同）。
+      - type: runtime
+        note: 入口菜单/模板弹窗/镜头节点/工作台四模式（摆场/姿态/动画/摄影机）/摄像机检查器（位置/跟随目标/注视坐标/FOV 54.4）逐项实证；截图 30-34。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 导演台入口本版标记「正在开发」；页面基于源码静态证据
+    status: verified
     manual_pages:
       - 10-tasks/director-basics.md
   - id: director-keyframes-record
@@ -268,13 +267,13 @@ tasks:
     frequency: common
     impact: high
     coverage: full
+    review_note: Batch 26 运行时走查：时间轴结构（镜头总轨/Camera Cut/主摄影机子轨）+「记录」实点生成 0.00s 关键帧；白膜导出/应用到镜头按钮在位（完整导出流程未走查，见 AUDIT 环境记录九）。
     evidence:
-      - type: static
-        note: 双 playhead 纪律；关键帧 200 层快照栈；白膜录制 timeslice 250ms、首错即停、时长探针 ≥max(0.25s,50%)。
+      - type: runtime
+        note: 动画模式时间轴 0.00s/5.00s·24fps、自动关键帧/吸附/记录、新增镜头、子轨道显示；截图 35。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 同上，导演台未开放运行时取证
+    status: verified
     manual_pages:
       - 10-tasks/director-keyframes-record.md
   - id: director-rig-bones
@@ -283,13 +282,13 @@ tasks:
     frequency: rare
     impact: medium
     coverage: concise
+    review_note: Batch 26 运行时走查：添加演员→姿态模式，角色绑定 49 根骨骼/骨骼控制/姿势预设 20 钮/动作片段/角色颜色 6 色/骨骼视图按钮，与源码断言吻合。
     evidence:
-      - type: static
-        note: rig 推断 ≥8 骨映射；映射失败退占位人偶；21 姿势 union、UI 20 钮。
+      - type: runtime
+        note: 姿态模式 rig 面板全量实证（49 骨骼、20 姿势钮、动作片段 combobox、可见/投射阴影开关）；截图 36。
     routes:
       - '/canvas'
-    status: excluded
-    exclusion_reason: 同上，导演台未开放运行时取证
+    status: verified
     manual_pages:
       - 10-tasks/director-rig-bones.md
   # —— 云 Agent 与技能 ——

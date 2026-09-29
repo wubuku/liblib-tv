@@ -35,6 +35,7 @@
 | 23 | 走查突破轮：项目卡操作菜单端到端（删除→回收站→恢复，合成点击手法）；模型下拉 #16 结案（未配渠道设计性跳转，清单渠道驱动）；composer 全结构实证；新截图 29（非空回收站）；「移至文件夹」转写修正 | ✅ 完成（AUDIT 环境记录七） |
 | 24 | v1.6.13 细节补遗：桌面端更新流程（定期检查/保存并安装/关闭再开）入 20-reference；低缩放裁剪/修剪标签可读性注记入 upload-materials | ✅ 完成 |
 | 25 | 上游增量：`69fbf9b`（Unreleased）深度组件下载支持系统代理（与桌面更新共用规则）——回写 local-runtime/troubleshooting；depth-action 分叉仍未合流 | ✅ 完成（AUDIT 环境记录八） |
+| 26 | **导演台解禁升级轮**：BeefTV 工作树 detached 5b1c060(v1.6.6)→69fbf9b(v1.6.13)（依赖零变化，后端重启）；导演台入口 v1.6.7+ 已解禁（源码 + 运行时双证）——完整走查 入口→模板→镜头节点→工作台四模式→摄像机检查器/动画时间轴(记录落帧)/姿态 rig(49 骨骼/20 姿势)；**三任务升 verified（18/7）**；新增截图 30-36；director-basics 检查器表按运行时重构改写 | ✅ 完成（AUDIT 环境记录九） |
 
 ### excluded 任务开放条件表（12 项，2026-09-29 快照）
 
@@ -42,7 +43,6 @@
 |---|---|---|
 | media-versions | 真实生成产生版本族（付费） | 生成 ≥2 版后回走版本切换/对比 |
 | timeline-editing / subtitle-highlights / timeline-export | 时间线编辑器入口开放（当前视频处理下拉仅三项且无剪辑台跳转实可达；面板未挂载） | 入口开放后回走八面板 |
-| director-basics / director-keyframes-record / director-rig-bones | 导演台入口解禁（当前「正在开发」） | 解禁后回走检查器/关键帧/白膜 |
 | cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
 | agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
 | local-runtime | 本机启动 framefield-local-runtime（v1.6.12 起 Windows 桌面端改为首次使用自动下载签名组件；本环境为 Web 自托管，仍需本机进程） | Web 模式：启动伴随进程后回走深度/线稿/姿态；桌面端：安装组件后回走 |
