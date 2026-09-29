@@ -421,6 +421,18 @@ screenshots:
     alt: '姿态模式：视口中演员白模带骨骼，右侧演员变换与姿势预设面板，时间轴出现演员 1 动作片段轨'
     sha256: d8d56b970dec1631b52aee528fb0bf0cb2f17f2f305ad1d4792b5bbcb9468df6
 
+  - file: screenshots/37-export-result.png
+    task_id: director-keyframes-record
+    step: '导出白膜完成后：镜头 1 节点封面自动更新为白膜渲染画面（演员白模立于 3D 地面），产物入素材空间'
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'img 镜头 1 导演台场景封面 / button 打开素材空间，共 1 项'
+    visible_text: '镜头 1'
+    alt: '画布上镜头 1 节点封面显示白膜渲染画面（白模演员与 3D 地面），与相邻视频节点并列'
+    sha256: 5296280b4ae52c5f25d7e440e6759dfd052c63d368332e97a00971216ba6dc5f
+
   - file: screenshots/28-generation-history-modal.png
     task_id: create-nodes
     step: '生成历史弹窗：标题「从生成历史选择」+ 搜索框（占位「搜索提示词或模型」）+ 空态「暂无可插入的生成结果」'
