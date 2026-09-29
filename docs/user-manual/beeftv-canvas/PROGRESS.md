@@ -37,6 +37,7 @@
 | 25 | 上游增量：`69fbf9b`（Unreleased）深度组件下载支持系统代理（与桌面更新共用规则）——回写 local-runtime/troubleshooting；depth-action 分叉仍未合流 | ✅ 完成（AUDIT 环境记录八） |
 | 27 | 上游增量：v1.6.14（`852961a`）任务详情实时刷新——generate-images 注记 + 版本口径 v1.6.14；工作树同步 | ✅ 完成（AUDIT 环境记录十） |
 | 28 | 白膜导出全流程补走查：导出→loading→素材空间 +1→镜头节点封面更新（截图 37）；director-keyframes-record 导出缺口关闭；新截图 29→37 张 | ✅ 完成（AUDIT 环境记录十一） |
+| 29 | 收尾轮：上游无变化；时间线入口源码调研——v1.6.14 已注册「进入剪辑」工具但视频节点分支不渲染、处理器把视频路由到内联修剪，多轨弹窗仅音频节点可达；timeline 三篇开放条件细化后维持 excluded | ✅ 完成（AUDIT 环境记录十二） |
 | 26 | **导演台解禁升级轮**：BeefTV 工作树 detached 5b1c060(v1.6.6)→69fbf9b(v1.6.13)（依赖零变化，后端重启）；导演台入口 v1.6.7+ 已解禁（源码 + 运行时双证）——完整走查 入口→模板→镜头节点→工作台四模式→摄像机检查器/动画时间轴(记录落帧)/姿态 rig(49 骨骼/20 姿势)；**三任务升 verified（18/7）**；新增截图 30-36；director-basics 检查器表按运行时重构改写 | ✅ 完成（AUDIT 环境记录九） |
 
 ### excluded 任务开放条件表（12 项，2026-09-29 快照）
@@ -44,7 +45,7 @@
 | 任务 | 开放条件 | 升级路径 |
 |---|---|---|
 | media-versions | 真实生成产生版本族（付费） | 生成 ≥2 版后回走版本切换/对比 |
-| timeline-editing / subtitle-highlights / timeline-export | 时间线编辑器入口开放（当前视频处理下拉仅三项且无剪辑台跳转实可达；面板未挂载） | 入口开放后回走八面板 |
+| timeline-editing / subtitle-highlights / timeline-export | 多轨时间线弹窗（二期组件已在 v1.6.14 挂载）目前仅能经**有内容的音频节点**「进入剪辑」打开；视频节点被路由到内联修剪且不渲染该按钮 | 备好音频测试媒体经音频节点进入后回走；或等视频节点分支接入 |
 | cloud-agent | BeefTV Agent 面板解禁 | 解禁后回走发起/审批/插话/取消 |
 | agent-memory-skills | 同上（记忆面板挂于 Agent 设置弹窗） | 解禁后回走批准/压缩/技能 @ |
 | local-runtime | 本机启动 framefield-local-runtime（v1.6.12 起 Windows 桌面端改为首次使用自动下载签名组件；本环境为 Web 自托管，仍需本机进程） | Web 模式：启动伴随进程后回走深度/线稿/姿态；桌面端：安装组件后回走 |
