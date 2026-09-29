@@ -219,14 +219,14 @@
 
 - **上游**：main 仍 852961a/v1.6.14；depth-action 分叉未合流。
 - **画布外观面板走查**（深化 30-concepts，此前仅有浅色模式条目）：面板含**主题模式**（浅色/深色[默认]/自定义）、**空间网格**（点[默认]/线/空白）、**网格吸附 16px** 开关、**显示连线** 开关——与视图控制条的开关联动。截图 44 入册（30-concepts.md 增「画布外观」节并嵌图）。
-- 账本：25 任务 / 33 md（30-concepts 增节不改页数）/ 44 images / 20 verified / 5 excluded。
+- 账本：25 任务 / 32 md（30-concepts 增节不改页数）/ 44 images / 20 verified / 5 excluded。
 
 ## 环境记录二十三（Batch 41，2026-09-30，画布菜单与浅色重摄轮）
 
 - **上游**：main 仍 852961a/v1.6.14；depth-action 分叉未合流。
 - **画布菜单实测**（首次走查）：左上画布菜单四项——回到主页(/)、全部项目(/canvas)、创建新项目(/canvas?mode=new)、删除项目；已补入 navigate-canvas.md。
 - **17 号浅色重摄（v1.6.14）**：经画布外观面板切浅色实拍（白底点网格 + 面板浅色选中），sha256 更新；走查后已切回深色还原。
-- 账本：25 任务 / 33 md / 44 images / 20 verified / 5 excluded。
+- 账本：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
 ## 环境记录二十四（Batch 42，2026-09-30，Agent 产品分支追踪轮）
 
@@ -240,7 +240,7 @@
 - **端点表运行时全量核对**（用运行中 v1.6.14 后端的 GIN 路由转储，145 条）：① 修正 20-reference 一处过时行——`/api/canvas-projects/:id/import/libtv|tapnow` 已在 v1.6.x 下线（源码与路由双证）；② 新增 v1.6.14 端点六组（任务日志/重试/文本流、时间线渲染与转写、深度捕捉产物、creation-runs Agent 后端契约——含付费提议审批，前端入口未挂载 API 先行）。
 - **对 subtitle-highlights 的意义**：`/api/timeline/transcriptions` 服务端转写入口在位——字幕数据的服务端通路存在，缺的仍是视频节点侧 UI 接线（exclusion 口径不变）。
 - **生成新片段补走再次未遂**（同一表面劣化模式），不重复记账。
-- 账本口径不变：25 任务 / 33 md / 44 images / 20 verified / 5 excluded。
+- 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
 ## 环境记录二十六（Batch 44，2026-09-30，导演台快捷键源码复核轮）
 
@@ -259,7 +259,7 @@
 - **上游**：main 仍 852961a/v1.6.14；三支分叉/分支无新变化。
 - **版本口径巡检**：发现 README「适用版本」滞后于 FINAL-REPORT（v1.6.13 vs v1.6.14——Batch 27 升版时漏改 README），已对齐并补 v1.6.14 增量描述（任务详情实时刷新、深度组件系统代理支持）。
 - 生成新片段补走本轮未再尝试（表面劣化模式持续，环境记录二十在案）。
-- 账本口径不变：25 任务 / 33 md / 44 images / 20 verified / 5 excluded。
+- 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
 ## 环境记录三十（Batch 51，2026-09-30，实例版本对齐轮）
 
@@ -267,7 +267,7 @@
 - **发现并修复陈旧实例徽标**：vite 进程自 v1.6.6 时代启动，源码热更为 v1.6.14 但版本常量（VERSION/启动期读取）不热更——侧栏徽标长期显示 v1.6.6。重启 vite（同参数 :3001 strictPort）后徽标实证 **v1.6.14**。
 - **01 首页 v1.6.14 重摄**入册（sha256 更新，step/alt 同步）；FINAL-REPORT「截图摄于」行更新为 v1.5.7–v1.6.14。
 - **运维教训（可复用）**：vite dev 长命进程的版本徽标/常量不随 checkout 热更——升级工作树后必须重启 dev server 才能获得版本一致的运行实例（与 Batch 25 后端重启同纪律）。
-- 账本：25 任务 / 33 md / 44 images / 20 verified / 5 excluded。
+- 账本：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
 ## 环境记录三十二（Batch 56，2026-09-30，快捷键中心重摄轮）
 
@@ -279,7 +279,7 @@
 
 - **上游**：main 仍 852961a/v1.6.14；三支分叉/分支无新变化。
 - **搜索索引命中验证（零浏览器，构建产物级）**：dist 的 `@localSearchIndexroot` chunk 逐词检查——「导演台」「生成新片段」「字幕」全部命中（新内容可搜），「跨产品导入」正确缺席（Batch 43 移除的已下线端点行不再可搜）。**Batch 45 遗留的搜索命中验证就此闭环**（当时因浏览器面板被占用中断）。
-- 账本口径不变：25 任务 / 33 md / 44 images / 20 verified / 5 excluded。
+- 账本口径不变：25 任务 / 32 md / 44 images / 20 verified / 5 excluded。
 
 ## 发现与修复
 
