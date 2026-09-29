@@ -18,6 +18,7 @@
 | 上游的上游 | 基于 `basketikun/infinite-canvas` 二次开发（其 README「开源许可与来源」；上游约 7k star、官网 canvas.best，本项目**未调研过**该上游） |
 
 技术栈（`web/package.json`）：Vite + React 19.2.5 + TypeScript + AntD 6 + Tailwind 4 + Zustand 5 + Tauri 2（`@tauri-apps/api` 2.11）+ localforage + fflate + nanoid + i18next。**没有任何画布库**（无 reactflow/@xyflow/konva/fabric/pixi/d3-zoom）——画布内核完全手写。
+**框架定性（2026-09-28 复核，回应「是否 Vue 3」之问）**：纯 **React 19** 技术栈，**非 Vue**——web/package.json 依赖零 Vue 包（无 vue/vue-router/pinia），全仓零 `.vue` 文件；上游 basketikun/infinite-canvas 同为 React 19（详见 UPSTREAM_DIFF_AUDIT.md）。
 
 目录地图：
 
