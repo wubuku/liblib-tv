@@ -138,7 +138,8 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
                       aria-label={`${label} ${["X", "Y", "Z"][axis]}`}
                       value={Number(axisValue ?? 0)}
                       onChange={(event) => {
-                        if (!selectedObjectId) return;
+                        const objectId = selectedObjectId;
+                        if (!objectId) return;
                         const next = [
                           ...(Array.isArray(fieldValue)
                             ? fieldValue
@@ -146,7 +147,7 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
                         ];
                         next[axis] = Number(event.target.value);
                         updateObjectTransform(
-                          selectedObjectId,
+                          objectId,
                           field,
                           axis as 0 | 1 | 2,
                           next[axis],

@@ -12,8 +12,7 @@
         "coach:token:1/5",
         "coach:buttons",
         "skip:dismisses",
-        "reload:coach-visible",
-        "next:dismisses",
+        "reload:coach-stays-dismissed",
         "diagnostics:zero"
       ],
       "diagnostics": {
