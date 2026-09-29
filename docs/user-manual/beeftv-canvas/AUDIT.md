@@ -127,6 +127,13 @@
 - **三任务升级 verified（18 verified / 7 excluded）**：director-basics / director-keyframes-record / director-rig-bones；页面向运行时口径改写（旧 ShotInspector 焦距/光圈表已被 FOV+注视+跟随结构取代，按实测重写）。
 - 已知残留：白膜「导出白膜」完整录制流程未走查（按钮在位）；「应用到镜头」未点（防覆盖画布状态）；工作台引导卡未跳完（不影响面板走查）。
 
+## 环境记录十（Batch 27，2026-09-30）
+
+- **上游**：v1.6.14 发布（`852961a` PR #48「画布任务详情保持实时」，新分支 `codex/live-task-details-20260929` 为其源）；depth-action 分叉仍 5 提交未合流。
+- **回写**：generate-images.md 任务状态节新增 v1.6.14 注记（详情进度/日志/起止时间运行中持续同步、完成后停轮询、关闭/切换取消挂起读取、刷新失败显重试提示）；FINAL-REPORT 版本口径两处更新至 v1.6.14。
+- **工作树**：BeefTV 检出 detached 69fbf9b→852961a（v1.6.14）。
+- 白膜导出完整流程补走查留待下一 batch。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
