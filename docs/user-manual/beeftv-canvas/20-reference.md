@@ -32,7 +32,7 @@
 
 | 按键 | 动作 |
 |---|---|
-| W/E/R 等变换键 | 移动 / 旋转 / 缩放模式（transform-mode） |
+| V / R / F | 移动（translate）/ 旋转（rotate）/ 缩放（scale）模式（v1.6.x 起为主键位，兼容旧 W/E） |
 | Delete | 删除选中 |
 | Ctrl/Cmd+Z / Shift+Z | 撤销 / 重做 |
 | H | 显隐切换（注意：与画布 H=抓手语义不同） |
