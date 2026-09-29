@@ -1,0 +1,21 @@
+{
+  "batch": 579,
+  "title": "Keyframe diamond click seeks the playhead",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §12/§16 + screenshot 63-director-diamond-seek.png (batch 578)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "diamond:visible",
+        "pre:playhead-off-keyframe",
+        "click:seek-to-keyframe",
+        "click:keyframe-selected",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

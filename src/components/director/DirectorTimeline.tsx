@@ -1080,9 +1080,12 @@ export function DirectorTimeline() {
                       aria-label={`${track.label} ${formatTimelineTime(keyframe.time)} 关键帧`}
                       title={`${formatTimelineTime(keyframe.time)} 关键帧`}
                       onPointerDown={(event) => event.stopPropagation()}
-                      onClick={() =>
-                        selectTimelineKeyframe(track.id, keyframe.id)
-                      }
+                      onClick={() => {
+                        // Batch 579: 源站实测（截图 63）——点击关键帧菱形
+                        // 同时选中并把播头 seek 到关键帧时间。
+                        selectTimelineKeyframe(track.id, keyframe.id);
+                        setTimelineTime(keyframe.time);
+                      }}
                       className={cn(
                         "absolute top-1/2 z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border bg-[#7b858d]",
                         selected
