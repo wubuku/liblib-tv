@@ -1354,6 +1354,7 @@ batch 498（本批）。历史行内 82nd–84th 等零星序数空缺为早期�
 `~/.venvs/liblib-harness/bin/python scripts/probe-source-recovery.py`
 | 2026-09-29 | batch 2466 续巡检 | still-broken | 第九百零六次重测；巡检批次——菱形拖拽采样 INCONCLUSIVE（NOTES §16 续）；并行 beeftv/jimeng WIP 保留不动 |
 （仓库内归档脚本；输出 `RECOVERY: menu-opens` 即恢复，仍为
+| 2026-09-29 | batch 2473 巡检 | still-broken | 第九百零七次重测；巡检批次——并行 beeftv/jimeng/tdcanvas-manual WIP 保留不动；菱形拖拽采样 INCONCLUSIVE 留痕（41bf2140） |
 `still-broken` 则继续等待），恢复后按 §8 checklist 补采。
 
 ### 10.3a 用户提供的真实测试资产（2026-09-24 登记，本地未入库）
