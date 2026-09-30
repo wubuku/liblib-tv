@@ -84,18 +84,6 @@ screenshots:
     alt: 点击小地图右上方后主画布视野跳转到 Cropped Image 节点区域
     sha256: dc0b1dc1358c9b31be577514d803fbf04bbf6f030d317ac1b05a8d2946048c0e
 
-  - file: screenshots/02-navigate-canvas-zoom-in-wheel.png
-    task_id: project-management
-    step: （并行会话遗留，实为首页全景：项目卡 TDCanvas 1 与 1 个节点 · 0 条连线）
-    route: '/canvas'
-    viewport: 1280x720
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    verified_locator: '项目卡 TDCanvas 1 / 1 个节点 · 0 条连线'
-    visible_text: 'TDCanvas 1'
-    alt: TDCanvas 首页全景，最近画布区显示 TDCanvas 1 项目卡（并行会话错置文件名的遗留，保留原文件）
-    sha256: 94ddc74e9f5d52dd8f38ae6766b2d96dc35f8c8f92bd9108c9825d32345ed03f
-
   - file: screenshots/03-create-nodes-all-types.png
     task_id: create-nodes
     step: 依次创建 组/文本/音频/视频 四类节点后重置视图的全览（54%）
