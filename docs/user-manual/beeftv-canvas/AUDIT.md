@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| organize-canvas 教用户从添加节点菜单创建「背板」，但菜单无此项（唯一注册 Frame 的是置灰的「逐帧拉片」，其 handler 也不创建 Frame） | **Major（已修）** | ✅ **Batch 98 已闭合**：改写为「只能建文件夹」，讲清 Frame+folder 元数据的实现关系与「6 款样式」归属；`create-nodes.md` 补 6 项显示条件 |
 | 快捷键表写「24 条·5 分类」，源码实为 4 分类；另漏 5 个键位/操作，导演台重做组合写错 | **Major（已修）** | ✅ **Batch 97 已闭合**：以 `canvas-shortcuts.ts` / `director-shortcuts.ts` 为准逐条校准，并注明 ⌘D 来自右键菜单不计入 24 条 |
 | 手册把 6 条 `/agent/*` 端点当现存接口教读者排查，上游实际未注册（`agent_retired_test.go` 固化「旧 Agent 已退场」） | **Major（已修）** | ✅ **Batch 96 已闭合**：移入「已下线端点（不要按这些路径排查）」小节，改正 cloud-agent 页与 `task-inventory.yml`/`PROGRESS.md` 中「后端 /agent/runs 等已在位」的错误判断；新增双向校验 `scripts/verify-endpoints.py`（反向验证退出码 1 有效） |
 | 闸门逻辑内嵌为 `build-site.sh` 的 heredoc，在 macOS 自带 bash 下报 `unexpected EOF while looking for matching '` | Minor（工程） | ✅ Batch 94 抽出 `scripts/verify-screenshots.py`，与既有 `scripts/verify-docs.py` 同构 |
@@ -563,4 +564,34 @@
 - **顺带补了一条用户价值较高的说明**：导演台的**快捷键保护边界**（`resolveDirectorShortcut` 开头 `if (event.isInteractiveTarget) return null`）——焦点落在输入框/按钮/链接/下拉或任何 role 型控件（textbox/button/switch/tab/menuitem…）上时按键不解析为导演台快捷键。所以「在重命名输入框里按空格没暂停」是正确行为。另注：`Alt` 组合一律不抢，`Ctrl/Cmd+R` 不会被当成「旋转」（带修饰键的组合优先于单字母）。
 - **方法论**：键位表与端点表是同一类资产——**都是「会被上游改掉的精确清单」**。Batch 96 证明端点会下线，本批证明键位会增删。两者都靠「抽源码全表 → 逐条比对」发现，人读是读不出来的。
 - **未加机械闸的理由**（记录以免后人重复评估）：端点能从注册语句机械抽取，键位表是中文 Markdown，解析脆且易被正常改写误伤；改为在 AUDIT 留核对方法与口径，页面内写明「已逐条核对 + 24 条 4 分类」的自证锚点。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十四（Batch 98，2026-10-01，添加节点菜单与 Frame/文件夹核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：抽 `web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx` 的完整菜单注册表（17 项，含 `applicable` 显示条件与 `disabledReason`），与 `create-nodes.md` 的菜单表逐项比对；再顺着 `Frame` 的创建路径一路追到实现。
+- **查出 1 处 Major（教用户找不存在的菜单项）+ 6 项显示条件缺失**：
+
+| 问题 | 严重性 | 处理 |
+|---|---|---|
+| `organize-canvas.md` 写「从添加节点菜单创建**背板**（Frame，6 款样式）或**文件夹**」——菜单里**根本没有「背板」这一项** | **Major（已修）** | 改写为「现在只能建文件夹、建不了背板」，并说明为什么 |
+| 6 项菜单的 `applicable` 显示条件手册完全没写 | Important（已修） | 在 `create-nodes.md` 加「为什么我找不到某个菜单项」表 |
+
+- **「背板」为什么建不出来（三层证据，逐层确认，不能只看一层就下结论）**：
+  1. **菜单层**：`developingNodeTypes = { MediaConversion, Frame, Script }`。菜单里唯一注册 `CanvasNodeType.Frame` 的项 label 是「**逐帧拉片**」，`disabledReason` 取自该集合 → **置灰点不动**。
+  2. **菜单里那一项就算能点也不建背板**：`onAddFrame` 实际绑定的是 `openFrameAnalysisOrCreate`（`project.tsx:2770`）——选中视频节点则打开拉片弹窗，否则提示「**请先选中一个视频节点，再打开逐帧拉片**」。**任何分支都不创建 Frame 节点**。
+  3. **真正能建的是「文件夹」**：菜单另有独立项 `id: "folder"`, label「文件夹」, badge「6 款」, 走 `createFolder` → 建 `CanvasNodeType.Frame` 节点**并写入 `folder` 元数据**（style/theme/assetFolderId/projectId）、`collapsed: true`、标题「我的文件」。
+- **「背板」与「文件夹」的真实关系**：`isCanvasFolderNode(node) = isFrameNode(node) && Boolean(node.metadata?.folder)`。即**文件夹是 Frame 的一种带元数据的表现形式**；只有「是 Frame 但没有 folder 元数据」那个分支才叫背板。源码里背板文案确实存在（`canvas-frame-node.tsx` 的 `aria-label="折叠背板/展开背板"`、「空背板」、右键菜单的「复制背板及内容」等），但它们共用同一套渲染，**用户当前无法创建出那个分支**。
+- **「6 款样式」的归属也修正了**：手册把它挂在背板上，实际它是**文件夹**的 `CanvasFolderStyle`（glass / stacked / midnight / paper / cinema / compact），也是「文件夹」菜单项的 badge。
+- **补写的 6 项显示条件**（全部取自源码 `applicable` 谓词）：
+
+| 菜单项 | 条件 |
+|---|---|
+| 项目画风 | 仅 `!isProjectLinked` 时出现 |
+| 音频 / 导演台 / 逐帧拉片 / 工作流 | 仅 `workspaceMode !== "simple"` 时出现 |
+| 添加角色卡 | 仅 `isProjectLinked` 时出现 |
+| 素材库 | 仅 `!isProjectLinked` 时出现 |
+
+  手册原先只写了「音频（simple 模式不显示）」一条，其余 5 项读者只能靠自己撞。
+- **方法论**：这是 Batch 90（local-runtime 教用户建被禁用的「智能剪辑」节点）之后的**第二例同类缺陷**。两次的共同形状是：**「组件/菜单项存在」被当成了「用户能走到它」**。判据要连着三层走——① 菜单是否注册；② 是否被 `developingNodeTypes` 之类的开关禁用；③ **即使不禁用，handler 真的会创建这个东西吗**。本例前两层都指向「不能」，但若只查到第一层就下结论，会误判成「只是暂时禁用」而保留错误说法。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
