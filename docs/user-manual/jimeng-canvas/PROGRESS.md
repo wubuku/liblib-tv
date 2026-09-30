@@ -7,21 +7,29 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-23。
+- 最后整理日期：2026-10-01。
 - 当前目标：为已登录的即梦（jimeng.jianying.com）AI 画布创作者编写中文、任务导向、
   可回走验证的最终用户手册；方法与本仓库
   `docs/user-manual/frameos-canvas/` 完全一致。
 - 当前专项目录：`docs/user-manual/jimeng-canvas/`（本目录）。
-- 当前源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/<project-id>`（具体画布
-  project-id 由用户提供的登录会话决定，首次取证时回填）。
-- 当前状态：**手册已完成（2026-09-23）**。14 个任务全部 `verified`；正文 19 页
+- 当前源站：`https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f`（测试项目「测试项目」）。
+- 当前状态：**主体手册已成稿并通过质量门**（2026-09-23 取证/成稿/回走，2026-09-24 站点构建）。
+  14 个任务全部 `verified`；正文 19 页
   （00-quickstart、10-tasks/×14、20-reference、30-concepts、90-troubleshooting）、
-  22 张登记截图；Gate A 与 final 审计通过；Gate B 关键流程当日回走通过；
+  22 张登记截图；Gate A、Gate B、final 审计通过；
   画布基线（2 节点 0 连线）已恢复并「已保存」。
+- **2026-10-01 增量（两处，均为对既有台账记载的纠正）**：
+  1. 修复真实质量门失败：`README.md` 与 `TEST_MEDIA_ASSETS.md` 存在越界链接
+     `../../CANVAS_TEST_MEDIA.md`，`audit_manual.py` 判定 `link escapes manual root`，
+     实际导致 gate-a 与 final **均为 exit=1**。此前本文件与 `README.md` 记载的
+     「final OK / 审计通过」**当时并不成立**（属未复跑的乐观记载），现已改为纯文本
+     引用并复跑，两道门现均 exit=0。
+  2. 补齐 `use-node-toolbar` 覆盖缺口：图片节点工具条（与视频工具条不同套）、
+     视频修剪内联修剪条、截取帧（首帧/尾帧直出图片节点 vs 自定义帧选择条）。
+     三处均为既有台账已有证据但正文缺失的内容，非新增断言。
 - 优先级原则（用户授权）：FrameOS 等价功能 或 视频/参考图生成常识关键功能 =
   重要、优先。据此旗舰层 5 项：create-first-node、navigate-canvas、connect-nodes
   （补录的等价任务）、use-node-toolbar、prepare-generation。
-- 尚未发生：正式浏览器探索、正式截图、手册正文、Gate A、Gate B。
 - 2026-09-23 补充：已完成复刻材料评估（见第 5 节与
   [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md) §1.1），发现源站 09-21→09-23
   存在活跃改版（视频工具条「补帧/提示词反推」撤为「工具」入口）。探索顺序上把
@@ -97,11 +105,12 @@
 |---|---|---|---|
 | 快速扫描 | 已完成 | `task-inventory.yml` + 本文件第 5 节 | 无 |
 | 候选任务确认门 | 已完成（用户授权定级） | 14 个任务、`user_confirmed: true`、优先级原则入档 | 无 |
-| 浏览器会话准备 | **进行中** | 有头浏览器已打开即梦登录页 | 等用户登录并示意开始 |
-| 逐任务探索取证 | 未开始 | `SOURCE_OBSERVATIONS.md` 仅有骨架与候选线索索引 | 登录后按第 8 节 C 顺序取证 |
-| 截图 manifest | 未开始 | `screenshots/manifest.yml` 为空表 | 探索时同步登记 |
-| 正式手册正文 | 未开始 | `10-tasks/` 为空 | 取证后编写 |
-| Gate A / Gate B / final | 未开始 | `AUDIT.md` 空结果表 | 正文完成后依序执行 |
+| 浏览器会话准备 | 已完成 | 登录会话（CDP attach 隔离 Chrome :9333） | 无 |
+| 逐任务探索取证 | 已完成 | `SOURCE_OBSERVATIONS.md` §2.1–2.17（当日基线 + 16 组任务取证） | 改版时按第 8 节 C 重走受影响任务 |
+| 截图 manifest | 已完成 | `screenshots/manifest.yml` 22 条记录（含真实 SHA-256） | 重拍时同步更新哈希 |
+| 正式手册正文 | 已完成 | 19 页正文（00/10-tasks×14/20/30/90） | 无 |
+| Gate A / Gate B / final | 已完成 | `AUDIT.md` 结果表；2026-10-01 复跑两道门均 exit=0 | 增量修改后必须复跑 |
+| 手册网站构建 | 已完成 | VitePress 站点（`build-site.sh` 六步全绿） | 改内容后重新构建 |
 
 ## 5. 已有证据线索（候选，不是手册证据）
 
@@ -127,10 +136,11 @@
 
 ## 6. 截图状态
 
-尚无正式截图。首次取证时从 01 开始编号，沿用 FrameOS 的管线：实时 DOM 高亮
-overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 落盘 → 登记 manifest
-（真实 SHA-256）→ 清除 overlay。截图涉及用户作品名/租户名时必须遮蔽
-（参考 FrameOS 截图 17 的 PIL 高斯模糊做法）。
+已完成 22 张正式截图（`01-`–`22-`），全部登记在 `screenshots/manifest.yml` 并附真实
+SHA-256，Gate A/final 校验哈希一致。管线沿用 FrameOS：实时 DOM 高亮 overlay →
+截图裁剪（隐藏账户/积分区域）→ 落盘 → 登记 manifest（真实 SHA-256）→ 清除 overlay。
+截图涉及用户作品名/租户名时必须遮蔽（参考 FrameOS 截图 17 的 PIL 高斯模糊做法）。
+重拍或新增截图后必须同步更新 manifest 哈希，否则 final 审计报 `sha256 mismatch`。
 
 ## 7. 已知风险与注意事项
 
@@ -153,12 +163,14 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 或视频生成/参考图生成常识中的关键功能 = 重要、优先。已据此定稿 14 个任务并补录
 `connect-nodes`（FrameOS 等价任务，源站连线交互从未被系统取证）。
 
-### B. 浏览器会话（进行中）
+### B. 浏览器会话（已完成，2026-09-23）
 
-已用有头浏览器打开 `https://jimeng.jianying.com/`，等待用户登录。用户示意继续后：
-回填第 1 节的 project-id 与画布上下文，更新 `AUDIT.md` 审计基线，然后进入 C。
+已用 CDP attach 用户隔离 Chrome（:9333）打开并登录
+`https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f`，
+project-id 与画布上下文已回填至第 1 节。**改动正文不需要登录**；只有重走源站
+（Gate B 复验或改版重测）才需要重新建立登录会话。
 
-### C. 逐任务探索取证（定稿顺序）
+### C. 逐任务探索取证（已完成，2026-09-23；下述为改版重走时的顺序）
 
 1. **当日基线盘点**（新增，因 09-21→09-23 已确认改版）：对画布做一次 DOM 巡检，
    重建「A 视频工具条 / B 节点右键菜单 / C 音频生成面板 / D 上传节点」当日快照，
@@ -181,6 +193,24 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 每个任务产出：入口/原子动作/成功判据/取消路径 + DOM/网络证据 + 步骤截图；全部
 写入 `SOURCE_OBSERVATIONS.md` 并同步 manifest。遇到扣费边界立即停止并记录按钮状态。
 
+### C2. 已知未取证面（下一位 Agent 的候选工作，2026-10-01 记录）
+
+以下界面元素在当日取证中**只确认了它们出现在左栏/菜单中**，其内部行为未取证，
+因此正文只做提及、未写成 how-to。补写它们需要重新登录源站：
+
+| 元素 | 已知事实 | 缺什么 |
+|---|---|---|
+| **时间线**节点 | 左栏第 5 项；快捷键面板有独立分区（分割片段 ⌘B / 向左裁剪 Q / 向右裁剪 W / 缩放时间线 ⌘+滚轮）；可从视频节点连接（可能显示「素材信息仍在加载中，请稍后重试。」） | 时间线节点内部 UI 与片段编辑流程全未取证 |
+| **主体**节点 | 左栏第 6 项；连接时常显示「没有可用的就绪资源」；资产库有「主体」页签；提示词支持 @主体 | 主体库的创建/管理流程全未取证 |
+| **导演台**（Beta） | 左栏第 7 项带 Beta 徽标；从视频/图片节点连接时标注「无法连接这些节点」 | 导演台面板内容全未取证 |
+| 上传完成态 | 「上传」入口存在；旧研究有 filechooser multiple 记录 | 本轮为避免原生对话框阻塞会话未实际执行上传 |
+| 画布标题重命名 | 顶栏标题为行内重命名按钮（DOM 存在） | 改名提交动作未执行 |
+| 宫格/智能布局 | 菜单两项逐字已确认 | 执行后的重排结果未触发（会改变画布布局） |
+| ⌘V 粘贴 / ⌘A 全选 / Shift+点选 | 真实 CDP 键盘事件下均未生效 | 环境限制或产品行为未定；正文已给替代路径 |
+
+这些是**范围/环境决策**而非产品缺陷：均不影响已交付任务的正确性，正文也已逐项
+标注。补写时沿用本节 C 的取证规范，并严守第 7 节的扣费边界。
+
 ### D. 编写正文
 
 文件清单与 FrameOS 相同结构：`00-quickstart.md`、`10-tasks/*.md`（每个纳入任务
@@ -200,26 +230,55 @@ overlay → 截图裁剪（隐藏账户/积分区域时先确认隐私面）→ 
 ## 9. 当前 Git 工作区快照
 
 - 分支：`master`，跟踪 `origin/master`。
-- 本目录为本轮新建：`README.md`、`PROGRESS.md`、`SOURCE_OBSERVATIONS.md`、
-  `task-inventory.yml`、`TEST_MEDIA_ASSETS.md`、`AUDIT.md`、
-  `screenshots/manifest.yml`（空表）。`10-tasks/` 暂为空目录（Git 不跟踪空目录）。
-- 工作区中与本手册无关的既有修改
-  （`docs/design-references/jimeng/jimeng-clone-batch{1,40,50}-*.png`、
-  `docs/research/LIBTV_SOURCE_FRESHNESS_REINSPECTION.md`）保持原样，不并入本手册提交。
+- 本目录已全部入库：`README.md`、`PROGRESS.md`、`SOURCE_OBSERVATIONS.md`、
+  `task-inventory.yml`、`TEST_MEDIA_ASSETS.md`、`AUDIT.md`、`PUBLISH.md`、
+  `build-site.sh`、`.vitepress/`、`10-tasks/`×14 页、`screenshots/`×22 图 +
+  `manifest.yml`。构建产物 `dist/`、`cache/`、`node_modules/` 由本目录
+  `.gitignore` 排除，不入库。
+- 工作区中与本手册无关的既有修改保持原样，不并入本手册提交；不使用
+  `stash` / `reset --hard` / `checkout --` / `clean`。
 
 ## 10. 停止点
 
-当前可安全暂停：账本已建立，未做任何浏览器操作，未产生任何扣费风险。下一次
-继续的唯一推荐入口是本文件第 8 节 A（确认门）；确认门未通过前，不得开始正式
-浏览器探索、截图或成稿。
+当前可安全暂停：手册已成稿并通过两道质量门，画布基线已恢复，无扣费风险残留。
+下一次继续有三个入口，按优先级：
 
-## 11. 完成记录（2026-09-23）
+1. **源站改版** → 按第 8 节 C 重走受影响任务（`task-inventory.yml` 中带
+   `source-drift-alert` 的三个任务优先），重拍截图并更新 manifest 哈希；
+2. **补写未覆盖面** → 按第 8 节 C2 表格逐项取证成稿；
+3. **纯文档增量** → 直接改正文，**无需登录**，但改完必须复跑两道门：
+   ```bash
+   python3 ../../.agents/skills/web-studio-user-manual/scripts/audit_manual.py \
+     docs/user-manual/jimeng-canvas --phase gate-a
+   python3 ../../.agents/skills/web-studio-user-manual/scripts/audit_manual.py \
+     docs/user-manual/jimeng-canvas --phase final
+   ```
+   并在第 11 节追加一行增量记录。**不要在未复跑的情况下声称门通过**——
+   2026-10-01 正是发现此前「final OK」的记载并不成立（实际 exit=1）。
+
+## 11. 完成记录
+
+### 2026-09-23（初版）
 
 - 14 个任务状态：`verified`（见 `AUDIT.md` 结果表与限制披露）。
-- 质量门：Gate A OK、final OK（14 tasks / 23 Markdown / 22 images）、
+- Gate A OK、final OK（14 tasks / 23 Markdown / 22 images）、
   Gate B 关键流程回走通过（创建/导航/连线/生成面板/删除撤销）。
 - 未覆盖项与环境限制在 `AUDIT.md`「未覆盖与已接受限制」全量披露；
   正文各页以「已验证说明」小节逐页划分 实测/声明/待验证。
+
+> **勘误（2026-10-01）**：上条「final OK」在初版记录时**并未经复跑验证**，事后实测
+> `audit_manual.py --phase final` 返回 exit=1（`README.md`/`TEST_MEDIA_ASSETS.md` 越界
+> 链接）。已修复并复跑通过。教训：**质量门结论必须来自当次命令输出，不能沿用旧结论**。
+
+### 2026-10-01（增量一：质量门修复 + 覆盖缺口补齐）
+
+- 修复越界链接，gate-a 与 final 复跑均 exit=0（14 tasks / 24 Markdown / 22 images）。
+- `use-node-toolbar.md` 补齐：图片节点工具条、视频修剪内联修剪条、截取帧两种路径；
+  证据改按「当日实测 / 复刻研究 SOURCE_FACT / 扣费边界未验证」三层标注。
+- `20-reference.md`：节点类型表拆分图片/视频空态与带内容态，新增「不耗积分的本地
+  加工操作」表；`90-troubleshooting.md`：新增 4 条工具条/加工类症状。
+- 新增本文件第 8 节 C2「已知未取证面」表，把此前散落在各页「待验证」的缺口汇总
+  为下一位 Agent 的可执行清单。
 - 后续增量维护入口：源站改版时按第 8 节 C 重走受影响任务，重拍截图并更新
   manifest 哈希；改版监测可复用 docs/design-references/jimeng/ 的进化巡逻扫描。
 

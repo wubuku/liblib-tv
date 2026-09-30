@@ -14,8 +14,13 @@
   证据才写入正文；`docs/research/jimeng-canvas/` 的复刻研究只作为候选线索。
 - 安全边界：不执行任何真实生成或按积分计费的操作；生成类任务只记录到
   「点击执行前一步」。
-- 进度：**2026-09-24 手册已完成**——14 个任务全部 `verified`（Gate A/Gate B/
-  final 审计通过），19 页正文 + 22 张登记截图，并已构建 VitePress 静态站点。
+- 进度：**手册已成稿并通过质量门**——14 个任务全部 `verified`，19 页正文 +
+  22 张登记截图，并已构建 VitePress 静态站点。
+  - 2026-10-01 增量：修复越界链接导致的两道质量门失败（详见仓库内
+    `AUDIT.md` 的「机械审计复跑记录」），并补齐 `use-node-toolbar`
+    的图片节点工具条、视频修剪、截取帧三处覆盖缺口。gate-a / final 当日复跑均 exit=0。
+  - 已知未取证面（时间线/主体/导演台节点等）汇总在仓库内 `PROGRESS.md` §8 C2，
+    属范围决策而非缺陷。
 
 ## 手册正文
 
@@ -37,18 +42,21 @@ python3 -m http.server 4173 -d .vitepress/dist
 ```
 
 - 产物：`.vitepress/dist/`（纯静态，整体拷贝到任意 Web 服务器即可发布）；
-- 构建、子路径部署、发布前截图脱敏审查与运维 FAQ 见 [PUBLISH.md](PUBLISH.md)；
+- 构建、子路径部署、发布前截图脱敏审查与运维 FAQ 见仓库内 `PUBLISH.md`
+  （内部文档，不进入网站构建）；
 - 重新构建后如用 `--preview`，必须重启预览进程（sirv 启动时缓存文件清单）。
 
 ## 工作账本（Agent 接力入口）
 
-- [`task-inventory.yml`](task-inventory.yml)：14 个任务的范围、频率、影响与
-  `verified` 状态。
-- [`PROGRESS.md`](PROGRESS.md)：探索、编写、验证与站点构建的完整进度记录。
-- [`AUDIT.md`](AUDIT.md)：真实浏览器回走审计结果与已接受限制。
-- [`SOURCE_OBSERVATIONS.md`](SOURCE_OBSERVATIONS.md)：源站观察台账（当日基线、
-  逐任务 DOM/交互事实、源站演进纠错）。
-- [`screenshots/manifest.yml`](screenshots/manifest.yml)：22 张正式截图的登记
-  与哈希。
-- [`TEST_MEDIA_ASSETS.md`](TEST_MEDIA_ASSETS.md)：授权测试媒体使用记录
+以下都是**仓库内的内部工作文档**，按 `.vitepress/config.mjs` 的 `srcExclude`
+不进入网站构建，因此这里用文件名而非站内链接引用（在 GitHub/编辑器中直接打开
+本目录即可）：
+
+- `task-inventory.yml`：14 个任务的范围、频率、影响与 `verified` 状态。
+- `PROGRESS.md`：探索、编写、验证与站点构建的完整进度记录。
+- `AUDIT.md`：真实浏览器回走审计结果、机械审计复跑记录与已接受限制。
+- `SOURCE_OBSERVATIONS.md`：源站观察台账（当日基线、逐任务 DOM/交互事实、
+  源站演进纠错）。
+- `screenshots/manifest.yml`：22 张正式截图的登记与哈希。
+- `TEST_MEDIA_ASSETS.md`：授权测试媒体使用记录
   （权威清单见仓库级 `docs/CANVAS_TEST_MEDIA.md`，位于本手册目录之外）。
