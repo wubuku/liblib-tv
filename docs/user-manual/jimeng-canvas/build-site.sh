@@ -107,6 +107,21 @@ if [ "$SVG_COUNT" -gt 0 ]; then
   else
     warn "有 $SVG_MISSING 个示意图未进入产物，请核对其 md 引用路径"
   fi
+
+  # manifest 的 alt 必须与正文引用处的 alt 逐字一致：上面的示意图校验正是以 alt
+  # 为锚点，两者不一致会把「已正确引用」误判为「丢失」。此处提前对齐。
+  ALT_MISMATCH=0
+  while IFS= read -r a; do
+    [ -z "$a" ] && continue
+    if ! grep -rqF "![$a](" --include='*.md' . 2>/dev/null; then
+      ALT_MISMATCH=$((ALT_MISMATCH + 1))
+    fi
+  done < <(awk '/^  - file: screenshots\/diagrams\/.*\.svg$/{f=1;next} f&&/^    alt: /{sub(/^    alt: /,"");print;f=0}' screenshots/manifest.yml)
+  if [ "$ALT_MISMATCH" -eq 0 ]; then
+    ok "示意图 alt 与正文引用逐字一致"
+  else
+    warn "有 $ALT_MISMATCH 个示意图的 manifest alt 与正文 alt 不一致，请同步 screenshots/manifest.yml"
+  fi
 fi
 
 log "══════ 构建结束 ══════"

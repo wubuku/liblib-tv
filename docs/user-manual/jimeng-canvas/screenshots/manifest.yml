@@ -269,3 +269,15 @@ screenshots:
     visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
     alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
     sha256: c65cae177b5b85449eafb1936f46db1fec17c20c829b0b774277e6099b9a97a7
+
+  - file: screenshots/diagrams/canvas-zones.svg
+    task_id: create-first-node
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 880x430 (SVG 示意图)
+    locale: zh-CN
+    captured_at: 2026-10-01T07:00:00+08:00
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.1 当日基线盘点绘制（顶栏顺序/左栏 9 项两组/底部 dock 4 项/右下与 AI 对话/状态行）'
+    visible_text: 返回首页 / 已保存 / 小地图 / 显示连线 / 与 AI 对话
+    alt: 即梦画布界面分区示意图：顶栏（返回首页/画布标题/项目/节点 N/已保存/搜索/生成历史/积分/用户菜单）、左侧节点入口栏（文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，悬停展开为图标+文字）、中央画布区、底部 dock 视图控件（选择工具/小地图/显示连线/缩放值）、右下角「与 AI 对话」，以及底部状态行。
+    sha256: 4eea68091d033b530f9a81481031b0fa05aa6acd7a8b1bc21c9e8c830f769d3a
