@@ -1,0 +1,123 @@
+{
+  "batch": 580,
+  "title": "Camera motion-track keyframe editor: 时长/统一缩放 sliders, finite camera values, selected-keyframe commits",
+  "evidence": "docs/research/liblib-source-exploration-2026-09-25/64-director-diamond-dragged.png (right panel field group) + docs/research/liblib-canvas-batch580-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:camera-track",
+        "setup:keyframe-selected",
+        "setup:keyframe-time",
+        "editor:visible",
+        "layout:field-order",
+        "values:position-0-finite",
+        "values:position-1-finite",
+        "values:position-2-finite",
+        "values:rotation-0-finite",
+        "values:rotation-1-finite",
+        "values:rotation-2-finite",
+        "values:scale-0-finite",
+        "values:scale-1-finite",
+        "values:scale-2-finite",
+        "duration:range-visible",
+        "duration:box-visible",
+        "duration:range-max",
+        "duration:mirrors-playhead",
+        "duration:cyan-fill",
+        "duration:seek-committed",
+        "uniform:box-visible",
+        "uniform:mirrors-scale-x",
+        "uniform:writes-all-axes",
+        "uniform:mirrored-back",
+        "stray:playhead-moved",
+        "commit:selected-keyframe-updated",
+        "commit:playhead-aligned-back",
+        "commit:no-stray-keyframe",
+        "diagnostics:zero"
+      ],
+      "keyframe_before": {
+        "trackKind": "camera",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeTime": 2,
+        "keyframeCount": 4,
+        "playhead": 2,
+        "position": [
+          4.45,
+          2.475,
+          6.15
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "field_group_labels": [
+        "时长",
+        "位置",
+        "旋转",
+        "缩放",
+        "统一缩放"
+      ],
+      "mirrored": {
+        "position": [
+          "4.45",
+          "2.475",
+          "6.15"
+        ],
+        "rotation": [
+          "0",
+          "0",
+          "0"
+        ],
+        "scale": [
+          "1",
+          "1",
+          "1"
+        ]
+      },
+      "duration_slider_fill": "linear-gradient(to right, rgb(9, 202, 245) 0%, rgb(9, 202, 245) 20%, rgb(74, 74, 74) 20%, rgb(74, 74, 74) 100%)",
+      "duration_slider_expected_percent": 20,
+      "keyframe_after_uniform": {
+        "trackKind": "camera",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeTime": 2,
+        "keyframeCount": 4,
+        "playhead": 2,
+        "position": [
+          4.45,
+          2.475,
+          6.15
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      },
+      "keyframe_after_position": {
+        "trackKind": "camera",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeTime": 2,
+        "keyframeCount": 4,
+        "playhead": 2,
+        "position": [
+          7.5,
+          2.475,
+          6.15
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      },
+      "diagnostics": {
+        "console": 1,
+        "filtered_transformcontrols": 1,
+        "errors": []
+      }
+    }
+  ]
+}
