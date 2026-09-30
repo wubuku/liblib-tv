@@ -420,3 +420,29 @@ tasks:
     status: verified
     manual_pages:
       - 10-tasks/timeline-node.md
+  - id: director-node
+    title: 使用导演台节点（Beta，外部 3D 工作台入口）
+    role: logged-in-canvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    evidence:
+      - type: source-ui
+        note: >-
+          2026-10-01 登录会话实测（SOURCE_OBSERVATIONS §3.3）：左栏「导演台」（Beta 徽标）
+          点击即建节点并自动选中；**DOM class 为 react-flow__node-external**（外部工作台入口的
+          通用形态，非专属 director 类型），视口内 281×281；**无浮动工具条**；
+          节点内仅「导演台」标题 + 说明「在 3D 空间中设计角色、机位与镜头」+
+          唯一按钮「进入导演台」；2 个手柄；Rename 导演台 / Add tags。
+      - type: scope-note
+        note: >-
+          **未点击「进入导演台」**：它离开画布进入独立 3D 工作台，超出本手册
+          「画布内功能」范围。正文已显式声明该边界。连线限制（从视频/图片节点
+          连接时标注「无法连接这些节点」并禁用）沿用 2026-09-23 实测。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: verified
+    manual_pages:
+      - 10-tasks/director-node.md

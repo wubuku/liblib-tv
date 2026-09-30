@@ -317,3 +317,15 @@ screenshots:
     visible_text: 添加素材到时间线 / 全屏编辑 / 00:00 / 00:05
     alt: 时间线节点「时间线 1」：左上为分割与删除图标、左侧轨道头有静音扬声器、正中为播放钮与 00:00 / 00:00 读数、右上为导出时间线与全屏编辑；中间是 00:00 起每 5 秒一格、实测到 00:30 的时间刻度尺；下方轨道区为空态「＋ 添加素材到时间线」。
     sha256: 8ca6ff416b590cfa8b7f5a0872eaf66a50d53e6d24d763b5a8a8a4e5ff07b6df
+
+  - file: screenshots/director-node.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:22:00+08:00
+    verified_locator: 'react-flow__node-external 节点（含文案「进入导演台」），红色高亮框为注入 overlay'
+    visible_text: 导演台 / 在 3D 空间中设计角色、机位与镜头 / 进入导演台
+    alt: 导演台（Beta）节点：标题「导演台」、说明「在 3D 空间中设计角色、机位与镜头」、唯一操作按钮「进入导演台」；选中时没有浮动工具条。
+    sha256: b3025a4dc168589a828252fb4e44826785c409e300134bfdf7364e1e46e75026

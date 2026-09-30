@@ -24,12 +24,26 @@
 
 ![第一个文本节点](screenshots/00-quickstart-first-text-node.png)
 
-## 下一步
+## 这五步背后发生了什么
+
+上面五步只做了「创建一个文本节点」，但它其实已经展示了 TDCanvas 的全部工作方式：
+
+- **你写的内容就存在节点里**——不需要额外的「文档」或「输入框」，节点本身就是内容容器；
+- **右下角的「生图」按钮**意味着这个节点已经可以参与生成。只要配上 API Key，点它就能把这段文字变成图片；
+- **顶部标题「TDCanvas 1」就是项目名**——双击即可改名；
+- **所有东西都自动保存在本机**——现在就可以关掉页面，下次从首页点卡片回来。
+
+也就是说，**上手不需要任何配置或注册**。唯一的门槛在生成环节：点「生图」前需要先到「配置」填 API Key（见下表最后一行）。
+
+## 想继续往下走
 
 - 想上传自己的图片、视频、音频？见 [10-tasks/upload-materials.md](10-tasks/upload-materials.md)。
 - 想把两个节点连起来做引用？见 [10-tasks/connect-references.md](10-tasks/connect-references.md)。
 - 想改项目名称或回到项目列表？见 [10-tasks/project-management.md](10-tasks/project-management.md)。
 - 想把常用提示词存起来复用？见 [10-tasks/manage-assets.md](10-tasks/manage-assets.md)（顶部导航「我的资产」）。
+- 节点多了想整理？见 [10-tasks/organize-canvas.md](10-tasks/organize-canvas.md)（用「组」圈起来）。
+- 还不理解「连线」到底意味着什么？见 [30-concepts.md](30-concepts.md) 的一句话心智模型。
+
 
 ## 顶部导航都有什么
 

@@ -479,3 +479,27 @@ screenshots:
     visible_text: '节点信息'
     alt: 节点信息面板，显示节点的 ID、名称、类型、尺寸、位置与状态，右侧有信息与 JSON 两个页签
     sha256: 06b25246fd5c032e253f4177733dc9784f3d84c718b7dadf14acc8deb288bc3b
+
+  - file: screenshots/04-organize-canvas-group-empty.png
+    task_id: organize-canvas
+    step: 通过左侧 Dock「＋ 新建 → 组」创建的组，蓝色虚线框，右上角徽标为 0 个节点
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '组节点 蓝色虚线边框 / 徽标 0 个节点'
+    visible_text: '0 个节点'
+    alt: 刚创建的组节点，蓝色虚线边框，右上角徽标显示 0 个节点，框内为空
+    sha256: 3145e52edb2b7186ceb9f123ebf1a1adceb65a437e5ecfb2d1e83af9aded77ea
+
+  - file: screenshots/04-organize-canvas-group-filled.png
+    task_id: organize-canvas
+    step: 把一个文本节点拖入组内后，组徽标由 0 个节点变为 1 个节点
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '组徽标 1 个节点 / 组内文本节点 分镜 1：清晨的海边公路，长焦。'
+    visible_text: '1 个节点'
+    alt: 一个文本节点已拖入组的虚线框内，组右上角徽标变为 1 个节点
+    sha256: 935db59d112a6bf5070be04739926295ace2188312a01eb336eac41d339c63d6
