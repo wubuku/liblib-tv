@@ -431,3 +431,15 @@ screenshots:
     visible_text: '没有找到匹配的提示词'
     alt: 提示词中心页面空态，标题旁显示当前共 0 条提示词，左侧有分类和标签筛选，列表区提示没有找到匹配的提示词
     sha256: 17586555a8e391959b756c38daa9cb070bde93b66c38e724e3d032ca882960fb
+
+  - file: screenshots/14-manage-assets-import.png
+    task_id: manage-assets
+    step: 导出 zip 后删除全部资产，再导入该压缩包，两个资产完整还原；导入按钮高亮
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 导入资产 / 计数 2 / 2 / 卡片 导出验证A 导出验证B（含标签 风光 长曝光 / 夜景）'
+    visible_text: '导出验证A'
+    alt: 导入资产按钮被高亮标注，列表显示从压缩包恢复的两个文本资产，计数为 2 / 2
+    sha256: 4f0ac71cf2bc494f3f53acb51c5092c8b29e38b068d300f1cbf51dde6aa8d00d

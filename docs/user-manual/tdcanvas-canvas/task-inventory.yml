@@ -249,7 +249,7 @@ tasks:
     routes:
       - '/assets'
     status: verified
-    review_note: 2026-09-30 M20 全链回走通过（Playwright 独立 profile，1280x720 zh-CN），9 张截图入 manifest。视频资产无「编辑」按钮为源码 index.tsx:468-470 与运行时一致。导入资产为静态取证（需 zip 文件），导出已实测产出 我的资产.zip。
+    review_note: 2026-09-30 M20 全链回走通过（Playwright 独立 profile，1280x720 zh-CN），9 张截图入 manifest；M21 补「导入资产」端到端回走——导出 我的资产.zip → 删除全部资产 → 导入该 zip，两个文本资产的标题/正文/标签/来源完整还原，计数回到 2 / 2，截图 +1（共 10 张）。视频资产无「编辑」按钮为源码 index.tsx:468-470 与运行时一致。
     manual_pages:
       - 10-tasks/manage-assets.md
   - id: use-prompt-library

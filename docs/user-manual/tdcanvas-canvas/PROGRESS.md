@@ -137,3 +137,4 @@
   - 同步：README 任务索引、10-tasks/README.md（原占位 stub 漏 8 个页面，已补全为 14 页索引）、20-reference 增「我的资产」「提示词库」两节、90-troubleshooting 增 5 条、task-inventory 12→14、AUDIT 回走表 + 已知问题 + 未覆盖清单。
   - **订正 AUDIT 内部矛盾**：原「未覆盖清单」称「视频/音频真实字节上传未注入」，与同文件 Gate B 表「真实视频 809KB/1.15MB 与音频 1.1MB 注入成功」直接冲突，已删除该过期条目。
   - 自动化教训（已入 AUDIT）：`chromium.launch()` 每次全新 profile，IndexedDB 不保留；跨脚本验证必须用 `launchPersistentContext`。antd 组件定位：资产页新增/编辑是 `Modal`（`[role=dialog]`）、详情是 `Drawer`（`ant-drawer-section`，非 `ant-drawer-content`）；类型筛选点击后应读标题右侧 `N / N` 计数判定，`force:true` 有竞态。
+- **Batch M21（2026-09-30，导入链路闭环轮）**：闭合 M20 留下的唯一未覆盖项——「导入资产」端到端回走。实测：建两个带标签文本资产（计数 2/2）→ 导出 `我的资产.zip`（1184 字节）→ 逐个删除至空态 → 导入该 zip → **两个资产完整还原**，标题/正文/标签（风光、长曝光 / 夜景）/来源全部一致，计数回到 2/2，**无 console 错误**。新增截图 `14-manage-assets-import.png`（26→36→37 图），manage-assets 页「导出与导入」节补五步还原流程与「导入为追加而非覆盖」提示；AUDIT 未覆盖清单中该项已移除。当前仅剩「提示词库有内容时的交互」因产品侧无数据源而无法回走（已在未覆盖清单说明）。
