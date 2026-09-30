@@ -20,6 +20,7 @@ export default defineConfig({
     '**/TEST_MEDIA_ASSETS.md',
     '**/SOURCE_OBSERVATIONS.md',
     '**/PUBLISH.md',
+    '**/FINAL-REPORT.md',
   ],
   ignoreDeadLinks: true,
   themeConfig: {

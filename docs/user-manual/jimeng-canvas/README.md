@@ -60,3 +60,5 @@ python3 -m http.server 4173 -d .vitepress/dist
 - `screenshots/manifest.yml`：22 张正式截图的登记与哈希。
 - `TEST_MEDIA_ASSETS.md`：授权测试媒体使用记录
   （权威清单见仓库级 `docs/CANVAS_TEST_MEDIA.md`，位于本手册目录之外）。
+- `FINAL-REPORT.md`：最终交付报告（目标版本/URL、角色、深度、覆盖率、
+  未覆盖项与已知限制），即 skill §8 的完成标准交付物。
