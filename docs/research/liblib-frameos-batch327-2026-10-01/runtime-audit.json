@@ -1,0 +1,31 @@
+{
+  "batch": 327,
+  "title": "FrameOS node clone id collision fix (duplicate/paste same-ms uniqueness)",
+  "defect": "duplicateNode/duplicateNodeAt/pasteNodeFromClipboard used bare Date.now() for node ids; two clones within the same millisecond produced identical ids, React Flow indexed by data-id and the later clone overwrote the earlier one (silent node loss).",
+  "fix": "added nodeCloneIdCounter, matching the existing addNode/createGroup remedy",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "store:duplicate-no-error",
+        "store:duplicate-added-two",
+        "store:duplicate-ids-unique",
+        "store:paste-no-error",
+        "store:paste-added-two",
+        "store:paste-ids-unique",
+        "store:addnode-ids-unique",
+        "kbd:cmd-d-added-three",
+        "kbd:cmd-d-no-node-loss",
+        "kbd:cmd-d-ids-unique",
+        "kbd:cmd-v-added-two",
+        "kbd:paste-undo-one",
+        "kbd:paste-undo-two",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

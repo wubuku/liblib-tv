@@ -1,0 +1,34 @@
+{
+  "batch": 328,
+  "title": "FrameOS group integrity on member delete (dangling refs + stale group box)",
+  "defect": "removeNode filtered only nodes/edges; groups[].memberIds kept referencing deleted nodes and the group box was never recomputed, so the group overlay kept stale geometry and arrange/drag/ungroup operated on a wrong member set.",
+  "fix": "added reconcileGroups(groups, nodes): prune dangling members, recompute the member bbox + 28 padding, drop groups whose members are all gone, and clear selectedGroupId when its group disappears",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:group-created",
+        "remove:one-group-left",
+        "remove:no-dangling-members",
+        "remove:group-kept",
+        "remove:box-recomputed",
+        "remove:box-actually-changed",
+        "empty:group-dropped",
+        "empty:selection-cleared",
+        "undo:node-restored",
+        "undo:group-present",
+        "undo:no-dangling",
+        "arrange:members-kept",
+        "arrange:horizontal-box-tight",
+        "arrange:grid-box-tight",
+        "plain:node-removed",
+        "plain:groups-still-empty",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -301,6 +301,52 @@ const initialEdges: Edge[] = [
 let addNodeIdCounter = 0;
 // Batch 272: createGroup 同理 — 同毫秒连建两组会产生重复 id (React key 冲突)
 let groupIdCounter = 0;
+// Batch 327: duplicateNode / duplicateNodeAt / pasteNodeFromClipboard 此前用裸
+// Date.now()，同一毫秒内连续 ⌘D / ⌘V 会产生**相同 id** → React Flow 按 id 索引，
+// 后写入的副本覆盖前者，用户看到「按了两次只多一个节点」（节点静默丢失）。
+// 与 addNode/group 同解：追加单调计数器保证同毫秒内唯一。
+let nodeCloneIdCounter = 0;
+
+// Batch 328: 分组完整性 — 移除节点后同步收敛分组状态。
+// 此前 removeNode 只过滤 nodes/edges，groups[].memberIds 仍指向已删节点
+// （悬空成员），且分组盒 x/y/w/h 不重算 → 分组覆盖层保留旧几何、比成员大，
+// 排列/拖拽/解组都基于错误成员集计算。删除后按存活成员重算包围盒。
+function reconcileGroups(
+  groups: FrameosGroup[],
+  nodes: FrameosNode[]
+): FrameosGroup[] {
+  return groups.flatMap((g) => {
+    const members = nodes.filter((n) => g.memberIds.includes(n.id));
+    // 全部成员被删 → 分组无意义，随之消失
+    if (members.length === 0) return [];
+    const memberIds = members.map((n) => n.id);
+    const sizeOf = (n: FrameosNode) => ({
+      w: ((n.style?.width as number | undefined) ?? 300),
+      h: ((n.style?.height as number | undefined) ?? 200),
+    });
+    // 成员集合未变 → 保留原盒（避免无谓的重排抖动）
+    if (
+      memberIds.length === g.memberIds.length &&
+      memberIds.every((id, i) => id === g.memberIds[i])
+    ) {
+      return [g];
+    }
+    const minX = Math.min(...members.map((n) => n.position.x));
+    const minY = Math.min(...members.map((n) => n.position.y));
+    const maxX = Math.max(...members.map((n) => n.position.x + sizeOf(n).w));
+    const maxY = Math.max(...members.map((n) => n.position.y + sizeOf(n).h));
+    return [
+      {
+        ...g,
+        memberIds,
+        x: minX - FRAMEOS_GROUP_PADDING,
+        y: minY - FRAMEOS_GROUP_PADDING,
+        w: maxX - minX + FRAMEOS_GROUP_PADDING * 2,
+        h: maxY - minY + FRAMEOS_GROUP_PADDING * 2,
+      },
+    ];
+  });
+}
 
 // 几个 mock canvas 用于 breadcrumb 切换演示
 const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
@@ -499,18 +545,30 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     })),
 
   removeNode: (id) =>
-    set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
-      future: [],
-      nodes: state.nodes.filter((n) => n.id !== id),
-      edges: state.edges.filter((e) => e.source !== id && e.target !== id),
-      selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
-    })),
+    set((state) => {
+      // Batch 328: 节点消失后收敛分组（剪掉悬空成员 + 重算分组盒）
+      const nodes = state.nodes.filter((n) => n.id !== id);
+      const groups = reconcileGroups(state.groups, nodes);
+      return {
+        past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes,
+        edges: state.edges.filter((e) => e.source !== id && e.target !== id),
+        groups,
+        // 分组可能因成员删空而消失，选中态不能指向已不存在的分组
+        selectedGroupId:
+          state.selectedGroupId && !groups.some((g) => g.id === state.selectedGroupId)
+            ? null
+            : state.selectedGroupId,
+        selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
+      };
+    }),
 
   duplicateNode: (id) => {
     const node = get().nodes.find((n) => n.id === id);
     if (!node) return;
-    const newId = `${node.type}-${Date.now()}`;
+    // Batch 327: 计数器防同毫秒连续 ⌘D 的 id 碰撞（见 nodeCloneIdCounter 注释）
+    const newId = `${node.type}-${Date.now()}-${++nodeCloneIdCounter}`;
     const newNode: FrameosNode = {
       ...node,
       id: newId,
@@ -541,7 +599,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   duplicateNodeAt: (id, position) => {
     const node = get().nodes.find((n) => n.id === id);
     if (!node) return null;
-    const newId = `${node.type}-${Date.now()}-alt`;
+    // Batch 327: 同 duplicateNode — ⌥ 拖拽与 ⌘D 可能在同一毫秒触发
+    const newId = `${node.type}-${Date.now()}-alt-${++nodeCloneIdCounter}`;
     const newNode: FrameosNode = {
       ...node,
       id: newId,
@@ -561,7 +620,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   pasteNodeFromClipboard: () => {
     const clip = get().nodeClipboard;
     if (!clip) return;
-    const newId = `${clip.type}-${Date.now()}`;
+    // Batch 327: 计数器防同毫秒连续 ⌘V 的 id 碰撞
+    const newId = `${clip.type}-${Date.now()}-${++nodeCloneIdCounter}`;
     const newNode: FrameosNode = {
       ...clip,
       id: newId,

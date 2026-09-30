@@ -191,3 +191,39 @@
 
 验证基线：`scripts/run-frameos-verifiers.sh` **70/70 PASS**（Batch 326 复跑）。
 证据：recovery-batch326-nodelist.png / recovery-batch326-fit.png。
+
+## Batch 327-328（2026-10-01）：源站阻塞期 — 两个克隆侧数据一致性缺陷
+
+**源站阻塞**：`frameos.cn` 对自动化启动的浏览器一律弹「确定你不是机器人」，
+**人工点击亦判失败**（与 profile 新旧无关：已持有 liblib.tv 登录态的 :9222 profile
+同样被拦）。人机验证属站点反自动化访问控制，**不尝试绕过**；本轮全部源站采样顺延。
+详见 [`SOURCE_ACCESS_BLOCKED_2026-10-01.md`](SOURCE_ACCESS_BLOCKED_2026-10-01.md)。
+源站阻塞不构成停工理由，以下两批改做**克隆侧运行时缺陷挖掘**（探针驱动，不依赖源站）。
+
+**Batch 327 — 节点克隆 id 碰撞（静默丢节点）**：`duplicateNode` /
+`duplicateNodeAt` / `pasteNodeFromClipboard` 用裸 `Date.now()` 生成节点 id，
+同毫秒连按两次 ⌘D / ⌘V 产生**相同 id**，React Flow 按 `data-id` 索引 →
+后写入者覆盖前者，**按两次只多一个节点**。实测：duplicate 10/11 唯一、
+paste 10/13 唯一；对照组 `addNode`（Batch 223 已有计数器）9/9 唯一，
+据此把缺陷隔离到这三条路径。修复 = 追加 `nodeCloneIdCounter`，
+与 addNode/createGroup 既有解法一致。verifier batch327 **14/14 PASS**。
+
+**Batch 328 — 分组完整性（悬空成员 + 陈旧分组盒）**：`removeNode` 只过滤
+`nodes`/`edges` 不维护 `groups` → 被删节点仍留在 `memberIds`（悬空引用），
+分组盒 `x/y/w/h` 从不重算。实测删除 1 个成员后 `dangling:["text-1"]`、
+盒仍为删除前的 737×319。而 `arrangeGroup` 以 `memberIds` 为唯一事实来源，
+悬空 id 不报错、只让成员集静默偏小。修复 = 新增 `reconcileGroups()`：
+剪悬空成员 + 按存活成员 bbox+28 重算盒 + 成员删空则分组消失 + 同步清
+`selectedGroupId`。修复后 `dangling:[]`、盒 737×319 → 356×256。
+verifier batch328 **17/17 PASS**；batch251（分组 59 项）回归 PASS。
+
+**顺延（需已登录源站会话）**：剪辑台编辑器采样、内容图片 ⛶ 全屏查看采样、
+裁剪确认行为采样、分组端口提交语义采样、双分组小地图判定、规格宽高比完整清单、
+载荷级节点清单验证。
+
+**候选（Batch 329）**：`undo`/`redo` 历史快照只存 `{nodes, edges}` 不含 `groups`，
+且 `createGroup` 未入历史栈 → 撤销成组动作不恢复分组。改动会影响 batch251 断言，
+需单独批次评估。
+
+**环境坑（已修）**：`/tmp/frameos-probe-video.webm` 会被 macOS 清理，导致
+batch225/230 报 `ENOENT`。重建后两者均 PASS —— 见到 ENOENT 先重建素材再判回归。
