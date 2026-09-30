@@ -82,6 +82,23 @@ else
   ok "无残留 .md 原始链接"
 fi
 
+# 侧边栏完整性：每个已发布页面都应出现在 config.mjs 的侧边栏中，
+# 否则读者只能靠页内链接抵达，站点导航形同虚设（2026-09-30 M23 实测缺陷）。
+# 仅校验真正发布的页面；内部账本由 config.mjs 的 srcExclude 排除，不在此列。
+MISSING_SIDEBAR=""
+for f in $(find . -name '*.md' -not -path './node_modules/*' -not -path './.vitepress/*' \
+  -not -name 'README.md' -not -name 'PUBLISH.md' \
+  -not -name 'AUDIT.md' -not -name 'PROGRESS.md' \
+  -not -name 'TEST_MEDIA_ASSETS.md' -not -name 'SOURCE_OBSERVATIONS.md'); do
+  slug="${f#./}"; slug="${slug%.md}"
+  grep -q "'/$slug'" .vitepress/config.mjs || MISSING_SIDEBAR="$MISSING_SIDEBAR $slug"
+done
+if [ -n "$MISSING_SIDEBAR" ]; then
+  warn "以下页面未收录进 config.mjs 侧边栏:$MISSING_SIDEBAR"
+else
+  ok "所有已发布页面均已收录进侧边栏"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

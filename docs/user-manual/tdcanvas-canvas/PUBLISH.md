@@ -18,7 +18,7 @@ cd docs/user-manual/tdcanvas-canvas
 | 3/6 | 内容清单 | 统计将发布的页面数与截图数（自动排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS 等内部资料），数量异常直接报错 |
 | 4/6 | 清理旧产物 | 删除 `.vitepress/dist` 与 `.vitepress/cache`，保证产物干净 |
 | 5/6 | 构建 | `npx vitepress build`（client + server 双端打包、页面渲染） |
-| 6/6 | 产物校验 | 校验 dist 页面数、截图数（与源截图逐一比对）、总体积、是否有未改写的 `.md` 残留链接 |
+| 6/6 | 产物校验 | 校验 dist 页面数、截图数（与源截图逐一比对）、总体积、是否有未改写的 `.md` 残留链接、**侧边栏完整性**（每个已发布页面都必须出现在 `config.mjs` 侧边栏中，否则报 warn） |
 
 **可选参数**：`./build-site.sh --preview` —— 构建完成后自动启动本地预览服务
 `http://localhost:4173`（Ctrl+C 结束）。
