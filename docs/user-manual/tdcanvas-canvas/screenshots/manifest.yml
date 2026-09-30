@@ -467,3 +467,27 @@ screenshots:
     visible_text: '时尚人像摄影，柔和自然光，浅景深，50mm 镜头。'
     alt: 画布上并排两个文本节点，左上是角色描述，右下是风格提示词，两者各自独立
     sha256: c32bb86886c23ddb4c92df77e1e791bba0fe99a41f39cd885b59b6b32b983df8
+
+  - file: screenshots/03-connect-node-ports.png
+    task_id: connect-references
+    step: 选中文本节点后左右两侧出现圆形端口（左侧输入 / 右侧输出），上方悬浮工具条可见
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '节点左右边缘 12px 圆形端口 / 上方工具条 信息 删除 存资产 编辑 编辑文字 生图 缩小 放大'
+    visible_text: '雨后的巷口，霓虹反射在积水里。'
+    alt: 选中的文本节点，左右两侧各有一个白色圆形端口，上方是包含信息、删除、编辑等操作的悬浮工具条
+    sha256: 094dad71a784e8f037ddff4f1fa7b6a9e3c8142fc407c3bee1fdf8bbc4fe80d6
+
+  - file: screenshots/04-edit-nodes-info-detail.png
+    task_id: edit-nodes
+    step: 「节点信息」面板的信息页签，逐行显示 ID / 名称 / 类型 / 尺寸 / 位置 / 状态
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板 节点信息 / 页签 信息 JSON / 字段 ID text-… 名称 文本 类型 文本 尺寸 520 x 300 位置 380, 210 状态 idle'
+    visible_text: '节点信息'
+    alt: 节点信息面板，显示节点的 ID、名称、类型、尺寸、位置与状态，右侧有信息与 JSON 两个页签
+    sha256: 06b25246fd5c032e253f4177733dc9784f3d84c718b7dadf14acc8deb288bc3b
