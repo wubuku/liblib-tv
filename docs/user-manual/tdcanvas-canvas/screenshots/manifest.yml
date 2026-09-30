@@ -443,3 +443,27 @@ screenshots:
     visible_text: '导出验证A'
     alt: 导入资产按钮被高亮标注，列表显示从压缩包恢复的两个文本资产，计数为 2 / 2
     sha256: 4f0ac71cf2bc494f3f53acb51c5092c8b29e38b068d300f1cbf51dde6aa8d00d
+
+  - file: screenshots/30-concepts-add-node-menu.png
+    task_id: create-nodes
+    step: 点击左侧 Dock 的「+」按钮打开「添加节点」菜单，七种节点类型逐字可见
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: '菜单标题 添加节点 / 选项 文本 图片 视频 音频 ComfyUI 工作流 组 上传素材 / tooltip 添加节点'
+    visible_text: '添加节点'
+    alt: 左侧 Dock 的加号按钮打开添加节点菜单，列出文本、图片、视频、音频、ComfyUI 工作流、组、上传素材七种节点类型
+    sha256: a2ff7c56d00aa94ca7194e45b2516638a94370deebdfd4da93b324da28e1eaa2
+
+  - file: screenshots/30-concepts-two-text-nodes.png
+    task_id: create-nodes
+    step: 画布上并排两个已输入内容的文本节点（角色描述 + 风格提示词），说明节点彼此独立
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: '节点标题 文本 ×2 / 内容 一位穿米色风衣的年轻女性… / 内容 时尚人像摄影，柔和自然光… / 每个节点右上 生图 按钮'
+    visible_text: '时尚人像摄影，柔和自然光，浅景深，50mm 镜头。'
+    alt: 画布上并排两个文本节点，左上是角色描述，右下是风格提示词，两者各自独立
+    sha256: c32bb86886c23ddb4c92df77e1e791bba0fe99a41f39cd885b59b6b32b983df8
