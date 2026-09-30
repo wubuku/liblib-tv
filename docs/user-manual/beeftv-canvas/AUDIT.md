@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 插件页称「6 个内置插件都能启停、应用型只有 2 个」，实际官方应用型是 5 项且不含 media-conversion | Minor（分类错误） | ✅ **Batch 101 已闭合**：加「能否在插件页自主启停」列并改写为 5/6 的正确划分 |
 | 节点工具条 `more` 组整体无人渲染（无 `inGroup("more")`），`delete`/`saveAsset`/`uploadVideo` 不可达；`subtitles` 对视频节点不可达 | Minor（预期差，非缺陷） | ✅ **Batch 99 已闭合**：`generate-video.md` 补视频节点工具条权威清单与「找不到这些按钮是正常的」；`create-nodes.md` 澄清工具条本就没有删除按钮 |
 | organize-canvas 教用户从添加节点菜单创建「背板」，但菜单无此项（唯一注册 Frame 的是置灰的「逐帧拉片」，其 handler 也不创建 Frame） | **Major（已修）** | ✅ **Batch 98 已闭合**：改写为「只能建文件夹」，讲清 Frame+folder 元数据的实现关系与「6 款样式」归属；`create-nodes.md` 补 6 项显示条件 |
 | 快捷键表写「24 条·5 分类」，源码实为 4 分类；另漏 5 个键位/操作，导演台重做组合写错 | **Major（已修）** | ✅ **Batch 97 已闭合**：以 `canvas-shortcuts.ts` / `director-shortcuts.ts` 为准逐条校准，并注明 ⌘D 来自右键菜单不计入 24 条 |
@@ -641,4 +642,25 @@
 
 - **一处表述修正**：手册把底部工具条第二项写作「移动 / 切换到移动工具」，源码 label 是「**抓手 / 框选**」，且它是一个在「**区域选择**」与「**抓手工具**」之间切换的开关（`switchGroup`），不是单纯的移动工具按钮。已按源码改写。
 - **四个注册表的可达性审计至此扫完**：添加节点菜单（Batch 98）、节点工具条（Batch 99）、底部工具条、选区工具条（本批）。**四个里只有前两个查出了真正的「注册了但走不到」**，后两个的缺陷类型是「描述不完整」而非「描述错误」——这本身就是结论：**注册表审计的价值随 UI 复杂度上升，越靠近主路径的注册表越可能有渲染断层。**
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十七（Batch 101，2026-10-01，内置插件清单核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：抽 `web/src/lib/plugins/builtin/index.ts` 的内置导入清单（6 个）与 `web/src/lib/plugins/official-applications.ts` 的 `OFFICIAL_APPLICATION_PLUGIN_IDS`（5 个），再对 `web/src/pages/plugins/index.tsx` 的分类判定逻辑逐行核对。
+- **核心区分（手册此前把两者混为一谈）**：
+
+| 集合 | 成员 | 判据 |
+|---|---|---|
+| **内置插件实现**（6 个） | eagle / prompt-optimizer / workflows(RunningHub) / ai-art-critique / media-conversion / editor(剪辑工作台) | `builtin/index.ts` 的 6 条 `import` |
+| **官方应用型**（5 个） | RUNNINGHUB / EAGLE / PROMPT_OPTIMIZER / ART_CRITIQUE / EDITOR_SHELL | `OFFICIAL_APPLICATION_PLUGIN_IDS`，**不含 media-conversion** |
+
+- **手册的错误**：原文写「内置插件随应用发布，**可在插件页启停**；AI 审美批改和剪辑工作台属于『应用型插件』，与系统协议插件区分」。两处都不对：
+  1. 「可在插件页启停」被无差别地套在 6 个上，而 `media-conversion` **不在**官方应用型清单里；
+  2. 应用型被说成只有 2 个，实际是 **5 个**——RunningHub、Eagle、提示词优化器同样是官方应用型。
+- **佐证**：该文件的注释本身就记录了这个坑——「之前管理页、用户插件页和后端各自维护一份清单，管理页漏掉 AI 审美分析和剪辑工作台，导致二者被误判为系统协议并在管理页显示『已停用』。这里收敛为唯一来源。」手册沿用的正是**修复前**的旧认知。
+- **插件页的实际判定**（`pages/plugins/index.tsx`）：`isApplicationPlugin = 后端 manifest 的 management.kind === "application" || isOfficialApplicationPluginId(id)`；非管理员可见性 = `admin || features.systemPluginsVisibleToUsers || 官方应用型`；标签「官方插件」= `canToggle || 官方应用型`。所以分类不只由前端清单决定，后端 manifest 也参与——这也是上游要收敛清单的原因。
+- **媒体转换节点的正确入口**（写进手册，与 Batch 90/98 串起来）：它不是插件页开关能管的，入口是画布「智能剪辑」节点，而该节点当前仍在 `developingNodeTypes` 内、菜单显示「正在开发」。**三处证据（插件分类 / 节点菜单 / 插件页开关）指向同一结论**：这个能力当前整体不可用。
+- **能力描述逐条核对无误**：媒体转换节点的 `description` 确认含「灰度、Canny 边缘、AI 线稿、Depth Anything V2 深度图、OpenPose 姿态骨架」且「不会加载 Stable Diffusion 重绘管线」，与手册表述一致。
+- **方法论**：这是「精确清单」系列的第 4 例（端点 96 / 快捷键 97 / 菜单 98 / 插件 101）。共同判据：**清单本身可能没错，错的是清单之间的从属关系**。本例 6 个插件没写错，错的是「这 6 个都属于 X」——**从属断言比枚举值更难发现，因为要同时读两个源才看得出来。**
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
