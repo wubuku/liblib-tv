@@ -356,6 +356,17 @@
 - **点击/悬停手法补充**：选区工具条按钮为**纯图标无文字**，`innerText` 检索必然落空，需按 `aria-label` 定位（左对齐/水平居中/右对齐/顶对齐/垂直居中/底对齐/批量连接…）。另：文本节点的悬停工具条在本环境用 hover（Playwright hover / 指针事件派发 / 节点标题栏）三种手法均无法触发，点击则会直接打开文本生成面板——故「生图」入口的独立截图暂缺，页面改为引用已实证的 `04-text-node.png` 并如实标注。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded。
 
+## 环境记录四十三（Batch 87，2026-10-01，发布产物卫生轮）
+
+- **上游**：main 仍 852961a/v1.6.14；无新提交。
+- **发现两处发布后必 404 的死链**（此前所有校验都没抓到）：站点配置开了 `ignoreDeadLinks: true`，指向 `srcExclude` 文件的链接会被放行——① `index.html → ./PUBLISH.html`（README 链到被排除的 `PUBLISH.md`）；② `10-tasks/README.html → ../task-inventory.yml`（同样指向被排除的内部账本）。
+- **已修**：两处链接全部移除——README 改为纯用户向首页（构建说明以纯文本文件名提及，不做超链接，避免再造死链）；`10-tasks/README.md` 改写为按阶段分组的三列表格。
+- **发布首页去黑话**：原文写着「Gate A / Gate B / --phase final 审计通过」「在线查看 localhost:4173」「Batch 计划/回走审计」——这些对读者毫无意义。新首页含「这是什么 / 从这里开始（按意图导航）/ 需要先知道的三件事（计费、字幕入口位置、本地依赖）/ 约定 / 维护者」；`10-tasks/README.md` 的「按 batch 逐篇发布」同样改掉。
+- **正文黑话清理**：13 处 `Batch NN` 表述改为读者可懂的「v1.6.x 构建实测 / 已逐条核对」等（保留 `InflightBatchsizeExceeded` 真实错误码）；`夹具视频` → `示例视频`；`入口开放后回走` → 面向读者的「待入口开放后本页会补上操作步骤」。
+- **加装机械闸（根因治理）**：`build-site.sh` 步骤 6 新增**站内死链检查**——逐个解析 dist HTML 的 `href`（处理 `/` 与 `./` 归一到 `index.html`、跳过外链/锚点/协议相对），命中即 `fail` 并逐条打印来源页与链接。**反向验证**：临时在首页注入一条指向 `task-inventory.yml` 的链接，构建按预期 FAIL 并报出 `index.html -> task-inventory.yml`，移除后恢复全绿——闸门确实有效，不是摆设。
+- **闸门实现教训**：首版把 `href="/"` 误判为死链（27 处误报），且 `2>/dev/null` 连同明细一起吞掉；修正为归一化 + 明细走 stdout 分行输出。期间还写坏一次 `while read` 语法，由 `bash -n` 及时拦下。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；发布产物 28 页，站内链接 0 死链。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
@@ -365,5 +376,7 @@
 | 添加节点列表形态默认隐藏项为绘图/文件夹/批量创作表（非「正在开发」四项） | Minor（初稿口径） | Batch 6 已修正 create-nodes/quickstart |
 | 视频节点选中按 Esc 弹出「参考内容」选择器 | 观察 | 已截图（14），可考虑补入 prompts 页（后续） |
 | 快速创建菜单点击「视频」后未观察到新节点（坐标点击可能落空） | Minor | 「松手弹菜单」本体已实证；「自动建线」维持源码证据，回走备注 |
+| 发布站点两处死链（`index.html→PUBLISH.html`、`10-tasks/README→task-inventory.yml`）被 `ignoreDeadLinks` 放行 | **Major（已修）** | ✅ Batch 87 移除链接 + `build-site.sh` 步骤 6 加装站内死链机械闸（反向验证有效） |
+| 发布首页与正文残留内部黑话（Gate A/B、localhost:4173、Batch NN、夹具、回走） | Minor（读者体验） | ✅ Batch 87 全部改写为面向读者的表述；`InflightBatchsizeExceeded` 等真实错误码保留 |
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |

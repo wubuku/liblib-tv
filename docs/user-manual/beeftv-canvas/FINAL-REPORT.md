@@ -46,6 +46,7 @@
 ## 审计状态
 
 - Gate A：OK（25 tasks / 32 Markdown / 48 images）；
-- Gate B：16+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
+- Gate B：17+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
+- 发布产物卫生：站内死链 0（`build-site.sh` 步骤 6 机械闸强制，已做反向验证）；
 - `--phase final`：OK（25 tasks / 32 Markdown files / 48 images）；
 - verify-docs.py：1169 文件全绿（Batch 26 复验）。

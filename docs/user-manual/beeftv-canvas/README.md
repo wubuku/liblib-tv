@@ -1,9 +1,8 @@
 # BeefTV 用户手册
 
-> 适用版本：BeefTV `v1.6.14`（Web 与桌面端；界面文字取自源码与真实界面。v1.6.x 主要变化：Seedance 任务模式与素材限制对齐、生成失败分类精确化、旧桌面 Agent 退场、深度动作捕捉工具；v1.6.7–v1.6.14 增量：画幅比付费确认、参考素材尺寸/帧率校验强化、企业协议修复、Windows 深度运行时组件（含系统代理支持）、导演台场景/相机跟随/截图扩展、画布任务详情实时刷新）。
+> 适用版本：BeefTV `v1.6.14`（Web 与桌面端）。界面文字逐字取自真实运行界面，不做翻译或改写。
 > 面向读者：使用 BeefTV 进行 AI 视频/图片创作、时间线剪辑与导演台编排的普通用户、Agent 用户与管理员。
-> 全部章节已发布（Gate A / Gate B / --phase final 审计通过）；可浏览站点由 `./build-site.sh` 构建到 `.vitepress/dist/`。
-> **在线查看**：本地预览服务运行时直接访问 `http://localhost:4173`（`python3 -m http.server 4173 -d .vitepress/dist` 启动；当前会话已在 :4173 运行）。构建、预览与发布的完整说明见 [PUBLISH.md](PUBLISH.md)。
+> 覆盖情况：21 篇任务指南 + 参考表 + 概念解释 + 故障排查，其中 21 个用户任务已在 v1.6.14 上逐条走查验证；另有 4 个任务因产品侧入口尚未开放而无法验证，已在对应页面写明原因。
 
 ## 这是什么
 
@@ -14,22 +13,33 @@ BeefTV 是一个「无限画布 + 时间线剪辑 + 三维导演台 + 云端 Age
 - **导演台**：三维场景里摆机位、设运镜、录关键帧动画，一键渲染白膜视频；
 - **云端 Agent**：用自然语言让 Agent 替你操作画布，关键操作需你审批。
 
-## 阅读路线
+## 从这里开始
 
-| 阶段 | 页面 |
+| 我想做的事 | 从哪读起 |
 |---|---|
-| 快速开始 | [00-quickstart.md](00-quickstart.md) |
-| 任务指南（How-to） | create-nodes / navigate-canvas / upload-materials / connect-references / prompts-and-mentions / generate-images / generate-video / media-versions / undo-history-versions / organize-canvas / shortcuts-help / timeline-editing / subtitle-highlights / timeline-export / director-basics / director-keyframes-record / director-rig-bones / cloud-agent / agent-memory-skills / plugins-management / local-runtime（均位于 10-tasks/） |
-| 参考（快捷键/路由/端点） | [20-reference.md](20-reference.md) |
-| 概念解释 | [30-concepts.md](30-concepts.md) |
-| 故障排查 | [90-troubleshooting.md](90-troubleshooting.md) |
+| 第一次打开 BeefTV | [00-quickstart.md](00-quickstart.md) |
+| 建节点、传素材、连参考 | [10-tasks/](10-tasks/README.md) |
+| 生成图片或视频 | [10-tasks/generate-images.md](10-tasks/generate-images.md) · [10-tasks/generate-video.md](10-tasks/generate-video.md) |
+| 剪辑、配字幕、导出成片 | [10-tasks/timeline-editing.md](10-tasks/timeline-editing.md) · [10-tasks/subtitle-highlights.md](10-tasks/subtitle-highlights.md) · [10-tasks/timeline-export.md](10-tasks/timeline-export.md) |
+| 搭三维场景与运镜 | [10-tasks/director-basics.md](10-tasks/director-basics.md) |
+| 查快捷键、路由、接口 | [20-reference.md](20-reference.md) |
+| 搞懂名词与设计取舍 | [30-concepts.md](30-concepts.md) |
+| 报错了先看这里 | [90-troubleshooting.md](90-troubleshooting.md) |
 
-## 任务清单与进度
+## 需要先知道的三件事
 
-编写账本（任务清单/Batch 计划/回走审计/证据索引）保存在本目录：`task-inventory.yml`、`PROGRESS.md`、`AUDIT.md`、`SOURCE_OBSERVATIONS.md`（面向编者的内部资料，不进入发布站点）。
+1. **生成类操作按量计费**——提交图片/视频生成会消耗渠道额度，相关页面都标注了费用提示与「可能再次消耗积分」的防重复扣费确认；
+2. **字幕入口不在视频节点上**——要在多轨时间线里点选 S 轨字幕片段，再点「精细编辑」；
+3. **部分功能需要本地或后台配合**——深度/线稿/姿态需要本机伴随进程，语音转写字幕需要本机 whisper.cpp，缺配置时会有明确报错（见 [90-troubleshooting.md](90-troubleshooting.md)）。
 
 ## 约定
 
-- 界面文字（按钮、菜单、提示）均逐字取自 BeefTV 源码，不做翻译或改写；
-- 生成类操作涉及云端渠道按量计费，相关页面有费用提示；
-- 快捷键以 macOS 修饰键书写（⌘/⇧/⌥），Windows 对应 Ctrl/Shift/Alt。
+- 界面文字（按钮、菜单、提示）均逐字取自 BeefTV 真实界面；
+- 快捷键以 macOS 修饰键书写（⌘/⇧/⌥），Windows 对应 Ctrl/Shift/Alt；
+- 标注「源码核查」的段落表示该功能在当前版本界面上尚未开放，只说明已确认的事实，不外推操作步骤。
+
+---
+
+## 维护者
+
+站点由 `./build-site.sh` 一键构建为纯静态产物到 `.vitepress/dist/`，完整说明见同目录的 `PUBLISH.md`（该文件不进入发布站点，因此上文不用超链接引用）。**改动正文后必须重新构建**——否则发布产物里仍是旧内容，这类静默过期已发生过多次。截图清单与逐张 sha256 见 `screenshots/manifest.yml`。
