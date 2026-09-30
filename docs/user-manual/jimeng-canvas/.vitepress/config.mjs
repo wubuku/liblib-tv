@@ -73,6 +73,7 @@ export default defineConfig({
         text: '媒体与音频',
         items: [
           { text: '预览与播放视频节点', link: '/10-tasks/media-playback' },
+          { text: '使用时间线节点（多轨剪辑）', link: '/10-tasks/timeline-node' },
           { text: '配置音频节点（配音与声音库）', link: '/10-tasks/audio-node-voice' },
         ],
       },
