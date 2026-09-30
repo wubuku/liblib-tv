@@ -1,0 +1,40 @@
+{
+  "batch": 330,
+  "title": "FrameOS group rename/recolor/drag undo coverage",
+  "defect": "after Batch 329, createGroup/ungroup/arrangeGroup were undoable but renameGroup and setGroupColor still mutated state without pushing history, making those actions irreversible (probe: pushed=false, undoRestores=false).",
+  "fix": "renameGroup and setGroupColor now use pushHistorySnapshot(state). moveGroup is deliberately NOT pushing: it runs per drag frame, so history would flood; group drag undoability comes from a single pushHistory() at gesture start in FrameosGroupCanvas, the same pattern as node drag (Batch 189/232).",
+  "clone_decision": "whether the source site treats group rename/recolor/drag as undoable was NOT sampled (source blocked, see SOURCE_ACCESS_BLOCKED_2026-10-01.md). This batch closes the gap for internal consistency only; it is not a source-parity claim.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "rename:pushed",
+        "rename:applied",
+        "rename:undo-restores",
+        "rename:redo-applies",
+        "color:pushed",
+        "color:applied",
+        "color:undo-restores",
+        "color:redo-applies",
+        "rename:blank-name-ignored",
+        "rename:blank-no-history",
+        "rename:same-name-no-history",
+        "rename:same-name-kept",
+        "color:same-color-no-history",
+        "color:same-color-kept",
+        "move:history-not-flooded",
+        "move:applied",
+        "move:members-followed",
+        "move:undo-restores-box",
+        "move:undo-restores-members",
+        "keep:group-exists",
+        "keep:members-intact",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

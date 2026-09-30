@@ -70,8 +70,12 @@ interface FrameosCanvasState {
   edges: Edge[];
 
   // 历史栈（用于撤销/重做）
-  past: { nodes: FrameosNode[]; edges: Edge[] }[];
-  future: { nodes: FrameosNode[]; edges: Edge[] }[];
+  // Batch 329: 快照纳入 groups —— 此前只存 {nodes, edges}，而 removeNode
+  // (Batch 328 reconcileGroups) / createGroup / ungroup 都会改动 groups，
+  // 撤销却只还原 nodes/edges → 节点回来了、分组状态没回来（成员丢失/分组残留）。
+  // groups 为可选：旧快照（无该字段）按空数组处理，保持向后兼容。
+  past: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[];
+  future: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[];
 
   // minimap 是否显示 (canvas-map-dock 第一个按钮的 is-active 切换)
   showMinimap: boolean;
@@ -348,7 +352,20 @@ function reconcileGroups(
   });
 }
 
-// 几个 mock canvas 用于 breadcrumb 切换演示
+// Batch 329: 统一的历史快照入口 —— 保证**每条**入栈路径都带上 groups。
+// 此前 10 处各自手写 `{nodes, edges}`，漏掉 groups 是 Batch 328 之后
+// 「撤销删除成员 → 节点回来但成员集停在删除后」的根因。集中到一处后，
+// 新增 action 不再可能漏带。
+function pushHistorySnapshot(
+  state: { past: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[]; nodes: FrameosNode[]; edges: Edge[]; groups: FrameosGroup[] }
+): { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[] {
+  return [
+    ...state.past.slice(-19),
+    { nodes: state.nodes, edges: state.edges, groups: state.groups },
+  ];
+}
+
+
 const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
   // Batch 164: 演示上下文对齐 2026-09-23 源站 (测试作品/测试项目/画布 1)
   "测试作品/测试项目/画布 1": {
@@ -437,14 +454,14 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   // Batch 175: 整理入撤销历史 (源站整理可撤销)
   organizeNodes: (laid) =>
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: laid,
     })),
   // Batch 189: resize 手柄 — 按下时入历史一次, 拖动过程实时更新尺寸 (不入历史)
   beginResize: (id) =>
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
     })),
   resizeNode: (id, w, h) =>
@@ -519,7 +536,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       },
     };
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: [...state.nodes, newNode],
       isAddNodeMenuOpen: false,
@@ -531,7 +548,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   addEdge: (edge) =>
     // Batch 174: 连线创建入撤销历史 (与源站全局撤销栈一致)
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       edges: [...state.edges, edge],
     })),
@@ -539,7 +556,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   removeEdge: (id) =>
     // Batch 159: 删除连线入历史栈——源站撤销可恢复被删连线
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       edges: state.edges.filter((e) => e.id !== id),
     })),
@@ -550,7 +567,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       const nodes = state.nodes.filter((n) => n.id !== id);
       const groups = reconcileGroups(state.groups, nodes);
       return {
-        past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+        // Batch 329: 快照带上**变更前**的 groups，撤销才能把成员放回原分组
+        past: pushHistorySnapshot(state),
         future: [],
         nodes,
         edges: state.edges.filter((e) => e.source !== id && e.target !== id),
@@ -580,7 +598,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       },
     };
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       // Batch 133: 修复文档记录的缺口——副本对象此前从未加入 nodes。
       nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
@@ -609,7 +627,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       data: { ...node.data },
     };
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
       selectedNodeId: newId,
@@ -630,7 +648,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       data: { ...clip.data },
     };
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
       selectedNodeId: newId,
@@ -640,7 +658,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   updateNodeData: (id, patch) => {
     // Batch 203: 内容修改入撤销历史 (文本编辑提交/图片替换等, 每次提交一条)
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: state.nodes.map((n) =>
         n.id === id
@@ -691,6 +709,9 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       h: maxY - minY + FRAMEOS_GROUP_PADDING * 2,
     };
     set((state) => ({
+      // Batch 329: 成组入撤销历史 — 此前不入栈，撤销无法撤销「成组」动作
+      past: pushHistorySnapshot(state),
+      future: [],
       groups: [...state.groups, group],
       selectedGroupId: id,
       selectedNodeId: null,
@@ -707,25 +728,48 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     })),
 
   // 解组: 分组移除, 成员位置保持 (源站实测); 无 toast
+  // Batch 329: 解组入撤销历史
   ungroup: (id) =>
     set((state) => ({
+      past: pushHistorySnapshot(state),
+      future: [],
       groups: state.groups.filter((g) => g.id !== id),
       selectedGroupId:
         state.selectedGroupId === id ? null : state.selectedGroupId,
     })),
 
   // Batch 262: 组重命名 (源站: 双击标签 → 内联输入 → Enter 提交)
+  // Batch 330: 组重命名 / 改色 / 整组拖拽入撤销历史。
+  // 此前三者只改 state 不入栈 → 动作**不可撤销**（探针实测 pushed:false、
+  // undoRestores:false），与「整理可撤销」「连线可撤销」的既有语义不一致。
+  // CLONE_DECISION：源站分组重命名/改色/拖拽是否可撤销**未采样**（源站阻塞，
+  // 见 SOURCE_ACCESS_BLOCKED_2026-10-01.md）。此处按克隆内部一致性补齐
+  // —— 用户已能撤销成组/解组/排列，撤销同层级的组操作更可预期。
   renameGroup: (id, name) =>
-    set((state) => ({
-      groups: state.groups.map((g) =>
-        g.id === id ? { ...g, name: name.trim() || g.name } : g
-      ),
-    })),
+    set((state) => {
+      const target = state.groups.find((g) => g.id === id);
+      const next = name.trim();
+      // 空名/与原名相同 = 无净变化，不入栈（否则一次空提交会占掉一格撤销，
+      // 用户按撤销却看不到任何变化）。
+      if (!target || !next || next === target.name) return state;
+      return {
+        past: pushHistorySnapshot(state),
+        future: [],
+        groups: state.groups.map((g) => (g.id === id ? { ...g, name: next } : g)),
+      };
+    }),
 
   setGroupColor: (id, color) =>
-    set((state) => ({
-      groups: state.groups.map((g) => (g.id === id ? { ...g, color } : g)),
-    })),
+    set((state) => {
+      const target = state.groups.find((g) => g.id === id);
+      // 同色 = 无净变化，不入栈（同上）
+      if (!target || target.color === color) return state;
+      return {
+        past: pushHistorySnapshot(state),
+        future: [],
+        groups: state.groups.map((g) => (g.id === id ? { ...g, color } : g)),
+      };
+    }),
 
   // 排列: 均按原 Y 排序 (Batch 252 源站实测: 垂直排列同样按 Y 而非 X)。
   // 水平 = 一行排开; 垂直 = 单列; 宫格 = ceil(√n) 列行优先 (源站 4 成员采样 2×2 确认)。
@@ -780,7 +824,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       ...sorted.map((n) => (positions.get(n.id) ?? n.position).y + sizeOf(n).h)
     );
     set((state) => ({
-      past: [...state.past.slice(-19), { nodes: state.nodes, edges: state.edges }],
+      past: pushHistorySnapshot(state),
       future: [],
       nodes: state.nodes.map((n) => {
         const p = positions.get(n.id);
@@ -820,10 +864,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   // Batch 232: 节点拖动等外部手势的撤销快照 (拖动开始时调用一次)
   pushHistory: () =>
     set((state) => ({
-      past: [
-        ...state.past.slice(-19),
-        { nodes: state.nodes, edges: state.edges },
-      ],
+      past: pushHistorySnapshot(state),
       future: [],
     })),
 
@@ -841,27 +882,31 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   setSelectedModel: (model) => set({ selectedModel: model }),
 
   undo: () => {
-    const { past, nodes, edges, future } = get();
+    const { past, nodes, edges, groups, future } = get();
     if (past.length === 0) return;
     const prev = past[past.length - 1];
     set({
       past: past.slice(0, -1),
-      future: [{ nodes, edges }, ...future].slice(0, 20),
+      future: [{ nodes, edges, groups }, ...future].slice(0, 20),
       nodes: prev.nodes,
       edges: prev.edges,
+      // Batch 329: 同步还原分组。旧快照无 groups 字段时按「分组为空」处理，
+      // 再按当前 nodes 收敛，避免留下悬空成员。
+      groups: reconcileGroups(prev.groups ?? [], prev.nodes),
       selectedNodeId: null,
       selectedGroupId: null,
     });
   },
   redo: () => {
-    const { future, nodes, edges, past } = get();
+    const { future, nodes, edges, groups, past } = get();
     if (future.length === 0) return;
     const next = future[0];
     set({
-      past: [...past, { nodes, edges }].slice(-20),
+      past: [...past, { nodes, edges, groups }].slice(-20),
       future: future.slice(1),
       nodes: next.nodes,
       edges: next.edges,
+      groups: reconcileGroups(next.groups ?? [], next.nodes),
       selectedNodeId: null,
       selectedGroupId: null,
     });

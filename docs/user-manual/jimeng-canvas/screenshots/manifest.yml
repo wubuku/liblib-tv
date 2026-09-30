@@ -329,3 +329,63 @@ screenshots:
     visible_text: 导演台 / 在 3D 空间中设计角色、机位与镜头 / 进入导演台
     alt: 导演台（Beta）节点：标题「导演台」、说明「在 3D 空间中设计角色、机位与镜头」、唯一操作按钮「进入导演台」；选中时没有浮动工具条。
     sha256: b3025a4dc168589a828252fb4e44826785c409e300134bfdf7364e1e46e75026
+
+  - file: screenshots/23-help-shortcuts-verified.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:44:00+08:00
+    verified_locator: '用户菜单 → 快捷键 打开的右侧抽屉；橙框为注入 overlay'
+    visible_text: 快捷键 / 通用操作 / 打开/关闭 Agent ⌘ / / 撤销 ⌘ Z / 移动工具 V / 预览视图 F / 宫格视图 G / 创建编组 ⌘ G / 取消编组 ⌘ ⇧ G / 视图 / 适配画布 ⇧ 1 ⌘ 0
+    alt: 快捷键面板（1280×720 实测）：右侧抽屉标题「快捷键」，依次为「通用操作」组（打开/关闭 Agent ⌘/、撤销 ⌘Z、还原 ⌘⇧Z 或 ⌘Y、移动工具 V、预览视图 F、宫格视图 G、创建编组 ⌘G、取消编组 ⌘⇧G）与「视图」组（放大视图 ⌘+、缩小视图 ⌘−、适配画布 ⇧1 或 ⌘0…），橙色高亮框为面板范围；继续下滚还有「时间线」「文本编辑」两组
+    sha256: e5df6fa3be6ced15bd64893b82669e799c38787c203825dcb66565178fd4d018
+
+  - file: screenshots/24-layout-menu.png
+    task_id: organize-group-layout
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:29:00+08:00
+    verified_locator: '多选工具条 button「布局∨」；菜单项 div 逐字 宫格布局 / 智能布局；框线为注入 overlay'
+    visible_text: 5 节点 编组 布局∨ 下载 / 宫格布局 / 智能布局
+    alt: 多选工具条上的「布局∨」展开为下拉菜单：橙色高亮为「布局」按钮，绿色高亮为菜单中并列的两项「宫格布局」与「智能布局」，浮层在按钮正下方展开
+    sha256: c34c43ebc2d0918dac568a80469f159b3652d732c0fd551b25bd9bc8d64c7990
+
+  - file: screenshots/25-grid-layout-result.png
+    task_id: organize-group-layout
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:29:30+08:00
+    verified_locator: '执行「宫格布局」后 .react-flow__node 坐标快照（行 y=106 / y=506）'
+    visible_text: 5 节点 已保存 / 视频 1 / sb_518102884867410fb... / 文本 2 / 文本 3 / 100%
+    alt: 执行「宫格布局」后的画布：节点被重排为两行、间距均匀，左下角缩放读数仍为 100%（视口未自动适配），右侧与下方的节点已移出视野
+    sha256: 2c8704410c393ffc86af47c9bbb73a05d9fb70864940006d1e5bb99dd662634b
+
+  - file: screenshots/26-fit-canvas.png
+    task_id: navigate-canvas
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:36:00+08:00
+    verified_locator: '按 ⌘0 适配画布后 dock 缩放读数 62%，6 个 .react-flow__node 全部在视口内'
+    visible_text: 节点 6 已保存 / 视频 1 / 文本 1 / 文本 2 / 文本 3 / 62%
+    alt: 按适配画布（⌘0/⇧1）后的视图：dock 缩放读数由 100% 变为 62%，此前被布局重排推出视野的 6 个节点全部回到画面内，内容偏左上
+    sha256: 2de9af545df9c496ac00317d2fccc64eef7a5399705100e8e15711868e28b444
+
+  - file: screenshots/27-group-keyboard.png
+    task_id: help-and-shortcuts
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:40:00+08:00
+    verified_locator: '⌘G 编组后状态行 7 nodes, 0 edges, 1 selected，组卡片「编组 1」四角控制点'
+    visible_text: 节点 7 已保存 / 编组 1 / 解除编组 布局∨ 背景色 ⤓ / 00:02 / 00:06
+    alt: 编组卡片「编组 1」：上方工具条为 解除编组 / 布局∨ / 背景色 / 下载，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
+    sha256: ec8c3847ed4e16600b78c04ff1b7ad79b8240ce1471c3b18870a2ecdcf911ff0

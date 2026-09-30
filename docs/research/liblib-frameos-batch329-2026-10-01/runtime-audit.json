@@ -1,0 +1,40 @@
+{
+  "batch": 329,
+  "title": "FrameOS group-aware undo history (createGroup/ungroup/removeNode)",
+  "defect": "history snapshots stored only {nodes, edges} while groups are mutated by createGroup/ungroup/removeNode(reconcileGroups). Undo restored nodes but not group state, so undoing a member delete silently orphaned the restored node out of its group - no dangling ref, no error, node just left the group.",
+  "fix": "snapshot type gained optional groups; added pushHistorySnapshot(state) as the single history entry point used by all 13 push sites; createGroup and ungroup now push history; undo/redo restore groups through reconcileGroups",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "create:pushed-to-history",
+        "create:group-exists",
+        "create:undo-removes-group",
+        "create:redo-restores-group",
+        "create:redo-members-intact",
+        "create:redo-box-intact",
+        "ungroup:pushed-to-history",
+        "ungroup:group-removed",
+        "ungroup:undo-restores",
+        "delete:member-pruned",
+        "delete:no-dangling-after-delete",
+        "undo:node-restored",
+        "undo:membership-fully-restored",
+        "undo:box-restored",
+        "undo:no-dangling",
+        "redo:delete-replayed",
+        "redo:membership-converged",
+        "redo:no-dangling",
+        "multi-undo:no-dangling",
+        "multi-undo:state-consistent",
+        "legacy-snapshot:no-crash",
+        "legacy-snapshot:no-dangling",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

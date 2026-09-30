@@ -227,3 +227,46 @@ verifier batch328 **17/17 PASS**；batch251（分组 59 项）回归 PASS。
 
 **环境坑（已修）**：`/tmp/frameos-probe-video.webm` 会被 macOS 清理，导致
 batch225/230 报 `ENOENT`。重建后两者均 PASS —— 见到 ENOENT 先重建素材再判回归。
+
+## Batch 329（2026-10-01）：分组进入撤销历史
+
+**Batch 328 的直接后续**。328 让 `removeNode` 开始改写 `groups`，而历史快照只存
+`{nodes, edges}` → 同一动作正向被完整记录、撤销只回滚一半。核心症状：
+撤销「删除分组成员」时**节点回来了但成员集没回来**，被恢复的节点被静默踢出分组，
+且不产生悬空引用、不报错（用户表现为「撤销后节点飘在组外面」）。
+另两条：`createGroup` / `ungroup` 完全不入栈，撤销无效。
+
+修复：快照类型纳入可选 `groups`；新增 `pushHistorySnapshot(state)` 统一入口，
+**13 处**入栈路径全部改用它（根因是 13 处各自手写、漏带只是迟早）；成组/解组
+入栈；undo/redo 还原 groups 并过 `reconcileGroups` 兜底。
+verifier batch329 **23/23 PASS**（含伪造旧格式快照的兜底断言）。
+详见 [`liblib-frameos-batch329-2026-10-01/README.md`](../liblib-frameos-batch329-2026-10-01/README.md)。
+
+**候选 Batch 330**：`arrangeGroup` / `moveGroup` / `setGroupColor` / `renameGroup`
+仍不入历史栈。需先确认源站是否视其为可撤销动作 —— 源站不可访问时**不得凭空发明**，
+若按克隆一致性补齐必须显式标注为 clone-only 决策。
+
+## Batch 330（2026-10-01）：分组重命名 / 改色 的撤销覆盖
+
+Batch 329 之后 `createGroup` / `ungroup` / `arrangeGroup` 可撤销，但
+`renameGroup` / `setGroupColor` 仍只改 state 不入栈 → **重命名、改色不可撤销**
+（探针实测 `pushed:false, undoRestores:false`）。已改用 `pushHistorySnapshot`。
+
+**顺带修掉一个新问题**：简单加快照后发现 `renameGroup(gid, '   ')` 状态虽不变
+却照样入栈 —— 用户按一次撤销被消耗掉、什么也没发生。已加**无净变化不入栈**守卫
+（空名/同名/同色 → 直接 return）。入栈从此与「状态确实变了」严格等价。
+
+**`moveGroup` 故意不改**：它每帧调用，入栈会灌爆 20 格栈（Batch 189/232
+节点拖拽的老问题）。整组拖拽的撤销由 UI 层在手势开始时调一次 `pushHistory()`
+保证（`FrameosGroupCanvas.tsx:70`）。验证器把这条当**不变式**测：
+一次 push + 6 次 moveGroup → 深度只 +1，一次撤销精确回原位（盒 + 全部成员）。
+
+⚠️ **CLONE_DECISION**：源站是否视分组重命名/改色/拖拽为可撤销动作**未采样**
+（源站阻塞）。本批是**克隆内部一致性**决策，**不是源站对齐声明**；恢复访问后需复核。
+
+verifier batch330 **22/22 PASS**；batch251/232/177/159/174/328/329 回归 8/8 PASS。
+详见 [`liblib-frameos-batch330-2026-10-01/README.md`](../liblib-frameos-batch330-2026-10-01/README.md)。
+
+**候选 Batch 331**：反向问题 —— 是否存在**不该入栈却入了**的 action
+（纯 UI 状态如 minimap 显隐/面板开关入历史，导致撤销「无事可做」）。
+需先用探针枚举全部 action 的入栈行为再决定立项。
