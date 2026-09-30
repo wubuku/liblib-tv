@@ -51,4 +51,4 @@ python3 -m http.server 4173 -d .vitepress/dist
 - [`screenshots/manifest.yml`](screenshots/manifest.yml)：22 张正式截图的登记
   与哈希。
 - [`TEST_MEDIA_ASSETS.md`](TEST_MEDIA_ASSETS.md)：授权测试媒体使用记录
-  （权威清单见 [docs/CANVAS_TEST_MEDIA.md](../../CANVAS_TEST_MEDIA.md)）。
+  （权威清单见仓库级 `docs/CANVAS_TEST_MEDIA.md`，位于本手册目录之外）。

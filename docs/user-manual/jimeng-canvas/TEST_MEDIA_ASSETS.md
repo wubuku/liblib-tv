@@ -1,6 +1,6 @@
 # 即梦画布测试媒体素材登记
 
-> 权威登记与使用边界见 [docs/CANVAS_TEST_MEDIA.md](../../CANVAS_TEST_MEDIA.md)（agents 常青入口）；本文件是该手册轮次的使用记录。
+> 权威登记与使用边界见仓库级 `docs/CANVAS_TEST_MEDIA.md`（agents 常青入口，位于本手册目录之外，故此处不作站内链接）；本文件是该手册轮次的使用记录。
 
 ## 使用边界
 
