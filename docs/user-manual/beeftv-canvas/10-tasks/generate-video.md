@@ -81,3 +81,4 @@
 
 - 生成失败分类（审核/版权/额度）：[90-troubleshooting.md](../90-troubleshooting.md)
 - 任务状态与对账：[generate-images.md](generate-images.md)
+- 视频节点的本地处理（深度动作捕捉等）：[local-runtime.md](local-runtime.md)

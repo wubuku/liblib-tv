@@ -34,3 +34,9 @@
 1. 管理员在插件设置填写 Eagle Base URL（默认 `http://127.0.0.1:41595`）并读取文件夹；
 2. **浏览器不直接访问 Eagle**：所有读取/搜索/下载/写入经站点后端转发（library / items / thumbnail / file 四个代理端点）；
 3. 可把 Eagle 素材写回（POST items）或下载导入站点资源存储。
+
+## 相关页面
+
+- 发起生成前先确认模型可用：[发起图片生成](generate-images.md)、[发起视频生成与素材限制](generate-video.md)
+- 插件不可用/插件报错：[故障排查](../90-troubleshooting.md)
+- Agent 侧的扩展配置：[Agent 记忆与技能](agent-memory-skills.md)

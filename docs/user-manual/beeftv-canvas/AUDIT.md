@@ -486,3 +486,25 @@
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
 | 闸门逻辑内嵌为 `build-site.sh` 的 heredoc，在 macOS 自带 bash 下报 `unexpected EOF while looking for matching '` | Minor（工程） | ✅ Batch 94 抽出 `scripts/verify-screenshots.py`，与既有 `scripts/verify-docs.py` 同构 |
+
+## 环境记录五十一（Batch 95，2026-10-01，可发现性审计）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。本轮纯静态审计。
+- **做法**：把 27 个已发布页建成有向图，统计每页的**入链/出链**，并与 `.vitepress/config.mjs` 的侧边栏逐条核对。
+- **侧边栏覆盖**：25 个条目对 25 个非索引页，**无遗漏**（`README.md` 与 `10-tasks/README.md` 为索引页，本就不该进侧边栏）。故本轮缺陷不在导航配置，而在**页面之间的互联**。
+- **查出 4 处可发现性缺陷**：
+
+| 缺陷 | 严重性 | 处理 |
+|---|---|---|
+| `10-tasks/README.md` 是「任务指南」索引页，21 个页面名**全是纯文本、一个都不能点** | **Major（已修）** | 全表改为真链接（按各页 H1 用完整标题），并补「不知道从哪开始」的双入口与概念/参考/排障的收尾指引 |
+| `10-tasks/director-rig-bones.md` 入链 0、出链 0 | Important（已修） | 补「相关页面」（导演台另两篇 + 成片导出），并从 `director-basics` 补入链 |
+| `10-tasks/local-runtime.md` 入链 0 | Important（已修） | 索引页链接 + 从 `generate-video`「视频节点的本地处理」补入链 |
+| `10-tasks/plugins-management.md`、`30-concepts.md` 出链 0（断头页，看完无路可走） | Minor（已修） | 各补「相关页面」段 |
+
+- **修后指标**：断头页 **4 → 0**；孤儿页 3 → 1（仅剩 `README.md`，它是站点首页 `/`，本就该零入链）；全站入链总数 **58 → 112**。
+- **方法论**：
+  - 「页面写得全不全」和「读者找不找得到」是两件事。此前 12 个 batch 都在审**单页内容质量**，**从未审过页与页之间的关系**，缺口就是这么漏出来的——内容再好的页面，入链为 0 时读者根本不会走到它。
+  - 判据要分清：入链 0 且不在侧边栏 = 真孤儿；入链 0 但在侧边栏 = 半可达（本轮两例属于后者，靠侧边栏兜住，但正文里没有任何一条路把人带过去，读者读完上一页就断了）。
+  - 首页 `README.md` 零入链属正常，不计入缺陷——审计脚本的孤儿名单需要人工排除索引页，不能机械报警。
+- **顺带修正**：`30-concepts.md` 中英混排缺空格「它们不是bug」→「它们不是 bug，而是」。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
