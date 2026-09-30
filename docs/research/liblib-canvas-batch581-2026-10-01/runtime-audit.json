@@ -22,9 +22,10 @@
         "order:注视目标-present",
         "order:注视坐标-present",
         "order:source-sequence",
-        "help:collapsed-by-default",
+        "help:expanded-by-default",
         "help:label",
-        "help:opens",
+        "help:collapses",
+        "help:reopens",
         "help:source-copy",
         "follow:present",
         "follow:commit",
@@ -46,8 +47,8 @@
         "位置": 449,
         "跟随目标": 515,
         "旋转": 582,
-        "注视目标": 951,
-        "注视坐标": 1017
+        "注视目标": 989,
+        "注视坐标": 1055
       },
       "help_text": "视野角度 (FOV)\n?\n\n控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。",
       "diagnostics": {

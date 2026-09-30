@@ -1368,8 +1368,58 @@ function CameraFovField({
   );
 }
 
+// Batch 582（源站 2026-10-01 实测）：场景平移 / 场景旋转 的三轴行不是
+// 「标签 + 数值框」，而是每轴一个**可横向拖动的轴片**（源站实测
+// `<button aria-label="左右拖动调整 X 轴">`）紧贴数值框左侧——按住左右拖
+// 即可连续调整该轴。源站未暴露步进量，clone 取数值框 step 的 1/4 像素当量
+// 作为拖动灵敏度（CLONE_DECISION）。
+function SceneAxisScrub({
+  axis,
+  value,
+  step,
+  onChange,
+  testId,
+}: {
+  axis: string;
+  value: number;
+  step: number;
+  onChange: (next: number) => void;
+  testId: string;
+}) {
+  const dragRef = useRef<{ x: number; value: number } | null>(null);
+  return (
+    <button
+      type="button"
+      data-director-scene-axis-scrub={testId}
+      aria-label={`左右拖动调整 ${axis} 轴`}
+      onPointerDown={(event) => {
+        dragRef.current = { x: event.clientX, value };
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }}
+      onPointerMove={(event) => {
+        const origin = dragRef.current;
+        if (!origin) return;
+        const delta = (event.clientX - origin.x) * step * 0.25;
+        onChange(Number((origin.value + delta).toFixed(4)));
+      }}
+      onPointerUp={(event) => {
+        dragRef.current = null;
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }}
+      onPointerCancel={() => {
+        dragRef.current = null;
+      }}
+      className="h-7 w-6 shrink-0 cursor-ew-resize select-none rounded border border-white/[0.08] bg-[#222] text-[10px] font-medium uppercase text-[#8c8c8c] hover:border-[#09caf5]/40 hover:text-white"
+    >
+      {axis}
+    </button>
+  );
+}
+
 function CameraFovHelp() {
-  const [open, setOpen] = useState(false);
+  // Batch 582: 源站实测该说明**默认展开**（innerText 直接含文案，? 开关在
+  // 其前），此前 clone 默认收起，现对齐为默认展开。
+  const [open, setOpen] = useState(true);
   return (
     <div
       data-director-camera-fov-help
@@ -2110,6 +2160,102 @@ export function DirectorInspector({
         ) : (
           <div data-director-scene-settings className="space-y-4 px-3 py-3">
             <section data-director-scene-settings-section>
+            <section
+              data-director-scene-transform
+              className="space-y-2 border-b border-white/[0.07] pb-3"
+            >
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>场景缩放</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-scale
+                    type="range"
+                    min={0.1}
+                    max={10}
+                    step={0.1}
+                    aria-label="场景缩放"
+                    value={scene.sceneScale ?? 1}
+                    onChange={(event) =>
+                      updateScene({ sceneScale: Number(event.target.value) })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-10 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {Math.round((scene.sceneScale ?? 1) * 100)}%
+                  </span>
+                </span>
+              </label>
+              <div className="space-y-1 text-xs text-[#bcbcbc]">
+                <span className="block">场景平移</span>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => {
+                    const translate = scene.sceneTranslate ?? [0, 0, 0];
+                    const commit = (next: number) => {
+                      const tuple = [...translate] as [number, number, number];
+                      tuple[axisIndex] = next;
+                      updateScene({ sceneTranslate: tuple });
+                    };
+                    return (
+                      <div key={axisLabel} className="flex items-center gap-1">
+                        <SceneAxisScrub
+                          axis={axisLabel}
+                          value={translate[axisIndex]}
+                          step={0.1}
+                          testId={`translate-${axisLabel}`}
+                          onChange={commit}
+                        />
+                        <input
+                          data-director-scene-translate={axisIndex}
+                          type="number"
+                          step={0.1}
+                          aria-label={`场景平移 ${axisLabel}`}
+                          value={translate[axisIndex]}
+                          onChange={(event) =>
+                            commit(Number(event.target.value))
+                          }
+                          className="h-7 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="space-y-1 text-xs text-[#bcbcbc]">
+                <span className="block">场景旋转</span>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => {
+                    const rotate = scene.sceneRotate ?? [0, 0, 0];
+                    const commit = (next: number) => {
+                      const tuple = [...rotate] as [number, number, number];
+                      tuple[axisIndex] = next;
+                      updateScene({ sceneRotate: tuple });
+                    };
+                    return (
+                      <div key={axisLabel} className="flex items-center gap-1">
+                        <SceneAxisScrub
+                          axis={axisLabel}
+                          value={rotate[axisIndex]}
+                          step={1}
+                          testId={`rotate-${axisLabel}`}
+                          onChange={commit}
+                        />
+                        <input
+                          data-director-scene-rotate={axisIndex}
+                          type="number"
+                          step={1}
+                          aria-label={`场景旋转 ${axisLabel}`}
+                          value={rotate[axisIndex]}
+                          onChange={(event) =>
+                            commit(Number(event.target.value))
+                          }
+                          className="h-7 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-[11px] font-medium text-[#cfcfcf]">
                   场景设置
@@ -2202,16 +2348,23 @@ export function DirectorInspector({
               </label>
               <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
                 <span>天空颜色</span>
-                <input
-                  data-director-scene-sky-color
-                  type="color"
-                  aria-label="天空颜色"
-                  value={scene.skyColor ?? "#060608"}
-                  onChange={(event) =>
-                    updateScene({ skyColor: event.target.value })
-                  }
-                  className="h-6 w-9 rounded border-0 bg-transparent"
-                />
+                {/* Batch 582（源站实测 y=452/457）：源站天空颜色除取色器外
+                    还有 hex 文本框 + `#` 前缀读数。 */}
+                <span className="flex items-center gap-1.5">
+                  <span className="text-[10px] tabular-nums text-[#8c8c8c]">
+                    #{(scene.skyColor ?? "#060608").replace("#", "")}
+                  </span>
+                  <input
+                    data-director-scene-sky-color
+                    type="color"
+                    aria-label="天空颜色"
+                    value={scene.skyColor ?? "#060608"}
+                    onChange={(event) =>
+                      updateScene({ skyColor: event.target.value })
+                    }
+                    className="h-6 w-9 rounded border-0 bg-transparent"
+                  />
+                </span>
               </label>
               <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
                 <span>全景球 水平旋转</span>
@@ -2243,8 +2396,8 @@ export function DirectorInspector({
                     data-director-scene-panorama-radius
                     type="range"
                     min={10}
-                    max={100}
-                    step={1}
+                    max={500}
+                    step={10}
                     aria-label="全景球球形半径"
                     value={scene.panoramaSphereRadius ?? 30}
                     onChange={(event) =>
@@ -2295,7 +2448,33 @@ export function DirectorInspector({
                   className="accent-[#09caf5]"
                 />
               </label>
-              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
+              {/* Batch 582（源站实测 y 序：透明度 920 在前、高度 992 在后，
+                  且透明度带 `0.40` 两位小数读数、高度步进 0.05）：顺序与
+                  读数对齐源站。 */}
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
+                <span>地面透明度</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    data-director-scene-ground-opacity
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    aria-label="地面透明度"
+                    value={scene.groundOpacity ?? 0.4}
+                    onChange={(event) =>
+                      updateScene({
+                        groundOpacity: Number(event.target.value),
+                      })
+                    }
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
+                    {(scene.groundOpacity ?? 0.4).toFixed(2)}
+                  </span>
+                </span>
+              </label>
+              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
                 <span>地面高度</span>
                 <span className="flex items-center gap-2">
                   <input
@@ -2303,7 +2482,7 @@ export function DirectorInspector({
                     type="range"
                     min={-2}
                     max={2}
-                    step={0.1}
+                    step={0.05}
                     aria-label="地面高度"
                     value={scene.groundHeight ?? 0}
                     onChange={(event) =>
@@ -2316,96 +2495,6 @@ export function DirectorInspector({
                   </span>
                 </span>
               </label>
-              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
-                <span>地面透明度</span>
-                <input
-                  data-director-scene-ground-opacity
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  aria-label="地面透明度"
-                  value={scene.groundOpacity ?? 0.4}
-                  onChange={(event) =>
-                    updateScene({
-                      groundOpacity: Number(event.target.value),
-                    })
-                  }
-                  className="ml-2 w-28 accent-[#09caf5]"
-                />
-              </label>
-            </section>
-            <section
-              data-director-scene-transform
-              className="space-y-2 border-b border-white/[0.07] pb-3"
-            >
-              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
-                <span>场景缩放</span>
-                <span className="flex items-center gap-2">
-                  <input
-                    data-director-scene-scale
-                    type="range"
-                    min={0.5}
-                    max={3}
-                    step={0.1}
-                    aria-label="场景缩放"
-                    value={scene.sceneScale ?? 1}
-                    onChange={(event) =>
-                      updateScene({ sceneScale: Number(event.target.value) })
-                    }
-                    className="w-24 accent-[#09caf5]"
-                  />
-                  <span className="w-10 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {Math.round((scene.sceneScale ?? 1) * 100)}%
-                  </span>
-                </span>
-              </label>
-              <div className="space-y-1 text-xs text-[#bcbcbc]">
-                <span className="block">场景平移</span>
-                <div className="grid grid-cols-3 gap-1.5">
-                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => (
-                    <input
-                      key={axisLabel}
-                      data-director-scene-translate={axisIndex}
-                      type="number"
-                      step={0.1}
-                      aria-label={`场景平移 ${axisLabel}`}
-                      value={(scene.sceneTranslate ?? [0, 0, 0])[axisIndex]}
-                      onChange={(event) => {
-                        const next = [
-                          ...(scene.sceneTranslate ?? [0, 0, 0]),
-                        ] as [number, number, number];
-                        next[axisIndex] = Number(event.target.value);
-                        updateScene({ sceneTranslate: next });
-                      }}
-                      className="h-7 w-full rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-1 text-xs text-[#bcbcbc]">
-                <span className="block">场景旋转</span>
-                <div className="grid grid-cols-3 gap-1.5">
-                  {(["X", "Y", "Z"] as const).map((axisLabel, axisIndex) => (
-                    <input
-                      key={axisLabel}
-                      data-director-scene-rotate={axisIndex}
-                      type="number"
-                      step={1}
-                      aria-label={`场景旋转 ${axisLabel}`}
-                      value={(scene.sceneRotate ?? [0, 0, 0])[axisIndex]}
-                      onChange={(event) => {
-                        const next = [
-                          ...(scene.sceneRotate ?? [0, 0, 0]),
-                        ] as [number, number, number];
-                        next[axisIndex] = Number(event.target.value);
-                        updateScene({ sceneRotate: next });
-                      }}
-                      className="h-7 w-full rounded border border-white/[0.08] bg-[#222] px-1.5 text-[11px] text-[#dedede] outline-none focus:border-[#09caf5]/60"
-                    />
-                  ))}
-                </div>
-              </div>
             </section>
             <section
               data-director-panorama-input

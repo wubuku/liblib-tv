@@ -193,11 +193,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 4) the FOV help block and its source copy
     help_block = page.locator("[data-director-camera-fov-help]")
     help_block.scroll_into_view_if_needed()
-    check("help:collapsed-by-default", help_block.get_attribute("data-open") == "false")
+    # Batch 582: 源站实测该说明默认展开（innerText 直接含文案），581 曾
+    # 实现为默认收起，此处随 582 迁移为「默认展开 + 可切换收起」。
+    check("help:expanded-by-default", help_block.get_attribute("data-open") == "true")
     check("help:label", "视野角度 (FOV)" in help_block.inner_text())
     page.locator("[data-director-camera-fov-help-toggle]").click()
     page.wait_for_timeout(250)
-    check("help:opens", help_block.get_attribute("data-open") == "true")
+    check("help:collapses", help_block.get_attribute("data-open") == "false")
+    page.locator("[data-director-camera-fov-help-toggle]").click()
+    page.wait_for_timeout(250)
+    check("help:reopens", help_block.get_attribute("data-open") == "true")
     check("help:source-copy", SOURCE_FOV_HELP in help_block.inner_text())
     result["help_text"] = help_block.inner_text().strip()
 
