@@ -515,3 +515,15 @@ screenshots:
     visible_text: 'Seedream V5 Pro'
     alt: 图片节点的完整生成面板，从上到下依次是模式与参数行、参考素材区、描述输入框，底部操作条显示模型 Seedream V5 Pro、比例自适应 2k、数量 1x 与约 0.519 元的价格
     sha256: d66c080853b23b67c3aac85a9163b4ca1f5f8fd6067db46320cdec3af89978fa
+
+  - file: screenshots/06-image-operations-toolbar.png
+    task_id: image-operations
+    step: 已填充图片的节点被选中，悬浮工具条显示 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多
+    route: '/canvas/:id'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '工具条按钮 aria-label 裁剪并生成新节点 / 按行列切分图片 / 放大图片分辨率 / 节点标题 03-create-nodes-all-types.png 像素资料'
+    visible_text: '裁剪'
+    alt: 已填充图片的节点及其悬浮工具条，依次显示存资产、下载、编辑、复制提示词、反推提示词、替换图片，以及裁剪、切图、放大、查看大图
+    sha256: 01b984172a6f7be8cc4ab19c95518950fc236420068603e85502be5a6f9c1e11
