@@ -267,8 +267,8 @@ screenshots:
     captured_at: 2026-10-01T06:56:00+08:00
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套）'
     visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
-    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
-    sha256: c65cae177b5b85449eafb1936f46db1fec17c20c829b0b774277e6099b9a97a7
+    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
+    sha256: 3557083d30fb34716caef794d7e20f1c10f6fec44ba564e382c5dcac78242f62
 
   - file: screenshots/diagrams/canvas-zones.svg
     task_id: create-first-node
@@ -293,3 +293,15 @@ screenshots:
     visible_text: 编组 / 解除编组 / 背景色 / 宫格布局 / 智能布局
     alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局∨/下载/Add tags，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色/下载；③解除编组后成员恢复独立并保持选中，回到①的状态。
     sha256: 4c7be7c7638a81f293e762100af26291f4fe86ef66097e0ad20eb62e401129be
+
+  - file: screenshots/subject-node.png
+    task_id: subject-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:12:00+08:00
+    verified_locator: 'react-flow__node-subject 节点（标题 @ 主体 1），红色高亮框为注入 overlay'
+    visible_text: 导入主体 / 从画布选择 / 从资产库选择 / 本地添加
+    alt: 主体节点「主体 1」：标题行 @ 主体 1 带改名铅笔、描述占位「添加描述...」、导入区四项（导入主体／从画布选择／从资产库选择／本地添加），选中时没有浮动工具条；空态为 Empty subject: main missing, 0 auxiliaries, voice missing。
+    sha256: 5a1db7a3c154cedfbef24f36e9b170105368893571b5d55237f1ec2834094906

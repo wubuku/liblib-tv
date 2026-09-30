@@ -63,6 +63,7 @@ export default defineConfig({
         text: '节点编辑与管理',
         items: [
           { text: '创建与编辑文本节点', link: '/10-tasks/edit-text-node' },
+          { text: '创建并使用主体节点（@主体 引用）', link: '/10-tasks/subject-node' },
           { text: '复制、删除与撤销', link: '/10-tasks/duplicate-delete-history' },
           { text: '使用资产库并上传素材', link: '/10-tasks/assets-and-upload' },
           { text: '编组、排列与整理画布', link: '/10-tasks/organize-group-layout' },

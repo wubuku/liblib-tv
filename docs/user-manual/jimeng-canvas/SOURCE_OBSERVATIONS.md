@@ -357,3 +357,49 @@ viewport 1680×826）。正式取证时逐条在当前会话复测，复测结�
   sb_→视频 1 经 选中+⌫ 删除；画布恢复会话前基线 **2 节点（sb_、视频 1）、
   0 连线、已保存**。删除节点会触发视口重适配（连续删除时坐标会漂移，自动化
   备忘）。
+
+## 3. 增量取证（2026-10-01，登录会话下）
+
+> 通道：Playwright 独立有头 Chromium，CDP 端口 9444，独立 profile
+> `/tmp/jimeng-manual-profile`（本机 9222 已被其他 Chrome 占用，未 attach）。
+> viewport 1280x720、locale zh-CN、时区 Asia/Shanghai。
+> 计费边界：全程未点击任何生成/发送类按钮。
+
+### 3.0 会话前基线复核（登录后）
+
+- 画布 `测试项目` 载入正常：顶栏 `节点 2` / `已保存` / `805 基础会员`；
+  状态行 `2 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.`
+- 两节点均为 `react-flow__node-video`，各 500×281（视口内），
+  `.react-flow__handle` 共 4 个，`.react-flow__edge` 0 条。
+- 左栏 aria 逐字：返回首页/项目/搜索/生成历史/分享/更多/用户菜单 ｜
+  文本/图片/视频/音频/时间线/主体/导演台/资产库/上传 ｜
+  选择工具/小地图/显示连线/与 AI 对话。
+- 与 2026-09-23 记载的基线（2 节点 0 连线）一致，无漂移。
+
+### 3.1 主体节点（2026-10-01，已执行）
+
+- 左栏 **主体** 点击 → 新建 `主体 1`，自动选中（状态行 `3 nodes, 0 edges, 1 selected`）。
+- **DOM 契约**：class `react-flow__node react-flow__node-subject nopan selected
+  selectable draggable`；视口内 **310×310**；`.react-flow__handle` **2 个**（左右各一）。
+- **无浮动工具条**：选中后 `.react-flow__node-toolbar` 为 `null`——
+  这是与视频/图片/文本节点的**关键差异**（那三者选中即有工具条）。
+- 节点内结构逐字：
+  - 标题行 `@ 主体 1` + 铅笔图标（aria `Edit 主体 1`）；
+  - 描述占位 `添加描述...`（aria `Edit subject description`）；
+  - 导入区四项，**可见文案与 aria-label 不一致**（易踩坑）：
+    | 可见文案 | aria-label |
+    |---|---|
+    | 导入主体 | `导入主体` |
+    | 从画布选择 | **`添加主媒体`** |
+    | 从资产库选择 | `从资产库选择` |
+    | 本地添加 | `本地添加` |
+  - 空态英文状态串：`Empty subject: main missing, 0 auxiliaries, voice missing.`
+    → 说明主体由 **主媒体（main）+ 辅助素材（auxiliaries）+ 音色（voice）** 三部分组成。
+- **从画布选择** 实测：点击后进入**画布选取模式**——顶部出现蓝色横幅
+  `从画布选择` + 关闭 X，画布整体出现蓝色高亮边框，提示用户去点一个节点。
+  关闭方式实测两种：点横幅 X，或 **Esc**。取消后不产生任何节点变化。
+- 悬停/选中时另有：`Create connected node before/after 主体 1`、`Rename 主体 1`、
+  `Add tags`（与其它节点同构）。
+- 未执行：导入主体的三种路径的**完成态**（需真实素材/资产库条目）、
+  保存到主体库、@主体 在提示词中的实际引用效果。
+- 截图：见正文 `10-tasks/subject-node.md` 步骤图。

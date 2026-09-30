@@ -366,3 +366,30 @@ tasks:
     status: verified
     manual_pages:
       - 10-tasks/help-and-shortcuts.md
+  - id: subject-node
+    title: 创建并使用主体节点（@主体 引用）
+    role: logged-in-canvas-creator
+    frequency: common
+    impact: high
+    coverage: full
+    evidence:
+      - type: source-ui
+        note: >-
+          2026-10-01 登录会话实测（SOURCE_OBSERVATIONS §3.1）：左栏「主体」点击即建
+          「主体 1」并自动选中；DOM class react-flow__node-subject、视口内 310×310、
+          左右各 1 个 handle；**选中时 .react-flow__node-toolbar 为 null（无浮动工具条）**；
+          节点内为标题「@ 主体 1」+ 铅笔（aria Edit 主体 1）、描述占位「添加描述...」
+          （aria Edit subject description）、导入区四项；空态串
+          「Empty subject: main missing, 0 auxiliaries, voice missing.」
+      - type: source-ui
+        note: >-
+          四项导入入口的可见文案与 aria-label 不一致：屏幕「从画布选择」对应 aria
+          「添加主媒体」。点击后进入画布选取模式（顶部蓝色横幅 + 画布蓝色高亮边框），
+          取消方式实测两种：横幅 X 与 Esc，取消不产生节点变化。
+    preconditions:
+      - 已登录并打开一个画布
+    routes:
+      - /ai-tool/ai-canvas/:projectId
+    status: verified
+    manual_pages:
+      - 10-tasks/subject-node.md
