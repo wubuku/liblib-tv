@@ -503,3 +503,15 @@ screenshots:
     visible_text: '1 个节点'
     alt: 一个文本节点已拖入组的虚线框内，组右上角徽标变为 1 个节点
     sha256: 935db59d112a6bf5070be04739926295ace2188312a01eb336eac41d339c63d6
+
+  - file: screenshots/09-generate-images-panel-full.png
+    task_id: generate-images
+    step: 图片节点下方的完整生成面板（71% 缩放全貌）：模式/输入/参数行、参考素材区、描述框，以及模型 Seedream V5 Pro、比例 自适应/2k、数量 1x、约 ¥0.519 与发送按钮
+    route: '/canvas/:id'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 文生图 自动识别 未连接素材 / 模式 文生图 输入 仅文本输入 参数 1k/2k / 参考区 从画布连线后会自动带入参考素材 / 描述框 描述你想生成或编辑的画面 / 底栏 Seedream V5 Pro 自适应 / 2k 1x 约 ¥ 0.519'
+    visible_text: 'Seedream V5 Pro'
+    alt: 图片节点的完整生成面板，从上到下依次是模式与参数行、参考素材区、描述输入框，底部操作条显示模型 Seedream V5 Pro、比例自适应 2k、数量 1x 与约 0.519 元的价格
+    sha256: d66c080853b23b67c3aac85a9163b4ca1f5f8fd6067db46320cdec3af89978fa
