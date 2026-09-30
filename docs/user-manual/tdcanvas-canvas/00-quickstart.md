@@ -29,6 +29,21 @@
 - 想上传自己的图片、视频、音频？见 [10-tasks/upload-materials.md](10-tasks/upload-materials.md)。
 - 想把两个节点连起来做引用？见 [10-tasks/connect-references.md](10-tasks/connect-references.md)。
 - 想改项目名称或回到项目列表？见 [10-tasks/project-management.md](10-tasks/project-management.md)。
+- 想把常用提示词存起来复用？见 [10-tasks/manage-assets.md](10-tasks/manage-assets.md)（顶部导航「我的资产」）。
+
+## 顶部导航都有什么
+
+首页之外的五个入口，都在页面最上方的导航栏里：
+
+| 入口 | 用途 | 详见 |
+|---|---|---|
+| 我的画布 | 画布项目列表，新建、重命名、导出、删除 | [project-management.md](10-tasks/project-management.md) |
+| ComfyUI 本地 | 本地 ComfyUI 工作流环境 | 本手册未覆盖 |
+| 提示词库 | 浏览提示词（进入后页面标题为「提示词中心」） | [use-prompt-library.md](10-tasks/use-prompt-library.md) |
+| 我的资产 | 提示词与参考图的素材仓库，可导出备份 | [manage-assets.md](10-tasks/manage-assets.md) |
+| 配置 | 填写 AI 土豆 API Key（生成类功能必需） | [generate-images.md](10-tasks/generate-images.md) |
+
+> 首次使用生成类功能前，务必先到「配置」填写 API Key，否则生成按钮不可用。
 
 ## 常见第一次的问题
 
