@@ -540,3 +540,51 @@ screenshots:
     visible_text: '风从稻田吹来'
     alt: '画布多节点视图：视频节点播放中，画面底部渲染字幕条「风从稻田吹来」（23% 缩放，自动整理后布局）'
     sha256: 056a93a8c529bc12a16bf42baa35d36309d9379c8b851b8e6110bbf2f979dd76
+
+  - file: screenshots/46-subtitle-timeline-entry.png
+    task_id: subtitle-highlights
+    step: '进入剪辑：选中音频节点，节点工具条点「进入剪辑」打开多轨时间线'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'button 进入剪辑 / [role=toolbar][aria-label=节点快捷工具]'
+    visible_text: '进入剪辑'
+    alt: '画布上选中的音频节点与其节点工具条，只有「进入剪辑」与「下载」两个按钮'
+    sha256: 7b588daf7cb8da7cf9655ced3658074bfafda129a52e66cd3348476f77253fd4
+
+  - file: screenshots/47-subtitle-timeline-srt-clip.png
+    task_id: subtitle-highlights
+    step: '多轨时间线弹窗：V 视频 1 / A 音频 1 / S 字幕 1 三轨，S 轨两条字幕片段来自视频节点字幕数据'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'dialog 多轨时间线 / 轨道 S 字幕 1 / 片段 风从稻田吹来 · 镜头保持冷色自然光'
+    visible_text: '多轨时间线 S 字幕 1 风从稻田吹来 镜头保持冷色自然光'
+    alt: '多轨时间线弹窗：三条轨道，视频轨两个片段、音频轨铺满、字幕轨两条字幕片段'
+    sha256: 7f1930ae0e8aa69d3bf5a7c678f99b9bf4b31ea8f6f29112a75cea70500ea14f
+
+  - file: screenshots/48-subtitle-clip-edit-panel.png
+    task_id: subtitle-highlights
+    step: '点选 S 轨字幕片段：底部出现字幕编辑面板（文本 + 起止毫秒 4096→6296）与「精细编辑（SRT/高亮/样式）」按钮'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'dialog 多轨时间线 / 片段 风从稻田吹来（选中态）/ button 精细编辑（SRT/高亮/样式）'
+    visible_text: '字幕编辑 修改后保存将同步写回对应视频节点的字幕数据 精细编辑（SRT/高亮/样式）'
+    alt: '多轨时间线底部字幕编辑面板：选中的字幕片段文本、起止毫秒数与精细编辑入口按钮'
+    sha256: 244f1ebb16fe15978f54fc4dc3a287b3488370e16e31196867cd97b38e852c8a
+
+  - file: screenshots/49-subtitle-edit-dialog.png
+    task_id: subtitle-highlights
+    step: '字幕编辑弹窗：导入/导出 SRT、AI 关键词高亮、字幕样式与关键词高亮样式、预览中叠加字幕条「风从稻田吹来」'
+    route: '/canvas?fixture=libtv-video-subtitle'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'dialog 字幕编辑 / button 导入 SRT · 导入文本 · 导出 SRT · 自动切分 · 新增字幕 · 清空全部 · AI 关键词高亮 / 底栏 2 条字幕 · 单条上限 32 字'
+    visible_text: '字幕编辑 视频结果｜字幕样片 2 条字幕 · 单条上限 32 字'
+    alt: '字幕编辑弹窗：左栏两条字幕条目、中栏视频预览叠加字幕条「风从稻田吹来」、右栏字幕样式与关键词高亮设置'
+    sha256: 9aa60d3449b356c373b39de241b87d9c6b5c42458c2ae6751278f7c5c53db6b1

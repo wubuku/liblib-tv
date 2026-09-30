@@ -24,16 +24,15 @@
 
 ## 覆盖率
 
-- 任务账本 25 项：**20 verified**（运行时走查或内容一致性审查通过；Batch 26 导演台三篇、Batch 31 timeline-editing、Batch 32 timeline-export）/ **5 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
-- 45 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
+- 任务账本 25 项：**21 verified**（运行时走查或内容一致性审查通过；Batch 26 导演台三篇、Batch 31 timeline-editing、Batch 32 timeline-export、Batch 85 subtitle-highlights）/ **4 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
+- 49 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
 - 界面文字逐字取自源码与运行时 DOM；v1.6.x 界面差异以文字标注。
 
-## 未覆盖项（7 项 excluded 摘要）
+## 未覆盖项（4 项 excluded 摘要）
 
 | 类别 | 任务 | 原因 |
 |---|---|---|
 | 付费边界 | media-versions | 版本族需真实生成产生 |
-| 入口未开放 | subtitle-highlights | 字幕轨需视频节点有字幕数据（视频节点工具条无字幕入口，结构性缺口） |
 | 面板未挂载 | cloud-agent、agent-memory-skills | 旧桌面 Agent 退场：交互组件无引用点、设置页无记忆/技能分区（后端 API 在位待新入口） |
 | 进程未启动 | local-runtime | 本环境为 Web 自托管：桌面端 v1.6.12 起自动下载深度组件，Web 模式仍需本机伴随进程 |
 
@@ -46,7 +45,7 @@
 
 ## 审计状态
 
-- Gate A：OK（25 tasks / 32 Markdown / 45 images）；
-- Gate B：15+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
-- `--phase final`：OK（25 tasks / 32 Markdown files / 45 images）；
+- Gate A：OK（25 tasks / 32 Markdown / 49 images）；
+- Gate B：16+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
+- `--phase final`：OK（25 tasks / 32 Markdown files / 49 images）；
 - verify-docs.py：1169 文件全绿（Batch 26 复验）。

@@ -220,15 +220,15 @@ tasks:
     frequency: common
     impact: medium
     coverage: full
-    review_note: Batch 34 运行时核查：S 轨字幕片段渲染已实证（官方夹具注入字幕节点，截图 40）；仍缺字幕编辑弹窗入口（新建/导入 SRT/高亮设置，与「进入剪辑」同源未接线），关键词高亮与 SRT 细节维持源码证据。
+    review_note: Batch 85 运行时走查：字幕编辑弹窗**已证实可达并可用**——音频节点「进入剪辑」→ 多轨时间线 → 点选 S 轨字幕片段 → 底部「精细编辑（SRT/高亮/样式）」→ 字幕编辑弹窗（导入/导出 SRT、导入文本、自动切分、新增/清空、AI 关键词高亮、字幕样式与关键词高亮样式、预览叠加）；AI 高亮在未配模型时按本地标点降级。Batch 34 的「弹窗未接线」口径已推翻。
     evidence:
       - type: static
-        note: 批 30 条/并发 3 worker 池；文本自证模型（源文本变更即失效）；SRT 序号归一 idx+1；重分段断点优先级。
+        note: 批 30 条/并发 3 worker 池；文本自证模型（源文本变更即失效）；SRT 序号归一 idx+1；重分段断点优先级；工具注册表 subtitles 工具已注册但视频节点分支不渲染 primary 组（故视频节点工具条无字幕按钮）。
       - type: runtime
-        note: S 轨字幕片段渲染 + 定时位置正确（截图 40，夹具 ?fixture=libtv-video-subtitle）。
+        note: 字幕编辑弹窗全功能走查 + S 轨字幕片段 + 预览叠加（截图 46-49，夹具 ?fixture=libtv-video-subtitle）。
     routes:
       - '/canvas'
-    status: excluded
+    status: verified
     exclusion_reason: 高亮判定调用计费模型；且字幕编辑弹窗（新建/导入 SRT）未接线（primary 组不渲染于视频节点），普通 UI 无从创建字幕数据
     manual_pages:
       - 10-tasks/subtitle-highlights.md

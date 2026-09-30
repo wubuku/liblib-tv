@@ -87,6 +87,22 @@ v1.6.9 前的企业 Seedance 配置可能存了包名而非已安装的视频提
 
 SSE 断流会自动重连（退避重试）；4xx（除 408/429）或重试间隔超 5 分钟会停止并报告。检查登录状态与网络。
 
+### 点「转写自动字幕」报「本地转写服务未配置」
+
+时间线编辑器的转写走**本机 whisper.cpp**，不是云端能力。后端没读到 `CANVAS_WHISPER_BASE_URL` 时，任务在进入转写前就会失败并给出这句提示。
+
+按顺序检查：
+
+1. whisper.cpp 服务是否已启动（`whisper-server` 进程在不在，默认端口 8082）；
+2. 后端进程的环境变量 `CANVAS_WHISPER_BASE_URL` 是否指向该服务（含 `/inference` 的基址，如 `http://127.0.0.1:8082`）——**改完要重启后端**；
+3. 仓库自带的 `scripts/start-whisper-local.sh` 会检查 `whisper-server` 是否在 PATH、模型文件是否已下载到 `.local/whisper-models/`，缺哪项会直接告诉你。
+
+细节见 [20-reference.md](20-reference.md) 的「本地转写服务」节。
+
+### 转写完成却提示「没有识别出可用字幕」
+
+音视频里没有人声、或语音过短时会出现——空文本与零时长片段会被过滤掉，不写入字幕轨道。换一段有清晰人声的素材再试；视频素材**带静音轨**时后端会明确报错。
+
 ## 诊断与反馈
 
 - 客户端诊断只上报 **11 个白名单稳定码**（如 DIRECTOR_VIEWPORT_CONTEXT_LOST、DIRECTOR_SAVE_FLUSH_FAILED），不含你的输入内容；

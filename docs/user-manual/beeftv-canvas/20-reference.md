@@ -75,13 +75,27 @@
 | `GET /api/tasks/:id/logs` | 任务日志（v1.6.14 任务详情实时刷新后端） |
 | `POST /api/tasks/:id/retry` | 任务重试 |
 | `GET /api/tasks/:id/text-deltas·text-events·text-replay-complete` | 文本生成流式增量/事件/回放 |
-| `POST /api/timeline/renders` · `POST /api/timeline/transcriptions` | 时间线渲染与**转写**（服务端转写入口在位） |
+| `POST /api/timeline/renders` · `POST /api/timeline/transcriptions` | 时间线渲染与**转写**（转写需本地 whisper.cpp，见下） |
 | `GET/POST /api/depth-captures` | 深度捕捉产物存取 |
 | `/api/creation-runs/*`（claim/execute/heartbeat/proposal-approve/canvas-commit 等） | Agent 创作运行后端契约（含付费提议审批；前端入口未挂载，API 先行） |
 
 ## 本地伴随进程
 
 深度/线稿/姿态等本地推理由独立进程提供：强制 `http://127.0.0.1:17371` 精确回环地址；会话经挑战-签名交换建立；响应体上限 64KB（深度模块 32MB）。
+
+## 本地转写服务（whisper.cpp）
+
+时间线编辑器的「转写」面板把音视频素材转成字幕，走**本机 whisper.cpp**，语音不出本机：
+
+| 项 | 值 |
+|---|---|
+| 后端配置项 | 环境变量 `CANVAS_WHISPER_BASE_URL`，指向 whisper.cpp 的 `/inference` 服务（如 `http://127.0.0.1:8082`） |
+| 启动脚本 | `scripts/start-whisper-local.sh`（默认 base 模型、端口 8082；`WHISPER_MODEL` 换模型，`WHISPER_PORT` 换端口） |
+| 依赖 | `whisper-server` 可执行文件（macOS：`brew install whisper-cpp`）与模型文件（先下载到 `.local/whisper-models/`） |
+| 未配置时 | 任务在进入转写前明确失败：「本地转写服务未配置：请设置 CANVAS_WHISPER_BASE_URL」 |
+| 产物 | 识别段落转成 `SrtEntry[]`，经 `rebuildSubtitleClips` **原子替换**字幕轨道快照 |
+
+转写结果直接写入字幕轨道，可再编辑；识别不到可用字幕时提示「转写完成，但没有识别出可用字幕（语音内容为空？）」。字幕的编辑与高亮见 [10-tasks/subtitle-highlights.md](10-tasks/subtitle-highlights.md)。
 
 ## 桌面端更新（v1.6.13 起）
 
