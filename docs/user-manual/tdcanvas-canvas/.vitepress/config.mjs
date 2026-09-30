@@ -70,6 +70,13 @@ export default defineConfig({
         ],
       },
       {
+        text: '工作区与素材库',
+        items: [
+          { text: '管理我的资产', link: '/10-tasks/manage-assets' },
+          { text: '使用提示词库', link: '/10-tasks/use-prompt-library' },
+        ],
+      },
+      {
         text: '参考与排障',
         items: [
           { text: '参考：键位、限制、状态与设置', link: '/20-reference' },
