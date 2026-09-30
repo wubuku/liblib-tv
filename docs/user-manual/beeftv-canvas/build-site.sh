@@ -132,6 +132,19 @@ else
   ok "站内链接全部可达（逐个 href 解析核对）"
 fi
 
+# 截图对账闸：源目录 screenshots/ ↔ manifest.yml ↔ 已发布页面引用 ↔ dist 产物，四侧必须一致。
+# 背景（Batch 94）：17-light-mode.png 库里有、manifest 登记着、账本也引用着，唯独发布页
+# 不再引用它——重写该页时图片被「替换」而非「补入」。单看任一侧都发现不了，只有四方
+# 摊平比对才能揪出「证据在库但读者看不到」。详见 scripts/verify-screenshots.py。
+if SHOT_OUT="$(python3 scripts/verify-screenshots.py 2>&1)"; then
+  ok "$SHOT_OUT"
+else
+  printf '%s\n' "$SHOT_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "截图 $line"
+  done
+  fail "截图对账不一致——孤儿图意味着证据在库但页面不展示，读者看不到"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

@@ -449,6 +449,24 @@
 - **一次自我纠正**：核查中看到 `generation-error.ts:358` 有「错误来源：…」等串，疑似说明 `formatGenerationDiagnostics` 的输出不止我记录的 8 行。回查函数边界后确认那是 `classifyUnknown` 内部构造分类文案的映射，**剪贴板模板仍是 8 行**，原记录无误。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
 
+## 环境记录五十（Batch 94，2026-10-01，截图引用完整性审计 + 对账闸）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。本轮不依赖运行时。
+- **起因**：构建日志里「48 张截图」与「dist 截图数 47」长期并存，此前一直被当作 Batch 86 之后遗留的口径噪声忽略。本轮把它当问题查，结果查出一张**真孤儿图**。
+- **缺陷本体**：`17-light-mode.png` 满足三个条件——库内目录有文件、`manifest.yml` 有登记（task_id=`organize-canvas`）、`task-inventory.yml` 仍当它是该页的运行时实证引用着；但**没有任何发布页再引用它**，故 Vite 不打包，dist 里没有。
+  - **成因**（`git log -S` 定位）：Batch 89 补厚 organize-canvas 时，重写「画布外观」小节用的是**替换**而非补入——`96df7b3c` 的 diff 里 alt 为「浅色模式下的项目列表」、指向 `screenshots/17-light-mode.png` 的那张图，被 alt 为「画布外观面板：主题模式三选一…」、指向 `screenshots/44-appearance-panel.png` 的那张顶掉了。图、登记、账本引用一并留下，页面展示没了。
+  - **危害**：这是一次**证据静默失效**。浅色主题是 v1.5.8 起就有的用户可见能力，手册的账本还宣称有运行时实证，读者却翻不到那张图；而且 `44-appearance-panel` 只证明**深色**态，主题切换是否真的生效，反而失去了唯一的画面对照。
+- **修法**：`17` 与 `44` 经查是**同一画布、同一外观面板的浅/深两态**（17 选中「浅色」、44 选中「深色」，其余布局一致），构成天然对照。已把浅色那张按「深色在前、浅色在后」补回 organize-canvas 的「画布外观」小节，并把小节提示句改为「切换主题即时生效，不影响素材与已有生成结果」。两张图 alt 明确标注各自主题态，避免读者误认重复图。
+- **全量对账结果**（`scripts/verify-screenshots.py`，四方比对）：
+  - 库内 48 张 = manifest 48 条 = 发布页引用 48 张 = dist 48 张 ✅
+  - 页面引用但库中无图：**0**；manifest 指向不存在文件：**0**；库内未登记 manifest：**0**。
+  - 另有 7 条「task_id 与所在页不同」的条目复核为正常：`task_id` 是语义任务名（如 `quickstart-first-canvas`）本就不等于页名，且 `03`/`04`/`24`/`44`/`48` 属**有意的跨页复用**（同一张图在多个页面承担不同讲解角色），非缺陷。
+- **机制化（本次真正的产出）**：`build-site.sh` 步骤 6 新增**截图四方对账闸**，任何一侧对不上即构建失败。判据与 Batch 87 的死链闸同源——`.vitepress/config.mjs` 的 `ignoreDeadLinks: true` 会放过问题，构建脚本必须自带机械闸。
+  - **反向验证**：人为从 organize-canvas 摘掉浅色图引用后重跑构建，闸门以**退出码 1** 拦下，并同时点名 `[孤儿图] 17-light-mode.png` 与 `[未打包] 17-light-mode.png`；恢复后复归全绿。
+  - **实现取舍**：最初把 Python 内嵌为 `build-site.sh` 里的 heredoc，实测在 macOS 自带 bash 下因 `$( )` 内嵌引号导致 `unexpected EOF while looking for matching '`，改为独立脚本 `scripts/verify-screenshots.py`（与仓库既有 `scripts/verify-docs.py` 同构）后稳定。**教训：闸门逻辑不要塞进 shell 内联 heredoc，抽成脚本再调用。**
+  - 另修一处假阳性：`PUBLISH.md` 的入库清单写作 `screenshots/*.png`（通配），被当成真实引用；已按 glob 特征跳过，并把 `PUBLISH` 归入内部文档。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
@@ -466,3 +484,5 @@
 | v1.6.15 的隐私保证（排查信息不含提示词/凭据/媒体地址）此前未记录 | Minor（遗漏） | ✅ Batch 92 补入 troubleshooting「排查信息里有什么、没有什么」，逐项对照脱敏源码 |
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
+| `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 闸门逻辑内嵌为 `build-site.sh` 的 heredoc，在 macOS 自带 bash 下报 `unexpected EOF while looking for matching '` | Minor（工程） | ✅ Batch 94 抽出 `scripts/verify-screenshots.py`，与既有 `scripts/verify-docs.py` 同构 |
