@@ -281,3 +281,15 @@ screenshots:
     visible_text: 返回首页 / 已保存 / 小地图 / 显示连线 / 与 AI 对话
     alt: 即梦画布界面分区示意图：顶栏（返回首页/画布标题/项目/节点 N/已保存/搜索/生成历史/积分/用户菜单）、左侧节点入口栏（文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，悬停展开为图标+文字）、中央画布区、底部 dock 视图控件（选择工具/小地图/显示连线/缩放值）、右下角「与 AI 对话」，以及底部状态行。
     sha256: 4eea68091d033b530f9a81481031b0fa05aa6acd7a8b1bc21c9e8c830f769d3a
+
+  - file: screenshots/diagrams/group-vs-multiselect.svg
+    task_id: organize-group-layout
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 880x400 (SVG 示意图)
+    locale: zh-CN
+    captured_at: 2026-10-01T07:08:00+08:00
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.10 当日实测事实绘制（框选→多选工具条→编组→组工具条→解除编组；背景色仅见于组工具条）'
+    visible_text: 编组 / 解除编组 / 背景色 / 宫格布局 / 智能布局
+    alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局∨/下载/Add tags，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色/下载；③解除编组后成员恢复独立并保持选中，回到①的状态。
+    sha256: 4c7be7c7638a81f293e762100af26291f4fe86ef66097e0ad20eb62e401129be

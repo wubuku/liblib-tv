@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-labelledby="t d" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+  <title id="t">从框选到编组：三种选择状态的工具条差异</title>
+  <desc id="d">示意图：框选多个节点时出现多选工具条，点击编组后生成组卡片，组工具条与多选工具条并不相同，背景色只出现在组工具条上。</desc>
+
+  <rect width="880" height="400" fill="#141414"/>
+
+  <text x="24" y="32" fill="#eaeaea" font-size="15" font-weight="600">框选 → 编组：三种状态，三套工具条</text>
+  <text x="24" y="52" fill="#8a8a8a" font-size="11.5">组工具条与多选工具条<tspan fill="#e8c89a">不是同一套</tspan>——找不到「背景色」通常是因为你还在多选状态、没有真正编组。</text>
+
+  <!-- step 1 -->
+  <rect x="24" y="72" width="256" height="180" rx="8" fill="#1b1b1b" stroke="#3a3a3a" stroke-width="1"/>
+  <text x="40" y="96" fill="#9fc4e8" font-size="11.5" font-weight="600">① 框选多个节点</text>
+  <text x="40" y="116" fill="#8a8a8a" font-size="10.5">空白处按住左键拖出矩形</text>
+  <rect x="40" y="128" width="224" height="58" rx="5" fill="#242424" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3 3"/>
+  <rect x="52" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <rect x="124" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <rect x="196" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <text x="152" y="164" fill="#6f6f6f" font-size="10" text-anchor="middle">矩形罩住的节点全部选中</text>
+  <text x="40" y="206" fill="#c9c9c9" font-size="10.5">工具条：N 节点 ｜ 编组 ｜ 布局∨ ｜ 下载 ｜ Add tags</text>
+  <text x="40" y="228" fill="#6f6f6f" font-size="10">Shift+点选 / ⌘A 全选实测未生效，框选是可靠手势</text>
+  <text x="40" y="244" fill="#6f6f6f" font-size="10">此处<tspan fill="#e8c89a">没有</tspan>背景色</text>
+
+  <!-- arrow -->
+  <path d="M 292 162 L 320 162" stroke="#5a7fa8" stroke-width="2" fill="none"/>
+  <path d="M 320 162 l -9 -5 l 0 10 z" fill="#5a7fa8"/>
+  <text x="306" y="150" fill="#7f9fc0" font-size="10" text-anchor="middle">编组</text>
+
+  <!-- step 2 -->
+  <rect x="332" y="72" width="256" height="180" rx="8" fill="#1b1b1b" stroke="#3a3a3a" stroke-width="1"/>
+  <text x="348" y="96" fill="#9fc4e8" font-size="11.5" font-weight="600">② 出现组卡片「编组 1」</text>
+  <text x="348" y="116" fill="#8a8a8a" font-size="10.5">组节点覆盖成员，节点计数 +1</text>
+  <rect x="348" y="128" width="224" height="58" rx="5" fill="#242424" stroke="#4a4a4a" stroke-width="1"/>
+  <rect x="360" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <rect x="432" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <rect x="504" y="140" width="56" height="34" rx="3" fill="#2f2f2f" stroke="#555"/>
+  <rect x="352" y="132" width="216" height="50" rx="6" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+  <text x="460" y="164" fill="#6f6f6f" font-size="10" text-anchor="middle">整组随成员一起拖动</text>
+  <text x="348" y="206" fill="#c9c9c9" font-size="10.5">组工具条：解除编组 ｜ 布局 ｜ 背景色 ｜ 下载</text>
+  <text x="348" y="228" fill="#e8c89a" font-size="10">背景色<tspan fill="#c9c9c9">在这里才有</tspan></text>
+  <text x="348" y="244" fill="#6f6f6f" font-size="10">多选工具条上没有背景色</text>
+
+  <!-- arrow -->
+  <path d="M 600 162 L 628 162" stroke="#5a7fa8" stroke-width="2" fill="none"/>
+  <path d="M 628 162 l -9 -5 l 0 10 z" fill="#5a7fa8"/>
+  <text x="614" y="150" fill="#7f9fc0" font-size="10" text-anchor="middle">解除编组</text>
+
+  <!-- step 3 -->
+  <rect x="640" y="72" width="216" height="180" rx="8" fill="#1b1b1b" stroke="#3a3a3a" stroke-width="1"/>
+  <text x="656" y="96" fill="#9fc4e8" font-size="11.5" font-weight="600">③ 成员恢复独立</text>
+  <text x="656" y="116" fill="#8a8a8a" font-size="10.5">组卡片移除，成员保持选中</text>
+  <rect x="656" y="128" width="184" height="58" rx="5" fill="#242424" stroke="#4a4a4a" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="748" y="164" fill="#6f6f6f" font-size="10" text-anchor="middle">回到①的状态</text>
+  <text x="656" y="206" fill="#c9c9c9" font-size="10.5">误编组可随时解除，</text>
+  <text x="656" y="220" fill="#c9c9c9" font-size="10.5">不影响成员内容</text>
+  <text x="656" y="244" fill="#6f6f6f" font-size="10">误移动用 ⌘Z 撤销</text>
+
+  <!-- bottom note -->
+  <rect x="24" y="268" width="832" height="58" rx="8" fill="#1c1c1c" stroke="#333" stroke-width="1"/>
+  <text x="40" y="292" fill="#d8d8d8" font-size="12" font-weight="600">布局：多选或选中组都能用</text>
+  <text x="40" y="313" fill="#a8a8a8" font-size="11.5">布局∨ 菜单两项：宫格布局 ｜ 智能布局。选择后节点按规则重排，视口自动适配；重排结果可用 ⌘Z 撤销。</text>
+</svg>
