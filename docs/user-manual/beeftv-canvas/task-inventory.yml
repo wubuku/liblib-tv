@@ -300,14 +300,14 @@ tasks:
     frequency: common
     impact: high
     coverage: full
-    review_note: BeefTV Agent 面板在本版标记「正在开发」，无法运行时取证；页面基于源码静态证据，合入后升级。
+    review_note: 前后端均已退场——界面组件无引用点，且后端未注册任何 /agent/* 路由（上游 agent_retired_test.go 以真实 HTTP 路由图固化该边界）；页面基于源码静态证据，合入后升级。
     evidence:
       - type: static
         note: run 创建/SSE 流/审批七操作预览/插话 20s/取消 15s；上下文预算 192KB、超 384KB 硬失败。
     routes:
       - '/canvas'
     status: excluded
-    exclusion_reason: BeefTV Agent 面板本版标记「正在开发」；页面基于源码静态证据
+    exclusion_reason: 旧内置 Agent 前后端均已退场（无 /agent/* 路由，服务端提示「Agent 能力已下线」）；页面基于源码静态证据
     manual_pages:
       - 10-tasks/cloud-agent.md
   - id: agent-memory-skills
@@ -323,7 +323,7 @@ tasks:
       - '/canvas'
       - '/settings'
     status: excluded
-    exclusion_reason: 记忆/技能页面依赖 Agent 能力开放；页面基于源码静态证据
+    exclusion_reason: 记忆/技能端点随旧 Agent 一并退场（/agent/memories/compact 未注册）；页面基于源码静态证据
     manual_pages:
       - 10-tasks/agent-memory-skills.md
   # —— 插件与扩展 ——

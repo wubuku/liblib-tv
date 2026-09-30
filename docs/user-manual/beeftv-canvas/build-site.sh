@@ -145,6 +145,19 @@ else
   fail "截图对账不一致——孤儿图意味着证据在库但页面不展示，读者看不到"
 fi
 
+# 端点核对闸：20-reference.md 声明的 REST 端点 vs 上游生产路由注册。
+# 背景（Batch 96）：手册曾把 6 条 /agent/* 当现存接口教读者排查，而上游根本没注册
+# ——教用户去调不存在的接口，比漏写更糟，会把排障方向整体带偏。
+# 找不到 BeefTV 源码时脚本静默跳过，手册构建不依赖同级仓库。
+if EP_OUT="$(python3 scripts/verify-endpoints.py 2>&1)"; then
+  ok "$EP_OUT"
+else
+  printf '%s\n' "$EP_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "端点 $line"
+  done
+  fail "REST 端点声明与上游生产路由不一致——详见上方"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

@@ -52,21 +52,37 @@
 
 ## 主要 REST 端点（供排障参考）
 
+本节已按上游 `origin/main` 的**生产路由注册**逐条机器核对（`backend/internal/bootstrap/runtime.go` 把路由挂在 `/api` 组下，下表省略该前缀）。核对方法与结果见「已下线端点」小节。
+
+**仍然存在：**
+
 | 端点 | 用途 |
 |---|---|
 | `GET /tasks` | 任务列表（分页/过滤） |
 | `POST /tasks/:id/cancel` | 取消任务 |
-| `POST /agent/runs` | 创建 Agent 运行 |
-| `GET /agent/runs/:id/events` | Agent SSE 事件流 |
-| `POST /agent/runs/:id/messages` | 多轮续聊 |
-| `POST /agent/runs/:id/interjections` | 运行中插话（下一步生效） |
-| `POST /agent/runs/:id/cancel` | 取消运行 |
 | `POST /resources/uploads` | 大文件分片上传会话 |
-| `POST /agent/memories/compact` | 记忆压缩 |
 | `GET /skills/:id/files` | 技能包文件列表 |
-| ~~`/api/canvas-projects/:id/import/libtv|tapnow`~~ | 跨产品导入（**v1.6.x 已下线**；v1.6.14 运行时路由核对无此组） |
-| `/api/plugins/eagle/*` | Eagle 资源代理（后端转发） |
-| `/runtime/session/*`（127.0.0.1:17371） | 本地伴随进程会话（challenge/exchange） |
+| `/api/plugins/eagle/*` | Eagle 资源代理（后端转发，浏览器不直连） |
+| `POST /diagnostics/preview` · `POST /diagnostics/export` | 诊断包预览与导出（单次请求体上限 4MB）——反馈问题给官方时用它打包 |
+| `GET /system/version` | 返回构建号与数据库 schema 版本，确认前后端是否同版本 |
+| `GET /health/live` · `/health/ready` · `/health/startup` | 存活 / 就绪 / 启动状态；「画布卡在正在打开画布」先查 `/health/ready` |
+| `/runtime/session/*`（127.0.0.1:17371） | 本地伴随进程会话（challenge/exchange），**不经过本后端** |
+
+### 已下线端点（不要按这些路径排查）
+
+| 端点 | 状态 |
+|---|---|
+| `POST /agent/runs` | **已下线**——旧内置 Agent 已从产品运行面退场 |
+| `GET /agent/runs/:id/events` | 同上 |
+| `POST /agent/runs/:id/messages` | 同上 |
+| `POST /agent/runs/:id/interjections` | 同上 |
+| `POST /agent/runs/:id/cancel` | 同上 |
+| `POST /agent/memories/compact` | 同上 |
+| ~~`/api/canvas-projects/:id/import/libtv|tapnow`~~ | 跨产品导入，v1.6.x 已下线（v1.6.14 运行时路由核对无此组） |
+
+> **Agent 相关端点为什么查不到**：后端**没有注册任何 `/agent/*` 路由**。上游有一份专门的测试文件 `backend/internal/handler/agent_retired_test.go`，它用**真实 HTTP 路由图**（而不是源码字符串）固化这条边界：旧 Agent 能力已下线，通用任务 API 也不能创建旧 Agent 任务。命中该边界时服务端的提示是「**Agent 能力已下线，请在画布中手动创建节点并生成**」。
+>
+> 也就是说，Agent 能力缺失**不是**你的部署问题，也不该去查网络或版本——直接在画布里手动建节点生成即可。相关机制说明见 [10-tasks/cloud-agent.md](10-tasks/cloud-agent.md)。
 
 ### v1.6.14 运行时核对新增（后端路由全量比对）
 

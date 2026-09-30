@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 手册把 6 条 `/agent/*` 端点当现存接口教读者排查，上游实际未注册（`agent_retired_test.go` 固化「旧 Agent 已退场」） | **Major（已修）** | ✅ **Batch 96 已闭合**：移入「已下线端点（不要按这些路径排查）」小节，改正 cloud-agent 页与 `task-inventory.yml`/`PROGRESS.md` 中「后端 /agent/runs 等已在位」的错误判断；新增双向校验 `scripts/verify-endpoints.py`（反向验证退出码 1 有效） |
 | 闸门逻辑内嵌为 `build-site.sh` 的 heredoc，在 macOS 自带 bash 下报 `unexpected EOF while looking for matching '` | Minor（工程） | ✅ Batch 94 抽出 `scripts/verify-screenshots.py`，与既有 `scripts/verify-docs.py` 同构 |
 
 ## 环境记录五十一（Batch 95，2026-10-01，可发现性审计）
@@ -507,4 +508,33 @@
   - 判据要分清：入链 0 且不在侧边栏 = 真孤儿；入链 0 但在侧边栏 = 半可达（本轮两例属于后者，靠侧边栏兜住，但正文里没有任何一条路把人带过去，读者读完上一页就断了）。
   - 首页 `README.md` 零入链属正常，不计入缺陷——审计脚本的孤儿名单需要人工排除索引页，不能机械报警。
 - **顺带修正**：`30-concepts.md` 中英混排缺空格「它们不是bug」→「它们不是 bug，而是」。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十二（Batch 96，2026-10-01，REST 端点声明核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：把 `20-reference.md` 声明的 20 条端点，与 `origin/main` 的**生产路由注册**逐条机器比对（抽取 `backend/**/*.go` 中非 `_test.go` 的 `(GET|POST|PUT|DELETE)("…")` 注册语句，共 135 条）。
+- **关键口径**（第一次比对全错，记下来避免后人重踩）：路由在 `backend/internal/bootstrap/runtime.go:161` 挂在 `/api` 组下，注册时写的是**相对路径**，比对前必须给手册侧补 `/api` 前缀；且抽取时用 `grep -o` 会连尾部 `",` 一起带出来，必须精确匹配到收尾引号。
+- **查出 6 条「手册教读者去调、上游根本没注册」的端点**：
+
+| 手册原写法 | 上游实况 |
+|---|---|
+| `POST /agent/runs` 创建 Agent 运行 | **未注册** |
+| `GET /agent/runs/:id/events` Agent SSE | **未注册** |
+| `POST /agent/runs/:id/messages` 多轮续聊 | **未注册** |
+| `POST /agent/runs/:id/interjections` 运行中插话 | **未注册** |
+| `POST /agent/runs/:id/cancel` 取消运行 | **未注册** |
+| `POST /agent/memories/compact` 记忆压缩 | **未注册** |
+
+  其余 14 条（`/tasks`、`/tasks/:id/{cancel,logs,retry,query-provider,text-*}`、`/resources/uploads`、`/skills/:id/files`、`/timeline/{renders,transcriptions}`、`/depth-captures`）**全部核对无误**。
+- **佐证比「路由不存在」更硬**：上游有 `backend/internal/handler/agent_retired_test.go`，注释明写「旧内置 Agent 已从产品运行面退场……这里用**真实 HTTP 路由图**（而不是源码字符串）证明三件事：`/agent/*` 入口不存在、通用任务 API 不能创建旧 Agent 任务」。测试里定义了边界提示串「**Agent 能力已下线，请在画布中手动创建节点并生成**」。
+- **一处自我纠正**：中途 grep `interjection` 在 `handler/` 下为空，差点得出「插话能力也一并下线」的结论。回查发现 `backend/internal/app/cloud_agent_interjection.go` 与 `cloud_agent_runtime.go` 里机制代码**仍在**——空的只是 HTTP 路由注册。**「路由不存在」≠「机制代码不存在」**，两者要分开说。
+- **修正的错误判断**：
+  - `10-tasks/cloud-agent.md` 原写「后端契约仍在（`POST /agent/runs` 等）」→ 改为「前后端都已退场」，并补上上游测试固化的边界与服务端提示原文。
+  - `PROGRESS.md` 排除条件表原写「后端 /agent/runs 等已在位」→ 改正；`task-inventory.yml` 三处 `exclusion_reason` / `review_note` 同步。
+  - `20-reference.md` 把 6 条移入**「已下线端点（不要按这些路径排查）」**独立小节，并说明「Agent 能力缺失不是部署问题，别去查网络或版本」。
+- **顺带补齐 4 组真实存在却漏写的排障端点**：`POST /diagnostics/{preview,export}`（反馈问题给官方时打包，单请求体上限 4MB）、`GET /system/version`（核对前后端是否同版本）、`GET /health/{live,ready,startup}`（「画布卡在正在打开画布」先查 ready）。
+- **机制化**：新增 `scripts/verify-endpoints.py` 并接入 `build-site.sh` 步骤 6。双向校验——既查「手册声明现存的必须真的注册」，也查「手册标注已下线的必须确实没注册」（防上游复活后手册没跟上）。
+  - **反向验证**：把 `/agent/runs` 塞回「现存」表，脚本以**退出码 1** 报出 `[声明但上游无] /agent/runs`；恢复后复归全绿。
+  - 找不到 BeefTV 源码时**静默跳过**——手册构建不应依赖同级仓库存在。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
