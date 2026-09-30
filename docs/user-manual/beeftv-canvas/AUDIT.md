@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 快捷键表写「24 条·5 分类」，源码实为 4 分类；另漏 5 个键位/操作，导演台重做组合写错 | **Major（已修）** | ✅ **Batch 97 已闭合**：以 `canvas-shortcuts.ts` / `director-shortcuts.ts` 为准逐条校准，并注明 ⌘D 来自右键菜单不计入 24 条 |
 | 手册把 6 条 `/agent/*` 端点当现存接口教读者排查，上游实际未注册（`agent_retired_test.go` 固化「旧 Agent 已退场」） | **Major（已修）** | ✅ **Batch 96 已闭合**：移入「已下线端点（不要按这些路径排查）」小节，改正 cloud-agent 页与 `task-inventory.yml`/`PROGRESS.md` 中「后端 /agent/runs 等已在位」的错误判断；新增双向校验 `scripts/verify-endpoints.py`（反向验证退出码 1 有效） |
 | 闸门逻辑内嵌为 `build-site.sh` 的 heredoc，在 macOS 自带 bash 下报 `unexpected EOF while looking for matching '` | Minor（工程） | ✅ Batch 94 抽出 `scripts/verify-screenshots.py`，与既有 `scripts/verify-docs.py` 同构 |
 
@@ -537,4 +538,29 @@
 - **机制化**：新增 `scripts/verify-endpoints.py` 并接入 `build-site.sh` 步骤 6。双向校验——既查「手册声明现存的必须真的注册」，也查「手册标注已下线的必须确实没注册」（防上游复活后手册没跟上）。
   - **反向验证**：把 `/agent/runs` 塞回「现存」表，脚本以**退出码 1** 报出 `[声明但上游无] /agent/runs`；恢复后复归全绿。
   - 找不到 BeefTV 源码时**静默跳过**——手册构建不应依赖同级仓库存在。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十三（Batch 97，2026-10-01，快捷键全表核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：抽 `web/src/lib/canvas/canvas-shortcuts.ts` 的 `CANVAS_SHORTCUTS` 全表（字段是 `title` 不是 `label`，第一次正则用 `label` 抽到 0 条），与 `20-reference.md` 的表逐行比对；导演台另抽 `web/src/lib/canvas/director/director-shortcuts.ts` 的 `resolveDirectorShortcut`。
+- **查出 1 处硬错误 + 5 处漏项 + 2 处表述不准**：
+
+| 问题 | 严重性 | 处理 |
+|---|---|---|
+| 手册写「24 条·**5 分类**」，源码 `SHORTCUT_CATEGORIES` 只有 **4 个**（常用/视图与导航/选择与连接/编辑与文件），且 4+7+6+7=24 本身就只能是 4 类 | **Major（已修）** | 改为「24 条、4 个分类（4/7/6/7）」 |
+| 漏 **滚轮缩放**（`zoom-wheel`） | Important（已修） | 补入 |
+| 漏 **Shift+点击 / Ctrl/Cmd+点击 追加选择**（`add-selection`）——手册只写了 Alt 移除，没写追加 | Important（已修） | 补入，并与 Alt 移除并排成对 |
+| 漏 **Shift/Ctrl+拖动 追加框选**（`box-select` 的 4 个变体只写了 1 个） | Important（已修） | 补入 |
+| 漏 **拖入媒体导入**（`import-media`） | Minor（已修） | 补入 |
+| 平移只写了 `Space+拖`，漏 **触控板双指 / 中键拖动**（`pan` 的 3 个变体） | Minor（已修） | 补全为一行三变体 |
+| `Ctrl/Cmd+Shift+F` 写成「进入专注模式」，源码 title 是「**进入或退出**专注模式」 | Minor（已修） | 补「或退出」 |
+| 导演台 `Delete` 未提 `Backspace` 同为别名 | Minor（已修） | 补 |
+| 导演台重做写作「`Ctrl/Cmd+Z / Shift+Z`」——漏了 `Ctrl/Cmd` 前缀，且 `Ctrl/Cmd+Y` 也是重做 | Minor（已修） | 按源码补全三种组合 |
+
+- **一处需要解释的「表行数 ≠ 条数」**：手册表 21 行 vs 中心 24 条。查清原因是 `Ctrl/Cmd+D 创建参数变体` **不在快捷键中心**，只在节点右键菜单里（`canvas-context-menu.tsx:278` 的 `shortcut="⌘D"`）。已在表中标注来源并加口径说明，避免后人误判为漏项。
+- **两页漂移**：`10-tasks/shortcuts-help.md` 反而比 `20-reference.md` **更全**（它有追加选择、滚轮、拖入媒体、触控板双指），两页对同一套键位的口径已经不一致。本轮以源码为准统一到 `20-reference.md`，`shortcuts-help.md` 作为按场景速查保留。
+- **顺带补了一条用户价值较高的说明**：导演台的**快捷键保护边界**（`resolveDirectorShortcut` 开头 `if (event.isInteractiveTarget) return null`）——焦点落在输入框/按钮/链接/下拉或任何 role 型控件（textbox/button/switch/tab/menuitem…）上时按键不解析为导演台快捷键。所以「在重命名输入框里按空格没暂停」是正确行为。另注：`Alt` 组合一律不抢，`Ctrl/Cmd+R` 不会被当成「旋转」（带修饰键的组合优先于单字母）。
+- **方法论**：键位表与端点表是同一类资产——**都是「会被上游改掉的精确清单」**。Batch 96 证明端点会下线，本批证明键位会增删。两者都靠「抽源码全表 → 逐条比对」发现，人读是读不出来的。
+- **未加机械闸的理由**（记录以免后人重复评估）：端点能从注册语句机械抽取，键位表是中文 Markdown，解析脆且易被正常改写误伤；改为在 AUDIT 留核对方法与口径，页面内写明「已逐条核对 + 24 条 4 分类」的自证锚点。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
