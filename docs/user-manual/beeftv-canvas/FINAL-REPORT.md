@@ -25,7 +25,7 @@
 ## 覆盖率
 
 - 任务账本 25 项：**21 verified**（运行时走查或内容一致性审查通过；Batch 26 导演台三篇、Batch 31 timeline-editing、Batch 32 timeline-export、Batch 85 subtitle-highlights）/ **4 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
-- 49 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt）；
+- 48 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt；Batch 86 清除了 3 张与他图字节相同的副本，**内容重复组归零**——每张图都是该页独有的视觉证据）；
 - 界面文字逐字取自源码与运行时 DOM；v1.6.x 界面差异以文字标注。
 
 ## 未覆盖项（4 项 excluded 摘要）
@@ -45,7 +45,7 @@
 
 ## 审计状态
 
-- Gate A：OK（25 tasks / 32 Markdown / 49 images）；
+- Gate A：OK（25 tasks / 32 Markdown / 48 images）；
 - Gate B：16+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
-- `--phase final`：OK（25 tasks / 32 Markdown files / 49 images）；
+- `--phase final`：OK（25 tasks / 32 Markdown files / 48 images）；
 - verify-docs.py：1169 文件全绿（Batch 26 复验）。

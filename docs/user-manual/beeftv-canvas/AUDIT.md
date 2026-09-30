@@ -343,6 +343,19 @@
 - **点击手法沉淀**（补 Batch 21/23 的同类教训）：① 节点正中的 `<video>`/`<audio>` 会吞掉 click，需在节点内**避开媒体元素**取可点坐标，否则 `toolbarNode` 恒为空；② 节点相互重叠时先点底部「自动整理节点」再「适合屏幕」；③ 点击后以 `data-canvas-toolbar-node` 属性判定选中是否生效，比截图更快更稳。
 - **账本口径**：25 任务 / 32 md / 49 images / **21 verified / 4 excluded**。
 
+## 环境记录四十二（Batch 86，2026-10-01，重复截图清理与批量连接取证轮）
+
+- **上游**：main 仍 852961a/v1.6.14；无新提交。
+- **闭合 Batch 85 记录的 Major 内容缺陷**：源目录 49 张截图中有 3 张与其他文件**字节完全相同**（sha256 逐一比对），导致 `connect-references.md` 连续两张同 alt 图、`generate-images.md` 的「生图入口」实为通用文本节点图——两处都缺少真实视觉证据却看起来有图。
+- **处理（不掩饰、不假装有图）**：
+  - `11-connect-rails.png` → 重摄为**批量连接**的真实取证（新文件名 `11-batch-connect.png`，另加 `50-batch-connect-plan.png` 展示规划连线预览），并把图片移到页面「批量连线」小节，替换掉那张重复图；
+  - `12-generate-entry.png` → **删除**；`generate-images.md` 改为引用真实的 `04-text-node.png`，alt 改成如实描述（文本生成/放大编辑/生图/文本调整）；
+  - `13-upload-entry.png` → **删除**；`upload-materials.md` 改为引用 `03-add-node-menu.png`（该图本身就含「导入资源 → 上传」，两处描述都成立，只是重复存了两份）。
+- **结果**：截图 49 → 48，**内容重复组归零**，manifest 48 条 sha256 全部校验通过。
+- **快捷键核对（结论：原文正确）**：`canvas-shortcuts.ts` 中 `batch-connect` 的 `keys` 为 `[["Alt","L"]]`，与 connect-references 页「按 Alt+L」一致；选区工具条另有「批量连接」按钮（`selection-batch-connect`，`selectedCount < 2` 时禁用），两种入口都成立。
+- **点击/悬停手法补充**：选区工具条按钮为**纯图标无文字**，`innerText` 检索必然落空，需按 `aria-label` 定位（左对齐/水平居中/右对齐/顶对齐/垂直居中/底对齐/批量连接…）。另：文本节点的悬停工具条在本环境用 hover（Playwright hover / 指针事件派发 / 节点标题栏）三种手法均无法触发，点击则会直接打开文本生成面板——故「生图」入口的独立截图暂缺，页面改为引用已实证的 `04-text-node.png` 并如实标注。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
@@ -353,4 +366,4 @@
 | 视频节点选中按 Esc 弹出「参考内容」选择器 | 观察 | 已截图（14），可考虑补入 prompts 页（后续） |
 | 快速创建菜单点击「视频」后未观察到新节点（坐标点击可能落空） | Minor | 「松手弹菜单」本体已实证；「自动建线」维持源码证据，回走备注 |
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
-| 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | **Major（内容缺陷，遗留）** | 留作下一 batch 重摄：需分别补拍真实的连接轨道与生图入口界面，替换前不得声称该两处有视觉证据 |
+| 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |

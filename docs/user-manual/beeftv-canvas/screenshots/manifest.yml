@@ -108,41 +108,17 @@ screenshots:
     alt: '选中视频节点后底部生成 composer：提示词输入、模型 2.0 与 720P·1:1·6s 参数'
     sha256: 7a389bf7a7aba86653be897c52899617887bd50b6379a77b0296ff97e2f4534f
 
-  - file: screenshots/11-connect-rails.png
+  - file: screenshots/11-batch-connect.png
     task_id: connect-references
-    step: '选中文本节点时左右两侧的「+」连接轨道'
-    route: '/canvas?mode=new'
-    viewport: 1280x720
+    step: '批量连接：选中两个音频节点（状态栏「已选 2 / 连接 2 个节点」），选区工具条含对齐分布按钮与「批量连接」'
+    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    viewport: 1440x900
     locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: 'generic 文本节点 1 / 左右圆形加号轨道'
-    visible_text: '文本节点 1'
-    alt: '选中的文本节点左右两侧显示加号连接轨道'
-    sha256: 9cfbfa270af47a127284bbb7c5de00d5e0b52d607d7b84bb62b1a6e140de1a6a
-
-  - file: screenshots/12-generate-entry.png
-    task_id: generate-images
-    step: '文本节点工具栏的「生图」入口（从文本直接发起图片生成）'
-    route: '/canvas?mode=new'
-    viewport: 1280x720
-    locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: 'button 生图 / toolbar 文本生成 放大编辑'
-    visible_text: '生图'
-    alt: '选中文本节点上方工具栏：文本生成 / 放大编辑 / 生图 / 文本调整'
-    sha256: 9cfbfa270af47a127284bbb7c5de00d5e0b52d607d7b84bb62b1a6e140de1a6a
-
-  - file: screenshots/13-upload-entry.png
-    task_id: upload-materials
-    step: '「添加节点」菜单「导入资源」段的「上传」入口'
-    route: '/canvas?mode=new'
-    viewport: 1280x720
-    locale: zh-CN
-    captured_at: '2026-09-29'
-    verified_locator: 'button 上传 / heading 导入资源'
-    visible_text: '上传'
-    alt: '添加节点菜单的导入资源段：上传 / 从生成历史选择 / 素材库'
-    sha256: 52ae87a86bc0b64bc8aee1714ad6d59173b1e0a89736f3dc15875f51c28507ee
+    captured_at: '2026-10-01'
+    verified_locator: '[aria-label=多选节点布局工具] button[aria-label=批量连接] / 状态栏 已选 2'
+    visible_text: '已选 2 批量连接'
+    alt: '两个音频节点被选中：虚线选框、左右连接轨道与选区工具条对齐分布按钮，悬停提示「批量连接」'
+    sha256: 3f4cf70cb7357a5b304cbbbca94a6c27c0acd43f0c2c8e6cab51b192fbde7d40
 
   - file: screenshots/14-reference-picker.png
     task_id: prompts-and-mentions
@@ -588,3 +564,15 @@ screenshots:
     visible_text: '字幕编辑 视频结果｜字幕样片 2 条字幕 · 单条上限 32 字'
     alt: '字幕编辑弹窗：左栏两条字幕条目、中栏视频预览叠加字幕条「风从稻田吹来」、右栏字幕样式与关键词高亮设置'
     sha256: 9aa60d3449b356c373b39de241b87d9c6b5c42458c2ae6751278f7c5c53db6b1
+
+  - file: screenshots/50-batch-connect-plan.png
+    task_id: connect-references
+    step: '批量连接规划预览：进入批量连接模式后悬停目标节点，虚线显示规划连线'
+    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '批量连接模式下的规划连线预览（虚线）/ 选区工具条 批量连接 高亮态'
+    visible_text: '已选 2'
+    alt: '批量连接模式：两个选中的音频节点向悬停的视频节点显示虚线规划连线'
+    sha256: 37e2f1ef501204d3947097e7c00580348df3f9b2ac983834e670ed3a1aea0b91
