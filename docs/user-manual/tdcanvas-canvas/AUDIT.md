@@ -1,7 +1,7 @@
 # TDCanvas 手册回走审计（AUDIT）
 
 > Gate B 回走证据与问题分级台账。基线：被测应用 TDCanvas `v0.14.0`（`16b3127`）@ localhost:3000。
-> 状态：**Gate B 已完成（2026-09-30 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 37 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
+> 状态：**Gate B 已完成（2026-10-01 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 48 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
 > §9 官方文档差异）与 RUNTIME_AUDIT.md（调研包），不在此重复。
 
 ## 回走结论表（Gate B 逐任务追加）
@@ -40,16 +40,19 @@
 | 级别 | 描述 | 影响 | 处置 |
 |---|---|---|---|
 | ~~Minor~~ | 新项目默认标题编号：2026-09-27 清数据实测为「TDCanvas 1」，确认编号=全局递增计数（此前 2 为残留计数） | 无 | 已结（正文 00-quickstart/create-canvas-project 按实测表述） |
-| Minor | 悬浮工具条在节点偏左时不做视口 clamp（左端按钮可被视口裁切） | 宽屏影响小 | 手册不承诺工具条始终完整可见 |
+| Minor | 悬浮工具条在节点偏左时不做视口 clamp（左端按钮可被视口裁切）；同理工具条固定渲染在节点上方 `top: -39px`，节点贴近画布顶部时被 48px 顶栏遮住 | 宽屏影响小 | **M31 实测坐实**：节点顶到上缘时「替换图片」按钮 `y = -42`，48px 高的工具条有 42px 在屏幕外。已在 90-troubleshooting 配图写明成因（不跟随视口收缩）与应对（往画布中心拖，不丢数据） |
 | Major(环境) | Playwright locator 点击被画布覆盖层拦截；page.evaluate 通道不稳定 | 仅影响自动化回走，不影响真人 | 回走一律 CUA 坐标路径 + locator("body").evaluate |
 | Major(产品) | 同项目多标签同时编辑：后保存方用旧状态覆盖另一方修改（如文字丢失），无冲突保护 | 多标签用户可能丢内容 | 已写入 90-troubleshooting 候选与 edit-nodes 页「已知限制」；产品级修复不在手册范围 |
 | Minor(产品) | 提示词库空且无来源配置入口：`DEFAULT_PROMPT_SOURCES` 为空数组，`ConfigPromptSources` 组件已实现但全仓无 import，四个路由均无添加入口 | 用户打开「提示词库」只见空列表且无处配置 | 已如实写入 use-prompt-library.md 与 90-troubleshooting；手册不给无法执行的绕行步骤，指向「我的资产」替代路径 |
 | Minor(产品) | 视频资产无「编辑」按钮（源码 index.tsx:468-470 对 video 不渲染） | 无法修改视频资产标题 | 已在 manage-assets.md「不同类型的卡片操作」与排障中写明 |
 | Minor(一致性) | 顶部导航「提示词库」与页面标题「提示词中心」名称不统一 | 可能让用户误以为是两个功能 | 已在 use-prompt-library.md 与排障中说明为同一页面 |
+| Minor(一致性) | 平台品牌名不统一：界面写「**AI 土豆**」，代码与文档用 `Aitudou` | 用户在界面里搜不到手册说的名字 | M31 已在 20-reference（API 配置表）、generate-images 前置条件、90-troubleshooting 三处说明「界面叫 AI 土豆、代码里叫 Aitudou，是同一个东西」 |
+| Minor(产品) | 图片节点「历史版本」入口在版本数 < 2 时**完全不渲染**（源码 `history.length < 2` 直接 return null），且上传/替换/裁剪/切图/放大**均不产生新版本**，只有 AI 生成结果进历史 | 用户以为功能不存在或「替换后想撤回」却无处可撤 | M31 已订正参考页「历史」→「历史版本」并写明三条规则与 `MAX_CANVAS_IMAGE_HISTORY = 24`；入口外观按源码描述，**未配图**（造第 2 版必须真跑生成，属付费边界） |
+| Minor(缺陷) | 手册内 **4 处交叉引用锚点全部落空**（VitePress slugify 把全角括号/逗号/斜杠/引号折成 `-`，与直觉差异大） | 读者点「见某页某节」直接扑空 | M31 已全部订正，并新增 `scripts/check-anchors.py` 接入 `build-site.sh` 步骤 3 作 fail 级门禁（已做负向测试） |
 | 环境 | Playwright 每次 `chromium.launch()` 为全新 profile，IndexedDB 不保留 → 必须用 `launchPersistentContext` 才能跨脚本验证 | 自动化注意事项 | M20 已改用持久化 profile（/tmp 独立目录），并用固定种子资产保证可重放 |
 
 ## 未覆盖清单（交付报告中须列出的已知限制）
 
-- 生成类流程（图片/视频/音频/反推提示词/AI 角度）：付费边界，正文仅描述（来源标注），无回走。
+- 生成类流程（图片/视频/音频/反推提示词/AI 角度）：付费边界，正文仅描述（来源标注），无回走。**M31 补充**：由此也导致「历史版本」面板（需 ≥2 个生成版本才出现）无运行时证据，正文按源码与 i18n 描述并明确标注「本条没有配图」。
 - 提示词库**有内容时的交互**（搜索/分类/标签/详情/加入资产）：当前版本来源为空且无配置入口，运行时无法产生数据，正文按 i18n 与源码描述并明确标注为「来源可用后参考」。
 - ComfyUI 本地环境全流程、Agent（Codex/Claude）连接全流程：超出画布手册范围。

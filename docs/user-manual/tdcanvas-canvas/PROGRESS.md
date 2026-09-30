@@ -7,11 +7,11 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-30（**维护态，当前 14 任务 verified**；M20–M22 补齐导航两个页面的覆盖缺口，Gate A/B/final 全通过）。
+- 最后整理日期：2026-10-01（**维护态，当前 14 任务 verified**；M20–M22 补齐导航两个页面的覆盖缺口，M24–M31 完成「图文并茂」改造，Gate A/B/final 全通过）。
 - 当前目标：为 TDCanvas（桌面端 AI 无限画布，v0.14.0）的普通创作者编写中文、任务导向、可回走验证的用户手册。
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
-- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 37 images，sha256 全校验）；站点构建 21 页 / 37 图 / 15M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
+- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 48 images，sha256 全校验）；站点构建 21 页 / 48 图 / 16M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
 - **M20–M22 摘要（2026-09-30）**：新增 `manage-assets`（我的资产，全链回走）与 `use-prompt-library`（提示词库，如实记录来源为空且无配置入口）两任务；补「导入资产」端到端还原回走；quickstart 增导航导览。详见本文件末尾 M20/M21/M22 条目。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
@@ -83,10 +83,10 @@
 | 确认门（候选表自行定级，标注待复核） | 完成（PROGRESS §1 可重排） |
 | 工作文档冻结 | 完成（本目录五件套） |
 | 逐任务探索 + 10-tasks 成稿 | 完成（14 任务全部 drafted 并回走；M20 补两个导航页面） |
-| 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 完成（quickstart M22 增导航导览；reference/troubleshooting 随 M20 扩充） |
-| Gate A | 通过（14 tasks / 25 Markdown / 37 images） |
+| 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 完成（quickstart M22 增导航导览；M24 增 concepts 心智模型；**M31 重写 20-reference 与 90-troubleshooting 两个 0 图页面**，各配分诊导读与「为什么」层） |
+| Gate A | 通过（14 tasks / 25 Markdown / 48 images） |
 | Gate B 回走 + AUDIT.md | 通过（14/14，无 Blocker/Major） |
-| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 37 图 |
+| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 48 图 |
 
 - **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
 - **Batch M7（2026-09-28）Gate B 完成**：按手册从入口重走 12 任务全部通过（AUDIT.md 回走结论表）；回走中新发现 Minor 缺陷（上传无内容嗅探）已记录并即时清理；**final audit 通过**（12 任务全部 verified，exit 0）。手册 v1 交付完成。
@@ -97,9 +97,9 @@
 - **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
 - **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
 - **覆盖率**：task-inventory **14/14** 任务 verified（1 个 generate-images 为描述型，付费边界前验证；use-prompt-library 为限制记录型）。
-- **验证密度**：**37 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册）、五项自检 + verify-docs + Gate A/final audit 全绿。
+- **验证密度**：**48 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册；M24–M31 续发现 5 处，含 2 处**手册自身错误**——「历史版本」被写成「历史」、臆造了不存在的 `?` 键位）、五项自检 + verify-docs + Gate A/final audit 全绿。
 - **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作；**提示词库有内容时的交互**（产品侧无提示词来源数据且无配置入口，运行时无法造数）。
-- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）；视频资产无「编辑」按钮（Minor）；导航「提示词库」与页面标题「提示词中心」名称不统一（一致性）。
+- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor，**M31 已用 FFmpeg 解码错误码坐实**）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）；视频资产无「编辑」按钮（Minor）；导航「提示词库」与页面标题「提示词中心」名称不统一（一致性）；**界面品牌名「AI 土豆」与文档用名 Aitudou 不一致**（M31 已说明为同一平台）；**图片「历史版本」入口在版本 < 2 时完全不渲染**（M31 源码确认）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
 
 - **Batch M11（2026-09-28，维护轮）**：navigate-canvas.md 实测细节扩充——缩放锚点分野（滚轮=鼠标锚/滑杆=视口中心锚）、滚轮步进 ±10%、滑杆对数刻度实操提示、重置视图双行为补实测百分比（聚焦 156%/fit 54–100%）、并行会话错置截图（02-zoom-in-wheel 实为首页）判定与防误用说明入册。
@@ -180,3 +180,19 @@
   - `create-nodes.md` 增补：把入口拆为**三个**（双击 / Dock「+」 / 空画布快捷芯片）并配两张菜单图；解释**各节点尺寸差异不是随意的**（音频是 540×160 窄条因为没有画面、组是大虚线框因为要装节点），看到不同尺寸即可判类型；新增「文本节点：先写内容」澄清**节点标题与节点内容是两回事**（双击标题改名字、双击内容写提示词）；**移除「（编写中）」陈旧标记**（organize-canvas 早已成稿）。
   - `shortcuts-help.md` 增补：补全键位表遗漏的**重命名/编辑文字/右键制作副本**三行；明确「**画布上没有缩放类快捷键**」这一与主流设计工具不同的点及滚轮以指针为锚的规则；新增「**键位记不住怎么办**」——列出每类操作的鼠标替代入口（撤销/删除/取消/副本），强调**能用鼠标完成的操作都有入口**；新增「快捷键不生效的常见原因」（焦点在输入框时 `Cmd+Z` 是撤销输入而非画布操作、`Esc` 只取消选择不删除）。
   - 截图数不变（44，两处菜单图复用 M24 已采集素材）；两门禁 exit 0；构建 21 页 / 44 图 / 15M。
+- **Batch M31（2026-10-01，图文并茂收官 · 两个 0 图页面重写 + 锚点门禁）**：
+  - 本批针对用值审计后仅剩的两个 **0 图页面**：`20-reference.md`（1040 字/0 图）与 `90-troubleshooting.md`（1734 字/0 图）——它们此前是全站最「干」的两页，且恰好是读者**最常跳过来查**的两页。
+  - **4 张新图，全部先取证后落笔**：
+    - `90-troubleshooting-video-black.png`（task: upload-materials）——把纯文本改名成 `.mp4` 上传，节点照常创建并计入「2 个节点」，播放器全黑、时长 `0:00`、进度条拖不动；读取到 `readyState=0` / `videoWidth=0` / `error.code=4`，报错原文 `PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed`。把「上传成功 ≠ 能不能播」从推测升级为可引用的硬证据。
+    - `90-troubleshooting-toolbar-clipped.png`（task: navigate-canvas）——节点顶到画布最上缘并选中，「替换图片」按钮 `y = -42`，顶栏 48px、工具条 48px，即 **42/48 的工具条在屏幕之外**，只剩 6px 细边。实测坐标坐实了手册里长期只有一句「把节点往中间拖」的模糊说法。
+    - `90-troubleshooting-cover-placeholder.png`（task: project-management）——项目内只有上传的图片与视频、无任何 AI 生成素材时，首页卡面是紫色线框占位图；整页 `<img>` 元素数为 **0**，证明封面由 SVG 绘制，**不是加载失败**。
+    - `20-reference-config-dialog.png`（task: generate-images）——「API 配置」弹窗全貌，并因此**发现两处手册从未记录的事实**：① 只有一个密钥字段，**图片/视频/音频与全部画布能力共用**；② 底部有独立的「**验证并查询余额**」按钮，可在保存前先验密钥。
+  - **订正一处实质性错误**：参考页原文写「从节点右上角『**历史**』入口切换版本」。源码核实（`canvas-node.tsx` + `zh-CN.ts`）后更正为「**历史版本**」，并补三条实测/源码事实：① **只有 AI 生成结果进版本历史**——上传、「替换图片」、裁剪、切图、放大**都不产生新版本**（实测：上传后替换，版本入口根本不出现）；② **版本数 < 2 时入口不渲染**（源码 `history.length < 2` 直接 return null，界面「干净得像没有这个功能」而不是置灰）；③ 上限 24（`MAX_CANVAS_IMAGE_HISTORY = 24`）。
+  - **订正一处臆测**：本轮初稿在键位表写了「画布内按 `?` 打开快捷键弹窗」——源码检索全仓无 `?` 键位处理，真实入口是**顶栏键盘图标 / 左下角 Dock 快捷键按钮**，已删除并改写为「**没有 `?` 快捷键**」。这是图文并茂过程中最容易引入的副作用：**为了把表写圆，去补了一个没验证过的键位**。
+  - `20-reference.md` 重写：新增「怎么用这一页」导读（三条通用约定：写「当前版本」的会变、写「源码确认」的可复核、**没能实测的直接说明**）；新增「API 配置（生成功能的前提）」整节 + 配置弹窗图；为生成任务状态表补「**『已停止』不等于『已取消』**」的费用解释，为「图片历史」「我的资产」计数、「自动保存」「提示词库为空」各补「为什么」层。
+  - `90-troubleshooting.md` 重写：新增**分诊导读表**——先判断是「故障」还是「**既定行为**」，因为两者的处理方式完全相反（故障要修、既定行为只能绕行），并点明 TDCanvas 最常见的困惑其实属于后者；三条实证图各配「实测原文 + 数字」的说明与「为什么会有这个坑」；把「图片历史」三条规则、「封面线框不是加载慢」写透。
+  - **顺带统一品牌口径**：界面写的是「**AI 土豆**」而手册通篇写 `Aitudou`（代码名）。已在参考页、generate-images 前置条件、排障页三处说明「界面叫 AI 土豆，代码里叫 Aitudou，是同一个东西」。
+  - **新增第 4 道机械门禁**：`scripts/check-anchors.py` + 接入 `build-site.sh` 步骤 3。本轮发现 **4 处交叉引用锚点全部落空**——VitePress 的 slugify 会把标题里的全角括号、逗号、斜杠、引号**统统折成 `-`** 再折叠，与直觉差异极大。校验器复刻该规则并逐条比对 `xxx.md#anchor`，坏锚点判 **fail**（读者点交叉引用会直接扑空，属硬缺陷，unlike 侧边栏缺失只是导航不便）。已做**负向测试**：注入 1 处坏锚点 → 构建 exit 1 且打印定位；还原 → exit 0。
+  - 截图 44 → **48**；两门禁 exit 0（14 tasks / 25 markdown / 48 images，sha256 全校验）；构建 21 页 / 48 图 / 16M，侧边栏完整性 ok。
+  - **站点实测**（`http.server :4179` + 外部 Playwright）：参考页 3486 字符/2 图、排障页 4681 字符/3 图、generate-images 1500 字符/3 图；图片实际像素 `1280x720 / 1280x720 / 620x348` 全部非 0；点击 `#api-配置-生成功能的前提` 后 `scrollY = 562`（锚点真实生效）；**HTTP ≥400 与坏图均为 0**。
+  - 自动化教训：① `locator.$$eval` **不存在**（`$$eval` 只挂在 `page`/`elementHandle` 上，`Locator` 用 `evaluate` 或 `page.$$eval`）；② 上传入口是**隐藏的 `input[type=file]`**，`accept` 里同时列了 MIME 与扩展名，`setInputFiles` 可直接喂假扩展名文件；③ 节点悬浮工具条在 `top: -39px`（节点上方），节点靠上时会被 48px 顶栏吃掉，**自动化里要先缩画布再点工具条**，否则 `click` 报 "element is outside of the viewport"；④ 两个节点默认叠在同一位置，后建的会拦截前一个的 `hover`，需先拖开；⑤ **`http.server` 不做无扩展名 → `.html` 映射**，站点回走必须访问 `/20-reference.html` 而不是 `/20-reference`。

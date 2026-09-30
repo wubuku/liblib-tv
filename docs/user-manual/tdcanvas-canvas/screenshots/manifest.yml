@@ -527,3 +527,51 @@ screenshots:
     visible_text: '裁剪'
     alt: 已填充图片的节点及其悬浮工具条，依次显示存资产、下载、编辑、复制提示词、反推提示词、替换图片，以及裁剪、切图、放大、查看大图
     sha256: 01b984172a6f7be8cc4ab19c95518950fc236420068603e85502be5a6f9c1e11
+
+  - file: screenshots/90-troubleshooting-video-black.png
+    task_id: upload-materials
+    step: 上传扩展名为 .mp4 但内容是纯文本的文件，节点创建成功但播放器全黑、时长 0:00 无进度
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'video 元素 readyState=0 / videoWidth=0 / error.code=4 FFmpegDemuxer: open context failed / 节点标题 fake-clip.mp4'
+    visible_text: '0:00'
+    alt: 一个已创建的视频节点，播放器区域全黑，左下角进度条显示 0:00 且无法拖动，右下角音量与全屏按钮正常
+    sha256: 6e87c7c009669daee979de5256945c807cd462e54d9cf6d91c310b3263a5c855
+
+  - file: screenshots/90-troubleshooting-toolbar-clipped.png
+    task_id: navigate-canvas
+    step: 图片节点顶到画布最上缘并被选中，悬浮工具条整体被顶栏盖住，只在屏幕顶端露出一条边缘
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '替换图片 按钮 boundingBox y=-42（顶栏高 48px，工具条高 48px）/ 节点顶栏 y=59'
+    visible_text: '55dd39e3-5024-47ec-9971-4d35be848a65.png'
+    alt: 画布上一个被选中且顶到最上缘的图片节点，节点悬浮工具条完全落在顶栏之后，屏幕上只露出工具条最下缘一条细边
+    sha256: d7246294e1b628672881748682bd724dc79b6b5f4136e9152e32632cb9f7b4b7
+
+  - file: screenshots/90-troubleshooting-cover-placeholder.png
+    task_id: project-management
+    step: 首页项目卡：项目内只有上传的图片与视频节点、没有 AI 生成素材，封面显示紫色线框占位图
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '项目卡 TDCanvas 1 / 卡片描述 2 个节点 · 0 条连线 / 页面 img 元素数量为 0（封面由 SVG 线框绘制）'
+    visible_text: '2 个节点 · 0 条连线'
+    alt: 首页最近画布区只有一个项目卡 TDCanvas 1，卡面是紫色线框占位图而非画布内的图片，卡下标注 2 个节点 0 条连线
+    sha256: 489fda1f68c3b239cac3c76db9b5b0a655f4e7f9db2cb63d11e62db5e8261f69
+
+  - file: screenshots/20-reference-config-dialog.png
+    task_id: generate-images
+    step: 打开右上角「配置」弹窗，展示单一 API Key 入口、两步引导、验证并查询余额与保存按钮
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role=dialog 标题 API 配置 / input[type=password] placeholder 请输入 API_KEY / button 验证并查询余额 / button 保 存'
+    visible_text: '只需配置一个 API_KEY'
+    alt: API 配置弹窗，标题下写明只需配置一个 API_KEY，正文是获取与粘贴两步引导，底部是验证并查询余额与保存两个按钮
+    sha256: c27bc4469fa7ae89f888d52e0ba1e510a7b608a6cc374034befee278131f89b4

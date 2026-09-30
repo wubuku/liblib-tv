@@ -56,6 +56,14 @@ PNG_COUNT="$(find screenshots -name '*.png' 2>/dev/null | wc -l | tr -d ' ')"
 [ "$PNG_COUNT" -ge 20 ] || fail "screenshots/ 下没有截图"
 ok "将发布 $MD_COUNT 个页面、$PNG_COUNT 张截图（内部资料已排除）"
 
+# 内部锚点校验：VitePress 会把标题里的全角括号、逗号、斜杠、引号统统折成 `-`，
+# 手写锚点极易对不上（2026-10-01 M31 实测：4 处交叉引用全部落空）。
+# 坏锚点是硬缺陷——读者点「见 20-reference.md 某节」会直接扑空，故此处 fail 而非 warn。
+command -v python3 >/dev/null 2>&1 || fail "未找到 python3，无法执行内部锚点校验"
+ANCHOR_OUT="$(python3 scripts/check-anchors.py . 2>&1)" || fail "内部锚点校验未通过：
+$ANCHOR_OUT"
+echo "$ANCHOR_OUT" | sed 's/^/  /'
+
 # ---------- 步骤 4/6 清理旧产物 ----------
 log "步骤 4/6 清理旧构建产物"
 rm -rf .vitepress/dist .vitepress/cache
