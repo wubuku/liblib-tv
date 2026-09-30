@@ -1,7 +1,7 @@
 # TDCanvas 手册回走审计（AUDIT）
 
 > Gate B 回走证据与问题分级台账。基线：被测应用 TDCanvas `v0.14.0`（`16b3127`）@ localhost:3000。
-> 状态：**Gate B 已完成（2026-09-28）**——12 任务全部回走通过，final audit 通过。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
+> 状态：**Gate B 已完成（2026-09-30 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 37 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
 > §9 官方文档差异）与 RUNTIME_AUDIT.md（调研包），不在此重复。
 
 ## 回走结论表（Gate B 逐任务追加）

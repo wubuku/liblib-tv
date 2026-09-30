@@ -7,11 +7,12 @@
 
 ## 1. 当前暂停点
 
-- 最后整理日期：2026-09-28（**手册 v1 交付完成**：12 任务 verified、Gate A/B/final 全通过；进入维护态）。
+- 最后整理日期：2026-09-30（**维护态，当前 14 任务 verified**；M20–M22 补齐导航两个页面的覆盖缺口，Gate A/B/final 全通过）。
 - 当前目标：为 TDCanvas（桌面端 AI 无限画布，v0.14.0）的普通创作者编写中文、任务导向、可回走验证的用户手册。
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
-- 本轮已完成：12 个任务全部运行时走查并 verified；Gate A（12 tasks/22 Markdown/26 images）与 Gate B（12/12 回走）、final audit 全通过；引用抽检累计 407+ 处、5 处问题全部修正；调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
+- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 37 images，sha256 全校验）；站点构建 21 页 / 37 图 / 15M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
+- **M20–M22 摘要（2026-09-30）**：新增 `manage-assets`（我的资产，全链回走）与 `use-prompt-library`（提示词库，如实记录来源为空且无配置入口）两任务；补「导入资产」端到端还原回走；quickstart 增导航导览。详见本文件末尾 M20/M21/M22 条目。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
 - **Batch M4（2026-09-27）**：connect-references + navigate-canvas + organize-canvas 三任务成稿——拖线到空白的上下文生成菜单（按上游类型变化，新发现）、滚轮缩放/平移/小地图开合与点击导航、组拖入与外观面板四组设置；并行会话遗留 WIP 判定弃置（实为首页截图错置文件名），未收编。manifest +6。
@@ -81,24 +82,24 @@
 | 快速扫描（调研包 47 轮 + 官方文档） | 完成 |
 | 确认门（候选表自行定级，标注待复核） | 完成（PROGRESS §1 可重排） |
 | 工作文档冻结 | 完成（本目录五件套） |
-| 逐任务探索 + 10-tasks 成稿 | 进行中（create-canvas-project drafted + 00-quickstart 完成；其余 11 任务 planned） |
-| 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 未开始 |
-| Gate A | 未开始 |
-| Gate B 回走 + AUDIT.md | 未开始 |
-| final audit + 交付报告 | 未开始 |
+| 逐任务探索 + 10-tasks 成稿 | 完成（14 任务全部 drafted 并回走；M20 补两个导航页面） |
+| 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 完成（quickstart M22 增导航导览；reference/troubleshooting 随 M20 扩充） |
+| Gate A | 通过（14 tasks / 25 Markdown / 37 images） |
+| Gate B 回走 + AUDIT.md | 通过（14/14，无 Blocker/Major） |
+| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 37 图 |
 
 - **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
 - **Batch M7（2026-09-28）Gate B 完成**：按手册从入口重走 12 任务全部通过（AUDIT.md 回走结论表）；回走中新发现 Minor 缺陷（上传无内容嗅探）已记录并即时清理；**final audit 通过**（12 任务全部 verified，exit 0）。手册 v1 交付完成。
 - **Batch M8（2026-09-28）**：generate-images 补充真实 S109 上传回走与伪装扩展名缺陷发现（已入 AUDIT 与排障）；Gate B 结论表落档；final audit 通过。
 
-## 交付报告（v1，2026-09-28）
+## 交付报告（v1，2026-09-28；2026-09-30 增补 M20–M22）
 
 - **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
 - **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
-- **覆盖率**：task-inventory 12/12 任务 verified（1 个 generate-images 为描述型，付费边界前验证）。
-- **验证密度**：26 张截图（manifest 全字段+sha256）、12 任务 Gate B 回走（发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属）、五项自检 + verify-docs + final audit 三门禁全绿。
-- **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作。
-- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）。
+- **覆盖率**：task-inventory **14/14** 任务 verified（1 个 generate-images 为描述型，付费边界前验证；use-prompt-library 为限制记录型）。
+- **验证密度**：**37 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册）、五项自检 + verify-docs + Gate A/final audit 全绿。
+- **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作；**提示词库有内容时的交互**（产品侧无提示词来源数据且无配置入口，运行时无法造数）。
+- **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）；视频资产无「编辑」按钮（Minor）；导航「提示词库」与页面标题「提示词中心」名称不统一（一致性）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
 
 - **Batch M11（2026-09-28，维护轮）**：navigate-canvas.md 实测细节扩充——缩放锚点分野（滚轮=鼠标锚/滑杆=视口中心锚）、滚轮步进 ±10%、滑杆对数刻度实操提示、重置视图双行为补实测百分比（聚焦 156%/fit 54–100%）、并行会话错置截图（02-zoom-in-wheel 实为首页）判定与防误用说明入册。
@@ -139,3 +140,4 @@
   - 自动化教训（已入 AUDIT）：`chromium.launch()` 每次全新 profile，IndexedDB 不保留；跨脚本验证必须用 `launchPersistentContext`。antd 组件定位：资产页新增/编辑是 `Modal`（`[role=dialog]`）、详情是 `Drawer`（`ant-drawer-section`，非 `ant-drawer-content`）；类型筛选点击后应读标题右侧 `N / N` 计数判定，`force:true` 有竞态。
 - **Batch M21（2026-09-30，导入链路闭环轮）**：闭合 M20 留下的唯一未覆盖项——「导入资产」端到端回走。实测：建两个带标签文本资产（计数 2/2）→ 导出 `我的资产.zip`（1184 字节）→ 逐个删除至空态 → 导入该 zip → **两个资产完整还原**，标题/正文/标签（风光、长曝光 / 夜景）/来源全部一致，计数回到 2/2，**无 console 错误**。新增截图 `14-manage-assets-import.png`（26→36→37 图），manage-assets 页「导出与导入」节补五步还原流程与「导入为追加而非覆盖」提示；AUDIT 未覆盖清单中该项已移除。当前仅剩「提示词库有内容时的交互」因产品侧无数据源而无法回走（已在未覆盖清单说明）。
 - **Batch M22（2026-09-30，导航导览补全轮）**：M20/M21 新增两个页面后，00-quickstart 的「下一步」未提及它们，新用户从快速上手看不到「我的资产」。本轮在 quickstart 新增「顶部导航都有什么」小节——五个入口（我的画布 / ComfyUI 本地 / 提示词库 / 我的资产 / 配置）逐条给出用途与对应任务页链接，并补「首次用生成类功能前先到配置填 API Key」提示；「下一步」补 manage-assets 链接。五个导航标签与 SOURCE_OBSERVATIONS.md §1 的运行时记录逐字一致（含「提示词库」导航名与「提示词中心」页面标题的差异说明）。两门禁复跑全绿。
+- **Batch M22 续（2026-09-30，陈旧计数订正）**：M20–M22 增量后多处摘要数字过期，本轮统一订正——README 站点行 `19 页/26 图/14M` → `21 页/37 图/15M`；AUDIT 头部 `12 任务` → `14 任务` + 门禁数字；PROGRESS §1 当前暂停点（12→14 任务、22→25 Markdown、26→37 images）、交付报告（覆盖率 12/12→14/14、验证密度 26→37 张、未覆盖项补「提示词库有内容时的交互」、已知限制补视频资产无编辑与名称不统一）、**§5 阶段状态表**（原停留在 v1 草稿期的「进行中/未开始」五项，全部按实际完成情况更新）。历史 Batch 条目中的旧数字按时间点保留不改。
