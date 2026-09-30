@@ -1330,14 +1330,26 @@ function CameraFovField({
   });
 
   return (
-    <label className="block">
-      <span className="mb-1.5 flex items-center gap-1 text-[11px] text-[#777]">
-        <Camera size={12} />
-        视场角
-      </span>
+    // Batch 581（源站 2026-10-01 CDP 实测）：FOV 行紧贴页签栏下方（y=134），
+    // 早于「名称」（y=289），形态为 `FOV 50°` 单行——标签与度数读数同行、
+    // 滑杆在下。原生 range 属性实测 min=15 / max=90 / step=1（此前 clone
+    // 写死 min=20，量程比源站窄）。
+    <div className="block" data-director-camera-fov-field>
+      <div className="mb-1.5 flex items-center justify-between text-[11px] text-[#777]">
+        <span className="flex items-center gap-1">
+          <Camera size={12} />
+          FOV
+        </span>
+        <span
+          data-director-camera-fov-readout
+          className="tabular-nums text-[#a7a7a7]"
+        >
+          {fov}°
+        </span>
+      </div>
       <input
         type="range"
-        min="20"
+        min="15"
         max="90"
         step="1"
         data-director-camera-fov
@@ -1352,10 +1364,37 @@ function CameraFovField({
         }}
         className="w-full accent-[#09caf5]"
       />
-      <div className="mt-1 text-right text-[11px] tabular-nums text-[#a7a7a7]">
-        {fov}°
+    </div>
+  );
+}
+
+function CameraFovHelp() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      data-director-camera-fov-help
+      data-open={open ? "true" : "false"}
+      className="space-y-1.5"
+    >
+      <div className="flex items-center gap-1.5">
+        <span className="text-[11px] text-[#777]">视野角度 (FOV)</span>
+        <button
+          type="button"
+          aria-label="视野角度说明"
+          aria-expanded={open}
+          data-director-camera-fov-help-toggle
+          onClick={() => setOpen((value) => !value)}
+          className="grid h-3.5 w-3.5 place-items-center rounded-full border border-white/20 text-[8px] leading-none text-[#8c8c8c] hover:border-white/40 hover:text-white"
+        >
+          ?
+        </button>
       </div>
-    </label>
+      {open ? (
+        <p className="text-[10px] leading-4 text-[#6f6f6f]">
+          控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。
+        </p>
+      ) : null}
+    </div>
   );
 }
 
@@ -1643,7 +1682,10 @@ export function DirectorInspector({
         <nav
           data-director-camera-tabs
           aria-label="摄像机编辑"
-          className="grid h-9 shrink-0 grid-cols-2 border-b border-white/[0.07] bg-[#171717] p-1"
+          // Batch 581: 三个页签（属性 / 运动轨迹 / 截图）此前挤在
+          // grid-cols-2 里，第三个换行导致页签栏占两行（实测 属性 y=136 /
+          // 截图 y=153）。源站页签为单行等宽胶囊，按页签数分列。
+          className="grid h-9 shrink-0 grid-cols-3 border-b border-white/[0.07] bg-[#171717] p-1"
         >
           {(
             [
@@ -1699,6 +1741,17 @@ export function DirectorInspector({
                 <Lock size={12} aria-hidden="true" />
                 对象已锁定，属性与变换编辑已停用
               </p>
+            ) : null}
+            {/* Batch 581（源站实测 y=134，紧贴页签栏下方、早于「名称」
+                y=289）：FOV 行提到面板顶部。摄像机属性页才有。 */}
+            {selected.camera ? (
+              <CameraFovField
+                objectId={selected.id}
+                fov={selected.camera.fov}
+                disabled={selected.locked}
+                updateCamera={updateCamera}
+                recordObjectKeyframe={recordObjectKeyframe}
+              />
             ) : null}
             <label className="block">
               <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
@@ -1813,6 +1866,34 @@ export function DirectorInspector({
                   recordObjectKeyframe(selected.id);
                 }}
               />
+              {/* Batch 581（源站实测 y=505 位于「位置」465 与「旋转」609
+                  之间）：跟随目标选择器上提到变换组内、位置之后。跟随偏移 /
+                  跟随视角仍留在下方摄像机分组（源站同屏未见，clone 保留）。 */}
+              {selected.camera ? (
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] text-[#777]">
+                    跟随目标
+                  </span>
+                  <select
+                    data-director-camera-follow-target
+                    value={selected.camera.followTargetId ?? ""}
+                    disabled={selected.locked}
+                    onChange={(event) =>
+                      updateCamera(selected.id, {
+                        followTargetId: event.currentTarget.value || null,
+                      })
+                    }
+                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+                  >
+                    <option value="">不跟随</option>
+                    {cameraTargets.map((object) => (
+                      <option key={object.id} value={object.id}>
+                        {object.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null}
               <AxisFields
                 label="旋转"
                 field="rotation"
@@ -1857,13 +1938,10 @@ export function DirectorInspector({
                     duration={timeline.duration}
                   />
                 ) : null}
-                <CameraFovField
-                  objectId={selected.id}
-                  fov={selected.camera.fov}
-                  disabled={selected.locked}
-                  updateCamera={updateCamera}
-                  recordObjectKeyframe={recordObjectKeyframe}
-                />
+                {/* Batch 581: FOV 控件已提到面板顶部（源站实测），此处保留
+                    源站底部的说明块（y=816 `视野角度 (FOV)` + `?` 开关 +
+                    文案），文案逐字取自源站。 */}
+                <CameraFovHelp />
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] text-[#777]">
                     注视目标
@@ -1945,30 +2023,6 @@ export function DirectorInspector({
                     使用上方旋转参数控制机位方向
                   </p>
                 )}
-
-                <label className="block">
-                  <span className="mb-1.5 block text-[11px] text-[#777]">
-                    跟随目标
-                  </span>
-                  <select
-                    data-director-camera-follow-target
-                    value={selected.camera.followTargetId ?? ""}
-                    disabled={selected.locked}
-                    onChange={(event) =>
-                      updateCamera(selected.id, {
-                        followTargetId: event.currentTarget.value || null,
-                      })
-                    }
-                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
-                  >
-                    <option value="">不跟随</option>
-                    {cameraTargets.map((object) => (
-                      <option key={object.id} value={object.id}>
-                        {object.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
 
                 <span
                   data-director-camera-follow-state={

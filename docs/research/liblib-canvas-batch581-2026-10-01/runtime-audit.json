@@ -1,0 +1,60 @@
+{
+  "batch": 581,
+  "title": "Camera 属性 panel alignment: single-row tabs, FOV on top with source range, source row order, FOV help copy",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk overlay (right panel 属性 for 机位1) + docs/research/liblib-canvas-batch581-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "tabs:count",
+        "tabs:single-row",
+        "fov:above-name",
+        "fov:min",
+        "fov:max",
+        "fov:step",
+        "fov:readout-format",
+        "fov:label",
+        "fov:commit",
+        "fov:readout-follows",
+        "order:位置-present",
+        "order:跟随目标-present",
+        "order:旋转-present",
+        "order:注视目标-present",
+        "order:注视坐标-present",
+        "order:source-sequence",
+        "help:collapsed-by-default",
+        "help:label",
+        "help:opens",
+        "help:source-copy",
+        "follow:present",
+        "follow:commit",
+        "follow:offset-section",
+        "follow:view-section",
+        "isolation:no-fov-on-character",
+        "isolation:no-follow-on-character",
+        "diagnostics:zero"
+      ],
+      "camera_tab_ys": [
+        136,
+        136,
+        136
+      ],
+      "fov_y": 180,
+      "name_y": 265,
+      "fov_readout": "43°",
+      "source_row_ys": {
+        "位置": 449,
+        "跟随目标": 515,
+        "旋转": 582,
+        "注视目标": 951,
+        "注视坐标": 1017
+      },
+      "help_text": "视野角度 (FOV)\n?\n\n控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。",
+      "diagnostics": {
+        "console": 3,
+        "filtered_transformcontrols": 3,
+        "errors": []
+      }
+    }
+  ]
+}
