@@ -195,8 +195,19 @@ project-id 与画布上下文已回填至第 1 节。**改动正文不需要登�
 
 ### C2. 已知未取证面（下一位 Agent 的候选工作，2026-10-01 记录）
 
-以下界面元素在当日取证中**只确认了它们出现在左栏/菜单中**，其内部行为未取证，
-因此正文只做提及、未写成 how-to。补写它们需要重新登录源站：
+**取证通道（2026-10-01 已就绪）**：仓库内新增 Playwright 取证脚本，可用于关闭下表缺口：
+
+| 脚本 | 作用 |
+|---|---|
+| `scripts/jimeng-browser.mjs` | 启动**独立**有头 Chromium（CDP 端口 **9444**，独立 profile `/tmp/jimeng-manual-profile`），固定 viewport 1280x720、locale zh-CN、时区 Asia/Shanghai |
+| `scripts/jimeng-probe.mjs` | 通过 CDP 只读探测当前页面登录态/画布态 |
+| `scripts/jimeng-open-canvas.mjs` | 把该浏览器导航到测试画布 URL |
+
+> **端口与隔离**：本机 **9222 已被另一个 Chrome 占用**（其他开发者/用户），切勿 attach
+> 或复用。取证一律用 9444 + 独立 profile，不读取任何既有浏览器会话或 cookie。
+> 登录需用户本人手动完成；脚本本身不接触凭据。
+
+**下表缺口需登录后才能关闭**：
 
 | 元素 | 已知事实 | 缺什么 |
 |---|---|---|
