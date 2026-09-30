@@ -31,11 +31,16 @@ import type { DirectorTimelineTrack } from "@/store/directorStore";
 //    播头不在选中关键帧时间时会静默写到另一个关键帧；提交前先把播头
 //    对齐（setTimelineTime），保证编辑与镜像字段互为同一目标。
 // Batch 580: 源站截图 64 的「时长」「统一缩放」为 滑杆 + 数值框 同行布局，
-// 轨道深灰、已填充段青色 #09caf5、滑块白色圆形（截图实测）。下表轨道范围
-// 0–10 为 CLONE_DECISION：截图里时长 0.1 滑块贴左端、统一缩放 1.0 约在
-// 轨道 9% 处，两者共用 0–10 量程是唯一自洽读法；源站实际 max 未经交互
-// 复核（见 research/liblib-canvas-batch580-2026-10-01/README.md）。
+// 轨道深灰、已填充段青色 #09caf5、滑块白色圆形（截图实测）。
+// Batch 583: 统一缩放的**真实量程**由源站角色属性页实测确定——
+// min=0.1 max=10 step=0.05（`/tmp` 采样：角色A 属性页 y=409 的
+// `range value=1` + 文本 `1.0`），与场景缩放同为 0.1–10 的倍率滑杆。
+// 580 当时按截图量滑块位置推断的 0–10 已据此更正。「时长」滑杆量程仍无
+// 源站交互证据，保留 0–10 并标注为待复核。
 const MOTION_SLIDER_MAX = 10;
+const MOTION_SLIDER_MIN = 0;
+const UNIFORM_SCALE_MIN = 0.1;
+const UNIFORM_SCALE_STEP = 0.05;
 
 type MotionKeyframeTrack = Extract<
   DirectorTimelineTrack,
@@ -68,6 +73,7 @@ function MotionSliderField({
   value,
   step,
   decimals,
+  min = MOTION_SLIDER_MIN,
   onCommit,
   testId,
 }: {
@@ -75,18 +81,20 @@ function MotionSliderField({
   value: number;
   step: number;
   decimals: number;
+  min?: number;
   onCommit: (next: number) => void;
   testId: string;
 }) {
-  const clamped = Math.min(MOTION_SLIDER_MAX, Math.max(0, value));
-  const ratio = clamped / MOTION_SLIDER_MAX;
+  const clamped = Math.min(MOTION_SLIDER_MAX, Math.max(min, value));
+  const span = MOTION_SLIDER_MAX - min || 1;
+  const ratio = (clamped - min) / span;
   return (
     <div className="space-y-1 text-xs text-[#bcbcbc]">
       <span className="block">{label}</span>
       <div className="flex items-center gap-2">
         <input
           type="range"
-          min={0}
+          min={min}
           max={MOTION_SLIDER_MAX}
           step={step}
           value={clamped}
@@ -282,8 +290,9 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
             label="统一缩放"
             testId="uniform-scale"
             value={selectedTransform.scale[0]}
-            step={0.1}
+            step={UNIFORM_SCALE_STEP}
             decimals={1}
+            min={UNIFORM_SCALE_MIN}
             onCommit={(next) => {
               // 统一缩放 = 三轴同值（源站截图 64 缩放 X/Y/Z 同为 1 时
               // 统一缩放显示 1.0）。三轴经 commitTransformValue 逐轴提交。

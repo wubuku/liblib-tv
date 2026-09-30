@@ -1,0 +1,107 @@
+{
+  "batch": 583,
+  "title": "Object 属性 panel: axis drag chips on all transform rows, 统一缩放 property row (measured 0.1–10/0.05), scale step 0.05, 颜色 hex readout after 统一缩放",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk with 角色A selected + docs/research/liblib-canvas-batch583-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "chips:all-transform-rows",
+        "chips:source-aria",
+        "chips:drag-commits",
+        "chips:number-mirrors",
+        "steps:position",
+        "steps:rotation",
+        "steps:scale",
+        "rows:缩放",
+        "rows:统一缩放",
+        "rows:颜色",
+        "order:scale-uniform-color",
+        "uniform:min",
+        "uniform:max",
+        "uniform:step",
+        "uniform:writes-all-axes",
+        "uniform:readout",
+        "color:hex-readout",
+        "color:swatch",
+        "motion:uniform-min",
+        "motion:uniform-max",
+        "motion:uniform-step",
+        "motion:duration-range-unchanged",
+        "diagnostics:zero"
+      ],
+      "axis_chips": [
+        {
+          "id": "position-X",
+          "aria": "左右拖动调整 X 轴"
+        },
+        {
+          "id": "position-Y",
+          "aria": "左右拖动调整 Y 轴"
+        },
+        {
+          "id": "position-Z",
+          "aria": "左右拖动调整 Z 轴"
+        },
+        {
+          "id": "rotation-X",
+          "aria": "左右拖动调整 X 轴"
+        },
+        {
+          "id": "rotation-Y",
+          "aria": "左右拖动调整 Y 轴"
+        },
+        {
+          "id": "rotation-Z",
+          "aria": "左右拖动调整 Z 轴"
+        },
+        {
+          "id": "scale-X",
+          "aria": "左右拖动调整 X 轴"
+        },
+        {
+          "id": "scale-Y",
+          "aria": "左右拖动调整 Y 轴"
+        },
+        {
+          "id": "scale-Z",
+          "aria": "左右拖动调整 Z 轴"
+        }
+      ],
+      "chip_drag": {
+        "before": -1.25,
+        "after": 0.25
+      },
+      "field_steps": {
+        "position": "0.1",
+        "rotation": "1",
+        "scale": "0.05"
+      },
+      "row_ys": {
+        "位置": 316,
+        "旋转": 382,
+        "缩放": 449,
+        "统一缩放": 515,
+        "颜色": 544
+      },
+      "uniform_write": {
+        "before": [
+          1,
+          1,
+          1
+        ],
+        "after": [
+          1.75,
+          1.75,
+          1.75
+        ]
+      },
+      "color_row_text": "颜色 #8696a8",
+      "diagnostics": {
+        "console": 1,
+        "filtered_transformcontrols": 1,
+        "errors": []
+      }
+    }
+  ]
+}

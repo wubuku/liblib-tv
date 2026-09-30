@@ -24,6 +24,16 @@
     "consoleErrors": 0,
     "pageErrors": 0,
     "requestFailures": 0,
-    "details": []
+    "details": [
+      "copy-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "copy-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+    ]
   }
 }

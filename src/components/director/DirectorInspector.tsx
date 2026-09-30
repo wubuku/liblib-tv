@@ -89,6 +89,10 @@ function AxisFields({
   });
   const isAxisDisabled = (index: number) =>
     disabled || disabledAxes.includes(index as 0 | 1 | 2);
+  // Batch 583（源站 2026-10-01 实测）：对象变换三行（位置/旋转/缩放）每轴
+  // 都是「可横向拖动的轴片 + 数值框」，aria 逐字为「左右拖动调整 X 轴」。
+  // 步进取数值框 step 的 1/4 像素当量（源站未暴露，记为 CLONE_DECISION）。
+  const stepFor = () => (field === "rotation" ? 1 : field === "scale" ? 0.05 : 0.1);
   return (
     <fieldset className="border-0 p-0">
       <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
@@ -100,7 +104,20 @@ function AxisFields({
               isAxisDisabled(index) ? "opacity-45" : ""
             }`}
           >
-            <span className="mr-1 text-[10px] text-[#666]">{axisLabels[index]}</span>
+            {isAxisDisabled(index) ? (
+              <span className="mr-1 text-[10px] text-[#666]">
+                {axisLabels[index]}
+              </span>
+            ) : (
+              <SceneAxisScrub
+                className="mr-1 border-0 bg-transparent"
+                axis={axisLabels[index]}
+                value={value}
+                step={stepFor()}
+                testId={`${field}-${axisLabels[index]}`}
+                onChange={(next) => onChange(index as 0 | 1 | 2, next)}
+              />
+            )}
             {keyframedAxes.includes(index as 0 | 1 | 2) ? (
               /* Batch 575: 源站截图 60——该轴存在关键帧时输入右侧的青色菱形标记 */
               <span
@@ -112,7 +129,7 @@ function AxisFields({
             ) : null}
             <input
               type="number"
-              step={field === "rotation" ? 1 : 0.1}
+              step={field === "rotation" ? 1 : field === "scale" ? 0.05 : 0.1}
               data-director-transform-field={field}
               data-director-transform-axis={axisLabels[index].toLowerCase()}
               value={Number(value.toFixed(2))}
@@ -1379,12 +1396,14 @@ function SceneAxisScrub({
   step,
   onChange,
   testId,
+  className,
 }: {
   axis: string;
   value: number;
   step: number;
   onChange: (next: number) => void;
   testId: string;
+  className?: string;
 }) {
   const dragRef = useRef<{ x: number; value: number } | null>(null);
   return (
@@ -1409,7 +1428,10 @@ function SceneAxisScrub({
       onPointerCancel={() => {
         dragRef.current = null;
       }}
-      className="h-7 w-6 shrink-0 cursor-ew-resize select-none rounded border border-white/[0.08] bg-[#222] text-[10px] font-medium uppercase text-[#8c8c8c] hover:border-[#09caf5]/40 hover:text-white"
+      className={cn(
+        "h-7 w-6 shrink-0 cursor-ew-resize select-none rounded border border-white/[0.08] bg-[#222] text-[10px] font-medium uppercase text-[#8c8c8c] hover:border-[#09caf5]/40 hover:text-white",
+        className,
+      )}
     >
       {axis}
     </button>
@@ -1883,23 +1905,6 @@ export function DirectorInspector({
                 {selected.locked ? <Lock size={13} /> : <Unlock size={13} />}
                 {selected.locked ? "已锁定" : "未锁定"}
               </button>
-              <label className="relative flex h-8 flex-1 items-center gap-2 rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#bdbdbd]">
-                <span
-                  className="h-4 w-4 rounded-sm border border-white/20"
-                  style={{ backgroundColor: selected.color }}
-                />
-                <span>颜色</span>
-                <input
-                  type="color"
-                  aria-label="对象颜色"
-                  value={selected.color}
-                  disabled={selected.locked}
-                  onChange={(event) =>
-                    updateObject(selected.id, { color: event.target.value })
-                  }
-                  className="absolute h-0 w-0 opacity-0"
-                />
-              </label>
             </div>
 
             <div className="space-y-3 border-t border-white/[0.07] pt-4">
@@ -1977,6 +1982,63 @@ export function DirectorInspector({
                   recordObjectKeyframe(selected.id);
                 }}
               />
+              {/* Batch 583（源站 2026-10-01 实测，角色A 属性页 y=409）：
+                  缩放之后是「统一缩放」——range 0.1–10 step 0.05 + 一位小数
+                  读数（实测 1.0），三轴同值同源。 */}
+              <label className="flex items-center justify-between text-[11px] text-[#777]">
+                <span>统一缩放</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    type="range"
+                    min={0.1}
+                    max={10}
+                    step={0.05}
+                    aria-label="统一缩放"
+                    data-director-uniform-scale
+                    value={selected.transform.scale[0]}
+                    disabled={selected.locked}
+                    onChange={(event) => {
+                      const next = Number(event.target.value);
+                      ([0, 1, 2] as const).forEach((axis) => {
+                        updateObjectTransform(selected.id, "scale", axis, next);
+                      });
+                      recordObjectKeyframe(selected.id);
+                    }}
+                    className="w-24 accent-[#09caf5]"
+                  />
+                  <span
+                    data-director-uniform-scale-readout
+                    className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]"
+                  >
+                    {selected.transform.scale[0].toFixed(1)}
+                  </span>
+                </span>
+              </label>
+              {/* Batch 583: 颜色行按源站行序（y=481，紧随统一缩放）从上方
+                  按钮行移出，并补 hex 文本读数（源站 4F8EF7 + `#`）。 */}
+              <label className="flex items-center justify-between text-[11px] text-[#777]">
+                <span>颜色</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-[10px] tabular-nums text-[#8c8c8c]">
+                    #{selected.color.replace("#", "")}
+                  </span>
+                  <span
+                    className="h-4 w-4 rounded-sm border border-white/20"
+                    style={{ backgroundColor: selected.color }}
+                  />
+                  <input
+                    type="color"
+                    aria-label="对象颜色"
+                    data-director-object-color
+                    value={selected.color}
+                    disabled={selected.locked}
+                    onChange={(event) =>
+                      updateObject(selected.id, { color: event.target.value })
+                    }
+                    className="h-0 w-0 opacity-0"
+                  />
+                </span>
+              </label>
             </div>
 
             {selected.camera ? (
