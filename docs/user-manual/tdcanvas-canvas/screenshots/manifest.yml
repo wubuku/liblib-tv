@@ -311,3 +311,123 @@ screenshots:
     visible_text: 'TDCanvas 1'
     alt: 首页最近画布区显示 TDCanvas 1 项目卡与删除全部按钮
     sha256: f2c835f65da48908c858f47679aac760767bc5bd4b15fecd1ecd148666ac7cb1
+
+  - file: screenshots/14-manage-assets-empty.png
+    task_id: manage-assets
+    step: 打开 /assets 空态（我的资产标题 + 0 / 0 计数 + 工具栏 + 类型筛选 + 没有找到资产）
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'heading 我的资产 / button 批量下载 导出资产 导入资产 新增资产 / input 搜索标题、内容、标签或来源'
+    visible_text: '没有找到资产'
+    alt: 我的资产页面空态，右上工具栏含批量下载、导出资产、导入资产与新增资产四个按钮
+    sha256: 24c41b46b1aeb7045b419d5bf50d7314f314baa991c52a46881ee06253f79170
+
+  - file: screenshots/14-manage-assets-add-entry.png
+    task_id: manage-assets
+    step: 资产页空态，右上角「新增资产」按钮注入高亮与步骤编号 1
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 新增资产'
+    visible_text: '新增资产'
+    alt: 我的资产空态页面，右上角新增资产按钮被红色高亮框和编号 1 标注
+    sha256: b0c9852f5505ffbc14a067ec391274172f1ff682ef0acf717675a57d8fd46734
+
+  - file: screenshots/14-manage-assets-add-form.png
+    task_id: manage-assets
+    step: 新增资产弹窗填入标题、两个标签（摄影/产品）、来源与文本内容
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 新增资产 / 标题 给资产起一个容易检索的名字 / 标签 输入标签后回车 / 来源 手动添加 / 画布 / 提示词库 / 文本内容'
+    visible_text: '静物摄影提示词'
+    alt: 新增资产弹窗，类型文本，标题静物摄影提示词，标签摄影与产品，文本内容已填写
+    sha256: 18597eb1485c4143f89729490359a0de6630ca5d93a75bfc20975416db452697
+
+  - file: screenshots/14-manage-assets-card.png
+    task_id: manage-assets
+    step: 保存后回到列表，卡片显示封面摘要、标题、来源、类型徽标、标签与底部操作，右上角「资产已保存」
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'article 资产卡 / 标题 静物摄影提示词 / 来源 手动添加 / 徽标 文本 / 标签 摄影 产品 / button 编辑 复制 删除'
+    visible_text: '静物摄影提示词'
+    alt: 保存后的资产卡片，底部有编辑、复制、删除三个操作按钮
+    sha256: 2a7ae9421570eb490b95ad47805671129a094998a48d45affe4af86d204adc10
+
+  - file: screenshots/14-manage-assets-edit.png
+    task_id: manage-assets
+    step: 编辑弹窗中将标题改为「静物摄影提示词（精修版）」后的状态
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 编辑资产 / input 给资产起一个容易检索名字 = 静物摄影提示词（精修版）'
+    visible_text: '静物摄影提示词（精修版）'
+    alt: 编辑资产弹窗，标题已改为静物摄影提示词（精修版）
+    sha256: 8a9b4e5d77c417bc0982c428ebc912d5fdf430bedf4e063cb7a6020b6e3461b8
+
+  - file: screenshots/14-manage-assets-detail.png
+    task_id: manage-assets
+    step: 点击卡片封面区后右侧滑出「资产详情」抽屉
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'drawer 资产详情 / 文本内容 / button 复制文本'
+    visible_text: '资产详情'
+    alt: 资产详情抽屉从右侧滑出，显示标题、标签、文本内容全文与复制文本按钮
+    sha256: 8a9d02e501e414611835653c982e6b516724aae9497369e8446d31f84bfc5259
+
+  - file: screenshots/14-manage-assets-search.png
+    task_id: manage-assets
+    step: 搜索框输入「精修」后仅剩匹配卡片
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'input 搜索标题、内容、标签或来源 = 精修 / 计数 1 / 1'
+    visible_text: '静物摄影提示词（精修版）'
+    alt: 搜索关键词后资产列表只剩一张匹配卡片，右上计数为 1 / 1
+    sha256: b664b4207e359b9221ec1016c3ecb131eee059b4fc437ac21887622d5020b88e
+
+  - file: screenshots/14-manage-assets-batch.png
+    task_id: manage-assets
+    step: 点击批量下载进入选择模式，工具栏切换为已选 N 项 / 全选当前结果 / 下载 ZIP / 取消
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'button 全选当前结果 / 下载 ZIP / 取消 / 已选 0 项 / 卡片右上圆形勾选框'
+    visible_text: '全选当前结果'
+    alt: 批量下载选择模式，工具栏显示已选 0 项与全选当前结果、下载 ZIP、取消三个操作
+    sha256: c0a4cffc5f94887f6b6c3709a719aea146f5cd60e65905c4725f33ce3529e4b9
+
+  - file: screenshots/14-manage-assets-delete.png
+    task_id: manage-assets
+    step: 点击删除后弹出的确认框，正文含资产名
+    route: '/assets'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'dialog 删除资产 / 确定删除「静物摄影提示词」吗？删除后会从我的资产中移除。/ 取 消 / 删 除'
+    visible_text: '确定删除「静物摄影提示词」吗？删除后会从我的资产中移除。'
+    alt: 删除资产确认框，提示将从我的资产中移除指定名称的资产，提供取消与删除按钮
+    sha256: fff224f3a11095c7ed5cb2c540cfcef05e3b3d75caea3b8b3ddd7ee54c560af8
+
+  - file: screenshots/15-prompt-library-empty.png
+    task_id: use-prompt-library
+    step: 打开 /prompts 提示词中心空态（当前共 0 条提示词、分类与标签筛选、0 / 0、没有找到匹配的提示词）
+    route: '/prompts'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-09-30'
+    verified_locator: 'heading 提示词中心 / 当前共 0 条提示词 / 分类 全部 / 标签 全部 / input 搜索标题、内容或标签 / 计数 0 / 0'
+    visible_text: '没有找到匹配的提示词'
+    alt: 提示词中心页面空态，标题旁显示当前共 0 条提示词，左侧有分类和标签筛选，列表区提示没有找到匹配的提示词
+    sha256: 17586555a8e391959b756c38daa9cb070bde93b66c38e724e3d032ca882960fb

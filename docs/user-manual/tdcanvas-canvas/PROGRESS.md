@@ -130,3 +130,10 @@
 
 - 2026-09-28 M16：例行维护轮——三门禁复跑全绿（自检五项/final audit/verify-docs 1115 文件），无新增增量，无包内改动；待决两项 ①③ 保持标注。
 - 2026-09-28 M19：README「以网站形式查看」节落地并实测——4173 被并行 beeftv 预览服务器占用，改用 4174 全 200（index/quickstart/哈希截图）；dist 资产为 /assets/ 哈希路径；端口冲突回退说明入 README。
+
+- **Batch M20（2026-09-30，覆盖缺口修复轮）**：扫描发现导航中的「我的资产」(`/assets`) 与「提示词库」(`/prompts`) 是两个完整页面（561 / 127 行实现）却无任何 how-to——原 12 任务全为画布内操作。**新增 2 任务 + 2 页面 + 10 张截图**：
+  - `manage-assets`（完整）：新增/编辑/详情抽屉/搜索/类型筛选/批量下载/导出 zip/删除确认，全链运行时取证，截图 9 张。
+  - `use-prompt-library`（简明）：如实记录当前版本来源为空、无添加入口（源码 + 四路由标签扫描双重证据），有内容时的交互按 i18n/源码描述并标注为「来源可用后参考」，不臆造可执行步骤。
+  - 同步：README 任务索引、10-tasks/README.md（原占位 stub 漏 8 个页面，已补全为 14 页索引）、20-reference 增「我的资产」「提示词库」两节、90-troubleshooting 增 5 条、task-inventory 12→14、AUDIT 回走表 + 已知问题 + 未覆盖清单。
+  - **订正 AUDIT 内部矛盾**：原「未覆盖清单」称「视频/音频真实字节上传未注入」，与同文件 Gate B 表「真实视频 809KB/1.15MB 与音频 1.1MB 注入成功」直接冲突，已删除该过期条目。
+  - 自动化教训（已入 AUDIT）：`chromium.launch()` 每次全新 profile，IndexedDB 不保留；跨脚本验证必须用 `launchPersistentContext`。antd 组件定位：资产页新增/编辑是 `Modal`（`[role=dialog]`）、详情是 `Drawer`（`ant-drawer-section`，非 `ant-drawer-content`）；类型筛选点击后应读标题右侧 `N / N` 计数判定，`force:true` 有竞态。

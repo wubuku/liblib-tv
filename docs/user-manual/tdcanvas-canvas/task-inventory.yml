@@ -235,3 +235,39 @@ tasks:
     review_note: 2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。
     manual_pages:
       - 10-tasks/shortcuts-help.md
+  - id: manage-assets
+    title: 管理我的资产
+    role: tdcanvas-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: runtime
+        note: 2026-09-30 /assets 全链运行时取证：新增文本资产（标题/标签/来源/内容）、保存提示「资产已保存」、编辑改名、封面区点击滑出「资产详情」抽屉、搜索命中、类型筛选（仅文本资产时图片/视频显示 0/1 空态）、批量下载选择模式（全选当前结果/下载 ZIP/已选 N 项）、导出得到「我的资产.zip」、删除确认文案与删除后回空态。
+    preconditions:
+      - 已启动 TDCanvas 并登录本机工作区
+    routes:
+      - '/assets'
+    status: verified
+    review_note: 2026-09-30 M20 全链回走通过（Playwright 独立 profile，1280x720 zh-CN），9 张截图入 manifest。视频资产无「编辑」按钮为源码 index.tsx:468-470 与运行时一致。导入资产为静态取证（需 zip 文件），导出已实测产出 我的资产.zip。
+    manual_pages:
+      - 10-tasks/manage-assets.md
+  - id: use-prompt-library
+    title: 使用提示词库
+    role: tdcanvas-creator
+    frequency: occasional
+    impact: low
+    coverage: full
+    evidence:
+      - type: runtime
+        note: 2026-09-30 /prompts 运行时取证：页面标题「提示词中心」、导航名「提示词库」、「当前共 0 条提示词」、分类与标签筛选、搜索框占位「搜索标题、内容或标签」、计数 0 / 0、空态「没有找到匹配的提示词」；无任何外部网络请求。
+      - type: static
+        note: prompt-source-presets.ts 中 DEFAULT_PROMPT_SOURCES 为空数组；components/layout/config-prompt-sources.tsx 导出 ConfigPromptSources 但全仓无 import，运行时不渲染。
+    preconditions:
+      - 已启动 TDCanvas
+    routes:
+      - '/prompts'
+    status: verified
+    review_note: 2026-09-30 M20 回走：当前版本提示词来源为空且无添加入口（四个路由全量标签扫描无「提示词来源/新增来源」），故按「如实记录限制」处理，不臆造操作步骤；有内容时的交互取自当前版本 i18n 与源码并明确标注。1 张截图入 manifest。
+    manual_pages:
+      - 10-tasks/use-prompt-library.md

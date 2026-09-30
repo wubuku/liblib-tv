@@ -27,6 +27,8 @@ TDCanvas 是一个**本地优先**的 AI 无限画布：把提示词（文本）
 | 分组、主题与背景外观 | [organize-canvas.md](10-tasks/organize-canvas.md) | 完整 |
 | 撤销重做与自动保存 | [undo-persistence.md](10-tasks/undo-persistence.md) | 完整 |
 | 管理项目（列表/重命名/导出/删除） | [project-management.md](10-tasks/project-management.md) | 完整 |
+| 收藏、检索、导出我的资产 | [manage-assets.md](10-tasks/manage-assets.md) | 完整 |
+| 浏览提示词库（当前版本为空） | [use-prompt-library.md](10-tasks/use-prompt-library.md) | 简明 |
 | 快捷键与帮助 | [shortcuts-help.md](10-tasks/shortcuts-help.md) | 简明 |
 
 ## 参考
