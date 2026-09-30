@@ -73,6 +73,7 @@
 | 端点 | 用途 |
 |---|---|
 | `GET /api/tasks/:id/logs` | 任务日志（v1.6.14 任务详情实时刷新后端） |
+| `POST /api/tasks/:id/query-provider` | 原任务查询（v1.6.16）：视频任务失败时「取回结果」所调用的接口，返回 `providerStatus` 与 `recovered` |
 | `POST /api/tasks/:id/retry` | 任务重试 |
 | `GET /api/tasks/:id/text-deltas·text-events·text-replay-complete` | 文本生成流式增量/事件/回放 |
 | `POST /api/timeline/renders` · `POST /api/timeline/transcriptions` | 时间线渲染与**转写**（转写需本地 whisper.cpp，见下） |
