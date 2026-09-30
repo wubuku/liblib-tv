@@ -48,6 +48,7 @@
 | 87 | **发布产物卫生轮**：修掉 2 处被 `ignoreDeadLinks` 放行的站内死链（首页→PUBLISH.html、10-tasks/README→task-inventory.yml）；首页与 13 处正文去内部黑话；`build-site.sh` 步骤 6 加装**站内死链机械闸**并做反向验证 | ✅ 完成（AUDIT 环境记录四十三） |
 | 88 | **v1.6.15/16 增量审计轮**：上游 v1.6.14→v1.6.16。v1.6.15 排查信息 v2（请求 ID/上游代码/错误来源分类/丢失回执记未确认）、v1.6.16 视频「取回结果」不重新计费——分别写入 troubleshooting / generate-images / generate-video / 20-reference；README 升版并列出增量，**各页「v1.6.14 实测」证据标注保留不改** | ✅ 完成（AUDIT 环境记录四十四，源码锚定） |
 | 89 | **薄弱页补厚轮**：按字数/配图给已发布页排序，定位三页「已 verified 却偏薄」——organize-canvas（582 字且**陈旧**：漏掉 Batch 40 已实证的外观面板四组设置、配图不匹配）、shortcuts-help（664 字，缺「只能用鼠标」层）、prompts-and-mentions（836 字，composer 触发判定与优化器字段名不准）。三页重写并按源码/实证校准 | ✅ 完成（AUDIT 环境记录四十五） |
+| 90 | **excluded 页可用化轮**：4 个不可用页从 425–1058 字桩件扩成「当前状态 + 机制 + 现在能做什么（指向已验证能力）」；**查出 local-runtime 实质错误**——「智能剪辑」节点在 `developingNodeTypes` 内创建被禁用，手册原在教走不通的路，已改写并改用可用的「深度动作捕捉」；补 media-versions 的「重试 vs 重新生成」对照 | ✅ 完成（AUDIT 环境记录四十六） |
 | 81 | dist 时效微验证：发现并修复三页面静默过期（Batch 61/67/73 编辑漏重建），流程教训入账 | ✅ 完成（AUDIT 环境记录三十九） |
 | 61 | 素材空间「当前画布」页签走查（操作语境切换：插入→定位）；upload-materials 细节同步 | ✅ 完成（AUDIT 环境记录三十五） |
 | 59 | 发布站点时效抽检（源 md→dist→静态服三层同步确认，Batch 37/43 内容均在线） | ✅ 完成（AUDIT 环境记录三十四） |
@@ -80,7 +81,7 @@
 | ~~subtitle-highlights~~ | 已于 Batch 85 经「进入剪辑→多轨时间线→S 轨片段→精细编辑」四步走查，字幕编辑弹窗全功能实证，**升级 verified**（excluded 5→4） | 已升级 |
 | cloud-agent | 旧面板组件未挂载（v1.6.x 退场）；等新 Agent 入口接入（后端 /agent/runs 等已在位） | 入口挂载后回走发起/审批/插话/取消 |
 | agent-memory-skills | 设置页无记忆/技能分区（随旧 Agent 退场） | 新分区挂载后回走批准/压缩/技能 @ |
-| local-runtime | 本机启动 framefield-local-runtime（v1.6.12 起 Windows 桌面端改为首次使用自动下载签名组件；本环境为 Web 自托管，仍需本机进程） | Web 模式：启动伴随进程后回走深度/线稿/姿态；桌面端：安装组件后回走 |
+| local-runtime | **入口节点未开放**：`MediaConversion`（智能剪辑）在 `developingNodeTypes` 内，添加节点菜单显示「正在开发」且无法创建（Batch 90 源码实证）；且 framefield-local-runtime 二进制不在仓库内，本机无法起服 | 节点解禁后：装伴随进程 + 建媒体转换节点，回走深度/线稿/姿态全流程；**可先只回走「深度动作捕捉」**（视频节点工具条已可用，非 simples 模式、修剪中禁用） |
 | ~~concepts-architecture~~ | 内容一致性审查已通过，已升级 **verified**（Batch 18） | 已升级 |
 | 18 | 回收站弹窗/模型渠道配置页/资产页补拍 + plugins-management、troubleshooting 升级 verified（excluded 13→12） | ✅ 完成（commits b1b1b1ec/43260f11/fb946cc1） |
 

@@ -396,6 +396,18 @@
 - **快捷键计数复核**：`canvas-shortcuts.ts` 静态解析得 4 分类 / 24 条 / 分布 4·7·6·7，与手册原记载**完全一致**。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
 
+## 环境记录四十六（Batch 90，2026-10-01，excluded 页可用化轮）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **问题**：4 个 excluded 页只有 425–1058 字且**零配图**，读者点进来几乎拿不到东西——「诚实标注不可用」不等于「对读者有用」。
+- **local-runtime 查出一处实质错误（Important）**：原页让用户「画布中创建「智能剪辑（媒体转换）」节点」，但 `canvas-feature-availability.ts` 的 `developingNodeTypes` 集合含 `CanvasNodeType.MediaConversion`（另含 `Frame`/`Script`），`getCanvasNodeCreationDisabledReason` 对集合内类型返回「**正在开发**」，即**该节点当前创建不了**。手册在教一条走不通的路。已改写：顶部加当前状态说明，「媒体转换」降级为机制说明并标注未开放，改为先讲**确实可用**的「深度动作捕捉」（视频节点工具条，分区「视频处理」，本地生成深度参考视频，仅视频节点可见且修剪中禁用），配 24 号视频处理菜单图。
+- **local-runtime 的排除根因也据此修正**：此前记作「本环境为 Web 自托管，需本机伴随进程」，实际有**两层**阻塞——① 入口节点未开放；② framefield-local-runtime 二进制不在仓库内（本机无法起服）。PROGRESS 开放条件表已按两层写清，并给出可先只回走「深度动作捕捉」的降级路径。
+- **media-versions 重写**（425 → 约 3.2k 字）：顶部明说「机制来自源码核查、**未走查验证**」，新增「**重试 vs 重新生成**」对照表（重试不额外计费走幂等 id、落回同一节点；重新生成按量计费、落为兄弟节点），并补「**现在就能用的替代做法**」表——把版本记录恢复 / 回收站 / ⌘Z / 生成历史 / 失败重试 / 复制排查信息这些**已验证**能力串起来。
+- **cloud-agent / agent-memory-skills**：状态注记由「状态注记」改为更醒目的「**当前状态**」，并统一补「**现在能做什么**」表（提示词优化器 / 重试 / 批量连接 / 版本记录 / 复制排查信息 / 渠道与默认模型分区），把读者导向真正可用的路径。
+- **修一处排版缺陷**：`cloud-agent.md` 的状态注记引用块与下一个 `## 目标` 之间**缺空行**，会导致标题被吞进引用块——已补。
+- **一处自我纠错（留档）**：初稿在 media-versions 末尾写了「版本对比（**已验证**的节点级对比弹窗）」，复核账本发现**没有任何批次走过 `CanvasVersionCompareModal`**，该「已验证」无据，已改为「源码中已挂载于画布页，但同样未走查验证，本页不对其操作做描述」。不拿「组件存在」冒充「已验证」。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
 ## 发现与修复
 
 | 发现 | 严重性 | 处理 |
@@ -407,5 +419,6 @@
 | 快速创建菜单点击「视频」后未观察到新节点（坐标点击可能落空） | Minor | 「松手弹菜单」本体已实证；「自动建线」维持源码证据，回走备注 |
 | 发布站点两处死链（`index.html→PUBLISH.html`、`10-tasks/README→task-inventory.yml`）被 `ignoreDeadLinks` 放行 | **Major（已修）** | ✅ Batch 87 移除链接 + `build-site.sh` 步骤 6 加装站内死链机械闸（反向验证有效） |
 | 发布首页与正文残留内部黑话（Gate A/B、localhost:4173、Batch NN、夹具、回走） | Minor（读者体验） | ✅ Batch 87 全部改写为面向读者的表述；`InflightBatchsizeExceeded` 等真实错误码保留 |
+| local-runtime 页教用户创建「智能剪辑（媒体转换）」节点，但该类型在 `developingNodeTypes` 内、创建被禁用 | **Important（已修）** | ✅ Batch 90 改写为「当前不可用 + 机制说明 + 可用的深度动作捕捉」，并修正该任务的排除根因为两层阻塞 |
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
