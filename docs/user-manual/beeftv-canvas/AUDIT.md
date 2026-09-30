@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 节点工具条 `more` 组整体无人渲染（无 `inGroup("more")`），`delete`/`saveAsset`/`uploadVideo` 不可达；`subtitles` 对视频节点不可达 | Minor（预期差，非缺陷） | ✅ **Batch 99 已闭合**：`generate-video.md` 补视频节点工具条权威清单与「找不到这些按钮是正常的」；`create-nodes.md` 澄清工具条本就没有删除按钮 |
 | organize-canvas 教用户从添加节点菜单创建「背板」，但菜单无此项（唯一注册 Frame 的是置灰的「逐帧拉片」，其 handler 也不创建 Frame） | **Major（已修）** | ✅ **Batch 98 已闭合**：改写为「只能建文件夹」，讲清 Frame+folder 元数据的实现关系与「6 款样式」归属；`create-nodes.md` 补 6 项显示条件 |
 | 快捷键表写「24 条·5 分类」，源码实为 4 分类；另漏 5 个键位/操作，导演台重做组合写错 | **Major（已修）** | ✅ **Batch 97 已闭合**：以 `canvas-shortcuts.ts` / `director-shortcuts.ts` 为准逐条校准，并注明 ⌘D 来自右键菜单不计入 24 条 |
 | 手册把 6 条 `/agent/*` 端点当现存接口教读者排查，上游实际未注册（`agent_retired_test.go` 固化「旧 Agent 已退场」） | **Major（已修）** | ✅ **Batch 96 已闭合**：移入「已下线端点（不要按这些路径排查）」小节，改正 cloud-agent 页与 `task-inventory.yml`/`PROGRESS.md` 中「后端 /agent/runs 等已在位」的错误判断；新增双向校验 `scripts/verify-endpoints.py`（反向验证退出码 1 有效） |
@@ -594,4 +595,31 @@
 
   手册原先只写了「音频（simple 模式不显示）」一条，其余 5 项读者只能靠自己撞。
 - **方法论**：这是 Batch 90（local-runtime 教用户建被禁用的「智能剪辑」节点）之后的**第二例同类缺陷**。两次的共同形状是：**「组件/菜单项存在」被当成了「用户能走到它」**。判据要连着三层走——① 菜单是否注册；② 是否被 `developingNodeTypes` 之类的开关禁用；③ **即使不禁用，handler 真的会创建这个东西吗**。本例前两层都指向「不能」，但若只查到第一层就下结论，会误判成「只是暂时禁用」而保留错误说法。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十五（Batch 99，2026-10-01，节点工具条三层可达性审计）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。本轮为 Batch 98 方法论的推广。
+- **做法**：把 Batch 98 的三层判据（**是否注册 → 是否被渲染 → handler 是否真执行**）套到 `web/src/lib/canvas/tool-registry/definitions/node-hover-tools.tsx` 的 21 个节点工具上，再逐个追到渲染层 `canvas-node-toolbar.tsx` 的 `inGroup(...)` 消费点。
+- **查出 3 类不可达，其中 1 类是新发现**：
+
+| 现象 | 机制 | 手册处理 |
+|---|---|---|
+| **整个 `more` 组无人渲染**（新发现） | `canvas-node-toolbar.tsx` 里**根本没有 `inGroup("more")` 这一句**——只消费了 primary / portrait / viewpoint / lighting / panorama / process / workspace / utility | 在 generate-video 加「找不到字幕/保存为素材/删除是正常的」提示，并说明这些工具在图片/文本/音频节点上正常 |
+| `subtitles` 注册且 `applicable: hasVideo`，但**视频节点永远渲染不出它** | 它在 `primary` 组，而 `isVideo ? (精简分支) : (primaryTools …)`——视频走的是另一条 JSX 分支，primary 组只在 else 里 | Batch 85 已查明，本轮确认 **v1.6.16 仍未变**；generate-video 补上四步绕行路径 |
+| `timeline`（workspace 组）对视频节点同样不可达 | `workspaceTools` 也在 else 分支内 | 手册原本已正确写明「视频节点的视频处理工具条不含『进入剪辑』」，仅补指向 |
+
+- **`more` 组里 5 个工具的可达性逐个查清**（不能只说「整组没渲染」，否则等于没查）：
+
+| 工具 | 声明 group | 实际可达性 |
+|---|---|---|
+| `delete`（危险操作） | more | **不可达**——节点工具条上没有删除按钮 |
+| `saveAsset` | more | **不可达**——视频节点改用「下载」 |
+| `uploadVideo`（`hasVideo` 时动态落到 more） | more | **不可达**（空视频节点的上传入口因此不在工具条上） |
+| `cropVideo` / `depthCapture` | more | **可达**——被 `videoProcessingTools` 按 id 显式挑进「视频处理 ∨」菜单 |
+| `node-lock` | more | **可达**——被 `imageSettingsTools` 按 id 显式挑进图片设置组 |
+
+- **视频节点工具条的权威清单**（`isVideo` 分支实渲染的全部内容）：`视频处理 ∨`（视频剪辑/画面裁切/深度动作捕捉）+ `音视频分离` + `关键帧截取 ∨`（当前帧/首帧/尾帧）+ `预览`/`下载`。已作为新小节写进 `generate-video.md`，与 AUDIT 走查表第 21 条的运行时实证（`视频处理∨/音视频分离/关键帧截取∨/放大/下载`）**完全吻合**——说明源码与运行时一致，问题只在「用户预期哪些按钮该有」。
+- **一处对旧结论的加固**：Batch 85 当时判「字幕编辑器未接线」只对了一半（组件在、但视频分支不渲染）。本轮把「不可达」的原因定位到**具体那一行 JSX 分支**，不再是笼统的「没渲染」。同理，删节点不是缺陷而是**设计如此**——工具条只放该节点类型的处理动作。
+- **方法论固化**：审 UI 能力要连问三句——① 注册表里有吗？② 当前这个节点类型会渲染它吗？③ 点下去 handler 真的做那件事吗？Batch 98（背板）、Batch 85（字幕）、本批（more 组）三例都栽在其中某一环，而**注册表存在**是最容易骗人的一环。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
