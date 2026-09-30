@@ -60,6 +60,7 @@ GitHub Pages / 对象存储静态托管同理：dist 整体上传即可。
 |---|---|
 | 预览页部分资源 404，但文件在磁盘上 | sirv 清单缓存认知；重启预览或改用 `python3 -m http.server` |
 | dist 截图数 < 源截图数 | 有截图未被任何 md 引用，被构建静默丢弃；核对正文引用与 manifest |
+| **示意图（SVG）不见了但构建不报错** | Vite 会把被引用的 SVG **内联成 base64 data URI**，不落到 `dist/assets/`；未被引用的则直接消失。两种情况在 dist 的 `.svg` 文件数上**完全一样（都是 0）**，所以「数文件」查不出来。`build-site.sh` 第 6 步因此按 **manifest 里的 alt 文本**逐个到 dist HTML 里查，能真正抓到丢失；手工新增示意图后请确认这一步输出 `示意图均已进入构建产物` |
 | 页面里有 `xxx.md` 原始链接 | 对应 md 使用了 vitepress 无法改写的链接写法，改为相对路径或省略扩展名 |
 | 构建时 OOM / 卡住 | 本目录 `node_modules` 损坏；删除后重跑 `./build-site.sh` |
 | **首页/README 里的账本链接点了 404** | `srcExclude` 已把 `AUDIT.md`/`PROGRESS.md`/`PUBLISH.md`/`task-inventory.yml` 等内部账本排除出站点，但 README 仍以 `[文字](AUDIT.md)` 形式链接它们。VitePress 会把它改写成 `AUDIT.html`，而该文件不在 dist 中 → 死链，且 `ignoreDeadLinks: true` **不会报错**（2026-10-01 实测）。**正确写法**：对这些被排除的账本用纯文件名代码块（`` `AUDIT.md` ``）而非站内链接；面向读者的页面之间才用相对链接 |

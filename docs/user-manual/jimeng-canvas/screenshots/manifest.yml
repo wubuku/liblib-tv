@@ -241,3 +241,31 @@ screenshots:
     visible_text: 快捷键
     alt: 快捷键面板全量：通用操作/视图/时间线/文本编辑 四组
     sha256: 539803ec753ef37f09992bb195095573ae724ff40497fe495b6c3915f1cdcb60
+
+  # ── 示意图（非现场截图）────────────────────────────────────────────
+  # 本节条目是依据台账已验证事实手工绘制的 SVG 示意图，不是浏览器现场截图。
+  # 保留与截图相同的字段以满足机械审计；captured_at 记录绘制时间，
+  # verified_locator 记录其事实来源，正文与图注均已声明「示意图」。
+  - file: screenshots/diagrams/connect-reference-direction.svg
+    task_id: connect-nodes
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 880x400 (SVG 示意图)
+    locale: zh-CN
+    captured_at: 2026-10-01T06:55:00+08:00
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.5 实测事实绘制（连线方向=参考→生成、就绪参考即可生成、不可连组合标注禁用）'
+    visible_text: 参考连线 / 方向 = 参考 → 生成目标 / 无法连接这些节点
+    alt: 参考连线方向示意：左侧带内容的参考节点经一条蓝色参考连线指向右侧的空生成节点，箭头方向表示参考到生成；下方说明方向决定语义、就绪参考即可让「生成」可用、并非任意两类节点都能互连。
+    sha256: 1016f5737f4a6e195e00ad0ebdd9107d3ae85bbfe4f219716e43b0a9b8c517af
+
+  - file: screenshots/diagrams/toolbar-by-node-state.svg
+    task_id: use-node-toolbar
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 880x470 (SVG 示意图)
+    locale: zh-CN
+    captured_at: 2026-10-01T06:56:00+08:00
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套）'
+    visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
+    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
+    sha256: c65cae177b5b85449eafb1936f46db1fec17c20c829b0b774277e6099b9a97a7

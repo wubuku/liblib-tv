@@ -88,6 +88,27 @@ else
   ok "截图数与源一致: $PNG_COUNT"
 fi
 
+# SVG 示意图校验：Vite 会把被引用的 SVG 内联为 data URI（不落到 dist/assets），
+# 未被引用的则直接消失。两者都体现在 dist 的 .svg 文件数上，因此「数文件」无法发现
+# 丢失——必须逐个确认每个示意图确实出现在了构建产物里。
+# 内联后文件名不可见，改用 alt 文本作为稳定锚点：每个示意图在正文都有唯一 alt。
+SVG_COUNT="$(find screenshots -name '*.svg' 2>/dev/null | wc -l | tr -d ' ')"
+if [ "$SVG_COUNT" -gt 0 ]; then
+  SVG_MISSING=0
+  while IFS= read -r alt; do
+    [ -z "$alt" ] && continue
+    if ! grep -rqF "$alt" .vitepress/dist --include='*.html'; then
+      warn "示意图未出现在构建产物中（可能被静默丢弃）：$alt"
+      SVG_MISSING=$((SVG_MISSING + 1))
+    fi
+  done < <(awk '/^  - file: screenshots\/diagrams\/.*\.svg$/{insvg=1;next} insvg&&/^    alt: /{sub(/^    alt: /,"");print;insvg=0}' screenshots/manifest.yml)
+  if [ "$SVG_MISSING" -eq 0 ]; then
+    ok "示意图均已进入构建产物: $SVG_COUNT"
+  else
+    warn "有 $SVG_MISSING 个示意图未进入产物，请核对其 md 引用路径"
+  fi
+fi
+
 log "══════ 构建结束 ══════"
 log "产物目录: $SCRIPT_DIR/.vitepress/dist（整体拷贝即可发布，详见 PUBLISH.md）"
 
