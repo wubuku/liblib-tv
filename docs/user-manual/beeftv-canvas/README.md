@@ -3,6 +3,7 @@
 > 适用版本：BeefTV `v1.6.14`（Web 与桌面端；界面文字取自源码与真实界面。v1.6.x 主要变化：Seedance 任务模式与素材限制对齐、生成失败分类精确化、旧桌面 Agent 退场、深度动作捕捉工具；v1.6.7–v1.6.14 增量：画幅比付费确认、参考素材尺寸/帧率校验强化、企业协议修复、Windows 深度运行时组件（含系统代理支持）、导演台场景/相机跟随/截图扩展、画布任务详情实时刷新）。
 > 面向读者：使用 BeefTV 进行 AI 视频/图片创作、时间线剪辑与导演台编排的普通用户、Agent 用户与管理员。
 > 全部章节已发布（Gate A / Gate B / --phase final 审计通过）；可浏览站点由 `./build-site.sh` 构建到 `.vitepress/dist/`。
+> **在线查看**：本地预览服务运行时直接访问 `http://localhost:4173`（`python3 -m http.server 4173 -d .vitepress/dist` 启动；当前会话已在 :4173 运行）。构建、预览与发布的完整说明见 [PUBLISH.md](PUBLISH.md)。
 
 ## 这是什么
 
