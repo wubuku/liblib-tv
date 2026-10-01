@@ -158,6 +158,19 @@ else
   fail "REST 端点声明与上游生产路由不一致——详见上方"
 fi
 
+# 快捷键前缀闸：手册里指向「必须带 Ctrl/Cmd 的键」的写法是否都带了前缀。
+# 背景（Batch 110）：同一缺陷在两处出现过（Batch 97 导演台页、Batch 107 画布页
+# 都把重做写成 Shift+Z，漏了 Ctrl/Cmd）。表格看着完整、语义也说得通，只有拿每行
+# 去和源码绑定条件比对才暴露，故闸门化。
+if SC_OUT="$(python3 scripts/verify-shortcuts.py 2>&1)"; then
+  ok "$SC_OUT"
+else
+  printf '%s\n' "$SC_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "快捷键 $line"
+  done
+  fail "快捷键修饰键前缀缺失——带 Ctrl/Cmd 的键被写成了裸键"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"
