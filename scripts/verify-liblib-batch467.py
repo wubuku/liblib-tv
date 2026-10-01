@@ -9,13 +9,14 @@ validation; keep source-unconfirmed presentation disabled/diagnostic").
 
 Implementation:
 - src/lib/libtvCommandFeedback.ts: the command surface inventory
-  (nine surfaces across the canvas, panels and store adapters) and the
+  (the declared surface inventory across the canvas, panels and store
+  adapters — it may grow as VR-018 slices land) and the
   stable outcome -> disposition projection (§9.2: a no-op is inert and
   never announces success);
 - read-only window diagnostics.
 
 Scenes:
-- catalog: nine surfaces declared, each with component/kind/profile;
+- catalog: every known surface declared, each with component/kind/profile;
 - projection: accepted -> success(announce), no-op -> inert(silent),
   rejected/stale/conflict/invalid-target -> error(announce).
 """
@@ -89,9 +90,15 @@ def main():
         catalog = page.evaluate(
             "() => window.__libtv_command_feedback_catalog"
         )
-        assert len(catalog) == 9, catalog
+        # Batch 362: 原来这里写死 `len(catalog) == 9` 且集合用 **等号**,
+        # 于是 batch 505/510 有意新增的 4 条反馈契约(VR-018 §13)一落地就把它顶红,
+        # 而**没有任何门禁在断那 4 条** —— 断言既过时又没跟上扩容。
+        # 现在改成: 逐项断言**已知契约都在**(可扩容), 并断言**总数不缩**。
+        # 这样以后再加契约不必改这条, 但少一条 / 改一条字段仍会红。
+        assert len(catalog) >= 13, catalog
         surface_ids = {entry["surfaceId"] for entry in catalog}
-        assert {
+        EXPECTED_SURFACE_IDS = {
+            # batch 467 原有的 9 条
             "add-node-panel",
             "add-resource-upload",
             "video-clip-panel",
@@ -101,7 +108,17 @@ def main():
             "editor-session-commit",
             "asset-reference-attach",
             "annotate-toolbar",
-        } == surface_ids, surface_ids
+            # batch 505 (VR-018 sweep closure, empty-canvas quick chip tones)
+            "canvas-empty-chips",
+            # batch 510 (VR-018 §13 FIX-LOCAL-COMMAND-FEEDBACK-01 runtime)
+            "share-overlay",
+            "agent-drawer-status",
+            "project-menu",
+        }
+        assert EXPECTED_SURFACE_IDS <= surface_ids, (
+            f"missing expected surfaces: "
+            f"{sorted(EXPECTED_SURFACE_IDS - surface_ids)}"
+        )
 
         projection = page.evaluate(
             """() => ({
@@ -143,7 +160,7 @@ def main():
     AUDIT_PATH.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n")
     print(
         "Batch 467 Playwright verification passed: command feedback catalog "
-        "covers nine surfaces, outcome->disposition projection exact "
+        "covers every expected surface, outcome->disposition projection exact "
         "(accepted success, no-op inert, rejections error/announce), "
         "diagnostics clean."
     )
