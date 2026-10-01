@@ -553,6 +553,18 @@ screenshots:
     alt: 组顶部的特写，左侧是组图标与「组」标签，右侧是显示 2 个节点的圆角徽标
     sha256: 900d505de66e00507931138f4ab986016527a472eeed864723c2b891bc123f27
 
+  - file: screenshots/04-organize-canvas-group-deleted-members-kept.png
+    task_id: organize-canvas
+    step: 删掉整个组之后，原先组内的两个音频节点仍留在画布原位，虚线框消失
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '两个音频节点 空音频节点 / 页面中已无任何组虚线框'
+    visible_text: '空音频节点'
+    alt: 删除组之后，两个音频节点仍原地留在画布上，组的虚线框已经消失
+    sha256: 1e9fdad5a57f79beb23dceca0f413231ccdd79228a8a45bbd8cd9750da8e81f8
+
   - file: screenshots/09-generate-images-panel-full.png
     task_id: generate-images
     step: 图片节点下方的完整生成面板（71% 缩放全貌）：模式/输入/参数行、参考素材区、描述框，以及模型 Seedream V5 Pro、比例 自适应/2k、数量 1x、约 ¥0.519 与发送按钮
