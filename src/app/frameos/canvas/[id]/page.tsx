@@ -654,6 +654,23 @@ function FrameosCanvasInner() {
         onPaneClick={onPaneClick}
         onNodeContextMenu={onNodeContextMenu}
         onPaneContextMenu={onPaneContextMenu}
+        // Batch 346: 帮助面板承诺「双击节点 → 聚焦填满视口」，此前页面上
+        // **没有任何双击 handler** —— 实测双击后视口 transform 一动不动
+        // (probe-frameos-batch346-help-promises.py: B_dblclick_node_focuses=false)。
+        // 帮助面板是 app 对用户最直白的承诺清单，承诺了就得兑现。
+        //
+        // 显式给 min/maxZoom: `fitViewOptions` 把缩放钉死在 1 (见下), 不覆盖
+        // 的话「填满视口」就退化成了「什么都不动」。
+        onNodeDoubleClick={(e, node) => {
+          e.stopPropagation();
+          fitView({
+            nodes: [{ id: node.id }],
+            duration: 300,
+            padding: 0.2,
+            minZoom: 0.5,
+            maxZoom: 1.6,
+          });
+        }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView

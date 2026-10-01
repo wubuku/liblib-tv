@@ -27,6 +27,19 @@ const SECTIONS: Section[] = [
     title: "创作",
     icon: "✎",
     rows: [
+      // ⚠️ Batch 346 教训: 这两行是**源站帮助面板的逐字转录**(见
+      // verify-frameos-batch183.py 的 "help panel 26 verbatim shortcut rows",
+      // 它锁的就是这些字符串, 源自 2026-09-24 源站新版本的重新采样)。
+      //
+      // 我一度把它们改写/删掉, 理由是「面板不该承诺 app 做不到的事」。**那是错的**:
+      // 面板文本不是克隆自己的措辞, 而是**源站事实**。克隆的职责是复现源站,
+      // 做不到就**如实记录差距**, 而不是把差距从证据里抹掉 ——
+      // 抹掉等于改写证据让自己的论证好看, 这是最坏的一种「修复」。
+      //
+      // 因此: 文本保持逐字不动; 能兑现的部分去**实现**
+      // (双击节点聚焦 → onNodeDoubleClick, 见 page.tsx); 兑现不了的部分
+      // (双击空白添加哪种节点) 记录为**源站保真度差距**, 待源站可采样后按
+      // 采样结果实现。详见 docs/research/liblib-frameos-batch346-2026-10-01/README.md。
       { label: "双击空白", desc: "双击空白处添加节点" },
       { label: "复制", keys: ["⌘", "C"] },
       { label: "剪切", keys: ["⌘", "X"] },
@@ -40,6 +53,10 @@ const SECTIONS: Section[] = [
     title: "缩放",
     icon: "◎",
     rows: [
+      // 同样是源站逐字转录, 保持不动(见上方「创作」区的 Batch 346 教训注释)。
+      // 其中「双击节点聚焦填满视口」在克隆里**部分**成立: 文本节点双击进编辑、
+      // 视频节点双击预览(两者都被节点自己的 handler 消费), 只有图片等会聚焦 ——
+      // 批次 346 已实现后者。源站自身是否也如此需采样确认, 记为待核。
       { label: "双击节点", desc: "双击节点聚焦填满视口" },
       { label: "放大", keys: ["⌘", "+"] },
       { label: "缩小", keys: ["⌘", "−"] },
@@ -242,6 +259,13 @@ export function FrameosHelpPanel() {
                 {section.rows.map((row) => (
                   <li
                     key={row.label}
+                    // Batch 346: 与 FrameosToast 同类问题 —— 面板行只有内联样式,
+                    // 没有任何标识属性。帮助面板是「承诺清单」, 验证器必须能逐条
+                    // 读到它承诺了什么, 否则「面板是否在撒谎」根本测不了
+                    // (Batch 345 的元缺陷重演)。
+                    data-frameos-help-row=""
+                    data-frameos-help-label={row.label}
+                    data-frameos-help-desc={row.desc ?? ""}
                     style={{
                       display: "flex",
                       alignItems: "center",

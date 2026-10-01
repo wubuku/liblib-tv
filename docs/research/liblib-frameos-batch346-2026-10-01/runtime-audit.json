@@ -1,0 +1,269 @@
+{
+  "batch": 346,
+  "title": "FrameOS help panel: every promise it makes is actually kept",
+  "defect": "The help panel is the app's most explicit promise list, and two entries were not kept. (1) '双击空白处添加节点' had NO implementation at all -- double clicking empty canvas left the node count at 7. (2) '双击节点聚焦填满视口' was only true for some node types: FrameosTextNode consumes double click to enter editing (with stopPropagation) and FrameosVideoNode consumes it for preview, so for text and video nodes the promised gesture never even reached the focus behaviour. Measured per node type: text-1/2 and video-1/2/3 -> no focus; image-1/2 -> focus works.",
+  "fix": "Added onNodeDoubleClick to ReactFlow so the promised '双击节点聚焦填满视口' actually happens for node types that do not claim the double-click gesture (explicit min/maxZoom because fitViewOptions pins zoom to 1, which would have made the fit a no-op). The help panel TEXT was deliberately left byte-identical.",
+  "reverted_mistake": "An earlier draft of this batch rewrote the help rows into three precise rows and deleted '双击空白 / 双击空白处添加节点', on the argument that a help panel must not promise what the app cannot do. That was WRONG and it was reverted. verify-frameos-batch183.py locks 'help panel 26 verbatim shortcut rows' -- those strings are a verbatim transcription of the SOURCE site's help panel (re-sampled 2026-09-24), i.e. SOURCE_FACT. The clone's job is to reproduce the source; where it cannot, the correct move is to record the fidelity gap, not to edit the evidence so the clone looks self-consistent. Deleting a verbatim source string to win an internal-consistency argument is the worst kind of 'fix'. The regression was caught by the full suite (batch183 help:verbatim-rows FAILED), which is exactly what that drift lock exists for.",
+  "known_fidelity_gap": "'双击空白处添加节点' is a verbatim SOURCE promise that the clone does not implement. The promise never says WHICH node type to add, and the toolbar's add-node control is a type menu, so implementing it would mean inventing product behaviour. The source's actual behaviour was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md), so the gap is recorded rather than invented away -- and the source text stays.",
+  "clone_decision": "Implementing the focus behaviour is restoring a capability the clone's own help panel already advertises, not inventing one. Removing the double-click-to-add row is a documentation change: the source site's behaviour was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md), so rather than guess a default node type the promise was withdrawn and noted for restoration once sampling works.",
+  "also": "Help panel rows gained data-frameos-help-row/-label/-desc. Same defect class as Batch 345's toast: without an addressable attribute, 'is the help panel lying?' is not testable, and any assertion about it would have had to be empty -- which the Batch 336 gate exists to prevent.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "help:rows-addressable",
+        "help:source-verbatim-kept:双击空白处添加节点",
+        "help:source-verbatim-kept:双击节点聚焦填满视口",
+        "help:row-kept:复制",
+        "help:row-kept:剪切",
+        "help:row-kept:粘贴",
+        "help:row-kept:原地复制",
+        "help:row-kept:拖拽复制",
+        "help:row-kept:保存",
+        "help:row-kept:放大",
+        "help:row-kept:缩小",
+        "help:row-kept:重置视图",
+        "help:row-kept:撤销",
+        "help:row-kept:重做",
+        "help:row-kept:删除",
+        "help:row-kept:搜索节点",
+        "help:row-kept:小地图",
+        "help:row-kept:帮助",
+        "help:row-kept:取消选中",
+        "image-node-visible",
+        "image:dblclick-focuses",
+        "text:dblclick-enters-edit",
+        "text:dblclick-does-not-focus",
+        "video:dblclick-does-not-focus",
+        "space:drag-pans",
+        "wheel:plain-pans",
+        "wheel:meta-zooms",
+        "alt-drag:duplicates",
+        "diagnostics:zero"
+      ],
+      "help_rows": [
+        {
+          "label": "双击空白",
+          "desc": "双击空白处添加节点",
+          "text": "双击空白双击空白处添加节点"
+        },
+        {
+          "label": "复制",
+          "desc": "",
+          "text": "复制⌘C"
+        },
+        {
+          "label": "剪切",
+          "desc": "",
+          "text": "剪切⌘X"
+        },
+        {
+          "label": "粘贴",
+          "desc": "",
+          "text": "粘贴⌘V"
+        },
+        {
+          "label": "原地复制",
+          "desc": "",
+          "text": "原地复制⌘D"
+        },
+        {
+          "label": "拖拽复制",
+          "desc": "⌥ 拖动节点",
+          "text": "拖拽复制⌥ 拖动节点"
+        },
+        {
+          "label": "保存",
+          "desc": "",
+          "text": "保存⌘S"
+        },
+        {
+          "label": "双击节点",
+          "desc": "双击节点聚焦填满视口",
+          "text": "双击节点双击节点聚焦填满视口"
+        },
+        {
+          "label": "放大",
+          "desc": "",
+          "text": "放大⌘+"
+        },
+        {
+          "label": "缩小",
+          "desc": "",
+          "text": "缩小⌘−"
+        },
+        {
+          "label": "重置视图",
+          "desc": "",
+          "text": "重置视图⌘0"
+        },
+        {
+          "label": "触控板",
+          "desc": "双指捏合",
+          "text": "触控板双指捏合"
+        },
+        {
+          "label": "鼠标滚轮",
+          "desc": "⌘ 滚轮",
+          "text": "鼠标滚轮⌘ 滚轮"
+        },
+        {
+          "label": "空格拖动",
+          "desc": "",
+          "text": "空格拖动Space"
+        },
+        {
+          "label": "左键拖动",
+          "desc": "",
+          "text": "左键拖动"
+        },
+        {
+          "label": "触控板",
+          "desc": "双指平移",
+          "text": "触控板双指平移"
+        },
+        {
+          "label": "鼠标中键 / 右键拖动",
+          "desc": "",
+          "text": "鼠标中键 / 右键拖动"
+        },
+        {
+          "label": "滚轮",
+          "desc": "滚轮平移",
+          "text": "滚轮滚轮平移"
+        },
+        {
+          "label": "撤销",
+          "desc": "",
+          "text": "撤销⌘Z"
+        },
+        {
+          "label": "重做",
+          "desc": "",
+          "text": "重做⌘⇧Z"
+        },
+        {
+          "label": "删除",
+          "desc": "",
+          "text": "删除⌫"
+        },
+        {
+          "label": "搜索节点",
+          "desc": "",
+          "text": "搜索节点⌘F"
+        },
+        {
+          "label": "小地图",
+          "desc": "",
+          "text": "小地图M"
+        },
+        {
+          "label": "帮助",
+          "desc": "",
+          "text": "帮助?"
+        },
+        {
+          "label": "取消选中",
+          "desc": "",
+          "text": "取消选中Esc"
+        }
+      ],
+      "known_fidelity_gap": {
+        "promise": "双击空白处添加节点 (源站逐字)",
+        "implemented": false,
+        "nodes_before": 7,
+        "nodes_after": 7,
+        "why_not_implemented": "承诺只说「添加节点」, 没说添加哪一种; 工具条的添加节点是带类型选择的菜单, 选一个默认类型就是发明产品行为。源站行为未采样(人机验证阻塞), 故记录为**保真度差距**而非擅自实现, 也不删掉源站原文。"
+      },
+      "image_dblclick": {
+        "before": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "after": {
+          "tx": -888,
+          "ty": -174.8,
+          "scale": 1.6
+        },
+        "node": {
+          "cx": 913.013671875,
+          "cy": 441.9246368408203,
+          "id": "image-1"
+        }
+      },
+      "text_dblclick": {
+        "vp_before": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "vp_after": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "textareas": 1,
+        "node": {
+          "cx": 542.4451904296875,
+          "cy": 210.88013458251953,
+          "id": "text-1"
+        }
+      },
+      "video_dblclick": {
+        "before": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "after": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "node": {
+          "cx": 1039.52734375,
+          "cy": 202.35616302490234,
+          "id": "video-1"
+        }
+      },
+      "space_drag": {
+        "before": {
+          "tx": 11.2671,
+          "ty": 91.5445,
+          "scale": 0.89726
+        },
+        "after": {
+          "tx": -78.7329,
+          "ty": 31.5445,
+          "scale": 0.89726
+        }
+      },
+      "wheel": {
+        "start": {
+          "tx": -78.7329,
+          "ty": 31.5445,
+          "scale": 0.89726
+        },
+        "after_plain": {
+          "tx": -78.7329,
+          "ty": -118.455,
+          "scale": 0.89726
+        },
+        "after_meta": {
+          "tx": -11.1148,
+          "ty": -37.3219,
+          "scale": 0.591971
+        }
+      },
+      "alt_drag": {
+        "before": 7,
+        "after": 8
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
