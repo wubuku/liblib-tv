@@ -103,7 +103,23 @@ def main() -> None:
         nst = ns.evaluate("el => getComputedStyle(el)")
         check("节点摘要 10px/18 常规字重", nst["fontSize"] == "10px" and nst["lineHeight"] == "18px" and nst["fontWeight"] == "400",
               f"{nst['fontSize']}/{nst['lineHeight']} w{nst['fontWeight']}")
-        check("节点摘要文案「节点 2」", ns.inner_text().replace(" ", "") == "节点2", repr(ns.inner_text()))
+        # batch 807: 标签按源站拆成「节点」+ 数字两个 span（间距 2px）。
+        # 原来这里比的是 inner_text().replace(" ","") == "节点2" —— 拆成两个
+        # span 后 inner_text 变成 "节点\n2"，那条断言不再成立。改成比
+        # **叶子 span 的文本与间距**，顺带守住「单行」这个 807 修掉的缺陷。
+        ns_spans = ns.evaluate(
+            """el => [...el.querySelectorAll('span')]
+                .filter(s => s.children.length === 0)
+                .map(s => { const r = s.getBoundingClientRect();
+                            return {t: s.textContent.trim(), x: r.x, w: r.width, h: r.height}; })"""
+        )
+        ns_texts = [s["t"] for s in ns_spans]
+        check("节点摘要文案「节点 N」拆两 span", ns_texts[:2] == ["节点", "2"], repr(ns_texts))
+        ns_gap = (ns_spans[1]["x"] - (ns_spans[0]["x"] + ns_spans[0]["w"])) if len(ns_spans) >= 2 else -1
+        check("节点/数字间距 2px", 1.0 <= ns_gap <= 3.0, f"{ns_gap:.1f}px")
+        check("节点摘要单行（高 = 一个行高 18px）",
+              len(ns_spans) >= 2 and ns_spans[0]["h"] <= 19,
+              f"h={ns_spans[0]['h'] if ns_spans else '?'}")
 
         # 节点计数随画布变化 (batch 70/71 契约，batch 794 保留)
         check("节点摘要 aria 含计数",

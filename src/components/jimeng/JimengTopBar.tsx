@@ -228,7 +228,7 @@ export function JimengTopBar() {
             }}
             className="flex size-7 items-center justify-center rounded-md text-[10px]/[18px] font-normal text-white/60 hover:bg-white/10"
           >
-            <span className="flex items-center whitespace-nowrap">
+            <span className="flex items-center gap-[2px] whitespace-nowrap">
               <span>节点</span>
               <span>{nodeCount}</span>
             </span>
