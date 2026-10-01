@@ -857,3 +857,39 @@ screenshots:
     visible_text: Reference image ready / 使用 @ 快速调用参考内容 / 即梦 Seedance 2.0 VIP / 16:9 / 720P / 全能参考 / 4s / 56 / 100%
     alt: 图片连到空视频节点后，选中目标视频节点展开的生成面板被橙色高亮框标出：面板左上角是参考 chip（小狗缩略图，旁边 ＋ 号），chip 文字显示参考文件已就绪；下方是提示词输入区，底部参数行为 即梦 Seedance 2.0 VIP、16:9、720P、全能参考、4s，右下角显示积分 56 与圆形发送箭头
     sha256: a835bffbd7ac62b68d24f9ba1d5511175e23ff282225d60d7034166d06e37d93
+
+  - file: screenshots/69-image-preset-dropdown.png
+    task_id: use-node-toolbar
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:20:00+08:00
+    verified_locator: '图片节点工具条的「预设∨」按钮（78×32）点开后弹出的菜单，实测 240×256 @520,115，六项各 232×38，逐字 场景俯视图 / 连续分镜图 / 多机位九宫格 / 人物三视图 / 面部三视图 / 产品三视图；六项 DOM 内均无 svg（无图标、无 VIP 菱标）'
+    visible_text: 智能改图 / 720 全景 / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光 / 工具 / AI 助手 / 全屏 / 下载 / 场景俯视图 / 连续分镜图 / 多机位九宫格 / 人物三视图 / 面部三视图 / 产品三视图 / 100%
+    alt: 图片节点工具条的「预设」下拉展开，菜单被橙色高亮框标出：六项自上而下为 场景俯视图、连续分镜图、多机位九宫格、人物三视图、面部三视图、产品三视图，每项左侧一个专属图标；上方工具条里 智能改图、720 全景、智能打光 三项带蓝色 VIP 菱标，预设按钮处于展开态、箭头朝上
+    sha256: 1e2b65aec4bffeebc0911593258f9a86507d6a7610abdaaecbb0fe9c209be7c3
+
+  - file: screenshots/70-image-tools-dropdown.png
+    task_id: use-node-toolbar
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:21:00+08:00
+    verified_locator: '图片节点工具条的「工具∨」按钮（78×32）点开后弹出的菜单，实测 240×204 @785,115，分组标题「编辑」下四项各 232×38，逐字 消除笔 / 裁剪 / 宫格切分 / 标注；其中「宫格切分」DOM 内含 2 个 svg（自带下拉箭头，说明还有子菜单）'
+    visible_text: 工具 / 编辑 / 消除笔 / 裁剪 / 宫格切分 / 标注 / 100%
+    alt: 图片节点工具条的「工具」下拉展开，菜单被橙色高亮框标出：顶部是分组标题「编辑」，下面四项 消除笔、裁剪、宫格切分、标注，每项左侧带图标，其中「宫格切分」右侧还有一个向右的小箭头表示可再展开
+    sha256: fe6e2e9289f32ee902a09e5bb1492fbeefb02dd24ddeff9705980d5292a98225
+
+  - file: screenshots/71-image-ai-assistant-dropdown.png
+    task_id: use-node-toolbar
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:22:00+08:00
+    verified_locator: '图片节点工具条的「AI 助手∨」按钮（94×32）点开后弹出的菜单，实测 135×104 @942,119，三项 电影级镜头设计 135×32 / 提示词反推 109×32 / 来点灵感 96×32'
+    visible_text: AI 助手 / 电影级镜头设计 / 提示词反推 / 来点灵感 / 100%
+    alt: 图片节点工具条的「AI 助手」下拉展开，菜单被橙色高亮框标出：三项自上而下为 电影级镜头设计、提示词反推、来点灵感，每项左侧带图标；该菜单宽度只有 135，明显窄于「预设」与「工具」两个菜单
+    sha256: 6ae7a9fa574bccc01799d7e80f4caa5e27860688577f5fbcf9cd055b74917a1a
