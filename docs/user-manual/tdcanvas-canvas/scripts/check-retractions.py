@@ -53,6 +53,36 @@ RETRACTIONS: list[dict[str, str]] = [
         "fixed_in": "M71",
     },
     {
+        "id": "R15",
+        "wrong": "| 待配置 | 还没提交，节点停在准备状态 |",
+        "why": "**M71 的订正方向反了，M85 撤回**。「待配置」等八个中文状态名取自 i18n `canvas.aitudou.status`，而该组文案**从未被任何组件引用**（穷尽 web/src 搜索，`canvas.aitudou.*` 只有 `nodeTypes.aitudou` 被用上）。真正渲染任务阶段的是 `aitudou-native-generation-panel.tsx:513` 的 `TaskStatus`，输出 `{taskPhase}` 原始英文枚举，且**仅在 taskId 存在时渲染**——未提交时页面上没有任何状态徽标。2026-10-01 运行时实测：八个词各出现 0 次",
+        "fixed_in": "M85",
+    },
+    {
+        "id": "R16",
+        "wrong": "| **已排队** / **处理中** | 任务已提交，正在执行 |",
+        "why": "同 R15：界面渲染的是英文 `queued` / `running`，不是中文",
+        "fixed_in": "M85",
+    },
+    {
+        "id": "R17",
+        "wrong": "| **已完成** | 结果已写入节点 |",
+        "why": "同 R15：界面渲染的是英文 `succeeded`",
+        "fixed_in": "M85",
+    },
+    {
+        "id": "R18",
+        "wrong": "| **部分完成** | 批量中部分失败 |",
+        "why": "同 R15：界面渲染的是英文 `partial`",
+        "fixed_in": "M85",
+    },
+    {
+        "id": "R19",
+        "wrong": "这八个状态名取自 i18n `canvas.aitudou.status`",
+        "why": "同 R15：M71 把它当成「界面逐条原文」，实际是死文案。M85 已改写为区分「节点内状态（生成中/生成失败，i18n 有调用点）」与「面板标题行的英文阶段徽标（源码 TaskStatus）」两套",
+        "fixed_in": "M85",
+    },
+    {
         "id": "R1",
         "wrong": "导出是唯一能带走项目的方式",
         "why": "画布 zip 没有导入功能，带不走项目（2026-10-01 三重取证：i18n 三条文案零引用、首页无文件选择器、喂给导入资产报格式错）",
