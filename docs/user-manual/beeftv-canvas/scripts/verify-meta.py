@@ -18,11 +18,15 @@
 Batch 143 立过一条「六道闸全绿不等于发布物正确」，
 本批撞上它的加强版：**七道闸全绿不等于账本自洽**。
 
-**闸门要成对**（Batch 143 第 24 条）：本闸两个方向，
+**闸门要成对**（Batch 143 第 24 条）：本闸四个方向，
   方向一（登记项是否仍成立）：逐条把手册写的数字与**现场重数的结果**比对；
   方向二（登记表是否完整）：反向扫所有**参与发布的**页面里
     「N 篇 / N 项 / N 张 / N 个内容页」形态的元数据表述，
     命中集合必须与登记集合**完全一致**。
+  方向三（Batch 147）：闸门清单表自洽——标题声明数、表行数、`build-site.sh`
+    实际调用的脚本三者一致。**这道闸盯着闸门体系自己**。
+  方向四（Batch 153）：任务索引 ⇄ 页面标题双向对账——每个任务页都必须在索引里，
+    且索引的链接文字与页面 h1 一致（或等于 `h1（……）` 这一有意形态）。
 
 **方向二为什么只扫「参与发布的」页面**——这是本闸最容易写坏的地方，
 Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RULES 第 23 条）：
@@ -41,6 +45,12 @@ Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RUL
     本闸只数「有几张」。
   · 不检查 `dist/` 产物——构建产物随构建变化，不该作为真值来源。
     真值一律取自**源目录与 yml**。
+  · **不判断括号里的提示是否写得恰当**（方向四）——只认 `h1（……）` 这个形态，
+    不看括号里是什么。**这是刻意的**：Batch 150 已经证明「意图无法判定」的判据
+    不能建（中文「」有三种用途），而这里能做到零误报，是因为**只判形态不判语义**。
+  · **不判断页面 h1 是否漏掉了功能词**（方向四）——账本 title 带括号补充、页面 h1
+    取短标题是**有意分工**（Batch 152 量过：35 条里 14 条同模式、12 条完全一致）。
+    本闸只抓「h1 与 title 完全无关」这种明显破坏，不假装能抓细粒度漏词。
 """
 
 import glob
@@ -169,6 +179,62 @@ def gate_inventory(root):
     build = open(os.path.join(root, "build-site.sh"), encoding="utf-8").read()
     invoked = set(re.findall(r"python3\s+scripts/(verify-[a-z-]+)\.py", build))
     return declared, rows, listed, invoked
+
+
+# ── 方向四：任务索引与页面标题的双向对账 ────────────────────────────
+#
+# **为什么需要**：Batch 152 顺手做的全量对账里发现
+# `asset-library.md` / `create-workspace.md` / `model-channels.md`
+# **三个页面根本没进 `10-tasks/README.md` 索引**——而它们正是 Batch 139/140/141
+# 连续新建的三页。**建了页面忘了加索引**，其中 `create-workspace.md`（`/create`）
+# 是产品**第二大门户**，读者从任务索引**根本找不到那个入口**。
+#
+# **这与 Batch 147「加了闸忘了改清单表」是同一类**：新增了东西，忘了更新汇总处。
+# 三个都在同一批序列里，说明**建页面的流程漏了一步**——所以要交给机器盯。
+#
+# 判据（**全部是形态判定，不含任何意图判断**——这是能建成的前提）：
+#   (a) **反向**：每个任务页都出现在索引里（漏登记 = 报）；
+#   (b) **正向**：索引的链接文字与目标页 h1 一致，或等于 `h1（……）` 这一形态。
+#       `h1（……）` 是**有意设计**——索引在标题后补一句提示
+#       （如「只读画布与画布副本（无入口，副本不上传）」「AI 审美批改（当前无入口）」），
+#       让读者在索引上就知道这页有坑。**这不是漂移**，所以判据显式承认这个形态。
+#       少了 (b)，那两条会被误报成「索引与标题不一致」。
+
+INDEX_FILE = "10-tasks/README.md"
+H1_PAREN = r"^%s（.+）$"
+
+
+def index_check(root):
+    """返回 (漏登记列表, 形态不符列表, 统计行)。"""
+    import os as _os
+    index_path = _os.path.join(root, INDEX_FILE)
+    text = open(index_path, encoding="utf-8").read()
+    h1 = {}
+    for path in glob.glob(_os.path.join(root, "10-tasks", "*.md")):
+        base = _os.path.basename(path)
+        if base == "README.md":
+            continue
+        first = open(path, encoding="utf-8").readline().strip()
+        if first.startswith("# "):
+            h1[base] = first[2:].strip()
+
+    pairs = re.findall(r"\[([^\]]+)\]\(([a-z0-9-]+\.md)\)", text)
+    linked = {t for _l, t in pairs}
+    missing = sorted(f for f in h1 if f not in linked)
+
+    mismatched = []
+    for label, target in pairs:
+        if target not in h1:
+            continue
+        label = label.strip()
+        want = h1[target]
+        if label == want:
+            continue
+        if re.match(H1_PAREN % re.escape(want), label):
+            continue          # 有意的「标题（提示）」形态
+        mismatched.append((target, label, want))
+    return missing, mismatched, len(pairs), len(h1)
+
 
 
 def _cn_int(s):
@@ -366,6 +432,20 @@ def main():
         if fails == 0:
             print(f"  ✓ 闸门清单三方一致：标题 {declared} 道 = 表 {rows} 行"
                   f" = build-site 实际 {len(invoked)} 个脚本 + 内联 {INLINE_GATE_SLACK} 道")
+
+    # ── 方向四：任务索引 ⇄ 页面标题 ──
+    print("-" * 62)
+    missing, mismatched, n_pairs, n_pages = index_check(root)
+    for f in missing:
+        print(f"  ✗ 任务页 {f} 不在 {INDEX_FILE} 的索引里（建了页面忘了登记）")
+        fails += 1
+    for target, label, want in mismatched:
+        print(f"  ✗ 索引里 {target} 的链接文字「{label}」与页面标题「{want}」既不相同、"
+              f"也不是「标题（提示）」形态")
+        fails += 1
+    if not missing and not mismatched:
+        print(f"  ✓ 任务索引双向一致：{n_pages} 个任务页全部登记，"
+              f"{n_pairs} 条链接文字与页面标题一致（含有意的「标题（提示）」形态）")
 
     if fails:
         print(f"元数据核对：{total - fails} 条一致，{fails} 条不一致")

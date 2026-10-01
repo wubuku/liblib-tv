@@ -12,6 +12,11 @@
 #   5) 方向三抓「闸门清单漏登记」：加一道闸却没更新清单表
 #   6) 方向三抓「标题数与表行数差 1」——这正是本闸上线当天在真实文档里
 #      抓到的第三次同向遗漏（标题在数脚本数，表行数还要加内联那道）
+#   7) 方向四抓「页面没进索引」：Batch 153 在真实仓库里抓到的——Batch 139/140/141
+#      连续新建的三页都没登记，其中 /create 是产品第二大门户
+#   8) 方向四抓「索引链接文字与页面标题对不上」
+#   9) **不误伤**：保留原有的「标题（提示）」形态——索引在标题后补一句提示是
+#      有意设计（「只读画布与画布副本（无入口，副本不上传）」）
 #
 # 第 4 条是本闸最关键的一条：Batch 145 之所以能撞见那批过期数字，
 # 正是因为它们当时**没人扫**；但反过来，闸门也不能因此把
@@ -151,6 +156,31 @@ run_fail_case "6) 标题的闸数与表行数差 1" "标题写「8 道闸」，�
   "python3 -c \"
 p='AUDIT-RULES.md'; s=open(p,encoding='utf-8').read()
 s=s.replace('### 现有九道闸','### 现有八道闸',1)
+open(p,'w',encoding='utf-8').write(s)
+\""
+
+# 用例 7：方向四——把一个任务页从索引里删掉（模拟「建了页面忘了登记」）
+run_fail_case "7) 任务页没进索引" "不在 10-tasks/README.md 的索引里" \
+  "python3 -c \"
+p='10-tasks/README.md'; s=open(p,encoding='utf-8').read()
+s=s.replace(' · [素材库（资产页）](asset-library.md)','',1)
+open(p,'w',encoding='utf-8').write(s)
+\""
+
+# 用例 8：方向四——把索引里的链接文字改成一个与页面标题无关的名字
+run_fail_case "8) 索引链接文字与页面标题对不上" "与页面标题" \
+  "python3 -c \"
+p='10-tasks/README.md'; s=open(p,encoding='utf-8').read()
+s=s.replace('[创建各类节点](create-nodes.md)','[节点创建向导](create-nodes.md)',1)
+open(p,'w',encoding='utf-8').write(s)
+\""
+
+# 用例 9：**不误伤**——「标题（提示）」是索引的有意形态，必须放行。
+# 没有这一条，方向四一上线就会把两条真实存在的提示报成「不一致」。
+run_pass_case "9) 索引里的「标题（提示）」形态（必须不报）" \
+  "python3 -c \"
+p='10-tasks/README.md'; s=open(p,encoding='utf-8').read()
+s=s.replace('[创建各类节点](create-nodes.md)','[创建各类节点（新建入口在此）](create-nodes.md)',1)
 open(p,'w',encoding='utf-8').write(s)
 \""
 
