@@ -416,6 +416,118 @@ def main() -> int:
               f"（ArrowDown 4 次都是 {k.get('seq', [None])[0]!r}）",
               bool(k.get("src_tid")) and bool(k.get("seq")))
 
+    # ── I. 覆盖面：键盘到底探到了几层（批 849 加）────────────────────
+    #    §66 记的那个缺口：**普查有 24 个状态，键盘只探到 12 层**。查下来
+    #    **判据一点毛病都没有**（探针 849 判决：缺口 4/4、对照 2/2 全认得
+    #    出来，`inShell` 六条判据全过）。病在**脚本自己**：
+    #        f"{scope} {sel}",  scope = "A, B"
+    #    逗号优先级高于后代空格，整条被读成「**A 自己** 或 **B 里的按钮**」，
+    #    `.first` 命中那个 div，点了个寂寞。而 `open_dropdown` 只看
+    #    `loc.count()`（div 确实在，非 0）⇒ 返回 True ⇒ 状态"跑了"、
+    #    指针普查照跑（那些是真数据）、**键盘栏整条空白**。
+    #    「跑了」和「探到了」被当成一回事 —— 假零比报错更危险。
+    print("\n— I. 覆盖面：跑的 ≠ 探到的 —")
+    # I.1 判据形状：scope 必须**逐项**挂后缀。老写法不许留在源码里。
+    #     ⚠️ 这里必须用**字面量**去源码里找，不能把源码片段当 Python 表达式
+    #     写出来 —— 第一版就栽在这儿：`", ".join(f"{p} {sel}" for p in parts)`
+    #     里的 `{p}` 会被 verifier 自己求值，`parts` 直接 NameError。
+    #     **判据自己抛异常 = 这批验证全废**（前 60 条已跑的结果一起丢）。
+    _lit_scoped = '", ".join(f"{p} {sel}" for p in parts)'
+    check("I.1 scope 用 `_scoped()` **逐项**挂后缀"
+          "（逗号列表整体拼后缀 = `.first` 命中 scope 自己，点了寂寞）",
+          "def _scoped(" in asrc and _lit_scoped in asrc.replace("\n", " "))
+    check("I.2 老的 `f\"{scope} {sel}\"` 拼接**不许**留在源码里"
+          "（能把这行放回源码里的话，说明判据没钉住老写法）",
+          'f"{scope} {sel}"' not in asrc)
+    # I.2b `_scoped` 本体也得自证：拿一个含逗号的 scope 去调它，结果必须
+    #      **每一项**都带上了后缀，且不带那个会吞掉后缀的「scope 自己」分支。
+    _m = re.search(r"def _scoped\(.*?\n(?=\s*def )", asrc, re.S)
+    _sc = _m.group(0) if _m else ""
+    check("I.2b `_scoped` 对逗号 scope 的输出是**逐项**带后缀的"
+          "（用 '.A, .B' + 'button' 验：两段都在，且没有裸的 '.A,' 分支）",
+          ".split(\",\")" in _sc
+          and _sc.count("{p} {sel}") == 1
+          and not re.search(r'return f?"\{scope\} \{sel\}"', _sc),
+          f"_scoped {len(_sc)} 字符")
+    # I.3 「点了不等于开了」：点完必须回查层在不在 DOM 里。
+    _m = re.search(r"def open_dropdown\(.*?\n(?=\s*def )", asrc, re.S)
+    _od = _m.group(0) if _m else ""
+    check("I.3 `open_dropdown` 点完**回查** `want_tid` 在不在 DOM 里"
+          "（只看 `loc.count()` 的话，「点到 scope 自己」会被记成打开成功）",
+          re.search(r"want_tid and not page\.locator\(", _od) is not None,
+          f"open_dropdown {len(_od)} 字符")
+    # I.4 生成面板那 4 个下拉的 scope 里必须有「选中节点」——
+    #     `JimengGenPanel` 是节点的**直系子节点**（既不在 NodeToolbar 也不在
+    #     NodePanel 里），只写 toolbar/panel 的 scope 一个都匹配不上。
+    check("I.4 视频生成面板 4 个下拉的 scope 含 `.react-flow__node.selected`"
+          "（生成面板挂在节点里，不在 NodeToolbar/NodePanel 里）",
+          re.search(r"try_measure\(f\"视频生成面板·\{tid\}下拉\".{0,300}?"
+                    r"react-flow__node\.selected", asrc, re.S) is not None)
+    # I.5 回归钉子：这 9 个层**必须真的探到**。逗号 bug 活着的时���，它们
+    #     表现为「键盘栏空白」；改回老写法，这一条立刻红。
+    MUST_PROBE = [
+        "gen-model-listbox", "gen-video-size-listbox",
+        "gen-mode-listbox", "gen-duration-listbox",
+        "audio-music-model-listbox", "audio-music-duration-listbox",
+        "audio-voice-model-listbox", "audio-gen-mode-listbox",
+        "audio-all-voices-listbox",
+    ]
+    missed = [t for t in MUST_PROBE if t not in probed_layers]
+    check(f"I.5 生成/音频面板共 {len(MUST_PROBE)} 个下拉层**真的探到了**"
+          "（不是 skipped、也不是键盘栏空白）",
+          not missed,
+          f"探到 {len(MUST_PROBE) - len(missed)}/{len(MUST_PROBE)}；"
+          f"缺 {missed or '无'}")
+    # I.6 覆盖率本身不许悄悄缩回去：这 9 个是本批从 12 层补到 21 层的全部来源。
+    check(f"I.6 键盘探到的层**不少于 21**（本批从 12 补上来；少了就是又漏了）",
+          len(probed_layers) >= 21,
+          f"实际 {len(probed_layers)} 层：{probed_layers}")
+    # I.7 「跑完却没认到层」必须**分类记账**：名单外的（本来就有层却没开）
+    #     一条都不许有；名单内的（空态/工具条本体/面板本体）是正常的。
+    #     ⚠️ 判据不能写成「整表为空」—— 名单内那 3 条**本来就该在表里**，
+    #     那样写会把「记账做对了」判成 FAIL。
+    nl = data.get("keyboard_no_layer", [])
+    nl_bad = [n for n in nl if not n.get("expected")]
+    check("I.7 「没认到层」**分类记账**：名单外（本该有层却没开）0 条；"
+          f"名单内（本来就没有浮层）{len(nl) - len(nl_bad)} 条且每条带 why",
+          not nl_bad and all(n.get("why") for n in nl),
+          f"名单外 {len(nl_bad)} 条 {nl_bad}；名单内 "
+          f"{[n.get('state') for n in nl if n.get('expected')]}")
+    # I.8 「按满 Tab 上限」单列一桶，**不许混进缺陷**。
+    #     849 为「canvas-context菜单 Tab 60 次进不去」查了四轮才定位：那是
+    #     flaky（同一份代码量到 34 / 37 / 39 / **49** 次，60 的余量太小），
+    #     而判据把偶发当确定报成了产品缺陷。capped 的语义是「**没测出来**」，
+    #     与 skipped 同级：有账，但不下结论。
+    capped = data.get("keyboard_capped", [])
+    check("I.8 本轮没有「按满 Tab 上限还没测到」的层"
+          "（有的话是「没测出来」，既不当缺陷也不当通过 ⇒ 退出码 2）",
+          not capped,
+          f"capped={[k.get('state') for k in capped]}")
+    check("I.9 本轮没有「探完没把层收掉」的层"
+          "（漏下去的层会污染后面每个状态的键盘结果，840 记过一次、849 又一次）",
+          not data.get("keyboard_leaks"),
+          f"leaks={[(k.get('state'), k.get('stuck')) for k in data.get('keyboard_leaks', [])]}")
+    # I.10 判据失败时**必须带轨迹**。849 为那条 flaky 缺陷查了四轮全靠猜，
+    #     最后靠「让判据自己说」才收工 —— 轨迹是判据自己的责任，
+    #     不是排查者的额外工作（§64「布尔判据要配一条看轨迹的断言」）。
+    kb_with_trace = [k for k in kb if k.get("trace")]
+    check("I.10 每条键盘测量都带 `trace`（Tab 轨迹）——"
+          "只交一个 ok:False 等于交一张没有地址的病历",
+          bool(kb_with_trace) and len(kb_with_trace) == len(kb),
+          f"带 trace {len(kb_with_trace)}/{len(kb)}")
+    check("I.11 失败措辞区分「按满上限」与「真进不去」"
+          "（`capped` 标志 + why 里明说要看 trace）",
+          re.search(r'"capped":\s*True', asrc) is not None
+          and "看 trace" in asrc)
+    # I.12 Tab 上限必须离实测值留足余量。`canvas-context-menu` 冷启动实测
+    #     34/37/39/**49** 次（同一份代码，随画布上节点数浮动）—— 上限 60 时
+    #     余量最小只有 11 次，于是 flaky。120 才够。
+    _mt = re.search(r"def keyboard_probe\([^)]*max_tabs:\s*int\s*=\s*(\d+)", asrc)
+    check("I.12 Tab 上限 ≥ 120（右键菜单冷启动实测最高 49 次，"
+          "60 的余量太小会 flaky）",
+          bool(_mt) and int(_mt.group(1)) >= 120,
+          f"上限={_mt.group(1) if _mt else '?'}")
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

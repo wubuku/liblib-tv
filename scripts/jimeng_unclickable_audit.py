@@ -83,6 +83,11 @@ def main() -> int:
     skipped: list[str] = []
     states_done: list[str] = []
     kb_rows: list[dict] = []        # 键盘可达性（批 844 加）
+    # 「这个状态本来就没有浮层」的名单。名单外跑到 `open_layer()` 返回空
+    # ⇒ 脚本没把层点开（批 849 那个逗号 bug 就是这么藏起来的）。
+    NO_LAYER_EXPECTED = {"空态", "视频工具条", "视频生成面板"}
+    kb_no_layer: list[dict] = []
+    kb_leaks: list[dict] = []      # 探完**关不掉**的层（会漏到后面所有状态）
 
     with sync_playwright() as p:
         b = p.chromium.launch(headless=True)
@@ -133,6 +138,31 @@ def main() -> int:
 
         # ⚠️ 别叫 `open` —— 它会把内建 `open` 遮蔽掉，
         #    下面 `with open(OUT, "w")` 会炸成「unexpected keyword 'encoding'」。
+        def _scoped(scope: str, sel: str) -> str:
+            """把 `sel` 挂到 `scope` 的**每一项**下面。
+
+            ⚠️⚠️ 批 849 的根因就在这里。第一版是把 `scope` 和 `sel` 直接用
+            一个空格接起来（`scope` 整体 + " " + `sel`，不展开），而调用方
+            传进来的 scope 是逗号列表：
+
+                scope = ".react-flow__node-toolbar, .react-flow__node-panel"
+                接起来 == ".react-flow__node-toolbar, .react-flow__node-panel button[…]"
+
+            CSS 选择器里逗号的优先级**高于**后代空格，整条被读成
+            「**工具条 div 自己** 或 **面板里的按钮**」。`.first` 命中的是
+            **那个 div** —— 点了个寂寞，层压根没开。
+
+            后果比报错更坏：`open_dropdown` 只看 `loc.count()`，那个 div
+            确实存在（非 0）⇒ 返回 True ⇒ `measure()` 照跑、指针普查照跑
+            （那些是真数据），但**键盘那一栏因为没有层而整条空白**。
+            24 个状态里于是有 9 个「跑了却没开层」，看上去是覆盖面够了，
+            实际键盘只探到 12 层。**判据没坏，脚本自己把层点丢了。**
+            """
+            parts = [s.strip() for s in (scope or "").split(",") if s.strip()]
+            if not parts:
+                return sel
+            return ", ".join(f"{p} {sel}" for p in parts)
+
         def open_dropdown(sel: str, want_tid: str | None = None,
                           scope: str = ".react-flow__node-toolbar") -> bool:
             # ⚠️ 这里**不能**先按 Escape 清场：第一版写了那么一句，结果把刚
@@ -140,12 +170,12 @@ def main() -> int:
             #    四个下拉状态**静默**没跑，输出只剩 4 个状态还"全绿"。
             #    835 之后下拉本来就互斥，直接点触发器即可。
             #
-            # ⚠️ `want_tid` 的短路同样必需：层**已经开着**的时候再点一次触发器
+            # ⚠️ `want_tid` 的短路同样必需：层**已经开着**的时候再点一下触发器
             #    是把它**关掉**。截帧那步就栽在这 —— 下拉里找不到「首帧」，
             #    看着像"产品没有这一项"，其实是被自己刚点的那一下关掉了。
             if want_tid and page.locator(f'[data-testid="{want_tid}"]').count():
                 return True
-            loc = page.locator(f"{scope} {sel}" if scope else sel)
+            loc = page.locator(_scoped(scope, sel))
             if not loc.count():
                 return False
             try:
@@ -153,6 +183,13 @@ def main() -> int:
             except Exception:
                 return False
             page.wait_for_timeout(700)
+            # ⚠️ 批 849 加的：**点了不等于开了**。`loc.count()` 只能说
+            #    「找得到元素」，说不了「那个元素是被点到的那个」。上面那个
+            #    逗号 bug 正是靠这一条才暴露的 —— 只有点完再回查 `want_tid`，
+            #    「点了 div 本身」才会被记成「打不开」（进 skipped，有账），
+            #    而不是悄悄留下一个没有层的状态（没账）。
+            if want_tid and not page.locator(f'[data-testid="{want_tid}"]').count():
+                return False
             return True
 
         def try_measure(tag: str, sel: str,
@@ -185,27 +222,48 @@ def main() -> int:
             "image-tools-menu": "工具", "text-bg-palette": "背景色",
         }
 
-        def close_open() -> None:
+        # 清场时用的 scope。⚠️⚠️ 批 849：**必须**和打开时用的一致。
+        #    原来只写 `.react-flow__node-toolbar`，于是 4 个生成面板下拉
+        #    （触发器在 `.react-flow__node.selected` 里）压根**关不掉** ——
+        #    一路漏到后面所有状态：`open_layer()` 认层时按文档顺序返回第一个，
+        #    漏下去的 listbox 跟真层抢；更毒的是 Tab 序列被它们的按钮占满，
+        #    「画布右键菜单」于是从 0 缺陷变成「Tab 60 次都进不去」。
+        #    840 记过一次「漏下去比漏报更坏」，这次是同一个病的另一个发作点
+        #    —— 根子还是**打开和清场用了两套 scope**。
+        CLOSE_SCOPE = (".react-flow__node-toolbar, .react-flow__node-panel, "
+                       ".react-flow__node.selected")
+
+        def close_open() -> list[str]:
             """把开着的下拉逐个点回它自己的触发器（toggle 关闭）。
 
             **不能用 Escape**：那会取消选中 → NodeToolbar 卸载 → 顺带把还没
             扫的浮层一起弄没了，判据会**假装**没查到。
             定位器要**同时**试 `aria-label` 和可见文案：视频工具条上那两枚
             （截取帧 / 工具）压根没有 aria-label，名字就在按钮文字里。
+
+            返回**没关掉的** tid 列表 —— 漏下去的层会让后面每个状态都在报
+            同一层，而不报「这里漏了」，所以必须显式交出去（批 849）。
             """
+            stuck: list[str] = []
             for tid, trig in TID2TRIG.items():
                 if not page.locator(f'[data-testid="{tid}"]').count():
                     continue
                 loc = page.locator(
-                    f'.react-flow__node-toolbar button[aria-label^="{trig}"], '
-                    f'.react-flow__node-toolbar button:text-is("{trig}")')
+                    _scoped(CLOSE_SCOPE, f'button[aria-label^="{trig}"]')
+                    + ", "
+                    + _scoped(CLOSE_SCOPE, f'button:text-is("{trig}")'))
                 if not loc.count():
+                    stuck.append(tid)
                     continue
                 try:
                     loc.first.click(timeout=4000)
                 except Exception:
+                    stuck.append(tid)
                     continue
                 page.wait_for_timeout(300)
+                if page.locator(f'[data-testid="{tid}"]').count():
+                    stuck.append(tid)
+            return stuck
 
         def node_tids() -> list[str]:
             return page.evaluate(
@@ -356,7 +414,16 @@ def main() -> int:
                     "stayed_in_layer": all(s.get("in") for s in seq),
                     "first": (seq[0].get("who") if seq else None)}
 
-        def keyboard_probe(layer_tid: str, max_tabs: int = 60) -> dict:
+        # ⚠️⚠️ 批 849：上限从 60 提到 120。实测 `canvas-context-menu` 冷启动
+        #    要 **39 次** Tab 才进得去（轨迹见 keyboard[].trace）—— 846 已经
+        #    让它开层即接管焦点了，但**冷启动口径**仍要从头走一遍全文档。
+        #    上限 60 时余量只有 21 次：画布上多一个节点、多一个没关掉的层，
+        #    就顶满 ⇒ 判据把「上限不够」报成「Tab 进不去」。
+        #    849 为这一条查了四轮才定位：同名层混淆 ✗、层泄漏 ✗、上限本身 ✗
+        #    （独立复现插了节点也只要 37 次）—— **它是 flaky**，而判据把
+        #    偶发当确定报了出去。查不出来就先把上限拉开、把措辞改准，
+        #    别把一个说不清的东西写成产品缺陷。
+        def keyboard_probe(layer_tid: str, max_tabs: int = 120) -> dict:
             """真按 Tab 键，最多 max_tabs 次，看焦点有没有落进当前那个浮层里。
 
             ⚠️ **必须用真键盘事件**（`page.keyboard.press("Tab")`），不能自己
@@ -394,6 +461,16 @@ def main() -> int:
             covered = None
             covered_n = 0
             skin_top_n = 0
+            # ⚠️⚠️ 批 849 加的：**失败时把 Tab 轨迹一起交出来**。
+            #    只交一个 `ok: False` 等于交一张没有地址的病历 —— 「进不去」
+            #    有太多种进不去（上限不够 / 焦点被别的东西吃了 / 层不可聚焦 /
+            #    压根量错了对象），而判据把它们**压成同一个词**。
+            #    849 为这一条查了四轮：① 怀疑同名层混淆（querySelector 只取
+            #    第一个）② 怀疑下拉层泄漏污染 Tab 序列 ③ 怀疑 max_tabs=60
+            #    不够 —— 三次都被独立复现证伪。**与其第四次猜，不如让判据
+            #    自己说**。这也是「布尔判据要配一条看轨迹的断言」的又一次
+            #    应验：轨迹是判据自己的责任，不是排查者的额外工作。
+            trace: list[str] = []
             for i in range(1, max_tabs + 1):
                 page.keyboard.press("Tab")
                 step = page.evaluate("""(args) => {
@@ -496,6 +573,13 @@ def main() -> int:
                                 .trim().replace(/\\s+/g,' ').slice(0,20),
                           w: Math.round(b.width), h: Math.round(b.height)};
                 }""", [layer_tid])
+                if len(trace) < 24:
+                    _a = step
+                    trace.append(
+                        f"{i}:{step.get('state')}"
+                        f":al={_a.get('al') or '-'}"
+                        f":tid={_a.get('tid') or '-'}"
+                        f":txt={(_a.get('txt') or '-')[:12]}")
                 if step.get("state") == "inside":
                     # 焦点**已经在层里**了 —— 正好就是「用户刚 Tab 进来」那一刻。
                     # 就在这个状态上问「再按 Tab 会不会跑出去」，零准备，且测的
@@ -511,7 +595,7 @@ def main() -> int:
                     refocus_inside(layer_tid)
                     return {"ok": True, "tabs": i, "covered": covered,
                             "covered_n": covered_n, "skin_top_n": skin_top_n,
-                            "focus_at_open": at_open,
+                            "focus_at_open": at_open, "trace": trace,
                             "escape": esc, "arrow_down": arr,
                             "arrow_up": arr_up}
                 if step.get("skin_top"):
@@ -529,10 +613,16 @@ def main() -> int:
                                    "edges": f"{step.get('edges_covered')}"
                                             f"/{step.get('edges_total')}",
                                    "size": f"{step.get('w')}x{step.get('h')}"}
+            # ⚠️ 措辞要说准：「用了满 {max_tabs} 次上限还没走到」和
+            #    「怎么按都进不去」是**两件事**，第一版都写成前者的语气
+            #    却当成后者报缺陷，844-848 五轮 0 缺陷的层就这么被冤枉过一次。
+            #    轨迹摆在 trace 里，看的人能自己判是哪一种。
             return {"ok": False, "tabs": max_tabs, "covered": covered,
                     "covered_n": covered_n, "skin_top_n": skin_top_n,
-                    "focus_at_open": at_open,
-                    "why": f"Tab {max_tabs} 次都没进到 {layer_tid} 里"}
+                    "focus_at_open": at_open, "trace": trace,
+                    "capped": True,
+                    "why": f"按满 {max_tabs} 次 Tab 上限仍未进到 {layer_tid} 里"
+                           f"（是上限不够还是真进不去，看 trace）"}
 
         
 
@@ -547,11 +637,37 @@ def main() -> int:
                 kbd = keyboard_probe(ltid)
                 kbd["layer"] = ltid
                 kb_rows.append({"state": tag, **kbd})
-                # ⚠️ 探完**必须把层收掉**。不收的话「截取帧下拉」会一路开着，
+                # ⚠️ 探完**必须把层收掉**。不收的话「截取帧下拉」会一路���着，
                 #    后面三个状态的 `open_layer()` 认到的都是它 —— 键盘那一栏
                 #    于是变成三个状态在报同一层。批 840 在浮层普查那边踩过同一个
                 #    坑（TID2TRIG 缺两个条目），这边是同一个病的另一个发作点。
-                close_open()
+                #    批 849 又踩了一次：清场的 scope 和打开的不一致 ⇒ 4 个
+                #    生成面板下拉关不掉 ⇒ 漏到「画布右键菜单」把它的 Tab
+                #    序列占满，凭空造出一条「Tab 进不去」。收不掉的必须报出来。
+                stuck = close_open()
+                if stuck:
+                    kb_leaks.append({"state": tag, "stuck": stuck})
+            else:
+                # ⚠️⚠️ 批 849 加的：**「没认到层」必须留痕**。第一版这里
+                #    什么都不记，于是「跑了但层没开」和「这个状态本来就没有
+                #    浮层」在结果里**长得一模一样** —— 都表现为「这个状态
+                #    不在 keyboard 那一栏」。24 个状态里 9 个是这么消失的，
+                #    而 `states` 数出来还是 24，看上去覆盖面一点没少。
+                #
+                #    `NO_LAYER_EXPECTED` 是「本来就没有浮层」的名单：空画布、
+                #    工具条本体、面板本体。名单外的状态跑到这里 ⇒ 层该开
+                #    没开 ⇒ 判据没问题，是**脚本没把层点开**（逗号拼接那个
+                #    bug 就是这么藏了三个星期的）。三种状态从此各归各的账。
+                kb_no_layer.append({
+                    "state": tag,
+                    "expected": tag in NO_LAYER_EXPECTED,
+                    "why": ("这个状态本来就没有浮层（画布壳 / 工具条本体 / "
+                            "面板本体）")
+                           if tag in NO_LAYER_EXPECTED else
+                           ("**本该有层却没认出来** —— 判据六条都过了（探针 849 "
+                            "判决：缺口 4/4 全认得出来），所以是脚本没把层点开，"
+                            "不是判据盲区"),
+                })
             raw = page.evaluate("""(args) => {
               const [CONTROL, SAMPLES, VH] = args;
               const out = [];
@@ -740,12 +856,36 @@ def main() -> int:
             skipped.append("视频生成面板（选不中 rf__node-video-empty-1）")
         else:
             measure("视频生成面板")
-            for trig, tid in [('button[aria-label="选择模型"]', "模型"),
-                              ('button[aria-label="视频尺寸选项"]', "尺寸"),
-                              ('button[aria-label="生成模式"]', "模式"),
-                              ('button[aria-label="选择视频生成时长"]', "时长")]:
+            # ⚠️⚠️ 批 849：scope 里**必须**有 `.react-flow__node.selected`。
+            #    `JimengGenPanel` 是 `JimengVideoNode` 的**直系子节点**
+            #    （`JimengVideoNode.tsx:209`，既不在 NodeToolbar 也不在
+            #    NodePanel 里），探针 849 逐层量出来的祖先链是
+            #        form.flex > div.relative > div.flex > div.relative
+            #        > [gen-model-listbox]
+            #    所以只写 toolbar/panel 的 scope **一个都匹配不上**。
+            #    修好逗号优先级之后，这 4 个状态从「跑了但键盘栏空白（没账）」
+            #    变成「skipped（打不开：…）（有账）」—— 记账修对了，但**没测到**。
+            #    「记了账」不等于「测到了」，这正是本批要分开的第三种状态。
+            #    用 `.selected` 收窄而不是 `.react-flow__node`：画布上可能有多个
+            #    节点，`.first` 必须落在**刚选中的那个**里，不是任意一个。
+            #
+            # ⚠️⚠️⚠️ 批 849 的**第三层**根因：触发器必须用 `^=`（前缀），不是
+            #    等值。实际 aria-label 是带后缀的
+            #        `选择模型: 即梦 Seedance 2.0 VIP, Standard-only model`
+            #        `视频尺寸选项: 16:9 · 720P · 1, Standard-only model`
+            #        `生成模式: 全能参考`
+            #        `选择视频生成时长: 4s`
+            #    而这里原来写的是 `aria-label="选择模型"`（**等值**）⇒ 匹配 0 个。
+            #    音频那 5 个之所以一直能开，纯粹是因为它们的调用点碰巧用了
+            #    `^=`。**同一个字段，两种匹配法，只有碰巧对的那一半在跑** ——
+            #    这类不一致不会报错，只会让「没测到的」看起来像「没有的」。
+            for trig, tid in [('button[aria-label^="选择模型"]', "模型"),
+                              ('button[aria-label^="视频尺寸选项"]', "尺寸"),
+                              ('button[aria-label^="生成模式"]', "模式"),
+                              ('button[aria-label^="选择视频生成时长"]', "时长")]:
                 try_measure(f"视频生成面板·{tid}下拉", trig,
-                            ".react-flow__node-toolbar, .react-flow__node-panel",
+                            ".react-flow__node-toolbar, .react-flow__node-panel, "
+                            ".react-flow__node.selected",
                             {"模型": "gen-model-listbox", "尺寸": "gen-video-size-listbox",
                              "模式": "gen-mode-listbox", "时长": "gen-duration-listbox"}[tid])
 
@@ -1130,7 +1270,17 @@ def main() -> int:
     unconfirmed = [r for r in rows if not r["confirmed"]]
     # 键盘那一路：`ok is False` 才是缺陷；`ok is None` 是"那一刻没有打开的
     # 浮层"，**不计也不当通过** —— 与指针那条 skipped/empty 的分档同一个道理。
-    kb_bad = [r for r in kb_rows if r.get("ok") is False]
+    #
+    # ⚠️⚠️ 批 849 再切一刀：`ok is False` 里还要分「**真进不去**」和
+    #    「**按满了上限还没走到**」（`capped`）。这两件事第一版压成同一个词，
+    #    而 844-848 五轮都 0 缺陷的 `canvas-context-menu` 就在这里被**冤枉**
+    #    报出去过一次（实测它冷启动要 39 次 Tab，上限 60 余量太小 ⇒ flaky）。
+    #    **capped 的不是缺陷，是「这轮没测出来」** —— 与 skipped 同级：
+    #    有账，但不下结论。混进 kb_bad 就是拿测不出来当产品坏了。
+    kb_capped = [r for r in kb_rows if r.get("capped")]
+    kb_bad = [r for r in kb_rows
+              if r.get("ok") is False and not r.get("capped")]
+
     # 「Tab 走进了被这个浮层遮住的控件」—— 第三个键盘缺陷桶。
     # 与指针那条的**分档正好相反**：鼠标点不到被模态盖住的控件是**正常**
     # （关掉模态就能点）；但**焦点**停在那上面，焦点环是看不见的，用户既不知道
@@ -1309,6 +1459,9 @@ def main() -> int:
                    "keyboard_arrow_dead": kb_arrow_dead,
                    "keyboard_judged_layers": sorted(set(kb_judged)),
                    "keyboard_not_sampled": kb_not_sampled,
+                   "keyboard_no_layer": kb_no_layer,
+                   "keyboard_capped": kb_capped,
+                   "keyboard_leaks": kb_leaks,
                    "source_baseline": SOURCE_BASELINE,
                    "self_test": self_test,
                    "kb_self_test": kb_self},
@@ -1355,7 +1508,18 @@ def main() -> int:
     print(f"\n键盘可达性：探测 {len(kb_probed)} 个开着浮层的状态 → "
           f"**Tab 进不去 {len(kb_bad)}**、"
           f"**Tab 走进被遮住的控件 {len(kb_covered)}**、"
-          f"偏深 {len(kb_deep)}（>{DEEP} 次，INFO）、没浮层可探 {len(kb_none)}")
+          f"偏深 {len(kb_deep)}（>{DEEP} 次，INFO）、"
+          f"没浮层可探 {len(kb_none)}、"
+          f"**按满上限没测到 {len(kb_capped)}**（不是缺陷，是没测出来）")
+    # 「没认到层」的两类必须分开印（批 849）。第一版这里一个数都不打，
+    # 「本该有层却没开」和「本来就没有层」都表现为「不在 keyboard 栏里」。
+    _nl_unexpected = [k for k in kb_no_layer if not k.get("expected")]
+    if kb_no_layer:
+        print(f"  · 没认到浮层的状态 {len(kb_no_layer)} 个"
+              f"（本来就没有 {len(kb_no_layer) - len(_nl_unexpected)}、"
+              f"**本该有层却没开 {len(_nl_unexpected)}**）")
+        for k in _nl_unexpected:
+            print(f"      ⚠ [{k['state']}] {k['why']}")
     for k in kb_bad:
         print(f"  ★ Tab 进不去 [{k['state']}] 浮层={k['layer']!r} {k.get('why','')}")
     for k in kb_covered:
@@ -1439,6 +1603,33 @@ def main() -> int:
     # ⚠️ 自检不过必须是**退出码 2**，不是 0 也不是 1：退出 0 会被 CI 当通过，
     #    退出 1 会被读成"查到缺陷了"。这是独立的第三种状态。
     if not ok_self or not ok_kb_self:
+        return 2
+    # ⚠️⚠️ 批 849 加的第三种「不可信」：**本该有层却没认出来**。
+    #    这不是缺陷（判据没报任何东西），也不是通过（那 9 个状态等于没测），
+    #    而是「这轮键盘那一栏是残缺的」—— 和自检红是同一类：结果不能用。
+    #    没有这一条，逗号拼接那个 bug 可以一直藏着：退出码 0、CI 绿、
+    #    覆盖面从 12 层缩到 12 层 nobody notices。
+    if kb_capped:
+        print(f"\n⚠ 有 {len(kb_capped)} 个状态**按满 Tab 上限**仍没测到"
+              f"（{[k.get('state') for k in kb_capped]}）"
+              f" ⇒ 这是「没测出来」不是「产品坏了」，本轮键盘那一栏**不完整**"
+              f"（退出码 2）")
+        for k in kb_capped:
+            print(f"    ⚠ [{k.get('state')}] 前 6 步轨迹: "
+                  f"{(k.get('trace') or [])[:6]}")
+        return 2
+    if kb_leaks:
+        print(f"\n⚠ 有 {len(kb_leaks)} 个状态探完**没把层收掉**"
+              f"（漏下去的层会污染后面每个状态的键盘结果）"
+              f" ⇒ 本轮结果**不可信**（退出码 2）")
+        for k in kb_leaks:
+            print(f"    ⚠ [{k['state']}] 关不掉 {k['stuck']}")
+        return 2
+    _nl_unexpected = [k for k in kb_no_layer if not k.get("expected")]
+    if _nl_unexpected:
+        print(f"\n⚠ 有 {len(_nl_unexpected)} 个状态本该开着浮层却没认出来"
+              f"（{[k['state'] for k in _nl_unexpected]}）"
+              f" ⇒ 键盘那一栏不完整，本轮结果**不可信**（退出码 2）")
         return 2
     return 1 if (real or kb_bad or kb_covered
                  or kb_no_initial or kb_escaped or kb_arrow_dead) else 0
