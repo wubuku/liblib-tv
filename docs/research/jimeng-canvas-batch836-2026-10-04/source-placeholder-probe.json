@@ -1,0 +1,119 @@
+{
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "placeholder": {
+    "nodes": [
+      {
+        "tag": "DIV",
+        "text": "输入想法、剧本或上传参考，支持“/”使用技能，",
+        "tid": "",
+        "cls": "relative col-start-1 row-start-1 min-w-c",
+        "color": "rgba(255, 255, 255, 0.35)",
+        "fontSize": "14px",
+        "rect": [
+          1122,
+          784,
+          356,
+          84
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "@",
+        "tid": "canvas-agent-composer-placeholder-mention",
+        "cls": "inline-flex items-center justify-center ",
+        "color": "rgba(255, 255, 255, 0.6)",
+        "fontSize": "14px",
+        "rect": [
+          1428,
+          784,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "添加主体，和 Agent 一起创作",
+        "tid": "",
+        "cls": "relative col-start-1 row-start-1 min-w-c",
+        "color": "rgba(255, 255, 255, 0.35)",
+        "fontSize": "14px",
+        "rect": [
+          1122,
+          784,
+          356,
+          84
+        ]
+      }
+    ],
+    "mention_btn": {
+      "al": "引用参考",
+      "tag": "BUTTON",
+      "rect": [
+        1428,
+        784,
+        24,
+        24
+      ],
+      "cursor": "pointer"
+    },
+    "composer": [
+      1122,
+      784,
+      356,
+      84
+    ]
+  },
+  "tids_before": [
+    "canvas-agent-composer-action-row@1122,884,356,32",
+    "canvas-agent-composer-add@1122,884,32,32",
+    "canvas-agent-composer-mention@1252,884,32,32",
+    "canvas-agent-composer-placeholder-mention@1428,784,24,24",
+    "canvas-agent-history-surface@727,12,68,36",
+    "canvas-agent-mode-action@1165,419,157,36",
+    "canvas-agent-mode-action@1191,375,105,36",
+    "canvas-agent-mode-action@1248,463,105,36",
+    "canvas-agent-mode-action@1304,375,105,36",
+    "canvas-agent-mode-action@1330,419,105,36",
+    "canvas-agent-panel@1101,13,398,924",
+    "canvas-agent-send@1446,884,32,32",
+    "canvas-agent-session-collapse@1451,23,36,36",
+    "canvas-agent-session-composer@1105,769,390,164",
+    "canvas-agent-session-create@1415,25,32,32",
+    "canvas-agent-session-heading@1131,328,338,27",
+    "canvas-agent-session-menu-trigger@1117,25,58,32",
+    "canvas-agent-session-modes@1131,367,338,140",
+    "canvas-agent-session-title@1125,30,42,22",
+    "canvas-agent-skill-trigger@1158,884,90,32",
+    "prompt-composer@1122,784,356,84"
+  ],
+  "tids_after": [
+    "canvas-agent-composer-action-row@1122,884,356,32",
+    "canvas-agent-composer-add@1122,884,32,32",
+    "canvas-agent-composer-mention@1252,884,32,32",
+    "canvas-agent-history-surface@727,12,68,36",
+    "canvas-agent-mode-action@1165,419,157,36",
+    "canvas-agent-mode-action@1191,375,105,36",
+    "canvas-agent-mode-action@1248,463,105,36",
+    "canvas-agent-mode-action@1304,375,105,36",
+    "canvas-agent-mode-action@1330,419,105,36",
+    "canvas-agent-panel@1101,13,398,924",
+    "canvas-agent-send@1446,884,32,32",
+    "canvas-agent-session-collapse@1451,23,36,36",
+    "canvas-agent-session-composer@1105,769,390,164",
+    "canvas-agent-session-create@1415,25,32,32",
+    "canvas-agent-session-heading@1131,328,338,27",
+    "canvas-agent-session-menu-trigger@1117,25,58,32",
+    "canvas-agent-session-modes@1131,367,338,140",
+    "canvas-agent-session-title@1125,30,42,22",
+    "canvas-agent-skill-trigger@1158,884,90,32",
+    "prompt-composer@1122,784,356,84"
+  ],
+  "new_tids": [],
+  "gone_tids": [
+    "canvas-agent-composer-placeholder-mention@1428,784,24,24"
+  ],
+  "body_after": "测试项目 节点 6 已保存 分享 805 基础会员 6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 双击编辑文本 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 双击编辑文本 文本 2 测试文字样例 文本 3 导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed."
+}

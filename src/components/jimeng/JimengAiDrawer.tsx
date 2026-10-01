@@ -178,7 +178,9 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           onClick={() => setPanel((p) => (p === "sessions" ? null : "sessions"))}
           className="flex h-8 w-[58px] items-center gap-1 rounded-lg px-2 text-[14px] text-white/90 disabled:cursor-default disabled:text-white/45"
         >
-          新会话
+          {/* 批 836 SOURCE_FACT：源站按钮里那 10 个字是一个独立 SPAN
+             `canvas-agent-session-title` @42×22，14px/400/行高 22/纯白。 */}
+          <span data-testid="canvas-agent-session-title">新会话</span>
         </button>
         <div className="flex items-center gap-1">
           <button
@@ -235,7 +237,26 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       ) : (
       /* 居中空态 */
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6">
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+        {/* 批 836 SOURCE_FACT：源站空态**有标题** —— `<h2>` 24px/字重 400/
+            纯白/居中，`canvas-agent-session-heading` @338×27，文案
+            「探索更多专业创作模式」。**此前复刻整个把这行漏了**（只在文件头
+            注释里提过这句文案），是这轮普查面板 19 个 testid 时对出来的：
+            `canvas-agent-session-modes`（chips 容器）在源站紧跟其下。 */}
+        <h2
+          data-testid="canvas-agent-session-heading"
+          className="text-center text-[24px] font-normal text-white"
+        >
+          探索更多专业创作模式
+        </h2>
+        {/* 批 836 SOURCE_FACT：chips 容器 `canvas-agent-session-modes` @338×140，
+            padding 8px、gap 8px、圆角 20px 20px 0 0。实测三行排布 2/2/1，
+            行间距同为 8px —— 复刻的 gap-x-2 gap-y-2（都=8px）本就对得上。
+            圆角与 padding 落在一个**透明**且收缩包裹的容器上，居中布局下
+            不产生可见差异，故只登记 testid，不照抄那两个值。 */}
+        <div
+          className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2"
+          data-testid="canvas-agent-session-modes"
+        >
           {SKILL_CHIPS.map((chip) => (
             /* SOURCE_FACT (batch 808 实测尺寸 + batch 810 订正行为)：
                chip 105×36，最长的「/ 全流程广告片导演」157 宽 —— 宽度随文案
@@ -415,13 +436,20 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       ) : null}
 
       {/* 底部输入卡片 */}
+      {/* 批 836 SOURCE_FACT：源站 `canvas-agent-session-composer` @390×164，
+          底色 **rgba(16,16,16,0.7)**（不是 white/6% —— 源站这块比面板**更暗**，
+          复刻此前是**更亮**，方向反了）、圆角 16px、内距 14px/16px/16px、
+          子项 gap 16px（prompt-composer 底 868 与 action-row 顶 884 正好差 16）。 */}
       <div className="p-3">
-        <div className="rounded-2xl bg-white/[0.06] p-3">
+        <div
+          className="flex flex-col gap-4 rounded-2xl bg-[rgba(16,16,16,0.7)] px-4 pb-4 pt-[14px]"
+          data-testid="canvas-agent-session-composer"
+        >
           {/* Batch 809 SOURCE_FACT: 点技能 chip / 选参考后，composer 里出现
               富文本 token（源站 class `node-composerChip`），发送钮随之可用 */}
           {tokens.length > 0 ? (
             <div
-              className="mb-1.5 flex flex-wrap items-center gap-1"
+              className="flex flex-wrap items-center gap-1"
               data-testid="agent-composer-tokens"
             >
               {tokens.map((t) => (
@@ -469,7 +497,16 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
               <input type="hidden" value={prefill || ""} readOnly />
             </div>
           ) : (
-          <p className="min-h-[44px] text-[13px] leading-[22px] text-white/35">
+          /* 批 836 SOURCE_FACT：源站 `prompt-composer` @[1122,784] 356×84，
+             aria-label=「说说你的想法或任务，上传参考、输入文字或」。
+             ⚠ 源站这句话**自己就以「或」结尾**，像是没写完。仍然逐字照抄 ——
+               可访问名是源站事实，疑点记在台账 §50，不在这里悄悄改顺。
+             （834 当时沿用 placeholder 起头做名字，现改为源站原句。） */
+          <p
+            className="min-h-[44px] text-[14px] leading-[22px] text-white/35"
+            data-testid="prompt-composer"
+            aria-label="说说你的想法或任务，上传参考、输入文字或"
+          >
             <input
               value={input}
               onChange={(e) => {
@@ -480,11 +517,14 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
                  只靠 placeholder —— 而批 823 立的那条「信号失明本身就是发现」
                  （浮层普查只扫浮层，没扫表单控件）说的正是这种情况：
                  一个可见的输入控件，自动化与读屏都够不着它。
-                 名字沿用 placeholder 的起头，与源站其它 chrome 锚点同一套词汇。 */
-              aria-label="输入想法、剧本或上传参考"
+                 批 836：aria-label 改成源站原句（见上）。 */
+              aria-label="说说你的想法或任务，上传参考、输入文字或"
               data-testid="agent-composer-input"
-              placeholder="输入想法、剧本或上传参考，支持 “ / ” 使用技能，"
-              className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
+              /* 批 836 SOURCE_FACT：源站占位首段逐字是
+                 「输入想法、剧本或上传参考，支持“/”使用技能，」——
+                 斜杠**两侧没有空格**（此前复刻写成 “ / ”）。 */
+              placeholder="输入想法、剧本或上传参考，支持“/”使用技能，"
+              className="w-full bg-transparent text-[14px] text-white outline-none placeholder:text-white/35"
             />
             {refChip ? (
               <span className="mr-1 inline-flex items-center gap-1 rounded bg-white/[0.10] px-1 py-0.5 align-middle">
@@ -500,18 +540,43 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             ) : null}
             {/* SOURCE_FACT (batch 808): 占位文案里的 @ 是 24×24 的独立可访问节点
                 `canvas-agent-composer-placeholder-mention` @[1608,672]，
-                与底行那个 32×32 的 `canvas-agent-composer-mention` 是两个东西 */}
-            <span
+                与底行那个 32×32 的 `canvas-agent-composer-mention` 是两个东西。
+
+                ⚠ 批 836：这枚此前是**纯装饰**（span + sr-only 文案，无 onClick），
+                而源站同位置是一枚**真 `<BUTTON>`**：@[1428,784] 24×24、
+                `cursor:pointer`、aria-label=「引用参考」、**文字就是 `@` 本身**。
+                点它的实测后果（`jimeng_836_placeholder_probe.py` + 截图）：
+                  ① 打开「添加参考」浮层（主体/图片/视频/音频/文本，每行带 `›`）
+                  ② 往输入区插入一个 `@`
+                —— 那个浮层**不带任何 data-testid**，所以只按 testid 查会得到
+                「点了没反应」的错误结论（我自己先踩了：new_tids 为空）。
+                复刻接成真按钮，**复用底行同一个 mention 面板**（批 832 的规矩：
+                共用一条实现路径，不要造第二套）。差异记在台账 §50：源站会先插一个
+                裸 `@`，复刻直接开面板（复刻用 token 表达引用，不与 token 模型打架）。 */}
+            <button
+              type="button"
+              aria-label="引用参考"
               data-testid="canvas-agent-composer-placeholder-mention"
-              className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded bg-white/[0.08] text-white/55"
+              onClick={() => setPanel((v) => (v === "mention" ? null : "mention"))}
+              className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded bg-white/[0.08] text-white/55 hover:bg-white/[0.14]"
             >
               <AtSign size={10} />
-              <span className="sr-only">添加主体</span>
-            </span>
-            ，和 Agent 一起创作
+            </button>
+            {/* 批 836 SOURCE_FACT：源站这两段文本是
+                「输入想法、剧本或上传参考，支持“/”使用技能，」+ @钮 +
+                「添加主体，和 Agent 一起创作」，字号 **14px**、
+                颜色 rgba(255,255,255,0.35)。此前复刻把「 / 」加了空格、
+                尾巴写成「，和 Agent 一起创作」（少了可见的「添加主体」，
+                它被塞进了 sr-only），字号 13px —— 三处都对不上，逐字改齐。 */}
+            添加主体，和 Agent 一起创作
           </p>
           )}
-          <div className="mt-2 flex items-center gap-1">
+          {/* 批 836 SOURCE_FACT：源站底行容器 `canvas-agent-composer-action-row`
+              @[1122,884] 356×32，子项 gap **12px**（此前复刻 gap-1=4px）。 */}
+          <div
+            className="flex items-center gap-3"
+            data-testid="canvas-agent-composer-action-row"
+          >
             {/* 批 382 SOURCE_FACT: 输入行 aria 实测 从本地、画布或资产库添加
                 批 835 SOURCE_FACT (2026-10-04 面板普查 19 元素):
                 源站这枚 **带** `aria-expanded`（实测 "false"），此前复刻漏了。 */}

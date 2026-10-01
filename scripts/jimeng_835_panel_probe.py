@@ -65,6 +65,31 @@ PANEL_JS = """() => {
   };
 }"""
 
+# 批 836：几枚**文字**元素的计算样式。空态标题「探索更多专业创作模式」复刻**整个
+# 没有**（不只是样式差），要照着补就必须先量它的字号/字重/颜色/行高 ——
+# 「未实测过的值不得写进断言」这条规矩对**要抄的样式**同样成立。
+STYLE_JS = """(tids) => tids.map((tid) => {
+  const el = document.querySelector(`[data-testid="${tid}"]`);
+  if (!el) return { tid, missing: true };
+  const b = el.getBoundingClientRect();
+  const cs = getComputedStyle(el);
+  return { tid, tag: el.tagName, text: (el.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 24),
+           rect: [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)],
+           fontSize: cs.fontSize, fontWeight: cs.fontWeight, lineHeight: cs.lineHeight,
+           color: cs.color, textAlign: cs.textAlign, padding: cs.padding, gap: cs.gap,
+           display: cs.display, flexDirection: cs.flexDirection, borderRadius: cs.borderRadius,
+           background: cs.backgroundColor };
+})"""
+
+# 复刻要补/要对齐的那几枚
+STYLE_TIDS = [
+    "canvas-agent-session-title",
+    "canvas-agent-session-heading",
+    "canvas-agent-session-modes",
+    "canvas-agent-session-composer",
+    "canvas-agent-composer-action-row",
+]
+
 
 def main() -> int:
     page.goto(URL, wait_until="domcontentloaded")
@@ -83,6 +108,7 @@ def main() -> int:
         "session_phrase": page.evaluate(LOCATE_JS, "仅支持新建一个空会话"),
         "session_label": page.evaluate(LOCATE_JS, "新会话"),
         "panel": page.evaluate(PANEL_JS),
+        "styles": page.evaluate(STYLE_JS, STYLE_TIDS),
     }
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / "source-panel-probe.json").write_text(

@@ -377,5 +377,117 @@
         ]
       }
     ]
-  }
+  },
+  "styles": [
+    {
+      "tid": "canvas-agent-session-title",
+      "tag": "SPAN",
+      "text": "新会话",
+      "rect": [
+        1125,
+        30,
+        42,
+        22
+      ],
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "22px",
+      "color": "rgb(255, 255, 255)",
+      "textAlign": "center",
+      "padding": "0px",
+      "gap": "normal",
+      "display": "block",
+      "flexDirection": "row",
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tid": "canvas-agent-session-heading",
+      "tag": "H2",
+      "text": "探索更多专业创作模式",
+      "rect": [
+        1131,
+        328,
+        338,
+        27
+      ],
+      "fontSize": "24px",
+      "fontWeight": "400",
+      "lineHeight": "normal",
+      "color": "rgb(255, 255, 255)",
+      "textAlign": "center",
+      "padding": "0px",
+      "gap": "normal",
+      "display": "block",
+      "flexDirection": "row",
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tid": "canvas-agent-session-modes",
+      "tag": "DIV",
+      "text": "/ 视频反解 / 创作分镜 / 全流程广告片导演",
+      "rect": [
+        1131,
+        367,
+        338,
+        140
+      ],
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "color": "rgb(255, 255, 255)",
+      "textAlign": "start",
+      "padding": "8px",
+      "gap": "8px",
+      "display": "flex",
+      "flexDirection": "row",
+      "borderRadius": "20px 20px 0px 0px",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tid": "canvas-agent-session-composer",
+      "tag": "DIV",
+      "text": "输入想法、剧本或上传参考，支持“/”使用技能，@",
+      "rect": [
+        1105,
+        769,
+        390,
+        164
+      ],
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "color": "rgb(255, 255, 255)",
+      "textAlign": "start",
+      "padding": "14px 16px 16px",
+      "gap": "16px",
+      "display": "flex",
+      "flexDirection": "column",
+      "borderRadius": "16px",
+      "background": "rgba(16, 16, 16, 0.7)"
+    },
+    {
+      "tid": "canvas-agent-composer-action-row",
+      "tag": "DIV",
+      "text": "使用技能 说说你的想法或任务，上传参考、输入文字",
+      "rect": [
+        1122,
+        884,
+        356,
+        32
+      ],
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "color": "rgb(255, 255, 255)",
+      "textAlign": "start",
+      "padding": "0px",
+      "gap": "12px",
+      "display": "flex",
+      "flexDirection": "row",
+      "borderRadius": "0px",
+      "background": "rgba(0, 0, 0, 0)"
+    }
+  ]
 }
