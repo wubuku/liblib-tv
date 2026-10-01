@@ -2,6 +2,29 @@
 
 > 症状 → 原因 → 处理。按真实源码行为整理。
 
+## 先看这一节：看着像坏了，其实不是
+
+下面这些**不是故障**，是产品的既定行为。遇到时先在这里对一遍，能省掉一次误操作和一笔冤枉钱。
+
+| 你看到的 | 真实情况 | 详见 |
+|---|---|---|
+| 某些选项整个不见了 | **面板按当前模型的能力档案渲染**——模型没声明支持的项不显示。换个模型或改模型能力配置就会出现 | [generate-images.md](10-tasks/generate-images.md) |
+| 视频生成模式不是你选的那个 | 它**主要由连线素材推算**。先选模式再连素材，可能被自动纠正 | [generate-video.md](10-tasks/generate-video.md) |
+| 换了模型，之前的音色没了 | 音色列表随模型切换，不同档案的 ID 不通用，**自动回落到新模型的默认音色** | [generate-audio.md](10-tasks/generate-audio.md) |
+| 音频设置里没有「声调」「音量」 | 面板**从不提供**这两项，不是折叠了也不是漏看 | [generate-audio.md](10-tasks/generate-audio.md) |
+| 图片节点工具条上找不到「质感调整」「全景图」「复制提示词」 | 图片节点工具条**只渲染一部分动作**；全景图只在非图片节点上，复制/反推提示词目前任何界面都点不到 | [generate-images.md](10-tasks/generate-images.md) |
+| 素材（参考图组 / LoRA）被挡住或跳过 | 适配器未启用时会**直接挡下**，并给出原因 | [organize-canvas.md](10-tasks/organize-canvas.md) |
+| 素材标了「不可商用」却照样能生成 | 许可快照是**你自己的记录，平台不校验也不拦截** | [organize-canvas.md](10-tasks/organize-canvas.md) |
+| 「自动同步可信素材」开关亮着，素材好像没上传 | 它**默认就是开的**，且真正同步要同时满足四个条件 | [generate-video.md](10-tasks/generate-video.md) |
+| 批量表某一行显示「已停用」 | 那是**该行的启用开关被关了**，不是出错；重开开关**不会**重新扣费 | [generate-images.md](10-tasks/generate-images.md) |
+| 一批里几行成功几行失败 | 批量存在「部分失败」这一档，**成功的行照样出结果节点** | [generate-images.md](10-tasks/generate-images.md) |
+| 找不到短剧/小说、任务中心、技能广场 | 这些入口当前**已退场**，访问会静默跳回首页 | [00-quickstart.md](00-quickstart.md) |
+| 找不到「简易模式 / simple 模式」开关 | 工作台模式被**硬编码**，当前版本没有这个切换 | [create-nodes.md](10-tasks/create-nodes.md) |
+| 导演台摄影机模式下少了两个输入框 | 机位面板已提供「切换机位」，下层**故意隐藏**重复的机位下拉与坐标 | [director-basics.md](10-tasks/director-basics.md) |
+| FOV 视口里能用，滑杆却拖不到 | 面板限制 15–90、视口渲染接受 10–120，**两套边界** | [director-basics.md](10-tasks/director-basics.md) |
+| 「俯拍」和「仰拍」容易选反 | 界面文字没问题，但其**内部标识与界面名相反**，以界面文字为准 | [director-basics.md](10-tasks/director-basics.md) |
+| 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [30-concepts.md](30-concepts.md) |
+
 ## 打开与加载
 
 ### 画布一直显示「正在打开画布...」
