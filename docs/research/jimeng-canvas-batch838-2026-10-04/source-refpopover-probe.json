@@ -1,0 +1,2112 @@
+{
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "steps": [
+    {
+      "label": "① 面板刚打开（基线）",
+      "candidates": [
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "@",
+              "al": "引用参考",
+              "rect": [
+                1428,
+                784,
+                24,
+                24
+              ],
+              "color": "rgba(255, 255, 255, 0.6)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgba(255, 255, 255, 0.2)",
+              "fontSize": "13px",
+              "cursor": "not-allowed"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "@",
+              "al": "引用参考",
+              "rect": [
+                1428,
+                784,
+                24,
+                24
+              ],
+              "color": "rgba(255, 255, 255, 0.6)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgba(255, 255, 255, 0.2)",
+              "fontSize": "13px",
+              "cursor": "not-allowed"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1122,
+            784,
+            356,
+            84
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "@",
+              "al": "引用参考",
+              "rect": [
+                1428,
+                784,
+                24,
+                24
+              ],
+              "color": "rgba(255, 255, 255, 0.6)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1122,
+            784,
+            356,
+            84
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "@",
+              "al": "引用参考",
+              "rect": [
+                1428,
+                784,
+                24,
+                24
+              ],
+              "color": "rgba(255, 255, 255, 0.6)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1122,
+            784,
+            356,
+            84
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "@",
+              "al": "引用参考",
+              "rect": [
+                1428,
+                784,
+                24,
+                24
+              ],
+              "color": "rgba(255, 255, 255, 0.6)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        }
+      ],
+      "bodyTail": "ady, 0 processing, 0 failed. Not selected. 新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 使用技能 说说你的想法或任务，上传参考、输入文字或 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 100% 与 AI 对话"
+    },
+    {
+      "label": "② 点底行「引用参考」",
+      "candidates": [
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 4,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(26, 26, 26)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 4,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(26, 26, 26)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgb(38, 38, 38)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "listbox",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "group",
+          "rect": [
+            1007,
+            486,
+            232,
+            288
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1007,
+            518,
+            232,
+            256
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        }
+      ],
+      "bodyTail": "3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Not selected. 新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 @ 使用技能 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 100% 与 AI 对话 添加参考 主体 图片 视频 音频 文本"
+    },
+    {
+      "label": "③ 点第一级「主体」之后",
+      "candidates": [
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 4,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(26, 26, 26)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1101,
+            765,
+            398,
+            172
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 4,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "从本地、画布或资产库添加",
+              "rect": [
+                1122,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "使用技能",
+              "al": "使用技能",
+              "rect": [
+                1158,
+                884,
+                90,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "12px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "引用参考",
+              "rect": [
+                1252,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(250, 250, 250)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "",
+              "text": "",
+              "al": "发送消息",
+              "rect": [
+                1446,
+                884,
+                32,
+                32
+              ],
+              "color": "rgb(26, 26, 26)",
+              "fontSize": "13px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgb(38, 38, 38)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0",
+          "rowCount": 7,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "listbox",
+          "rect": [
+            1003,
+            482,
+            240,
+            296
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "group",
+          "rect": [
+            1007,
+            486,
+            232,
+            288
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            1007,
+            518,
+            232,
+            256
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 5,
+          "rows": [
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "主体",
+              "al": "",
+              "rect": [
+                1007,
+                518,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "图片",
+              "al": "",
+              "rect": [
+                1007,
+                570,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "视频",
+              "al": "",
+              "rect": [
+                1007,
+                622,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "音频",
+              "al": "",
+              "rect": [
+                1007,
+                674,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            },
+            {
+              "tag": "BUTTON",
+              "role": "option",
+              "text": "文本",
+              "al": "",
+              "rect": [
+                1007,
+                726,
+                232,
+                48
+              ],
+              "color": "rgb(255, 255, 255)",
+              "fontSize": "14px",
+              "cursor": "pointer"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            759,
+            518,
+            240,
+            212
+          ],
+          "background": "rgb(38, 38, 38)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0",
+          "rowCount": 2,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            759,
+            518,
+            240,
+            212
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "16px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 2,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            759,
+            518,
+            240,
+            212
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 2,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "listbox",
+          "rect": [
+            759,
+            518,
+            240,
+            212
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "4px",
+          "shadow": "none",
+          "rowCount": 2,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            },
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "group",
+          "rect": [
+            763,
+            522,
+            232,
+            100
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            763,
+            554,
+            232,
+            68
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                554,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "group",
+          "rect": [
+            763,
+            626,
+            232,
+            100
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "rect": [
+            763,
+            658,
+            232,
+            68
+          ],
+          "background": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "shadow": "none",
+          "rowCount": 1,
+          "rows": [
+            {
+              "tag": "DIV",
+              "role": "option",
+              "text": "暂无相关节点",
+              "al": "",
+              "rect": [
+                763,
+                658,
+                232,
+                68
+              ],
+              "color": "rgb(245, 251, 255)",
+              "fontSize": "12px",
+              "cursor": "auto"
+            }
+          ]
+        }
+      ],
+      "bodyTail": "No resources: 0 ready, 0 processing, 0 failed. Not selected. 新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 @ 使用技能 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 100% 与 AI 对话 添加参考 主体 图片 视频 音频 文本 当前画布 暂无相关节点 主体库 暂无相关节点"
+    }
+  ],
+  "level1_rows": [
+    {
+      "text": "主体",
+      "rect": [
+        1007,
+        518,
+        232,
+        48
+      ]
+    },
+    {
+      "text": "图片",
+      "rect": [
+        1007,
+        570,
+        232,
+        48
+      ]
+    },
+    {
+      "text": "视频",
+      "rect": [
+        1007,
+        622,
+        232,
+        48
+      ]
+    },
+    {
+      "text": "音频",
+      "rect": [
+        1007,
+        674,
+        232,
+        48
+      ]
+    },
+    {
+      "text": "文本",
+      "rect": [
+        1007,
+        726,
+        232,
+        48
+      ]
+    }
+  ],
+  "clicked_row": "主体"
+}

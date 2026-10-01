@@ -10,8 +10,7 @@ import {
   PanelRightClose,
   Plus,
   SquarePen,
-  WandSparkles,
-} from "lucide-react";
+  WandSparkles, ChevronRight } from "lucide-react";
 
 /**
  * 「与 AI 对话」右侧抽屉 (Batch 12)。
@@ -373,42 +372,6 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
         </div>
       ) : null}
 
-      {panel === "mention" ? (
-        <div
-          className="mx-3 mb-2 rounded-xl bg-[#262626] p-2"
-          data-testid="agent-mention-panel"
-          role="dialog"
-          aria-label="添加参考"
-        >
-          <p className="px-2 py-1 text-[13px] text-white/85">添加参考</p>
-          <div className="flex flex-wrap gap-1 px-2 pb-1.5">
-            {REF_KINDS.map((k) => (
-              <button
-                key={k}
-                type="button"
-                data-testid={`agent-ref-kind-${k}`}
-                onClick={() => setRefKind(k)}
-                className={`h-7 rounded-md px-2.5 text-[12px] ${
-                  refKind === k ? "bg-white/15 text-white" : "text-white/60 hover:bg-white/10"
-                }`}
-              >
-                {k}
-              </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            data-testid="agent-ref-confirm"
-            onClick={() => {
-              addSkill(`@${refKind}`);
-              pushToast(FEEDBACK.addReference(refKind));
-            }}
-            className="flex h-8 w-full items-center justify-center rounded-md bg-white/10 text-[13px] text-white hover:bg-white/20"
-          >
-            引用{refKind}
-          </button>
-        </div>
-      ) : null}
 
       {panel === "add" ? (
         <div
@@ -440,7 +403,102 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           底色 **rgba(16,16,16,0.7)**（不是 white/6% —— 源站这块比面板**更暗**，
           复刻此前是**更亮**，方向反了）、圆角 16px、内距 14px/16px/16px、
           子项 gap 16px（prompt-composer 底 868 与 action-row 顶 884 正好差 16）。 */}
-      <div className="p-3">
+      {/* ⚠ 批 838：这个 `relative` 不是装饰。浮层用 `bottom-full` 锚在**卡片**上缘，
+          而 `bottom-full` 是按**最近的定位祖先**解析的 —— 卡片外层这层容器此前是
+          `static`，于是浮层被按整个抽屉解析，跑到抽屉顶端外面去，5 枚分类行
+          整个落到视口外（点不到，810 直接 30s 超时）。定位链是判据的一部分。 */}
+      <div className="relative p-3">
+        {panel === "mention" ? (
+          /* Batch 838 SOURCE_FACT（`jimeng_838_refpopover_probe.py` + 截图，1512×950）：
+             源站这块是**两块**各 240 宽的面板，不是复刻此前那种「一行 tab + 确认钮」：
+
+               一级 分类列表  @[1003,482] 240×296  bg rgb(38,38,38)  role=listbox
+                    标题「添加参考」占顶部 36px；5 行各 **232×48**、行距 4px
+                    （主体/图片/视频/音频/文本），每行右端一个 `›`，当前行有高亮底色
+               二级 条目面板  @[759,518] 240×212  同底色 **圆角 16**
+                    顶与一级**首行**顶对齐（518），与一级左缘相距 **4px**（999↔1003），
+                    底比一级底高 48px（730 vs 778）
+                    两段：「当前画布」/「<分类>库」，各带空态「暂无相关节点」232×68
+                    12px rgb(245,251,255)
+
+             相对抽屉（@1101 起）横向：一级左缘 **-98px**、二级左缘 **-342px**。
+             纵向不照抄绝对值（源站面板 924 高、复刻 802 高），改成锚在输入卡片上：
+             一级底边落在卡片顶边**下移 9px**（源站 778 vs 卡片顶 769）。
+
+             ⚠ **不编条目列表**：源站在这块画布上每个分类都是「暂无相关节点」——
+               连画布上明明有的「视频 1」也没列出来，所以「它列的是画布节点」这个
+               推断**不成立**，本批不据此造假数据。记为 OPEN_QUESTION 838-b。
+             ⚠ 底部那枚「引用{分类}」确认钮是**复刻自有**：源站此处无任何可点条目，
+               它是本仓让「加引用」不至于变成死路的那条路（832 的判据），
+               保留并在注释里标明来源。 */
+          <div
+            className="absolute inset-x-0 bottom-full mb-[-9px] h-0"
+            data-testid="agent-mention-panel"
+            role="dialog"
+            aria-label="添加参考"
+          >
+            {/* 一级：分类列表（240 宽，行 232×48，右侧 ›） */}
+            <div
+              role="listbox"
+              aria-label="添加参考分类"
+              data-testid="agent-ref-categories"
+              className="absolute bottom-0 right-[252px] w-[240px] rounded-2xl bg-[#262626] py-2"
+            >
+              {/* 标题块**钉死 36px**：源站一级顶 482 → 首行顶 518，差 36 —— 二级面板的
+                顶正是靠这个 36 对齐到首行（518=518）。此前标题随字号只有 ~24px，
+                于是二级浮层比首行高出 21px，判据当场变红。 */}
+            <p className="flex h-9 items-center px-3 text-[13px] text-white/85">添加参考</p>
+              <div className="mt-1 flex flex-col gap-1 px-1">
+                {REF_KINDS.map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    data-testid={`agent-ref-kind-${k}`}
+                    onClick={() => setRefKind(k)}
+                    aria-selected={refKind === k}
+                    className={`flex h-12 items-center justify-between rounded-lg px-3 text-[14px] ${
+                      refKind === k ? "bg-white/12 text-white" : "text-white/70 hover:bg-white/8"
+                    }`}
+                  >
+                    {k}
+                    <ChevronRight size={16} className="text-white/35" />
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* 二级：条目面板（240 宽，挂在左边，**顶对齐一级首行** = 一级顶 +36）。
+              源站二级底比一级底高 48px，但那是**两块高度不同**的结果（一级 296 /
+              二级 212），不是一条独立规则 —— 复刻两块高度不同，底差自然不同。
+              所以钉的是**看得见的那条对齐**（顶对齐首行），底缘只钉「不越过一级」。 */}
+            <div
+              data-testid="agent-ref-items"
+              className="absolute bottom-[37px] right-[496px] w-[240px] rounded-2xl bg-[#262626] py-1"
+            >
+              {["当前画布", `${refKind}库`].map((section, i) => (
+                <div key={section}>
+                  {i > 0 ? <div className="mx-3 my-1 h-px bg-white/10" /> : null}
+                  {/* 分组标题样式**未实测**（探针只量到空态那两行），
+                      这里取同族的弱化白，仅作形状对齐，不写成断言。 */}
+                  <p className="px-3 py-2 text-[12px] text-white/45">{section}</p>
+                  <p className="px-3 py-5 text-center text-[12px] text-[#F5FBFF]">暂无相关节点</p>
+                </div>
+              ))}
+              <div className="px-1 pb-0.5 pt-1">
+                <button
+                  type="button"
+                  data-testid="agent-ref-confirm"
+                  onClick={() => {
+                    addSkill(`@${refKind}`);
+                    pushToast(FEEDBACK.addReference(refKind));
+                  }}
+                  className="flex h-8 w-full items-center justify-center rounded-md bg-white/10 text-[13px] text-white hover:bg-white/20"
+                >
+                  引用{refKind}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
         <div
           className="flex flex-col gap-4 rounded-2xl bg-[rgba(16,16,16,0.7)] px-4 pb-4 pt-[14px]"
           data-testid="canvas-agent-session-composer"
