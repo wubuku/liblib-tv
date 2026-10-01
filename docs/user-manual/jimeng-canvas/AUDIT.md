@@ -2964,3 +2964,50 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 - 订正 `20-reference.md`（触发条件表 + 菜单下载是另一个按钮）、
   `PROGRESS.md`、`SOURCE_OBSERVATIONS §3.72`
 - 新增长期脚本：`scripts/jimeng-b54-duplicate-autofit.mjs`
+
+---
+
+## 批次 55（2026-10-01）：右键菜单「下载」的禁用条件 —— 关闭长期疑问
+
+### 取证范围
+
+- 建 1 个**空视频节点** → 打开右键菜单读 DOM → 按 id 删除。
+- 上传**已授权** `/tmp/b22-upload.png` 得 1 个**带内容图片节点** → 打开右键菜单读 DOM → 按 id 删除。
+- **未点击任何菜单项**（删除 / 下载 / 保存到主体库 / 复制都没点）。
+- **积分**：805 → 805。
+
+### 断言与结果
+
+| 断言 | 结果 |
+|---|---|
+| 起点与基线一致（6 节点、canvas 位置逐项） | ✅ |
+| M2 前置条件自证（`img` 元素数） | ✅ **1** 个 |
+| 菜单项数 | ✅ M1 **7** 项 / M2 **9** 项（与既有记录一致） |
+| 临时节点删除后当场断言 | ✅ 两次均 `deleted` |
+| 收尾：6 节点 / 0 真编组 / 缩放 60% / 积分 805 / 位置偏离 0 / 剩余待删 0 | ✅ |
+
+### 关键读数
+
+| | M1 空视频 | M2 带内容图片 |
+|---|---|---|
+| 菜单 | 200×292，7 项 | 200×372，9 项 |
+| 下载项 | `aria-disabled="true"`、`cursor: not-allowed` | `aria-disabled` 无、`cursor: pointer` |
+| 下载项 innerHTML | `<span data-context-menu-label="true">下载</span><span class="sr-only" id="context-menu-disabled-download">没有可用的就绪资源</span>` | `<span data-context-menu-label="true">下载</span>` |
+| 重做项（阳性对照） | `aria-disabled="true"` + `⌘ ⇧ Z` + 「无需重做操作」 | 同左 |
+
+⇒ **该长期疑问关闭**；且前四批的阴性读数本身没错，只是量的对象不同
+（工具条按钮 vs 右键菜单项）。
+
+### 证据边界
+
+- ⚠️ 「重做」的原因文案**是否也是 `sr-only`**，本批只读到它的存在（`childTexts`），
+  **未取到完整 `innerHTML`** —— 因此**未**把「重做/撤销的原因也是隐藏文本」写进手册。
+- 菜单里「保存到主体库」的结果仍未执行（需授权）。
+- 本批**未新增截图**（`67-image-node-context-menu.png` 已覆盖 M2 的九项菜单）。
+
+### 产出
+
+- 订正 4 个手册页：`organize-group-layout.md`、`canvas-context.md`、
+  `20-reference.md`、`90-troubleshooting.md`（+ `SOURCE_OBSERVATIONS §3.73`）
+- 新增长期脚本：`scripts/jimeng-b55-ctxmenu-download.mjs`
+  （`dumpMenu()` 逐项读 `role="menuitem"` 的禁用态与 `innerHTML`，可复用于任何菜单）
