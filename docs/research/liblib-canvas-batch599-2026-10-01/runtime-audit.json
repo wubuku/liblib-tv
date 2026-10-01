@@ -1,0 +1,83 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "static:adapter-uses-the-shared-constant",
+      "ok": true,
+      "detail": "DIRECTOR_TIMELINE_DEFAULT_ZOOM declared and used in the adapter"
+    },
+    {
+      "name": "static:no-zoom-1-literal-in-adapter",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "static:store-default-uses-the-shared-constant",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "runtime:default-after-load",
+      "ok": true,
+      "detail": 44
+    },
+    {
+      "name": "runtime:desk-open-keeps-default",
+      "ok": true,
+      "detail": 44
+    },
+    {
+      "name": "runtime:slider-reads-default",
+      "ok": true,
+      "detail": {
+        "value": "44",
+        "min": "0",
+        "max": "100"
+      }
+    },
+    {
+      "name": "runtime:reopen-keeps-default",
+      "ok": true,
+      "detail": 44
+    },
+    {
+      "name": "runtime:document-roundtrip-keeps-default",
+      "ok": true,
+      "detail": {
+        "before": 44,
+        "after": 44
+      }
+    },
+    {
+      "name": "runtime:clamp-still-0-to-100",
+      "ok": true,
+      "detail": {
+        "low": 0,
+        "high": 100,
+        "restored": 44
+      }
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "afterLoad": 44,
+  "afterOpen": 44,
+  "slider": {
+    "value": "44",
+    "min": "0",
+    "max": "100"
+  },
+  "afterReopen": 44,
+  "roundtrip": {
+    "before": 44,
+    "after": 44
+  },
+  "clamp": {
+    "low": 0,
+    "high": 100,
+    "restored": 44
+  }
+}

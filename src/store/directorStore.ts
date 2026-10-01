@@ -87,7 +87,10 @@ import {
   planDirectorOwnerReachability,
   type DirectorOwnerReachabilityPlan,
 } from "@/lib/directorOwnerReconciliation";
-import { restoreDirectorProjectRuntimeSnapshotV1 } from "@/lib/directorProjectRuntimeAdapter";
+import {
+  DIRECTOR_TIMELINE_DEFAULT_ZOOM,
+  restoreDirectorProjectRuntimeSnapshotV1,
+} from "@/lib/directorProjectRuntimeAdapter";
 import {
   directorProjectPersistence,
   getDirectorProjectPersistenceSnapshot,
@@ -1009,9 +1012,12 @@ function createDefaultTimeline(): DirectorTimelineState {
     isPlaying: false,
     loop: true,
     // Batch 594: 源站当前项目实测 zoom=43.7751（读数四舍五入显示 44）。那是
-    // 用户自己拖过的值，**默认值不可考**；这里取 44 是为了让 clone 打开时的
-    // 标尺密度与源站当前观感一致（10s ≈ 2212px），标为推断而非源站事实。
-    zoom: 44,
+    // 用户自己拖过的值，**默认值不可考**；取 44 是为了让 clone 打开时的标尺
+    // 密度与源站当前观感一致（10s ≈ 2212px），标为推断而非源站事实。
+    // Batch 599: 改用共享常量——同一个值此前还在
+    // `directorProjectRuntimeAdapter` 里被硬编码成 1，导致每次打开导演台都会把
+    // 这里定的初值打回 1，标尺密度永远停在最低档。
+    zoom: DIRECTOR_TIMELINE_DEFAULT_ZOOM,
     autoKeyframe: true,
     tracks: [
       {

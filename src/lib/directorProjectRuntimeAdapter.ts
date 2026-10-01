@@ -20,6 +20,19 @@ import type {
   DirectorTransformDocumentV1,
 } from "@/lib/directorProjectDocument";
 
+/**
+ * Default value of the view-only `timeline.zoom`.
+ *
+ * Batch 594 read `43.7751` (displayed as 44) off the source project, but that
+ * is a value the user had dragged to, so the source's own default is not
+ * recoverable. 44 is an inference, chosen so a freshly opened desk matches the
+ * density currently visible in the source (10s ≈ 2212px). It lives here — the
+ * module that rebuilds the runtime timeline from a document — because
+ * `directorStore` already imports from here; declaring it in the store and
+ * importing it back would close an import cycle.
+ */
+export const DIRECTOR_TIMELINE_DEFAULT_ZOOM = 44;
+
 export interface DirectorProjectRuntimeSnapshotV1 {
   scene: DirectorProjectDocumentV1["scene"];
   objects: DirectorObject[];
@@ -255,7 +268,13 @@ export function restoreDirectorProjectRuntimeSnapshotV1(
       currentTime: 0,
       isPlaying: false,
       loop: document.timeline.loop,
-      zoom: 1,
+      // The document schema deliberately omits the view-only fields, so they
+      // are reinstated here (currentTime/isPlaying above, zoom here). Batch 599:
+      // this used to be a literal 1, which silently overwrote the default the
+      // store declares — opening the director desk always landed on zoom 1 no
+      // matter what `createDefaultTimeline()` said. Source-declared constant so
+      // the two cannot drift apart again.
+      zoom: DIRECTOR_TIMELINE_DEFAULT_ZOOM,
       autoKeyframe: document.timeline.autoKeyframe,
       tracks,
       motionPaths: document.timeline.motionPaths.map(restoreMotionPath),
