@@ -953,3 +953,63 @@ screenshots:
     visible_text: 添加节点 / 文本 / 图片 / 视频 / 音频 / 时间线 / 主体 / 导演台 / 视频 1 / 100% / 与 AI 对话
     alt: 选中「视频 1」后点其右侧的圆形加号按钮弹出的「添加节点」菜单，被橙色高亮框标出：菜单顶部是灰色标题「添加节点」，下面七项自上而下为 文本、图片、视频、音频、时间线、主体、导演台，每项左侧带类型图标；其中只有「视频」是白色可点，其余六项都是灰暗的禁用态；节点卡片左右两侧各有一个圆形加号按钮，下方还露出该节点的生成面板
     sha256: c8b2f8c6ee9df117569ee0735d9885888edaf795904da1e7863433e72e54204b
+
+  - file: screenshots/78-audio-voice-library.png
+    task_id: audio-node-voice
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T13:30:00+08:00
+    verified_locator: '音频节点面板（node-toolbar 680×204）中 aria 逐字「音色: 音色库」按钮（68×32）点开后 aria-expanded 由 false 变 true，面板上方浮出标题「全音色」的浮层，音色网格区域实测 608×260；含 4 个筛选器（性别/年龄/语言/声音特点，各 153×28）与 18 个音色，每个音色两个按钮 Play <名> 24×24 与 Add <名> 173×40'
+    visible_text: 全音色 / 性别 / 年龄 / 语言 / 声音特点 / 生动解说 / 精品有声书 / 桃花庵主 / 猪猪侠 / 灵动女声 / 苏感低音 / 乌萨七 / 唐僧 / 厚实男声 / 阳光美眉 / 和蔼奶奶 / 派星星 / 佩奇猪 / 萌娃百科 / 磁性男主播 / 音频生成 / SeedAudio 1.0 / 全能配音 / 音色库 / 12 / 24 / 69%
+    alt: 展开后的音色库浮层，被橙色高亮框圈出的是 18 个音色的三列网格区域：每行三列，每项左侧一个圆形播放按钮、右边是音色名，可辨认的有 生动解说、精品有声书、桃花庵主、猪猪侠、灵动女声、苏感低音、乌萨七、唐僧、厚实男声、阳光美眉、和蔼奶奶、派星星、佩奇猪、萌娃百科、磁性男主播（右侧还有可上下滚动的滚动条）；浮层顶部是标题「全音色」和四个带倒箭头的筛选下拉 性别、年龄、语言、声音特点；浮层下方露出面板工具条，依次为 音频生成、SeedAudio 1.0（带蓝色星形标记）、全能配音、音色库（箭头朝上表示已展开）、@ 图标、✦12 与划线的 24、以及发送按钮
+    sha256: 752eacdffaa27a971313674bce45e671d6b859720d061207b4d659513e99d28d
+
+  - file: screenshots/79-audio-type-dropdown.png
+    task_id: audio-node-voice
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T13:38:00+08:00
+    verified_locator: '点 aria 逐字「创作类型: 音频生成」按钮（80×32，aria-expanded false→true）后出现的下拉：容器 aria 逐字「创作类型 options」、role=listbox，实测 200×84 @179,523，位于 node-toolbar 内部；两项 role=option 各 192×36 —— 音频生成（aria-selected=true、2 个 svg）与 音乐生成（1 个 svg）'
+    visible_text: 音频生成 / 音乐生成 / SeedAudio 1.0 / 全能配音 / 音色库 / 12 / 24
+    alt: 创作类型下拉：从面板工具条的「音频生成」按钮展开的浮层，被橙色高亮框标出，共两项 音频生成（当前选中、左侧带图标）与 音乐生成；浮层出现在按钮上方、盖住面板的说明文字区域，下方仍可见 SeedAudio 1.0、全能配音、音色库、✦12 与划线 24
+    sha256: 3408937673a31d211fc9a7bf4f705cd822e4a774bc77663f4802f1c55802ef01
+
+  - file: screenshots/79-audio-model-dropdown.png
+    task_id: audio-node-voice
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T13:38:00+08:00
+    verified_locator: '点 aria 逐字「选择模型: SeedAudio 1.0, New」按钮（135×32，aria-expanded false→true）后出现的下拉：容器 aria 逐字「选择模型 options」、role=listbox，实测 400×180 @179,427（宽度是其它下拉的两倍）；两项 role=option —— 当前项 aria 逐字「SeedAudio 1.0, 通过文字描述或参考音频，创作人声、音效与配乐」（aria-selected=true、文案含 New），另一项「Seed TTS, 上百个预设音色，让你玩转人声配音」为灰字不可选'
+    visible_text: SeedAudio 1.0 / Seed TTS / 上百个预设音色，让你玩转人声配音 / 12 / 24
+    alt: 选择模型下拉：展开的浮层比其它下拉宽一倍（400×180），被橙色高亮框标出；上方一项是当前选中的 SeedAudio 1.0，下方一行大字 Seed TTS 配小字说明「上百个预设音色，让你玩转人声配音」，整行呈灰暗色表示当前不可选
+    sha256: aef1a36c83787fb5c2cf449c26bf6a0f03e690e29cf686cbf73a2ed2bda32a4a
+
+  - file: screenshots/79-audio-mode-dropdown.png
+    task_id: audio-node-voice
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T13:38:00+08:00
+    verified_locator: '点 aria 逐字「音频生成: 全能配音」按钮（80×32，aria-expanded false→true）后出现的下拉：容器 aria 逐字「音频生成 options」、role=listbox，实测 200×44 @338,563；只有一项 role=option「全能配音」（192×36、aria-selected=true）—— 即当前没有第二种模式'
+    visible_text: 全能配音 / 音色库 / 12 / 24
+    alt: 音频生成模式下拉：从面板工具条的「全能配音」按钮展开的极窄浮层，被橙色高亮框标出，里面只有「全能配音」一项（当前选中），说明这个下拉目前没有第二种模式可选；浮层下方仍可见音色库按钮、✦12 与划线的 24
+    sha256: 9bb6544a1de592d9300176e68ab8b0f34ae6db2eeef07b77e8d50971995911b4
+
+  - file: screenshots/80-audio-voice-filter.png
+    task_id: audio-node-voice
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T13:39:00+08:00
+    verified_locator: '音色库展开后点 aria 逐字「性别: 全部 性别」筛选器（153×28，aria-expanded false→true）出现的小浮层：容器 aria 逐字「性别 options」、role=listbox，实测 161×124 @186,371；三项 role=option 各 153 —— 全部 性别（aria-selected=true、带勾选 svg）与 男、女'
+    visible_text: 全部 性别 / 男 / 女 / 全音色 / 性别 / 年龄 / 语言 / 声音特点
+    alt: 音色库里的「性别」筛选器展开后的小浮层，被橙色高亮框标出：上层是筛选器浮层（161×124），标题行是「全部 性别」且带勾选标记，下面两项分别是 男、女；其后方仍能看到音色库的三列网格与四个筛选下拉
+    sha256: b13b1b4e316b16b4cf6a8b16cd9074a70fa48fbd5895959b3ec077834552903a

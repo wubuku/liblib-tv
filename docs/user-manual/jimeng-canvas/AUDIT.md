@@ -942,3 +942,38 @@ dock `选择工具 / 小地图 / 显示连线 / Zoom options, 100%`、
 视口经 `Emulation.setDeviceMetricsOverride` 钉在 **1280×720**。
 
 **本批临时脚本（已清理）**：`scripts/_b28a.mjs` … `_b28e.mjs`
+
+## 2026-10-01 增量审计（批次 29：音频节点面板全量复测 + 音色库全枚举）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| **音色库全手册 0 处实质记录**，长期标「音色库内选音色未验证」 | **Major（最大的单页覆盖缺口）** | 全枚举：点 `音色: 音色库` → `aria-expanded` false→true，浮出标题「**全音色**」浮层，区域 **608×260**，含 **4 个筛选器 + 18 个音色**。18 音色逐字：生动解说/精品有声书/桃花庵主/猪猪侠/灵动女声/苏感低音/乌萨七/唐僧/厚实男声/阳光美眉/和蔼奶奶/派星星/佩奇猪/萌娃百科/磁性男主播/清醒语录/甜美软妹/小八酱；每项 `Play <名>` 24×24 + `Add <名>` 173×40 | `audio-node-voice.md` 新增整节「音色库（全量枚举）」+ 截图 `78`；参考页新增「音频节点面板」节 |
+| **本页全部证据来自 2026-09-23，本会话从未复测** | **Major（证据陈旧）** | 面板 `node-toolbar` **680×204**、11 个 svg、11 个控件 aria 逐字与尺寸、价格逐字 `Current price 12. Original price 24. Discount 12. 积分5折.` 均当日重测 | 该页**整页重写**，所有要素标注当日实测 |
+| **三个下拉全部只读枚举**（此前 0 处记录） | Minor（覆盖缺口） | `创作类型 options` 200×84（音频生成/音乐生成）｜`选择模型 options` **400×180**（SeedAudio 1.0 含 New / **Seed TTS 灰字不可选**）｜`音频生成 options` 200×44（**只有 全能配音**）。均为 `role=listbox` + `role=option` + `aria-selected` | 正文新增「三个下拉」表 + 截图 `79` 三张 |
+| 🔴 **两级浮层的 Esc 行为相反** | **Major（会误伤操作）** | 底部工具条的下拉按 Esc → 下拉关闭 **且 `node-toolbar` 可见数 1→0（整个面板消失）**；音色库里的筛选器按 Esc → **只关筛选器，可见数仍为 1** | 批次 19 的 **Esc 语义全表补两行**；排障页新症状「只想关下拉却把整个面板关掉了」 |
+| **`引用参考` 有两个同名控件** | Minor（易误取） | 提示词区内 **24×24**、底部工具条 **32×32**，按 aria 找会拿到两个 | 正文控件表标注「⚠️ 与下面那个同名，尺寸不同」 |
+| 这些控件的**可见文字极短**，必须按 aria 找 | Minor（可维护性） | 可见文字只有 `音频生成`/`全能配音`/`音色库` 等；aria 统一为 `控件名: 当前值`，**冒号后半段随选择变化** | 正文与参考页写入 aria 判据速记 |
+| 「音色库是撑高面板」的直觉 | Minor（准确性） | 面板本体**始终 680×204**，音色库**浮在面板上方**（y=375 vs 面板 y=460） | 正文显式写明「浮在面板上方，面板尺寸不变」 |
+| **浮层提取器连续三轮失效** | **Major（取证方法论）** | 前三轮用 `!e.closest('[data-testid=node-toolbar]')` 过滤外部浮层，而这三个下拉**就在工具条内部**，被自己的过滤器排除 → 反复 `found:false`；另一次误抓顶栏 `canvas-agent-history-surface`（68×36，含 2 个按钮） | 改用「**开前/开后全页 DOM 差分**」一次拿全；并补「浮层中心距触发按钮 <220px」距离约束。§3.46 记为独立教训：**与其猜容器选择器，不如做状态差分** |
+| 脚本重复创建音频节点，一度堆到 7 个 | Minor（基线纪律） | `reselect()` 的「面板不可见就点节点」在多轮运行中反复触发新建 | 收尾脚本按 `.react-flow__node-audio` 逐个删除，6 次后 `baselineOk: true` |
+| 重复截图 | Minor（资产卫生） | `78-audio-voice.png` 与 `78-audio-voice-library.png` 内容重复 | 删除前者，只留 `78` |
+
+## 批次 29 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **86 张**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中均为预期 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 86 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 86 images` |
+| 死链（本手册范围） | 独立扫描 `docs/user-manual/jimeng-canvas/**/*.md` | **0 命中** | **jimeng-canvas 死链数 = 0**（全仓 `verify-docs.py` 的唯一报错仍属他人正在编辑的 `beeftv-canvas`，按纪律未改动） |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 **82**、示意图 4、**0 warn** |
+
+**基线复核（批次 29 收尾，`baselineOk: true`）**：
+`1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.`、
+仅 `视频 1`、0 边、0 选中、**无可见 `node-toolbar`**、缩放 `Zoom options, 100%`、
+`back-to-content-overlay` 归零 `[0,0]`、视口 `translate(-0.0555px, 0px) scale(1)`。
+本批一度在画布上堆到 **7 个节点**（脚本多轮运行重复创建音频节点），
+已按 `.react-flow__node-audio` **逐个删除 6 次**归位。
+
+**本批临时脚本（已清理）**：`scripts/_b29a.mjs` … `_b29g.mjs`
