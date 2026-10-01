@@ -2165,3 +2165,66 @@ connected. 已保存.`，**0 编组**、缩放 **60%**
 
 **本批临时脚本（已清理）**：`scripts/jimeng-b43-subjectF.mjs` / `_tmp-b43-verify.mjs`。
 **长期保留**：无新增。
+
+## 批次 44（2026-10-01）：把修正后的守卫固化成长期脚本 `jimeng-safe-keys.mjs`
+
+### 做了什么
+
+批次 43 得出「守卫要直接问焦点在哪」后，**停在文档里没有意义** ——
+下一批取证的人还会写自己的守卫、还会漏。本批把它变成**可调用的代码**。
+
+### 脚本提供的能力
+
+| 导出 | 作用 |
+|---|---|
+| `keyGuard(page)` | 读 `document.activeElement` → `{safe, tag, testid, where, reason, openInputs}` |
+| `pressLetter(page, key)` | **先断言再按键；不安全抛错、不执行** |
+| `canvasBaseline(page)` | 一次读齐 状态行 / 积分 / 缩放 / transform / 编组数 / 浮层 / 全部节点（id + 坐标 + 文本） |
+| `pinViewport(page)` | 钉死 1280×720 @dpr2，**不匹配抛错** |
+
+命令行自检 `node scripts/jimeng-safe-keys.mjs`：**安全退出码 0、危险退出码 1**，
+可直接串进每批收尾检查。
+
+### ✅ 真实画布验证：两种危险态都被拦下
+
+| 危险态 | 守卫读到的焦点 | 判定 | `pressLetter` |
+|---|---|---|---|
+| 空闲 | `BODY` | ✅ 可按 | — |
+| **选中主体节点** | **`INPUT` `aria="名称"`** | ⛔ **拒绝** | 抛错拒绝执行，**主体标题实测仍是 `主体 1`** |
+| **F 打开全屏文本编辑器** | **`DIV` `aria="Text"`** | ⛔ **拒绝** | 抛错拒绝执行 |
+| Esc 关闭后 | `BODY` | ✅ 恢复 | — |
+
+⚠️ 验证脚本自己也是「先记 `canvasBaseline` 再建节点」做紧贴对照 ——
+**这已是第三次用这个手法**。
+
+### 顺带确认
+
+- **主体节点新建仍不改缩放**（第 5 次复现，`transform` 逐字相同），
+  §3.60 / §3.61 的结论可以放心引用。
+
+### 证据边界
+
+- 未点击生成 / 发送，未做对外产出动作。
+- 本批临时节点 `node_f0p976rhxj`（主体）**已按 id 删除**：`7 -> 6`。
+- 别人的 6 个节点**内容与标题逐字未变**。
+- 本批**未新增截图**。
+
+### 质量门（批次 44 收尾，结论只认当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | **0** | **101 条**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | **0** | 命中 52 处，均为已知历史结论行，无批次 44 新问题 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 101 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 101 images` |
+| 死链（本手册范围） | 独立扫描（排除 node_modules/dist/site） | **0** | 扫描 28 个 Markdown，链接 **266** 条，**死链 0** |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 **97**、示意图 4、无 `.md` 残留链接、**0 warn** |
+| **焦点守卫自检** | `node scripts/jimeng-safe-keys.mjs` | **0** | `焦点守卫: ✅ 可按字母键 / where: BODY`；基线 `6 nodes…`、60%、805 |
+
+**基线复核（批次 44 收尾）**：`6 nodes, 0 edges, 0 selected. Editable. Room
+connected. 已保存.`，**0 编组**、**0 浮层**、缩放 **60%**
+（`translate(255.967px, 71.8048px) scale(0.6)`）、**顶栏积分 805**、
+焦点在 `BODY`（守卫 ✅ 可按字母键）。
+
+**本批临时脚本（已清理）**：`scripts/_tmp-b44-verify.mjs`。
+**长期保留新增**：**`scripts/jimeng-safe-keys.mjs`**（本批核心产出，已在真实画布验证）。
