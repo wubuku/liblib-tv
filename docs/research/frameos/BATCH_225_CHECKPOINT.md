@@ -459,3 +459,10 @@ Type check → **Assertion gate** → Build。
 
 > 教训：加 CI 步骤前先在**干净 checkout** 上验一次。本地能跑 ≠ CI 能跑。
 > 与 Batch 329「13 处各自手写快照」同源 —— 分散的隐式假设总会在某刻集中爆发。
+
+⚠️ **CI 改动未提交（凭据限制）**：`.github/workflows/ci.yml` 的门禁步骤仍留在
+工作区未提交 —— 当前 git 凭据缺 `workflow` scope，push 被远端拒绝
+（"refusing to allow an OAuth App to create or update workflow
+.github/workflows/ci.yml without workflow scope"）。
+这是凭据权限限制，**不做绕过**；需由有 `workflow` 权限者提交该文件。
+在提交之前，门禁只能靠人工跑 `npm run assertions:check`。
