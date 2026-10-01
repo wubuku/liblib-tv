@@ -767,3 +767,39 @@ screenshots:
     visible_text: '页面不存在'
     alt: 404 页面，中央是 404 方块与页面不存在标题，下方一句说明文字和一个返回首页按钮，页面没有顶部导航栏
     sha256: 755e75d1c5e98427e1999461d133297f0326a6185ad8eba14a7466448c201fb9
+
+  - file: screenshots/20-config-page.png
+    task_id: generate-images
+    step: 打开独立配置页 /config，观察左侧说明栏与右侧表单的两栏布局
+    route: '/config'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '页面标题 API 配置 / 副标题 设置 TDCanvas 调用 AI 土豆服务所需的唯一密钥 / 左栏 API · 服务密钥 · 保存后图片视频音频和其他画布能力将统一使用此密钥 · 密钥仅保存在当前设备本地 / 右栏 第一步 获取 AI 土豆 API Key / 注册 AI 土豆 · 获取 API Key / 第二步 粘贴 API Key 并保存 / 验证并查询余额 / 保 存（禁用）'
+    visible_text: '设置 TDCanvas 调用 AI 土豆服务所需的唯一密钥'
+    alt: 独立的 API 配置页，左侧是 API 小标题、服务密钥说明和安全提示，右侧是服务密钥表单、分两步引导与验证并查询余额和保存按钮
+    sha256: 4457d6d5ae7bbeff89f2c9aff8ed10068f2294e3f4e0a40bff163adf78670111
+
+  - file: screenshots/20-responsive-640.png
+    task_id: navigate-canvas
+    step: 把窗口宽度设为 640px，确认顶栏导航折叠为汉堡按钮而其余图标保留
+    route: '/canvas'
+    viewport: 640x860
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '顶栏 TDCanvas logo / 其右侧 汉堡按钮 aria-label=打开导航菜单 / 右侧 Agent 配置 语言 主题 版本 图标 / scrollWidth 640 等于 clientWidth 640'
+    visible_text: '打开导航菜单'
+    alt: 窗口宽 640 像素时顶栏只剩 TDCanvas 标志与其右侧的汉堡按钮，导航项已折叠为抽屉，右侧的 Agent、配置、语言、主题图标仍在
+    sha256: be397b25b0632fdc6df8c91b6c42356825c0e94080e0100ba0ab630f5765a9db
+
+  - file: screenshots/20-nav-hamburger.png
+    task_id: navigate-canvas
+    step: 在 600px 宽窗口点汉堡按钮，展开左侧导航抽屉并读取其中的链接
+    route: '/canvas'
+    viewport: 600x860
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '左侧抽屉 标题 导航 / 关闭按钮 / 五个链接 我的画布 / ComfyUI 本地 / 提示词库 / 我的资产 / 配置 / 抽屉中无 Agent 入口'
+    visible_text: '导航'
+    alt: 窄屏下点汉堡后从左侧滑出的导航抽屉，标题为导航，左上有关闭按钮，里面依次是我的画布、ComfyUI 本地、提示词库、我的资产、配置五个带图标的链接
+    sha256: 7d13f8d3b3c4d03c1d74eb2e5bfea376ff65223b2d65638e98dae4d3a4cf2ffa
