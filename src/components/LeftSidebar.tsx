@@ -23,7 +23,7 @@ import { HistoryPanel } from "./HistoryPanel";
 interface ToolButtonProps {
   label: string;
   active?: boolean;
-  prominent?: boolean;
+  className?: string;
   onClick: () => void;
   children: React.ReactNode;
 }
@@ -32,7 +32,13 @@ interface LeftSidebarProps {
   onAddNode: (type: string, data?: Record<string, unknown>) => void;
 }
 
-function ToolButton({ label, active, prominent, onClick, children }: ToolButtonProps) {
+// Batch 612（源站 2026-10-01 实测 probe612c）：这一簇**每一枚都是
+// 32×32 的幽灵按钮** `relative flex items-center justify-center rounded-lg
+// transition-colors h-8 w-8 hover:bg-canvas-controls-hover cursor-pointer`，
+// 20px 图标，**没有**「主按钮」变体。此前 clone 给「添加节点」单独做了
+// 40×40 的实心浅色主按钮（`bg-[#edf0f5] text-[#171717]`），既比源站大
+// 8px，又把整簇往左顶开 19.5px。
+function ToolButton({ label, active, className, onClick, children }: ToolButtonProps) {
   return (
     <button
       type="button"
@@ -41,9 +47,9 @@ function ToolButton({ label, active, prominent, onClick, children }: ToolButtonP
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "relative flex shrink-0 items-center justify-center rounded-lg transition-colors",
-        prominent ? "h-10 w-10 bg-[#edf0f5] text-[#171717] hover:bg-white" : "h-8 w-8 text-[#d4d4d4] hover:bg-white/10",
-        active && !prominent && "bg-white/10 text-white",
+        "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#d4d4d4] transition-colors hover:bg-white/10",
+        active && "bg-white/10 text-white",
+        className,
       )}
     >
       {children}
@@ -73,10 +79,32 @@ function MoveMenu({ onSelect }: { onSelect: (tool: "select" | "pan") => void }) 
 }
 
 function TutorialMenu() {
+  // Batch 358: 这四项此前是**完全没有 onClick、也没 disabled** 的 <button>，
+  // 却带着 `hover:bg-white/[0.07]` 的悬停反馈 —— 看着能点，点了什么也不发生。
+  // 普查 (probe-liblib-batch358-fake-clickable.py) 在 tutorial 态一次扫出 4 个。
+  //
+  // 为什么不用 `disabled`: batch106 / batch121 断言这四项**可见**, 而菜单项在
+  // 源站是存在的入口（SOURCE_FACT: 存在 + 文案 + 排列）。改 disabled 会去动
+  // 已采样的形态。所以取「保留外观与可点性, 但不再用悬停反馈骗人」:
+  // 去掉 hover 底色、cursor 改默认、加 title 说明为什么没反应。
+  // 文案与几何一律不动。
+  const inert =
+    "h-9 w-full cursor-default rounded-lg px-3 text-left text-sm text-[#6f6f6f]";
   return (
     <div data-liblib-overlay="primary:tutorial" className="fixed bottom-[73px] left-[calc(50%+92px)] z-[61] w-[104px] rounded-xl border border-[#363636] bg-[#262626] p-1 shadow-[0_16px_40px_rgba(0,0,0,0.45)] max-sm:bottom-[109px] max-sm:left-auto max-sm:right-3">
-      {["使用教程", "联系客服", "联系销售", "关注公众号"].map((label) => (
-        <button key={label} className="h-9 w-full rounded-lg px-3 text-left text-sm text-[#d8d8d8] hover:bg-white/[0.07]">
+      {[
+        ["使用教程", "使用教程在克隆侧尚未接入"],
+        ["联系客服", "联系客服在克隆侧尚未接入"],
+        ["联系销售", "联系销售在克隆侧尚未接入"],
+        ["关注公众号", "关注公众号在克隆侧尚未接入"],
+      ].map(([label, why]) => (
+        <button
+          key={label}
+          type="button"
+          title={why}
+          aria-disabled="true"
+          className={inert}
+        >
           {label}
         </button>
       ))}
@@ -122,31 +150,38 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
             "sm:left-[max(calc(50%+120px),704px)]",
         )}
       >
-        <ToolButton label="添加节点" prominent active={isAddNodePanelOpen} onClick={toggleAddPanel}>
-          <Plus size={22} />
+        <ToolButton label="添加节点" active={isAddNodePanelOpen} onClick={toggleAddPanel}>
+          <Plus size={20} />
         </ToolButton>
         <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePrimaryPanel === "move"} onClick={() => togglePanel("move")}>
-          {canvasTool === "pan" ? <Hand size={17} /> : <MousePointer2 size={17} />}
+          {canvasTool === "pan" ? <Hand size={20} /> : <MousePointer2 size={20} />}
         </ToolButton>
         <ToolButton label="打开工具箱" active={activePrimaryPanel === "toolbox"} onClick={() => togglePanel("toolbox")}>
-          <WandSparkles size={17} />
+          <WandSparkles size={20} />
         </ToolButton>
         <ToolButton label="素材库" active={activePrimaryPanel === "material"} onClick={() => togglePanel("material")}>
-          <Shapes size={17} />
+          <Shapes size={20} />
         </ToolButton>
         <ToolButton label="角色库" active={activePrimaryPanel === "character"} onClick={() => togglePanel("character")}>
-          <UserRound size={17} />
+          <UserRound size={20} />
         </ToolButton>
         {/* Batch 101: 2026-09-05 源站底部工具条该入口名为「生成历史」。 */}
         <ToolButton label="生成历史" active={activePrimaryPanel === "history"} onClick={() => togglePanel("history")}>
-          <History size={17} />
+          <History size={20} />
         </ToolButton>
-        <ToolButton label="快捷键" active={isShortcutsPanelOpen} onClick={toggleShortcuts}>
-          <Keyboard size={17} />
+        {/* 源站实测：生成历史右缘 1011.5、快捷键左缘 1028.5，间隙 17px，
+            比簇内其余的 8px 宽一截——这里是一处分隔。 */}
+        <ToolButton
+          label="快捷键"
+          className="ml-[9px]"
+          active={isShortcutsPanelOpen}
+          onClick={toggleShortcuts}
+        >
+          <Keyboard size={20} />
         </ToolButton>
         {/* Batch 121: 源站 2026-09-06 该入口名为「教程」。 */}
         <ToolButton label="教程" active={activePrimaryPanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
-          <CircleHelp size={17} />
+          <CircleHelp size={20} />
         </ToolButton>
       </div>
 

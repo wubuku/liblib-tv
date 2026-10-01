@@ -1304,7 +1304,10 @@ export default function DirectorDesk({
                   // 不算可复刻的体验。ESC 键退出在源站是真实语义，已接上。
                   className="pointer-events-auto peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
                 >
-                  取消<span className="ml-0.5 text-[10px]">ESC</span>
+                  {/* Batch 612 复测：源站这枚胶囊是**单文本节点**
+                      `取消ESC`（own='取消ESC'，无子元素，整枚 12px/12px/500）；
+                      此前 clone 拆成「取消 + 10px 的 ESC」，宽度与字重都对不上。 */}
+                  取消ESC
                 </button>
                 <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100">
                   按 ESC 退出

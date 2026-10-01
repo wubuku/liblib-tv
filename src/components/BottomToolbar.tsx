@@ -29,7 +29,9 @@ function IconButton({ label, active, onClick, children }: IconButtonProps) {
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[#bdbdbd] transition-colors hover:bg-white/[0.08] hover:text-white",
+        // Batch 612（源站实测 probe612c）：四枚图标按钮都是
+        // `rounded-lg`（clone 此前是 rounded-md）。
+        "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#bdbdbd] transition-colors hover:bg-white/[0.08] hover:text-white",
         active && "bg-white/10 text-[#f7f7f7]",
       )}
     >
@@ -75,8 +77,12 @@ export function BottomToolbar({
     <div
       className={cn(
         // Batch 171: 源站栏容器 items-end gap-2、无内边距盒（2026-09-07 采样 280×40）。
-        "fixed bottom-3 z-[60] flex h-10 items-end gap-2 transition-[left]",
-        isAssetPanelOpen ? "left-64 max-sm:left-4" : "left-4",
+        // Batch 612（源站 2026-10-01 复测）逐项对齐：整簇 28 高、y=1104、
+        // 起点 x=14、**簇内间隙 4px**（源站 资产管理右缘 108 → 整理画布
+        // 左缘 112）。此前 clone 是 y=1110 / x=16 / gap-2(8)，逐枚累积到
+        // 缩放选项时已经偏 22px。
+        "fixed bottom-[18px] z-[60] flex h-10 items-end gap-1 transition-[left]",
+        isAssetPanelOpen ? "left-64 max-sm:left-4" : "left-[14px]",
       )}
     >
       <button
@@ -86,27 +92,29 @@ export function BottomToolbar({
         onClick={onToggleAssetPanel}
         className={cn(
           // Batch 171: 源站按钮 rounded-lg、13px（实拍 94×28）。
-          "flex h-7 items-center gap-2 rounded-lg px-2 text-[13px] text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
+          // Batch 612 复测：94 宽来自 `px-3 gap-1`（此前 clone 是 px-2 gap-2，
+          // 实测只有 91）。
+          "flex h-7 items-center gap-1 rounded-lg px-3 text-[13px] text-[#bcbcbc] hover:bg-white/[0.08] hover:text-white",
           isAssetPanelOpen && "bg-white/10 text-white",
         )}
       >
-        <PanelToggleGlyph className="size-[15px] text-current" />
+        <PanelToggleGlyph className="size-[14px] text-current" />
         <span>资产管理</span>
       </button>
       <IconButton label="整理画布，Option+Shift+F" onClick={onOrganize}>
-        <GridGlyph className="size-[15px] text-current" />
+        <GridGlyph className="size-[14px] text-current" />
       </IconButton>
       <IconButton label="切换小地图" active={showMinimap} onClick={toggleMinimap}>
-        <MapGlyph className="size-[15px] text-current" />
+        <MapGlyph className="size-[14px] text-current" />
       </IconButton>
       <IconButton label={showEdges ? "隐藏节点连线" : "显示节点连线"} active={showEdges} onClick={toggleEdges}>
-        <LinkGlyph className="size-[15px] text-current" />
+        <LinkGlyph className="size-[14px] text-current" />
       </IconButton>
       <span
         className="contents sm:max-[850px]:hidden"
       >
         <IconButton label="网格吸附" active={snapToGrid} onClick={toggleSnapToGrid}>
-          <MagnetGlyph className="size-[15px] text-current" />
+          <MagnetGlyph className="size-[14px] text-current" />
         </IconButton>
       </span>
       <div
@@ -119,7 +127,9 @@ export function BottomToolbar({
           aria-label="缩放选项"
           aria-expanded={isZoomMenuOpen}
           onClick={toggleZoomMenu}
-          className="flex h-7 min-w-10 items-center justify-center rounded-lg px-1.5 text-[13px] tabular-nums text-[#d7d7d7] hover:bg-white/[0.08]"
+          // Batch 612 复测：源站 36.3 宽、`px-1`，不带 min-w / tabular-nums
+          //（此前 clone 是 min-w-10 + px-1.5 + tabular-nums，实测 40.2）。
+          className="flex h-7 items-center justify-center rounded-lg px-1 text-[13px] text-[#d7d7d7] hover:bg-white/[0.08]"
         >
           {zoomLevel}%
         </button>

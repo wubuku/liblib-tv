@@ -1,0 +1,881 @@
+{
+  "batch": 612,
+  "title": "Control-census sweep: axis aria split, canvas bottom clusters, follow capsule",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "fresh control census (diff609.py) re-run on both sides, 2026-10-01",
+    "probe612c: exact boxes / classes / glyph sizes for both canvas-page bottom clusters",
+    "probe612b: the follow banner subtree, showing the capsule's aria-label='退出跟随' against its visible '取消ESC'"
+  ],
+  "claims": {
+    "sourceFact": [
+      "scrub chip: aria-label uses the UPPER-case axis while the DOM text is lower-case and text-transform: uppercase renders it",
+      "bottom-left cluster: 28 tall at y=1104 from x=14, 4px gaps, rounded-lg, 14px glyphs, 资产管理 94 wide (px-3 gap-1), 缩放选项 36.3 wide (px-1, no min-width, no tabular-nums)",
+      "bottom-centre cluster: every button 32x32 ghost, 20px glyphs, 8px gaps, with a 17px separator before 快捷键",
+      "the source has no 'primary' variant in that cluster",
+      "follow cancel capsule: single text node '取消ESC', 12px/12px/500, 63.7 wide, aria-label='退出跟随'"
+    ],
+    "cloneDecision": [
+      "the clone-only 打开工具箱 button is kept, so the bottom-centre cluster stays 20px left of the source's; only the metrics are compared",
+      "the clone keeps pointer-events-auto on the follow capsule — the source's inherits pointer-events:none and is a dead button"
+    ],
+    "sourceSideObservations": [
+      "the follow capsule's accessible name (退出跟随) disagrees with its visible label (取消ESC); recorded, not silently corrected in either direction"
+    ],
+    "notClaimed": [
+      "the source's canvas-page button click behaviour (it writes to the real project)",
+      "帮助 stays at its clone position (y=928) rather than moving into the source's bottom-left cluster — left for a later batch"
+    ]
+  },
+  "checks": {
+    "initial": {
+      "left": {
+        "资产管理": {
+          "box": [
+            14,
+            1104,
+            94,
+            28
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(188, 188, 188)",
+          "minWidth": "auto",
+          "pad": "0px 12px",
+          "font": "13px/19.5px/400",
+          "tabular": "normal",
+          "svg": [
+            14,
+            14
+          ],
+          "kids": 2
+        },
+        "整理画布，Option+Shift+F": {
+          "box": [
+            112,
+            1104,
+            28,
+            28
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(189, 189, 189)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            14,
+            14
+          ],
+          "kids": 1
+        },
+        "切换小地图": {
+          "box": [
+            144,
+            1104,
+            28,
+            28
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(189, 189, 189)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            14,
+            14
+          ],
+          "kids": 1
+        },
+        "隐藏节点连线": {
+          "box": [
+            176,
+            1104,
+            28,
+            28
+          ],
+          "radius": "8px",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "color": "rgb(247, 247, 247)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            14,
+            14
+          ],
+          "kids": 1
+        },
+        "网格吸附": {
+          "box": [
+            208,
+            1104,
+            28,
+            28
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(189, 189, 189)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            14,
+            14
+          ],
+          "kids": 1
+        },
+        "缩放选项": {
+          "box": [
+            240,
+            1104,
+            36,
+            28
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(215, 215, 215)",
+          "minWidth": "0px",
+          "pad": "0px 4px",
+          "font": "13px/19.5px/400",
+          "tabular": "normal",
+          "svg": null,
+          "kids": 0
+        }
+      },
+      "right": {
+        "添加节点": {
+          "box": [
+            799.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "移动": {
+          "box": [
+            839.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "打开工具箱(clone-only)": {
+          "box": [
+            879.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "素材库": {
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "角色库(clone 名)": {
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "生成历史": {
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "快捷键": {
+          "box": [
+            1048.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        },
+        "教程": {
+          "box": [
+            1088.5,
+            1097.5,
+            32,
+            32
+          ],
+          "radius": "8px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(212, 212, 212)",
+          "minWidth": "auto",
+          "pad": "0px",
+          "font": "16px/24px/400",
+          "tabular": "normal",
+          "svg": [
+            20,
+            20
+          ],
+          "kids": 1
+        }
+      },
+      "chip": null,
+      "cancel": null
+    },
+    "left:资产管理:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:资产管理:x": {
+      "ok": true,
+      "detail": "14 vs 14"
+    },
+    "left:资产管理:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:资产管理:w": {
+      "ok": true,
+      "detail": "94 vs 94"
+    },
+    "left:资产管理:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:资产管理:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:资产管理:glyph-14": {
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    "left:整理画布，Option+Shift+F:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:整理画布，Option+Shift+F:x": {
+      "ok": true,
+      "detail": "112 vs 112"
+    },
+    "left:整理画布，Option+Shift+F:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:整理画布，Option+Shift+F:w": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:整理画布，Option+Shift+F:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:整理画布，Option+Shift+F:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:整理画布，Option+Shift+F:glyph-14": {
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    "left:切换小地图:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:切换小地图:x": {
+      "ok": true,
+      "detail": "144 vs 144"
+    },
+    "left:切换小地图:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:切换小地图:w": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:切换小地图:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:切换小地图:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:切换小地图:glyph-14": {
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    "left:隐藏节点连线:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:隐藏节点连线:x": {
+      "ok": true,
+      "detail": "176 vs 176"
+    },
+    "left:隐藏节点连线:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:隐藏节点连线:w": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:隐藏节点连线:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:隐藏节点连线:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:隐藏节点连线:glyph-14": {
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    "left:网格吸附:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:网格吸附:x": {
+      "ok": true,
+      "detail": "208 vs 208"
+    },
+    "left:网格吸附:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:网格吸附:w": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:网格吸附:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:网格吸附:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:网格吸附:glyph-14": {
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    "left:缩放选项:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "left:缩放选项:x": {
+      "ok": true,
+      "detail": "240 vs 240"
+    },
+    "left:缩放选项:y": {
+      "ok": true,
+      "detail": "1104 vs 1104"
+    },
+    "left:缩放选项:w": {
+      "ok": true,
+      "detail": "36 vs 36.3"
+    },
+    "left:缩放选项:h": {
+      "ok": true,
+      "detail": "28 vs 28"
+    },
+    "left:缩放选项:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "left:gap-4": {
+      "ok": true,
+      "detail": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "left:zoom-no-min-width": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "left:zoom-not-tabular": {
+      "ok": true,
+      "detail": "normal"
+    },
+    "left:asset-94": {
+      "ok": true,
+      "detail": [
+        14,
+        1104,
+        94,
+        28
+      ]
+    },
+    "right:添加节点:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:添加节点:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:添加节点:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:添加节点:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:添加节点:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:添加节点:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:移动:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:移动:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:移动:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:移动:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:移动:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:移动:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:素材库:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:素材库:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:素材库:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:素材库:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:素材库:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:素材库:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:角色造型室:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:角色造型室:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:角色造型室:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:角色造型室:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:角色造型室:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:角色造型室:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:生成历史:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:生成历史:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:生成历史:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:生成历史:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:生成历史:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:生成历史:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:快捷键:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "right:快捷键:y": {
+      "ok": true,
+      "detail": "1097.5 vs 1097.5"
+    },
+    "right:快捷键:w": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:快捷键:h": {
+      "ok": true,
+      "detail": "32 vs 32"
+    },
+    "right:快捷键:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "right:快捷键:glyph-20": {
+      "ok": true,
+      "detail": [
+        20,
+        20
+      ]
+    },
+    "right:添加节点-is-ghost": {
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0)"
+    },
+    "right:添加节点-not-light": {
+      "ok": true,
+      "detail": "rgb(212, 212, 212)"
+    },
+    "right:gaps-8": {
+      "ok": true,
+      "detail": [
+        [
+          "添加节点->移动",
+          8.0
+        ],
+        [
+          "移动->打开工具箱(clone-only)",
+          8.0
+        ],
+        [
+          "打开工具箱(clone-only)->素材库",
+          8.0
+        ],
+        [
+          "素材库->角色库(clone 名)",
+          8.0
+        ],
+        [
+          "角色库(clone 名)->生成历史",
+          8.0
+        ],
+        [
+          "生成历史->快捷键",
+          17.0
+        ],
+        [
+          "快捷键->教程",
+          8.0
+        ]
+      ]
+    },
+    "right:separator-17": {
+      "ok": true,
+      "detail": 17.0
+    },
+    "panel:添加节点-opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "panel:zoom-opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "panel:shortcuts-opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "panel:history-opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "follow": {
+      "box": [
+        970.1,
+        9,
+        63.8,
+        16
+      ],
+      "own": "取消ESC",
+      "aria": "退出跟随",
+      "kids": 0,
+      "font": "12px/12px/500",
+      "radius": "3.35544e+07px",
+      "pad": "2px 8px",
+      "bg": "rgb(255, 255, 255)",
+      "color": "lab(8.11897 0.811279 -12.254)",
+      "pe": "auto"
+    },
+    "follow:capsule-present": {
+      "ok": true,
+      "detail": ""
+    },
+    "follow:single-text-node": {
+      "ok": true,
+      "detail": 0
+    },
+    "follow:visible-text": {
+      "ok": true,
+      "detail": "取消ESC"
+    },
+    "follow:aria-is-退出跟随": {
+      "ok": true,
+      "detail": "退出跟随"
+    },
+    "follow:font-12-12-500": {
+      "ok": true,
+      "detail": "12px/12px/500"
+    },
+    "follow:width-63.7": {
+      "ok": true,
+      "detail": [
+        970.1,
+        9,
+        63.8,
+        16
+      ]
+    },
+    "follow:radius-full": {
+      "ok": true,
+      "detail": "3.35544e+07px"
+    },
+    "follow:white-fill": {
+      "ok": true,
+      "detail": "rgb(255, 255, 255)"
+    },
+    "follow:clone-keeps-hit-area": {
+      "ok": true,
+      "detail": "auto"
+    },
+    "follow:cancel-clears-follow": {
+      "ok": true,
+      "detail": ""
+    },
+    "axisChip": {
+      "box": [
+        1656,
+        378,
+        20,
+        28
+      ],
+      "aria": "左右拖动调整 X 轴",
+      "own": "x",
+      "textTransform": "uppercase",
+      "font": "12px"
+    },
+    "chip:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "chip:aria-upper-case": {
+      "ok": true,
+      "detail": "左右拖动调整 X 轴"
+    },
+    "chip:glyph-lower-case": {
+      "ok": true,
+      "detail": "x"
+    },
+    "chip:uppercase-css": {
+      "ok": true,
+      "detail": "uppercase"
+    },
+    "chip:font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "chip:Y-present": {
+      "ok": true,
+      "detail": ""
+    },
+    "chip:Y-glyph-lower-case": {
+      "ok": true,
+      "detail": "y"
+    },
+    "chip:Y-uppercase-css": {
+      "ok": true,
+      "detail": "uppercase"
+    },
+    "chip:Z-present": {
+      "ok": true,
+      "detail": ""
+    },
+    "chip:Z-glyph-lower-case": {
+      "ok": true,
+      "detail": "z"
+    },
+    "chip:Z-uppercase-css": {
+      "ok": true,
+      "detail": "uppercase"
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "_summary": {
+      "checks": 112,
+      "failures": []
+    }
+  }
+}

@@ -159,7 +159,11 @@ function AxisFields({
                   （实测 x=1656 而数值框同起点，轴片压在其上），不是流内 24 宽。 */
               <SceneAxisScrub
                 className="absolute left-0 top-0 z-10 flex h-7 w-5 touch-none select-none items-center justify-center rounded-[8px_0px_0px_8px] border-0 bg-transparent text-[12px] font-normal uppercase text-white/45 hover:bg-white/8 hover:text-white/45"
-                axis={axisLabels[index].toLowerCase()}
+                /* 源站 aria 是大写 `左右拖动调整 X 轴`，而 DOM 文本是小写
+                   `x`、靠 CSS `uppercase` 显示成 X。batch 609 一度把轴名
+                   一并小写传下去，aria 就变成了 `… x 轴`，与源站不符；
+                   字形大小写由 SceneAxisScrub 内部负责。 */
+                axis={axisLabels[index]}
                 value={value}
                 step={stepFor()}
                 testId={`${field}-${axisLabels[index]}`}
@@ -1735,7 +1739,9 @@ function SceneAxisScrub({
         className,
       )}
     >
-      {axis}
+      {/* 源站实测：aria-label 用大写轴名，DOM 文本是小写，靠 class 里的
+          `uppercase` 把字形显示成大写。两件事分开，才与源站逐字一致。 */}
+      {axis.toLowerCase()}
     </button>
   );
 }

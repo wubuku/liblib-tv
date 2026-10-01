@@ -164,7 +164,10 @@ READ = """() => {
     groupH: group ? at(group)[3] : null,
     chip: chip ? {box: at(chip), pos: cs(chip).position, z: cs(chip).zIndex,
                   radius: cs(chip).borderRadius, color: cs(chip).color,
-                  font: cs(chip).fontSize, cursor: cs(chip).cursor} : null,
+                  font: cs(chip).fontSize, cursor: cs(chip).cursor,
+                  aria: chip.getAttribute('aria-label') || '',
+                  own: (chip.textContent || '').trim(),
+                  textTransform: cs(chip).textTransform} : null,
     input: input ? {box: at(input), font: cs(input).fontSize, padLeft: cs(input).paddingLeft,
                     textAlign: cs(input).textAlign, transform: cs(input).textTransform} : null,
     toggle: toggle ? {box: at(toggle), label: toggle.getAttribute('aria-label'),
@@ -330,6 +333,23 @@ def run(page: Page) -> dict[str, Any]:
         "chip:colours-white-45",
         abs(alpha_of(chip["color"]) - 0.45) < 0.01,
         detail=chip["color"],
+    )
+    # Batch 612: the source splits these two — aria-label carries the UPPER-case
+    # axis ("左右拖动调整 X 轴") while the DOM text is lower-case and the class
+    # list's `text-transform: uppercase` renders it as a capital.  Batch 609
+    # passed the axis name through lower-cased and silently produced
+    # "… x 轴"; the control census caught it.  Assert both halves so it cannot
+    # drift again.
+    v.check(
+        "chip:aria-upper-case-axis",
+        chip["aria"] == "左右拖动调整 X 轴",
+        detail=chip["aria"],
+    )
+    v.check("chip:glyph-lower-case", chip["own"] == "x", detail=chip["own"])
+    v.check(
+        "chip:text-transform-uppercase",
+        chip["textTransform"] == "uppercase",
+        detail=chip["textTransform"],
     )
 
     # --- number input --------------------------------------------------
