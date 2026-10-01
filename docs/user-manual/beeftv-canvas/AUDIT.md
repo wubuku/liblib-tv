@@ -761,3 +761,26 @@
 - **三处已补**：两篇生成页各加一节「可选参数（随模型能力档案变化）」，列出真实档位，并统一给出「以面板实际出现的为准、换模型会变」的提示；图片页指向视频页避免重复。
 - **方法论**：这一类的隐蔽性在于——**举例式的写法（"如 720P·1:1·6s"）读起来完全可信**，它没说这三个值是固定的，所以没人会去查。但用户会因此以为只有这一组参数可用。**枚举型信息不能只给例子，例子的危害是隐性的。**
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录六十二（Batch 106，2026-10-01，字幕/时间线功能点核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：逐字核对 `canvas-subtitle-dialog.tsx`、`srt-parser.ts`、`subtitle-highlights.ts`、`editor-shell.tsx` 与字幕页、剪辑工作台页的每一条声明。
+- **本批是「证实型」批次：11 条声明逐字吻合，未发现错误。** 逐条记录以免后人重复怀疑：
+
+| 声明 | 源码 | 结论 |
+|---|---|---|
+| 工具条 7 项（导入 SRT/导入文本/导出 SRT/自动切分/新增字幕/清空全部/AI 关键词高亮） | `canvas-subtitle-dialog.tsx` 工具条逐项命中 | ✅ |
+| 字幕样式四字段（字号/颜色/位置/单条上限） | 源码 label 恰为这四个；位置选项 顶部·居中·底部 | ✅ |
+| SRT 坏块三条跳过规则 | `srt-parser.ts:20,25,31` 依次判 `lines.length < 3`、`parseInt` NaN、时间码正则不匹配 | ✅ |
+| 视频时长未知按每条 4 秒 | `:240` 的 `stepMs = durationMs/lines.length : 4_000` | ✅ |
+| 未配置模型降级文案 | `:271` `message.info("未配置可用的文本模型，已使用本地标点高亮")` | ✅ **逐字一致** |
+| 高亮「双重校验」 | `filterValidSubtitleHighlights` = `isValidSubtitleHighlight`（形状）&& `!isExpiredSubtitleHighlight`（原文子串） | ✅ |
+| 重分段后重映射、匹配不上显式丢弃 | `remapHighlightsAfterResegment` 返回 `{remapped, dropped}` | ✅ |
+| 「时间线八面板宿主」 | `editor-shell.tsx` 的 `editorSlots` **恰 8 个** | ✅ **数字与「宿主」用词均正确** |
+
+- **两处补强（不是纠错，是把裸数字展开成可查清单）**：
+  1. **八面板**原本只是一个数字，现按源码列出 8 个插槽名（`timeline-panel` / `preview-renderer` / `inspector` / `asset-ingest` / `subtitle-tool` / `transcription-provider` / `export-renderer` / `ai-assistant`），并点明「宿主」的工程含义——**面板缺失通常是对应插槽没有功能填入，而不是工作台坏了**。这是排障时真正需要的那句话。
+  2. 降级高亮的终止标点集合补明为 `。！？；` 四个字符（`TERMINAL_PUNCTUATION`），原文只说「按终止标点」。
+- **方法论**：连续两批（105、106）都以「查完发现基本都对」收尾，这不是白做——**审计的价值一半在于证明某处没问题**。更重要的是：Batch 105 查的是**参数枚举**（错），本批查的是**行为规则**（对）。可初步归纳：**枚举型信息易错，行为型描述可靠**——因为枚举会被上游增删，而行为规则通常有更完整的测试覆盖（`srt-parser` 的三条 continue、字幕样式字段都是稳定契约）。后续审计可据此分配优先级。
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
