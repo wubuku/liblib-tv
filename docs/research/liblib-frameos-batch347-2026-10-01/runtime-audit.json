@@ -1,0 +1,61 @@
+{
+  "batch": 347,
+  "title": "FrameOS interactive blind spots cleared to zero and locked by a gate",
+  "defect": "A meta-defect hit twice: Batch 345 found FrameosToast elements had no identifying attribute (so 'is the UI lying about success?' was untestable), and Batch 346 found the help panel rows had the same problem. Twice is a pattern: 'remember to add test hooks' is not a reliable process. A runtime census measured the remaining debt: 38 clickable elements, 4 blind spots (11%) -- '下载桌面端' plus the three core breadcrumb navigation buttons (项目/场景/画布), i.e. exactly the controls a test most needs to address.",
+  "fix": "Added data-frameos-crumb (covers all three breadcrumb switchers via their shared Crumb renderer) and data-frameos-download-client. The important part is not the two attributes but the GATE: the verifier enumerates every clickable element in three UI states and fails if any lacks a stable hook, naming it. Future UI added without a hook now fails the suite instead of quietly becoming untestable.",
+  "note": "'下载桌面端' remains a deliberate mock (window.alert). The source's target is an external download URL that was never sampled, so the clone does not invent one -- but addressability is required regardless, precisely so that if it breaks later we can catch it.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "scan:not-empty",
+        "blind:default-zero",
+        "blind:with-help-zero",
+        "blind:with-node-selected-zero",
+        "crumb:three-buttons",
+        "crumb:hook-matches-text:测试作品",
+        "crumb:hook-matches-text:测试项目",
+        "crumb:hook-matches-text:画布 1",
+        "crumb:hook-usable",
+        "header:download-addressable",
+        "diagnostics:zero"
+      ],
+      "default": {
+        "total": 38,
+        "withHook": 38,
+        "blind": 0,
+        "blindItems": []
+      },
+      "with_help": {
+        "total": 39,
+        "withHook": 39,
+        "blind": 0,
+        "blindItems": []
+      },
+      "with_node_selected": {
+        "total": 40,
+        "withHook": 40,
+        "blind": 0,
+        "blindItems": []
+      },
+      "crumbs": [
+        {
+          "hook": "测试作品",
+          "text": "测试作品"
+        },
+        {
+          "hook": "测试项目",
+          "text": "测试项目"
+        },
+        {
+          "hook": "画布 1",
+          "text": "画布 1"
+        }
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -190,6 +190,11 @@ export function FrameosAppHeader() {
           <button
             type="button"
             className="hd-download-client"
+            // Batch 347: 此前无可寻址钩子(运行时普查的 4 个交互盲区之一)。
+            // 注: 它仍是一个 mock(弹 alert), 保留 mock 是有意为之 ——
+            // 「下载桌面端」在源站是外部跳转, 克隆不发明目标地址;
+            // 但**可寻址**必须做到, 否则下次它出问题我们抓不到。
+            data-frameos-download-client=""
             onClick={() => window.alert("下载桌面端 (mock)")}
             style={{
               display: "inline-flex",

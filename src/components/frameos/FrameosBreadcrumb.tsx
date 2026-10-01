@@ -257,6 +257,11 @@ function Crumb({
       <button
         type="button"
         className="breadcrumb-switcher"
+        // Batch 347: 三个面包屑按钮(项目/场景/画布)此前**没有任何稳定钩子** ——
+        // 运行时普查(probe-frameos-batch347-interactive-blindspots.py)把它们
+        // 列为 4 个交互盲区之一: 核心导航控件却是测试唯一没法精确定位的东西。
+        // 加钩子后既能被验证器寻址, 也让盲区门禁能盯住这里。
+        data-frameos-crumb={label}
         onClick={onToggle}
         style={{
           display: "inline-flex",
