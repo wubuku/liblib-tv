@@ -93,10 +93,27 @@ export function JimengNodeToolbar({
                 ) : null}
               </button>
 
+              {/* 批 836：这两个下拉是**裸 div，一个 role 都没有** ——
+                  §38 契约说「每个浮层都要可指名 + 可定位」，可 role 型普查
+                  （role ∈ dialog/menu/listbox/popover）**结构上看不见它们**。
+                  这里只补用户不可见的锚点，**不补 role**：
+                  源站侧测不到（示例画布上的视频节点全是「暂无视频」，选中
+                  弹的是生成表单不是工具条，两个按钮根本没出现；换文本节点的
+                  「背景色」下拉也没能在无头环境打开 —— 点了之后 aria-expanded
+                  仍是 false），**没有证据就不编**。记 BLOCKED_BY_FIXTURE。
+                  verifier §B 用断言把「没有 role」锁住，防后人看不出它是
+                  「测不到」还是「忘了加」。
+
+                  ⚠️ 注释要放**这里**（元素子节点位置），不能塞进下面的
+                  `{cond ? ( ... ) : null}` 括号里 —— 那个位置不是合法 JSX
+                  注释位，`npx tsc` 竟然放过了，运行时才炸
+                  `toggleToolActive is not defined`。**tsc 绿 ≠ 语法对。** */}
+
               {item.kind === "dropdown" && active ? (
                 <div
                   className="absolute left-1/2 top-full z-[120] mt-2 -translate-x-1/2 rounded-xl p-1"
                   style={{ background: "rgb(38,38,38)" }}
+                  data-testid="video-toolbar-capture-menu"
                 >
                   {item.menu.map((entry) => (
                     <button
@@ -128,10 +145,12 @@ export function JimengNodeToolbar({
             工具
             <ChevronDown size={12} className="ml-0.5 shrink-0 text-white/70" />
           </button>
+          {/* 同上：工具∨ 下拉也只补锚点、不补 role，理由见上面那条注释 */}
           {toolOpen ? (
             <div
               className="absolute left-1/2 top-full z-[120] mt-2 -translate-x-1/2 rounded-xl p-1"
               style={{ background: "rgb(38,38,38)" }}
+              data-testid="video-toolbar-tools-menu"
             >
               <p className="px-2.5 pb-1 pt-1.5 text-[11px] text-white/40">编辑</p>
               <button

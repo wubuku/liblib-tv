@@ -1,0 +1,28 @@
+{
+  "picked_node": {
+    "tid": "rf__node-node_5gftn3dnt1",
+    "x": 801,
+    "y": 286
+  },
+  "toolbar_present": true,
+  "bgcolor_btn": {
+    "aria": null,
+    "text": "背景色",
+    "haspopup": "menu",
+    "w": 75,
+    "h": 32,
+    "x": 726,
+    "y": 150
+  },
+  "clicked": {
+    "aria": null,
+    "text": "背景色"
+  },
+  "new_layers": [],
+  "btn_after_open": {
+    "aria": null,
+    "text": "背景色",
+    "haspopup": "menu",
+    "expanded": "false"
+  }
+}
