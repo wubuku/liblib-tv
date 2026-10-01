@@ -53,7 +53,11 @@ const REF_KINDS = ["主体", "图片", "视频", "音频", "文本"];
 /** Batch 809 SOURCE_FACT：点「+」弹出三项来源菜单 */
 const ADD_SOURCES = ["上传", "从资产库添加", "从画布添加"];
 
-type Panel = null | "skills" | "mention" | "add";
+type Panel = null | "skills" | "mention" | "add" | "sessions";
+
+/** Batch 834：空会话的稳定引用。模块级常量 ⇒ 每次渲染不新建数组，
+    免得 `messages.map` 在空态下反复换引用。 */
+const EMPTY_MESSAGES: { role: "user" | "agent"; text: string }[] = [];
 
 export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   const panelRef = useRef<HTMLElement>(null);
@@ -81,14 +85,37 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   const [skillQuery, setSkillQuery] = useState("");
   const [refKind, setRefKind] = useState(REF_KINDS[0]);
   const [tokens, setTokens] = useState<string[]>([]);
-  const [messages, setMessages] = useState<{ role: "user" | "agent"; text: string }[]>([]);
+  /* Batch 834：`messages` 从组件本地 useState 搬进 store。
+     此前它是本组件的 `useState`，于是：抽屉一卸载会话就没了；「新建会话」
+     是 `setMessages([])`，**直接销毁**当前会话且不可恢复 —— 那不叫新建。
+     现在消息挂在 store 的 `aiSessions` 上，新建 = 追加一条并切过去，
+     旧会话仍在「会话列表」里可切回。 */
+  const sessions = useJimengStore((s) => s.aiSessions);
+  const activeId = useJimengStore((s) => s.aiActiveSessionId);
+  const appendAiMessage = useJimengStore((s) => s.appendAiMessage);
+  const newAiSession = useJimengStore((s) => s.newAiSession);
+  const selectAiSession = useJimengStore((s) => s.selectAiSession);
+  const messages =
+    sessions.find((s) => s.id === activeId)?.messages ?? EMPTY_MESSAGES;
   const pushToast = useJimengStore((s) => s.pushToast);
   // 源站：输入区非空时发送钮才可用；技能/参考 token 也算内容
   const composerText = [input.trim(), ...tokens].filter(Boolean).join(" ");
   const canSend = richPrefill || composerText.length > 0;
   // 源站「会话列表/新建会话」在**还没有会话**时是 aria-disabled —— 有会话
   // 之后才可用。会话存在的判据就是发过消息。
-  const hasSession = messages.length > 0;
+  const hasSession = sessions.length > 0;
+  /* Batch 834 订正：中间区空态的判据**不是** `hasSession`。
+     `hasSession` 是「有没有会话」，供两枚会话头按钮的 aria-disabled 用
+     （那两条是源站契约，无会话时确实禁用）。但中间区该不该显示空态，
+     取决于**当前这条会话里有没有消息** —— 否则 batch 834 把「新建」
+     从销毁改成追加之后，「新建会话」点下去是一条空白死路：消息流容器
+     渲染着却空空如也，技能 chips 也不出来，用户既看不到任何提示，也
+     没有任何可点的起手式。这和 batch 832 记的「会骗人的提示比没有
+     交互更糟」是同一类问题。
+
+     ⚠ 这里**没有** SOURCE_FACT：源站的 chips 空态是按「有没有消息」
+     还是按「有没有会话」判定的，未取证。复刻自有语义：按当前会话判。 */
+  const streamIsEmpty = messages.length === 0;
 
   const addSkill = (chip: string) => {
     setTokens((t) => (t.includes(chip) ? t : [...t, chip]));
@@ -102,11 +129,9 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   const send = () => {
     if (!canSend) return;
     const text = richPrefill ? prefill || "" : composerText;
-    setMessages((m) => [
-      ...m,
-      { role: "user", text },
-      { role: "agent", text: `已收到「${text.slice(0, 24)}」。这是 mock 回复，接真实 Agent 时替换。` },
-    ]);
+    // Batch 834：两条消息分两次 append，与 store 的角色粒度对齐
+    appendAiMessage("user", text);
+    appendAiMessage("agent", `已收到「${text.slice(0, 24)}」。这是 mock 回复，接真实 Agent 时替换。`);
     setInput("");
     setTokens([]);
     setAiDrawerDraft("");
@@ -145,7 +170,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           aria-label="会话列表"
           data-testid="canvas-agent-session-menu-trigger"
           disabled={!hasSession}
-          onClick={() => pushToast(FEEDBACK.sessionList(messages.length))}
+          onClick={() => setPanel((p) => (p === "sessions" ? null : "sessions"))}
           className="flex h-8 w-[58px] items-center gap-1 rounded-lg px-2 text-[14px] text-white/90 disabled:cursor-default disabled:text-white/45"
         >
           新会话
@@ -157,7 +182,9 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             data-testid="canvas-agent-session-create"
             disabled={!hasSession}
             onClick={() => {
-              setMessages([]);
+              // Batch 834：此前是 `setMessages([])` —— **销毁**当前会话。
+              // 「新建」的语义是开一条新的，旧的仍在列表里可切回。
+              newAiSession();
               setTokens([]);
               setInput("");
               setAiDrawerDraft("");
@@ -179,8 +206,8 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      {/* Batch 809: 有会话时中间区换成消息流，空态（技能 chips）退场 */}
-      {hasSession ? (
+      {/* Batch 809: 当前会话有消息时中间区换成消息流，空态（技能 chips）退场 */}
+      {!streamIsEmpty ? (
         <div
           className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
           data-testid="agent-messages"
@@ -227,6 +254,65 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
         </div>
       </div>
       )}
+
+      {/* Batch 834：会话列表 —— 此前是 toast 桩（`FEEDBACK.sessionList`）。
+          ⚠️ 源站这枚弹层的**内容与几何未取证**（批 808/810 取到的是触发钮本身
+          58×32 @[1314,41]，弹层没打开量过），所以下面是**复刻自有的列表语义**，
+          不写成 SOURCE_FACT：
+            一行 = 一条会话；标题取首条用户消息前 24 字
+            副标 = 「N 条消息」；当前会话带一条左侧高亮竖条
+          判据落在**关系**上（切回旧会话后消息流要真的换回去），
+          不写死条数/文案 —— 默认会话数由操作决定。 */}
+      {panel === "sessions" ? (
+        <div
+          className="mx-3 mb-2 max-h-[260px] overflow-y-auto rounded-xl bg-[#262626] p-1"
+          data-testid="canvas-agent-session-menu"
+          role="dialog"
+          aria-label="会话列表"
+        >
+          {sessions.length === 0 ? (
+            <p className="px-2 py-3 text-center text-[12px] text-white/40">
+              还没有会话
+            </p>
+          ) : (
+            sessions.map((s) => {
+              const active = s.id === activeId;
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => {
+                    selectAiSession(s.id);
+                    setPanel(null);
+                    if (s.id !== activeId) pushToast(FEEDBACK.switchSession(s.title));
+                  }}
+                  data-testid={`canvas-agent-session-row-${s.id}`}
+                  aria-current={active ? "true" : undefined}
+                  className={`flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left ${
+                    active ? "bg-white/10" : "hover:bg-white/[0.06]"
+                  }`}
+                >
+                  {/* 当前会话的高亮竖条：用宽度而不是颜色区分，
+                      免得只靠颜色（无障碍上更稳）。 */}
+                  <span
+                    className={`h-4 w-[2px] shrink-0 rounded-full ${
+                      active ? "bg-white/70" : "bg-transparent"
+                    }`}
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[13px] text-white/90">
+                      {s.title}
+                    </span>
+                    <span className="block text-[11px] text-white/40">
+                      {s.messages.length} 条消息
+                    </span>
+                  </span>
+                </button>
+              );
+            })
+          )}
+        </div>
+      ) : null}
 
       {/* Batch 809: 三个弹出面板，位置在 composer 之上 */}
       {panel === "skills" ? (
@@ -385,6 +471,13 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
                 setInput(e.target.value);
                 setAiDrawerDraft(e.target.value);
               }}
+              /* Batch 834：这枚输入框此前**既无 data-testid 也无 aria-label**，
+                 只靠 placeholder —— 而批 823 立的那条「信号失明本身就是发现」
+                 （浮层普查只扫浮层，没扫表单控件）说的正是这种情况：
+                 一个可见的输入控件，自动化与读屏都够不着它。
+                 名字沿用 placeholder 的起头，与源站其它 chrome 锚点同一套词汇。 */
+              aria-label="输入想法、剧本或上传参考"
+              data-testid="agent-composer-input"
               placeholder="输入想法、剧本或上传参考，支持 “ / ” 使用技能，"
               className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
             />

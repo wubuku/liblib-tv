@@ -79,7 +79,9 @@ export const FEEDBACK = {
   exitDirectorStage: () => mockMsg("已退出导演台"),
 
   // ── AI 抽屉（batch 810）──
-  sessionList: (n: number) => mockMsg(`会话列表：${n} 条`),
+  // Batch 834：会话列表已是真浮层，sessionList 这条词条随之退役 ——
+  // 留着它等于给一个不存在的桩留位置。
+  switchSession: (title: string) => mockMsg(`已切换到会话「${title}」`),
   newSession: () => mockMsg("已新建会话"),
   addReference: (kind: string) => mockMsg(`已添加参考：${kind}`),
 

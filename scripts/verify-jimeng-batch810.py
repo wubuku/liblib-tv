@@ -174,14 +174,55 @@ def main() -> None:
               ("画布" in seen and ("选择" in seen or "选中" in seen)), repr(seen[:60]))
         check("选来源后菜单关闭", n('[data-testid="agent-add-panel"]') == 0)
 
-        print("— 新建会话：回到空态 —")
+        print("— 新建会话：切到一条**新的空会话**（批 834 订正）—")
+        # ⚠️ 批 834 订正：本节原先断言「新建会话 ⇒ 消息清空 + 会话头回到禁用」。
+        #    那两条把一个**缺陷**写成了契约 —— 810 当时 `messages` 是组件本地
+        #    useState，「新建」的 onClick 是 `setMessages([])`，即**销毁**当前会话
+        #    且不可恢复。批 834 把会话搬进 store（`aiSessions` / `aiActiveSessionId`），
+        #    「新建」变成**追加一条并切过去**，旧会话仍在列表里可切回。
+        #
+        #    所以下面两条契约要分清：
+        #      仍然成立 —— 切到新会话后**当前视图**是空的（技能 chips 回来）
+        #      已不成立 —— 会话头**不再**回到禁用（因为确实存在会话了）
+        #    判据从「消息清空」改成「切到的是一条空的新会话，且旧会话还在」，
+        #    这才是用户真正在意的东西。
+        #
+        # ⚠ batch 834 同时修掉本节一个**验证器自身**的缺陷：before_rows 原来
+        #   是在**浮层关闭**状态下读的 —— 关闭时 DOM 里根本没有行，恒为 0。
+        #   那样写等于「0 → after」，既没量到「旧的还在」，也没法区分
+        #   「追加了一条」和「凭空多了一条」。改成先打开列表量 baseline。
+        page.locator('[data-testid="canvas-agent-session-menu-trigger"]').click()
+        page.wait_for_timeout(400)
+        before_rows = page.evaluate(
+            """() => document.querySelectorAll(
+                 '[data-testid^="canvas-agent-session-row-"]').length""")
+        check("baseline：旧会话列表里已有 1 行（发过消息 ⇒ 有一条会话）",
+              before_rows == 1, f"count={before_rows}")
+        # 收起来（点同一枚钮 toggle，见 batch 834 记录：Escape 对该面板无效）
+        page.locator('[data-testid="canvas-agent-session-menu-trigger"]').click()
+        page.wait_for_timeout(300)
+        check("点同一枚钮收起列表", n('[data-testid="canvas-agent-session-menu"]') == 0)
         page.locator('[data-testid="canvas-agent-session-create"]').click()
         page.wait_for_timeout(500)
-        check("消息清空", n('[data-testid="agent-messages"]') == 0)
+        check("消息清空（切到的是一条新的空会话）",
+              n('[data-testid="agent-messages"]') == 0)
         check("token 清空", n('[data-testid="agent-composer-tokens"]') == 0)
         chips = n('[data-testid="canvas-agent-mode-action"]')
-        check("空态技能 chips 回来", chips == 5, f"count={chips}")
-        check("会话头回到禁用", dis("canvas-agent-session-create"))
+        check("空态技能 chips 回来（判据=当前会话为空，不是「有没有会话」）",
+              chips == 5, f"count={chips}")
+        # 810 原断言「会话头回到禁用」—— 834 后**故意不再成立**：
+        # 旧会话还在列表里可切回，所以列表/新建两枚始终可用。
+        check("会话头**不再**回到禁用（批 834：旧会话仍可切回，所以不该禁用）",
+              not dis("canvas-agent-session-create")
+              and not dis("canvas-agent-session-menu-trigger"))
+        page.locator('[data-testid="canvas-agent-session-menu-trigger"]').click()
+        page.wait_for_timeout(400)
+        after_rows = page.evaluate(
+            """() => document.querySelectorAll(
+                 '[data-testid^="canvas-agent-session-row-"]').length""")
+        check("旧会话仍在列表里（新建 ≠ 销毁，本批核心）",
+              after_rows == before_rows + 1, f"{before_rows} → {after_rows}")
+        page.keyboard.press("Escape")
         page.screenshot(path=str(REFERENCE_DIR / "jimeng-clone-batch810-agent-drawer-1680.png"))
 
         print("— 回归 —")

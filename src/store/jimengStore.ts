@@ -111,6 +111,20 @@ export interface JimengCanvasState {
   openAiDrawer: (prefill?: string, refChip?: { poster: string; label: string }) => void;
   /** 批 219 SOURCE_FACT: 抽屉草稿跨关闭保留 (源站重开后预填仍在) */
   aiDrawerDraft: string;
+  /** Batch 834：AI 抽屉的**真会话模型**。
+      此前 `messages` 是 `JimengAiDrawer` 的组件本地 useState ——
+      抽屉一卸载会话就没了，而「新建会话」按钮是 `setMessages([])`，
+      也就是**直接销毁**当前会话、不可恢复。那不是「新建」，是「删除」。
+      搬进 store 之后：新建 = 追加一条并切过去，旧会话仍在列表里可切回。 */
+  aiSessions: AiSession[];
+  aiActiveSessionId: string | null;
+  /** 追加一条消息到当前会话；没有当前会话就**先建一条**。
+      标题取首条用户消息的前 24 字（与 `send()` 里 mock 回复的截断长度一致）。 */
+  appendAiMessage: (role: "user" | "agent", text: string) => void;
+  /** 新建会话并切过去（**不删**旧的） */
+  newAiSession: () => void;
+  /** 切换当前会话；id 不存在时不动 */
+  selectAiSession: (id: string) => void;
   setAiDrawerDraft: (draft: string) => void;
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
@@ -223,6 +237,14 @@ export interface JimengCanvasState {
   redo: () => void;
 }
 
+/** Batch 834：AI 抽屉的一条会话。 */
+export interface AiSession {
+  id: string;
+  /** 取首条用户消息的前 24 字；还没有用户消息时是「新会话」 */
+  title: string;
+  messages: { role: "user" | "agent"; text: string }[];
+}
+
 export interface JimengTask {
   id: string;
   nodeId: string;
@@ -245,6 +267,10 @@ function markDirty(state: JimengCanvasState): {
   }, 2000);
   return { project: { ...state.project, saved: false } };
 }
+
+/** Batch 834：AI 会话 id 计数器（模块级，避免同毫秒撞号，见 appendAiMessage 注释） */
+let aiSessionSeq = 0;
+const nextAiSessionSeq = () => (aiSessionSeq += 1);
 
 const initialNodes: JimengNode[] = [
   {
@@ -875,6 +901,53 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   aiDrawerDraft: "",
 
   setAiDrawerDraft: (draft) => set({ aiDrawerDraft: draft }),
+
+  // ── Batch 834：真会话模型 ────────────────────────────────────────────
+  // ⚠️ 会话 id 用**模块级计数器**而不是 Date.now()：同毫秒连发两条会撞号，
+  // 后一条覆盖前一条，表现为「新建了会话但列表没变多」。批 832 在
+  // addLocalImage 上踩过同族问题，这里一开始就避开。
+  aiSessions: [],
+  aiActiveSessionId: null,
+
+  appendAiMessage: (role, text) =>
+    set((state) => {
+      const id = state.aiActiveSessionId ?? `ai-session-${nextAiSessionSeq()}`;
+      const idx = state.aiSessions.findIndex((s) => s.id === id);
+      const base =
+        idx >= 0
+          ? state.aiSessions[idx]
+          : { id, title: "新会话", messages: [] as AiSession["messages"] };
+      const updated: AiSession = {
+        ...base,
+        // 标题取**首条用户消息**（不是最后一条，也不是 agent 回复）
+        title:
+          base.messages.length === 0 && role === "user"
+            ? text.slice(0, 24)
+            : base.title,
+        messages: [...base.messages, { role, text }],
+      };
+      const sessions =
+        idx >= 0
+          ? state.aiSessions.map((s) => (s.id === id ? updated : s))
+          : [...state.aiSessions, updated];
+      return { aiSessions: sessions, aiActiveSessionId: id };
+    }),
+
+  newAiSession: () =>
+    set((state) => {
+      const id = `ai-session-${nextAiSessionSeq()}`;
+      // ⚠️ 追加而不是替换：源站的「新建会话」是开一条新的，旧的仍在列表里。
+      // 此前复刻写的是 `setMessages([])` —— 那是**销毁**，不是新建。
+      return {
+        aiSessions: [...state.aiSessions, { id, title: "新会话", messages: [] }],
+        aiActiveSessionId: id,
+      };
+    }),
+
+  selectAiSession: (id) =>
+    set((state) =>
+      state.aiSessions.some((s) => s.id === id) ? { aiActiveSessionId: id } : {},
+    ),
 
   assetsOpen: false,
 
