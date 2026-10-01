@@ -6818,3 +6818,99 @@ FAIL —— 1 处 fixed 被 transform 祖先收编
 
 普查正向 10 态全过（22 个 `fixed` 零收编），反向退出码 1。**本批零产品代码改动** ——
 这正是它该有的样子：上一批已经把缺陷修掉了，这一批把「不会再犯」变成可执行的。
+
+---
+
+## 33. Batch 823-fixedcensus-topbar — **信号失明本身就是发现**（2026-10-04）
+
+### 33.1 选题：822 的覆盖表有个刺眼的空白
+
+§32 那张表列了 10 个状态，全是画布内部的。顶栏与 AI 那一族
+—— 节点摘要、搜索、生成历史、分享、更多、AI 抽屉、帮助中心、快捷键、水印设置
+—— **一个都没扫到**。而它们恰恰是最像 `fixed` 的一批：模态框、下拉、右侧面板。
+上一批把「常备契约」立起来，却只覆盖了契约适用范围的一半。
+
+### 33.2 到达信号怎么设计：两条路都是错的
+
+给这 9 个浮层写触发，最自然的想法是逐个硬编码选择器 + 等它出现。**不要**：
+
+- **逐个硬编码十几个 testid**：改一次名就得同步改这里，漏一个就静默少扫一态。
+- **用「fixed 元素数变多」当到达信号**：**这是错的，而且错得很隐蔽** ——
+  一个完全正常的 `absolute` 浮层**不会**让 fixed 计数增加。
+  于是「浮层好好地打开了」会被判成「没打开」。
+
+最后用的信号是**「页面上冒出了新的可指认锚点」**，并把它写成
+「testid ∪ 浮层语义（`role` ∈ dialog/menu/listbox，带 `aria-label`）」。
+
+### 33.3 然后信号失明了，而失明本身是结论
+
+第一版信号只收 `data-testid`。跑出来：
+
+```
+generation-history     ⚠ 没冒出任何新 testid —— 触发可能没生效
+shortcuts-panel        ⚠ 没冒出任何新 testid —— 触发可能没生效
+```
+
+工具按设计报了「覆盖不全」并**退出码 1**（没扫到 ≠ 不存在）。但顺着查下去，
+真因不是触发失败 —— 触发是成功的，浮层确实打开了。是这两块浮层
+**根本没有 `data-testid`**：
+
+```tsx
+// JimengHistoryMenu.tsx
+role="dialog"  aria-label="生成历史"          ← 没有 testid
+// JimengShortcutsPanel.tsx
+role="dialog"  aria-label="快捷键"            ← 没有 testid
+```
+
+它们是**全画布唯二**「自动化摸不到」的浮层。批 816 做过一轮
+「可访问名 + 自动化锚点」收口，这两块只拿到了可访问名、漏了锚点。
+
+这件事值得单独记一笔，因为它的形状很干净：
+
+> **普查的信号，依赖了它自己要审计的那个东西。**
+> 一旦某块浮层缺锚点，普查就「看不见它打开」，
+> 于是把**摸不到**报成**没发现问题** —— 而这两者在报告里长得一模一样。
+
+这和批 817 那次「工具静默降级 → 输出 0 个违规」是同一个家族：
+**判据失效时不报错，只是不说话。**
+
+### 33.4 修两处：补锚点 + 把信号拓宽
+
+1. `JimengHistoryMenu` → `data-testid="topbar-history-menu"`
+2. `JimengShortcutsPanel` → `data-testid="topbar-shortcuts-panel"`
+   （命名随邻居：`topbar-share-panel` / `topbar-more-menu` / `topbar-node-summary`）
+3. 普查的信号改成「testid ∪ 浮层语义」。这样**即使将来又出现缺锚点的浮层**，
+   普查仍能确认它确实被打开过 —— 不会再有第二块浮层靠「摸不到」蒙混过关。
+
+补锚点不是加功能，是**还上一批的账**：816 收口收漏了两块。
+
+### 33.5 最终覆盖：19 个状态 / 35 个 `fixed` 元素 / 0 处收编
+
+```
+画布内 10 态：base 0 / two-nodes 2 / node-selected 3 / multi-select 3
+              multi-layout-menu 2 / group 3 / node-ctx-menu 4
+              pane-ctx-menu 1 / assets-modal 2 / timeline-fullscreen 2
+顶栏 AI 9 态：node-summary 1 / search-panel 1 / generation-history 1
+              share-panel 1 / more-menu 1 / ai-drawer 1
+              help-center 2 / shortcuts-panel 2 / watermark-dialog 3
+```
+
+全部零收编。但这一条的措辞要小心：这一族全是画布级浮层、挂点在
+`<ReactFlow>` 之外，**本来就该是干净的**。所以本批的结论不是「没有问题」，
+而是「**第一次被验证过**」—— 821 那次恰恰说明，没被验证过的「本来就干净」
+可能只是没人去看。
+
+### 33.6 过程记录：docstring 结尾误写 `*/`
+
+改信号时把 `signature()` 的 docstring 结尾写成了 `*/` 而不是 `"""`。
+Python 不会立刻报错，它一路把后面的 `"""` 当成 docstring 的一部分读下去，
+直到文件末尾才抛 `unterminated triple-quoted string literal (line 370)` ——
+而真正的错误在 265 行，**报错位置离病因 105 行**。
+
+改完先 `ast.parse` 再跑，一秒就定位了。这类「静默顺延」的错误，
+**先解析再执行**比事后读 traceback 便宜得多。
+
+### 33.7 验收
+
+19 态全到达、35 个 `fixed` 零收编、退出码 0。`tsc` EXIT=0。
+回归 801/806/807/812/813/816/817/818/821 全绿。

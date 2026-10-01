@@ -40,6 +40,13 @@ export function JimengHistoryMenu({ onClose }: { onClose: () => void }) {
       style={{ background: "rgb(38,38,38)" }}
       role="dialog"
       aria-label="生成历史"
+      /* Batch 823 SOURCE_FACT 缺口：批 816 做过一轮「可访问名 + 自动化锚点」
+         收口，这块浮层只拿到了可访问名、**没拿到 testid** ——
+         于是它是全画布唯二「自动化摸不到」的浮层之一（另一个是快捷键面板）。
+         怎么发现的：batch 822 的 fixed 普查用「冒出新 testid」当到达信号，
+         这一态死活到不了。**信号失明本身就是发现** ——
+         摸不到的东西和不存在的东西，在报告里长得一模一样。 */
+      data-testid="topbar-history-menu"
     >
       <p className="text-[14px] text-white/90">生成历史</p>
       <div className="mt-3 flex items-center gap-4 border-b border-white/[0.06] pb-2">

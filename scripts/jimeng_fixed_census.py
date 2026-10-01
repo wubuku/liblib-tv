@@ -232,14 +232,128 @@ def main() -> int:
             pg.wait_for_selector('[data-testid="timeline-fullscreen-workspace"]', timeout=20000)
             pg.wait_for_timeout(900)
             scan(pg, "timeline-fullscreen")
+            pg.keyboard.press("Escape")
+            pg.wait_for_timeout(700)
+
+            # ------------------------------------------------------------------
+            # 第二段：顶栏 / AI 族的浮层
+            #
+            # 822 只覆盖了画布内的 9 个态，顶栏这一族一个都没扫到 ——
+            # 而它们恰恰是最像 `fixed` 的一批（模态框、下拉、面板）。
+            #
+            # 到达信号用**「冒出了新的 testid」**而不是逐个硬编码选择器：
+            #  1. 硬编码十几个 testid，改一次名就得同步改这里，漏一个就静默少扫一态；
+            #  2. 更要紧的是，用「fixed 元素数变多」当信号是**错的** ——
+            #     一个合法的 `absolute` 浮层不会让 fixed 计数增加，
+            #     那样会把「浮层正常打开了」误判成「没打开」。
+            # 冒新 testid 只证明「确实有东西打开了」，与它是不是 fixed 无关。
+            # ------------------------------------------------------------------
+            print("\n— 第二段：顶栏 / AI 族浮层 —")
+
+            def signature() -> set:
+                """「页面上有哪些可被自动化指认的东西」的指纹。
+
+                ⚠️ 第一版只收 `data-testid`，结果 generation-history 与
+                shortcuts-panel 两态死活到不了 —— 查下去发现这两块浮层
+                **只有 `role="dialog"` + `aria-label`，没有 testid**。
+                也就是说：信号依赖了它自己要审计的那个东西，一旦某块浮层
+                缺锚点，普查就「看不见它打开」，于是把「摸不到」报成
+                「没发现问题」—— 而这两者在报告里长得一模一样。
+
+                所以指纹收两类：testid，以及浮层语义（role ∈ dialog/menu/
+                listbox，带 aria-label 就一并带上）。这样**即使将来又出现
+                缺锚点的浮层**，普查仍能确认它确实被打开过。"""
+                return set(pg.evaluate("""() => {
+                  const out = new Set();
+                  for (const e of document.querySelectorAll('*')) {
+                    const t = e.getAttribute('data-testid');
+                    if (t) { out.add('#' + t); continue; }
+                    const r = e.getAttribute('role');
+                    if (r === 'dialog' || r === 'menu' || r === 'listbox') {
+                      const a = e.getAttribute('aria-label');
+                      out.add('@' + r + (a ? ':' + a : ''));
+                    }
+                  }
+                  return [...out]; }"""))
+
+            def open_and_scan(state: str, trigger) -> None:
+                before = signature()
+                trigger()
+                fresh: set = set()
+                for _ in range(20):          # 最多等 ~4s
+                    pg.wait_for_timeout(200)
+                    fresh = signature() - before
+                    if fresh:
+                        break
+                if not fresh:
+                    print(f"  {state:<22} ⚠ 没冒出任何新锚点 —— 触发可能没生效，"
+                          f"本态**未普查**，别当成干净")
+                    rows.append((state, -1, -1, "⚠ 未到达"))
+                    return
+                pg.wait_for_timeout(600)    # 让浮层把布局稳定下来再量
+                scan(pg, state)
+                show = ", ".join(sorted(fresh)[:3])
+                print(f"      ↳ 到达信号：{show}"
+                      + (f" 等 {len(fresh)} 个" if len(fresh) > 3 else ""))
+
+            def close_top() -> None:
+                pg.keyboard.press("Escape")
+                pg.wait_for_timeout(600)
+
+            open_and_scan("node-summary",
+                          lambda: pg.locator(
+                              '[data-testid="canvas-node-summary-trigger"]').click())
+            close_top()
+            open_and_scan("search-panel",
+                          lambda: pg.locator(
+                              '[data-testid="canvas-panel-launcher"]').click())
+            close_top()
+            open_and_scan("generation-history",
+                          lambda: pg.locator(
+                              '[data-testid="canvas-history-launcher"]').click())
+            close_top()
+            open_and_scan("share-panel",
+                          lambda: pg.locator(
+                              '[data-testid="canvas-share-trigger"]').click())
+            close_top()
+            open_and_scan("more-menu",
+                          lambda: pg.locator(
+                              '[data-testid="canvas-more-trigger"]').click())
+            close_top()
+            open_and_scan("ai-drawer",
+                          lambda: pg.locator(
+                              '[data-testid="ai-trigger-pill"]').click())
+            close_top()
+
+            # 用户菜单 → 它的三项各自开一个浮层（帮助中心 / 快捷键 / 水印）
+            def from_user_menu(item: str):
+                def go() -> None:
+                    pg.locator('[data-testid="canvas-user-menu-trigger"]').click()
+                    pg.wait_for_timeout(600)
+                    pg.locator(f'[data-testid="account-menu-item-{item}"]').click()
+                return go
+
+            open_and_scan("help-center", from_user_menu("帮助中心"))
+            close_top()
+            open_and_scan("shortcuts-panel", from_user_menu("快捷键"))
+            close_top()
+            open_and_scan("watermark-dialog", from_user_menu("AI生成水印设置"))
+            close_top()
         finally:
             b.close()
 
     print()
     print(f"合计扫到 fixed 元素 {total_fixed} 个。")
+    unreached = [s for s, n, _, _ in rows if n < 0]
     if total_fixed == 0:
         # 绝不能把「一个都没扫到」当成「零违规」——那是 817 那次事故的形状。
         print("一个 fixed 元素都没扫到 ⇒ 工具本身降级了，不构成任何结论。")
+        return 1
+    if unreached:
+        # 覆盖不全的普查**不能**报 PASS。没扫到的那几态里完全可能有收编点，
+        # 而「没发现」和「不存在」在输出上长得一样。
+        print(f"覆盖不全 —— 下列状态没到达，未被普查：{', '.join(unreached)}")
+        print("（没扫到 ≠ 不存在；这些态必须先能打开，结论才成立）")
         return 1
     if violations:
         print(f"FAIL —— {len(violations)} 处 fixed 被 transform 祖先收编：")

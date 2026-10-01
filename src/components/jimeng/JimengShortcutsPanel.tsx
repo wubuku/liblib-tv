@@ -107,6 +107,11 @@ export function JimengShortcutsPanel({ onClose }: { onClose: () => void }) {
       ref={ref}
       role="dialog"
       aria-label="快捷键"
+      /* Batch 823 SOURCE_FACT 缺口：同 `topbar-history-menu` ——
+         批 816 的锚点收口漏了这两块，它们只有可访问名、没有 testid，
+         结果是 batch 822 的 fixed 普查到不了这一态。
+         本块是 `fixed right-3 top-14`，正是最该被普查盯住的那类浮层。 */
+      data-testid="topbar-shortcuts-panel"
       // 源站 240 宽 @[1428,56]（right=12、top=56、bottom 余 60）→ 240×934
       className="fixed right-3 top-14 z-[220] flex max-h-[calc(100vh-116px)] w-[240px] flex-col rounded-2xl"
       style={{ background: "rgb(38,38,38)" }}
