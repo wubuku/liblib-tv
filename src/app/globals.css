@@ -419,3 +419,17 @@
   background-color: #86909c;
   border-radius: 3px;
 }
+
+/* Batch 603（源站 2026-10-01 实测）：属性面板页签条用 `.scrollbar-hide`
+   横向滚动但**不显示滚动条**。规则逐字取自源站产物样式表
+   liblibtv_online/static/_next/static/chunks/2i0zx3s0wp9uo.css：
+     .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+     .scrollbar-hide::-webkit-scrollbar{display:none} */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

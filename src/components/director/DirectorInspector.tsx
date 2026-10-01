@@ -1895,8 +1895,13 @@ export function DirectorInspector({
         <nav
           data-director-character-tabs
           aria-label="角色编辑"
-          className="grid h-9 shrink-0 grid-cols-2 border-b border-white/[0.07] bg-[#171717] p-1"
+          // Batch 603：与摄像机页签共用同一套外壳（源站是同一个 `<section>` +
+          // `scrollbar-hide` 页签条）。**页签集合本身未取证**——源站当前工程只
+          // 采样到机位（属性/运动轨迹/截图），角色是否也是这三项没测，所以
+          // clone 的 属性/姿势 保留，只对齐外壳与胶囊样式。
+          className="relative w-full min-w-0 max-w-full shrink-0 overflow-hidden border-b border-white/8 px-4 pb-3"
         >
+          <div className="scrollbar-hide flex w-full min-w-0 max-w-full gap-2 overflow-x-auto overflow-y-hidden pt-4">
           {(
             [
               ["properties", "属性"],
@@ -1912,24 +1917,32 @@ export function DirectorInspector({
                 setPoseObjectId(tab === "pose" ? selected.id : null)
               }
               className={cn(
-                "rounded text-[11px] text-[#777] hover:text-white",
-                characterTab === tab &&
-                  "bg-[#292929] text-[#d9d9d9]",
+                "relative flex h-7 min-w-12 shrink-0 items-center justify-center rounded-lg px-3 text-[13px] font-normal transition-colors",
+                characterTab === tab
+                  ? "bg-white/10 text-neutral-50"
+                  : "text-white/45 hover:bg-white/6 hover:text-white/75",
               )}
             >
-              {label}
+              <span className="shrink-0">{label}</span>
             </button>
           ))}
+          </div>
         </nav>
       ) : selected?.kind === "camera" ? (
         <nav
           data-director-camera-tabs
           aria-label="摄像机编辑"
-          // Batch 581: 三个页签（属性 / 运动轨迹 / 截图）此前挤在
-          // grid-cols-2 里，第三个换行导致页签栏占两行（实测 属性 y=136 /
-          // 截图 y=153）。源站页签为单行等宽胶囊，按页签数分列。
-          className="grid h-9 shrink-0 grid-cols-3 border-b border-white/[0.07] bg-[#171717] p-1"
+          // Batch 603（源站 2026-10-01 实测，/tmp/src593/probe49）：源站这层是
+          // `<section class="border-white/8 relative w-full min-w-0 max-w-full
+          //  overflow-hidden border-b px-4 pb-3">`（280×57 @(1640,48)），
+          // 里面再套一条横向滚动但隐藏滚动条的页签条
+          // `scrollbar-hide flex w-full min-w-0 max-w-full gap-2
+          //  overflow-x-auto overflow-y-hidden pt-4`（248×44）。
+          // 16(上) + 28(页签) + 12(下) + 1(下边框) = 57px。
+          // clone 原先是 `grid h-9 grid-cols-3 p-1`：等宽分列、固定 36px 高。
+          className="relative w-full min-w-0 max-w-full shrink-0 overflow-hidden border-b border-white/8 px-4 pb-3"
         >
+          <div className="scrollbar-hide flex w-full min-w-0 max-w-full gap-2 overflow-x-auto overflow-y-hidden pt-4">
           {(
             [
               ["properties", "属性"],
@@ -1943,22 +1956,36 @@ export function DirectorInspector({
               data-director-camera-tab={tab}
               aria-pressed={cameraTab === tab}
               onClick={() => setCameraTab(tab)}
+              // 源站逐字：`relative flex h-7 min-w-12 shrink-0 items-center
+              // justify-center rounded-lg px-3 text-[13px] font-normal
+              // transition-colors`，选中叠 `bg-white/10 text-neutral-50`，
+              // 未选中 `hover:bg-white/6 text-white/45 hover:text-white/75`。
+              // 宽度是**内容自适应 + 48px 下限**（实测 50/76/50），不是等分列。
               className={cn(
-                "relative rounded text-[11px] text-[#777] hover:text-white",
-                cameraTab === tab && "bg-[#292929] text-[#d9d9d9]",
+                "relative flex h-7 min-w-12 shrink-0 items-center justify-center rounded-lg px-3 text-[13px] font-normal transition-colors",
+                cameraTab === tab
+                  ? "bg-white/10 text-neutral-50"
+                  : "text-white/45 hover:bg-white/6 hover:text-white/75",
               )}
             >
-              {label}
+              <span className="shrink-0">{label}</span>
               {tab === "motion" ? (
+                // 源站的 NEW 角标逐字：
+                // `pointer-events-none absolute right-0 top-0 z-10 flex h-5
+                //  -translate-y-[70%] items-center justify-center rounded-t-lg
+                //  rounded-bl-sm rounded-br-lg bg-[#5DDCFF] px-1.5 text-[11px]
+                //  font-medium leading-3 text-black`
                 <span
+                  aria-hidden="true"
                   data-director-camera-motion-new
-                  className="absolute -top-2 right-0 rounded-full bg-[#09caf5] px-1 text-[8px] font-medium text-[#0d2c33]"
+                  className="pointer-events-none absolute right-0 top-0 z-10 flex h-5 -translate-y-[70%] items-center justify-center rounded-t-lg rounded-bl-sm rounded-br-lg bg-[#5DDCFF] px-1.5 text-[11px] font-medium leading-3 text-black"
                 >
                   NEW
                 </span>
               ) : null}
             </button>
           ))}
+          </div>
         </nav>
       ) : null}
 

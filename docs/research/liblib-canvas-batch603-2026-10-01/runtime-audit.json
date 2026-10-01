@@ -1,0 +1,365 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "static:scrollbar-hide-declared",
+      "ok": true,
+      "detail": "globals.css carries the lifted .scrollbar-hide rules"
+    },
+    {
+      "name": "section:57px-border-b-16-12",
+      "ok": true,
+      "detail": {
+        "box": {
+          "x": 1633,
+          "y": 132,
+          "w": 287,
+          "h": 57
+        },
+        "padding": "0px 16px 12px",
+        "borderBottomWidth": "1px",
+        "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      }
+    },
+    {
+      "name": "strip:44px-gap-8-pt-16-hidden-scrollbar",
+      "ok": true,
+      "detail": {
+        "box": {
+          "x": 1649,
+          "y": 132,
+          "w": 255,
+          "h": 44
+        },
+        "gap": "8px",
+        "paddingTop": "16px",
+        "scrollbarWidth": "none",
+        "overflowX": "auto",
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "tabs:50-76-50-28h-8px-radius",
+      "ok": true,
+      "detail": [
+        50,
+        76,
+        50
+      ]
+    },
+    {
+      "name": "tabs:content-sized-not-equal-columns",
+      "ok": true,
+      "detail": {
+        "widths": [
+          50,
+          76,
+          50
+        ],
+        "gaps": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "name": "tabs:13px-12px-padding",
+      "ok": true,
+      "detail": [
+        [
+          "13px",
+          "0px 12px",
+          "8px"
+        ],
+        [
+          "13px",
+          "0px 12px",
+          "8px"
+        ],
+        [
+          "13px",
+          "0px 12px",
+          "8px"
+        ]
+      ]
+    },
+    {
+      "name": "tabs:active-white-10-neutral-50",
+      "ok": true,
+      "detail": [
+        {
+          "text": "属性",
+          "box": {
+            "x": 1649,
+            "y": 148,
+            "w": 50,
+            "h": 28
+          },
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "13px",
+          "radius": "8px",
+          "padding": "0px 12px",
+          "pressed": "true"
+        }
+      ]
+    },
+    {
+      "name": "tabs:inactive-white-45",
+      "ok": true,
+      "detail": [
+        [
+          "运动轨迹NEW",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        [
+          "截图",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+          "rgba(0, 0, 0, 0)"
+        ]
+      ]
+    },
+    {
+      "name": "badge:5ddcff-20h-11px-black-hidden",
+      "ok": true,
+      "detail": {
+        "box": {
+          "x": 1745,
+          "y": 134,
+          "w": 38,
+          "h": 20
+        },
+        "background": "rgb(93, 220, 255)",
+        "color": "rgb(0, 0, 0)",
+        "fontSize": "11px",
+        "borderTopLeftRadius": "8px",
+        "ariaHidden": "true",
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "name": "badge:anchored-to-the-motion-tab-top-right",
+      "ok": true,
+      "detail": {
+        "badge": {
+          "x": 1745,
+          "y": 134,
+          "w": 38,
+          "h": 20
+        },
+        "motion": {
+          "x": 1707,
+          "y": 148,
+          "w": 76,
+          "h": 28
+        }
+      }
+    },
+    {
+      "name": "character-tabs:share-the-chrome",
+      "ok": true,
+      "detail": {
+        "nav": {
+          "x": 1633,
+          "y": 132,
+          "w": 287,
+          "h": 57
+        },
+        "strip": {
+          "x": 1649,
+          "y": 132,
+          "w": 255,
+          "h": 44
+        },
+        "tabs": [
+          {
+            "text": "属性",
+            "box": {
+              "x": 1649,
+              "y": 148,
+              "w": 50,
+              "h": 28
+            },
+            "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+            "color": "rgb(247, 247, 247)",
+            "fontSize": "13px",
+            "radius": "8px",
+            "padding": "0px 12px",
+            "pressed": "true"
+          },
+          {
+            "text": "姿势",
+            "box": {
+              "x": 1707,
+              "y": 148,
+              "w": 50,
+              "h": 28
+            },
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+            "fontSize": "13px",
+            "radius": "8px",
+            "padding": "0px 12px",
+            "pressed": "false",
+            "gap": 8
+          }
+        ]
+      }
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "camera": {
+    "nav": {
+      "box": {
+        "x": 1633,
+        "y": 132,
+        "w": 287,
+        "h": 57
+      },
+      "padding": "0px 16px 12px",
+      "borderBottomWidth": "1px",
+      "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "strip": {
+      "box": {
+        "x": 1649,
+        "y": 132,
+        "w": 255,
+        "h": 44
+      },
+      "gap": "8px",
+      "paddingTop": "16px",
+      "scrollbarWidth": "none",
+      "overflowX": "auto",
+      "overflowY": "hidden"
+    },
+    "tabs": [
+      {
+        "text": "属性",
+        "box": {
+          "x": 1649,
+          "y": 148,
+          "w": 50,
+          "h": 28
+        },
+        "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "13px",
+        "radius": "8px",
+        "padding": "0px 12px",
+        "pressed": "true"
+      },
+      {
+        "text": "运动轨迹NEW",
+        "box": {
+          "x": 1707,
+          "y": 148,
+          "w": 76,
+          "h": 28
+        },
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "fontSize": "13px",
+        "radius": "8px",
+        "padding": "0px 12px",
+        "pressed": "false",
+        "gap": 8
+      },
+      {
+        "text": "截图",
+        "box": {
+          "x": 1791,
+          "y": 148,
+          "w": 50,
+          "h": 28
+        },
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "fontSize": "13px",
+        "radius": "8px",
+        "padding": "0px 12px",
+        "pressed": "false",
+        "gap": 8
+      }
+    ],
+    "badge": {
+      "box": {
+        "x": 1745,
+        "y": 134,
+        "w": 38,
+        "h": 20
+      },
+      "background": "rgb(93, 220, 255)",
+      "color": "rgb(0, 0, 0)",
+      "fontSize": "11px",
+      "borderTopLeftRadius": "8px",
+      "ariaHidden": "true",
+      "pointerEvents": "none"
+    }
+  },
+  "character": {
+    "nav": {
+      "box": {
+        "x": 1633,
+        "y": 132,
+        "w": 287,
+        "h": 57
+      },
+      "padding": "0px 16px 12px",
+      "borderBottomWidth": "1px",
+      "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "strip": {
+      "box": {
+        "x": 1649,
+        "y": 132,
+        "w": 255,
+        "h": 44
+      },
+      "gap": "8px",
+      "paddingTop": "16px",
+      "scrollbarWidth": "none",
+      "overflowX": "auto",
+      "overflowY": "hidden"
+    },
+    "tabs": [
+      {
+        "text": "属性",
+        "box": {
+          "x": 1649,
+          "y": 148,
+          "w": 50,
+          "h": 28
+        },
+        "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "color": "rgb(247, 247, 247)",
+        "fontSize": "13px",
+        "radius": "8px",
+        "padding": "0px 12px",
+        "pressed": "true"
+      },
+      {
+        "text": "姿势",
+        "box": {
+          "x": 1707,
+          "y": 148,
+          "w": 50,
+          "h": 28
+        },
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "fontSize": "13px",
+        "radius": "8px",
+        "padding": "0px 12px",
+        "pressed": "false",
+        "gap": 8
+      }
+    ],
+    "badge": null
+  }
+}
