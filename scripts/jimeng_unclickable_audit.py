@@ -82,6 +82,7 @@ def main() -> int:
     rows: list[dict] = []
     skipped: list[str] = []
     states_done: list[str] = []
+    kb_rows: list[dict] = []        # 键盘可达性（批 844 加）
 
     with sync_playwright() as p:
         b = p.chromium.launch(headless=True)
@@ -232,9 +233,87 @@ def main() -> int:
             new = [t for t in node_tids() if t not in before]
             return new[0] if new else None
 
+        def open_layer() -> str:
+            """当前是否有一个**浮层**开着？开着就返回它的 testid（没有就空串）。
+
+            键盘判据只在这一步为真时才判：没有浮层的时候，"Tab 走不到里面"
+            根本无从谈起（那不是浮层的责任）。
+            判"开着"靠几何 + role 两路：既要脱离文档流，又要在 DOM 里靠后
+            （后出现的盖住先出现的），并且**不是**画布自己的壳。
+            """
+            return page.evaluate("""() => {
+              const SHELL = 'react-flow__renderer, react-flow__pane, '
+                          + 'react-flow__viewport, react-flow__nodes, '
+                          + 'react-flow__node, react-flow__node-toolbar';
+              const LAYER = '.react-flow__node-panel, [role=menu], [role=listbox], '
+                          + '[role=dialog], [role=popover], [data-testid$="-listbox"], '
+                          + '[data-testid$="-menu"], [data-testid$="-panel"], '
+                          + '[data-testid$="-palette"]';
+              for (const e of document.querySelectorAll(LAYER)) {
+                const s = getComputedStyle(e);
+                if (s.display === 'none' || s.visibility === 'hidden') continue;
+                const r = e.getBoundingClientRect();
+                if (r.width < 40 || r.height < 20) continue;
+                if (e.closest(SHELL)) continue;
+                if (e.closest('nextjs-portal')) continue;
+                const hasFocusable = e.querySelector(
+                  'button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"]),'
+                  + '[role=menuitem],[role=option]');
+                if (!hasFocusable) continue;
+                return e.getAttribute('data-testid')
+                    || e.getAttribute('aria-label') || e.getAttribute('role') || '?';
+              }
+              return '';
+            }""")
+
+        def keyboard_probe(layer_tid: str, max_tabs: int = 60) -> dict:
+            """真按 Tab 键，最多 max_tabs 次，看焦点有没有落进当前那个浮层里。
+
+            ⚠️ **必须用真键盘事件**（`page.keyboard.press("Tab")`），不能自己
+               模拟焦点推进。第一版是模拟的：维护一份"可聚焦元素"表然后手动
+               往后挪 —— 而那张表的 `button:not([disabled])` **不看
+               `tabindex="-1"`**，于是把 `tabindex=-1` 的按钮也算成可 Tab 到。
+               自检把层里的 tabindex 全摘成 -1，判据却仍然说"进得去"，
+               **自检当场把工具判红了（退出码 2）**。这正是自检该干的事：
+               自己把自己抓出来，好过让人拿着一份错结论去改产品。
+            """
+            if not layer_tid:
+                return {"ok": None, "why": "没有打开的浮层"}
+            if not page.locator(f'[data-testid="{layer_tid}"]').count():
+                return {"ok": None, "why": "定位不到那个浮层"}
+            if page.evaluate("""() => { const a = document.activeElement;
+                if (a && a.blur) a.blur(); return true; }"""):
+                pass
+            for i in range(1, max_tabs + 1):
+                page.keyboard.press("Tab")
+                inside = page.evaluate("""(tid) => {
+                  const layer = document.querySelector(`[data-testid="${tid}"]`);
+                  const a = document.activeElement;
+                  return !!(layer && a && layer.contains(a));
+                }""", layer_tid)
+                if inside:
+                    return {"ok": True, "tabs": i}
+            return {"ok": False, "tabs": max_tabs,
+                    "why": f"Tab {max_tabs} 次都没进到 {layer_tid} 里"}
+
+        
+
         def measure(tag: str) -> None:
-            """普查当前页面：找出所有**确认过**点不着的控件。"""
+            """普查当前页面：找出所有**确认过**点不着的控件 + 键盘可达性。"""
             states_done.append(tag)
+            # ── 键盘那一路先做：它要真的按 Tab，会改变焦点 ──────────
+            #    放在指针普查**之后**会互相污染（Tab 之后 activeElement 变了，
+            #    命中测试本身不受影响，但读起来容易误会），所以先跑键盘。
+            ltid = open_layer()
+            if ltid:
+                kbd = keyboard_probe(ltid)
+                kbd["layer"] = ltid
+                kb_rows.append({"state": tag, **kbd})
+                # ⚠️ 探完**必须把层收掉**。不收的话「截取帧下拉」会一路开着，
+                #    后面三个状态的 `open_layer()` 认到的都是它 —— 键盘那一栏
+                #    于是变成三个状态在报同一层。批 840 在浮层普查那边踩过同一个
+                #    坑（TID2TRIG 缺两个条目），这边是同一个病的另一个发作点。
+                close_open()
             raw = page.evaluate("""(args) => {
               const [CONTROL, SAMPLES, VH] = args;
               const out = [];
@@ -589,6 +668,51 @@ def main() -> int:
         probe_sel = 'button[aria-label="文本"]'
         page.keyboard.press("Escape")
         page.wait_for_timeout(500)
+        # ── 自检（批 844 加）：键盘判据也必须**能报出 1** ──────────
+        #     做法和指针那条一模一样：在真页面上制造一个走不到的状态，
+        #     复查工具确实判成"Tab 进不去"，撤掉后再复查恢复。
+        #     没有这一步，"24 个状态键盘都进得去"和"判据根本不看键盘"
+        #     在输出里长得一模一样。
+        kb_self: dict = {}
+        probe_layer = "video-toolbar-capture-menu"
+        # ⚠️ 必须**先选中视频节点**：跑到自检这一步时画布上没有任何选中，
+        #    NodeToolbar 整个没挂载，触发器压根不存在。第一版直接开，
+        #    自检那一层打不开（skipped 记着），而因为自检只看 `kb_self` 里的
+        #    `why` 字段，很容易被当成"工具坏了"而不是"前置态没成立"。
+        if (select_node("rf__node-video-local-1")
+                and open_dropdown('button:has-text("截取帧")', probe_layer,
+                                  ".react-flow__node-toolbar")
+                and page.locator(f'[data-testid="{probe_layer}"]').count()):
+            before_kb = keyboard_probe(probe_layer)
+            # 把层里所有可聚焦元素的 tabindex 摘成 -1 ⇒ 走不进去
+            page.evaluate("""(tid) => {
+              const el = document.querySelector(`[data-testid="${tid}"]`);
+              if (!el) return;
+              el.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')
+                .forEach(e => e.setAttribute('data-kb-prev',
+                                            e.getAttribute('tabindex') || ''));
+              el.querySelectorAll('button,input,select,textarea,[tabindex]')
+                .forEach(e => e.setAttribute('tabindex', '-1'));
+            }""", probe_layer)
+            page.wait_for_timeout(300)
+            after_kb = keyboard_probe(probe_layer)
+            page.evaluate("""() => document.querySelectorAll('[data-kb-prev]')
+                .forEach(e => { const v = e.getAttribute('data-kb-prev');
+                  if (v) e.setAttribute('tabindex', v);
+                  else e.removeAttribute('tabindex');
+                  e.removeAttribute('data-kb-prev'); })""")
+            page.wait_for_timeout(300)
+            restored_kb = keyboard_probe(probe_layer)
+            kb_self = {"layer": probe_layer,
+                       "reachable_before": before_kb.get("ok"),
+                       "unreachable_when_stripped": after_kb.get("ok") is False,
+                       "reachable_after_restore": restored_kb.get("ok")}
+        else:
+            kb_self = {"layer": probe_layer, "why": "自检用的那层没打开"}
+        close_open()
+        page.keyboard.press("Escape")
+        page.wait_for_timeout(500)
+
         self_test: dict = {}
         if page.locator(probe_sel).count() >= 1:
             page.evaluate("""() => {
@@ -639,11 +763,25 @@ def main() -> int:
     by_modal = [r for r in rows if r.get("covered_by_modal")
                 or (r["confirmed"] and not r.get("same_layer"))]
     unconfirmed = [r for r in rows if not r["confirmed"]]
+    # 键盘那一路：`ok is False` 才是缺陷；`ok is None` 是"那一刻没有打开的
+    # 浮层"，**不计也不当通过** —— 与指针那条 skipped/empty 的分档同一个道理。
+    kb_bad = [r for r in kb_rows if r.get("ok") is False]
+    # 「进得去但很深」单列。**上限本身就是判据的一部分**：探到上限还没进去，
+    # 报「缺陷」是在说"产品坏了"，可那也可能只是这条浮层在 tab 序里太靠后。
+    # 上限以内 + 偏深 = INFO（值得人看一眼的信号），上限以外才判缺陷。
+    DEEP = 30
+    kb_deep = [r for r in kb_rows if r.get("ok")
+               and (r.get("tabs") or 0) > DEEP]
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({"rows": rows, "skipped": skipped, "states": states_done,
                    "confirmed": real,
                    "by_modal": by_modal,
-                   "self_test": self_test},
+                   "keyboard": kb_rows,
+                   "keyboard_bad": kb_bad,
+                   "keyboard_deep": kb_deep,
+                   "keyboard_deep_threshold": DEEP,
+                   "self_test": self_test,
+                   "kb_self_test": kb_self},
                   f, ensure_ascii=False, indent=2)
 
     print(f"跑了 {len(states_done)} 个状态；候选 {len(rows)} 条 → "
@@ -678,12 +816,38 @@ def main() -> int:
           f"{self_test.get('reachable_when_clear')}"
           + (f"（{self_test.get('why')}）" if self_test.get("why") else "")
           + f"  →  {'✓ 判据能失败' if ok_self else '✗ 判据恒空，这轮结果不可信'}")
+
+    # ── 键盘可达性（批 844 加）────────────────────────────────────
+    # `ok is None` 是"那一刻没有打开的浮层" —— **不计也不当通过**，与指针那条
+    # skipped / empty 分档同一个道理。混进"通过"里就是又一次恒空判据。
+    kb_probed = [k for k in kb_rows if k.get("ok") is not None]
+    kb_none = [k for k in kb_rows if k.get("ok") is None]
+    print(f"\n键盘可达性：探测 {len(kb_probed)} 个开着浮层的状态 → "
+          f"**Tab 进不去 {len(kb_bad)}**、偏深 {len(kb_deep)}（>{DEEP} 次，INFO）、"
+          f"没浮层可探 {len(kb_none)}")
+    for k in kb_bad:
+        print(f"  ★ Tab 进不去 [{k['state']}] 浮层={k['layer']!r} {k.get('why','')}")
+    for k in kb_deep:
+        print(f"  · 偏深（INFO）[{k['state']}] 浮层={k['layer']!r} "
+              f"Tab {k['tabs']} 次才进得去 —— 不是缺陷，但是个该人看一眼的信号")
+    for k in kb_probed:
+        if k.get("ok") and (k.get("tabs") or 0) <= DEEP:
+            print(f"  · [{k['state']}] 浮层={k['layer']!r} Tab {k['tabs']} 次进得去")
+    ok_kb_self = (bool(kb_self) and kb_self.get("reachable_before") is True
+                  and kb_self.get("unreachable_when_stripped") is True
+                  and kb_self.get("reachable_after_restore") is True)
+    print(f"自检（键盘）：把 {kb_self.get('layer')!r} 里的 tabindex 全摘成 -1 后"
+          f"判为进不去={kb_self.get('unreachable_when_stripped')}、"
+          f"还原后恢复={kb_self.get('reachable_after_restore')}"
+          + (f"（{kb_self.get('why')}）" if kb_self.get("why") else "")
+          + f"  →  {'✓ 键盘判据能失败' if ok_kb_self else '✗ 键盘判据恒真，这轮结果不可信'}")
+
     print(f"明细已写入 {OUT}")
     # ⚠️ 自检不过必须是**退出码 2**，不是 0 也不是 1：退出 0 会被 CI 当通过，
     #    退出 1 会被读成"查到缺陷了"。这是独立的第三种状态。
-    if not ok_self:
+    if not ok_self or not ok_kb_self:
         return 2
-    return 1 if real else 0
+    return 1 if (real or kb_bad) else 0
 
 
 if __name__ == "__main__":

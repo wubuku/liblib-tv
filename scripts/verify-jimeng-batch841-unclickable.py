@@ -81,6 +81,10 @@ def main() -> int:
     real = data.get("confirmed", [])
     by_modal = data.get("by_modal", [])
     st = data.get("self_test", {})
+    kb = data.get("keyboard", [])
+    kb_bad = data.get("keyboard_bad", [])
+    kb_deep = data.get("keyboard_deep", [])
+    kbst = data.get("kb_self_test", {})
 
     # ── A. 普查本身 ───────────────────────────────────────────────
     print("— A. 普查跑通 —")
@@ -152,10 +156,13 @@ def main() -> int:
     check("E.5 分档判据在源码里（`in_layer` + `covered_by_modal`）",
           "in_layer" in asrc and "covered_by_modal" in asrc)
     # ⑤ 退出码：自检不过 = 2，且最终码由 `real` 推出
-    check("E.6 自检不过走退出码 2（不是 0，否则 CI 当通过）",
-          re.search(r"if not ok_self:\s*\n\s*return 2", asrc) is not None)
-    check("E.7 最终退出码由缺陷桶 `real` 推出（不许写死 0）",
-          re.search(r"return 1 if real else 0", asrc) is not None)
+    # 批 844 之后这两条都变强了：自检有**两条**（指针 + 键盘），退出码由**两个**
+    # 缺陷桶推出。断言跟着契约走，不跟着旧文本走。
+    check("E.6 两条自检任一不过都走退出码 2（不是 0，否则 CI 当通过）",
+          re.search(r"if not ok_self or not ok_kb_self:\s*\n\s*return 2",
+                    asrc) is not None)
+    check("E.7 最终退出码由**两个**缺陷桶推出（`real` 或 `kb_bad`，不许写死 0）",
+          "return 1 if (real or kb_bad) else 0" in asrc)
     # ⑥ 打不开的状态要记 skipped，不许静默跳过
     check("E.8 下拉打不开会记进 `skipped`（「跑了但没看见」≠「没跑」）",
           "skipped.append(f\"{tag}（打不开" in asrc)
@@ -171,6 +178,41 @@ def main() -> int:
     # ⑫ 层已经开着的时候不许再点触发器（那是把它**关掉**）
     check("E.12 `open_dropdown` 有 `want_tid` 短路",
           "want_tid" in asrc)
+
+    # ── F. 键盘通道（批 844 加）──────────────────────────────────
+    print("\n— F. 键盘可达性：Tab 进不进得去浮层 —")
+    probed = [k for k in kb if k.get("ok") is not None]
+    check(f"F.1 键盘探测覆盖 ≥ 10 个开着浮层的状态（实测 {len(probed)}）",
+          len(probed) >= 10)
+    check(f"F.2 Tab 进不去的浮层 = 0 —— 实测 {len(kb_bad)}",
+          not kb_bad, f"进不去={[(k.get('state'), k.get('layer')) for k in kb_bad][:2]}")
+    # 「没浮层可探」必须单独记账，不能混进通过
+    none_rows = [k for k in kb if k.get("ok") is None]
+    check(f"F.3 「那一刻没有打开的浮层」= {len(none_rows)} 个，"
+          "且**不许**被算成通过", isinstance(none_rows, list))
+    # 上限本身是判据的一部分：偏深 ≠ 缺陷，但得看得见
+    check("F.4 「进得去但偏深」单列成 INFO（上限以内不是缺陷）",
+          isinstance(kb_deep, list)
+          and all(k.get("ok") is True for k in kb_deep),
+          f"偏深={[(k.get('state'), k.get('tabs')) for k in kb_deep][:2]}")
+    check("F.5 键盘自检：摘掉 tabindex 后必须判成进不去",
+          kbst.get("unreachable_when_stripped") is True,
+          f"实测={kbst.get('unreachable_when_stripped')}")
+    check("F.6 键盘自检：还原后必须恢复进得去（证明是 tabindex 造成的）",
+          kbst.get("reachable_after_restore") is True
+          and kbst.get("reachable_before") is True,
+          f"before={kbst.get('reachable_before')} "
+          f"after={kbst.get('reachable_after_restore')}")
+    check("F.7 键盘自检结论印在输出里（不许只在 JSON 里）",
+          "键盘判据能失败" in out or "键盘判据恒真" in out,
+          [l for l in out.splitlines() if "键盘判据" in l][:1])
+    check("F.8 **真按 Tab 键**（不许自己模拟焦点推进）",
+          'page.keyboard.press("Tab")' in asrc,
+          "模拟版第一版栽了：候选表 `button:not([disabled])` 不看 tabindex=-1，"
+          "自检把 tabindex 摘光它仍说进得去 —— 是自检把工具判红的")
+    check("F.9 键盘探完必须收浮层（否则下一状态认到同一层）",
+          re.search(r"kb_rows\.append\(.{0,600}?close_open\(\)", asrc, re.S)
+          is not None)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
