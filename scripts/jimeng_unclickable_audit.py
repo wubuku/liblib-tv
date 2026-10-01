@@ -1313,6 +1313,21 @@ def main() -> int:
     # ⚠️ 源站有几层**压根没有 testid**（更多菜单 200×84、缩放菜单 200×292），
     #    探针改用**矩形**当层身份（开前/开后差分拿矩形，单次打开内稳定）。
     #    `src_identified_by` 把这件事写明，不假装有锚点。
+    # ⚠️⚠️ 批 852 更正：`arrows_move` 从 None 改成实测值。
+    #    850/851 都记成「没测到」，而探针 852 查明**测到了** ——
+    #    两个判据缺陷把它盖住了：
+    #      ① `moved` 只对「按完之后」的 4 个点去重，**漏掉了按之前的起点**。
+    #         源站这六层都是「**走一步就停**」：`16:9` → `1` → `1` → `1` → `1`
+    #         去重后 1 个 ⇒ moved=False。**第一次移动恰恰发生在起点→第一次之间**。
+    #      ② 判断「层里哪些可聚焦」时**真的调了 `focus()`**，把起点推到了最后
+    #         一个能聚焦的项上（846 早写过：判断可聚焦性不能真的去 focus）。
+    #
+    #    源站实测（探针 852，登录态，视口 1512×1200）：
+    #      模型 9 项 / 尺寸 14 项 / 模式 2 项 / 音色模型 2 项 ⇒ 动 ⇒ True
+    #      时长层焦点在 `SPAN/slider` ⇒ **slider 自己吃方向键**，焦点不动
+    #      音频·生成模式**只有 1 个选项** ⇒ 无处可动
+    #    ⚠️ 源站是**漫游 tabindex**（一个 ti=0、其余 ti=-1）却**不更新 tabindex**
+    #    ⇒ 走一步就再也走不动。这是源站自己的取舍，**照抄不修**。
     SOURCE_BASELINE = {
         # ══ 批 850：生成面板那 4 个下拉（源站**首次**取到样）══════════════
         # 848 的范围限制写着「源站这 4 个下拉从未被鼠标打开过（只 dump 了
@@ -1341,25 +1356,25 @@ def main() -> int:
             "src_tid": "(无 testid)", "src_kind": "listbox",
             "src_identified_by": "role=listbox + 矩形 400×384 @[783,752]（探针 850）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
             "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
         "gen-video-size-listbox": {
             "src_tid": "(无 testid)", "src_kind": "dialog",
             "src_identified_by": "role=dialog + 矩形 334×292 @[867,844]（探针 850）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
             "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
         "gen-mode-listbox": {
             "src_tid": "(无 testid)", "src_kind": "listbox",
             "src_identified_by": "role=listbox + 矩形 200×84 @[1041,1052]（探针 850）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
             "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
         "gen-duration-listbox": {
             "src_tid": "(无 testid)", "src_kind": "dialog",
             "src_identified_by": "role=dialog + 矩形 400×100 @[1006,1036]（探针 850）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": False, "esc_returns_to_trigger": False,
             "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
         # ══ 批 851：音频生成面板 2 层（源站取到样）══════════════════════
         # 850 结尾写「音频那 5 个下拉仍记 kb_not_sampled」，但那句话里藏着一个
@@ -1379,13 +1394,13 @@ def main() -> int:
             "src_tid": "(无 testid)", "src_kind": "listbox",
             "src_identified_by": "role=listbox + 矩形 400×180（探针 851b）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
             "src": "jimeng_probe851b_audiopanel_kb.py（登录态，视口 1512×1200）"},
         "audio-gen-mode-listbox": {
             "src_tid": "(无 testid)", "src_kind": "listbox",
             "src_identified_by": "role=listbox + 矩形 200×44（探针 851b）",
             "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": None, "esc_returns_to_trigger": False,
+            "arrows_move": False, "esc_returns_to_trigger": False,
             "src": "jimeng_probe851b_audiopanel_kb.py（登录态，视口 1512×1200）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",

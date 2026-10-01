@@ -10,7 +10,7 @@ import {
   Sparkle,
 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
-import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
+import { useArrowKeys, useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
@@ -153,6 +153,12 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const dubBoxRef = useRef<HTMLDivElement>(null);
   useTakeFocusAtOpen(voiceBoxRef, open === "tts");
   useTakeFocusAtOpen(dubBoxRef, open === "dub");
+  /* 批 852 SOURCE_FACT（探针 852 实测）：音色模型**方向键在层内移动**（2 项，
+     moved=True）；音频生成模式**只有 1 个选项**，方向键无处可去（moved=False）。
+     两层都接上 —— 后者接了也不会动（只有一个元素，环绕到自己），行为与源站
+     一致；接上是为了「以后加了选项自动就有方向键」，而不是留个想起来才补的坑。 */
+  useArrowKeys(voiceBoxRef, open === "tts");
+  useArrowKeys(dubBoxRef, open === "dub");
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
   const [genKind, setGenKind] = useState("音频生成");
@@ -474,6 +480,32 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                           </span>
                           <span className="text-[12px] leading-4 text-white/45">
                             通过引用多个音色，使用时间戳编排人声、音效与配乐
+                          </span>
+                        </button>
+                        {/* 批 852 SOURCE_FACT（探针 852 实测）：源站这一层
+                            **有 2 项** —— 第二项 `Seed TTS`，描述
+                            「上百个预设音色，让你玩转人声配音」，整项
+                            aria-label 是 `Seed TTS, 上百个预设音色，让你玩转人声配音`。
+                            逐字照抄，不加「（mock）」标注（源站有的文案不加）。
+
+                            ⚠️ 补这一项的**直接原因**是判据：复刻此前只有 1 项，
+                            而方向键在「只有 1 项」时无处可去 —— 于是审计报出
+                            「方向键焦点不动」。症状在键盘，**根因是内容缺项**。
+                            补上之后源站那两项之间方向键是**来回**的
+                            （实测轨迹 Seed TTS ↔ SeedAudio 1.0），
+                            复刻接了 `useArrowKeys` 后行为一致。 */}
+                        <button
+                          type="button"
+                          role="option"
+                          aria-label="Seed TTS, 上百个预设音色，让你玩转人声配音"
+                          onClick={() => setOpen(null)}
+                          className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
+                        >
+                          <span className="text-[13px] font-medium text-white">
+                            Seed TTS
+                          </span>
+                          <span className="text-[12px] leading-4 text-white/45">
+                            上百个预设音色，让你玩转人声配音
                           </span>
                         </button>
                       </div>

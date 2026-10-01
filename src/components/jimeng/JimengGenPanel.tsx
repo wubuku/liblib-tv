@@ -22,7 +22,7 @@ import { NodeToolbar, Position, useReactFlow } from "@xyflow/react";
 import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
 import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
-import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
+import { useArrowKeys, useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 引用 chip (Batch 792 SOURCE_FACT 2026-09-27: 选中画布节点后插入
@@ -125,6 +125,14 @@ export function JimengGenPanel({
   useTakeFocusAtOpen(ratioBoxRef, open === "ratio");
   useTakeFocusAtOpen(modeBoxRef, open === "ref");
   useTakeFocusAtOpen(durBoxRef, open === "dur");
+  /* 批 852 SOURCE_FACT（探针 852 实测）：这四层的**方向键在层内移动焦点**
+     （模型 9 项 / 尺寸 14 项 / 模式 2 项）。⚠️ **时长层除外** —— 源站那一层
+     焦点落在 `SPAN/slider` 上，方向键被 slider 自己吃掉（range 的标准行为），
+     焦点不动。所以 `durBoxRef` **刻意不接** —— 接了就是照抄一个源站没有的
+     行为。`useArrowKeys` 的说明见 jimengMenuChrome.tsx。 */
+  useArrowKeys(modelBoxRef, open === "model");
+  useArrowKeys(ratioBoxRef, open === "ratio");
+  useArrowKeys(modeBoxRef, open === "ref");
   const model = useJimengStore((s) => s.genModel);
   const setGenModel = useJimengStore((s) => s.setGenModel);
   // Batch 42: 比例/分辨率/数量 + 参考模式 + 时长 (SOURCE_FACT batch 42 提取)

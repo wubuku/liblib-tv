@@ -214,6 +214,57 @@ export function useTakeFocusAtOpen(
   }, [active, itemSelector, ref]);
 }
 
+/**
+ * 层内**方向键**漫游（batch 852）。
+ *
+ * 源站实测（探针 852，登录态，视口 1512×1200）：生成面板 4 个下拉 + 音频面板
+ * 2 个下拉，**方向键在层内移动焦点**（模型 9 项 / 尺寸 14 项 / 模式 2 项 /
+ * 音色模型 2 项，实测 `moved=True`）。复刻此前这六层**完全没接**键盘处理，
+ * 焦点停在某个 option 上，按方向键什么也不发生。
+ *
+ * 为什么单独开一个 hook 而不接 `useMenuKeyboard`：源站这六层实测
+ * **`traps_tab: false`**（第 1–3 次 Tab 就逃出、层还在），而 `useMenuKeyboard`
+ * 那一整套还带 Esc 归位 / Home / End / 可选的 Tab 陷阱。接整只 = 引入一堆
+ * **没有源站依据**的行为。850 当时写「方向键没取到样所以不接」，852 取到样了，
+ * 但**只**接有依据的那一部分。
+ *
+ * ⚠️ 源站是**漫游 tabindex**（一个 `tabindex=0`、其余 `-1`）却**不更新
+ * tabindex** ⇒ 走一步就再也走不动。这是源站自己的取舍，**照抄不修**：
+ * 这里做层内**环绕**（846 右键菜单的既有行为），比源站好，但判据只问
+ * 「动不动」，不因此报缺陷。
+ */
+export function useArrowKeys<T extends HTMLElement = HTMLDivElement>(
+  ref: RefObject<T | null>,
+  active: boolean,
+  itemSelector = 'button:not([disabled]),[role="option"]:not([aria-disabled="true"]),'
+    + 'a[href],input:not([disabled])',
+) {
+  useEffect(() => {
+    if (!active) return;
+    const el = ref.current;
+    if (!el) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const list = Array.from(el.querySelectorAll<HTMLElement>(itemSelector));
+      if (list.length === 0) return;
+      /* 必须 preventDefault：不拦的话画布会跟着平移（画布自己监听方向键），
+         用户按 ↓ 选项动了、画布也动了。 */
+      e.preventDefault();
+      e.stopPropagation();
+      const cur = list.indexOf(document.activeElement as HTMLElement);
+      const dir = e.key === "ArrowDown" ? 1 : -1;
+      const next = ((cur === -1 ? 0 : cur) + dir + list.length) % list.length;
+      const el2 = list[next];
+      el2.focus();
+      /* 漫游 tabindex：把 tab 序跟着当前项走（源站也是这个形状，只是它
+         不更新 —— 见文件头说明）。 */
+      list.forEach((x, i) => x.setAttribute("tabindex", i === next ? "0" : "-1"));
+    };
+    el.addEventListener("keydown", onKey);
+    return () => el.removeEventListener("keydown", onKey);
+  }, [active, itemSelector, ref]);
+}
+
 export function useMenuKeyboard<T extends HTMLElement = HTMLDivElement>(
   opts: MenuKeyboardOpts = {},
 ) {

@@ -563,11 +563,13 @@ def main() -> int:
               for t in GEN4),
           "; ".join(f"{t}={base.get(t, {}).get('src_identified_by', '')[:30]}"
                     for t in GEN4))
-    # ⚠️ 方向键这一项**没测到**（探针 850 在它上面栽了六次，见 README §68）。
-    #    `None` 是 falsy ⇒ 不产生 finding、也不当通过。这一条钉住「不许
-    #    偷偷把它填成 True/False」—— 填哪个都是编。
-    check("J.3 方向键一项是 `None`（**没测到**），不许被填成 True/False",
-          all(base.get(t, {}).get("arrows_move", "MISSING") is None
+    # ⚠️ 方向键：850/851 都记成「没测到」（None），**852 查明那是判据缺陷** ——
+    #    `moved` 漏掉了按之前的起点，把「走一步」判成了「不动」。这条判据
+    #    随之更新：现在要求**是实测过的布尔**，而不是 `None`。
+    #    （「不许偷偷填值」那条依然成立 —— 只不过 852 已经**真的**测了。）
+    check("J.3 四层的方向键是**实测过的布尔**（不是 `None`）—— "
+          "852 查明 850/851 记的「没测到」是 `moved` 漏掉起点的判据缺陷",
+          all(isinstance(base.get(t, {}).get("arrows_move", None), bool)
               for t in GEN4),
           f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in GEN4} }")
     # 源站这 4 层：接管焦点 / 不困 Tab / Esc 不归位（后两条照抄源站 a11y 失手）
@@ -645,8 +647,9 @@ def main() -> int:
           " Esc 不归位）",
           all(t in base for t in AUD_OK),
           f"{[t for t in AUD_OK if t in base]}")
-    check("K.2 那 2 层的方向键仍是 `None`（**没测到**），不许填成 True/False",
-          all(base.get(t, {}).get("arrows_move", "MISSING") is None
+    check("K.2 那 2 层的方向键是**实测过的布尔**（852 补测；"
+          "「不许偷偷填值」依然成立）",
+          all(isinstance(base.get(t, {}).get("arrows_move", None), bool)
               for t in AUD_OK),
           f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in AUD_OK} }")
     whys = [n.get("why", "") for n in kb_ns
@@ -705,6 +708,68 @@ def main() -> int:
     check("K.11 认层有**两条路**（role=listbox/dialog + class 特征）——"
           "「音色库」既不是 listbox 也不是 dialog，只走 role 会认不出",
           "[class*=" in lsrc.replace("'", '"') or 'class*=' in lsrc)
+
+    # ── L. 批 852：方向键从「没测到」变成「测到了」──────────────────────
+    #    850/851 记的 `arrows_move: None` 是**判据缺陷**，不是产品缺��� ——
+    #    两个判据把它盖住了，而两个都是同一类病：**布尔判据不配轨迹**。
+    #      ① `moved` 只对「按完之后」的 4 个点去重，**漏掉了按之前的起点**。
+    #         源站这六层都是「起点 ≠ 第 1 次之后」：`16:9` → `1` → `1` → `1`
+    #         去重后 1 个 ⇒ moved=False，而**第一次移动恰恰在起点→第一次之间**。
+    #         §64 记的是「moved=True 会掩盖跳格」；这里是**反向**的同一个病。
+    #      ② 判断「层里哪些可聚焦」时**真的调了 `focus()`**，把起点推到了最后
+    #         一个能聚焦的项上（音频·音色模型只有 2 项 ⇒ 起点被推到第 2 项
+    #         ⇒ 再按无处可去 ⇒ 假阴）。846 早写过：判断可聚焦性不能真的去 focus。
+    #    修完的实测：模型 9 项 True / 尺寸 14 项 True / 模式 2 项 True /
+    #    音色模型 2 项 True / 时长（slider 吃方向键）False / 生成模式（只 1 项）False。
+    print("\n— L. 方向键：`moved` 漏起点，诊断毁起点 —")
+    ARROW6 = {"gen-model-listbox": True, "gen-video-size-listbox": True,
+              "gen-mode-listbox": True, "gen-duration-listbox": False,
+              "audio-voice-model-listbox": True, "audio-gen-mode-listbox": False}
+    check("L.1 六层的 `arrows_move` 与 852 实测**逐项相符**"
+          "（两个 False 含义不同：时长层是 slider 吃方向键、生成模式只有 1 项）",
+          all(base.get(t, {}).get("arrows_move", "MISSING") == v
+              for t, v in ARROW6.items()),
+          f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in ARROW6} }")
+    p852 = ROOT / "scripts/jimeng_probe852_arrowdiag.py"
+    q852 = p852.read_text(encoding="utf-8") if p852.exists() else ""
+    check("L.2 探针里 `moved` **把起点算进去**"
+          "（`…seq… | {start}`）—— 漏掉它就把「走一步」判成「不动」",
+          "| {start}) > 1" in q852 or "| {start})" in q852,
+          f"{p852.name} 含起点合并="
+          f"{'| {start})' in q852}")
+    check("L.3 探针**不许**用 `focus()` 试探可聚焦性"
+          "（那会把起点推到最后一个能聚焦的项上；846 早写过同一条）",
+          "e.focus();\n          return document.activeElement === e" not in q852
+          and "不许真的 focus 来试探" in q852)
+    check("L.4 起点在**诊断之前**单独读一次"
+          "（诊断会遍历层内所有候选项，起点必须钉在它碰不到的地方）",
+          "诊断前起点" in q852 and q852.index("诊断前起点")
+          < q852.index("diag = page.evaluate(DIAG_JS, lay)"))
+    csrc2 = (ROOT / "src/components/jimeng/jimengMenuChrome.tsx").read_text(
+        encoding="utf-8")
+    check("L.5 修法是**一个只做方向键**的小 hook `useArrowKeys`"
+          "（源站这六层实测 `traps_tab: false`，接整只 `useMenuKeyboard` "
+          "会引入一堆没有源站依据的行为）",
+          "export function useArrowKeys" in csrc2)
+    g2 = (ROOT / "src/components/jimeng/JimengGenPanel.tsx").read_text(
+        encoding="utf-8")
+    a2 = (ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx").read_text(
+        encoding="utf-8")
+    check("L.6 视频 3 层 + 音频 2 层接了 `useArrowKeys`",
+          sum(f"useArrowKeys({v}" in g2 + a2
+              for v in ("modelBoxRef", "ratioBoxRef", "modeBoxRef",
+                        "voiceBoxRef", "dubBoxRef")) == 5)
+    check("L.7 **时长层刻意没接** `useArrowKeys`"
+          "（源站那一层焦点在 `SPAN/slider` 上，方向键被 slider 自己吃掉，"
+          "焦点不动；接了就是照抄一个源站没有的行为）",
+          "useArrowKeys(durBoxRef" not in g2)
+    # 音色模型：症状在键盘、根因是内容缺项
+    n_opt = a2.count('aria-label="Seed TTS, 上百个预设音色')
+    check("L.8 音色模型层补上了源站那**第 2 项** `Seed TTS`"
+          "（症状是「方向键不动」，根因是**内容只有 1 项**——1 项时无处可去；"
+          "源站实测 2 项，且方向键在两项间来回）",
+          n_opt == 1 and "上百个预设音色，让你玩转人声配音" in a2,
+          f"Seed TTS 项 {n_opt} 个")
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
