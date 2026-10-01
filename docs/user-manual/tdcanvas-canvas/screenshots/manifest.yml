@@ -1091,3 +1091,15 @@ screenshots:
     visible_text: '新增资产 类型 文本 图片 封面 URL 标签 来源 备注 文本内容 暂无封面 未命名资产 全部 文本 图片 视频'
     alt: 新增资产弹窗，类型下拉已展开且只有文本和图片两个选项，而画面右侧的类型筛选器里却有视频一项
     sha256: dc2eb9364828263e52382cb2b64727b5802e67b5413156f598f38f3f6f4e7726
+
+  - file: screenshots/11-shortcuts-help-copy-titles.png
+    task_id: shortcuts-help
+    step: 同一文本节点连点四次右键「复制」，观察副本的对角线偏移与标题的逐级叠加
+    route: '/canvas/:id'
+    viewport: 1600x1000
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '五个 .node-element 依序位于 (540,350) / (576,386) / (612,422) / (648,458) / (684,494)，每级 dx=dy=36；各节点标题按钮内的 span 文本依次为「文本」「文本 Copy」「文本 Copy Copy」「文本 Copy Copy Copy」「文本 Copy Copy Copy Copy」；左侧画布面板的节点列表同步显示同样五个标题；最后选中节点上方悬浮工具条共 8 个按钮（信息/删除/存资产/编辑/编辑文字/生图/缩小/放大）'
+    visible_text: '文本 文本 Copy 文本 Copy Copy 文本 Copy Copy Copy 文本 Copy Copy Copy Copy'
+    alt: 画布上五个文本节点沿对角线依次错开，标题从「文本」逐级叠加 Copy 变成「文本 Copy Copy Copy Copy」，左侧节点列表显示同样的五个标题
+    sha256: 912681769306d7921c8f80fcf1c192b06fac9caa392d54aa2e285f3e3f5c4e95
