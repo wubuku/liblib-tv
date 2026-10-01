@@ -1,0 +1,556 @@
+# LibTV 画布用户手册 · 截图清单
+
+# 每张图都来自真实运行界面（无头 Chromium + 已登录态），固定视口 1440x810@2x、
+# locale zh-CN、时区 Asia/Shanghai、深色主题。captured_at 统一为取证批次当天。
+
+screenshots:
+  - file: screenshots/A1-home-overview.png
+    task_id: create-project
+    step: 1
+    route: /
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="新建项目"
+    visible_text: 新建项目 LibTV Agent LibTV 3D-BOX 首页 项目 资产 插件与扩展 新建画布创作 视频生成 图片生成 音频生成 剧本生成 智能剪辑 最近项目
+    alt: LibTV 首页全貌：左侧导航栏、顶部积分与会员入口、中部「新建画布创作」与八个快捷生成按钮、下方最近项目列表
+    sha256: 6c3ba97e2dbc0bf206f23bfbf3b951e251099dddf8a70b21b19da4ee7a719a4b
+  - file: screenshots/A2-projects-list.png
+    task_id: create-project
+    step: 2
+    route: /project
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="回收站"
+    visible_text: 全部项目 回收站 新建文件夹 开始创作 创建新的视频项目
+    alt: 项目列表页：顶部「回收站」与「新建文件夹」，下方是项目卡片列表
+    sha256: d416de9c8eb7cdbdcab02420345c819f9c4330d6e1f493100e43dcec8f82a00a
+  - file: screenshots/A3-canvas-empty.png
+    task_id: create-nodes
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: text=双击画布 自由生成节点
+    visible_text: 画布 1 双击画布 自由生成节点 图片生成 视频生成 音频生成 剧本生成 智能剪辑 资产管理 100% 新对话 让 TV Director 辅助你的无限创意
+    alt: 刚进入的空画布：中央提示「双击画布 自由生成节点」与五个快捷入口，底部工具条，右侧 TV Director 抽屉
+    sha256: 4989e4f4c7463d479be402a42f06710a98ce21855f2e1757f5f176f0047b57ce
+  - file: screenshots/A3b-canvas-dropdown.png
+    task_id: manage-canvases
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button text=画布 1
+    visible_text: 画布 画布 1 新建画布 切换到画布 画布 1 更多操作
+    alt: 画布下拉面板：分区标题「画布」、右上角新建按钮，以及画布行与行级「更多操作」按钮
+    sha256: 367c7cee2257614fbc41d7bab103396300be6ebcf193d5b130958639ff8cf3cd
+  - file: screenshots/A3c-canvas-row-more.png
+    task_id: manage-canvases
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="更多操作"
+    visible_text: 在新窗口打开 重命名画布 复制画布 删除画布
+    alt: 画布行的「更多操作」菜单展开后的四项操作
+    sha256: ca1e68c3af192b27b6863b39f35deba4cb9e28d3ce3316c63d9956e662829dd0
+  - file: screenshots/A4a-mode-workflow.png
+    task_id: storyboard-mode
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="工作流"
+    visible_text: 画布 1 工作流 双击画布 自由生成节点 图片生成 视频生成 音频生成 剧本生成 智能剪辑
+    alt: 工作流模式：顶栏「工作流」处于选中态，画布上是节点与连线的自由布局
+    sha256: 28854d94b9c67a8e9fbe36185c03d34c52b67a3b36b37eed79a768ffd269281a
+  - file: screenshots/A4b-mode-storyboard.png
+    task_id: storyboard-mode
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="故事板"
+    visible_text: 画布 1 故事板 文本 暂无文本 图片 暂无图片 视频 暂无视频
+    alt: 故事板模式：画布换成文本、图片、视频三列，每列显示各自的空状态文案
+    sha256: 87510aee501b98604f1b9b9e60d9687d12dc8df1ce5c270ee51e4db331f6c17c
+  - file: screenshots/A5-share-panel.png
+    task_id: share-canvas
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="发布与分享"
+    visible_text: 发布与分享 在LibTV上发布 发布你的作品和创作过程，让更多创作者看到。 分享链接 拥有此链接的人可以查看并复制你的画布。
+    alt: 发布与分享面板：上方发布区说明，下方「分享链接」区说明持有链接者可查看并复制画布
+    sha256: 451a701178f3684098ef12aee4f47447b430003826cde86c68fd55e424130be0
+  - file: screenshots/A6-zoom-menu.png
+    task_id: navigate-canvas
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="缩放选项"
+    visible_text: 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 缩放菜单：顶部百分比输入框，下面是放大、缩小、适合屏幕三个快捷项与三个百分比档位
+    sha256: 3a17058aaf6e90c4439aad9963d52796789f802e6e16211c2f5416853fc4820e
+  - file: screenshots/A8a-canvas-dropdown-rows.png
+    task_id: manage-canvases
+    step: 3
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: aria-label="切换到画布 画布 2"
+    visible_text: 画布 画布 2 画布 1
+    alt: 画布下拉中的画布行列表，活动画布行左侧带勾选标记
+    sha256: d461c58a8611f479dde916477e3a2cec1547a122e05cb1c8384e67abecfc1416
+  - file: screenshots/A9a-dropdown-before.png
+    task_id: manage-canvases
+    step: 4
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button text=手册取证画布
+    visible_text: 画布 手册取证画布 画布 2
+    alt: 操作前的画布下拉基线，两张画布按顺序排列
+    sha256: 18b79a24886fdf30c3dcf281fbe3d03431d69f49086282075ad2cc10c7037730
+  - file: screenshots/A9b-duplicate-menu-item.png
+    task_id: manage-canvases
+    step: 5
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=menuitem name="复制画布"
+    visible_text: 在新窗口打开 重命名画布 复制画布 删除画布
+    alt: 画布行菜单中高亮「复制画布」这一项
+    sha256: a366f47d1265ee6a8f67cfa6f00d6d74ad35234957833382c88b34d6c0aede62
+  - file: screenshots/A9c-delete-confirm-btn.png
+    task_id: manage-canvases
+    step: 7
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="确认"
+    visible_text: 删除画布 确定要删除画布「手册取证画布副本1」吗？此操作不可恢复。 取消 确认
+    alt: 删除确认对话框中高亮的「确认」按钮
+    sha256: 6e4efc48278fcc23be2c30f038a54b1e39708a7eca8a74c4ec0be73f93bee777
+  - file: screenshots/A9c-delete-confirm.png
+    task_id: manage-canvases
+    step: 6
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="确认"
+    visible_text: 删除画布 确定要删除画布「手册取证画布副本1」吗？此操作不可恢复。 取消 确认
+    alt: 删除画布的二次确认对话框，正文说明此操作不可恢复，右下为取消与确认
+    sha256: fd2a7be4e0e93cef918f83e5a9552a8faef44fcd540455c8f906668b83cd4ace
+  - file: screenshots/A9d-after-delete.png
+    task_id: manage-canvases
+    step: 8
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button text=画布 2
+    visible_text: 画布 手册取证画布 画布 2
+    alt: 删除副本后的画布下拉，活动画布已回落到另一张
+    sha256: a451ea8cb052e969ea5bceb422abb35e720f192b91b89f006e09f581fe54ecbc
+  - file: screenshots/A9e-switch-row.png
+    task_id: manage-canvases
+    step: 9
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: aria-label="切换到画布 手册取证画布"
+    visible_text: 画布 手册取证画布 画布 2
+    alt: 画布下拉中高亮的切换目标行，点击后地址栏的 projectId 会随之改变
+    sha256: 04e2a83b101c2fa987c4d7990df3c042164fa69cb5a71d4cca9455f5a97c1218
+  - file: screenshots/B1-add-node-panel.png
+    task_id: create-nodes
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="添加节点"
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板：顶部搜索框、中间九类节点、底部「添加资源」分区
+    sha256: cd1915ea3c0a83ad2d4bb4d32b2d031d071a2036a872ef3c083abaf805d4c2d5
+  - file: screenshots/B1-item-从生成历史选择.png
+    task_id: asset-library
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=从生成历史选择
+    visible_text: 添加资源 上传 从生成历史选择
+    alt: 添加节点面板底部「添加资源」分区中，高亮的「从生成历史选择」项
+    sha256: ed8d73b03f02f8acb4bcc3872e9841de8e018b401146da0d08a497553fbbabb8
+  - file: screenshots/B1-item-图片.png
+    task_id: create-nodes
+    step: 4
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=图片
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「图片」项
+    sha256: ca75aec53d56d48d69ae08698e19df283449b00621556623839c37ac1e5f0001
+  - file: screenshots/B1-item-文本.png
+    task_id: create-nodes
+    step: 3
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=文本
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「文本」项
+    sha256: 22f2397e87a73b9670c80d4d67c2c6c9815ada997b70e0141e4b8e2b0891f302
+  - file: screenshots/B1-item-素材库.png
+    task_id: asset-library
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=素材库
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「素材库」项，右侧带展开箭头
+    sha256: e131fea5acd1c364ad62bbb81ccdb13483357ae9d73ac571cd532e32c8b068bd
+  - file: screenshots/B1-item-脚本.png
+    task_id: create-nodes
+    step: 7
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=脚本
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「脚本」项，右侧带展开箭头
+    sha256: 138e854632aab1f324249ae88a616134f6d54b17540f8083370128512268b983
+  - file: screenshots/B1-item-视频.png
+    task_id: create-nodes
+    step: 5
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=视频
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「视频」项
+    sha256: ba7a1fefb12031d8b80204f16ab4ee73fa05e3d4096278c576c9546a918f8677
+  - file: screenshots/B1-item-音频.png
+    task_id: create-nodes
+    step: 6
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=音频
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 添加节点面板中高亮的「音频」项
+    sha256: c81d7f6c4b30f4a547d82f2b50fc346858727faf23faa4449f212b7d8029e471
+  - file: screenshots/C-08-脚本子菜单.png
+    task_id: create-nodes
+    step: 9
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=脚本
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 脚本 NEW 脚本（旧版） Beta 素材库 添加资源 上传 从生成历史选择
+    alt: 展开「脚本」后的子菜单，包含新版脚本与旧版脚本两个选项
+    sha256: 256310ac305255581d3841f1c62965fae522cf87cb8fcd4458aeaf048960ad40
+  - file: screenshots/C-09-素材库子菜单.png
+    task_id: asset-library
+    step: 3
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: button hasText=素材库
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 风格库 特效库 添加资源 上传 从生成历史选择
+    alt: 展开「素材库」后的子菜单，包含风格库与特效库两个选项
+    sha256: bcaee5a996fe52d1e25f9c0571322e5d6aa54eb1d07dfe6afaa7bcccfcd315d8
+  - file: screenshots/D-00-空画布-干净.png
+    task_id: create-nodes
+    step: 10
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: text=双击画布 自由生成节点
+    visible_text: 画布 2 双击画布 自由生成节点 图片生成 视频生成 音频生成 剧本生成 智能剪辑 资产管理 100%
+    alt: 一张完全空白的画布，作为节点取证的统一起点
+    sha256: 4b29ce923a2d61cd6c880d533dd8196dccc7a98e0cfc0f04e652ec97523f5dc9
+  - file: screenshots/D-01-文本-节点特写.png
+    task_id: create-nodes
+    step: 11
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 文本节点 1
+    visible_text: 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐
+    alt: 文本节点卡片特写：标题与四个可选模式
+    sha256: 4c5016fd7997fb048f43c02a03ba68d4857f703bdaeb42959e10a7133402a6fd
+  - file: screenshots/D-02-图片-节点特写.png
+    task_id: create-nodes
+    step: 12
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 图片节点 1
+    visible_text: 图片节点 1 尝试： 图生图 图片高清 参考 标记 风格
+    alt: 图片节点卡片特写：标题、两个模式与顶部的参考标记风格工具
+    sha256: 2c34ab6eaf898fda5aab6a8f3f43b4944fbaae0586c179a2fa0494b19d5c15ea
+  - file: screenshots/D-03-视频-节点特写.png
+    task_id: create-nodes
+    step: 13
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 视频节点 1
+    visible_text: 视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频
+    alt: 视频节点卡片特写：标题与三个生成模式
+    sha256: 964cbd105d856e881a6292211ed898ac4b5974d78ea6260f9b563418942011ef
+  - file: screenshots/D-04-智能剪辑-节点特写.png
+    task_id: create-nodes
+    step: 14
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 智能剪辑 1
+    visible_text: 智能剪辑 1 空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪
+    alt: 智能剪辑节点卡片特写：顶部提示必须先连接视频节点
+    sha256: 3e8bf79373de7a6a9eb1ad40817be097796726cd3c4fba646ecf40e3950e93c4
+  - file: screenshots/D-05-导演台-节点特写.png
+    task_id: create-nodes
+    step: 15
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 导演台 1
+    visible_text: 导演台 1 在3D空间中搭建场景并进行多视角截图 打开导演台
+    alt: 导演台节点卡片特写：一句说明和一个「打开导演台」按钮
+    sha256: 0392931c27e120d7c7c52400d68d36c57a75c3cc5b09b2a7a135104e7b90f502
+  - file: screenshots/D-06-逐帧拉片-节点特写.png
+    task_id: create-nodes
+    step: 16
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 逐帧拉片
+    visible_text: 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片
+    alt: 逐帧拉片节点卡片特写：上传区、三个拆解维度与开始按钮
+    sha256: 6ab326385af3252e95e2df21ba513af94f2ea681fc91a0aabd5f78fba1abb5bb
+  - file: screenshots/D-07-音频-节点特写.png
+    task_id: create-nodes
+    step: 17
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=textbox 画布节点 音频节点 1
+    visible_text: 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1 高级设置 语速 声调 音量
+    alt: 音频节点卡片特写：模式、提示词占位文案与底部规格参数条
+    sha256: 15fe4d836dc5edcc772379fd2d01cad99b523de6714d1a43e73290af7ed7428d
+  - file: screenshots/D-98-整理画布后.png
+    task_id: organize-canvas
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="整理画布，Option+Shift+F"
+    visible_text: 音频节点 6 图片节点 2 逐帧拉片 视频节点 3 导演台 5 文本节点 1 智能剪辑 4 是否保留此次整理结果？ 还原 保留
+    alt: 按整理画布后节点被铺开，左下角出现是否保留此次整理结果的确认条
+    sha256: 8ceffd9572e0a3b8ab5f4806628af61237cab557b28ebbaf0bca62a857a5f0c9
+  - file: screenshots/F-01-文本节点-展开.png
+    task_id: select-and-edit-nodes
+    step: 18
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="自己编写内容"
+    visible_text: 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 写下你想讲的故事、场景或角色设定。例如：一个来自未来的机器人，在城市屋顶看星星。 GVLM 3.1 6
+    alt: 文本节点选中后展开：提示词输入框与底部模型和积分参数
+    sha256: fdb50708d96bacef9df5ac1abe4b52bc4973ca7dba08f1669bfbda43a02f3381
+  - file: screenshots/F-02-图片节点-展开.png
+    task_id: generate-media
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="Lib Image 2.5 Pro"
+    visible_text: 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink
+    alt: 图片节点选中后展开的完整编辑区：顶部工具、提示词框与底部模型规格积分参数条
+    sha256: b6b229e10ff66de670d33065e9f7b9d5fa42140f51ff18fff6ef625f5616ffaf
+  - file: screenshots/F-03-视频节点-展开.png
+    task_id: generate-media
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="文生视频"
+    visible_text: 视频节点 3 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜 描述你想要生成的画面内容，@引用素材 2.0 文生视频 16:9 · 720P · 5s · 1个 · 135 高级设置 联网搜索 自动校验素材 智能引用 AutoLink
+    alt: 视频节点选中后展开的完整编辑区：五个顶部工具、提示词框与含积分价格的底部参数条
+    sha256: 1c9ac63a15bab8c85628c0f82fd77368b7b3f4d7f5cd018bd8fac0dd5a4e5936
+  - file: screenshots/G-01-连线-起点端口.png
+    task_id: connect-nodes
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: .react-flow__handle-right[data-handleid=source]
+    visible_text: 图片节点 1
+    alt: 鼠标悬停在图片节点右侧的输出端口上，准备拖出连线
+    sha256: 6ff906f9d104e08e9a4ff0d6d207d7d24c007bc91c29ce26205332ef0bdf0d0c
+  - file: screenshots/G-02-连线-拖拽中.png
+    task_id: connect-nodes
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: .react-flow__handle-left[data-handleid=target]
+    visible_text: 图片节点 1 视频节点 2
+    alt: 从输出端口拖出的连线跟随光标，指向视频节点的输入端口
+    sha256: 734a9ce80897f7f110361ac8dfa60a8dcd1029e44ba7026888aed46b234b76cf
+  - file: screenshots/H-11-节点连线-完整.png
+    task_id: connect-nodes
+    step: 3
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: .react-flow__edge
+    visible_text: 图片节点 1 视频节点 2
+    alt: 连线建立完成：图片节点输出连到视频节点输入，视频节点入口旁出现蓝色加号标记
+    sha256: 17e39918d155a39bfb4e70b0aa76f04ad566927b3cdc3fb2aa90a4d97ac8bdf3
+  - file: screenshots/I-01-节点连线-总览.png
+    task_id: connect-nodes
+    step: 4
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="缩放选项"
+    visible_text: 50 放大 缩小 适合屏幕 缩放至50% 缩放至100% 缩放至800%
+    alt: 缩放到百分之五十后的连线全貌，左侧是缩放菜单中的百分比档位，图片节点与视频节点分列两侧且连线清晰可见
+    sha256: 3c5b3ebeaf5eb6ca792d0eac34df973951242e06464da94dd8500fffddec15ef
+  - file: screenshots/p06-asset-library.png
+    task_id: asset-library
+    step: 4
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="素材库"
+    visible_text: 风格库 新增风格节点 NEW 特效库 新增特效节点 NEW 打开工具箱
+    alt: 底部工具条打开的素材库面板，包含风格库、特效库与打开工具箱
+    sha256: 2f0cc6ea56661b21e9f6be1e126b0597616051c45a9cae734b1726714ae2f99a
+  - file: screenshots/p06-character-studio.png
+    task_id: character-studio
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="角色造型室"
+    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色
+    alt: 角色造型室面板：两个角色库切换、三组筛选条件与创建新角色入口
+    sha256: ad4e356161acea280ef571b273e33581411d11d44bc2c3d7ff837c3ed37b6b6b
+  - file: screenshots/p07b-shortcuts-4col.png
+    task_id: shortcuts
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="快捷键"
+    visible_text: 创作 成组 ⌘G 合并分镜组 ⌘⌥G 解组 ⌘⇧G 连线 ⌘L 缩放 放大 ⌘+ 适合画布 ⌘0 移动画布 移动 V 抓手工具 H 其他 撤销 ⌘Z 删除 ⌫
+    alt: 快捷键面板完整四列：创作、缩放、移动画布、其他
+    sha256: 0b51e8941540fd09e75e484a9837970f2f3440755f880a24a6efa82b45d417a4
+  - file: screenshots/p08-shortcuts-1-chuangzuo.png
+    task_id: shortcuts
+    step: 2
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="快捷键"
+    visible_text: 创作 成组 G 合并分镜组 ⌥G 解组 ⌧G 连线 L 复制节点和连线 D 生成 Enter 新建节点 Tab 节点复制 Option 创建副本 ⌘
+    alt: 快捷键面板的创作列：成组、解组、连线、复制等九项
+    sha256: c10a4dae0e9c7b64593be6eb78b9d30a316ae81e5b52029903d94ced9d4b846a
+  - file: screenshots/p08-shortcuts-2-suofang.png
+    task_id: shortcuts
+    step: 3
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="缩放选项"
+    visible_text: 缩放 放大 缩小 适应画布 触控板 鼠标
+    alt: 快捷键面板的缩放列：放大、缩小、适应画布与两种输入设备的缩放方式
+    sha256: bb321fcbb34afaa6b3e7fe0ff83331c3c310a0276838fd9efb4ef08156f809a5
+  - file: screenshots/p08-shortcuts-3-yidong.png
+    task_id: shortcuts
+    step: 4
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="缩放选项"
+    visible_text: 移动画布 键盘 Space 触控板 鼠标 移动 V 抓手工具 H 整理画布 ⌥ ⇧ F
+    alt: 快捷键面板的移动画布列：三种平移输入方式、移动与抓手工具、整理画布
+    sha256: 302d6f4463dfaf374fd404ce23f32be2b45d5ae9d710ba4f418c7ec4434b104e
+  - file: screenshots/p08-shortcuts-4-qita.png
+    task_id: shortcuts
+    step: 5
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: role=button name="缩放选项"
+    visible_text: 其他 撤销 ⌘Z 重做 ⌘⇧Z 画布节点搜索 ⌘F 删除 ⌫
+    alt: 快捷键面板的其他列：撤销、重做、画布节点搜索与删除
+    sha256: 53fc418415b5b8beb80c38bcd2139a57eef68928133bf9edf5e5c441498ce65b
+  - file: screenshots/J-01-TV-Director-抽屉.png
+    task_id: agent-director
+    step: 1
+    route: /canvas?spaceId&projectId
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T00:00:00+08:00
+    verified_locator: 'text=让 TV Director 辅助你的无限创意'
+    visible_text: 新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 全能创作
+    alt: TV Director 抽屉本体，标题「新对话」，引导语「让 TV Director 辅助你的无限创意」，下方四张技能卡与底部输入区
+    sha256: 20889f8076f9cb578a25969ca5c99677d8263091ded491ce694d716500c7657f

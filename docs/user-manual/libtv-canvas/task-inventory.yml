@@ -1,0 +1,357 @@
+# LibTV 画布用户手册 · 任务实施账本
+#
+# 本文件是「哪些用户任务进了手册、验证到什么程度」的唯一权威。
+# 每项 status 的含义：
+#   verified    —— 已在真实运行界面逐条走查，DOM/网络证据齐全
+#   partial     —— 界面文案与结构已坐实，但流程未跑完（原因写在这里）
+#   excluded    —— 本轮不写（原因写在这里），不是「测不了」的托词
+manual_version: 1
+
+target:
+  app: libtv
+  name: LibTV
+  url: 'https://www.liblib.tv'
+  canvas_route: '/canvas?spaceId={spaceId}&projectId={projectId}'
+  app_version: '首页左下角显示「版本更新记录 v1.5」；本轮取证 2026-10-01'
+  audience:
+    - libtv-creator        # 普通创作者：建节点、连线、生成
+    - libtv-heavy-creator  # 重度创作者：整理、多画布、资产管理
+  depth: thorough
+  viewport: '1440x810 @2x，zh-CN，Asia/Shanghai，深色主题（站点默认），reduced-motion'
+
+scope_authorization:
+  user_confirmed: true
+  note: >-
+    用户以 /goal 指令要求「执行 LibTV 画布相关功能的用户手册编写任务，直到全部写完」，
+    并明确「不要停下来询问和等待用户回复」「只要主动寻找可以执行的任务就总是有事可做」。
+    据此视为对 SKILL §2「Agent 依证据自行定级」的常设授权：候选表在本文件与 PROGRESS.md
+    持续可见，用户可随时要求重排。手册不因「没问过用户」而缩减范围。
+
+safety:
+  paid_actions_forbidden: true
+  note: >-
+    测试账户余额 20 积分。本轮全程**未提交任何生成**：所有生成类节点只验证到
+    「参数填好、提交按钮在哪儿」为止，一次都没有点。依据 SKILL §0 与仓库 AGENTS.md。
+  never_done:
+    - 点「生成 / 发送 / 开始拉片」等任何会消耗积分的按钮
+    - 发布作品、对外分享链接、发送任何外部通知
+    - 充值、开通会员、进入支付页
+    - 删除用户自己的项目（删除只在一次性测试项目里对新画布做过）
+  user_session_untouched: true
+  note: >-
+    用户当时正用 CDP 9222 上的有头浏览器编辑 projectId=a860e1da8e9e4504bececda022386429。
+    取证全程另起无头浏览器 + 一次性项目，从未 attach、从未改动该项目。
+
+evidence_base:
+  runtime:
+    - '本目录 tools/*.mjs 全部为无头浏览器实跑脚本，原始输出落在 tools/.evidence/*.json'
+    - '每个 .json 记录 visible_text（DOM 真实文案）+ evidence（按钮/输入项/网络请求）'
+  repo_docs:
+    - 'docs/CANVAS_NAVIGATION.md（clone 侧导航权威，用于与源站交叉核对）'
+    - 'docs/research/liblib-canvas-sampling-2026-09-06/README.md（源站单编辑者锁、画布下拉旧结构）'
+    - 'docs/research/LIBTV_SHORTCUT_RUNTIME_CROSSWALK.md（clone 侧快捷键交叉表）
+  screenshots: 'screenshots/manifest.yml（49 张，逐张 sha256）'
+
+tasks:
+  # ───────────── 入口与组织 ─────────────
+  - id: create-project
+    title: 从首页或项目页新建项目并进入画布
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    status: verified
+    evidence:
+      - 'A1-home-overview.png：首页左栏「新建项目」、主区「新建画布创作」'
+      - 'A2-projects-list.png：/project 页「回收站」「新建文件夹」「开始创作」'
+      - '实测：在 /project 点「新建项目」**无对话框**，直接进入一张名为「未命名工作区」的新画布'
+    manual_pages:
+      - 00-quickstart.md
+      - 10-tasks/enter-canvas.md
+    notes: >-
+      与很多工具不同，这里没有「先填名字再建」的对话框——点下去就已经建好并跳进去了，
+      名字之后再改。正文必须写清这个差异，否则用户会以为按钮坏了。
+
+  - id: manage-canvases
+    title: 画布的新建 / 切换 / 重命名 / 复制 / 删除
+    role: libtv-heavy-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    status: verified
+    evidence:
+      - 'A8a-canvas-dropdown-rows.png：下拉行 aria-label =「切换到画布 {名称}」'
+      - 'A9a-dropdown-before / A9b-duplicate / A9c-delete-confirm / A9d-after-delete.png'
+      - '网络：重命名发出 POST /api/canvas/project/update'
+    manual_pages:
+      - 10-tasks/manage-canvases.md
+    findings:
+      - '**一张画布 = 一个 projectId**。切换画布时 spaceId 不变、projectId 变（实测 URL 变化）。'
+      - '新建命名 `画布 {N}`，插到列表最前并自动切换。'
+      - '复制命名 `{原名}副本{序号}`，插在**源画布正下方**，并自动切到副本。'
+      - '删除有二次确认「此操作不可恢复」；删掉当前活动画布会自动回落到另一张。'
+      - '活动画布行左侧带 ✓ 勾。'
+
+  - id: navigate-canvas
+    title: 平移、缩放、小地图与视野复位
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: full
+    status: verified
+    evidence:
+      - 'A6-zoom-menu.png：缩放菜单「放大 ⌘+ / 缩小 ⌘- / 适合屏幕 ⌘0 / 缩放至50%·100%·800%」'
+      - 'p08-shortcuts-2-suofang.png / p08-shortcuts-3-yidong.png：缩放与移动两组键位'
+    manual_pages:
+      - 10-tasks/organize-canvas.md
+      - 20-reference.md
+    notes: '缩放菜单里同时存在「适合屏幕」和三个百分比档，这是实测原文，不是推断。'
+
+  - id: organize-canvas
+    title: 整理画布、切换小地图、隐藏连线、网格吸附
+    role: libtv-heavy-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    status: verified
+    evidence:
+      - 'D-98-整理画布后.png：按 ⌥⇧F 后节点被铺开'
+      - '实测：整理后左下角出现确认条「是否保留此次整理结果？还原 / 保留」'
+    manual_pages:
+      - 10-tasks/organize-canvas.md
+    findings:
+      - '整理画布**不是即时的**，会弹「是否保留此次整理结果？」，必须选「保留」才落盘。'
+        这条不写出来，用户会以为整理没生效。'
+
+  - id: storyboard-mode
+    title: 在工作流与故事板两种视图间切换
+    role: libtv-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    status: verified
+    evidence:
+      - 'A4a-mode-workflow.png / A4b-mode-storyboard.png：顶栏「工作流」「故事板」'
+      - '故事板态画布换成三列：文本 / 图片 / 视频，各带空态文案'
+    manual_pages:
+      - 10-tasks/storyboard-mode.md
+  - id: share-canvas
+    title: 发布与分享
+    role: libtv-creator
+    frequency: occasional
+    impact: high
+    coverage: full
+    status: documented
+    evidence:
+      - 'A5-share-panel.png：面板文案「发布你的作品和创作过程…」「分享链接」「拥有此链接的人可以查看并复制你的画布。」'
+    manual_pages:
+      - 10-tasks/share-canvas.md
+    not_verified: >-
+      按安全边界**没有点发布、没有生成链接、没有对外分享**。面板文案与入口已坐实，
+      发布后的对外表现（他人打开看到什么、能否复制）未验证。正文已写明这条边界。
+
+  # ───────────── 节点 ─────────────
+  - id: create-nodes
+    title: 创建九类节点
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    status: verified
+    evidence:
+      - 'B1-add-node-panel.png + B1-item-*.png：添加节点面板九项逐项高亮'
+      - 'D-01..D-07-节点特写.png：每类节点卡片特写'
+      - 'F-01..F-03-展开.png：文本/图片/视频选中后展开的完整编辑器'
+    manual_pages:
+      - 10-tasks/create-nodes.md
+    node_types:
+      - '文本 —— 尝试：自己编写内容 / 文生视频 / 图片反推提示词 / 文字生音乐'
+      - '图片 —— 尝试：图生图 / 图片高清'
+      - '视频 —— 尝试：5分钟超长视频 / 首尾帧生成视频 / 首帧生成视频'
+      - '智能剪辑 Beta —— 尝试：讲解视频 / 批量广告 / 口播视频 / 素材混剪'
+      - '导演台 NEW —— 卡片只有「打开导演台」'
+      - '逐帧拉片 SD 2.5 —— 拆解维度：分镜 / 动态 / 音乐'
+      - '音频 —— 尝试：音频生视频'
+      - '脚本 —— **带子菜单**：脚本 NEW / 脚本（旧版）Beta'
+      - '素材库 —— **带子菜单**：风格库 / 特效库'
+    findings:
+      - '「脚本」和「素材库」两项右侧有 ›，点击只展开子菜单，**不会直接建节点**。'
+      - '空画布上「双击画布 自由生成节点」弹出的是**同一个面板**，但锚在双击点。'
+        这也是唯一能把节点放到指定位置的入口（见 connect-nodes）。'
+
+  - id: connect-nodes
+    title: 用输出端口连到下一个节点的输入端口
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    status: verified
+    evidence:
+      - 'G-01-连线-起点端口.png / G-02-连线-拖拽中.png'
+      - 'H-11-节点连线-完整.png：连线成立，edgeCount=1'
+      - '端口 DOM：输出 .react-flow__handle-right[data-handleid=source][data-handlepos=right]；'
+        '输入 .react-flow__handle-left[data-handleid=target][data-handlepos=left]'
+    manual_pages:
+      - 10-tasks/connect-nodes.md
+    notes: >-
+      连线语义「上游产物喂给下游」在界面上只靠「左进右出」表达，没有文字说明；
+      正文用「参考/上传」这条替代路径做对照，帮新手理解连线到底传什么。
+
+  - id: select-and-edit-nodes
+    title: 选中节点、展开编辑区、成组/解组/复制
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: full
+    status: documented
+    evidence:
+      - 'F-01..F-03：点击节点后卡片展开出提示词框、参考/标记/特效、底部参数条'
+      - 'p08-shortcuts-1-chuangzuo.png：成组 ⌘G / 合并分镜组 ⌘⌥G / 解组 ⌘⇧G / 连线 ⌘L / 复制节点和连线 ⌘D'
+    manual_pages:
+      - 10-tasks/create-nodes.md
+      - 10-tasks/shortcuts.md
+    not_verified: >-
+      成组/解组/合并分镜组、⌘D 复制节点和连线这三组操作本轮**没有逐条实跑**：
+      成组需要先框选多个节点，而框选入口（空白处 Shift 拖拽）在本轮未取得可靠读数。
+      快捷键键位来自面板原文，按 SKILL 要求「面板自称 ≠ 运行时行为」，
+      已在 AUDIT.md 登记为待回走项，正文对这几项只给键位不给「已验证」字样。
+
+  - id: generate-media
+    title: 生成图片 / 视频 / 音频
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: full
+    status: documented
+    evidence:
+      - 'F-02-图片节点-展开.png：模型 Lib Image 2.5 Pro、16:9 · 标准画质 · 2K · 1张、15（积分）'
+      - 'F-03-视频节点-展开.png：文生视频、16:9 · 720P · 5s · 1个 · 135（积分）'
+      - 'D-07-音频-节点特写.png：Seed Audio 1.0、中文 · 24k · wav、0/2000、1'
+    manual_pages:
+      - 10-tasks/generate-media.md
+      - 20-reference.md
+    not_verified: >-
+      按安全边界**一次都没有真正提交过生成**，因此：参数面板、模型名、单价数字、
+      「提交按钮在哪」都已坐实，但**生成耗时、失败提示、产物落位、历史记录长什么样**
+      全部没有实测。正文明确标出这部分属于「按界面推断，未跑通」，并给出排查入口。
+
+  # ───────────── 资产与角色 ─────────────
+  - id: asset-library
+    title: 素材库（风格库 / 特效库）与添加资源
+    role: libtv-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    status: verified
+    evidence:
+      - 'p06-asset-library.png：底部「素材库」面板「风格库 / 特效库 / 打开工具箱」'
+      - 'C-09-素材库子菜单.png：添加节点面板里「素材库」子菜单同为 风格库 / 特效库'
+      - 'B1-item-从生成历史选择.png：添加资源分区「上传 / 从生成历史选择」'
+    manual_pages:
+      - 10-tasks/asset-library.md
+    notes: '同一个「素材库」在两处入口下文案一致，正文合并成一节，不重复写两遍。'
+
+  - id: character-studio
+    title: 角色造型室：我的角色库 / 官方角色库
+    role: libtv-creator
+    frequency: occasional
+    impact: medium
+    coverage: full
+    status: verified
+    evidence:
+      - 'p06-character-studio.png：双库切换 + 筛选 性别 / 年龄段 / 文化区域 + 创建新角色'
+    manual_pages:
+      - 10-tasks/character-studio.md
+  - id: assets-page
+    title: 资产页：生成历史 / 个人资产库 / 可灵资产库
+    role: libtv-creator
+    frequency: common
+    impact: medium
+    coverage: reference
+    status: verified
+    evidence:
+      - '探针 p02 实测 /assets：三个入口 + 所有评级 + 排序 + tab 全部/图片/视频/音频'
+    manual_pages:
+      - 20-reference.md
+  # ───────────── TV Director ─────────────
+  - id: agent-director
+    title: 用 TV Director 让 Agent 替你操作画布
+    role: libtv-creator
+    frequency: core
+    impact: high
+    coverage: flagship
+    status: documented
+    evidence:
+      - 'A3-canvas-empty.png：右侧抽屉标题「新对话」「让 TV Director 辅助你的无限创意」'
+      - 'composer：添加附件 / 选择创作模式（全能创作）/ 选择模型 / Skill / 手动生成 / Send'
+      - '头图 / 历史对话 / TV Director 全局设置 / LibTV Plugin / 停靠到右侧 / 关闭'
+    manual_pages:
+      - 10-tasks/agent-director.md
+    findings:
+      - '**四张技能卡文案会轮换**：同一账户在不同时刻分别见到
+        「选择Skill开始创作 / 从爆款预设开始剧本原创 / 上传故事来改编 / 批量创建分镜」
+        与「感知画布开始创作 / 从爆款预设开始剧本原创 / 上传故事来改编 / 批量优化提示词」。
+        正文因此不把技能卡文案写成固定清单，只描述位置与用法。'
+      - '空输入时 `Send` 是 disabled —— 这是取证时的真实状态，不是缺陷。'
+    not_verified: >-
+      按安全边界**没有向 TV Director 提交过任何任务**（任务会消耗积分）。
+      抽屉结构、入口、控件已坐实；「发一句话之后它到底会做什么」需要一次真实任务才能写，
+      已登记在 AUDIT.md。正文里这一节明确划出「已实测」与「按产品定位推断」两层。
+
+  # ───────────── 快捷键 ─────────────
+  - id: shortcuts
+    title: 快捷键总览
+    role: libtv-creator
+    frequency: core
+    impact: medium
+    coverage: full
+    status: documented
+    evidence:
+      - 'p07b-shortcuts-4col.png：四列完整面板'
+      - 'p08-shortcuts-1..4：按列裁切，供正文分节配图'
+    manual_pages:
+      - 10-tasks/shortcuts.md
+      - 20-reference.md
+    findings:
+      - '面板分「创作 / 缩放 / 移动画布 / 其他」四列，**⌘ 前缀是图形键帽、不是文字**，
+        只读 innerText 会整列丢失（见 PROGRESS.md §2.4 三次读数记录）。'
+      - '「移动 = V」「抓手工具 = H」同属「移动画布」列 —— 已按单元格逐列坐实。'
+    not_verified: >-
+      键位来自面板原文，**未逐条实按验证**。已实跑验证的只有：⌘0 适合画布、
+      ⌘+ / ⌘- 缩放、⌥⇧F 整理画布（会弹确认条）、⌘A + ⌫ 全选删除画布上节点。
+      其余键位在 AUDIT.md 登记为待回走。
+
+  # ───────────── 本轮明确不写 ─────────────
+  - id: publish-and-share-external
+    title: 对外发布作品 / 分享链接给外部协作者
+    role: external
+    frequency: occasional
+    impact: high
+    coverage: concise
+    status: excluded
+    exclusion_reason: >-
+      会对外部产生不可逆影响（作品公开、他人获得访问权），SKILL §0 要求单独取得用户许可。
+      本轮无该许可。正文只写「发布与分享」面板里有什么，不写点击后的效果。
+
+  - id: generation-costs
+    title: 积分计费明细与充值
+    role: libtv-creator
+    frequency: occasional
+    impact: high
+    coverage: concise
+    status: excluded
+    exclusion_reason: >-
+      涉及支付页与真实扣费，SKILL §0 明令不进入。正文只标注各节点面板上**印在界面上的**
+      积分数字，不解释计费规则、不给充值指引。
+
+  - id: director-3d
+    title: 导演台三维工作区内部操作（搭景、机位、关键帧）
+    role: libtv-creator
+    frequency: occasional
+    impact: medium
+    coverage: concise
+    status: excluded
+    exclusion_reason: >-
+      本轮只建了导演台**节点卡**（卡片文案与「打开导演台」按钮已坐实），
+      未进入三维工作区。原因是它与本手册的画布主线不同、且单次探索成本远高于其他页。
+      已登记为下一批（M6）首要任务，不是「测不了」。
