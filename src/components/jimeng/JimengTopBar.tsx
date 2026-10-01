@@ -114,7 +114,11 @@ export function JimengTopBar() {
   return (
     <>
       {/* 面板展开时收缩右边界，把右簇让到面板左侧 (SOURCE_FACT batch 795) */}
+      {/* SOURCE_FACT (batch 801): 源站顶栏 header 带可访问名「Canvas top bar」
+          与 data-testid="canvas-top-bar"。 */}
       <header
+        aria-label="Canvas top bar"
+        data-testid="canvas-top-bar"
         className="pointer-events-none absolute left-3 top-[10px] z-30 flex h-10 items-center justify-between gap-6"
         style={{ right: aiDrawerOpen ? 424 : 12 }}
       >

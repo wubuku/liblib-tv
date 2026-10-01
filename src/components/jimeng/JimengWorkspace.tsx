@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Scan, X } from "lucide-react";
 import {
   MiniMap,
@@ -61,6 +61,18 @@ const DEFAULT_VIEWPORT = { x: -60.6, y: 1.3, zoom: 0.7299 };
 const GRID_WORLD_PX = 18;
 
 function JimengFlow() {
+  // SOURCE_FACT (batch 801): 源站画布根 `.react-flow` 带 aria-label="Canvas"
+  // + role="application"（testid=rf__wrapper）。xyflow v12 未开放这两个属性的 prop：
+  // <ReactFlow ref> 拿到的是 ReactFlowInstance（fitView 等实例 API），**不是 DOM
+  // 节点**，不能直接 setAttribute。故挂外层真实容器 ref，再从中查 .react-flow。
+  const canvasBoxRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const el = canvasBoxRef.current?.querySelector(".react-flow");
+    if (!el) return;
+    el.setAttribute("aria-label", "Canvas");
+    if (!el.getAttribute("role")) el.setAttribute("role", "application");
+  }, []);
+
   const nodes = useJimengStore((s) => s.nodes);
   const edges = useJimengStore((s) => s.edges);
   const onNodesChange = useJimengStore((s) => s.onNodesChange);
@@ -364,6 +376,7 @@ function JimengFlow() {
 
   return (
     <div
+      ref={canvasBoxRef}
       className={`jimeng-canvas relative h-full w-full ${
         refPicking ? "ring-2 ring-inset ring-[#0A5CD6]" : ""
       }`}
@@ -496,6 +509,7 @@ function JimengFlow() {
 }
 
 export function JimengWorkspace() {
+
   const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
   const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);
   const aiDrawerPrefill = useJimengStore((s) => s.aiDrawerPrefill);

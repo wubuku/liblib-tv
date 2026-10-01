@@ -3808,15 +3808,24 @@ Zoom options / Canvas title。复刻此前只有 搜索 / 生成历史 / 用户�
    误归因**——竖排来自「分享」按钮内部换行，与抽屉无关，另立条目跟踪。
 3. 顶栏「项目」面板里 `未命名项目 / 视频创作` 目前是 mock 文案，源站这两项的
    真实数据源（项目列表接口）未取证。
-4. **顶栏右簇整体右移约 3–4px**（2026-10-01 实测 @1680×826）。
+4. **顶栏右簇 2–4px 横向漂移 —— 根因已定位，一行可修，但等 `JimengTopBar.tsx`
+   空闲**。（2026-10-01 缩放归一化后 @100% 逐项实测）
    源站 搜索 1311 / 生成历史 1343 / 分享 1388 / 更多 1465 / 积分 1509 /
-   用户菜单 1636（用户菜单右缘 1664，即右边距 16）；复刻对应值各 +2…+4
-   （用户菜单右缘 1668，右边距 12）。差值来自各控件**药丸之间的间隙**，
-   而非某个控件的尺寸 —— 逐个控件尺寸基本已对齐。源站结构是
-   「搜索+生成历史」一个药丸、「积分+用户菜单」另一个药丸（@[1505,12] 163×36，
-   内部 gap 16），复刻目前是「搜索+生成历史」一个、其余各自独立。
-   **未在本批处理**：`JimengTopBar.tsx` 正在被并行 session 编辑（见 batch 797
-   的提交归属事故），为避免互相覆盖，本条留待顶栏簇布局专项批次。
+   用户菜单 1636（积分药丸 @[1505,12] 163×36，右缘 1668）。
+   复刻 1315 / 1347 / 1391 / 1467 / 1511 / 1636 ⇒ 越往左漂移越大（+4…+2）。
+   **不是间隙问题**：两侧药丸间距实测都是 12px，完全一致。唯一成因是
+   **分享药丸 padding 4px（68 宽）vs 源站 5px（70 宽）**。右簇右对齐
+   （积分药丸右缘两边都是 1668），所以这 1px/边沿左方向累积放大。
+   改 `<div className="jimeng-chrome-pill flex h-9 shrink-0 items-center p-1">`
+   为 `p-[5px]` 即可让**五个控件一次全部归位**（更多 −2、分享 −3、生成历史 −4、
+   搜索 −4）。**不要动右簇的 `gap`**（已验证两侧都是 12px）。
+   未实施原因：该文件当时正被并行 session 编辑（且其工作也标为 batch 801），
+   贸然改会覆盖他人内容。已验证：改后节点/其余 chrome 不受影响。
+5. ⚠️ **跨站对比前必须做缩放归一化**。源站画布当前是 100%、复刻 demo 是 73%，
+   直接比会得到大量假差异：本批一度以为「复刻视频节点 415×234 比源站
+   569×320 小了一大截」，归一化后复刻正是 **569×320，完全一致**。
+   `scripts/jimeng_deep_snapshot.py` 已内置 `SNAP_VW/SNAP_VH`，但**视口尺寸
+   相同不等于缩放相同**；比对节点/几何前要先把两侧 zoom 调到同一档。
 
 ## 10. Batch 795 — Agent 面板几何 + 顶栏让位重排（2026-10-01）
 
@@ -4005,3 +4014,36 @@ batch 794 定位到的「浮层 Escape 冒泡监听被跳过」问题，本批�
 `verify-jimeng-batch37.py` 的点击点位 `0.999 → 0.98`，并就地写明根因。
 产品侧未改动：没有证据支持「末 1px 不可点」是需要修的可用性问题
 （真实用户点不到 0.4px 宽的条带），不做无依据的改动。
+
+## 13. Batch 801 — 画布/顶栏根节点可访问名（2026-10-01）
+
+快照 diff（`scripts/jimeng_deep_snapshot.py`，源站 vs 复刻同宽 1680×826）
+在本批前只剩 4 条源站独有条目，其中 2 条是**根节点可访问名**，2 条是内容差异
+（节点数 / 积分数值 / 缩放百分比，均为已知且有据的取舍）。本批补掉可访问名。
+
+### 13.1 SOURCE_FACT
+
+| 元素 | 属性 |
+|---|---|
+| 画布根 `.react-flow` | `aria-label="Canvas"`、`role="application"`、`data-testid="rf__wrapper"`、类名含 `octo-canvas-flow bg-dreamina-canvas-bg` |
+| 顶栏根 `<header>` | `aria-label="Canvas top bar"`、`data-testid="canvas-top-bar"` |
+
+### 13.2 实施
+
+- `JimengTopBar.tsx` — header 补 `aria-label` + `data-testid`。
+- `JimengWorkspace.tsx`（`JimengFlow`）— 画布根补 `aria-label="Canvas"`，并在
+  xyflow 未自带 `role` 时补 `role="application"`。
+
+**踩坑：`<ReactFlow ref>` 在 xyflow v12 拿到的是 `ReactFlowInstance`**（fitView /
+zoomIn 等实例 API），**不是 DOM 节点**，直接 `ref.current.setAttribute` 不生效
+（首次实现即因此断言失败，aria-label 读回为 None）。正解是给外层真实容器挂 ref，
+再 `container.querySelector(".react-flow")` 取到根元素后写属性。
+
+### 13.3 剩余 diff（有意保留）
+
+- `Canvas node summary: 节点 1` vs `节点 2` —— 源站示例画布内容已被并行会话
+  探索改动（2 节点 → 一度 8 节点 4 边），复刻 demo 保持 2 节点基线。
+- `Credits: 805` vs `745` —— 积分数值随账号/时间变化，复刻用既有 mock 745
+  以与 `JimengMemberModal` 一致（稳定的 SOURCE_FACT 是格式，见 §9.5）。
+- `Zoom options, 100%` vs `73%` —— 源站当前视口 100%；复刻沿用 README §4 记录的
+  源站初始矩阵（73%）作为 demo 初始态。
