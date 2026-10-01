@@ -1243,3 +1243,15 @@ screenshots:
     visible_text: 添加上下文
     alt: 从时间线节点出发弹出的菜单，标题逐字是「**添加上下文**」而不是其他六种源的「添加节点」（被橙色高亮框标出）；七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗的禁用态；左上角能看到该节点只有一个 ⊕ 按钮；左下角缩放读数 60%
     sha256: 14b5d4129a55c675a42670993c246ddf8b72f12022bf85dee33138d9d4444917
+
+  - file: screenshots/102-audio-node-selected-f-inert.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T23:40:00+08:00
+    verified_locator: '左栏新建**空**音频节点 node_mn8wtmexpd（受控条件：60% 缩放）→ 细网格逐点试点选中 → keyGuard 通过（焦点在 DIV[rf__wrapper] aria="Canvas"）→ **按 F** → 等 1800ms 后读数：可见 [role=dialog] **0 个**、页面 innerText **不含**「此快捷键当前不可用」→ 裁切 clip={x:395,y:186,w:484,h:484} 截图。密集采样（8 次，t=0…3000ms）另见 SOURCE_OBSERVATIONS §3.79，阳性对照为视频节点 t=0 即命中 DIV 360×44@460,32。收尾按 data-id 删除，积分 805 未变'
+    visible_text: 音频 1
+    alt: 选中的空音频节点：标题「音频 1」与标记色图标浮在卡片上沿之外，卡片左右各有一个圆形 ⊕ 连接按钮，卡片内是空态的音频图标；**按 F 之后画面没有任何变化** —— 没有全屏编辑器，也没有「此快捷键当前不可用」提示条；下方是音频生成面板（SeedAudio 1.0 / 全能配音 / 音色库 / 右侧 ✦ 12）
+    sha256: df363ae8ac85d1ae47e65ad7db74e7c3fe9fa1967853b8db4fa81d11341ad6fe
