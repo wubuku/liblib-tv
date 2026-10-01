@@ -1,0 +1,39 @@
+{
+  "batch": 341,
+  "title": "FrameOS group box geometry invariant holds on every write path",
+  "defect": "reconcileGroups was only wired into a few actions, so every other path that mutates nodes re-broke the 'group box == bbox(live members) + 28' invariant that createGroup/arrangeGroup/moveGroup all honour. Measured: 一键整理 left the box untouched while re-laying every node (drift x/y/w/h); dragging a member did not move the box (drift x/w/h); the debug-mode node panel's delete button left a dangling member and an un-shrunk box -- the same defect Batch 328 fixed, reached through a second path.",
+  "fix": "reconcileGroups now recomputes unconditionally (the old `unchanged` short-circuit only looked at memberIds, so a wholesale member move never recomputed the box), and the store's write entrypoint is wrapped by enforceGroupGeometry so every action -- present or future -- converges once. Groups whose values do not change keep their object identity so Batch 333's persistence subscription does not rewrite identical content.",
+  "clone_decision": "'the box follows a dragged member' is derived from the clone's own invariant. Whether the source site allows dragging a member out of a group, and whether it auto-ungroups, was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md). No drag-out-ungroup behaviour was invented here.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:group-created",
+        "setup:box-consistent",
+        "organize:button-exists",
+        "organize:nodes-moved",
+        "organize:box-recomputed",
+        "organize:no-dangling",
+        "drag:box-follows",
+        "drag:box-actually-moved",
+        "panel:delete-button-exists",
+        "panel:node-gone",
+        "panel:no-dangling",
+        "panel:members-shrunk",
+        "panel:box-shrunk",
+        "stability:no-net-change-keeps-reference",
+        "moveGroup:box-consistent",
+        "arrangeGroup:grid:box-consistent",
+        "arrangeGroup:horizontal:box-consistent",
+        "arrangeGroup:vertical:box-consistent",
+        "undo:group-present",
+        "undo:members-restored",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

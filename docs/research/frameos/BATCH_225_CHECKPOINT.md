@@ -538,3 +538,50 @@ verifier batch340 **14/14 PASS**；batch328/329/330/331/332/333/251/133/327 回�
 
 **候选 Batch 341**：`reconcileGroups` 的教训适用于其它操作分组成员的路径 ——
 `arrangeGroup` / `moveGroup` / `pasteNodeFromClipboard` 各自是否也只被单路径测过？
+
+## Batch 341（2026-10-01）：分组盒几何不变式提升为 store 写入口的强制约束
+
+Batch 340 修好了 `reconcileGroups` **函数内部**的两处缺陷，但那个函数只挂在
+`removeNode` / `duplicateNode` / `undo` / `redo` 四条 action 上 —— **别的路径
+根本不调用它**。本批回答 Batch 340 留下的候选问题：还有哪些路径只测了一条。
+
+代码审计直接找出三条（都不是猜的）：
+
+| 场景 | 入口 | 可达性 | 修复前实测 |
+|---|---|---|---|
+| 一键整理 | `FrameosMapDock` → `organizeNodes` | ✅ 真实按钮 | drift x/y/w/h |
+| 拖拽成员 | `page.tsx onNodesChange` → `setNodes` | ✅ 拖动画布 | drift x/w/h |
+| 面板删除 | `FrameosNodeEditPanel` → `setNodes(filter)` | ⚠️ 仅 debug 模式 | 悬空成员 `['text-1']` + 盒不收缩 |
+
+第三条是重点：它与 Batch 328 修过的 `removeNode` 是**同一处缺陷的两条路径**
+（右侧面板直接 `setNodes(nodes.filter(...))` 绕开了 action）。
+**修一条漏一条 —— 正是 Batch 340 写下的教训本身。**
+
+🔴 修 1 后 S1/S2 仍 STALE，挖出**更浅一层的缺陷**：`reconcileGroups` 的
+`unchanged` 短路**只看 memberIds**，把「成员集合没变」当成「盒不用动」。
+而**成员整体移动**时 `memberIds` 一个字都不变 → 盒永远不重算。整理和拖拽
+栽的正是这个。改为**无条件重算**（前提已逐个核对：`createGroup`/`arrangeGroup`
+的盒就是 bbox+28；`moveGroup` 盒与成员同量平移，平移不改变该关系），
+`previousMemberIds` 参数随之**变得多余并被删除** —— 它当初只为喂那条错误短路。
+
+修 2：把不变式收敛到 **store 的唯一写入口**。包住 `set`，写完 nodes/groups
+后统一 `enforceGroupGeometry` 一次 —— 将来新加的 action 也不可能再漏。
+与 Batch 329（13 处手写快照 → 单一出口）、Batch 333（多处写 localStorage
+→ 单一订阅）同一判断。细节：重入守卫防无限递归；**无净变化返回同一对象**，
+否则 Batch 333 按引用判断的持久化订阅会把同样内容反复写进 localStorage。
+
+⚠️ CLONE_DECISION：源站是否允许把成员拖出分组、是否自动退组，**未采样**（源站阻塞）。
+「拖动成员时盒跟随成员」是按克隆自身不变式推的，**未**发明「拖出即退组」。
+
+verifier batch341 **22/22 PASS**，且做过**变异测试**：临时注释掉
+`enforceGroupGeometry(...)` 后验证器如期失败于 `organize:box-recomputed`
+（`box={x:33,y:5,w:737,h:319}` vs `expected={x:32,y:32,w:676,h:256}`）。
+**改绿色断言前先证它会红** —— Batch 208 的教训。
+回归 328/329/330/331/332/333/340 七批全绿。
+
+**遗留观察**（不在本批范围）：`toggleDebugMode` 全仓**无任何 UI 入口**，
+`FrameosNodeEditPanel` 整块是死代码；`moveGroup` 每帧调用会让 Batch 333 的
+持久化订阅每帧写 localStorage（既有行为）。
+
+**候选 Batch 342**：`FrameosNodeEditPanel` 的「复制节点 / 锁定位置」是否也是
+空壳？debug UI 无入口是否意味着整块该删或该接线。

@@ -331,52 +331,106 @@ let nodeCloneIdCounter = 0;
 // 此前 removeNode 只过滤 nodes/edges，groups[].memberIds 仍指向已删节点
 // （悬空成员），且分组盒 x/y/w/h 不重算 → 分组覆盖层保留旧几何、比成员大，
 // 排列/拖拽/解组都基于错误成员集计算。删除后按存活成员重算包围盒。
+//
+// Batch 341: 无条件重算（此前带 `unchanged` 短路，**只看 memberIds**）。
+// 短路把「成员集合没变」当成「盒不用动」，于是**成员整体移动**的路径
+// （一键整理 / 拖拽成员）里 memberIds 原封不动 → 盒永远不重算。
+// 关键前提（已逐个核对）：createGroup / arrangeGroup / moveGroup 算出的盒
+// 都等于「成员包围盒 + 28」，所以无条件重算不会覆盖掉它们的结果 ——
+// moveGroup 是盒与成员同量平移，平移不改变「盒 = 包围盒 + 28」这个关系。
+// 代价由「无净变化返回同一对象」兜住：值没变就保持引用不变，
+// 避免 Batch 333 的持久化订阅（按引用判断变更）反复写同样的内容。
 function reconcileGroups(
   groups: FrameosGroup[],
-  nodes: FrameosNode[],
-  // Batch 340: 变更**前**的 memberIds（按 group id）。缺省表示「按传入的
-  // groups 自身比对」，适用于「只删成员」这类 memberIds 单调收缩的场景。
-  previousMemberIds?: Record<string, string[]>
+  nodes: FrameosNode[]
 ): FrameosGroup[] {
   return groups.flatMap((g) => {
-    // 全部成员被删 → 分组无意义，随之消失
-    if (!nodes.some((n) => g.memberIds.includes(n.id))) return [];
-    const sizeOf = (n: FrameosNode) => ({
-      w: ((n.style?.width as number | undefined) ?? 300),
-      h: ((n.style?.height as number | undefined) ?? 200),
-    });
-    // ⚠️ 「成员集合是否变化」的基准必须是**变更前**的 memberIds。
-    // 若缺省成 g.memberIds 自身，则恒等于「未变」→ 永远不会剪掉已删成员
-    // （Batch 340 实测：删除成员后它仍留在 memberIds 里）。
-    // 调用方若已改写 memberIds（如 duplicateNode 加副本），必须通过
-    // previousMemberIds 传入变更前的集合。
-    const prevMemberIds = previousMemberIds?.[g.id] ?? g.memberIds;
-    const unchanged =
-      prevMemberIds.length === g.memberIds.length &&
-      prevMemberIds.every((id, i) => id === g.memberIds[i]) &&
-      // 且当前集合里不存在已消失的成员（防止「数量相同但内容不同」被误判）
-      g.memberIds.every((id) => nodes.some((n) => n.id === id));
-    if (unchanged) return [g];
-
     // 按 memberIds 顺序取成员，保证 memberIds 只含存活节点且顺序稳定
     const members = g.memberIds
       .map((id) => nodes.find((n) => n.id === id))
       .filter((n): n is FrameosNode => Boolean(n));
+    // 全部成员被删 → 分组无意义，随之消失
+    if (members.length === 0) return [];
+    const sizeOf = (n: FrameosNode) => ({
+      w: ((n.style?.width as number | undefined) ?? 300),
+      h: ((n.style?.height as number | undefined) ?? 200),
+    });
     const minX = Math.min(...members.map((n) => n.position.x));
     const minY = Math.min(...members.map((n) => n.position.y));
     const maxX = Math.max(...members.map((n) => n.position.x + sizeOf(n).w));
     const maxY = Math.max(...members.map((n) => n.position.y + sizeOf(n).h));
-    return [
-      {
-        ...g,
-        memberIds: members.map((n) => n.id),
-        x: minX - FRAMEOS_GROUP_PADDING,
-        y: minY - FRAMEOS_GROUP_PADDING,
-        w: maxX - minX + FRAMEOS_GROUP_PADDING * 2,
-        h: maxY - minY + FRAMEOS_GROUP_PADDING * 2,
-      },
-    ];
+    const x = minX - FRAMEOS_GROUP_PADDING;
+    const y = minY - FRAMEOS_GROUP_PADDING;
+    const w = maxX - minX + FRAMEOS_GROUP_PADDING * 2;
+    const h = maxY - minY + FRAMEOS_GROUP_PADDING * 2;
+    const sameMembers =
+      g.memberIds.length === members.length &&
+      members.every((m, i) => m.id === g.memberIds[i]);
+    // 值完全一致 → 返回**同一个对象**，不制造新的数组/对象引用
+    if (sameMembers && g.x === x && g.y === y && g.w === w && g.h === h) return [g];
+    return [{ ...g, memberIds: members.map((m) => m.id), x, y, w, h }];
   });
+}
+
+// Batch 341: 「分组盒 == 存活成员包围盒 + padding」是 createGroup /
+// arrangeGroup / moveGroup / reconcileGroups **一致遵守**的不变式。此前它只挂在
+// 少数几条 action 上，于是每条**新**的改 nodes 的路径都会重新打破它：
+//
+//   实测 (probe-frameos-batch341-group-geometry.py)
+//     一键整理 (FrameosMapDock → organizeNodes)  盒不动, 成员全被重排  drift x/y/w/h
+//     拖拽成员 (page.tsx onNodesChange → setNodes) 盒不动            drift x/w/h
+//     面板删除 (FrameosNodeEditPanel → setNodes)    悬空成员 + 盒不收缩
+//
+// 第三个尤其说明问题：它和 Batch 328 修过的 removeNode 是**同一处缺陷的两条路径**
+// （面板直接 setNodes(filter) 绕开了 action），修一条漏一条。
+//
+// 与 Batch 329（13 处手写历史快照 → 单一 pushHistorySnapshot）、
+// Batch 333（多处写 localStorage → 单一订阅）同一个判断：不变式只该有一个出口。
+// 所以不逐条路径补调 reconcileGroups，而是把整个 store 的**写入口**包一层——
+// 任何 action（包括将来新加的）写完 nodes/groups 后统一收敛一次。实测三条路径
+// 一次性全绿。
+//
+// CLONE_DECISION: 「拖动成员时盒跟随成员」是按克隆自身不变式推的。源站是否
+// 允许把成员拖出分组、是否自动退组，源站阻塞无法采样（见
+// SOURCE_ACCESS_BLOCKED_2026-10-01.md），**未**发明任何"拖出即退组"的行为。
+let enforcingGroupGeometry = false;
+
+function groupsEqual(a: FrameosGroup[], b: FrameosGroup[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  return a.every((g, i) => {
+    const o = b[i];
+    return (
+      g.id === o.id &&
+      g.x === o.x &&
+      g.y === o.y &&
+      g.w === o.w &&
+      g.h === o.h &&
+      g.memberIds.length === o.memberIds.length &&
+      g.memberIds.every((id, k) => id === o.memberIds[k])
+    );
+  });
+}
+
+function enforceGroupGeometry(
+  get: () => FrameosCanvasState,
+  rawSet: (partial: Partial<FrameosCanvasState>) => void,
+  prev: FrameosCanvasState
+): void {
+  // 收敛过程中的写回不再触发收敛（否则无限递归）
+  if (enforcingGroupGeometry) return;
+  const next = get();
+  // 引用都没变就没有新信息可收敛 —— 绝大多数 UI 开关走这条路
+  if (next.nodes === prev.nodes && next.groups === prev.groups) return;
+  enforcingGroupGeometry = true;
+  try {
+    const groups = reconcileGroups(next.groups, next.nodes);
+    // 只在**结构上**真的有差异时写回：Batch 333 的持久化订阅按引用判断变更，
+    // 无差别写回会让它把同样的内容反复写进 localStorage。
+    if (!groupsEqual(groups, next.groups)) rawSet({ groups });
+  } finally {
+    enforcingGroupGeometry = false;
+  }
 }
 
 // Batch 329: 统一的历史快照入口 —— 保证**每条**入栈路径都带上 groups。
@@ -509,7 +563,25 @@ const INITIAL_CANVAS_DATA: Record<string, PersistedCanvas> =
 // 且 React 会丢弃服务端 HTML 重新在客户端生成）。
 // 正确做法：store 初值一律用 fixture，持久化内容在**挂载后**由
 // `restorePersistedCanvas()` 应用（见文件末尾的 mount 订阅）。
-export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
+//
+// Batch 341: 上一行的 init 不能直接用 zustand 给的 set —— 我们在它外面套一层，
+// 让「分组盒 == 存活成员包围盒 + padding」成为**所有写路径的强制不变式**。
+// 见下方 enforceGroupGeometry。
+export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
+  // 显式签名而非 `(...args) => rawSet(...args)`：zustand 的 setState 是**重载**的
+  // （partial / replace 两个形态），rest 展开会丢掉重载解析而报 TS2769。
+  const set = (
+    partial:
+      | FrameosCanvasState
+      | Partial<FrameosCanvasState>
+      | ((state: FrameosCanvasState) => FrameosCanvasState | Partial<FrameosCanvasState>),
+    replace?: false
+  ) => {
+    const prev = get();
+    rawSet(partial, replace);
+    enforceGroupGeometry(get, rawSet, prev);
+  };
+  return ({
   breadcrumb: { project: "测试作品", scene: "测试项目", canvas: "画布 1" },
   nodes: initialNodes,
   edges: initialEdges,
@@ -743,9 +815,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
                   ? { ...g, memberIds: [...g.memberIds, newId] }
                   : g
               ),
-              [...state.nodes, newNode],
-              // 传入变更前的成员集合，否则会被误判为「未变」而保留陈旧盒
-              Object.fromEntries(state.groups.map((g) => [g.id, g.memberIds]))
+              [...state.nodes, newNode]
             )
           : state.groups,
         selectedNodeId: newId,
@@ -1123,7 +1193,8 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
         : {}),
     });
   },
-}));
+  });
+});
 
 // 暴露到 window 用于 e2e 测试
 if (typeof window !== "undefined") {
