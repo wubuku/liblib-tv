@@ -1,7 +1,7 @@
 # TDCanvas 手册回走审计（AUDIT）
 
 > Gate B 回走证据与问题分级台账。基线：被测应用 TDCanvas `v0.14.0`（`16b3127`）@ localhost:3000。
-> 状态：**Gate B 已完成（2026-10-01 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 51 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
+> 状态：**Gate B 已完成（2026-10-01 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 54 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
 > §9 官方文档差异）与 RUNTIME_AUDIT.md（调研包），不在此重复。
 
 ## 回走结论表（Gate B 逐任务追加）
@@ -48,6 +48,7 @@
 | Minor(一致性) | 顶部导航「提示词库」与页面标题「提示词中心」名称不统一 | 可能让用户误以为是两个功能 | 已在 use-prompt-library.md 与排障中说明为同一页面 |
 | Minor(一致性) | 平台品牌名不统一：界面写「**AI 土豆**」，代码与文档用 `Aitudou` | 用户在界面里搜不到手册说的名字 | M31 已在 20-reference（API 配置表）、generate-images 前置条件、90-troubleshooting 三处说明「界面叫 AI 土豆、代码里叫 Aitudou，是同一个东西」 |
 | Minor(产品) | 图片节点「历史版本」入口在版本数 < 2 时**完全不渲染**（源码 `history.length < 2` 直接 return null），且上传/替换/裁剪/切图/放大**均不产生新版本**，只有 AI 生成结果进历史 | 用户以为功能不存在或「替换后想撤回」却无处可撤 | M31 已订正参考页「历史」→「历史版本」并写明三条规则与 `MAX_CANVAS_IMAGE_HISTORY = 24`；入口外观按源码描述，**未配图**（造第 2 版必须真跑生成，属付费边界） |
+| Minor(产品) | 画布左侧 Dock 的「搜索节点 / 资产 / 提示词库」三个按钮打开**同一个侧边面板**（组件 `canvas-side-panel.tsx`），含节点索引、类型筛选、**定位到节点**、状态灯、多选**导出选中**（实测下载 `画布元素-1个.zip`）与资产/提示词库两个标签页；且**首次打开画布会被自动收起**（`localStorage:tdcanvas:compact-shell-v1` 只关一次） | 一整套可用功能因「默认收起 + 按钮只有图标无文字」而几乎无人发现 | **M33 运行时全项取证 + 源码核对**。已在 organize-canvas 新增「侧边面板：画布上的节点索引器」整节（3 图），并在 navigate-canvas、20-reference 补入口 |
 | **Major(产品)** | **画布内顶栏菜单「删除当前画布」无任何确认弹窗，一点即删**；而首页项目卡删除走 `CanvasDeleteProjectsDialog` 有确认弹窗。同一个"删除画布"两条路径行为不一致 | 误触即永久丢失整个画布（无回收站、无撤销，撤销历史随画布一并消失） | **M32 实测 + 源码坐实**（`project.tsx:1264` 直接 `deleteProjects()`；首页走 `canvas-project-card.tsx` → `setDeleteIds` → 确认弹窗）。已在 90-troubleshooting 新增「画布不见了」条目、project-management 新增「删画布有两条路径」对照表与操作建议、navigate-canvas 菜单表加 ⚠️ 标注 |
 | Minor(产品) | 顶栏画布菜单与画布右键菜单共 13 个条目中，「复制所有节点」「粘贴」**没有对应界面按钮**，只能从菜单进入；且「复制所有节点 + 粘贴」实为**整画布复制**（实测 2 节点 → 4 节点） | 用户可能根本不知道整画布备份功能存在 | M32 已在 navigate-canvas 新增「画布里两个不显眼的菜单」整节（两图 + 两张完整条目表），并在 20-reference 与 shortcuts-help 补入口与实测数据 |
 | Minor(产品/误标) | 顶栏菜单「**导入资产**」名不副实：绑定的是 `onImportImage={() => handleUploadRequest()}`（`canvas-top-bar.tsx:90`），**与「上传资产」是同一个处理函数**，打开的是本地媒体文件选择器，与「我的资产」无关 | 用户会以为能在画布里导入 `我的资产.zip`，实际做不到 | M32 运行时实测（点击后 URL 不变、无任何导入文案、只弹文件选择器）+ 源码双重确认。已在 navigate-canvas 菜单表与 20-reference 明确标注「名不副实」并指向首页的正确入口 |

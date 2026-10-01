@@ -611,3 +611,39 @@ screenshots:
     visible_text: '将删除 1 个画布，里面的节点和连线也会一起移除。'
     alt: 首页删除画布的确认弹窗，标题为删除画布，正文说明节点和连线会一起移除，底部是取消与红色的删除按钮
     sha256: a09e1ebb2ef8315377ffb7256d9d76dc4ae250b493354f181300c4d680ea3c4c
+
+  - file: screenshots/04-organize-canvas-side-panel.png
+    task_id: organize-canvas
+    step: 画布左侧 Dock「搜索节点」打开侧边面板的「画布」标签页，列出全部 4 个节点并带类型图标与预览文字
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'input[placeholder=搜索节点] 所在面板 278x600 / 面板文本 画布元素 4 选择 全部 / 列表项 title=定位到节点 / 面板容器 class=flex h-full flex-col'
+    visible_text: '画布元素 4'
+    alt: 画布左侧展开的侧边面板，画布标签页顶部是画布元素计数与选择按钮和全部筛选，下方按类型图标列出文本、图片、音频、视频四个节点
+    sha256: bd80616b0887bf8aa427cc52ef6cb2e64a3a2267e1708b5042983bd46945ea99
+
+  - file: screenshots/04-organize-canvas-side-panel-select.png
+    task_id: organize-canvas
+    step: 侧边面板进入「选择」模式：标题栏按钮变「取消」、类型筛选隐藏、列表出现复选框，底栏显示全选 / 已选 1 / 导出选中
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板文本 画布元素 4 取消 ... 全选 已选 1 导出选中 / 导出按钮文本 导出选中'
+    visible_text: '已选 1'
+    alt: 侧边面板的多选模式，每个节点前出现复选框且第一个已勾选，底部工具条写着全选、已选 1 与导出选中按钮
+    sha256: 52914ea39b92988d59835f660587c3ee8def71a4a6ecac0061ed2ad31313f63b
+
+  - file: screenshots/04-organize-canvas-side-panel-assets.png
+    task_id: organize-canvas
+    step: 侧边面板切到「资产」标签页，搜索框 placeholder 变为「搜索资产」，右侧有「+ 添加」，空态显示「暂无资产」
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'input[placeholder=搜索资产] / 按钮 添加 / 空态文案 暂无资产 / 标签 画布 资产 提示词库'
+    visible_text: '暂无资产'
+    alt: 侧边面板的资产标签页，顶部是资产搜索框与添加按钮，下方因没有任何资产而显示暂无资产的空态插图
+    sha256: be01e035c7a22793c7e9489d32b31534949ff536de2f91d34655b7c02fa3eb12

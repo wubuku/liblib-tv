@@ -11,7 +11,7 @@
 - 当前目标：为 TDCanvas（桌面端 AI 无限画布，v0.14.0）的普通创作者编写中文、任务导向、可回走验证的用户手册。
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
-- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 51 images，sha256 全校验）；站点构建 21 页 / 51 图 / 17M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
+- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 54 images，sha256 全校验）；站点构建 21 页 / 54 图 / 17M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
 - **M20–M22 摘要（2026-09-30）**：新增 `manage-assets`（我的资产，全链回走）与 `use-prompt-library`（提示词库，如实记录来源为空且无配置入口）两任务；补「导入资产」端到端还原回走；quickstart 增导航导览。详见本文件末尾 M20/M21/M22 条目。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
@@ -84,9 +84,9 @@
 | 工作文档冻结 | 完成（本目录五件套） |
 | 逐任务探索 + 10-tasks 成稿 | 完成（14 任务全部 drafted 并回走；M20 补两个导航页面） |
 | 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 完成（quickstart M22 增导航导览；M24 增 concepts 心智模型；**M31 重写 20-reference 与 90-troubleshooting 两个 0 图页面**，各配分诊导读与「为什么」层） |
-| Gate A | 通过（14 tasks / 25 Markdown / 51 images） |
+| Gate A | 通过（14 tasks / 25 Markdown / 54 images） |
 | Gate B 回走 + AUDIT.md | 通过（14/14，无 Blocker/Major） |
-| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 51 图 |
+| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 54 图 |
 
 - **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
 - **Batch M7（2026-09-28）Gate B 完成**：按手册从入口重走 12 任务全部通过（AUDIT.md 回走结论表）；回走中新发现 Minor 缺陷（上传无内容嗅探）已记录并即时清理；**final audit 通过**（12 任务全部 verified，exit 0）。手册 v1 交付完成。
@@ -97,7 +97,7 @@
 - **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
 - **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
 - **覆盖率**：task-inventory **14/14** 任务 verified（1 个 generate-images 为描述型，付费边界前验证；use-prompt-library 为限制记录型）。
-- **验证密度**：**51 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册；M24–M31 续发现 5 处，含 2 处**手册自身错误**——「历史版本」被写成「历史」、臆造了不存在的 `?` 键位）、五项自检 + verify-docs + Gate A/final audit 全绿。
+- **验证密度**：**54 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册；M24–M31 续发现 5 处，含 2 处**手册自身错误**——「历史版本」被写成「历史」、臆造了不存在的 `?` 键位）、五项自检 + verify-docs + Gate A/final audit 全绿。
 - **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作；**提示词库有内容时的交互**（产品侧无提示词来源数据且无配置入口，运行时无法造数）。
 - **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor，**M31 已用 FFmpeg 解码错误码坐实**）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）；视频资产无「编辑」按钮（Minor）；导航「提示词库」与页面标题「提示词中心」名称不统一（一致性）；**界面品牌名「AI 土豆」与文档用名 Aitudou 不一致**（M31 已说明为同一平台）；**图片「历史版本」入口在版本 < 2 时完全不渲染**（M31 源码确认）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
@@ -210,3 +210,17 @@
     - **没有回滚历史**：该提交已推送且有并发 agent 在同一分支工作，`reset` + 强推会重写共享历史，风险远大于收益。**他人文件现在位于 HEAD，若他们后续继续修改会正常产生新 diff，不受影响。**
     - **改用免疫写法**：此后一律用 `git commit -- <路径>`（pathspec 形式）而非 `git add` + `git commit`。pathspec 提交只取该路径的**工作区内容**，**完全无视 index 里其他人的 staged 文件**，从根上免疫共享 index 污染。
     - **提交后自查**：每次提交后跑 `git show --name-only --format="" HEAD | grep -v "^docs/user-manual/tdcanvas-canvas/"`，无输出才算干净。**教训一句话：在共享 index 的仓库里，`git add` 之后再 `git commit` 是一个不安全的组合。**
+- **Batch M33（2026-10-01，画布侧边面板：一个几乎无人发现的功能）**：
+  - 接着 M32 的枚举思路，去点 M32 枚举出来但**从未被点开过**的三个 Dock 按钮——「搜索节点」「资产」「提示词库」——结果发现它们打开的是**同一个侧边面板**（组件 `canvas-side-panel.tsx`），带「画布 / 资产 / 提示词库」三个标签页。
+  - **这是一整套此前完全没被记录的功能**，且**默认是收起的**：源码里用 `localStorage:tdcanvas:compact-shell-v1` 做了"只关一次"的埋点，首次打开画布产品会主动把面板收起；加上三个按钮**只有图标没有文字标签**、Dock 又窄——于是它同时满足了"有功能""藏着"两个条件，手册此前 12 个批次一次都没碰到。
+  - **逐项运行时取证**（非源码推断）：
+    - 画布标签页列出全部节点，顶部「画布元素 N」（实测 4 个节点显示 4），每行有类型图标 + 标题 + 内容预览，图片节点显示缩略图；运行中节点右侧有**状态灯**（源码 `STATUS_COLOR`：绿 success / 橙 loading / 红 error）；
+    - **点列表项 = 「定位到节点」**（列表项 `title` 属性原文），画布视野移过去；
+    - 类型筛选源码可选 全部/图片/视频/文本/音频/Config/组；
+    - 点「选择」进入多选：标题栏按钮变「取消」、类型筛选隐藏、每行出现复选框，底栏浮出 **全选 / 已选 N / 导出选中**；
+    - **「导出选中」真的下载文件**——实测勾选 1 个文本节点，下载 `画布元素-1个.zip`，`unzip -l` 确认包内是 39 字节的 `.txt`（内容为该节点正文「角色设定：陈默，沉默的侦探」）。这与首页的**项目级**批量导出是两条不同粒度的路径，手册此前只写了后者。
+    - 资产 / 提示词库标签页与顶部导航**共用同一份 store**（资产空态实测显示「暂无资产」），搜索框 placeholder 分别是「搜索资产」「搜索提示词」；面板右侧有拖拽把手可调宽度（记在本机）。
+  - 新增 3 图（`04-organize-canvas-side-panel{,-select,-assets}.png`），`organize-canvas.md` 新增「侧边面板：画布上的节点索引器」整节，含一张「只导出几个节点 vs 导出整个项目」对照表与「为什么需要按需导出」的解释；`navigate-canvas.md` 与 `20-reference.md` 补入口。
+  - 截图 51 → **54**；两门禁 exit 0（14 tasks / 25 markdown / 54 images）；锚点门禁 **11 个全有效**。
+  - **门禁当场立功**：本轮自己新写的锚点 `organize-canvas.md#侧边面板画布上的节点索引器` **漏掉了全角冒号 `：`**，被 M31 新加的 `check-anchors.py` 立刻拦下并报出文件名+链接。**上一批种的门禁，这一批第一次派上用场就抓到现行**——这比"加了门禁"本身更有说服力。
+  - 自动化教训：① 侧边面板是**开关**：点同一个 Dock 按钮会**收起**，脚本里必须先探测 `input[placeholder="搜索节点"]` 是否存在再决定点不点，否则会把面板关掉导致后续全部 `null`；② 面板容器不是 `role=dialog`/`ant-drawer`，得从 placeholder 输入框**向上找到高度 > 300px 的祖先**才是面板根；③ 空画布时侧栏资产标签与 `/assets` 是同一份数据，改一处两处同步。
