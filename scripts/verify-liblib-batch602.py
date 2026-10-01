@@ -88,6 +88,12 @@ ICON_PX = 20
 RAIL_W = 48
 RAIL_PAD = 8
 RAIL_GAP = 8
+# Batch 613: the source's left column is one `aside.absolute.inset-y-0` whose
+# 52px header is followed by a `div.h-[calc(100%-52px)]`, so the nav starts at
+# y=52 and reaches the viewport bottom (1098 at 1150).  See the check added
+# below in step 1.
+RAIL_TOP = 52
+VIEWPORT_H = 1150
 
 
 def alpha_of(color: str) -> float:
@@ -188,6 +194,22 @@ def run_desktop(page: Page) -> dict[str, Any]:
         and rail["borderRightWidth"] == "1px"
         and abs(alpha_of(rail["borderRightColor"]) - WHITE_8_ALPHA) < 0.001,
         detail=rail,
+    )
+    # Batch 613 added this: the source's nav is [0,52,48,1098] — it starts at
+    # the header's bottom edge and runs to the viewport bottom, because the
+    # source's left column is one `aside.absolute.inset-y-0` holding a 52px
+    # header and a `div.h-[calc(100%-52px)]`.  Batch 602's own docstring
+    # recorded "48x1098 @(0,52)" but only ever asserted the width, the
+    # padding/gap/background and the *relative* gaps between entries — so a
+    # rail parked at the wrong height (the clone had it `inset-y-0` inside
+    # the middle flex child, i.e. 36px low and stopping at the timeline) was
+    # still green.  Absolute position is now part of the contract.
+    check(
+        "rail:spans-[0,52]to-the-viewport-bottom",
+        rail["box"]["x"] == 0
+        and rail["box"]["y"] == RAIL_TOP
+        and rail["box"]["h"] == VIEWPORT_H - RAIL_TOP,
+        detail={"box": rail["box"], "want": [0, RAIL_TOP, RAIL_W, VIEWPORT_H - RAIL_TOP]},
     )
 
     # 2) entry boxes, radius and icon size

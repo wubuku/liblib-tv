@@ -76,7 +76,15 @@ function DirectorShotBar() {
       data-director-shot-bar
       data-director-active-shot-id={activeShotId ?? ""}
       aria-label="导演台镜头"
-      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3"
+      // Batch 613：`镜头` 这条 nav 是 **clone 独有**功能（源站导演台没有
+      // 任何整幅页签行 —— 2026-10-01 全 DOM 搜索只命中三枚 nav：画布
+      // navbar `[0,8,1920,32]`、资源栏 `[0,52,48,1098]`、视口底部浮动
+      // 药丸 `[780,968,128,48]`）。但资源栏现在按源站从 y=52 起，镜头条
+      // 仍在同一行，左缘 48px 会被 rail 盖住、把「镜头」标签吃掉。
+      // 保留这条 clone 功能、不删；只是 ≥900px 时整体右移让开 rail 的 48px
+      // （窄屏 rail 隐藏、场景树是抽屉，故不加边距），让开后的底色仍是
+      // `#171717`，与源站该处场景树同色。
+      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3 min-[900px]:ml-12"
     >
       <span className="shrink-0 text-[10px] uppercase tracking-[0.08em] text-[#666]">
         镜头
@@ -1118,6 +1126,49 @@ export default function DirectorDesk({
 
       <DirectorShotBar />
 
+      {/* Batch 613（源站 2026-10-01 实测，/tmp/src593/probe613d + 613i + 613f）：
+          源站左列是**一块** `aside.absolute.inset-y-0.left-0.z-30
+          .overflow-hidden.border-r.border-white/10.bg-[#171717]`，281 宽、
+          纵贯视口（0..1150），里面自上而下是
+            header [0,0,280,52]  `flex h-[52px] items-center border-b`
+            div   [0,52,280,1098] `flex h-[calc(100%-52px)]`
+              nav [0,52,48,1098]   ← 资源栏
+              div [48,52,232,1098] ← 场景树
+          也就是说**资源栏与场景树都从 52（顶栏下沿）起、直到视口底**，
+          时间线是浮在中间列上的独立覆盖层，会盖住 rail 的下段。
+          clone 原先把两者 `absolute inset-y-0` 挂在中间 flex 子节点里，
+          于是整体被 36px 高的镜头条（clone 独有）顶到 88、下沿又停在
+          时间线上沿 968 —— 资源栏每一枚都比源站低 36px，「帮助」差 182px，
+          场景树则是 46/220 而非 48/232。
+          现按源站把它们提到工作区根（`fixed`，本身即包含块）并定位
+          `top-[52px] bottom-0`。窄屏（<900px）下 rail 仍隐藏、场景树仍
+          是 `left-0` 抽屉，故这两处覆写留在 min-[900px] 断点里。 */}
+      <aside
+        ref={treePanelRef}
+        aria-label="场景对象"
+        aria-hidden={
+          viewportPanelsCollapsed || treeMobileInactive ? "true" : undefined
+        }
+        inert={treeMobileInactive || viewportPanelsCollapsed}
+        data-director-focus-scope={
+          activeMobileFocusScope === "tree" ? "tree" : undefined
+        }
+        data-director-mobile-panel-state={activeMobilePanel === "tree" ? "open" : "closed"}
+        className={cn(
+          // 233 = 源站树的 232 内容 + 源站 aside 那 1px `border-r`
+          // （源站 aside 281 宽、树 48..280、边框落在 280..281）。
+          "absolute bottom-0 left-0 top-[88px] z-30 w-[220px] border-r border-white/10 transition-transform duration-200 min-[900px]:left-12 min-[900px]:top-[52px] min-[900px]:w-[233px]",
+          viewportPanelsCollapsed && "min-[900px]:hidden",
+          activeMobilePanel === "tree"
+            ? "max-[899px]:translate-x-0"
+            : "max-[899px]:-translate-x-full",
+        )}
+      >
+        <DirectorObjectTree />
+      </aside>
+
+      <DirectorIconRail onPanoramaSourceChange={setPanoramaSourceId} />
+
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="relative min-h-0 flex-1">
           {activeMobilePanel ? (
@@ -1128,30 +1179,6 @@ export default function DirectorDesk({
               className="absolute inset-0 z-20 hidden bg-black/45 max-[899px]:block"
             />
           ) : null}
-
-          <aside
-            ref={treePanelRef}
-            aria-label="场景对象"
-            aria-hidden={
-              viewportPanelsCollapsed || treeMobileInactive ? "true" : undefined
-            }
-            inert={treeMobileInactive || viewportPanelsCollapsed}
-            data-director-focus-scope={
-              activeMobileFocusScope === "tree" ? "tree" : undefined
-            }
-            data-director-mobile-panel-state={activeMobilePanel === "tree" ? "open" : "closed"}
-            className={cn(
-              "absolute inset-y-0 left-[46px] z-30 w-[220px] border-r border-white/[0.07] transition-transform duration-200 max-[899px]:left-0",
-              viewportPanelsCollapsed && "min-[900px]:hidden",
-              activeMobilePanel === "tree"
-                ? "max-[899px]:translate-x-0"
-                : "max-[899px]:-translate-x-full",
-            )}
-          >
-            <DirectorObjectTree />
-          </aside>
-
-          <DirectorIconRail onPanoramaSourceChange={setPanoramaSourceId} />
 
           <main
             className={cn(

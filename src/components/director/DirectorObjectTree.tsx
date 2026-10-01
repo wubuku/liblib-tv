@@ -298,7 +298,11 @@ export function DirectorObjectTree() {
   };
 
   return (
-    <section data-director-tree className="flex h-full min-h-0 flex-col bg-[#191919]">
+    // Batch 613：源站场景树是 `div.flex.w-[232px].min-w-0.flex-col
+    // .bg-[#171717]` —— 与外层 rail 同底色 `#171717`（clone 原为 `#191919`，
+    // 比源站浅 2 个色阶）。源站该 div 自身无右边框，右边界那条 1px
+    // `border-white/10` 来自包住整列的 aside，本批已由 DirectorDesk 承担。
+    <section data-director-tree className="flex h-full min-h-0 flex-col bg-[#171717]">
       <div className="flex h-12 shrink-0 items-center gap-1 border-b border-white/[0.07] px-3">
         <label className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded border border-white/[0.08] bg-[#222] px-2 text-[#777] focus-within:border-[#09caf5]/60">
           <Search size={14} />

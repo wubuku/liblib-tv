@@ -258,12 +258,14 @@ export function DirectorIconRail({
     <div
       data-director-icon-rail
       aria-label="导演台资源栏"
-      // Batch 602（源站 2026-10-01 实测，/tmp/src593/probe50）：
-      // 源站 rail 是 `<nav>`，`border-white/8 flex w-12 shrink-0 flex-col
-      // items-center gap-2 border-r p-2` —— 48px 宽、**gap 2(8px)**、四周
-      // `p-2`，底色 `#171717`，右边框 `white/8`。clone 原先是 46px /
-      // gap-1 / py-3 / `#1a1a1a` / `white/[0.07]`，节奏密了 4px、底色偏浅。
-      className="absolute inset-y-0 left-0 z-30 hidden w-12 shrink-0 flex-col items-center gap-2 border-r border-white/8 bg-[#171717] p-2 min-[900px]:flex"
+      // Batch 613（源站实测 nav `[0,52,48,1098]`）：源站资源栏在 `aside` 里
+      // 从 52（顶栏下沿）**纵贯到视口底**，`p-2` 把首枚推到 60、末枚
+      // 「帮助」被 `mt-auto` 钉到 1110。clone 此前 `inset-y-0` 挂在中间
+      // flex 子节点里，被 36px 高的镜头条顶到 88、下沿停在时间线上沿 968。
+      // 现由 DirectorDesk 把它提到工作区根（`fixed`，即包含块）并改成
+      // `top-[52px] bottom-0`，这里只需给出高度。z-30 保持低于时间线的
+      // z-40 —— 与源站一致（源站「帮助」同样被时间线左簇盖住，见下）。
+      className="absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center gap-2 border-r border-white/8 bg-[#171717] p-2 min-[900px]:flex"
     >
       {/* 源站节奏：gap-2（8px）。`场景` 与 `添加角色` 之间还夹一条
           `<div class="border-white/8 h-2 w-8 border-b">` 分隔线（32×8

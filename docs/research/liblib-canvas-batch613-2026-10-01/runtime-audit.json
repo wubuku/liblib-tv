@@ -1,0 +1,734 @@
+{
+  "batch": 613,
+  "title": "Director desk left column: rail + scene tree against the source's own container tree",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "probe613: full interactive inventory of both canvas pages (not just accessible names) — turned up 帮助 at [7.5,1110,32,32]",
+    "probe613c / probe613d: every ancestor of the rail's first entry, which is where the 36px/182px deltas turned out to come from",
+    "probe613e: the vertical layout skeleton of both desks",
+    "probe613g: a band sweep of y 52..88 — the source has no full-width row there, only rail / tree / inspector / viewport",
+    "probe613h: whole-DOM nav/tab/role=tab search — the source desk has no shot row at all",
+    "probe613i: exact boxes, borders and backgrounds for the source's aside / header / row / rail / divider / tree",
+    "probe613f: elementFromPoint at the source's 帮助 centre"
+  ],
+  "claims": {
+    "sourceFact": [
+      "the source's left column is a single aside [0,0,281,1150] = header [0,0,280,52] + div.flex.h-[calc(100%-52px)] [0,52,280,1098] holding nav [0,52,48,1098] and the tree [48,52,232,1098]",
+      "rail: 48 wide, p-2, gap-2, bg #171717, border-r white/8",
+      "rail entries at y = 60 / 116 / 156 / 196 / 236 / 276, plus a 32x8 border-b divider at y=100, plus 帮助 pinned at y=1110",
+      "scene tree: div.flex.w-[232px].flex-col.bg-[#171717], no border of its own; the column's 1px border-r white/10 sits at x 280..281 on the aside",
+      "the source's 帮助 is covered by the timeline's left control cluster (z-10 shrink-0 bg-[#1f1f1f]) — a dead control while the timeline is open",
+      "the source desk has no shot/camera tab row"
+    ],
+    "cloneDecision": [
+      "the rail and the tree are hoisted out of the middle flex child to be positioned against the workspace (which is fixed, hence a containing block), so they span 52 -> viewport bottom like the source's aside",
+      "the clone-only 导演台镜头 bar is kept (the source has no such row) and merely inset by the rail's 48px at >=900px so the rail no longer covers its label",
+      "the tree's aside is 233px wide so its 1px border-r lands at x 280..281, matching the source's column edge",
+      "帮助 stays under the timeline, copying the source; raising the rail instead would bury the timeline's own 播放 / 自动帧 / 循环播放 / 时间输入 cluster"
+    ],
+    "sourceSideObservations": [
+      "the source's bottom-most rail entry is unreachable while the timeline is open and only becomes reachable once the timeline is minimised — the clone now behaves the same way"
+    ],
+    "notClaimed": [
+      "the source's rail / tree button click behaviour",
+      "the scene tree's interior — the clone carries two extra 36px toolbar rows the source does not have"
+    ]
+  },
+  "checks": {
+    "desk": {
+      "rail": {
+        "box": [
+          0,
+          52,
+          48,
+          1098
+        ],
+        "z": "30",
+        "padding": "8px",
+        "gap": "8px",
+        "bg": "rgb(23, 23, 23)",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "entries": {
+        "场景": [
+          7.5,
+          60,
+          32,
+          32
+        ],
+        "添加角色": [
+          7.5,
+          116,
+          32,
+          32
+        ],
+        "添加机位": [
+          7.5,
+          156,
+          32,
+          32
+        ],
+        "全景图": [
+          7.5,
+          196,
+          32,
+          32
+        ],
+        "选择画幅比例": [
+          7.5,
+          236,
+          32,
+          32
+        ],
+        "AI 识图导入": [
+          7.5,
+          276,
+          32,
+          32
+        ],
+        "帮助": [
+          7.5,
+          1110,
+          32,
+          32
+        ]
+      },
+      "divider": {
+        "box": [
+          7.5,
+          100,
+          32,
+          8
+        ],
+        "borderBottomWidth": "1px",
+        "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "treeAside": {
+        "box": [
+          48,
+          52,
+          233,
+          1098
+        ],
+        "z": "30",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+      },
+      "tree": {
+        "box": [
+          48,
+          52,
+          232,
+          1098
+        ],
+        "bg": "rgb(23, 23, 23)"
+      },
+      "shotBar": {
+        "box": [
+          48,
+          52,
+          1872,
+          36
+        ]
+      },
+      "shotLabel": {
+        "box": [
+          60,
+          62,
+          21.6,
+          15
+        ],
+        "text": "镜头"
+      },
+      "timeline": {
+        "box": [
+          0,
+          968,
+          1920,
+          182
+        ],
+        "z": "40"
+      },
+      "help": {
+        "box": [
+          7.5,
+          1110,
+          32,
+          32
+        ],
+        "coveredByTimeline": true
+      },
+      "playback": {
+        "box": [
+          8,
+          974.5,
+          26,
+          24
+        ],
+        "reachable": true
+      }
+    },
+    "rail:container-[0,52,48,1098]": {
+      "ok": true,
+      "detail": [
+        0,
+        52,
+        48,
+        1098
+      ]
+    },
+    "rail:pad-8-gap-8-bg-171717": {
+      "ok": true,
+      "detail": "8px/8px/rgb(23, 23, 23)"
+    },
+    "rail:border-r-1px-white-8": {
+      "ok": true,
+      "detail": "1px/oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "rail:z-30": {
+      "ok": true,
+      "detail": "30"
+    },
+    "entry:场景:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:场景:box": {
+      "ok": true,
+      "detail": "[7.5, 60, 32, 32] vs [7.5, 60, 32, 32]"
+    },
+    "entry:添加角色:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:添加角色:box": {
+      "ok": true,
+      "detail": "[7.5, 116, 32, 32] vs [7.5, 116, 32, 32]"
+    },
+    "entry:添加机位:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:添加机位:box": {
+      "ok": true,
+      "detail": "[7.5, 156, 32, 32] vs [7.5, 156, 32, 32]"
+    },
+    "entry:全景图:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:全景图:box": {
+      "ok": true,
+      "detail": "[7.5, 196, 32, 32] vs [7.5, 196, 32, 32]"
+    },
+    "entry:选择画幅比例:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:选择画幅比例:box": {
+      "ok": true,
+      "detail": "[7.5, 236, 32, 32] vs [7.5, 236, 32, 32]"
+    },
+    "entry:AI 识图导入:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:AI 识图导入:box": {
+      "ok": true,
+      "detail": "[7.5, 276, 32, 32] vs [7.5, 276, 32, 32]"
+    },
+    "entry:帮助:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "entry:帮助:box": {
+      "ok": true,
+      "detail": "[7.5, 1110, 32, 32] vs [7.5, 1110, 32, 32]"
+    },
+    "entry:count-7": {
+      "ok": true,
+      "detail": [
+        "AI 识图导入",
+        "全景图",
+        "场景",
+        "帮助",
+        "添加机位",
+        "添加角色",
+        "选择画幅比例"
+      ]
+    },
+    "divider:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "divider:box-[7.5,100,32,8]": {
+      "ok": true,
+      "detail": [
+        7.5,
+        100,
+        32,
+        8
+      ]
+    },
+    "divider:border-b-1px-white-8": {
+      "ok": true,
+      "detail": "1px/oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "divider:straddles-the-24px-step": {
+      "ok": true,
+      "detail": 56
+    },
+    "tree:[48,52,232,1098]": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        1098
+      ]
+    },
+    "tree:bg-171717": {
+      "ok": true,
+      "detail": "rgb(23, 23, 23)"
+    },
+    "tree:aside-233-with-1px-right-border": {
+      "ok": true,
+      "detail": {
+        "box": [
+          48,
+          52,
+          233,
+          1098
+        ],
+        "z": "30",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+      }
+    },
+    "tree:z-30": {
+      "ok": true,
+      "detail": "30"
+    },
+    "shotbar:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "shotbar:starts-right-of-the-rail": {
+      "ok": true,
+      "detail": [
+        60,
+        62,
+        21.6,
+        15
+      ]
+    },
+    "shotbar:label-visible": {
+      "ok": true,
+      "detail": "镜头"
+    },
+    "timeline:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "timeline:z-40-above-rail": {
+      "ok": true,
+      "detail": "40"
+    },
+    "timeline:full-width": {
+      "ok": true,
+      "detail": [
+        0,
+        968,
+        1920,
+        182
+      ]
+    },
+    "help:under-the-timeline-while-it-is-open": {
+      "ok": true,
+      "detail": {
+        "box": [
+          7.5,
+          1110,
+          32,
+          32
+        ],
+        "coveredByTimeline": true
+      }
+    },
+    "playback:still-reachable": {
+      "ok": true,
+      "detail": {
+        "box": [
+          8,
+          974.5,
+          26,
+          24
+        ],
+        "reachable": true
+      }
+    },
+    "timeline:unmounts-when-minimised": {
+      "ok": true,
+      "detail": ""
+    },
+    "minimised": {
+      "rail": {
+        "box": [
+          0,
+          52,
+          48,
+          1098
+        ],
+        "z": "30",
+        "padding": "8px",
+        "gap": "8px",
+        "bg": "rgb(23, 23, 23)",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "entries": {
+        "场景": [
+          7.5,
+          60,
+          32,
+          32
+        ],
+        "添加角色": [
+          7.5,
+          116,
+          32,
+          32
+        ],
+        "添加机位": [
+          7.5,
+          156,
+          32,
+          32
+        ],
+        "全景图": [
+          7.5,
+          196,
+          32,
+          32
+        ],
+        "选择画幅比例": [
+          7.5,
+          236,
+          32,
+          32
+        ],
+        "AI 识图导入": [
+          7.5,
+          276,
+          32,
+          32
+        ],
+        "帮助": [
+          7.5,
+          1110,
+          32,
+          32
+        ]
+      },
+      "divider": {
+        "box": [
+          7.5,
+          100,
+          32,
+          8
+        ],
+        "borderBottomWidth": "1px",
+        "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "treeAside": {
+        "box": [
+          48,
+          52,
+          233,
+          1098
+        ],
+        "z": "30",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+      },
+      "tree": {
+        "box": [
+          48,
+          52,
+          232,
+          1098
+        ],
+        "bg": "rgb(23, 23, 23)"
+      },
+      "shotBar": {
+        "box": [
+          48,
+          52,
+          1872,
+          36
+        ]
+      },
+      "shotLabel": {
+        "box": [
+          60,
+          62,
+          21.6,
+          15
+        ],
+        "text": "镜头"
+      },
+      "timeline": null,
+      "help": {
+        "box": [
+          7.5,
+          1110,
+          32,
+          32
+        ],
+        "coveredByTimeline": false
+      },
+      "playback": null
+    },
+    "help:still-pinned-at-1110": {
+      "ok": true,
+      "detail": [
+        7.5,
+        1110,
+        32,
+        32
+      ]
+    },
+    "help:hit-testable-when-the-timeline-is-minimised": {
+      "ok": true,
+      "detail": ""
+    },
+    "help:click-does-not-throw": {
+      "ok": true,
+      "detail": ""
+    },
+    "collapsed": {
+      "rail": {
+        "box": [
+          0,
+          52,
+          48,
+          1098
+        ],
+        "z": "30",
+        "padding": "8px",
+        "gap": "8px",
+        "bg": "rgb(23, 23, 23)",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "entries": {
+        "场景": [
+          7.5,
+          60,
+          32,
+          32
+        ],
+        "添加角色": [
+          7.5,
+          116,
+          32,
+          32
+        ],
+        "添加机位": [
+          7.5,
+          156,
+          32,
+          32
+        ],
+        "全景图": [
+          7.5,
+          196,
+          32,
+          32
+        ],
+        "选择画幅比例": [
+          7.5,
+          236,
+          32,
+          32
+        ],
+        "AI 识图导入": [
+          7.5,
+          276,
+          32,
+          32
+        ],
+        "帮助": [
+          7.5,
+          1110,
+          32,
+          32
+        ]
+      },
+      "divider": {
+        "box": [
+          7.5,
+          100,
+          32,
+          8
+        ],
+        "borderBottomWidth": "1px",
+        "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "treeAside": {
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "z": "30",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+      },
+      "tree": {
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bg": "rgb(23, 23, 23)"
+      },
+      "shotBar": {
+        "box": [
+          48,
+          52,
+          1872,
+          36
+        ]
+      },
+      "shotLabel": {
+        "box": [
+          60,
+          62,
+          21.6,
+          15
+        ],
+        "text": "镜头"
+      },
+      "timeline": {
+        "box": [
+          0,
+          968,
+          1920,
+          182
+        ],
+        "z": "40"
+      },
+      "help": {
+        "box": [
+          7.5,
+          1110,
+          32,
+          32
+        ],
+        "coveredByTimeline": true
+      },
+      "playback": {
+        "box": [
+          8,
+          974.5,
+          26,
+          24
+        ],
+        "reachable": true
+      }
+    },
+    "collapse:rail-survives": {
+      "ok": true,
+      "detail": [
+        "AI 识图导入",
+        "全景图",
+        "场景",
+        "帮助",
+        "添加机位",
+        "添加角色",
+        "选择画幅比例"
+      ]
+    },
+    "collapse:tree-is-hidden": {
+      "ok": true,
+      "detail": ""
+    },
+    "collapse:rail-did-not-move": {
+      "ok": true,
+      "detail": [
+        7.5,
+        60,
+        32,
+        32
+      ]
+    },
+    "restore:tree-comes-back": {
+      "ok": true,
+      "detail": ""
+    },
+    "restore:tree-back-to-[48,52,232,1098]": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        1098
+      ]
+    },
+    "restore:rail-unchanged": {
+      "ok": true,
+      "detail": [
+        0,
+        52,
+        48,
+        1098
+      ]
+    },
+    "flyout:opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "flyout:8px-right-of-its-entry": {
+      "ok": true,
+      "detail": "{'x': 47.5, 'y': 116, 'width': 232, 'height': 390} vs x=47.5"
+    },
+    "flyout:panorama-opens": {
+      "ok": true,
+      "detail": ""
+    },
+    "flyout:switching-closes-the-previous-one": {
+      "ok": true,
+      "detail": ""
+    },
+    "flyout:panorama-8px-right-of-its-entry": {
+      "ok": true,
+      "detail": "{'x': 47.5, 'y': 196, 'width': 232, 'height': 134} vs x=47.5"
+    },
+    "flyout:another-entry-dismisses-it": {
+      "ok": true,
+      "detail": ""
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "_summary": {
+      "checks": 53,
+      "failures": []
+    }
+  },
+  "result": "53/53 passed"
+}
