@@ -197,6 +197,25 @@ else
   fail "存在未登记的标签漂移，或已登记的分歧已被上游统一——需更新 verify-label-drift.py 的登记表"
 fi
 
+# 第六道闸：不可达声明核对。手册里最难悄悄过期的一类断言是**否定式断言**
+# ——「画布库没有导入入口」「审美批改建不出节点」。上游哪天把那个 click 补上，
+# 手册会继续言之凿凿地说「找不到」。本闸对 7 条已登记断言逐条跑专属判据，
+# 并反向全量扫描 setter 零调用，要求与登记表双向一致。
+# 判据与「不检查什么」写在脚本 docstring 里，务必连着一读。
+if UR_OUT="$(python3 scripts/verify-unreachable.py 2>&1)"; then
+  printf '%s\n' "$UR_OUT" | while IFS= read -r line; do
+    case "$line" in
+      '  '*) [ -n "$line" ] && ok "不可达声明$line" ;;
+      *)     [ -n "$line" ] && ok "$line" ;;
+    esac
+  done
+else
+  printf '%s\n' "$UR_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "不可达声明 $line"
+  done
+  fail "不可达断言已过期，或登记表与上游现状不一致——需回走核实并更新 verify-unreachable.py"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"
