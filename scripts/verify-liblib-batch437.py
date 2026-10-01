@@ -84,6 +84,7 @@ def canvas_state(page: Page, canvas_id: str):
           const history = state.historyByCanvas[canvasId]
             || { past: [], future: [] };
           return {
+            nodeIds: (canvas?.nodes ?? []).map((n) => n.id),
             nodeCount: (canvas?.nodes ?? []).length,
             edgeCount: (canvas?.edges ?? []).length,
             pastLength: history.past.length,
@@ -214,7 +215,14 @@ def run_switch_cancels_pending_task(page: Page):
     switch_canvas(page, "canvas-2")
     page.wait_for_timeout(900)
     after_target = canvas_state(page, "canvas-2")
-    assert after_target["nodeCount"] == 0 or True  # canvas-2 has fixture nodes
+    # Batch 336 修正: 原写作 `== 0 or True` —— **恒真**，等于没断言
+    # 「切到 canvas-2 后不应看到 canvas-1 的节点」这件事。
+    # 真正该断言的是**节点集合不重叠**（canvas-2 自带 fixture 节点，
+    # 所以不能断言 count==0）。
+    assert set(before_owner["nodeIds"]).isdisjoint(after_target["nodeIds"]), (
+        f"canvas-1 节点不应出现在 canvas-2: "
+        f"{sorted(set(before_owner['nodeIds']) & set(after_target['nodeIds']))}"
+    )
     target_history = after_target["pastLength"]
 
     switch_canvas(page, "canvas-1")

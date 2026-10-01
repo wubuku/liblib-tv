@@ -409,3 +409,33 @@ Batch 208 证明**绿色断言可能锁着缺陷**。本批推广到全仓：扫
 **候选 Batch 336**：把恒真断言检查做成**门禁脚本**（类似 verify-docs.py），
 对 `scripts/verify-*.py` 扫描 `>= 0` / `or True` 并在 runner 前置运行，
 避免同类问题再次混入。
+
+## Batch 336（2026-10-01）：断言质量门禁
+
+Batch 335 清了 5 处恒真断言，但**没有防复发机制**。本批固化为门禁脚本
+`scripts/verify-assertions.py`，接入 `npm run assertions:check`。
+
+| 规则 | 匹配 | 说明 |
+|---|---|---|
+| VACUOUS_COUNT | `.count() >= 0` | 计数不可能为负 |
+| OR_TRUE | `... or True` | 显式或真，整条失效 |
+| COMPARE_TO_NONE | `x == None` | 应写 `is None`（smell） |
+
+**刻意不查 `== []`** —— Batch 335 已确认那 30+ 处都是真实断言「集合为空」，
+误报会消耗信任，门禁必须精准。
+
+🔴 **门禁上线当场又抓出 2 处此前漏掉的**（这正是一次性清理总会漏的证据）：
+
+| 文件 | 原断言 | 修正为 |
+|---|---|---|
+| verify-liblib-batch437 | `after_target["nodeCount"] == 0 or True  # canvas-2 has fixture nodes` | `set(before).isdisjoint(after)` 断言**集合不重叠**（并给 canvas_state 补 nodeIds） |
+| verify-liblib-batch448 | `"请选择字幕擦除区域" in ... or True` | 去掉 `or True` |
+
+两处都不是随手写错：作者当时大概遇到断言失败，用 `or True`「解决」了 ——
+那个断言从此永不再失败，**它要检查的东西变成无人看管**。437 尤其隐蔽：
+注释说明了为什么 `count()==0` 不成立，但正确做法是断言集合不重叠，而非放弃断言。
+
+**门禁有效性自检**（不验证门禁的门禁等于没有门禁）：注入 `.count() >= 0`
+→ Found 1 / EXIT=1；还原 → 0 vacuous in 452 scripts / EXIT=0。
+
+复跑：liblib437 PASS、liblib448 PASS。

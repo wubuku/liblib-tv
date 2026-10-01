@@ -168,7 +168,9 @@ def run_subtitle_honest(page: Page):
     assert generate.is_disabled(), (
         "region mode without regions must keep the submit disabled"
     )
-    assert "请选择字幕擦除区域" in generate.get_attribute("title") or True
+    # Batch 336 修正: 原写作 `... or True` —— **恒真**，
+    # 等于没断言「未选区时提交按钮的 title 提示」。改为真实断言。
+    assert "请选择字幕擦除区域" in (generate.get_attribute("title") or "")
     page.locator("[data-subtitle-erase-close]").click()
     page.wait_for_timeout(140)
     return {

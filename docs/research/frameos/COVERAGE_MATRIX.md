@@ -67,7 +67,8 @@
 | ⚪ 跨画布编辑的**刷新**持久化（刷新仍丢失） | ✅ | batch333 已补齐（**有源站证据**：Batch 251 刷新确认持久化） |
 | 损坏/非法 localStorage 被安全忽略 | ✅ | batch333 |
 | SSR hydration 不因读存储而 mismatch | ✅ | batch333 |
-| ⚠️ 审计「断言方向可能相反」的验证器 | ✅ | batch335 已全仓审计；batch208 方向已修，5 处恒真断言已清 |
+| 断言质量门禁（防恒真断言复入） | ✅ | batch336 `verify-assertions.py` + `npm run assertions:check` |
+| ⚠️ 审计「断言方向可能相反」的验证器 | ✅ | batch335 已全仓审计；batch208 方向已修，5+2 处恒真断言已清 |
 | 持久化落地后的验证器隔离（干净起点） | ✅ | batch334（`goto_clean_canvas` 共享助手） |
 | ⌘V 粘贴 | ⚪ | 剪贴板权限限制，源站未采样成功 |
 
