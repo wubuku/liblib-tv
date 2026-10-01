@@ -68,6 +68,25 @@
 - **空图片节点 + 真实图片**：原地替换节点（replaceNodeWithMaterialFile），标题=文件名，按自然比例重设尺寸（居中补偿）。[运行时]
 - **非空节点 + 新图片**：新建节点 + 视口聚焦动画。[运行时]
 - 拖放上传：同白名单，落点 40px 阶梯错位建节点，`sourceOrigin:"upload"`。[静态]
+  - **2026-10-02 M115 升级为运行时实证，并订正本节此前那条静态描述背后的一个错误推断**：拖放与文件选择器是**两套互不相干的代码**，而「替换」只属于后者。
+    - `handleDrop`（`project.tsx:2772-2788`）**无条件新建**，压根没有「落在节点上就替换」的分支：`const basePos = screenToCanvas(event.clientX, event.clientY); accepted.map(({file,kind}, index) => createMaterialFileNode(file, kind, { x: basePos.x + index*40, y: basePos.y + index*40 }))`。
+    - 替换只发生在 `handleImageInputChange`（`project.tsx:2713-2750`）的 `target.nodeId` 分支（`uploadTargetRef` 由 `project.tsx:795/832/2664` 写入），该支才有 `const [first, ...rest] = accepted; replaceNodeWithMaterialFile(target.nodeId, first.file, first.kind)`。
+    - **实测（拖到节点正中心，`project.tsx:2783` 那条路径）**：节点数 `1 → 2`，目标节点的 `blob:` 地址**前后逐字相同**（`654a9b3f-…`），新节点是另一个 `blob:` 地址。**拖到节点上与拖到空白处同形（都 +1），是同一支。**
+  - 阶梯实测：一次拖 3 个合法文件 → 三节点左上角 `[590,640] [630,680] [670,720]`，**Δ=(40,40) 精确**；3 文件成功 toast 为「已添加 **3** 个素材节点…」。[运行时]
+  - **上限是 50 MiB 而不是 50 MB**：`CANVAS_MATERIAL_MAX_BYTES = 50 * 1024 * 1024`（`canvas-upload-material.ts:3`）= 52 428 800 字节。判据是 `file.size > MAX`（`:46`）**严格大于**——实测**恰好 50 MiB 的文件被接受**，52 MiB 被拒。[运行时+静态]
+  - 三条提示文案逐字（`i18n/locales/zh-CN.ts:422/424/425`，运行时 toast 与之逐字一致）：
+    - 成功「已添加 {{count}} 个素材节点，可连接到生图或生视频节点」
+    - 超限「{{files}} 超过 50MB，未添加到画布」
+    - 不支持「{{files}} 的格式不受支持，请使用 JPG、PNG、WebP、MP4、MOV、AVI、MKV、MP3、WAV 或 FLAC」
+  - **混拖互不影响**：一个 `note.txt` + 一个 `ok.png` 一起拖 → **两条 toast 并存**（不支持 + 成功），非法项被单独拒绝、合法项照常建节点（`accepted` 只收合法项，两类 message 各弹一次）。[运行时]
+  - **判定函数 8/8 钉死**（`canvas-upload-material.ts:45-59`，M115 逐条构造 `File` 的 `type` 实测，**8 条预期全对**）：顺序是 ① `size > 50MiB` → too-large；② MIME 查 `KIND_BY_MIME` 命中即收；③ **仅当 MIME 为空串才回退扩展名表**（源码注释原话：*Some drag-and-drop sources omit MIME. Only then fall back to the documented extension list.*）；④ 否则 unsupported。
+    - ★**反直觉点**：MIME 非空但陌生时**不再回退扩展名**——`application/x-weird` + 合法扩展名 `.png` **被拒**（实测）。
+    - ★ 反向的宽容：**完全没有扩展名**但 MIME 命中 `image/png` 的文件**被接受**（实测）。
+    - 扩展名匹配用 `/\.([a-z0-9]+)$/i`，**大小写不敏感**——`.PnG` + 空 MIME 被接受（实测）。
+    - **这也订正了 `90-troubleshooting.md` 此前「按文件扩展名校验」那句**：准确说法是「按**浏览器给出的 MIME** 判定，MIME 缺失时才看扩展名；而 Chrome 恰恰会按扩展名推断 MIME——所以实测行为看起来仍像『只看扩展名』，`.mp4` 假视频因此被收下」。
+- **M115 否证自己的上一轮记录（第 51、52 次否证）**：
+  1. 上一轮据源码写成「拖到已有节点上 → 第一个文件替换该节点内容」，**错**——把 `handleImageInputChange` 的分支当成了 `handleDrop` 的分支（两条路径源码行号相邻，极易看串）。
+  2. 上一轮记「拖入白名单外文件**静默丢弃，无任何提示**」，**错**——实测有完整提示文案。上一轮没抓到是因为在节点落定后才去翻 DOM，而 antd message 默认只存活约 3 秒；改为 **drop 后以 100ms 间隔轮询 5.5 秒**才稳定抓到（并以「拖一个合法文件必须抓到成功 toast」作阳性对照，确认抓取机制本身有效，否则「无提示」结论一律作废）。
 - 图片历史：每节点 ≤24 条版本（FNV-1a 签名去重），历史面板切换回写 metadata；引用可 pinned。[静态]
 - 本地 Canvas2D 操作：裁剪/切图/放大（1K/2K/4K，非 AI）——产物建子节点并连线；角度重渲染走 AI（付费，手册只描述）。[静态]
 

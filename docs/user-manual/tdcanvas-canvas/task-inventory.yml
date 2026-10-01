@@ -89,7 +89,9 @@ tasks:
       - type: runtime
         note: 2026-09-26 真实 PNG（1.7MB/3.9MB）经全局 input 管线注入：空节点原地替换、非空新建+聚焦；accept 白名单与 50MB 上限逐字取证。
       - type: static
-        note: 拖放 40px 阶梯错位、sourceOrigin upload 标记、文件选择器上传到空节点原地替换类型。
+        note: sourceOrigin upload 标记、文件选择器上传到空节点原地替换类型。
+      - type: runtime
+        note: 2026-10-02 M115 把「拖放 40px 阶梯错位」从静态升级为运行时（3 文件 Δ=(40,40) 精确，toast 计数逐字），并**订正了此前账本依据的一个错误推断**：拖放与文件选择器是两套代码，`handleDrop`（project.tsx:2772-2788）无条件新建、**没有「落在节点上就替换」的分支**；替换只在 `handleImageInputChange`（project.tsx:2713-2750）的 `target.nodeId` 支（2742 行）。实测拖到节点正中心 → 节点数 1→2、目标节点 blob 地址逐字不变、与拖到空白同形。同批钉死：上限为 50 * 1024 * 1024（canvas-upload-material.ts:3）、判据 `size > MAX` 严格大于（52MiB 拒 / 恰好 50MiB 收）；三条提示文案逐字；混拖两条 toast 并存；判定函数 8/8 全对（MIME 优先、**仅 MIME 为空才回退扩展名**，故陌生非空 MIME + 合法扩展名仍被拒，无扩展名但 MIME 命中则被收）。同批**否证自己的上一轮记录两条**：「拖到节点上会替换」与「白名单外静默丢弃」（后者实有完整提示，上一轮因在节点落定后才翻 DOM 而漏掉 antd message 的约 3 秒存活窗口，改为 drop 后 100ms 间隔轮询 5.5 秒并以「合法文件必须抓到成功 toast」作阳性对照才稳定抓到）。
     preconditions:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
