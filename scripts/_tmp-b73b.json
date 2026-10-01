@@ -1,0 +1,84 @@
+{
+ "startedAt": "2026-10-01T23:18:26.922Z",
+ "created": [
+  "node_ypjjdrrhgv"
+ ],
+ "contentProbe": {
+  "hasPanel": false,
+  "emptyHints": [],
+  "imgs": 0,
+  "text": "图片 1"
+ },
+ "domProbe": {
+  "全文档_target": 0,
+  "全文档_source": 1,
+  "本节点内": {
+   "target": 0,
+   "source": 0
+  },
+  "逐个": [
+   {
+    "testid": "flow-node-target-connection-menu-button",
+    "exists": false,
+    "box": null,
+    "aria": null,
+    "pe": null
+   },
+   {
+    "testid": "flow-node-source-connection-menu-button",
+    "exists": false,
+    "box": null,
+    "aria": null,
+    "pe": null
+   }
+  ]
+ },
+ "plus": [
+  {
+   "testid": "flow-node-source-connection-menu-button",
+   "aria": "Create connected node after b22-upload"
+  }
+ ],
+ "reads": [
+  {
+   "testid": "flow-node-source-connection-menu-button",
+   "aria": "Create connected node after b22-upload",
+   "menuAria": "添加节点",
+   "avail": [
+    "图片",
+    "视频",
+    "音频",
+    "时间线",
+    "主体"
+   ],
+   "dis": [
+    "文本:无法连接这些节点",
+    "导演台:无法连接这些节点"
+   ]
+  }
+ ],
+ "end": {
+  "status": "13 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 13,
+  "dev": [
+   [
+    "node_236ctpehgg",
+    [
+     124.44,
+     -248.89
+    ]
+   ]
+  ],
+  "extra": [
+   "node_ay7f1jn45r",
+   "node_w6b1h9fvzw",
+   "node_dt0wpmba0d",
+   "node_kdgnjkfng2",
+   "node_gp499g9p3m",
+   "node_9y4j9jf0qv",
+   "node_gref4sw056"
+  ]
+ }
+}
