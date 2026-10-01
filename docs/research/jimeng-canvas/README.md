@@ -7987,3 +7987,70 @@ C.5 连着红了两轮，根因都不是产品：
 **本批产品改动只有四个 `data-testid` 和两处命名引用，零几何变更** ——
 缩放菜单 200×292 与源站本就一致，缺的只是锚点。凡是几何对得上的地方，
 本批一个字都没动。
+
+---
+
+## 43. Batch 831-nodeborder — 普查的结论是**否定**的，而它推翻了我自己写的一句话（2026-10-04）
+
+批 829 在时间线壳上查到 `border: 1px solid rgba(255,255,255,0.04)`，靠它一个根因
+对齐了五处矩形。紧接着的问题很自然：**别的节点壳是不是也少这一圈？**
+如果是，那是一类缺陷，不是一处 —— 值得单开一批普查。
+
+### 普查结果：是个例，不是通例
+
+深探源站 6 个节点（每个节点下所有带边框的后代 + 视觉壳）：
+
+| 节点 | 壳 testid | 边框 | 颜色 |
+|---|---|---|---|
+| 视频 569×320 | `video-flow-node-surface` | **1px** | `rgba(0,0,0,0)` 透明 |
+| 时间线 1200×207 | `timeline-flow-node-main-track` | **1px** | `rgba(255,255,255,0.04)` |
+| 媒体 320×320 ×3 | — | 0 | — |
+| 导演台 320×320 | `director-stage-flow-node-shell` | 0 | — |
+
+⇒ 6 个节点里 2 个带 1px 边框，其中**只有时间线那枚是非透明的**。829 是**个例**，
+其余节点壳不必改。复刻侧对照：只有 `timeline-shell` 有那圈边框，与源站一致。
+
+契约 ② 之所以不是空断言：按「所有节点壳都该有 1px」写会挂在 4 个节点上，
+按「都不该有」写会挂在时间线上 —— 它得同时躲开两头才算成立。
+
+### 第二处 1px：记录，不实施
+
+源站视频节点壳那圈是**透明**的，而且 **idle / hover / selected 三态完全一致**
+（都是 `1px` / `rgba(0,0,0,0)` / r8 / bg 透明 / 无 box-shadow）。它的类名里有
+`data-[connection-receiving=…]` 变体 —— 推测是「把连接线拖过来时」的占位环。
+
+**不照搬**，理由写清楚：透明 ⇒ 观感零差异；它唯一的效果是让内容内缩 1px，
+而那是**一个节点类型上的 1px**；而它真正会显形的状态**未取证**。照搬只能搬来一个
+看不见的占位，收益低于改动风险。⇒ 记为**已量化的源站事实**，列 OPEN_QUESTION 831-a。
+
+### 推翻我自己写的一句话
+
+批 829 我在台账里顺口写了一句「源站全站用类名，一个 testid 都没有」。普查直接推翻：
+源站节点壳**是有 testid 的** —— `video-flow-node-surface` / `timeline-flow-node` /
+`director-stage-flow-node-shell` / `timeline-flow-node-main-track`。
+
+已就地更正（§41 对应段落 + 组件注释）。这条纠正的意义超出这句话本身：
+**「顺手写的补充说明」和「正文里的数据」受同一条规矩约束** —— 没查过就别写成断言。
+批 829 已经在同一段里栽过一次（照抄台账的分隔线），这次是栽在同一段的**旁注**上。
+
+### 工具本身踩的两个坑（都记下来）
+
+新建 `scripts/jimeng_node_border_census.py`（只读，走登录态）：
+
+1. `auth.verify_login()` 返回的是 **dict**，不是退出码。写 `!= 0` 会永远成立
+   —— 普查一启动就报「登录态失效」。
+2. 更要紧的一层：`verify_login` 探的是 **passport API**，它比「画布能不能读」
+   **更严**。实测同一份 storage_state 下 passport 报 `error_code=13 会话过期`，
+   而画布照样渲染出 6 个节点、几何全部读得到。拿它当硬闸门会**反复误杀**。
+   已改成软记录 + 用真实判据把关（画布读不出节点才判取证失败）。
+3. 顺带：context 必须走 `auth.open_headless()` 注入 storage_state。
+   自己 `browser.new_context()` 造出来的是裸 context，必然读不到。
+
+三条都写进工具文件头。这类坑不写下来，下次照着同一个直觉写还会再栽。
+
+### 验收
+
+普查 **3/3**，退出码 0。取证 `docs/research/jimeng-canvas-batch831-2026-10-04/`
+（`node-border-census.json` / `source-deep-borders.json` /
+`clone-deep-borders.json` / `source-video-border-states.json` /
+`source-node-borders.json` / `clone-node-borders.json`）。

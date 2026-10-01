@@ -1,0 +1,262 @@
+[
+ {
+  "size": [
+   415,
+   234
+  ],
+  "bordered": [],
+  "shell": {
+   "rel": [
+    0,
+    230,
+    415,
+    4
+   ],
+   "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.16)",
+   "radius": "25px",
+   "area": 1515.6876396825537,
+   "cls": "absolute inset-x-0 bottom-0 h-[5px] rounded-[25px] b",
+   "tid": null
+  },
+  "opaqueCount": 3
+ },
+ {
+  "size": [
+   415,
+   234
+  ],
+  "bordered": [],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   234,
+   234
+  ],
+  "bordered": [
+   {
+    "rel": [
+     -24,
+     108,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   },
+   {
+    "rel": [
+     240,
+     108,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   }
+  ],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   415,
+   234
+  ],
+  "bordered": [
+   {
+    "rel": [
+     -24,
+     108,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   },
+   {
+    "rel": [
+     422,
+     108,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   }
+  ],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   269,
+   269
+  ],
+  "bordered": [
+   {
+    "rel": [
+     -24,
+     126,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   },
+   {
+    "rel": [
+     275,
+     126,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   }
+  ],
+  "shell": {
+   "rel": [
+    133,
+    124,
+    2,
+    20
+   ],
+   "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.4)",
+   "radius": "3.35544e+07px",
+   "area": 44.7512696236372,
+   "cls": "w-[3px] rounded-full bg-current",
+   "tid": null
+  },
+  "opaqueCount": 5
+ },
+ {
+  "size": [
+   269,
+   269
+  ],
+  "bordered": [
+   {
+    "rel": [
+     -24,
+     126,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   },
+   {
+    "rel": [
+     275,
+     126,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   }
+  ],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   876,
+   151
+  ],
+  "bordered": [
+   {
+    "rel": [
+     0,
+     0,
+     876,
+     151
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+    "radius": "8px",
+    "cls": "relative flex h-full w-full flex-col overflow-hidden",
+    "tid": "timeline-shell"
+   },
+   {
+    "rel": [
+     53,
+     49,
+     822,
+     20
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.06)",
+    "radius": "0px",
+    "cls": "relative h-[27px] w-full border-b border-white/[0.06",
+    "tid": "timeline-ruler"
+   },
+   {
+    "rel": [
+     -24,
+     67,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   },
+   {
+    "rel": [
+     882,
+     67,
+     18,
+     18
+    ],
+    "bw": 1,
+    "bc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+    "radius": "3.35544e+07px",
+    "cls": "flex size-6 items-center justify-center rounded-full",
+    "tid": null
+   }
+  ],
+  "shell": {
+   "rel": [
+    0,
+    0,
+    876,
+    151
+   ],
+   "bg": "rgb(32, 32, 32)",
+   "radius": "8px",
+   "area": 132336.12789773382,
+   "cls": "relative flex h-full w-full flex-col overflow-hidden",
+   "tid": "timeline-shell"
+  },
+  "opaqueCount": 2
+ }
+]

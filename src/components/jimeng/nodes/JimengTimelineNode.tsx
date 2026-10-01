@@ -610,7 +610,11 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               槽的底色是 `color(srgb 0.12549 ×3)` = rgb(32,32,32)，与**壳同色**
               ⇒ 那条线上根本没有可见分隔线。批 818 台账里那条
               `[66,67,1,139] timeline-node-track-divider` 是**我们**给「槽与轨道
-              的边界」起的名字，不是源站的 testid（源站用类名，全站无 testid）。
+              的边界」起的名字，不是源站的 testid。⚠️ 我当时顺口写的
+              「源站全站用类名，一个 testid 都没有」是**错的** —— 批 831 普查发现
+              源站节点壳**是有 testid 的**（`video-flow-node-surface` /
+              `timeline-flow-node` / `director-stage-flow-node-shell` /
+              `timeline-flow-node-main-track`）。只是那个位置确实没有分隔线元素。
 
               教训见台账 §41：**照抄本仓台账里的 SOURCE_FACT 不等于验证过它。**
               批 828 抄了，批 829 查了，才发现那条从来不是源站的。 */}

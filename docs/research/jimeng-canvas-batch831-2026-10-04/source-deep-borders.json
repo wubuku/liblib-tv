@@ -1,0 +1,108 @@
+[
+ {
+  "size": [
+   569,
+   320
+  ],
+  "bordered": [
+   {
+    "rel": [
+     0,
+     0,
+     569,
+     320
+    ],
+    "bw": 1,
+    "bc": "rgba(0, 0, 0, 0)",
+    "radius": "8px",
+    "cls": "group relative flex min-h-32 min-w-40 flex-col overf",
+    "tid": "video-flow-node-surface"
+   }
+  ],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   320,
+   320
+  ],
+  "bordered": [],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   1200,
+   207
+  ],
+  "bordered": [
+   {
+    "rel": [
+     0,
+     0,
+     1200,
+     207
+    ],
+    "bw": 1,
+    "bc": "rgba(255, 255, 255, 0.04)",
+    "radius": "8px",
+    "cls": "flex flex-col w-full min-h-0 h-full overflow-hidden ",
+    "tid": "timeline-flow-node-main-track"
+   }
+  ],
+  "shell": {
+   "rel": [
+    0,
+    0,
+    1200,
+    207
+   ],
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "radius": "8px",
+   "area": 248399.96337890625,
+   "cls": "group relative flex min-h-32 min-w-40 flex-col overf",
+   "tid": "timeline-flow-node"
+  },
+  "opaqueCount": 11
+ },
+ {
+  "size": [
+   320,
+   320
+  ],
+  "bordered": [],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   320,
+   320
+  ],
+  "bordered": [],
+  "shell": null,
+  "opaqueCount": 0
+ },
+ {
+  "size": [
+   320,
+   320
+  ],
+  "bordered": [],
+  "shell": {
+   "rel": [
+    0,
+    0,
+    320,
+    320
+   ],
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "radius": "8px",
+   "area": 102399.990234375,
+   "cls": "relative flex min-h-canvas-zero flex-1 overflow-hidd",
+   "tid": "director-stage-flow-node-shell"
+  },
+  "opaqueCount": 2
+ }
+]

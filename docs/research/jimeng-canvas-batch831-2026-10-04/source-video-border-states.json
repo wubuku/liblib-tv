@@ -1,0 +1,129 @@
+{
+ "idle": {
+  "err": null,
+  "idle": {
+   "bw": [
+    "1px",
+    "1px",
+    "1px",
+    "1px"
+   ],
+   "bc": "rgba(0, 0, 0, 0)",
+   "bcv": "rgba(0, 0, 0, 0)",
+   "size": [
+    569,
+    320
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "ring": null,
+   "outline": "3px none"
+  },
+  "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+  "nodeCls": "react-flow__node react-flow__node-video nopan selectable draggable",
+  "rect": [
+   472,
+   195,
+   569,
+   320
+  ],
+  "others": [
+   {
+    "tid": "video-flow-node-surface",
+    "size": [
+     569,
+     320
+    ],
+    "bw": "1px",
+    "bc": "rgba(0, 0, 0, 0)",
+    "cls": "group relative flex min-h-32 min-w-40 flex-c"
+   },
+   {
+    "tid": null,
+    "size": [
+     320,
+     320
+    ],
+    "bw": "0px",
+    "bc": "rgb(229, 231, 235)",
+    "cls": "group/canvas-panel-scrollbar relative size-f"
+   },
+   {
+    "tid": "timeline-flow-node",
+    "size": [
+     1200,
+     207
+    ],
+    "bw": "0px",
+    "bc": "rgb(229, 231, 235)",
+    "cls": "group relative flex min-h-32 min-w-40 flex-c"
+   },
+   {
+    "tid": null,
+    "size": [
+     320,
+     320
+    ],
+    "bw": "0px",
+    "bc": "rgb(229, 231, 235)",
+    "cls": "group/canvas-panel-scrollbar relative size-f"
+   },
+   {
+    "tid": null,
+    "size": [
+     320,
+     320
+    ],
+    "bw": "0px",
+    "bc": "rgb(229, 231, 235)",
+    "cls": "group/canvas-panel-scrollbar relative size-f"
+   },
+   {
+    "tid": null,
+    "size": [
+     320,
+     320
+    ],
+    "bw": "0px",
+    "bc": "rgb(229, 231, 235)",
+    "cls": "group relative flex min-h-32 min-w-40 flex-c"
+   }
+  ]
+ },
+ "hover": {
+  "bw": [
+   "1px",
+   "1px",
+   "1px",
+   "1px"
+  ],
+  "bc": "rgba(0, 0, 0, 0)",
+  "bcv": "rgba(0, 0, 0, 0)",
+  "size": [
+   569,
+   320
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "ring": null,
+  "outline": "3px none"
+ },
+ "selected": {
+  "bw": [
+   "1px",
+   "1px",
+   "1px",
+   "1px"
+  ],
+  "bc": "rgba(0, 0, 0, 0)",
+  "bcv": "rgba(0, 0, 0, 0)",
+  "size": [
+   569,
+   320
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "ring": null,
+  "outline": "3px none"
+ }
+}
