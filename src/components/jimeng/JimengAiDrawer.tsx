@@ -42,11 +42,20 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   const [editing, setEditing] = useState(false);
   const richPrefill = !!refChip && prefill && !editing && !input;
 
+  // SOURCE_FACT (batch 795 实测 @1680×826): 面板 400×802 @[1268,12]，z-40，
+  // radius 20px，右缘/上缘/下缘各内缩 12px。
   return (
     <aside
-      className="absolute inset-y-3 right-3 z-40 flex w-[398px] flex-col rounded-2xl border border-white/[0.06] bg-[#1E1E1E]"
+      // Batch 797 SOURCE_FACT (2026-10-01 登录态实测，点「与 AI 对话」后量得):
+      //   @[1268,12] 400×802  radius 20px  z-40
+      //   background  color(srgb .12549 ×3 / .8) = **rgba(32,32,32,0.8)**
+      //             （此前误用不透明 #1E1E1E）
+      //   backdrop-filter **blur(60px)**
+      //   border      1px solid rgba(255,255,255,**0.1**)（此前 0.06）
+      //   box-shadow  rgba(0,0,0,0.16) 0 0 80px 0（此前无）
+      className="absolute inset-y-3 right-3 z-40 flex w-[400px] flex-col rounded-[20px] border border-white/10 bg-[rgba(32,32,32,0.8)] shadow-[0_0_80px_0_rgba(0,0,0,0.16)] backdrop-blur-[60px]"
       role="dialog"
-      aria-label="AI 对话"
+      aria-label="Agent"
     >
       {/* 头部 */}
       <div className="flex items-center justify-between px-4 py-3">

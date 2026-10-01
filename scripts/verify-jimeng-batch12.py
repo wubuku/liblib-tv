@@ -37,7 +37,7 @@ def main() -> None:
 
         drawer = page.evaluate(
             """() => {
-                const d = document.querySelector('[aria-label="AI 对话"]');
+                const d = document.querySelector('[aria-label="Agent"]');
                 if (!d) return null;
                 const r = d.getBoundingClientRect();
                 return {
@@ -82,7 +82,7 @@ def main() -> None:
         page.locator('button[aria-label="收起"]').click()
         page.wait_for_timeout(500)
         closed = page.evaluate(
-            "() => !document.querySelector('[aria-label=\"AI 对话\"]')"
+            "() => !document.querySelector('[aria-label=\"Agent\"]')"
         )
         if not closed:
             failures.append("drawer did not close on 收起")

@@ -132,13 +132,25 @@ def main() -> None:
             order = [x[0] for x in boxes]
             check("右簇顺序与源站一致",
                   order == ["搜索", "生成历史", "分享", "更多", "积分", "用户菜单"], str(order))
+            # SOURCE_FACT (batch 795 复查): 头像在 163×36 药丸内、药丸右内边距 4，
+            # 故**药丸**右缘 1668 而头像按钮右缘 1664。
             last_right = boxes[-1][1]["x"] + boxes[-1][1]["width"]
-            check("右簇右缘 1668", near(last_right, 1668, 1.0), f"实际 {round(last_right, 2)}")
+            check("头像按钮右缘 1664（药丸内缩 4）", near(last_right, 1664, 1.0), f"实际 {round(last_right, 2)}")
+            pill_right = page.evaluate(
+                """() => {
+              const el = document.querySelector('[data-testid="canvas-user-menu-trigger"]')
+                .closest('.jimeng-chrome-pill');
+              return el ? el.getBoundingClientRect().right : null;
+            }"""
+            )
+            check("积分/头像药丸右缘 1668", pill_right is not None and near(pill_right, 1668, 1.0), repr(pill_right))
             # 药丸内 4px 缝；药丸之间 16px（源站实测 13/17/16/16，取 16±3）
             check("搜索→生成历史 4px 缝",
                   near(boxes[1][1]["x"] - (boxes[0][1]["x"] + boxes[0][1]["width"]), 4, 1.0),
                   f"实际 {round(boxes[1][1]['x'] - boxes[0][1]['x'] - boxes[0][1]['width'], 2)}")
-            # 簇内 flex 间隙应为 16px (SOURCE_FACT 实测 13/17/16/16，取整 16)
+            # SOURCE_FACT (batch 795 复查): 药丸之间 8px；按钮到按钮 8+4+4=16。
+            # batch 795 把药丸从「按钮自带背景」改成「外层 36px 高药丸」后，
+            # 簇内 flex gap 由 16 修正为 8。
             cluster_gap = page.evaluate(
                 """() => {
               const el = document.querySelector('[data-testid="topbar-search"]')
@@ -146,7 +158,7 @@ def main() -> None:
               return el ? getComputedStyle(el).gap : null;
             }"""
             )
-            check("右簇 flex 间隙 16px", cluster_gap == "16px", repr(cluster_gap))
+            check("右簇药丸间隙 8px", cluster_gap == "8px", repr(cluster_gap))
             # 控件到控件的实际视觉间距：首个跨药丸边界，含药丸 4px 内缩，
             # 源站实测 17、其余 16/16/16，故统一放宽到 13..21。
             for i in range(1, len(boxes) - 1):

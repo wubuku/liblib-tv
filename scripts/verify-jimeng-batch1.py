@@ -36,7 +36,7 @@ def main() -> None:
                 flow: !!document.querySelector('.jimeng-canvas .react-flow'),
                 videoNodes: document.querySelectorAll('.react-flow__node-video').length,
                 topBar: !!document.querySelector('header'),
-                toolRailButtons: document.querySelectorAll('aside:not([aria-label="AI 对话"]) button').length,
+                toolRailButtons: document.querySelectorAll('aside:not([aria-label="Agent"]) button').length,
                 bottomDock: !!document.querySelector('.jimeng-bottom-dock'),
                 aiButton: [...document.querySelectorAll('button')].some(b => b.textContent.includes('与 AI 对话')),
                 zoomText: document.querySelector('.jimeng-bottom-dock')?.textContent.match(/\\d+%/)?.[0] ?? null,
@@ -50,8 +50,9 @@ def main() -> None:
             "topBar": True,
             "toolRailButtons": 9,
             "bottomDock": True,
-            # Batch 398: Agent 面板常驻——AI 钮在面板展开时隐藏
-                "aiButton": False,
+            # Batch 797: Agent 面板默认**收起**（源站实测），故「与 AI 对话」
+            # 触发钮在首屏可见。此前默认展开时它被面板挡住，才断言 False。
+            "aiButton": True,
             "zoomText": "73%",
             "bodyBg": "rgb(13, 13, 13)",
             "paneGrid": True,

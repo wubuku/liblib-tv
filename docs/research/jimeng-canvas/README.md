@@ -181,6 +181,37 @@
   (时间重置 00:00、进入播放态)；双击节点标题行 = 打开「添加节点」菜单的
   **extended 版** — 在 + 手柄菜单的 7 项之后追加「从资产库添加」「本地上传」。
   复刻: restartPlay + JimengInsertMenu extended；Escape 关闭菜单。
+- SOURCE_FACT (batch 797, Agent 抽屉默认态 — **关闭待决问题 #2**): 源站画布首屏
+  **Agent 面板默认收起**，右下只暴露一个「与 AI 对话」触发钮；点击后才展开。
+  收起态 → 点击前后对照实测（登录态 @1680×826）：
+  触发钮**三层**结构（此前两次都只量了内层按钮，结论两次都错）：
+    定位层 `absolute bottom-3 right-3 flex flex-col items-end`（**12px** 内缩）
+    药丸层 @[1548,778] **120×36**  bg rgba(39,39,39,0.72)  radius **20px**
+            backdrop-filter **blur(40px)**
+    按钮层 @[1549,779] **118×34**  自身**透明**  radius 20px  font 13px
+    ⇒ 按钮比药丸四周各内缩 1px，所以「按钮距右缘 13px」是 12+1 的**结果**，
+      定位层仍是 12px。**不可据内层矩形去改 bottom/right**（同 batch 796 的教训）。
+  收起态**不出现**任何展开类控件：新建会话/收起/使用技能/引用参考/发送消息 全无。
+  展开态面板 @[1268,12] **400×802**  radius 20px  z-40
+    background `color(srgb .12549 ×3 / .8)` = **rgba(32,32,32,0.8)**（此前误用不透明
+    #1E1E1E）、backdrop-filter **blur(60px)**、
+    border 1px solid rgba(255,255,255,**0.1**)（此前 0.06）、
+    box-shadow rgba(0,0,0,0.16) **0 0 80px 0**（此前无）。
+    展开后五类控件齐备。
+  - **待决问题 #2 至此关闭**：默认展开会把顶栏右簇遮住、并把「分享」挤成竖排
+    （见 jimeng-clone-batch796-rail-hover-1680.png 里那个可见缺陷）。
+    源站事实是默认收起，故复刻改为默认收起。「Escape 不关闭面板」（批 381）
+    是独立契约，不受影响，仍然成立。
+  - 复刻: `jimengStore.aiDrawerOpen` 初值 `true`→`false`；`JimengAiButton` 药丸
+    改 120×36 + r20 + blur(40px)（此前 hugging content、r8、无 blur）；
+    `JimengAiDrawer` 底色/边框/投影/blur 全部对齐上表。
+  - 连带修正: `verify-jimeng-batch1.py` 的 `aiButton` 断言 `False`→`True`
+    （旧默认态下按钮被面板挡住）；`verify-jimeng-batch795.py` 改为**显式点开**
+    面板再验「展开时顶栏让位」——该批验的是交互契约而非默认态，语义未变。
+    `verify-jimeng-batch794.py` 的「先收起抽屉」是 `if count==1` 防御，空态跳过，
+    无需改。
+  - verifier: `scripts/verify-jimeng-batch797.py`（26 项断言，含收起态
+    「不泄漏展开类控件」与「顶栏分享不再被挤」两条反向断言）。
 - SOURCE_FACT (batch 25): 空白画布右键弹出菜单: 新建节点 > (子菜单)、
   粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族。
   复刻: 子菜单 hover 展开 (源站子菜单展开态未提取，CLONE_DECISION)，
@@ -3721,11 +3752,10 @@ Zoom options / Canvas title。复刻此前只有 搜索 / 生成历史 / 用户�
    `JimengVideoPreview` 都在 `window` 上挂**冒泡** keydown 处理 Escape，机制与
    9.6.2 相同 —— 只要工作区全局 Escape 先触发同步重渲染，它们就可能在同一次
    派发里被跳过。应统一改捕获阶段并逐个补 Escape 断言。
-2. **AI 抽屉默认展开会盖住顶栏右簇**。复刻抽屉 `absolute inset-y-3 right-3
-   z-40`，纵向从 12px 起，遮住顶栏 y=16 的分享/更多/积分三个控件；源站本次
-   取样时抽屉未展开（只有「与 AI 对话」控件）。现有 verifier 普遍「先收起
-   抽屉」绕开，等于把冲突藏起来了。需要定夺：抽屉是否该默认展开、顶栏是否该
-   抬到抽屉之上（源站 `z-canvas-chrome` 层级待查）。
+2. ~~**AI 抽屉默认展开会盖住顶栏右簇**。~~ **已于 batch 797 关闭**：源站首屏
+   Agent 面板**默认收起**（登录态实测 + 点「与 AI 对话」前后对照），复刻已改为
+   默认收起，详见 batch 797 条目。**原问题描述里「顶栏被挤成竖排」的那部分属
+   误归因**——竖排来自「分享」按钮内部换行，与抽屉无关，另立条目跟踪。
 3. 顶栏「项目」面板里 `未命名项目 / 视频创作` 目前是 mock 文案，源站这两项的
    真实数据源（项目列表接口）未取证。
 

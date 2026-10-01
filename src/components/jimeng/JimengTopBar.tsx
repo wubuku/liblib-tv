@@ -70,6 +70,10 @@ export function JimengTopBar() {
       ),
     [nodes],
   );
+  // Batch 795 SOURCE_FACT: Agent 面板展开时，源站顶栏**向左让位**而非被遮挡 ——
+  // 顶栏 right 内边距由 12 变为 424（= 1680 - 1208(积分右缘) - 48(药丸右内边距4 + 头像28 + 药丸内 gap16)）。
+  // 复测源站展开态：积分入口右缘 1208、用户菜单右缘 1252、面板左缘 1268。
+  const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
   const renameProject = useJimengStore((s) => s.renameProject);
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -92,7 +96,11 @@ export function JimengTopBar() {
 
   return (
     <>
-      <header className="pointer-events-none absolute inset-x-3 top-[10px] z-30 flex h-10 items-center justify-between gap-6">
+      {/* 面板展开时收缩右边界，把右簇让到面板左侧 (SOURCE_FACT batch 795) */}
+      <header
+        className="pointer-events-none absolute left-3 top-[10px] z-30 flex h-10 items-center justify-between gap-6"
+        style={{ right: aiDrawerOpen ? 424 : 12 }}
+      >
       {/* ── 左簇：logo + 项目名/箭头拼接段 + 节点摘要 ── */}
       <div
         data-testid="topbar-left"
@@ -190,7 +198,8 @@ export function JimengTopBar() {
       </div>
 
       {/* ── 右簇：搜索/历史药丸 + 分享 + 更多 + 积分 + 用户菜单 ── */}
-      <div className="pointer-events-auto flex h-10 shrink-0 items-center gap-4">
+      {/* SOURCE_FACT (batch 795): 药丸之间 8px；按钮到按钮 = 8 + 4 + 4 = 16 */}
+      <div className="pointer-events-auto flex h-10 shrink-0 items-center gap-2">
         <div className="jimeng-chrome-pill flex h-9 items-center gap-1 p-1">
           <div className="relative">
             <button
@@ -231,6 +240,9 @@ export function JimengTopBar() {
           </div>
         </div>
 
+        {/* SOURCE_FACT (batch 795 复查): 分享的 chrome 药丸是 70×36 @[1383,12]，
+            60×28 的按钮内缩 4px 在其中 —— 药丸背景属于外层，不属于按钮本身。 */}
+        <div className="jimeng-chrome-pill flex h-9 shrink-0 items-center p-1">
         <button
           type="button"
           aria-label="分享"
@@ -242,11 +254,12 @@ export function JimengTopBar() {
           // 源站实测 60×28 (padding 0 10px 0 8px + 16px 图标)。源站标签字号比
           // 按钮继承的 16px 小，按我们的字体度量算出来会到 70px，故直接钉死
           // 60px 宽以对齐源站几何 (CLONE_DECISION)。
-          className="jimeng-chrome-pill flex h-7 w-[60px] shrink-0 items-center justify-center gap-1 rounded-md py-0 pl-2 pr-2.5 text-[16px] leading-6 font-medium text-[#FAFAFA] hover:bg-white/10"
+          className="flex h-7 w-[60px] shrink-0 items-center justify-center gap-1 rounded-md py-0 pl-2 pr-2.5 text-[16px] leading-6 font-medium text-[#FAFAFA] hover:bg-white/10"
         >
           <Share2 size={16} />
           <span className="text-[12px] leading-6">分享</span>
         </button>
+        </div>
         {shareOpen ? (
           <JimengSharePanel
             canvasUrl={CANVAS_URL}
@@ -254,7 +267,7 @@ export function JimengTopBar() {
           />
         ) : null}
 
-        <div className="relative shrink-0">
+        <div className="jimeng-chrome-pill relative flex h-9 shrink-0 items-center p-1">
           <button
             type="button"
             aria-label="更多"
@@ -263,7 +276,7 @@ export function JimengTopBar() {
               closeAll();
               setMoreOpen((v) => !v);
             }}
-            className="jimeng-chrome-pill flex size-7 items-center justify-center rounded-md p-1.5 text-[#FAFAFA] hover:bg-white/10"
+            className="flex size-7 items-center justify-center rounded-md text-[#FAFAFA] hover:bg-white/10"
           >
             <MoreHorizontal size={16} />
           </button>
@@ -272,12 +285,16 @@ export function JimengTopBar() {
           ) : null}
         </div>
 
+        {/* SOURCE_FACT (batch 795 复查): 积分入口与用户菜单**同处一个 163×36
+            药丸** [1505,12]，两者自身背景透明（积分 111×28@1509，头像 28×28@1636，
+            药丸内 gap 16，右内边距 4 → 头像右缘 1664 而非 1668）。 */}
+        <div className="jimeng-chrome-pill flex h-9 shrink-0 items-center gap-4 p-1">
         <button
           type="button"
           aria-label={`Credits: ${CREDITS} · 基础会员`}
           data-testid="canvas-commerce-entry"
           onClick={() => setMemberOpen(true)}
-          className="jimeng-chrome-pill flex h-7 shrink-0 items-center gap-1 whitespace-nowrap rounded-md border border-transparent px-2 py-1 hover:bg-white/10"
+          className="flex h-7 shrink-0 items-center gap-1 whitespace-nowrap rounded-md px-2 py-1 hover:bg-white/10"
         >
           <VipDiamond size={12} />
           <span className="text-[12px]/5 font-medium text-[#009EFA]">
@@ -300,6 +317,7 @@ export function JimengTopBar() {
           >
             梦
           </button>
+        </div>
         </div>
         {helpOpen ? (
           <div className="absolute right-3 top-[46px]">

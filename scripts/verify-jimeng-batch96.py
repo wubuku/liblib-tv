@@ -47,14 +47,12 @@ def main() -> None:
                 .map(b => b.getAttribute('aria-label'))
                 .filter(a => a)"""
         )
-        # SOURCE_FACT (batch 794 实测): 搜索/生成历史同处一个药丸 (radius 12px)；
-        # 「用户菜单」源站 border:none / radius 6px，是**裸头像钮，不在药丸内**
-        # (旧复刻把它塞进第二个药丸，batch 794 已按源站拆出)。
-        for want in ["搜索", "生成历史"]:
+        # SOURCE_FACT (batch 795 复查祖先链): 搜索/生成历史同处一个 68×36 药丸；
+        # 「用户菜单」与「积分入口」同处**另一个 163×36 药丸** [1505,12]
+        # (bg rgba(32,32,34,0.8) / r8 / blur(40px))，故用户菜单在药丸内。
+        for want in ["搜索", "生成历史", "用户菜单"]:
             if want not in labels:
                 failures.append(f"top bar pill missing {want}: {labels}")
-        if "用户菜单" in labels:
-            failures.append(f"用户菜单 should not be inside a chrome pill: {labels}")
         if "帮助" in labels:
             failures.append(f"帮助 button should be removed: {labels}")
 

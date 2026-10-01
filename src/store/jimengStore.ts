@@ -781,8 +781,15 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
     }, 4000);
   },
 
-  // 批 398 SOURCE_FACT: Agent 面板常驻 (381: Escape 不关闭)，默认展开
-  aiDrawerOpen: true,
+  // Batch 797 SOURCE_FACT (2026-10-01 登录态实测 + 点击「与 AI 对话」对照):
+  // 源站 Agent 面板**默认收起**，画布右下只暴露一个 118×34 / r20 的
+  // 「与 AI 对话」触发钮；点击后才展开 @[1268,12] 400×802 面板，并出现
+  // 新建会话/收起/使用技能/引用参考/发送消息 五类控件。
+  // 此前「默认展开」是批 398 的约定，但源站取样从未出现过展开态，且默认展开
+  // 会把顶栏「分享」挤成竖排、并遮住顶栏右簇（台账待决问题 #2）。
+  // 该待决问题至此以源站事实关闭：默认收起。
+  // 「Escape 不关闭面板」是 381 的独立契约，与默认态无关，仍然成立。
+  aiDrawerOpen: false,
 
   aiDrawerPrefill: null,
 

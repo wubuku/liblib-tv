@@ -42,7 +42,7 @@ def main() -> None:
 
         state = page.evaluate(
             """() => {
-                const drawer = document.querySelector('aside[aria-label="AI 对话"]');
+                const drawer = document.querySelector('aside[aria-label="Agent"]');
                 const input = drawer?.querySelector('input');
                 return {
                     drawerOpen: !!drawer,
@@ -67,7 +67,7 @@ def main() -> None:
         page.keyboard.press("Escape")
         page.wait_for_timeout(500)
         still_open = page.evaluate(
-            "() => !!document.querySelector('aside[aria-label=\"AI 对话\"]')"
+            "() => !!document.querySelector('aside[aria-label=\"Agent\"]')"
         )
         if not still_open:
             failures.append("persistent AI drawer should stay open on Escape")
