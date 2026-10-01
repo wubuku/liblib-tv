@@ -1,0 +1,5396 @@
+{
+  "batch": 620,
+  "title": "Census the canvas page at 390 and in its open states; stop rendering the asset sidebar's buried collapse button on phones",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim",
+    "/tmp/dbg620.py: the canvas page at 390 censused for the first time — 18 controls, nothing covered; 1920 has 24 and is also clean",
+    "/tmp/dbg620c.py: the page's five overlay states at both widths. At 390 the zoom menu reported five toolbar buttons as covered, which is the menu working; at 390 the asset manager reported the sidebar's own collapse button, which is not",
+    "/tmp/dbg620d.py: the hit chain for that button — div.fixed.bottom-[18px].z-[60] (the canvas bottom toolbar) over aside.relative.z-50 (the sidebar), plus a screenshot showing half the « glyph sticking out from under the 资产管理 pill"
+  ],
+  "claims": {
+    "cloneDefect": [
+      "at 390 the asset sidebar is a 320px full-height left panel at z-50 while the canvas page's bottom toolbar is fixed bottom-[18px] z-[60]; the sidebar's own data-asset-manager-collapse button at (16, 813.5, 22, 22) is painted under the toolbar's second cluster, so it cannot be clicked and it is visibly broken"
+    ],
+    "cloneDecision": [
+      "the footer collapse button is not rendered below 900px. The panel keeps its header ✕ (aria-label 关闭资产管理) and the toolbar's own 资产管理 button calls the same close, so nothing is lost. Raising the sidebar above the toolbar was rejected: it would bury the toolbar's five live controls instead of one dead one",
+      "the census learns [data-liblib-overlay], the attribute every transient surface on the canvas page already carries, so the exemption list does not grow one entry per surface"
+    ],
+    "notClaimed": [
+      "anything about the source at all",
+      "the canvas page's 390 header shows four of the six controls it shows at 1920 (工作流 / 故事板 / 发布与分享 / Agent and the two inert chips are hidden) — that is a pre-existing responsive decision, recorded here because the census is the first thing to count it",
+      "no reading says how wide the source's asset sidebar is at phone widths; the 320px figure is the clone's own"
+    ]
+  },
+  "checks": {
+    "1920-plain:census": {
+      "vw": 1920,
+      "vh": 1150,
+      "total": 24,
+      "scrims": [],
+      "openOverlays": [],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "工作流",
+          "tag": "button",
+          "box": [
+            270.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "故事板",
+          "tag": "button",
+          "box": [
+            298.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "发布与分享",
+          "tag": "button",
+          "box": [
+            1536.5,
+            16,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "开通会员 限时 45 折",
+          "tag": "button",
+          "box": [
+            1576.5,
+            16,
+            156.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "开通会员",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "积分余额",
+          "tag": "button",
+          "box": [
+            1741.3,
+            16,
+            66.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "100",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "Agent",
+          "tag": "button",
+          "box": [
+            1815.9,
+            16,
+            88.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "Agent",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            799.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            839.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            879.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            1048.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            1088.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            1104,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            1104,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "1920-plain:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 24
+    },
+    "1920-plain:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-plain:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-plain:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-plain:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-plain:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "1920-project-menu:census": {
+      "vw": 1920,
+      "vh": 1150,
+      "total": 28,
+      "scrims": [],
+      "openOverlays": [],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "回到主页",
+          "tag": "button",
+          "box": [
+            67,
+            59,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "回到主页",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "全部项目",
+          "tag": "button",
+          "box": [
+            67,
+            103,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "全部项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "创建新项目",
+          "tag": "button",
+          "box": [
+            67,
+            156,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "创建新项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "删除项目",
+          "tag": "button",
+          "box": [
+            67,
+            200,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "删除项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "工作流",
+          "tag": "button",
+          "box": [
+            270.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "故事板",
+          "tag": "button",
+          "box": [
+            298.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "发布与分享",
+          "tag": "button",
+          "box": [
+            1536.5,
+            16,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "开通会员 限时 45 折",
+          "tag": "button",
+          "box": [
+            1576.5,
+            16,
+            156.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "开通会员",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "积分余额",
+          "tag": "button",
+          "box": [
+            1741.3,
+            16,
+            66.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "100",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "Agent",
+          "tag": "button",
+          "box": [
+            1815.9,
+            16,
+            88.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "Agent",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            799.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            839.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            879.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            1048.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            1088.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            1104,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            1104,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "1920-project-menu:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 28
+    },
+    "1920-project-menu:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-project-menu:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-project-menu:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-project-menu:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-project-menu:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "1920-canvas-switcher:census": {
+      "vw": 1920,
+      "vh": 1150,
+      "total": 28,
+      "scrims": [],
+      "openOverlays": [
+        "div|data-liblib-overlay=canvas-dropdown class=absolute top-full left-0 mt-"
+      ],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "未命名工作区",
+          "tag": "button",
+          "box": [
+            201,
+            85.5,
+            84,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "未命名工作区",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "新建画布",
+          "tag": "button",
+          "box": [
+            371,
+            127.5,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": "canvasNew"
+        },
+        {
+          "label": "切换到画布 画布 2",
+          "tag": "button",
+          "box": [
+            201,
+            174.5,
+            170,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "切换到画布 画布 1",
+          "tag": "button",
+          "box": [
+            201,
+            214.5,
+            170,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 1",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "工作流",
+          "tag": "button",
+          "box": [
+            270.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "故事板",
+          "tag": "button",
+          "box": [
+            298.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "发布与分享",
+          "tag": "button",
+          "box": [
+            1536.5,
+            16,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "开通会员 限时 45 折",
+          "tag": "button",
+          "box": [
+            1576.5,
+            16,
+            156.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "开通会员",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "积分余额",
+          "tag": "button",
+          "box": [
+            1741.3,
+            16,
+            66.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "100",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "Agent",
+          "tag": "button",
+          "box": [
+            1815.9,
+            16,
+            88.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "Agent",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            799.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            839.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            879.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            1048.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            1088.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            1104,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            1104,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "1920-canvas-switcher:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 28
+    },
+    "1920-canvas-switcher:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-canvas-switcher:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-canvas-switcher:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-canvas-switcher:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-canvas-switcher:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "1920-zoom-options:the-overlay-opened": {
+      "ok": true,
+      "detail": "[data-liblib-overlay=\"zoom-menu\"]"
+    },
+    "1920-zoom-options:census": {
+      "vw": 1920,
+      "vh": 1150,
+      "total": 30,
+      "scrims": [],
+      "openOverlays": [
+        "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px"
+      ],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "工作流",
+          "tag": "button",
+          "box": [
+            270.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "故事板",
+          "tag": "button",
+          "box": [
+            298.1,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "发布与分享",
+          "tag": "button",
+          "box": [
+            1536.5,
+            16,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "开通会员 限时 45 折",
+          "tag": "button",
+          "box": [
+            1576.5,
+            16,
+            156.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "开通会员",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "积分余额",
+          "tag": "button",
+          "box": [
+            1741.3,
+            16,
+            66.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "100",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "Agent",
+          "tag": "button",
+          "box": [
+            1815.9,
+            16,
+            88.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "Agent",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            799.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            839.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            879.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            1048.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            1088.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            1104,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            1104,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        },
+        {
+          "label": "放大⌘ +",
+          "tag": "button",
+          "box": [
+            95,
+            864,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "放大⌘ +",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩小⌘ -",
+          "tag": "button",
+          "box": [
+            95,
+            900,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩小⌘ -",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "适合屏幕⌘ 0",
+          "tag": "button",
+          "box": [
+            95,
+            936,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "适合屏幕⌘ 0",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至50%",
+          "tag": "button",
+          "box": [
+            95,
+            981,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至50%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至100%",
+          "tag": "button",
+          "box": [
+            95,
+            1017,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至100%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至800%",
+          "tag": "button",
+          "box": [
+            95,
+            1053,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        }
+      ],
+      "unexpected": []
+    },
+    "1920-zoom-options:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 30
+    },
+    "1920-zoom-options:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-zoom-options:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-zoom-options:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-zoom-options:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-zoom-options:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "1920-asset-manager:the-overlay-opened": {
+      "ok": true,
+      "detail": "[data-liblib-overlay=\"asset\"]"
+    },
+    "1920-asset-manager:census": {
+      "vw": 1920,
+      "vh": 1150,
+      "total": 44,
+      "scrims": [],
+      "openOverlays": [
+        "aside|data-liblib-overlay=asset class=relative z-50 flex h-screen w-[320px] "
+      ],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "工作流",
+          "tag": "button",
+          "box": [
+            394,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "故事板",
+          "tag": "button",
+          "box": [
+            422,
+            18,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "发布与分享",
+          "tag": "button",
+          "box": [
+            1536.5,
+            16,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "开通会员 限时 45 折",
+          "tag": "button",
+          "box": [
+            1576.5,
+            16,
+            156.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "开通会员",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "积分余额",
+          "tag": "button",
+          "box": [
+            1741.3,
+            16,
+            66.7,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "100",
+          "hitTag": "span",
+          "data": "inert"
+        },
+        {
+          "label": "Agent",
+          "tag": "button",
+          "box": [
+            1815.9,
+            16,
+            88.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "Agent",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            101,
+            61.5,
+            50.6,
+            16
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "assetManagerCanvas"
+        },
+        {
+          "label": "画布",
+          "tag": "button",
+          "box": [
+            8,
+            101.5,
+            40,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布",
+          "hitTag": "button",
+          "data": "assetManagerTab"
+        },
+        {
+          "label": "资产",
+          "tag": "button",
+          "box": [
+            52,
+            101.5,
+            40,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产",
+          "hitTag": "button",
+          "data": "assetManagerTab"
+        },
+        {
+          "label": "关闭资产管理",
+          "tag": "button",
+          "box": [
+            283,
+            101.5,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "列表视图",
+          "tag": "button",
+          "box": [
+            56.8,
+            149.5,
+            22.4,
+            24
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": "assetManagerListview"
+        },
+        {
+          "label": "按名称排序",
+          "tag": "button",
+          "box": [
+            83.2,
+            149.5,
+            22.4,
+            24
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "assetManagerSort"
+        },
+        {
+          "label": "筛选：全部",
+          "tag": "button",
+          "box": [
+            105.6,
+            147.5,
+            51.3,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "筛选：全部",
+          "hitTag": "button",
+          "data": "assetManagerFilter"
+        },
+        {
+          "label": "所有评级",
+          "tag": "button",
+          "box": [
+            156.9,
+            147.5,
+            60,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "所有评级",
+          "hitTag": "button",
+          "data": "assetManagerRating"
+        },
+        {
+          "label": "展示设置",
+          "tag": "button",
+          "box": [
+            216.9,
+            147.5,
+            60,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "展示设置",
+          "hitTag": "button",
+          "data": "assetManagerDisplay"
+        },
+        {
+          "label": "搜索节点",
+          "tag": "button",
+          "box": [
+            280.9,
+            147.5,
+            26.1,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "assetManagerSearch"
+        },
+        {
+          "label": "分镜 #2",
+          "tag": "button",
+          "box": [
+            8,
+            192,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜 #2",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "导演台",
+          "tag": "button",
+          "box": [
+            8,
+            236,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "导演台",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "剧本",
+          "tag": "button",
+          "box": [
+            8,
+            280,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "剧本",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "咖啡",
+          "tag": "button",
+          "box": [
+            8,
+            324,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "咖啡",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "图片4",
+          "tag": "button",
+          "box": [
+            8,
+            368,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "图片4",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "image_2026-06-15T11-22-00",
+          "tag": "button",
+          "box": [
+            8,
+            412,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "image_2026-06-15T11-22-00",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "image_2026-06-15T11-22-15",
+          "tag": "button",
+          "box": [
+            8,
+            456,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "image_2026-06-15T11-22-15",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "分镜图 · 第一集：咖啡馆对峙-图片组",
+          "tag": "button",
+          "box": [
+            8,
+            500,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜图 · 第一集：咖啡馆对峙-图片组",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "视频组 · 第一集：咖啡馆对峙-视频组",
+          "tag": "button",
+          "box": [
+            8,
+            544,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "视频组 · 第一集：咖啡馆对峙-视频组",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "分镜视频-#9",
+          "tag": "button",
+          "box": [
+            8,
+            588,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜视频-#9",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "收起节点侧栏",
+          "tag": "button",
+          "box": [
+            16,
+            1119.5,
+            22,
+            22
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": "assetManagerCollapse"
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            919.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            959.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            999.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            1039.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            1079.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            1119.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            1168.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            1208.5,
+            1097.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            256,
+            1104,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            354,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            386,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            418,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            450,
+            1104,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            482,
+            1104,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "1920-asset-manager:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 44
+    },
+    "1920-asset-manager:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-asset-manager:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-asset-manager:assetPanel": {
+      "footerCollapse": "own",
+      "headerClose": "own",
+      "panel": {
+        "box": [
+          0,
+          0,
+          320,
+          1150
+        ],
+        "z": "50"
+      },
+      "toolbars": [
+        [
+          256,
+          1104,
+          94,
+          28
+        ]
+      ]
+    },
+    "1920-asset-manager:the-footer-collapse-still-works-on-desktop": {
+      "ok": true,
+      "detail": "own"
+    },
+    "1920-asset-manager:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-asset-manager:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "1920-asset-manager:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "390-plain:census": {
+      "vw": 390,
+      "vh": 844,
+      "total": 18,
+      "scrims": [],
+      "openOverlays": [],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            34.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            283.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            323.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            798,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            798,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "390-plain:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 18
+    },
+    "390-plain:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "390-plain:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "390-plain:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-plain:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-plain:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "390-project-menu:census": {
+      "vw": 390,
+      "vh": 844,
+      "total": 22,
+      "scrims": [],
+      "openOverlays": [],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "回到主页",
+          "tag": "button",
+          "box": [
+            67,
+            59,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "回到主页",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "全部项目",
+          "tag": "button",
+          "box": [
+            67,
+            103,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "全部项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "创建新项目",
+          "tag": "button",
+          "box": [
+            67,
+            156,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "创建新项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "删除项目",
+          "tag": "button",
+          "box": [
+            67,
+            200,
+            186,
+            44
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "删除项目",
+          "hitTag": "button",
+          "data": "projectMenuItem"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            34.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            283.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            323.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            798,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            798,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "390-project-menu:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 22
+    },
+    "390-project-menu:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "390-project-menu:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "390-project-menu:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-project-menu:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-project-menu:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "390-canvas-switcher:census": {
+      "vw": 390,
+      "vh": 844,
+      "total": 22,
+      "scrims": [],
+      "openOverlays": [
+        "div|data-liblib-overlay=canvas-dropdown class=absolute top-full left-0 mt-"
+      ],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "未命名工作区",
+          "tag": "button",
+          "box": [
+            201,
+            85.5,
+            84,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "未命名工作区",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "新建画布",
+          "tag": "button",
+          "box": [
+            371,
+            127.5,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": "canvasNew"
+        },
+        {
+          "label": "切换到画布 画布 2",
+          "tag": "button",
+          "box": [
+            201,
+            174.5,
+            170,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "切换到画布 画布 1",
+          "tag": "button",
+          "box": [
+            201,
+            214.5,
+            170,
+            20
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 1",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            34.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            283.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            323.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            798,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            798,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "390-canvas-switcher:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 22
+    },
+    "390-canvas-switcher:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "390-canvas-switcher:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "390-canvas-switcher:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-canvas-switcher:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-canvas-switcher:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "390-zoom-options:the-overlay-opened": {
+      "ok": true,
+      "detail": "[data-liblib-overlay=\"zoom-menu\"]"
+    },
+    "390-zoom-options:census": {
+      "vw": 390,
+      "vh": 844,
+      "total": 24,
+      "scrims": [],
+      "openOverlays": [
+        "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px"
+      ],
+      "blocked": [
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "28%放大⌘ +缩小⌘ -适合屏幕⌘ 0缩放至50%缩放",
+          "hitTag": "div",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        }
+      ],
+      "covered": [],
+      "coveredByPanel": [
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "28%放大⌘ +缩小⌘ -适合屏幕⌘ 0缩放至50%缩放",
+          "hitTag": "div",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        }
+      ],
+      "panelAttribution": [
+        [
+          "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          5
+        ]
+      ],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            188,
+            16,
+            76.1,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "canvasTrigger"
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            34.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "28%放大⌘ +缩小⌘ -适合屏幕⌘ 0缩放至50%缩放",
+          "hitTag": "div",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": false,
+          "clipped": false,
+          "panel": "div|data-liblib-overlay=zoom-menu class=absolute bottom-9 right-0 w-[188px",
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            283.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            323.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            14,
+            798,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            112,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            144,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            176,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            208,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            240,
+            798,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        },
+        {
+          "label": "放大⌘ +",
+          "tag": "button",
+          "box": [
+            95,
+            558,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "放大⌘ +",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩小⌘ -",
+          "tag": "button",
+          "box": [
+            95,
+            594,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩小⌘ -",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "适合屏幕⌘ 0",
+          "tag": "button",
+          "box": [
+            95,
+            630,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "适合屏幕⌘ 0",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至50%",
+          "tag": "button",
+          "box": [
+            95,
+            675,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至50%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至100%",
+          "tag": "button",
+          "box": [
+            95,
+            711,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至100%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        },
+        {
+          "label": "缩放至800%",
+          "tag": "button",
+          "box": [
+            95,
+            747,
+            174,
+            36
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放至800%",
+          "hitTag": "button",
+          "data": "zoomAction"
+        }
+      ],
+      "unexpected": []
+    },
+    "390-zoom-options:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 24
+    },
+    "390-zoom-options:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "390-zoom-options:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "390-zoom-options:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-zoom-options:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-zoom-options:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "390-asset-manager:the-overlay-opened": {
+      "ok": true,
+      "detail": "[data-liblib-overlay=\"asset\"]"
+    },
+    "390-asset-manager:census": {
+      "vw": 390,
+      "vh": 844,
+      "total": 37,
+      "scrims": [],
+      "openOverlays": [
+        "aside|data-liblib-overlay=asset class=relative z-50 flex h-screen w-[320px] "
+      ],
+      "blocked": [],
+      "covered": [],
+      "coveredByPanel": [],
+      "panelAttribution": [],
+      "clipped": [],
+      "items": [
+        {
+          "label": "进入 FrameOS 画布",
+          "tag": "a",
+          "box": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "项目菜单",
+          "tag": "button",
+          "box": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "projectMenuTrigger"
+        },
+        {
+          "label": "工作区名称",
+          "tag": "input",
+          "box": [
+            84,
+            21.5,
+            100,
+            21
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "工作区名称",
+          "hitTag": "input",
+          "data": "workspaceName"
+        },
+        {
+          "label": "画布 2",
+          "tag": "button",
+          "box": [
+            101,
+            61.5,
+            50.6,
+            16
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布 2",
+          "hitTag": "span",
+          "data": "assetManagerCanvas"
+        },
+        {
+          "label": "画布",
+          "tag": "button",
+          "box": [
+            8,
+            101.5,
+            40,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "画布",
+          "hitTag": "button",
+          "data": "assetManagerTab"
+        },
+        {
+          "label": "资产",
+          "tag": "button",
+          "box": [
+            52,
+            101.5,
+            40,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产",
+          "hitTag": "button",
+          "data": "assetManagerTab"
+        },
+        {
+          "label": "关闭资产管理",
+          "tag": "button",
+          "box": [
+            283,
+            101.5,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "列表视图",
+          "tag": "button",
+          "box": [
+            56.8,
+            149.5,
+            22.4,
+            24
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": "assetManagerListview"
+        },
+        {
+          "label": "按名称排序",
+          "tag": "button",
+          "box": [
+            83.2,
+            149.5,
+            22.4,
+            24
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "assetManagerSort"
+        },
+        {
+          "label": "筛选：全部",
+          "tag": "button",
+          "box": [
+            105.6,
+            147.5,
+            51.3,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "筛选：全部",
+          "hitTag": "button",
+          "data": "assetManagerFilter"
+        },
+        {
+          "label": "所有评级",
+          "tag": "button",
+          "box": [
+            156.9,
+            147.5,
+            60,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "所有评级",
+          "hitTag": "button",
+          "data": "assetManagerRating"
+        },
+        {
+          "label": "展示设置",
+          "tag": "button",
+          "box": [
+            216.9,
+            147.5,
+            60,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "展示设置",
+          "hitTag": "button",
+          "data": "assetManagerDisplay"
+        },
+        {
+          "label": "搜索节点",
+          "tag": "button",
+          "box": [
+            280.9,
+            147.5,
+            26.1,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": "assetManagerSearch"
+        },
+        {
+          "label": "分镜 #2",
+          "tag": "button",
+          "box": [
+            8,
+            192,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜 #2",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "导演台",
+          "tag": "button",
+          "box": [
+            8,
+            236,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "导演台",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "剧本",
+          "tag": "button",
+          "box": [
+            8,
+            280,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "剧本",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "咖啡",
+          "tag": "button",
+          "box": [
+            8,
+            324,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "咖啡",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "图片4",
+          "tag": "button",
+          "box": [
+            8,
+            368,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "图片4",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "image_2026-06-15T11-22-00",
+          "tag": "button",
+          "box": [
+            8,
+            412,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "image_2026-06-15T11-22-00",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "image_2026-06-15T11-22-15",
+          "tag": "button",
+          "box": [
+            8,
+            456,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "image_2026-06-15T11-22-15",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "分镜图 · 第一集：咖啡馆对峙-图片组",
+          "tag": "button",
+          "box": [
+            8,
+            500,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜图 · 第一集：咖啡馆对峙-图片组",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "视频组 · 第一集：咖啡馆对峙-视频组",
+          "tag": "button",
+          "box": [
+            8,
+            544,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "视频组 · 第一集：咖啡馆对峙-视频组",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "分镜视频-#9",
+          "tag": "button",
+          "box": [
+            8,
+            588,
+            303,
+            40
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "分镜视频-#9",
+          "hitTag": "span",
+          "data": "assetManagerItem,assetManagerDepth"
+        },
+        {
+          "label": "添加节点",
+          "tag": "button",
+          "box": [
+            34.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "移动",
+          "tag": "button",
+          "box": [
+            74.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "打开工具箱",
+          "tag": "button",
+          "box": [
+            114.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "素材库",
+          "tag": "button",
+          "box": [
+            154.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "角色库",
+          "tag": "button",
+          "box": [
+            194.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "生成历史",
+          "tag": "button",
+          "box": [
+            234.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "快捷键",
+          "tag": "button",
+          "box": [
+            283.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "教程",
+          "tag": "button",
+          "box": [
+            323.5,
+            751.5,
+            32,
+            32
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "资产管理",
+          "tag": "button",
+          "box": [
+            16,
+            798,
+            94,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "资产管理",
+          "hitTag": "span",
+          "data": ""
+        },
+        {
+          "label": "整理画布，Option+Shift+F",
+          "tag": "button",
+          "box": [
+            114,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "切换小地图",
+          "tag": "button",
+          "box": [
+            146,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "隐藏节点连线",
+          "tag": "button",
+          "box": [
+            178,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<path>",
+          "hitTag": "path",
+          "data": ""
+        },
+        {
+          "label": "网格吸附",
+          "tag": "button",
+          "box": [
+            210,
+            798,
+            28,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "<svg>",
+          "hitTag": "svg",
+          "data": ""
+        },
+        {
+          "label": "缩放选项",
+          "tag": "button",
+          "box": [
+            242,
+            798,
+            36,
+            28
+          ],
+          "z": "auto",
+          "own": true,
+          "clipped": false,
+          "panel": null,
+          "hitLabel": "缩放选项",
+          "hitTag": "button",
+          "data": "viewportMenuTrigger"
+        }
+      ],
+      "unexpected": []
+    },
+    "390-asset-manager:audited-a-real-number-of-controls": {
+      "ok": true,
+      "detail": 37
+    },
+    "390-asset-manager:no-control-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "390-asset-manager:the-only-possible-block-is-帮助": {
+      "ok": true,
+      "detail": []
+    },
+    "390-asset-manager:assetPanel": {
+      "footerCollapse": "hidden",
+      "headerClose": "own",
+      "panel": {
+        "box": [
+          0,
+          0,
+          320,
+          844
+        ],
+        "z": "50"
+      },
+      "toolbars": [
+        [
+          16,
+          798,
+          94,
+          28
+        ]
+      ]
+    },
+    "390-asset-manager:the-buried-collapse-button-is-gone": {
+      "ok": true,
+      "detail": "hidden"
+    },
+    "390-asset-manager:the-panel-still-has-a-working-close": {
+      "ok": true,
+      "detail": "own"
+    },
+    "390-asset-manager:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-asset-manager:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "390-asset-manager:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    }
+  },
+  "result": "57/57 passed"
+}

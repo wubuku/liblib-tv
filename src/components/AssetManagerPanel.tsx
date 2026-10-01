@@ -476,12 +476,23 @@ export function AssetManagerPanel({
       </div>
 
       <div className="flex h-10 items-center gap-3 border-t border-white/[0.07] px-4 text-xs text-[#777]">
+        {/* Batch 620（命中普查 390 腿实测）：本按钮在窄屏下是**死的**，而且
+            破相。侧栏在 <900px 是 `relative z-50 w-[320px]` 通高左栏（390 下
+            占 320/390），而画布页底部工具条是
+            `div.fixed.bottom-[18px].z-[60]`（实测 y 786..826、x 16..278）——
+            z-60 压过 z-50，于是页脚这枚「收起节点侧栏」@`(16, 813.5, 22, 22)`
+            整个被工具条第二簇（资产管理/小地图/连线/吸附/缩放）盖住，命中
+            打到的是「资产管理」；截图里那枚「«」还半截露在药丸外面。
+            不抬侧栏的 z：抬过 60 会把工具条左侧 5 枚活控件反过来埋掉。
+            窄屏直接不渲染这枚——同一面板页眉右上角还有一枚
+            `aria-label="关闭资产管理"` 的 ✕（同一个 onClose），工具条的
+            「资产管理」也是同一个开关，功能没有缺口。≥900px 不重叠，保持原样。 */}
         <button
           type="button"
           data-asset-manager-collapse
           aria-label="收起节点侧栏"
           onClick={onClose}
-          className="rounded p-1 hover:text-white"
+          className="rounded p-1 hover:text-white max-[899px]:hidden"
         >
           <ArrowLeft size={14} />
         </button>
