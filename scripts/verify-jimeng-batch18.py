@@ -2,7 +2,9 @@
 
 Contract:
 - Help menu 快捷键 opens the shortcuts panel with sections 通用操作/视图 and
-  documented keys (撤销 ⌘Z, 适配画布 ⇧1|⌘0, 缩放画布 ⌘ scroll); close × works.
+  documented keys (撤销 ⌘Z, 适配画布 ⇧1 + ⌘0, 缩放画布 ⌘ scroll); close × works.
+  (batch 815: the panel grew to 4 sections / 28 rows and 适配画布 renders as two
+  key chips — see verify-jimeng-batch815.py for the full contract.)
 - ⌘0 fits the canvas (zoom readout changes from 73%).
 """
 
@@ -51,7 +53,9 @@ def main() -> None:
                 return {
                     sections: d.textContent.includes('通用操作') && d.textContent.includes('视图'),
                     undo: rows.includes('撤销') && rows.includes('⌘ Z'),
-                    fit: rows.includes('适配画布') && rows.includes('⇧ 1 | ⌘ 0'),
+                    // batch 815 订正：源站「适配画布」是两键两 chip + 竖分隔线同行，
+                    // 不是字面 "⇧ 1 | ⌘ 0" 一个字符串。故按 chip 逐个断言。
+                    fit: rows.includes('适配画布') && rows.includes('⇧ 1') && rows.includes('⌘ 0'),
                     group: rows.includes('创建编组') && rows.includes('⌘ G'),
                     canvasScroll: rows.includes('缩放画布') && rows.includes('⌘ scroll'),
                 };
