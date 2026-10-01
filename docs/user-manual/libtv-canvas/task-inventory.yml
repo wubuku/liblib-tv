@@ -84,6 +84,7 @@ tasks:
       - 'A9a-dropdown-before / A9b-duplicate / A9c-delete-confirm / A9d-after-delete.png'
       - '网络：重命名发出 POST /api/canvas/project/update'
       - 'batchAQ：**行菜单逐行坐实** —— 在同一张下拉里连点第 1/2/3 行的 `aria-label="更多操作"`（24×24 按钮），三次读出的浮层内容**逐字一致**：`在新窗口打开 / 重命名画布 / 复制画布 / 删除画布`，只有这四项、无第五项、无图标无分组线，且**不随行变化**（活动画布、已改名画布读数相同）'
+      - 'batchAR/AR2：**「在新窗口打开」实按**（`ctx.on("page")` 接住 popup，读完 URL 与标题立刻关掉）= **真开新标签页**，页签数 `1→2`；新页 URL 的 projectId 换成**该行画布自己的** id（`1a0e8bb9…`，≠ 原页 `34226ef1…`），标题 `画布 63 - LibTV - 专业视频创作工具`，`.react-flow` 已挂载。**原标签页 URL / 内容 / 节点数全部未变**（`currentUrlChanged: false`）。该菜单项不是 `<a target=_blank>`（`tagOf: BUTTON`，`href`/`target` 均为 null），也**没有弹对话框**（`dialogs: []`）'
     manual_pages:
       - 10-tasks/manage-canvases.md
     findings:
@@ -177,12 +178,15 @@ tasks:
     coverage: full
     status: documented
     evidence:
-      - 'A5-share-panel.png：面板文案「发布你的作品和创作过程…」「分享链接」「拥有此链接的人可以查看并复制你的画布。」'
+      - 'batchAR：面板逐控件清点 —— 触发点是顶栏 `aria-label="发布与分享"` 的 32×32 图标按钮 (1103,24)；面板 = `mantine-Popover-dropdown` `[759,48,360×167]`，**挂在顶栏下方的小浮层、不是居中弹窗**，画布照常可见可点'
+      - 'batchAR：**面板里只有 2 枚按钮** —— `在LibTV上发布`（🌐，`[768,85,342×57]`）与 `分享链接`（🔗，`[768,150,342×57]`），`opacity: 1`、**都不是灰的**。枚举结果：**输入框 0 / 链接 0 / role=tab 0 / checkbox·switch 0** —— 这一层只负责跳转，发布表单和真正的链接都不在这里'
+      - 'batchAR/AR2：两枚按钮的 hover 提示都写着「**按 ESC 退出**」，但 **Esc 实测无效**（按完面板纹丝不动）。证据链：点图标打开 → 面板在 → 按 Esc → **仍在** → 再点一次图标 → 关掉（`closedByReclick: true`，若 Esc 已关掉，再点会重新打开、此项应为 false）。Esc 前后 URL 与节点数均未变（`34226ef1…` / `10 → 10`），**按错无损失**'
     manual_pages:
       - 10-tasks/share-canvas.md
     not_verified: >-
-      按安全边界**没有点发布、没有生成链接、没有对外分享**。面板文案与入口已坐实，
-      发布后的对外表现（他人打开看到什么、能否复制）未验证。正文已写明这条边界。
+      按安全边界**没有点「在LibTV上发布」、没有点「分享链接」、没有对外分享**。
+      面板内有什么已逐控件坐实；但点下去之后会跳到哪、发布后的对外表现
+      （他人打开看到什么、能否复制、能否撤回）本轮一律未验证。正文已逐条标 📖 写明这条边界。
 
   # ───────────── 节点 ─────────────
   - id: create-nodes

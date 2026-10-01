@@ -81,17 +81,6 @@ screenshots:
     visible_text: 画布 1 故事板 文本 暂无文本 图片 暂无图片 视频 暂无视频
     alt: 故事板模式：画布换成文本、图片、视频三列，每列显示各自的空状态文案
     sha256: 87510aee501b98604f1b9b9e60d9687d12dc8df1ce5c270ee51e4db331f6c17c
-  - file: screenshots/A5-share-panel.png
-    task_id: share-canvas
-    step: 1
-    route: /canvas?spaceId&projectId
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-01T00:00:00+08:00
-    verified_locator: role=button name="发布与分享"
-    visible_text: 发布与分享 在LibTV上发布 发布你的作品和创作过程，让更多创作者看到。 分享链接 拥有此链接的人可以查看并复制你的画布。
-    alt: 发布与分享面板：上方发布区说明，下方「分享链接」区说明持有链接者可查看并复制画布
-    sha256: 451a701178f3684098ef12aee4f47447b430003826cde86c68fd55e424130be0
   - file: screenshots/A6-zoom-menu.png
     task_id: navigate-canvas
     step: 1
@@ -1171,3 +1160,25 @@ screenshots:
     visible_text: 画布 画布 63 画布 62 画布 61 画布 60 在新窗口打开 重命名画布 复制画布 删除画布
     alt: 画布下拉整体展开，列表从「画布 63」往下排（新的在最上）；「画布 63」是活动行、呈高亮态，它右侧浮出「更多操作」按钮，按钮右侧贴着一个四项浮层：在新窗口打开 / 重命名画布 / 复制画布 / 删除画布，没有第五项、也没有图标和分组线。左下角此时是 800%
     sha256: 594620135fa67e050586014fbf3221aecb06a1e3e537e4b488e0f4bdfe552582
+  - file: screenshots/M-121-在新窗口打开-新标签页.png
+    task_id: manage-canvases
+    step: 52
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点顶栏「画布 63」展开下拉 → 点第 1 行的「更多操作」→ 点「在新窗口打开」，用 context 的 page 事件接住新标签页，**只读 URL 与标题后立刻关掉**
+    visible_text: 新对话
+    alt: 新标签页里画布已完全加载：顶栏是「画布 63」（.react-flow 已挂载），右侧 TV Director 面板展开在欢迎页（「让 TV Director 辅助你的无限创意」）。标签标题为「画布 63 - LibTV - 专业视频创作工具」，页签数 1→2，**原来那个标签页的 URL、画布内容、节点数全部没变**。左下角缩放是 800%（这张画布上一批被调过）
+    sha256: 6092435192beafc58105f69fc3968008d4c6ff7074a4567ef3437817d1dde497
+  - file: screenshots/M-122-发布与分享-面板全貌.png
+    task_id: share-canvas
+    step: 53
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点顶栏 aria-label="发布与分享" 的 32×32 图标按钮 (1103,24)，等 2.6 秒后枚举面板内每一个 button / input / a / [role=tab] / [role=switch]
+    visible_text: 发布与分享 在LibTV上发布 发布你的作品和创作过程，让更多创作者看到。 分享链接 拥有此链接的人可以查看并复制你的画布。
+    alt: 面板是挂在顶栏下方的**小浮层**（mantine-Popover-dropdown，360×167），不是居中弹窗，画布照常可见。标题「发布与分享」之下只有两枚整行卡片按钮：在LibTV上发布（🌐 地球图标）、分享链接（🔗 链接图标），各 342×57，opacity 都是 1、都不是灰的。**枚举结果：输入框 0 个、链接 0 个、标签页 0 个、复选框/开关 0 个** —— 这一层只负责跳转，表单和链接都不在这里
+    sha256: 0ae16ec783ecc3a39229d52e938dd1a53c45ca1a5b868bf9b915215aa7325eb4
