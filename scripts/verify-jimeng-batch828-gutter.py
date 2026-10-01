@@ -35,17 +35,19 @@
 右缘（30）余量 4px；复刻因壳少 1px 内缩，钮心在 33 ⇒ 余量 3px（批 818 遗留的
 1px 差，见台账 §40）。**结论：66 槽 + 3px 余量可点，128 的「有意偏离」撤销。**
 
-本 verifier 的四条契约（最后一条是**反向自检**，用来证明契约不是空断言）：
+本 verifier 的契约（最后一条是**反向自检**，用来证明契约不是空断言）：
 
   ① 槽宽 = 66                       源站 [1,67,66,139]
-  ② 分隔线独立成元素，1px，贴在槽右缘   源站 [66,67,1,139]
-  ③ 静音钮相对槽左缘 = [12,54,42,42] r6
+     且槽与轨道之间**没有**独立分隔元素 —— 源站轨道行的直接子元素只有槽与视口
+     两个，槽底色与壳同色，本就没有可见分隔线。（批 829 订正：批 828 曾据台账
+     自造了一枚 `timeline-node-track-divider` 并写成源站事实，已删。）
+  ② 静音钮相对槽左缘 = [12,54,42,42] r6
      —— 54 这个 y 是源站**写死**的（包裹层类名 `absolute top-[54px]`），
      不是居中算出来的；复刻此前是 y=8，差 46px
-  ④ 钮心必须落在**热区右缘之外**，且真点一次 aria-pressed 必须翻
+  ③ 钮心必须落在**热区右缘之外**，且真点一次 aria-pressed 必须翻
      读行为（elementFromPoint）而不只读几何：几何对了但被盖住也算失败
-  ⑤ 反向自检：临时把槽压到 48，钮心**必须**被热区吃掉；恢复后**必须**又能点。
-     跑不到这两步说明 ④ 是空断言
+  ④ 反向自检：临时把槽压到 48，钮心**必须**被热区吃掉；恢复后**必须**又能点。
+     跑不到这两步说明 ③ 是空断言
 
 ⚠️ 期望值全部在 **100% 缩放** 下取（先按 Meta+1 归一）。热区走 inline style，
 与 zoom 无关；槽/钮走 class 驱动的 CSS px，100% 下两者才在同一坐标系里。
@@ -94,9 +96,13 @@ SNAP = r"""() => {
     gutterW: Math.round(gr.width),
     gutterRelNode: [Math.round(gr.x - nr.x), Math.round(gr.y - nr.y),
                     Math.round(gr.width), Math.round(gr.height)],
-    divider: dr ? { relX: Math.round(dr.x - gr.x - gr.width),
-                    w: Math.round(dr.width), h: Math.round(dr.height),
-                    bg: getComputedStyle(div).backgroundColor } : null,
+    // 批 829：源站轨道行的直接子元素**只有**槽与视口两个，中间无 1px 元素
+    divider: div ? { relX: Math.round(dr.x - gr.x - gr.width),
+                     w: Math.round(dr.width), h: Math.round(dr.height),
+                     bg: getComputedStyle(div).backgroundColor } : null,
+    gutterNextIsScroll: g.nextElementSibling
+      ? g.nextElementSibling.getAttribute('data-testid') : null,
+    gutterRight: Math.round(gr.x + gr.width),
     muteRelGutter: [Math.round(mr.x - gr.x), Math.round(mr.y - gr.y),
                     Math.round(mr.width), Math.round(mr.height)],
     muteRelNode: Math.round(mr.x - nr.x),
@@ -167,16 +173,17 @@ def main() -> int:
             (EVIDENCE / "gutter-hit-snapshot.json").write_text(
                 __import__("json").dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
 
-            print("\n— ① 槽宽与分隔线 —")
+            print("\n— ① 槽宽与相邻结构 —")
             check("左槽宽 = 66（源站 [1,67,66,139]；此前 w-32=128）", d["gutterW"] == 66,
                   f'gutterW={d["gutterW"]}')
-            check("分隔线是**独立元素**不是 border-r（源站 [66,67,1,139]）",
-                  d["divider"] is not None and d["divider"]["w"] == 1
-                  and d["divider"]["relX"] == 0,
-                  str(d["divider"]))
-            check("分隔线高与槽同高（铺满，不用 py 差值凑）",
-                  d["divider"] is not None and d["divider"]["h"] == d["gutterRelNode"][3],
-                  f'{(d["divider"] or {}).get("h")} vs 槽高 {d["gutterRelNode"][3]}')
+            # 批 829 订正：源站轨道行**只有**槽与视口两个孩子，中间没有 1px 元素；
+            # 槽底色与壳同色 ⇒ 那条线上本来就没有可见分隔线。本批已删掉复刻自造的那枚。
+            check("槽与轨道之间**没有**独立分隔元素（源站轨道行只有槽 + 视口两个孩子）",
+                  d["divider"] is None and d["gutterNextIsScroll"] == "timeline-track-scroll",
+                  f'divider={d["divider"]} next={d["gutterNextIsScroll"]!r}')
+            check("轨道紧贴槽右缘，无间隙（源站视口 x=67 = 槽 1+66）",
+                  d["gutterNextIsScroll"] == "timeline-track-scroll",
+                  f'槽右缘={d["gutterRight"]}')
 
             print("\n— ②③ 静音钮几何 + 行为（钮心必须躲开热区）—")
             # 源站实测（batch828 取证，source-gutter.json）：
@@ -238,7 +245,6 @@ def main() -> int:
                   str(dback.get("centerHit"))[:90])
             check("恢复后槽宽回到 66（临时改宽没留下痕迹）", dback.get("gutterW") == 66,
                   f'gutterW={dback.get("gutterW")}')
-
             check("页面无运行时错误", not errs, str(errs[:2]))
         finally:
             b.close()

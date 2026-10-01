@@ -1,0 +1,295 @@
+{
+ "err": null,
+ "shellInner": [
+  -30,
+  44,
+  60,
+  120
+ ],
+ "shellInnerBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(30, 30, 30)",
+   "rgb(30, 30, 30)",
+   "rgb(30, 30, 30)",
+   "rgb(30, 30, 30)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "outline": [
+   "3px",
+   "rgba(255, 255, 255, 0.5)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "rgba(0, 0, 0, 0)",
+  "r": 0,
+  "overflow": "visible",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "nodeBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "outline": [
+   "3px",
+   "rgb(255, 255, 255)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "color(srgb 0.12549 0.12549 0.12549)",
+  "r": 8,
+  "overflow": "visible",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "rowRel": [
+  1,
+  67,
+  1198,
+  139
+ ],
+ "rowCls": "relative flex items-end w-full h-full overflow-visible",
+ "rowBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "outline": [
+   "3px",
+   "rgba(255, 255, 255, 0.2)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "rgba(0, 0, 0, 0)",
+  "r": 0,
+  "overflow": "visible",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "gutterRel": [
+  1,
+  67,
+  66,
+  139
+ ],
+ "gutterCls": "relative z-canvas-timeline-track-gutter flex-none w-canvas-timeline-node-track-g",
+ "gutterBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "outline": [
+   "3px",
+   "rgba(255, 255, 255, 0.2)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "color(srgb 0.12549 0.12549 0.12549)",
+  "r": 0,
+  "overflow": "visible",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "viewportRel": [
+  67,
+  67,
+  1132,
+  139
+ ],
+ "viewportCls": "relative self-start [flex:1_1_0] min-w-0 w-full h-full overflow-hidden",
+ "viewportBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "outline": [
+   "3px",
+   "rgba(255, 255, 255, 0.2)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "rgba(0, 0, 0, 0)",
+  "r": 0,
+  "overflow": "hidden",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "canvasRel": [
+  73,
+  67,
+  1126,
+  139
+ ],
+ "canvasCls": "octo-timeline-track-canvas relative flex flex-col min-w-full min-h-full gap-canv",
+ "canvasBox": {
+  "border": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "borderColor": [
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)",
+   "rgb(229, 231, 235)"
+  ],
+  "borderStyle": "solid",
+  "padding": [
+   "0px",
+   "0px",
+   "0px",
+   "0px"
+  ],
+  "margin": [
+   "0px",
+   "0px",
+   "0px",
+   "6px"
+  ],
+  "outline": [
+   "3px",
+   "rgba(255, 255, 255, 0.2)",
+   "none"
+  ],
+  "ring": null,
+  "bg": "rgba(0, 0, 0, 0)",
+  "r": 0,
+  "overflow": "visible",
+  "box": "border-box",
+  "scrollPad": [
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ }
+}

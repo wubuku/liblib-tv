@@ -380,8 +380,22 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
       <div
         /* Batch 818 SOURCE_FACT（源站 100% 缩放，三次全新加载逐项一致）：
            壳 1200×207 / r8 / 底色 `color(srgb 0.12549 ×3)` = **rgb(32,32,32)**。
-           复刻此前是 rgb(24,24,26) —— 差 (+8,+8,+6)，肉眼可见地比源站更黑。 */
-        className="relative flex h-full w-full flex-col overflow-hidden rounded-lg"
+           复刻此前是 rgb(24,24,26) —— 差 (+8,+8,+6)，肉眼可见地比源站更黑。
+
+           Batch 829 SOURCE_FACT：壳**带 1px 边框**，实测
+           `border: 1px solid rgba(255,255,255,0.04)`，padding/margin 全 0。
+           别处一行都查不到这 1px（槽、轨道行、视口、canvas 的 border/padding
+           都是 0），只有壳有 —— 也就是**内容整体内缩 1px**。
+           它一个根因解释掉五处偏差：
+
+               工具条   源站 [1,1,1198,66]  复刻(无边框) [0,0,1200,66]
+               轨道行   源站 [1,67,1198,139] 复刻(无边框) [0,66,1200,141]
+               左槽     源站 [1,67,66,139]   复刻(无边框) [0,66,66,141]
+               静音钮   源站 [13,121,42,42]  复刻(无边框) [12,120,42,42]
+               滚动容器 源站 [67,67,1132,139] 复刻(无边框) [67,66,1133,141]
+
+           宽度 1200→1198 是左右各让 1px；轨道行 141→139 是上下各让 1px。 */
+        className="relative flex h-full w-full flex-col overflow-hidden rounded-lg border border-white/[0.04]"
         style={{
           background: "rgb(32,32,32)",
           boxShadow: nodeRingShadow(selected === true),
@@ -390,11 +404,18 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
       >
         {/* 顶行：导入/删除 · 播放/时间码 · 下载/全屏编辑
             Batch 818 SOURCE_FACT：本行高 **66px**（源站 rel [1,1,1198,66]），
-            复刻此前 h-12(48)，差 18px。左右内边距 **13px**、控件间隙 **6px**
-            （源站由右簇三枚反推：全屏编辑右缘距壳右缘 13、导出与全屏编辑间隔 6；
-             左簇那两枚也是 6 —— [13,13,42,42] 与 [61,13,42,42]）。 */}
+            控件间隙 **6px**（源站由右簇两枚反推：导出右缘 1055、全屏编辑左缘 1061，
+             间隔 6；左簇那两枚也是 6 —— [13,13,42,42] 与 [61,13,42,42]）。
+
+            ⚠️ 批 829 订正：818 当年写的左右内边距是 **13px**，那是**反推错了**。
+            反推的前提是「工具条铺满 0..1200」，而源站壳有 1px 边框（批 829 实测
+            `border: 1px solid rgba(255,255,255,0.04)`），内容盒其实是 1..1199。
+            同样的按钮矩形在正确的盒子里对应的是 **12px**：
+              全屏编辑右缘 1199 − 12 = **1187** = 源站 [1061,13,126,42] 的右缘
+              左簇首枚左缘   1 + 12 = **13**  = 源站 [13,13,42,42] 的左缘
+            两边独立验算都是 12，所以是 12，13 是那多出来的 1px。 */}
         <div
-          className="flex h-[66px] shrink-0 items-center gap-[6px] px-[13px]"
+          className="flex h-[66px] shrink-0 items-center gap-[6px] px-[12px]"
           data-testid="timeline-toolbar"
         >
           <button
@@ -579,10 +600,20 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               [66,67,1,139]），不是左槽的 border。独立出来才能让左槽内容盒
               保持 66 —— 槽内居中的 42px 静音钮钮心因此落在 33（源站 34 的
               同侧），热区余量 3px，与上表 66 那行一致。 */}
-          <div
-            className="w-px shrink-0 bg-white/[0.06]"
-            data-testid="timeline-node-track-divider"
-          />
+
+          {/* ⚠️ 批 829 **删除**了这里原本的一枚 `timeline-node-track-divider`
+              （`w-px bg-white/[0.06]`）。批 828 把它当成源站事实写进了台账与
+              verifier，批 829 回源站查穿：**源站没有这枚元素**。
+
+              取证：源站轨道行的**直接子元素只有两个** —— 左槽 [1,67,66,139] 与
+              视口 [67,67,1132,139]，中间没有任何 1px 元素（槽内也没有）。
+              槽的底色是 `color(srgb 0.12549 ×3)` = rgb(32,32,32)，与**壳同色**
+              ⇒ 那条线上根本没有可见分隔线。批 818 台账里那条
+              `[66,67,1,139] timeline-node-track-divider` 是**我们**给「槽与轨道
+              的边界」起的名字，不是源站的 testid（源站用类名，全站无 testid）。
+
+              教训见台账 §41：**照抄本仓台账里的 SOURCE_FACT 不等于验证过它。**
+              批 828 抄了，批 829 查了，才发现那条从来不是源站的。 */}
 
           <div
             /* Batch 820 SOURCE_FACT：源站有独立的横向滚动容器

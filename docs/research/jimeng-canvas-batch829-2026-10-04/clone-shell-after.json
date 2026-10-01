@@ -1,0 +1,68 @@
+{
+ "err": null,
+ "shell": [
+  0,
+  0,
+  1200,
+  207
+ ],
+ "shellBorder": [
+  "1px",
+  "1px",
+  "1px",
+  "1px"
+ ],
+ "shellBorderColor": {
+  "form": "oklab",
+  "L": 0.999994,
+  "a": 4.55678e-05,
+  "b": 2.00868e-05,
+  "alpha": 0.04
+ },
+ "shellBorderColorRaw": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+ "shellRadius": 8,
+ "shellBg": "rgb(32, 32, 32)",
+ "toolbar": [
+  1,
+  1,
+  1198,
+  66
+ ],
+ "row": [
+  1,
+  67,
+  1198,
+  139
+ ],
+ "gutter": [
+  1,
+  67,
+  66,
+  139
+ ],
+ "scroll": [
+  67,
+  67,
+  1132,
+  139
+ ],
+ "mute": [
+  13,
+  121,
+  42,
+  42
+ ],
+ "ruler": [
+  67,
+  67,
+  1132,
+  27
+ ],
+ "clipTrack": [
+  67,
+  94,
+  1132,
+  84
+ ],
+ "dividerExists": false
+}

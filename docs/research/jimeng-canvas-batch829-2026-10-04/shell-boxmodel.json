@@ -1,0 +1,129 @@
+{
+ "node": [
+  1200,
+  207
+ ],
+ "shellRel": [
+  0,
+  0,
+  1200,
+  207
+ ],
+ "shellBox": {
+  "border": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "padding": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "bg": "rgb(32, 32, 32)",
+  "r": 8,
+  "box": "border-box"
+ },
+ "toolbarRel": [
+  0,
+  0,
+  1200,
+  66
+ ],
+ "toolbarBox": {
+  "border": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "padding": [
+   0,
+   13,
+   0,
+   13
+  ],
+  "bg": "rgba(0, 0, 0, 0)",
+  "r": 0,
+  "box": "border-box"
+ },
+ "shellKids": [
+  {
+   "tid": "timeline-toolbar",
+   "rel": [
+    0,
+    0,
+    1200,
+    66
+   ],
+   "tag": "DIV",
+   "cls": "flex h-[66px] shrink-0 items-center gap-[6px] px-["
+  },
+  {
+   "tid": null,
+   "rel": [
+    0,
+    66,
+    1200,
+    141
+   ],
+   "tag": "DIV",
+   "cls": "flex min-h-0 flex-1"
+  },
+  {
+   "tid": null,
+   "rel": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "tag": "SPAN",
+   "cls": "sr-only"
+  }
+ ],
+ "gutter": [
+  0,
+  66,
+  66,
+  141
+ ],
+ "divider": [
+  66,
+  66,
+  1,
+  141
+ ],
+ "scroll": [
+  67,
+  66,
+  1133,
+  141
+ ],
+ "ruler": [
+  67,
+  66,
+  1133,
+  27
+ ],
+ "clipTrack": [
+  67,
+  93,
+  1133,
+  84
+ ],
+ "addClip": [
+  79,
+  101,
+  1109,
+  84
+ ],
+ "mute": [
+  12,
+  120,
+  42,
+  42
+ ]
+}
