@@ -57,6 +57,7 @@ Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RUL
     本闸只抓「h1 与 title 完全无关」这种明显破坏，不假装能抓细粒度漏词。
 """
 
+import ast
 import glob
 import os
 import re
@@ -491,6 +492,71 @@ def coverage_table_check(root):
     return missing, empties, mismatch, no_reason
 
 
+# ── 方向十：闸门的输入范围必须自声明，不得由 cwd 决定 ──────────────────
+# **不变式**：闸脚本不得用**裸相对路径**去定位它要核对的文件——
+# 不得 `glob.glob("**/*.md")`，也不得 `os.path.join(某个裸相对目录常量, …)`。
+#
+# **背景（Batch 166 实锤）**：闸 4 用 `glob.glob("**/*.md", recursive=True)`，
+# **相对当前工作目录**。在干净空目录里运行时，它扫到 **0 个文件**、0 个问题，
+# 输出「快捷键前缀核对通过……手册写法均已带前缀」，**退出码 0**——
+# **什么都没查，却判了通过**。这就是 Batch 157「工具失败被当成零命中」的原样重演，
+# 也是纪律 101「换一个判据就要重新问一遍它会不会静悄悄什么都查不到」的第一次应验。
+#
+# **为什么用 AST 而不是正则**：第一版判据是纯文本扫 `glob.glob("`，
+# 结果把闸 4 **文档字符串里的示例文字**也匹配上了——**判据太宽的老毛病**。
+# 改成解析 AST 看真正的调用节点，文档字符串、注释里的写法一律不算。
+# 实测 9 道闸：只标出 `verify-screenshots.py`（真阳性），**零误伤**。
+#
+# **覆盖不到什么（如实说明）**：`os.listdir(".")`、`open("README.md")`
+# 这类不经 glob / os.path.join 的裸路径**照不到**。
+# 本批的兜底是**行为实测**（把每道闸在手册根与空目录各跑一次、退出码必须一致），
+# 两者互补：静态判据便宜、能进构建；行为实测抓得住静态照不到的形态。
+_GLOB_CALL = "glob.glob"
+
+
+def cwd_dependent_gates(root):
+    """返回 [(脚本, 形态, 细节)]：用裸相对路径定位输入的闸脚本。"""
+    bad = []
+    scripts = os.path.join(root, "scripts")
+    for name in sorted(os.listdir(scripts)):
+        if not (name.startswith("verify-") and name.endswith(".py")):
+            continue
+        path = os.path.join(scripts, name)
+        try:
+            tree = ast.parse(open(path, encoding="utf-8").read())
+        except SyntaxError as exc:
+            bad.append((name, "无法解析", f"SyntaxError: {exc}"))
+            continue
+
+        # 模块级字符串常量：可能是「裸相对目录」
+        rel_consts = {}
+        for node in tree.body:
+            if (isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant)
+                    and isinstance(node.value.value, str)
+                    and isinstance(node.targets[0], ast.Name)):
+                v = node.value.value
+                if not v.startswith("/") and "os." not in v and not v.startswith("$"):
+                    rel_consts[node.targets[0].id] = v
+
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Attribute):
+                continue
+            f = node.func
+            is_glob = (f.attr == "glob" and isinstance(f.value, ast.Name) and f.value.id == "glob")
+            is_join = (f.attr == "join" and isinstance(f.value, ast.Attribute)
+                       and f.value.attr == "path")
+            if is_glob and node.args:
+                a = node.args[0]
+                if isinstance(a, ast.Constant) and isinstance(a.value, str):
+                    bad.append((name, "glob 用了裸字面量", f'glob.glob("{a.value}")'))
+            if is_join and node.args:
+                a = node.args[0]
+                if isinstance(a, ast.Name) and a.id in rel_consts:
+                    bad.append((name, "join 用了无根目录常量",
+                                f'os.path.join({a.id}, …)  # {a.id}="{rel_consts[a.id]}"'))
+    return bad
+
+
 # ── 方向八：闸门不得在「无法核对」时返回 0 ────────────────────────────
 # **不变式**：闸门打印了 `[skip]`，退出码就**不能是 0**。
 #
@@ -893,6 +959,17 @@ def main():
         print("  ✓ 无法核对 ≠ 通过：所有 [skip] 路径的退出码都不是 0"
               "（约定 0 一致 / 1 不一致 / 2 未能核对）")
 
+    # ── 方向十：闸门输入范围不得由 cwd 决定 ──
+    print("-" * 62)
+    cwd_bad = cwd_dependent_gates(root)
+    for name, kind, detail in cwd_bad:
+        fail(f"{name}：{kind}（{detail}）——**输入范围由 cwd 决定**："
+             f"换个目录运行就会扫到另一个地方，"
+             f"Batch 166 实测过这种闸能在「一个文件都没读到」时判定通过")
+    if not cwd_bad:
+        print("  ✓ 输入范围自声明：所有闸门脚本都不再用裸相对路径定位被核对的文件"
+              "（AST 判据，文档字符串与注释里的写法不算）")
+
     # ── 方向九：风险类别覆盖度表的自洽性 ──
     print("-" * 62)
     miss, empties, mismatch, no_reason = coverage_table_check(root)
@@ -910,10 +987,10 @@ def main():
 
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八/九亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九/十亦全部通过")
     return 0
 
 

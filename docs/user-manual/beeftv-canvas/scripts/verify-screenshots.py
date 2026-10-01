@@ -19,8 +19,14 @@ import re
 import sys
 import glob
 
-SHOT_DIR = "screenshots"
-DIST = ".vitepress/dist"
+# Batch 167：手册根目录由脚本自身位置推导，**不再依赖 cwd**。
+# 此前 SHOT_DIR / DIST / glob 的模式全是**裸相对路径**——换个目录运行，扫到的就是
+# 那个目录下的东西（实测：从手册根跑 rc=0，从空目录跑 rc=2）。
+# 它原本是**失败安全**的（不会误判通过），但「失败模式安全」不等于「写法正确」：
+# 同一个脚本换个位置就换了个答案，这个行为本身就说不清它到底查了什么。
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SHOT_DIR = os.path.join(ROOT, "screenshots")
+DIST = os.path.join(ROOT, ".vitepress", "dist")
 MANIFEST = os.path.join(SHOT_DIR, "manifest.yml")
 
 # 内部账本：允许引用截图但不属于对外发布内容，不计入「发布页引用」
@@ -46,7 +52,7 @@ def collect():
         )
 
     referenced = set()
-    for p in glob.glob("**/*.md", recursive=True):
+    for p in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
         if "node_modules" in p or ".vitepress" in p:
             continue
         if INTERNAL.search(os.path.basename(p)):

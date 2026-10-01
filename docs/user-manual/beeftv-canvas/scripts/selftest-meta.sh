@@ -50,7 +50,7 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py)
+SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -461,6 +461,17 @@ run_file_case "25) 覆盖度表某格依据留空（必须报）" \
 run_file_case "26) A 类行数比闸门清单多 1（必须报）" \
   "AUDIT-RULES.md" "$HERE/selftest-meta-fix-26-coverage-drift.py" \
   "与闸门清单脱节"
+# 锚的是**失败语**而不是成功语——第一版锚了「输入范围自声明」（那是 ✓ 的话术），
+# 于是闸门**明明报出了违规**、用例却判失败。
+# **反验锚的必须是「失败时会出现的那句话」**，锚成功语等于锚错。
+run_file_case "27) 闸门用裸相对 glob 定位正文（必须报）" \
+  "scripts/verify-screenshots.py" "$HERE/selftest-meta-fix-27-cwd-glob.py" \
+  "输入范围由 cwd 决定"
+run_file_case "28) 闸门用无根目录常量拼路径（必须报）" \
+  "scripts/verify-screenshots.py" "$HERE/selftest-meta-fix-28-rootless-dir.py" \
+  "输入范围由 cwd 决定"
+run_file_pass_case "29) 不误伤：同样的字面量只出现在注释里（必须放行）" \
+  "scripts/verify-screenshots.py" "$HERE/selftest-meta-fix-29-docstring-glob.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore
