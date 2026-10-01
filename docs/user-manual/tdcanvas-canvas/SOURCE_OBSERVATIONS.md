@@ -42,7 +42,9 @@
 - 悬浮工具条（图片有内容后展开全集）：信息/删除/存资产/下载/编辑/复制提示词/反推提示词/替换图片/裁剪/切图/放大/查看大图/更多（含 多角度、锁比例，默认隐藏可自定义，`tdcanvas:image-quick-tools-v6`）。[运行时+静态]
 - **工具条组成规则（9 种组合全部实测，M94 补全）**：公共项恒为 信息+删除。其余按 `canvas-node-hover-toolbar.tsx` 的条件展开——`存资产` 条件是 `hasImage || hasVideo || isText`（**音频与组被排除**）；`下载` 条件是 `hasImage || hasVideo || hasAudio || hasFile`；`更多` 只在 `hasImage` 时出现。实测：文本 空/有内容**均 8**（唯一不因内容而变的一类）；图片 4→13；视频 4→6；音频 4→5（**有下载、无存资产**）；组 2。资产库类型筛选同样无音频（全部/文本/图片/视频）。[运行时+静态]
 - 锁比例开关（仅图片节点，`defaultVisible: false`）：按钮文字是**当前状态**（关=锁比例 / 开=自由比例），`aria-label` 是**下一步动作**（关=切换为自由比例 / 开=切换为等比缩放）；勾选后 localStorage `ids` 数组出现 `resize`，工具条在「替换图片」与「裁剪」之间多出该按钮。视频节点无此开关（`components/canvas/canvas-node.tsx:293` 的 `keepRatio` 对 Video 恒真）。[运行时+静态]
-- 节点信息 Modal：ID/类型/尺寸/位置/状态/路径/批量数/提示词/错误/原始 JSON。[静态]
+- 节点信息 Modal。**2026-10-02 M113 升级为运行时实证并订正此前那串字段名**：面板是**条件渲染**的——**恒有 6 行**（实测空文本节点逐行为 ID=`text-…` / 名称=文本 / 类型=文本 / 尺寸=`520 x 300` / 位置=`440, 300` / 状态=`idle`），**另有 5 处按数据出现**：本地文件（`metadata.localPath`）、提示词（`metadata.prompt`）、图片组（`batchCount>1`）、图片大小（`imageBytes`）、**红色的错误详情区（带一键「复制错误」按钮，不是普通行）**；右上角另有「信息 / JSON」页签，JSON 页签实测 7 个顶层键 `id/type/title/position/width/height/metadata`。**此前那句「ID/类型/尺寸/位置/状态/路径/批量数/提示词/错误/原始 JSON」漏了「名称」与「图片大小」、把「本地文件」写成「路径」、且没说这些是条件字段，「原始 JSON」其实是一个页签而不是字段。** [运行时]
+  - **「图片大小」这一行对上传/生成的图片节点永远不出现**：它取 `getDataUrlByteSize(metadata.content)`，而该函数是 `content.split(",", 2)[1]` —— **素材在本机以 `blob:` 地址引用（M113 实测 `content` 开头为 `blob:http://localhost:3000/…`，不含逗号），于是恒返回 0**。**而节点 JSON 里明明存着真实的 `metadata.bytes`、`mimeType`（实测该上传节点的 `metaKeys` 含 content/storageKey/status/naturalWidth/naturalHeight/bytes/mimeType/sourceOrigin）**——即应用手里有数据、这一行却没显示。[运行时+静态]
+  - 上传的**图片节点尺寸不等于默认的 620×350**：按图片本身比例定尺寸（M113 实测 1×1 图落成 `220 x 220`，`metadata` 带 `naturalWidth/naturalHeight`）。[运行时+静态]
 
 ### 4.1 组节点（M101–M104 集中取证，此前本账本完全没有这一节）
 
