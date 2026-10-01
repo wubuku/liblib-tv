@@ -26,11 +26,16 @@
 from __future__ import annotations
 
 import json
+import sys
 import os
 from pathlib import Path
 from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
+
+# Batch 354: 本文件自带 requestfailed 监听器(不用共享 attach_errors), 此前把浏览器**主动取消**的请求(net::ERR_ABORTED —— Turbopack HMR chunk 失效 / 密集 reload 取消飞行中图片)当成应用错误, 让 diagnostics:zero 在长跑/并发下误报。判据见 frameos_verify_common.is_dev_server_noise(单一出处); 404/500/连接失败照旧计入。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from frameos_verify_common import is_dev_server_noise  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -67,7 +72,9 @@ def attach_errors(page: Page) -> list[str]:
     page.on("pageerror", lambda e: errors.append(f"pageerror:{e}"))
     page.on(
         "requestfailed",
-        lambda r: errors.append(f"requestfailed:{r.method}:{r.url}:{r.failure}"),
+        lambda r: errors.append(f"requestfailed:{r.method}:{r.url}:{r.failure}")
+        if not is_dev_server_noise(f"requestfailed:{r.method}:{r.url}:{r.failure}")
+        else None,
     )
     return errors
 

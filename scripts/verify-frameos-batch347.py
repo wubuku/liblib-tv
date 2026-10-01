@@ -158,9 +158,101 @@ def run_desktop(page: Page) -> dict[str, Any]:
           page.locator("[data-frameos-download-client]").count() == 1,
           "「下载桌面端」按钮仍无钩子")
 
+    # ── 8~12 Batch 353: 门禁覆盖面从 3 态扩到 8 态 ──
+    # 每进一个态就扫一次, 退干净再进下一个(态之间会互相污染, 例如裁剪态会
+    # 顶掉普通工具条)。这 5 个态在原门禁里**完全没被检查过**。
+    for name, enter in [
+        ("crop", enter_crop_state),
+        ("group", enter_group_state),
+        ("node-search", enter_node_search_state),
+        ("template-panel", enter_template_state),
+        ("generation", enter_generation_state),
+    ]:
+        leave_all(page)
+        enter(page)
+        snap = scan(page)
+        result[f"state_{name}"] = snap
+        check(f"scan:not-empty:{name}", snap["total"] >= 20,
+              f"只扫到 {snap['total']} 个元素 —— 态可能没进去(假绿)")
+        check(f"blind:{name}-zero", snap["blind"] == 0,
+              f"盲区 {snap['blind']}/{snap['total']}: {snap['blindItems']}")
+    leave_all(page)
+
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
     return result
+
+
+# ── Batch 353: 把门禁的 UI 态覆盖面从 3 种扩到 8 种 ──────────────────────
+# 原门禁只普查「默认 / 帮助开 / 选中节点」三态，于是**碰不到**的东西一律
+# 逃过检查: 裁剪态、分组态、节点搜索面板、模板面板, 以及
+# `FrameosGenerationOverlay`(整个组件零 data-frameos-*)。
+# 探针(probe-frameos-batch353-addressability.py)在这 5 个新态里量出 **5 个盲区**:
+#   group     3  (整组执行 / 存为模板 / 解组)
+#   generation 2  (取消按钮 + 常态面板的 prompt textarea)
+# 补钩子后 5 态全部归零, 并把 5 个新态并入门禁 —— 覆盖面本身就是约束,
+# 否则「门禁只扫 3 态」这件事会慢慢被忘掉, 新的盲区继续从缝里长出来。
+EXTRA_STATES: list[tuple[str, Any]] = []
+
+
+def enter_crop_state(page: Page) -> None:
+    page.locator('.react-flow__node[data-id="image-1"]').click()
+    page.wait_for_timeout(600)
+    page.get_by_label("裁剪", exact=True).first.click()
+    page.wait_for_selector("[data-frameos-crop-rect]", timeout=8000)
+    page.wait_for_timeout(400)
+
+
+def enter_group_state(page: Page) -> None:
+    page.evaluate(
+        """() => {
+            const st = window.__frameos_store;
+            const ids = st.getState().nodes.slice(0, 2).map((n) => n.id);
+            st.getState().createGroup(ids);
+            return true;
+        }"""
+    )
+    page.wait_for_timeout(700)
+
+
+def enter_node_search_state(page: Page) -> None:
+    page.keyboard.press("Meta+f")
+    page.wait_for_timeout(600)
+
+
+def enter_template_state(page: Page) -> None:
+    page.get_by_label("模板", exact=True).first.click()
+    page.wait_for_timeout(600)
+
+
+def enter_generation_state(page: Page) -> None:
+    """进入生成浮窗。mock 时钟压到 20s —— 机制与时长无关, 探针用 2s 同理。"""
+    pane = page.locator(".react-flow__pane")
+    box = pane.bounding_box()
+    pane.dblclick(position={"x": box["width"] * 0.2, "y": box["height"] * 0.75})
+    page.wait_for_selector("[data-frameos-pane-addnode-type]", timeout=8000)
+    page.locator('[data-frameos-pane-addnode-type="image"]').click()
+    page.wait_for_timeout(500)
+    page.locator(".react-flow__node").last.click()
+    page.wait_for_timeout(500)
+    page.get_by_label("生成", exact=True).first.click()
+    page.wait_for_timeout(300)
+    page.evaluate(
+        """() => {
+            const s = window.__frameos_store.getState();
+            window.__frameos_store.setState({
+              currentGeneration: { ...s.currentGeneration, durationMs: 20000 },
+            });
+        }"""
+    )
+    page.wait_for_timeout(600)
+
+
+def leave_all(page: Page) -> None:
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(200)
+    page.evaluate("() => window.__frameos_store.getState().setCroppingNode(null)")
+    page.wait_for_timeout(200)
 
 
 def main() -> None:

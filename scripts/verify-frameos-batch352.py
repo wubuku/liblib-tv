@@ -65,8 +65,39 @@ EXPECTED_DEAD = (
 )
 
 
+def find_node() -> str:
+    """自己找 node, 不假设它在 PATH 上。
+
+    踩过的坑: 全量套件 `run-frameos-verifiers.sh` 的运行环境里 **node 不在 PATH**
+    (它只用 pyenv 的 python, 不导出 nvm 的 node 路径), 于是本验证器在套件里
+    直接 `FileNotFoundError: 'node'` 崩掉 —— 单独手跑能过、进门禁就挂。
+    > **门禁必须在最贫瘠的环境里也能跑**; 依赖「我 shell 里恰好有」的工具链,
+    > 等于把门禁的可靠性绑在调用者的 PATH 上。
+
+    探测顺序: 环境变量 → PATH → 本机 nvm 的默认版本目录。
+    """
+    import glob
+    import shutil
+
+    env = os.environ.get("LIBLIB_NODE")
+    if env and Path(env).exists():
+        return env
+    found = shutil.which("node")
+    if found:
+        return found
+    for pat in (
+        str(Path.home() / ".nvm/versions/node/*/bin/node"),
+        "/opt/homebrew/bin/node",
+        "/usr/local/bin/node",
+    ):
+        hits = sorted(glob.glob(pat))
+        if hits:
+            return hits[-1]
+    raise SystemExit("找不到 node：请设置 LIBLIB_NODE=/path/to/node")
+
+
 def run_census(store_rel: str, iface: str) -> dict[str, Any]:
-    node = os.environ.get("LIBLIB_NODE", "node")
+    node = find_node()
     proc = subprocess.run(
         [node, "scripts/deadstate_census.mjs", store_rel, iface],
         cwd=ROOT,

@@ -247,12 +247,19 @@ export function FrameosGroupToolbar() {
             style={{ width: 1, height: 18, background: "rgba(255,255,255,0.08)", margin: "0 4px" }}
           />
           {/* 整组执行 = 源站付费生成入口, 不 mock 触发 */}
-          <button type="button" style={{ ...btnStyle, cursor: "default", color: "#9CA3AF" }}>
+          {/* Batch 353: 补钩子 —— Batch 347 的可寻址门禁只普查默认/帮助/选中节点
+              三种 UI 态, 分组态从未被扫到, 这三个按钮因此一直是无钩子盲区 */}
+          <button
+            type="button"
+            data-frameos-group-action="run-all"
+            style={{ ...btnStyle, cursor: "default", color: "#9CA3AF" }}
+          >
             <PlayIcon />
             <span>整组执行</span>
           </button>
           <button
             type="button"
+            data-frameos-group-action="save-template"
             style={btnStyle}
             onClick={(e) => {
               e.stopPropagation();
@@ -270,6 +277,7 @@ export function FrameosGroupToolbar() {
           </button>
           <button
             type="button"
+            data-frameos-group-action="ungroup"
             style={btnStyle}
             onClick={(e) => {
               e.stopPropagation();

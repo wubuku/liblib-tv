@@ -130,6 +130,7 @@ export function FrameosPromptEditor() {
           <MiniBtn icon="＋" label="参考" onClick={() => window.alert("参考 (mock)")} />
         </div>
         <textarea
+          data-frameos-audio-prompt-input=""
           defaultValue=""
           placeholder="描述音乐 / 配音 / 音效"
           rows={2}
@@ -260,6 +261,7 @@ export function FrameosPromptEditor() {
           ))}
         </div>
         <textarea
+          data-frameos-video-prompt-input=""
           defaultValue=""
           placeholder="描述你想要的视频，@引用素材"
           rows={2}
@@ -405,6 +407,7 @@ export function FrameosPromptEditor() {
           </button>
         </div>
         <textarea
+          data-frameos-prompt-input-fullscreen=""
           value={promptValue}
           onChange={(e) => setPromptValue(e.target.value)}
           placeholder={
@@ -570,6 +573,7 @@ export function FrameosPromptEditor() {
         }}
       >
         <textarea
+          data-frameos-prompt-input=""
           value={promptValue}
           onChange={(e) => setPromptValue(e.target.value)}
           placeholder={

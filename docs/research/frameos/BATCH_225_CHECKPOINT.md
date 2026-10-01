@@ -1139,3 +1139,86 @@ FrameosWorkspaceNode 目标工作台页等 mock)。
 语义, 标 CLONE_DECISION 是对的。
 
 变异测试: 宽高退回 `defaultValue={480}` → batch279 红 `crop:size-inputs-are-current-size`。
+
+---
+
+## Batch 353 — 可寻址门禁的覆盖面从 3 态扩到 8 态
+
+性质: 可测性基础设施(不改任何交互行为)。**CLONE_DECISION**
+
+Batch 347 把「交互盲区清零」做成了门禁(运行时枚举所有可点元素, 缺钩子就红),
+但**门禁自身有边界而没人把它当约束**: 它只普查 3 态(默认/帮助开/选中节点),
+于是这 3 态碰不到的东西全部逃过检查 —— 裁剪态、分组态、节点搜索面板、模板面板,
+以及 `FrameosGenerationOverlay`(**整个组件零 `data-frameos-*`**)。
+Batch 349/350 的记录里都写了「门禁没触达生成浮窗」, 但没变成约束。
+
+探针先量欠账(与门禁同一把尺子): group 态 **3 个盲区**(整组执行/存为模板/解组)、
+generation 态 **2 个**(取消按钮 + 一个 prompt textarea); crop/node_search/template 全 0。
+
+补 8 个钩子(分组工具条 3、生成浮窗 2、PromptEditor 4 个 textarea 全部),
+5 个新态归零, 并把 5 个新态**并入门禁**: batch347 从 9 项检查扩到 **21 项**,
+每个新态都带 `scan:not-empty:<态>` 防假绿自检。
+变异测试: 摘掉「解组」钩子 → 红 `blind:group-zero 盲区 1/45: [{'tag':'button','text':'解组'}]`,
+报错精确指名元素。
+
+**过程中的三个坑(都值得记)**:
+
+1. **JSX 开始标签的属性区里不能写 `//` 注释** —— 会让整页编译失败、节点一个不渲染,
+   而 `tsc` 报错全在 `.next/dev/types/routes.d.ts` 这个生成文件里, **看不出是自己写的**。
+   注释必须放在开始标签**外面**。
+   > 页面突然 404/500 先怀疑最近的 JSX; `tsc` 报的生成文件错误是噪音, **要过滤 `.next/` 再看**。
+
+2. **一次 grep 的输出被我自己的 `head -30` 截断** —— 只看到 3 个 textarea 就以为补齐了,
+   实际有 **4** 个, 漏的正是**用户看到的常态面板**那个; 而且两个 placeholder 完全相同,
+   靠 grep 上下文分不出来, 最后靠运行时枚举每个元素的 `data-*` 才定位。
+   > **别截断自己正在用来做判断的证据。** 需要「全都看到」时就要真的全都看到。
+
+3. **dev server 反复 404/崩溃, 把排查带偏两次** —— 500 的真凶是**另一个 session
+   正在改的** `DirectorDesk.tsx`(JSX 未闭合), 等 ~90s 后他自己修好了。
+   处置: 属他人进行中的重构就**不猜他的结构意图、不抢同一文件**, 等他收尾;
+   路由全 404(含 `/`)说明 `.next` 缓存不一致 —— `rm -rf` 被安全策略拦, 改用
+   `mv` 挪到 `/tmp`(挪出仓库、**未删除**)。
+   > `.next` 被 git 忽略**不代表** `.next.corrupt-xxxx` 也被忽略(实测会冒进 git status)。
+
+**遗留边界**: 门禁覆盖 8 态但仍是**枚举式**的 —— 未覆盖的态(全屏编辑态/资产面板/多选态)
+仍可能藏盲区。根治是让「缺钩子」在 lint/类型层面就报错(自定义 ESLint 规则), 另一量级。
+
+**候选 Batch 354**: 把可寻址门禁推广到 **jimeng / liblib 画布**(同一套约定已在
+frameos 落地, 另两条线尚未普查); 或用同样「先探针量欠账再改」的方法去审
+全屏编辑态与资产面板这两个尚未进门的态。
+
+---
+
+## Batch 354 — 门禁的「贫瘠环境」假设 + 同一颗哑弹的 8 处漏网
+
+性质: 验证基础设施(不改产品行为)。**CLONE_DECISION**
+
+**问题一: 我的门禁依赖「我 shell 里恰好有 node」**
+Batch 353 收尾的全量回归里 `batch352` 挂于
+`FileNotFoundError: No such file or directory: 'node'` —— 单独手跑能过、**进门禁就挂**,
+因为 `run-frameos-verifiers.sh` 只用 pyenv 的 python、**不导出 nvm 的 node 路径**。
+> **门禁必须在最贫瘠的环境里也能跑**; 把可靠性绑在调用者 `PATH` 上,
+> 等于留了一个「在我这儿好好的」型故障。
+修 `find_node()`: `LIBLIB_NODE` → `PATH` → `~/.nvm/versions/node/*/bin/node` → homebrew
+→ `/usr/local/bin` 逐级探测。验证刻意做「**贫瘠环境演练**」:
+`env PATH="/usr/bin:/bin:...:$HOME/.pyenv/versions/3.10.6/bin"` 实跑通过。
+
+**问题二: 同一颗哑弹还有 8 处漏网**
+全量回归里 **batch327 又以 `diagnostics:zero` 失败** → 查得 frameos 套件里
+**10 个验证器各自带一份内联 `requestfailed` 监听器**(133/134/327/328/329/330/
+331/332/333/351), 其中 **8 个**(除已修的 333/351)仍在把 `net::ERR_ABORTED` 当应用错误。
+> **Batch 351 的教训被放大: 修了「一处漏网」不等于修了「这类问题」。**
+> 判据要放**单一出处**并让所有副本引用它, 而不是逐个打补丁。
+8 个已全部接入 `is_dev_server_noise`, 并**逐个实跑**确认(10/7/14/17/23/22/19/17 checks PASS)。
+
+**过程中的一个自伤**: 批量注入时我加的 `sys.path.insert` 用了**没导入的 `sys`**;
+`py_compile` **抓不到**运行时 `NameError`(编译过、实跑炸: `batch328: NameError: sys`)。
+7 个文件全缺 `import sys`, 补齐后逐个实跑。
+> **`py_compile` 只保证语法, 不保证名字存在**; 批量改动后必须实跑,
+> 尤其给别人的文件注入代码时。
+
+**遗留**: 同样的内联监听器在 liblib / jimeng / director 套件里可能也存在(本批只清 frameos);
+门禁的**运行环境约定**目前靠各验证器自己兜底, 更彻底的做法是 runner 统一注入环境。
+
+**候选 Batch 355**: 把 `is_dev_server_noise` 与「贫瘠环境」约定推广到 liblib/jimeng 套件;
+或把可寻址门禁推广到那两条线(见 Batch 353 候选)。

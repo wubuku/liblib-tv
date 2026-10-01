@@ -1,0 +1,33 @@
+{
+  "crop": {
+    "total": 43,
+    "withHook": 43,
+    "blind": 0,
+    "blindItems": []
+  },
+  "group": {
+    "total": 45,
+    "withHook": 45,
+    "blind": 0,
+    "blindItems": []
+  },
+  "node_search": {
+    "total": 40,
+    "withHook": 40,
+    "blind": 0,
+    "blindItems": []
+  },
+  "template_panel": {
+    "total": 48,
+    "withHook": 48,
+    "blind": 0,
+    "blindItems": []
+  },
+  "generation": {
+    "total": 61,
+    "withHook": 61,
+    "blind": 0,
+    "blindItems": []
+  },
+  "errors": []
+}

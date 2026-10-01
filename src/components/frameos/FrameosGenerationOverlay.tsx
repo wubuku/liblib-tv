@@ -73,7 +73,13 @@ export function FrameosGenerationOverlay() {
   const remaining = Math.max(0, totalSec - elapsedSec);
 
   return (
+    // Batch 353: 本组件此前**零** data-frameos-* 钩子 —— Batch 347 的可寻址门禁
+    // 只普查默认/帮助/选中节点三态, 从没扫到生成浮窗, 于是整块 UI 无法被断言。
+    // (注释必须放在开始标签**外面**: JSX 标签的属性区里 `//` 不是合法位置,
+    //  写在里面会让整个页面编译失败、节点一个都不渲染。)
     <div
+      data-frameos-generation-overlay=""
+      data-frameos-generation-remaining={remaining}
       style={{
         position: "fixed",
         bottom: 200,
@@ -159,6 +165,7 @@ export function FrameosGenerationOverlay() {
       {/* 取消按钮 */}
       <button
         type="button"
+        data-frameos-generation-cancel=""
         onClick={cancelGeneration}
         style={{
           marginTop: 10,

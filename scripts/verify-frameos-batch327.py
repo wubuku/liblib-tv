@@ -28,7 +28,7 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
-from frameos_verify_common import goto_clean_canvas
+from frameos_verify_common import goto_clean_canvas, is_dev_server_noise
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -86,7 +86,11 @@ def attach_errors(page: Page) -> list[str]:
         "requestfailed",
         lambda request: errors.append(
             f"requestfailed:{request.method}:{request.url}:{request.failure}"
-        ),
+        )
+        if not is_dev_server_noise(
+            f"requestfailed:{request.method}:{request.url}:{request.failure}"
+        )
+        else None,
     )
     return errors
 
