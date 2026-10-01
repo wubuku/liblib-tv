@@ -577,6 +577,18 @@ screenshots:
     alt: 画布上并排两个组：左边是原组，徽标 2 个节点且框内有两个音频节点；右边是刚粘贴出来的组，徽标 0 个节点、框内是空的
     sha256: 06f4e933606c3d4bbf95d8f77412223a0fd9da00ce43b4c62dc1de0d19491a67
 
+  - file: screenshots/04-organize-canvas-group-members-connected.png
+    task_id: organize-canvas
+    step: 同一组内的两个音频节点互相连线成功，两条连线在组框内交叉，组徽标仍为 2 个节点
+    route: '/canvas/:id'
+    viewport: 1700x1000
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '组徽标 2 个节点 / 组框内两个音频节点 / 两条连线 data-connection-id'
+    visible_text: '2 个节点'
+    alt: 组框内的两个音频节点之间连了两条线，两条连线在组内交叉，组的徽标仍显示 2 个节点
+    sha256: fea29b5b55985dcaa9908114221c43d8e9ab85449f54182784deb130ca70ab3b
+
   - file: screenshots/09-generate-images-panel-full.png
     task_id: generate-images
     step: 图片节点下方的完整生成面板（71% 缩放全貌）：模式/输入/参数行、参考素材区、描述框，以及模型 Seedream V5 Pro、比例 自适应/2k、数量 1x、约 ¥0.519 与发送按钮
