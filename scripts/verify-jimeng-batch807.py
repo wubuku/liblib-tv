@@ -17,7 +17,7 @@ SOURCE_FACT @1680×826 登录态实测，源站点这三个按钮后：
   落点 `data-testid="rf__node-*"`、`role="group"`、位于 `.react-flow__viewport` 内，
   顶栏节点计数 +1。复刻此前把 `insert` 留空，onClick 走空分支 —— 点了没反应。
 
-节点实测尺寸：时间线 1206×212 · 主体 352×352 · 导演台 320×320。
+节点实测尺寸：时间线 1200×207（batch 813 复测订正）· 主体 352×352 · 导演台 320×320。
 """
 
 import os
@@ -127,7 +127,7 @@ def main() -> None:
         print("— 左栏三个按钮：死按钮 → 插入节点 —")
         for step, (label, tid, expect_wh) in enumerate(
             [
-                ("时间线", "timeline-node", (1206, 212)),
+                ("时间线", "timeline-node", (1200, 207)),  # batch 813 源站复测订正，此前按截图读的 1206×212
                 ("主体", "subject-node", (352, 352)),
                 ("导演台", "director-node", (320, 320)),
             ]

@@ -41,6 +41,7 @@ export const FEEDBACK = {
   // ── 新增节点（batch 807/810）──
   addTimelineClip: (name: string) => mockMsg(`已添加「${name}」到时间线`),
   importSubject: (name: string) => mockMsg(`已导入「${name}」`),
+  saveSubjectMeta: () => mockMsg("已保存主体描述"),
   needCanvasNodeFirst: (action: string) => mockMsg(`${action}：请先选中一个画布节点`),
   needAssetsFirst: (action: string) => mockMsg(`${action}：请先打开资产库`),
   enterDirectorStage: () => mockMsg("进入导演台"),

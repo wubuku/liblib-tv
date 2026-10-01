@@ -46,6 +46,10 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
   const pushToast = useJimengStore((s) => s.pushToast);
   const [draft, setDraft] = useState(d.description ?? "");
   const imported = d.imported ?? [];
+  // Batch 813 SOURCE_FACT：源站主体节点的右上角笔点开的是
+  // `subject-metadata-editor`（描述元数据编辑器），而「添加描述…」那行
+  // 在源站只是**占位提示**，真正的编辑入口是这支笔。此前这支笔没挂行为。
+  const [metaOpen, setMetaOpen] = useState(false);
 
   const runEntry = (key: (typeof ENTRIES)[number]["key"], label: string) => {
     if (key === "import" || key === "local") {
@@ -87,6 +91,8 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
           <button
             type="button"
             aria-label="编辑主体"
+            data-testid="subject-meta-trigger"
+            onClick={() => setMetaOpen(true)}
             className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10"
           >
             <Pencil size={14} />
@@ -129,6 +135,45 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
               </li>
             ))}
           </ul>
+        ) : null}
+
+        {/* Batch 813 SOURCE_FACT: `subject-metadata-editor` */}
+        {metaOpen ? (
+          <div
+            className="absolute left-1/2 top-1/2 z-[160] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-xl p-3"
+            style={{ background: "rgb(38,38,38)" }}
+            role="dialog"
+            aria-label="主体元数据"
+            data-testid="subject-metadata-editor"
+          >
+            <p className="mb-2 text-[13px] text-white/85">主体描述</p>
+            <textarea
+              autoFocus
+              value={draft}
+              aria-label="主体元数据描述"
+              placeholder="添加描述..."
+              onChange={(e) => setDraft(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) setMetaOpen(false);
+              }}
+              className="h-20 w-full resize-none rounded-md bg-white/[0.06] p-2 text-[13px] leading-[20px] text-white/85 outline-none placeholder:text-white/35"
+            />
+            <div className="mt-2 flex items-center justify-between">
+              <span className="text-[11px] text-white/35">⌘↵ 提交</span>
+              <button
+                type="button"
+                data-testid="subject-meta-save"
+                onClick={() => {
+                  updateNodeData(id, { description: draft });
+                  setMetaOpen(false);
+                  pushToast(FEEDBACK.saveSubjectMeta());
+                }}
+                className="h-7 rounded-md bg-white/12 px-3 text-[13px] text-white hover:bg-white/20"
+              >
+                保存
+              </button>
+            </div>
+          </div>
         ) : null}
 
         <span className="sr-only">

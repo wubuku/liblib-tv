@@ -61,8 +61,33 @@ def ready(page, tries=6):
 
 # 只列**尚未审过**的态。审过并修完的删掉，避免每次重跑都撞 dev server 重启。
 # 全部审完后这里会是空的 —— 那本身就是"交互态已普查完"的标志。
+# Batch 813 补的一整类：**插入后才出现**的节点内部控件。
+# 807 加了时间线/主体/导演台三个节点类型，但普查从没进过"插入之后"这个态 ——
+# 于是那三个节点里的死按钮（下载/全屏编辑/静音/编辑主体）一个都没被发现。
+# 「默认视图 + 既有交互态」覆盖不到"运行时才长出来的界面"。
+def _enter_rail(rail: str, tid: str):
+    def go(pg):
+        pg.reload(wait_until="domcontentloaded")
+        pg.wait_for_selector(READY, timeout=25000)
+        pg.wait_for_timeout(400)
+        pg.locator(f'[aria-label="{rail}"]').first.click()
+        pg.wait_for_selector(f'[data-testid="{tid}"]', timeout=15000)
+        pg.wait_for_timeout(400)
+    return go
+
+
+def _node_inner(pg, tid: str) -> str:
+    return tid
+
+
 STATES = {
-    "节点右键菜单": ("[role=menu]", lambda pg: pg.mouse.click(640, 323, button="right")),
+    "节点右键菜单": ("[role=menu]", lambda pg: pg.mouse.click(640, 323, button="right"), "[role=menu]"),
+    "时间线节点内部": ('[data-testid="timeline-node"]',
+                _enter_rail("时间线", "timeline-node"), '[data-testid="timeline-node"]'),
+    "主体节点内部": ('[data-testid="subject-node"]',
+               _enter_rail("主体", "subject-node"), "[data-testid=\"subject-node\"]"),
+    "导演台节点内部": ('[data-testid="director-node"]',
+                _enter_rail("导演台", "director-node"), "[data-testid=\"director-node\"]"),
 }
 
 
@@ -70,7 +95,7 @@ def main() -> int:
     total_dead = 0
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        for name, (scope, enter) in STATES.items():
+        for name, (scope, enter, inner) in STATES.items():
             ctx = browser.new_context(viewport={"width": 1680, "height": 826}, locale="zh-CN")
             page = ctx.new_page()
             if not ready(page):
@@ -87,7 +112,7 @@ def main() -> int:
                     print(f"== {name}: 中途 dev server 断开，剩余项未审")
                     break
                 enter(page)
-                page.wait_for_selector(scope, timeout=15000)
+                page.wait_for_selector(inner, timeout=15000)
                 page.wait_for_timeout(300)
                 before = page.evaluate(FP)
                 try:

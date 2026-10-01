@@ -1108,7 +1108,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             {
               ...base,
               type: "timeline" as const,
-              data: { title: `时间线 ${seq}`, width: 1206, height: 212, duration: 0, clips: [] },
+              data: { title: `时间线 ${seq}`, width: 1200, height: 207, duration: 0, clips: [] },
             },
           ],
         };

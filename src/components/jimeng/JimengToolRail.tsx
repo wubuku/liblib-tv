@@ -124,7 +124,7 @@ export function JimengToolRail() {
     text: { w: 164, h: 170 },
     audio: { w: 200, h: 60 },
     // Batch 805 SOURCE_FACT: 三种新节点按源站实测尺寸对半回退
-    timeline: { w: 603, h: 106 },
+    timeline: { w: 600, h: 103.5 },
     subject: { w: 176, h: 176 },
     director: { w: 160, h: 160 },
   };
