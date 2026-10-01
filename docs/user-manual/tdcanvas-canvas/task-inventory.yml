@@ -151,14 +151,18 @@ tasks:
     manual_pages:
       - 10-tasks/generate-images.md
   - id: image-operations
-    title: 裁剪、切图与放大（本地图片处理）
+    title: 裁剪、切图、放大与多角度
     role: tdcanvas-creator
     frequency: common
     impact: medium
     coverage: full
     evidence:
       - type: static
-        note: crop/split/upscale 为本地 Canvas2D（免费），产物建子节点并连线；upscale 1K/2K/4K≤4096；angle 走 AI（付费，仅描述）。
+        note: crop/split/upscale 为本地 Canvas2D（免费），产物建子节点并连线；upscale 1K/2K/4K≤4096。
+      - type: runtime
+        note: M48 实测多角度的入口路径——工具条 14 个可选项默认只勾 12 项，「锁比例」与「多角度」默认未勾，需经「更多」→自定义工具栏勾选后保存（localStorage tdcanvas:image-quick-tools-v6，计数 12/14 → 13/14）；「AI 多角度」对话框副标题自陈「左侧只预览方向，结果会基于原图重新生成」。**付费生成按红线未执行**。
+      - type: static
+        note: 蒙版/局部重绘在本版本**未接线**：canvas-node-mask-edit-dialog.tsx（431 行）全仓零 import，requestEdit 的 4 个调用点均显式传 undefined 作 mask，工具条 14 项中无蒙版。已写入正文与 90-troubleshooting。
     preconditions:
       - 画布中有已上传图片的节点
     routes:

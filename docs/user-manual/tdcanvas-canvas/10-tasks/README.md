@@ -14,7 +14,7 @@
 ## 完整任务
 
 - [发起图片生成与理解任务状态](generate-images.md)
-- [裁剪、切图、放大](image-operations.md)
+- [裁剪、切图、放大与多角度](image-operations.md)
 - [分组、主题与背景外观](organize-canvas.md)
 - [撤销重做与自动保存](undo-persistence.md)
 - [管理项目（列表/重命名/导出/删除）](project-management.md)

@@ -983,3 +983,27 @@ screenshots:
     visible_text: 'API 服务密钥 保存后，图片、视频、音频和其他画布能力将统一使用此密钥。'
     alt: 配置页左栏被红色虚线框标出，宽 260 像素，框内只有 API、服务密钥等说明文字，没有任何标签、按钮或链接；右侧是服务密钥表单与注册获取 API Key 按钮
     sha256: 380f174a4415cf94563b6dcd919a981995ed154e797c60f9aef2314ec8383343
+
+  - file: screenshots/06-image-operations-custom-toolbar.png
+    task_id: image-operations
+    step: 选中一个已上传图片的节点，点悬浮工具条末端的「更多」（aria-label 配置快捷工具）打开「自定义工具栏」弹窗，按弹窗自身边界框裁剪；此时尚未勾选「多角度」
+    route: '/canvas/:id'
+    viewport: '1440x900 视口，裁剪区 780x679 (CSS px)'
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role="dialog" 边界框 x=340 y=120.5 宽 760 高 659 / 弹窗标题「自定义工具栏」，副标题「选择你想在图片节点编辑栏中使用的快捷工具。」/ 「快捷工具 12/14」计数 / 14 个复选框逐项点名：信息、删除、存资产、下载、编辑、复制提示词、反推提示词、替换图片、锁比例、裁剪、切图、放大、多角度、查看大图 / 「锁比例」与「多角度」两项复选框为未勾选 / 底部「显示按钮文字」开关与「取 消」「保 存」/ 节点预览条列出当前生效的 12 项'
+    visible_text: '自定义工具栏 选择你想在图片节点编辑栏中使用的快捷工具。 快捷工具 12/14'
+    alt: 自定义工具栏弹窗：上半部是节点预览条，下半部是十四项快捷工具的复选框列表，其中锁比例与多角度两项未勾选，右下角是取消与保存按钮
+    sha256: 613a207cb268ad4e59043a7bc464cdd7ed371e8e2f8673a1d99f18ceb0eca610
+
+  - file: screenshots/06-image-operations-angle-dialog.png
+    task_id: image-operations
+    step: 在自定义工具栏里勾选「多角度」并保存（计数由 12/14 变为 13/14），再选中该图片节点、点击工具条上新出现的「生成角度」按钮，打开 AI 多角度对话框后按弹窗边界框裁剪；全程未点击「AI 生成」
+    route: '/canvas/:id'
+    viewport: '1440x900 视口，裁剪区 880x498 (CSS px)'
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role="dialog" 边界框 x=290 y=211 宽 860 高 478 / 弹窗标题「AI 多角度」，副标题「左侧只预览方向，结果会基于原图重新生成」/ 四个参数逐项读数：左右角度 0deg、俯仰角度 9deg、镜头距离 4.8、广角镜头分段控件默认选中「标准」/ 左侧预览区显示原图与一个旋转指示块，左下角「重置」/ 右下角「AI 生成」按钮未点击（付费生成不触发）/ 保存后 localStorage tdcanvas:image-quick-tools-v6 的 ids 数组含 angle，计数显示 13/14'
+    visible_text: 'AI 多角度 左侧只预览方向，结果会基于原图重新生成'
+    alt: AI 多角度对话框：左侧是原图预览和一个表示旋转方向的立体指示块，右侧是左右角度、俯仰角度、镜头距离三个滑杆和标准与广角两档的广角镜头开关，右下角是 AI 生成按钮
+    sha256: c3d3ba5ec5b3398d9595319dc849286be3a321598d9b8bde5350e09c6a138c98

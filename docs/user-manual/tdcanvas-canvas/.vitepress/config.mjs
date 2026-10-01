@@ -57,7 +57,7 @@ export default defineConfig({
         items: [
           { text: '连线引用与无线引用', link: '/10-tasks/connect-references' },
           { text: '发起图片生成并理解任务状态', link: '/10-tasks/generate-images' },
-          { text: '图片本地处理：裁剪、切图、放大', link: '/10-tasks/image-operations' },
+          { text: '图片处理：裁剪、切图、放大与多角度', link: '/10-tasks/image-operations' },
         ],
       },
       {
