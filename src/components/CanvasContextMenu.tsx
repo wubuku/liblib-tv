@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export interface CanvasContextMenuTarget {
   x: number;
@@ -81,15 +81,24 @@ export function CanvasContextMenu({
 
   return (
     <>
-      <div
-        data-canvas-context-backdrop
-        className="fixed inset-0 z-[62]"
-        onMouseDown={onClose}
-        onContextMenu={(event) => {
-          event.preventDefault();
-          onClose();
-        }}
-      />
+      {/* Batch 365: 菜单开着时, 在菜单外右键**关不掉菜单**。
+          现象: backdrop 的 onContextMenu 确实调了 onClose(实测时序是「先关后开」),
+          但**同一事件继续被 React Flow 接住**, onPaneContextMenu/onNodeContextMenu
+          在新位置把菜单又打开了 —— 实测菜单从 (1123,738) variant=pane 变成
+          (300,250), 用户右键想取消, 菜单反而跟着鼠标跑。
+
+          根因不是「忘了 stopPropagation」: React 17+ 把所有事件委托到 root,
+          `elementFromPoint` 明明返回 backdrop(z-62, 高于 pane 的 z-1), 事件却仍
+          命中 `.react-flow__pane` —— 说明 React Flow 的 handler 在**祖先的委托
+          阶段**就已经跑完了, 子元素上的 `event.stopPropagation()` 拦不住。
+          实测在 pane/main/body 上都挂了原生监听, 第二次右键三个全中, backdrop
+          **一个都没中**。
+
+          修法: 用**捕获阶段**的原生监听拦在 React 之前。React 17+ 的委托在
+          bubble 阶段, capture 先跑, 所以这里能真正截断。
+          注意用 useEffect + addEventListener 而不是 JSX 的 onContextMenu ——
+          JSX 版本走的是 React 自己的委托, 拦不住。 */}
+      <Backdrop onClose={onClose} />
       <div
         data-canvas-context-menu
         data-canvas-context-variant={target.variant}
@@ -197,4 +206,71 @@ export function CanvasContextMenu({
       </div>
     </>
   );
+}
+
+/** Batch 365: backdrop 用**捕获阶段**的原生监听, 而不是 JSX 的 onContextMenu。
+ *
+ *  为什么不能直接写 JSX: React 17+ 把事件委托到 root 的 bubble 阶段,
+ *  而 React Flow 的 pane handler 也在同一棵委托树上跑 —— 子元素上的
+ *  `event.stopPropagation()` 拦不住它。实测(菜单开着时):
+ *  `document.elementFromPoint(300,250)` 返回 backdrop(z-62, 高于 pane 的 z-1),
+ *  但在 `.react-flow__pane` / `main` / `body` 上挂的原生监听**全都收到**了
+ *  contextmenu, backdrop 自己反而没收到。
+ *
+ *  捕获阶段先于 React 的冒泡委托跑, 所以在这里 `stopPropagation` 才真正有效。
+ */
+function Backdrop({ onClose }: { onClose: () => void }) {
+  // Batch 365: `onClose` 是 page.tsx 里内联箭头函数, **每次渲染都是新引用**。
+  // 直接把它放进 useEffect 依赖, 每次父组件重渲染都会 cleanup + 重新注册 ——
+  // 在「刚打开菜单 -> onClose 改变 -> 卸载重挂」的那个窗口里, 监听可能短暂缺席,
+  // 右键就会漏过去。用 ref 固定回调, 让监听只挂一次。
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+
+  useEffect(() => {
+    // 菜单本体在 backdrop 之上(z-63), 点菜单项时 target 在菜单里而不是 backdrop
+    // 上。**必须放行** —— 早先版本在 document 上无条件 preventDefault +
+    // stopPropagation, 把菜单项自己的 onClick 也吃掉了, 结果 batch172
+    // 「点添加节点 -> 菜单关 + 打开添加节点面板」、batch173「复制」两条直接回归。
+    const insideMenu = (event: MouseEvent): boolean => {
+      const menu = document.querySelector("[data-canvas-context-menu]");
+      return !!menu && menu.contains(event.target as Node);
+    };
+
+    const onContextMenu = (event: MouseEvent) => {
+      if (insideMenu(event)) return;
+      event.preventDefault();
+      // 阻止事件继续冒泡到 React Flow 的 onPaneContextMenu —— 它挂在 document
+      // 捕获阶段且注册更早(React Flow 在 `main` 下, 属于另一个 React 根),
+      // 由它把菜单在新位置重开。
+      //
+      // **不要**加 `stopImmediatePropagation`: 它只停掉「同一节点上其他监听器」,
+      // 而 React 的委托监听在子节点上, 照样收得到。实测对照:
+      //   stopPropagation             -> pane 收到 0 次, 菜单关闭 ✅
+      //   stopPropagation + immediate  -> pane 收到 1 次, 菜单重开 ❌
+      event.stopPropagation();
+      closeRef.current();
+    };
+    // 左键点外面 -> 立刻关(用户预期)。
+    // 右键点外面 -> **不在 mousedown 关**: 浏览器右键会接着派发 contextmenu,
+    // 而 mousedown 就关的话 backdrop 先卸载, 随后的 contextmenu 落到已消失的
+    // backdrop 之后, 直接命中 .react-flow__pane 被 React Flow 在新位置重开
+    // (实测菜单从 1123,738 跳到 300,250)。右键的关闭只交给 contextmenu。
+    const onMouseDown = (event: MouseEvent) => {
+      if (insideMenu(event)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (event.button !== 2) closeRef.current();
+    };
+    // 挂在 document 的捕获阶段: backdrop 自己虽然在最上层, 但 React Flow 的
+    // pane 在另一个 React 根里, 从 document 捕获最稳。
+    document.addEventListener("contextmenu", onContextMenu, true);
+    document.addEventListener("mousedown", onMouseDown, true);
+    return () => {
+      document.removeEventListener("contextmenu", onContextMenu, true);
+      document.removeEventListener("mousedown", onMouseDown, true);
+    };
+  }, []);
+
+  return <div data-canvas-context-backdrop className="fixed inset-0 z-[62]" />;
 }

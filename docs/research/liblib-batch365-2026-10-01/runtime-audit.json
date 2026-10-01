@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "name": "menu:really-opens",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "backdrop:exists",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "backdrop:covers-full-viewport",
+      "ok": true,
+      "detail": {
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "name": "menu:above-backdrop",
+      "ok": true,
+      "detail": {
+        "menuZ": "63",
+        "backdropZ": "62"
+      }
+    },
+    {
+      "name": "close:click-outside-backdrop",
+      "ok": true,
+      "detail": "点菜单外后菜单未关闭"
+    },
+    {
+      "name": "close:right-click-outside",
+      "ok": true,
+      "detail": "菜单外右键后菜单未关闭"
+    },
+    {
+      "name": "close:no-reopen-loop",
+      "ok": true,
+      "detail": "菜单外右键后又打开了菜单, onContextMenu 的 preventDefault 可能失效"
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  },
+  "layers": {
+    "menuZ": "63",
+    "backdropZ": "62"
+  },
+  "closeByOutsideClick": true,
+  "closeByOutsideRightClick": true
+}

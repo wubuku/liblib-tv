@@ -1798,3 +1798,36 @@ batch124 隔离复跑直接绿(exit=0), 不是结构问题。
 
 顺带得到一条可复用的判据: `force=True` 在当前门禁集里**不构成系统性缺陷**,
 只在元素确实被视口裁切时才失败, 而那要求节点恰好落在画布边缘。
+
+## Batch 365 — 右键菜单关不掉, 且跟着鼠标跑(修法绕了五个错方向)
+
+覆盖普查(364 建)报 `CanvasContextMenu` 的 `canvas-context-backdrop` 是该组件
+**唯一**没被任何门禁引用的标记 —— 菜单的打开/尺寸/项序/快捷键都验了, 唯独
+漏掉「点外面会关掉」, 而那是它唯一的逃逸方式。
+
+现象: 菜单开在 (1123,738), 在 (300,250) 右键 → 菜单**跳到 (300,250) 重建**
+(`sameNode=False`)。右键想取消, 菜单关不掉还跟着鼠标跑。
+
+**根因是事件时序, 不是事件传播**: 一次右键依次派发 `mousedown` →
+`contextmenu`; backdrop 的 `onMouseDown` 调 onClose 后 **backdrop 当场卸载**,
+随后的 contextmenu 落到已消失的 backdrop 之后, 直接命中 `.react-flow__pane`。
+拆开派发实测: 只 contextmenu → 关闭 ✅; 完整右键 → 重开 ❌。
+
+**前四轮全改错了维度**(都以为在解决「怎么拦 contextmenu」):
+1. backdrop 加 `stopPropagation` → 无效(React 17+ 委托到 root)
+2. pane handler 加 `if (canvasContextMenu) return` → 无效(缓存闭包读旧值)
+3. document 捕获 + `stopImmediatePropagation` → **更糟**。实测对照:
+   `stopPropagation` 让 pane 收到 0 次 ✅, 加 immediate 后收到 1 次 ❌ ——
+   immediate 只停「同节点其他监听器」, React 的委托在**子节点**上照样收到
+4. 查 DOM 祖先链(发现 pane 不在 `#__next` 里, 属另一个 React 根) → 解释了现象
+   但**没导向修法**
+第五轮拆事件才测出真正差异。
+
+> **四轮都在错误的维度上用力, 每一轮都「看起来很有道理」。**
+> 教训不是「要更聪明」, 是**换个测量维度**(拆事件 vs 看传播)比在同一维度上
+> 反复微调更快。
+
+**修完立刻踩到自己引入的回归**: batch172/173 红(点菜单项后菜单没关) ——
+监听挂在 document, 连菜单项自己的 onClick 也吃掉了。加 `insideMenu(event)`
+放行菜单内事件后 6/6 回归全过。**过滤器必须双向验证**: 既不能漏放菜单项
+(破 172/173), 也不能误放菜单外(退回本缺陷)。
