@@ -21,6 +21,12 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
 const MANUAL = join(ROOT, 'docs/user-manual/jimeng-canvas');
 const BASELINE = join(HERE, 'jimeng-baseline-nodes.json');
+const LEDGER = join(HERE, 'jimeng-ephemeral-ledger.json');
+/** 本任务创建过的临时节点 id（读不到就当空集，此时 leftover 恒空 ⇒ 判负能力退化但不误报） */
+function readLedger() {
+  try { return JSON.parse(readFileSync(LEDGER, 'utf8')); }
+  catch { return { ids: [] }; }
+}
 const PORT = 9444;
 
 const results = [];
@@ -142,21 +148,44 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
         const base = JSON.parse(readFileSync(BASELINE, 'utf8'));
         const cur = await canvasBaseline(page);
         const bad = await diffNodePositions(page, base.nodes, 1.5);
-        const extra = cur.nodes.map((n) => n.id).filter((id) => !(id in base.nodes));
+        // 批次 73：区分「**我没删干净**」与「**别人新建了节点**」。
+        // 为什么必须分：共享画布上有并行 session 在不停新建节点（批次 72 观察到音频 1/2/3/4），
+        // 旧逻辑把「画布上出现基线以外的 id」一律判负 ⇒ 红灯原因**不在本任务**，
+        // 而一道会因外部改动变红的门，训练出的行为是「忽略它」（批次 66 的教训反过来用）。
+        // 现在：**本任务创建过的 id 仍在画布上 = 真失败**；其余外部 id = 如实计数并列出。
+        const led = readLedger();
+        const curIds = cur.nodes.map((n) => n.id);
+        const leftover = curIds.filter((id) => led.ids.includes(id));
+        const extReg = base._external_nodes || {};
+        const external = curIds.filter((id) => !(id in base.nodes) && !led.ids.includes(id));
+        const knownExt = external.filter((id) => id in extReg);
+        const newExt = external.filter((id) => !(id in extReg));
+        const extra = curIds.filter((id) => !(id in base.nodes));
         const missing = Object.keys(base.nodes).filter((id) => !cur.nodes.some((n) => n.id === id));
         const titleBad = cur.nodes.filter((n) => base.nodes[n.id] && n.title !== base.nodes[n.id].title)
           .map((n) => `${n.id} 标题 ${JSON.stringify(n.title)} ≠ 基线 ${JSON.stringify(base.nodes[n.id].title)}`);
-        const ok = g.safe && !bad.length && !extra.length && !missing.length && !titleBad.length
-          && cur.status === base.status && cur.credit === base.credit;
+        // 状态行里与节点数无关的描述部分（节点数会因他人新建而变，edges/selected 才是本任务的责任）
+        const descOf = (s) => String(s || '').replace(/^[\d]+ nodes?, [\d]+ edges?, [\d]+ selected\s*/, '').trim();
+        const cntOf = (s, k) => { const m = new RegExp(`[\\d]+ ${k}`).exec(String(s || '')); return m ? m[0] : '?'; };
+        const statusDescOk = descOf(cur.status) === descOf(base.status);
+        // 状态行形如 `10 nodes, 0 edges, 0 selected. Editable. …`
+        const zeroOk = /\b0 edges\b/.test(cur.status) && /\b0 selected\b/.test(cur.status);
+        // ⚠️ 判负条件里**没有** extra（= 基线以外的全部 id）：外部新建不算本任务的失败，
+        //    只有 **leftover**（本任务建过却没删）才判负。
+        const ok = g.safe && !bad.length && !missing.length && !titleBad.length && !leftover.length
+          && cur.credit === base.credit && statusDescOk && zeroOk;
         const lines = [
           `视口 ${vp.w}×${vp.h} @dpr2`,
           `焦点守卫 ${g.safe ? '✅ 可按字母键' : '⛔ 不可'} (${g.where})`,
           `状态行 ${cur.status}`,
           `积分 ${cur.credit}（基线 ${base.credit}）`,
           `节点位置偏离 ${bad.length} 个${bad.length ? '：' + bad.join(', ') : ''}`,
-          `多余节点 ${extra.length} 个${extra.length ? '：' + extra.join(', ') : ''}`,
+          `本任务遗留节点 ${leftover.length} 个${leftover.length ? '：' + leftover.join(', ') : ''}${leftover.length ? ' ⛔ 必须删干净' : ' ✅'}`,
+          `外部（他人新建）节点 ${external.length} 个：已登记 ${knownExt.length}${knownExt.length ? '（' + knownExt.join(', ') + '）' : ''}／本轮新出现 ${newExt.length}${newExt.length ? '（' + newExt.join(', ') + '）' : ''} ⚠️ 只计数，不判负`,
+          `多余节点合计 ${extra.length} 个`,
           `缺失节点 ${missing.length} 个${missing.length ? '：' + missing.join(', ') : ''}`,
           `标题不符 ${titleBad.length} 处${titleBad.length ? '：' + titleBad.join('; ') : ''}`,
+          `状态行描述部分 ${statusDescOk ? '✅ 一致' : '⛔ 不一致'}｜edges/selected ${zeroOk ? '✅ 为 0' : '⛔ 非 0'}（${cntOf(cur.status, 'edges')} / ${cntOf(cur.status, 'selected')}）`,
           `节点 canvas 坐标：`,
           ...cur.nodes.map((n) => `    ${n.id}  [${n.canvas ? n.canvas.join(', ') : '?'}]  ${JSON.stringify(n.title)}`),
         ];

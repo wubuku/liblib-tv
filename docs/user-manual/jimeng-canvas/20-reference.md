@@ -123,7 +123,8 @@
   （aria 逐字 `Create connected node before/after <节点名>`，
   testid `flow-node-target-connection-menu-button` /
   `flow-node-source-connection-menu-button`，**仅选中时出现**）；
-  ② 从手柄拖到空白松手后再点（**属哪个方向未取证**）。**Esc 可关。**
+  ② 从手柄拖到空白松手（批次 72 实测：**属 after 方向**，且菜单**在松手瞬间自动弹出**、
+  出现在**松手点**，不需要再点 +）。**Esc 可关。**
   - 🔍 **可用/禁用的 DOM 级判据**：文字颜色
     **可用 = `rgb(255, 255, 255)`**、**禁用 = `rgba(255, 255, 255, 0.2)`**。
   - ⚠️ 选中时 `.react-flow__handle` 的 `pointer-events` 是 **`none`** ——

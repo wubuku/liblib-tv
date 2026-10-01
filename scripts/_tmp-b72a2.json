@@ -1,0 +1,162 @@
+{
+ "startedAt": "2026-10-01T22:51:18.062Z",
+ "geom": {
+  "视频": {
+   "handles": [
+    {
+     "side": "left",
+     "w": 34.1,
+     "h": 68.2,
+     "canvasW": 56.8,
+     "canvasH": 113.6,
+     "pe": "none",
+     "op": "1",
+     "glyphX": "calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-left"
+    },
+    {
+     "side": "right",
+     "w": 34.1,
+     "h": 68.2,
+     "canvasW": 56.8,
+     "canvasH": 113.6,
+     "pe": "none",
+     "op": "1",
+     "glyphX": "calc(50% + 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-right"
+    }
+   ],
+   "nodeTransform": "matrix(1, 0, 0, 1, 3331.2, 1861.92)",
+   "nodeScaleVar": null
+  },
+  "文本": {
+   "handles": [
+    {
+     "side": "left",
+     "w": 34.1,
+     "h": 68.2,
+     "canvasW": 56.8,
+     "canvasH": 113.6,
+     "pe": "none",
+     "op": "0",
+     "glyphX": "calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-left"
+    },
+    {
+     "side": "right",
+     "w": 34.1,
+     "h": 68.2,
+     "canvasW": 56.8,
+     "canvasH": 113.6,
+     "pe": "none",
+     "op": "1",
+     "glyphX": "calc(50% + 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-right"
+    }
+   ],
+   "nodeTransform": "matrix(1, 0, 0, 1, 3506.21, 1888.13)",
+   "nodeScaleVar": null
+  },
+  "图片": {
+   "handles": [
+    {
+     "side": "left",
+     "w": 32.7,
+     "h": 65.4,
+     "canvasW": 54.5,
+     "canvasH": 109.1,
+     "pe": "none",
+     "op": "1",
+     "glyphX": "calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-left"
+    },
+    {
+     "side": "right",
+     "w": 32.7,
+     "h": 65.4,
+     "canvasW": 54.5,
+     "canvasH": 109.1,
+     "pe": "none",
+     "op": "1",
+     "glyphX": "calc(50% + 22px * var(--octo-canvas-node-chrome-counter-scale, 1))",
+     "glyphY": "50%",
+     "clsShort": "react-flow__handle.react-flow__handle-right"
+    }
+   ],
+   "nodeTransform": "matrix(1, 0, 0, 1, 3506.21, 1888.13)",
+   "nodeScaleVar": null
+  }
+ },
+ "entry2Menu": {
+  "aria": "添加节点",
+  "testid": "canvas-context-menu",
+  "box": "200x316@140,150",
+  "items": [
+   {
+    "name": "文本",
+    "reason": "无法连接这些节点",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   },
+   {
+    "name": "图片",
+    "reason": "无法连接这些节点",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   },
+   {
+    "name": "视频",
+    "reason": null,
+    "dis": null,
+    "cursor": "pointer",
+    "color": "rgb(255, 255, 255)"
+   },
+   {
+    "name": "音频",
+    "reason": "无法连接这些节点",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   },
+   {
+    "name": "时间线",
+    "reason": "素材信息仍在加载中，请稍后重试。",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   },
+   {
+    "name": "主体",
+    "reason": "没有可用的就绪资源",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   },
+   {
+    "name": "导演台",
+    "reason": "无法连接这些节点",
+    "dis": "true",
+    "cursor": "not-allowed",
+    "color": "rgba(255, 255, 255, 0.2)"
+   }
+  ]
+ },
+ "end": {
+  "status": "8 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 8,
+  "dev": [],
+  "extra": [
+   "node_ay7f1jn45r",
+   "node_w6b1h9fvzw"
+  ]
+ }
+}
