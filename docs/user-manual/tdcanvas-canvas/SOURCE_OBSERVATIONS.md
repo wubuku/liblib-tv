@@ -85,3 +85,24 @@ TDCanvas 仓内 `docs/content/docs/canvas/canvas-node-manual.zh-CN.mdx` 描述�
 - `page.evaluate` 桥接不稳定（返回空对象/参数不传递）→ 页侧脚本用 `locator("body").evaluate`。
 - IAB 无文件选择器 → 真实素材注入：复制到 `web/public/__rt__/`（ASCII 名，用后删）→ 页内 fetch → File → input.files → change（详见 TEST_MEDIA_ASSETS.md）。
 - dev server 启动：`nvm use 24 && cd web && npm run dev`（Vite @3000）；停机后 IndexedDB 数据保留在浏览器 profile。
+
+### 10.1 antd v6 的判据备忘（M81 实测，踩坑三次才攒出来）
+
+本应用锁的是 **antd `^6.4.2`**。**不要照抄旧版 antd 的类名**——以下是实测结论，每一条都曾造成"实测没查到"的假阴性：
+
+| 想找什么 | ❌ 常见写法（此处取不到） | ✅ 本应用实际可用 |
+|---|---|---|
+| 下拉框触发器 | `.ant-select-selector` | **`.ant-select-content`**（`title` 属性是当前值） |
+| 下拉弹层选项 | — | `.ant-select-item-option`（注意用 `ant-select-content` 点开，别用旧类名） |
+| 弹窗容器 | — | `.ant-modal` / `.ant-modal-wrap` **仍然有效** |
+| 弹窗语义 | — | antd v6 的 Modal **带 `role="dialog"` + `aria-modal="true"` + `aria-labelledby`**，实测打开「新增资产」`roleDialogCount=1` |
+| 标签页 | `.ant-tabs-tab` | **实测为 0**——配置页根本没用 antd Tabs；全页那 4 个 `role="tab"` 属**右侧 Agent 面板**（手写 `role="tab"`，非 antd） |
+
+> **因此「某处 `role="dialog"` 数量为 0 ⇒ 这里没有弹窗」这个判据在本应用有效**，手册里"画布内删除画布无确认弹窗"那条 Major 结论正是靠它立住的（见 `90-troubleshooting.md`）。
+
+### 10.2 三个反直觉的 UI 事实（实测，判据已固化）
+
+- **双字中文按钮中间有空格**：`Modal` 的默认按钮渲染为「保 存」「取 消」。写 `/保存/` 或 `getByRole(name:"保存")` **全部匹配不到**。**能用 `button.ant-btn-primary` 就别用中文文本做判据**。
+- **中央芯片只在空画布出现**：建完第一个节点即消失，第二个节点必须改走左侧 Dock「+」菜单。脚本里"找不到就跳过"会**静默造出假数据**。
+- **节点默认全部叠在画布中心**：按 `.node-element` 索引取中心点逐个点选，**每次命中的都是最上层那一个**。要测某个特定节点，两个可靠办法：① **走左侧面板的节点列表逐行点击**（列表项有独立文本与行坐标，不受遮挡影响）；② **先「清空画布」只留目标节点一个**。这个坑在 M78 与 M80 各栽了一次。
+
