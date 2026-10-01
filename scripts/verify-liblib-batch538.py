@@ -3,10 +3,11 @@
 
 Contract: source-site sampling 2026-09-27 (screenshots
 44-director-rail-25.png / 44-director-rail-26.png, CDP transcription) —
-- 全景图 flyout: 本地上传 / 历史记录 / AI 生成 (three source options);
+- 全景图 flyout: 本地上传 / 历史记录 / AI生成 (three source options;
+  batch 589 DOM 复核确认「AI生成」无空格，538 截图转录曾误记为「AI 生成」);
 - 选择画幅比例 flyout: seven cards 自适应 (default active) / 21:9 / 16:9 /
   4:3 / 1:1 / 3:4 / 9:16 with mini-glyphs, single-select.
-Flyouts are visual only: AI 生成/AI 识图 are paid AI actions and are never
+Flyouts are visual only: AI生成/AI 识图 are paid AI actions and are never
 triggered; ratio selection is a local draft state.
 """
 
@@ -81,7 +82,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     pano = page.locator("[data-director-panorama-flyout]")
     check("panorama:opens", pano.is_visible())
     pano_text = pano.inner_text()
-    for token in ["本地上传", "历史记录", "AI 生成"]:
+    # Batch 589: 逐字为「AI生成」（无空格），源站 DOM 实测 232×96 @(48,100)。
+    for token in ["本地上传", "历史记录", "AI生成"]:
         check(f"panorama:item:{token}", token in pano_text)
 
     # —— 选择画幅比例 flyout ——
@@ -147,7 +149,7 @@ def main() -> None:
     print(
         "Batch 538 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "panorama flyout (本地上传/历史记录/AI 生成), aspect-ratio grid "
+        "panorama flyout (本地上传/历史记录/AI生成), aspect-ratio grid "
         "(7 options, 自适应 default, single-select) recorded in "
         "runtime-audit.json."
     )

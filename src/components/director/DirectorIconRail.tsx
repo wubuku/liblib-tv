@@ -26,9 +26,10 @@ import { readDirectorLocalModelFiles } from "@/components/director/directorLocal
 // 添加机位为直接动作（无面板采样），其余面板未采样（SOURCE_UNCERTAIN）
 // 做视觉切换不导航（CLONE_DECISION）。
 // Batch 538: 2026-09-27 已存截图转录——全景图 flyout = 本地上传/历史记录/
-// AI 生成（44-director-rail-25）；选择画幅比例 = 自适应（默认激活）/
+// AI生成（44-director-rail-25，batch 589 DOM 复核确认无空格）；选择画幅比例 =
+// 自适应（默认激活）/
 // 21:9/16:9/4:3/1:1/3:4/9:16 七卡单选（44-director-rail-26）。
-// AI 生成/AI 识图为付费 AI 动作，clone 仅可视不触发。
+// AI生成/AI 识图为付费 AI 动作，clone 仅可视不触发。
 const railEntries = [
   { id: "scene", label: "场景", icon: Layers, kind: "panel" },
   { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "flyout" },
@@ -53,11 +54,13 @@ const characterFlyout = [
   { id: "geometry", label: "几何模型", kind: "submenu" as const },
 ];
 
-// 全景图 flyout（截图 44-director-rail-25 转录）。
+// 全景图 flyout（源站 2026-10-01 DOM 复核：232×96 @(48,100)，三项行距
+// 32px）。Batch 589 修正文案：逐字是「AI生成」——**无空格**，batch 538
+// 从截图转录时记成了「AI 生成」。
 const panoramaFlyout = [
   { id: "local-upload", label: "本地上传", icon: Upload },
   { id: "history", label: "历史记录", icon: History },
-  { id: "ai-generate", label: "AI 生成", icon: Sparkles },
+  { id: "ai-generate", label: "AI生成", icon: Sparkles },
 ] as const;
 
 // 选择画幅比例（截图 44-director-rail-26 转录）：七卡单选，自适应默认。
@@ -70,6 +73,17 @@ const aspectRatios = [
   "3:4",
   "9:16",
 ] as const;
+
+// Batch 589（源站 2026-10-01 实测）：三个 flyout 面板实测宽度**一致为
+// 232px**（@(48,100)），且每个面板顶部都有一行 12px `truncate` 的标题
+// （`添加角色` @(60,66) 48×20）。另注：rail 按钮 hover 会弹一个 Mantine
+// `Tooltip-tooltip`（@(45,118) 64×28），与面板标题是两件事。
+const FLYOUT_WIDTH = "w-[232px]";
+const FLYOUT_CARD_CLASS =
+  "rounded-xl border border-white/10 bg-[#242424] shadow-[0_16px_40px_rgba(0,0,0,0.5)]";
+// 标题行在卡片**之外**（源站 `添加角色` 标题 @(60,66)，卡片从 y=100 起），
+// 故外层定位容器同时承载标题与卡片。
+const FLYOUT_TITLE_CLASS = "block truncate px-3 pb-2 text-xs text-[#8a8a8a]";
 
 export function DirectorIconRail({
   onPanoramaSourceChange,
@@ -202,8 +216,18 @@ export function DirectorIconRail({
                 <div
                   data-director-character-flyout
                   aria-label="添加角色"
-                  className="absolute left-[calc(100%+8px)] top-0 z-40 w-[150px] rounded-xl border border-white/10 bg-[#242424] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+                  className={cn(
+                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    FLYOUT_WIDTH,
+                  )}
                 >
+                  <span
+                    data-director-flyout-title="add-character"
+                    className={FLYOUT_TITLE_CLASS}
+                  >
+                    添加角色
+                  </span>
+                  <div className={cn(FLYOUT_CARD_CLASS, "p-1.5")}>
                   {characterFlyout.map((item) => (
                     <button
                       key={item.id}
@@ -218,14 +242,25 @@ export function DirectorIconRail({
                       )}
                     </button>
                   ))}
+                  </div>
                 </div>
               )}
               {entry.id === "panorama" && openFlyout === "panorama" && (
                 <div
                   data-director-panorama-flyout
                   aria-label="全景图"
-                  className="absolute left-[calc(100%+8px)] top-0 z-40 w-[130px] rounded-xl border border-white/10 bg-[#242424] p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+                  className={cn(
+                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    FLYOUT_WIDTH,
+                  )}
                 >
+                  <span
+                    data-director-flyout-title="panorama"
+                    className={FLYOUT_TITLE_CLASS}
+                  >
+                    全景图
+                  </span>
+                  <div className={cn(FLYOUT_CARD_CLASS, "p-1.5")}>
                   {panoramaFlyout.map((item) => {
                     const ItemIcon = item.icon;
                     return (
@@ -240,14 +275,31 @@ export function DirectorIconRail({
                       </button>
                     );
                   })}
+                  </div>
                 </div>
               )}
               {entry.id === "aspect-ratio" && openFlyout === "aspect-ratio" && (
                 <div
                   data-director-aspect-flyout
                   aria-label="选择画幅比例"
-                  className="absolute left-[calc(100%+8px)] top-0 z-40 grid w-[210px] grid-cols-2 gap-1.5 rounded-xl border border-white/10 bg-[#242424] p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+                  className={cn(
+                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    FLYOUT_WIDTH,
+                  )}
                 >
+                  <span
+                    data-director-flyout-title="aspect-ratio"
+                    className={FLYOUT_TITLE_CLASS}
+                  >
+                    选择画幅比例
+                  </span>
+                  <div
+                    data-director-aspect-grid
+                    className={cn(
+                      FLYOUT_CARD_CLASS,
+                      "grid grid-cols-2 gap-1.5 p-2",
+                    )}
+                  >
                   {aspectRatios.map((ratio) => (
                     <button
                       key={ratio}
@@ -255,8 +307,10 @@ export function DirectorIconRail({
                       data-director-aspect-option={ratio}
                       aria-pressed={aspectRatio === ratio}
                       onClick={() => setAspectRatio(ratio)}
+                      // Batch 589: 源站七卡实测行距 ≈81px（y=134/215/298/379），
+                      // 面板 324px 高 ÷ 4 行；clone 原为 64px 卡 + 6px 间距。
                       className={cn(
-                        "flex h-[64px] flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
+                        "flex h-[72px] flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
                         aspectRatio === ratio
                           ? "border-[#09caf5]/60 text-[#09caf5]"
                           : "border-white/10 text-[#b5b5b5] hover:border-white/25",
@@ -272,6 +326,7 @@ export function DirectorIconRail({
                       {ratio}
                     </button>
                   ))}
+                  </div>
                 </div>
               )}
             </div>

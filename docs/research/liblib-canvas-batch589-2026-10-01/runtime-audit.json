@@ -1,0 +1,138 @@
+{
+  "batch": 589,
+  "title": "图标栏三个 flyout 统一 232px 宽 + 12px 标题行 + 「AI生成」逐字修正",
+  "evidence": "2026-10-01 live CDP DOM sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch589-2026-10-01/README.md",
+  "corrections": [
+    "全景图 第三项逐字是「AI生成」（无空格）；batch 538 从截图转录时记成了「AI 生成」——verify-liblib-batch538.py 的对应断言随之迁移"
+  ],
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "character:opens",
+        "character:width-232",
+        "character:title-present",
+        "character:title-text",
+        "character:title-12px",
+        "character:title-truncates",
+        "character:eleven-options",
+        "character:options-source-order",
+        "character:submenu-chevrons",
+        "panorama:character-closes",
+        "panorama:opens",
+        "panorama:width-232",
+        "panorama:title",
+        "panorama:option:local-upload",
+        "panorama:option:history",
+        "panorama:option:ai-generate",
+        "panorama:AI生成-no-space",
+        "panorama:no-stale-AI-space",
+        "panorama:closes-on-switch",
+        "aspect:opens",
+        "aspect:width-232",
+        "aspect:title",
+        "aspect:option:自适应",
+        "aspect:option:21:9",
+        "aspect:option:16:9",
+        "aspect:option:4:3",
+        "aspect:option:1:1",
+        "aspect:option:3:4",
+        "aspect:option:9:16",
+        "aspect:default-fit",
+        "aspect:two-columns",
+        "aspect:row-pitch-74-82",
+        "aspect:card-fits-324",
+        "aspect:title-above-card",
+        "aspect:single-open",
+        "diagnostics:zero"
+      ],
+      "character_width": 232,
+      "character_options": [
+        {
+          "id": "local-upload",
+          "label": "本地上传",
+          "chevron": false
+        },
+        {
+          "id": "standard-male",
+          "label": "标准男性",
+          "chevron": false
+        },
+        {
+          "id": "standard-female",
+          "label": "标准女性",
+          "chevron": false
+        },
+        {
+          "id": "muscular",
+          "label": "健硕",
+          "chevron": false
+        },
+        {
+          "id": "slim",
+          "label": "纤细",
+          "chevron": false
+        },
+        {
+          "id": "teen",
+          "label": "少年",
+          "chevron": false
+        },
+        {
+          "id": "child",
+          "label": "儿童",
+          "chevron": false
+        },
+        {
+          "id": "broad",
+          "label": "宽厚",
+          "chevron": false
+        },
+        {
+          "id": "chibi",
+          "label": "二头身",
+          "chevron": false
+        },
+        {
+          "id": "crowd-3x3",
+          "label": "群众 (3x3)",
+          "chevron": true
+        },
+        {
+          "id": "geometry",
+          "label": "几何模型",
+          "chevron": true
+        }
+      ],
+      "panorama_width": 232,
+      "panorama_text": "全景图\n本地上传\n历史记录\nAI生成",
+      "aspect_width": 232,
+      "aspect_row_ys": [
+        273,
+        273,
+        351,
+        351,
+        429,
+        429,
+        507
+      ],
+      "aspect_row_pitches": [
+        78,
+        78,
+        78
+      ],
+      "aspect_card_height": 324,
+      "aspect_title_box": {
+        "x": 46.5,
+        "y": 240,
+        "width": 232,
+        "height": 24
+      },
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}
