@@ -192,3 +192,52 @@ console:error: Export JimengSharePanel doesn't exist in target module
 指定批号。与 frameos runner 同风格(同 discover、同 retry、同汇总口径)。
 
 **这是工具批, 不改产品代码** —— 唯一产出是回归成本的下降。
+
+## 意外收获: 这批让 batch352 的一个注释变成了共识
+
+建 runner 时发现 `verify-frameos-batch352.py` 的 `find_node()` 里有这么一段:
+
+> 踩过的坑: 全量套件 `run-frameos-verifiers.sh` 的运行环境里 **node 不在 PATH**
+> (它只用 pyenv 的 python, 不导出 nvm 的 node 路径), 于是本验证器在套件里
+> 直接 `FileNotFoundError: 'node'` 崩掉 —— 单独手跑能过、进门禁就挂。
+> **门禁必须在最贫瘠的环境里也能跑**
+
+而我在 batch361 压测里撞到的是**同一类问题的另一半**: 10 个 liblib 门禁会
+subprocess 调 node, 裸 bash 里 node 不在 PATH。batch352 是「单个门禁自己兜底」,
+batch361 是「runner 统一兜底」—— 现在 liblib 线有了和 frameos 线对等的保护。
+
+## 另一个意外收获: 「死状态」不能删, 因为它被当成阳性对照
+
+原计划 batch362 清理 `uiStore` 的 5 个零读取面板开关 + `toggleUserMenu`(全部确认
+无人调用)。**动手前查了门禁引用, 结果动不了:**
+
+`verify-frameos-batch352.py` 有一条**反向断言**:
+
+```python
+EXPECTED_DEAD = ("src/store/uiStore.ts", "UIState",
+                 ["isToolboxPanelOpen", "isMaterialPanelOpen",
+                  "isCharacterPanelOpen", "isHistoryPanelOpen"])
+...
+missed = [f for f in expected_dead if f not in r["dead"]]
+check("still-detects-real-dead-state", not missed, ...)
+```
+
+它拿这 4 个字段当**普查工具的阳性对照** —— 证明工具仍能报出真死状态,
+不是靠「啥都不报」蒙混过关(与本线「过滤器必须双向验证」同源)。
+
+**删掉它们 = batch352 变红, 且会毁掉一个必要的自证能力。** 计划当场作废。
+> 「死代码就该删」是对的直觉, 但要先问: **有没有人拿它当探针的标尺?**
+> 看起来没用的东西, 可能是唯一那个「已知有病」的对照样本。
+> 这也再次说明为何**动手前先查门禁引用**。
+
+顺带确认了两件事(都属于「差点归错因」):
+- `isUserMenuOpen` 看似死, 实则被 `page.tsx` 用 `useUIStore.getState()` 整个快照
+  传给 `resolveLibTVBlockingForegroundSurface` —— 字段真实存在且被读。
+  中间我一度认定「`LibTVForegroundSurfaceSnapshot` 没人构造, 该分支永假」,
+  只因 grep 不到构造点就下了结论, 查调用方才发现整个 store 就是那个快照。
+- `CameraConfigDialog` / `CameraMovementDialog`(554 行)无人渲染, 且其 spec 说由
+  `ImageEditPanel` 的「摄像机」按钮触发 —— 但**那个按钮根本不存在**,
+  全项目「摄像机」字样都在 `director/*`(跨线地盘), 且导演台已有实装的
+  `DirectorCameraMotionTab.tsx`(14KB) 覆盖同一功能。
+  **不删**: 跨线代码只记录不动手, 何况它可能是导演台在途工作的素材。
+

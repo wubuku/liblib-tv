@@ -1658,3 +1658,25 @@ batch601 时已踩过一次并已写进文档, 结果换个场景又踩一次。
 > 说明「记住教训」不等于「下次不会犯」, 只能在**测量的那一步**挡住。
 > 之后取退出码一律用 `cmd > file 2>&1; echo $?`, 不用管道。
 
+
+**建 runner 时发现 batch352 的注释已成共识**: `verify-frameos-batch352.py` 的
+`find_node()` 里早记着「全量套件里 node 不在 PATH, 单独手跑能过、进门禁就挂」。
+batch361 撞到的是同一问题的另一半(10 个 liblib 门禁 subprocess 调 node) ——
+batch352 是单门禁自己兜底, batch361 是 runner 统一兜底, 现在两条线对等了。
+
+**Batch 362 侦察后当场作废: 死状态不能删。** 原计划清理 `uiStore` 5 个零读取面板
+开关 + `toggleUserMenu`(全部确认无人调用), 但**动手前查门禁引用发现**:
+batch352 有一条反向断言 `still-detects-real-dead-state`, 拿
+`isToolboxPanelOpen/isMaterialPanelOpen/isCharacterPanelOpen/isHistoryPanelOpen`
+当**普查工具的阳性对照** —— 证明工具仍能报出真死状态, 不是靠啥都不报蒙混。
+删掉 = batch352 变红 + 毁掉一个必要的自证能力。
+> 「死代码就该删」是对的直觉, 但要先问: **有没有人拿它当探针的标尺?**
+> 看起来没用的东西, 可能是唯一那个「已知有病」的对照样本。
+
+**顺带两个差点归错因**: ① `isUserMenuOpen` 看似死, 实则 `page.tsx` 用
+`useUIStore.getState()` 整个快照传给 `resolveLibTVBlockingForegroundSurface`,
+字段真实被读 —— 我一度因 grep 不到构造点就判「该分支永假」, 查调用方才发现
+整个 store 就是那个快照; ② `CameraConfigDialog`/`CameraMovementDialog`(554 行)
+无人渲染, spec 说由 `ImageEditPanel`「摄像机」按钮触发, 但**该按钮不存在**,
+全项目「摄像机」都在 `director/*`(跨线), 且导演台已有实装的
+`DirectorCameraMotionTab.tsx`(14KB)覆盖同一功能 —— **不删**, 跨线只记录。
