@@ -48,6 +48,11 @@ import {
 } from "@/components/director/directorPose";
 import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
 import { useDirectorGestureBoundary } from "@/components/director/useDirectorGestureBoundary";
+import {
+  attachDirectorCameraPreviewCanvas,
+  DIRECTOR_CAMERA_PREVIEW_HEIGHT,
+  DIRECTOR_CAMERA_PREVIEW_WIDTH,
+} from "@/components/director/directorCameraPreview";
 import type {
   DirectorCanvasMediaInputV1,
   DirectorPanoramaRuntimeState,
@@ -1443,6 +1448,110 @@ function CharacterPoseInspector({
   );
 }
 
+/**
+ * Batch 611（源站 2026-10-01 实测 probe66，裁图二次确认）：属性面板顶部是
+ * 一块 sticky 预览缩略图。几何逐字照抄：
+ *   section  `sticky top-0 z-20 border-b border-white/8
+ *             bg-[rgba(33,33,33,0.98)] px-4 py-4
+ *             shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-md`  280×168
+ *     div    `relative overflow-hidden rounded-xl border`  240×135
+ *            （源站底色 rgba(8,8,16,0.95)）
+ *     canvas 240×135 —— **真 3D 渲染**，不是示意图
+ *     div    `pointer-events-none absolute left-3 top-3 text-[13px]
+ *              leading-none text-white/55` → `FOV 50°`
+ *     button `hover:bg-white/16 absolute bottom-3 right-3 flex size-6
+ *              items-center justify-center rounded-lg bg-white/10
+ *              text-white/85` 24×24 + 14px 对角双箭头
+ *
+ * 渲染由 `CameraPreviewRenderer`（在视口那个 WebGL 上下文里）把 scene 按
+ * 本机位离屏渲好后回读进来，这里只负责挂载 2D canvas 与两个角标。
+ */
+function CameraPreviewSection({
+  objectId,
+  fov,
+}: {
+  objectId: string;
+  fov: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const viewMode = useDirectorStore((state) => state.viewMode);
+  const setViewMode = useDirectorStore((state) => state.setViewMode);
+  const selectShot = useDirectorStore((state) => state.selectShot);
+  const shot = useDirectorStore((state) =>
+    state.shots.find((candidate) => candidate.cameraId === objectId),
+  );
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = DIRECTOR_CAMERA_PREVIEW_WIDTH;
+    canvas.height = DIRECTOR_CAMERA_PREVIEW_HEIGHT;
+    attachDirectorCameraPreviewCanvas(canvas);
+    // 只摘自己那块；组件卸载时 canvasRef 已无意义，直接置空即可——
+    // 同一时刻面板里只可能有一块预览 canvas。
+    return () => attachDirectorCameraPreviewCanvas(null);
+  }, []);
+
+  // 源站这枚 24×24 钮的图标是对角双箭头（放大 / 进入），可访问名在
+  // 控件全集差集里读作「切换到机位视角」；但它的**点击行为没有取证**
+  // （点源站控件会写真实工程）。这里取「切到该机位的机位视角」——复用既有
+  // 已验证的 selectShot + setViewMode，不新增 store 动作。记为 INFERENCE。
+  const alreadyFraming = viewMode === "camera" && activeCameraId === objectId;
+
+  return (
+    <section
+      data-director-camera-preview
+      className="sticky top-0 z-20 -mx-4 -mt-3 border-b border-white/8 bg-[rgba(33,33,33,0.98)] px-4 py-4 shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-md"
+    >
+      {/* 源站盒实测 240×135（16:9），canvas 也是 240×135 且从 +1 开始——
+          源站是 border 压在 canvas 上、由 overflow-hidden 裁掉的。照抄：
+          盒 240×135，canvas absolute inset-0 铺满，section 高
+          16+135+16+1 = 168 与源站一致。 */}
+      <div className="relative h-[135px] w-[240px] overflow-hidden rounded-xl border border-white/10 bg-[rgba(8,8,16,0.95)]">
+        <canvas
+          ref={canvasRef}
+          data-director-camera-preview-canvas
+          aria-label="机位取景预览"
+          /* absolute 的 left/top 以 padding box 为准，即边框内侧 +1——
+             与源站 canvas 起点 [1657,122] 相对盒 [1656,121] 的 +1 一致。 */
+          className="absolute left-0 top-0 block h-[135px] w-[240px]"
+        />
+        <div
+          data-director-camera-preview-fov
+          className="pointer-events-none absolute left-3 top-3 text-[13px] leading-none text-white/55"
+        >
+          FOV {fov}°
+        </div>
+        <button
+          type="button"
+          data-director-camera-preview-expand
+          aria-label="切换到机位视角"
+          title="切换到机位视角"
+          onClick={() => {
+            if (shot) selectShot(shot.id);
+            setViewMode("camera");
+          }}
+          className="absolute bottom-3 right-3 flex size-6 items-center justify-center rounded-lg bg-white/10 text-white/85 transition-colors hover:bg-white/16 hover:text-white"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               aria-hidden="true" focusable="false" className="shrink-0">
+            <path d="M7 17 17 7" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" />
+            <path d="M17 8.5V7h-1.5" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M7 15.5V17h1.5" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <span className="sr-only" data-director-camera-preview-state>
+          {alreadyFraming ? "framing" : "idle"}
+        </span>
+      </div>
+    </section>
+  );
+}
+
 function CameraFovField({
   objectId,
   fov,
@@ -2219,6 +2328,12 @@ export function DirectorInspector({
             ) : null}
             {/* Batch 610：FOV 控件已从面板顶部移到这里（源站实测 FOV 段
                 y=798，在「注视坐标」之后、「相机截图」之前）。 */}
+            {selected.camera ? (
+              <CameraPreviewSection
+                objectId={selected.id}
+                fov={selected.camera.fov}
+              />
+            ) : null}
             <label className="block">
               {/* Batch 609（源站 probe67 实测）：名称标签同样是 h-7 / 13px /
                   text-white/45，输入框 `h-7 w-full rounded-lg border-0

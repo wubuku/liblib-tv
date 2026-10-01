@@ -115,6 +115,11 @@ import {
 } from "@/components/director/directorModelLibrary";
 import { readDirectorLocalModelFiles } from "@/components/director/directorLocalModelImport";
 import {
+  composeDirectorCameraPreviewCamera,
+  hasDirectorCameraPreviewCanvas,
+  renderDirectorCameraPreview,
+} from "@/components/director/directorCameraPreview";
+import {
   DirectorVideoExportError,
   recordDirectorCanvasVideo,
   type DirectorVideoExportRequest,
@@ -1895,6 +1900,82 @@ function DirectorScene({
   );
 }
 
+/**
+ * Batch 611：把当前 scene 按「属性面板选中的那台机位」离屏渲进
+ * WebGLRenderTarget，再回读进面板里的 2D canvas。复用同一个 WebGL
+ * 上下文，不新增 context，主画布与导出路径不受影响。
+ *
+ * readRenderTargetPixels 是同步回读（会 stall 管线），所以只在**签名变化**
+ * 时才渲：签名含机位变换/FOV、场景里所有对象与分组的变换、以及播放头时间。
+ * 播放时播放头每帧变，于是退化成每帧一次小尺寸（240×135）回读；静止时
+ * 完全不触发。
+ */
+function CameraPreviewRenderer() {
+  const gl = useThree((state) => state.gl);
+  const scene = useThree((state) => state.scene);
+  const selectedObjectId = useDirectorStore((state) => state.selectedObjectIds[0] ?? null);
+  const previewCamera = useMemo(() => new PerspectiveCamera(), []);
+  const lastSignature = useRef<string | null>(null);
+  const frame = useRef(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    const tick = () => {
+      if (cancelled) return;
+      frame.current = window.requestAnimationFrame(tick);
+      if (!hasDirectorCameraPreviewCanvas()) return;
+      const state = useDirectorStore.getState();
+      const selected = state.objects.find(
+        (object) => object.id === selectedObjectId && object.camera,
+      );
+      if (!selected?.camera) {
+        lastSignature.current = null;
+        return;
+      }
+      const signature = [
+        selected.id,
+        selected.transform.position.join(","),
+        selected.transform.rotation.join(","),
+        selected.camera.fov,
+        selected.camera.target.join(","),
+        selected.camera.lookAtMode,
+        selected.camera.followTargetId ?? "",
+        state.timeline.currentTime,
+        state.timeline.isPlaying ? "1" : "0",
+        state.objects
+          .map((object) =>
+            [
+              object.id,
+              object.visible === false ? "h" : "v",
+              object.transform.position.join(","),
+              object.transform.rotation.join(","),
+            ].join(":"),
+          )
+          .join("|"),
+      ].join("#");
+      if (signature === lastSignature.current) return;
+      lastSignature.current = signature;
+      composeDirectorCameraPreviewCamera(previewCamera, {
+        position: selected.transform.position,
+        fov: selected.camera.fov,
+        target: selected.camera.target,
+        useRotation:
+          selected.camera.lookAtMode === "rotation" &&
+          !selected.camera.followTargetId,
+        rotation: selected.transform.rotation,
+      });
+      renderDirectorCameraPreview(gl, scene, previewCamera);
+    };
+    frame.current = window.requestAnimationFrame(tick);
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame.current);
+    };
+  }, [gl, previewCamera, scene, selectedObjectId]);
+
+  return null;
+}
+
 function CaptureController({
   request,
   frameRect,
@@ -2864,6 +2945,7 @@ export function DirectorViewport({
             onCompleted={onVideoExportCompleted}
             onFailed={onVideoExportFailed}
           />
+          <CameraPreviewRenderer />
         </Canvas>
       </div>
 

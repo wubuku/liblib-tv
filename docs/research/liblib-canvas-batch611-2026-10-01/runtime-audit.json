@@ -1,0 +1,432 @@
+{
+  "batch": 611,
+  "title": "Sticky camera preview thumbnail in the 属性 panel (real offscreen render)",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "probe66 subtree dump of the source inspector",
+    "crop of the source 2x screenshot proving the 240x135 canvas holds a real 3D render (grid floor, horizon, character at a table)"
+  ],
+  "claims": {
+    "sourceFact": [
+      "section 280x168 sticky top-0 z-20 border-b border-white/8 bg-[rgba(33,33,33,0.98)] px-4 py-4 shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-md",
+      "preview box 240x135 at x=1656, rounded-xl, overflow-hidden, 1px border, bg rgba(8,8,16,0.95)",
+      "canvas 240x135 starting 1px inside the box (the border sits on top of it and is clipped)",
+      "FOV badge: absolute left-3 top-3, 13px/13px, text-white/55, text 'FOV n°', pointer-events-none",
+      "expand button: 24x24 absolute bottom-3 right-3, rounded-lg, bg-white/10, text-white/85, 14x14 two-arrow icon, accessible name 切换到机位视角",
+      "the canvas holds a real 3D render of the scene from that camera"
+    ],
+    "cloneDecision": [
+      "rendered through a WebGLRenderTarget inside the viewport's existing context — a 2D mock would have been a control that looks usable and lies",
+      "the clone already runs two WebGL contexts (scene + gizmo); the preview adds none",
+      "read-back is gated on a signature (camera placement, look-at mode, follow target, playhead time, every object's transform and visibility) because readRenderTargetPixels stalls the pipeline"
+    ],
+    "inference": [
+      "the expand button frames the selected camera (selectShot + setViewMode); the source's click behaviour was never measured"
+    ],
+    "notClaimed": [
+      "pixel-identity with the source's preview",
+      "the 相机截图 grid below it — the source's grid measured 0 tall (no captures in that project), so the item shape is unmeasurable"
+    ]
+  },
+  "checks": {
+    "absent:without-camera": {
+      "ok": true,
+      "detail": "character"
+    },
+    "baseline_webgl_contexts": 2,
+    "webgl:baseline-recorded": {
+      "ok": true,
+      "detail": 2
+    },
+    "initial": {
+      "section": {
+        "box": [
+          1640,
+          193,
+          280,
+          168
+        ],
+        "position": "sticky",
+        "zIndex": "20",
+        "bg": "rgba(33, 33, 33, 0.98)",
+        "borderBottom": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "pad": "16px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.18) 0px 8px 18px 0px",
+        "backdrop": "blur(12px)"
+      },
+      "box": {
+        "box": [
+          1656,
+          209,
+          240,
+          135
+        ],
+        "radius": "12px",
+        "overflow": "hidden",
+        "border": "1px",
+        "bg": "rgba(8, 8, 16, 0.95)"
+      },
+      "canvas": {
+        "box": [
+          1657,
+          210,
+          240,
+          135
+        ],
+        "w": 240,
+        "h": 135
+      },
+      "fov": {
+        "box": [
+          1669,
+          222,
+          51.7,
+          13
+        ],
+        "text": "FOV 43°",
+        "pos": "absolute",
+        "font": "13px/13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.55)",
+        "pointerEvents": "none"
+      },
+      "expand": {
+        "box": [
+          1859,
+          307,
+          24,
+          24
+        ],
+        "pos": "absolute",
+        "radius": "8px",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "aria": "切换到机位视角",
+        "svg": [
+          1864,
+          312,
+          14,
+          14
+        ],
+        "cursor": "default"
+      },
+      "paint": {
+        "w": 240,
+        "h": 135,
+        "min": 7,
+        "max": 223,
+        "mean": 64,
+        "brightFraction": 0.4397,
+        "grid": [
+          "007007007007007081144144",
+          "007007007022036113144143",
+          "014018022078075119143143",
+          "049049049069070095142143",
+          "043043045043043049122142",
+          "042041041040040039048101"
+        ]
+      },
+      "webglCanvases": 2,
+      "mainCanvas": {
+        "box": [
+          266,
+          88,
+          1366,
+          880
+        ],
+        "pixels": 1202080
+      },
+      "viewMode": "director",
+      "activeCameraId": "director-camera-main",
+      "fovValue": 43,
+      "selectedKind": "camera",
+      "selectedId": "director-camera-main",
+      "position": [
+        4.8,
+        2.65,
+        6.9
+      ]
+    },
+    "section:280x168": {
+      "ok": true,
+      "detail": [
+        1640,
+        193,
+        280,
+        168
+      ]
+    },
+    "section:sticky": {
+      "ok": true,
+      "detail": "sticky"
+    },
+    "section:z-20": {
+      "ok": true,
+      "detail": "20"
+    },
+    "section:fill-212121-98": {
+      "ok": true,
+      "detail": "rgba(33, 33, 33, 0.98)"
+    },
+    "section:border-b-1px-white-8": {
+      "ok": true,
+      "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "section:pad-16": {
+      "ok": true,
+      "detail": "16px"
+    },
+    "section:backdrop-blur": {
+      "ok": true,
+      "detail": "blur(12px)"
+    },
+    "section:has-shadow": {
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rg"
+    },
+    "box:240x135": {
+      "ok": true,
+      "detail": [
+        1656,
+        209,
+        240,
+        135
+      ]
+    },
+    "box:x-1656": {
+      "ok": true,
+      "detail": [
+        1656,
+        209,
+        240,
+        135
+      ]
+    },
+    "box:radius-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "box:overflow-hidden": {
+      "ok": true,
+      "detail": "hidden"
+    },
+    "box:1px-border": {
+      "ok": true,
+      "detail": "1px"
+    },
+    "box:fill-080810": {
+      "ok": true,
+      "detail": "rgba(8, 8, 16, 0.95)"
+    },
+    "canvas:240x135-backing-store": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1657,
+          210,
+          240,
+          135
+        ],
+        "w": 240,
+        "h": 135
+      }
+    },
+    "canvas:sits-inside-the-border": {
+      "ok": true,
+      "detail": [
+        1657,
+        210,
+        240,
+        135
+      ]
+    },
+    "paint:has-contrast": {
+      "ok": true,
+      "detail": {
+        "min": 7,
+        "max": 223
+      }
+    },
+    "paint:not-near-black": {
+      "ok": true,
+      "detail": 64
+    },
+    "paint:not-near-white": {
+      "ok": true,
+      "detail": 64
+    },
+    "paint:mixed-content": {
+      "ok": true,
+      "detail": 0.4397
+    },
+    "paint:many-distinct-regions": {
+      "ok": true,
+      "detail": 6
+    },
+    "fov-badge:absolute": {
+      "ok": true,
+      "detail": "absolute"
+    },
+    "fov-badge:left-3-top-3": {
+      "ok": true,
+      "detail": {
+        "badge": [
+          1669,
+          222,
+          51.7,
+          13
+        ],
+        "expected": [
+          1669,
+          222
+        ]
+      }
+    },
+    "fov-badge:13px/13px": {
+      "ok": true,
+      "detail": "13px/13px"
+    },
+    "fov-badge:white-55": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.55)"
+    },
+    "fov-badge:untargetable": {
+      "ok": true,
+      "detail": "none"
+    },
+    "fov-badge:text-follows-store": {
+      "ok": true,
+      "detail": "FOV 43° vs 43"
+    },
+    "expand:24x24": {
+      "ok": true,
+      "detail": [
+        1859,
+        307,
+        24,
+        24
+      ]
+    },
+    "expand:absolute": {
+      "ok": true,
+      "detail": "absolute"
+    },
+    "expand:right-3-bottom-3": {
+      "ok": true,
+      "detail": {
+        "btn": [
+          1859,
+          307,
+          24,
+          24
+        ],
+        "expected": [
+          1859,
+          307
+        ]
+      }
+    },
+    "expand:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "expand:fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "expand:icon-white-85": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)"
+    },
+    "expand:icon-14": {
+      "ok": true,
+      "detail": [
+        1864,
+        312,
+        14,
+        14
+      ]
+    },
+    "expand:accessible-name": {
+      "ok": true,
+      "detail": "切换到机位视角"
+    },
+    "webgl:preview-adds-no-context": {
+      "ok": true,
+      "detail": {
+        "baseline": 2,
+        "now": 2
+      }
+    },
+    "main-canvas:alive": {
+      "ok": true,
+      "detail": {
+        "box": [
+          266,
+          88,
+          1366,
+          880
+        ],
+        "pixels": 1202080
+      }
+    },
+    "live:repaints-when-camera-moves": {
+      "ok": true,
+      "detail": {
+        "before": [
+          "007007007007007081144144",
+          "007007007022036113144143"
+        ],
+        "after": [
+          "007007007007007007007047",
+          "012007007007014015011081"
+        ]
+      }
+    },
+    "live:fov-badge-follows": {
+      "ok": true,
+      "detail": "FOV 43° -> FOV 70°"
+    },
+    "expand:starts-in-director-view": {
+      "ok": true,
+      "detail": ""
+    },
+    "expand:switches-to-camera-view": {
+      "ok": true,
+      "detail": "camera"
+    },
+    "expand:activates-this-camera": {
+      "ok": true,
+      "detail": "director-camera-main vs director-camera-main"
+    },
+    "expand:reversible": {
+      "ok": true,
+      "detail": ""
+    },
+    "absent:deselected": {
+      "ok": true,
+      "detail": ""
+    },
+    "webgl:contexts-back-to-baseline": {
+      "ok": true,
+      "detail": 2
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 1,
+      "filtered": 1,
+      "pageErrors": 0,
+      "pageErrorsFiltered": 0
+    },
+    "_summary": {
+      "checks": 49,
+      "failures": []
+    }
+  }
+}

@@ -719,7 +719,16 @@ export function DirectorTimeline({
         // ——时间轴上有若干绝对定位的下拉/浮层（轨道右键菜单、曲线编辑器等）
         // 依赖不被裁切；改 hidden 要连带把这些浮层 portal 出去，超出本批范围。
         // 记录在案，不假装一致。
-        "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px]",
+        //
+        // Batch 611 修：这一层需要压过属性面板列（`z-30`）。原因是本 section
+        // 带 `backdrop-blur-xl` —— **backdrop-filter 会创建层叠上下文**，于是
+        // 导出面板的 `z-50` 被关在这个上下文里、再也够不到外面的列；而本
+        // section 自身 `z-index: auto`，输给了列的 z-30。症状是导出面板向上
+        // 弹出后，其「比例」三枚按钮被属性面板的字段行盖住点不动
+        // （batch 40 的 `9:16` 点击超时即此）。
+        // 布局上时间轴与属性面板列并不重叠（各自占一格），所以抬到 z-40
+        // 不改变版面，只让面板/菜单类浮层能盖住右列。
+        "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px]",
         // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
         timelineCollapsed
           ? "h-[88px]"
