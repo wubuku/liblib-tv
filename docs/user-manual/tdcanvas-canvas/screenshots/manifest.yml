@@ -647,3 +647,27 @@ screenshots:
     visible_text: '暂无资产'
     alt: 侧边面板的资产标签页，顶部是资产搜索框与添加按钮，下方因没有任何资产而显示暂无资产的空态插图
     sha256: be01e035c7a22793c7e9489d32b31534949ff536de2f91d34655b7c02fa3eb12
+
+  - file: screenshots/09-generate-images-audio-panel.png
+    task_id: generate-images
+    step: 选中空音频节点，节点下方展开「音频创作 / 文本生成音频」面板，底部显示模型 Doubao seed audio 1.0、格式 wav 与约 ¥0.004/秒
+    route: '/canvas/:id'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 音频创作 / 副标题 文本生成音频 / 模式 音频生成 / 输入 图片 1 张或音频最多 3 个（互斥） / 参数 使用模型默认参数 / 底部 Doubao seed audi… · wav · 约 ¥ 0.004/秒 / 节点工具条 信息 删除 编辑 上传音频'
+    visible_text: '约 ¥ 0.004/秒'
+    alt: 音频节点及其下方的音频创作面板，面板写明音频生成模式、输入限制与描述框，底部是模型下拉、wav 格式与每秒约四厘的价格
+    sha256: 56b20e61792c227f75abec52c1cdbac4b73976da7adfeeadf94a842e1180bc48
+
+  - file: screenshots/09-generate-images-video-panel.png
+    task_id: generate-images
+    step: 选中空视频节点，节点下方展开「文本生视频」面板，底部显示模型 Seedance 2.0 Standard、时长 5秒 与约 ¥2.48–5.37
+    route: '/canvas/:id'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 文本生视频 / 首帧图片 支持本地图片 或 图片 URL / 描述镜头、动作、节奏和声音 / 底部 Seedance 2.0 Standard · 5秒 · 约 ¥2.48–5.37 / 节点工具条 信息 删除 编辑 上传视频'
+    visible_text: '约 ¥2.48–5.37'
+    alt: 视频节点及其下方的文本生视频面板，面板含首帧图片输入、描述框，底部是 Seedance 模型下拉、五秒时长与二点四八到五点三七元的价格区间
+    sha256: 5e78ee964e7c599662c9a4346b078e4c5188e21209bd35b2e980910497cdc881
