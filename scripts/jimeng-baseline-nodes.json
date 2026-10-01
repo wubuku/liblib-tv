@@ -1,0 +1,51 @@
+{
+  "_note": "即梦共享画布 64b58cd5 上他人 6 个节点的基线。canvas 坐标与视口平移无关，位置核对必须用它。2026-10-01 批次 48 事故修复后逐项核对写入。",
+  "_recorded_at": "2026-10-01",
+  "status": "6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "credit": "805",
+  "zoom": "Zoom options, 60%",
+  "nodes": {
+    "node_236ctpehgg": {
+      "canvas": [
+        355.56,
+        200
+      ],
+      "title": "视频 1"
+    },
+    "node_3bfb9r79qe": {
+      "canvas": [
+        480.06,
+        240
+      ],
+      "title": "文本 1"
+    },
+    "node_cdwf8x6fbj": {
+      "canvas": [
+        40.06,
+        362.5
+      ],
+      "title": "时间线 1"
+    },
+    "node_aw29cp094x": {
+      "canvas": [
+        520.05,
+        278.75
+      ],
+      "title": "文本 2"
+    },
+    "node_5gftn3dnt1": {
+      "canvas": [
+        560.05,
+        319.38
+      ],
+      "title": "文本 3"
+    },
+    "node_pxvkay973v": {
+      "canvas": [
+        640.05,
+        440.65
+      ],
+      "title": "导演台"
+    }
+  }
+}
