@@ -442,6 +442,55 @@ def regex_engine_check(root):
     return bad
 
 
+# ── 方向九：风险类别覆盖度表的自洽性 ──────────────────────────────────
+# **为什么需要**：Batch 161 的观察是——**九道闸各自都写了自己的「不检查什么」，
+# 但从来没有一张表把它们合起来看**。后果是**连着好几个批次都有人以为
+# 某类问题有人管**：侧栏漏了 20 批、内链无人守、`fails += 1` 漏了两次、
+# 11 处 skip 静默通过。共同形态是**「以为有人管，其实从头到尾没人管」**。
+#
+# **本方向只判结构，不判内容质量**：
+#   ① A/B/C 三类标题都必须存在，且每类的行**两列都非空**（不许留空占位）；
+#   ② **A 类的行数必须等于闸门清单的行数**——多一道闸没被认领，或
+#      认领了不存在的闸，都说明表与现实脱节；
+#   ③ B/C 每一行必须**写明依据**（含批次号或闸名的非空说明），
+#      否则那又是一个「看起来有人管」的空格。
+#
+# **不判的**：某类风险「该不该建闸」——那是人的判断，写进表里的理由列即可。
+def coverage_table_check(root):
+    """返回 (缺失标题, 空单元格, A类行数与闸门数的不一致, 缺依据的行)。"""
+    path = os.path.join(root, "AUDIT-RULES.md")
+    text = open(path, encoding="utf-8").read()
+    m = re.search(r"###\s*风险类别覆盖度[^\n]*\n(.*?)(?=\n###\s)", text, re.S)
+    if not m:
+        return ["风险类别覆盖度"], [], None, []
+    body = m.group(1)
+    classes, empties, no_reason = {}, [], []
+    cur = None
+    for line in body.split("\n"):
+        if re.match(r"^\*\*[ABC]\s*类", line.strip()):
+            cur = line.strip().strip("*").split("类")[0].strip()
+            classes[cur] = []
+            continue
+        if not line.startswith("|") or re.match(r"\|\s*:?-", line):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 2 or cells[0] in ("风险类别", "闸"):
+            continue
+        if cur is None:
+            continue
+        classes[cur].append(cells)
+        if not cells[0] or not cells[-1]:
+            empties.append((cur, cells[0] or "(空)"))
+        # B/C 每一行都要有依据：说明列里应含批次号或闸名
+        if cur.startswith(("B", "C")) and not re.search(r"(Batch\s*\d+|闸\s*\d|脚本头|声明|实测)", cells[-1]):
+            no_reason.append((cur, cells[0]))
+    declared, rows, _listed, _invoked = gate_inventory(root)
+    n_a = len(classes.get("A", []))
+    mismatch = None if n_a == rows else ("A 类 %d 行 vs 闸门清单 %d 行" % (n_a, rows))
+    missing = [k for k in ("A", "B", "C") if not any(x.startswith(k) for x in classes)]
+    return missing, empties, mismatch, no_reason
+
+
 # ── 方向八：闸门不得在「无法核对」时返回 0 ────────────────────────────
 # **不变式**：闸门打印了 `[skip]`，退出码就**不能是 0**。
 #
@@ -844,12 +893,27 @@ def main():
         print("  ✓ 无法核对 ≠ 通过：所有 [skip] 路径的退出码都不是 0"
               "（约定 0 一致 / 1 不一致 / 2 未能核对）")
 
+    # ── 方向九：风险类别覆盖度表的自洽性 ──
+    print("-" * 62)
+    miss, empties, mismatch, no_reason = coverage_table_check(root)
+    for k in miss:
+        fail(f"覆盖度表缺少 {k} 类——三类（有闸 / 有意不覆盖 / 无人覆盖）缺一不可")
+    for cls, who in empties:
+        fail(f"覆盖度表 {cls} 类「{who}」有空格——**空格看起来像有人管，其实没有**")
+    if mismatch:
+        fail(f"覆盖度表与闸门清单脱节：{mismatch}")
+    for cls, who in no_reason:
+        fail(f"覆盖度表 {cls} 类「{who}」没写依据（需含批次号或闸名）")
+    if not (miss or empties or mismatch or no_reason):
+        print("  ✓ 覆盖度表自洽：A/B/C 三类齐全、每格都有依据，"
+              "A 类认领数与闸门清单一致")
+
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九亦全部通过")
     return 0
 
 

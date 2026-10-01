@@ -431,6 +431,18 @@ run_file_case "23) skip 路径退回 return 0（必须报）" \
 run_file_pass_case "24) 普通 return 0（必须不报）" \
   "scripts/verify-shortcuts.py" "$HERE/selftest-meta-fix-24-plain-return-zero-ok.py"
 
+# ── 方向九（Batch 161 新增）：风险类别覆盖度表的自洽性 ──
+#
+# **用例 26 是本方向的核心**：它保证**表不会悄悄落后于现实**。
+# 项目里已栽过两次同型（Batch 147「加了闸忘了改清单表」、153/154「补了索引忘查侧栏」），
+# 有了这一条，下次新增闸而忘更新 A 类会被当场抓住。
+run_file_case "25) 覆盖度表某格依据留空（必须报）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-25-coverage-empty-cell.py" \
+  "有空格"
+run_file_case "26) A 类行数比闸门清单多 1（必须报）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-26-coverage-drift.py" \
+  "与闸门清单脱节"
+
 echo "=== 基线：真实仓库应当通过 ==="
 restore
 if python3 "$GATE" >/dev/null 2>&1; then
