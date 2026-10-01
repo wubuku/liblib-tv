@@ -47,7 +47,7 @@
 - 拖动片段改变时间位置（可跨轨）；拖边缘裁剪时长与源内起点；
 - 放置时有**碰撞检测**：重叠会被拒绝或提示，可列出冲突项；
 - **吸附**：拖动时按距离吸附到附近片段边缘，同一毫秒的多个吸附点会全部参与候选；
-- 撤销/重做的**键位**与画布一致（Ctrl/Cmd+Z / Shift+Z / Y），但**深度不同**：时间线有界 **200 层**（`lib/timeline/editor-history.ts` 的 `HISTORY_LIMIT`），画布只有 **50 层**（见 [undo-history-versions.md](undo-history-versions.md)）。**别把 200 当成通用值**——导演台工作台同样是 50 层。
+- 撤销/重做的**键位**与画布一致（Ctrl/Cmd+Z / Ctrl/Cmd+Shift+Z / Ctrl/Cmd+Y），但**深度不同**：时间线有界 **200 层**（`lib/timeline/editor-history.ts` 的 `HISTORY_LIMIT`），画布只有 **50 层**（见 [undo-history-versions.md](undo-history-versions.md)）。**别把 200 当成通用值**——导演台工作台同样是 50 层。
 
 ## 预览与播放
 

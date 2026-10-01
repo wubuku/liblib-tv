@@ -20,7 +20,29 @@ Ctrl/Cmd（或 ⌘）的，一律报出。
 
 找不到 BeefTV 源码时静默跳过——手册构建不应依赖同级仓库存在。
 
-退出码：0 通过（或跳过）；1 存在前缀缺失/多余。
+## Batch 166：本闸曾经「什么都没扫却判通过」
+
+原实现用 `glob.glob("**/*.md", recursive=True)`——**相对当前工作目录**。
+于是从任何别的目录运行，扫到的就是**那个目录下的 .md**，与本手册毫无关系。实测两种结局：
+
+1. 在一个**干净空目录**里运行 → 扫到 **0 个文件**、0 个问题，输出
+   「快捷键前缀核对通过：上游 14 个必须带 Ctrl/Cmd 的键……手册写法均已带前缀」，
+   **退出码 0**——**什么都没查，却判了通过**；
+2. 在 `/tmp` 里运行 → glob 命中一个已消失的临时目录，`open()` 抛
+   `FileNotFoundError` 直接崩栈，退出码 1——而 1 在三段约定里是「不一致」，
+   **信号也是错的**。
+
+**这正是 Batch 157「工具失败被当成零命中」的原样重演**，也是纪律 101
+「换一个判据就要重新问一遍它会不会静悄悄地什么都查不到」的第一次应验——
+**问晚了：纪律立了三个 batch，本闸却一直没被拿去对照。**
+
+修法三条：
+1. 手册根目录由 `__file__` 自定位，**不再依赖 cwd**；
+2. 逐个文件读，读不到就跳过（不再崩栈）；
+3. **扫到的文件数低于下限即 `return 2`**——「一个文件都没读到」必须报成
+   「未能核对」，绝不能变成「零处问题 → 通过」。
+
+退出码：0 通过；1 存在前缀缺失/多余；2 未能核对（源码缺失 / 手册文件读不到足够多）。
 """
 
 import os
@@ -32,6 +54,11 @@ CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
     "/Users/yangjiefeng/Documents/glanderness/BeefTV",
 ]
+
+# 扫到的正文文件数下限。**低于它就报「未能核对」，不许报「通过」**——
+# 「0 处问题」与「没查」必须返回不同的码（Batch 157 / 纪律 101）。
+# 真实值 41（41 个 md），取 20 留足余量，又足以抓住「cwd 指错」这类整片扫空。
+MIN_SCANNED_FILES = 20
 
 # 只在已发布正文里查；内部账本允许出现裸写法（它们是给自己看的）
 INTERNAL = re.compile(
@@ -107,18 +134,32 @@ def iter_exprs(body):
 
 
 def scan(page, body, accel):
-    """返回该页里「指向必须带 Ctrl/Cmd 的键、却没写 Ctrl/Cmd」的表达式。"""
+    """返回该页里「指向必须带 Ctrl/Cmd 的键、却没写 Ctrl/Cmd」的表达式。
+
+    ⚠️ Batch 166：抑制规则从「整行豁免」收窄为「相邻豁免」。
+    原来的规则是「同一行里只要出现过 Ctrl/Cmd，本行所有表达式一律合规」——
+    那是**抑制过宽**，与匹配过窄一样有害：`Ctrl/Cmd+Z / Shift+Z / Y` 里，
+    前半段的 `Ctrl/Cmd` 会把后半段**真正漏了前缀**的 `Shift+Z` 一起免掉，
+    而上游 `use-canvas-keyboard.ts:157` 明写 `isModifierShortcut && key === "z"`，
+    **裸按 Shift+Z 什么都不会发生**。
+    现在只认「紧挨着上一个表达式的那段分隔文本里带 Ctrl/Cmd」，
+    即 `Ctrl/Cmd+Z / Ctrl/Cmd+Shift+Z` 这种连写仍合规。
+    """
     bad = []
+    last_end = -1
     for pos, expr, key in iter_exprs(body):
         if key.lower() not in accel:
+            last_end = max(last_end, pos + len(expr))
             continue
         if HAS_CTRL.search(expr):
+            last_end = pos + len(expr)
             continue
-        line_start = body.rfind("\n", 0, pos) + 1
-        line = body[line_start: body.find("\n", pos) if body.find("\n", pos) > 0 else len(body)]
-        # 同一行里若已出现 Ctrl/Cmd（本行同时写了多个快捷键），视为合规
-        if HAS_CTRL.search(line):
+        # 只看「上一个表达式结束」到「本表达式开始」之间的分隔文本
+        gap = body[last_end:pos] if last_end >= 0 else ""
+        if HAS_CTRL.search(gap):
+            last_end = pos + len(expr)
             continue
+        last_end = pos + len(expr)
         bad.append((expr.strip(" `"), key, page))
     return bad
 
@@ -140,12 +181,29 @@ def main():
 
     import glob
     problems = []
-    for p in sorted(glob.glob("**/*.md", recursive=True)):
+    scanned, unreadable = 0, 0
+    # 手册根目录由脚本自身位置推导，**不依赖 cwd**——
+    # Batch 166 实测：从空目录运行时本闸曾以「0 文件 → 0 问题」判定通过。
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for p in sorted(glob.glob(os.path.join(root, "**", "*.md"), recursive=True)):
         if "node_modules" in p or ".vitepress" in p or INTERNAL.search(os.path.basename(p)):
             continue
-        body = open(p, encoding="utf-8", errors="ignore").read()
-        for expr, key, page in scan(p, body, accel):
+        try:
+            body = open(p, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            unreadable += 1
+            continue
+        scanned += 1
+        rel = os.path.relpath(p, root)
+        for expr, key, page in scan(rel, body, accel):
             problems.append(f"{page}: 「{expr}」→ {key.upper()} 需带 Ctrl/Cmd")
+
+    # 「读到的文件太少」是**未能核对**，不是「没问题」。
+    # 下限取手册实际文件数的保守值：真实值 41，即便砍掉一半也远高于 MIN_SCANNED_FILES。
+    if scanned < MIN_SCANNED_FILES:
+        print(f"[skip] 只读到 {scanned} 个正文文件（下限 {MIN_SCANNED_FILES}，另有 {unreadable} 个读不到），"
+              f"输入范围明显不对——本闸本轮未能核对")
+        return 2
 
     if problems:
         print(f"快捷键前缀核对：上游有 {len(accel)} 个键必须带 Ctrl/Cmd，"
