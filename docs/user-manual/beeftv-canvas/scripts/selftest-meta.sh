@@ -50,7 +50,7 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py)
+SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -323,6 +323,76 @@ else
     echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]（退出码 $rc6）"; PASS=$((PASS+1))
   else
     echo "  ✗ 16) 报错了但不是「判据执行异常」；实际："; printf '%s' "$out6" | tail -5 | sed 's/^/      /'
+    FAIL=$((FAIL+1))
+  fi
+  restore
+fi
+
+# ── 方向六（Batch 158 新增）：内链完整性 ──
+#
+# **必须成对**：能抓（17/18/19）+ 不误伤（20）。
+# **20 最要紧**——它反过来把「首页豁免」去掉，证明孤儿检测对真实页面确实在工作。
+# 若去掉豁免后闸门**不报**，那说明孤儿检测形同虚设，19 那条也只是在测一个空壳。
+run_file_case "17) 正文链接指向不存在的文件（必须报）" \
+  "00-quickstart.md" "$HERE/selftest-meta-fix-17-broken-link.py" \
+  "链接指向不存在的文件"
+run_file_case "18) 正文链接带 #fragment（必须报）" \
+  "00-quickstart.md" "$HERE/selftest-meta-fix-18-link-fragment.py" \
+  "链接带 #fragment"
+
+# 用例 19 需要**两处同时改**：任务索引不在侧栏，入链只有两条，
+# 删一处它仍被另一处链着。写成一段自定义流程而不是 run_file_case。
+echo "  → 用例 19: 摘掉任务索引的全部入链（两处），期望报出孤儿页"
+restore
+ok19=1
+for pair in "README.md:$HERE/selftest-meta-fix-19a-orphan-index-link.py" \
+            "30-concepts.md:$HERE/selftest-meta-fix-19b-orphan-index-link2.py"; do
+  tgt="${pair%%:*}"; fix="${pair##*:}"
+  if [ ! -f "$tgt" ]; then echo "  · 前提不成立：$tgt 不存在"; ok19=0; break; fi
+  if ! python3 "$fix" < "$tgt" > "$tgt.injected" 2>/dev/null; then
+    echo "  · 前提不成立：$tgt 的注入脚本未命中锚点"; ok19=0; break
+  fi
+  if cmp -s "$tgt" "$tgt.injected"; then
+    echo "  · 前提不成立：$tgt 的注入脚本空转"; ok19=0; break
+  fi
+  mv "$tgt.injected" "$tgt"
+done
+if [ "$ok19" -eq 1 ]; then
+  out19="$(python3 "$GATE" 2>&1)"; rc19=$?
+  if [ "$rc19" -eq 0 ]; then
+    echo "  ✗ 19) 索引已无入链却报通过——孤儿检测没在工作"; FAIL=$((FAIL+1))
+  elif printf '%s' "$out19" | grep -qF "10-tasks/README.md 没有任何入链"; then
+    echo "  ✓ 19) 正确报出 [10-tasks/README.md 没有任何入链]（退出码 $rc19）"; PASS=$((PASS+1))
+  else
+    echo "  ✗ 19) 报错了但不是孤儿页；实际："; printf '%s' "$out19" | grep '✗' | head -3 | sed 's/^/      /'
+    FAIL=$((FAIL+1))
+  fi
+fi
+restore
+
+# 用例 20：去掉首页豁免，期望闸门**立刻**报出根 README.md 是孤儿页。
+# 注入的是**闸门脚本自己**（scripts/verify-meta.py），故它必须在 SNAP_FILES 里。
+echo "  → 用例 20: 去掉首页豁免，期望立刻报出根 README.md 是孤儿页"
+restore
+G7=scripts/verify-meta.py
+if [ ! -f "$G7" ]; then
+  echo "  · 前提不成立：$G7 不存在；作废该用例"; VOID=$((VOID+1))
+elif ! python3 "$HERE/selftest-meta-fix-20-drop-home-exemption.py" < "$G7" > "$G7.injected" 2>/dev/null; then
+  echo "  · 前提不成立：注入脚本未命中锚点；作废该用例"; VOID=$((VOID+1))
+elif cmp -s "$G7" "$G7.injected"; then
+  echo "  · 前提不成立：注入脚本空转；作废该用例"; VOID=$((VOID+1))
+else
+  mv "$G7.injected" "$G7"
+  out20="$(python3 "$GATE" 2>&1)"; rc20=$?
+  if [ "$rc20" -eq 0 ]; then
+    echo "  ✗ 20) 去掉首页豁免后仍报通过——孤儿检测对真实页面不工作，19 只是空壳"
+    FAIL=$((FAIL+1))
+  elif printf '%s' "$out20" | grep -qF "README.md 没有任何入链"; then
+    echo "  ✓ 20) 去掉豁免后正确报出 [README.md 没有任何入链]（退出码 $rc20）——"
+    echo "      证明孤儿检测有效，且豁免是真正承重的"
+    PASS=$((PASS+1))
+  else
+    echo "  ✗ 20) 报错了但不是首页孤儿；实际："; printf '%s' "$out20" | grep '✗' | head -3 | sed 's/^/      /'
     FAIL=$((FAIL+1))
   fi
   restore

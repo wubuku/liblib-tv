@@ -436,6 +436,87 @@ def regex_engine_check(root):
     return bad
 
 
+# ── 方向六：内链完整性（源文件层） ──────────────────────────────────────
+# **为什么需要这个方向**，以及**它和第一道内联闸不重复在哪**：
+# 第一道闸在 `build-site.sh` 里逐个解析 **dist 产物里的 href**，管的是
+# 「发布后是不是 404」，最常见的成因是指向 `srcExclude` 文件。
+# 本方向在**源文件**上管三件第一道闸管不到的事：
+#   ① 手册自订的约定「正文内链只能是手册页面间的相对 .md 链接、
+#      不带 #fragment」——**这条约定此前没有任何闸在守**，
+#      而 `.vitepress/config.mjs` 里 `ignoreDeadLinks: true`，
+#      连构建都不会拦；
+#   ② **孤儿页**（既没人链它、也不在侧栏）——死链检测查的是「边」，
+#      一个没有任何入边的页面在它眼里根本不存在；
+#   ③ 在**构建之前**就响，定位到的是源文件行号而不是 dist 里的转义后 href。
+#
+# **两种语法都必须认**（这是本方向最容易写错的地方）：
+# 手册里图片**混用** markdown `![]()` 与 HTML `<img src>`，
+# 第一版只认 markdown，于是把 14 张**确实在用**的图判成「未被引用」。
+# **只判一种语法 = 稳定误报**，而误报会让人开始忽略闸门输出。
+# （与 Batch 150 判「文案逐字对账闸不可建」用的是同一条理由。）
+def link_integrity_check(root):
+    """返回 (断链, 约定违反, 孤儿页, 统计字典)。"""
+    skip = {"AUDIT.md", "AUDIT-RULES.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md",
+            "PUBLISH.md", "FINAL-REPORT.md", "task-inventory.yml"}
+    md_link = re.compile(r"\]\(([^)\s]+)\)")
+    html_img = re.compile(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
+
+    pages, inbound, dead, viol = [], set(), [], []
+    n_links = n_imgs = n_ext = 0
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames
+                       if d not in (".vitepress", "node_modules", ".git", "screenshots", "dist")]
+        for fn in filenames:
+            if not fn.endswith(".md") or fn in skip:
+                continue
+            full = os.path.join(dirpath, fn)
+            rel = os.path.relpath(full, root)
+            pages.append(rel)
+            text = open(full, encoding="utf-8").read()
+            targets = []
+            for t in md_link.findall(text):
+                if t.startswith(("http://", "https://", "mailto:")):
+                    n_ext += 1
+                    continue
+                targets.append((t, "md"))
+            for t in html_img.findall(text):
+                if t.startswith(("http://", "https://", "data:")):
+                    continue
+                targets.append((t, "img"))
+            for t, kind in targets:
+                if kind == "md":
+                    n_links += 1
+                else:
+                    n_imgs += 1
+                if "#" in t:
+                    viol.append((rel, t, "链接带 #fragment（手册约定不用页内锚点）"))
+                if t.startswith("/"):
+                    viol.append((rel, t, "绝对路径内链（手册约定用相对路径）"))
+                if "://" in t or t.startswith("mailto:"):
+                    continue
+                resolved = os.path.normpath(os.path.join(dirpath, t.split("#", 1)[0]))
+                if os.path.isfile(resolved):
+                    inbound.add(os.path.relpath(resolved, root))
+                elif kind == "md":
+                    dead.append((rel, t))
+                else:
+                    dead.append((rel, t + "（<img>）"))
+
+    # 孤儿页：既无人链它，也不在侧栏；站点首页（根 README.md）按约定豁免。
+    cfg_path = os.path.join(root, ".vitepress", "config.mjs")
+    in_sidebar = set()
+    if os.path.isfile(cfg_path):
+        cfg = open(cfg_path, encoding="utf-8").read()
+        for t in re.findall(r"link:\s*['\"]([^'\"]+)['\"]", cfg):
+            t = t.lstrip("/")
+            in_sidebar.add(t if t.endswith(".md") else t + ".md")
+    home = "README.md"
+    orphans = [p for p in sorted(pages) if p not in inbound and p not in in_sidebar and p != home]
+
+    stats = {"pages": len(pages), "links": n_links, "imgs": n_imgs, "external": n_ext}
+    return dead, viol, orphans, stats
+
+
 # ── 方向一：登记表 ─────────────────────────────────────────────────
 # (文件名, 计数器, 该文件里用来写这个数的正则)
 # 正则**必须容忍 markdown 粗体**——Batch 139 的 `\b` 跨不过 `)` 是同源坑，
@@ -632,12 +713,29 @@ def main():
               f"（\\s \\d \\w \\b / [^\\n] / 重复数>255 / 惰性量词 / \\xNN）"
               f"——这类写法会让 git 整条拒绝模式或静默匹配 0 行，断言随之恒真")
 
+    # ── 方向六：内链完整性 ──
+    print("-" * 62)
+    dead, viol, orphans, lst = link_integrity_check(root)
+    for rel, tgt in dead:
+        print(f"  ✗ {rel} 的链接指向不存在的文件：{tgt}")
+        fails += 1
+    for rel, tgt, why in viol:
+        print(f"  ✗ {rel}：{why} —— {tgt}")
+        fails += 1
+    for p in orphans:
+        print(f"  ✗ {p} 没有任何入链、也不在侧栏（站点首页除外）——读者在站点里发现不了它")
+        fails += 1
+    if not dead and not viol and not orphans:
+        print(f"  ✓ 内链完整：{lst['pages']} 个内容页、{lst['links']} 条 .md 相对链接 + "
+              f"{lst['imgs']} 张 <img> 全部可达；无 #fragment、无绝对路径、无孤儿页"
+              f"（外链 {lst['external']} 条）")
+
     if fails:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {fails - count_fails} 处属方向三/四/四之二/五")
+              f"（{count_fails} 条不一致）；另有 {fails - count_fails} 处属方向三/四/四之二/五/六")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五亦全部通过")
+          f"且方向三/四/四之二/五/六亦全部通过")
     return 0
 
 
