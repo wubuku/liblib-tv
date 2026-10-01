@@ -14,6 +14,7 @@ import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
 import { JimengHistoryMenu } from "@/components/jimeng/JimengHistoryMenu";
 import { JimengMoreMenu } from "@/components/jimeng/JimengMoreMenu";
 import { JimengNodeSummaryPopover } from "@/components/jimeng/JimengNodeSummaryPopover";
+import { JimengProjectInfoModal } from "@/components/jimeng/JimengProjectInfoModal";
 import { JimengProjectPanel } from "@/components/jimeng/JimengProjectPanel";
 import { JimengSearchOverlay } from "@/components/jimeng/JimengSearchOverlay";
 import { JimengSharePanel } from "@/components/jimeng/JimengSharePanel";
@@ -84,6 +85,9 @@ export function JimengTopBar() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
   const [nodeSummaryOpen, setNodeSummaryOpen] = useState(false);
+  const [projectInfoOpen, setProjectInfoOpen] = useState(false);
+  // Batch 799: 复制项目需要 pushToast / 剪贴板
+  const pushToast = useJimengStore((s) => s.pushToast);
   // 单击项目名 = 行内重命名 (SOURCE_FACT batch 29)
   const [editingName, setEditingName] = useState(false);
 
@@ -92,6 +96,19 @@ export function JimengTopBar() {
     setMoreOpen(false);
     setProjectOpen(false);
     setNodeSummaryOpen(false);
+    setProjectInfoOpen(false);
+  };
+
+  // Batch 799 SOURCE_FACT: 「复制项目」把画布链接写入剪贴板并弹顶部 toast
+  // 「复制画布中…」(127×44 @[776,24] 顶部居中，13px，
+  // scripts/jimeng_probe797_copytoast.py)。复刻复用既有全局 toast
+  // (JimengTaskToast)，文案逐字沿用源站。
+  const copyProject = () => {
+    pushToast("复制画布中…");
+    const url = CANVAS_URL.split("?")[0];
+    void navigator.clipboard?.writeText(url).catch(() => {
+      /* 剪贴板不可用时静默降级，源站在无头环境亦未能验证终态 */
+    });
   };
 
   return (
@@ -251,13 +268,20 @@ export function JimengTopBar() {
             closeAll();
             setShareOpen((v) => !v);
           }}
-          // 源站实测 60×28 (padding 0 10px 0 8px + 16px 图标)。源站标签字号比
-          // 按钮继承的 16px 小，按我们的字体度量算出来会到 70px，故直接钉死
-          // 60px 宽以对齐源站几何 (CLONE_DECISION)。
-          className="flex h-7 w-[60px] shrink-0 items-center justify-center gap-1 rounded-md py-0 pl-2 pr-2.5 text-[16px] leading-6 font-medium text-[#FAFAFA] hover:bg-white/10"
+          // Batch 798 SOURCE_FACT 复测（源站 @1680×826 逐层量得）：
+          //   按钮   60×28  padding 0 10px 0 8px  gap 4px
+          //   svg    16×16 @[1395,22]
+          //   标签   span 24×20 @[1415,20]  **12px / line-height 20px / w500**
+          //   关键   按钮 `white-space: nowrap`
+          // 此前缺 nowrap：CJK 可在任意两字之间断行，标签被挤到 42px 内容盒里
+          // 就叠成「分/享」两行（截图可见）。源站同样 44px 内容 > 42px 内容盒，
+          // 靠 nowrap 保持单行——所以这不是"宽度算错"，是**缺 nowrap**。
+          // 注释里"按我们的字体度量会到 70px"是旧账（那时标签还是 16px），
+          // 实际 8+16+4+24+10 = 62。
+          className="flex h-7 w-[60px] shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-md py-0 pl-2 pr-2.5 text-[16px] leading-6 font-medium text-[#FAFAFA] hover:bg-white/10"
         >
-          <Share2 size={16} />
-          <span className="text-[12px] leading-6">分享</span>
+          <Share2 size={16} className="shrink-0" />
+          <span className="shrink-0 text-[12px] leading-5">分享</span>
         </button>
         </div>
         {shareOpen ? (
@@ -281,7 +305,11 @@ export function JimengTopBar() {
             <MoreHorizontal size={16} />
           </button>
           {moreOpen ? (
-            <JimengMoreMenu onClose={() => setMoreOpen(false)} />
+            <JimengMoreMenu
+              onClose={() => setMoreOpen(false)}
+              onOpenProjectInfo={() => setProjectInfoOpen(true)}
+              onCopyProject={copyProject}
+            />
           ) : null}
         </div>
 
@@ -329,6 +357,9 @@ export function JimengTopBar() {
         ) : null}
       </div>
       </header>
+      {projectInfoOpen ? (
+        <JimengProjectInfoModal onClose={() => setProjectInfoOpen(false)} />
+      ) : null}
       {memberOpen ? <JimengMemberModal onClose={() => setMemberOpen(false)} /> : null}
       {shortcutsOpen ? (
         <JimengShortcutsPanel onClose={() => setShortcutsOpen(false)} />
