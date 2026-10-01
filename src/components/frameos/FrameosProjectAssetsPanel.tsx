@@ -113,6 +113,17 @@ export function FrameosProjectAssetsPanel() {
         <input
           placeholder="搜索资产名称..."
           data-frameos-assets-search
+          // Batch 355: 此前这是个**启用着、无 value 绑定、无 onChange** 的裸
+          // input —— 收下输入然后什么都不做(实测: 输入「角色」面板文本一字不变,
+          // 零 console 错误, 即不是报错而是纯惰性)。与 Batch 350 的裁剪宽高
+          // 同族: 看起来能用, 实际静默丢弃。
+          //
+          // 面板内容是硬编码空态「暂无已生成的资产图」—— 克隆侧**没有资产数据**,
+          // 而「把节点设为资产图」的源站点击效果未采样(Batch 226), 所以这里
+          // **不发明**资产分类学(角色/物品/环境该归哪一类没有依据)。
+          // 没有东西可搜时, 唯一诚实的做法是**别假装它能用**。
+          disabled
+          title="暂无资产可搜索"
           style={{
             width: "100%",
             height: 32,
@@ -123,6 +134,9 @@ export function FrameosProjectAssetsPanel() {
             fontSize: 13,
             padding: "0 10px",
             outline: "none",
+            // 禁用态做视觉区分, 免得看起来像坏了
+            opacity: 0.45,
+            cursor: "not-allowed",
           }}
         />
       </div>

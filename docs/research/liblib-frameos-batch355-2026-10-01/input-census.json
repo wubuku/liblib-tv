@@ -1,0 +1,89 @@
+{
+  "default": {
+    "all": [],
+    "silently_discarding": []
+  },
+  "assets_panel": {
+    "all": [
+      {
+        "tag": "input",
+        "disabled": false,
+        "readOnly": false,
+        "placeholder": "搜索资产名称...",
+        "aria": "",
+        "data": [
+          "data-frameos-assets-search"
+        ],
+        "hasOnChange": false,
+        "hasValue": false,
+        "isControlled": false,
+        "domValue": ""
+      }
+    ],
+    "silently_discarding": [
+      {
+        "tag": "input",
+        "disabled": false,
+        "readOnly": false,
+        "placeholder": "搜索资产名称...",
+        "aria": "",
+        "data": [
+          "data-frameos-assets-search"
+        ],
+        "hasOnChange": false,
+        "hasValue": false,
+        "isControlled": false,
+        "domValue": ""
+      }
+    ]
+  },
+  "crop": {
+    "all": [
+      {
+        "tag": "input",
+        "disabled": false,
+        "readOnly": false,
+        "placeholder": "",
+        "aria": "裁剪宽度",
+        "data": [],
+        "hasOnChange": true,
+        "hasValue": true,
+        "isControlled": true,
+        "domValue": "300"
+      },
+      {
+        "tag": "input",
+        "disabled": false,
+        "readOnly": false,
+        "placeholder": "",
+        "aria": "裁剪高度",
+        "data": [],
+        "hasOnChange": true,
+        "hasValue": true,
+        "isControlled": true,
+        "domValue": "169"
+      }
+    ],
+    "silently_discarding": []
+  },
+  "generative_panel": {
+    "all": [
+      {
+        "tag": "textarea",
+        "disabled": false,
+        "readOnly": false,
+        "placeholder": "描述你想要的图像，@引用素材",
+        "aria": "",
+        "data": [
+          "data-frameos-prompt-input"
+        ],
+        "hasOnChange": true,
+        "hasValue": true,
+        "isControlled": true,
+        "domValue": ""
+      }
+    ],
+    "silently_discarding": []
+  },
+  "errors": []
+}

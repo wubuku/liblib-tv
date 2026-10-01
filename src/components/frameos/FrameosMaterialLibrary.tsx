@@ -267,15 +267,17 @@ export function FrameosMaterialLibrary() {
                   <button
                     type="button"
                     aria-label="收藏筛选"
+                    disabled
+                    title="筛选未接入（源站交互未采样）"
                     style={{
                       height: 28,
                       padding: "0 12px",
                       borderRadius: 6,
                       border: "none",
-                      background: "rgba(255,255,255,0.06)",
-                      color: "#A3A3A3",
+                      background: "rgba(255,255,255,0.04)",
+                      color: "rgba(163,163,163,0.55)",
                       fontSize: 12,
-                      cursor: "pointer",
+                      cursor: "default",
                     }}
                   >
                     收藏
@@ -283,15 +285,17 @@ export function FrameosMaterialLibrary() {
                   <button
                     type="button"
                     aria-label="创建者筛选"
+                    disabled
+                    title="筛选未接入（源站交互未采样）"
                     style={{
                       height: 28,
                       padding: "0 12px",
                       borderRadius: 6,
                       border: "none",
-                      background: "rgba(255,255,255,0.06)",
-                      color: "#A3A3A3",
+                      background: "rgba(255,255,255,0.04)",
+                      color: "rgba(163,163,163,0.55)",
                       fontSize: 12,
-                      cursor: "pointer",
+                      cursor: "default",
                     }}
                   >
                     创建者
@@ -299,15 +303,17 @@ export function FrameosMaterialLibrary() {
                   <button
                     type="button"
                     aria-label="创建时间排序"
+                    disabled
+                    title="筛选未接入（源站交互未采样）"
                     style={{
                       height: 28,
                       padding: "0 12px",
                       borderRadius: 6,
                       border: "none",
-                      background: "rgba(255,255,255,0.06)",
-                      color: "#A3A3A3",
+                      background: "rgba(255,255,255,0.04)",
+                      color: "rgba(163,163,163,0.55)",
                       fontSize: 12,
-                      cursor: "pointer",
+                      cursor: "default",
                     }}
                   >
                     创建时间
@@ -323,30 +329,39 @@ export function FrameosMaterialLibrary() {
                 >
                   <button
                     type="button"
+                    // Batch 356: 无任何 onClick —— 看起来可点、点了毫无反应。
+                    // 源站该交互未采样, 不发明行为; 改为惰性外观(几何与文案不动)。
+                    disabled
+                    title="批量操作未接入（源站交互未采样）"
                     style={{
                       height: 30,
                       padding: "0 12px",
                       borderRadius: 6,
-                      border: "1px solid rgba(255,255,255,0.14)",
+                      border: "1px solid rgba(255,255,255,0.08)",
                       background: "transparent",
-                      color: "#E0E0E0",
+                      color: "rgba(224,224,224,0.5)",
                       fontSize: 12,
-                      cursor: "pointer",
+                      cursor: "default",
                     }}
                   >
                     批量操作
                   </button>
                   <button
                     type="button"
+                    // Batch 356: 无任何 onClick, 却是这一行里最像「主行动」的蓝色按钮 ——
+                    // 点了毫无反应, 比灰按钮更误导。源站上传语义未采样, 不发明,
+                    // 改为明显惰性的外观(尺寸/圆角/位置不动, 只降饱和 + 去 pointer)。
+                    disabled
+                    title="本地上传未接入（源站交互未采样）"
                     style={{
                       height: 30,
                       padding: "0 12px",
                       borderRadius: 6,
                       border: "none",
-                      background: "rgba(59,130,246,0.25)",
-                      color: "#60A5FA",
+                      background: "rgba(59,130,246,0.10)",
+                      color: "rgba(96,165,250,0.5)",
                       fontSize: 12,
-                      cursor: "pointer",
+                      cursor: "default",
                     }}
                   >
                     + 本地上传

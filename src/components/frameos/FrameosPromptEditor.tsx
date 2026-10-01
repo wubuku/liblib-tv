@@ -183,21 +183,26 @@ export function FrameosPromptEditor() {
             </span>
             <span>100</span>
           </div>
+          {/* Batch 356: 本按钮**无任何 onClick**, 却是面板里最像「主行动」的实心蓝按钮,
+              点了毫无反应。**付费生成(¥100)按源站纪律绝不触发**, 源站该交互也未采样 ——
+              所以不发明行为, 改为明显惰性的外观(几何不动, 只降饱和 + 去 pointer)。
+              (注释必须放在开始标签**外面**: 属性区里写 // 会让整页编译失败。) */}
           <button
             type="button"
             aria-label="生成音频"
-            title="生成"
+            disabled
+            title="生成未接入（付费动作，源站交互未采样）"
             style={{
               width: 32,
               height: 32,
               borderRadius: 16,
-              background: "#3B82F6",
+              background: "rgba(59,130,246,0.28)",
               border: "none",
-              color: "#FFFFFF",
+              color: "rgba(255,255,255,0.55)",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              cursor: "pointer",
+              cursor: "default",
               fontWeight: 600,
               fontSize: 14,
               boxShadow: "0 4px 12px rgba(59,130,246,0.5)",
@@ -326,21 +331,26 @@ export function FrameosPromptEditor() {
             </span>
             <span>300</span>
           </div>
+          {/* Batch 356: 本按钮**无任何 onClick**, 却是面板里最像「主行动」的实心蓝按钮,
+              点了毫无反应。**付费生成(¥300)按源站纪律绝不触发**, 源站该交互也未采样 ——
+              所以不发明行为, 改为明显惰性的外观(几何不动, 只降饱和 + 去 pointer)。
+              (注释必须放在开始标签**外面**: 属性区里写 // 会让整页编译失败。) */}
           <button
             type="button"
             aria-label="生成视频"
-            title="生成"
+            disabled
+            title="生成未接入（付费动作，源站交互未采样）"
             style={{
               width: 32,
               height: 32,
               borderRadius: 16,
-              background: "#3B82F6",
+              background: "rgba(59,130,246,0.28)",
               border: "none",
-              color: "#FFFFFF",
+              color: "rgba(255,255,255,0.55)",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              cursor: "pointer",
+              cursor: "default",
               fontWeight: 600,
               fontSize: 14,
               boxShadow: "0 4px 12px rgba(59,130,246,0.5)",

@@ -1,0 +1,167 @@
+{
+  "batch": 356,
+  "defect": "7 个按钮没有任何 onClick 却呈现为完全可点(含两个实心蓝「生成」主按钮与素材库蓝色「+ 本地上传」), 点了毫无反应",
+  "fix": "按仓库既有「惰性控件」约定改为 disabled + title 说明 + 降饱和; 几何/尺寸/圆角/文案不动; 付费动作不接线",
+  "census_false_positive": "静态普查曾把 FrameosGroupToolbar 的排列菜单项误报为无 handler —— 它的 onClick 落在正则窗口之外。普查结果必须逐个人工核实。",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "no-fake-clickable:default",
+      "scan:not-empty:material_library",
+      "no-fake-clickable:material_library",
+      "scan:not-empty:audio_panel",
+      "no-fake-clickable:audio_panel",
+      "scan:not-empty:video_panel",
+      "no-fake-clickable:video_panel",
+      "scan:buttons-found",
+      "target:present:收藏筛选",
+      "target:disabled:收藏筛选",
+      "target:explains:收藏筛选",
+      "target:present:创建者筛选",
+      "target:disabled:创建者筛选",
+      "target:explains:创建者筛选",
+      "target:present:创建时间排序",
+      "target:disabled:创建时间排序",
+      "target:explains:创建时间排序",
+      "target:present:批量操作",
+      "target:disabled:批量操作",
+      "target:explains:批量操作",
+      "target:present:本地上传",
+      "target:disabled:本地上传",
+      "target:explains:本地上传",
+      "target:present:生成音频",
+      "target:disabled:生成音频",
+      "target:explains:生成音频",
+      "target:present:生成视频",
+      "target:disabled:生成视频",
+      "target:explains:生成视频",
+      "paid:never-wired:生成音频",
+      "paid:never-wired:生成视频",
+      "geometry:kept:生成音频",
+      "geometry:kept:生成视频",
+      "diagnostics:zero"
+    ],
+    "census": {
+      "default": {
+        "total": 29,
+        "liars": []
+      },
+      "material_library": {
+        "total": 46,
+        "liars": []
+      },
+      "audio_panel": {
+        "total": 32,
+        "liars": []
+      },
+      "video_panel": {
+        "total": 34,
+        "liars": []
+      }
+    },
+    "targets": {
+      "素材库|收藏筛选": {
+        "dialog": "素材库",
+        "tag": "button",
+        "aria": "收藏筛选",
+        "text": "收藏",
+        "title": "筛选未接入（源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 48,
+        "h": 28,
+        "data": []
+      },
+      "素材库|创建者筛选": {
+        "dialog": "素材库",
+        "tag": "button",
+        "aria": "创建者筛选",
+        "text": "创建者",
+        "title": "筛选未接入（源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 60,
+        "h": 28,
+        "data": []
+      },
+      "素材库|创建时间排序": {
+        "dialog": "素材库",
+        "tag": "button",
+        "aria": "创建时间排序",
+        "text": "创建时间",
+        "title": "筛选未接入（源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 72,
+        "h": 28,
+        "data": []
+      },
+      "素材库|批量操作": {
+        "dialog": "素材库",
+        "tag": "button",
+        "aria": "",
+        "text": "批量操作",
+        "title": "批量操作未接入（源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 74,
+        "h": 30,
+        "data": []
+      },
+      "素材库|本地上传": {
+        "dialog": "素材库",
+        "tag": "button",
+        "aria": "",
+        "text": "+ 本地上传",
+        "title": "本地上传未接入（源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 83,
+        "h": 30,
+        "data": []
+      },
+      "|生成音频": {
+        "dialog": "",
+        "tag": "button",
+        "aria": "生成音频",
+        "text": "↑",
+        "title": "生成未接入（付费动作，源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 32,
+        "h": 32,
+        "data": []
+      },
+      "|生成视频": {
+        "dialog": "",
+        "tag": "button",
+        "aria": "生成视频",
+        "text": "↑",
+        "title": "生成未接入（付费动作，源站交互未采样）",
+        "disabled": true,
+        "cursor": "default",
+        "looksClickable": false,
+        "hasOnClick": false,
+        "w": 32,
+        "h": 32,
+        "data": []
+      }
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

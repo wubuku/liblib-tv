@@ -1,0 +1,85 @@
+{
+  "batch": 355,
+  "defect": "项目资产面板的搜索框是启用着、无 value 绑定、无 onChange 的裸 input —— 收下输入后什么都不做(实测输入后面板文本一字不变、零 console 错误)",
+  "fix": "没有资产可搜时禁用并说明原因(不发明资产分类学: 源站点击效果未采样)",
+  "role": "把「静默丢弃输入」普查变成门禁",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "no-silent-discard:default",
+      "scan:not-empty:assets_panel",
+      "no-silent-discard:assets_panel",
+      "scan:not-empty:crop",
+      "no-silent-discard:crop",
+      "scan:not-empty:generative_panel",
+      "no-silent-discard:generative_panel",
+      "scan:not-empty:default-or-others",
+      "assets-search:exists",
+      "assets-search:disabled",
+      "assets-search:explains-why",
+      "assets-panel:empty-state-kept",
+      "diagnostics:zero"
+    ],
+    "census": {
+      "default": {
+        "all": [],
+        "silently_discarding": []
+      },
+      "assets_panel": {
+        "all": [
+          {
+            "tag": "input",
+            "disabled": true,
+            "readOnly": false,
+            "placeholder": "搜索资产名称...",
+            "data": [
+              "data-frameos-assets-search"
+            ],
+            "hasOnChange": false
+          }
+        ],
+        "silently_discarding": []
+      },
+      "crop": {
+        "all": [
+          {
+            "tag": "input",
+            "disabled": false,
+            "readOnly": false,
+            "placeholder": "",
+            "data": [],
+            "hasOnChange": true
+          },
+          {
+            "tag": "input",
+            "disabled": false,
+            "readOnly": false,
+            "placeholder": "",
+            "data": [],
+            "hasOnChange": true
+          }
+        ],
+        "silently_discarding": []
+      },
+      "generative_panel": {
+        "all": [
+          {
+            "tag": "textarea",
+            "disabled": false,
+            "readOnly": false,
+            "placeholder": "描述你想要的图像，@引用素材",
+            "data": [
+              "data-frameos-prompt-input"
+            ],
+            "hasOnChange": true
+          }
+        ],
+        "silently_discarding": []
+      }
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}
