@@ -14,7 +14,7 @@ Contract (SOURCE_FACT 2026-10-01，登录态，1680×826):
     分享   400×251 右缘对齐顶栏右内边距
     更多   role=menu 200×84，两项 192×36，水平以触发钮居中
     项目   240×200 **左缘**对齐顶栏左内边距
-    节点 N role=dialog 200×92，水平以触发钮居中
+    节点 N role=dialog 200 宽，高度内容驱动 40N+52（N=条目数），水平以触发钮居中
 """
 
 import os
@@ -232,7 +232,12 @@ def main() -> None:
         page.locator('[data-testid="canvas-node-summary-trigger"]').click()
         page.wait_for_timeout(400)
         np_ = box(page, '[data-testid="topbar-node-summary"]')
-        check("节点摘要弹层 200x92", np_ is not None and near(np_["width"], 200) and near(np_["height"], 92), str(np_))
+        # batch 804 修正：高度是内容驱动的 H=40N+52（794 当初只看到 1 个条目才读成 92）。
+        # 写死数值会在节点数一变时就假失败，改为按条目数套公式。
+        ns_rows = page.locator('[data-testid="topbar-node-summary"] > div > button').count()
+        expect_h = 40 * ns_rows + 52
+        check(f"节点摘要弹层 200x(40N+52)，N={ns_rows} → {expect_h}",
+              np_ is not None and near(np_["width"], 200) and near(np_["height"], expect_h), str(np_))
         ntrig = page.locator('[data-testid="canvas-node-summary-trigger"]').bounding_box()
         check("节点摘要弹层以触发钮居中",
               np_ is not None and near(np_["x"] + np_["width"] / 2, ntrig["x"] + ntrig["width"] / 2),

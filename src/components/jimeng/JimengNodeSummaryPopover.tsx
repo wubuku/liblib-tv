@@ -5,10 +5,17 @@ import { useEffect, useRef } from "react";
 /**
  * 顶栏「节点 N」→ 节点摘要弹层 (Batch 794)。
  *
- * 证据 (SOURCE_FACT 2026-10-01 @1680×826): role=dialog 200×92 @[69,47]，
- * **水平以触发钮居中** (69+100=169 = 节点钮 156+28/2)，纵向落在触发钮
- * 下沿 +3px (44→47)。z-50。内含节点条目（实测「视频 1」）+ 底部
- * 「查看项目信息」入口。文案逐字。
+ * 证据 (SOURCE_FACT 2026-10-01 @1680×826):
+ *   role=dialog，**水平以触发钮居中**（200 宽，中心 = 触发钮中心），
+ *   纵向落在触发钮下沿 +3px。z-50。内含节点条目 + 底部「查看项目信息」。
+ *
+ * Batch 804 补测（画布节点数变化时复测，推翻 batch 795 的定高假设）:
+ *   内部 padding **4px**、圆角 **12px**、条目行高 **36px**、条目间 **4px**、
+ *   分隔块 **4px**（内含 1px 线，上下各留 4px）、底部按钮 **36px**。
+ *   高度是**内容驱动**的：
+ *     H = 4 + (36N + 4(N-1)) + 4 + 4 + 4 + 36 + 4 = **40N + 52**
+ *   实测吻合：N=1 → 92px（batch 795 读到的值，当时画布只有 1 个节点）、
+ *   N=2 → 132px。故**不能**把高度写死 92px —— 节点一多就会失配。
  */
 export function JimengNodeSummaryPopover({
   nodeLabels,
@@ -46,11 +53,12 @@ export function JimengNodeSummaryPopover({
       role="dialog"
       aria-label="节点摘要"
       data-testid="topbar-node-summary"
-      // SOURCE_FACT: 水平以触发钮居中，纵向 +3px
-      className="absolute left-1/2 top-[31px] z-50 flex h-[92px] w-[200px] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-1"
+      // SOURCE_FACT: 水平以触发钮居中，纵向 +3px；高度内容驱动 H=40N+52
+      className="absolute left-1/2 top-[31px] z-50 flex w-[200px] -translate-x-1/2 flex-col overflow-hidden rounded-xl p-1"
       style={{ background: "rgb(38,38,38)" }}
     >
-      <div className="min-h-0 flex-1 overflow-y-auto">
+      {/* 条目区：行高 36px、行间 4px（SOURCE_FACT batch 804） */}
+      <div className="flex flex-col gap-1 overflow-y-auto">
         {nodeLabels.map((label) => (
           <button
             key={label}
@@ -59,20 +67,23 @@ export function JimengNodeSummaryPopover({
               onSelectNode?.(label);
               onClose();
             }}
-            className="flex h-7 w-full items-center rounded px-2 text-left text-[12px] text-white/80 hover:bg-white/10"
+            className="flex h-9 w-full items-center rounded-md px-2 text-left text-[13px] text-white/80 hover:bg-white/10"
           >
             {label}
           </button>
         ))}
       </div>
-      <div className="my-1 h-px bg-white/[0.06]" />
+      {/* 分隔：4px 块内含 1px 线，上下各 4px（SOURCE_FACT batch 804） */}
+      <div className="my-1 flex h-1 items-center">
+        <div className="h-px w-full bg-white/[0.06]" />
+      </div>
       <button
         type="button"
         onClick={() => {
           onOpenProjectInfo?.();
           onClose();
         }}
-        className="flex h-8 w-full items-center rounded px-2 text-left text-[12px] text-white/55 hover:bg-white/10"
+        className="flex h-9 w-full items-center rounded-md px-2 text-left text-[13px] text-white/55 hover:bg-white/10"
       >
         查看项目信息
       </button>
