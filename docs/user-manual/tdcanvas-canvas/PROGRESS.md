@@ -430,3 +430,16 @@
 - **新图 2 张**（82 → **84**）：`06-image-operations-custom-toolbar.png`（自定义工具栏弹窗，多角度复选框明显未勾）、`06-image-operations-angle-dialog.png`（AI 多角度对话框）。
 - **自动化教训（新）**：**图片悬浮工具条不由 hover 触发，绑定的是「单选中的节点」**（`project.tsx:634`）。先 `hover()`、再派发 `pointerenter/mouseenter/mousemove`，工具条数量**恒为 0**，差点误判成"不显示"；改为**单击选中**后立刻出现。另外节点可能在视口外，`locator.click()` 会报 "Element is outside of the viewport"，此时必须退回 `page.evaluate(() => el.click())`。
 - **素材处置**：按既有 `__rt__` 管线把测试图放进 `web/public/__rt__/` 经真实上传管线建出带 `storageKey` 的图片节点（`image:44Pz7VXqJMElqRBfuCH3K`），取证后已 `mavis-trash` 清掉，TDCanvas 仓回到只剩他人原有的 `?? docs/drafts/`。
+
+## M49 — 从界面反推覆盖缺口：版本与更新
+
+- **选题**：M47 立的规矩是按用户场景选题，但**光凭记忆列场景总会漏**。本轮换了个方法：先在运行时把画布页所有可点元素（`button` / `[role=button]` / `[role=menuitem]` / `[role=tab]`）的 aria-label、title、文本全抓出来，得到 **36 项**，再与手册正文逐项关键词比对。
+- **结果**：34 项已有覆盖，**1 项真缺口**（版本更新），1 项是关键词写法差异造成的假缺口（双击重命名实际已被三处覆盖），1 项是假阳性（**「快照」是 Agent 的 MCP 工具名 `canvas_export_snapshot`**，只出现在 Agent 工具清单里，根本不是界面功能——差点误当成漏写的功能）。
+- **发现**：`20-reference.md` 完全没有「版本与更新」一节。顶栏版本号 `v0.14.0` 是可点的（title「查看版本更新」），读者看到它最自然的动作就是点一下查有没有新版。
+  - 实测：弹窗边界框 680×162，全文只有「版本更新 / 当前版本 / v0.14.0」三行，**不含「检查更新」，也不含「最新版本」卡片**；点击期间监听全页请求，**没有发起任何版本查询**（命中的三条 URL 全是 Vite 自身的模块加载）。
+  - 源码坐实：`canCheckUpdates = desktopUpdaterEnabled || releaseInfoEnabled`，其中 `desktopUpdaterEnabled = DESKTOP_UPDATER_ENABLED && isTauri()`、`releaseInfoEnabled = Boolean(VERSION_URL && CHANGELOG_URL)`。浏览器下 `isTauri()` 为假，且 `web/.env` 未配置 `VITE_VERSION_URL` / `VITE_CHANGELOG_URL` → 两者皆 false → 整块不渲染。
+  - **图上半屏那片留白是设计如此，不是加载失败**——不写清楚，读者一定会当成 bug 或断网。
+  - 版本号右侧的**绿点**（有新版本提示）依赖同一个 `hasNewVersion` 判定，浏览器里同样不会出现，一并写明。
+- **改动**：20-reference 新增「版本与更新」整节（含新图 + 「想要什么 / 浏览器里怎么做」三行对照表）；90-troubleshooting 新增「点顶栏版本号，弹窗里没有『检查更新』」条目；AUDIT 记 3 条（含一条方法沉淀）。
+- **新图 1 张**（84 → **85**）：`20-version-modal.png`。
+- **方法沉淀（写进 AUDIT）**：**从运行时界面反推覆盖缺口**，而不是从代码里找功能。代码里能找到的东西 M41–M48 已经翻过好几轮了；只有"界面上真实可点的元素"才代表用户真能走到的路径。枚举完还要做一次"假阳性筛除"——本轮的「快照」就是靠这一步排除的。

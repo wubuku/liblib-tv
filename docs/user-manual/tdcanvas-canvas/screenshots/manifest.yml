@@ -1007,3 +1007,15 @@ screenshots:
     visible_text: 'AI 多角度 左侧只预览方向，结果会基于原图重新生成'
     alt: AI 多角度对话框：左侧是原图预览和一个表示旋转方向的立体指示块，右侧是左右角度、俯仰角度、镜头距离三个滑杆和标准与广角两档的广角镜头开关，右下角是 AI 生成按钮
     sha256: c3d3ba5ec5b3398d9595319dc849286be3a321598d9b8bde5350e09c6a138c98
+
+  - file: screenshots/20-version-modal.png
+    task_id: navigate-canvas
+    step: 在画布页点击顶栏右侧的版本号（title 为「查看版本更新」），打开「版本更新」弹窗后按弹窗自身边界框裁剪
+    route: '/canvas/:id'
+    viewport: '1440x900 视口，裁剪区 696x178 (CSS px)'
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role="dialog" 边界框 x=380 y=369 宽 680 高 162 / 弹窗全文仅「版本更新」「当前版本」「v0.14.0」三行 / 弹窗文本不含「检查更新」与「最新版本」字样（canCheckUpdates 为 false 时这两块整块不渲染）/ 点击期间监听全页请求，未出现任何版本查询请求，命中的三条 URL 均为 Vite 自身的模块加载（version-release-modal.tsx / use-version-check.ts / release.ts）'
+    visible_text: '版本更新 当前版本 v0.14.0'
+    alt: 版本更新弹窗，标题下方只有一张写着当前版本 v0.14.0 的卡片，弹窗下半部大片留空，没有任何检查更新的按钮
+    sha256: 648777c5b835e8471a4933bc04a1e7cd991e3690ae6e3f677c75c5d9b17ff9a7
