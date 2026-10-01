@@ -472,6 +472,17 @@ run_file_case "28) 闸门用无根目录常量拼路径（必须报）" \
   "输入范围由 cwd 决定"
 run_file_pass_case "29) 不误伤：同样的字面量只出现在注释里（必须放行）" \
   "scripts/verify-screenshots.py" "$HERE/selftest-meta-fix-29-docstring-glob.py"
+run_file_case "30) 中文数字写成「十一」必须能解析（必须报行数不符而非找不到标题）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-30-cn-numeral.py" \
+  "标题写「11 道闸」"
+# 31/32 是 Batch 168 方向九 ④ 的两条：**写错计数**与**删掉计数**都必须被抓。
+# 32 尤其不能省——**只认「有计数才校验」的话，删掉计数就成了绕过的最短路径**。
+run_file_case "31) A 类标题写的类数比表内行数少 1（必须报）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-31-title-count.py" \
+  "小节标题的计数与表内容脱节"
+run_file_case "32) 把 A 类标题的计数整个删掉（必须报，不给绕过留后门）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-32-drop-title-count.py" \
+  "删掉它就绕过了检查"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

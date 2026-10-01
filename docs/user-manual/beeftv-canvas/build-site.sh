@@ -117,55 +117,13 @@ else
   ok "无残留 .md 原始链接"
 fi
 
-# 站内死链检查：VitePress 的 ignoreDeadLinks 会放过指向 srcExclude 文件的链接
-# （如被排除的 PUBLISH.md / task-inventory.yml），发布后就是 404。逐个解析 href 兜底。
-DEAD_REPORT="$(python3 - <<'PYEOF' 2>/dev/null || true
-import os, re
-from urllib.parse import urldefrag
-DIST = ".vitepress/dist"
-exists = set()
-for root, _, files in os.walk(DIST):
-    for f in files:
-        exists.add(os.path.relpath(os.path.join(root, f), DIST))
-dead = set()
-for root, _, files in os.walk(DIST):
-    for f in files:
-        if not f.endswith(".html"):
-            continue
-        page = os.path.relpath(os.path.join(root, f), DIST)
-        base = os.path.dirname(page)
-        with open(os.path.join(root, f), encoding="utf-8", errors="ignore") as fh:
-            html = fh.read()
-        for href in re.findall(r'href="([^"]+)"', html):
-            if href.startswith(("http", "mailto:", "data:")) or href.startswith("#"):
-                continue
-            target = urldefrag(href)[0]
-            if not target:
-                continue
-            target = target.lstrip("/") if target.startswith("/") else os.path.normpath(os.path.join(base, target))
-            target = target.replace("\\", "/")
-            # "/" 与 "./" 都解析到站点根 index.html
-            if target in ("", ".", ".."):
-                target = "index.html"
-            if target.endswith("/"):
-                target += "index.html"
-            if target not in exists:
-                dead.add(f"{page} -> {href}")
-print(len(dead))
-for d in sorted(dead):
-    print(d)
-PYEOF
-)"
-DEAD_COUNT="$(printf '%s\n' "$DEAD_REPORT" | head -1 | tr -dc '0-9')"
-DEAD_COUNT="${DEAD_COUNT:-0}"
-if [ "$DEAD_COUNT" -ne 0 ]; then
-  printf '%s\n' "$DEAD_REPORT" | tail -n +2 | while IFS= read -r line; do
-    [ -n "$line" ] && warn "死链 $line"
-  done
-  fail "站内死链 $DEAD_COUNT 处——指向被 srcExclude 排除的文件最常见"
-else
-  ok "站内链接全部可达（逐个 href 解析核对）"
-fi
+# 站内死链检查（Batch 168 从本文件内联的 heredoc 抽出为 scripts/verify-deadlinks.py）。
+# 抽出的理由有二，第二个更要紧：
+#  ① 内联在 shell 里的判据**无法被反向验证**——它曾是十道闸里唯一一道没有反验的；
+#  ② 内联写法 `python3 … 2>/dev/null || true` 会把**工具失败当成「没有问题」**：
+#     Python 一挂，计数取到 0，于是输出「站内链接全部可达」——与 Batch 157 同型。
+# 现在走 run_gate，三段退出码（0 无死链 / 1 有死链 / 2 未能核对）由它统一处理。
+run_gate verify-deadlinks.py 站内死链
 
 # 截图对账闸：源目录 screenshots/ ↔ manifest.yml ↔ 已发布页面引用 ↔ dist 产物，四侧必须一致。
 # 背景（Batch 94）：17-light-mode.png 库里有、manifest 登记着、账本也引用着，唯独发布页

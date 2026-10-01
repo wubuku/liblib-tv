@@ -150,12 +150,15 @@ def count_screenshots(root):
 # **三个都是可数的**。这是第八道闸最该盯的东西——**它盯的是闸门体系自己**。
 #
 # 口径：
-#   · 「站内死链」那道是 `build-site.sh` **内联**的，没有独立脚本，
-#     所以 **表行数 = 独立 verify 脚本数 + 1**。这条偏移是**设计如此**，
-#     写死在这里而不是靠人去数——第一版就是因为忘了这个 +1 而自报错。
 #   · 只统计 `scripts/verify-*.py`：selftest-*.sh 是反向验证，不参与构建期检查。
+#   · **Batch 168：偏移从 +1 改成 0**。「站内死链」原本内联在 `build-site.sh` 的
+#     heredoc 里、没有独立脚本，才需要那个 +1；它已被抽成 `verify-deadlinks.py`，
+#     于是**表行数 = 实际调用的闸数**。
+#     这条偏移当初写死在这里是对的（第一版忘了 +1 而自报错），
+#     **但它把「内联」当成了永久前提**——前提变了，偏移就得跟着变，
+#     否则方向三会报「清单表 10 行 ≠ 10 个闸 + 内联 1 道」这种自相矛盾的话。
 
-INLINE_GATE_SLACK = 1
+INLINE_GATE_SLACK = 0
 
 
 def gate_inventory(root):
@@ -288,9 +291,32 @@ def sidebar_check(root):
 
 
 def _cn_int(s):
+    """中文数字 → int。
+
+    ⚠️ Batch 168：原实现是 `digits.get(s)`，**只认单个汉字**——
+    于是闸门数到十一那天，标题「现有十一道闸」解析成 **None**，
+    方向三报「找不到「现有 N 道闸」标题」。
+    **判据太窄的老问题，而这次的窄是「里程碑可预见」造成的**：
+    十一不是意外，它只是**第一次**出现。
+
+    现在支持 十 / X十 / 十X / X十Y（如 二十一）。
+    """
+    if s.isdigit():
+        return int(s)
     digits = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
-              "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
-    return int(s) if s.isdigit() else digits.get(s)
+              "六": 6, "七": 7, "八": 8, "九": 9}
+    if s == "十":
+        return 10
+    if "十" in s:
+        head, _, tail = s.partition("十")
+        tens = digits.get(head, 1) if head else 1
+        ones = digits.get(tail, 0) if tail else 0
+        if head and head not in digits:
+            return None
+        if tail and tail not in digits:
+            return None
+        return tens * 10 + ones
+    return digits.get(s)
 
 
 def screenshots_match_disk(root):
@@ -454,23 +480,37 @@ def regex_engine_check(root):
 #   ② **A 类的行数必须等于闸门清单的行数**——多一道闸没被认领，或
 #      认领了不存在的闸，都说明表与现实脱节；
 #   ③ B/C 每一行必须**写明依据**（含批次号或闸名的非空说明），
-#      否则那又是一个「看起来有人管」的空格。
+#      否则那又是一个「看起来有人管」的空格；
+#   ④ **小节标题里手写的「（N 类）」必须等于该表实际行数**，且 A 类不许删掉这个计数。
+#
+# **④ 为什么需要（Batch 168 实锤）**：② 只管「表 vs 闸门清单」，
+# **管不到标题里那个手写的数**。实测 `**A 类 · 有闸守着（9 类）**` 写着 9、
+# 表里已经 **10 行**——因为 Batch 162 新增闸 10 时加了行、**没改标题**，
+# 之后**连过 6 个批次没人发现**。而**这类数最危险**：
+# 它长得像结论（「9 类风险有人管」），实际早已过期，**读者据此判断自己有没有被覆盖**。
+#
+# **④ 的形态选择**：要求 **A 类必须声明计数**。否则「把计数删掉」就成了
+# 绕过检查的最短路径——**判据不能给作弊留后门**。
 #
 # **不判的**：某类风险「该不该建闸」——那是人的判断，写进表里的理由列即可。
 def coverage_table_check(root):
-    """返回 (缺失标题, 空单元格, A类行数与闸门数的不一致, 缺依据的行)。"""
+    """返回 (缺失标题, 空单元格, A类行数与闸门数的不一致, 缺依据的行, 标题计数不一致)。"""
     path = os.path.join(root, "AUDIT-RULES.md")
     text = open(path, encoding="utf-8").read()
     m = re.search(r"###\s*风险类别覆盖度[^\n]*\n(.*?)(?=\n###\s)", text, re.S)
     if not m:
-        return ["风险类别覆盖度"], [], None, []
+        return ["风险类别覆盖度"], [], None, [], []
     body = m.group(1)
     classes, empties, no_reason = {}, [], []
+    declared_counts = {}
     cur = None
     for line in body.split("\n"):
         if re.match(r"^\*\*[ABC]\s*类", line.strip()):
             cur = line.strip().strip("*").split("类")[0].strip()
             classes[cur] = []
+            # 标题里手写的「（N 类）」：解析不出来也是「无法核对」，一并报
+            mc = re.search(r"（([0-9零一二三四五六七八九十]+)\s*类\s*）", line)
+            declared_counts[cur] = _cn_int(mc.group(1)) if mc else None
             continue
         if not line.startswith("|") or re.match(r"\|\s*:?-", line):
             continue
@@ -489,7 +529,18 @@ def coverage_table_check(root):
     n_a = len(classes.get("A", []))
     mismatch = None if n_a == rows else ("A 类 %d 行 vs 闸门清单 %d 行" % (n_a, rows))
     missing = [k for k in ("A", "B", "C") if not any(x.startswith(k) for x in classes)]
-    return missing, empties, mismatch, no_reason
+    # 标题计数：声明了就必须与实际行数相等；A 类还必须声明
+    count_bad = []
+    for k in sorted(classes):
+        d = declared_counts.get(k)
+        if d is None:
+            if k == "A":
+                count_bad.append("A 类标题没写「（N 类）」计数——删掉它就绕过了检查")
+            continue
+        if d != len(classes[k]):
+            count_bad.append("%s 类标题写「%d 类」但表里只有 %d 行"
+                             % (k, d, len(classes[k])))
+    return missing, empties, mismatch, no_reason, count_bad
 
 
 # ── 方向十：闸门的输入范围必须自声明，不得由 cwd 决定 ──────────────────
@@ -972,7 +1023,7 @@ def main():
 
     # ── 方向九：风险类别覆盖度表的自洽性 ──
     print("-" * 62)
-    miss, empties, mismatch, no_reason = coverage_table_check(root)
+    miss, empties, mismatch, no_reason, count_bad = coverage_table_check(root)
     for k in miss:
         fail(f"覆盖度表缺少 {k} 类——三类（有闸 / 有意不覆盖 / 无人覆盖）缺一不可")
     for cls, who in empties:
@@ -981,9 +1032,11 @@ def main():
         fail(f"覆盖度表与闸门清单脱节：{mismatch}")
     for cls, who in no_reason:
         fail(f"覆盖度表 {cls} 类「{who}」没写依据（需含批次号或闸名）")
-    if not (miss or empties or mismatch or no_reason):
+    for why in count_bad:
+        fail(f"覆盖度表小节标题的计数与表内容脱节：{why}")
+    if not (miss or empties or mismatch or no_reason or count_bad):
         print("  ✓ 覆盖度表自洽：A/B/C 三类齐全、每格都有依据，"
-              "A 类认领数与闸门清单一致")
+              "A 类认领数与闸门清单一致，小节标题写的类数与表内实际行数也一致")
 
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
