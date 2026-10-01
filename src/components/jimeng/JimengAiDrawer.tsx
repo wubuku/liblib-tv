@@ -127,6 +127,11 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       className="absolute inset-y-3 right-3 z-40 flex w-[400px] flex-col rounded-[20px] border border-white/10 bg-[rgba(32,32,32,0.8)] shadow-[0_0_80px_0_rgba(0,0,0,0.16)] backdrop-blur-[60px]"
       role="dialog"
       aria-label="Agent"
+      /* Batch 824：批 823 的浮层普查把它列成缺陷 —— 有可访问名、**没有
+         data-testid**。它是常驻侧栏（开了就不太关得掉），自动化只能靠
+         `role=dialog` + `aria-label="Agent"` 指认；补上锚点后普查能逐态核对
+         它有没有被 transform 祖先收编。 */
+      data-testid="canvas-agent-drawer"
     >
       {/* 头部 — Batch 808 SOURCE_FACT（@1680×826 登录态，aria/testid 逐个提取）：
           会话列表 58×32 @[1314,41] `canvas-agent-session-menu-menu-trigger`

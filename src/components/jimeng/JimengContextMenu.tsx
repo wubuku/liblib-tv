@@ -110,6 +110,13 @@ export function JimengContextMenu({
     <div
       ref={ref}
       role="menu"
+      /* Batch 824：批 823 的浮层普查把这条列成缺陷 —— 这块浮层
+         **可访问名是空的、也没有 data-testid**，于是它对自动化完全隐形：
+         `role="menu"` 只能靠 class 认（`div.fixed.z-[200] w-48 rounded-xl p-2`）。
+         两个问题一起补：空 aria-label 本身也是 a11y 缺口（menu 该有名字），
+         testid 则让普查/验收能稳定指认它。 */
+      aria-label="画布右键菜单"
+      data-testid="canvas-context-menu"
       className="fixed z-[200] w-48 rounded-xl p-2"
       style={{
         left: state.x,

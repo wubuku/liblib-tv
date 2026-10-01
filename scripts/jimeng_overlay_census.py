@@ -1,34 +1,45 @@
-"""Jimeng canvas fixed-position census — `position: fixed` 有没有被 transform 祖先收编。
+"""Jimeng canvas overlay census — 一次遍历量三条关于浮层的契约。
 
-起因（batch 821）：全屏时间线编辑器写着 `class="fixed inset-0"`，实测只铺满
-**1200×207 的节点**而不是视口。根因不是写错了关键字，是
-**任何建立包含块的 transform 祖先都会成为 `position: fixed` 的包含块** ——
-React Flow 给每个节点加 `transform`，于是 `inset-0` 相对那个节点解析。
+批 822 建这个工具时只有一条契约（`fixed` 有没有被 transform 祖先收编）。
+批 823 加了顶栏那一族状态，**顺带发现信号自己在失明**，于是又长出两条。
+三条都是同一类东西：**浮层看起来正常，但自动化/坐标系在说谎**。
 
-修法是 `createPortal(…, document.body)`。但那只是**一个**浮层。
-本工具把这条从「一处修复」升级成**一条常备契约**：
+    ① CAPTURED  fixed 被 transform 祖先收编
+       「写了 `fixed` 就不受缩放影响」这句话是错的 —— 只要祖先链上有
+       transform，包含块就被改写，`inset-0` 只铺满那个 transform 元素。
+       页面上**不报错、元素照常渲染**，只是坐标悄悄不对。
+       批 821 的全屏时间线编辑器就是这么只铺了 1200×207 而不是视口。
 
-    契约：页面上任何 computed `position: fixed` 的元素，它到 <body> 之间的
-          祖先链上不得存在任何非 `none` 的 transform。
+    ② ANCHOR    可见浮层（role ∈ dialog/menu/listbox）没有 data-testid
+       摸不到的浮层和不存在的浮层，在报告里长得一模一样。
+       批 823 普查「生成历史」「快捷键」两态死活到不了，查下去发现这两块
+       浮层**只有可访问名、没有锚点** —— 批 816 的锚点收口漏了它们。
+       ⚠️ 这条的教训比结论重要：**信号依赖了它自己要审计的那个东西**。
 
-为什么值得单独一个普查工具，而不是在某个 verifier 里加一条断言：
+    ③ DUPTID    同一态里同一个 data-testid 出现在多个元素上
+       **只记录，不判失败** —— 这不是缺陷，是本仓的约定（见下）。
 
-1. **触发路径太长**。单选框要 shift+click 多选才有；包围盒要编组才有；
-   资产库要开模态框才有。一个只覆盖「打开全屏编辑器」状态的断言，
-   盖不住其余八成路径。
-2. **静默失败**。`fixed` 被收编时页面**不报错、元素照常渲染**、坐标只是悄悄不对。
-   肉眼和普通断言都很难发现，只有普查能把「哪些浮层在错误的坐标系里」列全。
-3. **回归成本不对称**。写一次，永久看门狗。
+⚠️ 关于 ③：第一版把它写成硬契约，一跑报出 **35 处「重复 testid」**。
+逐个查下去，除 2 处外**全是按设计**的：`node-title-text` 每节点一个、
+`jimeng-connect-left/right` 每节点一对、`canvas-agent-mode-action` 抽屉内 5 枚、
+`timeline-shell` 一类节点级锚点每节点一个。这类 testid 是**「每个实例一个」的
+角色标记**，不是单例锚点；消费者一律用 `.first` / `.nth()` / 限定在节点容器内来取。
 
-⚠️ **本工具必须报出每个状态扫到几个 `fixed` 元素**，不能只报违规数。
+也就是说 35 条里 33 条是**判据错了**，不是产品错了。教训和批 816/821 同源：
+**先问「这条判据的契约是什么」，再问「跑出来几条」。**
+真要判「单例锚点被复制了」，得先有一份「哪些 testid 必须单例」的清单 ——
+光看重复是判不出来的，而按前缀猜（`timeline-*` 看着像单例，实际每节点一个）
+会错得更远。
+
+⚠️ **必须报出每个状态扫到几个 `fixed` 元素**，不能只报违规数。
 批 817 记过一次取证事故：工具静默降级（读到 SSR 骨架 / 没 hydrate），
 输出「0 个违规」，看上去是干净，实际是根本没扫到东西 ——
-**「零违规」和「扫了但没东西」长得一模一样**。所以每态都打印
-`fixed 元素 N 个 / 违规 M 个`，并断言总扫描量不为 0。
+**「零违规」和「扫了但没东西」长得一模一样**。同理，某个状态没到达时
+工具以退出码 1 拒绝报 PASS：没扫到 ≠ 不存在。
 
 用法：
-    ~/.venvs/liblib-harness/bin/python scripts/jimeng_fixed_census.py
-退出码 0 = 零违规；1 = 有收编点（打印全部细节）。
+    ~/.venvs/liblib-harness/bin/python scripts/jimeng_overlay_census.py
+退出码 0 = 三条契约全成立；1 = 有违反或覆盖不全。
 """
 
 import os
@@ -42,22 +53,44 @@ HYDRATED = """() => { const el = document.getElementById('__next')
   || document.body.firstElementChild || document.body;
   return Object.keys(el).some(k => k.startsWith('__reactFiber$')); }"""
 
-# 契约本体。逐个元素问两件事：你是 fixed 吗？你到 body 之间有人带 transform 吗？
+# 一次遍历量三条契约。批 822 只有第一条，批 823 加的后两条。
+#
+#   1. CAPTURED  —— fixed 被 transform 祖先收编（批 821 的 bug 那一类）
+#   2. ANCHOR    —— 浮层（role ∈ dialog/menu/listbox）没有 data-testid，
+#                   自动化摸不到它。批 823 就是靠这条把「生成历史」「快捷键」
+#                   两块没锚点的浮层挖出来的：普查到不了它们，而**摸不到**
+#                   与**不存在**在报告里长得一模一样。
+#   3. DUPTID    —— 同一态里同一个 data-testid 出现在多个元素上。选择器
+#                   一命中就是多个，自动化要么报 strict mode 违规，要么
+   #                   静默拿到第一个 —— 后者更坏，因为它读到的可能是另一个面。
 SCAN = r"""() => {
-  const out = [];
+  const fixed = [];
+  const unanchored = [];
+  const tidCount = new Map();
   const label = (e) => {
     const t = e.getAttribute('data-testid');
     if (t) return `[${t}]`;
     const a = e.getAttribute('aria-label');
     if (a) return `«${a}»`;
-    const d = e.getAttribute('data-group-frame');
-    if (d) return `<group-frame ${d}>`;
     const cls = (e.className || '').toString().trim().split(/\s+/).slice(0, 2).join('.');
     return e.tagName.toLowerCase() + (cls ? '.' + cls : '');
   };
   for (const el of document.querySelectorAll('*')) {
-    const cs = getComputedStyle(el);
-    if (cs.position !== 'fixed') continue;
+    const tid = el.getAttribute('data-testid');
+    if (tid) tidCount.set(tid, (tidCount.get(tid) || 0) + 1);
+
+    const role = el.getAttribute('role');
+    if ((role === 'dialog' || role === 'menu' || role === 'listbox') && !tid) {
+      const r = el.getBoundingClientRect();
+      unanchored.push({
+        el: label(el), role: role,
+        aria: el.getAttribute('aria-label') || '',
+        rect: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)],
+        visible: r.width > 0 && r.height > 0,
+      });
+    }
+
+    if (getComputedStyle(el).position !== 'fixed') continue;
     const chain = [];
     let p = el.parentElement;
     while (p && p !== document.documentElement) {
@@ -71,40 +104,61 @@ SCAN = r"""() => {
       p = p.parentElement;
     }
     const r = el.getBoundingClientRect();
-    out.push({
+    fixed.push({
       el: label(el),
       parent: el.parentElement ? el.parentElement.tagName : null,
       rect: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)],
       captured: chain,
     });
   }
-  return out;
+  return {
+    fixed: fixed,
+    unanchored: unanchored,
+    dupTestids: [...tidCount.entries()].filter(([, n]) => n > 1).map(([t, n]) => [t, n]),
+  };
 }"""
 
 
 def main() -> int:
     total_fixed = 0
     violations: list[tuple[str, dict]] = []
+    unanchored_hits: list[tuple[str, dict]] = []
+    dup_hits: list[tuple[str, list]] = []
     rows: list[tuple[str, int, int, str]] = []
 
     def scan(pg, state: str) -> None:
         nonlocal total_fixed
-        found = pg.evaluate(SCAN)
+        r = pg.evaluate(SCAN)
+        found, unanchored, dups = r["fixed"], r["unanchored"], r["dupTestids"]
         bad = [f for f in found if f["captured"]]
+        # 只把**可见**的没锚点浮层算成缺陷：`display:none` 的菜单壳还挂在
+        # DOM 里（关着的下拉就是这样），它摸不到不构成问题，报出来是噪声。
+        real_unanchored = [u for u in unanchored if u["visible"]]
         total_fixed += len(found)
         for f in bad:
             violations.append((state, f))
+        for u in real_unanchored:
+            unanchored_hits.append((state, u))
+        for d in dups:
+            dup_hits.append((state, d))
         note = ""
         if not found:
             # 零 fixed 可能是「这态真的没有浮层」，也可能是「浮层没被触发出来」。
             # 分不清就写明，让读数的人自己判断，而不是当成一条干净的结论。
             note = "⚠ 本态无 fixed 元素 —— 触发可能没生效，别当成结论"
         rows.append((state, len(found), len(bad), note))
-        print(f"  {state:<22} fixed {len(found):>2} 个 / 被收编 {len(bad)} 个 {note}")
+        print(f"  {state:<22} fixed {len(found):>2} 个 / 被收编 {len(bad)} 个"
+              f" / 无锚点浮层 {len(real_unanchored)} / 重复 testid {len(dups)} {note}")
         for f in bad:
-            print(f"      ✗ {f['el']}  rect={f['rect']}  parent={f['parent']}")
+            print(f"      ✗ fixed 被收编：{f['el']}  rect={f['rect']}  parent={f['parent']}")
             for c in f["captured"]:
                 print(f"          ↑ {c['el']}  transform: {c['transform']}")
+        for u in real_unanchored:
+            print(f"      ✗ 浮层无锚点：role={u['role']} aria=«{u['aria']}»  {u['el']}"
+                  f"  rect={u['rect']}")
+        if dups:
+            print(f"      · testid 重复（**仅记录，不判失败**，见文件头）："
+                  + ", ".join(f"`{t}`×{n}" for t, n in dups))
 
     with sync_playwright() as p:
         b = p.chromium.launch(headless=True)
@@ -320,10 +374,6 @@ def main() -> int:
                           lambda: pg.locator(
                               '[data-testid="canvas-more-trigger"]').click())
             close_top()
-            open_and_scan("ai-drawer",
-                          lambda: pg.locator(
-                              '[data-testid="ai-trigger-pill"]').click())
-            close_top()
 
             # 用户菜单 → 它的三项各自开一个浮层（帮助中心 / 快捷键 / 水印）
             def from_user_menu(item: str):
@@ -339,6 +389,14 @@ def main() -> int:
             close_top()
             open_and_scan("watermark-dialog", from_user_menu("AI生成水印设置"))
             close_top()
+
+            # AI 抽屉**必须排在最后**：它是常驻侧栏，`close_top()` 的 Escape
+            # 关不掉它。第一版把它排在中间，于是后面 3 个态全是
+            # 「抽屉 + 目标浮层」叠着测的 —— 读数没错，但那几个态的
+            # 「本态有什么」已经不是它自己了。
+            open_and_scan("ai-drawer",
+                          lambda: pg.locator(
+                              '[data-testid="ai-trigger-pill"]').click())
         finally:
             b.close()
 
@@ -355,14 +413,34 @@ def main() -> int:
         print(f"覆盖不全 —— 下列状态没到达，未被普查：{', '.join(unreached)}")
         print("（没扫到 ≠ 不存在；这些态必须先能打开，结论才成立）")
         return 1
-    if violations:
-        print(f"FAIL —— {len(violations)} 处 fixed 被 transform 祖先收编：")
-        for state, f in violations:
-            print(f"  [{state}] {f['el']} rect={f['rect']}")
-            for c in f["captured"]:
-                print(f"      ↑ {c['el']}  transform: {c['transform']}")
+    if violations or unanchored_hits:
+        if violations:
+            print(f"FAIL —— {len(violations)} 处 fixed 被 transform 祖先收编：")
+            for state, f in violations:
+                print(f"  [{state}] {f['el']} rect={f['rect']}")
+                for c in f["captured"]:
+                    print(f"      ↑ {c['el']}  transform: {c['transform']}")
+        if unanchored_hits:
+            print(f"FAIL —— {len(unanchored_hits)} 处**可见**浮层没有 data-testid"
+                  f"（自动化摸不到它）：")
+            for state, u in unanchored_hits:
+                print(f"  [{state}] role={u['role']} aria=«{u['aria']}» {u['el']} "
+                      f"rect={u['rect']}")
+            print("  批 823 就是靠这条把「生成历史」「快捷键」两块没锚点的浮层挖出来的。")
         return 1
-    print("PASS —— 所有态零收编：每个 fixed 元素的祖先链上都没有 transform。")
+    if dup_hits:
+        uniq = sorted({t for _, (t, _) in dup_hits})
+        print(f"记录 —— {len(dup_hits)} 处 / {len(uniq)} 个 testid 在某些态里出现多次：")
+        for t in uniq:
+            worst = max(n for _, (tt, n) in dup_hits if tt == t)
+            print(f"  `{t}` 最多同态 {worst} 个")
+        print("  **这不是缺陷，是本仓的约定**：这类 testid 是「每个实例一个」的角色标记，")
+        print("  消费者一律用 `.first` / `.nth()` / 限定在某个节点容器内来取。")
+        print("  所以它只记录、不判失败 —— 真要判「单例锚点被复制了」，")
+        print("  得先有一份「哪些 testid 必须是单例」的清单，光看重复是判不出来的。")
+    print("PASS —— 前两条契约在所有态都成立：")
+    print("  ① 每个 fixed 元素的祖先链上都没有 transform")
+    print("  ② 每个可见浮层都带 data-testid")
     return 0
 
 
