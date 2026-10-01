@@ -1,0 +1,836 @@
+{
+  "batch": 621,
+  "title": "Two-row timeline toolbar below 900px, and stop 新建轨道's label wrapping at every width",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim",
+    "/tmp/dbg621.py: window vs content for ten viewport widths — the cluster's window is viewport - 8 - 260 against a constant ~776px of content, so it only fits above ~1044px (measured: 1280 and up have 0 hidden, 1024 has 20, 899 has 145, 768 has 276, 600 has 444, 390 has 654)",
+    "/tmp/dbg621b.py: the breakpoint actually lands between 898 and 899, not between 899 and 900 — Tailwind v4 compiles max-[899px] to `@media (width < 899px)`, a strict inequality, while matchMedia('(max-width: 899px)') reports true at 899",
+    "/tmp/dbg621c.py: the cluster's content is a constant ~776px; the larger scrollWidth readings at wide viewports are just scrollWidth collapsing to clientWidth when nothing overflows",
+    "/tmp/dbg621d.py: the two-row geometry and the collapsed numbers at 390 and 768, plus screenshots",
+    "/tmp/dbg621e.py: 新建轨道 measured identical at 1920/1440/390 — box 82x24, clientHeight 24, scrollHeight 26, three line boxes"
+  ],
+  "claims": {
+    "cloneDecision": [
+      "below the project's existing 899px breakpoint the right strip stops floating over the toolbar's right end and becomes a second row, and the header drops its pr-[260px] reserve. The cluster's window becomes viewport - 16, so 899 fits outright, 768 is 24px short and 390 goes from 654px hidden to 402px. 390 still cannot show 776px of content; that is physics, and this batch does not claim otherwise",
+      "the collapsed height below the breakpoint becomes 124 = 36 + 36 + 52 so the track strip keeps exactly the 52px it has today (88 - 72 would have left 16)",
+      "新建轨道's label is locked to one line with px-1.5 and whitespace-nowrap. 82 - 52 (label) - 13 (icon) - 4 (gap) leaves 13px for padding, so ~6px per side is what makes the source's measured 82x24 box hold its measured 13px label on one line. The outer width, x, gap and radii that batch 601 pins are unchanged"
+    ],
+    "notClaimed": [
+      "anything about the source at all — the source's director desk at phone widths has never been sampled",
+      "the 899px breakpoint itself: this batch reuses the project's existing max-[899px] and did not touch the convention, but Tailwind's strict inequality means the switch happens at 898/899 rather than 899/900. That off-by-one predates this batch and is recorded, not fixed — changing it would move every other max-[899px] rule in the codebase at once",
+      "the 900-1043px band is left alone even though 144-20px of the cluster is hidden there: that band keeps the source-measured single-row arrangement (the 260px reserve and the 244px strip are batch 593/596 readings), and re-arranging desktop widths is a bigger decision than this batch's evidence supports"
+    ]
+  },
+  "checks": {
+    "phone-390:expanded": {
+      "vw": 390,
+      "timeline": [
+        0,
+        668,
+        390,
+        176
+      ],
+      "header": [
+        0,
+        669,
+        390,
+        36
+      ],
+      "strip": [
+        0,
+        705,
+        390,
+        36
+      ],
+      "stripPosition": "static",
+      "headerPaddingRight": "8px",
+      "host": [
+        8,
+        672.5,
+        374,
+        28
+      ],
+      "window": 374,
+      "content": 776,
+      "hidden": 402,
+      "zoom": [
+        8,
+        705,
+        120,
+        36
+      ],
+      "exportBtn": [
+        274,
+        709,
+        108,
+        28
+      ],
+      "trackArea": 103,
+      "tracks": [
+        0,
+        741,
+        220,
+        103
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          674.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "phone-390:the-toolbar-is-still-36px-tall": {
+      "ok": true,
+      "detail": [
+        0,
+        669,
+        390,
+        36
+      ]
+    },
+    "phone-390:the-track-strip-is-below-the-toolbar": {
+      "ok": true,
+      "detail": {
+        "strip": [
+          0,
+          705,
+          390,
+          36
+        ],
+        "tracks": [
+          0,
+          741,
+          220,
+          103
+        ]
+      }
+    },
+    "phone-390:the-strip-is-its-own-row": {
+      "ok": true,
+      "detail": {
+        "pos": "static",
+        "strip": [
+          0,
+          705,
+          390,
+          36
+        ],
+        "header": [
+          0,
+          669,
+          390,
+          36
+        ]
+      }
+    },
+    "phone-390:the-header-no-longer-reserves-260px": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "phone-390:the-cluster-window-is-the-full-width": {
+      "ok": true,
+      "detail": {
+        "window": 374,
+        "headerWidth": 390
+      }
+    },
+    "phone-390:far-more-of-the-cluster-is-reachable": {
+      "ok": true,
+      "detail": {
+        "hidden": 402,
+        "window": 374
+      }
+    },
+    "phone-390:the-zoom-cluster-and-export-are-both-fully-visible": {
+      "ok": true,
+      "detail": {
+        "zoom": [
+          8,
+          705,
+          120,
+          36
+        ],
+        "export": [
+          274,
+          709,
+          108,
+          28
+        ],
+        "strip": [
+          0,
+          705,
+          390,
+          36
+        ]
+      }
+    },
+    "phone-390:the-track-strip-is-103px": {
+      "ok": true,
+      "detail": 103
+    },
+    "phone-390:新建轨道-stays-on-one-line": {
+      "ok": true,
+      "detail": {
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ]
+      }
+    },
+    "phone-390:新建轨道-keeps-the-source-width": {
+      "ok": true,
+      "detail": [
+        230,
+        674.5,
+        82,
+        24
+      ]
+    },
+    "phone-390:collapsed": {
+      "vw": 390,
+      "timeline": [
+        0,
+        720,
+        390,
+        124
+      ],
+      "header": [
+        0,
+        721,
+        390,
+        36
+      ],
+      "strip": [
+        0,
+        757,
+        390,
+        36
+      ],
+      "stripPosition": "static",
+      "headerPaddingRight": "8px",
+      "host": [
+        8,
+        724.5,
+        374,
+        28
+      ],
+      "window": 374,
+      "content": 776,
+      "hidden": 402,
+      "zoom": [
+        8,
+        757,
+        120,
+        36
+      ],
+      "exportBtn": [
+        274,
+        761,
+        108,
+        28
+      ],
+      "trackArea": 51,
+      "tracks": [
+        0,
+        793,
+        220,
+        51
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          726.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "phone-390:collapsed-keeps-a-124px-timeline": {
+      "ok": true,
+      "detail": [
+        0,
+        720,
+        390,
+        124
+      ]
+    },
+    "phone-390:collapsed-keeps-a-52px-track-strip": {
+      "ok": true,
+      "detail": 51
+    },
+    "phone-390:export-submit-hit": {
+      "hit": "submit",
+      "box": [
+        109,
+        712,
+        260,
+        32
+      ]
+    },
+    "phone-390:the-export-panel-submit-still-takes-the-hit": {
+      "ok": true,
+      "detail": {
+        "hit": "submit",
+        "box": [
+          109,
+          712,
+          260,
+          32
+        ]
+      }
+    },
+    "phone-390:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "phone-390:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "phone-390:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "tablet-768:expanded": {
+      "vw": 768,
+      "timeline": [
+        0,
+        848,
+        768,
+        176
+      ],
+      "header": [
+        0,
+        849,
+        768,
+        36
+      ],
+      "strip": [
+        0,
+        885,
+        768,
+        36
+      ],
+      "stripPosition": "static",
+      "headerPaddingRight": "8px",
+      "host": [
+        8,
+        852.5,
+        752,
+        28
+      ],
+      "window": 752,
+      "content": 776,
+      "hidden": 24,
+      "zoom": [
+        8,
+        885,
+        120,
+        36
+      ],
+      "exportBtn": [
+        652,
+        889,
+        108,
+        28
+      ],
+      "trackArea": 103,
+      "tracks": [
+        0,
+        921,
+        220,
+        103
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          854.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "tablet-768:the-toolbar-is-still-36px-tall": {
+      "ok": true,
+      "detail": [
+        0,
+        849,
+        768,
+        36
+      ]
+    },
+    "tablet-768:the-track-strip-is-below-the-toolbar": {
+      "ok": true,
+      "detail": {
+        "strip": [
+          0,
+          885,
+          768,
+          36
+        ],
+        "tracks": [
+          0,
+          921,
+          220,
+          103
+        ]
+      }
+    },
+    "tablet-768:the-strip-is-its-own-row": {
+      "ok": true,
+      "detail": {
+        "pos": "static",
+        "strip": [
+          0,
+          885,
+          768,
+          36
+        ],
+        "header": [
+          0,
+          849,
+          768,
+          36
+        ]
+      }
+    },
+    "tablet-768:the-header-no-longer-reserves-260px": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "tablet-768:the-cluster-window-is-the-full-width": {
+      "ok": true,
+      "detail": {
+        "window": 752,
+        "headerWidth": 768
+      }
+    },
+    "tablet-768:far-more-of-the-cluster-is-reachable": {
+      "ok": true,
+      "detail": {
+        "hidden": 24,
+        "window": 752
+      }
+    },
+    "tablet-768:the-zoom-cluster-and-export-are-both-fully-visible": {
+      "ok": true,
+      "detail": {
+        "zoom": [
+          8,
+          885,
+          120,
+          36
+        ],
+        "export": [
+          652,
+          889,
+          108,
+          28
+        ],
+        "strip": [
+          0,
+          885,
+          768,
+          36
+        ]
+      }
+    },
+    "tablet-768:the-track-strip-is-103px": {
+      "ok": true,
+      "detail": 103
+    },
+    "tablet-768:新建轨道-stays-on-one-line": {
+      "ok": true,
+      "detail": {
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ]
+      }
+    },
+    "tablet-768:新建轨道-keeps-the-source-width": {
+      "ok": true,
+      "detail": [
+        230,
+        854.5,
+        82,
+        24
+      ]
+    },
+    "tablet-768:collapsed": {
+      "vw": 768,
+      "timeline": [
+        0,
+        900,
+        768,
+        124
+      ],
+      "header": [
+        0,
+        901,
+        768,
+        36
+      ],
+      "strip": [
+        0,
+        937,
+        768,
+        36
+      ],
+      "stripPosition": "static",
+      "headerPaddingRight": "8px",
+      "host": [
+        8,
+        904.5,
+        752,
+        28
+      ],
+      "window": 752,
+      "content": 776,
+      "hidden": 24,
+      "zoom": [
+        8,
+        937,
+        120,
+        36
+      ],
+      "exportBtn": [
+        652,
+        941,
+        108,
+        28
+      ],
+      "trackArea": 51,
+      "tracks": [
+        0,
+        973,
+        220,
+        51
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          906.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "tablet-768:collapsed-keeps-a-124px-timeline": {
+      "ok": true,
+      "detail": [
+        0,
+        900,
+        768,
+        124
+      ]
+    },
+    "tablet-768:collapsed-keeps-a-52px-track-strip": {
+      "ok": true,
+      "detail": 51
+    },
+    "tablet-768:export-submit-hit": {
+      "hit": "submit",
+      "box": [
+        487,
+        892,
+        260,
+        32
+      ]
+    },
+    "tablet-768:the-export-panel-submit-still-takes-the-hit": {
+      "ok": true,
+      "detail": {
+        "hit": "submit",
+        "box": [
+          487,
+          892,
+          260,
+          32
+        ]
+      }
+    },
+    "tablet-768:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "tablet-768:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "tablet-768:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "desktop-1920:expanded": {
+      "vw": 1920,
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "header": [
+        0,
+        969,
+        1920,
+        36
+      ],
+      "strip": [
+        1676,
+        969,
+        244,
+        36
+      ],
+      "stripPosition": "absolute",
+      "headerPaddingRight": "260px",
+      "host": [
+        8,
+        972.5,
+        1652,
+        28
+      ],
+      "window": 1652,
+      "content": 1652,
+      "hidden": 0,
+      "zoom": [
+        1676,
+        969,
+        120,
+        36
+      ],
+      "exportBtn": [
+        1804,
+        973,
+        108,
+        28
+      ],
+      "trackArea": 145,
+      "tracks": [
+        0,
+        1005,
+        320,
+        145
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          974.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "desktop-1920:the-toolbar-is-still-36px-tall": {
+      "ok": true,
+      "detail": [
+        0,
+        969,
+        1920,
+        36
+      ]
+    },
+    "desktop-1920:the-track-strip-is-below-the-toolbar": {
+      "ok": true,
+      "detail": {
+        "strip": [
+          1676,
+          969,
+          244,
+          36
+        ],
+        "tracks": [
+          0,
+          1005,
+          320,
+          145
+        ]
+      }
+    },
+    "desktop-1920:the-strip-is-still-floating-right": {
+      "ok": true,
+      "detail": {
+        "pos": "absolute",
+        "strip": [
+          1676,
+          969,
+          244,
+          36
+        ],
+        "header": [
+          0,
+          969,
+          1920,
+          36
+        ]
+      }
+    },
+    "desktop-1920:the-260px-reserve-is-still-there": {
+      "ok": true,
+      "detail": "260px"
+    },
+    "desktop-1920:the-desktop-track-strip-is-145px": {
+      "ok": true,
+      "detail": 145
+    },
+    "desktop-1920:新建轨道-stays-on-one-line": {
+      "ok": true,
+      "detail": {
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ]
+      }
+    },
+    "desktop-1920:新建轨道-keeps-the-source-width": {
+      "ok": true,
+      "detail": [
+        230,
+        974.5,
+        82,
+        24
+      ]
+    },
+    "desktop-1920:collapsed": {
+      "vw": 1920,
+      "timeline": [
+        0,
+        1062,
+        1920,
+        88
+      ],
+      "header": [
+        0,
+        1063,
+        1920,
+        36
+      ],
+      "strip": [
+        1676,
+        1063,
+        244,
+        36
+      ],
+      "stripPosition": "absolute",
+      "headerPaddingRight": "260px",
+      "host": [
+        8,
+        1066.5,
+        1652,
+        28
+      ],
+      "window": 1652,
+      "content": 1652,
+      "hidden": 0,
+      "zoom": [
+        1676,
+        1063,
+        120,
+        36
+      ],
+      "exportBtn": [
+        1804,
+        1067,
+        108,
+        28
+      ],
+      "trackArea": 51,
+      "tracks": [
+        0,
+        1099,
+        320,
+        51
+      ],
+      "addTrack": {
+        "box": [
+          230,
+          1068.5,
+          82,
+          24
+        ],
+        "clientH": 24,
+        "scrollH": 24,
+        "lines": [
+          13,
+          16
+        ],
+        "paddingLeft": "6px",
+        "whiteSpace": "nowrap"
+      }
+    },
+    "desktop-1920:collapsed-stays-88px-on-desktop": {
+      "ok": true,
+      "detail": [
+        0,
+        1062,
+        1920,
+        88
+      ]
+    },
+    "desktop-1920:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "desktop-1920:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "desktop-1920:diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    }
+  },
+  "result": "40/40 passed"
+}

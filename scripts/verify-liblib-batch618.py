@@ -238,8 +238,13 @@ def run_mobile(browser: Any) -> dict[str, Any]:
     # the four the first sweep found under the strip must now be merely clipped
     clipped_labels = [b["label"] for b in r["clipped"]]
     still_buried = [b["label"] for b in r["covered"]]
-    v.check("mobile:the-formerly-buried-four-are-clipped-not-covered",
-            all(any(k in lab for lab in clipped_labels) for k in BURIED)
+    # Batch 621 迁移（不是放宽）：621 把窄屏工具条改成两行，右格不再浮在
+    # 右端、独占第二行，于是这四枚**不再只是「被裁剪」而是完整可见** ——
+    # 既不在 covered 里，也不在 clipped 里。合同随之升级：从「至少能滚动
+    # 到」变成「开箱即见」。原来那条允许 clipped 的口径是 618 当时的实情，
+    # 现在留着就等于允许回到更差的状态。
+    v.check("mobile:the-formerly-buried-four-are-now-fully-visible",
+            not any(k in lab for lab in clipped_labels for k in BURIED)
             and not any(k in lab for lab in still_buried for k in BURIED),
             detail={"clipped": clipped_labels, "covered": still_buried})
     v.result["mobile:clipped"] = {"count": len(r["clipped"]),
@@ -254,8 +259,13 @@ def run_mobile(browser: Any) -> dict[str, Any]:
             tb.get("hostOverflowX") in {"auto", "scroll"}, detail=tb.get("hostOverflowX"))
     v.check("mobile:the-toolbar-itself-no-longer-scrolls",
             tb.get("headerOverflowX") == "visible", detail=tb.get("headerOverflowX"))
-    v.check("mobile:the-reserve-for-the-strip-is-still-260px",
-            tb.get("headerPaddingRight") == "260px", detail=tb.get("headerPaddingRight"))
+    # Batch 621 迁移：621 的两行布局在窄屏取消了给浮在右端的右格留的 260px
+    # 预留（右格已独占第二行，不再与左格同行抢位），换成 `pr-2` = 8px。
+    # ≥900 的 260px 并没有丢：本文件的 desktop 腿 `desktop:the-reserve-is-
+    # still-260px` 与 621 的 `desktop-1920:the-260px-reserve-is-still-there`
+    # 各自继续守着那条源站实测值。所以这里断的是「窄屏不该再留 260」。
+    v.check("mobile:the-narrow-reserve-is-8px",
+            tb.get("headerPaddingRight") == "8px", detail=tb.get("headerPaddingRight"))
     v.check("mobile:the-cluster-does-overflow-at-390", tb.get("needsScroll") is True,
             detail={"clientW": tb.get("hostClientW"), "scrollW": tb.get("hostScrollW")})
     v.check("mobile:nothing-from-the-cluster-is-painted-under-the-strip",

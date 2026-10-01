@@ -743,8 +743,14 @@ export function DirectorTimeline({
            把贴着视口底边打开的菜单下半截盖掉，而桌面并不需要这次抬升。 */
         "max-[899px]:z-[210]",
         // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
+        //
+        // Batch 621：窄屏工具条变成**两行**（右格不再绝对定位浮在右端，见下方
+        // strip 注释），所以收起态要留出第二行的 36px —— 否则 88 − 36 − 36
+        // 只剩 16px 轨道区。124 = 36（第一行）+ 36（第二行）+ 52（轨道条，
+        // 与今天 88 − 36 完全一致）。88 与 182 都是源站 1920 的实测值，窄屏
+        // 这两个是 clone 自己的取值。
         timelineCollapsed
-          ? "h-[88px]"
+          ? cn("h-[88px]", "max-[899px]:h-[124px]")
           : cn(
               "h-[182px]",
               timelineHeight !== DIRECTOR_TIMELINE_DEFAULT_HEIGHT && "h-auto",
@@ -835,7 +841,7 @@ export function DirectorTimeline({
           所以这里把 header 的 gap 归零，各段自己带边距。 */}
       <header
         data-director-timeline-controls
-        className="flex h-9 shrink-0 items-center gap-0 border-b border-white/[0.07] px-2 py-1 pr-[260px]"
+        className="flex h-9 shrink-0 items-center gap-0 border-b border-white/[0.07] px-2 py-1 pr-[260px] max-[899px]:pr-2"
       >
         {/* Batch 618（移动端命中普查）：左格内容**不得渗进** `pr-[260px]`
             这块给右格预留的区域。
@@ -963,7 +969,19 @@ export function DirectorTimeline({
             disabled={!trackCreatable}
             onClick={() => createTrackForSelectedObject()}
             className={cn(
-              "ml-[15px] flex h-6 w-[82px] shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-[13px] leading-none transition-colors",
+              /* Batch 621：`px-2` → `px-1.5` 并锁 `whitespace-nowrap`。
+                 这不是新造样式，是让 601 实测的那组数字自洽：按钮 82 宽、
+                 标签 13px 四个字 = 52，再加 Plus 图标 13 与 gap 4 = 69，
+                 余量只有 13 —— 每侧内边距必须 ≤6.5px 标签才能排一行。
+                 而源站那个 82×24 的按钮显然是单行的（24px 高的行内项折成
+                 两行会溢出，601 量的就是那个 24px）。改之前 clone 在**所有
+                 宽度**（1920/1440/390 实测完全一致：box 82×24、
+                 clientHeight 24、scrollHeight 26）都折成两行；此前没人
+                 看见，是因为它一直待在横向滚动区之外——620 把窄屏工具条
+                 变成两行后，它才第一次露在手机屏幕上。
+                 601 钉的是 x=230 / 宽 82 / gap 15 / 圆角 8 与 13px 字号，
+                 都没碰内边距；外框宽度也一字未动。 */
+              "ml-[15px] flex h-6 w-[82px] shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-lg px-1.5 text-[13px] leading-none transition-colors",
               trackCreatable
                 ? "text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
                 : "text-[#525252]",
@@ -1163,7 +1181,47 @@ export function DirectorTimeline({
           （实测面板中心点命中的是 WebGL canvas 而不是面板）。 */}
       <div
         data-director-timeline-strip-right
-        className="absolute right-0 top-0 z-30 flex h-9 items-center gap-2 bg-[#212121] pr-2"
+        className={cn(
+          "absolute right-0 top-0 z-30 flex h-9 items-center gap-2 bg-[#212121] pr-2",
+          /* Batch 621：窄屏不再浮在右端，自己占第二行。
+             逐宽度实测（/tmp/dbg621.py，工具条左格窗口 vs 776px 内容）：
+
+               视口   390   600   768   899  1024  1280+
+               窗口   122   332   500   631   756  1012
+               被藏  654   444   276   145    20     0
+
+             窗口 = 视口 − 8（px-2）− 260（给本右格留的 `pr-[260px]`），
+             内容是 776px。所以**只有 ≥1280 才放得下**，而 390 只露出 16%。
+             改成两行后窗口 = 视口 − 16：899 能完整放下，768 只差 24，
+             390 从「藏 654」变成「藏 402」——仍不完整（390 物理上放不下
+             776px），但把「几乎看不见」变成「将近一半」，且第二行的缩放与
+             导出在任何窄屏宽度下都**完整可见**（244 < 视口−16）。
+             ≥900px 一行未动：那里的 260px 预留与 244px 右格都是 batch 593/596
+             的源站实测值。
+
+             Batch 621 修（621 两行布局带出的真回归）：窄屏右格由 `absolute`
+             变 `static` 后，它变成了 section（`flex flex-col`）的**flex item**，
+             于是 z-30 真的开始生效并**创建层叠上下文**。导出面板就在这个
+             右格里（`div.relative > section[absolute z-50]`），所以面板的
+             z-50 被关在右格的 z-30 里，永远够不到同为 section 后代的
+             拖拽把手（`absolute z-40`，8px，`top-0`）。两行布局把右格下移
+             一行，导出面板随之抬起，其「导出视频到画布」提交按钮
+             （`data-director-export-submit`）底缘恰好跨过 section 顶边那
+             8px 把手带 → 按钮点不动。
+
+             判据（三个实验，/tmp/dbg621h.py）：把面板 z 抬到 60 **无效**
+             （被困在父上下文里，抬自己没用）；给把手 `pointer-events:none`
+             或隐藏/压到 z-10 按钮才命中 → 层叠才是原因，不是命中抖动。
+             完整祖先链（/tmp/dbg621j.py）确认两者最近共同层叠上下文就是
+             section 本身，中间只隔着右格这一个陷阱。
+
+             所以抬的是**陷阱**（右格），不是被埋的面板，也不动把手——
+             把手 z-40 压头行 z-30 是源站实测关系（见上方 596 注释），
+             面板几何则是 clone 推断（源站未测，见 DirectorExportPanel
+             注释）。窄屏抬到 45（>把手 40）让打开的面板能盖住把手带；
+             与它们不重叠的轨道区不受影响。≥900px 的 z-30 一字未动。 */
+          "max-[899px]:static max-[899px]:z-[45] max-[899px]:w-full max-[899px]:justify-between max-[899px]:pl-2",
+        )}
       >
         {/* Batch 594（源站 2026-10-01 实测）：缩放簇是 120x36 的独立块
             `flex h-9 w-[120px] items-center gap-2 border-l border-white/[0.08]
