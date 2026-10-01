@@ -85,6 +85,8 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="图片模型"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="image-gen-model-listbox"
                   >
                     <button
                       type="button"
@@ -117,6 +119,8 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="图片尺寸"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="image-gen-size-listbox"
                   >
                     <button
                       type="button"

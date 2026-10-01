@@ -8282,3 +8282,144 @@ verifier 把这句**写成了契约**（⑥）：格式不同这件事不许瞒�
 flag 判定未取证），属复刻自有语义。
 
 回归：810(42) / 809(68+70 两段) / 808 / 811(51) / 812(46) 全绿。
+
+## 47. Batch 832-nodemenus — 普查的**第三层**，以及它的边界一开始就画错了（2026-10-04）
+
+§38 立契约「每个浮层都要可指名 + 可定位」→ §43 补了画布内菜单 → 本批补最后一层：
+**节点自己带出来的工具条 / 生成面板及其下拉**。
+
+### 一、判据的边界画错了，这是本批真正的对象
+
+普查一直用 `closest('.react-flow__node')` 判「节点内浮层」。**这个边界是错的**：
+
+```
+div.react-flow__node-toolbar      ← NodeToolbar / NodePanel 走 portal
+  └ div.react-flow__renderer      ← 挂在这里，**不在节点里**
+div.react-flow__node
+  └ div.react-flow__nodes
+    └ div.react-flow__viewport
+```
+
+`NodeToolbar` 与 `.react-flow__node` 是**兄弟**。实测 4 个生成面板 listbox 全部
+`inNode=False / inNodeToolbar=True`。按错的边界扫，**13 处生成面板 listbox 一个都进不了普查**
+—— 它们有名（`aria-label`）但没锚点（无 `data-testid`），正是 §38 要消灭的形态。
+
+**边界画错 = 整层漏掉，而漏掉的那一层看起来「本来就干净」。** 这和 807/808/810/
+812/816/821/827 一脉相承：判据的缺陷比产品的缺陷更难发现，因为它不报错，只安静地少报。
+
+改对之后还做了一件事：**用断言把新边界锁死**（verifier §I.1/I.2 断言 toolbar
+不在 node 里、挂在 renderer 下；§I.3 断言旧判据确实会漏；§H.6 记下"旧判据漏了
+几层"）。不锁的话，后人「顺手改回去」不会有任何信号。
+
+### 二、按新边界补的 17 个锚点
+
+| 位置 | 补的锚点 | 名字 |
+|---|---|---|
+| 视频节点标记选择器 | `video-node-tag-picker` | **刻意不给** |
+| 音频节点标记选择器 | `audio-node-tag-picker` | **刻意不给** |
+| 文本节点背景色调色板 | `text-bg-palette` | 已有 |
+| 图片工具条工具菜单 | `image-tools-menu` | 已有 |
+| 视频生成面板 ×4 | `gen-model-listbox` / `gen-video-size-listbox` / `gen-mode-listbox` / `gen-duration-listbox` | 已有 |
+| 音频生成面板 ×7 | `audio-gen-type-listbox` / `audio-music-model-listbox` / `audio-music-duration-listbox` / `audio-voice-model-listbox` / `audio-gen-mode-listbox` / `audio-all-voices-listbox` / `audio-voice-filter-listbox` | 已有 |
+| 图片生成面板 ×2 | `image-gen-model-listbox` / `image-gen-size-listbox` | 已有 |
+
+只加用户不可见的 `data-testid`，**一个字的可访问名都不动** —— 名字是源站的。
+
+两枚标记选择器**刻意不给 aria-label**：源站实测点开后枚举 0 个 role 浮层，
+即该选择器在源站上既无 testid 也无可访问名。编名字即「复刻自有」，用 §A.2 锁住。
+
+`audio-voice-filter-listbox` 是**同族 4 实例**（性别/年龄/语言/声音特点）共用一个
+testid —— 刻意为之：它们是同一段 map 出来的，彼此靠**互不相同**的 `aria-label`
+区分。verifier 断言 `count()==4` 且四个 `aria-label` 两两不同（Playwright
+strict mode 也会因此直接报错，不能用 `.first` 蒙过去）。
+
+### 三、这一批踩的坑，全是同一类：**前置态不成立，却报成了产品缺陷**
+
+按严重度排：
+
+1. **`elementFromPoint` 说「在我节点内」不够，还得是「不是个控件」。**
+   带媒体的视频节点中心命中的是 32px 的**播放/暂停按钮**（命中元素是按钮里的
+   `<path>`），它 `onClick` 有 `stopPropagation` ⇒ 点了不选中，`selected` 恒为 0。
+   看着像「这节点点不动」，其实是「我点在了播放键上」。
+2. **互斥前置态叠在一起就永远不成立。** 文本节点的「背景色」挂在
+   `NodeToolbar isVisible={selected === true && !editing}` 上 —— 只在**选中非编辑态**
+   才有。先 `dblclick` 进编辑态再找「背景色」，工具条压根不挂。
+3. **`addNodeAt` 插出的新节点自带 `selected`，旧的还选着** ⇒ 计数 2 ⇒
+   `soloSelected` 为 false ⇒ 工具条**永远不挂**。F 段 `toolbars: 0` 就是这么来的。
+4. **toggle 触发器必须幂等。** 上一次没关的话再点一次就是「关上」，于是枚举到 0 个
+   浮层，判据**恒空**。恒空的判据比没有判据更费时间。
+5. **同一块面板里两个下拉可以同时开着，宽的盖住窄的。** 实测 `音乐模型`（392 宽）
+   压住了 `创作类型`（192 宽）里的选项，点「音频生成」直接超时。真人不会这么干，
+   verifier 先收起再点下一个。
+6. **`Add tags` 在每个节点的标题行里都常驻 DOM**（批 263 只用 CSS 控制悬停可见），
+   全局取 `.first` 拿到的是**文档顺序更靠前的视频节点**那份。看起来像「这处没补
+   锚点」，其实是点错了地方。
+7. **左栏新插的图片节点没有 poster**，渲染的是生成面板而不是工具条，所以「工具」
+   按钮数恒为 0。带 poster 的图片节点要走视频「截取帧 → 首帧」才有。
+
+第 1、2、3 条都是同一个错误的变体：**我以为前置态成立**。本批记一条通用做法 ——
+凡是需要「点开某个浮层」的判据，`open_trigger()` 必须同时做到：先清选中（且复核
+计数为 1）、先收起已开的下拉、命中点不能落在控件上、点完复核目标出现了。
+四条缺一条，判据就会**假装**测过。
+
+### 四、源站取证推翻了复刻侧的假设（**未改，记为下一批入口**）
+
+`scripts/jimeng_probe832_gendropdowns.py` 打开源站示例画布的空视频节点，
+点开生成表单里那 4 个下拉（只展开不选，不计费）。实测：
+
+| 下拉 | 源站 role / 名字 | 复刻 role / 名字 |
+|---|---|---|
+| 模型 | `presentation`（**无名**），选项 `role=option` 388×64 | `listbox`「模型列表」 |
+| 尺寸 | **`dialog`**「视频尺寸选项」334×292，内含 `listbox`「选择比例 options」302×60，13 个 option | `listbox`「视频尺寸选项: 16:9 · 720P · 1, Standard-only model」334×224 |
+| 模式 | `listbox`「**Reference mode options**」200×84 | `listbox`「生成模式: 全能参考」192×94 |
+| 时长 | **`dialog`**「**Duration options**」400×100，选项 `0/5/10/15 s` | `listbox`「选择视频生成时长: 4s」120×134，选项 `4s/8s/12s` |
+
+**复刻这 13 处的 role 与可访问名都不是源站的**，而且源站自己就不一致
+（`presentation` / `dialog` / `listbox` 混用，还有英文名 `Duration options`）。
+按 §43 的规矩这属于「复刻自有」，但**本批不动**：改 role 会牵动 §38 契约与
+其他 verifier，属于独立一批的活。此处只把证据和探针落盘，不假装已对齐。
+
+同时记一条**测不到**的：视频工具条的「截取帧」「工具」两个下拉是**裸 div，一个
+role 都没有** ⇒ 任何 `role ∈ dialog/menu/listbox/popover` 型普查都看不见它们。
+源站侧同样测不到（`jimeng_probe832_noderoledropdowns.py`：源站示例画布上的视频
+节点全是 `暂无视频`，选中弹的是生成表单不是工具条，两个按钮根本没出现，
+`picked_label=None`）。记 **BLOCKED_BY_FIXTURE**，不猜源站有没有 role。
+
+### 五、判据自身的两个缺陷，也修了
+
+顺手把静态扫描器提成常备工具 `scripts/jimeng_role_layer_scan.py`
+（`python3 scripts/jimeng_role_layer_scan.py jimeng`），它踩了两个坑：
+
+- **第一版把 56 处 role 浮层全报成「无名无锚点」**，明明 `image-tools-menu` 就在
+  第 131 行。根因：正则已经把标签属性吃进 `mid`，我又从 `m.end()` 往后找
+  `data-testid` —— 等于**在属性之后**找。恒假的判据比没有判据更危险，它会让人
+  以为有 56 个缺口，然后去"修"。
+- **第二版把 JSX 开标签里的 `//` 注释当成了属性。** `JimengAudioNode` 的注释
+  写着 `data-testid="flow-node-selected-tag"`，扫描器把它当成那一行的真锚点，
+  于是**真的**锚点 `audio-node-tag-picker` 反而「丢失」。
+- 两条都靠**自检**抓出来的：拿 832 已知的 17 个锚点当标准答案，缺失就报。
+  **扫描器必须先在一个已知有答案的点验过**，否则它的输出只是看起来像结论。
+
+另外 §H.4 判据（白名单每条必须自带取证结论）当场把白名单里写的「同上」抓红
+—— 正是这条判据存在的理由：白名单的传染性最强，一条偷懒措辞会永久藏起那一类问题。
+
+扫完的结果（jimeng 47 处 role 浮层）：**两样都无 0 处**；无锚点 5 处
+（`JimengAiDrawer` 4 + `JimengVideoPreview` 1，都**不是**节点内浮层，
+留作下一批）；无名 4 处，均有锚点，其中 2 处是本文 §二 记录在案的两枚标记选择器。
+
+### verifier 54/54
+
+| 段 | 判据 |
+|---|---|
+| I | **判据边界本身**：toolbar 不在 node 里、不在 viewport 里、挂在 renderer 下；旧判据确实会漏（本次 28 层里漏 23 层） |
+| E | 视频生成面板 4 个 listbox 可指名可定位，名字仍是源站那个 |
+| C | 图片工具条：先「截取帧 → 首帧」造出带 poster 的图片节点，再展开「工具」，菜单 10 项（编辑 4 + 预设 6） |
+| F | 图片生成面板 2 个 listbox；F.0 单独断言前置态（存在/点得到/面板挂上/选中数=1） |
+| G | 音频生成面板 7 个 listbox，两条互斥分支各切一次并**复核 `创作类型` 的 aria-label 真的变了** |
+| A/D | 两枚标记选择器：锚点有、aria-label **刻意没有**、按钮数 ≥2 |
+| B | 文本背景色调色板：锚点 + 名字逐字 |
+| H | 普查：全部有锚点 / 除白名单外都有名字 / 白名单四道锁 / 17 个锚点静态在源码里 |
+
+### 回归
+
+普查（5 态 263 元素）**真死 0**；20 个 jimeng verifier 全绿；`npm run check` EXIT=0。

@@ -128,6 +128,7 @@ export function JimengImageNodeToolbar({
                   style={{ background: "rgb(38,38,38)" }}
                   role="menu"
                   aria-label="工具菜单"
+                  data-testid="image-tools-menu"
                 >
                   {TOOL_MENU_GROUPS.map((g, gi) => (
                     <div key={g.group}>

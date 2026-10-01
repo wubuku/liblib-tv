@@ -238,6 +238,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="生成类型"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="audio-gen-type-listbox"
                   >
                     {["音频生成", "音乐生成"].map((opt) => (
                       <button
@@ -279,6 +281,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="音乐模型"
+                        // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        data-testid="audio-music-model-listbox"
                       >
                         <button
                           type="button"
@@ -321,6 +325,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="音乐时长"
+                        // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        data-testid="audio-music-duration-listbox"
                       >
                         <p className="pb-2 text-[12px] text-white/45">
                           选择音乐生成时长
@@ -434,6 +440,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="音色模型"
+                        // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        data-testid="audio-voice-model-listbox"
                       >
                         <button
                           type="button"
@@ -471,6 +479,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="音频生成模式"
+                        // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        data-testid="audio-gen-mode-listbox"
                       >
                         <button
                           type="button"
@@ -508,6 +518,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="全音色"
+                        // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        data-testid="audio-all-voices-listbox"
                       >
                         <p className="pb-2 text-[13px] text-white/80">全音色</p>
                         <div className="flex gap-1.5 pb-2">
@@ -532,6 +544,8 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                   style={{ background: "rgb(38,38,38)" }}
                                   role="listbox"
                                   aria-label={`筛选 ${label}`}
+                                  // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                                  data-testid="audio-voice-filter-listbox"
                                 >
                                   {options.map((opt) => (
                                     <button

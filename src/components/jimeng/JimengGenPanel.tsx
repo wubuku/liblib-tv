@@ -433,6 +433,8 @@ export function JimengGenPanel({
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="模型列表"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="gen-model-listbox"
                   >
                     {MODELS.map((m) => (
                       <button
@@ -478,6 +480,8 @@ export function JimengGenPanel({
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="gen-video-size-listbox"
                   >
                     {[
                       { title: "选择比例", key: "ratio", options: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] },
@@ -531,6 +535,8 @@ export function JimengGenPanel({
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="生成模式: 全能参考"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="gen-mode-listbox"
                   >
                     {["首尾帧", "全能参考"].map((opt) => (
                       <button
@@ -569,6 +575,8 @@ export function JimengGenPanel({
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="选择视频生成时长: 4s"
+                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    data-testid="gen-duration-listbox"
                   >
                     {["4s", "8s", "12s"].map((opt) => (
                       <button

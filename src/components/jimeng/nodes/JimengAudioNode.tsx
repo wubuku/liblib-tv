@@ -67,6 +67,12 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
             <span
               className="nodrag absolute right-0 top-[calc(100%+6px)] z-[130] flex items-center gap-2 rounded-full border border-white/10 bg-[#262626] px-2.5 py-1.5"
               role="menu"
+              // 批 832：源站的标记按钮实测带 data-testid="flow-node-selected-tag"
+              // （aria-label="Add tags"），但**选择器自身**在源站上既无
+              // data-testid 也无可访问名 —— 实测点开后页面上没有任何 role 浮层。
+              // 所以这里只补对用户不可见的自动化锚点，**不编 aria-label**：
+              // 源站没有的名字不编（编了就成"复刻自有"），记为 OPEN_QUESTION。
+              data-testid="audio-node-tag-picker"
               onMouseDown={(e) => e.stopPropagation()}
             >
               <button

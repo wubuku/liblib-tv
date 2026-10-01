@@ -76,6 +76,10 @@ export function JimengVideoTitleRow({
             <span
               className="nodrag absolute right-0 top-[calc(100%+6px)] z-[130] flex items-center gap-2 rounded-full border border-white/10 bg-[#262626] px-2.5 py-1.5"
               role="menu"
+              // 批 832：与 JimengAudioNode 里那份是**同一段代码的两个拷贝**，
+              // 两边一起补锚点 —— 只修一处等于没修（同 §43 的画布右键菜单）。
+              // 名字仍然空着：源站的标记选择器没有可访问名，不编。
+              data-testid="video-node-tag-picker"
               onMouseDown={(e) => e.stopPropagation()}
             >
               <button

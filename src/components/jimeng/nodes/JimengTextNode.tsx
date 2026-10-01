@@ -328,6 +328,8 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
                 style={{ background: "rgb(38,38,38)" }}
                 role="menu"
                 aria-label="背景色调色板"
+                // 批 832：名字本来就有（源站有对应物），缺的只是自动化锚点
+                data-testid="text-bg-palette"
               >
                 {BG_COLORS.map(({ label, value }) => (
                   <button
