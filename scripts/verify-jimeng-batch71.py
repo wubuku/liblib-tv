@@ -31,7 +31,7 @@ def main() -> None:
         def topbar_count():
             return page.evaluate(
                 """() => {
-                    const m = document.body.innerText.match(/节点(\\d+)/);
+                    const m = document.body.innerText.match(/节点\s*(\d+)/);
                     return m ? parseInt(m[1], 10) : null;
                 }"""
             )

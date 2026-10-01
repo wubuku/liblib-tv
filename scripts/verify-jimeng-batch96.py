@@ -47,9 +47,14 @@ def main() -> None:
                 .map(b => b.getAttribute('aria-label'))
                 .filter(a => a)"""
         )
-        for want in ["搜索", "生成历史", "用户菜单"]:  # aria labels unchanged
+        # SOURCE_FACT (batch 794 实测): 搜索/生成历史同处一个药丸 (radius 12px)；
+        # 「用户菜单」源站 border:none / radius 6px，是**裸头像钮，不在药丸内**
+        # (旧复刻把它塞进第二个药丸，batch 794 已按源站拆出)。
+        for want in ["搜索", "生成历史"]:
             if want not in labels:
-                failures.append(f"top bar missing {want}: {labels}")
+                failures.append(f"top bar pill missing {want}: {labels}")
+        if "用户菜单" in labels:
+            failures.append(f"用户菜单 should not be inside a chrome pill: {labels}")
         if "帮助" in labels:
             failures.append(f"帮助 button should be removed: {labels}")
 

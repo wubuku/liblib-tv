@@ -3573,3 +3573,124 @@
 - 验证: `scripts/verify-jimeng-batch1.py` … `verify-jimeng-batch48.py`
   （每批一个验证器；dev server 4317；截图入 `docs/design-references/jimeng/`。
   batch 1 在 LibTV 维护集内；batch 2+ 验证器由并行路线开发者维护）。
+
+## 9. Batch 794 — 顶栏结构全面对齐（2026-10-01）
+
+取样方式：`scripts/jimeng_headless.py run` + 复用 `scripts/jimeng_deep_snapshot.py`
+规范化快照，两侧（源站 / 复刻）同宽 1680×826 抓取后做控件名 diff。登录态由
+`scripts/jimeng_login_capture.py --attach-cdp` 捕获（passport 接口 user_id>0 判据），
+无头侧即时自验通过。取证脚本：
+`jimeng_deep_snapshot.py` / `jimeng_probe794_topbar.py` / `jimeng_probe794_menus.py`。
+
+### 9.1 缺口是怎么找到的
+
+规范化快照对**语义层**（可见交互元素的无障碍名 + 屏幕矩形 + 画布节点几何）取数，
+两侧共用同一份提取器，因此 diff 出的差异即真实复刻缺口。源站独有条目 9 项：
+返回首页 / 项目 / 节点摘要 / 分享 / 更多 / Credits 入口 / 与 AI 对话 /
+Zoom options / Canvas title。复刻此前只有 搜索 / 生成历史 / 用户菜单 / 会员订阅。
+
+### 9.2 SOURCE_FACT — 顶栏 10 个控件（@1680×826，登录态）
+
+顶栏容器 `absolute left-3 top-[10px] h-10`，两簇 `justify-between` 间距 24px。
+左簇 230×40 r8；右簇为 5 个独立药丸，间距 16px。
+
+| 控件 | testid | 矩形 | 关键样式 |
+|---|---|---|---|
+| 返回首页（logo） | `canvas-project-logo` | 40×40 @[12,10] | 内含 40×40 svg（2 path） |
+| 项目名 | `canvas-project-title-trigger` | 68×28 @[52,16] | 13px/22px w500，radius **6/2/2/6**，pad 3px 8px |
+| 项目箭头 | `canvas-project-trigger` | 20×28 @[120,16] | svg 16，radius **2/6/6/2**，pad 6px 2px |
+| 节点摘要 | `canvas-node-summary-trigger` | 28×28 @[156,16] | **10px/18px w400** white/60，距箭头 16px |
+| 搜索 | `canvas-panel-launcher` | 28×28 @[1311,16] | r12 |
+| 生成历史 | `canvas-panel-launcher` | 28×28 @[1343,16] | r12，与搜索同药丸内 4px 缝 |
+| 分享 | `canvas-share-trigger` | 60×28 @[1388,16] | 16px/24 w500，pad 0 10px 0 8px，svg 16 |
+| 更多 | （无 testid） | 28×28 @[1465,16] | svg 16，pad 6px |
+| 积分 | `canvas-commerce-entry` | 111×28 @[1509,16] | 12px 数字 `#009EFA`，border 1px transparent，svg **12** |
+| 用户菜单 | `canvas-user-menu-trigger` | 28×28 @[1636,16] | pad 2px |
+
+节点摘要与项目名的可访问名分别为 `Canvas node summary: 节点 2` /
+`Canvas title: 测试项目`；积分入口为 `Credits: 805 · 基础会员`。
+
+### 9.3 SOURCE_FACT — 四个触发器的浮层
+
+- **分享** → 400×251 @[1268,56]，右缘与顶栏右内边距齐平。逐字文案：分享画布 /
+  画布链接 / 复制链接 / 仅自己可访问 / 只有你可以通过此链接访问画布 /
+  创建团队，与成员在画布实时协作 / 创建团队。
+- **更多** → `role=menu` 200×84 @[1379,56]，z-[120]，两项 `role=menuitem`
+  192×36（y=60 / y=100，项间 4px 缝，菜单比项左右内缩 4px）。**水平以触发钮
+  居中**（1379+100 = 1479 = 更多钮 1465+28/2）。文案：项目信息 / 复制项目。
+- **项目箭头** → 240×200 @[12,52]，**左缘对齐顶栏左内边距**（不是贴箭头）。
+  文案：项目 / 测试项目 / 未命名项目 / 视频创作 / 新建画布项目。
+- **节点摘要** → `role=dialog` 200×92 @[69,47]，z-50，**水平以触发钮居中**
+  （69+100 = 169 = 节点钮 156+28/2），纵向落在触发钮下沿 +3px。含节点条目
+  （实测「视频 1」）+ 「查看项目信息」。
+
+### 9.4 两条被证伪的旧结论（重要）
+
+1. **「资源处理三态计数」不是视觉元素**。旧记录（批 581）留下的
+   `1 resource: 0 ready, 1 processing, 0 failed.` 留档未复刻，本批复查
+   `jimeng_probe794_titlerow.py` 确认该串位于 **`sr-only`** 容器（1×1 px），
+   是纯无障碍状态文本，空节点上恒显示 `No resources: 0 ready, 0 processing,
+   0 failed.`，另有 `Not selected.`。**不应**做成可见状态行——照做会凭空
+   造出源站不存在的 UI。维持不 replicate，但把「它在 sr-only 里」这一事实
+   补进记录。
+2. **顶栏「更多」不是帮助菜单**。复刻此前把账号菜单挂在头像上、顶栏无「更多」；
+   源站「更多」是独立控件，展开的是 `项目信息 / 复制项目` 两项菜单。
+
+### 9.5 CLONE_DECISION
+
+- 积分数值沿用既有 mock `745`（源站读数 805 随账号/时间变化，不稳定），
+  以与 `JimengMemberModal` 的「积分详情 745」保持一致；**稳定的 SOURCE_FACT
+  是格式**（`{数字} 基础会员`，12px 品牌色数字 + 12px 钻石图标）。
+- 分享按钮宽度钉死 60px：源站标签字号小于按钮继承的 16px，按复刻字体度量
+  会算到 70px，故以实测宽度为准。
+- 「未命名项目」「视频创作」按源站原文保留为 mock 项目/分类文案。
+- 右簇横向位置是**派生量**（右锚 + 间隙累加），验收断言「尺寸精确 + 右缘
+  1668 + flex 间隙 16px + 视觉间隙 13..21」，而非逐控件绝对 x。
+
+### 9.6 实现过程中踩到的两个真 bug（非样式）
+
+1. **zustand selector 返回新数组 → 整页白屏**。
+   `useJimengStore(s => s.nodes.map(...))` 每次返回新数组，`Object.is` 快照
+   比较恒为 false，触发 `The result of getServerSnapshot should be cached`
+   与 `Maximum update depth exceeded`，整页只剩 "This page couldn't load"。
+   修法：取 `s.nodes` 稳定引用后再 `useMemo` 派生。**注意：项目里凡是
+   selector 里 map/filter 的都要查这一条。**
+2. **工作区全局 Escape 会吞掉浮层的冒泡监听**。`JimengWorkspace` 有全局
+   Escape 处理器，冒泡阶段 `stopPropagation` 后，浮层自己挂在 `window` 上的
+   冒泡 keydown 监听收不到事件 → Escape 关不掉浮层。修法：浮层 Escape 监听
+   改用**捕获阶段**。
+
+### 9.7 回归
+
+`verify-jimeng-batch794.py` 55 项断言全通过（含几何、圆角、字号、四个浮层
+文案与定位、浮层互斥、积分入口仍开会员弹层、画布 2 节点未受影响、无 console
+错误）。受影响的 7 个旧 verifier（13/26/28/30/43/57/59）定位符由
+`button[aria-label="会员订阅"]` 改为 `[data-testid="canvas-commerce-entry"]`。
+
+### 9.8 实施落点
+
+- `src/components/jimeng/JimengTopBar.tsx` — 左簇重构为 logo + 标题/箭头拼接段
+  + 节点摘要 + 已保存；右簇补 分享 / 更多，积分入口改为源站规格。
+- 新增 `JimengMoreMenu.tsx` / `JimengSharePanel.tsx` / `JimengProjectPanel.tsx` /
+  `JimengNodeSummaryPopover.tsx` 四个浮层，文案与几何按 §9.3。
+- `src/components/jimeng/JimengMemberModal.tsx` — Escape 改捕获阶段（见 9.6.2）。
+- `scripts/jimeng_deep_snapshot.py` — 源站/复刻通用的规范化结构快照（可 diff）。
+- `scripts/jimeng_probe794_titlerow.py` / `jimeng_probe794_topbar.py` /
+  `jimeng_probe794_menus.py` — 本批取证脚本。
+- `scripts/verify-jimeng-batch794.py` — 55 项断言。
+
+### 9.9 下一批候选（已定位，未实施）
+
+1. **8 个浮层共用同一个 Escape 脆弱写法**。`JimengContextMenu` /
+   `JimengHelpMenu` / `JimengHistoryMenu` / `JimengMultiSelectToolbar` /
+   `JimengPaneContextMenu` / `JimengSearchOverlay` / `JimengShortcutsPanel` /
+   `JimengVideoPreview` 都在 `window` 上挂**冒泡** keydown 处理 Escape，机制与
+   9.6.2 相同 —— 只要工作区全局 Escape 先触发同步重渲染，它们就可能在同一次
+   派发里被跳过。应统一改捕获阶段并逐个补 Escape 断言。
+2. **AI 抽屉默认展开会盖住顶栏右簇**。复刻抽屉 `absolute inset-y-3 right-3
+   z-40`，纵向从 12px 起，遮住顶栏 y=16 的分享/更多/积分三个控件；源站本次
+   取样时抽屉未展开（只有「与 AI 对话」控件）。现有 verifier 普遍「先收起
+   抽屉」绕开，等于把冲突藏起来了。需要定夺：抽屉是否该默认展开、顶栏是否该
+   抬到抽屉之上（源站 `z-canvas-chrome` 层级待查）。
+3. 顶栏「项目」面板里 `未命名项目 / 视频创作` 目前是 mock 文案，源站这两项的
+   真实数据源（项目列表接口）未取证。

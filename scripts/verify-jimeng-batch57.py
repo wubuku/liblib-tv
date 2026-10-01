@@ -137,7 +137,7 @@ def main() -> None:
         # batch 96: 帮助 钮已移除，帮助菜单改走 头像(用户菜单) 共用实例
         step("帮助开", lambda: page.locator('button[aria-label="用户菜单"]').click())
         page.keyboard.press("Escape")
-        step("会员开", lambda: page.locator('button[aria-label="会员订阅"]').click())
+        step("会员开", lambda: page.locator('[data-testid="canvas-commerce-entry"]').click())
         step("会员关", lambda: page.locator(
             'button[aria-label="关闭订阅页"]').click())
 

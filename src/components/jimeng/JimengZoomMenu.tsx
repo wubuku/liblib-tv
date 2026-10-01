@@ -32,10 +32,11 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
-    window.addEventListener("keydown", onKey);
+          // 捕获阶段（batch 794 实测）：冒泡监听会被工作区先触发的同步重渲染跳过。
+      window.addEventListener("keydown", onKey, true);
     window.addEventListener("mousedown", onDown, true);
     return () => {
-      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
   }, [onClose]);

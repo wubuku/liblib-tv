@@ -35,7 +35,7 @@ def main() -> None:
             _collapse.click()
             page.wait_for_timeout(400)
 
-        page.locator('button[aria-label="会员订阅"]').click()
+        page.locator('[data-testid="canvas-commerce-entry"]').click()
         page.wait_for_timeout(800)
 
         def countdown_state() -> dict:

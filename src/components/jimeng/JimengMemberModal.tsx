@@ -81,8 +81,13 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    // 必须用**捕获阶段**（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听
+    // 注册得更早，会先触发一次同步重渲染；重渲染使本组件 effect 清理并重新
+    // 注册监听，而 removeEventListener 会把该 listener 标记为 removed —— 于是
+    // 浏览器在**同一次事件派发中**跳过它，冒泡监听收不到 Escape，弹层关不掉。
+    // 捕获阶段先于任何冒泡处理器执行，不受此影响。
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [onClose]);
 
   return (

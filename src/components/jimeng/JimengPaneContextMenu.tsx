@@ -78,10 +78,14 @@ export function JimengPaneContextMenu({
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
-    window.addEventListener("keydown", onKey);
+        // 捕获阶段（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听注册更早，
+    // 会先触发同步重渲染；重渲染使本 effect 清理并重新注册监听，
+    // removeEventListener 会把该 listener 标记为 removed，浏览器在**同一次
+    // 事件派发中**跳过它 → 冒泡监听收不到 Escape，浮层关不掉。
+    window.addEventListener("keydown", onKey, true);
     window.addEventListener("mousedown", onDown, true);
     return () => {
-      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
   }, [onClose]);

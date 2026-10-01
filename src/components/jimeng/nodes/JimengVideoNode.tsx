@@ -100,8 +100,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setInsertMenu(null);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+          // 捕获阶段（batch 794 实测）：冒泡监听会被工作区先触发的同步重渲染跳过。
+      window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [insertMenu]);
 
   // 批 373 SOURCE_FACT: 编辑态 Escape 退出 (无历史入栈)；
@@ -138,8 +139,9 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") exitEdit();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+          // 捕获阶段（batch 794 实测）：冒泡监听会被工作区先触发的同步重渲染跳过。
+      window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [editMode, exitEdit]);
 
   return (

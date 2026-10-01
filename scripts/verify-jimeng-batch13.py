@@ -66,7 +66,7 @@ def main() -> None:
         page.wait_for_timeout(400)
 
         # ── member modal ──
-        page.locator('button[aria-label="会员订阅"]').click()
+        page.locator('[data-testid="canvas-commerce-entry"]').click()
         page.wait_for_timeout(800)
         modal = page.evaluate(
             """() => {
