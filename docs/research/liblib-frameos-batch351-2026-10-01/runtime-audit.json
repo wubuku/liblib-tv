@@ -1,0 +1,86 @@
+{
+  "batch": 351,
+  "defect": "错误收集把 net::ERR_ABORTED(浏览器主动取消)当成应用错误, 导致 batch333 的 diagnostics:zero 在长跑/并发下反复误报",
+  "fix": "is_dev_server_noise() 排除 ERR_ABORTED; 404/500/连接失败/pageerror 照旧计入",
+  "role": "反向测试 —— 证明过滤没有削弱门禁",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "pure:hmr_chunk_aborted",
+      "pure:image_aborted",
+      "pure:aborted_post",
+      "pure:not_found",
+      "pure:name_not_resolved",
+      "pure:http_404",
+      "pure:pageerror",
+      "pure:console_error",
+      "anti-false-green:clean-start",
+      "catch:console-error",
+      "catch:pageerror",
+      "catch:http-404",
+      "anti-false-green:abort-really-happened",
+      "filter:err-aborted",
+      "diagnostics:zero"
+    ],
+    "pure": {
+      "hmr_chunk_aborted": {
+        "text": "requestfailed:GET:http://localhost:4317/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_0zsvagi._.js:net::ERR_ABORTED",
+        "is_noise": true,
+        "want_noise": true
+      },
+      "image_aborted": {
+        "text": "requestfailed:GET:http://localhost:4317/images/frameos/node-image-1.png:net::ERR_ABORTED",
+        "is_noise": true,
+        "want_noise": true
+      },
+      "aborted_post": {
+        "text": "requestfailed:POST:http://localhost:4317/api/generate:net::ERR_ABORTED",
+        "is_noise": true,
+        "want_noise": true
+      },
+      "not_found": {
+        "text": "requestfailed:GET:http://localhost:4317/nope.png:net::ERR_CONNECTION_REFUSED",
+        "is_noise": false,
+        "want_noise": false
+      },
+      "name_not_resolved": {
+        "text": "requestfailed:GET:http://nonexistent.invalid/x.js:net::ERR_NAME_NOT_RESOLVED",
+        "is_noise": false,
+        "want_noise": false
+      },
+      "http_404": {
+        "text": "console:error:Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "is_noise": false,
+        "want_noise": false
+      },
+      "pageerror": {
+        "text": "pageerror:TypeError: x is not a function",
+        "is_noise": false,
+        "want_noise": false
+      },
+      "console_error": {
+        "text": "console:error:Uncaught RuntimeError: boom",
+        "is_noise": false,
+        "want_noise": false
+      }
+    },
+    "baseline": [],
+    "console_error": [
+      "console:error:B351_PROBE_CONSOLE_ERROR_MARKER"
+    ],
+    "pageerror": [
+      "pageerror:B351_PROBE_PAGEERROR_MARKER"
+    ],
+    "http_404": [
+      "console:error:Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "abort_ground_truth": [
+      "GET:http://localhost:4317/_next/static/chunks/0zr2_08d4c94._.js:net::ERR_ABORTED"
+    ],
+    "aborted_leaked": [],
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

@@ -198,7 +198,7 @@ const nodeY = node.position.y * zoom + panY;
 | 方面 | 原站 | 我做的 |
 |---|---|---|
 | ⌥拖拽复制 | ✅ 原节点留在落点 + 同题副本偏移 (+20,+15) 自动选中 | ✅ 一致（Batch 257；onNodeDragStop altKey 分支） |
-| 裁剪态 | ✅ 控制条（退出/宽高比自由/480×480/确认）+ 8 手柄 + 三分格 | ✅ mock 形态一致（Batch 279；确认=mock alert） |
+| 裁剪态 | ✅ 控制条（退出/宽高比自由/480×480/确认）+ 8 手柄 + 三分格　→ **Batch 352 更正**：`480×480` 是**采样当时该裁剪区的当前尺寸**，不是源站写死的常数 —— 源站一手观测 `batch278/CROP_OBSERVATIONS.md:11` 原文标注就是「裁剪区当前尺寸」。克隆侧此前把观测值当常数抄成 `defaultValue={480}`（并被 `crop:size-inputs-480` 断言钉死），现已改为按节点当前尺寸初始化（Batch 350），断言改为校验「当前尺寸」。 | ✅ mock 形态一致（Batch 279；确认=mock alert） |
 | 缩放边界 | ✅ 15%–500%（ctrl+滚轮探底） | ✅ 一致（Batch 288：minZoom 0.15 / maxZoom 5） |
 | 空格/中键/右键拖动平移 | ✅ translate 1:1 跟随 | ✅ 一致（panOnDrag=[1,2] + 默认 Space 键，Batch 289） |
 | 滚轮平移 / ⌘+ctrl+滚轮缩放 | ✅ | ✅ 一致（panOnScroll，Batch 261/288） |

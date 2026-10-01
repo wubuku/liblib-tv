@@ -1,0 +1,49 @@
+{
+  "batch": 352,
+  "role": "工具反向测试",
+  "stores": {
+    "frameosStore": {
+      "stdout_head": "# src/store/frameosStore.ts :: FrameosCanvasState 状态数据字段: 28 个",
+      "dead": [],
+      "raw_len": 2197
+    },
+    "src/store/jimengStore.ts": {
+      "stdout_head": "# src/store/jimengStore.ts :: JimengCanvasState 状态数据字段: 32 个",
+      "dead": [],
+      "raw_len": 2504
+    },
+    "src/store/canvasStore.ts": {
+      "stdout_head": "# src/store/canvasStore.ts :: CanvasState 状态数据字段: 9 个",
+      "dead": [],
+      "raw_len": 784
+    },
+    "src/store/directorStore.ts": {
+      "stdout_head": "# src/store/directorStore.ts :: DirectorState 状态数据字段: 33 个",
+      "dead": [
+        "authoredObjects",
+        "clipboardPasteCount"
+      ],
+      "raw_len": 2587
+    },
+    "src/store/uiStore.ts": {
+      "stdout_head": "# src/store/uiStore.ts :: UIState 状态数据字段: 30 个",
+      "dead": [
+        "isToolboxPanelOpen",
+        "isMaterialPanelOpen",
+        "isCharacterPanelOpen",
+        "isHistoryPanelOpen",
+        "isTutorialPanelOpen"
+      ],
+      "raw_len": 2252
+    }
+  },
+  "checks": [
+    "anti-false-green:tool-runs",
+    "anti-false-green:field-table-nonempty",
+    "frameosStore:no-dead-state",
+    "no-false-positive:jimengStore",
+    "no-false-positive:canvasStore",
+    "store-internal-still-listed:directorStore",
+    "still-detects-real-dead-state"
+  ]
+}

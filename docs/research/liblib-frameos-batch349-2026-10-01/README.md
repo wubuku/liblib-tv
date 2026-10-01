@@ -76,9 +76,15 @@ intervalId = setInterval(tick, 50);
 
 ### 普查方法
 
-写了普查工具 `scripts/frameos_deadstate_census.py`（**已入库**，可复跑）：
+写了普查工具 `scripts/frameos_deadstate_census.py`（**已入库**）：
 抽出 `FrameosCanvasState` 接口的全部 **33 个数据字段**（排除箭头函数形式的
 action），逐个统计它在 `src/` 下、store 之外的读取点。
+
+> **本工具已在 Batch 352 被 AST 版取代并移除。** 正则实现先后暴露了 5 类误报
+> （多行函数参数 / 解构读取 / 多行 action 首行 / 多行解构 / 切接口 body 太天真），
+> 每一类都差点让人把活字段当成死状态。现由
+> `scripts/deadstate_census.mjs`（用 TypeScript 自己的 AST）承担，5 类误报归零。
+> 详见 `docs/research/liblib-frameos-batch352-2026-10-01/README.md`。
 
 > 纪律：不能只看 store 自己的 `set`/初值行——那些是「写」。要找的是
 > 「store 之外真正读它的地方」。零外部读 = 死状态。

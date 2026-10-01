@@ -1009,3 +1009,133 @@ verifier batch350 **14/14 PASS**、0 诊断。**两处变异都确认会红**且
 **候选 Batch 351**: 改共享 `attach_errors`, 不把 `net::ERR_ABORTED` 计为应用错误,
 并配「门禁没被削弱」的反向测试(注入真 console.error / pageerror / 404 仍须失败);
 影响 86 个验证器, 故单独成批。
+
+---
+
+## Batch 351 — 门禁分不清「应用抛错」与「浏览器中止的请求」
+
+性质: 验证基础设施修正(不涉及产品行为)。**CLONE_DECISION**
+
+`batch333 diagnostics:zero` 连续三轮在全量套件里失败、重试也失败, 但同一份代码
+**隔离 5+ 次 / 6 路并发 3 次 / 重编译扰动 3 次全部通过**。三轮套件首轮挂的批次还
+各不相同(171/172/221/327/333、208/209/333、216/220/221/327/333), 但 batch333
+三次都在、失败点始终是 `diagnostics:zero`。
+
+**抓证据失败两次, 这条经验值得单独记**:
+① 第一次在失败前 `print` 诊断 → 被 runner 的 `echo "$out" | tail -5` **截掉**;
+② 改成**写文件**才拿到原文。
+> 门禁失败时能看到的信息恰恰最少。**诊断必须写到不会被截断的地方**。
+
+原文**全是 `net::ERR_ABORTED`**(浏览器**主动取消**, 不是服务器/应用失败):
+Turbopack HMR chunk(别的 session 改源文件触发重编译) + `/images/frameos/*`
+(batch333 密集 reload 测跨刷新持久化)。
+
+**一个必须先查清的细节**: 抓到的条目**没有 `console:error:` 前缀** → 它们不来自
+共享的 `attach_errors`, 而是 batch333 **自己内联**的 `requestfailed` 监听器
+(第 99-102 行)。所以要收口**两处**, 只改共享函数不够。
+
+修: `is_dev_server_noise()` 放共享模块作**单一出处**, 两处监听器都用它。
+判据用「**中止**」而非路径白名单 —— 被中止的请求不携带任何服务端/应用健康信息
+(应用自己 AbortController 取消的同理); 404/500/连接失败**不是** ERR_ABORTED, 照旧计入。
+
+**这是反向测试**: 重点是证明门禁**没被削弱**。verifier 15 项、0 诊断, 逐条断言
+真 `console.error` / 未捕获异常 / 404 **必须仍被抓到**。
+另有两条防假绿自检: 干净起点错误列表为空; 且**另挂不经过滤的原始监听器**做对照,
+确认 ERR_ABORTED 事件真的发生过。
+
+**双向变异测试**(门禁改动必须两个方向都测):
+| 变异 | 结果 |
+|---|---|
+| A 撤销过滤(`return False`,=修复前) | 红 `pure:hmr_chunk_aborted is_noise=False want=True` |
+| B **过滤过头**(`return True`,真错误也吞) | 红 `pure:not_found is_noise=True want=False` |
+> 只做 A 只能证明「测试抓得住没修」, 抓不住「修过头把门禁掏空」。
+
+**防假绿自检自己也写错过**: `anti-false-green:abort-really-happened` 首跑 saw=0 ——
+我试图用页内 `console.error` 猴补丁抓原始事件做对照, 但 `requestfailed` 是
+**浏览器**发出的、不经过页面 `console.error`, 对照恒为空, 于是「被过滤」成了空断言。
+改用独立的原始 `requestfailed` 监听器(同一事件、两个收集器)后才有真对照。
+> **防假绿自检失败时要先怀疑自检**, 而不是相信「那大概是个 bug」。
+
+影响面: `attach_errors` 被 86 个 frameos 验证器共用; 收窄的只是「浏览器中止的请求」,
+其余全部照旧, 由反向测试逐条兜住。
+
+**候选 Batch 352**: Batch 347 的可寻址性门禁只普查了三种 UI 态, 没触达
+`FrameosGenerationOverlay`(整个组件零 `data-frameos-*`) —— 把门禁的 UI 态覆盖面
+扩到「主面板/裁剪态/分组态/空画布」, 或给覆盖层补钩子; 死状态普查推广到
+canvasStore/directorStore(8709 行, 本轮只扫了 frameos 与 jimeng)。
+
+---
+
+## Batch 352 — 死状态普查改用真 AST; 5 个 store 全扫; 记录一处跨线发现
+
+性质: 工具质量(不动产品行为)。**CLONE_DECISION**
+
+**为什么要重写工具**: Batch 349 的普查工具是正则实现, 推广到别的 store 时先后暴露
+**5 类误报**, 每一类都差点让人把活字段当死状态:
+1. 多行函数签名的**参数**被当字段(jimengStore `applyTrim` 的 `trimmedDuration`);
+2. **解构**读取被漏(`const { groupNames } = useJimengStore.getState()`; 且 hook 真名
+   `useJimengStore` 与文件名 `jimengStore` 之间**没有词边界**, `\bjimengStore\b` 永远匹配不到);
+3. 多行 action 的**首行** `foo: (` 像字段(canvasStore `addNodeAtFlowCenter` 等 3 个);
+4. 多行**解构**里字段单独占行(canvasStore `removedCanvases` / `historyByCanvas`);
+5. 用「第一个 `\n}`」切接口 body 太天真(canvasStore `cohortId` 等 —— 扫进了邻近接口)。
+
+> 继续打补丁是错的方向: 误报率这么高的工具留在仓库里, 每次都会产出
+> **看起来很确凿的假线索**。改用 TypeScript 自己的 AST(仓库已有 5.9.3), 5 类归零。
+> **测量方法本身要先验证** —— 这次是用真实编译器 AST 验证的。
+
+**全量扫描**: frameosStore(33 字段)/canvasStore/jimengStore **均无死状态**;
+`uiStore` 30 字段里有 **4 个真候选**; directorStore(8709 行)本轮未扫。
+
+**跨线发现(只记录, 未改)**: `uiStore` 的
+`isToolboxPanelOpen`/`isMaterialPanelOpen`/`isCharacterPanelOpen`/`isHistoryPanelOpen`
+及各自 `toggleXxxPanel` **都零调用**; 而 `LeftSidebar.tsx:128-141` 是用
+`activePrimaryPanel === "toolbox"` 驱动这些面板的 —— 那 4 个 boolean 是
+`activePrimaryPanel` 重构前的**遗留旧机制**, 不可达且是陷阱(谁调用 toggle 都不会有反应)。
+**不改**的理由: `uiStore` 属 liblib/jimeng 主应用, 不在帧界画布这条线上, 而那条线
+此刻有并行 session 作业; 按「不干扰他人工作」+「不擅自跨线改动」, 只记录。
+要清由该线作者连同其验证器一起清。
+
+**未完成**: directorStore 未扫; 普查**仍不宜门禁化** —— 层 B 判据是
+「initializer 提到 store 名」, 理论上仍可能漏间接引用(把整个 store 传给别的函数再解构),
+真要门禁化需先为这些形态各造「已知活着」的样本做反向测试。
+
+**候选 Batch 353**: Batch 347 的可寻址性门禁只普查三种 UI 态, 没触达
+`FrameosGenerationOverlay`(整个组件零 `data-frameos-*`) —— 扩门禁覆盖面或补钩子;
+继续找「UI 撒谎」类缺陷(裁剪那一条挖完后, 还剩 FrameosTemplatePanel 模板应用、
+FrameosWorkspaceNode 目标工作台页等 mock)。
+
+---
+
+## Batch 352 续 — 「480×480」不是源站常数: 查一手采样定案
+
+全量回归跑出 batch279 失败: `crop:size-inputs-480` —— 正是 Batch 350 改掉的那处。
+**先查一手源站记录再决定**, 找到 `docs/research/liblib-frameos-batch278-2026-09-28/CROP_OBSERVATIONS.md:11`:
+
+> - [480] x [480]（两个 42px 宽的数字输入框，**裁剪区当前尺寸**）
+
+→ **480 是采样当时那个裁剪区的「当前尺寸」，不是源站写死的常数**;
+观测者自己标注的就是「裁剪区当前尺寸」。
+
+于是定案:
+- 克隆侧此前把**观测值当常数**抄成 `defaultValue={480}`, 并用 batch279 的
+  `crop:size-inputs-480` 把这个字面化**钉死** —— 输入框永远显示 480、与节点实际
+  尺寸无关、改了也不生效(Batch 350 修的就是这个);
+- Batch 350 的改法(用节点当前尺寸初始化)**正是源站行为**, 不是发明;
+- batch279 的断言钉的是**克隆的缺陷**, 已改为 `crop:size-inputs-are-current-size`
+  (校验输入框 === 节点流坐标尺寸), 并在断言处引用一手采样出处。
+
+**这正是 Batch 346 的镜像情形, 但结论相反**:
+346 我删了源站逐字原文去换内部一致(错, 被全量套件抓出);
+352 我手里有**一手源站观测**, 证明「480」是克隆对观测值的**字面化**而非源站性质,
+所以是让克隆去匹配源站的**事实**(当前尺寸), 而不是匹配克隆的**字面化**。
+> **纪律**: 遇到「我的改动撞上了旧断言」, 第一动作是**去找一手证据**,
+> 而不是直接改断言 —— 也不 reflexively 改断言。证据在手, 才有资格说谁对。
+
+同时给 `BEHAVIORS.md:141` 与 `IMPLEMENTATION.md:201` 两处记着 `480×480` 的地方
+**加注**(不是删除采样记录): 说明 480 是采样当时尺寸、现已按当前尺寸初始化。
+
+`CROP_OBSERVATIONS.md:15`「确认裁剪未点击(避免任何应用/生成消耗)」也再次确认:
+确认语义**源站未采样** → Batch 350 复用 `beginResize`+`resizeNode` 而非自造裁剪
+语义, 标 CLONE_DECISION 是对的。
+
+变异测试: 宽高退回 `defaultValue={480}` → batch279 红 `crop:size-inputs-are-current-size`。

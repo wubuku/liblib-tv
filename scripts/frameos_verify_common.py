@@ -79,13 +79,43 @@ def marquee_select(
     return boxes, selected_ids
 
 
+ABORTED_FAILURE_SUFFIX = ":net::ERR_ABORTED"
+
+
+def is_dev_server_noise(text: str) -> bool:
+    """这条「错误」是不是开发服务器基础设施噪音, 而不是应用错误?
+
+    Batch 351: `verify-frameos-batch333.py` 的 `diagnostics:zero` 连续三轮在
+    全量套件里失败、重试也失败, 但隔离跑 5+ 次、6 路并发 3 次、重编译扰动 3 次
+    **全部通过**。把诊断写进文件才抓到原文(前两次被 runner 的 `tail -5` 截掉),
+    两次抓到的东西**全是**:
+
+        requestfailed:GET:.../_next/static/chunks/[turbopack]...hmr-client...js:net::ERR_ABORTED
+        requestfailed:GET:.../images/frameos/node-vid-cover-2.jpg:net::ERR_ABORTED
+
+    `net::ERR_ABORTED` 的语义是**浏览器主动取消了请求**, 而不是服务器或应用失败:
+      1. Turbopack HMR chunk —— 别的 session 改源文件触发重编译, 旧 hash 的
+         chunk 失效, 飞行中的请求被中止;
+      2. `/images/frameos/*.jpg|png` —— batch333 专门测跨刷新持久化, 密集
+         `page.reload()`, 飞行中的图片请求随导航被取消。
+
+    判据刻意用「中止」而不是路径白名单: **被中止的请求不携带任何关于服务端
+    或应用健康状况的信息**(应用自己用 AbortController 取消的请求同理 ——
+    那是应用主动要求的取消)。而 404 / 500 / 连接失败**不是** ERR_ABORTED,
+    它们照旧计入, 见 `verify-frameos-batch351.py` 的反向测试。
+
+    门禁必须零误报, 也必须不被削弱 —— 两个方向都要有测试兜着。
+    """
+    return text.startswith("requestfailed:") and text.endswith(ABORTED_FAILURE_SUFFIX)
+
+
 def attach_errors(page: Page) -> list[str]:
     """挂接 console/pageerror/dialog 监听, 返回错误收集列表 (各 verifier 共用)。"""
     errors: list[str] = []
     page.on(
         "console",
         lambda message: errors.append(f"console:{message.type}:{message.text}")
-        if message.type == "error"
+        if message.type == "error" and not is_dev_server_noise(message.text)
         else None,
     )
     page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))

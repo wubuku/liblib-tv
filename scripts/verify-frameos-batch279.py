@@ -75,12 +75,35 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("crop:exit-btn", page.locator("button[aria-label='退出裁剪']").count() == 1)
     check("crop:aspect-btn", page.locator("button[aria-label='宽高比']").count() == 1)
     check("crop:confirm-btn", bar.get_by_text("确认裁剪").count() == 1)
+    # Batch 352: 此断言原先是 `crop:size-inputs-480`, 钉死两个输入框的值 === '480'。
+    # 查一手源站采样 `docs/research/liblib-frameos-batch278-2026-09-28/CROP_OBSERVATIONS.md:11`:
+    #     "[480] x [480]（两个 42px 宽的数字输入框，**裁剪区当前尺寸**）"
+    # —— 480 是**采样当时那个裁剪区的当前尺寸**, 不是源站写死的常数; 观测者自己
+    # 标注的就是「裁剪区当前尺寸」。克隆此前把观测值当常数抄进了 `defaultValue={480}`,
+    # 并用本断言把那个字面化钉死 —— 于是输入框永远显示 480, 与节点实际尺寸无关,
+    # 用户改了也不会被应用(Batch 350 修的就是这个)。
+    # 所以这里断言的是**源站性质**: 输入框显示裁剪区**当前尺寸**。
     check(
-        "crop:size-inputs-480",
+        "crop:size-inputs-are-current-size",
         page.evaluate(
             """(() => {
               const ins = [...document.querySelectorAll('.frameos-crop-bar input')];
-              return ins.length === 2 && ins.every((i) => i.value === '480');
+              if (ins.length !== 2) return false;
+              const el = document.querySelector('.react-flow__node[data-id="image-1"]');
+              if (!el) return false;
+              const r = el.getBoundingClientRect();
+              const zoom = (window.__frameos_canvas_zoom ?? 1);
+              return ins.every((i) => {
+                const v = Number(i.value);
+                return Number.isFinite(v) && v > 0;
+              }) && (() => {
+                // 宽高必须与节点的流坐标尺寸一致（经 zoom 换算到 CSS px）
+                const st = window.__frameos_store.getState();
+                const n = st.nodes.find((x) => x.id === 'image-1');
+                return n && n.style
+                  && Number(ins[0].value) === Number(n.style.width)
+                  && Number(ins[1].value) === Number(n.style.height);
+              })();
             })()"""
         ),
     )
