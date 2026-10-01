@@ -91,6 +91,8 @@ run_case "18) 语音录制测试页补上侧栏入口" web/src/components/layout
 run_case "19) 任务中心重新开放" web/src/router.tsx "$HERE/selftest-fix-19-tasks-reopened.py" 'element: deferred(<TasksPage />)' "retired-task-skill-pages"
 run_case "20) 某档位打开声调开关" web/src/lib/audio-generation.ts "$HERE/selftest-fix-20-audio-pitch-on.py" "showPitch: true" "audio-panel-no-pitch-volume"
 run_case "21) more 分组接上渲染" web/src/components/canvas/canvas-node-toolbar.tsx "$HERE/selftest-fix-21-more-group-rendered.py" 'inGroup("more")' "image-toolbar-omits-tools"
+run_case "22) 画布库文件夹加上嵌套字段" web/src/stores/canvas/use-canvas-store.ts "$HERE/selftest-fix-22-folder-nested.py" "parentId?: string;" "canvas-folders-not-nested"
+run_case "23) 功能开放配置补上写入路由" backend/internal/handler/feature_availability.go "$HERE/selftest-fix-23-feature-write.py" 'r.PATCH("/features"' "feature-availability-readonly"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

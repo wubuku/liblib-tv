@@ -699,6 +699,163 @@ def p_audio_panel_never_offers_pitch_volume(src):
 
 
 
+def p_simple_mode_hardcoded(src):
+    """「简易模式 / simple 模式」开关被硬编码成 professional，界面上没有这个切换。
+
+    手册 create-nodes.md 与 90-troubleshooting.md 都有「找不到简易模式开关」这一条。
+    它和 `canvas-readonly-no-ui-entry` 属同一族，但**成因不同**：只读模式是
+    「功能完整但没有入口」，而简易模式是**「入口的取值被一个常量焊死」**——
+    所以它连「参数扫描」都扫不到（根本没写成 URL 参数）。
+
+    判据要求：
+      (a) project.tsx 里 workspaceMode 是**字面量常量** "professional"；
+      (b) 全 web/src **零处**把 workspaceMode 赋成 "simple"；
+      (c) **对照组**：组件里 `simpleMode = workspaceMode === "simple"` 这段分支
+          代码确实存在，且多个组件的默认值也是 "professional"
+          ——证明这不是「压根没写过简易模式」，而是**写了但永远进不去**。
+          少了 (c)，(a)(b) 也可能只是「这个功能根本不存在」，那手册该写的
+          就是「产品没这个功能」而不是「切换被硬编码」。
+    """
+    proj = git_show(src, "web/src/pages/canvas/project.tsx")
+    composer = git_show(src, "web/src/components/canvas/canvas-config-composer.tsx")
+    if not proj or not composer:
+        return None
+    # (a) 硬编码字面量
+    m = re.search(r"const workspaceMode: CanvasWorkspaceMode = \"(\w+)\";", proj)
+    if not m:
+        return False
+    if m.group(1) != "professional":
+        return False
+    # (b) 全库没有把 workspaceMode 赋成 simple 的地方
+    r = subprocess.run(["git", "grep", "-n", "-E",
+                        r'workspaceMode[^\n]{0,40}=\s*\{?\s*"?simple"?',
+                        REF, "--", "web/src"],
+                       cwd=src, capture_output=True, text=True)
+    if (r.stdout or "").strip():
+        return False
+    # (c) 对照组：simpleMode 分支存在，且默认值是 professional
+    if 'workspaceMode === "simple"' not in composer:
+        return False
+    if 'workspaceMode = "professional"' not in composer:
+        return False
+    return "simpleMode" in composer
+
+
+def p_canvas_locks_unsupported_message(src):
+    """浏览器缺 Web Locks 时会抛那句固定文案——但这个能力全库四处都在用。
+
+    手册 90-troubleshooting.md 有一条症状「当前浏览器不支持跨标签存储锁，已停止画布生成持久化」。
+    这是一条**条件性**断言：它只在浏览器没有 `navigator.locks` 时成立。
+    登记它是为了防两件事：① 上游删掉这条提示；② 上游把整个锁机制删掉
+    ——那时手册应改写成「不再需要现代浏览器」。
+
+    判据要求：
+      (a) use-canvas-store.ts 里探测 navigator.locks，且**不支持时抛出该文案**；
+      (b) **对照组**：全库至少 3 处使用 navigator.locks
+          ——证明这是**在用的机制**而不是残留代码。
+          少了 (b)，「不支持时报错」也可能只是一段没人走的死路径。
+    """
+    store = git_show(src, "web/src/stores/canvas/use-canvas-store.ts")
+    if not store:
+        return None
+    if "navigator.locks" not in store:
+        return False
+    if "当前浏览器不支持跨标签存储锁，已停止画布生成持久化" not in store:
+        return False
+    r = subprocess.run(["git", "grep", "-l", "-F", "navigator.locks", REF, "--", "web/src"],
+                       cwd=src, capture_output=True, text=True)
+    files = [x for x in (r.stdout or "").split("\n") if x.strip()]
+    return len(files) >= 3
+
+
+def p_canvas_folders_not_nested(src):
+    """画布库的文件夹是**一级分组**：数据结构里没有表达嵌套的字段。
+
+    手册 manage-canvases.md 写「文件夹是画布库的一级分组，没有嵌套」。
+    这条断言的特别之处在于：它**不需要扫调用点**就能判——只要看类型定义。
+    上游哪天给 `CanvasFolder` 加了 `parentId`，这句话就过期了。
+
+    判据要求：
+      (a) `CanvasFolder` 类型体里**没有任何指向另一个文件夹的字段**
+          （不能出现 folderId / parentId / parentFolderId 之类）；
+      (b) 层级关系只由**项目侧**的 `folderId` 表达——即挂载点永远是「画布→文件夹」，
+          而不是「文件夹→文件夹」；
+      (c) **对照组**：素材库的文件夹类型**确实带 `parentId`**，且有递归渲染
+          ——证明 (a) 不是「全库都不支持嵌套」这种泛泛事实，
+          而是**画布库特有的扁平设计**。少了 (c)，一旦上游哪天给素材库
+          也去掉了 parentId，这条判据就会跟着一起失效，两处退化互相掩护。
+    """
+    store = git_show(src, "web/src/stores/canvas/use-canvas-store.ts")
+    if not store:
+        return None
+    m = re.search(r"export type CanvasFolder = \{(.*?)\n\};", store, re.S)
+    if not m:
+        return False
+    body = m.group(1)
+    # (a) 类型体里不得有指向文件夹的引用字段
+    if re.search(r"\b(parent\w*Folder\w*|folderId|parentId|children|subfolder\w*)\b", body):
+        return False
+    # (b) 层级由项目侧 folderId 表达
+    if "folderId" not in store:
+        return False
+    if not re.search(r"project\.folderId", store):
+        return False
+    # (c) 对照组：素材库文件夹带 parentId，且有递归渲染
+    picker = git_show(src, "web/src/components/assets/asset-library-picker-modal.tsx")
+    if not picker:
+        return None
+    if "folder.parentId" not in picker:
+        return False
+    return "depth" in picker
+
+
+def p_feature_availability_readonly(src):
+    """功能开放配置（features）**只读**：HTTP 层只注册了 GET，没有任何写入路由。
+
+    手册 plugins-management.md 说「分区挂在 `customChannelsEnabled` 特性开关之后……
+    这需要管理员开权限」。这句话**在本地部署下会误导读者**：本地用户角色
+    确实是 admin（local_identity.go 里 `Role: model.UserRoleAdmin`），
+    看起来「自己去开就行」，但界面和 API 上**根本没有写入路由**。
+
+    登记它是为了防上游把写入口补上——那时手册该改写成「可以自己开」。
+
+    判据要求：
+      (a) `RegisterDesktopFeatureAvailabilityRoutes` 里**只**注册了 `GET /features`；
+      (b) service 层的写入方法 `UpdateFeatureAvailability` 在 handler/cmd 层**零调用**；
+      (c) **对照组**：读取侧确实**在用**——GET 路由存在，且 `FeatureEnabled` 守卫
+          被多处业务代码调用。
+          少了 (c)，(a)(b) 可能只是「features 整套没人用」，那手册该说的是
+          「功能开放配置不影响任何行为」而不是「没有写入入口」。
+    """
+    handler = git_show(src, "backend/internal/handler/feature_availability.go")
+    if not handler:
+        return None
+    # (a) 路由表里只有 GET，没有 POST/PUT/PATCH/DELETE
+    methods = re.findall(r'\br\.(GET|POST|PUT|PATCH|DELETE)\(', handler)
+    if not methods:
+        return False
+    if set(methods) != {"GET"}:
+        return False
+    if "/features" not in handler:
+        return False
+    # (b) 写入方法在 handler / cmd 层零调用
+    r = subprocess.run(["git", "grep", "-n", "-E",
+                        r"\.UpdateFeatureAvailability\(",
+                        REF, "--", "backend/internal/handler", "backend/cmd"],
+                       cwd=src, capture_output=True, text=True)
+    if (r.stdout or "").strip():
+        return False
+    # service 层必须仍然保留该方法——否则这条就不是「没有入口」而是「功能已删」
+    bridge = git_show(src, "backend/internal/app/platform_bridge.go")
+    if not bridge or "UpdateFeatureAvailability" not in bridge:
+        return False
+    # (c) 对照组：读取侧在用
+    r2 = subprocess.run(["git", "grep", "-l", "-F", "FeatureEnabled", REF, "--", "backend"],
+                        cwd=src, capture_output=True, text=True)
+    files = [x for x in (r2.stdout or "").split("\n") if x.strip()]
+    return len(files) >= 3
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -744,6 +901,14 @@ REGISTRY = [
      p_image_toolbar_omits_tools, None),
     ("audio-panel-no-pitch-volume", "音频设置面板从不超过声调与音量（控件存在但全档位关闭）",
      p_audio_panel_never_offers_pitch_volume, None),
+    ("simple-mode-hardcoded", "简易模式开关被硬编码为 professional，界面无此切换",
+     p_simple_mode_hardcoded, None),
+    ("canvas-locks-unsupported-message", "浏览器缺 Web Locks 时抛固定文案（该能力全库在用）",
+     p_canvas_locks_unsupported_message, None),
+    ("canvas-folders-not-nested", "画布库文件夹是一级分组，类型层就没有嵌套字段（素材库有）",
+     p_canvas_folders_not_nested, None),
+    ("feature-availability-readonly", "功能开放配置只读：只注册了 GET，写方法在 handler 层零调用",
+     p_feature_availability_readonly, None),
 ]
 
 
