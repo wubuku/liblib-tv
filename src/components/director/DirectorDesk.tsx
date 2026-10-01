@@ -1100,8 +1100,13 @@ export default function DirectorDesk({
               onVideoExportProgress={setExportProgress}
               onVideoExportCompleted={completeVideoExport}
               onVideoExportFailed={failVideoExport}
+              // Batch 604（源站实测）：prompt 胶囊与工具胶囊并排在视口底部
+              // 同一行（`flex items-center gap-2` 居中）。此前两者各自绝对
+              // 定位（工具条 z-10 @(651,904) / prompt 条 z-20 @(266,908)），
+              // 几乎完全重叠且后者吞掉前者点击；现由 DirectorViewport 的
+              // `data-director-bottom-bar` 统一承载。
+              bottomBarExtra={<DirectorScenePromptBar />}
             />
-            <DirectorScenePromptBar />
           </main>
 
           <aside

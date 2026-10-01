@@ -1,27 +1,42 @@
 "use client";
 
-import { useState } from "react";
-import { Camera, Hand, MousePointer2, MoveUp } from "lucide-react";
+import { useRef, useState } from "react";
+import { ImagePlus, MoveUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Batch 535: 2026-09-27 源站采样（liblib-source-exploration-2026-09-25
-// NOTES §8 + 截图 18-director-console-opened.png）——3D 导演台视口底部
-// 居中胶囊条：左段三个模式图标（光标/相机/手，可切换）+「+ 描述想要
-// 搭建的场景」输入 + ↑ 圆形提交。真实场景搭建为云端 AI 动作，clone
-// 仅维护本地输入草稿与模式选择态，提交不触发任何生成（回显已采样
-// 的本地确认即可）。视口左下 ? 帮助圆钮未采样交互，仅展示。
-const sceneModes = [
-  { id: "cursor", label: "光标", icon: MousePointer2 },
-  { id: "camera", label: "相机", icon: Camera },
-  { id: "hand", label: "手", icon: Hand },
-] as const;
-
-type SceneMode = (typeof sceneModes)[number]["id"];
-
+// Batch 604（源站 2026-10-01 实测，1920x1150）——视口底部浮动条是**两段并列
+// 胶囊**，不是一条扁条：
+//
+//   div.z-(--z-sticky) pointer-events-none absolute inset-x-0 bottom-0
+//        flex flex-col items-center gap-1            1920x182 @(0,968) z=200
+//     └ div.pointer-events-auto flex items-center gap-2   360x48 @(780,968)
+//        └ div.nodrag nopan nowheel relative flex items-end gap-2
+//           ├ nav.w-32 h-12 rounded-full …             128x48  ← DirectorViewport 那枚
+//           └ div.shrink-0.transition-[width]           224x48  ← 本组件（prompt 胶囊）
+//              └ div.grid grid-cols-[32px_142px_32px] p-2 min-h-12
+//                 bg rgba(33,33,33,0.94) / border-white/10 / 三段 shadow
+//
+// 本组件逐字对齐外层网格胶囊：
+//   `relative z-10 grid min-h-12 w-full border border-white/10
+//    bg-[rgba(33,33,33,0.94)] p-2 text-white
+//    shadow-[0_16px_24px_rgba(0,0,0,0.18),0_4px_8px_rgba(0,0,0,0.16),0_1px_1px_rgba(0,0,0,0.12)]`
+//   列宽 `grid-cols-[32px_1fr_32px]`（源站中间列实测 142px，是 1fr 的解析值，
+//   不是写死的定值——所以这里用 1fr 而非 142px）。
+//
+// 三格：col-1「上传图片」/ col-2 输入 / col-3「发送」，两个按钮都是
+// **rounded-full**（与 DirectorViewport 那枚胶囊的 rounded-lg 按钮不同，
+// 源站确实两段视觉语言不一致，照抄不修正）、图标 16px（size-4）。
+//
+// 源站 col-2 的可见输入本体实测是 1x1 的隐藏 input（未展开态），真实输入区
+// 是 contenteditable(role=textbox, 14px)；clone 沿用自有的 <input> 实现。
+//
+// 不声称：源站「发送」的 Enter 提交语义、以及上传后是否真的发起云端生成，
+// 都未取证（点它可能触发付费生成）。本组件的提交只在本地回显草稿。
 export function DirectorScenePromptBar() {
-  const [mode, setMode] = useState<SceneMode>("cursor");
   const [value, setValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [attachment, setAttachment] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const submit = () => {
     if (!value.trim()) return;
@@ -32,75 +47,91 @@ export function DirectorScenePromptBar() {
   return (
     <div
       data-director-scene-prompt-bar
-      className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex items-center justify-center gap-2"
+      // `h-12` 而非源站写的 `min-h-12`：源站这枚胶囊实测 224x48，可它自己的
+      // 算术是 8(p-2) + 32(按钮) + 8 + 1 + 1(border) = 50——`min-h-12` 只设
+      // 下限，内容照样把盒子撑到 50，而源站实测是 48（且 col-1 按钮实测落在
+      // +9 处、底部留 7px，即确实被压过）。按「以实测为准」这里用 `h-12`
+      // 把 48 钉死，让 32px 按钮上下各溢出 1px，与源站几何一致。
+      className="pointer-events-auto relative z-10 grid h-12 w-full grid-cols-[32px_1fr_32px] items-center rounded-full border border-white/10 bg-[rgba(33,33,33,0.94)] p-2 text-white shadow-[0_16px_24px_rgba(0,0,0,0.18),0_4px_8px_rgba(0,0,0,0.16),0_1px_1px_rgba(0,0,0,0.12)]"
     >
-      <div className="pointer-events-auto flex h-11 items-center gap-0.5 rounded-full border border-white/10 bg-[#1f1f1f] px-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        {sceneModes.map((item) => {
-          const Icon = item.icon;
-          return (
-            <button
-              key={item.id}
-              type="button"
-              data-director-scene-mode={item.id}
-              aria-label={item.label}
-              aria-pressed={mode === item.id}
-              onClick={() => setMode(item.id)}
-              className={cn(
-                "flex size-8 items-center justify-center rounded-full text-[#b5b5b5] transition-colors",
-                mode === item.id ? "bg-white/[0.12] text-white" : "hover:bg-white/[0.06]",
-              )}
-            >
-              <Icon size={15} />
-            </button>
-          );
-        })}
-      </div>
-      <div className="pointer-events-auto flex h-11 min-w-[300px] items-center gap-2 rounded-full border border-white/10 bg-[#1f1f1f] px-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        <span aria-hidden="true" className="text-lg leading-none text-[#8c8c8c]">+</span>
-        <input
-          data-director-scene-prompt-input
-          value={value}
-          onChange={(event) => { setValue(event.target.value); setSubmitted(false); }}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") submit();
-          }}
-          // Batch 592（源站 2026-10-01 实测）：可及名逐字是「描述想搭建的
-          // 场景」——clone 原写作「描述想要搭建的场景」，多了一个「要」。
-          // 源站输入区本体是 contenteditable(role=textbox, 14px)，可见
-          // 占位文案另作「描述您想搭建的场景」；此处沿用 clone 的 input
-          // 实现（见 batch 592 记录的未取证项）。
-          placeholder="描述想搭建的场景"
-          aria-label="描述想搭建的场景"
-          className="min-w-0 flex-1 bg-transparent text-xs text-[#e0e0e0] outline-none placeholder:text-[#777]"
-        />
-        {/* Batch 592：提交钮的可及名/提示逐字为「发送」（源站实测 32×32、
-            border-radius 9999px、空态底色 rgba(255,255,255,0.08)——与 clone
-            原有的 disabled 态一致），无文字只有图标。 */}
-        <button
-          type="button"
-          data-director-scene-prompt-submit
-          aria-label="发送"
-          title="发送"
-          onClick={submit}
-          disabled={!value.trim()}
-          className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#e8e8e8] text-[#1a1a1a] hover:bg-white disabled:bg-white/[0.08] disabled:text-[#555]"
-        >
-          <MoveUp size={14} />
-        </button>
-      </div>
+      {/* 源站 col-1 可及名逐字是「上传图片」（aria-label），圆形、16px 图标、
+          `text-white/60 hover:text-white`，无文字。点开本地文件选择器，选中后
+          只把文件名回填进输入区（本地 mock，不发起任何云端请求）。 */}
+      <button
+        type="button"
+        data-director-scene-prompt-upload
+        aria-label="上传图片"
+        title="上传图片"
+        onClick={() => fileInputRef.current?.click()}
+        className="hover:bg-white/8 col-start-1 row-start-1 flex size-8 shrink-0 items-center justify-center rounded-full text-white/60 transition-colors hover:text-white"
+      >
+        <ImagePlus size={16} aria-hidden="true" />
+      </button>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        tabIndex={-1}
+        aria-hidden="true"
+        data-director-scene-prompt-file
+        onChange={(event) => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          setAttachment(file.name);
+          setSubmitted(false);
+        }}
+        className="absolute h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity-0"
+      />
+
+      <input
+        data-director-scene-prompt-input
+        value={value}
+        onChange={(event) => { setValue(event.target.value); setSubmitted(false); }}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") submit();
+        }}
+        // Batch 592（源站 2026-10-01 实测）：可及名逐字是「描述想搭建的
+        // 场景」——clone 原写作「描述想要搭建的场景」，多了一个「要」。
+        // 源站输入区本体是 contenteditable(role=textbox, 14px)，可见
+        // 占位文案另作「描述您想搭建的场景」；此处沿用 clone 的 input
+        // 实现（见 batch 592 记录的未取证项）。
+        placeholder="描述想搭建的场景"
+        aria-label="描述想搭建的场景"
+        className={cn(
+          "col-start-2 row-start-1 min-w-0 bg-transparent text-center text-xs text-[#e0e0e0] outline-none placeholder:text-[#777] transition-opacity",
+          // 状态回显与输入同格叠放（grid 同 cell），胶囊高度因此恒为 48px。
+          submitted && "opacity-0",
+        )}
+      />
+
+      {/* Batch 592：提交钮的可及名/提示逐字为「发送」（源站实测 32×32、
+          border-radius 9999px、空态底色 rgba(255,255,255,0.08)）；batch 604
+          补齐源站的有值态 `bg-white text-[#171717] hover:bg-white/90`、
+          16px 图标与 `ml-1`。 */}
+      <button
+        type="button"
+        data-director-scene-prompt-submit
+        aria-label="发送"
+        title="发送"
+        onClick={submit}
+        disabled={!value.trim()}
+        className="col-start-3 row-start-1 ml-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-[#171717] transition-colors hover:bg-white/90 disabled:bg-white/8 disabled:text-white/28"
+      >
+        <MoveUp size={16} aria-hidden="true" />
+      </button>
+
       <span
         data-director-scene-prompt-status
         aria-live="polite"
         className={cn(
-          "pointer-events-auto rounded-full bg-black/60 px-2.5 py-1 text-[11px] text-[#9ddbb9] transition-opacity",
-          // 隐藏态必须同时关掉命中：opacity-0 的元素仍有盒模型，
-          // pointer-events-auto 会把底下的视口工具条按钮（截帧）整条吞掉
-          // （基线实测：1440x900 下状态条 163x25 @(845,668) 正好盖住
-          // [data-director-capture] 的中心）。
-          submitted ? "opacity-100" : "pointer-events-none opacity-0",
+          // batch 604：状态文案改为与输入同格（col-2 / row-1）叠放，不再是
+          // 一个浮在视口工具条之上的独立气泡——旧形态的 pointer-events-auto
+          // 气泡在基线实测里正好盖住工具条按钮整条，吞掉点击。
+          "pointer-events-none col-start-2 row-start-1 self-center truncate text-center text-[11px] text-[#9ddbb9] transition-opacity",
+          submitted ? "opacity-100" : "opacity-0",
         )}
       >
-        场景描述已记录（本地草稿）
+        {attachment ? `已附上本地图片：${attachment}` : "场景描述已记录（本地草稿）"}
       </span>
     </div>
   );

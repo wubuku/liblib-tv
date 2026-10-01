@@ -1,0 +1,834 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "bottom-bar:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "bar:absolute-inset-x-0-bottom-0",
+      "ok": true,
+      "detail": "pointer-events-none absolute inset-x-0 bottom-0 z-[200] flex flex-col items-center gap-1 px-3"
+    },
+    {
+      "name": "bar:column-items-center-gap-4",
+      "ok": true,
+      "detail": "display=flex gap=4px"
+    },
+    {
+      "name": "bar:z-index-200",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "name": "bar:pointer-events-none",
+      "ok": true,
+      "detail": "pointer-events-none absolute inset-x-0 bottom-0 z-[200] flex flex-col items-center gap-1 px-3"
+    },
+    {
+      "name": "row:flex-items-center-gap-8",
+      "ok": true,
+      "detail": "display=flex gap=8px"
+    },
+    {
+      "name": "row:pointer-events-auto",
+      "ok": true,
+      "detail": "pointer-events-auto flex w-full overflow-x-auto"
+    },
+    {
+      "name": "pillA:h-12-48px",
+      "ok": true,
+      "detail": 48
+    },
+    {
+      "name": "pillA:rounded-full",
+      "ok": true,
+      "detail": "3.35544e+07px"
+    },
+    {
+      "name": "pillA:bg-rgba-33-33-33-0.94",
+      "ok": true,
+      "detail": "rgba(33, 33, 33, 0.94)"
+    },
+    {
+      "name": "pillA:border-1px-white-10",
+      "ok": true,
+      "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    {
+      "name": "pillA:padding-8-gap-8",
+      "ok": true,
+      "detail": "padding=8px gap=8px"
+    },
+    {
+      "name": "pillA:shadow-0-1px-2px",
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, "
+    },
+    {
+      "name": "pillA:backdrop-blur",
+      "ok": true,
+      "detail": "blur(24px)"
+    },
+    {
+      "name": "pillA:cells-32x32",
+      "ok": true,
+      "detail": [
+        [
+          "移动",
+          32,
+          32
+        ],
+        [
+          "旋转",
+          32,
+          32
+        ],
+        [
+          "缩放",
+          32,
+          32
+        ],
+        [
+          null,
+          40,
+          32
+        ],
+        [
+          null,
+          40,
+          32
+        ]
+      ]
+    },
+    {
+      "name": "pillA:icons-20px",
+      "ok": true,
+      "detail": [
+        [
+          "移动",
+          20
+        ],
+        [
+          "旋转",
+          20
+        ],
+        [
+          "缩放",
+          20
+        ],
+        [
+          "开启九宫格辅助线",
+          20
+        ],
+        [
+          "虚拟相机",
+          20
+        ]
+      ]
+    },
+    {
+      "name": "pillA:rounded-lg-8px",
+      "ok": true,
+      "detail": [
+        "8px",
+        "8px",
+        "8px",
+        "8px",
+        "8px",
+        "8px"
+      ]
+    },
+    {
+      "name": "pillB:h-48px",
+      "ok": true,
+      "detail": 48
+    },
+    {
+      "name": "pillB:rounded-full",
+      "ok": true,
+      "detail": "3.35544e+07px"
+    },
+    {
+      "name": "pillB:grid-cols-32-1fr-32",
+      "ok": true,
+      "detail": "32px 143px 32px"
+    },
+    {
+      "name": "pillB:padding-8",
+      "ok": true,
+      "detail": "8px"
+    },
+    {
+      "name": "pillB:three-layer-shadow",
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, "
+    },
+    {
+      "name": "pillB:bg-rgba-33-33-33-0.94",
+      "ok": true,
+      "detail": "rgba(33, 33, 33, 0.94)"
+    },
+    {
+      "name": "pillB:upload-cell-aria",
+      "ok": true,
+      "detail": [
+        "上传图片",
+        "发送"
+      ]
+    },
+    {
+      "name": "pillB:send-cell-aria",
+      "ok": true,
+      "detail": [
+        "上传图片",
+        "发送"
+      ]
+    },
+    {
+      "name": "pillB:buttons-rounded-full-16px-icons",
+      "ok": true,
+      "detail": [
+        [
+          "上传图片",
+          "3.35544e+07px",
+          16
+        ],
+        [
+          "发送",
+          "3.35544e+07px",
+          16
+        ]
+      ]
+    },
+    {
+      "name": "pillB:send-disabled-when-empty",
+      "ok": true,
+      "detail": true
+    },
+    {
+      "name": "pills:side-by-side-gap-8",
+      "ok": true,
+      "detail": 8
+    },
+    {
+      "name": "pills:bottom-aligned",
+      "ok": true,
+      "detail": [
+        968,
+        968
+      ]
+    },
+    {
+      "name": "pills:row-centered",
+      "ok": true,
+      "detail": {
+        "pills_mid": 949.0,
+        "row_mid": 949.0
+      }
+    },
+    {
+      "name": "mode-segment:removed",
+      "ok": true,
+      "detail": "source has no 光标/相机/手 segment (batch 535 transcribed it from screenshot 18, the live DOM does not have it)"
+    },
+    {
+      "name": "upload:local-echo",
+      "ok": true,
+      "detail": "已附上本地图片：cafe-reference.png"
+    },
+    {
+      "name": "tool-pill:hit-testable",
+      "ok": true,
+      "detail": {
+        "x": 1051.890625,
+        "y": 928,
+        "width": 84,
+        "height": 32
+      }
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "measured": {
+    "bar": {
+      "box": {
+        "x": 266,
+        "y": 920,
+        "w": 1366,
+        "h": 48,
+        "right": 1632,
+        "bottom": 968
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px 12px",
+      "gap": "4px",
+      "display": "flex",
+      "position": "absolute",
+      "zIndex": "200",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "boxShadow": "none",
+      "backdropFilter": "none",
+      "gridTemplateColumns": "none",
+      "className": "pointer-events-none absolute inset-x-0 bottom-0 z-[200] flex flex-col items-center gap-1 px-3"
+    },
+    "row": {
+      "box": {
+        "x": 497,
+        "y": 920,
+        "w": 904,
+        "h": 48,
+        "right": 1401,
+        "bottom": 968
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px",
+      "gap": "8px",
+      "display": "flex",
+      "position": "static",
+      "zIndex": "auto",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "boxShadow": "none",
+      "backdropFilter": "none",
+      "gridTemplateColumns": "none",
+      "className": "mx-auto flex shrink-0 items-center gap-2"
+    },
+    "scroller": {
+      "box": {
+        "x": 278,
+        "y": 920,
+        "w": 1342,
+        "h": 48,
+        "right": 1620,
+        "bottom": 968
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "display": "flex",
+      "position": "static",
+      "zIndex": "auto",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "boxShadow": "none",
+      "backdropFilter": "none",
+      "gridTemplateColumns": "none",
+      "className": "pointer-events-auto flex w-full overflow-x-auto"
+    },
+    "pillA": {
+      "box": {
+        "x": 497,
+        "y": 920,
+        "w": 671,
+        "h": 48,
+        "right": 1168,
+        "bottom": 968
+      },
+      "backgroundColor": "rgba(33, 33, 33, 0.94)",
+      "color": "rgb(255, 255, 255)",
+      "borderRadius": "3.35544e+07px",
+      "padding": "8px",
+      "gap": "8px",
+      "display": "flex",
+      "position": "relative",
+      "zIndex": "auto",
+      "borderTopWidth": "1px",
+      "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.18) 0px 1px 2px 0px",
+      "backdropFilter": "blur(24px)",
+      "gridTemplateColumns": "none",
+      "className": "relative flex h-12 max-w-[calc(100vw-48px)] shrink-0 items-center gap-2 overflow-x-auto rounded-full border border-white/10 bg-[rgba(33,33,33,0.94)] p-2 text-white shadow-[0_1px_2px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+    },
+    "cellsA": [
+      {
+        "box": {
+          "x": 612,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 644,
+          "bottom": 960
+        },
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8 bg-white/8",
+        "tag": "button",
+        "ariaLabel": "移动",
+        "ariaPressed": "true",
+        "disabled": false,
+        "svgBox": {
+          "x": 618,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 638,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 652,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 684,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "旋转",
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": {
+          "x": 658,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 678,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 692,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 724,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "缩放",
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": {
+          "x": 698,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 718,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 745,
+          "y": 928,
+          "w": 40,
+          "h": 32,
+          "right": 785,
+          "bottom": 960
+        },
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "flex h-8 min-w-10 shrink-0 items-center justify-center rounded-lg text-[10px] tabular-nums text-white transition-colors hover:bg-white/8 bg-white/8",
+        "tag": "button",
+        "ariaLabel": null,
+        "ariaPressed": "true",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "box": {
+          "x": 793,
+          "y": 928,
+          "w": 40,
+          "h": 32,
+          "right": 833,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "flex h-8 min-w-10 shrink-0 items-center justify-center rounded-lg text-[10px] tabular-nums text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": null,
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "box": {
+          "x": 841,
+          "y": 928,
+          "w": 40,
+          "h": 32,
+          "right": 881,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "flex h-8 min-w-10 shrink-0 items-center justify-center rounded-lg text-[10px] tabular-nums text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": null,
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "box": {
+          "x": 889,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 921,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "开启九宫格辅助线",
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": {
+          "x": 895,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 915,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 942,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 974,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "虚拟相机",
+        "ariaPressed": "false",
+        "disabled": false,
+        "svgBox": {
+          "x": 948,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 968,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 982,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 1014,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "添加群众阵列",
+        "ariaPressed": null,
+        "disabled": false,
+        "svgBox": {
+          "x": 988,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 1008,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 1022,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 1054,
+          "bottom": 960
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+        "tag": "button",
+        "ariaLabel": "模型库",
+        "ariaPressed": null,
+        "disabled": false,
+        "svgBox": {
+          "x": 1028,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 1048,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 1075,
+          "y": 928,
+          "w": 84,
+          "h": 32,
+          "right": 1159,
+          "bottom": 960
+        },
+        "backgroundColor": "rgb(231, 231, 231)",
+        "color": "rgb(32, 32, 32)",
+        "borderRadius": "8px",
+        "padding": "0px 10px",
+        "gap": "6px",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "flex h-8 items-center gap-1.5 rounded-lg bg-[#e7e7e7] px-2.5 text-[11px] text-[#202020] hover:bg-white disabled:bg-[#555] disabled:text-[#999]",
+        "tag": "button",
+        "ariaLabel": null,
+        "ariaPressed": null,
+        "disabled": false,
+        "svgBox": {
+          "x": 1085,
+          "y": 937,
+          "w": 14,
+          "h": 14,
+          "right": 1099,
+          "bottom": 951
+        }
+      }
+    ],
+    "pillB": {
+      "box": {
+        "x": 1176,
+        "y": 920,
+        "w": 225,
+        "h": 48,
+        "right": 1401,
+        "bottom": 968
+      },
+      "backgroundColor": "rgba(33, 33, 33, 0.94)",
+      "color": "rgb(255, 255, 255)",
+      "borderRadius": "3.35544e+07px",
+      "padding": "8px",
+      "gap": "normal",
+      "display": "grid",
+      "position": "relative",
+      "zIndex": "10",
+      "borderTopWidth": "1px",
+      "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.18) 0px 16px 24px 0px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px",
+      "backdropFilter": "none",
+      "gridTemplateColumns": "32px 143px 32px",
+      "className": "pointer-events-auto relative z-10 grid h-12 w-full grid-cols-[32px_1fr_32px] items-center rounded-full border border-white/10 bg-[rgba(33,33,33,0.94)] p-2 text-white shadow-[0_16px_24px_rgba(0,0,0,0.18),0_4px_8px_rgba(0,0,0,0.16),0_1px_1px_rgba(0,0,0,0.12)]"
+    },
+    "cellsB": [
+      {
+        "box": {
+          "x": 1185,
+          "y": 929,
+          "w": 32,
+          "h": 32,
+          "right": 1217,
+          "bottom": 961
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.6)",
+        "borderRadius": "3.35544e+07px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "hover:bg-white/8 col-start-1 row-start-1 flex size-8 shrink-0 items-center justify-center rounded-full text-white/60 transition-colors hover:text-white",
+        "tag": "button",
+        "ariaLabel": "上传图片",
+        "ariaPressed": null,
+        "disabled": false,
+        "svgBox": {
+          "x": 1193,
+          "y": 937,
+          "w": 16,
+          "h": 16,
+          "right": 1209,
+          "bottom": 953
+        }
+      },
+      {
+        "box": {
+          "x": 1364,
+          "y": 929,
+          "w": 32,
+          "h": 32,
+          "right": 1396,
+          "bottom": 961
+        },
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.28)",
+        "borderRadius": "3.35544e+07px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "col-start-3 row-start-1 ml-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-[#171717] transition-colors hover:bg-white/90 disabled:bg-white/8 disabled:text-white/28",
+        "tag": "button",
+        "ariaLabel": "发送",
+        "ariaPressed": null,
+        "disabled": true,
+        "svgBox": {
+          "x": 1372,
+          "y": 937,
+          "w": 16,
+          "h": 16,
+          "right": 1388,
+          "bottom": 953
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "console": 0,
+    "errors": []
+  }
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import {
   createContext,
   useCallback,
@@ -2351,6 +2353,7 @@ export function DirectorViewport({
   onVideoExportProgress,
   onVideoExportCompleted,
   onVideoExportFailed,
+  bottomBarExtra,
 }: {
   onOpenTree: () => void;
   onOpenInspector: () => void;
@@ -2360,6 +2363,12 @@ export function DirectorViewport({
   onVideoExportProgress: (progress: number) => void;
   onVideoExportCompleted: (result: DirectorVideoExportResult) => void;
   onVideoExportFailed: (message: string) => void;
+  // Batch 604（源站实测）：视口底部浮动条是 `flex items-center gap-2` 的
+  // **一行**，工具胶囊（nav）与 prompt 胶囊（grid）并排居中。prompt 胶囊由
+  // DirectorDesk 构造并经此插槽放进同一行——这样既对齐源站结构，也顺带
+  // 消掉 clone 此前「工具条 z-10 @(651,904) 与 prompt 条 z-20 @(266,908)
+  // 几乎完全重叠、后者 pointer-events-auto 吞掉前者点击」的问题。
+  bottomBarExtra?: ReactNode;
 }) {
   const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
@@ -3288,9 +3297,32 @@ export function DirectorViewport({
         </button>
       </div>
 
+      {/* Batch 604（源站 2026-10-01 实测 1920x1150）：视口底部浮动条的外壳
+          逐字是 `z-(--z-sticky) pointer-events-none absolute inset-x-0
+          bottom-0 flex flex-col items-center gap-1`（1920x182 @(0,968)
+          z=200，内容 = 48 工具行 + 4 gap-1 + 130 导演台），其下 `pointer-
+          events-auto flex items-center gap-2` 把两枚胶囊并排居中（源站实测
+          360 宽 @(780,968)）。clone 的 main 不含导演台，所以这一层只承载
+          胶囊行；z 取源站解析值 200。`px-3` 是 clone 侧新增的窄屏留白
+          （源站此处无内边距，它靠整屏居中）。 */}
+      <div
+        data-director-bottom-bar
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[200] flex flex-col items-center gap-1 px-3"
+      >
+        <div className="pointer-events-auto flex w-full overflow-x-auto">
+          {/* `mx-auto` + `shrink-0`：内容比容器宽时 auto 外边距解析为 0，
+              左侧不会被 justify-center 顶出裁切区（窄屏仍可横向滚动）。 */}
+          <div className="mx-auto flex shrink-0 items-center gap-2">
       <div
         data-director-viewport-toolbar
-        className="absolute bottom-5 left-1/2 z-10 flex h-11 max-w-[calc(100%-24px)] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-md border border-white/10 bg-[#222]/95 px-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.34)]"
+        // 源站逐字：relative flex h-12 shrink-0 items-center gap-2 rounded-full
+        // border border-white/10 bg-[rgba(33,33,33,0.94)] text-white
+        // shadow-[0_1px_2px_rgba(0,0,0,0.18)] backdrop-blur-xl w-32 p-2
+        // ——`w-32`(128px) 恰好装满源站那三项(3x32+2x8+2x8)，clone 的控件集
+        // 更大，故去掉定宽让内容撑开；`max-w-[calc(100vw-48px)] overflow-x-
+        // auto` 是 clone 窄屏保护（batch41 断言工具条 390 宽下 x>=12 且右缘
+        // <=378）。其余逐字照抄。
+        className="relative flex h-12 max-w-[calc(100vw-48px)] shrink-0 items-center gap-2 overflow-x-auto rounded-full border border-white/10 bg-[rgba(33,33,33,0.94)] p-2 text-white shadow-[0_1px_2px_rgba(0,0,0,0.18)] backdrop-blur-xl"
       >
         <div
           data-director-transform-context
@@ -3333,7 +3365,7 @@ export function DirectorViewport({
             </span>
           </span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           {transformTools.map(({ mode, label, Icon }) => (
             <button
               key={mode}
@@ -3344,16 +3376,16 @@ export function DirectorViewport({
               data-director-transform-mode={mode}
               onClick={() => setTransformMode(mode)}
               className={cn(
-                "flex h-8 w-8 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
-                transformMode === mode && "bg-white/10 text-[#5ddcff]",
+                "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+                transformMode === mode && "bg-white/8",
               )}
             >
-              <Icon size={15} />
+              <Icon size={20} aria-hidden="true" />
             </button>
           ))}
         </div>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
-        <div className="flex items-center" role="group" aria-label="画幅比例">
+        <div className="flex items-center gap-2" role="group" aria-label="画幅比例">
           {(["16:9", "9:16", "1:1"] as const).map((ratio) => (
             <button
               key={ratio}
@@ -3362,8 +3394,8 @@ export function DirectorViewport({
               aria-pressed={aspectRatio === ratio}
               onClick={() => setAspectRatio(ratio)}
               className={cn(
-                "h-8 min-w-10 rounded px-1.5 text-[10px] tabular-nums text-[#8d8d8d] hover:text-white",
-                aspectRatio === ratio && "bg-white/10 text-white",
+                "flex h-8 min-w-10 shrink-0 items-center justify-center rounded-lg text-[10px] tabular-nums text-white transition-colors hover:bg-white/8",
+                aspectRatio === ratio && "bg-white/8",
               )}
             >
               {ratio}
@@ -3377,11 +3409,11 @@ export function DirectorViewport({
           aria-pressed={showThirds}
           onClick={toggleThirds}
           className={cn(
-            "flex h-8 w-8 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
-            showThirds && "bg-white/10 text-[#5ddcff]",
+            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            showThirds && "bg-white/8",
           )}
         >
-          <Grid3X3 size={15} />
+          <Grid3X3 size={20} aria-hidden="true" />
         </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button
@@ -3398,12 +3430,12 @@ export function DirectorViewport({
             setPhoneVcamOpen((value) => !value);
           }}
           className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
-            phoneVcamOpen && "bg-white/10 text-[#5ddcff]",
+            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            phoneVcamOpen && "bg-white/8",
             phoneVcamRecording && "text-[#ed7a7d]",
           )}
         >
-          <Smartphone size={15} />
+          <Smartphone size={20} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -3417,11 +3449,11 @@ export function DirectorViewport({
             setCrowdPanelOpen((value) => !value);
           }}
           className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
-            crowdPanelOpen && "bg-white/10 text-[#5ddcff]",
+            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            crowdPanelOpen && "bg-white/8",
           )}
         >
-          <Users size={15} />
+          <Users size={20} aria-hidden="true" />
         </button>
         <button
           ref={modelLibraryTriggerRef}
@@ -3432,11 +3464,11 @@ export function DirectorViewport({
           aria-expanded={modelLibraryOpen}
           onClick={toggleModelLibrary}
           className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:text-white",
-            modelLibraryOpen && "bg-white/10 text-[#5ddcff]",
+            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            modelLibraryOpen && "bg-white/8",
           )}
         >
-          <Boxes size={15} />
+          <Boxes size={20} aria-hidden="true" />
         </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <button
@@ -3448,13 +3480,17 @@ export function DirectorViewport({
             phoneVcamRecording
           }
           onClick={requestCapture}
-          className="flex h-8 items-center gap-1.5 rounded bg-[#e7e7e7] px-2.5 text-[11px] text-[#202020] hover:bg-white disabled:bg-[#555] disabled:text-[#999]"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#e7e7e7] px-2.5 text-[11px] text-[#202020] hover:bg-white disabled:bg-[#555] disabled:text-[#999]"
         >
           {viewMode === "camera" ? <Camera size={14} /> : <ImagePlus size={14} />}
           <span className="max-[520px]:hidden">
             {isCapturing ? "截图中" : "保存构图"}
           </span>
         </button>
+      </div>
+            {bottomBarExtra}
+          </div>
+        </div>
       </div>
     </section>
   );

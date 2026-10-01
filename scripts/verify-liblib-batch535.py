@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 """Verify Batch 535: director desk scene prompt bar.
 
-Contract: source-site live sampling 2026-09-25 round 2
-(docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot
-18-director-console-opened.png) — the 3D director desk viewport has a
-bottom-center pill bar: a mode segment with three toggles (光标/相机/手),
-a「+ 描述想搭建的场景」input and a circular ↑ submit. Real scene building
-is a cloud AI action: the clone keeps the input draft and mode selection
-locally and the submit only flashes a local-draft confirmation (no
-generation, no network).
+Contract: source-site live sampling. **Superseded in part by batch 604.**
+
+This batch's original contract came from the 2026-09-25 round 2 notes plus
+screenshot 18-director-console-opened.png, and described a bottom-center pill
+bar with a mode segment of three toggles (光标/相机/手). Batch 604 re-sampled
+the live source DOM on 2026-10-01 and showed that segment does not exist: the
+bottom bar is **two pills side by side** in one `flex items-center gap-2` row —
+a `nav` tool pill (移动/截图/动画时间轴) and a `grid grid-cols-[32px_1fr_32px]`
+prompt pill (上传图片 / input / 发送). The three mode buttons are therefore
+removed from the clone and this verifier now asserts their absence.
+
+What still holds from batch 535: the prompt draft input, its accessible name,
+and a local-only submit confirmation (no generation, no network). Real scene
+building is a cloud AI action, so the clone keeps the draft and mode selection
+locally and submit only flashes a local-draft confirmation.
 """
 
 from __future__ import annotations
@@ -52,9 +59,10 @@ def attach_errors(page: Page) -> list[str]:
 def run_desktop(page: Page) -> dict[str, Any]:
     result: dict[str, Any] = {"viewport": "1440x900", "checks": []}
 
-    def check(name: str, ok: bool) -> None:
-        assert ok, f"batch535 check failed: {name}"
-        result["checks"].append(name)
+    def check(name: str, ok: bool, detail: Any = None) -> None:
+        # batch 604: 接受 detail，让迁移进来的断言能记录实测依据
+        assert ok, f"batch535 check failed: {name} ({detail})"
+        result["checks"].append({"name": name, "ok": True, "detail": detail})
 
     errors = attach_errors(page)
     page.goto(f"{BASE_URL}/?batch70=1", wait_until="networkidle")
@@ -84,14 +92,31 @@ def run_desktop(page: Page) -> dict[str, Any]:
         == "描述想搭建的场景",
     )
 
-    # 模式三态切换
-    for mode_id in ["cursor", "camera", "hand"]:
-        bar.locator(f"[data-director-scene-mode='{mode_id}']").click()
-        page.wait_for_timeout(100)
-        check(
-            f"mode:active:{mode_id}",
-            bar.locator(f"[data-director-scene-mode='{mode_id}']").get_attribute("aria-pressed") == "true",
-        )
+    # Batch 604 迁移：源站 2026-10-01 实时 DOM 复核推翻了本文件 docstring
+    # 记录的「模式段三切换（光标/相机/手）」——那是从历史截图 18 转录来的，
+    # 源站真实结构是**两枚并排胶囊**：`nav` 工具胶囊（移动/截图/动画时间轴）
+    # + `grid grid-cols-[32px_1fr_32px]` prompt 胶囊（上传图片/输入/发送）。
+    # 模式三态在源站不存在，clone 的三枚模式钮已删除，故此处改为断言「不存在」。
+    check(
+        "mode-toggles:removed",
+        page.locator("[data-director-scene-mode]").count() == 0,
+        detail="source has no 光标/相机/手 mode segment; the clone's three "
+        "mode buttons (transcribed from screenshot 18) are gone",
+    )
+    check(
+        "bar:in-bottom-bar-row",
+        page.locator(
+            "[data-director-bottom-bar] [data-director-scene-prompt-bar]"
+        ).count()
+        == 1,
+        detail="prompt pill now shares the source's single bottom row with the "
+        "tool pill (was an independent absolutely positioned bar)",
+    )
+    check(
+        "bar:upload-cell",
+        bar.locator("[data-director-scene-prompt-upload]").get_attribute("aria-label")
+        == "上传图片",
+    )
 
     # 输入草稿 + 提交 → 本地确认回显（无网络动作）
     prompt_input = bar.locator("[data-director-scene-prompt-input]")
@@ -131,8 +156,11 @@ def main() -> None:
     print(
         "Batch 535 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "scene prompt bar with 光标/相机/手 mode toggles, draft input and "
-        "local-only submit confirmation recorded in runtime-audit.json."
+        "scene prompt bar (grid pill: upload / draft input / circular submit) "
+        "with local-only submit confirmation recorded in runtime-audit.json. "
+        "Batch 604 removed the 光标/相机/手 mode segment that this batch's "
+        "original docstring transcribed from screenshot 18; the source has no "
+        "such control."
     )
 
 
