@@ -54,16 +54,43 @@ def is_delimiter_row(line: str) -> bool:
 SKIP_DIRS = {"node_modules", ".vitepress", "dist", ".git"}
 
 
+def fenced_code_lines(lines: list[str]) -> set[int]:
+    """返回处于围栏代码块内的行号（0-based）。
+
+    **为什么需要（M71 实测）**：手册多处需要**展示**表格写法本身，例如
+    `PUBLISH.md` 教人怎么往账本追加记录时给出一行 `| 级别 | 描述 | 影响 | 处置 |`。
+    这类行以 `|` 开头、以 `|` 结尾，**形态与真表格完全一样**，但它们在代码块里——
+    markdown 不会把它们解析成表格。第一版判据因此把示例报成了"孤立表格块"，
+    而如果为了绕过它去改示例，就等于**让判据迁就错误**。
+
+    围栏代码块以 ``` 或 ~~~ 开头（缩进不超过 3 个空格），块内一切内容都跳过。
+    """
+    inside: set[int] = set()
+    fence: str | None = None
+    for number, line in enumerate(lines):
+        stripped = line.strip()
+        if fence is None:
+            if stripped.startswith("```") or stripped.startswith("~~~"):
+                fence = stripped[:3]
+                inside.add(number)
+            continue
+        inside.add(number)
+        if stripped.startswith(fence):
+            fence = None
+    return inside
+
+
 def check_file(path: Path, rel: str) -> list[str]:
     lines = path.read_text(encoding="utf-8").splitlines()
+    code = fenced_code_lines(lines)
     problems: list[str] = []
     index = 0
     while index < len(lines):
-        if not is_table_row(lines[index]):
+        if index in code or not is_table_row(lines[index]):
             index += 1
             continue
         start = index
-        while index < len(lines) and is_table_row(lines[index]):
+        while index < len(lines) and index not in code and is_table_row(lines[index]):
             index += 1
         block = lines[start:index]
         head = block[0].strip()[:52]
@@ -102,9 +129,10 @@ def main() -> int:
     for path in md_files:
         rel = path.relative_to(root).as_posix()
         lines = path.read_text(encoding="utf-8").splitlines()
+        code = fenced_code_lines(lines)
         index = 0
         while index < len(lines):
-            if not is_table_row(lines[index]):
+            if index in code or not is_table_row(lines[index]):
                 index += 1
                 continue
             table_count += 1

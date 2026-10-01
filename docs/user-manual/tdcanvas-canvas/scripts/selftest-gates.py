@@ -226,6 +226,23 @@ def mutate_table_split_by_quote(root: Path) -> None:
     path.write_text("".join(lines), encoding="utf-8")
 
 
+def mutate_table_outside_fence(root: Path) -> None:
+    """代码块**外**的孤立表格行（M71 加代码块跳过后的反向验证）。
+
+    M71 给 `check-tables.py` 加了"围栏代码块内整块跳过"，因为手册多处要**展示**
+    表格写法本身（`PUBLISH.md` 里教人追加记录时给出的一行 `| 级别 | 描述 |`）。
+    加了这个豁免就必须同时证明：**豁免没有扩大到代码块外**——否则等于给整本手册
+    开了一个可以随便写残缺表格的后门。这里在真实表格前插一个代码块（内含一行
+    假表格，应当被跳过），紧跟一行代码块外的孤立表格行（应当被抓）。
+    """
+
+    path = root / "20-reference.md"
+    text = path.read_text(encoding="utf-8")
+    anchor = "## 鼠标与键位\n"
+    injected = "```\n| 假 | 表格 |\n```\n\n| 孤立 | 行 |\n\n"
+    path.write_text(text.replace(anchor, injected + anchor, 1), encoding="utf-8")
+
+
 def mutate_table_rows_after_list(root: Path) -> None:
     """表格行被追加到列表末尾，脱离任何表头（AUDIT.md 的真实事故形态）。
 
@@ -268,6 +285,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
     ("表格被引用块劈开", mutate_table_split_by_quote, "tables", "会整体渲染成原始管道文本"),
     ("表格行脱离表头接在列表后", mutate_table_rows_after_list, "tables", "会整体渲染成原始管道文本"),
+    ("代码块外的孤立表格行", mutate_table_outside_fence, "tables", "会渲染成普通段落"),
 ]
 
 
