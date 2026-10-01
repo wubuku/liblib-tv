@@ -856,3 +856,18 @@
 - **另一处值得记的细节**：`/prompts` 页面的 `document.title` 是 `TDCanvas`（全站统一），**"提示词中心"是 `h1` 而不是浏览器标签标题**。手册写的"页面标题"按 `h1` 理解是对的，但两者不是一回事，已一并留档。
 - **门禁**：无新增门禁、无新图、**正文零改动**（三条全对，不为凑产出硬改）。产物 22 页 / 89 图 / 856 链接。
 - **清单进度**：23 张表已核对 6 组，**余下约 13 张**（`20-reference` 四张、`generate-images` 状态机、`undo-persistence`、`manage-assets` 资产卡片操作、`organize-canvas` 入口表等）。
+
+## 流程纠正 — `git commit -- <pathspec>` 不安全（读到别人踩过的坑后自查）
+
+- **发现**：本轮 push 后 `git log` 里出现一条同仓库的提交 `2133f500 docs(agents): 纠正共享 master 工作区的提交方式 —— git commit -- <pathspec> 不安全`，说明**另一个 agent 已经在本仓库踩过这个坑**并写清了后果：一次本意提交 10 个小文件，因路径里有两个文件正被对方编辑，**额外裹入约 240 行无关的在写代码**。
+- **原理**（此前我一直没搞清）：`git commit -- <pathspec>` **不提交索引，它提交这些路径的当前工作区内容**。所以哪怕 `git add` 做得完全干净，只要目标文件在**工作区**里被并行修改过，就会连同对方的在写代码一起提交进去。**危险的是 `commit`，不是 `add`**——`git add -- <path>` 只把指定路径放进索引，是安全的。
+- **回溯自查**：本轮 6 个提交（M65–M70）逐一 `git show --numstat` 核对行数，全部与各批实际改动吻合，**没有任何异常大的行数**（未出现别人事故里那种 `+193` / `+48`）。原因很直接——`docs/user-manual/tdcanvas-canvas/` 是本手册专属目录，没有其他 agent 在其中并行编辑。**结论：未造成事故，但流程本身是错的，必须改。**
+- **新流程（本手册后续所有提交一律照此执行）**：
+  ```bash
+  git add -- docs/user-manual/tdcanvas-canvas/   # 只加自己的路径（安全）
+  git diff --cached --name-only                   # 核对：是否全部在自己的目录内
+  git diff --cached --numstat                     # 核对行数：本该 3 5，看到 193 12 就停
+  git commit -m "..."                             # 纯 commit，不带 pathspec
+  ```
+  **为什么最后一步可以去掉 pathspec**：暂存区里只有自己 `add` 进去的文件，纯 `commit` 只会提交它们。**前提是每批开始时暂存区是干净的**——若发现 `git diff --cached --name-only` 出现自己目录以外的文件，说明别人暂存过内容，这时既不能纯 commit 也不能用 pathspec，必须先与对方协调。
+- **顺带记一笔**：`git status --porcelain | grep -v "docs/user-manual/tdcanvas-canvas/"` 当前显示 **262** 处他人改动，横跨 jimeng 等多个批次。本手册的每一条命令都带 `-- docs/user-manual/tdcanvas-canvas/` 限定或只在该目录内操作，**全程未触碰、未覆盖、未 stash 任何一条**。
