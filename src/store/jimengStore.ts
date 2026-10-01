@@ -167,6 +167,17 @@ export interface JimengCanvasState {
   generateInto: (id: string, prompt: string) => void;
   /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
+  /** 节点数据 patch，**且可整体撤销** (Batch 825，时间线剪辑动作)
+   *
+   *  为什么不直接让 `updateNodeData` 记历史：它被**逐字输入**等热路径调用
+   *  （`JimengTextNode.tsx:143` 每次改字都调），那样按一次撤销只能退一个字，
+   *  历史栈还会被撑爆。而时间线的分割 / 剪裁 / 增删片段是低频、语义上
+   *  该**整体**撤销的动作 —— 这类才走本入口。
+   *
+   *  另一个理由：撤销按钮与 store 的历史栈必须对得上。若剪辑动作不进栈，
+   *  点「撤销」撤掉的会是很久之前的别的动作（全屏编辑器里点一下就把
+   *  时间线节点本身撤没了，浮层随之消失）。 */
+  updateNodeDataUndoable: (id: string, patch: Record<string, unknown>) => void;
   /** 节点重命名 (Batch 87, SOURCE_FACT 标题行即 Rename 按钮)：入撤销栈 */
   renameNode: (id: string, title: string) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
@@ -1003,6 +1014,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   updateNodeData: (id, patch) =>
     set((state) => ({
       ...markDirty(state),
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id) return n;
+        return { ...n, data: { ...n.data, ...patch } };
+      }),
+    })),
+
+  updateNodeDataUndoable: (id, patch) =>
+    set((state) => ({
+      ...markDirty(state),
+      past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+      future: [],
       nodes: state.nodes.map((n) => {
         if (n.id !== id) return n;
         return { ...n, data: { ...n.data, ...patch } };

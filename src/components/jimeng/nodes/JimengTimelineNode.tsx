@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   ChevronLeft,
@@ -93,13 +93,27 @@ const FS_RULER_SECONDS = 70;
 
 /** Batch 821 SOURCE_FACT：底栏「Timeline editing tools」六枚，实名逐字取自源站。 */
 const FS_EDIT_TOOLS = [
-  { label: "撤销", icon: Undo2 },
-  { label: "重做", icon: Redo2 },
-  { label: "分割", icon: Scissors },
-  { label: "向左剪裁", icon: ChevronLeft },
-  { label: "向右剪裁", icon: ChevronRight },
-  { label: "删除", icon: Trash2 },
+  { label: "撤销", icon: Undo2, kind: "undo" },
+  { label: "重做", icon: Redo2, kind: "redo" },
+  { label: "分割", icon: Scissors, kind: "split" },
+  { label: "向左剪裁", icon: ChevronLeft, kind: "trimStart" },
+  { label: "向右剪裁", icon: ChevronRight, kind: "trimEnd" },
+  { label: "删除", icon: Trash2, kind: "delete" },
 ] as const;
+
+/** 片段 id 序号。
+ *
+ *  ⚠️ 这里**不能**用 `Date.now()`。`addClip` / `fsSplit` 是组件体内定义的函数，
+ *  而 React Compiler 的 `react-hooks/purity` 规则把组件体内出现的 impure 调用
+ *  一律判成「渲染期调用」并报错 —— `Cannot call impure function during render`。
+ *  讽刺的是这个报错**在 825 之前就存在**：批 805 写的 `addClip` 里早就有
+ *  `Date.now()`，也就是说 `npm run check` 一直退出 1，而我却在 §31–§34 里
+ *  写了四次「`npm run check` EXIT=0」—— 那是 `… | tail -4; echo $?` 读到
+ *  **`tail` 的退出码**造成的假绿。教训：**别用管道的 `$?` 汇报门禁结果**。
+ *
+ *  模块级计数器在渲染之外，天然合法；片段 id 本来也只需要**进程内唯一**。 */
+let clipSeq = 0;
+const nextClipId = (prefix: string) => `${prefix}-${(clipSeq += 1)}`;
 
 function fmt(sec: number): string {
   const s = Math.max(0, Math.floor(sec));
@@ -108,9 +122,19 @@ function fmt(sec: number): string {
 
 export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   const d = data as JimengTimelineNodeData;
-  const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  /* 片段的增/删/分割/剪裁一律走**可撤销**通道：撤销按钮与 store 的历史栈
+     必须对得上，否则在全屏编辑器里点「撤销」撤掉的是很久之前的别的动作。 */
+  const updateClips = useJimengStore((s) => s.updateNodeDataUndoable);
   const pushToast = useJimengStore((s) => s.pushToast);
   const removeNode = useJimengStore((s) => s.removeNode);
+  /* Batch 825：撤销/重做直接用 store 里**真**的 undo/redo（批 336 建的节点级
+     历史栈），与画布右键菜单里那两枚走的是同一条路径 —— 同一动作两条入口，
+     行为必须一致，所以这里不另做一套。禁用态也跟着右键菜单的做法，
+     由 `past`/`future` 是否为空决定。 */
+  const undo = useJimengStore((s) => s.undo);
+  const redo = useJimengStore((s) => s.redo);
+  const canUndo = useJimengStore((s) => s.past.length > 0);
+  const canRedo = useJimengStore((s) => s.future.length > 0);
   const clips = d.clips ?? [];
   // Batch 813 SOURCE_FACT（源站逐个按钮实测）：
   //   导出时间线 42×42 → 弹导出菜单（MP4/XML + 导出到剪映/DaVinci/Premiere/Final Cut）
@@ -128,6 +152,18 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   // 减/加夹着它、自身又叫 "Timeline zoom" —— 按缩放读数实现最自洽，
   // 且让两枚按钮不再是死按钮。记为 OPEN_QUESTION 821-a。
   const [fsZoom, setFsZoom] = useState(1);
+  /* Batch 825 SOURCE_FACT 缺口（全屏编辑器的轨道此前只画了刻度 + 投放区，
+     **一个片段都没渲染**，所以「分割/剪裁/删除」这三枚工具即便接上动作也
+     无从下手 —— 用户看不见自己在动什么）。本批补三件事，让它们成一套：
+       ① 播放头可定位   fsTime 秒；点刻度尺 / 点片段都能挪
+       ② 轨道渲染片段   与内嵌轨道同一套世界坐标映射（819 的教训）
+       ③ 六枚工具真能用 作用于**播放头所在的那一片段**
+     ⚠️ 片段在全屏轨道里的几何**不是源站实测值** —— 源站那个 fixture 的媒体
+        全没加载（台账 §31 记过），轨道上根本没有片段可量。本批只把
+        「按同一映射渲染」这件事做对，不把任何读数写成 SOURCE_FACT。 */
+  const [fsTime, setFsTime] = useState(0);
+  // 播放头定位要拿轨道盒做坐标换算，刻度尺/片段/播放头三处共用它
+  const fsTrackRef = useRef<HTMLDivElement>(null);
 
   // Batch 821 SOURCE_FACT：源站全屏编辑器**按 Escape 能关**（2026-10-04
   // 实测：Escape 后 `[data-testid="timeline-fullscreen-editor"]` 从 DOM 消失）。
@@ -151,21 +187,128 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
 
   const addClip = () => {
     const clip = {
-      id: `clip-${Date.now()}`,
+      id: nextClipId("clip"),
       label: `片段 ${clips.length + 1}`,
       start: clips.length ? Math.min(30, clips[clips.length - 1].start + clips[clips.length - 1].length) : 0,
       length: 5,
     };
-    updateNodeData(id, { clips: [...clips, clip], duration: clip.start + clip.length });
+    updateClips(id, { clips: [...clips, clip], duration: clip.start + clip.length });
     pushToast(FEEDBACK.addTimelineClip(clip.label));
+  };
+
+  const runFsTool = (kind: (typeof FS_EDIT_TOOLS)[number]["kind"]) => {
+    if (kind === "undo") {
+      undo();
+      return;
+    }
+    if (kind === "redo") {
+      redo();
+      return;
+    }
+    if (kind === "split") {
+      fsSplit();
+      return;
+    }
+    if (kind === "trimStart") {
+      fsTrimStart();
+      return;
+    }
+    if (kind === "trimEnd") {
+      fsTrimEnd();
+      return;
+    }
+    fsDeleteAtPlayhead();
+  };
+
+  /* 播放头定位：刻度尺/轨道上点一下就跳到那一点。坐标换算与渲染**同一套**
+     映射（`52 + t × px/s × zoom`）—— 819 换掉百分比模型之后，刻度、片段、
+     播放头三者的横坐标必须由同一个式子算出来，否则缩放一按就各走各的。 */
+  const seekFromClientX = (clientX: number) => {
+    const el = fsTrackRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = FS_RULER_PX_PER_SEC * fsZoom;
+    setFsTime(Math.max(0, Math.min(span, (clientX - rect.left - 52) / px)));
   };
 
   const removeClip = (clipId: string) => {
     const rest = clips.filter((c) => c.id !== clipId);
-    updateNodeData(id, {
+    updateClips(id, {
       clips: rest,
       duration: rest.length ? rest[rest.length - 1].start + rest[rest.length - 1].length : 0,
     });
+  };
+
+  /* ── Batch 825：全屏编辑器的剪辑动作 ──────────────────────────────────
+     这四枚（分割 / 向左剪裁 / 向右剪裁 / 删除）此前是纯 toast 桩。
+     它们要能真干活，前提是用户**看得见自己在动什么**，所以配套做了两件事：
+     ① 轨道按同一套世界坐标映射渲染片段（与内嵌轨道一致，819 的教训）
+     ② 播放头可定位（点刻度尺 / 点片段），四枚动作都作用于**播放头所在片段**
+
+     片段总长取**所有片段末端的最大值**，不是「最后一个片段的末端」——
+     分割与剪裁会改变片段顺序/长度，「最后一个」这个假设从 825 起不再成立。 */
+  const spanOf = (list: typeof clips) =>
+    list.length ? Math.max(...list.map((c) => c.start + c.length)) : 0;
+
+  const commitClips = (next: typeof clips) =>
+    updateClips(id, { clips: next, duration: spanOf(next) });
+
+  // 播放头所在片段：左闭右开。播放头正好落在某片段**末端**时算「下一片」——
+  // 与剪辑软件的直觉一致（末端就是下一段的起点）。
+  const clipAtPlayhead = clips.find(
+    (c) => fsTime >= c.start && fsTime < c.start + c.length,
+  );
+  const stamp = (t: number) =>
+    `00:00:${String(Math.max(0, Math.floor(t))).padStart(2, "0")}`;
+
+  const fsSplit = () => {
+    const c = clipAtPlayhead;
+    if (!c || fsTime <= c.start || fsTime >= c.start + c.length) {
+      pushToast(FEEDBACK.needClipAtPlayhead("分割"));
+      return;
+    }
+    const head: (typeof clips)[number] = { ...c, length: fsTime - c.start };
+    const tail: (typeof clips)[number] = {
+      ...c,
+      id: nextClipId(`${c.id}-b`),
+      start: fsTime,
+      length: c.start + c.length - fsTime,
+    };
+    commitClips(
+      [...clips.filter((x) => x.id !== c.id), head, tail].sort((a, b) => a.start - b.start),
+    );
+    pushToast(FEEDBACK.splitTimelineClip(c.label, stamp(fsTime)));
+  };
+
+  const fsTrimStart = () => {
+    const c = clipAtPlayhead;
+    if (!c || fsTime <= c.start) {
+      pushToast(FEEDBACK.needClipAtPlayhead("向左剪裁"));
+      return;
+    }
+    commitClips(clips.map((x) => (x.id === c.id ? { ...x, start: fsTime } : x)));
+    pushToast(FEEDBACK.trimTimelineClipStart(c.label, stamp(fsTime)));
+  };
+
+  const fsTrimEnd = () => {
+    const c = clipAtPlayhead;
+    if (!c || fsTime >= c.start + c.length) {
+      pushToast(FEEDBACK.needClipAtPlayhead("向右剪裁"));
+      return;
+    }
+    commitClips(clips.map((x) => (x.id === c.id ? { ...x, length: fsTime - x.start } : x)));
+    pushToast(FEEDBACK.trimTimelineClipEnd(c.label, stamp(fsTime)));
+  };
+
+  const fsDeleteAtPlayhead = () => {
+    const c = clipAtPlayhead;
+    if (!c) {
+      pushToast(FEEDBACK.needClipAtPlayhead("删除"));
+      return;
+    }
+    commitClips(clips.filter((x) => x.id !== c.id));
+    setFsTime(0);
+    pushToast(FEEDBACK.removeTimelineClip(c.label));
   };
 
   return (
@@ -598,8 +741,11 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                 data-testid="timeline-fs-playhead"
               >
                 <span className="sr-only">Timeline playhead</span>
-                <span className="text-[18px]/[20px] tabular-nums text-white/80">
-                  00:00:00
+                <span
+                  className="text-[18px]/[20px] tabular-nums text-white/80"
+                  data-testid="timeline-fs-playhead-time"
+                >
+                  {stamp(fsTime)}
                 </span>
                 <span className="text-[18px]/[20px] text-white/80">/</span>
                 <span className="text-[18px]/[20px] tabular-nums text-white/80">
@@ -658,18 +804,27 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                 aria-label="Timeline editing tools"
                 data-testid="timeline-fullscreen-editing-tools"
               >
-                {FS_EDIT_TOOLS.map((t) => (
-                  <button
-                    key={t.label}
-                    type="button"
-                    aria-label={t.label}
-                    data-testid={`timeline-fullscreen-tool-${t.label}`}
-                    onClick={() => pushToast(mockMsg(`${t.label}（时间线编辑工具）`))}
-                    className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
-                  >
-                    <t.icon size={16} />
-                  </button>
-                ))}
+                {FS_EDIT_TOOLS.map((t) => {
+                  /* 撤销/重做有真历史栈，禁用态与画布右键菜单同源；
+                     另外四枚永远可点 —— 没片段可切时给的是**带信息的反馈**
+                     （「请先把播放头移到某个片段上」），不是一颗点不动的灰钮。 */
+                  const off = t.kind === "undo" ? !canUndo : t.kind === "redo" ? !canRedo : false;
+                  return (
+                    <button
+                      key={t.label}
+                      type="button"
+                      aria-label={t.label}
+                      data-testid={`timeline-fullscreen-tool-${t.label}`}
+                      disabled={off}
+                      onClick={() => runFsTool(t.kind)}
+                      className={`flex size-7 items-center justify-center rounded-md ${
+                        off ? "text-white/25" : "text-white/70 hover:bg-white/10"
+                      }`}
+                    >
+                      <t.icon size={16} />
+                    </button>
+                  );
+                })}
               </div>
               <div
                 className="flex items-center gap-1"
@@ -731,6 +886,8 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                   所以横向滚动不必另写 min-width，缩放时溢出量自己跟着长。 */}
               <div
                 className="relative h-full min-w-full"
+                ref={fsTrackRef}
+                onClick={(e) => seekFromClientX(e.clientX)}
                 data-testid="timeline-fullscreen-track-canvas"
               >
                 <div
@@ -762,22 +919,80 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                     aria-label={muted ? "取消静音" : "静音"}
                     data-testid="timeline-fullscreen-mute-button"
                     aria-pressed={muted}
-                    onClick={() => setMuted((v) => !v)}
+                    /* 轨道容器上挂了 `onClick` 做播放头定位（825），这里必须
+                       阻断冒泡 —— 否则点「静音」会顺带把播放头挪到那个 x 上，
+                       用户按了静音、播放头却跑了。投放区同理。 */
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMuted((v) => !v);
+                    }}
                     className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
                   >
                     {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
                   </button>
+                  {/* 片段：与内嵌轨道同一套映射（`52 + t × px/s × zoom`），
+                      刻度 / 片段 / 播放头三者的横坐标由同一个式子算出来。
+                      ⚠️ 这里的**尺寸不是源站实测值** —— 源站那个 fixture 的
+                      媒体全没加载，轨道上根本没有片段可量（台账 §31）。
+                      本批只保证「按同一映射渲染」这件事对，不写死任何读数。 */}
+                  {clips.map((c) => (
+                    <div
+                      key={c.id}
+                      className="absolute top-2 flex h-10 items-center overflow-hidden rounded-md px-2 text-[12px] text-white/85"
+                      style={{
+                        left: `${52 + c.start * FS_RULER_PX_PER_SEC * fsZoom}px`,
+                        /* 下限是 **18** 不是 2：元素带 `px-2`(左右各 8) 与
+                           1px 边框，而 Tailwind 全局 `border-box` 下盒子**不可能
+                           窄于 padding+border**（16+1=17，取整 18）。
+                           此前写 `Math.max(2, …)`，那个下限**永远达不到** ——
+                           行内样式写着 2px、实际渲染 18px，样式在说谎；
+                           一个被剪成 0 长的片段会显示成 18px 宽的一块。
+                           下限必须等于真实的最小宽度，否则别写。 */
+                        width: `${Math.max(18, c.length * FS_RULER_PX_PER_SEC * fsZoom)}px`,
+                        background: "rgba(255,255,255,0.10)",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                      }}
+                      data-testid="timeline-fullscreen-clip"
+                    >
+                      <span className="truncate">{c.label}</span>
+                    </div>
+                  ))}
+                  {/* 投放区 56×56。**空轨**时落在 x=64 —— 那是 821 实测的源站
+                      读数（[64,786,56,56]），照搬；非空时改跟在最后一个片段之后。
+                      源站的**非空态**读数我拿不到（fixture 无媒体），所以这里
+                      是按「排得下、不压住片段」推的，不写成 SOURCE_FACT。
+                      顺带解决一个真实问题：若像内嵌轨道那样「仅空态出现」，
+                      全屏编辑器就永远加不了第二个片段。 */}
                   <button
                     type="button"
                     aria-label="添加素材到时间线"
-                    onClick={addClip}
-                    className="ml-4 flex size-14 items-center justify-center rounded-md bg-white/[0.04] text-white/35 hover:bg-white/[0.07]"
+                    onClick={(e) => {
+                      // 同静音钮：点投放区只该加片段，不该顺带挪播放头
+                      e.stopPropagation();
+                      addClip();
+                    }}
+                    className="absolute top-[22px] flex size-14 items-center justify-center rounded-md bg-white/[0.04] text-white/35 hover:bg-white/[0.07]"
+                    style={{
+                      /* 52 = 刻度尺/播放头用的左槽宽。track-canvas 起点在绝对
+                         x=12，所以 52 换算过去正好是源站实测的 x=64。
+                         top-22 = 刻度 18 + 视觉轨的 mt-1 4 —— 投放区跟片段
+                         一样锚在轨道画布上（同一套映射），但它要落在**视觉轨
+                         内部**（源站读数 y=786），而视觉轨的顶边相对轨道画布
+                         内容顶正好差 22px。 */
+                      left: `${52 + spanOf(clips) * FS_RULER_PX_PER_SEC * fsZoom
+                        + (clips.length ? 12 : 0)}px`,
+                    }}
+                    data-testid="timeline-fullscreen-drop"
                   >
                     <Plus size={24} />
                   </button>
                 </div>
+                {/* 播放头：位置由 fsTime 算出（同一套映射）。
+                    不用 left/top 硬编码 —— t=0 时它仍然落在 52px 处，
+                    与 821 实测的源站读数 [64,764,1,174] 保持一致。 */}
                 <div
-                  className="absolute inset-y-0 left-[52px] w-px bg-white/70"
+                  className="absolute inset-y-0 w-px bg-white/70"
+                  style={{ left: `${52 + fsTime * FS_RULER_PX_PER_SEC * fsZoom}px` }}
                   aria-label="Timeline playhead"
                   data-testid="timeline-fullscreen-playhead"
                 />

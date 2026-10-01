@@ -46,6 +46,20 @@ export const FEEDBACK = {
 
   // ── 新增节点（batch 807/810）──
   addTimelineClip: (name: string) => mockMsg(`已添加「${name}」到时间线`),
+  /* Batch 825：全屏编辑器的四枚剪辑工具接上真动作后，反馈一并入册。
+     动作是**真的**（真的改了片段），但**文案没有源站依据** —— 源站那个
+     fixture 的媒体全没加载，轨道上根本没有片段可操作，没量到过提示原文。
+     按本模块规则「源站没有对应物的 → 保留（mock）」，所以动作真、文案标 mock。
+     被阻挡时走 needXFirst 家族，与 `needCanvasNodeFirst` 同一种句式。 */
+  splitTimelineClip: (name: string, at: string) =>
+    mockMsg(`已在 ${at} 把「${name}」分成两段`),
+  trimTimelineClipStart: (name: string, at: string) =>
+    mockMsg(`「${name}」的起点收到 ${at}`),
+  trimTimelineClipEnd: (name: string, at: string) =>
+    mockMsg(`「${name}」的终点收到 ${at}`),
+  needClipAtPlayhead: (action: string) =>
+    mockMsg(`${action}：请先把播放头移到某个片段上`),
+  removeTimelineClip: (name: string) => mockMsg(`已从时间线移除「${name}」`),
   importSubject: (name: string) => mockMsg(`已导入「${name}」`),
   saveSubjectMeta: () => mockMsg("已保存主体描述"),
   needCanvasNodeFirst: (action: string) => mockMsg(`${action}：请先选中一个画布节点`),
