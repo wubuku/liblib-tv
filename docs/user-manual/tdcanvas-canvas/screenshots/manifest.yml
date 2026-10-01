@@ -1067,3 +1067,27 @@ screenshots:
     visible_text: '版本更新 当前版本 v0.14.0'
     alt: 版本更新弹窗，标题下方只有一张写着当前版本 v0.14.0 的卡片，弹窗下半部大片留空，没有任何检查更新的按钮
     sha256: 648777c5b835e8471a4933bc04a1e7cd991e3690ae6e3f677c75c5d9b17ff9a7
+
+  - file: screenshots/14-manage-assets-card-actions.png
+    task_id: manage-assets
+    step: 资产页同时存在图片、视频、文本三种卡片，逐张枚举卡片底部操作条按钮（视频卡明显少一个「编辑」）
+    route: '/assets'
+    viewport: 1600x1000
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '三张 article 卡片的操作条容器（以「删除」按钮的父元素为准）——图片卡按钮序列为「编辑/下载/删除」，视频卡为「下载/删除」，文本卡为「编辑/复制/删除」；右上筛选器为「全部 文本 图片 视频」四项；卡片类型标签分别为「图片」「视频」「文本」'
+    visible_text: 'M77-图片样本 S83-镜2-视频样本 分镜草稿A 编辑 下载 删除 复制'
+    alt: 我的资产页面并排三张卡片，左起为图片、视频、文本，底部操作条分别是编辑下载删除、仅下载删除、编辑复制删除，视频卡明显少一个编辑按钮
+    sha256: 15be2b94a6fd893414e68b278f2c6d3172329eb1b82700c225116c111b705ddf
+
+  - file: screenshots/14-manage-assets-new-form-kinds.png
+    task_id: manage-assets
+    step: 点「新增资产」后展开「类型」下拉，选项只有「文本」「图片」两项，右后方筛选器却含「视频」
+    route: '/assets'
+    viewport: 1600x1000
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '新增资产弹窗内 .ant-select 第一个的 title 属性为「文本」，展开后下拉浮层内的选项元素逐条枚举为「文本」「图片」共 2 项（源码 assets/index.tsx 的 options 数组同样只给了 text 与 image 两项）；同一画面右侧筛选器可见「全部 文本 图片 视频」四项'
+    visible_text: '新增资产 类型 文本 图片 封面 URL 标签 来源 备注 文本内容 暂无封面 未命名资产 全部 文本 图片 视频'
+    alt: 新增资产弹窗，类型下拉已展开且只有文本和图片两个选项，而画面右侧的类型筛选器里却有视频一项
+    sha256: dc2eb9364828263e52382cb2b64727b5802e67b5413156f598f38f3f6f4e7726
