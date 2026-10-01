@@ -179,6 +179,24 @@ def mutate_retracted_video_params(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_publish_gate_drift(root: Path) -> None:
+    """把 build-site.sh 里某道门禁的调用改掉，使它与 PUBLISH.md 的门禁表对不上（M106 新门禁）。
+
+    注意这里**改的是脚本而不是文档**：把 `check-ratings.py` 改名成一个脚本里
+    不再存在的东西，文档那行就成了"写了但脚本没跑"。反过来（只给脚本加一道新门禁
+    而文档没写）同样会被拦，两条判据是同一个"集合相等"的两个方向。
+
+    构造这条用例时踩过的坑记在 check-publish-sync.py 里：判据**必须剥掉注释行**
+    再提取脚本名，否则 `audit_manual.py` 那三处注释会让"文档写了但没跑"这条判据
+    永远失效——那正是本门禁要抓的第一个真问题。
+    """
+    build = root / "build-site.sh"
+    text = build.read_text(encoding="utf-8")
+    assert "scripts/check-ratings.py" in text, "构建脚本里找不到 check-ratings.py，用例无法构造"
+    text = text.replace("scripts/check-ratings.py", "scripts/check-ratings-DISABLED.py", 1)
+    build.write_text(text, encoding="utf-8")
+
+
 def mutate_ledger_pin_drift(root: Path) -> None:
     """把账本锁定的提交改成一个与应用仓 HEAD 不同的 sha（M105 新门禁的负向测试）。
 
@@ -542,6 +560,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("产物里裸露的管道文本", mutate_pipe_leak_render, "render", "裸露的表格管道文本"),
     ("产物里页内锚点悬空", mutate_dangling_anchor_render, "render", "找不到对应 id"),
     ("账本锁定的提交与应用仓漂移", mutate_ledger_pin_drift, "ledgerpin", "与应用仓 HEAD 不一致"),
+    ("发布文档的门禁表与脚本对不上", mutate_publish_gate_drift, "publishsync", "build-site.sh 并没有调用"),
 ]
 
 
@@ -568,6 +587,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-render.py"), str(root)]
     elif which == "ledgerpin":
         cmd = [sys.executable, str(root / "scripts/check-ledger-pin.py"), str(root)]
+    elif which == "publishsync":
+        cmd = [sys.executable, str(root / "scripts/check-publish-sync.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

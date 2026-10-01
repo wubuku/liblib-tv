@@ -120,6 +120,13 @@ LEDGERPIN_OUT="$(python3 scripts/check-ledger-pin.py . 2>&1)" || fail "账本锁
 $LEDGERPIN_OUT"
 echo "$LEDGERPIN_OUT" | sed 's/^/  /'
 
+# 发布文档一致性：PUBLISH.md 的「构建时的门禁」那张表是维护者排查的唯一索引，
+# 而它与脚本之间原本没有任何机制相连——2026-10-02 M106 实测该表已漂移
+# （把一个构建从不执行的共享脚本列成了构建门禁）。这道门禁把两者钉在一起。
+PUBLISHSYNC_OUT="$(python3 scripts/check-publish-sync.py . 2>&1)" || fail "发布文档一致性校验未通过（PUBLISH.md 的门禁表与 build-site.sh 实际调用对不上）：
+$PUBLISHSYNC_OUT"
+echo "$PUBLISHSYNC_OUT" | sed 's/^/  /'
+
 # 表格语法：每个 Markdown 表格块都必须自带「表头 + |---| 分隔行」。
 # 2026-10-01 M65 实测：shortcuts-help.md 的「弹窗里的十三条」被一段多选提示的
 # 引用块从第 8 行和第 9 行之间劈开——前 8 行仍是表格，后 5 行（重做/重做/删除/

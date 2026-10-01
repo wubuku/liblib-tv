@@ -15,7 +15,7 @@ cd docs/user-manual/tdcanvas-canvas
 |---|---|---|
 | 1/6 | 环境检查 | node ≥ 18、npm 可用、站点配置与首页内容存在 |
 | 2/6 | 依赖安装 | `node_modules/vitepress` 缺失时自动 `npm install`（已装则跳过并打印 vitepress 版本） |
-| 3/6 | 内容清单 | 统计将发布的页面数与截图数（自动排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS 等内部资料），数量异常直接报错 |
+| 3/6 | 内容清单 + **门禁** | 先统计 Markdown 页数与截图数（`find` 排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS，注意**未排除 PUBLISH.md 自己**，故此数比实际发布页数多 1），数量异常直接报错；随后依次跑**十二道门禁 + 一道门禁自检**，见下文「构建时的门禁」 |
 | 4/6 | 清理旧产物 | 删除 `.vitepress/dist` 与 `.vitepress/cache`，保证产物干净 |
 | 5/6 | 构建 | `npx vitepress build`（client + server 双端打包、页面渲染） |
 | 6/6 | 产物校验 | 校验 dist 页面数、截图数（与源截图逐一比对）、总体积、是否有未改写的 `.md` 残留链接、**侧边栏完整性**（每个已发布页面都必须出现在 `config.mjs` 侧边栏中，否则报 warn） |
@@ -60,9 +60,7 @@ rsync -av --delete .vitepress/dist/ user@server:/var/www/html/manual/
 ## 站点包含什么
 
 - 侧边栏四组导航 + 右侧「本页目录」+ **中文全文搜索**（`⌘K`，本地索引，无外部服务）。
-- 站点只输出面向用户的页面（README 为首页）；`AUDIT.md`、`PROGRESS.md`、
-  `TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md`、`task-inventory.yml` 等内部
-  维护资料通过 `srcExclude` 排除，不会发布。
+- 站点只输出面向用户的页面（README 为首页）；`config.mjs` 的 `srcExclude` 排除了 5 个文件：`AUDIT.md`、`PROGRESS.md`、`TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md`、**`PUBLISH.md`（本文件）**，都不会发布。另 `task-inventory.yml` 是 YAML 不是 Markdown，**本就不进 VitePress**，并非靠 `srcExclude` 排除——两种机制不要混为一谈。
 - 站点结构与标题、侧边栏、搜索文案均在 `.vitepress/config.mjs` 配置
   （含 `rewrites: README.md → 站点首页`）。
 
@@ -82,7 +80,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 |---|---|---|
 | 站点工具（入库） | `build-site.sh`、`.vitepress/config.mjs`、`package.json`、`package-lock.json`、`.gitignore` | 一键构建脚本；站点配置（侧边栏、搜索、rewrites、srcExclude）；依赖锁定 |
 | 手册内容（入库） | `README.md`、`00-quickstart.md`、`10-tasks/*.md`、`20-reference.md`、`30-concepts.md`、`90-troubleshooting.md`、`screenshots/*.png` | 面向最终用户的正文与截图 |
-| 内部账本（入库，不发布） | `AUDIT.md`、`PROGRESS.md`、`task-inventory.yml`、`TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md` | 回走审计结论、任务清单、素材登记；由 `srcExclude` 保证不进 dist |
+| 内部账本（入库，不发布） | `AUDIT.md`、`PROGRESS.md`、`task-inventory.yml`、`TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md`、`PUBLISH.md` | 回走审计结论、任务清单、素材登记、运行时观察台账、发布手册；前 5 个由 `srcExclude`（`task-inventory.yml` 因是 YAML 而天然不发布）保证不进 dist |
 | 构建产物（不入库） | `.vitepress/dist/`、`.vitepress/cache/`、`node_modules/` | 已在本目录 `.gitignore` 忽略；dist 可随时由脚本从源重建 |
 
 ## 内容更新流程
@@ -98,13 +96,12 @@ npx vitepress build  # 产物 .vitepress/dist/
 - 内容审计：按 `AUDIT.md` 记录的 Gate B 方法在真实浏览器逐任务回走（标签逐字核对、提交类动作止于按钮态验证），结论与修复记录进 `AUDIT.md`。
 - 手册内容的事实源：真实运行界面。UI 标签变化后以浏览器 DOM 为准修正文档，不以记忆或旧文档为准。
 
-### 构建时的十二道门禁
+### 构建时的门禁：十二道 + 一道自检
 
-`./build-site.sh` 步骤 3 会依次跑前十道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
+`./build-site.sh` 步骤 3 会依次跑**十二道门禁、再跑门禁自检**，然后才进入构建；步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
 
 | 门禁 | 拦什么 | 由来 |
 |---|---|---|
-| `audit_manual.py` | 图片/manifest 双向不一致、sha256、坏链、标题层级、占位文本 | 共享审计脚本 |
 | `check-anchors.py` | 交叉引用锚点落空 | M31 实测 4 处锚点全空 |
 | `check-structure.py` | 孤儿任务页、索引/侧边栏漏条、**孤儿截图** | M42 实测孤儿页可无声混入产物；M89 实测孤儿图在七道门禁下全部通过 |
 | `check-ratings.py` | 任务评级在账本/索引/首页三处不一致 | M58 实测账本与下游漂移 |
@@ -115,8 +112,13 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-render.py` | **产物侧**渲染体检：表格列数不一致、裸露管道文本、img 异常、页内锚点悬空、正文空标签 | M84 整行内容被丢弃、M91 两条死链与一处空 `<code>`，源码层八道门禁当时全过 |
 | `check-tables.py` | 表格被非表格行劈开、缺表头与分隔行、**行内代码反引号不成对** | M65 实测「十三条」后 5 行渲染成原始管道文本；M84 实测单元格内竖线未转义会**让该行剩余内容从产物里消失** |
 | `check-ledger-pin.py` | 账本声明的「版本锁定提交」与应用仓 HEAD 漂移 | M105 实测账本以「版本锁定」口吻陈述旧观察而无任何机制守候 |
+| `check-publish-sync.py` | 本表与 `build-site.sh` 实际调用的门禁集合对不上 | M106 实测本表早已漂移（把一个构建从不执行的脚本列成构建门禁）|
 | `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 34 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
+
+> **表里没有 `audit_manual.py`，因为它不由构建调用。** 它是共享技能脚本，需**手动**跑：`--phase gate-a`（内容完成后）与 `--phase final`（发布前），用法见上文「手册验收（审计）流程」。
+>
+> 2026-10-02 M106 订正：本表此前把 `audit_manual.py` 列为「构建时的门禁」，但它在 `build-site.sh` 里**只出现于注释**、从未被执行——同一份文档上一节还写着它是手动单跑的步骤，**自相矛盾**。排查的人若信了表里那行，就会跳过手动审计。`check-publish-sync.py` 现在把注释剥掉后再比对集合，正是为了守住这条。
 
 单跑任一道（都需带 `.` 参数）：
 
@@ -128,6 +130,7 @@ python3 scripts/check-inventory-freshness.py .  # 账本新鲜度
 python3 scripts/check-claims.py .         # 强断言
 python3 scripts/check-retractions.py .    # 订正回归
 python3 scripts/check-ledger-pin.py .    # 账本锁定提交 vs 应用仓 HEAD
+python3 scripts/check-publish-sync.py .  # 发布文档门禁表 vs 构建脚本实际调用
 python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
 python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）

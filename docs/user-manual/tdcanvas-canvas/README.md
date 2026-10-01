@@ -24,7 +24,7 @@ TDCanvas 是一个**本地优先**的 AI 无限画布：把提示词（文本）
 | 连线引用与无线引用 | [connect-references.md](10-tasks/connect-references.md) | 旗舰 |
 | 发起图片生成、理解任务状态 | [generate-images.md](10-tasks/generate-images.md) | 完整 |
 | 裁剪、切图、放大（免费）与多角度（**付费**） | [image-operations.md](10-tasks/image-operations.md) | 完整 |
-| 分组、主题与背景外观 | [organize-canvas.md](10-tasks/organize-canvas.md) | 完整 |
+| 分组整理（**删组 / 复制组 / 组内连线**）、主题背景、对齐与吸附 | [organize-canvas.md](10-tasks/organize-canvas.md) | 完整 |
 | 撤销重做与自动保存 | [undo-persistence.md](10-tasks/undo-persistence.md) | 完整 |
 | 管理项目（列表/重命名/导出/删除） | [project-management.md](10-tasks/project-management.md) | 完整 |
 | 收藏、检索、导出我的资产 | [manage-assets.md](10-tasks/manage-assets.md) | 完整 |
