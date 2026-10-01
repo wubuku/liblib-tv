@@ -332,6 +332,7 @@ TDCanvas 是一个**纯本机应用**：没有账号体系，没有服务器，�
 |---|---|
 | WebDAV 同步 / 多设备同步 | **没有这个入口。** 同步功能在代码里写完了（`services/app-sync.ts` 能把画布、资产和本地媒体文件双向合并上传，域为 `canvas` + `assets`，按 `updatedAt` 合并），i18n 里也备好了整套「WebDAV 同步」文案，但这套服务**全仓零调用方**，没有任何界面能触发它 |
 | 「渠道」「偏好设置」「提示词来源」标签 | 类型定义里存在 `ConfigTabKey = "channels" \| "preferences" \| "prompt-sources" \| "webdav"`，但配置面板的 `initialTab` 参数**声明了却从未被读取**，这四个标签都没有对应的界面 |
+| **节点插件**（能往节点工具条上装按钮的那种） | **整个功能不可达。** 管理器弹窗 `canvas-plugin-manager-modal.tsx`（235 行，含安装/卸载/启用/官方注册表）**全仓零 import**，从未被挂载；而 `installPluginFromUrl` / `updatePlugin` / `setPluginEnabled` / `uninstallPlugin` / `fetchOfficialPlugins` 的**全部调用点都在这个死掉的弹窗里**。运行时实测：IndexedDB 里连 `tdcanvas:plugin_store` 都还没被创建过，画布界面不出现「插件」二字。唯一还活着的是 `ensurePluginsLoaded`，可它只加载"已安装"的插件——而没人能装 |
 | 导出/备份画布 | 导出有（见 [project-management.md](10-tasks/project-management.md#导出项目)），但**没有导入** |
 
 > **为什么会出现「代码里有、界面上没有」？** 这些功能的组件与服务都留在仓库里，只是没有任何页面 import 它们——界面层没接上，实现层没被删。这类"半截功能"最容易误导用户：你能在源码里搜到完整的实现文档，于是以为功能只是藏得深，实际上**这个版本里它根本没上线**。判断标准很简单：**打开界面找不到，就当作它不存在**，不要照着源码里的能力规划工作流。
