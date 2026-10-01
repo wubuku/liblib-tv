@@ -100,7 +100,8 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
 
 run_case "1) setSort 补上调用" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-1-setsort.py" "void setSort" "canvas-library-no-sort-filter"
 run_case "2) 画布库导入补上入口点击" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-2-import-entry.py" "inputRef.current?.click()" "canvas-library-no-import-entry"
-run_case "3) AI 审美批改进「添加节点」清单" web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx "$HERE/selftest-fix-3-artcritique-menu.py" "ai-art-critique" "art-critique-no-create-entry"
+run_case "3a) 动态插件入口被从菜单合并里摘掉" web/src/lib/canvas/tool-registry/tool-registry.ts "$HERE/selftest-fix-3a-artcritique-dynamic-chain.py" "反验注入：摘掉动态插件入口" "art-critique-dynamic-entry"
+run_pass_case "3b) 审美批改进「添加节点」写死清单（不该判失效）" web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx "$HERE/selftest-fix-3b-artcritique-hardcoded.py" "ai-art-critique" "art-critique-dynamic-entry"
 run_case "4) isLocalWorkspaceMode 改为可配置" web/src/services/workspace-mode.ts "$HERE/selftest-fix-4-workspace-mode.py" "__hosted" "canvas-library-no-join-project"
 run_case "5) 审美批改 setter 补上调用" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-5-artcritique-autostart.py" "void setArtCritiqueStartRequest" "art-critique-no-autostart"
 run_case "6) 只读模式接上界面入口" web/src/pages/canvas/canvas-project-top-bar.tsx "$HERE/selftest-fix-6-readonly-entry.py" "canvasSelftestReadonlyLink" "canvas-readonly-no-ui-entry"

@@ -764,3 +764,25 @@ screenshots:
     visible_text: '返回创作 / 保存并返回 / 本地模型渠道 / 拉取全部 / 新增渠道 / BeefAPI / 模型选择'
     alt: '带 continue=1 的模型配置页：顶部多出返回创作与保存并返回两个按钮'
     sha256: 13490ef8389f7a1956fd3ea0c7c68ea761bac3d65bae30b26c6392b867aa028a
+  - file: screenshots/69-art-critique-add-node.png
+    task_id: art-critique
+    step: '插件启用后打开「添加节点」：创作节点分区在「脚本」之后多出「AI 审美批改」（对照——插件停用时该菜单止于「脚本」）'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'generic 添加节点 / 创作节点 / AI 审美批改'
+    visible_text: '添加节点 / 创作节点 / 文本 / 图片 / 视频 / 音频 / 智能剪辑 / 导演台 / 逐帧拉片 / 脚本 / AI 审美批改 / 导入资源 / 上传 / 从生成历史选择 / 素材库'
+    alt: '画布「添加节点」菜单：创作节点分区依次是文本、图片、视频、音频、智能剪辑、导演台、逐帧拉片、脚本，最末多出「AI 审美批改」'
+    sha256: fff6917adb897841c970eaea3bbd725e277e0632aad76c7b3e53bbb0503134fa
+  - file: screenshots/70-art-critique-node.png
+    task_id: art-critique
+    step: '点「添加节点 → AI 审美批改」建出的节点：状态「未开始」、图区「等待图片输入」、底部「开始 AI 批改」为灰态，左侧只有一个输入连接点、右侧无输出连接点'
+    route: '/canvas?mode=new'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'generic AI 审美批改 / 等待图片输入 / 开始 AI 批改'
+    visible_text: 'AI 审美批改 / 视觉分析 · SVG 标注 · 不修改原图 / 未开始 / 等待图片输入 / 开始 AI 批改'
+    alt: '画布上的「AI 审美批改」节点：右上状态「未开始」，图区显示「等待图片输入」，底部「开始 AI 批改」灰态不可点，左侧仅一个输入连接点'
+    sha256: 9600bd086e1f0524bd91344a2b0daa7c40b8e40770b9c8a4abc1b2f6af618b51

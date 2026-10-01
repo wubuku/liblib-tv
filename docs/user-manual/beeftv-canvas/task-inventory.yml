@@ -399,16 +399,20 @@ tasks:
     evidence:
       - type: runtime
         note: >-
-          v1.6.14 运行时（1440x900）：「添加节点」菜单默认列表 8 项无 AI 审美批改；点开菜单自带搜索框
-          （aria-label=搜索节点）依次搜「批改」「审美」「AI」「插件」**全部零结果**，而搜「绘图」「文件夹」
-          「批量」均命中——证明搜索本身有效、是该节点根本不在命令清单里。插件页只显示「画布节点」分类标签，
-          无任何插入按钮。
+          v1.6.14 运行时（1280x720）：插件中心 5 个应用插件开关 aria-checked 全为 false，其中「AI 审美批改」
+          读作「当前已停用，点击启用」。**只改这一个开关**做对照：停用态下「添加节点」创作节点分区为
+          文本/图片/视频/音频/智能剪辑/导演台/逐帧拉片/脚本（末项=脚本）；点开开关变「当前已启用，点击停用」
+          后，同一菜单在「脚本」之后**多出「AI 审美批改」**，点击即建出节点（正文出现「AI 审美批改」、
+          「等待图片输入」，底部「开始 AI 批改」为灰态）。
       - type: static
         note: >-
-          插件 ai-art-critique（内置可信，surfaces node/fullscreen）contributes canvasNodes 注册了
-          ART_CRITIQUE_NODE_TYPE=ai-art-critique（标题「AI 审美批改」、560×420、acceptsInputKind=image、
-          showOutputConnection=false）；但 registerPluginCanvasNodes 只把定义登记给**渲染**用，
-          没有任何 UI 读取插件注册表来提供创建，而「添加节点」是 add-node-menu-tools.tsx 的写死清单。
+          入口是**动态**的，不在写死清单里：registerPlugin 遇 contributes.canvasNodes 即调
+          registerPluginCanvasNodes → canvasNodeDefinitionFromPlugin 造出 showInCreateMenu=true 且带 plugin 字段的
+          定义；tool-registry.ts 的 getPluginNodeMenuCommands 把带 plugin 的可创建定义转成菜单命令
+          （并为 ai-art-critique 特写兜底图标 ScanSearch），resolveAddNodeMenuCommands 与写死清单合并后按 applicable
+          过滤，判据是 ctx.enabledPluginIds.has(pluginId)。enabledPluginIds 来自插件中心的
+          installations 中处于启用态的项（plugins/index.tsx 挂载时 ensurePlugin 把内置插件写入 installations，
+          默认 enabled=false）。
           另：manifest 描述里的 canvas_start_art_critique 从未注册为动作。
           成本锚定：ART_CRITIQUE_MAX_MODEL_CALLS=9，九个阶段工具
           analyze_art_scene / review_art_{composition,color,lighting,structure}（Promise.allSettled 并行）/
@@ -418,9 +422,10 @@ tasks:
       - '/canvas'
     status: excluded
     review_note: >-
-      排除原因有二且互相独立：① 画布上无创建入口，运行时无法构造该节点；
-      ② 即使可构造，一次批改最多 9 次模型调用，属付费边界，本手册不触发。
-      故本条按「已实现但不可达」记录，不计入 verified。
+      唯一剩余的排除原因是付费边界：一次批改最多 9 次模型调用（ART_CRITIQUE_MAX_MODEL_CALLS=9），
+      本手册不触发，故报告产出部分只有源码证据、没有运行时实证。**创建入口已不再是排除理由**——
+      Batch 163 运行时实证：插件中心开启「AI 审美批改」后，「添加节点」菜单即出现该项，点击可建出节点。
+      判为 excluded 而非 verified，是因为「能建出来」不等于「跑得出报告」。
     manual_pages:
       - 10-tasks/art-critique.md
   - id: plugins-management

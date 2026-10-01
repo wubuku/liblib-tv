@@ -3,10 +3,15 @@
 """「不可达声明」双向核对闸：手册说「这个功能进不去」的，上游是否仍然进不去。
 
 背景（Batch 133）：手册里最难悄悄过期的一类断言，是**否定式断言**——
-「画布库没有导入入口」「审美批改在画布上建不出节点」「章节路由访问不到」。
+「画布库没有导入入口」「审美批改的入口只取决于插件开关」「章节路由访问不到」。
 它们不像数值和文案，没有编译期或运行时兜底：上游哪天把那个 `ref.current.click()`
-接上、或者把 setter 补上，**手册会继续言之凿凿地告诉用户「找不到」**，
-而用户已经在界面上看到了那个按钮。这类过期比过期一个数字更伤害信任。
+接上、或者把 setter 补上、或者把某个动态入口补上，**手册会继续言之凿凿地
+告诉用户「找不到」**，而用户已经在界面上看到了那个按钮。这类过期比过期一个数字更伤害信任。
+
+⚠️ 反过来也成立，而且更隐蔽：**否定式断言可能是从一开始就错的**。
+本闸就抓到过一条——曾断言「审美批改节点无创建入口」，判据只是「写死清单里没有它」，
+而真正的入口由插件注册表动态生成、根本不经过那份清单。**判据只覆盖了自己看的那个文件，
+于是错误被判据「保护」着活了下来**。改判据时务必确认：它锚的是**事实**，还是**某一份文件的样子**。
 
 本闸对每条已登记的「不可达」断言做两件事：
 
@@ -165,14 +170,42 @@ def p_join_project(src):
 
 
 def p_art_critique_entry(src):
-    """AI 审美批改：节点已注册，但「添加节点」是写死清单，从不读插件注册表。"""
-    menu = git_show(src, "web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx")
+    """审美批改的创建入口是**动态**的：插件一旦启用，它就出现在「添加节点」菜单里。
+
+    ⚠️ 本判据在 Batch 163 被整体推翻重写过一次，**旧版是错的**，别照着旧版理解：
+    旧版断言「『添加节点』是写死清单，从不读插件注册表」，判据是「写死清单里没有它」。
+    运行时实测推翻了它——同一台机器、同一块空画布，只把插件中心里「AI 审美批改」的开关
+    从停用拨到启用，「添加节点」菜单就在「脚本」之后多出该项，点击即建出节点。
+
+    **旧判据错在结构上，而不是碰巧**：它只看写死清单那一个文件，而真正的入口由
+    插件节点注册表动态生成，根本不经过那份清单。于是「写死清单里没有它」这个事实
+    被当成了「没有入口」——典型的**从否定观察到全局结论**。
+
+    现在锚的是那条**动态链是否完整**（任一环被摘掉即判失效）：
+      registerPlugin → registerPluginCanvasNodes → canvasNodeDefinitionFromPlugin
+      （showInCreateMenu=true）→ listCreatableNodeDefinitions → getPluginNodeMenuCommands
+      → resolveAddNodeMenuCommands 合并 → applicable 按 enabledPluginIds.has 过滤
+    """
+    registry = git_show(src, "web/src/lib/canvas/tool-registry/tool-registry.ts")
+    defn = git_show(src, "web/src/lib/canvas/node-registry/node-definition.ts")
+    nreg = git_show(src, "web/src/lib/canvas/node-registry/node-registry.ts")
+    preg = git_show(src, "web/src/lib/plugins/plugin-registry.ts")
     plugin = git_show(src, "web/src/lib/plugins/builtin/ai-art-critique.ts")
-    if not menu or not plugin:
+    if not (registry and defn and nreg and preg and plugin):
         return None
-    in_menu = "ai-art-critique" in menu or "ART_CRITIQUE" in menu
-    contributes = "canvasNodes" in plugin
-    return contributes and not in_menu
+    return (
+        # 插件声明画布节点，且注册器真的会把它接进节点注册表
+        "canvasNodes" in plugin
+        and "registerPluginCanvasNodes" in preg
+        # 插件节点被标成「可创建」，且可创建清单确实按这个标记过滤
+        and "showInCreateMenu: true" in defn
+        and "showInCreateMenu" in nreg
+        # 动态命令生成器存在，并且真的被合并进菜单（带展开运算符，避免命中函数定义本身）
+        and "function getPluginNodeMenuCommands" in registry
+        and "...getPluginNodeMenuCommands()" in registry
+        # 可见性由插件启用态决定——这正是「默认搜不到、开了就有」的原因
+        and "enabledPluginIds.has(pluginId)" in registry
+    )
 
 
 def p_art_critique_autostart(src):
@@ -1295,7 +1328,7 @@ REGISTRY = [
       ("web/src/pages/canvas/index.tsx", "setProjectFilter"))),
     ("canvas-library-no-import-entry", "画布库无导入入口", p_import_entry, None),
     ("canvas-library-no-join-project", "「加入项目/移出项目」恒不渲染", p_join_project, None),
-    ("art-critique-no-create-entry", "AI 审美批改节点无创建入口", p_art_critique_entry, None),
+    ("art-critique-dynamic-entry", "AI 审美批改的创建入口由插件启用态动态生成", p_art_critique_entry, None),
     ("art-critique-no-autostart", "审美批改「打开即自动开始」路径已死", p_art_critique_autostart,
      (("web/src/pages/canvas/project.tsx", "setArtCritiqueStartRequest"),)),
     ("projects-library-dead", "pages/projects 项目库模块零引用", p_projects_library_dead, None),
