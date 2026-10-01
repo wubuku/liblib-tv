@@ -11,6 +11,10 @@ import {
 
 import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
 import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
+import {
+  JimengHelpCenterPanel,
+  JimengWatermarkDialog,
+} from "@/components/jimeng/JimengAccountPanels";
 import { JimengHistoryMenu } from "@/components/jimeng/JimengHistoryMenu";
 import { JimengMoreMenu } from "@/components/jimeng/JimengMoreMenu";
 import { JimengNodeSummaryPopover } from "@/components/jimeng/JimengNodeSummaryPopover";
@@ -85,6 +89,9 @@ export function JimengTopBar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  // 批 820：账号菜单里「帮助中心」「AI生成水印设置」各自要开的浮层
+  const [helpCenterOpen, setHelpCenterOpen] = useState(false);
+  const [watermarkOpen, setWatermarkOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
@@ -442,11 +449,19 @@ export function JimengTopBar() {
             <JimengHelpMenu
               onClose={() => setHelpOpen(false)}
               onOpenShortcuts={() => setShortcutsOpen(true)}
+              onOpenHelpCenter={() => setHelpCenterOpen(true)}
+              onOpenWatermark={() => setWatermarkOpen(true)}
             />
           </div>
         ) : null}
       </div>
       </header>
+      {helpCenterOpen ? (
+        <JimengHelpCenterPanel onClose={() => setHelpCenterOpen(false)} />
+      ) : null}
+      {watermarkOpen ? (
+        <JimengWatermarkDialog onClose={() => setWatermarkOpen(false)} />
+      ) : null}
       {projectInfoOpen ? (
         <JimengProjectInfoModal
           onClose={() => setProjectInfoOpen(false)}

@@ -31,6 +31,12 @@ export function mockMsg(text: string): string {
 }
 
 /** 同一动作的文案只在这里写一份 */
+/** 「本复刻自有、源站无对应物」的标注 (Batch 820)。
+ *  812 立了条静态门禁：src/ 下除本模块外不得再出现散落的「（mock）」字面量。
+ *  账号菜单「帮助中心」浮层的正文是占位说明（源站该浮层实测加载失败，
+ *  成功态无证据），也要用同一个标注，就从这儿取，别在别处再写一遍。 */
+export const MOCK_MARK = "（mock）";
+
 export const FEEDBACK = {
   // ── 媒体：源站同类操作走真实下载/入库，复刻无后端 ──
   downloadVideo: () => mockMsg("视频下载已开始"),

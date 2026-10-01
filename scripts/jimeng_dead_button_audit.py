@@ -50,6 +50,11 @@ UNVERIFIABLE = {
     # 每条都附了复核方法，不是"猜它应该是活的"。
     "选择工具": "已是当前激活工具（点前 class 就带 bg-white/10），点它正确地什么都不该变；"
                 "复核：点别的工具把它切走后再点它，class 会变",
+    # 批 820：账号菜单里的两项**外链**。点击的真实后果是开新标签页，
+    # 本普查的指纹只看**当前页**，看不见新页 → 判据伸不到那里，不是"没反应"。
+    # 这两项另有 verify-jimeng-batch820.py 用打桩 window.open 断言 URL 逐字一致。
+    "使用手册": "外链，真实后果是开新标签页；见 verify-jimeng-batch820.py 2.1",
+    "即梦CLI": "外链，真实后果是开新标签页；见 verify-jimeng-batch820.py 4.1",
     "与 AI 对话": "活的。单独跑 wait=300ms 时 data-testid 集合发生变化；"
                   "审计循环里报它是因为前一轮自己把 AI 抽屉打开了，"
                   "抽屉(x1268-1668)正好盖住按钮(x1549-1667)，后续点击打在抽屉上",
@@ -74,6 +79,9 @@ LIST_JS = """() => {
     if (disabled) continue;
     out.push({
       tag: el.tagName.toLowerCase(),
+      // 批 820: 采集 href —— 锚点的后果是整页导航，判"死"之前要先分清
+      // "点了没反应" 与 "点了在导航但指纹窗口内还没换"。
+      href: el.getAttribute('href') || '',
       tid: el.getAttribute('data-testid') || '',
       al: (el.getAttribute('aria-label') || '').slice(0, 30),
       text: (el.innerText || '').trim().replace(/\\s+/g, ' ').slice(0, 20),
@@ -114,6 +122,26 @@ FINGERPRINT_JS = """() => {
 }"""
 
 
+# 批 820：**浮层类界面也得进普查**。此前只扫基础态，于是顶栏账号菜单里的
+# 4 个真死按钮一个都没被抓到 —— 它们在基础态里根本不存在（要点开用户菜单
+# 才渲染）。这与批 813「普查漏了运行时才长出来的界面」是同一个根，只是这次
+# 漏的是**顶栏浮层**而不是节点内部。
+# 第三项是"进入该态要跳过的元素"：态的**触发器**本身不参与本态扫描。
+# 否则点它只会把刚打开的浮层又关掉 —— 判成 DEAD 是必然的假阳性，而它的
+# 行为其实已经被"进入该态"这一步验证过了。
+STATES: list[tuple[str, object, set[str]]] = [
+    ("base", None, set()),
+    ("account-menu",
+     'page.locator(\'button[aria-label="用户菜单"]\').click(); page.wait_for_timeout(600)',
+     {"canvas-user-menu-trigger"}),
+]
+
+
+def enter_state(page, code) -> None:
+    if code:
+        exec(code, {"page": page})  # noqa: S102 - 普查脚本内部固定字面量，非外部输入
+
+
 def main() -> int:
     hits: list[dict] = []
     scanned = 0
@@ -123,9 +151,19 @@ def main() -> int:
         page = ctx.new_page()
         page.goto(URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2500)
-        items = page.evaluate(LIST_JS)
-        scanned = len(items)
-        for it in items:
+        for state_name, enter, skip_tids in STATES:
+          if state_name != "base":
+            # 批 820: 换态前**重新加载页面**。此前各态共用一个 page，基础态扫描
+            # 里点开的 AI 抽屉会带到下一个态，于是 account-menu 态里混进了抽屉
+            # 的元素，canvas-agent-mode-action 被判 DEAD —— 假阳性：它接的是
+            # addSkill(chip)（批 810 已验 39/39 是活的）。这与 UNVERIFIABLE 里
+            # 记的「与 AI 对话」是同一处污染。
+            page.goto(URL, wait_until="domcontentloaded")
+            page.wait_for_timeout(2500)
+            enter_state(page, enter)
+          items = [i for i in page.evaluate(LIST_JS) if i["tid"] not in skip_tids]
+          scanned += len(items)
+          for it in items:
             before = page.evaluate(FINGERPRINT_JS)
             try:
                 page.mouse.click(it["x"], it["y"])
@@ -133,7 +171,7 @@ def main() -> int:
                 # 会被误判成死按钮（实测 400ms 才稳定）。
                 page.wait_for_timeout(420)
             except Exception as exc:  # noqa: BLE001
-                hits.append({**it, "verdict": "click-error", "detail": str(exc)[:90]})
+                hits.append({**it, "verdict": "click-error", "detail": str(exc)[:90], "state": state_name})
                 continue
             try:
                 after = page.evaluate(FINGERPRINT_JS)
@@ -141,19 +179,51 @@ def main() -> int:
                 # 点了之后上下文被销毁 = 真的发生了整页导航。导航**就是**状态变化，
                 # 不能因为 evaluate 报错就误判成死按钮（返回首页就是这种）。
                 if "destroyed" in str(exc) or "navigat" in str(exc).lower():
-                    hits.append({**it, "verdict": "NAVIGATED"})
+                    hits.append({**it, "verdict": "NAVIGATED", "state": state_name})
                     page.wait_for_load_state("domcontentloaded")
                     page.wait_for_timeout(800)
                     continue
-                hits.append({**it, "verdict": "eval-error", "detail": str(exc)[:90]})
+                hits.append({**it, "verdict": "eval-error", "detail": str(exc)[:90], "state": state_name})
                 continue
             if before == after:
-                hits.append({**it, "verdict": "DEAD"})
+                # 批 820: 锚点是**整页导航**。420ms 的指纹窗口内页面往往还没换，
+                # 于是被判成"没反应"—— canvas-project-logo（<a href="/jimeng">，
+                # 批 807 改的）就是这么被误判的。导航本身就是状态变化，
+                # 所以对带 href 的锚点多等一轮再判。
+                is_anchor = it.get("tag") == "a" and it.get("href")
+                if is_anchor:
+                    page.wait_for_timeout(1500)
+                    try:
+                        after2 = page.evaluate(FINGERPRINT_JS)
+                        if after2 != before or page.url != it.get("url_before", page.url):
+                            hits.append({**it, "verdict": "NAVIGATED", "state": state_name})
+                            page.wait_for_load_state("domcontentloaded")
+                            page.wait_for_timeout(800)
+                            if state_name != "base":
+                                page.goto(URL, wait_until="domcontentloaded")
+                                page.wait_for_timeout(2000)
+                                enter_state(page, enter)
+                            continue
+                    except Error as exc2:
+                        if "destroyed" in str(exc2) or "navigat" in str(exc2).lower():
+                            hits.append({**it, "verdict": "NAVIGATED", "state": state_name})
+                            page.wait_for_load_state("domcontentloaded")
+                            page.wait_for_timeout(800)
+                            if state_name != "base":
+                                page.goto(URL, wait_until="domcontentloaded")
+                                page.wait_for_timeout(2000)
+                                enter_state(page, enter)
+                            continue
+                hits.append({**it, "verdict": "DEAD", "state": state_name})
             # 复位：关浮层 + 点画布空白收起各类选择态
             page.keyboard.press("Escape")
             page.wait_for_timeout(90)
             page.mouse.click(20, 700)
             page.wait_for_timeout(90)
+            # 批 820: 非基础态必须**重新进入**该态 —— 上面的复位把菜单关掉了，
+            # 不重进的话后续项拿着旧坐标去点画布空白，全被判成 DEAD。
+            if state_name != "base":
+                enter_state(page, enter)
         ctx.close()
         browser.close()
 

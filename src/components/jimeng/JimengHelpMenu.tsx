@@ -17,7 +17,26 @@ import type { LucideIcon } from "lucide-react";
  * 帮助中心 / 使用手册 / 快捷键 / AI生成水印设置 / 即梦CLI（每行 16px 图标）。
  * 顶部还展示租户名 — 复刻用静态「个人空间」占位 (mock)。
  * CLONE_DECISION: 行距与图标为近似 (截图读取)。
+ *
+ * ── Batch 820：另外 4 项此前是**真死按钮** ──────────────────────────
+ * 复刻的 onClick 写的是
+ *     onClick={() => { if (label === "快捷键") onOpenShortcuts?.(); onClose(); }}
+ * 每个按钮都**有 onClick**，所以"有没有 handler"这种存在性检查数不出问题 ——
+ * 这正是 scripts/jimeng_dead_button_audit.py 漏掉它们的原因（它确实是按
+ * 点击前后状态比对判定的，但**账号菜单这个浮层压根没被列入普查状态**，
+ * 见该文件 STATES）。
+ *
+ * 源站逐项实测（README §27），本批接上：
+ *   帮助中心        → 右侧浮层 360×648 @[1304,60]
+ *   使用手册        → 新标签页 https://bytedance.larkoffice.com/wiki/X1elw8hpMiqWdLki3Mlc9WWznhd
+ *   AI生成水印设置 → 全屏遮罩 + 居中 616×492 弹窗，含 24×24 水印开关与 84×36 保存钮
+ *   即梦CLI         → 新标签页 https://jimeng.jianying.com/ai-tool/install?from_page=new_canvas
+ * 说明：帮助中心浮层在源站**加载失败**（正文是「帮助中心加载失败，请重试」），
+ * 故只对齐几何，内容标注 (mock)；另三项文案与控件均取自源站实测，不加标注。
  */
+const MANUAL_URL = "https://bytedance.larkoffice.com/wiki/X1elw8hpMiqWdLki3Mlc9WWznhd";
+const CLI_URL = "https://jimeng.jianying.com/ai-tool/install?from_page=new_canvas";
+
 const HELP_ITEMS: { icon: LucideIcon; label: string }[] = [
   { icon: CircleHelp, label: "帮助中心" },
   { icon: BookOpen, label: "使用手册" },
@@ -29,9 +48,13 @@ const HELP_ITEMS: { icon: LucideIcon; label: string }[] = [
 export function JimengHelpMenu({
   onClose,
   onOpenShortcuts,
+  onOpenHelpCenter,
+  onOpenWatermark,
 }: {
   onClose: () => void;
   onOpenShortcuts?: () => void;
+  onOpenHelpCenter?: () => void;
+  onOpenWatermark?: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -67,8 +90,14 @@ export function JimengHelpMenu({
           key={label}
           type="button"
           role="menuitem"
+          data-testid={`account-menu-item-${label}`}
           onClick={() => {
+            // 批 820: 四项此前只关菜单（真死按钮），各自接上源站行为
             if (label === "快捷键") onOpenShortcuts?.();
+            if (label === "帮助中心") onOpenHelpCenter?.();
+            if (label === "使用手册") window.open(MANUAL_URL, "_blank", "noopener");
+            if (label === "即梦CLI") window.open(CLI_URL, "_blank", "noopener");
+            if (label === "AI生成水印设置") onOpenWatermark?.();
             onClose();
           }}
           className="flex h-11 w-full items-center gap-2.5 rounded-lg px-2.5 text-[13px] text-white/85 hover:bg-white/10"

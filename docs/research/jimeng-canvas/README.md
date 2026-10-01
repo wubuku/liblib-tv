@@ -6469,3 +6469,85 @@ width: max(1, c.length * 32.1)
 `timeline-fullscreen-top-content` 1488×652 @[12,60]（复刻的顶栏 `h-14` + 主体
 分栏结构与它不同构）、`-asset-primary-tabs` 56 高、资产空态排版、关闭方式
 （源站 Escape 是否等价 —— 本批探针确认过 Escape 能退出，但未确认是否是**唯一**方式）。
+
+## 27. Batch 820 — 账号菜单另外 4 项是**真死按钮**，而普查一直没抓到它们（2026-10-03）
+
+### 27.1 现场：每个按钮都有 onClick，却没有行为
+
+复刻 `JimengHelpMenu` 的 onClick 写的是
+
+```js
+onClick={() => {
+  if (label === "快捷键") onOpenShortcuts?.();
+  onClose();
+}}
+```
+
+**每个按钮都带 onClick**。所以任何"这个按钮有没有 handler"的存在性检查都数不出
+问题 —— 批 807 起的死按钮普查正是在**点击前后比对状态**（`before == after` → DEAD）
+才没被这一条骗到，但 4 个按钮仍然一个都没进过普查名单。
+
+真正的原因是更朴素的一条：**普查只扫基础态，而账号菜单是个浮层，要点开右上角
+头像才渲染**。它和批 813「普查漏了运行时才长出来的界面」是同一个根 —— 只是这次
+漏的是**顶栏浮层**，不是节点内部。
+
+### 27.2 源站逐项实测
+
+| 菜单项 | 源站行为（实测） |
+|---|---|
+| 帮助中心 | 右侧浮层 `aria-label="Help center"` **360×648 @[1304,60]** |
+| 使用手册 | **新标签页** `https://bytedance.larkoffice.com/wiki/X1elw8hpMiqWdLki3Mlc9WWznhd` |
+| AI生成水印设置 | **全屏遮罩**（`data-dialog-overlay` 0→1）+ 居中 **616×492** 弹窗 |
+| 即梦CLI | **新标签页** `https://jimeng.jianying.com/ai-tool/install?from_page=new_canvas` |
+
+水印弹窗的细节也一并取到：标题「AI生成水印设置」、法条全文、24×24 开关
+（`aria-label="导出内容去除AI生成水印"` @[564,609]）、84×36「保存设置」@[1032,703]、
+36×36 关闭钮（**aria-label 是英文** `Close watermark settings`）@[1080,311]。
+616×492 居中与实测 @[532,279] 吻合：((1680-616)/2, (1050-492)/2) = (532, 279)。
+
+### 27.3 实施
+
+- 新建 `JimengAccountPanels.tsx`：`JimengHelpCenterPanel`（360×648）+ `JimengWatermarkDialog`
+  （全屏遮罩 + 616×492，含真能切的开关与有反馈的保存钮）
+- 菜单两项外链接 `window.open(..., "noopener")`
+- 菜单项加 `data-testid="account-menu-item-{label}"`，让验收能稳定定位
+
+**一处标 (mock)**：帮助中心浮层在实测中**加载失败**（正文是「帮助中心加载失败，请重试」
+加一个「重试」钮），所以"加载成功时长什么样"我没有证据。只对齐几何，正文标 (mock)。
+另三项的文案与控件全部取自实测，不加标注。
+
+### 27.4 堵住漏检的根：普查加"状态"，外加三处工具修正
+
+`jimeng_dead_button_audit.py` 新增 `STATES`，目前两个态：`base` 与 `account-menu`。
+加完立刻暴露出工具本身的三处毛病，逐个修（都不是产品缺陷，是**判据**缺陷）：
+
+1. **各态共用一个 page → 状态污染**。基础态扫描点开的 AI 抽屉被带进下一个态，
+   于是 `canvas-agent-mode-action`（接的是 `addSkill(chip)`，批 810 已验 39/39
+   是活的）被判 DEAD。症状很明显：元素数 152 → 修完 86，虚高的那 60 多个正是
+   混进来的抽屉元素。→ **换态前重新加载页面**。这也顺带治了 `UNVERIFIABLE` 里
+   记着的「与 AI 对话」那处污染。
+2. **态的触发器不该参与本态扫描**。在 `account-menu` 态里菜单已经开着，
+   点右上角头像只会把它关掉 —— 判成 DEAD 是必然的假阳性，而它的行为已经被
+   "进入该态"这一步验证过。→ `STATES` 增加第三项 skip 名单。
+3. **锚点是整页导航，不能用同页指纹判死**。`canvas-project-logo`
+   （`<a href="/jimeng">`，批 807 改的）在 420ms 的指纹窗口内页面还没换，
+   于是被判"没反应"。→ `LIST_JS` 采集 `href`，对带 href 的锚点多等一轮再判，
+   URL 变了就记 `NAVIGATED`。
+
+另外两项外链登记进 `UNVERIFIABLE`：点击的真实后果是开新标签页，本普查的指纹只看
+当前页，判据伸不到那里；它们另有 batch820 的 verifier 用打桩 `window.open` 断言。
+
+### 27.5 verifier 里的一处判据订正
+
+初稿断言"使用手册**真的打开了新标签页**"，实测失败。原因不是产品没接上，而是
+`bytedance.larkoffice.com` 在沙箱里不通，导航压根不发生；同机制的即梦CLI
+（同域可达）却能过，差点被误判成"使用手册这项是坏的"。
+改为打桩 `window.open` 记录调用参数、断言 **URL 逐字一致** ——
+外链能不能打开是网络的事，不是产品行为。
+
+### 27.6 验收：19 项断言，`verify-jimeng-batch820.py`
+
+回归 18/22/103/794/795/803/804/807/808/810/811/812/813/815/816/817/820 全绿，
+`npm run check` EXIT=0。
+
+取证：`docs/research/jimeng-canvas-batch820-2026-10-03/`（`source-watermark.png` 等）
