@@ -109,28 +109,6 @@ screenshots:
     visible_text: 深度动作捕捉
     alt: 带媒体视频节点的浮动工具条（局部重拍✦/智能超清✦/视频编辑✦/截取帧/视频修剪/工具）与「工具」下拉（编辑：补帧、深度动作捕捉；预设：提示词反推）
     sha256: c99b22a36da8f8bad605d8889da498ad13d2b52f4f05939048eb029eeb95ef9c
-  - file: screenshots/11-prepare-generation-panel.png
-    task_id: prepare-generation
-    step: 1
-    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
-    viewport: 1920x884@2x (截图裁去顶部 56px 账户区)
-    locale: zh-CN
-    captured_at: 2026-09-23T23:22:36+08:00
-    verified_locator: '选中空视频节点的 react-flow__node-toolbar（680×208 生成面板）'
-    visible_text: 上传参考图、输入文字或
-    alt: 空视频节点生成面板：输入提示词后「生成」可用，参数行 Seedance 2.0 VIP/16:9·720P/全能参考/4s/✦56
-    sha256: cf3058eff6924d3091b157ef6700a9dfb5deb9d0b6c163c09ea8c0dd19082f10
-  - file: screenshots/12-prepare-generation-model-menu.png
-    task_id: prepare-generation
-    step: 2
-    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
-    viewport: 1920x884@2x (裁剪视图 1000x484)
-    locale: zh-CN
-    captured_at: 2026-09-23T23:30:37+08:00
-    verified_locator: '生成面板「选择模型」按钮弹出菜单'
-    visible_text: 选择模型
-    alt: 模型菜单五项（Seedance 2.5 样片模式/2.5/2.0 mini/2.0 Fast VIP/2.0 VIP 当前✓）
-    sha256: b7252b52cbad37957c5e827186ee996f6a11cd4d83f32ae0e7af4ff77bc9ee62
   - file: screenshots/13-edit-text-node-editing.png
     task_id: edit-text-node
     step: 1
@@ -1013,3 +991,75 @@ screenshots:
     visible_text: 全部 性别 / 男 / 女 / 全音色 / 性别 / 年龄 / 语言 / 声音特点
     alt: 音色库里的「性别」筛选器展开后的小浮层，被橙色高亮框标出：上层是筛选器浮层（161×124），标题行是「全部 性别」且带勾选标记，下面两项分别是 男、女；其后方仍能看到音色库的三列网格与四个筛选下拉
     sha256: b13b1b4e316b16b4cf6a8b16cd9074a70fa48fbd5895959b3ec077834552903a
+
+  - file: screenshots/81-video-generation-panel.png
+    task_id: prepare-generation
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:06:00+08:00
+    verified_locator: '画布缩放 60%（canvas-zoom-percent-input 输入 60 + Enter 提交）后点击 .react-flow__node 选中的 [data-testid="node-toolbar"]，实测 680×208 @300,476，断言完整落入 1280×720 视口'
+    visible_text: 上传参考图、输入文字或 @ 主体，描述你想生成的视频 / 即梦 Seedance 2.0 VIP / 16:9 / 720P / 1 / 全能参考 / 4s / Current price 56. / 56 / 生成
+    alt: 画布上一个已选中的空「视频 1」节点（卡片左右各有一个 ⊕ 连接把手），正下方是被橙色高亮框完整标出的 680×208 生成面板：面板内有 ⊕ 添加参考钮、占位提示「上传参考图、输入文字或 @ 主体，描述你想生成的视频」、右上角的展开图标，底部参数行依次是「即梦 Seedance 2.0 VIP ✦」「16:9 · 720P ✦ · 1」「全能参考」「4s」「@」，右侧是 ✦ 56 和灰色禁用的圆形生成按钮；左下角缩放读数为 60%
+    sha256: bb493f3963fe1f0089919545d6b952eb1302083fccc092f650393968ffc78538
+
+  - file: screenshots/82-video-model-dropdown.png
+    task_id: prepare-generation
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:07:00+08:00
+    verified_locator: '点 button[aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"]（184×32，aria-expanded false→true）后出现的 [role="listbox"][aria-label="选择模型 options"]，实测 400×384 @317,243，九个 role=option 各 388×64'
+    visible_text: 选择模型：即梦 Seedance 2.0 VIP by seed / 即梦 Seedance 2.5 (样片模式) / 节省预算，先生成480P样片，选择满意版本后直出高分辨率版本 / 即梦 Seedance 2.5 / 最强模型，支持 50个参考，新增视频编辑、超长生成
+    alt: 视频模型下拉：被高亮框标出的 400×384 列表，标题行写着「选择模型：即梦 Seedance 2.0 VIP by seed」，下面是 Seedance 2.5 样片模式、2.5、2.0 mini、2.0 Fast VIP 四项和带勾的「即梦 Seedance 2.0 VIP」；列表只露出前五项，其余需要滚动
+    sha256: 3145efa5ad0ae4af778b771705ff812fe8296973284a6c7456e6a16f94a9b1c1
+
+  - file: screenshots/83-video-size-dialog.png
+    task_id: prepare-generation
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:08:00+08:00
+    verified_locator: '点 button[aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"]（129×32，aria-expanded false→true）后出现的 [role="dialog"][aria-label="视频尺寸选项"]，实测 334×292 @401,335，内含三个 role=listbox'
+    visible_text: 选择比例 / 21:9 / 16:9 / 4:3 / 1:1 / 3:4 / 9:16 / 选择分辨率 / 720P / 1080P / 4K / 选择生成数量 / 1 / 2 / 3 / 4
+    alt: 视频尺寸弹层：被高亮框标出的 334×292 弹层，分三段——「选择比例」六个缩略比例、「选择分辨率」720P/1080P/4K、「选择生成数量」1/2/3/4，当前三项分别是 16:9、720P、1
+    sha256: e89f4dfc8de2273e10c260bc6e17ad0c2c5bff694463c4220d1bcf04a48878c3
+
+  - file: screenshots/84-video-reference-mode.png
+    task_id: prepare-generation
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:09:00+08:00
+    verified_locator: '点 button[aria-label="生成模式: 全能参考"]（80×32，aria-expanded false→true）后出现的 [role="listbox"][aria-label="Reference mode options"]，实测 200×84 @574,543，两项 role=option 各 192×36'
+    visible_text: 首尾帧 / 全能参考
+    alt: 生成模式下拉：被高亮框标出的 200×84 小浮层，只有「首尾帧」和带勾的「全能参考」两项
+    sha256: e0e0cce932121566e0748861e9ce9d4b37e4fc3e413ba9dba1d24511cbdc0268
+
+  - file: screenshots/85-video-duration-slider.png
+    task_id: prepare-generation
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:10:00+08:00
+    verified_locator: '点 button[aria-label="选择视频生成时长: 4s"]（46×32，aria-expanded false→true）后出现的 [role="dialog"][aria-label="Duration options"]，实测 400×100 @539,527，含标题 span「选择视频生成时长」368×20、刻度 0/5/10/15 与 type=number 输入框 90×36（min=4 max=15 step=1）'
+    visible_text: 选择视频生成时长 / 0 / 5 / 10 / 15 / s
+    alt: 时长弹层：被高亮框标出的 400×100 浮层，标题是「选择视频生成时长」，下面是带 0/5/10/15 刻度的滑杆和右侧数字输入框，当前值 4s
+    sha256: 4dc68abd4d54b13934789f8ed829c9d228a688490b212b8d2c47d2df427cd039
+
+  - file: screenshots/86-subject-context-menu.png
+    task_id: duplicate-delete-history
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:17:00+08:00
+    verified_locator: '在 .react-flow__node-subject 上派发 contextmenu 事件后出现的 [data-testid="canvas-context-menu"][role="menu"][aria-label="Canvas context menu"]，实测 200×332 @674,333，八项 role=menuitem 各 192×36'
+    visible_text: 复制 / ⌘ C / 复制副本 / ⌘ D / 粘贴 / ⌘ V / 保存到主体库 / 下载 / 请选择至少一个组、文本、图片或视频项 / 重做 / ⌘ ⇧ Z / 无需重做操作 / 撤销 / ⌘ Z / 删除 / ⌫
+    alt: 主体节点的右键菜单（2026-10-01）：被高亮框标出的 200×332 菜单里，「保存到主体库」是白色可用项且没有右侧快捷键字样，「下载」和「重做」灰显；这一项是该节点类型独有的，空视频与图片节点都没有
+    sha256: 08952db86e41f3afb958bc95ad126be11cefb767b2242800193d571bee62f527

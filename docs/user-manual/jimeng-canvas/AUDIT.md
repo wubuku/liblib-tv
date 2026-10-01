@@ -977,3 +977,95 @@ dock `选择工具 / 小地图 / 显示连线 / Zoom options, 100%`、
 已按 `.react-flow__node-audio` **逐个删除 6 次**归位。
 
 **本批临时脚本（已清理）**：`scripts/_b29a.mjs` … `_b29g.mjs`
+
+---
+
+## 批次 30（2026-10-01）：视频/图片生成面板全量契约 + 右键菜单逐类型
+
+### 本批开工前的意外与处置
+
+进入批次时读到的画布状态是 **`10 nodes, 0 edges, 0 selected`**（基线应为
+`1 node`）：`视频 1` + `时间线 1/2/3` + `主体 1/2/3` + `导演台`×3，
+**九个残留全部重叠堆在画布中央**。
+
+处置过程：
+
+1. 先确认 `scripts/verify-jimeng-batch2.py` 当时确实在运行，读源码确认它打的是
+   `BASE_URL/jimeng/canvas/demo`（**本地克隆**），与 `jimeng.jianying.com` 无关；
+   `ps` 也没有第二个进程连着 9444 端口。→ **不是别人在动这张画布。**
+2. 判定为本手册早期批次取证脚本的残留（三类节点重叠在中心是人摆不出来的）。
+3. 归基线时踩到新障碍：**用搜索面板选中的节点按 ⌫ 删不掉**（详见下）。
+4. 改用「在选中节点上派发 `contextmenu` → 点 `删除 ⌫`」，
+   **9 次全部一次命中**，`10 → 1`。
+5. 归基线后 reload + 等 8s 复核：`1 node, 0 edges, 0 selected. Editable. Room
+   connected. 已保存.`，仅 `视频 1`，0 编组。
+
+### 本批关闭 / 订正的手册条目
+
+| 条目 | 原状态 | 本批结论 | 严重度 |
+|---|---|---|---|
+| 视频模型菜单项数 | 「五项」（2.5 样片模式/2.5/2.0 mini/2.0 Fast VIP/2.0 VIP） | **九项** —— 多出 **Seedance 1.0 Fast（禁用）**、**MiniMax H3**、**HappyHorse 1.1**、**Wan 3.0** | **Major（漏项）** |
+| 生成模式选项 | 参数行只写「全能参考 ∨」 | **两项**，`首尾帧` + `全能参考` | **Major（漏项）** |
+| 图片面板的生成数量 | 「参数行：… 1:1 · 2K ｜ **1 ∨**」当成独立下拉 | **不存在独立控件**，数量**并入 `图片尺寸选项`**（aria 逐字 `图片尺寸选项: 1:1 · 2K · 1`） | **Major（契约错误）** |
+| 图片尺寸弹层选项 | 未记 | 比例 **8** 项 / 分辨率 **2** 项 / 数量 **8** 项（视频为 6/3/4），弹层 432×292 且**渲染在 `node-toolbar` 内部** | Minor（补全） |
+| 时长取值范围 | 「0–15s 刻度」 | 刻度 0 起但**输入框 `min="4"`**，下限是 4s | Minor（准确性） |
+| 「保存到主体库」是否出现 | 「**仍未验证**，不作为结论」 | **已关闭**：出现在**主体**节点上（可用），与有无资源无关；图片节点另有独有的「复制为图片 ⌘⇧C」 | **Major（长期待验证项）** |
+| 「下载」禁用原因 | 只有一种逐字「没有可用的就绪资源」 | **两种**：媒体节点「没有可用的就绪资源」；主体/时间线/导演台「请选择至少一个组、文本、图片或视频项」；**文本节点直接可用** | Minor（补全） |
+| 缩放菜单 DOM | 只记了菜单项 | 补 `canvas-zoom-menu` / `canvas-zoom-percent` / `canvas-zoom-percent-input` 三个 `data-testid`。**注：菜单项本身早已记录**，本批只是补 DOM 契约 | Minor（补全） |
+
+### 本批新增的正文内容
+
+- `10-tasks/prepare-generation.md` **整页重写**：视频/图片面板逐字全文、控件表
+  （含 `引用参考` 同名两处、视频 aria 带 `Standard-only model` 后缀而图片不带）、
+  四个下拉全枚举、尺寸弹层视频/图片对照表、Esc 语义、价格区 `Current price …`。
+- `10-tasks/duplicate-delete-history.md`：右键菜单**逐类型表**、下载两种禁用原因、
+  **「搜索选中的节点 ⌫ 删不掉」**新排障条目。
+- `30-concepts.md`：「⌫ 失效」的**第三种原因**（焦点不在画布）+
+  三种原因的症状对照表；新增两条通用规则 ——
+  **「数值范围要同时看刻度和取值域」**、**「同一类功能在不同节点上可能长得完全不一样」**。
+- `90-troubleshooting.md`：新增 5 条排障（面板被视口切掉 / Esc 关整个面板 /
+  模型下拉要滚动 / 时长下限 4s / 搜索选中删不掉）。
+- `SOURCE_OBSERVATIONS.md` §3.47：8 小节，含 3.47.1 归基线障碍的完整归因。
+
+### 新增截图（6 张，全部 1280×720@2x、zh-CN）
+
+`81-video-generation-panel` / `82-video-model-dropdown` / `83-video-size-dialog` /
+`84-video-reference-mode` / `85-video-duration-slider` / `86-subject-context-menu`。
+截图前一律注入橙色高亮 overlay、截图后移除，且**断言目标完整落入 1280×720 视口**
+（为此把画布缩放拨到 60%）。
+
+**同时删除两张被取代的旧图**：`11-prepare-generation-panel.png`（1920×884、
+2026-09-23，被 81 取代）与 `12-prepare-generation-model-menu.png`
+（内容是**错误的五项模型菜单**，被 82 取代），两条 manifest 登记同步删除。
+
+### 证据边界
+
+- **从未点击「生成」/「发送」**，也从未点过任何模型/比例/分辨率/数量/时长选项
+  —— 本批对下拉**只做打开与读取**。
+- 未验证：切换参数后的价格变化、「首尾帧」与「全能参考」的行为差异、
+  样片模式（480P 样片）的实际产出、「保存到主体库」点击后的结果。均为**扣费或
+  对外产出边界**。
+
+### 质量门（批次 30 收尾，结论只认当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **90 张**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中 51 处，均为已知历史结论行（各带订正标记），无批次 30 新问题 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 90 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 90 images` |
+| 死链（本手册范围） | 独立扫描 `docs/user-manual/jimeng-canvas/**/*.md`（排除 node_modules/dist/site） | **0 命中** | 扫描 28 个 Markdown，**jimeng-canvas 死链数 = 0** |
+| 站点构建 | `build-site.sh` | **0** | dist 页面 23、**截图数 86**、示意图 4、**0 warn** |
+
+**基线复核（批次 30 收尾，`baselineOk: true`）**：
+`1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.`、
+仅 `视频 1`、0 编组、0 边、0 选中、无可见 `node-toolbar`、无残留浮层、无高亮 overlay。
+（画布缩放停在 60%，属视图状态，不影响服务端画布内容。）
+
+**本批临时脚本（已清理）**：`scripts/jimeng-b30-*.mjs` 共 **23 个**
+（panel / baseline / baseline-restore / search-probe / search-dump / search-rows /
+rows2 / del-diag / del-diag2 / del-diag3 / dropdowns / details / details2 / price /
+zoom-probe / zoom-fit / shots / ctxmenu / ctxmenu2 / ctxshot-cleanup /
+imagepanel / imagepanel2 / endcheck）。
+长期保留的仍只有 `jimeng-alt-audit.mjs`、`jimeng-crosscheck.mjs`、
+`jimeng-browser.mjs`、`jimeng-probe.mjs`、`jimeng-explore.mjs`、`jimeng-open-canvas.mjs`。
