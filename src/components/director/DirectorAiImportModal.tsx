@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type ChangeEvent } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
@@ -89,7 +90,35 @@ export function DirectorAiImportModal({
     (state) => state.localModelLibrary,
   );
 
-  return (
+  // Batch 624 修：把 backdrop + 模态 portal 到 document.body。
+  //
+  // 症状（/tmp/dbg624a.py 的宽度×状态矩阵挖出来的）：本模态在**所有桌面宽度**
+  // 都有控件被埋，且随视口高度变化。逐层读祖先链（/tmp/dbg624c.py）才看清：
+  //
+  //   0: div[data-director-ai-import-backdrop]  fixed  z=290   ← 模态自己的 z
+  //   1: div[data-director-icon-rail]           abs   z=30    ← 把它关在这里
+  //   2: div[data-director-workspace]           fixed  z=100
+  //
+  // 模态一直是由 `DirectorIconRail` 渲染的（它在资源栏那一层），而资源栏
+  // `absolute z-30` **创建层叠上下文**。于是工作区这一层比的是
+  // 「资源栏 30」对「时间线 40」和「属性列 30」：
+  //   * 时间线 z-40 > 30 → 整个资源栏子树（含 backdrop 与模态）被时间线压住；
+  //   * 属性列 z-30 与之同级、DOM 在后 → 同样压住。
+  // `z-[290]` 从未生效过 —— 它被关在了父亲的上下文里。
+  //
+  // 几何上何时撞上（探针 B 的实测，与算术吻合）：
+  //   * 高度：模态垂直居中 539 高 → 占 [(h-539)/2, (h+539)/2]；时间线贴底
+  //     182 高 → 占 [h-182, h]。重叠 ⟺ **h < 903**。实测 844/900 出缺陷、
+  //     968 起干净，阈值 903 分毫不差。
+  //   * 宽度：模态居中 560 宽，窄到右缘伸进属性列（桌面 x 从 vw-281 起）时，
+  //     右上角的「关闭 AI 识图导入」落进属性列地盘。
+  // 619 之所以没报，是因为它只在 1920×1150 扫过这个态 —— 那里既不重叠。
+  //
+  // 修法照 `DirectorInspector.tsx` 的 `viewerLayer` 先例：portal 到 body，
+  // 让 z-290 真的在工作区（z-100）之上生效。这是本项目**第三次**遇到
+  // 「子元素 z-index 被父级层叠上下文关住」（611 是 backdrop-filter，
+  // 621 是父级 flex item，这次是组件被嵌在资源栏内）。
+  const layer = (
     <div
       data-director-ai-import-backdrop
       className="fixed inset-0 z-[290] flex items-center justify-center bg-black/60"
@@ -263,4 +292,6 @@ export function DirectorAiImportModal({
       </div>
     </div>
   );
+
+  return typeof document !== "undefined" ? createPortal(layer, document.body) : null;
 }

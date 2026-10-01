@@ -1,0 +1,690 @@
+{
+  "batch": 624,
+  "title": "sweep width x open-state: the census multiplied by the state dimension, with per-width applicability rules",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim",
+    "the defect history that motivates the state dimension: 619 found the narrow export panel crushed by data-director-bottom-bar z-[200]; 620 found the asset sidebar footer button buried by the canvas toolbar; 618 found the property drawer under the header. All three are open states; none is visible in a plain-state sweep",
+    "/tmp/dbg624a.py: the matrix, each cell on a fresh page load"
+  ],
+  "claims": {
+    "cloneDecision": [
+      "the census runs over 10 widths x the states that exist at each, with cells that do not apply recorded as skipped rather than failed"
+    ],
+    "notClaimed": [
+      "anything about the source at all",
+      "completeness. 10 widths is a sample, not the 86 of 623, and only the states reachable from a director-desk control are covered — the camera preset panel and the motion path menu need a camera track selected first and are not in this matrix",
+      "that the state list is complete. It is the set 619 could open from a plain desk, plus the tree/track context menus"
+    ]
+  },
+  "widths": [
+    390,
+    620,
+    768,
+    850,
+    898,
+    899,
+    900,
+    1024,
+    1440,
+    1920
+  ],
+  "desktopMin": 899,
+  "checks": {
+    "trap-900x900": {
+      "vw": 900,
+      "vh": 900,
+      "modal": [
+        170,
+        181,
+        560,
+        539
+      ],
+      "backdrop": [
+        0,
+        0,
+        900,
+        900
+      ],
+      "modalInRail": false,
+      "backdropInRail": false,
+      "backdropZ": "290",
+      "inspector": [
+        619,
+        52,
+        281,
+        666
+      ],
+      "timeline": [
+        0,
+        718,
+        900,
+        182
+      ]
+    },
+    "900x900:the-ai-import-modal-is-not-inside-the-rail": {
+      "ok": true,
+      "detail": {
+        "modalInRail": false,
+        "backdropInRail": false,
+        "backdropZ": "290"
+      }
+    },
+    "900x900:the-buried-generate-button-takes-its-own-hit": {
+      "ok": true,
+      "detail": true
+    },
+    "trap-1920x900": {
+      "vw": 1920,
+      "vh": 900,
+      "modal": [
+        680,
+        181,
+        560,
+        539
+      ],
+      "backdrop": [
+        0,
+        0,
+        1920,
+        900
+      ],
+      "modalInRail": false,
+      "backdropInRail": false,
+      "backdropZ": "290",
+      "inspector": [
+        1639,
+        52,
+        281,
+        666
+      ],
+      "timeline": [
+        0,
+        718,
+        1920,
+        182
+      ]
+    },
+    "1920x900:the-ai-import-modal-is-not-inside-the-rail": {
+      "ok": true,
+      "detail": {
+        "modalInRail": false,
+        "backdropInRail": false,
+        "backdropZ": "290"
+      }
+    },
+    "1920x900:the-buried-generate-button-takes-its-own-hit": {
+      "ok": true,
+      "detail": true
+    },
+    "trap-1920x1150": {
+      "vw": 1920,
+      "vh": 1150,
+      "modal": [
+        680,
+        306,
+        560,
+        539
+      ],
+      "backdrop": [
+        0,
+        0,
+        1920,
+        1150
+      ],
+      "modalInRail": false,
+      "backdropInRail": false,
+      "backdropZ": "290",
+      "inspector": [
+        1639,
+        52,
+        281,
+        916
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ]
+    },
+    "1920x1150:the-ai-import-modal-is-not-inside-the-rail": {
+      "ok": true,
+      "detail": {
+        "modalInRail": false,
+        "backdropInRail": false,
+        "backdropZ": "290"
+      }
+    },
+    "1920x1150:the-buried-generate-button-takes-its-own-hit": {
+      "ok": true,
+      "detail": true
+    },
+    "cells": [
+      {
+        "w": 390,
+        "state": "export-panel",
+        "total": 44,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 390,
+        "state": "tree-context-menu",
+        "total": 66,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 390,
+        "state": "track-context-menu",
+        "total": 39,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 2,
+        "openOverlays": 0,
+        "pageErrors": []
+      },
+      {
+        "w": 620,
+        "state": "export-panel",
+        "total": 52,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 620,
+        "state": "tree-context-menu",
+        "total": 74,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 620,
+        "state": "track-context-menu",
+        "total": 47,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 0,
+        "pageErrors": []
+      },
+      {
+        "w": 768,
+        "state": "export-panel",
+        "total": 56,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 768,
+        "state": "tree-context-menu",
+        "total": 78,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 768,
+        "state": "track-context-menu",
+        "total": 51,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 0,
+        "pageErrors": []
+      },
+      {
+        "w": 850,
+        "state": "export-panel",
+        "total": 57,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 850,
+        "state": "tree-context-menu",
+        "total": 79,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 850,
+        "state": "track-context-menu",
+        "total": 52,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 1,
+        "openOverlays": 0,
+        "pageErrors": []
+      },
+      {
+        "w": 898,
+        "state": "export-panel",
+        "total": 57,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 898,
+        "state": "tree-context-menu",
+        "total": 79,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 898,
+        "state": "track-context-menu",
+        "total": 52,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 0,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "export-panel",
+        "total": 120,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 2,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "rail-panorama",
+        "total": 118,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "rail-aspect",
+        "total": 122,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "rail-add-character",
+        "total": 126,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "rail-ai-import",
+        "total": 115,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 899,
+        "state": "tree-context-menu",
+        "total": 120,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "export-panel",
+        "total": 120,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 2,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "rail-panorama",
+        "total": 118,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "rail-aspect",
+        "total": 122,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "rail-add-character",
+        "total": 126,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "rail-ai-import",
+        "total": 115,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 900,
+        "state": "tree-context-menu",
+        "total": 120,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 8,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "export-panel",
+        "total": 121,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "rail-panorama",
+        "total": 119,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 5,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "rail-aspect",
+        "total": 123,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 5,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "rail-add-character",
+        "total": 127,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 5,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "rail-ai-import",
+        "total": 116,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 1024,
+        "state": "tree-context-menu",
+        "total": 121,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 5,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "export-panel",
+        "total": 125,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "rail-panorama",
+        "total": 123,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "rail-aspect",
+        "total": 127,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "rail-add-character",
+        "total": 131,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "rail-ai-import",
+        "total": 120,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 1440,
+        "state": "tree-context-menu",
+        "total": 125,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 1,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "export-panel",
+        "total": 125,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "rail-panorama",
+        "total": 123,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "rail-aspect",
+        "total": 127,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "rail-add-character",
+        "total": 131,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "rail-ai-import",
+        "total": 120,
+        "unexpected": [],
+        "covered": [],
+        "clipped": 0,
+        "openOverlays": 2,
+        "pageErrors": []
+      },
+      {
+        "w": 1920,
+        "state": "tree-context-menu",
+        "total": 125,
+        "unexpected": [],
+        "covered": [
+          "帮助"
+        ],
+        "clipped": 0,
+        "openOverlays": 1,
+        "pageErrors": []
+      }
+    ],
+    "the-matrix-ran-every-applicable-cell": {
+      "ok": true,
+      "detail": {
+        "got": 45,
+        "expected": 45,
+        "widths": 10
+      }
+    },
+    "every-cell-actually-ran": {
+      "ok": true,
+      "detail": {
+        "live": 45,
+        "skipped": 0
+      }
+    },
+    "no-cell-has-an-unexpected-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "every-panel-state-was-seen-open": {
+      "ok": true,
+      "detail": []
+    }
+  },
+  "result": "10/10 passed"
+}
