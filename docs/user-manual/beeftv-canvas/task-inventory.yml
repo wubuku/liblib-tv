@@ -396,3 +396,37 @@ tasks:
     review_note: 「画布卡在正在打开画布 → 需启动后端」条目为 Batch 7 运行时实测（后端未启→启动→解决全流程）；其余失败分类为源码静态证据（调研包 §9.3/v1.6.1 官方文档）
     manual_pages:
       - 90-troubleshooting.md
+  # —— 源码存在但当前版本不可达（Batch 114 新增）——
+  - id: short-drama-project-workbench
+    title: 短剧 / 小说转视频项目生产台（导入小说·章节·分镜·动作预演·镜头视频）
+    role: beeftv-creator
+    frequency: rare
+    impact: low
+    coverage: none
+    evidence:
+      - type: static
+        note: >-
+          web/src/pages/projects/detail.tsx 及 detail/ 目录（导入小说、章节进度、分镜图、动作预演、镜头视频、
+          人设/叙事结构/画幅等约 49 个界面枚举值）在 origin/main v1.6.16 中不可达。
+          路由 /projects/:projectId 由 LocalAwareProjectRoute 承接，其首个分支为
+          `if (localMode && projectId) return <Navigate to={/canvas/${projectId}} replace />`，
+          而 isLocalWorkspaceMode()（web/src/services/workspace-mode.ts:14）硬编码 `return true`，
+          故 ProjectDetailPage 的渲染分支永不可达。
+          同目录的 pages/projects/index.tsx（另 31 个枚举值）更彻底：其 loader loadProjectsPage
+          在 workspace-route-modules.ts 导出后无人 import，根本不进生产产物。
+    routes:
+      - '/projects/:projectId'
+    status: excluded
+    exclusion_reason: >-
+      被 local 模式无条件重定向，用户无法打开；不是付费边界问题，故与 media-versions/cloud-agent
+      那类「触不到但代码在」的 excluded 性质不同——此处是**代码在、路由在、渲染分支不在**。
+      典型陷阱：preloadWorkspaceRoute 仍会为 /projects/<id> 预加载 projectDetail 分包
+      （workspace-sidebar-nav / workspace-sidebar-storage-meter / workspace-bootstrap-hydrator 三处调用），
+      因此「产物里有这个 chunk」不能作为可达性证据——这正是 AUDIT-RULES §3 三层可达性第 2 层
+      （注册表里有 ≠ 当前上下文渲染它）的教科书案例。
+    review_condition: >-
+      解禁需同时满足：(1) isLocalWorkspaceMode() 不再无条件返回 true，或 LocalAwareProjectRoute
+      增加绕过分支；(2) /projects/:projectId 在运行时确实渲染 ProjectDetailPage 而非跳回画布。
+      在此之前，手册只说明「找不到」，不写操作步骤。
+    manual_pages:
+      - 00-quickstart.md

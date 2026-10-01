@@ -7,13 +7,16 @@ Agent 记忆与技能 / 本地伴随进程），每条都附了「开放条件�
 失效方式是**悄悄过期**——上游可能已经解禁（或已彻底移除），而账本仍写着旧的
 理由，于是「什么时候能补这一页」这个判断从此失准。
 
-本闸把四条条件中**可机械判定**的三条拿上游现状逐条比对：
+本闸把条件中**可机械判定**的四条拿上游现状逐条比对：
   1. `/agent/*` 路由仍未注册          → cloud-agent / agent-memory-skills 未解禁
   2. `MediaConversion`/`Frame`/`Script` 仍在 `developingNodeTypes` → local-runtime
      的「智能剪辑」节点入口仍关闭
   3. 本地运行时二进制不在仓库内      → local-runtime 无法起服
+  4. `isLocalWorkspaceMode()` 仍是无条件 `return true`，且 `LocalAwareProjectRoute`
+     的重定向分支仍排在渲染分支之前 → short-drama-project-workbench（短剧/小说
+     转视频生产台）仍不可达
 
-第 4 条（真实生成产生版本族）属于付费边界，**不可机械判定**，脚本不检查。
+第 5 条（真实生成产生版本族）属于付费边界，**不可机械判定**，脚本不检查。
 
 只检查「条件是否仍成立」，不判断条件本身写得对不对——后者需要人读实现。
 条件若与现状不符，脚本报出让人回头改账本。
@@ -109,6 +112,36 @@ def main():
     else:
         notes.append("local-runtime：运行时二进制仍不在仓库内，本机无法起服，条件成立")
 
+    # —— 条件 4：短剧/小说生产台仍不可达 ——
+    # 判据是两段源码同时成立：isLocalWorkspaceMode 无条件 true（LocalAwareProjectRoute
+    # 必走重定向分支），且重定向分支排在 ProjectDetailPage 渲染分支之前。
+    wsm = git_show(src, ref, "web/src/services/workspace-mode.ts")
+    router = git_show(src, ref, "web/src/router.tsx")
+    if not wsm or not router:
+        notes.append("未取到 workspace-mode.ts / router.tsx，短剧生产台解禁条件本轮未判定")
+    else:
+        m = re.search(r"export function isLocalWorkspaceMode\s*\(\s*\)\s*\{(.*?)\n\}", wsm, re.S)
+        body = m.group(1) if m else ""
+        # 无条件 true = 函数体里既没有条件分支，也没有 return false
+        hardcoded_true = bool(m) and "return true" in body and "return false" not in body \
+            and not re.search(r"\bif\b|\?|&&|\|\|", body)
+        nav_pos = router.find('<Navigate to={`/canvas/${projectId}`} replace />')
+        render_pos = router.find("deferred(<ProjectDetailPage />)")
+        nav_first = nav_pos != -1 and render_pos != -1 and nav_pos < render_pos
+        if hardcoded_true and nav_first:
+            notes.append("short-drama：isLocalWorkspaceMode() 仍无条件 return true，"
+                         "且项目路由仍先重定向回画布，生产台不可达，条件成立")
+        else:
+            detail = []
+            if not hardcoded_true:
+                detail.append("isLocalWorkspaceMode() 已出现条件分支")
+            if not nav_first:
+                detail.append("重定向分支不再早于 ProjectDetailPage 渲染分支")
+            problems.append(
+                "短剧/小说转视频生产台的不可达前提已变（" + "；".join(detail) + "）"
+                " → short-drama-project-workbench 需回走验证"
+            )
+
     # —— 附注：Agent 分支合流进度（只报告，不作为判据）——
     r = subprocess.run(["git", "rev-list", "--count", f"{ref}..{AGENT_BRANCH}"],
                        cwd=src, capture_output=True, text=True)
@@ -125,8 +158,8 @@ def main():
             print("  ⚠ " + p)
         return 1
 
-    print(f"excluded 解禁条件核对：3 条可机械判定的条件全部仍成立"
-          f"（第 4 条「真实生成产生版本族」属付费边界，不机械判定）")
+    print(f"excluded 解禁条件核对：4 条可机械判定的条件全部仍成立"
+          f"（第 5 条「真实生成产生版本族」属付费边界，不机械判定）")
     return 0
 
 
