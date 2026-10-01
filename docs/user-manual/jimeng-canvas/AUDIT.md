@@ -478,3 +478,39 @@
 >
 > 教训：**示意图/截图的 alt 是跨三处资产（正文引用、manifest、构建产物校验）的一致性契约**，
 > 改图时必须三处同改；构建器的 warn 正是为此设计的，不能只看 `ok` 行就收工。
+
+## 2026-10-01 增量审计（批次 15：示意图与工具条事实对齐）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| 组工具条被写作四项「解除编组 / 布局 / 背景色 / **下载**」 | **Major（事实错误）** | 2026-10-01 用**全元素扫描**（不限 `button`/`role=button`）复验，工具条内**只有三个按钮**：解除编组 88×32、布局 78×32、背景色 75×32 | **已订正**正文、`use-node-toolbar.md`、`help-and-shortcuts.md` 截图 alt 与示意图；并写明「组工具条没有下载」 |
+| 多选工具条被写作五项「N 节点 / 编组 / 布局 / 下载 / **Add tags**」 | **Major（事实错误：位置错）** | 实测工具条 **511×40** 仅四项（2 节点 54×32 / 编组 62×32 / 布局 78×32 / 下载 32×32 且**禁用+「没有可用的就绪资源」**）。`Add tags`（`flow-node-selected-tag` 24×24）是**每个节点自己**的按钮，在节点标题行右侧 | **已订正**，并显式提醒「Add tags 不在工具条内」 |
+| `organize-group-layout.md` 自身自相矛盾（批 9 已写三项 vs 批 0 写四项） | **Major（文档内部冲突）** | 批次 9 补测写「可点项逐字三项」，而上方步骤段仍是四项 | 已统一为三项，并补入两项实测数据（尺寸 + 宽度跟随卡片） |
+| 示意图 `group-vs-multiselect.svg` 两处工具条文案过期 | Minor（示意图失真） | 同上 | SVG 两行已修订并加注脚；`sha256` 重算；正文 alt 与 manifest alt **逐字统一**（构建器对一字之差即报 warn） |
+| `toolbar-by-node-state.svg` 与正文写「空节点**不弹工具条**」 | Minor（准确性） | 实测空节点**仍然用 `node-toolbar` 容器**（680×208），只是内容换成生成面板 | SVG 与 `use-node-toolbar.md` 均改为「工具条位置改放生成面板」并附实测逐字；`sha256` 重算 |
+| 组工具条宽度被记为固定 1049×40 | Minor（准确性） | 实测随卡片宽度变化：1050 卡片→1049×40，570 卡片→570×40，高度恒 40 | 正文改为「宽度跟随组卡片，高度恒 40」 |
+| 批次 9「组工具条返回 0×0 / null」的**误判根因**此前未查明 | **Major（可维护性）** | 查明：同一时刻 DOM 中存在 **0×0 的 `node-toolbar` / `node-toolbar-feature-host` 残留节点**，`querySelector` 会取到空的那个 | 观察记录写明「必须按尺寸过滤」，并回溯解释了批次 9 的失败 |
+| 框选取证连续两轮失败 | Minor（效率） | 第一轮起点落在**连接手柄**（`react-flow__handle-right`）上；第二轮**包围盒倒置**（`minY 169 > maxY 111`）导致框成 2px 细线 | 观察记录写入两条断言要求：起点复核 `elementFromPoint`、拖拽前断言 `maxY > minY` 且 `|Δ| > 阈值` |
+
+## 批次 15 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | 通过 |
+| final | `audit_manual.py … --phase final` | **0** | 通过 |
+| 死链 | `python3 scripts/verify-docs.py` | **0** | `1209 Markdown files, 5288 local targets, 0 expected-missing artifact link(s)` |
+| 站点构建 | `build-site.sh` | **0** | 23 页、62 张截图、**4 张示意图全部入库**、25M、**alt 逐字一致** |
+
+> 本批改了两张示意图，均已同步「SVG 文案 → 正文 alt → manifest alt + sha256」三处资产；
+> 构建器再次确认无 warn。**无新增截图**（沿用 `51-group-background-palette.png` 等已有素材）。
+
+### 批次 15 收尾的基线复核
+
+| 项 | 实测 |
+|---|---|
+| 节点 | 元素数 **1**，aria 逐字 `视频 node: 视频 1` |
+| 连线 | `.react-flow__edge` 元素数 **0** |
+| 状态行 | 逐字 `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.` |
+| 顶栏 / 标记 | `测试项目`、`已保存`；**无 `objects` 标记** |
+| dock | `选择工具=false`（选择工具模式）、`小地图=false`、`显示连线=true`、`Zoom options, 100%` |
+| 清理路径 | **解除编组**（`selection-context-toolbar` 内）→ 删除 `视频 2`（断言 aria 精确匹配且非编组）→ ⌘0 → reload |

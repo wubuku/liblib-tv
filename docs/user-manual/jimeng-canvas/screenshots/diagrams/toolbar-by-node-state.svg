@@ -28,7 +28,7 @@
   <!-- row 3: empty -->
   <rect x="24" y="212" width="832" height="46" rx="5" fill="#1b2a1b"/>
   <text x="38" y="240" fill="#cfe8cf" font-size="12.5">空节点（无内容）</text>
-  <text x="250" y="240" fill="#bcd8bc" font-size="11.5">不弹工具条，改为节点下方弹出生成面板（按文本/图片/视频/音频分别不同）</text>
+  <text x="250" y="240" fill="#bcd8bc" font-size="11.5">工具条位置改放生成面板（容器仍是 node-toolbar，实测 680×208；按文本/图片/视频/音频分别不同）</text>
   <text x="690" y="240" fill="#7f9a7f" font-size="11">随取消选中关闭</text>
 
   <!-- row 4: text -->

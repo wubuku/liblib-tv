@@ -268,7 +268,7 @@ screenshots:
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套）'
     visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
     alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
-    sha256: 3557083d30fb34716caef794d7e20f1c10f6fec44ba564e382c5dcac78242f62
+    sha256: 018f9bf4a7bb6ed41ec97e4e39d5b43fbe9cc011582d858ed092732e4c09154c
 
   - file: screenshots/diagrams/canvas-zones.svg
     task_id: create-first-node
@@ -291,8 +291,8 @@ screenshots:
     captured_at: 2026-10-01T07:08:00+08:00
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.10 当日实测事实绘制（框选→多选工具条→编组→组工具条→解除编组；背景色仅见于组工具条）'
     visible_text: 编组 / 解除编组 / 背景色 / 宫格布局 / 智能布局
-    alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局∨/下载/Add tags，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色/下载；③解除编组后成员恢复独立并保持选中，回到①的状态。
-    sha256: 4c7be7c7638a81f293e762100af26291f4fe86ef66097e0ad20eb62e401129be
+    alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局/下载，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色；③解除编组后成员恢复独立并保持选中，回到①的状态。
+    sha256: 1d80c7353be891a3e912ef808b12a601b1ebecd90f95285588ae5ee18d8b14d1
 
   - file: screenshots/subject-node.png
     task_id: subject-node
