@@ -26,15 +26,15 @@ screenshots:
 
   - file: screenshots/01-create-canvas-project-empty-canvas.png
     task_id: create-canvas-project
-    step: 新建后进入画布编辑页（空态引导 + 快捷创作芯片 + 左侧 Dock + 缩放 Dock）
+    step: 全新 profile 走首页「新建画布」进入空画布；按各按钮自身的边界框量出左栏 8 项与底栏 6 项，逐一打上编号徽标并在右上方空白处贴两栏图例，最后整页截图
     route: '/canvas/:id'
     viewport: 1280x720
     locale: zh-CN
-    captured_at: '2026-09-27'
-    verified_locator: '双击画布，自由创作 / 文字创作 图片创作 视频创作 音频创作 上传素材'
+    captured_at: '2026-10-01'
+    verified_locator: '左栏 8 项按 aria-label 逐项点名并记录坐标：添加节点(20,210) 搜索节点(24,263) 资产(24,297) 提示词库(24,331) 历史(24,365) 上传资产(24,399) 画布外观(24,433) 清空画布(24,478)；底栏 6 项按 x 升序：打开小地图(17,674) 隐藏连线(51,674) 网格吸附(85,674) 重置视图(119,674) 放大/缩小画布(160,682) 快捷键(272,674)；空画布中央提示「双击画布，自由创作」与五个芯片 文字创作 图片创作 视频创作 音频创作 上传素材；左栏首项可见文字为空（纯图标），可访问名才是「添加节点」'
     visible_text: '双击画布，自由创作'
-    alt: 新建的 TDCanvas 1 画布，中央提示双击画布自由创作与五个快捷芯片
-    sha256: 232dff9a89fa25f98e435573d98691f9451a205ccc25d28b24220d2b8e6d7f98
+    alt: 新建空画布全貌：左侧竖栏八项与底部横栏六项都标了编号，右上角两栏图例逐项写明名称，依次为添加节点、搜索节点、资产、提示词库、历史、上传资产、画布外观、清空画布，以及打开小地图、隐藏连线、网格吸附、重置视图、放大缩小画布、快捷键
+    sha256: 4b3014a9f9d4f2c03e606d4697f7a81828f8a7ab089a757724c6bc73dd3f2624
 
   - file: screenshots/02-navigate-canvas-wheel-zoom.png
     task_id: navigate-canvas
