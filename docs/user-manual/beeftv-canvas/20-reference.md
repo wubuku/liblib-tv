@@ -154,6 +154,34 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 | `GET/POST /api/depth-captures` | 深度捕捉产物存取 |
 | `/api/creation-runs/*`（claim/execute/heartbeat/proposal-approve/canvas-commit 等） | Agent 创作运行后端契约（含付费提议审批；前端入口未挂载，API 先行） |
 
+### 上游源码行数快照（Batch 171 建，由闸 11 核对）
+
+> **这张表存在的理由**：手册里散着几句用**代码行数**论证「这个页面多重要」的话
+> （「第二大门户」「源码量第三大的界面页」）。**行数是最容易过期的数字**——
+> 上游每改一次文件它就变，而**没有任何机制会提醒**。
+> 实测已经栽过：`create-workspace.md` 写「源码 **2023** 行」，v1.6.16 上游实为 **2790** 行，
+> 差 **767** 行；同一句里的排名「**仅次于**画布工作区」也已被 `projects` 超过。
+> **行数本身没错，错的是没人看着它。**
+>
+> **口径（必须按这个算，否则数对不上）**：目录 = 其下所有 `.ts` / `.tsx` 文件行数之和；
+> 文件 = 单文件行数。对照 **BeefTV `origin/main`**。
+> 本表由 `scripts/verify-line-counts.py` 在每次构建时现场重数，**对不上就构建失败**。
+> **上游一改这里就会红**——那时该做的是**更新本表或删掉那句话里的论据**，不是把判据放宽。
+
+| 路径 | 行数 | 手册里用在哪句话 |
+|---|---|---|
+| `web/src/pages/canvas` | 17009 | 画布工作区是最大的页面目录 |
+| `web/src/pages/projects` | 5192 | 项目工作区，位次第二 |
+| `web/src/pages/create` | 2790 | `create-workspace.md`「体量第三大的页面目录」 |
+| `web/src/pages/settings/channel-settings-pane.tsx` | 738 | `model-channels.md`「渠道设置」 |
+| `web/src/pages/settings/runninghub-settings-pane.tsx` | 357 | `model-channels.md`「RunningHub 设置」 |
+| `web/src/pages/tasks` | 1221 | 已退场路由对应的源码仍在仓库里 |
+| `web/src/pages/skills` | 1133 | 已退场路由对应的源码仍在仓库里 |
+
+**已知边界**：本表只核**行数**。上游把一个 3000 行的文件拆成三个 1000 行的，数会变而**页面并没有变小**——
+所以**行数只能当量级参考，不能当重要性结论**；这也是为什么 `create-workspace.md` 那句话
+现在写的是「体量第三大」而不是「第二大门户」。
+
 ## 本地伴随进程
 
 深度/线稿/姿态等本地推理由独立进程提供：强制 `http://127.0.0.1:17371` 精确回环地址；会话经挑战-签名交换建立；响应体上限 64KB（深度模块 32MB）。
