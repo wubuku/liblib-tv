@@ -665,3 +665,58 @@ screenshots:
     visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色
     alt: 角色造型室全屏面板：顶部「我的角色库 / 官方角色库」两个标签，左侧性别/年龄段/文化区域三个筛选下拉与搜索框，右侧列表/卡片/网格三种视图切换图标，中间横排展示角色形象并有右侧翻页箭头，空状态显示「创建新角色」，底部是「创建新角色」按钮
     sha256: 0e199ddfa1acb085c7bec4ea33a337f0758e359cf05376590e7e55b800669990
+  - file: screenshots/M-01-生成历史.png
+    task_id: generate-media
+    step: 1
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T02:13:41+08:00
+    verified_locator: css=button[data-sidebar-btn="history"] 打开的「生成历史」面板
+    visible_text: 生成历史 全部画布 本画布 图片 0 视频 0 音频 0 所有评级 时间倒序 批量操作 暂无历史记录
+    alt: 生成历史面板：顶部是标题与网格/列表视图切换、缩放滑杆；筛选行是「全部画布 / 本画布」和「图片 0 / 视频 0 / 音频 0」，右列是「所有评级」「时间倒序」「批量操作」；主体是空状态「暂无历史记录」
+    sha256: f50d8946f8bfea59f72864b6c81f5c68298330a4610f49677a1939f464ace4d0
+  - file: screenshots/M-02-资产管理.png
+    task_id: navigate-canvas
+    step: 2
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T02:13:45+08:00
+    verified_locator: css=button[data-academy-guide-anchor="workspace-asset-management"] 滑出的左侧抽屉
+    visible_text: 未命名工作区 画布 15 资产 画布 资产 所有评级 图片节点 1 定位到节点 更多操作 共 1 节点
+    alt: 左侧滑出的资产管理抽屉：顶部「画布 / 资产」两个标签，工具行是搜索、筛选、列表切换；「画布」标签下逐行列出画布上的节点，每行带「定位到节点」和「更多操作」；底部是收起箭头和「共 1 节点」
+    sha256: 04c6730aef64ae55cbdf52f829373929e7f3919aa78286f31adbcdbc4c6efb19
+  - file: screenshots/M-03-小地图.png
+    task_id: navigate-canvas
+    step: 3
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T02:13:52+08:00
+    verified_locator: css=.react-flow__minimap （点「切换小地图」后出现）
+    visible_text: 图片节点 1 视频节点 2 音频节点 3 资产管理 82%
+    alt: 点开小地图后，画布左下角出现一块 150×110 的缩略图，里面是三个节点方块和一个表示当前视口的高亮框；它压在左下角工具条上
+    sha256: e22f3353c2db46c740aba2fd075417c79af7bb03513aaa05e652356a5c4b643b
+  - file: screenshots/M-05-工具箱.png
+    task_id: asset-library
+    step: 5
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T02:14:13+08:00
+    verified_locator: css=素材库面板里的「打开工具箱」→ 「我的工具箱」弹层
+    visible_text: 我的工具箱 使用 【预设】左弧滑行 【预设】电商手机弹出效果 【预设】咖啡杯出场 【预设】360旋转展示 【预设】机械臂视角 【预设】Live 2D
+    alt: 「我的工具箱」弹层：三列网格排布的镜头运动预设，每张卡片右上角有「使用」按钮，标题都带【预设】前缀
+    sha256: 17c59bb672124092817025fa26235b115b885faa82286afa11b4f0267c31aef9
+  - file: screenshots/M-07-资产管理-资产标签.png
+    task_id: asset-library
+    step: 7
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T02:13:48+08:00
+    verified_locator: css=资产管理抽屉里的「资产」标签
+    visible_text: 未命名工作区 画布 15 画布 资产 管理 暂无资产 创建默认资产分类 上传资产 共 3 节点
+    alt: 资产管理抽屉切到「资产」标签：工具行多出「+」和「管理」按钮，主体是空状态「暂无资产」，下面两个按钮「创建默认资产分类」和「上传资产」
+    sha256: 2e16ee08e5961aa838e9d59a8455fbd312e61831c46788654d19c65fa357c958

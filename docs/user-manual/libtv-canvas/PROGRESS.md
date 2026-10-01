@@ -177,7 +177,7 @@ node docs/user-manual/libtv-canvas/tools/p05-canvas-surface.mjs
 
 | 闸门 | 状态 | 说明 |
 |---|---|---|
-| Gate A | ✅ 通过 | `audit_manual.py --phase gate-a`：18 tasks / 20 Markdown / **60 images** |
+| Gate A | ✅ 通过 | `audit_manual.py --phase gate-a`：18 tasks / 20 Markdown / **65 images** |
 | Gate B | ⚠️ 部分 | 画布 CRUD、九类节点、连线、缩放、整理、故事板、快捷键面板**已全部按手册复现**；Batch E 补完了框选 / 成组 / 解组 / 复制 / 撤销重做 / 节点搜索 / 新建节点 / V·H·Space·中键 平移。仍欠：真实提交生成、发布分享、导演台 3D、角色创建（见 AUDIT.md「待回走清单」） |
 | final | 未执行 | 审计脚本在 final 阶段只接受 `verified` / `excluded`；`generate-media` / `share-canvas` / `agent-director` 三项**需要用户单独授权**（扣积分 / 对外可见），在授权前保持 `documented`，**不强行改成 verified** |
 
@@ -221,5 +221,24 @@ node docs/user-manual/libtv-canvas/tools/p05-canvas-surface.mjs
 角色造型室（我的角色库 / 官方角色库、性别/年龄段/文化区域三个筛选、搜索、
 列表-卡片-网格三视图切换、角色横排 + 右侧翻页、空状态「创建新角色」）。
 
-**顺带否证了一条写进过克隆仓的结论**：空白处无修饰键左键拖**不是平移**（同一段 `(+220,+120)`
+## 11. Batch G：六个从没打开过的面板
+
+翻遍全站可点的东西，发现六个在前 6 个批次里一次都没进去过：生成历史、资产管理左抽屉、
+小地图、节点「高级设置」、我的工具箱、组操作条剩余菜单。
+
+**最值钱的三条**：
+
+- **资产管理左抽屉**能逐节点列出整张画布，每行带「定位到节点」——
+  这比 `⌘F` 好用：`⌘F` 要你记得名字，这里一眼扫过去就知道有哪些节点。
+- **我的工具箱**里是 20 个**镜头运动预设**（左弧滑行 / 咖啡杯出场 / 旅拍转场 zoom in …），
+  手册此前完全没有这个概念。
+- **小地图的 class 写着 `bottom right`，实际渲染在左下角**，会压住左工具条右侧图标。
+
+**这一批最大的教训是关于取证方法本身的**：batchG 的三个面板其实**全都成功打开了**，
+但我拿「页面上面积最大的可见元素」当面板去读文字，而 React Flow 的 `.react-flow__viewport`
+带 transform、`getBoundingClientRect()` 永远巨大 —— 于是每次读到的都是画布本身。
+**截图是对的，文字是错的。这种错只看截图根本发现不了。**
+改回 DOM 差集法（`fingerprint` + `diffPanels`，batchC 验证过的方法）才拿到真数据。
+
+顺带否证了一条写进过克隆仓的结论：空白处无修饰键左键拖**不是平移**（同一段 `(+220,+120)`
 只换来 `(+16.3, 0)`），克隆仓 `docs/CANVAS_NAVIGATION.md` 记的「no-op」反而是对的。
