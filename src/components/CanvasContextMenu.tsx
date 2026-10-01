@@ -225,7 +225,14 @@ function Backdrop({ onClose }: { onClose: () => void }) {
   // 在「刚打开菜单 -> onClose 改变 -> 卸载重挂」的那个窗口里, 监听可能短暂缺席,
   // 右键就会漏过去。用 ref 固定回调, 让监听只挂一次。
   const closeRef = useRef(onClose);
-  closeRef.current = onClose;
+  // ⚠️ 不能在 render 期写 `closeRef.current` —— react-hooks/refs 判它为
+  // 「render 期间访问 ref」，因为 React 无法保证组件在该变化后重渲染。
+  // 挪进 effect 是安全的：这个 ref 只被下面的 document 级事件监听器读取，
+  // 而那些回调必然在 commit **之后**才可能触发，不会早于这次 effect。
+  // （本条是解除 `npm run check` 门禁的最小修复，不改任何行为。）
+  useEffect(() => {
+    closeRef.current = onClose;
+  });
 
   useEffect(() => {
     // 菜单本体在 backdrop 之上(z-63), 点菜单项时 target 在菜单里而不是 backdrop
