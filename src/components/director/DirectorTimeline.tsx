@@ -659,6 +659,39 @@ export function DirectorTimeline({
     return () => window.removeEventListener("resize", clamp);
   }, [pathMenuLeft, timelineHeight, timelineCollapsed]);
 
+  // Batch 630：时间轴高度只被 store 钳在 88..420 这个**魔数区间**里
+  // （`directorStore.ts:99-100`、`5506-5512`），从来没有拿它和可用纵向空间
+  // 比过。实测（`/tmp/dbg630b.py`、`/tmp/dbg630c.py`）：1440x360 的窗口配
+  // 420 的时间轴，面板底边落在 y=508 —— 窗口只有 360，**超出 148px**。面板
+  // 是 `flexShrink=0` + `overflow-visible`（为了不裁掉那些绝对定位的下拉），
+  // 工作区是 `fixed inset-0` 不滚动，于是超出的部分直接在屏幕外；同时顶边
+  // 被顶到 y=88，**3D 视口塌成 0 高**。
+  //
+  // 修法沿用 626 立的「不许超出窗口」惯例（路径菜单在上面那段、rail 子菜单
+  // 都是 `window.innerHeight − 8`），但**安全边取 0 而不是 8**：8px 那条是给
+  // **浮层**留抓取余量的，贴底面板本来就该贴住窗口下沿，套上 8 会把 613 在
+  // 源站实测并钉住的 **182** 悄悄压成 174。越界多少上移多少，**不越界一个
+  // 像素不动**（不越界时根本不调 `setTimelineHeight`）—— 默认 182 逐像素不变。
+  //
+  // 不发明最小视口高：视口能不能被拖到 0 高是**产品决定**，不是能从几何推出
+  // 的（与 628 对第一族的处置同一条纪律）。本批只保证面板不越界。
+  // 已知边界：窗口矮于 88 + MIN(88) = 176 时，store 自己的 MIN 会把值顶回
+  // 88，面板仍会越界 —— 那种窗口下时间轴与视口无法共存，不是钳制能解决的。
+  useLayoutEffect(() => {
+    if (timelineCollapsed) return;
+    const fit = () => {
+      const root = timelineRootRef.current;
+      if (!root) return;
+      const overflow = root.getBoundingClientRect().bottom - window.innerHeight;
+      if (overflow > 0) setTimelineHeight(timelineHeight - overflow);
+    };
+    fit();
+    // 窗口变矮也要重新钳：魔数上限 420 在一个 360 高的窗口里根本放不下，
+    // 而只钳 store 值不会处理「窗口后来被拖矮」这一路。
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [timelineHeight, timelineCollapsed]);
+
   const togglePresetPanel = () => {
     if (selectedTrack?.kind !== "camera" || cameraFollowActive) return;
     if (presetPanelLeft !== null) {

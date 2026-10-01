@@ -334,11 +334,23 @@ AUDIT_JS = """(overlays) => {
     // reader; batch 629 asserts that every viewport-squeeze coverer is in it.
     const hitInBottomBand = !own && !!(hit && hit.closest
       && hit.closest('[data-director-bottom-bar]'));
+    // Batch 630: the third coverer, and the reason the viewport-squeeze family
+    // is not really about coverers at all.  When the viewport is squeezed to
+    // ZERO height, its own bottom-anchored chrome (toolbar + prompt bar, 96px
+    // together) is pushed *above* the viewport's own box and lands on the top
+    // chrome — measured 1440x480 with the timeline at its 420 ceiling: the
+    // gizmo-mode buttons sit at y 48..80 and the shot bar's own options
+    // (`data-director-shot-option`, absolutely positioned 225px above their
+    // nav's box) come down on top of them.  Same root cause as the gizmo axis
+    // labels: window-anchored controls in a viewport with no room.  Recorded so
+    // batch 630 can enumerate the allowed coverers instead of guessing.
+    const hitInShotBar = !own && !!(hit && hit.closest
+      && hit.closest('[data-director-shot-bar]'));
     const viewportSqueeze = !own && !clipped && !panel && victimInViewport;
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped, offViewport,
       panel: panel, timelineOverlay, hitInTimeline, victimInColumn,
-      viewportSqueeze, hitInBottomBar, hitInBottomBand,
+      viewportSqueeze, hitInBottomBar, hitInBottomBand, hitInShotBar,
       victimInViewport, viewportH,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
