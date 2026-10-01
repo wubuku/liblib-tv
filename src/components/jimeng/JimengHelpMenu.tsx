@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useMenuKeyboard } from "@/components/jimeng/jimengMenuChrome";
 import {
   BookOpen,
   CircleHelp,
@@ -86,23 +87,25 @@ export function JimengHelpMenu({
   onOpenHelpCenter?: () => void;
   onOpenWatermark?: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  /* Batch 847 SOURCE_FACT（探针 847d，登录态 1512×950）：源站账号菜单外层是
+     `DIV` fixed z=120 **240×312 @[1260,56]**（外层无 testid，**内层**是
+     `canvas-user-menu`），开层**即接管焦点**（落的就是那个 `tabindex=-1` 的
+     内层），**Tab 困在层内**（12 次），**方向键在层内移动**（帮助中心→使用手册
+     →快捷键），Esc 关掉后**焦点回到 `canvas-user-menu-trigger`**。复刻此前
+     开层焦点停在「用户菜单」那枚钮上、Tab 第 6 次逃出、方向键不动。
+     模式由 `useMenuKeyboard` 统一实现（批 828/846 两次「同一段代码两个拷贝」）。 */
+  const { ref } = useMenuKeyboard<HTMLDivElement>({
+    onClose,
+    takeFocusAtOpen: true,
+    trapTab: true,
+  });
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
-        // 捕获阶段（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听注册更早，
-    // 会先触发同步重渲染；重渲染使本 effect 清理并重新注册监听，
-    // removeEventListener 会把该 listener 标记为 removed，浏览器在**同一次
-    // 事件派发中**跳过它 → 冒泡监听收不到 Escape，浮层关不掉。
-    window.addEventListener("keydown", onKey, true);
     window.addEventListener("mousedown", onDown, true);
     return () => {
-      window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
   }, [onClose]);

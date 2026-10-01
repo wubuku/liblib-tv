@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useMenuKeyboard } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 顶栏「更多」→ 菜单 (Batch 794)。
@@ -22,21 +23,27 @@ export function JimengMoreMenu({
   onOpenProjectInfo?: () => void;
   onCopyProject?: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  /* Batch 847 SOURCE_FACT（探针 847d，登录态 1512×950）：源站这一层是
+     `DIV` fixed z=120 **200×84 @[1211,56]**（**无 testid / 无 role**，探针
+     靠开前后差分拿矩形认层），开层**即接管焦点**（落在层自己，`tabindex=-1`），
+     **Tab 困在层内**（12 次全在层里），**方向键在层内移动**，Esc 关掉后**焦点
+     回到触发器**。复刻此前三条全无。判据见
+     `scripts/jimeng_unclickable_audit.py` 的 `keyboard_no_initial_focus` /
+     `keyboard_escaped` / `keyboard_arrow_dead` 三个桶（都对照源站基线表）。 */
+  const { ref } = useMenuKeyboard<HTMLDivElement>({
+    onClose,
+    takeFocusAtOpen: true,
+    trapTab: true,
+  });
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
     // 捕获阶段：工作区有全局 Escape 处理器会在冒泡阶段 stopPropagation，
     // 冒泡监听收不到事件，浮层就关不掉。
-    window.addEventListener("keydown", onKey, true);
     window.addEventListener("mousedown", onDown, true);
     return () => {
-      window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
   }, [onClose]);

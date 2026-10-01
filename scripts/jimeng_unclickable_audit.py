@@ -1144,37 +1144,82 @@ def main() -> int:
                and (r.get("tabs") or 0) > DEEP]
 
     # ── 焦点陷阱 / 方向键：分档**只能**按源站基线表走 ──────────────────
-    #   源站实测（探针 846b，每项各自重开层测，口径与本工具一致）：
-    #     右键菜单   canvas-context-menu      开层接管(第一项) / Tab **不**困 /
-    #                                      方向键**在层内移动且环绕** / Esc 不回触发器
-    #     搜索面板   canvas-feature-panel     开层接管(面板自己) / Tab **不**困 /
-    #                                      方向键**不**消费 / Esc **回触发器** ✓
-    #     时间线全屏 timeline-fullscreen-editor 开层接管(dialog 自己) / Tab **困** ✓
+    #   源站实测（探针 846b / 847c / 847d，登录态 1512×950，**每个测量从重开的
+    #   层起手**，真按键盘读 activeElement）。表里的分档**散得很开** —— 不是一条
+    #   统一判据，而是「按层型/按产品各取所需」：
+    #     · 搜索面板   开层接管(面板自己) / Tab **不困**(第10次逃) / 方向键**不**消费
+    #     · 右键菜单   开层接管(第一项)     / Tab **不困**(第1次逃)  / 方向键**动**且环绕
+    #     · 更多菜单   开层接管(层自己)     / Tab **困**(12次全在内) / 方向键**动**
+    #     · 账号菜单   开层接管(层自己)     / Tab **困**              / 方向键**动**
+    #     · 缩放菜单   **不接管**(焦点给触发器旁的行内百分比输入) / Tab **困** / 方向键**动**
+    #     · 分享面板   **不接管**(焦点留在触发器) / Tab **不困** / 方向键不动 /
+    #                  Esc 落到**「更多」**而不是分享触发器 —— 这是源站自己的
+    #                  a11y 失手，**照抄，不修**（不擅自改进源站）
+    #     · 时间线全屏 开层接管(dialog 自己) / Tab **困** / Esc 关掉但焦点不回触发器
     #
     # ⚠️⚠️ 表里**没有**的层，源站行为未知 ⇒ 一律记进 `kb_not_sampled`，
     #    **不许**按推测判缺陷。「复刻这边测出来是 0」和「源站也是 0」是两回事 ——
     #    §63 已经吃过一次这个亏（右键菜单 45 次探不到被写成"源站也这样"）。
-    # ⚠️ `video-fullscreen-preview` 的源站对照（**视频**全屏）**没取到样**：探针
-    #    846b 那一版画布上带「全屏编辑」入口的只有**时间线**节点（它开出来的是
-    #    `timeline-fullscreen-editor`）。所以这一格是「同类层有证据、本层没证据」，
-    #    按 `NOT_SAMPLED` 记账，不拿时间线全屏的行为替它判。
+    # ⚠️ 源站有几层**压根没有 testid**（更多菜单 200×84、缩放菜单 200×292），
+    #    探针改用**矩形**当层身份（开前/开后差分拿矩形，单次打开内稳定）。
+    #    `src_identified_by` 把这件事写明，不假装有锚点。
     SOURCE_BASELINE = {
-        "canvas-context-menu": {
-            "src_tid": "canvas-context-menu", "src_kind": "menu",
-            "takes_focus_at_open": True, "traps_tab": False,
-            "arrows_move": True, "esc_returns_to_trigger": False,
-            "src": "jimeng_probe846_focustrap2.py（登录态 1512×950）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",
+            "src_identified_by": "testid",
             "takes_focus_at_open": True, "traps_tab": False,
             "arrows_move": False, "esc_returns_to_trigger": True,
             "src": "jimeng_probe846_focustrap2.py（登录态 1512×950）"},
+        "canvas-context-menu": {
+            "src_tid": "canvas-context-menu", "src_kind": "menu",
+            "src_identified_by": "testid",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe846_focustrap2.py（登录态 1512×950）"},
+        "topbar-more-menu": {
+            "src_tid": "(无 testid)", "src_kind": "panel",
+            "src_identified_by": "矩形 200×84 @[1211,56]（探针 847d 差分）",
+            "takes_focus_at_open": True, "traps_tab": True,
+            "arrows_move": True, "esc_returns_to_trigger": True,
+            "src": "jimeng_probe847d_baseline2.py（登录态 1512×950）"},
+        "canvas-user-menu": {
+            "src_tid": "canvas-user-menu", "src_kind": "panel",
+            "src_identified_by": "testid（外层无，内层有；开层焦点即它 tabindex=-1）",
+            "takes_focus_at_open": True, "traps_tab": True,
+            "arrows_move": True, "esc_returns_to_trigger": True,
+            "src": "jimeng_probe847d_baseline2.py（登录态 1512×950）"},
+        "canvas-zoom-menu": {
+            "src_tid": "(外层无 testid；内层 canvas-zoom-percent-input)",
+            "src_kind": "panel",
+            "src_identified_by": "矩形 200×292 @[16,599]（探针 847d 差分）",
+            # ⚠️ 源站开层时焦点给的是**触发器旁的行内百分比输入**，不在层矩形内 ——
+            #    判据按「在不在层里」读就是 False，如实记，不修饰成"接管了"。
+            "takes_focus_at_open": False, "traps_tab": True,
+            "arrows_move": True, "esc_returns_to_trigger": True,
+            "src": "jimeng_probe847d_baseline2.py（登录态 1512×950）"},
+        "topbar-share-panel": {
+            "src_tid": "canvas-share-panel-surface", "src_kind": "panel",
+            "src_identified_by": "testid",
+            "takes_focus_at_open": False, "traps_tab": False,
+            "arrows_move": False,
+            # 源站 Esc 之后焦点落到**「更多」**那枚钮上，不是分享触发器 ——
+            # 它自己的 a11y 失手。**照抄，不修**。
+            "esc_returns_to_trigger": False,
+            "src": "jimeng_probe847d_baseline2.py（登录态 1512×950）"},
     }
     NOT_SAMPLED = {
         "video-fullscreen-preview":
-            "源站**视频**全屏没取到样：探针 846b 那一版画布上带「全屏编辑」的"
-            "只有时间线节点（开出来是 timeline-fullscreen-editor）。"
-            "同类模态有证据（时间线全屏 Tab 会困），但**不替本层下结论**。",
+            "**BLOCKED_BY_FIXTURE**：源站那个视频节点（`node_236ctpehgg`"
+            "「视频 node: 视频 1」）选中后的工具条**只有 4 枚**按钮 —— "
+            "`Create connected node before 视频 1` / `Rename 视频 1` / "
+            "`Add tags` / `Create connected node after 视频 1` —— "
+            "**压根没有全屏入口**；全页唯一的 `全屏编辑` 属于**时间线**节点"
+            "（探针 847 实测逐节点 dump）。所以复刻这一层的源站行为"
+            "**未知** ⇒ 不下结论，也不拿时间线全屏的行为替它判。",
+        "topbar-history-menu":
+            "**前置态没成立**：点第 2 个 `canvas-panel-launcher` 开出来的是"
+            "「积分明细」（焦点落在 al='' 的 BUTTON 上），**0 个新的 fixed 层**"
+            "（探针 847c/847d）。源站的生成历史入口这一版画布上取不到样。",
     }
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
     kb_judged, kb_not_sampled = [], []

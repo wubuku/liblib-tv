@@ -1,6 +1,7 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect } from "react";
+import { useMenuKeyboard } from "@/components/jimeng/jimengMenuChrome";
 import { useReactFlow } from "@xyflow/react";
 
 import {
@@ -48,7 +49,11 @@ export const ZOOM_MENU_TRIGGER_ID = "jimeng-zoom-menu-trigger";
  * 优于照抄源站的无响应），差异如实记账。
  */
 export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref } = useMenuKeyboard<HTMLDivElement>({
+    onClose,
+    takeFocusAtOpen: false,   // 源站实测不接管（见下）
+    trapTab: true,
+  });
   const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
   const {
     fitView,
@@ -58,18 +63,22 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     getViewport,
   } = useReactFlow();
 
+  /* Batch 847 SOURCE_FACT（探针 847d，登录态 1512×950）：源站缩放菜单外层是
+     `DIV` fixed z=120 **200×292 @[16,599]**（**无 testid**，探针靠差分拿矩形
+     认层；内层有 `canvas-zoom-percent-input`）。实测三条：
+       · **不接管焦点** —— 开层时焦点给的是**触发器旁的行内百分比输入**，
+         压根不在层矩形里。判据按「在不在层里」读就是 False，如实记。
+       · **Tab 困在层内**（12 次全在层里）
+       · **方向键在层内移动**（放大视图→缩小视图→适配画布）
+     所以这里 `takeFocusAtOpen: false` —— **不是漏做，是照抄源站**。
+     复刻此前 Tab 第 6 次逃出、方向键不动。 */
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
     // 捕获阶段（batch 794 实测）：冒泡监听会被工作区先触发的同步重渲染跳过。
-    window.addEventListener("keydown", onKey, true);
     window.addEventListener("mousedown", onDown, true);
     return () => {
-      window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
   }, [onClose]);
