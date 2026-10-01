@@ -1,0 +1,1041 @@
+{
+  "batch": 622,
+  "title": "withdraw the 900-1043px candidate with a measurement, and fix the 899px JS/CSS breakpoint disagreement that left the scene tree and inspector visible but inert",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim",
+    "/tmp/dbg622a.py: the control census across 899/900/960/1024/1043/1100/1280 plus a scroll-then-hit-test of all 14 cluster controls. reachable_but_blocked=0 and never_in_window=0 at every width, so the band's 20-145px of hidden cluster is scrollable, not buried",
+    "/tmp/dbg622b.py: at 897/898/899/900/901 the two media queries and the tree/inspector inert flags side by side. Only 899 disagrees"
+  ],
+  "claims": {
+    "cloneDecision": [
+      "DirectorDesk's matchMedia is now '(max-width: 898px)' so the JS mobile flag lands on the same width as Tailwind's compiled '(width < 899px)'. At 899 the scene tree and inspector now render in desktop positions and are not inert, so their controls take clicks; <=898 keeps the drawers correctly inert and off-screen, and >=900 is unchanged"
+    ],
+    "notClaimed": [
+      "anything about the source at all — no source reading backs any part of this batch",
+      "that the 898/899 landing point is correct. It is the codebase-wide convention, recorded and left alone by 621; this batch only removes the JS/CSS disagreement about it, it does not move the breakpoint itself",
+      "that the 900-1043px band is improved. It is not touched, and the measurement says there is nothing there to improve: the cluster's overflow above the breakpoint is scrollable by design. 621's candidate to move the two-row breakpoint up to ~1043 is withdrawn, not deferred"
+    ]
+  },
+  "checks": {
+    "vw897:alignment": {
+      "appQuery": "(max-width: 898px)",
+      "appMobile": true,
+      "cssMobile": true,
+      "treeFound": true,
+      "inspectorFound": true,
+      "treeInert": true,
+      "treeAriaHidden": "true",
+      "treeBox": [
+        -220,
+        88,
+        220,
+        812
+      ],
+      "inspectorInert": false,
+      "inspectorBox": [
+        897,
+        88,
+        281,
+        636
+      ],
+      "vw": 897
+    },
+    "vw897:the-js-and-css-breakpoints-agree": {
+      "ok": true,
+      "detail": {
+        "appQuery": "(max-width: 898px)",
+        "app": true,
+        "css": true
+      }
+    },
+    "vw897:is-the-viewport-classified-as-expected": {
+      "ok": true,
+      "detail": {
+        "got": true,
+        "want": true
+      }
+    },
+    "vw897:the-tree-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "ariaHidden": "true",
+        "box": [
+          -220,
+          88,
+          220,
+          812
+        ]
+      }
+    },
+    "vw897:the-inspector-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": false,
+        "box": [
+          897,
+          88,
+          281,
+          636
+        ]
+      }
+    },
+    "vw897:offscreen-not-inert": {
+      "tree": false,
+      "inspector": true
+    },
+    "vw897:census": {
+      "total": 52,
+      "covered": 0
+    },
+    "vw897:the-census-reports-no-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "vw897:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw897:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw898:alignment": {
+      "appQuery": "(max-width: 898px)",
+      "appMobile": true,
+      "cssMobile": true,
+      "treeFound": true,
+      "inspectorFound": true,
+      "treeInert": true,
+      "treeAriaHidden": "true",
+      "treeBox": [
+        -220,
+        88,
+        220,
+        812
+      ],
+      "inspectorInert": false,
+      "inspectorBox": [
+        898,
+        88,
+        281,
+        636
+      ],
+      "vw": 898
+    },
+    "vw898:the-js-and-css-breakpoints-agree": {
+      "ok": true,
+      "detail": {
+        "appQuery": "(max-width: 898px)",
+        "app": true,
+        "css": true
+      }
+    },
+    "vw898:is-the-viewport-classified-as-expected": {
+      "ok": true,
+      "detail": {
+        "got": true,
+        "want": true
+      }
+    },
+    "vw898:the-tree-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "ariaHidden": "true",
+        "box": [
+          -220,
+          88,
+          220,
+          812
+        ]
+      }
+    },
+    "vw898:the-inspector-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": false,
+        "box": [
+          898,
+          88,
+          281,
+          636
+        ]
+      }
+    },
+    "vw898:offscreen-not-inert": {
+      "tree": false,
+      "inspector": true
+    },
+    "vw898:census": {
+      "total": 52,
+      "covered": 0
+    },
+    "vw898:the-census-reports-no-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "vw898:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw898:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw899:alignment": {
+      "appQuery": "(max-width: 898px)",
+      "appMobile": false,
+      "cssMobile": false,
+      "treeFound": true,
+      "inspectorFound": true,
+      "treeInert": false,
+      "treeAriaHidden": null,
+      "treeBox": [
+        0,
+        88,
+        220,
+        812
+      ],
+      "inspectorInert": false,
+      "inspectorBox": [
+        618,
+        52,
+        281,
+        666
+      ],
+      "vw": 899
+    },
+    "vw899:the-js-and-css-breakpoints-agree": {
+      "ok": true,
+      "detail": {
+        "appQuery": "(max-width: 898px)",
+        "app": false,
+        "css": false
+      }
+    },
+    "vw899:is-the-viewport-classified-as-expected": {
+      "ok": true,
+      "detail": {
+        "got": false,
+        "want": false
+      }
+    },
+    "vw899:the-tree-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "ariaHidden": null,
+        "box": [
+          0,
+          88,
+          220,
+          812
+        ]
+      }
+    },
+    "vw899:the-inspector-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          618,
+          52,
+          281,
+          666
+        ]
+      }
+    },
+    "vw899:offscreen-not-inert": {
+      "tree": false,
+      "inspector": false
+    },
+    "vw899:census": {
+      "total": 108,
+      "covered": 0
+    },
+    "vw899:the-census-reports-no-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "vw899:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw899:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw900:alignment": {
+      "appQuery": "(max-width: 898px)",
+      "appMobile": false,
+      "cssMobile": false,
+      "treeFound": true,
+      "inspectorFound": true,
+      "treeInert": false,
+      "treeAriaHidden": null,
+      "treeBox": [
+        48,
+        52,
+        233,
+        848
+      ],
+      "inspectorInert": false,
+      "inspectorBox": [
+        619,
+        52,
+        281,
+        666
+      ],
+      "vw": 900
+    },
+    "vw900:the-js-and-css-breakpoints-agree": {
+      "ok": true,
+      "detail": {
+        "appQuery": "(max-width: 898px)",
+        "app": false,
+        "css": false
+      }
+    },
+    "vw900:is-the-viewport-classified-as-expected": {
+      "ok": true,
+      "detail": {
+        "got": false,
+        "want": false
+      }
+    },
+    "vw900:the-tree-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "ariaHidden": null,
+        "box": [
+          48,
+          52,
+          233,
+          848
+        ]
+      }
+    },
+    "vw900:the-inspector-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          619,
+          52,
+          281,
+          666
+        ]
+      }
+    },
+    "vw900:offscreen-not-inert": {
+      "tree": false,
+      "inspector": false
+    },
+    "vw900:census": {
+      "total": 115,
+      "covered": 0,
+      "clipped": 8
+    },
+    "vw900:the-census-reports-no-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "vw900:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw900:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw901:alignment": {
+      "appQuery": "(max-width: 898px)",
+      "appMobile": false,
+      "cssMobile": false,
+      "treeFound": true,
+      "inspectorFound": true,
+      "treeInert": false,
+      "treeAriaHidden": null,
+      "treeBox": [
+        48,
+        52,
+        233,
+        848
+      ],
+      "inspectorInert": false,
+      "inspectorBox": [
+        620,
+        52,
+        281,
+        666
+      ],
+      "vw": 901
+    },
+    "vw901:the-js-and-css-breakpoints-agree": {
+      "ok": true,
+      "detail": {
+        "appQuery": "(max-width: 898px)",
+        "app": false,
+        "css": false
+      }
+    },
+    "vw901:is-the-viewport-classified-as-expected": {
+      "ok": true,
+      "detail": {
+        "got": false,
+        "want": false
+      }
+    },
+    "vw901:the-tree-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "ariaHidden": null,
+        "box": [
+          48,
+          52,
+          233,
+          848
+        ]
+      }
+    },
+    "vw901:the-inspector-is-not-inert-while-on-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          620,
+          52,
+          281,
+          666
+        ]
+      }
+    },
+    "vw901:offscreen-not-inert": {
+      "tree": false,
+      "inspector": false
+    },
+    "vw901:census": {
+      "total": 115,
+      "covered": 0
+    },
+    "vw901:the-census-reports-no-covered-control": {
+      "ok": true,
+      "detail": []
+    },
+    "vw901:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw901:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw900:cluster-reach": {
+      "clientW": 632,
+      "scrollW": 776,
+      "hidden": 144,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw900:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw900:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 144,
+        "covered": []
+      }
+    },
+    "vw960:cluster-reach": {
+      "clientW": 692,
+      "scrollW": 776,
+      "hidden": 84,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw960:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw960:census": {
+      "total": 116,
+      "covered": 0,
+      "clipped": 7
+    },
+    "vw960:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 84,
+        "covered": []
+      }
+    },
+    "vw1024:cluster-reach": {
+      "clientW": 756,
+      "scrollW": 776,
+      "hidden": 20,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw1024:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw1024:census": {
+      "total": 116,
+      "covered": 0,
+      "clipped": 5
+    },
+    "vw1024:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 20,
+        "covered": []
+      }
+    },
+    "vw1043:cluster-reach": {
+      "clientW": 775,
+      "scrollW": 776,
+      "hidden": 1,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw1043:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw1043:census": {
+      "total": 117,
+      "covered": 0,
+      "clipped": 5
+    },
+    "vw1043:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 1,
+        "covered": []
+      }
+    },
+    "vw1100:cluster-reach": {
+      "clientW": 832,
+      "scrollW": 832,
+      "hidden": 0,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw1100:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw1100:census": {
+      "total": 117,
+      "covered": 0,
+      "clipped": 4
+    },
+    "vw1100:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 0,
+        "covered": []
+      }
+    },
+    "vw1280:cluster-reach": {
+      "clientW": 1012,
+      "scrollW": 1012,
+      "hidden": 0,
+      "nodes": [
+        {
+          "label": "播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "自动帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "循环播放",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "播放头位置",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "总时长",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "切换时间单位为 s",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "选中角色、道具或分组后建立轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "预设运镜",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "创建运动轨迹",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "曲线编辑器",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "移除角色01 · 陈默 · 变换轨道",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "添加关键帧",
+          "inside": true,
+          "hitSelf": true
+        },
+        {
+          "label": "删除关键帧",
+          "inside": true,
+          "hitSelf": true
+        }
+      ]
+    },
+    "vw1280:every-cluster-control-is-reachable-by-scrolling": {
+      "ok": true,
+      "detail": {
+        "controls": 14,
+        "blocked": [],
+        "neverInWindow": []
+      }
+    },
+    "vw1280:census": {
+      "total": 120,
+      "covered": 0,
+      "clipped": 3
+    },
+    "vw1280:the-hidden-part-is-clipped-not-buried": {
+      "ok": true,
+      "detail": {
+        "hidden": 0,
+        "covered": []
+      }
+    }
+  },
+  "result": "47/47 passed"
+}

@@ -376,7 +376,20 @@ export default function DirectorDesk({
   }, [openSession, projectOwner]);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 899px)");
+    // Batch 622 修：阈值必须与 CSS 的**实际**落点一致。
+    // Tailwind v4 把 `max-[899px]` 编译成 `@media (width < 899px)`，即
+    // 「宽度 ≤ 898」才走窄屏（见 621 README 的逐像素读数）。而这里原来写的是
+    // `matchMedia("(max-width: 899px)")`，语义是「≤ 899」—— 两边**差一个
+    // 像素**，于是 vw=899 这一档 JS 判移动端、CSS 判桌面：
+    // 场景树与属性列被按桌面布局**可见地**渲染在 [0,88] 与 [618,52]，
+    // 却又被 `treeMobileInactive` / `inspectorMobileInactive` 整棵加上
+    // `inert` → 两列全部控件**可见但点不动**（普查在 899 报出 22 枚
+    // covered，正是它们）。≤898 时 JS/CSS 一致（抽屉收在屏外、inert 正确），
+    // ≥900 时也一致（桌面、正常）。对齐到 898 即抹平这唯一一档错位。
+    // 选「改 JS 对齐 CSS」而不是反过来改 CSS：全代码库每一条 `max-[899px]`
+    // 的落点都在 898/899（621 已记录为不改的既有约定），改 CSS 会一次性
+    // 移动所有同类规则。
+    const media = window.matchMedia("(max-width: 898px)");
     const update = () => setIsMobileViewport(media.matches);
     update();
     media.addEventListener("change", update);
