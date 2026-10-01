@@ -16,12 +16,15 @@ assert len(idx) == 1, "锚点未命中：应恰好找到 1 行以「3 」开头�
 i = idx[0]
 cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
 assert len(cells) >= 4, "锚点未命中：列数不足，备注列不存在"
-# **必须拿 strip 后的值当基准**：第一版存的是未 strip 的原值，
-# 改完再拿 strip 后的值去比 → 两边永远不等 → 断言失败，
-# 而**失败原因与真实问题毫无关系**。
 before = (cells[0], cells[1], cells[2])
-cells[-1] = cells[-1].rstrip() + "（反验注入：只改备注，不动任何不变量）"
-lines[i] = "|" + "|".join(cells) + "|"
+
+# **只往最后一个单元格里追加文字，其余字节一律不动**。
+# 第一版是拆开重排整行再拼回去——那会把 `| 3 端点双向 | …` 的空格也一起吃掉，
+# 判据照样放行，但**这条用例就不再是「只改备注」了**。
+# 「只改一处」这件事必须字面成立，否则用例证明的东西比它声称的少。
+j = lines[i].rstrip().rfind("|")
+assert j > 0, "锚点未命中：行尾不是表格收尾竖线"
+lines[i] = lines[i][:j] + "（反验注入：只改备注，不动任何不变量）" + lines[i][j:]
 
 out = "\n".join(lines)
 row = next(ln for ln in out.split("\n") if re.match(r"^\|\s*3\s", ln) and "selftest-endpoints.py" in ln)
