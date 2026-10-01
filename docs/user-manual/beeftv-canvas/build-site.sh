@@ -171,6 +171,18 @@ else
   fail "快捷键修饰键前缀缺失——带 Ctrl/Cmd 的键被写成了裸键"
 fi
 
+# excluded 解禁条件闸：账本里「这页还差什么才能补」的判断，是否与上游现状一致。
+# 背景（Batch 111）：这类条件最危险的失效方式是悄悄过期——上游可能已解禁（或已
+# 彻底移除），而账本仍写旧理由，于是「什么时候能补这一页」的判断从此失准。
+if EX_OUT="$(python3 scripts/verify-exclusions.py 2>&1)"; then
+  ok "$EX_OUT"
+else
+  printf '%s\n' "$EX_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "解禁条件 $line"
+  done
+  fail "excluded 任务的解禁条件可能已失效——需回走验证并更新 PROGRESS 条件表"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"
