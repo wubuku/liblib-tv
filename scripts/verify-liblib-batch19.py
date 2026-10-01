@@ -106,16 +106,27 @@ def run_desktop(page: Page):
     page.wait_for_timeout(180)
     shifted_trigger_box = box(trigger)
     shifted_minimap_box = box(minimap)
-    assert abs((shifted_trigger_box["x"] - trigger_box["x"]) - 240) <= 1
-        # Batch 335: 面板改为 320px flex 兄弟（batch 298 现行）后，工具栏位移
-    # 240 不变，小地图随画布 pane 位移 320。
+    # Batch 361: 这里原来写死 240, 断的是「工具栏整体左移 = 两个 left 类的差」。
+    # 该期望值来自 20a1f075 引入时的 `left-4`(16) / `left-64`(256), 差恰为 240。
+    # 后来 batch 612 按源站采样把 `left-4` 改成 `left-[14px]`, 位移随之变成
+    # **256 - 14 = 242**, 断言却没跟着改 —— 典型的值漂移(不是面板宽度变了:
+    # 面板 240->320 是 batch264, 与工具栏 left 无关)。
+    # 断的是**几何关系**而不是某个历史数字: 面板打开态的 left 与关闭态之差。
+    # 实测(batch361): before x=144 -> after x=386, 位移 242。
+    toolbar_left_open = 256  # left-64
+    toolbar_left_shut = 14  # left-[14px], batch 612 源站采样
+    assert abs(
+        (shifted_trigger_box["x"] - trigger_box["x"])
+        - (toolbar_left_open - toolbar_left_shut)
+    ) <= 1
+    # Batch 335: 小地图随画布 pane 位移 320(面板 320px 宽)。
     assert abs((shifted_minimap_box["x"] - minimap_box["x"]) - 320) <= 1
-    # Batch 335: 两者位移不再相等（240 vs 320），间距扩大 80。
+    # Batch 335: 两者位移不再相等（242 vs 320），间距扩大 78。
     assert (
         abs(
             (shifted_minimap_box["x"] - shifted_trigger_box["x"])
             - (minimap_box["x"] - trigger_box["x"])
-            - 80
+            - (320 - (toolbar_left_open - toolbar_left_shut))
         )
         <= 1
     )
