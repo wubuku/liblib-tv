@@ -1,0 +1,438 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "header:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "header:52px",
+      "ok": true,
+      "detail": 52
+    },
+    {
+      "name": "header:border-b-1px-white-8",
+      "ok": true,
+      "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    {
+      "name": "left:280px-at-origin",
+      "ok": true,
+      "detail": [
+        280,
+        0
+      ]
+    },
+    {
+      "name": "left:three-children",
+      "ok": true,
+      "detail": [
+        "button",
+        "div",
+        "button"
+      ]
+    },
+    {
+      "name": "left:close-40x40",
+      "ok": true,
+      "detail": [
+        40,
+        40
+      ]
+    },
+    {
+      "name": "left:close-at-x-0",
+      "ok": true,
+      "detail": 0
+    },
+    {
+      "name": "left:close-icon-16px",
+      "ok": true,
+      "detail": {
+        "x": 12,
+        "y": 17.5,
+        "w": 16,
+        "h": 16,
+        "right": 28,
+        "bottom": 33.5
+      }
+    },
+    {
+      "name": "left:close-text-white-72",
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)"
+    },
+    {
+      "name": "left:close-no-radius",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "left:collapse-40x40",
+      "ok": true,
+      "detail": [
+        40,
+        40
+      ]
+    },
+    {
+      "name": "left:collapse-at-x-240",
+      "ok": true,
+      "detail": 240
+    },
+    {
+      "name": "left:collapse-icon-16px",
+      "ok": true,
+      "detail": {
+        "x": 252,
+        "y": 17.5,
+        "w": 16,
+        "h": 16,
+        "right": 268,
+        "bottom": 33.5
+      }
+    },
+    {
+      "name": "left:collapse-text-white-72",
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)"
+    },
+    {
+      "name": "left:collapse-no-radius",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "left:title-200px",
+      "ok": true,
+      "detail": [
+        200,
+        40
+      ]
+    },
+    {
+      "name": "left:title-14px-22px",
+      "ok": true,
+      "detail": "14px/22px"
+    },
+    {
+      "name": "left:title-keeps-h1-3D导演台",
+      "ok": true,
+      "detail": "batch 587 pins this h1"
+    },
+    {
+      "name": "left:zero-gaps",
+      "ok": true,
+      "detail": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "close:single-affordance",
+      "ok": true,
+      "detail": {
+        "data-close-director": 1,
+        "返回画布": 0
+      }
+    },
+    {
+      "name": "close:title-关闭",
+      "ok": true,
+      "detail": "batch 586 requires the source's 关闭 title"
+    },
+    {
+      "name": "right:280px-flush-to-edge",
+      "ok": true,
+      "detail": [
+        280,
+        1640
+      ]
+    },
+    {
+      "name": "right:padding-12",
+      "ok": true,
+      "detail": "0px 12px"
+    },
+    {
+      "name": "name:present-and-15px",
+      "ok": true,
+      "detail": "{'x': 1652, 'y': 14.25, 'w': 102.078125, 'h': 22.5, 'right': 1754.078125, 'bottom': 36.75} 15px"
+    },
+    {
+      "name": "name:at-source-x-1652",
+      "ok": true,
+      "detail": 1652
+    },
+    {
+      "name": "name:truncated-medium",
+      "ok": true,
+      "detail": "min-w-0 truncate text-[15px] font-medium text-neutral-50"
+    },
+    {
+      "name": "name:reflects-selection",
+      "ok": true,
+      "detail": "机位01 · 对峙中景"
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "measured": {
+    "header": {
+      "tag": "header",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 52,
+        "right": 1920,
+        "bottom": 52
+      },
+      "backgroundColor": "rgb(24, 24, 24)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px",
+      "display": "grid",
+      "gap": "normal",
+      "width": "1920px",
+      "borderTopWidth": "0px",
+      "borderBottomWidth": "1px",
+      "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": "400",
+      "height": "52px",
+      "text": "3D导演台\n\n第一集：咖啡馆对峙\n\n导演视角\n机",
+      "aria": null,
+      "title": null,
+      "svg": {
+        "x": 12,
+        "y": 17.5,
+        "w": 16,
+        "h": 16,
+        "right": 28,
+        "bottom": 33.5
+      },
+      "className": "relative z-40 grid h-[52px] shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.08] bg-[#181818]"
+    },
+    "left": {
+      "tag": "div",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 51,
+        "right": 280,
+        "bottom": 51
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px",
+      "display": "flex",
+      "gap": "normal",
+      "width": "280px",
+      "borderTopWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderBottomColor": "rgb(82, 82, 82)",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": "400",
+      "height": "51px",
+      "text": "3D导演台\n\n第一集：咖啡馆对峙",
+      "aria": null,
+      "title": null,
+      "svg": {
+        "x": 12,
+        "y": 17.5,
+        "w": 16,
+        "h": 16,
+        "right": 28,
+        "bottom": 33.5
+      },
+      "className": "flex h-full min-w-0 items-center max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0"
+    },
+    "leftKids": [
+      {
+        "tag": "button",
+        "box": {
+          "x": 0,
+          "y": 5.5,
+          "w": 40,
+          "h": 40,
+          "right": 40,
+          "bottom": 45.5
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "display": "flex",
+        "gap": "normal",
+        "width": "40px",
+        "borderTopWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderBottomColor": "rgb(82, 82, 82)",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontWeight": "400",
+        "height": "40px",
+        "text": "",
+        "aria": "关闭",
+        "title": "关闭",
+        "svg": {
+          "x": 12,
+          "y": 17.5,
+          "w": 16,
+          "h": 16,
+          "right": 28,
+          "bottom": 33.5
+        },
+        "className": "flex size-10 shrink-0 items-center justify-center text-white/72 transition-colors hover:text-white disabled:opacity-35"
+      },
+      {
+        "tag": "div",
+        "box": {
+          "x": 40,
+          "y": 3.5,
+          "w": 200,
+          "h": 44,
+          "right": 240,
+          "bottom": 47.5
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+        "borderRadius": "0px",
+        "padding": "0px 8px",
+        "display": "block",
+        "gap": "normal",
+        "width": "200px",
+        "borderTopWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderBottomColor": "rgb(82, 82, 82)",
+        "fontSize": "14px",
+        "lineHeight": "22px",
+        "fontWeight": "400",
+        "height": "44px",
+        "text": "3D导演台\n\n第一集：咖啡馆对峙",
+        "aria": null,
+        "title": null,
+        "svg": null,
+        "className": "min-w-0 flex-1 truncate px-2 text-[14px] leading-[22px] text-white/90"
+      },
+      {
+        "tag": "button",
+        "box": {
+          "x": 240,
+          "y": 5.5,
+          "w": 40,
+          "h": 40,
+          "right": 280,
+          "bottom": 45.5
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "display": "flex",
+        "gap": "normal",
+        "width": "40px",
+        "borderTopWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderBottomColor": "rgb(82, 82, 82)",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontWeight": "400",
+        "height": "40px",
+        "text": "",
+        "aria": "收起",
+        "title": "收起",
+        "svg": {
+          "x": 252,
+          "y": 17.5,
+          "w": 16,
+          "h": 16,
+          "right": 268,
+          "bottom": 33.5
+        },
+        "className": "flex size-10 shrink-0 items-center justify-center text-white/72 transition-colors hover:text-white"
+      }
+    ],
+    "right": {
+      "tag": "div",
+      "box": {
+        "x": 1640,
+        "y": 0,
+        "w": 280,
+        "h": 51,
+        "right": 1920,
+        "bottom": 51
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(237, 237, 237)",
+      "borderRadius": "0px",
+      "padding": "0px 12px",
+      "display": "flex",
+      "gap": "8px",
+      "width": "280px",
+      "borderTopWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderBottomColor": "rgb(82, 82, 82)",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": "400",
+      "height": "51px",
+      "text": "机位01 · 对峙中景\n尚无构图",
+      "aria": null,
+      "title": null,
+      "svg": {
+        "x": 1833.484375,
+        "y": 18.5,
+        "w": 14,
+        "h": 14,
+        "right": 1847.484375,
+        "bottom": 32.5
+      },
+      "className": "flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0 min-[900px]:justify-between min-[900px]:px-3 min-[900px]:justify-self-end"
+    },
+    "name": {
+      "tag": "span",
+      "box": {
+        "x": 1652,
+        "y": 14.25,
+        "w": 102.078125,
+        "h": 22.5,
+        "right": 1754.078125,
+        "bottom": 36.75
+      },
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(247, 247, 247)",
+      "borderRadius": "0px",
+      "padding": "0px",
+      "display": "block",
+      "gap": "normal",
+      "width": "102.078px",
+      "borderTopWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderBottomColor": "rgb(82, 82, 82)",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "fontWeight": "500",
+      "height": "22.5px",
+      "text": "机位01 · 对峙中景",
+      "aria": null,
+      "title": null,
+      "svg": null,
+      "className": "min-w-0 truncate text-[15px] font-medium text-neutral-50"
+    },
+    "closeCount": 1
+  },
+  "diagnostics": {
+    "console": 0,
+    "errors": []
+  }
+}

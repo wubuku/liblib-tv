@@ -9,7 +9,6 @@ import {
 } from "react";
 import {
   AlertTriangle,
-  ArrowLeft,
   Check,
   Download,
   ImageIcon,
@@ -234,6 +233,17 @@ export default function DirectorDesk({
   // 「跟随目标」选择器、DirectorTimeline/PhoneVcam 的「请先关闭机位跟随」
   // 前置条件用的是同一个字段（store:6308 `camera.camera?.followTargetId`）。
   const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  // Batch 606：源站右头那 280px 定宽列里只放一行选中对象名
+  // （`text-[15px] font-medium text-neutral-50`）。clone 此前右头只有
+  // 状态文案与项目导入导出，没有对象名。
+  const headerObjectName = useDirectorStore((state) => {
+    const id =
+      state.selectedObjectIds.length > 0
+        ? state.selectedObjectIds[0]
+        : state.selectedObjectId;
+    if (!id) return null;
+    return state.objects.find((object) => object.id === id)?.name ?? null;
+  });
   const followTargetId = useDirectorStore((state) => {
     const camera = state.objects.find((object) => object.id === state.activeCameraId);
     return camera?.camera?.followTargetId ?? null;
@@ -868,24 +878,41 @@ export default function DirectorDesk({
     >
       <header
         data-director-header
-        className="relative z-40 grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.07] bg-[#181818] px-2"
+        // Batch 606（源站 2026-10-01 实测）：顶栏高 52px；左右各一条**定宽
+        // 280px** 的列（源站 `header.border-white/8.flex.h-[52px].items-center
+        // .border-b` 与 `div.flex.shrink-0.items-center.justify-between.h-12
+        // .px-3`），中间是 52px 悬浮带里的视角对（batch 605）。clone 此前是
+        // 横跨全宽的三列 grid + h-12，这里把两侧改成 ≥900px 时的 280px 定宽列，
+        // 窄屏（<900px，与 clone 既有的 max-[899px] 面板折叠断点一致）仍流式。
+        className="relative z-40 grid h-[52px] shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-white/[0.08] bg-[#181818]"
       >
-        <div className="flex min-w-0 items-center">
+        {/* 左头 280px：关闭(40) + 标题(flex-1) + 收起(40)，三者间隙全为 0
+            （40 + 200 + 40 = 280）。两枚图标按钮都是 40x40 的
+            `text-white/72 … hover:text-white`，图标 16px。clone 原先是
+            32x32 `rounded text-[#a3a3a3]`，且把「返回画布」和「关闭导演台」
+            做成两个都调 closeWorkspace 的冗余按钮——源站左头只有一个关闭。 */}
+        <div className="flex h-full min-w-0 items-center max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0">
           <button
             type="button"
             data-close-director
-            aria-label="返回画布"
-            title="返回画布"
+            aria-label="关闭"
+            title="关闭"
             disabled={workspaceBusy}
             onClick={closeWorkspace}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
+            className="flex size-10 shrink-0 items-center justify-center text-white/72 transition-colors hover:text-white disabled:opacity-35"
           >
-            <ArrowLeft size={17} />
+            <X size={16} aria-hidden="true" />
           </button>
-          <span className="mx-2 h-4 w-px shrink-0 bg-white/10" />
-          <div className="min-w-0">
-            <h1 className="truncate text-xs font-medium text-[#eeeeee]">3D导演台</h1>
-            <p className="truncate text-[10px] text-[#666] max-[520px]:hidden">{scene.name}</p>
+          {/* 源站标题槽是单行 `min-w-0 flex-1 truncate text-[14px]
+              leading-[22px] text-white/90`。clone 保留 batch 587 钉住的
+              h1「3D导演台」，并把场景名作为 clone-only 的第二行小字。 */}
+          <div className="min-w-0 flex-1 truncate px-2 text-[14px] leading-[22px] text-white/90">
+            <h1 className="truncate">
+              3D导演台
+            </h1>
+            <p className="truncate text-[10px] text-[#666] max-[520px]:hidden">
+              {scene.name}
+            </p>
           </div>
           {/* Batch 587（源站 2026-10-01 实测）：顶栏唯一的折叠入口是
               「收起」，位于标题右侧。它只收掉左侧场景面板——图标栏、
@@ -893,7 +920,8 @@ export default function DirectorDesk({
               （源站收起后实测 header 与左面板从 DOM 移除，其余坐标不变）。
               恢复入口不是第二个按钮，而是图标栏的「场景」条目。原先挂在
               视口底栏的「全屏 / 恢复侧栏」是 clone 独有的全幅折叠，与源站
-              不符，本批移除。 */}
+              不符，本批移除。Batch 606：尺寸/配色改源站的 40x40
+              `text-white/72`，图标 17px -> 16px。 */}
           {!viewportPanelsCollapsed ? (
             <button
               type="button"
@@ -902,11 +930,16 @@ export default function DirectorDesk({
               title="收起"
               aria-pressed={false}
               onClick={() => setViewportPanelsCollapsed(true)}
-              className="ml-2 flex size-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white"
+              className="flex size-10 shrink-0 items-center justify-center text-white/72 transition-colors hover:text-white"
             >
-              <PanelLeftOpen size={17} />
+              <PanelLeftOpen size={16} aria-hidden="true" />
             </button>
           ) : null}
+        </div>
+
+        {/* 命令反馈移到中间格：左头定宽 280px 之后塞不下它（max-w-[220px]
+            + ml-3 + pl-3）。仍在 header 内，batch 83 的包含性断言不受影响。 */}
+        <div className="flex min-w-0 items-center justify-center px-2">
           <div
             data-director-command-feedback
             data-director-command-feedback-disposition={
@@ -919,7 +952,7 @@ export default function DirectorDesk({
             aria-live="polite"
             aria-atomic="true"
             className={cn(
-              "ml-3 flex min-w-0 max-w-[220px] items-center gap-1 truncate border-l border-white/10 pl-3 text-[10px]",
+              "flex min-w-0 max-w-[220px] items-center gap-1 truncate border-l border-white/10 pl-3 text-[10px]",
               commandFeedback?.tone === "error"
                 ? "text-[#ef9292]"
                 : commandFeedback?.tone === "warning"
@@ -982,7 +1015,17 @@ export default function DirectorDesk({
           </div>
         </div>
 
-        <div className="flex min-w-0 items-center justify-end">
+        {/* 右头 280px（Batch 606，源站实测 `flex shrink-0 items-center
+            justify-between h-12 px-3`）：源站这列里只有一行选中对象名
+            `text-[15px] font-medium text-neutral-50`；clone 保留自己的
+            状态文案与项目导入导出（源站导演台顶栏无对应物，clone-only）。 */}
+        <div className="flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0 min-[900px]:justify-between min-[900px]:px-3 min-[900px]:justify-self-end">
+          <span
+            data-director-header-object-name
+            className="min-w-0 truncate text-[15px] font-medium text-neutral-50"
+          >
+            {headerObjectName ?? "—"}
+          </span>
           <div
             data-director-capture-status={
               exporting
@@ -1067,16 +1110,9 @@ export default function DirectorDesk({
           >
             {projectTransferMessage ?? ""}
           </div>
-          <button
-            type="button"
-            aria-label="关闭导演台"
-            title="关闭"
-            disabled={workspaceBusy}
-            onClick={closeWorkspace}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#8d8d8d] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]"
-          >
-            <X size={16} />
-          </button>
+          {/* Batch 606：原先右头这枚「关闭导演台」已移到左头（与源站一致，
+              源站的关闭在左头最左端），此处移除——它与新左头的「关闭」是
+              同一个 closeWorkspace，留着就是同一动作的第二枚按钮。 */}
         </div>
       </header>
 
