@@ -36,6 +36,18 @@ BILLED 护栏在下方 `guard()` 里把付费文案显式排掉。
 """
 
 import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# 五段互相依赖的 JS 与 mark_layer 辅助都搬到共享库了（batch 850 建）：
+#   · 同一套判据必须被 850（视频生成面板）和 851（音频生成面板）**逐字共用** ——
+#     分档只按源站基线表走，而基线表里两批的取样口径不一致的话，表就没法比
+#   · 814 的教训：「同一套值散在多个文件里各写一份字面量」
+from jimeng_kb_probe_lib import (  # noqa: E402
+    ALIVE_JS, FOCUS_JS, MARK_JS, SNAP_JS, UNMARK_JS, mark_layer,
+)
 
 MAX_TABS = 12
 MAX_KEYS = 4
@@ -74,22 +86,6 @@ print("== 视口 ==", page.evaluate("() => [innerWidth, innerHeight]"))
 #    ② 按 Tab 时层被关掉，于是「焦点不在层内」有两种完全不同的成因：
 #      (a) 层还在，焦点跑出去了  ⇒ 真的不困 Tab
 #      (b) 层**没了**              ⇒ 伪像，拿 (a) 的口径写基线表就是错的
-#    不分开，第三轮就会把「层自己关了」写成「源站不困 Tab」。
-ALIVE_JS = """(lay) => {
-  const lx = lay[0], ly = lay[1], lw = lay[2], lh = lay[3];
-  const st = document.elementsFromPoint(lx + lw / 2, ly + lh / 2) || [];
-  for (const e of st) {
-    const r = e.getBoundingClientRect();
-    if (r.x <= lx + 2 && r.y <= ly + 2
-        && r.right >= lx + lw - 2 && r.bottom >= ly + lh - 2)
-      return {alive: true,
-              who: e.tagName + '/' + ((e.getAttribute('data-testid')
-                    || e.getAttribute('role')
-                    || (e.className || '').toString()
-                         .replace(/\\s+/g, ' ').slice(0, 30)) || '')};
-  }
-  return {alive: false};
-}"""
 
 BILLED_EXACT = ("生成", "发送", "购买", "充值", "立即支付", "开通", "订阅", "兑换")
 BILLED_PREFIX = ("立即支付", "购买会员", "充值",)
@@ -116,66 +112,7 @@ def guard(label: str) -> bool:
 #    无 testid 的层用**矩形**认。硬套 testid 只会得到「永远不在层内」，
 #    而那个结论会被当成「源站不接管焦点」写进基线表 ——
 #    **判据量错对象，结论就整个反了**。
-#    参数是扁平数组 [x, y, w, h, tid]；tid 为空时 `in_layer` 只看矩形。
-FOCUS_JS = """(args) => {
-  const [lx, ly, lw, lh, tid] = args;
-  const a = document.activeElement;
-  const inLayer = (() => {
-    if (!a || a === document.body) return false;
-    // 打了标记就**优先**按标记判（标记跟着元素走，不怕坐标漂）
-    const marked = document.querySelector('[data-probe850]');
-    if (marked) return marked.contains(a) || marked === a;
-    if (tid) {
-      for (const e of document.querySelectorAll(`[data-testid="${tid}"]`))
-        if (e.contains(a)) return true;
-    }
-    if (!(lw > 0 && lh > 0)) return false;
-    const r = a.getBoundingClientRect();
-    if (r.width < 1 || r.height < 1) return false;
-    return r.x >= lx - 1 && r.y >= ly - 1
-        && r.right <= lx + lw + 1 && r.bottom <= ly + lh + 1;
-  })();
-  if (!a || a === document.body)
-    return {who: 'body', in_layer: false};
-  return {
-    who: a.tagName + '/' + ((a.getAttribute('data-testid')
-          || a.getAttribute('aria-label')
-          || (a.className || '').toString().replace(/\\s+/g, ' ').slice(0, 34)
-          || (a.innerText || '').trim().slice(0, 14))),
-    al: (a.getAttribute('aria-label') || '').trim().slice(0, 30),
-    tid: a.getAttribute('data-testid') || '',
-    role: a.getAttribute('role') || '',
-    tabindex: a.getAttribute('tabindex'),
-    txt: (a.innerText || a.getAttribute('placeholder') || '')
-           .trim().replace(/\\s+/g, ' ').slice(0, 20),
-    in_layer: inLayer};
-}"""
 
-# 「候选浮层」快照：不在画布壳里、带可聚焦项、够大。用于**矩形差分认层**。
-SNAP_JS = """() => {
-  const SHELL = '.react-flow__renderer, .react-flow__pane, '
-              + '.react-flow__viewport, .react-flow__nodes, '
-              + '.react-flow__node, .react-flow__node-toolbar';
-  const out = [];
-  for (const e of document.querySelectorAll('body *')) {
-    const s = getComputedStyle(e);
-    if (s.display === 'none' || s.visibility === 'hidden') continue;
-    const r = e.getBoundingClientRect();
-    if (r.width < 40 || r.height < 20) continue;
-    if (!e.querySelector('button,[href],input,select,textarea,'
-                          + '[tabindex]:not([tabindex="-1"]),'
-                          + '[role=menuitem],[role=option]')) continue;
-    out.push({tid: e.getAttribute('data-testid') || '',
-              role: e.getAttribute('role') || '',
-              al: e.getAttribute('aria-label') || '',
-              cls: (e.className || '').toString().replace(/\\s+/g, ' ').slice(0, 40),
-              in_shell: !!e.closest(SHELL),
-              x: Math.round(r.x), y: Math.round(r.y),
-              w: Math.round(r.width), h: Math.round(r.height),
-              z: s.zIndex});
-  }
-  return out;
-}"""
 
 results = {}
 
@@ -186,50 +123,8 @@ def diff_layers(before, after):
     return [a for a in after if (a["x"], a["y"], a["w"], a["h"]) not in keys]
 
 
-# 按 `role=listbox/dialog` 给层打一个临时标记（源站这四层**没有 testid**）。
-# ⚠️ 认层那一刻就要打，而且**层每被关掉重开一次就得重打** —— 新建的元素
-#    没有标记。第一版只在开头打了一次，③ 之前的 toggle 重开把层换成了新
-#    元素，于是 refocus 报「标记不见了」——**又一次把「夹具没了」当成了
-#    「层测不到」**。
-MARK_JS = """(info) => {
-  const FOC = 'button:not([disabled]),[tabindex]:not([tabindex="-1"]),'
-            + '[role=option],[role=menuitem],input:not([disabled])';
-  let best = null, area = 0;
-  for (const e of document.querySelectorAll(
-        '[role=listbox],[role=dialog]')) {
-    if (e.hasAttribute('data-probe850')) continue;
-    const st = getComputedStyle(e);
-    if (st.display === 'none' || st.visibility === 'hidden') continue;
-    const r = e.getBoundingClientRect();
-    if (r.width < 60 || r.height < 40) continue;
-    if (!e.querySelector(FOC)) continue;
-    const a = r.width * r.height;
-    if (a > area) { area = a; best = e; }
-  }
-  if (!best) return {ok: false};
-  best.setAttribute('data-probe850', info.role || '1');
-  const r = best.getBoundingClientRect();
-  return {ok: true, role: info.role,
-          rect: [Math.round(r.x), Math.round(r.y),
-                 Math.round(r.width), Math.round(r.height)]};
-}"""
-
-UNMARK_JS = """() => {
-  const n = document.querySelectorAll('[data-probe850]').length;
-  for (const e of document.querySelectorAll('[data-probe850]'))
-    e.removeAttribute('data-probe850');
-  return n;
-}"""
 
 
-def mark_layer(layer, note=""):
-    """打标记并返回新矩形。层被关掉重开过就**必须**重打。"""
-    out = page.evaluate(MARK_JS, {"role": layer["role"]})
-    if out.get("ok"):
-        print(f"   打标记{note}: role={out.get('role')} rect={out.get('rect')}")
-    else:
-        print(f"   ⚠ 打标记{note}失败: {out}")
-    return out
 
 
 def probe(name, trig_aria, note=""):
@@ -342,7 +237,7 @@ def probe(name, trig_aria, note=""):
     # 所以改成**认层那一刻就按 role 打标记**（源站这四层都是
     # `role=listbox` / `role=dialog`，只是没有 testid），之后一律按标记找。
     # 改 DOM 属于测试夹具 —— 845 的「皮」夹具也是这么做的，会被如实记账。
-    marked = mark_layer(layer)
+    marked = mark_layer(page, layer)
     rec["marked"] = marked
     print(f"   打标记: {marked}")
     if not marked.get("ok"):
@@ -425,19 +320,12 @@ def probe(name, trig_aria, note=""):
     # 连点两下（开→关 或 关→开），最后状态**必是开**。不这么做，③ 的
     # elementsFromPoint 是在一个**空位置**上找 host，必然失败 —— 而
     # 第一版正是这么失败的，却没检查就继续按方向键，量出一堆层外轨迹。
-    page.mouse.click(pt[0] + pt[2] // 2, pt[1] + pt[3] // 2)
-    page.wait_for_timeout(500)
-    page.mouse.click(pt[0] + pt[2] // 2, pt[1] + pt[3] // 2)
-    page.wait_for_timeout(900)
-    rec["reopen_ok"] = page.evaluate(ALIVE_JS, lay)["alive"]
-    print(f"   ③ 重新开层: alive={rec['reopen_ok']}")
-    # ⚠️ toggle 把层换成了**新元素** ⇒ 标记必须重打，否则后面全部按
-    #    「层测不到」记账（而层其实好好开着）。
-    m2 = mark_layer(layer, "（重开后补打）")
+    m2 = ensure_open(page, layer,
+                     (pt[0] + pt[2] // 2, pt[1] + pt[3] // 2), note="③重开")
     rec["remarked"] = m2
     if not m2.get("ok"):
         rec["arrow_down"] = {"measured": False,
-                             "why": "重开后按 role 认不出层 ⇒ 本项没测到"}
+                             "why": "重开后认不出层 ⇒ 本项没测到"}
         print("   ③ 重开后认不出层 ⇒ **本项没测到**，不下结论")
         return rec
     lay3_pre = m2["rect"] + [layer["tid"]]

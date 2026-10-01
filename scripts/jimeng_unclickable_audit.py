@@ -1361,6 +1361,32 @@ def main() -> int:
             "takes_focus_at_open": True, "traps_tab": False,
             "arrows_move": None, "esc_returns_to_trigger": False,
             "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
+        # ══ 批 851：音频生成面板 2 层（源站取到样）══════════════════════
+        # 850 结尾写「音频那 5 个下拉仍记 kb_not_sampled」，但那句话里藏着一个
+        # **没验证过的前提**：为什么取不到？851a 侦察的答案是 —— 源站这一版
+        # 画布**能插音频节点**（点左栏 `音频` → 新增 `音频 1`），选中后**真的有**
+        # 下拉触发器。所以这 5 层**不是 BLOCKED_BY_FIXTURE**，是能取样的。
+        #
+        # 851b 实取到的**只有 2 层**（登录态，视口 1512×1200，与 850 同口径）：
+        #   · 接管焦点（焦点落在层内 option 的 BUTTON 上）
+        #   · **不困 Tab**（第 1 次就逃出，且层还在）
+        #   · Esc 后焦点**不回触发器**（落到节点 / 顶栏控件）
+        #   · 方向键 **没测到**（见 `arrows_move: None`）
+        # 另外 3 层**没取到**，原因各不相同，逐条写在 NOT_SAMPLED 里 ——
+        # 笼统写一句「没取过样」会把「前置态没成立」和「判据量错对象」
+        # 混成同一种，而这两者的下一步动作完全相反。
+        "audio-voice-model-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": "role=listbox + 矩形 400×180（探针 851b）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe851b_audiopanel_kb.py（登录态，视口 1512×1200）"},
+        "audio-gen-mode-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": "role=listbox + 矩形 200×44（探针 851b）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe851b_audiopanel_kb.py（登录态，视口 1512×1200）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",
             "src_identified_by": "testid",
@@ -1458,14 +1484,28 @@ def main() -> int:
     #    拿视频那 4 个的分档去判音频这 5 个，就是 847 明令禁止的
     #    「按推测判缺陷」。所以它们仍记 not_sampled，只是把「同类已取样」
     #    这条**线索**写进 why，好让下一批知道从哪下手。
-    for _t in ("audio-music-model-listbox", "audio-music-duration-listbox",
-               "audio-voice-model-listbox", "audio-gen-mode-listbox",
-               "audio-all-voices-listbox"):
-        NOT_SAMPLED[_t] = (
-            "**没取过样**：源站这一层在探针 850 里没被打开过。**线索**：同属"
-            "生成面板的下拉，而视频那 4 个（探针 850）实测是「开层即接管焦点 / "
-            "不困 Tab / Esc 不归位」—— 但同类**不等于**同行为，847 明令不许"
-            "按推测判缺陷，所以本层仍不下结论。下一批直接照 850 的路子取。")
+    # ⚠️ 这 3 层的「没取到」**原因各不相同**，下一步动作也完全不同 ——
+    #    笼统写一句「没取过样」会把三种病混成一种。
+    NOT_SAMPLED["audio-music-model-listbox"] = (
+        "**前置态没成立**：源站音频面板要先点「创作类型」切到**音乐生成**才会"
+        "出现音乐分支的下拉，而探针 851b 在 `创作类型` 下拉里**找不到**"
+        "「音乐生成」这个 option（Playwright 的 `[role=option]:text-is(…)` 计数 0）"
+        "⇒ 切不过去。⚠️ 那一轮量到的 `选择模型: SeedAudio 1.0` **仍是音频生成分支"
+        "的同一个层**，等于把 `audio-voice-model-listbox` 重测了一遍 —— "
+        "**重复测量不能当独立取样**，所以这一层判作没测到。下一步：先把"
+        "「创作类型」下拉的选项结构 dump 出来（它可能根本不是 role=option）。")
+    NOT_SAMPLED["audio-music-duration-listbox"] = (
+        "**前置态没成立**：依赖同一个「切到音乐生成」的动作。851b 里"
+        "`button[aria-label^=选择时长]` 计数 **0** —— 触发器压根不存在。"
+        "下一步同 `audio-music-model-listbox`：先把分支切过去。")
+    NOT_SAMPLED["audio-all-voices-listbox"] = (
+        "**判据量错对象**：触发器 `音色: 音色库` 68×32 是**找得到、点得着**的，"
+        "但探针用矩形差分认层时抓到的是 **648×1932 @[684,695] z=auto role=''** —— "
+        "那是**整页容器**，不是音色面板；按 role 打标记也没打中（它既不是 "
+        "listbox 也不是 dialog）。于是 `in_layer` 判成 False，读出来的"
+        "「源站这一层开层不接管焦点」是**伪像**，不作数。下一步：给"
+        "「音色库」这一层换个认法（dump 它的真实 class/结构），而不是"
+        "放宽判据 —— 放宽只会把伪像洗成结论。")
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
     kb_judged, kb_not_sampled = [], []
     for r in kb_rows:

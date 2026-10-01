@@ -577,17 +577,23 @@ def main() -> int:
               and base.get(t, {}).get("esc_returns_to_trigger") is False
               for t in GEN4),
           f"{ {t: (base.get(t, {}).get('takes_focus_at_open'), base.get(t, {}).get('traps_tab'), base.get(t, {}).get('esc_returns_to_trigger')) for t in GEN4} }")
-    # 音频那 5 层**不许**跟着升级：同属生成面板下拉，但本批没实测。
-    # 847 明令「按推测判缺陷」是禁止的 —— 「同类」不等于「同行为」。
+    # 音频那 5 层：850 当初一条都没取到样，所以 850 的判据是「5 层全都留在
+    # kb_not_sampled」。**851 正确地推翻了它** —— 源站能插音频节点，5 层里有
+    # 2 层真取到了样。于是这条判据不能原样留着（它会在正确的改动上判红），
+    # 改成持续成立的版本：**没取到样的仍在表外，取到样的已进表**。
+    # （847 就干过同一件事：两条预设被推翻时，改的是判据不是产品。）
     AUD5 = ["audio-music-model-listbox", "audio-music-duration-listbox",
             "audio-voice-model-listbox", "audio-gen-mode-listbox",
             "audio-all-voices-listbox"]
     ns_layers = {n.get("layer") for n in kb_ns}
-    check("J.5 音频那 5 层**仍留在** `kb_not_sampled`"
-          "（同属生成面板下拉，但本批**没有实测**；同类 ≠ 同行为）",
-          all(t not in base and t in ns_layers for t in AUD5),
-          f"在基线表里的：{[t for t in AUD5 if t in base]}；"
-          f"在 not_sampled 里的：{[t for t in AUD5 if t in ns_layers]}")
+    AUD_UNSAMPLED = [t for t in AUD5 if t not in base]
+    check("J.5 音频 5 层里**没取到样**的那些仍在 `kb_not_sampled`"
+          "（850 断言「5 层全在」已被 851 推翻：源站能插音频节点，2 层取到了样。"
+          "「同类 ≠ 同行为」只约束**没实测**的那些）",
+          bool(AUD_UNSAMPLED)
+          and all(t in ns_layers for t in AUD_UNSAMPLED),
+          f"已进表 {[t for t in AUD5 if t in base]}；"
+          f"仍在 not_sampled {AUD_UNSAMPLED}")
     # 产品侧：修法必须是**共享**的一个 hook，且四个下拉都接上了
     chrome = (ROOT / "src/components/jimeng/jimengMenuChrome.tsx")
     genp = (ROOT / "src/components/jimeng/JimengGenPanel.tsx")
@@ -622,6 +628,83 @@ def main() -> int:
           is not None,
           f"{probe.name}: BILLED_EXACT="
           f"{'在' if 'BILLED_EXACT' in psrc else '不在'}")
+
+    # ── K. 批 851：音频面板 —— 「没取到」的三种原因必须各归各的账 ──────
+    #    850 结尾写「音频那 5 个下拉仍记 kb_not_sampled」，但**没说清为什么**。
+    #    851a 侦察推翻了隐含前提：源站这一版画布**能插音频节点**，那 5 层
+    #    **不是 BLOCKED_BY_FIXTURE**。851b 真去取，只取到 **2 层**。
+    #    剩下 3 层的「没取到」是**三种完全不同的病**：
+    #      · 前置态没成立（音乐分支切不过去）—— 下一步是 dump 选项结构
+    #      · 判据量错对象（音色库认成了整页容器）—— 下一步是换认法
+    #    笼统写一句「没取过样」会把它们混成一种，而下一步动作完全相反。
+    print("\n— K. 音频面板：三种「没取到」各归各的账 —")
+    AUD_OK = ["audio-voice-model-listbox", "audio-gen-mode-listbox"]
+    AUD_MISS = ["audio-music-model-listbox", "audio-music-duration-listbox",
+                "audio-all-voices-listbox"]
+    check("K.1 取到样的 2 层**在基线表里**（851b 实测：接管焦点 / 不困 Tab /"
+          " Esc 不归位）",
+          all(t in base for t in AUD_OK),
+          f"{[t for t in AUD_OK if t in base]}")
+    check("K.2 那 2 层的方向键仍是 `None`（**没测到**），不许填成 True/False",
+          all(base.get(t, {}).get("arrows_move", "MISSING") is None
+              for t in AUD_OK),
+          f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in AUD_OK} }")
+    whys = [n.get("why", "") for n in kb_ns
+            if n.get("layer") in AUD_MISS]
+    check("K.3 没取到的 3 层**仍留在** `kb_not_sampled`"
+          "（实测不到 ≠ 可以按「同类层」推测）",
+          all(t not in base and t in {n.get("layer") for n in kb_ns}
+              for t in AUD_MISS),
+          f"进了基线表的：{[t for t in AUD_MISS if t in base]}")
+    check("K.4 这 3 层的 why **互不相同**（笼统一句「没取过样」会把"
+          "「前置态没成立」和「判据量错对象」混成一种）",
+          len(whys) == len(AUD_MISS) and len(set(whys)) == len(whys)
+          and any("前置态没成立" in w for w in whys)
+          and any("量错对象" in w for w in whys),
+          f"{len(whys)} 条 why，去重后 {len(set(whys))} 条")
+    # 音色库那条必须点明「伪像」——它读出来的「源站不接管焦点」是认错层造成的
+    av = next((n.get("why", "") for n in kb_ns
+               if n.get("layer") == "audio-all-voices-listbox"), "")
+    check("K.5 音色库那一层的 why 写明读出来的结论是**伪像**"
+          "（判据把整页容器当成了层；放宽判据只会把伪像洗成结论）",
+          "伪像" in av and "648" in av, f"why={av[:60]!r}")
+    # 产品侧：**只接取到样的 2 层**
+    audp = ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx"
+    asrc2 = audp.read_text(encoding="utf-8") if audp.exists() else ""
+    check("K.6 复刻接了**取到样的 2 层**（voiceBoxRef / dubBoxRef）",
+          all(f"useTakeFocusAtOpen({v}" in asrc2
+              for v in ("voiceBoxRef", "dubBoxRef"))
+          and all(f"ref={{{v}}}" in asrc2 for v in ("voiceBoxRef", "dubBoxRef")),
+          f"接上 {sum(1 for v in ('voiceBoxRef', 'dubBoxRef') if f'useTakeFocusAtOpen({v}' in asrc2)}/2")
+    # ⚠️ 核心：**没取到样的 3 层不许接** —— 接了就是「源站测不到的行为也实现」
+    not_connected = [v for v in ("musicBoxRef", "durBoxRef", "voicesBoxRef")
+                     if f"useTakeFocusAtOpen({v}" in asrc2]
+    check("K.7 **没取到样**的 3 层**不许**接那个 hook"
+          "（接了就是「伪称可用」，比不做更坏）",
+          not not_connected, f"误接的：{not_connected or '无'}")
+    # 探针侧：重开不许靠「点两下」的状态假设
+    lib = ROOT / "scripts/jimeng_kb_probe_lib.py"
+    lsrc = lib.read_text(encoding="utf-8") if lib.exists() else ""
+    check("K.8 有**共享取样库** `jimeng_kb_probe_lib.py`，850 与 851 共用"
+          "（同一套判据必须逐字同款，否则基线表里两批没法比）",
+          lib.exists() and "from jimeng_kb_probe_lib import" in
+          (ROOT / "scripts/jimeng_probe850_genpanel_kb.py").read_text(encoding="utf-8")
+          and "from jimeng_kb_probe_lib import" in
+          (ROOT / "scripts/jimeng_probe851b_audiopanel_kb.py").read_text(encoding="utf-8"))
+    check("K.9 重开层用 `ensure_open()`（**打标记当探针**），"
+          "不用「点两下」的状态假设",
+          "def ensure_open(" in lsrc
+          and "ensure_open(page, layer" in
+          (ROOT / "scripts/jimeng_probe850_genpanel_kb.py").read_text(encoding="utf-8")
+          and "ensure_open(page, layer" in
+          (ROOT / "scripts/jimeng_probe851b_audiopanel_kb.py").read_text(encoding="utf-8"),
+          f"lib 里 ensure_open={'def ensure_open(' in lsrc}")
+    check("K.10 `mark_layer` 每次都**先清旧标记**"
+          "（源站这些下拉点触发器关不掉，旧标记会让新层被判成「层不见了」）",
+          "removeAttribute('data-probe850')" in lsrc)
+    check("K.11 认层有**两条路**（role=listbox/dialog + class 特征）——"
+          "「音色库」既不是 listbox 也不是 dialog，只走 role 会认不出",
+          "[class*=" in lsrc.replace("'", '"') or 'class*=' in lsrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

@@ -10,6 +10,7 @@ import {
   Sparkle,
 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
+import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
@@ -137,6 +138,21 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [open, setOpen] = useState<"gen" | "music" | "dur" | "tts" | "dub" | "voice" | null>(
     null,
   );
+  /* 批 851 SOURCE_FACT（探针 851b，源站登录态实测，视口 1512×1200）：
+     `audio-voice-model-listbox`（音色模型）与 `audio-gen-mode-listbox`
+     （音频生成模式）**开层即把焦点移进层里**（落在层内 option 的 BUTTON 上），
+     **不困 Tab**（第 1 次就逃出、层还在）、**Esc 后焦点不回触发器**
+     （落到节点 / 顶栏控件 —— 源站自己的 a11y 失手，**照抄不修**）。
+
+     ⚠️ 这里**只接这两层**。另外三个（`audio-music-model-listbox` /
+     `audio-music-duration-listbox` / `audio-all-voices-listbox`）源站
+     **至今没取到样**：音乐分支切不过去，音色库那一层判据认层认错了
+     （详见审计 `NOT_SAMPLED` 里的逐条说明）。给没取到样的层接上，就是
+     「源站测不到的行为也实现」—— 那是**伪称可用**，比不做更坏。 */
+  const voiceBoxRef = useRef<HTMLDivElement>(null);
+  const dubBoxRef = useRef<HTMLDivElement>(null);
+  useTakeFocusAtOpen(voiceBoxRef, open === "tts");
+  useTakeFocusAtOpen(dubBoxRef, open === "dub");
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
   const [genKind, setGenKind] = useState("音频生成");
@@ -443,6 +459,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         role="listbox"
                         aria-label="音色模型"
                         // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        ref={voiceBoxRef}
                         data-testid="audio-voice-model-listbox"
                       >
                         <button
@@ -482,6 +499,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         role="listbox"
                         aria-label="音频生成模式"
                         // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                        ref={dubBoxRef}
                         data-testid="audio-gen-mode-listbox"
                       >
                         <button
