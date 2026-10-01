@@ -1070,3 +1070,18 @@
   - 结论落到手册：「**开关亮着不代表素材正在被上传**」——这正是用户需要的判断依据。
 - **措辞纪律**：不替平台承诺，也不替用户免责。写明「确认拥有使用权」是**责任声明**，素材非原创或未获授权时应主动关闭，**不要依赖那几道前置条件替你挡住**。
 - **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
+
+## 环境记录七十六（Batch 120，2026-10-11，图片设置面板——质量档其实有两套词汇）
+
+- **选题依据**：Batch 119 审完视频设置面板，转 its 兄弟面板 `image-settings-panel.tsx`（最高频，却一直没审过）。
+- **手册参数表只有 3 行**（质量档 / 比例 / 实际像素），漏掉两项**全库零命中**的控件：
+  - **透明背景**（0 命中）：条件 `showTransparent && profile.transparentBackground.supported`，说明文案「请求模型输出保留 Alpha 通道的 PNG」，提示「是否支持透明背景由当前模型接口决定」；
+  - **张数**（0 命中）：`showCount && effectiveMaxCount > 1`，快捷按钮 1/2/3 + 数字输入。
+- **本批最有价值的一处：质量档其实有两套词汇，手册只写了一套**。`qualityOptions` 共 7 项：
+  `auto→自动 / high→高 / medium→中 / low→低 / **1k→1K / 2k→2K / 4k→4K**`。
+  面板只渲染 `profile.quality.values` 里模型声明过的那部分，**所以「自动/高/中/低」与「1K/2K/4K」是互斥的两套，不是同一档位的别名**。手册只列了后者 → 看到「自动/高/中/低」的用户会以为文档错了。
+- **同一组控件标题会变**：`isGrokResolutionQuality(profile) ? "分辨率" : "质量"`——判定是「质量档值里是否含 1k/2k/4k」。所以那组有时叫「质量」、有时叫「分辨率」。与 Batch 116 的三套标签、Batch 117 的「严格校验/严格阻止」同源，**已是本轮第四次撞上「同一设置多种叫法」**。
+- **一组会整个消失的判据**（比改名更隐蔽）：`!imageResolutionUsesQuality(profile)`——当 `size.parameter === "aspect_ratio"` 且质量参数能映射到分辨率档时，**质量组整组不渲染**，分辨率改在尺寸选择器里设。条件类断言必须读全行，这里是两段复合条件。
+- **张数上限不能只写一个数**：面板 prop 默认 `maxCount=15`，但 `effectiveMaxCount = Math.min(maxCount, profile.maxOutputs)`，而 `profile.maxOutputs` 默认 15、**部分模型被压到 4 甚至 1**（`model-capabilities.ts:229/257`）。四个调用点传值还各不相同：画布图片弹层只传 `quickCount=3`（吃默认 15）、项目画风编辑器传 `maxCount=20`、插件文档与技能安装弹窗传 `maxCount=1`（后者两页 Batch 103/114 已确认不可达）、**蒙版编辑弹窗 `showCount={false}` 整行不显示**。已写成「取两者较小」并点明蒙版弹窗的例外。
+- **证据形态**：全部源码锚定，未运行时取证（需图片模型渠道配置，涉及 Provider Key）。
+- **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
