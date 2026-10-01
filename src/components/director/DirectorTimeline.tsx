@@ -5,6 +5,8 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import {
   Camera,
   ChartSpline,
+  ChevronDown,
+  ChevronUp,
   Circle,
   DiamondPlus,
   Info,
@@ -124,6 +126,9 @@ export function DirectorTimeline() {
     (state) => state.setTimelineDuration,
   );
   const [timeUnit, setTimeUnit] = useState<DirectorTimeUnit>("s");
+  // Batch 591/592: 源站时间轴高 182px；「时间线最小化」把它收成 88px
+  // ——工具栏整条保留，只有轨道区收起，按钮同时变成「展开时间线」。
+  const [timelineCollapsed, setTimelineCollapsed] = useState(false);
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
   );
@@ -456,7 +461,12 @@ export function DirectorTimeline() {
       ref={timelineRootRef}
       data-director-timeline
       data-director-timeline-mode={timeline.editorMode}
-      className="relative flex h-[196px] shrink-0 flex-col overflow-visible border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]"
+      data-director-timeline-collapsed={timelineCollapsed ? "true" : "false"}
+      className={cn(
+        "relative flex shrink-0 flex-col overflow-visible border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]",
+        // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
+        timelineCollapsed ? "h-[88px]" : "h-[182px]",
+      )}
     >
       {!coachDismissed && (
         <div
@@ -797,6 +807,20 @@ export function DirectorTimeline() {
             className="w-20 accent-[#09caf5]"
           />
         </label>
+        {/* Batch 592（源站实测）：收起按钮的可及名随状态翻转——
+            展开时 `时间线最小化` @(1764,1027) 24×24，收起后同一位置变成
+            `展开时间线` @(1764,1121)。收起只收轨道区，工具栏整条保留。 */}
+        <button
+          type="button"
+          data-director-timeline-collapse
+          aria-label={timelineCollapsed ? "展开时间线" : "时间线最小化"}
+          title={timelineCollapsed ? "展开时间线" : "时间线最小化"}
+          aria-pressed={timelineCollapsed}
+          onClick={() => setTimelineCollapsed((collapsed) => !collapsed)}
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white"
+        >
+          {timelineCollapsed ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </button>
       </header>
 
       {presetPanelLeft !== null ? (
@@ -1107,6 +1131,7 @@ export function DirectorTimeline() {
           )}
         </div>
 
+        {!timelineCollapsed ? (
         <div className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden">
           <div
             ref={timelineCanvasRef}
@@ -1203,6 +1228,7 @@ export function DirectorTimeline() {
             </div>
           </div>
         </div>
+        ) : null}
       </div>
       )}
     </section>

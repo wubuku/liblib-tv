@@ -5,7 +5,7 @@ Contract: source-site live sampling 2026-09-25 round 2
 (docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + screenshot
 18-director-console-opened.png) — the 3D director desk viewport has a
 bottom-center pill bar: a mode segment with three toggles (光标/相机/手),
-a「+ 描述想要搭建的场景」input and a circular ↑ submit. Real scene building
+a「+ 描述想搭建的场景」input and a circular ↑ submit. Real scene building
 is a cloud AI action: the clone keeps the input draft and mode selection
 locally and the submit only flashes a local-draft confirmation (no
 generation, no network).
@@ -76,10 +76,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
 
     bar = page.locator("[data-director-scene-prompt-bar]")
     check("bar:visible", bar.is_visible())
+    # Batch 592（源站 2026-10-01 DOM 复核）：可及名/占位逐字是
+    # 「描述想搭建的场景」——535 早期凭截图转录多写了一个「要」。
     check(
         "bar:placeholder",
         bar.locator("[data-director-scene-prompt-input]").get_attribute("placeholder")
-        == "描述想要搭建的场景",
+        == "描述想搭建的场景",
     )
 
     # 模式三态切换

@@ -64,17 +64,26 @@ export function DirectorScenePromptBar() {
           onKeyDown={(event) => {
             if (event.key === "Enter") submit();
           }}
-          placeholder="描述想要搭建的场景"
-          aria-label="描述想要搭建的场景"
+          // Batch 592（源站 2026-10-01 实测）：可及名逐字是「描述想搭建的
+          // 场景」——clone 原写作「描述想要搭建的场景」，多了一个「要」。
+          // 源站输入区本体是 contenteditable(role=textbox, 14px)，可见
+          // 占位文案另作「描述您想搭建的场景」；此处沿用 clone 的 input
+          // 实现（见 batch 592 记录的未取证项）。
+          placeholder="描述想搭建的场景"
+          aria-label="描述想搭建的场景"
           className="min-w-0 flex-1 bg-transparent text-xs text-[#e0e0e0] outline-none placeholder:text-[#777]"
         />
+        {/* Batch 592：提交钮的可及名/提示逐字为「发送」（源站实测 32×32、
+            border-radius 9999px、空态底色 rgba(255,255,255,0.08)——与 clone
+            原有的 disabled 态一致），无文字只有图标。 */}
         <button
           type="button"
           data-director-scene-prompt-submit
-          aria-label="提交场景描述"
+          aria-label="发送"
+          title="发送"
           onClick={submit}
           disabled={!value.trim()}
-          className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#e8e8e8] text-[#1a1a1a] hover:bg-white disabled:bg-white/[0.08] disabled:text-[#555]"
+          className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#e8e8e8] text-[#1a1a1a] hover:bg-white disabled:bg-white/[0.08] disabled:text-[#555]"
         >
           <MoveUp size={14} />
         </button>

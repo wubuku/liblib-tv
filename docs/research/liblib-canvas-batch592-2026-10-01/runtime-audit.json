@@ -1,0 +1,72 @@
+{
+  "batch": 592,
+  "title": "时间线最小化/展开时间线（182→88px）+ 场景描述 prompt 文案与提交钮逐字对齐",
+  "evidence": "2026-10-01 live CDP before/after sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch592-2026-10-01/README.md",
+  "migrated_assertions": [
+    "verify-liblib-batch535.py: placeholder/aria 描述想要搭建的场景 -> 描述想搭建的场景 (batch 592 DOM re-check showed the extra 要 was a screenshot-transcription slip)"
+  ],
+  "not_verified": [
+    "the source prompt is a contenteditable; whether Enter submits or inserts a newline there was not observed, so the clone keeps its <input> and only the strings and geometry were aligned",
+    "the source shows 描述您想搭建的场景 as the visible placeholder while its accessible name is 描述想搭建的场景; the clone aligns to the accessible name"
+  ],
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "timeline:expanded-182",
+        "timeline:collapse-label",
+        "timeline:collapse-pressed-false",
+        "timeline:collapse-24x24",
+        "timeline:tracks-visible-when-expanded",
+        "timeline:collapsed-88",
+        "timeline:tracks-hidden",
+        "timeline:expand-label",
+        "timeline:expand-pressed-true",
+        "collapsed:toolbar-keeps:[data-director-playback]",
+        "collapsed:toolbar-keeps:[data-director-time-field=\"time\"]",
+        "collapsed:toolbar-keeps:[data-director-time-field=\"duration\"]",
+        "collapsed:toolbar-keeps:[data-director-time-unit]",
+        "collapsed:toolbar-keeps:[data-director-add-track][aria-label]",
+        "collapsed:toolbar-keeps:[data-director-timeline-zoom]",
+        "timeline:re-expanded-182",
+        "timeline:tracks-back",
+        "timeline:collapse-label-back",
+        "prompt:placeholder",
+        "prompt:aria",
+        "prompt:no-stale-yao",
+        "submit:aria",
+        "submit:title",
+        "submit:32px",
+        "submit:fully-round",
+        "submit:disabled-when-empty",
+        "diagnostics:zero"
+      ],
+      "expanded_box": {
+        "x": 0,
+        "y": 718,
+        "width": 1440,
+        "height": 182
+      },
+      "collapsed_box": {
+        "x": 0,
+        "y": 812,
+        "width": 1440,
+        "height": 88
+      },
+      "submit": {
+        "box": {
+          "x": 791.5,
+          "y": 664,
+          "width": 32,
+          "height": 32
+        },
+        "radius": 33554400
+      },
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}

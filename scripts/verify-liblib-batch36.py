@@ -124,9 +124,11 @@ def run_desktop(page: Page):
     timeline = page.locator("[data-director-timeline]")
     timeline_box = box(timeline)
     assert timeline_box["x"] == 0
-    assert timeline_box["y"] == 704
+    # Batch 592: 源站实测时间轴展开高 182px（此前 clone 为 196px）。时间轴
+    # 贴底对齐，故高度减 14px 后 y 由 704 变为 718（900 - 182）。
+    assert timeline_box["y"] == 718
     assert timeline_box["width"] == 1440
-    assert timeline_box["height"] == 196
+    assert timeline_box["height"] == 182
     assert page.locator("[data-director-track-id]").count() == 2
     assert page.locator("[data-director-keyframe-id]").count() == 6
     assert_no_overflow(page)
