@@ -487,7 +487,15 @@ function VideoNodeComponent({ id, data, selected }: NodeProps<VideoNodeType>) {
             <>
               <Image src={posterUrl ?? "/images/scene-coffee-4.png"} alt={filename} fill sizes="700px" className={cn("object-cover", enhanced && "contrast-110 saturate-110")} unoptimized />
               <span className="absolute inset-0 bg-black/10" />
-              <button type="button" aria-label="播放视频" className="relative flex size-14 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm hover:bg-black/70"><Play size={22} fill="currentColor" className="ml-1" /></button>
+              {/* Batch 364: 原来无 onClick 也无 disabled, 却带 hover:bg-black/70 ——
+                  视觉上最像「点了会播视频」的按钮(56px 圆形), 点了什么都不发生。
+                  源站行为未采样(源站人机验证阻塞), 不擅自发明播放逻辑;
+                  按 batch 358/359/360 同策让 UI 停止撒谎: 去掉悬停骗人反馈 +
+                  cursor: default + title 说明 + data-inert 自证惰性。
+                  几何与文案一律不动(batch612 钉住的尺寸)。
+                  对照: StoryboardBoard.tsx:78 的同名按钮**有** onClick(开灯箱),
+                  同一功能两处实现只接了一半 —— 但那是另一处, 不在这里改。 */}
+              <button type="button" aria-label="播放视频" data-inert="true" title="播放功能暂不可用，请使用分镜板预览" className="relative flex size-14 cursor-default items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm"><Play size={22} fill="currentColor" className="ml-1" /></button>
               {frameFeedback && (
                 <span
                   data-video-frame-feedback

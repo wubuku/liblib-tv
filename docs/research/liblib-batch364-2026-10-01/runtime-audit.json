@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "name": "video-node:reachable-and-ready",
+      "ok": true,
+      "detail": "未能把视频节点置为 ready 并选中工具条"
+    },
+    {
+      "name": "video-node:play-button-exists",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "video-play:declared-inert",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "video-play:has-explanatory-title",
+      "ok": true,
+      "detail": "播放功能暂不可用，请使用分镜板预览"
+    },
+    {
+      "name": "video-play:no-hover-affordance",
+      "ok": true,
+      "detail": "default"
+    },
+    {
+      "name": "storyboard-play:not-marked-inert",
+      "ok": true,
+      "detail": {
+        "count": 0,
+        "inert": null
+      }
+    },
+    {
+      "name": "picture-edit:really-opened",
+      "ok": true,
+      "detail": "面板未打开(不是 0 问题)"
+    },
+    {
+      "name": "picture-edit:control-floor",
+      "ok": true,
+      "detail": "controls=49"
+    },
+    {
+      "name": "picture-edit:no-silent-discard",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "picture-edit:no-dead-control",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "picture-edit:no-lying-affordance",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  },
+  "videoPlayButton": {
+    "hasOnClickAttr": false,
+    "title": "播放功能暂不可用，请使用分镜板预览",
+    "inert": "true",
+    "cursor": "default",
+    "hoverRule": false,
+    "w": 25.64361572265625
+  },
+  "storyboardPlay": {
+    "count": 0,
+    "inert": null
+  },
+  "pictureEdit": {
+    "inputs": 2,
+    "controls": 49,
+    "lyingAffordance": [],
+    "silentDiscard": [],
+    "deadControls": []
+  }
+}

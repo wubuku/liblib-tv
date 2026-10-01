@@ -1,0 +1,1100 @@
+{
+  "components": {
+    "AddNodePanel": {
+      "dataMarks": [
+        "add-node-arrow",
+        "add-node-empty",
+        "add-node-entry",
+        "add-node-resource",
+        "add-node-search",
+        "add-node-search-toggle",
+        "add-node-status",
+        "add-node-submenu",
+        "add-resource-input",
+        "history-asset",
+        "liblib-overlay",
+        "status-tone"
+      ],
+      "hit": [
+        "add-node-arrow",
+        "add-node-empty",
+        "add-node-entry",
+        "add-node-resource",
+        "add-node-search",
+        "add-node-search-toggle",
+        "add-node-status",
+        "add-node-submenu",
+        "add-resource-input",
+        "history-asset",
+        "liblib-overlay",
+        "status-tone"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "AgentDrawer": {
+      "dataMarks": [
+        "agent-composer",
+        "agent-drawer",
+        "agent-mode",
+        "agent-mode-menu",
+        "agent-model",
+        "agent-model-menu",
+        "agent-model-tab",
+        "agent-notification",
+        "agent-notification-close",
+        "agent-notification-enable",
+        "agent-refresh",
+        "agent-send",
+        "agent-skill",
+        "agent-skill-chip",
+        "agent-skill-chip-remove",
+        "agent-status",
+        "inert",
+        "liblib-overlay",
+        "status-tone"
+      ],
+      "hit": [
+        "agent-composer",
+        "agent-drawer",
+        "agent-mode",
+        "agent-mode-menu",
+        "agent-model",
+        "agent-model-menu",
+        "agent-model-tab",
+        "agent-notification",
+        "agent-notification-enable",
+        "agent-refresh",
+        "agent-send",
+        "agent-skill",
+        "agent-skill-chip",
+        "agent-skill-chip-remove",
+        "agent-status",
+        "inert",
+        "liblib-overlay",
+        "status-tone"
+      ],
+      "miss": [
+        "agent-notification-close"
+      ],
+      "state": "PARTIAL"
+    },
+    "AssetManagerPanel": {
+      "dataMarks": [
+        "asset-manager-canvas",
+        "asset-manager-collapse",
+        "asset-manager-collapse-groups",
+        "asset-manager-context",
+        "asset-manager-count",
+        "asset-manager-depth",
+        "asset-manager-display",
+        "asset-manager-empty",
+        "asset-manager-expand-groups",
+        "asset-manager-filter",
+        "asset-manager-heading",
+        "asset-manager-item",
+        "asset-manager-list",
+        "asset-manager-listview",
+        "asset-manager-project",
+        "asset-manager-rating",
+        "asset-manager-rating-menu",
+        "asset-manager-rating-option",
+        "asset-manager-search",
+        "asset-manager-search-input",
+        "asset-manager-sort",
+        "asset-manager-tab",
+        "asset-manager-type-option",
+        "asset-manager-typemenu",
+        "asset-manager-view-option",
+        "asset-manager-viewmenu",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "asset-manager-canvas",
+        "asset-manager-collapse",
+        "asset-manager-collapse-groups",
+        "asset-manager-count",
+        "asset-manager-depth",
+        "asset-manager-display",
+        "asset-manager-empty",
+        "asset-manager-expand-groups",
+        "asset-manager-filter",
+        "asset-manager-heading",
+        "asset-manager-item",
+        "asset-manager-list",
+        "asset-manager-listview",
+        "asset-manager-project",
+        "asset-manager-rating",
+        "asset-manager-rating-menu",
+        "asset-manager-rating-option",
+        "asset-manager-search",
+        "asset-manager-search-input",
+        "asset-manager-sort",
+        "asset-manager-tab",
+        "asset-manager-type-option",
+        "asset-manager-typemenu",
+        "asset-manager-view-option",
+        "asset-manager-viewmenu",
+        "liblib-overlay"
+      ],
+      "miss": [
+        "asset-manager-context"
+      ],
+      "state": "PARTIAL"
+    },
+    "BottomToolbar": {
+      "dataMarks": [
+        "liblib-overlay",
+        "viewport-menu-trigger",
+        "zoom-action",
+        "zoom-current"
+      ],
+      "hit": [
+        "liblib-overlay",
+        "viewport-menu-trigger",
+        "zoom-action",
+        "zoom-current"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "CameraConfigDialog": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "CameraMovementDialog": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "CanvasContextMenu": {
+      "dataMarks": [
+        "canvas-context-backdrop",
+        "canvas-context-item",
+        "canvas-context-menu",
+        "canvas-context-variant"
+      ],
+      "hit": [
+        "canvas-context-item",
+        "canvas-context-menu",
+        "canvas-context-variant"
+      ],
+      "miss": [
+        "canvas-context-backdrop"
+      ],
+      "state": "PARTIAL"
+    },
+    "CanvasEmptyState": {
+      "dataMarks": [
+        "canvas-empty-chip",
+        "canvas-empty-state",
+        "canvas-empty-status",
+        "status-tone"
+      ],
+      "hit": [
+        "canvas-empty-chip",
+        "canvas-empty-state",
+        "canvas-empty-status",
+        "status-tone"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "CanvasTabDropdown": {
+      "dataMarks": [
+        "canvas-active",
+        "canvas-delete-confirm",
+        "canvas-new",
+        "canvas-project",
+        "canvas-project-input",
+        "canvas-row",
+        "canvas-trigger",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "canvas-active",
+        "canvas-delete-confirm",
+        "canvas-new",
+        "canvas-project",
+        "canvas-project-input",
+        "canvas-row",
+        "canvas-trigger",
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "CharacterLibraryPanel": {
+      "dataMarks": [
+        "character-filter-chip",
+        "character-filter-clear",
+        "character-filter-panel",
+        "character-filter-toggle",
+        "character-strip-card",
+        "clib-consent",
+        "clib-consent-accept",
+        "clib-consent-decline",
+        "clib-library-empty",
+        "clib-tab",
+        "clib-tabs",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "character-filter-chip",
+        "character-filter-clear",
+        "character-filter-panel",
+        "character-filter-toggle",
+        "character-strip-card",
+        "clib-consent",
+        "clib-consent-accept",
+        "clib-consent-decline",
+        "clib-library-empty",
+        "clib-tab",
+        "clib-tabs",
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ChromeIcons": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "CustomHandle": {
+      "dataMarks": [
+        "testid"
+      ],
+      "hit": [
+        "testid"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "DepthMotionCapturePanel": {
+      "dataMarks": [
+        "depth-motion-close",
+        "depth-motion-intro",
+        "depth-motion-panel",
+        "depth-motion-resolution",
+        "depth-motion-resolution-option",
+        "depth-motion-source-summary",
+        "depth-motion-spinner",
+        "depth-motion-submit",
+        "depth-motion-submit-reason",
+        "depth-motion-title"
+      ],
+      "hit": [
+        "depth-motion-intro",
+        "depth-motion-panel",
+        "depth-motion-resolution",
+        "depth-motion-resolution-option",
+        "depth-motion-source-summary",
+        "depth-motion-spinner",
+        "depth-motion-submit",
+        "depth-motion-submit-reason",
+        "depth-motion-title"
+      ],
+      "miss": [
+        "depth-motion-close"
+      ],
+      "state": "PARTIAL"
+    },
+    "FollowBanner": {
+      "dataMarks": [
+        "follow-banner",
+        "follow-cancel"
+      ],
+      "hit": [
+        "follow-banner",
+        "follow-cancel"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "HistoryPanel": {
+      "dataMarks": [
+        "history-rating",
+        "history-rating-menu",
+        "history-rating-option",
+        "history-scope-chip",
+        "history-size-control",
+        "history-tab",
+        "inert",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "history-rating",
+        "history-rating-menu",
+        "history-rating-option",
+        "history-scope-chip",
+        "history-size-control",
+        "history-tab",
+        "inert",
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImageAnnotateSurface": {
+      "dataMarks": [
+        "image-annotate-canvas",
+        "image-annotate-dpr",
+        "image-annotate-surface",
+        "image-annotate-tool"
+      ],
+      "hit": [
+        "image-annotate-canvas",
+        "image-annotate-surface",
+        "image-annotate-tool"
+      ],
+      "miss": [
+        "image-annotate-dpr"
+      ],
+      "state": "PARTIAL"
+    },
+    "ImageAnnotateToolbar": {
+      "dataMarks": [
+        "active",
+        "image-annotate-close",
+        "image-annotate-color",
+        "image-annotate-color-menu",
+        "image-annotate-control",
+        "image-annotate-line-width",
+        "image-annotate-redo",
+        "image-annotate-save",
+        "image-annotate-toolbar",
+        "image-annotate-undo"
+      ],
+      "hit": [
+        "active",
+        "image-annotate-close",
+        "image-annotate-color",
+        "image-annotate-color-menu",
+        "image-annotate-control",
+        "image-annotate-line-width",
+        "image-annotate-redo",
+        "image-annotate-save",
+        "image-annotate-toolbar",
+        "image-annotate-undo"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImageEditPanel": {
+      "dataMarks": [
+        "image-edit-panel",
+        "image-editor-autolink",
+        "image-editor-autolink-popover",
+        "image-editor-control",
+        "image-editor-footer-icon",
+        "image-editor-model",
+        "image-editor-reference",
+        "image-editor-settings",
+        "image-editor-top-controls",
+        "inert",
+        "owner-node-id",
+        "panorama-add-reference",
+        "panorama-edit-panel",
+        "panorama-prompt",
+        "panorama-reference",
+        "panorama-submit"
+      ],
+      "hit": [
+        "image-edit-panel",
+        "image-editor-autolink",
+        "image-editor-autolink-popover",
+        "image-editor-control",
+        "image-editor-footer-icon",
+        "image-editor-model",
+        "image-editor-reference",
+        "image-editor-settings",
+        "image-editor-top-controls",
+        "inert",
+        "owner-node-id",
+        "panorama-add-reference",
+        "panorama-edit-panel",
+        "panorama-prompt",
+        "panorama-reference",
+        "panorama-submit"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImageElementEditMode": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "ImageElementEditSurface": {
+      "dataMarks": [
+        "image-element-edit-active-tool",
+        "image-element-edit-empty",
+        "image-element-edit-generate",
+        "image-element-edit-guide",
+        "image-element-edit-mask",
+        "image-element-edit-mode",
+        "image-element-edit-record-panel",
+        "image-element-edit-stage"
+      ],
+      "hit": [
+        "image-element-edit-active-tool",
+        "image-element-edit-generate",
+        "image-element-edit-mask",
+        "image-element-edit-mode",
+        "image-element-edit-record-panel",
+        "image-element-edit-stage"
+      ],
+      "miss": [
+        "image-element-edit-empty",
+        "image-element-edit-guide"
+      ],
+      "state": "PARTIAL"
+    },
+    "ImageElementEditToolbar": {
+      "dataMarks": [
+        "active",
+        "image-element-edit-brush-size",
+        "image-element-edit-close",
+        "image-element-edit-tool",
+        "image-element-edit-toolbar",
+        "image-element-edit-undo"
+      ],
+      "hit": [
+        "active",
+        "image-element-edit-brush-size",
+        "image-element-edit-close",
+        "image-element-edit-tool",
+        "image-element-edit-toolbar",
+        "image-element-edit-undo"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImageModelMenu": {
+      "dataMarks": [
+        "image-model-menu",
+        "image-model-option"
+      ],
+      "hit": [
+        "image-model-menu",
+        "image-model-option"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImagePreviewOverlay": {
+      "dataMarks": [
+        "image-preview-close",
+        "image-preview-content",
+        "image-preview-media",
+        "image-preview-overlay",
+        "image-preview-watermark"
+      ],
+      "hit": [
+        "image-preview-close",
+        "image-preview-content",
+        "image-preview-media",
+        "image-preview-overlay",
+        "image-preview-watermark"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ImageToolbar": {
+      "dataMarks": [
+        "image-toolbar",
+        "owner-node-id",
+        "testid"
+      ],
+      "hit": [
+        "image-toolbar",
+        "owner-node-id",
+        "testid"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "KeyboardShortcutsDialog": {
+      "dataMarks": [
+        "liblib-overlay"
+      ],
+      "hit": [
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "LeftSidebar": {
+      "dataMarks": [
+        "inert",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "inert",
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "LibraryShowcasePanel": {
+      "dataMarks": [
+        "inert",
+        "liblib-overlay",
+        "library-card",
+        "library-card-title",
+        "library-category",
+        "library-close",
+        "library-empty",
+        "library-empty-tab",
+        "library-plaza-tab",
+        "library-variant"
+      ],
+      "hit": [
+        "inert",
+        "liblib-overlay",
+        "library-card",
+        "library-card-title",
+        "library-category",
+        "library-close",
+        "library-empty",
+        "library-empty-tab",
+        "library-plaza-tab"
+      ],
+      "miss": [
+        "library-variant"
+      ],
+      "state": "PARTIAL"
+    },
+    "MaterialLibraryPanel": {
+      "dataMarks": [
+        "liblib-overlay"
+      ],
+      "hit": [
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "PictureEditPanel": {
+      "dataMarks": [
+        "picture-edit-close",
+        "picture-edit-count",
+        "picture-edit-description",
+        "picture-edit-history",
+        "picture-edit-mark",
+        "picture-edit-mark-frame",
+        "picture-edit-mark-handle",
+        "picture-edit-mark-id",
+        "picture-edit-mark-overlay",
+        "picture-edit-mark-path",
+        "picture-edit-mark-selected",
+        "picture-edit-mark-time",
+        "picture-edit-mark-tool",
+        "picture-edit-mode",
+        "picture-edit-panel",
+        "picture-edit-replacement",
+        "picture-edit-replacement-selected",
+        "picture-edit-reset",
+        "picture-edit-spinner",
+        "picture-edit-submit",
+        "picture-edit-submit-reason",
+        "picture-edit-submit-status",
+        "picture-edit-tool"
+      ],
+      "hit": [
+        "picture-edit-count",
+        "picture-edit-description",
+        "picture-edit-history",
+        "picture-edit-mark",
+        "picture-edit-mark-frame",
+        "picture-edit-mark-handle",
+        "picture-edit-mark-overlay",
+        "picture-edit-mark-path",
+        "picture-edit-mark-tool",
+        "picture-edit-mode",
+        "picture-edit-panel",
+        "picture-edit-replacement",
+        "picture-edit-replacement-selected",
+        "picture-edit-reset",
+        "picture-edit-spinner",
+        "picture-edit-submit",
+        "picture-edit-submit-reason",
+        "picture-edit-submit-status",
+        "picture-edit-tool"
+      ],
+      "miss": [
+        "picture-edit-close",
+        "picture-edit-mark-id",
+        "picture-edit-mark-selected",
+        "picture-edit-mark-time"
+      ],
+      "state": "PARTIAL"
+    },
+    "PlusIndicator": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "ScriptHeader": {
+      "dataMarks": [],
+      "state": "UNTESTABLE"
+    },
+    "SegmentReshootPanel": {
+      "dataMarks": [
+        "segment-count",
+        "segment-editor",
+        "segment-filmstrip",
+        "segment-intent",
+        "segment-mode",
+        "segment-option",
+        "segment-range-token",
+        "segment-reshoot-panel",
+        "segment-source",
+        "segment-status",
+        "segment-submit",
+        "segment-video-token"
+      ],
+      "hit": [
+        "segment-count",
+        "segment-editor",
+        "segment-filmstrip",
+        "segment-intent",
+        "segment-mode",
+        "segment-option",
+        "segment-range-token",
+        "segment-reshoot-panel",
+        "segment-source",
+        "segment-status",
+        "segment-submit",
+        "segment-video-token"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "SmartMattingPanel": {
+      "dataMarks": [
+        "smart-matting-close",
+        "smart-matting-generate",
+        "smart-matting-panel",
+        "smart-matting-power",
+        "smart-matting-submitting"
+      ],
+      "hit": [
+        "smart-matting-close",
+        "smart-matting-generate",
+        "smart-matting-panel",
+        "smart-matting-power",
+        "smart-matting-submitting"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "StoryboardBoard": {
+      "dataMarks": [
+        "storyboard-audio-duration",
+        "storyboard-board",
+        "storyboard-card",
+        "storyboard-column",
+        "storyboard-dialog",
+        "storyboard-dialog-status",
+        "storyboard-dimension",
+        "storyboard-empty",
+        "storyboard-expand",
+        "storyboard-expanded",
+        "storyboard-filter",
+        "storyboard-filter-menu",
+        "storyboard-filter-option",
+        "storyboard-lightbox",
+        "storyboard-lightbox-close",
+        "storyboard-lightbox-player",
+        "storyboard-model",
+        "storyboard-pending-cancel",
+        "storyboard-pending-confirm",
+        "storyboard-pending-strip",
+        "storyboard-play",
+        "storyboard-video-status"
+      ],
+      "hit": [
+        "storyboard-audio-duration",
+        "storyboard-board",
+        "storyboard-card",
+        "storyboard-column",
+        "storyboard-dialog",
+        "storyboard-dialog-status",
+        "storyboard-dimension",
+        "storyboard-empty",
+        "storyboard-expand",
+        "storyboard-expanded",
+        "storyboard-filter",
+        "storyboard-filter-menu",
+        "storyboard-filter-option",
+        "storyboard-lightbox",
+        "storyboard-lightbox-close",
+        "storyboard-lightbox-player",
+        "storyboard-model",
+        "storyboard-pending-cancel",
+        "storyboard-pending-confirm",
+        "storyboard-pending-strip",
+        "storyboard-play",
+        "storyboard-video-status"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "StoryboardScriptEditor": {
+      "dataMarks": [
+        "storyboard-add-shot",
+        "storyboard-asset-add",
+        "storyboard-asset-group",
+        "storyboard-asset-notice",
+        "storyboard-cell",
+        "storyboard-cell-input",
+        "storyboard-close",
+        "storyboard-editor",
+        "storyboard-next",
+        "storyboard-next-step",
+        "storyboard-row",
+        "storyboard-row-menu",
+        "storyboard-synthesize-all"
+      ],
+      "hit": [
+        "storyboard-add-shot",
+        "storyboard-asset-add",
+        "storyboard-asset-group",
+        "storyboard-asset-notice",
+        "storyboard-cell",
+        "storyboard-cell-input",
+        "storyboard-close",
+        "storyboard-editor",
+        "storyboard-next",
+        "storyboard-next-step",
+        "storyboard-row",
+        "storyboard-synthesize-all"
+      ],
+      "miss": [
+        "storyboard-row-menu"
+      ],
+      "state": "PARTIAL"
+    },
+    "SubtitleErasePanel": {
+      "dataMarks": [
+        "drawing-enabled",
+        "rel-height",
+        "rel-width",
+        "rel-x",
+        "rel-y",
+        "subtitle-erase-close",
+        "subtitle-erase-cost",
+        "subtitle-erase-help",
+        "subtitle-erase-mode",
+        "subtitle-erase-panel",
+        "subtitle-erase-submit",
+        "subtitle-region",
+        "subtitle-region-handle",
+        "subtitle-region-overlay",
+        "subtitle-region-redo",
+        "subtitle-region-reset",
+        "subtitle-region-selected",
+        "subtitle-region-toggle",
+        "subtitle-region-undo"
+      ],
+      "hit": [
+        "drawing-enabled",
+        "rel-height",
+        "rel-width",
+        "rel-x",
+        "rel-y",
+        "subtitle-erase-close",
+        "subtitle-erase-cost",
+        "subtitle-erase-help",
+        "subtitle-erase-mode",
+        "subtitle-erase-panel",
+        "subtitle-erase-submit",
+        "subtitle-region",
+        "subtitle-region-handle",
+        "subtitle-region-overlay",
+        "subtitle-region-redo",
+        "subtitle-region-reset",
+        "subtitle-region-selected",
+        "subtitle-region-toggle",
+        "subtitle-region-undo"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "ToolboxPanel": {
+      "dataMarks": [
+        "inert",
+        "liblib-overlay"
+      ],
+      "hit": [
+        "inert",
+        "liblib-overlay"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "TopNavBar": {
+      "dataMarks": [
+        "inert",
+        "liblib-overlay",
+        "liblib-topnav-actions",
+        "open",
+        "project-menu",
+        "project-menu-item",
+        "project-menu-status",
+        "project-menu-trigger",
+        "share-action",
+        "share-status",
+        "status-tone",
+        "workspace-name"
+      ],
+      "hit": [
+        "inert",
+        "liblib-overlay",
+        "liblib-topnav-actions",
+        "open",
+        "project-menu",
+        "project-menu-item",
+        "project-menu-status",
+        "project-menu-trigger",
+        "share-action",
+        "share-status",
+        "status-tone",
+        "workspace-name"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "VideoClipEditPanel": {
+      "dataMarks": [
+        "inert",
+        "status-tone",
+        "video-clip-edit-panel",
+        "video-clip-mode-setting",
+        "video-clip-output-setting",
+        "video-clip-prompt",
+        "video-clip-reference",
+        "video-clip-status",
+        "video-clip-submit"
+      ],
+      "hit": [
+        "inert",
+        "status-tone",
+        "video-clip-edit-panel",
+        "video-clip-mode-setting",
+        "video-clip-output-setting",
+        "video-clip-prompt",
+        "video-clip-reference",
+        "video-clip-status",
+        "video-clip-submit"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "VideoContinuationSelector": {
+      "dataMarks": [
+        "end-seconds",
+        "start-seconds",
+        "video-continuation-close",
+        "video-continuation-confirm",
+        "video-continuation-duration",
+        "video-continuation-end",
+        "video-continuation-region",
+        "video-continuation-selector",
+        "video-continuation-start",
+        "video-continuation-timeline"
+      ],
+      "hit": [
+        "end-seconds",
+        "start-seconds",
+        "video-continuation-close",
+        "video-continuation-confirm",
+        "video-continuation-duration",
+        "video-continuation-end",
+        "video-continuation-region",
+        "video-continuation-selector",
+        "video-continuation-start",
+        "video-continuation-timeline"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    },
+    "VideoGenerationPanel": {
+      "dataMarks": [
+        "clib-trigger",
+        "effects-card",
+        "effects-gallery",
+        "effects-trigger",
+        "footer-icon",
+        "inert",
+        "mark-select-banner",
+        "mark-select-return",
+        "mark-select-trigger",
+        "omnihuman-advanced",
+        "omnihuman-audio-slot",
+        "omnihuman-audio-warning",
+        "omnihuman-image-slot",
+        "omnihuman-requirements",
+        "reference-select-banner",
+        "reference-select-trigger",
+        "selected",
+        "video-advanced-inline",
+        "video-advanced-label",
+        "video-audio-option",
+        "video-continuation-context",
+        "video-continuation-exit",
+        "video-continuation-locked",
+        "video-continuation-range",
+        "video-continuation-source",
+        "video-count-option",
+        "video-credits",
+        "video-duration",
+        "video-duration-value",
+        "video-firstframe-destroy",
+        "video-firstframe-hint",
+        "video-firstframe-slot",
+        "video-firstlast-slots",
+        "video-generate-submit",
+        "video-generation-panel",
+        "video-long-hint",
+        "video-long-process-info",
+        "video-long-submit-spinner",
+        "video-long-submit-state",
+        "video-mode-option",
+        "video-mode-trigger",
+        "video-model-description",
+        "video-model-menu",
+        "video-model-option",
+        "video-model-premium",
+        "video-model-trigger",
+        "video-params-menu",
+        "video-params-mode",
+        "video-params-trigger",
+        "video-ratio-option",
+        "video-resolution-option",
+        "video-toolbar",
+        "yunjing-menu",
+        "yunjing-option",
+        "yunjing-trigger"
+      ],
+      "hit": [
+        "clib-trigger",
+        "effects-card",
+        "effects-gallery",
+        "effects-trigger",
+        "footer-icon",
+        "inert",
+        "mark-select-banner",
+        "mark-select-return",
+        "mark-select-trigger",
+        "omnihuman-audio-slot",
+        "omnihuman-audio-warning",
+        "omnihuman-image-slot",
+        "reference-select-banner",
+        "reference-select-trigger",
+        "selected",
+        "video-advanced-inline",
+        "video-advanced-label",
+        "video-audio-option",
+        "video-continuation-context",
+        "video-continuation-exit",
+        "video-continuation-locked",
+        "video-continuation-range",
+        "video-continuation-source",
+        "video-count-option",
+        "video-credits",
+        "video-duration",
+        "video-duration-value",
+        "video-firstframe-destroy",
+        "video-firstframe-hint",
+        "video-firstframe-slot",
+        "video-firstlast-slots",
+        "video-generate-submit",
+        "video-generation-panel",
+        "video-long-hint",
+        "video-long-process-info",
+        "video-long-submit-spinner",
+        "video-long-submit-state",
+        "video-mode-option",
+        "video-mode-trigger",
+        "video-model-description",
+        "video-model-menu",
+        "video-model-option",
+        "video-model-premium",
+        "video-model-trigger",
+        "video-params-menu",
+        "video-params-mode",
+        "video-params-trigger",
+        "video-ratio-option",
+        "video-resolution-option",
+        "video-toolbar",
+        "yunjing-menu",
+        "yunjing-option",
+        "yunjing-trigger"
+      ],
+      "miss": [
+        "omnihuman-advanced",
+        "omnihuman-requirements"
+      ],
+      "state": "PARTIAL"
+    },
+    "VideoProcessingToolbar": {
+      "dataMarks": [
+        "video-audio-busy",
+        "video-audio-busy-mode",
+        "video-audio-menu-trigger",
+        "video-audio-mode",
+        "video-depth-motion-trigger",
+        "video-frame-kind",
+        "video-frame-menu-trigger",
+        "video-picture-edit-action",
+        "video-picture-edit-menu-trigger",
+        "video-subtitle-menu-trigger",
+        "video-subtitle-mode",
+        "video-toolbar-menu"
+      ],
+      "hit": [
+        "video-audio-busy",
+        "video-audio-busy-mode",
+        "video-audio-menu-trigger",
+        "video-audio-mode",
+        "video-depth-motion-trigger",
+        "video-frame-kind",
+        "video-frame-menu-trigger",
+        "video-picture-edit-action",
+        "video-picture-edit-menu-trigger",
+        "video-subtitle-menu-trigger",
+        "video-subtitle-mode",
+        "video-toolbar-menu"
+      ],
+      "miss": [],
+      "state": "COVERED"
+    }
+  },
+  "summary": {
+    "componentsScanned": 42,
+    "covered": 26,
+    "partial": 10,
+    "uncovered": 0,
+    "untestable": 6,
+    "uncoveredNames": [],
+    "partialNames": [
+      "AgentDrawer",
+      "AssetManagerPanel",
+      "CanvasContextMenu",
+      "DepthMotionCapturePanel",
+      "ImageAnnotateSurface",
+      "ImageElementEditSurface",
+      "LibraryShowcasePanel",
+      "PictureEditPanel",
+      "StoryboardScriptEditor",
+      "VideoGenerationPanel"
+    ],
+    "untestableNames": [
+      "CameraConfigDialog",
+      "CameraMovementDialog",
+      "ChromeIcons",
+      "ImageElementEditMode",
+      "PlusIndicator",
+      "ScriptHeader"
+    ]
+  }
+}

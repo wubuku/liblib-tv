@@ -1,0 +1,21 @@
+{
+  "states": {
+    "picture-edit": {
+      "inputs": 2,
+      "controls": 49,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "button",
+          "aria": "播放视频",
+          "text": "",
+          "data": []
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "prepared": true,
+  "markInteraction": []
+}
