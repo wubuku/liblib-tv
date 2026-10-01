@@ -111,6 +111,15 @@ RETRACT_OUT="$(python3 scripts/check-retractions.py . 2>&1)" || fail "订正回�
 $RETRACT_OUT"
 echo "$RETRACT_OUT" | sed 's/^/  /'
 
+# 账本锁定：`SOURCE_OBSERVATIONS.md` 开头用「版本锁定：提交 <40 位 sha>」把整本
+# 账本的证据锚死在一个提交上，而**这句话此前没有任何机制守着它**——应用仓被别的
+# 开发者一推进，账本仍以「版本锁定」的口吻陈述旧观察，全部源码层门禁都不会报错。
+# 2026-10-02 M105 加；本机没有应用仓副本时**跳过而不是失败**，否则门禁在别人
+# clone 下来的机器上必然红。
+LEDGERPIN_OUT="$(python3 scripts/check-ledger-pin.py . 2>&1)" || fail "账本锁定校验未通过（账本声明的锁定提交与应用仓 HEAD 不一致）：
+$LEDGERPIN_OUT"
+echo "$LEDGERPIN_OUT" | sed 's/^/  /'
+
 # 表格语法：每个 Markdown 表格块都必须自带「表头 + |---| 分隔行」。
 # 2026-10-01 M65 实测：shortcuts-help.md 的「弹窗里的十三条」被一段多选提示的
 # 引用块从第 8 行和第 9 行之间劈开——前 8 行仍是表格，后 5 行（重做/重做/删除/

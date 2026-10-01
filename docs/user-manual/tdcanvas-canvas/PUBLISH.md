@@ -98,9 +98,9 @@ npx vitepress build  # 产物 .vitepress/dist/
 - 内容审计：按 `AUDIT.md` 记录的 Gate B 方法在真实浏览器逐任务回走（标签逐字核对、提交类动作止于按钮态验证），结论与修复记录进 `AUDIT.md`。
 - 手册内容的事实源：真实运行界面。UI 标签变化后以浏览器 DOM 为准修正文档，不以记忆或旧文档为准。
 
-### 构建时的十道门禁
+### 构建时的十二道门禁
 
-`./build-site.sh` 步骤 3 会依次跑前七道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
+`./build-site.sh` 步骤 3 会依次跑前十道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
 
 | 门禁 | 拦什么 | 由来 |
 |---|---|---|
@@ -110,11 +110,12 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-ratings.py` | 任务评级在账本/索引/首页三处不一致 | M58 实测账本与下游漂移 |
 | `check-inventory-freshness.py` | 账本 screenshot_count 与 manifest 实数不符 | M59 实测 3 条数字过期 |
 | `check-claims.py` | 无证据的强断言（「逐字一致」等） | M44 实测速查表与截图自相矛盾 |
-| `check-retractions.py` | 已订正的错误说法复现 | M47 漏改、M52 补门禁 |
+| `check-retractions.py` | 已订正的错误说法复现（**含账本 `SOURCE_OBSERVATIONS.md`**） | M47 漏改、M52 补门禁；M105 移出一处豁免 |
 | `check-emphasis.py` | `**` 紧邻标点导致加粗失效；**裸 `{{ }}` 被 Vue 插值吞掉** | M90 全站扫产物才发现 7 处加粗失效（跨 6 页）；M91 发现 i18n 占位符在产物里整段消失 |
 | `check-render.py` | **产物侧**渲染体检：表格列数不一致、裸露管道文本、img 异常、页内锚点悬空、正文空标签 | M84 整行内容被丢弃、M91 两条死链与一处空 `<code>`，源码层八道门禁当时全过 |
 | `check-tables.py` | 表格被非表格行劈开、缺表头与分隔行、**行内代码反引号不成对** | M65 实测「十三条」后 5 行渲染成原始管道文本；M84 实测单元格内竖线未转义会**让该行剩余内容从产物里消失** |
-| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 22 类故障） | M41 门禁静默错判 |
+| `check-ledger-pin.py` | 账本声明的「版本锁定提交」与应用仓 HEAD 漂移 | M105 实测账本以「版本锁定」口吻陈述旧观察而无任何机制守候 |
+| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 34 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
 
 单跑任一道（都需带 `.` 参数）：
@@ -126,6 +127,7 @@ python3 scripts/check-ratings.py .        # 评级一致性
 python3 scripts/check-inventory-freshness.py .  # 账本新鲜度
 python3 scripts/check-claims.py .         # 强断言
 python3 scripts/check-retractions.py .    # 订正回归
+python3 scripts/check-ledger-pin.py .    # 账本锁定提交 vs 应用仓 HEAD
 python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
 python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）

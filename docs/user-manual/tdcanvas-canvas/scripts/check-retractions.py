@@ -20,7 +20,13 @@ import sys
 from pathlib import Path
 
 # 内部账本与分析性记录不扫：它们本来就要原样记下"曾经写错过什么"。
-EXCLUDED = {"AUDIT.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md", "TEST_MEDIA_ASSETS.md", "PUBLISH.md"}
+#
+# M105 订正一处豁免：**SOURCE_OBSERVATIONS.md 从这里移出**。前三个文件是「订正史」
+# 载体，必须逐字保留旧说法；它不同——它记的是**当前事实**，出现已订正说法永远是缺陷
+# （实测：它的 §2 还停在订正前的「新项目默认标题 TDCanvas 2、编号规则待查」，
+#  而该条早在 AUDIT 里订正为「TDCanvas 1、编号全局递增」，手册正文也早已同步）。
+# §11 的 i18n 取证纪律属于方法论、不复述被撤回的原句，故不产生假阳性。
+EXCLUDED = {"AUDIT.md", "PROGRESS.md", "TEST_MEDIA_ASSETS.md", "PUBLISH.md"}
 
 # 用白名单而不是 rglob：手稿目录下有 node_modules 与构建产物，
 # rglob 会把 137 个第三方文档一起扫进来，制造假阳性。与 check-claims.py 保持一致。

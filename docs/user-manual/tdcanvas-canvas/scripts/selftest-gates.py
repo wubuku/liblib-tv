@@ -179,6 +179,34 @@ def mutate_retracted_video_params(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_ledger_pin_drift(root: Path) -> None:
+    """把账本锁定的提交改成一个与应用仓 HEAD 不同的 sha（M105 新门禁的负向测试）。
+
+    账本开头那句「版本锁定：提交 <sha>」是整本账本成立的前提——§4 的节点尺寸、
+    §6 的连线校验全都是在那个提交上观察到的。此前**没有任何机制守着它**：把
+    应用仓推进之后，账本照旧以「版本锁定」的口吻陈述旧观察，全部源码层门禁
+    都不会报错。
+
+    注意本用例必须**改 sha 而不能删掉那一句**：删掉时门禁报的是"锁都没锁住"，
+    那是另一条判据（断言存在性），抓不到本门禁真正要守的东西（断言一致性）。
+    """
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    real = "16b31273633f983cdbd8de05694ec36d471b2650"
+    drifted = "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+    if real not in text:
+        # 账本换过锁定提交时也要能注入：把当前那个 sha 顶掉即可
+        import re as _re
+
+        found = _re.search(r"提交\s*`([0-9a-f]{40})`", text)
+        if not found:
+            raise AssertionError("账本里找不到 40 位锁定提交，自检用例无法构造")
+        text = text.replace(found.group(1), drifted, 1)
+    else:
+        text = text.replace(real, drifted, 1)
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_dead_dist_link(root: Path) -> None:
     """在产物里塞一条指向不存在页面的链接（M56 发现的真实形态）。
 
@@ -513,6 +541,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("行内代码段被提前截断", mutate_early_closed_code, "render", "被提前截断"),
     ("产物里裸露的管道文本", mutate_pipe_leak_render, "render", "裸露的表格管道文本"),
     ("产物里页内锚点悬空", mutate_dangling_anchor_render, "render", "找不到对应 id"),
+    ("账本锁定的提交与应用仓漂移", mutate_ledger_pin_drift, "ledgerpin", "与应用仓 HEAD 不一致"),
 ]
 
 
@@ -537,6 +566,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
     elif which == "render":
         cmd = [sys.executable, str(root / "scripts/check-render.py"), str(root)]
+    elif which == "ledgerpin":
+        cmd = [sys.executable, str(root / "scripts/check-ledger-pin.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
