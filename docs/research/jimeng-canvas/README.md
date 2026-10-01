@@ -212,6 +212,14 @@
     无需改。
   - verifier: `scripts/verify-jimeng-batch797.py`（26 项断言，含收起态
     「不泄漏展开类控件」与「顶栏分享不再被挤」两条反向断言）。
+  - ⚠️ **提交归属**：batch 797 的代码与本文档条目在提交时被**并行 session 的
+    `9da78637`（题名写的是 batch 795）裹走** —— 该提交同时含 batch 795 的顶栏
+    让位工作与 batch 797 的抽屉默认态工作，两者本应分开。仓库已有同类记录
+    （`a504e4bf` beeftv Batch 136）。成因是共享工作区里 `git add` 会把文件
+    放进**共享索引**，随后他人的裸 `git commit` 就把别人的暂存内容一并提交。
+    - 纪律：`git add` 之后到 `git commit` 之间存在被他人夹带的时间窗；
+      提交前应复查 `git diff --cached --name-only` 是否含非己文件，
+      或用 `git commit -- <paths>` 做 pathspec 限定提交。
 - SOURCE_FACT (batch 25): 空白画布右键弹出菜单: 新建节点 > (子菜单)、
   粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族。
   复刻: 子菜单 hover 展开 (源站子菜单展开态未提取，CLONE_DECISION)，
