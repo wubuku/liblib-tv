@@ -240,8 +240,14 @@ fi
 
 # ---- 失败自动重试 (与 frameos runner 同策) ----
 # 并发负载下的偶发失败隔离; 隔离后仍红才算真回归。
+#
+# 重试通过时**必须同时把它从 failed_list 里剔除**。第一版只减了 fail 计数,
+# 于是收尾打印的「failed batches:」里混着 13 个已经 RETRY PASS 的批次 ——
+# 汇总说 19 failed, 清单却列了 33 个, **两个数字对不上**。
+# 汇总与清单必须同源: 清单只放重试后仍红的。
 if [ "$fail" -gt 0 ] && [ "$RETRIES" -gt 0 ]; then
   echo "---- retrying failed:$failed_list"
+  still_failed=""
   for b in $failed_list; do
     if "$PY" "scripts/verify-liblib-batch$b.py" > "$LOG_DIR/$b.retry.log" 2>&1; then
       pass=$((pass + 1)); fail=$((fail - 1))
@@ -249,8 +255,30 @@ if [ "$fail" -gt 0 ] && [ "$RETRIES" -gt 0 ]; then
     else
       echo "RETRY FAIL batch$b  (log: $LOG_DIR/$b.retry.log)"
       tail -5 "$LOG_DIR/$b.retry.log"
+      still_failed="$still_failed $b"
     fi
   done
+  failed_list="$still_failed"
+fi
+
+# ---- AGED_GATE 单独归类(必须在重试之后) ----
+# 带 `AGED_GATE / HISTORICAL_CONTRACT` 标记的门禁(本线 12 个)是自己声明的
+# **历史遗留**: 在基线 86673b6 上同样失败, 已被 LIBTV_VERIFIER_REPLACEMENT_MAP
+# 里的现行门禁取代。它们的红不是回归, 混进「failed batches」会让人每次全量
+# 都以为欠了一批债, 而其中两个根本不该再修。
+# 判据 = 门禁自己写的标记, **不按批次号开名单** —— 名单会在重构中悄悄失效。
+aged_list=""
+live_list=""
+for b in $failed_list; do
+  if grep -q "AGED_GATE" "scripts/verify-liblib-batch$b.py" 2>/dev/null; then
+    aged_list="$aged_list $b"
+  else
+    live_list="$live_list $b"
+  fi
+done
+if [ -n "$aged_list" ]; then
+  aged_n=$(printf '%s\n' $aged_list | wc -l | tr -d ' ')
+  echo "note: $aged_n of those are AGED_GATE (declared historical, not regressions):$aged_list"
 fi
 
 echo "----"
