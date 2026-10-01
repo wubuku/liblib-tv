@@ -874,3 +874,36 @@ screenshots:
     visible_text: 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1 高级设置 语速 声调 音量
     alt: 音频节点本体在上（尝试：音频生视频），参数面板是下面另一张卡片：左上「+参考」、右上「⤢」展开图标，中间是描述输入框，底部一行是「Seed Audio 1.0」「中文 · 24k · wav」「0/2000」「1」和提交箭头
     sha256: 7e89cf337a63d6eee143c3e53190d53d78f7e03a27336252b6220afbf814efa2
+  - file: screenshots/M-29-故事板模式-有内容.png
+    task_id: storyboard-mode
+    step: 24
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 建 文本/图片/视频 三个节点后点顶栏「故事板」，收起右侧 TV Director 浮层再拍
+    visible_text: 文本 文本节点 1 图片 图片节点 2 待确认后生成 Lib Image 2.5 Pro 视频 全部 视频节点 3 对话 待确认后生成 2.0 TV Director
+    alt: 故事板有内容时的三列：文本列只有一行「文本节点 1」；图片列是「图片节点 2」加一个灰色占位框（框内写「待确认后生成」）和下面的「Lib Image 2.5 Pro」模型标签；视频列右上角有「全部」筛选下拉，「视频节点 3」右侧挂一枚「对话」按钮，下面同样是占位框和「2.0」标签
+    sha256: 0de75766375ef8b650a934620f9dbec6e1ccbcac1470d5f320a6ac924fbddf1b
+  - file: screenshots/M-32-从生成历史选择.png
+    task_id: asset-library
+    step: 26
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 双击画布 →「添加节点」面板底部「添加资源」分区 → 点「从生成历史选择」
+    visible_text: 选择图片 LibTV Lib生成器 WebUI ComfyUI AI应用 已选 0/10 张 图片 视频 音频 暂无数据 确定
+    alt: 「选择图片」弹窗：顶部一排来源标签 LibTV / Lib生成器 / WebUI / ComfyUI / AI应用，右上角「已选 0/10 张」；下面是 图片/视频/音频 三个分类标签；主体因为没生成过东西而显示「暂无数据」；右下角是「确定」
+    sha256: bb78ba2a71eaa7297ee2fa115adb92fbb4034a92ff1a2c7fd673a86c60b3d8de
+  - file: screenshots/M-33-TV-Director-面板.png
+    task_id: agent-director
+    step: 27
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 切到故事板后自动滑出的「新对话」浮层，class `mantine-Drawer-inner`，框 [1024,154,400,640]
+    visible_text: 新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 全能创作
+    alt: 右侧滑出的 TV Director 面板：标题「让 TV Director 辅助你的无限创意」，下面四个入口「感知画布开始创作」「从爆款预设开始剧本原创」「上传故事来改编」「批量优化提示词」，各带一枚图标和右箭头；底部输入框一排是「+」「全能创作」下拉、立方体、文件夹、手掌和提交箭头
+    sha256: f66d055e8b8721a0b43bd8e4bb0b951374b4c7cb09ee495aa271d4e6e3f2ff0b
