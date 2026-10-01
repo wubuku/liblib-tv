@@ -183,6 +183,20 @@ else
   fail "excluded 任务的解禁条件可能已失效——需回走验证并更新 PROGRESS 条件表"
 fi
 
+# 第五道闸：标签漂移核对（Batch 121）
+# 背景：同一轮审计连续四次撞上「同一个设置有多个叫法」（Batch 116/117/119/120）。
+# 产品里多个文件各持一份同义枚举表，改一处忘另一处就会漂移。本闸维护一份
+# 「已知分歧登记表」，出现未登记的新分歧、或登记的分歧已收敛，都以退出码 1 报出。
+# 判据与边界写在脚本 docstring 里，务必连着一读。
+if LD_OUT="$(python3 scripts/verify-label-drift.py 2>&1)"; then
+  ok "$LD_OUT"
+else
+  printf '%s\n' "$LD_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "标签漂移 $line"
+  done
+  fail "存在未登记的标签漂移，或已登记的分歧已被上游统一——需更新 verify-label-drift.py 的登记表"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"
