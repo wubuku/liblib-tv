@@ -205,3 +205,8 @@
   - 新增 3 张图：`02-navigate-canvas-top-menu.png`（顶栏菜单七项）、`02-navigate-canvas-context-menu.png`（右键菜单六项）、`13-project-management-delete-confirm.png`（首页删除确认弹窗，与画布内无确认形成对照）。`navigate-canvas.md` 新增「画布里两个不显眼的菜单」整节（两图 + 两张完整条目表 + 两条 ⚠️）。
   - 截图 48 → **51**；两门禁 exit 0（14 tasks / 25 markdown / 51 images）；锚点门禁 10 个内部锚点全部有效；构建 21 页 / 51 图 / 16M。
   - 自动化教训：① 节点悬浮工具条里的「移除节点」按钮在节点靠上时点不到（同样被顶栏遮住），**自动化里删节点直接按 `Delete` 键**比点工具条稳；② 隐藏 `input[type=file]` 在画布页本来就有 1 个（上传用），所以"点击导入后 file input 数量为 1"**不能**证明导入没有新开选择器——判断行为必须回到源码；③ 首页项目卡的点击热区不是 `text=/个节点/` 那个文本框，脚本按文本框坐标点会落空，**直接从已知 URL 进入画布最稳**；④ 画布非空时**空态快捷芯片会消失**，造节点前要先判断画布是否为空，否则第二次点击必然超时。
+  - **⚠️ 流程事故（已发生，如实记录）**：M32 首次提交时**误把他人已 staged 的 8 个文件一并提交**（`docs/research/frameos/*`、`scripts/probe-frameos-batch331*.py`、`src/store/frameosStore.ts`）。原因：本仓库是多智能体并发共享的工作区，**共享同一个 git index**——别的 agent 在我 `git commit` 的前一秒把文件 staged 进来，我的 `git commit -m` 就把它们一并带走了。M31 及此前所有提交经核查**均为 0 混入**。
+    - **没有造成数据丢失**：他人文件已安全落在 `f93304d9` 并推送，工作区内容一字未动。问题是**归属错误**（被打上了本手册的提交说明），不是内容丢失。
+    - **没有回滚历史**：该提交已推送且有并发 agent 在同一分支工作，`reset` + 强推会重写共享历史，风险远大于收益。**他人文件现在位于 HEAD，若他们后续继续修改会正常产生新 diff，不受影响。**
+    - **改用免疫写法**：此后一律用 `git commit -- <路径>`（pathspec 形式）而非 `git add` + `git commit`。pathspec 提交只取该路径的**工作区内容**，**完全无视 index 里其他人的 staged 文件**，从根上免疫共享 index 污染。
+    - **提交后自查**：每次提交后跑 `git show --name-only --format="" HEAD | grep -v "^docs/user-manual/tdcanvas-canvas/"`，无输出才算干净。**教训一句话：在共享 index 的仓库里，`git add` 之后再 `git commit` 是一个不安全的组合。**
