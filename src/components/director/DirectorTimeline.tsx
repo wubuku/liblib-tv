@@ -44,6 +44,74 @@ function formatTimelineTime(seconds: number): string {
     .padStart(5, "0")}`;
 }
 
+type DirectorTimeUnit = "s" | "ms";
+
+// Batch 591（源站 2026-10-01 实测）：播放头位置 / 总时长都是可编辑文本框，
+// 46×24、12px 居中、无描边（border-width 0），值随单位切换格式——
+//   s  模式：两位小数（0.00 / 10.00）
+//   ms 模式：整数毫秒（0 / 10000）
+// 两框连体：左框 radius 8px 0 0 8px、右框全 0。回车或失焦提交，无法解析
+// 时回滚到上一个合法值（沿用 batch 588 读数行已在源站实测通过的同一模式）。
+function TimelineTimeField({
+  testId,
+  ariaLabel,
+  className,
+  value,
+  unit,
+  onCommit,
+}: {
+  testId: "time" | "duration";
+  ariaLabel: string;
+  className: string;
+  value: number;
+  unit: DirectorTimeUnit;
+  onCommit: (seconds: number) => void;
+}) {
+  const format = (seconds: number) =>
+    unit === "s" ? seconds.toFixed(2) : String(Math.round(seconds * 1000));
+  const parse = (raw: string) =>
+    unit === "s" ? Number(raw) : Number(raw) / 1000;
+  const [draft, setDraft] = useState(() => format(value));
+  useEffect(() => {
+    setDraft(format(value));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, unit]);
+  const commit = (raw: string) => {
+    const parsed = parse(raw.trim());
+    if (Number.isFinite(parsed)) {
+      onCommit(parsed);
+    } else {
+      setDraft(format(value));
+    }
+  };
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      data-director-timeline-time={testId === "time" ? value.toFixed(3) : undefined}
+      data-director-timeline-duration={testId === "duration" ? value.toFixed(3) : undefined}
+      data-director-time-field={testId}
+      data-director-time-field-unit={unit}
+      aria-label={ariaLabel}
+      value={draft}
+      spellCheck={false}
+      onChange={(event) => {
+        setDraft(event.target.value);
+        commit(event.target.value);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter") commit(event.currentTarget.value);
+      }}
+      onBlur={() => setDraft(format(value))}
+      className={cn(
+        "h-6 w-[46px] shrink-0 border-0 bg-[#222] px-1 text-center text-xs tabular-nums",
+        "text-[#c8c8c8] outline-none focus:bg-white/[0.08]",
+        className,
+      )}
+    />
+  );
+}
+
 export function DirectorTimeline() {
   const timeline = useDirectorStore((state) => state.timeline);
   const objects = useDirectorStore((state) => state.objects);
@@ -51,6 +119,11 @@ export function DirectorTimeline() {
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
   const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const setTimelineTime = useDirectorStore((state) => state.setTimelineTime);
+  // Batch 591: 源站时间单位切换（s <-> ms）
+  const setTimelineDuration = useDirectorStore(
+    (state) => state.setTimelineDuration,
+  );
+  const [timeUnit, setTimeUnit] = useState<DirectorTimeUnit>("s");
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
   );
@@ -431,87 +504,13 @@ export function DirectorTimeline() {
           title={timeline.isPlaying ? "暂停" : "播放"}
           aria-pressed={timeline.isPlaying}
           onClick={() => setTimelinePlaying(!timeline.isPlaying)}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+          className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
         >
           {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
         </button>
-        <button
-          type="button"
-          aria-label="上一关键帧"
-          title="上一关键帧"
-          onClick={() => seekTimelineKeyframe(-1)}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
-        >
-          <SkipBack size={14} />
-        </button>
-        <button
-          type="button"
-          aria-label="下一关键帧"
-          title="下一关键帧"
-          onClick={() => seekTimelineKeyframe(1)}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
-        >
-          <SkipForward size={14} />
-        </button>
-        <button
-          type="button"
-          data-director-loop
-          aria-label="循环播放"
-          title="循环播放"
-          aria-pressed={timeline.loop}
-          onClick={toggleTimelineLoop}
-          className={cn(
-            "flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
-            timeline.loop && "bg-white/[0.07] text-[#5ddcff]",
-          )}
-        >
-          <Repeat2 size={14} />
-        </button>
-        {/* Batch 568: 源站时间输入为可编辑框（截图 48/55：0.00 / 10.00 两个
-            带边框输入）——当前时间输入 Enter/blur 后经 setTimelineTime seek。 */}
-        <input
-          data-director-timeline-time={timeline.currentTime.toFixed(3)}
-          aria-label="当前时间（秒）"
-          defaultValue={formatTimelineTime(timeline.currentTime)}
-          key={timeline.currentTime.toFixed(3)}
-          onKeyDown={(event) => {
-            if (event.key !== "Enter") return;
-            const parsed = Number(event.currentTarget.value);
-            if (Number.isFinite(parsed)) {
-              setTimelineTime(
-                Math.min(Math.max(parsed, 0), timeline.duration),
-              );
-            }
-          }}
-          className="h-7 w-[64px] shrink-0 rounded border border-white/[0.12] bg-[#222] px-2 text-center text-[11px] tabular-nums text-[#a7a7a7] outline-none focus:border-[#09caf5]/60"
-        />
-        <span className="shrink-0 text-[11px] text-[#a7a7a7]">/</span>
-        <span
-          data-director-timeline-duration
-          className="w-[52px] shrink-0 text-center text-[11px] tabular-nums text-[#a7a7a7]"
-        >
-          {formatTimelineTime(timeline.duration)}
-        </span>
-        <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
-        <button
-          type="button"
-          data-director-add-track
-          aria-label="新建轨道"
-          title={
-            trackCreatable
-              ? "新建轨道"
-              : "请选择一个角色或者摄像机后，可新建轨道"
-          }
-          disabled={!trackCreatable}
-          onClick={() => createTrackForSelectedObject()}
-          className={cn(
-            "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
-            trackCreatable && "text-[#bcbcbc]",
-          )}
-        >
-          <Plus size={13} />
-          新建轨道
-        </button>
+        {/* Batch 591（源站 2026-10-01 实测，工具栏自左至右）：播放 /
+            自动帧 / 循环播放 / 播放头位置 / 总时长 / 时间单位 / 新建轨道。
+            自动帧此前排在循环播放之后，与源站顺序不符，本批前移。 */}
         {/* Batch 573: 源站 CDP 枚举（截图 55，24px 图标钮 aria-label 自动帧，
             无文字）——自动帧 toggle 对齐为图标钮；batch 36 的 data 属性与
             aria-pressed 合同保留。 */}
@@ -523,7 +522,7 @@ export function DirectorTimeline() {
           aria-pressed={timeline.autoKeyframe}
           onClick={toggleAutoKeyframe}
           className={cn(
-            "flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
+            "flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
             timeline.autoKeyframe && "bg-white/[0.07] text-[#5ddcff]",
           )}
         >
@@ -533,6 +532,97 @@ export function DirectorTimeline() {
               timeline.autoKeyframe && "bg-current",
             )}
           />
+        </button>
+        <button
+          type="button"
+          data-director-loop
+          aria-label="循环播放"
+          title="循环播放"
+          aria-pressed={timeline.loop}
+          onClick={toggleTimelineLoop}
+          className={cn(
+            "flex h-6 w-[26px] shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
+            timeline.loop && "bg-white/[0.07] text-[#5ddcff]",
+          )}
+        >
+          <Repeat2 size={14} />
+        </button>
+        {/* Batch 591：源站两个读数是**连体**的可编辑文本框（各 46×24、
+            12px 居中，左框 radius 8px 0 0 8px、右框全 0）。值格式随单位
+            切换：s 模式两位小数（0.00 / 10.00），ms 模式整数毫秒
+            （0 / 10000）。aria 逐字为 播放头位置 / 总时长。 */}
+        <TimelineTimeField
+          testId="time"
+          ariaLabel="播放头位置"
+          className="rounded-l-lg"
+          value={timeline.currentTime}
+          unit={timeUnit}
+          onCommit={(seconds) =>
+            setTimelineTime(Math.min(Math.max(seconds, 0), timeline.duration))
+          }
+        />
+        <TimelineTimeField
+          testId="duration"
+          ariaLabel="总时长"
+          className="rounded-r-lg"
+          value={timeline.duration}
+          unit={timeUnit}
+          onCommit={setTimelineDuration}
+        />
+        <button
+          type="button"
+          data-director-time-unit
+          aria-label={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
+          title={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
+          onClick={() => setTimeUnit((unit) => (unit === "s" ? "ms" : "s"))}
+          className="flex h-6 w-8 shrink-0 items-center justify-center rounded text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white"
+        >
+          {timeUnit}
+        </button>
+        <button
+          type="button"
+          data-director-add-track
+          // Batch 591: 源站该按钮的可及名逐字是这句（描述「先选中再建立」
+          // 的前置条件），不是「新建轨道」；clone 的 title 仍保留更完整的
+          // 禁用提示（含 coachmark 指引），二者并存。
+          aria-label="选中角色、道具或分组后建立轨道"
+          title={
+            trackCreatable
+              ? "新建轨道"
+              : "请选择一个角色或者摄像机后，可新建轨道"
+          }
+          disabled={!trackCreatable}
+          onClick={() => createTrackForSelectedObject()}
+          className={cn(
+            "flex h-6 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
+            trackCreatable && "text-[#bcbcbc]",
+          )}
+        >
+          <Plus size={13} />
+          新建轨道
+        </button>
+        {/* Clone-only：源站工具栏没有「上一/下一关键帧」两个按钮（实测七项
+            自左至右为 播放/自动帧/循环播放/播放头位置/总时长/时间单位/
+            新建轨道），但它们是 clone 的既有能力且被 batch 36 / 42 按
+            role+name 点击。放在源站顺序前缀**之后**，让前七项与源站逐位
+            对齐，同时不删功能。 */}
+        <button
+          type="button"
+          aria-label="上一关键帧"
+          title="上一关键帧"
+          onClick={() => seekTimelineKeyframe(-1)}
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
+        >
+          <SkipBack size={14} />
+        </button>
+        <button
+          type="button"
+          aria-label="下一关键帧"
+          title="下一关键帧"
+          onClick={() => seekTimelineKeyframe(1)}
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
+        >
+          <SkipForward size={14} />
         </button>
         <button
           ref={presetTriggerRef}

@@ -672,6 +672,7 @@ interface DirectorState {
     samples: DirectorPhoneVcamSample[],
   ) => DirectorPhoneVcamImportResult | null;
   setTimelineTime: (time: number) => void;
+  setTimelineDuration: (seconds: number) => void;
   setTimelinePlaying: (playing: boolean) => void;
   advanceTimeline: (deltaSeconds: number) => void;
   toggleTimelineLoop: () => void;
@@ -2886,6 +2887,11 @@ export function getDirectorProjectRegistrySnapshot():
   DirectorProjectRegistrySnapshot {
   return directorProjectRegistry.getSnapshot();
 }
+
+// Batch 591：时长输入的钳制区间（源站提交规则未实测，取不臆造也不丢数据
+// 的保守区间）。
+const MIN_DIRECTOR_TIMELINE_DURATION_SECONDS = 0.1;
+const MAX_DIRECTOR_TIMELINE_DURATION_SECONDS = 3600;
 
 export const useDirectorStore = create<DirectorState>((set, get) => ({
   sourceNodeId: null,
@@ -6832,6 +6838,45 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           ...state.timeline,
           currentTime,
           isPlaying: false,
+        },
+      };
+    }),
+
+  // Batch 591（源站 2026-10-01 实测）：源站时间轴的「总时长」是可编辑
+  // `input[type=text]`（46×24、readOnly=false），因此时长需要可写。提交的
+  // 钳制规则源站未实测（改数值会写入用户真实项目），此处取两条不臆造也
+  // 不破坏数据的下限：正数，且不早于最后一个关键帧（否则关键帧会被甩到
+  // 时长之外）。播放头随之夹回新时长内。
+  setTimelineDuration: (seconds) =>
+    set((state) => {
+      const lastKeyframeTime = state.timeline.tracks.reduce((latest, track) => {
+        return track.keyframes.reduce(
+          (inner, keyframe) => Math.max(inner, keyframe.time),
+          latest,
+        );
+      }, 0);
+      const duration = Math.min(
+        Math.max(
+          Math.max(MIN_DIRECTOR_TIMELINE_DURATION_SECONDS, seconds),
+          lastKeyframeTime,
+        ),
+        MAX_DIRECTOR_TIMELINE_DURATION_SECONDS,
+      );
+      const currentTime = clampDirectorTimelineTime(
+        state.timeline.currentTime,
+        duration,
+      );
+      return {
+        objects: applyTimelineAtTime(
+          state.authoredObjects,
+          state.timeline,
+          currentTime,
+          state.groups,
+        ),
+        timeline: {
+          ...state.timeline,
+          duration,
+          currentTime,
         },
       };
     }),
