@@ -57,8 +57,20 @@
 
 | 路由 | 页面 |
 |---|---|
-| `/`（项目工作区） | 画布主工作区（项目列表与画布） |
-| `/settings` | 设置（含 Agent 记忆） |
+| `/` | 首页（项目工作区入口） |
+| `/create` | 新建创作 |
+| `/projects`、`/project` | 画布工作区（两个路径指向同一页） |
+| `/projects/:projectId`、`/projects/:projectId/:view` | 项目画布与其子视图 |
+| `/canvas`、`/canvas/:id` | 画布页与指定画布 |
+| `/assets` | 资产页 |
+| `/settings`（`?section=channels`） | **模型配置 / 个人渠道**——配置模型服务与个人工作流 |
+| `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（需开启 `pluginCenterEnabled` 特性） |
+
+**已退场、访问会被重定向回首页的路由**：`/tasks`（任务中心）、`/skills`、`/skill`、`/skills/reference`——都随旧 Agent / 任务中心一起下线。旧链接不会 404，会静默跳回 `/`，所以「点进去发现回到了首页」是预期行为，不是故障。
+
+::: tip `/settings` 里没有 Agent 记忆
+旧版说明「设置（含 Agent 记忆）」已不成立：设置页当前只有一个分区（`channels`），而整个分区还挂在 `customChannelsEnabled` 特性开关之后——开关关闭时分区列表为空，报错文案会变成「当前没有可用的系统模型，请联系管理员配置系统渠道」。Agent 记忆与技能相关说明见 [10-tasks/agent-memory-skills.md](10-tasks/agent-memory-skills.md)。
+:::
 
 ## 主要 REST 端点（供排障参考）
 

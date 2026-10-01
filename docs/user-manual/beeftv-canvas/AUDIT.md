@@ -683,3 +683,28 @@
 - **顺带补一个真实交互细节**：截图按钮在**视口尚未加载时禁用**，title 变为「视口加载中」——这是用户会遇到的「为什么点不动」。
 - **方法论**：本批再次验证「零命中≠不存在」（与 Batch 93 的「必须先用已知串验证检索方法有效」同源）。两次的代价不同：Batch 93 若不复核会**漏修 5 处真实缺陷**，本批若不复核会**虚构一个不存在的缺陷**。**两种错误都会污染账本，但后者更隐蔽——它会让 AUDIT 里留下一个查无实据的「发现」。**
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录五十九（Batch 103，2026-10-01，路由与设置页清单核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：抽 `web/src/router.tsx` 的完整路由表（约 25 条）、`web/src/pages/settings/index.tsx` 的分区定义、`workspace-sidebar-nav.tsx` / `workspace-top-bar.tsx` 的入口文案，与 `20-reference.md`、`plugins-management.md` 及三处正文提及比对。
+- **查出 1 处 Major（在最不该出错的场景里指错了地方）+ 若干不完整**：
+
+| 问题 | 严重性 | 处理 |
+|---|---|---|
+| **手册 3 处让用户「到任务中心确认实际结果」，但 `/tasks` 路由是 `<Navigate to="/" replace />`——这个页面根本不存在** | **Major（已修）** | 三处全部改为「看画布上该节点的状态徽章」，并加提示说明没有任务中心 |
+| 「生成历史」被误当作完整任务列表 | Important（已修） | 补明它内部按 `status === "succeeded"` 过滤，**只列已成功的结果** |
+| `20-reference` 路由表只有 2 行，且把 `/settings` 写成「设置（含 Agent 记忆）」 | Important（已修） | 补全为 8 行；`/settings` 改为「模型配置 / 个人渠道」——Agent 记忆早已不在设置页 |
+| 手册没说明**已退场路由会静默跳回首页** | Minor（已修） | 单列 `/tasks`、`/skills`、`/skill`、`/skills/reference` 四条 |
+
+- **「任务中心」这条错误的性质值得单独记**：它出现在 `90-troubleshooting`「提交不确定（524）」、`generate-images` 失败表、`generate-video` 提交后三处——**全都发生在「怕重复扣费、用户最焦虑也最不该浪费时间找入口」的时刻**。指错地方比不写更糟：用户会去侧边栏找一个叫「任务中心」的东西，找不到就可能重发。**排障指引里的路径错误，代价按场景的危险程度放大。**
+- **任务状态的真实位置**（三层查清）：
+  1. `canvas-node.tsx` 的 `data-task-status` + 节点左上角**状态徽章**——这是唯一能看到「排队/运行中/已完成/失败/已取消」的地方；
+  2. `canvas-node-content.tsx` 的 `generationTaskStatusLabel(displayTask)`，无任务身份时显示「等待任务状态」；
+  3. `canvas-generation-history-picker.tsx:34` `.filter((task) => task.status === "succeeded")`——**只列成功的**。
+- **设置页的三个名字不要混**：侧栏/顶栏入口叫「**模型配置**」（`/settings?section=channels`），分区标签叫「**个人渠道**」（描述「模型服务与个人工作流」），而面板标题随形态变——`localMode ? "本地模型渠道" : "个人渠道"`。手册原先只写了「本地模型渠道」这一种形态。
+- **两处特性开关（此前完全没记录）**：
+  - `/settings` 的 `channels` 分区挂在 `customChannelsEnabled` 之后，开关关闭时 `visibleConfigSections` 变**空数组**，报错文案变为「当前没有可用的系统模型，请联系管理员配置系统渠道」；
+  - `/plugins` 与 `/plugins/eagle` 由 `<RequireFeature feature="pluginCenterEnabled">` 把守，关闭时打不开插件中心。
+- **`/skills*` 全部重定向到 `/`——Batch 96 的又一佐证**：上一批据 `agent_retired_test.go` 判定 `/agent/*` 未注册，本批在**路由表**这一独立证据面上看到 `/skills`、`/skill`、`/skills/reference` 三条技能路由同样退场。**两条互不依赖的证据指向同一结论，比单条更可靠。**
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
