@@ -193,8 +193,8 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    screenshot_count: 9
-    review_note: 2026-09-27 组拖入（成员计数徽标）、外观面板四组设置运行时取证；对齐辅助线与网格吸附细节留 Gate B。
+    screenshot_count: 11
+    review_note: 2026-09-27 组拖入（成员计数徽标）、外观面板四组设置运行时取证；对齐辅助线与网格吸附细节留 Gate B。2026-10-02 M101 把此前只做过「0 → 1」一次的徽标取证**补成完整序列 0 → 1 → 2 → 1 → 0**——原稿只测过 1 个成员，而 1 条数据下「显示计数」与「只区分有无成员」给出完全相同的观察，两者无法区分。结论**手册原文正确**（徽标是真计数），源码亦对得上（`project.tsx:656` 逐节点累加 `metadata.groupId`）。同批**新发现一条手册缺失的规则**：节点**新建出来就落在组框内不算入组**，必须真的拖一次（`findContainingGroupId` 只在节点拖拽 mouseup 中调用，判据是中心点）；已做几何完全相同、只差"拖没拖过"的对照实验（0 vs 1，两次连读一致），并写入正文与 90-troubleshooting。联动亦由 1 成员升到 2 成员实测：组位移 [+200,-90]，两成员逐像素同位移，组外节点 [0,0] 不动。新增 2 张实测图（2 成员全景 + 徽标特写）。
     manual_pages:
       - 10-tasks/organize-canvas.md
   - id: undo-persistence
