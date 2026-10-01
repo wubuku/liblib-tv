@@ -33,12 +33,21 @@ export function FrameosGenerationOverlay() {
     }
     const startedAt = currentGeneration.startedAt;
     const durationMs = currentGeneration.durationMs;
+    // Batch 349: 此前 `p >= 100` 之后 interval 并不会停 —— 收尾的 setTimeout
+    // 是**每个 tick 都排一个**。500ms 窗口 / 50ms 间隔 = 11 个 timeout 陆续
+    // 触发，每个都 dispatch 一次 frameos-toast，而 showToast 无去重，于是
+    // 「生成完成 ✓」被弹 11 次（实测 11 次/单次生成）。
+    // 用 finished 闩锁 + 立刻停表，保证收尾每次生成只跑一次。
+    let finished = false;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
     const tick = () => {
       const elapsed = Date.now() - startedAt;
       const p = Math.min(100, (elapsed / durationMs) * 100);
       setProgress(p);
       setNow(Date.now());
-      if (p >= 100) {
+      if (p >= 100 && !finished) {
+        finished = true;
+        if (intervalId !== null) clearInterval(intervalId);
         // 完成
         setTimeout(() => {
           useFrameosStore.setState({ currentGeneration: null });
@@ -51,8 +60,10 @@ export function FrameosGenerationOverlay() {
       }
     };
     tick();
-    const id = setInterval(tick, 50);
-    return () => clearInterval(id);
+    intervalId = setInterval(tick, 50);
+    return () => {
+      if (intervalId !== null) clearInterval(intervalId);
+    };
   }, [currentGeneration]);
 
   if (!currentGeneration) return null;
