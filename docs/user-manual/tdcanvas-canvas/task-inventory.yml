@@ -133,8 +133,8 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    screenshot_count: 5
-    review_note: 2026-09-27 拖线到空白弹「利用画布节点生成」上下文菜单（按视频上游给出 文本/图片/视频生成+音频参考 四项）运行时取证；连线建立/删除/撤销此前已证。@mention chip 留 Gate B。
+    screenshot_count: 6
+    review_note: 2026-09-27 拖线到空白弹「利用画布节点生成」上下文菜单（按视频上游给出 文本/图片/视频生成+音频参考 四项）运行时取证；连线建立/删除/撤销此前已证。@mention chip 留 Gate B。 2026-10-01 M60 补齐第三条右键菜单：此前全册只对「空白处」与「节点上」两个菜单做过取证，**连线右键菜单从未取证**（正文仅 15 字一句带过、无图）。实测 `data-canvas-context-menu="connection"`，菜单**只有「删除」一项**（212x50 框），与源码 canvas-context-menu.tsx:84-85 的 `{menu.type === "node" ? <复制> : null}` + 删除完全吻合。另实测连线可点击区域就是贝塞尔曲线本身、无加粗命中层，**被节点盖住时鼠标怎么点都弹不出连线菜单**（elementFromPoint 恒命中节点）——已作为易错点写入正文。
     manual_pages:
       - 10-tasks/connect-references.md
   - id: generate-images
@@ -248,7 +248,7 @@ tasks:
       - '/canvas/:id'
     status: verified
     screenshot_count: 2
-    review_note: 2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。
+    review_note: 2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。 2026-10-01 M60 订正一处界面文案漂移：本页与 20-reference 三处把节点右键的复制操作写成「**制作副本**」，而应用实际文案是「**复制**」（i18n `canvas.controls.duplicate: "复制"`，运行时菜单项实测为「复制」）——读者按手册右键找「制作副本」根本找不到。已三处同步订正。操作本身没错（duplicateNode 偏移仍是 +36,+36，project.tsx:1034），只是名字对不上。
     manual_pages:
       - 10-tasks/shortcuts-help.md
   - id: manage-assets

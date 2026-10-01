@@ -216,6 +216,18 @@ screenshots:
     alt: 拖线到空白处松手后弹出利用画布节点生成菜单，含文本生成、图片生成、视频生成、音频参考四项
     sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
 
+  - file: screenshots/07-connect-references-connection-menu.png
+    task_id: connect-references
+    step: 在画布上一条连线的贝塞尔曲线上点右键，弹出该连线的上下文菜单
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '菜单根元素 data-canvas-context-menu="connection"（由源码 canvas-context-menu.tsx:67 的 menu.type 决定）；菜单内按钮逐条枚举实测仅 1 项「删除」，菜单框 212x50 @(1050,808)，enabled；同页另两处右键对照——空白处 6 项、节点上 2 项（复制/删除），三者菜单项数量与源码 :71-87 的三元分支逐条吻合'
+    visible_text: '删除'
+    alt: 在画布的一条连线上点右键弹出的菜单，菜单里只有红色的一项「删除」，与空白处的六项菜单、节点上的两项菜单都不同
+    sha256: 84202b8aec674f4568222151908ff3ff35893ae9c2f2f8a217ed73da9341bec6
+
   - file: screenshots/09-generate-images-create-menu.png
     task_id: generate-images
     step: 双击画布空白弹出「选择节点」菜单（注册表驱动）
