@@ -195,6 +195,24 @@ BeefTV 的选择是把它归为「**提交不确定**」：
 
 理解了「自动铺轨」，你就知道为什么刚进时间线就有一堆片段——它们不是 bug，而是画布素材的投影。
 
+## 同一个「复制」，两条路径，一条会备份一条不会
+
+BeefTV 里有三个看起来是一回事的「复制一张画布」，但走的是**两条不同的代码路径**，结果差别很大：
+
+| 你点的 | 走哪条路 | 上传服务器吗 |
+|---|---|---|
+| 画布库卡片菜单「创建副本」 | `createWorkspaceCanvasProject` → `createLocalCanvasProject` | **会** |
+| 画布顶栏菜单「复制画布」 | `importProject`（纯内存写入） | **不会** |
+| 只读横幅「复制项目」 | 同上 | **不会** |
+
+差别在最后一步有没有 `await syncLocalCanvasProjectToBackend(id)`。有它的那条会把副本存到服务端；没有的那条只把画布写进浏览器的 IndexedDB，然后**照样弹出「画布副本已创建」**。
+
+这不是「本地优先」的设计取舍，而是**实现漏了一步**——同一个文件里另一处创建画布的函数专门写了注释，说明为什么必须上传：
+
+> Creating a project only in IndexedDB leaves the runtime returning 404 and allows its detached-resource cleanup to delete media that the canvas still uses.
+
+**记住这条的实用价值**：在当前版本，「复制一张画布」**默认是不带备份的**。需要可靠副本时，去画布库里用卡片菜单的「创建副本」。实测细节见 [10-tasks/readonly-canvas.md](10-tasks/readonly-canvas.md)。
+
 ## 相关页面
 
 - 概念对应的操作页入口：[任务指南](10-tasks/README.md)

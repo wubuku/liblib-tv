@@ -70,6 +70,26 @@
 
 **已退场、访问会被重定向回首页的路由**：`/tasks`（任务中心）、`/skills`、`/skill`、`/skills/reference`——都随旧 Agent / 任务中心一起下线。旧链接不会 404，会静默跳回 `/`，所以「点进去发现回到了首页」是预期行为，不是故障。
 
+### 只能手敲、界面上没有入口的查询参数
+
+BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作会产生它们**——只能手动改网址：
+
+| 参数 | 位置 | 作用 | 备注 |
+|---|---|---|---|
+| `readonly=1` 或 `mode=readonly` | `/canvas/:id` | 进入只读模式（两种写法等价） | 见 [10-tasks/readonly-canvas.md](10-tasks/readonly-canvas.md) |
+| `fixture=<10 种>`、`fixtureMedia`、`libtvChrome` | `/canvas/:id` | 注入演示画布数据 | **只读模式下全部不注入** |
+| `demo=conversation` | `/create` | 固定数据的模拟对话流，页面顶部会挂出「模拟对话流 · 固定数据演示，不会调用真实生成接口」横幅 | 不会产生真实生成与费用 |
+| `stay=1` | `/canvas` | 新建画布后**留在画布库**，不进画布 | 源码注释写明是留给浏览器验收脚本的开关 |
+| `baseUrl` / `apiKey` | 全站 | 首次启动时预填第一个渠道，随后被自动从地址栏抹掉 | 供外部启动器注入，见下 |
+
+::: warning `baseUrl` / `apiKey` 会写进你的配置，慎用
+`?baseUrl=…&apiKey=…` 打开站点时，**首个渠道的 Base URL 会被直接改成你给的值**，然后这几个参数才从地址栏消失（刷新也回不来）。这通常由桌面端启动器注入；**手工用它把密钥放进地址栏，等于把密钥留在浏览器历史记录里**。请优先到 [10-tasks/plugins-management.md](10-tasks/plugins-management.md) 提到的模型配置界面手动填写。
+:::
+
+::: tip 「只读不写」的参数不等于「进不去」
+全库扫描下来，共有 10 个查询参数**只有读取、没有任何写入点**。但其中大半是**设计上就由外部提供**的深链——`baseUrl` 由外部启动器注入、`projectId` / `uuid` 来自你粘贴的 LibTV 链接、`readonly` 等属于手工调试入口。**「界面上没有按钮」不足以断言「这个功能不存在」**，逐个查过来源之后，真正属于「功能完整但无界面入口」的只有只读模式这一条。
+:::
+
 ::: warning 章节与工作流这两组路由进不去
 `/projects/:projectId/chapters/:chapterId` 与 `/projects/:projectId/workflow/:unitId/:stage` **在路由表里注册着**，但它们和 `/projects/:projectId` 走同一个入口组件，而该组件在当前构建下**无条件把地址改写成 `/canvas/:projectId`**（本地工作区模式恒开启）。所以你手动敲这两条 URL 会被弹回画布页，**不会 404、也看不到章节或工作流界面**。
 

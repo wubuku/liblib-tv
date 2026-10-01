@@ -554,3 +554,56 @@ tasks:
       故提交后的任务状态表现仅有源码证据。运行时同时印证了源码默认值 alloy/mp3/1x。
     manual_pages:
       - 10-tasks/generate-audio.md
+
+  - id: readonly-canvas
+    title: 只读画布与画布副本
+    role: beeftv-creator
+    frequency: rare
+    impact: medium
+    coverage: full
+    routes:
+      - '/canvas'
+      - '/canvas/{id}?readonly=1'
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.14 dev(:3001) 构建实测（2026-10-01，外部无头 Playwright 1440x900）：
+          普通模式 #canvas-main[data-canvas-readonly="false"]、无只读横幅、底部编辑坞与
+          「双击画布 · 自由生成节点」空态均在；?readonly=1 与 ?mode=readonly 两种写法结果完全相同，
+          data-canvas-readonly="true"、横幅「只读模式，如需创建请点击」+「复制项目」可见、
+          底部编辑坞整条消失、空态不渲染。点「复制项目」后跳转 /canvas/{新id}（不带只读参数），
+          data-canvas-readonly 变 "false"、编辑坞恢复、节点随副本带过。截图 54/55/56。
+      - type: static
+        note: >-
+          判定只有一行（web/src/pages/canvas/project.tsx:262）：
+          readOnly = searchParams.get("readonly")==="1" || searchParams.get("mode")==="readonly"；
+          全库零处写入这两个参数——界面上没有任何按钮/菜单/右键能产生只读网址。
+          透传点：data-canvas-readonly(:2847)、readOnly={readOnly}(:2873)、
+          interactive={!versions.preview && !readOnly}(:2958)、{!readOnly ? emptyCanvasState : null}(:3112)。
+          interactive=false 在 components/canvas/infinite-canvas.tsx 关掉滚轮缩放、指针平移/框选、
+          键盘快捷键与视口持久化（:74/:120/:152/:234/:324/:406）。
+          十个 fixture 注入 effect 开头均为 if (!projectLoaded || readOnly || ...) return，故只读下演示数据一律不注入。
+      - type: static
+        note: >-
+          **副本不上传（本批头条缺陷，三条复制路径不一致）**：
+          (1) 画布库卡片菜单「创建副本」(pages/canvas/index.tsx:150,165) →
+          createWorkspaceCanvasProject → createLocalCanvasProject，
+          内部 await syncLocalCanvasProjectToBackend(id)，会上传；
+          (2) 画布顶栏「复制画布」(canvas-project-top-bar.tsx:310 → project.tsx:731 duplicateCanvasFromMenu)
+          与 (3) 只读横幅「复制项目」(project.tsx:700 duplicateCurrentProject) →
+          store.importProject（use-canvas-store.ts:553，纯 set，无任何网络调用）+ flushCanvasStorePersistence（只写 IndexedDB），
+          不上传，且 (2) 仍会 message.success("画布副本已创建")。
+          运行时对照实测：走 (1) 后服务端画布列表新增「未命名项目 副本」；
+          走 (2) 弹出成功提示但对 /api/canvas-projects 的 PUT/POST/PATCH 写请求数为 0、列表条数不变。
+          同一文件 createLocalCanvasProject 的注释明确写过「只在 IndexedDB 建项目会让运行时返回 404」。
+    status: verified
+    review_note: >-
+      页面所有断言均有运行时或源码证据，只读模式本身可实测进入，故记 verified 而非 excluded——
+      与 art-critique（节点根本建不出来、无法实测）性质不同。
+      但用户的真实目标「分享只读链接给别人」在当前版本**不可达**：进不去只读模式，
+      唯一出口做出的副本又只在本机。手册按「能力完整但无入口 + 副本无备份」写，不给可操作的分享步骤。
+    review_condition: >-
+      判据随 verify-unreachable.py 的只读断言走：只要 (a) project.tsx:262 判定被删改，或
+      (b) 全库出现任一写入 readonly / mode=readonly 的导航代码，手册「无入口」结论即过期。
+    manual_pages:
+      - 10-tasks/readonly-canvas.md

@@ -75,6 +75,10 @@ run_case "2) 画布库导入补上入口点击" web/src/pages/canvas/index.tsx "
 run_case "3) AI 审美批改进「添加节点」清单" web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx "$HERE/selftest-fix-3-artcritique-menu.py" "ai-art-critique" "art-critique-no-create-entry"
 run_case "4) isLocalWorkspaceMode 改为可配置" web/src/services/workspace-mode.ts "$HERE/selftest-fix-4-workspace-mode.py" "__hosted" "canvas-library-no-join-project"
 run_case "5) 审美批改 setter 补上调用" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-5-artcritique-autostart.py" "void setArtCritiqueStartRequest" "art-critique-no-autostart"
+run_case "6) 只读模式接上界面入口" web/src/pages/canvas/canvas-project-top-bar.tsx "$HERE/selftest-fix-6-readonly-entry.py" "canvasSelftestReadonlyLink" "canvas-readonly-no-ui-entry"
+run_case "7) 复制副本补上后端同步" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-7-copy-sync.py" "await syncLocalCanvasProjectToBackend(id);" "canvas-copy-never-uploaded"
+run_case "8) stay=1 被提升为正式功能" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-8-stay-comment.py" "便于用户先确认再建" "canvas-stay-acceptance-only"
+run_case "9) 方向三：新增一个未归类的零写出参数" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-9-unmapped-param.py" "canvasSelftestUnmapped" "既不在豁免名单也不在缺陷登记里"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

@@ -10,7 +10,7 @@
 | 手册对应版本 | **v1.6.16**（公共最新发布 `3a74793`；运行时走查与截图摄于 v1.5.7–v1.6.14 构建（01 首页为 v1.6.14 实拍），v1.6.7–v1.6.14 增量已运行时或源码审计并标注于对应页面；**v1.6.15/16 增量为源码锚定**，已写入 generate-video / generate-images / 90-troubleshooting / 20-reference，待协调重启后补运行时实证） |
 | 源码锚点 | 调研证据锁定 `85c9686`/v1.5.7（702 处断言抽查 100% 吻合），增量差异已审计至 v1.6.16（覆盖 Seedance 付费确认/素材校验强化/企业协议修复/Windows 深度运行时与系统代理/导演台扩展/任务详情实时刷新） |
 | 目标 URL | 本地 `http://localhost:3001`（自托管站同构） |
-| 发布产物 | `.vitepress/dist/`（28+ 页 HTML，构建校验六步全绿） |
+| 发布产物 | `.vitepress/dist/`（33 页 HTML，构建校验六道闸全绿） |
 
 ## 角色与深度
 
@@ -24,29 +24,32 @@
 
 ## 覆盖率
 
-- 任务账本 25 项：**21 verified**（运行时走查或内容一致性审查通过；Batch 26 导演台三篇、Batch 31 timeline-editing、Batch 32 timeline-export、Batch 85 subtitle-highlights）/ **4 excluded**（带原因与开放条件表，见 PROGRESS §17c）；
-- 48 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt；Batch 86 清除了 3 张与他图字节相同的副本，**内容重复组归零**——每张图都是该页独有的视觉证据）；
+- 任务账本 31 项：**25 verified**（运行时走查或内容一致性审查通过）/ **6 excluded**（带原因与开放条件表，见 task-inventory.yml 的 `review_condition`）；
+- 54 张真实截图入册（screenshots/manifest.yml 逐张登记 sha256/定位证据/alt；Batch 86 清除了 3 张与他图字节相同的副本，**内容重复组归零**——每张图都是该页独有的视觉证据）；
+- 六道机械闸全绿：截图、端点、快捷键、排除条件、标签漂移、**不可达声明双向核对**（Batch 133 建，含方向三 URL 参数只读不写扫描）。其中「不可达声明」这道闸用于盯住**否定式断言**（「界面上没有入口」这类最会悄悄过期的话），并有 **9 例反向验证**证明它确实会在上游修复时报失效；
 - 界面文字逐字取自源码与运行时 DOM；v1.6.x 界面差异以文字标注。
 
-## 未覆盖项（4 项 excluded 摘要）
+## 未覆盖项（6 项 excluded 摘要）
 
 | 类别 | 任务 | 原因 |
 |---|---|---|
 | 付费边界 | media-versions | 版本族需真实生成产生 |
 | 面板未挂载 | cloud-agent、agent-memory-skills | 旧桌面 Agent 退场：交互组件无引用点、设置页无记忆/技能分区（后端 API 在位待新入口） |
 | 进程未启动 | local-runtime | 本环境为 Web 自托管：桌面端 v1.6.12 起自动下载深度组件，Web 模式仍需本机伴随进程 |
+| 代码在、无入口 | art-critique | 插件与节点均已注册，但「添加节点」是写死清单，全库无 UI 读插件注册表来提供创建 |
+| 路由重定向 | short-drama-project-workbench | `isLocalWorkspaceMode()` 硬编码 true，`/projects/:id` 被无条件改写到 `/canvas/:id`，约 49 个项目级界面枚举值不可达 |
 
 ## 已知限制
 
 1. **webview 点击不可靠**（与帧界 batch 292 同源）：部分下拉/菜单点击落空，剪辑台内部的运行时走查仍受阻；项目卡操作菜单端到端（Batch 23 合成点击走查）与模型下拉（Batch 23 结案：未配渠道设计性跳转模型配置，清单渠道驱动）已解决——均记录于 AUDIT.md；
 2. **视频模型下拉清单**：受同上限制暂以 Batch 299 源站 14 模型采样文字替代（当前值「2.0」已实证）；
 3. **生成操作**：按量计费，全部流程止于付费边界前一步（安全红线）；
-4. **depth-action 分叉**：`codex/depth-action-video-preview`（5 提交，备发布 v1.6.0）与 main 并行——注意 v1.6.12/13 已将 **Windows 深度运行时**以另一条路径并入 main（depth-runtime-v2 组件发布），分叉合流后仍需双向差异审计（重点：视频预览稳定性部分是否已被覆盖）。
+4. **只读分享不可用**：只读画布模式功能完整但**界面上零入口**（只能手敲 `?readonly=1`），而它唯一的出口「复制项目」做出的副本**只写本地缓存、从不上传服务端**——需要可靠副本请用画布库卡片菜单的「创建副本」。详见 `10-tasks/readonly-canvas.md`；
+5. **depth-action 分叉**：`codex/depth-action-video-preview`（5 提交，备发布 v1.6.0）与 main 并行——注意 v1.6.12/13 已将 **Windows 深度运行时**以另一条路径并入 main（depth-runtime-v2 组件发布），分叉合流后仍需双向差异审计（重点：视频预览稳定性部分是否已被覆盖）。
 
 ## 审计状态
 
-- Gate A：OK（25 tasks / 32 Markdown / 48 images）；
-- Gate B：17+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
-- 发布产物卫生：站内死链 0（`build-site.sh` 步骤 6 机械闸强制，已做反向验证）；
-- `--phase final`：OK（25 tasks / 32 Markdown files / 48 images）；
-- verify-docs.py：1169 文件全绿（Batch 26 复验）。
+- Gate A：OK（31 tasks / 38 Markdown / 54 images）；
+- Gate B：90+ 项走查记入 AUDIT.md（发现均已修复或如实记录）；
+- 发布产物卫生：站内死链 0（`build-site.sh` 内联机械闸强制，已做反向验证）；
+- 六道机械闸：全部接入 `build-site.sh`；第六道另有 `scripts/selftest-unreachable.sh` 的 9 例反向验证。

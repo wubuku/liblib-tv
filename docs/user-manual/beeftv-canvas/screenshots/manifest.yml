@@ -609,3 +609,36 @@ screenshots:
     visible_text: '全部项目 / 搜索项目 / 回收站 / 新建文件夹 / 开始创作 / 创建新的视频项目 / 短片项目 / 分镜草稿 / 角色设定 / 产品片头 / 空镜收集'
     alt: '画布库全景：页头只有搜索项目、回收站、新建文件夹三个控件，网格含开始创作卡片、一个「短片项目」文件夹与四张命名画布，每张卡下方标注更新日期；整页没有排序或筛选控件'
     sha256: 1e30a9296311f0f095369261526f7eca1bce7fdcccde88dd65e2275aabb9a73f
+  - file: screenshots/54-readonly-mode.png
+    task_id: readonly-canvas
+    step: '在画布网址后加 ?readonly=1 进入只读模式：右上角出现只读横幅与「复制项目」，底部编辑坞整条消失，中央无「双击画布」空态'
+    route: '/canvas/{id}?readonly=1'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '#canvas-main[data-canvas-readonly="true"] / .canvas-topbar-readonly-banner'
+    visible_text: '只读模式，如需创建请点击 / 复制项目 / 资产管理 / 100 %'
+    alt: '只读模式下的画布：右上角显示「只读模式，如需创建请点击」与「复制项目」按钮，底部中间的编辑坞整条消失，画布中央没有「双击画布」空态提示'
+    sha256: e321bd122d2a3e668c86cc4555982d708db010b538fc3b16bfa47841c19dd716
+  - file: screenshots/55-readonly-libtv-chrome.png
+    task_id: readonly-canvas
+    step: '只读模式叠加 ?fixture=libtv-readonly-dense：顶栏换成另一种只读样式，左侧画布标题、右侧只读提示 + 复制项目 + ✕ 关闭；演示数据因只读未注入，画布为空'
+    route: '/canvas/{id}?readonly=1&fixture=libtv-readonly-dense'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.canvas-libtv-readonly-bar'
+    visible_text: 'BLUE NIGHT蓝色奇妙夜 / 只读模式，如需创建请点击 / 复制项目'
+    alt: '另一种只读顶栏：左侧显示画布标题「BLUE NIGHT蓝色奇妙夜」，右侧是只读提示、复制项目按钮和关闭用的叉号'
+    sha256: c50b10549e4337893c863534a88c72487ce93d14e12dd8688f4c9a50d1c0b7da
+  - file: screenshots/56-canvas-copy-switcher.png
+    task_id: readonly-canvas
+    step: '顶栏画布切换面板展开，「画布 1」下方出现「画布 1 副本」；该副本走 importProject 路径，只写本地缓存，实测对 /api/canvas-projects 写请求数为 0'
+    route: '/canvas/{id}'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.canvas-topbar-canvas-menu-row'
+    visible_text: '画布 / 画布 1 / 画布 1 副本 / 未命名项目 副本'
+    alt: '画布切换面板展开后，画布 1 下方出现「画布 1 副本」一行，说明副本确实建出来了'
+    sha256: 0f2e4f3eb263c635de41b4302225bb1107d3167389239ecfa073d2dc5066582a

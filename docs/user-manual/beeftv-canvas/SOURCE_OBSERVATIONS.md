@@ -35,3 +35,26 @@
 - 新后端域：`backend/internal/depthruntime`（深度素材服务端拉取与校验）。
 手册已回写：generate-video（任务模式/三层限制/TaskTypeConstraint）、90-troubleshooting（审核/额度/路由三类）、local-runtime（后端 depthruntime 注记）、README 版本行。
 截图摄于 v1.5.7 构建；v1.6.x 界面差异（视频参数/错误文案）已用文字标注，下一轮重摄时更新。
+
+## v1.6.16 取证对象说明（Batch 130 起持续适用）
+
+BeefTV 工作区当前是 **detached HEAD `@852961a`（v1.6.14）**，而手册声明适用 **v1.6.16（`3a74793`）**。
+取证一律**读 `origin/main` 的对象**（`git show <rev>:<path>`、`git grep <rev>`），不读工作树——
+闸门脚本与本批全部源码结论均如此。Batch 130 曾逐文件比对确认所依赖的文件在两版间**逐字节相同**；
+若某批依赖的文件在两版间有差异，须在该批账本写明，不能默认相等。
+
+## Batch 135 新增证据锚点（只读画布 / 画布副本）
+
+| 断言 | 证据 | 位置 |
+|---|---|---|
+| 只读判定与两种等价写法 | static | `web/src/pages/canvas/project.tsx:262` |
+| 只读透传到画布容器与顶栏 | static | 同上 `:2847`、`:2873`、`:2894`、`:2958`、`:3112` |
+| `interactive=false` 关掉缩放/平移/框选/快捷键/视口持久化 | static | `web/src/components/canvas/infinite-canvas.tsx:74,120,152,234,324,406` |
+| 只读顶栏两种样式（普通 / LibTV chrome 多一个 ✕） | static | `web/src/pages/canvas/canvas-project-top-bar.tsx:140-157,335-343` |
+| 十个 fixture 在只读下一律不注入 | static | `web/src/pages/canvas/project.tsx:527-698`（每条 effect 开头含 `readOnly`） |
+| 只读入口零产出（无任何界面动作能生成只读网址） | static | 全库零处写入 `readonly` / `mode=readonly`；由 `verify-unreachable.py` 的 `canvas-readonly-no-ui-entry` 持续盯住 |
+| 副本不上传：三条复制路径两条走 `importProject` | static | `project.tsx:700-718`、`:731-757`；`use-canvas-store.ts:553`（纯 set，无网络） |
+| 对照组确实上传 | static | `services/local-workspace-repository.ts` 的 `createLocalCanvasProject` 含 `await syncLocalCanvasProjectToBackend(id)` |
+| 两种写法的界面表现、编辑坞/空态消失 | **runtime** | v1.6.14 dev :3001，外部无头 Playwright 1440×900，截图 54/55 |
+| 库内「创建副本」后端列表新增 vs 顶栏「复制画布」写请求数 0 | **runtime** | 同上，截图 56；`?stay=1` 保留在库内以便连续观测 |
+
