@@ -29,7 +29,7 @@ SOURCE = (
     "64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create"
 )
 CLONE = "http://localhost:4317/jimeng/canvas/demo"
-OUT = Path("docs/research/jimeng-canvas-batch807-2026-10-03")
+OUT = Path("docs/research/jimeng-canvas-batch810-2026-10-03")
 VW, VH = 1680, 826
 
 
@@ -81,9 +81,19 @@ def main() -> int:
     clo.save(OUT / "807-clone-full.png")
     print(f"源站 {src.size} / 复刻 {clo.size}")
 
+    # 锚在视口边角的固定条带。**必须用真实图片尺寸**而不是模块顶上的
+    # 视口常量：jimeng_headless 注入的 page 有自己的 viewport（实测两侧都
+    # 渲染成 1512×950），沿用 1680×826 会让 "dock" 那条带子裁到画布中部
+    # 的点阵上，diff 报告里出现一堆毫无意义的"差异"。
+    vw, vh = src.size
+    print(f"实际页面尺寸 {vw}x{vh}")
     regions = {
-        "topbar": ((0, 0, VW, 64), "x"),
-        "rail": ((0, 64, 72, VH), "y"),
+        "topbar": ((0, 0, vw, 64), "x"),
+        "rail": ((0, 64, 72, vh), "y"),
+        # dock 贴左下角：往上留 200px（够盖住小地图面板 118px + 底栏 36px）
+        "dock": ((0, vh - 200, 220, vh), "x"),
+        # 右缘一条窄带（Agent 抽屉关闭态）
+        "rightedge": ((vw - 120, 0, vw, 64), "x"),
     }
     for name, (box, axis) in regions.items():
         im = side_by_side(src, clo, box)

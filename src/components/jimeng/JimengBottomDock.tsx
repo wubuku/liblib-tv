@@ -34,10 +34,13 @@ export function JimengBottomDock() {
           type="button"
           aria-label="选择工具"
           onClick={() => setToolActive("select")}
-          className={`flex size-7 items-center justify-center rounded-md ${
+          // Batch 810 (SOURCE_FACT 2026-10-03 重测 @1512): 三枚 28×28 图标钮
+          // 圆角 **8px**（此前 rounded-md = 6px）；选中底色 **white/8**
+          // （此前 white/10）。缩放钮源站实测同为 6px，不动。
+          className={`flex size-7 items-center justify-center rounded-lg ${
             toolActive === "select"
-              ? "bg-white/10 text-white"
-              : "text-white/85 hover:bg-white/10"
+              ? "bg-white/[0.08] text-white"
+              : "text-white/85 hover:bg-white/[0.08]"
           }`}
         >
           <MousePointer2 size={16} />
@@ -47,8 +50,8 @@ export function JimengBottomDock() {
           aria-label="小地图"
           data-testid="dock-minimap"
           onClick={() => setMinimapOpen(!minimapOpen)}
-          className={`flex size-7 items-center justify-center rounded-md ${
-            minimapOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+          className={`flex size-7 items-center justify-center rounded-lg ${
+            minimapOpen ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
           }`}
         >
           <Map size={16} />
@@ -59,8 +62,8 @@ export function JimengBottomDock() {
           aria-label="显示连线"
           data-testid="dock-edges"
           onClick={() => setEdgesVisible(!edgesVisible)}
-          className={`flex size-7 items-center justify-center rounded-md ${
-            edgesVisible ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+          className={`flex size-7 items-center justify-center rounded-lg ${
+            edgesVisible ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
           }`}
         >
           <Spline size={16} />
