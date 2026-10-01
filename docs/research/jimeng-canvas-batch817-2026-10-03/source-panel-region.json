@@ -1,0 +1,174 @@
+{
+ "region": {
+  "tag": "button",
+  "testid": "",
+  "role": "",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-nowrap border-solid font-dreamina",
+  "box": [
+   1169,
+   351,
+   42,
+   42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "border": "0px solid rgb(229, 231, 235)",
+  "shadow": "none",
+  "z": "auto",
+  "pos": "static",
+  "overflow": "visible"
+ },
+ "items": [
+  {
+   "aria": "导出时间线",
+   "testid": "",
+   "txt": "",
+   "box": [
+    1169,
+    351,
+    42,
+    42
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "fs": "12px"
+  }
+ ],
+ "chain": [
+  {
+   "tag": "button",
+   "testid": "",
+   "role": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-nowrap border-solid font-dreamina",
+   "box": [
+    1169,
+    351,
+    42,
+    42
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "static",
+   "overflow": "visible"
+  },
+  {
+   "tag": "span",
+   "testid": "",
+   "role": "",
+   "cls": "inline-flex",
+   "box": [
+    1169,
+    351,
+    42,
+    42
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "static",
+   "overflow": "visible"
+  },
+  {
+   "tag": "span",
+   "testid": "",
+   "role": "",
+   "cls": "relative inline-flex",
+   "box": [
+    1169,
+    351,
+    42,
+    42
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "relative",
+   "overflow": "visible"
+  },
+  {
+   "tag": "div",
+   "testid": "",
+   "role": "",
+   "cls": "flex items-center gap-canvas-timeline-node-track-gap",
+   "box": [
+    1169,
+    351,
+    174,
+    42
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "static",
+   "overflow": "visible"
+  },
+  {
+   "tag": "div",
+   "testid": "timeline-toolbar",
+   "role": "",
+   "cls": "relative flex flex-none items-center justify-between h-canvas-timeline-node-toolbar p-canv",
+   "box": [
+    157,
+    339,
+    1198,
+    66
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "relative",
+   "overflow": "visible"
+  },
+  {
+   "tag": "div",
+   "testid": "timeline-flow-node-main-track",
+   "role": "",
+   "cls": "flex flex-col w-full min-h-0 h-full overflow-hidden bg-dreamina-canvas-frame text-dreamina",
+   "box": [
+    156,
+    338,
+    1200,
+    207
+   ],
+   "radius": "8px",
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "border": "1px solid rgba(255, 255, 255, 0.04)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "static",
+   "overflow": "hidden"
+  },
+  {
+   "tag": "div",
+   "testid": "timeline-flow-node",
+   "role": "",
+   "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors ",
+   "box": [
+    156,
+    338,
+    1200,
+    207
+   ],
+   "radius": "8px",
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "border": "0px solid rgb(229, 231, 235)",
+   "shadow": "none",
+   "z": "auto",
+   "pos": "relative",
+   "overflow": "visible"
+  }
+ ],
+ "innerText": ""
+}

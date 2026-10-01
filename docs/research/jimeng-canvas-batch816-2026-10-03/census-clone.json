@@ -170,6 +170,23 @@
   "bg": "rgba(0, 0, 0, 0)"
  },
  {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "Add tags",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   830,
+   183,
+   18,
+   18
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
   "tag": "div",
   "type": "",
   "role": "toolbar",
@@ -208,6 +225,23 @@
   "type": "button",
   "role": "",
   "testid": "",
+  "name": "播放",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   628,
+   311,
+   23,
+   23
+  ],
+  "radius": "3.35544e+07px",
+  "bg": "oklab(0 0 0 / 0.6)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
   "name": "图片",
   "nameVia": "aria-label",
   "disabled": false,
@@ -235,6 +269,57 @@
    40
   ],
   "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "取消静音",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   817,
+   424,
+   9,
+   9
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "全屏预览",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   831,
+   424,
+   9,
+   9
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "底部播放",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   440,
+   425,
+   9,
+   9
+  ],
+  "radius": "0px",
   "bg": "rgba(0, 0, 0, 0)"
  },
  {

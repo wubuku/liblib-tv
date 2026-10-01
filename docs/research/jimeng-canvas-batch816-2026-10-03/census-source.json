@@ -55,7 +55,7 @@
   "type": "button",
   "role": "",
   "testid": "canvas-node-summary-trigger",
-  "name": "Canvas node summary: 节点 7",
+  "name": "Canvas node summary: 节点 6",
   "nameVia": "aria-label",
   "disabled": false,
   "box": [
@@ -208,29 +208,12 @@
   "type": "button",
   "role": "",
   "testid": "",
-  "name": "图片",
-  "nameVia": "aria-label",
-  "disabled": false,
-  "box": [
-   16,
-   350,
-   40,
-   40
-  ],
-  "radius": "8px",
-  "bg": "rgba(0, 0, 0, 0)"
- },
- {
-  "tag": "button",
-  "type": "button",
-  "role": "",
-  "testid": "",
   "name": "导出时间线",
   "nameVia": "aria-label",
   "disabled": false,
   "box": [
    1169,
-   361,
+   330,
    42,
    42
   ],
@@ -247,9 +230,26 @@
   "disabled": false,
   "box": [
    1217,
-   361,
+   330,
    126,
    42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "图片",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   350,
+   40,
+   40
   ],
   "radius": "8px",
   "bg": "rgba(0, 0, 0, 0)"
@@ -276,6 +276,23 @@
   "type": "button",
   "role": "",
   "testid": "",
+  "name": "添加素材到时间线",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   229,
+   417,
+   1113,
+   84
+  ],
+  "radius": "6px",
+  "bg": "rgba(255, 255, 255, 0.04)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
   "name": "音频",
   "nameVia": "aria-label",
   "disabled": false,
@@ -292,30 +309,13 @@
   "tag": "button",
   "type": "button",
   "role": "",
-  "testid": "",
-  "name": "添加素材到时间线",
-  "nameVia": "aria-label",
-  "disabled": false,
-  "box": [
-   229,
-   448,
-   1113,
-   84
-  ],
-  "radius": "6px",
-  "bg": "rgba(255, 255, 255, 0.04)"
- },
- {
-  "tag": "button",
-  "type": "button",
-  "role": "",
   "testid": "timeline-mute-button",
   "name": "静音",
   "nameVia": "aria-label",
   "disabled": false,
   "box": [
    169,
-   469,
+   438,
    42,
    42
   ],

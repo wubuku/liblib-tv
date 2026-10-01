@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -38,8 +39,24 @@ SRC = (
     "https://jimeng.jianying.com/ai-tool/ai-canvas/"
     "64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create"
 )
-CLONE = "http://127.0.0.1:4317/jimeng/canvas/demo"
+# ⚠️ 必须用 `localhost`，**不能**写 `127.0.0.1`。两者是不同 origin，而
+# `next dev` 对非 localhost 主机的请求会让 React **完全不 hydrate** ——
+# 页面只剩 SSR 静态 HTML：节点不渲染、`defaultViewport` 不生效、所有交互
+# 失效，且**零报错、零警告**（实测 2026-10-04，见台账 §27）。
+# 后果不是"读不到"，是**读到一份降级页面**，据此得出的"复刻缺失 X"
+# 全是假象。本仓库所有 verifier 用的都是 localhost，本脚本原先写错。
+CLONE = os.environ.get("JIMENG_BASE_URL", "http://localhost:4317") + "/jimeng/canvas/demo"
 OUT = Path(__file__).resolve().parent.parent / "docs/research/jimeng-canvas-batch816-2026-10-03"
+
+# hydrate 探针：React 接管后会在根 DOM 节点上挂 `__reactFiber$*` / `__reactProps$*`。
+# 普查/验收**在读任何复刻侧数字之前**必须先过这一关，否则量的是 SSR 骨架。
+HYDRATED = """() => {
+  const el = document.getElementById('__next')
+          || document.body.firstElementChild
+          || document.body;
+  return Object.keys(el).some(k => k.startsWith('__reactFiber$'))
+      && Object.keys(el).some(k => k.startsWith('__reactProps$'));
+}"""
 
 # 计入普查的标签：可交互元素 + 少量语义容器（浮层/菜单/工具条）
 SELECTOR = (
@@ -103,6 +120,18 @@ def census(page, url: str, tag: str, settle_ms: int) -> list[dict]:
         # 归 100% 再读：位置读数才可比（只比存在性也保持一致口径）
         page.keyboard.press("Meta+1")
         page.wait_for_timeout(700)
+    else:
+        # 复刻侧先过 hydrate 闸门。**不是防御性编程，是必需的**：非 localhost
+        # 主机拿到的页面只有 SSR 骨架，普查会把"没渲染"读成"产品缺失"。
+        for _ in range(12):
+            if page.evaluate(HYDRATED):
+                break
+            page.wait_for_timeout(1000)
+        else:
+            raise SystemExit(
+                f"复刻侧未 hydrate（{CLONE}）。读下去只会得到一份 SSR 骨架，"
+                "所有'复刻缺失'结论都是假象 —— 换 localhost 再来。详见台账 §27。"
+            )
     return page.evaluate(CENSUS, SELECTOR)
 
 

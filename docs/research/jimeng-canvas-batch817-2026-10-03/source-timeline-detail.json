@@ -1,0 +1,488 @@
+{
+ "shell": {
+  "rel": [
+   0,
+   0,
+   1200,
+   207
+  ],
+  "radius": "8px",
+  "bg": "color(srgb 0.12549 0.12549 0.12549)",
+  "border": "0px solid rgb(229, 231, 235)",
+  "shadow": "none",
+  "padding": "0px",
+  "overflow": "visible"
+ },
+ "testids": [
+  {
+   "testid": "flow-node-target-handle",
+   "rel": [
+    -30,
+    44,
+    60,
+    120
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": ""
+  },
+  {
+   "testid": "flow-node-title",
+   "rel": [
+    0,
+    -32,
+    69,
+    32
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "13px",
+   "txt": "时间线 1"
+  },
+  {
+   "testid": "flow-node-selected-tag",
+   "rel": [
+    1176,
+    -32,
+    24,
+    24
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "13px",
+   "txt": ""
+  },
+  {
+   "testid": "timeline-flow-node-main-track",
+   "rel": [
+    0,
+    0,
+    1200,
+    207
+   ],
+   "radius": "8px",
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "fs": "12px",
+   "txt": "00:00/00:00全屏编辑00:0000:0500:1000:1500:20"
+  },
+  {
+   "testid": "timeline-toolbar",
+   "rel": [
+    1,
+    1,
+    1198,
+    66
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "00:00/00:00全屏编辑"
+  },
+  {
+   "testid": "timeline-playback-clock",
+   "rel": [
+    566,
+    22,
+    123,
+    24
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "18px",
+   "txt": "00:00/00:00"
+  },
+  {
+   "testid": "timeline-full-passive-track",
+   "rel": [
+    1,
+    67,
+    1198,
+    139
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "00:0000:0500:1000:1500:2000:2500:30添加素材到"
+  },
+  {
+   "testid": "timeline-track-gutter",
+   "rel": [
+    1,
+    67,
+    66,
+    139
+   ],
+   "radius": "0px",
+   "bg": "color(srgb 0.12549 0.12549 0.12549)",
+   "fs": "12px",
+   "txt": ""
+  },
+  {
+   "testid": "timeline-mute-button",
+   "rel": [
+    13,
+    121,
+    42,
+    42
+   ],
+   "radius": "6px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "13px",
+   "txt": ""
+  },
+  {
+   "testid": "timeline-node-track-divider",
+   "rel": [
+    66,
+    67,
+    1,
+    139
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": ""
+  },
+  {
+   "testid": "timeline-passive-track-viewport",
+   "rel": [
+    67,
+    67,
+    1132,
+    139
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "00:0000:0500:1000:1500:2000:2500:30添加素材到"
+  },
+  {
+   "testid": "timeline-track-canvas",
+   "rel": [
+    73,
+    67,
+    1126,
+    139
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "00:0000:0500:1000:1500:2000:2500:30添加素材到"
+  },
+  {
+   "testid": "timeline-ruler",
+   "rel": [
+    73,
+    67,
+    1126,
+    27
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "13.5px",
+   "txt": "00:0000:0500:1000:1500:2000:2500:30"
+  },
+  {
+   "testid": "timeline-ruler-interaction-extension",
+   "rel": [
+    73,
+    55,
+    1126,
+    12
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "13.5px",
+   "txt": ""
+  },
+  {
+   "testid": "timeline-clip-track",
+   "rel": [
+    73,
+    100,
+    1126,
+    84
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "添加素材到时间线"
+  },
+  {
+   "testid": "timeline-passive-source-picker-slot",
+   "rel": [
+    73,
+    100,
+    1113,
+    84
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "12px",
+   "txt": "添加素材到时间线"
+  },
+  {
+   "testid": "timeline-empty-track-label",
+   "rel": [
+    567,
+    126,
+    156,
+    33
+   ],
+   "radius": "0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "fs": "19.5px",
+   "txt": "添加素材到时间线"
+  }
+ ],
+ "ctl": [
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "rel": [
+    1176,
+    -32,
+    24,
+    24
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgba(255, 255, 255, 0.35)",
+   "fs": "13px",
+   "txt": ""
+  },
+  {
+   "aria": "导出时间线",
+   "testid": "",
+   "rel": [
+    1013,
+    13,
+    42,
+    42
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "fs": "12px",
+   "txt": ""
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": "",
+   "rel": [
+    1061,
+    13,
+    126,
+    42
+   ],
+   "radius": "8px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "fs": "13px",
+   "txt": "全屏编辑"
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "rel": [
+    13,
+    121,
+    42,
+    42
+   ],
+   "radius": "6px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "fs": "13px",
+   "txt": ""
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": "",
+   "rel": [
+    73,
+    100,
+    1113,
+    84
+   ],
+   "radius": "6px",
+   "bg": "rgba(255, 255, 255, 0.04)",
+   "color": "rgba(255, 255, 255, 0.35)",
+   "fs": "13px",
+   "txt": "添加素材到时间线"
+  }
+ ],
+ "leaves": [
+  {
+   "rel": [
+    20,
+    -32,
+    49,
+    24
+   ],
+   "txt": "时间线 1",
+   "fs": "13px",
+   "color": "rgba(255, 255, 255, 0.35)"
+  },
+  {
+   "rel": [
+    566,
+    22,
+    52,
+    24
+   ],
+   "txt": "00:00",
+   "fs": "18px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    624,
+    22,
+    6,
+    24
+   ],
+   "txt": "/",
+   "fs": "18px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    636,
+    22,
+    52,
+    24
+   ],
+   "txt": "00:00",
+   "fs": "18px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    1100,
+    18,
+    78,
+    33
+   ],
+   "txt": "全屏编辑",
+   "fs": "19.5px",
+   "color": "rgb(255, 255, 255)"
+  },
+  {
+   "rel": [
+    75,
+    70,
+    54,
+    15
+   ],
+   "txt": "00:00",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    235,
+    70,
+    53,
+    15
+   ],
+   "txt": "00:05",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    396,
+    70,
+    50,
+    15
+   ],
+   "txt": "00:10",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    556,
+    70,
+    49,
+    15
+   ],
+   "txt": "00:15",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    717,
+    70,
+    53,
+    15
+   ],
+   "txt": "00:20",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    877,
+    70,
+    52,
+    15
+   ],
+   "txt": "00:25",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    1038,
+    70,
+    53,
+    15
+   ],
+   "txt": "00:30",
+   "fs": "13.5px",
+   "color": "rgba(255, 255, 255, 0.2)"
+  },
+  {
+   "rel": [
+    567,
+    126,
+    156,
+    33
+   ],
+   "txt": "添加素材到时间线",
+   "fs": "19.5px",
+   "color": "rgba(255, 255, 255, 0.35)"
+  },
+  {
+   "rel": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "txt": "时间线: 1 visual track, 0 audio tracks, 0 c",
+   "fs": "12px",
+   "color": "rgb(255, 255, 255)"
+  }
+ ],
+ "innerText": [
+  "时间线 1",
+  "00:00",
+  "/",
+  "00:00",
+  "全屏编辑",
+  "00:00",
+  "00:05",
+  "00:10",
+  "00:15",
+  "00:20",
+  "00:25",
+  "00:30",
+  "添加素材到时间线",
+  "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+ ]
+}

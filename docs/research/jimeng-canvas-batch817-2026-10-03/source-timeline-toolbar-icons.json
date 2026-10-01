@@ -1,0 +1,226 @@
+{
+ "icons": [
+  {
+   "tag": "div",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "flex items-center gap-canvas-timeline-node-track-gap",
+   "rel": [
+    13,
+    13,
+    90,
+    42
+   ]
+  },
+  {
+   "tag": "span",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "flex h-canvas-timeline-node-control items-center justify-center w-canvas-timelin",
+   "rel": [
+    13,
+    13,
+    42,
+    42
+   ]
+  },
+  {
+   "tag": "svg",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    22,
+    22,
+    24,
+    24
+   ]
+  },
+  {
+   "tag": "g",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    26,
+    26,
+    15,
+    17
+   ]
+  },
+  {
+   "tag": "path",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    26,
+    26,
+    6,
+    17
+   ]
+  },
+  {
+   "tag": "path",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    35,
+    26,
+    6,
+    17
+   ]
+  },
+  {
+   "tag": "span",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "flex h-canvas-timeline-node-control items-center justify-center w-canvas-timelin",
+   "rel": [
+    61,
+    13,
+    42,
+    42
+   ]
+  },
+  {
+   "tag": "svg",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    70,
+    22,
+    24,
+    24
+   ]
+  },
+  {
+   "tag": "path",
+   "testid": "",
+   "role": "",
+   "aria": "",
+   "title": "",
+   "tabindex": "",
+   "cursor": "grab",
+   "pe": "all",
+   "cls": "[object SVGAnimatedString]",
+   "rel": [
+    72,
+    24,
+    19,
+    19
+   ]
+  }
+ ],
+ "focusables": [
+  {
+   "tag": "div",
+   "tabindex": "-1",
+   "aria": "",
+   "rel": [
+    0,
+    -32,
+    69,
+    32
+   ]
+  },
+  {
+   "tag": "button",
+   "tabindex": "-1",
+   "aria": "Add tags",
+   "rel": [
+    1176,
+    -32,
+    24,
+    24
+   ]
+  },
+  {
+   "tag": "button",
+   "tabindex": "",
+   "aria": "导出时间线",
+   "rel": [
+    1013,
+    13,
+    42,
+    42
+   ]
+  },
+  {
+   "tag": "button",
+   "tabindex": "",
+   "aria": "全屏编辑",
+   "rel": [
+    1061,
+    13,
+    126,
+    42
+   ]
+  },
+  {
+   "tag": "button",
+   "tabindex": "",
+   "aria": "静音",
+   "rel": [
+    13,
+    121,
+    42,
+    42
+   ]
+  },
+  {
+   "tag": "button",
+   "tabindex": "",
+   "aria": "添加素材到时间线",
+   "rel": [
+    73,
+    100,
+    1113,
+    84
+   ]
+  }
+ ],
+ "tbW": 1198
+}

@@ -168,7 +168,15 @@ export function JimengNodeToolbar({
 
         <button
           type="button"
-          aria-label="全屏"
+          // Batch 817：同一概念此前有**三套**无障碍名 ——
+          //   这里 `全屏` / 媒体卡与图片工具条 `全屏预览` / 预览浮层 `退出全屏预览`。
+          // 后两者语义不同（进入 vs 退出），不该合并；这一处是**纯漂移**：
+          // 可见文案与它自己的 onAction 动作名（"全屏预览"）都对不上。
+          // 收口到 `全屏预览`（2/3 处在用，且与动作名一致）。
+          // ⚠️ 源站对照**未取证**：fixture 里所有媒体节点都没加载出媒体
+          // （`No resources: 0 ready, 0`），拿不到源站该按钮的无障碍名。
+          // 故这是 CLONE_DECISION，**不写进 SOURCE_FACT**，台账 §27.3 已记。
+          aria-label="全屏预览"
           onClick={() => onAction?.("全屏预览")}
           className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
         >
