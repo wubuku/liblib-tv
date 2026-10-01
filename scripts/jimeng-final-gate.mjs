@@ -42,16 +42,26 @@ const run = (label, cmd, args) => {
   const r = run('alt', process.execPath, [join('scripts', 'jimeng-alt-audit.mjs')]);
   record('1/8 截图 alt 审计', r.ok, (r.out.match(/截图总数.*|无冲突|无问题/g) || [r.out.trim().split('\n').pop()]).join(' / '));
 }
-// ---------- 2. 交叉一致性 ----------
-// ⚠️ 这是**扫读器**不是断言门：它列出「可疑命中 N 处」供人工判读，
-//    退出码恒为 0 ⇒ 无论命中多少，这道门都打 ✅。
-//    批次 58 把它写进记录行，是为了不让「✅」被误读成「没有可疑命中」——
-//    实际最近一次跑出的是 59 处。判读标准见 AUDIT.md「交叉一致性审计」。
+// ---------- 2. 交叉一致性（批次 66 起：不再是纯扫读器） ----------
+// 🔧 **批次 66 把这道门从「恒绿」改成「会红」**。
+// 旧版只跑 jimeng-crosscheck.mjs：它列出「可疑命中 N 处」供人工判读，
+// 退出码**恒为 0** ⇒ 无论命中多少都打 ✅（批次 58 已在记录行里写明这点）。
+//
+// 现在跑 **jimeng-crosscheck-gate.mjs**（双向不变式）：
+//   ① 命中台账（AUDIT/SOURCE_OBSERVATIONS/PROGRESS/FINAL-REPORT）→ 只计数，不失败
+//   ② 命中正文/概念/排障页 → 必须在白名单里且**逐字**对得上，否则 FAIL
+//   ③ 白名单里对不上任何命中的条目 → FAIL（防「删掉条目就安静了」）
+// 另附 v2 扫读器（递归，覆盖 164 个 .md）的汇总，作为信息行保留。
 {
-  const r = run('crosscheck', process.execPath, [join('scripts', 'jimeng-crosscheck.mjs')]);
-  const m = r.out.match(/可疑命中 \d+ 处/);
-  record('2/8 交叉一致性（扫读器：✅ 只代表脚本跑通，不代表没有可疑命中）', r.ok,
-    (m ? m[0] + '（需人工判读）' : r.out.trim().split('\n').pop()));
+  const r = run('crosscheck-gate', process.execPath, [join('scripts', 'jimeng-crosscheck-gate.mjs')]);
+  const scan = run('crosscheck2', process.execPath, [join('scripts', 'jimeng-crosscheck2.mjs')]);
+  const mGate = r.out.match(/扫描 \d+ 个 Markdown，命中 \d+ 处/) || [];
+  const mUser = r.out.match(/正文\/概念\/排障（受管）：\d+ 处，白名单 \d+ 条/) || [];
+  const mLed = r.out.match(/台账（豁免，只计数）：\d+ 处/) || [];
+  const mVerdict = r.out.match(/(✅ 交叉一致性双向门通过[^\n]*|🔴 双向门不通过)/) || [];
+  const mScan = scan.out.match(/v2 覆盖 \d+ 个文件 → \d+ 处命中/) || [];
+  record('2/8 交叉一致性双向门（未判读命中 0 且白名单无陈旧条目才算通过）', r.ok,
+    [mGate[0], mLed[0], mUser[0], `v2 扫读器：${mScan[0] || '?'}`, mVerdict[0]].filter(Boolean).join(' ｜ '));
 }
 // ---------- 3/4. gate-a 与 final ----------
 for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
