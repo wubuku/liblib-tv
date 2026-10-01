@@ -1,6 +1,6 @@
 # 任务指南（How-to）
 
-> 按「你想做什么」组织的操作页，共 22 篇：从建节点、传素材、连参考，到生成图片/视频、时间线剪辑、字幕、导演台编排，再到插件与本地推理。
+> 按「你想做什么」组织的操作页，共 23 篇：从建节点、传素材、连参考，到生成图片/视频、时间线剪辑、字幕、导演台编排，再到插件与本地推理。
 
 不知道从哪开始，先读 [快速开始：第一组「素材 → 生成」](../00-quickstart.md)；遇到具体报错，直接查 [故障排查](../90-troubleshooting.md)。
 
@@ -11,6 +11,6 @@
 | 整理与历史 | [整理画布、Frame 分组与外观](organize-canvas.md) · [撤销重做、版本历史与回收站](undo-history-versions.md) · [快捷键与帮助中心](shortcuts-help.md) |
 | 时间线 | [时间线剪辑器：轨道、片段与预览](timeline-editing.md) · [字幕关键词高亮与 SRT](subtitle-highlights.md) · [时间线导出 MP4 与白膜视频录制](timeline-export.md) |
 | 导演台 | [导演台入门：镜头、运镜与检查器](director-basics.md) · [关键帧动画与白膜视频录制](director-keyframes-record.md) · [角色骨骼与姿势](director-rig-bones.md) |
-| Agent 与运维 | [云端 Agent：发起任务、审批与插话](cloud-agent.md) · [Agent 记忆与技能](agent-memory-skills.md) · [插件管理](plugins-management.md) · [本地伴随进程（深度/线稿/姿态）](local-runtime.md) |
+| Agent 与运维 | [云端 Agent：发起任务、审批与插话](cloud-agent.md) · [Agent 记忆与技能](agent-memory-skills.md) · [插件管理](plugins-management.md) · [AI 审美批改（当前无入口）](art-critique.md) · [本地伴随进程（深度/线稿/姿态）](local-runtime.md) |
 
 概念层面的疑问（三层历史、生成落账事务、连线顺序即引用编号、提交不确定等）见 [概念：BeefTV 是怎么工作的](../30-concepts.md)；键位全表、路由与接口清单见 [参考：快捷键、路由与端点](../20-reference.md)。

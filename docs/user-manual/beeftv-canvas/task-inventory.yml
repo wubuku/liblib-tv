@@ -354,6 +354,39 @@ tasks:
     manual_pages:
       - 10-tasks/agent-memory-skills.md
   # —— 插件与扩展 ——
+  - id: art-critique
+    title: AI 审美批改（插件/节点已注册但画布上无创建入口）
+    role: beeftv-creator
+    frequency: rare
+    impact: medium
+    coverage: full
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.14 运行时（1440x900）：「添加节点」菜单默认列表 8 项无 AI 审美批改；点开菜单自带搜索框
+          （aria-label=搜索节点）依次搜「批改」「审美」「AI」「插件」**全部零结果**，而搜「绘图」「文件夹」
+          「批量」均命中——证明搜索本身有效、是该节点根本不在命令清单里。插件页只显示「画布节点」分类标签，
+          无任何插入按钮。
+      - type: static
+        note: >-
+          插件 ai-art-critique（内置可信，surfaces node/fullscreen）contributes canvasNodes 注册了
+          ART_CRITIQUE_NODE_TYPE=ai-art-critique（标题「AI 审美批改」、560×420、acceptsInputKind=image、
+          showOutputConnection=false）；但 registerPluginCanvasNodes 只把定义登记给**渲染**用，
+          没有任何 UI 读取插件注册表来提供创建，而「添加节点」是 add-node-menu-tools.tsx 的写死清单。
+          另：manifest 描述里的 canvas_start_art_critique 从未注册为动作。
+          成本锚定：ART_CRITIQUE_MAX_MODEL_CALLS=9，九个阶段工具
+          analyze_art_scene / review_art_{composition,color,lighting,structure}（Promise.allSettled 并行）/
+          aggregate_art_critique / ground_art_critique_issues / verify_art_critique /
+          generate_art_edit_prompts。评分体系 4 大类 18 项。输入要求上游恰好 1 张图片。
+    routes:
+      - '/canvas'
+    status: excluded
+    review_note: >-
+      排除原因有二且互相独立：① 画布上无创建入口，运行时无法构造该节点；
+      ② 即使可构造，一次批改最多 9 次模型调用，属付费边界，本手册不触发。
+      故本条按「已实现但不可达」记录，不计入 verified。
+    manual_pages:
+      - 10-tasks/art-critique.md
   - id: plugins-management
     title: 插件管理（六内置：工作流/审美批改/优化器/Eagle/媒体转换/剪辑台）
     role: beef-admin

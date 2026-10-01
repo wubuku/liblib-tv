@@ -84,6 +84,7 @@ export default defineConfig({
           { text: '云端 Agent', link: '/10-tasks/cloud-agent' },
           { text: 'Agent 记忆与技能', link: '/10-tasks/agent-memory-skills' },
           { text: '插件管理', link: '/10-tasks/plugins-management' },
+          { text: 'AI 审美批改（当前无入口）', link: '/10-tasks/art-critique' },
           { text: '本地伴随进程', link: '/10-tasks/local-runtime' },
         ],
       },

@@ -26,6 +26,7 @@
 | 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [30-concepts.md](30-concepts.md) |
 | 画布库里找不到「按名称排序」「按项目筛选」 | 这两个控件**当前版本不存在**——排序恒为「最近更新」；筛选能力写了但没接界面 | [manage-canvases.md](10-tasks/manage-canvases.md) |
 | 画布库里找不到「导入」 | **当前版本没有导入入口**。整套导入代码都在，但打开文件选择框的那次点击没接到任何控件上 | [manage-canvases.md](10-tasks/manage-canvases.md) |
+| 插件页有「AI 审美批改」，画布上却建不出这个节点 | 插件与节点**都已注册**，但没有任何界面读取注册表来提供创建；菜单搜索「批改」零结果 | [art-critique.md](10-tasks/art-critique.md) |
 | 画布库多选后没有「加入项目」「移出项目」 | 这两个按钮**只在云端项目模式渲染**，该模式恒不开启，不是被禁用 | [manage-canvases.md](10-tasks/manage-canvases.md) |
 | 敲 `/projects/xxx/chapters/yyy` 被弹回画布 | 章节/工作流路由**已注册但恒被改写**，是「进不去」不是「没有」 | [20-reference.md](20-reference.md) |
 | 开着两个标签，我改的东西不见了 | 改到**同一个字段**时先落盘的赢，后改的**静默让位且不提示**；改到不同角落则两边都保住 | [30-concepts.md](30-concepts.md) |
