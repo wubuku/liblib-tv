@@ -439,3 +439,23 @@ Batch 335 清了 5 处恒真断言，但**没有防复发机制**。本批固化
 → Found 1 / EXIT=1；还原 → 0 vacuous in 452 scripts / EXIT=0。
 
 复跑：liblib437 PASS、liblib448 PASS。
+
+## Batch 337（2026-10-01）：断言门禁接入 CI
+
+`.github/workflows/ci.yml` 新增 `Assertion quality gate`（Type check 之后、
+Build 之前，早失败省时间）。CI 现状：Checkout → Node → npm ci → Lint →
+Type check → **Assertion gate** → Build。
+
+**门禁在 CI 环境下的可用性已实测**：用 `git archive HEAD | tar -x` 还原出与 CI
+等价的干净副本 → `0 vacuous assertions in 451 verifier scripts, EXIT=0`；
+门禁只依赖 Python 标准库，无第三方依赖。✅
+
+🔴 **顺带实测：`verify-docs.py` 目前不能进 CI**（干净 checkout 必失败）：
+  - `research/upstream/*` 下的 `.ts` → **submodule 未初始化**；
+  - `docs/user-manual/*/screenshots/*.png` → **被 gitignore**。
+即它**只在本地工作区能过**（那里有 submodule 内容和被忽略的产物）。
+接进 CI 会让每次 push 都红 → 本批**刻意不接**，并在 workflow 注释里写明原因
+与前置条件（需先让脚本区分「产物缺失」与「链接写错」）。
+
+> 教训：加 CI 步骤前先在**干净 checkout** 上验一次。本地能跑 ≠ CI 能跑。
+> 与 Batch 329「13 处各自手写快照」同源 —— 分散的隐式假设总会在某刻集中爆发。
