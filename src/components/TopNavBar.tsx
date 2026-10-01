@@ -183,8 +183,14 @@ export function TopNavBar() {
         <button
           type="button"
           aria-label="开通会员 限时 45 折"
-          title="开通会员 限时 45 折"
-          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+          // Batch 358: 此前是**启用、无 handler、带 `hover:bg-[#333]`** 的按钮 ——
+          // 一个会员付费入口的样子, 点下去什么都不发生。**付费动作按纪律绝不接线**,
+          // 所以这里不加 onClick, 改��去掉悬停反馈 + cursor 默认 + title 说明。
+          // 源站 2026-09-11 直证该入口存在且在「积分余额」之前（见上方注释）,
+          // 那个已采样的形态与顺序不动。
+          title="开通会员为付费操作，克隆侧不提供"
+          data-inert="true"
+          className="flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs"
         >
           {/* Batch 198: 源站会员入口为青色商店图标（--nt-cyan-400）。 */}
           <MemberShopGlyph className="size-4 text-[#4de1f4]" />
@@ -194,8 +200,13 @@ export function TopNavBar() {
         <button
           type="button"
           aria-label="积分余额"
-          title="积分余额"
-          className="flex h-8 items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs hover:bg-[#333]"
+          // Batch 358: 积分余额是**读数**, 不是控件。此前它是个启用、无 handler、
+          // 还带 `hover:bg-[#333]` 的 <button> —— 悬停会亮, 像能点。
+          // 保留 <button> 标签(避免动已采样的顶栏结构与门禁选择器), 但去掉悬停
+          // 反馈与 pointer 手型, 并在 title 里说明它为什么不会有反应。
+          title="积分余额（读数，无可点操作）"
+          data-inert="true"
+          className="flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs"
         >
           <BoltGlyph className="size-4 text-current" />
           <span>100</span>

@@ -1,0 +1,144 @@
+{
+  "batch": 358,
+  "defect": "liblib 画布线 16 个 UI 态里共 95 个「启用、无 handler」的控件: 教程四项 / 生成历史卡片的查看·使用·下载 / 时间倒序 / 卡片收藏×40+ / 筛选 / 工具箱模板说明与模板选择 / Agent 历史对话·设置·CLI。全部带悬停反馈, 看着能点, 点了什么也不发生。",
+  "fix": "保持启用(不动已采样的源站形态: batch97 钉住 Agent 三项 is_disabled()==False, batch106/121 断言教程四项可见), 去掉悬停骗人的反馈、cursor 改默认、加 title 说明为什么没反应。付费入口「开通会员」保持无 handler 并被门禁钉死。",
+  "role": "把「启用却无 handler」普查变成覆盖 16 个态的门禁",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "no-dead-control:__default__",
+      "state-opened:move",
+      "no-dead-control:move",
+      "state-opened:toolbox",
+      "no-dead-control:toolbox",
+      "state-opened:material",
+      "no-dead-control:material",
+      "state-opened:character",
+      "no-dead-control:character",
+      "state-opened:history",
+      "no-dead-control:history",
+      "state-opened:tutorial",
+      "no-dead-control:tutorial",
+      "state-opened:style-library",
+      "no-dead-control:style-library",
+      "state-opened:effects-library",
+      "no-dead-control:effects-library",
+      "state-opened:asset",
+      "no-dead-control:asset",
+      "state-opened:shortcuts",
+      "no-dead-control:shortcuts",
+      "state-opened:share",
+      "no-dead-control:share",
+      "state-opened:agent",
+      "no-dead-control:agent",
+      "state-opened:zoom_menu",
+      "no-dead-control:zoom_menu",
+      "state-opened:add_node",
+      "no-dead-control:add_node",
+      "no-dead-control:user_menu",
+      "census:scanned-anything",
+      "tutorial:使用教程:present",
+      "tutorial:使用教程:explains-why",
+      "tutorial:使用教程:no-hover-affordance",
+      "tutorial:联系客服:present",
+      "tutorial:联系客服:explains-why",
+      "tutorial:联系客服:no-hover-affordance",
+      "tutorial:联系销售:present",
+      "tutorial:联系销售:explains-why",
+      "tutorial:联系销售:no-hover-affordance",
+      "tutorial:关注公众号:present",
+      "tutorial:关注公众号:explains-why",
+      "tutorial:关注公众号:no-hover-affordance",
+      "tutorial:items-still-visible",
+      "paid:会员入口:present",
+      "paid:会员入口:no-handler",
+      "diagnostics:zero"
+    ],
+    "census": {
+      "__default__": {
+        "total": 114,
+        "distinctFromDefault": false,
+        "dead": []
+      },
+      "move": {
+        "total": 116,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "toolbox": {
+        "total": 142,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "material": {
+        "total": 116,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "character": {
+        "total": 146,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "history": {
+        "total": 136,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "tutorial": {
+        "total": 118,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "style-library": {
+        "total": 148,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "effects-library": {
+        "total": 144,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "asset": {
+        "total": 134,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "shortcuts": {
+        "total": 115,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "share": {
+        "total": 116,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "agent": {
+        "total": 132,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "zoom_menu": {
+        "total": 120,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "add_node": {
+        "total": 127,
+        "distinctFromDefault": true,
+        "dead": []
+      },
+      "user_menu": {
+        "total": 114,
+        "distinctFromDefault": false,
+        "dead": []
+      }
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

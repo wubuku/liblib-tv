@@ -266,11 +266,23 @@ export function AgentDrawer() {
           >
             <MessageSquarePlus size={15} />
           </button>
+          {/* Batch 358: 下面三个 header 按钮(历史对话 / Agent 设置 / CLI & Skill)
+              此前**完全没有 onClick**, 却都带 `hover:bg-white/[0.08] hover:text-white`
+              —— 点下去毫无反应。旁边紧挨着的「新对话无法分享」恰恰是**对的**写法:
+              disabled + title 说明 + opacity-40。本抽屉沿用同一套视觉语言,
+              只是**不能加 disabled**: verify-liblib-batch97.py 按 2026-09-05
+              源站审计断言这三项 is_disabled() == False, 那是已采样的源站形态。
+              所以取「保持启用 + 降饱和 + title 说明」, 不动几何。
+              标记用 data-inert 而不是 aria-disabled: **Playwright 的 is_disabled()
+              把 aria-disabled 也算作禁用** —— 加上它的第一版直接让 batch97
+              (`header:历史对话`) 变红, 等于用「看起来无害的语义标注」改掉了
+              已采样的源站形态。data-* 只有我们自己的门禁认, 不污染任何既有判据。*/}
           <button
             type="button"
-            title="历史对话"
+            title="历史对话在克隆侧尚未接入"
             aria-label="历史对话"
-            className="flex size-7 items-center justify-center rounded-md hover:bg-white/[0.08] hover:text-white"
+            data-inert="true"
+            className="flex size-7 cursor-default items-center justify-center rounded-md opacity-40"
           >
             <History size={15} />
           </button>
@@ -285,17 +297,19 @@ export function AgentDrawer() {
           </button>
           <button
             type="button"
-            title="Agent 设置"
+            title="Agent 设置在克隆侧尚未接入"
             aria-label="Agent 设置"
-            className="flex size-7 items-center justify-center rounded-md hover:bg-white/[0.08] hover:text-white"
+            data-inert="true"
+            className="flex size-7 cursor-default items-center justify-center rounded-md opacity-40"
           >
             <Settings size={15} />
           </button>
           <button
             type="button"
-            title="CLI & Skill"
+            title="CLI & Skill 在克隆侧尚未接入"
             aria-label="CLI & Skill"
-            className="flex size-7 items-center justify-center rounded-md hover:bg-white/[0.08] hover:text-white"
+            data-inert="true"
+            className="flex size-7 cursor-default items-center justify-center rounded-md opacity-40"
           >
             <SlidersHorizontal size={15} />
           </button>

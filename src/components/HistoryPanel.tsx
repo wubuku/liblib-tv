@@ -157,7 +157,12 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                 </button>
               </div>
             )}
-            <button type="button" className="ml-2 flex h-8 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm text-[#9a9a9a] hover:bg-white/[0.05] hover:text-white max-sm:text-xs">
+            {/* Batch 358: 此前是一个启用、无 handler、带 `hover:bg-white/[0.05]
+                hover:text-white` 的按钮 —— 悬停变亮变白, 像能点, 点了什么都不发生。
+                本面板的数据是 clone 本地 mock（见文件头注释）, 排序没有可排的实源。
+                去掉悬停反馈 + cursor 默认 + title 说明; 旁边的「批量操作」有真
+                onClick, 未受影响。 */}
+            <button type="button" title="时间排序在克隆侧尚未接入" data-inert="true" className="ml-2 flex h-8 cursor-default items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm text-[#6f6f6f] max-sm:text-xs">
               <ArrowDownUp size={15} />
               时间倒序
             </button>
@@ -192,9 +197,17 @@ export function HistoryPanel({ onClose }: HistoryPanelProps) {
                             <Heart size={15} fill={isFavorite ? "currentColor" : "none"} />
                           </button>
                           <div className="flex justify-center gap-1.5">
-                            <button type="button" title="查看" aria-label="查看" className="flex size-7 items-center justify-center rounded-lg bg-white/20 text-white hover:bg-white/30"><Eye size={14} /></button>
-                            <button type="button" className="rounded-lg bg-white/20 px-2 text-[10px] text-white hover:bg-white/30">使用</button>
-                            <button type="button" title="下载" aria-label="下载" className="flex size-7 items-center justify-center rounded-lg bg-white/20 text-white hover:bg-white/30"><Download size={14} /></button>
+                            {/* Batch 358: 这三个（查看/使用/下载）此前**完全没有
+                                onClick**, 却都带 `title` + `hover:bg-white/30`
+                                的悬停反馈 —— 生成历史卡片上最像功能的一组控件,
+                                点下去毫无反应。同一行的「收藏」是真接线的
+                                (toggleFavorite), 不在其列。
+                                数据是本地 mock, 查看/使用/下载都没有可执行的
+                                真实对象, 不发明; 保留卡片与几何, 去掉悬停骗人的
+                                底色, 并在 title 里说明。 */}
+                            <button type="button" title="查看在克隆侧尚未接入" aria-label="查看" data-inert="true" className="flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50"><Eye size={14} /></button>
+                            <button type="button" title="使用在克隆侧尚未接入" data-inert="true" className="cursor-default rounded-lg bg-white/10 px-2 text-[10px] text-white/50">使用</button>
+                            <button type="button" title="下载在克隆侧尚未接入" aria-label="下载" data-inert="true" className="flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50"><Download size={14} /></button>
                           </div>
                         </div>
                       </article>

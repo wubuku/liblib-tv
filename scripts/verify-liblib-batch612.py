@@ -326,7 +326,18 @@ def run(page: Page) -> dict[str, Any]:
     # --- 4) the panels still open (the resize kept the hit targets) ------
     page.locator('[aria-label="添加节点"]').click()
     page.wait_for_timeout(500)
-    v.check("panel:添加节点-opens", page.locator("text=基础节点").count() >= 0
+    # 原写法 `page.locator("text=基础节点").count() >= 0` —— 恒真断言, 恒真门禁
+    # verify-assertions.py 判红。查证后发现**「基础节点」这个文案在 src/ 里根本
+    # 不存在**, 所以那个定位器恒为 0, `>= 0` 永远成立: 这条断言在覆盖矩阵里显示
+    # 「已覆盖」, 却对任何实现都通过, 包括面板彻底坏掉的实现。
+    #
+    # 改成面板真实存在的标志 (Batch 358 普查时该面板已开, 扫到过这些钩子):
+    # `data-add-node-entry` 是面板**常驻**的条目; 面板没打开时必然为 0。
+    # (别用 `data-add-node-search` —— 它只在 searchOpen 时才渲染, 面板开着也可能是 0。)
+    # 注意不能只把 `>= 0` 改成 `>= 1` —— 那样会让 batch612 直接失败,
+    # 因为要找的文案并不存在。**恒真断言的修法要连定位器一起修**。
+    v.check("panel:添加节点-opens",
+            page.locator("[data-add-node-entry]").count() >= 1
             and page.locator('[aria-label="添加节点"]').get_attribute("aria-pressed") == "true")
     page.keyboard.press("Escape")
     page.wait_for_timeout(300)

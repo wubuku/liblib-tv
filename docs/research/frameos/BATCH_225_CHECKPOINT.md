@@ -1420,3 +1420,69 @@ batch251 周围那几条(24px 圆 / `48, 54, 66` 底 / 贴右边中点)全是采
 (dev server 当时掉线), 隔离跑均通过。`is_dev_server_noise` 目前只挡
 `requestfailed:...net::ERR_ABORTED`, 这两类要不要补进去**留作单独一批** ——
 门禁过滤器必须双向验证, 不能顺手放宽。
+
+---
+
+## Batch 358 (2026-10-01) — 「启用却点了没反应」普查推广到 liblib 画布线
+
+frameos 三类交互谎言的门禁(350/355/344/356/357)都齐了, **liblib 这条线一个都没有**:
+302 个 `verify-liblib-batch*.py` 里没有一条查「可点外观却没有 handler」。
+
+普查(运行时, 16 个 UI 态)找到 **95 个**「启用、无 handler」的控件: 教程四项 /
+生成历史卡片 查看·使用·下载×3 / 时间倒序 / 卡片收藏×40+ / 筛选 /
+工具箱模板说明与模板选择 / Agent 历史对话·设置·CLI / 开通会员 / 积分余额。
+逐组读过源码确认, 非静态推断。几处值得单说:
+- `HistoryPanel` 同一行的「收藏」**有** `toggleFavorite` —— 同组控件不能靠位置猜;
+- `AgentDrawer` 里紧挨着的「新对话无法分享」是**正确写法**(disabled+title+opacity-40),
+  同一个抽屉里, 正确示范和四个谎言并排;
+- 「开通会员」是付费入口, 按纪律**绝不接线**。
+
+**修法: 保持启用 + 去掉悬停骗人的反馈 + title 说明, 不落 `disabled`。**
+理由同 batch357 的分野: `verify-liblib-batch97.py` 依据 2026-09-05 源站审计断言
+Agent header 三项 `is_disabled() == False`, `batch106/121` 断言教程四项可见 ——
+断的都是**已采样的源站形态**, 所以不能靠禁用来「修」。
+
+**⚠️ `aria-disabled` 也踩了同一个坑**: 第一版给惰性控件加 `aria-disabled="true"`
+(语义上比 data-* 更妥), 结果 batch97 直接红 —— **Playwright 的 `is_disabled()`
+把 `aria-disabled` 也算作禁用**。于是全部 14 处改用 `data-inert="true"`:
+语义标注不能变成「改掉已采样源站形态」的暗门。
+
+**门禁的例外规则: 不按名字开白名单, 要求例外自证**(同时带 `data-inert` 与非空 `title`)。
+白名单只会在下次重构里悄悄失效 —— 新增一个死按钮不会被列进去, 门禁仍绿, 而用户多点了一次。
+属性判据不会: 任何新死按钮都得自己写清「我不可用」和一句给用户看的理由。
+
+**扫描器自己假绿了五次**(全是「扫不全」伪装成「没问题」):
+① 只用 `cursor:pointer` 判可点 → liblib 不用内联 cursor(36 个按钮 35 个 default),
+   扫出「0 个假可点」—— **那个结论是无效的, 差点当体检报告交出去**;
+② 只扫 button → workspace/canvas 两态元素数完全相同(36/36), 可画布态明明多了 10 个节点;
+③ 把**继承了父元素 cursor** 的 `<path>`/`<svg>`(34+1 个)算成独立控件;
+④ 特征集只取 data/aria/role → 把「面板开了但控件是纯文本 div」的 4 个态误判成「没打开」;
+⑤ **只收 pointer 或已接线** → 正好滤掉了要找的缺陷: TutorialMenu 那四个按钮既没有
+   onClick 也没有 cursor, 而「启用却无 handler 的按钮」按定义就是这类缺陷本身。
+> ⑤ 不是漏掉某一个缺陷, 而是**系统性地对最纯的那一类缺陷失明**。
+
+外加两条构造性假阳性的正确处理(不是开白名单): `onChange`/`onInput` 同样算已接线
+(range 天生没有 onClick); `<label>` 的接线看**后代控件**(点 label 等于点它包的 checkbox)。
+
+**防假绿**: 每个态必须与默认态元素集合不同, 否则「零违规」只是把默认态数了 16 遍。
+**防过滤过头**: 扫描器先后加五层过滤, 所以专门有一条**反向变异** —— 从本来是活的
+控件(「关闭工具箱」的 onClose)上摘掉 handler; 若扫描器过宽, 这个变异会看不见。
+实测 4 项变异全红(撤销修复 / 抹掉 title / 只降饱和不声明 / 反向), 判据没被放宽。
+
+**顺带修掉一处他人的恒真断言**(解除仓库级门禁阻塞, 已提交文件非 WIP):
+`verify-liblib-batch612.py` 的 `panel:添加节点-opens` 写的是
+`page.locator("text=基础节点").count() >= 0`。查证后发现**「基础节点」这个文案在
+src/ 里根本不存在**, 那个定位器恒为 0, `>= 0` 永远成立 —— 恒真断言比没有断言更危险。
+改用面板常驻的 `data-add-node-entry`, 112/112 仍全过。
+> 这里我连错两次: 第一次直接改 `>= 1`, 结果 batch612 失败, 才意识到定位器本身是错的
+> —— **恒真断言的修法要连定位器一起修**。第二次换成 `data-add-node-search` 又失败
+> (它只在 searchOpen 时渲染), 第三次才用对。
+
+**顺带查到、只记录不动的两处死状态**: uiStore 的
+`isToolboxPanelOpen`/`isMaterialPanelOpen`/`isCharacterPanelOpen`/`isHistoryPanelOpen`/
+`isTutorialPanelOpen` **零读取**(面板早已改由 `activePrimaryPanel` 单一槽位驱动);
+`toggleUserMenu` **全项目无人调用**, `isUserMenuOpen` 只被
+`libtvSelectionCommandContext` 读来抑制快捷键 —— 用户菜单没有触发器也没有渲染器。
+
+**覆盖缺口(如实记录)**: liblib 没有 runner, 302 个验证器串行约 4 小时, 本批未全量跑;
+跑的是与本次 6 个改动组件相关的 17 个定向验证器。

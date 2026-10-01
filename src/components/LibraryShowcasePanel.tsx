@@ -122,10 +122,17 @@ function LibraryCardView({ card, variant }: { card: LibraryCard; variant: Librar
         <span className="absolute left-1.5 top-1.5 rounded-md bg-black/45 px-1.5 py-0.5 text-[10px] leading-4 text-[#d0d0d0]">
           ···
         </span>
+        {/* Batch 358: 收藏按钮此前**完全没有 onClick**, 却用
+            `group-hover:opacity-100` 在悬停卡片时整个显形 —— 风格库/特效库里
+            一次扫出 40 多个这样的按钮, 全部点了没反应。收藏列表本身是空态
+            (「我的收藏/最近使用 新账号为空态」, 见文件头), 没有可写的存储,
+            不发明收藏功能。保留卡片与几何, 改成不悬停不显形 + title 说明。 */}
         <button
           type="button"
           aria-label={`收藏 ${card.title}`}
-          className="absolute right-1.5 top-1.5 rounded-full bg-black/45 p-1 text-[#e0e0e0] opacity-0 transition-opacity group-hover:opacity-100"
+          title="收藏在克隆侧尚未接入"
+          data-inert="true"
+          className="pointer-events-none absolute right-1.5 top-1.5 rounded-full bg-black/45 p-1 text-[#6f6f6f] opacity-0"
         >
           <Star size={12} />
         </button>
@@ -224,7 +231,9 @@ export function LibraryShowcasePanel({ variant, onClose }: LibraryShowcasePanelP
           <Search size={14} className="shrink-0 text-[#8c8c8c]" />
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <button type="button" aria-label="筛选" className="rounded-lg p-2 text-[#c0c0c0] hover:bg-white/[0.06]">
+          {/* Batch 358: 此前启用、无 handler、带 hover 底色。分类行已经是真的
+              (data-library-category), 唯独这个筛选按钮点了没反应。 */}
+          <button type="button" aria-label="筛选" title="筛选在克隆侧尚未接入" data-inert="true" className="cursor-default rounded-lg p-2 text-[#6f6f6f]">
             <SlidersHorizontal size={16} />
           </button>
           <button

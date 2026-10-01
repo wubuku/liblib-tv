@@ -102,7 +102,7 @@ function TutorialMenu() {
           key={label}
           type="button"
           title={why}
-          aria-disabled="true"
+          data-inert="true"
           className={inert}
         >
           {label}

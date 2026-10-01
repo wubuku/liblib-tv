@@ -54,10 +54,14 @@ export function ToolboxPanel({ onClose }: ToolboxPanelProps) {
     >
       <header className="flex h-[52px] shrink-0 items-center gap-2 px-4">
         <h2 className="text-[15px] font-medium text-[#f1f1f1]">我的工具箱</h2>
-        <button type="button" title="工具箱模板说明" aria-label="工具箱模板说明" className="flex size-6 items-center justify-center text-[#777] hover:text-[#ddd]">
+        {/* Batch 358: 这两个此前**完全没有 onClick**, 却各自带悬停变色
+            (hover:text / hover:bg) —— 工具箱标题栏上两个最像控件的东西,
+            点了毫无反应。保留几何与文案, 去掉悬停骗人的变色, 加 title 说明。
+            旁边的「关闭工具箱」有真 onClick(onClose), 未受影响。 */}
+        <button type="button" title="模板说明在克隆侧尚未接入" aria-label="工具箱模板说明" data-inert="true" className="flex size-6 cursor-default items-center justify-center text-[#5f5f5f]">
           <Info size={15} />
         </button>
-        <button type="button" className="flex h-8 items-center gap-1 rounded-lg px-1.5 text-sm text-[#9b9b9b] hover:bg-white/[0.06] hover:text-[#ddd]">
+        <button type="button" title="模板选择在克隆侧尚未接入" data-inert="true" className="flex h-8 cursor-default items-center gap-1 rounded-lg px-1.5 text-sm text-[#6f6f6f]">
           周星驰经典名场面
           <ChevronDown size={14} />
         </button>
