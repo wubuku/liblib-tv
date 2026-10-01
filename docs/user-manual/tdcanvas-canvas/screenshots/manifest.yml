@@ -971,3 +971,15 @@ screenshots:
     visible_text: '复制 / 粘贴节点，或粘贴剪切板文本/图片'
     alt: 快捷键弹窗的完整内容，十三行键位与作用一一对应：拖动画布平移视图、滚轮缩放画布、缩放滑杆精确调整缩放、Ctrl 加拖动框选多个节点、Shift 加点击追加选择节点、Ctrl 加 A 全选节点、Ctrl 加 C 与 V 复制粘贴节点或粘贴剪切板文本图片、Ctrl 加 Z 撤销、Ctrl 加 Shift 加 Z 重做、Ctrl 加 Y 重做、Delete 或 Backspace 删除选中、Esc 取消选择并关闭浮层、拖入图片视频音频上传到画布
     sha256: 6a46aa00978d4111ad5e60f119bafa9d012a83d390e162a8ebfddd7362c8570f
+
+  - file: screenshots/20-config-sidebar-not-nav.png
+    task_id: project-management
+    step: 打开 /config 整页，按配置区自身栅格量出左栏边界后画红色虚线框并加说明标签，再按栅格整体裁剪（不按视口裁剪）
+    route: '/config'
+    viewport: '1440x900 视口，裁剪区 1012x494 (CSS px)'
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '配置区栅格 display:grid / grid-template-columns 实测 "260px 688px"（源码签名 lg:grid-cols-[260px_minmax(0,1fr)]）/ 左栏 aside 实测 260x140，aside 内 button a role=button 元素数量为 0 / 限定在该栅格内统计 role="tab" 与 role="tablist" 与 aria-selected 均为 0 / 整页可见文本不含 WebDAV、同步、导出、备份、渠道、偏好 / 同页 900px 宽复测栅格塌为单列 "852px"，左栏变为整宽说明块压在表单上方'
+    visible_text: 'API 服务密钥 保存后，图片、视频、音频和其他画布能力将统一使用此密钥。'
+    alt: 配置页左栏被红色虚线框标出，宽 260 像素，框内只有 API、服务密钥等说明文字，没有任何标签、按钮或链接；右侧是服务密钥表单与注册获取 API Key 按钮
+    sha256: 380f174a4415cf94563b6dcd919a981995ed154e797c60f9aef2314ec8383343
