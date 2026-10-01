@@ -149,6 +149,12 @@ RETRACTIONS: list[dict[str, str]] = [
         "fixed_in": "M93",
     },
     {
+        "id": "R22",
+        "wrong": "方向拖反时连线数确实增加",
+        "why": "M98 曾把「把 output 拖到另一个节点的 output 端口、连线数确实增加」记成一条待查的观察。M99 查实：那是**读到了陈旧的应用计数**（离开画布再回来读时，写盘尚未落定），实际该操作**被拒**。源码 `canvas-node-ports.ts` 的 normalizeConnectionHandles 第一句就是两个 handle 同向即返回空，运行时实测 output→output 与 input→input 均 0→0 被拒（2026-10-01 M99）",
+        "fixed_in": "M99",
+    },
+    {
         "id": "R21",
         "wrong": "时长可选 4-8 秒，分辨率 480p / 720p / 1080p 自动匹配",
         "why": "视频面板参数行运行时实测为「4~15 秒 · 480p/720p/1080p/2k/4k/native1080p/native4k · 比例 7 档」。漏掉的 native1080p / native4k 正是价格区间 ¥2.48–5.37 的上下两端，照旧参数算账等于把最贵一档当不存在。M66 / M82 早已在 20-reference 对照表与 manifest 另一条记录写下正确值，只有 generate-images 的本节没跟着改（2026-10-01 M93）",

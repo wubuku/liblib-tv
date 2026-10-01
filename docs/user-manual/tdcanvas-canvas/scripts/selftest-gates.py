@@ -163,6 +163,14 @@ def mutate_retracted_freeresize(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_retracted_stale_count(root: Path) -> None:
+    """R22：把 M98 那条基于陈旧计数的错误观察放回去（验证 R22 抓得住）。"""
+    path = root / "20-reference.md"
+    text = path.read_text(encoding="utf-8")
+    text += "\n> 方向拖反时连线数确实增加。\n"
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_retracted_video_params(root: Path) -> None:
     """R21：把 M93 订正掉的视频面板参数原句放回去（验证 R21 这条订正抓得住）。"""
     path = root / "10-tasks/generate-images.md"
@@ -489,6 +497,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
     ("M93 订正的「自由缩放」复现", mutate_retracted_freeresize, "retractions", "R20"),
     ("M93 订正的视频面板参数复现", mutate_retracted_video_params, "retractions", "R21"),
+    ("M99 撤回的「方向拖反会连上」复现", mutate_retracted_stale_count, "retractions", "R22"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
