@@ -261,9 +261,57 @@ AUDIT_JS = """(overlays) => {
     const own = !!(hit && (hit === el || el.contains(hit) || hit.contains(el)));
     const panel = own ? null : covering(el, hit);
     const clipped = !own && !panel && isClipped(el);
+    // Batch 628: a *structural* explanation for the one cover relationship that
+    // is a source fact rather than a clone bug.  Batch 613 measured, on the
+    // source at 1920x1150, that the left column is one `aside.absolute
+    // .inset-y-0.left-0.z-30` running the full viewport height while the
+    // timeline is a separate overlay floating over the middle column — the
+    // comment in DirectorDesk.tsx says so in as many words ("时间线是浮在中间
+    // 列上的独立覆盖层，会盖住 rail 的下段").  So the lower band of the three
+    // columns legitimately sits *under* the timeline.
+    //
+    // This replaces the name-based exemption with a reason-based one.  The old
+    // `KNOWN_BLOCKED = ("帮助",)` was a single label that happened to match;
+    // at short viewport heights the same relationship buries whole triads
+    // (隐藏/锁定/删除 on the last object rows) whose names depend on the scene,
+    // so a name list can never cover the family.  The test is deliberately
+    // tight — it needs BOTH halves:
+    //   * the element that took the hit lives inside the timeline, and
+    //   * the victim lives inside one of the three overlay columns.
+    // Anything else, including a control covered by the timeline but living
+    // somewhere else (batch 621's export submit vs the resize handle), is
+    // still reported.
+    const inTimeline = (n) => !!(n && n.closest
+      && n.closest('[data-director-timeline]'));
+    const COLUMN_SEL = "aside[aria-label='场景对象'], aside[aria-label='属性'],"
+      + " [data-director-icon-rail]";
+    const hitInTimeline = !own && inTimeline(hit);
+    const victimInColumn = !!el.closest(COLUMN_SEL);
+    const timelineOverlay = !own && !clipped && !panel
+      && hitInTimeline && victimInColumn;
+    // Batch 628, second family — and this one is NOT a source fact.  The 3D
+    // viewport's gizmo cluster is anchored near the viewport's TOP (the axis
+    // labels sit at a constant y no matter how short the viewport gets), while
+    // the prompt bar is anchored to its BOTTOM (`bottom-0`, top edge =
+    // viewportHeight - 230 once the timeline is subtracted).  Once the viewport
+    // is squeezed below roughly 120px the two meet and the gizmo's 15x15 axis
+    // labels and 重置视角 stop taking clicks.  Both pieces are source-measured
+    // at 1920x1150, where they are nowhere near each other, so whether the
+    // source collides at a short viewport is simply unknown — which is why
+    // this is a separate, *bounded* exemption rather than a member of the
+    // source-fact family above.
+    const hitInBottomBar = !own && !!(hit && hit.closest
+      && hit.closest('[data-director-scene-prompt-bar]'));
+    const victimInViewport = !!el.closest('[data-director-viewport]');
+    const viewportEl = document.querySelector('[data-director-viewport]');
+    const viewportH = viewportEl
+      ? Math.round(viewportEl.getBoundingClientRect().height) : null;
+    const bottomBarSqueeze = !own && !clipped && !panel
+      && hitInBottomBar && victimInViewport;
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped, offViewport,
-      panel: panel,
+      panel: panel, timelineOverlay, hitInTimeline, victimInColumn,
+      bottomBarSqueeze, hitInBottomBar, victimInViewport, viewportH,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
       data: Object.keys(el.dataset).slice(0, 3).join(',')});
@@ -272,13 +320,21 @@ AUDIT_JS = """(overlays) => {
   const coveredByPanel = failed.filter((i) => i.panel);
   const byPanel = new Map();
   for (const c of coveredByPanel) byPanel.set(c.panel, (byPanel.get(c.panel) || 0) + 1);
+  const unexplained = failed.filter((i) => !i.clipped && !i.panel
+    && !i.timelineOverlay && !i.bottomBarSqueeze);
   return {vw: innerWidth, vh: innerHeight, total: items.length,
           scrims,
           openOverlays: overlayRoots.map(pkey),
           blocked: failed,
           // `covered` keeps its batch-617 meaning: a real defect.  Batch 619
-          // narrowed it by moving "behind an open transient overlay" out.
-          covered: failed.filter((i) => !i.clipped && !i.panel),
+          // narrowed it by moving "behind an open transient overlay" out, batch
+          // 628 narrowed it twice more — once for a source-measured structural
+          // relationship (the timeline overlays the columns) and once for a
+          // degenerate-viewport collision whose bound the 628 verifier derives
+          // from the sweep itself rather than from a hand-picked threshold.
+          covered: unexplained,
+          coveredByTimelineOverlay: failed.filter((i) => i.timelineOverlay),
+          coveredByBottomBarSqueeze: failed.filter((i) => i.bottomBarSqueeze),
           // Batch 627: the geometric-boundary half.  `covered` already counts an
           // off-viewport control as a defect once `isClipped` says nothing can
           // scroll it into view; these buckets make the split legible instead

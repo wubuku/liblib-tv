@@ -166,12 +166,20 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
                 detail=r["total"])
         v.check(f"{tag}:no-control-is-covered", not r["unexpected"],
                 detail=[(b["label"], b["hitLabel"], b["box"]) for b in r["unexpected"]])
-        # Batch 627: the census used to `continue` past any control whose centre
-        # was outside the viewport, so a popover hanging off the bottom of the
-        # screen was invisible to it rather than failing it.  That is how batch
-        # 626's two defects survived 619-625.  The geometric-boundary half is
-        # now enforced here, for the desk's own controls rather than 626's
-        # overlays.
+        # Batch 628 migration: the old guard here was "the only control allowed
+        # to be covered is 帮助" — a single hard-coded label, i.e. a name
+        # coincidence rather than a reason.  The same source-measured
+        # relationship (batch 613: the timeline is an overlay floating over the
+        # three columns) buries whole 隐藏/锁定/删除 triads on the last object
+        # rows once the viewport gets short, and those labels depend on the
+        # scene, so no name list can ever cover the family.  The audit now
+        # explains it structurally, and this guard re-checks the exemption's two
+        # halves so it cannot be quietly widened later.
+        v.check(f"{tag}:every-timeline-overlay-exemption-has-both-halves",
+                all(b.get("hitInTimeline") and b.get("victimInColumn")
+                    for b in r["coveredByTimelineOverlay"]),
+                detail=[(b["label"], b["hitInTimeline"], b["victimInColumn"])
+                        for b in r["coveredByTimelineOverlay"]][:6])
         v.check(f"{tag}:no-control-is-off-viewport-and-unreachable",
                 not r["offViewportUnreachable"],
                 detail=[(b["label"], b["box"], b["data"])
@@ -186,6 +194,21 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
         v.check(f"{tag}:the-only-possible-block-is-帮助",
                 all(b["label"] in KNOWN_BLOCKED for b in r["covered"]),
                 detail=[b["label"] for b in r["covered"]])
+        # Batch 628: 帮助 used to be excused here by name.  It is now excused by
+        # structure, so assert the structural form too — otherwise this check
+        # would go quietly vacuous once 帮助 left `covered` for the right reason.
+        # All three reasons are admissible: the two source/structural overlays
+        # and an open transient panel.  The first version of this assertion
+        # demanded the timeline overlay specifically and went red in the
+        # ai-import-modal state, where 帮助 is attributed to the open modal
+        # instead — which is a perfectly good explanation, just a different one.
+        helpRows = [b for b in r["blocked"] if b["label"] in KNOWN_BLOCKED]
+        v.check(f"{tag}:帮助-is-still-explained-by-a-known-reason",
+                all(b.get("panel") or b.get("timelineOverlay")
+                    or b.get("bottomBarSqueeze") for b in helpRows),
+                detail=[(b["label"], bool(b.get("panel")),
+                         b.get("timelineOverlay"), b.get("bottomBarSqueeze"))
+                        for b in helpRows])
         if overlay:
             # the exemption must actually have run, or this state proves nothing
             v.check(f"{tag}:the-overlay-was-found-open", len(r["openOverlays"]) >= 1,
@@ -203,12 +226,20 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
             # accounting completeness: every control that failed the hit test
             # for a non-scroll reason is either a defect or attributed to an
             # overlay.  Nothing may fall between the two buckets.
+            # Batch 628 added two more buckets, so the identity grew with them
+            # rather than being relaxed — this check exists precisely to catch
+            # an exemption added on one side and forgotten on the other, and it
+            # did.
             nonClipped = len(r["blocked"]) - len(r["clipped"])
             v.check(f"{tag}:every-failure-is-either-a-defect-or-attributed",
-                    nonClipped == len(r["covered"]) + len(r["coveredByPanel"]),
+                    nonClipped == (len(r["covered"]) + len(r["coveredByPanel"])
+                                   + len(r["coveredByTimelineOverlay"])
+                                   + len(r["coveredByBottomBarSqueeze"])),
                     detail={"nonClipped": nonClipped,
                             "covered": len(r["covered"]),
-                            "attributed": len(r["coveredByPanel"])})
+                            "attributed": len(r["coveredByPanel"]),
+                            "timelineOverlay": len(r["coveredByTimelineOverlay"]),
+                            "bottomBarSqueeze": len(r["coveredByBottomBarSqueeze"])})
         if "drawer" in label:
             v.check(f"{tag}:the-dismiss-catcher-was-not-audited-as-a-control",
                     any(s["label"] == "关闭移动端面板" for s in r["scrims"]),

@@ -1,0 +1,3790 @@
+{
+  "batch": 628,
+  "title": "sweep the height axis (x timeline collapsed/expanded) and turn 'the timeline overlays the three columns' from a name coincidence into a structural exemption",
+  "date": "2026-10-01",
+  "heights": [
+    360,
+    380,
+    400,
+    420,
+    440,
+    460,
+    480,
+    500,
+    520,
+    540,
+    560,
+    580,
+    600,
+    620,
+    640,
+    660,
+    680,
+    700,
+    720,
+    740,
+    760,
+    778,
+    779,
+    780,
+    781,
+    782,
+    783,
+    784,
+    785,
+    786,
+    787,
+    788,
+    789,
+    790,
+    791,
+    792,
+    793,
+    794,
+    795,
+    796,
+    797,
+    798,
+    799,
+    800,
+    820,
+    840,
+    860,
+    880,
+    900,
+    920,
+    940,
+    960,
+    980,
+    1000,
+    1020,
+    1040,
+    1060,
+    1080,
+    1100,
+    1120,
+    1140,
+    1150,
+    1160,
+    1180,
+    1200,
+    1220,
+    1240,
+    1260,
+    1280,
+    1300,
+    1320,
+    1340,
+    1360,
+    1380,
+    1400
+  ],
+  "states": [
+    "expanded",
+    "collapsed"
+  ],
+  "sweep": {
+    "expanded@360": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "锁定角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "删除角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "全景图",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "X 正向",
+          true,
+          true,
+          90
+        ],
+        [
+          "X 反向",
+          true,
+          true,
+          90
+        ],
+        [
+          "Z 正向",
+          true,
+          true,
+          90
+        ],
+        [
+          "Z 反向",
+          true,
+          true,
+          90
+        ]
+      ]
+    },
+    "expanded@380": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "锁定角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "删除角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "全景图",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "X 正向",
+          true,
+          true,
+          110
+        ],
+        [
+          "Y 反向",
+          true,
+          true,
+          110
+        ],
+        [
+          "Z 正向",
+          true,
+          true,
+          110
+        ]
+      ]
+    },
+    "expanded@400": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "Y 反向",
+          true,
+          true,
+          130
+        ]
+      ]
+    },
+    "expanded@420": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "重置视角",
+          true,
+          true,
+          150
+        ]
+      ]
+    },
+    "expanded@440": {
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "scrollable": 22,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "重置视角",
+          true,
+          true,
+          170
+        ]
+      ]
+    },
+    "expanded@460": {
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "scrollable": 22,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@480": {
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "scrollable": 22,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@500": {
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "scrollable": 13,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@520": {
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "scrollable": 13,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@540": {
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "scrollable": 12,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@560": {
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "scrollable": 12,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@580": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@600": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@620": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@640": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@660": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@680": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@700": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@720": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@740": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@760": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@778": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@779": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@780": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@781": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@782": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@783": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@784": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@785": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@786": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@787": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@788": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@789": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@790": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@791": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@792": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@793": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@794": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@795": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@796": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@797": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@798": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@799": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@800": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@820": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@840": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@860": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@880": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@900": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@920": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@940": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@960": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@980": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1000": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1020": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1040": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1060": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1080": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1100": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1120": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1140": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1150": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1160": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1180": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1200": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1220": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1240": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1260": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1280": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1300": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1320": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1340": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1360": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1380": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1400": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@360": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@380": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@400": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@420": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@440": {
+      "total": 124,
+      "offViewport": 27,
+      "unreachable": [],
+      "scrollable": 27,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@460": {
+      "total": 124,
+      "offViewport": 27,
+      "unreachable": [],
+      "scrollable": 27,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@480": {
+      "total": 124,
+      "offViewport": 27,
+      "unreachable": [],
+      "scrollable": 27,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@500": {
+      "total": 124,
+      "offViewport": 18,
+      "unreachable": [],
+      "scrollable": 18,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@520": {
+      "total": 124,
+      "offViewport": 18,
+      "unreachable": [],
+      "scrollable": 18,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@540": {
+      "total": 124,
+      "offViewport": 17,
+      "unreachable": [],
+      "scrollable": 17,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@560": {
+      "total": 124,
+      "offViewport": 17,
+      "unreachable": [],
+      "scrollable": 17,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@580": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@600": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@620": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@640": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@660": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@680": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@700": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@720": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@740": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@760": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@778": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@779": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@780": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@781": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@782": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@783": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@784": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@785": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@786": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@787": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@788": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@789": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@790": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@791": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@792": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@793": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@794": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@795": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@796": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@797": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@798": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@799": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@800": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@820": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@840": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@860": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@880": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@900": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@920": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@940": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@960": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@980": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1000": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1020": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1040": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1060": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1080": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1100": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1120": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1140": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1150": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1160": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1180": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1200": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1220": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1240": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1260": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1280": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1300": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1320": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1340": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1360": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1380": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1400": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    }
+  },
+  "freshLoadCrosscheck": {
+    "expanded@360": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "锁定角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "删除角色01 · 陈默",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "全景图",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "X 正向",
+          true,
+          true,
+          90
+        ],
+        [
+          "X 反向",
+          true,
+          true,
+          90
+        ],
+        [
+          "Z 正向",
+          true,
+          true,
+          90
+        ],
+        [
+          "Z 反向",
+          true,
+          true,
+          90
+        ]
+      ]
+    },
+    "expanded@400": {
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "scrollable": 34,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "选择画幅比例",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": [
+        [
+          "Y 反向",
+          true,
+          true,
+          130
+        ]
+      ]
+    },
+    "expanded@540": {
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "scrollable": 12,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@600": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "锁定机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "删除机位01 · 对峙中景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@700": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@785": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@786": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@787": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@900": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1000": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "expanded@1150": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@360": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏咖啡桌",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡桌",
+          true,
+          true
+        ],
+        [
+          "删除咖啡桌",
+          true,
+          true
+        ],
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "AI 识图导入",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@400": {
+      "total": 124,
+      "offViewport": 39,
+      "unreachable": [],
+      "scrollable": 39,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "隐藏冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "锁定冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "删除冷掉的咖啡",
+          true,
+          true
+        ],
+        [
+          "隐藏咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "锁定咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "删除咖啡馆背景",
+          true,
+          true
+        ],
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@540": {
+      "total": 124,
+      "offViewport": 17,
+      "unreachable": [],
+      "scrollable": 17,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@600": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@700": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@785": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@786": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@787": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@900": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1000": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    },
+    "collapsed@1150": {
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "coveredByTimeline": [
+        [
+          "帮助",
+          true,
+          true
+        ]
+      ],
+      "coveredByBottomBar": []
+    }
+  },
+  "checks": {
+    "the-sweep-covers-75-heights-x-2-states": {
+      "ok": true,
+      "detail": ""
+    },
+    "no-height-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-height-actually-exercised-the-off-viewport-branch": {
+      "ok": true,
+      "detail": []
+    },
+    "no-height-has-an-unexplained-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-timeline-overlay-exemption-has-both-halves": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-timeline-overlay-exemption-is-actually-exercised": {
+      "ok": true,
+      "detail": "299 controls explained across 150 cells"
+    },
+    "the-bottom-bar-squeeze-stops-at-one-height": {
+      "ok": true,
+      "detail": {
+        "bound": 440,
+        "stillFiringAbove": [],
+        "firedAt": [
+          360,
+          380,
+          400,
+          420,
+          440
+        ]
+      }
+    },
+    "every-bottom-bar-exemption-has-both-halves": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-bottom-bar-squeeze-is-actually-exercised": {
+      "ok": true,
+      "detail": {
+        "heights": [
+          360,
+          380,
+          400,
+          420,
+          440
+        ],
+        "minViewportHeightInvolved": 90
+      }
+    },
+    "the-11-fresh-loads-agree-with-the-resized-page": {
+      "ok": true,
+      "detail": []
+    }
+  },
+  "ok": true,
+  "checkCount": 10,
+  "failures": [],
+  "totals": {
+    "offViewport": 2159,
+    "coveredByTimeline": 299
+  }
+}

@@ -397,9 +397,19 @@ def run_desktop(browser: Any) -> dict[str, Any]:
             tb["inspector"][1] == 52, detail=tb["inspector"])
 
     r = v.census("desktop:census")
+    # Batch 628 migration: this compared `covered`'s labels to the name list,
+    # i.e. "the only control allowed to be covered is 帮助".  The audit now
+    # explains that relationship structurally, so 帮助 has (correctly) left
+    # `covered` — which left this check comparing an empty list to a non-empty
+    # one.  Restated to keep the original claim at full strength: nothing is
+    # unexplained, AND 帮助 is the single control the timeline overlay covers.
     v.check("desktop:only-the-rails-帮助-is-covered",
-            [b["label"] for b in r["covered"]] == list(KNOWN_BLOCKED),
-            detail=[b["label"] for b in r["covered"]])
+            not r["covered"]
+            and [b["label"] for b in r["coveredByTimelineOverlay"]]
+            == list(KNOWN_BLOCKED),
+            detail={"unexplained": [b["label"] for b in r["covered"]],
+                    "byTimelineOverlay":
+                        [b["label"] for b in r["coveredByTimelineOverlay"]]})
     noise = [c for c in console if any(k in c for k in IGNORE_CONSOLE)]
     real_console = [c for c in console if not any(k in c for k in IGNORE_CONSOLE)]
     real_errors = [e for e in errors if not any(k in e for k in IGNORE_CONSOLE)]
