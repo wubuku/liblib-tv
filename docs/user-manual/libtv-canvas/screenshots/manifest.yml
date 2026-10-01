@@ -1182,3 +1182,80 @@ screenshots:
     visible_text: 发布与分享 在LibTV上发布 发布你的作品和创作过程，让更多创作者看到。 分享链接 拥有此链接的人可以查看并复制你的画布。
     alt: 面板是挂在顶栏下方的**小浮层**（mantine-Popover-dropdown，360×167），不是居中弹窗，画布照常可见。标题「发布与分享」之下只有两枚整行卡片按钮：在LibTV上发布（🌐 地球图标）、分享链接（🔗 链接图标），各 342×57，opacity 都是 1、都不是灰的。**枚举结果：输入框 0 个、链接 0 个、标签页 0 个、复选框/开关 0 个** —— 这一层只负责跳转，表单和链接都不在这里
     sha256: 0ae16ec783ecc3a39229d52e938dd1a53c45ca1a5b868bf9b915215aa7325eb4
+  - file: screenshots/M-123-缩放-设为800.png
+    task_id: organize-canvas
+    step: 54
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点「缩放至800%」，然后 **连续 reload 两次**，每次都重读左下角标签与 `.react-flow__viewport` 的 scale
+    visible_text: 800 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 设成 800% 之后**连续两次重载**读到的都是 800%（scale 0.5→8，reload1=8，reload2=8）—— 缩放是按画布持久化的。刷两次是为了排除「只是浏览器缓存里还留着上一次的状态」
+    sha256: ff5300f7efde8e559bf908e6258f8a37b4834f606223cd432e9ac4429662b4c1
+  - file: screenshots/M-125-TV-Director-全局设置.png
+    task_id: agent-director
+    step: 55
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="TV Director" (899,773) 打开抽屉，再点抽屉头部 aria-label="TV Director 全局设置" (1303,179)，**只枚举不点任何开关**
+    visible_text: TV Director 全局设置 非会员每天免费对话 3 轮，即刻体验！ 未签署人像安全协议，遇到人像时将不会使用 Seedance 生成 去签署 协作模式 自动生成图片/视频/音频/剧本 开启后，TV Director 可直接消耗积分，提交生成任务，无需逐次确认 新建会话默认生效，当前会话请前往输入框底部切换 积分预算管理 开启后，当本项目累计消耗积分达到设置阈值时，会提醒你留意用量 提醒阈值设置 1000 通知设置 浏览器通知 已在设置中开启，但浏览器已禁止通知，请在站点设置中允许 通知声音 开启后，收到通知时播放提示音 完成
+    alt: **居中模态框**（mantine-Modal-inner，铺满视口），不是浮层。顶部两条提示：礼盒图标的「非会员每天免费对话 3 轮」+ 黄色警示条「未签署人像安全协议，遇到人像时将不会使用 Seedance 生成」带「去签署」。「协作模式」分区：**自动生成图片/视频/音频/剧本 = 关**（说明写「开启后，TV Director 可直接消耗积分，提交生成任务，无需逐次确认」）、**积分预算管理 = 开**、提醒阈值设置 1000。「通知设置」分区：浏览器通知 = 关、通知声音 = 关。右下角白色「完成」，右上角 ×
+    sha256: a248d7450efa407063932e35bcab61e6ffcf4e9ee5056f854f488c69557115cf
+  - file: screenshots/M-126-LibTV-Plugin-点开之后.png
+    task_id: agent-director
+    step: 56
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点抽屉头部 aria-label="LibTV Plugin" (1333,179)（`[1319,165,28×28]`，先验过 rect 面积 784 非 0），等 3.2 秒后比对新浮层差集 / URL / 节点数 / 对话框
+    visible_text: 新对话
+    alt: 点完之后**按钮进入高亮态（深色底），下方浮出一枚写着「LibTV Plugin」的悬停提示**，此外什么也没有：新浮层差集为空、无模态框、无新页签、无对话框、地址栏不变、节点数不变。跟资产管理里那枚「管理」是同一类
+    sha256: 37fb8164a06b4a44d758ca1ce3ec571e2b9ea1888e9c0c3db73a398a60ff4cda
+  - file: screenshots/M-127-添加节点面板.png
+    task_id: create-nodes
+    step: 57
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="添加节点" (596,773) 展开面板
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 面板完整展开，右上角有搜索图标。九类：文本 / 图片 / 视频 / 智能剪辑(Beta) / 导演台(NEW) / **逐帧拉片(🏷 + 蓝色「SD 2.5」徽标)** / 音频 / 脚本(›) / 素材库(›)；分隔线下面是「添加资源」区的 上传 / 从生成历史选择。**关键：面板打开时底栏那枚「+」变成了「×」**，关掉才变回来 —— 这是判断面板开没开最快的办法
+    sha256: 97302ace9d5c36f1bb4a3af5908767578d8f6779fd94ddca0627f1f935210cb6
+  - file: screenshots/M-128-素材库面板.png
+    task_id: create-nodes
+    step: 58
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏那枚**独立的** aria-label="素材库" 按钮 (676,773)（不是从「+」里点）
+    visible_text: 素材库 风格库 新增风格节点 NEW 特效库 新增特效节点 NEW 打开工具箱
+    alt: 面板 `fixed z-20` `[556,516,235×225]`，带一个指向下方的三角。标题「素材库」之下**三项**（不是正文早先记的两项）：风格库（副标题「新增风格节点」+ NEW 徽标）、特效库（副标题「新增特效节点」+ NEW 徽标）、**打开工具箱**。这个面板的 class 不是 Mantine 的 Menu/Popover-dropdown，按 class 白名单筛会漏掉它
+    sha256: c50c590738a37a99a9ac8d0287933625fb1b9ac9bf4c6192d991c1ef2a6aae63
+  - file: screenshots/M-129-工具箱弹窗.png
+    task_id: create-nodes
+    step: 59
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 在素材库面板里点「打开工具箱」，等 3.2 秒后用 `fingerprint()`/`diffPanels()` 找新浮层（不按 class 筛）
+    visible_text: 我的工具箱 使用 【预设】左弧滑行 使用 【预设】电商手机弹出效果 使用 【预设】咖啡杯出场 使用 【预设】360旋转展示 使用 【预设】机械臂视角 使用 【预设】Live 2D
+    alt: 浮层标题「**我的工具箱**」，标题旁一枚 16×16 的 `?` 圆形图标（aria="工具箱模板说明"），右上角 24×24 的 `×`（无文字无 aria）。内容是**三列网格卡片**，本次读到 **28** 张，每张 = 预览图 + 名称。平台预设一律带 `【预设】` 前缀（【预设】左弧滑行 / 【预设】咖啡杯出场 / 【预设】Live 2D / 【预设】旅拍转场 zoom in…），自己建的不带前缀（本账户是「手册取证测试箱」）。卡片容器 `relative aspect-square w-full overflow-hidden` 141×141，每张右下角有一枚 50×24 的「使用」按钮
+    sha256: 99a519ca82fb05f64a846dcbf7fc5b9f2da3ba6a711243c357657903df95de03
+  - file: screenshots/M-131-工具箱-悬停显示使用.png
+    task_id: create-nodes
+    step: 60
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把鼠标移到第一张卡片 (523,416) 上，悬停前后各量一次「使用」按钮的 opacity / display / visibility
+    visible_text: 我的工具箱
+    alt: 悬停后**预览图变暗、中央浮出半透明黑底的「使用」按钮**。但**按钮自己的 opacity 悬停前后都是 1**、display 一直是 flex、visibility 一直是 visible —— 所以它**不是**故事板那种「opacity 0→1」，而是**一直存在、只是平时被预览图压在下面**，悬停才浮上来。卡片 141×141，按钮 50×24
+    sha256: ec3bfc005221774a0b9182b5e653baa0cc6897248e75285b93c4cb4c143be881
