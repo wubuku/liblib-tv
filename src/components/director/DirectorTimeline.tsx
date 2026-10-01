@@ -100,6 +100,12 @@ const DIRECTOR_KEYFRAME_BOX_PX = "7.8px";
 // 播放头位置读数 `0`、总时长读数 `10000`（该项目时长 10s × 1000）。
 // batch 591 把 clone 的默认单位定成 `s`，但那不是源站事实（源站两次观测都在
 // ms 态），本批按实测翻转。
+// Batch 607（源站 2026-10-01 实测）：展开态时间轴总高 182px（batch 591
+// 已钉住），面板顶边 8px 是拖拽把手。量程上限 420 / 下限 88（收起档高度）
+// 是 clone 自定的——源站的拖拽量程未取证。
+const DIRECTOR_TIMELINE_HEIGHT = 182;
+const DIRECTOR_TIMELINE_HEIGHT_MIN = 88;
+const DIRECTOR_TIMELINE_HEIGHT_MAX = 420;
 const DIRECTOR_DEFAULT_TIME_UNIT: DirectorTimeUnit = "ms";
 
 function directorTrackKeyframeState(
@@ -256,6 +262,47 @@ export function DirectorTimeline({
   // Batch 591/592: 源站时间轴高 182px；「时间线最小化」把它收成 88px
   // ——工具栏整条保留，只有轨道区收起，按钮同时变成「展开时间线」。
   const [timelineCollapsed, setTimelineCollapsed] = useState(false);
+  // Batch 607（源站 2026-10-01 实测）：面板顶边有一条 1920x8 @(0,1021) 的
+  // 拖拽把手 `absolute inset-x-0 top-0 z-40 h-2 cursor-ns-resize`，实测
+  // elementFromPoint 落在把手中心命中的就是把手本身（z-40 在头行 z-30 之上，
+  // 所以它盖住整条 36px 头行的上沿 8px）。拖它调时间轴总高。
+  //
+  // 高度是**视图态**：按 batch 599 的结论（文档 schema 故意不含视图态
+  // 字段，zoom 走同一条路）它不进持久化 schema，因此就放在组件本地，
+  // 与 `timelineCollapsed` 同级。量程 88（收起档）..420 是 clone 自定的
+  // ——源站的拖拽量程**未取证**（拖它会改用户真实工程里的面板高度）。
+  const [timelineHeight, setTimelineHeight] = useState(DIRECTOR_TIMELINE_HEIGHT);
+  const resizeDragRef = useRef<{ pointerId: number; startY: number; startHeight: number } | null>(
+    null,
+  );
+  const beginHeightResize = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (timelineCollapsed) return;
+    event.preventDefault();
+    event.stopPropagation();
+    (event.target as HTMLElement).setPointerCapture?.(event.pointerId);
+    resizeDragRef.current = {
+      pointerId: event.pointerId,
+      startY: event.clientY,
+      startHeight: timelineHeight,
+    };
+  };
+  const moveHeightResize = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = resizeDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    // 往上拖（clientY 变小）面板变高，所以取负号
+    const next = drag.startHeight - (event.clientY - drag.startY);
+    setTimelineHeight(
+      Math.min(
+        DIRECTOR_TIMELINE_HEIGHT_MAX,
+        Math.max(DIRECTOR_TIMELINE_HEIGHT_MIN, Math.round(next)),
+      ),
+    );
+  };
+  const endHeightResize = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (resizeDragRef.current?.pointerId !== event.pointerId) return;
+    resizeDragRef.current = null;
+    (event.target as HTMLElement).releasePointerCapture?.(event.pointerId);
+  };
   // Batch 593: 源站对象行首列的「收起属性 / 展开属性」只收起**该对象的轨道
   // 行**，对象行本身保留，时间轴总高不变（实测收起前后面板都是 130px）。
   // 与右列的「时间线最小化」（整条收起）是两个独立控件。
@@ -655,12 +702,43 @@ export function DirectorTimeline({
       data-director-timeline
       data-director-timeline-mode={timeline.editorMode}
       data-director-timeline-collapsed={timelineCollapsed ? "true" : "false"}
+      data-director-timeline-height={timelineCollapsed ? 88 : timelineHeight}
       className={cn(
-        "relative flex shrink-0 flex-col overflow-visible border-t border-white/[0.08] bg-[#161616] max-[899px]:h-[176px]",
+        // Batch 607（源站实测 1920x130 @(0,1020)）：
+        //   pointer-events-auto.relative.flex.w-full.min-w-0.flex-col
+        //   .overflow-hidden.rounded-tl-none.rounded-tr-none
+        //   .border-t.border-white/10.bg-[#1f1f1f].text-white
+        //   .shadow-[0_-18px_48px_rgba(0,0,0,0.24)].backdrop-blur-xl
+        // 一处有意保留：源站是 `overflow-hidden`，clone 仍是 `overflow-visible`
+        // ——时间轴上有若干绝对定位的下拉/浮层（轨道右键菜单、曲线编辑器等）
+        // 依赖不被裁切；改 hidden 要连带把这些浮层 portal 出去，超出本批范围。
+        // 记录在案，不假装一致。
+        "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px]",
         // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
-        timelineCollapsed ? "h-[88px]" : "h-[182px]",
+        timelineCollapsed
+          ? "h-[88px]"
+          : cn("h-[182px]", timelineHeight !== DIRECTOR_TIMELINE_HEIGHT && "h-auto"),
       )}
+      style={
+        timelineCollapsed || timelineHeight === DIRECTOR_TIMELINE_HEIGHT
+          ? undefined
+          : { height: timelineHeight }
+      }
     >
+      {/* 源站顶边 8px 拖拽把手（见 beginHeightResize 处的实测记录）。
+          z-40 压在头行 z-30 之上，与源站一致。把手本身透明、无子节点，
+          拖拽全靠 pointer 事件（pointer capture 在把手自身上）。 */}
+      <div
+        data-director-timeline-resize-handle
+        aria-label="拖动调整时间轴高度"
+        role="separator"
+        aria-orientation="horizontal"
+        onPointerDown={beginHeightResize}
+        onPointerMove={moveHeightResize}
+        onPointerUp={endHeightResize}
+        onPointerCancel={endHeightResize}
+        className="absolute inset-x-0 top-0 z-40 h-2 cursor-ns-resize"
+      />
       {/* Batch 593（源站 2026-10-01 CDP 实测重做）：引导气泡在源站是
           **fixed** 定位的独立浮层，不在时间轴内部——
             260 x 114 @ (163, 920) @1920x1150

@@ -1,0 +1,253 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "panel:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "panel:bg-1f1f1f",
+      "ok": true,
+      "detail": "rgb(31, 31, 31)"
+    },
+    {
+      "name": "panel:border-top-1px-white-10",
+      "ok": true,
+      "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    {
+      "name": "panel:shadow-0-18px-48px",
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, "
+    },
+    {
+      "name": "panel:backdrop-blur",
+      "ok": true,
+      "detail": "blur(24px)"
+    },
+    {
+      "name": "panel:rounded-top-none",
+      "ok": true,
+      "detail": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px"
+    },
+    {
+      "name": "panel:default-height-182",
+      "ok": true,
+      "detail": "182px attr=182"
+    },
+    {
+      "name": "handle:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "handle:1920x8",
+      "ok": true,
+      "detail": [
+        1920,
+        8
+      ]
+    },
+    {
+      "name": "handle:flushed-to-panel-top",
+      "ok": true,
+      "detail": [
+        0,
+        969,
+        968
+      ]
+    },
+    {
+      "name": "handle:cursor-ns-resize",
+      "ok": true,
+      "detail": "ns-resize"
+    },
+    {
+      "name": "handle:absolute-z-40",
+      "ok": true,
+      "detail": "absolute z=40"
+    },
+    {
+      "name": "handle:transparent",
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "name": "handle:separator-semantics",
+      "ok": true,
+      "detail": [
+        "separator",
+        "horizontal",
+        "拖动调整时间轴高度"
+      ]
+    },
+    {
+      "name": "handle:hit-testable",
+      "ok": true,
+      "detail": "elementFromPoint -> div"
+    },
+    {
+      "name": "drag:up-grows-panel",
+      "ok": true,
+      "detail": 262.0
+    },
+    {
+      "name": "drag:down-shrinks-panel",
+      "ok": true,
+      "detail": "222px"
+    },
+    {
+      "name": "clamp:max-420",
+      "ok": true,
+      "detail": "420px"
+    },
+    {
+      "name": "clamp:min-88",
+      "ok": true,
+      "detail": "88px"
+    },
+    {
+      "name": "collapse:independent-of-resize",
+      "ok": true,
+      "detail": "88px attr=88"
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "measured": {
+    "before": {
+      "panel": {
+        "box": {
+          "x": 0,
+          "y": 968,
+          "w": 1920,
+          "h": 182,
+          "right": 1920
+        },
+        "backgroundColor": "rgb(31, 31, 31)",
+        "borderTopWidth": "1px",
+        "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px -18px 48px 0px",
+        "backdropFilter": "blur(24px)",
+        "minWidth": "0px",
+        "height": "182px",
+        "overflowY": "visible",
+        "attr": "182",
+        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-[182px]"
+      },
+      "handle": {
+        "box": {
+          "x": 0,
+          "y": 969,
+          "w": 1920,
+          "h": 8,
+          "right": 1920
+        },
+        "cursor": "ns-resize",
+        "zIndex": "40",
+        "position": "absolute",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "touchAction": "auto",
+        "userSelect": "auto",
+        "role": "separator",
+        "orientation": "horizontal",
+        "label": "拖动调整时间轴高度",
+        "className": "absolute inset-x-0 top-0 z-40 h-2 cursor-ns-resize"
+      },
+      "hitIsHandle": true,
+      "hitTag": "div"
+    },
+    "afterDrag": {
+      "panel": {
+        "box": {
+          "x": 0,
+          "y": 888,
+          "w": 1920,
+          "h": 262,
+          "right": 1920
+        },
+        "backgroundColor": "rgb(31, 31, 31)",
+        "borderTopWidth": "1px",
+        "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px -18px 48px 0px",
+        "backdropFilter": "blur(24px)",
+        "minWidth": "0px",
+        "height": "262px",
+        "overflowY": "visible",
+        "attr": "262",
+        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-auto"
+      },
+      "handle": {
+        "box": {
+          "x": 0,
+          "y": 889,
+          "w": 1920,
+          "h": 8,
+          "right": 1920
+        },
+        "cursor": "ns-resize",
+        "zIndex": "40",
+        "position": "absolute",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "touchAction": "auto",
+        "userSelect": "auto",
+        "role": "separator",
+        "orientation": "horizontal",
+        "label": "拖动调整时间轴高度",
+        "className": "absolute inset-x-0 top-0 z-40 h-2 cursor-ns-resize"
+      },
+      "hitIsHandle": true,
+      "hitTag": "div"
+    },
+    "collapsed": {
+      "panel": {
+        "box": {
+          "x": 0,
+          "y": 1062,
+          "w": 1920,
+          "h": 88,
+          "right": 1920
+        },
+        "backgroundColor": "rgb(31, 31, 31)",
+        "borderTopWidth": "1px",
+        "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px -18px 48px 0px",
+        "backdropFilter": "blur(24px)",
+        "minWidth": "0px",
+        "height": "88px",
+        "overflowY": "visible",
+        "attr": "88",
+        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-[88px]"
+      },
+      "handle": {
+        "box": {
+          "x": 0,
+          "y": 1063,
+          "w": 1920,
+          "h": 8,
+          "right": 1920
+        },
+        "cursor": "ns-resize",
+        "zIndex": "40",
+        "position": "absolute",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "touchAction": "auto",
+        "userSelect": "auto",
+        "role": "separator",
+        "orientation": "horizontal",
+        "label": "拖动调整时间轴高度",
+        "className": "absolute inset-x-0 top-0 z-40 h-2 cursor-ns-resize"
+      },
+      "hitIsHandle": true,
+      "hitTag": "div"
+    }
+  },
+  "diagnostics": {
+    "console": 0,
+    "errors": []
+  }
+}
