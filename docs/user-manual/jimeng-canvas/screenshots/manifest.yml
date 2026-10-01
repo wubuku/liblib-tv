@@ -593,3 +593,27 @@ screenshots:
     visible_text: 主体 1 / 这是主体描述的测试文字 / 格式速查 / 测试文本 abc / 节点 5 / 已保存
     alt: 主体描述提交结果：主体节点「主体 1」填写描述后，卡片头部变为「@ 主体 1」加一个铅笔编辑图标的一行，描述文字「这是主体描述的测试文字」以灰色小字显示在其下方作为副标题，下方是空的主媒体槽（内含人物占位图标），卡片左右各有一个圆形加号用于新建连线节点；画面右侧文本节点「文本 2」为青绿色底，可与左侧默认深灰的「文本 3」对比
     sha256: c7e49c7f4950fff8dd4b37bb674b2c481093102455ce503598c5c10fdc471747
+
+  - file: screenshots/45-timeline-split-cmd-b.png
+    task_id: timeline-node
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:32:00+08:00
+    verified_locator: '把播放头点进 Clip 1 内部后按 ⌘B，clips 由 2 增至 3，aria 逐字变为 Clip 1, 图片, 2.2 seconds / Clip 2, 图片, 2.8 seconds / Clip 3, 图片, 5.0 seconds'
+    visible_text: 00:02 / 00:10 / 00:00 / 00:05 / 00:10 / 00:15 / 00:20 / 00:25 / 00:30 / 全屏编辑
+    alt: 时间线用 ⌘B 分割片段：播放头白色竖线停在 00:02 刻度上、读数显示「00:02 / 00:10」，原本 5.0 秒的片段被切成相邻两段 00:02 与 00:05，后面还接着一段 00:05，共三段素材；橙色高亮框标出片段条与刻度尺，顶部预览区同步显示当前帧画面
+    sha256: 0c3b2d60d4f8f4dba3388aff3eba5946850d60ddbb72d7215451b9cb72a4efd8
+
+  - file: screenshots/46-timeline-trim-handles.png
+    task_id: timeline-node
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:34:00+08:00
+    verified_locator: '拖动片段左侧 aria「向左裁剪」把手（8x53）右移约 30px 后，Clip 1 时长由 2.2 seconds 变为 0.7 seconds；再拖右把手左移 30px 后变为 0.1 seconds'
+    visible_text: 00:02 / 00:07 / 00:00 / 00:05 / 00:10 / 00:15 / 00:20 / 00:25 / 00:30 / 全屏编辑
+    alt: 时间线片段的手动裁剪：拖动片段左右两侧的窄把手可直接改时长——第一段被压缩到极窄（不足 1 秒），后面两段保持 00:05 不变，总时长读数同步从 00:10 减为 00:07；每段左下角标注该段的秒数，片段末尾的 ＋ 仍可继续添加素材
+    sha256: b4155ded00e6bc97f2d6c1a5adcb9ffa087289b08a1ed16553305449e712735a
