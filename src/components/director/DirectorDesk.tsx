@@ -229,6 +229,16 @@ export default function DirectorDesk({
     (state) => state.deleteDirectorEntity,
   );
   const setViewMode = useDirectorStore((state) => state.setViewMode);
+  // Batch 605：源站在机位跟随时于视口顶部正中挂一条「正在跟随」浮层。跟随
+  // 判据取活动机位的 `camera.followTargetId` 非空——与 DirectorInspector 的
+  // 「跟随目标」选择器、DirectorTimeline/PhoneVcam 的「请先关闭机位跟随」
+  // 前置条件用的是同一个字段（store:6308 `camera.camera?.followTargetId`）。
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  const followTargetId = useDirectorStore((state) => {
+    const camera = state.objects.find((object) => object.id === state.activeCameraId);
+    return camera?.camera?.followTargetId ?? null;
+  });
+  const updateCamera = useDirectorStore((state) => state.updateCamera);
   const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const setViewportPanelsCollapsed = useDirectorStore(
     (state) => state.setViewportPanelsCollapsed,
@@ -510,11 +520,19 @@ export default function DirectorDesk({
         setExportPanelOpen(false);
         return;
       }
+      // Batch 605（源站实测）：跟随浮层的提示气泡逐字是「按 ESC 退出」——
+      // ESC 在机位跟随时**先退出跟随**，而不是直接关掉整个导演台。这一档
+      // 必须排在 closeWorkspace() 之前。
+      if (followTargetId) {
+        if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });
+        return;
+      }
       closeWorkspace();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
+    activeCameraId,
     activeMobilePanel,
     cancelDirectorGesture,
     closeMobilePanel,
@@ -522,9 +540,11 @@ export default function DirectorDesk({
     copyDirectorSelection,
     deleteDirectorEntity,
     exportPanelOpen,
+    followTargetId,
     pasteDirectorClipboard,
     redoDirector,
     undoDirector,
+    updateCamera,
     workspaceBusy,
   ]);
 
@@ -919,31 +939,47 @@ export default function DirectorDesk({
           </div>
         </div>
 
+        {/* Batch 605（源站 2026-10-01 实测 1920x1150）：这一对**不是**顶栏
+            grid 的一格，而是浮在视口上方正中：
+              div.pointer-events-auto.absolute.left-1/2.top-2.-translate-x-1/2
+                  div.border-white/8.flex.h-9.items-center.justify-center
+                      .gap-0.5.overflow-hidden.rounded-xl.border
+                      .bg-[#212121].p-0.5.w-[170px]          170x36 @(875,8)
+                ├ button h-8.rounded-[10px].text-[13px].leading-5
+                │        .transition-colors.min-w-0.flex-1.px-2
+                │        .bg-white/10.text-neutral-50           81x32 @(878,10)
+                └ button …text-neutral-50.hover:bg-white/10      81x32 @(961,10)
+            两者间隙 2px（容器 gap-0.5）；两枚按钮的**文字色相同**
+            （都是 text-neutral-50），只有底色区分选中态。
+            源站这两枚按钮**没有 aria-label**，可及名来自可见文字；clone
+            保留 aria-label（可及名等价，且便于定位）。 */}
         <div
           role="group"
           aria-label="导演台视角"
-          className="flex h-8 items-center rounded bg-[#242424] p-0.5"
+          className="pointer-events-auto absolute left-1/2 top-2 z-10 -translate-x-1/2"
         >
-          {(
-            [
-              ["director", "导演视角"],
-              ["camera", "机位视角"],
-            ] as Array<[DirectorViewMode, string]>
-          ).map(([mode, label]) => (
-            <button
-              key={mode}
-              type="button"
-              data-director-view-mode={mode}
-              aria-pressed={viewMode === mode}
-              onClick={() => setViewMode(mode)}
-              className={cn(
-                "h-7 rounded px-3 text-[11px] text-[#858585] max-[430px]:px-2",
-                viewMode === mode && "bg-[#3a3a3a] text-white",
-              )}
-            >
-              {label}
-            </button>
-          ))}
+          <div className="flex h-9 w-[170px] items-center justify-center gap-0.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#212121] p-0.5">
+            {(
+              [
+                ["director", "导演视角"],
+                ["camera", "机位视角"],
+              ] as Array<[DirectorViewMode, string]>
+            ).map(([mode, label]) => (
+              <button
+                key={mode}
+                type="button"
+                data-director-view-mode={mode}
+                aria-pressed={viewMode === mode}
+                onClick={() => setViewMode(mode)}
+                className={cn(
+                  "flex h-8 min-w-0 flex-1 items-center justify-center rounded-[10px] px-2 text-[13px] leading-5 text-neutral-50 transition-colors hover:bg-white/10 max-[430px]:px-1",
+                  viewMode === mode && "bg-white/10",
+                )}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="flex min-w-0 items-center justify-end">
@@ -1172,6 +1208,69 @@ export default function DirectorDesk({
             </div>
           }
         />
+
+        {/* Batch 605（源站 2026-10-01 实测 173.7x34 @(873.1,0)）：机位跟随
+            时挂在视口顶部正中的橙色浮层。逐字结构：
+              div.pointer-events-none.fixed.left-1/2.top-0.z-[305]
+                  .-translate-x-1/2.motion-safe:transition-opacity
+                  .motion-safe:duration-200
+                └ div.flex.items-center.gap-2.rounded-b-xl.border.px-3.py-1.5
+                    .text-white.shadow-md.pointer-events-none
+                    底色与描边都是 rgb(228,101,37) = #E46525
+                  ├ span.inline-block.size-2.shrink-0.rounded-full.bg-white
+                  ├ span.text-sm 「正在跟随」  14px
+                  └ span.relative.ml-1.inline-flex
+                      ├ button[aria-label=退出跟随]
+                      │   .peer.rounded-full.bg-white.px-2.py-0.5.text-xs
+                      │   .font-medium.leading-none.text-gray-900
+                      │   .transition-colors.hover:bg-white/90  「取消ESC」
+                      └ span.pointer-events-none.absolute.left-1/2.top-full
+                          .z-10.mt-2.-translate-x-1/2.whitespace-nowrap
+                          .rounded-md.bg-black/90.px-2.py-1.text-xs
+                          .font-normal.text-white.opacity-0.shadow-md
+                          .transition-opacity.peer-hover:opacity-100
+                        「按 ESC 退出」  ← hover 胶囊才显形的提示
+
+            源站那个 8px 白点是**静态**的（animation-name: none），照抄不做
+            呼吸动画。取消按钮清空 `followTargetId`，ESC 同效（见上方
+            键盘处理）。 */}
+        {followTargetId ? (
+          <div
+            data-director-follow-banner
+            className="pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200"
+          >
+            <div className="pointer-events-none flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md">
+              <span className="inline-block size-2 shrink-0 rounded-full bg-white" />
+              <span className="text-sm">正在跟随</span>
+              <span className="relative ml-1 inline-flex">
+                <button
+                  type="button"
+                  data-director-follow-cancel
+                  aria-label="退出跟随"
+                  onClick={() => {
+                    if (activeCameraId) {
+                      updateCamera(activeCameraId, { followTargetId: null });
+                    }
+                  }}
+                  // 有意偏离源站一处：源站这枚按钮从浮层继承到
+                  // `pointer-events: none`（浮层与面板都写了
+                  // pointer-events-none，按钮自身没写 auto），实测
+                  // elementFromPoint 落在按钮中心命中的是它**底下**的
+                  // 「机位视角」，也就是说源站这枚「取消」根本点不动，
+                  // 那句 peer-hover 的「按 ESC 退出」也因此永远显不出来。
+                  // 几何、配色、文案全部照抄，只把命中打开——一个死按钮
+                  // 不算可复刻的体验。ESC 键退出在源站是真实语义，已接上。
+                  className="pointer-events-auto peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
+                >
+                  取消<span className="ml-0.5 text-[10px]">ESC</span>
+                </button>
+                <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100">
+                  按 ESC 退出
+                </span>
+              </span>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

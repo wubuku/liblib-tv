@@ -1,0 +1,508 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "pair:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "pair:floated-left-1/2-top-2",
+      "ok": true,
+      "detail": "pointer-events-auto absolute left-1/2 top-2 z-10 -translate-x-1/2"
+    },
+    {
+      "name": "pair:shell-170x36",
+      "ok": true,
+      "detail": [
+        170,
+        36
+      ]
+    },
+    {
+      "name": "pair:shell-rounded-xl-bg-212121",
+      "ok": true,
+      "detail": "12px rgb(33, 33, 33)"
+    },
+    {
+      "name": "pair:shell-border-1px-white-8",
+      "ok": true,
+      "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    {
+      "name": "pair:shell-padding-2-gap-2",
+      "ok": true,
+      "detail": "padding=2px gap=2px"
+    },
+    {
+      "name": "pair:a-81x32",
+      "ok": true,
+      "detail": [
+        81,
+        32
+      ]
+    },
+    {
+      "name": "pair:a-rounded-10px",
+      "ok": true,
+      "detail": "10px"
+    },
+    {
+      "name": "pair:a-font-13px-20px",
+      "ok": true,
+      "detail": "13px/20px"
+    },
+    {
+      "name": "pair:b-81x32",
+      "ok": true,
+      "detail": [
+        81,
+        32
+      ]
+    },
+    {
+      "name": "pair:b-rounded-10px",
+      "ok": true,
+      "detail": "10px"
+    },
+    {
+      "name": "pair:b-font-13px-20px",
+      "ok": true,
+      "detail": "13px/20px"
+    },
+    {
+      "name": "pair:gap-2px",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "pair:selected-bg-white-10",
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    {
+      "name": "pair:unselected-transparent",
+      "ok": true,
+      "detail": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "name": "pair:same-text-colour",
+      "ok": true,
+      "detail": [
+        "rgb(247, 247, 247)",
+        "rgb(247, 247, 247)"
+      ]
+    },
+    {
+      "name": "pair:aria-pressed-mutually-exclusive",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "banner:hidden-without-follow",
+      "ok": true,
+      "detail": "no followTargetId -> no banner"
+    },
+    {
+      "name": "banner:shown-while-following",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "banner:fixed-top-0-z-305",
+      "ok": true,
+      "detail": "fixed z=305"
+    },
+    {
+      "name": "banner:pointer-events-none",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "banner:panel-orange-#E46525",
+      "ok": true,
+      "detail": "rgb(228, 101, 37) rgb(228, 101, 37)"
+    },
+    {
+      "name": "banner:panel-rounded-b-12",
+      "ok": true,
+      "detail": "0px 0px 12px 12px"
+    },
+    {
+      "name": "banner:panel-padding-6-12",
+      "ok": true,
+      "detail": "6px 12px"
+    },
+    {
+      "name": "banner:dot-8px-static-white",
+      "ok": true,
+      "detail": "{'x': 886.9296875, 'y': 13, 'w': 8, 'h': 8, 'right': 894.9296875, 'bottom': 21} rgb(255, 255, 255) anim=none"
+    },
+    {
+      "name": "banner:label-text",
+      "ok": true,
+      "detail": "'正在跟随' 14px"
+    },
+    {
+      "name": "banner:cancel-white-pill",
+      "ok": true,
+      "detail": "3.35544e+07px rgb(255, 255, 255) 2px 8px 12px/500"
+    },
+    {
+      "name": "banner:cancel-aria-退出跟随",
+      "ok": true,
+      "detail": "退出跟随"
+    },
+    {
+      "name": "banner:cancel-text-取消ESC",
+      "ok": true,
+      "detail": "取消ESC"
+    },
+    {
+      "name": "banner:hint-text-按ESC退出",
+      "ok": true,
+      "detail": "按 ESC 退出"
+    },
+    {
+      "name": "banner:hint-hidden-until-peer-hover",
+      "ok": true,
+      "detail": "opacity=0"
+    },
+    {
+      "name": "banner:cancel-pointer-events-auto",
+      "ok": true,
+      "detail": "deliberate deviation: the source's own 取消 pill inherits pointer-events:none from the banner panel (panel and banner both write pointer-events-none, the button does not re-enable it), and elementFromPoint at the pill centre lands on the 机位视角 button underneath — so the source's cancel is unclickable and its peer-hover hint can never appear. Geometry and styling are copied verbatim; only hit-testing is opened."
+    },
+    {
+      "name": "banner:hit-testable-cancel",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "banner:click-cancel-exits",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "follow:target-cleared",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "follow:shown-again",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "esc:exits-follow-not-desk",
+      "ok": true,
+      "detail": "ESC clears followTargetId and leaves the desk open"
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "measured": {
+    "pair": {
+      "group": {
+        "box": {
+          "x": 875,
+          "y": 8,
+          "w": 170,
+          "h": 36,
+          "right": 1045,
+          "bottom": 44
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(237, 237, 237)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "block",
+        "position": "absolute",
+        "zIndex": "10",
+        "width": "170px",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "opacity": "1",
+        "animationName": "none",
+        "className": "pointer-events-auto absolute left-1/2 top-2 z-10 -translate-x-1/2"
+      },
+      "shell": {
+        "box": {
+          "x": 875,
+          "y": 8,
+          "w": 170,
+          "h": 36,
+          "right": 1045,
+          "bottom": 44
+        },
+        "backgroundColor": "rgb(33, 33, 33)",
+        "color": "rgb(237, 237, 237)",
+        "borderRadius": "12px",
+        "padding": "2px",
+        "gap": "2px",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "width": "170px",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "borderTopWidth": "1px",
+        "borderTopColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "borderBottomLeftRadius": "12px",
+        "borderBottomRightRadius": "12px",
+        "opacity": "1",
+        "animationName": "none",
+        "className": "flex h-9 w-[170px] items-center justify-center gap-0.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#212121] p-0.5"
+      },
+      "a": {
+        "box": {
+          "x": 878,
+          "y": 10,
+          "w": 81,
+          "h": 32,
+          "right": 959,
+          "bottom": 42
+        },
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "color": "rgb(247, 247, 247)",
+        "borderRadius": "10px",
+        "padding": "0px 8px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "width": "81px",
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "10px",
+        "borderBottomRightRadius": "10px",
+        "opacity": "1",
+        "animationName": "none",
+        "className": "flex h-8 min-w-0 flex-1 items-center justify-center rounded-[10px] px-2 text-[13px] leading-5 text-neutral-50 transition-colors hover:bg-white/10 max-[430px]:px-1 bg-white/10"
+      },
+      "b": {
+        "box": {
+          "x": 961,
+          "y": 10,
+          "w": 81,
+          "h": 32,
+          "right": 1042,
+          "bottom": 42
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(247, 247, 247)",
+        "borderRadius": "10px",
+        "padding": "0px 8px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "static",
+        "zIndex": "auto",
+        "width": "81px",
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "10px",
+        "borderBottomRightRadius": "10px",
+        "opacity": "1",
+        "animationName": "none",
+        "className": "flex h-8 min-w-0 flex-1 items-center justify-center rounded-[10px] px-2 text-[13px] leading-5 text-neutral-50 transition-colors hover:bg-white/10 max-[430px]:px-1"
+      }
+    },
+    "bannerOn": {
+      "present": true,
+      "banner": {
+        "box": {
+          "x": 873.9296875,
+          "y": 0,
+          "w": 172.140625,
+          "h": 34,
+          "right": 1046.0703125,
+          "bottom": 34
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(237, 237, 237)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "gap": "normal",
+        "margin": "0px",
+        "position": "fixed",
+        "zIndex": "305",
+        "opacity": "1",
+        "pointerEvents": "none",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "animationName": "none",
+        "className": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200"
+      },
+      "panel": {
+        "box": {
+          "x": 873.9296875,
+          "y": 0,
+          "w": 172.140625,
+          "h": 34,
+          "right": 1046.0703125,
+          "bottom": 34
+        },
+        "backgroundColor": "rgb(228, 101, 37)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "0px 0px 12px 12px",
+        "padding": "6px 12px",
+        "gap": "8px",
+        "margin": "0px",
+        "position": "static",
+        "zIndex": "auto",
+        "opacity": "1",
+        "pointerEvents": "none",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "borderTopWidth": "1px",
+        "borderTopColor": "rgb(228, 101, 37)",
+        "borderBottomLeftRadius": "12px",
+        "borderBottomRightRadius": "12px",
+        "animationName": "none",
+        "className": "pointer-events-none flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md"
+      },
+      "dot": {
+        "box": {
+          "x": 886.9296875,
+          "y": 13,
+          "w": 8,
+          "h": 8,
+          "right": 894.9296875,
+          "bottom": 21
+        },
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "3.35544e+07px",
+        "padding": "0px",
+        "gap": "normal",
+        "margin": "0px",
+        "position": "static",
+        "zIndex": "auto",
+        "opacity": "1",
+        "pointerEvents": "none",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "3.35544e+07px",
+        "borderBottomRightRadius": "3.35544e+07px",
+        "animationName": "none",
+        "className": "inline-block size-2 shrink-0 rounded-full bg-white"
+      },
+      "label": {
+        "box": {
+          "x": 902.9296875,
+          "y": 7,
+          "w": 56,
+          "h": 20,
+          "right": 958.9296875,
+          "bottom": 27
+        },
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "gap": "normal",
+        "margin": "0px",
+        "position": "static",
+        "zIndex": "auto",
+        "opacity": "1",
+        "pointerEvents": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "animationName": "none",
+        "className": "text-sm"
+      },
+      "cancel": {
+        "box": {
+          "x": 970.9296875,
+          "y": 9,
+          "w": 62.140625,
+          "h": 16,
+          "right": 1033.0703125,
+          "bottom": 25
+        },
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "lab(8.11897 0.811279 -12.254)",
+        "borderRadius": "3.35544e+07px",
+        "padding": "2px 8px",
+        "gap": "normal",
+        "margin": "0px",
+        "position": "static",
+        "zIndex": "auto",
+        "opacity": "1",
+        "pointerEvents": "auto",
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "lineHeight": "12px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "3.35544e+07px",
+        "borderBottomRightRadius": "3.35544e+07px",
+        "animationName": "none",
+        "className": "pointer-events-auto peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
+      },
+      "hint": {
+        "box": {
+          "x": 960.921875,
+          "y": 33,
+          "w": 82.140625,
+          "h": 24,
+          "right": 1043.0625,
+          "bottom": 57
+        },
+        "backgroundColor": "oklab(0 0 0 / 0.9)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "6px",
+        "padding": "4px 8px",
+        "gap": "normal",
+        "margin": "8px 0px 0px",
+        "position": "absolute",
+        "zIndex": "10",
+        "opacity": "0",
+        "pointerEvents": "none",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "16px",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "borderBottomLeftRadius": "6px",
+        "borderBottomRightRadius": "6px",
+        "animationName": "none",
+        "className": "pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100"
+      },
+      "labelText": "正在跟随",
+      "cancelText": "取消ESC",
+      "hintText": "按 ESC 退出",
+      "cancelAria": "退出跟随"
+    }
+  },
+  "diagnostics": {
+    "console": 0,
+    "errors": []
+  }
+}
