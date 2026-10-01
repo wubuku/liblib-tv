@@ -856,6 +856,123 @@ def p_feature_availability_readonly(src):
     return len(files) >= 3
 
 
+def p_art_critique_two_layers(src):
+    """审美批改的输入校验**分两层且不一致**：节点取第一张，弹窗要求恰好一张。
+
+    手册 art-critique.md 原写「恰好连 1 张……**不是「取第一张」，是直接判定无效**」——
+    而「取第一张」恰恰是**节点内容区的真实行为**，我拿源码的行为当反例去反驳它。
+
+    判据要求：
+      (a) 节点侧 `const input = imageInputs[0]`（取第一张）**且**标题栏
+          明写「使用第一张」，**且** `canOpen` 只要求「有图」——多张时仍可打开；
+      (b) 弹窗侧 `images.length === 1 ? images[0] : undefined`（恰好一张）
+          **且**按钮 `disabled` 依赖 `!input` **且**有「请连接且仅连接一张」的报错文案；
+      (c) **对照组**：两处**确实都存在**（不是只有一层）。
+          少了 (c)，上游哪天统一了两层行为，这条判据应当失效——
+          那时手册要改写成「现在节点和面板一致取第一张」，而不是继续说「两层不一致」。
+    """
+    node = git_show(src, "web/src/components/canvas/nodes/ai-art-critique-node.tsx")
+    modal = git_show(src, "web/src/components/canvas/art-critique/ai-art-critique-modal.tsx")
+    if not node or not modal:
+        return None
+    # (a) 节点侧取第一张
+    if "const input = imageInputs[0];" not in node:
+        return False
+    if "使用第一张" not in node:
+        return False
+    if not re.search(r"const canOpen = Boolean\(state\.report\) \|\| \(enabled && Boolean\(input\)\);", node):
+        return False
+    # (b) 弹窗侧恰好一张
+    if "images.length === 1 ? images[0] : undefined" not in modal:
+        return False
+    if "请连接且仅连接一张已有图片" not in modal:
+        return False
+    if "disabled={running || !input || !enabled || !selectedCritiqueModel}" not in modal:
+        return False
+    return True
+
+
+def p_style_execution_policy_two_branches(src):
+    """画风资产的执行策略是**可切换的两分支**，默认「兼容降级」——不是「恒被挡住」。
+
+    手册 organize-canvas.md 原写「LoRA ❌ **恒被挡住**」，把一个开关的**两个取值**
+    压平成了单一结论。源码文案本身就写了两句并列的话：
+    「兼容降级会继续执行项目 Prompt；严格策略会在生成前阻止任务」。
+
+    判据要求：
+      (a) `executionPolicy` 是**二值枚举**且默认值是 `compatible-fallback`；
+      (b) 只有 `strict-assets` 且存在被拦素材时才 `strictBlocked`，
+          否则状态是 `degraded`（降级放行）——**证明默认路径不阻止**；
+      (c) **对照组**：界面上**能切**这个策略（下拉里有「兼容降级」/「严格阻止」两个选项）。
+          少了 (c)，(a)(b) 可能只是两段没人走的死代码；
+          那样手册该说的是「策略写死了、切不了」，而不是「默认放行、可以切成阻止」。
+    """
+    profile = git_show(src, "web/src/lib/canvas/style-profile.ts")
+    if not profile:
+        return None
+    # (a) 二值枚举 + 默认值
+    if 'executionPolicy?: "compatible-fallback" | "strict-assets";' not in profile:
+        return False
+    if 'source.executionPolicy || "compatible-fallback"' not in profile:
+        return False
+    # (b) 只有严格策略才阻止
+    if 'const strictBlocked = profile.executionPolicy === "strict-assets"' not in profile:
+        return False
+    if 'status: strictBlocked ? "blocked" : warnings.length ? "degraded" : "ready"' not in profile:
+        return False
+    # (c) 对照组：界面可切
+    modal = git_show(src, "web/src/components/canvas/style-asset-binding-modal.tsx")
+    if not modal:
+        return None
+    if '{ value: "compatible-fallback", label: "兼容降级" }' not in modal:
+        return False
+    return '{ value: "strict-assets", label: "严格阻止" }' in modal
+
+
+def p_channel_page_three_names(src):
+    """模型配置页**三个名字并存**，而「个人渠道」作为大标题的分支永不渲染。
+
+    手册 plugins-management.md 原写「标题随部署形态变化：本地部署显示『本地模型渠道』，
+    其他形态显示『**个人渠道**』」——但判断用的 `localMode` 来自
+    `workspaceCapabilities().local`，而那个 `local` 在代码里**写死为 `true`**，
+    所以 else 分支（个人渠道）**渲染不出来**。
+
+    真正在界面上并存的是**三个名字**：侧栏「模型配置」、设置页内分区「个人渠道」
+    （无条件字面量）、面板大标题「本地模型渠道」（因为 localMode 恒 true）。
+
+    判据要求：
+      (a) `workspaceCapabilities()` 的 `local` 字段是**硬编码 true**；
+      (b) 面板标题是 `localMode ? "本地模型渠道" : "个人渠道"` 这种二选一；
+      (c) **对照组**：设置页分区的 label 是**无条件字面量「个人渠道」**
+          ——证明「个人渠道」这个词确实出现在界面上，只是不作为大标题出现。
+          少了 (c)，(a)(b) 会让读者以为界面上根本没有「个人渠道」二字，那是错的。
+    """
+    mode = git_show(src, "web/src/services/workspace-mode.ts")
+    if not mode:
+        return None
+    if "export type WorkspaceCapabilities = { local: true;" not in mode:
+        return False
+    if not re.search(r"return \{\s*\n\s*local: true,", mode):
+        return False
+    pane = git_show(src, "web/src/pages/settings/channel-settings-pane.tsx")
+    if not pane:
+        return None
+    if "const localMode = workspaceCapabilities().local;" not in pane:
+        return False
+    if 'localMode ? "本地模型渠道" : "个人渠道"' not in pane:
+        return False
+    # (c) 对照组：分区 label 是**无条件字面量**——不是三元、不是条件表达式。
+    #     第一版这里写的是 `return "侧栏" not in settings`，那是个**语义模糊的字符串检查**：
+    #     它既说不清「为什么要查侧栏」，也挡不住任何真实回归
+    #     （把 label 改成 `cond ? "个人渠道" : "x"` 它照样通过）。换成有意义的形态判定。
+    settings = git_show(src, "web/src/pages/settings/index.tsx")
+    if not settings:
+        return None
+    if '{ key: "channels", label: "个人渠道"' not in settings:
+        return False
+    return not re.search(r'label:\s*\w+\s*\?[^,]*个人渠道', settings)
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -909,6 +1026,12 @@ REGISTRY = [
      p_canvas_folders_not_nested, None),
     ("feature-availability-readonly", "功能开放配置只读：只注册了 GET，写方法在 handler 层零调用",
      p_feature_availability_readonly, None),
+    ("art-critique-two-layers", "审美批改输入校验分两层且不一致：节点取第一张、弹窗要求恰好一张",
+     p_art_critique_two_layers, None),
+    ("style-execution-policy-two-branches", "画风执行策略是可切换两分支，默认兼容降级（不是「恒被挡住」）",
+     p_style_execution_policy_two_branches, None),
+    ("channel-page-three-names", "模型配置页三个名字并存，「个人渠道」作大标题的分支永不渲染",
+     p_channel_page_three_names, None),
 ]
 
 

@@ -94,6 +94,10 @@ run_case "21) more 分组接上渲染" web/src/components/canvas/canvas-node-too
 run_case "22) 画布库文件夹加上嵌套字段" web/src/stores/canvas/use-canvas-store.ts "$HERE/selftest-fix-22-folder-nested.py" "parentId?: string;" "canvas-folders-not-nested"
 run_case "23) 功能开放配置补上写入路由" backend/internal/handler/feature_availability.go "$HERE/selftest-fix-23-feature-write.py" 'r.PATCH("/features"' "feature-availability-readonly"
 
+run_case "24) 审美批改两层统一成都取第一张" web/src/components/canvas/art-critique/ai-art-critique-modal.tsx "$HERE/selftest-fix-24-art-critique-unified.py" "return images[0];" "art-critique-two-layers"
+run_case "25) 画风执行策略取消严格分支" web/src/lib/canvas/style-profile.ts "$HERE/selftest-fix-25-style-policy-fixed.py" 'executionPolicy?: "compatible-fallback";' "style-execution-policy-two-branches"
+run_case "26) local 标记不再写死 true" web/src/services/workspace-mode.ts "$HERE/selftest-fix-26-channel-title-merged.py" 'local: capabilitySnapshot?.profile === "remote"' "channel-page-three-names"
+
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi
 
