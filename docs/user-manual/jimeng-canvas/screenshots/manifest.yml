@@ -725,3 +725,51 @@ screenshots:
     visible_text: 测试项目 / 节点 1 / 已保存 / 搜索节点... / 全部 1 / 图片 / 视频 1 / 音频 / 文本 / 主体 / 时间线 / 组 / 其他 / 视频 1
     alt: 点击搜索结果后的画布：视口已跳转到「视频 1」节点并把它选中，节点带选中态出现在画面中央偏上；右上角搜索面板仍保持打开，列表中「视频 1」为唯一结果；左下角缩放读数 100%
     sha256: 23d24d384bf14dcf817d6f7f158c3388a51bf30a8444d72786203b2b3d593fc8
+
+  - file: screenshots/56-project-switcher-panel.png
+    task_id: canvas-context
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:12:00+08:00
+    verified_locator: '顶栏 aria「项目」按钮（data-testid=canvas-project-trigger）展开的 data-testid=canvas-project-panel-popover（aria「Project panel」，240×200 @12,52），含三个 project-switcher-item 与「新建画布项目」；未点击任何项目，URL 未变'
+    visible_text: 项目 / 测试项目 / 未命名项目 / 视频创作 / 新建画布项目 / 节点 1 / 已保存 / 分享 / 805 基础会员
+    alt: 顶栏「项目」按钮展开的 240×200 面板出现在画布左上角：标题「项目」，下方依次列出三个项目条目「测试项目」「未命名项目」「视频创作」（各 232×36，当前所在的测试项目为高亮项），底部是「新建画布项目」；面板外可见顶栏的测试项目、节点 1、已保存、分享与积分 805 基础会员
+    sha256: 79355fe205529d298592ce81b75f403d6b94917bec9447d608ef5bf5a1147c22
+
+  - file: screenshots/57-node-summary-popover.png
+    task_id: canvas-context
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:12:30+08:00
+    verified_locator: '顶栏 aria「Canvas node summary: 节点 1」按钮展开的 data-testid=canvas-node-summary-popover（role=dialog，200×92 @69,47），两行各 192×36'
+    visible_text: 视频 1 / 视频 / 查看项目信息 / 节点 1 / 已保存 / 分享 / 805 基础会员
+    alt: 顶栏「节点 1」按钮展开的 200×92 小结对话框：第一行是「视频 1」并带一个类型小标签「视频」，第二行是「查看项目信息」；面板锚定在顶栏「节点 1」按钮正下方
+    sha256: ea456a04d6bbac2b1bae18b236f55964dbae6f9f83851803d5b13598af59a73f
+
+  - file: screenshots/58-canvas-context-menu.png
+    task_id: create-first-node
+    step: 10
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:11:00+08:00
+    verified_locator: '在 .react-flow__pane 空白处右键弹出的 data-testid=canvas-context-menu（aria「Canvas context menu」，240×172 @1032,240），四项各 232×36'
+    visible_text: 新建节点 / 粘贴 ⌘ V / 重做 ⌘ ⇧ Z 无需重做操作 / 撤销 ⌘ Z 无需撤销操作 / 视频 1 / 100%
+    alt: 画布空白处右键弹出的 240×172 菜单出现在右键点右下方：四项依次为 新建节点、粘贴 ⌘V、重做 ⌘⇧Z（条目下方附灰色小字「无需重做操作」）、撤销 ⌘Z（条目下方附灰色小字「无需撤销操作」）；菜单右侧已到视口边缘
+    sha256: b1a279ad5e6ab5791bbe0beb8a48ad635faed4cfd35269358ad34c818e39d30e
+
+  - file: screenshots/59-copy-duplicate.png
+    task_id: duplicate-delete-history
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:13:00+08:00
+    verified_locator: '选中「视频 node: 视频 1」后按 ⌘D：状态行 1 node → 2 nodes, 1 selected；副本 aria 逐字「视频 node: 视频 1 (2)」，位置 dx=648 dy=0，尺寸 569×320 与原节点相同'
+    visible_text: 视频 1 / 视频 1 (2) / 2 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. / 100%
+    alt: 按 ⌘D 复制副本后的画布：原节点「视频 1」在左、副本「视频 1 (2)」在正右方同一水平线上，两者尺寸相同；副本处于选中态（带选中描边与工具条），状态行显示 2 nodes, 0 edges, 1 selected
+    sha256: 15128c962bbdbe612abb4e19907639251b00c5f341d37443f0b94c2eab3be15d
