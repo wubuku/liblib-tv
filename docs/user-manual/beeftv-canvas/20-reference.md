@@ -68,7 +68,6 @@
 | `/settings`（`?section=channels`，`?continue=1`） | **模型配置 / 个人渠道**——见 [10-tasks/model-channels.md](10-tasks/model-channels.md) |
 | `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（`pluginCenterEnabled` 特性**默认就是开的**，你不需要做任何设置——见下方「特性开关默认值」） |
 | `/test-voice-recording` | **语音录制的开发测试页**——它挂在生产路由里、**侧栏没有任何入口**，只能手敲网址进入。页面用途写在源码注释里：「验证输入行内联波形录制和 STT 转写闭环」 |
-
 | `/dev/folders`、`/dev/director-repro` | **两个开发调试台**——文件夹样式预览台与导演台复现台。同样挂在生产路由里、**界面上没有任何入口**，只能手敲网址。比 `/test-voice-recording` 更冷的一层：**导演台复现台专门写了一段「隔离」逻辑**（源码注释：跳过工作区启动，*免得没有后端时打出真实 502 污染判据*），**但那段判断是 `import.meta.env.DEV` 包的，生产构建里会被摇树删除**——所以线上这两页**照样会去打后端**，没起后端时你看到的是连不上的半成品。 |
 
 **已退场、访问会被重定向回首页的路由**：`/tasks`（任务中心）、`/skills`、`/skill`、`/skills/reference`——都随旧 Agent / 任务中心一起下线。旧链接不会 404，会静默跳回 `/`，所以「点进去发现回到了首页」是预期行为，不是故障。
@@ -200,6 +199,13 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 > 形如 `envInt("CANVAS_WORKER_CONCURRENCY", …)` 的**可配置项本表不收**
 > （那是部署方配置，不属于本手册的断言），解析不出时按「未能核对」报 rc=2，**不假装通过**。
 
+> **这六项里只有开关能运行时直读，策略值读不到**（Batch 174 实测）：
+> `GET /api/features` 能读到 7 个开关的真实取值，**与本表逐条相符**；
+> 但后端**没有把运行时策略暴露成任何接口**——`/api/runtime-policy`、`/api/admin/runtime-policy`、
+> `/api/runtime/concurrency`、`/api/workspace-capabilities` 实测**全部 404**。
+> **所以下面前两行（并发上限、归档保留期）仍只是源码推导**（依据是 `NewLocal(...)` 以 `localMode=true` 构造 → `RuntimePolicy()` 返回 `selfUseRuntimePolicy()`），
+> **而开关那几行是运行时事实**——**把它们写成一样的可信度，就是把证据等级抹平了。**
+
 | 策略项 | 默认部署 | 本地部署（localMode） | 对读者意味着什么 |
 |---|---|---|---|
 | `ActiveTaskLimit` | 5 | 999 | **本地撞不到**「最多 N 个」那条报错；批量并发也就没有 5 的天花板 |
@@ -224,6 +230,12 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 >
 > 本表由 `scripts/verify-feature-flags.py` 在每次构建时与
 > `backend/internal/platform/feature_availability.go` 的 `DefaultFeatureAvailability()` 现场核对。
+>
+> **这一半有运行时证据**（2026-10-02，v1.6.16 本地实例实测）：
+> `GET /api/features` 返回的 7 个取值与本表**逐条相符**，且 `"configured": false`
+> 正好印证上游注释「缺少配置代表尚未由运维接管」——**也就是「读到的就是默认值」这件事本身被验过**。
+> 同一次实测里 `PUT` / `POST` / `PATCH` / `DELETE /api/features` **全部 404**，
+> 改完再读 7 个开关一个没变——**「没有开关可改」因此也是运行时事实，不只是读源码读出来的**。
 
 | 开关 | 字段名 | 默认值 |
 |---|---|---|

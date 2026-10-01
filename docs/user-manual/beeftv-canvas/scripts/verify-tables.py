@@ -66,6 +66,19 @@ def scan(path):
         if not block:
             return
         header_n = unescaped_pipes(block[0][1])
+        # ⚠️ Batch 174 新增：**块只有一行、且那一行不是分隔行** = 畸形表。
+        # GFM 要求「表头 + 分隔行」相邻才算表格；一旦中间被空行或引用块隔开，
+        # **整块会被当成普通段落原样显示**——不报错、不截断，只是**表格消失了**。
+        # 本闸原先只比「同一块内各行的列数」，而畸形表在它眼里是「一个 1 行的块」，
+        # 列数自然一致，**于是完全看不见**。
+        # 真实案例两处：`20-reference.md` 的 `/dev/folders` 那一行被空行隔在路由表之外
+        # （**读者看到的是一行悬空的表格文字**），以及小节标题里手写的「策略项」表头
+        # 与 `|---|` 之间夹进了引用块——后者是本批自己写坏的，当场被这条判据抓住。
+        if len(block) == 1 and not is_separator(block[0][1]):
+            problems.append((block[0][0], header_n, header_n,
+                             block[0][1].strip()[:70] + "  ← 单行且不是分隔行"))
+            block.clear()
+            return
         for lineno, raw in block:
             n = unescaped_pipes(raw)
             # 多于表头 = 真的多切出一列 = 损坏；少于表头会被 GFM 补空，不算
@@ -112,9 +125,15 @@ def main():
         if not problems:
             continue
         rel = os.path.relpath(path, root)
-        print(f"  ✗ {rel}：{len(problems)} 行列数与所在表不符")
+        print(f"  ✗ {rel}：{len(problems)} 处表格结构问题")
         for lineno, n, header_n, excerpt in problems:
-            print(f"      第 {lineno} 行：未转义竖线 {n} 个，表头是 {header_n} 个 | {excerpt}")
+            if excerpt.endswith("← 单行且不是分隔行"):
+                # 这类不是「列数不符」，是**整张表不会被渲染成表格**（Batch 174）
+                print(f"      第 {lineno} 行：这一行没有和分隔行相邻，"
+                      f"**整块不会被渲染成表格**（GFM 要求表头与分隔行紧挨着）| "
+                      f"{excerpt.rsplit('  ←', 1)[0]}")
+            else:
+                print(f"      第 {lineno} 行：未转义竖线 {n} 个，表头是 {header_n} 个 | {excerpt}")
         total_bad += len(problems)
 
     if total_bad:
