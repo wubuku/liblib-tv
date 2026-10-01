@@ -48,15 +48,24 @@ EXPECTED_TIDS = [
     "audio-voice-model-listbox", "audio-gen-mode-listbox",
     "audio-all-voices-listbox", "audio-voice-filter-listbox",
     "canvas-context-menu", "canvas-zoom-menu",
+    "video-fullscreen-preview",        # 批 840 新增（全屏模态）
     "topbar-share-panel", "canvas-user-menu", "topbar-more-menu",
     "jimeng-search-overlay", "topbar-history-menu",
 ]
 
 # 只有这三个状态允许「枚举到 0 个候选」，且必须写明理由
+# 状态名 → **必须逐字一致**的理由。批 840 把工具输出改成结构化
+# {state, reason} 之后，这里可以逐字钉住理由，而不只是"有理由"（见 B.4）。
 ALLOWED_EMPTY = {
     "空态": "画布上本来就没有任何浮层",
-    "视频工具条": "工具条本身是 React Flow 的宿主架，判定为不是浮层",
-    "视频生成面板": "生成面板是工具条里的一块板，本身没有独立锚点",
+    "视频工具条": "工具条本身是 React Flow 的宿主架，判定为不是浮层；"
+                  "它带出来的两个下拉由下面两个状态各自枚举",
+    "视频生成面板": "生成面板是工具条里的一块板，本身没有独立锚点；"
+                    "它内部的 4 个下拉由下面 4 个状态各自枚举",
+    # 批 840 补：839 那轮它报出的那 1 个候选是**漏过来**的工具下拉
+    # （TID2TRIG 当时缺了视频那两个下拉），补上之后 0 才是真值。
+    "图片节点产出（截帧）": "截帧只产出图片节点，本身不打开任何浮层；"
+                          "它的工具菜单由下面那个状态各自枚举",
 }
 
 failures: list[str] = []
@@ -112,15 +121,18 @@ def main() -> int:
           not skipped, "; ".join(skipped[:3]))
     check(f"B.2 empty（打开了却枚举不到 = 判据盲区）= 0 —— 实测 {len(empty)}",
           not empty, "; ".join(empty[:3]))
-    allowed_names = {e.split("（")[0] for e in expected_empty}
-    check(f"B.3 expected_empty 只允许白名单那 {len(ALLOWED_EMPTY)} 个 —— "
+    # 批 840：工具输出已是 {state, reason}，直接取字段 —— 旧写法是
+    # `e.split("（")[0]`，而状态名**本身带括号**（`图片节点产出（截帧）`），
+    # 拼一拆就错，且错得像"工具有 bug"。
+    got = {e.get("state"): e.get("reason", "") for e in expected_empty}
+    check(f"B.3 expected_empty 的状态集合 = 白名单那 {len(ALLOWED_EMPTY)} 个 —— "
           f"实测 {len(expected_empty)}",
-          allowed_names == set(ALLOWED_EMPTY),
-          f"实际={sorted(allowed_names)} 期望={sorted(ALLOWED_EMPTY)}")
-    reasons_ok = all(
-        any(k in e for e in expected_empty if e.startswith(k))
-        for k in ALLOWED_EMPTY)
-    check("B.4 每个 expected_empty 都带理由（不许只写名字）", reasons_ok)
+          set(got) == set(ALLOWED_EMPTY),
+          f"实际={sorted(x for x in got if x)} 期望={sorted(ALLOWED_EMPTY)}")
+    wrong = {k: (got.get(k), v) for k, v in ALLOWED_EMPTY.items()
+             if got.get(k) != v}
+    check("B.4 每个 expected_empty 的理由都逐字对得上（不许含糊成'同上'）",
+          not wrong, f"对不上={list(wrong)[:2]}")
 
     # ── C. 覆盖面下限：缩小范围会被发现 ───────────────────────────
     print("\n— C. 覆盖面下限（工具自己无法保证的那部分）—")
@@ -131,7 +143,7 @@ def main() -> int:
           f"实际={len(seen_tids)}")
     # 状态数下限
     states = {r["state"] for r in rows}
-    check(f"C.3 状态数 ≥ 18（防把状态列表砍掉）", len(states) >= 18,
+    check(f"C.3 状态数 ≥ 20（防把状态列表砍掉；批 840 后实测 21）", len(states) >= 20,
           f"实际={len(states)}")
 
     # ── D. 无 role 的两处必须**仍然**被枚举到 ─────────────────────

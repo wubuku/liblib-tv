@@ -67,6 +67,12 @@ export function JimengVideoPreview({
       className="fixed inset-0 z-[400] bg-black/60"
       role="dialog"
       aria-label="视频全屏预览"
+      /* 批 840：补锚点。这是批 832 role 型普查记下的那处「无锚点」——
+         几何型普查（§54 第二通道）**结构上**看不见它：它 `fixed inset-0`
+         = 1680×1050，正好撞上枚举里「≥1500×700 的巨型容器就跳过」那条规则。
+         批 840 把那条规则换成按**身份**排除（见 jimeng_floating_layer_audit.py），
+         它才浮出来。补锚点只是让它可指名，**不声称**源站有同名属性。 */
+      data-testid="video-fullscreen-preview"
     >
       {/* 媒体铺满 */}
       {data.poster ? (

@@ -25,9 +25,12 @@
   ③ 可交互：内部 ≥ 2 个可交互子元素（button / [role=*] / input / a …）
   ④ 可见：非 display:none / visibility:hidden，尺寸 ≥ 阈值
 
-排除：`.react-flow__node`（装着浮层的那一层）、`.react-flow__node-toolbar`
+排除（**按身份，不按尺寸** —— 批 840 实测把「≥1500×700 就跳过」那条改掉了：
+它和画布壳尺寸一模一样，顺带吃掉了全屏模态）：`.react-flow__renderer` /
+`.react-flow__pane` / `.react-flow__viewport` / `.react-flow__nodes`（画布自身）、
+`.react-flow__node`（装着浮层的那一层）、`.react-flow__node-toolbar`
 （xyflow 自己的宿主壳，复刻控制不了；工具条自己的锚点是内层 `node-toolbar`）、
-铺满全屏的巨型容器。
+顶栏容器 `canvas-top-bar`（装着那些浮层的架子）。
 
 ## 退出码
 
@@ -111,7 +114,28 @@ ENUM_JS = """() => {
     const inTopbar = !!e.closest('header[aria-label="Canvas top bar"]');
     if (!(z >= 100 || host || inTopbar)) continue;
     const r = e.getBoundingClientRect();
-    if (r.width >= 1500 && r.height >= 700) continue;
+    // ⚠️ 这里原先写的是「`w ≥ 1500 && h ≥ 700` 就跳过」（排除铺满全屏的巨型容器）。
+    //    **那条规则是错的**，它把全屏模态一起吃掉了 —— 批 840 实测：
+    //      · react-flow__renderer  1680×1050  z=4   透明底  21 个可交互子元素  ← 该排除
+    //      · react-flow__pane      1680×1050  z=1   透明底  10 个可交互子元素  ← 该排除
+    //      · fixed inset-0 z-[400] 1680×1050 z=400 黑/60 底 4 个可交互子元素  ← **真模态**
+    //    三者尺寸完全一样，只有**身份**不同。视频全屏预览（`role="dialog"`）就
+    //    这么整整一个状态没被枚举到，而它是货真价实的浮层。尺寸只是表象。
+    //    源站侧同样中招：timeline-fullscreen-editor 1512×950，它的
+    //    `fixed inset-0 bg-octo-overlay z-50` 遮罩也是同尺寸且**没有锚点**。
+    //
+    //    ⚠️ 第一版改错过一次：用 `closest('.react-flow__renderer, ...)` ——
+    //    `closest` 走的是**祖先链**，于是画布里所有东西（节点工具条、生成面板、
+    //    十来个下拉）全被干掉，一轮下来 14 个状态变成「打开了却枚举不到」。
+    //    正确写法是两条分开：**自身**是流壳就排除，**包含**画布的祖先壳才排除。
+    //    仍然**不引用 role**：判别靠挂载点，不靠语义。
+    const FLOW_SHELL = ['react-flow__renderer', 'react-flow__pane',
+                        'react-flow__viewport', 'react-flow__nodes',
+                        'react-flow__viewport-portal',
+                        'react-flow__edgelabel-renderer'];
+    if (e.classList
+        && FLOW_SHELL.some(c => e.classList.contains(c))) continue;
+    if (e.querySelector('.react-flow__renderer')) continue;
     if (e.classList && e.classList.contains('react-flow__node')) continue;
     if (e.classList && e.classList.contains('react-flow__node-toolbar')) continue;
     // ⚠️ 同样排除**顶栏容器本身**：它 absolute + 在 header 内 + 10 个按钮，
@@ -253,6 +277,13 @@ def main() -> int:
                 "() => document.querySelectorAll('.react-flow__node.selected').length === 1")
 
         TID2TRIG = {
+            # ⚠️ 这两条是批 840 补的：原来**缺**它们，于是 `close_open()` 从来
+            #    关不掉视频节点那两个下拉 —— 开着的工具下拉会一路漏到后面某个
+            #    状态，被当成那个状态的浮层记进去（839 那轮「截帧」状态报出的
+            #    1 个候选就是它）。「漏下去」比「漏报」更坏：它让一个干净的
+            #    状态看起来有浮层，还让真浮层张冠李戴。
+            "video-toolbar-capture-menu": "截取帧",
+            "video-toolbar-tools-menu": "工具",
             "gen-model-listbox": "选择模型", "gen-video-size-listbox": "视频尺寸选项",
             "gen-mode-listbox": "生成模式", "gen-duration-listbox": "选择视频生成时长",
             "image-gen-model-listbox": "选择模型", "image-gen-size-listbox": "图片尺寸选项",
@@ -267,11 +298,17 @@ def main() -> int:
 
             **不能用 Escape**：那会取消选中 → NodeToolbar 卸载 → 顺带把还没
             扫的浮层一起弄没了，判据会**假装**没查到。
+
+            定位器要**同时**试 `aria-label` 和可见文案：视频节点工具条上那两枚
+            （截取帧 / 工具）压根没有 aria-label，名字就在按钮文字里 —— 只按
+            `aria-label^=` 找，一个都匹配不到。
             """
             for tid, trig in TID2TRIG.items():
                 if not page.locator(f'[data-testid="{tid}"]').count():
                     continue
-                loc = page.locator(f'.react-flow__node-toolbar button[aria-label^="{trig}"]')
+                loc = page.locator(
+                    f'.react-flow__node-toolbar button[aria-label^="{trig}"], '
+                    f'.react-flow__node-toolbar button:text-is("{trig}")')
                 if not loc.count():
                     continue
                 try:
@@ -338,12 +375,24 @@ def main() -> int:
                 skipped.append(f"{tag}（{want or '前置态不成立'}）")
                 return
             n = census(tag)
+            # ⚠️ 普查完**必须把浮层收掉**。批 840 实测到这条是必要的：
+            #    839 那轮「图片节点产出（截帧）」这个状态报出了 1 个候选
+            #    `video-toolbar-tools-menu` —— 那是**两个状态之前**开的工具下拉
+            #    一路漏到了这里，被当成本状态的浮层记了进去。
+            #    漏出去的两面：真浮层被安到别的状态名下（张冠李戴），
+            #    以及下一个状态明明干净却被算成「开着却看不见」（假盲区）。
+            close_open()
             if n == 0:
                 # 「这个状态本来就没有浮层」与「浮层开着但判据看不见」是两回事。
                 # 前者是正常的（例如空态、工具条那层架子），后者是盲区 ——
                 # 混在一起报，等于让正常项稀释真正的盲区。
                 if expect_empty:
-                    expected_empty.append(f"{tag}（{expect_empty}）")
+                    # ⚠️ 结构化存，**不要**再拼成 `f"{tag}（{reason}）"`。
+                    #    批 840 踩过：verifier 那边按 `（` 切回状态名，
+                    #    而状态名**本身就可能带括号**（`图片节点产出（截帧）`）
+                    #    —— 一拼一拆就张冠李戴，白名单永远对不上，而且错得
+                    #    很像"工具有 bug"。歧义要从**格式**上根除。
+                    expected_empty.append({"state": tag, "reason": expect_empty})
                 else:
                     empty.append(f"{tag}（浮层已打开，但几何判据枚举到 0 个候选）")
 
@@ -361,6 +410,39 @@ def main() -> int:
         step("视频工具条·工具下拉",
              open_trigger('button:text-is("工具")', "video-toolbar-tools-menu"),
              "工具下拉打不开")
+
+        # ══ B·. 视频全屏预览（全屏模态，批 840 新增）══════════════
+        #    这是**第一条按「不再被尺寸规则挡掉」而进来的状态**。
+        #    旧规则「≥1500×700 的巨型容器跳过」会把它整个吃掉：实测它是
+        #    fixed 1680×1050、z=400、黑/60 底、4 个可交互子元素的真模态。
+        #    源站侧同样中招（timeline-fullscreen-editor 1512×950，
+        #    连它的 `fixed inset-0 bg-octo-overlay z-50` 遮罩也是同尺寸且无锚点）。
+        sel = select_node("rf__node-video-local-1")
+        ok_fs = False
+        if sel:
+            close_open()
+            # ⚠️ **不要**先去开「工具」下拉：`全屏预览` 这枚按钮本身就平铺在
+            #    工具条上（`JimengNodeToolbar` 里它在工具下拉 div **之外**），
+            #    多开一个下拉只会让普查把工具菜单也记进这个状态名下。
+            #    顺带说明「点了之后工具下拉还开着」不是判据的毛病：那是真状态。
+            #    源站这枚的实名是「全屏编辑」，复刻收口成「全屏预览」
+            #    （见 JimengNodeToolbar 里那条注释）。这里认**复刻真值**。
+            fs_btn = page.locator(
+                '.react-flow__node-toolbar button[aria-label="全屏预览"]')
+            if fs_btn.count():
+                try:
+                    fs_btn.first.click(timeout=8000)
+                    page.wait_for_timeout(900)
+                except Exception:
+                    pass
+                ok_fs = page.locator(
+                    '[data-testid="video-fullscreen-preview"]').count() >= 1
+            if ok_fs:
+                step("视频全屏预览", True)
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(700)
+            else:
+                step("视频全屏预览", False, "全屏预览浮层没打开")
 
         # ══ C. 视频生成面板（空视频节点）═══════════════════════════
         sel = select_node("rf__node-video-empty-1")
@@ -424,7 +506,12 @@ def main() -> int:
                 framed = new[0] if new else None
                 if framed is None:
                     why = f"点了首帧但没长出图片节点（现有 {len(node_tids())} 个节点）"
-        step("图片节点产出（截帧）", framed is not None, why)
+        # 这个状态**本来就不该有浮层**：点「首帧」只是长出一个图片节点，
+        # 它的工具菜单是**下一个状态**才打开的。标成 expected_empty 而不是留成
+        # 盲区——839 那轮它报出的那 1 个候选是漏过来的工具下拉，0 才是真值。
+        step("图片节点产出（截帧）", framed is not None, why,
+             expect_empty="截帧只产出图片节点，本身不打开任何浮层；"
+                          "它的工具菜单由下面那个状态各自枚举")
         img_ok, why2 = False, ""
         if framed is None:
             why2 = "没有带 poster 的图片节点"
@@ -563,7 +650,7 @@ def main() -> int:
     if expected_empty:
         print(f"\n· 本来就没有浮层的状态（{len(expected_empty)} 个，正常）：")
         for s_ in expected_empty:
-            print(f"    - {s_}")
+            print(f"    - {s_['state']}（{s_['reason']}）")
     if empty:
         print(f"\n⚠ 打开了、但几何判据枚举到 **0 个候选**的状态（{len(empty)} 个）：")
         print("   —— 这不是「干净」，是**判据看不见它们**。要么补判据，要么记为盲区。")
