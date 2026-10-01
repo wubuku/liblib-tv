@@ -265,10 +265,10 @@ screenshots:
     viewport: 880x470 (SVG 示意图)
     locale: zh-CN
     captured_at: 2026-10-01T06:56:00+08:00
-    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套）'
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10/§3.35 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套 + 多选 4 项/组 3 项三轮复测）'
     visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
-    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选）、编组（组卡片）各自对应不同的工具条或生成面板。
-    sha256: 018f9bf4a7bb6ed41ec97e4e39d5b43fbe9cc011582d858ed092732e4c09154c
+    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选，工具条共 4 项且没有 Add tags）、编组（组卡片，工具条共 3 项且没有下载）各自对应不同的工具条或生成面板。
+    sha256: 2225205396be5fc7142b977c6c340e3ede840a9d7cedd743419f640d029e828c
 
   - file: screenshots/diagrams/canvas-zones.svg
     task_id: create-first-node

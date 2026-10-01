@@ -38,6 +38,7 @@ export function FrameosNodeEditPanel() {
   const selectedNodeId = useFrameosStore((s) => s.selectedNodeId);
   const nodes = useFrameosStore((s) => s.nodes);
   const setNodes = useFrameosStore((s) => s.setNodes);
+  const removeNode = useFrameosStore((s) => s.removeNode);
   const selectNode = useFrameosStore((s) => s.selectNode);
   const isDebugMode = useFrameosStore((s) => s.isDebugMode);
   const { x: panX, y: panY, zoom } = useViewport();
@@ -256,7 +257,12 @@ export function FrameosNodeEditPanel() {
               variant="danger"
               onClick={() => {
                 if (confirm(`确认删除「${selectedNode.data.title}」？`)) {
-                  setNodes(nodes.filter((n) => n.id !== selectedNode.id));
+                  // Batch 343: 此前这里手写 `setNodes(nodes.filter(...))`，
+                  // 绕开了 removeNode —— 于是①与已删节点相连的边**留在图里**
+                  // (悬空边, 且被 Batch 333 写进 localStorage 刷新后仍在)、
+                  // ②**完全不入撤销栈**, 删了按 ⌘Z 找不回来。
+                  // 与其逐条补齐, 不如直接用本来就有这两条语义的 action。
+                  removeNode(selectedNode.id);
                   selectNode(null);
                 }
               }}

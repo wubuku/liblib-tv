@@ -590,3 +590,42 @@
 | 状态行 | 逐字 `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.` |
 | 缩放 | 恢复至 `Zoom options, 100%` |
 | 顶栏 | `测试项目`、`已保存` |
+
+## 2026-10-01 增量审计（批次 18：工具条事实跨层漂移清零 + 两条通用判读规则入正文）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| 批次 15 订正了「组工具条三项 / 多选四项」，但 `20-reference.md` 速查表与 `toolbar-by-node-state.svg` 第 6/7 行**仍留旧结论** | **Major（跨层漂移 + 台账自相矛盾）** | 手册自己登记的截图 `51-group-background-palette.png` 的 `visible_text` 就只有「解除编组 / 布局 / 背景色」三项，`52-multi-select-toolbar.png` 也没有 Add tags —— **证据与速查表互相打架**。批次 18 第三轮全元素扫描再次确认：多选 = 计数/编组/布局/下载（4 项）、组 = 解除编组/布局/背景色（3 项） | **四处同改**：`20-reference.md` 两行、`30-concepts.md`、`toolbar-by-node-state.svg` 第 6/7 行；示意图改动连带 **alt 三处同改**（SVG 文案 → 正文 alt → manifest alt + sha256），构建器一字之差即报 warn |
+| 手册记「点编组标题那一行（`group-title-hit-area`，高 18px）」 | **Major（证据本身有缺陷）** | 2026-10-01 实测 **`group-title-hit-area` 在 DOM 中计数为 0**（未选中/选中两态都是）。真实结构：未选中时**整张组卡片**（含内部空白）都是 `pointer-events-none`，命中测试落到 `.react-flow__pane`；**唯一**收得到点击的是标题文字本身（span **36×20**）。选中后卡片才转可点，浮出 1378×24 标题条，位于卡片上沿**之外**约 28px | `organize-group-layout.md` 与 `90-troubleshooting.md` 均**改写为「点标题上那几个字本身」**，并写明选中前后的两种命中结果 |
+| 工具条尺寸被当成可引用契约 | Minor（准确性） | 同日两轮多选工具条分别实测 **511×40（74%）** 与 **1298×40（100%）**，计数项 54×32 → 256×40；组工具条跟随卡片宽度出现 1049/570/1378 三种 | 正文与台账统一改为「**宽度不是固定值，只数按钮**」；`20-reference.md` 保留两组实测值并标注前提 |
+| 两条通用判读规则只存在于台账、正文读不到 | Minor（可迁移性） | ① 「禁用原因文案的有无即可用状态判据」批次 17 已归纳但只在 `SOURCE_OBSERVATIONS.md`；② 「⌫ 失效有两个不同原因」批次 17 实测踩坑但只在台账 | **写入正文**：① 进 `30-concepts.md`「按钮灰着的时候，先找那行解释」+ `90-troubleshooting.md`「灰着的按钮自己会解释」（含三形态表 + 反向判据「文案消失 = 条件已满足」）；② 进 `30-concepts.md`「节点有两种选中」与 `90-troubleshooting.md`「按 ⌫ 删不掉节点」的三行对照表 |
+| 空视频节点生成面板的禁用原因文案此前未记录 | Minor（覆盖缺口） | 实测逐字含 `请输入提示词`、`Current price 56.`、`56`、`生成`（`aria-disabled="true"`）—— 积分已算出但按钮仍灰 | 写入 `90-troubleshooting.md`「生成按钮是灰的」小节，并作为「逐字提示」形态的当日实例 |
+| `scripts/jimeng-alt-audit.mjs` 的冲突规则只覆盖 `Add tags（图标）` 一种写法 | Minor（可维护性） | 旧规则是纯子串匹配，alt 改写成「布局 / 下载 / Add tags」等其它写法就漏检；且无法区分「把 Add tags 写进工具条」与「**没有** Add tags」这种订正表述 | 规则表加**第三项可选 allow 子串**（出现即视为已声明订正），并补 3 条新规则（`Add tags` / `布局 / 下载` / `下载 / Add tags`） |
+| 取证脚本一度让基线校验误报 | Minor（可维护性） | 🔴 **`\d` 写在 node 模板字面量里会被吞成 `d`**：`match(/(\d+)%/)` 实际下发 `/(d+)%/`，缩放读数取到 `undefined`，`baselineOk` 一度为 `false` | 台账 §3.35 记入坑位与规约（浏览器内求值写 `[0-9]`）；校验脚本改用 `[0-9]+` 后复跑通过 |
+| 「多选后点不中已选节点」差点被当成产品缺陷 | Minor（判断纪律） | 框选后短暂出现 `react-flow__selection-rect`（1300×402、`pointer-events:all`）覆盖层，`elementFromPoint` 全行落空，一度准备写成「选区矩形拦截点击」的排障条目 | **实测证伪**：下一次点击仍正常把多选切成单选（`2 selected → 1 selected`）。**不写进正文**，仅在台账留「自动化里的『点不到』先怀疑覆盖层/坐标/焦点」 |
+
+## 批次 18 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | 66 张逐字一致 / 0 不一致 / 0 未引用 / **0 措辞冲突**（新规则生效） |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 可疑命中 50 处，**命中均为预期**（AUDIT 勘误 / 带标记历史观察 / PROGRESS 真实未关闭项） |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | 通过；`toolbar-by-node-state.svg` sha256 `2225205396be…` 与 manifest 一致 |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 66 images` |
+| 死链 | `python3 scripts/verify-docs.py` | **0** | `1214 Markdown files, 5302 local targets, 0 expected-missing artifact link(s)` |
+| 站点构建 | `build-site.sh` | **0** | dist 23 页 / 62 截图 / 4 示意图均进产物 / alt 逐字一致 / **无 warn** |
+
+### 批次 18 收尾的基线复核（reload 后逐项核对，本批曾两次走偏）
+
+| 项 | 当次实测 | 结论 |
+|---|---|---|
+| 节点 | 元素数 **1**，逐字 `视频 1` | ✅ |
+| 连线 | `.react-flow__edge` **0** | ✅ |
+| 编组 | `.react-flow__node-group` **0** | ✅（本批建过组，已解除） |
+| 状态行 | `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.` | ✅ |
+| 工具条 | 无任何 `width>1` 的 `node-toolbar` / `Selection actions` | ✅ |
+| 浮层 | 小地图 0；右侧 agent 侧栏已**收起**（`aside` 宽 >300 计数 0） | ✅ |
+| 缩放 | `Zoom options, 100%` | ✅ |
+| dock | `选择工具` / `小地图` / `显示连线` / `Zoom options, 100%` | ✅ |
+| 顶栏 | `已保存` | ✅ |
+| 校验 | `baselineOk: true` | ✅ |

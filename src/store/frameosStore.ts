@@ -393,7 +393,23 @@ function reconcileGroups(
 // CLONE_DECISION: 「拖动成员时盒跟随成员」是按克隆自身不变式推的。源站是否
 // 允许把成员拖出分组、是否自动退组，源站阻塞无法采样（见
 // SOURCE_ACCESS_BLOCKED_2026-10-01.md），**未**发明任何"拖出即退组"的行为。
-let enforcingGroupGeometry = false;
+//
+// Batch 343: 同一出口再收一条**同构**的不变式 ——「每条边的 source/target
+// 都指向存活节点」。此前剪边只出现在 removeNode 一处
+// (`edges.filter(e => e.source !== id && e.target !== id)`)，而 setNodes 是
+// 公开 action，FrameosNodeEditPanel 的删除按钮正是 `setNodes(nodes.filter(...))`
+// → 删掉一个连着两条边的节点后，边仍指向已删节点。
+// 实测 (probe-frameos-batch343-edge-integrity.py): 悬空边 2 条，且**被 Batch 333
+// 的持久化写进 localStorage 并在刷新后存活** —— 内存里的潜在缺陷被固化成了
+// 持久损坏。放进同一个出口后，也顺带**治愈**已经写坏的存档（restorePersistedCanvas
+// 载入时同样会经过这里）。
+let enforcingGraphInvariants = false;
+
+function edgesEqual(a: Edge[], b: Edge[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  return a.every((e, i) => b[i].id === e.id && b[i].source === e.source && b[i].target === e.target);
+}
 
 function groupsEqual(a: FrameosGroup[], b: FrameosGroup[]): boolean {
   if (a === b) return true;
@@ -412,24 +428,38 @@ function groupsEqual(a: FrameosGroup[], b: FrameosGroup[]): boolean {
   });
 }
 
-function enforceGroupGeometry(
+function enforceGraphInvariants(
   get: () => FrameosCanvasState,
   rawSet: (partial: Partial<FrameosCanvasState>) => void,
   prev: FrameosCanvasState
 ): void {
   // 收敛过程中的写回不再触发收敛（否则无限递归）
-  if (enforcingGroupGeometry) return;
+  if (enforcingGraphInvariants) return;
   const next = get();
-  // 引用都没变就没有新信息可收敛 —— 绝大多数 UI 开关走这条路
-  if (next.nodes === prev.nodes && next.groups === prev.groups) return;
-  enforcingGroupGeometry = true;
+  // 三者都没变就没有新信息可收敛 —— 绝大多数 UI 开关走这条路
+  if (
+    next.nodes === prev.nodes &&
+    next.groups === prev.groups &&
+    next.edges === prev.edges
+  ) {
+    return;
+  }
+  enforcingGraphInvariants = true;
   try {
+    // 不变式 1: 分组盒 == 存活成员包围盒 + 28 (Batch 341)
     const groups = reconcileGroups(next.groups, next.nodes);
     // 只在**结构上**真的有差异时写回：Batch 333 的持久化订阅按引用判断变更，
     // 无差别写回会让它把同样的内容反复写进 localStorage。
     if (!groupsEqual(groups, next.groups)) rawSet({ groups });
+
+    // 不变式 2: 边的两端都指向存活节点 (Batch 343)
+    const live = new Set(get().nodes.map((n) => n.id));
+    const edges = get().edges.filter(
+      (e) => live.has(e.source) && live.has(e.target)
+    );
+    if (!edgesEqual(edges, get().edges)) rawSet({ edges });
   } finally {
-    enforcingGroupGeometry = false;
+    enforcingGraphInvariants = false;
   }
 }
 
@@ -566,7 +596,7 @@ const INITIAL_CANVAS_DATA: Record<string, PersistedCanvas> =
 //
 // Batch 341: 上一行的 init 不能直接用 zustand 给的 set —— 我们在它外面套一层，
 // 让「分组盒 == 存活成员包围盒 + padding」成为**所有写路径的强制不变式**。
-// 见下方 enforceGroupGeometry。
+// 见下方 enforceGraphInvariants。
 export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
   // 显式签名而非 `(...args) => rawSet(...args)`：zustand 的 setState 是**重载**的
   // （partial / replace 两个形态），rest 展开会丢掉重载解析而报 TS2769。
@@ -579,7 +609,7 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
   ) => {
     const prev = get();
     rawSet(partial, replace);
-    enforceGroupGeometry(get, rawSet, prev);
+    enforceGraphInvariants(get, rawSet, prev);
   };
   return ({
   breadcrumb: { project: "测试作品", scene: "测试项目", canvas: "画布 1" },

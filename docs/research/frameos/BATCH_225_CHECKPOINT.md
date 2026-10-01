@@ -622,3 +622,39 @@ verifier batch342 **10/10 PASS**。
 ActionButton 无 onClick（空壳），且整面板只在 `isDebugMode` 下渲染而
 `toggleDebugMode` 全仓无 UI 入口 —— 属源站对齐问题，先记录；
 另有 `generations` 死状态字段可清理。
+
+## Batch 343（2026-10-01）：边完整性不变式（与 341 同构）+ 持久损坏的放大
+
+边有一条和分组完全同构的不变式 ——「每条边的两端都指向存活节点」—— 而剪边
+**只存在于 `removeNode` 一处**。`setNodes` 是公开 action，面板删除正是
+`setNodes(nodes.filter(...))`。
+
+实测（修复前）：
+```
+[对照组 removeNode] edges 5 → 3, dangling=[]            ← 剪了
+[路径   setNodes]   edges 3 → 3, dangling=[2 条]        ← 没剪
+  .react-flow__edge 渲染数: 0                            ← 渲染不出来
+持久化里的悬空边: 2 条    刷新后 dangling: 仍在
+```
+
+🔴 **关键放大效应**：Batch 333 的持久化订阅把这些悬空边写进了 localStorage 且
+**跨刷新存活** —— 内存里的潜在缺陷被**固化成了持久损坏**。React Flow 一条都
+渲染不出来，所以用户看不见；**看不见的损坏比看得见的错更危险**，它会累积且
+没有自愈路径。
+
+同一路径还有第三个问题：`setNodes` 是 `set({ nodes })`，**不 pushHistory** →
+面板删除**不可撤销**。也就是说面板把手写了一遍 `removeNode` 已有的一切语义
+（剪边/入栈/清选中），还少了三样。
+
+修 1：`enforceGroupGeometry` → **`enforceGraphInvariants`**，同��出口再收一条
+不变式。副产品：**已写坏的存档会被治愈**（`restorePersistedCanvas` 也经过这里）。
+修 2：面板改用 `removeNode` —— **删代码而不是加代码**，与 328/341 同方向。
+
+变异测试：注释掉边收敛后验证器失败于 `setNodes:no-dangling`。
+写验证器时把 `reload:nodes-restored` 的基准从「初始 7 个节点」改成「刷新前快照」
+—— 断言要绑**真实性质**，不绑一个会过期的常数（Batch 208 教训，第二次用上）。
+
+verifier batch343 **13/13 PASS**。
+
+**候选 Batch 344**：`generations` 是死状态字段（从未写入也从未读取）；
+`FrameosNodeEditPanel` 两个空壳按钮 + 整面板无入口（属源站对齐，阻塞）。

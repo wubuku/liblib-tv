@@ -46,16 +46,16 @@
   <!-- row 6: multi -->
   <rect x="24" y="368" width="832" height="46" rx="5" fill="#1b1b1b"/>
   <text x="38" y="396" fill="#e0e0e0" font-size="12.5">多个节点（框选）</text>
-  <text x="250" y="396" fill="#c9c9c9" font-size="11.5">N 节点 ｜ 编组 ｜ 布局∨ ｜ 下载 ｜ Add tags</text>
+  <text x="250" y="396" fill="#c9c9c9" font-size="11.5">N 节点（只读计数）｜ 编组 ｜ 布局 ｜ 下载（无就绪资源时置灰）；共 4 项，没有 Add tags</text>
   <text x="690" y="396" fill="#7f7f7f" font-size="11">点空白即消失</text>
 
   <!-- row 6: group -->
   <rect x="24" y="420" width="832" height="46" rx="5" fill="#1b1b1b"/>
   <text x="38" y="448" fill="#e0e0e0" font-size="12.5">编组（组卡片）</text>
-  <text x="250" y="448" fill="#c9c9c9" font-size="11.5">解除编组 ｜ 布局 ｜ 背景色 ｜ 下载</text>
+  <text x="250" y="448" fill="#c9c9c9" font-size="11.5">解除编组 ｜ 布局 ｜ 背景色；共 3 项，没有「下载」</text>
   <text x="690" y="448" fill="#7f7f7f" font-size="11">点空白即消失</text>
 
   <!-- footnote -->
   <rect x="24" y="476" width="832" height="30" rx="5" fill="#241c14" stroke="#5a4326" stroke-width="1"/>
-  <text x="38" y="496" fill="#e8c89a" font-size="11.5">✦ = VIP/付费标记，点击会提交按积分计费的任务。视频与图片是两套工具条，互不包含对方专属项。</text>
+  <text x="38" y="496" fill="#e8c89a" font-size="11.5">✦ = VIP/付费标记，点击会提交按积分计费的任务。视频与图片是两套工具条，互不包含对方专属项；工具条宽度不固定。</text>
 </svg>

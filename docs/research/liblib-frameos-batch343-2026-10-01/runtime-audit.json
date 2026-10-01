@@ -1,0 +1,110 @@
+{
+  "batch": 343,
+  "title": "FrameOS edge integrity invariant holds on every write path",
+  "defect": "Edge pruning existed in exactly one place (removeNode). setNodes is a public action and FrameosNodeEditPanel's delete button used it directly, so deleting a connected node left edges pointing at a node that no longer existed. Measured: 2 dangling edges, and because Batch 333 persists on every store write they were written to localStorage and SURVIVED A RELOAD -- an in-memory latent defect turned into durable corruption. The same path also skipped the history stack entirely, so the delete was not undoable.",
+  "fix": "(1) the 'both endpoints are live nodes' invariant joined the same store write choke point Batch 341 introduced (enforceGraphInvariants), which also heals already-corrupted saves because restorePersistedCanvas passes through it; (2) the panel's delete button now calls removeNode instead of hand-rolling its filter, so it inherits edge pruning, history and selection handling.",
+  "clone_decision": "Pruning edges whose endpoints are gone is forced by the data model itself (an edge to a nonexistent node is not renderable -- React Flow rendered 0 edges for it), so no source-site sampling was needed. The source site remains blocked by the human-verification gate (see SOURCE_ACCESS_BLOCKED_2026-10-01.md).",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:victim-has-edges",
+        "control:removeNode-prunes",
+        "control:removeNode-drops-victim-edges",
+        "control:other-edges-kept",
+        "setNodes:no-dangling",
+        "setNodes:victim-edges-dropped",
+        "setNodes:other-edges-kept",
+        "panel:button-exists",
+        "panel:no-dangling",
+        "panel:node-gone",
+        "panel:pushed-history",
+        "undo:node-back",
+        "undo:edges-back",
+        "persist:no-dangling",
+        "reload:no-dangling",
+        "reload:nodes-preserved",
+        "reload:edges-preserved",
+        "drag:edges-unchanged",
+        "drag:node-moved",
+        "drag:no-dangling",
+        "diagnostics:zero"
+      ],
+      "setup": {
+        "victim": "text-1",
+        "victimEdges": [
+          "e-text1-image1",
+          "e-video1-text1"
+        ],
+        "edgeCount": 5,
+        "nodeCount": 7,
+        "edgeIds_snapshot": [
+          "e-text1-image1",
+          "e-video1-image1",
+          "e-video1-text1",
+          "e-text2-image1",
+          "e-video1-video3"
+        ]
+      },
+      "setNodes": {
+        "nodeCount": 5,
+        "edgeCount": 2,
+        "edgeIds": [
+          "e-video1-image1",
+          "e-video1-video3"
+        ],
+        "dangling": [],
+        "pastDepth": 0
+      },
+      "panel": {
+        "nodeCount": 4,
+        "edgeCount": 0,
+        "edgeIds": [],
+        "dangling": [],
+        "pastDepth": 1
+      },
+      "undo": {
+        "nodeBack": true,
+        "edgesBack": true,
+        "missingEdges": []
+      },
+      "persisted_dangling": [],
+      "reload": {
+        "before": {
+          "nodeCount": 5,
+          "edgeCount": 2,
+          "edgeIds": [
+            "e-video1-image1",
+            "e-video1-video3"
+          ],
+          "dangling": [],
+          "pastDepth": 0
+        },
+        "after": {
+          "nodeCount": 5,
+          "edgeCount": 2,
+          "edgeIds": [
+            "e-video1-image1",
+            "e-video1-video3"
+          ],
+          "dangling": [],
+          "pastDepth": 0
+        }
+      },
+      "drag": {
+        "before": [
+          "e-video1-image1",
+          "e-video1-video3"
+        ],
+        "after": [
+          "e-video1-image1",
+          "e-video1-video3"
+        ]
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

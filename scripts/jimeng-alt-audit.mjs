@@ -46,20 +46,26 @@ console.log(`截图总数 ${blocks.length}：逐字一致 ${ok} / 不一致 ${al
 if (issues.length) console.log(issues.join('\n')); else console.log('引用与 alt 一致性：无问题');
 
 // alt 文案与当前实测结论的冲突（用子串匹配，避开正则的全角标点坑）
+// 第三项可选：出现该子串时视为「已声明这是订正结论」，不报冲突
 const SUBSTR_RULES = [
   ['不弹工具条', 'alt 写「不弹工具条」；实测空节点仍用 node-toolbar 容器（680×208）改放生成面板'],
   ['背景色 / 下载', 'alt 把「下载」写进组工具条；2026-10-01 复核实测组工具条仅三项，无下载'],
   ['背景色/下载', 'alt 把「下载」写进组工具条；2026-10-01 复核实测组工具条仅三项，无下载'],
   ['1 nodes', 'alt 用了复数 1 nodes；实测状态行为单数 1 node'],
   ['Add tags（图标）', 'alt 把 Add tags 写成工具条项；实测它是节点自身的 flow-node-selected-tag 按钮'],
+  ['Add tags', 'alt 把 Add tags 写进工具条；实测多选工具条无此项（它是节点自身的标记按钮）', '没有 Add tags'],
+  ['布局 / 下载', 'alt 把「布局 / 下载」写进组工具条；实测组工具条只有 解除编组 / 布局 / 背景色', '背景色'],
+  ['下载 / Add tags', 'alt 的多选工具条逐字含 Add tags；2026-10-01 三轮全元素扫描实测无此项', '没有 Add tags'],
 ];
 console.log('\n=== alt 措辞与当前实测结论的冲突扫描 ===');
 let hit = 0;
 for (const b of blocks) {
   const file = b.split('\n')[0].trim();
   const a = (b.match(/^\s+alt: (.+)$/m) || [])[1] || '';
-  for (const [needle, why] of SUBSTR_RULES) {
-    if (a.includes(needle)) { console.log(`  ${file}\n    ${why}\n    alt: ${a.slice(0, 120)}`); hit++; }
+  for (const [needle, why, allow] of SUBSTR_RULES) {
+    if (!a.includes(needle)) continue;
+    if (allow && a.includes(allow)) continue;
+    console.log(`  ${file}\n    ${why}\n    alt: ${a.slice(0, 120)}`); hit++;
   }
 }
 console.log(hit === 0 ? '  无冲突' : `  命中 ${hit} 处`);
