@@ -121,13 +121,137 @@ export function JimengPaneContextMenu({
   const ref = useRef<HTMLDivElement>(null);
   const [submenuOpen, setSubmenuOpen] = useState(false);
 
+  /* ── Batch 846：ARIA menu 键盘模式 ────────────────────────────────
+   * SOURCE_FACT（探针 `jimeng_probe846_focustrap2.py`，登录态 1512×950，
+   * 每项各自重开层测，口径与复刻侧审计一致）：
+   *   · 开层**即接管焦点**，落在第一项上（实测 activeElement 就是第 1 项）
+   *   · **漫游 tabindex**：8 项里只有 2 项 `tabindex="0"`（当前项 + 首项），
+   *     其余 6 项全 `-1` —— 探针打到的原文：
+   *       新建节点 "0" / 文本 "0" / 图片·视频·音频·时间线·主体·导演台 "-1"
+   *   · **方向键在层内移动且环绕**（实测轨迹）：
+   *       ArrowDown 粘贴 → 重做 → 撤销 → 新建节点（绕回来了）
+   *       ArrowUp   撤销 → 重做 → 粘贴 → 新建节点
+   *   · Tab **不困**（第 1 次就跑到画布左栏的「文本」上）—— 源站就是这行为，
+   *     所以这里**故意不加**焦点陷阱：菜单的主路径是方向键，Tab 是旁路。
+   *     （模态才该困，源站 `timeline-fullscreen-editor` 12 次 Tab 全在层内。）
+   * 复刻此前三条全无：开层焦点停在 body、各项都是原生 button（tab 序里
+   * N 站而不是 2 站）、方向键完全不动。判据见
+   * `scripts/jimeng_unclickable_audit.py` 的 `keyboard_no_initial_focus` /
+   * `keyboard_arrow_dead` 两个桶（都对照源站基线表，不是凭感觉）。
+   *
+   * ⚠️⚠️ **本组件和 `JimengContextMenu`（节点右键菜单）共用同一个
+   *   `data-testid="canvas-context-menu"`** —— 这是**有意的**（源站两处同名，
+   *   批 828 照抄，见下面 role 处的注释）。但它意味着：改右键菜单的键盘行为
+   *   时**很容易改错文件**。批 846 第一版就改到了 `JimengContextMenu` 上，
+   *   实测 `tabindex` 全是 null、焦点压根没动 —— 改错文件时**什么都不会报错**，
+   *   只有对着真页面量才发现。所以：**画布空白处右键走的是本组件**。
+   *   （`JimengContextMenu` 那个节点菜单的键盘模式源站**没单独取样**，
+   *   按「源站测不到的行为不实现」的规矩暂不动它，记为待办。） */
+  const [activeIdx, setActiveIdx] = useState(0);
+  /* 当前项的**镜像**。方向键要靠它算 next：把计算塞进 setState 的 updater 里，
+   * 等于在渲染期做副作用（还可能被 StrictMode 双调用），实测会「一顿一顿」——
+   * 连按 5 下 ArrowDown 只走 1 格。放在 ref 里算，next 一次定死。 */
+  const activeRef = useRef(0);
+  /* 顶层项的**可用性从 props 声明式推导**，不读 DOM。
+   * ⚠️ 第一版在 `roving()` 里 `ref.current.querySelectorAll(...)` 来数哪些项
+   * 可用，eslint 直接判 **`Cannot access refs during render`** —— 而且它是对的：
+   * 渲染期读 ref 在并发渲染下没有保证（渲染可能被打断重跑）。8 条 error 全是
+   * 这个。所以「哪些项禁用」必须是**纯数据**（`hasSelection` / `clipboard` /
+   * `hasReadyResource` / `canRedo` / `canUndo` 都是 props），DOM 只在
+   * **事件回调**里用来落焦点。 */
+  const TOP_DISABLED = [
+    false,                    // 0 新建节点
+    !hasSelection,           // 1 复制
+    !hasSelection,           // 2 复制副本
+    !clipboard,              // 3 粘贴
+    !hasReadyResource,       // 4 下载
+    !canRedo,                // 5 重做
+    !canUndo,                // 6 撤销
+    !hasSelection,           // 7 删除
+  ];
+  const enabledIdxs = (): number[] =>
+    TOP_DISABLED.reduce<number[]>((acc, off, i) => {
+      if (!off) acc.push(i);
+      return acc;
+    }, []);
+
+  /** 落焦点：DOM 只在**事件回调**里读（不在渲染期，见上面那条注释） */
+  const focusIdx = (i: number) => {
+    if (!ref.current) return;
+    const items = Array.from(
+      ref.current.querySelectorAll('[role=menuitem]'),
+    ).filter((el) => !el.closest('[data-testid=canvas-insert-submenu]'));
+    (items[i] as HTMLElement | undefined)?.focus();
+  };
+
+  /** 漫游 tabindex：只有**当前项**和**首个可用项**在 tab 序里（源站实测 8 项里 2 项） */
+  const roving = (i: number) => {
+    const enabled = enabledIdxs();
+    const firstEnabled = enabled.length ? enabled[0] : 0;
+    // 当前项读 **state**（activeIdx）而不是 ref —— 渲染期读 ref 同理不安全。
+    // activeIdx 落在禁用项上时退回首个可用项。
+    const cur = activeIdx === i && enabled.includes(i) ? i : firstEnabled;
+    return {
+      tabIndex: i === cur || i === firstEnabled ? 0 : -1,
+      onFocus: () => {
+        activeRef.current = i;
+        setActiveIdx(i);
+      },
+    };
+  };
+
+  /* 顶层项数**不写死**：源站是 8 项（探针实测 8 项里 2 项 tabindex=0），
+   * 但复刻的可用项会随画布状态变（无选中时复制/粘贴/删除全禁用），而方向键
+   * 本来就该在**可用项**之间走。子菜单里的项由 `focusIdx` 的 filter 排除 ——
+   * 源站子菜单是独立元素（212×404 @x=666），实测方向键也不进它。 */
+
+  /** 上下键在层内移动并**环绕**，且**跳过禁用项**（源站实测环绕，不是到头就停） */
+  const step = (dir: 1 | -1) => {
+    const en = enabledIdxs();
+    if (en.length === 0) return;
+    const pos = en.indexOf(activeRef.current);
+    const next = en[(pos === -1 ? (dir > 0 ? 0 : en.length - 1)
+                              : (pos + dir + en.length) % en.length)];
+    activeRef.current = next;
+    setActiveIdx(next);
+    /* 同步落焦点。**不要**用 requestAnimationFrame 等 tabindex 更新 ——
+     * `tabindex="-1"` 本来就可编程聚焦，等它没必要。 */
+    focusIdx(next);
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      /* ↑↓ 在层内移动。**必须** preventDefault：不拦的话画布会跟着平移
+       * （画布自己监听方向键），用户按 ↑ 菜单动了、画布也动了。 */
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        e.stopPropagation();
+        step(e.key === "ArrowDown" ? 1 : -1);
+        return;
+      }
+      if (e.key === "Home" || e.key === "End") {
+        e.preventDefault();
+        e.stopPropagation();
+        const en = enabledIdxs();
+        if (en.length === 0) return;
+        const next = e.key === "Home" ? en[0] : en[en.length - 1];
+        activeRef.current = next;
+        setActiveIdx(next);
+        focusIdx(next);
+      }
     };
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
+    // 开层即接管焦点（源站实测：焦点落在第一项上）。同步落，别用 rAF（同上）。
+    // 落**首个可用项**而不是硬编码索引 0：首项被禁用时 focus() 会静默失败，
+    // 焦点就压根没接管 —— 而那正是本条判据要抓的现象。
+    const en = enabledIdxs();
+    if (en.length) focusIdx(en[0]);
     // 捕获阶段（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听注册更早，
     // 会先触发同步重渲染；重渲染使本 effect 清理并重新注册监听，
     // removeEventListener 会把该 listener 标记为 removed，浏览器在**同一次
@@ -138,6 +262,8 @@ export function JimengPaneContextMenu({
       window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("mousedown", onDown, true);
     };
+    // 刻意只跟 onClose：菜单是一次性浮层，重渲染期间重挂监听会把
+    // 「开层即接管焦点」再执行一次，焦点被抢回第一项（方向键走到第 3 项就弹回）。
   }, [onClose]);
 
   const run = (fn: () => void) => () => {
@@ -174,6 +300,7 @@ export function JimengPaneContextMenu({
             与源站 hover 展开的行为一致。 */}
         <MenuItem
           label="新建节点"
+            {...roving(0)}
           testId="pane-menu-insert"
           onSelect={() => setSubmenuOpen(true)}
           submenuAffordance={<ChevronRight size={13} className="text-white/45" />}
@@ -212,18 +339,21 @@ export function JimengPaneContextMenu({
       {/* ↓ 源站 7 项，顺序与文案逐字对齐 */}
       <MenuItem
         label="复制"
+          {...roving(1)}
         shortcut="⌘ C"
         disabled={!hasSelection}
         onSelect={run(onCopy)}
       />
       <MenuItem
         label="复制副本"
+          {...roving(2)}
         shortcut="⌘ D"
         disabled={!hasSelection}
         onSelect={run(onDuplicate)}
       />
       <MenuItem
         label="粘贴"
+          {...roving(3)}
         shortcut="⌘ V"
         disabled={!clipboard}
         onSelect={run(onPaste)}
@@ -233,12 +363,14 @@ export function JimengPaneContextMenu({
 
       <MenuItem
         label="下载"
+          {...roving(4)}
         disabled={!hasReadyResource}
         disabledReason="没有可用的就绪资源"
         onSelect={onClose}
       />
       <MenuItem
         label="重做"
+          {...roving(5)}
         shortcut="⌘ ⇧ Z"
         disabled={!canRedo}
         disabledReason="无需重做操作"
@@ -246,6 +378,7 @@ export function JimengPaneContextMenu({
       />
       <MenuItem
         label="撤销"
+          {...roving(6)}
         shortcut="⌘ Z"
         disabled={!canUndo}
         disabledReason="无需撤销操作"
@@ -253,6 +386,7 @@ export function JimengPaneContextMenu({
       />
       <MenuItem
         label="删除"
+          {...roving(7)}
         shortcut="⌫"
         disabled={!hasSelection}
         onSelect={run(onDelete)}

@@ -60,6 +60,13 @@ export function MenuItem({
   onSelect,
   testId,
   submenuAffordance,
+  /** Batch 846：漫游 tabindex（ARIA menu 模式）。**不给**就是原生 button 的
+   *  行为（tab 序里一站）—— 那正是源站**不**做的，见 JimengPaneContextMenu
+   *  里 846 的 SOURCE_FACT。所有既有调用方不传，行为不变。 */
+  tabIndex,
+  /** Batch 846：方向键漫游时要按索引把焦点落回来 */
+  itemRef,
+  onFocus,
 }: {
   label: string;
   shortcut?: string;
@@ -70,6 +77,9 @@ export function MenuItem({
   testId?: string;
   /** 子菜单箭头等右侧装饰（不是快捷键，不参与右对齐语义） */
   submenuAffordance?: ReactNode;
+  tabIndex?: number;
+  itemRef?: (el: HTMLButtonElement | null) => void;
+  onFocus?: () => void;
 }) {
   const reasonId = useId();
 
@@ -92,6 +102,9 @@ export function MenuItem({
             : undefined
       }
       aria-describedby={disabled && disabledReason ? reasonId : undefined}
+      tabIndex={tabIndex}
+      ref={itemRef}
+      onFocus={onFocus}
       onClick={() => {
         if (disabled) return;
         onSelect?.();

@@ -266,6 +266,96 @@ def main() -> int:
               return '';
             }""")
 
+        def escape_probe(layer_tid: str, max_n: int = 6) -> dict:
+            """焦点**已经在层里**的时候，连按 Tab 看会不会跑出去。
+
+            问的是**焦点陷阱**：模态/菜单这类浮层，键盘 Tab 本该在层内循环
+            （ARIA dialog / menu 的标准做法）。跑出去意味着用户按了几下 Tab
+            之后焦点到了层外 —— 轻则离开了这个浮层（Esc 都关不掉它了），
+            重则落到被遮住的地方（§63 量的就是那个）。
+
+            ⚠️ 这一条**不许**自己拿"跑出去=缺陷"下结论 —— 得先看源站是不是
+            也跑出去。源站也那样就是源站的取舍，不是复刻的缺陷（不许擅自
+            改进源站）。所以这里只**测量**，分档由源站对照结果决定。
+            """
+            esc_at = None
+            landed = None
+            steps = 0
+            for i in range(1, max_n + 1):
+                page.keyboard.press("Tab")
+                steps = i
+                s = page.evaluate("""(tid) => {
+                  const layer = document.querySelector(`[data-testid="${tid}"]`);
+                  const a = document.activeElement;
+                  if (!a || a === document.body) return {state: 'body'};
+                  if (layer && layer.contains(a)) return {state: 'inside'};
+                  const b = a.getBoundingClientRect();
+                  return {state: 'outside',
+                          al: (a.getAttribute('aria-label')||'').trim().slice(0,30),
+                          tid: a.getAttribute('data-testid') || '',
+                          txt: (a.innerText || a.getAttribute('placeholder')||'')
+                                .trim().replace(/\\s+/g,' ').slice(0,20),
+                          size: Math.round(b.width) + 'x' + Math.round(b.height)};
+                }""", layer_tid)
+                if s.get("state") != "inside":
+                    esc_at = i
+                    landed = {k: s.get(k) for k in ("state", "al", "tid",
+                                                    "txt", "size")}
+                    break
+            return {"pressed": steps, "escaped_at": esc_at,
+                    "landed": landed,
+                    "trapped": esc_at is None,
+                    "why": None if esc_at is None
+                           else f"焦点在层里时按 {esc_at} 次 Tab 跑出去了"}
+
+        def refocus_inside(layer_tid: str) -> bool:
+            """把焦点塞回层内（上一个测量是破坏性的，会把焦点赶出去）。"""
+            ok = page.evaluate("""(tid) => {
+              const layer = document.querySelector(`[data-testid="${tid}"]`);
+              if (!layer) return false;
+              if (layer.contains(document.activeElement)) return true;
+              const it = layer.querySelector(
+                'input,button,a[href],select,textarea,[tabindex]');
+              if (it) { it.focus(); return true; }
+              if (layer.focus) { layer.focus(); return true; }
+              return false;
+            }""", layer_tid)
+            page.wait_for_timeout(200)
+            return bool(ok)
+
+        def arrow_probe(layer_tid: str, key: str = "ArrowDown",
+                        max_n: int = 4) -> dict:
+            """层内按方向键，焦点**在层内移动**吗？移出去过吗？
+
+            源站实测（探针 846b）：右键菜单 ArrowDown/ArrowUp **在层内移动并
+            环绕**（新建节点→粘贴→重做→撤销→回新建节点）—— 那是 ARIA menu
+            的漫游 tabindex + 方向键标准做法，**方向键才是菜单的主路径**，Tab
+            是旁路。搜索面板（不是菜单）方向键**不消费**。所以"方向键动不动"
+            不是一条统一判据，得**按层型**看：菜单该动，dialog 不该动。
+            这里只**测量**层型事实，分档由源站对照表决定。
+            """
+            if not refocus_inside(layer_tid):
+                return {"why": "焦点塞不回层里（前置态没成立）"}
+            seq = []
+            for _ in range(max_n):
+                page.keyboard.press(key)
+                s = page.evaluate("""(tid) => {
+                  const layer = document.querySelector(`[data-testid="${tid}"]`);
+                  const a = document.activeElement;
+                  if (!a || a === document.body) return {who: 'body'};
+                  return {who: (a.getAttribute('aria-label')
+                              || a.getAttribute('data-testid')
+                              || (a.innerText || '')
+                                  .trim().replace(/\\s+/g, ' ').slice(0, 14)
+                              || a.tagName),
+                          in: !!(layer && layer.contains(a))};
+                }""", layer_tid)
+                seq.append(s)
+            uniq = len({s.get("who") for s in seq})
+            return {"key": key, "seq": seq, "moved": uniq > 1,
+                    "stayed_in_layer": all(s.get("in") for s in seq),
+                    "first": (seq[0].get("who") if seq else None)}
+
         def keyboard_probe(layer_tid: str, max_tabs: int = 60) -> dict:
             """真按 Tab 键，最多 max_tabs 次，看焦点有没有落进当前那个浮层里。
 
@@ -407,9 +497,23 @@ def main() -> int:
                           w: Math.round(b.width), h: Math.round(b.height)};
                 }""", [layer_tid])
                 if step.get("state") == "inside":
+                    # 焦点**已经在层里**了 —— 正好就是「用户刚 Tab 进来」那一刻。
+                    # 就在这个状态上问「再按 Tab 会不会跑出去」，零准备，且测的
+                    # 正是真实路径。§63 留下的范围限制就是这条：冷启动量的是
+                    # 「找不找得到层」，量不到「进去之后出不出得来」。
+                    esc = escape_probe(layer_tid)
+                    # ⚠️ 上一个测量是**破坏性**的（焦点已经被赶出层），下一个
+                    #    测量必须**重新把焦点塞回层里**再起手 —— 三个破坏性
+                    #    测量串着跑，只有第一个是准的（源站探针 846 第一轮
+                    #    就栽在这儿，方向键和 Esc 两栏全测在层外）。
+                    arr = arrow_probe(layer_tid, "ArrowDown")
+                    arr_up = arrow_probe(layer_tid, "ArrowUp")
+                    refocus_inside(layer_tid)
                     return {"ok": True, "tabs": i, "covered": covered,
                             "covered_n": covered_n, "skin_top_n": skin_top_n,
-                            "focus_at_open": at_open}
+                            "focus_at_open": at_open,
+                            "escape": esc, "arrow_down": arr,
+                            "arrow_up": arr_up}
                 if step.get("skin_top"):
                     # 「皮当过栈顶」几次 —— 反向自检的**自证**：皮要是从来没落到
                     # 栈顶上过，那条"盖了皮也不多报"就是恒真的空话。
@@ -1038,6 +1142,80 @@ def main() -> int:
     DEEP = 30
     kb_deep = [r for r in kb_rows if r.get("ok")
                and (r.get("tabs") or 0) > DEEP]
+
+    # ── 焦点陷阱 / 方向键：分档**只能**按源站基线表走 ──────────────────
+    #   源站实测（探针 846b，每项各自重开层测，口径与本工具一致）：
+    #     右键菜单   canvas-context-menu      开层接管(第一项) / Tab **不**困 /
+    #                                      方向键**在层内移动且环绕** / Esc 不回触发器
+    #     搜索面板   canvas-feature-panel     开层接管(面板自己) / Tab **不**困 /
+    #                                      方向键**不**消费 / Esc **回触发器** ✓
+    #     时间线全屏 timeline-fullscreen-editor 开层接管(dialog 自己) / Tab **困** ✓
+    #
+    # ⚠️⚠️ 表里**没有**的层，源站行为未知 ⇒ 一律记进 `kb_not_sampled`，
+    #    **不许**按推测判缺陷。「复刻这边测出来是 0」和「源站也是 0」是两回事 ——
+    #    §63 已经吃过一次这个亏（右键菜单 45 次探不到被写成"源站也这样"）。
+    # ⚠️ `video-fullscreen-preview` 的源站对照（**视频**全屏）**没取到样**：探针
+    #    846b 那一版画布上带「全屏编辑」入口的只有**时间线**节点（它开出来的是
+    #    `timeline-fullscreen-editor`）。所以这一格是「同类层有证据、本层没证据」，
+    #    按 `NOT_SAMPLED` 记账，不拿时间线全屏的行为替它判。
+    SOURCE_BASELINE = {
+        "canvas-context-menu": {
+            "src_tid": "canvas-context-menu", "src_kind": "menu",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": True, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe846_focustrap2.py（登录态 1512×950）"},
+        "jimeng-search-overlay": {
+            "src_tid": "canvas-feature-panel", "src_kind": "dialog",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": False, "esc_returns_to_trigger": True,
+            "src": "jimeng_probe846_focustrap2.py（登录态 1512×950）"},
+    }
+    NOT_SAMPLED = {
+        "video-fullscreen-preview":
+            "源站**视频**全屏没取到样：探针 846b 那一版画布上带「全屏编辑」的"
+            "只有时间线节点（开出来是 timeline-fullscreen-editor）。"
+            "同类模态有证据（时间线全屏 Tab 会困），但**不替本层下结论**。",
+    }
+    kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
+    kb_judged, kb_not_sampled = [], []
+    for r in kb_rows:
+        if r.get("ok") is not True:
+            continue
+        tid = r.get("layer")
+        if tid in NOT_SAMPLED:
+            kb_not_sampled.append({"state": r.get("state"), "layer": tid,
+                                   "why": NOT_SAMPLED[tid]})
+            continue
+        base = SOURCE_BASELINE.get(tid)
+        if not base:
+            kb_not_sampled.append({
+                "state": r.get("state"), "layer": tid,
+                "why": "源站这一层**没取过样**（12 个浮层里源站只对照了 3 个，"
+                       "其中 1 个还是同类层）⇒ 源站行为未知，不许按推测判缺陷。"})
+            continue
+        kb_judged.append(tid)
+        at_open = r.get("focus_at_open") or {}
+        if base["takes_focus_at_open"] and not at_open.get("inside"):
+            kb_no_initial.append({"state": r.get("state"), "layer": tid,
+                                  "src_tid": base["src_tid"],
+                                  "at_open": at_open.get("al") or at_open.get("state"),
+                                  "why": "源站这一层开层即接管焦点，复刻没有"})
+        esc = r.get("escape") or {}
+        if base["traps_tab"] and esc.get("trapped") is False:
+            kb_escaped.append({"state": r.get("state"), "layer": tid,
+                               "src_tid": base["src_tid"],
+                               "escaped_at": esc.get("escaped_at"),
+                               "landed": esc.get("landed"),
+                               "why": "源站这一层 Tab 会困在层内，复刻第 "
+                                      f"{esc.get('escaped_at')} 次就跑了"})
+        arr = r.get("arrow_down") or {}
+        if base["arrows_move"] and arr.get("moved") is False:
+            kb_arrow_dead.append({"state": r.get("state"), "layer": tid,
+                                  "src_tid": base["src_tid"],
+                                  "seq": [s.get("who") for s in arr.get("seq", [])],
+                                  "why": "源站这一层方向键在层内移动（ARIA menu 主路径），"
+                                         "复刻按了方向键焦点不动"})
+
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({"rows": rows, "skipped": skipped, "states": states_done,
                    "confirmed": real,
@@ -1047,6 +1225,12 @@ def main() -> int:
                    "keyboard_covered": kb_covered,
                    "keyboard_deep": kb_deep,
                    "keyboard_deep_threshold": DEEP,
+                   "keyboard_no_initial_focus": kb_no_initial,
+                   "keyboard_escaped": kb_escaped,
+                   "keyboard_arrow_dead": kb_arrow_dead,
+                   "keyboard_judged_layers": sorted(set(kb_judged)),
+                   "keyboard_not_sampled": kb_not_sampled,
+                   "source_baseline": SOURCE_BASELINE,
                    "self_test": self_test,
                    "kb_self_test": kb_self},
                   f, ensure_ascii=False, indent=2)
@@ -1104,9 +1288,42 @@ def main() -> int:
     for k in kb_deep:
         print(f"  · 偏深（INFO）[{k['state']}] 浮层={k['layer']!r} "
               f"Tab {k['tabs']} 次才进得去 —— 不是缺陷，但是个该人看一眼的信号")
+
+    # ── 焦点陷阱 / 方向键（批 846 加）：分档只按**源站基线表**走 ──────
+    print(f"\n焦点陷阱 / 方向键：源站基线表里能判的层 "
+          f"{len(set(kb_judged))} 个（{', '.join(sorted(set(kb_judged))) or '—'}）"
+          f" → **开层没接管焦点 {len(kb_no_initial)}**、"
+          f"**Tab 逃出层 {len(kb_escaped)}**、"
+          f"**方向键不动 {len(kb_arrow_dead)}**；"
+          f"源站**没取过样**因而**不下结论**的 {len(kb_not_sampled)} 个")
+    for k in kb_no_initial:
+        print(f"  ★ 开层**没把焦点移进层里** [{k['state']}] 浮层={k['layer']!r}："
+              f"焦点还停在 {k.get('at_open')!r} —— 源站 {k['src_tid']!r} "
+              f"开层即接管（{k['why']}）")
+    for k in kb_escaped:
+        print(f"  ★ Tab 从层里逃出去了 [{k['state']}] 浮层={k['layer']!r}："
+              f"第 {k.get('escaped_at')} 次 Tab 跑到 "
+              f"al={(k.get('landed') or {}).get('al')!r} "
+              f"tid={(k.get('landed') or {}).get('tid')!r} "
+              f"—— 源站 {k['src_tid']!r} 会困在层内（{k['why']}）")
+    for k in kb_arrow_dead:
+        print(f"  ★ 方向键**焦点不动** [{k['state']}] 浮层={k['layer']!r}："
+              f"ArrowDown 连按 4 次都是同一个 —— 源站 {k['src_tid']!r} "
+              f"方向键在层内移动（{k['why']}）")
+    if kb_not_sampled:
+        print("  ⚠ 源站**没取过样**的层（**不下结论**，也不当通过）：")
+        for k in kb_not_sampled:
+            print(f"    · [{k['state']}] {k['layer']!r} —— {k['why']}")
     for k in kb_probed:
         if k.get("ok") and (k.get("tabs") or 0) <= DEEP:
-            print(f"  · [{k['state']}] 浮层={k['layer']!r} Tab {k['tabs']} 次进得去")
+            esc = k.get("escape") or {}
+            arr = k.get("arrow_down") or {}
+            print(f"  · [{k['state']}] 浮层={k['layer']!r} Tab {k['tabs']} 次进得去"
+                  f"｜层内 Tab "
+                  + (f"第 {esc.get('escaped_at')} 次逃出" if not esc.get("trapped", True)
+                     and esc.get("escaped_at") else "没逃出")
+                  + (f"｜方向键{'动' if arr.get('moved') else '不动'}"
+                     if arr and "moved" in arr else ""))
     ok_kb_self = (bool(kb_self) and kb_self.get("reachable_before") is True
                   and kb_self.get("unreachable_when_stripped") is True
                   and kb_self.get("reachable_after_restore") is True
@@ -1144,7 +1361,8 @@ def main() -> int:
     #    退出 1 会被读成"查到缺陷了"。这是独立的第三种状态。
     if not ok_self or not ok_kb_self:
         return 2
-    return 1 if (real or kb_bad or kb_covered) else 0
+    return 1 if (real or kb_bad or kb_covered
+                 or kb_no_initial or kb_escaped or kb_arrow_dead) else 0
 
 
 if __name__ == "__main__":

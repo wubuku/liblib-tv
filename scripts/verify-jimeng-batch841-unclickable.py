@@ -85,6 +85,11 @@ def main() -> int:
     kb_bad = data.get("keyboard_bad", [])
     kb_deep = data.get("keyboard_deep", [])
     kb_cov = data.get("keyboard_covered", [])
+    # 846 的三个新桶也得在**顶部**取出来：A.0 要用它们算退出码，而 A.0 排在
+    # §H 之前 —— 在 §H 里定义会 NameError（第一版就栽在这儿，py_compile 抓不到）。
+    kb_ni = data.get("keyboard_no_initial_focus", [])
+    kb_esc = data.get("keyboard_escaped", [])
+    kb_arr = data.get("keyboard_arrow_dead", [])
     kbst = data.get("kb_self_test", {})
 
     # ── A. 普查本身 ───────────────────────────────────────────────
@@ -98,7 +103,7 @@ def main() -> int:
     #       自检过了且没缺陷 ⇒ 0
     #     三种都能两个方向失败：把 kb_covered 从退出码里漏掉（缺陷当通过放行）、
     #     写死 0、或自检红着却退 0，都会被抓住。
-    any_bad = bool(real or kb_bad or kb_cov)
+    any_bad = bool(real or kb_bad or kb_cov or kb_ni or kb_esc or kb_arr)
     self_ok = (
         kbst.get("reachable_before") is True
         and kbst.get("unreachable_when_stripped") is True
@@ -187,9 +192,10 @@ def main() -> int:
     check("E.6 两条自检任一不过都走退出码 2（不是 0，否则 CI 当通过）",
           re.search(r"if not ok_self or not ok_kb_self:\s*\n\s*return 2",
                     asrc) is not None)
-    check("E.7 最终退出码由**三个**缺陷桶推出"
-          "（`real` / `kb_bad` / `kb_covered`，不许写死 0）",
-          "return 1 if (real or kb_bad or kb_covered) else 0" in asrc)
+    check("E.7 最终退出码由**六个**缺陷桶推出（指针 1 + 键盘 5，"
+          "不许写死 0）",
+          "return 1 if (real or kb_bad or kb_covered" in asrc
+          and "kb_no_initial or kb_escaped or kb_arrow_dead" in asrc)
     # ⑥ 打不开的状态要记 skipped，不许静默跳过
     check("E.8 下拉打不开会记进 `skipped`（「跑了但没看见」≠「没跑」）",
           "skipped.append(f\"{tag}（打不开" in asrc)
@@ -348,6 +354,67 @@ def main() -> int:
           and printed[0][0] == str(kbst.get("covered_n_when_clear"))
           and printed[0][1] == str(kbst.get("covered_n_when_shut")),
           (cline[0].strip()[:96] if cline else "打印行里根本没有这句"))
+
+    # ── H. 焦点陷阱 / 方向键（批 846 加）─────────────────────────────
+    #    这一节的全部要害：**分档只能按源站基线表走**。表里没有的层，源站行为
+    #    未知 —— 「复刻这边测出来是 0」和「源站也是 0」是两回事。§63 已经吃过
+    #    一次这个亏（右键菜单 45 次探不到，差点被写成"源站也这样"）。
+    print("\n— H. 焦点陷阱 / 方向键：分档只按源站基线走 —")
+    kb_judged = data.get("keyboard_judged_layers", [])
+    kb_ns = data.get("keyboard_not_sampled", [])
+    base = data.get("source_baseline", {})
+    probed_layers = sorted({k.get("layer") for k in kb
+                            if k.get("ok") is True and k.get("layer")})
+    check(f"H.1 源站基线表**在结果里**，且每条都写明取样出处",
+          bool(base) and all(v.get("src") and v.get("src_tid")
+                             for v in base.values()),
+          f"表里 {len(base)} 层：{sorted(base)}")
+    check("H.2 基线表的字段齐（接管焦点 / Tab 困不困 / 方向键动不动）",
+          all({"takes_focus_at_open", "traps_tab", "arrows_move"} <= set(v)
+              for v in base.values()),
+          f"字段={[sorted(v) for v in base.values()][:1]}")
+    # 核心：每个探到的层，要么在表里被判，要么**明确**记进 not_sampled。
+    # 两者都不许漏 —— 漏了就变成"悄悄按推测判"或"悄悄当通过"。
+    unaccounted = [t for t in probed_layers
+                   if t not in base and t not in
+                   {n.get("layer") for n in kb_ns}]
+    check(f"H.3 探到的 {len(probed_layers)} 个层**全部有账**"
+          f"（要么按源站基线判了，要么明确记成「源站没取过样」）",
+          not unaccounted,
+          f"能判 {len(kb_judged)}、没取样 {len(kb_ns)}、无账 {unaccounted}")
+    check(f"H.4 「源站没取过样」的层被**显式列出**（当前 {len(kb_ns)} 个，"
+          "且每条都带为什么没取样）",
+          bool(kb_ns) and all(n.get("layer") and n.get("why") for n in kb_ns),
+          "; ".join(f"{n.get('layer')}" for n in kb_ns)[:150])
+    # 视频全屏那一格必须**留在** not_sampled 里：源站那一版画布上没有可测的
+    # 视频全屏，拿时间线全屏的行为替它判就是拿证据不足当证据。
+    check("H.5 视频全屏**不许**拿时间线全屏的行为替它下结论"
+          "（源站那一版画布上没有可测的视频全屏）",
+          any(n.get("layer") == "video-fullscreen-preview"
+              for n in kb_ns),
+          f"not_sampled={[n.get('layer') for n in kb_ns]}")
+    check("H.6 陷阱测量从「焦点**已经在层里**」起手（不是冷启动）——"
+          "冷启动量不到「进去之后出不出得来」",
+          re.search(r"if step\.get\(\"state\"\) == \"inside\":.{0,700}?"
+                    r"escape_probe\(layer_tid\)", asrc, re.S) is not None)
+    check("H.7 每个破坏性测量之间**重新把焦点塞回层里**"
+          "（串着跑三个破坏性测量，只有第一个是准的）",
+          "refocus_inside(layer_tid)" in asrc
+          and re.search(r"def arrow_probe.{0,3000}?refocus_inside\(layer_tid\)",
+                        asrc, re.S) is not None)
+    for k in kb_ni:
+        check(f"H.8 {k.get('state')}：源站开层即接管焦点，复刻没有",
+              bool(k.get("src_tid")) and bool(k.get("at_open")),
+              f"源站={k.get('src_tid')!r} 复刻焦点停在 {k.get('at_open')!r}")
+    for k in kb_esc:
+        check(f"H.9 {k.get('state')}：Tab 从层里逃出去了"
+              f"（第 {k.get('escaped_at')} 次，落在 "
+              f"al={(k.get('landed') or {}).get('al')!r}）",
+              bool(k.get("src_tid")) and (k.get("landed") or {}).get("al") is not None)
+    for k in kb_arr:
+        check(f"H.10 {k.get('state')}：方向键焦点不动"
+              f"（ArrowDown 4 次都是 {k.get('seq', [None])[0]!r}）",
+              bool(k.get("src_tid")) and bool(k.get("seq")))
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

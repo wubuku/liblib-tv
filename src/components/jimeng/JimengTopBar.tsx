@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   ChevronDown,
   History,
@@ -87,6 +87,8 @@ export function JimengTopBar() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  /* Batch 846: 搜索触发器 ref —— Esc 关掉搜索面板后把焦点接回它（源站实测） */
+  const searchTriggerRef = useRef<HTMLButtonElement>(null);
   const [memberOpen, setMemberOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
   // 批 820：账号菜单里「帮助中心」「AI生成水印设置」各自要开的浮层
@@ -294,6 +296,10 @@ export function JimengTopBar() {
               type="button"
               aria-label="搜索"
               data-testid="canvas-panel-launcher"
+              /* Batch 846: Esc 关掉搜索面板后把焦点**接回这个触发器**
+                 （源站实测如此）。此前复刻 Esc 之后焦点掉到 body，键盘用户
+                 按完 Esc 就丢失了位置。ref 在下面那个 <button> 上。 */
+              ref={searchTriggerRef}
               onClick={() => {
                 setHistoryOpen(false);
                 setSearchOpen((v) => !v);
@@ -319,7 +325,19 @@ export function JimengTopBar() {
               <Search size={16} />
             </button>
             {searchOpen ? (
-              <JimengSearchOverlay onClose={() => setSearchOpen(false)} />
+              <JimengSearchOverlay
+                onClose={(reason) => {
+                  setSearchOpen(false);
+                  /* 只在 Escape 关闭时接回焦点：点外面关闭时用户的注意力在
+                     鼠标指着的地方，抢回触发器是错的。 */
+                  if (reason === "escape") {
+                    /* 同步接回：触发器是**一直在**的兄弟节点（不是随浮层一起
+                     * 卸载的），不等下一帧。批 846 刚在方向键那条上踩过
+                     * requestAnimationFrame 在 headless 里不合成就不触发的坑。 */
+                    searchTriggerRef.current?.focus();
+                  }
+                }}
+              />
             ) : null}
           </div>
           <div className="relative">
