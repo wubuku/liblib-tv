@@ -6,14 +6,46 @@
     {
       "viewport": "1440x900",
       "checks": [
-        "bar:visible",
-        "bar:placeholder",
-        "mode:active:cursor",
-        "mode:active:camera",
-        "mode:active:hand",
-        "submit:local-ack",
-        "submit:draft-kept",
-        "diagnostics:zero"
+        {
+          "name": "bar:visible",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "name": "bar:placeholder",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "name": "mode-toggles:removed",
+          "ok": true,
+          "detail": "source has no 光标/相机/手 mode segment; the clone's three mode buttons (transcribed from screenshot 18) are gone"
+        },
+        {
+          "name": "bar:in-bottom-bar-row",
+          "ok": true,
+          "detail": "prompt pill now shares the source's single bottom row with the tool pill (was an independent absolutely positioned bar)"
+        },
+        {
+          "name": "bar:upload-cell",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "name": "submit:local-ack",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "name": "submit:draft-kept",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "name": "diagnostics:zero",
+          "ok": true,
+          "detail": null
+        }
       ],
       "diagnostics": {
         "console": 0,

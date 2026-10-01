@@ -13,17 +13,36 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": true,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 0,
     "historyFuture": 0,
@@ -41,10 +60,10 @@
           },
           "status": "RESTORED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"第一集：咖啡馆对峙\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:13:56.242Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"第一集：咖啡馆对峙\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:28:43.979Z",
           "lastRequestId": null
         }
       ]
@@ -56,17 +75,36 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": true,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 0,
     "historyFuture": 0,
@@ -84,10 +122,10 @@
           },
           "status": "RESTORED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"第一集：咖啡馆对峙\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:13:56.242Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"第一集：咖啡馆对峙\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:28:43.979Z",
           "lastRequestId": null
         }
       ]
@@ -99,24 +137,43 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": true,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 1,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161241423-1",
+      "commandId": "director-command-1790879364365-1",
       "commandKind": "UPDATE_SCENE",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "COMMITTED",
       "reason": null,
@@ -143,10 +200,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:01.423Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:24.365Z",
           "lastRequestId": 2
         }
       ]
@@ -158,24 +215,43 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": true,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 1,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161241830-3",
+      "commandId": "director-command-1790879368933-3",
       "commandKind": "UPDATE_SCENE",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "NOOP",
       "reason": "DIRECTOR_COMMAND_NO_CHANGE",
@@ -202,10 +278,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:01.423Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:24.365Z",
           "lastRequestId": 2
         }
       ]
@@ -217,24 +293,43 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": true,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 1,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161242032-4",
+      "commandId": "director-command-1790879370122-4",
       "commandKind": "UPDATE_SCENE",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "REJECTED",
       "reason": "DIRECTOR_INVALID_VALUE",
@@ -261,10 +356,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:01.423Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":true,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:24.365Z",
           "lastRequestId": 2
         }
       ]
@@ -276,24 +371,43 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": false,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 2,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161242595-5",
+      "commandId": "director-command-1790879376175-5",
       "commandKind": "UPDATE_SCENE",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "COMMITTED",
       "reason": null,
@@ -320,10 +434,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:02.595Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:36.175Z",
           "lastRequestId": 3
         }
       ]
@@ -335,24 +449,43 @@
       "backgroundColor": "#4a4f56",
       "groundColor": "#30343a",
       "showGround": false,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 3,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161243076-7",
+      "commandId": "director-command-1790879380895-7",
       "commandKind": "UPDATE_SCENE",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "COMMITTED",
       "reason": null,
@@ -379,10 +512,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#4a4f56\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:03.076Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#4a4f56\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:40.895Z",
           "lastRequestId": 4
         }
       ]
@@ -394,24 +527,43 @@
       "backgroundColor": "#20252b",
       "groundColor": "#30343a",
       "showGround": false,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 2,
     "historyFuture": 1,
     "lastCommand": {
-      "commandId": "director-command-1789161243252-9",
+      "commandId": "director-command-1790879382832-9",
       "commandKind": "UNDO",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "COMMITTED",
       "reason": null,
@@ -438,10 +590,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:03.252Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#20252b\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:42.832Z",
           "lastRequestId": 5
         }
       ]
@@ -453,24 +605,43 @@
       "backgroundColor": "#4a4f56",
       "groundColor": "#30343a",
       "showGround": false,
-      "showGrid": true
+      "showGrid": true,
+      "skyColor": "#060608",
+      "showCharacterLabels": true,
+      "snapToGrid": false,
+      "gaussianGroundSnap": true,
+      "groundOpacity": 0.4,
+      "panoramaRotation": 0,
+      "panoramaSphereRadius": 30,
+      "sceneScale": 1,
+      "sceneTranslate": [
+        0,
+        0,
+        0
+      ],
+      "sceneRotate": [
+        0,
+        0,
+        0
+      ],
+      "groundHeight": 0
     },
-    "projectId": "director-project-1789161236240-1",
-    "sessionId": "director-session-1789161236241-2",
+    "projectId": "director-project-1790879323976-1",
+    "sessionId": "director-session-1790879323977-2",
     "generation": 1,
     "lifecycle": "ACTIVE",
     "outcome": {
       "disposition": "FOCUSED",
       "reason": null,
       "previousOwnerKey": "[\"libtv\",\"canvas-2\",\"b-bTLLuU4w5q\"]",
-      "observedAt": "2026-09-11T21:13:56.244Z"
+      "observedAt": "2026-10-01T18:28:43.981Z"
     },
     "historyPast": 3,
     "historyFuture": 0,
     "lastCommand": {
-      "commandId": "director-command-1789161243508-10",
+      "commandId": "director-command-1790879383837-10",
       "commandKind": "REDO",
-      "projectId": "director-project-1789161236240-1",
+      "projectId": "director-project-1790879323976-1",
       "generation": 1,
       "disposition": "COMMITTED",
       "reason": null,
@@ -497,10 +668,10 @@
           },
           "status": "SAVED",
           "reason": null,
-          "projectId": "director-project-1789161236240-1",
+          "projectId": "director-project-1790879323976-1",
           "generation": 1,
-          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1789161236240-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#4a4f56\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
-          "savedAt": "2026-09-11T21:14:03.508Z",
+          "fingerprint": "{\"schemaVersion\":1,\"projectId\":\"director-project-1790879323976-1\",\"owner\":{\"route\":\"libtv\",\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"scene\":{\"name\":\"Batch 90 draft\",\"backgroundColor\":\"#4a4f56\",\"groundColor\":\"#30343a\",\"showGround\":false,\"showGrid\":true},\"objects\":[{\"id\":\"director-character-lead\",\"name\":\"角色01 · 陈默\",\"kind\":\"character\",\"primitive\":\"character\",\"color\":\"#8696a8\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":{\"posePresetId\":\"stand\",\"controls\":{}},\"camera\":null},{\"id\":\"director-prop-table\",\"name\":\"咖啡桌\",\"kind\":\"prop\",\"primitive\":\"table\",\"color\":\"#7b6959\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,0,0],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-mug\",\"name\":\"冷掉的咖啡\",\"kind\":\"prop\",\"primitive\":\"mug\",\"color\":\"#ece7de\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0.25,1.08,0.05],\"rotation\":[0,-18,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-prop-wall\",\"name\":\"咖啡馆背景\",\"kind\":\"prop\",\"primitive\":\"wall\",\"color\":\"#394450\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[0,1.5,-2.6],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":null},{\"id\":\"director-camera-main\",\"name\":\"机位01 · 对峙中景\",\"kind\":\"camera\",\"primitive\":\"camera\",\"color\":\"#9bdcf2\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"assetRefId\":null,\"libraryCategoryId\":null,\"libraryVisual\":null,\"characterRig\":null,\"camera\":{\"fov\":43,\"target\":[-0.3,1.15,0],\"lookAtMode\":\"coordinate\",\"lookAtObjectId\":null,\"followTargetId\":null,\"followOffset\":[0,1.2,4.5],\"followView\":\"third-person\"}}],\"groups\":[],\"shots\":[{\"id\":\"director-shot-director-camera-main\",\"name\":\"机位01 · 对峙中景 · 镜头\",\"cameraId\":\"director-camera-main\",\"startTime\":0,\"endTime\":8,\"captureIds\":[]}],\"activeCameraId\":\"director-camera-main\",\"timeline\":{\"duration\":8,\"loop\":true,\"autoKeyframe\":true,\"tracks\":[{\"id\":\"director-track-character-lead-transform\",\"objectId\":\"director-character-lead\",\"label\":\"角色01 · 陈默 · 变换\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"transform\",\"keyframes\":[{\"id\":\"director-keyframe-character-0\",\"time\":0,\"value\":{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-4\",\"time\":4,\"value\":{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}},{\"id\":\"director-keyframe-character-8\",\"time\":8,\"value\":{\"position\":[-0.4,0,0.8],\"rotation\":[0,-42,0],\"scale\":[1,1,1]}}]},{\"id\":\"director-track-camera-main\",\"objectId\":\"director-camera-main\",\"label\":\"机位01 · 对峙中景 · 机位\",\"motionPathId\":null,\"speedCurve\":{\"preset\":\"linear\",\"control1\":[0,0],\"control2\":[1,1]},\"kind\":\"camera\",\"keyframes\":[{\"id\":\"director-keyframe-camera-0\",\"time\":0,\"value\":{\"transform\":{\"position\":[4.8,2.65,6.9],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[-0.3,1.15,0],\"fov\":43}},{\"id\":\"director-keyframe-camera-4\",\"time\":4,\"value\":{\"transform\":{\"position\":[4.1,2.3,5.4],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.2,1.2,0],\"fov\":47}},{\"id\":\"director-keyframe-camera-8\",\"time\":8,\"value\":{\"transform\":{\"position\":[2.9,1.85,4.3],\"rotation\":[0,0,0],\"scale\":[1,1,1]},\"target\":[0.1,1.15,0.15],\"fov\":52}}]}],\"motionPaths\":[]},\"outputPreferences\":{\"aspectRatio\":\"16:9\"},\"resourceRefs\":[],\"captureDescriptors\":[]}",
+          "savedAt": "2026-10-01T18:29:43.837Z",
           "lastRequestId": 6
         }
       ]

@@ -281,19 +281,45 @@ def main() -> int:
                 return {"ok": None, "why": "没有打开的浮层"}
             if not page.locator(f'[data-testid="{layer_tid}"]').count():
                 return {"ok": None, "why": "定位不到那个浮层"}
-            if page.evaluate("""() => { const a = document.activeElement;
-                if (a && a.blur) a.blur(); return true; }"""):
-                pass
+            page.evaluate("""() => { const a = document.activeElement;
+                if (a && a.blur) a.blur(); return true; }""")
+            covered = None
+            covered_n = 0
             for i in range(1, max_tabs + 1):
                 page.keyboard.press("Tab")
-                inside = page.evaluate("""(tid) => {
+                step = page.evaluate("""(args) => {
+                  const [tid] = args;
                   const layer = document.querySelector(`[data-testid="${tid}"]`);
                   const a = document.activeElement;
-                  return !!(layer && a && layer.contains(a));
-                }""", layer_tid)
-                if inside:
-                    return {"ok": True, "tabs": i}
-            return {"ok": False, "tabs": max_tabs,
+                  if (!a || a === document.body) return {state: 'body'};
+                  const inside = !!(layer && layer.contains(a));
+                  if (inside) return {state: 'inside'};
+                  // ⚠️ 焦点停在**被这个浮层遮住**的控件上 —— 鼠标看不见无所谓，
+                  //    可焦点环也看不见：用户不知道自己停在哪，继续 Tab 只是在
+                  //    一片看不见的控件里走。这是"浮层开了却没接管焦点"，
+                  //    和"浮层管好了自己的选项"是两回事。
+                  const b = a.getBoundingClientRect();
+                  if (b.width < 1 || b.height < 1) return {state: 'other'};
+                  const hit = document.elementFromPoint(b.x + b.width/2,
+                                                        b.y + b.height/2);
+                  const occluded = !!(hit && !a.contains(hit) && !hit.contains(a)
+                                      && !hit.closest('nextjs-portal'));
+                  return {state: occluded ? 'covered' : 'other',
+                          al: (a.getAttribute('aria-label')||'').trim().slice(0,30),
+                          tid: a.getAttribute('data-testid') || '',
+                          w: Math.round(b.width), h: Math.round(b.height)};
+                }""", [layer_tid])
+                if step.get("state") == "inside":
+                    return {"ok": True, "tabs": i, "covered": covered,
+                            "covered_n": covered_n}
+                if step.get("state") == "covered":
+                    covered_n += 1
+                    if covered is None:
+                        covered = {"at_tab": i, "al": step.get("al"),
+                                   "tid": step.get("tid"),
+                                   "size": f"{step.get('w')}x{step.get('h')}"}
+            return {"ok": False, "tabs": max_tabs, "covered": covered,
+                    "covered_n": covered_n,
                     "why": f"Tab {max_tabs} 次都没进到 {layer_tid} 里"}
 
         
@@ -703,10 +729,52 @@ def main() -> int:
                   e.removeAttribute('data-kb-prev'); })""")
             page.wait_for_timeout(300)
             restored_kb = keyboard_probe(probe_layer)
+            # 再验「Tab 走进被遮住的控件」这一条：盖一层**真遮挡物**，
+            # 判据必须报出 covered；撤掉后必须不再报。
+            # ⚠️ 这条**不能用上面那层**：截取帧下拉第 1 次 Tab 就进去了，
+            #    探针当场返回，压根没机会走到被遮住的控件上 —— 自检于是恒假。
+            #    换成一个**深**的层（顶栏搜索，实测 39 步），前面 38 个焦点位
+            #    足够让探针看见遮挡。第一版就是栽在这儿，自检把自己判红了。
+            deep_layer = "jimeng-search-overlay"
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(400)
+            srch = page.locator('header[aria-label="Canvas top bar"] '
+                                'button[aria-label="搜索"]')
+            if not srch.count():
+                srch = page.locator('button[aria-label="搜索"]')
+            if srch.count() and page.locator(
+                    f'[data-testid="{deep_layer}"]').count() == 0:
+                try:
+                    srch.first.click(timeout=6000)
+                    page.wait_for_timeout(700)
+                except Exception:
+                    pass
+            if page.locator(f'[data-testid="{deep_layer}"]').count():
+                page.evaluate("""() => {
+                  const d = document.createElement('div');
+                  d.setAttribute('data-kbcover-probe', '1');
+                  d.style.cssText = 'position:fixed;inset:0;z-index:99998;'
+                                  + 'background:transparent';
+                  document.body.appendChild(d);
+                }""")
+                page.wait_for_timeout(300)
+                covered_when_shut = keyboard_probe(deep_layer)
+                page.evaluate("""() => document.querySelectorAll('[data-kbcover-probe]')
+                    .forEach(e => e.remove())""")
+                page.wait_for_timeout(300)
+                covered_when_clear = keyboard_probe(deep_layer)
+            else:
+                covered_when_shut = {"covered": None}
+                covered_when_clear = {"covered": None}
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(400)
             kb_self = {"layer": probe_layer,
                        "reachable_before": before_kb.get("ok"),
                        "unreachable_when_stripped": after_kb.get("ok") is False,
-                       "reachable_after_restore": restored_kb.get("ok")}
+                       "reachable_after_restore": restored_kb.get("ok"),
+                       "covered_probe_layer": deep_layer,
+                       "covered_n_when_shut": covered_when_shut.get("covered_n"),
+                       "covered_n_when_clear": covered_when_clear.get("covered_n")}
         else:
             kb_self = {"layer": probe_layer, "why": "自检用的那层没打开"}
         close_open()
@@ -766,6 +834,11 @@ def main() -> int:
     # 键盘那一路：`ok is False` 才是缺陷；`ok is None` 是"那一刻没有打开的
     # 浮层"，**不计也不当通过** —— 与指针那条 skipped/empty 的分档同一个道理。
     kb_bad = [r for r in kb_rows if r.get("ok") is False]
+    # 「Tab 走进了被这个浮层遮住的控件」—— 第三个键盘缺陷桶。
+    # 与指针那条的**分档正好相反**：鼠标点不到被模态盖住的控件是**正常**
+    # （关掉模态就能点）；但**焦点**停在那上面，焦点环是看不见的，用户既不知道
+    # 自己在哪也不知道刚才那下 Tab 有没有生效 —— 那不是正常，是浮层没接管焦点。
+    kb_covered = [r for r in kb_rows if r.get("covered")]
     # 「进得去但很深」单列。**上限本身就是判据的一部分**：探到上限还没进去，
     # 报「缺陷」是在说"产品坏了"，可那也可能只是这条浮层在 tab 序里太靠后。
     # 上限以内 + 偏深 = INFO（值得人看一眼的信号），上限以外才判缺陷。
@@ -778,6 +851,7 @@ def main() -> int:
                    "by_modal": by_modal,
                    "keyboard": kb_rows,
                    "keyboard_bad": kb_bad,
+                   "keyboard_covered": kb_covered,
                    "keyboard_deep": kb_deep,
                    "keyboard_deep_threshold": DEEP,
                    "self_test": self_test,
@@ -823,10 +897,17 @@ def main() -> int:
     kb_probed = [k for k in kb_rows if k.get("ok") is not None]
     kb_none = [k for k in kb_rows if k.get("ok") is None]
     print(f"\n键盘可达性：探测 {len(kb_probed)} 个开着浮层的状态 → "
-          f"**Tab 进不去 {len(kb_bad)}**、偏深 {len(kb_deep)}（>{DEEP} 次，INFO）、"
-          f"没浮层可探 {len(kb_none)}")
+          f"**Tab 进不去 {len(kb_bad)}**、"
+          f"**Tab 走进被遮住的控件 {len(kb_covered)}**、"
+          f"偏深 {len(kb_deep)}（>{DEEP} 次，INFO）、没浮层可探 {len(kb_none)}")
     for k in kb_bad:
         print(f"  ★ Tab 进不去 [{k['state']}] 浮层={k['layer']!r} {k.get('why','')}")
+    for k in kb_covered:
+        c = k["covered"]
+        print(f"  ★ Tab 走进了**被遮住**的控件 [{k['state']}] 浮层={k['layer']!r}："
+              f"第 {c['at_tab']} 次 Tab 停在 al={c['al']!r} tid={c['tid']!r} "
+              f"{c['size']} —— 焦点环在那儿是看不见的"
+              f"（全程共 {k.get('covered_n')} 个这样的焦点位）")
     for k in kb_deep:
         print(f"  · 偏深（INFO）[{k['state']}] 浮层={k['layer']!r} "
               f"Tab {k['tabs']} 次才进得去 —— 不是缺陷，但是个该人看一眼的信号")
@@ -835,10 +916,19 @@ def main() -> int:
             print(f"  · [{k['state']}] 浮层={k['layer']!r} Tab {k['tabs']} 次进得去")
     ok_kb_self = (bool(kb_self) and kb_self.get("reachable_before") is True
                   and kb_self.get("unreachable_when_stripped") is True
-                  and kb_self.get("reachable_after_restore") is True)
+                  and kb_self.get("reachable_after_restore") is True
+                  # ⚠️ 这里比的是**计数**，不是"有没有"：基线里本来就真有几处
+                  #    焦点落在被遮住的控件上（那正是本批查出来的缺陷），
+                  #    所以"撤掉后不再报"是个**错前提** —— 第一版就栽在这儿，
+                  #    自检把自己判红了。真正要证明的是判据**对遮挡敏感**：
+                  #    盖上一层，被遮住的焦点位必须**变多**。
+                  and (kb_self.get("covered_n_when_shut") or 0)
+                      > (kb_self.get("covered_n_when_clear") or 0))
     print(f"自检（键盘）：把 {kb_self.get('layer')!r} 里的 tabindex 全摘成 -1 后"
           f"判为进不去={kb_self.get('unreachable_when_stripped')}、"
           f"还原后恢复={kb_self.get('reachable_after_restore')}"
+          + f"；盖一层遮挡物后被遮住的焦点位 "
+          f"{kb_self.get('covered_n_when_clear')} → {kb_self.get('covered_n_when_shut')}"
           + (f"（{kb_self.get('why')}）" if kb_self.get("why") else "")
           + f"  →  {'✓ 键盘判据能失败' if ok_kb_self else '✗ 键盘判据恒真，这轮结果不可信'}")
 
@@ -847,7 +937,7 @@ def main() -> int:
     #    退出 1 会被读成"查到缺陷了"。这是独立的第三种状态。
     if not ok_self or not ok_kb_self:
         return 2
-    return 1 if (real or kb_bad) else 0
+    return 1 if (real or kb_bad or kb_covered) else 0
 
 
 if __name__ == "__main__":

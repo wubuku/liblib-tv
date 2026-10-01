@@ -91,8 +91,8 @@
           32
         ],
         [
-          null,
-          40,
+          "动画时间轴",
+          32,
           32
         ],
         [
@@ -119,11 +119,11 @@
           20
         ],
         [
-          "开启九宫格辅助线",
+          "动画时间轴",
           20
         ],
         [
-          "虚拟相机",
+          "开启九宫格辅助线",
           20
         ]
       ]
@@ -224,8 +224,8 @@
       "name": "pills:row-centered",
       "ok": true,
       "detail": {
-        "pills_mid": 949.0,
-        "row_mid": 949.0
+        "pills_mid": 960.0,
+        "row_mid": 960.0
       }
     },
     {
@@ -242,7 +242,7 @@
       "name": "tool-pill:hit-testable",
       "ok": true,
       "detail": {
-        "x": 1051.890625,
+        "x": 1082.90625,
         "y": 928,
         "width": 84,
         "height": 32
@@ -257,11 +257,11 @@
   "measured": {
     "bar": {
       "box": {
-        "x": 266,
+        "x": 281,
         "y": 920,
-        "w": 1366,
+        "w": 1358,
         "h": 48,
-        "right": 1632,
+        "right": 1639,
         "bottom": 968
       },
       "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -281,11 +281,11 @@
     },
     "row": {
       "box": {
-        "x": 497,
+        "x": 488,
         "y": 920,
-        "w": 904,
+        "w": 944,
         "h": 48,
-        "right": 1401,
+        "right": 1432,
         "bottom": 968
       },
       "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -305,11 +305,11 @@
     },
     "scroller": {
       "box": {
-        "x": 278,
+        "x": 293,
         "y": 920,
-        "w": 1342,
+        "w": 1334,
         "h": 48,
-        "right": 1620,
+        "right": 1627,
         "bottom": 968
       },
       "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -329,11 +329,11 @@
     },
     "pillA": {
       "box": {
-        "x": 497,
+        "x": 488,
         "y": 920,
-        "w": 671,
+        "w": 711,
         "h": 48,
-        "right": 1168,
+        "right": 1199,
         "bottom": 968
       },
       "backgroundColor": "rgba(33, 33, 33, 0.94)",
@@ -354,11 +354,11 @@
     "cellsA": [
       {
         "box": {
-          "x": 612,
+          "x": 603,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 644,
+          "right": 635,
           "bottom": 960
         },
         "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
@@ -380,21 +380,21 @@
         "ariaPressed": "true",
         "disabled": false,
         "svgBox": {
-          "x": 618,
+          "x": 609,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 638,
+          "right": 629,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 652,
+          "x": 643,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 684,
+          "right": 675,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -416,21 +416,21 @@
         "ariaPressed": "false",
         "disabled": false,
         "svgBox": {
-          "x": 658,
+          "x": 649,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 678,
+          "right": 669,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 692,
+          "x": 683,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 724,
+          "right": 715,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -452,21 +452,57 @@
         "ariaPressed": "false",
         "disabled": false,
         "svgBox": {
-          "x": 698,
+          "x": 689,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 718,
+          "right": 709,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 745,
+          "x": 723,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "right": 755,
+          "bottom": 960
+        },
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "padding": "0px",
+        "gap": "normal",
+        "display": "flex",
+        "position": "relative",
+        "zIndex": "auto",
+        "borderTopWidth": "0px",
+        "borderTopColor": "rgb(82, 82, 82)",
+        "boxShadow": "none",
+        "backdropFilter": "none",
+        "gridTemplateColumns": "none",
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8 bg-white/8",
+        "tag": "button",
+        "ariaLabel": "动画时间轴",
+        "ariaPressed": "true",
+        "disabled": false,
+        "svgBox": {
+          "x": 729,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "right": 749,
+          "bottom": 954
+        }
+      },
+      {
+        "box": {
+          "x": 776,
           "y": 928,
           "w": 40,
           "h": 32,
-          "right": 785,
+          "right": 816,
           "bottom": 960
         },
         "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
@@ -491,11 +527,11 @@
       },
       {
         "box": {
-          "x": 793,
+          "x": 824,
           "y": 928,
           "w": 40,
           "h": 32,
-          "right": 833,
+          "right": 864,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -520,11 +556,11 @@
       },
       {
         "box": {
-          "x": 841,
+          "x": 872,
           "y": 928,
           "w": 40,
           "h": 32,
-          "right": 881,
+          "right": 912,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -549,11 +585,11 @@
       },
       {
         "box": {
-          "x": 889,
+          "x": 920,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 921,
+          "right": 952,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -575,21 +611,21 @@
         "ariaPressed": "false",
         "disabled": false,
         "svgBox": {
-          "x": 895,
+          "x": 926,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 915,
+          "right": 946,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 942,
+          "x": 973,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 974,
+          "right": 1005,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -611,21 +647,21 @@
         "ariaPressed": "false",
         "disabled": false,
         "svgBox": {
-          "x": 948,
+          "x": 979,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 968,
+          "right": 999,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 982,
+          "x": 1013,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 1014,
+          "right": 1045,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -647,21 +683,21 @@
         "ariaPressed": null,
         "disabled": false,
         "svgBox": {
-          "x": 988,
+          "x": 1019,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 1008,
+          "right": 1039,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 1022,
+          "x": 1053,
           "y": 928,
           "w": 32,
           "h": 32,
-          "right": 1054,
+          "right": 1085,
           "bottom": 960
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -683,21 +719,21 @@
         "ariaPressed": null,
         "disabled": false,
         "svgBox": {
-          "x": 1028,
+          "x": 1059,
           "y": 934,
           "w": 20,
           "h": 20,
-          "right": 1048,
+          "right": 1079,
           "bottom": 954
         }
       },
       {
         "box": {
-          "x": 1075,
+          "x": 1106,
           "y": 928,
           "w": 84,
           "h": 32,
-          "right": 1159,
+          "right": 1190,
           "bottom": 960
         },
         "backgroundColor": "rgb(231, 231, 231)",
@@ -719,22 +755,22 @@
         "ariaPressed": null,
         "disabled": false,
         "svgBox": {
-          "x": 1085,
+          "x": 1116,
           "y": 937,
           "w": 14,
           "h": 14,
-          "right": 1099,
+          "right": 1130,
           "bottom": 951
         }
       }
     ],
     "pillB": {
       "box": {
-        "x": 1176,
+        "x": 1207,
         "y": 920,
         "w": 225,
         "h": 48,
-        "right": 1401,
+        "right": 1432,
         "bottom": 968
       },
       "backgroundColor": "rgba(33, 33, 33, 0.94)",
@@ -755,11 +791,11 @@
     "cellsB": [
       {
         "box": {
-          "x": 1185,
+          "x": 1216,
           "y": 929,
           "w": 32,
           "h": 32,
-          "right": 1217,
+          "right": 1248,
           "bottom": 961
         },
         "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -781,21 +817,21 @@
         "ariaPressed": null,
         "disabled": false,
         "svgBox": {
-          "x": 1193,
+          "x": 1224,
           "y": 937,
           "w": 16,
           "h": 16,
-          "right": 1209,
+          "right": 1240,
           "bottom": 953
         }
       },
       {
         "box": {
-          "x": 1364,
+          "x": 1395,
           "y": 929,
           "w": 32,
           "h": 32,
-          "right": 1396,
+          "right": 1427,
           "bottom": 961
         },
         "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
@@ -817,11 +853,11 @@
         "ariaPressed": null,
         "disabled": true,
         "svgBox": {
-          "x": 1372,
+          "x": 1403,
           "y": 937,
           "w": 16,
           "h": 16,
-          "right": 1388,
+          "right": 1419,
           "bottom": 953
         }
       }

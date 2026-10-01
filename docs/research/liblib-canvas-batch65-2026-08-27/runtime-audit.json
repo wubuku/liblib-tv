@@ -1686,9 +1686,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.7963052225994,
-            "y": 260.80062102430406,
-            "zoom": 0.5260018676087325
+            "x": -583.7244437023974,
+            "y": 260.8126996276234,
+            "zoom": 0.5260382494234374
           }
         },
         {
@@ -1697,9 +1697,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -581.4246008286343,
-            "y": 261.19926102641864,
-            "zoom": 0.5272637620345162
+            "x": -580.2187894794156,
+            "y": 261.4019357948364,
+            "zoom": 0.5279577008311304
           }
         },
         {
@@ -1708,9 +1708,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -571.9738495200352,
-            "y": 262.7877589569492,
-            "zoom": 0.5340125149098389
+            "x": -567.760271577562,
+            "y": 263.4959841152662,
+            "zoom": 0.5385350466495697
           }
         },
         {
@@ -1719,9 +1719,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -561.388657283959,
-            "y": 264.56693559722066,
-            "zoom": 0.5509928714337253
+            "x": -559.8298278270354,
+            "y": 264.8289462337846,
+            "zoom": 0.5622732615631009
           }
         },
         {
@@ -1730,9 +1730,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -564.9092414037295,
-            "y": 263.97518998823125,
-            "zoom": 0.5885370657622748
+            "x": -568.1693095975079,
+            "y": 263.42723232750086,
+            "zoom": 0.596795554607053
           }
         },
         {
@@ -1741,9 +1741,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -576.913625681922,
-            "y": 261.9574731993183,
-            "zoom": 0.6143581832207279
+            "x": -580.4265460649715,
+            "y": 261.36701572388824,
+            "zoom": 0.6204574197209561
           }
         },
         {
@@ -1752,9 +1752,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -581.7812157032733,
-            "y": 261.1393206077299,
-            "zoom": 0.6227159031920526
+            "x": -583.1185747012778,
+            "y": 260.91453509265943,
+            "zoom": 0.6249017458639005
           }
         },
         {
@@ -1763,9 +1763,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -582.9615708738049,
-            "y": 260.94092455598167,
-            "zoom": 0.6246472577166854
+            "x": -583.7997420405557,
+            "y": 260.8000433582506,
+            "zoom": 0.6259995861406646
           }
         },
         {
@@ -2010,9 +2010,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -583.7963052225994,
-            "y": 260.80062102430406,
-            "zoom": 0.5260018676087325
+            "x": -583.7244437023974,
+            "y": 260.8126996276234,
+            "zoom": 0.5260382494234374
           }
         },
         {
@@ -2021,9 +2021,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -581.4246008286343,
-            "y": 261.19926102641864,
-            "zoom": 0.5272637620345162
+            "x": -580.2187894794156,
+            "y": 261.4019357948364,
+            "zoom": 0.5279577008311304
           }
         },
         {
@@ -2032,9 +2032,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -571.9738495200352,
-            "y": 262.7877589569492,
-            "zoom": 0.5340125149098389
+            "x": -567.760271577562,
+            "y": 263.4959841152662,
+            "zoom": 0.5385350466495697
           }
         },
         {
@@ -2043,9 +2043,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -561.388657283959,
-            "y": 264.56693559722066,
-            "zoom": 0.5509928714337253
+            "x": -559.8298278270354,
+            "y": 264.8289462337846,
+            "zoom": 0.5622732615631009
           }
         },
         {
@@ -2054,9 +2054,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -564.9092414037295,
-            "y": 263.97518998823125,
-            "zoom": 0.5885370657622748
+            "x": -568.1693095975079,
+            "y": 263.42723232750086,
+            "zoom": 0.596795554607053
           }
         },
         {
@@ -2065,9 +2065,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -576.913625681922,
-            "y": 261.9574731993183,
-            "zoom": 0.6143581832207279
+            "x": -580.4265460649715,
+            "y": 261.36701572388824,
+            "zoom": 0.6204574197209561
           }
         },
         {
@@ -2076,9 +2076,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -581.7812157032733,
-            "y": 261.1393206077299,
-            "zoom": 0.6227159031920526
+            "x": -583.1185747012778,
+            "y": 260.91453509265943,
+            "zoom": 0.6249017458639005
           }
         },
         {
@@ -2087,9 +2087,9 @@
           "reason": "live-frame",
           "ownership": "stable",
           "viewport": {
-            "x": -582.9615708738049,
-            "y": 260.94092455598167,
-            "zoom": 0.6246472577166854
+            "x": -583.7997420405557,
+            "y": 260.8000433582506,
+            "zoom": 0.6259995861406646
           }
         },
         {
@@ -2365,21 +2365,21 @@
           }
         },
         {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "viewport-accepted",
+          "ownership": "stable",
+          "viewport": {
+            "x": -321.5,
+            "y": 144.25,
+            "zoom": 0.75
+          }
+        },
+        {
           "canvasId": "canvas-1",
           "status": "committed",
           "reason": "stable-restored",
           "ownership": "stable",
-          "viewport": {
-            "x": 111,
-            "y": 222,
-            "zoom": 1.25
-          }
-        },
-        {
-          "canvasId": "canvas-2",
-          "status": "skipped",
-          "reason": "canvas-changed",
-          "ownership": null,
           "viewport": {
             "x": 111,
             "y": 222,
@@ -2613,21 +2613,21 @@
           }
         },
         {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "viewport-accepted",
+          "ownership": "stable",
+          "viewport": {
+            "x": -321.5,
+            "y": 144.25,
+            "zoom": 0.75
+          }
+        },
+        {
           "canvasId": "canvas-1",
           "status": "committed",
           "reason": "stable-restored",
           "ownership": "stable",
-          "viewport": {
-            "x": 111,
-            "y": 222,
-            "zoom": 1.25
-          }
-        },
-        {
-          "canvasId": "canvas-2",
-          "status": "skipped",
-          "reason": "canvas-changed",
-          "ownership": null,
           "viewport": {
             "x": 111,
             "y": 222,
@@ -2890,21 +2890,21 @@
           }
         },
         {
+          "canvasId": "canvas-2",
+          "status": "committed",
+          "reason": "viewport-accepted",
+          "ownership": "stable",
+          "viewport": {
+            "x": -321.5,
+            "y": 144.25,
+            "zoom": 0.75
+          }
+        },
+        {
           "canvasId": "canvas-1",
           "status": "committed",
           "reason": "stable-restored",
           "ownership": "stable",
-          "viewport": {
-            "x": 111,
-            "y": 222,
-            "zoom": 1.25
-          }
-        },
-        {
-          "canvasId": "canvas-2",
-          "status": "skipped",
-          "reason": "canvas-changed",
-          "ownership": null,
           "viewport": {
             "x": 111,
             "y": 222,

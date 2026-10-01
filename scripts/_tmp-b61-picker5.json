@@ -1,0 +1,100 @@
+{
+ "startedAt": "2026-10-01T16:51:23.009Z",
+ "zoom": "Zoom options, 60%",
+ "rounds": [
+  {
+   "id": "R5-空图片候选",
+   "q": "空图片节点（**不是**宿主）能不能被选中？",
+   "hostId": "node_k6y3k3qca0",
+   "candId": "node_qx8p3m83z8",
+   "targetId": "node_qx8p3m83z8",
+   "separated": false,
+   "targetAriaBefore": {
+    "aria": "图片 node: 图片 1",
+    "text": "图片 1"
+   },
+   "targetAriaAfter": null,
+   "err": "宿主上找不到「添加参考」按钮"
+  },
+  {
+   "id": "R9-空音频候选",
+   "q": "空音频节点能不能被选中？",
+   "hostId": "node_es82kp7pta",
+   "candId": "node_a01r9s5szz",
+   "targetId": "node_a01r9s5szz",
+   "separated": false,
+   "targetAriaBefore": {
+    "aria": "音频 node: 音频 1",
+    "text": "音频 1 No resources: 0 ready, 0 processing, 0 failed"
+   },
+   "targetAriaAfter": null,
+   "err": "宿主上找不到「添加参考」按钮"
+  },
+  {
+   "id": "R10-主体候选",
+   "q": "空主体节点能不能被选中？",
+   "hostId": "node_xrhwkrkfpn",
+   "candId": "node_cnbh3jfzda",
+   "targetId": "node_cnbh3jfzda",
+   "separated": false,
+   "targetAriaBefore": {
+    "aria": "主体 node: 主体 1",
+    "text": "主体 1 主体 1 添加描述... Empty subject: main missing, 0 a"
+   },
+   "targetAriaAfter": null,
+   "err": "宿主上找不到「添加参考」按钮"
+  },
+  {
+   "id": "R11-导演台候选",
+   "q": "空导演台节点能不能被选中？",
+   "hostId": "node_0ze8qzrtd2",
+   "candId": "node_23ebtk90t8",
+   "targetId": "node_23ebtk90t8",
+   "separated": false,
+   "targetAriaBefore": {
+    "aria": "外部 node: 导演台",
+    "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready"
+   },
+   "targetAriaAfter": null,
+   "err": "宿主上找不到「添加参考」按钮"
+  }
+ ],
+ "end": {
+  "status": "7 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "coords": {
+   "node_236ctpehgg": [
+    740.56,
+    585
+   ],
+   "node_3bfb9r79qe": [
+    480.06,
+    240
+   ],
+   "node_cdwf8x6fbj": [
+    40.06,
+    362.5
+   ],
+   "node_aw29cp094x": [
+    520.05,
+    278.75
+   ],
+   "node_5gftn3dnt1": [
+    560.05,
+    319.38
+   ],
+   "node_pxvkay973v": [
+    640.05,
+    440.65
+   ],
+   "node_a01r9s5szz": [
+    2302.74,
+    1264.11
+   ]
+  },
+  "credit": "805",
+  "mineLeft": [
+   "node_a01r9s5szz"
+  ]
+ }
+}

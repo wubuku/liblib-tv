@@ -20,9 +20,13 @@
     "portableDocumentExcludesSelection": true
   },
   "diagnostics": {
-    "consoleErrors": 0,
+    "consoleErrors": 3,
     "pageErrors": 0,
     "requestFailures": 0,
-    "details": []
+    "details": [
+      "select-prop-and-track:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the scene graph.",
+      "missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+    ]
   }
 }

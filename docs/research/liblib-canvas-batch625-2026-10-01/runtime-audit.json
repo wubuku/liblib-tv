@@ -369,7 +369,7 @@
       "ctxZ": "160",
       "box": [
         52,
-        508,
+        442,
         204,
         270
       ],
@@ -382,32 +382,10 @@
       "nCtrls": 8,
       "inBand": [
         {
-          "label": "立方体",
-          "box": [
-            59,
-            547,
-            190,
-            32
-          ],
-          "hitSelf": true,
-          "hitLabel": "立方体"
-        },
-        {
-          "label": "球体",
-          "box": [
-            59,
-            579,
-            190,
-            32
-          ],
-          "hitSelf": true,
-          "hitLabel": "球体"
-        },
-        {
           "label": "圆柱体",
           "box": [
             59,
-            611,
+            545,
             190,
             32
           ],
@@ -418,7 +396,7 @@
           "label": "环状体",
           "box": [
             59,
-            643,
+            577,
             190,
             32
           ],
@@ -429,12 +407,34 @@
           "label": "圆锥",
           "box": [
             59,
-            675,
+            609,
             190,
             32
           ],
           "hitSelf": true,
           "hitLabel": "圆锥"
+        },
+        {
+          "label": "棱锥",
+          "box": [
+            59,
+            641,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "棱锥"
+        },
+        {
+          "label": "添加空对象",
+          "box": [
+            59,
+            673,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "添加空对象"
         }
       ],
       "pageErrors": []
@@ -701,7 +701,7 @@
       "ctxZ": "160",
       "box": [
         52,
-        508,
+        422,
         204,
         270
       ],
@@ -714,43 +714,10 @@
       "nCtrls": 8,
       "inBand": [
         {
-          "label": "上传文件",
-          "box": [
-            59,
-            515,
-            190,
-            32
-          ],
-          "hitSelf": true,
-          "hitLabel": "上传文件"
-        },
-        {
-          "label": "立方体",
-          "box": [
-            59,
-            547,
-            190,
-            32
-          ],
-          "hitSelf": true,
-          "hitLabel": "立方体"
-        },
-        {
-          "label": "球体",
-          "box": [
-            59,
-            579,
-            190,
-            32
-          ],
-          "hitSelf": true,
-          "hitLabel": "球体"
-        },
-        {
           "label": "圆柱体",
           "box": [
             59,
-            611,
+            525,
             190,
             32
           ],
@@ -761,7 +728,7 @@
           "label": "环状体",
           "box": [
             59,
-            643,
+            557,
             190,
             32
           ],
@@ -772,12 +739,34 @@
           "label": "圆锥",
           "box": [
             59,
-            675,
+            589,
             190,
             32
           ],
           "hitSelf": true,
           "hitLabel": "圆锥"
+        },
+        {
+          "label": "棱锥",
+          "box": [
+            59,
+            621,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "棱锥"
+        },
+        {
+          "label": "添加空对象",
+          "box": [
+            59,
+            653,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "添加空对象"
         }
       ],
       "pageErrors": []
@@ -855,7 +844,7 @@
       "geometry-submenu@1280x720": 5,
       "geometry-submenu@1920x844": 3,
       "aspect-flyout@1100x700": 1,
-      "geometry-submenu@1100x700": 6
+      "geometry-submenu@1100x700": 5
     },
     "geometryBefore": {
       "panorama-flyout": [
@@ -876,17 +865,43 @@
         232,
         390
       ],
-      "geometry-submenu": [
-        52,
-        508,
-        204,
-        270
-      ],
       "crowd-dialog": [
         294,
         52,
         220,
         208
+      ]
+    },
+    "geometrySubmenuPerHeight": {
+      "1920x1150": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "1440x900": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "1280x720": [
+        52,
+        442,
+        204,
+        270
+      ],
+      "1920x844": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "1100x700": [
+        52,
+        422,
+        204,
+        270
       ]
     },
     "the-portal-moved-nothing": {

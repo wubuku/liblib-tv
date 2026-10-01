@@ -1,0 +1,506 @@
+{
+  "url": "http://localhost:4317/jimeng/canvas/demo",
+  "title": "LibTV - 专业视频创作工具",
+  "zoomText": "100%",
+  "counts": {
+    "controls": 30,
+    "nodes": 2,
+    "handles": 4,
+    "edges": 0,
+    "edgesSvg": 1,
+    "canvases": 0,
+    "videos": 0,
+    "images": 1
+  },
+  "tokens": {
+    "bodyBg": "rgb(20, 20, 20)",
+    "bodyFont": "-apple-system, \"system-ui\", \"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "bodyColor": "rgb(247, 247, 247)",
+    "canvasBg": null
+  },
+  "controls": [
+    {
+      "name": "播放",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 550,
+        "y": 273,
+        "w": 32,
+        "h": 32
+      }
+    },
+    {
+      "name": "导演台",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 498,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "底部播放",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 292,
+        "y": 429,
+        "w": 12,
+        "h": 12
+      }
+    },
+    {
+      "name": "返回首页",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-project-logo",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 12,
+        "y": 10,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "分享",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-share-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1391,
+        "y": 16,
+        "w": 60,
+        "h": 28
+      }
+    },
+    {
+      "name": "更多",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-more-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1467,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "节点颜色标记",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 835,
+        "y": 105,
+        "w": 16,
+        "h": 16
+      }
+    },
+    {
+      "name": "取消静音",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 809,
+        "y": 428,
+        "w": 13,
+        "h": 13
+      }
+    },
+    {
+      "name": "全屏预览",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 828,
+        "y": 428,
+        "w": 13,
+        "h": 13
+      }
+    },
+    {
+      "name": "上传",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 596,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "生成历史",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1347,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "时间线",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 414,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "视频",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 330,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "视频 1",
+      "tag": "div",
+      "role": "group",
+      "testid": "rf__node-video-empty-1",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1048,
+        "y": 172,
+        "w": 569,
+        "h": 320
+      }
+    },
+    {
+      "name": "搜索",
+      "tag": "button",
+      "role": "",
+      "testid": "topbar-search",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1315,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "图片",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 288,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "文本",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 246,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "显示连线",
+      "tag": "button",
+      "role": "",
+      "testid": "dock-edges",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 80,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "项目",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-project-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 120,
+        "y": 16,
+        "w": 20,
+        "h": 28
+      }
+    },
+    {
+      "name": "小地图",
+      "tag": "button",
+      "role": "",
+      "testid": "dock-minimap",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 48,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "选择工具",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "音频",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 372,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "用户菜单",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-user-menu-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1636,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "与 AI 对话",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1549,
+        "y": 779,
+        "w": 118,
+        "h": 34
+      }
+    },
+    {
+      "name": "主体",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 456,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "资产库",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 554,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "Canvas node summary: 节点 2",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-node-summary-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 156,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "Canvas title: 测试项目",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-project-title-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 52,
+        "y": 16,
+        "w": 68,
+        "h": 28
+      }
+    },
+    {
+      "name": "Credits: 745 · 基础会员",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-commerce-entry",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1511,
+        "y": 16,
+        "w": 109,
+        "h": 28
+      }
+    },
+    {
+      "name": "Zoom options, 100%",
+      "tag": "button",
+      "role": "",
+      "testid": "dock-zoom",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 124,
+        "y": 778,
+        "w": 48,
+        "h": 28
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "video-local-1",
+      "type": "video",
+      "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+      "rect": {
+        "x": 282,
+        "y": 129,
+        "w": 569,
+        "h": 320
+      },
+      "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06",
+      "hasToolbar": false,
+      "toolbar": "",
+      "mediaCount": 1
+    },
+    {
+      "id": "video-empty-1",
+      "type": "video",
+      "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+      "rect": {
+        "x": 1048,
+        "y": 172,
+        "w": 569,
+        "h": 320
+      },
+      "text": "视频 1",
+      "hasToolbar": false,
+      "toolbar": "",
+      "mediaCount": 0
+    }
+  ],
+  "overlays": []
+}

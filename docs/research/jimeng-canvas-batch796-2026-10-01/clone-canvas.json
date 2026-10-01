@@ -3,7 +3,7 @@
   "title": "LibTV - 专业视频创作工具",
   "zoomText": "73%",
   "counts": {
-    "controls": 41,
+    "controls": 30,
     "nodes": 2,
     "handles": 4,
     "edges": 0,
@@ -20,81 +20,6 @@
   },
   "controls": [
     {
-      "name": "/ 创作分镜",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1473,
-        "y": 335,
-        "w": 95,
-        "h": 36
-      }
-    },
-    {
-      "name": "/ 剧本开发",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1499,
-        "y": 379,
-        "w": 95,
-        "h": 36
-      }
-    },
-    {
-      "name": "/ 剧情短片",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1422,
-        "y": 423,
-        "w": 95,
-        "h": 36
-      }
-    },
-    {
-      "name": "/ 全流程广告片导演",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1344,
-        "y": 379,
-        "w": 147,
-        "h": 36
-      }
-    },
-    {
-      "name": "/ 视频反解",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1370,
-        "y": 335,
-        "w": 95,
-        "h": 36
-      }
-    },
-    {
       "name": "播放",
       "tag": "button",
       "role": "",
@@ -110,21 +35,6 @@
       }
     },
     {
-      "name": "从本地、画布或资产库添加",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1295,
-        "y": 757,
-        "w": 32,
-        "h": 32
-      }
-    },
-    {
       "name": "导演台",
       "tag": "button",
       "role": "",
@@ -133,10 +43,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 497,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 498,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -152,21 +62,6 @@
         "y": 425,
         "w": 9,
         "h": 9
-      }
-    },
-    {
-      "name": "发送消息",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": true,
-      "count": 1,
-      "rect": {
-        "x": 1611,
-        "y": 757,
-        "w": 32,
-        "h": 32
       }
     },
     {
@@ -193,7 +88,7 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1393,
+        "x": 1391,
         "y": 16,
         "w": 60,
         "h": 28
@@ -208,7 +103,7 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1469,
+        "x": 1467,
         "y": 16,
         "w": 28,
         "h": 28
@@ -268,10 +163,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 569,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 596,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -283,7 +178,7 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1345,
+        "x": 1347,
         "y": 16,
         "w": 28,
         "h": 28
@@ -298,25 +193,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 425,
-        "w": 32,
-        "h": 32
-      }
-    },
-    {
-      "name": "使用技能",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1331,
-        "y": 759,
-        "w": 86,
-        "h": 28
+        "x": 16,
+        "y": 414,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -328,10 +208,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 353,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 330,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -350,36 +230,6 @@
       }
     },
     {
-      "name": "收起",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1623,
-        "y": 25,
-        "w": 28,
-        "h": 28
-      }
-    },
-    {
-      "name": "输入想法、剧本或上传参考，支持 “ / ” 使用技能，",
-      "tag": "input",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1295,
-        "y": 701,
-        "w": 348,
-        "h": 22
-      }
-    },
-    {
       "name": "搜索",
       "tag": "button",
       "role": "",
@@ -388,24 +238,9 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1313,
+        "x": 1315,
         "y": 16,
         "w": 28,
-        "h": 28
-      }
-    },
-    {
-      "name": "缩放",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 128,
-        "y": 778,
-        "w": 48,
         "h": 28
       }
     },
@@ -418,10 +253,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 317,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 288,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -433,10 +268,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 281,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 246,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -448,7 +283,7 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 84,
+        "x": 80,
         "y": 778,
         "w": 28,
         "h": 28
@@ -478,23 +313,8 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 52,
+        "x": 48,
         "y": 778,
-        "w": 28,
-        "h": 28
-      }
-    },
-    {
-      "name": "新建会话",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1591,
-        "y": 25,
         "w": 28,
         "h": 28
       }
@@ -508,7 +328,7 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 20,
+        "x": 16,
         "y": 778,
         "w": 28,
         "h": 28
@@ -523,25 +343,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 389,
-        "w": 32,
-        "h": 32
-      }
-    },
-    {
-      "name": "引用参考",
-      "tag": "button",
-      "role": "",
-      "testid": "",
-      "pressed": null,
-      "disabled": false,
-      "count": 1,
-      "rect": {
-        "x": 1421,
-        "y": 757,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 372,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -553,10 +358,25 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1640,
+        "x": 1636,
         "y": 16,
         "w": 28,
         "h": 28
+      }
+    },
+    {
+      "name": "与 AI 对话",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1549,
+        "y": 779,
+        "w": 118,
+        "h": 34
       }
     },
     {
@@ -568,10 +388,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 461,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 456,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -583,10 +403,10 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 24,
-        "y": 533,
-        "w": 32,
-        "h": 32
+        "x": 16,
+        "y": 554,
+        "w": 40,
+        "h": 40
       }
     },
     {
@@ -628,9 +448,24 @@
       "disabled": false,
       "count": 1,
       "rect": {
-        "x": 1513,
+        "x": 1511,
         "y": 16,
-        "w": 111,
+        "w": 109,
+        "h": 28
+      }
+    },
+    {
+      "name": "Zoom options, 73%",
+      "tag": "button",
+      "role": "",
+      "testid": "dock-zoom",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 124,
+        "y": 778,
+        "w": 48,
         "h": 28
       }
     }
@@ -667,17 +502,5 @@
       "mediaCount": 0
     }
   ],
-  "overlays": [
-    {
-      "cls": "absolute inset-y-3 right-3 z-40 flex w-[398px] flex-col rounded-2xl border border-white/[0.06] bg-[#",
-      "role": "dialog",
-      "rect": {
-        "x": 1270,
-        "y": 12,
-        "w": 398,
-        "h": 802
-      },
-      "text": "新会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 添加主体，和 Agent 一起创作 使用技能"
-    }
-  ]
+  "overlays": []
 }

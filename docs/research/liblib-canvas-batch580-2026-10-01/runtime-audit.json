@@ -38,7 +38,7 @@
       ],
       "keyframe_before": {
         "trackKind": "camera",
-        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790870249482",
         "keyframeTime": 2,
         "keyframeCount": 4,
         "playhead": 2,
@@ -81,7 +81,7 @@
       "duration_slider_expected_percent": 20,
       "keyframe_after_uniform": {
         "trackKind": "camera",
-        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790870249482",
         "keyframeTime": 2,
         "keyframeCount": 4,
         "playhead": 2,
@@ -98,7 +98,7 @@
       },
       "keyframe_after_position": {
         "trackKind": "camera",
-        "keyframeId": "director-track-camera-main-keyframe-2000-1790808919232",
+        "keyframeId": "director-track-camera-main-keyframe-2000-1790870249482",
         "keyframeTime": 2,
         "keyframeCount": 4,
         "playhead": 2,

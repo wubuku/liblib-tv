@@ -88,7 +88,7 @@
       "inspector": true
     },
     "vw897:census": {
-      "total": 52,
+      "total": 123,
       "covered": 0
     },
     "vw897:the-census-reports-no-covered-control": {
@@ -176,7 +176,7 @@
       "inspector": true
     },
     "vw898:census": {
-      "total": 52,
+      "total": 123,
       "covered": 0
     },
     "vw898:the-census-reports-no-covered-control": {
@@ -203,10 +203,10 @@
       "treeInert": false,
       "treeAriaHidden": null,
       "treeBox": [
-        0,
-        88,
-        220,
-        812
+        48,
+        52,
+        233,
+        848
       ],
       "inspectorInert": false,
       "inspectorBox": [
@@ -239,10 +239,10 @@
         "inert": false,
         "ariaHidden": null,
         "box": [
-          0,
-          88,
-          220,
-          812
+          48,
+          52,
+          233,
+          848
         ]
       }
     },
@@ -264,7 +264,7 @@
       "inspector": false
     },
     "vw899:census": {
-      "total": 108,
+      "total": 130,
       "covered": 0
     },
     "vw899:the-census-reports-no-covered-control": {
@@ -352,9 +352,9 @@
       "inspector": false
     },
     "vw900:census": {
-      "total": 115,
+      "total": 130,
       "covered": 0,
-      "clipped": 8
+      "clipped": 23
     },
     "vw900:the-census-reports-no-covered-control": {
       "ok": true,
@@ -441,7 +441,7 @@
       "inspector": false
     },
     "vw901:census": {
-      "total": 115,
+      "total": 130,
       "covered": 0
     },
     "vw901:the-census-reports-no-covered-control": {
@@ -637,9 +637,9 @@
       }
     },
     "vw960:census": {
-      "total": 116,
+      "total": 130,
       "covered": 0,
-      "clipped": 7
+      "clipped": 21
     },
     "vw960:the-hidden-part-is-clipped-not-buried": {
       "ok": true,
@@ -734,9 +734,9 @@
       }
     },
     "vw1024:census": {
-      "total": 116,
+      "total": 130,
       "covered": 0,
-      "clipped": 5
+      "clipped": 19
     },
     "vw1024:the-hidden-part-is-clipped-not-buried": {
       "ok": true,
@@ -831,9 +831,9 @@
       }
     },
     "vw1043:census": {
-      "total": 117,
+      "total": 130,
       "covered": 0,
-      "clipped": 5
+      "clipped": 18
     },
     "vw1043:the-hidden-part-is-clipped-not-buried": {
       "ok": true,
@@ -928,9 +928,9 @@
       }
     },
     "vw1100:census": {
-      "total": 117,
+      "total": 130,
       "covered": 0,
-      "clipped": 4
+      "clipped": 17
     },
     "vw1100:the-hidden-part-is-clipped-not-buried": {
       "ok": true,
@@ -1025,9 +1025,9 @@
       }
     },
     "vw1280:census": {
-      "total": 120,
+      "total": 130,
       "covered": 0,
-      "clipped": 3
+      "clipped": 13
     },
     "vw1280:the-hidden-part-is-clipped-not-buried": {
       "ok": true,

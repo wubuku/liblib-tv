@@ -483,6 +483,21 @@ run_file_case "31) A 类标题写的类数比表内行数少 1（必须报）" \
 run_file_case "32) 把 A 类标题的计数整个删掉（必须报，不给绕过留后门）" \
   "AUDIT-RULES.md" "$HERE/selftest-meta-fix-32-drop-title-count.py" \
   "删掉它就绕过了检查"
+# 33–36 是 Batch 168 方向十一的反验：对应关系表必须与现场**双向**一致。
+# 33 与 34 是两个方向（漏认领 / 认领了不存在的），**单边判据的绿灯毫无意义**；
+# 36 是「不误伤」那一半——备注列天生每批都要改，判据若把措辞当事实，
+# **它逼着你把话说得越来越含糊**，那才是判据过宽的真正代价。
+run_file_case "33) 对应关系表删掉一行（必须报：驱动没人认领）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-33-unclaimed-driver.py" \
+  "没有被对应关系表认领"
+run_file_case "34) 对应关系表认领了不存在的反验（必须报）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-34-missing-selftest.py" \
+  "并不存在"
+run_file_case "35) 对应关系表某行例数写成 0（必须报）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-35-zero-case-count.py" \
+  "必须是正整数"
+run_file_pass_case "36) 不误伤：只改对应关系表的备注文字（必须放行）" \
+  "AUDIT-RULES.md" "$HERE/selftest-meta-fix-36-remark-only.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

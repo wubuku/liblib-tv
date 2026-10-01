@@ -59,7 +59,7 @@
             "min": "0",
             "max": "100",
             "step": null,
-            "value": 1,
+            "value": 44,
             "type": "range",
             "title": "时间轴缩放",
             "box": [
@@ -79,7 +79,7 @@
             "min": "0",
             "max": "100",
             "step": null,
-            "value": 1,
+            "value": 44,
             "type": "range",
             "title": "时间轴缩放",
             "box": [
@@ -111,14 +111,14 @@
           "ok": true,
           "detail": {
             "box": [
-              1680,
+              1710,
               981,
               12,
               12
             ],
             "radius": "3.35544e+07px",
             "background": "rgb(247, 247, 247)",
-            "left": "1%",
+            "left": "44%",
             "transform": "translate(-50%, -50%)"
           }
         },
@@ -157,19 +157,19 @@
           "ok": true,
           "detail": {
             "actual": {
-              "0": 1600,
-              "25": 1600,
+              "0": 1598,
+              "25": 1598,
               "50": 2018,
               "100": 4009
             },
             "expected": {
-              "0": 1600,
-              "25": 1600,
+              "0": 1598,
+              "25": 1598,
               "50": 2018,
               "100": 4009
             },
             "duration": 8,
-            "container": 1600
+            "container": 1598
           }
         },
         {
@@ -177,12 +177,12 @@
           "ok": true,
           "detail": {
             "samples": {
-              "0": 1600,
-              "25": 1600,
+              "0": 1598,
+              "25": 1598,
               "50": 2018,
               "100": 4009
             },
-            "container": 1600
+            "container": 1598
           }
         },
         {
@@ -204,7 +204,7 @@
           "min": "0",
           "max": "100",
           "step": null,
-          "value": 1,
+          "value": 44,
           "type": "range",
           "title": "时间轴缩放",
           "box": [
@@ -228,14 +228,14 @@
         },
         "thumb": {
           "box": [
-            1680,
+            1710,
             981,
             12,
             12
           ],
           "radius": "3.35544e+07px",
           "background": "rgb(247, 247, 247)",
-          "left": "1%",
+          "left": "44%",
           "transform": "translate(-50%, -50%)"
         },
         "minimize": {
@@ -249,7 +249,7 @@
         },
         "svgCount": 1,
         "labelCount": 0,
-        "fillWidth": "1%"
+        "fillWidth": "44%"
       },
       "at_25": {
         "fill": "25%",
@@ -257,18 +257,18 @@
         "value": 25
       },
       "ruler_width": {
-        "0": 1600,
-        "25": 1600,
+        "0": 1598,
+        "25": 1598,
         "50": 2018,
         "100": 4009
       },
       "ruler_width_expected": {
-        "0": 1600,
-        "25": 1600,
+        "0": 1598,
+        "25": 1598,
         "50": 2018,
         "100": 4009
       },
-      "ruler_container_width": 1600,
+      "ruler_container_width": 1598,
       "diagnostics": []
     }
   ]

@@ -10,7 +10,7 @@
         "crop:exit-btn",
         "crop:aspect-btn",
         "crop:confirm-btn",
-        "crop:size-inputs-480",
+        "crop:size-inputs-are-current-size",
         "crop:8-handles",
         "crop:thirds-guides",
         "crop:confirm-exits",

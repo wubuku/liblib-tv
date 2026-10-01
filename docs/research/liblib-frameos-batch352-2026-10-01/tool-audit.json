@@ -18,12 +18,12 @@
       "raw_len": 784
     },
     "src/store/directorStore.ts": {
-      "stdout_head": "# src/store/directorStore.ts :: DirectorState 状态数据字段: 33 个",
+      "stdout_head": "# src/store/directorStore.ts :: DirectorState 状态数据字段: 35 个",
       "dead": [
         "authoredObjects",
         "clipboardPasteCount"
       ],
-      "raw_len": 2587
+      "raw_len": 2751
     },
     "src/store/uiStore.ts": {
       "stdout_head": "# src/store/uiStore.ts :: UIState 状态数据字段: 30 个",

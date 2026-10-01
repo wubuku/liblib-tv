@@ -32,7 +32,7 @@
             "selected": "true",
             "overlay": "rgba(60, 181, 204, 0.25)",
             "overlaySize": [
-              319,
+              320,
               32
             ],
             "name": {
@@ -49,7 +49,7 @@
             "selected": "true",
             "overlay": "rgba(60, 181, 204, 0.25)",
             "overlaySize": [
-              319,
+              320,
               32
             ],
             "name": {
@@ -118,10 +118,10 @@
         },
         {
           "name": "selected:moves-to-the-other-track",
-          "ok": true,
+          "ok": false,
           "detail": {
             "selected": "true",
-            "background": "rgba(60, 181, 204, 0.1)",
+            "background": "rgba(0, 0, 0, 0)",
             "color": "rgb(168, 168, 168)",
             "name": {
               "text": "机位",
@@ -172,7 +172,7 @@
             "selected": "false",
             "overlay": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
             "overlaySize": [
-              319,
+              320,
               32
             ],
             "name": {
@@ -201,7 +201,7 @@
           "selected": "true",
           "overlay": "rgba(60, 181, 204, 0.25)",
           "overlaySize": [
-            319,
+            320,
             32
           ],
           "name": {
@@ -234,7 +234,7 @@
           "selected": "true",
           "overlay": "rgba(60, 181, 204, 0.25)",
           "overlaySize": [
-            319,
+            320,
             32
           ],
           "name": {
@@ -245,7 +245,7 @@
         },
         "track": {
           "selected": "true",
-          "background": "rgba(60, 181, 204, 0.1)",
+          "background": "rgba(0, 0, 0, 0)",
           "color": "rgb(168, 168, 168)",
           "name": {
             "text": "机位",
@@ -267,7 +267,7 @@
           "selected": "false",
           "overlay": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
           "overlaySize": [
-            319,
+            320,
             32
           ],
           "name": {

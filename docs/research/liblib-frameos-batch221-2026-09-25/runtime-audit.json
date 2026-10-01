@@ -13,6 +13,7 @@
         "editdesk:kind-class",
         "editdesk:enter-button",
         "editdesk:enter-visible",
+        "regression:editdesk-node-selected",
         "regression:editdesk-select-toolbar",
         "editdesk:click-mock-dialog",
         "errors:empty"

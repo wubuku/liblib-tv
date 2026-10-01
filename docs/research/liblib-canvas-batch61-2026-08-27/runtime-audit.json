@@ -221,9 +221,12 @@
       "edgeChangeCount": 1
     },
     "history_copy_runtime_sanitation": {
-      "copiedNodeId": "text-1789342325060-5wfpsv",
+      "copiedNodeId": "text-1790879095335-kp5h3a",
       "copyCommitRuntimeFields": [],
-      "postMountMeasured": null,
+      "postMountMeasured": {
+        "width": 220,
+        "height": 140
+      },
       "historyRuntimeFields": {
         "nodes": [
           [],

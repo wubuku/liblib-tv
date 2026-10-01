@@ -15,22 +15,22 @@
       "width": 929,
       "height": 874
     },
-    "source_node_id": "text-1789342206707-5f3unh",
-    "target_node_id": "text-1789342207279-9m5iy8",
+    "source_node_id": "text-1790879019432-s62cat",
+    "target_node_id": "text-1790879020057-fcotus",
     "edge": {
-      "id": "e-text-1789342206707-5f3unh-text-1789342207279-9m5iy8-1789342207903",
-      "source": "text-1789342206707-5f3unh",
+      "id": "e-text-1790879019432-s62cat-text-1790879020057-fcotus-1790879021253",
+      "source": "text-1790879019432-s62cat",
       "sourceHandle": "source",
-      "target": "text-1789342207279-9m5iy8",
+      "target": "text-1790879020057-fcotus",
       "targetHandle": "target"
     },
     "history_before": 4,
     "history_after": 5,
     "selection_before": [
-      "text-1789342207279-9m5iy8"
+      "text-1790879020057-fcotus"
     ],
     "selection_after": [
-      "text-1789342207279-9m5iy8"
+      "text-1790879020057-fcotus"
     ],
     "selection_after_redo": []
   },
@@ -39,33 +39,33 @@
       "width": 390,
       "height": 844
     },
-    "source_node_id": "text-1789342210746-7ov7t5",
-    "target_node_id": "text-1789342211159-c1jwg1",
+    "source_node_id": "text-1790879025288-fhnt4n",
+    "target_node_id": "text-1790879026028-430my4",
     "edge": {
-      "id": "e-text-1789342210746-7ov7t5-text-1789342211159-c1jwg1-1789342211774",
-      "source": "text-1789342210746-7ov7t5",
+      "id": "e-text-1790879025288-fhnt4n-text-1790879026028-430my4-1790879026889",
+      "source": "text-1790879025288-fhnt4n",
       "sourceHandle": "source",
-      "target": "text-1789342211159-c1jwg1",
+      "target": "text-1790879026028-430my4",
       "targetHandle": "target"
     },
     "history_before": 4,
     "history_after": 5,
     "selection_before": [
-      "text-1789342211159-c1jwg1"
+      "text-1790879026028-430my4"
     ],
     "selection_after": [
-      "text-1789342211159-c1jwg1"
+      "text-1790879026028-430my4"
     ],
     "selection_after_redo": []
   },
   "target_start": {
-    "source_node_id": "text-1789342214519-yoe0y3",
-    "target_node_id": "text-1789342214966-rjdlf8",
+    "source_node_id": "text-1790879030687-ydlk6z",
+    "target_node_id": "text-1790879031274-ne1l96",
     "edge": {
-      "id": "e-text-1789342214519-yoe0y3-text-1789342214966-rjdlf8-1789342215496",
-      "source": "text-1789342214519-yoe0y3",
+      "id": "e-text-1790879030687-ydlk6z-text-1790879031274-ne1l96-1790879032245",
+      "source": "text-1790879030687-ydlk6z",
       "sourceHandle": "source",
-      "target": "text-1789342214966-rjdlf8",
+      "target": "text-1790879031274-ne1l96",
       "targetHandle": "target"
     },
     "target_start_result_after_existing_edge": {
@@ -75,14 +75,14 @@
   },
   "rejections": {
     "node_ids": [
-      "text-1789342217754-boll21",
-      "text-1789342218164-yt5czr",
-      "text-1789342218639-mnr5t7"
+      "text-1790879036092-15vq6s",
+      "text-1790879036857-e31fr9",
+      "text-1790879037381-0cikw4"
     ],
     "baseline": {
       "nodes": [
         {
-          "id": "text-1789342217754-boll21",
+          "id": "text-1790879036092-15vq6s",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -90,7 +90,7 @@
           }
         },
         {
-          "id": "text-1789342218164-yt5czr",
+          "id": "text-1790879036857-e31fr9",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -98,7 +98,7 @@
           }
         },
         {
-          "id": "text-1789342218639-mnr5t7",
+          "id": "text-1790879037381-0cikw4",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -108,24 +108,24 @@
       ],
       "edges": [
         {
-          "id": "e-text-1789342217754-boll21-text-1789342218164-yt5czr-1789342219252",
-          "source": "text-1789342217754-boll21",
+          "id": "e-text-1790879036092-15vq6s-text-1790879036857-e31fr9-1790879038510",
+          "source": "text-1790879036092-15vq6s",
           "sourceHandle": "source",
-          "target": "text-1789342218164-yt5czr",
+          "target": "text-1790879036857-e31fr9",
           "targetHandle": "target"
         },
         {
-          "id": "e-text-1789342218164-yt5czr-text-1789342218639-mnr5t7-1789342219778",
-          "source": "text-1789342218164-yt5czr",
+          "id": "e-text-1790879036857-e31fr9-text-1790879037381-0cikw4-1790879039403",
+          "source": "text-1790879036857-e31fr9",
           "sourceHandle": "source",
-          "target": "text-1789342218639-mnr5t7",
+          "target": "text-1790879037381-0cikw4",
           "targetHandle": "target"
         }
       ],
       "selectedNodeIds": [
-        "text-1789342218639-mnr5t7"
+        "text-1790879037381-0cikw4"
       ],
-      "selectedNodeId": "text-1789342218639-mnr5t7",
+      "selectedNodeId": "text-1790879037381-0cikw4",
       "pastLength": 8,
       "futureLength": 0
     },
@@ -145,7 +145,7 @@
     "after_rejected_store_submit": {
       "nodes": [
         {
-          "id": "text-1789342217754-boll21",
+          "id": "text-1790879036092-15vq6s",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -153,7 +153,7 @@
           }
         },
         {
-          "id": "text-1789342218164-yt5czr",
+          "id": "text-1790879036857-e31fr9",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -161,7 +161,7 @@
           }
         },
         {
-          "id": "text-1789342218639-mnr5t7",
+          "id": "text-1790879037381-0cikw4",
           "type": "text",
           "position": {
             "x": 290.5,
@@ -171,24 +171,24 @@
       ],
       "edges": [
         {
-          "id": "e-text-1789342217754-boll21-text-1789342218164-yt5czr-1789342219252",
-          "source": "text-1789342217754-boll21",
+          "id": "e-text-1790879036092-15vq6s-text-1790879036857-e31fr9-1790879038510",
+          "source": "text-1790879036092-15vq6s",
           "sourceHandle": "source",
-          "target": "text-1789342218164-yt5czr",
+          "target": "text-1790879036857-e31fr9",
           "targetHandle": "target"
         },
         {
-          "id": "e-text-1789342218164-yt5czr-text-1789342218639-mnr5t7-1789342219778",
-          "source": "text-1789342218164-yt5czr",
+          "id": "e-text-1790879036857-e31fr9-text-1790879037381-0cikw4-1790879039403",
+          "source": "text-1790879036857-e31fr9",
           "sourceHandle": "source",
-          "target": "text-1789342218639-mnr5t7",
+          "target": "text-1790879037381-0cikw4",
           "targetHandle": "target"
         }
       ],
       "selectedNodeIds": [
-        "text-1789342218639-mnr5t7"
+        "text-1790879037381-0cikw4"
       ],
-      "selectedNodeId": "text-1789342218639-mnr5t7",
+      "selectedNodeId": "text-1790879037381-0cikw4",
       "pastLength": 8,
       "futureLength": 0
     }

@@ -164,500 +164,500 @@
       {
         "w": 390,
         "state": "export-panel",
-        "total": 44,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 85,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 390,
         "state": "tree-context-menu",
-        "total": 66,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 63,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 390,
         "state": "track-context-menu",
-        "total": 39,
+        "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 2,
+        "clipped": 86,
         "openOverlays": 0,
         "pageErrors": []
       },
       {
         "w": 620,
         "state": "export-panel",
-        "total": 52,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 77,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 620,
         "state": "tree-context-menu",
-        "total": 74,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 54,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 620,
         "state": "track-context-menu",
-        "total": 47,
+        "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 77,
         "openOverlays": 0,
         "pageErrors": []
       },
       {
         "w": 768,
         "state": "export-panel",
-        "total": 56,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 72,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 768,
         "state": "tree-context-menu",
-        "total": 78,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 50,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 768,
         "state": "track-context-menu",
-        "total": 51,
+        "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 73,
         "openOverlays": 0,
         "pageErrors": []
       },
       {
         "w": 850,
         "state": "export-panel",
-        "total": 57,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 72,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 850,
         "state": "tree-context-menu",
-        "total": 79,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 49,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 850,
         "state": "track-context-menu",
-        "total": 52,
+        "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 1,
+        "clipped": 81,
         "openOverlays": 0,
         "pageErrors": []
       },
       {
         "w": 898,
         "state": "export-panel",
-        "total": 57,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 71,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 898,
         "state": "tree-context-menu",
-        "total": 79,
+        "total": 128,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 49,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 898,
         "state": "track-context-menu",
-        "total": 52,
+        "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 71,
         "openOverlays": 0,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "export-panel",
-        "total": 120,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 2,
+        "clipped": 17,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "rail-panorama",
-        "total": 118,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "rail-aspect",
-        "total": 122,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "rail-add-character",
-        "total": 126,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "rail-ai-import",
-        "total": 115,
+        "total": 130,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 15,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 899,
         "state": "tree-context-menu",
-        "total": 120,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "export-panel",
-        "total": 120,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 2,
+        "clipped": 17,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "rail-panorama",
-        "total": 118,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "rail-aspect",
-        "total": 122,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "rail-add-character",
-        "total": 126,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "rail-ai-import",
-        "total": 115,
+        "total": 130,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 15,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 900,
         "state": "tree-context-menu",
-        "total": 120,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 8,
+        "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "export-panel",
-        "total": 121,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 14,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "rail-panorama",
-        "total": 119,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 5,
+        "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "rail-aspect",
-        "total": 123,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 5,
+        "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "rail-add-character",
-        "total": 127,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 5,
+        "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "rail-ai-import",
-        "total": 116,
+        "total": 130,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 14,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 1024,
         "state": "tree-context-menu",
-        "total": 121,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 5,
+        "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "export-panel",
-        "total": 125,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "rail-panorama",
-        "total": 123,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 1,
+        "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "rail-aspect",
-        "total": 127,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 1,
+        "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "rail-add-character",
-        "total": 131,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 1,
+        "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "rail-ai-import",
-        "total": 120,
+        "total": 130,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 1440,
         "state": "tree-context-menu",
-        "total": 125,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 1,
+        "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "export-panel",
-        "total": 125,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "rail-panorama",
-        "total": 123,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "rail-aspect",
-        "total": 127,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "rail-add-character",
-        "total": 131,
+        "total": 130,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "rail-ai-import",
-        "total": 120,
+        "total": 130,
         "unexpected": [],
         "covered": [],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 2,
         "pageErrors": []
       },
       {
         "w": 1920,
         "state": "tree-context-menu",
-        "total": 125,
+        "total": 135,
         "unexpected": [],
         "covered": [
           "帮助"
         ],
-        "clipped": 0,
+        "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
       }

@@ -1,0 +1,191 @@
+{
+ "startedAt": "2026-10-01T18:52:09.969Z",
+ "entry": {
+  "button": {
+   "cx": 36,
+   "cy": 563,
+   "tag": "BUTTON",
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  "fcAfterMouse": 1
+ },
+ "fileInputs": [
+  {
+   "i": 0,
+   "multiple": true,
+   "acceptLen": 1106,
+   "vis": false
+  }
+ ],
+ "series": [
+  {
+   "t": 0,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload.png",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "2560x1440 src=blob:https://jimeng.jianying.c",
+     "2560x1440 src=blob:https://jimeng.jianying.c"
+    ],
+    "text": "正在上传图片 0% b22-upload"
+   }
+  },
+  {
+   "t": 400,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload.png",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "2560x1440 src=blob:https://jimeng.jianying.c",
+     "2560x1440 src=blob:https://jimeng.jianying.c"
+    ],
+    "text": "正在上传图片 0% b22-upload"
+   }
+  },
+  {
+   "t": 900,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload.png",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "2560x1440 src=blob:https://jimeng.jianying.c",
+     "2560x1440 src=blob:https://jimeng.jianying.c"
+    ],
+    "text": "正在上传图片 0% b22-upload"
+   }
+  },
+  {
+   "t": 1500,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload.png",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "2560x1440 src=blob:https://jimeng.jianying.c",
+     "2560x1440 src=blob:https://jimeng.jianying.c"
+    ],
+    "text": "正在上传图片 83% b22-upload"
+   }
+  },
+  {
+   "t": 2200,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload.png",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "2560x1440 src=blob:https://jimeng.jianying.c",
+     "2560x1440 src=blob:https://jimeng.jianying.c"
+    ],
+    "text": "正在上传图片 83% b22-upload"
+   }
+  },
+  {
+   "t": 3200,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "360x203 src=https://p11-dreamina-sign.byte"
+    ],
+    "text": "b22-upload"
+   }
+  },
+  {
+   "t": 4500,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "720x405 src=https://p26-dreamina-sign.byte"
+    ],
+    "text": "b22-upload"
+   }
+  },
+  {
+   "t": 6000,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "720x405 src=https://p26-dreamina-sign.byte"
+    ],
+    "text": "b22-upload"
+   }
+  },
+  {
+   "t": 8000,
+   "n": 1,
+   "id": "node_dmkbqtc6vs",
+   "status": "7 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "credit": 805,
+   "rd": {
+    "cls": "react-flow__node-image",
+    "aria": "图片 node: b22-upload",
+    "title": "b22-upload",
+    "box": "341x192",
+    "imgs": [
+     "720x405 src=https://p26-dreamina-sign.byte"
+    ],
+    "text": "b22-upload"
+   }
+  }
+ ],
+ "toolbar": {
+  "box": "0x0@640,476",
+  "btns": []
+ },
+ "creditEnd": 805,
+ "end": {
+  "status": "6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "credit": 805,
+  "dev": 0,
+  "mineLeft": []
+ }
+}

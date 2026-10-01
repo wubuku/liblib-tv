@@ -1,0 +1,433 @@
+{
+ "viewport": {
+  "width": 1512,
+  "height": 950
+ },
+ "steps": [],
+ "button": {
+  "rect": {
+   "x": 1122,
+   "y": 884,
+   "width": 32,
+   "height": 32
+  },
+  "aria_label": "从本地、画布或资产库添加",
+  "aria_expanded": "false",
+  "outer": "<button data-testid=\"canvas-agent-composer-add\" id=\"radix-:modern-js-r50:\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" aria-label=\"从本地、画布或资产库添加\" class=\"inline-flex items-center justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn font-dreamina-medium motion-safe:transition-colors motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointe"
+ },
+ "overlays": [
+  {
+   "how": "role",
+   "role": "",
+   "aria": "",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "rect": [
+    1110,
+    746,
+    240,
+    130
+   ],
+   "rows": [
+    {
+     "text": "上传",
+     "rect": [
+      1114,
+      750,
+      232,
+      38
+     ],
+     "aria": "",
+     "tid": "canvas-agent-composer-upload",
+     "role": "menuitem",
+     "tag": "div"
+    },
+    {
+     "text": "从资产库添加",
+     "rect": [
+      1114,
+      792,
+      232,
+      38
+     ],
+     "aria": "",
+     "tid": "canvas-agent-composer-select-from-assets",
+     "role": "menuitem",
+     "tag": "div"
+    },
+    {
+     "text": "从画布添加",
+     "rect": [
+      1114,
+      834,
+      232,
+      38
+     ],
+     "aria": "",
+     "tid": "canvas-agent-composer-select-from-canvas",
+     "role": "menuitem",
+     "tag": "div"
+    }
+   ]
+  },
+  {
+   "how": "geom",
+   "role": "",
+   "aria": "",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "20px 20px 0px 0px",
+   "rect": [
+    1131,
+    367,
+    338,
+    140
+   ],
+   "rows": [
+    {
+     "text": "/ 视频反解",
+     "rect": [
+      1191,
+      375,
+      105,
+      36
+     ],
+     "aria": "/ 视频反解",
+     "tid": "canvas-agent-mode-action",
+     "role": "",
+     "tag": "button"
+    },
+    {
+     "text": "/ 创作分镜",
+     "rect": [
+      1304,
+      375,
+      105,
+      36
+     ],
+     "aria": "/ 创作分镜",
+     "tid": "canvas-agent-mode-action",
+     "role": "",
+     "tag": "button"
+    },
+    {
+     "text": "/ 全流程广告片导演",
+     "rect": [
+      1165,
+      419,
+      157,
+      36
+     ],
+     "aria": "/ 全流程广告片导演",
+     "tid": "canvas-agent-mode-action",
+     "role": "",
+     "tag": "button"
+    },
+    {
+     "text": "/ 剧本开发",
+     "rect": [
+      1330,
+      419,
+      105,
+      36
+     ],
+     "aria": "/ 剧本开发",
+     "tid": "canvas-agent-mode-action",
+     "role": "",
+     "tag": "button"
+    },
+    {
+     "text": "/ 剧情短片",
+     "rect": [
+      1248,
+      463,
+      105,
+      36
+     ],
+     "aria": "/ 剧情短片",
+     "tid": "canvas-agent-mode-action",
+     "role": "",
+     "tag": "button"
+    }
+   ]
+  },
+  {
+   "how": "geom",
+   "role": "",
+   "aria": "",
+   "bg": "rgba(16, 16, 16, 0.7)",
+   "radius": "16px",
+   "rect": [
+    1105,
+    769,
+    390,
+    164
+   ],
+   "rows": [
+    {
+     "text": "@",
+     "rect": [
+      1428,
+      784,
+      24,
+      24
+     ],
+     "aria": "引用参考",
+     "tid": "canvas-agent-composer-placeholder-mention",
+     "role": "",
+     "tag": "button"
+    },
+    {
+     "text": "使用技能",
+     "rect": [
+      1158,
+      884,
+      90,
+      32
+     ],
+     "aria": "使用技能",
+     "tid": "canvas-agent-skill-trigger",
+     "role": "",
+     "tag": "button"
+    }
+   ]
+  },
+  {
+   "how": "geom",
+   "role": "menuitem",
+   "aria": "",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px",
+   "rect": [
+    1114,
+    750,
+    232,
+    38
+   ],
+   "rows": []
+  },
+  {
+   "how": "geom",
+   "role": "menuitem",
+   "aria": "",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px",
+   "rect": [
+    1114,
+    792,
+    232,
+    38
+   ],
+   "rows": []
+  },
+  {
+   "how": "geom",
+   "role": "menuitem",
+   "aria": "",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px",
+   "rect": [
+    1114,
+    834,
+    232,
+    38
+   ],
+   "rows": []
+  }
+ ],
+ "added_elements": [
+  {
+   "tid": "",
+   "text": "上传 从资产库添加 从画布添加",
+   "rect": [
+    1110,
+    746,
+    240,
+    130
+   ]
+  },
+  {
+   "tid": "canvas-agent-composer-add-menu",
+   "text": "上传 从资产库添加 从画布添加",
+   "rect": [
+    1110,
+    746,
+    240,
+    130
+   ]
+  },
+  {
+   "tid": "canvas-agent-composer-upload",
+   "text": "上传",
+   "rect": [
+    1114,
+    750,
+    232,
+    38
+   ]
+  },
+  {
+   "tid": "",
+   "text": "上传",
+   "rect": [
+    1150,
+    758,
+    26,
+    22
+   ]
+  },
+  {
+   "tid": "canvas-agent-composer-select-from-assets",
+   "text": "从资产库添加",
+   "rect": [
+    1114,
+    792,
+    232,
+    38
+   ]
+  },
+  {
+   "tid": "",
+   "text": "从资产库添加",
+   "rect": [
+    1150,
+    800,
+    78,
+    22
+   ]
+  },
+  {
+   "tid": "canvas-agent-composer-select-from-canvas",
+   "text": "从画布添加",
+   "rect": [
+    1114,
+    834,
+    232,
+    38
+   ]
+  },
+  {
+   "tid": "",
+   "text": "从画布添加",
+   "rect": [
+    1150,
+    842,
+    65,
+    22
+   ]
+  }
+ ],
+ "body_tail": "lected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 双击编辑文本 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 双击编辑文本 文本 2 测试文字样例 文本 3 导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Not selected. 新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作 使用技能 说说你的想法或任务，上传参考、输入文字或 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 100% 与 AI 对话 上传 从资产库添加 从画布添加",
+ "testids_visible": [
+  "assistant-sidecar-launcher-frame",
+  "back-to-content-overlay",
+  "canvas-account-separator",
+  "canvas-account-surface",
+  "canvas-agent-composer-action-row",
+  "canvas-agent-composer-add",
+  "canvas-agent-composer-add-menu",
+  "canvas-agent-composer-mention",
+  "canvas-agent-composer-placeholder-mention",
+  "canvas-agent-composer-select-from-assets",
+  "canvas-agent-composer-select-from-canvas",
+  "canvas-agent-composer-upload",
+  "canvas-agent-history-surface",
+  "canvas-agent-mode-action",
+  "canvas-agent-panel",
+  "canvas-agent-send",
+  "canvas-agent-session-collapse",
+  "canvas-agent-session-composer",
+  "canvas-agent-session-create",
+  "canvas-agent-session-heading",
+  "canvas-agent-session-menu-trigger",
+  "canvas-agent-session-modes",
+  "canvas-agent-session-title",
+  "canvas-agent-skill-trigger",
+  "canvas-bottom-dock",
+  "canvas-collaborators-workspace-top-bar-surface",
+  "canvas-commerce-entry",
+  "canvas-commerce-entry-wrapper",
+  "canvas-connection-flow-layer",
+  "canvas-connection-flow-layer-host",
+  "canvas-context-menu-terminal-feedback",
+  "canvas-creation-entry-feedback",
+  "canvas-display-toggle-connections",
+  "canvas-display-toggle-minimap",
+  "canvas-dot-grid",
+  "canvas-editor-menu",
+  "canvas-feature-sidecar",
+  "canvas-fixed-toolbar",
+  "canvas-fixed-toolbar-left-rail",
+  "canvas-fixed-toolbar-workspace-top-bar-surface",
+  "canvas-main-region",
+  "canvas-minimap-portal-target",
+  "canvas-navigation-dock",
+  "canvas-navigation-mask",
+  "canvas-navigation-mask-backdrop",
+  "canvas-navigation-mask-gradient",
+  "canvas-navigation-scroll-viewport",
+  "canvas-navigation-shell",
+  "canvas-node-summary-count",
+  "canvas-node-summary-label",
+  "canvas-node-summary-trigger",
+  "canvas-panel-launcher",
+  "canvas-panel-workspace-top-bar-launchers",
+  "canvas-pointer-tool-toggle",
+  "canvas-project-launcher-shell",
+  "canvas-project-logo",
+  "canvas-project-logo-gradient-path",
+  "canvas-project-title-trigger",
+  "canvas-project-trigger",
+  "canvas-save-failure-anchor",
+  "canvas-share-entry",
+  "canvas-share-trigger",
+  "canvas-sidecar-launcher",
+  "canvas-sidecar-launchers",
+  "canvas-sidecar-resize-handle",
+  "canvas-title-details",
+  "canvas-title-metadata",
+  "canvas-title-save-status",
+  "canvas-title-separator",
+  "canvas-top-bar",
+  "canvas-top-bar-actions",
+  "canvas-top-bar-left",
+  "canvas-user-avatar-hover-mask",
+  "canvas-user-avatar-image",
+  "canvas-user-menu-trigger",
+  "canvas-workbench-shell",
+  "canvas-zoom-percent",
+  "default-feature-overlay-interaction-boundary",
+  "director-stage-flow-node-shell",
+  "flow-node-selected-tag",
+  "flow-node-source-handle",
+  "flow-node-target-handle",
+  "flow-node-title",
+  "prompt-composer",
+  "text-flow-node-full",
+  "text-node-empty-placeholder",
+  "timeline-clip-track",
+  "timeline-empty-track-label",
+  "timeline-flow-node",
+  "timeline-flow-node-main-track",
+  "timeline-full-passive-track",
+  "timeline-mute-button",
+  "timeline-node-track-divider",
+  "timeline-passive-source-picker-slot",
+  "timeline-passive-track-viewport",
+  "timeline-playback-clock",
+  "timeline-ruler",
+  "timeline-ruler-interaction-extension",
+  "timeline-toolbar",
+  "timeline-track-canvas",
+  "timeline-track-gutter",
+  "video-flow-node-surface",
+  "video-node-empty",
+  "workspace-account-summary-content",
+  "workspace-bottom-dock-frame",
+  "workspace-canvas-title",
+  "workspace-hydrated-canvas-frame",
+  "workspace-preparing-account-avatar",
+  "workspace-preparing-account-summary",
+  "workspace-title-responsive-surface",
+  "workspace-workbench-shell"
+ ]
+}

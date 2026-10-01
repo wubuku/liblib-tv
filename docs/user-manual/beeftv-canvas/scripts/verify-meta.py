@@ -608,6 +608,104 @@ def cwd_dependent_gates(root):
     return bad
 
 
+# ── 方向十一：「闸 → 反验对应关系」表必须与现场双向一致 ────────────────
+# **为什么需要**：Batch 168 把规约 §4「每道闸都必须做反向验证」拿去对照现状，
+# 逐条列「闸 → 反验脚本」的对应关系后才发现**十道闸里 3 道一道反验都没有**——
+# **规约写着「必须」，而它在事实上没被满足，而账面看不出区别。**
+# 补齐之后建了这张对应关系表，但它**自己就成了一个没人看管的登记处**，
+# 于是本方向把它变成常驻守卫（纪律 105：一次性普查的产物要尽快机器化）。
+#
+# **不变式（四条，全部双向）**：
+#   ① 表里每一行认领的反验文件**必须真实存在**（认领了不存在的东西 = 没在管）；
+#   ② 现场每一个**驱动**都必须被表认领，且**只被认领一次**（漏认领 = 新的闸没写反验）；
+#   ③ 表里的闸编号集合必须**等于实际闸门数**（不多不少、不得重复）；
+#   ④ 每行的例数必须是**正整数**——**空格与 0 看起来像有人管，其实没有**（Batch 161）。
+#
+# **「驱动」怎么判定：靠事实，不靠命名约定**（这是本方向最要紧的一处设计）。
+# `scripts/` 下 `selftest-*` 共 64 个文件，其中 **54 个是注入夹具**（被驱动以参数调用），
+# **只有 10 个是入口**。若按文件名里有没有 `-fix-` 来分，那是**约定不是事实**，
+# 有人取名不照约定，判据就静悄悄失效——正是纪律 101 的形态。
+# 改用**事实判定**：**剥掉注释与文档字符串后，没有任何其它 `selftest-*` 引用它的那个，
+# 就是入口**。实测：剥注释前只认出 8 个（`selftest-meta.sh` 出现在另一份脚本的**注释**里，
+# 是 Batch 167「注释骗过文本判据」的原地重演），剥注释后**正好 10 个，且 54 个夹具全部有主**。
+#
+# **如实说明覆盖边界**：shell 侧的「剥注释」是行级近似（`#` 之后一律截断，
+# 字符串里含 `#` 时会多剥一点）。实测不影响结果——54 个夹具仍全部被识别为夹具。
+# 若将来出现「只在一行 shell 注释里被引用」的夹具，它会被误判成入口，**本闸会报一条可修的错**。
+def _selftest_code_only(path):
+    """只留真正会被执行到的字面量：Python 用 AST 剥注释与文档字符串，shell 剥 # 注释。"""
+    src = open(path, encoding="utf-8", errors="ignore").read()
+    if path.endswith(".py"):
+        try:
+            tree = ast.parse(src)
+        except SyntaxError:
+            return src
+        return "\n".join(n.value for n in ast.walk(tree)
+                         if isinstance(n, ast.Constant) and isinstance(n, str))
+    return "\n".join(re.sub(r"#.*$", "", ln) for ln in src.split("\n"))
+
+
+def selftest_drivers(root):
+    """返回 (入口列表, 全部 selftest-* 列表)。入口 = 剥注释后无人引用的那个。"""
+    scripts = os.path.join(root, "scripts")
+    names = sorted(n for n in os.listdir(scripts) if n.startswith("selftest-"))
+    bodies = {}
+    for n in names:
+        if n.endswith((".py", ".sh")):
+            bodies[n] = _selftest_code_only(os.path.join(scripts, n))
+    referenced = {o for n, b in bodies.items() for o in names if o != n and o in b}
+    return [n for n in names if n not in referenced], names
+
+
+def selftest_coverage_check(root):
+    """返回 (问题列表, 未能核对)。"""
+    scripts = os.path.join(root, "scripts")
+    text = open(os.path.join(root, "AUDIT-RULES.md"), encoding="utf-8").read()
+    m = re.search(r"###\s*闸\s*→\s*反验的对应关系[^\n]*\n(.*?)(?=\n###|\n##\s)", text, re.S)
+    if not m:
+        return [], "找不到「闸 → 反验的对应关系」小节"
+    rows = []
+    for line in m.group(1).split("\n"):
+        if not line.startswith("|") or re.match(r"\|\s*:?-", line):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or cells[0] in ("闸",):
+            continue
+        rows.append(cells)
+    if not rows:
+        return [], "对应关系表里没有数据行"
+
+    problems = []
+    claimed, nums = [], []
+    for cells in rows:
+        name = cells[1].strip("`")
+        if not os.path.isfile(os.path.join(scripts, name)):
+            problems.append(f"「{cells[0]}」认领的反验 {name} **并不存在**——认领一个不存在的东西等于没在管")
+        else:
+            claimed.append(name)
+        g = re.match(r"^(\d+)", cells[0])
+        if g:
+            nums.append(int(g.group(1)))
+        n_cases = _cn_int(cells[2]) if re.match(r"^\d+$", cells[2]) else None
+        if n_cases is None or n_cases <= 0:
+            problems.append(f"「{cells[0]}」的例数写 [{cells[2] or '(空)'}]，**必须是正整数**"
+                            f"——空格与 0 看起来像有人管，其实没有")
+
+    drivers, _all = selftest_drivers(root)
+    for d in drivers:
+        n = claimed.count(d)
+        if n == 0:
+            problems.append(f"驱动 `{d}` **没有被对应关系表认领**——新增闸若不写反验，这一行就没人管")
+        elif n > 1:
+            problems.append(f"驱动 `{d}` 被认领了 {n} 次，应当恰好 1 次")
+    n_gates = gate_inventory(root)[1]
+    if sorted(nums) != list(range(1, n_gates + 1)):
+        problems.append(f"闸编号集合 {sorted(nums)} 与实际闸门数 {n_gates} 不符"
+                        f"（应为 1..{n_gates}，不多不少、不得重复）")
+    return problems, None
+
+
+
 # ── 方向八：闸门不得在「无法核对」时返回 0 ────────────────────────────
 # **不变式**：闸门打印了 `[skip]`，退出码就**不能是 0**。
 #
@@ -1038,12 +1136,27 @@ def main():
         print("  ✓ 覆盖度表自洽：A/B/C 三类齐全、每格都有依据，"
               "A 类认领数与闸门清单一致，小节标题写的类数与表内实际行数也一致")
 
+    # ── 方向十一：「闸 → 反验对应关系」表与现场双向一致 ──
+    print("-" * 62)
+    st_problems, st_void = selftest_coverage_check(root)
+    if st_void:
+        # 抽不到表 = 什么都没核对，绝不能算通过（沿用 Batch 160 的三段约定）
+        fail(f"[skip] 反验对应关系表{st_void}，本方向本轮未能进行")
+    for why in st_problems:
+        fail(f"反验对应关系表与现场脱节：{why}")
+    if not st_problems and not st_void:
+        drivers, allst = selftest_drivers(root)
+        print(f"  ✓ 反验对应关系表双向一致：{len(drivers)} 个驱动全部被认领、"
+              f"认领的文件全部存在、闸编号 1..{gate_inventory(root)[1]} 无缺漏，"
+              f"例数均为正整数（`scripts/` 下 {len(allst)} 个 selftest-* 里，"
+              f"其余是注入夹具）")
+
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
               f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八/九/十亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九/十/十一亦全部通过")
     return 0
 
 

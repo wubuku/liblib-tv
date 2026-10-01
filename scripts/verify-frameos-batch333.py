@@ -29,12 +29,15 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 from pathlib import Path
 from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from frameos_verify_common import is_dev_server_noise  # noqa: E402
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
 AUDIT_PATH = (
     ROOT
@@ -90,6 +93,18 @@ STATE_JS = """
 
 
 def attach_errors(page: Page) -> list[str]:
+    """本 verifier 不用共享的 `frameos_verify_common.attach_errors`：
+    它比共享版**多挂一个 `requestfailed` 监听器**（本 verifier 要断言资源加载）。
+
+    Batch 351: `requestfailed` 里 `net::ERR_ABORTED` 的是**浏览器主动取消**的请求,
+    不是服务器/应用失败。本 verifier 密集 `page.reload()`（测跨刷新持久化）,
+    飞行中的图片请求随导航被取消; 别的 session 改源文件触发 Turbopack 重编译时,
+    旧 hash 的 HMR chunk 请求也会被中止。两者都曾让 `diagnostics:zero` 误报,
+    连续三轮在全量套件里失败而隔离/并发/扰动下 11 次全过。
+
+    判据见 `frameos_verify_common.is_dev_server_noise`（单一出处）。
+    404 / 500 / 连接失败**不是** ERR_ABORTED, 照旧计入。
+    """
     errors: list[str] = []
     page.on(
         "console",
@@ -98,7 +113,9 @@ def attach_errors(page: Page) -> list[str]:
     page.on("pageerror", lambda e: errors.append(f"pageerror:{e}"))
     page.on(
         "requestfailed",
-        lambda r: errors.append(f"requestfailed:{r.method}:{r.url}:{r.failure}"),
+        lambda r: errors.append(f"requestfailed:{r.method}:{r.url}:{r.failure}")
+        if not is_dev_server_noise(f"requestfailed:{r.method}:{r.url}:{r.failure}")
+        else None,
     )
     return errors
 

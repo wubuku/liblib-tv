@@ -11,10 +11,10 @@
     "sourceB": {
       "route": "libtv",
       "canvasId": "canvas-2",
-      "sourceNodeId": "script-execution-1789161139205-u063el"
+      "sourceNodeId": "script-execution-1790873082962-g8vfdf"
     },
-    "sourceAProjectId": "director-project-1789161139598-1",
-    "sourceBProjectId": "director-project-1789161142306-3"
+    "sourceAProjectId": "director-project-1790873083351-1",
+    "sourceBProjectId": "director-project-1790873083472-3"
   },
   "activeOwnerCleanup": {
     "tombstoned": true,

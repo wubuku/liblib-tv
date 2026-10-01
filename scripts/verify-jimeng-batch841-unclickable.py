@@ -84,11 +84,21 @@ def main() -> int:
     kb = data.get("keyboard", [])
     kb_bad = data.get("keyboard_bad", [])
     kb_deep = data.get("keyboard_deep", [])
+    kb_cov = data.get("keyboard_covered", [])
     kbst = data.get("kb_self_test", {})
 
     # ── A. 普查本身 ───────────────────────────────────────────────
     print("— A. 普查跑通 —")
-    check("A.0 退出码 0", r.returncode == 0, f"rc={r.returncode}")
+    # A.0 退出码：不能只看"是不是 0"。本批工具**真报出 3 条焦点被遮的缺陷**，
+    #     退出码 1 是判据在干活，不是工具坏了。所以断言改成**与桶一致**：
+    #     任一缺陷桶非空就必须非 0，三个桶全空才 0。这条能两个方向失败 ——
+    #     把 kb_covered 从退出码里漏掉（缺陷被当通过放行），或者干脆写死 0，
+    #     都会被抓住；全空时想靠"反正不空"蒙混也过不去。
+    any_bad = bool(real or kb_bad or kb_cov)
+    check(f"A.0 退出码与缺陷桶一致（任一桶非空 ⇒ 非 0；实测 rc={r.returncode}，"
+          f"real={len(real)} / kb_bad={len(kb_bad)} / kb_covered={len(kb_cov)}）",
+          r.returncode == (1 if any_bad else 0),
+          f"rc={r.returncode}")
     check("A.1 结果可解析", not data.get("_parse_error"),
           str(data.get("_parse_error"))[:70])
     check(f"A.2 跑了 {len(states)} 个状态（覆盖面下限 {len(EXPECTED_STATES)}）",
@@ -155,14 +165,16 @@ def main() -> int:
     # ④ 分档判据必须在源码里，而不是只体现在结果上
     check("E.5 分档判据在源码里（`in_layer` + `covered_by_modal`）",
           "in_layer" in asrc and "covered_by_modal" in asrc)
-    # ⑤ 退出码：自检不过 = 2，且最终码由 `real` 推出
-    # 批 844 之后这两条都变强了：自检有**两条**（指针 + 键盘），退出码由**两个**
-    # 缺陷桶推出。断言跟着契约走，不跟着旧文本走。
+    # ⑤ 退出码：自检不过 = 2，且最终码由缺陷桶推出
+    # 批 844 之后这两条都变强了：自检有**两条**（指针 + 键盘），退出码由缺陷桶推出。
+    # 批 845 再加第三个桶（`kb_covered`，焦点停在被遮住的控件上）。断言跟着契约
+    # 走，不跟着旧文本走。
     check("E.6 两条自检任一不过都走退出码 2（不是 0，否则 CI 当通过）",
           re.search(r"if not ok_self or not ok_kb_self:\s*\n\s*return 2",
                     asrc) is not None)
-    check("E.7 最终退出码由**两个**缺陷桶推出（`real` 或 `kb_bad`，不许写死 0）",
-          "return 1 if (real or kb_bad) else 0" in asrc)
+    check("E.7 最终退出码由**三个**缺陷桶推出"
+          "（`real` / `kb_bad` / `kb_covered`，不许写死 0）",
+          "return 1 if (real or kb_bad or kb_covered) else 0" in asrc)
     # ⑥ 打不开的状态要记 skipped，不许静默跳过
     check("E.8 下拉打不开会记进 `skipped`（「跑了但没看见」≠「没跑」）",
           "skipped.append(f\"{tag}（打不开" in asrc)
@@ -213,6 +225,45 @@ def main() -> int:
     check("F.9 键盘探完必须收浮层（否则下一状态认到同一层）",
           re.search(r"kb_rows\.append\(.{0,600}?close_open\(\)", asrc, re.S)
           is not None)
+
+    # ── G. 焦点停在**被遮住**的控件上（批 845 加）─────────────────
+    #    这一桶和指针那条的**分档正好相反**：鼠标点不到被模态盖住的控件是正常
+    #    （关掉模态就能点）；但焦点停在那上面时**焦点环是看不见的**，用户既不
+    #    知道自己停在哪、也不知道刚才那下 Tab 有没有生效。
+    print("\n— G. 焦点不许停在被浮层遮住的控件上 —")
+    check(f"G.1 这一桶的字段在结果里（当前 {len(kb_cov)} 条）",
+          isinstance(kb_cov, list))
+    for k in kb_cov:
+        c = k.get("covered") or {}
+        check(f"G.2 {k.get('state')} 的 finding 指名到具体那个控件"
+              f"（第 {c.get('at_tab')} 次 Tab，{len(kb_cov)} 条之一）",
+              bool(c.get("at_tab")) and bool(c.get("al") or c.get("tid")),
+              f"落在 al={c.get('al')!r} tid={c.get('tid')!r}")
+    check("G.3 每条 finding 带 covered_n（全程有多少个这样的焦点位）",
+          all("covered_n" in k for k in kb_cov),
+          f"缺 covered_n 的 {sum(1 for k in kb_cov if 'covered_n' not in k)} 条")
+    # 自检：盖一层遮挡物，被遮住的焦点位必须**变多**。比的是计数不是"有没有" ——
+    # 基线里本来就真有几处（那正是本批查出来的缺陷），"撤掉后不再报"是错前提，
+    # 第一版就栽在这儿、自检把自己判红了。
+    check("G.4 自检：盖上遮挡物后被遮住的焦点位**变多**（判据对遮挡敏感）",
+          (kbst.get("covered_n_when_shut") or 0)
+          > (kbst.get("covered_n_when_clear") or 0),
+          f"{kbst.get('covered_n_when_clear')} → {kbst.get('covered_n_when_shut')}")
+    check("G.5 自检用的层必须是**深**的（Tab 1 就进去的层照不到被遮住的控件）",
+          kbst.get("covered_probe_layer") == "jimeng-search-overlay",
+          f"实际={kbst.get('covered_probe_layer')!r}")
+    check("G.6 键盘探针在每一步都判「焦点是否被遮住」（源码里真有这一步）",
+          "state: occluded ? 'covered' : 'other'" in asrc)
+    # 打印行里的数字必须和 JSON 对得上。上一版就栽在"判据换了、打印行还挂在
+    # 旧字段上"：输出里印的是 `covered=None、撤掉后不再报=None`，看着像句结论，
+    # 其实什么都没说 —— 比不印更坏，因为它看着像有结论。
+    cline = [l for l in out.splitlines() if "盖一层遮挡物后被遮住的焦点位" in l]
+    printed = re.findall(r"焦点位 (\d+) → (\d+)", cline[0]) if cline else []
+    check("G.7 打印行印的是**新判据的计数**且与 JSON 对得上（不是 None、不是空话）",
+          bool(printed)
+          and printed[0][0] == str(kbst.get("covered_n_when_clear"))
+          and printed[0][1] == str(kbst.get("covered_n_when_shut")),
+          (cline[0].strip()[:96] if cline else "打印行里根本没有这句"))
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

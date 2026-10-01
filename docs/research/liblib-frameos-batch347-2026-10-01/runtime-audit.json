@@ -18,6 +18,16 @@
         "crumb:hook-matches-text:画布 1",
         "crumb:hook-usable",
         "header:download-addressable",
+        "scan:not-empty:crop",
+        "blind:crop-zero",
+        "scan:not-empty:group",
+        "blind:group-zero",
+        "scan:not-empty:node-search",
+        "blind:node-search-zero",
+        "scan:not-empty:template-panel",
+        "blind:template-panel-zero",
+        "scan:not-empty:generation",
+        "blind:generation-zero",
         "diagnostics:zero"
       ],
       "default": {
@@ -52,6 +62,36 @@
           "text": "画布 1"
         }
       ],
+      "state_crop": {
+        "total": 43,
+        "withHook": 43,
+        "blind": 0,
+        "blindItems": []
+      },
+      "state_group": {
+        "total": 45,
+        "withHook": 45,
+        "blind": 0,
+        "blindItems": []
+      },
+      "state_node-search": {
+        "total": 40,
+        "withHook": 40,
+        "blind": 0,
+        "blindItems": []
+      },
+      "state_template-panel": {
+        "total": 48,
+        "withHook": 48,
+        "blind": 0,
+        "blindItems": []
+      },
+      "state_generation": {
+        "total": 61,
+        "withHook": 61,
+        "blind": 0,
+        "blindItems": []
+      },
       "diagnostics": {
         "console": 0,
         "errors": []

@@ -1,0 +1,1082 @@
+[
+ {
+  "d": 0,
+  "tag": "div",
+  "tid": "timeline-fullscreen-editor",
+  "role": "dialog",
+  "aria": "",
+  "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-",
+  "box": [
+   0,
+   0,
+   1512,
+   950
+  ],
+  "radius": "0px",
+  "bg": "rgb(13, 13, 13)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 1,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex items-center justify-between border-octo-ui-divider p",
+  "box": [
+   0,
+   0,
+   1512,
+   60
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "min-w-0",
+  "box": [
+   18,
+   19,
+   42,
+   22
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 3,
+  "tag": "h2",
+  "tid": "timeline-fullscreen-title",
+  "role": "",
+  "aria": "",
+  "cls": "overflow-hidden text-dreamina-text-primary text-dreamina-c",
+  "box": [
+   18,
+   19,
+   42,
+   22
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "时间线"
+ },
+ {
+  "d": 3,
+  "tag": "p",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   17,
+   40,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "Edit the main visual track and m"
+ },
+ {
+  "d": 2,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex items-center gap-canvas-timeline-toolbar-padding",
+  "box": [
+   1380,
+   12,
+   120,
+   36
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "",
+  "box": [
+   1414,
+   19,
+   26,
+   22
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "导出"
+ },
+ {
+  "d": 6,
+  "tag": "path",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "[object SVGAnimatedString]",
+  "box": [
+   1477,
+   25,
+   11,
+   11
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 1,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex flex-1 min-h-canvas-timeline-zero flex-col px-canvas-",
+  "box": [
+   0,
+   60,
+   1512,
+   890
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "div",
+  "tid": "timeline-fullscreen-top-content",
+  "role": "",
+  "aria": "",
+  "cls": "flex flex-1 min-h-canvas-timeline-zero gap-canvas-timeline",
+  "box": [
+   12,
+   60,
+   1488,
+   652
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 3,
+  "tag": "aside",
+  "tid": "timeline-fullscreen-canvas-assets",
+  "role": "",
+  "aria": "画布资产",
+  "cls": "group/canvas-timeline-assets-panel relative flex flex-none",
+  "box": [
+   12,
+   60,
+   360,
+   652
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 4,
+  "tag": "div",
+  "tid": "timeline-fullscreen-canvas-assets-content",
+  "role": "",
+  "aria": "",
+  "cls": "absolute inset-y-0 left-0 flex flex-col overflow-visible b",
+  "box": [
+   12,
+   60,
+   360,
+   652
+  ],
+  "radius": "12px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 5,
+  "tag": "div",
+  "tid": "timeline-fullscreen-asset-primary-tabs",
+  "role": "",
+  "aria": "",
+  "cls": "flex flex-none items-center px-canvas-timeline-panel-inlin",
+  "box": [
+   12,
+   60,
+   360,
+   56
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "button",
+  "tid": "",
+  "role": "tab",
+  "aria": "",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   28,
+   76,
+   97,
+   36
+  ],
+  "radius": "8px",
+  "bg": "rgba(255, 255, 255, 0.08)",
+  "bd": "",
+  "txt": "已导入资产"
+ },
+ {
+  "d": 7,
+  "tag": "button",
+  "tid": "",
+  "role": "tab",
+  "aria": "",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   129,
+   76,
+   84,
+   36
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "画布资产"
+ },
+ {
+  "d": 5,
+  "tag": "div",
+  "tid": "timeline-fullscreen-asset-filter-row",
+  "role": "",
+  "aria": "",
+  "cls": "flex flex-none items-center gap-canvas-timeline-toolbar-pa",
+  "box": [
+   12,
+   116,
+   360,
+   36
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "",
+  "box": [
+   319,
+   124,
+   24,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "导入"
+ },
+ {
+  "d": 5,
+  "tag": "div",
+  "tid": "timeline-imported-assets-file-drop",
+  "role": "",
+  "aria": "",
+  "cls": "group/canvas-panel-scrollbar relative min-h-canvas-timelin",
+  "box": [
+   12,
+   152,
+   360,
+   560
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "div",
+  "tid": "timeline-fullscreen-asset-scroll-frame",
+  "role": "",
+  "aria": "",
+  "cls": "h-full pt-canvas-timeline-workspace-inset px-canvas-timeli",
+  "box": [
+   12,
+   152,
+   360,
+   560
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "div",
+  "tid": "timeline-fullscreen-asset-scroll",
+  "role": "",
+  "aria": "",
+  "cls": "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden h-ful",
+  "box": [
+   28,
+   164,
+   328,
+   532
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 5,
+  "tag": "button",
+  "tid": "timeline-fullscreen-asset-resize-handle",
+  "role": "separator",
+  "aria": "Resize canvas assets panel",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   372,
+   60,
+   8,
+   652
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "path",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "[object SVGAnimatedString]",
+  "box": [
+   366,
+   379,
+   5,
+   14
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "m-0 flex max-w-[calc(100vw-32px)] flex-col gap-2 outline-n",
+  "box": [
+   192,
+   92,
+   0,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 4,
+  "tag": "div",
+  "tid": "timeline-fullscreen-asset-overlay-host",
+  "role": "",
+  "aria": "",
+  "cls": "pointer-events-none absolute inset-0",
+  "box": [
+   12,
+   60,
+   360,
+   652
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 3,
+  "tag": "section",
+  "tid": "timeline-fullscreen-preview-shell",
+  "role": "",
+  "aria": "Edit the main visual track and multiple audio tracks",
+  "cls": "relative flex flex-1 min-w-canvas-timeline-zero flex-col o",
+  "box": [
+   380,
+   60,
+   1120,
+   652
+  ],
+  "radius": "12px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 4,
+  "tag": "div",
+  "tid": "timeline-fullscreen-preview",
+  "role": "",
+  "aria": "",
+  "cls": "relative [flex:1_1_0] min-h-canvas-timeline-zero m-canvas-",
+  "box": [
+   384,
+   64,
+   1112,
+   604
+  ],
+  "radius": "0px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 5,
+  "tag": "div",
+  "tid": "timeline-preview-composition-frame",
+  "role": "",
+  "aria": "",
+  "cls": "relative flex-none w-full h-full overflow-hidden rounded-c",
+  "box": [
+   403,
+   64,
+   1074,
+   604
+  ],
+  "radius": "10px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "div",
+  "tid": "timeline-preview-runtime-host",
+  "role": "",
+  "aria": "",
+  "cls": "relative flex flex-none w-full h-full items-center justify",
+  "box": [
+   403,
+   64,
+   1074,
+   604
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "output",
+  "tid": "timeline-ai-watermark-status",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   402,
+   667,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "output",
+  "tid": "timeline-preview-status",
+  "role": "",
+  "aria": "",
+  "cls": "absolute inset-0 flex items-center justify-center pointer-",
+  "box": [
+   403,
+   64,
+   1074,
+   604
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "timeline-preview-status-content",
+  "role": "",
+  "aria": "",
+  "cls": "",
+  "box": [
+   888,
+   356,
+   104,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "没有媒体可供预览"
+ },
+ {
+  "d": 4,
+  "tag": "div",
+  "tid": "timeline-fullscreen-preview-controls",
+  "role": "",
+  "aria": "",
+  "cls": "relative flex flex-none items-center justify-center h-canv",
+  "box": [
+   380,
+   668,
+   1120,
+   44
+  ],
+  "radius": "0px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 5,
+  "tag": "output",
+  "tid": "timeline-preview-edit-pause-status",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   940,
+   690,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 5,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   940,
+   690,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "Timeline playhead"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex-none w-canvas-frame-capture-slider-hit-area text-drea",
+  "box": [
+   897,
+   680,
+   54,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "00:00:00"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex-none w-canvas-timeline-asset-badge-inline text-center",
+  "box": [
+   955,
+   680,
+   5,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "/"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "flex-none w-canvas-timeline-panel-header text-dreamina-on-",
+  "box": [
+   964,
+   680,
+   52,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "00:00:00"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   1456,
+   690,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "Timeline preview volume"
+ },
+ {
+  "d": 7,
+  "tag": "button",
+  "tid": "timeline-fullscreen-preview-mute-button",
+  "role": "",
+  "aria": "开启原声",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   1428,
+   676,
+   28,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "timeline-fullscreen-preview-volume",
+  "role": "",
+  "aria": "",
+  "cls": "flex h-5 touch-none select-none items-center cursor-pointe",
+  "box": [
+   1340,
+   680,
+   80,
+   20
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "button",
+  "tid": "timeline-fullscreen-preview-fullscreen",
+  "role": "",
+  "aria": "Play video in full screen",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   1464,
+   676,
+   28,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "output",
+  "tid": "timeline-preview-edit-pause-status",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   11,
+   59,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "section",
+  "tid": "timeline-fullscreen-workspace",
+  "role": "",
+  "aria": "Edit the main visual track and multiple audio tracks",
+  "cls": "relative isolate flex flex-none flex-col min-h-canvas-time",
+  "box": [
+   12,
+   720,
+   1488,
+   218
+  ],
+  "radius": "12px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 3,
+  "tag": "button",
+  "tid": "timeline-fullscreen-workspace-resize-handle",
+  "role": "separator",
+  "aria": "Resize timeline editor height",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-n",
+  "box": [
+   12,
+   704,
+   1488,
+   24
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 4,
+  "tag": "div",
+  "tid": "timeline-fullscreen-toolbar",
+  "role": "",
+  "aria": "",
+  "cls": "flex flex-none items-center justify-between h-canvas-timel",
+  "box": [
+   12,
+   720,
+   1488,
+   44
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   91,
+   727,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "将播放头移动到目标片段内进行剪切。"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   127,
+   727,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "将播放头移动到目标片段内进行剪切。"
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "sr-only",
+  "box": [
+   163,
+   727,
+   1,
+   1
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": "将播放头移动到目标片段内进行剪切。"
+ },
+ {
+  "d": 5,
+  "tag": "div",
+  "tid": "timeline-fullscreen-track-scroll",
+  "role": "",
+  "aria": "",
+  "cls": "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden absol",
+  "box": [
+   12,
+   756,
+   1488,
+   182
+  ],
+  "radius": "0px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 6,
+  "tag": "div",
+  "tid": "timeline-fullscreen-track-canvas",
+  "role": "",
+  "aria": "",
+  "cls": "relative box-border flex flex-col min-w-full min-h-full",
+  "box": [
+   12,
+   764,
+   1488,
+   174
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "div",
+  "tid": "timeline-fullscreen-ruler",
+  "role": "",
+  "aria": "",
+  "cls": "sticky z-canvas-timeline-ruler top-0 h-canvas-timeline-rul",
+  "box": [
+   64,
+   764,
+   1428,
+   18
+  ],
+  "radius": "0px",
+  "bg": "rgb(26, 26, 26)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "div",
+  "tid": "timeline-fullscreen-visual-track",
+  "role": "group",
+  "aria": "Main visual track",
+  "cls": "flex h-canvas-timeline-visual-track mt-canvas-timeline-tra",
+  "box": [
+   12,
+   786,
+   1488,
+   56
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "div",
+  "tid": "timeline-fullscreen-track-blank-interaction-zone",
+  "role": "",
+  "aria": "",
+  "cls": "relative flex-1 min-h-canvas-timeline-canvas-bottom",
+  "box": [
+   64,
+   842,
+   1436,
+   96
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "timeline-fullscreen-snap-guide",
+  "role": "",
+  "aria": "",
+  "cls": "[--timeline-fullscreen-snap-guide-left:0px] left-[var(--ti",
+  "box": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgb(0, 158, 250)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "span",
+  "tid": "timeline-fullscreen-hover-playhead",
+  "role": "",
+  "aria": "",
+  "cls": "data-[visible=true]:opacity-canvas-timeline-hover-visible ",
+  "box": [
+   12,
+   764,
+   1,
+   174
+  ],
+  "radius": "0px",
+  "bg": "rgba(255, 255, 255, 0.6)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 7,
+  "tag": "div",
+  "tid": "timeline-fullscreen-playhead",
+  "role": "slider",
+  "aria": "Timeline playhead",
+  "cls": "octo-timeline-interactive-playhead-visual focus-visible:ou",
+  "box": [
+   64,
+   764,
+   1,
+   174
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 1,
+  "tag": "div",
+  "tid": "",
+  "role": "region",
+  "aria": "Canvas notifications",
+  "cls": "",
+  "box": [
+   0,
+   950,
+   1512,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "left-1/2 m-0 flex w-[360px] max-w-[calc(100vw-32px)] -tran",
+  "box": [
+   576,
+   32,
+   360,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 1,
+  "tag": "div",
+  "tid": "",
+  "role": "region",
+  "aria": "Canvas notifications",
+  "cls": "",
+  "box": [
+   0,
+   950,
+   1512,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ },
+ {
+  "d": 2,
+  "tag": "div",
+  "tid": "",
+  "role": "",
+  "aria": "",
+  "cls": "left-1/2 m-0 flex w-[360px] max-w-[calc(100vw-32px)] -tran",
+  "box": [
+   576,
+   32,
+   360,
+   0
+  ],
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bd": "",
+  "txt": ""
+ }
+]

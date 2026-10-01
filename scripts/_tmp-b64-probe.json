@@ -1,0 +1,50 @@
+{
+ "pops": [
+  {
+   "tid": "canvas-editor-menu",
+   "role": null,
+   "box": "36x36@1061,12",
+   "text": "",
+   "items": [
+    {
+     "aria": "更多",
+     "text": "",
+     "box": "28x28@1065,16"
+    }
+   ]
+  },
+  {
+   "tid": "canvas-user-menu-trigger",
+   "role": null,
+   "box": "28x28@1236,16",
+   "text": "",
+   "items": []
+  },
+  {
+   "tid": "timeline-passive-source-picker-slot",
+   "role": null,
+   "box": "668x50@-1169,-424",
+   "text": "添加素材到时间线",
+   "items": [
+    {
+     "aria": "添加素材到时间线",
+     "text": "添加素材到时间线",
+     "box": "668x50@-1169,-424"
+    }
+   ]
+  }
+ ],
+ "inputs": [
+  {
+   "cls": "",
+   "box": "0x0",
+   "multiple": true,
+   "accept": "image/jpeg,image/jpg,.jpg,.jpeg,image/png,.png,image/webp,.webp,image/bmp,image/x-ms-bmp,.bmp,image/tiff,image/x-tiff,.tif,.tiff,image/gif,.gif,image/heif,image/heif-sequence,.heif,image/heic,image/heic-sequence,.heic,video/mp4,video/mpeg4,video/m4v,video/x-m4v,.mp4,.m4v,video/webm,.webm,video/quicktime,video/mov,.mov,video/x-flv,.flv,video/x-matroska,video/matroska,.mkv,video/x-msvideo,video/avi,video/msvideo,.avi,video/x-ms-wmv,video/x-ms-asf,.wmv,application/vnd.rn-realmedia,application/vnd.rn-realmedia-vbr,video/vnd.rn-realvideo,.rm,.rmvb,video/3gpp,.3gp,video/mp2t,.m2ts,.mt2s,.m2t,.ts,application/mxf,.mxf,video/mpeg,.mpg,.mpeg,.mpe,audio/mpeg,audio/mp3,.mp3,.mpa,.mp2,audio/wav,audio/x-wav,audio/wave,.wav,audio/mp4,audio/m4a,audio/x-m4a,.m4a,audio/flac,audio/x-flac,.flac,audio/aac,application/vnd.americandynamics.acc,audio/x-aac,.aac,.acc,audio/ogg,application/ogg,.oga,.ogg,audio/x-ms-wma,video/x-ms-wma,.wma,audio/amr,.amr,audio/aiff,audio/x-aiff,.aif,.aiff,audio/ac3,audio/x-ac3,.ac3,audio/ape,audio/x-ape,audio/x-monkeys-audio,.ape,.mac,text/markdown,text/x-markdown,.md,text/plain,.txt",
+   "vis": false
+  }
+ ],
+ "newTids": [
+  "canvas-navigation-mask-backdrop"
+ ],
+ "bodyHasUpload": true
+}

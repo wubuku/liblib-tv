@@ -40,10 +40,10 @@
         "diagnostics:zero"
       ],
       "expanded_viewport": {
-        "x": 266,
-        "y": 84,
-        "width": 886,
-        "height": 620
+        "x": 281,
+        "y": 88,
+        "width": 878,
+        "height": 630
       },
       "viewport_bar_labels": [
         "",
@@ -58,6 +58,7 @@
         "移动",
         "旋转",
         "缩放",
+        "动画时间轴",
         "",
         "",
         "",
@@ -65,19 +66,21 @@
         "虚拟相机",
         "添加群众阵列",
         "模型库",
-        ""
+        "",
+        "上传图片",
+        "发送"
       ],
       "collapsed_viewport": {
-        "x": 46,
-        "y": 84,
-        "width": 1106,
-        "height": 620
+        "x": 48,
+        "y": 88,
+        "width": 1111,
+        "height": 630
       },
       "restored_viewport": {
-        "x": 266,
-        "y": 84,
-        "width": 886,
-        "height": 620
+        "x": 281,
+        "y": 88,
+        "width": 878,
+        "height": 630
       },
       "diagnostics": {
         "console": 0,

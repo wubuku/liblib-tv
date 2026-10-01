@@ -1,0 +1,75 @@
+{
+ "startedAt": "2026-10-01T19:02:13.979Z",
+ "toolbarBoxes": [
+  "469,264 341x192",
+  "161,188 959x40"
+ ],
+ "toolbarInside": [
+  {
+   "label": "智能改图",
+   "cx": 219,
+   "ok": true
+  },
+  {
+   "label": "720 全景",
+   "cx": 327,
+   "ok": true
+  },
+  {
+   "label": "扩图",
+   "cx": 414,
+   "ok": true
+  },
+  {
+   "label": "智能超清",
+   "cx": 491,
+   "ok": true
+  },
+  {
+   "label": "抠图",
+   "cx": 568,
+   "ok": true
+  },
+  {
+   "label": "预设",
+   "cx": 640,
+   "ok": true
+  },
+  {
+   "label": "多角度",
+   "cx": 718,
+   "ok": true
+  },
+  {
+   "label": "智能打光",
+   "cx": 811,
+   "ok": true
+  },
+  {
+   "label": "工具",
+   "cx": 905,
+   "ok": true
+  },
+  {
+   "label": "AI 助手",
+   "cx": 993,
+   "ok": true
+  },
+  {
+   "label": "全屏",
+   "cx": 1065,
+   "ok": true
+  },
+  {
+   "label": "下载",
+   "cx": 1099,
+   "ok": true
+  }
+ ],
+ "creditAfter": 805,
+ "end": {
+  "status": "6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "credit": 805,
+  "dev": 0
+ }
+}

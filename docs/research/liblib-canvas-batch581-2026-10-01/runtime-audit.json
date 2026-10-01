@@ -8,7 +8,8 @@
       "checks": [
         "tabs:count",
         "tabs:single-row",
-        "fov:above-name",
+        "fov:below-name",
+        "fov:label-opens-section",
         "fov:min",
         "fov:max",
         "fov:step",
@@ -22,11 +23,13 @@
         "order:注视目标-present",
         "order:注视坐标-present",
         "order:source-sequence",
-        "help:expanded-by-default",
         "help:label",
-        "help:collapses",
-        "help:reopens",
+        "help:hidden-at-rest",
         "help:source-copy",
+        "help:pointer-events-none",
+        "help:width-208",
+        "help:reveals-on-hover",
+        "help:hides-again",
         "follow:present",
         "follow:commit",
         "follow:offset-section",
@@ -36,21 +39,26 @@
         "diagnostics:zero"
       ],
       "camera_tab_ys": [
-        136,
-        136,
-        136
+        116,
+        116,
+        116
       ],
-      "fov_y": 180,
-      "name_y": 265,
-      "fov_readout": "43°",
+      "fov_y": 494,
+      "name_y": -251,
+      "fov_label_y": 496,
+      "fov_readout": "43",
       "source_row_ys": {
-        "位置": 449,
-        "跟随目标": 515,
-        "旋转": 582,
-        "注视目标": 989,
-        "注视坐标": 1055
+        "位置": -66,
+        "跟随目标": 6,
+        "旋转": 78,
+        "注视目标": 562,
+        "注视坐标": 634
       },
-      "help_text": "视野角度 (FOV)\n?\n\n控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。",
+      "help_tooltip_box": [
+        208,
+        68
+      ],
+      "help_text": "控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。",
       "diagnostics": {
         "console": 3,
         "filtered_transformcontrols": 3,

@@ -22,10 +22,8 @@
         "errors:empty"
       ],
       "diagnostics": {
-        "console": 1,
-        "errors": [
-          "console:error:Failed to load resource: the server responded with a status of 404 (Not Found)"
-        ]
+        "console": 0,
+        "errors": []
       }
     }
   ],

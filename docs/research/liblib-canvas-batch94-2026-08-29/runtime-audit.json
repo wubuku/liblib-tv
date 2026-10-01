@@ -24,12 +24,20 @@
     },
     "initialFocusInsideWorkspace": true,
     "workspaceTabCycle": {
-      "focusableCount": 80,
+      "focusableCount": 124,
       "forwardSamples": [
         {
           "tag": "button",
           "id": "",
-          "ariaLabel": "返回画布",
+          "ariaLabel": "关闭",
+          "dataScope": "workspace",
+          "isWorkspace": true,
+          "isCanvasRoot": false
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "ariaLabel": "收起",
           "dataScope": "workspace",
           "isWorkspace": true,
           "isCanvasRoot": false
@@ -46,14 +54,6 @@
           "tag": "button",
           "id": "",
           "ariaLabel": null,
-          "dataScope": "workspace",
-          "isWorkspace": true,
-          "isCanvasRoot": false
-        },
-        {
-          "tag": "button",
-          "id": "",
-          "ariaLabel": "导出导演台项目",
           "dataScope": "workspace",
           "isWorkspace": true,
           "isCanvasRoot": false
@@ -131,7 +131,7 @@
     },
     "inspectorDrawer": {
       "scope": "inspector",
-      "focusableCount": 15,
+      "focusableCount": 35,
       "initialFocus": true,
       "tabCycleStayedInside": true,
       "tabSamples": [

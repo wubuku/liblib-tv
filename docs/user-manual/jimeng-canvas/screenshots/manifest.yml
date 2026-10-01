@@ -401,7 +401,7 @@ screenshots:
     captured_at: 2026-10-01T07:48:00+08:00
     verified_locator: '上传后生成的图片节点（标题为上传文件名，已省略中间）；状态串逐字 <filename>.png: Upload complete'
     visible_text: 节点 6 已保存 / 智能改图 / 720 全景 / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光 / 工具 / AI 助手
-    alt: 本地上传完成：左栏「上传」高亮为按下态，顶部工具条为图片节点专属的 智能改图✦ / 720 全景✦ / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光✦ / 工具 / AI 助手 / 全屏 / 下载；画布中央是刚上传生成的图片节点，标题为上传文件名（已省略中间），顶栏「节点 6 已保存」
+    alt: 本地上传完成：左栏「上传」高亮为按下态，顶部工具条为图片节点专属的 智能改图✦ / 720 全景✦ / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光✦ / 工具 / AI 助手 / 全屏 / 下载；画布中央是刚上传生成的图片节点，标题为去掉扩展名的文件名（过长时中间省略），顶栏「节点 6 已保存」
     sha256: 4e7611992b6398822fdd8475b3421bc9f94e0de5da926ea7def8cfe34c4ef5bc
 
   - file: screenshots/31-shortcuts-panel-bottom.png
@@ -1363,3 +1363,27 @@ screenshots:
     visible_text: 选择比例
     alt: 点开视频面板参数条上「16:9 · 720P · 4」后弹出的尺寸弹层：弹层分三段，第一段标题「选择比例」下面是六个带矩形缩略图的选项 21:9、16:9、4:3、1:1、3:4、9:16，其中 16:9 有浅色高亮底表示当前选中；第二段标题「选择分辨率」下面是 720P、1080P、4K 三项，每项名称右侧都带一颗蓝色星号，720P 是高亮选中态；第三段标题「选择生成数量」下面是 1、2、3、4 四个数字，4 是高亮选中态；弹层浮在生成面板左上方，背景能看到「视频 2」节点卡片和节点右上角的标签图标
     sha256: db64a7db3f75ab4d5c2e4c984e86da57906d1262984afc5487d8af2226e9d44a
+
+  - file: screenshots/64-upload-node-idle.png
+    task_id: create-first-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T23:58:00+08:00
+    verified_locator: '左栏点「上传」40×40@16,543（**必须用全局 `p.on('filechooser')` 监听**，用 `p.waitForEvent` 会超时）→ filechooser 触发、isMultiple=true → 对画布上**常驻的隐藏** `input[type=file]`（0×0、multiple=true、accept 长 1106 字符）setInputFiles 一张 PNG → **t=0 即出现节点** .react-flow__node-image，aria 逐字「图片 node: b22-upload」，标题 `b22-upload`（**去掉扩展名**），卡片 341×192，状态行 `7 nodes, 0 edges, 1 selected.`（**自动选中**）→ 等 6s 让缩略图换成服务端图，再点空白取消选中 → 裁切 clip={x:379,y:174,w:521,h:372}。⚠️ 图中那个「左栏」是**被上传的图片内容本身**（源文件就是一张画布截图），不是画布左栏。积分 805 未变 ⇒ 上传免费。详见 SOURCE_OBSERVATIONS §3.83'
+    visible_text: b22-upload
+    alt: 上传生成的图片节点「b22-upload」出现在画布上，标题是去掉扩展名的文件名，卡片 341×192
+    sha256: cc4896f71f4636e160172afe33f1e7790a902b2d641e492d54fdf8e76d612c82
+
+  - file: screenshots/64-upload-node-selected.png
+    task_id: create-first-node
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T23:58:00+08:00
+    verified_locator: '选中同一节点 → 节点上方浮出 `[data-testid="node-toolbar"]` **959×40@(161,188)**，逐字 12 项：智能改图｜720 全景｜扩图｜智能超清｜抠图｜预设｜多角度｜智能打光｜工具｜AI 助手｜全屏｜下载（`智能改图`/`720 全景`/`智能打光` 带 ✦ 会员菱标；`预设`/`工具`/`AI 助手` 带 ∨ 下拉箭头）—— 与批次 22 独立记录的表格**逐项连标记都一致**（第三次独立复核）。裁切 clip={x:133,y:160,w:1015,h:324}，**按「工具条 ∪ 节点」并集算**：首轮按「节点 341×192 + padding」算，工具条两端被裁掉、图里只剩 8 项而正文写 12 项；改并集后加断言「逐个按钮中心点必须落在 clip 内」，结果 `12 项 / 裁掉 0 项`。⚠️ 页面上有**两个** `[data-testid="node-toolbar"]`，另一个是 `0×0` 常驻占位（`querySelector` 单数会撞上它）。积分 805 未变。详见 §3.83.5 / §3.83.7'
+    visible_text: 智能改图
+    alt: 上传的图片节点被选中后，节点上方浮出 959×40 的工具条，12 项一字排开：智能改图✦、720 全景✦、扩图、智能超清、抠图、预设∨、多角度、智能打光✦、工具∨、AI 助手∨、全屏、下载
+    sha256: 29606af6ad13c9a20abf27b9331dd9ce9ffd2f82a06c94fe1a8e25d00a3ecdd2

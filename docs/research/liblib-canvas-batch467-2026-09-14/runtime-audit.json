@@ -2,7 +2,7 @@
   "url": "http://localhost:4317",
   "status": "SCRIPT_RECORDED_PASS",
   "slice": "VR-018 Slice A — command feedback inventory and reason projection",
-  "catalogSize": 9,
+  "catalogSize": 13,
   "projection": {
     "accepted": {
       "disposition": "success",

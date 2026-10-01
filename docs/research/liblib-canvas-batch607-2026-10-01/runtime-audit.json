@@ -29,7 +29,7 @@
     {
       "name": "panel:rounded-top-none",
       "ok": true,
-      "detail": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px"
+      "detail": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_"
     },
     {
       "name": "panel:default-height-182",
@@ -137,7 +137,7 @@
         "height": "182px",
         "overflowY": "visible",
         "attr": "182",
-        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-[182px]"
+        "className": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] max-[899px]:z-[210] h-[182px]"
       },
       "handle": {
         "box": {
@@ -179,7 +179,7 @@
         "height": "262px",
         "overflowY": "visible",
         "attr": "262",
-        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-auto"
+        "className": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] max-[899px]:z-[210] h-auto"
       },
       "handle": {
         "box": {
@@ -221,7 +221,7 @@
         "height": "88px",
         "overflowY": "visible",
         "attr": "88",
-        "className": "pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px] h-[88px]"
+        "className": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:z-[210] h-[88px] max-[899px]:h-[124px]"
       },
       "handle": {
         "box": {
