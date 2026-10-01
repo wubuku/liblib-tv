@@ -73,6 +73,17 @@ STRUCT_OUT="$(python3 scripts/check-structure.py . 2>&1)" || fail "结构闭环�
 $STRUCT_OUT"
 echo "$STRUCT_OUT" | sed 's/^/  /'
 
+# 评级一致性校验：任务深度（旗舰/完整/简明）在账本 ↔ 索引分组 ↔ 首页表格三处必须一致。
+# 2026-10-01 M58 对账实测：task-inventory.yml 里 use-prompt-library 记为 full，
+# 却被 10-tasks/README.md 索引与 README.md 表格都列为「简明」——账本是权威、评级
+# 又驱动 audit_manual.py 的门禁强度（core/flagship 需有截图），三处一旦漂移，
+# 读者看到的深度与实际门禁强度就对不上。audit_manual.py 只校验 coverage 取值合法性，
+# 不校验语义一致，于是一路绿灯放行。这是一道「谁都不会报错」的账实不符，
+# 故此处 fail 而非 warn。
+RATING_OUT="$(python3 scripts/check-ratings.py . 2>&1)" || fail "评级一致性校验未通过（任务深度在三处记法不一致）：
+$RATING_OUT"
+echo "$RATING_OUT" | sed 's/^/  /'
+
 # 强断言校验：正文里出现「逐字 / 完全一致 / 一一对应」这类话的小节，
 # 必须在同一节里写明凭什么这么说（实测 / 复核 / 对拍 / 源码 / 抓取 / 逐条 / 回归）。
 # 2026-10-01 M44 实测：shortcuts-help 曾写「键位速查（与弹窗逐字一致）」，
@@ -91,7 +102,7 @@ RETRACT_OUT="$(python3 scripts/check-retractions.py . 2>&1)" || fail "订正回�
 $RETRACT_OUT"
 echo "$RETRACT_OUT" | sed 's/^/  /'
 
-# 门禁自检：注入 16 类故障，断言每道门禁**以正确的理由**失败。
+# 门禁自检：注入 17 类故障，断言每道门禁**以正确的理由**失败。
 # 2026-10-01 M41/M42 实测：锚点门禁在 236 个标题里错判 29 个却一直报「全部有效」，
 # 孤儿页与索引漏条两类问题两道门禁全都放行——门禁自己坏了不会喊疼。
 # 这里断言的是**错误内容**而不只是退出码：只看退出码会被「变异脚本写歪了」

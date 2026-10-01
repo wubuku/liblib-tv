@@ -261,7 +261,7 @@ tasks:
     role: tdcanvas-creator
     frequency: occasional
     impact: low
-    coverage: full
+    coverage: concise
     evidence:
       - type: runtime
         note: 2026-09-30 /prompts 运行时取证：页面标题「提示词中心」、导航名「提示词库」、「当前共 0 条提示词」、分类与标签筛选、搜索框占位「搜索标题、内容或标签」、计数 0 / 0、空态「没有找到匹配的提示词」；无任何外部网络请求。

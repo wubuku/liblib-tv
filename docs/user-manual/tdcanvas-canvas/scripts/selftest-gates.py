@@ -179,6 +179,22 @@ def mutate_sidebar_rename(root: Path) -> None:
     )
 
 
+def mutate_rating_drift_inventory(root: Path) -> None:
+    """账本评级与两个下游不一致（M58 发现的真实形态）。
+
+    真实漂移是 `use-prompt-library` 在账本里被写成 `full`，而索引分组与首页
+    表格都还停在「简明」。这里复原同一个形态：只改账本，断言评级门禁抓到。
+    """
+    path = root / "task-inventory.yml"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("  - id: use-prompt-library")
+    j = text.index("    coverage: concise", i)
+    path.write_text(
+        text[:j] + "    coverage: full" + text[j + len("    coverage: concise"):],
+        encoding="utf-8",
+    )
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -198,6 +214,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("小节里的裸强断言（无证据）", mutate_bare_claim, "claims", "裸断言"),
     ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
+    ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
 ]
 
 
@@ -208,6 +225,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-anchors.py"), str(root)]
     elif which == "structure":
         cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
+    elif which == "ratings":
+        cmd = [sys.executable, str(root / "scripts/check-ratings.py"), str(root)]
     elif which == "retractions":
         cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
     elif which == "distlinks":

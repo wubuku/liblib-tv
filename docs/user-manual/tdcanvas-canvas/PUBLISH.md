@@ -98,6 +98,33 @@ npx vitepress build  # 产物 .vitepress/dist/
 - 内容审计：按 `AUDIT.md` 记录的 Gate B 方法在真实浏览器逐任务回走（标签逐字核对、提交类动作止于按钮态验证），结论与修复记录进 `AUDIT.md`。
 - 手册内容的事实源：真实运行界面。UI 标签变化后以浏览器 DOM 为准修正文档，不以记忆或旧文档为准。
 
+### 构建时的八道门禁
+
+`./build-site.sh` 步骤 3 会依次跑前五道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
+
+| 门禁 | 拦什么 | 由来 |
+|---|---|---|
+| `audit_manual.py` | 图片/manifest 双向不一致、sha256、坏链、标题层级、占位文本 | 共享审计脚本 |
+| `check-anchors.py` | 交叉引用锚点落空 | M31 实测 4 处锚点全空 |
+| `check-structure.py` | 孤儿任务页、索引/侧边栏漏条 | M42 实测孤儿页可无声混入产物 |
+| `check-ratings.py` | 任务评级在账本/索引/首页三处不一致 | M58 实测账本与下游漂移 |
+| `check-claims.py` | 无证据的强断言（「逐字一致」等） | M44 实测速查表与截图自相矛盾 |
+| `check-retractions.py` | 已订正的错误说法复现 | M47 漏改、M52 补门禁 |
+| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 17 类故障） | M41 门禁静默错判 |
+| `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
+
+单跑任一道（都需带 `.` 参数）：
+
+```bash
+python3 scripts/check-anchors.py .        # 锚点
+python3 scripts/check-structure.py .      # 结构
+python3 scripts/check-ratings.py .        # 评级一致性
+python3 scripts/check-claims.py .         # 强断言
+python3 scripts/check-retractions.py .    # 订正回归
+python3 scripts/selftest-gates.py .       # 门禁自检
+python3 scripts/check-dist-links.py .     # 产物死链（须在构建后跑）
+```
+
 ## 运维常见问题
 
 | 症状 | 原因与处理 |
