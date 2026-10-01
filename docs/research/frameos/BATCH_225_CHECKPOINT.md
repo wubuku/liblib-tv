@@ -1680,3 +1680,10 @@ batch352 有一条反向断言 `still-detects-real-dead-state`, 拿
 无人渲染, spec 说由 `ImageEditPanel`「摄像机」按钮触发, 但**该按钮不存在**,
 全项目「摄像机」都在 `director/*`(跨线), 且导演台已有实装的
 `DirectorCameraMotionTab.tsx`(14KB)覆盖同一功能 —— **不删**, 跨线只记录。
+
+**普查工具的判据自己也报了 3 次假警报**: 扫「哪些 liblib 门禁打印 FAILED 却没有
+`SystemExit(1)`, 可能是恒绿」, 命中 batch451 / 455 / 82。**逐个人工核实后全部无问题**:
+451/455 各有 20/21 条 `assert`(抛 `AssertionError` 即非零退出), 82 显式
+`raise AssertionError`。我的 grep 只搜了 `SystemExit(1)` 而漏了 `assert` ——
+**判据不完整, 不是我发现了恒绿门禁**。普查又双叒叕的一次「假零/假警报」,
+处理方式与本线一致: 判据不成立就不下结论。
