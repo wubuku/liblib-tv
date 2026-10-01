@@ -720,3 +720,135 @@ screenshots:
     visible_text: 未命名工作区 画布 15 画布 资产 管理 暂无资产 创建默认资产分类 上传资产 共 3 节点
     alt: 资产管理抽屉切到「资产」标签：工具行多出「+」和「管理」按钮，主体是空状态「暂无资产」，下面两个按钮「创建默认资产分类」和「上传资产」
     sha256: 2e16ee08e5961aa838e9d59a8455fbd312e61831c46788654d19c65fa357c958
+  - file: screenshots/M-08-组操作条全景.png
+    task_id: create-nodes
+    step: 10
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 组操作条上的 7 个动作叶子节点，按 x 依次是 20×20 颜色圆点、52×36 排列按钮、1×24 分隔线、整组执行、添加到工具箱、转分镜组、解组、1×24 分隔线、36×36 批量下载（opacity 0.45）
+    visible_text: Group 1 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2 资产 管理 146%
+    alt: 成组后，组被平移到视口中部，组上方浮出完整操作条：最左是白色颜色圆点，紧跟一枚宫格图标带小三角的排列按钮和一条竖分隔线，然后是「整组执行」「添加到工具箱」「转分镜组」「解组」，再一条分隔线，最后是灰着的下载图标
+    sha256: 5ff828be902eb36a4097b80d2cd9e577c869a2325619c5f17bc0b25432cb0c13
+  - file: screenshots/M-09-组操作条-颜色色板.png
+    task_id: create-nodes
+    step: 11
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点开颜色圆点后出现的 div.grid.grid-cols-5 色板容器，rect=[465,77,228,84]，5 列 × 2 行
+    visible_text: 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2
+    alt: 操作条上方浮出一块 5 列两行共 10 个圆形色块：上排灰、红、橙、黄、绿，下排青、蓝、紫、粉、白；第一块灰色带一圈高亮描边，表示当前选中
+    sha256: e9cd7139cf54304aa9443fa2fdde351fa8dae88a7b31cc49bc8c3981d7dc44d1
+  - file: screenshots/M-11a-工具箱弹窗-更新工具箱-空状态.png
+    task_id: asset-library
+    step: 12
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 「添加到工具箱」弹窗里切到「更新工具箱」标签页
+    visible_text: 创建新工具箱 更新工具箱 暂无工具箱 确认
+    alt: 切到「更新工具箱」标签后的弹窗：内容区只有「暂无工具箱」一行，底部右侧是「确认」按钮
+    sha256: 27e2e5db2855c2a5254bedb53dd2d76535100baab8cc6a2c25f67ef8145ab03a
+  - file: screenshots/M-11b-工具箱弹窗-更新工具箱-已有工具箱.png
+    task_id: asset-library
+    step: 13
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 「添加到工具箱」弹窗里切到「更新工具箱」标签页（已建过两个同名工具箱之后）
+    visible_text: 创建新工具箱 更新工具箱 手册取证测试箱 手册取证测试箱 确认
+    alt: 「更新工具箱」标签页里并排两张封面缩略图占位卡，两张下面都写着「手册取证测试箱」，证明之前点「创建」确实存上了；底部右侧是「确认」按钮
+    sha256: 5c91adb49024ccd98df0d9ebdcf59b58465eaa71854a3022d0301c402370c6da
+  - file: screenshots/M-12-工具箱弹窗-填写名称.png
+    task_id: asset-library
+    step: 14
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 「创建新工具箱」页把 input[placeholder="输入工具箱名称"] 填成「手册取证测试箱」，读回 value 确认写入成功
+    visible_text: 创建新工具箱 更新工具箱 封面 更换封面 名称 手册取证测试箱 标签 0/5 添加标签 备注 请描述您的工具箱，例如应用场景、使用步骤及使用技巧 创建
+    alt: 「创建新工具箱」页：左侧是大号封面占位图和「更换封面」按钮，右侧是名称、标签、备注三个字段，名称里已经填了「手册取证测试箱」，底部右侧是「创建」按钮
+    sha256: c25d326d17e41c974c2be099e3ac968eeb83f98f1e646828842149928ae755b1
+  - file: screenshots/M-14-组操作条-排列菜单.png
+    task_id: create-nodes
+    step: 16
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点开 52×36 排列按钮后读到的三个菜单项实时坐标
+    visible_text: 宫格排列 水平排列 垂直排列 整组执行 添加到工具箱 转分镜组 解组
+    alt: 排列按钮点开后向上弹出一个三项竖排菜单：宫格排列、水平排列、垂直排列，每项左边一枚图标、右边一行文字；菜单浮在组操作条上方
+    sha256: bc0892774e9098edc411ef48ee2feceadf8aeabeca523ef6223b549255e2920e
+  - file: screenshots/M-15-组操作条-选色之后.png
+    task_id: create-nodes
+    step: 17
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点色板第 2 块（红 rgb(231,76,60)）之后读组节点的 computed style
+    visible_text: 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2
+    alt: 把组改成红色之后：组边框和底色变成红色、操作条最左的颜色圆点变成红色、左上角「Group 1」标签的底色也变成红色
+    sha256: 8a0e2d1b3ff38d43885788c3ac660c8604d2a79c2906a4a67acdd7cf58291fc7
+  - file: screenshots/M-17-排列-水平排列.png
+    task_id: create-nodes
+    step: 18
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 排列菜单里点「水平排列」实时坐标 (523,77)
+    visible_text: 文本节点 1 音频节点 2 图片节点 3 Group 1
+    alt: 水平排列之后三个节点排在同一行里，左到右是图片节点 3、音频节点 2、文本节点 1，组框把三者一起包住
+    sha256: 6db9705ac1358c9b1d1c9a8c79618b996ea04aeb10ab9419ea897d3a613fcf6c
+  - file: screenshots/M-17-排列-垂直排列.png
+    task_id: create-nodes
+    step: 19
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 排列菜单里点「垂直排列」实时坐标 (504,121)
+    visible_text: 图片节点 3 音频节点 2 文本节点 1 Group 1
+    alt: 垂直排列之后节点排成一列：图片节点 3 在上面、音频节点 2 在它下面，组框被拉高成竖长条
+    sha256: dd2230f4e822cf1124dc673aa47b15f25a7f0e322d5dc8289a1399277e463bd4
+  - file: screenshots/M-17-排列-宫格排列.png
+    task_id: create-nodes
+    step: 20
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 排列菜单里点「宫格排列」实时坐标 (206,33)
+    visible_text: 图片节点 3 音频节点 2 文本节点 1 Group 1
+    alt: 宫格排列之后节点排成 2×2 方阵：图片节点 3 左上、音频节点 2 右上、文本节点 1 左下，右下角空着
+    sha256: 2880f621463dc3e08d9a4d5afd569bcb27f7e3b9a1f6565ef379a5e80dd3e053
+  - file: screenshots/M-19-工具箱弹窗-创建新工具箱.png
+    task_id: asset-library
+    step: 21
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 组操作条上点「添加到工具箱」后弹出的双标签弹窗
+    visible_text: 创建新工具箱 更新工具箱 封面 更换封面 名称 工具箱 标签 0/5 添加标签 备注 请描述您的工具箱，例如应用场景、使用步骤及使用技巧 创建
+    alt: 「添加到工具箱」弹出的弹窗：顶部两个标签「创建新工具箱」「更新工具箱」，当前在创建页；左侧是封面大图占位和「更换封面」按钮，右侧是名称（默认值「工具箱」）、标签 0/5 加「添加标签」、备注多行框，右下角是「创建」按钮
+    sha256: 836cd6a4df822895d08b59830a50b9e4f5096c607ec5c900f368580367993074
+  - file: screenshots/M-13-工具箱弹窗-点创建之后.png
+    task_id: asset-library
+    step: 15
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点「创建」之后 4.2 秒：modalText() 返回 null、toast 列表为空
+    visible_text: 整组执行 更新工具箱 转分镜组 解组 图片节点 3 音频节点 2 文本节点 1 Group 1
+    alt: 点完「创建」之后的画布：弹窗已经关掉，屏幕上没有任何成功提示。注意组操作条上那一项的文案已经从「添加到工具箱」变成了「更新工具箱」—— 组一旦被存进工具箱，按钮就变成更新
+    sha256: cc23ae0cdb40814902bb1f46f487a2d14885bfac9faae8e26642d0bd436dea14
