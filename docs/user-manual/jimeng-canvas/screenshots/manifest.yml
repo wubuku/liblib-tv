@@ -797,3 +797,15 @@ screenshots:
     visible_text: 测试项目 / 节点 1 / 已保存 / 视频 1 / 与 AI 对话 / 100%
     alt: 抽屉收起后的同一画面：右侧遮挡消失，「视频 1」节点完整露出，绿色高亮框圈出的正是刚才被盖住的区域，现在能看到节点卡片深色底与中央的视频播放占位图标
     sha256: 924ce9853d55c97b35dee028359f950dc5a816590dd589ce484b8f98ba1e7e00
+
+  - file: screenshots/62-user-menu.png
+    task_id: help-and-shortcuts
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T11:20:00+08:00
+    verified_locator: '点顶栏 [data-testid=canvas-user-menu-trigger] 打开 [data-testid=canvas-user-menu]（240×312 @1028,56）；role=menuitem 逐项 232×36 共六项，末项为「新功能许愿」；顶部账号信息区已用注入遮罩脱敏'
+    visible_text: 帮助中心 / 使用手册 / 快捷键 / AI生成水印设置 / 即梦CLI / 新功能许愿 / 视频 1 / 100%
+    alt: 顶栏用户菜单展开的 240×312 面板，六项自上而下为 帮助中心、使用手册、快捷键、AI生成水印设置、即梦CLI、新功能许愿，每项左侧带图标；面板顶部是账号信息区，已用虚线框遮盖并标注「账号信息区已脱敏」；菜单浮在画布右侧，底部 dock 显示选择工具与 100% 缩放
+    sha256: 123ec67a59dd3e5cacbf52105278b19dd665fc6465aa1f21940e073891c6e4f7
