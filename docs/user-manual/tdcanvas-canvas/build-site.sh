@@ -64,6 +64,15 @@ ANCHOR_OUT="$(python3 scripts/check-anchors.py . 2>&1)" || fail "内部锚点校
 $ANCHOR_OUT"
 echo "$ANCHOR_OUT" | sed 's/^/  /'
 
+# 结构闭环校验：任务页 ↔ task-inventory.yml ↔ 10-tasks/README.md 索引 ↔ 侧边栏。
+# 2026-10-01 M42 负向测试实测：往 10-tasks/ 塞一个没登记的「孤儿页」，
+# audit_manual.py 退出码 0、构建也只 warn 一句就通过——孤儿页可以完全不出现在
+# 账本与索引里就混进发布产物；从索引删掉一条已有任务页同样无人拦截。
+# 这类问题不会让构建失败，但会让手册的任务结构悄悄失真，故此处 fail 而非 warn。
+STRUCT_OUT="$(python3 scripts/check-structure.py . 2>&1)" || fail "结构闭环校验未通过：
+$STRUCT_OUT"
+echo "$STRUCT_OUT" | sed 's/^/  /'
+
 # ---------- 步骤 4/6 清理旧产物 ----------
 log "步骤 4/6 清理旧构建产物"
 rm -rf .vitepress/dist .vitepress/cache
