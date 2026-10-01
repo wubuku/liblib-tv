@@ -39,7 +39,7 @@ KNOWN_BENIGN = {
     "canvas-top-bar": "顶栏容器本身，点空白不反应是对的",
     "topbar-left": "左簇容器",
     "topbar-right": "右簇容器",
-    "tool-rail": "工具栏容器",
+    "canvas-fixed-toolbar": "工具栏容器",
 }
 
 # 探针**无法验证**（不是"没反应"，是判据伸不到那里）。单列出来，

@@ -1,0 +1,294 @@
+{
+ "rail": {
+  "tag": "div",
+  "role": "toolbar",
+  "aria": "Canvas toolbar",
+  "testid": "canvas-fixed-toolbar",
+  "cls": "z-canvas-chrome w-workspace-chrome-rail gap-workspace-chrome-rail-gap rounded-dreamina-toast p-works",
+  "box": [
+   12,
+   304,
+   48,
+   398
+  ],
+  "items": [
+   {
+    "aria": "文本",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     308,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "图片",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     350,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "视频",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     392,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "音频",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     434,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "时间线",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     476,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "主体",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     518,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "导演台",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     560,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "资产库",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     616,
+     40,
+     40
+    ]
+   },
+   {
+    "aria": "上传",
+    "testid": "",
+    "txt": "",
+    "box": [
+     16,
+     658,
+     40,
+     40
+    ]
+   }
+  ]
+ },
+ "top": {
+  "pills": [
+   {
+    "aria": "Canvas title: 测试项目",
+    "testid": "canvas-project-title-trigger",
+    "txt": "测试项目",
+    "box": [
+     52,
+     16,
+     68,
+     28
+    ],
+    "radius": "6px 2px 2px 6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "项目",
+    "testid": "canvas-project-trigger",
+    "txt": "",
+    "box": [
+     120,
+     16,
+     20,
+     28
+    ],
+    "radius": "2px 6px 6px 2px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "Canvas node summary: 节点 5",
+    "testid": "canvas-node-summary-trigger",
+    "txt": "节点 5",
+    "box": [
+     156,
+     16,
+     28,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "搜索",
+    "testid": "canvas-panel-launcher",
+    "txt": "",
+    "box": [
+     1143,
+     16,
+     28,
+     28
+    ],
+    "radius": "12px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "生成历史",
+    "testid": "canvas-panel-launcher",
+    "txt": "",
+    "box": [
+     1175,
+     16,
+     28,
+     28
+    ],
+    "radius": "12px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "分享",
+    "testid": "canvas-share-trigger",
+    "txt": "分享",
+    "box": [
+     1220,
+     16,
+     60,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "更多",
+    "testid": "",
+    "txt": "",
+    "box": [
+     1297,
+     16,
+     28,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "Credits: 805 · 基础会员",
+    "testid": "canvas-commerce-entry",
+    "txt": "805基础会员",
+    "box": [
+     1341,
+     16,
+     111,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "用户菜单",
+    "testid": "canvas-user-menu-trigger",
+    "txt": "",
+    "box": [
+     1468,
+     16,
+     28,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "panelLauncher": {
+   "chain": [
+    {
+     "tag": "button",
+     "testid": "canvas-panel-launcher",
+     "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+     "box": [
+      1143,
+      16,
+      28,
+      28
+     ]
+    },
+    {
+     "tag": "span",
+     "testid": "canvas-panel-workspace-top-bar-launchers",
+     "cls": "contents",
+     "box": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "tag": "div",
+     "testid": "",
+     "cls": "contents",
+     "box": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "tag": "div",
+     "testid": "",
+     "cls": "contents",
+     "box": [
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "holder": {
+    "cls": "contents",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  }
+ }
+}

@@ -74,7 +74,7 @@ def main() -> None:
         print("— 回归 —")
         check("顶栏右簇 6 控件齐全",
               all(page.locator(s).count() == 1 for s in [
-                  '[data-testid="topbar-search"]',
+                  '[data-testid="canvas-panel-launcher"]',
                   'button[aria-label="生成历史"]',
                   '[data-testid="canvas-share-trigger"]',
                   '[data-testid="canvas-more-trigger"]',

@@ -57,7 +57,7 @@ def main() -> None:
             failures.append(f"帮助 button should be removed: {labels}")
 
         # 搜索 overlay
-        page.locator('[data-testid="topbar-search"]').click()
+        page.locator('[data-testid="canvas-panel-launcher"]').click()
         page.wait_for_timeout(600)
         ov = page.evaluate(
             """() => {

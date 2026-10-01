@@ -286,13 +286,27 @@ export function JimengTopBar() {
             <button
               type="button"
               aria-label="搜索"
-              data-testid="topbar-search"
+              data-testid="canvas-panel-launcher"
               onClick={() => {
                 setHistoryOpen(false);
                 setSearchOpen((v) => !v);
               }}
-              className={`flex size-7 items-center justify-center rounded-full ${
-                searchOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+              /* Batch 816 SOURCE_FACT (2026-10-04 登录态 @1512×950 二次独立取样，
+                 默认 / hover / 激活 三态各量一遍)：
+                   默认  radius 12px  bg transparent  color rgb(255,255,255)
+                   hover radius  6px  bg white/8     color rgb(255,255,255)
+                   激活 radius  6px  bg white/8     color rgb(255,255,255)
+                 此前复刻是 `rounded-full`（28px 上=14px）+ text-white/85 +
+                 bg-white/10，三处都错。**颜色是最显眼的那个**：源站两态都是
+                 纯白，复刻一直压到 85%。
+                 12px=rounded-xl / 6px=rounded-md（Tailwind 默认档）。
+                 圆角必须**条件二选一**而不是叠类：同优先级下生效的是样式表
+                 顺序而不是属性里的类顺序，叠 `rounded-xl` + `rounded-md`
+                 结果不可预期。hover 走变体类（变体排在无前缀工具类之后）。 */
+              className={`flex size-7 items-center justify-center text-white ${
+                searchOpen
+                  ? "rounded-md bg-white/[0.08]"
+                  : "rounded-xl hover:rounded-md hover:bg-white/[0.08]"
               }`}
             >
               <Search size={16} />
@@ -305,12 +319,23 @@ export function JimengTopBar() {
             <button
               type="button"
               aria-label="生成历史"
+              /* Batch 816：**有意偏离**。源站这枚钮与「搜索」共用同一个
+                 `data-testid="canvas-panel-launcher"`（两枚同时命中）。照抄会
+                 直接打破 `verify-jimeng-batch801.py` 的
+                 「顶栏右簇 6 控件各命中 **1** 次」断言。源站这种复用本身也
+                 是它自己的取舍，不是可取的契约。故此处给独立的
+                 `canvas-history-launcher`，沿用 `canvas-*-launcher` 家族
+                 命名；台账 §26 与 census 白名单都记了这一条。 */
+              data-testid="canvas-history-launcher"
               onClick={() => {
                 setSearchOpen(false);
                 setHistoryOpen((v) => !v);
               }}
-              className={`flex size-7 items-center justify-center rounded-full ${
-                historyOpen ? "bg-white/10 text-white" : "text-white/85 hover:bg-white/10"
+              // 圆角 / 底色 / 字色三态与「搜索」逐项相同（同上 SOURCE_FACT）
+              className={`flex size-7 items-center justify-center text-white ${
+                historyOpen
+                  ? "rounded-md bg-white/[0.08]"
+                  : "rounded-xl hover:rounded-md hover:bg-white/[0.08]"
               }`}
             >
               <History size={16} />

@@ -40,7 +40,7 @@ BASE_URL = os.environ.get("JIMENG_BASE_URL", "http://localhost:4317")
 CANVAS_URL = f"{BASE_URL}/jimeng/canvas/demo"
 VIEWPORT = {"width": 1680, "height": 826}
 
-RAIL = '[data-testid="tool-rail"]'
+RAIL = '[data-testid="canvas-fixed-toolbar"]'
 SEP = '[data-testid="tool-rail-separator"]'
 
 # 源站 1680×826 实测的九个按钮 y 坐标（顺序固定）
@@ -202,7 +202,7 @@ def main() -> None:
                   bb is not None and near(bb["width"], 28) and near(bb["height"], 28) and near(bb["x"], want_x),
                   f"@{round(bb['x'])}" if bb else "None")
 
-        zoom = page.locator('[data-testid="dock-zoom"]')
+        zoom = page.locator('[data-testid="canvas-zoom-percent"]')
         check("缩放钮存在", zoom.count() == 1, f"count={zoom.count()}")
         if zoom.count() == 1:
             zb = zoom.bounding_box()

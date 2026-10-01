@@ -142,7 +142,7 @@ def main() -> None:
             'button[aria-label="关闭订阅页"]').click())
 
         # 7. 缩放菜单 + 框选
-        step("缩放菜单开", lambda: page.locator('[data-testid="dock-zoom"]').click())
+        step("缩放菜单开", lambda: page.locator('[data-testid="canvas-zoom-percent"]').click())
         step("缩放适配", lambda: page.locator(
             '[role="menuitem"]', has_text="适配画布").click())
         step("音频插入", lambda: page.locator(

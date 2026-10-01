@@ -5672,3 +5672,171 @@ verifier 自身修了四处：快捷键取错了 span（取到最后那个 1×1 
 811 51/51（订正后）、812 46/46、813 45/45、814 113/113 全过；
 `tsc` 在本批涉及的文件上零报错（另有 2 个报错在并行会话正在编辑的
 `DirectorInspector.tsx`，不属本批也不阻塞画布路由，未改动）。
+
+---
+
+## 26. Batch 816-anchors — 让**语义**指出下一批：可访问名与自动化锚点收口（2026-10-04）
+
+### 26.1 选题：换一种「让数据指出下一批」的方式
+
+批 807-topleft §17.1 用的是「让像素指出」，本批换成**让语义指出**。
+理由很直接：批 801/812/813/814 挖出来的四个真缺口
+（`Add tags` 实名、`Rename {标题}`、右键菜单 7 项、`Add tags` 位置）
+**没有一个是像素对拍能看出来的** —— 它们全都长在 `aria-label` /
+`data-testid` 这层契约里。
+
+新脚本 `scripts/jimeng_a11y_census.py`：两侧同 @1512×950，
+把「有哪些可交互控件、叫什么、在哪、什么色什么圆角」拉成两张表再对拍。
+
+**为什么不用 `page.accessibility.snapshot()`**：它给的是 role 化的语义树，
+会把「两个同 role 兄弟」「文案折行」这类结构差异压平。批 810 §18.1 刚吃过
+「判据够不着 ≠ 控件没反应」的亏，宁可取原始属性。
+
+首轮差集（源站 29 / 复刻 24）：
+
+| 差集条目 | 判定 |
+|---|---|
+| `Canvas toolbar` | **真缺口**，左轨缺 `role="toolbar"` + `aria-label` |
+| `全屏编辑` / `导出时间线` / `添加素材到时间线` / `静音` | 时间线面板，源站首屏挂着，复刻**整层没有** → 另立批次 |
+| `Credits: 805` vs `745` | mock 值，不是缺陷 |
+| `Zoom options, 100%` vs `73%` | 复刻 demo 默认缩放不同，不是缺陷 |
+| testid 差集 8 缺 5 多 | **真缺口**，见 26.3 |
+
+### 26.2 顺带查实：§9.9 的「8 个浮层 Escape」候选**早已过时**
+
+台账 §9.9 列的第一条候选写着「8 个浮层都在 `window` 上挂**冒泡** keydown
+处理 Escape，应统一改捕获阶段」。动手前先 grep 了一遍，**14 个文件全部
+已经是捕获阶段**（`addEventListener("keydown", onKey, true)`），
+`JimengConnectHandles` / `JimengVideoNode` 的注释还明确写着
+「捕获阶段（batch 794 实测）」。
+
+**教训**：台账的「下一批候选」是**写下的那一刻**的快照，不是承诺。
+引用之前必须先查一次现状，否则会去「修」一个三批之前就修好的东西。
+§9.9 那条应当作废。
+
+### 26.3 SOURCE_FACT —— chrome 锚点（@1512×950，源站先 ⌘1 归 100%）
+
+顶栏右簇九个控件的 testid 逐个对拍：
+
+| 控件 | 源站 testid | 本批之前的复刻 |
+|---|---|---|
+| 项目名 / 项目 / 节点摘要 / 分享 / 积分 / 用户菜单 | `canvas-project-title-trigger` / `canvas-project-trigger` / `canvas-node-summary-trigger` / `canvas-share-trigger` / `canvas-commerce-entry` / `canvas-user-menu-trigger` | **已一致**（批 801 建立） |
+| 搜索 | `canvas-panel-launcher` | `topbar-search` ✗ |
+| 生成历史 | `canvas-panel-launcher`（**与搜索共用**） | 无 ✗ |
+| 更多 | **无** | `canvas-more-trigger` |
+| 左轨壳 | `canvas-fixed-toolbar` | `tool-rail` ✗ |
+| 选择工具 | `canvas-pointer-tool-toggle` | 无 ✗ |
+| 小地图 | `canvas-display-toggle-minimap` | `dock-minimap` ✗ |
+| 显示连线 | `canvas-display-toggle-connections` | `dock-edges` ✗ |
+| 缩放 | `canvas-zoom-percent` | `dock-zoom` ✗ |
+| 与 AI 对话 | `canvas-sidecar-launcher` | 无 ✗ |
+
+左轨壳除语义外**逐项相同**：`@[12,304] 48×398` r12 bg `rgb(32,32,32)`，各 9 枚钮。
+
+### 26.4 一个**假缺陷**：用户菜单的 6px 圆角是读数陷阱
+
+首轮读到源站「用户菜单」`radius: 6px`，而复刻是 `rounded-full`（14px）——
+看起来是 8px 的实差。查子树才发现：
+
+```
+button [1468,16,28,28]  radius 6px   background rgba(0,0,0,0)   ← 透明
+  └ img  [1470,18,24,24]  radius 50%  background rgba(255,255,255,0.04)
+  └ span [1470,18,24,24]  radius 50%
+```
+
+按钮底色是**透明的**，那 6px 圆角**根本不可见**；真正决定观感的是内层
+24×24 的 `rounded-full` 头像。复刻的 `rounded-full` 视觉等价。
+
+**差点把 bug 写进规范。** 如果按首轮读数把复刻改成 `rounded-lg`，
+反而会把一个正确的实现改坏。这已经是本项目第 N 次「未实测就下结论」，
+但这次值得单列：前几次栽在**没测**，这次栽在**测了但没往下再看一层**。
+
+### 26.5 顶栏「搜索」「生成历史」三态（**二次独立取样**）
+
+| 态 | 源站 radius | 源站底色 | 源站字色 |
+|---|---|---|---|
+| 默认 | **12px** | transparent | `rgb(255,255,255)` **纯白** |
+| hover | **6px** | `rgba(255,255,255,.08)` | 纯白 |
+| 激活 | **6px** | `rgba(255,255,255,.08)` | 纯白 |
+
+复刻此前三处都错：`rounded-full`（14px，比默认大 2px、比激活大 8px）、
+`bg-white/10`（应 0.08）、`text-white/85`（**两态都不是源站的纯白**，
+这是最显眼的一个）。「更多」钮复刻已是 `rounded-md` + `#FAFAFA`，逐项对上，不动。
+
+实现上圆角必须**条件二选一**而不是叠类：同优先级下生效的是样式表顺序，
+不是属性里的类顺序，`rounded-xl` + `rounded-md` 叠一起结果不可预期。
+hover 走变体类（`hover:rounded-md`，变体排在无前缀工具类之后）。
+
+### 26.6 两处刻意的偏离（不是忘了改）
+
+1. **「生成历史」不给 `canvas-panel-launcher`。** 源站两枚共用同一个 testid，
+   照抄会让 `[data-testid="canvas-panel-launcher"]` 同时命中 2 个元素，
+   直接打破 `verify-jimeng-batch801.py` 的「右簇 6 控件各命中 1 次」。
+   源站这种复用是它自己的取舍，不是可取的契约。复刻用独立的
+   `canvas-history-launcher`，并把「`canvas-panel-launcher` 恰好 1 命中」
+   写成 816 verifier 的一条断言，把这个决定钉死。
+2. **「更多」保留自造的 `canvas-more-trigger`。** 源站该钮**没有** testid，
+   删掉等于主动削弱自己的验收锚点，且无对照物可对齐。
+
+两条都进 census 豁免表 `KNOWN_CLONE_ONLY`，且 verifier 会断言
+「豁免表与代码里的常量一致」，防止白名单悄悄过期。
+
+### 26.7 一次自伤：机械改名扫到了 FrameOS
+
+改 testid 用了全仓 token 替换，**误伤了 FrameOS**（另一产品，且很可能是
+并行 session 在写的）：把 `.canvas-tool-rail-root` 改成了
+`.canvas-canvas-fixed-toolbar-root`（还叠了个双前缀），把
+`FrameosToolRail` 的 `tool-rail` 类名也改了。零收益纯破坏。
+
+处置：**不用 `git checkout` 回退**（那会连带抹掉别人在同文件里的未提交改动），
+改成精确把那 3 处字符串改回去，再 `git diff --stat` 确认这 3 个文件干净。
+
+同一次还犯了个更细的错：`\btool-rail\b` 把 **CSS 类名** `.jimeng-tool-rail`
+也匹配上了（`-` 是非单词字符，`\b` 在它前面照样成立），
+把样式钩子改成了 `jimeng-canvas-fixed-toolbar`。类名是样式钩子不是锚点，
+已还原。**教训：token 替换前先确认这个 token 在仓库里有几种身份**
+（testid / 类名 / 字符串字面量），它们不该被同一条规则一起改。
+
+### 26.8 验收
+
+`scripts/verify-jimeng-batch816-anchors.py`，6 组断言：
+
+1. **源码级反向断言**（不跑浏览器）：`dock-minimap` / `dock-edges` /
+   `dock-zoom` / `topbar-search` 在 `src/` 下不得再出现
+2. 搜索 / 生成历史：默认 12px + 透明 + **纯白**
+3. 同上 hover 态：6px + `white/8`
+4. 同上激活态：6px + `white/8` + 纯白
+5. 左轨 `role="toolbar"` + `aria-label="Canvas toolbar"` + `@[12,304] 48×398` r12 + 9 枚钮
+6. 9 个 testid 各命中 1 次（含「`canvas-panel-launcher` 恰好 1 次」这条钉死 26.6-1）
+
+颜色断言一律经 **canvas 像素归一**（填一个点读回 RGBA），
+`oklab()` / `rgba()` 两种记法都能比 —— 这是本项目的老坑，见批 810 文件头。
+
+**反向测试**：把 `radius != 12` 改成 `!= 99`、`role != "toolbar"` 改成
+`!= "NOT-toolbar"`，重跑得 3 项失败、退出码 1。断言确实有牙，
+不是恒真。
+
+回归：794(58) / 796(60) / 801(10) / 802(15) / 800(17) / 810-dock /
+811-zoommenu(51) / 812-nodechrome(46) / 813-nodetitle(45) / batch96 全 PASS。
+`tsc` 在本批涉及文件上零报错。
+
+取证：`docs/research/jimeng-canvas-batch816-2026-10-03/`
+（`source-bottom.png` / `clone-bottom.png` 底部区域对照、
+`source-topright-zoom.png` 顶栏右簇、`source-*-radius-*.png` 圆角像素图、
+`census-source.json` / `census-clone.json` 普查原始读数）
+
+### 26.9 下一批候选（已定位，未实施）
+
+**源站首屏底部挂着一整条时间线面板，复刻整层没有**。§26.1 普查发现源站有
+4 个复刻完全没有的控件：
+
+| 控件 | 源站几何 @1512×950 |
+|---|---|
+| `添加素材到时间线` | 1113×**84** @[229,518] r6 `white/4`，实为一个虚线投放区 |
+| `静音` | 42×42 @[169,539] r6，testid `timeline-mute-button` |
+| `导出时间线` | 42×42 @[1169,431] r8 |
+| `全屏编辑` | 126×42 @[1217,451] r8 |
+
+未取证的部分（下一批要补）：这块面板的壳体（背景/圆角/上边界）、
+它与左轨 48×398 的**避让关系**（面板 y 431..622 与左轨 y 304..702 在 y 上
+重叠但 x 不重叠，源站是怎么摆的）、以及面板在**空项目**下的空态。

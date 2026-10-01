@@ -58,7 +58,7 @@ PROBE = """() => {
                 radius: parseFloat(s.borderTopLeftRadius) || 0,
                 bgAlpha: alpha(s.backgroundColor), rawBg: s.backgroundColor };
   }
-  const z = document.querySelector('[data-testid="dock-zoom"]');
+  const z = document.querySelector('[data-testid="canvas-zoom-percent"]');
   out['zoom'] = z ? { radius: parseFloat(getComputedStyle(z).borderTopLeftRadius) || 0,
                       rect: (() => { const r = z.getBoundingClientRect();
                         return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)]; })() } : null;

@@ -33,6 +33,8 @@ export function JimengBottomDock() {
         <button
           type="button"
           aria-label="选择工具"
+          // Batch 816 SOURCE_FACT: testid `canvas-pointer-tool-toggle`
+          data-testid="canvas-pointer-tool-toggle"
           onClick={() => setToolActive("select")}
           // Batch 810 (SOURCE_FACT 2026-10-03 重测 @1512): 三枚 28×28 图标钮
           // 圆角 **8px**（此前 rounded-md = 6px）；选中底色 **white/8**
@@ -48,7 +50,7 @@ export function JimengBottomDock() {
         <button
           type="button"
           aria-label="小地图"
-          data-testid="dock-minimap"
+          data-testid="canvas-display-toggle-minimap"
           onClick={() => setMinimapOpen(!minimapOpen)}
           className={`flex size-7 items-center justify-center rounded-lg ${
             minimapOpen ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
@@ -60,7 +62,7 @@ export function JimengBottomDock() {
         <button
           type="button"
           aria-label="显示连线"
-          data-testid="dock-edges"
+          data-testid="canvas-display-toggle-connections"
           onClick={() => setEdgesVisible(!edgesVisible)}
           className={`flex size-7 items-center justify-center rounded-lg ${
             edgesVisible ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
@@ -73,7 +75,7 @@ export function JimengBottomDock() {
           type="button"
           // Batch 796 (SOURCE_FACT): 无障碍名逐字 = "Zoom options, {n}%"
           aria-label={`Zoom options, ${zoomPercent}%`}
-          data-testid="dock-zoom"
+          data-testid="canvas-zoom-percent"
           onClick={() => setZoomMenuOpen((v) => !v)}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"
         >

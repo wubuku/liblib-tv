@@ -161,7 +161,7 @@ def main() -> None:
         page.wait_for_timeout(2500)
 
         # —— 缩放归一化：先归到 100%
-        page.locator('[data-testid="dock-zoom"]').first.focus()
+        page.locator('[data-testid="canvas-zoom-percent"]').first.focus()
         page.keyboard.press("Meta+1")
         page.wait_for_timeout(1200)
 

@@ -38,6 +38,8 @@ export function JimengAiButton() {
         <button
           type="button"
           aria-label="与 AI 对话"
+          // Batch 816 SOURCE_FACT: testid `canvas-sidecar-launcher`
+          data-testid="canvas-sidecar-launcher"
           onClick={() => setAiDrawerOpen(true)}
           className="relative z-[1] inline-flex h-[34px] w-[118px] items-center justify-center gap-1 whitespace-nowrap rounded-[20px] text-[13px] font-medium text-white"
         >

@@ -140,13 +140,13 @@ def wait_server(pw, tries: int = 12) -> "Page":  # type: ignore[name-defined]
     browser = pw.chromium.launch()
     page = browser.new_page(viewport={"width": 1512, "height": 950})
     page.goto(URL, wait_until="domcontentloaded")
-    page.wait_for_selector('[data-testid="dock-zoom"]', timeout=45000)
+    page.wait_for_selector('[data-testid="canvas-zoom-percent"]', timeout=45000)
     page.wait_for_timeout(2500)
     return page
 
 
 def open_menu(page) -> None:
-    page.locator('[data-testid="dock-zoom"]').first.click()
+    page.locator('[data-testid="canvas-zoom-percent"]').first.click()
     page.wait_for_selector('[role="menu"]', timeout=10000)
     page.wait_for_timeout(500)
 
@@ -379,7 +379,7 @@ def main() -> None:
         print("\n[6] 功能：新补的两枚必须真接 xyflow（1.2 步长），非空壳")
         close_menu(page)
         page.evaluate(
-            """() => { const b=document.querySelector('[data-testid="dock-zoom"]');
+            """() => { const b=document.querySelector('[data-testid="canvas-zoom-percent"]');
                        b.focus(); }"""
         )
         z0 = zoom_of(page)
@@ -404,7 +404,7 @@ def main() -> None:
         page.wait_for_timeout(1000)
         z50 = zoom_of(page)
         check(math.isclose(z50, 50, abs_tol=0.6), f"点「缩放至50%」→ {z50}%")
-        dock = page.locator('[data-testid="dock-zoom"]').first.inner_text().strip()
+        dock = page.locator('[data-testid="canvas-zoom-percent"]').first.inner_text().strip()
         check(dock.startswith("50%"), f"dock 读数同步为 50%（实得 {dock!r}）")
 
         print("\n[8] 选中节点后「缩放至选中项」解禁")

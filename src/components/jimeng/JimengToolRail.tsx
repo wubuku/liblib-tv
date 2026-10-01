@@ -162,8 +162,19 @@ export function JimengToolRail() {
   return (
     <aside className="pointer-events-none absolute bottom-4 left-3 top-[72px] z-30 flex items-center">
       <div
+        /* Batch 816 SOURCE_FACT (2026-10-04 登录态 @1512×950):
+           源站这层壳带 **role="toolbar" + aria-label="Canvas toolbar"**，
+           testid `canvas-fixed-toolbar`。复刻此前是纯 div —— 屏幕阅读器用户
+           进到画布时读到的只是一堆无归属的图标按钮，读不到"这是一组工具"。
+           几何与配色本就逐项相同（@[12,304] 48×398 r12 bg rgb(32,32,32)
+           各 9 枚钮），所以本批只补语义与锚点，不动任何样式。
+           CLONE_DECISION：aria-label 逐字沿用源站英文 "Canvas toolbar"
+           —— 源站其它 chrome 锚点（Canvas title / Canvas node summary /
+           Zoom options）本来就是英文，逐字对齐比自造中文更一致。 */
+        role="toolbar"
+        aria-label="Canvas toolbar"
         className="jimeng-tool-rail group pointer-events-auto flex w-12 flex-col items-center gap-0.5 p-1"
-        data-testid="tool-rail"
+        data-testid="canvas-fixed-toolbar"
       >
         {RAIL_ITEMS.map(({ icon: Icon, label, beta, insert, separatorBefore }) => (
           <Fragment key={label}>

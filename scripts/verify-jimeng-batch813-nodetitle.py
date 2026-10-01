@@ -110,7 +110,7 @@ def main() -> None:
         page.goto(URL, wait_until="domcontentloaded")
         page.wait_for_selector(".react-flow__node", timeout=45000)
         page.wait_for_timeout(2500)
-        page.locator('[data-testid="dock-zoom"]').first.focus()
+        page.locator('[data-testid="canvas-zoom-percent"]').first.focus()
         page.keyboard.press("Meta+1")
         page.wait_for_timeout(1200)
 

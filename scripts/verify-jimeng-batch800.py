@@ -160,7 +160,7 @@ def main() -> None:
 
         # ── 切到 100%：点距应回到 18 ──
         print("— 切到 100%（验证点距随 zoom 变化）—")
-        page.locator('[data-testid="dock-zoom"]').click()
+        page.locator('[data-testid="canvas-zoom-percent"]').click()
         page.wait_for_timeout(500)
         page.locator('[role="menuitem"]', has_text="缩放至100%").click()
         page.wait_for_timeout(1200)

@@ -39,7 +39,7 @@ def main() -> None:
             page.wait_for_timeout(400)
 
         # ── zoom menu ──
-        page.locator('[data-testid="dock-zoom"]').click()
+        page.locator('[data-testid="canvas-zoom-percent"]').click()
         page.wait_for_timeout(600)
         zm = page.evaluate(
             """() => {

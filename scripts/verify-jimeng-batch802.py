@@ -69,7 +69,7 @@ def main() -> None:
         check("默认不显示小地图面板", page.locator(PANEL).count() == 0,
               f"count={page.locator(PANEL).count()}")
 
-        page.locator('[data-testid="dock-minimap"]').click()
+        page.locator('[data-testid="canvas-display-toggle-minimap"]').click()
         page.wait_for_timeout(1000)
 
         panel = page.locator(PANEL)
@@ -120,7 +120,7 @@ def main() -> None:
             page.screenshot(path=str(REFERENCE_DIR / "jimeng-clone-batch802-minimap-1680.png"))
 
         # ── 收起 ──
-        page.locator('[data-testid="dock-minimap"]').click()
+        page.locator('[data-testid="canvas-display-toggle-minimap"]').click()
         page.wait_for_timeout(800)
         check("再点一次可收起", page.locator(PANEL).count() == 0,
               f"count={page.locator(PANEL).count()}")

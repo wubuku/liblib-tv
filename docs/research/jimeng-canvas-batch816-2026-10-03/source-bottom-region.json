@@ -1,0 +1,197 @@
+[
+ {
+  "aria": "导出时间线",
+  "testid": "",
+  "txt": "",
+  "box": [
+   1169,
+   431,
+   42,
+   42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "全屏编辑",
+  "testid": "",
+  "txt": "全屏编辑",
+  "box": [
+   1217,
+   431,
+   126,
+   42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "音频",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   434,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "时间线",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   476,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "主体",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   518,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "添加素材到时间线",
+  "testid": "",
+  "txt": "添加素材到时间线",
+  "box": [
+   229,
+   518,
+   1113,
+   84
+  ],
+  "radius": "6px",
+  "bg": "rgba(255, 255, 255, 0.04)"
+ },
+ {
+  "aria": "静音",
+  "testid": "timeline-mute-button",
+  "txt": "",
+  "box": [
+   169,
+   539,
+   42,
+   42
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "导演台",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   560,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "资产库",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   616,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "上传",
+  "testid": "",
+  "txt": "",
+  "box": [
+   16,
+   658,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "选择工具",
+  "testid": "canvas-pointer-tool-toggle",
+  "txt": "",
+  "box": [
+   16,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(255, 255, 255, 0.08)"
+ },
+ {
+  "aria": "小地图",
+  "testid": "canvas-display-toggle-minimap",
+  "txt": "",
+  "box": [
+   48,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "显示连线",
+  "testid": "canvas-display-toggle-connections",
+  "txt": "",
+  "box": [
+   80,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(255, 255, 255, 0.08)"
+ },
+ {
+  "aria": "Zoom options, 100%",
+  "testid": "canvas-zoom-percent",
+  "txt": "100%",
+  "box": [
+   124,
+   903,
+   48,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "与 AI 对话",
+  "testid": "canvas-sidecar-launcher",
+  "txt": "",
+  "box": [
+   1381,
+   903,
+   118,
+   34
+  ],
+  "radius": "20px",
+  "bg": "rgba(0, 0, 0, 0)"
+ }
+]

@@ -128,7 +128,7 @@ def main() -> None:
 
         print("— 右簇（尺寸精确；横向按右缘 + 间隙断言，右锚簇的绝对 x 是派生量）—")
         RIGHT = [
-            ('[data-testid="topbar-search"]', 28, "搜索"),
+            ('[data-testid="canvas-panel-launcher"]', 28, "搜索"),
             ('button[aria-label="生成历史"]', 28, "生成历史"),
             ('[data-testid="canvas-share-trigger"]', 60, "分享"),
             ('[data-testid="canvas-more-trigger"]', 28, "更多"),
@@ -169,7 +169,7 @@ def main() -> None:
             # 簇内 flex gap 由 16 修正为 8。
             cluster_gap = page.evaluate(
                 """() => {
-              const el = document.querySelector('[data-testid="topbar-search"]')
+              const el = document.querySelector('[data-testid="canvas-panel-launcher"]')
                 .closest('div.pointer-events-auto.flex.h-10');
               return el ? getComputedStyle(el).gap : null;
             }"""

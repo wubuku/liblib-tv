@@ -1,0 +1,495 @@
+[
+ {
+  "tag": "a",
+  "type": "",
+  "role": "",
+  "testid": "canvas-project-logo",
+  "name": "返回首页",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   12,
+   10,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-project-title-trigger",
+  "name": "Canvas title: 测试项目",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   52,
+   16,
+   68,
+   28
+  ],
+  "radius": "6px 2px 2px 6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-project-trigger",
+  "name": "项目",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   120,
+   16,
+   20,
+   28
+  ],
+  "radius": "2px 6px 6px 2px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-node-summary-trigger",
+  "name": "Canvas node summary: 节点 7",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   156,
+   16,
+   28,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-panel-launcher",
+  "name": "搜索",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1143,
+   16,
+   28,
+   28
+  ],
+  "radius": "12px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-panel-launcher",
+  "name": "生成历史",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1175,
+   16,
+   28,
+   28
+  ],
+  "radius": "12px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-share-trigger",
+  "name": "分享",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1220,
+   16,
+   60,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "更多",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1297,
+   16,
+   28,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-commerce-entry",
+  "name": "Credits: 805 · 基础会员",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1341,
+   16,
+   111,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-user-menu-trigger",
+  "name": "用户菜单",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1468,
+   16,
+   28,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "div",
+  "type": "",
+  "role": "toolbar",
+  "testid": "canvas-fixed-toolbar",
+  "name": "Canvas toolbar",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   12,
+   304,
+   48,
+   398
+  ],
+  "radius": "12px",
+  "bg": "color(srgb 0.12549 0.12549 0.12549)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "文本",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   308,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "图片",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   350,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "导出时间线",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1169,
+   361,
+   42,
+   42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "全屏编辑",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1217,
+   361,
+   126,
+   42
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "视频",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   392,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "音频",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   434,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "添加素材到时间线",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   229,
+   448,
+   1113,
+   84
+  ],
+  "radius": "6px",
+  "bg": "rgba(255, 255, 255, 0.04)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "timeline-mute-button",
+  "name": "静音",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   169,
+   469,
+   42,
+   42
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "时间线",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   476,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "主体",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   518,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "导演台",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   560,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "资产库",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   616,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "",
+  "name": "上传",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   658,
+   40,
+   40
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-pointer-tool-toggle",
+  "name": "选择工具",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   16,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(255, 255, 255, 0.08)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-display-toggle-minimap",
+  "name": "小地图",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   48,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-display-toggle-connections",
+  "name": "显示连线",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   80,
+   902,
+   28,
+   28
+  ],
+  "radius": "8px",
+  "bg": "rgba(255, 255, 255, 0.08)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-zoom-percent",
+  "name": "Zoom options, 100%",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   124,
+   903,
+   48,
+   28
+  ],
+  "radius": "6px",
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "tag": "button",
+  "type": "button",
+  "role": "",
+  "testid": "canvas-sidecar-launcher",
+  "name": "与 AI 对话",
+  "nameVia": "aria-label",
+  "disabled": false,
+  "box": [
+   1381,
+   903,
+   118,
+   34
+  ],
+  "radius": "20px",
+  "bg": "rgba(0, 0, 0, 0)"
+ }
+]

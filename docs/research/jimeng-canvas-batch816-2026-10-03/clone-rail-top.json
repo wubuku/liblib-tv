@@ -1,0 +1,127 @@
+{
+ "rail": {
+  "err": "no rail"
+ },
+ "top": {
+  "pills": [
+   {
+    "aria": "Canvas title: 测试项目",
+    "testid": "canvas-project-title-trigger",
+    "txt": "测试项目",
+    "box": [
+     52,
+     16,
+     68,
+     28
+    ],
+    "radius": "6px 2px 2px 6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "项目",
+    "testid": "canvas-project-trigger",
+    "txt": "",
+    "box": [
+     120,
+     16,
+     20,
+     28
+    ],
+    "radius": "2px 6px 6px 2px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "Canvas node summary: 节点 2",
+    "testid": "canvas-node-summary-trigger",
+    "txt": "节点2",
+    "box": [
+     156,
+     16,
+     28,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "搜索",
+    "testid": "topbar-search",
+    "txt": "",
+    "box": [
+     1145,
+     16,
+     28,
+     28
+    ],
+    "radius": "3.35544e+07px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "生成历史",
+    "testid": "",
+    "txt": "",
+    "box": [
+     1177,
+     16,
+     28,
+     28
+    ],
+    "radius": "3.35544e+07px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "分享",
+    "testid": "canvas-share-trigger",
+    "txt": "分享",
+    "box": [
+     1222,
+     16,
+     60,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "更多",
+    "testid": "canvas-more-trigger",
+    "txt": "",
+    "box": [
+     1299,
+     16,
+     28,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "Credits: 745 · 基础会员",
+    "testid": "canvas-commerce-entry",
+    "txt": "745基础会员",
+    "box": [
+     1343,
+     16,
+     109,
+     28
+    ],
+    "radius": "6px",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "aria": "用户菜单",
+    "testid": "canvas-user-menu-trigger",
+    "txt": "梦",
+    "box": [
+     1468,
+     16,
+     28,
+     28
+    ],
+    "radius": "3.35544e+07px",
+    "bg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "panelLauncher": null
+ }
+}
