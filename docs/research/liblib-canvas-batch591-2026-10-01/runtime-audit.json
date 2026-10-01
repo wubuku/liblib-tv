@@ -2,9 +2,7 @@
   "batch": 591,
   "title": "时间轴工具栏对齐源站：可编辑 播放头位置/总时长、s↔ms 单位切换、控件顺序与可及名逐字",
   "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch591-2026-10-01/README.md",
-  "clone_only": [
-    "上一关键帧 / 下一关键帧 are not in the source toolbar; they stay, moved after the source-ordered prefix, because batch 36 / 42 click them by role+name"
-  ],
+  "clone_only": [],
   "not_verified": [
     "the source's duration clamp on commit — the store uses a conservative rule (positive, never before the last keyframe) and says so inline"
   ],
@@ -13,7 +11,8 @@
       "viewport": "1440x900",
       "checks": [
         "toolbar:source-prefix",
-        "toolbar:clone-only-after-prefix",
+        "toolbar:no-keyframe-nav",
+        "track-row:keyframe-nav-per-row",
         "fields:two",
         "fields:head-aria",
         "fields:duration-aria",
@@ -56,15 +55,33 @@
         "总时长",
         "切换时间单位为 ms",
         "选中角色、道具或分组后建立轨道",
-        "上一关键帧",
-        "下一关键帧",
         "预设运镜",
         "创建运动轨迹",
         "曲线编辑器",
         "轨道",
+        "移除角色01 · 陈默 · 变换轨道",
         "添加关键帧",
         "删除关键帧",
-        "时间轴缩放"
+        "时间轴缩放",
+        "时间线最小化"
+      ],
+      "track_row_nav": [
+        {
+          "row": "director-track-character-lead-transform",
+          "names": [
+            "上一关键帧",
+            "当前帧有关键帧",
+            "下一关键帧"
+          ]
+        },
+        {
+          "row": "director-track-camera-main",
+          "names": [
+            "上一关键帧",
+            "当前帧有关键帧",
+            "下一关键帧"
+          ]
+        }
       ],
       "fields_s_mode": [
         {

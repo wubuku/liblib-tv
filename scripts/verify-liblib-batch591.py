@@ -34,8 +34,11 @@ Contract asserted here:
    label/aria, and flips back;
 4. editing 总时长 commits through the store;
 5. 新建轨道 exposes the source's verbatim accessible name;
-6. 上一/下一关键帧 stay available AFTER the source-ordered prefix (they are
-   clone-only; batch 36 / 42 click them by role+name);
+6. the toolbar carries NOTHING named 上一/下一关键帧. Batch 593 measured the
+   source again and found those two buttons live in every TRACK ROW, not in
+   the toolbar — so 591's old "clone-only suffix" contract was wrong and is
+   migrated here (the buttons moved to the track rows, 36 / 42 click them
+   scoped to the selected track row);
 7. no diagnostics.
 
 NOT verified (recorded, not fabricated): what the source clamps an edited
@@ -135,11 +138,29 @@ def run_desktop(page: Page) -> dict[str, Any]:
         detail=order[: len(SOURCE_PREFIX) + 1],
     )
     check(
-        "toolbar:clone-only-after-prefix",
-        "上一关键帧" in order and "下一关键帧" in order
-        and order.index("上一关键帧") >= len(SOURCE_PREFIX)
-        and order.index("下一关键帧") >= len(SOURCE_PREFIX),
+        "toolbar:no-keyframe-nav",
+        "上一关键帧" not in order and "下一关键帧" not in order,
         detail=order,
+    )
+    # Batch 593: 关键帧导航归位到每条轨道行——逐行核对三个按钮都在。
+    row_nav = page.evaluate(
+        """() => [...document.querySelectorAll('[data-director-track-row]')].map((row) => ({
+          row: row.getAttribute('data-director-track-row'),
+          names: [...row.querySelectorAll('button')]
+            .map((b) => b.getAttribute('aria-label'))
+            .filter((n) => n && n.includes('关键帧')),
+        }))"""
+    )
+    result["track_row_nav"] = row_nav
+    check(
+        "track-row:keyframe-nav-per-row",
+        bool(row_nav)
+        and all(
+            names == ["上一关键帧", "当前帧有关键帧", "下一关键帧"]
+            or names == ["上一关键帧", "当前帧无关键帧", "下一关键帧"]
+            for names in (item["names"] for item in row_nav)
+        ),
+        detail=row_nav,
     )
 
     # 2) both readouts are editable text inputs of the measured size
@@ -272,11 +293,7 @@ def main() -> None:
             "2026-10-01 live CDP sampling of the source director desk at "
             "1920x1150 + docs/research/liblib-canvas-batch591-2026-10-01/README.md"
         ),
-        "clone_only": [
-            "上一关键帧 / 下一关键帧 are not in the source toolbar; they stay, "
-            "moved after the source-ordered prefix, because batch 36 / 42 "
-            "click them by role+name",
-        ],
+        "clone_only": [],
         "not_verified": [
             "the source's duration clamp on commit — the store uses a "
             "conservative rule (positive, never before the last keyframe) "

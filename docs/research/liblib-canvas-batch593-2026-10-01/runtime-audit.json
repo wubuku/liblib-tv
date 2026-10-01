@@ -1,0 +1,960 @@
+{
+  "batch": 593,
+  "title": "时间轴左列两级结构：对象行（收起属性/绘制轨迹）+ 轨道行（40/36/78/1fr 栅格、‹◆›、x,y,z 读数）",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch593-2026-10-01/README.md",
+  "source_facts": {
+    "timeline_root": [
+      0,
+      968,
+      1920,
+      182
+    ],
+    "panel": [
+      0,
+      1020,
+      1920,
+      130
+    ],
+    "strip": [
+      0,
+      1021,
+      1920,
+      36
+    ],
+    "left_column_px": 320,
+    "object_row": {
+      "box": [
+        0,
+        1057,
+        320,
+        32
+      ],
+      "grid": "16px minmax(0,1fr) 220px",
+      "toggle": "20x20 button aria-expanded, chevron rotate-90/0, no title",
+      "draw_trail": "86x24 button aria-pressed=false"
+    },
+    "track_row": {
+      "box": [
+        0,
+        1089,
+        320,
+        32
+      ],
+      "grid": "40px 36px 78px minmax(0,1fr)",
+      "plus": "40px aria-hidden decorative plus, #363636",
+      "nav": [
+        "上一关键帧 (disabled without an earlier keyframe)",
+        "当前帧有关键帧 / 当前帧无关键帧, aria-pressed",
+        "下一关键帧 (disabled without a later keyframe)"
+      ],
+      "value": "3.3,2.2,10 (plain triple, not fixed decimals)"
+    },
+    "nav_at_zero": [
+      {
+        "disabled": true
+      },
+      {
+        "aria": "当前帧有关键帧",
+        "pressed": "true"
+      },
+      {
+        "disabled": true
+      }
+    ],
+    "nav_at_977ms": [
+      {
+        "disabled": false
+      },
+      {
+        "aria": "当前帧无关键帧",
+        "pressed": "false"
+      },
+      {
+        "disabled": true
+      }
+    ]
+  },
+  "clone_only": [
+    "one track per object (the source splits 位置 / 旋转 / 缩放 into separate tracks) — splitting them would require mutating the user's real project to observe, so it stays recorded, not done",
+    "the track-row name column prints a two-character kind name (变换 / 机位 / 姿势 / 分组) with the full label on title, because the source's 36px column holds two-character property names",
+    "删除轨道 lives in the toolbar; the source's 4-column track row has no room for it"
+  ],
+  "not_verified": [
+    "whether the source's 收起属性 is per-object or global — the source has a single object, so it is treated as per-object inline",
+    "the source's per-property track split and its value formatting for rotation / scale tracks"
+  ],
+  "migrated_contracts": [
+    "batch 591: 上一/下一关键帧 are no longer a clone-only toolbar suffix — batch 593 re-measured the source and found them in every track row, so 591 now asserts their absence from the toolbar and their presence per track row",
+    "batch 36 / 42: scope the keyframe nav buttons to the selected track row (role+name now matches one button per track)",
+    "batch 37: click the track name (div[role=button]) instead of the row's first <button>, which is 上一关键帧 now"
+  ],
+  "results": [
+    {
+      "viewport": "1920x1150",
+      "checks": [
+        {
+          "name": "toolbar:36px",
+          "ok": true,
+          "detail": {
+            "h": 36,
+            "order": [
+              "播放",
+              "自动帧",
+              "循环播放",
+              "播放头位置",
+              "总时长",
+              "切换时间单位为 ms",
+              "选中角色、道具或分组后建立轨道",
+              "预设运镜",
+              "创建运动轨迹",
+              "曲线编辑器",
+              "轨道",
+              "移除角色01 · 陈默 · 变换轨道",
+              "添加关键帧",
+              "删除关键帧",
+              "时间轴缩放",
+              "时间线最小化"
+            ]
+          }
+        },
+        {
+          "name": "toolbar:source-prefix",
+          "ok": true,
+          "detail": [
+            "播放",
+            "自动帧",
+            "循环播放",
+            "播放头位置",
+            "总时长",
+            "切换时间单位为 ms",
+            "选中角色、道具或分组后建立轨道",
+            "预设运镜",
+            "创建运动轨迹"
+          ]
+        },
+        {
+          "name": "toolbar:no-keyframe-nav",
+          "ok": true,
+          "detail": [
+            "播放",
+            "自动帧",
+            "循环播放",
+            "播放头位置",
+            "总时长",
+            "切换时间单位为 ms",
+            "选中角色、道具或分组后建立轨道",
+            "预设运镜",
+            "创建运动轨迹",
+            "曲线编辑器",
+            "轨道",
+            "移除角色01 · 陈默 · 变换轨道",
+            "添加关键帧",
+            "删除关键帧",
+            "时间轴缩放",
+            "时间线最小化"
+          ]
+        },
+        {
+          "name": "track-list:320px",
+          "ok": true,
+          "detail": 320
+        },
+        {
+          "name": "object-row:exists",
+          "ok": true,
+          "detail": [
+            {
+              "objectId": "director-character-lead",
+              "h": 32,
+              "columns": "16px minmax(0px, 1fr) 220px",
+              "toggle": {
+                "w": 20,
+                "h": 20
+              },
+              "toggleAria": "收起属性",
+              "toggleExpanded": "true",
+              "toggleTitle": null,
+              "name": "角色01 · 陈默",
+              "nameTitle": "角色01 · 陈默",
+              "drawTrail": null
+            },
+            {
+              "objectId": "director-camera-main",
+              "h": 32,
+              "columns": "16px minmax(0px, 1fr) 220px",
+              "toggle": {
+                "w": 20,
+                "h": 20
+              },
+              "toggleAria": "收起属性",
+              "toggleExpanded": "true",
+              "toggleTitle": null,
+              "name": "机位01 · 对峙中景",
+              "nameTitle": "机位01 · 对峙中景",
+              "drawTrail": {
+                "tag": "button",
+                "w": 86,
+                "h": 24,
+                "aria": "绘制轨迹",
+                "pressed": "false"
+              }
+            }
+          ]
+        },
+        {
+          "name": "object-row:32px",
+          "ok": true,
+          "detail": [
+            32,
+            32
+          ]
+        },
+        {
+          "name": "object-row:source-columns",
+          "ok": true,
+          "detail": [
+            "16px minmax(0px, 1fr) 220px",
+            "16px minmax(0px, 1fr) 220px"
+          ]
+        },
+        {
+          "name": "object-row:toggle",
+          "ok": true,
+          "detail": [
+            {
+              "objectId": "director-character-lead",
+              "h": 32,
+              "columns": "16px minmax(0px, 1fr) 220px",
+              "toggle": {
+                "w": 20,
+                "h": 20
+              },
+              "toggleAria": "收起属性",
+              "toggleExpanded": "true",
+              "toggleTitle": null,
+              "name": "角色01 · 陈默",
+              "nameTitle": "角色01 · 陈默",
+              "drawTrail": null
+            },
+            {
+              "objectId": "director-camera-main",
+              "h": 32,
+              "columns": "16px minmax(0px, 1fr) 220px",
+              "toggle": {
+                "w": 20,
+                "h": 20
+              },
+              "toggleAria": "收起属性",
+              "toggleExpanded": "true",
+              "toggleTitle": null,
+              "name": "机位01 · 对峙中景",
+              "nameTitle": "机位01 · 对峙中景",
+              "drawTrail": {
+                "tag": "button",
+                "w": 86,
+                "h": 24,
+                "aria": "绘制轨迹",
+                "pressed": "false"
+              }
+            }
+          ]
+        },
+        {
+          "name": "object-row:draw-trail-is-button",
+          "ok": true,
+          "detail": [
+            {
+              "tag": "button",
+              "w": 86,
+              "h": 24,
+              "aria": "绘制轨迹",
+              "pressed": "false"
+            }
+          ]
+        },
+        {
+          "name": "object-row:name-has-title",
+          "ok": true,
+          "detail": [
+            [
+              "角色01 · 陈默",
+              "角色01 · 陈默"
+            ],
+            [
+              "机位01 · 对峙中景",
+              "机位01 · 对峙中景"
+            ]
+          ]
+        },
+        {
+          "name": "track-row:exists",
+          "ok": true,
+          "detail": [
+            {
+              "trackId": "director-track-character-lead-transform",
+              "h": 32,
+              "columns": "40px 36px 78px minmax(0px, 1fr)",
+              "plus": {
+                "hidden": "true",
+                "w": 40
+              },
+              "name": "变换",
+              "nameTitle": "角色01 · 陈默 · 变换",
+              "nav": [
+                {
+                  "aria": "上一关键帧",
+                  "pressed": null,
+                  "disabled": true,
+                  "w": 24,
+                  "h": 24
+                },
+                {
+                  "aria": "当前帧有关键帧",
+                  "pressed": "true",
+                  "disabled": false,
+                  "w": 24,
+                  "h": 24
+                },
+                {
+                  "aria": "下一关键帧",
+                  "pressed": null,
+                  "disabled": false,
+                  "w": 24,
+                  "h": 24
+                }
+              ],
+              "value": "-1.25,0,0.2"
+            },
+            {
+              "trackId": "director-track-camera-main",
+              "h": 32,
+              "columns": "40px 36px 78px minmax(0px, 1fr)",
+              "plus": {
+                "hidden": "true",
+                "w": 40
+              },
+              "name": "机位",
+              "nameTitle": "机位01 · 对峙中景 · 机位",
+              "nav": [
+                {
+                  "aria": "上一关键帧",
+                  "pressed": null,
+                  "disabled": true,
+                  "w": 24,
+                  "h": 24
+                },
+                {
+                  "aria": "当前帧有关键帧",
+                  "pressed": "true",
+                  "disabled": false,
+                  "w": 24,
+                  "h": 24
+                },
+                {
+                  "aria": "下一关键帧",
+                  "pressed": null,
+                  "disabled": false,
+                  "w": 24,
+                  "h": 24
+                }
+              ],
+              "value": "4.8,2.65,6.9"
+            }
+          ]
+        },
+        {
+          "name": "track-row:32px",
+          "ok": true,
+          "detail": [
+            32,
+            32
+          ]
+        },
+        {
+          "name": "track-row:source-columns",
+          "ok": true,
+          "detail": [
+            "40px 36px 78px minmax(0px, 1fr)",
+            "40px 36px 78px minmax(0px, 1fr)"
+          ]
+        },
+        {
+          "name": "track-row:decorative-plus",
+          "ok": true,
+          "detail": [
+            {
+              "hidden": "true",
+              "w": 40
+            },
+            {
+              "hidden": "true",
+              "w": 40
+            }
+          ]
+        },
+        {
+          "name": "track-row:keyframe-nav",
+          "ok": true,
+          "detail": [
+            [
+              {
+                "aria": "上一关键帧",
+                "pressed": null,
+                "disabled": true,
+                "w": 24,
+                "h": 24
+              },
+              {
+                "aria": "当前帧有关键帧",
+                "pressed": "true",
+                "disabled": false,
+                "w": 24,
+                "h": 24
+              },
+              {
+                "aria": "下一关键帧",
+                "pressed": null,
+                "disabled": false,
+                "w": 24,
+                "h": 24
+              }
+            ],
+            [
+              {
+                "aria": "上一关键帧",
+                "pressed": null,
+                "disabled": true,
+                "w": 24,
+                "h": 24
+              },
+              {
+                "aria": "当前帧有关键帧",
+                "pressed": "true",
+                "disabled": false,
+                "w": 24,
+                "h": 24
+              },
+              {
+                "aria": "下一关键帧",
+                "pressed": null,
+                "disabled": false,
+                "w": 24,
+                "h": 24
+              }
+            ]
+          ]
+        },
+        {
+          "name": "track-row:value-triple",
+          "ok": true,
+          "detail": [
+            "-1.25,0,0.2",
+            "4.8,2.65,6.9"
+          ]
+        },
+        {
+          "name": "keyframe-nav:at-zero",
+          "ok": true,
+          "detail": {
+            "currentTime": 0,
+            "keyframes": [
+              0,
+              4,
+              8
+            ],
+            "nav": [
+              {
+                "aria": "上一关键帧",
+                "pressed": null,
+                "disabled": true
+              },
+              {
+                "aria": "当前帧有关键帧",
+                "pressed": "true",
+                "disabled": false
+              },
+              {
+                "aria": "下一关键帧",
+                "pressed": null,
+                "disabled": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "keyframe-nav:between-keyframes",
+          "ok": true,
+          "detail": {
+            "currentTime": 1.234,
+            "keyframes": [
+              0,
+              4,
+              8
+            ],
+            "nav": [
+              {
+                "aria": "上一关键帧",
+                "pressed": null,
+                "disabled": false
+              },
+              {
+                "aria": "当前帧无关键帧",
+                "pressed": "false",
+                "disabled": false
+              },
+              {
+                "aria": "下一关键帧",
+                "pressed": null,
+                "disabled": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "keyframe-nav:on-second-keyframe",
+          "ok": true,
+          "detail": {
+            "currentTime": 4,
+            "keyframes": [
+              0,
+              4,
+              8
+            ],
+            "nav": [
+              {
+                "aria": "上一关键帧",
+                "pressed": null,
+                "disabled": false
+              },
+              {
+                "aria": "当前帧有关键帧",
+                "pressed": "true",
+                "disabled": false
+              },
+              {
+                "aria": "下一关键帧",
+                "pressed": null,
+                "disabled": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "keyframe-nav:toggle-off",
+          "ok": true,
+          "detail": [
+            {
+              "aria": "上一关键帧",
+              "pressed": null,
+              "disabled": true
+            },
+            {
+              "aria": "当前帧无关键帧",
+              "pressed": "false",
+              "disabled": false
+            },
+            {
+              "aria": "下一关键帧",
+              "pressed": null,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "name": "keyframe-nav:toggle-on",
+          "ok": true,
+          "detail": [
+            {
+              "aria": "上一关键帧",
+              "pressed": null,
+              "disabled": true
+            },
+            {
+              "aria": "当前帧有关键帧",
+              "pressed": "true",
+              "disabled": false
+            },
+            {
+              "aria": "下一关键帧",
+              "pressed": null,
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "name": "collapse:hides-own-track-rows",
+          "ok": true,
+          "detail": {
+            "before": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 2,
+              "mine": 1
+            },
+            "after": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 1,
+              "mine": 0,
+              "toggle": {
+                "aria": "展开属性",
+                "expanded": "false"
+              }
+            }
+          }
+        },
+        {
+          "name": "collapse:keeps-other-objects",
+          "ok": true,
+          "detail": {
+            "before": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 2,
+              "mine": 1
+            },
+            "after": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 1,
+              "mine": 0,
+              "toggle": {
+                "aria": "展开属性",
+                "expanded": "false"
+              }
+            }
+          }
+        },
+        {
+          "name": "collapse:keeps-object-row",
+          "ok": true,
+          "detail": {
+            "before": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 2,
+              "mine": 1
+            },
+            "after": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 1,
+              "mine": 0,
+              "toggle": {
+                "aria": "展开属性",
+                "expanded": "false"
+              }
+            }
+          }
+        },
+        {
+          "name": "collapse:keeps-timeline-height",
+          "ok": true,
+          "detail": {
+            "before": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 2,
+              "mine": 1
+            },
+            "after": {
+              "timeline": 182,
+              "objects": 2,
+              "tracks": 1,
+              "mine": 0,
+              "toggle": {
+                "aria": "展开属性",
+                "expanded": "false"
+              }
+            }
+          }
+        },
+        {
+          "name": "collapse:renames-toggle",
+          "ok": true,
+          "detail": {
+            "aria": "展开属性",
+            "expanded": "false"
+          }
+        },
+        {
+          "name": "collapse:restores",
+          "ok": true,
+          "detail": {
+            "mine": 1,
+            "toggle": "收起属性"
+          }
+        },
+        {
+          "name": "no-diagnostics",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "toolbar": {
+        "h": 36,
+        "order": [
+          "播放",
+          "自动帧",
+          "循环播放",
+          "播放头位置",
+          "总时长",
+          "切换时间单位为 ms",
+          "选中角色、道具或分组后建立轨道",
+          "预设运镜",
+          "创建运动轨迹",
+          "曲线编辑器",
+          "轨道",
+          "移除角色01 · 陈默 · 变换轨道",
+          "添加关键帧",
+          "删除关键帧",
+          "时间轴缩放",
+          "时间线最小化"
+        ]
+      },
+      "object_rows": [
+        {
+          "objectId": "director-character-lead",
+          "h": 32,
+          "columns": "16px minmax(0px, 1fr) 220px",
+          "toggle": {
+            "w": 20,
+            "h": 20
+          },
+          "toggleAria": "收起属性",
+          "toggleExpanded": "true",
+          "toggleTitle": null,
+          "name": "角色01 · 陈默",
+          "nameTitle": "角色01 · 陈默",
+          "drawTrail": null
+        },
+        {
+          "objectId": "director-camera-main",
+          "h": 32,
+          "columns": "16px minmax(0px, 1fr) 220px",
+          "toggle": {
+            "w": 20,
+            "h": 20
+          },
+          "toggleAria": "收起属性",
+          "toggleExpanded": "true",
+          "toggleTitle": null,
+          "name": "机位01 · 对峙中景",
+          "nameTitle": "机位01 · 对峙中景",
+          "drawTrail": {
+            "tag": "button",
+            "w": 86,
+            "h": 24,
+            "aria": "绘制轨迹",
+            "pressed": "false"
+          }
+        }
+      ],
+      "track_rows": [
+        {
+          "trackId": "director-track-character-lead-transform",
+          "h": 32,
+          "columns": "40px 36px 78px minmax(0px, 1fr)",
+          "plus": {
+            "hidden": "true",
+            "w": 40
+          },
+          "name": "变换",
+          "nameTitle": "角色01 · 陈默 · 变换",
+          "nav": [
+            {
+              "aria": "上一关键帧",
+              "pressed": null,
+              "disabled": true,
+              "w": 24,
+              "h": 24
+            },
+            {
+              "aria": "当前帧有关键帧",
+              "pressed": "true",
+              "disabled": false,
+              "w": 24,
+              "h": 24
+            },
+            {
+              "aria": "下一关键帧",
+              "pressed": null,
+              "disabled": false,
+              "w": 24,
+              "h": 24
+            }
+          ],
+          "value": "-1.25,0,0.2"
+        },
+        {
+          "trackId": "director-track-camera-main",
+          "h": 32,
+          "columns": "40px 36px 78px minmax(0px, 1fr)",
+          "plus": {
+            "hidden": "true",
+            "w": 40
+          },
+          "name": "机位",
+          "nameTitle": "机位01 · 对峙中景 · 机位",
+          "nav": [
+            {
+              "aria": "上一关键帧",
+              "pressed": null,
+              "disabled": true,
+              "w": 24,
+              "h": 24
+            },
+            {
+              "aria": "当前帧有关键帧",
+              "pressed": "true",
+              "disabled": false,
+              "w": 24,
+              "h": 24
+            },
+            {
+              "aria": "下一关键帧",
+              "pressed": null,
+              "disabled": false,
+              "w": 24,
+              "h": 24
+            }
+          ],
+          "value": "4.8,2.65,6.9"
+        }
+      ],
+      "at-zero": {
+        "currentTime": 0,
+        "keyframes": [
+          0,
+          4,
+          8
+        ],
+        "nav": [
+          {
+            "aria": "上一关键帧",
+            "pressed": null,
+            "disabled": true
+          },
+          {
+            "aria": "当前帧有关键帧",
+            "pressed": "true",
+            "disabled": false
+          },
+          {
+            "aria": "下一关键帧",
+            "pressed": null,
+            "disabled": false
+          }
+        ]
+      },
+      "between-keyframes": {
+        "currentTime": 1.234,
+        "keyframes": [
+          0,
+          4,
+          8
+        ],
+        "nav": [
+          {
+            "aria": "上一关键帧",
+            "pressed": null,
+            "disabled": false
+          },
+          {
+            "aria": "当前帧无关键帧",
+            "pressed": "false",
+            "disabled": false
+          },
+          {
+            "aria": "下一关键帧",
+            "pressed": null,
+            "disabled": false
+          }
+        ]
+      },
+      "on-second-keyframe": {
+        "currentTime": 4,
+        "keyframes": [
+          0,
+          4,
+          8
+        ],
+        "nav": [
+          {
+            "aria": "上一关键帧",
+            "pressed": null,
+            "disabled": false
+          },
+          {
+            "aria": "当前帧有关键帧",
+            "pressed": "true",
+            "disabled": false
+          },
+          {
+            "aria": "下一关键帧",
+            "pressed": null,
+            "disabled": false
+          }
+        ]
+      },
+      "nav_after_remove": [
+        {
+          "aria": "上一关键帧",
+          "pressed": null,
+          "disabled": true
+        },
+        {
+          "aria": "当前帧无关键帧",
+          "pressed": "false",
+          "disabled": false
+        },
+        {
+          "aria": "下一关键帧",
+          "pressed": null,
+          "disabled": false
+        }
+      ],
+      "nav_after_add": [
+        {
+          "aria": "上一关键帧",
+          "pressed": null,
+          "disabled": true
+        },
+        {
+          "aria": "当前帧有关键帧",
+          "pressed": "true",
+          "disabled": false
+        },
+        {
+          "aria": "下一关键帧",
+          "pressed": null,
+          "disabled": false
+        }
+      ],
+      "collapse": {
+        "target": "director-character-lead",
+        "before": {
+          "timeline": 182,
+          "objects": 2,
+          "tracks": 2,
+          "mine": 1
+        },
+        "after": {
+          "timeline": 182,
+          "objects": 2,
+          "tracks": 1,
+          "mine": 0,
+          "toggle": {
+            "aria": "展开属性",
+            "expanded": "false"
+          }
+        }
+      },
+      "restore": {
+        "mine": 1,
+        "toggle": "收起属性"
+      },
+      "diagnostics": []
+    }
+  ]
+}

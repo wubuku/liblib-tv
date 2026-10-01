@@ -93,7 +93,11 @@ export function DirectorScenePromptBar() {
         aria-live="polite"
         className={cn(
           "pointer-events-auto rounded-full bg-black/60 px-2.5 py-1 text-[11px] text-[#9ddbb9] transition-opacity",
-          submitted ? "opacity-100" : "opacity-0",
+          // 隐藏态必须同时关掉命中：opacity-0 的元素仍有盒模型，
+          // pointer-events-auto 会把底下的视口工具条按钮（截帧）整条吞掉
+          // （基线实测：1440x900 下状态条 163x25 @(845,668) 正好盖住
+          // [data-director-capture] 的中心）。
+          submitted ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
         场景描述已记录（本地草稿）

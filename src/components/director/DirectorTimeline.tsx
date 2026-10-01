@@ -6,31 +6,29 @@ import {
   Camera,
   ChartSpline,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   ChevronUp,
   Circle,
   DiamondPlus,
-  Info,
   Minus,
   Move3D,
   Pause,
   Plus,
   PenTool,
-  PersonStanding,
   Pencil,
   Play,
   RectangleHorizontal,
   Repeat2,
   Route,
-  SkipBack,
-  SkipForward,
   Trash2,
   Waypoints,
-  Users,
   X,
   ZoomIn,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
+import type { DirectorTimelineTrack } from "@/store/directorStore";
 import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
 import {
   DIRECTOR_CAMERA_MOTION_PRESETS,
@@ -47,6 +45,74 @@ function formatTimelineTime(seconds: number): string {
 }
 
 type DirectorTimeUnit = "s" | "ms";
+
+// Batch 593（源站 2026-10-01 实测，1920×1150，导演视角）：
+// 轨道行第 3 列是三个 24×24 按钮，可及名与禁用规则逐字如下——
+//   ‹ `上一关键帧`  本轨道在播放头之前没有关键帧时 disabled
+//   ◆ `当前帧有关键帧`（aria-pressed=true）/ `当前帧无关键帧`（false）
+//   › `下一关键帧`  本轨道在播放头之后没有关键帧时 disabled
+// 关键帧在播放头 0 时：‹› 双禁用、◆ pressed；播放头移到 977ms 时 ‹ 可用、
+// › 仍禁用、◆ 变为「当前帧无关键帧」——证明源站的 seek 范围是**本轨道**
+// 而非全局时间轴。
+const DIRECTOR_KEYFRAME_EPSILON = 1e-3;
+
+function directorTrackKeyframeState(
+  track: DirectorTimelineTrack,
+  currentTime: number,
+) {
+  const times = track.keyframes
+    .map((keyframe) => keyframe.time)
+    .sort((a, b) => a - b);
+  const exact = times.find(
+    (time) => Math.abs(time - currentTime) <= DIRECTOR_KEYFRAME_EPSILON,
+  );
+  return {
+    exact,
+    earlier: [...times]
+      .reverse()
+      .find((time) => time < currentTime - DIRECTOR_KEYFRAME_EPSILON),
+    later: times.find((time) => time > currentTime + DIRECTOR_KEYFRAME_EPSILON),
+  };
+}
+
+// 轨道行第 4 列读数（源站实测 `3.3,2.2,10`）：显示本轨道在播放头处生效的
+// 关键帧的位置三元组。格式不是定长小数——源站 z=10 印作 `10` 而非 `10.0`，
+// 所以按「四舍五入到 3 位后交给默认数字转字符串」处理。
+// 源站轨道名是**属性**名（位置 / 旋转 / 缩放，逐字实测），因为源站一个属性
+// 一条轨道。clone 一条轨道同时驱动位置+旋转+缩放（机位轨道另含 target/fov），
+// 无法一一对应，故第 2 列按 kind 取两字短名，完整 label 留在 title 上。
+// —— 源站 36px 的名字列放不下 clone 的 `${对象名} · 变换` 这类长标签。
+function directorTrackShortName(track: DirectorTimelineTrack): string {
+  if (track.kind === "camera") return "机位";
+  if (track.kind === "pose") return "姿势";
+  if (track.kind === "group") return "分组";
+  return "变换";
+}
+
+function directorTrackValueText(
+  track: DirectorTimelineTrack,
+  currentTime: number,
+): string {
+  const activeTime = track.keyframes
+    .map((keyframe) => keyframe.time)
+    .filter((time) => time <= currentTime + DIRECTOR_KEYFRAME_EPSILON)
+    .sort((a, b) => b - a)[0];
+  if (activeTime === undefined) return "";
+  const atPlayhead = (time: number) =>
+    Math.abs(time - activeTime) <= DIRECTOR_KEYFRAME_EPSILON;
+  const position =
+    track.kind === "transform"
+      ? track.keyframes.find((keyframe) => atPlayhead(keyframe.time))?.value
+          .position
+      : track.kind === "camera"
+        ? track.keyframes.find((keyframe) => atPlayhead(keyframe.time))?.value
+            .transform.position
+        : null;
+  if (!position) return "";
+  return position
+    .map((value: number) => String(Number(value.toFixed(3))))
+    .join(",");
+}
 
 // Batch 591（源站 2026-10-01 实测）：播放头位置 / 总时长都是可编辑文本框，
 // 46×24、12px 居中、无描边（border-width 0），值随单位切换格式——
@@ -129,6 +195,12 @@ export function DirectorTimeline() {
   // Batch 591/592: 源站时间轴高 182px；「时间线最小化」把它收成 88px
   // ——工具栏整条保留，只有轨道区收起，按钮同时变成「展开时间线」。
   const [timelineCollapsed, setTimelineCollapsed] = useState(false);
+  // Batch 593: 源站对象行首列的「收起属性 / 展开属性」只收起**该对象的轨道
+  // 行**，对象行本身保留，时间轴总高不变（实测收起前后面板都是 130px）。
+  // 与右列的「时间线最小化」（整条收起）是两个独立控件。
+  const [collapsedObjects, setCollapsedObjects] = useState<
+    Record<string, boolean>
+  >({});
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
   );
@@ -189,9 +261,6 @@ export function DirectorTimeline() {
   );
   const deleteTimelineKeyframe = useDirectorStore(
     (state) => state.deleteTimelineKeyframe,
-  );
-  const seekTimelineKeyframe = useDirectorStore(
-    (state) => state.seekTimelineKeyframe,
   );
   const setTimelineEditorMode = useDirectorStore(
     (state) => state.setTimelineEditorMode,
@@ -309,6 +378,45 @@ export function DirectorTimeline() {
     timeline.duration > 0
       ? (timeline.currentTime / timeline.duration) * 100
       : 0;
+
+  // Batch 593: 源站轨道区左列是**两级**的——每个「拥有轨道的对象」一行对象行，
+  // 其下挂该对象的若干轨道行。源站当前只有一个对象（主机位）且只有一条
+  // 轨道（位置），所以「按对象分组」这一步是从 DOM 结构 + 栅格列宽推断的
+  // （对象行 16px/1fr/220px，轨道行 40px/36px/78px/1fr，两者不可能同层）。
+  const timelineTrackGroups = useMemo(() => {
+    const grouped = new Map<
+      string,
+      {
+        key: string;
+        objectId: string;
+        tracks: DirectorTimelineTrack[];
+        objectName: string;
+      }
+    >();
+    for (const track of timeline.tracks) {
+      const key =
+        track.kind === "group"
+          ? `group:${track.groupId}`
+          : `object:${track.objectId}`;
+      const existing = grouped.get(key);
+      if (existing) {
+        existing.tracks.push(track);
+        continue;
+      }
+      const object = objects.find((item) => item.id === track.objectId);
+      const group =
+        track.kind === "group"
+          ? groups.find((item) => item.id === track.groupId)
+          : undefined;
+      grouped.set(key, {
+        key,
+        objectId: track.objectId,
+        tracks: [track],
+        objectName: object?.name ?? group?.label ?? "对象",
+      });
+    }
+    return [...grouped.values()];
+  }, [timeline.tracks, objects, groups]);
 
   useEffect(() => {
     if (pathMenuLeft === null) return;
@@ -468,45 +576,69 @@ export function DirectorTimeline() {
         timelineCollapsed ? "h-[88px]" : "h-[182px]",
       )}
     >
-      {!coachDismissed && (
+      {/* Batch 593（源站 2026-10-01 CDP 实测重做）：引导气泡在源站是
+          **fixed** 定位的独立浮层，不在时间轴内部——
+            260 x 114 @ (163, 920) @1920x1150
+            style="left: 163px; top: 920px; width: 260px"
+            rounded-xl(12) / border-white/[0.08] / bg-[#242424] / p-4(16)
+            shadow-[0_4px_16px_rgba(0,0,0,0.18)] / z-[1]
+            正文 h-10 overflow-hidden text-[12px] leading-[19.2px] text-white/90
+            页脚 mt-3 flex justify-between gap-1
+              1/5  : min-w-0 flex-1 text-[14px] leading-3 text-white/55
+              跳过  : h-7 rounded-lg bg-transparent px-3 text-[13px] text-white/70
+              下一步: h-7 rounded-lg bg-white/10 px-3 text-[13px] text-white/85
+          top 用 `calc(100vh - 230px)` 表达（1150-230=920），这样换视口高度时
+          仍然贴在时间轴上方而不是压在轨道行上——clone 之前的
+          `absolute bottom-3 left-3` 落在 182px 时间轴内部、宽 300px，会盖住
+          320px 宽轨道列的第二行。
+          一处有意偏离：源站气泡是 `pointer-events-auto`，clone 改成
+          `pointer-events-none` + 两个按钮 `pointer-events-auto`。源站工具条
+          左格只有 320px，气泡只压住「新建轨道」顶端 7px；clone 的工具条是
+          一整行（多了预设运镜/曲线编辑器/缓入等 clone 能力），同一块屏幕会被
+          压住一整排控件，文字区吞点击会让工具条在引导期间不可用。外观与
+          几何完全按实测。步骤 2-5 仍未采样，跳过/下一步都只收起
+          （沿用 batch 556 的 clone 决策）。收起状态跨重载持久沿用 batch 572。 */}
+      {!coachDismissed ? (
         <div
           data-director-timeline-coachmark
           role="status"
-          className="absolute bottom-3 left-3 z-30 w-[300px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+          className="pointer-events-none fixed left-[163px] z-[1] w-[260px] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
+          style={{ top: "calc(100vh - 230px)" }}
         >
-          <p className="text-xs leading-5 text-[#d8d8d8]">
+          <div className="h-10 overflow-hidden text-[12px] font-normal leading-[19.2px] text-white/90">
             请选择一个角色或者摄像机后，可新建轨道
-          </p>
-          <div className="mt-2 flex items-center justify-between">
-            <span className="text-[11px] text-[#777]">1/5</span>
-            <span className="flex items-center gap-2">
-              <button
-                type="button"
-                data-director-coachmark-skip
-                onClick={dismissCoach}
-                className="rounded-lg px-2 py-1 text-xs text-[#8c8c8c] hover:bg-white/[0.06] hover:text-white"
-              >
-                跳过
-              </button>
-              <button
-                type="button"
-                data-director-coachmark-next
-                onClick={dismissCoach}
-                className="rounded-full bg-[#e8e8e8] px-3 py-1 text-xs text-[#1a1a1a] hover:bg-white"
-              >
-                下一步
-              </button>
+          </div>
+          <div className="mt-3 flex items-center justify-between gap-1">
+            <span className="min-w-0 flex-1 text-[14px] font-normal leading-3 text-white/55">
+              1/5
             </span>
+            <button
+              type="button"
+              data-director-coachmark-skip
+              onClick={dismissCoach}
+              className="pointer-events-auto h-7 rounded-lg bg-transparent px-3 text-[13px] font-normal leading-none text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              跳过
+            </button>
+            <button
+              type="button"
+              data-director-coachmark-next
+              onClick={dismissCoach}
+              className="pointer-events-auto h-7 rounded-lg bg-white/10 px-3 text-[13px] font-normal leading-none text-white/85 transition-colors hover:bg-white/15 hover:text-white"
+            >
+              下一步
+            </button>
           </div>
         </div>
-      )}
+      ) : null}
+      {/* Batch 593（源站 2026-10-01 实测）：工具条是 z-30 覆盖层，高 36px
+          （`h-[36px]` + `px-2 py-1`），**没有**任何标题——之前 clone 自造的
+          「动画时间轴」h2 已删除。左格 320px 放播放/自动帧/循环/读数/单位/
+          新建轨道，右格放标尺缩放与导出。 */}
       <header
         data-director-timeline-controls
-        className="flex h-10 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2"
+        className="flex h-9 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2 py-1"
       >
-        <h2 className="mr-2 shrink-0 text-xs font-medium text-[#d8d8d8]">
-          动画时间轴
-        </h2>
         <button
           type="button"
           data-director-playback
@@ -611,29 +743,10 @@ export function DirectorTimeline() {
           <Plus size={13} />
           新建轨道
         </button>
-        {/* Clone-only：源站工具栏没有「上一/下一关键帧」两个按钮（实测七项
-            自左至右为 播放/自动帧/循环播放/播放头位置/总时长/时间单位/
-            新建轨道），但它们是 clone 的既有能力且被 batch 36 / 42 按
-            role+name 点击。放在源站顺序前缀**之后**，让前七项与源站逐位
-            对齐，同时不删功能。 */}
-        <button
-          type="button"
-          aria-label="上一关键帧"
-          title="上一关键帧"
-          onClick={() => seekTimelineKeyframe(-1)}
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
-        >
-          <SkipBack size={14} />
-        </button>
-        <button
-          type="button"
-          aria-label="下一关键帧"
-          title="下一关键帧"
-          onClick={() => seekTimelineKeyframe(1)}
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#858585] hover:bg-white/[0.06] hover:text-white"
-        >
-          <SkipForward size={14} />
-        </button>
+        {/* Batch 593：源站工具条只有七项（播放/自动帧/循环播放/播放头位置/
+            总时长/时间单位/新建轨道），**没有**「上一/下一关键帧」——它们在
+            源站位于每条轨道行内（见下方轨道行）。本批把这两个按钮从工具条
+            移到轨道行，工具条顺序与源站逐位一致。 */}
         <button
           ref={presetTriggerRef}
           type="button"
@@ -755,9 +868,13 @@ export function DirectorTimeline() {
             </button>
           </>
         ) : null}
+        {/* Batch 593: 这个「轨道」按钮原先和工具条里的「+ 新建轨道」共用
+            data-director-add-track，按该属性定位会命中两个元素（batch 45 的
+            strict mode violation）。源站工具条只有「新建轨道」一个建轨入口，
+            这个是 clone 的手动补建入口，属性独立命名。 */}
         <button
           type="button"
-          data-director-add-track
+          data-director-add-track-manual
           disabled={
             (!selectedObjectId && !selectedGroupId) ||
             hasSelectedObjectTrack ||
@@ -768,6 +885,19 @@ export function DirectorTimeline() {
         >
           <Plus size={13} />
           轨道
+        </button>
+        {/* Batch 593: 源站轨道行的四列栅格里没有删除位，删除轨道改挂在工具条
+            「轨道」按钮之后（clone-only 能力的落位调整，aria 保持不变）。 */}
+        <button
+          type="button"
+          data-director-remove-track
+          aria-label={`移除${selectedTrack?.label ?? ""}轨道`}
+          title="移除轨道"
+          disabled={!selectedTrack || selectedTrackLocked}
+          onClick={() => removeTimelineTrack()}
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
+        >
+          <Trash2 size={13} />
         </button>
         <button
           type="button"
@@ -1043,88 +1173,221 @@ export function DirectorTimeline() {
         <DirectorCurveEditor />
       ) : (
       <div className="flex min-h-0 flex-1">
-        <div className="w-[220px] shrink-0 border-r border-white/[0.07] max-[899px]:w-[132px]">
-          <div className="flex h-7 items-center px-2 text-[10px] text-[#666]">
-            轨道
-          </div>
+        {/* Batch 593（源站实测）：左列 320px（不再随视口收窄），顶部有一条
+            36px 空占位给覆盖在它上面的工具条，对象行与轨道行各 32px。 */}
+        <div
+          data-director-timeline-track-list
+          className="w-[320px] shrink-0 overflow-y-auto border-r border-white/[0.07] bg-[#1f1f1f] max-[899px]:w-[220px]"
+        >
+          {/* 源站左列第一格是一个 320x36 的空 div（`bg-[#1f1f1f]`，实测
+              innerHTML 长度为 0），专门给覆盖在上面的工具条让位；它让对象行
+              落在 y=1057 而不是 y=1021。 */}
+          <div className="h-9 shrink-0 bg-[#1f1f1f]" aria-hidden="true" />
           {timeline.tracks.length === 0 ? (
             <div className="px-3 py-6 text-center text-[11px] text-[#555]">
               选择对象后新建轨道
             </div>
           ) : (
-            timeline.tracks.map((track) => {
-              const selected = track.id === timeline.selectedTrackId;
+            timelineTrackGroups.map((group) => {
+              const collapsed = collapsedObjects[group.key] === true;
+              const cameraTrack = group.tracks.find(
+                (track) => track.kind === "camera",
+              );
               return (
-                <div
-                  key={track.id}
-                  data-director-track-label={track.id}
-                  className={cn(
-                    "flex h-8 items-center border-t border-white/[0.045] px-2",
-                    selected && "bg-[#09caf5]/[0.08]",
-                  )}
-                >
-                  <button
-                    type="button"
-                    onClick={() => selectTimelineTrack(track.id)}
-                    className="flex min-w-0 flex-1 items-center gap-1.5 text-left"
+                <div key={group.key} data-director-object-group={group.key}>
+                  {/* 对象行：源站 320×32，栅格 16px / 1fr / 220px。第 1 列是
+                      收起开关（20×20，chevron 展开时 rotate-90、收起时 rotate-0，
+                      可及名 收起属性/展开属性 + aria-expanded，无 title）；
+                      第 3 列的「绘制轨迹」在源站是**真 button** 86×24 带
+                      aria-pressed，不是 clone 之前用的 span role=button。 */}
+                  <div
+                    data-director-timeline-object-row={group.objectId}
+                    className="group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#F7F7F7] transition-colors"
+                    style={{
+                      gridTemplateColumns: "16px minmax(0,1fr) 220px",
+                    }}
                   >
-                    <span
-                      className={selected ? "text-[#5ddcff]" : "text-[#696969]"}
-                    >
-                      {track.kind === "camera" ? (
-                        <Camera size={12} />
-                      ) : track.kind === "group" ? (
-                        <Users size={12} />
-                      ) : track.kind === "pose" ? (
-                        <PersonStanding size={12} />
-                      ) : (
-                        <Move3D size={12} />
-                      )}
-                    </span>
-                    <span
-                      className={cn(
-                        "min-w-0 flex-1 truncate text-[11px] text-[#929292]",
-                        selected && "text-[#d9d9d9]",
-                      )}
-                    >
-                      {track.label}
-                    </span>
-                    {track.motionPathId ? (
-                      <Route
-                        size={11}
-                        className="shrink-0 text-[#5ddcff]"
-                        aria-label="已绑定运动轨迹"
-                      />
-                    ) : track.kind === "camera" ? (
-                      /* Batch 557: 源站截图 48——主机位轨道行右侧「ⓘ 绘制轨迹」
-                         affordance；点击选中该轨道并打开运动路径菜单。 */
-                      <span
-                        role="button"
-                        tabIndex={0}
-                        data-director-track-draw-trail={track.id}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          selectTimelineTrack(track.id);
-                          togglePathMenu();
-                        }}
-                        className="flex shrink-0 cursor-pointer items-center gap-0.5 text-[10px] text-[#696969] hover:text-[#5ddcff]"
-                      >
-                        <Info size={11} />
-                        绘制轨迹
-                      </span>
-                    ) : null}
-                  </button>
-                  {selected ? (
                     <button
                       type="button"
-                      aria-label={`移除${track.label}轨道`}
-                      title="移除轨道"
-                      onClick={() => removeTimelineTrack(track.id)}
-                      className="flex h-6 w-6 shrink-0 items-center justify-center text-[#5c5c5c] hover:text-[#f08d8d]"
+                      aria-label={collapsed ? "展开属性" : "收起属性"}
+                      aria-expanded={!collapsed}
+                      onClick={() =>
+                        setCollapsedObjects((current) => ({
+                          ...current,
+                          [group.key]: !collapsed,
+                        }))
+                      }
+                      className="group relative z-[1] flex h-5 w-5 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white"
                     >
-                      <Trash2 size={11} />
+                      <ChevronRight
+                        className={cn(
+                          "h-[5px] w-[5px] transition-transform",
+                          !collapsed && "rotate-90",
+                        )}
+                      />
+                      <span className="hidden" aria-hidden="true" />
                     </button>
-                  ) : null}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      title={group.objectName}
+                      data-director-timeline-object-name={group.objectId}
+                      onClick={() => selectTimelineTrack(group.tracks[0].id)}
+                      className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium transition-colors hover:text-white"
+                    >
+                      <span className="truncate">{group.objectName}</span>
+                    </div>
+                    <div className="relative z-[1] flex min-w-0 items-center justify-end gap-1">
+                      {cameraTrack ? (
+                        <button
+                          type="button"
+                          data-director-track-draw-trail={cameraTrack.id}
+                          aria-label="绘制轨迹"
+                          aria-pressed={Boolean(cameraTrack.motionPathId)}
+                          onClick={() => {
+                            selectTimelineTrack(cameraTrack.id);
+                            togglePathMenu();
+                          }}
+                          className={cn(
+                            "flex h-6 w-fit min-w-0 cursor-pointer items-center justify-center gap-1 rounded-lg px-2 text-[13px] leading-none transition-colors",
+                            cameraTrack.motionPathId
+                              ? "bg-[#23393D] text-[#5ddcff]"
+                              : "text-[#5ddcff] hover:bg-[#23393D]",
+                          )}
+                        >
+                          <Route size={14} className="shrink-0" />
+                          <span className="min-w-0 truncate">绘制轨迹</span>
+                        </button>
+                      ) : null}
+                    </div>
+                  </div>
+                  {collapsed
+                    ? null
+                    : group.tracks.map((track) => {
+                        const selected =
+                          track.id === timeline.selectedTrackId;
+                        const keyframeState =
+                          directorTrackKeyframeState(
+                            track,
+                            timeline.currentTime,
+                          );
+                        return (
+                          <div
+                            key={track.id}
+                            data-director-track-label={track.id}
+                            data-director-track-row={track.id}
+                            data-director-track-row-kind={track.kind}
+                            className="group relative grid h-8 items-center gap-1 px-2 text-[12px] transition-colors hover:bg-white/[0.04] max-[899px]:[grid-template-columns:32px_36px_78px_minmax(0,1fr)]"
+                            style={{
+                              gridTemplateColumns: "40px 36px 78px minmax(0,1fr)",
+                              color: selected ? "#F7F7F7" : "#A8A8A8",
+                            }}
+                          >
+                            {/* 源站第 1 列 40px 是**纯装饰**的加号（aria-hidden）：
+                                竖线只画到行中点、横线落在行中点，色值 #363636。 */}
+                            <span
+                              aria-hidden="true"
+                              className="relative h-full w-10"
+                            >
+                              <span
+                                className="absolute left-5 top-0 w-px"
+                                style={{ bottom: "50%", background: "#363636" }}
+                              />
+                              <span
+                                className="absolute left-5 top-1/2 h-px w-4"
+                                style={{ background: "#363636" }}
+                              />
+                            </span>
+                            <div
+                              role="button"
+                              tabIndex={0}
+                              title={track.label}
+                              onClick={() => selectTimelineTrack(track.id)}
+                              className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium transition-colors hover:text-white"
+                            >
+                              <span className="truncate">
+                                {directorTrackShortName(track)}
+                              </span>
+                            </div>
+                            <div className="flex h-6 shrink-0 items-center justify-center gap-0.5">
+                              <button
+                                type="button"
+                                aria-label="上一关键帧"
+                                disabled={keyframeState.earlier === undefined}
+                                onClick={() => {
+                                  selectTimelineTrack(track.id);
+                                  if (keyframeState.earlier !== undefined) {
+                                    setTimelineTime(keyframeState.earlier);
+                                  }
+                                }}
+                                className="group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+                              >
+                                <ChevronLeft className="h-[5px] w-[5px]" />
+                                <span className="hidden" aria-hidden="true" />
+                              </button>
+                              <button
+                                type="button"
+                                aria-label={
+                                  keyframeState.exact === undefined
+                                    ? "当前帧无关键帧"
+                                    : "当前帧有关键帧"
+                                }
+                                aria-pressed={keyframeState.exact !== undefined}
+                                onClick={() => {
+                                  selectTimelineTrack(track.id);
+                                  const keyframe = track.keyframes.find(
+                                    (item) =>
+                                      Math.abs(
+                                        item.time - timeline.currentTime,
+                                      ) <= DIRECTOR_KEYFRAME_EPSILON,
+                                  );
+                                  if (keyframe) {
+                                    deleteTimelineKeyframe(keyframe.id);
+                                  } else {
+                                    addTimelineKeyframe(track.id);
+                                  }
+                                }}
+                                className="group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className={cn(
+                                    "h-[9px] w-[9px] rotate-45 rounded-[2px] border transition-colors",
+                                    keyframeState.exact === undefined
+                                      ? "border-white/30"
+                                      : "border-[#A8A8A8] bg-[#A8A8A8]",
+                                  )}
+                                />
+                                <span className="hidden" aria-hidden="true" />
+                              </button>
+                              <button
+                                type="button"
+                                aria-label="下一关键帧"
+                                disabled={keyframeState.later === undefined}
+                                onClick={() => {
+                                  selectTimelineTrack(track.id);
+                                  if (keyframeState.later !== undefined) {
+                                    setTimelineTime(keyframeState.later);
+                                  }
+                                }}
+                                className="group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+                              >
+                                <ChevronRight className="h-[5px] w-[5px]" />
+                                <span className="hidden" aria-hidden="true" />
+                              </button>
+                            </div>
+                            <span
+                              data-director-track-value={track.id}
+                              className="relative z-[1] truncate text-right text-[13px] tabular-nums"
+                            >
+                              {directorTrackValueText(
+                                track,
+                                timeline.currentTime,
+                              )}
+                            </span>
+                          </div>
+                        );
+                      })}
                 </div>
               );
             })

@@ -203,9 +203,16 @@ def run_desktop(page: Page):
     page.evaluate(
         "() => window.__director_store.getState().setTimelineTime(2)"
     )
-    page.get_by_role("button", name="下一关键帧").click()
+    # Batch 593: 上一/下一关键帧 从工具条搬进了**每条轨道行**（源站本就在轨道
+    # 行），所以行数 > 1 时按 role+name 会命中多个；这里按选中轨道行收敛。
+    seek_row = page.locator(
+        '[data-director-track-row="'
+        + timeline_state(page)["timeline"]["selectedTrackId"]
+        + '"]'
+    )
+    seek_row.get_by_role("button", name="下一关键帧").click()
     assert timeline_state(page)["timeline"]["currentTime"] == 4
-    page.get_by_role("button", name="上一关键帧").click()
+    seek_row.get_by_role("button", name="上一关键帧").click()
     assert timeline_state(page)["timeline"]["currentTime"] == 0
 
     loop_button = page.locator("[data-director-loop]")

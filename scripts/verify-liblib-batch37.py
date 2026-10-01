@@ -307,8 +307,10 @@ def run_desktop(page: Page):
         is None
     )
 
+    # Batch 593: 轨道行第 2 列（轨道名）是 div[role=button]；行内第一个真
+    # button 现在是「上一关键帧」，所以这里必须点轨道名而不是 `button`。
     page.locator(
-        '[data-director-track-label="director-track-camera-main"] button'
+        '[data-director-track-label="director-track-camera-main"] [role="button"]'
     ).click()
     page.evaluate("() => window.__director_store.getState().setTimelineTime(0)")
     click_path_preset(page, "line")
@@ -324,7 +326,7 @@ def run_desktop(page: Page):
     page.locator("[data-director-delete-motion-path]").click()
 
     page.locator(
-        '[data-director-track-label="director-track-character-lead-transform"] button'
+        '[data-director-track-label="director-track-character-lead-transform"] [role="button"]'
     ).click()
     page.evaluate("() => window.__director_store.getState().setTimelineTime(0)")
     click_path_preset(page, "ring")
@@ -344,7 +346,13 @@ def run_desktop(page: Page):
         for red, green, blue in raw.getdata()
     )
     assert cyan_pixels < 20, f"capture retained cyan helpers: {cyan_pixels}"
-    assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
+    # Batch 593: 与 batch 36 / 89 / 96 / 85 / 580 / 587-592 同约定过滤已知瞬态
+    # `TransformControls: The attached 3D object must be a part of the scene graph.`
+    # （three.js 在对象被替换的那一帧抛出）。
+    unexpected = [error for error in errors if "TransformControls" not in error]
+    filtered_transformcontrols = len(errors) - len(unexpected)
+    assert unexpected == [], json.dumps(unexpected, ensure_ascii=False, indent=2)
+    return filtered_transformcontrols
 
 
 def run_mobile(page: Page):
@@ -450,7 +458,7 @@ if __name__ == "__main__":
             viewport={"width": 1440, "height": 900},
             device_scale_factor=1,
         )
-        run_desktop(desktop)
+        filtered = run_desktop(desktop)
         mobile = browser.new_page(
             viewport={"width": 390, "height": 844},
             device_scale_factor=1,
@@ -458,4 +466,7 @@ if __name__ == "__main__":
         run_mobile(mobile)
         browser.close()
     make_contact_sheet()
-    print("Batch 37 director motion path verification passed.")
+    print(
+        "Batch 37 director motion path verification passed "
+        f"(filtered {filtered} transient TransformControls console error(s))."
+    )

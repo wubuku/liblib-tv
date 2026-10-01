@@ -351,9 +351,14 @@ def run_desktop(page: Page):
     ] == 25
 
     page.evaluate("window.__director_store.getState().setTimelineTime(2)")
-    page.get_by_role("button", name="下一关键帧").click()
+    # Batch 593: 见 batch 36 —— 关键帧导航按钮在源站位于每条轨道行内，按
+    # 轨道行收敛后再按 role+name 点击。
+    seek_row = page.locator(
+        f'[data-director-track-row="{custom_track["id"]}"]'
+    )
+    seek_row.get_by_role("button", name="下一关键帧").click()
     assert director_state(page)["timeline"]["currentTime"] == 3
-    page.get_by_role("button", name="上一关键帧").click()
+    seek_row.get_by_role("button", name="上一关键帧").click()
     assert director_state(page)["timeline"]["currentTime"] == 0
 
     page.locator("[data-director-playback]").click()

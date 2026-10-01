@@ -26,12 +26,16 @@ AUDIT_PATH = (
 def attach_errors(page: Page) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     phase = ["startup"]
+    # Batch 593: 与 batch 36-40 / 89 / 96 / 85 / 580 / 587-592 同约定过滤已知
+    # 瞬态 `TransformControls: The attached 3D object must be a part of the scene
+    # graph.`（three.js 在对象被替换的那一帧抛出）；错误串以 phase 前缀开头，
+    # 所以按子串匹配。
     page.on(
         "console",
         lambda message: errors.append(
             f"{phase[0]}:console:{message.type}:{message.text}"
         )
-        if message.type == "error"
+        if message.type == "error" and "TransformControls" not in message.text
         else None,
     )
     page.on(
