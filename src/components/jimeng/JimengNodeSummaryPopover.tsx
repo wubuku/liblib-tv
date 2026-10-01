@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { useLayerFocus } from "@/hooks/useLayerFocus";
+
 /**
  * 顶栏「节点 N」→ 节点摘要弹层 (Batch 794)。
  *
@@ -29,6 +31,11 @@ export function JimengNodeSummaryPopover({
   onSelectNode?: (label: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+
+  // Batch 811 SOURCE_FACT: 源站这一层是**唯一**把焦点管对了的浮层 ——
+  // 打开焦点进浮层、Tab 焦点陷阱（10/10 不逃出）、关闭归还触发器。
+  // 分享/更多/项目面板源站并没有陷阱，别顺手给它们也加上（那是擅自改进）。
+  useLayerFocus(ref, true, { trap: true, returnTo: true });
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

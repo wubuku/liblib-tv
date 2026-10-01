@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useJimengStore } from "@/store/jimengStore";
+import { useLayerFocus } from "@/hooks/useLayerFocus";
 import {
   ArrowUp,
   AtSign,
@@ -54,6 +55,12 @@ const ADD_SOURCES = ["上传", "从资产库添加", "从画布添加"];
 type Panel = null | "skills" | "mention" | "add";
 
 export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
+  const panelRef = useRef<HTMLElement>(null);
+  // Batch 811 SOURCE_FACT: 源站点「与 AI 对话」后焦点进入
+  // `aside[canvas-feature-sidecar]`；但源站 **Tab 会逃出**抽屉，关闭后
+  // 焦点也停在抽屉内不回触发器。所以这里只搬"焦点进浮层"这一项，
+  // 不加陷阱、不归还 —— 加了就是偏离源站。
+  useLayerFocus(panelRef, true);
   // 批 216: 预填提示词 (提示词反推 → 视频反解)；由工作区以 prefill 为
   // key 重挂载本组件带入初始值。批 219: 草稿跨关闭保留——优先取已存草稿
   const prefill = useJimengStore((s) => s.aiDrawerPrefill);
@@ -108,6 +115,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
   // radius 20px，右缘/上缘/下缘各内缩 12px。
   return (
     <aside
+      ref={panelRef}
       // Batch 797 SOURCE_FACT (2026-10-01 登录态实测，点「与 AI 对话」后量得):
       //   @[1268,12] 400×802  radius 20px  z-40
       //   background  color(srgb .12549 ×3 / .8) = **rgba(32,32,32,0.8)**
