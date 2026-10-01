@@ -563,6 +563,49 @@ def p_test_voice_page_no_ui_entry(src):
 
 
 
+def p_retired_task_skill_pages(src):
+    """任务中心与技能页已退场：路由只留重定向，源码模块整体无人引用。
+
+    Batch 139/140 的覆盖度普查量出来的：手册早已写明「旧链接会静默跳回首页」，
+    但**没人记下这些模块还有多少行留在仓库里**——本批量出 **2354 行**
+    （pages/tasks 1221 行 + pages/skills 1133 行）。
+
+    判据要求四件事同时成立：
+      (a) router.tsx 对 /tasks、/skills、/skill、/skills/reference 四个路径
+          **一律是 `<Navigate to="/" replace />`**，没有一个是真正的页面；
+      (b) router.tsx **不 import** 这些页面（否则就不是「只剩重定向」）；
+      (c) 全 web/src **零处 import** @/pages/tasks；
+      (d) @/pages/skills 的 import **只发生在它自己目录内部**（自引用不算外部引用）。
+          少了 (d) 就会漏判「被别的模块引用的半死代码」。
+    """
+    router = git_show(src, "web/src/router.tsx")
+    if not router:
+        return None
+    for path in ("/tasks", "/skills", "/skill", "/skills/reference"):
+        # ⚠️ path 与 element 之间**可能夹着注释**（`/tasks` 就是：上游写了
+        # 「任务页暂不开放，保留路由以避免旧链接进入半成品界面。」）。
+        # 用 \s* 匹配会漏掉这种写法，判据首轮就误报失效——Batch 135「判据要覆盖
+        # 上游各种写法」的第 N 次应验，这里换成 [\s\S] 并限长。
+        if not re.search(r'path: "' + re.escape(path) + r'",[\s\S]{0,200}?element: <Navigate to="/" replace />', router):
+            return False
+    if re.search(r'import .*@/pages/(tasks|skills)', router):
+        return False
+    for prefix in ("@/pages/tasks", "@/pages/skills"):
+        r = subprocess.run(["git", "grep", "-n", "-F", prefix, REF, "--", "web/src"],
+                           cwd=src, capture_output=True, text=True)
+        for line in (r.stdout or "").split("\n"):
+            if not line.strip():
+                continue
+            m = re.match(rf"^{re.escape(REF)}:(.+?):(\d+):", line)
+            if not m:
+                continue
+            if m.group(1).startswith("web/src/pages/tasks") or m.group(1).startswith("web/src/pages/skills"):
+                continue  # 目录内自引用
+            return False
+    return True
+
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -602,6 +645,8 @@ REGISTRY = [
      p_asset_list_endpoint_uncalled, None),
     ("test-voice-page-no-ui-entry", "语音录制测试页挂在生产路由但界面无入口",
      p_test_voice_page_no_ui_entry, None),
+    ("retired-task-skill-pages", "任务中心与技能页已退场：路由只留重定向、模块整体零引用",
+     p_retired_task_skill_pages, None),
 ]
 
 

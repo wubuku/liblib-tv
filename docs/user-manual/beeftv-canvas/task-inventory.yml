@@ -741,3 +741,36 @@ tasks:
       图片宽高比项数、文本模式是否长出参数面板）——任一成立，手册的对照表即过期。
     manual_pages:
       - 10-tasks/create-workspace.md
+
+  - id: model-channels
+    title: 模型配置（`/settings`）——渠道增删拉取、四个默认模型槽位，以及「?continue=1」这条隐藏流程
+    area: 配置
+    evidence: runtime+static
+    finding: >
+      `/settings` 是源码量第三大的界面页（channel-settings-pane 738 行 + runninghub-settings-pane
+      357 行），此前**手册零专门覆盖**。四处实测发现：
+      ①**点「+ 新增渠道」的那一刻空渠道就已经落库**——列表立刻多出「渠道 2」并触发
+      `PUT /api/workspace/model-config`；**再点右上角 × 关掉弹窗，这个空渠道不会消失**，
+      会带着「请填写 API Key / Access Key」留在列表里（实测：开弹窗后渠道数 1→2，
+      关弹窗后仍为 2，删除后回到 1）。
+      ②**`?continue=1` 是给「画布里生成时发现没配模型」准备的**：它会给页面加一条
+      「返回创作 / 保存并返回」操作栏。**「返回创作」走的是 `navigate(-1)`（浏览器后退）**，
+      只有从画布跳过来才对得上路。
+      ③**`?section=` 的类型声明了 5 种（channels/models/preferences/prompts/storage），
+      但页面上只实现了 channels 一种**；手敲其余四种**不报错、静默退回渠道页**。
+      ④**整块内容受 `customChannelsEnabled` 特性开关门控**：关掉时唯一的分区直接消失，
+      页面只剩「模型选择」，且保存报错会换成面向管理员的「请联系管理员配置系统渠道」。
+      另记录：删除渠道的确认框原文「该渠道关联的模型选择会同时移除」——删渠道会连带清空
+      它的默认模型槽位。付费红线：只做配置页取证，未配置任何 Provider Key、未发起任何真实模型请求。
+    status: verified
+    review_note: >
+      页面结构、空渠道残留、continue=1 行为、section 回退均为运行时实测（v1.6.14 dev :3001，
+      外部无头 Playwright 1440×900）。「section 五选一」与「customChannelsEnabled 门控」为源码陈述
+      （`pages/settings/index.tsx:13-15,26,34`；`lib/settings-navigation.ts:1-5`）。
+      **副作用已清理**：取证期间探针两次误建空渠道（渠道 2 / 渠道 3），均已删除并复核，
+      渠道列表已恢复为只剩内置的 BeefAPI。
+    review_condition: >
+      (a) configSections 真的实现了第二种以上分区（手敲 ?section=models 不再回退），
+      或 (b) 新增渠道改成「点完成才落库」——任一成立，本页对应段落即过期。
+    manual_pages:
+      - 10-tasks/model-channels.md

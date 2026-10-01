@@ -731,3 +731,36 @@ screenshots:
     visible_text: '继续描述你的创作想法… / 使用这个创意 / 雨夜霓虹 · 电影感开场 / 原创提示词 · 视频 / 森林里的最后一封信 / 开源改编 · CC0 · 文本 / 展开更多灵感 / 模板与封面来源'
     alt: '创意墙：卡片带大图并逐条标注原创提示词或开源改编 CC0，底部是展开更多灵感与模板来源'
     sha256: 694d511c028ccf87ac8bb0d192117b1a63d23ed6eac1f7a2342f2f975eb6ed7d
+  - file: screenshots/65-model-channels.png
+    task_id: model-channels
+    step: '模型配置页初始状态：「本地模型渠道」只有一个内置 BeefAPI（OpenAI 兼容 · 已保存 0 个模型 · 未连接），右上角「拉取全部」与「+ 新增渠道」；下方「模型选择」四个槽位全是「尚未配置」'
+    route: '/settings?section=channels'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'h2'
+    visible_text: '本地模型渠道 / 拉取全部 / 新增渠道 / BeefAPI / OpenAI 兼容 · 已保存 0 个模型 / 应用内置适配 · v1 / 未连接 / 模型选择 / 默认生图模型 尚未配置图片模型 / 默认视频模型 尚未配置视频模型 / 默认文本模型 尚未配置文本模型 / 默认音频模型 尚未配置音频模型'
+    alt: '模型配置页：上方是本地模型渠道与内置 BeefAPI，下方是四个尚未配置的默认模型槽位'
+    sha256: f4ca09e8ec54f3332398843ab073a4f134b9e58720feeb007eac992bcf48e533
+  - file: screenshots/66-channel-modal.png
+    task_id: model-channels
+    step: '「新增自定义渠道 / 渠道 2」弹窗：连接信息（渠道名称、目录连接类型 OpenAI/Gemini、Base URL、API Key、Secret Key）、自定义请求头（添加 User-Agent / 添加请求头，计数 0/32）、模型与能力（模型列表），底部「更改时保存到本地工作区」与「拉取模型」「完 成」'
+    route: '/settings?section=channels'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.ant-modal'
+    visible_text: '新增自定义渠道 / 渠道 2 / 连接信息 用于拉取模型目录并向当前渠道发起请求 / 渠道名称 / 目录连接类型 OpenAI Gemini 仅影响模型目录拉取 / Base URL / API Key / Secret Key（可选）/ 自定义请求头 / 添加 User-Agent / 添加请求头 / 0/32 / 模型与能力 / 模型列表 / 更改时保存到本地工作区 / 拉取模型 / 完 成'
+    alt: '新增自定义渠道弹窗：连接信息、自定义请求头、模型与能力三段，底部是拉取模型与完成'
+    sha256: 6aeca21debde863d0371b8af4c12e1f11bee6ed4444a79baf81c663184b820cf
+  - file: screenshots/68-settings-continue.png
+    task_id: model-channels
+    step: '地址栏带 continue=1 时页面顶部多出一条操作栏「返回创作 / 保存并返回」，下方内容与常规进入完全相同'
+    route: '/settings?section=channels&continue=1'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.settings-topbar'
+    visible_text: '返回创作 / 保存并返回 / 本地模型渠道 / 拉取全部 / 新增渠道 / BeefAPI / 模型选择'
+    alt: '带 continue=1 的模型配置页：顶部多出返回创作与保存并返回两个按钮'
+    sha256: 13490ef8389f7a1956fd3ea0c7c68ea761bac3d65bae30b26c6392b867aa028a

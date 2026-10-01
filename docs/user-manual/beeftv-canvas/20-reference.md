@@ -65,11 +65,13 @@
 | `/projects/:projectId/workflow/:unitId/:stage` | 工作流单元 / 阶段——**已注册但访问不到**（见下） |
 | `/canvas`、`/canvas/:id` | 画布页与指定画布；**画布库列表页就是 `/canvas`** |
 | `/assets` | 资产页 / 素材库——见 [10-tasks/asset-library.md](10-tasks/asset-library.md) |
-| `/settings`（`?section=channels`） | **模型配置 / 个人渠道**——配置模型服务与个人工作流 |
+| `/settings`（`?section=channels`，`?continue=1`） | **模型配置 / 个人渠道**——见 [10-tasks/model-channels.md](10-tasks/model-channels.md) |
 | `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（需开启 `pluginCenterEnabled` 特性） |
 | `/test-voice-recording` | **语音录制的开发测试页**——它挂在生产路由里、**侧栏没有任何入口**，只能手敲网址进入。页面用途写在源码注释里：「验证输入行内联波形录制和 STT 转写闭环」 |
 
 **已退场、访问会被重定向回首页的路由**：`/tasks`（任务中心）、`/skills`、`/skill`、`/skills/reference`——都随旧 Agent / 任务中心一起下线。旧链接不会 404，会静默跳回 `/`，所以「点进去发现回到了首页」是预期行为，不是故障。
+
+这四条路由在源码里**只剩重定向**（`/tasks` 那条甚至还留着注释「任务页暂不开放，保留路由以避免旧链接进入半成品界面」），而对应的页面源码**一行都没删**，合计约 **2354 行**留在仓库里（任务中心 1221 行 + 技能页 1133 行）——**没有入口能到达它们，也不必担心误触**。
 
 ### 只能手敲、界面上没有入口的查询参数
 

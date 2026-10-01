@@ -88,6 +88,7 @@ run_case "15) 导演台场景补上同步" web/src/pages/canvas/use-canvas-direc
 run_case "16) 远端同步会话判定不再写死 false" web/src/services/local-workspace-sync.ts "$HERE/selftest-fix-16-asset-sync-gate.py" "beef-remote-sync-session" "asset-sync-gated-off"
 run_case "17) 前端真的调用服务端素材列表接口" web/src/services/api/workspace-data.ts "$HERE/selftest-fix-17-asset-list-called.py" 'http.get<{ assets: unknown[] }>("/assets")' "asset-list-endpoint-uncalled"
 run_case "18) 语音录制测试页补上侧栏入口" web/src/components/layout/workspace-sidebar-nav.tsx "$HERE/selftest-fix-18-voice-test-entry.py" '/test-voice-recording"' "test-voice-page-no-ui-entry"
+run_case "19) 任务中心重新开放" web/src/router.tsx "$HERE/selftest-fix-19-tasks-reopened.py" 'element: deferred(<TasksPage />)' "retired-task-skill-pages"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi
