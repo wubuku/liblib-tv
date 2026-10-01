@@ -84,3 +84,15 @@ BeefTV 工作区当前是 **detached HEAD `@852961a`（v1.6.14）**，而手册�
 | 库内改名当次不存、随下一次内容保存存上 | **runtime** | 同上 |
 | 顶栏改名无论编辑多少次都存不上 | **runtime** | 同上 |
 
+## Batch 138 新增证据锚点（补编辑也救不了的四项）
+
+| 断言 | 证据 | 位置 |
+|---|---|---|
+| 画布库文件夹纯本地 | static | `web/src/stores/canvas/use-canvas-store.ts`（`createFolder` / `writeCanvasFolders` / `readCanvasFolders`）、`web/src/pages/canvas/index.tsx:69,519` |
+| 画布库从不碰素材文件夹接口 | static | `index.tsx` 零处 `AssetFolder` / `asset-folders` |
+| 后端的 folderId 只属于素材 | static | `backend/internal/app/asset_library.go:30,46`；路由 `handler/project.go:509-572`、`handler/user_data.go:309` |
+| 归类移动后不存、编辑也不带上 | **runtime** | v1.6.14 dev :3001，观测 `/api/canvas-projects` 写请求与响应里的归属字段 |
+| 画布封面只存 localStorage | static | `web/src/components/canvas/canvas-folder-card.tsx:43,63`（读 / 写 `beeftv-project-cover:<id>`） |
+| 导演台场景零同步调用 | static | `web/src/pages/canvas/use-canvas-director.ts:99`（裸 `updateProject`），全文件无任何 sync/flush/persist |
+| 对照：时间线有独立同步路径 | static | `web/src/services/local-workspace-repository.ts:194,220-222`；`web/src/pages/canvas/project.tsx:3489` |
+

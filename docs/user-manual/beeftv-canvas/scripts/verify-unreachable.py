@@ -295,6 +295,52 @@ def p_content_watcher_excludes_title(src):
     return "scheduleLocalCanvasBackendSync" in body and "every(([key, value])" in body
 
 
+def p_canvas_folders_are_local(src):
+    """画布库的文件夹是纯本机概念：store 的 createFolder 写本地，且从不碰 /asset-folders。
+
+    判据要求三件事同时成立：
+      (a) 画布库页面从 store 取 createFolder，且新建按钮调它；
+      (b) 存在 writeCanvasFolders（本地持久化）而不是任何网络调用；
+      (c) 画布库页面**零处**引用 AssetFolder / asset-folders——
+          (c) 是关键：服务端的 folderId 只属于素材，没有它才能断言
+          「服务端根本没有画布文件夹这个概念」，而不是「这里忘了同步」。
+    """
+    idx = git_show(src, "web/src/pages/canvas/index.tsx")
+    store = git_show(src, "web/src/stores/canvas/use-canvas-store.ts")
+    if not idx or not store:
+        return None
+    if "createFolder" not in idx or "createFolder(" not in idx:
+        return False
+    if "writeCanvasFolders" not in store or "readCanvasFolders" not in store:
+        return False
+    return "AssetFolder" not in idx and "asset-folders" not in idx
+
+
+def p_canvas_cover_is_localstorage(src):
+    """画布封面存 localStorage（按画布 id），不是画布内容的一部分。"""
+    card = git_show(src, "web/src/components/canvas/canvas-folder-card.tsx")
+    if not card:
+        return None
+    m = re.search(r"const saveCover = async \(\) => \{.*?\n        \};", card, re.S)
+    if not m:
+        m = re.search(r"localStorage\.setItem\(`beeftv-project-cover:.*?`\);", card, re.S)
+    body = m.group(0) if m else card
+    return ("localStorage.setItem(`beeftv-project-cover:" in card
+            and "localStorage.getItem(`beeftv-project-cover:" in card
+            and "updateProject" not in body)
+
+
+def p_director_scenes_not_synced(src):
+    """导演台场景只改本地：updateProject 写 directorScenes，且该文件零同步调用。"""
+    body = git_show(src, "web/src/pages/canvas/use-canvas-director.ts")
+    if not body:
+        return None
+    if "updateProject(projectId, { directorScenes" not in body:
+        return False
+    return not re.search(r"syncLocalCanvasProject|scheduleLocalCanvasBackendSync|"
+                         r"persistCanvasDocument|flushCanvasStorePersistence", body)
+
+
 def p_stay_acceptance_only(src):
     """`?stay=1`：源码注释自认是留给浏览器验收脚本的开关，界面上没有任何入口。"""
     body = git_show(src, "web/src/pages/canvas/index.tsx")
@@ -399,6 +445,12 @@ REGISTRY = [
      p_rename_not_synced, None),
     ("canvas-autosave-watches-content-only", "自动保存只盯内容字段、不含名字",
      p_content_watcher_excludes_title, None),
+    ("canvas-folders-local-only", "画布库文件夹纯属本机（服务端只有素材文件夹）",
+     p_canvas_folders_are_local, None),
+    ("canvas-cover-localstorage-only", "画布封面只存 localStorage",
+     p_canvas_cover_is_localstorage, None),
+    ("director-scenes-not-synced", "导演台场景只写本地、从不上传",
+     p_director_scenes_not_synced, None),
 ]
 
 
