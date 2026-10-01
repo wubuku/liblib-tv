@@ -1,0 +1,104 @@
+{
+  "url": "http://localhost:4317/jimeng/canvas/demo",
+  "viewport": {
+    "w": 1680,
+    "h": 826
+  },
+  "rail": {
+    "btn": {
+      "rect": {
+        "x": 24,
+        "y": 281,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)"
+      }
+    },
+    "icon": {
+      "rect": {
+        "x": 30,
+        "y": 287,
+        "w": 20,
+        "h": 20
+      },
+      "style": {
+        "width": "20px",
+        "height": "20px",
+        "strokeWidth": "2px"
+      }
+    },
+    "chrome": {
+      "rect": {
+        "x": 16,
+        "y": 271,
+        "w": 48,
+        "h": 340
+      },
+      "style": {
+        "backgroundColor": "rgba(32, 32, 34, 0.8)",
+        "borderRadius": "16px",
+        "padding": "10px 8px",
+        "gap": "4px",
+        "backdropFilter": "blur(40px)",
+        "boxShadow": "rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.24) 0px 1px 2px 0px"
+      },
+      "depth": 1
+    }
+  },
+  "topRight": {
+    "btn": {
+      "x": 1640,
+      "y": 16,
+      "w": 28,
+      "h": 28
+    },
+    "chrome": {
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1680,
+        "h": 826
+      },
+      "style": {
+        "backgroundColor": "rgb(15, 15, 18)",
+        "borderRadius": "0px",
+        "padding": "0px",
+        "gap": "normal",
+        "backdropFilter": "none",
+        "boxShadow": "none"
+      },
+      "depth": 5
+    }
+  },
+  "dock": {
+    "zoom": {
+      "x": 128,
+      "y": 778,
+      "w": 48,
+      "h": 28
+    },
+    "chrome": {
+      "rect": {
+        "x": 16,
+        "y": 774,
+        "w": 164,
+        "h": 36
+      },
+      "style": {
+        "backgroundColor": "rgb(13, 13, 13)",
+        "borderRadius": "8px",
+        "padding": "4px",
+        "gap": "4px",
+        "backdropFilter": "none",
+        "boxShadow": "rgba(255, 255, 255, 0.04) 0px 0px 0px 1px inset"
+      },
+      "depth": 1
+    }
+  },
+  "chat": null,
+  "between": []
+}

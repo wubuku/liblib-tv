@@ -1,0 +1,105 @@
+{
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "viewport": {
+    "w": 1680,
+    "h": 826
+  },
+  "rail": {
+    "btn": {
+      "rect": {
+        "x": 16,
+        "y": 246,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)"
+      }
+    },
+    "icon": null,
+    "chrome": {
+      "rect": {
+        "x": 12,
+        "y": 242,
+        "w": 48,
+        "h": 398
+      },
+      "style": {
+        "backgroundColor": "color(srgb 0.12549 0.12549 0.12549)",
+        "borderRadius": "12px",
+        "padding": "4px",
+        "gap": "2px",
+        "backdropFilter": "none",
+        "boxShadow": "rgb(255, 255, 255) 0px 0px 0px 0px inset, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "depth": 2
+    }
+  },
+  "topRight": {
+    "btn": {
+      "x": 1636,
+      "y": 16,
+      "w": 28,
+      "h": 28
+    },
+    "chrome": {
+      "rect": {
+        "x": 1505,
+        "y": 12,
+        "w": 163,
+        "h": 36
+      },
+      "style": {
+        "backgroundColor": "rgba(32, 32, 34, 0.8)",
+        "borderRadius": "8px",
+        "padding": "4px",
+        "gap": "4px",
+        "backdropFilter": "blur(40px)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.24) 0px 1px 2px 0px"
+      },
+      "depth": 4
+    }
+  },
+  "dock": {
+    "zoom": {
+      "x": 124,
+      "y": 779,
+      "w": 48,
+      "h": 28
+    },
+    "chrome": {
+      "rect": {
+        "x": 12,
+        "y": 774,
+        "w": 164,
+        "h": 36
+      },
+      "style": {
+        "backgroundColor": "rgb(13, 13, 13)",
+        "borderRadius": "8px",
+        "padding": "4px",
+        "gap": "4px",
+        "backdropFilter": "none",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px inset"
+      },
+      "depth": 5
+    }
+  },
+  "chat": {
+    "rect": {
+      "x": 1549,
+      "y": 779,
+      "w": 118,
+      "h": 34
+    },
+    "style": {
+      "borderRadius": "20px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(250, 250, 250)",
+      "fontSize": "13px"
+    }
+  },
+  "between": []
+}

@@ -12,24 +12,35 @@ import {
   Upload,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { useReactFlow } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
- * 左侧插入工具栏 — aside 绝对 bottom-4 left-4 top-[72px] 垂直居中 (SOURCE_FACT)。
- * 9 个 20×20 图标，垂直间距 42px；第 7 个 (导演台) 挂 Beta 徽标。
- * hover 高亮 rgba(255,255,255,0.12) (SOURCE_FACT)；点击 文本/图片/视频/音频
- * 在画布中央插入对应节点 (Batch 17/68)，其余项 mock no-op。
- * Batch 73 (SOURCE_FACT): 悬停左栏时图标右侧显示标签飞出层
- * (73-upload-panel.png)；上传 打开多选文件选择器，选中文件作为
- * 本地上传视频节点落入画布中央 (filechooser multiple 实证)。
+ * 左侧插入工具栏 — aside 绝对定位、**在 y=56 以下区域垂直居中**。
+ *
+ * Batch 796 (SOURCE_FACT 2026-10-01 登录态实测，1680×826 + 1280×720 +
+ * 1440×900 + 1680×1000 四视口交叉验证)：
+ *   外壳  @[12,242] 48×398  padding 4px  gap 2px  radius 12px
+ *         bg rgb(32,32,32) **不透明**、**无 backdrop blur**
+ *         （与顶部 chrome 药丸 rgba(32,32,34,.8)+blur(40px) 是两套，别混用）
+ *   按钮  40×40  radius 8px  图标 20×20
+ *   纵向  246 / 288 / 330 / 372 / 414 / 456 / 498 → 分隔条 → 554 / 596
+ *         即常规步距 42px，导演台→资产库 56px（多出的 14px = 12px 分隔条 + 2×2px gap）
+ *   居中  rail 高恒为 390px，中心 = (56 + 视口高)/2，即 railTop = 56 + (H-446)/2。
+ *         四视口实测 railTop = 246/193/283/333，与该式逐一吻合 —— 说明源站是
+ *         **推导**而非写死，本组件沿用同一居中模型，只在 top-[72px] bottom-4
+ *         （中心同为 (H+56)/2）上改内部尺寸即可，无需改成固定 y。
+ *   hover 按钮底色**不变**（源站 class 明确 hover:bg-transparent，实测 hover 前后
+ *         computed backgroundColor 均为 rgba(0,0,0,0)）。此前本文件注释写的
+ *         「hover 高亮 rgba(255,255,255,0.12)」是台账错误，batch 796 已订正。
  */
 const RAIL_ITEMS: {
   icon: LucideIcon;
   label: string;
   beta?: boolean;
+  separatorBefore?: boolean;
   insert?: "video" | "image" | "text" | "audio";
 }[] = [
   // Batch 68 (SOURCE_FACT): 标签对齐源站 aria-label 提取
@@ -41,7 +52,8 @@ const RAIL_ITEMS: {
   { icon: LayoutTemplate, label: "时间线" },
   { icon: SquareUser, label: "主体" },
   { icon: Bot, label: "导演台", beta: true },
-  { icon: Folder, label: "资产库" },
+  // Batch 796 (SOURCE_FACT): 资产库 之前有一条 20×12 分隔条
+  { icon: Folder, label: "资产库", separatorBefore: true },
   { icon: Upload, label: "上传" },
 ];
 
@@ -77,36 +89,45 @@ export function JimengToolRail() {
   };
 
   return (
-    <aside className="pointer-events-none absolute bottom-4 left-4 top-[72px] z-30 flex items-center">
-      <div className="jimeng-chrome-pill group pointer-events-auto flex flex-col items-center gap-1 !rounded-2xl px-2 py-2.5">
-        {RAIL_ITEMS.map(({ icon: Icon, label, beta, insert }) => (
-          <button
-            key={label}
-            type="button"
-            aria-label={label}
-            onClick={() => {
-              if (insert) insertAtCenter(insert);
-              // Batch 72 (SOURCE_FACT): 资产库 打开模态
-              if (label === "资产库") setAssetsOpen(true);
-              // Batch 73 (SOURCE_FACT): 上传 打开多选文件选择器
-              if (label === "上传") fileInputRef.current?.click();
-            }}
-            className="relative flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.12]"
-          >
-            <Icon size={20} />
-            {beta ? (
-              <span className="absolute -top-0.5 left-1/2 text-[7px] font-semibold italic leading-none text-[#009EFA] [transform:translateX(-50%)_translateY(-2px)]">
-                Beta
-              </span>
+    <aside className="pointer-events-none absolute bottom-4 left-3 top-[72px] z-30 flex items-center">
+      <div
+        className="jimeng-tool-rail group pointer-events-auto flex w-12 flex-col items-center gap-0.5 p-1"
+        data-testid="tool-rail"
+      >
+        {RAIL_ITEMS.map(({ icon: Icon, label, beta, insert, separatorBefore }) => (
+          <Fragment key={label}>
+            {/* Batch 796 (SOURCE_FACT): 导演台与资产库之间的 20×12 分隔条 */}
+            {separatorBefore ? (
+              <div className="jimeng-tool-rail-separator" data-testid="tool-rail-separator" />
             ) : null}
-            {/* Batch 73 (SOURCE_FACT): 悬停左栏时图标右侧的标签飞出层 */}
-            <span
-              className="pointer-events-none absolute left-10 whitespace-nowrap text-[13px] leading-none text-white/85 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-              data-rail-label={label}
+            <button
+              type="button"
+              aria-label={label}
+              onClick={() => {
+                if (insert) insertAtCenter(insert);
+                // Batch 72 (SOURCE_FACT): 资产库 打开模态
+                if (label === "资产库") setAssetsOpen(true);
+                // Batch 73 (SOURCE_FACT): 上传 打开多选文件选择器
+                if (label === "上传") fileInputRef.current?.click();
+              }}
+              // Batch 796 (SOURCE_FACT): 40×40 r8；hover **不**改底色
+              className="relative flex size-10 items-center justify-center rounded-lg text-white/85"
             >
-              {label}
-            </span>
-          </button>
+              <Icon size={20} />
+              {beta ? (
+                <span className="absolute -top-0.5 left-1/2 text-[7px] font-semibold italic leading-none text-[#009EFA] [transform:translateX(-50%)_translateY(-2px)]">
+                  Beta
+                </span>
+              ) : null}
+              {/* Batch 73 (SOURCE_FACT): 悬停左栏时图标右侧的标签飞出层 */}
+              <span
+                className="pointer-events-none absolute left-12 whitespace-nowrap text-[13px] leading-none text-white/85 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                data-rail-label={label}
+              >
+                {label}
+              </span>
+            </button>
+          </Fragment>
         ))}
       </div>
       <input

@@ -7,11 +7,15 @@ import { JimengZoomMenu } from "@/components/jimeng/JimengZoomMenu";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
- * 左下角画布导航 dock — 16,774 164×36 (SOURCE_FACT)。
+ * 左下角画布导航 dock — 164×36 (SOURCE_FACT)。
  * Batch 91 (SOURCE_FACT 91-minimap.json): dock 演进为 [选择工具][小地图] |
  * 缩放百分比 (布局 已并入多选工具条、同步 由自动保存取代——均站点演进)；
  * 小地图 点击切换左上 MiniMap 面板 (164×154 rgb(13,13,13) r8，内
  * 156×114 white/8% r6)。
+ * Batch 796 (SOURCE_FACT 1680×826 实测): 壳体 @[12,774] 164×36、bg rgb(13,13,13)、
+ * radius 8、padding 4、gap 4 —— 与 rail 一样贴 **12px** 左缘（此前误为 16px，
+ * 导致三个图标钮与缩放钮整体右移 4px）。缩放钮 aria-label 逐字对齐源站
+ * "Zoom options, {n}%"（含实时百分比），故另给 data-testid 供稳定选择。
  */
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
@@ -24,7 +28,7 @@ export function JimengBottomDock() {
   const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
 
   return (
-    <div className="absolute bottom-4 left-4 z-30">
+    <div className="absolute bottom-4 left-3 z-30">
       <div className="jimeng-bottom-dock relative flex h-9 w-[164px] items-center gap-1 p-1">
         <button
           type="button"
@@ -64,7 +68,9 @@ export function JimengBottomDock() {
         <span className="mx-1 h-3 w-px shrink-0 bg-white/10" />
         <button
           type="button"
-          aria-label="缩放"
+          // Batch 796 (SOURCE_FACT): 无障碍名逐字 = "Zoom options, {n}%"
+          aria-label={`Zoom options, ${zoomPercent}%`}
+          data-testid="dock-zoom"
           onClick={() => setZoomMenuOpen((v) => !v)}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"
         >

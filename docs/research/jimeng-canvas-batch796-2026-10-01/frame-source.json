@@ -1,0 +1,317 @@
+{
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "rail": [
+    {
+      "label": "文本",
+      "rect": {
+        "x": 16,
+        "y": 246,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "图片",
+      "rect": {
+        "x": 16,
+        "y": 288,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "视频",
+      "rect": {
+        "x": 16,
+        "y": 330,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "音频",
+      "rect": {
+        "x": 16,
+        "y": 372,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "时间线",
+      "rect": {
+        "x": 16,
+        "y": 414,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "主体",
+      "rect": {
+        "x": 16,
+        "y": 456,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "导演台",
+      "rect": {
+        "x": 16,
+        "y": 498,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "资产库",
+      "rect": {
+        "x": 16,
+        "y": 554,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "上传",
+      "rect": {
+        "x": 16,
+        "y": 596,
+        "w": 40,
+        "h": 40
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgba(0, 0, 0, 0)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    }
+  ],
+  "railPitch": [
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    56,
+    42
+  ],
+  "railBox": {
+    "x": 16,
+    "y": 246,
+    "w": 40,
+    "h": 390
+  },
+  "railPad": {
+    "rect": {
+      "x": 12,
+      "y": 242,
+      "w": 48,
+      "h": 398
+    },
+    "style": {
+      "padding": "4px",
+      "gap": "2px",
+      "display": "flex",
+      "flexDirection": "column"
+    }
+  },
+  "topRight": [
+    {
+      "label": "搜索",
+      "rect": {
+        "x": 1311,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "生成历史",
+      "rect": {
+        "x": 1343,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "分享",
+      "rect": {
+        "x": 1388,
+        "y": 16,
+        "w": 60,
+        "h": 28
+      }
+    },
+    {
+      "label": "更多",
+      "rect": {
+        "x": 1465,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "用户菜单",
+      "rect": {
+        "x": 1636,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "credits",
+      "rect": {
+        "x": 1509,
+        "y": 16,
+        "w": 111,
+        "h": 28
+      },
+      "aria": "Credits: 805 · 基础会员"
+    }
+  ],
+  "bottomLeft": [
+    {
+      "label": "Canvas viewport controls",
+      "rect": {
+        "x": 16,
+        "y": 778,
+        "w": 156,
+        "h": 28
+      }
+    },
+    {
+      "label": "选择工具",
+      "rect": {
+        "x": 16,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "小地图",
+      "rect": {
+        "x": 48,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "显示连线",
+      "rect": {
+        "x": 80,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "Zoom options, 100%",
+      "rect": {
+        "x": 124,
+        "y": 779,
+        "w": 48,
+        "h": 28
+      }
+    },
+    {
+      "label": "与 AI 对话",
+      "rect": {
+        "x": 1549,
+        "y": 779,
+        "w": 118,
+        "h": 34
+      }
+    }
+  ],
+  "agent": {
+    "drawerEl": {
+      "x": 1468,
+      "y": 413,
+      "w": 200,
+      "h": 401
+    },
+    "chatTrigger": {
+      "x": 1549,
+      "y": 779,
+      "w": 118,
+      "h": 34
+    },
+    "openCueCount": 0,
+    "openCues": [],
+    "hasInput": false,
+    "defaultOpen": false
+  },
+  "canvasRoot": {
+    "x": 12,
+    "y": 10,
+    "w": 1656,
+    "h": 40
+  },
+  "bodyBg": "rgb(18, 18, 18)"
+}

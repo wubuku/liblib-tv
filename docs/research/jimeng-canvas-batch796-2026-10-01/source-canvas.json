@@ -1,0 +1,450 @@
+{
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "title": "测试项目 - 即梦AI",
+  "zoomText": "100%",
+  "counts": {
+    "controls": 25,
+    "nodes": 1,
+    "handles": 2,
+    "edges": 0,
+    "edgesSvg": 1,
+    "canvases": 2,
+    "videos": 0,
+    "images": 1
+  },
+  "tokens": {
+    "bodyBg": "rgb(18, 18, 18)",
+    "bodyFont": "\"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", Arial, sans-serif",
+    "bodyColor": "rgb(22, 24, 35)",
+    "canvasBg": "rgb(13, 13, 13)"
+  },
+  "controls": [
+    {
+      "name": "导演台",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 498,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "返回首页",
+      "tag": "a",
+      "role": "",
+      "testid": "canvas-project-logo",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 12,
+        "y": 10,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "分享",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-share-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1388,
+        "y": 16,
+        "w": 60,
+        "h": 28
+      }
+    },
+    {
+      "name": "更多",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1465,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "上传",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 596,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "生成历史",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-panel-launcher",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1343,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "时间线",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 414,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "视频",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 330,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "搜索",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-panel-launcher",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1311,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "图片",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 288,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "文本",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 246,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "显示连线",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-display-toggle-connections",
+      "pressed": "true",
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 80,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "项目",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-project-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 120,
+        "y": 16,
+        "w": 20,
+        "h": 28
+      }
+    },
+    {
+      "name": "小地图",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-display-toggle-minimap",
+      "pressed": "false",
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 48,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "选择工具",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-pointer-tool-toggle",
+      "pressed": "false",
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "音频",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 372,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "用户菜单",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-user-menu-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1636,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "name": "与 AI 对话",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-sidecar-launcher",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1549,
+        "y": 779,
+        "w": 118,
+        "h": 34
+      }
+    },
+    {
+      "name": "主体",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 456,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "资产库",
+      "tag": "button",
+      "role": "",
+      "testid": "",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 16,
+        "y": 554,
+        "w": 40,
+        "h": 40
+      }
+    },
+    {
+      "name": "Canvas",
+      "tag": "div",
+      "role": "application",
+      "testid": "rf__wrapper",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1680,
+        "h": 826
+      }
+    },
+    {
+      "name": "Canvas node summary: 节点 1",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-node-summary-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 156,
+        "y": 16,
+        "w": 26,
+        "h": 28
+      }
+    },
+    {
+      "name": "Canvas title: 测试项目",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-project-title-trigger",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 52,
+        "y": 16,
+        "w": 68,
+        "h": 28
+      }
+    },
+    {
+      "name": "Credits: 805 · 基础会员",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-commerce-entry",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 1509,
+        "y": 16,
+        "w": 111,
+        "h": 28
+      }
+    },
+    {
+      "name": "Zoom options, 100%",
+      "tag": "button",
+      "role": "",
+      "testid": "canvas-zoom-percent",
+      "pressed": null,
+      "disabled": false,
+      "count": 1,
+      "rect": {
+        "x": 124,
+        "y": 779,
+        "w": 48,
+        "h": 28
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "node_anztvntcas",
+      "type": "video",
+      "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+      "rect": {
+        "x": 556,
+        "y": 253,
+        "w": 569,
+        "h": 320
+      },
+      "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "hasToolbar": false,
+      "toolbar": "",
+      "mediaCount": 0
+    }
+  ],
+  "overlays": [
+    {
+      "cls": "relative flex h-workspace-collaborators-trigger items-center gap-workspace-collaborators-content-gap",
+      "role": "",
+      "rect": {
+        "x": 1383,
+        "y": 12,
+        "w": 70,
+        "h": 36
+      },
+      "text": "分享"
+    },
+    {
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not",
+      "role": "application",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1680,
+        "h": 826
+      },
+      "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected."
+    },
+    {
+      "cls": "z-canvas-chrome w-workspace-chrome-rail gap-workspace-chrome-rail-gap rounded-dreamina-toast p-works",
+      "role": "toolbar",
+      "rect": {
+        "x": 12,
+        "y": 242,
+        "w": 48,
+        "h": 398
+      },
+      "text": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传"
+    }
+  ]
+}

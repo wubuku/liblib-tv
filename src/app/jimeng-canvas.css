@@ -44,6 +44,41 @@
   box-shadow: rgba(255, 255, 255, 0.04) 0 0 0 1px inset;
 }
 
+/* ---- 左侧插入工具栏外壳 (Batch 796) ----
+   源站 rail 容器 class: z-canvas-chrome w-workspace-chrome-rail
+   gap-workspace-chrome-rail-gap rounded-dreamina-toast
+   实测 @1680×826: @[12,242] 48×398, padding 4px, gap 2px, radius 12px,
+   background color(srgb .12549 …) = rgb(32,32,32) **不透明**,
+   backdrop-filter: none, box-shadow 内描边白 0.04 1px。
+   注意与顶部 chrome 药丸不同：rail 是实色无 blur，别复用 .jimeng-chrome-pill。 */
+.jimeng-tool-rail {
+  background: #202020;
+  border-radius: 12px;
+  box-shadow: rgba(255, 255, 255, 0.04) 0 0 0 1px inset;
+}
+
+/* 导演台与资产库之间的分隔条 (Batch 796 SOURCE_FACT)
+   源站: <div class="… w-workspace-chrome-rail-separator flex items-center
+   justify-center"> 内含 <span class="… bg-dreamina-stroke-secondary">，
+   实测外框 20×12 @[26,540]、内线 20×1 @[26,546] rgba(255,255,255,0.04)。
+   这 14px 额外间距来自该分隔条（不是 margin）—— 见 batch796 取证。 */
+.jimeng-tool-rail-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.jimeng-tool-rail-separator::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
 /* ---- 选中节点浮动工具条 (Batch 2 起点) ----
    bg rgb(32,32,32) r12 h40 SOURCE_FACT */
 .jimeng-node-toolbar {

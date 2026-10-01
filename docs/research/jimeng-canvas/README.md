@@ -185,6 +185,40 @@
   粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族。
   复刻: 子菜单 hover 展开 (源站子菜单展开态未提取，CLONE_DECISION)，
   子菜单项在右键位置插入节点 (screenToFlowPosition)。
+- SOURCE_FACT (batch 796, 画布外框几何 — **首次以「同口径容器提取器」全量复核**，
+  脚本 `scripts/jimeng_chrome_probe.py` 同一段 evaluate 跑源站/复刻)：
+  左侧工具栏 @1680×826 —— 壳体 @[12,242] **48×398**、padding 4px、gap 2px、
+  radius **12px**、background `color(srgb .12549 ×3)` = **rgb(32,32,32) 不透明**、
+  **backdrop-filter: none**、内描边白 0.04 1px；九个按钮 **40×40** radius 8px、
+  图标 20×20 (源站 `[&_svg]:size-5`)；按钮 y = 246/288/330/372/414/456/498 →
+  **分隔条** → 554/596，常规步距 42px、导演台→资产库 56px。
+  分隔条 = 外框 20×12 @[26,540] (flex items-center justify-center) 内含
+  **20×1 rgba(255,255,255,0.04)** 横线 @[26,546] —— 那多出的 14px 来自该元素，
+  **不是** margin (两者 `margin-top` 实测均为 0px，源站 rail 子元素逐一枚举确认)。
+  按钮 class 为 `size-9` 但被 `absolute inset-y-0 w-full` 覆盖成 40px，
+  单看 `size-9`(36px) 会得出错误结论。
+  **居中模型**：壳体高恒 398px，中心 = (视口高 + 56)/2，即在 y=56 以下区域垂直
+  居中 ⇒ 壳体顶 = (H+56)/2 − 199。四视口实测壳体顶 242/189/279/329
+  (H=826/720/900/1000) 与该式逐一吻合 ⇒ 源站是**推导**而非写死。
+  左下 dock：壳体 @[12,774] 164×36 (bg rgb(13,13,13) r8 padding 4 gap 4)；
+  选择工具 @[16,778] / 小地图 @[48,778] / 显示连线 @[80,778] 各 28×28；
+  缩放钮 @[124,779] 48×28，**aria-label 逐字 `Zoom options, {n}%`**(含实时百分比)。
+  顶栏右簇药丸 @[1505,12] 163×36、bg rgba(32,32,34,.8) + blur(40px) + r8 + padding 4
+  —— 与 rail 是**两套**样式，rail 不可复用 `.jimeng-chrome-pill`。
+  - ⚠️ **本 batch 推翻一条旧记载**：此前多处写「左栏 hover 高亮
+    rgba(255,255,255,0.12)」。实测源站按钮 class 明确 `hover:bg-transparent`，
+    且真实 hover 前后 `computed backgroundColor` 均为 `rgba(0,0,0,0)`。
+    复刻已去掉该 hover 底色。教训同 §源站用 React Flow：**样式要回到
+    computed style 复核**，注释里的 "SOURCE_FACT" 标签不自动等于事实。
+  - ⚠️ **本 batch 推翻自己的一个中间结论**：先只比「内层控件矩形」得出
+    「顶栏右边距应 12→16」，实为误判 —— 源站 pill 右边距本来就是 12，是内层
+    4px padding 让最后一个控件显得靠左。**控件矩形 ≠ 容器矩形**，比外框必须
+    比带背景的祖先容器。
+  复刻: `JimengToolRail` 改 40×40 + p-1 + gap-0.5 + 12px radius + 新增
+  `.jimeng-tool-rail`(.jimeng-canvas.css) 与 `.jimeng-tool-rail-separator`；
+  `JimengBottomDock` 改 `left-3`；缩放钮 aria-label 对齐并补 `data-testid="dock-zoom"`
+  (因 aria-label 含实时百分比，不能做字面选择器，batch 7/57 的选择器同步更新)。
+  verifier: `scripts/verify-jimeng-batch796.py` (60 项断言，含多视口反证「写死 y」)。
 - SOURCE_FACT (batch 27, 全屏播放器): 点击卡片右下角全屏图标 (或工具条 ⤢) 进入
   全屏播放器 — 全屏黑底、媒体铺满、左下 播放/暂停 + 时长、右下 静音 + 退出全屏，
   无画布 chrome；Esc 退出。复刻经 portal 挂 body (React Flow 视口 transform
@@ -3694,3 +3728,88 @@ Zoom options / Canvas title。复刻此前只有 搜索 / 生成历史 / 用户�
    抬到抽屉之上（源站 `z-canvas-chrome` 层级待查）。
 3. 顶栏「项目」面板里 `未命名项目 / 视频创作` 目前是 mock 文案，源站这两项的
    真实数据源（项目列表接口）未取证。
+
+## 10. Batch 795 — Agent 面板几何 + 顶栏让位重排（2026-10-01）
+
+取证：`scripts/jimeng_probe795_agentpanel.py`（面板默认态 / z 层级 / 顶栏命中测试）、
+`scripts/jimeng_probe795_avatarpill.py`（右簇各控件的**祖先链**复查）。
+
+### 10.1 SOURCE_FACT — Agent 面板
+
+| 项 | 值 |
+|---|---|
+| 可访问名 | `Agent`（**不是**「AI 对话」；复刻原为 `AI 对话`，本批改正） |
+| 矩形 | **400×802 @[1268,12]**（右/上/下各内缩 12px） |
+| z-index | 40 |
+| 圆角 | **20px**（复刻原 398 宽 / rounded-2xl=16px） |
+| 类名 | `rounded-[20px] bg-assistant-sidecar-surface border border-dreamina-stroke-primary` |
+| 入口 | 右下角浮动钮，可访问名 `与 AI 对话`，**118×34 @[1549,779]**（复刻 118×34 已吻合） |
+
+- SOURCE_FACT: **载入后抽屉未展开**（`drawers: []`），只有右下角入口钮在场。
+  复刻自 batch 398 起默认展开（`aiDrawerOpen: true`）—— 该默认值与本次实测不符，
+  但它是被 398 明确记录的决定且多个 verifier 依赖，本批**不改默认值**，
+  改为让顶栏在两种状态下都正确（见 10.2）。默认值是否该改列为待决。
+
+### 10.2 SOURCE_FACT — 顶栏让位（本批核心）
+
+面板展开时，源站顶栏**向左让位**，而不是被面板遮住：
+
+| 状态 | 积分入口 | 用户菜单 | 顶栏容器右缘 |
+|---|---|---|---|
+| 面板收起 | 右缘 1620 | 按钮右缘 **1664** | 1668（= 1680-12） |
+| 面板展开 | 右缘 1208 | 按钮右缘 1252 | 1256 |
+
+推导：头像在药丸内、药丸右内边距 4 → 药丸右缘 = 按钮右缘 + 4；
+积分与头像同处一个药丸、内距 16 → 积分右缘 = 头像右缘 - 16 - 28。
+故顶栏 `right` 内边距在面板展开时取 **424**（= 1680 - 1256）。
+
+SOURCE_FACT: 面板展开时顶栏四个右簇控件中心点 `elementFromPoint` **仍命中自身**
+（不被面板拦截）。复刻原为右锚定，被 `absolute inset-y-3 right-3 z-40` 的抽屉
+整块盖住 —— batch 794 验收时点击「分享」被抽屉拦截超时，正是这个缺陷。
+
+### 10.3 SOURCE_FACT 订正 — 右簇是 4 个 36px 高 chrome 药丸（推翻 batch 794 的两处判断）
+
+复查祖先链（`jimeng_probe795_avatarpill.py`）得到：
+
+| 药丸 | 矩形 | 内含 |
+|---|---|---|
+| pill-1 | [1307,12] **68×36** r8 blur(40px) | 搜索 · 生成历史（各 28×28 r12） |
+| pill-2 | [1383,12] **70×36** | 分享 60×28 |
+| pill-3 | （未单测，约 36×36） | 更多 28×28 |
+| pill-4 | [1505,12] **163×36** | **积分 111×28 + 用户菜单 28×28**（药丸内 gap 16） |
+
+由此订正 batch 794 的两处错误：
+
+1. **「用户菜单」确实在 chrome 药丸内**（pill-4），batch 794 依据按钮自身
+   `border: 0px none` 判它「不在药丸内」是错的 —— 按钮透明、背景在祖先上。
+   batch 96 的期望已改回「在药丸内」。
+2. **药丸之间是 8px**（pill1 右 1375 → pill2 左 1383 等），不是 16px。
+   之前量到的「按钮到按钮 16px」= 8(药丸间) + 4 + 4(药丸内边距)。
+   batch 794 验收里「右簇 flex 间隙 16px」已改为 8px。
+
+另外：积分入口**自身不带 chrome 背景**，它与头像共享 pill-4 的背景 ——
+复刻原把 `jimeng-chrome-pill` 直接挂在积分按钮上（多出一层背景），本批改为
+外层 36px 高药丸包住「积分 + 头像」，与源站同构。
+
+### 10.4 实施落点
+
+- `JimengAiDrawer.tsx` — 400 宽 / `rounded-[20px]` / `aria-label="Agent"`。
+- `JimengAiButton.tsx` — 补 `aria-label="与 AI 对话"`（源站有）。
+- `JimengTopBar.tsx` — 读 `aiDrawerOpen`，展开时 `right: 424`；右簇 4 个药丸
+  同构化，簇内 `gap-2`(8px)。
+- `scripts/verify-jimeng-batch795.py` — 23 项断言（面板几何 / 让位后各控件右缘 /
+  命中测试 / 收起复原 / 重开复原）。
+
+### 10.5 顺带修好的既有缺陷
+
+batch 794 定位到的「浮层 Escape 冒泡监听被跳过」问题，本批已把剩余 3 处
+（`JimengZoomMenu`、两处 `JimengVideoNode`）也统一为捕获阶段 ——
+`src/components/jimeng/` 下再无 `addEventListener("keydown", onKey)` 冒泡写法。
+其中 `JimengHelpMenu` 的修复直接让 batch 7 从 FAIL 转 PASS。
+
+### 10.6 已知与本批无关的既有缺陷
+
+- `verify-jimeng-batch37.py`「click seek regression: 0:04」：点进度条 99.9% 处
+  期望 0:05/0:06、实测 0:04，3/3 确定性复现；把 `JimengVideoNode.tsx` 与
+  `JimengVideoPreview.tsx` 临时还原到 HEAD 后**同样失败**，确认为既有缺陷。
+  留给后续批次。

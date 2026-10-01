@@ -1,0 +1,331 @@
+{
+  "url": "http://localhost:4317/jimeng/canvas/demo",
+  "rail": [
+    {
+      "label": "文本",
+      "rect": {
+        "x": 24,
+        "y": 281,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "图片",
+      "rect": {
+        "x": 24,
+        "y": 317,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "视频",
+      "rect": {
+        "x": 24,
+        "y": 353,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "音频",
+      "rect": {
+        "x": 24,
+        "y": 389,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "时间线",
+      "rect": {
+        "x": 24,
+        "y": 425,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "主体",
+      "rect": {
+        "x": 24,
+        "y": 461,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "导演台",
+      "rect": {
+        "x": 24,
+        "y": 497,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "资产库",
+      "rect": {
+        "x": 24,
+        "y": 533,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "label": "上传",
+      "rect": {
+        "x": 24,
+        "y": 569,
+        "w": 32,
+        "h": 32
+      },
+      "style": {
+        "borderRadius": "8px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+        "fontSize": "16px",
+        "boxShadow": "none"
+      }
+    }
+  ],
+  "railPitch": [
+    36,
+    36,
+    36,
+    36,
+    36,
+    36,
+    36,
+    36
+  ],
+  "railBox": {
+    "x": 24,
+    "y": 281,
+    "w": 32,
+    "h": 320
+  },
+  "railPad": {
+    "rect": {
+      "x": 16,
+      "y": 72,
+      "w": 48,
+      "h": 738
+    },
+    "style": {
+      "padding": "0px",
+      "gap": "normal",
+      "display": "flex",
+      "flexDirection": "row"
+    }
+  },
+  "topRight": [
+    {
+      "label": "搜索",
+      "rect": {
+        "x": 1313,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "生成历史",
+      "rect": {
+        "x": 1345,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "分享",
+      "rect": {
+        "x": 1393,
+        "y": 16,
+        "w": 60,
+        "h": 28
+      }
+    },
+    {
+      "label": "更多",
+      "rect": {
+        "x": 1469,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "用户菜单",
+      "rect": {
+        "x": 1640,
+        "y": 16,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "credits",
+      "rect": {
+        "x": 1513,
+        "y": 16,
+        "w": 111,
+        "h": 28
+      },
+      "aria": "Credits: 745 · 基础会员"
+    }
+  ],
+  "bottomLeft": [
+    {
+      "label": "选择工具",
+      "rect": {
+        "x": 20,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "小地图",
+      "rect": {
+        "x": 52,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "显示连线",
+      "rect": {
+        "x": 84,
+        "y": 778,
+        "w": 28,
+        "h": 28
+      }
+    },
+    {
+      "label": "缩放",
+      "rect": {
+        "x": 128,
+        "y": 778,
+        "w": 48,
+        "h": 28
+      }
+    },
+    {
+      "label": "从本地、画布或资产库添加",
+      "rect": {
+        "x": 1295,
+        "y": 757,
+        "w": 32,
+        "h": 32
+      }
+    },
+    {
+      "label": "使用技能",
+      "rect": {
+        "x": 1331,
+        "y": 759,
+        "w": 86,
+        "h": 28
+      }
+    },
+    {
+      "label": "引用参考",
+      "rect": {
+        "x": 1421,
+        "y": 757,
+        "w": 32,
+        "h": 32
+      }
+    },
+    {
+      "label": "发送消息",
+      "rect": {
+        "x": 1611,
+        "y": 757,
+        "w": 32,
+        "h": 32
+      }
+    }
+  ],
+  "agent": {
+    "drawerEl": null,
+    "chatTrigger": null,
+    "openCueCount": 5,
+    "openCues": [
+      "新建会话",
+      "收起",
+      "使用技能",
+      "引用参考",
+      "发送消息"
+    ],
+    "hasInput": true,
+    "defaultOpen": true
+  },
+  "canvasRoot": {
+    "x": 0,
+    "y": 0,
+    "w": 1680,
+    "h": 826
+  },
+  "bodyBg": "rgb(20, 20, 20)"
+}

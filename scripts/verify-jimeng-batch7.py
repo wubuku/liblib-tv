@@ -39,7 +39,7 @@ def main() -> None:
             page.wait_for_timeout(400)
 
         # ── zoom menu ──
-        page.locator('button[aria-label="缩放"]').click()
+        page.locator('[data-testid="dock-zoom"]').click()
         page.wait_for_timeout(600)
         zm = page.evaluate(
             """() => {
