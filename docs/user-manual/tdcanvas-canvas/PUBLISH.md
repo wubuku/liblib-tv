@@ -111,12 +111,14 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-emphasis.py` | `**` 紧邻标点导致加粗失效；**裸 `{{ }}` 被 Vue 插值吞掉** | M90 全站扫产物才发现 7 处加粗失效（跨 6 页）；M91 发现 i18n 占位符在产物里整段消失 |
 | `check-render.py` | **产物侧**渲染体检：表格列数不一致、裸露管道文本、img 异常、页内锚点悬空、正文空标签 | M84 整行内容被丢弃、M91 两条死链与一处空 `<code>`，源码层八道门禁当时全过 |
 | `check-tables.py` | 表格被非表格行劈开、缺表头与分隔行、**行内代码反引号不成对** | M65 实测「十三条」后 5 行渲染成原始管道文本；M84 实测单元格内竖线未转义会**让该行剩余内容从产物里消失** |
-| `check-ledger-pin.py` | 账本声明的「版本锁定提交」与应用仓 HEAD 漂移 | M105 实测账本以「版本锁定」口吻陈述旧观察而无任何机制守候 |
+| `check-ledger-pin.py` | 锁定提交/版本号**在各声明文件之间不一致**，或与应用仓 HEAD、`package.json` 对不上 | M105 实测账本以「版本锁定」口吻陈述旧观察而无任何机制守候；M110 查出锁定 sha 其实在 `task-inventory.yml` 里**也声明了一次**而门禁只看着账本 |
 | `check-publish-sync.py` | 本表与 `build-site.sh` 实际调用的门禁集合对不上 | M106 实测本表早已漂移（把一个构建从不执行的脚本列成构建门禁）|
 | `check-source-refs.py` | 正文里 `file:line` 引用指向不存在的文件或越界的行 | M109 实测 4 处路径有歧义（`index.tsx` 仓内 6 个同名），且出现 7 次的 `canvas-node.tsx:1110` 实际已漂到 1111 |
-| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 36 类故障） | M41 门禁静默错判 |
+| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 38 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
 
+> **不要用序号指代门禁**——历史条目里的「第 N 道」**不是稳定标识**：M90 把 `check-emphasis.py` 称作「第八道」、M91 把 `check-render.py` 称作「第九道」，而 M58/M59 早就把 `check-ratings.py`、`check-inventory-freshness.py` 分别叫过同样的序号；`check-structure.py` 与 `check-claims.py` 则从未被指派序号。**排查一律按上面的脚本名找。**
+>
 > **表里没有 `audit_manual.py`，因为它不由构建调用。** 它是共享技能脚本，需**手动**跑：`--phase gate-a`（内容完成后）与 `--phase final`（发布前），用法见上文「手册验收（审计）流程」。
 >
 > 2026-10-02 M106 订正：本表此前把 `audit_manual.py` 列为「构建时的门禁」，但它在 `build-site.sh` 里**只出现于注释**、从未被执行——同一份文档上一节还写着它是手动单跑的步骤，**自相矛盾**。排查的人若信了表里那行，就会跳过手动审计。`check-publish-sync.py` 现在把注释剥掉后再比对集合，正是为了守住这条。

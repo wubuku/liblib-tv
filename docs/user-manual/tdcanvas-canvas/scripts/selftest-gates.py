@@ -207,6 +207,10 @@ def mutate_ledger_pin_drift(root: Path) -> None:
 
     注意本用例必须**改 sha 而不能删掉那一句**：删掉时门禁报的是"锁都没锁住"，
     那是另一条判据（断言存在性），抓不到本门禁真正要守的东西（断言一致性）。
+
+    2026-10-02 M110 调整：门禁扩到**全部**声明文件后，「只改账本」会先被
+    **跨文件一致性**那条判据拦下（理由会变成「各声明文件锁定的提交不一致」），
+    走不到本用例要验的 HEAD 漂移。因此这里**两份声明文件一起改**。
     """
     path = root / "SOURCE_OBSERVATIONS.md"
     text = path.read_text(encoding="utf-8")
@@ -223,6 +227,64 @@ def mutate_ledger_pin_drift(root: Path) -> None:
     else:
         text = text.replace(real, drifted, 1)
     path.write_text(text, encoding="utf-8")
+
+    # 任务账本是第二个声明者，一起改，才能走到「与应用仓 HEAD 不一致」那条判据
+    inv = root / "task-inventory.yml"
+    if inv.is_file():
+        inv_text = inv.read_text(encoding="utf-8")
+        import re as _re2
+
+        for found in _re2.finditer(r"\b[0-9a-f]{40}\b", inv_text):
+            inv_text = inv_text.replace(found.group(0), drifted, 1)
+            break
+        else:
+            raise AssertionError("任务账本里找不到 40 位锁定提交，自检用例无法构造")
+        inv.write_text(inv_text, encoding="utf-8")
+
+
+def mutate_pin_declarer_disagreement(root: Path) -> None:
+    """只把任务账本里的锁定提交改掉，让两份声明互相对不上（M110 新增判据的负向测试）。
+
+    这是 M110 查出的真实事故形态：应用仓一推进，账本门禁变红，维护者更新了
+    `SOURCE_OBSERVATIONS.md` 的 sha 却漏了 `task-inventory.yml` —— 两份都是
+    「这本手册对齐哪个提交」的权威声明，而旧的门禁**只看着其中一份**，
+    漏改的那份会静默过期。
+
+    注意它和 `mutate_ledger_pin_drift` 验的是**两条不同的判据**：
+    这一条不碰应用仓，纯粹是两份声明之间必须一致。
+    """
+    inv = root / "task-inventory.yml"
+    if not inv.is_file():
+        raise AssertionError("找不到 task-inventory.yml，自检用例无法构造")
+    text = inv.read_text(encoding="utf-8")
+    import re as _re
+
+    for found in _re.finditer(r"\b[0-9a-f]{40}\b", text):
+        text = text.replace(found.group(0), "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef", 1)
+        inv.write_text(text, encoding="utf-8")
+        return
+    raise AssertionError("任务账本里找不到 40 位锁定提交，自检用例无法构造")
+
+
+def mutate_pin_version_drift(root: Path) -> None:
+    """只把任务账本里的版本号改掉，sha 保持一致（M110 版本判据的负向测试）。
+
+    这一条专治一个具体漏洞：版本判据最初写成「应用版本是否**出现在**声明的
+    并集里」，而并集里仍留着另一个文件的 v0.14.0，于是只改一个文件完全蒙混过关。
+    负向测试当场抓到了它——**没有负向测试，新判据就是没人验证过的判据。**
+    """
+    inv = root / "task-inventory.yml"
+    if not inv.is_file():
+        raise AssertionError("找不到 task-inventory.yml，自检用例无法构造")
+    text = inv.read_text(encoding="utf-8")
+    import re as _re
+
+    found = _re.search(r"v\d+\.\d+\.\d+", text)
+    if not found:
+        raise AssertionError("任务账本里找不到版本号，自检用例无法构造")
+    major, minor, patch = found.group(0).lstrip("v").split(".")
+    bumped = f"v{int(major)}.{int(minor) + 1}.{patch}"
+    inv.write_text(text.replace(found.group(0), bumped, 1), encoding="utf-8")
 
 
 def mutate_source_ref_out_of_range(root: Path) -> None:
@@ -594,6 +656,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本锁定的提交与应用仓漂移", mutate_ledger_pin_drift, "ledgerpin", "与应用仓 HEAD 不一致"),
     ("发布文档的门禁表与脚本对不上", mutate_publish_gate_drift, "publishsync", "build-site.sh 并没有调用"),
     ("源码引用行号越界（读者点过去没这行）", mutate_source_ref_out_of_range, "sourcerefs", "行号越界"),
+    ("两份锁定声明互相对不上", mutate_pin_declarer_disagreement, "ledgerpin", "各声明文件锁定的提交不一致"),
+    ("只改一个文件的版本号（并集判据的经典漏网）", mutate_pin_version_drift, "ledgerpin", "各声明文件写的应用版本不一致"),
 ]
 
 
