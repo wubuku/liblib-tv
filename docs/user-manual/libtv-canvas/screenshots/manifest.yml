@@ -1127,3 +1127,47 @@ screenshots:
     visible_text: 生成历史 全部画布 本画布 图片 0 视频 0 音频 0 所有评级 时间正序 批量操作 暂无历史记录
     alt: 点完「时间倒序」之后：按钮文案变成「时间正序」并进入深色高亮态，鼠标悬停提示写「当前：最早优先」；对比 M-01 里那个「时间倒序」的常态。右上角能看到两枚视图图标夹一根滑杆，右端是 × 关闭
     sha256: 02f3c22e509b4f3747c8c74301b20471edf404a349eab47a3f8e57774d840c11
+  - file: screenshots/M-111-缩放菜单-全貌.png
+    task_id: organize-canvas
+    step: 48
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点左下角的百分比按钮 (260,778) 打开缩放菜单（按钮 aria 为空，innerText 就是百分比本身）
+    visible_text: 211 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 缩放菜单浮在左下角百分比上方（189×278），顶部是一个 aria-label="缩放比例" 的输入框，里面当前值 211；往下是「放大 ⌘+」「缩小 ⌘-」「适合屏幕 ⌘0」三行，一条分隔线之后是「缩放至50%」「缩放至100%」「缩放至800%」三行；左下角标签此刻显示 211%
+    sha256: 85c96a440117989a2f72fb0bf2d371870757f290d8ba1ca3695778afd4cd1953
+  - file: screenshots/M-114-缩放-输入后.png
+    task_id: organize-canvas
+    step: 49
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 在 aria-label="缩放比例" 的输入框里清空后填 200，按 Enter，然后重读左下角标签
+    visible_text: 200 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 输入框敲进 200 并回车之后，菜单没关，输入框里变成 200，左下角的标签同步从 100% 变成 200%，画布内容也放大了（顶部「上传视频」按钮被视口上边缘切掉一半，可证确实在放大）
+    sha256: e23114bdcb93708dab1192974c43b61748d88f90e0f20a7ac21bb38970082286
+  - file: screenshots/M-118-缩放-缩放至800.png
+    task_id: organize-canvas
+    step: 50
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 依次点「缩放至50%」→「缩放至100%」→「缩放至800%」，每点一档就读一次 .react-flow__viewport 的 transform scale
+    visible_text: 800 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 点完「缩放至800%」之后：输入框显示 800，左下角标签显示 800%，「缩放至800%」这一行进入高亮态；三档连点的实测 scale 依次是 2.106→0.5→1→8。画面上只剩一大块灰色节点的顶边，其余全空
+    sha256: 6d18d6e2124a6971a0e35122aed58e2251e47fcf7afa46c01605f5a6893b1ef6
+  - file: screenshots/M-119-画布下拉-行菜单.png
+    task_id: manage-canvases
+    step: 51
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点顶栏「画布 63」展开下拉，再点第 1 行悬停浮现的 aria-label="更多操作" 24×24 按钮 (356,105)
+    visible_text: 画布 画布 63 画布 62 画布 61 画布 60 在新窗口打开 重命名画布 复制画布 删除画布
+    alt: 画布下拉整体展开，列表从「画布 63」往下排（新的在最上）；「画布 63」是活动行、呈高亮态，它右侧浮出「更多操作」按钮，按钮右侧贴着一个四项浮层：在新窗口打开 / 重命名画布 / 复制画布 / 删除画布，没有第五项、也没有图标和分组线。左下角此时是 800%
+    sha256: 594620135fa67e050586014fbf3221aecb06a1e3e537e4b488e0f4bdfe552582
