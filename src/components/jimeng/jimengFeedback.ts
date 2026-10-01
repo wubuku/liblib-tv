@@ -3,7 +3,7 @@
  *
  * ## 为什么要集中
  *
- * 散着写的时候出了三��真问题（都是实际查出来的，不是假想）：
+ * 散着写的时候出了三个真问题（都是实际查出来的，不是假想）：
  *
  * 1. **漏标注**。batch 807 同批新增的三个节点里，主体节点的反馈带「（mock）」，
  *    时间线的 `已添加「片段 1」到时间线` 却没带。同一个批次里就不一致。
@@ -61,6 +61,11 @@ export const FEEDBACK = {
     mockMsg(`${action}：请先把播放头移到某个片段上`),
   removeTimelineClip: (name: string) => mockMsg(`已从时间线移除「${name}」`),
   importSubject: (name: string) => mockMsg(`已导入「${name}」`),
+  // ── 资产栏导入（batch 832）：拖放与「导入」按钮共用同一条路径 ──
+  assetsImported: (n: number) =>
+    mockMsg(`已导入 ${n} 个文件到画布`),
+  assetsImportSkipped: (n: number) =>
+    mockMsg(`已跳过 ${n} 个文件：只接受图片 / 视频 / 音频`),
   saveSubjectMeta: () => mockMsg("已保存主体描述"),
   needCanvasNodeFirst: (action: string) => mockMsg(`${action}：请先选中一个画布节点`),
   needAssetsFirst: (action: string) => mockMsg(`${action}：请先打开资产库`),

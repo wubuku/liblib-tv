@@ -197,6 +197,11 @@ export interface JimengCanvasState {
   /** 本地上传 (Batch 73, SOURCE_FACT): 上传文件 → 本地视频节点
       (标题=文件名, mock 海报)，单文件单条历史 */
   addLocalUpload: (name: string, position: { x: number; y: number }) => void;
+  /** 本地上传图片 (Batch 832): 资产栏拖放 / 「导入」按钮的真入库路径。
+      与 `addLocalUpload` 同构，但带**真实的 poster**（调用方用 FileReader
+      读出的 data URL）—— 图片节点渲染的是真 `<img src>`，所以画布上会出现
+      真的那张图。一次 `set` 完成 ⇒ 只产生**一条**撤销记录。 */
+  addLocalImage: (name: string, dataUrl: string, position: { x: number; y: number }) => void;
   /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
       右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
   captureFrame: (sourceId: string, frame: "first" | "last" | "custom") => void;
@@ -574,6 +579,34 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           currentTime: 0,
           muted: true,
           width: 569,
+          height: 320,
+        },
+        selected: false,
+      };
+      return {
+        ...markDirty(state),
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        nodes: [...state.nodes, node],
+      };
+    }),
+
+  // Batch 832: 本地图片入库（资产栏拖放 / 「导入」共用）
+  // ⚠️ id 不能用 Date.now() 单键：一次拖入多张时同毫秒会撞号，
+  // React 会把两个 key 相同的节点当成同一个，表现为「只进了一张」。
+  // 批 825 已经在 `nextClipId` 上踩过同族问题，这里跟着走。
+  addLocalImage: (name, dataUrl, position) =>
+    set((state) => {
+      const seq = state.nodes.filter((n) => n.type === "image").length + 1;
+      const id = `image-local-${seq}-${state.nodes.length}`;
+      const node: JimengNode = {
+        id,
+        type: "image",
+        position,
+        data: {
+          title: name,
+          poster: dataUrl,
+          width: 320,
           height: 320,
         },
         selected: false,

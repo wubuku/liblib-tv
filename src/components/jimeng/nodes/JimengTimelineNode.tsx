@@ -129,6 +129,8 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
      ⚠️ 这会让**画布上任何节点的增删改**都重渲染本节点。React Flow 的节点数
         是个位数（默认 4），重渲染成本可忽略；若将来上百再考虑按 kind 订阅。 */
   const nodes = useJimengStore((s) => s.nodes);
+  const addLocalImage = useJimengStore((s) => s.addLocalImage);
+  const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
   const pushToast = useJimengStore((s) => s.pushToast);
   const removeNode = useJimengStore((s) => s.removeNode);
   /* Batch 825：撤销/重做直接用 store 里**真**的 undo/redo（批 336 建的节点级
@@ -184,6 +186,10 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   }, [fullscreen]);
   const [fsSource, setFsSource] = useState<(typeof FS_SOURCES)[number]>("已导入资产");
   const [fsKind, setFsKind] = useState<(typeof FS_KINDS)[number]>("图片");
+  // Batch 832：拖放高亮态 + 真 file input。拖放与「导入」按钮共用 `ingestFiles`，
+  // 所以两条入口不可能行为分叉（这正是本批要防的那类退化）。
+  const [fsDragOver, setFsDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   // 注意别写成 Math.max(..., 1)：空轨道时那个下限 1 会漏进显示值，
   // 空态就成了 "00:00 / 00:01" 而不是源站的 "00:00 / 00:00"。
   const ends = clips.map((c) => c.start + c.length);
@@ -204,6 +210,58 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
     };
     updateClips(id, { clips: [...clips, clip], duration: clip.start + clip.length });
     pushToast(FEEDBACK.addTimelineClip(clip.label));
+  };
+
+  /* ── Batch 832：投放区接上**真拖放**，「导入」按钮接上**真 file input** ──
+     此前这一栏的提示写着「将文件拖至此处添加」，而整个组件里**没有**
+     `onDrop` / `onDragOver` / `createObjectURL` / `input[type=file]` ——
+     用户真把文件拖进来，什么也不会发生。**一句会骗人的可见交互比没有它更糟。**
+
+     两条入口（拖放 / 按钮）**共用这一个 `ingestFiles`**，所以它们不可能行为分叉。
+
+     落点：排在画布上所有媒体节点的右侧，逐个右移 569+40，纵向排 320+40 ——
+     与源站「本地上传落在源节点右侧」的既有规律一致（批 62/73）。
+
+     ⚠️ 图片走 `FileReader` 读成 data URL 交给 store 的 `addLocalImage` ——
+     图片节点渲染的是真 `<img src={d.poster}>`，所以画布上会出现**真的那张图**，
+     不是占位。视频/音频走批 73 早就建好的 `addLocalUpload`（标题=文件名 +
+     mock 海报）—— 本批**不自己造第二套上传逻辑**。 */
+  const ingestFiles = (files: File[]) => {
+    const accepted = files.filter((f) =>
+      f.type.startsWith("image/") || f.type.startsWith("video/") ||
+      f.type.startsWith("audio/"));
+    if (accepted.length === 0) {
+      pushToast(FEEDBACK.assetsImportSkipped(files.length));
+      return;
+    }
+    // 落点：排在画布上已有媒体节点的右侧，一行放 3 个，满了换行
+    const mediaNodes = nodes.filter(
+      (n) => n.type === "image" || n.type === "video" || n.type === "audio");
+    const rightMost = mediaNodes.reduce((m, n) => Math.max(m, n.position.x), -609);
+    const topMost = mediaNodes.length ? Math.min(...mediaNodes.map((n) => n.position.y)) : 0;
+    let x = rightMost + 649;
+    let y = topMost;
+    for (const f of accepted) {
+      const pos = { x, y };
+      if (f.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (typeof reader.result === "string") {
+            addLocalImage(f.name, reader.result as string, pos);
+          }
+        };
+        reader.readAsDataURL(f);
+      } else {
+        // 视频/音频：复用批 73 的真上传路径（标题=文件名）
+        addLocalUpload(f.name, pos);
+      }
+      x += 649;
+      if (x > rightMost + 649 * 3) {
+        x = rightMost + 649;
+        y += 360;
+      }
+    }
+    pushToast(FEEDBACK.assetsImported(accepted.length));
   };
 
   /* ── Batch 827：把资产栏从「装饰」接成真浏览器 ─────────────────────────
@@ -867,10 +925,39 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                  把它条件渲染掉，那条断言会直接超时）。两句文案必须**始终**出现在
                  浮层里：批 813 逐条断言了「没有媒体可供预览」与「将文件拖至此处添加」，
                  所以拖放提示单独成行，不塞进列表里。 */}
+              {/* 投放区：批 832 给它接上**真拖放**。
+                  此前这里只有一句「将文件拖至此处添加」的提示，而整个组件里
+                  **没有 onDrop / onDragOver / createObjectURL / input[type=file]**
+                  —— 也就是说这句提示在**说谎**：用户真把文件拖进来，什么也不会发生。
+                  一个会骗人的可见交互，比没有这个交互更糟。
+
+                  拖放与下面那枚「导入」按钮**共用同一条** ingest 路径
+                  （`ingestFiles`），所以两条入口的行为不会分叉。
+                  新增 testid `timeline-fs-dropzone` 走**包裹层**，不动既有
+                  `timeline-fs-asset-empty` / `-hint` —— 821/827 的 verifier
+                  依赖那两个恒在。 */}
               <div
-                className="flex h-[120px] flex-col gap-1 overflow-y-auto rounded-md border border-dashed border-white/15 p-2 text-[12px] leading-[18px] text-white/60"
-                data-testid="timeline-fs-asset-empty"
+                data-testid="timeline-fs-dropzone"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.dataTransfer.dropEffect = "copy";
+                  setFsDragOver(true);
+                }}
+                onDragLeave={() => setFsDragOver(false)}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setFsDragOver(false);
+                  const files = Array.from(e.dataTransfer?.files ?? []);
+                  if (files.length) ingestFiles(files);
+                }}
+                className={`rounded-md transition-colors ${
+                  fsDragOver ? "bg-white/[0.08] ring-1 ring-white/30" : ""
+                }`}
               >
+                <div
+                  className="flex h-[120px] flex-col gap-1 overflow-y-auto rounded-md border border-dashed border-white/15 p-2 text-[12px] leading-[18px] text-white/60"
+                  data-testid="timeline-fs-asset-empty"
+                >
                 {fsVisible.length === 0 ? (
                   <span className="m-auto text-center text-white/40">没有媒体可供预览</span>
                 ) : (
@@ -894,21 +981,41 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                     </button>
                   ))
                 )}
+                </div>
+                <p
+                  className="mt-1 text-center text-[11px] text-white/30"
+                  data-testid="timeline-fs-asset-hint"
+                >
+                  将文件拖至此处添加
+                </p>
               </div>
-              <p
-                className="mt-1 text-center text-[11px] text-white/30"
-                data-testid="timeline-fs-asset-hint"
-              >
-                将文件拖至此处添加
-              </p>
               <button
                 type="button"
                 data-testid="timeline-fs-import"
-                onClick={() => pushToast(mockMsg("请选择要导入的文件"))}
+                onClick={() => fileInputRef.current?.click()}
                 className="mt-2 flex h-8 w-full items-center justify-center rounded-md bg-white/10 text-[13px] text-white hover:bg-white/20"
               >
                 导入
               </button>
+              {/* 批 832：这枚 input 是「导入」的真身。**不可见但必须在 DOM 里**
+                  —— Playwright 的 set_input_files 与 `input.click()` 都要求它
+                  真实存在；用 display:none 的 input 仍可被 set_input_files 命中。
+                  ref 而非 id：全屏浮层用 portal 渲染到 body，用 id 选择器在
+                  同一页多实例时会选错。 */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/*,video/*,audio/*"
+                className="hidden"
+                data-testid="timeline-fs-file-input"
+                onChange={(e) => {
+                  const files = Array.from(e.target.files ?? []);
+                  // 清空 value，否则同一个文件选第二次不会触发 change
+                  e.target.value = "";
+                  if (files.length) ingestFiles(files);
+                }}
+              />
             </div>
 
             <div className="flex min-w-0 flex-1 flex-col">

@@ -8054,3 +8054,70 @@ C.5 连着红了两轮，根因都不是产品：
 （`node-border-census.json` / `source-deep-borders.json` /
 `clone-deep-borders.json` / `source-video-border-states.json` /
 `source-node-borders.json` / `clone-node-borders.json`）。
+
+---
+
+## 44. Batch 832-assetimport — 一句会骗人的提示，比没有这个交互更糟（2026-10-04）
+
+批 821 把全屏编辑器做成真浮层，827 把资产栏接成真浏览器。但那一栏底部有一行提示：
+
+> **将文件拖至此处添加**
+
+而整个 `JimengTimelineNode` 里**没有** `onDrop` / `onDragOver` /
+`createObjectURL` / `input[type=file]` —— 一个都没有。
+
+也就是说：用户真把文件拖进去，**什么也不会发生**，连一句「不支持」都没有。
+**一句会骗人的可见交互比没有它更糟** —— 它让人相信功能在，于是去找；找不到时
+不会怀疑那句话，只会怀疑自己。批 825 把六枚编辑工具从桩接成真动作时留过一句判断：
+「反馈的意义是告诉用户**发生了什么**」。同一把尺子量提示文案，结果是它自己在说谎。
+
+### 两条入口，共用一条路径
+
+```
+拖放    timeline-fs-dropzone（新包裹层）onDragOver / onDragLeave / onDrop
+导入    timeline-fs-import → input[type=file]（timeline-fs-file-input）
+                    ↓
+              ingestFiles(files)     ← 唯一实现
+```
+
+**共用一条**是关键：如果拖放和按钮各写一份，迟早行为分叉。新 testid 走**包裹层**
+而不是改既有元素 —— 821/827 的 verifier 依赖 `timeline-fs-asset-empty` /
+`-hint` 恒在。
+
+入库：图片 `FileReader` → data URL → store **新增**的 `addLocalImage`；
+视频/音频走批 73 早就建好的 `addLocalUpload`（**不自己造第二套上传逻辑**）。
+`addLocalImage` 一次 `set` 完成 ⇒ 只产生**一条**撤销记录；id 用
+`image-local-<seq>-<n>` 而不是 `Date.now()` —— 一次拖多张会同毫秒撞号，
+React 会把同 key 的两个节点当同一个，表现为「只进了一张」
+（批 825 在 `nextClipId` 上踩过同族问题）。
+
+图片节点渲染的是真 `<img src={d.poster}>`，所以画布上会出现**真的那张图**。
+落点排在已有媒体节点右侧，一行 3 个，满了换行。
+
+### 顺带把 832 与 827 缝上
+
+827 的资产栏列的是**画布媒体节点** ⇒ 拖进来的文件自动出现在列表里，不用额外接线。
+verifier 专门断言了这条（③），这样两批的接缝被钉住而不是靠「应该会work」。
+
+### verifier 17/17
+
+关键是**真的构造 `DataTransfer` 并派发 dragenter/dragover/drop**。直接调 React 的
+`onDrop` 是调不到的（它在合成事件系统里），只测「函数存在」等于什么都没测。
+断言落在行为上：新节点 `<img src>` 必须是 `data:image/png;base64,…`
+—— 证明读到的是文件内容，不是占位图。
+
+反例也在：丢一个 `.txt` 进来必须**不造节点且给出「已跳过」提示**（不静默丢弃）。
+
+两个自己踩的坑也写进 verifier 了：
+1. `wait_for_selector` 默认等 **visible**，而这枚 input 是 `class="hidden"` 的
+   ⇒ 必须 `state="attached"`（否则必超时）。
+2. 跑完 ④ 要 `Escape` 再重开浮层；`expect_file_chooser` + `set_files` 走的是
+   真 file input 路径，与拖放互为对照 —— **两条入口都验，才敢说「不分叉」**。
+
+回归 818(63) / 821(43) / 825(43) / 827(19) / 828(16) / 829(14) / 830(15) 全绿。
+
+### 顺带修掉一处旧字符损坏
+
+`jimengFeedback.ts` 文件头第 6 行有个替换字符（`三��真问题`，按后面正好列了 3 条
+可判定应为「三个」）。那是已在 HEAD 里的旧伤，本批正好要动这个文件，一并修掉 ——
+源码注释里留着损坏字符，也是一种「说谎」。
