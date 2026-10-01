@@ -108,20 +108,20 @@
       "panorama_text": "全景图\n本地上传\n历史记录\nAI生成",
       "aspect_width": 232,
       "aspect_row_ys": [
-        273,
-        273,
-        351,
-        351,
-        429,
-        429,
-        507
+        265,
+        265,
+        345,
+        345,
+        425,
+        425,
+        505
       ],
       "aspect_row_pitches": [
-        78,
-        78,
-        78
+        80,
+        80,
+        80
       ],
-      "aspect_card_height": 324,
+      "aspect_card_height": 326,
       "aspect_title_box": {
         "x": 46.5,
         "y": 240,

@@ -1,0 +1,261 @@
+{
+  "batch": 590,
+  "title": "画幅比例卡样式对齐 + 几何模型八项子菜单 + 群众阵列弹窗（源站 2026-10-01 实测）",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch590-2026-10-01/README.md",
+  "source_quirks_copied_verbatim": [
+    "3:4 and 9:16 both measure 8x16 on the source — copied as measured",
+    "selected and unselected ratio labels share the same text color; only the card border differs (0.85 vs 0.1)"
+  ],
+  "clone_only": [
+    "clone keeps aria-pressed on the ratio cards (the source has none) — a11y superset"
+  ],
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "aspect:seven-cards",
+        "aspect:自适应:size",
+        "aspect:自适应:radius-12",
+        "aspect:自适应:transparent",
+        "aspect:自适应:label-90",
+        "aspect:自适应:glyph-16x11",
+        "aspect:自适应:glyph-border-90",
+        "aspect:自适应:border-0.85",
+        "aspect:21:9:size",
+        "aspect:21:9:radius-12",
+        "aspect:21:9:transparent",
+        "aspect:21:9:label-90",
+        "aspect:21:9:glyph-16x7",
+        "aspect:21:9:glyph-border-90",
+        "aspect:21:9:border-0.1",
+        "aspect:16:9:size",
+        "aspect:16:9:radius-12",
+        "aspect:16:9:transparent",
+        "aspect:16:9:label-90",
+        "aspect:16:9:glyph-16x9",
+        "aspect:16:9:glyph-border-90",
+        "aspect:16:9:border-0.1",
+        "aspect:4:3:size",
+        "aspect:4:3:radius-12",
+        "aspect:4:3:transparent",
+        "aspect:4:3:label-90",
+        "aspect:4:3:glyph-16x12",
+        "aspect:4:3:glyph-border-90",
+        "aspect:4:3:border-0.1",
+        "aspect:1:1:size",
+        "aspect:1:1:radius-12",
+        "aspect:1:1:transparent",
+        "aspect:1:1:label-90",
+        "aspect:1:1:glyph-14x14",
+        "aspect:1:1:glyph-border-90",
+        "aspect:1:1:border-0.1",
+        "aspect:3:4:size",
+        "aspect:3:4:radius-12",
+        "aspect:3:4:transparent",
+        "aspect:3:4:label-90",
+        "aspect:3:4:glyph-8x16",
+        "aspect:3:4:glyph-border-90",
+        "aspect:3:4:border-0.1",
+        "aspect:9:16:size",
+        "aspect:9:16:radius-12",
+        "aspect:9:16:transparent",
+        "aspect:9:16:label-90",
+        "aspect:9:16:glyph-8x16",
+        "aspect:9:16:glyph-border-90",
+        "aspect:9:16:border-0.1",
+        "aspect:grid-232",
+        "aspect:grid-324",
+        "crowd:flyout-open",
+        "crowd:opens",
+        "crowd:flyout-stays-open",
+        "crowd:title",
+        "crowd:count-9",
+        "crowd:rows:aria",
+        "crowd:rows:min",
+        "crowd:rows:max",
+        "crowd:rows:step",
+        "crowd:rows:default",
+        "crowd:columns:aria",
+        "crowd:columns:min",
+        "crowd:columns:max",
+        "crowd:columns:step",
+        "crowd:columns:default",
+        "crowd:spacing:aria",
+        "crowd:spacing:min",
+        "crowd:spacing:max",
+        "crowd:spacing:step",
+        "crowd:spacing:default",
+        "crowd:cancel-closes",
+        "crowd:cancel-adds-nothing",
+        "crowd:count-follows",
+        "crowd:confirm-closes",
+        "crowd:confirm-adds-8",
+        "geometry:closed-initially",
+        "geometry:opens",
+        "geometry:width-204",
+        "geometry:eight-options",
+        "geometry:option-rows-32",
+        "geometry:below-flyout",
+        "geometry:toggles-closed",
+        "diagnostics:zero"
+      ],
+      "aspect_cards": [
+        {
+          "ratio": "自适应",
+          "pressed": "true",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 16,
+          "glyphH": 11,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "21:9",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 16,
+          "glyphH": 7,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "16:9",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 16,
+          "glyphH": 9,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "4:3",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 16,
+          "glyphH": 12,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "1:1",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 14,
+          "glyphH": 14,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "3:4",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 8,
+          "glyphH": 16,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        },
+        {
+          "ratio": "9:16",
+          "pressed": "false",
+          "w": 103,
+          "h": 72,
+          "radius": "12px",
+          "bg": "rgba(0, 0, 0, 0)",
+          "borderAlpha": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "labelColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+          "labelSize": "12px",
+          "glyphW": 8,
+          "glyphH": 16,
+          "glyphBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+        }
+      ],
+      "crowd_result": {
+        "total": 13,
+        "crowd": []
+      },
+      "geometry_box": {
+        "x": 50.5,
+        "y": 524,
+        "width": 204,
+        "height": 270
+      },
+      "geometry_options": [
+        {
+          "label": "上传文件",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "立方体",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "球体",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "圆柱体",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "环状体",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "圆锥",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "棱锥",
+          "w": 190,
+          "h": 32
+        },
+        {
+          "label": "添加空对象",
+          "w": 190,
+          "h": 32
+        }
+      ],
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}

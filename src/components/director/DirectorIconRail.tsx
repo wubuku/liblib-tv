@@ -3,12 +3,17 @@
 import { useRef, useState, type ChangeEvent } from "react";
 import {
   ArrowDownToLine,
+  Boxes,
+  Circle,
   Clapperboard,
+  Cylinder,
   HelpCircle,
   History,
   Image as ImageIcon,
+  Plus,
   Sparkles,
   Proportions,
+  Triangle,
   Upload,
   UserRoundPlus,
   Layers,
@@ -74,6 +79,42 @@ const aspectRatios = [
   "9:16",
 ] as const;
 
+// Batch 590（源站 2026-10-01 实测）：七张卡的示意框尺寸逐项对齐。
+// 注意源站 `3:4` 与 `9:16` 实测**同为 8×16**（看起来是源站自身的取整
+// 结果），clone 按实测照抄，不按比例自行「修正」。
+const ASPECT_GLYPH: Record<(typeof aspectRatios)[number], string> = {
+  自适应: "h-[11px] w-4",
+  "21:9": "h-[7px] w-4",
+  "16:9": "h-[9px] w-4",
+  "4:3": "h-3 w-4",
+  "1:1": "h-[14px] w-[14px]",
+  "3:4": "h-4 w-2",
+  "9:16": "h-4 w-2",
+};
+
+// Batch 590（源站 2026-10-01 实测）：`几何模型` 子菜单在**父项下方**展开
+// （204×256，八项各 199×32、行距 32px），不在右侧。
+const geometrySubmenu = [
+  { id: "geometry-upload", label: "上传文件", icon: Upload },
+  { id: "cube", label: "立方体", icon: Boxes },
+  { id: "sphere", label: "球体", icon: Circle },
+  { id: "cylinder", label: "圆柱体", icon: Cylinder },
+  { id: "torus", label: "环状体", icon: Circle },
+  { id: "cone", label: "圆锥", icon: Triangle },
+  { id: "pyramid", label: "棱锥", icon: Triangle },
+  { id: "empty-object", label: "添加空对象", icon: Plus },
+] as const;
+
+// Batch 590（源站 2026-10-01 实测）：`群众 (3x3)` 打开的是弹窗而非直接
+// 出结果——220×204 @(280,388)，标题 `添加群众阵列`、右上角 `共N人` 计数、
+// 三个数字输入 行数/列数/间距（量程见 CROWD_LIMITS），页脚 取消 / 添加
+// （`添加` 为白底主按钮）。
+const CROWD_LIMITS = {
+  rows: { min: 1, max: 10 },
+  columns: { min: 1, max: 10 },
+  spacing: { min: 0.1, max: 10 },
+} as const;
+
 // Batch 589（源站 2026-10-01 实测）：三个 flyout 面板实测宽度**一致为
 // 232px**（@(48,100)），且每个面板顶部都有一行 12px `truncate` 的标题
 // （`添加角色` @(60,66) 48×20）。另注：rail 按钮 hover 会弹一个 Mantine
@@ -114,6 +155,10 @@ export function DirectorIconRail({
   );
   const characterUploadInputRef = useRef<HTMLInputElement | null>(null);
   const [characterAck, setCharacterAck] = useState<string | null>(null);
+  // Batch 590: 群众弹窗 + 几何模型子菜单（源站实测）
+  const [crowdDialogOpen, setCrowdDialogOpen] = useState(false);
+  const [crowdDraft, setCrowdDraft] = useState({ rows: 3, columns: 3, spacing: 1.2 });
+  const [geometrySubmenuOpen, setGeometrySubmenuOpen] = useState(false);
 
   const flashCharacterAck = (message: string) => {
     setCharacterAck(message);
@@ -165,11 +210,15 @@ export function DirectorIconRail({
   };
 
   const handleCharacterOption = (itemId: string, label: string) => {
+    // Batch 590（源站 2026-10-01 实测）：源站的两个子菜单项各自带面板，
+    // 不是点一下就出结果——
+    //   群众 (3x3) -> 弹窗「添加群众阵列」(220×204) 含 行数/列数/间距
+    //   几何模型   -> 展开 8 项子菜单（上传文件 + 6 种几何体 + 添加空对象）
     if (itemId === "crowd-3x3") {
-      addCrowdArray({ rows: 3, columns: 3, spacing: 1.2 });
-      setCharacterAck("已加入群众 (3x3)（本地等效）");
-      setOpenFlyout(null);
-      window.setTimeout(() => setCharacterAck(null), 2000);
+      // 源站的弹窗是**并排**出现在 flyout 右侧（@(280,388)，flyout 占
+      // 48..280），flyout 保持打开；clone 此前是直接关掉 flyout。
+      setOpenFlyout("add-character");
+      setCrowdDialogOpen(true);
       return;
     }
     if (itemId === "local-upload") {
@@ -178,11 +227,30 @@ export function DirectorIconRail({
       return;
     }
     if (itemId === "geometry") {
-      setOpenFlyout(null);
+      setGeometrySubmenuOpen((open) => !open);
       return;
     }
     setCharacterAck(`预设角色「${label}」为本地等效占位`);
     setOpenFlyout(null);
+    window.setTimeout(() => setCharacterAck(null), 2000);
+  };
+
+  const handleGeometryOption = (optionId: string, label: string) => {
+    setGeometrySubmenuOpen(false);
+    if (optionId === "geometry-upload") {
+      characterUploadInputRef.current?.click();
+      return;
+    }
+    setCharacterAck(`几何体「${label}」为本地等效占位`);
+    window.setTimeout(() => setCharacterAck(null), 2000);
+  };
+
+  const confirmCrowdArray = () => {
+    addCrowdArray(crowdDraft);
+    setCrowdDialogOpen(false);
+    setCharacterAck(
+      `已加入群众 ${crowdDraft.rows}×${crowdDraft.columns}（间距 ${crowdDraft.spacing}）`,
+    );
     window.setTimeout(() => setCharacterAck(null), 2000);
   };
 
@@ -242,6 +310,34 @@ export function DirectorIconRail({
                       )}
                     </button>
                   ))}
+                  {/* Batch 590（源站实测）：`几何模型` 子菜单在父项下方展开
+                      （204×256），八项各 199×32、行距 32px。 */}
+                  {geometrySubmenuOpen && (
+                    <div
+                      data-director-geometry-submenu
+                      aria-label="几何模型"
+                      className={cn(
+                        FLYOUT_CARD_CLASS,
+                        "absolute left-1 top-[calc(100%+2px)] z-50 w-[204px] p-1.5",
+                      )}
+                    >
+                      {geometrySubmenu.map((option) => {
+                        const OptionIcon = option.icon;
+                        return (
+                          <button
+                            key={option.id}
+                            type="button"
+                            data-director-geometry-option={option.id}
+                            onClick={() => handleGeometryOption(option.id, option.label)}
+                            className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
+                          >
+                            <OptionIcon size={13} className="shrink-0 text-[#9a9a9a]" />
+                            <span className="truncate">{option.label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                   </div>
                 </div>
               )}
@@ -297,7 +393,9 @@ export function DirectorIconRail({
                     data-director-aspect-grid
                     className={cn(
                       FLYOUT_CARD_CLASS,
-                      "grid grid-cols-2 gap-1.5 p-2",
+                      // Batch 590（源站实测）：gap 8px、padding 0 8 12 →
+                      // 4×72 + 3×8 + 12 = 324，与源站卡片高逐像素一致。
+                      "grid grid-cols-2 gap-2 px-2 pb-3 pt-0",
                     )}
                   >
                   {aspectRatios.map((ratio) => (
@@ -307,21 +405,22 @@ export function DirectorIconRail({
                       data-director-aspect-option={ratio}
                       aria-pressed={aspectRatio === ratio}
                       onClick={() => setAspectRatio(ratio)}
-                      // Batch 589: 源站七卡实测行距 ≈81px（y=134/215/298/379），
-                      // 面板 324px 高 ÷ 4 行；clone 原为 64px 卡 + 6px 间距。
+                      // Batch 590（源站实测 104×72 / radius 12px）：
+                      // 选中态与未选中态的**文字色相同**（都是
+                      // rgba(255,255,255,0.9)），唯一差别是按钮描边——
+                      // 选中 0.85、未选中 0.1，背景两态皆透明。源站按钮
+                      // 无 aria-pressed，clone 保留作 a11y 超集。
                       className={cn(
-                        "flex h-[72px] flex-col items-center justify-center gap-1 rounded-lg border text-[11px]",
+                        "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-xs",
                         aspectRatio === ratio
-                          ? "border-[#09caf5]/60 text-[#09caf5]"
-                          : "border-white/10 text-[#b5b5b5] hover:border-white/25",
+                          ? "border-white/[0.85] text-white/90"
+                          : "border-white/10 text-white/90 hover:border-white/25",
                       )}
                     >
                       <span
                         aria-hidden="true"
-                        className={cn(
-                          "block rounded-sm border",
-                          ratio === "自适应" ? "h-3 w-5" : ratio === "21:9" ? "h-2 w-6" : ratio === "16:9" ? "h-2.5 w-5" : ratio === "4:3" ? "h-3.5 w-4.5" : ratio === "1:1" ? "h-4 w-4" : ratio === "3:4" ? "h-4.5 w-3.5" : "h-5 w-2.5",
-                        )}
+                        data-director-aspect-glyph
+                        className={cn("block rounded-sm border border-white/90", ASPECT_GLYPH[ratio])}
                       />
                       {ratio}
                     </button>
@@ -365,6 +464,100 @@ export function DirectorIconRail({
           onClose={() => setAiImportOpen(false)}
           onPanoramaSourceChange={onPanoramaSourceChange}
         />
+      )}
+      {/* Batch 590（源站实测 220×204 @(280,388)）：`群众 (3x3)` 打开的是
+          弹窗——标题「添加群众阵列」、右上角「共N人」计数、三个数字输入
+          行数/列数/间距，页脚 取消 / 添加（添加为白底主按钮）。弹窗并排
+          出现在 flyout 右侧（源站 x=280，flyout 占 48..280），flyout 保持
+          打开。clone 此前是点一下直接按 3×3/1.2 出结果。 */}
+      {crowdDialogOpen && (
+        <div
+          data-director-crowd-dialog
+          role="dialog"
+          aria-label="添加群众阵列"
+          className="absolute left-[294px] top-0 z-50 w-[220px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-[#d8d8d8]">添加群众阵列</span>
+            <span
+              data-director-crowd-count
+              className="text-[11px] text-[#8a8a8a]"
+            >
+              共{crowdDraft.rows * crowdDraft.columns}人
+            </span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {(
+              [
+                ["rows", "行数"],
+                ["columns", "列数"],
+              ] as const
+            ).map(([key, label]) => (
+              <label key={key} className="flex flex-col gap-1 text-[11px] text-[#8a8a8a]">
+                <span>{label}</span>
+                <input
+                  type="number"
+                  data-director-crowd-input={key}
+                  aria-label={label}
+                  min={CROWD_LIMITS[key].min}
+                  max={CROWD_LIMITS[key].max}
+                  step={1}
+                  value={crowdDraft[key]}
+                  onChange={(event) =>
+                    setCrowdDraft((draft) => ({
+                      ...draft,
+                      [key]: Math.min(
+                        CROWD_LIMITS[key].max,
+                        Math.max(CROWD_LIMITS[key].min, Number(event.target.value)),
+                      ),
+                    }))
+                  }
+                  className="h-7 w-full rounded-lg border border-white/10 bg-[#1e1e1e] px-2 text-xs text-[#d8d8d8] outline-none focus:border-white/30"
+                />
+              </label>
+            ))}
+          </div>
+          <label className="mt-3 flex flex-col gap-1 text-[11px] text-[#8a8a8a]">
+            <span>间距</span>
+            <input
+              type="number"
+              data-director-crowd-input="spacing"
+              aria-label="间距"
+              min={CROWD_LIMITS.spacing.min}
+              max={CROWD_LIMITS.spacing.max}
+              step={0.1}
+              value={crowdDraft.spacing}
+              onChange={(event) =>
+                setCrowdDraft((draft) => ({
+                  ...draft,
+                  spacing: Math.min(
+                    CROWD_LIMITS.spacing.max,
+                    Math.max(CROWD_LIMITS.spacing.min, Number(event.target.value)),
+                  ),
+                }))
+              }
+              className="h-7 w-full rounded-lg border border-white/10 bg-[#1e1e1e] px-2 text-xs text-[#d8d8d8] outline-none focus:border-white/30"
+            />
+          </label>
+          <div className="mt-4 flex justify-end gap-2">
+            <button
+              type="button"
+              data-director-crowd-cancel
+              onClick={() => setCrowdDialogOpen(false)}
+              className="h-7 w-12 rounded-lg border border-white/10 text-xs text-[#b5b5b5] hover:bg-white/[0.06]"
+            >
+              取消
+            </button>
+            <button
+              type="button"
+              data-director-crowd-confirm
+              onClick={confirmCrowdArray}
+              className="h-7 w-12 rounded-lg bg-white text-xs text-[#1a1a1a] hover:bg-white/90"
+            >
+              添加
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
