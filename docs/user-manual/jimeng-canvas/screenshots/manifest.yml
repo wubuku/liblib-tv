@@ -917,3 +917,15 @@ screenshots:
     visible_text: 当前视窗没有内容 / 回到节点 / 56% / 测试项目 / 节点 1 / 已保存 / 与 AI 对话
     alt: 在小地图上拖拽平移并滚轮缩放之后：节点已被拖出视野、画面全空，左下角小地图里只有表示视口的小方块停在角落，缩放读数变为 56%，顶部浮出一条「当前视窗没有内容」提示和「回到节点」按钮（橙色高亮）
     sha256: 8885f8364a66130aef2ca4fd0fe6e3c5183321368d1da2e960603b24ed2e2035
+
+  - file: screenshots/75-back-to-content-overlay.png
+    task_id: navigate-canvas
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:47:00+08:00
+    verified_locator: '切到抓手工具后在空白处拖 (+1080,+570)，节点中心被推到 (1720,930) 完全离开视口，顶部提示条随即出现：data-testid=back-to-content-overlay 实测 232×44 @(524,32)，内含 BUTTON aria 逐字「回到节点」72×20 @(668,44)；截图时 dock 首按钮为按下态抓手图标、缩放读数 100%'
+    visible_text: 当前视窗没有内容 / 回到节点 / 100% / 测试项目 / 节点 1 / 已保存 / 与 AI 对话
+    alt: 抓手工具下把节点完全拖出视野后的画布：整幅画面空无一物，左下角 dock 第一个按钮是处于按下态的抓手图标、缩放读数 100%；画面顶部中央的提示条被橙色高亮框标出，左半写着「当前视窗没有内容」，右半是一个带准星图标的「回到节点」按钮
+    sha256: 223b9ff3e832d84fda15ed72c02f1c53b98ee5b016761014070f39a6914dc557
