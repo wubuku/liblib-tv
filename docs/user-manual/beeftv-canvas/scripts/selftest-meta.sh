@@ -17,6 +17,10 @@
 #   8) 方向四抓「索引链接文字与页面标题对不上」
 #   9) **不误伤**：保留原有的「标题（提示）」形态——索引在标题后补一句提示是
 #      有意设计（「只读画布与画布副本（无入口，副本不上传）」）
+#  10) 方向四之二抓「页面不在 vitepress 侧栏」——Batch 154 在真实仓库里抓到 4 个，
+#      其中 readonly-canvas.md 从建页起就一直在侧栏外
+#  11) 方向四之二**不误伤**：侧栏文字用短标题（「上传本地素材」vs 页面 h1）
+#      是有意设计，必须放行——**该方向只查存在性，不比文字**
 #
 # 第 4 条是本闸最关键的一条：Batch 145 之所以能撞见那批过期数字，
 # 正是因为它们当时**没人扫**；但反过来，闸门也不能因此把
@@ -45,7 +49,7 @@ FAIL=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md build-site.sh)
+SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md build-site.sh .vitepress/config.mjs)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -61,6 +65,8 @@ restore() {
   for f in "${SNAP_FILES[@]}"; do
     [ -f "$SNAP/$f" ] && cp "$SNAP/$f" "$f"
   done
+  find . -name "*.injected" -delete 2>/dev/null
+  find . -name "*.injecterr" -delete 2>/dev/null
 }
 
 # 每次用例前**全量还原**（Batch 143 第 25 条：只还原当次目标文件的话，
@@ -85,6 +91,46 @@ run_fail_case() {
   restore
 }
 
+# 按**注入脚本文件**运行一个用例：把目标文件喂给注入脚本，再跑闸门。
+#
+# **前提 = 注入脚本的 anchor 断言命中**。注入脚本里写着 `assert old in s, "锚点未命中"`，
+# 锚点不对时它非零退出 —— 这时**作废该用例，不算通过**。
+#
+# 第一版把「闸门输出里含注入标识」当前提，**结果用例 10 被永久作废**：
+# 闸门**通过时根本不打印被检页面清单**，所以前提永远不成立。
+# 第二次踩同一个坑：用例 11 的内联注入被多层转义弄出 SyntaxError，
+# 而它是 run_pass_case（期望放行）——**注入失败 = 没注入 = 基线状态 = 放行 = 通过**，
+# 属于**假通过**。**注入失败必须作废，不能算通过。**（Batch 135「锚点错就作废」的规矩，
+# 当时只用在第六道闸，这里证明它对所有反向验证脚本都成立。）
+run_file_case() {
+  local desc="$1"; shift
+  local target="$1"; shift
+  local fixer="$1"; shift
+  local want="$1"; shift
+  restore
+  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; return 0; }
+  if ! python3 "$fixer" < "$target" > "$target.injected" 2>"$target.injecterr"; then
+    echo "  · 前提不成立：注入脚本未命中锚点（$(head -1 "$target.injecterr" 2>/dev/null)）；作废该用例"
+    restore; return 0
+  fi
+  # 注入后必须与注入前不同，否则说明注入脚本空转（也是前提不成立）
+  if cmp -s "$target" "$target.injected"; then
+    echo "  · 前提不成立：注入脚本空转（内容未变）；作废该用例"
+    restore; return 0
+  fi
+  mv "$target.injected" "$target"
+  local out rc
+  out="$(python3 "$GATE" 2>&1)"; rc=$?
+  if [ "$rc" -eq 0 ]; then
+    echo "  ✗ $desc：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  elif printf '%s' "$out" | grep -qF "$want"; then
+    echo "  ✓ $desc：正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
+  else
+    echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  fi
+  restore
+}
+
 run_pass_case() {
   local desc="$1"; shift
   restore
@@ -95,6 +141,32 @@ run_pass_case() {
     echo "  ✓ $desc：闸门正确放行"; PASS=$((PASS+1))
   else
     echo "  ✗ $desc：本应放行却报错（误伤）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  fi
+  restore
+}
+
+# 对称的**放行**用例：注入成功后闸门**必须仍然通过**。
+# 与 run_file_case 共用同一套前提校验（注入脚本 anchor 必须命中且内容真的变了），
+# **所以「注入失败」在这里同样作废，而不是算通过**。
+run_file_pass_case() {
+  local desc="$1"; shift
+  local target="$1"; shift
+  local fixer="$1"; shift
+  restore
+  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; return 0; }
+  if ! python3 "$fixer" < "$target" > "$target.injected" 2>"$target.injecterr"; then
+    echo "  · 前提不成立：注入脚本未命中锚点（$(head -1 "$target.injecterr" 2>/dev/null)）；作废该用例"
+    restore; return 0
+  fi
+  if cmp -s "$target" "$target.injected"; then
+    echo "  · 前提不成立：注入脚本空转（内容未变）；作废该用例"
+    restore; return 0
+  fi
+  mv "$target.injected" "$target"
+  if python3 "$GATE" >/dev/null 2>&1; then
+    echo "  ✓ $desc：闸门正确放行"; PASS=$((PASS+1))
+  else
+    echo "  ✗ $desc：本应放行却报错（误伤）；实际："; python3 "$GATE" 2>&1 | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   restore
 }
@@ -183,6 +255,22 @@ p='10-tasks/README.md'; s=open(p,encoding='utf-8').read()
 s=s.replace('[创建各类节点](create-nodes.md)','[创建各类节点（新建入口在此）](create-nodes.md)',1)
 open(p,'w',encoding='utf-8').write(s)
 \""
+
+# 用例 10：方向四之二——把一个任务页从侧栏里删掉。
+# **用独立注入脚本而不是内联 python**：第一版内联写法在 heredoc + 转义里被拆坏
+# （`\\"` 变成裸 `"` 破坏 Python 源码，SyntaxError）。第六道闸的 26 个用例全用独立
+# `.py` 注入脚本，正是这个原因。**嵌套转义不是可靠机制，能用文件就别用字符串。**
+run_file_case "10) 任务页不在 vitepress 侧栏" \
+  ".vitepress/config.mjs" "$HERE/selftest-meta-fix-10-sidebar-missing.py" \
+  "不在 vitepress 侧栏里"
+
+# 用例 11：**不误伤**——侧栏文字用短标题是设计
+# （侧栏「上传本地素材」vs 页面 h1「上传本地图片、视频、音频」），
+# 方向四之二**只查存在性、不比文字**，必须放行。
+# 第一版用内联 python，被 heredoc 多层转义弄出 SyntaxError；而它是 run_pass_case，
+# **注入失败 = 没注入 = 基线状态 = 放行 = 通过**——**那是假通过**。改用注入脚本文件。
+run_file_pass_case "11) 侧栏用短标题（必须不报）" \
+  ".vitepress/config.mjs" "$HERE/selftest-meta-fix-11-sidebar-short-title.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

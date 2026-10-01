@@ -27,6 +27,8 @@ Batch 143 立过一条「六道闸全绿不等于发布物正确」，
     实际调用的脚本三者一致。**这道闸盯着闸门体系自己**。
   方向四（Batch 153）：任务索引 ⇄ 页面标题双向对账——每个任务页都必须在索引里，
     且索引的链接文字与页面 h1 一致（或等于 `h1（……）` 这一有意形态）。
+  方向四之二（Batch 154）：任务页还必须在 **vitepress 侧栏**里——侧栏是站点主导航，
+    比 README 索引更关键。该方向**只查存在性、不查文字**，因为侧栏用短标题是有意设计。
 
 **方向二为什么只扫「参与发布的」页面**——这是本闸最容易写坏的地方，
 Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RULES 第 23 条）：
@@ -48,6 +50,8 @@ Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RUL
   · **不判断括号里的提示是否写得恰当**（方向四）——只认 `h1（……）` 这个形态，
     不看括号里是什么。**这是刻意的**：Batch 150 已经证明「意图无法判定」的判据
     不能建（中文「」有三种用途），而这里能做到零误报，是因为**只判形态不判语义**。
+  · **不判断侧栏文字与页面 h1 是否一致**（方向四之二）——侧栏本来就用短标题
+    （「上传本地素材」vs「上传本地图片、视频、音频」），这是设计，不是漂移。
   · **不判断页面 h1 是否漏掉了功能词**（方向四）——账本 title 带括号补充、页面 h1
     取短标题是**有意分工**（Batch 152 量过：35 条里 14 条同模式、12 条完全一致）。
     本闸只抓「h1 与 title 完全无关」这种明显破坏，不假装能抓细粒度漏词。
@@ -234,6 +238,33 @@ def index_check(root):
             continue          # 有意的「标题（提示）」形态
         mismatched.append((target, label, want))
     return missing, mismatched, len(pairs), len(h1)
+
+
+def sidebar_check(root):
+    """任务页是否都在 vitepress 侧栏里。**只查存在性，不查文字**。
+
+    侧栏 text 用的是**短标题**（「上传本地素材」vs 页面 h1「上传本地图片、视频、音频」），
+    **这是设计**（Batch 152 量过差异模式），所以拿文字去比对会误报一片。
+    侧栏是站点主导航——**不在侧栏的页面，读者在站点里几乎发现不了**，
+    这比漏进 README 索引更严重（索引至少还能从站点首页点进去）。
+
+    Batch 154 的实测：4 个页面不在侧栏，其中 `readonly-canvas.md` 从 Batch 135
+    建页起就**一直**不在侧栏，而 `asset-library` / `create-workspace` / `model-channels`
+    是 Batch 139/140/141 连续三批新建的。**侧栏比 README 索引漏得更久、也更全。**
+    """
+    cfg_path = os.path.join(root, ".vitepress", "config.mjs")
+    cfg = open(cfg_path, encoding="utf-8").read()
+    linked = set(re.findall(r"link:\s*['\"]([^'\"]+)['\"]", cfg))
+    pages = []
+    for path in glob.glob(os.path.join(root, "10-tasks", "*.md")):
+        base = os.path.basename(path)
+        if base == "README.md":
+            continue
+        first = open(path, encoding="utf-8").readline().strip()
+        if first.startswith("# "):
+            pages.append(base)
+    missing = sorted(f for f in pages if "/10-tasks/" + f[:-3] not in linked)
+    return missing, len(pages)
 
 
 
@@ -446,6 +477,16 @@ def main():
     if not missing and not mismatched:
         print(f"  ✓ 任务索引双向一致：{n_pages} 个任务页全部登记，"
               f"{n_pairs} 条链接文字与页面标题一致（含有意的「标题（提示）」形态）")
+
+    # ── 方向四之二：任务页必须在 vitepress 侧栏里 ──
+    print("-" * 62)
+    sb_missing, n_sb = sidebar_check(root)
+    for f in sb_missing:
+        print(f"  ✗ 任务页 {f} 不在 vitepress 侧栏里（站点主导航缺入口，读者发现不了）")
+        fails += 1
+    if not sb_missing:
+        print(f"  ✓ 侧栏覆盖：{n_sb} 个任务页全部在侧栏"
+              f"（只查存在性——侧栏用短标题是设计，不比文字）")
 
     if fails:
         print(f"元数据核对：{total - fails} 条一致，{fails} 条不一致")
