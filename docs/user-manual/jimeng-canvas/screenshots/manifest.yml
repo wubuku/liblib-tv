@@ -277,10 +277,10 @@ screenshots:
     viewport: 880x430 (SVG 示意图)
     locale: zh-CN
     captured_at: 2026-10-01T07:00:00+08:00
-    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.1 当日基线盘点绘制（顶栏顺序/左栏 9 项两组/底部 dock 4 项/右下与 AI 对话/状态行）'
-    visible_text: 返回首页 / 已保存 / 小地图 / 显示连线 / 与 AI 对话
-    alt: 即梦画布界面分区示意图：顶栏（返回首页/画布标题/项目/节点 N/已保存/搜索/生成历史/积分/用户菜单）、左侧节点入口栏（文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，悬停展开为图标+文字）、中央画布区、底部 dock 视图控件（选择工具/小地图/显示连线/缩放值）、右下角「与 AI 对话」，以及底部状态行。
-    sha256: 4eea68091d033b530f9a81481031b0fa05aa6acd7a8b1bc21c9e8c830f769d3a
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.1 当日基线盘点绘制（顶栏顺序/左栏 9 项两组/底部 dock 4 项/右下与 AI 对话/状态行）；2026-10-01 批次 14 依 §3.25（抓手工具）与 §3.24/20-reference（状态行单复数变形）修订'
+    visible_text: 返回首页 / 已保存 / 选择工具 ⇄ 抓手工具 / 小地图 / 显示连线 / 与 AI 对话
+    alt: 即梦画布界面分区示意图：顶栏（返回首页/画布标题/项目/节点 N/已保存/搜索/生成历史/积分/用户菜单）、左侧节点入口栏（文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，悬停展开为图标+文字）、中央画布区、底部 dock 视图控件（选择工具 ⇄ 抓手工具/小地图/显示连线/缩放值）、右下角「与 AI 对话」，以及底部状态行。
+    sha256: 10091e5f32bc982f9c1aa41172cf9a9bfdfec3264cb641ad8f34f82ad38c8557
 
   - file: screenshots/diagrams/group-vs-multiselect.svg
     task_id: organize-group-layout
