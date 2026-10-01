@@ -1,0 +1,32 @@
+{
+  "batch": 340,
+  "title": "FrameOS duplicate-inside-group keeps visual/membership consistency",
+  "defect": "duplicateNode left the copy out of the source node's group while placing it at source+(40,40), which commonly lands inside the group box. The copy then looked grouped but was not a member; deleting the real members shrank the box (Batch 328) and left the copy orphaned inside a shrunken group.",
+  "fix": "duplicateNode now adds the copy to the containing group when it lands inside that group's box, and recomputes the box via reconcileGroups",
+  "clone_decision": "the source site's handling of duplicating a grouped node was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md). This batch fixes clone-internal consistency only; it is not a source-parity claim.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:group-created",
+        "dup:inside-box",
+        "dup:joined-group",
+        "dup:member-count-3",
+        "dup:box-recomputed",
+        "delete:group-kept",
+        "delete:dup-still-member",
+        "delete:member-count-2",
+        "delete:box-not-collapsed",
+        "undo:members-restored",
+        "undo:original-members",
+        "redo:dup-is-member",
+        "far:dup-consistent",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

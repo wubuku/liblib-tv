@@ -507,3 +507,34 @@ Batch 337 发现 `verify-docs.py` 在干净 checkout 上必失败，因而无法
 > 理由是误报比漏报更消耗信任。129 条误报的门禁会被习惯性忽略，等于没有门禁。
 
 本批是一次**有价值的否定结论**：花一轮确认这条路走不通，比留噪声规则强。
+
+## Batch 340（2026-10-01）：组内复制副本的分组归属（含 reconcileGroups 两处镜像缺陷）
+
+`duplicateNode` 的副本落在源节点 +40/+40，**常常在分组盒内**，但此前
+**不加入该分组** —— 视觉「在组里」、实际不是成员。删掉原成员后盒塌缩（Batch 328），
+副本被留在组外却仍处于原组盒区域，视觉错位。
+
+实测：`INCONSISTENT: true`（`dupJoinedGroup:false` 而 `dupInsideBoxBefore:true`）。
+
+修 1：`duplicateNode` 让**落在所属分组盒内**的副本自动入组并重算盒。
+
+🔴 修 1 时 `dup:box-recomputed` 断言失败（盒 737、应 777），逐层挖出
+`reconcileGroups` 的**两个独立缺陷**：
+
+- **A「永远没变」**：原判定拿 `g.memberIds` 与**它自己**比 → 恒为「未变」
+  → 永远保留陈旧盒、永远不剪枝。修法：新增 `previousMemberIds` 参数，
+  由调用方传入**变更前**的成员集合。
+- **B「变了也当没变」**：长度相同即判未变，漏判「删一个又加一个」的等长场景。
+  补 `g.memberIds.every(id => nodes.some(n => n.id === id))`。
+
+> 这两处是**同一函数里互为镜像的错误**。Batch 328 引入时只测了「删成员」
+> 一条路径；Batch 340 第一次走「加成员」路径才暴露。
+> **同一函数的不同分支往往藏着镜像缺陷，只测一条路径等于没测。**
+
+⚠️ CLONE_DECISION：源站对「复制组内节点」的归属**未采样**（源站阻塞）。
+本批修的是克隆自身一致性，非源站对齐声明。
+
+verifier batch340 **14/14 PASS**；batch328/329/330/331/332/333/251/133/327 回归全绿。
+
+**候选 Batch 341**：`reconcileGroups` 的教训适用于其它操作分组成员的路径 ——
+`arrangeGroup` / `moveGroup` / `pasteNodeFromClipboard` 各自是否也只被单路径测过？

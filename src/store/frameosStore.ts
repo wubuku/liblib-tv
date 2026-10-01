@@ -333,24 +333,35 @@ let nodeCloneIdCounter = 0;
 // 排列/拖拽/解组都基于错误成员集计算。删除后按存活成员重算包围盒。
 function reconcileGroups(
   groups: FrameosGroup[],
-  nodes: FrameosNode[]
+  nodes: FrameosNode[],
+  // Batch 340: 变更**前**的 memberIds（按 group id）。缺省表示「按传入的
+  // groups 自身比对」，适用于「只删成员」这类 memberIds 单调收缩的场景。
+  previousMemberIds?: Record<string, string[]>
 ): FrameosGroup[] {
   return groups.flatMap((g) => {
-    const members = nodes.filter((n) => g.memberIds.includes(n.id));
     // 全部成员被删 → 分组无意义，随之消失
-    if (members.length === 0) return [];
-    const memberIds = members.map((n) => n.id);
+    if (!nodes.some((n) => g.memberIds.includes(n.id))) return [];
     const sizeOf = (n: FrameosNode) => ({
       w: ((n.style?.width as number | undefined) ?? 300),
       h: ((n.style?.height as number | undefined) ?? 200),
     });
-    // 成员集合未变 → 保留原盒（避免无谓的重排抖动）
-    if (
-      memberIds.length === g.memberIds.length &&
-      memberIds.every((id, i) => id === g.memberIds[i])
-    ) {
-      return [g];
-    }
+    // ⚠️ 「成员集合是否变化」的基准必须是**变更前**的 memberIds。
+    // 若缺省成 g.memberIds 自身，则恒等于「未变」→ 永远不会剪掉已删成员
+    // （Batch 340 实测：删除成员后它仍留在 memberIds 里）。
+    // 调用方若已改写 memberIds（如 duplicateNode 加副本），必须通过
+    // previousMemberIds 传入变更前的集合。
+    const prevMemberIds = previousMemberIds?.[g.id] ?? g.memberIds;
+    const unchanged =
+      prevMemberIds.length === g.memberIds.length &&
+      prevMemberIds.every((id, i) => id === g.memberIds[i]) &&
+      // 且当前集合里不存在已消失的成员（防止「数量相同但内容不同」被误判）
+      g.memberIds.every((id) => nodes.some((n) => n.id === id));
+    if (unchanged) return [g];
+
+    // 按 memberIds 顺序取成员，保证 memberIds 只含存活节点且顺序稳定
+    const members = g.memberIds
+      .map((id) => nodes.find((n) => n.id === id))
+      .filter((n): n is FrameosNode => Boolean(n));
     const minX = Math.min(...members.map((n) => n.position.x));
     const minY = Math.min(...members.map((n) => n.position.y));
     const maxX = Math.max(...members.map((n) => n.position.x + sizeOf(n).w));
@@ -358,7 +369,7 @@ function reconcileGroups(
     return [
       {
         ...g,
-        memberIds,
+        memberIds: members.map((n) => n.id),
         x: minX - FRAMEOS_GROUP_PADDING,
         y: minY - FRAMEOS_GROUP_PADDING,
         w: maxX - minX + FRAMEOS_GROUP_PADDING * 2,
@@ -708,13 +719,38 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
         title: `${node.data.title} 副本`,
       },
     };
-    set((state) => ({
-      past: pushHistorySnapshot(state),
-      future: [],
-      // Batch 133: 修复文档记录的缺口——副本对象此前从未加入 nodes。
-      nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
-      selectedNodeId: newId,
-    }));
+    set((state) => {
+      // Batch 340: 副本若落在源节点所属分组的盒内，就必须**同时**成为该组成员 ——
+      // 否则「看起来在组里、实际不是成员」，删掉其余成员后盒会缩小（Batch 328），
+      // 把这个副本排除在外，组内出现一块空白，视觉与归属不一致。
+      const containing = state.groups.find(
+        (g) =>
+          g.memberIds.includes(id) &&
+          newNode.position.x >= g.x &&
+          newNode.position.x <= g.x + g.w &&
+          newNode.position.y >= g.y &&
+          newNode.position.y <= g.y + g.h
+      );
+      return {
+        past: pushHistorySnapshot(state),
+        future: [],
+        // Batch 133: 修复文档记录的缺口——副本对象此前从未加入 nodes。
+        nodes: [...state.nodes.map((n) => ({ ...n, selected: false })), newNode],
+        groups: containing
+          ? reconcileGroups(
+              state.groups.map((g) =>
+                g.id === containing.id
+                  ? { ...g, memberIds: [...g.memberIds, newId] }
+                  : g
+              ),
+              [...state.nodes, newNode],
+              // 传入变更前的成员集合，否则会被误判为「未变」而保留陈旧盒
+              Object.fromEntries(state.groups.map((g) => [g.id, g.memberIds]))
+            )
+          : state.groups,
+        selectedNodeId: newId,
+      };
+    });
   },
 
 
