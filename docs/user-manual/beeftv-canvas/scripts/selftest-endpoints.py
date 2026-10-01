@@ -31,6 +31,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-endpoints.py")
+BASELINE = os.path.join(HERE, "baseline.py")
 REF_REL = "20-reference.md"
 
 PASS = VOID = FAIL = 0
@@ -51,6 +52,11 @@ def run(desc, want, expect_fail=True, want_rc=1, transform=None):
     tmp = tempfile.mkdtemp(prefix="beef-endp-selftest.")
     try:
         os.makedirs(os.path.join(tmp, "scripts"))
+        # **必须连同 baseline.py 一起复制**（Batch 178 修，闸 17 抓出）：
+        # 自 Batch 175 起被测闸门会 `from baseline import resolve_ref`；
+        # 临时目录里没有它 → 闸门启动即 ModuleNotFoundError，**每一例都失败**，
+        # **而 build-site.sh 仍然全绿**——反验坏掉不产生任何构建期信号。
+        shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
         shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-endpoints.py"))
         with open(os.path.join(tmp, REF_REL), "w", encoding="utf-8") as fh:
             fh.write(text)

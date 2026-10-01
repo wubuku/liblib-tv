@@ -25,7 +25,7 @@
 | 「俯拍」和「仰拍」容易选反 | 界面文字没问题，但其**内部标识与界面名相反**，以界面文字为准 | [director-basics.md](10-tasks/director-basics.md) |
 | 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [30-concepts.md](30-concepts.md) |
 | 画布库里找不到「按名称排序」「按项目筛选」 | 这两个控件**当前版本不存在**——排序恒为「最近更新」；筛选能力写了但没接界面 | [manage-canvases.md](10-tasks/manage-canvases.md) |
-| 画布库里找不到「导入」 | **当前版本没有导入入口**。整套导入代码都在，但打开文件选择框的那次点击没接到任何控件上 | [manage-canvases.md](10-tasks/manage-canvases.md) |
+| 画布库里找不到「导入」 | **你的版本偏旧**。v1.6.22 补上了「导入画布」按钮（此前整套导入代码都在，但打开文件选择框的那次点击没接到任何控件上）。**先确认版本再当成功能不存在** | [manage-canvases.md](10-tasks/manage-canvases.md) |
 | 插件页有「AI 审美批改」，画布上却建不出这个节点 | 插件与节点**都已注册**，但没有任何界面读取注册表来提供创建；菜单搜索「批改」零结果 | [art-critique.md](10-tasks/art-critique.md) |
 | 批量表并发选了 10，却没见 10 个任务在跑 | 账号**同时只跑得下 5 个**，超出的行停在「等待中」自动补位 | [storage-quota.md](10-tasks/storage-quota.md) |
 | 素材删掉后在画布库回收站里找不到 | 那是**画布**的回收站；素材进的是另一套**素材归档**，默认 30 天后自动清除 | [storage-quota.md](10-tasks/storage-quota.md) |

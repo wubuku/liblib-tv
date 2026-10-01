@@ -29,6 +29,7 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GATE = os.path.join(HERE, "verify-line-counts.py")
+BASELINE = os.path.join(HERE, "baseline.py")
 MANUAL = os.path.join(os.path.dirname(HERE), "20-reference.md")
 
 PASS = VOID = FAIL = 0
@@ -40,6 +41,14 @@ def build(mutate=None):
     """搭一个临时的「手册根」：scripts/verify-line-counts.py + 20-reference.md。"""
     tmp = tempfile.mkdtemp(prefix="beef-linecount-selftest.")
     os.makedirs(os.path.join(tmp, "scripts"))
+    # **必须连同 baseline.py 一起复制**（Batch 178 修）：
+    # 自 Batch 175 起，被测闸门会 `from baseline import resolve_ref`，
+    # 而本反验把闸门**单独**复制进临时目录 —— 于是临时目录里没有 baseline.py，
+    # 闸门启动即 ModuleNotFoundError，**每一例都失败**。
+    # 更糟的是它**静悄悄坏了三个批次**：闸门本体的 `run_gate` 仍全绿，
+    # 没人跑反验就发现不了。**「被测对象多了一个依赖，反验就得跟着搬」**——
+    # 而这类回归恰好是「反验能抓、构建抓不到」的那一类。
+    shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-line-counts.py"))
     text = open(MANUAL, encoding="utf-8").read()
     if mutate:
@@ -53,9 +62,11 @@ def run(desc, want_rc, mutate=None, want=None):
     global PASS, VOID, FAIL
     tmp = build(mutate)
     try:
+        # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
+        # 临时目录里没有 20-reference.md，不传就会抛 BaselineError。
+        env={**os.environ, "BEEFTV_MANUAL_ROOT": tmp}
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-line-counts.py")],
-                           cwd=tmp, capture_output=True, text=True,
-                           env=dict(os.environ))
+                           cwd=tmp, env=env, capture_output=True, text=True,)
         out = r.stdout + r.stderr
         if r.returncode != want_rc:
             print("  ✗ %s：退出码 %d 期望 %d；实际：%s"

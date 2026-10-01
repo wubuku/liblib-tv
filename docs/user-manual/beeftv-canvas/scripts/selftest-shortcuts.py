@@ -25,6 +25,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-shortcuts.py")
+BASELINE = os.path.join(HERE, "baseline.py")
 
 PASS = VOID = FAIL = 0
 GATE_SRC = open(GATE, encoding="utf-8").read()
@@ -39,6 +40,11 @@ assert MIN_SCANNED, "锚点未命中：闸门里找不到 MIN_SCANNED_FILES"
 def make_manual(tmp, copy_all=True, extra=None):
     """搭一个临时手册仓。copy_all=True 时复制全部真实 .md（保证文件数过下限）。"""
     os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
+    # **必须连同 baseline.py 一起复制**（Batch 178 修，闸 17 抓出）：
+    # 自 Batch 175 起被测闸门会 `from baseline import resolve_ref`；
+    # 临时目录里没有它 → 闸门启动即 ModuleNotFoundError，**每一例都失败**，
+    # **而 build-site.sh 仍然全绿**——反验坏掉不产生任何构建期信号。
+    shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-shortcuts.py"))
     if copy_all:
         for p in os.listdir(ROOT):
@@ -67,8 +73,11 @@ def run(desc, want, expect_fail=True, want_rc=1, mutate=None):
                 VOID += 1
                 return
         make_manual(tmp, copy_all=True, extra=extra)
+        # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
+        # 临时仓里没有 20-reference.md，不传就抛「读不到 20-reference.md」。
+        env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-shortcuts.py")],
-                           cwd=tmp, capture_output=True, text=True)
+                           cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
         if expect_fail and r.returncode == 0:
             print("  ✗ %s：闸门本应报错，却通过了" % desc); FAIL += 1
@@ -106,8 +115,10 @@ def run_min_files():
         make_manual(tmp, copy_all=False, extra={
             "a.md": "占位\n", "b.md": "占位\n",
         })
+        # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）
+        env = {**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-shortcuts.py")],
-                           cwd=tmp, capture_output=True, text=True)
+                           cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
         if r.returncode == 0:
             print("  ✗ 下限守卫：只读到 2 个文件却判通过（本闸 Batch 166 修的正是这个）"); FAIL += 1

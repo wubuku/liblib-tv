@@ -143,19 +143,6 @@ def p_sort_filter(src):
     return True
 
 
-def p_import_entry(src):
-    """画布库导入：隐藏的 zip file input 挂着了，但 inputRef 从未被 click()。"""
-    body = _canvas_library_index(src)
-    if not body:
-        return None
-    has_input = "application/zip,.zip" in body
-    # 必须同时接受 `inputRef.current.click(` 与 `inputRef.current?.click(`：
-    # **可选链正是本仓库的惯用写法**（同文件 :714 的 coverInputRef.current?.click()
-    # 就是这么写的），反向验证 Batch 133 正是靠这一点抓出本判据过窄的漏洞。
-    no_click = not re.search(r"inputRef\s*\.\s*current\s*\??\s*\.\s*click\s*\(", body)
-    return has_input and no_click
-
-
 def p_join_project(src):
     """「加入项目 / 移出项目」：isLocalWorkspaceMode() 无条件 true → remoteMode 恒假。"""
     wsm = git_show(src, "web/src/services/workspace-mode.ts")
@@ -1323,11 +1310,18 @@ def p_dev_lab_routes_no_entry(src):
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
 # 方向二只对有 scan_key 的条目要求「必须扫到」——否则会把形态不同的判据
 # 误判成登记表写错（本闸首次运行就犯了这个错，被自己的双向检查抓出来）。
+# 下面这条曾长期成立、并已被上游修掉，Batch 178 移除：
+#   ("canvas-library-no-import-entry", "画布库无导入入口", …)
+# 判据核的是「有 zip file input，但 inputRef 从未被 click()」——
+# v1.6.22 的 `522cd03`「恢复画布备份导入入口」给项目库加了
+# `<Button icon={<Upload/>} onClick={() => inputRef.current?.click()}>导入画布</Button>`，
+# **判据因此正确地报出「上游已修复」——这正是它建起来要抓的那件事**，
+# 也是闸 7 建库以来第一次真的因「上游修复」而变红（此前 30+ 个批次全是绿的）。
+# 手册对应断言已在 manage-canvases.md 与 90-troubleshooting.md 改掉。
 REGISTRY = [
     ("canvas-library-no-sort-filter", "画布库无排序/筛选控件", p_sort_filter,
      (("web/src/pages/canvas/index.tsx", "setSort"),
       ("web/src/pages/canvas/index.tsx", "setProjectFilter"))),
-    ("canvas-library-no-import-entry", "画布库无导入入口", p_import_entry, None),
     ("canvas-library-no-join-project", "「加入项目/移出项目」恒不渲染", p_join_project, None),
     ("art-critique-dynamic-entry", "AI 审美批改的创建入口由插件启用态动态生成", p_art_critique_entry, None),
     ("art-critique-no-autostart", "审美批改「打开即自动开始」路径已死", p_art_critique_autostart,

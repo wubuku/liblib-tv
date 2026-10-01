@@ -32,13 +32,23 @@
 **基线声明写在手册里而不是代码里**，理由和闸 3 相同：被核对的文件必须是唯一真值。
 基线改了只需改手册，不必碰 8 个脚本；而「基线声明与 README 的适用版本是否一致」
 由闸 14 双向对账。
+
+**`BEEFTV_MANUAL_ROOT` 为什么存在**（Batch 178 加）：
+反向验证会把被测闸门**复制进临时目录**再运行，而闸门会 import 本模块。
+本模块原先用 `dirname(dirname(__file__))` 推断手册根——**在临时目录里就指错了**，
+于是 `resolve_ref()` 抛 `BaselineError: 读不到 20-reference.md`，
+**反验的每一例都失败，而闸门本体的构建检查全绿**。
+（同一批还有第二层：反验只复制了闸门脚本、没复制本模块，直接 ModuleNotFoundError。
+**两层都静悄悄坏了三个批次**——因为「反验坏了」不会让构建变红，只有专门去跑它才看得见。）
+**教训**：一个被多处 import 的模块，它的「定位自己所在仓」的假设**必须在被搬运时仍然成立**。
+用环境变量显式传入是最省事、也最不容易被误删的做法。
 """
 
 import os
 import re
 import subprocess
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.environ.get("BEEFTV_MANUAL_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REFERENCE = os.path.join(ROOT, "20-reference.md")
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
 

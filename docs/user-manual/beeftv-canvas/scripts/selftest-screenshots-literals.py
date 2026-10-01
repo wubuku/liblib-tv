@@ -18,6 +18,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-screenshots-literals.py")
+BASELINE = os.path.join(HERE, "baseline.py")
 MANIFEST_REL = os.path.join("screenshots", "manifest.yml")
 
 PASS = VOID = FAIL = 0
@@ -32,11 +33,26 @@ def run(manifest_text, desc, want, expect_fail=True):
         # 所以脚本必须放在临时仓的 scripts/ 下（第一版漏了这一层，报「未找到 manifest」）
         os.makedirs(os.path.join(tmp, "scripts"))
         os.makedirs(os.path.join(tmp, "screenshots"))
+        # **必须连同 baseline.py 一起复制**（Batch 178 修）：
+        # 自 Batch 175 起，被测闸门会 `from baseline import resolve_ref`，
+        # 而本反验把闸门**单独**复制进临时目录 —— 于是临时目录里没有 baseline.py，
+        # 闸门启动即 ModuleNotFoundError，**每一例都失败**。
+        # 更糟的是它**静悄悄坏了三个批次**：闸门本体的 `run_gate` 仍全绿，
+        # 没人跑反验就发现不了。**「被测对象多了一个依赖，反验就得跟着搬」**——
+        # 而这类回归恰好是「反验能抓、构建抓不到」的那一类。
+        shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
         shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-screenshots-literals.py"))
         with open(os.path.join(tmp, MANIFEST_REL), "w", encoding="utf-8") as fh:
             fh.write(manifest_text)
+        # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
+        # 临时目录里没有 20-reference.md，不传就会抛 BaselineError。
+        # **指向真实手册根而不是 tmp**（Batch 178）：本反验的临时仓刻意只造
+        # scripts/ + screenshots/（它要核的是 manifest 与上游，不涉及 20-reference.md），
+        # 而 baseline.py 要从那里读「取证基线」声明。指 tmp 会抛
+        # 「读不到 20-reference.md」，**每一例都失败**。
+        env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-screenshots-literals.py")],
-                           cwd=tmp, capture_output=True, text=True)
+                           cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
         if expect_fail and r.returncode == 0:
             print("  ✗ %s：闸门本应报错，却通过了" % desc); FAIL += 1
@@ -73,7 +89,12 @@ def main():
                     "visible_text: '这个界面文案上游并不存在囍'", src, count=1)
     assert broken != src, "空转：注入未改变内容"
     run(broken, "1) 保守形态文案在上游消失（必须报）",
-        "上游 origin/main 的 web/src 里已找不到", expect_fail=True)
+        # **刻意只锚稳定片段**（Batch 178 修）：原文写的是「上游 origin/main 的
+        # web/src 里已找不到」，可 Batch 175 起闸门改为按**取证基线**读源码，
+        # 措辞里的 ref 变成了提交号 → 这条断言跟着过期。
+        # **反验的预期必须锚「判据的行为」，不能锚「某个版本下的具体措辞」**
+        # ——否则每次换版本都要来改一遍反验，而改的人往往看不出它已经失效了。
+        "的 web/src 里已找不到", expect_fail=True)
 
     # 2) 不误伤：动态计数形态（带数字）本就不该被检查
     dyn = re.sub(r"visible_text:\s*'([^']*)'",

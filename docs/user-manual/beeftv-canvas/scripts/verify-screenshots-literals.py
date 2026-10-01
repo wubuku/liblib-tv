@@ -59,6 +59,15 @@ EXEMPT = {
                "canvas-style-system.ts）+ 分类「收集」（canvas-resource-references.ts）",
     "音频-新片段": "走查时创建的**片段名**（音频 + 新片段）；「新片段」见 "
                   "canvas-timeline-dialog.tsx",
+    "选择镜头模板": "**该界面已被上游删除**（Batch 178 升版到 v1.6.22 时暴露）。"
+                    "上游提交 `522cd03` 之外的 `df1a0ba`「完善导演台工作台与轨迹动画流程」"
+                    "删除了 `web/src/components/canvas/director/canvas-director-template-modal.tsx` "
+                    "整个文件，`createDirectorShot()` 改成硬编码空场景模板。"
+                    "**这张截图保留**是为了说明「以前长什么样」，"
+                    "已由**闸 16**（`verify-shot-version.py` 的 `STALE` 登记）看守，"
+                    "且手册在图片旁就地标注了失效版本。"
+                    "**注意：在 v1.6.16 基线上这段文案仍在上游存在**——"
+                    "正因如此它此前一直是绿的，**基线正确反而让失效的截图躲过了检查**",
 }
 
 
