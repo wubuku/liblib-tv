@@ -696,6 +696,18 @@ screenshots:
     alt: 音频节点及其下方的音频创作面板，面板写明音频生成模式、输入限制与描述框，底部是模型下拉、wav 格式与每秒约四厘的价格
     sha256: 56b20e61792c227f75abec52c1cdbac4b73976da7adfeeadf94a842e1180bc48
 
+  - file: screenshots/09-generate-images-text-panel.png
+    task_id: generate-images
+    step: 在全新空白 profile 的空画布上用中央「文字创作」芯片建一个文本节点并单击选中，节点下方展开「文本创作 / 文本处理」面板；随后点节点内右上角的「生图」按钮，顶部弹出提示后整页截图
+    route: '/canvas/:id'
+    viewport: 1440x1180
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 文本创作 / 副标题 文本处理 / 模式 文本对话 / 输入 仅文本输入 / 参数 使用模型默认参数 / 输入框占位 输入你希望模型回答的内容 / 底部模型 Kimi k3 · 流式输出 否 / 最大输出长度 1024 · 按实际结算（面板无任何「约 ¥」价格，正则抓取价格返回 null）/ 点「生图」后顶部 toast 文本节点为空，无法生图 / 节点工具条 8 个按钮 信息 删除 存资产 编辑 编辑文字 生图 缩小 放大。同批对照实测：图片节点面板标题 文生图 · 模式 文生图 · Seedream V5 Pro · 自适应 2k · 1x · 约 ¥ 0.519；视频节点面板标题与模式均为 文生视频 · 参数 4~15 秒 · 480p/720p/1080p/2k/4k · Seedance 2.0 Standard · 5秒 · 约 ¥ 2.48-5.37；音频节点 音频创作 / 文本生成音频 · 模式 音频生成 · Doubao seed audio 1.0 · wav · 约 ¥ 0.004/秒'
+    visible_text: '文本处理'
+    alt: 文本节点下方展开的文本创作面板，副标题写着文本处理、模式是文本对话、输入框占位为输入你希望模型回答的内容，底部是 Kimi k3 模型下拉与按实际结算；面板上方弹出提示文本节点为空，无法生图
+    sha256: c7400e7fcb6533d9ad010547a571578b552d6220b4c5fcee7733840a1d3c001b
+
   - file: screenshots/09-generate-images-video-panel.png
     task_id: generate-images
     step: 选中空视频节点，节点下方展开「文本生视频」面板，底部显示模型 Seedance 2.0 Standard、时长 5秒 与约 ¥2.48–5.37
