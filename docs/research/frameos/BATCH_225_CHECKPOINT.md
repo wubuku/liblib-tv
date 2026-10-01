@@ -949,3 +949,63 @@ verifier batch349 **9/9 PASS**、0 诊断。**两次变异测试都确认验证�
 **候选 Batch 350**：`toggleDebugMode` 零调用（batch348 普查发现，本轮普查
 只覆盖数据字段未覆盖 action）；用同一普查法审 jimeng/director 各自的 store；
 「双击空白添加节点」菜单视觉与源站一致性（采样阻塞）。
+
+---
+
+## Batch 350 — 裁剪表单静默丢弃用户输入 + batch333 偶发失败真因(门禁缺陷)
+
+性质: **CLONE_DECISION**（克隆侧；裁剪的**提交语义**源站未采样）
+
+### 缺陷一: 裁剪是「接受输入并静默丢弃」的表单
+
+`FrameosNodeFloatingToolbar` 裁剪态(Batch 279 采样的是 UI 外观)里:
+宽高是 `<input defaultValue={480}>` 的**非受控**输入, 全仓**没人读过**;
+「✓ 确认裁剪」只 `alert("已确认裁剪 (mock)")` + 退出裁剪态;
+裁剪框恒等于节点当前矩形, 8 手柄全是 `pointerEvents: none`(拖不动)。
+
+→ 用户填的数字被整个丢弃, **节点一点没变**, UI 却弹了确认。
+比普通 mock 更坏: mock 是「本来没做」, 这里是**收了输入、给了确认、再扔掉**。
+
+修(不新增 store API, 不发明裁剪语义):
+① 宽高受控, 进入裁剪时用**节点当前尺寸**初始化(不是写死 480);
+② 裁剪框跟随输入, 锚在节点左上角;
+③ 确认时复用**拖拽手柄用的同一对** action —— `beginResize`(入历史) + `resizeNode`(落尺寸)
+   → 不新增 API、自动可撤销、与全 app 历史语义一致;
+④ 最小值沿用手柄同一对下限 200×120;
+⑤ 解析不出数字就**不落也不谎报成功**;
+⑥ `nodeRect` 是屏幕坐标而宽高是流坐标 —— 显式换算(Batch 342 同源陷阱)。
+
+实测: 300×169 → 确认 420×260 → ⌘Z 精确还原 300×169。
+
+verifier batch350 **14/14 PASS**、0 诊断。**两处变异都确认会红**且数字即缺陷原文:
+① 去掉 `resizeNode` → `confirm:applies-size style=(300,169) expect=(420,260)`;
+② 退回 `defaultValue=480` → `input:initialized-from-node input=(480,480) style=(300,169)`。
+
+**探针自身的坑(第五次)**：`undo:restores-size` 曾报 `(None,None)`, 像是「撤销把节点删了」。
+实测撤销**精确还原了** 300×169, 只是 `selectedNodeId` 变 null —— 而 `undo()` 里
+`selectedNodeId: null` 是**有意的显式设计**(快照恢复丢选中), 不是缺陷。
+探针改为**按 node id 读**(稳定身份), 并把「还原尺寸」与「节点还在」拆成两条断言。
+> 本会话累计五次因「先看失败在哪一步」避免误改应用代码
+> (346 坐标失效 / 348 复用已有节点 / Playwright position 笔误 / 349 监听器重复注册 / 350 按选中态取节点)。
+
+### 顺带查清: batch333 反复偶发失败的真因是**门禁缺陷**
+
+`diagnostics:zero` 连续三轮在全量套件里失败、重试也失败, 但**隔离 5+ 次、
+6 路并发 3 次、重编译扰动 3 次全过**。前两次抓诊断失败是因为 runner 对失败输出
+做 `tail -5` 把诊断截掉了; 改成**写文件**才抓到原文:
+
+    requestfailed:GET:.../_next/static/chunks/[turbopack]...hmr-client...js:net::ERR_ABORTED
+    requestfailed:GET:.../images/frameos/node-vid-cover-2.jpg:net::ERR_ABORTED
+
+**全是 `net::ERR_ABORTED`** = 浏览器**主动取消**的请求, 不是服务器/应用失败:
+① Turbopack HMR chunk(别的 session 改源文件触发重编译, 旧 hash 失效);
+② `/images/frameos/*`(batch333 密集 `page.reload()` 测跨刷新持久化, 图片请求随导航被取消)。
+
+`attach_errors` 把浏览器 `requestfailed` 一律当应用错误 → `diagnostics:zero`
+在长跑/并发下必然误报, 还会淹没真实错误。
+**batch333 本身无功能回归**(11 次隔离/压力跑全过); 问题在门禁分不清
+「应用抛错」与「HMR chunk 被取消」。门禁必须零误报 → 要修。
+
+**候选 Batch 351**: 改共享 `attach_errors`, 不把 `net::ERR_ABORTED` 计为应用错误,
+并配「门禁没被削弱」的反向测试(注入真 console.error / pageerror / 404 仍须失败);
+影响 86 个验证器, 故单独成批。

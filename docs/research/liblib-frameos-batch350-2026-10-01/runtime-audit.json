@@ -1,0 +1,120 @@
+{
+  "batch": 350,
+  "defect": "裁剪宽高是非受控输入且从无代码读取；「确认裁剪」只 alert 就退出，用户填的数字被静默丢弃、节点毫无变化",
+  "fix": "受控输入(初值=节点当前尺寸) + 裁剪框跟随 + 复用 beginResize/resizeNode 落尺寸(自动可撤销) + 屏幕↔流坐标显式换算",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "setup:in-crop-mode",
+      "setup:crop-rect-present",
+      "setup:node-has-size",
+      "input:initialized-from-node",
+      "input:drives-crop-rect",
+      "input:not-applied-yet",
+      "confirm:applies-size",
+      "confirm:exits-crop-mode",
+      "undo:history-pushed",
+      "undo:restores-size",
+      "undo:node-still-present",
+      "clamp:min-size",
+      "invalid:no-false-success",
+      "diagnostics:zero"
+    ],
+    "on_enter": {
+      "selectedId": "image-1",
+      "nodePresent": true,
+      "styleW": 300,
+      "styleH": 169,
+      "screenW": 300,
+      "screenH": 169,
+      "croppingNodeId": "image-1",
+      "pastLen": 0,
+      "cropRect": {
+        "w": 300,
+        "h": 169
+      }
+    },
+    "initial_inputs": {
+      "w": "300",
+      "h": "169"
+    },
+    "after_typing": {
+      "selectedId": "image-1",
+      "nodePresent": true,
+      "styleW": 300,
+      "styleH": 169,
+      "screenW": 300,
+      "screenH": 169,
+      "croppingNodeId": "image-1",
+      "pastLen": 0,
+      "cropRect": {
+        "w": 420,
+        "h": 260
+      }
+    },
+    "after_confirm": {
+      "selectedId": "image-1",
+      "nodePresent": true,
+      "styleW": 420,
+      "styleH": 260,
+      "screenW": 420,
+      "screenH": 260,
+      "croppingNodeId": null,
+      "pastLen": 1,
+      "cropRect": null
+    },
+    "after_undo": {
+      "selectedId": null,
+      "nodePresent": true,
+      "styleW": 300,
+      "styleH": 169,
+      "screenW": 300,
+      "screenH": 169,
+      "croppingNodeId": null,
+      "pastLen": 0,
+      "cropRect": null
+    },
+    "clamped": {
+      "selectedId": "image-1",
+      "nodePresent": true,
+      "styleW": 200,
+      "styleH": 120,
+      "screenW": 200,
+      "screenH": 120,
+      "croppingNodeId": null,
+      "pastLen": 1,
+      "cropRect": null
+    },
+    "invalid_input": {
+      "before": {
+        "selectedId": "image-1",
+        "nodePresent": true,
+        "styleW": 200,
+        "styleH": 120,
+        "screenW": 200,
+        "screenH": 120,
+        "croppingNodeId": "image-1",
+        "pastLen": 1,
+        "cropRect": {
+          "w": 200,
+          "h": 120
+        }
+      },
+      "after": {
+        "selectedId": "image-1",
+        "nodePresent": true,
+        "styleW": 200,
+        "styleH": 120,
+        "screenW": 200,
+        "screenH": 120,
+        "croppingNodeId": null,
+        "pastLen": 2,
+        "cropRect": null
+      }
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

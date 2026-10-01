@@ -109,6 +109,34 @@ export function FrameosNodeFloatingToolbar() {
     setPos(null);
   }
 
+  // ── Batch 350: 裁剪宽高从「装饰性输入」变成真正生效的裁剪框 ──
+  // 此前这两个 input 是 `defaultValue={480}` 的**非受控**输入, 从来没人读过它们;
+  // 「确认裁剪」只 alert 一句就退出裁剪态 —— 用户填的数字被整个丢弃, 节点毫无变化。
+  // 现在: 进入裁剪态时用**节点当前尺寸**初始化(而不是与实际无关的 480),
+  // 输入实时驱动裁剪框, 确认时落成节点尺寸。
+  const [cropInput, setCropInput] = useState<{ w: string; h: string } | null>(null);
+  const nodeStyleW = Number(selectedNode?.style?.width ?? 0);
+  const nodeStyleH = Number(selectedNode?.style?.height ?? 0);
+  // 渲染期派生 state(React 官方推荐做法, 同上面的 prevSelectedId)
+  if (croppingNodeId === selectedNodeId && cropInput === null) {
+    setCropInput({ w: String(nodeStyleW || 480), h: String(nodeStyleH || 480) });
+  }
+  if (croppingNodeId !== selectedNodeId && cropInput !== null) {
+    setCropInput(null);
+  }
+
+  // 与 FrameosNodeShell 拖拽手柄用**同一对**最小值, 两处缩放语义保持一致
+  const CROP_MIN_W = 200;
+  const CROP_MIN_H = 120;
+  // 画出来的框 == 落下去的尺寸: 解析失败就不落, 也不谎报成功
+  const parsedCrop = cropInput
+    ? {
+        w: Math.max(CROP_MIN_W, Math.round(Number(cropInput.w))),
+        h: Math.max(CROP_MIN_H, Math.round(Number(cropInput.h))),
+      }
+    : null;
+  const cropValid = parsedCrop !== null && Number.isFinite(parsedCrop.w) && Number.isFinite(parsedCrop.h);
+
   useEffect(() => {
     if (!selectedNodeId) {
       return undefined;
@@ -169,16 +197,22 @@ export function FrameosNodeFloatingToolbar() {
   // ── Batch 279: 裁剪态 (源站 cico-root 采样: 节点下方控制条 + 节点上 8 手柄 + 三分格) ──
   if (croppingNodeId === selectedNodeId) {
     const nr = pos.nodeRect;
-    const nrRight = nr.left + nr.width;
-    const barTop = nr.top + nr.height + 14;
+    // nodeRect 是**屏幕坐标**, 而裁剪宽高是**节点/流坐标** —— 与 Batch 342
+    // 「屏幕坐标喂给要流坐标的函数」是同一类坐标系错误, 这里显式换算。
+    const zoom = nodeStyleW > 0 ? nr.width / nodeStyleW : 1;
+    const rectW = cropValid ? parsedCrop.w * zoom : nr.width;
+    const rectH = cropValid ? parsedCrop.h * zoom : nr.height;
+    // 裁剪框锚在节点左上角, 尺寸 = 输入值(与「裁剪到 W×H」的直觉一致)
+    const nrRight = nr.left + rectW;
+    const barTop = nr.top + rectH + 14;
     const barLeft = Math.max(12, nr.left - 46);
     const handles: Array<{ x: number; y: number }> = [];
-    const cx = nr.left + nr.width / 2;
-    const cy = nr.top + nr.height / 2;
+    const cx = nr.left + rectW / 2;
+    const cy = nr.top + rectH / 2;
     const pts = [
       [nr.left, nr.top], [cx, nr.top], [nrRight, nr.top],
       [nr.left, cy], [nrRight, cy],
-      [nr.left, nr.top + nr.height], [cx, nr.top + nr.height], [nrRight, nr.top + nr.height],
+      [nr.left, nr.top + rectH], [cx, nr.top + rectH], [nrRight, nr.top + rectH],
     ];
     for (const [hx, hy] of pts) handles.push({ x: hx, y: hy });
     return (
@@ -187,12 +221,13 @@ export function FrameosNodeFloatingToolbar() {
         <div
           aria-hidden
           className="frameos-crop-guides"
+          data-frameos-crop-rect=""
           style={{
             position: "fixed",
             left: nr.left,
             top: nr.top,
-            width: nr.width,
-            height: nr.height,
+            width: rectW,
+            height: rectH,
             pointerEvents: "none",
             zIndex: 2790,
             backgroundImage:
@@ -202,7 +237,7 @@ export function FrameosNodeFloatingToolbar() {
               "linear-gradient(to bottom, rgba(255,255,255,0.35) 1px, transparent 1px)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 1px, 1px 100%, 100% 1px, 1px 100%",
-            backgroundPosition: `0 ${nr.height / 3}px, ${nr.width / 3}px 0, 0 ${(nr.height * 2) / 3}px, ${(nr.width * 2) / 3}px 0`,
+            backgroundPosition: `0 ${rectH / 3}px, ${rectW / 3}px 0, 0 ${(rectH * 2) / 3}px, ${(rectW * 2) / 3}px 0`,
             border: "1.5px solid rgba(255,255,255,0.9)",
           }}
         />
@@ -284,7 +319,8 @@ export function FrameosNodeFloatingToolbar() {
           <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,0.1)" }} />
           <input
             aria-label="裁剪宽度"
-            defaultValue={480}
+            value={cropInput?.w ?? ""}
+            onChange={(e) => setCropInput((s) => (s ? { ...s, w: e.target.value } : s))}
             style={{
               width: 46, height: 28, textAlign: "center", fontSize: 12,
               color: "#E0E0E0", background: "rgba(255,255,255,0.06)",
@@ -294,7 +330,8 @@ export function FrameosNodeFloatingToolbar() {
           <span style={{ color: "#9CA3AF", fontSize: 12 }}>x</span>
           <input
             aria-label="裁剪高度"
-            defaultValue={480}
+            value={cropInput?.h ?? ""}
+            onChange={(e) => setCropInput((s) => (s ? { ...s, h: e.target.value } : s))}
             style={{
               width: 46, height: 28, textAlign: "center", fontSize: 12,
               color: "#E0E0E0", background: "rgba(255,255,255,0.06)",
@@ -304,9 +341,17 @@ export function FrameosNodeFloatingToolbar() {
           <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,0.1)" }} />
           <button
             type="button"
+            aria-label="确认裁剪"
             onClick={() => {
-              window.alert("已确认裁剪 (mock)");
-              useFrameosStore.getState().setCroppingNode(null);
+              // Batch 350: 此前是 `window.alert("已确认裁剪 (mock)")` + 退出裁剪 ——
+              // 用户填的宽高**从未被读取**, 节点一点没变。改为复用节点拖拽手柄
+              // 用的**同一对** action: beginResize 入历史快照、resizeNode 落尺寸。
+              // 不新增 store API, 不发明裁剪语义, 并且自动可撤销。
+              if (!cropValid) return; // 解析不出来就不落, 也不谎报成功
+              const st = useFrameosStore.getState();
+              st.beginResize(selectedNode.id);
+              st.resizeNode(selectedNode.id, parsedCrop.w, parsedCrop.h);
+              st.setCroppingNode(null);
             }}
             style={{
               height: 30,
