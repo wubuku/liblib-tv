@@ -1,0 +1,659 @@
+{
+  "checks": [
+    {
+      "name": "image-edit/expand-panorama:reachable",
+      "ok": true,
+      "detail": "采到 1 个控件"
+    },
+    {
+      "name": "image-edit/expand-panorama:展开全景编辑器:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 1111, 'y': 251, 'w': 28, 'h': 28}"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:title",
+      "ok": true,
+      "detail": "title='全景编辑器暂不可展开'"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "image-edit/expand-panorama/展开全景编辑器@1111,251:rect-unchanged",
+      "ok": true,
+      "detail": "实测 28x28, 期望 28x28 (容差 ±3px)"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt:reachable",
+      "ok": true,
+      "detail": "采到 1 个控件"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt:翻译片段重拍提示词:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 1114, 'y': 755, 'w': 32, 'h': 32}"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:title",
+      "ok": true,
+      "detail": "title='提示词翻译暂不可用'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "segment-reshoot/translate-prompt/翻译片段重拍提示词@1114,755:rect-unchanged",
+      "ok": true,
+      "detail": "实测 32x32, 期望 32x32 (容差 ±3px)"
+    },
+    {
+      "name": "storyboard-assets/add:reachable",
+      "ok": true,
+      "detail": "采到 3 个控件"
+    },
+    {
+      "name": "storyboard-assets/add:新增角色资产:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 24, 'y': 114, 'w': 195, 'h': 190}"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:title",
+      "ok": true,
+      "detail": "title='资产新增暂不可用'"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "storyboard-assets/add/新增角色资产@24,114:rect-unchanged",
+      "ok": true,
+      "detail": "实测 195x190, 期望 195x190 (容差 ±3px)"
+    },
+    {
+      "name": "storyboard-assets/add:新增场景资产:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 24, 'y': 356, 'w': 195, 'h': 190}"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:title",
+      "ok": true,
+      "detail": "title='资产新增暂不可用'"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "storyboard-assets/add/新增场景资产@24,356:rect-unchanged",
+      "ok": true,
+      "detail": "实测 195x190, 期望 195x190 (容差 ±3px)"
+    },
+    {
+      "name": "storyboard-assets/add:新增道具资产:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 24, 'y': 598, 'w': 195, 'h': 190}"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:title",
+      "ok": true,
+      "detail": "title='资产新增暂不可用'"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "storyboard-assets/add/新增道具资产@24,598:rect-unchanged",
+      "ok": true,
+      "detail": "实测 195x190, 期望 195x190 (容差 ±3px)"
+    },
+    {
+      "name": "video-gen/favorite:reachable",
+      "ok": true,
+      "detail": "采到 4 个控件"
+    },
+    {
+      "name": "video-gen/favorite:收藏:present",
+      "ok": true,
+      "detail": "找到 4 个"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 612, 'y': 449, 'w': 24, 'h': 24}"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:title",
+      "ok": true,
+      "detail": "title='特效收藏暂不可用'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:class-has-no-hover",
+      "ok": true,
+      "detail": "4 个实例, className 含 hover: 的 = [False, False, False, False]"
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-gen/favorite/收藏@612,449:rect-unchanged",
+      "ok": true,
+      "detail": "实测 24x24, 期望 24x24 (容差 ±3px)"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 805, 'y': 449, 'w': 24, 'h': 24}"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:title",
+      "ok": true,
+      "detail": "title='特效收藏暂不可用'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:class-has-no-hover",
+      "ok": true,
+      "detail": "4 个实例, className 含 hover: 的 = [False, False, False, False]"
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-gen/favorite/收藏@805,449:rect-unchanged",
+      "ok": true,
+      "detail": "实测 24x24, 期望 24x24 (容差 ±3px)"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 998, 'y': 449, 'w': 24, 'h': 24}"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:title",
+      "ok": true,
+      "detail": "title='特效收藏暂不可用'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:class-has-no-hover",
+      "ok": true,
+      "detail": "4 个实例, className 含 hover: 的 = [False, False, False, False]"
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-gen/favorite/收藏@998,449:rect-unchanged",
+      "ok": true,
+      "detail": "实测 24x24, 期望 24x24 (容差 ±3px)"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 1191, 'y': 449, 'w': 24, 'h': 24}"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:title",
+      "ok": true,
+      "detail": "title='特效收藏暂不可用'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:class-has-no-hover",
+      "ok": true,
+      "detail": "4 个实例, className 含 hover: 的 = [False, False, False, False]"
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-gen/favorite/收藏@1191,449:rect-unchanged",
+      "ok": true,
+      "detail": "实测 24x24, 期望 24x24 (容差 ±3px)"
+    },
+    {
+      "name": "video-gen/banner-close:reachable",
+      "ok": true,
+      "detail": "采到 1 个控件"
+    },
+    {
+      "name": "video-gen/banner-close:关闭:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 976, 'y': 31, 'w': 10, 'h': 24}"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:title",
+      "ok": true,
+      "detail": "title='标记选择模式暂不支持关闭'"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-gen/banner-close/关闭@976,31:rect-unchanged",
+      "ok": true,
+      "detail": "实测 10x24, 期望 10x24 (容差 ±3px)"
+    },
+    {
+      "name": "video-toolbar/undo-redo:reachable",
+      "ok": true,
+      "detail": "采到 4 个控件"
+    },
+    {
+      "name": "video-toolbar/undo-redo:撤销视频处理:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 1352, 'y': 231, 'w': 32, 'h': 32}"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:title",
+      "ok": true,
+      "detail": "title='视频处理暂不支持撤销'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-toolbar/undo-redo/撤销视频处理@1352,231:rect-unchanged",
+      "ok": true,
+      "detail": "实测 32x32, 期望 32x32 (容差 ±3px)"
+    },
+    {
+      "name": "video-toolbar/undo-redo:重做视频处理:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 1388, 'y': 231, 'w': 32, 'h': 32}"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:title",
+      "ok": true,
+      "detail": "title='视频处理暂不支持重做'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "video-toolbar/undo-redo/重做视频处理@1388,231:rect-unchanged",
+      "ok": true,
+      "detail": "实测 32x32, 期望 32x32 (容差 ±3px)"
+    },
+    {
+      "name": "control-group:expand-present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "control-group:expand-not-inert",
+      "ok": true,
+      "detail": "「展开视频」有 handler, 不该被标 inert: [None]"
+    },
+    {
+      "name": "control-group:download-is-anchor",
+      "ok": true,
+      "detail": "「下载视频封面」应仍是 <a download>"
+    },
+    {
+      "name": "control-group:expand-still-works",
+      "ok": true,
+      "detail": "点了「展开视频」应出现「已打开预览」反馈"
+    },
+    {
+      "name": "shot-breakdown/play-bgm:reachable",
+      "ok": true,
+      "detail": "采到 1 个控件"
+    },
+    {
+      "name": "shot-breakdown/play-bgm:播放 BGM:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:in-viewport",
+      "ok": true,
+      "detail": "visible=True inViewport=True rect={'x': 341, 'y': 307, 'w': 13, 'h': 13}"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:title",
+      "ok": true,
+      "detail": "title='BGM 试听暂不可用'"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:class-has-no-hover",
+      "ok": true,
+      "detail": "1 个实例, className 含 hover: 的 = [False]"
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:size-token-kept",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shot-breakdown/play-bgm/播放 BGM@341,307:rect-unchanged",
+      "ok": true,
+      "detail": "实测 13x13, 期望 13x13 (容差 ±3px)"
+    },
+    {
+      "name": "hover-target:reachable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hover-target:not-marked-inert",
+      "ok": true,
+      "detail": "「查看框选去字幕说明」是有行为的 hover 目标, 不该被标 inert: []"
+    },
+    {
+      "name": "hover-target:tooltip-still-works",
+      "ok": true,
+      "detail": "说明浮层应仍能悬停弹出, 实测 {\"found\": true, \"visible\": true, \"opacity\": \"1\", \"visibility\": \"visible\", \"text\": \"使用说明• 在画面上拖拽鼠标,框选要擦除的区域• 支持框选多个区域,所有框内文字将被擦除• 擦除作用于整段视频,不仅是当前帧\"}"
+    },
+    {
+      "name": "hover-target:button-has-no-title-gate",
+      "ok": true,
+      "detail": "控件本身不该被改"
+    },
+    {
+      "name": "source-census:no-plain-dead-buttons",
+      "ok": true,
+      "detail": "仍自称可点又无接线的控件: []"
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": []
+  },
+  "noisy": []
+}

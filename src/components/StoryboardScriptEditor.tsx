@@ -168,11 +168,20 @@ export function StoryboardScriptEditor() {
           {["角色", "场景", "道具"].map((group) => (
             <div key={group} data-storyboard-asset-group={group} className="mb-6">
               <h3 className="text-sm text-[#d8d8d8]">{group}</h3>
+              {/* Batch 367: 「新增{分组}资产」无 onClick 也无 disabled, 却带
+                  hover:border-white/[0.28] + hover:text-[#c0c0c0] —— 一个
+                  195×190 的大虚线卡, 视觉上强烈暗示「点这里能加资产」, 点了
+                  什么都不发生。资产新增的源站形态未采样(人机验证阻塞), 不发明;
+                  按 batch 358/359/360/364/366 同策让 UI 停止撒谎: 去掉悬停
+                  骗人反馈 + cursor: default + title 说明 + data-inert 自证惰性。
+                  几何与文案不动。 */}
               <button
                 type="button"
                 data-storyboard-asset-add
+                data-inert="true"
+                title="资产新增暂不可用"
                 aria-label={`新增${group}资产`}
-                className="mt-2 flex h-[190px] w-[195px] flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] text-[#8c8c8c] hover:border-white/[0.28] hover:text-[#c0c0c0]"
+                className="mt-2 flex h-[190px] w-[195px] cursor-default flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] text-[#8c8c8c]"
               >
                 <span className="text-2xl leading-none">+</span>
                 <span className="text-xs">新增</span>

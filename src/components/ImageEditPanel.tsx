@@ -273,7 +273,12 @@ function PanoramaEditPanel({
         className="pointer-events-none relative flex w-full flex-col rounded-2xl border border-[#363636] bg-[#262626] p-3 shadow-[0_22px_60px_rgba(0,0,0,0.5)]"
         style={{ height: panelHeight }}
       >
-        <button type="button" className="pointer-events-auto absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white" aria-label="展开全景编辑器">
+        {/* Batch 367: 「展开全景编辑器」无 onClick 也无 disabled, 却带
+            hover:bg-white/[0.07] + hover:text-white。全景编辑器的展开形态
+            源站未采样(人机验证阻塞), 不发明展开逻辑; 按 batch 358/359/360/
+            364/366 同策让 UI 停止撒谎: 去掉悬停骗人反馈 + cursor: default +
+            title 说明 + data-inert 自证惰性。几何与文案不动。 */}
+        <button type="button" data-inert="true" title="全景编辑器暂不可展开" className="pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#8b8b8b]" aria-label="展开全景编辑器">
           <Expand size={15} />
         </button>
 

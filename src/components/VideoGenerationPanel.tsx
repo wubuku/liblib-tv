@@ -540,7 +540,14 @@ export function VideoGenerationPanel({
                 >
                   <div className={cn("relative aspect-square w-full overflow-hidden rounded-lg bg-gradient-to-b", effect.gradient)}>
                     <div className="absolute inset-x-0 top-0 flex h-8 items-center justify-end p-1.5 opacity-0 transition-opacity group-hover:opacity-100">
-                      <button type="button" aria-label="收藏" className="flex size-6 items-center justify-center rounded-lg bg-black/65 text-white hover:bg-black/80">
+                      {/* Batch 367: 特效卡「收藏」无 onClick 也无 disabled, 却带
+                          hover:bg-black/80, 而且 hover 卡片才浮现 —— 一枚要
+                          「先悬停、再点击」却什么都不发生的星标。收藏是账号态
+                          动作, 源站未采样(人机验证阻塞)且不涉及付费, 不发明;
+                          按 batch 358/359/360/364/366 同策让 UI 停止撒谎:
+                          去掉悬停骗人反馈 + cursor: default + title 说明 +
+                          data-inert 自证惰性。几何与文案不动。 */}
+                      <button type="button" data-inert="true" title="特效收藏暂不可用" aria-label="收藏" className="flex size-6 cursor-default items-center justify-center rounded-lg bg-black/65 text-white">
                         <svg aria-hidden="true" width="14" height="13" viewBox="0 0 22.13 20.8" fill="none">
                           <path d="M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.27.18 1.78 1.74.86 2.63l-4.14 4.03.98 5.69c.22 1.26-1.11 2.22-2.24 1.63l-5.11-2.69-5.11 2.69c-1.13.59-2.46-.37-2.24-1.63l.98-5.69L.55 8.44c-1.03-1-.46-2.45 1.1-2.63l5.72-.8L9.65.87z" fill="currentColor" />
                         </svg>
@@ -589,10 +596,19 @@ export function VideoGenerationPanel({
                 >
                   返回节点
                 </button>
+                {/* Batch 367: 标记选择横幅的「关闭」无 onClick 也无 disabled, 却带
+                    hover:text-white —— 一个点不掉横幅的关闭按钮, 是这批里最直接的
+                    「骗人」: 用户以为能退出标记选择模式, 点了横幅纹丝不动。
+                    源站横幅行为未采样(人机验证阻塞), 不发明退出逻辑;
+                    按 batch 358/359/360/364/366 同策让 UI 停止撒谎:
+                    去掉悬停骗人反馈 + cursor: default + title 说明 +
+                    data-inert 自证惰性。几何与文案不动。 */}
                 <button
                   type="button"
+                  data-inert="true"
+                  title="标记选择模式暂不支持关闭"
                   aria-label="关闭"
-                  className="shrink-0 text-white/80 hover:text-white"
+                  className="shrink-0 cursor-default text-white/80"
                 >
                   ×
                 </button>

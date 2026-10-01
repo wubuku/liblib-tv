@@ -1,0 +1,302 @@
+{
+  "url": "http://localhost:4317",
+  "viewport": {
+    "width": 1680,
+    "height": 1050
+  },
+  "results": {
+    "image-edit/expand-panorama": {
+      "expand-panorama": {
+        "visible": true,
+        "rect": {
+          "x": 1111,
+          "y": 251,
+          "w": 28,
+          "h": 28
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "展开全景编辑器",
+        "selector": "button[aria-label=\"展开全景编辑器\"]"
+      }
+    },
+    "segment-reshoot/translate-prompt": {
+      "translate-prompt": {
+        "visible": true,
+        "rect": {
+          "x": 1114,
+          "y": 755,
+          "w": 32,
+          "h": 32
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "翻译片段重拍提示词",
+        "selector": "button[aria-label=\"翻译片段重拍提示词\"]"
+      }
+    },
+    "subtitle-erase/help (误报嫌疑)": {
+      "subtitle-help": {
+        "visible": true,
+        "rect": {
+          "x": 775,
+          "y": 732,
+          "w": 16,
+          "h": 16
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "查看框选去字幕说明",
+        "selector": "[data-subtitle-erase-help]"
+      },
+      "tooltipProbe": {
+        "found": true,
+        "visible": true,
+        "opacity": "1",
+        "visibility": "visible",
+        "text": "使用说明• 在画面上拖拽鼠标,框选要擦除的区域• 支持框选多个区域,所有框内文字将被擦除• 擦除作用于整段视频,不仅是当前帧"
+      }
+    },
+    "storyboard-assets/add": {
+      "asset-add": {
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 114,
+          "w": 195,
+          "h": 190
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "新增角色资产",
+        "selector": "[data-storyboard-asset-add]"
+      },
+      "asset-add[1]": {
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 356,
+          "w": 195,
+          "h": 190
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "新增场景资产",
+        "selector": "[data-storyboard-asset-add]"
+      },
+      "asset-add[2]": {
+        "visible": true,
+        "rect": {
+          "x": 24,
+          "y": 598,
+          "w": 195,
+          "h": 190
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "新增道具资产",
+        "selector": "[data-storyboard-asset-add]"
+      }
+    },
+    "video-gen/favorite": {
+      "favorite": {
+        "visible": true,
+        "rect": {
+          "x": 612,
+          "y": 449,
+          "w": 24,
+          "h": 24
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "收藏",
+        "selector": "[data-effects-gallery] button[aria-label=\"收藏\"]"
+      },
+      "favorite[1]": {
+        "visible": true,
+        "rect": {
+          "x": 805,
+          "y": 449,
+          "w": 24,
+          "h": 24
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "收藏",
+        "selector": "[data-effects-gallery] button[aria-label=\"收藏\"]"
+      },
+      "favorite[2]": {
+        "visible": true,
+        "rect": {
+          "x": 998,
+          "y": 449,
+          "w": 24,
+          "h": 24
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "收藏",
+        "selector": "[data-effects-gallery] button[aria-label=\"收藏\"]"
+      },
+      "favorite[3]": {
+        "visible": true,
+        "rect": {
+          "x": 1191,
+          "y": 449,
+          "w": 24,
+          "h": 24
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "收藏",
+        "selector": "[data-effects-gallery] button[aria-label=\"收藏\"]"
+      }
+    },
+    "video-gen/banner-close": {
+      "banner-close": {
+        "visible": true,
+        "rect": {
+          "x": 976,
+          "y": 31,
+          "w": 10,
+          "h": 24
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "关闭",
+        "selector": "[data-mark-select-banner] button[aria-label=\"关闭\"]"
+      }
+    },
+    "video-toolbar/undo-redo": {
+      "undo": {
+        "undo": {
+          "visible": true,
+          "rect": {
+            "x": 1352,
+            "y": 231,
+            "w": 32,
+            "h": 32
+          },
+          "inViewport": true,
+          "title": null,
+          "inert": null,
+          "disabled": false,
+          "cursor": "default",
+          "ariaLabel": "撤销视频处理",
+          "selector": "button[aria-label=\"撤销视频处理\"]"
+        }
+      },
+      "redo": {
+        "redo": {
+          "visible": true,
+          "rect": {
+            "x": 1388,
+            "y": 231,
+            "w": 32,
+            "h": 32
+          },
+          "inViewport": true,
+          "title": null,
+          "inert": null,
+          "disabled": false,
+          "cursor": "default",
+          "ariaLabel": "重做视频处理",
+          "selector": "button[aria-label=\"重做视频处理\"]"
+        }
+      },
+      "control-download": {
+        "download": {
+          "visible": true,
+          "rect": {
+            "x": 1280,
+            "y": 231,
+            "w": 32,
+            "h": 32
+          },
+          "inViewport": true,
+          "title": null,
+          "inert": null,
+          "disabled": false,
+          "cursor": "pointer",
+          "ariaLabel": "下载视频封面",
+          "selector": "a[aria-label=\"下载视频封面\"]"
+        }
+      },
+      "control-expand": {
+        "expand": {
+          "visible": true,
+          "rect": {
+            "x": 1316,
+            "y": 231,
+            "w": 32,
+            "h": 32
+          },
+          "inViewport": true,
+          "title": null,
+          "inert": null,
+          "disabled": false,
+          "cursor": "default",
+          "ariaLabel": "展开视频",
+          "selector": "button[aria-label=\"展开视频\"]"
+        }
+      }
+    },
+    "shot-breakdown/play-bgm": {
+      "play-bgm": {
+        "visible": true,
+        "rect": {
+          "x": 341,
+          "y": 307,
+          "w": 13,
+          "h": 13
+        },
+        "inViewport": true,
+        "title": null,
+        "inert": null,
+        "disabled": false,
+        "cursor": "default",
+        "ariaLabel": "播放 BGM",
+        "selector": "[data-shot-breakdown-category=\"music\"] button[aria-label=\"播放 BGM\"]"
+      }
+    }
+  },
+  "summary": {
+    "totalProbes": 8,
+    "skipped": [],
+    "skippedCount": 0,
+    "note": "skipped 不等于 0 问题; 它表示这个面本次没测到, 必须人工复核"
+  }
+}

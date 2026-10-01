@@ -232,10 +232,16 @@ export function SegmentReshootPanel({ zoom }: SegmentReshootPanelProps) {
               本地预览
             </span>
           )}
+          {/* Batch 367: 「翻译片段重拍提示词」无 onClick 也无 disabled, 却带
+              hover:bg-white/[0.06]。翻译动作源站未采样(人机验证阻塞), 不发明;
+              按 batch 358/359/360/364/366 同策让 UI 停止撒谎: 去掉悬停骗人反馈
+              + cursor: default + title 说明 + data-inert 自证惰性。几何与文案不动。 */}
           <button
             type="button"
+            data-inert="true"
+            title="提示词翻译暂不可用"
             aria-label="翻译片段重拍提示词"
-            className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#aaa] hover:bg-white/[0.06]"
+            className="flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#aaa]"
           >
             <Languages size={14} />
           </button>

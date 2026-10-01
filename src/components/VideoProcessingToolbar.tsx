@@ -234,8 +234,15 @@ export function VideoProcessingToolbar({ activeTool, enhanced, posterUrl, onSele
         <span className="h-5 w-px shrink-0 bg-white/10" />
         <a href={posterUrl ?? "/images/scene-coffee-4.png"} download className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" aria-label="下载视频封面"><Download size={16} /></a>
         <button type="button" onClick={() => setLastAction("已打开预览")} className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#a8a8a8] hover:bg-white/[0.07] hover:text-white" aria-label="展开视频"><Expand size={16} /></button>
-        <button type="button" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#777] hover:bg-white/[0.07] hover:text-white" aria-label="撤销视频处理"><Undo2 size={15} /></button>
-        <button type="button" className="flex size-8 shrink-0 items-center justify-center rounded-lg text-[#777] hover:bg-white/[0.07] hover:text-white" aria-label="重做视频处理"><Redo2 size={15} /></button>
+        {/* Batch 367: 撤销/重做视频处理无 onClick 也无 disabled, 却带
+            hover:bg-white/[0.07] + hover:text-white, 和同一条上**真能用的**
+            「展开视频」(设 lastAction) 长得一模一样。视频处理没有可撤销的
+            历史栈, 源站行为也未采样(人机验证阻塞), 不发明撤销逻辑;
+            按 batch 358/359/360/364/366 同策让 UI 停止撒谎:
+            去掉悬停骗人反馈 + cursor: default + title 说明 + data-inert 自证惰性。
+            几何与文案不动。 */}
+        <button type="button" data-inert="true" title="视频处理暂不支持撤销" className="flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]" aria-label="撤销视频处理"><Undo2 size={15} /></button>
+        <button type="button" data-inert="true" title="视频处理暂不支持重做" className="flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]" aria-label="重做视频处理"><Redo2 size={15} /></button>
 
       </div>
     </NodeToolbar>

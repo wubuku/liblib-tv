@@ -136,10 +136,18 @@ function MusicResult({
       </div>
       <div className="mt-3 flex items-center gap-3 text-[12px] tabular-nums text-[#aaa]">
         <span>00:00 / 00:14</span>
+        {/* Batch 367: 「播放 BGM」无 onClick 也无 disabled。它是这批里最像
+            真控件的一个: 13px 的实心圆 + Play 图标 + 紧挨 00:14 时长,
+            任何人都会认为点它会播音频。音频预览源站未采样(人机验证阻塞),
+            不发明播放逻辑; 按 batch 358/359/360/364/366 同策让 UI 停止撒谎:
+            cursor: default + title 说明 + data-inert 自证惰性。
+            几何与文案不动。 */}
         <button
           type="button"
+          data-inert="true"
+          title="BGM 试听暂不可用"
           aria-label="播放 BGM"
-          className="nodrag nopan flex size-6 items-center justify-center rounded-full border border-white/15 bg-[#303030] text-white"
+          className="nodrag nopan flex size-6 cursor-default items-center justify-center rounded-full border border-white/15 bg-[#303030] text-white"
         >
           <Play size={11} fill="currentColor" />
         </button>

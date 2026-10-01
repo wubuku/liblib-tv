@@ -1,0 +1,20 @@
+{
+  "components": {
+    "SubtitleErasePanel.tsx": [
+      {
+        "line": 472,
+        "aria": "查看框选去字幕说明",
+        "hasHover": true,
+        "selfClosing": false,
+        "snippet": "data-subtitle-erase-help type=\"button\" aria-label=\"查看框选去字幕说明\" className=\"flex size-4 items-center justify-center text-[#8b8b8b] hover:text-white\""
+      }
+    ]
+  },
+  "summary": {
+    "totalCandidates": 1,
+    "components": [
+      "SubtitleErasePanel.tsx"
+    ],
+    "note": "源码层面候选; 可触达性与是否骗人需浏览器实测确认"
+  }
+}
