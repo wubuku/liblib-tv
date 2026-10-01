@@ -134,6 +134,14 @@ run_case "28) 出厂配置预置了默认模型" web/src/stores/use-config-store
 run_case "29) 补上进入短剧引导的写入点" web/src/stores/canvas/use-canvas-store.ts "$HERE/selftest-fix-29-short-drama-entry.py" 'starterMode: "guided"' "short-drama-empty-state-unreachable"
 run_case "30) 空画布四个快捷入口被放出（改条件式）" web/src/components/canvas/canvas-short-drama-entry.tsx "$HERE/selftest-fix-30-empty-canvas-quickstarts.py" 'import.meta.env.DEV;' "empty-canvas-quickstarts-off"
 run_pass_case "31) 不误伤：只加比较式 starterMode === \"guided\"（不是写入）" web/src/lib/canvas/canvas-starter.ts "$HERE/selftest-fix-31-guided-comparison-only.py" 'isGuidedStarter' "short-drama-empty-state-unreachable"
+
+# 33/34 是 Batch 170「写出点只看代码、不看注释」这一改动的**一对**反验。
+# 缺了 34，这次改动就只有一个方向被验过，而**这类改动的失败模式是静默变弱**：
+# 哪天有人图省事不剥注释了、或者把整份源码当注释丢掉，闸门只会少报、不会报错。
+# 34 正是把「注释不是界面入口」钉成用例——**它比 33 更该在**。
+run_case "33) 代码里补一个真的 ?fixture= 写出点（必须报：该参数已脱零写）" web/src/pages/assets/index.tsx "$HERE/selftest-unreachable-fix-33-fixture-writer.py" '__fixtureEntry' "已被扫到写出点"
+run_pass_case "34) 不误伤：只在注释里写 ?fixture=（注释不是界面入口）" web/src/pages/assets/index.tsx "$HERE/selftest-unreachable-fix-34-fixture-in-comment.py" '仅注释，不是界面入口' "9 个参数零写出"
+
 # 关于「工具失败必须与干净的否定结果可区分」：用例 32 **不放这里**。
 # 本脚本的框架是往 **BeefTV 源码**注入再重建临时 ref，而那条用例要改的是
 # **闸门脚本自己**（verify-unreachable.py）——它根本不在 BeefTV 仓里，

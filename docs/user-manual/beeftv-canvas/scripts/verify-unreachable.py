@@ -1407,10 +1407,13 @@ URL_WRITE_PATTERNS = [  # 保留给人工查阅；实现已并入 url_params_wit
 # 判据是「查过来源」，不是「看起来像」：设计成由外部提供的深链，其生产者
 # 本来就不在界面里（粘贴框、外部启动器、别的系统），零写出是正常的。
 #
-# ⚠️ 本名单只覆盖**严格档扫得到的**参数。`agent` 与 `fixture` 经人工查证同样
-# 没有界面入口，但源码注释里出现过 `?agent=` / `?fixture=`，**保守档因此扫不到
-# 它们**——闸门不跟踪它们，手册 20-reference 里关于这两个参数的表述只由源码证据
-# 支撑。宁可让闸门少管两个，也不放宽判据去迁就名单。
+# ⚠️ Batch 170 的变化：`agent` 与 `fixture` **原先进不来这个名单**——
+# 源码注释里各有一句 `?agent=1` / `?fixture=libtv-generating`，
+# 而写出点扫描**把注释也当代码**，于是这两个参数永远「有写出点」、
+# 永远脱零写、**闸门从不跟踪它们**，本文件原来还专门写了一段坦白这件事。
+# 现在写出点只看**代码**（`_strip_line_comment`），它们才终于归位。
+# **教训：那场坦白本身就是判据缺陷的自供**——闸门在旁边写「这两个我不管」，
+# 却没人把这句话当成待办；**写下来不等于有人修，而「不写」连线索都没了。**
 URL_PARAM_EXEMPT = {
     "fixtureMedia": "演示画布数据的媒体资源参数，与 fixture 配套；界面无入口",
     "libtvChrome": "演示用 LibTV 顶栏外观开关，与 fixture 配套；界面无入口",
@@ -1418,6 +1421,11 @@ URL_PARAM_EXEMPT = {
     "uuid": "projectId 的解析别名；入口是「粘贴 LibTV 项目链接」的输入框，"
             "值来自剪贴板而非导航，故零导航写出属正常",
     "demo": "/create 的固定数据演示模式，页面顶部有明示横幅，属演示设施",
+    "agent": "旧内置 Agent 的深链参数（?agent=1），只被读并原样转发到画布页；"
+             "旧 Agent 已下线，**没有任何界面动作会产出它**（源码里那一处 "
+             "?agent= 在注释中，已被代码档排除）",
+    "fixture": "演示画布数据选择器，共 10 种取值；只被 searchParams.get 读 "
+               "14 处，**无任何界面写出点**（源码里那一处 ?fixture= 在注释中）",
 }
 
 # 零写出且**确为缺陷/受限**的参数 → 登记 id（与 REGISTRY 呼应）。
@@ -1425,6 +1433,80 @@ URL_PARAM_DEFECT = {
     "readonly": "canvas-readonly-no-ui-entry",
     "stay": "canvas-stay-acceptance-only",
 }
+
+
+def _strip_line_comment(s):
+    """删掉一行里的注释，**但不碰字符串内部的 `//`**（如 `"https://…"`）。
+
+    Batch 170 新增。此前判据把**注释里的一句 `?fixture=libtv-text` 也算成界面写出点**，
+    于是 `fixture` / `agent` 永远脱零写、永远没人看守——**闸门在一个自己都承认的
+    缺口旁边写着「闸门不跟踪它们」**。而这跟判据的初衷正好相反：
+    判据选严格档是为了「宁可漏报也不误报」，可**把注释当写出点只会让闸门变弱**
+    （多认一个不存在的生产者 → 少报一个真缺口），它换不来任何安全。
+
+    **跨行块注释（`/* … */`）刻意不跟踪**，理由不是省事而是**做不到**：
+    写出点扫描原本吃的是 `git grep -h` 的拼接文本，**`-h` 会丢掉文件名**，
+    没有文件边界就无法维护注释状态。第一版探针正是在这里翻车——
+    某处字符串里的 `/*` 让状态机误进块注释模式，**后面几万行被整段清空**，
+    于是它报告 `tab` 参数「代码内零写出点」，而 `assets/index.tsx` 里明明有
+    两个按钮在 `navigate("/assets?tab=history")`。**那个错误结论差一点就写进手册。**
+    所以现在按**带文件名的逐行**处理，且只删**单行**注释。
+    """
+    out = []
+    i = 0
+    quote = None
+    while i < len(s):
+        c = s[i]
+        if quote:
+            out.append(c)
+            if c == "\\" and i + 1 < len(s):
+                out.append(s[i + 1])
+                i += 2
+                continue
+            if c == quote:
+                quote = None
+            i += 1
+            continue
+        if c in "'\"`":
+            quote = c
+            out.append(c)
+            i += 1
+            continue
+        if c == "/" and i + 1 < len(s) and s[i + 1] == "/":
+            break                      # 行注释到此为止，后面的不是代码
+        if c == "/" and i + 1 < len(s) and s[i + 1] == "*":
+            j = s.find("*/", i + 2)
+            if j == -1:
+                break                  # 跨行块注释：本行剩余全丢，**不进入状态**
+            i = j + 2
+            continue
+        out.append(c)
+        i += 1
+    return "".join(out)
+
+
+def _code_only_lines(src):
+    """返回 web/src 的**代码行**列表（逐行剥掉单行注释），**每个非空源行对应一项**。
+
+    逐文件处理：`-n` 保留 `路径:行号:` 前缀，用它切出文件边界，
+    这样即便将来要扩展到跨行注释也有边界可用。
+    **列表长度必须等于源文件的非空行数**——这一点由调用方的自检守着。
+    """
+    r = _git_grep_run(["git", "grep", "-n", "-I", "-e", ".", REF, "--", "web/src"],
+                      cwd=src, capture_output=True, text=True)
+    raw = r.stdout or ""
+    by_file = {}
+    for line in raw.split("\n"):
+        if not line.strip():
+            continue
+        path, _, rest = line.partition(":")
+        _ln, _, body = rest.partition(":")
+        by_file.setdefault(path, []).append(body)
+    out = []
+    for path in sorted(by_file):
+        for body in by_file[path]:
+            out.append(_strip_line_comment(body))
+    return out
 
 
 def url_params_without_writer(src, strict=True):
@@ -1442,15 +1524,18 @@ def url_params_without_writer(src, strict=True):
 
     **strict 分两档，因为「判据太窄」的代价是在手册里写假话：**
 
-      · strict=True（**闸门用这一档**）：`?name=` / `&name=` 出现在**任何位置**
-        都算写出点，连注释里提到的也算。宁可漏报、闸门变弱，也不误报。
+      · strict=True（**闸门用这一档**）：`?name=` / `&name=` 出现在**代码的任何位置**
+        都算写出点。**注释不算**（Batch 170 起，见 `_strip_line_comment`）——
+        「注释里写了 `?fixture=`」不是「界面上有个按钮会产出它」。
+        ⚠️ 改这一档前**必须先量反向变化**（有没有参数从「有写出点」变成「零写出」）：
+        本批实测 **+2（agent、fixture）、反向 0**，即只可能让闸门变严。
       · strict=False（**只作提示，不参与判定**）：要求 `?name=` 落在引号对内。
-        检测力更强，但会被两件事打穿——
-          ① 模板字符串**内嵌反引号**（`tasks/index.tsx:551` 的
-             `` `/settings?…&projectId=${…}` ``）整段匹配失败，
-             把真实导航写点误报成零写出；
-          ② 恰恰相反，注释里一句 `?fixture=libtv-text` 就会让该参数脱零写。
-        这两件事 Batch 135 都真撞上过，所以宽松档的结果**只打印、不判定**。
+        它的**唯一**已知弱点是模板字符串**内嵌反引号**
+        （`tasks/index.tsx:551` 的 `` `/settings?…&projectId=${…}` ``）整段匹配失败，
+        把真实导航写点误报成零写出。
+        原来它还有第二个弱点「注释里一句 `?fixture=libtv-text` 就会让该参数脱零写」——
+        **那个弱点已由代码档的剥注释根治**，故只剩一条，且这条正是**不能拿它当判据**
+        的理由（宁可漏报，也不能在手册里写假话）。
     """
     r = subprocess.run(
         ["git", "grep", "-nE", r'searchParams\.get\("([a-zA-Z0-9_-]+)"\)',
@@ -1467,11 +1552,24 @@ def url_params_without_writer(src, strict=True):
     gr = _git_grep_run(["git", "grep", "-h", "-I", "-e", ".", REF, "--", "web/src"],
                         cwd=src, capture_output=True, text=True)
     all_text = gr.stdout or ""
+    # **写出点只看代码**（Batch 170）。宽松档仍用原文，因为它要的正是「出现在任何位置」。
+    code_lines = _code_only_lines(src)
+    n_raw = len([l for l in all_text.split("\n") if l.strip()])
+    if not code_lines:
+        # 剥完一行都不剩 = 判据自己出错了，绝不能当成「没有写出点」（那会让闸门变绿）
+        raise RuntimeError("剥注释后代码行为空，无法判定写出点")
+    if len(code_lines) != n_raw:
+        # 这个自检当场抓过一次真 bug：git grep 输出带尾随换行，两边口径差一行。
+        # **判据自己的实现出错时，必须表现为失败而不是沉默**（纪律 101）。
+        raise RuntimeError(
+            "剥注释前后行数不一致（%d vs %d），剥注释实现有 bug"
+            % (len(code_lines), n_raw))
+    code_text = "\n".join(code_lines)
 
     strict_written = {m.group(1).lower()
-                      for m in re.finditer(r"[?&]([A-Za-z0-9_-]+)\s*=", all_text)}
+                      for m in re.finditer(r"[?&]([A-Za-z0-9_-]+)\s*=", code_text)}
     strict_written |= {m.group(1).lower() for m in re.finditer(
-        r"\.\s*(?:set|append)\s*\(\s*[\"']([A-Za-z0-9_-]+)[\"']", all_text)}
+        r"\.\s*(?:set|append)\s*\(\s*[\"']([A-Za-z0-9_-]+)[\"']", code_text)}
 
     if strict:
         return {p: n for p, n in reads.items() if p.lower() not in strict_written}
@@ -1574,6 +1672,32 @@ def main():
         notes.append(f"  URL 参数只读不写扫描（严格档，闸门用）：{len(dead_params)} 个参数零写出，"
                      f"已全部归类（豁免 {exempt_n} 个：外部深链/演示设施/参数别名；"
                      f"登记为缺陷 {defect_n} 个：readonly、stay）")
+
+        # —— 方向三之二：手册声明的「只读不写参数个数」必须等于实测 ——
+        # **为什么这条要放在同一个进程里比**（Batch 170）：这个数是**判据自己算出来的**，
+        # 放到别的闸去比就得让那个闸再跑一遍扫描，或者去读某个「上次的结果」——
+        # **那正是誊抄副本**（规则 100）。同进程比较，手册里那个数要么对要么构建失败。
+        #
+        # **它此前一直对不上而无人知道**：手册写「共有 10 个」，实测两种口径分别是
+        # **7（把注释当代码）/ 9（只看代码）**，**10 复现不出来**（浅克隆取不到历史，
+        # 按纪律只能说「无法定位」，不能编一个原因）。现在口径写进手册、数由闸门守着。
+        manual = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                              "20-reference.md")
+        try:
+            with open(manual, encoding="utf-8") as fh:
+                mtext = fh.read()
+        except OSError as exc:
+            notes.append(f"  [skip] 读不到 {manual}（{exc}），手册声明的零写出参数个数本轮未能核对")
+        else:
+            m = re.search(r"共有\s*\*\*(\d+)\*\*\s*个查询参数", mtext)
+            if not m:
+                problems.append("[url] 20-reference.md 里找不到「共有 **N** 个查询参数」这句声明 → "
+                                "手册与本判据的对应关系断了（要么声明被改写，要么本闸换了口径）")
+            elif int(m.group(1)) != len(dead_params):
+                problems.append(
+                    f"[url] 手册声明「共有 **{m.group(1)}** 个查询参数只有读取」，"
+                    f"本轮实测 **{len(dead_params)}** 个 → 声明与现场脱节，"
+                    f"零写出参数集合：{sorted(dead_params)}")
         # 宽松档只打印、不判定：它的检测力更强，但会被注释与内嵌反引号打穿
         # （见 url_params_without_writer 的 docstring）。
         try:
