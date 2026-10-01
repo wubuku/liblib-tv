@@ -25,7 +25,7 @@ MANIFEST = os.path.join(SHOT_DIR, "manifest.yml")
 
 # 内部账本：允许引用截图但不属于对外发布内容，不计入「发布页引用」
 INTERNAL = re.compile(
-    r"(task-inventory|PROGRESS|AUDIT|FINAL-REPORT|SOURCE_OBSERVATIONS|manifest)"
+    r"(task-inventory|PROGRESS|AUDIT-RULES|AUDIT|FINAL-REPORT|SOURCE_OBSERVATIONS|manifest)"
     r"|^PUBLISH"
 )
 

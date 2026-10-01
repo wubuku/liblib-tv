@@ -11,7 +11,7 @@ export default defineConfig({
   rewrites: {
     'README.md': 'index.md',
   },
-  srcExclude: ['**/AUDIT.md', '**/PROGRESS.md', '**/task-inventory.yml', '**/SOURCE_OBSERVATIONS.md', '**/PUBLISH.md', '**/FINAL-REPORT.md'],
+  srcExclude: ['**/AUDIT.md', '**/AUDIT-RULES.md', '**/PROGRESS.md', '**/task-inventory.yml', '**/SOURCE_OBSERVATIONS.md', '**/PUBLISH.md', '**/FINAL-REPORT.md'],
   ignoreDeadLinks: true,
   themeConfig: {
     siteTitle: 'BeefTV · 用户手册',

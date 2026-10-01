@@ -35,7 +35,7 @@ CANDIDATES = [
 
 # 只在已发布正文里查；内部账本允许出现裸写法（它们是给自己看的）
 INTERNAL = re.compile(
-    r"(task-inventory|PROGRESS|AUDIT|FINAL-REPORT|SOURCE-OBSERVATIONS|PUBLISH)"
+    r"(task-inventory|PROGRESS|AUDIT-RULES|AUDIT|FINAL-REPORT|SOURCE-OBSERVATIONS|PUBLISH)"
 )
 
 # 手册里出现的三种修饰键记法
