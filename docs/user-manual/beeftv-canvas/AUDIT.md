@@ -1157,3 +1157,18 @@
 - **顺带一处同源发现（FOV 两套边界）**：`director-camera-properties.tsx:29` 面板钳制 **15–90**，`director-viewport.tsx:600` 渲染钳制 **10–120**。正常操作碰不到，只有导入旧场景或手改存档时才会出现「视口能用、滑杆拖不到」。已写进手册 tip。
 - **覆盖盘点结论**：底部工具条六按钮、文本/图片/视频/音频/绘图/批量创作表/角色卡/工作流八类节点均有覆盖；「渠道设置」也已由 `plugins-management.md:43-50` 以运行时实证 + 两张截图覆盖（**本批又一次差点重复劳动，§4.1 生效**）。
 - **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
+
+## 环境记录八十一（Batch 125，2026-10-11，收尾 Batch 114 遗留清单——沉默是对的）
+
+- **本批没有手册缺陷。产出是「证明手册的沉默不是遗漏」。**
+- **按 §4.1 先查手册**：先确认「渠道设置」已由 `plugins-management.md:43-50` 覆盖（**第三次被 §4.1 拦下重复劳动**），再转去查两个零命中项。
+- **两个设置面板确认不可达**：
+  - `pages/settings/runninghub-settings-pane.tsx`（中国站 / 国际站 / Workflow / App / 字段配置 / 测试画布）
+  - `pages/settings/prompt-preferences-pane.tsx`（跟随平台 / 追加要求）
+  - 二者在 `web/src/**` 里**没有任何 import**，即完全不在产物里。
+  - 而设置页侧栏本来**只有一个分区** `channels`（label「个人渠道」）——这与 `20-reference.md:72`「设置页当前只有一个分区」的既有表述**完全吻合**。
+  - 结论：这两组标签在手册里零命中，**是正确的零命中**。若当初照着枚举清扫的缺口清单去「补写」，就会写出两段用户永远点不到的操作步骤——正是 Batch 90「教用户走不通的路」的翻版。
+- **顺带做了一次全量死代码量级**：`web/src/components/` 下 **218 个组件文件，10 个零引用（约 5%）**——`canvas-creative-interaction` / `canvas-size-picker` / `canvas-upload-modal` / `image-generation-pending` / `identity-provider-badge` / `site-compliance-footer` / `workspace-account-menu` / `workspace-sidebar-storage-meter` / `dia-text-reveal` / `fluid-orb`。
+- **检测器自证**：扫出 `workspace-sidebar-storage-meter` 零引用时**先做了反查**——因为 Batch 114 引用过这个文件。结果它只匹配到 `lib/account-storage-usage.ts` 里一个**同名但无关**的 `AccountStorageMeter` 类型，**确实没有 import 它**。若不做这一步，会误判检测器出错、或误以为 Batch 114 记错了。
+- **顺带把 Batch 114 的一处表述收紧**（结论不变）：`workspace-sidebar-storage-meter.tsx` 确实调用 `preloadWorkspaceRoute`，但传的是 `/assets`，而且**该组件自身是死代码**。真正让 projectDetail 分包被预取的是**活的** `workspace-sidebar-nav`（`preloadWorkspaceRoute(linkTo)`）。**「产物里有这个 chunk 所以不能当可达性证据」这一结论仍然成立**，只是支撑它的调用方要写准。
+- **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
