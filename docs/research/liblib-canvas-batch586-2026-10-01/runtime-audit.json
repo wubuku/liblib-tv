@@ -1,0 +1,115 @@
+{
+  "batch": 586,
+  "title": "Director shell surface audit (截图 tab / icon rail / tree rows / view mode / close) with the verbatim tree lock title",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk, taken before the source overlay was closed + docs/research/liblib-canvas-batch586-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "capture:tab-visible",
+        "capture:empty-state",
+        "capture:clear-all",
+        "capture:send-all",
+        "capture:gallery-locator-resolves",
+        "rail:count",
+        "rail:aria-verbatim",
+        "rail:titles-verbatim",
+        "tree:rows-found",
+        "tree:lock-title-verbatim",
+        "tree:hide-title-verbatim",
+        "tree:lock-keeps-descriptive-aria",
+        "view:director-mode",
+        "view:camera-mode",
+        "view:reset",
+        "close:source-title",
+        "collapse:own-affordance",
+        "diagnostics:zero"
+      ],
+      "rail": [
+        {
+          "label": "场景",
+          "title": "场景"
+        },
+        {
+          "label": "添加角色",
+          "title": "添加角色"
+        },
+        {
+          "label": "添加机位",
+          "title": "添加机位"
+        },
+        {
+          "label": "全景图",
+          "title": "全景图"
+        },
+        {
+          "label": "选择画幅比例",
+          "title": "选择画幅比例"
+        },
+        {
+          "label": "AI 识图导入",
+          "title": "AI 识图导入"
+        },
+        {
+          "label": "帮助",
+          "title": "帮助"
+        }
+      ],
+      "tree_rows": [
+        {
+          "lockTitle": "锁定",
+          "lockAria": "锁定角色01 · 陈默",
+          "siblingTitles": [
+            "隐藏",
+            "锁定",
+            "删除"
+          ]
+        },
+        {
+          "lockTitle": "锁定",
+          "lockAria": "锁定咖啡桌",
+          "siblingTitles": [
+            "隐藏",
+            "锁定",
+            "删除"
+          ]
+        },
+        {
+          "lockTitle": "锁定",
+          "lockAria": "锁定冷掉的咖啡",
+          "siblingTitles": [
+            "隐藏",
+            "锁定",
+            "删除"
+          ]
+        },
+        {
+          "lockTitle": "锁定",
+          "lockAria": "锁定咖啡馆背景",
+          "siblingTitles": [
+            "隐藏",
+            "锁定",
+            "删除"
+          ]
+        },
+        {
+          "lockTitle": "锁定",
+          "lockAria": "锁定机位01 · 对峙中景",
+          "siblingTitles": [
+            "隐藏",
+            "锁定",
+            "删除"
+          ]
+        }
+      ],
+      "close_titles": [
+        "关闭"
+      ],
+      "diagnostics": {
+        "console": 1,
+        "filtered_transformcontrols": 1,
+        "errors": []
+      }
+    }
+  ]
+}

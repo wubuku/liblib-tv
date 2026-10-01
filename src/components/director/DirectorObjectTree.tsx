@@ -486,7 +486,11 @@ export function DirectorObjectTree() {
                         data-director-object-lock={object.id}
                         data-director-object-locked={object.locked}
                         aria-label={object.locked ? `解锁${object.name}` : `锁定${object.name}`}
-                        title={object.locked ? "解锁对象" : "锁定对象"}
+                        // Batch 586（源站 2026-10-01 实测）：树行锁定按钮的
+                        // title 逐字为「锁定」/「解锁」，此前 clone 写成
+                        // 「锁定对象」/「解锁对象」。aria 保留带对象名的
+                        // 描述（源站该按钮无 aria，clone 为 a11y 超集）。
+                        title={object.locked ? "解锁" : "锁定"}
                         onClick={(event) => {
                           event.stopPropagation();
                           toggleObjectLocked(object.id);
