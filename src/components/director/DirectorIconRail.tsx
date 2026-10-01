@@ -1,6 +1,7 @@
 "use client";
 
-import { Fragment, useRef, useState, type ChangeEvent } from "react";
+import { Fragment, useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import {
   ArrowDownToLine,
   Boxes,
@@ -120,6 +121,28 @@ const CROWD_LIMITS = {
 // （`添加角色` @(60,66) 48×20）。另注：rail 按钮 hover 会弹一个 Mantine
 // `Tooltip-tooltip`（@(45,118) 64×28），与面板标题是两件事。
 const FLYOUT_WIDTH = "w-[232px]";
+
+// Batch 625: rail 里的五个浮层（全景图 / 画幅比例 / 添加角色 / 几何模型子菜单 /
+// 群众弹窗）改为 portal 到 document.body。原本它们都是资源栏的后代，而资源栏
+// 是 `absolute ... z-30` 且**创建层叠上下文** —— 于是这些元素写在类名里的
+// z-40 / z-50 从未生效，它们在工作区那一层的**有效 z 是 30**，低于时间线的 40。
+//
+// 实测后果（verify-liblib-batch625.py，五个视口）：几何模型子菜单在 1280×720
+// 埋掉 5 枚控件、1100×700 埋掉 6 枚（立方体/球体/圆柱体/环状体/圆锥/上传文件），
+// 画幅比例 flyout 在 1100×700 埋掉 1 枚（9:16）。几何模型尤其惨：它的 z-50 还
+// 被**再关一层** —— 它嵌套在添加角色 flyout（z-40）里，于是有效 z 是 30 而非 50。
+//
+// 为什么抬 rail 的 z 不行（试算后否掉）：rail 是 48px 宽通栏贴左，抬到 45 之后
+// 它会反过来盖住时间线左侧的播放控件（总时长、时间单位那几枚），拿三个浮层换
+// 一排活控件，不做。为什么把 rail 改成 z-auto 也不行：那样 rail 与时间线的
+// 胜负就交给 DOM 顺序，比一个显式的 z 更脆弱。
+//
+// 所以照 batch 624 对 AI 导入模态的同一手法 portal 出去，z 取 **160**：高于
+// 工作区的 z-100（时间线就在它里面）与场景树右键菜单的 z-120，低于视口底部条
+// z-200 与 AI 导入模态 z-290。
+const RAIL_FLYOUT_Z = 160;
+const RAIL_FLYOUT_CLASS = `z-[${RAIL_FLYOUT_Z}]`;
+
 const FLYOUT_CARD_CLASS =
   "rounded-xl border border-white/10 bg-[#242424] shadow-[0_16px_40px_rgba(0,0,0,0.5)]";
 // 标题行在卡片**之外**（源站 `添加角色` 标题 @(60,66)，卡片从 y=100 起），
@@ -159,6 +182,93 @@ export function DirectorIconRail({
   const [crowdDialogOpen, setCrowdDialogOpen] = useState(false);
   const [crowdDraft, setCrowdDraft] = useState({ rows: 3, columns: 3, spacing: 1.2 });
   const [geometrySubmenuOpen, setGeometrySubmenuOpen] = useState(false);
+
+  // Batch 625: portal 之后定位不能再靠 CSS 的
+  // `absolute left-[calc(100%+8px)] top-0`（那个包含块是 rail 里的
+  // `div.relative`），必须自己量 anchor 的视口坐标注入。
+  //
+  // 为什么要重算而不是量一次就存着：原实现是 CSS 锚定，窗口一变就跟着重排；
+  // 换成 JS 坐标后若只量一次，resize 就会让浮层停在旧位置。所以订阅 resize
+  // 在同一个 effect 里重算。
+  //
+  // 坐标口径：三个 flyout 原本是 `left = anchor.left + anchor.width + 8`
+  // （`left-[calc(100%+8px)]` 相对那个 32px 宽的 `div.relative`）、
+  // `top = anchor.top`（`top-0`）。实测 x=48 与之吻合：rail 48 宽居中 32px
+  // 按钮 → anchor 在 x=8，8+32+8=48。群众弹窗 anchor 的是**资源栏本身**
+  // （`absolute left-[294px] top-0`，即 railRect + (294, 0)）。
+  const useFlyoutAnchor = (
+    anchorRef: { current: HTMLElement | null },
+    active: boolean,
+    offset: (r: DOMRect) => { left: number; top: number } = (r) => ({
+      left: r.left + r.width + 8,
+      top: r.top,
+    }),
+  ): { left: number; top: number } | null => {
+    const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
+    useEffect(() => {
+      if (!active) {
+        setPos(null);
+        return;
+      }
+      const measure = () => {
+        const el = anchorRef.current;
+        if (!el) return;
+        setPos(offset(el.getBoundingClientRect()));
+      };
+      measure();
+      window.addEventListener("resize", measure);
+      return () => window.removeEventListener("resize", measure);
+      // `offset` is an inline arrow at each call site, so it changes identity
+      // every render; including it would tear the listener down and re-measure
+      // on every parent render.  The rect it derives from is re-read inside
+      // `measure` anyway, so the value stays correct across renders.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [anchorRef, active]);
+    return pos;
+  };
+
+  const panoramaAnchor = useRef<HTMLDivElement | null>(null);
+  const aspectAnchor = useRef<HTMLDivElement | null>(null);
+  const characterAnchor = useRef<HTMLDivElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const panoramaPos = useFlyoutAnchor(panoramaAnchor, openFlyout === "panorama");
+  const aspectPos = useFlyoutAnchor(aspectAnchor, openFlyout === "aspect-ratio");
+  const characterPos = useFlyoutAnchor(characterAnchor, openFlyout === "add-character");
+  const crowdPos = useFlyoutAnchor(railRef, crowdDialogOpen, (r) => ({
+    left: r.left + 294,
+    top: r.top,
+  }));
+
+  // Mount a flyout at body level with the viewport coordinates measured from its
+  // anchor, so the z in RAIL_FLYOUT_CLASS competes against the timeline instead
+  // of being sealed inside the rail's z-30 context.
+  //
+  // **The wrapper carries the z-index too, and that is not redundant.** A first
+  // version wrapped the flyout in `<div style={{position:"fixed", left, top}}>`
+  // with no z-index — and `position: fixed` **creates a stacking context** (it is
+  // not only positioned-with-z elements that do). The wrapper therefore sealed
+  // the flyout's z-[160] at an effective z-auto, which sits *below* the
+  // workspace's z-[100]: the flyout ended up under the scene tree at every
+  // viewport, and Playwright refused to click 几何模型 / 群众 (3x3) because the
+  // element was covered. Fixing "a child's z sealed inside its parent's context"
+  // had created the same bug one level up — the fourth occurrence of this trap,
+  // and the first one self-inflicted.
+  const portalFlyout = (pos: { left: number; top: number }, node: ReactNode) => {
+    if (typeof document === "undefined") return null;
+    return createPortal(
+      <div
+        style={{
+          position: "fixed",
+          left: pos.left,
+          top: pos.top,
+          zIndex: RAIL_FLYOUT_Z,
+        }}
+      >
+        {node}
+      </div>,
+      document.body,
+    );
+  };
 
   const flashCharacterAck = (message: string) => {
     setCharacterAck(message);
@@ -256,6 +366,7 @@ export function DirectorIconRail({
 
   return (
     <div
+      ref={railRef}
       data-director-icon-rail
       aria-label="导演台资源栏"
       // Batch 613（源站实测 nav `[0,52,48,1098]`）：源站资源栏在 `aside` 里
@@ -286,7 +397,13 @@ export function DirectorIconRail({
           const isActive = active === entry.id;
           return (
             <Fragment key={entry.id}>
-            <div className="relative">
+            <div
+              className="relative"
+              ref={entry.id === "panorama" ? panoramaAnchor
+                   : entry.id === "aspect-ratio" ? aspectAnchor
+                   : entry.id === "add-character" ? characterAnchor
+                   : undefined}
+            >
               <button
                 type="button"
                 data-director-rail-entry={entry.id}
@@ -305,12 +422,14 @@ export function DirectorIconRail({
               >
                 <Icon size={20} />
               </button>
-              {entry.id === "add-character" && openFlyout === "add-character" && (
+              {entry.id === "add-character" && openFlyout === "add-character"
+                && characterPos && portalFlyout(characterPos, (
                 <div
                   data-director-character-flyout
                   aria-label="添加角色"
                   className={cn(
-                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    "fixed",
+                    RAIL_FLYOUT_CLASS,
                     FLYOUT_WIDTH,
                   )}
                 >
@@ -365,13 +484,15 @@ export function DirectorIconRail({
                   )}
                   </div>
                 </div>
-              )}
-              {entry.id === "panorama" && openFlyout === "panorama" && (
+              ) )}
+              {entry.id === "panorama" && openFlyout === "panorama"
+                && panoramaPos && portalFlyout(panoramaPos, (
                 <div
                   data-director-panorama-flyout
                   aria-label="全景图"
                   className={cn(
-                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    "fixed",
+                    RAIL_FLYOUT_CLASS,
                     FLYOUT_WIDTH,
                   )}
                 >
@@ -398,13 +519,15 @@ export function DirectorIconRail({
                   })}
                   </div>
                 </div>
-              )}
-              {entry.id === "aspect-ratio" && openFlyout === "aspect-ratio" && (
+              ) )}
+              {entry.id === "aspect-ratio" && openFlyout === "aspect-ratio"
+                && aspectPos && portalFlyout(aspectPos, (
                 <div
                   data-director-aspect-flyout
                   aria-label="选择画幅比例"
                   className={cn(
-                    "absolute left-[calc(100%+8px)] top-0 z-40",
+                    "fixed",
+                    RAIL_FLYOUT_CLASS,
                     FLYOUT_WIDTH,
                   )}
                 >
@@ -452,7 +575,7 @@ export function DirectorIconRail({
                   ))}
                   </div>
                 </div>
-              )}
+              ) )}
             </div>
             {/* 源站在 `场景` 与 `添加角色` 之间有一条
                 `<div class="border-white/8 h-2 w-8 border-b">`（32×8 @(8,100)）。
@@ -509,12 +632,12 @@ export function DirectorIconRail({
           行数/列数/间距，页脚 取消 / 添加（添加为白底主按钮）。弹窗并排
           出现在 flyout 右侧（源站 x=280，flyout 占 48..280），flyout 保持
           打开。clone 此前是点一下直接按 3×3/1.2 出结果。 */}
-      {crowdDialogOpen && (
+      {crowdDialogOpen && crowdPos && portalFlyout(crowdPos, (
         <div
           data-director-crowd-dialog
           role="dialog"
           aria-label="添加群众阵列"
-          className="absolute left-[294px] top-0 z-50 w-[220px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
+          className={cn("fixed", RAIL_FLYOUT_CLASS, "w-[220px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]")}
         >
           <div className="flex items-center justify-between">
             <span className="text-xs text-[#d8d8d8]">添加群众阵列</span>
@@ -597,7 +720,7 @@ export function DirectorIconRail({
             </button>
           </div>
         </div>
-      )}
+      ) )}
     </div>
   );
 }

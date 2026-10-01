@@ -1,0 +1,898 @@
+{
+  "batch": 625,
+  "title": "check the stacking of every rail flyout: the z-index is in effect, and no control that lands inside the timeline is covered by it",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim — in particular it does not decide what the source's rail menus do at these widths",
+    "batch 624's finding, applied here as a method: the AI-import modal's z-[290] was trapped in the rail's z-30 context and never took effect, and it was invisible to the sweep because at 1920x1150 nothing overlapped",
+    "/tmp/dbg625a.py: first pass — established that all five rail flyouts declare z-40/z-50 while their nearest stacking context is the rail at z-30, and exposed two wrong triggers (geometry-submenu, crowd-dialog) plus a hit-test that measured the wrong control",
+    "/tmp/dbg625b.py: second pass — correct triggers, and the hit test restricted to controls whose centre lies inside the timeline rect"
+  ],
+  "claims": {
+    "cloneDecision": [],
+    "notClaimed": [
+      "anything about the source — not the flyouts' z, not whether the source lets a rail menu cover its timeline, nothing",
+      "that a flyout with no control in the timeline band is fine. That is a statement about this viewport only, which is exactly the hole 624 fell into"
+    ]
+  },
+  "viewports": [
+    [
+      1920,
+      1150
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      1920,
+      844
+    ],
+    [
+      1100,
+      700
+    ]
+  ],
+  "measurements": [
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "flyout": "panorama-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "nCtrls": 3,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "flyout": "aspect-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "nCtrls": 7,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "flyout": "add-character-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "nCtrls": 11,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "flyout": "geometry-submenu",
+      "ownZ": "50",
+      "ctxEl": "div[directorCharacterFlyout]",
+      "ctxZ": "160",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "nCtrls": 8,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "flyout": "crowd-dialog",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "timeline": [
+        0,
+        968,
+        1920,
+        182
+      ],
+      "nCtrls": 5,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "flyout": "panorama-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "timeline": [
+        0,
+        718,
+        1440,
+        182
+      ],
+      "nCtrls": 3,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "flyout": "aspect-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "timeline": [
+        0,
+        718,
+        1440,
+        182
+      ],
+      "nCtrls": 7,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "flyout": "add-character-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "timeline": [
+        0,
+        718,
+        1440,
+        182
+      ],
+      "nCtrls": 11,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "flyout": "geometry-submenu",
+      "ownZ": "50",
+      "ctxEl": "div[directorCharacterFlyout]",
+      "ctxZ": "160",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "timeline": [
+        0,
+        718,
+        1440,
+        182
+      ],
+      "nCtrls": 8,
+      "inBand": [
+        {
+          "label": "棱锥",
+          "box": [
+            59,
+            707,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "棱锥"
+        },
+        {
+          "label": "添加空对象",
+          "box": [
+            59,
+            739,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "添加空对象"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "flyout": "crowd-dialog",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "timeline": [
+        0,
+        718,
+        1440,
+        182
+      ],
+      "nCtrls": 5,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "flyout": "panorama-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "timeline": [
+        0,
+        538,
+        1280,
+        182
+      ],
+      "nCtrls": 3,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "flyout": "aspect-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "timeline": [
+        0,
+        538,
+        1280,
+        182
+      ],
+      "nCtrls": 7,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "flyout": "add-character-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "timeline": [
+        0,
+        538,
+        1280,
+        182
+      ],
+      "nCtrls": 11,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "flyout": "geometry-submenu",
+      "ownZ": "50",
+      "ctxEl": "div[directorCharacterFlyout]",
+      "ctxZ": "160",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "timeline": [
+        0,
+        538,
+        1280,
+        182
+      ],
+      "nCtrls": 8,
+      "inBand": [
+        {
+          "label": "立方体",
+          "box": [
+            59,
+            547,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "立方体"
+        },
+        {
+          "label": "球体",
+          "box": [
+            59,
+            579,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "球体"
+        },
+        {
+          "label": "圆柱体",
+          "box": [
+            59,
+            611,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "圆柱体"
+        },
+        {
+          "label": "环状体",
+          "box": [
+            59,
+            643,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "环状体"
+        },
+        {
+          "label": "圆锥",
+          "box": [
+            59,
+            675,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "圆锥"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "flyout": "crowd-dialog",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "timeline": [
+        0,
+        538,
+        1280,
+        182
+      ],
+      "nCtrls": 5,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 844,
+      "flyout": "panorama-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "timeline": [
+        0,
+        662,
+        1920,
+        182
+      ],
+      "nCtrls": 3,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 844,
+      "flyout": "aspect-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "timeline": [
+        0,
+        662,
+        1920,
+        182
+      ],
+      "nCtrls": 7,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 844,
+      "flyout": "add-character-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "timeline": [
+        0,
+        662,
+        1920,
+        182
+      ],
+      "nCtrls": 11,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 844,
+      "flyout": "geometry-submenu",
+      "ownZ": "50",
+      "ctxEl": "div[directorCharacterFlyout]",
+      "ctxZ": "160",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "timeline": [
+        0,
+        662,
+        1920,
+        182
+      ],
+      "nCtrls": 8,
+      "inBand": [
+        {
+          "label": "圆锥",
+          "box": [
+            59,
+            675,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "圆锥"
+        },
+        {
+          "label": "棱锥",
+          "box": [
+            59,
+            707,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "棱锥"
+        },
+        {
+          "label": "添加空对象",
+          "box": [
+            59,
+            739,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "添加空对象"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "vw": 1920,
+      "vh": 844,
+      "flyout": "crowd-dialog",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "timeline": [
+        0,
+        662,
+        1920,
+        182
+      ],
+      "nCtrls": 5,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1100,
+      "vh": 700,
+      "flyout": "panorama-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "timeline": [
+        0,
+        518,
+        1100,
+        182
+      ],
+      "nCtrls": 3,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1100,
+      "vh": 700,
+      "flyout": "aspect-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "timeline": [
+        0,
+        518,
+        1100,
+        182
+      ],
+      "nCtrls": 7,
+      "inBand": [
+        {
+          "label": "9:16",
+          "box": [
+            57,
+            501,
+            103,
+            72
+          ],
+          "hitSelf": true,
+          "hitLabel": "9:16"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "vw": 1100,
+      "vh": 700,
+      "flyout": "add-character-flyout",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "timeline": [
+        0,
+        518,
+        1100,
+        182
+      ],
+      "nCtrls": 11,
+      "inBand": [],
+      "pageErrors": []
+    },
+    {
+      "vw": 1100,
+      "vh": 700,
+      "flyout": "geometry-submenu",
+      "ownZ": "50",
+      "ctxEl": "div[directorCharacterFlyout]",
+      "ctxZ": "160",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "timeline": [
+        0,
+        518,
+        1100,
+        182
+      ],
+      "nCtrls": 8,
+      "inBand": [
+        {
+          "label": "上传文件",
+          "box": [
+            59,
+            515,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "上传文件"
+        },
+        {
+          "label": "立方体",
+          "box": [
+            59,
+            547,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "立方体"
+        },
+        {
+          "label": "球体",
+          "box": [
+            59,
+            579,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "球体"
+        },
+        {
+          "label": "圆柱体",
+          "box": [
+            59,
+            611,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "圆柱体"
+        },
+        {
+          "label": "环状体",
+          "box": [
+            59,
+            643,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "环状体"
+        },
+        {
+          "label": "圆锥",
+          "box": [
+            59,
+            675,
+            190,
+            32
+          ],
+          "hitSelf": true,
+          "hitLabel": "圆锥"
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "vw": 1100,
+      "vh": 700,
+      "flyout": "crowd-dialog",
+      "ownZ": "160",
+      "ctxEl": "div",
+      "ctxZ": "160",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "timeline": [
+        0,
+        518,
+        1100,
+        182
+      ],
+      "nCtrls": 5,
+      "inBand": [],
+      "pageErrors": []
+    }
+  ],
+  "checks": {
+    "every-flyout-opens-at-every-viewport": {
+      "ok": true,
+      "detail": {
+        "live": 25,
+        "total": 25,
+        "errors": []
+      }
+    },
+    "trapped": [],
+    "no-flyout-has-a-z-trapped-below-its-own-number": {
+      "ok": true,
+      "detail": []
+    },
+    "covered": [],
+    "no-control-inside-the-timeline-band-is-covered": {
+      "ok": true,
+      "detail": []
+    },
+    "the-flyouts-really-carry-controls": {
+      "ok": true,
+      "detail": [
+        [
+          "add-character-flyout",
+          11
+        ],
+        [
+          "aspect-flyout",
+          7
+        ],
+        [
+          "crowd-dialog",
+          5
+        ],
+        [
+          "geometry-submenu",
+          8
+        ],
+        [
+          "panorama-flyout",
+          3
+        ]
+      ]
+    },
+    "controlsInTimelineBand": {
+      "geometry-submenu@1440x900": 2,
+      "geometry-submenu@1280x720": 5,
+      "geometry-submenu@1920x844": 3,
+      "aspect-flyout@1100x700": 1,
+      "geometry-submenu@1100x700": 6
+    },
+    "geometryBefore": {
+      "panorama-flyout": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "aspect-flyout": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "add-character-flyout": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "geometry-submenu": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "crowd-dialog": [
+        294,
+        52,
+        220,
+        208
+      ]
+    },
+    "the-portal-moved-nothing": {
+      "ok": true,
+      "detail": []
+    }
+  },
+  "result": "5/5 passed"
+}

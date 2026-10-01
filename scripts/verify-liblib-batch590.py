@@ -230,7 +230,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "crowd:flyout-open",
         page.locator("[data-director-character-option='crowd-3x3']").count() == 1,
     )
-    rail.locator("[data-director-character-option='crowd-3x3']").click()
+    # Batch 625 迁移（定位路径变，行为不变）：这一行原来写成
+    # `rail.locator("[data-director-character-option='crowd-3x3']")`，靠
+    # **DOM 后代链**从资源栏摸到该选项。625 把 rail 系浮层 portal 到了
+    # document.body（它们的 z 此前被关在资源栏的 z-30 上下文里，见
+    # verify-liblib-batch625.py），于是该选项不再是 rail 的后代，这条链断了。
+    # 同一个文件上面第 231 行本来就用的是全局选择器，两处不一致；按那个写法
+    # 迁移，被测行为（点 群众 (3x3) 打开弹窗、flyout 保持打开）一字未改。
+    page.locator("[data-director-character-option='crowd-3x3']").click()
     page.wait_for_timeout(250)
     dialog = page.locator("[data-director-crowd-dialog]")
     check("crowd:opens", dialog.is_visible())
@@ -308,7 +315,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "geometry:closed-initially",
         page.locator("[data-director-geometry-submenu]").count() == 0,
     )
-    rail.locator("[data-director-character-option='geometry']").click()
+    page.locator("[data-director-character-option='geometry']").click()
     page.wait_for_timeout(250)
     sub = page.locator("[data-director-geometry-submenu]")
     check("geometry:opens", sub.is_visible())
@@ -346,7 +353,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         and sub_box["y"] > flyout_box["y"],
         detail=(flyout_box, sub_box),
     )
-    rail.locator("[data-director-character-option='geometry']").click()
+    page.locator("[data-director-character-option='geometry']").click()
     page.wait_for_timeout(200)
     check("geometry:toggles-closed", page.locator("[data-director-geometry-submenu]").count() == 0)
 
