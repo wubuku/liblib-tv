@@ -101,10 +101,13 @@ fi
 # 那条线有并行 session 在改」), 于是提到 ≠ 覆盖。宁可多跑不可漏跑, 但使用者
 # 必须能看出哪些是「我改的地方」, 哪些是「只是共用了同一个文件」。
 if [ "$CHANGED_ONLY" -eq 1 ]; then
-  changed_files=$(git diff --name-only origin/master...HEAD 2>/dev/null)
-  if [ -z "$changed_files" ]; then
-    changed_files=$(git diff --name-only HEAD 2>/dev/null)
-  fi
+  # **两份都要**: 未推送的提交 + 工作区未提交改动。
+  # 第一版写成「`origin/master...HEAD` 为空才去看工作区」, 于是**已经 push 过的
+  # 提交 + 之后的新改动**这个最常见的组合会被整个漏掉 —— 那正是我实际的工作方式
+  # (推完一批, 改点东西, 问「该跑哪些门禁」)。
+  # 条件分支在这里是错的: 两个来源都要, 取并集。
+  changed_files=$( { git diff --name-only origin/master...HEAD 2>/dev/null; \
+                     git diff --name-only HEAD 2>/dev/null; } | sort -u )
   if [ -z "$changed_files" ]; then
     echo "no local changes found; nothing to run"
     exit 0
@@ -115,15 +118,28 @@ if [ "$CHANGED_ONLY" -eq 1 ]; then
     echo "local changes touch no code (src/ or scripts/); nothing to run"
     exit 0
   fi
-  # 一次性建「被改动的 src 文件 -> 提及它的门禁」反查表。
-  # 早先版本对 306 个门禁逐个 grep, 光扫描就要几分钟。这里改为先把所有门禁的
-  # src 引用一次性抓出来排序去重, 再与改动集合求交 —— 306 次进程调用变 1 次。
-  all_srcs=$(grep -ohE 'src/[A-Za-z0-9_./-]+\.(tsx|ts|css)' \
-               scripts/verify-liblib-*.py 2>/dev/null | sort -u)
-  changed_srcs=""
-  for s in $all_srcs; do
-    printf '%s\n' "$code_files" | grep -qxF "$s" && changed_srcs="$changed_srcs $s"
+  # 匹配判据(三种引用形式全要覆盖, 实测门禁真的三种都在用):
+  #   ① 完整路径 `src/components/nodes/AudioNode.tsx`
+  #   ② 裸文件名   `AudioNode.tsx`
+  #   ③ **反引号组件名** `` `AudioNode` `` —— batch360/358/359 这批的 docstring
+  #      全部用这种, **不带扩展名**。
+  # 只认 ① 的第一版, 改 `AudioNode.tsx` 会报「无影响」—— 判据过窄的假零,
+  # 比假绿更危险: 它让你以为该跑的已经跑过。逐层加判据时, 每次都实测一遍,
+  # 发现一层不够再加一层, 不要一次猜到底。
+  all_tokens=$(
+    { grep -ohE 'src/[A-Za-z0-9_./-]+\.(tsx|ts|css)' scripts/verify-liblib-*.py 2>/dev/null
+      grep -ohE '[A-Za-z0-9_/.-]+\.(tsx|ts|css)' scripts/verify-liblib-*.py 2>/dev/null | sed -E 's|.*/||'
+      grep -ohE '`[A-Z][A-Za-z0-9_]+`' scripts/verify-liblib-*.py 2>/dev/null | tr -d '`'
+    } | sort -u
+  )
+  changed_names=""
+  for f in $(printf '%s\n' "$code_files" | grep -E '\.(tsx|ts|css)$'); do
+    base=$(basename "$f")
+    stem=${base%.*}
+    printf '%s\n' "$all_tokens" | grep -qxF "$base" && changed_names="$changed_names $base"
+    printf '%s\n' "$all_tokens" | grep -qxF "$stem" && changed_names="$changed_names $stem"
   done
+  changed_names=$(printf '%s\n' $changed_names | sort -u | tr '\n' ' ')
   direct=""
   indirect=""
   for b in $SELECTED; do
@@ -132,9 +148,9 @@ if [ "$CHANGED_ONLY" -eq 1 ]; then
     if printf '%s\n' "$code_files" | grep -qxF "$script"; then
       direct="$direct $b"; continue
     fi
-    # 该门禁 docstring 里提到、且本次被改动的 src 文件
+    # 该门禁提到、且本次被改动过的源文件名
     hit=no
-    for s in $changed_srcs; do
+    for s in $changed_names; do
       grep -qF "$s" "$script" && hit=yes
     done
     [ "$hit" = yes ] && indirect="$indirect $b"
