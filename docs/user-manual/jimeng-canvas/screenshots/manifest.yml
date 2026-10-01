@@ -1387,3 +1387,15 @@ screenshots:
     visible_text: 智能改图
     alt: 上传的图片节点被选中后，节点上方浮出 959×40 的工具条，12 项一字排开：智能改图✦、720 全景✦、扩图、智能超清、抠图、预设∨、多角度、智能打光✦、工具∨、AI 助手∨、全屏、下载
     sha256: 29606af6ad13c9a20abf27b9331dd9ce9ffd2f82a06c94fe1a8e25d00a3ecdd2
+
+  - file: screenshots/68-director-node-tags.png
+    task_id: director-node
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T13:20:00+08:00
+    verified_locator: '左栏点「导演台」(aria 逐字「导演台」36×…) → 新建**自建**导演台节点 `react-flow__node-external`（canvas 恒 320×320；60% 下屏上 192×192、100% 下 320×320，**旧记 281×281 自洽于 87.8% 缩放**）→ 点节点选中（断言 `selected` 计数 1）→ 点标题行右侧 `Add tags`（24×24）→ 展开 `canvas-node-tag-selector` **224×44**，内含 **6 个 28×28 按钮**：全部清空(`data-toolbar-value=clear`)、添加“青绿色”(default-tag-1)、添加“靛蓝色”(default-tag-2)、添加“紫色”(default-tag-3)、添加“橙色”(default-tag-4)、添加“黄色”(default-tag-5) ⇒ **5 个预设标签与节点背景色色板同色但没有「无颜色」，且面板内 input/contenteditable 实测为 0 个 ⇒ 标签只能从预设里挑、不能自定义文字** → 裁切 clip={x:510,y:220,w:360,h:270}（**节点 ∪ 面板**并集，9 个关键元素断言被裁 0 个）。**只读结构后按 Esc 退出，没有真的打标签**。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.87.5'
+    visible_text: 全部清空
+    alt: 导演台节点被选中（白色细边框）并展开标签面板：面板 224×44，横向一排六个圆形按钮，从左到右是「全部清空」的禁用斜线图标、青绿、靛蓝、紫、橙、黄五枚彩色圆点；面板浮在节点上方，节点里仍可见说明文字「在 3D 空间中设计角色、机位与镜头」与「进入导演台」按钮
+    sha256: b09bdf16266254f2165eb319123cd277f9ab97d70835c77cffe3cc83499dfd68
