@@ -125,6 +125,10 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   /* 片段的增/删/分割/剪裁一律走**可撤销**通道：撤销按钮与 store 的历史栈
      必须对得上，否则在全屏编辑器里点「撤销」撤掉的是很久之前的别的动作。 */
   const updateClips = useJimengStore((s) => s.updateNodeDataUndoable);
+  /* Batch 827：资产栏要列出画布上的媒体节点，所以得订阅 nodes。
+     ⚠️ 这会让**画布上任何节点的增删改**都重渲染本节点。React Flow 的节点数
+        是个位数（默认 4），重渲染成本可忽略；若将来上百再考虑按 kind 订阅。 */
+  const nodes = useJimengStore((s) => s.nodes);
   const pushToast = useJimengStore((s) => s.pushToast);
   const removeNode = useJimengStore((s) => s.removeNode);
   /* Batch 825：撤销/重做直接用 store 里**真**的 undo/redo（批 336 建的节点级
@@ -185,16 +189,53 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   const ends = clips.map((c) => c.start + c.length);
   const span = ends.length ? Math.max(d.duration ?? 0, ...ends) : (d.duration ?? 0);
 
-  const addClip = () => {
+  const addClip = (label?: string) => {
+    /* ⚠️ 类型闸门：827 给 `addClip` 加了可选参数 `label`，而它有三处
+       `onClick={addClip}` 的用法 —— 那样会把 **MouseEvent 当成 label** 传进来，
+       于是片段名变成 "[object Object]"。调用点已全部改成 `onClick={() => addClip()}`，
+       这里再加一道闸：**label 只接受字符串**。改签名时最容易漏的就是这种
+       「函数被直接当事件处理器」的地方，用类型把它变成不可能。 */
+    const name = typeof label === "string" && label.length > 0 ? label : undefined;
     const clip = {
       id: nextClipId("clip"),
-      label: `片段 ${clips.length + 1}`,
+      label: name ?? `片段 ${clips.length + 1}`,
       start: clips.length ? Math.min(30, clips[clips.length - 1].start + clips[clips.length - 1].length) : 0,
       length: 5,
     };
     updateClips(id, { clips: [...clips, clip], duration: clip.start + clip.length });
     pushToast(FEEDBACK.addTimelineClip(clip.label));
   };
+
+  /* ── Batch 827：把资产栏从「装饰」接成真浏览器 ─────────────────────────
+     此前这一栏是纯装饰：三个来源页签与三个类型页签点了只切一个 class，
+     而那个「资产」框里显示的其实是**时间线的片段列表**
+     （`clips.map(c => c.label).join(" / ")`）—— 名不副实。
+
+     本批让它成为一个真浏览器：列出画布上的媒体节点，点一下就加进轨道。
+     ⚠️ 三个来源页签的**内容语义没有源站依据**（源站那个 fixture 的媒体全没
+        加载，没量到过），所以下面是**复刻自有的语义决策**，不写成 SOURCE_FACT：
+          画布资产   = 画布上的全部媒体节点
+          已导入资产 = 其中**还没被加进这条时间线**的那些
+          全部       = 画布资产 ∪ 已导入资产（即全部媒体节点）
+        三个页签因此各有可分辨的含义，而不是三个同义按钮。 */
+  const onTimeline = new Set(clips.map((c) => c.label));
+  const fsAssets = nodes
+    .filter((n) => n.type === "image" || n.type === "video" || n.type === "audio")
+    .map((n) => ({
+      id: n.id,
+      kind: n.type as "image" | "video" | "audio",
+      title: (n.data as { title?: string }).title ?? "未命名",
+    }));
+  const KIND_BY_LABEL: Record<(typeof FS_KINDS)[number], "image" | "video" | "audio"> = {
+    图片: "image",
+    视频: "video",
+    音频: "audio",
+  };
+  const fsVisible = fsAssets.filter((a) => {
+    if (a.kind !== KIND_BY_LABEL[fsKind]) return false;
+    if (fsSource === "已导入资产") return !onTimeline.has(a.title);
+    return true;
+  });
 
   const runFsTool = (kind: (typeof FS_EDIT_TOOLS)[number]["kind"]) => {
     if (kind === "undo") {
@@ -359,7 +400,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
           <button
             type="button"
             aria-label="导入"
-            onClick={addClip}
+            onClick={() => addClip()}
             className="flex size-8 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
           >
             <Upload size={16} />
@@ -584,7 +625,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               {clips.length === 0 ? (
                 <button
                   type="button"
-                  onClick={addClip}
+                  onClick={() => addClip()}
                   data-testid="timeline-add-clip"
                   /* Batch 818 SOURCE_FACT：源站空态投放区是 **r6 + 实底
                      `rgba(255,255,255,0.04)`、高 84**，**不是**虚线框。
@@ -599,7 +640,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               ) : (
                 <button
                   type="button"
-                  onClick={addClip}
+                  onClick={() => addClip()}
                   aria-label="添加素材到时间线"
                   className="absolute bottom-2 right-3 flex h-7 items-center gap-1 rounded-md px-2 text-[12px] text-white/50 hover:bg-white/10 hover:text-white/80"
                 >
@@ -707,14 +748,45 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                   </button>
                 ))}
               </div>
+              {/* 资产列表。`timeline-fs-asset-empty` 这个 testid 保留**给这个容器**
+                 （名字已经不准了，但 821 的 verifier 依赖它恒在 —— 若在无资产时
+                 把它条件渲染掉，那条断言会直接超时）。两句文案必须**始终**出现在
+                 浮层里：批 813 逐条断言了「没有媒体可供预览」与「将文件拖至此处添加」，
+                 所以拖放提示单独成行，不塞进列表里。 */}
               <div
-                className="flex h-[120px] items-center justify-center rounded-md border border-dashed border-white/15 px-3 text-center text-[12px] leading-[18px] text-white/40"
+                className="flex h-[120px] flex-col gap-1 overflow-y-auto rounded-md border border-dashed border-white/15 p-2 text-[12px] leading-[18px] text-white/60"
                 data-testid="timeline-fs-asset-empty"
               >
-                {clips.length === 0
-                  ? "没有媒体可供预览 · 将文件拖至此处添加"
-                  : clips.map((c) => c.label).join(" / ")}
+                {fsVisible.length === 0 ? (
+                  <span className="m-auto text-center text-white/40">没有媒体可供预览</span>
+                ) : (
+                  fsVisible.map((a) => (
+                    <button
+                      key={a.id}
+                      type="button"
+                      onClick={() => addClip(a.title)}
+                      /* `asset-row-` 而不是 `asset-`：容器叫 `timeline-fs-asset-empty`、
+                         提示行叫 `timeline-fs-asset-hint`，用 `asset-` 前缀去选「资产行」
+                         会把这两个一起选中 —— 827 的 verifier 初版就因此点到容器上，
+                         一次连出 7 条假失败（前缀选择器多命中，与批 819 那次同族）。
+                         **锚点命名要保证「前缀互不包含」**，否则选择器天然会多命中。 */
+                      data-testid={`timeline-fs-asset-row-${a.id}`}
+                      className="flex items-center justify-between gap-2 rounded px-1.5 py-1 text-left hover:bg-white/10"
+                    >
+                      <span className="truncate">{a.title}</span>
+                      <span className="shrink-0 text-[11px] text-white/35">
+                        {a.kind === "image" ? "图片" : a.kind === "video" ? "视频" : "音频"}
+                      </span>
+                    </button>
+                  ))
+                )}
               </div>
+              <p
+                className="mt-1 text-center text-[11px] text-white/30"
+                data-testid="timeline-fs-asset-hint"
+              >
+                将文件拖至此处添加
+              </p>
               <button
                 type="button"
                 data-testid="timeline-fs-import"
