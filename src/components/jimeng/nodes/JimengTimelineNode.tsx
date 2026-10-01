@@ -515,32 +515,74 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
 
         <div className="flex min-h-0 flex-1">
           {/* 左侧槽：静音。
-              宽度 96px 不是随便取的 —— 节点的左侧连接手柄命中盒实测
-              44×88，从节点左缘往里吞掉约 30px（世界像素）。槽若只有 w-12(48)，
-              静音钮就整个落在手柄命中盒里：Playwright 报
-              `handle intercepts pointer events`，**用户同样点不到**。
-              源站那枚钮是从节点左缘内缩约 36px 放置的，正是为了避开手柄。
-              128px → 钮心离左缘 64px，实测余量 ~14px（96px 时只剩 1px，太险）。
-              （手柄几何是 batch 806 的地盘，不去动那边。） */}
+              Batch 828 SOURCE_FACT：源站左槽 [1,67,**66**,139]，静音钮
+              [13,121,42,42] r6，其后跟一枚**独立的** 1px 竖分隔线
+              [66,67,1,139]，轨道自 67 起。复刻此前是 w-32(128) + border-r
+              （把分隔线糊在槽上）。
+
+              128 的理由是台账 §27（批 813）那条：「槽若只有 48/96 会被左侧
+              连接手柄命中盒整个吞掉，Playwright 报 handle intercepts pointer
+              events，用户同样点不到」。批 828 把这条查穿了，**三处都不对**：
+
+              1. 拦截者不是 `jimeng-connect-*` 那枚加号钮，而是 React Flow
+                 **自带的** 60×120 隐形热区（`JimengConnectHandles` 的
+                 `HOT_ZONE`，inline `left:-30` / `width:60`）。槽宽 48 时
+                 `elementFromPoint(钮心)` 返回的是
+                 `DIV.react-flow__handle react-flow__handle-left`。
+              2. 「44×88」是**渲染**尺寸 —— 该节点 zoom≈0.727，60×120 CSS px
+                 缩放而来。批 813 把它当世界像素使；热区在 CSS 坐标下恒为
+                 **-30..+30**，与 zoom 无关，「往里吞 30px」的结论碰巧对，单位错。
+              3. 「128 时余量 ~14px」「96 时只剩 1px」两个数都错。钮 42 宽、
+                 槽内居中 ⇒ 钮心 = 槽宽/2，距热区右缘余量 = 槽宽/2 − 30：
+
+                     48 → **−6**  挡死（实测命中 DIV.react-flow__handle）
+                     66 →   3    可点（实测 aria-pressed false→true）← 源站值
+                     96 →  18            128 → 34
+
+              源站 66 落在 3px 余量上，照样可点；源站静音钮钮心在节点坐标 34，
+              距 806 取证的热区右缘（30）也是 3px —— 这 3px 是**源站布局自带的**，
+              不是复刻引入的。故回到 66。
+
+              真正的护栏不是槽宽，是「**钮心必须落在热区右缘之外**」，已写成
+              批 828 的行为断言（`elementFromPoint` + 真点一次翻 aria-pressed）。
+              （手柄几何是批 806 的地盘，本批不动那边。） */}
           <div
-            className="flex w-32 shrink-0 flex-col items-center gap-3 border-r border-white/[0.06] py-2"
+            /* Batch 828 SOURCE_FACT：源站左槽类名
+               `relative z-canvas-timeline-track-gutter flex-none w-canvas-timeline-node-track-gutter`，
+               槽 [1,67,66,139]；槽内**只有**静音钮一枚，包裹层类名直接写着
+               `inline-flex absolute top-[54px] inset-x-0 mx-auto` ⇒ 54px 是源站
+               **写死的定位值**，不是「垂直居中算出来的」。所以源站钮在 139px 高的
+               槽里上方留 54、下方留 43，是有意的留白。
+               复刻此前用 `flex-col items-center gap-3 py-2` ⇒ 钮落在 y=8，
+               与源站差 46px。本批改成同样的 absolute top-[54px] inset-x-0。 */
+            className="relative w-[66px] shrink-0"
             data-testid="timeline-track-gutter"
           >
-            <button
-              type="button"
-              aria-label={muted ? "取消静音" : "静音"}
-              data-testid="timeline-mute-button"
-              aria-pressed={muted}
-              onClick={() => setMuted((v) => !v)}
-              /* Batch 818 SOURCE_FACT：源站 **42×42 / r6**。
-                 复刻此前 size-8(32) + `rounded-full`（32px 上 = 16px 圆角），
-                 尺寸与圆角**同时**偏小/偏圆。同样是 813 文档头已记、
-                 实现未跟上的那条契约。6px = rounded-md。 */
-              className="flex size-[42px] items-center justify-center rounded-md text-white/70 hover:bg-white/10"
-            >
-              {muted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-            </button>
+            <span className="absolute inset-x-0 top-[54px] mx-auto flex justify-center">
+              <button
+                type="button"
+                aria-label={muted ? "取消静音" : "静音"}
+                data-testid="timeline-mute-button"
+                aria-pressed={muted}
+                onClick={() => setMuted((v) => !v)}
+                /* Batch 818 SOURCE_FACT：源站 **42×42 / r6**。
+                   复刻此前 size-8(32) + `rounded-full`（32px 上 = 16px 圆角），
+                   尺寸与圆角**同时**偏小/偏圆。同样是 813 文档头已记、
+                   实现未跟上的那条契约。6px = rounded-md。 */
+                className="flex size-[42px] items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+              >
+                {muted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+              </button>
+            </span>
           </div>
+          {/* Batch 828：源站这枚分隔线是**独立元素**（`timeline-node-track-divider`
+              [66,67,1,139]），不是左槽的 border。独立出来才能让左槽内容盒
+              保持 66 —— 槽内居中的 42px 静音钮钮心因此落在 33（源站 34 的
+              同侧），热区余量 3px，与上表 66 那行一致。 */}
+          <div
+            className="w-px shrink-0 bg-white/[0.06]"
+            data-testid="timeline-node-track-divider"
+          />
 
           <div
             /* Batch 820 SOURCE_FACT：源站有独立的横向滚动容器

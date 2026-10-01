@@ -22,9 +22,13 @@ Contract (SOURCE_FACT 2026-10-04 登录态，**100% 缩放**，坐标相对壳�
   1. 刻度**时间窗口**：源站 00:00→00:30 跨 963px = 32.1px/s，铺在 1126px 轨道上
      只占 85.5% ⇒ 源站可见窗口 ≈35.1s。复刻把 30s 拉满全宽（百分比模型）。
      源站的 px/s 是否随缩放/时长变化**未取证**，本批不猜，列 OPEN_QUESTION 818-a。
-  2. 左槽宽度 128 vs 源站 66：**有意偏离**。batch 813 记录过槽若只有 48/96
-     会被左侧连接手柄命中盒整个吞掉（Playwright 报 handle intercepts pointer
-     events，用户同样点不到）。保持 128。
+  2. 左槽宽度：本批写 128、**批 828 已改回源站的 66**。本条原先的理由
+     （batch 813：「槽若只有 48/96 会被左侧连接手柄命中盒整个吞掉，Playwright 报
+     handle intercepts pointer events」）经批 828 查穿：拦截者是 React Flow 自带的
+     60×120 隐形热区（`HOT_ZONE`，inline `left:-30`）而非加号钮；44×88 是**渲染**
+     尺寸（zoom≈0.727）被当成了世界像素；「128 余量 14px / 96 余量 1px」两个数
+     也都错。实测钮心余量 = 槽宽/2 − 30：48→−6 挡死、**66→3 可点**。故 66 是
+     源站值且可点。详见台账 §40 与 `verify-jimeng-batch828-gutter.py`。
   3. 「导入」「删除时间线」两枚：**有意保留**。源站工具条没有它们（源站左端
      那两枚是无 role/无 aria/无 tabindex 的裸 div，见台账 §27.5），但复刻的
      「删除」是批 805 建立的真功能，删掉等于主动删功能。
@@ -108,6 +112,59 @@ PROBE = r"""() => {
     fsAssets: (() => { const a = document.querySelector('[data-testid="timeline-fs-assets"]')
                        || node.querySelector('[data-testid="timeline-fs-assets"]');
       return a ? { w: Math.round(a.getBoundingClientRect().width) } : null; })(),
+  };
+}"""
+
+# Batch 821：全屏编辑器专项探针
+FS_PROBE = r"""() => {
+  const o = document.querySelector('[data-testid="timeline-fullscreen"]');
+  if (!o) return { err: 'no fullscreen' };
+  const size = (e) => { if (!e) return null; const r = e.getBoundingClientRect();
+    return [Math.round(r.width), Math.round(r.height)]; };
+  const byLabel = (lb) => [...o.querySelectorAll('button')]
+    .find(b => (b.getAttribute('aria-label') || '') === lb);
+  const ws = o.querySelector('[data-testid="timeline-fullscreen-workspace"]');
+  const tools = o.querySelector('[data-testid="timeline-fullscreen-editing-tools"]');
+  const ruler = o.querySelector('[data-testid="timeline-fullscreen-ruler"]');
+  const ticks = ruler
+    ? [...ruler.querySelectorAll('span')]
+        // ⚠️ 必须限定**叶子** span：每个刻度有「外层定位 span + 刻度线 span +
+        // 文字 span」三层，外层的 textContent 也是 "00:00"，不过滤就会
+        // 每个刻度命中 3 次（我踩过：n=30 而非 15，字号读到继承的 16px，
+        // 间距算出 [0,107,0,107]）。
+        .filter(s => s.children.length === 0
+                     && /^\d{2}:\d{2}$/.test((s.textContent || '').trim()))
+        .map(s => ({ txt: (s.textContent || '').trim(), x: Math.round(s.getBoundingClientRect().x),
+                     fs: parseFloat(getComputedStyle(s).fontSize) || 0 })).sort((a, b) => a.x - b.x)
+    : [];
+  const groups = [...o.querySelectorAll('[role="group"],[aria-label]')]
+    .map(e => e.getAttribute('aria-label') || '').filter(Boolean);
+  return {
+    exportAria: (byLabel('导出时间线') ? '导出时间线'
+                : ([...o.querySelectorAll('button')].some(b => (b.getAttribute('aria-label')||'') === '导出')
+                   ? '导出' : null)),
+    exportBox: size(byLabel('导出时间线')),
+    closeAria: (byLabel('Close timeline editor') ? 'Close timeline editor' : null),
+    closeBox: size(byLabel('Close timeline editor')),
+    ws: ws ? { h: Math.round(ws.getBoundingClientRect().height),
+               r: parseFloat(getComputedStyle(ws).borderTopLeftRadius) || 0,
+               aria: ws.getAttribute('aria-label') || '' } : null,
+    editTools: tools ? [...tools.querySelectorAll('button')]
+      .map(b => b.getAttribute('aria-label') || '') : [],
+    editSizes: tools ? [...tools.querySelectorAll('button')].map(size) : [],
+    editAll28: tools ? [...tools.querySelectorAll('button')].every(b => {
+      const r = b.getBoundingClientRect();
+      return Math.round(r.width) === 28 && Math.round(r.height) === 28; }) : false,
+    playCtl: ['关闭自动吸附', '缩小视图', '放大视图']
+      .filter(lb => !!byLabel(lb)),
+    zoomAria: (() => { const s = o.querySelector('[data-testid="timeline-fullscreen-zoom"]');
+      return s ? (s.getAttribute('aria-label') || '') : ''; })(),
+    groupAria: groups,
+    fsMute: size(o.querySelector('[data-testid="timeline-fullscreen-mute-button"]')),
+    fsAdd: size(byLabel('添加素材到时间线')),
+    rulerFs: ticks.length ? ticks[0].fs : null,
+    rulerLabels: ticks.map(t => t.txt),
+    rulerGaps: ticks.slice(1).map((t, i) => t.x - ticks[i].x),
   };
 }"""
 
@@ -285,7 +342,7 @@ def main() -> int:
                       sc["innerMinW"] in ("100%", "0px") and sc["innerMinW"] == "100%",
                       f'min-width={sc["innerMinW"]}')
 
-            print("\n— 全屏编辑器资产栏（源站 360 宽 @1512×950）—")
+            print("\n— 全屏编辑器（源站 @1512×950，fixed 面板不受缩放影响）—")
             pg.locator('[data-testid="timeline-fullscreen-trigger"]').first.click()
             pg.wait_for_selector('[data-testid="timeline-fullscreen"]', timeout=20000)
             pg.wait_for_timeout(1000)
@@ -293,9 +350,54 @@ def main() -> int:
             check("全屏编辑器打开", fs.get("fsAssets") is not None, str(fs.get("fsAssets")))
             if fs.get("fsAssets"):
                 check("资产栏 360 宽", fs["fsAssets"]["w"] == 360, f'{fs["fsAssets"]["w"]}px')
+
+            # Batch 821：顶栏两枚 + 底栏工作区
+            fsq = pg.evaluate(FS_PROBE)
+            check("导出钮实名「导出时间线」（非「导出」）",
+                  fsq["exportAria"] == "导出时间线", repr(fsq["exportAria"]))
+            check("导出钮 76×36", fsq["exportBox"] == [76, 36], str(fsq["exportBox"]))
+            check("关闭钮实名 `Close timeline editor`（逐字沿用源站英文）",
+                  fsq["closeAria"] == "Close timeline editor", repr(fsq["closeAria"]))
+            check("关闭钮 36×36", fsq["closeBox"] == [36, 36], str(fsq["closeBox"]))
+            check("底栏 workspace 存在", fsq["ws"] is not None)
+            check("底栏高 218 / r12", fsq["ws"] and fsq["ws"]["h"] == 218 and fsq["ws"]["r"] == 12,
+                  str(fsq["ws"]))
+            check("workspace aria = 副标题原文",
+                  fsq["ws"] and fsq["ws"]["aria"]
+                  == "Edit the main visual track and multiple audio tracks",
+                  str(fsq["ws"] and fsq["ws"]["aria"]))
+            check("编辑工具六枚实名逐字对上",
+                  fsq["editTools"] == ["撤销", "重做", "分割", "向左剪裁", "向右剪裁", "删除"],
+                  str(fsq["editTools"]))
+            check("编辑工具各 28×28", fsq["editAll28"], str(fsq["editSizes"]))
+            check("编辑工具分组语义「Timeline editing tools」",
+                  "Timeline editing tools" in fsq["groupAria"], str(fsq["groupAria"]))
+            check("播放控件分组语义「Timeline playback controls」",
+                  "Timeline playback controls" in fsq["groupAria"], str(fsq["groupAria"]))
+            check("播放控件四枚实名", fsq["playCtl"] == ["关闭自动吸附", "缩小视图", "放大视图"],
+                  str(fsq["playCtl"]))
+            check("「Timeline zoom」是 span 而非按钮（源站如此）",
+                  "Timeline zoom" in fsq["zoomAria"], str(fsq["zoomAria"]))
+            check("视觉轨分组语义「Main visual track」",
+                  "Main visual track" in fsq["groupAria"], str(fsq["groupAria"]))
+            check("视觉轨静音钮 28×28", fsq["fsMute"] == [28, 28], str(fsq["fsMute"]))
+            check("视觉轨投放区 56×56", fsq["fsAdd"] == [56, 56], str(fsq["fsAdd"]))
+            check("底栏刻度存在且 9px", fsq["rulerFs"] == 9, str(fsq["rulerFs"]))
+            check("底栏刻度 00:00…01:10（14 格 5s）",
+                  fsq["rulerLabels"][0] == "00:00" and fsq["rulerLabels"][-1] == "01:10"
+                  and len(fsq["rulerLabels"]) == 15,
+                  f'{fsq["rulerLabels"][:2]}…{fsq["rulerLabels"][-1:]} n={len(fsq["rulerLabels"])}')
+            check("底栏刻度 ≈21.4px/s（**≠** 内嵌的 32.1，两表面各自定值）",
+                  all(abs(g / 5 - 21.4) <= 1.6 for g in fsq["rulerGaps"]),
+                  str(fsq["rulerGaps"][:4]))
+
+            # 行为断言：Escape 能关（源站实测 Escape 关闭有效）
+            pg.keyboard.press("Escape")
+            pg.wait_for_timeout(800)
+            check("Escape 关闭全屏编辑器",
+                  pg.locator('[data-testid="timeline-fullscreen"]').count() == 0,
+                  "浮层仍在")
             pg.screenshot(path=str(EVIDENCE / "clone-fullscreen-820.png"))
-            pg.locator('[data-testid="timeline-fullscreen-close"]').first.click()
-            pg.wait_for_timeout(600)
 
             pg.screenshot(path=str(EVIDENCE / "clone-timeline-818.png"))
         finally:

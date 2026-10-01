@@ -1,0 +1,36 @@
+{
+ "err": null,
+ "gutterW": 66,
+ "gutterRelNode": [
+  0,
+  66,
+  66,
+  141
+ ],
+ "divider": {
+  "relX": 0,
+  "w": 1,
+  "h": 141,
+  "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.06)"
+ },
+ "muteRelGutter": [
+  12,
+  54,
+  42,
+  42
+ ],
+ "muteRelNode": 12,
+ "muteCenter": 33,
+ "muteRadius": 6,
+ "hotZone": {
+  "left": "-30px",
+  "right": "",
+  "w": "60px"
+ },
+ "centerHit": {
+  "tag": "svg",
+  "cls": "",
+  "inMute": true,
+  "inHandle": false
+ }
+}

@@ -1,0 +1,481 @@
+{
+ "current128": {
+  "nodeW": 876,
+  "shellW": 876,
+  "gutterW": 93,
+  "gutterRel": [
+   0,
+   48,
+   93,
+   103
+  ],
+  "muteRel": [
+   31,
+   54,
+   31,
+   31
+  ],
+  "muteRadius": 6,
+  "hotzones": [
+   {
+    "rel": [
+     93,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     508,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     652,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     1067,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     -22,
+     32,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     854,
+     32,
+     44,
+     88
+    ]
+   }
+  ],
+  "centerHit": {
+   "tag": "svg",
+   "cls": "[object SVGAnimatedString]",
+   "tid": null
+  },
+  "sweep": [
+   [
+    -12,
+    "DIV.react-flow__handle"
+   ],
+   [
+    -6,
+    "timeline-track-gutter"
+   ],
+   [
+    0,
+    "timeline-mute-button"
+   ],
+   [
+    6,
+    "svg.[object"
+   ],
+   [
+    12,
+    "path.[object"
+   ],
+   [
+    18,
+    "svg.[object"
+   ],
+   [
+    24,
+    "svg.[object"
+   ],
+   [
+    30,
+    "timeline-mute-button"
+   ],
+   [
+    36,
+    "timeline-track-gutter"
+   ],
+   [
+    42,
+    "timeline-track-gutter"
+   ]
+  ]
+ },
+ "w66": {
+  "nodeW": 876,
+  "shellW": 876,
+  "gutterW": 48,
+  "gutterRel": [
+   0,
+   48,
+   48,
+   103
+  ],
+  "muteRel": [
+   8,
+   54,
+   31,
+   31
+  ],
+  "muteRadius": 6,
+  "hotzones": [
+   {
+    "rel": [
+     93,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     508,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     652,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     1067,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     -22,
+     32,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     854,
+     32,
+     44,
+     88
+    ]
+   }
+  ],
+  "centerHit": {
+   "tag": "svg",
+   "cls": "[object SVGAnimatedString]",
+   "tid": null
+  },
+  "sweep": [
+   [
+    -12,
+    "jimeng-connect-left"
+   ],
+   [
+    -6,
+    "DIV.react-flow__handle"
+   ],
+   [
+    0,
+    "DIV.react-flow__handle"
+   ],
+   [
+    6,
+    "DIV.react-flow__handle"
+   ],
+   [
+    12,
+    "DIV.react-flow__handle"
+   ],
+   [
+    18,
+    "svg.[object"
+   ],
+   [
+    24,
+    "svg.[object"
+   ],
+   [
+    30,
+    "timeline-mute-button"
+   ],
+   [
+    36,
+    "timeline-track-gutter"
+   ],
+   [
+    42,
+    "timeline-clip-track"
+   ]
+  ]
+ },
+ "w96": {
+  "nodeW": 876,
+  "shellW": 876,
+  "gutterW": 70,
+  "gutterRel": [
+   0,
+   48,
+   70,
+   103
+  ],
+  "muteRel": [
+   19,
+   54,
+   31,
+   31
+  ],
+  "muteRadius": 6,
+  "hotzones": [
+   {
+    "rel": [
+     93,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     508,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     652,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     1067,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     -22,
+     32,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     854,
+     32,
+     44,
+     88
+    ]
+   }
+  ],
+  "centerHit": {
+   "tag": "path",
+   "cls": "[object SVGAnimatedString]",
+   "tid": null
+  },
+  "sweep": [
+   [
+    -12,
+    "DIV.react-flow__handle"
+   ],
+   [
+    -6,
+    "DIV.react-flow__handle"
+   ],
+   [
+    0,
+    "DIV.react-flow__handle"
+   ],
+   [
+    6,
+    "svg.[object"
+   ],
+   [
+    12,
+    "path.[object"
+   ],
+   [
+    18,
+    "svg.[object"
+   ],
+   [
+    24,
+    "svg.[object"
+   ],
+   [
+    30,
+    "timeline-mute-button"
+   ],
+   [
+    36,
+    "timeline-track-gutter"
+   ],
+   [
+    42,
+    "timeline-track-gutter"
+   ]
+  ]
+ },
+ "w48": {
+  "nodeW": 876,
+  "shellW": 876,
+  "gutterW": 35,
+  "gutterRel": [
+   0,
+   48,
+   35,
+   103
+  ],
+  "muteRel": [
+   2,
+   54,
+   31,
+   31
+  ],
+  "muteRadius": 6,
+  "hotzones": [
+   {
+    "rel": [
+     93,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     508,
+     -120,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     652,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     1067,
+     -89,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     -22,
+     32,
+     44,
+     88
+    ]
+   },
+   {
+    "rel": [
+     854,
+     32,
+     44,
+     88
+    ]
+   }
+  ],
+  "centerHit": {
+   "tag": "DIV",
+   "cls": "react-flow__handle react-flow__handle-left nod",
+   "tid": null
+  },
+  "sweep": [
+   [
+    -12,
+    "SPAN.flex"
+   ],
+   [
+    -6,
+    "jimeng-connect-left"
+   ],
+   [
+    0,
+    "DIV.react-flow__handle"
+   ],
+   [
+    6,
+    "DIV.react-flow__handle"
+   ],
+   [
+    12,
+    "DIV.react-flow__handle"
+   ],
+   [
+    18,
+    "DIV.react-flow__handle"
+   ],
+   [
+    24,
+    "svg.[object"
+   ],
+   [
+    30,
+    "timeline-mute-button"
+   ],
+   [
+    36,
+    "timeline-clip-track"
+   ],
+   [
+    42,
+    "timeline-clip-track"
+   ]
+  ]
+ },
+ "click_at_66": {
+  "box": [
+   326.5,
+   453.5,
+   30.7,
+   30.7
+  ],
+  "aria_before": "false",
+  "aria_after": "true",
+  "label_after": "取消静音",
+  "mouse_err": null
+ },
+ "nodeZoom": 1,
+ "muteRelWorld": [
+  31.0,
+  54.0,
+  31.0,
+  31.0
+ ]
+}
