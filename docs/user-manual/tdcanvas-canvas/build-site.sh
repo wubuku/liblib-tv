@@ -116,10 +116,19 @@ ok "构建完成"
 log "步骤 6/6 产物校验"
 DIST_HTML="$(find .vitepress/dist -name '*.html' | wc -l | tr -d ' ')"
 DIST_PNG="$(find .vitepress/dist -name '*.png' | wc -l | tr -d ' ')"
-DIST_SIZE="$(du -sh .vitepress/dist | cut -f1)"
+DIST_SIZE="$(du -sh .vitepress/dist | cut -f1 | tr -d '[:space:]')"
 ok "dist 页面数: ${DIST_HTML} (含 index 与 404)"
 ok "dist 截图数: $DIST_PNG"
 ok "dist 总体积: $DIST_SIZE"
+
+# 回填 README 的构建统计表。
+# 这三个数字是**派生数据**——手工维护必然过期：M47–M53 连加 9 张图，
+# README 里的「76 张截图 / 19M」就再没被更新过，长期与实际产物不符。
+# 与其指望人记得改，不如让构建直接把实测值写回去。
+STATS_OUT="$(python3 scripts/update-build-stats.py --pages "$DIST_HTML" --images "$DIST_PNG" --size "$DIST_SIZE" 2>&1)" \
+  || fail "构建统计回填失败：
+$STATS_OUT"
+echo "$STATS_OUT" | sed 's/^/  /'
 RAW_MD_LINKS="$(grep -RhoE 'href="[^"]*\.md"' .vitepress/dist --include='*.html' | wc -l | tr -d ' ' || true)"
 if [ "$RAW_MD_LINKS" -ne 0 ]; then
   warn "发现 $RAW_MD_LINKS 处指向 .md 的原始链接（未被改写为 .html），请检查对应页面"
