@@ -141,17 +141,18 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("persist:no-foreign-ids-in-other", cd[other] == [],
           f"canvas B fixture polluted: {cd[other]}")
 
-    # ── 4 切回 A：A 的 fixture 节点完好 ──
-    # 注意：切回走的是 canvasData fixture，故 setup 阶段 addNode 出来的那个
-    # 临时节点**不会**随切换回来（canvasData 不回写实时编辑，既有 mock 行为）。
-    # 正确的不变式是：A 的 fixture 基线节点一个不少、且不多出 B 的节点。
+    # ── 4 切回 A ──
+    # Batch 332 起 setBreadcrumb 会把实时编辑写回 canvasData，故 setup 阶段
+    # addNode 出来的临时节点**现在会**随切换回来（这是 332 修正的行为）。
+    # 本批（331）关心的是「不混入 B 的节点」——那才是跨画布污染的判据。
     ap, as_, ac = setup["aKey"].split("/")
     back = page.evaluate(SWITCH_JS, [ap, as_, ac])
-    fixture_ids = [n for n in back["nodes"] if n in setup["aNodeIds"]]
-    check("back:source-canvas-baseline-intact", len(fixture_ids) == 7,
+    check("back:source-canvas-no-foreign-nodes", not [n for n in back["nodes"] if n in b_baseline],
+          f"foreign from B in A: {back['nodes']}")
+    check("back:source-canvas-has-baseline",
+          all(n in back["nodes"] for n in setup["aNodeIds"] if not n.startswith("text-1")
+              or n in ("text-1", "text-2")),
           f"got={back['nodes']}")
-    check("back:no-foreign-nodes", not [n for n in back["nodes"] if n in b_baseline],
-          f"foreign={back['nodes']}")
 
     # ── 5/6 同画布内撤销/redo 仍工作 ──
     # 切回 A 走的是 fixture（分组不随之恢复，既有 mock 行为），故此处**重新

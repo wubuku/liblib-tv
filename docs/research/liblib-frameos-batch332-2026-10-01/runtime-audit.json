@@ -1,0 +1,35 @@
+{
+  "batch": 332,
+  "title": "FrameOS canvasData write-back (canvas switch no longer discards local edits)",
+  "defect": "setBreadcrumb loaded the target canvas from MOCK_CANVASES and never wrote the departing canvas's live nodes/edges/groups back to canvasData, so locally added, moved, deleted nodes and groups were lost on switching away and back. Measured: add a node 7->8, switch away, switch back -> 7.",
+  "fix": "setBreadcrumb writes the current live nodes/edges/groups into canvasData[prevKey] before switching, and reads the target from saved data with a MOCK_CANVASES fallback. canvasData type gained optional groups.",
+  "clone_decision": "the prototype never persisted edits across canvas switches; the source site's actual persistence was NOT sampled (blocked, see SOURCE_ACCESS_BLOCKED_2026-10-01.md). This closes an internal data-loss hole, it is not a source-parity claim.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:node-count",
+        "setup:edge-added",
+        "setup:group-created",
+        "switchB:on-other-canvas",
+        "roundtrip:back-on-source",
+        "roundtrip:added-survived",
+        "roundtrip:delete-stayed",
+        "roundtrip:move-preserved",
+        "roundtrip:edge-survived",
+        "roundtrip:group-survived",
+        "isolation:other-canvas-unchanged",
+        "isolation:no-a-nodes-in-b",
+        "fallback:untouched-canvas-nonempty",
+        "fallback:source-still-intact",
+        "breadcrumb:counts-rendered",
+        "breadcrumb:current-count-matches-live",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

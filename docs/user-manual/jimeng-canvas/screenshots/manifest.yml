@@ -449,3 +449,63 @@ screenshots:
     visible_text: 视频 1 / 文本 1 / 文本 2 / 文本 3 / 文本 4 / 100%
     alt: 执行「智能布局」后的画布：同样排成两行、行间距 400，节点尺寸不变；与「宫格布局」相比肉眼差别很小，两者排出的行都不左对齐到同一列起点
     sha256: 8a12de42de650696f74d9a291fcb17579b055ebe3f5a8218a68808b1a0c008b6
+
+  - file: screenshots/33-subject-imported.png
+    task_id: subject-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:28:00+08:00
+    verified_locator: '主体节点 aria「本地添加」完成后；状态串逐字 Main Bound subject: main present, 0 auxiliaries, voice missing.'
+    visible_text: 主体 1 / @ 主体 1 / 添加描述... / 节点 2 已保存
+    alt: 主体节点「主体 1」完成本地添加后的形态：标题 @ 主体 1 带改名铅笔、描述占位「添加描述...」、主媒体槽已绑定一张图片且右上角有 ✕ 移除钮、右侧还有一个 ＋ 空槽用于加辅助素材、右上角为音色图标；状态串为 Main Bound subject: main present, 0 auxiliaries, voice missing。
+    sha256: bd664bed4a86d30e6afe6d48ff90eed9c5f50d48379745ca4aaee22042943b22
+
+  - file: screenshots/34-subject-asset-picker.png
+    task_id: subject-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:29:00+08:00
+    verified_locator: '主体节点 aria「从资产库选择」打开的 Import assets 面板'
+    visible_text: Import assets / 资产 主体 图片 视频 时间 / 暂无图片素材 / 至多选择 1 个素材 / 已选择 0 个素材 / 确认 / 请先选择素材
+    alt: 「从资产库选择」打开的 Import assets 面板：页签为 资产/主体/图片/视频/时间（比画布版少音频与文档），底部多出一行「至多选择 1 个素材」与「已选择 0 个素材」+ 确认（提示请先选择素材）
+    sha256: 674582badcfe0cde5a4721e17ce03a2d32dfcc3c7f218383f27a3ea2e1c6082e
+
+  - file: screenshots/35-subject-import-dialog.png
+    task_id: subject-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:29:30+08:00
+    verified_locator: '主体节点 aria「导入主体」打开的模态，空态逐字「没有可用主体」'
+    visible_text: 主体 / 搜索 / 没有可用主体 / 已选择 0 个素材 / 确认
+    alt: 「导入主体」打开的模态：标题「主体」、右上 ✕、搜索框，主体库为空时居中显示「没有可用主体」，底部「已选择 0 个素材」与禁用的确认按钮
+    sha256: a985d5890e333e9bb0c16f7977a4d677c67c07532788c8cf36c86d7e57b2b174
+
+  - file: screenshots/36-share-panel.png
+    task_id: canvas-context
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:22:00+08:00
+    verified_locator: '顶栏「分享」打开的「分享画布」面板；橙框为注入 overlay'
+    visible_text: 分享画布 / 复制链接 / 仅自己可访问 / 只有你可以通过此链接访问画布 / 创建团队，与成员在画布实时协作 / 创建团队
+    alt: 分享画布面板：标题「分享画布」，上方为画布链接输入框与「复制链接」按钮；中间为带锁图标的权限下拉「仅自己可访问」及说明「只有你可以通过此链接访问画布」；下方为「创建团队，与成员在画布实时协作」与右侧「创建团队」按钮，橙色高亮框为面板范围
+    sha256: 56a257d28d4ac2cc3020803c53faa5ba9c308417f38e17939995e935b9f8da05
+
+  - file: screenshots/37-more-menu.png
+    task_id: canvas-context
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:24:00+08:00
+    verified_locator: '顶栏 aria「更多」打开的 200x84 菜单；橙框为注入 overlay'
+    visible_text: 项目信息 / 复制项目
+    alt: 更多菜单：点击顶栏「更多」后弹出的两项小菜单——「项目信息」与「复制项目」，浮层 200×84，出现在按钮正下方，橙色高亮框为菜单范围
+    sha256: f6b9f6d9e77126ca73f5e9d303a9065875876e3faf77ee6ecdddfb3b47d260f5

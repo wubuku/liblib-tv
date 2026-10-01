@@ -71,7 +71,11 @@ interface FrameosCanvasState {
 
   // 多画布场景数据（key: project/scene/canvas）
   // 每个 canvas 包含自己的 nodes/edges
-  canvasData: Record<string, { nodes: FrameosNode[]; edges: Edge[] }>;
+  // Batch 332: 增加 groups —— 分组属于画布，切走时需一并保存
+  canvasData: Record<
+    string,
+    { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }
+  >;
 
   // 当前激活的 canvas 数据（nodes/edges 派生自 canvasData[breadcrumbKey]）
   nodes: FrameosNode[];
@@ -464,23 +468,34 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   currentGeneration: null,
 
   setBreadcrumb: (b) => {
-    const newBreadcrumb = { ...get().breadcrumb, ...b };
-    const key = `${newBreadcrumb.project}/${newBreadcrumb.scene}/${newBreadcrumb.canvas}`;
-    const data = MOCK_CANVASES[key] ?? { nodes: [], edges: [] };
-    set((state) => ({
+    const state = get();
+    const prevKey = currentCanvasKey(state.breadcrumb);
+    const newBreadcrumb = { ...state.breadcrumb, ...b };
+    const key = currentCanvasKey(newBreadcrumb);
+    // Batch 332: 切走前把**当前画布的实时编辑**写回 canvasData。
+    // 此前直接用 MOCK_CANVASES 覆盖 → 本地新增/移动/删除的节点在切回后
+    // 全部丢失（实测：加 1 个节点 7→8，切走再切回变回 7）。
+    // groups 同样属于画布，一并保存与恢复。
+    const canvasData: FrameosCanvasState["canvasData"] = {
+      ...state.canvasData,
+      [prevKey]: { nodes: state.nodes, edges: state.edges, groups: state.groups },
+    };
+    // 目标画布：优先用已保存的数据（含本次切走保存的），否则回落到 fixture
+    const data = canvasData[key] ?? MOCK_CANVASES[key] ?? { nodes: [], edges: [] };
+    set({
       breadcrumb: newBreadcrumb,
-      canvasData: { ...state.canvasData, [key]: data },
+      canvasData: { ...canvasData, [key]: data },
       // 切换画布时清除选中 (分组属于画布, 一并清空)
       selectedNodeId: null,
       selectedGroupId: null,
-      groups: [],
+      groups: data.groups ?? [],
       nodes: data.nodes,
       edges: data.edges,
       // Batch 331: 撤销栈按画布隔离 —— 换画布即清空两侧栈。
       // 快照已带 canvasKey 做兜底校验，但语义上撤销本就不该跨画布生效。
       past: [],
       future: [],
-    }));
+    });
   },
 
   setNodes: (nodes) => set({ nodes }),
