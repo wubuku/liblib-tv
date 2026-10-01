@@ -984,3 +984,27 @@
 - **探查方法两处小坑**：① 底部工具条的「添加节点」是**纯图标按钮**（`aria-label="添加节点"`，无文字），按文本定位必然超时；② antd 下拉菜单项不是 `li`/`role=menuitem`，用这些选择器取到空数组——**此时应截图肉眼确认，而不是相信选择器**（第一次取到空数组时菜单其实已经打开）。
 - **产出**：`10-tasks/generate-audio.md`（第 27 个任务），补齐「生成」三族（图片/视频/音频）；注册 `config.mjs` 侧边栏、`10-tasks/README.md`、`task-inventory.yml`、`manifest.yml`；`create-nodes.md` 加指向音频生成页的入口。
 - **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
+
+## 环境记录七十二（Batch 116，2026-10-11，视频生成模式的判定规则）
+
+- **选题依据**：Batch 114 遗留清单里的「生成能力」9 项。`operationOptions` 在手册中**10 个标签全部零命中**。
+- **查清的核心事实——模式主要由连线素材推算，不是用户点出来的**：
+  - `inferVideoOperation`（`lib/model-selection.ts`）：有视频或图片+角色 > 2 → `reference_to_video`；有图片/角色 → `image_to_video`；只有音频 → `audio_to_video`；都没有 → `text_to_video`。
+  - `resolveVideoOperation`：已存且仍满足条件的 `videoEditOperation` 优先沿用，否则回落到推算值。**这解释了「先连素材再改模式」稳、「先选模式再连素材」会被自动纠正**。
+  - 源码注释写明设计意图：**音频只是附加参考时不会把请求升级为全模态参考**，纯音频才走 `audio_to_video`。这条规则此前完全没有文档。
+- **选择器的出现条件（三层里最容易漏的一层）**：`canvas-config-node-panel.tsx:285` 的条件是 `workflowProvider === "model" && isSeedance25Model(model)`——**只有模型工作流 + Seedance 2.5** 才有下拉；其余情况是一枚静态徽标「**全能参考 / 已连接媒体自动映射**」。又一处「不是按钮坏了」。
+- **为什么偏偏是 2.5**：`model-capabilities.ts:412` 对 Seedance 自动补能力——`reference_to_video` 对所有 Seedance 追加，`audio_to_video` **仅 2.5 追加**。所以 2.0 没有这个选择器，**与连没连素材无关**。这条把「看不到下拉」和「选不到某项」两种困惑一次说清。
+- **置灰规则**（六个选项各一条，我第一版漏了首帧的音频条件，回读整行才发现）：首帧/首尾帧需 图片+角色 ∈ [1,2] 且**无视频且无音频**；局部修改与视频续写需 ≥1 视频；文生视频需**零参考**；音频生视频需 ≥1 音频且无图片/角色/视频；参考生成需 ≥1 份素材。
+- **三套并行标签（同一能力三个名字）**——本批最值得记的发现：
+  | value | 画布（用户选） | 能力配置（管理员） | 任务/历史显示 |
+  |---|---|---|---|
+  | `image_to_video` | **首帧 / 首尾帧** | 图生视频 | 图生视频 |
+  | `reference_to_video` | **参考生成** | 全模态参考 | 全模态参考 |
+  | `inpaint` | 局部修改 | 局部修改 | **视频局部修改** |
+  | `camera_motion` | —（不进画布选择器） | 运镜调整 | **镜头/运镜调整** |
+  | `audio_to_video` | 音频生视频 | 音频生视频 | **参考音频生成视频** |
+  三个文件各持一份 `operationOptions`：`generation-task-display.ts`(10 项)、`model-capability-editor.tsx`(9 项)、`canvas-config-node-panel.tsx`(10 项，第 10 项是「版本对比」而非「结果版本对比」)，另有 `model-selection.ts` 的 `videoOperationLabel` 只映射 5 个、其余回落「当前生成模式」。
+  **处置原则沿用 Batch 98 的「用户可触达形态优先」**：手册正文用画布上的「首帧/首尾帧」「参考生成」，并单列一张对照表解释另两个名字的来历——而不是强行统一成某一套。
+- **可达性**：`pages/tasks/index.tsx` 也在用那份 10 项枚举，但该页挂在 Batch 103 已确认的死路由 `/tasks` 上，**不可达**——再次印证「枚举在某文件出现 ≠ 用户能看到」。
+- **证据形态**：全部源码锚定，未运行时取证。选择器需 Seedance 2.5 渠道配置（涉及 Provider Key），**不配置 Key、不触发生成**，故本批维持静态证据口径。
+- **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
